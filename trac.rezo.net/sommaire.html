@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="#LANG">
+<head>
+<title>[#NOM_SITE_SPIP]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
+
+<!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
+<link rel="stylesheet" href="spip_style.css" type="text/css">
+
+<!-- Les feuilles de style specifiques aux presents squelettes -->
+<link rel="stylesheet" href="dist/typographie.css" type="text/css">
+
+<!-- media="..." permet de ne pas utiliser ce style sous Netscape 4 (sinon plantage) -->
+<link rel="stylesheet" href="dist/habillage.css" type="text/css" media="print, projection, screen, tv">
+
+<!-- Lien vers le backend pour navigateurs eclaires -->
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="backend.php3">
+</head>
+
+<body bgcolor="white" dir="#LANG_DIR">
+
+<div id="navigation">
+
+<h1 class="structure"><:navigation:></h1>
+
+<!-- Menu de navigation general -->
+
+<div class="menu">
+<ul class="general">
+	<li class="menu-titre">
+	[<a href="(#URL_SITE_SPIP)" title="<:accueil_site:>"><b>#NOM_SITE_SPIP</b></a>]
+	[(#LOGO_SITE_SPIP|left)]
+	</li>
+</ul>
+
+
+	[<!-- Inscription au site -->
+
+		<div class="formulaire">
+			<br /><br />(#FORMULAIRE_INSCRIPTION)
+		</div>]
+
+</div>
+
+</div>
+
+<div id="principal" class="contenu">
+
+	<!-- Une : derniers articles publies -->
+	
+	<h1 class="structure"><:derniers_articles:></h1>
+	
+	<BOUCLE_article_un(ARTICLES) {par date} {inverse} {0,20}>
+		[(#LOGO_ARTICLE|right)]
+		[<div class="surtitre">(#SURTITRE)</div>]
+		<h2 class="titre-extrait">#TITRE</h2>
+		[<div class="surtitre">(#SOUSTITRE)</div>]
+		<div class="detail">
+		[(#DATE|nom_jour)] [(#DATE|affdate)]
+		<B_auteurs_un><:par_auteur:> <BOUCLE_auteurs_un(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_un>
+		</div>
+		[<div class="texte"><div class="extrait">(#TEXTE)</div></div>]
+		<br>
+	</BOUCLE_article_un>
+
+
+</div>
+
+#SPIP_CRON
+</body>
+</html>
