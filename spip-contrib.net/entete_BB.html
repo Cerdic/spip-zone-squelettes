@@ -1,0 +1,65 @@
+	<div id="entete"> <!-- La section d'en-tête -->
+
+	<BOUCLE_article(ARTICLES){id_article}>
+		<!-- Si on vient d'un article -->
+		<BOUCLE_secteur(HIERARCHIE){id_article}{0,1}>
+		<div class="logofor"> <!-- Le secteur du logo -->
+		<a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero|textebrut|entites_html)]"><span>[(#TITRE|supprimer_numero|textebrut|entites_html)]</span></a>
+		</div>
+		<div class="titrefor"> <!-- le secteur du titre et de la description -->
+			<h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+			[(#DESCRIPTIF|sinon{"&nbsp;"})]
+			<?php $ze_sect='[(#ID_RUBRIQUE|texte_script)]' ; ?> 
+		 </div>
+	      </BOUCLE_secteur>
+	</BOUCLE_article>
+		  
+	<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
+		<!-- Si on vient d'une rubrique -->
+		<BOUCLE_secteur2(HIERARCHIE){id_rubrique}{0,1}>
+		<div class="logofor"> <!-- Le secteur du logo -->
+			<a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero|textebrut|entites_html)]"><span>[(#TITRE|supprimer_numero|textebrut|entites_html)]</span></a>
+		</div>
+		<div class="titrefor"> <!-- le secteur du titre et de la description -->
+			<h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+			[(#DESCRIPTIF|sinon{"&nbsp;"})]
+			<?php $ze_sect='[(#ID_RUBRIQUE|texte_script)]' ; ?>
+		</div>  
+	      </BOUCLE_secteur2>
+	      </B_secteur2>
+		<div class="logofor"> <!-- Le secteur du logo -->
+			<a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero|textebrut|entites_html)]"><span>[(#TITRE|supprimer_numero|textebrut|entites_html)]</span></a>
+		</div>
+		<div class="titrefor"> <!-- le secteur du titre et de la description -->
+			<h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+			[(#DESCRIPTIF|sinon{"&nbsp;"})]
+			<?php $ze_sect='[(#ID_RUBRIQUE|texte_script)]' ; ?> 
+		</div>
+		<//B_secteur2>
+	</BOUCLE_rubrique>
+         
+        <//B_rubrique>
+	<div class="actionfor" > <!-- Le secteur des actions -->
+		<ul>
+			<li class="recherche"><a href="recherche_forum.php3?id_rubrique=<?php echo $ze_sect; ?>"><:phpbb:recherche:></a></li>
+			<li class="membre"><a href="membres_liste.php3?id_rubrique=<?php echo $ze_sect; ?>"><:phpbb:membres_liste:></a></li>
+		</ul>
+                <ul>
+                <!-- BEGIN switch_user_logged_out -->
+		<?php if(!$GLOBALS['auteur_session']) { ?>
+			<li class="enreg"><a href="spip_pass.php3" target="spip_pass" onClick="javascript:window.open('spip_pass.php3', 'spip_pass', 'scrollbars=yes, resizable=yes, width=480, height=450'); return false;"><:login_sinscrire:></a></li>
+		<?php } ?>
+		<!-- END switch_user_logged_out -->
+		<?php if(!$GLOBALS['auteur_session']) { ?>
+			<li class="login"><a href="connexion.php3?id_rubrique=<?php echo $ze_sect; ?>"><:phpbb:login:></a></li>
+		<?php } else { ?>
+			<li class="profil"><a href="profile.php3?id_rubrique=<?php echo $ze_sect; ?>"><:phpbb:membres_profil:></a></li> 
+			<li class="login"><a href="#URL_LOGOUT"><:phpbb:logout:>[<?php echo $GLOBALS['auteur_session']['nom']; ?>]</a></li>
+		<?php } ?>
+		<h2>Ici on peux "jouer" avec le squelette SPIP-VS-PHPBB<BR>Si vous avez une question sur SPIP<br>Rendez vous sur <a href="http://forum.spip.org">forum.spip.org</a></h2>
+		</ul>
+	</div>
+	
+	
+	
+</div>

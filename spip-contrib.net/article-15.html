@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<BOUCLE_article(ARTICLES){id_article}>
+	<head>
+		<meta http-equiv="Content-Type" content="text/HTML; charset=iso-8859-1"  />
+		<title>[#NOM_SITE_SPIP] [(#TITRE|supprimer_numero|textebrut)]</title>
+		<meta name="Description" content="[(#DESCRIPTIF|textebrut|attribut_html) - sur SPIP CONTRIB]">	
+		<meta name=" robot" content="follow, index, all" />
+		<meta name="revisit-after" content="1 days" />
+		
+		<!-- feuille de style de spip-contrib -->
+		<link rel="stylesheet"  type="text/css" href="contrib_style.css" />
+	   <link rel="stylesheet" type="text/css" media="print" href="contrib_print.css">
+  </head>
+	
+<body>
+<div id="page">
+
+	<div id="enteteDePage">   
+		<INCLURE(entete.php3){id_rubrique}{id_article}> 
+	</div> <!-- /entete page --> 
+
+	<div id="colonneGaucheMiseEnPage2Colonnes"> 
+		
+		<!-- Sommaire -->
+		<div id="cadre">
+			<div id="titre">Sommaire</div>
+			<INCLURE(menu.php3){id_rubrique}> 
+		</div>
+
+		
+		<!-- Recherche -->
+		<div id="cadre">
+			<div id="titre">Recherche</div>
+			[(#FORMULAIRE_RECHERCHE)] 
+		</div>
+		
+				
+		<B_coeur5>
+		<!-- Popularite -->
+		<div id="cadre">
+			<div id="titre">On aime</div>
+			<ul>
+				<BOUCLE_coeur5(ARTICLES){titre_mot="Cool"}{id_rubrique}{par hasard}{0,5}>
+					[<li><a href="#URL_ARTICLE">(#TITRE)</a></li>]
+				</BOUCLE_coeur5>         		
+			</ul>
+		</div>
+		</B_coeur5>
+
+		<!-- Popularite -->
+		<div id="cadre">
+			<div id="titre">Vous aimez</div>
+
+			<ul>
+			<BOUCLE_top5(ARTICLES){par
+popularite}{id_rubrique}{inverse}{0,5}>
+				[<li><a href="#URL_ARTICLE"
+title="Popularite abolue : #POPULARITE_ABSOLUE">(#TITRE)</a></li>]
+			</BOUCLE_top5>         		
+			</ul>
+		</div>
+	</div>
+
+	<!-- Colonne centrale -->
+	<div id="colonneCentraleMiseEnPage2Colonnes" >
+		<div id="cadre">
+			<div id="titre"><h1><:avertissement_admin_titre:></h1></div>
+			<:avertissement_admin_texte:>
+	      </div>
+			
+		<h1>#TITRE</h1>
+		[<:par_auteur:> (#LESAUTEURS|antispam)]
+              	[<p>(#DESCRIPTIF)</p>]
+		[<p>(#TEXTE|justifier)</p>]
+		[<hr><b>A savoir</b><br>(#PS)</hr>]
+		[<hr>(#NOTES)</hr>]
+		
+		<!-- les images --> 
+                <B_portfolio>                	
+		<div id="cadre">
+		<h1>Images associees</h1>
+		<BOUCLE_portfolio(DOCUMENTS){id_article}{extension==jpg|png|gif}{mode=document}{doublons}>
+			[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
+		</BOUCLE_portfolio>
+		<BOUCLE_port_rec(BOUCLE_portfolio)></BOUCLE_port_rec>
+		</div>
+		</B_portfolio>
+
+		<!-- les fichiers --> 
+		<B_documents>
+		<div id="cadre">
+		<h1>Téléchargement</h1>
+		Cliquez sur l'icône ci-joint pour télécharger le(s) fichier(s) et/ou document(s).<br>
+		<BOUCLE_documents(DOCUMENTS){id_article}{par titre}{mode=document}{doublons}>
+			[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
+			[<br>(#TITRE|majuscules)]
+			[: (#DESCRIPTIF)]
+			[<br>(#TYPE_DOCUMENT) -] [(#TAILLE|taille_en_octets)]<br>
+		</BOUCLE_documents>
+		<BOUCLE_doc_rec(BOUCLE_documents)></BOUCLE_doc_rec>
+		</div>
+		</B_documents>
+
+
+		<!-- les mots cles --> 
+		<B_mots>
+		<div id="cadre">
+		<h1>Mots Clés</h1>
+		<ul>
+		<BOUCLE_mots(MOTS){id_article}{par titre}>
+			<li>#TYPE : #TITRE </li>
+		</BOUCLE_mots>
+		</ul>
+		</div>
+		</B_mots>
+	
+	</div>
+	<!-- Fin colonne centrale -->
+	<!-- Affichage du forum -->
+	<div id="clear"><hr></div>
+	<B_sujets_forums2>											
+	<BOUCLE_sujets_forums2(FORUMS){id_article}{par date}{inverse}>
+		<div id="cadre">
+			<a name="forum#ID_FORUM"></a>
+			[<i>Par <a href="mailto:(#EMAIL|antispam)">][(#NOM)</a></I>,&nbsp; ] 
+			[<i>le (#DATE|affdate) : </i>]
+			[<B>(#TITRE)</B><BR>]
+			[(#TEXTE|smileys) ]
+			[- <a href="#URL_SITE" >(#NOM_SITE)</a>]
+			[<BR><a href="forum.php3?(#PARAMETRES_FORUM)">Répondre a ce message</a>]
+		    	<B_reponses>
+				<ul>
+				<hr>
+					<BOUCLE_reponses(FORUMS){id_parent}{par date}>
+						<a name="forum#ID_FORUM"></a>
+						[<i>Par <a href="mailto:(#EMAIL|antispam)">][(#NOM)</a></I>,&nbsp; ] 
+						[<i>le (#DATE|affdate) : </i>]
+				            	[<B>(#TITRE)</B><BR>]
+		    				[(#TEXTE|smileys) ]
+		    				[- <a href="#URL_SITE" >(#NOM_SITE)</a>]
+		    				[<BR><a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a>]
+						<BOUCLE_rep_messages(boucle_reponses)></BOUCLE_rep_messages>
+					</BOUCLE_reponses>
+				</ul>
+			</B_reponses>
+    		</div>
+	</BOUCLE_sujets_forums2>
+	</B_sujets_forums2>
+	[<a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_article:></a>]
+
+	<div id="piedDePage">
+		<INCLURE(pied.php3){id_rubrique}{id_article}> 
+	</div>
+	
+</BOUCLE_article>
+<INCLURE (page404.php3)>
+<//B_article>
+
+</div>
+</body>
+
+</html>

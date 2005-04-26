@@ -1,0 +1,40 @@
+<B_forums>
+<p />
+<div style="border: 1px solid #600051; padding: 0px;">
+<table width="100%" cellpadding="3" cellspacing="1" border="0">
+<tr>
+<td background="img_interface/fond-degrade.png" align="center" class="droitxpetit"><b><:info_nouveaux_message:></b></td>
+<td background="img_interface/fond-degrade.png" align="center" class="droitxpetit"><b><:icone_auteurs:></b></td>
+<td background="img_interface/fond-degrade.png" align="center" class="droitxpetit"><b><:date:></b></td>
+<td background="img_interface/fond-degrade.png" align="center" class="droitxpetit"><b><:reponses:></b></td>
+</tr>
+
+<?php $max_threads = 6; ?>
+<BOUCLE_forums(FORUMS){id_article?}{plat}{par date}{inverse}{0,30}>
+	<BOUCLE_thread(FORUMS){id_thread}{doublons}> </BOUCLE_thread>
+	<?php
+	if ($max_threads-- > 0) {
+
+		if ($i == 0) {
+			$fond = "#eeeeee";
+			$i = 1;
+		} else {
+			$fond = "#dddddd";
+			$i = 0;
+		}
+	?>
+	<tr>
+	<td bgcolor="<?php echo $fond; ?>" class="droitxpetit"><b><a href="#URL_FORUM"
+		title="[(#TEXTE|couper{150}|texte_backend)]">#TITRE</a></b></td>
+	<td bgcolor="<?php echo $fond; ?>" align="center" class="droitxpetit">[(#NOM|raccourcir_nom)]</td>
+	<td bgcolor="<?php echo $fond; ?>" align="center" class="droitxpetit">[(#DATE|affdate_court|insecable)]&nbsp;[(#DATE|heures)][:(#DATE|minutes)]</td>
+	<td bgcolor="<?php echo $fond; ?>" align="center" class="droitxpetit"><BOUCLE_compte_reponses(FORUMS){id_thread}{plat}{id_parent!=0}></BOUCLE_compte_reponses>#TOTAL_BOUCLE<//B_compte_reponses></td>
+	</tr>
+	<?php } // maxthreads ?>
+	</B_thread>
+
+</BOUCLE_forums>
+
+</table></div>
+</B_forums>
+

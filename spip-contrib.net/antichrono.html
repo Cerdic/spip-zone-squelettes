@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+<head>
+	<title><:plan_site:> - [#NOM_SITE_SPIP]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	<meta name="Description" content="<:description_meta:>" />
+	<meta name="Keywords" content="<:keywords_meta:>" />
+	<meta name="robot" content="follow, index, all" />
+	<meta name="revisit-after" content="1 days" />
+	<link href="screen.css" rel="stylesheet" type="text/css" />
+	<link rel="author" title="<:auteur_design:>" href="http://www.iesanetwork.com/a.levy/" />
+	<link rel="author" title="<:auteur_logo:>" href="http://www.erational.org/"/>
+	<link rel="start" title="<:accueil:>" href="/" />
+	<link rel="index" title="<:carte:>" href="plan.php3" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="backend.php3" />
+<link rel="shortcut icon" type="images/x-icon" href="favicon.ico" />
+    <style type="text/css">
+
+	@import url("spipstyle.css");
+
+    </style>
+<link href="print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+
+<body dir="#LANG_DIR">
+<div id="page">
+	<div id="accessibiliylinks"><a href="#content"><:acces_contenu:></a> | <a href="#lefter"><:acces_navigation:></a> | <a href="#recherche"><:acces_recherche:></a></div>
+  	<INCLURE(entete1.php3)>
+
+	<div id="outercolonne">
+		<div id="innercolonne">
+			<div id="lefter">
+				<INCLURE(menu1.php3){lang}>
+				<div class="bloctype1">
+					<img class="borderTL2" src="images/bloctype1/topleft.gif" alt="" width="5" height="5"/>
+					<img class="borderTR2" src="images/bloctype1/topright.gif" alt="" width="5" height="5"/>
+					<h3><label for="selectlangue"><:langue:></label></h3>
+					<form action='spip_cookie.php3' method='post'><input type='hidden' name='url' value='/' />
+					<select name='var_lang' id="selectlangue">
+					<option value='ar'[(#NOM_SITE_SPIP|select_lang{ar})]>&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;</option>
+					<option value='en'[(#NOM_SITE_SPIP|select_lang{en})]>English</option>
+					<option value='es'[(#NOM_SITE_SPIP|select_lang{es})]>Espa&#241;ol</option>
+					<option value='fr'[(#NOM_SITE_SPIP|select_lang{fr})]>fran&#231;ais</option>
+					</select>
+					<input type='submit' name='Valider' value='<:pass_ok:>' /></form> 
+               		<div class="spacer">&nbsp;</div>
+				</div>
+				<div class="bottomCorners">
+        			<img class="borderBL2" src="images/bloctype1/bottomleft.gif" alt="" width="5" height="5" />
+        			<img class="borderBR2" src="images/bloctype1/bottomright.gif" alt="" width="5" height="5"/>
+				</div>
+			<div class="bloctype2">
+				<img class="borderTL2" src="images/bloctype2/topleft.gif" alt="" width="5" height="5"/>
+				<img class="borderTR2" src="images/bloctype2/topright.gif" alt="" width="5" height="5"/>
+				<h3><:aimez:></h3>
+				<ul>
+				<BOUCLE_top5popu(ARTICLES){par popularite}{inverse}{lang}{0,5}>
+					[<li><a href="#URL_ARTICLE">(#TITRE|couper_liens{75})</a></li>]
+				</BOUCLE_top5popu>         		
+				</ul>
+               <div class="spacer">&nbsp;</div>
+			</div>
+			<div class="bottomCorners">
+        	<img class="borderBL2" src="images/bloctype2/bottomleft.gif" alt="" width="5" height="5" />
+        	<img class="borderBR2" src="images/bloctype2/bottomright.gif" alt="" width="5" height="5"/>
+		  </div>
+			</div>
+			<div id="content">
+				<div class="bloctype3 first">
+
+					<img class="borderTL2" src="images/bloctype3/topleft.gif" alt="" width="5" height="5"/>
+
+					<img class="borderTR2" src="images/bloctype3/topright.gif" alt="" width="5" height="5"/>
+
+					<h1><:antichronologique:></h1>
+
+					<div class="spacer">&nbsp;</div>
+
+				</div>
+
+				<div class="bottomCorners">
+
+					<img class="borderBL3" src="images/bloctype3/bottomleft.gif" alt="" width="5" height="5" />
+
+					<img class="borderBR3" src="images/bloctype3/bottomright.gif" alt="" width="5" height="5"/>
+
+				</div>
+
+				<div class="inside3col hollyfix">
+
+				<p class="ie5bug">&nbsp;</p>
+				<p><:retour_plan:></p>
+				<BOUCLE_RubExclues(RUBRIQUES){titre_mot=_ExclusDuMenu}{doublons}>
+				</BOUCLE_RubExclues>
+
+				<BOUCLE_plus_vieux (ARTICLES) {lang}{par date}{inverse} {0,1} {doublons}>
+				<h2><:annee:> [(#DATE|annee)]</h2>
+				<h3><:mois:> [(#DATE|nom_mois)]</h3>
+				<ul>
+				<li>[<span class="date">(#DATE|affdate)</span>] <a href="#URL_ARTICLE" >#TITRE</a></li>
+
+				<BOUCLE_meme_mois (ARTICLES) {par date} {inverse}{mois_relatif=0} {doublons}>
+				<li>[<span class="date">(#DATE|affdate)</span>] <a href="#URL_ARTICLE" >[(#TITRE|supprimer_numero|couper_liens{75})]</a></li>
+				</BOUCLE_meme_mois>
+				</ul>
+
+					<BOUCLE_suivant_meme_annee (ARTICLES) {par date}{inverse} {annee_relatif=0} {doublons} {0,1}>
+					<h3><:mois:> [(#DATE|nom_mois)]</h3>
+					<ul>
+					<li>[<span class="date">(#DATE|affdate)</span>] <a href="#URL_ARTICLE">[(#TITRE|supprimer_numero|couper_liens{75})]</a></li>
+
+					<BOUCLE_meme_mois_suivant_meme_annee (boucle_meme_mois)>
+					</BOUCLE_meme_mois_suivant_meme_annee>
+				</ul>
+
+					<BOUCLE_recursive_mois (boucle_suivant_meme_annee)>
+					</BOUCLE_recursive_mois>
+
+					</BOUCLE_suivant_meme_annee>
+
+				<B_recursive_annee>
+				<BOUCLE_recursive_annee (boucle_plus_vieux)>
+				</BOUCLE_recursive_annee>
+
+				</BOUCLE_plus_vieux>
+
+				</div>
+			</div>
+			<div id="righter">
+			<BOUCLE_RubExclues_Breves(RUBRIQUES){titre_mot=_ExclusDuMenu}{doublons breves}>
+			</BOUCLE_RubExclues_Breves>
+
+<B_Autres_Breves>
+			<div class="bloctype1 first">
+				<img class="borderTL2" src="images/bloctype1/topleft.gif" alt="" width="5" height="5"/>
+				<img class="borderTR2" src="images/bloctype1/topright.gif" alt="" width="5" height="5"/>
+				<h3><:breves:></h3>
+				
+				<ul>
+				<BOUCLE_Autres_Breves(RUBRIQUES){id_parent=0}{par lang}{doublons breves}>
+				<B_breves>
+					
+					<li><span class="gras">[(#TITRE|supprimer_numero)]</span>
+					<ul>
+					<BOUCLE_breves(BREVES) {id_secteur} {par date} {inverse} {0,15}>
+						<li><span class="datebreve">[(#DATE|affdate_court)]:</span> <a href="#URL_BREVE">[(#TITRE|couper_liens{75})]</a></li>
+					</BOUCLE_breves>
+					</ul></li>
+					
+				</B_breves>
+				</BOUCLE_Autres_Breves></ul>
+
+               		<div class="spacer">&nbsp;</div>
+			</div>
+			<div class="bottomCorners">
+			<img class="borderBL2" src="images/bloctype1/bottomleft.gif" alt="" width="5" height="5" />
+			<img class="borderBR2" src="images/bloctype1/bottomright.gif" alt="" width="5" height="5"/>
+			</div>
+			</B_Autres_Breves>
+			<BOUCLE_RubExclues_sites(RUBRIQUES){titre_mot=_ExclusDuMenu}{doublons sites}>
+			</BOUCLE_RubExclues_sites>
+			<B_Autres_sites>
+			<div class="bloctype2">
+				<img class="borderTL2" src="images/bloctype2/topleft.gif" alt="" width="5" height="5"/>
+				<img class="borderTR2" src="images/bloctype2/topright.gif" alt="" width="5" height="5"/>
+				<h3><:ailleurs:></h3>
+					<ul>					
+					<BOUCLE_Autres_sites(RUBRIQUES){id_parent=0}{par lang}{doublons sites}>
+					<B_sites>
+					<li><span class="gras">[(#TITRE|supprimer_numero)]</span>
+					<ul>
+					<BOUCLE_sites(SITES) {id_secteur} {par nom_site}>
+						<li><a href="#URL_SITE">[(#NOM_SITE|couper_liens{75})]</a></li>
+					</BOUCLE_sites>
+					</ul></li>
+					</B_sites>
+					</BOUCLE_Autres_sites></ul>
+					<div class="spacer">&nbsp;</div>
+			</div>
+			<div class="bottomCorners">
+        	<img class="borderBL2" src="images/bloctype2/bottomleft.gif" alt="" width="5" height="5" />
+        	<img class="borderBR2" src="images/bloctype2/bottomright.gif" alt="" width="5" height="5"/>
+			</div>
+			</B_Autres_sites>
+		</div>
+			<div class="clear mozclear"></div>
+		</div>
+	</div>
+  <INCLURE(pied1.php3)>
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,26 @@
+RewriteEngine On
+
+# pour spip
+RewriteRule ^rubrique([0-9]+)\.html$   rubrique.php3?id_rubrique=$1 [QSA,L]
+RewriteRule ^article([0-9]+)\.html$    article.php3?id_article=$1 [QSA,L]
+RewriteRule ^breve([0-9]+)\.html$      breve.php3?id_breve=$1 [QSA,L]
+RewriteRule ^mot([0-9]+)\.html$      mot.php3?id_mot=$1 [QSA,L]
+RewriteRule ^auteur([0-9]+)\.html$      auteur.php3?id_auteur=$1 [QSA,L]
+
+# pour spikini
+## feuilles de style
+RewriteRule .*/(wakka(\.basic|\.print)?\.(css|png)) spikini/$1 [L]
+
+## spiperies
+# envoi vers la version patchee de spip_cookie (qui regle le cookie-path sur /)
+RewriteRule     ^spikini/(spip_cookie\.php3?)       spikini/$1      [QSA,L]
+
+# les autres a la racine
+RewriteRule ^spikini/(.*/)?(spip_.*\.(css|php3?)|puce\.gif)   /$2 [QSA,L]
+
+## remonter les IMG/
+RewriteRule ^spikini/(IMG/.*) /$1 [QSA,R,L]
+
+## page spikini
+RewriteCond %{REQUEST_URI} !^spikini/index\.php3?
+RewriteRule ^spikini/(.*) spikini/index.php?wiki=$1 [QSA,L]

@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+<head>
+<title>Recherche - [#NOM_SITE_SPIP]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<meta name="Keywords" content="<:keywords_meta:>" />
+<meta name="Description" content="<:description_meta:>" - sur SPIP CONTRIB" />
+<link href="screen.css" rel="stylesheet" type="text/css" />
+<link rel="author" title="<:auteur_design:>" href="http://www.iesanetwork.com/a.levy/" />
+<link rel="author" title="<:auteur_logo:>" href="http://www.erational.org/"/>
+<link rel="start" title="<:accueil:>" href="/" />
+<link rel="index" title="<:carte:>" href="plan.php3" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="backend.php3" />
+<link rel="shortcut icon" type="images/x-icon" href="favicon.ico" />
+<style type="text/css">
+	@import url("spipstyle.css");
+</style>
+<link href="print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body dir="#LANG_DIR">
+<div id="page">
+  <div id="accessibiliylinks"><a href="#content"><:acces_contenu:></a> | <a href="#lefter"><:acces_navigation:></a> | <a href="#recherche"><:acces_recherche:></a></div>
+  <INCLURE(entete1.php3)>
+  <div id="outercolonne">
+    <div id="innercolonne">
+      <div id="lefter">
+      <INCLURE(menu1.php3){lang}>
+
+
+
+      </div>
+
+      <div id="content">
+            <div class="bloctype3 first">
+
+				<img class="borderTL2" src="images/bloctype3/topleft.gif" alt="" width="5" height="5"/>
+
+				<img class="borderTR2" src="images/bloctype3/topright.gif" alt="" width="5" height="5"/>
+
+				<h1>R&eacute;sultat de la recherche</h1>
+
+                [<p>(#DESCRIPTIF)</p>]
+<?php
+$NbResults = 0; // initialisation du comptage
+$MaxPts = 0;
+?>
+
+<BOUCLE_CountArticles(ARTICLES){recherche}{par points}{inverse}>
+<?php
+$NbResults++; // bête incrémentation (basique mais efficace)
+if ($MaxPts==0) $MaxPts = #POINTS; // ?>
+</BOUCLE_CountArticles>
+
+<?php
+if (!isset($HTTP_GET_VARS["debut_lb"])) $debut_lb = 0; // ça, c'est mon paramètre à passer en GET dans l'URL
+
+$Page = floor($debut_lb/10) + 1;  // numéro de page dans laquelle on est
+$MaxPage = ceil($NbResults/10) ; // dernière page
+$Last = ($debut_lb+11<$NbResults) ? $debut_lb+10 : $NbResults; // dernier résultat affiché (permet d'écrire:"résultats X à Y affichés sur un total de Z" -> voir plus bas)
+
+if ($NbResults > 0) {
+//  ?>
+		 <p>R&eacute;sultats <? echo $debut_lb+1 ."-" .$Last; ?>, <?
+echo $NbResults; ?> au total, pour "<? echo $recherche; ?>"</p>
+<?
+}
+else { ?>
+		 <p>Aucun r&eacute;sultat pour "<? echo $recherche; ?>".</p>
+<?
+} ?>
+
+				<div class="spacer">&nbsp;</div>
+
+            </div>
+
+            <div class="bottomCorners">
+
+				<img class="borderBL3" src="images/bloctype3/bottomleft.gif" alt="" width="5" height="5" />
+
+				<img class="borderBR3" src="images/bloctype3/bottomright.gif" alt="" width="5" height="5"/>
+
+            </div>
+
+
+        <div class="inside3col hollyfix">
+
+          <p class="ie5bug">&nbsp;</p>
+<h2>mes r&eacute;sultats</h2>
+  <BOUCLE_articles(ARTICLES){recherche}{par points}{inverse}{debut_lb,10}>
+<? // calcul du pourcentage (option amusante mais pas performante)
+$PerCent = 100 * #POINTS / $MaxPts; ?>
+   <h3><span class="date">[<? echo number_format($PerCent, 0); ?> %]</span> [<a href="#URL_ARTICLE">(#TITRE|supprimer_numero|couper_liens{75})</a>][<span class="date"> - (#DATE|affdate)</span>]</h3>
+   [<p class="intro">(#INTRODUCTION|textebrut) <a href="#URL_ARTICLE" class="spip_in" title="[(#TITRE|couper_liens{75})]"><:la_suite:></a></p>]
+               
+</BOUCLE_articles>
+
+<BOUCLE_articles_pagination(ARTICLES){recherche}{par points}{inverse}>
+</BOUCLE_articles_pagination>
+[ <p id="pagination"><:pages:> (#TOTAL_BOUCLE|pagination{debut_lb,10})</p>]
+</B_articles_pagination>
+
+<p id="pagination"><:super_recherche:>
+		  <a href='moteur.php?recherche=<? echo urlencode($recherche); ?>'><:super_recherche_lien:></a>
+</p>
+        </div>
+
+        </div>
+
+        
+
+      <div id="righter">
+
+      <!-- Les dernieres breves  -->
+   &nbsp;
+
+       </div>
+
+      <div class="clear mozclear"></div>
+
+    </div>
+
+  </div>
+
+  <INCLURE(pied1.php3)>
+
+</div>
+
+</body>
+
+</html>
