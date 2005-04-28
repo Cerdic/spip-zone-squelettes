@@ -27,6 +27,10 @@ define("_INC_URLS2", "1");
 				if ($a = spip_fetch_array($r)) {
 					return ereg_replace("_.*","",$a['lang']);
 				}
+			case 'forum':
+				include_ecrire('inc_forum.php3');
+				$racine = racine_forum($id);
+				return langue_choix($racine[1], $racine[0]);
 		}
 	}
 
@@ -55,10 +59,11 @@ function generer_url_breve($id_breve) {
 }
 
 function generer_url_forum($id_forum) {
-	$s = spip_query("SELECT * FROM spip_forum WHERE id_forum=$id_forum");
+	$s = spip_query("SELECT id_thread, id_forum FROM spip_forum WHERE id_forum=$id_forum");
+	$lang = choix_langue($id_forum, 'forum');
 	if ($t=spip_fetch_array($s)) {
-		$url = "threadspip".$t['id_article'].'-'.$t['id_thread'].'.html';
-		if ($t['id_forum'] <> $t['id_thread']) $url .= '#mess'.$t['id_forum'];
+		$url = $lang."_".$t['id_thread'].'.html';
+		if ($t['id_forum'] <> $t['id_thread']) $url .= '#'.$t['id_forum'];
 	}
 	return $url;
 }
