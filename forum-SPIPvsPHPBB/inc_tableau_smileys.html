@@ -1,0 +1,43 @@
+<center>
+  <h3>Smileys</h3>
+
+<?php
+$listimag=array();
+$rep1="smileys/";
+$listfich=opendir($rep1);
+while ($fich=readdir($listfich))
+{ 	if(($fich !='..') and ($fich !='.') and ($fich !='.test'))
+	{ 
+$nomfich=substr($fich,0,strrpos($fich, "."));
+$listimag[$nomfich]=$rep1.$fich;
+	}
+}
+
+
+ksort($listimag);
+reset($listimag);
+$compte=0;
+
+// changer ci-dessous le nombre de colonnes (3 par défaut) //////////
+$nbcol=3;
+
+echo "<div class=\"smileys\">\n";
+while (list($nom,$chem) = each($listimag))
+{ 
+echo "
+<div class=\"icone\">
+<a href=\"javascript:emoticon(':".$nom."')\">
+	<img src=\"".$chem."\" alt=\":".$nom."\" title=\":".$nom."\"><br/>:".$nom."
+</a>
+</div>\n";
+
+$compte++; 
+	if ($compte % $nbcol == 0)
+	{
+	echo"<hr/> <!-- permet éventuellement d'imposer un passage à la ligne -->";}
+	}
+	
+echo "</div>";
+?>
+
+</center>

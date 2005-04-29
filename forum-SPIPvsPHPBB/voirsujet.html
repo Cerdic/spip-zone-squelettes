@@ -1,0 +1,224 @@
+<?php
+  // Disable caching
+    //
+    @header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+    @header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+
+    @header("Cache-Control: no-store, no-cache, must-revalidate");
+    @header("Cache-Control: post-check=0, pre-check=0", false);
+    @header("Pragma: no-cache");
+
+ $etat = $auteur_session['statut'];
+ ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<BOUCLE_sujet_principal(FORUMS){id_forum}>
+<html lang="#LANG">
+<head>
+<title>[#NOM_SITE_SPIP] - #TITRE</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
+
+<!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
+<link rel="stylesheet" href="spip_style.css" type="text/css">
+
+<!-- Les feuilles de style specifiques aux presents squelettes -->
+<link rel="stylesheet" href="spip_forum.css" type="text/css">
+
+<!-- Lien vers le backend pour navigateurs eclaires -->
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="backend.php3">
+
+</head>
+
+<body id="voirsujet" dir="#LANG_DIR">
+
+<a name="haut"></a>
+
+	<div id="contenant"> <!-- Section contenant tout le reste -->
+
+<INCLURE(entete_BB.php3){id_article}>
+
+		<div id="corps"> <!-- Section contenant les informations -->
+		<?php $parametre_forum='#PARAMETRES_FORUM' ?>
+			
+		<h2><a href="voirsujet.php3?id_forum=#ID_FORUM">#TITRE</a></h2>
+		<!--<IN_CLURE(observer.php3){id_forum}> -->
+		
+		<?php $sujet_clos=0 ?>
+		<!--Déterminer si le forum est fermé-->
+		<BOUCLE_etat(ARTICLES){id_article}{titre_mot=Fermé}>
+		<?php $sujet_clos=1 ?>
+		<p class="nav"><BOUCLE_article_cdfca(ARTICLES){id_article}><BOUCLE_chemindeferca(HIERARCHIE){id_article}{" -&gt; "}><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></BOUCLE_chemindeferca> -&gt; <a href="#URL_ARTICLE">[(#TITRE|supprimer_numero) (<:phpbb:forum_ferme:>)]</a></BOUCLE_article_cdfca></p>
+		<hr class="clr" /> <!-- Permet l'affichage correctement pour certaines versions de safari -->
+		<table class="spipforum">
+		</BOUCLE_etat>
+		<!-- Déterminer si un message cloture la discussion ? -->
+		<BOUCLE_sujet_ferme(FORUMS){id_forum}{titre_mot=Fermé}{doublons}>
+		<?php if($sujet_clos==0) { ?>
+		<p class="nav"><BOUCLE_article_cdfc1(ARTICLES){id_article}><BOUCLE_chemindeferc1(HIERARCHIE){id_article}{" -&gt; "}><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></BOUCLE_chemindeferc1> -&gt; <a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></BOUCLE_article_cdfc1></p>
+
+		<hr class="clr" /> <!-- Permet l'affichage correctement pour certaines versions de safari -->
+		<table class="spipforum"><?php } ?>
+		<?php $sujet_clos=1 ?>
+			<thead>
+			<tr class="clos">
+				<th class="tautvs"><:phpbb:sujet_auteur:></th>
+		  		<th class="tmsgvs"><:phpbb:ferme:></th>
+			</tr>
+			</thead>
+			<tr class="clos">
+				<td  class="autvs" id="forum#ID_FORUM"><B_auteurpc1><BOUCLE_auteurpc1(AUTEURS){id_auteur}{tout}><p><a href="./profil_BB.php3?id_auteur=#ID_AUTEUR&id_article=#ID_ARTICLE">#NOM<br/>[(#NOM|afficher_avatar)]</a></p></BOUCLE_auteurpc1></B_auteurpc1><p><a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{"Anonyme"})]</a></p><//B_auteurpc1></td>
+  				<td class="tabvs">
+					<ul class="titrevs">
+	        				<li class="tdatevs"><:phpbb:message_date:>: [(#DATE|nom_jour)] [(#DATE|affdate),] [(#DATE|heures)]:[(#DATE|minutes)]</li>
+	        				<li class="ttitrevs"><:phpbb:message_sujet:>: #TITRE</li>
+	        			</ul>
+					<div class="txtvs">
+						[(#TEXTE|smileys)]
+					</div>
+				</td>
+			</tr>
+			<tr class="clos"> 
+				<td class="retourvs"><a href="#top"><:phpbb:revenir_haut:></a></td>
+				<td class="videvs">&nbsp;</td>
+			</tr>
+ 		</BOUCLE_sujet_ferme>
+
+		<!-- Si ce n'est toi c'est donc ton fils -->
+		<BOUCLE_reponse(FORUMS){id_parent}>
+		<BOUCLE_reponse_ferme(FORUMS){id_forum}{titre_mot=Fermé}{doublons}>
+		<?php if($sujet_clos==0) { ?>
+		<p class="nav"><BOUCLE_article_cdfc2(ARTICLES){id_article}><BOUCLE_chemindeferc2(HIERARCHIE){id_article}{" -&gt; "}><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></BOUCLE_chemindeferc2> -&gt; <a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></BOUCLE_article_cdfc2></p>
+		<hr class="clr" /> <!-- Permet l'affichage correctement pour certaines versions de safari -->
+		<table class="spipforum"><?php } ?>
+		<?php $sujet_clos=1 ?>
+			<thead>
+			<tr class="clos">
+				<th class="tautvs"><:phpbb:sujet_auteur:></th>
+				<th class="tmsgvs"><:phpbb:ferme:></th>
+			</tr>
+			</thead>
+			<tr class="clos">
+				<td  class="autvs" id="forum#ID_FORUM"><B_auteurpc2><BOUCLE_auteurpc2(AUTEURS){id_auteur}{tout}><p><a href="./profil_BB.php3?id_auteur=#ID_AUTEUR&id_article=#ID_ARTICLE">#NOM<br/>[(#NOM|afficher_avatar)]</a></p></BOUCLE_auteurpc2></B_auteurpc2><p><a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{"Anonyme"})]</a></p><//B_auteurpc2></td>
+				<td class="tabvs">
+	        			<ul class="titrevs">
+	        				<li class="tdatevs"><:phpbb:message_date:>: [(#DATE|nom_jour)] [(#DATE|affdate),] [(#DATE|heures)]:[(#DATE|minutes)]</li>
+	        				<li class="ttitrevs"><:phpbb:message_sujet:>: #TITRE</li>
+	        			</ul>
+					<div class="txtvs">
+						[(#TEXTE|smileys)]
+					</div>
+				</td>
+			</tr>
+			<tr class="clos"> 
+				<td class="retourvs"><a href="#top"><:phpbb:revenir_haut:></a></td>
+				<td class="videvs">&nbsp;</td>
+			</tr>
+		</BOUCLE_reponse_ferme>
+		<BOUCLE_descends_rec(boucle_reponse)> </BOUCLE_descends_rec>
+		</BOUCLE_reponse>
+		<//B_sujet_ferme>
+		<!-- FIN de sujet fermé  -->
+		<?php if($sujet_clos==0){ ?>
+		<ul class="actionforum">
+			<li class="poster"><BOUCLE_forum_pere(ARTICLES){id_article}><?php $id_article='[(#ID_ARTICLE|texte_script)]'; ?>[<a href="poster.php3?(#PARAMETRES_FORUM)" title="<:phpbb:sujet_nouveau:>"><span><:phpbb:sujet_nouveau:></span>&nbsp;</a>]</BOUCLE_forum_pere></li>
+			<li class="repondre">[<a href="poster.php3?(#PARAMETRES_FORUM)" title="<:phpbb:messages_repondre:>"><span><:phpbb:messages_repondre:></span>&nbsp;</a>]</li>	
+		</ul>
+		<p class="nav"><BOUCLE_article_cdf(ARTICLES){id_article}><BOUCLE_chemindefer(HIERARCHIE){id_article}{" -&gt; "}><a href="#URL_RUBRIQUE" >[(#TITRE|supprimer_numero)]</a></BOUCLE_chemindefer> -&gt; <a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></BOUCLE_article_cdf></p>
+		<hr class="clr" /> <!-- Permet l'affichage correctement pour certaines versions de safari -->
+		<table class="spipforum">
+		<?php } ?>
+			<thead>
+			<tr class="row1">
+				<th class="tautvs"><:phpbb:sujet_auteur:></th>
+		  		<th class="tmsgvs"><:phpbb:messages:></th>
+			</tr>
+			</thead>
+			<tr class="row1">
+				<td  class="autvs" id="forum#ID_FORUM"><B_auteurp><BOUCLE_auteurp(AUTEURS){id_auteur}{tout}><p><a href="./profil_BB.php3?id_auteur=#ID_AUTEUR&id_article=#ID_ARTICLE">#NOM<br/>[(#NOM|afficher_avatar)]</a></p></BOUCLE_auteurp></B_auteurp><p><a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{"Anonyme"})]</a></p><//B_auteurp></td>
+  				<td class="tabvs">
+		        		<ul class="actionvs">
+		        			<?php if($sujet_clos==0){ ?>
+		        			<li class="citervs"><a href='poster.php3?[(#PARAMETRES_FORUM)]' title="<:phpbb:citer:>"><span><:phpbb:citer:></span>&nbsp;</a></li>
+		        			<?php } ?>
+		        			<!-- Modération pour les admin --><?php if ($etat=='0minirezo'){?>
+		        			<li class="effacervs"><a href='./ecrire/articles_forum.php3?id_article=<?php echo $id_article ; ?>' title="<:phpbb:effacer:>"><span><:phpbb:effacer:></span>&nbsp;</a></li>
+		        			<li class="ipvs"><a title="IP: #IP"><span>IP: #IP</span>&nbsp;</a></li>
+		        			<!--Fin Modération pour les admin--><?php }?>
+		        		</ul>
+					<ul class="titrevs">
+	        				<li class="tdatevs"><:phpbb:message_date:>: [(#DATE|nom_jour)] [(#DATE|affdate),] [(#DATE|heures)]:[(#DATE|minutes)]</li>
+	        				<li class="ttitrevs"><:phpbb:message_sujet:>: #TITRE</li>
+	        			</ul>
+					<div class="txtvs">
+						[(#TEXTE|smileys)]
+					</div>
+				</td>
+			</tr>
+			<tr class="row1"> 
+				<td class="retourvs"><a href="#top"><:phpbb:revenir_haut:></a></td>
+				<td class="videvs">&nbsp;</td>
+			</tr>
+			<?php $ligne=2; ?>
+			<BOUCLE_posts(FORUMS){id_parent}{par date}{doublons}>
+			<thead>
+			<tr class="row<?php echo $ligne ?>">
+				<th class="salontitre" colspan="2"><H3>&nbsp;</H3></th>
+
+			</tr>
+			</thead>
+			<tr class="row<?php echo $ligne ?>">
+				<td  class="autvs" id="forum#ID_FORUM"><B_auteurpr><BOUCLE_auteurpr(AUTEURS){id_auteur}{tout}><p><a href="./profil_BB.php3?id_auteur=#ID_AUTEUR&id_article=#ID_ARTICLE">#NOM<br/>[(#NOM|afficher_avatar)]</a></p></BOUCLE_auteurpr></B_auteurpr><p><a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{"Anonyme"})]</a></p><//B_auteurpr></td>
+  				<td class="tabvs">
+		        		<ul class="actionvs">
+		        			<?php if($sujet_clos==0){ ?>
+		        			<li class="citervs"><a href='poster.php3?[(#PARAMETRES_FORUM)]' title="<:phpbb:citer:>"><span><:phpbb:citer:></span>&nbsp;</a></li>
+		        			<?php } ?>
+		        			<!-- Modération pour les admin --><?php if ($etat=='0minirezo'){?>
+		        			<li class="effacervs"><a href='./ecrire/articles_forum.php3?id_article=<?php echo $id_article ; ?>' title="<:phpbb:effacer:>"><span><:phpbb:effacer:></span>&nbsp;</a></li>
+		        			<li class="ipvs"><a title="IP: #IP"><span>IP: #IP</span>&nbsp;</a></li>
+		        			<!--Fin Modération pour les admin--><?php }?>
+		        		</ul>
+					<ul class="titrevs">
+	        				<li class="tdatevs"><:phpbb:message_date:>: [(#DATE|nom_jour)] [(#DATE|affdate),] [(#DATE|heures)]:[(#DATE|minutes)]</li>
+	        				<li class="ttitrevs"><:phpbb:message_sujet:>: #TITRE</li>
+	        			</ul>
+					<div class="txtvs">
+						[(#TEXTE|smileys)]
+					</div>
+				</td>
+			</tr>
+			<tr class="row<?php echo $ligne ?>"> 
+				<td class="retourvs"><a href="#top"><:phpbb:revenir_haut:></a></td>
+				<td class="videvs">&nbsp;</td>
+			</tr>
+			<?php if ($ligne==1) {$ligne=2;} else {$ligne=1;} ?>
+			<BOUCLE_Forums_rep(boucle_posts)>
+			</BOUCLE_Forums_rep>
+			</BOUCLE_posts>
+		</table><!--Fin table spipforum-->
+
+		<?php if($sujet_clos==0){ ?>		
+		<ul class="actionforum">
+			<li class="poster"><BOUCLE_forum_pere2(ARTICLES){id_article}><?php $id_article='[(#ID_ARTICLE|texte_script)]'; ?>[<a href="poster.php3?(#PARAMETRES_FORUM)" title="<:phpbb:sujet_nouveau:>"><span><:phpbb:sujet_nouveau:></span>&nbsp;</a>]</BOUCLE_forum_pere2></li>
+			<li class="repondre">[<a href="poster.php3?(#PARAMETRES_FORUM)" title="<:phpbb:messages_repondre:>"><span><:phpbb:messages_repondre:></span>&nbsp;</a>]</li>	
+		</ul>
+		<?php } ?>
+		<p class="nav"><BOUCLE_article_cdf2(ARTICLES){id_article}><BOUCLE_chemindefer2(HIERARCHIE){id_article}{" -&gt; "}><a href="#URL_RUBRIQUE" >[(#TITRE|supprimer_numero)]</a></BOUCLE_chemindefer2> -&gt; <a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></BOUCLE_article_cdf2></p>
+		<?php if ($etat=='0minirezo'){?><!-- Modération pour les admin  -->
+		<ul class="actionadm">
+			<li class="admsurveiller"><a title="<:phpbb:admsurveiller:>"><span><:phpbb:admsurveiller:></span>&nbsp;</a></li>
+			<li class="admeffacer"><a href='./ecrire/articles_forum.php3?id_article=#ID_ARTICLE' title="<:phpbb:admeffacer:>"><span><:phpbb:admeffacer:></span>&nbsp;</a></li>
+			<li class="admbouger"><a title="<:phpbb:admbouger:>"><span><:phpbb:admbouger:></span>&nbsp;</a></li>
+			<li class="admclore"><a href="poster.php3?[(#PARAMETRES_FORUM)]" title="<:phpbb:admclore:>"><span><:phpbb:admclore:></span>&nbsp;</a></li>
+			<li class="admseparer"><a title="<:phpbb:admseparer:>"><span><:phpbb:admseparer:></span>&nbsp;</a></li>	
+		</ul>
+		<?php } ?>
+	</div> <!-- Fin de la section "corps" -->
+
+<INCLURE(pied_BB.php3){id_article}>
+
+</div><!-- fin de la Section contenant -->
+</BOUCLE_sujet_principal>
+<:phpbb:sujets_aucun:>
+<//B_sujet_principal>
+</body>
+</html>
