@@ -1,0 +1,129 @@
+<?
+
+/*
+ *   +----------------------------------+
+ *    Nom :    Envoyer l'article par mail
+ *   +----------------------------------+
+ *    Date : jeudi 19 juin 2003
+ *    Auteur :	Aurélien PIERARD      
+ *				aurelien.pierard@sig.premier-ministre.gouv.fr                                      
+ *   +-------------------------------------+
+ *    Fonctions :
+ *     Envoyer l'article par mail avec une mise en en page "à la SPIP"
+ *   +-------------------------------------+ 
+ *  
+ * Pour toute suggestion, remarque, proposition d'ajout
+ * reportez-vous au forum de l'article :
+ * http://www.uzine.net/spip_contrib/article.php3?id_article=187
+*/
+
+Function VerifMail ($Mail)
+{
+  $Retour = eregi("^[[:alpha:]]{1}[[:alnum:]]*((\.|_|-)[[:alnum:]]+)*@".
+                  "[[:alpha:]]{1}[[:alnum:]]*((\.|-)[[:alnum:]]+)*".
+                  "(\.[[:alpha:]]{2,})$",
+                  $Mail);
+  Return $Retour;
+}
+
+ if (VerifMail($adresse) && $statut=="ok") { 
+	$charset = lire_meta('charset');
+	$headers = "From: $from\n".
+		"MIME-Version: 1.0\n".
+		"Content-Type: text/plain; charset=$charset\n".
+		"Content-Transfer-Encoding: 8bit\n$headers";
+
+		echo '<img src="img_pack/mail.gif" alt="L\'article a été envoyé" />&nbsp;<strong>L\'article a été envoyé</strong>';
+		
+		// Destinataire
+		
+		$message = "(Ceci est un message automatique) \n\n";
+		$message .= "Bonjour,\n\nCette page, extraite du site [(#NOM_SITE_SPIP|addslashes)], vous est recommandée "; 
+		$message .= "par ".$nom." - ".$from." \n\n";
+		$message .= "Titre de la page : ".$titre."\n";
+		$message .= "Adresse de la page : ".$url."\n";
+		$message .= "Vous pouvez consulter cette page en utilisant sur le lien ci-dessus.\n";
+		$message .= "Merci de votre visite\n\n [(#NOM_SITE_SPIP|addslashes)]";
+		$objet = "Une page du site [(#NOM_SITE_SPIP|addslashes)] vous est recommandée par ".$nom." , ".$from." ";
+		include('ecrire/inc_mail.php3');
+		envoyer_mail($adresse,$objet,$message,"","");
+		
+		// Expéditeur
+		
+		$message ="VOICI LE MESSAGE QUI A ETE ENVOYE A : $adresse\n";
+		$message .="______________________________________________________________________\n\n\n";
+		$message .= "(Ceci est un message automatique) \n\n";
+		$message .= "Bonjour,\n\nCette page, extraite du site [(#NOM_SITE_SPIP|addslashes)], vous est recommandée "; 
+		$message .= "par ".$nom." - ".$from." \n\n";
+		$message .= "Titre de la page : ".$titre."\n";
+		$message .= "Adresse de la page : ".$url."\n";
+		$message .= "Vous pouvez consulter cette page en utilisant sur le lien ci-dessus.\n";
+		$message .= "Merci de votre visite\n\n [(#NOM_SITE_SPIP|addslashes)]";
+		$objet = "Votre message a bien été envoyé! ([(#NOM_SITE_SPIP|addslashes)])";
+		envoyer_mail($from,$objet,$message,"","");
+ }
+else {
+?>
+
+
+<SCRIPT LANGUAGE="JavaScript">
+function VerifForm(){
+	adresse = document.news_form.adresse.value;
+	var place = adresse.indexOf("@",1);
+	var point = adresse.indexOf(".",place+1);
+	from = document.news_form.from.value;
+	var place2 = from.indexOf("@",1);
+	var point2 = from.indexOf(".",place+1);
+	if (((place > -1)&&(adresse.length >2)&&(point > 1)) && (document.news_form.nom.value!="") && ((place2 > -1)&&(from.length >2)&&(point2 > 1)))
+		{
+		document.news_form.submit();
+		}
+	else
+		{	
+			var erreurMsg='';
+			if (!((place > -1)&&(adresse.length >2)&&(point > 1)))
+				erreurMsg = '- Entrez l\'adresse e-mail du destinataire!\n';
+			if (document.news_form.nom.value=="")
+				erreurMsg = erreurMsg + '- Entrez votre nom!\n';
+			if (!((place2 > -1)&&(from.length >2)&&(point2 > 1)))
+				erreurMsg = erreurMsg + '- Entrez votre adresse e-mail!';			
+			alert(erreurMsg);
+		}
+}
+</script>
+<?
+	// inclusion du script de gestion des layers de SPIP
+		include 'inc_layer.php3';
+		afficher_script_layer();
+		
+		
+		// Titre du bloc
+		echo bouton_block_invisible('envoyer_par_mail');
+			echo "<a href=\"javascript:swap_couche('$compteur_block', '$spip_lang_rtl');\">Envoyer à un ami</a>";
+			
+		// Bloc invisible
+		echo debut_block_invisible('envoyer_par_mail');
+			echo "<div style=\"margin-left:14px;\">";
+			echo "<form action=\"".$url2."\" method=\"post\" name=\"news_form\">";
+			echo "<strong>Destinataire&nbsp; :</strong><br />";
+			echo "(entrez l'email du destinataire)";
+			echo "<br /><input name=\"adresse\" size=\"25\" value=\"\" /><br />";
+			echo "<strong>De la part de&nbsp;</strong><br />";
+			echo "(entrez votre nom)";
+			echo "<br /><input name=\"nom\" size=\"25\" value=\"\" />";
+			echo "<br />(entrez votre email)";
+			echo "<br /><input name=\"from\" size=25 value=\"\" />";
+			echo "<br />";
+			echo "<input type=\"Hidden\" name=\"statut\" value=\"ok\" />";
+			echo "<input type=\"button\" onClick=\"VerifForm()\" value=\"Envoyer\" style=\"font-family: Arial; font-size:7.1pt; font-style: normal; font-weight: bold\" />";
+			echo "</form>";
+			echo "</div>";
+			
+		// Fin du bloc
+		echo fin_block('envoyer_par_mail');
+}
+?>
+
+
+
+

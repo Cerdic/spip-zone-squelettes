@@ -1,0 +1,28 @@
+<BOUCLE_forums_liens(FORUMS){plat}{par date}{inverse}{0,30}> 
+<div class="td_ln">
+[(#DATE|jour)]/[(#DATE|mois) ]  
+<?php
+$ze_titre = '[(#TITRE|texte_script)]' ;
+$ze_titre = ereg_replace( "> ", "", $ze_titre );
+?>
+<BOUCLE_ArticleForum(ARTICLES){id_article}>
+<INCLURE(_cadenas.php3){id_article}>
+<a href="#URL_ARTICLE#forum#ID_FORUM" title="#TITRE"> 
+</BOUCLE_ArticleForum>
+<BOUCLE_BreveForum(BREVES){id_breve}>
+<INCLURE(_cadenas.php3){id_breve}>
+</a><a href="#URL_BREVE#forum#ID_FORUM" title="#TITRE"> 
+</BOUCLE_BreveForum>
+<BOUCLE_RubriqueForum(RUBRIQUES){id_rubrique}>
+<INCLURE(_cadenas.php3){id_rubrique}>
+</a><a href="#URL_RUBRIQUE#forum#ID_FORUM" title="#TITRE"> 
+</BOUCLE_RubriqueForum>
+<BOUCLE_SiteForum(SITES){id_syndic}>
+</a><a href="_kiosque.php3?id_syndic=#ID_SYNDIC#forum#ID_FORUM" title="#TITRE"> 
+</BOUCLE_SiteForum>
+<//B_SiteForum>
+<//B_RubriqueForum>
+<//B_BreveForum>
+<//B_ArticleForum>
+<?php echo $ze_titre ?></a>[, par <a href="mailto:#EMAIL">(#NOM)</a>]</div> 
+                  </BOUCLE_forums_liens>

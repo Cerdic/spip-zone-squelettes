@@ -1,0 +1,71 @@
+<div align="center">
+<!-- Afficher les infos sur les stats du site -->
+ 
+<p><b>#NOM_SITE_SPIP contient :</b>
+             
+              <BOUCLE_nb_breves(BREVES){tout}>
+              </BOUCLE_nb_breves>
+              #TOTAL_BOUCLE breves,
+              </B_nb_breves>
+              <BOUCLE_nb_articles(ARTICLES){tout}>
+              </BOUCLE_nb_articles>
+              #TOTAL_BOUCLE articles,
+              </B_nb_articles>
+              <BOUCLE_nb_sites(SITES){tout}>
+              </BOUCLE_nb_sites>
+              #TOTAL_BOUCLE sites référéncés,
+              </B_nb_sites>
+              <BOUCLE_nb_messages(FORUMS){plat}>
+              </BOUCLE_nb_messages>
+              #TOTAL_BOUCLE messages dans les forums.
+              </B_nb_messages>
+
+              
+<?php
+
+// Période d'analyse couverte (nb de jours avant aujourd'hui)
+
+$periode = '105' ;
+
+// Sur tout le site, nombre de visites pendant la période
+$query="SELECT UNIX_TIMESTAMP(date) AS date_unix, visites FROM spip_visites ".
+		"WHERE 1 AND date > DATE_SUB(NOW(),INTERVAL $periode DAY) ORDER BY date";
+	$result=spip_query($query);
+
+        $i=0 ;
+        $total_absolu=0;
+
+	while ($row = spip_fetch_array($result)) {
+
+                $total_absolu = $total_absolu + $row['visites'];
+                $i++;
+	}
+
+
+// Nombre moyen de visites par jour sur la période
+
+        $moyenne =  round($total_absolu / $periode );
+
+// Sur tout le site, nombre de visiteurs uniques la veille
+
+         $query="SELECT visites FROM spip_visites ORDER BY date DESC LIMIT 1";
+         $result = spip_query($query);
+         if ($row = @spip_fetch_array($result))
+         $visites_veille = $row['visites'];
+         else
+         $visites_veille = 0;
+
+	
+	
+ // afficher les résultats
+ 
+ echo "<p><b>#NOM_SITE_SPIP</b> reçoit environ <b>$moyenne</b> visites par jour (hier : $visites_veille)" ;
+ if($moyenne != 0) $ppv = round(#POPULARITE_SITE / $moyenne) ;
+?>
+<br>
+<tt>La base d'articles est consultée environ #POPULARITE_SITE fois par jour, soit environ <?php echo $ppv ?> articles par visite.</tt>
+
+</p>
+</div>
+
+<!-- BoOz -->

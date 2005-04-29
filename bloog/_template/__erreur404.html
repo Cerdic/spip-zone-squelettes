@@ -1,0 +1,405 @@
+<?php
+ 
+ // Disable caching
+    //
+    @header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+    @header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+
+    @header("Cache-Control: no-store, no-cache, must-revalidate");
+    @header("Cache-Control: post-check=0, pre-check=0", false);
+    @header("Pragma: no-cache");
+ ?>
+
+<HTML>
+<HEAD>
+<title><? echo$recherche; ?> sur [#NOM_SITE_SPIP]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<!-- enlève http:// de l'adresse du site -->
+
+<?php
+$url = "#URL_SITE_SPIP";
+$url= ereg_replace( "http://", "", $url );
+?>
+<script language="JavaScript">
+// Moteur interne par Google (fenetre popup)
+ function RecherchePopup()
+ {
+ chaine = document.forms.recherche.s.value;
+  if (document.forms.recherche.elements[1].checked) {   
+   URL="http://www.google.fr/search?as_q="+chaine+"&num=100&btnG=Recherche+Google&as_epq=&as_oq=&as_eq=&lr=&as_ft=i&as_filetype=&as_qdr=all&as_occt=any&as_dt=i&as_sitesearch=<? echo $url; ?>";
+   window.open(URL,'','toolbar=yes,location=yes,status=yes,menubar=yes,scrollbars=yes,resizable=yes,width=700,height=400'); 
+   }
+  if (document.forms.recherche.elements[2].checked) {
+   URL="http://www.google.fr/search?q="+chaine+"&hl=fr&meta=lr%3Dlang_fr";
+   window.open(URL,'','toolbar=yes,location=yes,status=yes,menubar=yes,scrollbars=yes,resizable=yes,width=700,height=400'); 
+   }
+}
+</script>
+
+
+<SCRIPT src="IMG/002/_interface.js" type="text/javascript"></SCRIPT>
+<link rel="stylesheet" href="IMG/002/_interface.css" type="text/css">
+</HEAD>
+<BODY>
+<div align="center"> 
+    <INCLURE (_page_barre_menu.php3)><br>
+
+  <TABLE width=750  border=0 cellPadding=0 cellSpacing=0>
+    <TBODY> 
+    <TR> 
+      <TD vAlign=top align="center" width="490"> 
+       
+        <table border=0 cellpadding=0 cellspacing=0 width="100%"><tr> 
+<td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+            <td background="IMG/002/r-h.gif">&nbsp;</td>
+<td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td></tr>
+<tr>
+            <td background="IMG/002/r-g.gif" width="5" height="40">&nbsp;</td>
+            <td class="content" height="40"> 
+              
+
+<h2>La page que vous avez demandé n'est plus accessible à l'adresse indiquée</h2>
+
+		<div class="h5">Rechercher :</div>
+              <form action="recherche.php3" method="get" style="MARGIN: 0px">
+                <input name="recherche" size="50" value="<? echo $recherche; ?>">
+                <input name="submit" type="submit" class="submit" value="Ok">
+				
+			
+              </form>   
+			  
+			 
+            </td>
+            <td background="IMG/002/r-d.gif" width="5" height="40">&nbsp;</td>
+          <tr> 
+ <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+<td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+<td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+</tr></table>
+ <br>
+        <table border=0 cellpadding=0 cellspacing=0 width="100%"><tr> 
+<td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+<td background="IMG/002/r-h.gif"><img alt="" src="IMG/002/loupe.gif" /></td>
+<td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td></tr>
+<tr><td background="IMG/002/r-g.gif" width="5">&nbsp;</td><td class="content"> 
+ 
+
+
+                  <P class="grison"> 
+                                      
+                    La recherche sur 
+                   <b><?php echo $recherche; ?></b>
+                    donne les r&eacute;sultats suivants...<BR>
+                  </P>
+				  
+                <P> 
+                  <!-- Recherche par % pertinence (ht://dig) ©opyleft Adrien Poirot &lt;a_poirot@hotmail.com -->
+                  <!-- debut recherche par pertinence //////////////////// -->
+                  <?
+$NbResults = 0; // initialisation du comptage
+$MaxPts = 0;?>
+                  <BOUCLE_CountArticles(ARTICLES){recherche}{par points}{inverse}>
+                  <?
+$NbResults++; // bête incrémentation (basique mais efficace)
+if ($MaxPts==0) $MaxPts = #POINTS; // ?>
+                  </BOUCLE_CountArticles>
+                  <?
+if (!isset($HTTP_GET_VARS["debut_lb"])) $debut_lb = 0; // ça, c'est mon paramètre à passer en GET dans l'URL
+
+$Page = floor($debut_lb/5) + 1;  // numéro de page dans laquelle on est
+$MaxPage = floor($NbResults/5) + 1; // dernière page
+$Last = ($debut_lb+6<$NbResults) ? $debut_lb+5 : $NbResults; // dernier résultat affiché (permet d'écrire:"résultats X à Y affichés sur un total de Z" -> voir plus bas)
+
+
+
+
+?>
+                  Classement des articles par pertinence: 
+                  <?
+if ($NbResults > 0) {
+//  ?>
+                   
+              <p> 
+                <?
+echo $NbResults; ?>
+                articles trouvés pour " 
+                <? echo $recherche; ?>
+                " </p>
+              <p align="center">
+                  <? echo $debut_lb+1 ."-" .$Last; ?>
+                 </p>
+                  <?
+}
+else { ?>
+                  Aucun r&eacute;sultat pour "
+                  <? echo $recherche; ?>
+                  ". 
+                  <?
+} ?>
+                  <BOUCLE_articlespert(ARTICLES){recherche}{par points}{inverse}{debut_lb,5}>
+                  <? // calcul du pourcentage (option amusante mais pas performante)
+$PerCent = 100 * #POINTS / $MaxPts; ?>
+                  <br>
+                  <br><font color=#666600>[<? echo number_format($PerCent, 0); ?>%] </font>
+				  <font size=1><b>[(#DATE|nom_jour|majuscules)] [(#DATE|jour)] 
+                  [(#DATE|nom_mois|majuscules)] [(#DATE|annee|majuscules)] </b></font><br>
+                   [(#SURTITRE)<br>
+              ] <a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a> [<br>
+                  (#SOUSTITRE)] 
+                  <B_AUTEUR2>
+                  <br>
+                  par <b> 
+                  <BOUCLE_AUTEUR2(AUTEURS){id_article}{", "}{par nom}>
+                  #NOM 
+                  </BOUCLE_AUTEUR2>
+                  </b> 
+                  </B_AUTEUR2>
+                  [<br>
+                (#INTRODUCTION)] <br><br>
+                </BOUCLE_articlespert>
+              <p align="center"> 
+                    <?
+if ($MaxPage>1) {
+	for ($i=0;$i<$MaxPage;$i++) {
+		if ($i+1==$Page) { ?>
+                    <b><font color='#999933'><? echo $i+1; ?></font></b> 
+                    <?
+                }
+                else {
+		     if ($i+1<$Page) { ?>
+                    <a href='recherche.php3?recherche=<? echo urlencode($recherche); ?><? if ($i) {echo "&debut_lb="; echo 5*$i;} ?>'><? echo $i+1; ?></a> 
+                    <?
+			}
+			else { ?>
+                    <a href='recherche.php3?recherche=<? echo urlencode($recherche); ?>&debut_lb=<? echo 5*$i; ?>'><? echo $i+1; ?></a> 
+                    <?
+			}
+		}
+	}
+} ?> 
+                  </p>
+                  
+              <!-- fin   recherche par pertinence //////////////////// -->
+              <!-- Recherche interne par google -->
+              <!-- debut recherche interne par google //////////////////// -->
+              <?php
+$url = "#URL_SITE_SPIP";
+$url= ereg_replace( "http://", "", $url );
+?>
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr align="left" valign="top"> 
+                      <td width="16"><img src="IMG/002/Lignesepa/lignesepa_gauche.gif" width="16" height="47"></td>
+                      <td><div style="background-image: url(IMG/002/Lignesepa/lignesepa_milieu.gif);"> 
+                          <img src="IMG/002/Lignesepa/lignesepa_milieu.gif" width="16" height="47"></div></td>
+                      <td width="16"><img src="IMG/002/Lignesepa/lignesepa_droite.gif" width="16" height="47"></td>
+                    </tr>
+                  </table>
+                  <!-- MILIEU 1 - rubriques trouvées -->
+                  
+              <TABLE WIDTH=95% CELLPADDING=0 CELLSPACING=0 BORDER=0>
+                <TR>
+
+<!-- colonne gauche rubriques trouvées première moitié -->
+	                
+                  <TD WIDTH=48% ALIGN="left" VALIGN="top"> 
+                    <B_sous_rubriques1>
+                    <!-- ligne de points -->
+                    <b>dans les RUBRIQUES...</b> <br>
+	<BOUCLE_sous_rubriques1(RUBRIQUES){recherche}{par points}{0,30}>
+		<BR>
+		<B>[<A HREF="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</A>]</B>
+		<BR>
+	</BOUCLE_sous_rubriques1>
+		<BR>
+	</B_sous_rubriques1>
+	<!-- ligne de points -->
+	                    
+
+	Aucun r&eacute;sultat dans les pages rubriques.
+	<//B_sous_rubriques1>
+	</TD>
+
+<!-- colonne de points -->
+	<TD WIDTH=2% ROWSPAN=2><img src="NAVPICS/rien.gif" alt="" width="8" height="1" border="0"></TD>
+	<TD WIDTH=1% ROWSPAN=2>
+	<img src="NAVPICS/rien.gif" alt="" width="8" height="1" border="0"></TD>
+	<TD WIDTH=2% ROWSPAN=2><img src="NAVPICS/rien.gif" alt="" width="8" height="1" border="0"></TD>
+
+<!-- colonne droite rubriques trouvées deuxième moitié -->
+	                
+                  <TD WIDTH=47% ROWSPAN=2 VALIGN="top" align="left"> 
+                    <B_breves>
+                    <b>dans les BREVES...</b><br>
+                      <BOUCLE_breves(BREVES){recherche}{par points}{inverse}{0,30}>
+                      <br>
+                      <font size=1> <img src="IMG/002/loupe.gif" border=0> [(#DATE|nom_jour)] 
+                      [(#DATE|jour)] [(#DATE|nom_mois)] </font><br>
+                      <br>
+                      <a href="#URL_BREVE">#TITRE</a> 
+                      </BOUCLE_breves>
+                      </B_breves>
+                      Aucun r&eacute;sultat dans les brèves. 
+                      <//B_breves>
+                      <p>
+                    </TD>
+</TR>
+</TABLE>
+
+<!-- ligne de points -->
+	             <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr align="left" valign="top"> 
+                    <td width="16"><img src="IMG/002/Lignesepa/lignesepa_gauche.gif" width="16" height="47"></td>
+                    <td><div style="background-image: url(IMG/002/Lignesepa/lignesepa_milieu.gif);"> 
+                        <img src="IMG/002/Lignesepa/lignesepa_milieu.gif" width="16" height="47"></div></td>
+                    <td width="16"><img src="IMG/002/Lignesepa/lignesepa_droite.gif" width="16" height="47"></td>
+                  </tr>
+                </table>
+
+              <!-- MILIEU 2 - breves articles et sites trouvés -->
+              <!-- Va chercher le bas de page pied.html  -->
+            </td>
+            <td background="IMG/002/r-d.gif" width="5">&nbsp;</td><tr> 
+ <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+<td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+<td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+</tr></table>
+<br>
+      </TD>
+      <TD width=19><IMG src="IMG/002/rien.gif" width=19></TD>
+        <TD vAlign=top width="241"> <table border=0 cellpadding=0 cellspacing=0 width="100%">
+            <tr> 
+              <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+              <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/secteur.gif" /></td>
+              <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+            </tr>
+            <tr> 
+              <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+              <td class="content"> 
+                  <INCLURE (_menu_rub.php3){id_rubrique}>
+               </td>
+              <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+            <tr> 
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+              <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+            </tr>
+          </table>
+          <br>
+        <table border=0 cellpadding=0 cellspacing=0 width="100%">
+          <tr> 
+            <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+            <td background="IMG/002/r-h.gif">&nbsp;</td>
+            <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+          </tr>
+          <tr> 
+            <td background="IMG/002/r-g.gif" width="5" height="40">&nbsp;</td>
+            <td class="content" height="40"> 
+             Aller plus loin : Rechercher avec <strong>Google</strong><br>
+                  <form method=get name=recherche onSubmit="return RecherchePopup();">
+                    <input type=text name=s size=35 value="<? echo $recherche; ?>">
+                    <div align="right"><a href=javascript:RecherchePopup(); onKeyPress="return true">OK</a></div> 
+                    <br>
+                    <input type=radio name=sur value=site checked>
+                    sur #NOM_SITE_SPIP 
+                    <input type=radio name=sur value=voila>
+                    sur le Web 
+                  </form>
+            </td>
+            <td background="IMG/002/r-d.gif" width="5" height="40">&nbsp;</td>
+          <tr> 
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+            <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+          </tr>
+        </table>
+        
+          
+        <br>
+        <br>
+        <table border=0 cellpadding=0 cellspacing=0 width="100%">
+          <tr> 
+            <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+            <td background="IMG/002/r-h.gif"><img alt="" src="IMG/002/loupe.gif" /></td>
+            <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+          </tr>
+          <tr> 
+            <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+            <td class="content"> 
+              <p><b>
+                <B_sitesweb>
+                dans les SITES WEB...</b><br>
+				
+                <BOUCLE_sitesweb(SITES){recherche}{par points}{inverse}{0,10}>
+                  #PUCE <a href="#URL_SITE">[(#NOM_SITE|supprimer_numero)]</a> [<br>
+                  (#DESCRIPTIF)] <br>
+                  </BOUCLE_sitesweb>
+                  </B_sitesweb>
+                  Aucun r&eacute;sultat dans les sites web. 
+                  <//B_sitesweb>
+              
+            </td>
+            <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+          <tr> 
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+            <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+          </tr>
+        </table>
+        <p>&nbsp;</p>
+      </TD>
+    </TR>
+    </TBODY> 
+  </TABLE>
+
+  <br>
+  <table border=0 cellpadding=0 cellspacing=0 width="750">
+    <tr> 
+      <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+      <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/stats.gif" /></td>
+      <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+    </tr>
+    <tr> 
+      <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+      <td class="content"> <table border=0 cellpadding=3 cellspacing=0 width="100%">
+          <tr > 
+            <td colspan="2" class="grison">Stats</td>
+          </tr>
+        </table>
+        <table width="100%" border="0" cellspacing="0" cellpadding="5">
+          <tr> 
+            <td align="center"> <b>#NOM_SITE_SPIP contient :</b> 
+              <BOUCLE_nb_breves(BREVES){tout}>
+              </BOUCLE_nb_breves>
+              #TOTAL_BOUCLE breves 
+              </B_nb_breves>
+              <BOUCLE_nb_articles(ARTICLES){tout}>
+              </BOUCLE_nb_articles>
+              #TOTAL_BOUCLE articles 
+              </B_nb_articles>
+              <BOUCLE_nb_sites(SITES){tout}>
+              </BOUCLE_nb_sites>
+              #TOTAL_BOUCLE sites référéncés 
+              </B_nb_sites>
+              <BOUCLE_nb_messages(FORUMS){plat}>
+              </BOUCLE_nb_messages>
+              #TOTAL_BOUCLE messages dans les forums 
+              </B_nb_messages>
+              <br> <br> <b>#NOM_SITE_SPIP</b> re&ccedil;oit environ #POPULARITE_SITE 
+              visites par jour.</td>
+          </tr>
+        </table>
+        <p align="center">[ <a href="#">Haut</a> ] </p></td>
+      <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+    <tr> 
+      <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+      <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+      <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+    </tr>
+  </table>
+  <br>
+   
+    <INCLURE (_page_barre_menu.php3)><br>  <INCLURE (_page_bas.php3)><br></div></BODY>
+</HTML>
+
+

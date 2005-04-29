@@ -1,0 +1,138 @@
+<table width="100%" cellspacing="0" cellpadding="10" border="0" align="center"> 
+	<tr> 
+		
+    <td class="bodyline"> 
+      <table width="100%" cellspacing="2" cellpadding="2" border="0">
+        <tr> 
+          <td align="left" valign="bottom" colspan="2"><a class="maintitle" href="#"><:phpbb:nouveaux_messages:></a><br />
+            <span class="gensmall"><b>
+            <!-- {PAGINATION} -->
+            &nbsp;</b><br />
+            &nbsp; </span></td>
+        </tr>
+      </table>
+      <br />
+      <!-- <form method="post" action="{S_POST_DAYS_ACTION}"> -->
+      <table border="0" cellpadding="4" cellspacing="1" width="100%" class="forumline">
+        <tr> 
+          <th colspan="2" align="center" height="25" class="thCornerL" nowrap><:phpbb:forum:>&nbsp;</th>
+          <th width="400" align="left" class="thTop" nowrap>&nbsp;<:phpbb:sujets:>&nbsp;&nbsp;&nbsp;</th>
+          <th width="100" align="center" class="thTop" nowrap>&nbsp;<:phpbb:sujet_auteur:>&nbsp;</th>
+          <th width="50" align="center" class="thTop" nowrap>&nbsp;<:phpbb:messages:></th>
+          <th align="center" class="thCornerR" nowrap>&nbsp;<:phpbb:messages_derniers:>&nbsp;</th>
+        </tr>
+       
+<BOUCLE_forums_liens(FORUMS){tout}{plat}{par date}{inverse}{age<60}> 
+
+
+<?php
+$ze_titre = '[(#TITRE|texte_script)]' ;
+$ze_titre = ereg_replace( "> ", "", $ze_titre );
+?>
+      
+		  
+<BOUCLE_se(ARTICLES){id_article}>
+<BOUCLE_secteur(HIERARCHIE){id_article}{0,1}>
+<?php 
+$ze_sect_art='[(#ID_RUBRIQUE|texte_script)]' ;
+?> 
+</BOUCLE_secteur>			
+</BOUCLE_se>
+
+<?php $closed='non'; ?>
+
+<BOUCLE_fo(FORUMS){id_forum}>
+
+<BOUCLE_remonte(FORUMS){id_enfant}>
+<BOUCLE_remonte_rec(boucle_remonte)> </BOUCLE_remonte_rec>
+</BOUCLE_remonte>
+
+<?php 
+$id_sujet='[(#ID_FORUM|texte_script)]'; 
+$titre_sujet='[(#TITRE|texte_script)]';
+$auteur_sujet='[(#NOM|texte_script)]';
+?>
+
+<BOUCLE_ArticleForum(ARTICLES){id_article}>
+<?php 
+$titre_forum='[(#TITRE|texte_script)]';
+?>
+</BOUCLE_ArticleForum>
+
+<BOUCLE_sujet_ferme(FORUMS){id_forum}{titre_mot=Fermé}>
+<?php $closed='[(#ID_FORUM|texte_script)]'; ?>
+</BOUCLE_sujet_ferme>
+
+<?php 
+$reponse_forum=0;
+?>
+
+<BOUCLE_reponse(FORUMS){id_parent}>
+
+<?php 
+$reponse_forum=$reponse_forum+1;
+?>
+
+<BOUCLE_reponse_ferme(FORUMS){id_forum}{titre_mot=Fermé}>
+<?php $closed='[(#ID_FORUM|texte_script)]'; ?>
+</BOUCLE_reponse_ferme>
+
+<BOUCLE_descends_rec(boucle_reponse)> </BOUCLE_descends_rec>
+</BOUCLE_reponse>
+
+<//B_sujet_ferme>
+
+<//B_remonte>
+</BOUCLE_fo>
+	
+	 <?php if($ze_sect==$ze_sect_art){ ?>
+ <!-- BEGIN topicrow -->
+        <tr> 
+          <td class="row1" align="center" valign="middle" width="20">
+		 <? echo $closed == "non"? "<img src='spip_bb/folder.gif' width='19' height='18' alt='<:phpbb:messages_pas_nouveaux:>' title='<:phpbb:messages_pas_nouveaux:>' />" : " <img src='spip_bb/folder_lock.gif' width='19' height='18' alt='<:phpbb:messages_pas_nouveaux:>' title='<:phpbb:messages_pas_nouveaux:>' />" ; ?>
+		 
+		 </td>
+          <td class="row1" width="100%"><span class="topictitle">
+		    </span><span class="gensmall">  <a href="#URL_FORUM" class="topictitle" ><?php echo $titre_forum ?></a><br />
+            <!-- {topicrow.GOTO_PAGE} -->
+            </span></td>
+          <td class="row2" align="left" valign="middle" width="400"><span class="postdetails"> 
+           <a href="voirsujet.php3?id_forum=<?php echo $id_sujet ?>" class="topictitle"><?php echo $titre_sujet ?></a>
+            </span></td>
+          <td class="row3" align="center" valign="middle"><span class="name"><?php echo $auteur_sujet; ?></span></td>
+          
+		  
+		  
+		  <td class="row2" align="center" valign="middle"><span class="postdetails">
+           
+			
+            <?php echo $reponse_forum;?>
+           
+            </span></td>
+          <td class="row3Right" align="center" valign="middle" nowrap><span class="postdetails"> 
+         
+            [(#DATE|nom_jour)] [(#DATE|affdate),] [(#DATE|heures)]:[(#DATE|minutes)<br />
+            ] [<:par_auteur:><a href="#">(#NOM|sinon{"Anonyme"})</a>] <a href="voirsujet.php3?id_forum=<?php echo $id_sujet?>#forum#ID_FORUM"><img src="spip_bb/icon_latest_reply.gif" border="0" alt="<:phpbb:messages_voir_dernier:>" title="<:phpbb:messages_voir_dernier:>" /></a> 
+           
+            </span></td>
+        </tr>
+        <!-- END topicrow -->
+		<?php }?>
+       </BOUCLE_forums_liens>  
+	    
+        <!-- BEGIN switch_no_topics -->
+        <!-- END switch_no_topics -->
+   
+        <!-- <tr> 
+	  <td class="catBottom" align="center" valign="middle" colspan="6" height="28"><span class="genmed">{L_DISPLAY_TOPICS}:&nbsp;{S_SELECT_TOPIC_DAYS}&nbsp; 
+		<input type="submit" class="liteoption" value="{L_GO}" name="submit" />
+		</span></td>
+	</tr> -->
+      </table>    
+      <div align="center"><span class="copyright"><br />
+        </span></div>
+
+
+		</td>
+	</tr>
+</table>

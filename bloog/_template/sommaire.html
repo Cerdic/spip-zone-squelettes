@@ -1,0 +1,595 @@
+<?php
+ 
+ // Disable caching
+    //
+    @header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+    @header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+
+    @header("Cache-Control: no-store, no-cache, must-revalidate");
+    @header("Cache-Control: post-check=0, pre-check=0", false);
+    @header("Pragma: no-cache");
+ ?>
+
+
+ <HTML><HEAD><title> [ #NOM_SITE_SPIP ] </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<SCRIPT src="IMG/002/_interface.js" type="text/javascript"></SCRIPT>
+<link rel="stylesheet" href="IMG/002/_interface.css" type="text/css">
+<script language="JavaScript" src="IMG/002/_scroller.js"></script>
+<script language="JavaScript">
+<!--
+function MM_goToURL() { //v3.0
+  var i, args=MM_goToURL.arguments; document.MM_returnValue = false;
+  for (i=0; i<(args.length-1); i+=2) eval(args[i]+".location='"+args[i+1]+"'");
+}
+//-->
+</script>
+</HEAD>
+<BODY >
+
+  
+  
+
+<div align="center"> 
+    <INCLURE (_page_barre_menu.php3)><br>
+  
+  
+  <TABLE width=750  border=0 cellPadding=0 cellSpacing=0>
+    <TBODY> 
+    <TR> 
+        <TD vAlign=top align="center" width="490"> 
+						           
+			            
+          
+         <B_blogbox_haut>
+          <table border=0 cellpadding=0 cellspacing=0 width="100%">
+            <tr> 
+              <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+              <td background="IMG/002/r-h.gif">&nbsp;</td>
+              <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+            </tr>
+            <tr>
+              <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+             <BOUCLE_blogbox_haut(BREVES){age>0}{titre_mot=homebox_haut}{doublons}{par date}{inverse}{0,1}> 
+            <td class="content" bgcolor="#FFFFFF"> [(#LOGO_BREVE)] 
+              <BOUCLE_SECU1(MOTS){id_breve}{titre = acces_restreint}>
+              <?php	$secu=1; ?>
+              </BOUCLE_SECU1>
+              <?php 
+	if ($secu == 1) {
+   $etat=$auteur_session['statut'];
+   if ($etat=="")
+   {
+   ?>
+              <div class="h5"><a href=#URL_BREVE> #TITRE</a><img src="IMG/002/cle.gif" alt="Cette page est reservée aux membres" border=0 ></div>
+              [(#DATE|nom_jour)] [(#DATE|affdate)] 
+              <?
+    }else{
+  ?>
+              <div class="h5"><a href=#URL_BREVE> #TITRE</a></div>
+              [(#DATE|nom_jour)] [(#DATE|affdate)][(#INTRODUCTION|justifier)]
+                <?php }} else {?>
+                <div class="h5"><a href=#URL_BREVE>#TITRE</a></div>
+              [(#DATE|nom_jour)] [(#DATE|affdate)][(#INTRODUCTION|justifier)] 
+                <?php } ?>
+              
+			  </BOUCLE_blogbox_haut>
+			  </td>
+              <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+            <tr> 
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+              <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+            </tr>
+          </table>
+          <br>
+        </B_blogbox_haut>
+        
+		<B_blogue>
+		<table border=0 cellpadding=0 cellspacing=0 width="100%">
+            <tr> 
+              <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+              <td background="IMG/002/r-h.gif"><img alt="" height="24" src="IMG/002/messagerie.gif" /></td>
+              <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+            </tr>
+            <tr> 
+              <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+              
+            <td class="content"> 
+              <BOUCLE_blogue(BREVES){titre_mot=blogue}{doublons}{age_relatif<30}{par date}{inverse}{0,5}>
+              [(#LOGO_BREVE|#URL_BREVE)] <br>
+                    <BOUCLE_SECU(MOTS){id_breve}{titre = acces_restreint}>
+                    <?php	$secu2= 1 ; ?>
+                    </BOUCLE_SECU>
+                    <?php 
+	if ($secu2 == 1) {
+   $etat=$auteur_session['statut'];
+   if ($etat=="")
+   {
+   ?>
+                    <a href="_authentification.php3">connexion</a> <br>
+                    <br>
+                    <div class="h5"><a href=#URL_BREVE> #TITRE</a><img src="IMG/002/cle.gif" alt="Cette page est reservée aux membres" border=0 ></div>
+                    [(#DATE|nom_jour)] [(#DATE|affdate)]<br>
+                    <?
+    }else{
+  ?>
+                    <div class="h5"><a href=#URL_BREVE>#TITRE</a></div>
+                    <p>[(#DATE|nom_jour)] [(#DATE|affdate)]<br>
+                [(#TEXTE|smileys|justifier)]</p>
+              <div class="td_ln" >
+			  <div align="right">        
+              [<a href="forum.php3?(#PARAMETRES_FORUM)">R&eacute;pondre</a>] 
+                <BOUCLE_forums2(FORUMS){id_breve}{plat}>
+                <a href="#URL_BREVE#forum#ID_FORUM"> 
+                </BOUCLE_forums2>
+                <? $total_forum2 = "#TOTAL_BOUCLE"; ?>
+                <b> 
+                <? echo $total_forum2 == 1? " ($total_forum2&nbsp;message)" : " ($total_forum2&nbsp;messages)" ; ?>
+                </b> 
+                </B_forums2>
+                </a>-<a href=#URL_BREVE> # </a>-<br><br>
+				 </div>
+				[Voir en ligne : <a href="(#URL_SITE)" target="_blank">][(#NOM_SITE)</a><br><br>]
+                 </div>    
+              <br>
+                    
+              <div align="center"> </div>
+                    <?php }} else {?>
+                    <div class="h5"><a href=#URL_BREVE>#TITRE</a></div>
+                    [(#DATE|nom_jour)] [(#DATE|affdate)]<br>
+                    [(#TEXTE|justifier)] <br>
+                    <br>
+                <div class="td_ln" >
+				<div align="right">    
+              [<a href="forum.php3?(#PARAMETRES_FORUM)">R&eacute;pondre</a>] 
+                <BOUCLE_forums3(FORUMS){id_breve}{plat}>
+                <a href="#URL_BREVE#forum#ID_FORUM"> 
+                </BOUCLE_forums3>
+                <? $total_forum3 = "#TOTAL_BOUCLE"; ?>
+                <b> 
+                <? echo $total_forum2 == 1? " ($total_forum3&nbsp;message)" : " ($total_forum3&nbsp;messages)" ; ?>
+                </b> 
+                </B_forums3>
+                </a>-<a href=#URL_BREVE> # </a>-<br><br>
+				</div>
+				[Voir en ligne : <a href="(#URL_SITE)" target="_blank">][(#NOM_SITE)</a><br><br>]
+              </div>
+                <br>  
+              
+                    
+              <div align="center"> </div>
+                    
+              <?php } ?>
+              </BOUCLE_blogue>
+              <div align="center">
+                <table width="33%" border="0" cellpadding="5">
+                  <tr> 
+                    <td class="grison">Archives</td>
+                  </tr>
+                  <tr align="center" valign="top"> 
+                    <td width="50%"><a href="_archives.php3"><img src="IMG/002/calendrier.gif" alt="Consultez les archives du blogue"  width="25" height="25" border="0" /></a></td>
+                  </tr>
+                </table>
+                
+              </div>
+            </td>
+              <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+            <tr> 
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+              <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+            </tr>
+          </table>
+        </B_blogue>  
+		
+       <B_blogbox_bas>
+		<br>
+         
+        <BOUCLE_blogbox_bas(BREVES){tout}{titre_mot=une}{doublons}{par date}{inverse}>
+        <table border=0 cellpadding=0 cellspacing=0 width="100%">
+          <tr> 
+            <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+            <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/breve.gif" /></td>
+            <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+          </tr>
+          <tr> 
+            <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+            <td class="content"> [<img src="../IMG/(#LOGO_BREVE|fichier)" WIDTH=120>]
+              <BOUCLE_SECU2(MOTS){id_breve}{titre = acces_restreint}>
+              <?php	$secu3=1; ?>
+              </BOUCLE_SECU2>
+              <?php 
+	if ($secu3 == 1) {
+   $etat=$auteur_session['statut'];
+   if ($etat=="")
+   {
+   ?>
+              <div class="h5"><a href=#URL_BREVE> [(#TITRE|supprimer_numero)]</a><img src="IMG/002/cle.gif" alt="Cette page est reservée aux membres" border=0 ></div>
+              [(#DATE|nom_jour)] [(#DATE|affdate)] 
+              <?
+    }else{
+  ?>
+              <div class="h5"><a href=#URL_BREVE> [(#TITRE|supprimer_numero)]</a></div>
+              [(#DATE|nom_jour)] [(#DATE|affdate)][(#INTRODUCTION|justifier)] 
+              [ 
+              <hr>
+              <p>(#NOTES)</p>
+              ] [ 
+              <p>VOIR EN LIGNE :<a href="(#URL_SITE)" target="_blank">(#NOM_SITE)</a></p>
+              ] 
+              
+              <?php }} else {?>
+              <div class="h5"><a href=#URL_BREVE>[(#TITRE|supprimer_numero)]</a></div>
+              [(#DATE|nom_jour)] [(#DATE|affdate)][(#INTRODUCTION|justifier)] 
+              [ 
+              <hr>
+              <p>(#NOTES)</p>
+              ] [ 
+              <p>VOIR EN LIGNE : <a href="(#URL_SITE)" target="_blank">(#NOM_SITE)</a></p>]
+              <?php } ?>
+            </td>
+            <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+          <tr> 
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+            <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+          </tr>
+        </table>
+		<br>
+        </BOUCLE_blogbox_bas>
+		
+		
+        <BOUCLE_une(ARTICLES){tout}{titre_mot=une}{doublons}{par date}{inverse}{0,1}>
+        <table border=0 cellpadding=0 cellspacing=0 width="100%">
+          <tr> 
+            <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+            <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/article.gif" /></td>
+            <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+          </tr>
+          <tr> 
+            <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+            <td align="left" valign="middle" class="content"> 
+              <table width="100%" border="0" cellspacing="0" cellpadding="5">
+                <tr valign="top"> 
+                  <td> <div class="h5">
+                      <p>A la une</p>
+                      
+                    </div> [<img src="../IMG/(#LOGO_ARTICLE|fichier)" >] 
+                    <BOUCLE_SECUart(MOTS){id_article}{titre = acces_restreint}>
+                    <?php	$secuart=1; ?>
+                    </BOUCLE_SECUart>
+                    <?php 
+	if ($secuart == 1) {
+   $etat=$auteur_session['statut'];
+   if ($etat=="")
+   {
+   ?>
+                    <div class="h5"><a href=#URL_ARTICLE> [(#TITRE|supprimer_numero)]</a><img src="IMG/002/cle.gif" alt="Cette page est reservée aux membres" border=0 ></div>
+                    [(#DATE|nom_jour)] [(#DATE|affdate)] 
+                    <?
+    }else{
+  ?>
+                    <div class="h5"><a href=#URL_ARTICLE> [(#TITRE|supprimer_numero)]</a></div>
+                    [(#DATE|nom_jour)] [(#DATE|affdate)][(#INTRODUCTION|justifier)] 
+                    <?php }} else {?>
+                    <div class="h5"><a href=#URL_ARTICLE>[(#TITRE|supprimer_numero)]</a></div>
+                    [(#DATE|nom_jour)] [(#DATE|affdate)][(#INTRODUCTION|justifier)] 
+                    <?php } ?>
+                  </td>
+                  <td width="50%"> 
+                    <BOUCLE_une_suite(ARTICLES){tout}{titre_mot=une}{doublons}{par date}{inverse}{0,4}>
+                    <div class="h5"><a href=#URL_ARTICLE> [(#TITRE|supprimer_numero)] 
+                      <INCLURE(_cadenas.php3){id_article}>
+                      </a></div>
+                    [(#DATE|nom_jour)] [(#DATE|affdate)][(#INTRODUCTION|couper{300}|justifier)]<br>
+                      </BOUCLE_une_suite>
+                   
+                  </td>
+                </tr>
+              </table>
+              <p align="center">&nbsp;</p>
+              </td>
+            <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+          <tr> 
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+            <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+          </tr>
+        </table>
+        <br>
+        </BOUCLE_une>
+        <BOUCLE_rub_une(RUBRIQUES){tout}{titre_mot=une}{doublons}{par date}{inverse}>
+        <table border=0 cellpadding=0 cellspacing=0 width="100%">
+          <tr> 
+            <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+            <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/classeur.gif" /></td>
+            <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+          </tr>
+          <tr> 
+            <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+            <td class="content"> [<img src="../IMG/(#LOGO_RUBRIQUE|fichier)" >] 
+              <BOUCLE_SECUrub(MOTS){id_rubrique}{titre = acces_restreint}>
+              <?php	$securub=1; ?>
+              </BOUCLE_SECUrub>
+              <?php 
+	if ($securub == 1) {
+   $etat=$auteur_session['statut'];
+   if ($etat=="")
+   {
+   ?>
+              <div class="h5"><a href=#URL_RUBRIQUE alt="[(#DESCRIPTIF)]"> [(#TITRE|supprimer_numero)]</a><img src="IMG/002/cle.gif" alt="Cette page est reservée aux membres" border=0 ></div>
+               
+              <?
+    }else{
+  ?>
+              <div class="h5"><a href=#URL_RUBRIQUE alt="[(#DESCRIPTIF)]"> [(#TITRE|supprimer_numero)]</a></div>
+              [(#TEXTE|justifier)]
+			  <?php }} else {?>
+              <div class="h5"><a href=#URL_RUBRIQUE alt="[(#DESCRIPTIF)]">[(#TITRE|supprimer_numero)]</a></div>
+              [(#TEXTE|justifier)]
+              <?php } ?>
+            </td>
+            <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+          <tr> 
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+            <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+          </tr>
+        </table>
+        <br><br>
+          </BOUCLE_rub_une>
+          
+       
+
+        <table border=0 cellpadding=0 cellspacing=0 width="100%">
+          <tr> 
+            <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+            <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/article-24.gif" /></td>
+            <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+          </tr>
+          <tr> 
+            <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+            <td class="content"> 
+              <BOUCLE_appel(RUBRIQUES){doublons}{titre_mot = menu_rub}>
+              <div class=td_ln><b>[<a href="#URL_RUBRIQUE" class="noir">(#TITRE|supprimer_numero)</a>]</b> 
+              <INCLURE(_cadenas.php3){id_rubrique}></div>
+              <B_art>
+              <br>
+              <BOUCLE_art(ARTICLES){id_rubrique}{par date}{inverse}{0,5}>
+              <BOUCLE_nouv_art(ARTICLES){id_article}{age<7}>
+              <font face="verdana,arial,helvetica,sans-serif" size="1" color="red"><b>NOUVEAU</b></font><br>
+              </BOUCLE_nouv_art>
+              <a href="#URL_ARTICLE">#TITRE</a> 
+              <INCLURE(_cadenas.php3){id_article}>
+              <br>
+              </BOUCLE_art>
+              </B_art>
+              <table width="100%" border="0" cellspacing="0" cellpadding="10">
+                <tr> 
+                  <td width="50%" align="left" valign="top"> 
+                    <BOUCLE_sous_rubriques(RUBRIQUES){branche}{id_parent!=0}{par titre}{1/2}>
+                    <img src="IMG/002/puce.gif" border=0 >[<a href="#URL_RUBRIQUE" class="noir">(#TITRE|supprimer_numero)</a>] 
+                    <INCLURE(_cadenas.php3){id_rubrique}>
+                    <br>
+                    <BOUCLE_art2(ARTICLES){id_rubrique}{par date}{inverse}{0,5}>
+                    <BOUCLE_nouv_art2(ARTICLES){id_article}{age<7}>
+                    <font face="verdana,arial,helvetica,sans-serif" size="1" color="red"><b>NOUVEAU</b></font> 
+                    </BOUCLE_nouv_art2>
+                    <img src="IMG/002/puce_fleche.png" border=0 ><a href="#URL_ARTICLE">#TITRE</a> 
+                     <INCLURE(_cadenas.php3){id_article}>
+                    <br>
+                    </BOUCLE_art2>
+                    <br>
+                    
+                    </BOUCLE_sous_rubriques>
+                  </td>
+                  <td width="50%" align="left" valign="top"> 
+                    <BOUCLE_sous_rubriques2(RUBRIQUES){branche}{id_parent!=0}{par titre}{2/2}>
+                    <img src="IMG/002/puce.gif" border=0 >[<a href="#URL_RUBRIQUE" class="noir">(#TITRE|supprimer_numero)</a>] 
+                    <INCLURE(_cadenas.php3){id_rubrique}>
+                    <br>
+                    <BOUCLE_art3(ARTICLES){id_rubrique}{par date}{inverse}{0,5}>
+                    <BOUCLE_nouv_art3(ARTICLES){id_article}{age<7}>
+                    
+                    <font face="verdana,arial,helvetica,sans-serif" size="1" color="red"><b>NOUVEAU</b></font> 
+                    </BOUCLE_nouv_art3>
+                    <img src="IMG/002/puce_fleche.png" border=0 ><a href="#URL_ARTICLE">#TITRE</a> 
+                    <INCLURE(_cadenas.php3){id_article}>
+                    <br>
+                    </BOUCLE_art3>
+                    <br>
+                    
+                    </BOUCLE_sous_rubriques2>
+                  </td>
+                </tr>
+              </table>
+              </BOUCLE_appel>
+            </td>
+            <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+          <tr> 
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+            <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+          </tr>
+        </table>
+        
+      </TD>
+      <TD width=19><IMG src="IMG/002/rien.gif" width=19></TD>
+        
+      <TD vAlign=top width="241" align="center"> 
+        <table border=0 cellpadding=0 cellspacing=0 width="100%">
+          <tr> 
+            <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+            <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/secteur.gif" /></td>
+            <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+          </tr>
+          <tr> 
+            <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+            <td class="content"> 
+                    <INCLURE(_menu_rub.php3){id_rubrique=0}>
+            </td>
+            <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+          <tr> 
+            <td height="6"><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+            <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+          </tr>
+        </table>
+        <br>
+          <BOUCLE_Aff_photos(RUBRIQUES){titre_mot=photo_home}{0,1}>
+          <table border=0 cellpadding=0 cellspacing=0 width="100%">
+            <tr> 
+              <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+              <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/photo.gif" /></td>
+              <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+            </tr>
+            <tr> 
+              <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+              <td align="center" valign="middle" class="content"><strong> Les 
+                  dernieres images</strong>
+                <br><br>
+                  <INCLURE (_dernieres_photos.php3)>
+               
+                </td>
+              <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+            <tr> 
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+              <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+            </tr>
+          </table>
+		 </BOUCLE_Aff_photos>
+        <br>
+        <BOUCLE_Aff_docs(RUBRIQUES){titre_mot=doc_home}{0,1}>
+        <table border=0 cellpadding=0 cellspacing=0 width="100%">
+            <tr> 
+              <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+              <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/document.gif" /></td>
+              <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+            </tr>
+            <tr> 
+              <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+              <td align="center" valign="middle" class="content"><strong>Derniers 
+                Documents</strong><br>
+                <br>
+                <INCLURE (_derniers_documents.php3)>
+              </td>
+              <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+            <tr> 
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+              <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+            </tr>
+          </table>
+          <br><br>
+        <br>
+        </BOUCLE_Aff_docs>
+       
+<BOUCLE_archives(BREVES){par date}{inverse}{0,1}>	   
+		<INCLURE(_inc-archives.php3){date}>
+</BOUCLE_archives>		
+ 
+<BOUCLE_annuaire(RUBRIQUES){titre_mot=annuaire_home}{0,1}>	 
+        <table border=0 cellpadding=0 cellspacing=0 width="100%">
+            <tr> 
+              <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+              <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/logolistesites.gif" /></td>
+              <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+            </tr>
+            <tr> 
+              <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+              <td align="left" valign="middle" class="content"><p align="center">
+                  <INCLURE (_annuaire.php3){titre_mot=annuaire_home}>
+                  <br>
+                  <br>
+                </p>
+              <p align="center"> &nbsp; &nbsp &nbsp<a href="http://bloog.net" target=_blank >bloOg</a> 
+              </p>
+                </td>
+              <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+            <tr> 
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+              <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+            </tr>
+          </table>
+</BOUCLE_annuaire>
+          <p>&nbsp; </TR>
+    </TBODY> 
+  </TABLE>
+<br>
+
+<B_syndic>
+<table border=0 cellpadding=0 cellspacing=0 width="750"><tr> 
+<td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+<td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/Newspaper.gif" /></td>
+<td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td></tr>
+<tr><td background="IMG/002/r-g.gif" width="5">&nbsp;</td><td class="content"> 
+
+
+<table border=0 cellpadding=3 cellspacing=0 width="100%">
+<tr > 
+<td colspan="2" class="grison">R&eacute;cemment sur le web</td>
+</tr>
+
+<BOUCLE_syndic(SYNDIC_ARTICLES){tout}{par date}{inverse}{0,10}>
+ <tr>           <td class="td_ln"><img src="IMG/002/puce_fleche.png" width="8" height="7"> 
+              [(#DATE|jour)]/[(#DATE|mois)]/[(#DATE|annee)] : <a href="#URL_ARTICLE" target="_blank" title="A lire sur : #NOM_SITE">#TITRE</a><br>
+            </td>
+            <td class="td_ln"> par <a title="Tous les articles de #NOM_SITE" href="_kiosque.php3?id_syndic=#ID_SYNDIC">#NOM_SITE</a> 
+</td></tr>
+</BOUCLE_syndic>
+
+</table>
+
+
+
+<br>
+        [ <strong><a href="_kiosque.php3" title="Retrouvez les articles syndiqués sur #NOM_SITE_SPIP" >Kiosque</a></strong> 
+        ] <br>
+        <br>
+        [ <a href="#">Haut</a> ] </td>
+      <td background="IMG/002/r-d.gif" width="5">&nbsp;</td><tr> 
+ <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+<td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+<td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+</tr></table>
+</B_syndic>
+  <br>
+  <br>
+  <table border=0 cellpadding=0 cellspacing=0 width="750">
+    <tr> 
+      <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+      <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/stats.gif" /></td>
+      <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+    </tr>
+    <tr> 
+      <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+      <td class="content"> 
+        <table border=0 cellpadding=3 cellspacing=0 width="100%">
+          <tr > 
+            <td colspan="2" class="grison">Stats</td>
+          </tr>
+        </table>
+        <INCLURE(_inc_stats.php3)>
+        <p align="center">[ <a href="#">Haut</a> ] </p>
+      </td>
+      <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+    <tr> 
+      <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+      <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+      <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+    </tr>
+  </table>
+  <p>
+    <INCLURE (_page_barre_menu.php3)>
+    <br>
+   <INCLURE (_page_bas.php3){date}>
+    <br>
+  </p>
+  </div>
+</BODY>
+</HTML>
+
+
