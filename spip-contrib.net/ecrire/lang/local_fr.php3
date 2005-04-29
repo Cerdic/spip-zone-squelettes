@@ -93,7 +93,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // skel recherche
 'super_recherche_lien' => 'Galaxie SPIP',
-'super_recherche' => 'Vous n\'avez pas trouv&eacute votre bonheur : cherchez plus loin dans la galaxie SPIP',
+'super_recherche' => 'Vous n\'avez pas trouv&eacute; votre bonheur : cherchez plus loin dans la galaxie SPIP',
 
 // V
 'variantes_spikini' => 'Voir et proposer des variantes',
