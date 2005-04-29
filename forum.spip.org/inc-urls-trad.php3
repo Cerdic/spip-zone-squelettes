@@ -60,7 +60,7 @@ function generer_url_breve($id_breve) {
 
 function generer_url_forum($id_forum) {
 	$s = spip_query("SELECT id_thread, id_forum FROM spip_forum WHERE id_forum=$id_forum");
-	$lang = choix_langue($id_forum, 'forum');
+	$lang = langue_choix($id_forum, 'forum');
 	if ($t=spip_fetch_array($s)) {
 		$url = $lang."_".$t['id_thread'].'.html';
 		if ($t['id_forum'] <> $t['id_thread']) $url .= '#'.$t['id_forum'];
