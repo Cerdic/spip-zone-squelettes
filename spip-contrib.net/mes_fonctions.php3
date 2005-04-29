@@ -987,6 +987,12 @@ function reduire_image_ex($img, $taille = 120,$axes="both",$last_maint_date,$mai
 	}
 }
 
+/***
+ * renvoie vers les variantes du spikini
+ ***/
 
+function LienVariante($url) {
+	return "/spikini/VarianteContrib".ucfirst($url);
+}
 
 ?>

@@ -89,11 +89,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // skel 404
 'erreur' => 'Erreur',
-'texte_404' => 'La page demand&eacute;e n\'existe pas ou n\'est plus valide suite ˆ une refonte du site. Pour vous diriger vers la page d\'accueil du site, cliquez <a href="http://www.spip-contrib.net/sommaire.php3">ici sur le sommaire</a>; ou utilisez notre moteur de recherche ci-dessous. Merci.',
+'texte_404' => 'La page demand&eacute;e n\'existe pas ou n\'est plus valide suite &agrave; une refonte du site. Pour vous diriger vers la page d\'accueil du site, cliquez <a href="http://www.spip-contrib.net/sommaire.php3">ici sur le sommaire</a>; ou utilisez notre moteur de recherche ci-dessous. Merci.',
 
 // skel recherche
 'super_recherche_lien' => 'Galaxie SPIP',
 'super_recherche' => 'Vous n\'avez pas trouv&eacute votre bonheur : cherchez plus loin dans la galaxie SPIP'
+
+// V
+'variantes_spikini' => 'Voir et proposer des variantes',
+
 );
 
 ?>
