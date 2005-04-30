@@ -152,7 +152,7 @@ Dans certaine langue comme l'arabe la lecture se fait de droite à gauche. Cet	at
 							<BOUCLE_billets(ARTICLES){branche}{lang?}{par date}{inverse}{0,15}>
 								[<p class="day-date">(#DATE|nom_jour_jour_nom_mois_annee|unique)</p>]
 								<h2 id="p#ID_ARTICLE" class="post-title"><a href="#URL_SPIPCLEAR">#TITRE</a></h2>
-								<p class="post-info"><B_auteurs_rubrique><:par_auteur|ucfirst:> <BOUCLE_auteurs_rubrique(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_rubrique>,
+								<p class="post-info"><B_auteurs_rubrique><:par_auteur|ucfirst:> <BOUCLE_auteurs_rubrique(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_rubrique>, </B_auteurs_rubrique>
 									[(#DATE|nom_jour_jour_nom_mois_annee)] <:spipclear:attime:> [(#DATE|heures)]:[(#DATE|minutes)]
 									<span>::</span>
 									<BOUCLE_categorie_rubrique(RUBRIQUES){id_rubrique}><a href="#URL_SPIPCLEAR">#TITRE</a></BOUCLE_categorie_rubrique>
@@ -176,7 +176,7 @@ Dans certaine langue comme l'arabe la lecture se fait de droite à gauche. Cet	at
 						<BOUCLE_billet(ARTICLES){id_article}>
 	
 							<h2 class="post-title">#TITRE</h2>
-							<p class="post-info"><B_auteurs_article><:par_auteur|ucfirst:> <BOUCLE_auteurs_article(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_article>,
+							<p class="post-info"><B_auteurs_article><:par_auteur|ucfirst:> <BOUCLE_auteurs_article(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_article>, </B_auteurs_article>
 								[(#DATE|nom_jour_jour_nom_mois_annee)] <:spipclear:attime:> [(#DATE|heures)]:[(#DATE|minutes)]
 								<span>::</span>
 								<BOUCLE_categorie_article(RUBRIQUES){id_rubrique}><a href="#URL_SPIPCLEAR">[(#TITRE|supprimer_numero)]</a></BOUCLE_categorie_article>
@@ -256,7 +256,7 @@ Dans certaine langue comme l'arabe la lecture se fait de droite à gauche. Cet	at
 						
 							[<p class="day-date">(#DATE|nom_jour_jour_nom_mois_annee|unique)</p>]
 							<h2 id="p#ID_ARTICLE" class="post-title"><a href="#URL_SPIPCLEAR">#TITRE</a></h2>
-							<p class="post-info"><B_auteurs_archive><:par_auteur|ucfirst:> <BOUCLE_auteurs_archive(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_archive>,
+							<p class="post-info"><B_auteurs_archive><:par_auteur|ucfirst:> <BOUCLE_auteurs_archive(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_archive>, </B_auteurs_archive>
 								[(#DATE|nom_jour_jour_nom_mois_annee)] <:spipclear:attime:> [(#DATE|heures)]:[(#DATE|minutes)]
 								<span>::</span>
 								<BOUCLE_categorie_archive(RUBRIQUES){id_rubrique}><a href="#URL_SPIPCLEAR">[(#TITRE|supprimer_numero)]</a></BOUCLE_categorie_archive>
@@ -355,7 +355,13 @@ Dans certaine langue comme l'arabe la lecture se fait de droite à gauche. Cet	at
 						<h2><:spipclear:liens:></h2>
 						<ul>
 							<BOUCLE_links(SITES){id_secteur=[(#ENV{id_blog})]}{par date}{inverse}>
-								<li><a href="#URL_SITE"<BOUCLE_mot_lang(MOTS){id_syndic}> hreflang="#TITRE"</BOUCLE_mot_lang> [ title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#NOM_SITE*)]</a></li>
+							<li><a href="#URL_SITE"<BOUCLE_mot_lang(MOTS){id_syndic}> hreflang="#TITRE"</BOUCLE_mot_lang> [ title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#NOM_SITE*)]</a>
+								<B_syndic><ul><small>
+								<BOUCLE_syndic(SYNDIC_ARTICLES){id_site}{par date}{inverse}{0,5}>
+									[<li><a href="(#URL_ARTICLE|unique{urls})">#TITRE</a></li>]
+								</BOUCLE_syndic>
+								</small></ul></B_syndic>
+							</li>
 							</BOUCLE_links>
 						</ul>
 					</div>
