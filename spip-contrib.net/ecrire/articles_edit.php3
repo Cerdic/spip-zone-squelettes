@@ -378,12 +378,17 @@ echo "<P><HR><P>";
 		else $logo_parent = "rubrique-24.gif";
 	}
 
-	debut_cadre_couleur("$logo_parent", false, "", _T('titre_cadre_interieur_rubrique').aide ("artrub"));
-	echo "<SELECT NAME='id_rubrique' style='font-size: 90%; width:100%; font-face:verdana,arial,helvetica,sans-serif; max-height: 24px;' SIZE=1>\n";
-	enfant(0);
-	echo "</SELECT><BR>\n";
-	echo _T('texte_rappel_selection_champs');
-	fin_cadre_couleur();
+	if($connect_statut=="0minirezo" OR ($statut == 'prepa' OR $statut == 'prop' OR $new == 'oui')) {
+		debut_cadre_couleur("$logo_parent", false, "", _T('titre_cadre_interieur_rubrique').aide ("artrub"));
+		echo "<SELECT NAME='id_rubrique' style='font-size: 90%; width:100%; font-face:verdana,arial,helvetica,sans-serif; max-height: 24px;' SIZE=1>\n";
+		enfant(0);
+		echo "</SELECT><BR>\n";
+		echo _T('texte_rappel_selection_champs');
+		fin_cadre_couleur();
+	}
+	else {
+		echo "<INPUT TYPE='hidden' NAME='id_rubrique' VALUE=\"$id_rubrique\" >";
+	}
 	
 	if ($new != 'oui') echo "<INPUT TYPE='hidden' NAME='id_rubrique_old' VALUE=\"$id_rubrique\" >";
 
