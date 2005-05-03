@@ -8,6 +8,14 @@
 # $GLOBALS[ 'dossier_squelettes' ] = "bones" ;
 #
 
+# equivalent simplifie de #DOSSIER_SQUELETTE pour SPIP 1.8
+# evite aussi les ennuis avec le repertoire inclusions/
+function balise_BONES($p) {
+  $p->code = '$GLOBALS["dossier_squelettes"]';
+  $p->statut = 'html';
+  return $p;
+}
+
 # titre homogene http://www.spip-contrib.net/article46.html
 function titre_homogene($titre) {
   $titre = tronquer_titre($titre);
