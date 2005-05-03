@@ -1,6 +1,12 @@
 <?php
 
-$GLOBALS[ 'dossier_squelettes' ] = "bones" ;
+#
+# Ce fichier mes_fonctions.php3 peut être laissé dans le repertoire bones/ ;
+# il s'appliquera alors a la place de celui qui est a la racine.
+#
+# N'oubliez pas d'indiquer dans 'ecrire/mes_options.php3' la ligne :
+# $GLOBALS[ 'dossier_squelettes' ] = "bones" ;
+#
 
 # titre homogene http://www.spip-contrib.net/article46.html
 function titre_homogene($titre) {
