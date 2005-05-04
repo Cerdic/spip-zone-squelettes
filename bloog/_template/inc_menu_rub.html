@@ -3,115 +3,81 @@
 .rubriqueoff { font-weight: normal; }
 .secteuron, .rubriqueon { font-weight: bold; color: #ff9999; }
 .secteur, .rubrique { font-weight: bold; color: #ff3333; }
-</style>
-<?php
-if(floor(phpversion()) < 4)	{
-	// La version de PHP est inférieure à 4,
-	// la fonction in_array n'existe donc pas
-	function in_array($member, $array)
-	{
-		reset($array);
-		while (list($k, $v) = each($array)) {
-			if ($v == $member) return true;
-		}
-		return false;
-	}
+.invisible {display:none} 
+.invisibleon {display:block} 
+
+.menu{
+margin: 0px ;
+padding-left : 20px;
+padding-bottom : 10px;
+list-style-image:url('/ecrire/img_pack/deplierhaut.gif');
+}
+.menu ul , ul ul {
+margin: 0px ;
+padding-left : 20px;
+list-style-image:none;
+list-style-type:disc;
 }
 
-// récupération de la hiérarchie courante
-$hierarchie = array();
-<BOUCLE_principale(RUBRIQUES){id_rubrique}>
-	<BOUCLE_hierarchie(HIERARCHIE){id_rubrique}>
-		$hierarchie[] = #ID_RUBRIQUE;
-	</BOUCLE_hierarchie>
-	$hierarchie[] = #ID_RUBRIQUE;
-	$actuelle = #ID_RUBRIQUE;
-</BOUCLE_principale>
+.menu ul li , ul ul li {
 
-// inclusion du script de gestion des layers de SPIP
-$flag_ecrire = false;
-include 'ecrire/inc_layer.php3';
-afficher_script_layer();
-?>
-<table border="0" cellpadding="2" cellspacing="0">
-<BOUCLE_secteurs(RUBRIQUES){titre_mot=menu_rub}{id_parent=0}{par titre}>
-	<?php $id = #ID_RUBRIQUE; ?>
-	<BOUCLE_nb_rubriques(RUBRIQUES){id_parent}><?php ${'nb'.$id} = #TOTAL_BOUCLE; ?></BOUCLE_nb_rubriques>
-	<tr>
-		<td valign="top">
-			<?php
-			if ($nb#ID_RUBRIQUE > 0) {
-				if (in_array(#ID_RUBRIQUE, $hierarchie)) {
-					echo bouton_block_visible('rub#ID_RUBRIQUE');
-				} else {
-					echo bouton_block_invisible('rub#ID_RUBRIQUE');
-				}
-			} else {
-				echo '&nbsp;';
+padding-top : 3px;
+
+}
+
+</style>
+
+<script language="JavaScript" type="text/javascript">
+		function MM_findObj(n, d) { //v4.0
+			var p,i,x;
+			if(!d) d=document; 
+			if((p=n.indexOf("?"))>0&&parent.frames.length) {
+				d=parent.frames[n.substring(p+1)].document; 
+				n=n.substring(0,p);
 			}
-			?>
-		</td>
+			if(!(x=d[n])&&d.all) x=d.all[n]; 
+			for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+		  	for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+		  	if(!x && document.getElementById) x=document.getElementById(n); return x;
+		}
 		
-    <td valign="top"> <a href="#URL_RUBRIQUE" class="secteur<?php echo (#ID_RUBRIQUE == $actuelle ? '' : (in_array(#ID_RUBRIQUE, $hierarchie) ? 'on' : 'off')); ?>" >[(#TITRE|supprimer_numero)]</a> 
-      <INCLURE(_cadenas.php3){id_rubrique}>
-      <?php
-			if ($nb#ID_RUBRIQUE > 0) {
-				if (in_array(#ID_RUBRIQUE, $hierarchie)) {
-					echo debut_block_visible('rub#ID_RUBRIQUE');
-				} else {
-					echo debut_block_invisible('rub#ID_RUBRIQUE');
-				}
-				?>
-      <table border="0" cellpadding="2" cellspacing="0">
-				<BOUCLE_rubriques(RUBRIQUES){id_parent}{par titre}>
-					<?php $id = #ID_RUBRIQUE; ?>
-					<BOUCLE_nb_sous_rubriques(RUBRIQUES){id_parent}><?php ${'nb'.$id} = #TOTAL_BOUCLE; ?></BOUCLE_nb_sous_rubriques>
-					<tr>
-						<td valign="top">
-							<?php
-							if ($nb#ID_RUBRIQUE > 0) {
-								if (in_array(#ID_RUBRIQUE, $hierarchie)) {
-									echo bouton_block_visible('rub#ID_RUBRIQUE');
-								} else {
-									echo bouton_block_invisible('rub#ID_RUBRIQUE');
-								}
-							} else {
-								echo '<img src="img_pack/puce'.(#ID_RUBRIQUE == $actuelle ? 'on' : 'off').'.gif" />';
-							}
-							?>
-						</td>
-						
-          <td valign="top"> <a href="#URL_RUBRIQUE" class="rubrique<?php echo (#ID_RUBRIQUE == $actuelle ? '' : (in_array(#ID_RUBRIQUE, $hierarchie) ? 'on' : 'off')); ?>" >[(#TITRE|supprimer_numero)] 
-            <INCLURE(_cadenas.php3){id_rubrique}>
-            </a> 
-            <?php
-							if ($nb#ID_RUBRIQUE > 0) {
-								if (in_array(#ID_RUBRIQUE, $hierarchie)) {
-									echo debut_block_visible('rub#ID_RUBRIQUE');
-								} else {
-									echo debut_block_invisible('rub#ID_RUBRIQUE');
-								}
-								?>
-            <table border="0" cellpadding="2" cellspacing="0"><BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques></table>
-								<?php
-								echo fin_block('rub#ID_RUBRIQUE');
-							}
-							?>
-						</td>
-					</tr>
-					<?php
-					echo fin_block('rub#ID_RUBRIQUE');
-					?>
-				</BOUCLE_rubriques>
-				</table>
-			<?php
-			}
-			?>
-      
-		</td>
-	</tr>
-</BOUCLE_secteurs>
-</table>
-<br>
+		function changestyle(couche, style) {
+			if (!(layer = MM_findObj(couche))) return;
+			layer.style.display = style;
+		}
+		
+		function changeclass(objet, myClass)
+		{ 
+		  objet.className = myClass;
+		}
+	</script>
+
+
+<ul class="menu">
+<BOUCLE_secteurs2(RUBRIQUES){titre_mot=menu_rub}{par titre} >
+	<?php 
+	$class_out = '[(#EXPOSER|texte_script)]' ; 
+	if($class_out == '') {$class_out = "none" ;}else{$class_out = "block" ;}
+	
+	?>
+	
+	<li><a onMouseOut="changestyle('rub#ID_RUBRIQUE','block');" onMouseOver="changestyle('rub#ID_RUBRIQUE','block');" [class="secteur(#EXPOSER)"] href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero)]"><strong>[(#TITRE|supprimer_numero)]</strong></a>
+		<div onMouseOver="changestyle('rub#ID_RUBRIQUE','block');" onMouseOut="changestyle('rub#ID_RUBRIQUE','<?php echo $class_out ?>');" id="rub#ID_RUBRIQUE" class='invisible#EXPOSER'>
+		<B_sousrub2>
+		<ul>
+		<BOUCLE_sousrub2(RUBRIQUES){id_parent}{par num titre}>
+		<li><a [class="secteur(#EXPOSER)"] href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero)]">[(#TITRE|supprimer_numero)] </a>
+			<BOUCLE_sousousrub2(boucle_sousrub2)></BOUCLE_sousousrub2>
+		</li>
+		</BOUCLE_sousrub2>
+		</ul>
+		
+		</B_sousrub2>
+		</div>
+	</li>
+	
+	</BOUCLE_secteurs2>
+</ul>
+
 <div align="right">[<a href="_resume.php3">R&eacute;sum&eacute;</a>]&nbsp;[<a href="_nouveautes.php3">Nouveaut&eacute;s</a>]
       </div>
