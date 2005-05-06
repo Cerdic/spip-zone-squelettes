@@ -248,64 +248,6 @@ $nb_mess = spip_num_rows($result_auteurs);
 
 
 
-/*
- *   +---------------------------------------------+
- *    Nom du Filtre : Liste des membres 
- *   +---------------------------------------------+
- *    Date : mercredi 09 avril 2003
- *    Auteur : BoOz Email:booz.bloog@laposte.net
- *    site : http://bloog.levillage.org
- *   +---------------------------------------------+
- *    Fonctions de ce filtre :
- *     Permet de voir la liste des membres avec des couleurs differentes
- * selon le statut.
- *     Appelez le dans vos squellette tout simplement
- *     par : [(#URL_SITE|liste_membres)]
- *   +---------------------------------------------+
- *  
- * Pour toute suggestion, remarque, proposition d'ajout
- * reportez-vous au forum de l'article :
- * http://www.uzine.net/spip_contrib/
- *
- */
-
-function liste_membres($resultat){
-
-global $table_prefix;
-$query = "SELECT nom, statut, id_auteur FROM ".$table_prefix."_auteurs ORDER BY nom ASC";
-$resultat = "";
-
-$result_auteurs = spip_query($query);
-$liste_membres = spip_num_rows($result_auteurs);
-$flag_cadre = ($liste_membres > 0);
-
-if ($flag_cadre) {
-		
-	while ($row = spip_fetch_array($result_auteurs)) {
-		$nom_auteur = $row["nom"];
-		$statut = $row["statut"];
-		$id = $row["id_auteur"];
-		
-		if ($row["statut"] == '0minirezo') {
-$couleur = "#ffa34f";} 
-else if ($row["statut"] == '1comite') {
-$couleur = "#006699";
-} else if ($row["statut"] == '6forum') {
-$couleur = "#006600";
-} else if ($row["statut"] == 'nouveau') {
-$couleur = "#000000";
-} 		
-		
-		$resultat.="<a href=_membre.php3?id_auteur=$id><strong><font color=$couleur>$nom_auteur</font></strong></a><br>";
-	}
-}
-
-$resultat.="<br><div align=center><strong><font color=#ffa34f >[a]</font></strong><font color=#006699 > [r]</font></strong><font color=#006600 > [v]</font></strong><font color=#000000 > [n]</font></strong></div>";
-
-return $resultat;
-}
-
-// FIN du liste_membres
 
 
 /*
