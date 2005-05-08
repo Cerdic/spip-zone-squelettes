@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>#NOM_SITE_SPIP<:resume:></title>
+<!-- leave this for stats -->
+<INCLURE(inclusions/inc_head.php3)>
+</head>
+<body>
+<div id="page">
+  <div id="header">
+    <div id="headerimg">
+      <h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+      <div class="description">
+        <INCLURE(inclusions/inc_menu-haut.php3)>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div id="content" class="narrowcolumn">
+    <div class="post">
+      <p><:popularite:></p>
+      <h2 class="structure"><:articles_populaires:></h2>
+      <BOUCLE_article_un(ARTICLES) {par popularite} {inverse} {0,2}>
+      [(#LOGO_ARTICLE_RUBRIQUE|right|#URL_ARTICLE)] [
+      <div class="surtitre">(#SURTITRE)</div>
+      ]
+      <h2 class="titre-extrait"><a href="#URL_ARTICLE">[(#TITRE|titre_homogene)]</a></h2>
+      [
+      <div class="surtitre">(#SOUSTITRE)</div>
+      ]
+      <div class="detail"> [(#DATE|nom_jour)] [(#DATE|affdate)]
+        <B_auteurs_un>
+<:par_auteur:>
+        <BOUCLE_auteurs_un(AUTEURS) {id_article} {", "}>
+        #NOM
+        </BOUCLE_auteurs_un>
+        [<br />
+<:popularite:>&nbsp;: <span class="important">(#POPULARITE)</span> %] </div>
+      <p>[(#INTRODUCTION|justifier)]</p>
+      <br />
+      </BOUCLE_article_un>
+      <h2 class="structure"><:articles_populaires:> (<:suite:>)</h2>
+      <!-- Articles les plus populaires (suite) -->
+      <BOUCLE_articles_populaires(ARTICLES) {par popularite} {inverse} {2,8}>
+      <h2><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h2>
+      <div class="detail"> [(#DATE|nom_jour)] [(#DATE|affdate)]
+        <B_auteurs_recents>
+<:par_auteur:>
+        <BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>
+        #NOM
+        </BOUCLE_auteurs_recents>
+        <br />
+<:popularite:>&nbsp;: <span class="important">#POPULARITE</span> % </div>
+      <br />
+      </BOUCLE_articles_populaires>
+      <!--
+				<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+	    xmlns:dc="http://purl.org/dc/elements/1.1/"
+	    xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+		<rdf:Description rdf:about="http://binarybonsai.com/playground/index.php?p=1"
+    dc:identifier="http://binarybonsai.com/playground/index.php?p=1"
+    dc:title="Kubrick Demonstration"
+    trackback:ping="http://binarybonsai.com/playground/wp-trackback.php/1" />
+</rdf:RDF>				-->
+    </div>
+    <div class="navigation">
+      <div class="alignleft"></div>
+      <div class="alignright"></div>
+    </div>
+  </div>
+  <div id="sidebar">
+    <div id="search">
+      <INCLURE(inclusions/inc_recherche.php3)>
+    </div>
+    <div id="categories">
+      <h2><:rubriques:></h2>
+      <INCLURE(inclusions/inc_rubriques.php3)>
+    </div>
+    <div id="links">
+      <h2><:sites_web:></h2>
+      <INCLURE(inclusions/inc_sites.php3)>
+    </div>
+    <div id="syndicate">
+      <h2>Syndication</h2>
+      <INCLURE(inclusions/inc_syndication.php3)>
+    </div>
+  </div>
+  <hr />
+  <div id="footer">
+    <p>
+      <INCLURE(inclusions/inc_pied_de_page.php3)>
+      <a href="http://binarybonsai.com/kubrick/">Design by Michael Heilemann.</a> </p>
+  </div>
+</div>
+</body>
+</html>
