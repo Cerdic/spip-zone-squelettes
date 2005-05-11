@@ -2,6 +2,27 @@
 
 /*
  *   +----------------------------------+
+ *    Nom du Filtre :    titre_forum
+ *   +----------------------------------+
+ *    Date : lundi 11 mai 2005
+ *    Auteur :  BoOz (booz@bloog.net)
+ *   +-------------------------------------+
+ *    Fonctions de ce filtre :
+ *    Nettoie les titres des forums
+ *    [(#ID_AUTEUR|messages_prives)]
+ *   +-------------------------------------+ 
+ *  
+ * Pour toute suggestion, remarque, proposition d'ajout
+ * reportez-vous au site bloog.net
+*/
+
+function titre_forum($titre=''){
+$ze_titre = ereg_replace( "> ", "", $titre );
+return $ze_titre;
+}
+
+/*
+ *   +----------------------------------+
  *    Nom du Filtre :    messages_prives
  *   +----------------------------------+
  *    Date : lundi 23 février 2004
