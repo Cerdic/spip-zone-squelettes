@@ -11,7 +11,9 @@
  ?>
 
 
- <HTML><HEAD><title> [ #NOM_SITE_SPIP ] </title>
+<HTML>
+<HEAD>
+<title> [ #NOM_SITE_SPIP ] </title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <SCRIPT src="IMG/002/_interface.js" type="text/javascript"></SCRIPT>
 <link rel="stylesheet" href="IMG/002/_interface.css" type="text/css">
@@ -23,7 +25,22 @@ function MM_goToURL() { //v3.0
 }
 //-->
 </script>
-</HEAD><BODY>
+
+<style>
+<!--
+h2{
+margin-top:50px;
+}
+ul{
+liste-style-type:none;
+text-align:left;
+}
+-->
+</style>
+
+</HEAD>
+
+<BODY>
 <div align="center"> 
     <INCLURE (_page_barre_menu.php3)><br>
   <TABLE width=750  border=0 cellPadding=0 cellSpacing=0>
@@ -36,38 +53,87 @@ function MM_goToURL() { //v3.0
 <td background="IMG/002/r-h.gif"><img alt=""  src="IMG/002/xml.gif" /></td>
 <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td></tr>
 <tr><td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
-              <td align="center" class="content"><p>Voici les fichiers de syndication 
+              <td class="content"><p>Voici les fichiers de syndication 
                   de #NOM_SITE_SPIP. </p>
-                <p>Vous pouvez utiliser ces adresses avec un lecteur de news XML</p>
+              <p>
+				Vous pouvez utiliser ces adresses avec un lecteur de news XML
+				 (feedreader, firefox, spip, ...)
+				</p>
                 
-				 
-                <div class="td_ln"> Les br&egrave;ves</div><br>
+				 <h2>Flux généraux</h2> 
+                <h3> Les br&egrave;ves</h3>
                 <form name="form1" method="post" action="">
-                  <img alt=""  src="IMG/002/xml.gif" /> 
-                  <input type="text" name="textfield" size=60 value="#URL_SITE_SPIP/_backend-breves.php3">
+                  <a href="#URL_SITE_SPIP/backend-breves.php3">
+				  <img alt=""  src="IMG/002/xml.gif" border="0"/></a>
+                  <input type="text" name="textfield" size=60 value="#URL_SITE_SPIP/backend-breves.php3">
                 </form>
-				<div class="td_ln">Les articles </div>
-                <br> <form name="form1" method="post" action="">
-                  <img alt=""  src="IMG/002/xml.gif" /> 
-                  <input type="text" name="textfield" size=60 value="#URL_SITE_SPIP/_backend.php3">
-                </form>
-                <p></p>
-                <BOUCLE_rub(RUBRIQUES){tout}{titre_mot=menu_rub}> 
-				<p>&nbsp;</p>
-                <p>&nbsp;</p>
-                <div class="td_ln">Dans la rubrique<br><strong> [(#TITRE|supprimer_numero)]</strong>
-               </div><br>
-              Br&egrave;ves 
-              <form name="form1" method="post" action="">
-                  <img alt=""  src="IMG/002/xml.gif" /> 
-                  <input type="text" name="textfield" size=60 value="#URL_SITE_SPIP/_backend-breves.php3?id_rubrique=#ID_RUBRIQUE">
-                </form>
-				Articles
+				<h3>Les articles </h3> 
 				<form name="form1" method="post" action="">
-                  <img alt=""  src="IMG/002/xml.gif" /> 
-                  <input type="text" name="textfield" size=60 value="#URL_SITE_SPIP/_backend.php3?id_rubrique=#ID_RUBRIQUE">
+                   <a href="#URL_SITE_SPIP/backend.php3">
+				  <img alt=""  src="IMG/002/xml.gif" border="0" /></a>
+                  <input type="text" name="textfield" size=60 value="#URL_SITE_SPIP/backend.php3">
+                </form>
+             <h2>Flux sélectifs</h2> 
+			  <ul>
+				<li><a href="#rubriques">RSS des rubriques</a></li>
+				<li><a href="#photos">RSS des Photos</a></li>
+				<li><a href="#forums">RSS des Forums</a></li>
+				</ul>
+              <a name="rubriques"></a>
+				<h2>RSS des rubriques</h2> 
+			   
+			   <BOUCLE_rub(RUBRIQUES){tout}{titre_mot=menu_rub}> 
+              <h3>Dans la rubrique [(#TITRE|supprimer_numero)]</h3>
+              <h4>Br&egrave;ves</h4> 
+              <form name="form1" method="post" action="">
+                  <a href="#URL_SITE_SPIP/backend.php3?id_rubrique=#ID_RUBRIQUE">
+				  <img alt=""  src="IMG/002/xml.gif" border="0" /></a>
+                  <input type="text" name="textfield" size=60 value="#URL_SITE_SPIP/backend-breves.php3?id_rubrique=#ID_RUBRIQUE">
+               </form>
+				<h4>Articles</h4> 
+				<form name="form1" method="post" action="">
+                  <a href="#URL_SITE_SPIP/backend.php3?id_rubrique=#ID_RUBRIQUE">
+				  <img alt=""  src="IMG/002/xml.gif" border="0" /></a>
+                  <input type="text" name="textfield" size=60 value="#URL_SITE_SPIP/backend.php3?id_rubrique=#ID_RUBRIQUE">
                 </form>
 				</BOUCLE_rub>
+				
+				<a name="photos"></a>
+				<h2>RSS des photos</h2>
+				<BOUCLE_photo(RUBRIQUES){tout}{titre_mot=photo}> 
+				<h3>Dans la galerie [(#TITRE|supprimer_numero)]</h3>
+
+				<h4>Albums</h4>
+				<form name="form1" method="post" action="">
+                  <a href="#URL_SITE_SPIP/backend.php3?id_rubrique=#ID_RUBRIQUE">
+				  <img alt=""  src="IMG/002/xml.gif" border="0"  /></a>
+                  <input type="text" name="textfield" size=60 value="#URL_SITE_SPIP/backend.php3?id_rubrique=#ID_RUBRIQUE">
+                </form>
+				</BOUCLE_photo>
+				
+				<a name="forums"></a>
+				<h2>RSS des forums</h2>
+				<BOUCLE_forums(RUBRIQUES){tout}{titre_mot=forum}> 
+              <h3>Dans le forum [(#TITRE|supprimer_numero)]</h3>
+              <h4>Derniers messages</h4>
+				<form name="form1" method="post" action="">
+                  <a href="#URL_SITE_SPIP/backend.php3?id_rubrique=#ID_RUBRIQUE">
+				  <img alt=""  src="IMG/002/xml.gif" border="0" /></a>
+                  <input type="text" name="textfield" size=60 value="#URL_SITE_SPIP/backend.php3?id_rubrique=#ID_RUBRIQUE">
+                </form>
+				
+				<BOUCLE_themes(ARTICLES){tout}{titre_mot=forum}> 
+				<h3>Dans le thème [(#TITRE|supprimer_numero)]</h3>
+              
+				<h4>Derniers messages</h4>
+				<form name="form1" method="post" action="">
+                  <a href="#URL_SITE_SPIP/backend.php3?id_article=#ID_ARTICLE">
+				  <img alt=""  src="IMG/002/xml.gif" border="0" /></a>
+                  <input type="text" name="textfield" size=60 value="#URL_SITE_SPIP/backend.php3?id_article=#ID_ARTICLE">
+                </form>
+				</BOUCLE_themes>
+				
+				</BOUCLE_forums>
 				<br>
 				<br>
                 <p> 
@@ -76,7 +142,7 @@ function MM_goToURL() { //v3.0
                 <div align="left">(Si vous n'avez pas de lecteur XML sur votre 
                   site vous pouvez utiliser ce java script)</div><br>
                 <form name="form1" method="post" action="">
-                  <input type="text" name="textfield" size=60 value="#URL_SITE_SPIP/distrib.php3">
+                  <input type="text" name="textfield" size=60 value="<SCRIPT src='#URL_SITE_SPIP/distrib.php3' type='text/javascript'></SCRIPT>">
                 </form>
             </td>
               <td background="IMG/002/r-d.gif" width="5">&nbsp;</td><tr> 
