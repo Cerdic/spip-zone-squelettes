@@ -1,76 +1,77 @@
 <style>
-.secteuroff { font-weight: bold; }
-.rubriqueoff { font-weight: normal; }
-.secteuron, .rubriqueon { font-weight: bold; color: #ff9999; }
-.secteur, .rubrique { font-weight: bold; color: #ff3333; }
-.invisible {display:none} 
-.invisibleon {display:block} 
+<!--
+
+a.secteuron, a.rubriqueon { font-weight: bold; color: #ff9999; }
+
 
 .menu{
 margin: 0px ;
-padding-left : 20px;
+padding-left : 5px;
 padding-bottom : 10px;
-list-style-image:url('/ecrire/img_pack/deplierhaut.gif');
 }
-.menu ul , ul ul {
+.rubriques {
 margin: 0px ;
 padding-left : 20px;
-list-style-image:none;
-list-style-type:disc;
 }
 
-.menu ul li , ul ul li {
-padding-top : 3px;
+.puce {
+	margin-left: -8px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-right: 3px;
 }
-
+-->
 </style>
 
-<script language="JavaScript" type="text/javascript">
-		function MM_findObj(n, d) { //v4.0
-			var p,i,x;
-			if(!d) d=document; 
-			if((p=n.indexOf("?"))>0&&parent.frames.length) {
-				d=parent.frames[n.substring(p+1)].document; 
-				n=n.substring(0,p);
-			}
-			if(!(x=d[n])&&d.all) x=d.all[n]; 
-			for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
-		  	for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
-		  	if(!x && document.getElementById) x=document.getElementById(n); return x;
-		}
+<?php 
+// inclusion du script de gestion des layers de SPIP
+$flag_ecrire = false;
+include 'ecrire/inc_layer.php3';
+afficher_script_layer();
+?>
+
+<div class="menu">
+<BOUCLE_secteurs(RUBRIQUES){titre_mot=menu_rub}{par titre} >
+<?php $exp = '[(#EXPOSER)]' ; ?>
+<div>
+<BOUCLE_nb_rubriques(RUBRIQUES){id_parent}>
+</BOUCLE_nb_rubriques>
+<?php 
+echo ($exp=="on") ? bouton_block_visible('rub#ID_RUBRIQUE') : bouton_block_invisible('rub#ID_RUBRIQUE');
+?>
+</B_nb_rubriques>
+
+<a [class="secteur(#EXPOSER)"] href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero)]"><strong>[(#TITRE|supprimer_numero)]</strong></a>
 		
-		function changestyle(couche, style) {
-			if (!(layer = MM_findObj(couche))) return;
-			layer.style.display = style;
-		}
-</script>
-
-
-<ul class="menu">
-<BOUCLE_secteurs2(RUBRIQUES){titre_mot=menu_rub}{par titre} >
+	<B_rubriques>
 	<?php 
-	$class_out = '[(#EXPOSER|texte_script)]' ; 
-	if($class_out == '') {$class_out = "none" ;}else{$class_out = "block" ;}
+	echo ($exp=="on") ? debut_block_visible('rub#ID_RUBRIQUE') : debut_block_invisible('rub#ID_RUBRIQUE');
 	?>
+	<BOUCLE_rubriques(RUBRIQUES){id_parent}{par titre}>
+	<div class="rubriques">
+		<?php $exp = '[(#EXPOSER)]' ; ?>
+		<BOUCLE_nb_srubriques(RUBRIQUES){id_parent}>
+		</BOUCLE_nb_srubriques>
+		<?php
+		echo ($exp=="on") ? bouton_block_visible('rub#ID_RUBRIQUE') : bouton_block_invisible('rub#ID_RUBRIQUE');
+		?>
+		</B_nb_srubriques>
+		<img class='puce' src="img_pack/puce<?php echo($exp=='on' ? 'on' : 'off')?>.gif" alt="puce" />
+		<//B_nb_srubriques>
 	
-	<li>
-	<a onMouseOut="changestyle('rub#ID_RUBRIQUE','block');" onMouseOver="changestyle('rub#ID_RUBRIQUE','block');" [class="secteur(#EXPOSER)"] href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero)]"><strong>[(#TITRE|supprimer_numero)]</strong></a>
-		<div onMouseOver="changestyle('rub#ID_RUBRIQUE','block');" onMouseOut="changestyle('rub#ID_RUBRIQUE','<?php echo $class_out ?>');" id="rub#ID_RUBRIQUE" class='invisible#EXPOSER'>
-		<B_sousrub2>
-		<ul>
-		<BOUCLE_sousrub2(RUBRIQUES){id_parent}{par num titre}>
-		<li><a [class="secteur(#EXPOSER)"] href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero)]">[(#TITRE|supprimer_numero)] </a>
-			<BOUCLE_sousousrub2(boucle_sousrub2)></BOUCLE_sousousrub2>
-		</li>
-		</BOUCLE_sousrub2>
-		</ul>
-		
-		</B_sousrub2>
-		</div>
-	</li>
+	<a [class="rubrique(#EXPOSER)"] href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero)]">[(#TITRE|supprimer_numero)] </a>
 	
-	</BOUCLE_secteurs2>
-</ul>
+		<BOUCLE_sous_rub(boucle_rubriques)></BOUCLE_sous_rub>
+	</div>
+	</BOUCLE_rubriques>
+	<?php
+	echo fin_block('rub#ID_RUBRIQUE');
+	?>
+	</B_rubriques>	
+	
+</div>
+</BOUCLE_secteurs>
+</div>
 
-<div align="right">[<a href="_resume.php3">R&eacute;sum&eacute;</a>]&nbsp;[<a href="_nouveautes.php3">Nouveaut&eacute;s</a>]
+<div style="text-align:right">[<a href="_resume.php3">R&eacute;sum&eacute;</a>]&nbsp;[<a href="_nouveautes.php3">Nouveaut&eacute;s</a>]
       </div>
