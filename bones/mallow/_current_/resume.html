@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head profile="http://gmpg.org/xfn/1">
+<title>[#NOM_SITE_SPIP] <:articles_populaires:></title>
+<meta name="MSSmartTagsPreventParsing" content="TRUE" />
+<meta name="Robots" content="index,follow,all" />
+<meta name="Identifier-URL" content="#URL_SITE_SPIP" />
+<meta name="rating" content="General" />
+<meta name="revisit-after" content="15 days" />
+<!-- Mallow v1.58 BONES 2.0-->
+<link rel="stylesheet" href="bones/style.css" type="text/css" />
+</head>
+<body id="home">
+<div id="shadow">
+  <div id="rap">
+    <div id="topimage">
+      <div id="supernavcontainer">
+        <INCLURE(inclusions/inc_rubriques.php3)>
+      </div>
+    </div>
+    <div id="blogtitle">
+      <h1 style="float:left;"> [(#NOM_SITE_SPIP)] <span>
+        <INCLURE(inclusions/inc_menu-haut.php3)>
+        </span></h1>
+      <INCLURE(inclusions/inc_recherche.php3)>
+    </div>
+    <!-- Sidebar menu div -->
+    <div id="menu">
+      <ul>
+        <li><:dernieres_breves:>
+          <ul>
+            <li>
+              <INCLURE(inclusions/inc_dernieres_breves.php3)>
+            </li>
+          </ul>
+        </li>
+        <li><:sites_web:>
+          <ul>
+            <li>
+              <INCLURE(inclusions/inc_sites.php3)>
+            </li>
+          </ul>
+        </li>
+        <li><:syndiquer_site:>
+          <ul>
+            <li>
+              <INCLURE(inclusions/inc_syndication.php3)>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div id="content">
+      <div class="navigation">
+        <div class="alignleft"><:articles_populaires:></div>
+        <div class="alignright"></div>
+      </div>
+      <div class="post">
+        <!-- Une : articles les plus populaires -->
+        <BOUCLE_article_un(ARTICLES) {par popularite} {inverse} {0,2}>
+        <em>[(#SURTITRE|titre_homogene)]</em>
+        <h3 class="storytitle">[(#TITRE|titre_homogene)] [(#LOGO_ARTICLE_RUBRIQUE|right||reduire_image{120,x})]</h3>
+        <em>[(#SOUSTITRE|titre_homogene)]</em>
+        <!-- Post meta -->
+        <div class="meta">[(#DATE|nom_jour)] [(#DATE|affdate)] par
+          <BOUCLE_auteurs_articles(AUTEURS) {id_article} {", "}>
+          <a href="auteur.php3?id_auteur=#ID_AUTEUR">#NOM</a>
+          </BOUCLE_auteurs_articles>
+          .</div>
+        [<br />
+<:popularite:>&nbsp;: <span class="important">(#POPULARITE)</span> %]
+        <div class="storycontent">
+          <p>[(#INTRODUCTION|justifier)]</p>
+        </div>
+        </BOUCLE_article_un>
+      </div>
+    </div>
+    <div id="commentarea">
+      <div id="commentcontent">
+        <!-- Articles les plus populaires (suite) -->
+        <BOUCLE_articles_populaires(ARTICLES) {par popularite} {inverse} {2,8}>
+        <em>[(#SURTITRE|titre_homogene)]</em>
+        <h3 class="storytitle">[(#TITRE|titre_homogene)] [(#LOGO_ARTICLE_RUBRIQUE|left||reduire_image{30,x})]</h3>
+        <em>[(#SOUSTITRE|titre_homogene)]</em>
+        <!-- Post meta -->
+        <div class="meta">[(#DATE|nom_jour)] [(#DATE|affdate)] par
+          <B_auteurs_recents>
+<:par_auteur:>
+          <BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>
+          #NOM
+          </BOUCLE_auteurs_recents>
+          .</div>
+        [<:popularite:>&nbsp;: <span class="important">(#POPULARITE)</span> %] <br /> <br />
+        </BOUCLE_articles_populaires>
+      </div>
+    </div>
+    <div style="clear: both;"></div>
+    <!-- bottom meta -->
+    <div id="bottommeta">
+      <INCLURE(inclusions/inc_pied_de_page.php3)>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head profile="http://gmpg.org/xfn/1">
+<title>#NOM_SITE_SPIP</title>
+<meta name="MSSmartTagsPreventParsing" content="TRUE" />
+<meta name="Robots" content="index,follow,all" />
+<meta name="Identifier-URL" content="#URL_SITE_SPIP" />
+<meta name="rating" content="General" />
+<meta name="revisit-after" content="7 days" />
+<!-- Mallow v1.58 BONES 2.0-->
+<INCLURE(inclusions/inc_head.php3)>
+</head>
+<body id="home">
+<div id="shadow">
+  <div id="rap">
+    <div id="topimage">
+      <div id="supernavcontainer">
+        <INCLURE(inclusions/inc_rubriques.php3)>
+      </div>
+    </div>
+    <div id="blogtitle">
+      <h1 style="float:left;"> [(#NOM_SITE_SPIP)] <span>
+        <INCLURE(inclusions/inc_menu-haut.php3)>
+        </span></h1>
+      <INCLURE(inclusions/inc_recherche.php3)>
+    </div>
+    <!-- Sidebar menu div -->
+    <div id="menu">
+      <ul>
+        <li><:dernieres_breves:>
+          <ul>
+            <li>
+              <INCLURE(inclusions/inc_dernieres_breves.php3)>
+            </li>
+          </ul>
+        </li>
+        <li>
+<:derniers_commentaires:>
+        <ul>
+          <li>
+            <INCLURE(inclusions/inc_derniers_commentaires.php3)>
+          </li>
+          
+        </ul>
+        </li>
+        
+        <li><:sites_web:>
+          <ul>
+            <li>
+              <INCLURE(inclusions/inc_sites.php3)>
+            </li>
+          </ul>
+        </li>
+        <li><:syndiquer_site:>
+          <ul>
+            <li>
+              <INCLURE(inclusions/inc_syndication.php3)>
+            </li>
+          </ul>
+        </li>
+		<li>
+          <ul>
+            <li>[(#FORMULAIRE_INSCRIPTION)]</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div id="content">
+      <div class="navigation">
+        <div class="alignleft"><:derniers_articles:>:</div>
+        <div class="alignright"></div>
+      </div>
+      <div class="post">
+        <!-- Post title -->
+        <BOUCLE_article_un(ARTICLES) {par date} {inverse} {0,2}>
+        <h3 class="storytitle"><span><a href="#URL_ARTICLE">[(#TITRE)]</a></span></h3>
+        <!-- Post meta -->
+        <div class="meta">[(#DATE|nom_jour)] [(#DATE|affdate)].
+          <!-- By matthew. -->
+          <B_auteurs_un>
+<:par_auteur:>
+          <BOUCLE_auteurs_un(AUTEURS) {id_article} {", "}>
+          #NOM
+          </BOUCLE_auteurs_un>
+        </div>
+        <!-- Actual post -->
+        <div class="storycontent">
+          <p>[(#LOGO_ARTICLE_RUBRIQUE|left|#URL_ARTICLE||reduire_image{60,x})][(#INTRODUCTION|justifier)]</p>
+         <br /></div><br />
+        </BOUCLE_article_un> 
+      </div>
+      <br />
+      <div class="post">
+        <!-- Articles recents -->
+        <BOUCLE_articles_recents(ARTICLES) {par date} {inverse} {2,8}>
+        <h3 class="storytitle"><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h3>
+        <!-- Post meta -->
+        <div class="meta">[(#DATE|nom_jour)] [(#DATE|affdate)]
+          <B_auteurs_recents>
+<:par_auteur:>
+          <BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>
+          #NOM
+          </BOUCLE_auteurs_recents>
+        </div>
+        <br />
+        </BOUCLE_articles_recents>
+      </div>
+    </div>
+    <div class="navigation">
+      <div class="alignleft"></div>
+      <div class="alignright"></div>
+    </div>
+    <div style="clear: both;"></div>
+  </div>
+  <!-- bottom meta -->
+  <div id="bottommeta">
+    <INCLURE(inclusions/inc_pied_de_page.php3)>
+  </div>
+</div>
+#SPIP_CRON
+</body>
+</html>
