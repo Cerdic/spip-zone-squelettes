@@ -29,7 +29,7 @@ Dans certaine langue comme l'arabe la lecture se fait de droite à gauche. Cet	at
 				<link rel="next" href="#URL_SPIPCLEAR" title="[(#TITRE)]" />
 			</BOUCLE_entete_next>
 		</BOUCLE_entete_prev_next>
-		<BOUCLE_entete(RUBRIQUES){id_rubrique=[(#ENV{id_blog})]}>
+		<BOUCLE_entete(RUBRIQUES){id_rubrique=(#ENV{id_blog})}>
 			<BOUCLE_entete_sections(RUBRIQUES){id_parent}{par num titre}>
 				<link rel="section" href="#URL_SPIPCLEAR" title="[(#TITRE|supprimer_numero)]" />
 			</BOUCLE_entete_sections>
@@ -49,18 +49,18 @@ Dans certaine langue comme l'arabe la lecture se fait de droite à gauche. Cet	at
 		SPIP:Le squelette du rss se trouve dans le fichier squelette/rss.html. Il est basé sur le rss proposé dans cette contrib : [Un fil RSS 2.0 et un fil ATOM 0.3->http://www.spip-contrib.net/article695.html]
 		-->
 		<BOUCLE_RSS_RUBRIQUE(RUBRIQUES){id_rubrique}>
-			<link rel="alternate" type="application/rss+xml" title="SPIP.Blog-#TITRE" href="rss.php?[id_blog=(#ENV{id_blog})&]id_rubrique=#ID_RUBRIQUE" />
-			<link rel="alternate" type="application/atom+xml" title="Atom" href="atom.php?[id_blog=(#ENV{id_blog})&]id_rubrique=#ID_RUBRIQUE" />
+			<link rel="alternate" type="application/rss+xml" title="SPIP.Blog-#TITRE" href="rss.php?id_blog=(#ENV{id_blog})&id_rubrique=#ID_RUBRIQUE" />
+			<link rel="alternate" type="application/atom+xml" title="Atom" href="atom.php?id_blog=(#ENV{id_blog})&id_rubrique=#ID_RUBRIQUE" />
 		</BOUCLE_RSS_RUBRIQUE>
 		<BOUCLE_RSS_ARTICLE(ARTICLES){id_article}>
-			<link rel="alternate" type="application/rss+xml" title="SPIP.Blog-commentaire-#TITRE" href="rss.php?[id_blog=(#ENV{id_blog})&]id_article=#ID_ARTICLE&type=co" />
-			<link rel="alternate" type="application/atom+xml" title="Atom-SPIP.Blog-commentaire-#TITRE" href="atom.php?[id_blog=(#ENV{id_blog})&]id_article=#ID_ARTICLE&type=co" />
+			<link rel="alternate" type="application/rss+xml" title="SPIP.Blog-commentaire-#TITRE" href="rss.php?id_blog=(#ENV{id_blog})&id_article=#ID_ARTICLE&type=co" />
+			<link rel="alternate" type="application/atom+xml" title="Atom-SPIP.Blog-commentaire-#TITRE" href="atom.php?id_blog=(#ENV{id_blog})&id_article=#ID_ARTICLE&type=co" />
 		</BOUCLE_RSS_ARTICLE>
 		<!--
 	  	pas utile AMHA (James)
 		-->	
-		<link rel="alternate" type="application/rss+xml" title="SPIP.Blog-commentairess" href="rss.php?[id_blog=(#ENV{id_blog})&]type=co" />
-		<link rel="alternate" type="application/atom+xml" title="Atom-SPIP.Blog-commentaires" href="atom.php?[id_blog=(#ENV{id_blog})&]type=co" />
+		<link rel="alternate" type="application/rss+xml" title="SPIP.Blog-commentairess" href="rss.php?id_blog=(#ENV{id_blog})&type=co" />
+		<link rel="alternate" type="application/atom+xml" title="Atom-SPIP.Blog-commentaires" href="atom.php?id_blog=(#ENV{id_blog})&type=co" />
 
 		<!-- 
 		TODO : m&eacute;tadonn&eacute;e Dublin Core
@@ -96,7 +96,7 @@ Dans certaine langue comme l'arabe la lecture se fait de droite à gauche. Cet	at
 				QUESTION: dans le cadre d'une ferme à blog sous spip on a pas interet à mettre une boucle sur id_blog avec url_RUBRQUE et #nom_RUBRIQUE ?
 				TODO: remplacer logo par logo du site
 				-->
-				<BOUCLE_titre_blog(RUBRIQUES){id_rubrique=[(#ENV{id_blog})]}>
+				<BOUCLE_titre_blog(RUBRIQUES){id_rubrique=(#ENV{id_blog})}>
 				<h1><a href="#URL_SPIPCLEAR"><img src="[IMG/(#LOGO_RUBRIQUE|fichier)]" alt="[(#TITRE|textebrut|entites_html)]" /></a></h1>
 				</BOUCLE_titre_blog>
 				<!-- 
@@ -183,7 +183,7 @@ Dans certaine langue comme l'arabe la lecture se fait de droite à gauche. Cet	at
 								<span>::</span>
 								<a href="#URL_SPIPCLEAR" title="<:spipclear:permalink_pour:> : #TITRE">##ID_ARTICLE</a>
 								<span>::</span>
-								<a href="rss.php?[id_blog=(#ENV{id_blog})&]id_article=#ID_ARTICLE" title="<:spipclear:rss_pour:> : #TITRE">rss</a>
+								<a href="rss.php?id_blog=(#ENV{id_blog})&id_article=#ID_ARTICLE" title="<:spipclear:rss_pour:> : #TITRE">rss</a>
 							</p>
 							
 							#DEBUT_SURLIGNE[<div class="post-chapo">
@@ -232,7 +232,7 @@ Dans certaine langue comme l'arabe la lecture se fait de droite à gauche. Cet	at
 						<!-- -->
 						<B_recherche>
 							[<p class="day-date"><:resultats_recherche:> &#171;&nbsp;(#RECHERCHE)&nbsp;&#187;</p>]
-							<BOUCLE_recherche(ARTICLES){id_secteur=[(#ENV{id_blog})]}{recherche}{par points}{inverse}>
+							<BOUCLE_recherche(ARTICLES){id_secteur=(#ENV{id_blog})}{recherche}{par points}{inverse}>
 							<h2 id="p#ID_ARTICLE" class="post-title"><a href="#URL_SPIPCLEAR">#TITRE</a></h2>
 							<p class="post-info"><B_auteurs_recherche><:par_auteur|ucfirst:> <BOUCLE_auteurs_recherche(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_recherche>,
 								[(#DATE|nom_jour_jour_nom_mois_annee)] <:spipclear:attime:> [(#DATE|heures)]:[(#DATE|minutes)]
@@ -252,7 +252,7 @@ Dans certaine langue comme l'arabe la lecture se fait de droite à gauche. Cet	at
 						</BOUCLE_recherche>
 						
 						<!-- -->
-						<BOUCLE_archives(ARTICLES){id_secteur=[(#ENV{id_blog})]}{date==^[(#ENV{archives,9999})]}{par date}{inverse}>
+						<BOUCLE_archives(ARTICLES){id_secteur=(#ENV{id_blog})}{date==^(#ENV{archives,9999})}{par date}{inverse}>
 						
 							[<p class="day-date">(#DATE|nom_jour_jour_nom_mois_annee|unique)</p>]
 							<h2 id="p#ID_ARTICLE" class="post-title"><a href="#URL_SPIPCLEAR">#TITRE</a></h2>
@@ -354,7 +354,7 @@ Dans certaine langue comme l'arabe la lecture se fait de droite à gauche. Cet	at
 					<div id="links">
 						<h2><:spipclear:liens:></h2>
 						<ul>
-							<BOUCLE_links(SITES){id_secteur=[(#ENV{id_blog})]}{par date}{inverse}>
+							<BOUCLE_links(SITES){id_secteur=(#ENV{id_blog})}{par date}{inverse}>
 							<li><a href="#URL_SITE"<BOUCLE_mot_lang(MOTS){id_syndic}> hreflang="#TITRE"</BOUCLE_mot_lang> [ title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#NOM_SITE*)]</a>
 								<B_syndic><ul><small>
 								<BOUCLE_syndic(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{0,5}>
@@ -370,10 +370,10 @@ Dans certaine langue comme l'arabe la lecture se fait de droite à gauche. Cet	at
 					<div id="syndicate">
 						<h2><:spipclear:syndication:></h2>
 						<ul>
-							<li><a href="rss.php?[id_blog=(#ENV{id_blog})&]id_rubrique=#ID_RUBRIQUE"><:spipclear:fil_rss:></a></li>
-							<li><a href="rss.php?[id_blog=(#ENV{id_blog})&]id_rubrique=#ID_RUBRIQUE&amp;type=co"><:spipclear:fil_rss_commentaires:></a></li>
-							<li><a href="atom.php?[id_blog=(#ENV{id_blog})&]id_rubrique=#ID_RUBRIQUE"><:spipclear:fil_atom:></a></li>
-							<li><a href="atom.php?[id_blog=(#ENV{id_blog})&]id_rubrique=#ID_RUBRIQUE&amp;type=co"><:spipclear:fil_atom_commentaires:></a></li>
+							<li><a href="rss.php?id_blog=(#ENV{id_blog})&id_rubrique=#ID_RUBRIQUE"><:spipclear:fil_rss:></a></li>
+							<li><a href="rss.php?id_blog=(#ENV{id_blog})&id_rubrique=#ID_RUBRIQUE&amp;type=co"><:spipclear:fil_rss_commentaires:></a></li>
+							<li><a href="atom.php?id_blog=(#ENV{id_blog})&id_rubrique=#ID_RUBRIQUE"><:spipclear:fil_atom:></a></li>
+							<li><a href="atom.php?id_blog=(#ENV{id_blog})&id_rubrique=#ID_RUBRIQUE&amp;type=co"><:spipclear:fil_atom_commentaires:></a></li>
 						</ul>
 					</div>
 				</BOUCLE_sidebar>
