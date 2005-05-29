@@ -14,6 +14,7 @@ $GLOBALS['i18n_spipclear_fr'] = array(
 'aucune_langue' => 'Aucune langue',
 'aucun_lien' => 'Auncun lien',
 'aucun_resultat_recherche' => 'Aucun r&eacute;sultat pour cette recherche...',
+'aucun_trackback' => 'Aucun trackback',
 
 //C
 'calendrier' => 'Calendrier',
@@ -54,6 +55,7 @@ $GLOBALS['i18n_spipclear_fr'] = array(
 
 //P
 'permalink_pour' => 'Lien permanent vers',
+'pour_faire_trackback' => 'Pour faire un trackback sur ce billet&nbsp;:',
 
 //R
 'rss_pour' => 'fil RSS des commentaires de',
@@ -64,6 +66,9 @@ $GLOBALS['i18n_spipclear_fr'] = array(
 'syndication' => 'Syndication',
 
 //T
+'trackback' => 'Trackback',
+'trackbacks' => 'Trackbacks',
+'trackback_ferme' => 'Les trackbacks pour ce billet sont ferm&eacute;s.',
 
 );
 
