@@ -22,6 +22,17 @@ Dans certaine langue comme l'arabe la lecture se fait de droite à gauche. Cet	at
 		<meta name="MSSmartTagsPreventParsing" content="TRUE" />
 
 		<BOUCLE_entete_prev_next(ARTICLES){id_article}>
+[<!--(#PARAMETRES_TRACKBACK)
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+<rdf:Description
+  rdf:about="[(#URL_SPIPCLEAR|url_absolue)]"
+  dc:identifier="[(#URL_SPIPCLEAR|url_absolue)]"
+  dc:title="#TITRE"
+  trackback:ping="#URL_TRACKBACK" />
+</rdf:RDF>
+-->]
 			<BOUCLE_entete_prev(ARTICLES){age_relatif>=0}{par date}{inverse}{1,1}>
 				<link rel="previous" href="#URL_SPIPCLEAR" title="[(#TITRE)]" />
 			</BOUCLE_entete_prev>
@@ -165,7 +176,7 @@ Dans certaine langue comme l'arabe la lecture se fait de droite à gauche. Cet	at
 								<p class="post-info-co"><a href="#URL_SPIPCLEAR#co"
 									title="<:spipclear:commentaires_pour:> : #TITRE"><BOUCLE_commentaires_rubrique(FORUMS){id_article}{plat}></BOUCLE_commentaires_rubrique>[(#TOTAL_BOUCLE|pluriel{commentaire,commentaires,spipclear})]<//B_commentaires_rubrique></a>
 									<span>::</span>
-									<a href="#URL_SPIPCLEAR#tb" title="trackbacks pour : #TITRE">aucun trackback</a>
+									<a href="#URL_SPIPCLEAR#tb" title="trackbacks pour : #TITRE"><BOUCLE_trackbacks_rubrique(FORUMS){id_article}{plat}{statut=tbpublie}></BOUCLE_trackbacks_rubrique>[(#TOTAL_BOUCLE|pluriel{trackback,trackbacks,spipclear})]<//B_trackbacks_rubrique></a>
 								</p>
 							</BOUCLE_billets>
 						</BOUCLE_rubrique>
@@ -202,9 +213,21 @@ Dans certaine langue comme l'arabe la lecture se fait de droite à gauche. Cet	at
 							
 							<div id="trackbacks">
 								<h3 id="tb">Trackbacks</h3>
-								<p>Aucun trackback.</p>
-								<p>Pour faire un trackback sur ce billet&nbsp;:
-								attendez qu'on ait implent&eacute; le truc, merci :-)</p>
+								<BOUCLE_trackbacks_article(FORUMS){id_article}{par date}{statut=tbpublie}>
+									<p id="c#ID_FORUM" class="comment-info">
+										<span class="comment-number"><a href="#c#ID_FORUM">#COMPTEUR_BOUCLE.</a></span>
+										[(#DATE|nom_jour)] [(#DATE|affdate)] <:spipclear:attime:>
+										[(#DATE|heures)]:[(#DATE|minutes)], [<:par_auteur:>
+										<strong>(#NOM)</strong>][ <span>::</span> <a href="(#URL_SITE)">[(#NOM_SITE|sinon{<:spipclear:site_comment:>})]</a>]
+									</p>
+									[<blockquote>
+									<p>(#TEXTE)</p>
+									</blockquote>]
+								</BOUCLE_trackbacks_article>
+								<p><:spipclear:aucun_trackback:></p>
+								<//B_trackbacks_article>
+								<p>[(#PARAMETRES_TRACKBACK|sinon{Les trackbacks pour ce billet sont ferm&eacute;s.})Pour faire un trackback sur ce billet&nbsp;:
+								#URL_TRACKBACK]</p>
 							</div>
 							
 							<div id="comments">
@@ -247,7 +270,7 @@ Dans certaine langue comme l'arabe la lecture se fait de droite à gauche. Cet	at
 							<p class="post-info-co"><a href="#URL_SPIPCLEAR#co"
 								title="<:spipclear:commentaires_pour:> : #TITRE"><BOUCLE_commentaires_recherche(FORUMS){id_article}{plat}></BOUCLE_commentaires_recherche>[(#TOTAL_BOUCLE|pluriel{commentaire,commentaires,spipclear})]<//B_commentaires_recherche></a>
 								<span>::</span>
-								<a href="#URL_SPIPCLEAR#tb" title="trackbacks pour : #TITRE">aucun trackback</a>
+								<a href="#URL_SPIPCLEAR#tb" title="trackbacks pour : #TITRE"><BOUCLE_trackbacks_recherche(FORUMS){id_article}{plat}{statut=tbpublie}></BOUCLE_trackbacks_recherche>[(#TOTAL_BOUCLE|pluriel{trackback,trackbacks,spipclear})]<//B_trackbacks_recherche></a>
 							</p>
 						</BOUCLE_recherche>
 						
@@ -269,7 +292,7 @@ Dans certaine langue comme l'arabe la lecture se fait de droite à gauche. Cet	at
 							<p class="post-info-co"><a href="#URL_SPIPCLEAR#co"
 								title="<:spipclear:commentaires_pour:> : #TITRE"><BOUCLE_commentaires_archive(FORUMS){id_article}{plat}></BOUCLE_commentaires_archive>[(#TOTAL_BOUCLE|pluriel{commentaire,commentaires,spipclear})]<//B_commentaires_archive></a>
 								<span>::</span>
-								<a href="#URL_SPIPCLEAR#tb" title="trackbacks pour : #TITRE">aucun trackback</a>
+								<a href="#URL_SPIPCLEAR#tb" title="trackbacks pour : #TITRE"><BOUCLE_trackbacks_archives(FORUMS){id_article}{plat}{statut=tbpublie}></BOUCLE_trackbacks_archives>[(#TOTAL_BOUCLE|pluriel{trackback,trackbacks,spipclear})]<//B_trackbacks_archives></a>
 							</p>
 						</BOUCLE_archives>
 						<h2><:spipclear:aucun_resultat_recherche:></h2>

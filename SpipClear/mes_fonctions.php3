@@ -1,4 +1,7 @@
 <?php
+
+include_local("inc-trackback.php");
+	
 /***
 * dates spip.clear
 ***/
