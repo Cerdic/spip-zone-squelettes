@@ -43,5 +43,35 @@ function casse_titre($titre) {
   else return ucfirst($titre);
 }
 
+function critere_portrait($idb, &$boucles, $param, $not) {
+  $boucle = &$boucles[$idb];
+  $table = $boucle->id_table;
+
+  if ($not) 
+	$boucle->where[] = $table.".hauteur <= ".$table.".largeur";
+  else
+	$boucle->where[] = $table.".hauteur > ".$table.".largeur";
+}
+
+
+function critere_paysage($idb, &$boucles, $param, $not) {
+  $boucle = &$boucles[$idb];
+  $table = $boucle->id_table;
+
+  if ($not) 
+	$boucle->where[] = $table.".largeur <= ".$table.".hauteur";
+  else 
+	$boucle->where[] = $table.".largeur > ".$table.".hauteur";
+}
+
+function critere_carre($idb, &$boucles, $param, $not) {
+  $boucle = &$boucles[$idb];
+  $table = $boucle->id_table;
+
+  if ($not) 
+	$boucle->where[] = $table.".largeur != ".$table.".hauteur";
+  else
+	$boucle->where[] = $table.".largeur = ".$table.".hauteur";
+}
 
 ?>
