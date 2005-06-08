@@ -2,4 +2,3 @@
 #########################################################################
 # Site footer - Contents are automatically inserted after main Trac HTML
 ?>
-RE-COUCOU
