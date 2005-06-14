@@ -19,12 +19,14 @@
   <div id="content" class="narrowcolumn">
       <div class="post">
         <!-- Post title -->
-        <h3 class="storytitle">[(#TITRE|titre_homogene)] [(#LOGO_RUBRIQUE|right||reduire_image{120,0})]</h3>
+        <h3 class="storytitle">[(#TITRE|titre_homogene)] </h3>
         <!-- Post meta -->
         <div class="meta">[(#DATE|nom_jour)] [(#DATE|affdate)].</div>
         <!-- Actual post -->
         <div class="storycontent">
-          <p>[(#TEXTE|justifier)]</p>
+        
+       <p align="justify">[(#LOGO_RUBRIQUE||reduire_image{120,x})] #DESCRIPTIF</p>
+          <p align="justify">#TEXTE</p>
           <div class="notes">#NOTES</div>
         </div>
       </div>
@@ -63,7 +65,11 @@
         <B_sites>
         <h4><:sur_web:>:</h4>
         <BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
+        
         <h3 class="storytitle"><a href="#URL_SITE">#NOM_SITE</a></h3>
+        <div align="left">[(#LOGO_SITE||reduire_image{60,x})]</div>
+        <small>[(#DESCRIPTIF|justifier)]</small>
+
         <BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {par date} {inverse} {0,3}>
         <p><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|titre_homogene)]</a></p>
         </BOUCLE_syndic>
