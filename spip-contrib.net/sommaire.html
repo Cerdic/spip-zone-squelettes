@@ -59,6 +59,23 @@
         	<img class="borderBL2" src="images/bloctype2/bottomleft.gif" alt="" width="5" height="5" />
         	<img class="borderBR2" src="images/bloctype2/bottomright.gif" alt="" width="5" height="5"/>
 		  </div>
+		  
+		  <div class="bloctype1">
+					<img class="borderTL2" src="images/bloctype1/topleft.gif" alt="" width="5" height="5"/>
+					<img class="borderTR2" src="images/bloctype1/topright.gif" alt="" width="5" height="5"/>
+					<h3>Mises &agrave; Jour</h3>
+					<BOUCLE_exclure_recents(ARTICLES){par date}{inverse}{0,10}{lang}{doublons recents}></BOUCLE_exclure_recents>
+                    <ul>
+				        <BOUCLE_articles_maj(ARTICLES){date_modif!=0}{par date_modif}{inverse}{lang}{0,10}{doublons recents}>
+					   [<li><a href="#URL_ARTICLE">(#TITRE|couper_liens{70})</a></li>]
+				        </BOUCLE_articles_maj>         		
+				    </ul>
+               		<div class="spacer">&nbsp;</div>
+				</div>
+				<div class="bottomCorners">
+        			<img class="borderBL2" src="images/bloctype1/bottomleft.gif" alt="" width="5" height="5" />
+        			<img class="borderBR2" src="images/bloctype1/bottomright.gif" alt="" width="5" height="5"/>
+				</div>
 			</div>
 			<div id="content">
 				<div class="bloctype3 first">
@@ -68,22 +85,31 @@
 					<p><:besoin_part1:> <strong><INCLURE(benNbArticlesProp.php3)></strong> <:besoin_part2:></p> 
         			<p><:sous_le_feu:> </p>
        				<INCLURE(benSousLeFeu.php3)>
-
 					<div class="spacer">&nbsp;</div>
 				</div>
 				<div class="bottomCorners">
 				<img class="borderBL3" src="images/bloctype3/bottomleft.gif" alt="" width="5" height="5" />
 				<img class="borderBR3" src="images/bloctype3/bottomright.gif" alt="" width="5" height="5"/>
-				</div>			
+				</div>
+						
 				<div class="inside">
 				<p class="ie5bug">&nbsp;</p>
 				<h1><:dernieres_contribs:></h1>
-				<BOUCLE_last_articles(ARTICLES){tout}{id_secteur!=15}{par date}{inverse}{doublons}{0,10}{lang_select=non}>
+				<BOUCLE_last_articles(ARTICLES){par date}{inverse}{doublons}{0,10}{lang}>
+				<h2><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero|couper_liens{75})]</a> [<span class="date"> - (#DATE|affdate_court)</span>]
+				<B_motcles><em>
+				<BOUCLE_motcles(MOTS){id_article}{par titre}{id_groupe>2}{id_groupe<7}>[<span class="date"> - (#TITRE) </span>]</BOUCLE_motcles>
+				</em></B_motcles></h2>
+				[<p>(#INTRODUCTION|textebrut) <a href="#URL_ARTICLE" class="spip_in" title="[(#TITRE|couper_liens{75})]"><:la_suite:></a></p>]
+				</BOUCLE_last_articles>
+				
+				<h1>Dans tout le site</h1>
+				<BOUCLE_touteslangues(ARTICLES){par date}{inverse}{doublons}{0,5}{lang_select=non}>
                 [(#LANG|lang_select)]
-				<h2><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero|couper_liens{75})]</a><span class="date">- [(#DATE|affdate_court)]</span></h2>
+                <h2><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero|couper_liens{75})]</a>  <span class="date"> [- (#DATE|affdate_court)] [ - <em>(#LANG)</em>]</span></h2>
 				[<p>(#INTRODUCTION|textebrut) <a href="#URL_ARTICLE" class="spip_in" title="[(#TITRE|couper_liens{75})]"><:la_suite:></a></p>]
 				[(#LANG|lang_dselect)]
-				</BOUCLE_last_articles>
+				</BOUCLE_touteslangues>
 				</div>
 			</div>
 			<div id="righter">
