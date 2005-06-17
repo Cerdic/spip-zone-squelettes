@@ -1,0 +1,122 @@
+<BOUCLE_article_principal(ARTICLES) {id_article}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[#NOM_SITE_SPIP] [(#TITRE|textebrut)]</title>
+<!-- Kubrick v1.5 BONES 2.0 --->
+<INCLURE(inclusions/inc_head.php3)>
+
+<meta name="Description" content="[(#INTRODUCTION|textebrut)]" />
+<meta name="Keywords" content="<BOUCLE_index(ARTICLES){id_article}{","}>#TITRE</BOUCLE_index>" />
+<meta name="Author" content="<BOUCLE_author(AUTEURS){id_article}{","}>#NOM</BOUCLE_author>" />
+<meta name="Robots" content="index,follow,all" />
+<meta name="Identifier-URL" content="#URL_SITE_SPIP" />
+<meta name="rating" content="General" />
+<meta name="revisit-after" content="15 days" />
+
+</head>
+<body>
+<div id="page">
+  <div id="header">
+    <div id="headerimg">
+      <h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+      <div class="description">
+        <INCLURE(inclusions/inc_menu-haut.php3)>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div id="content" class="narrowcolumn">
+    <div class="post">
+      <h2  class="nicetitle" id="post-1">[(#TITRE|titre_homogene)]</h2>
+      <br />
+      <small>[(#DATE|nom_jour)] [(#DATE|affdate)] par
+      <BOUCLE_auteurs_articles(AUTEURS) {id_article} {" "}>
+      <a href="auteur.php3?id_auteur=#ID_AUTEUR">#NOM</a>
+      </BOUCLE_auteurs_articles>
+      </small>
+      <div class="entry">
+        <p>[(#LOGO_ARTICLE_RUBRIQUE|left||reduire_image{120,x})]</p>
+        <p>#DEBUT_SURLIGNE[(#CHAPO)]</p>
+        <p>[(#DESCRIPTIF|justifier)]</p>
+        <p>[(#TEXTE|justifier)]</p>
+        <br />
+        <em>#PS</em><br />
+        <em>[<:sur_web:>: <a href="#URL_SITE" class="spip_out">(#NOM_SITE)</a>]</em>
+        <div>#EMBED_DOCUMENT</div>
+        <em>#NOTES</em>
+        <B_documents_portfolio>
+        <BOUCLE_documents_portfolio_paysage(DOCUMENTS){id_article}{mode=document}{fichier==(png|jpg|gif)$}{doublons}{paysage}>
+        [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{'?'}|?{'&amp;','?'})]id_document=#ID_DOCUMENT">(#LOGO_DOCUMENT||reduire_image{100,0})</a>]
+        </BOUCLE_documents_portfolio_paysage>
+        <BOUCLE_documents_portfolio_portrait(DOCUMENTS){id_article}{mode=document}{fichier==(png|jpg|gif)$}{doublons}{portrait}>
+        [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{'?'}|?{'&amp;','?'})]id_document=#ID_DOCUMENT">(#LOGO_DOCUMENT||reduire_image{0,100})</a>]
+        </BOUCLE_documents_portfolio_portrait>
+        </B_documents_portfolio>
+      </div>
+ <!-- Signatures petition -->
+<div id="petition" align="justify">
+<BOUCLE_signatures_decompte(SIGNATURES) {id_article}></BOUCLE_signatures_decompte>
+[<div class="signatures-titre"><:signatures_petition:>: (#TOTAL_BOUCLE)</div>
+
+<table class="signatures">
+<thead class="structure">
+<tr>
+	<th><:date:></th>
+	<th><:nom:></th>
+	<th><:message:></th>
+</tr>
+</thead>
+<tbody>]
+<//B_signatures_decompte>
+<BOUCLE_signatures(SIGNATURES) {id_article} {par date} {inverse} {debut_signatures,30}>
+<tr>
+	<td class="signature-date">[(#DATE|affdate_court)]</td>
+	<td class="signature-nom">#NOM[ <a href="#URL_SITE">(#NOM_SITE)</a>]</td>
+	[<td class="signature-message">(#MESSAGE)</td>]
+</tr>
+</BOUCLE_signatures>
+</tbody>
+</table>
+</B_signatures>      </div>
+      </BOUCLE_articles>
+    </div>
+  </div>
+  <div id="sidebar">
+    <div id="search">
+      <INCLURE(inclusions/inc_recherche.php3)>
+    </div>
+    <div id="breves">
+      <INCLURE(inclusions/inc_dernieres_breves.php3)>
+    </div>
+    <div id="categories">
+      <INCLURE(inclusions/inc_rubriques.php3)>
+    </div>
+    <div id="documents">
+      <INCLURE(inclusions/inc_pieces_jointes.php3){id_article}{doublons}>
+    </div>
+    <div id="Article-Rubrique">
+      <INCLURE(inclusions/inc_meme_rubrique.php3){id_rubrique}>
+    </div>
+    <div id="Auteurs">
+      <INCLURE(inclusions/inc_memes_auteurs.php3){id_article}>
+    </div>
+	 <div id="mots">
+	<INCLURE(inclusions/inc_memes_mots_article.php3){id_article}>
+    </div>
+    <div id="links">
+<INCLURE(inclusions/inc_sites.php3)>
+    </div>
+    <div id="syndicate">
+      <INCLURE(inclusions/inc_syndication.php3)>
+    </div>
+  </div>
+  <div id="footer">
+    <p>
+      <INCLURE(inclusions/inc_pied_de_page.php3)>
+    </p>
+  </div>
+</div>
+</body>
+</BOUCLE_article_principal>
+</html>
