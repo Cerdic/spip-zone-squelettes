@@ -55,11 +55,22 @@ $query="SELECT UNIX_TIMESTAMP(date) AS date_unix, visites FROM spip_visites ".
          else
          $visites_veille = 0;
 
+		 // Sur tout le site, nombre de visiteurs uniques depuis le début
+
+            $query="SELECT UNIX_TIMESTAMP(date) AS date_unix, visites FROM
+            spip_visites ORDER BY date";
+                $result=spip_query($query);
+                       $i=0 ;
+                    $total_absolu=0;
+                while ($row = spip_fetch_array($result)) {
+                          $total_absolu = $total_absolu + $row['visites'];
+                            $i++;
+                } 
 	
 	
  // afficher les résultats
  
- echo "<p><b>#NOM_SITE_SPIP</b> reçoit environ <b>$moyenne</b> visites par jour (hier : $visites_veille)" ;
+ echo "<p><b>#NOM_SITE_SPIP</b> reçoit environ <b>$moyenne</b> visites par jour (hier : $visites_veille, total : $total_absolu )" ;
  if($moyenne != 0) $ppv = round(#POPULARITE_SITE / $moyenne) ;
 ?>
 <br>
