@@ -33,7 +33,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'besoin_de_vous' => 'On a besoin de vous!',
 'besoin_part1' => 'Dans la partie priv&eacute;e du site il y a actuellement',
 'besoin_part2' => 'contribs en attente de validation.',
-'sous_le_feu' => 'Aidez-nous en les testant et en postant vos remarques sur le forum associ&eacute; &agrave; l\'article. Merci. <br />P.S : Nous avons pr&eacute;par&eacute; un <a href="http://fr.wikipedia.org/wiki/Really_simple_syndication">fil RSS</a> qui ressort les articles ci-dessous. N\'h&eacute;sitez pas &agrave; l\'utiliser : <a href="rampe.php3">Sous les feux de la rampe</a>.',
 'breves' => 'Br&egrave;ves',
 // C
 'carte' => 'Carte',
@@ -90,6 +89,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // S
 'site_breve' => 'Lire la suite sur : ',
+'sous_le_feu' => 'Aidez-nous en les testant et en postant vos remarques sur le forum associ&eacute; &agrave; l\'article. Merci. <br />P.S : Nous avons pr&eacute;par&eacute; un <a href="http://fr.wikipedia.org/wiki/Really_simple_syndication">fil RSS</a> qui ressort les articles ci-dessous. N\'h&eacute;sitez pas &agrave; l\'utiliser : <a href="rampe.php3">Sous les feux de la rampe</a>.',
 'spip_net' => 'spip.net',
 'spip_forum' => 'Spip forum',
 'spikini' => 'Spikini',
