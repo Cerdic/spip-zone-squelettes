@@ -1,0 +1,73 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[#NOM_SITE_SPIP] [(#TITRE|textebrut)]</title>
+<!-- Pepper v1.8 BONES 2.0 --->
+<INCLURE(inclusions/inc_head.php3)>
+
+<meta name="Robots" content="index,follow,all" />
+<meta name="Identifier-URL" content="#URL_SITE_SPIP" />
+<meta name="rating" content="General" />
+<meta name="revisit-after" content="15 days" />
+</head>
+<body>
+<div id="wrapper">
+<div id="background">
+  <div id="content"> <img src="bones/themes/header.png" name="header" width="600" id="header" /><br />
+    <div align="center">
+       <BOUCLE_articles_pop(ARTICLES) {0,1} {par popularite}{id_rubrique}{inverse}>
+      <BOUCLE_first(DOCUMENTS){0,1}{id_article}{fichier==(png|jpg|gif)}{mode=document}>
+      <img src="[(#URL_DOCUMENT)]"alt="#TITRE" />
+      </BOUCLE_first>
+      </BOUCLE_articles_pop>
+    </div>
+    <div id="navbar"> &nbsp;
+      <INCLURE(inclusions/inc_menu-haut.php3)>
+    </div>
+    <div class="sub-wrapper">
+      <div class="texte">
+         <BOUCLE_article(ARTICLES) {id_article}>
+      <h2 id="post-2"><:en_reponse:> [(#TITRE|titre_homogene)] [(#LOGO_ARTICLE_RUBRIQUE|right|#URL_ARTICLE||reduire_image{120,0})] </h2>
+      <small>[(#DATE|nom_jour)] [(#DATE|affdate)]</small>
+      <B_auteurs_un>
+<:par_auteur:>
+      <BOUCLE_auteurs_un(AUTEURS) {id_article} {", "}>
+      #NOM
+      </BOUCLE_auteurs_un>
+      <div class="entry">
+        <p>[(#INTRODUCTION|justifier)]</p>
+      </div>
+      </BOUCLE_article>
+    </div>
+    <BOUCLE_forum_parent(FORUMS) {id_forum}>
+    <h2 id="post-3"><:en_reponse:> [(#TITRE|titre_homogene)] </h2>
+    <small>[(#DATE|nom_jour)] [(#DATE|affdate)]</small>
+    <p>[(#TEXTE|justifier)]</p>
+    <br />
+    </BOUCLE_forum_parent>
+    #FORMULAIRE_FORUM </div>
+
+  
+    <div class="commentaire">
+      <INCLURE(inclusions/inc_forum_article.php3){id_article}{id_forum}{id_signature}>
+    </div>
+    <div class="sub-wrapper"> <br />
+      <div align="center">
+        <BOUCLE_documents_portfolio_paysage(DOCUMENTS){id_article}{mode=document}{fichier==(png|jpg|gif)$}{doublons}{paysage}>
+        [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{'?'}|?{'&amp;','?'})]id_document=#ID_DOCUMENT">(#LOGO_DOCUMENT||reduire_image{100,0})</a>]
+        </BOUCLE_documents_portfolio_paysage>
+        <br />
+        <BOUCLE_documents_portfolio_portrait(DOCUMENTS){id_article}{mode=document}{fichier==(png|jpg|gif)$}{doublons}{portrait}>
+        [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{'?'}|?{'&amp;','?'})]id_document=#ID_DOCUMENT">(#LOGO_DOCUMENT||reduire_image{0,100})</a>]
+        </BOUCLE_documents_portfolio_portrait>
+        </B_documents_portfolio>
+      </div>
+    </div>
+  </div>
+  <div id="footer">
+    <INCLURE(inclusions/inc_pied_de_page.php3)>
+  </div>
+</div>
+</body>
+</html>
