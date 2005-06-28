@@ -1,26 +1,54 @@
+###########################################################
+# Fichier .htaccess pour les URLs propres ; a installer   #
+# si vous reglez $type_urls='propres'                     #
+# dans ecrire/mes_options.php3                            #
+# (fichier associe : inc-urls-propres.php3)               #
+#                                                         #
+# Note: ce fichier est compatible avec inc-urls-html.php3 #
+###########################################################
+
 RewriteEngine On
 
-# pour spip
-RewriteRule ^rubrique([0-9]+)\.html$   rubrique.php3?id_rubrique=$1 [QSA,L]
-RewriteRule ^article([0-9]+)\.html$    article.php3?id_article=$1 [QSA,L]
-RewriteRule ^breve([0-9]+)\.html$      breve.php3?id_breve=$1 [QSA,L]
-RewriteRule ^mot([0-9]+)\.html$      mot.php3?id_mot=$1 [QSA,L]
-RewriteRule ^auteur([0-9]+)\.html$      auteur.php3?id_auteur=$1 [QSA,L]
+### si votre site est en sous-domaine, preciser ci-dessous
+# RewriteBase /sous/domaine/
 
-# pour spikini
-## feuilles de style
-RewriteRule .*/(wakka(\.basic|\.print)?\.(css|png)) spikini/$1 [L]
+###
+# Compatibilite avec les URLS "html" (pour transition sympa)
+RewriteRule ^rubrique([0-9]+)\.html$	rubrique.php3?id_rubrique=$1 [QSA,L]
+RewriteRule ^article([0-9]+)\.html$		article.php3?id_article=$1 [QSA,L]
+RewriteRule ^breve([0-9]+)\.html$		breve.php3?id_breve=$1 [QSA,L]
+RewriteRule ^mot([0-9]+)\.html$			mot.php3?id_mot=$1 [QSA,L]
+RewriteRule ^auteur([0-9]+)\.html$		auteur.php3?id_auteur=$1 [QSA,L]
+# Fin compatibilite
+###
 
-## spiperies
-# envoi vers la version patchee de spip_cookie (qui regle le cookie-path sur /)
-RewriteRule     ^spikini/(spip_cookie\.php3?)       spikini/$1      [QSA,L]
+# Rediriger les mots et breves sans le "+" final
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(\+[^/\.\+]+)(\.html)?$ /$1+$2 [QSA,R]
 
-# les autres a la racine
-RewriteRule ^spikini/(.*/)?(spip_.*\.(css|php3?)|puce\.gif)   /$2 [QSA,L]
+# Les mots-cles
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^\+-[^/\.]+-\+(\.html)?$ mot.php3 [QSA,E=url_propre:$0,L]
 
-## remonter les IMG/
-RewriteRule ^spikini/(IMG/.*) /$1 [QSA,R,L]
+# Les breves
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^\+[^/\.]+\+(\.html)?$ breve.php3 [QSA,E=url_propre:$0,L]
 
-## page spikini
-RewriteCond %{REQUEST_URI} !^spikini/index\.php3?
-RewriteRule ^spikini/(.*) spikini/index.php?wiki=$1 [QSA,L]
+# Les rubriques
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^-[^/\.]+-(\.html)?$ rubrique.php3 [QSA,E=url_propre:$0,L]
+
+# les auteurs
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^_[^/\.]+(\.html)?$ auteur.php3 [QSA,E=url_propre:$0,L]
+
+# Les articles (en dernier car expression plus "large")
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^[^/\.]+(\.html)?$ article.php3 [QSA,E=url_propre:$0,L]
+
