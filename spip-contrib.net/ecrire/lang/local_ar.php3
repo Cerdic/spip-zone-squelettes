@@ -74,7 +74,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // M
 'message' => 'مشاركة',
-'modifications' => 'احدث التعدلات',
+'modifications' => 'احدث التعديلات',
 'mois' => 'شهر',
 'mot_sans_article' => 'لا يوجد مقال مرتبط بهذا المفتاح',
 
