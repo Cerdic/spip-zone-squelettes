@@ -74,7 +74,6 @@ function critere_carre($idb, &$boucles, $param, $not) {
 	$boucle->where[] = $table.".largeur = ".$table.".hauteur";
 }
 
-//trackback
-    include_local("inc-trackback.php");
+
 
 ?>
