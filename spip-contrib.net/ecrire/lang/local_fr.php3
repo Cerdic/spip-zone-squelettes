@@ -38,6 +38,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'carte' => 'Carte',
 'contact' => 'Contact',
 'contrib' => 'les contribs de',
+'contrib_calendrier' => 'Les articles publi&eacute;s au mois de ',
 
 // D
 'dernieres_contribs' => 'Derni&egrave;res Contribs',
