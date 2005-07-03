@@ -807,9 +807,14 @@ function pagination($total, $position=0, $pas=1, $fonction='') {
 
 // tronque un liens à $limit caractères
 function couper_liens($texte, $limit) {
-  if (strlen($texte) <= $limit){
- return $texte;}
-else return substr($texte, 0, $limit) . " (...)";
+	if (strlen($texte) <= $limit){
+		return $texte;}
+	else {
+		$result = substr($texte, 0, $limit) . " (...)";
+		// il faut empecher ce couper sur une entite html (forme &xxx;)
+		$result = preg_replace('/(.*)(&[#0-9a_zA_Z]*[^;]) /', '\$1 ', $result);
+		return $result;
+	}
 }
 
 
