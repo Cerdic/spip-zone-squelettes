@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>#NOM_SITE_SPIP</title>
+<link href="bones/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="container">
+  <!-- header ................................. -->
+  <div id="header">
+    <h1>[(#LOGO_SITE_SPIP|left|#URL_SITE_SPIP||reduire_image{40,0})] <a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+  </div>
+  <!-- /header -->
+  <!-- navigation ................................. -->
+  <div id="navigation">
+    <INCLURE(inclusions/inc_recherche.php3)>
+    <INCLURE(inclusions/inc_menu-haut.php3)>
+  </div>
+  <!-- /navigation -->
+  <hr class="low" />
+  <!-- content ................................. -->
+  <div id="content">
+    <div class="entry">
+      <!-- à la une ................................. -->
+      <BOUCLE_article_un(ARTICLES) {par date} {inverse} {0,2}>
+      <h2><a href="#URL_ARTICLE">[(#TITRE|titre_homogene)]</h2>
+      <p>[(#LOGO_ARTICLE_RUBRIQUE|right|#URL_ARTICLE||reduire_image{80,0})][(#INTRODUCTION|justifier)]</p>
+      <p class="info"><a href="#URL_ARTICLE" class="more"><:suite:></a>
+        <BOUCLE_compte_messages_article_une(FORUMS){id_article}{plat}>
+        </BOUCLE_compte_messages_article_une>
+         <a href="#URL_ARTICLE#forum" class="commentlink"> [(#TOTAL_BOUCLE) commentaire(s)]</a>
+        </B_compte_messages>
+        <em class="date">[(#DATE|nom_jour)] [(#DATE|affdate)]</em> <em class="author">
+        <BOUCLE_auteurs_recents_une(AUTEURS) {id_article} {", "}>
+        <a href="#URL_AUTEUR" [title="(#BIO|textebrut|entites_html)"]>#NOM</a>
+        </BOUCLE_auteurs_recents_une>
+      </em> <span class="editlink"><a href="ecrire/articles.php3?id_article=#ID_ARTICLE"><:espace_prive:></a></span> </p>
+      </BOUCLE_article_un>
+    </div>
+    <!-- article suivant ................................. -->
+    <div class="entry">
+      <BOUCLE_articles_recents(ARTICLES) {par date} {inverse} {2,5}>
+      <h2><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|titre_homogene)]</a></h2>
+      <p class="info"><a href="#URL_ARTICLE" class="more"><:suite:></a>
+        <BOUCLE_compte_messages(FORUMS){id_article}{plat}>
+        </BOUCLE_compte_messages>
+        <a href="#URL_ARTICLE#forum" class="commentlink">[(#TOTAL_BOUCLE) commentaire(s)]</a> <a href="#URL_ARTICLE#forum"> class="commentlink">[(#TOTAL_BOUCLE) commentaire(s)]</a>
+        </B_compte_messages>
+        <em class="date">[(#DATE|nom_jour)] [(#DATE|affdate)]</em> <em class="author">
+        <BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>
+        <a href="#URL_AUTEUR" [title="(#BIO|textebrut|entites_html)"]>#NOM</a>
+        </BOUCLE_auteurs_recents>
+      </em> <span class="editlink"><a href="ecrire/#URL_ARTICLE"><:espace_prive:></a></span> </p>
+      </BOUCLE_articles_recents>
+    </div>
+    <p>
+      <!-- this is ugly -->
+      <span class="next"></span> <span class="previous"></span> </p>
+  </div>
+  <!-- /content -->
+  <hr class="low" />
+  <!-- subcontent ................................. -->
+  <div id="subcontent">
+    <INCLURE(inclusions/inc_rubriques.php3)>
+	<INCLURE(inclusions/inc_derniers_commentaires.php3)>
+    <INCLURE(inclusions/inc_sites.php3)>
+    <INCLURE(inclusions/inc_syndication.php3)>
+  </div>
+  <!-- /subcontent -->
+  <hr class="low" />
+  <!-- footer ................................. -->
+  <div id="footer">
+    <p>
+      <INCLURE(inclusions/inc_pied_de_page.php3)>
+    </p>
+  </div>
+  <!-- /footer -->
+</div>
+<!-- /container -->
+#SPIP_CRON
+</body>
+</html>

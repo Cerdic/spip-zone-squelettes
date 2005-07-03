@@ -1,0 +1,68 @@
+<BOUCLE_breve_principale(BREVES) {id_breve}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<title>[#NOM_SITE_SPIP] [(#TITRE|textebrut)]</title>
+<!-- BLIX v1.0 BONES 2.0 --->
+<link href="bones/style.css" rel="stylesheet" type="text/css" />
+<INCLURE(inclusions/inc_head.php3)>
+
+</head>
+<body>
+<div id="container">
+  <!-- header ................................. -->
+  <div id="header">
+    <h1>[(#LOGO_SITE_SPIP|left|#URL_SITE_SPIP||reduire_image{40,X})] <a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+  </div>
+  <!-- /header -->
+  <!-- navigation ................................. -->
+  <div id="navigation">
+    <INCLURE(inclusions/inc_recherche.php3)>
+    <INCLURE(inclusions/inc_menu-haut.php3)>
+  </div>
+  <!-- /navigation -->
+  <hr class="low" />
+  <!-- content ................................. -->
+  <div id="content">
+    <div class="entry single">
+      <h2>[(#TITRE|titre_homogene)]</h2>
+      <p class="info"> <em>[(#DATE|nom_jour)] [(#DATE|affdate)]</em> </p>
+      [(#LOGO_BREVE_RUBRIQUE|left||reduire_image{100,X})]
+      <p align="justify">#TEXTE</p>
+      <em>[<:sur_web:>: <a href="#URL_SITE" class="spip_out">(#NOM_SITE)</a>] </em>
+      <p id="filedunder"><:mots_clefs:> :
+        <INCLURE(inclusions/inc_memes_mots_breve.php3){id_breve}>
+      </p>
+      <p id="entrynavigation">
+        <BOUCLE_prec(BREVES)  {0,1} {date < #DATE} {par date} {inverse}>
+        <a href="#URL_BREVE">&laquo; #TITRE</a>
+        </BOUCLE_prec>
+      </p>
+    </div>
+    <!-- comments ................................. -->
+    <INCLURE(inclusions/inc_forum_breve.php3){id_breve}>
+    <!-- /comments -->
+  </div>
+  <!-- /content -->
+  <hr class="low" />
+  <!-- subcontent ................................. -->
+  <div id="subcontent">
+    <INCLURE(inclusions/inc_rubriques.php3)>
+    <INCLURE(inclusions/inc_dernieres_breves.php3)>
+    <INCLURE(inclusions/inc_meme_rubrique.php3){id_rubrique}>
+    <INCLURE(inclusions/inc_sites.php3)>
+    <INCLURE(inclusions/inc_syndication.php3)>
+  </div>
+  <!-- /subcontent -->
+  <hr class="low" />
+  <!-- footer ................................. -->
+  <div id="footer">
+    <p>
+      <INCLURE(inclusions/inc_pied_de_page.php3)>
+    </p>
+  </div>
+  <!-- /footer -->
+</div>
+<!-- /container -->
+</body>
+</BOUCLE_breve_principale>
+</html>

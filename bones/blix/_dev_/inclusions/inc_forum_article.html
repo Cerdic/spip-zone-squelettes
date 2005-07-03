@@ -1,0 +1,30 @@
+<div id="comments">
+<BOUCLE_compte_messages(FORUMS){id_article}{plat}>
+</BOUCLE_compte_messages>
+
+<h2>[(#TOTAL_BOUCLE) commentaire(s)] 
+  </B_compte_messages>
+  [<a href="forum.php3?(#PARAMETRES_FORUM)" name="forum" id="forum"><:repondre_article:></a>]
+  <B_forums>
+</h2>
+<BOUCLE_forums(FORUMS){id_article}{par date}{inverse}>
+<ul>
+  <li id="comment-1" class="comment">
+  <p class="header">#NOM [<a href="(#URL_SITE)">#NOM_SITE</a>] &nbsp;|&nbsp; [(#DATE|affdate)][(#LOGO_AUTEUR|right||reduire_image{23,23})]</p>
+  <p>#TEXTE</p>
+   </li>
+  <B_forums_fils>
+  <BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
+   <li id="comment" class="comment">
+  <p class="header alt">#NOM [<a href="(#URL_SITE)">#NOM_SITE</a>] &nbsp;|&nbsp; [(#DATE|affdate)][(#LOGO_AUTEUR|right||reduire_image{23,23})]</p>
+  <p>#TEXTE</p>
+   </li>
+  <BOUCLE_Forums_Boucle(boucle_forums_fils)>
+  </BOUCLE_Forums_Boucle>
+  </BOUCLE_forums_fils>
+  </B_forums_fils>
+  </BOUCLE_forums>
+  </B_forums>
+  <//B_forums>
+</ul>
+</div>

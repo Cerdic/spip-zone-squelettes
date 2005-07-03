@@ -1,0 +1,90 @@
+<BOUCLE_article_principal(ARTICLES) {id_article}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[#NOM_SITE_SPIP] [(#TITRE|textebrut)]</title>
+<!-- BLIX v1.0 BONES 2.0 --->
+<link href="bones/css/style.css" rel="stylesheet" type="text/css" />
+<INCLURE(inclusions/inc_head.php3)>
+<meta name="Description" content="[(#INTRODUCTION|textebrut)]" />
+<meta name="Keywords" content="<BOUCLE_index(ARTICLES){id_article}{","}>#TITRE</BOUCLE_index>" />
+<meta name="Author" content="<BOUCLE_author(AUTEURS){id_article}{","}>#NOM</BOUCLE_author>" />
+<meta name="Robots" content="index,follow,all" />
+<meta name="Identifier-URL" content="#URL_SITE_SPIP" />
+<meta name="rating" content="General" />
+<meta name="revisit-after" content="15 days" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<div id="container">
+  <!-- header ................................. -->
+  <div id="header">
+    <h1>[(#LOGO_SITE_SPIP|left|#URL_SITE_SPIP||reduire_image{40,X})] <a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+  </div>
+  <!-- /header -->
+  <!-- navigation ................................. -->
+  <div id="navigation">
+    <INCLURE(inclusions/inc_recherche.php3)>
+    <INCLURE(inclusions/inc_menu-haut.php3)>
+  </div>
+  <!-- /navigation -->
+  <hr class="low" />
+  <!-- content ................................. -->
+  <div id="content">
+    <div class="entry single">
+      <h2>[(#TITRE|titre_homogene)]</h2>
+      <p class="info"> <em>[(#DATE|nom_jour)] [(#DATE|affdate)]</em> </p>
+      <p>#DESCRIPTIF</p>
+      [(#LOGO_ARTICLE_RUBRIQUE|left||reduire_image{100,0})]
+      <p align="justify">#TEXTE</p>
+      <em>#PS</em>
+      
+      <BOUCLE_documents_portfolio_paysage(DOCUMENTS){id_article}{mode=document}{fichier==(png|jpg|gif)}{doublons}{paysage}>
+      [<a href="#URL_DOCUMENT" target="_blank">(#LOGO_DOCUMENT||reduire_image{100,X})</a>]
+      </BOUCLE_documents_portfolio_paysage>
+      <br />
+      <BOUCLE_documents_portfolio_portrait(DOCUMENTS){id_article}{mode=document}{fichier==(png|jpg|gif)}{doublons}{portrait}>
+      [<a href="#URL_DOCUMENT" target="_blank">(#LOGO_DOCUMENT||reduire_image{X,100})</a>]
+      </BOUCLE_documents_portfolio_portrait>
+      </B_documents_portfolio>
+      <p id="filedunder"><:mots_clefs:> :
+        <INCLURE(inclusions/inc_memes_mots_article.php3){id_article}>
+      </p>
+      <p id="entrynavigation">
+        <BOUCLE_prec(ARTICLES)  {0,1} {date < #DATE} {par date} {inverse}>
+        <a href="#URL_ARTICLE">&laquo; #TITRE</a>
+        </BOUCLE_prec>
+      </p>
+    </div>
+    <!-- comments ................................. -->
+  <INCLURE(inclusions/inc_forum_article.php3){id_article}>
+   
+    <!-- /comments -->
+  </div>
+  <!-- /content -->
+  <hr class="low" />
+  <!-- subcontent ................................. -->
+  <div id="subcontent">
+    <INCLURE(inclusions/inc_rubriques.php3)>
+    <INCLURE(inclusions/inc_dernieres_breves.php3)>
+    <INCLURE(inclusions/inc_pieces_jointes.php3){id_article}{doublons}>
+    <INCLURE(inclusions/inc_meme_rubrique.php3){id_rubrique}>
+    <INCLURE(inclusions/inc_memes_auteurs.php3){id_article}>
+    <INCLURE(inclusions/inc_sites.php3)>
+    <INCLURE(inclusions/inc_syndication.php3)>
+    
+  </div>
+  <!-- /subcontent -->
+  <hr class="low" />
+  <!-- footer ................................. -->
+  <div id="footer">
+    <p>
+      <INCLURE(inclusions/inc_pied_de_page.php3)>
+    </p>
+  </div>
+  <!-- /footer -->
+</div>
+<!-- /container -->
+</body>
+</BOUCLE_article_principal>
+</html>
