@@ -43,9 +43,10 @@ function casse_titre($titre) {
   else return ucfirst($titre);
 }
 
-function critere_portrait($idb, &$boucles, $param, $not) {
+function critere_portrait($idb, &$boucles, $param) {
   $boucle = &$boucles[$idb];
   $table = $boucle->id_table;
+  $not = $param->not;
 
   if ($not) 
 	$boucle->where[] = $table.".hauteur <= ".$table.".largeur";
@@ -54,9 +55,10 @@ function critere_portrait($idb, &$boucles, $param, $not) {
 }
 
 
-function critere_paysage($idb, &$boucles, $param, $not) {
+function critere_paysage($idb, &$boucles, $param) {
   $boucle = &$boucles[$idb];
   $table = $boucle->id_table;
+  $not = $param->not;
 
   if ($not) 
 	$boucle->where[] = $table.".largeur <= ".$table.".hauteur";
@@ -64,9 +66,10 @@ function critere_paysage($idb, &$boucles, $param, $not) {
 	$boucle->where[] = $table.".largeur > ".$table.".hauteur";
 }
 
-function critere_carre($idb, &$boucles, $param, $not) {
+function critere_carre($idb, &$boucles, $param) {
   $boucle = &$boucles[$idb];
   $table = $boucle->id_table;
+  $not = $param->not;
 
   if ($not) 
 	$boucle->where[] = $table.".largeur != ".$table.".hauteur";
