@@ -121,7 +121,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // Z
 
-'texte_statut_propose_evaluation' => 'Spip Contrib est en vacances merci de ne pas proposer de nouvel article pour l instant'
+'texte_statut_propose_evaluation' => 'Spip Contrib est en vacances merci de ne pas proposer de nouvel article pour l instant',
+'bouton_demande_publication' => 'Spip Contrib est en vacances merci de ne pas proposer de nouvel article pour l instant'
 
 );
 
