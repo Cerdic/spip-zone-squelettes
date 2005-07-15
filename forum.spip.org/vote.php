@@ -18,6 +18,12 @@
 	define('_VOTE_ID', 'id_forum');
 	define('_VOTE_VERSION', 0.1);
 
+	// declarer la colonne spip_forum.score pour le compilateur (#SCORE)
+### note : ne fonctionne pas car ces valeurs sont ecrasees par inc_serialbase
+	global $tables_principales;
+	$tables_principales['spip_forum']['field']['score'] = "DOUBLE DEFAULT '0' NOT NULL";
+	$tables_principales['spip_forum']['field']['votes'] = "INT DEFAULT '0' NOT NULL";
+
 	// Si ce n'est pas deja fait creer les champs score et vote dans la table
 	function install_scores() {
 		if (lire_meta('version_score') < _VOTE_VERSION) {
