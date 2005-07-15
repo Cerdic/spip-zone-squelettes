@@ -59,7 +59,7 @@
 		install_scores();
 
 		$dejavote = $_COOKIE['spip_votes'];
-		if (!strstr(",$id,", ",$dejavote")) {
+		if (!strstr(",$dejavote", ",$id,")) {
 			$dejavote = substr("$dejavote,$id", -150);
 			spip_setcookie('spip_votes', $dejavote);
 			return ajouter_vote ($combien, $id);
@@ -73,7 +73,7 @@
 	function afficher_choix($id, $oui, $non) {
 		$ici = new Link();
 		$ici->addvar('var_vote_id',$id);
-		$ici->addvar('var_vote','+1');
+		$ici->addvar('var_vote','1');
 		$r = '<a href="'. $ici->getUrl() .'">'.$oui.'</a>';
 		$r .= '<br />';
 		$ici->addvar('var_vote','-1');
