@@ -59,8 +59,8 @@
 		install_scores();
 
 		$dejavote = $_COOKIE['spip_votes'];
-		if (!strstr(",$dejavote", ",$id,")) {
-			$dejavote = substr("$dejavote,$id", -150);
+		if (!strstr("/$dejavote/", "/$id/")) {
+			$dejavote = substr("$dejavote/$id", -150);
 			spip_setcookie('spip_votes', $dejavote);
 			return ajouter_vote ($combien, $id);
 		} else {
