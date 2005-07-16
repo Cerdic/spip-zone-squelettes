@@ -35,6 +35,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'besoin_part2' => 'contribs en attente de validation.',
 'breves' => 'Br&egrave;ves',
 // C
+'calendrier' => 'calendrier',
 'carte' => 'Carte',
 'contact' => 'Contact',
 'contrib' => 'les contribs de',
