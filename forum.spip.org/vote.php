@@ -75,16 +75,15 @@
 	}
 
 	// un filtre qui permet d'afficher les choix proposes
-	// [(#ID_FORUM|afficher_choix{bien, nul})]
+	// [(#ID_FORUM|afficher_vote{1,bien})]
 # TODO: a faire en POST sur l'URL de la page
-	function afficher_choix($id, $oui, $non) {
+	function afficher_vote($id, $score, $texte) {
 		$ici = new Link();
-		$ici->addvar('var_vote_id',$id);
-		$ici->addvar('var_vote','1');
-		$r = '- <a href="'. $ici->getUrl() .'#vote">'.$oui.'</a>';
-		$r .= '<br />';
-		$ici->addvar('var_vote','-1');
-		$r .= '- <a href="'. $ici->getUrl() .'#vote">'.$non.'</a>';
+		$r = "<form action=\"".  $ici->getUrl() .'#vote" method="POST">';
+		$r .= "<input type='hidden' name='var_vote_id' value='$id' />\n";
+		$r .= "<input type='hidden' name='var_vote' value='$score' />\n";
+		$r .= '<input type="submit" name="voter" value="'.attribut_html($texte)."\" />\n";
+		$r .= "</form>\n";
 		return $r;
 	}
 
@@ -94,9 +93,9 @@
 		static $once;
 		if ($once ++) return;
 
-		if ($_GET['var_vote']) {
-			$combien = $_GET['var_vote']>0 ? 1 : -1;
-			vote_posteur($combien, $_GET['var_vote_id']);
+		if ($_POST['var_vote']) {
+			$combien = $_POST['var_vote']>0 ? 1 : -1;
+			vote_posteur($combien, $_POST['var_vote_id']);
 		}
 	}
 
