@@ -76,7 +76,6 @@
 
 	// un filtre qui permet d'afficher les choix proposes
 	// [(#ID_FORUM|afficher_vote{1,bien})]
-# TODO: a faire en POST sur l'URL de la page
 	function afficher_vote($id, $score, $texte) {
 		$ici = new Link();
 		$r = "<form action=\"".  $ici->getUrl() .'#vote" method="POST">';
