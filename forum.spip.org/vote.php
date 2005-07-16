@@ -76,14 +76,15 @@
 
 	// un filtre qui permet d'afficher les choix proposes
 	// [(#ID_FORUM|afficher_choix{bien, nul})]
+# TODO: a faire en POST sur l'URL de la page
 	function afficher_choix($id, $oui, $non) {
 		$ici = new Link();
 		$ici->addvar('var_vote_id',$id);
 		$ici->addvar('var_vote','1');
-		$r = '<a href="'. $ici->getUrl() .'">'.$oui.'</a>';
+		$r = '- <a href="'. $ici->getUrl() .'#vote">'.$oui.'</a>';
 		$r .= '<br />';
 		$ici->addvar('var_vote','-1');
-		$r .= '<a href="'. $ici->getUrl() .'">'.$non.'</a>';
+		$r .= '- <a href="'. $ici->getUrl() .'#vote">'.$non.'</a>';
 		return $r;
 	}
 
