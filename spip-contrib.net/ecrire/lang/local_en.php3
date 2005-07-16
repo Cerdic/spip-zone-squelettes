@@ -101,6 +101,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'title_label_formulaire_auteur_email' => 'your e-mail address of the sort blog@blog.com',
 'title_label_formulaire_auteur_sujet' => 'your message\'s subject',
 'title_label_formulaire_auteur_message' => 'your message\'s text',
+'tout_site' => 'In the whole site',
 'traduit_par' => 'translated by',
 'traductions' => 'translation(s)',
 

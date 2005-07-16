@@ -106,6 +106,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'title_label_formulaire_auteur_email' => 'votre adresse email du type toto@toto.com',
 'title_label_formulaire_auteur_sujet' => 'le sujet de votre message',
 'title_label_formulaire_auteur_message' => 'le texte de votre message',
+'tout_site' => 'Dans tout le site',
 'traduit_par' => 'traduit par',
 'traductions' => 'Traduction(s)',
 // U
