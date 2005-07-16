@@ -124,54 +124,42 @@
 
 <center>
 
-<table >
-<tr >
-<td width="500" align="#LANG_LEFT">
-<!-- LOGO SPIP -->
-<br /><center><img src="img_interface/spip-haut.jpg" alt="SPIP ecureuil" width="403" height="137" border="0" /></center>
-</td>
-</tr>
-</table>
+<table ><tr ><td width="500" align="#LANG_LEFT">
+<!-- LOGO SPIP --><br /><center><img src="img_interface/spip-haut.jpg" alt="SPIP ecureuil" width="403" height="137" border="0" /></center>
+</td></tr></table>
 
 
-<table>
-<B_art_rub>
-<tr>
-<BOUCLE_art_rub(ARTICLES){id_rubrique}{par num titre}{doublons}{0,2}>
-	<td width="50%">
-	<div class="droit">
-	<a href="#URL_ARTICLE"><img src="img_interface/carre-violet.gif" border="0"> <b>[<span class="droitpetit">(#SURTITRE)</span><br />][(#TITRE|supprimer_numero)][<br /><span class="droitpetit">(#SOUSTITRE)</span>]</b></a></div>
-	[<div class="droitpetit" style="padding-#LANG_LEFT:40px">(#DESCRIPTIF)</div>]
-
-		<!-- LES POSTS RECENTS DE L'ARTICLE -->
-		<B_forums>
-		<div style="border: 1px solid #600051; padding: 0px;">
-		<table width="100%" cellpadding="3" cellspacing="1" border="0">
+<table cellpadding="5" cellspacing="3" border="0">
+	<B_art_rub>
 		<tr>
-		<td background="img_interface/fond-degrade.png" align="center" class="droitxpetit"><b><:info_nouveaux_message:></b></td>
-		<td background="img_interface/fond-degrade.png" align="center" class="droitxpetit"><b><:icone_auteurs:></b></td>
-		<td background="img_interface/fond-degrade.png" align="center" class="droitxpetit"><b><:date:></b></td>
-		<td background="img_interface/fond-degrade.png" align="center" class="droitxpetit"><b><:reponses:></b></td>
-		</tr>
-		
-		<BOUCLE_forums(FORUMS){id_article?}{par score}{inverse}{score>0}{0,20}>
+	<BOUCLE_art_rub(ARTICLES){id_rubrique}{par num titre}{doublons}{0,2}>
+		<td width="50%">
+			<div class="droit">
+			<a href="#URL_ARTICLE"><img src="img_interface/carre-violet.gif" border="0"> <b>[<span class="droitpetit">(#SURTITRE)</span><br />][(#TITRE|supprimer_numero)][<br /><span class="droitpetit">(#SOUSTITRE)</span>]</b></a></div>
+			[<div class="droitpetit" style="padding-#LANG_LEFT:40px">(#DESCRIPTIF)</div>]
+	
+			<B_forums>
+			<div style="border: 1px solid #600051; padding: 0px;">
+			<table width="100%" cellpadding="3" cellspacing="1" border="0">
 			<tr>
-			<td bgcolor=#eeeeee class="droitxpetit"><b><a href="#URL_FORUM"
-				title="[(#TEXTE|couper{150}|texte_backend)]">#TITRE</a></b></td>
-			<td bgcolor=#eeeeee align="center" class="droitxpetit">[(#NOM|raccourcir_nom)]</td>
-			<td bgcolor=#eeeeee align="center" class="droitxpetit">[(#DATE|affdate_court|insecable)]&nbsp;[(#DATE|heures)][:(#DATE|minutes)]</td>
-			<td bgcolor=#eeeeee align="center" class="droitxpetit"><!-- #SCORE --><BOUCLE_compte_reponses(FORUMS){id_thread}{plat}{id_parent!=0}></BOUCLE_compte_reponses>#TOTAL_BOUCLE<//B_compte_reponses></td>
+			<td background="img_interface/fond-degrade.png" align="center" class="droitxpetit"><b><:info_nouveaux_message:></b></td>
+			<td background="img_interface/fond-degrade.png" align="center" class="droitxpetit"><b><:reponses:></b></td>
 			</tr>
-		</BOUCLE_forums>
-		
-		</table></div>
-		</B_forums>
-		</td>
-</BOUCLE_art_rub>
-</tr>
-</B_art_rub>
-
-<BOUCLE_art_rub_suite(BOUCLE_art_rub)></BOUCLE_art_rub_suite>
+			
+			<BOUCLE_forums(FORUMS){id_article?}{par score}{inverse}{score>0}{0,20}>
+				<tr>
+					<td bgcolor=#eeeeee class="droitxpetit"><b><a href="#URL_FORUM" title="[(#TEXTE|couper{150}|texte_backend)]">#TITRE</a></b></td>
+					<td bgcolor=#eeeeee align="center" class="droitxpetit"><!-- #SCORE --><BOUCLE_compte_reponses(FORUMS){id_thread}{plat}{id_parent!=0}></BOUCLE_compte_reponses>#TOTAL_BOUCLE<//B_compte_reponses> &nbsp;<!--debug--><a href="#" title="Score : #SCORE">&nbsp;&nbsp;</a></td>
+				</tr>
+			</BOUCLE_forums>
+			</table></div>
+			</B_forums>
+			</td>
+	</BOUCLE_art_rub>
+	</tr>
+	</B_art_rub>
+	
+	<BOUCLE_art_rub_suite(BOUCLE_art_rub)></BOUCLE_art_rub_suite>
 </table>		
 
 
