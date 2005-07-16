@@ -9,23 +9,6 @@ function liens_de_moderation($id_forum) {
 	return texte_backend($liens);
 }
 
-/*
-//
-// <BOUCLE(FORUMS)> modifiee pour afficher les posts 'proposes' (??)
-//
-function boucle_FORUMS($id_boucle, &$boucles) {
-	$boucle = &$boucles[$id_boucle];
-        $id_table = $boucle->id_table;
-        $boucle->from[] =  "spip_forum AS $id_table";
-        // Par defaut, selectionner uniquement les forums sans pere
-        if (!$boucle->tout AND !$boucle->plat) {
-		$boucle->where[] = "$id_table.id_parent=0";  
-	}
-#	$boucle->where[] = "$id_table.statut IN ('publie','prop')";
-	return calculer_boucle($id_boucle, $boucles);
-}
-*/
-
 // Toute personne censee se detournerait de la rfc 822... et pourtant
 function date_rfc822($date_heure) {
 	list($annee, $mois, $jour) = recup_date($date_heure);
@@ -84,6 +67,11 @@ function afficher_nom_langue ($lang) {
 // pour rendre les dates insecables dans les pages forum
 function insecable ($texte) {
 	return ereg_replace("( |&nbsp;)+", "&nbsp;", $texte);
+}
+
+// supprimer les '> ' en début de titre de forum
+function spip_preg_replace($a,$b,$c) {
+	return preg_replace($b,$c,$a);
 }
 
 ?>
