@@ -74,4 +74,25 @@ function spip_preg_replace($a,$b,$c) {
 	return preg_replace($b,$c,$a);
 }
 
+/************************************pour le tag cloud***********************************
+ * http://www.spip_contrib.net/article.php3?id_article=879
+*/
+
+
+function noop($texte) {
+  return '';
+}
+
+function filtre_max($texte, $id='tout') {
+  static $max = array();
+  if($max[$id] < $texte) {
+    $max[$id] = $texte;
+  }
+  return $max[$id];
+}
+
+function coef($max,$nbr,$nbrMax=6) {
+  return 1+($nbr/$max*$nbrMax);
+}
+
 ?>

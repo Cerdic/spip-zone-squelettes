@@ -1,0 +1,178 @@
+<!--!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"-->
+
+<!--html xmlns="http://www.w3.org/1999/xhtml"-->
+<html>
+<BOUCLE_rubrique_principale(RUBRIQUES){id_rubrique}>
+<head>
+<title>[#NOM_SITE_SPIP] FAQ [(#TITRE|supprimer_numero)]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<meta name="Description" content="[(#TEXTE*|couper{100}|attribut_html)]" />
+<!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
+<link rel="stylesheet" href="spip_net_style.css" type="text/css" />
+<link rel="stylesheet" href="topmenu.css" type="text/css" />
+<style>
+<!--
+	a {text-decoration: none; }
+	a:hover {text-decoration: underline;}
+	a.voirsquel {color: #ffffff;}
+	a.voirsquel:hover {color: #999999; text-decoration: none;}
+	.droit {
+		font-family : verdana,helvetica,sans-serif;
+		font-size : medium;
+	}
+	.droitpetit {
+		font-family : verdana,helvetica,sans-serif;
+		font-size : small;
+	}
+	.droitxpetit {
+		font-family : verdana,helvetica,sans-serif;
+		font-size : x-small;
+	}
+	.memerub {
+		font-family : verdana,helvetica,sans-serif;
+		font-size : x-small;
+	}
+	.grostitre {
+		font-family : georgia,times,serif;
+		font-size : xx-large;
+		font-style: bold;
+		color: #666666;
+		text-align: center;
+		font-variant: small-caps;
+	}
+	.titrerubrique {
+		font-family : georgia,times,serif;
+		font-size : large;
+		font-style: bold;
+		color: #666666;
+		font-variant: small-caps;
+	}
+	.encadrer_gauche {
+		text-align: center;
+		border: 1px solid #aaaaaa;
+		padding: 5px;
+		width: 100%;
+		background-color: #dddddd;
+	}
+	.cadrerubrique {
+		border: 1px solid #600051;
+		-moz-border-radius: 4px;
+	}
+	.rubgris1 {
+		border: 1px solid #aaaaaa;
+		-moz-border-radius: 4px;
+	}
+	.rubgris2 {
+		border: 1px solid #e0e0e0;
+		-moz-border-radius: 4px;
+	}
+	.rubgris3 {
+		border: 1px solid #eeeeee;
+		-moz-border-radius: 4px;
+	}
+	.rubingris1 {
+		border-right: 1px solid #999999;
+		border-bottom :  1px solid #999999;
+		-moz-border-radius: 4px;
+	}
+	.rubingris2 {
+		border-right: 1px solid #cccccc;
+		border-bottom :  1px solid #cccccc;
+		-moz-border-radius: 4px;
+	}
+	.encadrerdescriptif {
+		border: 1px solid #aaaaaa;
+		padding: 5px;
+		background-color: #eeeeee;
+	}
+	.encadrerblanc {
+		border: 1px solid #aaaaaa;
+		padding: 5px;
+		background-color: #ffffff;
+	}
+	.absolu {position: relative; align: left;}
+	.body {padding: 0px; margin: 0px;}
+	.onglet {
+	 	width:100%; 
+		border: 1px solid #600051;
+		background-color: white;
+		-moz-border-radius: 4px;
+		-moz-opacity: 0.7;
+		filter: alpha(opacity=70);
+	 }
+	.onglet-ombre {
+	 	width:100%; 
+		border-right: 1px solid #666666;
+		border-bottom: 1px solid #666666;
+		-moz-border-radius: 4px;
+		-moz-opacity: 0.7;
+		filter: alpha(opacity=70);
+	 }
+	.onglet-sous {
+		padding : 3px;
+		background-color: #eeeeee;
+	}
+-->
+</style>
+
+<script type="text/javascript" src="topmenu.js"></script>
+
+</head>
+
+<body dir="#LANG_DIR" bgcolor="#ffffff" text="#000000" link="#600051" vlink="#5832B7" alink="#ff9900">
+
+
+<center>
+
+<table ><tr ><td width="500" align="#LANG_LEFT">
+<!-- LOGO SPIP --><br /><center><img src="img_interface/spip-haut.jpg" alt="SPIP ecureuil" width="403" height="137" border="0" /></center>
+</td></tr></table>
+
+<BOUCLE_max_forum(MOTS) {type='FAQ'}>
+    <BOUCLE_max_forum_in(FORUMS) {id_mot}> </BOUCLE_max_forum_in> [(#TOTAL_BOUCLE|filtre_max{forum}|noop)]  </B_max_forum_in>
+</BOUCLE_max_forum>
+
+<BOUCLE_aff_mots(MOTS) {type='FAQ'}>
+    <BOUCLE_aff_mots_in(FORUMS) {id_mot}> </BOUCLE_aff_mots_in> [<strong style="font-size:(#TOTAL_BOUCLE|filtre_max{forum}|coef{#TOTAL_BOUCLE,250}|ceil)%;"><a href="tag.php3?id_mot=#_aff_mots:ID_MOT">#_aff_mots:TITRE</a></strong>] </B_aff_mots_in>
+</BOUCLE_aff_mots>
+
+
+<B_mot>
+<table cellpadding="5" cellspacing="3" border="0">
+	<B_art_rub>
+		<tr>
+	<BOUCLE_art_rub(ARTICLES){id_rubrique}{par num titre}{doublons}{0,2}>
+		<td width="50%">
+			<div class="droit">
+			<a href="#URL_ARTICLE"><img src="img_interface/carre-violet.gif" border="0"> <b>[<span class="droitpetit">(#SURTITRE)</span><br />][(#TITRE|supprimer_numero)][<br /><span class="droitpetit">(#SOUSTITRE)</span>]</b></a></div>
+			[<div class="droitpetit" style="padding-#LANG_LEFT:40px">(#DESCRIPTIF)</div>]
+	
+			<B_forums>
+			<div style="border: 1px solid #600051; padding: 0px;">
+			<table width="100%" cellpadding="3" cellspacing="1" border="0">
+			<tr>
+			<td background="img_interface/fond-degrade.png" align="center" class="droitxpetit"><b><:info_nouveaux_message:></b></td>
+			<td background="img_interface/fond-degrade.png" align="center" class="droitxpetit"><b><:reponses:></b></td>
+			</tr>
+			
+			<BOUCLE_forums(FORUMS){id_article?}{par score}{inverse}{score>0}{0,20} {id_mots}>
+				<tr>
+					<td bgcolor=#eeeeee class="droitxpetit"><b><a href="#URL_FORUM" title="[(#TEXTE|couper{150}|texte_backend)]">[(#TITRE|spip_preg_replace{'/^>\s*/',''})]</a></b></td>
+					<td bgcolor=#eeeeee align="center" class="droitxpetit"><!-- #SCORE --><BOUCLE_compte_reponses(FORUMS){id_thread}{plat}{id_parent!=0}></BOUCLE_compte_reponses>#TOTAL_BOUCLE<//B_compte_reponses> &nbsp;<!--debug--><a href="#" title="Score : #SCORE">&nbsp;&nbsp;</a></td>
+				</tr>
+			</BOUCLE_forums>
+			</table></div>
+			</B_forums>
+			</td>
+	</BOUCLE_art_rub>
+	</tr>
+	</B_art_rub>
+	
+	<BOUCLE_art_rub_suite(BOUCLE_art_rub)></BOUCLE_art_rub_suite>
+</table>		
+<BOUCLE_mot(MOTS) {id_mot}> </BOUCLE_mot>
+
+
+</body>
+</BOUCLE_rubrique_principale>
+</html>
