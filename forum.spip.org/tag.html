@@ -2,9 +2,8 @@
 
 <!--html xmlns="http://www.w3.org/1999/xhtml"-->
 <html>
-<BOUCLE_rubrique_principale(RUBRIQUES){id_rubrique}>
 <head>
-<title>[#NOM_SITE_SPIP] FAQ [(#TITRE|supprimer_numero)]</title>
+<title>[#NOM_SITE_SPIP] FAQ <BOUCLE_titre(MOTS) {id_mot}>#TITRE</BOUCLE_titre></title>
 <meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
 <meta name="Description" content="[(#TEXTE*|couper{100}|attribut_html)]" />
 <!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
@@ -137,7 +136,7 @@
     <BOUCLE_aff_mots_in(FORUMS) {id_mot}> </BOUCLE_aff_mots_in> [<strong style="font-size:(#TOTAL_BOUCLE|filtre_max{forum}|coef{#TOTAL_BOUCLE,250}|ceil)%;"><a href="tag.php3?id_rubrique=#_rubrique_principale:ID_RUBRIQUE&id_mot=#_aff_mots:ID_MOT">#_aff_mots:TITRE</a></strong>] </B_aff_mots_in>
 </BOUCLE_aff_mots>
 Aucun mot ici
-<//B_add_mots>
+<//B_aff_mots>
 </div>
 
 
@@ -145,7 +144,7 @@ Aucun mot ici
 <table cellpadding="5" cellspacing="3" border="0">
 	<B_art_rub>
 		<tr>
-	<BOUCLE_art_rub(ARTICLES){id_rubrique}{par num titre}{doublons}{0,2}>
+	<BOUCLE_art_rub(ARTICLES){par num titre}{doublons}{0,2}>
 		<td width="50%">
 			<div class="droit">
 			<a href="#URL_ARTICLE"><img src="img_interface/carre-violet.gif" border="0"> <b>[<span class="droitpetit">(#SURTITRE)</span><br />][(#TITRE|supprimer_numero)][<br /><span class="droitpetit">(#SOUSTITRE)</span>]</b></a></div>
@@ -159,7 +158,7 @@ Aucun mot ici
 			<td background="img_interface/fond-degrade.png" align="center" class="droitxpetit"><b><:reponses:></b></td>
 			</tr>
 			
-			<BOUCLE_forums(FORUMS){id_article?}{par score}{inverse}{score>0}{0,20} {id_mot}>
+			<BOUCLE_forums(FORUMS){par score}{inverse}{score>0}{0,20} {id_mot}>
 				<tr>
 					<td bgcolor=#eeeeee class="droitxpetit"><b><a href="#URL_FORUM" title="[(#TEXTE|couper{150}|texte_backend)]">[(#TITRE|spip_preg_replace{'/^>\s*/',''})]</a></b></td>
 					<td bgcolor=#eeeeee align="center" class="droitxpetit"><!-- #SCORE --><BOUCLE_compte_reponses(FORUMS){id_thread}{plat}{id_parent!=0}></BOUCLE_compte_reponses>#TOTAL_BOUCLE<//B_compte_reponses> &nbsp;<!--debug--><a href="#" title="Score : #SCORE">&nbsp;&nbsp;</a></td>
@@ -171,14 +170,7 @@ Aucun mot ici
 	</BOUCLE_art_rub>
 	</tr>
 	</B_art_rub>
-	
-	<BOUCLE_art_rub_suite(BOUCLE_art_rub)></BOUCLE_art_rub_suite>
 </table>		
 <BOUCLE_mot(MOTS) {id_mot}> </BOUCLE_mot>
-
-
 </body>
-</BOUCLE_rubrique_principale>
-Aucune rubrique ici
-<//B_rubrique_principale>
 </html>
