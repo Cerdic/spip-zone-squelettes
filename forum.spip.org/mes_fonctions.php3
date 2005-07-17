@@ -109,4 +109,8 @@ function echaper_mot($titre, $type, $groupe_defaut) {
 	return $groupe.($groupe)?':':''.$titre;
 }
 
+function ajouter_mot($url,$id_mot) {
+  return '';
+}
+
 ?>
