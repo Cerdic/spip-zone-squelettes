@@ -95,4 +95,18 @@ function coef($max,$nbr,$nbrMax=6) {
   return 1+($nbr/$max*$nbrMax);
 }
 
+function echaper_mot($titre, $type, $groupe_defaut) {
+  	$groupe = '';
+	if($groupe_defaut && $type != $groupe_defaut) {
+	  $groupe = $groupe_defaut;
+	  if(strpos($groupe,' ') || strpos($groupe,':')) {
+		$groupe = "\"$groupe\"";
+	  }
+	}
+	if(strpos($titre,' ') || strpos($titre,':')) {
+	  $titre = "\"$titre\"";
+	}
+	return $groupe.($groupe)?':':''.$titre;
+}
+
 ?>
