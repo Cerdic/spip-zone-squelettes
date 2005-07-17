@@ -81,7 +81,7 @@
 		$r = "<form action=\"".  $ici->getUrl() .'#vote" method="POST">';
 		$r .= "<input type='hidden' name='var_vote_id' value='$id' />\n";
 		$r .= "<input type='hidden' name='var_vote' value='$score' />\n";
-		$r .= '<input type="submit" name="voter" value="'.attribut_html($texte)."\" />\n";
+		$r .= '<input type="submit" class="spip_bouton" name="voter" value="'.attribut_html($texte)."\" />\n";
 		$r .= "</form>\n";
 		return $r;
 	}
