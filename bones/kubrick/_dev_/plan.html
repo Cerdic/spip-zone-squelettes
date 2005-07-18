@@ -16,45 +16,50 @@
   </div>
   <hr />
   <div id="content" class="narrowcolumn">
-    <div class="post">
-        <BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
+
+<div class="post">
+<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
+
   <h2>[(#LOGO_RUBRIQUE||reduire_image{120,0})]<a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|titre_homogene)]</a> </h2>
-      </div>
+
+     <B_breves>
       <div class="post">
         <!-- Breves -->
         <h3 class="storytitle"><:breves:></h3>
-        <B_breves>
         <ul>
           <BOUCLE_breves(BREVES) {id_secteur} {par date} {inverse} {0,15}>
           <li> <i>[(#DATE|affdate_court)]</i>: <a href="#URL_BREVE">#TITRE</a> </li>
           </BOUCLE_breves>
         </ul>
-        </B_breves>
       </div>
+     </B_breves>
+
+     <B_sites>
       <div class="post">
         <!-- Sur le Web -->
         <h3 class="storytitle"><:sites_web:></h3>
-        <B_sites>
         <ul>
           <BOUCLE_sites(SITES) {id_secteur} {par nom_site}>
           <li> <a href="site.php3?id_syndic=#ID_SYNDIC"[title="(#DESCRIPTIF|textebrut|entites_html)"]> [(#NOM_SITE|titre_homogene)] </a> </li>
           </BOUCLE_sites>
         </ul>
-        </B_sites>
       </div>
+     </B_sites>
+
+     <B_articles_racine>
       <div class="post">
         <!-- Articles et sous-rubriques -->
         <h3 class="storytitle"><:articles:></h3>
-        <B_articles_racine>
         <ul>
           <BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
           <li><a href="#URL_ARTICLE" [title="(#INTRODUCTION|textebrut|entites_html)"]>#TITRE</a></li>
           </BOUCLE_articles_racine>
         </ul>
-        </B_articles_racine>
       </div>
+    </B_articles_racine>
+
+    <B_rubriques>
       <div class="post">
-        <B_rubriques>
         <ul>
           <BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
           <li> <a href="#URL_RUBRIQUE">#TITRE</a>
@@ -70,9 +75,11 @@
           </li>
           </BOUCLE_rubriques>
         </ul>
-        </B_rubriques>
-        </BOUCLE_secteurs>
       </div>
+    </B_rubriques>
+
+  </BOUCLE_secteurs>
+  </div>
 
     <div class="navigation">
       <div class="alignleft"></div>
