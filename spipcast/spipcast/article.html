@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<BOUCLE_article_principal(ARTICLES) {id_article}>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+	<title>[#NOM_SITE_SPIP]</title>
+	
+	<style type="text/css" media="all">
+		@import url("spipcast/styles/style.css");
+		@import url("spipcast/scripts/nicetitle.css");
+			#pied	{ visibility: visible; position: absolute; width: 700px; height: 60px }
+			#selection	{ visibility: visible; position: absolute; top: 250px; left: 475px; width: 200px }
+			#contenant	{ visibility: visible; position: absolute; top: 30px; left: 50%; width: 700px }
+	</style>
+	<script type="text/javascript" src="spipcast/scripts/nicetitle.js"></script>
+</head>
+
+<body id="accueil">
+<!-- Formulaire administrateur -->
+[(#FORMULAIRE_ADMIN)]
+<div id="contenant">
+	<div id="entete">
+		<div class="bandeau">
+			<ul>
+				<li id="menu_accueil"><a href="sommaire.php3">Accueil</a></li>
+				<li id="menu_rubriques"><a href="rubrique.php3">Rubriques</a></li>
+				<li id="menu_article"><a href="article_recent.php3">Articles</a></li>
+				<li id="menu_podcast"><a href="podcast_page.php3">Podcasts</a></li>
+				<li id="menu_apropos"><a href="apropos.php3">À propos</a></li>
+				
+				<div class="arborescence">
+					<a href="sommaire.php3">#NOM_SITE_SPIP</a>&gt;<a href="#URL_ARTICLE">#TITRE</a>
+				</div><!-- fin arborescence -->
+		
+				<div class="espaceprive">
+						<a href="ecrire/" title="S'identifier pour poster des podcasts">Ecrire</a>
+				</div><!-- fin espaceprive -->
+			</ul>		
+		</div><!-- fin bandeau -->
+	</div>
+	
+	<div id="contenu">
+		<h4>[(#SURTITRE)]</h4>
+		<h1>#TITRE</h1>
+		#TEXTE
+	</div><!-- fin contenu -->
+	
+	<div id="pied">
+		<h4>Squelette spipcast, avec <a href="http://www.spip.net">spip</a><br>
+		<a href="participer.php3">Participer</a> | <a href="contact.php3">Contact</a> | <a href="article.php3?id_article=6">Aide</a> | <a href="podcast.php3">Flux podcast</a></h4>
+		
+	</div><!-- fin pied -->
+	
+	<div id="selection">
+		<BOUCLE_images_jointes(DOCUMENTS) {id_article} {mode=document} {extension==mp3|ogg|mpeg|avi|mov} {doublons}>
+		<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT)] #TITRE [- (#TAILLE|taille_en_octets)]</a>	
+			<object codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" height="20" width="200">
+				<param name="movie" value="IMG/mp3/dewplayer.swf?son=#URL_SITE_SPIP/#URL_DOCUMENT">
+				<param name="quality" value="best">
+				<param name="play" value="false">
+				<embed height="20" src="IMG/mp3/dewplayer.swf?son=#URL_SITE_SPIP/#URL_DOCUMENT" type="application/x-shockwave-flash" width="200" quality="best" play="false">
+			</object>
+		</BOUCLE_images_jointes>
+	</div><!-- fin selection -->
+	
+</div>
+</body>
+</html>
+
+</BOUCLE_article_principal>
+<:aucun_article:>
+<//B_article_principal>
