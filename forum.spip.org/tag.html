@@ -167,23 +167,23 @@ dans l'url]
 <B_aff_mots_in>
 [(#REM) si les mots sont ceux selectionnes dans l'url, on les affiche en rouge]
 <BOUCLE_existe(MOTS) {id_mot} {!doublons mots}>
-[(#ID_MOT|unique{ouvre}|?{' ',''}) [(#ENV{id_mot}|?{' ',''})<em class="red"> [<a href="(#ID_MOT|retirer_mot)">!</a>]]]
+[(#ID_MOT|unique{ouvre}|?{' ',''}) [(#ENV*{id_mot}|?{' ',''})<em class="red"> [<a href="(#ID_MOT|retirer_mot)">!</a>]]]
 </BOUCLE_existe>
 [(#REM) si ils sont parmis ceux lie aux mots selectionnes, on les affiches en vert
 on utilise unique pour ne pas afficher les mots deja affiche par la boucle existe]
 <BOUCLE_relation(MOTS) {id_mot} {!doublons}>
-[(#ID_MOT|unique{ouvre}|?{' ',''}) [(#ENV{id_mot}|?{' ',''})<em class="green">]]
+[(#ID_MOT|unique{ouvre}|?{' ',''}) [(#ENV*{id_mot}|?{' ',''})<em class="green">]]
 </BOUCLE_relation>
 [(#REM) on affiche le titre du mot avec un font-size fonction du nombre de forum attaches]
     <BOUCLE_aff_mots_in(FORUMS) {id_mot}> </BOUCLE_aff_mots_in> 
-<strong [style="font-size:(#TOTAL_BOUCLE|filtre_max{forum}|coef{#TOTAL_BOUCLE,250}|ceil)%;"]><a href="tag.php?id_mot[]=#_aff_mots:ID_MOT">#_aff_mots:TITRE</a></strong>
+<strong [style="font-size:(#TOTAL_BOUCLE|filtre_max{forum}|coef{#TOTAL_BOUCLE,250}|ceil)%;"]><a href="tag.php3?id_mot[]=#_aff_mots:ID_MOT">#_aff_mots:TITRE</a></strong>
 </B_aff_mots_in>
 [(#REM) on ferme les em vert ou rouge, toujours la meme histoire]
 <BOUCLE_existe2(MOTS) {id_mot} {!doublons mots}>
-[(#ID_MOT|unique{ferme}|?{' ',''}) [(#ENV{id_mot}|?{' ',''})</em>]]
+[(#ID_MOT|unique{ferme}|?{' ',''}) [(#ENV*{id_mot}|?{' ',''})</em>]]
 </BOUCLE_existe2>
 <BOUCLE_relation2(MOTS) {id_mot} {!doublons}>
-[(#ID_MOT|unique{ferme}|?{' ',''}) [(#ENV{id_mot}|?{' ',''}) [<a href="(#ID_MOT|ajouter_mot)">+</a>] </em>]]
+[(#ID_MOT|unique{ferme}|?{' ',''}) [(#ENV*{id_mot}|?{' ',''}) [<a href="(#ID_MOT|ajouter_mot)">+</a>] </em>]]
 </BOUCLE_relation2>
 </B_aff_mots_in>
 </BOUCLE_aff_mots>

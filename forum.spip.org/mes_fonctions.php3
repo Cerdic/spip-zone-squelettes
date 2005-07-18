@@ -116,7 +116,9 @@ function ajouter_mot($id_mot) {
 
 function retirer_mot($id_mot) {
   $url = $GLOBALS["clean_link"]->getUrl();
-  return quote_amp(ereg_replace("[&?]id_mot\[\]=$id_mot",'',$url));
+  $url = preg_replace("/([?&])id_mot\[\]=$id_mot&?/",'\\1',$url);
+  $url = preg_replace('/[?&]$/', '', $url);
+  return quote_amp($url);
 }
 
 function critere_mots($idb, &$boucles, $param){
