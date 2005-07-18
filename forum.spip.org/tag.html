@@ -117,12 +117,9 @@
   margin: 0 25%;
 }
 
- #tagcloud EM {
+#tagcloud EM A {
 	 font-style: normal;
   text-decoration: underline;
- }
-
-#tagcloud EM A {
   color: green;
 }
 -->
@@ -159,13 +156,13 @@ et voici : les tags !
 
 <BOUCLE_aff_mots(MOTS) {type=FAQ} {par titre} >
 <BOUCLE_relation(MOTS) {id_mot} {!doublons}>
-<em>
+[(#ENV{id_mot}|?{' ',''})<em>]
 </BOUCLE_relation>
     <BOUCLE_aff_mots_in(FORUMS) {id_mot}> </BOUCLE_aff_mots_in> 
 [<strong style="font-size:(#TOTAL_BOUCLE|filtre_max{forum}|coef{#TOTAL_BOUCLE,250}|ceil)%;"><a href="tag.php?id_mot=#_aff_mots:ID_MOT">#_aff_mots:TITRE</a></strong>]
 </B_aff_mots_in>
 <BOUCLE_relation2(MOTS) {id_mot} {!doublons}>
-</em> [<a href="(#SELF|ajouter_mot{#ID_MOT})">+</a>]
+[(#ENV{id_mot}|?{' ',''})</em> [<a href="(#SELF|ajouter_mot{#ID_MOT})">+</a>]]
 </BOUCLE_relation2>
 </BOUCLE_aff_mots>
 </div>
