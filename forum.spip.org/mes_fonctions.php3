@@ -109,8 +109,33 @@ function echaper_mot($titre, $type, $groupe_defaut) {
 	return $groupe.($groupe)?':':''.$titre;
 }
 
-function ajouter_mot($url,$id_mot) {
-  return '';
+function ajouter_mot($id_mot) {
+  $url = $GLOBALS["clean_link"]->getUrl();
+  return quote_amp($url.(strpos($url,'?')?'&amp;':'?')."id_mot[]=$id_mot");  
 }
+
+function retirer_mot($id_mot) {
+  $url = $GLOBALS["clean_link"]->getUrl();
+  return quote_amp(ereg_replace("[&?]id_mot\[\]=$id_mot",'',$url));
+}
+
+function critere_mots($idb, &$boucles, $param){
+	$boucle = &$boucles[$idb];
+	$id_table = $boucle->id_table;
+	$type = $boucle->id_table;
+	$primary = $boucle->primary;
+
+	$id_mot = calculer_argument_precedent($idb, 'id_mot', $boucles);
+	if($type == "mots") {
+	  $boucle->where[] = 'id_mot IN (".((count('.$id_mot.') > 0)?addslashes(join(",",'.$id_mot.')):0).")';
+	} else {
+	  $boucle->group = $primary;
+	  $boucle->from[] = "spip_mots_$type";
+	  $boucle->where[] = '(id_mot = ".((count('.$id_mot.') > 0)?addslashes(join(\' OR id_mot = \','.$id_mot.')):0).")';
+	  $boucle->where[] = "$id_table.$primary = spip_mots_$type.$primary";
+	  $boucle->having = "'.(count($id_mot)-1).'";
+	}
+}
+
 
 ?>
