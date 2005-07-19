@@ -109,9 +109,9 @@ function echaper_mot($titre, $type, $groupe_defaut) {
 	return $groupe. (($groupe) ? ':' : '') .$titre;
 }
 
-function ajouter_mot($id_mot, $seul=false) {
+function ajouter_mot($id_mot, $seul=false, $retour='') {
 #  $url = $GLOBALS["clean_link"]->getUrl();
-	$url = new Link();
+	$url = new Link($retour);
 
 
 	list($titre,$type) = spip_fetch_array(spip_query("SELECT titre,type
