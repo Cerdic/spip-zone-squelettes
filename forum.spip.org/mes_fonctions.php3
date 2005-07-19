@@ -135,7 +135,7 @@ function retirer_mot($id_mot) {
   list($titre,$type) = spip_fetch_array(spip_query("SELECT titre,type
 	FROM spip_mots WHERE id_mot=$id_mot"));
   $groupe_defaut = 'FAQ';
-  $tags = trim(preg_replace('/ ?'.preg_quote(echaper_mot($titre, $type, $groupe_defaut)).' ?/', ' ', $_GET['tags']));
+  $tags = trim(preg_replace('/ '.preg_quote(echaper_mot($titre, $type, $groupe_defaut)).' /', ' ', ' '.$_GET['tags'].' '));
   $url->delvar('tags');
   if ($tags)
   	$url->addvar('tags', $tags);
@@ -192,7 +192,7 @@ function get_tags_ids($mots) {
 	$mots = parser_liste(filtrer_entites($mots)); # car " dans l'url arrive ici sous la forme &quot; (#ENV{tags} et non #ENV*{tags})
 
 	$id_mot = array();
-	foreach ($mots as $mot) {
+	foreach ($mots as $mot) if (strlen($mot['tag'])) {
 		$s = spip_query("SELECT id_mot FROM spip_mots
 			WHERE titre='".addslashes($mot['tag'])."'"); # + groupe ? url_propre ? id_objet ?
 		list($id) = spip_fetch_array($s);
