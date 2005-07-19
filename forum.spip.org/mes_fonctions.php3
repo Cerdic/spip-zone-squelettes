@@ -186,11 +186,10 @@ function critere_tags($idb, &$boucles, $crit){
 
 // prend une liste de tags et retourne les id_mot reconnus (sans en creer)
 function get_tags_ids($mots) {
-
 	// Aller chercher les tags dans la boite
 	### pour faire plus generique : se baser sur id_$objet et/ou url_propre
 	include_ecrire('_libs_/tag-machine/inc_tag-machine.php');
-	$mots = parser_liste($mots);
+	$mots = parser_liste(filtrer_entites($mots)); # car " dans l'url arrive ici sous la forme &quot; (#ENV{tags} et non #ENV*{tags})
 
 	$id_mot = array();
 	foreach ($mots as $mot) {
