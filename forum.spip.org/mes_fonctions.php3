@@ -106,19 +106,41 @@ function echaper_mot($titre, $type, $groupe_defaut) {
 	if(strpos($titre,' ') || strpos($titre,':')) {
 	  $titre = "\"$titre\"";
 	}
-	return $groupe.($groupe)?':':''.$titre;
+	return $groupe. (($groupe) ? ':' : '') .$titre;
 }
 
-function ajouter_mot($id_mot) {
-  $url = $GLOBALS["clean_link"]->getUrl();
-  return quote_amp($url.(strpos($url,'?')?'&amp;':'?')."id_mot[]=$id_mot");  
+function ajouter_mot($id_mot, $seul=false) {
+#  $url = $GLOBALS["clean_link"]->getUrl();
+	$url = new Link();
+
+
+	list($titre,$type) = spip_fetch_array(spip_query("SELECT titre,type
+		FROM spip_mots WHERE id_mot=$id_mot"));
+	$groupe_defaut = 'FAQ';
+
+	$tags = ((!$seul) ? $_GET['tags']." " : '').echaper_mot($titre, $type, $groupe_defaut);
+	$url->addvar('tags', $tags);
+
+	return quote_amp($url->geturl());
 }
 
 function retirer_mot($id_mot) {
-  $url = $GLOBALS["clean_link"]->getUrl();
-  $url = preg_replace("/([?&])id_mot\[\]=$id_mot&?/",'\\1',$url);
-  $url = preg_replace('/[?&]$/', '', $url);
-  return quote_amp($url);
+## old style (id_mot[]=1)
+#  $url = $GLOBALS["clean_link"]->getUrl();
+#  $url = preg_replace("/([?&])id_mot\[\]=$id_mot&?/",'\\1',$url);
+#  $url = preg_replace('/[?&]$/', '', $url);
+
+## new style
+  $url = new Link();
+  list($titre,$type) = spip_fetch_array(spip_query("SELECT titre,type
+	FROM spip_mots WHERE id_mot=$id_mot"));
+  $groupe_defaut = 'FAQ';
+  $tags = trim(preg_replace('/ ?'.preg_quote(echaper_mot($titre, $type, $groupe_defaut)).' ?/', ' ', $_GET['tags']));
+  $url->delvar('tags');
+  if ($tags)
+  	$url->addvar('tags', $tags);
+
+  return quote_amp($url->geturl());
 }
 
 function critere_mots($idb, &$boucles, $param){
@@ -139,5 +161,46 @@ function critere_mots($idb, &$boucles, $param){
 	}
 }
 
+// {tags #ENV{tags}} retourne la liste des id_mot correspondant
+// Attention le choix fait ici est incoherent : quand il y a plusieurs tags
+// dans l'URL la boucle (MOTS) recoit {id_mot IN (....,....)}  [OU logique]
+// alors que la boucle (FORUMS) recoit un {id_mot IN ...} HAVING COUNT()... [ET logique]
+function critere_tags($idb, &$boucles, $crit){
+	$boucle = &$boucles[$idb];
+	$id_table = $boucle->id_table;
+	$type = $boucle->id_table;
+	$primary = $boucle->primary;
+
+	$_mots = calculer_liste($crit->param[0], array(), $boucles, $boucles[$idb]->id_parent);
+	if($type == "mots") {
+	  $boucle->where[] = 'id_mot IN (".((count($array_mots = get_tags_ids('.$_mots.')) > 0)?addslashes(join(",",$array_mots)):0).")';
+	} else {
+	  $boucle->group = $primary;
+	  $boucle->from[] = "spip_mots_$type";
+	  $boucle->where[] = 'id_mot IN (".((count($array_mots = get_tags_ids('.$_mots.')) > 0)?addslashes(join(",",$array_mots)):0).")';
+	  $boucle->where[] = "$id_table.$primary = spip_mots_$type.$primary";
+# desactiver HAVING pour restaurer coherence (mais alors pas de tri croise !)
+	  $boucle->having = "'.(count(\$array_mots)-1).'";
+	}
+}
+
+// prend une liste de tags et retourne les id_mot reconnus (sans en creer)
+function get_tags_ids($mots) {
+
+	// Aller chercher les tags dans la boite
+	### pour faire plus generique : se baser sur id_$objet et/ou url_propre
+	include_ecrire('_libs_/tag-machine/inc_tag-machine.php');
+	$mots = parser_liste($mots);
+
+	$id_mot = array();
+	foreach ($mots as $mot) {
+		$s = spip_query("SELECT id_mot FROM spip_mots
+			WHERE titre='".addslashes($mot['tag'])."'"); # + groupe ? url_propre ? id_objet ?
+		list($id) = spip_fetch_array($s);
+		if ($id) $id_mot[] = $id;
+	}
+
+	return $id_mot;
+}
 
 ?>
