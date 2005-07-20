@@ -1,5 +1,5 @@
 <?php
 	$fond = 'tag';
-	$delais = 0;
+	$delais = 3600;
 	include('inc-public.php3');
 ?>
