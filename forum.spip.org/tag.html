@@ -3,7 +3,7 @@
 <!--html xmlns="http://www.w3.org/1999/xhtml"-->
 <html>
 <head>
-<title>[#NOM_SITE_SPIP] <:faq:> <BOUCLE_titre(MOTS) {tags #ENV{tags}} {doublons mots} {" "}>#TITRE</BOUCLE_titre></title>
+<title>[#NOM_SITE_SPIP] <:faq:> <BOUCLE_titre(MOTS) {titre == (#ENV{tags}|enregexp)} {having (#ENV{tags}|compte_having)} {doublons mots} {" "}>#TITRE</BOUCLE_titre></title>
 <meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
 <meta name="Description" content="[(#TEXTE*|couper{100}|attribut_html)]" />
 <!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
@@ -37,8 +37,9 @@ et voici : les tags !
 
 [(#REM) ici on cherche les mots lies à des forums selectionnés par des mots
 dans l'url]
-<BOUCLE_voiraussi_compte(FORUMS) {tags #ENV{tags}} {id_rubrique?}> 
-<BOUCLE_voiraussi_mot(MOTS) {id_forum} {doublons}>
+<BOUCLE_voiraussi_compte(FORUMS) {titre_mot == (#ENV{tags}|enregexp)} {id_rubrique?} {having (#ENV{tags}|compte_having)}> 
+<BOUCLE_voiraussi_mot(MOTS) {id_forum} {doublons mots}>
+[(#TITRE|dansvariable{#ENV{tags}}|?{'',' '})[(#ID_MOT|tampons{'relation','mots','empile'})]]
 </BOUCLE_voiraussi_mot>
 </BOUCLE_voiraussi_compte>
 
@@ -46,23 +47,18 @@ dans l'url]
 <BOUCLE_aff_mots(MOTS) {type=FAQ} {par titre}>
 <B_aff_mots_in>
 [(#REM) si les mots sont ceux selectionnes dans l'url, on les affiche en rouge]
-<BOUCLE_existe(MOTS) {id_mot} {!doublons mots}>
-[(#ID_MOT|unique{ouvre}|?{' ',''}) [(#ENV{tags}|?{' ',''})<em class="red"> [<a href="(#ID_MOT|retirer_mot)">x</a>]]]</BOUCLE_existe>[
+[(#TITRE|dansvariable{#ENV{tags}}|?{' ',''}) <em class="red"> [<a href="(#ID_MOT|retirer_mot)">x</a>]][
 (#REM) si ils sont parmis ceux lie aux mots selectionnes, on les affiches en vert
 on utilise unique pour ne pas afficher les mots deja affiche par la boucle existe
-]<BOUCLE_relation(MOTS) {id_mot} {!doublons}>[(#REM)
-][(#ID_MOT|unique{ouvre}|?{' ',''}) [(#ENV{tags}|?{' ',''})<em class="green">[<a href="(#ID_MOT|ajouter_mot)">+</a>]]][(#REM)
-]</BOUCLE_relation><BOUCLE_aff_mots_in(FORUMS) {id_mot} {id_rubrique?}> </BOUCLE_aff_mots_in>[
+][(#ID_MOT|tampons{'relation','mots','existe'}|?{' ',''}) <em class="green">[<a href="(#ID_MOT|ajouter_mot)">+</a>]][(#REM)
+]<BOUCLE_aff_mots_in(FORUMS) {id_mot} {id_rubrique?}> </BOUCLE_aff_mots_in>[
 (#REM) on affiche le titre du mot avec un font-size fonction du nombre de forum attaches
 ]<strong
-[style="font-size:(#TOTAL_BOUCLE|filtre_max{forum}|coef{#TOTAL_BOUCLE,250}|log|ceil)%;"]><a href="[(#_aff_mots:ID_MOT|ajouter_mot{seul})]">#_aff_mots:TITRE</a></strong></B_aff_mots_in>[
+[style="font-size:(#TOTAL_BOUCLE|filtre_max{forum}|coef{#TOTAL_BOUCLE,250}|ceil)%;"]><a href="[(#_aff_mots:ID_MOT|ajouter_mot{seul})]">#_aff_mots:TITRE</a></strong></B_aff_mots_in>[
 (#REM) on ferme les em vert ou rouge, toujours la meme histoire
-]<BOUCLE_existe2(MOTS) {id_mot} {!doublons mots}>[(#REM)
-][(#ID_MOT|unique{ferme}|?{'&nbsp;',''})[(#ENV{tags}|?{'&nbsp;',''})</em>]][(#REM)
-]</BOUCLE_existe2>[(#REM)
-]<BOUCLE_relation2(MOTS) {id_mot} {!doublons}>[(#REM)
-][(#ID_MOT|unique{ferme}|?{'&nbsp;',''})</em>]
-</BOUCLE_relation2>
+]
+[</em>(#TITRE|dansvariable{#ENV{tags}}|?{' ',''})]
+[</em>(#ID_MOT|tampons{'relation','mots','existe'}|?{' ',''})]
 </BOUCLE_aff_mots>
 </div>
 </B_aff_mots>
@@ -71,7 +67,7 @@ on utilise unique pour ne pas afficher les mots deja affiche par la boucle exist
 </div>
 
 [(#REM) simple test pour savoir s'il y a des mots dans l'url]
-<BOUCLE_mots_sel(MOTS) {tags #ENV{tags}}>
+<BOUCLE_mots_sel(MOTS) {titre == (#ENV{tags}|enregexp)}>
 </BOUCLE_mots_sel>
 <table cellpadding="5" cellspacing="3" border="0">
 	<B_art_rub>
@@ -91,7 +87,7 @@ on utilise unique pour ne pas afficher les mots deja affiche par la boucle exist
 			<td background="img_interface/fond-degrade.png" align="center" class="droitxpetit"><b><:reponses:></b></td>
 			</tr>
 			
-			<BOUCLE_forums(FORUMS) {id_article} {par score} {inverse} {0,20} {tags #ENV{tags}} >
+			<BOUCLE_forums(FORUMS) {id_article} {par score} {inverse} {0,20} {titre_mot == (#ENV{tags}|enregexp)} {having (#ENV{tags}|compte_having)}>
 				<tr>
 					<td bgcolor=#eeeeee class="droitxpetit"><b><a href="#URL_FORUM" title="[(#TEXTE|couper{150}|texte_backend)]">[(#TITRE|spip_preg_replace{'/^>\s*/',''})]</a></b></td>
 					<td bgcolor=#eeeeee align="center" class="droitxpetit">

@@ -202,4 +202,60 @@ function get_tags_ids($mots) {
 	return $id_mot;
 }
 
+/*
+est ce que ce mot est dans cette liste
+*/
+function dansvariable($needle, $haystack) {
+	return ereg("(^| )$needle( |$)",$haystack);
+}
+
+/*
+génére une regexp OU pour la liste de mot
+*/
+function enregexp($liste) {
+    include_ecrire('_libs_/tag-machine/inc_tag-machine.php');
+	$mots = parser_liste(filtrer_entites($liste));
+ $str = '^(';
+ foreach ($mots as $mot) {
+	 $str .= $mot['tag'].'|';
+}
+$str = substr($str,0,-1);
+return $str.')$';
+}
+
+/*
+combien il y a de mots dans le paramétre
+*/
+function compte_having($liste) {
+    include_ecrire('_libs_/tag-machine/inc_tag-machine.php');
+	$mots = parser_liste(filtrer_entites($liste));
+ return count($mots)-1;
+}
+
+/*
+un critére pour le HAVING sql
+*/
+function critere_having($idb, &$boucles, $crit){	
+	$hav = calculer_liste($crit->param[0], array(), $boucles, $boucles[$idb]->id_parent);
+ $boucles[$idb]->having = "'.$hav.'";
+}
+
+/*
+un filtre pour émuler doublons... on peut empiler des ids (ou autre)
+generer la variable pour faire un == 
+*/
+function tampons($valeur, $nom, $type, $action){
+  static $tampons = array();
+  if ($action == 'empile') {
+	$tampons["$type:$nom"][] = $valeur;
+	return ' ';
+  } else if ($action == 'generein'){
+	return '^('.join('|',$tampons["$type:$nom"]).')$';
+  } else if ($action == 'existe' && count($tampons["$type:$nom"])) {
+	return in_array($valeur,$tampons["$type:$nom"]);
+  }
+  return '';
+}
+
+
 ?>
