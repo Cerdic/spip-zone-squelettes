@@ -85,7 +85,7 @@ $result_auteur = spip_query($query);
 
 $flag_auteur = (spip_num_rows($result_auteur) > 0);
 $flag_editable = (acces_rubrique($rubrique_article)
-	OR ($flag_auteur AND ($statut_article == 'prepa' OR $statut_article == 'prop' OR $statut_article == 'poubelle')));
+	OR ($flag_auteur AND ($statut_article == 'publie' OR $statut_article == 'prepa' OR $statut_article == 'prop' OR $statut_article == 'poubelle')));
 
 
 

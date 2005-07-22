@@ -68,7 +68,7 @@ if ($id_article) {
 		$result_auteur = spip_query($query);
 		$flag_auteur = (spip_num_rows($result_auteur) > 0);
 
-		$flag_editable = (acces_rubrique($id_rubrique) OR ($flag_auteur > 0 AND ($statut == 'prepa' OR $statut == 'prop' OR $new == 'oui')));
+		$flag_editable = (acces_rubrique($id_rubrique) OR ($flag_auteur > 0 AND ($statut == 'prepa' OR $statut == 'prop' OR $new == 'oui' OR $statut == 'publie')));
 	}
 }
 else if ($new=='oui') {
@@ -381,21 +381,25 @@ echo "<P><HR><P>";
 		else $logo_parent = "rubrique-24.gif";
 	}
 
-	debut_cadre_couleur("$logo_parent", false, "", _T('titre_cadre_interieur_rubrique').aide ("artrub"));
+	//DEBUT HACK Modif par l'auteur
+	if(acces_rubrique($id_rubrique) OR $statut != 'publie') {
+		debut_cadre_couleur("$logo_parent", false, "", _T('titre_cadre_interieur_rubrique').aide ("artrub"));
 
 
-	// Integrer la recherche de rubrique au clavier
-	echo "<script language='JavaScript' type='text/javascript' src='filtery.js'></script>\n";
-	echo "<input type='text' size='10' style='font-size: 90%; width: 15%;' onkeyup=\"filtery(this.value,this.form.id_rubrique);\" onChange=\"filtery(this.value,this.form.id_rubrique);\"> ";
+		// Integrer la recherche de rubrique au clavier
+		echo "<script language='JavaScript' type='text/javascript' src='filtery.js'></script>\n";
+		echo "<input type='text' size='10' style='font-size: 90%; width: 15%;' onkeyup=\"filtery(this.value,this.form.id_rubrique);\" onChange=\"filtery(this.value,this.form.id_rubrique);\"> ";
 
-	echo "<SELECT NAME='id_rubrique' style='font-size: 90%; width:80%; font-face:verdana,arial,helvetica,sans-serif; max-height: 24px;' SIZE=1>\n";
-	enfant(0);
-	echo "</SELECT><BR>\n";
-	
-	
-	
-	echo _T('texte_rappel_selection_champs');
-	fin_cadre_couleur();
+		echo "<SELECT NAME='id_rubrique' style='font-size: 90%; width:80%; font-face:verdana,arial,helvetica,sans-serif; max-height: 24px;' SIZE=1>\n";
+		enfant(0);
+		echo "</SELECT><BR>\n";
+		
+		
+		
+		echo _T('texte_rappel_selection_champs');
+		fin_cadre_couleur();
+	}
+	//FIN HACK Modif par l'auteur
 	
 	if ($new != 'oui') echo "<INPUT TYPE='hidden' NAME='id_rubrique_old' VALUE=\"$id_rubrique\" >";
 
