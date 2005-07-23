@@ -1,0 +1,158 @@
+<BOUCLE_site(SITES){id_syndic}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="#LANG">
+
+<!--
+ _________________________________________________________
+|                                                         |
+|    DESIGN + http://fullahead.org                        |
+|      DATE + 2005.05.12                                  |
+| COPYRIGHT + free use if this notice is kept in place    |
+|														  |
+|	ADAPTATION SPIP + ERIC NOEL							  |
+|			DATE	+ 2005.07.19						  |
+|_________________________________________________________|
+
+-->
+
+<head>
+
+  <meta http-equiv="content-type" content="application/xhtml+xml; charset=#CHARSET" />
+  <meta name="author" content="fullahead.org" />
+  <meta name="keywords" content="reflection, fullahead, pat, OSWD, more, keywords, separated, with, commas" />
+  <meta name="description" content="OSWD reflection XHTML template by fullahead.org" />
+<!-- Lien vers le backend pour navigateurs eclaires -->
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="backend.php3" />
+  <title>[#NOM_SITE_SPIP]</title>
+
+  <link rel="stylesheet" type="text/css" href="css/screen_aqua.css" media="screen, tv, projection" />
+
+</head>
+
+<body>
+
+<!-- Main site container -->
+<div id="siteBox">
+
+  <!-- Main site header : holds the img, title and top tabbed menu -->
+  <div id="header">
+
+    <!-- top rounded corner -->
+    <img src="images/corner_tl.gif" alt="corner" style="float:left;" />
+
+
+    <!-- Site title and subTitle -->
+    <span class="title">
+      <span class="white">#NOM_SITE_SPIP</span>
+      <span class="subTitle">
+        #URL_SITE_SPIP
+      </span>
+    </span>
+
+    <!-- Menu is displayed in reverse order from how you define it (caused by float: right) -->
+    <a href="[mailto:(#EMAIL_WEBMASTER|antispam)]" title="contact" class="lastMenuItem">Contact<span class="desc">Courriel</span></a>
+    <a href="/ecrire" title="services">Privé<span class="desc">Rédaction</span></a>
+    <a href="/" title="Accueil">Accueil<span class="desc">Bienvenue</span></a>
+
+  </div>
+
+  <!-- Content begins -->
+  <div id="content">
+
+    <!-- Left side menu : side bar links/news/search/etc. -->
+    <div id="contentLeft">
+	<BOUCLE_breves(BREVES) {par date} {inverse} {age<15}>	
+      <p>
+        <span class="header">#TITRE</span>
+        [(#TEXTE|textebrut)]
+      </p>
+	</BOUCLE_breves>
+      <p>
+        <span class="header">Syndication</span></p>
+        <div class="menu_gauche_d"><a href="backend.php3" class="menunoItem">Fil rss</a></div>		
+      <p>
+        <span class="header">Carnets inscrits</span></p>
+        <BOUCLE_syndic_sites(SITES) {par date} {inverse} {tout}>
+		<div class="menu_gauche"><a href="site.php3?id_syndic=#ID_SYNDIC" class="menunoItem">#NOM_SITE</a></div>
+		</BOUCLE_syndic_sites>
+      
+
+
+      <!-- Creates the rounded corner on the bottom of the left menu -->
+      <div class="bottomCorner">
+        <img src="images/corner_sub_br.gif" alt="bottom corner" class="vBottom"/>
+      </div>
+
+    </div>
+
+
+
+    <!-- Right side main content -->
+    <div id="contentRight">
+		<br /><span class="header">#NOM_SITE</span>
+		<BOUCLE_syndic_dec1(SYNDIC_ARTICLES){id_syndic}{par date} {inverse}> </BOUCLE_syndic_dec1>
+        <p class="centre"><?	
+			global $debut_articles;
+			$total="#TOTAL_BOUCLE";			
+			for ($numero = 0; $numero < $total; $numero = $numero + 5){
+				$num_fin = $numero + 5;
+
+				if ($num_fin > $total ) $num_fin = $total;
+				if ($numero == $debut_articles){ echo " [".($numero+1)."-$num_fin]  ";}
+				else{ echo "[<a href=\"?debut_articles=$numero&amp;id_syndic=#ID_SYNDIC\">".($numero+1)."-$num_fin</a>] ";}
+
+			}
+		?></p>
+		</B_syndic_dec1>    
+      
+	  	<BOUCLE_syndic(SYNDIC_ARTICLES) {par date} {inverse}{id_syndic}{debut_articles,5}>
+        <p><span class="header">[(#TITRE*)]</span>[(#DATE|nom_jour)] [(#DATE|affdate)]</p>
+		<p>[(#DESCRIPTIF|textebrut)] <a href="#URL_ARTICLE">(Lire la suite)</a><br />
+		<br />par: <a>#LESAUTEURS</a> en provenance du carnet: <a href="#URL_SITE">#NOM_SITE</a> :: <BOUCLE_rss(SITES){id_syndic}><a href="#URL_SYNDIC">RSS</a></BOUCLE_rss></p>
+		</BOUCLE_syndic>
+
+		<BOUCLE_syndic_dec2(SYNDIC_ARTICLES){id_syndic}{par date} {inverse}> </BOUCLE_syndic_dec2>
+        <p class="centre"><?	
+			global $debut_articles;
+			$total="#TOTAL_BOUCLE";			
+			for ($numero = 0; $numero < $total; $numero = $numero + 5){
+				$num_fin = $numero + 5;
+
+				if ($num_fin > $total ) $num_fin = $total;
+				if ($numero == $debut_articles){ echo " [".($numero+1)."-$num_fin]  ";}
+				else{ echo "[<a href=\"?debut_articles=$numero&amp;id_syndic=#ID_SYNDIC\">".($numero+1)."-$num_fin</a>] ";}
+
+			}
+		?></p>
+		</B_syndic_dec2> 
+      
+      <!-- Creates bottom left rounded corner -->
+      <img src="images/corner_sub_bl.gif" alt="bottom corner" class="vBottom"/>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- Footer begins -->
+  <div id="footer">
+
+    <div id="footerLeft">
+      &nbsp;&nbsp;design <a href="http://oswd.org/userinfo.phtml?user=snop" title="OSWD design work">snop</a> <span class="grey">+</span> photo <a href="http://www.sxc.hu/browse.phtml?f=profile&amp;l=plasticboy&amp;p=1" title="stock.xchng">plasticboy</a> <span class="grey">=</span> valid <a href="http://validator.w3.org/check?uri=#URL_SITE_SPIP/site.php3?id_syndic=#ID_SYNDIC" title="validate XHTML">XHTML</a> &amp; <a href="http://jigsaw.w3.org/css-validator" title="validate CSS">CSS</a>
+    </div>
+
+    <div id="footerRight">
+      &nbsp;
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+
+</html>
+</BOUCLE_site>
