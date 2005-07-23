@@ -906,12 +906,4 @@ function LienVariante($url) {
 	return "/spikini/VarianteContrib".ucfirst($url);
 }
 
-// Fonction pour choisir les feuilles de styles RTL
-function new_dir($lang) {
-   if ($lang == "ar" or $lang == "fa") {
-   $new_dir = '_rtl';
-   } 
-   return $new_dir;
-   }
-// fin fonction new_dir
 ?>
