@@ -83,27 +83,38 @@
 	&nbsp;
 	<small><a href="#URL_SITE_SPIP/">#URL_SITE_SPIP/</a></small>
 <//B_titre>
+[
+&nbsp; <b>Recherche : &laquo; (#ENV{recherche}) &raquo;</b>]
 </div>
 
 <div class="marge">
 
-<!-- Bouton "Tout marquer comme vu" -->
+<!-- Bouton "Tout marquer comme vu" sauf si mode recherche -->
+[(#ENV{recherche}|=={''}|?{' ',''})
 <form action="#SELF" method="POST">
 <input type="hidden" name="vu" value="[(#DATE|affdate{'U'})]" />
 <input type="submit" name="ok" value="Tout marquer comme vu" />
-</form>
+</form>]
 
 <h3>Articles r&eacute;cents</h3>
-<a href="?age=1[&amp;id_syndic=(#ENV{id_syndic})]"
+<a href="?age=1[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
 class="[(#ENV{age}|=={1}|?{'selected',''})]">Aujourd'hui</a><br />
-<a href="?[id_syndic=(#ENV{id_syndic})]"
+<a href="?[id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
 class="[(#ENV{age}|=={''}|?{'selected',''})]">Deux jours</a><br />
-<a href="?age=7[&amp;id_syndic=(#ENV{id_syndic})]"
+<a href="?age=7[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
 class="[(#ENV{age}|=={7}|?{'selected',''})]">Semaine</a><br />
-<a href="?age=31[&amp;id_syndic=(#ENV{id_syndic})]"
+<a href="?age=31[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
 class="[(#ENV{age}|=={31}|?{'selected',''})]">Mois</a><br />
-<a href="?age=365[&amp;id_syndic=(#ENV{id_syndic})]"
+<a href="?age=365[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
 class="[(#ENV{age}|=={365}|?{'selected',''})]">Ann&eacute;e</a><br />
+
+<h3>Recherche</h3>
+<form action="#SELF" method="GET">
+<input type="text" name="recherche" value="[(#ENV{recherche})]" size="10" />
+[<input type="hidden" name="age" value="(#ENV{age})" />]
+[<input type="hidden" name="id_syndic" value="(#ENV{id_syndic})" />]
+<input type="submit" name="ok" value="ok" />
+</form>
 
 <h3>Sources</h3>
 <a href="?" class="[(#ENV{id_syndic}|=={''}|?{'selected',''})]" >TOUT</a><br />
@@ -124,7 +135,7 @@ class="[(#ENV{id_syndic}|=={#ID_SYNDIC}|?{'selected',''})]">#NOM_SITE</a><br />
 </div>
 
 <div id="milieu">
-<BOUCLE_syndic(SYNDIC_ARTICLES){id_syndic?}{par date}{inverse}{age<#ENV{age,2}}{0,600}>
+<BOUCLE_syndic(SYNDIC_ARTICLES){contenu}{id_syndic?}{par date}{inverse}{age<#ENV{age,2}}{0,500}>
 
 	[<br /><div class="date">(#DATE|affdate_court|unique)</div>]
 
