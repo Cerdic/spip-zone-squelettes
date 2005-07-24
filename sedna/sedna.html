@@ -120,17 +120,19 @@
 [
 &nbsp; <b>Recherche : &laquo; (#ENV{recherche}) &raquo;</b>]
 </div>
-[(#FORMULAIRE_ADMIN)]
 
 <div class="marge">
 
-<!-- Bouton "Tout marquer comme vu" sauf si mode recherche -->
+<!-- Bouton "Tout marquer comme vu" si ID_SYNDIC, et hors mode recherche -->
 [(#ENV{recherche}|=={''}|?{' ',''})
-<form action="#SELF" method="post">
-<div>
-	<input type="hidden" name="vu" value="[(#DATE|affdate{'U'})]" />
-	<input type="submit" name="ok" value="Tout marquer comme vu" />
-</div>
+[<form action="#SELF" method="POST">
+<input type="hidden" name="vu" value="[(#DATE|affdate{'U'})]" />
+<input type="submit" name="(#ENV{id_syndic})ok" value="J'ai tout lu" />
+</form>]]
+
+[<form action="#SELF" method="POST">
+<input type="hidden" name="refresh" value="(#ENV{id_syndic})" />
+<input type="submit" name="ok" value="Rafra&icirc;chir" />
 </form>]
 
 <h1>Articles r&eacute;cents</h1>

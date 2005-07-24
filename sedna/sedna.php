@@ -22,6 +22,12 @@
     // un peu trop rapide, ca... le compilateur exige mieux
     $boucle->where[] = '$s';
   }
+  
+  include('ecrire/inc_version.php3');
+  if ($id = intval($_POST['refresh'])) {
+    include_ecrire('inc_sites.php3');
+    syndic_a_jour($id);
+  }
 
   $delais=0;
   include('inc-public.php3');
