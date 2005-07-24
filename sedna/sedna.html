@@ -1,4 +1,11 @@
-<html>
+<?php
+	// Si on clique sur 'vu' poser un cookie
+	if ($vu) {
+		spip_setcookie('sedna_vu[(#ENV{id_syndic})]', $vu, time()+365*24*3600);
+		$_COOKIE['sedna_vu[(#ENV{id_syndic})]'] = $vu;
+	}
+
+?><html>
 <head>
 <title>[RSS] #NOM_SITE_SPIP</title>
 <meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
@@ -24,7 +31,15 @@
 	a:visited.link {
 		color: grey;
 	}
+	a.vu {
+		color: grey;
+	}
 
+	div.top {
+		background-color: #f3ee35;
+		text-size: 20px;
+		text-color: white;
+	}
 	div.marge {
 		float: right;
 		width: 150px;
@@ -57,7 +72,26 @@
 
 <body>
 
+<div class="top">
+RSS
+//
+<BOUCLE_titre(SITES){id_syndic}>#NOM_SITE
+	&nbsp;
+	<small><a href="#URL_SITE">#URL_SITE</a></small>
+</BOUCLE_titre>
+	#NOM_SITE_SPIP
+	&nbsp;
+	<small><a href="#URL_SITE_SPIP/">#URL_SITE_SPIP/</a></small>
+<//B_titre>
+</div>
+
 <div class="marge">
+
+<!-- Bouton "Tout marquer comme vu" -->
+<form action="#SELF" method="POST">
+<input type="hidden" name="vu" value="[(#DATE|affdate{'U'})]" />
+<input type="submit" name="ok" value="Tout marquer comme vu" />
+</form>
 
 <h3>Articles r&eacute;cents</h3>
 <a href="?age=1[&amp;id_syndic=(#ENV{id_syndic})]"
@@ -79,7 +113,7 @@ class="[(#ENV{id_syndic}|=={#ID_SYNDIC}|?{'selected',''})]">#NOM_SITE</a><br />
 
 <?php
 	$memo[#ID_SYNDIC] =
-		'<a href="[(#URL_SITE|texte_script)]"
+		'<a href="?[age=(#ENV{age})&amp;]id_syndic=#ID_SYNDIC"
 		class="site">[(#NOM_SITE|texte_script)]</a>';
 ?>
 </BOUCLE_sites>
@@ -95,9 +129,16 @@ class="[(#ENV{id_syndic}|=={#ID_SYNDIC}|?{'selected',''})]">#NOM_SITE</a><br />
 	[<br /><div class="date">(#DATE|affdate_court|unique)</div>]
 
 <?php
+	// indiquer un intertitre si on change de source
 	if (#ID_SYNDIC <> $ex_syndic)
 		echo "<div class='site'><h4>".$memo[#ID_SYNDIC]."</h4></div>\n";
 	$ex_syndic = #ID_SYNDIC;
+
+	// regler la classe des liens, en fonction de la date p/r date du cookie 'vu'
+	$class_link = (
+		[(#DATE|affdate{'U'})]>$_COOKIE['sedna_vu']
+		AND [(#DATE|affdate{'U'})]>$_COOKIE['sedna_vu#ID_SYNDIC']
+		) ? 'link' : 'vu';
 ?>
 
 	<div class='item'>
@@ -107,7 +148,7 @@ class="[(#ENV{id_syndic}|=={#ID_SYNDIC}|?{'selected',''})]">#NOM_SITE</a><br />
 	title="[(#DESCRIPTIF|attribut_html|trim)
 
 ][(#URL_ARTICLE|attribut_html)]"
-	class="link"
+	class="<?php echo $class_link; ?>"
 	>#TITRE</a>
 	[ - (#LESAUTEURS)]<br />
 
