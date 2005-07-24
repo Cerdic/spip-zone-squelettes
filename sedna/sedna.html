@@ -5,17 +5,27 @@
 		$_COOKIE['sedna_vu[(#ENV{id_syndic})]'] = $vu;
 	}
 
-?><html>
+?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">
 <head>
-<title>[Sedna RSS] #NOM_SITE_SPIP</title>
+<title>[Sedna RSS] [(#NOM_SITE_SPIP|supprimer_tags)]</title>
 <meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
 
-<style><!--
+<style type="text/css"><!--
 	body {
 		font-family: arial, helvetica, sans-serif;
-		font-size: 12px;
+		font-size: .8em;
 		margin-left: 30px;
 	}
+	
+	h1 {
+		font-size: 140%;
+	}
+	
+	h2 {
+		font-size: 120%;
+	}
+
 	a.selected {
 		background-color: #e0EBE9;
 		border: 1px solid #324C48;
@@ -37,26 +47,50 @@
 
 	div.top {
 		background-color: #f3ee35;
+		margin-left: -25px;
+		padding: .1em 1em;
 		text-size: 20px;
 		text-color: white;
 	}
 	div.marge {
 		float: right;
-		width: 150px;
+		width: 17%;
 		background-color: #eeeeee;
+		margin: 0;
+		padding: 0;
+	}
+	
+	div.marge a {
+		display: block;
+		padding: 0 .5em;;
+	}
+
+	div.marge ul {
+		margin:0;
+		padding:0;
+		list-style: none;
+		list-style-image: none;
 	}
 
 	.date {
 		margin-left: -25px;
 		border: 1px solid red;
 		color: red;
-		width: 160px;
+		width: 6em;
+		padding: .25em 1em;
+		text-align:center;
 	}
 					
 	.site {
+		margin:.4em 0 .2em 0;
+		padding: .1em .5em;
 		background-color: blue;
 		color: white;
 		width: 80%;
+	}
+	.site a {
+		background-color: transparent;
+		color: white;
 	}
 --></style>
 
@@ -86,63 +120,80 @@
 [
 &nbsp; <b>Recherche : &laquo; (#ENV{recherche}) &raquo;</b>]
 </div>
+[(#FORMULAIRE_ADMIN)]
 
 <div class="marge">
 
 <!-- Bouton "Tout marquer comme vu" sauf si mode recherche -->
 [(#ENV{recherche}|=={''}|?{' ',''})
-<form action="#SELF" method="POST">
-<input type="hidden" name="vu" value="[(#DATE|affdate{'U'})]" />
-<input type="submit" name="ok" value="Tout marquer comme vu" />
+<form action="#SELF" method="post">
+<div>
+	<input type="hidden" name="vu" value="[(#DATE|affdate{'U'})]" />
+	<input type="submit" name="ok" value="Tout marquer comme vu" />
+</div>
 </form>]
 
-<h3>Articles r&eacute;cents</h3>
-<a href="?age=1[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
-class="[(#ENV{age}|=={1}|?{'selected',''})]">Aujourd'hui</a><br />
-<a href="?[id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
-class="[(#ENV{age}|=={''}|?{'selected',''})]">Deux jours</a><br />
-<a href="?age=7[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
-class="[(#ENV{age}|=={7}|?{'selected',''})]">Semaine</a><br />
-<a href="?age=31[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
-class="[(#ENV{age}|=={31}|?{'selected',''})]">Mois</a><br />
-<a href="?age=365[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
-class="[(#ENV{age}|=={365}|?{'selected',''})]">Ann&eacute;e</a><br />
-
-<h3>Recherche</h3>
-<form action="#SELF" method="GET">
-<input type="text" name="recherche" value="[(#ENV{recherche})]" size="10" />
-[<input type="hidden" name="age" value="(#ENV{age})" />]
-[<input type="hidden" name="id_syndic" value="(#ENV{id_syndic})" />]
-<input type="submit" name="ok" value="ok" />
+<h1>Articles r&eacute;cents</h1>
+<ul>
+	<li><a href="?age=1[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
+	class="[(#ENV{age}|=={1}|?{'selected',''})]">Aujourd'hui</a></li>
+	<li><a href="?[id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
+	class="[(#ENV{age}|=={''}|?{'selected',''})]">Deux jours</a></li>
+	<li><a href="?age=7[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
+	class="[(#ENV{age}|=={7}|?{'selected',''})]">Semaine</a></li>
+	<li><a href="?age=31[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
+	class="[(#ENV{age}|=={31}|?{'selected',''})]">Mois</a></li>
+	<li><a href="?age=365[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
+	class="[(#ENV{age}|=={365}|?{'selected',''})]">Ann&eacute;e</a></li>
+</ul>
+<h1>Recherche</h1>
+<form action="#SELF" method="get">
+<div>
+	<input type="text" name="recherche" value="[(#ENV{recherche})]" size="10" />
+	[<input type="hidden" name="age" value="(#ENV{age})" />]
+	[<input type="hidden" name="id_syndic" value="(#ENV{id_syndic})" />]
+	<input type="submit" name="ok" value="ok" />
+</div>
 </form>
 
-<h3>Sources</h3>
-<a href="?" class="[(#ENV{id_syndic}|=={''}|?{'selected',''})]" >TOUT</a><br />
+<h1>Sources</h1>
+<ul>
+	<li><a href="?" class="[(#ENV{id_syndic}|=={''}|?{'selected',''})]" >TOUT</a></li>
 <BOUCLE_sites(SITES){par nom_site}{syndication=oui}>
-<a href="?[age=(#ENV{age})&amp;]id_syndic=#ID_SYNDIC"
-class="[(#ENV{id_syndic}|=={#ID_SYNDIC}|?{'selected',''})]">#NOM_SITE</a><br />
+	<li><a href="?[age=(#ENV{age})&amp;]id_syndic=#ID_SYNDIC"
+	class="[(#ENV{id_syndic}|=={#ID_SYNDIC}|?{'selected',''})]">#NOM_SITE</a></li>
 
 <?php
 	$memo[#ID_SYNDIC] =
-		'<a href="?[age=(#ENV{age})&amp;]id_syndic=#ID_SYNDIC"
-		class="site">[(#NOM_SITE|texte_script)]</a>';
+		'<h2 class="site"><a href="?[age=(#ENV{age})&amp;]id_syndic=#ID_SYNDIC">[(#NOM_SITE|texte_script)]</a></h2>'."\n";
 ?>
 </BOUCLE_sites>
-
-<p />
-#FORMULAIRE_ADMIN
+</ul>
 
 </div>
 
 <div id="milieu">
+<?php
+	$ul_ouvert=false;
+?>
 <BOUCLE_syndic(SYNDIC_ARTICLES){contenu}{id_syndic?}{par date}{inverse}{age<#ENV{age,2}}{0,500}>
 
-	[<br /><div class="date">(#DATE|affdate_court|unique)</div>]
 
+	[<?php
+	if ($ul_ouvert) {
+		echo '</ul>';
+		$ul_ouvert = false;
+	}
+?><h1 class="date">(#DATE|affdate_court|unique)</h1>]
 <?php
 	// indiquer un intertitre si on change de source
-	if (#ID_SYNDIC <> $ex_syndic)
-		echo "<div class='site'><h4>".$memo[#ID_SYNDIC]."</h4></div>\n";
+	if (#ID_SYNDIC <> $ex_syndic) {
+		if ($ul_ouvert) {
+			echo '</ul>';
+			$ul_ouvert = false;
+		}
+		echo $memo[#ID_SYNDIC];
+	}
 	$ex_syndic = #ID_SYNDIC;
 
 	// regler la classe des liens, en fonction de la date p/r date du cookie 'vu'
@@ -150,9 +201,14 @@ class="[(#ENV{id_syndic}|=={#ID_SYNDIC}|?{'selected',''})]">#NOM_SITE</a><br />
 		[(#DATE|affdate{'U'})]>$_COOKIE['sedna_vu']
 		AND [(#DATE|affdate{'U'})]>$_COOKIE['sedna_vu#ID_SYNDIC']
 		) ? 'link' : 'vu';
+		if (!$ul_ouvert) {
+			echo '<ul>';
+			$ul_ouvert = true;
+		}
+
 ?>
 
-	<div class='item'>
+	<li class='item'>
 
 	[<small>(#DATE|affdate{'H:i'})</small>] &nbsp;
 	<a href="#URL_ARTICLE"
@@ -160,13 +216,16 @@ class="[(#ENV{id_syndic}|=={#ID_SYNDIC}|?{'selected',''})]">#NOM_SITE</a><br />
 
 ][(#URL_ARTICLE|attribut_html)]"
 	class="<?php echo $class_link; ?>"
-	>[(#TITRE|supprimer_numero)]</a>
-	[ - (#LESAUTEURS|antispam)]<br />
+	>[(#TITRE|supprimer_numero|antispam)]</a>
+	[ - (#LESAUTEURS|antispam)]
 
-	</div>
+	</li>
 
 </BOUCLE_syndic>
-	<br /><div class="date">Pas d'article dans cette p&eacute;riode&nbsp;!</div>
+</ul>
+</B_syndic>
+
+	<h1 class="date">Pas d'article dans cette p&eacute;riode&nbsp;!</h1>
 <//B_syndic>
 </div>
 
