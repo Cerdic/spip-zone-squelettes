@@ -1,0 +1,123 @@
+<html>
+<head>
+<title>[RSS] #NOM_SITE_SPIP</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+
+<style><!--
+	body {
+		font-family: arial, helvetica, sans-serif;
+		font-size: 12px;
+		margin-left: 30px;
+	}
+	a.selected {
+		background-color: #e0EBE9;
+		border: 1px solid #324C48;
+	}
+	a {
+		text-decoration: none;
+		color: #666666;
+	}
+	
+	a.link {
+		color: orange;
+	}
+	a:visited.link {
+		color: grey;
+	}
+
+	div.marge {
+		float: right;
+		width: 150px;
+		background-color: #eeeeee;
+	}
+
+	.date {
+		margin-left: -25px;
+		border: 1px solid red;
+		color: red;
+		width: 160px;
+	}
+					
+	.site {
+		background-color: blue;
+		color: white;
+		width: 80%;
+	}
+--></style>
+
+<!-- Lien vers le backend -->
+<BOUCLE_url_backend_ori(SITES){id_syndic}>
+	<link rel="alternate" type="application/rss+xml" title="RSS [(#NOM_SITE|attribut_html)], via [(#NOM_SITE_SPIP|attribut_html)]" href="#URL_SITE_SPIP/sedna.php?rss=1&amp;id_syndic=#ID_SYNDIC" />
+	<link rel="alternate" type="application/rss+xml" title="RSS original" href="#URL_SYNDIC" />
+</BOUCLE_url_backend_ori>
+	<link rel="alternate" type="application/rss+xml" title="RSS [(#NOM_SITE_SPIP|attribut_html)]" href="#URL_SITE_SPIP/sedna.php?rss=1" />
+<//B_url_backend_ori>
+
+</head>
+
+<body>
+
+<div class="marge">
+
+<h3>Articles r&eacute;cents</h3>
+<a href="?age=1[&amp;id_syndic=(#ENV{id_syndic})]"
+class="[(#ENV{age}|=={1}|?{'selected',''})]">Aujourd'hui</a><br />
+<a href="?[id_syndic=(#ENV{id_syndic})]"
+class="[(#ENV{age}|=={''}|?{'selected',''})]">Deux jours</a><br />
+<a href="?age=7[&amp;id_syndic=(#ENV{id_syndic})]"
+class="[(#ENV{age}|=={7}|?{'selected',''})]">Semaine</a><br />
+<a href="?age=31[&amp;id_syndic=(#ENV{id_syndic})]"
+class="[(#ENV{age}|=={31}|?{'selected',''})]">Mois</a><br />
+<a href="?age=365[&amp;id_syndic=(#ENV{id_syndic})]"
+class="[(#ENV{age}|=={365}|?{'selected',''})]">Ann&eacute;e</a><br />
+
+<h3>Sources</h3>
+<a href="?" class="[(#ENV{id_syndic}|=={''}|?{'selected',''})]" >TOUT</a><br />
+<BOUCLE_sites(SITES){par nom_site}{syndication=oui}>
+<a href="?[age=(#ENV{age})&amp;]id_syndic=#ID_SYNDIC"
+class="[(#ENV{id_syndic}|=={#ID_SYNDIC}|?{'selected',''})]">#NOM_SITE</a><br />
+
+<?php
+	$memo[#ID_SYNDIC] =
+		'<a href="[(#URL_SITE|texte_script)]"
+		class="site">[(#NOM_SITE|texte_script)]</a>';
+?>
+</BOUCLE_sites>
+
+<p />
+#FORMULAIRE_ADMIN
+
+</div>
+
+<div id="milieu">
+<BOUCLE_syndic(SYNDIC_ARTICLES){id_syndic?}{par date}{inverse}{age<#ENV{age,2}}{0,600}>
+
+	[<br /><div class="date">(#DATE|affdate_court|unique)</div>]
+
+<?php
+	if (#ID_SYNDIC <> $ex_syndic)
+		echo "<div class='site'><h4>".$memo[#ID_SYNDIC]."</h4></div>\n";
+	$ex_syndic = #ID_SYNDIC;
+?>
+
+	<div class='item'>
+
+	[<small>(#DATE|affdate{'H:i'})</small>] &nbsp;
+	<a href="#URL_ARTICLE"
+	title="[(#DESCRIPTIF|attribut_html|trim)
+
+][(#URL_ARTICLE|attribut_html)]"
+	class="link"
+	>#TITRE</a>
+	[ - (#LESAUTEURS)]<br />
+
+	</div>
+
+</BOUCLE_syndic>
+	<br /><div class="date">Pas d'article dans cette p&eacute;riode&nbsp;!</div>
+<//B_syndic>
+</div>
+
+#SPIP_CRON
+</body>
+</html>
