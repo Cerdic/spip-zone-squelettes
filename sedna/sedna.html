@@ -180,20 +180,20 @@
 	$jailu = '[<div style="float: right;">
 	<!-- Bouton "Tout marquer comme vu" si ID_SYNDIC, et hors mode recherche -->
 	(#ENV{recherche}|=={''}|?{' ',''})
-	[<form action="#SELF" method="POST">
+	[<form action="#SELF" method="post"><div>
 	<input type="hidden" name="site_lu" value="(#ID_SYNDIC|unique)" />
 	<input type="hidden" name="vu" value="[(#DATE|affdate{'U'})]" />
 	<input type="submit" name="ok" value="lu" />
-	</form>]
+	</div></form>]
 	</div>]';
 ?>
 
 	[
 		[(#COMPTEUR_BOUCLE|>{1}|?{'</ul>',''})]
 		<h1 class="date">(#DATE|affdate_court|unique)</h1>
+		<?php echo $jailu; ?>
 		<h2 class="site"><?php
 			echo $memo_#ID_SYNDIC;
-			echo $jailu;
 			$ex_syndic=#ID_SYNDIC;
 		?></h2>
 		<ul>
