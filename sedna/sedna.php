@@ -22,6 +22,11 @@
     // un peu trop rapide, ca... le compilateur exige mieux
     $boucle->where[] = '$s';
   }
+
+  // unicode 24D0 = caractere de forme "(a)"
+  function antispam2($texte) {
+    return preg_replace(',(\w+)@(\w+\.\w+),','\\1&#x24d0;\\2', $texte);
+  }
   
   include('ecrire/inc_version.php3');
   if ($id = intval($refresh)) {
