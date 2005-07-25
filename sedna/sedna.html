@@ -182,6 +182,7 @@
 <div id="milieu">
 <?php
 	$ul_ouvert=false;
+	$ladate = 0;	
 ?>
 <B_syndic><div id="total_articles">#TOTAL_BOUCLE articles</div>
 <BOUCLE_syndic(SYNDIC_ARTICLES){contenu}{id_syndic?}{par date}{inverse}{age<#ENV{age,2}}{0,500}>
@@ -194,8 +195,8 @@
 	}
 ?><h1 class="date">(#DATE|affdate_court|unique)</h1>]
 <?php
-	// indiquer un intertitre si on change de source
-	if (#ID_SYNDIC <> $ex_syndic) {
+	// indiquer un intertitre si on change de source ou de date
+	if (#ID_SYNDIC <> $ex_syndic OR $ladate != [(#DATE|affdate{'dmY'})]) {
 		if ($ul_ouvert) {
 			echo '</ul>';
 			$ul_ouvert = false;
@@ -203,6 +204,7 @@
 		echo $memo[#ID_SYNDIC];
 	}
 	$ex_syndic = #ID_SYNDIC;
+	$ladate = [(#DATE|affdate{'dmY'})];
 
 	// regler la classe des liens, en fonction de la date p/r date du cookie 'vu'
 	$class_link = (
