@@ -31,8 +31,8 @@
 	}
 
 	a.selected {
-		background-color: #e0EBE9;
-		border: 1px solid #324C48;
+		background-color: #aaaaee;
+		border-left: 3px solid #324C48;
 	}
 	a {
 		text-decoration: none;
@@ -66,7 +66,7 @@
 	}
 	div.marge {
 		float: right;
-		width: 150px;
+		width: 20%;
 		background-color: #eeeeee;
 		margin: 0;
 		padding: 0;
@@ -74,7 +74,16 @@
 	
 	div.marge a {
 		display: block;
-		padding: 0 .5em;;
+		padding: 0 .5em;
+		margin-bottom: 2px;
+		border-top: 1px dotted;
+	}
+	div.marge a:hover {
+		background-color:#ccccff;
+	}
+
+	div.milieu {
+		width: 75%;
 	}
 
 	ul {
@@ -98,7 +107,6 @@
 		padding: .1em .5em;
 		background-color: blue;
 		color: white;
-		width: 80%;
 	}
 	.site a {
 		background-color: transparent;
@@ -142,7 +150,7 @@
 
 [<form action="#SELF" method="POST">
 <input type="hidden" name="refresh" value="(#ENV{id_syndic})" />
-<input type="submit" name="ok" value="Rafra&icirc;chir" />
+<input type="submit" name="ok" value="Rafra&icirc;chir" style="font-size:9px;" />
 </form>]
 
 <h1>Articles r&eacute;cents</h1>
@@ -164,26 +172,27 @@
 	<input type="text" name="recherche" value="[(#ENV{recherche})]" size="10" />
 	[<input type="hidden" name="age" value="(#ENV{age})" />]
 	[<input type="hidden" name="id_syndic" value="(#ENV{id_syndic})" />]
-	<input type="submit" name="ok" value="ok" />
+	<input type="submit" name="ok" value="ok" style="font-size:9px;" />
 </div>
 </form>
 
 <h1>Description</h1>
 <?php
-if ($des == "oui") {
-    echo'<form action="#SELF" method="post"><div>';
+if ($_COOKIE['sedna_des'] == "oui") {
+	echo'<form action="#SELF" method="post"><div>';
 	echo'<input type="hidden" name="des" value="non" />';
-	echo'<input type="submit" name="ok" value="Masquer" />';
+	echo'<input type="submit" name="ok" value="Masquer" style="font-size:9px;" />';
 	echo'</div></form>';
 	}else {
 	echo'<form action="#SELF" method="post"><div>';
 	echo'<input type="hidden" name="des" value="oui" />';
-	echo'<input type="submit" name="ok" value="Afficher" />';
+	echo'<input type="submit" name="ok" value="Afficher" style="font-size:9px;" />';
 	echo'</div></form>';
 }?>
 <h1>Sources</h1>
 <ul>
 	<li><a href="?" class="[(#ENV{id_syndic}|=={''}|?{'selected',''})]" >TOUT</a></li>
+	<li><a></a></li>
 <BOUCLE_sites(SITES){par nom_site}{syndication=oui}>
 	<li><a href="?[age=(#ENV{age})&amp;]id_syndic=#ID_SYNDIC"
 	class="[(#ENV{id_syndic}|=={#ID_SYNDIC}|?{'selected',''})]">#NOM_SITE</a></li>
@@ -197,7 +206,7 @@ if ($des == "oui") {
 
 </div>
 
-<div id="milieu">
+<div class="milieu">
 <B_syndic><div id="total_articles">#TOTAL_BOUCLE articles</div>
 <BOUCLE_syndic(SYNDIC_ARTICLES){contenu}{id_syndic?}{par date}{inverse}{age<#ENV{age,2}}{0,500}>
 
@@ -208,7 +217,7 @@ if ($des == "oui") {
 	[<form action="#SELF" method="post"><div>
 	<input type="hidden" name="site_lu" value="(#ID_SYNDIC|unique)" />
 	<input type="hidden" name="vu" value="[(#DATE|affdate{'U'})]" />
-	<input type="submit" name="ok" value="lu" />
+	<input type="submit" name="ok" value="lu" style="font-size:9px;" />
 	</div></form>]
 	</div>]';
 ?>
@@ -252,7 +261,7 @@ if ($des == "oui") {
 	[ - (#LESAUTEURS|antispam)]
 	<?php
 
-	if ($des == "oui") {?>
+	if ($_COOKIE['sedna_des'] == "oui") {?>
 		[<a class="desc" href="#URL_ARTICLE">(#DESCRIPTIF|antispam|textebrut)</a>]   
 	<?}
 	?>
