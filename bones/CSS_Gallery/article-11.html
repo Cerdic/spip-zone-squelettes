@@ -1,0 +1,36 @@
+<BOUCLE_article_principal(ARTICLES) {id_article}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#NOM_SITE_SPIP)] | #TITRE</title>
+<link href="bones/gallery.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="wrap">
+  <div id="header">
+    <h1>
+      <INCLURE(inclusions/inc_menu-photo.php3)>
+    </h1>
+    <!--[if gte IE 5.5]>
+<p>Internet Explorer users should <a href="#">CLICK HERE</a> to activate the image rollovers.</p>
+<![endif]-->
+  </div>
+  <h2>#TITRE</h2>
+  <div align="right"> </div>
+  <p align="justify">[(#TEXTE|justifier)]</p>
+  <div id="main-content">
+    <ul>
+      <BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{fichier==(png|jpg|gif)}{doublons}{id_article}{par titre}>
+      <li><a href="affiche_image.php3?id_document=#ID_DOCUMENT">[(#LOGO_DOCUMENT||reduire_image{200,140})]<span>[(#TITRE)] [(#TAILLE|taille_en_octets)]</span></a></li>
+      </BOUCLE_documents_portfolio>
+    </ul>
+  </div>
+  <div id="foot">
+    <p>
+      <INCLURE(inclusions/inc_pied_photo.php3)>
+    </p>
+  </div>
+</div>
+</body>
+</BOUCLE_article_principal>
+</html>

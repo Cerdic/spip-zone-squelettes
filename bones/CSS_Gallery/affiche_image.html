@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<BOUCLE_image(DOCUMENTS) {id_document}>
+<head>
+<title>[(#NOM_SITE_SPIP)]</title>
+<link href="bones/gallery.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="wrap">
+  <div id="header">
+    <h1>[(#TITRE)]</h1>
+  </div>
+  <div id="main-content">
+    <div id="fullplate-photo">
+      <h2>
+        <INCLURE(inclusions/inc_exifs-photo.php3){id_document}>
+      </h2>
+      <BOUCLE_zoom(DOCUMENTS){id_document}{mode=document}>
+      <a href="">[(#EMBED_DOCUMENT)]</a> <br />
+      [(#DESCRIPTIF)]
+      </BOUCLE_zoom>
+    </div>
+  </div>
+  <ul id="fullplate-navigation">
+    <BOUCLE_principale(ARTICLES){id_document}>
+    <!-- le lien vers l'article précédent, par ordre chronologique} -->
+    <BOUCLE_precedent(ARTICLES){age_relatif>=0}{par date}{inverse}{1,1}> &lt;&lt; <a href='#URL_ARTICLE'>#TITRE</a>
+    </BOUCLE_precedent>
+    <strong>|</strong>    <!-- le lien vers l'article suivant, par ordre chronologique-->
+    <BOUCLE_suivant(ARTICLES){age_relatif<0}{par date}{0,1}>
+    <a href='#URL_ARTICLE'>#TITRE</a> &gt;&gt;
+    </BOUCLE_suivant>
+    <br />
+    <BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{fichier==(png|jpg|gif)$}{doublons}>
+    [<a href="affiche_image.php3?id_document=#ID_DOCUMENT">(#LOGO_DOCUMENT||reduire_image{60,60})</a>]
+    </BOUCLE_documents_portfolio>
+    <br />
+    </BOUCLE_principale>
+  </ul>
+  <div id="foot">
+    <p>
+      <INCLURE(inclusions/inc_pied_photo.php3)>
+    </p>
+  </div>
+</div>
+</body>
+</BOUCLE_image>
+</html>
