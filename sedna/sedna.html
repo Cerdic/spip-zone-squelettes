@@ -4,7 +4,11 @@
 		spip_setcookie('sedna_vu[(#ENV{site_lu})]', $vu, time()+365*24*3600);
 		$_COOKIE['sedna_vu[(#ENV{site_lu})]'] = $vu;
 	}
-
+	// Si on clique sur 'afficher/masquer' poser un cookie	
+	if ($des) {
+		setcookie("sedna_des", $des, time()+365*24*3600);
+		$_COOKIE["sedna_des"] = $des;	    
+	}
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">
 <head>
@@ -164,6 +168,19 @@
 </div>
 </form>
 
+<h1>Description</h1>
+<?php
+if ($des == "oui") {
+    echo'<form action="#SELF" method="post"><div>';
+	echo'<input type="hidden" name="des" value="non" />';
+	echo'<input type="submit" name="ok" value="Masquer" />';
+	echo'</div></form>';
+	}else {
+	echo'<form action="#SELF" method="post"><div>';
+	echo'<input type="hidden" name="des" value="oui" />';
+	echo'<input type="submit" name="ok" value="Afficher" />';
+	echo'</div></form>';
+}?>
 <h1>Sources</h1>
 <ul>
 	<li><a href="?" class="[(#ENV{id_syndic}|=={''}|?{'selected',''})]" >TOUT</a></li>
@@ -233,9 +250,12 @@
 	class="link<?php echo $class_link; ?>"
 	>[(#TITRE|supprimer_numero|antispam)]</a>
 	[ - (#LESAUTEURS|antispam)]
-	[<a class="desc"
-	href="#URL_ARTICLE">(#DESCRIPTIF|antispam|textebrut|texte_backend)</a>
-	]
+	<?php
+
+	if ($des == "oui") {?>
+		[<a class="desc" href="#URL_ARTICLE">(#DESCRIPTIF|antispam|textebrut)</a>]   
+	<?}
+	?>
 
 	</li>
 
