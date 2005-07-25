@@ -1,8 +1,8 @@
 <?php
 	// Si on clique sur 'vu' poser un cookie
 	if ($vu) {
-		spip_setcookie('sedna_vu[(#ENV{id_syndic})]', $vu, time()+365*24*3600);
-		$_COOKIE['sedna_vu[(#ENV{id_syndic})]'] = $vu;
+		spip_setcookie('sedna_vu[(#ENV{site_lu})]', $vu, time()+365*24*3600);
+		$_COOKIE['sedna_vu[(#ENV{site_lu})]'] = $vu;
 	}
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -128,13 +128,6 @@
 
 <div class="marge">
 
-<!-- Bouton "Tout marquer comme vu" si ID_SYNDIC, et hors mode recherche -->
-[(#ENV{recherche}|=={''}|?{' ',''})
-[<form action="#SELF" method="POST">
-<input type="hidden" name="vu" value="[(#DATE|affdate{'U'})]" />
-<input type="submit" name="(#ENV{id_syndic})ok" value="J'ai tout lu" />
-</form>]]
-
 [<form action="#SELF" method="POST">
 <input type="hidden" name="refresh" value="(#ENV{id_syndic})" />
 <input type="submit" name="ok" value="Rafra&icirc;chir" />
@@ -171,8 +164,8 @@
 	class="[(#ENV{id_syndic}|=={#ID_SYNDIC}|?{'selected',''})]">#NOM_SITE</a></li>
 
 <?php
-	$memo[#ID_SYNDIC] =
-		'<h2 class="site"><a href="?[age=(#ENV{age})&amp;]id_syndic=#ID_SYNDIC">[(#NOM_SITE|texte_script)]</a></h2>'."\n";
+	$memo_#ID_SYNDIC =
+		'<a href="?[age=(#ENV{age})&amp;]id_syndic=#ID_SYNDIC">[(#NOM_SITE|texte_script)]</a>';
 ?>
 </BOUCLE_sites>
 </ul>
@@ -180,42 +173,48 @@
 </div>
 
 <div id="milieu">
-<?php
-	$ul_ouvert=false;
-	$ladate = 0;	
-?>
 <B_syndic><div id="total_articles">#TOTAL_BOUCLE articles</div>
 <BOUCLE_syndic(SYNDIC_ARTICLES){contenu}{id_syndic?}{par date}{inverse}{age<#ENV{age,2}}{0,500}>
 
+<?php
+	$jailu = '[<div style="float: right;">
+	<!-- Bouton "Tout marquer comme vu" si ID_SYNDIC, et hors mode recherche -->
+	(#ENV{recherche}|=={''}|?{' ',''})
+	[<form action="#SELF" method="POST">
+	<input type="hidden" name="site_lu" value="(#ID_SYNDIC|unique)" />
+	<input type="hidden" name="vu" value="[(#DATE|affdate{'U'})]" />
+	<input type="submit" name="ok" value="lu" />
+	</form>]
+	</div>]';
+?>
 
-	[<?php
-	if ($ul_ouvert) {
-		echo '</ul>';
-		$ul_ouvert = false;
-	}
-?><h1 class="date">(#DATE|affdate_court|unique)</h1>]
+	[
+		[(#COMPTEUR_BOUCLE|>{1}|?{'</ul>',''})]
+		<h1 class="date">(#DATE|affdate_court|unique)</h1>
+		<h2 class="site"><?php
+			echo $memo_#ID_SYNDIC;
+			echo $jailu;
+			$ex_syndic=#ID_SYNDIC;
+		?></h2>
+		<ul>
+	]
+
 <?php
 	// indiquer un intertitre si on change de source ou de date
-	if (#ID_SYNDIC <> $ex_syndic OR $ladate != [(#DATE|affdate{'dmY'})]) {
-		if ($ul_ouvert) {
-			echo '</ul>';
-			$ul_ouvert = false;
-		}
-		echo $memo[#ID_SYNDIC];
+	if (#ID_SYNDIC <> $ex_syndic) {
+		echo "</ul>\n";
+		echo '<h2 class="site">';
+		echo $memo_#ID_SYNDIC;
+		echo $jailu;
+		echo "</h2>\n";
+		echo "<ul>\n";
 	}
 	$ex_syndic = #ID_SYNDIC;
-	$ladate = [(#DATE|affdate{'dmY'})];
 
 	// regler la classe des liens, en fonction de la date p/r date du cookie 'vu'
 	$class_link = (
-		[(#DATE|affdate{'U'})]>$_COOKIE['sedna_vu']
-		AND [(#DATE|affdate{'U'})]>$_COOKIE['sedna_vu#ID_SYNDIC']
+		[(#DATE|affdate{'U'})]>$_COOKIE['sedna_vu#ID_SYNDIC']
 		) ? 'link' : 'vu';
-		if (!$ul_ouvert) {
-			echo '<ul>';
-			$ul_ouvert = true;
-		}
-
 ?>
 
 	<li class='item'>

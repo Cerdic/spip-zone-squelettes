@@ -24,7 +24,7 @@
   }
   
   include('ecrire/inc_version.php3');
-  if ($id = intval($_POST['refresh'])) {
+  if ($id = intval($refresh)) {
     include_ecrire('inc_sites.php3');
     syndic_a_jour($id);
   }
