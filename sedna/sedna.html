@@ -41,8 +41,21 @@
 	a:visited.link {
 		color: grey;
 	}
-	a.vu {
+	a.linkvu {
 		color: grey;
+	}
+
+	a.desc {
+		margin-left: 50px;
+		border-left: dotted 1px grey;
+		font-size: 9px;
+		display: block;
+	}
+	a:visited.descriptif {
+		display: none;
+	}
+	a.descriptifvu {
+		display: none;
 	}
 
 	div.top {
@@ -203,9 +216,9 @@
 	// indiquer un intertitre si on change de source ou de date
 	if (#ID_SYNDIC <> $ex_syndic) {
 		echo "</ul>\n";
+		echo $jailu;
 		echo '<h2 class="site">';
 		echo $memo_#ID_SYNDIC;
-		echo $jailu;
 		echo "</h2>\n";
 		echo "<ul>\n";
 	}
@@ -213,20 +226,21 @@
 
 	// regler la classe des liens, en fonction de la date p/r date du cookie 'vu'
 	$class_link = (
-		[(#DATE|affdate{'U'})]>$_COOKIE['sedna_vu#ID_SYNDIC']
-		) ? 'link' : 'vu';
+		[(#DATE|affdate{'U'})]<$_COOKIE['sedna_vu#ID_SYNDIC']
+		) ? 'vu' : '';
 ?>
 
 	<li class='item'>
 
 	[<small>(#DATE|affdate{'H:i'})</small>] &nbsp;
 	<a href="#URL_ARTICLE"
-	title="[(#DESCRIPTIF|attribut_html|trim)
-
-][(#URL_ARTICLE|attribut_html)]"
-	class="<?php echo $class_link; ?>"
+	title="[(#URL_ARTICLE|attribut_html)]"
+	class="link<?php echo $class_link; ?>"
 	>[(#TITRE|supprimer_numero|antispam)]</a>
 	[ - (#LESAUTEURS|antispam)]
+	[<a class="desc"
+	href="#URL_ARTICLE">(#DESCRIPTIF|antispam|supprimer_tags)</a>
+	]
 
 	</li>
 
