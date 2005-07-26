@@ -70,3 +70,14 @@ window.onunload = function(e) {
 var cookie = readCookie("sedna_style");
 var title = cookie ? cookie : getPreferredStyleSheet();
 setActiveStyleSheet(title);
+
+/* une fonction pour modifier la couleur des intertitres du meme site */
+function highlight_site(id) {
+  var i, a;
+  for(i=0; (a = document.getElementsByTagName("h2")[i]); i++) {
+    a.style.background = 'transparent url(sedna.gif)';
+  }
+  for(i=0; (a = document.getElementsByName(id)[i]); i++) {
+    a.style.background = '#004080';
+  }
+}
