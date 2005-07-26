@@ -68,7 +68,7 @@ window.onunload = function(e) {
 
 
 var cookie = readCookie("sedna_style");
-var title = cookie ? cookie : getPreferredStyleSheet();
+var title = cookie ? cookie : 'masquer'; // getPreferredStyleSheet(); ne fonctionne pas sur sedna.html, comprends pas...
 setActiveStyleSheet(title);
 
 
