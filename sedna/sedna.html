@@ -4,11 +4,6 @@
 		spip_setcookie('sedna_vu[(#ENV{site_lu})]', $vu, time()+365*24*3600);
 		$_COOKIE['sedna_vu[(#ENV{site_lu})]'] = $vu;
 	}
-	// Si on clique sur 'afficher/masquer' poser un cookie	
-	if ($des) {
-		setcookie("sedna_des", $des, time()+365*24*3600);
-		$_COOKIE["sedna_des"] = $des;	    
-	}
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">
 <head>
@@ -24,7 +19,13 @@
 	<link rel="alternate" type="application/rss+xml" title="RSS [(#NOM_SITE_SPIP|attribut_html)]" href="#URL_SITE_SPIP/sedna.php?rss=1[&amp;recherche=(#ENV{recherche})]" />
 <//B_url_backend_ori>
 
+<!-- default style -->
 <link href="sedna.css" rel="stylesheet" type="text/css" />
+
+<!-- style switcher -->
+<script type="text/javascript"  src="styleswitcher.js"></script>
+<link rel="stylesheet" type="text/css" href="sedna_masquer.css" title="masquer" />
+<link rel="alternate stylesheet" type="text/css" href="sedna_afficher.css" title="afficher" />
 </head>
 
 <body>
@@ -56,9 +57,9 @@
 
 <h1>Articles r&eacute;cents</h1>
 <ul>
-	<li><a href="?[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
+	<li><a href="?[id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
 	class="[(#ENV{age}|=={''}|?{'selected',''})]">Aujourd'hui</a></li>
-	<li><a href="?age=2[id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
+	<li><a href="?age=2[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
 	class="[(#ENV{age}|=={2}|?{'selected',''})]">Deux jours</a></li>
 	<li><a href="?age=7[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
 	class="[(#ENV{age}|=={7}|?{'selected',''})]">Semaine</a></li>
@@ -78,20 +79,13 @@
 </form>
 
 <h1>Pr&eacute;f&eacute;rences</h1>
-<?php
-if ($_COOKIE['sedna_des'] == "oui") {
-	echo'<form action="#SELF" method="post"><div>';
-	echo'<input type="hidden" name="des" value="non" />';
-	echo'<input type="submit" name="ok" value="Masquer les r&eacute;sum&eacute;s" style="font-size:9px;" />';
-	echo'</div></form>';
-	}else {
-	echo'<form action="#SELF" method="post"><div>';
-	echo'<input type="hidden" name="des" value="oui" />';
-	echo'<input type="submit" name="ok" value="Afficher les r&eacute;sum&eacute;s" style="font-size:9px;" />';
-	echo'</div></form>';
-}?>
 
-[<form action="#SELF" method="POST">
+<ul>
+<li><a id="desc_masquer" href="#" onclick="setActiveStyleSheet('masquer'); return false;">Masquer les r&eacute;sum&eacute;s</a></li>
+<li><a id="desc_afficher" href="#" onclick="setActiveStyleSheet('afficher'); return false;">Afficher les r&eacute;sum&eacute;s</a></li>
+</ul>
+
+[<br /><form action="#SELF" method="POST">
 <input type="hidden" name="refresh" value="(#ENV{id_syndic})" />
 <input type="submit" name="ok" value="Mettre &agrave; jour ce site" style="font-size:9px;" />
 </form>]
@@ -177,13 +171,7 @@ if ($_COOKIE['sedna_des'] == "oui") {
 	class="link<?php echo $class_link; ?>"
 	>[(#TITRE|supprimer_numero|antispam2)]</a>
 	[ - (#LESAUTEURS|antispam2)]
-	<?php
-
-	if ($_COOKIE['sedna_des'] == "oui") {?>
-		[<a class="desc" href="#URL_ARTICLE">(#DESCRIPTIF|antispam2|textebrut)</a>]   
-	<?}
-	?>
-
+	[<a class="desc" href="#URL_ARTICLE">(#DESCRIPTIF|antispam2|textebrut)</a>]   
 	</li>
 
 </BOUCLE_syndic>
