@@ -12,6 +12,7 @@ function setActiveStyleSheet(title) {
       if(a.getAttribute("title") == title) a.disabled = false;
     }
   }
+  createCookie("sedna_style", title, 365);
 }
 
 function getActiveStyleSheet() {
