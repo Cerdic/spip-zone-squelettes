@@ -68,6 +68,13 @@
         [(#TEXTE|textebrut)]
       </p>
 	</BOUCLE_breves>
+	<BOUCLE_breves_derniere(BREVES) {par date} {inverse} {0,1}>	
+      <p>
+        <span class="header">#TITRE</span>
+        [(#TEXTE|textebrut)]
+      </p>
+	</BOUCLE_breves_derniere>	
+	<//B_breves>
       <p>
         <span class="header">Syndication</span></p>
         <div class="menu_gauche_d"><a href="backend.php3" class="menunoItem">Fil rss</a></div>	
@@ -107,9 +114,10 @@
 		?></p>
 		</B_syndic_dec1>      
 	  	<BOUCLE_syndic(SYNDIC_ARTICLES) {par date} {inverse}{debut_articles,25}>
-        <p><span class="header">[(#TITRE*)]</span>[(#DATE|nom_jour)] [(#DATE|affdate)]</p>
-		<p>[(#DESCRIPTIF|textebrut)] <a href="#URL_ARTICLE">(Lire la suite)</a><br />
-		<br />par: <a>#LESAUTEURS</a> en provenance du carnet: <a href="#URL_SITE">#NOM_SITE</a> :: <BOUCLE_rss(SITES){id_syndic}><a href="#URL_SYNDIC">RSS</a></BOUCLE_rss></p>
+        [<p><span class="header_date">[(#DATE|nom_jour)] le (#DATE|affdate|unique)</span></p>]
+		<p><span class="header">[(#DATE|affdate{'H:i'})] - [(#TITRE*)]</span>
+		[(#DESCRIPTIF|textebrut)] <a href="#URL_ARTICLE">(Lire la suite)</a><br />
+		par: <a>#LESAUTEURS</a> en provenance du carnet: <a href="#URL_SITE">#NOM_SITE</a> :: <BOUCLE_rss(SITES){id_syndic}><a href="#URL_SYNDIC">RSS</a></BOUCLE_rss></p>
 		</BOUCLE_syndic>
 		<BOUCLE_syndic_dec2(SYNDIC_ARTICLES){par date} {inverse}> </BOUCLE_syndic_dec2>
         <p class="centre"><?	
