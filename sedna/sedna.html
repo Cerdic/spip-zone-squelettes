@@ -1,10 +1,4 @@
-<?php
-	// Si on clique sur 'vu' poser un cookie
-	if ($vu) {
-		spip_setcookie('sedna_vu[(#ENV{site_lu})]', $vu, time()+365*24*3600);
-		$_COOKIE['sedna_vu[(#ENV{site_lu})]'] = $vu;
-	}
-?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">
 <head>
 <title>[Sedna RSS] [(#NOM_SITE_SPIP|supprimer_tags)]</title>
@@ -90,8 +84,8 @@
 <h1>Pr&eacute;f&eacute;rences</h1>
 
 <ul>
-<li><a id="desc_masquer" href="#" onclick="setActiveStyleSheet('masquer'); return false;">Masquer les r&eacute;sum&eacute;s</a></li>
-<li><a id="desc_afficher" href="#" onclick="setActiveStyleSheet('afficher'); return false;">Afficher les r&eacute;sum&eacute;s</a></li>
+<li><a id="desc_masquer" href="#" onmousedown="setActiveStyleSheet('masquer'); return false;">Masquer les r&eacute;sum&eacute;s</a></li>
+<li><a id="desc_afficher" href="#" onmousedown="setActiveStyleSheet('afficher'); return false;">Afficher les r&eacute;sum&eacute;s</a></li>
 </ul>
 
 [<br /><form action="#SELF" method="POST">
@@ -131,22 +125,9 @@
 <B_syndic><div id="total_articles">#TOTAL_BOUCLE articles</div>
 <BOUCLE_syndic(SYNDIC_ARTICLES){contenu}{id_syndic?}{par date}{inverse}{age<#ENV{age,1}}{0,500}>
 
-<?php
-	$jailu = '[<div style="float: right;">
-	<!-- Bouton "Tout marquer comme vu" si ID_SYNDIC, et hors mode recherche -->
-	(#ENV{recherche}|=={''}|?{' ',''})
-	[<form action="#SELF" method="post"><div>
-	<input type="hidden" name="site_lu" value="(#ID_SYNDIC|unique)" />
-	<input type="hidden" name="vu" value="[(#DATE|affdate{'U'})]" />
-	<input type="submit" name="ok" value="lu" style="font-size:9px;" />
-	</div></form>]
-	</div>]';
-?>
-
 	[
 		[(#COMPTEUR_BOUCLE|>{1}|?{'</ul>',''})]
 		<h1 class="date">(#DATE|affdate_court|unique)</h1>
-		<?php echo $jailu; ?>
 		<h2 class="site" name="site#ID_SYNDIC" onmousedown="highlight_site('site#ID_SYNDIC');" style="background: transparent url(sedna.gif);">
 		<?php
 			echo $memo_#ID_SYNDIC;
@@ -159,7 +140,6 @@
 	// indiquer un intertitre si on change de source ou de date
 	if (#ID_SYNDIC <> $ex_syndic) {
 		echo "</ul>\n";
-		echo $jailu;
 		echo '<h2 class="site" name="site#ID_SYNDIC" onmousedown="highlight_site(\'site#ID_SYNDIC\');" style="background: transparent url(sedna.gif);">';
 		echo $memo_#ID_SYNDIC;
 		echo "</h2>\n";
@@ -167,21 +147,20 @@
 	}
 	$ex_syndic = #ID_SYNDIC;
 
-	// regler la classe des liens, en fonction de la date p/r date du cookie 'vu'
-	$class_link = (
-		[(#DATE|affdate{'U'})]<=$_COOKIE['sedna_vu#ID_SYNDIC']
-		) ? 'vu' : '';
+	// regler la classe des liens, en fonction du cookie sedna_lu
+	$class_link = strstr(','.$_COOKIE['sedna_lu'].',',',#ID_SYNDIC_ARTICLE,') ? 'vu' : '';
 ?>
 
-	<li class='item'>
+	<li class='item' onmousedown="jai_lu( #ID_SYNDIC_ARTICLE);">
 
 	[<small>(#DATE|affdate{'H:i'})</small>] &nbsp;
 	<a href="#URL_ARTICLE"
 	title="[(#URL_ARTICLE|attribut_html)]"
 	class="link<?php echo $class_link; ?>"
+	id="news#ID_SYNDIC_ARTICLE"
 	>[(#TITRE|supprimer_numero|antispam2)]</a>
 	[ - (#LESAUTEURS|antispam2)]
-	[<a class="desc" href="#URL_ARTICLE">(#DESCRIPTIF|antispam2|textebrut)</a>]   
+	[<div class="desc">(#DESCRIPTIF|antispam2|textebrut)</div>]   
 	</li>
 
 </BOUCLE_syndic>

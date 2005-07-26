@@ -71,6 +71,11 @@ var cookie = readCookie("sedna_style");
 var title = cookie ? cookie : getPreferredStyleSheet();
 setActiveStyleSheet(title);
 
+
+/*
+ * Autres fonctions pour Sedna
+ */
+
 /* une fonction pour modifier la couleur des intertitres du meme site */
 function highlight_site(id) {
   var i, a;
@@ -81,3 +86,15 @@ function highlight_site(id) {
     a.style.background = '#004080';
   }
 }
+
+/* gerer le cookie des articles lus */
+/* attention on ne doit pas depasser 3ko */
+function jai_lu(id) {
+  var cookie = readCookie("sedna_lu");
+  cookie = cookie ? (cookie+','+id) : (''+id);
+  cookie = cookie.substring(-3000);
+  createCookie("sedna_lu", cookie, 365);
+  a = document.getElementById('news'+id);
+  a.className='linkvu'; /* ce lien change de style */
+}
+
