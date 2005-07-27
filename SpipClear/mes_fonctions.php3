@@ -188,11 +188,14 @@ function pasdecrochet($texte) {
 	return $texte;
 }
 
+/* cette fonction est bugguee, ne prend pas en compte la timezone */
+/*
 function w3cdate($texte) {
 	// sets date (from #DATE) to W3C format
 	$texte = substr($texte,0,10)."T".substr($texte,11,8)."Z";
 	return $texte;
-}	
+}
+*/
 
 function tagdate($texte) {
 	// sets date (from #DATE) to W3C URI tag format
