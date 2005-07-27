@@ -42,7 +42,6 @@
 	<link rel="alternate" type="application/rss+xml" title="RSS [(#NOM_SITE_SPIP|attribut_html)]" href="#URL_SITE_SPIP/sedna.php?rss=1[&amp;recherche=(#ENV{recherche})]" />
 <//B_url_backend_ori>
 
-<!-- default style -->
 <link href="sedna.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" src="sedna.js"></script>
@@ -51,7 +50,7 @@
 <body>
 
 <div class="top">
-<div id="sedna" style="float:left; width:70%;">
+<div class="toptitle">
 <a href="sedna.php">[Sedna RSS]</a>
 	&nbsp;
 <BOUCLE_titre(SITES){id_syndic}>#NOM_SITE
@@ -65,7 +64,7 @@
 
 </div>
 
-<div id="date" style="float:right; margin-top:6px;">
+<div class="topdate">
 	[(#ENV{recherche}|=={''}|?{&nbsp;,''})
 		[(#DATE|nom_jour)] [(#DATE|affdate_court)] [(#DATE|affdate{'H:i'})]
 	][<b>Recherche : &laquo; (#ENV{recherche}) &raquo;</b>]
@@ -74,7 +73,6 @@
 </div>
 
 <div class="marge">
-
 <h1>Articles r&eacute;cents</h1>
 <ul>
 	<li><a href="?[id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
@@ -218,6 +216,7 @@ title="T&eacute;l&eacute;charger la liste des articles lus"
 </div>
 
 <div class="bottom">
+<div class="bottomrss">
 <BOUCLE_url_backend_ori2(SITES){id_syndic}>
 	 <a
 href="#URL_SITE_SPIP/sedna.php?rss=1&amp;id_syndic=#ID_SYNDIC[&amp;recherche=(#ENV{recherche})]"
@@ -233,6 +232,7 @@ href="#URL_SITE_SPIP/sedna.php?rss=1[&amp;recherche=(#ENV{recherche})]"
 title="RSS [(#NOM_SITE_SPIP|attribut_html)][ ((#ENV{recherche}|attribut_html))]"
 	><span class="rss-button">RSS</span></a>
 <//B_url_backend_ori2>
+</div>
 
 <BOUCLE_refresh(SITES){id_syndic=#ENV{id_syndic}}>
 <?php if ($auteur_session['statut'] == '0minirezo') { ?>
@@ -240,7 +240,7 @@ title="RSS [(#NOM_SITE_SPIP|attribut_html)][ ((#ENV{recherche}|attribut_html))]"
 	[(#ENV{refresh}|=={#ENV{id_syndic}}|?{'',' '})
 	Derni&egrave;re syndication de ce site effectu&eacute;e
 	[(#DATE_SYNDIC|date_relative)]
-	- <a href="#SELF&amp;refresh=#ID_SYNDIC">Mettre &agrave; jour</a>]
+	- <a href="#SELF&amp;refresh=#ID_SYNDIC">Mettre &agrave; jour maintenant</a>]
 	- statut : [(#SYNDICATION)]
 <?php } ?>
 </BOUCLE_refresh>
