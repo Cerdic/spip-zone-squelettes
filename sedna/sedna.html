@@ -1,11 +1,40 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?php
+	// Descriptifs : affiches ou masques ?
+	if ($_COOKIE['sedna_style'] == 'afficher') {
+		$class_desc = "desc_afficher";
+		$sel2="selected"; $sel1="";
+	} else {
+		$class_desc = "desc_masquer";
+		$sel1="selected"; $sel2="";
+	}
+
+	// Si memo est active il faut comparer la date du cookie et ce qu'on a
+	// stocke dans le champ pgp de l'auteur
+	if ($var_memo AND $id = $auteur_session['id_auteur']) {
+		// Restaurer ce qu'on a stocke, ou stocker ce qui est nouveau
+		if ($var_memo=='synchroniser') {
+			list($champ) = spip_fetch_array(spip_query(
+				"SELECT pgp FROM spip_auteurs WHERE id_auteur=$id"
+			));
+			# note path='/' comme dans sedna.js
+			spip_setcookie('sedna_lu', $champ, time()+365*24*3600, '/');
+			$_COOKIE['sedna_lu'] = $champ;
+		} else if ($var_memo=='enregistrer') {
+			$champ=addslashes($_COOKIE['sedna_lu']);
+			spip_query("UPDATE spip_auteurs SET pgp='$champ'
+				WHERE id_auteur=$id");
+		}
+	}
+
+
+?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">
 <head>
 <title>[Sedna RSS] [(#NOM_SITE_SPIP|supprimer_tags)]</title>
 <meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
 
 
-<!-- Lien vers le backend -->
+<!-- Lien vers le backend (voir ausi plus bas affichage html) -->
 <BOUCLE_url_backend_ori(SITES){id_syndic}>
 	<link rel="alternate" type="application/rss+xml" title="RSS [(#NOM_SITE|attribut_html)], via [(#NOM_SITE_SPIP|attribut_html)]" href="#URL_SITE_SPIP/sedna.php?rss=1&amp;id_syndic=#ID_SYNDIC[&amp;recherche=(#ENV{recherche})]" />
 	<link rel="alternate" type="application/rss+xml" title="RSS original" href="#URL_SYNDIC" />
@@ -17,16 +46,6 @@
 <link href="sedna.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" src="sedna.js"></script>
-<?php
-	// Descriptifs : affiches ou masques ?
-	if ($_COOKIE['sedna_style'] == 'afficher') {
-		$class_desc = "desc_afficher";
-		$sel2="selected"; $sel1="";
-	} else {
-		$class_desc = "desc_masquer";
-		$sel1="selected"; $sel2="";
-	}
-?>
 </head>
 
 <body>
@@ -86,24 +105,35 @@
 <li><a class="<?php echo $sel2; ?>" id="desc_afficher" href="#" onmousedown="style_desc('afficher'); return false;">Afficher les r&eacute;sum&eacute;s</a></li>
 </ul>
 
-[<br /><form action="#SELF" method="POST">
-<input type="hidden" name="refresh" value="(#ENV{id_syndic})" />
-<input type="submit" name="ok" value="Mettre &agrave; jour ce site" style="font-size:9px;" />
-</form>]
-
+<?php
+	// Si on se connecte on peut memoriser son cookie
+	if ($auteur_session) { ?>
+<ul>
+<li>
+<a href="?var_memo=enregistrer"
+title="Enregistrer sur le site la liste des articles lus"
+>&gt;&gt; M&eacute;moriser<?php if ($var_memo=='enregistrer') echo ' *'; ?></a>
+<a href="?var_memo=synchroniser"
+title="T&eacute;l&eacute;charger la liste des articles lus"
+>&lt;&lt; Synchroniser<?php if ($var_memo=='synchroniser') echo ' *'; ?></a>
+</li>
+</ul>
+<?php } ?>
 
 
 <h1>Sources</h1>
 <ul>
 	<li><a href="?" class="[(#ENV{id_syndic}|=={''}|?{'selected',''})]"><b>Toutes</b></a></li>
-	<li><a></a></li>
-<BOUCLE_sites(SITES){par nom_site}{syndication=oui}>
+</ul>
+
+<ul>
+<BOUCLE_sites(SITES){par nom_site}{syndication!=non}>
 	<li><a href="?[age=(#ENV{age})&amp;]id_syndic=#ID_SYNDIC"
 	class="[(#ENV{id_syndic}|=={#ID_SYNDIC}|?{'selected',''})]">#NOM_SITE</a></li>
 
 <?php
 	$memo_#ID_SYNDIC =
-		'<a href="?[age=(#ENV{age})&amp;]id_syndic=#ID_SYNDIC">[(#NOM_SITE|texte_script)]</a> <a href="#URL_SYNDIC"><span class="rss-button">RSS</span></a>';
+		'<a href="?[age=(#ENV{age})&amp;]id_syndic=#ID_SYNDIC">[(#NOM_SITE|texte_script)]</a>';
 ?>
 </BOUCLE_sites>
 </ul>
@@ -134,31 +164,39 @@
 	]
 
 <?php
-	// indiquer un intertitre si on change de source ou de date
-	if (#ID_SYNDIC <> $ex_syndic) {
-		echo "</ul>\n";
-		echo '<h2 class="site" name="site#ID_SYNDIC" onmousedown="highlight_site(\'site#ID_SYNDIC\');" style="background: transparent url(sedna.gif);">';
-		echo $memo_#ID_SYNDIC;
-		echo "</h2>\n";
-		echo "<ul>\n";
-	}
-	$ex_syndic = #ID_SYNDIC;
+	// identifiant du lien = fonction de son url et de sa date
+	// ce qui permet de reperer les "updated" *et* les doublons
+	$id_lien = '[(#URL_ARTICLE|creer_identifiant{#DATE})]';
+	if (!$vu[$id_lien]++) {
 
-	// regler la classe des liens, en fonction du cookie sedna_lu
-	$class_link = strstr(','.$_COOKIE['sedna_lu'].',',',#ID_SYNDIC_ARTICLE,') ? 'vu' : '';
+		// regler la classe des liens, en fonction du cookie sedna_lu
+		$class_link = strstr(' '.$_COOKIE['sedna_lu'].' ',' '.$id_lien.' ') ? 'vu' : '';
+
+		// indiquer un intertitre si on change de source ou de date
+		if (#ID_SYNDIC <> $ex_syndic) {
+			echo "</ul>\n";
+			echo '<h2 class="site" name="site#ID_SYNDIC" onmousedown="highlight_site(\'site#ID_SYNDIC\');" style="background: transparent url(sedna.gif);">';
+			echo $memo_#ID_SYNDIC;
+			echo "</h2>\n";
+			echo "<ul>\n";
+		}
+		$ex_syndic = #ID_SYNDIC;
+
 ?>
 
-	<li class='item' onmousedown="jai_lu( #ID_SYNDIC_ARTICLE);">
+	<li class='item' onmousedown="jai_lu('<?php echo $id_lien; ?>');">
 
 	[<small>(#DATE|affdate{'H:i'})</small>] &nbsp;
 	<a href="#URL_ARTICLE"
 	title="[(#URL_ARTICLE|attribut_html)]"
 	class="link<?php echo $class_link; ?>"
-	id="news#ID_SYNDIC_ARTICLE"
+	id="news<?php echo $id_lien; ?>"
 	>[(#TITRE|supprimer_numero|antispam2)]</a>
 	[ - (#LESAUTEURS|antispam2)]
 	[<div class="desc"><div class="<?php echo $class_desc; ?>" name="desc">(#DESCRIPTIF|antispam2|textebrut)</div></div>]
 	</li>
+
+<?php } ?>
 
 </BOUCLE_syndic>
 </ul>
@@ -166,6 +204,36 @@
 
 	<h1 class="date">Pas d'article dans cette p&eacute;riode&nbsp;!</h1>
 <//B_syndic>
+</div>
+
+<div class="bottom">
+<BOUCLE_url_backend_ori2(SITES){id_syndic}>
+	 <a
+href="#URL_SITE_SPIP/sedna.php?rss=1&amp;id_syndic=#ID_SYNDIC[&amp;recherche=(#ENV{recherche})]"
+title="RSS [(#NOM_SITE|attribut_html)], via [(#NOM_SITE_SPIP|attribut_html)]"
+	><span class="rss-button">RSS</span></a>
+	 <a
+href="#URL_SYNDIC"
+title="RSS original [(#NOM_SITE|attribut_html)]"
+	><span class="rss-button">RSS</span></a>
+</BOUCLE_url_backend_ori2>
+	 <a
+href="#URL_SITE_SPIP/sedna.php?rss=1[&amp;recherche=(#ENV{recherche})]"
+title="RSS [(#NOM_SITE_SPIP|attribut_html)][ ((#ENV{recherche}|attribut_html))]"
+	><span class="rss-button">RSS</span></a>
+<//B_url_backend_ori2>
+
+<BOUCLE_refresh(SITES){id_syndic=#ENV{id_syndic}}>
+<?php if ($auteur_session['statut'] == '0minirezo') { ?>
+	[(#ENV{refresh}|=={#ENV{id_syndic}}|?{' ',''}) Syndication effectu&eacute;e]
+	[(#ENV{refresh}|=={#ENV{id_syndic}}|?{'',' '})
+	Derni&egrave;re syndication de ce site effectu&eacute;e
+	[(#DATE_SYNDIC|date_relative)]
+	- <a href="#SELF&amp;refresh=#ID_SYNDIC">Mettre &agrave; jour</a>]
+	- statut : [(#SYNDICATION)]
+<?php } ?>
+</BOUCLE_refresh>
+
 </div>
 
 #SPIP_CRON

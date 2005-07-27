@@ -1,4 +1,5 @@
 <?php
+  include('ecrire/inc_version.php3');
   if ($rss) {
     $fond = 'sedna-rss';
     $flag_preserver=true;
@@ -23,12 +24,16 @@
     $boucle->where[] = '$s';
   }
 
+  // identifiant d'un lien en fonction de son url et sa date, 4 chars
+  function creer_identifiant ($url,$date) {
+    return substr(md5("$date$url"),2,4);
+  }
+
   // unicode 24D0 = caractere de forme "(a)"
   function antispam2($texte) {
     return preg_replace(',(\w+)@(\w+\.\w+),','\\1&#x24d0;\\2', $texte);
   }
   
-  include('ecrire/inc_version.php3');
   if ($id = intval($refresh)) {
     include_ecrire('inc_sites.php3');
     syndic_a_jour($id);

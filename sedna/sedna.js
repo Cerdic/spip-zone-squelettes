@@ -45,9 +45,12 @@ function highlight_site(id) {
 /* attention on ne doit pas depasser 3ko */
 function jai_lu(id) {
   var cookie = readCookie("sedna_lu");
-  cookie = cookie ? (cookie+','+id) : (''+id);
-  cookie = cookie.substring(-3000);
-  createCookie("sedna_lu", cookie, 365);
+  var cookieplus = ' '+cookie+' ';
+  if (cookieplus.indexOf(' '+id+' ') == -1) {
+    cookie = cookie ? (cookie+' '+id) : (''+id);
+    cookie = cookie.substring(-3000);
+    createCookie("sedna_lu", cookie, 365);
+  }
   a = document.getElementById('news'+id);
   a.className='linkvu'; /* ce lien change de style */
 }
