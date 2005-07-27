@@ -25,8 +25,10 @@
   }
 
   // identifiant d'un lien en fonction de son url et sa date, 4 chars
+  // 3ko = 500 * (5 caracteres + espace)
+  // 16**5 possibilites = suffisant pour eviter risque de doublons sur 500
   function creer_identifiant ($url,$date) {
-    return substr(md5("$date$url"),2,4);
+    return substr(md5("$date$url"),0,5);
   }
 
   // unicode 24D0 = caractere de forme "(a)"
