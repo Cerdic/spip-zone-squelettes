@@ -181,14 +181,15 @@
 
 	// Calcul du $delais optimal (on est tjs a jour, mais quand meme en cache)
 	// valeur max = 15 minutes (900s)
+	$s = spip_query("SELECT UNIX_TIMESTAMP(NOW()),
+		UNIX_TIMESTAMP(MAX(maj)) FROM spip_syndic_articles
+		");
+	list($now,$max_maj) = spip_fetch_array($s);
 	if (!$synchro) {
-		$s = spip_query("SELECT UNIX_TIMESTAMP(NOW()),
-			UNIX_TIMESTAMP(MAX(maj)) FROM spip_syndic_articles
-			");
-		list($now,$max_maj) = spip_fetch_array($s);
 		$delais= min(900,max(0,$now-$max_maj));
 	} else
 		$delais=0;
+
 	$flag_preserver=true;
 	include('inc-public.php3');
 
