@@ -42,10 +42,10 @@ function readCookie(name) {
 function highlight_site(id) {
   var i, a;
   for(i=0; (a = document.getElementsByTagName("h2")[i]); i++) {
-    a.style.background = 'transparent url(sedna.gif)';
+    a.className = 'site';
   }
   for(i=0; (a = document.getElementsByName(id)[i]); i++) {
-    a.style.background = '#004080';
+    a.className = 'sitesel';
   }
 }
 

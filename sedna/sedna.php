@@ -55,9 +55,9 @@
 		// indiquer un intertitre si on change de source ou de date
 		if ($id_syndic != $ex_syndic) {
 			echo "</ul>\n";
-			echo '<h2 class="site" name="site$id_syndic"
-				onmousedown="highlight_site(\'site$id_syndic\');"
-			>';
+			echo "<h2 class='site' name='site$id_syndic'
+				onmousedown=\"highlight_site('site$id_syndic');\"
+			>";
 			echo $GLOBALS["memo_$id_syndic"];
 			echo "</h2>\n<ul>\n";
 			$ex_syndic = $id_syndic;
