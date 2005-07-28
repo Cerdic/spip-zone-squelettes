@@ -9,6 +9,15 @@
 		return _L('Erreur de syndication');
 	}
 
+	// tri maison : d'abord par jour de syndication,
+	// et a l'interieur du jour par date de maj
+	function critere_tri_sedna($idb, &$boucles, $crit) {
+		$boucle = &$boucles[$idb];
+		$boucle->order = array(
+			"'date_format(syndic_articles.date,\\'%Y-%m-%d\\') DESC', 'syndic_articles.maj DESC'"
+		);
+	}
+
 	// critere {contenu}
 	function critere_contenu($idb, &$boucles, $crit) {
 		$boucle = &$boucles[$idb];
@@ -178,6 +187,10 @@
 		include_ecrire('inc_sites.php3');
 		syndic_a_jour($id);
 	}
+
+	// calculer un faux #ENV{vieux} pour preciser limite de jour a 00:00
+	$_GET['vieux'] = date('Y-m-d',
+		time() - max(0,intval($_GET['age'])-1) * 24*3600);
 
 	// Calcul du $delais optimal (on est tjs a jour, mais quand meme en cache)
 	// valeur max = 15 minutes (900s)
