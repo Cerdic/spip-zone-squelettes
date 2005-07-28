@@ -13,16 +13,16 @@
 	function critere_contenu($idb, &$boucles, $crit) {
 		$boucle = &$boucles[$idb];
 
+		// un peu trop rapide, ca... le compilateur exige mieux
 		$boucle->hash = '
 		// RECHERCHE
-		if ($r = addslashes($GLOBALS["recherche"])) $s="(syndic_articles.descriptif LIKE \'%$r%\'
-			OR syndic_articles.titre LIKE \'%$r%\'
-			OR syndic_articles.url LIKE \'%$r%\'
-			OR syndic_articles.lesauteurs LIKE \'%$r%\')";
-			else $s=1;
+		if ($r = addslashes($GLOBALS["recherche"]))
+			$s = "(syndic_articles.descriptif LIKE \'%$r%\'
+				OR syndic_articles.titre LIKE \'%$r%\'
+				OR syndic_articles.url LIKE \'%$r%\'
+				OR syndic_articles.lesauteurs LIKE \'%$r%\')";
+			else $s = 1;
 		';
-
-		// un peu trop rapide, ca... le compilateur exige mieux
 		$boucle->where[] = '$s';
 	}
 
@@ -118,28 +118,59 @@
 		verifier_visiteur();
 	}
 
-	// Si memo est active il faut comparer la date du cookie et ce qu'on a
+	// Si synchro active il faut comparer la date du cookie et ce qu'on a
 	// stocke dans le champ spip_auteurs.sedna (a creer au besoin)
-	if ($var_memo AND $id = $auteur_session['id_auteur']) {
+	$synchpo = '';
+	if ($_COOKIE['sedna_synchro'] == 'oui'
+	AND $id = $auteur_session['id_auteur']) {
 		// Restaurer ce qu'on a stocke, ou stocker ce qui est nouveau
-		if ($var_memo=='synchroniser') {
-			$s = spip_query("SELECT sedna FROM spip_auteurs
-				WHERE id_auteur=$id");
-			$error = !$s;
-			list($champ) = spip_fetch_array($s);
-			# note path='/chemin/vers/sedna/' comme dans sedna.js
-			$cookiepath = preg_replace(',^[^/]*://[^/]*,', '',lire_meta('adresse_site'))
-				. preg_replace(',/$,','','/'.$dossier_squelettes);
-			spip_setcookie('sedna_lu', $champ, time()+365*24*3600, $cookiepath);
-			$_COOKIE['sedna_lu'] = $champ;
-		} else if ($var_memo=='enregistrer') {
-			$champ=addslashes($_COOKIE['sedna_lu']);
-			$error = !spip_query("UPDATE spip_auteurs SET sedna='$champ'
-				WHERE id_auteur=$id");
+		if (!$s = spip_query("SELECT sedna FROM spip_auteurs
+		WHERE id_auteur=$id")) {
+			// creer le champ sedna si ce n'est pas deja fait
+			spip_query("ALTER TABLE spip_auteurs
+			ADD sedna TEXT NOT NULL DEFAULT ''");
 		}
-		// creer le champ sedna si ce n'est pas deja fait
-		if ($error)
-			spip_query("ALTER TABLE spip_auteurs ADD sedna TEXT NOT NULL DEFAULT ''");
+
+		list($champ) = spip_fetch_array($s);
+		if (preg_match('@^([0-9]+),(.*)@', $champ, $regs)) {
+			$date_synchro = $regs[1];
+			$lus = $regs[2];
+		}
+
+		// Si le cookie n'est pas le meme que celui qui est stocke
+		if ($lus <> $_COOKIE['sedna_lu']) {
+
+			// path='/chemin/vers/sedna/' comme dans sedna.js
+			$cookiepath = preg_replace(',^[^/]*://[^/]*,',
+				'',lire_meta('adresse_site'))
+				. preg_replace(',/$,','','/'.$dossier_squelettes);
+
+			// Exporter la valeur vers le brouteur si plus recente
+			if ($date_synchro > $_COOKIE['sedna_synchro_date']) {
+				spip_setcookie('sedna_lu', $lus,
+					time()+365*24*3600, $cookiepath);
+				$_COOKIE['sedna_lu'] = $lus;
+
+				// Signaler que la synchro a eu lieu
+				$synchro = ' &lt;&lt;&lt;';
+			}
+			// sinon prendre la valeur qui est dans le brouteur
+			else if ($date_synchro == $_COOKIE['sedna_synchro_date']) {
+				$date_synchro = date('U');
+				spip_query("UPDATE spip_auteurs SET sedna='$date_synchro,"
+					.addslashes($_COOKIE['sedna_lu'])."'
+					WHERE id_auteur=$id");
+
+				// Signaler que la synchro a eu lieu
+				$synchro = ' *';
+			} else {
+				$synchro = ' ??'; // bug de cookie
+			}
+
+			// Mettre a jour la date de synchro sur le brouteur
+			spip_setcookie('sedna_synchro_date', $date_synchro,
+				time()+365*24*3600, $cookiepath);
+		}
 	}
 
 	// forcer le refresh ?
@@ -150,11 +181,14 @@
 
 	// Calcul du $delais optimal (on est tjs a jour, mais quand meme en cache)
 	// valeur max = 15 minutes (900s)
-	$s = spip_query("SELECT UNIX_TIMESTAMP(NOW()),
-		UNIX_TIMESTAMP(MAX(maj)) FROM spip_syndic_articles
-		");
-	list($now,$max_maj) = spip_fetch_array($s);
-	$delais= min(900,max(0,$now-$max_maj));
+	if (!$synchro) {
+		$s = spip_query("SELECT UNIX_TIMESTAMP(NOW()),
+			UNIX_TIMESTAMP(MAX(maj)) FROM spip_syndic_articles
+			");
+		list($now,$max_maj) = spip_fetch_array($s);
+		$delais= min(900,max(0,$now-$max_maj));
+	} else
+		$delais=0;
 	$flag_preserver=true;
 	include('inc-public.php3');
 

@@ -53,12 +53,9 @@ function highlight_site(id) {
 /* attention on ne doit pas depasser 3ko */
 function jai_lu(id) {
   var cookie = readCookie("sedna_lu");
-  var cookieplus = ' '+cookie+' ';
-  if (cookieplus.indexOf(' '+id+' ') == -1) {
-    cookie = cookie ? (cookie+' '+id) : (''+id);
-    cookie = cookie.substring(-3000);
-    createCookie("sedna_lu", cookie, 365);
-  }
+  cookie = cookie ? (id + ' ' + cookie) : id;
+  cookie = cookie.substring(0,3000);
+  createCookie("sedna_lu", cookie, 365);
   a = document.getElementById('news'+id);
   a.className='linkvu'; /* ce lien change de style */
 }
@@ -78,3 +75,24 @@ function style_desc(aff) {
   }  
 }
 
+/* passer en mode synchro */
+function sedna_synchro(on) {
+	if (on == 'oui') {
+		createCookie('sedna_synchro', 'oui', 365);
+	} else if (on == 'non') {
+		createCookie('sedna_synchro', '', 0);
+	}
+
+	if (on == 'oui') {
+		document.getElementById('synchrooui').className='selected';
+		document.getElementById('synchronon').className='';
+	} else {
+		document.getElementById('synchrooui').className='';
+		document.getElementById('synchronon').className='selected';
+	}
+}
+
+/* appelee par le body onload */
+function sedna_init() {
+	sedna_synchro(readCookie('sedna_synchro'));
+}

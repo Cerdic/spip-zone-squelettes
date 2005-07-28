@@ -15,11 +15,11 @@
 <//B_url_backend_ori>
 
 <link href="sedna/sedna.css" rel="stylesheet" type="text/css" />
-
 <script type="text/javascript" src="sedna/sedna.js"></script>
+
 </head>
 
-<body>
+<body onload="sedna_init();">
 
 <div class="top">
 <div class="toptitle">
@@ -84,14 +84,20 @@
 	if ($auteur_session) { ?>
 <ul>
 <li>
-<a href="sedna/?var_memo=enregistrer"
-title="Enregistrer sur le site la liste des articles lus"
->&gt;&gt; M&eacute;moriser<?php if ($var_memo=='enregistrer') echo ' *'; ?></a>
-<a href="sedna/?var_memo=synchroniser"
-title="T&eacute;l&eacute;charger la liste des articles lus"
->&lt;&lt; Synchroniser<?php if ($var_memo=='synchroniser') echo ' *'; ?></a>
+<a id="synchrooui"
+	<?php if ($_COOKIE['sedna_synchro'] == 'oui') echo " class='selected'"; ?>
+	onclick="sedna_synchro('oui');"
+	title="Enregistrer sur le site la liste des articles lus"
+>Synchroniser<?php echo $synchro; ?></a>
+</li>
+<li>
+<a id="synchronon"
+	<?php if ($_COOKIE['sedna_synchro'] != 'oui') echo " class='selected'"; ?>
+	onclick="sedna_synchro('non');"
+>Ne pas synchroniser</a>
 </li>
 </ul>
+
 <ul>
 <li>
 <a href="spip_cookie.php3?logout=<?php echo $auteur_session['login']; ?>&url=sedna/[(#SELF|urlencode)]">D&eacute;connexion</a>
@@ -166,7 +172,7 @@ title="T&eacute;l&eacute;charger la liste des articles lus"
 	<h1 class="date">Pas d'article dans cette p&eacute;riode&nbsp;!</h1>
 	<div class="milieu">
 		<div class="centre_image">
-		<img src="sedna-big.png" alt="" width="196" height="196" />
+		<img src="sedna/sedna-big.png" alt="" width="196" height="196" />
 		</div>
 	</div>
 
