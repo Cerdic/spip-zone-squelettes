@@ -4,8 +4,6 @@
 <title>[Sedna RSS] [(#NOM_SITE_SPIP|supprimer_tags)]</title>
 <meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
 
-<base href="#URL_SITE_SPIP/" />
-
 <!-- Lien vers le backend (voir ausi plus bas affichage html) -->
 <BOUCLE_url_backend_ori(SITES){id_syndic}>
 	<link rel="alternate" type="application/rss+xml" title="RSS [(#NOM_SITE|attribut_html)], via [(#NOM_SITE_SPIP|attribut_html)]" href="#URL_SITE_SPIP/sedna/?rss=1&amp;id_syndic=#ID_SYNDIC[&amp;recherche=(#ENV{recherche})]" />
@@ -14,8 +12,8 @@
 	<link rel="alternate" type="application/rss+xml" title="RSS [(#NOM_SITE_SPIP|attribut_html)]" href="#URL_SITE_SPIP/sedna/?rss=1[&amp;recherche=(#ENV{recherche})]" />
 <//B_url_backend_ori>
 
-<link href="sedna/sedna.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="sedna/sedna.js"></script>
+<link href="sedna.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="sedna.js"></script>
 
 </head>
 
@@ -23,7 +21,7 @@
 
 <div class="top">
 <div class="toptitle">
-<a href="sedna/">[Sedna RSS]</a>
+<a href="./">[Sedna RSS]</a>
 	&nbsp;
 <BOUCLE_titre(SITES){id_syndic}>#NOM_SITE
 	&nbsp;
@@ -51,19 +49,19 @@
 <div class="marge">
 <h1>Articles r&eacute;cents</h1>
 <ul>
-	<li><a href="sedna/?[id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
+	<li><a href="?[id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
 	class="[(#ENV{age}|=={''}|?{'selected',''})]">Aujourd'hui</a></li>
-	<li><a href="sedna/?age=2[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
+	<li><a href="?age=2[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
 	class="[(#ENV{age}|=={2}|?{'selected',''})]">Deux jours</a></li>
-	<li><a href="sedna/?age=7[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
+	<li><a href="?age=7[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
 	class="[(#ENV{age}|=={7}|?{'selected',''})]">Semaine</a></li>
-	<li><a href="sedna/?age=31[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
+	<li><a href="?age=31[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
 	class="[(#ENV{age}|=={31}|?{'selected',''})]">Mois</a></li>
-	<li><a href="sedna/?age=365[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
+	<li><a href="?age=365[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
 	class="[(#ENV{age}|=={365}|?{'selected',''})]">Ann&eacute;e</a></li>
 </ul>
 <h1>Recherche</h1>
-<form action="sedna/#SELF" method="get">
+<form action="#SELF" method="get">
 <div>
 	<input type="text" name="recherche" value="[(#ENV{recherche})]" size="10" />
 	[<input type="hidden" name="age" value="(#ENV{age})" />]
@@ -100,30 +98,30 @@
 
 <ul>
 <li>
-<a href="spip_cookie.php3?logout=<?php echo $auteur_session['login']; ?>&url=sedna/[(#SELF|urlencode)]">D&eacute;connexion</a>
+<a href="spip_cookie.php3?logout=<?php echo $auteur_session['login']; ?>&url=[(#SELF|urlencode)]">D&eacute;connexion</a>
 </li>
 </ul>
 <?php } else { ?>
 <ul>
 <li>
-<a href="spip_login.php3?url=sedna/[(#SELF|urlencode)]">Connexion</a>
+<a href="spip_login.php3?url=[(#SELF|urlencode)]">Connexion</a>
 </li>
 </ul>
 <?php } ?>
 
 <h1>Sources</h1>
 <ul>
-	<li><a href="sedna/" class="[(#ENV{id_syndic}|=={''}|?{'selected',''})]"><b>Toutes</b></a></li>
+	<li><a href="./" class="[(#ENV{id_syndic}|=={''}|?{'selected',''})]"><b>Toutes</b></a></li>
 </ul>
 
 <ul>
 <BOUCLE_sites(SITES){par nom_site}{syndication!=non}>
-	<li><a href="sedna/?[age=(#ENV{age})&amp;]id_syndic=#ID_SYNDIC"
+	<li><a href="?[age=(#ENV{age})&amp;]id_syndic=#ID_SYNDIC"
 	class="[(#ENV{id_syndic}|=={#ID_SYNDIC}|?{'selected',''})]">#NOM_SITE</a></li>
 
 <?php
 	$memo_#ID_SYNDIC =
-		'<a href="sedna/?[age=(#ENV{age})&amp;]id_syndic=#ID_SYNDIC">[(#NOM_SITE|texte_script)]</a>';
+		'<a href="?[age=(#ENV{age})&amp;]id_syndic=#ID_SYNDIC">[(#NOM_SITE|texte_script)]</a>';
 ?>
 </BOUCLE_sites>
 </ul>
@@ -131,7 +129,7 @@
 
 <h1>Sedna</h1>
 <ul>
-<li><a href="http://sedna.rezo.net"><img src="sedna/sedna-badge.png" alt="Sedna RSS" width="100" height="34" border="0" /></a>
+<li><a href="http://sedna.rezo.net"><img src="sedna-badge.png" alt="Sedna RSS" width="100" height="34" border="0" /></a>
 <li><a href="http://www.spip.net/">SPIP</a></li>
 <li><a href="http://zone.spip.org/trac/spip-zone/">SPIP-Zone</a></li>
 <li><a href="http://www.gnu.org/copyleft/gpl.html">copyleft - GNU/GPL</a></li>
@@ -176,7 +174,7 @@
 	<h1 class="date">Pas d'article dans cette p&eacute;riode&nbsp;!</h1>
 	<div class="milieu">
 		<div class="centre_image">
-		<img src="sedna/sedna-big.png" alt="" width="196" height="196" />
+		<img src="sedna-big.png" alt="" width="196" height="196" />
 		</div>
 	</div>
 
@@ -211,7 +209,7 @@ title="RSS [(#NOM_SITE_SPIP|attribut_html)][ ((#ENV{recherche}|attribut_html))]"
 	[(#ENV{refresh}|=={#ENV{id_syndic}}|?{'',' '})
 	Derni&egrave;re syndication de ce site effectu&eacute;e
 	[(#DATE_SYNDIC|date_relative)]
-	- <a href="sedna/#SELF&amp;refresh=#ID_SYNDIC">Mettre &agrave; jour maintenant</a>]
+	- <a href="#SELF&amp;refresh=#ID_SYNDIC">Mettre &agrave; jour maintenant</a>]
 	[- (#SYNDICATION|syndication_en_erreur)]
 
 <?php } ?>
