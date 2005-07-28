@@ -38,7 +38,11 @@
 
 <div class="topdate">
 	[(#ENV{recherche}|=={''}|?{&nbsp;,''})
-		[(#DATE|nom_jour)] [(#DATE|affdate_court)] [(#DATE|affdate{'H:i'})]
+	<?php
+		// date de maintenant, pas du cache
+		$date = date('Y-m-d H-i-s');
+		echo nom_jour($date),' ',affdate_court($date), ' ',date('H:i');
+	?>
 	][<b>Recherche : &laquo; (#ENV{recherche}) &raquo;</b>]
 </div>
 
@@ -71,8 +75,8 @@
 <h1>Pr&eacute;f&eacute;rences</h1>
 
 <ul>
-<li><a class="<?php echo $sel1; ?>" id="desc_masquer" onmousedown="style_desc('masquer'); return false;">Masquer les r&eacute;sum&eacute;s</a></li>
 <li><a class="<?php echo $sel2; ?>" id="desc_afficher" onmousedown="style_desc('afficher'); return false;">Afficher les r&eacute;sum&eacute;s</a></li>
+<li><a class="<?php echo $sel1; ?>" id="desc_masquer" onmousedown="style_desc('masquer'); return false;">Masquer les r&eacute;sum&eacute;s</a></li>
 </ul>
 
 <?php
@@ -188,22 +192,23 @@ title="RSS [(#NOM_SITE_SPIP|attribut_html)][ ((#ENV{recherche}|attribut_html))]"
 </div>
 
 <BOUCLE_refresh(SITES){id_syndic=#ENV{id_syndic}}>
-<?php if ($auteur_session['statut'] == '0minirezo') { ?>
+	<?php
+		if ($auteur_session['statut'] == '0minirezo') { 
+			$max_maj = '';
+	?>
 	[(#ENV{refresh}|=={#ENV{id_syndic}}|?{' ',''}) Syndication effectu&eacute;e]
 	[(#ENV{refresh}|=={#ENV{id_syndic}}|?{'',' '})
 	Derni&egrave;re syndication de ce site effectu&eacute;e
 	[(#DATE_SYNDIC|date_relative)]
 	- <a href="sedna/#SELF&amp;refresh=#ID_SYNDIC">Mettre &agrave; jour maintenant</a>]
-	- statut : [(#SYNDICATION)]
-
-[(#REM)
-Penser a internationaliser #SYNDICATION quand on traduira "oui" en "ok",
-"sus" en "suspendue", et "off" en "en panne"...
-]
+	[- (#SYNDICATION|syndication_en_erreur)]
 
 <?php } ?>
 </BOUCLE_refresh>
-
+<?php
+	if ($max_maj) echo "Derni&egrave;re nouveaut&eacute; vue "
+		.date_relative(date('H:i', $max_maj));
+?>
 </div>
 
 #SPIP_CRON

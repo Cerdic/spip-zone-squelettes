@@ -1,9 +1,17 @@
-/*
-	Excerpted from (c) Paul Sowden
-	http://www.alistapart.com/articles/alternate/
-	http://www.alistapart.com/d/alternate/styleswitcher.js
-*/
+/* Fixer le path du cookie sur le repertoire local (et non pas /) */
+function recuperer_cookiepath() {
+  var cookiepath = location.href;
+  /* remonter au repertoire */
+  cookiepath = cookiepath.substring(0,cookiepath.lastIndexOf('/'));
+  /* supprimer la methode http:// */
+  cookiepath = cookiepath.substring(cookiepath.indexOf('://')+3);
+  /* supprimer hostname */
+  cookiepath = cookiepath.substring(cookiepath.indexOf('/')+1);
+  /* alert(cookiepath); */
+  return cookiepath;
+}
 
+/* create- and readCookie are adapted from (c) Paul Sowden http://www.alistapart.com/articles/alternate/ */
 function createCookie(name,value,days) {
   if (days) {
     var date = new Date();
@@ -11,7 +19,7 @@ function createCookie(name,value,days) {
     var expires = "; expires="+date.toGMTString();
   }
   else expires = "";
-  document.cookie = name+"="+value+expires+"; path=/";
+  document.cookie = name+"="+value+expires+"; path=/"+recuperer_cookiepath();
 }
 
 function readCookie(name) {
@@ -69,3 +77,4 @@ function style_desc(aff) {
     document.getElementById('desc_afficher').className='selected';
   }  
 }
+

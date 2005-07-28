@@ -3,6 +3,12 @@
 	include('ecrire/inc_version.php3');
 	$dossier_squelettes = 'sedna/';
 
+	// filtre |syndication_en_erreur
+	function syndication_en_erreur($statut_syndication) {
+		if ($statut_syndication == 'oui') return '';
+		return _L('Erreur de syndication');
+	}
+
 	// critere {contenu}
 	function critere_contenu($idb, &$boucles, $crit) {
 		$boucle = &$boucles[$idb];
@@ -22,6 +28,7 @@
 
 	// l'identifiant du lien est fonction de son url et de sa date
 	// ce qui permet de reperer les "updated" *et* les doublons
+	include_ecrire('inc_filtres.php3');
 	function afficher_lien(
 		$id_lien,
 		$id_syndic,
@@ -31,13 +38,19 @@
 		$lesauteurs,
 		$desc
 		) {
-		static $vu;
+		static $vu, $lus;
 		global $ex_syndic, $class_desc;
-		
+
+		// initialiser la liste des articles lus
+		if (!is_array($lus)) {
+			foreach (explode(' ', $_COOKIE['sedna_lu']) as $id)
+				$lus[$id]=true;
+		}
+
 		if ($vu[$id_lien]++) return;
 
 		// regler la classe des liens, en fonction du cookie sedna_lu
-		$class_link = strstr(__articles_lus,' '.$id_lien.' ') ? 'vu' : '';
+		$class_link = $lus[$id_lien] ? 'vu' : '';
 
 		// indiquer un intertitre si on change de source ou de date
 		if ($id_syndic != $ex_syndic) {
@@ -82,7 +95,6 @@
 	// Choix du $fond (rss ou sedna)
 	if ($rss) {
 		$fond = 'sedna-rss';
-		$flag_preserver=true;
 	}
 	else {
 		$fond='sedna';
@@ -90,12 +102,20 @@
 
 
 	// Descriptifs : affiches ou masques ?
-	if ($_COOKIE['sedna_style'] == 'afficher') {
-		$class_desc = "desc_afficher";
-		$sel2="selected"; $sel1="";
-	} else {
+	// l'accessibilite sans javascript => affiches par defaut
+	if ($_COOKIE['sedna_style'] == 'masquer') {
 		$class_desc = "desc_masquer";
 		$sel1="selected"; $sel2="";
+	} else {
+		$class_desc = "desc_afficher";
+		$sel2="selected"; $sel1="";
+	}
+
+	// authentification du visiteur
+	if ($GLOBALS['_COOKIE']['spip_session'] OR
+	($GLOBALS['_SERVER']['PHP_AUTH_USER']  AND !$ignore_auth_http)) {
+		include_ecrire ("inc_session.php3");
+		verifier_visiteur();
 	}
 
 	// Si memo est active il faut comparer la date du cookie et ce qu'on a
@@ -103,11 +123,12 @@
 	if ($var_memo AND $id = $auteur_session['id_auteur']) {
 		// Restaurer ce qu'on a stocke, ou stocker ce qui est nouveau
 		if ($var_memo=='synchroniser') {
-			list($champ) = spip_fetch_array(spip_query(
-				"SELECT pgp FROM spip_auteurs WHERE id_auteur=$id"
-			));
-			# note path='/' comme dans sedna.js
-			spip_setcookie('sedna_lu', $champ, time()+365*24*3600, '/');
+			$s = spip_query("SELECT pgp FROM spip_auteurs WHERE id_auteur=$id");
+			list($champ) = spip_fetch_array($s);
+			# note path='/chemin/vers/sedna/' comme dans sedna.js
+			$cookiepath = preg_replace(',^[^/]*://[^/]*,', '',lire_meta('adresse_site'))
+				. preg_replace(',/$,','','/'.$dossier_squelettes);
+			spip_setcookie('sedna_lu', $champ, time()+365*24*3600, $cookiepath);
 			$_COOKIE['sedna_lu'] = $champ;
 		} else if ($var_memo=='enregistrer') {
 			$champ=addslashes($_COOKIE['sedna_lu']);
@@ -116,16 +137,20 @@
 		}
 	}
 
-	define('__articles_lus', ' '.$_COOKIE['sedna_lu'].' ');
-
-
+	// forcer le refresh ?
 	if ($id = intval($refresh)) {
 		include_ecrire('inc_sites.php3');
 		syndic_a_jour($id);
 	}
 
-
-	$delais=0;
+	// Calcul du $delais optimal (on est tjs a jour, mais quand meme en cache)
+	// valeur max = 15 minutes (900s)
+	$s = spip_query("SELECT UNIX_TIMESTAMP(NOW()),
+		UNIX_TIMESTAMP(MAX(maj)) FROM spip_syndic_articles
+		");
+	list($now,$max_maj) = spip_fetch_array($s);
+	$delais= min(900,max(0,$now-$max_maj));
+	$flag_preserver=true;
 	include('inc-public.php3');
 
 ?>
