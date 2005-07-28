@@ -56,7 +56,7 @@ function jai_lu(id) {
   cookie = cookie ? (id + ' ' + cookie) : id;
   cookie = cookie.substring(0,3000);
   createCookie("sedna_lu", cookie, 365);
-  a = document.getElementById('news'+id);
+  var a = document.getElementById('news'+id);
   a.className='linkvu'; /* ce lien change de style */
 }
 
@@ -92,7 +92,19 @@ function sedna_synchro(on) {
 	}
 }
 
-/* appelee par le body onload */
+/*
+	appelee par le body onload pour remettre le bon etat sur les
+	liens qui ont change de couleur mais qui se trouvent sur des
+	pages valables dans le cache du navigateur
+*/
 function sedna_init() {
+	var i,a;
 	sedna_synchro(readCookie('sedna_synchro'));
+	var cookie = ' '+readCookie("sedna_lu");
+	while (i=cookie.substr(cookie.indexOf(' ')+1,5)) {
+		cookie = cookie.substr(6);
+		if (a = document.getElementById('news'+i)) {
+			a.className = 'linkvu';
+		}
+	}
 }
