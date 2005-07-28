@@ -119,11 +119,13 @@
 	}
 
 	// Si memo est active il faut comparer la date du cookie et ce qu'on a
-	// stocke dans le champ pgp de l'auteur
+	// stocke dans le champ spip_auteurs.sedna (a creer au besoin)
 	if ($var_memo AND $id = $auteur_session['id_auteur']) {
 		// Restaurer ce qu'on a stocke, ou stocker ce qui est nouveau
 		if ($var_memo=='synchroniser') {
-			$s = spip_query("SELECT pgp FROM spip_auteurs WHERE id_auteur=$id");
+			$s = spip_query("SELECT sedna FROM spip_auteurs
+				WHERE id_auteur=$id");
+			$error = !$s;
 			list($champ) = spip_fetch_array($s);
 			# note path='/chemin/vers/sedna/' comme dans sedna.js
 			$cookiepath = preg_replace(',^[^/]*://[^/]*,', '',lire_meta('adresse_site'))
@@ -132,9 +134,12 @@
 			$_COOKIE['sedna_lu'] = $champ;
 		} else if ($var_memo=='enregistrer') {
 			$champ=addslashes($_COOKIE['sedna_lu']);
-			spip_query("UPDATE spip_auteurs SET pgp='$champ'
+			$error = !spip_query("UPDATE spip_auteurs SET sedna='$champ'
 				WHERE id_auteur=$id");
 		}
+		// creer le champ sedna si ce n'est pas deja fait
+		if ($error)
+			spip_query("ALTER TABLE spip_auteurs ADD sedna TEXT NOT NULL DEFAULT ''");
 	}
 
 	// forcer le refresh ?
