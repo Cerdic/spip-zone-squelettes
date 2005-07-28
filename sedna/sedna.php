@@ -188,10 +188,6 @@
 		syndic_a_jour($id);
 	}
 
-	// calculer un faux #ENV{vieux} pour preciser limite de jour a 00:00
-	$_GET['vieux'] = date('Y-m-d',
-		time() - max(0,intval($_GET['age'])-1) * 24*3600);
-
 	// Calcul du $delais optimal (on est tjs a jour, mais quand meme en cache)
 	// valeur max = 15 minutes (900s)
 	$s = spip_query("SELECT UNIX_TIMESTAMP(NOW()),
