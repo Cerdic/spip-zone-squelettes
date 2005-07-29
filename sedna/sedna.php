@@ -51,10 +51,8 @@
 		global $ex_syndic, $class_desc;
 
 		// initialiser la liste des articles lus
-		if (!is_array($lus)) {
-			foreach (explode(' ', $_COOKIE['sedna_lu']) as $id)
-				$lus[$id]=true;
-		}
+		if (!is_array($lus))
+			$lus = array_flip(explode(' ', $_COOKIE['sedna_lu']));
 
 		if ($vu[$id_lien]++) return;
 
@@ -120,6 +118,7 @@
 		$sel2="selected"; $sel1="";
 	}
 
+
 	// authentification du visiteur
 	if ($GLOBALS['_COOKIE']['spip_session'] OR
 	($GLOBALS['_SERVER']['PHP_AUTH_USER']  AND !$ignore_auth_http)) {
@@ -127,58 +126,53 @@
 		verifier_visiteur();
 	}
 
-	// Si synchro active il faut comparer la date du cookie et ce qu'on a
-	// stocke dans le champ spip_auteurs.sedna (a creer au besoin)
-	$synchpo = '';
+	// Si synchro active il faut comparer le contenu du cookie et ce
+	// qu'on a stocke dans le champ spip_auteurs.sedna (a creer au besoin)
+	$synchro = '';
 	if ($_COOKIE['sedna_synchro'] == 'oui'
 	AND $id = $auteur_session['id_auteur']) {
-		// Restaurer ce qu'on a stocke, ou stocker ce qui est nouveau
+		// Recuperer ce qu'on a stocke
 		if (!$s = spip_query("SELECT sedna FROM spip_auteurs
 		WHERE id_auteur=$id")) {
 			// creer le champ sedna si ce n'est pas deja fait
 			spip_query("ALTER TABLE spip_auteurs
 			ADD sedna TEXT NOT NULL DEFAULT ''");
 		}
-
 		list($champ) = spip_fetch_array($s);
-		if (preg_match('@^([0-9]+),(.*)@', $champ, $regs)) {
-			$date_synchro = $regs[1];
-			$lus = $regs[2];
-		}
 
-		// Si le cookie n'est pas le meme que celui qui est stocke
-		if ($lus <> $_COOKIE['sedna_lu']) {
+		// mixer avec le cookie en conservant un ordre chronologique
+		if ($_COOKIE['sedna_lu'] <> $champ) {
+			$lus_cookie = explode(' ',$_COOKIE['sedna_lu']);
+			$lus_champ = explode(' ',$champ);
+			$nouveaux = array_keys(array_flip(array_merge(
+				array_diff($lus_cookie, $lus_champ),
+				array_diff($lus_champ, $lus_cookie)
+			)));
+			$lus = array_merge(
+				$nouveaux,
+				array_intersect($lus_champ,$lus_cookie)
+			);
+			$lus = substr(join(' ', $lus),0,3000); # 3ko maximum
 
-			// path='/chemin/vers/sedna/' comme dans sedna.js
-			$cookiepath = preg_replace(',^[^/]*://[^/]*,',
-				'',lire_meta('adresse_site'))
-				. preg_replace(',/$,','','/'.$dossier_squelettes);
+			// Mettre la base a jour
+			spip_query("UPDATE spip_auteurs SET sedna='"
+				.addslashes($lus)."'
+				WHERE id_auteur=$id");
+			$synchro = ' *';
 
-			// Exporter la valeur vers le brouteur si plus recente
-			if ($date_synchro > $_COOKIE['sedna_synchro_date']) {
+			// Si le cookie n'est pas a jour, on l'update sur le brouteur
+			if ($lus <> $_COOKIE['sedna_lu']) {
+				// path='/chemin/vers/sedna/' comme dans sedna.js
+				$cookiepath = preg_replace(',^[^/]*://[^/]*,',
+					'',lire_meta('adresse_site'))
+					. preg_replace(',/$,','','/'.$dossier_squelettes);
+
 				spip_setcookie('sedna_lu', $lus,
 					time()+365*24*3600, $cookiepath);
-				$_COOKIE['sedna_lu'] = $lus;
-
+					$_COOKIE['sedna_lu'] = $lus;
 				// Signaler que la synchro a eu lieu
-				$synchro = ' &lt;&lt;&lt;';
+				$synchro = ' &lt;&lt;';
 			}
-			// sinon prendre la valeur qui est dans le brouteur
-			else if ($date_synchro == $_COOKIE['sedna_synchro_date']) {
-				$date_synchro = date('U');
-				spip_query("UPDATE spip_auteurs SET sedna='$date_synchro,"
-					.addslashes($_COOKIE['sedna_lu'])."'
-					WHERE id_auteur=$id");
-
-				// Signaler que la synchro a eu lieu
-				$synchro = ' *';
-			} else {
-				$synchro = ' ??'; // bug de cookie
-			}
-
-			// Mettre a jour la date de synchro sur le brouteur
-			spip_setcookie('sedna_synchro_date', $date_synchro,
-				time()+365*24*3600, $cookiepath);
 		}
 	}
 
