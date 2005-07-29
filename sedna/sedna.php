@@ -183,15 +183,14 @@
 	}
 
 	// Calcul du $delais optimal (on est tjs a jour, mais quand meme en cache)
-	// valeur max = 15 minutes (900s)
-	$s = spip_query("SELECT UNIX_TIMESTAMP(NOW()),
-		UNIX_TIMESTAMP(MAX(maj)) FROM spip_syndic_articles
-		");
-	list($now,$max_maj) = spip_fetch_array($s);
-	if (!$synchro) {
-		$delais= min(900,max(0,$now-$max_maj));
-	} else
-		$delais=0;
+	// valeur max = 15 minutes (900s) (et on hacke #ENV{max_maj} pour affichage
+	// de "Derniere syndication..." en pied de page).
+	$_GET['max_maj'] = @filemtime('ecrire/data/sites.lock');
+	$delais= min(900,max(0,time()-$_GET['max_maj']));
+	$_GET['max_maj'] = date('Y-m-d h:i:s', $_GET['max_maj']); # format SPIP
+
+	// En cas de synchro on ne veut pas de cache navigateur, pour le "*"
+	if ($synchro) $flag_dynamique = true;
 
 	$flag_preserver=true;
 	include('inc-public.php3');
