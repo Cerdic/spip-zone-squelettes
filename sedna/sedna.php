@@ -187,7 +187,7 @@
 	// de "Derniere syndication..." en pied de page).
 	$_GET['max_maj'] = @filemtime('ecrire/data/sites.lock');
 	$delais= min(900,max(0,time()-$_GET['max_maj']));
-	$_GET['max_maj'] = date('Y-m-d h:i:s', $_GET['max_maj']); # format SPIP
+	$_GET['max_maj'] = date('Y-m-d H:i:s', $_GET['max_maj']); # format SPIP
 
 	// En cas de synchro on ne veut pas de cache navigateur, pour le "*"
 	if ($synchro) $flag_dynamique = true;
