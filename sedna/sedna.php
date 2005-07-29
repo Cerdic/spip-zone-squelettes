@@ -71,12 +71,12 @@
 		}
 		
 		echo "<li class='item' onmousedown=\"jai_lu('$id_lien');\">\n",
-		"<small>$heure</small> &nbsp;\n",
-		"<a href=\"$url\"
+		"<small>$heure</small>",
+		"<div class=\"titre\"><a href=\"$url\"
 			title=\"".attribut_html($url)."\"
 			class=\"link$class_link\"
 			id=\"news$id_lien\">",
-		$titre, "</a>", $lesauteurs;
+		$titre, "</a>", $lesauteurs, "</div>";
 		
 		if ($desc)
 			echo "<div class=\"desc\"><div class=\"$class_desc\" name=\"desc\">\n",
