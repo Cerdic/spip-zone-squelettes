@@ -98,6 +98,14 @@
 		return preg_replace(',(\w+)@(\w+\.\w+),','\\1&#x24d0;\\2', $texte);
 	}
 
+	function parametre_url($url, $parametre, $valeur = '__global__') {
+		$link = new Link(str_replace('&amp;', '&', $url));
+		if($valeur == '__global__')
+			$valeur = $GLOBALS[$parametre];
+		if(empty($valeur)) $link->DelVar($parametre);
+		else $link->AddVar($parametre, $valeur);
+		return quote_amp($link->getUrl());
+	}
 
 	// Choix du $fond (rss ou sedna)
 	if ($rss) {

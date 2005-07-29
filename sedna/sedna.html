@@ -49,15 +49,15 @@
 <div class="marge">
 <h1>Articles r&eacute;cents</h1>
 <ul>
-	<li><a href="?[id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
+	<li><a href="[(#SELF|parametre_url{age,''})]"
 	class="[(#ENV{age}|=={''}|?{'selected',''})]">Aujourd'hui</a></li>
-	<li><a href="?age=2[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
+	<li><a href="[(#SELF|parametre_url{age,2})]"
 	class="[(#ENV{age}|=={2}|?{'selected',''})]">Deux jours</a></li>
-	<li><a href="?age=7[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
+	<li><a href="[(#SELF|parametre_url{age,7})]"
 	class="[(#ENV{age}|=={7}|?{'selected',''})]">Semaine</a></li>
-	<li><a href="?age=31[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
+	<li><a href="[(#SELF|parametre_url{age,31})]"
 	class="[(#ENV{age}|=={31}|?{'selected',''})]">Mois</a></li>
-	<li><a href="?age=365[&amp;id_syndic=(#ENV{id_syndic})][&amp;recherche=(#ENV{recherche})]"
+	<li><a href="[(#SELF|parametre_url{age,365})]"
 	class="[(#ENV{age}|=={365}|?{'selected',''})]">Ann&eacute;e</a></li>
 </ul>
 <h1>Recherche</h1>
@@ -116,12 +116,12 @@
 
 <ul>
 <BOUCLE_sites(SITES){par nom_site}{syndication!=non}>
-	<li><a href="?[age=(#ENV{age})&amp;]id_syndic=#ID_SYNDIC"
+	<li><a href="[(#SELF|parametre_url{id_syndic,#ID_SYNDIC})]"
 	class="[(#ENV{id_syndic}|=={#ID_SYNDIC}|?{'selected',''})]">#NOM_SITE</a></li>
 
 <?php
 	$memo_#ID_SYNDIC =
-		'<a href="?[age=(#ENV{age})&amp;]id_syndic=#ID_SYNDIC">[(#NOM_SITE|texte_script)]</a>';
+		'<a href="[(#SELF|parametre_url{id_syndic,#ID_SYNDIC})]">[(#NOM_SITE|texte_script)]</a>';
 ?>
 </BOUCLE_sites>
 </ul>
@@ -208,7 +208,7 @@ title="RSS [(#NOM_SITE_SPIP|attribut_html)][ ((#ENV{recherche}|attribut_html))]"
 	[(#ENV{refresh}|=={#ENV{id_syndic}}|?{'',' '})
 	Derni&egrave;re syndication de ce site effectu&eacute;e
 	[(#DATE_SYNDIC|date_relative)]
-	- <a href="#SELF&amp;refresh=#ID_SYNDIC">Mettre &agrave; jour maintenant</a>]
+	- <a href="[(#SELF|parametre_url{refresh,#ID_SYNDIC})]">Mettre &agrave; jour maintenant</a>]
 	[- (#SYNDICATION|syndication_en_erreur)]
 
 <?php } ?>
