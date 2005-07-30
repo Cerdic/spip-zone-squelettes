@@ -5,8 +5,10 @@
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
+'articles_recents_court' => 'Recent articles',
 'preferences' => 'Preferences',
-'articles_recents_court' => 'Recent articles'
+'sedna_aujourdhui' => 'Today',
+'sedna_liens' => 'feeds'
 
 );
 

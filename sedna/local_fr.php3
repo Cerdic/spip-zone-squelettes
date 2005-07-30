@@ -5,9 +5,10 @@
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-'preferences' => 'Pr&eacute;f&eacute;rences',
 'articles_recents_court' => 'Articles r&eacute;cents',
-
+'preferences' => 'Pr&eacute;f&eacute;rences',
+'sedna_aujourdhui' => 'Aujourd&#39;hui',
+'sedna_liens' => 'liens',
 'probleme_de_syndication' => 'probl&egrave;me de syndication'
 
 );
