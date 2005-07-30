@@ -85,12 +85,16 @@ function highlight_site(id) {
 /* gerer le cookie des articles lus */
 /* attention on ne doit pas depasser 3ko */
 function jai_lu(id) {
-	var cookie = readCookie("sedna_lu");
-	cookie = cookie ? (id + ' ' + cookie) : id;
-	cookie = cookie.substring(0,3000);
-	createCookie("sedna_lu", cookie, 365);
-	var a = document.getElementById('news'+id);
-	a.className='linkvu'; /* ce lien change de style */
+	if (!est_lu(id)) {
+		sedna_nouv--;
+		var cookie = readCookie("sedna_lu");
+		cookie = cookie ? (id + '-' + cookie) : id;
+		cookie = cookie.substring(0,3000);
+		createCookie("sedna_lu", cookie, 365);
+		var a = document.getElementById('news'+id);
+		a.className='linkvu'; /* ce lien change de style */
+		document.title = sedna_title+' ('+sedna_nouv+'/'+sedna_total+')';
+	}
 }
 
 /* Afficher ou masquer les descriptifs */
@@ -129,25 +133,43 @@ function sedna_synchro(on) {
 	}
 }
 
+// nous dit si l'article id est lu ou pas
+function est_lu(id) {
+	var cookie = '--'+escape(readCookie("sedna_lu"))+'-';
+	return (cookie.indexOf('-'+id+'-') > 0);
+}
+
 /*
 	appelee par le body onload pour remettre le bon etat sur les
 	liens qui ont change de couleur mais qui se trouvent sur des
 	pages valables dans le cache du navigateur
 */
 function sedna_init() {
-	sedna_synchro(readCookie('sedna_synchro'));
-	var a,d,i;
-	var cookie = '  '+readCookie("sedna_lu")+' ';
 
+	// regler la position du bouton "synchro"
+	sedna_synchro(readCookie('sedna_synchro'));
+
+	// globals
+	sedna_nouv = 0;
+	sedna_total =0;
+
+	var a,d,i;
 	d = document.getElementsByTagName('a');
 	for(i=0; a=d[i]; i++) {
 		if (a.id
-		&& (a.id.substr(0,4) == 'news')
-		&& (cookie.indexOf(' '+(a.id.substr(4))+' ')>0)
-		) {
-			a.className='linkvu';
+		&& (a.id.substr(0,4) == 'news')) {
+			if (est_lu(a.id.substr(4))) {
+				a.className='linkvu';
+			} else {
+				sedna_nouv++;
+			}
+			sedna_total++;
 		}
 	}
+
+	// Marquer dans la barre de titre le nombre d'articles nouveaux
+	sedna_title = document.title;
+	document.title = sedna_title + ' (' + sedna_nouv + '/' + sedna_total + ')';
 
 	afficher_sites();
 }

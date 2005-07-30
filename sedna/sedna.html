@@ -4,6 +4,8 @@
 <title>[Sedna RSS] [(#NOM_SITE_SPIP|supprimer_tags)]</title>
 <meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
 
+<meta http-equiv="refresh" content="900;url=#URL_SITE_SPIP/sedna/#SELF" />
+
 <!-- Lien vers le backend (voir ausi plus bas affichage html) -->
 <BOUCLE_url_backend_ori(SITES){id_syndic}>
 	<link rel="alternate" type="application/rss+xml" title="RSS [(#NOM_SITE|attribut_html)], via [(#NOM_SITE_SPIP|attribut_html)]" href="#URL_SITE_SPIP/sedna/?rss=1&amp;id_syndic=#ID_SYNDIC[&amp;recherche=(#ENV{recherche})]" />
@@ -25,7 +27,7 @@
 	&nbsp;
 <BOUCLE_titre(SITES){id_syndic}>#NOM_SITE
 	&nbsp;
-	<small><a href="#URL_SITE">#URL_SITE</a></small>
+	<small><a href="[(#URL_SITE|abs_url)]">#URL_SITE</a></small>
 </BOUCLE_titre>
 	#NOM_SITE_SPIP
 	&nbsp;
@@ -137,7 +139,7 @@
 </li>
 <?php
 	$nom_site_#ID_SYNDIC = '[(#NOM_SITE|texte_script)]';
-	$url_site_#ID_SYNDIC = '[(#URL_SITE|texte_script)]';
+	$url_site_#ID_SYNDIC = '[(#URL_SITE|abs_url|texte_script)]';
 ?>
 </BOUCLE_sites>
 </ul>
@@ -158,7 +160,7 @@
 	Voir la definition des criteres {contenu} et {tri_sedna} dans sedna.php
 ]
 <B_syndic><div id="total_articles">#TOTAL_BOUCLE <:sedna_liens:></div>
-<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic?} {contenu} {tri_sedna} {age<=#ENV{age,1}} {0,500}>
+<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic?} {contenu} {tri_sedna} {age<=#ENV{age,1}} {0,500} {!lang_select}>
 
 <?php
 	afficher_lien(
