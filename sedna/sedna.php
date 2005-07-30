@@ -226,6 +226,7 @@
 	// forcer le refresh ?
 	if ($id = intval($refresh)) {
 		include_ecrire('inc_sites.php3');
+		spip_touch('ecrire/data/sites.lock');
 		syndic_a_jour($id);
 	}
 
