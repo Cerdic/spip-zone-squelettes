@@ -6,7 +6,7 @@
 	// filtre |syndication_en_erreur
 	function syndication_en_erreur($statut_syndication) {
 		if ($statut_syndication == 'oui') return '';
-		return _L('Erreur de syndication');
+		return _T('probleme_de_syndication');
 	}
 
 	// filtre de nettoyage XHTML strict d'un contenu potentiellement hostile

@@ -6,7 +6,9 @@
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 'preferences' => 'Pr&eacute;f&eacute;rences',
-'articles_recents_court' => 'Articles r&eacute;cents'
+'articles_recents_court' => 'Articles r&eacute;cents',
+
+'probleme_de_syndication' => 'probl&egrave;me de syndication'
 
 );
 

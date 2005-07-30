@@ -96,18 +96,28 @@
 </li>
 </ul>
 
+<?php
+	if ($auteur_session['statut'] == '0minirezo') {
+?>
+<ul>
+<li>
+<a href="../ecrire/[(#ENV{id_syndic}|?{sites,sites_tous})].php3[?id_syndic=(#ENV{id_syndic})]">[(#ENV{id_syndic}|?{<:ecrire:icone_modifier_site:>, <:login_acces_prive:>})]</a>
+</li>
+</ul>
+<?php } ?>
+
+
 <ul>
 <li>
 <a href="../spip_cookie.php3?logout=<?php echo $auteur_session['login']; ?>&url=sedna/[(#SELF|urlencode)]">D&eacute;connexion</a>
 </li>
-</ul>
 <?php } else { ?>
 <ul>
 <li>
 <a href="../spip_login.php3?url=sedna/[(#SELF|urlencode)]">Connexion</a>
 </li>
-</ul>
 <?php } ?>
+</ul>
 
 <h1>Sources</h1>
 <ul>
@@ -121,7 +131,7 @@
 		class="[(#ENV{id_syndic}|=={#ID_SYNDIC}|?{'selected',''})]"
 	><?php
 		if ($_COOKIE['sedna_ignore_[(#ID_SYNDIC)]']) echo '<s>';
-	?>#NOM_SITE[(#SYNDICATION|=={oui}|?{'',' &#x2193;'})]<?php
+	?>[(#SYNDICATION|=={oui}|?{'', <span title="<:probleme_de_syndication:>"> &#x2193;</span> })]#NOM_SITE<?php
 		if ($_COOKIE['sedna_ignore_[(#ID_SYNDIC)]']) echo '</s>';
 	?></a>
 </li>
@@ -181,11 +191,16 @@
 <?php
 	$verbe = ($_COOKIE['sedna_ignore_[(#ENV{id_syndic})]']) ? "Afficher":"Masquer";
 ?>
+
+<ul>
+<li>
 [<a href="#" onclick="change_site((#ENV{id_syndic})); document.location='./';"><b>
 	<?php echo $verbe; ?> cette source dans la liste principale.
 </b></a>]
+</li>
 
 
+</ul>
 
 </div>
 
