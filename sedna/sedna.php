@@ -188,7 +188,7 @@
 		list($champ) = spip_fetch_array($s);
 
 		// mixer avec le cookie en conservant un ordre chronologique
-		if ($_COOKIE['sedna_lu'] <> $champs) {
+		if ($_COOKIE['sedna_lu'] <> $champ) {
 			$lus_cookie = preg_split(',[ -+],',$_COOKIE['sedna_lu']);
 			$lus_champ = preg_split(',[ -+],',$champ);
 			$nouveaux = array_keys(array_flip(array_merge(
