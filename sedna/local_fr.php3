@@ -7,7 +7,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 'articles_recents_court' => 'Articles r&eacute;cents',
 'preferences' => 'Pr&eacute;f&eacute;rences',
-'sedna_aujourdhui' => 'Aujourd&#39;hui',
 'sedna_liens' => 'articles',
 'probleme_de_syndication' => 'probl&egrave;me de syndication'
 
