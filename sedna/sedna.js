@@ -1,36 +1,36 @@
 /* Fixer le path du cookie sur le repertoire local (et non pas /) */
 function recuperer_cookiepath() {
-  var cookiepath = location.href;
-  /* remonter au repertoire */
-  cookiepath = cookiepath.substring(0,cookiepath.lastIndexOf('/'));
-  /* supprimer la methode http:// */
-  cookiepath = cookiepath.substring(cookiepath.indexOf('://')+3);
-  /* supprimer hostname */
-  cookiepath = cookiepath.substring(cookiepath.indexOf('/')+1);
-  /* alert(cookiepath); */
-  return cookiepath;
+	var cookiepath = location.href;
+	/* remonter au repertoire */
+	cookiepath = cookiepath.substring(0,cookiepath.lastIndexOf('/'));
+	/* supprimer la methode http:// */
+	cookiepath = cookiepath.substring(cookiepath.indexOf('://')+3);
+	/* supprimer hostname */
+	cookiepath = cookiepath.substring(cookiepath.indexOf('/')+1);
+	/* alert(cookiepath); */
+	return cookiepath;
 }
 
 /* create- and readCookie are adapted from (c) Paul Sowden http://www.alistapart.com/articles/alternate/ */
 function createCookie(name,value,days) {
-  if (days) {
-    var date = new Date();
-    date.setTime(date.getTime()+(days*24*60*60*1000));
-    var expires = "; expires="+date.toGMTString();
-  }
-  else expires = "";
-  document.cookie = name+"="+value+expires+"; path=/"+recuperer_cookiepath();
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else expires = "";
+	document.cookie = name+"="+value+expires+"; path=/"+recuperer_cookiepath();
 }
 
 function readCookie(name) {
-  var nameEQ = name + "=";
-  var ca = document.cookie.split(';');
-  for(var i=0;i < ca.length;i++) {
-    var c = ca[i];
-    while (c.charAt(0)==' ') c = c.substring(1,c.length);
-    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-  }
-  return null;
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
 }
 
 
@@ -38,41 +38,76 @@ function readCookie(name) {
  * Fonctions pour Sedna (c) Fil -- GNU/GPL
  */
 
-/* une fonction pour modifier la couleur des intertitres du meme site */
+/* une fonction pour modifier l'affichage des item d'un site */
+function change_site(id) {
+	var cookie = readCookie('sedna_ignore_'+id);
+
+	/* supprimer le site du cookie */
+	if (cookie) {
+		createCookie('sedna_ignore_'+id, '', -1);
+	} else {
+		createCookie('sedna_ignore_'+id, 1, 365);
+	}
+
+	afficher_sites();
+}
+
+function afficher_sites() {
+	d = document.getElementsByTagName("li");
+	for(i=0; (a = d[i]); i++) {
+		if ((a.id.substr(0,4) == 'item')
+		&& (site = a.id.substr(4, -4 + a.id.indexOf('_')))) {
+			if (readCookie('sedna_ignore_'+site)) {
+				a.className = 'itemoff';
+			} else {
+				a.className = 'item';
+			}
+		}
+	}
+}
+
+/* ne sert plus : changer de couleur quand on clique */
 function highlight_site(id) {
-  var i, a;
-  for(i=0; (a = document.getElementsByTagName("h2")[i]); i++) {
-    a.className = 'site';
-  }
-  for(i=0; (a = document.getElementsByName(id)[i]); i++) {
-    a.className = 'sitesel';
-  }
+	var i,d,a,c;
+
+	c = 'site'+id+'_';
+	d = document.getElementsByTagName("h2");
+	for(i=0; (a = d[i]); i++) {
+		if (a.id.substr(0,c.length) == c) {
+			a.className = 'sitesel';
+		} else {
+			a.className = 'site';
+		}
+	}
+
 }
 
 /* gerer le cookie des articles lus */
 /* attention on ne doit pas depasser 3ko */
 function jai_lu(id) {
-  var cookie = readCookie("sedna_lu");
-  cookie = cookie ? (id + ' ' + cookie) : id;
-  cookie = cookie.substring(0,3000);
-  createCookie("sedna_lu", cookie, 365);
-  var a = document.getElementById('news'+id);
-  a.className='linkvu'; /* ce lien change de style */
+	var cookie = readCookie("sedna_lu");
+	cookie = cookie ? (id + ' ' + cookie) : id;
+	cookie = cookie.substring(0,3000);
+	createCookie("sedna_lu", cookie, 365);
+	var a = document.getElementById('news'+id);
+	a.className='linkvu'; /* ce lien change de style */
 }
 
 /* Afficher ou masquer les descriptifs */
 function style_desc(aff) {
-  createCookie("sedna_style", aff, 365);
-  for(i=0; (a = document.getElementsByName('desc')[i]); i++) {
-   a.className="desc_"+aff;
-  }
-  if (aff == 'masquer') {
-    document.getElementById('desc_masquer').className='selected';
-    document.getElementById('desc_afficher').className='';
-  } else {
-    document.getElementById('desc_masquer').className='';
-    document.getElementById('desc_afficher').className='selected';
-  }  
+	var a;
+	var c=1;
+	createCookie("sedna_style", aff, 365);
+	while (a = document.getElementById('desc_'+(c++))) {
+		a.className="desc_"+aff;
+	}
+	if (aff == 'masquer') {
+		document.getElementById('desc_masquer').className='selected';
+		document.getElementById('desc_afficher').className='';
+	} else {
+		document.getElementById('desc_masquer').className='';
+		document.getElementById('desc_afficher').className='selected';
+	}
 }
 
 /* passer en mode synchro */
@@ -83,12 +118,14 @@ function sedna_synchro(on) {
 		createCookie('sedna_synchro', '', 0);
 	}
 
-	if (on == 'oui') {
-		document.getElementById('synchrooui').className='selected';
-		document.getElementById('synchronon').className='';
-	} else {
-		document.getElementById('synchrooui').className='';
-		document.getElementById('synchronon').className='selected';
+	if (document.getElementById('synchrooui')) {
+		if (on == 'oui') {
+			document.getElementById('synchrooui').className='selected';
+			document.getElementById('synchronon').className='';
+		} else {
+			document.getElementById('synchrooui').className='';
+			document.getElementById('synchronon').className='selected';
+		}
 	}
 }
 
@@ -98,13 +135,19 @@ function sedna_synchro(on) {
 	pages valables dans le cache du navigateur
 */
 function sedna_init() {
-	var i,a;
 	sedna_synchro(readCookie('sedna_synchro'));
-	var cookie = ' '+readCookie("sedna_lu");
-	while (i=cookie.substr(cookie.indexOf(' ')+1,5)) {
-		cookie = cookie.substr(6);
-		if (a = document.getElementById('news'+i)) {
-			a.className = 'linkvu';
+	var a,d,i;
+	var cookie = '  '+readCookie("sedna_lu")+' ';
+
+	d = document.getElementsByTagName('a');
+	for(i=0; a=d[i]; i++) {
+		if (a.id
+		&& (a.id.substr(0,4) == 'news')
+		&& (cookie.indexOf(' '+(a.id.substr(4))+' ')>0)
+		) {
+			a.className='linkvu';
 		}
 	}
+
+	afficher_sites();
 }

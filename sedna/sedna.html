@@ -38,16 +38,16 @@
 	[(#ENV{recherche}|=={''}|?{&nbsp;,''})
 	<?php
 		// date de maintenant, pas du cache
-		$date = date('Y-m-d H-i-s');
+		$date = date('Y-m-d');
 		echo nom_jour($date),' ',affdate_court($date), ' ',date('H:i');
 	?>
-	][<b>Recherche : &laquo; (#ENV{recherche}) &raquo;</b>]
+	][<b><:info_rechercher_02:> &laquo; (#ENV{recherche}) &raquo;</b>]
 </div>
 
 </div>
 
 <div class="marge">
-<h1>Articles r&eacute;cents</h1>
+<h1><:articles_recents_court:></h1>
 <ul>
 	<li><a href="[(#SELF|parametre_url{age,''})]"
 	class="[(#ENV{age}|=={''}|?{'selected',''})]">Aujourd'hui</a></li>
@@ -60,17 +60,17 @@
 	<li><a href="[(#SELF|parametre_url{age,365})]"
 	class="[(#ENV{age}|=={365}|?{'selected',''})]">Ann&eacute;e</a></li>
 </ul>
-<h1><:recherche:></h1>
+<h1></h1>
 <form action="#SELF" method="get">
 <div>
 	<input type="text" name="recherche" value="[(#ENV{recherche})]" size="10" />
 	[<input type="hidden" name="age" value="(#ENV{age})" />]
 	[<input type="hidden" name="id_syndic" value="(#ENV{id_syndic})" />]
-	<input type="submit" name="ok" value="ok" style="font-size:9px;" />
+	<input type="submit" name="" value="<:info_rechercher|attribut_html:>" style="font-size:9px;" />
 </div>
 </form>
 
-<h1>Pr&eacute;f&eacute;rences</h1>
+<h1><:preferences:></h1>
 
 <ul>
 <li><a class="<?php echo $sel2; ?>" id="desc_afficher" onmousedown="style_desc('afficher'); return false;">Afficher les r&eacute;sum&eacute;s</a></li>
@@ -116,12 +116,18 @@
 
 <ul>
 <BOUCLE_sites(SITES){par nom_site}{syndication!=non}>
-	<li><a href="?id_syndic=#ID_SYNDIC[&amp;age=(#ENV{age})]"
-	class="[(#ENV{id_syndic}|=={#ID_SYNDIC}|?{'selected',''})]">#NOM_SITE</a></li>
-
+<li>
+	<a href="?id_syndic=#ID_SYNDIC[&amp;age=(#ENV{age})]"
+		class="[(#ENV{id_syndic}|=={#ID_SYNDIC}|?{'selected',''})]"
+	><?php
+		if ($_COOKIE['sedna_ignore_[(#ID_SYNDIC)]']) echo '<s>';
+	?>#NOM_SITE<?php
+		if ($_COOKIE['sedna_ignore_[(#ID_SYNDIC)]']) echo '</s>';
+	?></a>
+</li>
 <?php
-	$memo_#ID_SYNDIC =
-		'<a href="?id_syndic=#ID_SYNDIC[&amp;age=(#ENV{age})]">[(#NOM_SITE|texte_script)]</a>';
+	$nom_site_#ID_SYNDIC = '[(#NOM_SITE|texte_script)]';
+	$url_site_#ID_SYNDIC = '[(#URL_SITE|texte_script)]';
 ?>
 </BOUCLE_sites>
 </ul>
@@ -129,7 +135,7 @@
 
 <h1>Sedna</h1>
 <ul>
-<li><a href="http://sedna.rezo.net"><img src="sedna-badge.png" alt="Sedna RSS" width="100" height="34" border="0" /></a>
+<li><a href="http://sedna.rezo.net"><img src="sedna-badge.png" alt="Sedna RSS" width="100" height="34" style="border:0;" /></a></li>
 <li><a href="http://www.spip.net/">SPIP</a></li>
 <li><a href="http://zone.spip.org/trac/spip-zone/">SPIP-Zone</a></li>
 <li><a href="http://www.gnu.org/copyleft/gpl.html">copyleft - GNU/GPL</a></li>
@@ -144,30 +150,23 @@
 <B_syndic><div id="total_articles">#TOTAL_BOUCLE articles</div>
 <BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic?} {contenu} {tri_sedna} {age<=#ENV{age,1}} {0,500}>
 
-	[
-		[(#COMPTEUR_BOUCLE|>{1}|?{'</ul>',''})]
-		<h1 class="date">(#DATE|affdate_court|unique)</h1>
-		<h2 class="site" name="site#ID_SYNDIC" onmousedown="highlight_site('site#ID_SYNDIC');">
-		<?php
-			echo $memo_#ID_SYNDIC; $ex_syndic=#ID_SYNDIC;
-		?></h2>
-		<ul>
-	]
-
 <?php
 	afficher_lien(
+	#ID_SYNDIC_ARTICLE,
 	'[(#URL_ARTICLE|creer_identifiant{#DATE})]',
 	#ID_SYNDIC,
 	'[(#DATE|affdate{H:i})]',
-	'[(#URL_ARTICLE|texte_script)]',
-	'[(#TITRE|supprimer_numero|antispam2|texte_script)]',
-	'[ - (#LESAUTEURS|antispam2|texte_script)]',
-	'[(#DESCRIPTIF|antispam2|textebrut|texte_script)]'
+	'[(#URL_ARTICLE|attribut_html|texte_script)]',
+	'[(#TITRE|supprimer_numero|nettoyer_texte)]',
+	'[ - (#LESAUTEURS|nettoyer_texte)]',
+	'[(#DESCRIPTIF|nettoyer_texte)]',
+	'[<h1 class="date">(#DATE|affdate_court|unique)</h1>]'
 	);
 ?>
 
 </BOUCLE_syndic>
 </ul>
+
 </B_syndic>
 
 	<h1 class="date">Pas d'article dans cette p&eacute;riode&nbsp;!</h1>
@@ -178,6 +177,16 @@
 	</div>
 
 <//B_syndic>
+
+<?php
+	$verbe = ($_COOKIE['sedna_ignore_[(#ENV{id_syndic})]']) ? "Afficher":"Masquer";
+?>
+[<a href="#" onclick="change_site((#ENV{id_syndic})); document.location='./';"><b>
+	<?php echo $verbe; ?> cette source dans la liste principale.
+</b></a>]
+
+
+
 </div>
 
 <div class="bottom">
@@ -221,6 +230,6 @@ title="RSS [(#NOM_SITE_SPIP|attribut_html)][ ((#ENV{recherche}|attribut_html))]"
 ?>
 </div>
 
-#SPIP_CRON
+<div style='position: absolute; background-image: url("../spip_background.php3"); height: 1px; width: 1px;'></div>
 </body>
 </html>

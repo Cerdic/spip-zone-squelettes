@@ -9,6 +9,19 @@
 		return _L('Erreur de syndication');
 	}
 
+	// filtre de nettoyage XHTML strict d'un contenu potentiellement hostile
+	// |antispam2|textebrut|lignes_longues|entites_html|corriger_toutes_entites_html|texte_script
+	function nettoyer_texte($texte) {
+		return texte_script(
+			corriger_toutes_entites_html(
+			entites_html(
+			lignes_longues(
+			textebrut(
+			antispam2(
+				$texte
+			))))));
+	}
+
 	// tri maison : d'abord par jour de syndication,
 	// et a l'interieur du jour par date de maj
 	function critere_tri_sedna($idb, &$boucles, $crit) {
@@ -39,20 +52,22 @@
 	// ce qui permet de reperer les "updated" *et* les doublons
 	include_ecrire('inc_filtres.php3');
 	function afficher_lien(
+		$id_syndic_article,
 		$id_lien,
 		$id_syndic,
 		$heure,
 		$url,
 		$titre,
 		$lesauteurs,
-		$desc
+		$desc,
+		$date
 		) {
-		static $vu, $lus;
+		static $vu, $lus, $ferme_ul, $id, $iddesc;
 		global $ex_syndic, $class_desc;
 
 		// initialiser la liste des articles lus
 		if (!is_array($lus))
-			$lus = array_flip(explode(' ', $_COOKIE['sedna_lu']));
+			$lus = array_flip(explode(' ', ' '.$_COOKIE['sedna_lu']));
 
 		if ($vu[$id_lien]++) return;
 
@@ -60,26 +75,50 @@
 		$class_link = $lus[$id_lien] ? 'vu' : '';
 
 		// indiquer un intertitre si on change de source ou de date
-		if ($id_syndic != $ex_syndic) {
-			echo "</ul>\n";
-			echo "<h2 class='site' name='site$id_syndic'
-				onmousedown=\"highlight_site('site$id_syndic');\"
+		if ($date OR ($id_syndic != $ex_syndic)) {
+			echo $ferme_ul; $ferme_ul="</ul>\n";
+			echo $date;
+		}
+
+		// Articles a ignorer
+		if (!$_GET['id_syndic']
+		AND $_COOKIE['sedna_ignore_'.$id_syndic])
+			return;
+
+		// Suite intertitres
+		if ($date OR ($id_syndic != $ex_syndic)) {
+			echo "<h2 class='site' id='site${id_syndic}_".(++$id)."'
+			onmouseover=\"getElementById('url".$id."').className='urlsiteon';\"
+			onmouseout=\"getElementById('url".$id."').className='urlsite';\"
 			>";
-			echo $GLOBALS["memo_$id_syndic"];
+			echo "<a href=\"?id_syndic=$id_syndic";
+			if ($age = intval($GLOBALS['age']))
+				echo "&amp;age=$age";
+			echo "\">".$GLOBALS['nom_site_'.$id_syndic]
+				."</a>";
+			echo " <a class=\"urlsite\"
+					href=\""
+					.$GLOBALS['url_site_'.$id_syndic]
+					.'" id="url'.$id.'">'
+					.$GLOBALS['url_site_'.$id_syndic]
+					."</a>";
 			echo "</h2>\n<ul>\n";
 			$ex_syndic = $id_syndic;
 		}
-		
-		echo "<li class='item' onmousedown=\"jai_lu('$id_lien');\">\n",
+
+		echo "<li class='item'";
+		if (!$_GET['id_syndic'] AND !strlen($_GET['recherche']))
+			echo " id='item${id_syndic}_${id_syndic_article}'";
+		echo "	onmousedown=\"jai_lu('$id_lien');\">\n",
 		"<small>$heure</small>",
 		"<div class=\"titre\"><a href=\"$url\"
-			title=\"".attribut_html($url)."\"
+			title=\"$url\"
 			class=\"link$class_link\"
 			id=\"news$id_lien\">",
 		$titre, "</a>", $lesauteurs, "</div>";
 		
 		if ($desc)
-			echo "<div class=\"desc\"><div class=\"$class_desc\" name=\"desc\">\n",
+			echo "<div class=\"desc\"><div class=\"$class_desc\" id=\"desc_".(++$iddesc)."\">\n",
 			$desc, '</div></div>';
 		
 		echo "\n</li>\n";
@@ -197,8 +236,9 @@
 	$delais= min(900,max(0,time()-$_GET['max_maj']));
 	$_GET['max_maj'] = date('Y-m-d H:i:s', $_GET['max_maj']); # format SPIP
 
-	// En cas de synchro on ne veut pas de cache navigateur, pour le "*"
-	if ($synchro) $flag_dynamique = true;
+	// On ne veut pas de cache navigateur, pour le "*" de synchro et pour
+	// la liste des sites ignores (cookies)
+	$flag_dynamique = true;
 
 	$flag_preserver=true;
 	include('inc-public.php3');
