@@ -191,21 +191,18 @@
 			ADD sedna TEXT NOT NULL DEFAULT ''");
 		}
 		list($champ) = spip_fetch_array($s);
-
 		// mixer avec le cookie en conservant un ordre chronologique
 		if ($_COOKIE['sedna_lu'] <> $champ) {
-			$lus_cookie = preg_split(',[ -+],',$_COOKIE['sedna_lu']);
-			$lus_champ = preg_split(',[ -+],',$champ);
-			$nouveaux = array_keys(array_flip(array_merge(
-				array_diff($lus_cookie, $lus_champ),
-				array_diff($lus_champ, $lus_cookie)
-			)));
-			$lus = array_merge(
-				$nouveaux,
-				array_intersect($lus_champ,$lus_cookie)
-			);
-			$lus = substr(join('-', $lus),0,3000); # 3ko maximum
-
+			$lus_cookie = preg_split(',[- +],',$_COOKIE['sedna_lu']);
+			$lus_champ = preg_split(',[- +],',$champ);
+			$lus = array();
+			while (count($lus_cookie) OR count($lus_champ)) {
+				if ($a = array_shift($lus_cookie))
+					$lus[$a] = true;
+				if ($a = array_shift($lus_champ))
+					$lus[$a] = true;
+			}
+			$lus = substr(join('-', array_keys($lus)),0,3000); # 3ko maximum
 			// Mettre la base a jour
 			spip_query("UPDATE spip_auteurs SET sedna='"
 				.addslashes($lus)."'
