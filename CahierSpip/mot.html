@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://cahierspip.ww7.be/xhtml1-strict.dtd">
+<BOUCLE_mot_principal(MOTS) {id_mot} {doublons}>
+
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#TITRE|textebrut)]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+
+<!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/spip_style.css" type="text/css" />
+
+<!-- Les feuilles de style specifiques aux presents squelettes -->
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/typographie.css" type="text/css" />
+
+<!-- media="..." permet de ne pas utiliser ce style sous Netscape 4 (sinon plantage) -->
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/habillage.css" type="text/css" media="projection, screen, tv" />
+<!-- media="print" permet d'utiliser cette feuille de style quand vous imprimez depuis votre navigateur -->
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/impression.css" type="text/css" media="print" />
+</head>
+
+<body>
+ <INCLURE(banner.php3)>
+
+<div id="navigation">
+ <INCLURE(menu1.php3)>
+ 
+ <INCLURE(menu2.php3)>
+</div><!-- fin du div du menu gauche -->
+
+<!-- Une : contenu du mot-cle -->
+<div class="contenu" id="principal_large">
+ <div class="bord_rubrique">
+  <h1 class="bord_article">#TITRE</h1>
+  
+  <B_rubriques>
+   [(#LOGO_MOT|left)]
+   <h1 class="titre-texte"><:rubriques:></h1>
+   <!-- Rubriques liees au mot-cle -->
+   <div class="bord_motscles">
+    <ul class="menu-liste">
+     <BOUCLE_rubriques(RUBRIQUES) {id_mot} {par titre}>
+     <li class="menu-item"><a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></li>
+     </BOUCLE_rubriques>
+    </ul>
+   </div>
+  </B_rubriques>
+  
+  <B_articles>
+  <br /><br />
+  <!-- Articles lies au mot-cle -->
+   <h1 class="titre-texte"><:articles:></h1>
+   <ul class="menu-liste">
+    <BOUCLE_articles(ARTICLES) {id_mot} {par titre}>
+    <li>
+     <div class="bord_article">
+      <h2><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h2>
+      <div class="detail">
+       [(#DATE|nom_jour)] [(#DATE|affdate)]
+       <:par_auteur:> <BOUCLE_auteurs(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs>
+      </div>
+     </div>
+    </li>
+    </BOUCLE_articles>
+   </ul>
+   </B_articles>
+  </div>
+  <div class="encart_google_large">
+   <div class="bord_rubrique">
+    <!-- Menu de navigation mots-cles : les autres mots cles du meme groupe-->
+    <B_mots_freres>
+    <BOUCLE_groupe(GROUPES_MOTS){id_groupe}{doublons}>
+     <div class="bord_article"><div class="menu-mots">#TITRE</div></div>
+    </BOUCLE_groupe>
+    <ul class="motscles">
+     <BOUCLE_mots_freres(MOTS) {type} {doublons} {par titre}>
+     <li class="menu-item"><a href="#URL_MOT" title="[(#DESCRIPTIF|textebrut|entites_html)]">#TITRE</a></li> 
+     </BOUCLE_mots_freres>
+    </ul>
+   </div>
+   </B_mots_freres>
+  <div class="bord_rubrique">
+   <INCLURE(your_ads.php3)>
+  </div>   
+ </div>
+</div>
+
+</body>
+</html>
+</BOUCLE_mot_principal>
+<//B_mot_principal>
+
+

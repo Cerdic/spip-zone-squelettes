@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://cahierspip.ww7.be/xhtml1-strict.dtd">
+<!--squelette sous licence http://creativecommons.org/licenses/by-sa/2.0/  -->
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[#NOM_SITE_SPIP] </title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET"></meta>
+<!-- Les feuilles de style specifiques aux presents squelettes -->
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/typographie.css" type="text/css" />
+<!-- media="..." permet de ne pas utiliser ce style sous Netscape 4 (sinon plantage) -->
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/habillage.css" type="text/css" media="print, projection, screen, tv" />
+<!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/spip_style.css" type="text/css"></link>
+<!-- Lien vers le backend pour navigateurs eclaires -->
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="backend.php3"></link>
+</head>
+
+<body>
+<?php include "#DOSSIER_SQUELETTE/CS_conf.txt"; ?>
+ <INCLURE(banner.php3)>
+
+<div id="navigation">
+ <INCLURE(menu1.php3)>
+ <INCLURE(menu2.php3)>
+ <INCLURE(your_ads.php3)>
+</div>
+
+<div id="principal" class="contenu">
+ <B_article_edito>
+ <div class="bord_rubrique"><div class="H1">Edito </div></div>
+ <BOUCLE_article_edito(ARTICLES) {par date} {inverse}{id_secteur=1}{0,1}>
+ <div class="bord_article">
+  <div class="encart_logo_gauche">
+   <a href="#URL_ARTICLE">
+    [<img src="./IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)" alt="#TITRE" height="134" width="134"></img>]
+   </a>
+  </div>
+  <div class="encart_titre_droite">
+   [<div class="surtitre">(#SURTITRE)</div>]
+   <h2 class="titre-extrait"><a href="#URL_ARTICLE">[(#TITRE|couper{40})]</a></h2>
+   [<div class="surtitre">(#SOUSTITRE|couper{40})</div>]
+   <div class="detail">
+    [(#DATE|nom_jour)] [(#DATE|affdate)]
+    <:par_auteur:>
+    <BOUCLE_auteurs_edito(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_edito>
+   </div>
+  </div>
+  <div class=".encart_texte_dessous"><br /><br />
+   [<div class="texte"><div class="extrait">(#INTRODUCTION)</div></div>]
+  </div>
+ </div>
+ </BOUCLE_article_edito>
+ </B_article_edito>
+
+ <B_article_news>
+ <div class="bord_rubrique"><div class="H1">News </div></div>
+ <BOUCLE_article_news(ARTICLES) {par date} {inverse}{id_secteur=20}{0,1}>
+ <div class="bord_article">
+  <div class="encart_logo_gauche">
+   <a href="#URL_ARTICLE">
+    [<img src="./IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)" alt="#TITRE" height="134" width="134"></img>]
+   </a>
+  </div>
+  <div class="encart_titre_droite">
+   [<div class="surtitre">(#SURTITRE)</div>]
+   <h2 class="titre-extrait"><a href="#URL_ARTICLE">[(#TITRE|couper{40})]</a></h2>
+   [<div class="surtitre">(#SOUSTITRE|couper{40})</div>]
+   <div class="detail">
+    [(#DATE|nom_jour)] [(#DATE|affdate)]
+    <:par_auteur:>
+    <BOUCLE_auteurs_news(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_news>
+   </div>
+  </div>
+  <div class=".encart_texte_dessous"><br /><br />
+   [<div class="texte"><div class="extrait">(#INTRODUCTION)</div></div>]
+  </div>
+ </div>
+ </BOUCLE_article_news>
+ </B_article_news>
+
+ <B_article_plusloin>
+ <div class="bord_rubrique"><div class="H1">Pour aller plus loin </div></div>
+ <BOUCLE_article_plusloin(ARTICLES) {par date} {inverse}{id_secteur=13}{0,5}>
+ <div class="bord_article">
+  <a href="#URL_ARTICLE">
+   [<img src="./IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)" alt="#TITRE" ></img>]
+  </a>
+  [<div class="surtitre">(#SURTITRE)</div>]
+  <h2 class="titre-extrait"><a href="#URL_ARTICLE">[(#TITRE|couper{40})]</a></h2>
+  [<div class="surtitre">(#SOUSTITRE|couper{40})</div>]
+  <div class="detail">
+   [(#DATE|nom_jour)] [(#DATE|affdate)]
+   <:par_auteur:>
+   <BOUCLE_auteurs_plusloin(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_plusloin>
+  </div>
+  [<div class="texte"><div class="extrait">(#INTRODUCTION)</div></div>]
+ </div>
+ </BOUCLE_article_plusloin>
+<!-- fin du menu de gauche -->
+
+<div id="principal2" class="contenu">
+ <B_article_un>
+ <!-- Une : derniers squelettes -->
+ <div class="bord_rubrique"><div class="H1">Derniers Squelettes</div></div>
+ <BOUCLE_article_un(ARTICLES) {par date} {inverse}{id_secteur=2} {0,6}>
+  <div class="bord_article">
+  <a href="#URL_ARTICLE">
+   [<img src="./IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)" alt="#TITRE" ></img>]
+  </a>
+  [<div class="surtitre">(#SURTITRE)</div>]
+  [<h2 class="titre-extrait"><a href="#URL_ARTICLE">(#TITRE|couper{40})</a></h2>]
+  [<div class="surtitre">(#SOUSTITRE|couper{40})</div>]
+  <div class="detail">
+   [(#DATE|nom_jour)] [(#DATE|affdate)]
+   <:par_auteur:> <BOUCLE_auteurs_un(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_un>
+  </div>
+  [<div class="texte"><div class="extrait">(#INTRODUCTION)</div></div>]
+ </div>
+ </BOUCLE_article_un>
+ </B_article_un>
+</div>
+</div>
+#SPIP_CRON
+</body>
+</html>

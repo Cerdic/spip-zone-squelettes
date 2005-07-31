@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[#NOM_SITE_SPIP] <:poster_message:></title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
+
+<!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
+<link rel="stylesheet" href="spip_style.css" type="text/css">
+
+<!-- Les feuilles de style specifiques aux presents squelettes -->
+<link rel="stylesheet" href="typographie.css" type="text/css">
+
+<!-- media="..." permet de ne pas utiliser ce style sous Netscape 4 (sinon plantage) -->
+<link rel="stylesheet" href="habillage.css" type="text/css" media="print, projection, screen, tv">
+</head>
+
+<body>
+
+
+<div id="navigation">
+
+<h1 class="structure"><:navigation:></h1>
+
+<!-- Menu de navigation general -->
+
+<div class="menu">
+<ul class="general">
+	<li class="menu-titre">
+	[<a href="(#URL_SITE_SPIP)" title="<:accueil_site:>"><b>#NOM_SITE_SPIP</b></a>]
+	</li>
+	<li class="menu-item">
+	<a href="plan.php3"><:plan_site:></a>
+	</li>
+	<li class="menu-item">
+	<a href="resume.php3" title="<:articles_populaires:>"><:en_resume:></a>
+	</li>
+	<li class="menu-item">
+	<a href="ecrire/"><:espace_prive:></a>
+	</li>
+</ul>
+</div>
+
+<!-- Formulaire de recherche -->
+[(#FORMULAIRE_RECHERCHE)]
+
+<!-- Menu de navigation rubriques -->
+<B_rubriques>
+<div class="menu">
+<ul class="rubriques">
+<BOUCLE_rubriques(RUBRIQUES) {racine} {par titre}>
+<li>
+<div class="menu-titre"><a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></div>
+<B_sous_rubriques>
+	<ul class="menu-liste">
+<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par titre}>
+	<li class="menu-item"><a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></li>
+</BOUCLE_sous_rubriques>
+	</ul>
+</B_sous_rubriques>
+</li>
+</BOUCLE_rubriques>
+</ul>
+</div>
+</B_rubriques>
+
+<!-- Logo SPIP -->
+ <BR /><BR />
+  <a href="http://www.spip.net"><img src="IMG/logo_spip.jpg" width="105" height="92" class="spip_logos" alt="<:site_realise_avec_spip:>"></a>
+ <BR /><BR />
+  <a href="http://validator.w3.org/check?uri=referer"><img border="0" src="/images/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>
+ <BR /><BR />
+  <a href="http://validator.w3.org/check?uri=http://wesnothfr.ww7.be/"><img style="border:0;width:88px;height:31px" src="/images/vcss" alt="Valid CSS!"> </a>
+ <BR /><BR />
+<a href="http://www.mozilla.org/products/firefox/">
+  <img src="http://www.spreadfirefox.com/community/images/affiliates/Buttons/110x32/get.gif" border="0" alt="Firefox"/>
+ </a>
+
+ <BR /><BR />
+
+
+
+</div>
+
+
+<!-- Contenu : poster un message dans le forum -->
+
+<div class="bord_rubrique" id="principal3">
+
+<h1 class="structure"><:poster_message:></h1>
+
+<BOUCLE_article(ARTICLES) {id_article}>
+	<:en_reponse:>
+	<div class="bord_article" id="detail">
+
+	[(#LOGO_ARTICLE|right)]
+	[<div class="surtitre">(#SURTITRE)</div>]
+	<h2 class="titre-extrait"><a href="#URL_ARTICLE">#TITRE</a></h2>
+	[<div class="surtitre">(#SOUSTITRE)</div>]
+	<div class="detail">
+	[(#DATE|nom_jour)] [(#DATE|affdate)]
+	<B_auteurs_un><:par_auteur:> <BOUCLE_auteurs_un(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_un>
+	</div>
+	[<div class="texte"><div class="extrait">(#INTRODUCTION)</div></div>]
+	<br />
+	</div>
+</BOUCLE_article>
+
+<BOUCLE_breve(BREVES) {id_breve}>
+	<:en_reponse:>
+	[(#LOGO_BREVE|right)]
+	<h2 class="titre-extrait"><a href="#URL_BREVE">#TITRE</a></h2>
+	<div class="detail">
+	[(#DATE|nom_jour)] [(#DATE|affdate)]
+	</div>
+	[<div class="texte"><div class="extrait">(#INTRODUCTION)</div></div>]
+	<br />
+</BOUCLE_breve>
+
+<BOUCLE_rubrique(RUBRIQUES) {id_rubrique}>
+	<:en_reponse:>
+	<h2 class="titre-extrait"><a href="#URL_RUBRIQUE">#TITRE</a></h2>
+	[<div class="texte"><div class="extrait">(#TEXTE)</div></div>]
+	<br />
+</BOUCLE_rubrique>
+
+<BOUCLE_syndic(SITES) {id_syndic}>
+	<:en_reponse:>
+	<h2 class="titre-extrait"><a href="#URL_SYNDIC">#TITRE</a></h2>
+	<br />
+</BOUCLE_syndic>
+
+<BOUCLE_forum_parent(FORUMS) {id_forum}>
+	<:en_reponse:>
+	<h2 class="titre-extrait"><a href="#URL_FORUM">#TITRE</a></h2>
+	<div class="bord_article" id="detail">
+	[(#DATE|nom_jour)] [(#DATE|affdate)]
+	[<div class="texte"><div class="extrait">(#TEXTE)</div></div>]
+	</div>
+	<br />
+</BOUCLE_forum_parent>
+
+
+#FORMULAIRE_FORUM
+
+
+</div>
+
+</body>
+</html>
