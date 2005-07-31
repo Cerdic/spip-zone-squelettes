@@ -12,16 +12,15 @@
 	}
 
 	// filtre de nettoyage XHTML strict d'un contenu potentiellement hostile
-	// |antispam2|textebrut|lignes_longues|entites_html|corriger_toutes_entites_html|texte_script
+	// |textebrut|lignes_longues|entites_html|antispam2|texte_script
 	function nettoyer_texte($texte) {
 		return texte_script(
-			corriger_toutes_entites_html(
+			antispam2(
 			entites_html(
 			lignes_longues(
 			textebrut(
-			antispam2(
 				$texte
-			))))));
+			)))));
 	}
 
 	// tri maison : d'abord par jour de syndication,
