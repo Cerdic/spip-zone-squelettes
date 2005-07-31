@@ -8,6 +8,8 @@ else*/
 	$max = 50;
 }
 
+//include_ecrire("inc_filtres.php3");
+
 if ($pages = $this->LoadRecentlyChanged($max))
 {
 	if (!($link = $this->GetParameter("link"))) $link=$this->config["root_page"];
@@ -33,7 +35,7 @@ if ($pages = $this->LoadRecentlyChanged($max))
 		$output .= "<title>" . $page["tag"] . " --- par " .$page["user"] . " le " . $day ." - ". $hh .":". $mm . "</title>\n";
 		$output .= "<description> Modification de " . $page["tag"] . " --- par " .$page["user"] . " le " . $day ." - ". $hh .":". $mm . "</description>\n";
 		$output .= "<link>" . $this->config["base_url"] . $page["tag"] . "&amp;time=" . rawurlencode($page["time"]) . "</link>\n";
-		$output .= "<date>" . $page["time"] . "</date>\n";
+		$output .= "<date>" . date_iso($page["time"]) . "</date>\n";
 		$output .= "</item>\n";
 	}
 	$output .= "</rdf:RDF>\n";
