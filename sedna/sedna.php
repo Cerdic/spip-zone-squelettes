@@ -56,15 +56,19 @@
 		$id_syndic_article,
 		$id_lien,
 		$id_syndic,
-		$heure,
+		$date,
 		$url,
 		$titre,
 		$lesauteurs,
-		$desc,
-		$date
+		$desc
 		) {
 		static $vu, $lus, $ferme_ul, $id, $iddesc;
 		global $ex_syndic, $class_desc;
+
+		// Articles a ignorer
+		if (!$_GET['id_syndic']
+		AND $_COOKIE['sedna_ignore_'.$id_syndic])
+			return;
 
 		// initialiser la liste des articles lus
 		if (!is_array($lus))
@@ -75,19 +79,19 @@
 		// regler la classe des liens, en fonction du cookie sedna_lu
 		$class_link = $lus[$id_lien] ? 'vu' : '';
 
+		if (unique(substr($date,0,10)))
+			$affdate = '<h1 class="date">'
+				.jour($date).' '.nom_mois($date).'</h1>';
+
+
 		// indiquer un intertitre si on change de source ou de date
-		if ($date OR ($id_syndic != $ex_syndic)) {
+		if ($affdate OR ($id_syndic != $ex_syndic)) {
 			echo $ferme_ul; $ferme_ul="</ul>\n";
-			echo $date;
+			echo $affdate;
 		}
 
-		// Articles a ignorer
-		if (!$_GET['id_syndic']
-		AND $_COOKIE['sedna_ignore_'.$id_syndic])
-			return;
-
 		// Suite intertitres
-		if ($date OR ($id_syndic != $ex_syndic)) {
+		if ($affdate OR ($id_syndic != $ex_syndic)) {
 			echo "<h2 class='site' id='site${id_syndic}_".(++$id)."'
 			onmouseover=\"getElementById('url".$id."').className='urlsiteon';\"
 			onmouseout=\"getElementById('url".$id."').className='urlsite';\"
@@ -111,7 +115,7 @@
 		if (!$_GET['id_syndic'] AND !strlen($_GET['recherche']))
 			echo " id='item${id_syndic}_${id_syndic_article}'";
 		echo "	onmousedown=\"jai_lu('$id_lien');\">\n",
-		"<small>$heure</small>",
+		"<small>".affdate($date,'H:i')."</small>",
 		"<div class=\"titre\"><a href=\"$url\"
 			title=\"$url\"
 			class=\"link$class_link\"

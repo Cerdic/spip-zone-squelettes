@@ -133,7 +133,7 @@
 		class="[(#ENV{id_syndic}|=={#ID_SYNDIC}|?{'selected',''})]"
 	><?php
 		if ($_COOKIE['sedna_ignore_[(#ID_SYNDIC)]']) echo '<s>';
-	?>[(#SYNDICATION|=={oui}|?{'', <span title="<:probleme_de_syndication:>"> &#x2193;</span> })]#NOM_SITE<?php
+	?>[(#SYNDICATION|syndication_en_erreur|?{<span title="<:probleme_de_syndication:>"> &#x2193;</span>,''}) ]#NOM_SITE<?php
 		if ($_COOKIE['sedna_ignore_[(#ID_SYNDIC)]']) echo '</s>';
 	?></a>
 </li>
@@ -166,35 +166,31 @@
 	echo "<:sedna_liens:>";
 	}
 ?></div>
-<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic?} {contenu} {tri_sedna} {age<=#ENV{age,1}} {0,500}>
 
+<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic?} {contenu} {tri_sedna} {age<=#ENV{age,1}} {0,500}>
 <?php
 	afficher_lien(
 	#ID_SYNDIC_ARTICLE,
 	'[(#URL_ARTICLE|creer_identifiant{#DATE})]',
 	#ID_SYNDIC,
-	'[(#DATE|affdate{H:i})]',
+	'#DATE',
 	'[(#URL_ARTICLE|attribut_html|texte_script)]',
 	'[(#TITRE|supprimer_numero|nettoyer_texte)]',
 	'[ - (#LESAUTEURS|nettoyer_texte)]',
-	'[(#DESCRIPTIF|nettoyer_texte)]',
-	'[<h1 class="date">(#DATE|affdate_court|unique)</h1>]'
+	'[(#DESCRIPTIF|nettoyer_texte)]'
 	);
 ?>
-
 </BOUCLE_syndic>
 </ul>
-
 </B_syndic>
 
-	<h1 class="date"><:sedna_pas_articles:></h1>
-	<div class="milieu">
-		<div class="centre_image">
-		<img src="sedna-big.png" alt="" width="196" height="196" />
-		</div>
+	<div id="total_articles"><:sedna_pas_articles:></div>
+	<div class="centre_image">
+	<img src="sedna-big.png" alt="" width="196" height="196" />
 	</div>
 
 <//B_syndic>
+
 
 <?php
 	$verbe = ($_COOKIE['sedna_ignore_[(#ENV{id_syndic})]']) ? "Afficher":"Masquer";
@@ -237,7 +233,7 @@ title="RSS [(#NOM_SITE_SPIP|attribut_html)][ ((#ENV{recherche}|attribut_html))]"
 			$ignore = true;
 	?>
 	[(#ENV{refresh}|=={#ENV{id_syndic}}|?{' ',''}) Syndication effectu&eacute;e]
-	[(#ENV{refresh}|=={#ENV{id_syndic}}|?{'',#SYNDICATION})
+	[(#ENV{refresh}|=={#ENV{id_syndic}}|?{'',<!-- #SYNDICATION -->})
 		[Derni&egrave;re syndication de ce site effectu&eacute;e
 		(#DATE_SYNDIC|date_relative) - ]
 	<a href="[(#SELF|parametre_url{refresh,#ID_SYNDIC})]">Mettre &agrave; jour maintenant</a>]
