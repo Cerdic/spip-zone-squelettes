@@ -62,7 +62,7 @@
 	<li><a href="[(#SELF|parametre_url{age,365})]"
 	class="[(#ENV{age}|=={365}|?{'selected',''})]"><:sedna_annee:></a></li>
 </ul>
-<h1></h1>
+<h1>&nbsp;</h1>
 <form action="#SELF" method="get">
 <div>
 	<input type="text" name="recherche" value="[(#ENV{recherche})]" size="10" />
@@ -82,6 +82,7 @@
 <?php
 	// Si on se connecte on peut memoriser son cookie
 	if ($auteur_session) { ?>
+
 <ul>
 <li>
 <a id="synchrooui"
@@ -104,22 +105,28 @@
 <?php
 	if ($auteur_session['statut'] == '0minirezo') {
 ?>
-<ul>
+
 <li>
 <a href="../ecrire/[(#ENV{id_syndic}|?{sites,sites_tous})].php3[?id_syndic=(#ENV{id_syndic})]">[(#ENV{id_syndic}|?{<:ecrire:icone_modifier_site:>, <:login_acces_prive:>})]</a>
 </li>
+
 <?php } ?>
 
 <li>
-<a href="../spip_cookie.php3?logout=<?php echo $auteur_session['login']; ?>&url=sedna/[(#SELF|urlencode)]">D&eacute;connexion</a>
+<a href="../spip_cookie.php3?logout=<?php echo $auteur_session['login']; ?>&amp;url=sedna/[(#SELF|urlencode)]">D&eacute;connexion</a>
 </li>
+</ul>
+
 <?php } else { ?>
+
 <ul>
 <li>
 <a href="../spip_login.php3?url=sedna/[(#SELF|urlencode)]">Connexion</a>
 </li>
-<?php } ?>
 </ul>
+
+<?php } ?>
+
 
 <h1><:sedna_sources:></h1>
 <ul>
@@ -196,15 +203,15 @@
 	$verbe = ($_COOKIE['sedna_ignore_[(#ENV{id_syndic})]']) ? "Afficher":"Masquer";
 ?>
 
+[
 <ul>
 <li>
-[<a href="#" onclick="change_site((#ENV{id_syndic})); document.location='./';"><b>
+<a href="#" onclick="change_site((#ENV{id_syndic})); document.location='./';"><b>
 	<?php echo $verbe; ?> cette source dans la liste principale.
-</b></a>]
+</b></a>
 </li>
-
-
 </ul>
+]
 
 </div>
 
