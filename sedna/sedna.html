@@ -3,10 +3,10 @@
 <head>
 <title>[Sedna RSS] [(#NOM_SITE_SPIP|supprimer_tags)]</title>
 <meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
-
 <meta http-equiv="refresh" content="900;url=#URL_SITE_SPIP/sedna/#SELF" />
-
-<!-- Lien vers le backend (voir ausi plus bas affichage html) -->
+[(#REM)
+	Liens vers le backend (voir ausi plus bas affichage html)
+]
 <BOUCLE_url_backend_ori(SITES){id_syndic}>
 	<link rel="alternate" type="application/rss+xml" title="RSS [(#NOM_SITE|attribut_html)], via [(#NOM_SITE_SPIP|attribut_html)]" href="#URL_SITE_SPIP/sedna/?rss=1&amp;id_syndic=#ID_SYNDIC[&amp;recherche=(#ENV{recherche})]" />
 	<link rel="alternate" type="application/rss+xml" title="RSS original" href="#URL_SYNDIC" />
@@ -16,7 +16,6 @@
 <link rel="icon" type="image/png" href="sedna-icon.png" />
 <link href="sedna.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="sedna.js"></script>
-
 </head>
 
 <body onload="sedna_init();">
@@ -169,13 +168,12 @@
 [(#REM)
 	Voir la definition des criteres {contenu} et {tri_sedna} dans sedna.php
 ]
-<B_syndic><div id="total_articles">#TOTAL_BOUCLE
-<?php if(#TOTAL_BOUCLE != 1) {
-	echo "<:sedna_liens_pluriel:>";
-	}else{
-	echo "<:sedna_liens:>";
-	}
-?></div>
+<B_syndic>
+
+<div id="total_articles">
+#TOTAL_BOUCLE [(#TOTAL_BOUCLE|=={1}|?{<:sedna_liens:>,<:sedna_liens_pluriel:>})]
+</div>
+
 
 <BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic?} {contenu} {tri_sedna} {age<=#ENV{age,1}} {0,500}>
 <?php
