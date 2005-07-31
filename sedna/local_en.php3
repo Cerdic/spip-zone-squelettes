@@ -13,10 +13,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sedna_liens' => 'posts',
 'sedna_masquer_resume' => 'Mask summaries',
 'sedna_mois' => 'Last month',
+'sedna_pas_articles' => 'No post within this period of time&nbsp;!',
 'sedna_pas_synchro' => 'Do not synchronize',
 'sedna_semaine' => 'Last week',
+'sedna_sources' => 'Feeds',
 'sedna_synchro' => 'Synchronize',
-'sedna_synchro_titre' => 'Save the read posts list on website'
+'sedna_synchro_titre' => 'Save the read posts list on website',
+'sedna_derniere_syndication' => 'Last syndication&nbsp;:&nbsp;',
+'sedna_toutes' => 'All'
 
 
 );
