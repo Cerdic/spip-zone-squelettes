@@ -166,7 +166,7 @@
 	echo "<:sedna_liens:>";
 	}
 ?></div>
-<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic?} {contenu} {tri_sedna} {age<=#ENV{age,1}} {0,500} {!lang_select}>
+<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic?} {contenu} {tri_sedna} {age<=#ENV{age,1}} {0,500}>
 
 <?php
 	afficher_lien(
@@ -237,10 +237,10 @@ title="RSS [(#NOM_SITE_SPIP|attribut_html)][ ((#ENV{recherche}|attribut_html))]"
 			$ignore = true;
 	?>
 	[(#ENV{refresh}|=={#ENV{id_syndic}}|?{' ',''}) Syndication effectu&eacute;e]
-	[(#ENV{refresh}|=={#ENV{id_syndic}}|?{'',' '})
-	Derni&egrave;re syndication de ce site effectu&eacute;e
-	[(#DATE_SYNDIC|date_relative)]
-	- <a href="[(#SELF|parametre_url{refresh,#ID_SYNDIC})]">Mettre &agrave; jour maintenant</a>]
+	[(#ENV{refresh}|=={#ENV{id_syndic}}|?{'',#SYNDICATION})
+		[Derni&egrave;re syndication de ce site effectu&eacute;e
+		(#DATE_SYNDIC|date_relative) - ]
+	<a href="[(#SELF|parametre_url{refresh,#ID_SYNDIC})]">Mettre &agrave; jour maintenant</a>]
 	[- (#SYNDICATION|syndication_en_erreur)]
 
 <?php } ?>
@@ -248,9 +248,12 @@ title="RSS [(#NOM_SITE_SPIP|attribut_html)][ ((#ENV{recherche}|attribut_html))]"
 <?php
 	if (!$ignore)
 		echo "<:sedna_derniere_syndication:>"
-		.date_relative('[(#ENV{max_maj})]'
-	);
+		.date_relative('[(#ENV{max_maj})]');
 ?>
+
+<div style="float: right;">#MENU_LANG</div>
+<div style="clear: both;"></div>
+
 </div>
 
 <div style='position: absolute; background-image: url("../spip_background.php3"); height: 1px; width: 1px;'></div>
