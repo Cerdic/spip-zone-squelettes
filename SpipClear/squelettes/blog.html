@@ -1,26 +1,8 @@
-<!--
-HTML: Choisir le bon doctype : un vaste sujet 
-voir cet article sur [Toi comprendre moi sur OpenWeb->http://openweb.eu.org/articles/toi_comprendre_moi/]
--->
 [(#CHARSET|doctype)]
-<!--
-HTML:attribut dir
-Dans certaine langue comme l'arabe la lecture se fait de droite a gauche. Cet	attribut dir donne le sens de lecture.
--->
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 	<head>
-	
-		<!-- 
-		HTML:choisir le bon CHARSET : TODO lien sur charset
-		SPIP:La balise #CHARSET [Doc sur spip.net : Les balises propres au site->http://www.spip.net/fr_article1902.html?var_recherche=charset]
-		-->
 		<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
-
-		<!-- 
-		TODO c'est quoi ce bazar MSSmartTagsPreventParsing ? 
-		-->
 		<meta name="MSSmartTagsPreventParsing" content="TRUE" />
-
 		<BOUCLE_entete_prev_next(ARTICLES){id_article}>
 [<!--(#PARAMETRES_TRACKBACK)
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -51,14 +33,6 @@ Dans certaine langue comme l'arabe la lecture se fait de droite a gauche. Cet	at
 				<link rel="chapter" href="#URL_SPIPCLEAR" title="[(#TITRE)]" />
 			</BOUCLE_entete_chapter>
 		</BOUCLE_entete>
-
-		
-		<!-- 
-		HTML:les liens RSS
-		[RSS sur wikipedia->http://fr.wikipedia.org/wiki/Really_simple_syndication]
-		Ici on choisit de proposer les rss du BLOG puis de chaque rubrique
-		SPIP:Le squelette du rss se trouve dans le fichier squelette/rss.html. Il est base sur le rss propose dans cette contrib : [Un fil RSS 2.0 et un fil ATOM 0.3->http://www.spip-contrib.net/article695.html]
-		-->
 		<BOUCLE_RSS_RUBRIQUE(RUBRIQUES){id_rubrique}>
 			<link rel="alternate" type="application/rss+xml" title="SPIP.Blog-#TITRE" href="rss.php?id_blog=[(#ENV{id_blog})]&amp;id_rubrique=#ID_RUBRIQUE" />
 			<link rel="alternate" type="application/atom+xml" title="Atom" href="atom.php?id_blog=[(#ENV{id_blog})]&amp;id_rubrique=#ID_RUBRIQUE" />
@@ -67,99 +41,33 @@ Dans certaine langue comme l'arabe la lecture se fait de droite a gauche. Cet	at
 			<link rel="alternate" type="application/rss+xml" title="SPIP.Blog-commentaire-#TITRE" href="rss.php?id_blog=[(#ENV{id_blog})]&amp;id_article=#ID_ARTICLE&amp;type=co" />
 			<link rel="alternate" type="application/atom+xml" title="Atom-SPIP.Blog-commentaire-#TITRE" href="atom.php?id_blog=[(#ENV{id_blog})]&amp;id_article=#ID_ARTICLE&amp;type=co" />
 		</BOUCLE_RSS_ARTICLE>
-		<!--
-	  	pas utile AMHA (James)
-		-->	
 		<link rel="alternate" type="application/rss+xml" title="SPIP.Blog-commentairess" href="rss.php?id_blog=[(#ENV{id_blog})]&amp;type=co" />
 		<link rel="alternate" type="application/atom+xml" title="Atom-SPIP.Blog-commentaires" href="atom.php?id_blog=[(#ENV{id_blog})]&amp;type=co" />
-
-		<!-- 
-		TODO : m&eacute;tadonn&eacute;e Dublin Core
-		-->
 		[<meta name="DC.title" content="(#NOM_SITE_SPIP)" />]
-
-		<!-- 
-		HTML : title est la balise html qui permet de noter le titre en haut de page
-		SPIP: balise #NOM_SITE_SPIP : le nom du site ([Les balises propres au site->http://www.spip.net/fr_article1902.html]
-		TODO : ajouter un filtre textbrut
-		-->
 		[<title>(#NOM_SITE_SPIP)</title>]
-		
-		<!-- 
-		HTML: la feuille de style utilise pour la presentation de la page html  [wikipedia CSS ->http://fr.wikipedia.org/wiki/Feuilles_de_style_en_cascade]
-		-->
 		<link rel="stylesheet" type="text/css" href="spipclear.css" media="screen" />
 	</head>
 	
 	 <body>
-	
-		<!-- 
-		CSS:
-		Le bloc qui contient toute la page
-		-->
-		<div id="page">
-		
+		<div id="page">		
 			<div id="top">
-				<!-- 
-				<h2>SPIP:# URL_SITE_SPIP # NOM_SITE_SPIP
-				L'adresse et le nom du site
-				Voir la doc sur [SPIP.net->http://www.spip.net/fr_article1902.html]
-				QUESTION: dans le cadre d'une ferme a blog sous spip on a pas interet a mettre une boucle sur id_blog avec url_RUBRQUE et #nom_RUBRIQUE ?
-				TODO: remplacer logo par logo du site
-				-->
 				<BOUCLE_titre_blog(RUBRIQUES){id_rubrique=(#ENV{id_blog})}>
 				<h1><a href="#URL_SPIPCLEAR"><img src="[IMG/(#LOGO_RUBRIQUE|fichier)]" alt="[(#TITRE|textebrut|entites_html)]" /></a></h1>
 				</BOUCLE_titre_blog>
-				<!-- 
-				SPIP:# FORMULAIRE_ADMIN
-				Affiche les petits boutons "modifier" "recalculer" et "statistiques"
-				Voir la doc sur TODO ... c'est de la 1.8 ? 
-				-->
 				[(#FORMULAIRE_ADMIN)]
-				<!--
-				SPIP: # SPIP_CRON
-				forcer les taches de fons
-				-->
 				[(#SPIP_CRON)]
 			</div>
 			
-			<!-- 
-			SPIP:Utilisation des modules de langue
-			la notation <:spipclear:attime:> permet de faire un squelette generique et de ne pas 
-			ecrire les chaines de caractere dans le squelette lui meme mais dans un fichier separe.
-			L'avantage saute au yeux : aujourd'hui vous avez un site "franchouillard", mais le lendemain
-			votre site s'internationalise et quelqu'un vous propose de le traduire en allemand. Pas de 
-			probleme : il suffit juste d'envoyer au traducteur le fichier de lang correspondant (par exemple 
-			ici le fichier est RepertoireSpip/ecrire/lang/spipclear_fr.php3 il suffit de creer un nouveau
-			fichier en remplaçant fr par de )
-			-->
 			<p id="prelude"><a href="#main"><:spipclear:go_main:></a> |
 				<a href="#sidebar"><:spipclear:go_sidebar:></a> |
 				<a href="#search"><:spipclear:go_search:></a>
 			</p>
 			
-			<!-- -->
 			<div id="main">
-				<!-- -->
 				<div id="content">
-					<!-- -->
 					<div class="post">
 					
-						<!-- Le squelette SPIP.Clear est structure d'une façon differente d'un squelette 
-						normal : toutes les boucles sont dans un seul et meme couple de fichier (blog.html
-						et blog.php). Generalement on trouve article / rubrique ... .
-						Ensuite chaque boucle est prise en fonction des parametres passes dans l'URL .
-						Ici on a :
-							RUBRIQUE 
-							BILLET
-							RECHERCHE
-							ARCHIVE
-							Ainsi si on a blog.php?id_rubrique=5 , les 15 derniers billets (articles) de la rubrique 5 seront selectionne.
-							Si on a blog.php?id_article=12 c'est la boucle BILLET qui sera selecionnee et qui affichera 
-							le billet numero 12.
-							
-							-->
-						<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
+							<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
 							<BOUCLE_billets(ARTICLES){branche}{lang?}{par date}{inverse}{0,15}>
 								[(#LOGO_ARTICLE|right)]
 								[<p class="day-date">(#DATE|nom_jour_jour_nom_mois_annee|unique)</p>]
@@ -257,7 +165,6 @@ Dans certaine langue comme l'arabe la lecture se fait de droite a gauche. Cet	at
 						</BOUCLE_billet>
 
 
-						<!-- -->
 						<B_recherche>
 							[<p class="day-date"><:resultats_recherche:> &#171;&nbsp;(#RECHERCHE)&nbsp;&#187;</p>]
 							<BOUCLE_recherche(ARTICLES){id_secteur=(#ENV{id_blog})}{recherche}{par points}{inverse}>
@@ -280,7 +187,6 @@ Dans certaine langue comme l'arabe la lecture se fait de droite a gauche. Cet	at
 							</p>
 						</BOUCLE_recherche>
 						
-						<!-- -->
 						<BOUCLE_archives(ARTICLES){id_secteur=(#ENV{id_blog}}{date==^(#ENV{archives,9999})}{par date}{inverse}>
 							[(#LOGO_ARTICLE|right)]
 							[<p class="day-date">(#DATE|nom_jour_jour_nom_mois_annee|unique)</p>]
@@ -310,9 +216,6 @@ Dans certaine langue comme l'arabe la lecture se fait de droite a gauche. Cet	at
 				</div>
 			</div>
 				
-			<!--
-			La colonne de droite est toujours la meme quelquesoit l'url
-			-->
 			<div id="sidebar">
 				<div id="calendar">
 					<h2><:spipclear:calendrier:></h2>
