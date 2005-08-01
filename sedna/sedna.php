@@ -8,7 +8,7 @@
 	function syndication_en_erreur($statut_syndication) {
 		if ($statut_syndication == 'off'
 		OR $statut_syndication == 'sus')
-			return _T('probleme_de_syndication');
+			return _T('sedna_probleme_de_syndication');
 	}
 
 	// filtre de nettoyage XHTML strict d'un contenu potentiellement hostile
