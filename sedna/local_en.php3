@@ -5,8 +5,8 @@
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-'articles_recents_court' => 'Recent posts',
-'preferences' => 'Preferences',
+'sedna_articles_recents_court' => 'Recent posts',
+'sedna_preferences' => 'Preferences',
 'sedna_aff_resume' => 'Show summaries',
 'sedna_afficher_sources' => 'Display this feeds in principal listing.',
 'sedna_annee' => 'Last year',
