@@ -201,14 +201,14 @@
 
 
 <?php
-	$verbe = ($_COOKIE['sedna_ignore_[(#ENV{id_syndic})]']) ? "Afficher":"Masquer";
+	$verbe = ($_COOKIE['sedna_ignore_[(#ENV{id_syndic})]']) ? "<:sedna_afficher_sources:>":"<:sedna_masquer_sources:>";
 ?>
 
 [
 <ul>
 <li>
 <a href="#" onclick="change_site((#ENV{id_syndic})); document.location='./';"><b>
-	<?php echo $verbe; ?> cette source dans la liste principale.
+	<?php echo $verbe; ?>
 </b></a>
 </li>
 </ul>
@@ -240,11 +240,11 @@ title="RSS [(#NOM_SITE_SPIP|attribut_html)][ ((#ENV{recherche}|attribut_html))]"
 		if ($auteur_session['statut'] == '0minirezo') { 
 			$ignore = true;
 	?>
-	[(#ENV{refresh}|=={#ENV{id_syndic}}|?{' ',''}) Syndication effectu&eacute;e]
+	[(#ENV{refresh}|=={#ENV{id_syndic}}|?{' ',''}) <:sedna_syndication_fait:>]
 	[(#ENV{refresh}|=={#ENV{id_syndic}}|?{'',<!-- #SYNDICATION -->})
-		[Derni&egrave;re syndication de ce site effectu&eacute;e
+		[<:sedna_derniere_syndication:>
 		(#DATE_SYNDIC|date_relative) - ]
-	<a href="[(#SELF|parametre_url{refresh,#ID_SYNDIC})]">Mettre &agrave; jour maintenant</a>]
+	<a href="[(#SELF|parametre_url{refresh,#ID_SYNDIC})]"><:sedna_syndication_ajour:></a>]
 	[- (#SYNDICATION|syndication_en_erreur)]
 
 <?php } ?>
