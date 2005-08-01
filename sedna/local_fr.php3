@@ -5,11 +5,10 @@
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-'sedna_articles_recents_court' => 'Articles r&eacute;cents',
-'sedna_preferences' => 'Pr&eacute;f&eacute;rences',
 'sedna_aff_resume' => 'Afficher les r&eacute;sum&eacute;s',
 'sedna_afficher_sources' => 'Afficher cette source dans la liste principale.',
 'sedna_annee' => 'Ann&eacute;e',
+'sedna_articles_recents_court' => 'Articles r&eacute;cents',
 'sedna_connexion' => 'Connexion',
 'sedna_deconnexion' => 'D&eacute;connexion',
 'sedna_deuxjours' => 'Deux jours',
@@ -21,6 +20,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sedna_mois' => 'Mois',
 'sedna_pas_articles' => 'Pas d\'article dans cette p&eacute;riode&nbsp;!',
 'sedna_pas_synchro' => 'Ne pas synchroniser',
+'sedna_preferences' => 'Pr&eacute;f&eacute;rences',
 'sedna_semaine' => 'Semaine',
 'sedna_sources' => 'Sources',
 'sedna_synchro' => 'Synchroniser',

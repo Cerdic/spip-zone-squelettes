@@ -5,11 +5,10 @@
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-'sedna_articles_recents_court' => 'Recent posts',
-'sedna_preferences' => 'Preferences',
 'sedna_aff_resume' => 'Show summaries',
 'sedna_afficher_sources' => 'Display this feeds in principal listing.',
 'sedna_annee' => 'Last year',
+'sedna_articles_recents_court' => 'Recent posts',
 'sedna_connexion' => 'Login',
 'sedna_deconnexion' => 'Logout',
 'sedna_deuxjours' => 'Last two days',
@@ -21,6 +20,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sedna_mois' => 'Last month',
 'sedna_pas_articles' => 'No post within this period of time&nbsp;!',
 'sedna_pas_synchro' => 'Do not synchronize',
+'sedna_preferences' => 'Preferences',
 'sedna_semaine' => 'Last week',
 'sedna_sources' => 'Feeds',
 'sedna_synchro' => 'Synchronize',
