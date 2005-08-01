@@ -5,8 +5,8 @@
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-'articles_recents_court' => 'Articles r&eacute;cents',
-'preferences' => 'Pr&eacute;f&eacute;rences',
+'sedna_articles_recents_court' => 'Articles r&eacute;cents',
+'sedna_preferences' => 'Pr&eacute;f&eacute;rences',
 'sedna_aff_resume' => 'Afficher les r&eacute;sum&eacute;s',
 'sedna_annee' => 'Ann&eacute;e',
 'sedna_deuxjours' => 'Deux jours',
@@ -24,7 +24,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sedna_toutes' => 'Toutes',
 
 
-'probleme_de_syndication' => 'probl&egrave;me de syndication'
+'sedna_probleme_de_syndication' => 'probl&egrave;me de syndication'
 
 );
 
