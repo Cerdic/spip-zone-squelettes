@@ -16,11 +16,12 @@
 	function nettoyer_texte($texte) {
 		return texte_script(
 			antispam2(
+			corriger_toutes_entites_html(
 			entites_html(
 			lignes_longues(
 			textebrut(
 				$texte
-			)))));
+			))))));
 	}
 
 	// tri maison : d'abord par jour de syndication,
