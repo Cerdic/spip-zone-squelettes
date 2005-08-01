@@ -49,8 +49,7 @@ function change_site(id) {
 		createCookie('sedna_ignore_'+id, 1, 365);
 	}
 
-	afficher_sites();
-	return false;
+//	afficher_sites();
 }
 
 function afficher_sites() {
