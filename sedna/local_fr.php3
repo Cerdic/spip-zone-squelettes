@@ -6,7 +6,7 @@
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 'sedna_aff_resume' => 'Afficher les r&eacute;sum&eacute;s',
-'sedna_afficher_sources' => 'Afficher cette source dans la liste principale.',
+'sedna_afficher_sources' => 'Afficher cette source',
 'sedna_annee' => 'Ann&eacute;e',
 'sedna_articles_recents_court' => 'Articles r&eacute;cents',
 'sedna_connexion' => 'Connexion',
@@ -16,7 +16,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sedna_liens' => 'article',
 'sedna_liens_pluriel' => 'articles',
 'sedna_masquer_resume' => 'Masquer les r&eacute;sum&eacute;s',
-'sedna_masquer_sources' => 'Masquer cette source dans la liste principale.',
+'sedna_masquer_sources' => 'Masquer cette source',
 'sedna_mois' => 'Mois',
 'sedna_pas_articles' => 'Pas d\'article dans cette p&eacute;riode&nbsp;!',
 'sedna_pas_synchro' => 'Ne pas synchroniser',

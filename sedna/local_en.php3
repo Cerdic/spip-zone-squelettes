@@ -6,7 +6,7 @@
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 'sedna_aff_resume' => 'Show summaries',
-'sedna_afficher_sources' => 'Display this feed in principal listing.',
+'sedna_afficher_sources' => 'Unmask this feed',
 'sedna_annee' => 'Last year',
 'sedna_articles_recents_court' => 'Recent posts',
 'sedna_connexion' => 'Login',
@@ -16,7 +16,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sedna_liens' => 'post',
 'sedna_liens_pluriel' => 'posts',
 'sedna_masquer_resume' => 'Mask summaries',
-'sedna_masquer_sources' => 'Mask this feed from principal listing.',
+'sedna_masquer_sources' => 'Mask this feed',
 'sedna_mois' => 'Last month',
 'sedna_pas_articles' => 'No post within this period of time!',
 'sedna_pas_synchro' => 'Do not synchronize',

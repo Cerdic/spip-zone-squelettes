@@ -22,7 +22,7 @@
 
 <div class="top">
 <div class="toptitle">
-<a href="./">[Sedna RSS]</a>
+<a href="./">Sedna RSS</a>
 	&nbsp;
 <BOUCLE_titre(SITES){id_syndic}>#NOM_SITE
 	&nbsp;
@@ -51,7 +51,7 @@
 <h1><:sedna_articles_recents_court:></h1>
 <ul>
 	<li><a href="[(#SELF|parametre_url{age,''})]"
-	class="[(#ENV{age}|=={''}|?{'selected',''})]"><:date_aujourdhui|ucfirst:></a></li>
+	class="[(#ENV{age}|=={''}|?{'',''})]"><:date_aujourdhui|ucfirst:></a></li>
 	<li><a href="[(#SELF|parametre_url{age,2})]"
 	class="[(#ENV{age}|=={2}|?{'selected',''})]"><:sedna_deuxjours:></a></li>
 	<li><a href="[(#SELF|parametre_url{age,7})]"
@@ -138,9 +138,22 @@
 	<a href="?id_syndic=#ID_SYNDIC[&amp;age=(#ENV{age})]"
 		class="[(#ENV{id_syndic}|=={#ID_SYNDIC}|?{'selected',''})]"
 	><?php
-		if ($_COOKIE['sedna_ignore_[(#ID_SYNDIC)]']) echo '<s>';
+		if ($_COOKIE['sedna_ignore_[(#ID_SYNDIC)]']) {
+			echo '<span
+			onclick="change_site( #ID_SYNDIC ); document.location=document.location; return false;"
+			style="float: right;"
+			title="<:sedna_afficher_sources:>">+</span> ';
+			echo '<s>';
+		} else {
+			echo '<span
+			onclick="change_site( #ID_SYNDIC ); document.location=document.location; return false;"
+			style="float: right;"
+			title="<:sedna_masquer_sources:>">-</span> ';
+		}
 	?>[(#SYNDICATION|syndication_en_erreur|?{<span title="<:sedna_probleme_de_syndication:>"> &#x2193;</span>,''}) ]#NOM_SITE<?php
-		if ($_COOKIE['sedna_ignore_[(#ID_SYNDIC)]']) echo '</s>';
+		if ($_COOKIE['sedna_ignore_[(#ID_SYNDIC)]']) {
+			echo '</s>';
+		}
 	?></a>
 </li>
 <?php
@@ -153,7 +166,7 @@
 
 <h1>Sedna</h1>
 <ul>
-<li><a href="http://sedna.rezo.net"><img src="sedna-badge.png" alt="Sedna RSS" width="100" height="34" style="border:0;" /></a></li>
+<li><a href="http://sedna.rezo.net">Sedna RSS</a></li>
 <li><a href="http://www.spip.net/">SPIP</a></li>
 <li><a href="http://zone.spip.org/trac/spip-zone/">SPIP-Zone</a></li>
 <li><a href="http://www.gnu.org/copyleft/gpl.html">copyleft - GNU/GPL</a></li>
@@ -198,21 +211,6 @@
 	</div>
 
 <//B_syndic>
-
-
-<?php
-	$verbe = ($_COOKIE['sedna_ignore_[(#ENV{id_syndic})]']) ? "<:sedna_afficher_sources:>":"<:sedna_masquer_sources:>";
-?>
-
-[
-<ul>
-<li>
-<a href="#" onclick="change_site((#ENV{id_syndic})); document.location='./';"><b>
-	<?php echo $verbe; ?>
-</b></a>
-</li>
-</ul>
-]
 
 </div>
 

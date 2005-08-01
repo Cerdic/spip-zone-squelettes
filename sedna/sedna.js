@@ -50,6 +50,7 @@ function change_site(id) {
 	}
 
 	afficher_sites();
+	return false;
 }
 
 function afficher_sites() {
