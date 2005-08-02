@@ -1,7 +1,5 @@
 <?php
 
-	$GLOBALS['dossier_squelettes'] = 'SpipClear2';
-
 	/***
 	* declaration doctype et entete html, à appliquer à #CHARSET
 	***/
