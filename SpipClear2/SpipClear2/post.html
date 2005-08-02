@@ -1,0 +1,54 @@
+<BOUCLE_article(ARTICLES){id_article}>
+<h2 class="post-title">#TITRE</h2>
+<p class="post-info"><B_auteurs><:par_auteur|ucfirst:> <BOUCLE_auteurs(AUTEURS){id_article}{", "}>#NOM</BOUCLE_auteurs>,</B_auteurs>
+[(#DATE|affdate_long)] <:spipclear:attime:> [(#DATE|heures)]:[(#DATE|minutes)]
+<span>::</span> <BOUCLE_categorie(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></BOUCLE_categorie>
+<span>::</span>#DEBUT_SURLIGNE<a href="#URL_ARTICLE" title="<:spipclear:permalink_pour:> : #TITRE">##ID_ARTICLE</a>#FIN_SURLIGNE
+<span>::</span><a href="[(#ID_ARTICLE|generer_url_rss{article}|parametre_url{type,co})]" title="<:spipclear:rss_pour:> : #TITRE">rss</a>
+</p>
+
+[<div class="post-chapo">
+	#DEBUT_SURLIGNE(#CHAPO|appliquer_hreflang)#FIN_SURLIGNE
+</div>]
+[<div class="post-content" lang="#LANG">
+	#DEBUT_SURLIGNE(#TEXTE|appliquer_hreflang|reduire_image{450})#FIN_SURLIGNE
+	[<div>#DEBUT_SURLIGNE(#NOTES|appliquer_hreflang)#FIN_SURLIGNE</div>]
+</div>]
+
+<div id="tb">
+	<h3 id="tb"><:trackbacks:trackbacks|ucfirst:></h3>
+	<BOUCLE_trackbacks(FORUMS){id_article}{trackback}{par date}>
+	<p id="c#ID_FORUM" class="comment-info">
+	<span class="comment-number"><a href="#c#ID_FORUM">#COMPTEUR_BOUCLE.</a></span>
+	[(#DATE|nom_jour)] [(#DATE|affdate)] <:spipclear:attime:>
+	[(#DATE|heures)]:[(#DATE|minutes)], <:spipclear:de:>
+	<strong>[<a href="(#URL_SITE)" rel="nofollow">[(#NOM_SITE|sinon{<:spipclear:site_comment:>})]</a>]</strong></p>
+
+	<blockquote>
+		#TEXTE
+	</blockquote>
+	</BOUCLE_trackbacks>
+	<p><:trackbacks:aucun_trackback:></p>
+	<//B_trackbacks>
+	<p>[<:trackbacks:pour_faire:>(#PARAMETRES_TRACKBACK|sinon{<:trackbacks:fermes:>})#URL_TRACKBACK]</p>
+</div>
+
+<div id="comments">
+	<h3 id="co"><:spipclear:commentaires|ucfirst:></h3>
+	<BOUCLE_commentaires_article(FORUMS){id_article}{par date}>
+	<p id="c#ID_FORUM" class="comment-info">
+	<span class="comment-number"><a href="#c#ID_FORUM">#COMPTEUR_BOUCLE.</a></span>
+	[(#DATE|nom_jour)] [(#DATE|affdate)] <:spipclear:attime:>
+	[(#DATE|heures)]:[(#DATE|minutes)], [<:par_auteur:>
+	<strong>(#NOM)</strong>][ <span>::</span> <a href="(#URL_SITE)">[(#NOM_SITE|sinon{<:spipclear:site_comment:>})]</a>]</p>
+							
+	<blockquote>
+		#TEXTE
+	</blockquote>
+	</BOUCLE_commentaires_article>
+	<:spipclear:aucun_commentaire:>
+	<//B_commentaires_article>
+	<h3><:spipclear:ajouter_commentaire:></h3>
+	[(#FORMULAIRE_FORUM{#SELF})][(#PARAMETRES_FORUM|?{'',<:spipclear:commentaires_fermes:>})]
+</div>
+</BOUCLE_article>
