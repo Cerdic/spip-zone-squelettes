@@ -66,22 +66,6 @@ function afficher_sites() {
 	}
 }
 
-/* ne sert plus : changer de couleur quand on clique */
-function highlight_site(id) {
-	var i,d,a,c;
-
-	c = 'site'+id+'_';
-	d = document.getElementsByTagName("h2");
-	for(i=0; (a = d[i]); i++) {
-		if (a.id.substr(0,c.length) == c) {
-			a.className = 'sitesel';
-		} else {
-			a.className = 'site';
-		}
-	}
-
-}
-
 /* gerer le cookie des articles lus */
 /* attention on ne doit pas depasser 3ko */
 function jai_lu(id) {

@@ -93,7 +93,7 @@
 
 		// Suite intertitres
 		if ($affdate OR ($id_syndic != $ex_syndic)) {
-			echo "<h2 class='site' id='site${id_syndic}_".(++$id)."'
+			echo "<h2 id='site${id_syndic}_".(++$id)."'
 			onmouseover=\"getElementById('url".$id."').className='urlsiteon';\"
 			onmouseout=\"getElementById('url".$id."').className='urlsite';\"
 			>";
