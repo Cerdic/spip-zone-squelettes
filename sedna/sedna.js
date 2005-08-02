@@ -48,22 +48,6 @@ function change_site(id) {
 	} else {
 		createCookie('sedna_ignore_'+id, 1, 365);
 	}
-
-//	afficher_sites();
-}
-
-function afficher_sites() {
-	d = document.getElementsByTagName("li");
-	for(i=0; (a = d[i]); i++) {
-		if ((a.id.substr(0,4) == 'item')
-		&& (site = a.id.substr(4, -4 + a.id.indexOf('_')))) {
-			if (readCookie('sedna_ignore_'+site)) {
-				a.className = 'itemoff';
-			} else {
-				a.className = 'item';
-			}
-		}
-	}
 }
 
 /* gerer le cookie des articles lus */
@@ -154,6 +138,4 @@ function sedna_init() {
 	// Marquer dans la barre de titre le nombre d'articles nouveaux
 	sedna_title = document.title;
 	document.title = sedna_title + ' (' + sedna_nouv + '/' + sedna_total + ')';
-
-	afficher_sites();
 }

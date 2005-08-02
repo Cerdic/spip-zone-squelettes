@@ -78,6 +78,10 @@ ecrire_fichier('sedition/sedition.js', transform_sedna($contenu));
 
 copy('sedna/sedna-badge.png', 'sedition/sedition-badge.png');
 copy('sedna/sedna-big.png', 'sedition/sedition-big.png');
-copy('sedna/sedna.gif', 'sedition/sedition.gif');
+copy('sedna/sedna-pink.gif', 'sedition/sedition-pink.gif');
+copy('sedna/sedna-red.gif', 'sedition/sedition-red.gif');
+copy('sedna/sedna-orange.gif', 'sedition/sedition-orange.gif');
+copy('sedna/sedna-cyan.gif', 'sedition/sedition-cyan.gif');
+copy('sedna/sedna-blue.gif', 'sedition/sedition-blue.gif');
 
 ?>
