@@ -14,6 +14,7 @@ $GLOBALS['i18n_spipclear_fr'] = array(
 'aucun_commentaire' => 'Aucun commentaire',
 'aucune_langue' => 'Aucune langue',
 'aucun_lien' => 'Auncun lien',
+'aucun_trackback' => 'Aucun trackback',
 
 //C
 'calendrier' => 'Calendrier',
@@ -77,6 +78,8 @@ $GLOBALS['i18n_spipclear_fr'] = array(
 'syndication' => 'Syndication',
 
 //T
+'trackback' => 'trackback',
+'trackbacks' => 'trackbacks',
 
 );
 
