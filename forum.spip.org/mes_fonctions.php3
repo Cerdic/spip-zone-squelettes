@@ -91,8 +91,8 @@ function filtre_max($texte, $id='tout') {
   return $max[$id];
 }
 
-function coef($max,$nbr,$nbrMax=6) {
-  return 1+($nbr/$max*$nbrMax);
+function coef($max,$nbr,$nbrMax=6,$min = 1) {
+  return $min+($nbr/$max*$nbrMax);
 }
 
 function echaper_mot($titre, $type, $groupe_defaut) {

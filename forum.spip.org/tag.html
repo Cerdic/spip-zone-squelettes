@@ -31,17 +31,15 @@ et voici : les tags !
 [(#REM) cette boucle cherche le maximum du nombre de forums attaches aux mots]
 <B_max_forum>
 <div>
-<BOUCLE_max_forum(MOTS) {type=FAQ}>
-    <BOUCLE_max_forum_in(FORUMS) {id_rubrique?} {id_mot}> </BOUCLE_max_forum_in> [(#TOTAL_BOUCLE|filtre_max{forum}|noop)]  </B_max_forum_in>
-</BOUCLE_max_forum>
+<BOUCLE_max_forum(MOTS) {type=FAQ}><BOUCLE_max_forum_in(FORUMS) {id_rubrique?} {id_mot}></BOUCLE_max_forum_in>[(#TOTAL_BOUCLE|filtre_max{forum}|noop)] </B_max_forum_in></BOUCLE_max_forum>
 
 [(#REM) ici on cherche les mots lies à des forums selectionnés par des mots
 dans l'url]
-<BOUCLE_voiraussi_compte(FORUMS) {titre_mot == (#ENV{tags}|enregexp)} {id_rubrique?} {having (#ENV{tags}|compte_having)}> 
-<BOUCLE_voiraussi_mot(MOTS) {id_forum} {doublons mots}>
-[(#TITRE|dansvariable{#ENV{tags}}|?{'',' '})[(#ID_MOT|tampons{'relation','mots','empile'})]]
-</BOUCLE_voiraussi_mot>
-</BOUCLE_voiraussi_compte>
+<BOUCLE_voiraussi_compte(FORUMS) {titre_mot == (#ENV{tags}|enregexp)} {id_rubrique?} {having (#ENV{tags}|compte_having)}>[(#REM)
+] <BOUCLE_voiraussi_mot(MOTS) {id_forum} {doublons mots}>[(#REM)
+][(#TITRE|dansvariable{#ENV{tags}}|?{'',' '})[(#ID_MOT|tampons{'relation','mots','empile'})]][(#REM)
+]</BOUCLE_voiraussi_mot>[(#REM)
+]</BOUCLE_voiraussi_compte>
 
 [(#REM) la ca se complique, on affiche tous les mots]
 <BOUCLE_aff_mots(MOTS) {type=FAQ} {par titre}>
@@ -54,7 +52,7 @@ on utilise unique pour ne pas afficher les mots deja affiche par la boucle exist
 ]<BOUCLE_aff_mots_in(FORUMS) {id_mot} {id_rubrique?}> </BOUCLE_aff_mots_in>[
 (#REM) on affiche le titre du mot avec un font-size fonction du nombre de forum attaches
 ]<strong
-[style="font-size:(#TOTAL_BOUCLE|filtre_max{forum}|coef{#TOTAL_BOUCLE,250}|ceil)%;"]><a href="[(#_aff_mots:ID_MOT|ajouter_mot{seul})]">#_aff_mots:TITRE</a></strong></B_aff_mots_in>[
+[style="font-size:(#TOTAL_BOUCLE|filtre_max{forum}|coef{#TOTAL_BOUCLE,190,60}|ceil)%;"]><a href="[(#_aff_mots:ID_MOT|ajouter_mot{seul})]">#_aff_mots:TITRE</a></strong>[<span style="position:absolute;top:-900px;left:-900px; width:20px;overflow:hidden;">(#TOTAL_BOUCLE|filtre_max{forum})</span>]</B_aff_mots_in>[
 (#REM) on ferme les em vert ou rouge, toujours la meme histoire
 ]
 [</em>(#TITRE|dansvariable{#ENV{tags}}|?{' ',''})]
