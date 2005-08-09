@@ -206,7 +206,7 @@ function get_tags_ids($mots) {
 est ce que ce mot est dans cette liste
 */
 function dansvariable($needle, $haystack) {
-	return preg_match(", ".preg_quote($needle)." ,i"," $haystack ");
+	return preg_match(", ".preg_quote($needle,',')." ,i"," $haystack ");
 }
 
 /*
