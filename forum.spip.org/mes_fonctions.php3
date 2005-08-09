@@ -92,7 +92,7 @@ function filtre_max($texte, $id='tout') {
 }
 
 function coef($max,$nbr,$nbrMax=6,$min = 1) {
-  return $min+($nbr/$max*$nbrMax);
+  return $min+(($nbr*$nbrMax/$max)%$nbrMax);
 }
 
 function echaper_mot($titre, $type, $groupe_defaut) {
