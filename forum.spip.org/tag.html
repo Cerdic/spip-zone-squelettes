@@ -41,23 +41,23 @@ dans l'url]
 ]</BOUCLE_voiraussi_mot>[(#REM)
 ]</BOUCLE_voiraussi_compte>
 
+<ul>
 [(#REM) la ca se complique, on affiche tous les mots]
-<BOUCLE_aff_mots(MOTS) {type=FAQ} {par titre}>
-<B_aff_mots_in>
-[(#REM) si les mots sont ceux selectionnes dans l'url, on les affiche en rouge]
-[(#TITRE|dansvariable{#ENV{tags}}|?{' ',''}) <em class="red"> [<a href="(#ID_MOT|retirer_mot)">x</a>]][
+<BOUCLE_aff_mots(MOTS) {type=FAQ} {par titre}><B_aff_mots_in><li>[
+(#REM) si les mots sont ceux selectionnes dans l'url, on les affiche en rouge
+][(#TITRE|dansvariable{#ENV{tags}}|?{' ',''}) <h3 class="red"> [<a title="retirer '#TITRE' des mots visualisés" href="(#ID_MOT|retirer_mot)">x</a>]][
 (#REM) si ils sont parmis ceux lie aux mots selectionnes, on les affiches en vert
 on utilise unique pour ne pas afficher les mots deja affiche par la boucle existe
-][(#ID_MOT|tampons{'relation','mots','existe'}|?{' ',''}) <em class="green">[<a href="(#ID_MOT|ajouter_mot)">+</a>]][(#REM)
-]<BOUCLE_aff_mots_in(FORUMS) {id_mot} {id_rubrique?}> </BOUCLE_aff_mots_in>[
+][(#ID_MOT|tampons{'relation','mots','existe'}|?{' ',''}) <h4 class="green">[<a title="ajouter '#TITRE' aux mots visualisés" href="(#ID_MOT|ajouter_mot)">+</a>]][(#REM)
+]<BOUCLE_aff_mots_in(FORUM) {id_mot} {id_rubrique?}> </BOUCLE_aff_mots_in>[
 (#REM) on affiche le titre du mot avec un font-size fonction du nombre de forum attaches
-]<strong
-[style="font-size:(#TOTAL_BOUCLE|filtre_max{forum}|coef{#TOTAL_BOUCLE,190,53}|ceil)%;"]><a [title="#TITRE: (#TOTAL_BOUCLE)"] href="[(#_aff_mots:ID_MOT|ajouter_mot{seul})]">#_aff_mots:TITRE</a></strong></B_aff_mots_in>[
+]<a [style="font-size:(#TOTAL_BOUCLE|filtre_max{forum}|coef{#TOTAL_BOUCLE,190,53}|ceil)%;"] [title="#TITRE: (#TOTAL_BOUCLE)"] href="[(#_aff_mots:ID_MOT|ajouter_mot{seul})]">#_aff_mots:TITRE</a></li></B_aff_mots_in>[
 (#REM) on ferme les em vert ou rouge, toujours la meme histoire
-]
-[</em>(#TITRE|dansvariable{#ENV{tags}}|?{' ',''})]
-[</em>(#ID_MOT|tampons{'relation','mots','existe'}|?{' ',''})]
+][</h3>(#TITRE|dansvariable{#ENV{tags}}|?{' ',''})
+][</h4>(#ID_MOT|tampons{'relation','mots','existe'}|?{' ',''})]
 </BOUCLE_aff_mots>
+</ul>
+
 </div>
 </B_aff_mots>
 <:aucun_tag:>

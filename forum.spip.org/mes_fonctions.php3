@@ -91,8 +91,20 @@ function filtre_max($texte, $id='tout') {
   return $max[$id];
 }
 
+/*
+* petite cuisine:
+* $nbr=$max retourne $nbrMax
+* $nbr=1 retourne $min
+* $nbr=0 retourne $b (si on veut garantir le min, il vaut mieux pas)
+*/
 function coef($max,$nbr,$nbrMax=6,$min = 1) {
-  return $min+(($nbr*$nbrMax/$max)%$nbrMax);
+  if ($max == 1)
+	return $nbrMax;
+
+  $x = ($nbr*$nbrMax/$max);
+  $b = ($nbrMax - $min*$max)/(1-$max);
+  $a = ($min-$b)*$max/$nbrMax;
+  return $a*$x + $b;
 }
 
 function echaper_mot($titre, $type, $groupe_defaut) {
