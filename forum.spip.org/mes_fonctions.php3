@@ -115,7 +115,7 @@ function echaper_mot($titre, $type, $groupe_defaut) {
 		$groupe = "\"$groupe\"";
 	  }
 	}
-	if(strpos($titre,' ') || strpos($titre,':') || strpos($titre,',') {
+	if(strpos($titre,' ') || strpos($titre,':') || strpos($titre,',')) {
 	  $titre = "\"$titre\"";
 	}
 	return $groupe. (($groupe) ? ':' : '') .$titre;
