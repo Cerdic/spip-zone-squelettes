@@ -155,46 +155,6 @@ function retirer_mot($id_mot) {
   return quote_amp($url->geturl());
 }
 
-function critere_mots($idb, &$boucles, $param){
-	$boucle = &$boucles[$idb];
-	$id_table = $boucle->id_table;
-	$type = $boucle->id_table;
-	$primary = $boucle->primary;
-
-	$id_mot = calculer_argument_precedent($idb, 'id_mot', $boucles);
-	if($type == "mots") {
-	  $boucle->where[] = 'id_mot IN (".((count('.$id_mot.') > 0)?addslashes(join(",",'.$id_mot.')):0).")';
-	} else {
-	  $boucle->group = $primary;
-	  $boucle->from[] = "spip_mots_$type";
-	  $boucle->where[] = '(id_mot = ".((count('.$id_mot.') > 0)?addslashes(join(\' OR id_mot = \','.$id_mot.')):0).")';
-	  $boucle->where[] = "$id_table.$primary = spip_mots_$type.$primary";
-	  $boucle->having = "'.(count($id_mot)-1).'";
-	}
-}
-
-// {tags #ENV{tags}} retourne la liste des id_mot correspondant
-// Attention le choix fait ici est incoherent : quand il y a plusieurs tags
-// dans l'URL la boucle (MOTS) recoit {id_mot IN (....,....)}  [OU logique]
-// alors que la boucle (FORUMS) recoit un {id_mot IN ...} HAVING COUNT()... [ET logique]
-function critere_tags($idb, &$boucles, $crit){
-	$boucle = &$boucles[$idb];
-	$id_table = $boucle->id_table;
-	$type = $boucle->id_table;
-	$primary = $boucle->primary;
-
-	$_mots = calculer_liste($crit->param[0], array(), $boucles, $boucles[$idb]->id_parent);
-	if($type == "mots") {
-	  $boucle->where[] = 'id_mot IN (".((count($array_mots = get_tags_ids('.$_mots.')) > 0)?addslashes(join(",",$array_mots)):0).")';
-	} else {
-	  $boucle->group = $primary;
-	  $boucle->from[] = "spip_mots_$type";
-	  $boucle->where[] = 'id_mot IN (".((count($array_mots = get_tags_ids('.$_mots.')) > 0)?addslashes(join(",",$array_mots)):0).")';
-	  $boucle->where[] = "$id_table.$primary = spip_mots_$type.$primary";
-# desactiver HAVING pour restaurer coherence (mais alors pas de tri croise !)
-	  $boucle->having = "'.(count(\$array_mots)-1).'";
-	}
-}
 
 // prend une liste de tags et retourne les id_mot reconnus (sans en creer)
 function get_tags_ids($mots) {
@@ -212,13 +172,6 @@ function get_tags_ids($mots) {
 	}
 
 	return $id_mot;
-}
-
-/*
-est ce que ce mot est dans cette liste
-*/
-function dansvariable($needle, $haystack) {
-	return preg_match(", ".preg_quote($needle,',')." ,i"," $haystack ");
 }
 
 /*
