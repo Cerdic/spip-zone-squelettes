@@ -1,0 +1,27 @@
+<?php $spipmag_style = 'sommaire'; ?>
+
+<INCLURE(header.inc.php)>
+
+<BOUCLE_edito(ARTICLES) {id_rubrique=3} {par date} {inverse} {0,1}>
+<div class="edito">
+	[<div class="rubrique">(#SURTITRE)</div>]
+	<h2><a href="#URL_ARTICLE">#TITRE</a></h2>
+	<div class="reference"><? $tous_auteurs = auteur_et_auteur('<BOUCLE_signature_edito(AUTEURS) {id_article} {par nom} {nom!==^@} {", "}><a href="#URL_AUTEUR" class="reference">[(#NOM|prenom|texte_script) ][<span class="nom">(#NOM|nom|texte_script)</span>]</a></BOUCLE_signature_edito>');
+	if ($tous_auteurs) echo "par ".$tous_auteurs.", "; ?>[(#DATE|affdate)]</div>
+	[<a href="#URL_ARTICLE" class="bloc">(#INTRODUCTION|couper{400})</a>]
+</div>
+</BOUCLE_edito>
+
+<BOUCLE_articles(ARTICLES) {id_secteur!=1}{id_rubrique!=13} {id_rubrique!=3} {par date} {inverse} {0,6}>
+<div class="bloc">
+	[<div class="rubrique">(#SURTITRE)</div>]
+	<h2><a href="#URL_ARTICLE">#TITRE</a></h2>
+	<div class="reference"><? $tous_auteurs = auteur_et_auteur('<BOUCLE_signature(AUTEURS) {id_article} {par nom} {nom!==^@} {", "}><a href="#URL_AUTEUR" class="reference">[(#NOM|prenom|texte_script) ][<span class="nom">(#NOM|nom|texte_script)</span>]</a></BOUCLE_signature>');
+	if ($tous_auteurs) echo "<:par_auteur:> ".$tous_auteurs.", "; ?>[(#DATE|affdate)]</div>
+	[<a href="#URL_ARTICLE" class="bloc">(#INTRODUCTION|couper{300})</a>]
+</div>
+</BOUCLE_articles>
+
+#SPIP_CRON
+
+<INCLURE(footer.inc.php)>
