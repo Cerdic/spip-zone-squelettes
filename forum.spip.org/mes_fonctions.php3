@@ -232,7 +232,7 @@ function enregexp($liste) {
 	 $str .= $mot['tag'].'|';
 }
 $str = substr($str,0,-1);
-return $str.')$';
+return preg_quote($str).')$';
 }
 
 /*
