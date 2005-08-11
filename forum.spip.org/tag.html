@@ -31,11 +31,11 @@ et voici : les tags !
 [(#REM) cette boucle cherche le maximum du nombre de forums attaches aux mots]
 <B_max_forum>
 <div>
-<BOUCLE_max_forum(MOTS) {type=FAQ}><BOUCLE_max_forum_in(FORUMS) {id_rubrique?} {id_mot}> </BOUCLE_max_forum_in>[(#TOTAL_BOUCLE|filtre_max{forum}|noop)]</B_max_forum_in></BOUCLE_max_forum>
+<BOUCLE_max_forum(MOTS) {type=FAQ}><BOUCLE_max_forum_in(FORUMS) {id_mot}> </BOUCLE_max_forum_in>[(#TOTAL_BOUCLE|filtre_max{forum}|noop)]</B_max_forum_in></BOUCLE_max_forum>
 
 [(#REM) ici on cherche les mots lies à des forums selectionnés par des mots
 dans l'url]
-<BOUCLE_voiraussi_compte(FORUMS) {titre_mot == (#ENV{tags}|enregexp)} {id_rubrique?} {having (#ENV{tags}|compte_having)}>[(#REM)
+<BOUCLE_voiraussi_compte(FORUMS) {titre_mot == (#ENV{tags}|enregexp)} {having (#ENV{tags}|compte_having)}>[(#REM)
 ] <BOUCLE_voiraussi_mot(MOTS) {id_forum} {doublons mots}>[(#REM)
 ][(#ID_MOT|tampons{'tags','mots','existe'}|?{'',' '})[(#ID_MOT|tampons{'relation','mots','empile'})]][(#REM)
 ]</BOUCLE_voiraussi_mot>[(#REM)
@@ -49,7 +49,7 @@ dans l'url]
 (#REM) si ils sont parmis ceux lie aux mots selectionnes, on les affiches en vert
 on utilise unique pour ne pas afficher les mots deja affiche par la boucle existe
 ][(#ID_MOT|tampons{'relation','mots','existe'}|?{' ',''}) <h4 class="green">[<a title="ajouter ['(#TITRE|attribut_html)'] aux mots visualis&eacute;s" href="(#ID_MOT|ajouter_mot)">+</a>]][(#REM)
-]<BOUCLE_aff_mots_in(FORUMS) {id_mot} {id_rubrique?}> </BOUCLE_aff_mots_in>[
+]<BOUCLE_aff_mots_in(FORUMS) {id_mot}> </BOUCLE_aff_mots_in>[
 (#REM) on affiche le titre du mot avec un font-size fonction du nombre de forum attaches
 ]<a [style="font-size:(#TOTAL_BOUCLE|filtre_max{forum}|coef{#TOTAL_BOUCLE,190,53}|ceil)%;"] [title="voir seulement le mot '(#TITRE|attribut_html)' (#TOTAL_BOUCLE/[(#TOTAL_BOUCLE|filtre_max{forum}))]"] href="[(#_aff_mots:ID_MOT|ajouter_mot{seul})]">#_aff_mots:TITRE</a></li></B_aff_mots_in>[
 (#REM) on ferme les em vert ou rouge, toujours la meme histoire
@@ -70,7 +70,7 @@ on utilise unique pour ne pas afficher les mots deja affiche par la boucle exist
 <table cellpadding="5" cellspacing="3" border="0">
 	<B_art_rub>
 		<tr>
-	<BOUCLE_art_rub(ARTICLES){par num titre}{doublons} {id_rubrique?} {0,2}><B_forums>
+	<BOUCLE_art_rub(ARTICLES){par num titre}{doublons} {0,2}><B_forums>
 		<td width="50%">
 			<div class="droit">
 			<a href="#URL_ARTICLE"><img src="img_interface/carre-violet.gif" border="0"> <b>[<span class="droitpetit">(#SURTITRE)</span><br />][(#TITRE|supprimer_numero)][<br /><span class="droitpetit">(#SOUSTITRE)</span>]</b></a></div>
