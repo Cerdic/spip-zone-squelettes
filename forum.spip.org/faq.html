@@ -63,4 +63,76 @@
 
 </body>
 </BOUCLE_rubrique_principale>
+<head>
+<title>[#NOM_SITE_SPIP] <:faq:> [(#TITRE|supprimer_numero)]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<meta name="Description" content="[(#TEXTE*|couper{100}|attribut_html)]" />
+<!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
+<link rel="stylesheet" href="spip_net_style.css" type="text/css" />
+<link rel="stylesheet" href="topmenu.css" type="text/css" />
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/forum.css" type="text/css" />
+
+<script type="text/javascript" src="topmenu.js"></script>
+
+</head>
+
+<body dir="#LANG_DIR" bgcolor="#ffffff" text="#000000" link="#600051" vlink="#5832B7" alink="#ff9900">
+
+
+<center>
+
+<img src="img_interface/spip-haut.jpg" alt="SPIP ecureuil" width="403" height="137" border="0" />
+<div class='encadrerblanc'> <h1><font face='verdana,arial,sans-serif'>
+FAQS
+</font></h1> </div>
+
+<div class='encadrerblanc'> <h1><font face='verdana,arial,sans-serif'>
+FORUMS
+</font></h1> </div>
+</center>
+
+<br /><br /><br />
+
+
+
+<B_langues>
+<table border="0" cellpadding="10"><tr>
+<BOUCLE_langues(RUBRIQUES){id_parent=0}{0,3}{doublons}{par lang}>
+<?php
+		$total = 0;
+	<BOUCLE_total_lang(ARTICLES){lang}>
+	<BOUCLE_total_forum(FORUMS){id_article}{score>0}></BOUCLE_total_forum>
+		$total += #TOTAL_BOUCLE;
+	<//B_total_forum>
+	</BOUCLE_total_lang>
+		$nb['#LANG'] = $total;
+		$messages['#LANG'] = '<div class="droitpetit" dir="#LANG_DIR"><:messages_forum:>: ' . $total .'</div>';
+		$lien['#LANG'] = '<a href="fq.php3?id_rubrique=#ID_RUBRIQUE" title="[(#TITRE|attribut_html|texte_script|texte_script)]">[(#LANG|afficher_nom_langue)]</a></div>';
+		$dir['#LANG'] = '#LANG_DIR';
+?>
+</BOUCLE_langues>
+<BOUCLE_langues_suite(BOUCLE_langues)></BOUCLE_langues_suite>
+</B_langues>
+
+<?php
+	$max = max($nb);
+	foreach ($nb as $lang => $score) {
+		$size = ceil(1 + sqrt(100*($score*$score)/($max*$max)));
+		echo '<td align="center" dir="'.$dir[$lang].'">'
+			. "<font size='$size'>"
+			. $lien[$lang]
+			. $messages[$lang]
+			. "</font></td>\n";
+		if (++$i %3 == 0) echo "</tr><tr>\n";
+	}
+?>
+
+</tr></table>
+
+<br /><br /><br />
+</td></tr></table>
+
+
+</body>
+<//B_rubrique_principale>
 </html>
