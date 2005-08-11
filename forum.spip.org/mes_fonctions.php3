@@ -229,10 +229,10 @@ function enregexp($liste) {
 	$mots = parser_liste(filtrer_entites($liste));
  $str = '^(';
  foreach ($mots as $mot) {
-	 $str .= $mot['tag'].'|';
+	 $str .= preg_quote($mot['tag']).'|';
 }
 $str = substr($str,0,-1);
-return preg_quote($str).')$';
+return $str.')$';
 }
 
 /*
