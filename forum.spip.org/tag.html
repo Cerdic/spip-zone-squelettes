@@ -31,7 +31,7 @@ et voici : les tags !
 [(#REM) cette boucle cherche le maximum du nombre de forums attaches aux mots]
 <B_max_forum>
 <div>
-<BOUCLE_max_forum(MOTS) {type=FAQ}><BOUCLE_max_forum_in(FORUMS) {id_rubrique?} {id_mot}></BOUCLE_max_forum_in>[(#TOTAL_BOUCLE|filtre_max{forum}|noop)] </B_max_forum_in></BOUCLE_max_forum>
+<BOUCLE_max_forum(MOTS) {type=FAQ}><BOUCLE_max_forum_in(FORUMS) {id_rubrique?} {id_mot}> </BOUCLE_max_forum_in>[(#TOTAL_BOUCLE|filtre_max{forum}|noop)]</B_max_forum_in></BOUCLE_max_forum>
 
 [(#REM) ici on cherche les mots lies à des forums selectionnés par des mots
 dans l'url]
@@ -45,13 +45,13 @@ dans l'url]
 [(#REM) la ca se complique, on affiche tous les mots]
 <BOUCLE_aff_mots(MOTS) {type=FAQ} {par titre}><B_aff_mots_in><li>[
 (#REM) si les mots sont ceux selectionnes dans l'url, on les affiche en rouge
-][(#TITRE|dansvariable{#ENV{tags}}|?{' ',''}) <h3 class="red"> [<a title="retirer '#TITRE' des mots visualis&eacute;s" href="(#ID_MOT|retirer_mot)">x</a>]][
+][(#TITRE|dansvariable{#ENV{tags}}|?{' ',''}) <h3 class="red"> [<a title="retirer ['(#TITRE|attribut_html)'] des mots visualis&eacute;s" href="(#ID_MOT|retirer_mot)">x</a>]][
 (#REM) si ils sont parmis ceux lie aux mots selectionnes, on les affiches en vert
 on utilise unique pour ne pas afficher les mots deja affiche par la boucle existe
-][(#ID_MOT|tampons{'relation','mots','existe'}|?{' ',''}) <h4 class="green">[<a title="ajouter '#TITRE' aux mots visualis&eacute;s" href="(#ID_MOT|ajouter_mot)">+</a>]][(#REM)
+][(#ID_MOT|tampons{'relation','mots','existe'}|?{' ',''}) <h4 class="green">[<a title="ajouter ['(#TITRE|attribut_html)'] aux mots visualis&eacute;s" href="(#ID_MOT|ajouter_mot)">+</a>]][(#REM)
 ]<BOUCLE_aff_mots_in(FORUMS) {id_mot} {id_rubrique?}> </BOUCLE_aff_mots_in>[
 (#REM) on affiche le titre du mot avec un font-size fonction du nombre de forum attaches
-]<a [style="font-size:(#TOTAL_BOUCLE|filtre_max{forum}|coef{#TOTAL_BOUCLE,190,53}|ceil)%;"] [title="voir seulement le mot '#TITRE' (#TOTAL_BOUCLE/[(#TOTAL_BOUCLE|filtre_max{forum})])"] href="[(#_aff_mots:ID_MOT|ajouter_mot{seul})]">#_aff_mots:TITRE</a></li></B_aff_mots_in>[
+]<a [style="font-size:(#TOTAL_BOUCLE|filtre_max{forum}|coef{#TOTAL_BOUCLE,190,53}|ceil)%;"] [title="voir seulement le mot '(#TITRE|attribut_html)' (#TOTAL_BOUCLE/[(#TOTAL_BOUCLE|filtre_max{forum}))]"] href="[(#_aff_mots:ID_MOT|ajouter_mot{seul})]">#_aff_mots:TITRE</a></li></B_aff_mots_in>[
 (#REM) on ferme les em vert ou rouge, toujours la meme histoire
 ][</h3>(#TITRE|dansvariable{#ENV{tags}}|?{' ',''})
 ][</h4>(#ID_MOT|tampons{'relation','mots','existe'}|?{' ',''})]
@@ -102,6 +102,8 @@ on utilise unique pour ne pas afficher les mots deja affiche par la boucle exist
 	</B_art_rub>
 </table>		
 </B_mots_sel>
+
+</center>
 
 </body>
 </html>
