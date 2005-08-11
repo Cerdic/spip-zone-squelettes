@@ -3,7 +3,7 @@
 $fond = "display_forum";
 $delais = 24 * 3600;
 
-chdir("../");
+# chdir("../");
 
 include ("inc-public.php3");
 
