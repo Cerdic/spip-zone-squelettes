@@ -8,8 +8,8 @@
 //
 // auteur et auteur
 //
-function auteur_et_auteur($tous) {
-	return ereg_replace(", ([^,]*)$"," et \\1",$tous);
+function auteur_et_auteur($tous,$et='et') {
+	return ereg_replace(", ([^,]*)$"," $et \\1",$tous);
 }
 
 ?>
