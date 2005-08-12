@@ -7,12 +7,8 @@
 <div class="titraille">
 	[<div class="rubrique">(#SURTITRE)</div>]
 	[<h1>(#TITRE|supprimer_numero)</h1>]
-	<div class="reference"><?
-	$tous_auteurs = auteur_et_auteur(trim('
-	<BOUCLE_signature(AUTEURS) {id_article} {par nom} {nom!==^@} {", "}>
-<a href="#URL_AUTEUR">[(#NOM|prenom|texte_script) ][<span class="nom">(#NOM|nom|texte_script)</span>]</a>
-</BOUCLE_signature>
-'));
+	<div class="reference"><?php
+	$tous_auteurs = trim(auteur_et_auteur('<BOUCLE_signature(AUTEURS) {id_article} {par nom} {nom!==^@} {", "}><a href="#URL_AUTEUR">[(#NOM|prenom|texte_script) ][<span class="nom">(#NOM|nom|texte_script)</span>]</a></BOUCLE_signature>','<:spipmag_et:>'));
 if ($tous_auteurs) echo "<:par_auteur:> ".$tous_auteurs.", "; ?>[(#DATE|affdate)]
 	</div>
 </div>
