@@ -25,8 +25,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array (
 'spipmag_titre_forum' => 'Forum',
 'spipmag_repondre_article' => 'Answer this article',
 'spipmag_aller_forum' => 'Go to the forum',
-'spipmag_participer' => 'Get involved'
-
+'spipmag_participer' => 'Get involved',
+'spipmag_et' => 'and'
 
 );
 
