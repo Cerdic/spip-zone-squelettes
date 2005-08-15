@@ -14,6 +14,7 @@ $GLOBALS['i18n_phpbb_fr'] = array(
 'admclore' => 'Fermer ce sujet',
 'admbouger' => 'Bouger ce sujet',
 'admeffacer' => 'Supprimer ce sujet',
+'admin' => 'Administrateur',
 'admseparer' => 'Diviser ce sujet',
 'admsurveiller_forum' => 'Surveiller ce forum',
 'admclore_forum' => 'Fermer ce forum',
@@ -25,18 +26,21 @@ $GLOBALS['i18n_phpbb_fr'] = array(
 'bio' => 'Petite biographie',
 
 //D
+'dans_forum' => 'dans le forum',
 'date' => 'Inscrit le',
 
 //C
-'credits'=>'Réalisé avec <a href=http://www.spip.net class=copyright>SPIP</a> 1.7 : 2004<br/><a href=http://www.uzine.net/spip_contrib/rubrique.php3?id_rubrique=43>Squelettes 0.8.4 CSS</a> par <a href=http://www.laprise.org/>James aka Kliké</a>, <a href=http://bloog.net/>BoOz</a>, <a href=http://esprit-str.com/>Nikau</a> et <a href=http://www.missmopi.net/>Nadège aka Miss Mopi</a> (logos de Stéphane)',
 'categorie'=>'Catégorie',
-'contact' => 'Contact',
 'citer' => 'Citer',
+'click' => 'cliquez ici',
+'contact' => 'Contact',
+'credits'=>'Réalisé avec <a href=http://www.spip.net class=copyright>SPIP</a> 1.7 : 2004<br/><a href=http://www.uzine.net/spip_contrib/rubrique.php3?id_rubrique=43>Squelettes 0.8.4 CSS</a> par <a href=http://www.laprise.org/>James aka Kliké</a>, <a href=http://bloog.net/>BoOz</a>, <a href=http://esprit-str.com/>Nikau</a> et <a href=http://www.missmopi.net/>Nadège aka Miss Mopi</a> (logos de Stéphane)',
+
 
 //E
+'effacer' => 'Effacer',
 'email' => 'E-mail',
 'envmp' => 'Envoyer un message privé',
-'effacer' => 'Effacer',
 
 //F
 'faq' => 'FAQ',
@@ -49,12 +53,14 @@ $GLOBALS['i18n_phpbb_fr'] = array(
 'info' => 'Informations',
 
 //L
+'le' => 'Le',
+'lieu' => 'Localisation',
 'login' => 'Connexion',
 'logout' => 'Déconnexion',
-'lieu' => 'Localisation',
 'luiecrire' => 'Lui écrire',
 
 //M
+'membre' => 'Membre',
 'membres_liste' => 'Liste des Membres',
 'membres_groupes' => 'Groupes d\'utilisateurs',
 'membres_profil' => 'Profil',
@@ -77,35 +83,39 @@ $GLOBALS['i18n_phpbb_fr'] = array(
 'no_message' => 'Aucun sujet ou message ne correspond à vos critères de recherche',
 
 //P
+'page' => 'Page',
 'poster' => 'Poster un Message',
 'profil' => 'Profil de',
 'paramprofil' => 'Modifier vos paramètres',
 
 //R
+'raison' => 'Pour en connaitre la raison',
 'recherche' => 'Rechercher',
 'recherch' => 'Recherche',
 'recherche_elargie' => 'Recherche élargie',
-'revenir_haut' => 'Revenir en haut de la page',
-'reponse' => 'En réponse au message',
-'reponses' => 'Réponses',
+'recherche_auteur' => 'Recherche par auteur',
+'recherche_options' => 'Options de recherche',
+'recherche_titre' => 'Rechercher un sujet',
 'recherche_texte'=> 'La recherche est effectuée dans les sujets et le corps des messages. 
 Il n\'y a pas d\'opérateurs booléens, l\'opérateur implicite étant grosso modo un  OU logique.
 Les mots de moins de trois lettres sont ignorés.',
-'recherche_titre' => 'Rechercher un sujet',
-'recherche_auteur' => 'Recherche par auteur',
-'recherche_options' => 'Options de recherche',
+'reda' => 'Rédacteur',
+'reponse' => 'En réponse au message',
+'reponses' => 'Réponses',
+'resultat' => 'résultats pour',
+'revenir_haut' => 'Revenir en haut de la page',
 
 //S
+'site' => 'Site web',
+'statut' => 'Statut',
 'sujet_nouveau' => 'Nouveau sujet',
 'sujet_auteur' => 'Auteur',
 'sujet_visites' => 'Visites',
 'sujets' => 'Sujets',
 'sujets_aucun' => 'Pas de sujet dans ce forum pour l\'instant',
-'site' => 'Site web',
 'sujet_clos_titre' => 'Sujet Clos',
 'sujet_clos_texte' => 'Ce sujet est clos, vous ne pouvez pas y poster.',
-'site' => 'Site web',
-'statut' => 'Statut',
+'sur' => 'sur',
 
 
 //T
@@ -114,7 +124,8 @@ Les mots de moins de trois lettres sont ignorés.',
 'tout_apropos' => 'Tout à propos de',
 
 //V
-'voirprofil' => 'Voir le profil de',
+'voir_messages' => 'Voir les nouveaux messages',
+'voirprofil' => 'Voir le profil de'
 
 );
 
