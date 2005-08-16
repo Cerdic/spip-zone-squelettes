@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<title>[entremonde podcast] l'accueil</title>
+	
+	<!-- Meta tag -->
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
+	
+	<!-- Feuilles de style -->
+	<style type="text/css" media="all">
+		@import url("spipcast/styles/style.css");
+		@import url("spipcast/scripts/nicetitle.css");
+			#pied	{ visibility: visible; position: absolute; width: 700px; height: 60px }
+			#selection	{ visibility: visible; position: absolute; top: 250px; left: 475px; width: 200px }
+			#contenant	 { visibility: visible; position: absolute; top: 30px; left: 50%; width: 700px }
+	</style>
+	
+	<!-- Script -->
+	<script type="text/javascript" src="spipcast/scripts/nicetitle.js"></script>
+		
+	<!-- Syndication -->
+	<link rel="alternate" type="application/rss+xml" title="[#NOM_SITE_SPIP]" href="podcast.php3">
+	
+	<!-- Icone -->
+	<link rel="shortcut icon" type="image/gif" href="images/icon.gif">
+</head>
+
+<body id="accueil">
+<!-- Formulaire administrateur -->
+[(#FORMULAIRE_ADMIN)]
+<div id="contenant">
+
+	<div id="entete">
+		<div class="bandeau">
+			<ul>
+				<li id="menu_accueil"><a href="sommaire.php3">Accueil</a></li>
+				<li id="menu_rubriques"><a href="rubrique.php3">Rubriques</a></li>
+				<li id="menu_article"><a href="article_recent.php3">Articles</a></li>
+				<li id="menu_podcast"><a href="podcast_page.php3">Podcasts</a></li>
+				<li id="menu_apropos"><a href="apropos.php3">À propos</a></li>
+						
+				<div class="arborescence">
+					<a href="sommaire.php3">#NOM_SITE_SPIP</a>
+				</div><!-- fin arborescence -->
+			
+				<div class="espaceprive">
+					<a href="ecrire/" title="S'identifier pour poster des podcasts">Ecrire</a>
+				</div><!-- fin espaceprive -->
+			</ul>		
+		</div><!-- fin bandeau -->
+	</div>
+	
+	<div id="contenu">
+		<h1>Aides</h1>
+		<ul>
+			<li><a href="#URL_ARTICLE" title="#DESCRIPTIF">Introduction au podcasting</a></li>
+			<li><a href="#URL_ARTICLE" title="#DESCRIPTIF">Utilisation du podcasting</a></li>
+		</ul>
+		<h3>Introduction au podcasting</h3>
+		
+		<BOUCLE_articles(ARTICLES) {id_secteur!=3} {par date} {inverse} {0,2}>	
+		<h1>[(#LOGO_RUBRIQUE) ][(#SURTITRE) ]<a href="#URL_ARTICLE">#TITRE</a></h1>
+		<h4>[(#DATE|affdate)] | <INCLURE(inclusions/inc_commentaires.php3) {id_article}><INCLURE(inclusions/inc_podcasts_joints.php3) {id_article}></h4>
+		[(#INTRODUCTION)]
+		</BOUCLE_articles>
+	</div><!-- fin contenu -->
+	
+	<div id="selection">
+		<img src="spipcast/images/emission.gif">
+		<ul><BOUCLE_emission_precedente(ARTICLES) {id_secteur=2} {par date} {inverse} {3,5}>
+			<li><a href="#URL_ARTICLE" title="#DESCRIPTIF">#TITRE</a>
+			</li></BOUCLE_emission_precedente>
+		</ul>
+	</div><!-- fin selection -->
+	
+	<div id="pied">
+		<h4>Squelette spipcast 0.41b, avec <a href="http://www.spip.net">spip</a><br>
+		<a href="participer.php3">Participer</a> | <a href="contact.php3">Contact</a> | <a href="aide.php3">Aide</a> | <a href="podcast.php3">Flux podcast</a></h4>
+	</div><!-- fin pied -->
+	
+</div>
+</body>
+</html>
