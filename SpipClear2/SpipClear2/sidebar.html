@@ -15,10 +15,12 @@
 				</tr>
 			</thead>
 			<tbody>
-		<BOUCLE_calendrier(ARTICLES){id_secteur}{agenda date, mois, #ENV{annee}, #ENV{mois}}>[
-		(#DATE|agenda_memo{'', [(#DATE|jour)], [(#ID_SECTEUR|generer_url_rubrique|parametre_url{archives,[(#DATE|affdate_archive{jour})]})]})
-		]</BOUCLE_calendrier>
-		[(#DATE|agenda_memo{'', '', '', '', 'mini_mois'})]
+				<BOUCLE_calendrier(ARTICLES){id_secteur}{agenda date, mois, #ENV{annee}, #ENV{mois}}{par date}>
+				#DATE, #TITRE, #URL_ARTICLE<br />
+				[(#DATE|jour)], [(#ID_SECTEUR|generer_url_rubrique|parametre_url{archives,[(#DATE|affdate_archive{jour})]})]<br />[
+				(#DATE|agenda_memo{'', [(#DATE|jour)], [(#ID_SECTEUR|generer_url_rubrique|parametre_url{archives,[(#DATE|affdate_archive{jour})]})]})
+				]</BOUCLE_calendrier>
+				[(#DATE|agenda_affiche{'', 'mini_mois', ''})]
 			</tbody>
 		</table>
 		<span>&nbsp;</span>
