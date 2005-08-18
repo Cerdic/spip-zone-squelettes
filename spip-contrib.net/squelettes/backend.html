@@ -1,0 +1,112 @@
+<?php echo '<'.'?xml version="1.0" encoding="#CHARSET"?'.'>'; ?>
+
+
+
+<rss version="0.91">
+
+
+
+<channel>
+
+	<title>[(#NOM_SITE_SPIP|textebrut|htmlspecialchars|entites_unicode)]</title>
+
+	<link>#URL_SITE_SPIP/</link>
+
+	<description></description>
+
+	<language>fr-fr</language>
+
+
+
+	<image>
+
+		<title>[(#NOM_SITE_SPIP|textebrut|htmlspecialchars|entites_unicode)]</title>
+
+		<url>#URL_SITE_SPIP/IMG/ruboff0.gif</url>
+
+		<link>#URL_SITE_SPIP/</link>
+
+		<description></description>
+
+	</image>
+
+
+
+<!-- d'abord les articles specifiques a une rubrique - syntaxe backend.php3?id_rubrique=123 -->
+
+
+
+<BOUCLE_rub(RUBRIQUES){id_rubrique}{id_secteur!=15}>
+
+	<BOUCLE1(ARTICLES){branche}{par date}{inverse}{0,10}>
+
+		<item>
+
+			<title>[(#TITRE|textebrut|htmlspecialchars|entites_unicode)]</title>
+
+			<link>#URL_SITE_SPIP/#URL_ARTICLE</link>
+
+			<date>#DATE</date>
+
+			<description>[(#DESCRIPTIF|textebrut|htmlspecialchars|entites_unicode)]</description>
+
+			<author><BOUCLE23(AUTEURS){id_article}{", "}>[(#NOM|textebrut|htmlspecialchars|entites_unicode)]</BOUCLE23></author>
+
+		</item>
+
+	</BOUCLE1>
+
+</BOUCLE_rub>
+
+
+
+<!-- sinon tous les articles du site - syntaxe backend.php3 -->
+
+
+
+	<BOUCLE2(ARTICLES){id_secteur!=15}{tout}{par date}{inverse}{0,10}{unique}>
+
+	    <item>
+
+	      <title>[(#TITRE|textebrut|htmlspecialchars|entites_unicode)]</title>
+
+	      <link>#URL_SITE_SPIP/#URL_ARTICLE</link>
+
+	      <date>#DATE</date>
+
+	      <description>[(#DESCRIPTIF|textebrut|htmlspecialchars|entites_unicode)]</description>
+
+	      <author><BOUCLE_aut2(AUTEURS){id_article}{", "}>[(#NOM|textebrut|htmlspecialchars|entites_unicode)]</BOUCLE_aut2></author>
+
+	    </item>
+
+	</BOUCLE2>
+
+	<BOUCLE3(ARTICLES){tout}{id_secteur!=15}{par date}{inverse}{age<3}{unique}>
+
+	    <item>
+
+	      <title>[(#TITRE|textebrut|htmlspecialchars|entites_unicode)]</title>
+
+	      <link>#URL_SITE_SPIP/#URL_ARTICLE</link>
+
+	      <date>#DATE</date>
+
+	      <description>[(#DESCRIPTIF|textebrut|htmlspecialchars|entites_unicode)]</description>
+
+	      <author><BOUCLE_aut3(auteurs){id_article}{","}>[(#NOM|textebrut|htmlspecialchars|entites_unicode)]</BOUCLE_aut3></author>
+
+	    </item>
+
+	</BOUCLE3>
+
+<//B_rub>
+
+
+
+</channel>
+
+
+
+</rss>
+
