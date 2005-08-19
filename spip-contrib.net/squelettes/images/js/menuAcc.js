@@ -13,9 +13,9 @@
 // **********************************************************************
 //
 // Presets
-var jp_blankpic='images/header/spacer.gif';
-var jp_onpic='images/menu/plus.gif';
-var jp_offpic='images/menu/minus.gif';
+var jp_blankpic='squelettes/images/header/spacer.gif';
+var jp_onpic='squelettes/images/menu/plus.gif';
+var jp_offpic='squelettes/images/menu/minus.gif';
 var jp_picalt='Cliquer pour ';
 var jp_strDeplier='déplier: ';
 var jp_strReplier='replier: ';
