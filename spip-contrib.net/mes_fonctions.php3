@@ -324,36 +324,9 @@ $nb_mess = spip_num_rows($result_auteurs);
 
 // FIN du nb_message
 
+//$GLOBALS['espace_logos'] = 0;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-$GLOBALS['espace_logos'] = 0;
-
-$GLOBALS['puce']='<img src="images/content/pucecontent.gif" alt="- " width="9" height="9">';
-
-
+$GLOBALS['puce']='<img src="images/content/pucecontent.gif" alt="- " width="9" height="9" />';
 
 function paire($texte) {
 

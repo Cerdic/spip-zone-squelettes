@@ -6,9 +6,6 @@ AND $_SERVER['HTTP_HOST'] == 'spip-contrib.net') {
 	@header('Location: http://www.spip-contrib.net'.$_SERVER['REQUEST_URI']);
 }
 
-
-
-
 if( !@file_exists(_DIR_RESTREINT_ABS . 'inc_version.php3')) {
   include('../plug_smileys.php');
 } else {
@@ -19,7 +16,6 @@ function avant_propre($texte) {
   $texte = smileys($texte);
   return $texte;
 }
-
 
 $type_urls = "propres";
 
