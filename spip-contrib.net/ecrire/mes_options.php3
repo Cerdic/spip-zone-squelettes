@@ -12,10 +12,11 @@ if( !@file_exists(_DIR_RESTREINT_ABS . 'inc_version.php3')) {
   include('plug_smileys.php');
 }
 
-function avant_propre($texte) {
-  $texte = smileys($texte);
-  return $texte;
-}
+// elle est deja déclarée dans spikini/formaters/waka.php il y a collision ...on se passe des smileys pour l'instant 
+//function avant_propre($texte) {
+//  $texte = smileys($texte);
+//  return $texte;
+//}
 
 $type_urls = "propres";
 
