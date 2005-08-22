@@ -73,7 +73,7 @@
 		$debut.="<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">";
 		$debut.="	<link href=\"screen.css\" rel=\"stylesheet\" type=\"text/css\" />";
 		$debut.="	<style type=\"text/css\">@import url(\"spipstyle.css\");</style>";
-		include ("entete1.php3");
+		include ("squelettes/entete1.php3");
 
 		$debut.="</head><body>";
 		$debut.="		<div id=\"page\">";
