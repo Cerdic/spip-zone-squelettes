@@ -1,0 +1,71 @@
+<BOUCLE_liste(ARTICLES){branche ?}{lang ?}{date==^#ENV{archives}}{par date}{inverse}{0,15}>
+<div class="post">
+	[(#LOGO_ARTICLE|right)]
+	[<p class="day-date">(#DATE|affdate_long|unique)</p>]
+
+	<h2 id="p#ID_ARTICLE" class="post-title"><a href="#URL_ARTICLE">#TITRE</a></h2>
+
+	<p class="post-info">
+	<B_auteurs><:par_auteur|ucfirst:> <BOUCLE_auteurs(AUTEURS){id_article}{", "}>#NOM</BOUCLE_auteurs>,
+	[(#DATE|affdate_long)] <:spipclear:attime:> [(#DATE|heures)]:[(#DATE|minutes)]
+	<span>::</span>
+	<BOUCLE_categorie(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">#TITRE</a></BOUCLE_categorie>
+	</p>
+
+	[<div class="post-content" lang="#LANG">
+		(#INTRODUCTION|retirer_hreflang)
+	</div>]
+	
+	[<div class="post-content" lang="#LANG"><strong><:voir_en_ligne:></strong> : <a href="(#URL_SITE)">#NOM_SITE</a></div>]
+	
+	<p class="post-info-co"> 
+	<a href="#URL_ARTICLE#co" title="<:spipclear:commentaires_pour:> : #TITRE">
+		<BOUCLE_commentaires(FORUMS){id_article}{plat}> </BOUCLE_commentaires>
+		#TOTAL_BOUCLE [(#TOTAL_BOUCLE|=={1}|?{<:spipclear:commentaire:>,<:spipclear:commentaires:>})]
+		</B_commentaires><:spipclear:aucun_commentaire:><//B_commentaires>
+	</a>
+	<span>::</span>
+	<a href="#URL_ARTICLE#tb" title="trackbacks pour : #TITRE">
+		<BOUCLE_trackbacks(FORUMS){trackback}{id_article}{plat}> </BOUCLE_trackbacks>
+		#TOTAL_BOUCLE [(#TOTAL_BOUCLE|=={1}|?{<:spipclear:trackback:>,<:spipclear:trackbacks:>})]
+		</B_trackbacks><:spipclear:aucun_trackback:><//B_trackbacks>
+	</a>
+	</p>
+</div>
+</BOUCLE_liste>
+<BOUCLE_liste2(ARTICLES){branche ?}{lang ?}{par date}{inverse}{0,15}>
+<div class="post">
+	[(#LOGO_ARTICLE|right)]
+	[<p class="day-date">(#DATE|affdate_long|unique)</p>]
+
+	<h2 id="p#ID_ARTICLE" class="post-title"><a href="#URL_ARTICLE">#TITRE</a></h2>
+
+	<p class="post-info">
+	<B_auteurs2><:par_auteur|ucfirst:> <BOUCLE_auteurs2(AUTEURS){id_article}{", "}>#NOM</BOUCLE_auteurs2>,
+	[(#DATE|affdate_long)] <:spipclear:attime:> [(#DATE|heures)]:[(#DATE|minutes)]
+	<span>::</span>
+	<BOUCLE_categorie2(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">#TITRE</a></BOUCLE_categorie2>
+	</p>
+
+	[<div class="post-content" lang="#LANG">
+		(#INTRODUCTION|retirer_hreflang)
+	</div>]
+	
+	[<div class="post-content" lang="#LANG"><strong><:voir_en_ligne:></strong> : <a href="(#URL_SITE)">#NOM_SITE</a></div>]
+	
+	<p class="post-info-co">
+	<a href="#URL_ARTICLE#co" title="<:spipclear:commentaires_pour:> : #TITRE">
+		<BOUCLE_commentaires2(FORUMS){id_article}{plat}> </BOUCLE_commentaires2>
+		#TOTAL_BOUCLE [(#TOTAL_BOUCLE|=={1}|?{<:spipclear:commentaire:>,<:spipclear:commentaires:>})]
+		</B_commentaires2><:spipclear:aucun_commentaire:><//B_commentaires2>
+	</a>
+	<span>::</span>
+	<a href="#URL_ARTICLE#tb" title="trackbacks pour : #TITRE">
+		<BOUCLE_trackbacks2(FORUMS){trackback}{id_article}{plat}> </BOUCLE_trackbacks2>
+		#TOTAL_BOUCLE [(#TOTAL_BOUCLE|=={1}|?{<:spipclear:trackback:>,<:spipclear:trackbacks:>})]
+		</B_trackbacks2><:spipclear:aucun_trackback:><//B_trackbacks2>
+	</a>
+	</p>
+</div>
+</BOUCLE_liste2>
+<//B_liste>
