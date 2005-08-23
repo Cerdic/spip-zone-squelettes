@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<script src="scripts/prototype.js"></script>
+		<script src="scripts/rico.js"></script>
+		<title>.:Un Avion Sur Internet:. Instruments</title>
+		<link href="style.css" rel="stylesheet" type="text/css">
+		<script>
+		function Update()
+		{
+			//envoyer la requête AJAX
+			ajaxEngine.sendRequest("request");
+			//réexecuter la fonction apres une seconde(1000 millisecondes) 
+			setTimeout("Update()",1000);
+		}
+		//initialiser la requête AJAX
+		ajaxEngine.registerRequest("request","avion_request.php3");
+		//fonction qui ne fait rien d'intéressant pour l'instant (juste pour la librairie)
+		function ajaxUpdate(ajaxResponse)
+		
+		{
+			avionData=ajaxResponse.childNodes[0];
+			//altimetreGraphique(avionData.getAttribute('altitude'));
+		
+		}
+		//fonction qui ne fait rien d'intéressant pour l'instant (juste pour la librairie)
+		function avion_maj()
+		{
+			this.ajaxUpdate=ajaxUpdate;
+		}
+
+</script>
+	</head>
+	
+	
+	<body>
+		
+	
+
+
+			<div style="visibility:hidden" id="id_x"></div>
+			<div style="visibility:hidden" id="id_y"></div>
+			<B_instruments>
+			<BOUCLE_instruments(AVION_DATA){par id_avion_data}{inverse}{0,01}>
+				<!--altitude-->
+				<div class="instrument">
+					<h5><a href="article.php3?id_article=9">altimetre</a></h5>
+						Altitude
+						<div class="conteneur"><div style="display:inline" id="id_altitude">[(#ALTITUDE|filtre_arrondi)]</div><span class = "indice">m</span> 
+						</div>
+					</div>
+				
+				
+				<!--direction-->
+				<div class="instrument">
+					<h5><a href="article.php3?id_article=13">gyro-compas</a></h5>
+						Lacet
+						<div class="conteneur">
+					 	<div style="display:inline" id="id_lacet">[(#LACET|filtre_rad2deg|filtre_arrondi)]</div>
+					 	<span class = "indicedeg">
+							°
+						</span> 
+					</div>
+				</div>
+				<hr class="clear" />
+				
+				<!--vitesse-->
+				<div class="instrument">
+					<h5><a href"article.php3?id_article=10">Anémomètre</a></h5>
+						Vitesse horizontale
+						<div class="conteneur">
+						<div style="display:inline" id="id_vx">[(#VX|filtre_kmh|filtre_arrondi)]</div>
+						<span class = "indice">
+							km/h
+						</span>
+					</div>
+				</div>
+				<div class="instrument">
+					<h5><a href="article.php3?id_article=11">Variomètre</a></h5>
+						Vitesse verticale 
+						<div class="conteneur">
+						<div style="display:inline" id="id_vz">[(#VZ|filtre_abs|filtre_kmh|filtre_arrondi)]
+						</div>
+						<span class = "indice">
+							km/h
+						</span>
+					</div>
+					
+
+				</div>
+				<hr class="clear" />
+				<!--mouvement-->
+					<div class="instrument">
+					<h5><a href="article.php3?id_article=12">horizon-artificiel</a></h5>Roulis
+					<div class="conteneur">
+					<div id="id_roulis" style="display:inline">[(#ROULIS|filtre_rad2deg|filtre_arrondi)]</div>
+						<span class = "indicedeg">
+							°
+						</span>
+					</div>
+					Tangage
+					<div class="conteneur">
+						<div id="id_tangage" style="display:inline">[(#TANGAGE|filtre_rad2deg|filtre_arrondi)]</div>
+						<span class = "indicedeg">
+							°
+						</span>
+					</div>
+					 
+				</div>
+				
+				
+		
+				<hr class="clear" />
+				
+				
+				<a href="rubrique.php3?id_rubrique=3">plus d'infos sur les instruments</a>
+				
+			</BOUCLE_instruments>
+			
+		
+			</B_instruments>
+			<//B_instruments>
+
+		<script>
+			//Mettre à jour une première fois
+			Update();
+			//Activer les éléments de la requete ajax: bug dans la librairie rico, il faut tous les activer
+			ajaxEngine.registerAjaxElement("id_x");
+			ajaxEngine.registerAjaxElement("id_y");
+			ajaxEngine.registerAjaxElement("id_altitude");
+			ajaxEngine.registerAjaxElement("id_roulis");
+			ajaxEngine.registerAjaxElement("id_tangage");
+			ajaxEngine.registerAjaxElement("id_lacet");
+			ajaxEngine.registerAjaxElement("id_vx");
+			ajaxEngine.registerAjaxElement("id_vz");
+			ajaxEngine.registerAjaxObject("id_avion",new avion_maj());
+		
+		
+		</script>		
+		
+		
+	</body>
+	
+</html>

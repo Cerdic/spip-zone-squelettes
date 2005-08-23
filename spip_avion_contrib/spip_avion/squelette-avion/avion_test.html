@@ -1,0 +1,108 @@
+<html>
+<head>
+<script src="scripts/prototype.js"></script>
+<script src="scripts/rico.js"></script>
+
+
+</head>
+<body style="background-color:#ddd;">
+<script>
+function Update()
+{
+	ajaxEngine.sendRequest(
+	"request"
+	
+	);
+	setTimeout("Update()",1000);
+}
+var startTop, startLeft;
+var effectDone = false;
+
+function altimetreGraphique(y) {
+if ( !effectDone ) {
+	startEffect(y);
+	//setTimeout("toggleEffect()",1000
+	//);
+}
+else {
+	resetEffect();
+	effectDone = false;
+}
+}
+
+function startEffect(y) {
+startTop   = $('avionAltimetre').offsetTop;
+startLeft  = $('avionAltimetre').offsetLeft;
+new Effect.Position( 'avionAltimetre', null, -y*5+5000, 1000, 20, {complete:function() {setStatus('done positioning element.',1500);}} );
+}
+
+function setStatus(s,n) {
+$('statusContainer').style.visibility = "visible";
+$('statusMsg').innerHTML = s;
+setTimeout( "$('statusContainer').style.visibility = 'hidden';", n );
+}
+
+function resetEffect() {
+$('avionAltimetre').style.top   = startTop;
+$('avionAltimetre').style.left  = startLeft;
+}
+
+
+
+
+
+
+function ajaxUpdate(ajaxResponse)
+{
+	avionData=ajaxResponse.childNodes[0];
+	altimetreGraphique(avionData.getAttribute('altitude'));
+	
+}
+function avion_maj()
+{
+	this.ajaxUpdate=ajaxUpdate;
+}
+
+
+
+ajaxEngine.registerRequest("request","avion_request.php3");
+
+</script>
+
+Altitude:<div align="left" id="id_altitude" style="display:inline">Aucune valeur disponible </div><br />
+<span style="visibility:hidden">
+Position x:<div id="id_x" style="display:inline">Aucune valeur disponible</div><br />
+Position y:<div id="id_y" style="display:inline">Aucune valeur disponible</div> <br /> 
+Altitude:<div id="id_altitude" style="display:inline">Aucune valeur disponible </div>mètres<br />
+Roulis:<div id="id_roulis" style="display:inline">Aucune valeur disponible </div><br />
+Roulis(degrés):<div id="id_roulis_degres" style="display:inline">Aucune valeur disponible </div><br />
+Tangage:<div id="id_tangage" style="display:inline">Aucune valeur disponible </div><br />
+Tangage(degrés):<div id="id_tangage_degres" style="display:inline">Aucune valeur disponible </div><br />
+Lacet:<div id="id_lacet" style="display:inline">Aucune valeur disponible </div><br />
+Lacet(degrés):<div id="id_lacet_degres" style="display:inline">Aucune valeur disponible </div><br />
+Vitesse de vol:<div id="id_vx" style="display:inline">Aucune valeur disponible </div><br />
+Vitesse verticale:<div id="id_vz" style="display:inline">Aucune valeur disponible </div><br /> </span>
+<script>
+Update();
+ajaxEngine.registerAjaxElement("id_x");
+ajaxEngine.registerAjaxElement("id_y");
+ajaxEngine.registerAjaxElement("id_altitude");
+ajaxEngine.registerAjaxElement("id_roulis");
+ajaxEngine.registerAjaxElement("id_roulis_degres");
+ajaxEngine.registerAjaxElement("id_tangage");
+ajaxEngine.registerAjaxElement("id_tangage_degres");
+ajaxEngine.registerAjaxElement("id_lacet");
+ajaxEngine.registerAjaxElement("id_lacet_degres");
+ajaxEngine.registerAjaxElement("id_vx");
+ajaxEngine.registerAjaxElement("id_vz");
+ajaxEngine.registerAjaxObject("id_avion",new avion_maj());
+
+
+</script>
+
+<div id="avionAltimetre" style="position:absolute; width:195px; height:55px; background-image: url('avion.gif')">
+		<div style="height:50px">
+		</div>
+		</div>
+</body>
+</html>

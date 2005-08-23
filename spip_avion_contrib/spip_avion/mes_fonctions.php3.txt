@@ -1,0 +1,77 @@
+<?php
+	function filtre_arrondi($texte)
+	{
+		$texte=round($texte,2);
+		return $texte;
+	}
+	//filtre SPIP: change les radians en degrés
+	function filtre_rad2deg($texte)
+	{
+		$texte=(180/3.14159)*$texte;
+		return $texte;
+	}
+	function filtre_abs($texte)
+	{
+		$texte=abs($texte);
+		return $texte;
+	}
+	function filtre_kmh($texte)
+	{
+		$texte=$texte*3.6;
+		return $texte;
+	}
+	function filtre_GPSX($texte)
+	{
+		$texte=$texte+0;
+		return $texte;
+	}
+	function filtre_GPSY($texte)
+	{
+		$texte=$texte+0;
+		return $texte;
+	}
+	
+	
+// Je declare la nouvelle table dans SPIP
+
+	// Je déclare la variable globale
+	 global $tables_principales;
+	 
+
+		//Format de la table ajoutée
+		
+		$tables_principales['avion_data']= array(
+		'field' => array(
+		//"id_machin" => "int",
+		//"libelle" => "varchar(100)",
+		"id_avion_data" => "bigint(20)",
+		"date" => "datetime",
+		"x" => "float",
+		"y" => "float",
+		"altitude" => "float",
+		"roulis" => "float",
+		"tangage" => "float",
+		"lacet" => "float",
+		"vx" => "float",
+		"vz" => "float",		
+		"temps" => "bigint(11)"
+		
+		
+		),
+		'key' => array("PRIMARY KEY" => "id_avion_data")//"spip_avion_data")
+		);
+	
+			//Declarer la requete pour cette table 
+			
+			//
+			// <BOUCLE(AVION_DATA)>
+			//
+			function boucle_AVION_DATA($id_boucle, &$boucles) {
+				$boucle = &$boucles[$id_boucle];
+				$id_table = $boucle->id_table;
+				$boucle->from[] = "spip_avion_data as $id_table";
+				return calculer_boucle($id_boucle, $boucles);
+			}
+
+
+?>
