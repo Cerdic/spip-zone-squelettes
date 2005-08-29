@@ -1,9 +1,15 @@
- ----------------------------------------------------------------------
-    SPIP-Avion-Contrib 
+  
+ ------- SPIP-Avion-Contrib --------------------------------------------
+        	     	        
+  Contact :  <http://asso.objectif-sciences.com/auteurs.php3?id_auteur=175>
+  
+  Auteurs :  Aliaume, Brieuc, Camille, Maxime, Nabil, Nicolas, Timothée et
+             Valentin avec le soutien de nos animateurs Fabrice et Hawazine.
+	     
+	     Camp de vacances  (Objectif Sciences / Aout 2005) 
+             « SPIP - Un avion sur Internet »    
  
-    Auteurs : Aliaume, Brieuc, Camille, Maxime, Nabil, Nicolas, Timothée et Valentin du Camp SPIP 2005 (Objectif Sciences) 
-    Avec le soutien de nos animateurs Fabrice et Hawazine.
-----------------------------------------------------------------------
+ ----------------------------------------------------------------------
 
 	Ce programme est un logiciel libre ; vous pouvez le redistribuer 
 	et/ou le modifier conformément aux dispositions de la 
