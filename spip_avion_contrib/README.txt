@@ -38,9 +38,18 @@
 
 
 
-Ce prototype a été réalisé par une équipe de jeunes programmeurs lors d'une colonie de vacances en Auvergne organisée par Objectif Sciences. <http://asso.objectif-sciences.com/article.php3?id_article=91>
+Ce prototype a été réalisé par une équipe de jeunes programmeurs
+lors d'une colonie de vacances en Auvergne organisée par Objectif Sciences. <http://asso.objectif-sciences.com/article.php3?id_article=91>
  
- Il consiste en une facon de transmettre les données venant d'un avion (actuellement un fichier texte donné par un simulateur) à une base de données, puis de les afficher en temps réel sur un site web. Il utilise le système de portail SPIP <http://www.spip.net> et la librairie JavaScript RICO <http://openrico.org> pour l'actualisation de la page en temps réel, tous les deux sous license libre GPL.
+ Il consiste en une facon de transmettre les données venant d'un avion 
+(actuellement un fichier texte donné par un simulateur) à une base de données, 
+ puis de les afficher en temps réel sur un site web. 
+  
+ Il utilise le système de portail SPIP <http://www.spip.net> et 
+ la librairie  JavaScript RICO <http://openrico.org> pour l'actualisation 
+ de la page en temps réel, tous les deux sous license libre GPL.
+  
+  
  
  
  
