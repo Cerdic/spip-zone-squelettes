@@ -13,14 +13,7 @@
  <HTML>
 <BOUCLE_principale(ARTICLES){id_article}{doublons}>
 <HEAD>
-<BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}> 
-<link rel="alternate" type="application/rss+xml" href="#URL_SITE_SPIP/_backend.php3?id_rubrique=#ID_RUBRIQUE" title="[(#TITRE|supprimer_numero)]"></BOUCLE_rub>
-<title><BOUCLE_titre(ARTICLES){id_article}>[(#TITRE|supprimer_numero)]</BOUCLE_titre></title>
-<BOUCLE_metatags(ARTICLES){id_article}>
-[<META NAME="Description" CONTENT='(#DESCRIPTIF|supprimer_tags|texte_script)'>]
-<meta name="Keywords" content="[(#CHAPO|texte_script)]<BOUCLE_metadocs(DOCUMENTS){id_article}{","}>#TITRE</BOUCLE_metadocs>">
-<meta name="Author" content="<BOUCLE_author(AUTEURS){id_article}{","}>#NOM</BOUCLE_author>">
-</BOUCLE_metatags>
+<title> [ #TITRE - #NOM_SITE_SPIP ] </title>
 <SCRIPT src="IMG/002/_interface.js" type="text/javascript"></SCRIPT>
 <link rel="stylesheet" href="IMG/002/_interface.css" type="text/css">
 </HEAD>
@@ -29,11 +22,10 @@
     <INCLURE (_page_barre_menu.php3)><br>
 
   <TABLE width=750  border=0 cellPadding=0 cellSpacing=0>
-    <!--DWLayoutTable-->
 
     <TBODY> 
     <TR> 
-      <TD width="490" height="1076" align="center" vAlign=top> 
+      <TD vAlign=top align="center" width="490"> 
 	  
         <table border=0 cellpadding=0 cellspacing=0 width="100%">
             <tr> 
@@ -43,9 +35,9 @@
             </tr>
             <tr> 
               <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
-              <td class="content"> 
 
-			   <div class="chemin" align="right">
+              <td class="content">
+<div class="chemin" align="right">
 			      <BOUCLE_plan(HIERARCHIE){id_article}>
 		          <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|textebrut|attribut_html)"]> [(#TITRE|supprimer_numero)] </a>
                   </BOUCLE_plan>
@@ -62,6 +54,8 @@
               [<p>(#NOTES)</p>
               ]	</td>
 
+              
+
               <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
             <tr> 
               <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
@@ -69,9 +63,7 @@
               <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
             </tr>
           </table>
-          <a href="<?php echo $PHP_SELF ; ?>?id_article=#ID_ARTICLE&var_mode=recalcul"><br>
-          [Rafraichir
-          les messages]</a> 
+          <br>
           <br>
 
           <table border=0 cellpadding=0 cellspacing=0 width="100%">
@@ -83,19 +75,52 @@
             <tr> 
               <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
               <td class="content"> 
-<br>
+			  
+<table width="100%" cellpadding="3" cellspacing="1" border="0">
 
-
-
-
-<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#E7E7F1">
 <tr>
-<td  align="center" ><font color="#666666"><b>Les
-      dernières discussions </b></font></td>
-<td  align="center" ><font color="#666666"><b>Auteurs</b></font></td>
-<td  align="center" ><font color="#666666"><b>Dates</b></font></td>
+<td background="img_interface/fond-degrade.png" align="center" class="droitxpetit"><b>Derniers messages</b></td>
+<td background="img_interface/fond-degrade.png" align="center" class="droitxpetit"><b>Auteur</b></td>
+<td background="img_interface/fond-degrade.png" align="center" class="droitxpetit"><b>Date</b></td>
+</tr>
+<?php $couleur="0" ; ?>	
 
-<td  align="center" ><font color="#666666"><b>R&eacute;ponses</b></font></td>
+<B_discussions>
+<BOUCLE_messages(FORUMS){id_article}{plat}{par date}{inverse}{0,5}>
+<?php
+$ze_titre = '[(#TITRE|texte_script)]' ;
+$ze_titre = ereg_replace( "> ", "", $ze_titre );
+?>
+
+<tr>
+<td bgcolor="<?php echo $couleur == 0 ? '#eeeeee' : '#ffffff' ; ?>" class="droitxpetit">
+<b>
+<a href="_discussion.php3?id_forum=#ID_FORUM#forum#ID_FORUM"	title=""><?php echo $ze_titre?></a>
+
+</b>
+</td>
+	<td bgcolor="<?php echo $couleur == 0 ? '#eeeeee' : '#ffffff' ; ?>" align="center" class="droitxpetit">#AUTEUR</td>
+	<td bgcolor="<?php echo $couleur == 0 ? '#eeeeee' : '#ffffff' ; ?>" align="center" class="droitxpetit">#DATE</td>
+	</tr>
+	
+<?php if($couleur == 0) {$couleur = 1 ; } else {$couleur=0 ; }	?>
+
+</BOUCLE_messages>
+</table>
+
+
+<div style="margin:20px 0px 50px 0px">
+<br>
+<img src="NAVPICS/rien.gif" width="12" height="5"> [<a href="forum.php3?(#PARAMETRES_FORUM)"><img src="IMG/002/post.gif" border="0"></a>]<br>
+</div>			  
+			  
+<table width="100%" cellpadding="3" cellspacing="1" border="0">
+<tr>
+<td background="img_interface/fond-degrade.png" align="center" class="droitxpetit"><b>Dernières discussions</b></td>
+<td background="img_interface/fond-degrade.png" align="center" class="droitxpetit"><b>Auteur</b></td>
+<td background="img_interface/fond-degrade.png" align="center" class="droitxpetit"><b>Date</b></td>
+
+<td background="img_interface/fond-degrade.png" align="center" class="droitxpetit"><b>R&eacute;ponses</b></td>
 </tr>
 <?php $couleur="0" ; ?>	
 
@@ -107,15 +132,15 @@ $ze_titre = ereg_replace( "> ", "", $ze_titre );
 ?>
 
 <tr>
-<td bgcolor="<?php echo $couleur == 0 ? '#ffffff' : '#F2F2F7' ; ?>" >
+<td bgcolor="<?php echo $couleur == 0 ? '#eeeeee' : '#ffffff' ; ?>" class="droitxpetit">
 <b>
 <a href="_discussion.php3?id_forum=#ID_FORUM#forum#ID_FORUM"	title=""><?php echo $ze_titre?></a>
 </b>
 </td>
-	<td bgcolor="<?php echo $couleur == 0 ? '#ffffff' : '#F2F2F7' ; ?>" align="center" >[(#AUTEUR|couper{20})']</td>
+	<td bgcolor="<?php echo $couleur == 0 ? '#eeeeee' : '#ffffff' ; ?>" align="center" class="droitxpetit">#AUTEUR</td>
 
-	<td bgcolor="<?php echo $couleur == 0 ? '#ffffff' : '#F2F2F7' ; ?>" align="center" >[(#DATE|jour)]/[(#DATE|mois)]</td>
-	<td bgcolor="<?php echo $couleur == 0 ? '#ffffff' : '#F2F2F7' ; ?>" align="center" >
+	<td bgcolor="<?php echo $couleur == 0 ? '#eeeeee' : '#ffffff' ; ?>" align="center" class="droitxpetit">#DATE</td>
+	<td bgcolor="<?php echo $couleur == 0 ? '#eeeeee' : '#ffffff' ; ?>" align="center" class="droitxpetit">
 	<B_nb_forumtotal>
 <BOUCLE_nb_forumtotal(FORUMS){id_thread}{plat}>
 </BOUCLE_nb_forumtotal>
@@ -129,54 +154,27 @@ $ze_titre = ereg_replace( "> ", "", $ze_titre );
 
 </BOUCLE_discussions>
 </B_discussions>
+
 </table>
-<div align="right"><br>
-      <br>
-     [<a href="forum.php3?(#PARAMETRES_FORUM)"><img src="IMG/002/post.gif" border="0"></a>]<br>
-     <br>
-    
-</div>
-<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#E7E7F1">
-
-<tr>
-<td  align="center" ><font color="#666666"><b>Derniers messages</b></font></td>
-<td  align="center" ><font color="#666666"><b>Auteurs</b></font></td>
-<td  align="center" ><font color="#666666"><b>Dates</b></font></td>
-</tr>
-<?php $couleur="0" ; ?>	
-
-<B_discussions>
-<BOUCLE_messages(FORUMS){id_article}{plat}{par date}{inverse}{0,5}>
-<?php
-$ze_titre = '[(#TITRE|texte_script)]' ;
-$ze_titre = ereg_replace( "> ", "", $ze_titre );
-?>
-
-<tr>
-<td bgcolor="<?php echo $couleur == 0 ? '#ffffff' : '#F2F2F7' ; ?>" >
-<b>
-<a href="_discussion.php3?id_forum=#ID_FORUM#forum#ID_FORUM"	title=""><?php echo $ze_titre?></a>
-
-</b>
-</td>
-	<td bgcolor="<?php echo $couleur == 0 ? '#ffffff' : '#F2F2F7' ; ?>" align="center" >[(#AUTEUR|couper{20})]</td>
-	<td bgcolor="<?php echo $couleur == 0 ? '#ffffff' : '#F2F2F7' ; ?>" align="center" >[(#DATE|jour)]/[(#DATE|mois)]</td>
-	</tr>
-	
-<?php if($couleur == 0) {$couleur = 1 ; } else {$couleur=0 ; }	?>
-
-</BOUCLE_messages>
-</table>
-<br>
-<br>
-
+<div style='border-bottom:50px'>&nbsp;</div>
 			  
 			  <table width="100%" border="0" cellspacing="0" cellpadding="0">
-			    <!--DWLayoutTable-->
-                  <tr valign="middle" align="left">
-                    <td width="540" height="18" align="center" valign="top"> 
+                  <tr valign="middle" align="left"> 
+                    <td colspan="3" valign="top"> 
+					
+					
+                      <br>
+
+                       
+                        <img src="NAVPICS/rien.gif" width="12" height="5"> [<a href="forum.php3?(#PARAMETRES_FORUM)"><img src="IMG/002/post.gif" border="0"></a>]<br>
+                      <br>
+					  
+                    </td>
+                  </tr>
+                  <tr> 
+                    <td align="center" valign="top" colspan="3"> 
                       
-                      <?	
+     <?	
 		<B_compt_thread>
 		echo "<p>";
 		<BOUCLE_compt_thread(FORUMS){id_article}>
@@ -188,11 +186,18 @@ $ze_titre = ereg_replace( "> ", "", $ze_titre );
 						echo "[<a HREF='article.php3?id_article=#ID_ARTICLE&debut_post=$numero'>".($numero+1)."</a>] ";
 				}
 		echo "<p>";
-		</B_compt_thread>   
+		</B_compt_thread>
 		
-		?> </B_autres_posts> 
+		?>
                       
+                      </B_autres_posts>
                     </td>
+                  </tr>
+
+                  <tr> 
+                    <td width="191" align="left" valign="bottom" height="14">&nbsp;</td>
+                    <td width="10" height="14"><img src="NAVPICS/rien.gif" width="10" height="5"></td>
+                    <td valign="bottom" align="left">&nbsp;</td>
                   </tr>
                 </table></td>
               <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
@@ -205,7 +210,7 @@ $ze_titre = ereg_replace( "> ", "", $ze_titre );
           </table>
           <br>
       </TD>
-      <TD width=19 valign="top"><IMG src="IMG/002/rien.gif" width=19></TD>
+      <TD width=32>&nbsp;</TD>
         <TD vAlign=top width=241> <table width="100%" border=0 align="center" cellpadding=0 cellspacing=0>
             <tr> 
               <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
@@ -269,27 +274,7 @@ $ze_titre = ereg_replace( "> ", "", $ze_titre );
 
 
 
-	  <br><table border=0 cellpadding=0 cellspacing=0 width="100%">
-            <tr> 
-              <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
-              <td background="IMG/002/r-h.gif"><img alt="recherche forum"  src="IMG/002/loupe.gif" /></td>
-              <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
-            </tr>
-            <tr> 
-              <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
-              <td class="content"> <div class="grison">Rechercher dans les forums </div>
-
-                <BR />  
-				[(#FORMULAIRE_RECHERCHE|_recherche-forum.php3)]
-              </td>
-              <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
-            <tr> 
-              <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
-              <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
-              <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
-            </tr>
-</table><br>
-
+	  <br>
         <table border=0 cellpadding=0 cellspacing=0 width="100%">
             <tr> 
               <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
@@ -299,7 +284,7 @@ $ze_titre = ereg_replace( "> ", "", $ze_titre );
 
             <tr> 
               <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
-              <td class="content"> <div class="grison">Derniers messages</div>
+              <td class="content"> <div class="grison">Nouveaux messages</div>
                 <INCLURE(_derniers_messages.php3)>
                 [ <a href="#">Haut</a> ] </td>
               <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
@@ -399,7 +384,7 @@ $ze_titre = ereg_replace( "> ", "", $ze_titre );
 			   <INCLURE(_liste-membres.php3)>
               </p>
 				
-			  </td>
+				</td>
               <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
             <tr> 
               <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
@@ -417,8 +402,10 @@ $ze_titre = ereg_replace( "> ", "", $ze_titre );
 
     </TBODY> 
   </TABLE>
-  <br>  
-    <INCLURE (_page_bas.php3)><br></div>
+
+  <br>
+  <br>
+    <INCLURE (_page_barre_menu.php3)><br>  <INCLURE (_page_bas.php3)><br></div>
   
 </BODY>
 </BOUCLE_principale>
