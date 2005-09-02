@@ -24,7 +24,6 @@
       <BOUCLE_first(DOCUMENTS){0,1}{id_article}{mode=document}>
       [(#EMBED_DOCUMENT)]
       </BOUCLE_first>
-      <//B_zoom>
     </div>
     <div id="navbar"> &nbsp;
       <INCLURE(inclusions/inc_menu-haut.php3)>
@@ -32,16 +31,22 @@
     <div class="sub-wrapper">
       <div class="texte">
         <h2><a href="#URL_ARTICLE">[(#TITRE|titre_homogene)]</a> <small style="font-weight:normal; text-transform:none; font-size:20px;"><em>[(#DATE|nom_jour)] [(#DATE|affdate)]</em></small></h2>
-        <p>#DEBUT_SURLIGNE[(#CHAPO)]</p>
-        <p align="justify">#DESCRIPTIF</p>
+        [
+        <p>(#CHAPO)</p>
+        ] [
+        <p align="justify">(#DESCRIPTIF)</p>
+        ]
         <p align="justify">#TEXTE</p>
+        <br />
         <br />
         <em>#PS</em>
         <div align="center">
           <BOUCLE_zoom_des(DOCUMENTS){id_document}{mode=document}>
-          <em>Photo:</em>
-          <h4>[(#TITRE)] </h4>
-          <p> [(#DESCRIPTIF)] </p>
+          [
+          <h4>(#TITRE)</h4>
+          ] [
+          <p>(#DESCRIPTIF)</p>
+          ]
           </BOUCLE_zoom_des>
         </div>
         <small>[<:sur_web:>: <a href="#URL_SITE" class="spip_out">(#NOM_SITE)</a>]</small> <em>#NOTES</em> <br />
@@ -72,22 +77,16 @@
         </BOUCLE_compte_messages>
         [(#TOTAL_BOUCLE) commentaire(s)] <strong>|</strong>
         </B_compte_messages>
-        [<a href="forum.php3?(#PARAMETRES_FORUM)" name="forum" id="forum"><:repondre_article:></a>]
-        <B_forums>
-      </h3>
+        [<a href="forum.php3?(#PARAMETRES_FORUM)" name="forum" id="forum"><:repondre_article:></a>] </h3>
     </div>
     <div class="commentaire">
       <INCLURE(inclusions/inc_forum_article.php3){id_article}{id_forum}{id_signature}>
     </div>
     <div class="sub-wrapper"> <br />
       <div align="center">
-        <BOUCLE_documents_portfolio_paysage(DOCUMENTS){id_article}{mode=document}{fichier==(png|jpg|gif)$}{doublons}{paysage}>
+        <BOUCLE_documents_portfolio_paysage(DOCUMENTS){id_article}{mode=document}{fichier==(png|jpg|gif)$}{doublons}>
         [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{'?'}|?{'&amp;','?'})]id_document=#ID_DOCUMENT">(#LOGO_DOCUMENT||reduire_image{100,100})</a>]
         </BOUCLE_documents_portfolio_paysage>
-        <br />
-        <BOUCLE_documents_portfolio_portrait(DOCUMENTS){id_article}{mode=document}{fichier==(png|jpg|gif)$}{doublons}{portrait}>
-        [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{'?'}|?{'&amp;','?'})]id_document=#ID_DOCUMENT">(#LOGO_DOCUMENT||reduire_image{100,100})</a>]
-        </BOUCLE_documents_portfolio_portrait>
       </div>
     </div>
   </div>
