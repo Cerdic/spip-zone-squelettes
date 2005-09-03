@@ -5,15 +5,14 @@
 	{id_parent}></BOUCLE_fond1>[(#TOTAL_BOUCLE|?{'suite','simple'})]<//B_fond1>">
 <div class="forum_init_box_<BOUCLE_suite1(FORUMS)
 	{id_parent}></BOUCLE_suite1>[(#TOTAL_BOUCLE|?{'suite','simple'})]<//B_suite1>">
-<div class="forum-signature">[(#NOM)]&nbsp;</div>
+<div class="forum-signature">[(#NOM|prenom) ][(#NOM|nom)]&nbsp;</div>
 <div class="forum-date">[(#DATE|affdate)]&nbsp;</div>
 <div class="forum-enonce">
-	<BOUCLE_test_zone(ARTICLES){id_article}> </BOUCLE_test_zone>
-		[(#REM) Si un id_article est present, on ne doit pas exposer les liens]
+	[(#ENV{mode}|=={'listing'}|?{
 		<a href="#URL_FORUM">[(#TITRE|supprimer_numero)]</a>
-	</B_test_zone>
-		[(#EXPOSE{'<strong>',<a href="#URL_FORUM">})][(#TITRE|supprimer_numero)][(#EXPOSE{'</strong>','</a>'})]
-	<//B_test_zone>
+		,
+		[(#EXPOSE{<strong>,<a href="#URL_FORUM">})][(#TITRE|supprimer_numero)][(#EXPOSE{</strong>,</a>})]
+	})]
 </div>
 <div style="clear:right;"></div>
 </div>
@@ -28,7 +27,7 @@
 		{id_parent}></BOUCLE_fond3>[(#TOTAL_BOUCLE|?{'suite','simple'})]<//B_fond3>">
 	<div class="forum_box_<BOUCLE_suite3(FORUMS)
 		{id_parent=#ID_FORUM}></BOUCLE_suite3>[(#TOTAL_BOUCLE|?{'suite','simple'})]<//B_suite3>">
-	<div class="forum-signature">[(#NOM)]&nbsp;</div>
+	<div class="forum-signature">[(#NOM|prenom) ][(#NOM|nom)]&nbsp;</div>
 	<div class="forum-date">[(#DATE|affdate)]&nbsp;</div>
 	<div class="forum-enonce">[(#EXPOSE{'<strong>',<a href="#URL_FORUM">})][(#TITRE|supprimer_numero)][(#EXPOSE{'</strong>','</a>'})]</div>
 	<div style="clear:right;"></div>
