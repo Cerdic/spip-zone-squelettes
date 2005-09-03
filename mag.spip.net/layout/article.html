@@ -1,0 +1,79 @@
+<BOUCLE_principale(ARTICLES) {id_article}>
+
+<?php $titre_page = '[(#TITRE|textebrut|supprimer_numero|texte_script)]'; ?>
+
+<INCLURE(header.inc.php){id_article}{id_rubrique}{lang}>
+
+<div class="titraille">
+	[<div class="rubrique">(#SURTITRE)</div>]
+	[<h1>(#TITRE|supprimer_numero)</h1>]
+	<div class="reference"><?php
+	$tous_auteurs = trim(auteur_et_auteur('<BOUCLE_signature(AUTEURS) {id_article} {par nom} {nom!==^@} {", "}><a href="#URL_AUTEUR">[(#NOM|prenom|texte_script) ][<span class="nom">(#NOM|nom|texte_script)</span>]</a></BOUCLE_signature>','<:spipmag_et:>'));
+if ($tous_auteurs) echo "<:par_auteur:> ".$tous_auteurs.", "; ?>[(#DATE|affdate)]
+	</div>
+</div>
+
+[<div class="chapo">(#CHAPO)</div>]
+<div class="texte">[(#TEXTE)]</div>
+[<div class="ps">(#PS)</div>]
+[<div class="notes">(#NOTES)</div>]
+
+<B_traductions>
+<hr/><:spipmag_traductions:>&nbsp;:
+<BOUCLE_traductions(ARTICLES){traduction}{exclus}>
+[<a href="#URL_ARTICLE" class="spip_in">(#LANG|traduire_nom_langue)</a>]
+</BOUCLE_traductions>
+
+<div id="forum">
+<!-- Forums -->
+[<div class="forum-repondre"><b><a  href="forum.php3?(#PARAMETRES_FORUM)"><:spipmag_repondre_article:></a></b></div>]
+<br />
+<B_forums>
+<h2><:spipmag_titre_forum:></h2>
+<ul class="forum-total">
+<BOUCLE_forums(FORUMS){id_article}{par date}{inverse}>
+<li>
+<div class="forum-fil">
+<div class="forum">
+<div class="forum-chapo">
+<div class="forum-titre"><a name="forum#ID_FORUM"></a>#TITRE</div>
+[(#DATE|affdate)][, <:par_auteur:>[ (#NOM|prenom)] (#NOM|nom)]
+</div>
+<div class="forum-item">
+#TEXTE
+[<div class="forum-titre"><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
+[<div class="forum-repondre-message"><a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a></div>]
+</div>
+</div>
+<B_forums_fils>
+<ul>
+<BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
+<li>
+<div class="forum">
+<div class="forum-chapo">
+<div class="forum-titre"><a name="forum#ID_FORUM"></a>#TITRE</div>
+[(#DATE|affdate)][, <:par_auteur:>[ (#NOM|prenom)] (#NOM|nom)]
+</div>
+<div class="forum-item">
+#TEXTE
+[<div class="forum-titre"><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
+[<div class="forum-repondre-message"><a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a></div>]
+</div>
+</div>
+<BOUCLE_Forums_Boucle(boucle_forums_fils)></BOUCLE_Forums_Boucle>
+</li>
+</BOUCLE_forums_fils>
+</ul>
+</B_forums_fils>
+</div>
+</li>
+</BOUCLE_forums>
+
+</ul>
+</B_forums>
+</div>
+
+
+<INCLURE(footer.inc.php){lang}>
+
+</BOUCLE_principale>
