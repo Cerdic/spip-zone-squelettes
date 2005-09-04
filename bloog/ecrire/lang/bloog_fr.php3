@@ -4,6 +4,8 @@
 
 $GLOBALS['i18n_bloog_fr'] = array(
 
+'entree_nouveau_passe' => 'Nouveau mot de passe',
+
 
 // A
 'abonner' => 's\'abonner',
