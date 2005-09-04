@@ -1,0 +1,99 @@
+<?php $titre_page = 'Exemple de differents types de tris'; ?>
+
+<INCLURE(header.inc.php)>
+
+<div class="titraille">
+<h1>Tris divers</h1>
+<div class="reference">Exemple pour la contrib ...</div
+</div>
+
+<BOUCLE_generale(ARTICLES)> </BOUCLE_generale>
+
+<div style="border: 1px solid #ccc; padding-left: 10px; margin-top: 10px; margin-bottom: 20px;">
+<h3>Trier par&nbsp;:</h3>
+<form id="tri" action="" method="get" name="tri">
+<select size="1" name="langs" onchange="if (options[selectedIndex].value) { location = options[selectedIndex].value; }">
+
+[(#ENV{tri}|?{
+	<option value="[(#SELF|parametre_url{'tri',''}|parametre_url{'ordre',''})]"><:ordre_antichronologique:></option>
+	<option value="[(#SELF|parametre_url{'tri',''}|parametre_url{'ordre','normal'})]"><:ordre_chronologique:></option>
+	,
+	[(#ENV{ordre}|=={'normal'}|?{
+		<option value="[(#SELF|parametre_url{'tri',''}|parametre_url{'ordre',''})]"><:ordre_antichronologique:><option>
+		<option selected="selected"><:ordre_chronologique:></option>
+		,
+		<option selected="selected"><:ordre_antichronologique:></option>
+		<option value="[(#SELF|parametre_url{'tri',''}|parametre_url{'ordre','normal'})]"><:ordre_chronologique:></option>
+	})]
+})] |
+
+[(#ENV{tri}|=={'date_modif'}|?{
+	<option selected="selected"><strong><:date_update:></strong></option>
+	,
+	<option value="[(#SELF|parametre_url{'tri','date_modif'}|parametre_url{'ordre',''})]"><:date_update:></option>
+})]
+
+[(#ENV{tri}|=={'popularite'}|?{
+	<option selected="selected"><:popularite:></option>
+	,
+	<option value="[(#SELF|parametre_url{'tri','popularite'}|parametre_url{'ordre',''})]"><:popularite:></option>
+	>})]
+
+[(#ENV{tri}|=={'visites'}|?{
+	<option selected="selected"><:nombre_visiteurs:></option>
+	,
+	<option value="[(#SELF|parametre_url{'tri','visites'}|parametre_url{'ordre',''})]"><:nombre_visiteurs:></option>
+})]
+</select>
+</form>
+
+<!--
+<p>[(#ENV{ordre}|?{
+<a href="[(#SELF|parametre_url{'ordre',''})]"><:ordre_inverse:></a> |
+<strong><:ordre_normal:></strong>
+,
+<strong><:ordre_inverse:></strong> |
+<a href="[(#SELF|parametre_url{'ordre','normal'})]"><:ordre_normal:></a>
+})]</p>
+-->
+
+</div>
+
+<?php if("[(#ENV{ordre})]"=="normal") { ?>
+
+<BOUCLE_trier(ARTICLES) {par #ENV{tri,date}}{0,100}>
+<div class="bloc">
+	<INCLURE(item.inc.php){id_article}>
+	<div><strong>
+		[<:publie_le:> (#DATE|affdate) | ]
+		[<:mis_a_jour_le:> (#DATE_MODIF|affdate) | ]
+		[(#POPULARITE_ABSOLUE) <:visiteurs_par_jour:> | ]
+		[(#VISITES) <:visiteurs:>]
+	</strong></div>
+</div>
+</BOUCLE_trier>
+
+<?php } else { ?>
+
+<BOUCLE_trier_inverse(ARTICLES){!par #ENV{tri,date}}{0,100}>
+<div class="bloc">
+	<INCLURE(item.inc.php){id_article}>
+	<div><strong>
+		[<:publie_le:> (#DATE|affdate) | ]
+		[<:mis_a_jour_le:> (#DATE_MODIF|affdate) | ]
+		[(#POPULARITE_ABSOLUE) <:visiteurs_par_jour:> | ]
+		[(#VISITES) <:visiteurs:>]
+	</strong></div>
+</div>
+</BOUCLE_trier_inverse>
+
+<?php } ?>
+
+</B_generale>
+<:aucun_article:>
+<//B_generale>
+
+
+<INCLURE(footer.inc.php)>
+
+</BOUCLE_principale>
