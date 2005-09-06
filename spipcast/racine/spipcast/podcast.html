@@ -1,0 +1,74 @@
+<?php
+        @header('Content-type: text/xml[; charset=(#CHARSET)]');
+        echo '<'.'?xml version="1.0" encoding="#CHARSET"?'.">\n";
+?>
+<rss xmlns:itunes="http://www.itunes.com/DTDs/Podcast-1.0.dtd" version="2.0"> 
+ 
+  <channel> 
+    <title>[(#NOM_SITE_SPIP|textebrut|entites_html|entites_unicode)]</title> 
+    <itunes:author>#EMAIL_WEBMASTER</itunes:author> 
+    <link>#URL_SITE_SPIP</link> 
+    <description></description> 
+    <itunes:subtitle></itunes:subtitle> 
+    <itunes:summary></itunes:summary> 
+    <language>#LANG</language> 
+    <copyright>[(#NOM_SITE_SPIP|texte_backend)] 2005</copyright> 
+        <itunes:owner> 
+            <itunes:name> <BOUCLE_webmaster(AUTEURS) {id_auteur=1}>
+           [(#NOM|texte_backend)]
+            </BOUCLE_webmaster></itunes:name> 
+            <itunes:email>#EMAIL_WEBMASTER</itunes:email> 
+        </itunes:owner> 
+ 
+        <image> 
+      <url>[(#LOGO_SITE_SPIP||extraire_attribut{src}|url_absolue|texte_backend)]</url> 
+      <title>[(#NOM_SITE_SPIP|texte_backend)]</title> 
+      <link>#URL_SITE_SPIP</link> 
+    </image> 
+        <!-- the max size for rss image is 144x400 --> 
+        <!-- iTunes allows images larger than that --> 
+        <itunes:link rel="image" type="video/jpeg" href="[(#LOGO_SITE_SPIP||extraire_attribut{src}|url_absolue|texte_backend)]">[(#NOM_SITE_SPIP|texte_backend)]</itunes:link> 
+ 
+        <BOUCLE_un_article(ARTICLES){id_article}>
+
+   <item> 
+      <title>[(#TITRE|texte_backend)]</title>
+      <link>#URL_SITE_SPIP/#URL_ARTICLE</link>
+      <itunes:author><BOUCLE_auteursb(AUTEURS){id_article}{", "}>[(#NOM|texte_backend)]</BOUCLE_auteursb></itunes:author> 
+      <description>[(#TEXTE|supprimer_tags|texte_backend)]</description>
+      <pubDate>[(#DATE|date_iso)]</pubDate>
+	  <dc:format>text/html</dc:format>
+	  <dc:language>#LANG</dc:language>
+      <itunes:subtitle>[(#SOUS_TITRE|texte_backend)]</itunes:subtitle> 
+      <itunes:summary>[(#TEXTE|supprimer_tags|texte_backend)]</itunes:summary> 
+     
+     <BOUCLE_podcast(DOCUMENTS){id_article}{mode=document}>[
+         <enclosure url="(#URL_DOCUMENT|url_absolue|unique)" length="[(#TAILLE)]" type="#MIME_TYPE" />]
+     </BOUCLE_podcast>
+      
+      <guid isPermaLink="false">[(#URL_ARTICLE|url_absolue|unique)]</guid> 
+      <pubDate>[(#DATE|affdate)] [(#DATE|heures)]:[(#DATE|minutes)]:[(#DATE|secondes)]</pubDate> 
+     
+      <category></category> 
+     
+      <itunes:explicit>no</itunes:explicit> 
+      <itunes:keywords><BOUCLE_articles_mots(ARTICLES) {id_mot} {par hasard} {0,4}>
+#TITRE
+</BOUCLE_articles_mots></itunes:keywords>  
+    </item> 
+    
+    
+    
+        </BOUCLE_un_article>
+
+<BOUCLE_10recents(ARTICLES){lang ?}{branche ?}{par date}{inverse}{0,10}{unique}>
+                <BOUCLE_a(BOUCLE_un_article)></BOUCLE_a>
+        </BOUCLE_10recents>
+        <BOUCLE_tres_recents(ARTICLES){lang ?}{branche ?}{par date}{inverse}{age<3}{unique}>
+                <BOUCLE_b(BOUCLE_un_article)></BOUCLE_b>
+        </BOUCLE_tres_recents>  
+
+
+    
+</channel> 
+</rss>

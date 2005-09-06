@@ -1,0 +1,45 @@
+<BOUCLE_article_principal(ARTICLES) {id_article}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+	<title>[#NOM_SITE_SPIP] forum</title>
+	
+<INCLURE(inclusions/inc_head.php3)>
+</head>
+
+<body id="accueil">
+<!-- Formulaire administrateur -->
+[(#FORMULAIRE_ADMIN)]
+<div id="contenant">
+
+<INCLURE(inclusions/inc_bandeau.php3)>
+	
+	<div id="contenu">
+		<BOUCLE_article(ARTICLES) {id_article}>
+		<b><:en_reponse:></b>
+		<h4>[(#SURTITRE)]</h4>	
+		<h1><a href="#URL_ARTICLE">#TITRE</a></h1>
+		#INTRODUCTION
+		</BOUCLE_article>
+			
+		<BOUCLE_forum_parent(FORUMS) {id_forum}>
+		<b><:en_reponse:></b>
+		[(#TITRE|smileys)]
+		[(#DATE|affdate)][, <:par_auteur:> <A HREF="mailto:[(#EMAIL|antispam)]">(#NOM)</A>]
+		[(#TEXTE|smileys)]
+		[<a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a>]
+		</BOUCLE_forum_parent>
+			
+		<INCLURE(inclusions/inc_article_poster.php3) {id_article}>
+	</div><!-- fin contenu -->
+	
+<INCLURE(inclusions/inc_pied.php3)>
+	
+<INCLURE(inclusions/inc_documents_joints.php3){id_article}>
+	
+</div>
+</body>
+</html>
+</BOUCLE_article_principal>
+<:aucun_article:>
+<//B_article_principal>

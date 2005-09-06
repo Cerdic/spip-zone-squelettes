@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+	<title>[#NOM_SITE_SPIP] #TITRE</title>
+	
+<INCLURE(inclusions/inc_head.php3)>
+</head>
+
+<body id="rubriques">
+<!-- Formulaire administrateur -->
+[(#FORMULAIRE_ADMIN)]
+<div id="contenant">
+
+<INCLURE(inclusions/inc_bandeau.php3)>
+	
+	<div id="contenu">
+		<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
+		<h1>[(#LOGO_RUBRIQUE) ][(#SURTITRE) ]<a href="#URL_RUBRIQUE">#TITRE</a></h1>
+		<!-- Articles et sous-rubriques -->
+		
+		<B_articles_racine><ul>
+		<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par num titre} {doublons}>
+		<li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></li>
+		</BOUCLE_articles_racine>
+		</ul></B_articles_racine>
+					
+		<B_rubriques>
+		<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par num titre} {doublons}>
+		<a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+					
+		<B_articles><ul>
+		<BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
+		<li><a href="#URL_ARTICLE">#TITRE</a></li>
+		</BOUCLE_articles>
+		</ul></B_articles>
+					
+		<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+		</BOUCLE_rubriques>
+		</B_rubriques>
+		</BOUCLE_secteurs>
+	</div><!-- fin contenu -->
+	
+<INCLURE(inclusions/inc_pied.php3)>
+	
+<INCLURE(inclusions/inc_selection.php3)>
+	
+</div>
+</body>
+</html>

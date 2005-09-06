@@ -1,0 +1,46 @@
+
+		<SCRIPT language=JavaScript type=text/javascript>
+function emoticon(text) {
+	var txtarea = document.formulaire.texte;
+	text = ' ' + text + ' ';
+	if (txtarea.createTextRange && txtarea.caretPos) {
+		var caretPos = txtarea.caretPos;
+		caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? caretPos.text + text + ' ' : caretPos.text + text;
+		txtarea.focus();
+	} else {
+		txtarea.value  += text;
+		txtarea.focus();
+	}
+}
+</script>
+
+			<h1>Poster un nouveau commentaire</h1>
+
+	<fieldset class='spip_encadrer'><legend><b>Emoticones :</b></legend>
+		<p>(Pour insérer un émoticone, cliquez simplement dessus l'image.) </p><div class='forml'>
+<?php
+	$listimag=array();
+	$rep1="spipcast/images/smileys/";
+	$listfich=opendir($rep1);
+	while ($fich=readdir($listfich))
+	{ 	
+		if(($fich !='..') and ($fich !='.') and ($fich !='.test'))
+		{ 
+			$nomfich=substr($fich,0,strrpos($fich, "."));
+			$listimag[$nomfich]=$rep1.$fich;
+		}
+	}
+	
+	ksort($listimag);
+	reset($listimag);
+	$compte=0;
+	
+	while (list($nom,$chem) = each($listimag))
+	{ 
+		echo "<IMG alt=':$nom:' OnClick=\"javascript:emoticon(':$nom')\" SRC='$chem'>";
+		$compte++; 
+	}
+?></div>
+			</fieldset>
+			[(#FORMULAIRE_FORUM)]
+
