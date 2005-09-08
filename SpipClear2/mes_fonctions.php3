@@ -31,14 +31,14 @@
 	}
 
 	// Gestion des parametres des urls
-	function parametre_url($url, $parametre, $valeur = '__global__') {
+	/*function parametre_url($url, $parametre, $valeur = '__global__') {
 		$link = new Link(str_replace('&amp;', '&', $url));
 		if($valeur == '__global__')
 			$valeur = $GLOBALS[$parametre];
 		if(empty($valeur)) $link->DelVar($parametre);
 		else $link->AddVar($parametre, $valeur);
 		return quote_amp($link->getUrl());
-	}
+	}*/
 	
 	function generer_url_rss($id, $type = 'rubrique') {
 		if($type == 'article') return "rss.php?id_article=$id";
@@ -158,7 +158,7 @@
 		return $total . ($ligne ? "\n<tr>$ligne\n</tr>" : '');
 	}
 
-	include_local('inc-trackback.php');
+	if(file_exists('inc-trackback.php')) include_local('inc-trackback.php');
 
 	function affdate_long($date) {
 		return affdate_base($date, 'nom_jour').' '.affdate_base($date, 'entier');
