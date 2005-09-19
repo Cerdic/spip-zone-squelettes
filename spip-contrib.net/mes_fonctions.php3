@@ -326,7 +326,7 @@ $nb_mess = spip_num_rows($result_auteurs);
 
 //$GLOBALS['espace_logos'] = 0;
 
-$GLOBALS['puce']='<img src="images/content/pucecontent.gif" alt="- " width="9" height="9" />';
+$GLOBALS['puce']='<img src="squelettes/images/content/pucecontent.gif" alt="- " width="9" height="9" />';
 
 function paire($texte) {
 
@@ -390,9 +390,9 @@ return $texte;
 
 
 
-$GLOBALS['debut_intertitre'] = "\n<h3 class=\"spip\">";
+//$GLOBALS['debut_intertitre'] = "\n<h3 class=\"spip\">";
 
-$GLOBALS['fin_intertitre'] = "</h3>\n";
+//$GLOBALS['fin_intertitre'] = "</h3>\n";
 
 
 
