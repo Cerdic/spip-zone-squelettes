@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<!-- Bones Dotspip 1.8 -->
+<BOUCLE_site_principale(SITES) {id_syndic}>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<INCLURE(inclusions/inc_head.php3)>
+<title>#NOM_SITE_SPIP [(#NOM_SITE|textebrut)]</title>
+<meta name="MSSmartTagsPreventParsing" content="TRUE" />
+</head>
+<body>
+<div id="page">
+  <div id="top">
+    <h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a> </h1>
+  </div>
+  <p id="prelude">
+    <INCLURE(inclusions/inc_menu-haut.php3)>
+  </p>
+  <div id="main">
+    <div id="content">
+      <!-- Boucle sur la liste de billets -->
+      <div class="post">
+        <p class="day-date"><:sites_web:></p>
+        <h2 id="p1" class="post-title">#NOM_SITE</h2>
+		        [<div class="image">(#LOGO_SITE|right||reduire_image{100,100})</div>]
+
+        <p class="post-info"><a href="#URL_SITE" target="_blank"><:voir_en_ligne:></a></p>
+		 <p class="post-info"><a href="#URL_SYNDIC" target="_blank">RSS</a></p>
+        <blockquote> [(#DESCRIPTIF|justifier)] </blockquote>
+        <!-- boucle article -->
+        <B_articles_syndic>
+        <h2><:articles:></h2>
+        <ul>
+          <BOUCLE_articles_syndic(SYNDIC_ARTICLES) {id_syndic} {par date} {inverse}>
+          <li><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|textebrut|entites_html)]" target="_blank">#TITRE</a></li>
+          </BOUCLE_articles_syndic>
+        </ul>
+        <!-- fin article -->
+        </B_articles_syndic>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar">
+    <div id="search">
+      <INCLURE(inclusions/inc_recherche.php3)>
+    </div>
+    <div id="breves">
+      <h2><:dernieres_breves:></h2>
+      <INCLURE(inclusions/inc_dernieres_breves.php3)>
+    </div>
+    <div id="categories">
+      <h2><:rubriques:></h2>
+      <INCLURE(inclusions/inc_rubriques.php3)>
+    </div>
+    <div id="links">
+      <h2><:sites_web:></h2>
+      <INCLURE(inclusions/inc_sites.php3)>
+    </div>
+    <div id="syndicate">
+      <h2>Syndication</h2>
+      <INCLURE(inclusions/inc_syndication.php3)>
+    </div>
+  </div>
+  <p id="footer">
+    <INCLURE(inclusions/inc_pied_de_page.php3)>
+  </p>
+</div>
+</BOUCLE_site_principale>
+<!-- end #page -->
+</body>
+</html>
