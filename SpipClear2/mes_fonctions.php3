@@ -177,8 +177,7 @@
 	function appliquer_hreflang($texte) {
 		$regexp = "|<a([^>]+)>([^<]+)(\|(([a-z]+)(-([a-z]+))?))+</a>|i";
 		$replace = "<a\\1 hreflang=\"\\4\">\\2</a>";
-		$texte = preg_replace($regexp, $replace, $texte);
-		return $texte;
+		return preg_replace($regexp, $replace, $texte);
 	}
 
 	/* exemple de definition css (dotclear V1.2):
@@ -206,8 +205,7 @@
 	function retirer_hreflang($introduction) {
 		$regexp = "|\|(([a-z]+)(-([a-z]+))?)|i";
 		$replace = "";
-		$texte = preg_replace($regexp, $replace, $introduction);
-		return $introduction;
+		return preg_replace($regexp, $replace, $introduction);
 	}
 
 ?>
