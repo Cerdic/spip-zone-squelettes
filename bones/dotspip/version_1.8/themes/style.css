@@ -1,5 +1,3 @@
-@import "layout.css";
-
 /* ***** BEGIN LICENSE BLOCK *****
  * This file is part of DotClear.
  * Copyright (c) 2004 Maurice Svay and contributors. All rights
@@ -22,61 +20,93 @@
  * ***** END LICENSE BLOCK *****
  *
  * Contributor(s):
- * Kozlika (http://www.kozlika.org/)
+ *  Maurice Svay
  */
 
-body {
-	font-family : Tahoma,Arial,Helvetica,sans-serif;
-	font-size : 80%;
-	background : #222 url(images/background.jpg) repeat-x;
-	text-align: center;
-}
+/* Ce fichier définit le style visuel pour les différents éléments du blog.
+ * Dans l'ordre, vous trouverez les règles qui définissent l'apparence pour:
+ * - les éléments HTML en général
+ * - la page
+ * - l'entête
+ * - le prélude
+ * - le contenu
+ * - la barre de navigation
+ * - le pied de page
+ *
+ * L'agengement des blocs est défini dans le fichier layout.css
+ * Pour mettre la barre de navigation à gauche, décommentez l'appel à 
+ * layout-gauche.css
+ */
 
-/*Formulaires*/
-input, textarea{border: 1px solid #DDD;background: #F2F2F2;color: #333;}
-textarea{width: 100%;}
-input:focus, textarea:focus{border: 1px solid #999;}
-fieldset{border: none;}
-
-img{
-	border: 0;
-}
-
-code, pre{font-family: "Courier New", monospace; font-size : 1em;}
-/* Merci Kozlika :) */
-pre {
+@import "layout.css";
+/* @import "layout-gauche.css"; */
+ 
+/* Les éléments HTML en général
+-------------------------------------------------------- */
+body{
 	background: #EEE;
 	color: #000;
-	border: 1px solid #DDD;
-	margin : 0 auto;
-	margin-bottom : 1em;
-	padding : 0.5em;
-	text-align:left;
-	white-space:normal;
-		/* caché pour IE 5 Mac qui sait pas faire - Ne pas supprimer cette ligne  \*/
-		white-space:pre;
-		width: 95%;
-		overflow : auto;
-}
-	/* Fin hack Ne pas supprimer cette ligne */
-
-acronym, abbr{border-bottom: 1px dotted;cursor : help;}
-q{font-style : italic;}
-
-a{color : #222;}
-a:visited{color: #622;}
-a:hover, a:focus, a:active{color: #111;}
-a[hreflang]:after {content: "\0000a0[" attr(hreflang) "]";color : #666;background : transparent;}
-
-h2, h3 {
-	font-family : "Trebuchet MS",Arial,Helvetica,sans-serif;
+	font-size: 80%;
+	line-height: 1.6em;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	border-top: 10px solid #DDD;
 }
 
+h1, h2, h3, h4, h5, h6{
+	font-family: "Trebuchet MS", sans-serif;
+}
+
+h1{font-size: 1.5em;}
 h2{font-size: 1.4em;}
 h3{font-size: 1.3em;}
 h4{font-size: 1.2em;}
 h5{font-size: 1.1em;}
-h6{font-size: 1.0em;}
+h6{font-size: 1em;}
+
+pre, code{
+	font-size: 1.2em;
+}
+
+pre{
+	width: 100%;
+	overflow: auto;
+	border: 1px solid #CCC;
+}
+
+fieldset{
+	border: none;
+}
+
+label{
+	cursor: pointer;
+	cursor: hand;
+}
+
+.field label{
+	display: block;
+}
+
+input,textarea{
+	border: 1px solid #999;
+}
+
+textarea{
+	width: 100%;
+	font-size: 1em;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+a{
+	color: #000;
+}
+
+a:visited{
+	color: #663;
+}
+
+a:hover{
+	color: #636;
+}
 
 .left{
 	float: left;
@@ -88,262 +118,195 @@ h6{font-size: 1.0em;}
 	margin-left: 1em;
 }
 
-/* Page
-****************************************************************/
-#page {
-	background: transparent url(images/bg.png) repeat-y left;
+/* La page
+-------------------------------------------------------- */
+#page{
+	background: #fff url(img/page.png) repeat-y center top;
+	color: inherit;
 }
-
-/* Top
-****************************************************************/
-#top {
-	background: #444 url(images/top.jpg) no-repeat center bottom;
+ 
+/* L'entête
+-------------------------------------------------------- */
+#top{
+	height: 120px;
+	/*padding-top: 20px;*/
+	background: #FFF url(img/top.png) no-repeat left top;
 }
 
 #top h1{
-	font-family: Georgia, "Times New Roman", serif;
-	font-size: 1.2em;
-	text-align: center;
+	height: 80px;
+	line-height: 80px;
+	margin: 0 0 0 40px;
+	padding-top: 20px;
+	color: #FFFFFF;
 }
 
 #top h1 a{
-	color: #FFF;
 	text-decoration: none;
+	color: #FFFFFF;
 }
 
+/* Le prélude
+-------------------------------------------------------- */ 
 #prelude{
+	background: transparent;
+	color: #DFDFDF;
 	text-align: center;
-	color: #444;
 }
 
 #prelude a{
-	color: #444;
+	color: #DFDFDF;
 	background: transparent;
 }
 
 #prelude a:hover{
-	color: #999;
-}
-
-/* Main
-****************************************************************/
-#main {
-	background: #FFF;
-	color: inherit;
-	overflow: hidden; /* Cache ce qui déborder (images par ex.) pour ne pas casser la mise en page */
-}
-
-/* Contenu
-****************************************************************/
-#content {
-	margin: 10px;
-	padding-bottom: 1em;
-	padding-left: 20px;
-}
-
-.day-date{
-	display: none;
-}
-
-/* post-title */
-.post-title {
-	background : transparent url(images/sstar.png) no-repeat 0 0.2em;
-	padding-left : 20px;
-	margin: 0 0 0 -20px;
-}
-
-.post-title a {
-	color : #000;
-	text-decoration : none;
-}
-
-/* post-info */
-.post-info{
-	font-size: 0.85em;
-	margin-top: 0;
-	color: #333;
-	background: transparent;
-}
-
-.post-content, .post-chapo{
-	line-height: 1.6em;
-	text-align: justify;
-	color: #222;
-	background: transparent;
-}
-
-.post-content ul{
-	list-style-image: url(images/puce.png);
-}
-
-/* Pour limiter la taille des images trop grandes
-*  ajoutez un slash derrière l'étoile -> *
-.post-content img{
-	max-width: 100%;
-}
-/**/
-
-/* post-info-co */
-.post-info-co {
-	clear: both;
-	font-size: 0.85em;
-	text-align: right;
-	margin-bottom: 3em;
-}
-
-.post-info-co span{
-	display: none;
-}
-
-.post-info-co a{
-	padding-left: 12px;
-	background: transparent url(images/co.png) no-repeat left;
-}
-
-/* comments */
-#comments span{
-	display: none;
-}
-
-#comments blockquote{
-	text-align: justify;
-}
-
-.commentid{
-	border-right: 1px solid #DDD;
-	text-decoration: none;
-	color: #999;
-	background: transparent;
-	padding: 3px 6px;
-}
-
-.field label{
-	display: block;
-	cursor: pointer;
-	cursor: hand;
-}
-
-/* Sidebar
-****************************************************************/
-#sidebar {
-	background: #FFF;
-	color: inherit;
-	line-height: 1.4em; /* peek-a-boo bug d'IE */
-}
-
-#sidebar div{
-	margin-left: 10px;
-	margin-right: 10px;
-}
-
-#sidebar h2 {
-	background: transparent url(images/h2side.png);
 	color: #666;
-	padding: 5px;
-	font-size: 1.2em;
+	background: transparent;
 }
 
-#sidebar ul{
+/* Le contenu
+-------------------------------------------------------- */
+.day-date{
+	padding-left: 20px;
+	margin-left: -25px;
+	color: #888;
+	background: transparent url(img/day-date.png) no-repeat left center;
+	font-style: italic;
+}
+
+.post-title{
+	color: #F90;
+	background: transparent;
+	margin-bottom: 0;
+}
+
+.post-title a{
+	color: #F90;
+	background: transparent;
+	text-decoration: none;
+}
+
+.post-info{
+	margin-top: 0;
+	color: #FA0;
+	background: transparent;
+	padding-bottom: 1ex;
+	/*border-bottom: 1px solid #FC0;*/
+}
+
+.post-info a{
+	color: #FA0;
+	background: transparent;
+	text-decoration: none;
+}
+
+.post-content{
+	text-align: justify;
+}
+
+.post-content blockquote{
+	font-family: Georgia, serif;
+	font-style: italic;
+}
+
+.post-info-co{
+	text-align: right;
+}
+
+#trackbacks blockquote, #comments blockquote{
+	border: 1px solid #EEE;
+	margin: 1em 0;
+	padding: 1ex 1em;
+}
+
+/* La barre de navigation
+-------------------------------------------------------- */
+#sidebar div{
+	border-bottom: 1px solid #F0F0F0;
+	color: inherit;
+}
+
+#sidebar div ul{
+	margin: 0;
+	padding: 0;
 	list-style: none;
+}
+
+#sidebar h2, #sidebar h3{
+	color: #9ED200;
+	margin: 0 0 1ex 0;
+}
+
+#sidebar h3{
+	font-size: 1em;
+	margin: 0;
+}
+
+#sidebar div#search{
+	background: transparent;
+	color: inherit;
+	line-height: 2.3em;
+}
+
+#search fieldset, #search p{
 	margin: 0;
 	padding: 0;
 }
 
-#sidebar a{
+#q{
+	padding-left: 18px;
+	background: #fff url(img/q.png) no-repeat 4px center;
+}
+
+#sidebar div#calendar{
+	/*border-top: 1px solid #F0F0F0;*/
+}
+
+#sidebar div#calendar table{
+	font-size: 0.8em;
+	text-align: center;
+	margin: 0 auto;
+	border-collapse: collapse;
+}
+
+#sidebar div#calendar table caption{
+	margin: 0 auto;
+}
+
+#sidebar div#calendar table th{
+	color: #493;
+	background: transparent;
+}
+
+#sidebar div#calendar table td{
+	width: 14%;
+	line-height: 2em;
+	border: 1px solid #EEE;
+}
+
+#sidebar div#calendar table td a{
+	display: block;
+	background: #EFA;
+	color: #493;
+	font-weight: bold;
 	text-decoration: none;
 }
 
-#selection h2{
-	color: #000;
+#sidebar div#calendar table td a:hover{
+	background: #DBB8DC;
+	color: #636;
 }
 
-/* Bloc de recherche */
-#search{
-	position: absolute;
-	width: 240px;
-	top: 40px;
-}
-
-#search h2{
-	display: none;
-}
-
-#search p{
+/* Le pied de page
+-------------------------------------------------------- */
+#footer{
 	margin: 0;
-}
-
-#search #q{
-	background: #404040 url(images/search.png) no-repeat 3px center;
-	color: #eee;
-	border: 1px solid #333;
-	padding-left: 20px;
-	width: 70%;
-}
-
-/* Calendrier */
-#calendar table{
-	width: 220px;
-	margin: 0 auto;
-	font-size: 0.8em;
-}
-
-#calendar caption{
-	margin: 0 auto;
+	padding: 1em;
+	border-top: 1px solid #CCC;
 	background: #EEE;
-	padding: 0.5em 0;
 	color: #666;
 }
 
-#calendar abbr{
-	border: none;
-}
-
-#calendar td{
-	background: #F5F5F5;
-	text-align: center;
-}
-
-#calendar td a{
-	display: block;
-	font-weight: bold;
-	background: #E0E0E0 url(images/today.png) no-repeat right top;
-	color: #933;
-}
-
-#categories, #links{
-	margin-top: 3em;
-}
-
-/* Liens */
-#links h3{
-	color: #999;
-	background: transparent;
-	margin-bottom: 0.5ex;
-	font-size: 1em;
-}
-
-#links a{
-	padding-left: 20px;
-	background: #FFF url(images/chkd.png) no-repeat left center;
-}
-
-#links a:visited{
-	padding-left: 20px;
-	background: #FFF url(images/chkh.png) no-repeat left center;
-}
-
-/* Footer
-****************************************************************/
-#footer {
-	background: #EEE;
-	color: #AAA;
-	text-align: center;
-}
-
 #footer a{
-	color: #AAA;
-	background: transparent;
-	font-weight: bold;
-	text-decoration: none;
+	color: #999;
 }
-
