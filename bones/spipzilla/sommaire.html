@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>#NOM_SITE_SPIP</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="Keywords" content="web browser, mozilla, firefox, camino, thunderbird, bugzilla, user agent, email client" />
+<link rel="stylesheet" type="text/css" href="bones/css/print.css" media="print" />
+<link rel="stylesheet" type="text/css" href="bones/css/base/content.css" media="all" />
+<link rel="stylesheet" type="text/css" href="bones/css/cavendish/content.css" title="Cavendish" media="all" />
+<link rel="stylesheet" type="text/css" href="bones/css/base/template.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="bones/css/cavendish/template.css" title="Cavendish" media="screen" />
+<link rel="stylesheet" type="text/css" href="bones/css/cavendish/home.css" title="Cavendish" media="screen" />
+<link rel="icon" href="images/mozilla-16.png" type="image/png" />
+
+</head>
+<body id="www-mozilla-org" class="homepage">
+<div id="container">
+  <div id="header">
+    <h1>     [(#LOGO_SITE_SPIP||reduire_image{60,60})]</h1>
+    <ul>
+      <INCLURE(inclusions/inc_rubriques.php3)>
+    </ul>
+   #NOM_SITE_SPIP<INCLURE(inclusions/inc_recherche.php3)>
+  </div>
+  <!-- closes #header-->
+  <hr class="hide" />
+  <div class="key-point front-feature-spipzilla" id="front-feature">
+    <BOUCLE_article_un(ARTICLES) {par date} {inverse} {0,1}>
+    <div id="feature-content">
+      <h2><a href="#URL_ARTICLE">[(#TITRE|titre_homogene)]</a></h2>
+      [(#DATE|nom_jour)] [(#DATE|affdate)] par
+      <BOUCLE_auteurs_articles(AUTEURS) {id_article} {" "}>
+      <a href="auteur.php3?id_auteur=#ID_AUTEUR" [ title="(#BIO|textebrut|entites_html)"]>#NOM</a>
+      </BOUCLE_auteurs_articles>
+      [(#LOGO_ARTICLE_RUBRIQUE|left|#URL_ARTICLE||reduire_image{100,100})]
+      <p>#INTRODUCTION</p>
+         <INCLURE(inclusions/inc_pieces_jointes.php3)>
+     
+    </div>
+    </BOUCLE_article_un>
+  </div>
+  <div id="mBody">
+    <div class="frontcolumndouble">
+      <!-- Article deux -->
+      <BOUCLE_article_deux(ARTICLES) {par date} {inverse} {1,1}>
+      <h2><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h2>
+      [(#DATE|nom_jour)] [(#DATE|affdate)] &lt;:par_auteur:&gt;
+      <BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>
+      #NOM
+      </BOUCLE_auteurs_recents>
+      [(#LOGO_ARTICLE_RUBRIQUE|right|#URL_ARTICLE||reduire_image{100,100})]
+      <p>#DESCRIPTIF</p>
+      </BOUCLE_article_deux>
+    </div>
+    <div class="frontcolumnlast">
+      <!-- Article trois -->
+      <BOUCLE_article_trois(ARTICLES) {par date} {inverse} {2,1}>
+      <h2><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h2>
+      [(#DATE|nom_jour)] [(#DATE|affdate)] &lt;:par_auteur:&gt;
+      <BOUCLE_auteurs_trois(AUTEURS) {id_article} {", "}>
+      #NOM
+      </BOUCLE_auteurs_trois>
+      [(#LOGO_ARTICLE_RUBRIQUE|right|#URL_ARTICLE||reduire_image{100,100})]
+      <p>#DESCRIPTIF</p>
+      </BOUCLE_article_trois>
+    </div>
+    <br style="clear: both;" />
+    <br />
+    <!-- Start News Columns -->
+    <div class="frontcolumn"> <a href="backend-breves.php3"> <img class="rss" src="bones/images/livemarks16.png" alt="rss icon" title="&lt;:dernieres_breves:&gt; RSS" width="16" height="16" /> </a>
+      <INCLURE(inclusions/inc_dernieres_breves.php3)>
+    </div>
+    <div class="frontcolumn"> <a href="backend.php3"> <img class="rss" src="bones/images/livemarks16.png" alt="rss icon" title="&lt;:nouveaux_articles:&gt; RSS" width="16" height="16" /></a>
+      <h2 style="margin-top: 0;"> &lt;:nouveaux_articles:&gt;</h2>
+      <ul class="news">
+        <BOUCLE_articles_recents(ARTICLES) {par date} {inverse} {3,7}>
+        <li>
+          <div class="date">[(#DATE|nom_mois)] [(#DATE|jour)] </div>
+          <a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></li>
+        </BOUCLE_articles_recents>
+      </ul>
+    </div>
+    <div class="frontcolumnlast">
+      <INCLURE(inclusions/inc_sites.php3)>
+    </div>
+    <!-- End News Columns -->
+    <br style="clear: both;" />
+  </div>
+  <!-- closes #mBody-->
+  <hr class="hide" />
+  <div id="footer">
+    <INCLURE(inclusions/inc_menu-haut.php3)>
+    <p class="copyright">
+      <INCLURE(inclusions/inc_pied_de_page.php3)>
+    </p>
+    <p class="copyright">Copyright &copy; [(#DATE|nom_mois)] [(#DATE|annee)] [(#NOM_SITE_SPIP)]</p>
+  </div>
+  <!-- closes #footer-->
+</div>
+<!-- closes #container -->
+</body>
+</html>
+<!-- -->
