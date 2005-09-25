@@ -48,6 +48,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array (
 'liens_privilegies' => 'Liens privil&eacute;gi&eacute;s',
 
 // M
+'mag' => 'Mag&#8217;',
 'mailing_list' => 'Mailing list',
 'mentions_legales' => 'Mentions l&eacute;gales',
 'mis_a_jour_le' => 'Mis &agrave; jour le',
@@ -79,6 +80,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array (
 'site_heberge_par' => 'Site h&eacute;berg&eacute; par',
 'sondage' => 'Sondage',
 'sous_rubriques' => 'Sous-rubriques',
+'spip' => 'SPIP',
 'squelettes' => 'Les squelettes de ce site sont librement consultables',
 'sur_spipmag' => 'Sur SPIP Mag&#8217;',
 
