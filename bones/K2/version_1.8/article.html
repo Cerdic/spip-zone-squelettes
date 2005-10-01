@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
-<!-- Bones K2 1.8 -->
+<!-- Bones K2 1.9 -->
 <head>
 <title>#NOM_SITE_SPIP</title>
-<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <meta name="generator" content="SPIP BONES 1.8" />
 <meta name="template" content="Bones K2" />
 <meta name="Robots" content="index,follow,all" />
@@ -11,7 +11,6 @@
 <meta name="rating" content="General" />
 <meta name="revisit-after" content="15 days" />
 <INCLURE(inclusions/inc_head.php3)>
-
 </head>
 <body  class=" ">
 <div id="page">
@@ -36,18 +35,16 @@
       <div class="itemhead"> [
         <div class="image">(#LOGO_ARTICLE_RUBRIQUE|right||reduire_image{100,100})</div>
         ]
-		
-		
-		
-		  [
-        <div class="surtitre">(#SURTITRE)</div>
-        ]
         
-        <h3>#TITRE</h3>
-		[
+        
+        
+        [
         <div class="surtitre">(#SURTITRE)</div>
         ]
-	 <span class="metalink"><a href="ecrire/articles.php3?id_article=#ID_ARTICLE">edit</a></span> <small class="metadata"><:par_auteur:>
+        <h3>#TITRE</h3>
+        [
+        <div class="surtitre">(#SURTITRE)</div>
+        ] <span class="metalink"><a href="ecrire/articles.php3?id_article=#ID_ARTICLE">edit</a></span> <small class="metadata"><:par_auteur:>
         <BOUCLE_auteurs_articles(AUTEURS) {id_article} {" "}>
         <a href="auteur.php3?id_auteur=#ID_AUTEUR">#NOM</a>
         </BOUCLE_auteurs_articles>
@@ -57,52 +54,43 @@
         </BOUCLE_rubrique_article>
         . </small> </div>
       <div class="itemtext">
-
-
-
-<p>#CHAPO</p>
-          <p align="left">#DESCRIPTIF</p>
-          <p align="justify">#TEXTE</p>
-          <em>#PS</em>
-          <div align="center">
-            <!-- boucle image -->
-            <BOUCLE_afficher_document(DOCUMENTS){id_document}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
-            <hr />
-            [
-            <h3>(#TITRE)</h3>
-            ] [
-            <div>(#DESCRIPTIF)</div>
-            ] [
-            <div>
-              <pre>(#EMBED_DOCUMENT)</pre>
-            </div>
-            ]
-            </BOUCLE_afficher_document>
-            <B_documents_portfolio>
-            <div>
-              <hr />
-              <BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
-              <div style="float: left;"> [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT">(#LOGO_DOCUMENT{0,60})</a>] [
-                <div style="clear: both;"><b>(#TITRE)</b></div>
-                ][
-                <div style="clear: both;">(#DESCRIPTIF)</div>
-                ] </div>
-              </BOUCLE_documents_portfolio>
-            </div>
-            <div style="clear: both;"></div>
-            </B_documents_portfolio>
-          </div>
-          #NOTES      </div>
+        <p>#CHAPO</p>
+        <p align="left">#DESCRIPTIF</p>
+        <p align="justify">#TEXTE</p>
+        <em>#PS</em> 
+	  </div>
+        <!-- boucle image -->
+        <BOUCLE_afficher_document(DOCUMENTS){id_document}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
+        <hr />
+        [
+        <h3>(#TITRE)</h3>
+        ] [
+        <div>(#DESCRIPTIF)</div>
+        ] 
+        [<a href="#URL_DOCUMENT">(#FICHIER|reduire_image{500}) </a> ]
+        </BOUCLE_afficher_document>
+        <B_documents_portfolio>
+        <div>
+          <hr />
+          <BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
+          <div style="float: left;"> [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT">(#LOGO_DOCUMENT{0,60})</a>] [
+            <div style="clear: both;"><b>(#TITRE)</b></div>
+            ][
+            <div style="clear: both;">(#DESCRIPTIF)</div>
+            ] </div>
+          </BOUCLE_documents_portfolio>
+        </div>
+        <div style="clear: both;"></div>
+        </B_documents_portfolio>
+        #NOTES 
+   
+    <hr />
+    <!-- boucle forum -->
+    <div class="comments" id="comments">
+      <INCLURE(inclusions/inc_forum_article.php3){id_article}{id_forum}{id_signature}>
+    </div>
     </div>
     </BOUCLE_articles>
-
-<hr>
-     <!-- boucle forum -->
-       <INCLURE(inclusions/inc_forum_article.php3){id_article}{id_forum}{id_signature}> 
-
-
-       <INCLURE(inclusions/inc_petition.php3){id_article}> 
-
   </div>
   <hr />
   <div class="secondary">
@@ -112,17 +100,20 @@
         <INCLURE(inclusions/inc_recherche.php3)>
       </div>
     </div>
-    <!--  <div class="sb_about">
-      
-    </div>-->
+    <div class="sb_about">
+      <INCLURE(inclusions/inc_memes_auteurs.php3){id_article}>
+    </div>
     <div class="sb_latest">
       <INCLURE(inclusions/inc_dernieres_breves.php3)>
     </div>
+    <div class="sb_latest">
+      <INCLURE(inclusions/inc_pieces_jointes.php3){id_article}>
+    </div>
+    <div class="sb_meta">
+      <INCLURE(inclusions/inc_meme_rubrique.php3)>
+    </div>
     <div class="sb_links">
       <ul>
-	  <li id="linkcat-1">
-          <INCLURE(inclusions/inc_meme_auteurs.php3)>
-        </li>
         <li id="linkcat-2">
           <INCLURE(inclusions/inc_sites.php3)>
         </li>
@@ -131,17 +122,7 @@
         </li>
       </ul>
     </div>
-	<div class="sb_meta"><h2>Meta</h2>
-		<ul>
-			<li><a href="http://www.aucuneid.net/blogs/izo/wp-login.php?action=logout">Logout</a></li>
-			<li><a href="http://validator.w3.org/check/referer" title="This page validates as XHTML 1.0 Transitional">Valid <abbr title="eXtensible HyperText Markup Language">XHTML</abbr></a></li>
-			<li><a href="http://jigsaw.w3.org/css-validator/check/referer" title="This page validates has valid CSS">Valid <abbr title="Cascading Style Sheets">CSS</abbr></a></li>
-			<li><a href="http://gmpg.org/xfn/"><abbr title="XHTML Friends Network">XFN</abbr></a></li>
-			<li><a href="http://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress</a></li>
-					</ul>
-	</div>
   </div>
-  <br class="clear" />
 </div>
 <!-- Close Page -->
 <hr />
