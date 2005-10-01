@@ -36,7 +36,17 @@
       <div class="itemhead"> [
         <div class="image">(#LOGO_ARTICLE_RUBRIQUE|right||reduire_image{100,100})</div>
         ]
-        <h3><a href="#URL_ARTICLE">#TITRE</a></h3>
+		
+		
+		
+		  [
+        <div class="surtitre">(#SURTITRE)</div>
+        ]
+        
+        <h3>#TITRE</h3>
+		[
+        <div class="surtitre">(#SURTITRE)</div>
+        ]
 	 <span class="metalink"><a href="ecrire/articles.php3?id_article=#ID_ARTICLE">edit</a></span> <small class="metadata"><:par_auteur:>
         <BOUCLE_auteurs_articles(AUTEURS) {id_article} {" "}>
         <a href="auteur.php3?id_auteur=#ID_AUTEUR">#NOM</a>
@@ -47,8 +57,42 @@
         </BOUCLE_rubrique_article>
         . </small> </div>
       <div class="itemtext">
-        <p>#TEXTE</p>
-      </div>
+
+
+
+<p>#CHAPO</p>
+          <p align="left">#DESCRIPTIF</p>
+          <p align="justify">#TEXTE</p>
+          <em>#PS</em>
+          <div align="center">
+            <!-- boucle image -->
+            <BOUCLE_afficher_document(DOCUMENTS){id_document}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
+            <hr />
+            [
+            <h3>(#TITRE)</h3>
+            ] [
+            <div>(#DESCRIPTIF)</div>
+            ] [
+            <div>
+              <pre>(#EMBED_DOCUMENT)</pre>
+            </div>
+            ]
+            </BOUCLE_afficher_document>
+            <B_documents_portfolio>
+            <div>
+              <hr />
+              <BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
+              <div style="float: left;"> [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT">(#LOGO_DOCUMENT{0,60})</a>] [
+                <div style="clear: both;"><b>(#TITRE)</b></div>
+                ][
+                <div style="clear: both;">(#DESCRIPTIF)</div>
+                ] </div>
+              </BOUCLE_documents_portfolio>
+            </div>
+            <div style="clear: both;"></div>
+            </B_documents_portfolio>
+          </div>
+          #NOTES      </div>
     </div>
     </BOUCLE_articles>
 
@@ -76,6 +120,9 @@
     </div>
     <div class="sb_links">
       <ul>
+	  <li id="linkcat-1">
+          <INCLURE(inclusions/inc_meme_auteurs.php3)>
+        </li>
         <li id="linkcat-2">
           <INCLURE(inclusions/inc_sites.php3)>
         </li>
@@ -84,7 +131,6 @@
         </li>
       </ul>
     </div>
-    <!-- Commented out because it has little use for 99% of users.
 	<div class="sb_meta"><h2>Meta</h2>
 		<ul>
 			<li><a href="http://www.aucuneid.net/blogs/izo/wp-login.php?action=logout">Logout</a></li>
@@ -93,7 +139,7 @@
 			<li><a href="http://gmpg.org/xfn/"><abbr title="XHTML Friends Network">XFN</abbr></a></li>
 			<li><a href="http://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress</a></li>
 					</ul>
-	</div>-->
+	</div>
   </div>
   <br class="clear" />
 </div>
