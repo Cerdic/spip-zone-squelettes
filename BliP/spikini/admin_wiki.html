@@ -1,0 +1,91 @@
+<table width='100%' style='font-size:10px;'>
+<?php
+	include_ecrire('inc_texte.php3');
+
+	function recents($wiki) {
+		$s = spip_query("SELECT * FROM wiki_".$wiki."_pages WHERE time>DATE_SUB(NOW(),INTERVAL 3 DAY) ORDER BY time DESC LIMIT 0,5");
+		while ($t = spip_fetch_array($s)) {
+			print jour($t[time]).'/'.mois($t[time]).' '.heures($t[time]).'h'.minutes($t[time]);
+			echo ' '.$t[tag].' ('.$t[user].')<br />';
+		}
+	}
+
+	function w_purger($wiki) {
+		w_archiver($wiki);
+		$tbl = "wiki_".$wiki."_pages";
+		spip_query("DELETE FROM $tbl WHERE latest='N'");
+		return "PURGE";
+	}
+
+	function w_archiver($wiki) {
+		$date=date("Y-m-d-h-i-s");
+		$fp = fopen("ecrire/data/wiki_".$wiki."_dump_$date.txt", "w");
+		include ('mysql_dump_lib.phps');
+		foreach (array('acls','links','pages','referrers','users') as $table) {
+			$tbl = "wiki_".$wiki."_".$table;
+			dump_table($tbl, $fp);
+		}
+		fclose ($fp);
+		copy ('ecrire/wakka_'.$wiki.'_config.php', 'ecrire/data/wakka_'.$wiki.'_config.txt');
+		return "ARCHIVE";
+	}
+
+	function w_supprimer($wiki) {
+		w_archiver($wiki);
+		foreach (array('acls','links','pages','referrers','users') as $table) {
+			$tbl = "wiki_".$wiki."_".$table;
+			if (!spip_query("DROP TABLE $tbl"))
+				return "Pas pu dropper la table $tbl : ".mysql_error();
+		}
+		unlink ('ecrire/wakka_'.$wiki.'_config.php');
+		return "SUPPRIME";
+	}
+
+
+	///////////////////////////////////////////////////////////////
+
+	if ($auteur_session['statut'] != '0minirezo')
+		die ('<a href="spip_login.php3?var_url=wiki.php">Page réservée aux admins.</a>');
+
+	echo "<h2>admin des wikis</h2>\n";
+
+	$s = spip_query("SHOW TABLES");
+
+	while ($t = spip_fetch_array($s)) {
+		if (ereg("^wiki_(.*)_pages$", $t[0], $regs)) {
+			$wiki_base[] = $regs[1];
+		}
+	}
+
+	// ici on pourrait aussi regarder les fichiers wakka_....config.php
+
+	foreach ($wiki_base as $wiki) {
+		if ($coul<>'#cccccc') $coul='#cccccc'; else $coul='#eeeeee';
+		echo "<tr bgcolor=$coul><td>";
+
+		echo "<a href='/$wiki/'><b>$wiki</b></a>";
+		echo "</td><td>";
+		echo "<a href='/$wiki/DerniersChangements'>++</a> ";
+		echo "</td><td>";
+			echo recents($wiki);
+		echo "</td><td>";
+		if ($action == 'arch' AND $w==$wiki) {
+			echo w_archiver($wiki);
+		} else
+			echo "<a href='wiki.php?action=arch&w=$wiki' onclick='javascript:return confirm(\"archiver le wiki $wiki?\");'>archiver</a>";
+		echo "</td><td>";
+		if ($action == 'purger' AND $w==$wiki) {
+			echo w_purger($wiki);
+		} else
+			echo "<a href='wiki.php?action=purger&w=$wiki' onclick='javascript:return confirm(\"purger le wiki $wiki?\");'>purger</a>";
+		echo "</td><td>";
+		if ($action == 'supp' AND $w==$wiki) {
+			echo w_supprimer($wiki);
+		} else
+			echo "<a href='wiki.php?action=supp&w=$wiki' onclick='javascript:return confirm(\"SUPPRIMER le wiki $wiki?\");'>supprimer</a>";
+
+		echo "</td></tr>\n";
+	}
+
+?>
+</table>
