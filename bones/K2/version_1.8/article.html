@@ -1,9 +1,9 @@
+<BOUCLE_article_principal(ARTICLES) {id_article}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <!-- Bones K2 1.9 -->
 <head>
 <title>#NOM_SITE_SPIP</title>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <meta name="generator" content="SPIP BONES 1.8" />
 <meta name="template" content="Bones K2" />
 <meta name="Robots" content="index,follow,all" />
@@ -12,7 +12,7 @@
 <meta name="revisit-after" content="15 days" />
 <INCLURE(inclusions/inc_head.php3)>
 </head>
-<body  class=" ">
+<body>
 <div id="page">
   <div id="header">
     <h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
@@ -30,7 +30,6 @@
         <!--<:derniers_articles:>-->
       </h2>
     </div>
-    <BOUCLE_articles(ARTICLES) {id_article}>
     <div id="post" class="item entry">
       <div class="itemhead"> [
         <div class="image">(#LOGO_ARTICLE_RUBRIQUE|right||reduire_image{100,100})</div>
@@ -57,48 +56,49 @@
         <p>#CHAPO</p>
         <p align="left">#DESCRIPTIF</p>
         <p align="justify">#TEXTE</p>
-        <em>#PS</em> 
-	  </div>
-        <!-- boucle image -->
-        <BOUCLE_afficher_document(DOCUMENTS){id_document}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
-        <hr />
-        [
-        <h3>(#TITRE)</h3>
-        ] [
-        <div>(#DESCRIPTIF)</div>
-        ] 
-        [<a href="#URL_DOCUMENT">(#FICHIER|reduire_image{500}) </a> ]
-        </BOUCLE_afficher_document>
-        <B_documents_portfolio>
-        <div>
+        <em>#PS</em>      </div>
+
+        <div align="center">
+          <!-- boucle image -->
+          <BOUCLE_afficher_document(DOCUMENTS){id_document}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
           <hr />
-          <BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
-          <div style="float: left;"> [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT">(#LOGO_DOCUMENT{0,60})</a>] [
-            <div style="clear: both;"><b>(#TITRE)</b></div>
-            ][
-            <div style="clear: both;">(#DESCRIPTIF)</div>
-            ] </div>
-          </BOUCLE_documents_portfolio>
+          [
+          <h3>(#TITRE)</h3>
+          ] [
+          <div>(#DESCRIPTIF)</div>
+          ] [
+          <div> <a href="#URL_DOCUMENT">(#FICHIER|reduire_image{500}) </a> </div>
+          ]
+          </BOUCLE_afficher_document>
+          <B_documents_portfolio>
+          <div>
+            <hr />
+            <BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
+            <div style="float: left;"> [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT">(#LOGO_DOCUMENT{0,60})</a>] [
+              <div style="clear: both;"><b>(#TITRE)</b></div>
+              ][
+              <div style="clear: both;">(#DESCRIPTIF)</div>
+              ] </div>
+            </BOUCLE_documents_portfolio>
+          </div>
+          <div style="clear: both;"></div>
+          </B_documents_portfolio>
         </div>
-        <div style="clear: both;"></div>
-        </B_documents_portfolio>
-        #NOTES 
-   
-    <hr />
-    <!-- boucle forum -->
-    <div class="comments" id="comments">
-      <INCLURE(inclusions/inc_forum_article.php3){id_article}{id_forum}{id_signature}>
-    </div>
-    </div>
-    </BOUCLE_articles>
+        #NOTES    </div>
+
+        <hr />
+        <!-- boucle forum -->
+		    <div class="comments" id="comments">
+
+        <INCLURE(inclusions/inc_forum_article.php3){id_article}{id_forum}{id_signature}>		</div>
+
+        <INCLURE(inclusions/inc_petition.php3){id_article}{id_forum}{id_signature}>
   </div>
   <hr />
   <div class="secondary">
     <div class="sb_search">
       <h2>Search</h2>
-      <div class="livesearchform">
-        <INCLURE(inclusions/inc_recherche.php3)>
-      </div>
+      <INCLURE(inclusions/inc_recherche.php3)>
     </div>
     <div class="sb_about">
       <INCLURE(inclusions/inc_memes_auteurs.php3){id_article}>
@@ -130,4 +130,5 @@
   <INCLURE(inclusions/inc_pied_de_page.php3)>
   </small></p>
 </body>
+</BOUCLE_article_principal>
 </html>
