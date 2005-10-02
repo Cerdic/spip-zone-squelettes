@@ -1,8 +1,14 @@
+
 	<div id="entete"> <!-- La section d'en-tête -->
 
 	<BOUCLE_article(ARTICLES){id_article}>
 		<!-- Si on vient d'un article -->
 		<BOUCLE_secteur(HIERARCHIE){id_article}{0,1}>
+			<style>
+	<!-- 
+[ div.logofor a { background-image:url(IMG/(#LOGO_RUBRIQUE|fichier) ) ; } ]
+	-->
+	</style>
 		<div class="logofor"> <!-- Le secteur du logo -->
 		<a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero|textebrut|entites_html)]"><span>[(#TITRE|supprimer_numero|textebrut|entites_html)]</span></a>
 		</div>
@@ -17,6 +23,11 @@
 	<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
 		<!-- Si on vient d'une rubrique -->
 		<BOUCLE_secteur2(HIERARCHIE){id_rubrique}{0,1}>
+			<style>
+	<!-- 
+	[ div.logofor a {background-image:url(IMG/(#LOGO_RUBRIQUE|fichier) ) ; } ]
+	-->
+	</style>
 		<div class="logofor"> <!-- Le secteur du logo -->
 			<a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero|textebrut|entites_html)]"><span>[(#TITRE|supprimer_numero|textebrut|entites_html)]</span></a>
 		</div>
@@ -27,6 +38,11 @@
 		</div>  
 	      </BOUCLE_secteur2>
 	      </B_secteur2>
+			<style>
+	<!-- 
+[ div.logofor a {background-image:url(IMG/(#LOGO_RUBRIQUE|fichier) ) ; } ]
+	-->
+	</style>
 		<div class="logofor"> <!-- Le secteur du logo -->
 			<a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero|textebrut|entites_html)]"><span>[(#TITRE|supprimer_numero|textebrut|entites_html)]</span></a>
 		</div>
@@ -37,8 +53,8 @@
 		</div>
 		<//B_secteur2>
 	</BOUCLE_rubrique>
-         
-        <//B_rubrique>
+   <//B_rubrique>
+   
 	<div class="actionfor" > <!-- Le secteur des actions -->
 		<ul>
 			<li class="recherche"><a href="recherche_forum.php3?id_rubrique=<?php echo $ze_sect; ?>"><:phpbb:recherche:></a></li>
@@ -54,7 +70,7 @@
 			<li class="login"><a href="connexion.php3?id_rubrique=<?php echo $ze_sect; ?>"><:phpbb:login:></a></li>
 		<?php } else { ?>
 			<li class="profil"><a href="profile.php3?id_rubrique=<?php echo $ze_sect; ?>"><:phpbb:membres_profil:></a></li> 
-			<li class="login"><a href="#URL_LOGOUT"><:phpbb:logout:>[<?php echo $GLOBALS['auteur_session']['nom']; ?>]</a></li>
+			<li class="login"><a href="#URL_LOGOUT"><:phpbb:logout:> [<?php echo $GLOBALS['auteur_session']['nom']; ?>]</a></li>
 		<?php } ?>
 		</ul>
 	</div>
