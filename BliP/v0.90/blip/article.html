@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+
+<BOUCLE_article_pas_de_forum(ARTICLES) {id_article} {titre_mot=pas_de_forum}>
+<!-- Affiche les articles dont le forum a ete desactive par l'ajout du mot clef : pas_de_forum -->
+<head>
+	<title>[#NOM_SITE_SPIP] [(#SURTITRE|textebrut) ][(#TITRE|textebrut)]</title>
+	<INCLURE(inclusions/inc_structure_balises_meta.php3) {id_article}>
+</head>
+
+<body id="articles"><a name="hautdepage"></a>
+
+<div id="page">
+
+	<INCLURE(inclusions/inc_structure_entete.php3) {id_article}>	
+	
+	<div id="contenu_principal">
+
+		<INCLURE(inclusions/inc_article_lecture.php3) {id_article}>
+		
+	</div><!-- fin contenu_principal -->
+
+	<div id="barre_laterale">
+
+		<INCLURE(inclusions/inc_articles_meme_rubrique.php3) {id_article} {id_rubrique}>
+
+		<INCLURE(inclusions/inc_structure_barre_laterale.php3)>
+
+	</div><!-- fin barre_laterale -->
+	
+	<INCLURE(inclusions/inc_structure_pied_de_page.php3)>
+
+</div><!-- fin page -->
+
+</body>
+</html>
+</BOUCLE_article_pas_de_forum>
+
+
+<BOUCLE_article_petition(ARTICLES) {id_article} {titre_mot=petition}>
+<!-- Affiche les articles qui comportent une petition, et qui ont ete affecte du mot clef : petition -->
+<head>
+	<title>[#NOM_SITE_SPIP] [(#TITRE|textebrut)]</title>
+	
+<INCLURE(inclusions/inc_structure_balises_meta.php3) {id_article}>
+
+</head>
+
+<body id="articles"><a name="hautdepage"></a>
+
+<div id="page">
+
+	<INCLURE(inclusions/inc_structure_entete.php3) {id_article}>	
+	
+	<div id="contenu_principal">
+
+		SECTION EN COURS DE CREATION - NON OPERATIONNELLE
+
+		<INCLURE(inclusions/inc_article_lecture.php3) {id_article}>
+		
+	</div><!-- fin contenu_principal -->
+
+	<div id="barre_laterale">
+
+		<INCLURE(inclusions/inc_articles_meme_rubrique.php3) {id_article} {id_rubrique}>
+
+		<INCLURE(inclusions/inc_structure_barre_laterale.php3)>
+
+	</div><!-- fin barre_laterale -->
+	
+	<INCLURE(inclusions/inc_structure_pied_de_page.php3)>
+
+</div><!-- fin page -->
+
+</body>
+</html>
+</BOUCLE_article_petition>
+
+
+<BOUCLE_article_forum(ARTICLES) {id_article} {titre_mot=forum}>
+<!-- Affiche les articles qui sont des forums, et qui ont ete affecte du mot clef : forum -->
+<head>
+	<title>[#NOM_SITE_SPIP] [(#SURTITRE|textebrut) ][(#TITRE|textebrut)]</title>
+	
+	<INCLURE(inclusions/inc_structure_balises_meta.php3) {id_article}>
+
+	<? 
+		include("ecrire/inc_layer.php3");
+		afficher_script_layer();
+	?>
+
+</head>
+
+<body id="forum"><a name="hautdepage"></a>
+
+<div id="page">
+
+	<INCLURE(inclusions/inc_structure_entete.php3) {id_article}>	
+	
+	<div id="contenu_principal">
+
+	SECTION EN COURS DE CREATION - NON OPERATIONNELLE
+
+	</div><!-- fin contenu_principal -->
+
+	<div id="barre_laterale">
+
+		<INCLURE(inclusions/inc_articles_meme_rubrique.php3) {id_article} {id_rubrique}>
+
+		<INCLURE(inclusions/inc_structure_barre_laterale.php3)>
+
+	</div><!-- fin barre_laterale -->
+	
+	<INCLURE(inclusions/inc_structure_pied_de_page.php3)>
+
+</div><!-- fin page -->
+
+</body>
+</html>
+</BOUCLE_article_forum>
+
+
+<BOUCLE_article_normal(ARTICLES) {id_article}>
+<!-- Affiche les autres articles -->
+<head>
+	<title>[#NOM_SITE_SPIP] [(#TITRE|textebrut)]</title>
+	
+	<INCLURE(inclusions/inc_structure_balises_meta.php3) {id_article}>
+
+	<? 
+		include("ecrire/inc_layer.php3");
+		afficher_script_layer();
+	?>
+
+</head>
+
+<body id="articles"><a name="hautdepage"></a>
+
+<div id="page">
+
+	<INCLURE(inclusions/inc_structure_entete.php3) {id_article}>	
+	
+	<div id="contenu_principal">
+				
+		<INCLURE(inclusions/inc_article_lecture.php3) {id_article}>
+
+		<div class="forum">
+
+			<INCLURE(inclusions/inc_article_forum.php3) {id_article}>	
+
+			<INCLURE(inclusions/inc_article_poster.php3) {id_article} {id_forum}>		
+
+		</div><!-- fin forum -->
+
+	</div><!-- fin contenu_principal -->
+
+
+	<div id="barre_laterale">
+
+		<INCLURE(inclusions/inc_articles_meme_rubrique.php3) {id_article} {id_rubrique}>
+
+		<INCLURE(inclusions/inc_structure_barre_laterale.php3)>
+
+	</div><!-- fin barre_laterale -->
+	
+	<INCLURE(inclusions/inc_structure_pied_de_page.php3)>
+
+</div><!-- fin page -->
+
+</body>
+</html>
+</BOUCLE_article_normal>
+
+
+<!-- Affiche la liste des articles -->
+<head>
+
+	<title>[#NOM_SITE_SPIP] Liste des Articles</title>
+	<B_article_parametrage_balises_meta>
+	<BOUCLE_article_parametrage_balises_meta(ARTICLES) {titre_mot=annonce_articles} {par date} {inverse} {0,1}>
+		<INCLURE(inclusions/inc_structure_balises_meta.php3) {id_article}>
+	</BOUCLE_article_parametrage_balises_meta>
+	</B_article_parametrage_balises_meta>
+		<INCLURE(inclusions/inc_structure_balises_meta.php3)>
+	<//B_article_parametrage_balises_meta>
+
+
+</head>
+
+<body id="articles"><a name="hautdepage"></a>
+
+<div id="page">
+
+
+	<INCLURE(inclusions/inc_structure_entete.php3) {type_page=articles}>
+	
+	<div id="contenu_principal">
+
+		<INCLURE(inclusions/inc_information_navigation.php3) {info_navigation=annonce_articles} >
+
+		<INCLURE(inclusions/inc_article_liste.php3) {id_article} {debut_page} {tri}>
+
+	</div><!-- fin contenu_principal -->
+
+	<div id="barre_laterale">
+
+		<INCLURE(inclusions/inc_structure_barre_laterale.php3)>
+		
+	</div><!-- fin barre_laterale -->
+	
+	<INCLURE(inclusions/inc_structure_pied_de_page.php3)>
+
+</div><!-- fin page -->
+	
+</body>
+</html>
+
+
+<//B_article_normal>
+<//B_article_forum>
+<//B_article_petition>
+<//B_article_pas_de_forum>

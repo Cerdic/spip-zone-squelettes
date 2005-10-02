@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+	<title>[#NOM_SITE_SPIP] <:accueil_site:></title>
+	<B_article_parametrage_balises_meta>
+	<BOUCLE_article_parametrage_balises_meta(ARTICLES) {titre_mot=annonce_accueil} {par date} {inverse} {0,1}>
+		<INCLURE(inclusions/inc_structure_balises_meta.php3) {id_article}>
+	</BOUCLE_article_parametrage_balises_meta>
+	</B_article_parametrage_balises_meta>
+		<INCLURE(inclusions/inc_structure_balises_meta.php3)>
+	<//B_article_parametrage_balises_meta>
+</head>
+
+<body id="accueil"><a name="hautdepage"></a>
+
+<div id="page">
+
+	<INCLURE(inclusions/inc_structure_entete.php3) {type_page=accueil}>	
+
+	<div id="contenu_principal">
+	
+		<INCLURE(inclusions/inc_information_navigation.php3) {info_navigation=annonce_accueil} >	
+
+		<BOUCLE_articles_sommaire_invisibles(ARTICLES) {doublons} {titre_mot==invisible}></BOUCLE_articles_sommaire_invisibles>
+
+		<h1 class="navigation">A la une</h1>
+		<B_articles_sommaire>
+			<div class="padding_haut_10px">
+		<BOUCLE_articles_sommaire(ARTICLES)  {par date} {inverse} {0,5} {doublons}>
+			<INCLURE(inclusions/inc_article_apercu.php3) {id_article}>
+		</BOUCLE_articles_sommaire>
+			<div class="signature"><a href="article.php3"> ... autres articles ... </a></div>
+			</div><!-- fin padding_haut_10px -->
+
+		</B_articles_sommaire>
+
+	</div><!-- fin contenu_principal -->
+
+	<div id="barre_laterale">
+
+		<INCLURE(inclusions/inc_structure_barre_laterale.php3)>
+
+	</div><!-- fin barre_laterale -->
+	
+	<INCLURE(inclusions/inc_structure_pied_de_page.php3)>
+
+</div><!-- fin page -->
+	
+</body>
+</html>
