@@ -53,6 +53,7 @@
 	// l'identifiant du lien est fonction de son url et de sa date
 	// ce qui permet de reperer les "updated" *et* les doublons
 	include_ecrire('inc_filtres.php3');
+	if (@file_exists($f = 'ecrire/inc_cookie.php')) include_local($f);
 	function afficher_lien(
 		$id_syndic_article,
 		$id_lien,
