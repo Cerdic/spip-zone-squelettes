@@ -144,6 +144,8 @@
 		return preg_replace(',(\w+)@(\w+\.\w+),','\\1&#x24d0;\\2', $texte);
 	}
 
+	## fonction integree dans inc_filtres a partir de SPIP >= 1.8.2d
+	if (!function_exists('parametre_url')) {
 	function parametre_url($url, $parametre, $valeur = '__global__') {
 		$link = new Link(str_replace('&amp;', '&', $url));
 		if($valeur == '__global__')
@@ -151,6 +153,7 @@
 		if(empty($valeur)) $link->DelVar($parametre);
 		else $link->AddVar($parametre, $valeur);
 		return quote_amp($link->getUrl());
+	}
 	}
 
 	// Choix du $fond (rss ou sedna)
