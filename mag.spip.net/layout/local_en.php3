@@ -14,6 +14,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array (
 'aller_forum' => 'Go to the forum',
 'aller_menu' => 'Go to the menu',
 'aller_recherche' => 'Go the search form',
+'aucun_article' => 'No results for this search.',
 
 // C
 'calendrier' => 'Calendar',
@@ -28,9 +29,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array (
 // E
 'epingle' => 'Epingl&eacute;',
 'et' => 'and',
+'exemple' => 'Example for the contribution',
 
 // F
-'recherche_mot' => 'Search among the articles related to this keyword',
+'recherche_mot' => 'Search the articles related to this keyword',
 'fil_atom' => 'Atom',
 'fil_rss' => 'RSS',
 'form_recherche' => 'Search form',
@@ -40,34 +42,35 @@ $GLOBALS[$GLOBALS['idx_lang']] = array (
 'index_auteurs' => 'Index of authors',
 
 // K
-'kwadneuf' => 'What\'s new&nbsp;?',
+'kwadneuf' => 'What\'s new?',
 
 // L
 'lastmod' => 'Last modification of the site',
-'liens' => 'Liens',
-'liens_privilegies' => 'Liens privil&eacute;gi&eacute;s',
+'liens' => 'Links',
+'liens_privilegies' => 'Favourite links',
 
 // M
+'mag' => 'Mag&#8217;',
 'mailing_list' => 'Mailing list',
-'mentions_legales' => 'Mentions l&eacute;gales',
+'mentions_legales' => 'Legal notice',
 'mis_a_jour_le' => 'Last update',
 
 // N
 'nombre_visiteurs' => 'Number of visitors',
 
 // O
-'ordre_antichronologique' => 'Ordre antichronologique',
-'ordre_chronologique' => 'Ordre chronologique',
-'ordre_inverse' => 'ordre inverse',
-'ordre_normal' => 'ordre normal',
+'ordre_antichronologique' => 'Anti-chronological order',
+'ordre_chronologique' => 'Chronological order',
+'ordre_inverse' => 'reversed order',
+'ordre_normal' => 'straight ordre',
 
 // P
 'par_date' => 'by date',
 'par_pertinence' => 'by relevance',
-'participer' => 'Participer au site',
-'popularite_detail' => 'Nombre de visiteurs par jour',
-'public' => 'Date de publication',
-'publie_le' => 'Publi&eacute; le',
+'participer' => 'Participate to the site',
+'popularite_detail' => 'Daily Numbre of visitors',
+'public' => 'Publication date',
+'publie_le' => 'Published on',
 
 // Q
 
@@ -78,7 +81,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array (
 // S
 'site_heberge_par' => 'Hosted by',
 'sondage' => 'Poll',
-'sous_rubriques' => 'Sous-rubriques',
+'sous_rubriques' => 'Sub-sections',
 'squelettes' => 'The templates of this site are freely available',
 'sur_spipmag' => 'On SPIP Mag&#8217;',
 
@@ -86,7 +89,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array (
 'titre_forum' => 'Les r&eacute;actions re&ccedil;ues &agrave; cet article',
 'traductions' => 'Translations of this article',
 'trier_date' => 'Sort by date',
+'trier_par' => 'Sort by',
 'trier_pertinence' => 'Sort by relevance',
+'tris_divers' => 'Various sortings',
 
 // U
 'update' => 'Last update',

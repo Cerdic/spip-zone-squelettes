@@ -14,6 +14,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array (
 'aller_forum' => 'Aller au forum',
 'aller_menu' => 'Aller au menu',
 'aller_recherche' => 'Aller &agrave; la recherche',
+'aucun_article' => 'Aucun article ne correspond &agrave; votre requ&ecirc;te.',
 
 // C
 'calendrier' => 'Calendrier',
@@ -28,6 +29,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array (
 // E
 'epingle' => 'Epingl&eacute;',
 'et' => 'et',
+'exemple' => 'Exemple pour la contrib',
 
 // F
 'recherche_mot' => 'Faire une recherche parmi les articles li&eacute;s &agrave; ce mot-cl&eacute;',
@@ -86,9 +88,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array (
 
 // T
 'titre_forum' => 'Les r&eacute;actions re&ccedil;ues &agrave; cet article',
-'traductions' => 'Traductions de cet article',
+'traductions' => 'Traductions de cet article&nbsp;',
 'trier_date' => 'Trier par date',
+'trier_par' => 'Trier par&nbsp;',
 'trier_pertinence' => 'Trier par pertinence',
+'tris_divers' => 'Tris divers',
 
 // U
 'update' => 'Date de mise &agrave; jour',
