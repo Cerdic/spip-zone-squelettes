@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>#NOM_SITE_SPIP - Plan du site</title>
+	<style>
+	ul.plansite, ul.plansite ul { list-style-type: none; margin: 0; padding: 0; padding-left: 1.5em;
+		font-size: 12px; }
+	ul.plansite li { border-left: 1px solid black; color: black;
+		margin: 0; padding: 0; }
+	ul.plansite li a { padding-left: 0.5em; text-decoration: none;
+		color: black; border-bottom: 1px solid black; }
+	ul.plansite li b { font-size: 105%; }
+	</style>
+</head>
+<body>
+
+	<h1>Site plan</h1>
+	<ul class="plansite"><BOUCLE_secteurs(RUBRIQUES){racine}{par num titre}{lang}>
+	<li><b><a href="#URL_RUBRIQUE">[(#LANG|traduire_nom_langue)]</a></b> ([(#TITRE|supprimer_numero)])
+
+		<B_artsecteur><ul>
+		<BOUCLE_artsecteur(ARTICLES){id_rubrique}{par num titre}>
+		<li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></li>
+		</BOUCLE_artsecteur>
+		</ul></B_artsecteur>
+		<B_sousrub><ul>
+		<BOUCLE_sousrub(RUBRIQUES){id_parent}{par num titre}>
+		<li><b><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</b></a>
+
+			<B_artsousrub><ul>
+			<BOUCLE_artsousrub(ARTICLES){id_rubrique}{par num titre}>
+			<li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></li>
+			</BOUCLE_artsousrub>
+			</ul></B_artsousrub>
+			<BOUCLE_sousousrub(boucle_sousrub)></BOUCLE_sousousrub>
+		</li>
+		</BOUCLE_sousrub>
+
+		</ul></B_sousrub>
+	</li>
+	</BOUCLE_secteurs>
+	</ul>
+
+</body>
+</html>

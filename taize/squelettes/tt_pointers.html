@@ -1,0 +1,81 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>See also list (pointers)</title>
+</head>
+<body>
+<?php
+if ($auteur_session)
+		{
+		$nom_user=$GLOBALS['auteur_session']['nom'];
+		$id_auteur=$GLOBALS['auteur_session']['id_auteur'];
+		$statut=$GLOBALS['auteur_session']['statut'];
+		echo ("Hello $nom_user ! ");
+	//		if ($statut=='0minirezo')
+	//		{
+    //		}
+		}
+	else
+		{
+		echo "<br>You first need to log in to use this page.";
+		echo "<br><a href=\"#URL_SITE_SPIP/spip_login.php3?url=#SELF\">[login]</a>";
+		return false;
+		}
+include ("ecrire/inc_auth.php3");
+
+?>
+<BOUCLE_principale(RUBRIQUES){id_secteur != 586}{racine}{lang=#ENV{lang}}{tout}>
+<h2>Pointers/PointedTo keywords for [(#LANG|traduire_nom_langue)]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font size="3"><a href="page.php3?fond=tt_pointers&amp;delais=0">Check another language</a></font></h2>
+<p>Links to the articles in the right-hand column will appear in the <i>See also</i> list of the articles on the left.</p>
+<p>The left-hand column may have any number of articles. But the right-hand column (PointedTo) should always contain
+<b>just one article for each keyword.</b>
+If there is no article, then you may have an empty <i>See also</i> list in the articles on the left. If there is more than
+one article, then these articles should be assigned separate <i>PointedTo</i> keywords.</p>
+<table border="1" cellspacing="0" cellpadding="5">
+<tr><td align="center"><b>Pointers</b></td><td align="center"><b>PointedTo</b></td></tr>
+<BOUCLE_pointers(MOTS){type=Pointers}{par titre}>
+<B_articles>
+<tr bgcolor="#bbbbaa"><td colspan="2" align="center"><b>#TITRE</b></td></tr>
+<tr><td>
+<BOUCLE_articles(ARTICLES){id_mot}{id_secteur}>
+<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a><br>
+</BOUCLE_articles>
+</td><td>
+<BOUCLE_pointedto(MOTS){type=PointedTo}{titre=#_pointers:TITRE}>
+<B_toarticles>
+<BOUCLE_toarticles(ARTICLES){id_mot}{id_secteur IN 586, #_principale:ID_SECTEUR}{!lang_select}>
+<BOUCLE_checksect(ARTICLES){id_secteur=586}{id_article}{!lang_select}>
+<BOUCLE_trads(ARTICLES){traduction}{exclus}{lang = #_principale:LANG}>
+</BOUCLE_trads>
+<BOUCLE_hide(MOTS){type=Hide}{titre=#_principale:LANG}{id_article}>
+</BOUCLE_hide>
+<BOUCLE_checklang(ARTICLES){id_article}{!lang_select}{lang=#_principale:LANG}>
+<a href="#URL_ARTICLE">[(#SURTITRE): ][(#TITRE|supprimer_numero)]</a><br>
+</BOUCLE_checklang>
+<a href="#URL_ARTICLE?lang=#_principale:LANG">[(#SURTITRE): ][(#TITRE|supprimer_numero)]</a><br>
+<//B_checklang>
+<//B_hide>
+<//B_trads>
+</BOUCLE_checksect>
+<a href="#URL_ARTICLE">[(#SURTITRE): ][(#TITRE|supprimer_numero)]</a><br>
+<//B_checksect>
+</BOUCLE_toarticles>
+</BOUCLE_pointedto>
+</td></tr>
+</B_articles>
+</BOUCLE_pointers>
+</table>
+<p><font size="3"><a href="page.php3?fond=tt_pointers&amp;delais=0">Check another language</a></font></p>
+</BOUCLE_principale>
+<p>You need to choose a language to use this page!</p>
+<br>
+<font size="3">
+<BOUCLE_langs(RUBRIQUES){id_secteur != 586}{racine}{par titre}>
+<a href="page.php3?fond=tt_pointers&amp;delais=0&amp;lang=#LANG">#TITRE</a>&nbsp;  - &nbsp;
+</BOUCLE_langs>
+</font>
+<//B_principale>
+</body>
+</html>

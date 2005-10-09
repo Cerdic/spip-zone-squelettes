@@ -1,0 +1,18 @@
+<BOUCLE_environ(ARTICLES){id_article}>
+<div class="hideprint">
+[(#ENV{date}|diffdays|>{-30}|?{<a href=#URL_ARTICLE?date=[(#ENV{date}|last_sunday)] title="<:previous:>"><img src="IMG/left_a.gif" onMouseOver="src='IMG/left_h.gif'" onMouseOut="src='IMG/left_a.gif'" border="0" /></a>
+,''})&nbsp;&nbsp;]
+[(#ENV{date}|diffdays|<{40}|?{<a href=#URL_ARTICLE?date=[(#ENV{date}|next_sunday)] title="<:next:>"><img src="IMG/right_a.gif" onMouseOver="src='IMG/right_h.gif'" onMouseOut="src='IMG/right_a.gif'" border="0" /></a>&nbsp;&nbsp;,''})]
+</div>
+</BOUCLE_environ>
+<div id="readings" style="clear:both; padding-top:10px;">
+<BOUCLE_readings(READINGS){jour_relatif<1}{jour_relatif>-8}{par date}{lang}>
+	[<div class='soustitre'>(#DATE|annee|unique)</div>]
+	<p><span class='date'>#LANGDATE</span>
+	[<br /><span class='feast'>(#FEAST)</span>]
+	<br /><span class='verse'>#BIBLETEXT</span>
+	<br /><span class='reference'>#REFERENCE</span></p>
+</BOUCLE_readings>
+<:no_text:>
+<//B_readings>
+</div>

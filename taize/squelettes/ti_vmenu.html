@@ -1,0 +1,74 @@
+<BOUCLE_principale(ARTICLES){id_article = #ENV{id_article,1}}{!lang_select}>
+[(#REM) <!-- id_article=1 (dummy article) used for t_mainsection; use !lang_select to stop it setting lang=en -->]
+<BOUCLE_chap(RUBRIQUES){id_rubrique=#ENV{id_rubrique}}{tout}{lang}>
+[(#REM) <!-- top level articles -->]
+<ul>
+<BOUCLE_sharedchap(RUBRIQUES){id_mot}{id_secteur=586}{tout}{!lang_select}>
+<BOUCLE_toplevelarticles(ARTICLES){id_rubrique IN #ID_RUBRIQUE,#_chap:ID_RUBRIQUE}{par titre}{!lang_select}>
+<BOUCLE_checksect2(ARTICLES){id_secteur=586}{id_article}{!lang_select}>
+<BOUCLE_trads2(ARTICLES){traduction}{exclus}{lang = #_chap:LANG}>
+</BOUCLE_trads2>
+<BOUCLE_hide2(MOTS){type=Hide}{titre=#_chap:LANG}{id_article}>
+</BOUCLE_hide2>
+<BOUCLE_checklang2(ARTICLES){id_article}{lang=#_chap:LANG}{!lang_select}>
+<li class="menuitem[(#EXPOSE{-inactive})]"><IMG src="IMG/puce.gif" alt="" />&nbsp;[(#EXPOSE{&nbsp;})][<a (#EXPOSE{'',href})="#URL_ARTICLE" class="artlink">][(#SURTITRE): ][(#TITRE|supprimer_numero)][(#EXPOSE{'',</a>})]</li>
+</BOUCLE_checklang2>
+<li class="menuitem[(#EXPOSE{-inactive})]"><IMG src="IMG/puce.gif" alt="" />&nbsp;[(#EXPOSE{&nbsp;})][<a (#EXPOSE{'',href})="#URL_ARTICLE?lang=#_chap:LANG" class="artlink">][(#SURTITRE): ][(#TITRE|supprimer_numero)][(#EXPOSE{'',</a>})]</li>
+<//B_checklang2>
+<//B_hide2>
+<//B_trads2>
+</BOUCLE_checksect2>
+<li class="menuitem[(#EXPOSE{-inactive})]"><IMG src="IMG/puce.gif" alt="" />&nbsp;[(#EXPOSE{&nbsp;})][<a (#EXPOSE{'',href})="#URL_ARTICLE" class="artlink">][(#SURTITRE): ][(#TITRE|supprimer_numero)][(#EXPOSE{'',</a>})]</li>
+<//B_checksect2>
+</BOUCLE_toplevelarticles>
+</BOUCLE_sharedchap>
+[(#REM) <!-- native sub sections -->]
+<BOUCLE_rubs(RUBRIQUES){id_parent}{par titre}>
+<li><a class="rublink" href="javascript:change(#ID_RUBRIQUE);"><img id="fold#ID_RUBRIQUE" src="IMG/fleche_bas.gif" alt="" height="10" width="10" style="float: #LANG_LEFT; vertical-align: middle" align="left" border="0" />&nbsp;[(#TITRE|supprimer_numero)]</a>
+<ul id="rxx#ID_RUBRIQUE" class="show">
+<BOUCLE_articles(ARTICLES){id_rubrique}{par titre}>
+<li class="menuitem[(#EXPOSE{-inactive})]"><IMG src="IMG/puce.gif" alt="" />&nbsp;[(#EXPOSE{&nbsp;})][<a (#EXPOSE{'',href})="#URL_ARTICLE" class="artlink">][(#SURTITRE): ][(#TITRE|supprimer_numero)][(#EXPOSE{'',</a>})]</li>
+</BOUCLE_articles>
+<BOUCLE_recursive(boucle_rubs)>
+</BOUCLE_recursive>
+</ul></li>
+</BOUCLE_rubs>
+[(#REM) <!-- shared sub sections -->]
+<BOUCLE_shared(RUBRIQUES){id_parent=586}{id_mot}{!lang_select}>
+<BOUCLE_sh_rubs(RUBRIQUES){id_parent}{par titre}{!lang_select}>
+<li><a class="rublink" href="javascript:change(#ID_RUBRIQUE);"><img id="fold#ID_RUBRIQUE" src="IMG/fleche_bas.gif" alt="" height="10" width="10" style="float: #LANG_LEFT; vertical-align: middle" align="left" border="0" />&nbsp;[(#TITRE|supprimer_numero)]</a>
+<ul id="rxx#ID_RUBRIQUE" class="show">
+<BOUCLE_sh_articles(ARTICLES){id_rubrique}{par titre}{!lang_select}>
+<BOUCLE_trads3(ARTICLES){traduction}{exclus}{lang = #_principale:LANG}>
+</BOUCLE_trads3>
+<BOUCLE_hide3(MOTS){type=Hide}{titre=#_principale:LANG}{id_article}>
+</BOUCLE_hide3>
+<BOUCLE_checklang3(ARTICLES){id_article}{!lang_select}{lang=#_principale:LANG}{!lang_select}>
+<li class="menuitem[(#EXPOSE{-inactive})]"><IMG src="IMG/puce.gif" alt="" />&nbsp;[(#EXPOSE{&nbsp;})][<a (#EXPOSE{'',href})="#URL_ARTICLE" class="artlink">][(#SURTITRE): ][(#TITRE|supprimer_numero)][(#EXPOSE{'',</a>})]</li>
+</BOUCLE_checklang3>
+<li class="menuitem[(#EXPOSE{-inactive})]"><IMG src="IMG/puce.gif" alt="" />&nbsp;[(#EXPOSE{&nbsp;})][<a (#EXPOSE{'',href})="#URL_ARTICLE?lang=#_chap:LANG" class="artlink">][(#SURTITRE): ][(#TITRE|supprimer_numero)][(#EXPOSE{'',</a>})]</li>
+<//B_checklang3>
+<//B_hide3>
+<//B_trads3>
+</BOUCLE_sh_articles>
+<BOUCLE_recursive2(boucle_sh_rubs)>
+</BOUCLE_recursive2>
+</ul></li>
+</BOUCLE_sh_rubs>
+</BOUCLE_shared>
+<li>&nbsp; [(#REM) <!-- empty item to avoid empty <ul> if no items to display -->]
+</ul>
+[(#REM) <!-- environment -->]
+</BOUCLE_chap>
+[(#REM) Menu is loaded fully expanded; now collapse it, except the path to the current article.]
+<script type="text/javascript">
+//<![CDATA[
+<!--
+if (document.getElementById) {
+  var rp ="";<BOUCLE_helphierarchy(ARTICLES){id_article}><BOUCLE_getpath(HIERARCHIE){id_article}{2,n}>rp += "-#ID_RUBRIQUE-";</BOUCLE_getpath></BOUCLE_helphierarchy>
+  menuset();
+}
+//-->
+//]]>
+</script>
+</BOUCLE_principale>

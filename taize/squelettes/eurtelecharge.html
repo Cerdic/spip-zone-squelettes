@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<BOUCLE_art0(ARTICLES){id_article}>
+	<BOUCLE_hier0(HIERARCHIE){id_article}{1,1}>
+		<BOUCLE_mots0(MOTS){id_rubrique}{type=SectionLogo}>
+			<BOUCLE_lang0(RUBRIQUES){tout}{id_mot}{id_secteur!=586}{lang}>
+<html lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>Taiz&eacute; - [(#TITRE|supprimer_numero|supprimer_tags)]</title>
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/t_main.css">
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/t_forms.css">
+<style type="text/css">
+<!--
+#hmenu ul li {float: left; border-right: 1px solid #990000}
+-->
+</style>
+<script type="text/javascript" src = "ext/common.js"></script>
+</head>
+<body>
+#DEBUT_SURLIGNE
+#FIN_SURLIGNE
+<table id="header2" class="header2" align="center" cellpadding="0" cellspacing="0">
+<tr><td  height="3" colspan="4"></td></tr>
+<!-- Header row -->
+<tr>
+<td width="5">
+</td>
+<td align="left" valign="top">
+<a href="#URL_SITE_SPIP/"><img src="IMG/taize.gif" alt="<:home:>" title="<:home:>" width="15" height="10" border="0"></a>&nbsp;
+<a href="#URL_SITE_SPIP/#LANG"><img src="IMG/home.gif" title="[(#LANG|traduire_nom_langue)]" alt="[(#LANG|traduire_nom_langue)]" height="8" width="15" border="0"></a>
+<a name="pagetop"></a>
+</td>
+<td align="right" valign="top">&nbsp;</td>
+<td width="5"></td>
+<tr>
+<td width="5"></td>
+<td align="left" valign="bottom">
+<!-- Language selector: not needed for this page -->
+</td>
+<td align="right" valign="bottom"  id="formrecherche">
+<!-- Search box -->
+<INCLURE(ti_searchbox.php3){lang}>
+</td>
+<td width="5">
+</td>
+</tr>
+<tr>
+<td height="5" colspan="4"></td>
+</tr>
+</table>
+<table width="760" align="center" cellpadding="0" cellspacing="0">
+<!-- Row with horizontal menu -->
+<tr valign="top">
+<td align="left" valign="top">
+	<BOUCLE_mainsection(HIERARCHIE){id_article}{1,1}>
+		<INCLURE(ti_hmenu.php3){id_rubrique}>
+	</BOUCLE_mainsection>
+</td>
+</tr>
+<!-- Spacing row below horizontal menu -->
+<tr>
+<td align="left" valign="top">&nbsp;
+</td>
+</tr>
+</table>
+<table width="760" id="main" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<!-- Left page-margin -->
+<td width="5">&nbsp;</td>
+<!-- Left nav column -->
+<td width="170" valign="top">
+<img border="0" src="./ext/eur/ml_itnb.gif">
+<div id="vmenu">
+<INCLURE(ti_vmenu.php3){id_article}{id_rubrique}{id_mot}{lang}>
+</div>
+<?php
+require "./ext/phplib/classdir.php";
+require "./ext/eur/prepdocsinc.php";
+$DIR = new myDIR;
+$DIR->setMASK("*.*");
+$DIR->setFIND("files");
+$DIR->setROOT("./ext/eur/prep");
+$realfiles = $DIR->getRESULT();
+
+function checkrealfile($filename, $reallist) {
+// $realist is array in format returned by classdir.php
+for ($i=0 ; $i < count($reallist) ; $i++)
+	{
+	  if ($filename == $reallist[$i]["file"])
+	  {
+	     return (int)($reallist[$i]["size"]/1024);
+	  }
+	}
+return false;
+}
+
+// Loop through the descriptive filelist
+// discarding any that have not been found on the disk
+
+$i = -1;
+foreach($filelist as $k => $v) {
+   $i = $i + 1;
+   $flsize = checkrealfile($k, $realfiles);
+   if (!$flsize)
+   {
+    //   if (!checkrealfile($k, $realfiles))
+      array_splice($filelist, $i ,1);
+   }
+   else
+   {
+      // escape any apostrophes in document descriptions
+      $filelist[$k] = str_replace("'", "\'", $filelist[$k])." (".$flsize." KB)";
+   }
+}
+// asort($filelist);  // enable only if sort by description desired
+
+// get number of files
+$flcount = count($filelist);
+?>
+<script LANGUAGE="javascript">
+<!--
+var MainList=new Array();
+var SubList=new Array(<?php echo ($flcount -1) ?>);
+
+//define objects for the main list
+function ListItem(nvalue,description){
+        //function for defining the elements of the main list
+        this.nvalue=nvalue;
+        this.description=description;
+}
+
+//define objects for the dependent list
+function ListSubItem(category,nvalue,description){
+        //function for defining the elements of the sublists
+        this.category=category;
+        this.nvalue=nvalue;
+        this.description=description;
+}
+
+function PrepareData(){
+// Fill first drop-down box (mainlist)
+<?php
+$i = -1;
+foreach($mainlist as $k => $v) {
+    $i = $i +1;
+    echo "MainList[$i]=new ListItem('".$k."','".$v."');";
+ }
+?>
+
+// Fill values of second drop-down box (dependent list).
+// First parameter is the category, Second is the value returned,
+// Third is the text which appears in the list.
+
+  <?php
+  $i =-1;
+  foreach($filelist as $k => $v)
+  {
+    $i = $i +1;
+    echo "SubList[$i]=new ListSubItem('".substr($k, 0, 2)."','".$k."','".$v."');";
+  }
+  ?>
+
+}
+
+function reFillList()
+{
+ var selValue;
+ var nOption;
+ selValue=document.form1.mainlist[document.form1.mainlist.selectedIndex].value;
+ // clear the actual list by setting its length to 0
+ document.form1.sublist.length=0;
+ for (var i=0; i < SubList.length;i++)
+  {
+        // fill the box with the values corresponding to the category in the first box
+        if (SubList[i].category==selValue)
+        {
+          nOption=document.form1.sublist.length;
+          document.form1.sublist.options[nOption]=new Option(SubList[i].description,SubList[i].nvalue);
+        }
+  }
+  if (document.form1.sublist.length > 0)
+  {
+    document.form1.sublist.options[0].selected=true;
+  }
+}
+
+function getlink()
+{
+  w = document.form1;
+  if (w.sublist.length > 0)
+  {
+    document.location.href = './ext/eur/prep/'+w.sublist.options[w.sublist.selectedIndex].value;
+  }
+}
+//-->
+</script>
+</td>
+<!-- Margin between left-nav and content -->
+    <td width="25">&nbsp;</td>
+<!-- Content -->
+<td width="375" valign="top">
+     [<div class="surtitre">(#SURTITRE)</div>]
+     [<div class="surtitre">(#SOUSTITRE)</div>]
+<h1 class="titre-texte">[(#TITRE|supprimer_numero)]</h1>
+     [<div class="chapeau">(#CHAPO)</div>]
+     <form name="form1" action="null">
+	 <script LANGUAGE="javascript">
+	 <!--
+	 // write it all
+	 var page=""
+	 var i;
+	 PrepareData();
+	 page+="<p class='smallarialbold'>Categoria:</p> ";
+	 page+="<SELECT NAME='mainlist' onChange='reFillList()'>";
+	 for (i=0;i<MainList.length;i++) {
+	         page+="<OPTION VALUE="+MainList[i].nvalue;
+	         if (i==0) {
+	                 page+=" SELECTED ";
+	         }
+	         page+=">"+MainList[i].description;
+	 }
+	 page+="</SELECT>";
+	 document.write(page);
+	 //-->
+	 </script>
+	 </p>
+	 <p class="smallarialbold">File disponibili:</p>
+	 <p><select NAME='sublist' size='8'>
+	 <option></option></select>
+	 <script LANGUAGE="javascript">
+	 <!--
+	 // Fill the second drop-down box when the page is first opened
+	 // N.B. This has to be called after the 'sublist' SELECT list has been defined in HTML
+	  reFillList();
+	 //-->
+	 </script>
+	 </form>
+	 <p><a class='smallarialbold' href="javascript:getlink()">download</a></p>
+     [<div class="texte">(#_art0:TEXTE|liens_ouvrants)</div>]
+     [<div class="notes">(#_art0:NOTES)</div>]
+     [<div class="ps">(#_art0:PS)</div>]
+</td>
+<!-- Margin between content and right-nav -->
+<td width="20">&nbsp;</td>
+<!-- Right-nav -->
+<td width="160" valign="top">
+[<table class="cadre" cellspacing="0" cellpadding="0" dir="#_art0:LANG_DIR">
+<tr><td class="r-hleft"></td>
+<td class="r-h">
+</td>
+<td class="r-hright"></td></tr>
+<tr><td class="r-left"></td>
+<td class="r-c">
+<div class="spot">(#PS|autoriser_php|antispam)</div>
+</td>
+<td class="r-right"></td></tr>
+<tr><td class="r-bleft"></td>
+<td class="r-b"></td>
+<td class="r-bright"></td></tr>
+<tr><td>
+</td></tr>
+</table>]
+<!-- See also list -->
+<B_pointers>
+<!-- Pointers (one-way) -->
+<div id="seealso">
+<:see_also:>
+<ul>
+<BOUCLE_pointers(MOTS){type=Pointers}{id_article}>
+<BOUCLE_pointedto(MOTS){type=PointedTo}{titre=#TITRE}>
+<BOUCLE_seealso(ARTICLES){id_mot}{id_secteur IN #ID_SECTEUR, 586}{par titre}{!lang_select}>
+<BOUCLE_checksect(ARTICLES){id_secteur=586}{id_article}{!lang_select}>
+<BOUCLE_trads(ARTICLES){traduction}{exclus}{lang = #_lang0:LANG}>
+</BOUCLE_trads>
+<BOUCLE_hide(MOTS){type=Hide}{titre=#_lang0:LANG}{id_article}>
+</BOUCLE_hide>
+<BOUCLE_checklang1(ARTICLES){id_article}{!lang_select}{lang=#_lang0:LANG}>
+<li><a href="#URL_ARTICLE">[(#SURTITRE): ][(#TITRE|supprimer_numero)]</a></li>
+</BOUCLE_checklang1>
+<li><a href="#URL_ARTICLE?lang=#_principale:LANG">[(#SURTITRE): ][(#TITRE|supprimer_numero)]</a></li>
+<//B_checklang1>
+<//B_hide>
+<//B_trads>
+</BOUCLE_checksect>
+<li><a href="#URL_ARTICLE">[(#SURTITRE): ][(#TITRE|supprimer_numero)]</a></li>
+<//B_checksect>
+</BOUCLE_seealso>
+</BOUCLE_pointedto>
+</BOUCLE_pointers>
+<!-- Themes (bidirectional; only native articles) -->
+<BOUCLE_themes1(MOTS){type=Theme}{id_article}>
+<BOUCLE_related1(ARTICLES){id_mot}{id_secteur}{exclus}{par titre}>
+<li><a href=#URL_ARTICLE>[(#SURTITRE): ][(#TITRE|supprimer_numero)]</a></li>
+</BOUCLE_related1>
+</B_related1>
+</BOUCLE_themes1>
+</ul>
+</div>
+</B_pointers>
+<B_themes2>
+<!-- There aren't any pointers, so just show themes -->
+<div id="seealso">
+<BOUCLE_themes2(MOTS){type=Theme}{id_article}>
+<B_related2>
+<:see_also:>
+<ul>
+<BOUCLE_related2(ARTICLES){id_mot}{id_secteur}{exclus}{par titre}>
+<li><a href=#URL_ARTICLE>[(#SURTITRE): ][(#TITRE|supprimer_numero)]</a></li>
+</BOUCLE_related2>
+</ul>
+</B_related2>
+</BOUCLE_themes2>
+</div>
+</B_themes2>
+<//B_pointers>
+</td>
+<!-- Right page-margin -->
+<td width="5">&nbsp;
+</td>
+</tr>
+</table>
+<!-- Footer -->
+<table width="760" align="center" cellpadding="0" cellspacing="0">
+<tr><td>&nbsp;</td></tr>
+<tr><td>
+	<INCLURE(ti_footer.php3){id_secteur}>
+</td></tr>
+</table>
+</body>
+</html>
+			</BOUCLE_lang0>
+		</BOUCLE_mots0>
+	</BOUCLE_hier0>
+</BOUCLE_art0>
+(<:no_article_here:>)
+<//B_art0>

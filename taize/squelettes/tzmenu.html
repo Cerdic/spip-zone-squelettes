@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--	Ce menu est pour affichage sur une page "article".
+		Pour l'utiliser sur une page "rubrique" il est nécessaire seulement de modifier la
+		boucle "current" ( <xx BOUCLE_current(RUBRIQUES){id_rubrique}> ...),
+		et d'arranger les balises # EXPOSER pour ne pas afficher un lien pour la
+		rubrique en cours.
+-->
+<BOUCLE_current(ARTICLES){id_article}>
+<html>
+<head>
+<title>Menu</title>
+<meta http-equiv="content-type" content="text/html; charset=utf8">
+
+<style type="text/css">
+<!--
+/* Ce n'est pas beau - mais montre la fonctionalité */
+a {color: black; text-decoration: none;}
+.current {color: blue};
+.ordinary {color: black};
+ul { margin-top: 5px; margin-bottom: 5px; margin-left: 0px; padding: 0px;}
+li {font-family: Arial, Helvetica, sans-serif; list-style: none; margin-left: 5px; padding:0px;}
+li li {font-size: 95%; margin-left: 10px; padding:0px;}
+li li li {font-size: 85%; margin-left: 10px; padding:0px;}
+li li li li { font-size: 80%; margin-left: 10px}
+li a:hover {color: red; text-decoration: none}
+.curseur {cursor: hand; cursor: pointer}
+.show {display: block}
+.hide {display: none}
+-->
+</style>
+
+<script type="text/javascript">
+<!--
+// Fonction qui déplie/replie les rubriques lorsqu'on clique sur les flèches
+// Cette fonction pourrait être placé dans un fichier .js annexe...
+function change(rubnum){
+	if (document.getElementById) {
+	var UL, folder; UL = document.getElementById('rxx' + rubnum);
+	folder = document.getElementById('folder' + rubnum);
+		if (UL.className=="show") {UL.className="hide"; folder.src="plus.gif";}
+		else
+		{UL.className="show"; folder.src="moins.gif";}
+	}
+}
+//-->
+</script>
+</head>
+<body>
+<!-- Modifier la boucle ci-dessous comme voulu pour éventuellement montrer moins de niveaux de l'hierarchie -->
+<BOUCLE_setlevel(RUBRIQUES){id_rubrique=#ID_SECTEUR}>
+<ul>
+
+<BOUCLE_toplevel(ARTICLES){id_rubrique}{par titre}>
+<li class="[(#EXPOSER|current,ordinary)]"><img src="blob.gif" width="8" height="9" alt="">[<a (#EXPOSER|,href)="#URL_ARTICLE">]&nbsp;[(#TITRE|supprimer_numero)][(#EXPOSER|,</a>)]</li>
+</BOUCLE_toplevel>
+
+<BOUCLE_menu(RUBRIQUES){id_parent}{par titre}>
+<li><span class="curseur"><img id="folder#ID_RUBRIQUE" src="moins.gif" onClick="change(#ID_RUBRIQUE);" width="10" height="10" alt="" border="0"></span><a href="#URL_RUBRIQUE" class="[(#EXPOSER|current,ordinary)]">&nbsp;[(#TITRE|supprimer_numero)]</a>
+<ul id="rxx#ID_RUBRIQUE" class="show">
+
+<BOUCLE_arts(ARTICLES){id_rubrique}{par titre}>
+<li class="[(#EXPOSER|current,ordinary)]"><img src="blob.gif" width="8" height="9" alt="">[<a (#EXPOSER|,href)="#URL_ARTICLE">]&nbsp;[(#TITRE|supprimer_numero)][(#EXPOSER|,</a>)]</li>
+</BOUCLE_arts>
+
+<BOUCLE_remenu(boucle_menu)></BOUCLE_remenu>
+</ul></li>
+
+</BOUCLE_menu>
+
+</ul>
+</BOUCLE_setlevel>
+Aucune rubrique trouv&eacute;, ou valeur "niveau" inexistante!
+<//B_setlevel>
+
+<script type="text/javascript">
+<!--
+// Le menu se charge en mode déplié.
+// Ces lignes le referme *sauf* le chemin à la rubrique en cours.
+if (document.getElementById) {
+	var rp;
+	<BOUCLE_getpath(HIERARCHIE){id_rubrique}{tout}{1,n}>rp +="-#ID_RUBRIQUE-";</BOUCLE_getpath>
+	var BL=new Array();
+	BL=document.getElementsByTagName("ul");
+	for(i=0; i<BL.length; i++){
+		if (((BL[i].id).substring(0,3) == "rxx") && ((rp.indexOf("-"+(BL[i].id).substring(3)+"-")) < 0)){
+			change((BL[i].id).substring(3));
+		}
+	}
+}
+//-->
+</script>
+
+</body>
+</html>
+</BOUCLE_current>

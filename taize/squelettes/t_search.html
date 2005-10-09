@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<BOUCLE_principale(RUBRIQUES){racine}{lang}{id_rubrique !IN 586,734}>
+<html lang="#LANG">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="ROBOTS" content="NOINDEX">
+<title><:tz_comm:></title>
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/t_main.css">
+<style type="text/css">
+<!--
+#hmenu ul li {float: #LANG_LEFT; border-#LANG_RIGHT: 1px solid #990000}
+-->
+</style>
+<script type="text/javascript" src="ext/common.js"></script>
+</head>
+<body dir="#LANG_DIR">
+<table class="header2" align="center" cellpadding="0" cellspacing="0">
+<tr><td height="3" colspan="4"></td></tr>
+<!-- Header row -->
+<tr>
+<td width="5"></td>
+<td align="#LANG_LEFT" valign="top">
+<a href="#URL_SITE_SPIP/"><img src="IMG/taize.gif" alt="<:home:>" title="<:home:>" width="15" height="10" border="0"></a>&nbsp;
+<a href="#URL_SITE_SPIP/#LANG"><img src="IMG/home.gif" title="[(#LANG|traduire_nom_langue)]" alt="[(#LANG|traduire_nom_langue)]" height="8" width="15" border="0"></a>
+<a name="pagetop"></a>
+</td>
+<td align="right" valign="top">&nbsp;</td>
+<td width="5"></td>
+<tr>
+<td width="5"></td>
+<td align="#LANG_LEFT" valign="bottom">&nbsp;</td>
+<td align="#LANG_RIGHT" valign="bottom"  id="formrecherche">
+<!-- Search box -->
+<INCLURE(ti_searchbox.php3){lang}>
+</td>
+<td width="5"></td>
+</tr>
+<tr>
+<td height="5" colspan="4"></td>
+</tr>
+</table>
+<table width="760" align="center" cellpadding="0" cellspacing="0">
+<!-- Row with horizontal menu -->
+<tr valign="top">
+<td align="left" valign="top">
+<div id="hmenu">
+<ul>
+	<BOUCLE_rubs2(RUBRIQUES){id_parent}{par titre}{0,5}{titre_mot=mainsection}{tout}>
+<li style="margin-top:1px"><a href="#URL_RUBRIQUE">&nbsp;[(#TITRE|supprimer_numero)]&nbsp;</a></li>
+	</BOUCLE_rubs2>
+	<B_rubs3>
+</ul><br><ul>
+	<BOUCLE_rubs3(RUBRIQUES){id_parent}{par titre}{5,8}{titre_mot=mainsection}{tout}>
+<li style="margin-top:-1px"><a href="#URL_RUBRIQUE">&nbsp;[(#TITRE|supprimer_numero)]&nbsp;</a></li>
+	</BOUCLE_rubs3>
+</ul>
+</div>
+</td>
+</tr>
+<!-- Spacing row below horizontal menu -->
+<tr>
+<td align="left" valign="top">&nbsp;
+</td>
+</tr>
+</table>
+<table width="760" id="main" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<!-- Left margin -->
+<td width="5">&nbsp;
+</td>
+<!-- Left nav column -->
+<td width="170" valign="top">
+&nbsp;
+</td>
+<!-- Margin between left-nav and content -->
+<td width="0">&nbsp;</td>
+<!-- Content -->
+<td width="560" valign="top" colspan="3">
+<div class="soustitre"><:searched_for:>&nbsp;"#RECHERCHE"</div>
+<B_search>
+<div class="soustitre"><:articles_found:></div>
+<BOUCLE_search(ARTICLES){recherche}{id_secteur IN #_principale:ID_RUBRIQUE,586,734}{0,25}{par points}{inverse}{!lang_select}>
+<BOUCLE_checksect(ARTICLES){id_secteur=586}{id_article}{!lang_select}>
+<BOUCLE_trads(ARTICLES){traduction}{exclus}{lang = #_principale:LANG}>
+</BOUCLE_trads>
+<BOUCLE_hide(MOTS){type=Hide}{titre=#_principale:LANG}{id_article}>
+</BOUCLE_hide>
+<p><span class="chapeau">
+<BOUCLE_checklang(ARTICLES){id_article}{!lang_select}{lang=#_principale:LANG}>
+<a href="#_search:URL_ARTICLE">[(#TITRE|supprimer_numero)]</a>
+</BOUCLE_checklang>
+<a href="#_search:URL_ARTICLE&lang=#_principale:LANG">[(#TITRE|supprimer_numero)]</a>
+<//B_checklang>
+</span>
+<br>[(#INTRODUCTION|couper{180})]</p>
+<//B_hide>
+<//B_trads>
+</BOUCLE_checksect>
+	[(#REM) Articles in "_Extra" sector; assumed not to be attached to shared articles ]
+	<BOUCLE_extra(ARTICLES){id_secteur=734}{id_article}>
+	[(#REM) Bible Meditations]
+	<BOUCLE_getmot(MOTS){id_rubrique}{titre=inc-biblemed}>
+	[(#REM) Don't show articles yet to be published]
+	<BOUCLE_datecheck(ARTICLES){id_article}{age > 0}>
+	<BOUCLE_motherpage(ARTICLES){id_mot}{lang}>
+		<p>
+		<span class="chapeau"><a href="#URL_ARTICLE[?date=(#_search:DATE|affdate{'Y-m'})]">[(#TITRE|supprimer_numero)]</a></span>
+		<br>[(#_search:INTRODUCTION|couper{180})]
+		</p>
+	</BOUCLE_motherpage>
+	</BOUCLE_datecheck>
+	<//B_datecheck>
+	</BOUCLE_getmot>
+	</BOUCLE_extra>
+		<p>
+		<span class="chapeau"><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></span>
+		<br>[(#INTRODUCTION|couper{180})]
+		</p>
+	<//B_extra>
+<//B_checksect>
+</BOUCLE_search>
+<p><:no_article_found:></p>
+<//B_search>
+</td>
+<!-- Right page-margin -->
+<td width="25">&nbsp;
+</td>
+</tr>
+</table>
+<!-- Footer -->
+<table width="760" align="center" cellpadding="0" cellspacing="0">
+<tr><td>&nbsp;</td></tr>
+<tr><td>
+<INCLURE(ti_footer.php3){lang}>
+</td></tr>
+</table>
+</body>
+</html>
+</BOUCLE_principale>

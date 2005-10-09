@@ -1,0 +1,263 @@
+
+<INCLURE(img-rub-meta.php3)>
+
+<title>[(#NOM_SITE_SPIP)]</title>
+</head>
+<body>
+
+<div class="gauche">
+	<INCLURE(img-rub-gauche.php3)>
+</div>
+
+<div class="entete">
+	<div class="petitmenu">
+		<ul>
+			<li><a href="resume.php3">Statistiques des visites</a></li>
+			<li><a href="ecrire/">Espace privé</a></li>
+		</ul>
+	</div>
+
+	<INCLURE(img-rub-tete.php3)>
+
+	<div class="playing">
+		Just playing with XHTML and CSS ... A découvrir à ce propos:
+		<ul>
+			<li>Pour la technique: <a href="http://openweb.eu.org/">L'OpenWebGroup</a></li>
+			<li>Pour le plaisir des yeux: <a href="http://www.csszengarden.com/">CssZenGarden, The Beauty in CSS Design</a></li>
+		</ul>
+	</div>
+
+</div>
+
+<!-- Lit tous les documents jpg, png, gif publiés sur le site -->
+<div class="droite">
+
+<!-- On teste si le visiteur est connecté à l'espace privé -->
+<?php
+	// Connected or not connected, that's the question here.
+	if (!$auteur_session) {
+?>
+
+<!-- Le visiteur n'est pas connecté, on affiche un squelette de login dans un iframe -->
+		<blockquote>
+			Cette page est seulement accessible aux rédacteurs &amp; administrateurs du site.
+			Entrez votre login et mot de passe dans la fenêtre ci-dessous,
+			puis, une fois connecté, &lt;<a href="img-rub-tout-prive.php3?recalcul=oui">CLIQUEZ ICI</a>&gt;
+			<br /><br />
+		 <!-- Iframe login, sinon lien -->
+			<iframe src="img-rub-login.php3"  width="300" height="300" name="intranetlogin">
+			<p>Votre navigateur ne supporte pas les cadres incorporés. Vous pouvez appeler la page incorporée par ce lien: <a href="ecrire" target="_blank">Connect</a></p>
+			</iframe>
+			<br /><br />
+		</blockquote>
+
+<?php
+			}
+	else {
+	// Connected
+?>
+
+<!-- Le visiteur est connecté, on affiche les images -->
+<h2>Toutes les images publiées sur ce site [privé]</h2>
+
+Bonjour <?php echo $auteur_session["nom"]; ?>, vous êtes connecté sous le pseudo <?php echo "[".$auteur_session["login"]."]."; ?>&nbsp;[<a href="spip_cookie.php3?logout=<?php echo $auteur_session['login']; ?>">Déconnexion</a>]
+<br />
+
+<!-- Boucle générale qui lit toutes les rubriques du site -->
+	<BOUCLE_generale-doc(RUBRIQUES){id_rubrique=791}>
+
+<!-- Boucle documents qui lit toutes les images jointes aux rubriques -->
+		<B_portfolio>
+			<div class="bordure">
+				<h2>Images de la rubrique <a href="#URL_SITE_SPIP/#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h2>
+				[<a href="#URL_SITE_SPIP/ecrire/naviguer.php3?coll=#ID_RUBRIQUE">Modifier cette rubrique</a>]
+			</div><br />
+
+			<BOUCLE_portfolio(DOCUMENTS){id_rubrique}{extension==jpg|png|gif}{mode=document}{doublons}>
+ 				<a href="#URL_SITE_SPIP/#URL_DOCUMENT" target="_blank" title="Cliquez sur la miniature pour ouvrir [(#TITRE)] dans une nouvelle fenetre">#LOGO_DOCUMENT</a><br />
+ [<span class="rub4">(#TITRE), </span>][(#TYPE_DOCUMENT), ][emb (#ID_DOCUMENT), ][(#TAILLE|taille_en_octets), ][Larg.: (#LARGEUR), ][Haut.: (#HAUTEUR), ]<br />
+ [(#DESCRIPTIF)]<br />
+				<table class="img-code">
+					<caption>&lt;Code à implémenter pour récupérer cette image dans vos articles&gt;</caption>
+					<tr>
+						<th>
+							Alignement:
+						</th>
+						<th>
+							gauche
+						</th>
+						<th>
+							centré
+						</th>
+						<th>
+							droit
+						</th>
+					</tr>
+					<tr>
+						<td class="comme-th">
+							Vignette:
+						</td>
+						<td>
+							[&lt;doc(#ID_DOCUMENT)|left&gt;]
+						</td>
+						<td>
+							[&lt;doc(#ID_DOCUMENT)|center&gt;]
+						</td>
+						<td>
+							[&lt;doc(#ID_DOCUMENT)|right&gt;]
+						</td>
+					</tr>
+					<tr>
+						<td class="comme-th">
+							Image:
+						</td>
+						<td>
+							[&lt;emb(#ID_DOCUMENT)|left&gt;]
+						</td>
+						<td>
+							[&lt;emb(#ID_DOCUMENT)|center&gt;]
+						</td>
+						<td>
+							[&lt;emb(#ID_DOCUMENT)|right&gt;]
+						</td>
+					</tr>
+				</table>
+				<br /><br />
+			</BOUCLE_portfolio>
+			<hr class="spip" />
+		</B_portfolio>
+		<//B_portfolio>
+
+<!-- Après les rubriques, on traite maintenant les articles de chaque rubrique -->
+			<BOUCLE_generale-doc2(ARTICLES){id_rubrique}>
+
+<!-- Boucle documents qui lit toutes les images jointes (mode document) aux articles -->
+				<B_portfolio2>
+					<h3>Images jointes à l'article <a href="#URL_SITE_SPIP/#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h3>
+					[<a href="#URL_SITE_SPIP/ecrire/articles.php3?id_article=#ID_ARTICLE">Modifier cet article</a>]<br /><br />
+
+					<BOUCLE_portfolio2(DOCUMENTS){id_article}{extension==jpg|png|gif}{mode=document}{doublons}>
+ 						<a href="#URL_SITE_SPIP/#URL_DOCUMENT" target="_blank" title="Cliquez sur la miniature pour ouvrir [(#TITRE)] dans une nouvelle fenetre">#LOGO_DOCUMENT</a><br />
+ [<span class="rub4">(#TITRE), </span>][(#TYPE_DOCUMENT), ][emb (#ID_DOCUMENT), ][(#TAILLE|taille_en_octets), ][Larg.: (#LARGEUR), ][Haut.: (#HAUTEUR), ]<br />
+ [(#DESCRIPTIF)]<br />
+						<table class="img-code">
+							<caption>&lt;Code à implémenter pour récupérer cette image dans vos articles&gt;</caption>
+							<tr>
+								<th>
+									Alignement:
+								</th>
+								<th>
+									gauche
+								</th>
+								<th>
+									centré
+								</th>
+								<th>
+									droit
+								</th>
+							</tr>
+							<tr>
+								<td class="comme-th">
+									Vignette:
+								</td>
+								<td>
+									[&lt;doc(#ID_DOCUMENT)|left&gt;]
+								</td>
+								<td>
+									[&lt;doc(#ID_DOCUMENT)|center&gt;]
+								</td>
+								<td>
+									[&lt;doc(#ID_DOCUMENT)|right&gt;]
+								</td>
+							</tr>
+							<tr>
+								<td class="comme-th">
+									Image:
+								</td>
+								<td>
+									[&lt;emb(#ID_DOCUMENT)|left&gt;]
+								</td>
+								<td>
+									[&lt;emb(#ID_DOCUMENT)|center&gt;]
+								</td>
+								<td>
+									[&lt;emb(#ID_DOCUMENT)|right&gt;]
+								</td>
+							</tr>
+						</table>
+						<br /><br />
+					</BOUCLE_portfolio2>
+					<hr class="spip" />
+				</B_portfolio2>
+				<//B_portfolio2>
+
+<!-- Boucle documents qui lit toutes les images directement insérées (mode image) dans les articles -->
+				<B_portfolio3>
+					<h3>Images incluses dans l'article <a href="#URL_SITE_SPIP/#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h3>
+					[<a href="#URL_SITE_SPIP/ecrire/articles.php3?id_article=#ID_ARTICLE">Modifier cet article</a>]<br /><br />
+
+					<BOUCLE_portfolio3(DOCUMENTS){id_article}{extension==jpg|png|gif}{mode=image}{doublons}>
+ 						#LOGO_DOCUMENT<br />
+ [<span class="rub4">(#TITRE), </span>][(#TYPE_DOCUMENT), ][img (#ID_DOCUMENT), ][(#TAILLE|taille_en_octets), ][Larg.: (#LARGEUR), ][Haut.: (#HAUTEUR), ]<br />
+ [(#DESCRIPTIF)]<br />
+						<table class="img-code">
+							<caption>&lt;Code à implémenter pour récupérer cette image dans vos articles&gt;</caption>
+							<tr>
+								<th>
+									Alignement:
+								</th>
+								<th>
+									gauche
+								</th>
+								<th>
+									centré
+								</th>
+								<th>
+									droit
+								</th>
+							</tr>
+							<tr>
+								<td class="comme-th">
+									Image:
+								</td>
+								<td>
+									[&lt;img(#ID_DOCUMENT)|left&gt;]
+								</td>
+								<td>
+									[&lt;img(#ID_DOCUMENT)|center&gt;]
+								</td>
+								<td>
+									[&lt;img(#ID_DOCUMENT)|right&gt;]
+								</td>
+							</tr>
+						</table>
+						<br /><br />
+					</BOUCLE_portfolio3>
+					<hr class="spip" />
+				</B_portfolio3>
+				<//B_portfolio3>
+
+<!-- On ferme la boucle générale ARTICLES -->
+		</BOUCLE_generale-doc2>
+<!-- On ferme la boucle générale RUBRIQUES -->
+	</BOUCLE_generale-doc>
+
+<!-- Fin du test php de connexion -->
+<?php
+	}
+?>
+
+
+</div>
+
+
+<div class="spacer">&nbsp;</div>
+
+<div class="entete">
+	<INCLURE(img-rub-pied.php3)>
+</div>
+
+</body>
+</html>
+
+

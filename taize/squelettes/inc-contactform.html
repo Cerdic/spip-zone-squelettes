@@ -1,0 +1,84 @@
+<script type="text/javascript">
+//<![CDATA[
+<!--
+function ValidateMe(theForm)
+{
+  if (theForm.Addressee.selectedIndex < 1) {
+  	// ENT_QUOTES = 3
+	alert("<:frmcontact_err_addressee|html_entity_decode{3,"UTF-8"}:>");
+    	theForm.Addressee.focus();
+    return (false);
+  }
+
+  theForm.msgtext.value = TrimStr(theForm.msgtext.value);
+  if (theForm.msgtext.value == "") {
+     return (false);
+  }
+
+  theForm.Email.value = TrimStr(theForm.Email.value);
+  if (theForm.Email.value != "") {
+  // not a required field, but if it's entered, check it.
+     if (CheckEmailFormat(theForm.Email.value) == false) {
+	alert("<:err_format_email|html_entity_decode{3,"UTF-8"}:>");
+     theForm.Email.focus();
+     return (false);
+	}
+  }
+
+}
+//-->
+//]]>
+</script>
+<div>
+
+<?php
+function htmlprep ($instr)
+{
+  return nl2br(htmlspecialchars(ini_get('magic_quotes_gpc') ? stripslashes($instr) : $instr));
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+// User has just clicked send
+{
+    $to = $_POST['Addressee'] . "@taize.fr";
+	if ($_POST['Email'] > "")
+	{
+		$from = $_POST['Email'];
+	} else {
+		$from = $to;
+	}
+
+	$head = "From: ".$from."\n";
+	$head .= "X-SendingForm: contact\nMime-Version: 1.0\nContent-type: text/html; charset=\"utf-8\"\n";
+
+	$maintext = htmlprep($_POST['msgtext']);
+	$sent = mail($to, "Web contact form [#LANG]", $maintext, $head);
+
+	echo '<br /><br /><p><strong>';
+	if ($sent) {
+		echo "<:frmcontact_success:>";
+	} else {
+		echo "<:frmcontact_fail:>";
+	}
+	echo '<br /><a href="#SELF">OK</a></strong></p><p>&nbsp;</p><p>&nbsp;</p>';
+	echo '</div></table></body></html>';
+	// do not show the rest of the page
+	exit;
+}
+
+?>
+<a name="contactform"></a>
+<h4 class="spip"><:frmcontact:></h4>
+<form method="post" action="#SELF" id="frmcontact" name="frmcontact" onSubmit="return ValidateMe(this)">
+<p><em><:frmcontact_label_to:></em>&nbsp;<select name="Addressee" size="1" tabindex="1">
+<option selected value="">(<:choose:>)</option>
+<option value="<:meetings_email:>"><:meetings_email:>
+<option value="community">community
+<option value="webmaster">webmaster
+</select>&nbsp;<img src="IMG/commat.gif" alt="" width="13" height="13" align="middle" />taize.fr</p>
+<p><em><:frmcontact_label_text:></em><br /><textarea rows="6" name="msgtext" cols="39" tabindex="2"></textarea></p>
+<p><em><:frmcontact_sender:></em><br />
+<input type="text" name="Email" size="30" tabindex="3" maxlength="60" />&nbsp;&nbsp;&nbsp;
+<input type="submit" class="btnBrown" value="<:send:>" name="btnsend" tabindex="3" />
+</p></form><br />
+</div>

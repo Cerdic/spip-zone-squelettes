@@ -1,0 +1,30 @@
+[<br />(#ENV*{sujetko})<:form_prop_indiquer_sujet:><br />&nbsp;][
+<br />(#ENV*{mailko})<:form_prop_indiquer_email:><br /><br />
+]
+
+<form action="[(#ENV{action})]" method='post'>[
+<input type="hidden" name="id_formulaire_reply" value="(#ENV{valide})" />]
+<p><label><:form_pet_votre_email:>
+<input type="text" class="forml" name="email_message_auteur[(#ENV{id})]"
+	value="[(#ENV{mail})]" size="30" />
+</label></p>
+<p><label><:form_prop_sujet:><br />
+
+<BOUCLE_art(ARTICLES){id_article}>
+<input type="text" class="forml" name="sujet_message_auteur[(#ENV{id,})]"
+	value="[(#ENV{sujet,<multi>[en]Hello![fr]Bonjour!</multi> Tootoo})]" size="30" />
+</BOUCLE_art>
+</label></p>
+<p>
+
+<textarea name="texte_message_auteur[(#ENV{id})]" rows='10' class='forml' cols='40'>
+[(#ENV{texte,"Nom :
+Prénom :
+Adresse :
+Tél : "})]</textarea>
+</p>
+<div align="right">
+	<input type="submit"  class="spip_bouton" name="valide"
+		 value="[(#ENV{bouton})]" />
+</div>
+</form>

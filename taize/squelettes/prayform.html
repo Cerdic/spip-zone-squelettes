@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<BOUCLE_art0(ARTICLES){id_article}>
+	<BOUCLE_hier0(HIERARCHIE){id_article}{1,1}>
+		<BOUCLE_mots0(MOTS){id_rubrique}{type=SectionLogo}>
+			<BOUCLE_lang0(RUBRIQUES){tout}{id_mot}{id_secteur!=586}{lang}>
+<html lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Taiz&eacute; - [(#_art0:TITRE|supprimer_numero|supprimer_tags)]</title>
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/t_main.css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/t_forms.css" />
+<style type="text/css">
+/*<![CDATA[*/
+<!--
+#hmenu ul li {float: #LANG_LEFT; border-#LANG_RIGHT: 1px solid #990000}
+-->
+/*]]>*/
+</style>
+<script type="text/javascript" src="ext/common.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+<!--
+function ValidateMe(theForm)
+{
+  theForm.txtprayer.value = TrimStr(theForm.txtprayer.value);
+  if (theForm.txtprayer.value == "") {
+     return (false);
+  }
+
+  theForm.Email.value = TrimStr(theForm.Email.value);
+  if (theForm.Email.value != "") {
+  // not a required field, but if it's entered, check it.
+     if (CheckEmailFormat(theForm.Email.value) == false) {
+	  alert("<:err_format_email|html_entity_decode{3,"UTF-8"}:>");
+       theForm.Email.focus();
+       return (false);
+	}
+   }
+}
+//-->
+//]]>
+</script>
+</head>
+<body dir="#LANG_DIR">
+#DEBUT_SURLIGNE
+#FIN_SURLIGNE
+<table id="header2" class="header2" align="center" cellpadding="0" cellspacing="0">
+<tr><td height="3" colspan="4"></td></tr>
+<!-- Header row -->
+<tr>
+<td width="5">
+</td>
+<td align="#LANG_LEFT" valign="top">
+<a href="#URL_SITE_SPIP/"><img src="IMG/taize.gif" alt="<:home:>" title="<:home:>" width="15" height="10" border="0" /></a>&nbsp;
+<a href="#URL_SITE_SPIP/#LANG"><img src="IMG/home.gif" title="[(#LANG|traduire_nom_langue)]" alt="[(#LANG|traduire_nom_langue)]" height="8" width="15" border="0" /></a>
+<a name="pagetop"></a>
+</td>
+<td align="#LANG_RIGHT" valign="top">&nbsp;</td>
+<td width="5"></td>
+<tr>
+<td width="5"></td>
+<td align="#LANG_LEFT" valign="bottom">
+<!-- Language selector -->
+<INCLURE(ti_langselect.php3){id_article}{lang}>
+</td>
+<td align="#LANG_RIGHT" valign="bottom"  id="formrecherche">
+<!-- Search box -->
+<INCLURE(ti_searchbox.php3){lang}>
+</td>
+<td width="5"></td>
+</tr>
+<tr>
+<td height="5" colspan="4"></td>
+</tr>
+</table>
+<table width="760" align="center" cellpadding="0" cellspacing="0">
+<!-- Row with horizontal menu -->
+<tr valign="top">
+<td align="#LANG_LEFT" valign="top">
+<INCLURE(ti_hmenu.php3){id_rubrique}>
+</td>
+</tr>
+<!-- Spacing row below horizontal menu -->
+<tr><td>&nbsp;</td></tr></table>
+<table width="760" id="main" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<!-- Left page-margin -->
+<td width="5">&nbsp;</td>
+<!-- Left nav column -->
+<td width="170" valign="top">
+<div id="vmenu">
+<INCLURE(ti_vmenu.php3){id_article}{id_rubrique}{id_mot}{lang}>
+</div>
+</td>
+<!-- Margin between left-nav and content -->
+<td width="25">&nbsp;</td>
+<!-- Content -->
+<td width="375" valign="top">
+<h1 class="titre-texte">[(#_art0:TITRE|supprimer_numero)]</h1>
+<div class="smallarialbold">
+<img border="0" src="IMG/prayform.jpg" width="270" height="309" alt="Prayer around the cross in Taiz&eacute;" />
+<?php
+// leave a dummy char at beginning otherwise strpos = 0 for en.
+if (strpos("-en-fr-de-pt","#LANG")){
+	$lang="#LANG";
+} else {
+	$lang="en";
+}
+// get text in right language
+require "ext/pray/" . $lang . "prayinc.php";
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+	if ($_POST['Email'] > "")
+	{
+        $to = "prayer1@taize.fr";
+		$from = $_POST['Email'];
+	} else {
+        $to = "prayer2@taize.fr";
+		$from = "prayer2@taize.fr";
+	}
+
+	$head = "From: ".$from."\n";
+	$head .= "X-SendingForm: prayer\nContent-type: text/plain; charset=utf-8\n";
+
+	$sent = mail($to, "Prayer intention", $_POST['txtprayer'], $head);
+
+	if ($sent) {
+		echo '<p>' . $requestok;
+	} else {
+		echo '<p>' . $requestfail;
+	}
+	echo '</p><p><a href="#URL_ARTICLE">OK</a></p><p>&nbsp;</p><p>&nbsp;</p>';
+	echo '</div></table></body></html>';
+	exit;
+}
+
+echo '<p>' . $intro . '</p>';
+?>
+
+<form method="post" action="#URL_ARTICLE" id="frmprayer" name="frmprayer" onSubmit="return ValidateMe(this)">
+<p><textarea rows="5" name="txtprayer" cols="39" tabindex="1"></textarea></p>
+<p><?php echo $plusemail; ?></p>
+<p><input type="text" name="Email" size="21" tabindex="2" maxlength="60" />&nbsp;&nbsp;&nbsp;
+<input type="submit" class="btnBrown" value="<?php echo $sendbutton; ?>" name="btnsend" tabindex="3" />&nbsp;&nbsp;
+</p></form>
+</div>
+</td>
+<!-- Margin between content and right-nav -->
+<td width="20">&nbsp;</td>
+<!-- Right-nav -->
+<td width="160" valign="top">&nbsp;</td>
+<!-- Right page-margin -->
+<td width="5">&nbsp;</td></tr></table>
+<!-- Footer -->
+<table width="760" align="center" cellpadding="0" cellspacing="0">
+<tr><td>&nbsp;</td></tr>
+<tr><td>
+	<INCLURE(ti_footer.php3){lang}>
+</td></tr>
+</table>
+</body>
+</html>
+			</BOUCLE_lang0>
+		</BOUCLE_mots0>
+	</BOUCLE_hier0>
+</BOUCLE_art0>
+(<:no_article_here:>)
+<//B_art0>

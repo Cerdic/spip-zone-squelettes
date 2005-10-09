@@ -1,0 +1,52 @@
+<html>
+<head>
+<!-- This version shows all languages at once.
+However, it is too MySQL intensive to use frequently! -->
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+</head>
+<body>
+<?php
+if ($auteur_session)
+		{
+		$nom_user=$GLOBALS['auteur_session']['nom'];
+		$id_auteur=$GLOBALS['auteur_session']['id_auteur'];
+		$statut=$GLOBALS['auteur_session']['statut'];
+		echo ("Hello $nom_user ! ");
+	//		if ($statut=='0minirezo')
+	//		{
+    //		}
+		}
+	else
+		{
+		echo "<br>You first need to log in to use this page.";
+		echo "<br><a href=\"#URL_SITE_SPIP/spip_login.php3?url=#SELF\">[login]</a>";
+		return false;
+		}
+?>
+<!-- <xxBOUCLE_principale(RUBRIQUES){id_secteur != 586}{racine}{lang=#ENV{lang}}> -->
+<B_principale>
+<h1>Articles without translation links</h1>
+<BOUCLE_principale(RUBRIQUES){id_secteur != 586}{racine}{lang?}>
+<h2 style="margin-bottom: 0">#TITRE</h2>
+<BOUCLE_all(ARTICLES){id_secteur}>
+<BOUCLE_checktrad(ARTICLES){traduction}{exclus}>
+</BOUCLE_checktrad><font size="3">
+<a href="#_all:URL_ARTICLE">[(#_all:TITRE|supprimer_numero)]</a>&nbsp;&nbsp;[<a href="ecrire/articles.php3?id_article=#_all:ID_ARTICLE">edit</a>]<br>
+</font>
+<//B_checktrad>
+</BOUCLE_all>
+</BOUCLE_principale>
+<p><font size="2"><a href="t_call.php3?fond=tt_trads">Check another language</a></font></p>
+</B_principale>
+<!--
+<p>You need to choose a language to use this page!</p>
+<br>
+<font size="3">
+<BOUCLE_langs(RUBRIQUES){id_secteur != 586}{racine}{par titre}>
+<a href="t_call.php3?fond=tt_trads&lang=#LANG">#TITRE</a>&nbsp;  - &nbsp;
+</BOUCLE_langs>
+</font>
+-->
+<//B_principale>
+</body>
+</html>

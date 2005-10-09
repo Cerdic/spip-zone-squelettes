@@ -1,0 +1,43 @@
+<BOUCLE_art0(ARTICLES){id_article}>
+<BOUCLE_check586(ARTICLES){traduction}{id_secteur=586}>
+<B_langs1>
+[(#REM)<!-- Article has a shared translation -->]
+<form id="langselect" action="#URL_SITE_SPIP/" method="get">
+<select size="1" name="langs" onChange="if (options[selectedIndex].value){location = options[selectedIndex].value; }">
+<option value="">[(#_lang0:LANG|traduire_nom_langue)][ (#_art0:DESCRIPTIF*|lang2)]</option>
+<BOUCLE_langs1(RUBRIQUES){titre_mot=toplevel}{lang != #ENV{lang}}{par lang}>
+[(#REM)<!-- Get languages, excluding the current one -->]
+<BOUCLE_hide(MOTS){type=Hide}{titre=#LANG}{id_article}>
+[(#REM)<!-- Hide this language for this article -->]
+</BOUCLE_hide>
+<BOUCLE_checktrad1(ARTICLES){traduction}{id_secteur}{exclus}>
+[(#REM)<!-- Check if there's a real translation of the article in this language -->]
+<option value="#URL_ARTICLE">[(#LANG|traduire_nom_langue)][ (#_checktrad1:DESCRIPTIF*|lang2)]</option>
+</BOUCLE_checktrad1>
+<BOUCLE_checklang(ARTICLES){id_article}{!lang_select}{lang=#_langs1:LANG}>
+[(#REM)<!-- If not, point to shared article. If language of shared article (usually English) is the same as the current language, there's no need for a ?lang=xx in the URL -->]
+<option value="[(#URL_ARTICLE|parametre_url{lang,''}|parametre_url{id_document}|parametre_url{debut_page})]">[(#LANG|traduire_nom_langue)][ (#_art0:DESCRIPTIF*|lang2)]</option>
+</BOUCLE_checklang>
+[(#REM)<!-- ?lang=xx is needed in the URL -->]
+<option value="[(#URL_ARTICLE|parametre_url{lang,#LANG}|parametre_url{id_document}|parametre_url{debut_page})]">[(#LANG|traduire_nom_langue)][ (#_art0:DESCRIPTIF*|lang2)]</option>
+<//B_checklang>
+<//B_checktrad1>
+<//B_hide>
+</BOUCLE_langs1>
+</select>
+</form>
+</B_langs1>
+</BOUCLE_check586>
+<B_trads1>
+[(#REM)<!-- Article does not have a shared translation -->]
+<form id="langselect" action="#URL_SITE_SPIP/" method="get">
+<select size="1" name="langs" onChange="if (options[selectedIndex].value){location = options[selectedIndex].value; }">
+<option value="">[(#LANG|traduire_nom_langue)][ (#_art0:DESCRIPTIF*|lang2)]</option>
+<BOUCLE_trads1(ARTICLES){traduction}{exclus}{par lang}>
+<option value="#URL_ARTICLE">[(#LANG|traduire_nom_langue)][ (#_trads1:DESCRIPTIF*|lang2)]</option>
+</BOUCLE_trads1>
+</select>
+</form>
+</B_trads1>
+<//B_check586>
+</BOUCLE_art0>
