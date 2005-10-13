@@ -7,21 +7,22 @@
 <meta name="description" content="<:site_description:>" />
 <title><:tz_comm:></title>
 <base href="#URL_SITE_SPIP/" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/niftyCorners.css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/t_main.css" />
 <style type="text/css">
 /*<![CDATA[*/
 <!--
 #hmenu ul li {float: #LANG_LEFT; border-#LANG_RIGHT: 1px solid #990000}
 <BOUCLE_fontsize(RUBRIQUES){id_rubrique}{lang IN ar,ja,zh}>
-table {font-size: 115%}
+#conteneur {font-size: 1,15em}
 </BOUCLE_fontsize>
-table {font-size: 100%}
+#conteneur {font-size: 1em}
 <//B_fontsize>
 -->
 /*]]>*/
 </style>
 <script type="text/javascript" src="ext/common.js"></script>
 <link rel="alternate" type="application/rss+xml" title="Taiz&eacute; - [((#LANG|traduire_nom_langue))]" href="taizerss.php3?lang=#LANG" />
-<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/niftyCorners.css" />
 <script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty.js"></script>
 <script type="text/javascript">
 //<![CDATA[
@@ -35,28 +36,11 @@ Rounded("div.button","all","#ffffff","#aaaaaa","small");
 //-->
 //]]>
 </script>
-<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/t_main.css" />
 </head>
 <body dir="#LANG_DIR">
-<table class="header" align="center" cellpadding="0" cellspacing="0" summary="Choose language and Search box">
-<tr>
-<td height="5" colspan="4"></td>
-</tr>
-<!-- Header row -->
-<tr>
-<td width="5">
-</td>
-<td align="#LANG_LEFT" valign="top">
-<a href="#URL_SITE_SPIP/"><img src="IMG/taize.gif" alt="<:home:>" title="<:home:>" width="15" height="10" border="0" align="top" /></a>
-<a name="pagetop"></a>
-</td>
-<td>&nbsp;</td>
-<td width="5">
-</td>
-<tr>
-<td width="5">
-</td>
-<td align="#LANG_LEFT" valign="bottom">
+<div id="conteneur">
+<div id="entete">
+<div id="recherche">
 <!-- Language selector -->
 <form id="langselect" action="#URL_SITE_SPIP/" method="get">
 <select size="1" name="langs" onChange="if (options[selectedIndex].value) { location = options[selectedIndex].value; }">
@@ -68,16 +52,15 @@ Rounded("div.button","all","#ffffff","#aaaaaa","small");
 </BOUCLE_otherlangs>
 </select>
 </form>
-</td>
-<td align="#LANG_RIGHT" valign="bottom" id="formrecherche">
-<!-- Search box -->
-<INCLURE(ti_searchbox.php3){lang}>
-</td>
-<td width="5">
-</td>
-</tr>
-<tr><td height="5" colspan="4"></td></tr>
-</table>
+<form action="t_searchall.php3" method="get" id="formrecherche">
+<input type="text" name="recherche" value="&nbsp;<:search:>" size="20" onClick="this.value=''" />
+</form>
+</div>
+<div id="logo"><a href="#URL_SITE_SPIP/"><img src="IMG/taize.gif" alt="Home" title="Home" width="15" height="10" border="0" align="top" /></a>
+</div>
+
+</div> <!-- entete -->
+
 <table width="760" align="center" cellpadding="0" cellspacing="0" summary="Chapter menu">
 <!-- Row with horizontal menu -->
 <tr valign="top">
@@ -102,7 +85,6 @@ Rounded("div.button","all","#ffffff","#aaaaaa","small");
 <td width="5">&nbsp;</td>
 <!-- Left nav column -->
 <td width="170" valign="top">
-[(#REM) <!-- List of recent updates -->]
 <div id="updates">
 <:list_updates:>
 <ul>
@@ -112,8 +94,11 @@ Rounded("div.button","all","#ffffff","#aaaaaa","small");
 </BOUCLE_trads>
 <BOUCLE_hide(MOTS){type=Hide}{titre=#_principale:LANG}{id_article}>
 </BOUCLE_hide>
-[(#REM) <!-- only add ?lang=xx if necessary; i.e. the current language is different from the lang of the shared document. -->]
-<li><a href="#URL_ARTICLE[(#_principale:LANG|=={#LANG}|?{'','?'})lang=[(#_principale:LANG)]]">[(#SURTITRE): ][(#TITRE|supprimer_numero)]</a><br />[(#DATE|affdate_jourcourt)]</li>
+<BOUCLE_checklang(ARTICLES){id_article}{!lang_select}{lang=#_principale:LANG}>
+<li><a href="#URL_ARTICLE">[(#SURTITRE): ][(#TITRE|supprimer_numero)]</a><br />[(#DATE|affdate_jourcourt)]</li>
+</BOUCLE_checklang>
+<li><a href="#URL_ARTICLE?lang=#_principale:LANG">[(#SURTITRE): ][(#TITRE|supprimer_numero)]</a><br />[(#DATE|affdate_jourcourt)]</li>
+<//B_checklang>
 <//B_hide>
 <//B_trads>
 </BOUCLE_checksect>
@@ -140,6 +125,7 @@ Rounded("div.button","all","#ffffff","#aaaaaa","small");
 <td width="20">&nbsp;</td>
 <!-- Content -->
 <td width="560" valign="top" colspan="3">
+<!-- test code -->
 <B_chapters>
 <table class="topsections" border="0" cellpadding="5" cellspacing="0" summary="Presentation of the chapters of the site">
 <BOUCLE_chapters(RUBRIQUES){id_parent}{par titre}{titre_mot=mainsection}{tout}>
@@ -162,11 +148,10 @@ Rounded("div.button","all","#ffffff","#aaaaaa","small");
 <!-- Right page-margin -->
 <td width="5">&nbsp;</td>
 </tr></table>
-<!-- Footer -->
-<table width="760" align="center" cellpadding="0" cellspacing="0" summary="Footer bar">
-<tr><td>&nbsp;</td></tr>
-<tr><td>
-<div id="footer" dir="ltr">
+
+<div class="clear"><span></span></div>
+</div> <!-- contenu -->
+<div id="footer">
 [&nbsp;<a href="#URL_RUBRIQUE#pagetop" target="_self"><:top:></a>&nbsp;|&nbsp;<a href="#URL_SITE_SPIP" target="_top">Taiz&eacute; home</a>&nbsp;]
 <br />
 <BOUCLE_copy(ARTICLES){id_article = 114}{!lang_select}>
@@ -177,8 +162,9 @@ Rounded("div.button","all","#ffffff","#aaaaaa","small");
 <//B_copytrad>
 </BOUCLE_copy>
 &copy; Ateliers et Presses de Taiz&eacute;
-</div></td></tr>
-</table>
+</div>
+</div> <!-- conteneur -->
+
 </body>
 </html>
 </BOUCLE_principale>
