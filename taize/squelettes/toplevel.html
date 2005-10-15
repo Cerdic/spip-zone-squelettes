@@ -14,9 +14,9 @@
 <!--
 #hmenu ul li {float: #LANG_LEFT; border-#LANG_RIGHT: 1px solid #990000}
 <BOUCLE_fontsize(RUBRIQUES){id_rubrique}{lang IN ar,ja,zh}>
-#conteneur {font-size: 1,15em}
+#conteneur {font-size: 1.2em}
 </BOUCLE_fontsize>
-#conteneur {font-size: 1em}
+#conteneur {font-size: 1.0em}
 <//B_fontsize>
 -->
 /*]]>*/
@@ -74,12 +74,8 @@ Rounded("div.button","all","#ffffff","#aaaaaa","small");
 </ul></div>
 
 <div id="contenu">
-<table width="760" id="main" align="center" cellpadding="0" cellspacing="0" summary="Main layout pane">
-<tr>
 <!-- Left margin -->
-<td width="5">&nbsp;</td>
-<!-- Left nav column -->
-<td width="170" valign="top">
+<div id="left-contenu">
 <div id="updates">
 <:list_updates:>
 <ul>
@@ -115,35 +111,30 @@ Rounded("div.button","all","#ffffff","#aaaaaa","small");
 </BOUCLE_download>
 </div>
 </B_download>
-</td>
+</div>
+
 <!-- Margin between left-nav and content -->
-<td width="20">&nbsp;</td>
-<!-- Content -->
-<td width="560" valign="top" colspan="3">
+<div id="right-content">
 <!-- test code -->
 <B_chapters>
-<table class="topsections" border="0" cellpadding="5" cellspacing="0" summary="Presentation of the chapters of the site">
 <BOUCLE_chapters(RUBRIQUES){id_parent}{par titre}{titre_mot=mainsection}{tout}>
-[(#COMPTEUR_BOUCLE|alterner{'<tr>',''})]
+[(#COMPTEUR_BOUCLE|alterner{'<div class="clear"><span></span></div><div class="topsection left">','<div class="topsection right">'})]
 <BOUCLE_logorub(MOTS){type=SectionLogo}{id_rubrique}>
-<td valign="top" class="logo">
+<div class="logo">
 <a href="#URL_RUBRIQUE"><img src="IMG/moton#ID_MOT.jpg" alt="[(#_ligne:TITRE|supprimer_numero)]" border="0" height="90" width="90" onMouseOut="document.getElementById('titre#ID_MOT').style.color='';" onMouseOver="document.getElementById('titre#ID_MOT').style.color='#ff9900';" /></a>
-</td>
-<td valign="top" width="190">
+</div>
+<div class="topsection text">
 <h1><a href="#URL_RUBRIQUE" id="titre#ID_MOT">[(#_chapters:TITRE|supprimer_numero)]</a></h1>
 [<p><a href="#URL_RUBRIQUE" onMouseOver="document.getElementById('titre#ID_MOT').style.color='#ff9900';" onMouseOut="document.getElementById('titre#ID_MOT').style.color='';">(#_chapters:DESCRIPTIF)</a></p>]
-</td>
-</BOUCLE_logorub>
-[(#COMPTEUR_BOUCLE|alterner{'','</tr>'})]
-</BOUCLE_chapters>
-[(#TOTAL_BOUCLE|alterner{'<td></td></tr>',''})]
-</table>
-</B_chapters>
-</td>
-<!-- Right page-margin -->
-<td width="5">&nbsp;</td>
-</tr></table>
 </div>
+</BOUCLE_logorub>
+</div>
+</BOUCLE_chapters>
+</B_chapters>
+</div> <!-- right-content -->
+
+</div>
+
 <div class="clear"><span></span></div>
 </div> <!-- contenu -->
 <div id="footer">
