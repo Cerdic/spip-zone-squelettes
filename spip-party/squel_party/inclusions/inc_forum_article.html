@@ -1,0 +1,37 @@
+<BOUCLE_compte_messages(FORUMS){id_article}{plat}>
+</BOUCLE_compte_messages>
+
+<h4>[(#TOTAL_BOUCLE) commentaire(s)] <strong>|</strong>
+  </B_compte_messages>
+  [<a href="forum.php3?(#PARAMETRES_FORUM)" name="forum" id="forum"><:repondre_article:></a>]
+  <B_forums>
+</h4>
+<B_forums>
+<BOUCLE_forums(FORUMS){id_article}{par date}{inverse}>
+<ol class="commentlist" id="commentlist">
+  <li class=" item" id="comment"> <a name="forum#ID_FORUM" id="forum#ID_FORUM"></a> #TITRE [(#DATE|affdate)][, <:par_auteur:> <a href="mailto:[(#EMAIL|entites_html)]">(#NOM)</a>] [<strong><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></strong>]
+    <div class="itemtext">
+      <p>#TEXTE</p>
+    </div>
+  </li>
+  [
+  <h5 align="right"><a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_article:></a></h5>
+  ]
+  <B_forums_fils>
+  <BOUCLE_forums_fils(FORUMS){id_parent}{par date}{inverse}>
+  <li class=" item" id="comment"> <a name="forum#ID_FORUM" id="forum#ID_FORUM"></a> #TITRE [(#DATE|affdate)][, <:par_auteur:> <a href="mailto:[(#EMAIL|entites_html)]">(#NOM)</a>] [<strong><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></strong>]
+    
+    <div class="itemtext">
+      <p>#TEXTE</p>
+    </div>
+  </li>
+  [
+   <h5 align="right"><a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_article:></a></h5>
+  ]
+<BOUCLE_Forums_Boucle(boucle_forums_fils)>
+</BOUCLE_Forums_Boucle>
+</BOUCLE_forums_fils>
+</B_forums_fils>
+</BOUCLE_forums>
+</B_forums>
+</ol>
