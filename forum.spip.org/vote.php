@@ -67,6 +67,7 @@
 		$dejavote = $_COOKIE['spip_votes'];
 		if (!strstr("/$dejavote/", "/$id/")) {
 			$dejavote = substr("$dejavote/$id", -150);
+			include_ecrire('inc_cookie.php');
 			spip_setcookie('spip_votes', $dejavote);
 			return ajouter_vote ($combien, $id);
 		} else {
