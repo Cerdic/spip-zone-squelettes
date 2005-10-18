@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<INCLURE(inc_header.php3){id_rubrique}{styleCss=(#ENV{styleCss})}>
+<body>
+	<div id="rap">
+	<h1 id="header"><a href="#URL_SITE_SPIP" title="Inicio">#NOM_SITE_SPIP</a></h1>
+
+	<div id="content">
+
+<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
+<BOUCLE_last(ARTICLES){branche}{par date}{inverse}>
+<h2>[(#DATE|affdate)]</h2>	
+<div class="post">
+        <h3 class="storytitle" id="post-#ID_ARTICLE"><a href="#URL_ARTICLE" rel="bookmark" title="Link: #TITRE">#TITRE</a></h3>
+	<div class="meta">Guardado en: <ul class="post-categories">
+<BOUCLE_labels(HIERARCHIE){id_article}{" » "}>
+	<li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></li>
+</BOUCLE_labels>	
+	</ul> 
+. Escrito por: <BOUCLE_autores(AUTEURS){id_article}{", "}><a href="#URL_AUTEUR">#NOM</a></BOUCLE_autores> @ [(#DATE|heures)]:[(#DATE|minutes)]</div>
+	
+	<div class="storycontent">
+			[<p><strong>(#CHAPO)</strong></p>]
+			#TEXTE
+	</div>
+
+	
+	<div class="feedback">
+	<BOUCLE_comentarios(FORUMS){id_article}{plat}>	 
+	</BOUCLE_comentarios>	 
+	<?php $tc = #TOTAL_BOUCLE; ?>
+	<a href="#URL_ARTICLE#foro"><?php if($tc) { ?> Comentarios (#TOTAL_BOUCLE) <?php }else{ ?> No hay comentarios <?php } ?> </a> 
+	</B_comentarios>	 
+	</div>
+	
+	<!-- rdf removed -->
+</div>
+</BOUCLE_last>
+</BOUCLE_rubrique>
+</div>	<!-- fin content -->
+
+<INCLURE(inc_menu.php3)>
+
+</div>
+<INCLURE(inc_pie.php3)>
+</body>
+</html>
