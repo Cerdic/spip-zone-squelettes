@@ -28,22 +28,38 @@
   <hr />
   <div class="primary">
     <div class="center">
-      <h2>
-        <!--<:derniers_articles:>-->
-      </h2>
+      <h2>Une</h2>
     </div>
-    <BOUCLE_articles(ARTICLES) {par date} {inverse} {0,5}>
+    <BOUCLE_articlesune(ARTICLES){doublons}  {titre_mot=une}{par date} {inverse} {0,2}>
     <div id="post" class="item entry">
       <div class="itemhead"> [
         <div class="image"><a href="#URL_RUBRIQUE">(#LOGO_ARTICLE_RUBRIQUE|right||reduire_image{75,75})</a></div>
         ]
         <h3><a href="#URL_ARTICLE">#TITRE</a></h3>
         <span class="metalink">
-        <BOUCLE_compte_messages(FORUMS){id_article}{plat}>
-        </BOUCLE_compte_messages>
-        <a href="#URL_ARTICLE#forum">[(#TOTAL_BOUCLE)]</a>
-        </B_compte_messages>
-        <span>commentaire(s)</span></span> <span class="metalink"></span> <span class="metalink"><a href="ecrire/articles.php3?id_article=#ID_ARTICLE">edit</a></span> <small class="metadata"><:par_auteur:>
+        
+      </div> <!-- itemhead -->
+      <div class="itemtext">
+        <p>#DESCRIPTIF</p>
+      </div>
+    </div>
+    </BOUCLE_articlesune>
+
+		
+    <BOUCLE_articles(ARTICLES) {doublons} {par date} {inverse} {0,5}>
+    <div id="post" class="item entry">
+      <div class="itemhead"> [
+        <div class="image"><a href="#URL_RUBRIQUE">(#LOGO_ARTICLE_RUBRIQUE|right||reduire_image{75,75})</a></div>
+        ]
+        <h3><a href="#URL_ARTICLE">#TITRE</a></h3>
+        <span class="metalink">
+	        <BOUCLE_compte_messages(FORUMS){id_article}{plat}>
+	        </BOUCLE_compte_messages>
+	        <a href="#URL_ARTICLE#forum">[(#TOTAL_BOUCLE)]</a> 
+	        <span>[(#TOTAL_BOUCLE|=={1}|?{commentaire,commentaires})]</span>
+					</B_compte_messages>
+        
+        </span> <span class="metalink"></span>  <small class="metadata"><:par_auteur:>
         <BOUCLE_auteurs_articles(AUTEURS) {id_article} {" "}>
         <a href="auteur.php3?id_auteur=#ID_AUTEUR">#NOM</a>
         </BOUCLE_auteurs_articles>
@@ -61,18 +77,12 @@
   </div> <!-- primary -->
   <div class="secondary">
 
-
-   <div class="sb_about">
-    <h2>Rendez-vous</h2>
-    <BOUCLE_agenda(ARTICLES) {par date_redac}  {titre_mot=agenda}>
-    <div id="post" class="item entry">
-      <div class="itemhead">
-        <h3>[(#DATE_REDAC|affdate_court)]:<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h3>
-      </div>
+    
+    <div class="sb_about">
+      <INCLURE(inclusions/inc_agenda.php3)>
     </div>
-    </BOUCLE_agenda>
 
-    </div>
+    
     <div class="sb_search">
       <h2>Search</h2>
       <div class="livesearchform">
