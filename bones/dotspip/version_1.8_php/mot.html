@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<!-- Bones Dotspip 1.8 -->
+<BOUCLE_nom_mot(MOTS) {id_mot}>
+<head>
+<title>[#NOM_SITE_SPIP] [(#TITRE|textebrut)]</title>
+<INCLURE(inclusions/inc_head.php)>
+<meta name="MSSmartTagsPreventParsing" content="TRUE" />
+<meta name="Description" content="[(#INTRODUCTION|textebrut)]" />
+<meta name="Robots" content="index,follow,all" />
+<meta name="Identifier-URL" content="#URL_SITE_SPIP" />
+<meta name="rating" content="General" />
+<meta name="revisit-after" content="15 days" />
+</head>
+<body>
+<div id="page">
+  <div id="top">
+    <h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+  </div>
+  <p id="prelude">
+    <INCLURE(inclusions/inc_menu-haut.php)>
+  </p>
+  <div id="main">
+    <div id="content">
+      <!-- Boucle sur la liste de billets -->
+      <div class="post">
+        <p class="day-date"><:mots_clefs:></p>
+        <h1>[&ldquo;&nbsp;(#TITRE|supprimer_numero)&nbsp;&rdquo;]</h1>
+        [<div class="image">(#LOGO_MOT|right||reduire_image{100,100})</div>]
+       [<p>(#DESCRIPTIF)</p>]
+        <!-- boucle article -->
+        <B_articles>
+        <h2><:articles:></h2>
+        <BOUCLE_articles(ARTICLES) {id_mot} {par date} {inverse}>
+        <ul>
+          <li> <a href="#URL_ARTICLE" [title="(#INTRODUCTION|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a> </li>
+        </ul>
+        </BOUCLE_articles>
+        </B_articles>
+        <!-- fin boucle article -->
+        <!-- boucle breve -->
+        <B_breves>
+        <h2><:breves:></h2>
+        <BOUCLE_breves(BREVES) {id_mot} {par date} {inverse}>
+        <ul>
+          <li> <a href="#URL_BREVE" [title="(#INTRODUCTION|textebrut|entites_html)"]>#TITRE</a> </li>
+        </ul>
+        </BOUCLE_breves>
+        </B_breves>
+        <!-- fin boucle breve -->
+        <!-- boucle site -->
+        <B_sites>
+        <h2><:sites_web:></h2>
+        <BOUCLE_sites(SITES) {id_mot} {par nom_site}>
+        <ul>
+          <li> <a href="site.php?id_syndic=#ID_SYNDIC" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#NOM_SITE</a></br>
+          </li>
+        </ul>
+        </BOUCLE_sites>
+        </B_sites>
+        <!-- fin boucle site -->
+      </div>
+    </div>
+  </div>
+  <div id="sidebar">
+    <div id="search">
+      <INCLURE(inclusions/inc_recherche.php)>
+    </div>
+    <div id="groupe">
+      <INCLURE(inclusions/inc_meme_groupe.php) {id_mot}>
+    </div>
+    <div id="breves">
+      <INCLURE(inclusions/inc_dernieres_breves.php)>
+    </div>
+    <div id="categories">
+      <INCLURE(inclusions/inc_rubriques.php)>
+    </div>
+    <div id="links">
+      <INCLURE(inclusions/inc_sites.php)>
+    </div>
+    <div id="syndicate">
+      <INCLURE(inclusions/inc_syndication.php)>
+    </div>
+  </div>
+  <p id="footer">
+    <INCLURE(inclusions/inc_pied_de_page.php)>
+  </p>
+</div>
+<!-- end #page -->
+</body>
+</BOUCLE_nom_mot>
+</html>

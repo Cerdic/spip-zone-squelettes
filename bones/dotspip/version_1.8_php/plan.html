@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<!-- bones dotspip 1.8 -->
+<INCLURE(inclusions/inc_head.php)>
+<title>[#NOM_SITE_SPIP] <:resume:></title>
+<meta name="MSSmartTagsPreventParsing" content="TRUE" />
+</head>
+<body>
+<div id="page">
+  <div id="top">
+    <h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+  </div>
+  <p id="prelude">
+    <INCLURE(inclusions/inc_menu-haut.php)>
+  </p>
+  <div id="main">
+    <div id="content">
+      <!-- Boucle sur la liste de billets -->
+      <div class="post">
+        <p class="day-date"><:plan_site:></p>
+        <BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
+        [
+        <div class="image">(#LOGO_RUBRIQUE|right||reduire_image{100,100})</div>
+        ]
+        <h2><a href="#URL_RUBRIQUE">#TITRE</a></h2>
+        <!-- Breves -->
+        <B_breves>
+        <h3> <:breves:></h3>
+        <ul>
+          <BOUCLE_breves(BREVES) {id_secteur} {par date} {inverse} {0,15}>
+          <li class="menu-item"> <i>[(#DATE|affdate_court)]</i>: <a href="#URL_BREVE"[title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></li>
+          </BOUCLE_breves>
+        </ul>
+        </B_breves>
+        <!-- Sur le Web -->
+        <B_sites>
+        <h3> <:sites:></h3>
+        <ul>
+          <BOUCLE_sites(SITES) {id_secteur} {par nom_site}>
+          <li><a href="site.php?id_syndic=#ID_SYNDIC"[title="(#DESCRIPTIF|textebrut|entites_html)"]>#NOM_SITE</a></li>
+          </BOUCLE_sites>
+        </ul>
+        </B_sites>
+        <!-- Articles et sous-rubriques -->
+        <B_articles_racine>
+        <h3> <:articles:></h3>
+        <ul>
+          <BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
+          <li><a href="#URL_ARTICLE">#TITRE</a></li>
+          </BOUCLE_articles_racine>
+        </ul>
+        </B_articles_racine>
+        <B_rubriques>
+        <ul>
+          <BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+          <li> <a href="#URL_RUBRIQUE">#TITRE</a>
+            <B_articles>
+            <ul>
+              <BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
+              <li><a href="#URL_ARTICLE">#TITRE</a></li>
+              </BOUCLE_articles>
+            </ul>
+            </B_articles>
+            <BOUCLE_sous_rubriques(BOUCLE_rubriques)>
+            </BOUCLE_sous_rubriques>
+          </li>
+          </BOUCLE_rubriques>
+        </ul>
+        </B_rubriques>
+        </BOUCLE_secteurs>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar">
+    <div id="search">
+      <INCLURE(inclusions/inc_recherche.php)>
+    </div>
+    <div id="breves">
+      <INCLURE(inclusions/inc_dernieres_breves.php)>
+    </div>
+    <div id="categories">
+      <INCLURE(inclusions/inc_rubriques.php)>
+    </div>
+    <div id="links">
+      <INCLURE(inclusions/inc_sites.php)>
+    </div>
+    <div id="syndicate">
+      <INCLURE(inclusions/inc_syndication.php)>
+    </div>
+  </div>
+  <p id="footer">
+    <INCLURE(inclusions/inc_pied_de_page.php)>
+  </p>
+</div>
+<!-- end #page -->
+</body>
+</html>
