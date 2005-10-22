@@ -99,7 +99,7 @@
     <div id="contentRight">
 
 		<BOUCLE_syndic_dec1(SYNDIC_ARTICLES){par date} {inverse}{0,600}> </BOUCLE_syndic_dec1>
-        <p class="centre"><?	
+        <p class="centre"><?php
 			global $debut_articles;
 			$total="#TOTAL_BOUCLE";	
 			for ($numero = 0; $numero < $total; $numero = $numero + 50){
@@ -116,11 +116,16 @@
 	  	<BOUCLE_syndic(SYNDIC_ARTICLES) {par date} {inverse}{debut_articles,50}>
         [<p><span class="header_date">[(#DATE|nom_jour)] le (#DATE|affdate|unique)</span></p>]
 	<p><span class="header">[(#DATE|affdate{'H:i'})] - <a href="#URL_ARTICLE"> [(#TITRE*)]</a></span>
-		[(#DESCRIPTIF|textebrut)] <a href="#URL_ARTICLE">(Lire la suite)</a><br />
-		par: <a>#LESAUTEURS</a> en provenance du carnet: <a href="#URL_SITE">#NOM_SITE</a> :: <BOUCLE_rss(SITES){id_syndic}><a href="#URL_SYNDIC">RSS</a></BOUCLE_rss></p>
+		[(#DESCRIPTIF|textebrut)]
+		[ &mdash; <em>(#TAGS)</em>]
+		<a href="#URL_ARTICLE">(Lire la suite)</a><br />
+		[par: <a>(#LESAUTEURS)</a>]
+		en provenance du carnet: <a href="#URL_SITE">#NOM_SITE</a>
+		::
+		<BOUCLE_rss(SITES){id_syndic}><a href="#URL_SYNDIC">RSS</a></BOUCLE_rss></p>
 		</BOUCLE_syndic>
 		<BOUCLE_syndic_dec2(SYNDIC_ARTICLES){par date} {inverse}{0,600}> </BOUCLE_syndic_dec2>
-        <p class="centre"><?	
+        <p class="centre"><?php
 			global $debut_articles;
 			$total="#TOTAL_BOUCLE";		
 			for ($numero = 0; $numero < $total; $numero = $numero + 50){
