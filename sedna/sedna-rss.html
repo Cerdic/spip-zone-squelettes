@@ -16,12 +16,13 @@
 		<language>#LANG</language>
 	<//B_titre>
 
-	<BOUCLE_20recents(SYNDIC_ARTICLES){contenu}{id_syndic?}{par date}{inverse}{0,20}{unique}>
+	<BOUCLE_20recents(SYNDIC_ARTICLES){contenu}{id_syndic?}{tri_sedna}{0,20}{unique}>
 		<item>
 		<title>[(#TITRE*|texte_backend)]</title>
 		<link>#URL_ARTICLE</link>
 		<date>#DATE</date>
-		<description>[(#DESCRIPTIF*|texte_backend)]</description>
+		<description>[(#DESCRIPTIF*|texte_backend)][
+		-- (#TAGS|texte_backend)]</description>
 		<author>[(#LESAUTEURS*|texte_backend)]</author>
 		<dc:date>[(#DATE|date_iso)]</dc:date>
 		<dc:format>text/html</dc:format>
@@ -30,6 +31,7 @@
 		<source url="(#URL_SYNDIC)">[(#NOM_SITE|texte_backend)]</source>
 ]</BOUCLE_source>
 		<dc:creator>[(#LESAUTEURS*|texte_backend)]</dc:creator>
+		[(#TAGS|microformat2enclosure)]
 		</item>
 	</BOUCLE_20recents>
 	<BOUCLE_tres_recents(SYNDIC_ARTICLES){contenu}{id_syndic?}{par date}{inverse}{age<3}{unique}>
@@ -37,7 +39,8 @@
 		<title>[(#TITRE*|texte_backend)]</title>
 		<link>#URL_ARTICLE</link>
 		<date>#DATE</date>
-		<description>[(#DESCRIPTIF*|texte_backend)]</description>
+		<description>[(#DESCRIPTIF*|texte_backend)][
+		-- (#TAGS|texte_backend)]</description>
 		<author>[(#LESAUTEURS*|texte_backend)]</author>
 		<dc:date>[(#DATE|date_iso)]</dc:date>
 		<dc:format>text/html</dc:format>
@@ -46,6 +49,7 @@
 		<source url="(#URL_SYNDIC)">[(#NOM_SITE|texte_backend)]</source>
 ]</BOUCLE_source2>
 		<dc:creator>[(#LESAUTEURS*|texte_backend)]</dc:creator>
+		[(#TAGS|microformat2enclosure)]
 		</item>
 	</BOUCLE_tres_recents>
 
