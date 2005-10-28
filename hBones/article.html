@@ -38,16 +38,24 @@
 
 <div class="atomentry" ID="post-#ID_ARTICLE">[(#REM) "atomentry" = bloc article]
 
-[(#REM) Le contenu de l'article (pas ses meta-donnees !)]
+[(#REM) class="content" => contenu de l'article (pas ses meta-donnees !)]
 
 
-	[<h2 class="content ????">(#SURTITRE)</h2>]
+	[<h2 class="content toptitle">(#SURTITRE)</h2>]
 
 	[<h1 class="content title">(#TITRE)</h1>]
 
-	[<h2 class="content ?????">(#SOUSTITRE)</h2>]
+	[(#REM) la date doit figurer dans un format lisible par une machine
+		<http://microformats.org/wiki/datetime-design-pattern>
+	]
+	[<abbr class="published"
+		title="[(#DATE|date_iso)]">
+		[(#DATE|nom_jour)] (#DATE|affdate), [(#DATE|heures):][(#DATE|minutes)]
+	</abbr>]
 
-	[<div class="content ????">(#CHAPO)</div>]
+	[<h2 class="content subtitle">(#SOUSTITRE)</h2>]
+
+	[<div class="content deck">(#CHAPO)</div>]
 
 	[
 		(#REM) class non encore definie par hatom : on invente ;
@@ -69,11 +77,32 @@
 	</B_auteurs>
 
 
-	[<div class="content ????">(#TEXTE)</div>]
+	[<div class="content text">(#TEXTE)</div>]
 
-	[<div class="content ????">(#NOTES)</div>]
 
-	[<div class="content ????">(#PS)</div>]
+	[
+		(#REM)
+		Le portfolio au format relEnclosure
+		<http://microformats.org/wiki/rel-enclosure>
+		(attention il manque #TITRE et #DESCRIPTION)
+	]
+	<B_portfolio>
+		<div class="enclosures">
+		<ul class="enclosures">
+	<BOUCLE_portfolio(DOCUMENTS){id_article}{mode=document}{doublons}>
+		<li>
+		<a[ href="(#URL_DOCUMENT|url_absolue)"]
+		rel="enclosure"[ type="(#MIME_TYPE)"][ length="(#TAILLE)"]
+		>[(#LOGO_DOCUMENT||inserer_attribut{title,#TITRE})]</a></li>
+	</BOUCLE_portfolio>
+		</ul>
+		</div>
+	</B_portfolio>
+
+
+	[<div class="content notes">(#NOTES)</div>]
+
+	[<div class="content postscriptum">(#PS)</div>]
 
 </div>[(#REM) /content]
 
