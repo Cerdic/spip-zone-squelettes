@@ -1,0 +1,102 @@
+[
+	(#REM) Ce squelette fait partie de hBones, un ensemble de squelettes
+	visant a implanter les microformats (http://microformats.org)
+
+]<BOUCLE_article(ARTICLES){id_article}>[
+
+	(#REM) Commencons par XHTML 1.0 strict, et voyons si on peut y arriver
+
+]<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">[
+
+	(#REM) Preciser la langue de l'article dans l'entete, ainsi que sa
+	direction generale d'ecriture
+
+]<html xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+[
+
+	(#REM) eviter toute balise dans le titre
+
+]	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[
+
+	(#REM) ici ajouter un CSS ?
+
+]
+</head>
+<body>
+[
+	(#REM) Un article peut etre considere comme un "blog-post"
+	<http://microformats.org/wiki/blog-post-brainstorming>
+
+	On se base sur le format (draft) hAtom
+	<http://microformats.org/wiki/hatom>
+]
+
+<div class="atomentry" ID="post-#ID_ARTICLE">[(#REM) "atomentry" = bloc article]
+
+[(#REM) Le contenu de l'article (pas ses meta-donnees !)]
+
+
+	[<h2 class="content ????">(#SURTITRE)</h2>]
+
+	[<h1 class="content title">(#TITRE)</h1>]
+
+	[<h2 class="content ?????">(#SOUSTITRE)</h2>]
+
+	[<div class="content ????">(#CHAPO)</div>]
+
+	[
+		(#REM) class non encore definie par hatom : on invente ;
+		(il y aura probablement un <ul><li>...</li></ul> s'il y a
+		plusieurs auteurs)
+		Le format d'un auteur est hCard
+		
+	]
+	<B_auteurs>
+		<div class="author">
+	<BOUCLE_auteurs(AUTEURS){id_article}>
+		<div class="vcard">
+			[(#LOGO_AUTEUR|left|#URL_AUTEUR|inserer_attribut{class,photo})]
+			[<a class="" href="[(#URL_AUTEUR|url_absolue)]">(#NOM)</a>]
+			[<a class="url fn" href="#URL_SITE">(#URL_SITE)</a>]
+		</div>
+	</BOUCLE_auteurs>
+		</div>
+	</B_auteurs>
+
+
+	[<div class="content ????">(#TEXTE)</div>]
+
+	[<div class="content ????">(#NOTES)</div>]
+
+	[<div class="content ????">(#PS)</div>]
+
+</div>[(#REM) /content]
+
+
+
+[
+
+	(#REM) Les mots-cles au format relTag
+	<http://microformats.org/wiki/reltag>
+
+]
+<B_tags>
+	<h4 class="tags">Tags:</h4>
+	<ul class="tags">
+<BOUCLE_tags(MOTS){id_article}>
+	<li><a[ href="(#URL_MOT|url_absolue)"] rel="tag">#TITRE</a></li>
+</BOUCLE_tags>
+	</ul>
+</B_tags>
+
+
+</div>[(#REM) /atomentry]
+
+</body>
+</html>
+</BOUCLE_article>
