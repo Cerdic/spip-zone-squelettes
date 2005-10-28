@@ -61,19 +61,24 @@
 		(#REM) class non encore definie par hatom : on invente ;
 		(il y aura probablement un <ul><li>...</li></ul> s'il y a
 		plusieurs auteurs)
-		Le format d'un auteur est hCard
-		
+		Un auteur contient un <address> au format hCard
+
+		Seul le lien interne (vers #URL_AUTEUR) est microformate
+		l'autre n'est la que pour affichage
 	]
 	<B_auteurs>
-		<div class="author">
+		<ul class="auteurs">
 	<BOUCLE_auteurs(AUTEURS){id_article}>
-		<div class="vcard">
+		<li>
 			[(#LOGO_AUTEUR|left|#URL_AUTEUR|inserer_attribut{class,photo})]
-			[<a class="" href="[(#URL_AUTEUR|url_absolue)]">(#NOM)</a>]
-			[<a class="url fn" href="#URL_SITE">(#URL_SITE)</a>]
-		</div>
+			[<address class="vcard"><a href="[(#URL_AUTEUR|url_absolue)]"
+				class="url fn">(#NOM)</a></address>]
+			[<div class="bio">(#BIO)</div>]
+			[<a href="#URL_SITE"
+				class="url homepage" rel="me">(#NOM_SITE|sinon{#URL_SITE})</a>]
+		</li>
 	</BOUCLE_auteurs>
-		</div>
+		</ul>
 	</B_auteurs>
 
 
