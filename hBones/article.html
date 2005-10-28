@@ -36,7 +36,7 @@
 	<http://microformats.org/wiki/hatom>
 ]
 
-<div class="atomentry" ID="post-#ID_ARTICLE">[(#REM) "atomentry" = bloc article]
+<div class="atomentry" id="post-#ID_ARTICLE">[(#REM) "atomentry" = bloc article]
 
 [(#REM) class="content" => contenu de l'article (pas ses meta-donnees !)]
 
@@ -61,24 +61,19 @@
 		(#REM) class non encore definie par hatom : on invente ;
 		(il y aura probablement un <ul><li>...</li></ul> s'il y a
 		plusieurs auteurs)
-		Un auteur contient un <address> au format hCard
-
-		Seul le lien interne (vers #URL_AUTEUR) est microformate
-		l'autre n'est la que pour affichage
+		Le format d'un auteur est hCard
+		
 	]
 	<B_auteurs>
-		<ul class="auteurs">
+		<div class="author">
 	<BOUCLE_auteurs(AUTEURS){id_article}>
-		<li>
+		<div class="vcard">
 			[(#LOGO_AUTEUR|left|#URL_AUTEUR|inserer_attribut{class,photo})]
-			[<address class="vcard"><a href="[(#URL_AUTEUR|url_absolue)]"
-				class="url fn">(#NOM)</a></address>]
-			[<div class="bio">(#BIO)</div>]
-			[<a href="#URL_SITE"
-				class="url homepage" rel="me">(#NOM_SITE|sinon{#URL_SITE})</a>]
-		</li>
+			[<a class="" href="[(#URL_AUTEUR|url_absolue)]">(#NOM)</a>]
+			[<a class="url fn" href="#URL_SITE">(#URL_SITE)</a>]
+		</div>
 	</BOUCLE_auteurs>
-		</ul>
+		</div>
 	</B_auteurs>
 
 
@@ -109,7 +104,6 @@
 
 	[<div class="content postscriptum">(#PS)</div>]
 
-</div>[(#REM) /content]
 
 
 
