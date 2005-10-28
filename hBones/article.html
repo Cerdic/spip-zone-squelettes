@@ -36,7 +36,9 @@
 	<http://microformats.org/wiki/hatom>
 ]
 
-<div class="atomentry" id="post-#ID_ARTICLE">[(#REM) "atomentry" = bloc article]
+
+[(#REM) "atomentry" = bloc article]
+<div class="atomentry"[ id="(#URL_ARTICLE|url_absolue)"]>
 
 [(#REM) class="content" => contenu de l'article (pas ses meta-donnees !)]
 
@@ -58,11 +60,9 @@
 	[<div class="content deck">(#CHAPO)</div>]
 
 	[
-		(#REM) class non encore definie par hatom : on invente ;
-		(il y aura probablement un <ul><li>...</li></ul> s'il y a
-		plusieurs auteurs)
-		Le format d'un auteur est hCard
-		
+		(#REM) class non encore definie par hatom
+		Le format d'un auteur est base sur hCard
+		<http://microformats.org/wiki/hcard>
 	]
 	<B_auteurs>
 		<ul class="auteurs">
@@ -89,7 +89,7 @@
 		(attention il manque #TITRE et #DESCRIPTION)
 	]
 	<B_portfolio>
-		<div class="enclosures">
+		<h4 class="enclosures"><:enclosures:></h4>
 		<ul class="enclosures">
 	<BOUCLE_portfolio(DOCUMENTS){id_article}{mode=document}{doublons}>
 		<li>
@@ -98,7 +98,6 @@
 		>[(#LOGO_DOCUMENT||inserer_attribut{title,#TITRE})]</a></li>
 	</BOUCLE_portfolio>
 		</ul>
-		</div>
 	</B_portfolio>
 
 
@@ -116,13 +115,33 @@
 
 ]
 <B_tags>
-	<h4 class="tags">Tags:</h4>
+	<h4 class="tags"><:tags:></h4>
 	<ul class="tags">
 <BOUCLE_tags(MOTS){id_article}>
 	<li><a[ href="(#URL_MOT|url_absolue)"] rel="tag">#TITRE</a></li>
 </BOUCLE_tags>
 	</ul>
 </B_tags>
+
+
+[
+
+	(#REM) Les traduction au format html4.01
+	<http://microformats.org/wiki/reltag>
+
+]
+<B_traductions>
+	<h4 class="traductions"><:traductions:></h4>
+	<ul class="traductions">
+<BOUCLE_traductions(ARTICLES){traduction}{exclus}>
+	<li><a[ href="(#URL_ARTICLE|url_absolue)"]
+		rel="alternate" hreflang="#LANG"[
+		title="(#TITRE|entites_html)"]><span
+		lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">[(#LANG|traduire_nom_langue)]</span></a></li>
+</BOUCLE_traductions>
+	</ul>
+</B_traductions>
+
 
 
 </div>[(#REM) /atomentry]
