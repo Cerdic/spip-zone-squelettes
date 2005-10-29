@@ -143,8 +143,32 @@
 </B_traductions>
 
 
-
 </div>[(#REM) /atomentry]
+
+
+[
+
+	(#REM) Les forums sont bases sur le format hComment
+	<http://microformats.org/wiki/hcomment>
+	
+	TODO: gerer les reponses aux reponses...
+
+]
+<BOUCLE_threads(FORUMS){id_article}{par date}{inverse}{0,10}>
+<div class="hcomment"[ id="(#URL_FORUM|url_absolue)"]>
+<cite class="poster vcard">
+<a class="url fn"[ href="(#URL_SITE)"] rel="external nofollow">[(#NOM|sinon{#EMAIL}|sinon{#IP})]</a>
+</cite>
+<div class="summary"><a rel="self bookmark"[
+	href="(#URL_FORUM|url_absolue)"]>#TITRE</a></div>
+<div class="description">
+#TEXTE
+</div>
+<a class="dtposted"[ title="(#DATE|date_iso)"]
+>[(#DATE|affdate)] [(#DATE|heures)]:[(#DATE|minutes)]</a>
+</div>
+</BOUCLE_threads>
+
 
 </body>
 </html>
