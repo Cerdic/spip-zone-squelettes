@@ -6,7 +6,12 @@ Le projet est de monter des squelettes au code XHTML minimaliste respectant les 
 Chacun peut participer, en gardant à l'esprit qu'il s'agit d'y aller très doucement. Chaque ajout, notamment, doit être justifié par les microformats (avec une référence précise aux éléments introduits).
 
 
-TODO: passer tout ça en mode "noisettes", avec une structure ou chaque noisette correspond à un composant microformat
+TODO:
+
+* les forums (gros morceau), au format hComment
+	<http://microformats.org/wiki/hcomment>
+
+* passer tout ça en mode "noisettes", avec une structure ou chaque noisette correspond à un composant microformat
 
 	article.html
 		<INCLURE(article-header.html)>
