@@ -11,6 +11,50 @@
 <meta name="rating" content="General" />
 <meta name="revisit-after" content="15 days" />
 <INCLURE(inclusions/inc_head.php3){id_article}>
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/js/prototype.lite.js"></script><script type="text/javascript" src="#DOSSIER_SQUELETTE/js/moo.fx.js"></script>
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/js/moo.fx.pack.js"></script>
+<script type="text/javascript">
+<!--
+		
+window.onload = function() {
+    var elements = new Array('current_image','container2');    resize = new fx.Resize('current_image', {duration: 400});
+}
+
+function showpic (parent,url,src,w,h) {
+// div : id de la div parente
+// url : lien vers l'image complete
+// src : source de l'image a afficher
+// w et h sont la taille de l'image à afficher
+
+var block = document.createElement('div');
+var link = document.createElement('a');
+var img = document.createElement('img');
+var container = document.getElementById(parent);
+
+container.style.marginLeft = 'auto';
+container.style.marginRight = 'auto';
+
+resize.custom(h,w);
+
+link.href = url;
+img.src = src;
+img.style.border = 0;
+
+link.appendChild(img);
+block.appendChild(link);
+
+if (document.getElementById) {
+    if (container.hasChildNodes()) {
+        container.replaceChild(block, container.firstChild);
+    }
+    else container.appendChild(block);
+    return false;
+ } else {
+  return true;
+ }
+}
+//-->
+</script>
 </head>
 <body>
 <div id="page">
@@ -65,8 +109,8 @@
 
         <div class="center">
           <!-- boucle image -->
-          <BOUCLE_afficher_document(DOCUMENTS){id_document}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
-          <hr />
+<div id="current_image">
+<BOUCLE_afficher_document(DOCUMENTS){id_document}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
           [
           <h3>(#TITRE)</h3>
           ] [
@@ -74,12 +118,12 @@
           ] [
           <div> <a href="#URL_DOCUMENT">(#FICHIER|reduire_image{500}) </a> </div>
           ]
-          </BOUCLE_afficher_document>
+</BOUCLE_afficher_document>
+</div>
           <B_documents_portfolio>
           <div>
-            <hr />
             <BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
-            [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT">(#LOGO_DOCUMENT{0,60})</a>] [
+            [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT" onclick="return(showpic('current_image','#URL_DOCUMENT','[(#FICHIER|reduire_image{500}|extraire_attribut{src})]',[(#FICHIER|reduire_image{500}|extraire_attribut{width})],[(#FICHIER|reduire_image{500}|extraire_attribut{height})]));">(#LOGO_DOCUMENT{0,60})</a>] [
               <div style="clear: both;"><b>(#TITRE)</b></div>
               ][
               <div style="clear: both;">(#DESCRIPTIF)</div>
