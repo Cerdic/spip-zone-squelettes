@@ -3,7 +3,7 @@
 
 
 
-<BOUCLE_commentaires(FORUMS) {id_forum}>
+<BOUCLE_commentaires_racine(FORUMS) {id_forum}>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
 <head>
 	<title>[#NOM_SITE_SPIP] <:poster_message:></title>
@@ -20,9 +20,23 @@
 	
 	<div id="contenu_principal">
 
+		<BOUCLE_commentaires_article(ARTICLES) {id_article}>
+			<INCLURE(inclusions/inc_article_lecture_apercu.php3) {id_article}>
+		</BOUCLE_commentaires_article>
+
+		<div class="padding_bas_25px">
 		<h1 class="titre_article">#TITRE</h1>
 		<h5>[(#DATE|affdate{'d.m.Y'}) | ] <a href="mailto:[(#EMAIL|antispam)]">[(#NOM)]</a></h5>
 		[<p>(#TEXTE|smileys)</p>]
+		</div> [(#REM) padding_bas_25px ]
+
+		<BOUCLE_commentaires_reponses(FORUMS) {id_parent}>
+			<div class="padding_bas_25px">
+			<h1 class="titre_article">#TITRE</h1>
+			<h5>[(#DATE|affdate{'d.m.Y'}) | ] <a href="mailto:[(#EMAIL|antispam)]">[(#NOM)]</a></h5>
+			[<p>(#TEXTE|smileys)</p>]
+			</div> [(#REM) padding_bas_25px ]
+		</BOUCLE_commentaires_reponses>
 
 
 <INCLURE(inclusions/inc_article_poster.php3) {id_article} {id_forum}>
@@ -41,7 +55,7 @@
 
 </body>
 </html>
-</BOUCLE_commentaires>
+</BOUCLE_commentaires_racine>
 
 
 

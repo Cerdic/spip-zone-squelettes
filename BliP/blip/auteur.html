@@ -1,12 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
 
 <BOUCLE_auteur_principal(AUTEURS) {id_auteur}>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+[(#REM) Affiche la présentation d'un auteur ] 
+
 <head>
 	<title>[#NOM_SITE_SPIP] [(#NOM|textebrut)]</title>
-	
 	<B_article_parametrage_balises_meta>
 	<BOUCLE_article_parametrage_balises_meta(ARTICLES) {titre_mot=annonce_auteur} {par date} {inverse} {0,1}>
 		<INCLURE(inclusions/inc_structure_balises_meta.php3) {id_article}>
@@ -14,62 +14,25 @@
 	</B_article_parametrage_balises_meta>
 		<INCLURE(inclusions/inc_structure_balises_meta.php3)>
 	<//B_article_parametrage_balises_meta>
-
 </head>
 
 <body id="articles"><a name="hautdepage"></a>
 
 <div id="page">
 
-<?php
-	$titre = " &gt; #NOM" ;
-?>
-
-<INCLURE(inclusions/inc_structure_entete.php3) {id_auteur}>	
+	<INCLURE(inclusions/inc_structure_entete.php3) {id_auteur}>	
 	
 	<div id="contenu_principal">
-		
-		<h1 class="titre_article"><a href="auteur.php3?id_auteur=#ID_AUTEUR">#NOM</a></h1>
-
-		<div class="padding_haut_10px">
-		<div class="document_joint_logo">
-			#LOGO_AUTEUR
-		</div><!-- fin document_joint_logo -->
-		[(#BIO|smileys)]
-		</div><!-- fin padding_haut_10px -->
-
-		<div class="padding_haut_25px">
-		<h1 class="titre_article"><a name="contact"></a><:envoyer_message:></h1>
-		<div class="padding_haut_10px">
-		<fieldset class='spip_encadrer'>#FORMULAIRE_ECRIRE_AUTEUR</fieldset>
-		</div><!-- fin padding_haut_10px -->
-		</div><!-- fin padding_haut_25px -->
-
-		<BOUCLE_articles_invisibles(ARTICLES) {doublons} {titre_mot==invisible} >
-		</BOUCLE_articles_invisibles>
-
-		<B_articles_auteur>
-			<div class="padding_haut_25px">
-			<h1 class="titre_article"><:articles_auteur:></h1>
-		<ul>
-		<BOUCLE_articles_auteur(ARTICLES) {doublons} {id_auteur} {par date} {inverse}>
-			<li>[(#SURTITRE) ]<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>[ (#SOUSTITRE)]</li>
-		</BOUCLE_articles_auteur>
-		</ul>
-			</div><!-- fin padding_haut_25px -->
-		</B_articles_auteur>
-
-	</div><!-- fin contenu_principal -->
+		<INCLURE(inclusions/inc_auteur_lecture.php3) {id_auteur}>
+	</div> [(#REM) fin contenu_principal ]
 
 	<div id="barre_laterale">
-	
 		<INCLURE(inclusions/inc_structure_barre_laterale.php3)>
-		
-	</div><!-- fin barre_laterale -->
+	</div> [(#REM) fin barre_laterale ]
 	
-<INCLURE(inclusions/inc_structure_pied_de_page.php3)>
+	<INCLURE(inclusions/inc_structure_pied_de_page.php3)>
 
-</div><!-- fin page -->
+</div> [(#REM) fin page ]
 
 </body>
 </html>
@@ -77,10 +40,11 @@
 </BOUCLE_auteur_principal>
 
 
+
+[(#REM) Affiche la liste des auteurs : se produit si aucune des boucles précédentes n'a été utilisée ] 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
 <head>
 	<title>[#NOM_SITE_SPIP] Les auteurs du site</title>
-	
 	<B_article_parametrage_balises_meta_bis>
 	<BOUCLE_article_parametrage_balises_meta_bis(ARTICLES) {titre_mot=annonce_auteurs} {par date} {inverse} {0,1}>
 		<INCLURE(inclusions/inc_structure_balises_meta.php3) {id_article}>
@@ -88,51 +52,30 @@
 	</B_article_parametrage_balises_meta_bis>
 		<INCLURE(inclusions/inc_structure_balises_meta.php3)>
 	<//B_article_parametrage_balises_meta_bis>
-
 </head>
 
 <body id="articles"><a name="hautdepage"></a>
 
 <div id="page">
 
-<?php
-	$titre = " &gt; Les auteurs du site" ;
-?>
-
-<INCLURE(inclusions/inc_structure_entete.php3) {type_page=auteurs}>	
+	<INCLURE(inclusions/inc_structure_entete.php3) {type_page=auteurs}>	
 
 	<div id="contenu_principal">
-				
 		<INCLURE(inclusions/inc_information_navigation.php3) {id_article} {info_navigation=annonce_auteurs}>	
-
-		<h1 class="navigation"><a name="contact"></a>Auteurs du site</h1>
-
-		<BOUCLE_auteur_collectif(AUTEURS)>
-
-			<div class="padding_haut_25px">
-			<h1><a href="auteur.php3?id_auteur=#ID_AUTEUR">#NOM</a></h1>
-			<div class="document_joint_logo">
-			#LOGO_AUTEUR
-			</div><!-- fin document_joint_logo -->
-			[(#BIO|smileys)]
-			</div><!-- fin padding_haut_25px -->
-
-		</BOUCLE_auteur_collectif>
-
-	</div><!-- fin contenu_principal -->
+		<INCLURE(inclusions/inc_auteur_liste.php3)>
+	</div> [(#REM) fin contenu_principal ]
 
 	<div id="barre_laterale">
-		
 		<INCLURE(inclusions/inc_structure_barre_laterale.php3)>
-		
-	</div><!-- fin barre_laterale -->
+	</div> [(#REM) fin barre_laterale ]
 	
-<INCLURE(inclusions/inc_structure_pied_de_page.php3)>
+	<INCLURE(inclusions/inc_structure_pied_de_page.php3)>
 
-</div><!-- fin page -->
+</div> [(#REM) fin page ]
 
 </body>
 </html>
+
 
 
 <//B_auteur_principal>
