@@ -1,0 +1,48 @@
+<BOUCLE_auteur_principal(AUTEURS) {id_auteur}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[#NOM_SITE_SPIP] [(#NOM|textebrut)]</title>
+<!-- hCARD DEMO  1.0-->
+</head>
+<body>
+    <div id="auteur">      <br />
+<!-- début hcard-->
+
+<div class="vcard"> <img style="float:left; margin-right:4px ; margin-left:4px; margin-top:4px" src="#URL_SITE_SPIP/IMG/[(#LOGO_AUTEUR_RUBRIQUE|fichier)]" alt="photo" class="photo"/> <a class="url fn" href="#URL_SITE_SPIP/auteur.php3?id_auteur=#ID_AUTEUR">[(#NOM|titre_homogene)]</a>
+  <div class="org">#NOM_SITE_SPIP</div>
+  <a class="email" href="mailto:#EMAIL"></a>
+  <div class="adr">#BIO</div>
+  <div class="tel">#PGP</div>
+ 
+  <a  href="http://suda.co.uk/projects/X2V/get-vcard.php?uri=#URL_SITE_SPIP/auteur.php3?id_auteur=#ID_AUTEUR" > <img style="float:left; margin-left:4px" src="bones/images/vcard.png" alt="vcards" /><em>"vcard" de #NOM</em> </a>     <br />
+<a  href="http://www.microformats.org/wiki/hcard" >hcard</a> </div>
+<!-- fin hcard-->
+
+      <h3><:envoyer_message:></h3>
+      [(#FORMULAIRE_ECRIRE_AUTEUR)] </div>
+    
+    
+    <div id="articles-auteur">
+      <h3><:articles_auteur:></h3>
+      <BOUCLE_articles(ARTICLES) {id_auteur} {par titre}>
+      <h2><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h2>
+      [(#DATE|nom_jour)] [(#DATE|affdate)]
+      <B_auteurs>
+<:par_auteur:>
+      <BOUCLE_auteurs(AUTEURS) {id_article} {", "}>
+      #NOM
+      </BOUCLE_auteurs>
+      <br />
+      </BOUCLE_articles>
+    </div>
+   
+  </div>
+  
+  
+
+</body>
+</BOUCLE_auteur_principal>
+<:aucun_auteur:>
+<//B_auteur_principal>
+</html>
