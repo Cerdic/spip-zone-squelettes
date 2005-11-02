@@ -1,22 +1,26 @@
 <BOUCLE_compte_messages(FORUMS){id_article}{plat}>
 </BOUCLE_compte_messages>
-
-<h4>[(#TOTAL_BOUCLE) commentaire(s)] <strong>|</strong></h4>
-  [<h5 style="display:inline"><a href="forum.php3?(#PARAMETRES_FORUM)" name="forum" id="forum"><:nouveau_commentaire:></a></h5>]
+  <h4>[(#TOTAL_BOUCLE) commentaire(s)] </h4>
+  [<h5 id="submitComment"><a href="forum.php3?(#PARAMETRES_FORUM)" name="forum" id="forum" onclick="return !dspForm();"><:nouveau_commentaire:></a></h5>]
 </B_compte_messages>
-  [<h5 style="text-align:center"><a href="forum.php3?(#PARAMETRES_FORUM)" name="forum" id="forum"><:nouveau_commentaire:></a></h5>]
+  [<h5 id="submitComment"><a href="forum.php3?(#PARAMETRES_FORUM)" name="forum" id="forum" onclick="return !dspForm();"><:nouveau_commentaire:></a></h5>]
+  <div id='formulaireForum'>
+  </div>
 <//B_compte_messages>
+  
 <B_forums>
-<BOUCLE_forums(FORUMS){id_article}{par date}{inverse}>
 <ol class="commentlist" id="commentlist">
+<li id='formulaireForum'>
+</li>		
+<BOUCLE_forums(FORUMS){id_article}{par date}{inverse}>
   <li class=" item" id="comment"> <a name="forum#ID_FORUM" id="forum#ID_FORUM"></a> #TITRE [(#DATE|affdate)][, <:par_auteur:> <a href="mailto:[(#EMAIL|entites_html)]">(#NOM)</a>] [<strong><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></strong>]
     <div class="itemtext">
       <p>#TEXTE</p>
     </div>
-  </li>
   [
-  <h5 align="right"><a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_article:></a></h5>
+  <h5 align="right"><a href="forum.php3?(#PARAMETRES_FORUM)"  onclick="return !dspForm();"><:repondre_article:></a></h5>
   ]
+  </li>
   <B_forums_fils>
   <BOUCLE_forums_fils(FORUMS){id_parent}{par date}{inverse}>
   <li class=" item" id="comment"> <a name="forum#ID_FORUM" id="forum#ID_FORUM"></a> #TITRE [(#DATE|affdate)][, <:par_auteur:> <a href="mailto:[(#EMAIL|entites_html)]">(#NOM)</a>] [<strong><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></strong>]
@@ -24,14 +28,14 @@
     <div class="itemtext">
       <p>#TEXTE</p>
     </div>
-  </li>
   [
-   <h5 align="right"><a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_article:></a></h5>
+  <h5 align="right"><a href="forum.php3?(#PARAMETRES_FORUM)"  onclick="return !dspForm();"><:repondre_article:></a></h5>
   ]
+  </li>
 <BOUCLE_Forums_Boucle(boucle_forums_fils)>
 </BOUCLE_Forums_Boucle>
 </BOUCLE_forums_fils>
 </B_forums_fils>
 </BOUCLE_forums>
-</B_forums>
 </ol>
+</B_forums>

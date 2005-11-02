@@ -11,48 +11,87 @@
 <meta name="rating" content="General" />
 <meta name="revisit-after" content="15 days" />
 <INCLURE(inclusions/inc_head.php3){id_article}>
-<script type="text/javascript" src="#DOSSIER_SQUELETTE/js/prototype.lite.js"></script><script type="text/javascript" src="#DOSSIER_SQUELETTE/js/moo.fx.js"></script>
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/js/prototype.js"></script><script type="text/javascript" src="#DOSSIER_SQUELETTE/js/moo.fx.js"></script>
 <script type="text/javascript" src="#DOSSIER_SQUELETTE/js/moo.fx.pack.js"></script>
 <script type="text/javascript">
 <!--
 		
 window.onload = function() {
-    var elements = new Array('current_image','container2');    resize = new fx.Resize('current_image', {duration: 400});
+    resize = new fx.Resize('current_image', {duration: 500});
+	$('submitComment').o = new fx.Opacity('submitComment', {duration: 500});
 }
 
 function showpic (parent,url,src,w,h) {
-// div : id de la div parente
-// url : lien vers l'image complete
-// src : source de l'image a afficher
-// w et h sont la taille de l'image Ã  afficher
+    // div : id de la div parente
+    // url : lien vers l'image complete
+    // src : source de l'image a afficher
+    // w et h sont la taille de l'image a afficher
 
-var block = document.createElement('div');
-var link = document.createElement('a');
-var img = document.createElement('img');
-var container = document.getElementById(parent);
+    var block = document.createElement('div');
+    var link = document.createElement('a');
+    var img = document.createElement('img');
+    var container = document.getElementById(parent);
 
-container.style.marginLeft = 'auto';
-container.style.marginRight = 'auto';
+    container.style.marginLeft = 'auto';
+    container.style.marginRight = 'auto';
 
-resize.custom(h,w);
+    resize.custom(h,w);
 
-link.href = url;
-img.src = src;
-img.style.border = 0;
+    link.href = url;
+    img.src = src;
+    img.style.border = 0;
 
-link.appendChild(img);
-block.appendChild(link);
+    link.appendChild(img);
+    block.appendChild(link);
 
-if (document.getElementById) {
-    if (container.hasChildNodes()) {
-        container.replaceChild(block, container.firstChild);
-    }
-    else container.appendChild(block);
-    return false;
- } else {
-  return true;
- }
+    if (document.getElementById) {
+        if (container.hasChildNodes()) {
+            container.replaceChild(block, container.firstChild);
+        }
+        else container.appendChild(block);
+        return(true);
+     } else return(false);
 }
+
+// recupere le formulaire via une requete AJAX
+function dspForm (titre) {
+	var url = "[(#DOSSIER_SQUELETTE)]/ajax_formulaire_commentaire.php";
+	var myparameters = 'titre=' + encodeURIComponent('[(#TITRE)]');
+	myparameters += '&id_article=[(#ID_ARTICLE)]';
+	myparameters += "&hash=" + '<?php echo($GLOBALS["auteur_session"]["hash_env"]); ?>';
+	var myAjax = new Ajax.Request(
+					url, 
+					{method: 'get', parameters: myparameters, onComplete: showResponse});
+    return myAjax;
+}
+
+// affiche le formulaire -- retourné sous forme HTML
+function showResponse(contenuFormulaire) {
+	$('formulaireForum').innerHTML = contenuFormulaire.responseText;
+	$('submitComment').o.toggle();
+}
+
+
+function launchPreview() {
+	var message = Form.Element.serialize($('commentaire'));
+	message += '&' + Form.Element.serialize($('titre'));
+	message += '&' + Form.Element.serialize($('auteur'));
+	message += '&' + Form.Element.serialize($('email_auteur'));
+	var url = "squel_party/ajax_transform_message.php";
+	var myAjax = new Ajax.Request(
+			url, 
+			{method: 'get', parameters: message, onComplete: showPreview} 
+	);
+	return myAjax;
+}
+
+function showPreview(response) {
+	if (!$("preview").o) $("preview").o = new fx.Opacity("preview");
+	$("preview").innerHTML = response.responseText;
+	$("preview").o.hide();
+	$("preview").o.toggle();
+}
+
 //-->
 </script>
 </head>
@@ -123,7 +162,7 @@ if (document.getElementById) {
           <B_documents_portfolio>
           <div>
             <BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
-            [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT" onclick="return(showpic('current_image','#URL_DOCUMENT','[(#FICHIER|reduire_image{500}|extraire_attribut{src})]',[(#FICHIER|reduire_image{500}|extraire_attribut{width})],[(#FICHIER|reduire_image{500}|extraire_attribut{height})]));">(#LOGO_DOCUMENT{0,60})</a>] [
+            [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT" onclick="return !showpic('current_image','#URL_DOCUMENT','[(#FICHIER|reduire_image{500}|extraire_attribut{src})]',[(#FICHIER|reduire_image{500}|extraire_attribut{width})],[(#FICHIER|reduire_image{500}|extraire_attribut{height})]);">(#LOGO_DOCUMENT{0,60})</a>] [
               <div style="clear: both;"><b>(#TITRE)</b></div>
               ][
               <div style="clear: both;">(#DESCRIPTIF)</div>
