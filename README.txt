@@ -1,6 +1,6 @@
 
 Ce repertoire contient tous les squelettes de site developpes de maniere
-collaborative sur spip-trac, a l'exception des "squelettes de formulaire".
+collaborative sur la zone, a l'exception des "squelettes de formulaire" (à placer dans _contribs_/_formulaires/.
 
 Pas de sous-repertoire - les squelettes sont eventuellement prefixes par
 un nom de categorie (exemple : blog_spipclear/)
