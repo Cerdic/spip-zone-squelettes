@@ -39,14 +39,21 @@
 		else $link->AddVar($parametre, $valeur);
 		return quote_amp($link->getUrl());
 	}*/
+
+	function generer_url_base($fond, $delais = 0) {
+		$url = "page.php3";
+		$url = parametre_url($url, 'fond', $fond);
+		$url = parametre_url($url, 'delais', $delais);
+		if ($fond == 'rss' || $fond == 'atom') $url = parametre_url($url, 'flag_preserver', 1);
+		return $url;
+	}
 	
 	function generer_url_rss($id, $type = 'rubrique') {
-		if($type == 'article') return "rss.php?id_article=$id";
-		return "rss.php?id_rubrique=$id";
+		return parametre_url(generer_url_base('rss'), "id_".$type, $id_secteur);
 	}
 
 	function generer_url_atom($id_secteur) {
-		return "atom.php?id_rubrique=$id_secteur";
+		return parametre_url(generer_url_base('atom'), 'id_rubrique', $id_secteur);
 	}
 
 	//
