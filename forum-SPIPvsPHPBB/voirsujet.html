@@ -11,7 +11,7 @@
  $etat = $auteur_session['statut'];
  ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<BOUCLE_sujet_principal(FORUMS){id_forum}>
+<BOUCLE_sujet_principal(FORUMS){id_forum}{doublons}>
 <html lang="#LANG">
 <head>
 <title>[#NOM_SITE_SPIP] - #TITRE</title>
@@ -46,47 +46,21 @@
 		<!--Déterminer si le forum est fermé-->
 		<BOUCLE_etat(ARTICLES){id_article}{titre_mot=Fermé}>
 		<?php $sujet_clos=1 ?>
-		<p class="nav"><BOUCLE_article_cdfca(ARTICLES){id_article}><BOUCLE_chemindeferca(HIERARCHIE){id_article}{" -&gt; "}><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></BOUCLE_chemindeferca> -&gt; <a href="#URL_ARTICLE">[(#TITRE|supprimer_numero) (<:phpbb:forum_ferme:>)]</a></BOUCLE_article_cdfca></p>
+		<p class="nav"><BOUCLE_article_cdfca(ARTICLES){id_article}>
+		<BOUCLE_chemindeferca(HIERARCHIE){id_article}{0,1}{" -&gt; "}><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></BOUCLE_chemindeferca> -&gt; <a href="#URL_ARTICLE">
+		[(#TITRE|supprimer_numero) (<:phpbb:forum_ferme:>)]</a></BOUCLE_article_cdfca></p>
 		<hr class="clr" /> <!-- Permet l'affichage correctement pour certaines versions de safari -->
 		<table class="spipforum">
 		</BOUCLE_etat>
-		<!-- Déterminer si un message cloture la discussion ? -->
-		<BOUCLE_sujet_ferme(FORUMS){id_forum}{titre_mot=Fermé}{doublons}>
-		<?php if($sujet_clos==0) { ?>
-		<p class="nav"><BOUCLE_article_cdfc1(ARTICLES){id_article}><BOUCLE_chemindeferc1(HIERARCHIE){id_article}{" -&gt; "}><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></BOUCLE_chemindeferc1> -&gt; <a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></BOUCLE_article_cdfc1></p>
+		
 
-		<hr class="clr" /> <!-- Permet l'affichage correctement pour certaines versions de safari -->
-		<table class="spipforum"><?php } ?>
-		<?php $sujet_clos=1 ?>
-			<thead>
-			<tr class="clos">
-				<th class="tautvs"><:phpbb:sujet_auteur:></th>
-		  		<th class="tmsgvs"><:phpbb:ferme:></th>
-			</tr>
-			</thead>
-			<tr class="clos">
-				<td  class="autvs" id="forum#ID_FORUM"><B_auteurpc1><BOUCLE_auteurpc1(AUTEURS){id_auteur}{tout}><p><a href="./profil_BB.php3?id_auteur=#ID_AUTEUR&id_article=#ID_ARTICLE">#NOM<br/>[(#NOM|afficher_avatar)]</a></p></BOUCLE_auteurpc1></B_auteurpc1><p><a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{"Anonyme"})]</a></p><//B_auteurpc1></td>
-  				<td class="tabvs">
-					<ul class="titrevs">
-	        				<li class="tdatevs"><:phpbb:message_date:>: [(#DATE|nom_jour)] [(#DATE|affdate),] [(#DATE|heures)]:[(#DATE|minutes)]</li>
-	        				<li class="ttitrevs"><:phpbb:message_sujet:>: #TITRE</li>
-	        			</ul>
-					<div class="txtvs">
-						[(#TEXTE|smileys)]
-					</div>
-				</td>
-			</tr>
-			<tr class="clos"> 
-				<td class="retourvs"><a href="#top"><:phpbb:revenir_haut:></a></td>
-				<td class="videvs">&nbsp;</td>
-			</tr>
- 		</BOUCLE_sujet_ferme>
+		<!-- le message qui cloture la discussion -->
+		<BOUCLE_reponse_ferme(FORUMS){id_thread}{plat}{titre_mot=Fermé}{doublons}>
 
-		<!-- Si ce n'est toi c'est donc ton fils -->
-		<BOUCLE_reponse(FORUMS){id_parent}>
-		<BOUCLE_reponse_ferme(FORUMS){id_forum}{titre_mot=Fermé}{doublons}>
 		<?php if($sujet_clos==0) { ?>
-		<p class="nav"><BOUCLE_article_cdfc2(ARTICLES){id_article}><BOUCLE_chemindeferc2(HIERARCHIE){id_article}{" -&gt; "}><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></BOUCLE_chemindeferc2> -&gt; <a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></BOUCLE_article_cdfc2></p>
+		<p class="nav"><BOUCLE_article_cdfc2(ARTICLES){id_article}>
+		<BOUCLE_chemindeferc2(HIERARCHIE){id_article}{0,1}{" -&gt; "}><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></BOUCLE_chemindeferc2> -&gt; 
+		<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></BOUCLE_article_cdfc2></p>
 		<hr class="clr" /> <!-- Permet l'affichage correctement pour certaines versions de safari -->
 		<table class="spipforum"><?php } ?>
 		<?php $sujet_clos=1 ?>
@@ -97,7 +71,14 @@
 			</tr>
 			</thead>
 			<tr class="clos">
-				<td  class="autvs" id="forum#ID_FORUM"><B_auteurpc2><BOUCLE_auteurpc2(AUTEURS){id_auteur}{tout}><p><a href="./profil_BB.php3?id_auteur=#ID_AUTEUR&id_article=#ID_ARTICLE">#NOM<br/>[(#NOM|afficher_avatar)]</a></p></BOUCLE_auteurpc2></B_auteurpc2><p><a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{"Anonyme"})]</a></p><//B_auteurpc2></td>
+				<td  class="autvs" id="forum#ID_FORUM"><B_auteurpc2><BOUCLE_auteurpc2(AUTEURS){id_auteur}{tout}><p><a href="./profil_BB.php3?id_auteur=#ID_AUTEUR&id_article=#ID_ARTICLE">#NOM<br/>[(#NOM|afficher_avatar)]</a></p>
+				</BOUCLE_auteurpc2>
+				
+				<BOUCLE_modo(AUTEURS){id_article}>[<p>(#ID_AUTEUR|=={#_auteurpc2:ID_AUTEUR}|?{'(Modérateur)',''})</p>]</BOUCLE_modo>
+				
+				</B_auteurpc2><p><a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{"Anonyme"})]</a></p><//B_auteurpc2>
+		
+				</td>
 				<td class="tabvs">
 	        			<ul class="titrevs">
 	        				<li class="tdatevs"><:phpbb:message_date:>: [(#DATE|nom_jour)] [(#DATE|affdate),] [(#DATE|heures)]:[(#DATE|minutes)]</li>
@@ -113,16 +94,18 @@
 				<td class="videvs">&nbsp;</td>
 			</tr>
 		</BOUCLE_reponse_ferme>
-		<BOUCLE_descends_rec(boucle_reponse)> </BOUCLE_descends_rec>
-		</BOUCLE_reponse>
-		<//B_sujet_ferme>
+
+	
+		
 		<!-- FIN de sujet fermé  -->
 		<?php if($sujet_clos==0){ ?>
 		<ul class="actionforum">
 			<li class="poster"><BOUCLE_forum_pere(ARTICLES){id_article}><?php $id_article='[(#ID_ARTICLE|texte_script)]'; ?>[<a href="poster.php3?(#PARAMETRES_FORUM)" title="<:phpbb:sujet_nouveau:>"><span><:phpbb:sujet_nouveau:></span>&nbsp;</a>]</BOUCLE_forum_pere></li>
 			<li class="repondre">[<a href="poster.php3?(#PARAMETRES_FORUM)" title="<:phpbb:messages_repondre:>"><span><:phpbb:messages_repondre:></span>&nbsp;</a>]</li>	
 		</ul>
-		<p class="nav"><BOUCLE_article_cdf(ARTICLES){id_article}><BOUCLE_chemindefer(HIERARCHIE){id_article}{" -&gt; "}><a href="#URL_RUBRIQUE" >[(#TITRE|supprimer_numero)]</a></BOUCLE_chemindefer> -&gt; <a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></BOUCLE_article_cdf></p>
+		<p class="nav"><BOUCLE_article_cdf(ARTICLES){id_article}>
+		<BOUCLE_chemindefer(HIERARCHIE){id_article}{0,1}{" -&gt; "}><a href="#URL_RUBRIQUE" >[(#TITRE|supprimer_numero)]</a></BOUCLE_chemindefer> -&gt; 
+		<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></BOUCLE_article_cdf></p>
 		<hr class="clr" /> <!-- Permet l'affichage correctement pour certaines versions de safari -->
 		<table class="spipforum">
 		<?php } ?>
@@ -133,7 +116,10 @@
 			</tr>
 			</thead>
 			<tr class="row1">
-				<td  class="autvs" id="forum#ID_FORUM"><B_auteurp><BOUCLE_auteurp(AUTEURS){id_auteur}{tout}><p><a href="./profil_BB.php3?id_auteur=#ID_AUTEUR&id_article=#ID_ARTICLE">#NOM<br/>[(#NOM|afficher_avatar)]</a></p></BOUCLE_auteurp></B_auteurp><p><a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{"Anonyme"})]</a></p><//B_auteurp></td>
+				<td  class="autvs" id="forum#ID_FORUM"><B_auteurp><BOUCLE_auteurp(AUTEURS){id_auteur}{tout}><p><a href="./profil_BB.php3?id_auteur=#ID_AUTEUR&id_article=#ID_ARTICLE">#NOM<br/>[(#NOM|afficher_avatar)]</a></p>
+				</BOUCLE_auteurp>
+				<BOUCLE_modo2(AUTEURS){id_article}>[<p>(#ID_AUTEUR|=={#_auteurp:ID_AUTEUR}|?{'(Modérateur)',''})</p>]</BOUCLE_modo2>
+				</B_auteurp><p><a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{"Anonyme"})]</a></p><//B_auteurp></td>
   				<td class="tabvs">
 		        		<ul class="actionvs">
 		        			<?php if($sujet_clos==0){ ?>
@@ -157,16 +143,19 @@
 				<td class="retourvs"><a href="#top"><:phpbb:revenir_haut:></a></td>
 				<td class="videvs">&nbsp;</td>
 			</tr>
-			<?php $ligne=2; ?>
-			<BOUCLE_posts(FORUMS){id_parent}{par date}{doublons}>
+
+			<BOUCLE_posts(FORUMS){id_thread}{plat}{par date}{doublons}>
 			<thead>
-			<tr class="row<?php echo $ligne ?>">
+			<tr class="row[(#COMPTEUR_BOUCLE|alterner{2,1})]">
 				<th class="salontitre" colspan="2"><H3>&nbsp;</H3></th>
 
 			</tr>
 			</thead>
-			<tr class="row<?php echo $ligne ?>">
-				<td  class="autvs" id="forum#ID_FORUM"><B_auteurpr><BOUCLE_auteurpr(AUTEURS){id_auteur}{tout}><p><a href="./profil_BB.php3?id_auteur=#ID_AUTEUR&id_article=#ID_ARTICLE">#NOM<br/>[(#NOM|afficher_avatar)]</a></p></BOUCLE_auteurpr></B_auteurpr><p><a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{"Anonyme"})]</a></p><//B_auteurpr></td>
+			<tr class="row[(#COMPTEUR_BOUCLE|alterner{2,1})]">
+				<td  class="autvs" id="forum#ID_FORUM"><B_auteurpr><BOUCLE_auteurpr(AUTEURS){id_auteur}{tout}><p><a href="./profil_BB.php3?id_auteur=#ID_AUTEUR&id_article=#ID_ARTICLE">#NOM<br/>[(#NOM|afficher_avatar)]</a></p>
+				</BOUCLE_auteurpr>
+				<BOUCLE_modo3(AUTEURS){id_article}>[<p>(#ID_AUTEUR|=={#_auteurpcr:ID_AUTEUR}|?{'(Modérateur)',''})</p>]</BOUCLE_modo3>
+				</B_auteurpr><p><a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{"Anonyme"})]</a></p><//B_auteurpr></td>
   				<td class="tabvs">
 		        		<ul class="actionvs">
 		        			<?php if($sujet_clos==0){ ?>
@@ -186,13 +175,11 @@
 					</div>
 				</td>
 			</tr>
-			<tr class="row<?php echo $ligne ?>"> 
+			<tr class="row[(#COMPTEUR_BOUCLE|alterner{2,1})]"> 
 				<td class="retourvs"><a href="#top"><:phpbb:revenir_haut:></a></td>
 				<td class="videvs">&nbsp;</td>
 			</tr>
-			<?php if ($ligne==1) {$ligne=2;} else {$ligne=1;} ?>
-			<BOUCLE_Forums_rep(boucle_posts)>
-			</BOUCLE_Forums_rep>
+
 			</BOUCLE_posts>
 		</table><!--Fin table spipforum-->
 
@@ -202,7 +189,8 @@
 			<li class="repondre">[<a href="poster.php3?(#PARAMETRES_FORUM)" title="<:phpbb:messages_repondre:>"><span><:phpbb:messages_repondre:></span>&nbsp;</a>]</li>	
 		</ul>
 		<?php } ?>
-		<p class="nav"><BOUCLE_article_cdf2(ARTICLES){id_article}><BOUCLE_chemindefer2(HIERARCHIE){id_article}{" -&gt; "}><a href="#URL_RUBRIQUE" >[(#TITRE|supprimer_numero)]</a></BOUCLE_chemindefer2> -&gt; <a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></BOUCLE_article_cdf2></p>
+		<p class="nav"><BOUCLE_article_cdf2(ARTICLES){id_article}>
+		<BOUCLE_chemindefer2(HIERARCHIE){id_article}{0,1}{" -&gt; "}><a href="#URL_RUBRIQUE" >[(#TITRE|supprimer_numero)]</a></BOUCLE_chemindefer2> -&gt; <a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></BOUCLE_article_cdf2></p>
 		<?php if ($etat=='0minirezo'){?><!-- Modération pour les admin  -->
 		<ul class="actionadm">
 			<li class="admsurveiller"><a title="<:phpbb:admsurveiller:>"><span><:phpbb:admsurveiller:></span>&nbsp;</a></li>

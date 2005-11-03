@@ -13,15 +13,15 @@
 <BOUCLE_contexte(RUBRIQUES){id_rubrique}>
 <BOUCLE_secteurs(RUBRIQUES){exclus}{racine}>
 <BOUCLE_supp(RUBRIQUES){id_secteur}>
-        <BOUCLE_supp2(FORUMS){id_rubrique}{plat}{doublons}>
+        <BOUCLE_supp2(FORUMS){id_rubrique}{plat}{doublons}{doublons a}>
         </BOUCLE_supp2>
 </BOUCLE_supp>
 <BOUCLE_supp3(ARTICLES){id_secteur}>
-        <BOUCLE_supp4(FORUMS){id_article}{plat}{doublons}>
+        <BOUCLE_supp4(FORUMS){id_article}{plat}{doublons}{doublons a}>
 		</BOUCLE_supp4>
 </BOUCLE_supp3>
 <BOUCLE_supp5(BREVES){id_secteur}>
-        <BOUCLE_supp6(FORUMS){id_article}{plat}{doublons}>
+        <BOUCLE_supp6(FORUMS){id_article}{plat}{doublons}{doublons a}>
 		</BOUCLE_supp6>
 </BOUCLE_supp5>
 </BOUCLE_secteurs>
@@ -40,7 +40,7 @@
 <link rel="stylesheet" href="spip_style.css" type="text/css">
 
 <!-- Les feuilles de style specifiques aux presents squelettes -->
-<link rel="stylesheet" href="spip_forum[(#LANG_DIR|=={rtl}|?{'_rtl',''})].css" type="text/css">
+<link rel="stylesheet" href="spip_forum.css" type="text/css">
 
 <!-- Lien vers le backend pour navigateurs eclaires -->
 <link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="backend.php3">
@@ -56,7 +56,7 @@
 <INCLURE(entete_BB.php3){id_rubrique}>
 
 	<div id="corps"> <!-- Section contenant les données -->
-	<p class="nav"><a  href="#"><:phpbb:nouveaux_messages:></a></p>
+	<p class="nav"><a  href="rubrique.php3?id_rubrique=<? echo $ze_sect ?>">Forum</a></p>
 
 	<hr class="clr" /> <!-- Permet l'affichage correctement pour certaines versions de safari -->
 	<table class="spipforum">
@@ -70,17 +70,14 @@
 		</tr>
 		</thead>
 
-		<BOUCLE_forums_liens(FORUMS){doublons}{plat}{par date}{inverse}{age<15}> 
+		<BOUCLE_forums_liens(FORUMS){doublons}{plat}{par date}{inverse}{age<15}{debut_post,20}> 
 			<?php
 				$ze_titre = '[(#TITRE|texte_script)]' ;
 				$ze_titre = ereg_replace( "> ", "", $ze_titre );
 			
 			$closed='non'; 
 			?>
-			<BOUCLE_fo(FORUMS){id_forum}>
-				<BOUCLE_remonte(FORUMS){id_enfant}>
-					<BOUCLE_remonte_rec(boucle_remonte)> </BOUCLE_remonte_rec>
-				</BOUCLE_remonte>
+			<BOUCLE_fo(FORUMS){id_thread}>
 				<?php 
 					$id_sujet='[(#ID_FORUM|texte_script)]'; 
 					$titre_sujet='[(#TITRE|texte_script)]';
@@ -91,23 +88,18 @@
 						$titre_forum='[(#TITRE|texte_script)]';
 					?>
 				</BOUCLE_ArticleForum>
-				<BOUCLE_sujet_ferme(FORUMS){id_forum}{titre_mot=Fermé}>
-					<?php $closed='[(#ID_FORUM|texte_script)]'; ?>
+				
+				
+				<BOUCLE_sujet_ferme(FORUMS){id_thread}{plat}>
+						<BOUCLE_ferme(FORUMS){id_forum}{titre_mot=Fermé}>
+					    <?php $closed='[(#ID_FORUM|texte_script)]'; ?>
+				       </BOUCLE_ferme>
 				</BOUCLE_sujet_ferme>
 				<?php 
-					$reponse_forum=0;
+					$reponse_forum=#TOTAL_BOUCLE-1;
 				?>
-				<BOUCLE_reponse(FORUMS){id_parent}>
-				<?php 
-					$reponse_forum=$reponse_forum+1;
-				?>
-					<BOUCLE_reponse_ferme(FORUMS){id_forum}{titre_mot=Fermé}>
-						<?php $closed='[(#ID_FORUM|texte_script)]'; ?>
-					</BOUCLE_reponse_ferme>
-					<BOUCLE_descends_rec(boucle_reponse)> </BOUCLE_descends_rec>
-				</BOUCLE_reponse>
-				<//B_sujet_ferme>
-				<//B_remonte>
+			 </B_sujet_ferme>				
+				
 			</BOUCLE_fo>
 						
 			<tr> 
@@ -122,9 +114,38 @@
 			
 		</BOUCLE_forums_liens>
 		</table>
+
+		
+		<div class="pagination"> <!-- Section présentant la pagination -->
 	
+		<div class="page"> <!-- Section de la page -->
+		<?	
+		 $limite=20; //Limite mais pas géniale, mettre un champs suppl 	
+<BOUCLE_pagination_posts(FORUMS){doublons a}{plat}{par date}{inverse}{age<15}> </BOUCLE_pagination_posts>		
+		$total=#TOTAL_BOUCLE;
+				$nb_pages=ceil($total/$limite);
+				$debut_post=$debut_post+$limite;
+				$page_nb=$debut_post/$limite;
+</B_pagination_posts>			
+		?>
+		<p class="nav">Page <?php echo ($page_nb)? $page_nb : '1'; ?> sur <?php echo ($nb_pages)? $nb_pages : '1'; ?></p>
+		</div>
+
+		<div class="navigapage"> <!-- Section de la liste de page -->
+		<p class="nav"><?	
+			
+				if ($total>($limite-1))
+					for ($numero = 0; $numero < $total; $numero = $numero + $limite){
+					echo "<a HREF='".$PHP_SELF."?id_article=$id_article&debut_post=$numero'>".(($numero+$limite)/$limite)."</a>, "; }
+			
+		?></p>
+		</div>
+	</div> <!-- Fin de la section -->
+		
 	</div> <!--Fin de section Corps-->
 
+	
+	
 <INCLURE(pied_BB.php3){id_rubrique}>
 
 </div> <!-- Fin de la section contenant -->

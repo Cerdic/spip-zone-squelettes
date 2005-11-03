@@ -9,14 +9,19 @@
 [ div.logofor a {background-image:url(IMG/(#LOGO_RUBRIQUE|fichier) ) ; [width:(#LOGO_RUBRIQUE||largeur)px]   }  ]
 	-->
 	</style>
+		[ (#LOGO_RUBRIQUE|fichier||?{
 		<div class="logofor"> <!-- Le secteur du logo -->
 		<a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero|textebrut|entites_html)]"><span>[(#TITRE|supprimer_numero|textebrut|entites_html)]</span></a>
 		</div>
-		<div class="titrefor"> <!-- le secteur du titre et de la description -->
-			<h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+		,
+		<div class="logofor"> <!-- le secteur du titre et de la description -->
+			<h1><a href="#URL_RUBRIQUE">#NOM_SITE_SPIP</a></h1>
 			[(#DESCRIPTIF|sinon{"&nbsp;"})]
-			<?php $ze_sect='[(#ID_RUBRIQUE|texte_script)]' ; ?> 
+			
 		 </div>
+		 }) ]
+		 
+		 <?php $ze_sect='[(#ID_RUBRIQUE|texte_script)]' ; ?> 
 	      </BOUCLE_secteur>
 	</BOUCLE_article>
 		  
@@ -28,14 +33,20 @@
 [ div.logofor a {background-image:url(IMG/(#LOGO_RUBRIQUE|fichier) ) ; [width:(#LOGO_RUBRIQUE||largeur)px]   }  ]
 	-->
 	</style>
+		[ (#LOGO_RUBRIQUE|fichier||?{
 		<div class="logofor"> <!-- Le secteur du logo -->
-			<a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero|textebrut|entites_html)]"><span>[(#TITRE|supprimer_numero|textebrut|entites_html)]</span></a>
+		<a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero|textebrut|entites_html)]"><span>[(#TITRE|supprimer_numero|textebrut|entites_html)]</span></a>
 		</div>
-		<div class="titrefor"> <!-- le secteur du titre et de la description -->
-			<h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+		,
+		<div class="logofor"> <!-- le secteur du titre et de la description -->
+			<h1><a href="#URL_RUBRIQUE">#NOM_SITE_SPIP</a></h1>
 			[(#DESCRIPTIF|sinon{"&nbsp;"})]
-			<?php $ze_sect='[(#ID_RUBRIQUE|texte_script)]' ; ?>
-		</div>  
+			
+		 </div>
+		 }) ]
+		 
+		 <?php $ze_sect='[(#ID_RUBRIQUE|texte_script)]' ; ?> 
+		
 	      </BOUCLE_secteur2>
 	      </B_secteur2>
 			<style>
@@ -43,27 +54,32 @@
 [ div.logofor a {background-image:url(IMG/(#LOGO_RUBRIQUE|fichier) ) ; [width:(#LOGO_RUBRIQUE||largeur)px]   }  ]
 	-->
 	</style>
+		[ (#LOGO_RUBRIQUE|fichier||?{
 		<div class="logofor"> <!-- Le secteur du logo -->
-			<a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero|textebrut|entites_html)]"><span>[(#TITRE|supprimer_numero|textebrut|entites_html)]</span></a>
+		<a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero|textebrut|entites_html)]"><span>[(#TITRE|supprimer_numero|textebrut|entites_html)]</span></a>
 		</div>
-		<div class="titrefor"> <!-- le secteur du titre et de la description -->
-			<h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+		,
+		<div class="logofor"> <!-- le secteur du titre et de la description -->
+			<h1><a href="#URL_RUBRIQUE">#NOM_SITE_SPIP</a></h1>
 			[(#DESCRIPTIF|sinon{"&nbsp;"})]
-			<?php $ze_sect='[(#ID_RUBRIQUE|texte_script)]' ; ?> 
-		</div>
+			
+		 </div>
+		 }) ]
+		 
+		 <?php $ze_sect='[(#ID_RUBRIQUE|texte_script)]' ; ?> 
 		<//B_secteur2>
 	</BOUCLE_rubrique>
    <//B_rubrique>
    
 	<div class="actionfor" > <!-- Le secteur des actions -->
-		<ul>
+   
+		<ul> 
 			<li class="recherche"><a href="recherche_forum.php3?id_rubrique=<?php echo $ze_sect; ?>"><:phpbb:recherche:></a></li>
 			<li class="membre"><a href="membres_liste.php3?id_rubrique=<?php echo $ze_sect; ?>"><:phpbb:membres_liste:></a></li>
-		</ul>
-                <ul>
+		
                 <!-- BEGIN switch_user_logged_out -->
 		<?php if(!$GLOBALS['auteur_session']) { ?>
-			<li class="enreg"><a href="spip_inscription.php3?mode=forum&focus=nom_inscription" target="spip_pass" onClick="javascript:window.open('spip_inscription.php3?mode=forum&focus=nom_inscription', 'spip_pass', 'scrollbars=yes, resizable=yes, width=480, height=450'); return false;"><:login_sinscrire:></a></li>
+			<li class="enreg"><a href="inscriptionBB.php3?mode=forum&focus=nom_inscription&id_rubrique=<?php echo $ze_sect; ?>"><:phpbb:sinscrire:></a></li>
 		<?php } ?>
 		<!-- END switch_user_logged_out -->
 		<?php if(!$GLOBALS['auteur_session']) { ?>
@@ -72,6 +88,16 @@
 			<li class="profil"><a href="profile.php3?id_rubrique=<?php echo $ze_sect; ?>"><:phpbb:membres_profil:></a></li> 
 			<li class="login"><a href="#URL_LOGOUT"><:phpbb:logout:> [<?php echo $GLOBALS['auteur_session']['nom']; ?>]</a></li>
 		<?php } ?>
+		<li>
+		
+		[(#ENV{id_rubrique}|?{' ',''})<a title="Retour à l'accueil du site" href="#URL_SITE_SPIP">Retour</a> ]
+		[(#ENV{id_article}|?{' ',''})<a title="Retour à l'accueil du forum" href="#URL_SITE_SPIP/rubrique.php3?id_rubrique=14">Retour</a> ]
+		<BOUCLE_m(FORUMS){id_forum}>
+		<a title="Retour au forum" href="#URL_SITE_SPIP/article.php3?id_article=#ID_ARTICLE">Retour</a> 
+		</BOUCLE_m>
+		
+		</li>
 		</ul>
-	</div>
+		
+</div>
 </div>

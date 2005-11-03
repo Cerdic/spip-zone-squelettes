@@ -81,38 +81,27 @@
 					</tr>
 					</thead>
 					<!-- BEGIN searchresults -->
-			<BOUCLE_art(FORUMS){recherche}{id_article}{par points}>
-				<BOUCLE_fo_art(FORUMS){id_forum}>
-					<BOUCLE_remonte_art(FORUMS){id_enfant}>
-						<BOUCLE_remonte_art_rec(boucle_remonte_art)>
-						</BOUCLE_remonte_art_rec>
-					</BOUCLE_remonte_art>
+			<BOUCLE_art(FORUMS){recherche}{id_article}{par points}{inverse}>
+				<BOUCLE_thread(FORUMS){id_thread}>
+					
 					<?php 
 						$id_sujet='[(#ID_FORUM|texte_script)]'; 
 						$titre_sujet='[(#TITRE|texte_script)]';
-					?>
+					
         				<BOUCLE_ArticleForum_art(ARTICLES){id_article}>
-        				<?php $titre_forum='[(#TITRE|texte_script)]'; ?>
+        				 $titre_forum='[(#TITRE|texte_script)]'; 
         				</BOUCLE_ArticleForum_art>
-        				<BOUCLE_sujet_ferme_art(FORUMS){id_forum}{titre_mot=Fermé}>
-        					<?php $closed='[(#ID_FORUM|texte_script)]'; ?>
-       				 </BOUCLE_sujet_ferme_art>
-        
-					<?php $reponse_forum=0; ?>
-
-					<BOUCLE_reponse_art(FORUMS){id_parent}>
-					<?php 
-						$reponse_forum=$reponse_forum+1;
-					?>
-						<BOUCLE_reponse_ferme_art(FORUMS){id_forum}{titre_mot=Fermé}>
-						        <?php $closed='[(#ID_FORUM|texte_script)]'; ?>
-					        </BOUCLE_reponse_ferme_art>
-					        <BOUCLE_descends_art_rec(boucle_reponse_art)>
-					        </BOUCLE_descends_art_rec>
-				        </BOUCLE_reponse_art>
-			        <//B_sujet_ferme_art>
-		        <//B_remonte_art>
-	        </BOUCLE_fo_art>
+        				$closed='non'; 
+								
+				<BOUCLE_reponsesalt(FORUMS){id_thread}{plat}> 
+					<BOUCLE_reponse_fermealt(FORUMS){id_forum}{titre_mot=Fermé}>
+						$closed='[(#ID_FORUM|texte_script)]'; 
+					</BOUCLE_reponse_fermealt>
+				</BOUCLE_reponsesalt>
+					$reponse_forum=#TOTAL_BOUCLE-1 ;
+				</B_reponsesalt>
+		       ?>
+	        </BOUCLE_thread>
 				<tr class="salon"> 
 					<td colspan="2"><img src="spip_bb/folder.gif" align="absmiddle">&nbsp; 
             <:phpbb:message_sujet:>:&nbsp;<a href="voirsujet.php3?id_forum=<?php echo $id_sujet ?>&recherche=<?php echo $recherche ?>">#TITRE</a></td>
@@ -127,7 +116,7 @@
 					<a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{"Anonyme"})]</a>
 					<//B_auteurp1><br/>
 					
-					<:phpbb:reponses:>: <?php echo $reponse_forum;?></p><p>#POINTS</p></td>
+					<:phpbb:reponses:>: <?php echo $reponse_forum;?></p></td>
           				<td>	
           				<ul class="titrevs">
 	        				<li class="tdatevs"><:phpbb:forum:>:&nbsp;<a href="#URL_FORUM"><?php echo $titre_forum ?></a> &nbsp;#DATE</li>
@@ -176,35 +165,26 @@
           
 	<BOUCLE_tout(FORUMS){recherche}{doublons}{par points}>
 		
-		<BOUCLE_fo(FORUMS){id_forum}>
-			<BOUCLE_remonte(FORUMS){id_enfant}>
-				<BOUCLE_remonte_rec(boucle_remonte)> </BOUCLE_remonte_rec>
-			</BOUCLE_remonte>
-			<?php 
-				$id_sujet='[(#ID_FORUM|texte_script)]'; 
-				$titre_sujet='[(#TITRE|texte_script)]';
-			?>
-			
-			<BOUCLE_ArticleForum(ARTICLES){id_article}>
-				<?php $titre_forum='[(#TITRE|texte_script)]'; ?>
-			</BOUCLE_ArticleForum>
-			
-			<BOUCLE_sujet_ferme(FORUMS){id_forum}{titre_mot=Fermé}>
-				<?php $closed='[(#ID_FORUM|texte_script)]'; ?>
-			</BOUCLE_sujet_ferme>
-			
-			<?php $reponse_forum=0; ?>
-
-			<BOUCLE_reponse(FORUMS){id_parent}>
-				<?php $reponse_forum=$reponse_forum+1; ?>
-				<BOUCLE_reponse_ferme(FORUMS){id_forum}{titre_mot=Fermé}>
-					<?php $closed='[(#ID_FORUM|texte_script)]'; ?>
-				</BOUCLE_reponse_ferme>
-				<BOUCLE_descends_rec(boucle_reponse)> </BOUCLE_descends_rec>
-			</BOUCLE_reponse>
-			<//B_sujet_ferme>
-			<//B_remonte>
-		</BOUCLE_fo>
+		<BOUCLE_thread2(FORUMS){id_thread}>
+					
+					<?php 
+						$id_sujet='[(#ID_FORUM|texte_script)]'; 
+						$titre_sujet='[(#TITRE|texte_script)]';
+					
+        				<BOUCLE_ArticleForum_art2(ARTICLES){id_article}>
+        				 $titre_forum='[(#TITRE|texte_script)]'; 
+        				</BOUCLE_ArticleForum_art2>
+        				$closed='non'; 
+								
+				<BOUCLE_reponsesalt2(FORUMS){id_thread}{plat}> 
+					<BOUCLE_reponse_fermealt2(FORUMS){id_forum}{titre_mot=Fermé}>
+						$closed='[(#ID_FORUM|texte_script)]'; 
+					</BOUCLE_reponse_fermealt2>
+				</BOUCLE_reponsesalt2>
+					$reponse_forum=#TOTAL_BOUCLE-1 ;
+				</B_reponsesalt2>
+		       ?>
+	        </BOUCLE_thread2>
 		 
 		 
 		 <tr class="salon"> 
@@ -220,7 +200,7 @@
 			<a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{"Anonyme"})]</a>
 			<//B_auteurp>
 			<br/><:phpbb:reponses:>: <?php echo $reponse_forum;?></p>
-			<p><span class="postdetails"> #POINTS </span> </p></td>
+			</td>
             		<td ><img src="spip_bb/icon_minipost.gif" width="12" height="9" alt="{searchresults.L_MINI_POST_ALT}" title="{searchresults.L_MINI_POST_ALT}" border="0" /><:phpbb:forum:>:&nbsp;<a href="#URL_FORUM"><?php echo $titre_forum ?></a>&nbsp;#DATE: &nbsp;<:phpbb:message_sujet:>: <a href="voirsujet.php3?id_forum=<?php echo $id_sujet ?>&recherche=<?php echo $recherche ?>">#TITRE</a></td>
 		</tr>
 		<tr class="row1"> 
