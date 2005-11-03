@@ -1,17 +1,17 @@
 <div id="sidebar">
 	<div id="calendar">
-		<h2><:spipclear:calendrier:></h2>
-		<table summary="<:spipclear:calendrier:>">
+		<h2><:calendrier:></h2>
+		<table summary="<:calendrier:>">
 			<caption>[<a href="[(#ID_SECTEUR|generer_url_rubrique)]&amp;archives=(#ENV{date}|mois_precedent{#ENV{id_secteur},archives})" title="[(#ENV{date}|mois_precedent)]">&#171;</a> ][(#ENV{date}|affdate_mois_annee)][ <a href="[(#ID_SECTEUR|generer_url_rubrique)]&amp;archives=(#ENV{date}|mois_suivant{#ENV{id_secteur},archives})" title="[(#ENV{date}|mois_suivant)]">&#187;</a>]</caption>
 			<thead>
 				<tr>
-					<th scope="col"><abbr title="<:date_jour_2:>"><:spipclear:date_jour_abbr_2:></abbr></th>
-					<th scope="col"><abbr title="<:date_jour_3:>"><:spipclear:date_jour_abbr_3:></abbr></th>
-					<th scope="col"><abbr title="<:date_jour_4:>"><:spipclear:date_jour_abbr_4:></abbr></th>
-					<th scope="col"><abbr title="<:date_jour_5:>"><:spipclear:date_jour_abbr_5:></abbr></th>
-					<th scope="col"><abbr title="<:date_jour_6:>"><:spipclear:date_jour_abbr_6:></abbr></th>
-					<th scope="col"><abbr title="<:date_jour_7:>"><:spipclear:date_jour_abbr_7:></abbr></th>
-					<th scope="col"><abbr title="<:date_jour_1:>"><:spipclear:date_jour_abbr_1:></abbr></th>
+					<th scope="col"><abbr title="<:date_jour_2:>"><:date_jour_abbr_2:></abbr></th>
+					<th scope="col"><abbr title="<:date_jour_3:>"><:date_jour_abbr_3:></abbr></th>
+					<th scope="col"><abbr title="<:date_jour_4:>"><:date_jour_abbr_4:></abbr></th>
+					<th scope="col"><abbr title="<:date_jour_5:>"><:date_jour_abbr_5:></abbr></th>
+					<th scope="col"><abbr title="<:date_jour_6:>"><:date_jour_abbr_6:></abbr></th>
+					<th scope="col"><abbr title="<:date_jour_7:>"><:date_jour_abbr_7:></abbr></th>
+					<th scope="col"><abbr title="<:date_jour_1:>"><:date_jour_abbr_1:></abbr></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -30,14 +30,14 @@
 			<p class="field">
 			<input type="hidden" name="id_rubrique" value="[(#ENV{id_secteur})]" />
 			<input name="recherche" id="q" type="text" size="10" value="[(#RECHERCHE)]" accesskey="4" />
-			<input type="submit" class="submit" value="<:spipclear:oksearch:>" />
+			<input type="submit" class="submit" value="<:oksearch:>" />
 			</p>
 		</form>
 	</div>
 
 	<B_a_retenir>
 	<div id="selection">
-		<h2><:spipclear:selection:></h2>
+		<h2><:selection:></h2>
 		<ul>
 			<BOUCLE_a_retenir(ARTICLES){id_secteur}{titre_mot=selection}{par date}{inverse}>
 			<li>[(#ID_ARTICLE|choixsiegal{#ENV|{id_article},<strong>,''})]
@@ -50,7 +50,7 @@
 
 	<B_languages>
 	<div id="languages">
-		<h2><:spipclear:langues:></h2>
+		<h2><:langues:></h2>
 		<ul>
 			<BOUCLE_languages(ARTICLES){id_secteur}{par lang}>
 			[<li>[(#LANG|choixsiegal{#ENV{lang},<strong>,''})]
@@ -63,7 +63,7 @@
 
 	<B_categories>
 	<div id="categories">
-		<h2><:spipclear:categories:></h2>
+		<h2><:categories:></h2>
 		<ul>
 			<BOUCLE_categories(RUBRIQUES){id_secteur}{id_parent=#ENV{id_secteur}}{par num titre}>
 			<li>
@@ -88,7 +88,7 @@
 
 	<B_chrono>
 	<div id="archives">
-		<h2><:spipclear:archives:></h2>
+		<h2><:archives:></h2>
 		<ul>
 			<BOUCLE_chrono(ARTICLES){id_secteur}{par date}{inverse}>
 			[<li>[(#DATE|affdate_archive|choixsiegal{[(#ENV{date}|affdate_archive)],<strong>,''})]
@@ -101,7 +101,7 @@
 
 	<B_links>
 	<div id="links">
-		<h2><:spipclear:liens:></h2>
+		<h2><:liens:></h2>
 		<ul>
 			<BOUCLE_links(SITES){id_secteur}{par date}{inverse}>
 			<li><a href="#URL_SITE"<BOUCLE_mot_lang(MOTS){id_syndic}> hreflang="#TITRE"</BOUCLE_mot_lang>[ title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#NOM_SITE*)]</a>
@@ -119,12 +119,12 @@
 	</B_links>
 		
 	<div id="syndicate">
-		<h2><:spipclear:syndication:></h2>
+		<h2><:syndication:></h2>
 		<ul>
-			[<li><a href="(#ENV{id_secteur}|generer_url_rss)"><:spipclear:fil_rss:></a></li>]
-			[<li><a href="(#ENV{id_secteur}|generer_url_rss|parametre_url{type,co})"><:spipclear:fil_rss_commentaires:></a></li>]
-			[<li><a href="(#ENV{id_secteur}|generer_url_atom)"><:spipclear:fil_atom:></a></li>]
-			[<li><a href="(#ENV{id_secteur}|generer_url_atom|parametre_url{type,co})"><:spipclear:fil_atom_commentaires:></a></li>]
+			[<li><a href="(#ENV{id_secteur}|generer_url_rss)"><:fil_rss:></a></li>]
+			[<li><a href="(#ENV{id_secteur}|generer_url_rss|parametre_url{type,co})"><:fil_rss_commentaires:></a></li>]
+			[<li><a href="(#ENV{id_secteur}|generer_url_atom)"><:fil_atom:></a></li>]
+			[<li><a href="(#ENV{id_secteur}|generer_url_atom|parametre_url{type,co})"><:fil_atom_commentaires:></a></li>]
 		</ul>
 	</div>
 </div>

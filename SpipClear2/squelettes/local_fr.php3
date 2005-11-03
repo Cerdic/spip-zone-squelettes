@@ -2,7 +2,7 @@
 
 // This is a SPIP-forum module file  --  Ceci est un fichier module de SPIP-forum
 
-$GLOBALS['i18n_spipclear_fr'] = array(
+$GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //A
 'ajouter_commentaire' => 'Ajouter un commentaire',

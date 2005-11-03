@@ -2,10 +2,10 @@
 [(#LOGO_ARTICLE|right)]
 <h2 class="post-title">#TITRE</h2>
 <p class="post-info"><B_auteurs><:par_auteur|ucfirst:> <BOUCLE_auteurs(AUTEURS){id_article}{", "}>#NOM</BOUCLE_auteurs>,</B_auteurs>
-[(#DATE|affdate_long)] <:spipclear:attime:> [(#DATE|heures)]:[(#DATE|minutes)]
+[(#DATE|affdate_long)] <:attime:> [(#DATE|heures)]:[(#DATE|minutes)]
 <span>::</span> <BOUCLE_categorie(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></BOUCLE_categorie>
-<span>::</span>#DEBUT_SURLIGNE<a href="#URL_ARTICLE" title="<:spipclear:permalink_pour:> : [(#TITRE|textebrut|entites_html)]">##ID_ARTICLE</a>#FIN_SURLIGNE
-<span>::</span><a href="[(#ID_ARTICLE|generer_url_rss{article}|parametre_url{type,co})]" title="<:spipclear:rss_pour:> : [(#TITRE|textebrut|entites_html)]">rss</a>
+<span>::</span>#DEBUT_SURLIGNE<a href="#URL_ARTICLE" title="<:permalink_pour:> : [(#TITRE|textebrut|entites_html)]">##ID_ARTICLE</a>#FIN_SURLIGNE
+<span>::</span><a href="[(#ID_ARTICLE|generer_url_rss{article}|parametre_url{type,co})]" title="<:rss_pour:> : [(#TITRE|textebrut|entites_html)]">rss</a>
 </p>
 
 [<div class="post-chapo">
@@ -23,9 +23,9 @@
 	<BOUCLE_trackbacks(FORUMS){id_article}{trackback}{par date}>
 	<p id="forum#ID_FORUM" class="comment-info">
 	<span class="comment-number"><a href="#c#ID_FORUM">#COMPTEUR_BOUCLE.</a></span>
-	[(#DATE|nom_jour)] [(#DATE|affdate)] <:spipclear:attime:>
-	[(#DATE|heures)]:[(#DATE|minutes)], <:spipclear:de:>
-	<strong>[<a href="(#URL_SITE)" rel="nofollow">[(#NOM_SITE|sinon{<:spipclear:site_comment:>})]</a>]</strong></p>
+	[(#DATE|nom_jour)] [(#DATE|affdate)] <:attime:>
+	[(#DATE|heures)]:[(#DATE|minutes)], <:de:>
+	<strong>[<a href="(#URL_SITE)" rel="nofollow">[(#NOM_SITE|sinon{<:site_comment:>})]</a>]</strong></p>
 
 	<blockquote>
 		#TEXTE
@@ -37,22 +37,22 @@
 </div>
 
 <div id="comments">
-	<h3 id="co"><:spipclear:commentaires|ucfirst:></h3>
+	<h3 id="co"><:commentaires|ucfirst:></h3>
 	<BOUCLE_commentaires_article(FORUMS){id_article}{par date}>
 	<p id="forum#ID_FORUM" class="comment-info">
 	<span class="comment-number"><a href="#URL_FORUM">#COMPTEUR_BOUCLE.</a></span>
-	[(#DATE|nom_jour)] [(#DATE|affdate)] <:spipclear:attime:>
+	[(#DATE|nom_jour)] [(#DATE|affdate)] <:attime:>
 	[(#DATE|heures)]:[(#DATE|minutes)], [<:par_auteur:>
-	<strong>(#NOM)</strong>][ <span>::</span> <a href="(#URL_SITE)">[(#NOM_SITE|sinon{<:spipclear:site_comment:>})]</a>]</p>
+	<strong>(#NOM)</strong>][ <span>::</span> <a href="(#URL_SITE)">[(#NOM_SITE|sinon{<:site_comment:>})]</a>]</p>
 							
 	<blockquote>
 		[<strong>(#TITRE)</strong><br />]
 		#TEXTE
 	</blockquote>
 	</BOUCLE_commentaires_article>
-	<:spipclear:aucun_commentaire:>
+	<:aucun_commentaire:>
 	<//B_commentaires_article>
-	<h3 id="reponse"><:spipclear:ajouter_commentaire:></h3>
-	[(#FORMULAIRE_FORUM)][(#PARAMETRES_FORUM|?{'',<:spipclear:commentaires_fermes:>})]
+	<h3 id="reponse"><:ajouter_commentaire:></h3>
+	[(#FORMULAIRE_FORUM)][(#PARAMETRES_FORUM|?{'',<:commentaires_fermes:>})]
 </div>
 </BOUCLE_article>
