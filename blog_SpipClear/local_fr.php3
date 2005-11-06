@@ -80,6 +80,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //T
 'trackback' => 'trackback',
 'trackbacks' => 'trackbacks',
+'trackbacks_pour_faire' => 'Pour faire un trackback sur ce billet',
+'trackbacks_fermes' => 'Les trackbacks pour ce billet sont ferm&eacute;s.',
 
 );
 

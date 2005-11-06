@@ -44,7 +44,7 @@
 		$url = "page.php3";
 		$url = parametre_url($url, 'fond', $fond);
 		$url = parametre_url($url, 'delais', $delais);
-		if ($fond == 'rss' || $fond == 'atom') $url = parametre_url($url, 'flag_preserver', 1);
+		//if ($fond == 'rss' || $fond == 'atom') $url = parametre_url($url, 'flag_preserver', 1);
 		return $url;
 	}
 	
@@ -166,6 +166,21 @@
 	}
 
 	if(file_exists('inc-trackback.php')) include_local('inc-trackback.php');
+	else {
+		function balise_PARAMETRES_TRACKBACK($p) {
+			$p->code = "''";
+			$p->statut ='html';
+			return $p;
+		}
+			
+		function balise_URL_TRACKBACK($p) {
+			$p->code = "''";
+			$p->statut ='html';
+			return $p;
+		}
+
+		function critere_trackback($idb, &$boucles, $crit) {}
+	}
 
 	function affdate_long($date) {
 		return affdate_base($date, 'nom_jour').' '.affdate_base($date, 'entier');
