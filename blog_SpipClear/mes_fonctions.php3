@@ -49,7 +49,7 @@
 	}
 	
 	function generer_url_rss($id, $type = 'rubrique') {
-		return parametre_url(generer_url_base('rss'), "id_".$type, $id_secteur);
+		return parametre_url(generer_url_base('rss'), "id_".$type, $id);
 	}
 
 	function generer_url_atom($id_secteur) {
