@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<BOUCLE_mot_principal(MOTS) {id_mot}{doublons}>
+<!-- ********************************************************************
+//   Web Site Subject: © glums.com - version (voir meta - subjets)    //
+//   Page Subject:  page d'accueil                                    //
+//   Web Designer & Architect Designer: Karim BELKACEM                //
+//   Graphic Designer: Karim BELKACEM                                 //
+//   Developpement : Karim BELKACEM                                   //
+//   Creation Date: [(#DATE|affdate)]                                 //
+******************************************************************** -->
+<html>
+<head>
+<title>karim belkacem, #NOM_SITE_SPIP et l'annuaire thématique des sites sous spip > [(#TITRE)] <BOUCLE_compteur06(SITES){id_mot}></BOUCLE_compteur06>(#TOTAL_BOUCLE référents)<//B_compteur06></title>
+<meta http-equiv="Content-Type" content="text/html; #CHARSET">
+<meta name="keywords" content="<BOUCLE_metatags(MOTS){type=meta}{", "}>[(#TITRE|supprimer_numero)]</BOUCLE_metatags>" />
+<meta name="description" content="<BOUCLE_metadescriptif(MOTS){type=meta_descriptif}>[(#TEXTE)]</BOUCLE_metadescriptif>" />
+<meta name="subjects" content="[ #NOM_SITE_SPIP ] - Version <?php echo $GLOBALS['spip_version_affichee']; ?>" />
+<meta name="robots" content="ALL" />
+<meta name="distribution" content="GLOBAL" />
+<meta name="rating" content="GENERAL" />
+<meta http-equiv="Reply-to" content="kbelkacem@wanadoo.fr" />
+<meta name="ROBOTS" content="INDEX,FOLLOW" />
+<meta name="author" content="Karim BELKACEM - kbelkacem@wanadoo.fr" />
+<meta name="copyright" content="© [ #NOM_SITE_SPIP ]" />
+<meta name="revisit-after" content="1 days" />
+<link href="_css/glums.EEEEEE_Gauche.css" rel="alternate stylesheet" title="gauche" type="text/css" />
+<link href="_css/glums.EEEEEE_Droite.css" rel="alternate stylesheet" title="droite" type="text/css" />
+<link href="_css/glums.33CCFF.css" rel="alternate stylesheet" title="bleu" type="text/css" />
+<link href="_css/glums.minimal.css" rel="alternate stylesheet" title="sans" type="text/css" />
+<link rel="shortcut icon" href="#URL_SITE_SPIP/_images/favicon.ico" />
+		<script language="JavaScript1.2">
+			var ids = new Array("Formulaire");
+			
+			function Deplier() {
+				for(var i=0;i<ids.length;i++) {
+					document.getElementById(ids[i]).style.display="block";
+				}
+			}
+			
+			function Replier() {
+				for(var i=0;i<ids.length;i++) {
+					document.getElementById(ids[i]).style.display="none";
+				}
+			}
+		</script>
+<script LANGUAGE="javascript" SRC="#URL_SITE_SPIP/_js/styleswap.js" type="text/JavaScript"></script>
+</head>
+
+<body id="Body">
+
+<div id="Page">
+
+<div id="Header">
+	<h2 class="NomSiteSPIP">
+	<a href="#URL_SITE_SPIP" title="Retour en page d'accueil">Accueil</a> / <span>[(#TITRE)]</span> <BOUCLE_compteur04(SITES){id_mot}></BOUCLE_compteur04>(#TOTAL_BOUCLE référents)<//B_compteur04>
+	</h2>
+	<div class="CoinRechercheDroite">&nbsp;</div>
+	<div class="Recherche">
+		<div><INCLURE(inc_form_recherche2.php3)></div>
+		<div class="RechercheBas">
+		<div class="RechercheBasDroite">&nbsp;</div>
+		<div class="RechercheBasGauche">&nbsp;</div>
+		</div>
+	</div>
+	<div class="CoinRechercheGauche">&nbsp;</div>
+	<div class="HeaderCoinBas">
+		<div class="HeaderCoinBasDroite">&nbsp;</div>
+		<div class="HeaderCoinBasGauche">&nbsp;</div>
+	</div>
+</div>
+
+<div id="Content">
+	<div class="ContentCoinHautDroite">&nbsp;</div>
+	<div id="Inscrit">
+		<h3>[(#TITRE)]<br /><span>[(#DESCRIPTIF)]</span></h3>
+		
+	<div class="Compteur">
+				<BOUCLE_compt(SITES){id_mot}>
+				<?php
+				$numero=#COMPTEUR_BOUCLE-1;
+				$total=#TOTAL_BOUCLE;
+			     if ($total < $numero + 4){$fin=$total;} else {$fin=$numero+4;}
+	   		     if (floor($numero/4)==$numero/4 AND $total>4)
+       				if ($debut_mot==$numero)
+		       		{echo "&nbsp;".($numero+1).-($fin)."&nbsp;";}
+	   		   	else
+       				{
+			      	echo "&nbsp;<a href=\"mot.php3?id_mot=#ID_MOT&debut_mot=$numero\">".($numero+1).-($fin)."</a>&nbsp;";
+       				}
+				?>
+				</BOUCLE_compt>
+	</div>
+	<div class="pointsepa ">&nbsp;</div>
+	<hr />
+		<BOUCLE_siteenspip(SITES) {id_mot} {debut_mot,4} {par date} {inverse}>
+	<p>
+	  <div class="InscritRetrait"><a href="#URL_SITE" title="[(#NOM_SITE)]">[(#NOM_SITE)]</a> - [<em>(#DATE|affdate)</em>]<br />
+		[(#LOGO_SITE|right)][(#DESCRIPTIF|textebrut|entites_html)]</div>
+		<div class="InscritSousRetrait">Thème(s). <BOUCLE_theme02(MOTS) {id_syndic} {par titre}{", "}><a href="#URL_MOT" title="[(#TITRE)]">[(#TITRE)]</a></BOUCLE_theme02></div>
+		<div class="InscritSousRetrait">URL. <a href="#URL_SITE" title="[(#NOM_SITE)]">[(#URL_SITE)]</a></div>
+	</p>
+		</BOUCLE_siteenspip>
+	<hr />
+	<div class="pointsepa">&nbsp;</div>
+		<h3>Formulaire <span>d'inscription</span></h3><br />
+	<div align="center">
+	<a  href="#" title="Déplier le formulaire d'inscription" onclick="Deplier()"><img src="_imgs2/formsOn.png" alt="D&eacute;plier" width="52" height="31" border="0" /></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" title="Replier le formulaire d'inscription"  onclick="Replier()"><img src="_imgs2/formsOff.png" alt="Replier" width="52" height="31" border="0" /></a></div>	
+	<div id="Formulaire" style="display:none;">
+	<div class="pointsepa">&nbsp;</div>
+		<div class="InscritRetrait"><BOUCLE_formulaire(ARTICLES){id_article=101}>#TEXTE</BOUCLE_formulaire></div>
+	</div>
+	<hr />
+	
+	<div id="ColThemes">
+	<div class="ColGaucheCoin"><div class="ColGaucheCoinDroiteHaut">&nbsp;</div></div>
+	<BOUCLE_Rub6(RUBRIQUES) {id_rubrique=6}>
+			<ul><strong>Thèmes proposés</strong>
+				<BOUCLE_theme(MOTS) {id_rubrique} {par titre}{doublons}>
+				<a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"]><li>[(#TITRE)]</li></a>
+				</BOUCLE_theme>
+			</ul>
+	</div>		
+	
+	<div class="ContentCoinHautDroite">&nbsp;</div>
+	<div id="ColGauche">
+	<div class="ColGaucheCoin"><div class="ColGaucheCoinDroiteHaut">&nbsp;</div></div>
+			<ul>
+			<a href="http://cgi1.ebay.fr/aw-cgi/ebayISAPI.dll?RedirectEnter&partner=25053&loc=http://cgi6.ebay.fr/ws/ebayISAPI.dll%3fViewListedItemsLinkButtons%26userid=kbelkacem" title="Mes affaires sur eBay">
+			<img src="http://pics.ebay.com/aw/pics/fr/ebay_my_button.gif" alt="Mes objets sur eBay">
+			</a>
+			<br /><br />
+			<BOUCLE_Rub1(RUBRIQUES) {id_rubrique IN 1,5,34,2}{" <div class='ColGaucheSeparation'>&nbsp;</div> "}>
+				<strong>[(#TITRE)]</strong>
+				<BOUCLE_sites_Rub1(SITES) {id_rubrique} {par date}>
+				<a href="#URL_SITE" title="[(#NOM_SITE)]"><li>[(#NOM_SITE)]</li></a>
+				</BOUCLE_sites_Rub1>
+				
+			</BOUCLE_Rub1>
+
+			</ul>
+	</div>	
+
+	
+	<div class="Separation">
+	<div class="SeparationGauche">&nbsp;</div>
+	<div class="SeparationDroite">&nbsp;</div>
+	</div>
+	
+	</div>
+
+	</BOUCLE_Rub6>
+
+
+	<div class="Mentions">
+	<div class="MentionHautDroite">&nbsp;</div>
+	<div class="MentionHautGauche">&nbsp;</div>
+	<div class="MentionBody">
+		#NOM_SITE_SPIP.com, <a href="mailto:#EMAIL_WEBMASTER">Karim Belkacem</a> - H&eacute;bergement <a href="http://www.picsarl.com">PICSARL</a><br />
+		<a href="_design/annu.html">HTML</a> | CSS (voir meta :)<br /><br />
+		<a href="http://s13.sitemeter.com/stats.asp?site=s13glums" target="_top"><img src="http://s13.sitemeter.com/meter.asp?site=s13glums" alt="Site Meter" border=0></a>
+		<div class="MentionBodyBasMilieu">
+			<div class="MentionBodyBasDroite">&nbsp;</div>
+			<div class="MentionBodyBasGauche">&nbsp;</div>
+		</div>
+	</div>
+	</div>
+
+</div>
+
+</div>
+#SPIP_CRON
+</body>
+</html>
+</BOUCLE_mot_principal>
