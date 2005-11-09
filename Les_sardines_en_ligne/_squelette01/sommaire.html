@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- ********************************************************************
+//   Web Site Subject: © #NOM_SITE_SPIP - version (voir meta - subjets)    //
+//   Page Subject:  page d'accueil                                    //
+//   Web Designer & Architect Designer: Karim BELKACEM                //
+//   Graphic Designer: Karim BELKACEM                                 //
+//   Developpement : Karim BELKACEM                                   //
+//   Creation Date: Novembre. 5, 2005                                    //
+******************************************************************** -->
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>#NOM_SITE_SPIP</title>
+<meta http-equiv="Content-Type" content="text/html; #CHARSET">
+<meta name="keywords" content="<BOUCLE_metatags(MOTS){type=meta}>[(#TITRE|supprimer_numero), ]</BOUCLE_metatags>/">
+<meta name="description" content="<BOUCLE_metadescriptif(MOTS){type=meta_descriptif}>[(#TEXTE)]</BOUCLE_metadescriptif>">
+<meta name="subjects" content="[ #NOM_SITE_SPIP ] - Version <?php echo $GLOBALS['spip_version_affichee']; ?>">
+<meta name="robots" content="ALL">
+<meta name="distribution" content="GLOBAL">
+<meta name="rating" content="GENERAL">
+<meta http-equiv="Reply-to" content="kbelkacem@wanadoo.fr">
+<meta name="ROBOTS" content="INDEX,FOLLOW">
+<meta name="author" content="Karim BELKACEM - kbelkacem@wanadoo.fr">
+<meta name="copyright" content="© #NOM_SITE_SPIP">
+<link rel="shortcut icon" href="#DOSSIER_SQUELETTE/_imgs/favicon.ico" />
+
+<meta name="revisit-after" content="7 days">
+
+<!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/_css/sardine_style.css" type="text/css" />
+
+<!-- Lien vers le backend pour navigateurs eclaires -->
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="backend.php" />
+</head>
+
+<body>
+
+<div id="Header">
+
+<div class="menu">
+<form action="recherche.php3" method="get" name="form_rech">
+<input type="text" id="formulaire_recherche" name="recherche" value="Recherche" size="17" onfocus="javascript:if(this.value == 'Recherche') this.value='';" onblur="javascript:if(this.value == '') this.value='Recherche';">
+<input name="recherche" type="image" value="" src="#DOSSIER_SQUELETTE/_imgs/BtnOK.gif" align="absmiddle" width="20" height="20" />
+</form>
+
+<ul class="general">
+	<li class="lien-desactive"><strong><:accueil_site:></strong></li>
+	<li><a href="ecrire/" title="<:espace_prive:>"><strong><:espace_prive:></strong></a></li>
+	<li><a href="http://lessardinesenligne.info/tinc?key=JeiRxzkv&channel=104718"  title="Le tchat de sardines" onclick="javascript:window.open(this.href, 'spip_pass', 'scrollbars=no, resizable=no, width=340, height=430'); return false;"><strong>Tchat</strong></a></li>
+</ul>
+</div>
+
+<div><a id="tooCool" href="http://www.w3junkies.com/too_cool.php" title="Trop Cool pour Internet Explorer">Trop Cool pour Internet Explorer</a></div>
+
+</div>
+
+<div id="Contenu">
+
+	<div class="menuRacine">
+	<ul>
+	 <BOUCLE_menu(RUBRIQUES){racine}{par num titre}> 
+		<li><a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero)]">[(#TITRE|supprimer_numero)]</a></li>
+	 </BOUCLE_menu>
+	</ul>
+	</div>
+	
+    <div class="TexteDescriptif">
+	<BOUCLE_intro(RUBRIQUES){id_rubrique=1}{par num titre}>
+	<strong>[(#DESCRIPTIF)]</strong><br />
+	[(#TEXTE)]
+	</BOUCLE_intro>
+	</div>
+	
+	<table width="780" height="300" border="0" cellpadding="0" cellspacing="0">
+	  <tr>
+		<td width="10" align="left" valign="top"><img src="#DOSSIER_SQUELETTE/_imgs/space.png" alt="" width="10" height="1" /></td>
+		<td class="ColGauche" align="left" valign="top">
+		<BOUCLE_assos(RUBRIQUES) {id_rubrique=1}{par num titre}>
+		<div class="TitreAssos">[(#TITRE|supprimer_numero)]</div>
+		<div class="Descriptif">
+		[(#LOGO_RUBRIQUE|left)]
+		[(#DESCRIPTIF)]
+		</div>
+		<BOUCLE_artassos(ARTICLES){branche}{par date}{inverse}{0,4}>
+			<p>
+			[(#LOGO_ARTICLE|left)]<a href="#URL_ARTICLE" title="[(#TITRE|supprimer_numero)]">[(#TITRE|supprimer_numero)]</a><br />
+			[(#INTRODUCTION)]
+			</p>
+			</BOUCLE_artassos>
+		</BOUCLE_assos>
+		</td>
+		<td width="10" align="left" valign="top"><img src="#DOSSIER_SQUELETTE/_imgs/space.png" alt="" width="10" height="1" /></td>
+		<td class="ColCentrale" align="left" valign="top">
+		<BOUCLE_rezo(RUBRIQUES) {id_rubrique=9}{par num titre}>
+		<div class="TitreBreve">[(#TITRE|supprimer_numero)]</div>
+		<div class="Descriptif">
+		[(#LOGO_RUBRIQUE|left)]
+		[(#DESCRIPTIF)]</div>
+		<BOUCLE_breves(BREVES){id_secteur}{par date}{inverse}{0,4}>
+			<p>
+			[(#LOGO_BREVE|left)]<a href="#URL_BREVE" title="[(#TITRE|supprimer_numero)]">[(#TITRE|supprimer_numero)]</a><br />
+			[(#INTRODUCTION)]
+			</p>
+			</BOUCLE_breves>
+		</BOUCLE_rezo>
+		</td>
+		<td width="10" align="left" valign="top"><img src="#DOSSIER_SQUELETTE/_imgs/space.png" alt="" width="10" height="1" /></td>
+		<td class="ColDroite" align="left" valign="top">
+		<BOUCLE_activite(RUBRIQUES) {id_rubrique=2}{par num titre}>
+		<div class="TitreActivite">[(#TITRE|supprimer_numero)]</div>
+		<div class="Descriptif">
+		[(#LOGO_RUBRIQUE|left)]
+		[(#DESCRIPTIF)]</div>
+		<BOUCLE_artactivite(ARTICLES){branche}{par date}{inverse}{0,4}>
+			<p>
+			[(#LOGO_ARTICLE|left)]<a href="#URL_ARTICLE" title="[(#TITRE|supprimer_numero)]">[(#TITRE|supprimer_numero)]</a><br />
+			[(#INTRODUCTION)]
+			</p>
+			</BOUCLE_artactivite>
+		</BOUCLE_activite>
+		</td>
+		<td width="10" align="left" valign="top"><img src="#DOSSIER_SQUELETTE/_imgs/space.png" alt="" width="10" height="1" /></td>
+	  </tr>
+  </table>
+  
+ <INCLURE(mentions.php)>
+
+</div>
+
+<INCLURE(pied.php)>
+
+[(#FORMULAIRE_ADMIN{'spip-admin-float'})]
+#SPIP_CRON
+</body>
+</html>
