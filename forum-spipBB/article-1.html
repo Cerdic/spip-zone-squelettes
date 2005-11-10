@@ -70,6 +70,17 @@ if (is_readable(COUNTER)) include_once(COUNTER);
 	   <?php } ?>
 		<p class="nav"><BOUCLE_chemindefer(HIERARCHIE){id_article}{0,1}{" -&gt; "}><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></BOUCLE_chemindefer> -&gt; <a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></p>
 		<?php $tableau = array(); //permet de stocker les pieds de discussion ?>
+		
+	<BOUCLE_posts_pagination_top(FORUMS){id_article}{plat}{tri_spipbb}> </BOUCLE_posts_pagination_top>
+	[<div class="pagination"> <!-- Section présentant la pagination -->
+		<div class="page"> <!-- Section de la page -->
+			<p class="nav"><:phpbb:page:> (#TOTAL_BOUCLE|pagination_nbpages{debut_post,25,' <:phpbb:sur:> '})</p>
+		</div>
+		[<div class="navigapage"> <!-- Section de la liste de page -->
+			<p class="nav">(#TOTAL_BOUCLE|pagination{debut_post,25})</p>
+		</div>]
+	</div>]
+	</B_posts_pagination_top>
 
 		<hr class="clr" /> <!-- Permet l'affichage correctement pour certaines versions de safari -->
 		<table class="spipforum">
@@ -114,9 +125,7 @@ if (is_readable(COUNTER)) include_once(COUNTER);
 			</tr>
 		</BOUCLE_message_annonce>
 
-		<?php $limite=50; //Limite mais pas géniale, mettre un champs suppl ?>
-		
-		<BOUCLE_messages(FORUMS){id_article}{plat}{tri_spipbb}{debut_post,50}> 
+		<BOUCLE_messages(FORUMS){id_article}{plat}{tri_spipbb}{debut_post,25}> 
 
 			<BOUCLE_sujet(FORUMS){id_thread}>
 			<?php 
@@ -185,29 +194,18 @@ if (is_readable(COUNTER)) include_once(COUNTER);
 		</ul>
 		<?php } ?>
 		
-	<div class="pagination"> <!-- Section présentant la pagination -->
 	
+	<BOUCLE_posts_pagination(FORUMS){id_article}{plat}{tri_spipbb}> </BOUCLE_posts_pagination>
+	[<div class="pagination"> <!-- Section présentant la pagination -->
 		<div class="page"> <!-- Section de la page -->
-		<?	
-			<BOUCLE_compt_post(FORUMS){id_article}{plat}> </BOUCLE_compt_post>
-				$total=#TOTAL_BOUCLE;
-				$nb_pages=ceil($total/$limite);
-				$debut_post=$debut_post+$limite;
-				$page_nb=$debut_post/$limite;
-			</B_compt_post>
-		?>
-		<p class="nav">Page <?php echo ($page_nb)? $page_nb : '1'; ?> sur <?php echo ($nb_pages)? $nb_pages : '1'; ?></p>
+			<p class="nav"><:phpbb:page:> (#TOTAL_BOUCLE|pagination_nbpages{debut_post,25,' <:phpbb:sur:> '})</p>
 		</div>
+		[<div class="navigapage"> <!-- Section de la liste de page -->
+			<p class="nav">(#TOTAL_BOUCLE|pagination{debut_post,25})</p>
+		</div>]
+	</div>]
+	</B_posts_pagination>
 
-		<div class="navigapage"> <!-- Section de la liste de page -->
-		<p class="nav"><?	
-			
-				if ($total>($limite-1))
-					for ($numero = 0; $numero < $total; $numero = $numero + $limite){
-					echo "<a HREF='".$PHP_SELF."?id_article=$id_article&debut_post=$numero'>".(($numero+$limite)/$limite)."</a>, "; 
-					}
-		?></p>
-		</div>
 	</div> <!-- Fin de la section "corps" -->
 	
 
