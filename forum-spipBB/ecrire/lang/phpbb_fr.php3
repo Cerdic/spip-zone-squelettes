@@ -7,6 +7,30 @@ $GLOBALS['i18n_phpbb_fr'] = array(
 //Connexion
 'connexion' => 'Veuillez entrer votre nom d\'utilisateur et votre mot de passe pour vous connecter.',
 
+
+//
+
+//nouveautes a traduire dans les autres langues
+'pb_mysql' => 'Un probl&egrave;me technique a interrompu votre inscription, veuillez reéssayer',
+
+
+'reglement'=>'<p>Les administrateurs et modérateurs de ce forum s\'efforceront de supprimer ou éditer tous les messages à caractère répréhensible aussi rapidement que possible. Toutefois, il leur est impossible de passer en revue tous les messages. 
+Vous admettez donc que tous les messages postés sur ces forums expriment la vue et opinion de leurs auteurs respectifs, et non pas des administrateurs, ou modérateurs, ou webmestres (excepté les messages postés par eux-même) et par conséquent 
+ne peuvent pas être tenus pour responsables.</p>
+
+<p>Vous consentez à ne pas poster de messages injurieux, obscènes, vulgaires, diffamatoires, menaçants, sexuels ou tout autre message qui violerait les lois applicables. Le faire peut vous conduire à être banni immédiatement de façon 
+permanente (et votre fournisseur d\'accès à internet en sera informé). L\'adresse IP de chaque message est enregistrée afin d\'aider à faire respecter ces conditions. Vous êtes d\'accord sur le fait que le webmestre, 
+l\'administrateur et les modérateurs de ce forum ont le droit de supprimer, éditer, déplacer ou verrouiller n\'importe quel sujet de discussion à tout moment. En tant qu\'utilisateur, vous êtes d\'accord sur le fait que toutes les informations 
+que vous donnerez ci-après seront stockées dans une base de données. Cependant, ces informations ne seront divulguées à aucune tierce personne ou société sans votre accord. Le webmestre, l\'administrateur, et les modérateurs ne peuvent 
+pas être tenus pour responsables si une tentative de piratage informatique conduit à l\'accès de ces données.</p>
+
+<p>Ce forum utilise les cookies pour stocker des informations sur votre ordinateur. Ces cookies ne contiendront aucune information que vous aurez entré ci-après, ils servent uniquement à améliorer le confort d\'utilisation. 
+L\'adresse e-mail est uniquement utilisée afin de confirmer les détails de votre enregistrement ainsi que votre mot de passe (et aussi pour vous envoyer un nouveau mot de passe dans la cas où vous l\'oublieriez).
+</p>
+<p>En vous enregistrant, vous vous portez garant du fait d\'être en accord avec le règlement ci-dessus.</p>',
+
+'champsobli'=>'Les champs marqués d\'un * sont obligatoires.',
+
 // A
 'annonce' => 'Annonce',
 'avatar' => 'Avatar',
@@ -34,13 +58,25 @@ $GLOBALS['i18n_phpbb_fr'] = array(
 'citer' => 'Citer',
 'click' => 'cliquez ici',
 'contact' => 'Contact',
-'credits'=>'Réalisé avec <a href=http://www.spip.net class=copyright>SPIP</a> 1.7 : 2004<br/><a href=http://www.uzine.net/spip_contrib/rubrique.php3?id_rubrique=43>Squelettes 0.8.4 CSS</a> par <a href=http://www.laprise.org/>James aka Kliké</a>, <a href=http://bloog.net/>BoOz</a>, <a href=http://esprit-str.com/>Nikau</a> et <a href=http://www.missmopi.net/>Nadège aka Miss Mopi</a> (logos de Stéphane)',
+'credits'=>'Réalisé avec <a href=http://www.spip.net class=copyright>SPIP</a> : 2004-2005<br/>
+<a href=http://www.spip-contrib.net/article.php3?id_article=414>spipBB 0.9 CSS</a> 
+par par <a href=http://www.laprise.org/>James aka Kliké</a>, <a href=http://bloog.net/>BoOz</a>, <a href=http://esprit-str.com/>Nikau</a> et <a href=http://www.missmopi.net/>Nadège aka Miss Mopi</a> (logos de Stéphane)',
 
 
 //E
 'effacer' => 'Effacer',
 'email' => 'E-mail',
 'envmp' => 'Envoyer un message privé',
+'entree_nom_pseudo' => 'Votre nom',
+'entree_adresse_email' => 'Votre adresse email',
+'entree_infos_perso' => 'Qui &ecirc;tes-vous ?',
+'entree_nom_site' => 'Le nom de votre site',
+'entree_url' => 'L\'adresse (URL) de votre site',
+'texte_login_precaution' => 'Attention&nbsp;! Ceci est le login sous lequel vous &ecirc;tes connect&eacute; actuellement.
+	Utilisez ce formulaire avec pr&eacute;caution...',
+'entree_nouveau_passe' => 'Nouveau mot de passe',
+'entree_biographie' => 'Courte biographie en quelques mots.',
+
 
 //F
 'faq' => 'FAQ',
@@ -51,6 +87,13 @@ $GLOBALS['i18n_phpbb_fr'] = array(
 
 //I
 'info' => 'Informations',
+'info_reserve_admin' => 'Seuls les administrateurs peuvent modifier cette adresse.',
+'item_login' => 'Login',
+'info_non_modifiable' => 'ne peut pas &ecirc;tre modifi&eacute;',
+'info_plus_cinq_car' => 'plus de 5 caract&egrave;res',
+'info_confirmer_passe' => 'Confirmer ce nouveau mot de passe :',
+'info_avertissement' => 'Avertissement',
+'info_recommencer' => 'Veuillez recommencer.',
 
 //L
 'le' => 'Le',
@@ -69,7 +112,7 @@ $GLOBALS['i18n_phpbb_fr'] = array(
 'message_sujet' => 'Sujet ',
 'messages' => 'Messages',
 'messages_derniers' => 'Derniers Messages',
-'messages_nouveaux' => 'Nouveaux messages',
+'messages_nouveaux' => 'Nouveaux&nbsp;messages',
 'messages_pas_nouveaux' => 'Pas de nouveaux messages',
 'messages_non_lus_grand' => 'Pas de nouveaux messages',
 'messages_repondre' => 'Nouvelle réponse',
@@ -115,6 +158,7 @@ Les mots de moins de trois lettres sont ignorés.',
 'sujets_aucun' => 'Pas de sujet dans ce forum pour l\'instant',
 'sujet_clos_titre' => 'Sujet Clos',
 'sujet_clos_texte' => 'Ce sujet est clos, vous ne pouvez pas y poster.',
+'sinscrire'=> 's\'enregistrer',
 'sur' => ' sur ',
 
 
@@ -122,9 +166,10 @@ Les mots de moins de trois lettres sont ignorés.',
 'tous_forums' => 'Tous les forums',
 'toutes_categories' => 'Toutes les catégories',
 'tout_apropos' => 'Tout à propos de',
+'titre_cadre_signature_obligatoire' => '<B>Signature</B> [Obligatoire]<BR>',
 
 //V
-'voir_messages' => 'Voir les nouveaux messages',
+'voir_messages' => 'Voir&nbsp;les&nbsp;nouveaux&nbsp;messages',
 'voirprofil' => 'Voir le profil de'
 
 );
