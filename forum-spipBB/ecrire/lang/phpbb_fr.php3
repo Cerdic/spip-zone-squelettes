@@ -115,7 +115,7 @@ Les mots de moins de trois lettres sont ignorés.',
 'sujets_aucun' => 'Pas de sujet dans ce forum pour l\'instant',
 'sujet_clos_titre' => 'Sujet Clos',
 'sujet_clos_texte' => 'Ce sujet est clos, vous ne pouvez pas y poster.',
-'sur' => 'sur',
+'sur' => ' sur ',
 
 
 //T
