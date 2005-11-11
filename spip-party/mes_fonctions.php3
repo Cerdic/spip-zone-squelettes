@@ -48,7 +48,7 @@ function compteur($truc,$add=0) {
   static $compteur;
   if($add) {
 	$compteur+=$add;
-	return $add;
+	return $truc;
   } 
   return $compteur;
 }
