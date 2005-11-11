@@ -1,0 +1,33 @@
+<!--
+je ne sais pas comment encoder cela:
+BEGIN:VCALENDAR
+CALSCALE:GREGORIAN
+X-WR-CALNAME;VALUE=TEXT:[(#NOM_SITE_SPIP|filtrer_ical)]
+X-WR-RELCALID:[(#URL_SITE_SPIP|filtrer_ical)]
+
+j'ai aussi viré
+UID et DSTAMP des events.
+
+-->
+
+<BOUCLE_articles(ARTICLES){par date}{inverse}{0,100}>
+<span class="vevent">
+<span class="summary"><a href="#URL_SITE_SPIP/#URL_ARTICLE" class="url">#TITRE</a></span>
+<span class="description">[(#INTRODUCTION|supprimer_tags)]</span>
+[<abbr class="dtstart" title="[(#DATE|date_ical)]">(#DATE|affdate)</abbr>]
+[<abbr class="dtend" title="[(#DATE_REDAC|date_ical)]">(#DATE_REDAC|affdate)</abbr>]
+<span class="categories"><:articles:></span>
+<span class="status">confirmed</span>
+</span>
+</BOUCLE_articles>
+<BOUCLE_breves(BREVES){par date}{inverse}{0,100}>
+<span class="vevent">
+<span class="summary"><a href="#URL_SITE_SPIP/#URL_BREVE" class="url">#TITRE</a></span>
+<span class="description">[(#INTRODUCTION|supprimer_tags)]</span>
+[<abbr class="dtstart" title="[(#DATE|date_ical)]">(#DATE|affdate)</abbr>]
+[<abbr class="dtend" title="[(#DATE_REDAC|date_ical)]">(#DATE_REDAC|affdate)</abbr>]
+<span class="categories"><:breves:></span>
+<span class="status">confirmed</span>
+</span>
+</BOUCLE_breves>
+
