@@ -302,4 +302,56 @@ while (list($nom,$chem) = each($listimag))
 	}
 // FIN du Filtre pagination
 
+
+/*
+ *   +----------------------------------+
+ *    Nom du Filtre :    citation                                            
+ *   +----------------------------------+
+ *    Date : vendredi 11 novembre 2006
+ *    Auteur :  BoOz
+ *   +-------------------------------------+
+ *    Fonctions de ce filtre :
+ *     affiche le texte à citer    
+ *   +-------------------------------------+ 
+ *  
+ * Pour toute suggestion, remarque, proposition d'ajout
+ * reportez-vous au forum de l'article :
+ * http://www.spip-contrib.net/Pagination,663
+*/
+
+function barre_forum_citer($texte)
+{
+	include_ecrire('inc_layer.php3');
+
+if (!$premiere_passe = rawurldecode(_request('retour_forum'))) {
+	if($GLOBALS['citer']){
+
+	$id_citation = $GLOBALS['id_forum'] ;
+	$query = "SELECT * FROM spip_forum WHERE id_forum=$id_citation";
+    $result = spip_query($query);
+    $row = spip_fetch_array($result);
+//ajout de la citation
+
+$texte="\{\{$row[auteur] a écrit :}}\n\n<quote>\n$row[texte]\n</quote>\n";
+
+	}
+	
+}
+
+	
+	if (!$GLOBALS['browser_barre'])
+		return "<textarea name='texte' rows='12' class='forml' cols='40'>$texte</textarea>";
+	static $num_formulaire = 0;
+	$num_formulaire++;
+	include_ecrire('inc_barre.php3');
+	return afficher_barre("document.getElementById('formulaire_$num_formulaire')", true) .
+	  "
+<textarea name='texte' rows='12' class='forml' cols='40'
+id='formulaire_$num_formulaire'
+onselect='storeCaret(this);'
+onclick='storeCaret(this);'
+onkeyup='storeCaret(this);'
+ondbclick='storeCaret(this);'>$texte</textarea>";
+}
+
 ?>
