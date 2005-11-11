@@ -44,10 +44,10 @@ function casse_titre($titre) {
 }
 
 
-function compteur($add=0) {
+function compteur($truc,$add=0) {
   static $compteur;
   if($add) {
-	$compteur++;
+	$compteur+=$add;
 	return $add;
   } 
   return $compteur;
