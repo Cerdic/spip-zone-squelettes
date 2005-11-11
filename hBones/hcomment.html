@@ -1,0 +1,38 @@
+[
+
+	(#REM) Ce squelette fait partie de hBones, un ensemble de squelettes
+	visant a implanter les microformats (http://microformats.org)
+
+	Les forums sont bases sur le format hComment
+	<http://microformats.org/wiki/hcomment>
+
+]
+<BOUCLE_hComment(FORUMS){id_forum}{plat}>
+<div class="hcomment"[ id="(#URL_FORUM|url_absolue)"]>
+	<cite class="poster vcard">
+	<a class="url fn"[ href="(#URL_SITE)"]
+		rel="external nofollow">[(#NOM|sinon{#EMAIL}|sinon{#IP})]</a>
+	</cite>
+
+	<div class="summary"><a rel="self bookmark"[
+		href="(#URL_FORUM|url_absolue)"]>#TITRE</a></div>
+
+	<div class="description">#TEXTE
+	[<div><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
+	</div>
+
+	<span class="dtposted"[title="(#DATE|date_iso)"]
+	>[(#DATE|affdate)] [(#DATE|heures)]:[(#DATE|minutes)]</span>
+
+	[
+		(#REM) Afficher le lien de reponse au commentaire
+		si on souhaite une possibilite d'arborescence des reponses
+	]
+	[<div class="repondre-message"><a href="forum.php3?(#PARAMETRES_FORUM)"
+		><:repondre_message:></a></div>]
+
+	<BOUCLE_reponses(FORUMS){id_parent}{par date}{inverse}>
+	<INCLURE(page.php3){fond=hcomment}{id_forum}>
+	</BOUCLE_reponses>
+</div>
+</BOUCLE_hComment>
