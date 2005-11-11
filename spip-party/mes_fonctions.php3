@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $GLOBALS[ 'dossier_squelettes' ] = "squel_party" ;
 
 
@@ -44,6 +44,13 @@ function casse_titre($titre) {
 }
 
 
-
+function compteur($add=0) {
+  static $compteur;
+  if($add) {
+	$compteur++;
+	return $add;
+  } 
+  return $compteur;
+}
 
 ?>
