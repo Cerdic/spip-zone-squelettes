@@ -213,8 +213,11 @@ function formulaire_inscription($type,$acces_membres) {
 
 			$query = "INSERT INTO spip_auteurs (nom, email, login, pass, statut, htpass, extra, cookie_oubli) ".
 				"VALUES ('".addslashes($nom_inscription)."', '".addslashes($mail_inscription)."', '$login', '$mdpass', '$statut', '$htpass', '$extras', '$cookie')";
-			$result = spip_query($query);
+			$result_ok = spip_query($query);
 			$id_auteur=spip_insert_id();
+			if(!$result_ok){
+				echo _T('phpbb:pb_mysql') ;
+				}
 
 // abo
 
@@ -238,7 +241,7 @@ function formulaire_inscription($type,$acces_membres) {
 
                        
 		
-		if($abonne_existant != 'oui'){
+		if($abonne_existant != 'oui' AND $result_ok){
 
 			if (envoyer_mail($mail_inscription, "[$nom_site_spip] identifiants de connexion", $message)) {
 				if($acces_membres == 'oui'){
@@ -285,7 +288,8 @@ function formulaire_inscription($type,$acces_membres) {
 	  
 	  --></style>"; 
 
-	   echo  "<table class='enregistrement'><tr>";
+
+	  echo  "<table class='enregistrement'><tr>";
 		if(($acces_membres == 'oui') OR ($type=='redac')) {
         echo  "<td><b>Nom ou pseudo</b>&nbsp;:&nbsp;*</td>";
 		echo  "<td><input type=\"text\" class=\"formlbb\" name=\"nom_inscription\" value=\"\" size=\"35\" /> </td></tr>";
