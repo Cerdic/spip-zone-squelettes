@@ -99,9 +99,9 @@ if (is_readable(COUNTER)) include_once(COUNTER);
 				<td class="etatsuj annpost"><span><:phpbb:annonce:></span>&nbsp;</td>
 				<td class="titre" id="forum#ID_FORUM"><span><:phpbb:annonce:> : </span><a href="voirsujet.php3?id_forum=#ID_FORUM">#TITRE</a></td>
 				<td class="msgpost">
-					<BOUCLE_reponses01(FORUMS){id_thread}{plat}> </BOUCLE_reponses01>
-					[<?php echo (#TOTAL_BOUCLE)-1 ; ?>] 
-					</B_reponses01>
+					<BOUCLE_reponses01(FORUMS){id_thread}{plat}{exclus}></BOUCLE_reponses01>
+					#TOTAL_BOUCLE
+					<//B_reponses01>
 				</td>
 	  			<td class="autpost"><B_auteurpa><BOUCLE_auteurpa(AUTEURS){id_auteur}{tout}><a href="./profil_BB.php3?id_auteur=#ID_AUTEUR&id_article=#ID_ARTICLE">#NOM</a></BOUCLE_auteurpa></B_auteurpa><a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{"Anonyme"})]</a><//B_auteurpa></td>
 				<td class="dermsg">
@@ -130,9 +130,6 @@ if (is_readable(COUNTER)) include_once(COUNTER);
 						$closed='[(#ID_FORUM|texte_script)]'; 
 					</BOUCLE_reponse_fermealt>
 				</BOUCLE_reponsesalt>
-					$reponse_forum=#TOTAL_BOUCLE-1 ;
-				</B_reponsesalt>
-				
 
 				if(!in_array($id_forum,$tableau)){ 
 			?>
@@ -140,7 +137,11 @@ if (is_readable(COUNTER)) include_once(COUNTER);
 			<tr> 
 				<?php echo ($closed == "non" & $forumferme==0)? "<td class='etatsuj normpost'>&nbsp;<span><:phpbb:message:>" : "<td class='etatsuj fermpost'>&nbsp;<span><:phpbb:ferme:>" ; ?></span>&nbsp;</td>
 				<td class="titre" id="forum#ID_FORUM"><a href="voirsujet.php3?id_forum=#ID_FORUM">#TITRE</a></td>
-				<td class="msgpost"><?php echo $reponse_forum; ?></td>
+				<td class="msgpost">
+					<BOUCLE_reponses(FORUMS){id_thread}{plat}{exclus}></BOUCLE_reponses>
+					#TOTAL_BOUCLE
+					<//B_reponses>
+				</td>
 				<td class="autpost"><B_auteurp><BOUCLE_auteurp(AUTEURS){id_auteur}{tout}><a href="./profil_BB.php3?id_auteur=#ID_AUTEUR&id_article=#ID_ARTICLE">#NOM</a></BOUCLE_auteurp></B_auteurp><a href="mailto:[(#EMAIL|antispam)]">
 				[(#NOM|sinon{"Anonyme"})]</a><//B_auteurp></td>
 				<td class="dermsg">
