@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<BOUCLE_rubrique_principale(RUBRIQUES){id_rubrique}>
+
+<html lang="#LANG">
+<head>
+<title>[(#TITRE|textebrut)]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
+<style type="text/css">
+<!--
+td {vertical-align: top}
+
+-->
+</style>
+</head>
+<body>
+
+<table>
+<tr><td colspan="4">
+
+<p><a href="#URL_SITE_SPIP"><:accueil_site:></a></p>
+
+<BOUCLE_Chapitres(MOTS){id_rubrique}{type=Chapitres}>
+	<B_otherlang>
+		<form id="langselect" action="#URL_SITE_SPIP/" method="get">
+		<select size="1" name="langs" onChange="if (options[selectedIndex].value) { location = options[selectedIndex].value; }">
+		<option selected value="#URL_RUBRIQUE">[(#LANG|traduire_nom_langue)]</option>
+	<BOUCLE_otherlang(RUBRIQUES){exclus}{id_mot}{par lang}{id_secteur != 7}>
+		<option value="#URL_RUBRIQUE">[(#LANG|traduire_nom_langue)]</option>
+	</BOUCLE_otherlang>
+		</select>
+		</form>
+	</B_otherlang>
+</BOUCLE_Chapitres>
+</td>
+</tr>
+
+<tr>
+<td width="33%">
+<!-- Lister les rubriques et les articles -->
+<BOUCLE_chaps(RUBRIQUES){type_mot=Chapitres}{lang}{id_secteur != 7}{tout}>
+<strong>[<a (#EXPOSE{'',href})="#URL_RUBRIQUE">][(#TITRE|supprimer_numero)][(#EXPOSE{'',</a>})]</strong>
+<BOUCLE_mots2(MOTS){id_rubrique}{type=Chapitres}>
+
+[(#REM)<!-- !lang_select so that <multi>s work in article titles -->]
+
+<BOUCLE_sharedchap(RUBRIQUES){id_secteur=7}{id_mot}{tout}{!lang_select}>
+	<B_toplevelarticles>
+		<ul>
+[(#REM)<!-- !lang_select so that <multi>s work in article titles -->]
+	<BOUCLE_toplevelarticles(ARTICLES){id_rubrique IN #_sharedchap:ID_RUBRIQUE, #_chaps:ID_RUBRIQUE}{par titre}{!lang_select}>
+<!-- check if it's a shared article -->
+<BOUCLE_checksect1(ARTICLES){id_secteur=7}{id_article}{!lang_select}>
+<BOUCLE_trads2(ARTICLES){traduction}{exclus}{lang = #_chaps:LANG}>
+[(#REM) <!-- Check that a translation in the current language does not exist, -->]
+</BOUCLE_trads2>
+<li>[<a (#EXPOSE{'',href})="[(#LANG|=={#_chaps:LANG}|?{[(#URL_ARTICLE)],[(#URL_ARTICLE|parametre_url{lang,[(#_chaps:LANG)]})]})]">][(#TITRE|supprimer_numero)][(#EXPOSE{'',</a>})]</li>
+<//B_trads2>
+</BOUCLE_checksect1>
+[(#REM) <!-- The article is a native one -->]
+<li>[<a (#EXPOSE{'',href})="#URL_ARTICLE">][(#TITRE|supprimer_numero)][(#EXPOSE{'',</a>})]</li>
+
+<//B_checksect1>
+
+	</BOUCLE_toplevelarticles>
+		</ul>
+	</B_toplevelarticles>
+
+</BOUCLE_sharedchap>
+</BOUCLE_mots2>
+</BOUCLE_chaps>
+
+</td>
+
+<td width="5%">&nbsp;</td>
+
+<td width="60%">
+<h2>[(#TITRE|supprimer_numero)]</h2>
+[<div>(#TEXTE)</div>]
+</td>
+<td width="2%">&nbsp;</td>
+
+</tr></table>
+
+</body>
+</html>
+</BOUCLE_rubrique_principale>
+<:aucune_rubrique:>
+<//B_rubrique_principale>

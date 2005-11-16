@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<BOUCLE_art0(ARTICLES){id_article}>
+<BOUCLE_hier0(HIERARCHIE){id_article}{1,1}>
+<BOUCLE_mots0(MOTS){id_rubrique}{type=Chapitres}>
+<BOUCLE_lang0(RUBRIQUES){tout}{id_mot}{id_secteur!=7}{lang}>
+<html lang="#LANG">
+<head>
+<title>[(#TITRE|textebrut)]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
+<style type="text/css">
+<!--
+td {vertical-align: top}
+-->
+</style>
+</head>
+<body>
+
+<table>
+<tr>
+<td colspan="3">
+
+<p><a href="#URL_SITE_SPIP"><:accueil_site:></a></p>
+
+<!-- Sélecteur de langues -->
+<BOUCLE_art1(ARTICLES){id_article}>
+<BOUCLE_check7(ARTICLES){traduction}{id_secteur=7}>
+<B_langs1>
+[(#REM)<!-- Article has a shared translation -->]
+<form id="langselect" action="#URL_SITE_SPIP/" method="get">
+<select size="1" name="langs" onChange="if (options[selectedIndex].value){location = options[selectedIndex].value; }">
+<option value="">[(#_lang0:LANG|traduire_nom_langue)]</option>
+<BOUCLE_langs1(RUBRIQUES){racine}{id_rubrique != 7}{lang != #_lang0:LANG}}{par lang}>
+[(#REM)<!-- Get languages, excluding the current one -->]
+<BOUCLE_checktrad1(ARTICLES){traduction}{id_secteur}{exclus}>
+[(#REM)<!-- Check if there's a real translation of the article in this language -->]
+<option value="#URL_ARTICLE">[(#LANG|traduire_nom_langue)]</option>
+</BOUCLE_checktrad1>
+<BOUCLE_checklang(ARTICLES){id_article}{!lang_select}{lang=#_langs1:LANG}>
+[(#REM)<!-- If not, point to shared article. If language of shared article (usually English) is the same as the current language, there's no need for a ?lang=xx in the URL -->]
+<option value="[(#URL_ARTICLE|parametre_url{lang,''}|parametre_url{id_document}|parametre_url{debut_page})]">[(#LANG|traduire_nom_langue)]</option>
+</BOUCLE_checklang>
+[(#REM)<!-- ?lang=xx is needed in the URL -->]
+<option value="[(#URL_ARTICLE|parametre_url{lang,#LANG}|parametre_url{id_document}|parametre_url{debut_page})]">[(#LANG|traduire_nom_langue)]</option>
+<//B_checklang>
+<//B_checktrad1>
+<//B_hide>
+</BOUCLE_langs1>
+</select>
+</form>
+</B_langs1>
+</BOUCLE_check7>
+<B_trads1>
+[(#REM)<!-- Article does not have a shared translation -->]
+<form id="langselect" action="#URL_SITE_SPIP/" method="get">
+<select size="1" name="langs" onChange="if (options[selectedIndex].value){location = options[selectedIndex].value; }">
+<option value="">[(#LANG|traduire_nom_langue)]</option>
+<BOUCLE_trads1(ARTICLES){traduction}{exclus}{par lang}>
+<option value="#URL_ARTICLE">[(#LANG|traduire_nom_langue)]</option>
+</BOUCLE_trads1>
+</select>
+</form>
+</B_trads1>
+<//B_check7>
+</BOUCLE_art1>
+</td>
+</tr>
+<tr>
+<td width="33%">
+<br>
+<!-- Lister les rubriques et les articles -->
+<BOUCLE_chaps(RUBRIQUES){type_mot=Chapitres}{lang}{id_secteur != 7}{tout}>
+<strong><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></strong>
+<BOUCLE_mots2(MOTS){id_rubrique}{type=Chapitres}>
+
+[(#REM)<!-- !lang_select so that <multi>s work in article titles -->]
+
+<BOUCLE_sharedchap(RUBRIQUES){id_secteur=7}{id_mot}{tout}{!lang_select}>
+	<B_toplevelarticles>
+		<ul>
+[(#REM)<!-- !lang_select so that <multi>s work in article titles -->]
+	<BOUCLE_toplevelarticles(ARTICLES){id_rubrique IN #_sharedchap:ID_RUBRIQUE, #_chaps:ID_RUBRIQUE}{par titre}{!lang_select}>
+<!-- check if it's a shared article -->
+<BOUCLE_checksect1(ARTICLES){id_secteur=7}{id_article}{!lang_select}>
+<BOUCLE_trads2(ARTICLES){traduction}{exclus}{lang = #_chaps:LANG}>
+[(#REM) <!-- Check that a translation in the current language does not exist, -->]
+</BOUCLE_trads2>
+<li>[<a (#EXPOSE{'',href})="[(#LANG|=={#_chaps:LANG}|?{[(#URL_ARTICLE)],[(#URL_ARTICLE|parametre_url{lang,[(#_chaps:LANG)]})]})]">][(#TITRE|supprimer_numero)][(#EXPOSE{'',</a>})]</li>
+<//B_trads2>
+</BOUCLE_checksect1>
+[(#REM) <!-- The article is a native one -->]
+<li>[<a (#EXPOSE{'',href})="#URL_ARTICLE">][(#TITRE|supprimer_numero)][(#EXPOSE{'',</a>})]</li>
+
+<//B_checksect1>
+
+	</BOUCLE_toplevelarticles>
+		</ul>
+	</B_toplevelarticles>
+
+</BOUCLE_sharedchap>
+</BOUCLE_mots2>
+</BOUCLE_chaps>
+</td>
+
+<td width="5%">&nbsp;</td>
+
+<td width="60%">
+<h2>[(#_art0:TITRE|supprimer_numero)]</h2>
+[<div>(#_art0:CHAPO)</div>]
+[<div>(#_art0:TEXTE)</div>]
+</td>
+<td width="2%">&nbsp;</td>
+</tr></table>
+</body>
+</html>
+</BOUCLE_lang0>
+</BOUCLE_mots0>
+</BOUCLE_hier0>
+</BOUCLE_art0>
+(<:no_article_here:>)
+<//B_art0>
