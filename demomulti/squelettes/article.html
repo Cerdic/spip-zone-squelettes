@@ -3,6 +3,18 @@
 <BOUCLE_hier0(HIERARCHIE){id_article}{1,1}>
 <BOUCLE_mots0(MOTS){id_rubrique}{type=Chapitres}>
 <BOUCLE_lang0(RUBRIQUES){tout}{id_mot}{id_secteur!=7}{lang}>
+[(#REM) <!-- Explication de cette série de boucles :
+- La première boucle prend tout simplement l’article passé dans l’URL. Grâce à la syntaxe
+#_art0:TITRE, #_art0:LANG_DIR, etc. il est possible, à travers la page, d’accéder à toutes les balises de l’article;
+- La deuxième boucle cherche la rubrique au niveau «chapitre» (le niveau immédiatement en dessous du niveau racine)
+qui doit être marquée d’un des mots-clés « Chapitres »;
+- C’est l'identité de ce mot que nous cherchons avec la troisième boucle: alors nous savons en quel «chapitre» nous nous trouvons;
+- Et la 4ème boucle prend d’abord la langue {lang} -- qui sera soit la langue passée dans l’URL
+(forcer_lang étant donc activé), soit, s’il n’y en avait pas, la langue de l’article. Ensuite la boucle exclut le secteur 7
+(c’est l’ID du secteur « partagé » qui ne va pas changer). Enfin il cherche la rubrique qui est dans la bonne langue
+et qui porte le mot-clé du chapitre. Cette dernière boucle donne la langue en cours pour les deux menus, et pour les
+chaînes <: xxx :> --> ]
+
 <html lang="#LANG">
 <head>
 <title>[(#TITRE|textebrut)]</title>
@@ -10,6 +22,7 @@
 <style type="text/css">
 <!--
 td {vertical-align: top}
+.spip_documents {margin-bottom: 15px}
 -->
 </style>
 </head>
@@ -21,7 +34,7 @@ td {vertical-align: top}
 
 <p><a href="#URL_SITE_SPIP"><:accueil_site:></a></p>
 
-<!-- Sélecteur de langues -->
+<!-- Début sélecteur de langues -->
 <BOUCLE_art1(ARTICLES){id_article}>
 <BOUCLE_check7(ARTICLES){traduction}{id_secteur=7}>
 <B_langs1>
@@ -62,12 +75,13 @@ td {vertical-align: top}
 </B_trads1>
 <//B_check7>
 </BOUCLE_art1>
+<!-- Fin sélecteur de langues -->
 </td>
 </tr>
 <tr>
 <td width="33%">
 <br>
-<!-- Lister les rubriques et les articles -->
+<!-- Début menu -->
 <BOUCLE_chaps(RUBRIQUES){type_mot=Chapitres}{lang}{id_secteur != 7}{tout}>
 <strong><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></strong>
 <BOUCLE_mots2(MOTS){id_rubrique}{type=Chapitres}>
@@ -99,6 +113,7 @@ td {vertical-align: top}
 </BOUCLE_sharedchap>
 </BOUCLE_mots2>
 </BOUCLE_chaps>
+<!-- Fin menu -->
 </td>
 
 <td width="5%">&nbsp;</td>
