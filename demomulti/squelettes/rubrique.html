@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <BOUCLE_rubrique_principale(RUBRIQUES){id_rubrique}>
-
+[(#REM) <!-- Dans la partie <head>, utiliser les balises #LANG et #CHARSET pour remplir les valeurs selon la langue de la rubrique en cours -->]
 <html lang="#LANG">
 <head>
 <title>[(#TITRE|textebrut)]</title>
@@ -8,77 +8,109 @@
 <style type="text/css">
 <!--
 td {vertical-align: top}
-
 -->
 </style>
 </head>
-<body>
 
+[(#REM) <!-- Préparer le squelette pour utilisation avec langues qui s'écrivent de droite à gauche (arabe, hébreu,...) -->]
+<body bgcolor="white" dir="#LANG_DIR">
 <table>
 <tr><td colspan="4">
 
+[(#REM) <!-- Utilisation d'une balise multilingue. Voir la page  ecrire/lang_raccourcis.php3 de l'espace privé, et aussi
+la page http://www.spip.net/fr_article2128.html ("1. Méthode des fichiers de langue" -->]
 <p><a href="#URL_SITE_SPIP"><:accueil_site:></a></p>
 
-<BOUCLE_Chapitres(MOTS){id_rubrique}{type=Chapitres}>
-	<B_otherlang>
-		<form id="langselect" action="#URL_SITE_SPIP/" method="get">
-		<select size="1" name="langs" onChange="if (options[selectedIndex].value) { location = options[selectedIndex].value; }">
-		<option selected value="#URL_RUBRIQUE">[(#LANG|traduire_nom_langue)]</option>
-	<BOUCLE_otherlang(RUBRIQUES){exclus}{id_mot}{par lang}{id_secteur != 7}>
+[(#REM) <!-- Début du sélecteur de langues --> ]
+<form id="langselect" action="#URL_SITE_SPIP/" method="get">
+<select size="1" name="langs" onChange="if (options[selectedIndex].value) { location = options[selectedIndex].value; }">
+<option selected value="#URL_RUBRIQUE">[(#LANG|traduire_nom_langue)]</option>
+
+[(#REM) <!-- Ce site a une structure prédéfini: seulement deux niveaux de rubriques :
+1. les rubriques à la racine (secteurs) qui correspond à des langues (fr, en, pl), sauf le secteur 7 ou on place des articles
+"partagés" entre toutes les langues. Lorsqu'on fait des boucles pour retrouver les langues, ce secteur est donc à exclure.
+2. les rubriques du deuxième niveau qui correspond à des thèmes ou "chapitres" du site (Sénégal, Spip, ...).
+Les rubriques "chapitres" sont marqués d'un mot clé du groupe "Chapitres" -->
+
+[(#REM) <!-- Testons à quel niveau se trouve la rubrique actuelle -->]
+<BOUCLE_chapitres(MOTS){id_rubrique}{type=Chapitres}>
+[(#REM) <!-- On est dans un chapitre ! -->]
+	<BOUCLE_autrelang(RUBRIQUES){exclus}{id_mot}{par lang}{id_secteur != 7}>
 		<option value="#URL_RUBRIQUE">[(#LANG|traduire_nom_langue)]</option>
-	</BOUCLE_otherlang>
-		</select>
-		</form>
-	</B_otherlang>
-</BOUCLE_Chapitres>
+	</BOUCLE_autrelang>
+</BOUCLE_chapitres>
+<!-- On n'est pas dans un chapitre ; nous sommes donc à la racine -->
+	<BOUCLE_autrelang1(RUBRIQUES){exclus}{racine}{par lang}{id_rubrique != 7}>
+		<option value="#URL_RUBRIQUE">[(#LANG|traduire_nom_langue)]</option>
+	</BOUCLE_autrelang1>
+<//B_chapitres>
+
+</select>
+</form>
+[(#REM) <!-- Fin du sélecteur de langues --> ]
+
 </td>
 </tr>
 
 <tr>
 <td width="33%">
-<!-- Lister les rubriques et les articles -->
-<BOUCLE_chaps(RUBRIQUES){type_mot=Chapitres}{lang}{id_secteur != 7}{tout}>
+[(#REM) <!-- Début menu --> ]
+
+[(#REM)
+<!-- Pour cette langue : {lang},
+	  lister les "chapitres" : {type_mot=Chapitres},
+	  en excluant les chapitres du secteur partagé : {id_secteur != 7},
+ 	  en montrant même les chapitres qui ne contiennent pas d'article publié : {tout}.
+ 	  (Ce dernier est nécessaire, car même si un chapitre "natif" est vide, il peut recevoir des
+ 	  articles du chapitre partagé correspondant.) -->]
+<BOUCLE_chaps(RUBRIQUES){lang}{type_mot=Chapitres}{id_secteur != 7}{tout}>
+[(#REM) <!-- Utiliser EXPOSE pour ne pas mettre un lien sur la rubrique dans laquelle nous nous trouvons déjà --> ]
 <strong>[<a (#EXPOSE{'',href})="#URL_RUBRIQUE">][(#TITRE|supprimer_numero)][(#EXPOSE{'',</a>})]</strong>
-<BOUCLE_mots2(MOTS){id_rubrique}{type=Chapitres}>
 
-[(#REM)<!-- !lang_select so that <multi>s work in article titles -->]
+[(#REM)<!--Trouver quel chapitre (Sénégal, Spip...) est en cours -->]
+<BOUCLE_mots(MOTS){id_rubrique}{type=Chapitres}>
 
-<BOUCLE_sharedchap(RUBRIQUES){id_secteur=7}{id_mot}{tout}{!lang_select}>
-	<B_toplevelarticles>
-		<ul>
-[(#REM)<!-- !lang_select so that <multi>s work in article titles -->]
-	<BOUCLE_toplevelarticles(ARTICLES){id_rubrique IN #_sharedchap:ID_RUBRIQUE, #_chaps:ID_RUBRIQUE}{par titre}{!lang_select}>
-<!-- check if it's a shared article -->
-<BOUCLE_checksect1(ARTICLES){id_secteur=7}{id_article}{!lang_select}>
-<BOUCLE_trads2(ARTICLES){traduction}{exclus}{lang = #_chaps:LANG}>
-[(#REM) <!-- Check that a translation in the current language does not exist, -->]
-</BOUCLE_trads2>
+[(#REM)<!-- Trouver le chapitre du secteur partagé qui correspond.
+	{tout} est toujours nécessaire : la boucle doit tourner, même si le chapitre partagé ne contient pas d'article
+ 	!lang_select fait que des balises <multi> éventuelles dans les articles du chapitre partagé s'affiche correctement. -->]
+<BOUCLE_chappartage(RUBRIQUES){id_secteur=7}{id_mot}{tout}{!lang_select}>
+<B_articles>
+<ul>
+[(#REM)<!-- Trier ensemble les articles des deux rubriques.
+	!lang_select est toujours nécessaire ici pour la même raison que dans la boucle précedente. -->]
+	<BOUCLE_articles(ARTICLES){id_rubrique IN #_chappartage:ID_RUBRIQUE, #_chaps:ID_RUBRIQUE}{par titre}{!lang_select}>
+[(#REM)<!-- Cela se complique un petit peu...
+	Vérifier si l'article en cours provient du secteur partagé. -->]
+<BOUCLE_verifsect(ARTICLES){id_secteur=7}{id_article}{!lang_select}>
+[(#REM) <!-- Si oui, on vérifie d'abord si une traduction de cet article existe dans la langue en cours.
+	Si oui, il ne faut pas afficher cet article "partagé" et on le "supprime" en mettant une boucle vide. -->]
+<BOUCLE_trad(ARTICLES){traduction}{exclus}{lang = #_chaps:LANG}>
+</BOUCLE_trad>
+[(#REM)<!-- Afficher l'article provenant du secteur partagé.
+	Si la langue de cette article est différente de la langue en cours,
+	il est nécessaire d'ajouter une variable lang=xx à l'URL. -->]
 <li>[<a (#EXPOSE{'',href})="[(#LANG|=={#_chaps:LANG}|?{[(#URL_ARTICLE)],[(#URL_ARTICLE|parametre_url{lang,[(#_chaps:LANG)]})]})]">][(#TITRE|supprimer_numero)][(#EXPOSE{'',</a>})]</li>
-<//B_trads2>
-</BOUCLE_checksect1>
-[(#REM) <!-- The article is a native one -->]
+<//B_trad>
+</BOUCLE_verifsect>
+[(#REM) <!-- L'article provient du secteur "natif". Donc tout est simple. -->]
 <li>[<a (#EXPOSE{'',href})="#URL_ARTICLE">][(#TITRE|supprimer_numero)][(#EXPOSE{'',</a>})]</li>
-
-<//B_checksect1>
-
-	</BOUCLE_toplevelarticles>
-		</ul>
-	</B_toplevelarticles>
-
-</BOUCLE_sharedchap>
-</BOUCLE_mots2>
+<//B_verifsect>
+</BOUCLE_articles>
+</ul>
+</B_articles>
+</BOUCLE_chappartage>
+</BOUCLE_mots>
 </BOUCLE_chaps>
-
+[(#REM) <!-- Fin menu --> ]
 </td>
 
 <td width="5%">&nbsp;</td>
-
 <td width="60%">
+[(#REM) <!-- Texte de la rubrique en cours --> ]
 <h2>[(#TITRE|supprimer_numero)]</h2>
 [<div>(#TEXTE)</div>]
 </td>
 <td width="2%">&nbsp;</td>
-
 </tr></table>
 
 </body>
