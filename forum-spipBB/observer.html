@@ -52,7 +52,7 @@
             
         }
         else {
-            echo '<p class="alerte">Il n\'est pas possible de s\'abonner à ce fil</p>';
+            echo '<p class="alerte">'._T('phpbb:fil_alerte').'</p>';
         }
 ?>
 </BOUCLE_abo>
@@ -74,11 +74,11 @@
         }
         
         if ($forum_obs) {
-            echo '<p><a href="?id_forum='.$id_forum.'&abonnement=non">Résilier l\'abonnement à ce fil</a></p>';
+            echo '<p><a href="?id_forum='.$id_forum.'&abonnement=non">'._T('phpbb:resilier_abo').'</a></p>';
         }
         else {
             if ($obs_count < $quota_obs) {
-                echo '<p><a href="?id_forum='.$id_forum.'&abonnement=oui">S\'abonner à ce fil</a></p>';
+                echo '<p><a href="?id_forum='.$id_forum.'&abonnement=oui">'._T('phpbb:sabonner').'</a></p>';
             }
         }
         
@@ -87,9 +87,9 @@
             $obs_forum_list = implode(',',$obs_forum_ids);
             $query = "SELECT titre,id_forum FROM spip_forum WHERE id_forum IN ($obs_forum_list)";
             $result = spip_query($query);
-            echo "Abonnements&nbsp;:<ul>\n";
+            echo _T('phpbb:abo').":<ul>\n";
             while ($row = spip_fetch_array($result)) {
-                echo '<li><a href="message'.$row['id_forum'].'.html">'.$row['titre'].'</a> [<a href="message'.$row['id_forum'].'.html?abonnement=non">résilier</a>]</li>'."\n";
+                echo '<li><a href="message'.$row['id_forum'].'.html">'.$row['titre'].'</a> [<a href="message'.$row['id_forum'].'.html?abonnement=non">'._T('phpbb:resilier').'</a>]</li>'."\n";
             }
             echo "</ul>\n";
         }

@@ -90,7 +90,7 @@ if ($oubli_pass == 'oui') {
 		echo "<div class='bloogletter-right'>";
 		echo "<input type='text' class='fondo' name='email_oubli' value='' />";
 		echo "<input type='hidden' name='oubli_pass' value='oui' />";
-		echo "<input type='submit' class='fondl' name='oubli' value='OK' /></div></form>";
+		echo "<input type='submit' class='fondl' name='oubli' value=_T('pass_ok') /></div></form>";
 	}
 	echo "</p>";
 }
@@ -179,7 +179,7 @@ function formulaire_inscription($type,$acces_membres) {
 
 			unset ($continue);
 			if ($statut == '5poubelle') {
-			echo "<b>Vous n'avez plus accès à ce site</b>";
+			echo "<b>_T('form_forum_access_refuse')</b>";
 			}elseif ($statut == 'nouveau') {
 			spip_query ("DELETE FROM spip_auteurs WHERE id_auteur=$id_auteur");
 			$continue = true;
@@ -189,7 +189,7 @@ function formulaire_inscription($type,$acces_membres) {
         	$cookie = creer_uniqid();
         	spip_query("UPDATE spip_auteurs SET cookie_oubli = '$cookie' WHERE email ='$mail_inscription'");
         
-        	echo "Cette adresse email est déjà enregistrée<p><a href='spip_pass.php3'>[ Mot de passe oublié ]</a></p>" ;
+        	echo _T('phpbb:deja_enregistree') ;
 				
                                                
             }
@@ -226,14 +226,14 @@ function formulaire_inscription($type,$acces_membres) {
 			$nom_site_spip = lire_meta("nom_site");
 			$adresse_site = lire_meta("adresse_site");
 
-			$message = _T('form_forum_message_auto')."\n\nBonjour,\n";
+			$message = _T('form_forum_message_auto')."\n\n"._T('phpbb:bonjour')."\n";
                       
         if(($acces_membres == 'oui') && ($type == 'forum') ){
                           
-			$message .="\n\n Voici vos identifiants de connexion pour le site $nom_site_spip ($adresse_site)\n\n";
+			$message .="\n\n "._T('phpbb:identifiant')."$nom_site_spip ($adresse_site)\n\n";
             $message .= "- "._T('form_forum_login')." $login\n";
 			$message .= "- "._T('form_forum_pass')." $pass\n\n";
-			$message .= "\n\nUne fois connecté, vous pouvez modifer votre mot de passe ou vos informations personnelles à l'adresse $adresse_site/profile.php3?id_auteur=$id_auteur\n\n";
+			$message .= "\n\n"._T('phpbb:connecte')."$adresse_site/profile.php3?id_auteur=$id_auteur\n\n";
                         }
                
 
@@ -260,13 +260,13 @@ function formulaire_inscription($type,$acces_membres) {
 	else {
 		
 		if($mail_inscription AND !$mail_valide){
-        echo "<h2 style='color:red'>Adresse email non valide</h2>";
+        echo _T('phpbb:non_valide');
         }
 		
 		
 		
 		if($acces_membres == 'oui'){
-        echo "<p>Après l'étape d'enregistrement, votre identifiant personnel vous parviendra rapidement par courrier électronique.</p>";
+        echo _T('phpbb:courrier');
         }
 	
 	$self=quote_amp($GLOBALS["clean_link"]->getUrl()) ;
@@ -291,7 +291,7 @@ function formulaire_inscription($type,$acces_membres) {
 
 	  echo  "<table class='enregistrement'><tr>";
 		if(($acces_membres == 'oui') OR ($type=='redac')) {
-        echo  "<td><b>Nom ou pseudo</b>&nbsp;:&nbsp;*</td>";
+        echo  "<td>"._T('phpbb:entree_nom_pseudo2')."&nbsp;*</td>";
 		echo  "<td><input type=\"text\" class=\"formlbb\" name=\"nom_inscription\" value=\"\" size=\"35\" /> </td></tr>";
 		}
 		

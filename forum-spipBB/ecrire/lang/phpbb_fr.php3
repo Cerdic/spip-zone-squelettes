@@ -32,7 +32,10 @@ L\'adresse e-mail est uniquement utilisée afin de confirmer les détails de votre
 'champsobli'=>'Les champs marqués d\'un * sont obligatoires.',
 
 // A
+'abo' => 'Abonnements&nbsp;',
+'aecrit' => 'a écrit ',
 'annonce' => 'Annonce',
+'anonyme' => 'Anonyme',
 'avatar' => 'Avatar',
 'admsurveiller' => 'Surveiller ce sujet',
 'admclore' => 'Fermer ce sujet',
@@ -48,26 +51,31 @@ L\'adresse e-mail est uniquement utilisée afin de confirmer les détails de votre
 
 // B
 'bio' => 'Petite biographie',
-
-//D
-'dans_forum' => 'dans le forum',
-'date' => 'Inscrit le',
+'bonjour' => 'Bonjour,',
 
 //C
 'categorie'=>'Catégorie',
 'citer' => 'Citer',
 'click' => 'cliquez ici',
+'connecte' => 'Une fois connecté, vous pouvez modifer votre mot de passe ou vos informations personnelles à l\'adresse ',
 'contact' => 'Contact',
+'courrier' => '<p>Après l\'étape d\'enregistrement, votre identifiant personnel vous parviendra rapidement par courrier électronique.</p>',
 'credits'=>'Réalisé avec <a href=http://www.spip.net class=copyright>SPIP</a> : 2004-2005<br/>
 <a href=http://www.spip-contrib.net/article.php3?id_article=414>spipBB 0.9 CSS</a> 
-par par <a href=http://www.laprise.org/>James aka Kliké</a>, <a href=http://bloog.net/>BoOz</a>, <a href=http://esprit-str.com/>Nikau</a> et <a href=http://www.missmopi.net/>Nadège aka Miss Mopi</a> (logos de Stéphane)',
+par <a href=http://www.laprise.org/>James aka Kliké</a>, <a href=http://bloog.net/>BoOz</a>, <a href=http://esprit-str.com/>Nikau</a> et <a href=http://www.missmopi.net/>Nadège aka Miss Mopi</a> (logos de Stéphane)',
 
+//D
+'dans_forum' => 'dans le forum',
+'date' => 'Inscrit le',
+'deja_enregistree' => 'Cette adresse email est déjà enregistrée<p><a href=\'spip_pass.php3\'>[ Mot de passe oublié ]</a></p>',
 
 //E
 'effacer' => 'Effacer',
 'email' => 'E-mail',
+'enregistrement' => 'Enregistrement',
 'envmp' => 'Envoyer un message privé',
 'entree_nom_pseudo' => 'Votre nom',
+'entree_nom_pseudo2' => '<b>Nom ou pseudo</b>&nbsp;:',
 'entree_adresse_email' => 'Votre adresse email',
 'entree_infos_perso' => 'Qui &ecirc;tes-vous ?',
 'entree_nom_site' => 'Le nom de votre site',
@@ -84,8 +92,10 @@ par par <a href=http://www.laprise.org/>James aka Kliké</a>, <a href=http://bloo
 'forum_ferme' => 'Ce forum est désactivé',
 'forum_ferme_texte' => 'Ce forum est désactivé. Vous ne pouvez plus y poster.',
 'ferme' => 'Cette discussion est fermée',
+'fil_alerte' => 'Il n\'est pas possible de s\'abonner à ce fil',
 
 //I
+'identifiant' => 'Voici vos identifiants de connexion pour le site ',
 'info' => 'Informations',
 'info_reserve_admin' => 'Seuls les administrateurs peuvent modifier cette adresse.',
 'item_login' => 'Login',
@@ -122,11 +132,13 @@ par par <a href=http://www.laprise.org/>James aka Kliké</a>, <a href=http://bloo
 
 //n
 'nom' => 'Nom d\'utilisateur',
+'non_valide' => '<h2 style=\'color:red\'>Adresse email non valide</h2>',
 'nouveaux_messages' => 'Nouveaux messages',
 'no_message' => 'Aucun sujet ou message ne correspond à vos critères de recherche',
 
 //P
 'page' => 'Page',
+'pages_vues' => 'Pages vues',
 'poster' => 'Poster un Message',
 'profil' => 'Profil de',
 'paramprofil' => 'Modifier vos paramètres',
@@ -145,20 +157,28 @@ Les mots de moins de trois lettres sont ignorés.',
 'reda' => 'Rédacteur',
 'reponse' => 'En réponse au message',
 'reponses' => 'Réponses',
+'resilier' => 'résilier',
+'resilier_abo' => 'Résilier l\'abonnement à ce fil',
 'resultat' => 'résultats pour',
+'retour' => 'Retour',
+'retour_site' => 'Retour à l\'accueil du site',
+'retour_forum' => 'Retour à l\'accueil du forum',
 'revenir_haut' => 'Revenir en haut de la page',
 
 //S
+'sabonner'=> 'S\'abonner à ce fil',
+'sinscrire'=> 's\'enregistrer',
 'site' => 'Site web',
+'statistique' => 'Statistiques',
 'statut' => 'Statut',
 'sujet_nouveau' => 'Nouveau sujet',
 'sujet_auteur' => 'Auteur',
 'sujet_visites' => 'Visites',
+'sujet' => 'Sujet&nbsp;',
 'sujets' => 'Sujets',
 'sujets_aucun' => 'Pas de sujet dans ce forum pour l\'instant',
 'sujet_clos_titre' => 'Sujet Clos',
 'sujet_clos_texte' => 'Ce sujet est clos, vous ne pouvez pas y poster.',
-'sinscrire'=> 's\'enregistrer',
 'sur' => ' sur ',
 
 
@@ -169,8 +189,15 @@ Les mots de moins de trois lettres sont ignorés.',
 'titre_cadre_signature_obligatoire' => '<B>Signature</B> [Obligatoire]<BR>',
 
 //V
+'visites_jour' => 'Visites aujourd\'hui',
+'visites_mois' => 'Visites ce mois',
+'visites_semaine' => 'Visites cette semaine',
+'visiteurs_uniques' => 'Visiteurs uniques',
 'voir_messages' => 'Voir&nbsp;les&nbsp;nouveaux&nbsp;messages',
-'voirprofil' => 'Voir le profil de'
+'voirprofil' => 'Voir le profil de',
+
+//W
+'www' => 'WWW'
 
 );
 

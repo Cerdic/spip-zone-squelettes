@@ -40,7 +40,7 @@
 <link rel="stylesheet" href="spip_style.css" type="text/css">
 
 <!-- Les feuilles de style specifiques aux presents squelettes -->
-<link rel="stylesheet" href="spip_forum.css" type="text/css">
+<link rel="stylesheet" href="spip_forum[(#LANG_DIR|=={rtl}|?{'_rtl',''})].css" type="text/css">
 
 <!-- Lien vers le backend pour navigateurs eclaires -->
 <link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="backend.php3">
@@ -56,7 +56,7 @@
 <INCLURE(entete_BB.php3){id_rubrique}>
 
 	<div id="corps"> <!-- Section contenant les données -->
-	<p class="nav"><a  href="rubrique.php3?id_rubrique=<? echo $ze_sect ?>">Forum</a></p>
+	<p class="nav"><a  href="rubrique.php3?id_rubrique=<? echo $ze_sect ?>"><:phpbb:forum:></a></p>
 
 	<hr class="clr" /> <!-- Permet l'affichage correctement pour certaines versions de safari -->
 	<table class="spipforum">
@@ -81,7 +81,7 @@
 				<?php 
 					$id_sujet='[(#ID_FORUM|texte_script)]'; 
 					$titre_sujet='[(#TITRE|texte_script)]';
-					$auteur_sujet='<B_auteurpa><BOUCLE_auteurpa(AUTEURS){id_auteur}{tout}><a href="./profil_BB.php3?id_auteur=#ID_AUTEUR&id_rubrique='.$ze_sect_art.'">#NOM</a></BOUCLE_auteurpa></B_auteurpa><a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{"Anonyme"})]</a><//B_auteurpa>';
+					$auteur_sujet='<B_auteurpa><BOUCLE_auteurpa(AUTEURS){id_auteur}{tout}><a href="./profil_BB.php3?id_auteur=#ID_AUTEUR&id_rubrique='.$ze_sect_art.'">#NOM</a></BOUCLE_auteurpa></B_auteurpa><a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{<:phpbb:anonyme:>})]</a><//B_auteurpa>';
 				?>
 				<BOUCLE_ArticleForum(ARTICLES){id_article}>
 					<?php 
@@ -108,7 +108,7 @@
 				<td class="titresuj"><?php $titre_sujet = ereg_replace( "> ", "", $titre_sujet ); ?><a href="voirsujet.php3?id_forum=<?php echo $id_sujet ?>"><?php echo $titre_sujet ?></a></td>
 				<td class="autpost"><?php echo $auteur_sujet; ?></td>
 				<td class="msgpost"><?php echo $reponse_forum;?></td>
-				<td class="dermsg"><a href="voirsujet.php3?id_forum=<?php echo $id_sujet?>#forum#ID_FORUM"><?php echo $ze_titre ?></a><br/>[(#DATE|nom_jour)] [(#DATE|affdate),] [(#DATE|heures)]:[(#DATE|minutes)<br/>] <:par_auteur:> <B_auteurp><BOUCLE_auteurp(AUTEURS){id_auteur}{tout}><a href="./profil_BB.php3?id_auteur=#ID_AUTEUR&id_rubrique=<?php echo $id_rubrique ?>">#NOM</a></BOUCLE_auteurp></B_auteurp><a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{"Anonyme"})]</a><//B_auteurp> <a href="voirsujet.php3?id_forum=<?php echo $id_sujet?>#forum#ID_FORUM"><img src="spip_bb/icon_latest_reply.gif" border="0" alt="<:phpbb:messages_voir_dernier:>" title="<:phpbb:messages_voir_dernier:>" /></a></td>
+				<td class="dermsg"><a href="voirsujet.php3?id_forum=<?php echo $id_sujet?>#forum#ID_FORUM"><?php echo $ze_titre ?></a><br/>[(#DATE|nom_jour)] [(#DATE|affdate),] [(#DATE|heures)]:[(#DATE|minutes)<br/>] <:par_auteur:> <B_auteurp><BOUCLE_auteurp(AUTEURS){id_auteur}{tout}><a href="./profil_BB.php3?id_auteur=#ID_AUTEUR&id_rubrique=<?php echo $id_rubrique ?>">#NOM</a></BOUCLE_auteurp></B_auteurp><a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{<:phpbb:anonyme:>})]</a><//B_auteurp> <a href="voirsujet.php3?id_forum=<?php echo $id_sujet?>#forum#ID_FORUM"><img src="spip_bb/icon_latest_reply.gif" border="0" alt="<:phpbb:messages_voir_dernier:>" title="<:phpbb:messages_voir_dernier:>" /></a></td>
 			</tr>
 			
 			
@@ -128,7 +128,7 @@
 				$page_nb=$debut_post/$limite;
 </B_pagination_posts>			
 		?>
-		<p class="nav">Page <?php echo ($page_nb)? $page_nb : '1'; ?> sur <?php echo ($nb_pages)? $nb_pages : '1'; ?></p>
+		<p class="nav"><:phpbb:page:> <?php echo ($page_nb)? $page_nb : '1'; ?> <:phpbb:sur:> <?php echo ($nb_pages)? $nb_pages : '1'; ?></p>
 		</div>
 
 		<div class="navigapage"> <!-- Section de la liste de page -->

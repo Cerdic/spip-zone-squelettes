@@ -319,7 +319,7 @@ while (list($nom,$chem) = each($listimag))
  * http://www.spip-contrib.net/Pagination,663
 */
 
-function barre_forum_citer($texte)
+function barre_forum_citer($texte, $lan)
 {
 	include_ecrire('inc_layer.php3');
 
@@ -332,7 +332,7 @@ if (!$premiere_passe = rawurldecode(_request('retour_forum'))) {
     $row = spip_fetch_array($result);
 //ajout de la citation
 
-$texte="\{\{$row[auteur] a écrit :}}\n\n<quote>\n$row[texte]\n</quote>\n";
+$texte="\{\{$row[auteur] $lan:}}\n\n<quote>\n$row[texte]\n</quote>\n";
 
 	}
 	

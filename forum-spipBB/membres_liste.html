@@ -46,19 +46,19 @@
 			<?php $ligne=1; ?>
 			<BOUCLE_auteur_principal(AUTEURS){tout}{par id_auteur}{inverse}{debut_auteur,30}>
 			<!-- Ici on relève le statut de l'auteur -->
-			<BOUCLE_statadm(AUTEURS){id_auteur}{statut=="0minirezo"}{tout}> </BOUCLE_statadm><?php $statmem='Administrateur' ?></B_statadm>
-			<BOUCLE_statredac1(AUTEURS){id_auteur}{statut=="1comite"}{tout}> </BOUCLE_statredac1><?php $statmem='Rédacteur' ?></B_statredac1>
-			<BOUCLE_statvisit(AUTEURS){id_auteur}{statut=="6forum"}{tout}> </BOUCLE_statvisit><?php $statmem='Membre' ?></B_statvisit>
+			<BOUCLE_statadm(AUTEURS){id_auteur}{statut=="0minirezo"}{tout}> </BOUCLE_statadm><?php $statmem='<:phpbb:admin:>' ?></B_statadm>
+			<BOUCLE_statredac1(AUTEURS){id_auteur}{statut=="1comite"}{tout}> </BOUCLE_statredac1><?php $statmem='<:phpbb:reda:>' ?></B_statredac1>
+			<BOUCLE_statvisit(AUTEURS){id_auteur}{statut=="6forum"}{tout}> </BOUCLE_statvisit><?php $statmem='<:phpbb:membre:>' ?></B_statvisit>
 			<!-- Ligne affichant les données de l'auteur -->
 				<tr  class="auteur row<?php echo $ligne ?>"> 
 				      <td class="numaut">#ID_AUTEUR</td>
 				      <td class="nomaut"><a href="profil_BB.php3?id_auteur=#ID_AUTEUR&id_rubrique=<?php echo $id_rubrique ?>"><span>#NOM</span></a></td>
 				      <td class="statutaut"><span><?php echo $statmem ?></span></td>
-				      <td class="pm"><?php if ($GLOBALS['auteur_session'] AND $statmem!="Membre" AND $statut!="6forum"){ echo '<a href="ecrire/message_edit.php3?dest=#ID_AUTEUR&new=oui&type=normal" title="<:phpbb:envmp:>"><span><:phpbb:envmp:></span></a>'; } ?></td>
-				      <td class="email"><a href="profil_BB.php3?id_auteur=#ID_AUTEUR&id_rubrique=<?php echo $id_rubrique ?>#ecrire" title="Email"><span>Email</span></a></td>
+				      <td class="pm"><?php if ($GLOBALS['auteur_session'] AND $statmem!="<:phpbb:membre:>" AND $statut!="6forum"){ echo '<a href="ecrire/message_edit.php3?dest=#ID_AUTEUR&new=oui&type=normal" title="<:phpbb:envmp:>"><span><:phpbb:envmp:></span></a>'; } ?></td>
+				      <td class="email"><a href="profil_BB.php3?id_auteur=#ID_AUTEUR&id_rubrique=<?php echo $id_rubrique ?>#ecrire" title="<:phpbb:email:>"><span><:phpbb:email:></span></a></td>
 				      <td class="dateaut">-</td>
 				      <td class="msgaut">[(#ID_AUTEUR|nb_messages)]</td>
-					<td class="www">[<a href="(#URL_SITE)" title="#NOM_SITE"><span>WWW</span></a>]</td>
+					<td class="www">[<a href="(#URL_SITE)" title="#NOM_SITE"><span><:phpbb:www:></span></a>]</td>
 				</tr>
 				<?php if ($ligne==1) {$ligne=2;} else {$ligne=1;} ?>
 			</BOUCLE_auteur_principal>
@@ -76,7 +76,7 @@
 					$page_nb=$debut_auteur/30;
 			</B_compt_auteurs>
 		?>
-		<p class="nav">Page <?php echo $page_nb; ?> sur <?php echo $nb_pages ?><p>
+		<p class="nav"><:phpbb:page:> <?php echo $page_nb; ?> <:phpbb:sur:> <?php echo $nb_pages ?><p>
 		</div>
 	
 		<div class="navigapage"> <!-- Section de la liste de page -->
