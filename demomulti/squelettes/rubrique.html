@@ -15,7 +15,6 @@ td {vertical-align: top}
 -->
 </style>
 </head>
-
 [(#REM) <!-- Préparer le squelette pour utilisation avec langues qui s'écrivent de droite à gauche (arabe, hébreu,...) --> ]
 <body bgcolor="white" dir="#LANG_DIR">
 <table>
@@ -29,7 +28,7 @@ la page http://www.spip.net/fr_article2128.html ("1. Méthode des fichiers de lan
 <form id="langselect" action="#URL_SITE_SPIP/" method="get">
 <select size="1" name="langs" onChange="if (options[selectedIndex].value) { location = options[selectedIndex].value; }">
 [(#REM) <!-- Montrer la langue en cours --> ]
-<option selected value="#URL_RUBRIQUE">[(#LANG|traduire_nom_langue)]</option>
+<option selected value="">[(#LANG|traduire_nom_langue)]</option>
 
 [(#REM) <!-- Ce site a une structure prédéfini: seulement deux niveaux de rubriques :
 1. les rubriques à la racine (secteurs) qui correspond à des langues (fr, en, pl), sauf le secteur 7 ou on place des articles
@@ -59,12 +58,13 @@ Les rubriques "chapitres" sont marqués d'un mot clé du groupe "Chapitres" -->
 
 <tr>
 <td width="33%">
+<br>
 <!-- Début menu -->
 [(#REM)
 <!-- Pour cette langue : {lang},
 	  lister les "chapitres" : {type_mot=Chapitres},
 	  en excluant les chapitres du secteur partagé : {id_secteur != 7}. -->]
-<BOUCLE_chaps(RUBRIQUES){lang}{type_mot=Chapitres}{id_secteur != 7}{tout}>
+<BOUCLE_chaps(RUBRIQUES){lang}{type_mot=Chapitres}{id_secteur != 7}{tout}{par titre}>
 [(#REM) <!-- Utiliser EXPOSE pour ne pas mettre un lien sur la rubrique dans laquelle nous nous trouvons déjà --> ]
 <strong>[<a (#EXPOSE{'',href})="#URL_RUBRIQUE">][(#TITRE|supprimer_numero)][(#EXPOSE{'',</a>})]</strong>
 
@@ -87,10 +87,15 @@ Les rubriques "chapitres" sont marqués d'un mot clé du groupe "Chapitres" -->
 	Si oui, il ne faut pas afficher cet article "partagé" et on le "supprime" en mettant une boucle vide. -->]
 <BOUCLE_trad(ARTICLES){traduction}{exclus}{lang = #_chaps:LANG}>
 </BOUCLE_trad>
+[(#REM) <!-- On fait quelque chose de similaire pour vérifier que cet article n'est pas marqué avec un mot-clé "Cacher"
+	qui indique de ne pas le montrer dans cette langue. -->]
+<BOUCLE_cacher(MOTS){type=Cacher}{titre=#_chaps:LANG}{id_article}>
+</BOUCLE_cacher>
 [(#REM)<!-- Afficher l'article provenant du secteur partagé.
 	Si la langue de cette article est différente de la langue en cours,
 	il est nécessaire d'ajouter une variable lang=xx à l'URL. -->]
 <li><a href="[(#LANG|=={#_chaps:LANG}|?{[(#URL_ARTICLE)],[(#URL_ARTICLE|parametre_url{lang,[(#_chaps:LANG)]})]})]">[(#TITRE|supprimer_numero)][(#EXPOSE{'',</a>})]</li>
+<//B_cacher>
 <//B_trad>
 </BOUCLE_verifsect>
 [(#REM) <!-- L'article provient du secteur "natif". Donc tout est simple. -->]

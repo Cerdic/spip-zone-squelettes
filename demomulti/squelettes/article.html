@@ -26,8 +26,7 @@ td {vertical-align: top}
 -->
 </style>
 </head>
-<body>
-
+<body bgcolor="white" dir="#LANG_DIR">
 <table>
 <tr>
 <td colspan="3">
@@ -35,15 +34,20 @@ td {vertical-align: top}
 <p><a href="#URL_SITE_SPIP"><:accueil_site:></a></p>
 
 <!-- Début sélecteur de langues -->
-<BOUCLE_art1(ARTICLES){id_article}>
+[(#REM) <!-- On commence le formulaire à l'intérieur des boucles, car si un article n'a aucune traduction, le sélecteur
+	de langues ne se montre pas. --> ]
 <BOUCLE_check7(ARTICLES){traduction}{id_secteur=7}>
 <B_langs1>
-[(#REM)<!-- Article has a shared translation -->]
+[(#REM)<!-- Une traduction de cet article se trouve dans le secteur partagé. -->]
 <form id="langselect" action="#URL_SITE_SPIP/" method="get">
 <select size="1" name="langs" onChange="if (options[selectedIndex].value){location = options[selectedIndex].value; }">
-<option value="">[(#_lang0:LANG|traduire_nom_langue)]</option>
+[(#REM) <!-- Afficher la langue en cours. --> ]
+<option selected value="">[(#_lang0:LANG|traduire_nom_langue)]</option>
 <BOUCLE_langs1(RUBRIQUES){racine}{id_rubrique != 7}{lang != #_lang0:LANG}}{par lang}>
-[(#REM)<!-- Get languages, excluding the current one -->]
+[(#REM)<!-- Chercher les langues, en excluant la langue en cours. -->]
+<BOUCLE_cacher(MOTS){type=Cacher}{titre=#LANG}{id_article}>
+[(#REM)<!-- Hide this article for this language -->]
+</BOUCLE_cacher>
 <BOUCLE_checktrad1(ARTICLES){traduction}{id_secteur}{exclus}>
 [(#REM)<!-- Check if there's a real translation of the article in this language -->]
 <option value="#URL_ARTICLE">[(#LANG|traduire_nom_langue)]</option>
@@ -56,7 +60,7 @@ td {vertical-align: top}
 <option value="[(#URL_ARTICLE|parametre_url{lang,#LANG}|parametre_url{id_document}|parametre_url{debut_page})]">[(#LANG|traduire_nom_langue)]</option>
 <//B_checklang>
 <//B_checktrad1>
-<//B_hide>
+<//B_cacher>
 </BOUCLE_langs1>
 </select>
 </form>
@@ -66,7 +70,7 @@ td {vertical-align: top}
 [(#REM)<!-- Article does not have a shared translation -->]
 <form id="langselect" action="#URL_SITE_SPIP/" method="get">
 <select size="1" name="langs" onChange="if (options[selectedIndex].value){location = options[selectedIndex].value; }">
-<option value="">[(#LANG|traduire_nom_langue)]</option>
+<option selected value="">[(#LANG|traduire_nom_langue)]</option>
 <BOUCLE_trads1(ARTICLES){traduction}{exclus}{par lang}>
 <option value="#URL_ARTICLE">[(#LANG|traduire_nom_langue)]</option>
 </BOUCLE_trads1>
@@ -74,14 +78,12 @@ td {vertical-align: top}
 </form>
 </B_trads1>
 <//B_check7>
-</BOUCLE_art1>
+</td></tr>
 <!-- Fin sélecteur de langues -->
-</td>
-</tr>
-<tr>
-<td width="33%">
-<br>
+
 <!-- Début menu -->
+<tr><td width="33%">
+<br>
 <BOUCLE_chaps(RUBRIQUES){type_mot=Chapitres}{lang}{id_secteur != 7}{tout}>
 <strong><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></strong>
 <BOUCLE_mots2(MOTS){id_rubrique}{type=Chapitres}>
@@ -98,7 +100,11 @@ td {vertical-align: top}
 <BOUCLE_trads2(ARTICLES){traduction}{exclus}{lang = #_chaps:LANG}>
 [(#REM) <!-- Check that a translation in the current language does not exist, -->]
 </BOUCLE_trads2>
+<BOUCLE_cacher1(MOTS){type=Cacher}{titre=#_chaps:LANG}{id_article}>
+[(#REM) <!-- and that it hasn't been marked with a "hide" keyword. -->]
+</BOUCLE_cacher1>
 <li>[<a (#EXPOSE{'',href})="[(#LANG|=={#_chaps:LANG}|?{[(#URL_ARTICLE)],[(#URL_ARTICLE|parametre_url{lang,[(#_chaps:LANG)]})]})]">][(#TITRE|supprimer_numero)][(#EXPOSE{'',</a>})]</li>
+<//B_cacher1>
 <//B_trads2>
 </BOUCLE_checksect1>
 [(#REM) <!-- The article is a native one -->]
@@ -118,7 +124,7 @@ td {vertical-align: top}
 
 <td width="5%">&nbsp;</td>
 
-<td width="60%">
+<td width="60%" dir="#_art0:LANG_DIR">
 <h2>[(#_art0:TITRE|supprimer_numero)]</h2>
 [<div>(#_art0:CHAPO)</div>]
 [<div>(#_art0:TEXTE)</div>]
