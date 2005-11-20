@@ -36,94 +36,90 @@ td {vertical-align: top}
 <!-- Début sélecteur de langues -->
 [(#REM) <!-- On commence le formulaire à l'intérieur des boucles, car si un article n'a aucune traduction, le sélecteur
 	de langues ne se montre pas. --> ]
-<BOUCLE_check7(ARTICLES){traduction}{id_secteur=7}>
-<B_langs1>
-[(#REM)<!-- Une traduction de cet article se trouve dans le secteur partagé. -->]
+<BOUCLE_verif7(ARTICLES){traduction}{id_secteur=7}>
+<B_langs>
+[(#REM)<!-- Cet article, ou une traduction de cet article, se trouve dans le secteur partagé. Cela veut dire q'à priori
+	nous allons afficher toutes les langues du site dans le sélécteur de langue. -->]
 <form id="langselect" action="#URL_SITE_SPIP/" method="get">
 <select size="1" name="langs" onChange="if (options[selectedIndex].value){location = options[selectedIndex].value; }">
 [(#REM) <!-- Afficher la langue en cours. --> ]
 <option selected value="">[(#_lang0:LANG|traduire_nom_langue)]</option>
-<BOUCLE_langs1(RUBRIQUES){racine}{id_rubrique != 7}{lang != #_lang0:LANG}}{par lang}>
-[(#REM)<!-- Chercher les langues, en excluant la langue en cours. -->]
+<BOUCLE_langs(RUBRIQUES){racine}{id_rubrique != 7}{lang != #_lang0:LANG}}{par lang}>
+[(#REM)<!-- Chercher toutes les langues du site, sauf la langue en cours. -->]
 <BOUCLE_cacher(MOTS){type=Cacher}{titre=#LANG}{id_article}>
-[(#REM)<!-- Hide this article for this language -->]
+[(#REM)<!-- Ne pas montrer cette langue à cause du mot-clé qui est attaché à l'article. -->]
 </BOUCLE_cacher>
-<BOUCLE_checktrad1(ARTICLES){traduction}{id_secteur}{exclus}>
-[(#REM)<!-- Check if there's a real translation of the article in this language -->]
+<BOUCLE_veriftrad(ARTICLES){traduction}{id_secteur}{exclus}>
+[(#REM)<!-- Vérifier si une "vraie" traduction existe de cet article dans cette langue. Si oui mettre le lien vers
+	celle-ci et non pas vers la version partagée. -->]
 <option value="#URL_ARTICLE">[(#LANG|traduire_nom_langue)]</option>
-</BOUCLE_checktrad1>
-<BOUCLE_checklang(ARTICLES){id_article}{!lang_select}{lang=#_langs1:LANG}>
-[(#REM)<!-- If not, point to shared article. If language of shared article (usually English) is the same as the current language, there's no need for a ?lang=xx in the URL -->]
+</BOUCLE_veriftrad>
+<BOUCLE_veriflang(ARTICLES){id_article}{!lang_select}{lang=#_langs1:LANG}>
+[(#REM)<!-- S'il n'y a pas de traduction, mettre un lien vers l'article partagé. Si la langue de l'article partagé est la même que la
+	langue en cours, il n'y a pas besoin d'une variable  ?lang=xx dans l'URL -->]
 <option value="[(#URL_ARTICLE|parametre_url{lang,''}|parametre_url{id_document}|parametre_url{debut_page})]">[(#LANG|traduire_nom_langue)]</option>
-</BOUCLE_checklang>
-[(#REM)<!-- ?lang=xx is needed in the URL -->]
+</BOUCLE_veriflang>
+[(#REM)<!-- ?lang=xx est nécessaire dans l'URL -->]
 <option value="[(#URL_ARTICLE|parametre_url{lang,#LANG}|parametre_url{id_document}|parametre_url{debut_page})]">[(#LANG|traduire_nom_langue)]</option>
-<//B_checklang>
-<//B_checktrad1>
+<//B_veriflang>
+<//B_veriftrad>
 <//B_cacher>
-</BOUCLE_langs1>
+</BOUCLE_langs>
 </select>
 </form>
-</B_langs1>
-</BOUCLE_check7>
-<B_trads1>
-[(#REM)<!-- Article does not have a shared translation -->]
+</B_langs>
+</BOUCLE_verif7>
+[(#REM)<!-- Ni cet article, ni traduction de cet article ne se trouve dans le secteur partagé. Alors tout est plus simple. -->]
+<B_arttrads>
 <form id="langselect" action="#URL_SITE_SPIP/" method="get">
 <select size="1" name="langs" onChange="if (options[selectedIndex].value){location = options[selectedIndex].value; }">
 <option selected value="">[(#LANG|traduire_nom_langue)]</option>
-<BOUCLE_trads1(ARTICLES){traduction}{exclus}{par lang}>
+[(#REM)<!-- Afficher les langues dans lesquelles cet article est traduit. -->]
+<BOUCLE_arttrads(ARTICLES){traduction}{exclus}{par lang}>
 <option value="#URL_ARTICLE">[(#LANG|traduire_nom_langue)]</option>
-</BOUCLE_trads1>
+</BOUCLE_arttrads>
 </select>
 </form>
-</B_trads1>
-<//B_check7>
+</B_arttrads>
+<//B_verif7>
 </td></tr>
 <!-- Fin sélecteur de langues -->
 
-<!-- Début menu -->
+[(#REM) <!-- Début menu : code très semblable à celui dans rubrique.html. Comme nous sommes sur une page article, mettre
+	le test EXPOSE sur les liens articles et non pas sur les liens rubriques. --> ]
 <tr><td width="33%">
 <br>
 <BOUCLE_chaps(RUBRIQUES){type_mot=Chapitres}{lang}{id_secteur != 7}{tout}>
 <strong><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></strong>
-<BOUCLE_mots2(MOTS){id_rubrique}{type=Chapitres}>
-
-[(#REM)<!-- !lang_select so that <multi>s work in article titles -->]
-
-<BOUCLE_sharedchap(RUBRIQUES){id_secteur=7}{id_mot}{tout}{!lang_select}>
-	<B_toplevelarticles>
-		<ul>
-[(#REM)<!-- !lang_select so that <multi>s work in article titles -->]
-	<BOUCLE_toplevelarticles(ARTICLES){id_rubrique IN #_sharedchap:ID_RUBRIQUE, #_chaps:ID_RUBRIQUE}{par titre}{!lang_select}>
-<!-- check if it's a shared article -->
-<BOUCLE_checksect1(ARTICLES){id_secteur=7}{id_article}{!lang_select}>
-<BOUCLE_trads2(ARTICLES){traduction}{exclus}{lang = #_chaps:LANG}>
-[(#REM) <!-- Check that a translation in the current language does not exist, -->]
-</BOUCLE_trads2>
+<BOUCLE_mots(MOTS){id_rubrique}{type=Chapitres}>
+<BOUCLE_chappartage(RUBRIQUES){id_secteur=7}{id_mot}{tout}{!lang_select}>
+<B_articles>
+<ul>
+<BOUCLE_articles(ARTICLES){id_rubrique IN #_chappartage:ID_RUBRIQUE, #_chaps:ID_RUBRIQUE}{par titre}{!lang_select}>
+<BOUCLE_verifsect(ARTICLES){id_secteur=7}{id_article}{!lang_select}>
+[(#REM) <!-- L'article en cours provient du secteur partagé. -->]
+<BOUCLE_trad(ARTICLES){traduction}{exclus}{lang = #_chaps:LANG}>
+</BOUCLE_trad>
 <BOUCLE_cacher1(MOTS){type=Cacher}{titre=#_chaps:LANG}{id_article}>
-[(#REM) <!-- and that it hasn't been marked with a "hide" keyword. -->]
 </BOUCLE_cacher1>
 <li>[<a (#EXPOSE{'',href})="[(#LANG|=={#_chaps:LANG}|?{[(#URL_ARTICLE)],[(#URL_ARTICLE|parametre_url{lang,[(#_chaps:LANG)]})]})]">][(#TITRE|supprimer_numero)][(#EXPOSE{'',</a>})]</li>
 <//B_cacher1>
-<//B_trads2>
-</BOUCLE_checksect1>
-[(#REM) <!-- The article is a native one -->]
+<//B_trad>
+</BOUCLE_verifsect>
+[(#REM) <!-- L'article provient du secteur "natif" de la langue. Donc tout est simple. -->]
 <li>[<a (#EXPOSE{'',href})="#URL_ARTICLE">][(#TITRE|supprimer_numero)][(#EXPOSE{'',</a>})]</li>
+<//B_verifsect>
+</BOUCLE_articles>
+</ul>
+</B_articles>
 
-<//B_checksect1>
-
-	</BOUCLE_toplevelarticles>
-		</ul>
-	</B_toplevelarticles>
-
-</BOUCLE_sharedchap>
-</BOUCLE_mots2>
+</BOUCLE_chappartage>
+</BOUCLE_mots>
 </BOUCLE_chaps>
-<!-- Fin menu -->
 </td>
+<!-- Fin menu -->
 
 <td width="5%">&nbsp;</td>
-
 <td width="60%" dir="#_art0:LANG_DIR">
 <h2>[(#_art0:TITRE|supprimer_numero)]</h2>
 [<div>(#_art0:CHAPO)</div>]
@@ -131,11 +127,15 @@ td {vertical-align: top}
 </td>
 <td width="2%">&nbsp;</td>
 </tr></table>
+<hr>
+<p style="text-align: right">
+<a href="#DOSSIER_SQUELETTE/rubrique.html">acc&eacute;der au squelette de cette page</a>
+</p>
 </body>
 </html>
 </BOUCLE_lang0>
 </BOUCLE_mots0>
 </BOUCLE_hier0>
 </BOUCLE_art0>
-(<:no_article_here:>)
+(<:aucun_article:>)
 <//B_art0>
