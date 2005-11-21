@@ -97,7 +97,7 @@ function bloc_art_ferme($type_ferme)
 		{
 		echo "<div class='verdana3' style='padding:2px; color:#ED4242;'>";
 		echo "<img src='"._DIR_IMG_PACK."gaf_verrou2.gif' align='absmiddle' border='0' hspace='3'>";
-		echo "Fermé pour maintenance";
+		echo _T('phpbb:maintenance_ferme');
 		echo "</div>";
 		}
 	}
@@ -107,11 +107,11 @@ function signature_gaf()
 	global $gaf_version;
 		echo "<br>";
 	debut_boite_info();
-		echo "<b>GAFoSPIP v. $gaf_version</b><br>";
-		echo "<a href='http://www.koakidi.com/'>Scoty, koakidi.com.</a><br>Août 2005<br><br>";
-		echo "Adapté pour, et, Inspiré par, le traitement des Forums de :<br>";
+		echo "<b>"._T('phpbb:credits_bis1').$gaf_version."</b><br>";
+		echo "<a href='http://www.koakidi.com/'>Scoty, koakidi.com.</a><br>"._T('phpbb:credits_bis2')."<br><br>";
+		echo _T('phpbb:credits_bis3');
 		echo "<a href='http://www.spip-contrib.net/Un-squelette-de-forum-8-4-CSS'>SPIP Forum</a><br>";
-		echo "(James, BoOz, Nikau et Miss Mopi).";
+		echo _T('phpbb:credits_bis4');
 	fin_boite_info();
 	}
 
@@ -121,9 +121,9 @@ function signature_gaf()
 function bouton_ecrire_post($id_article, $id_sujet)
 {
 if ($id_sujet)
-	{ $icone="gaf_post.gif"; $texte_icone="Répondre"; }
+	{ $icone="gaf_post.gif"; $texte_icone=_T('phpbb:repondre'); }
 else
-	{ $icone="gaf_sujet.gif"; $texte_icone="Nouveau Sujet"; }
+	{ $icone="gaf_sujet.gif"; $texte_icone=_T('phpbb:sujet_nouveau'); }
 	
 	echo "
 	<div style='float:right; margin-left:3px;' title='$texte_icone' class='icone36' >\n
@@ -146,7 +146,7 @@ function verif_sujet_annonce($id_sujet)
 $req=spip_query("SELECT id_forum FROM spip_mots_forum WHERE id_mot=".$GLOBALS['id_mot_annonce']." AND id_forum=$id_sujet");
 $res=spip_num_rows($req);
 if($res)
-	{ $aff_a = "<div style='float:right; padding-right:3px;' title='Sujet Annonce'>
+	{ $aff_a = "<div style='float:right; padding-right:3px;' title='"._T('phpbb:sujet_annonce')."'>
 					<img src='"._DIR_IMG_PACK."gaf_annonce.gif'></div>";
 	return $aff_a; }	
 }
@@ -159,11 +159,11 @@ function icone_statut_post($statut_post)
 		// icone état du post
 		switch ($statut_post) {
 		case"off":
-		$aff_statut = "<div style='float:right;' title='Sujet rejeté'>
+		$aff_statut = "<div style='float:right;' title='"._T('phpbb:sujet_rejete')."'>
 					<img src='"._DIR_IMG_PACK."gaf_p_off.gif'></div>";
 		break;
 		case"prop":
-		$aff_statut = "<div style='float:right;' title='Sujet à valider'>
+		$aff_statut = "<div style='float:right;' title='"._T('phpbb:sujet_valide')."'>
 					<img src='"._DIR_IMG_PACK."gaf_p_prop.gif'></div>";
 		break;
 		case"publie":
@@ -278,8 +278,8 @@ function alerte_maintenance()
 				$row2=spip_fetch_array($req2);
 				debut_cadre_couleur();
 				echo "<div class='verdana3'><b>".$row['nom']."</b></div>\n".
-				"<div class='verdana2'>a fermer l'article/forum :<br>\n".
-				"<b>".$row2['titre']."</b><br>pour MAINTENANCE.<br>".$datime."</div>\n";
+				"<div class='verdana2'>"._T('phpbb:admfermer')."<br>\n".
+				"<b>".$row2['titre']._T('phpbb:pour_maintenance').$datime."</div>\n";
 				fin_cadre_couleur();
 				}
 			}
@@ -313,7 +313,7 @@ function bouton_deplace_sujet($id_forum, $id_sujet)
 		echo "<form action='gaf_admin.php?page=affect' method='post'>";
 		echo "<input type='hidden' name='id_article' value='".$id_forum."'>";
 		echo "<input type='hidden' name='id_sujet' value='".$id_sujet."'>";
-		echo "<input type='image' src='"._DIR_IMG_PACK."naviguer-site.png' border='0' title='Déplacer ce Thread'>";
+		echo "<input type='image' src='"._DIR_IMG_PACK."naviguer-site.png' border='0' title='"._T('phpbb:fil_deplace')."'>";
 		echo "</form></div>";
 		}
 	}
@@ -376,7 +376,7 @@ function aff_parents($id_rubrique, $id_article, $parents="")
 		$logo = "gaf_hall-12.gif";
 		$parents = "<div class='verdana3' " .
 		  http_style_background($logo, "$spip_lang_left center no-repeat; padding-$spip_lang_left: 25px"). 
-		  "><a href='gaf_admin.php'><b>SECTEURS FORUMS</b></a></div>\n<div style='margin-$spip_lang_left: 3px;'>".$parents."</div>";
+		  "><a href='gaf_admin.php'><b>"._T('phpbb:secteur_forum')."</b></a></div>\n<div style='margin-$spip_lang_left: 3px;'>".$parents."</div>";
 	
 		echo $parents;
 		}
@@ -421,7 +421,7 @@ if($nbr_rep > 0)
 		echo "<input type='hidden' name='titre_new' value='".typo($titre)."'>";
 		fin_bloc();
 		}
-	echo "<div align='right'><input type='submit' value='Valider' class='fondo'></div>\n";
+	echo "<div align='right'><input type='submit' value='"._T('spip:bouton_valider')."' class='fondo'></div>\n";
 	}
 }
 
@@ -615,14 +615,14 @@ if($forum && $sujet=='0')
 		$res=spip_query("SELECT titre FROM spip_articles WHERE id_article=$forum");
 		$row=spip_fetch_array($res);
 		$titre_forum = $row['titre'];
-		$text_intro = "Ajouter un sujet au forum :<br>&nbsp;&nbsp;..&nbsp;".$titre_forum;
+		$text_intro = _T('phpbb:sujet_ajout').$titre_forum;
 		}
 else
 		{
 		$res=spip_query("SELECT titre FROM spip_forum WHERE id_forum=$sujet");
 		$row=spip_fetch_array($res);
 		$titre_sujet = $row['titre'];
-		$text_intro = "Répondre à :<br>&nbsp;&nbsp;..&nbsp;".$titre_sujet;
+		$text_intro = _T('phpbb:texte_repondre').$titre_sujet;
 		}
 
 	// auteur (bloque sur sessions -> pas de modif !!)
@@ -697,7 +697,7 @@ if($previsu=='1')
 	
 	// affichage du prévisu
 	$avant_post="
-		<span class='verdana3'><b>Vérifier le message</b></span><br/><br/><span class='verdana2'> 
+		<span class='verdana3'><b>"._T('phpbb:messages_verifier')."</b></span><br/><br/><span class='verdana2'> 
 		<table cellpadding='3' cellspacing='1' border='0' width='100%'>
 		<tr width='100%' bgcolor='".$couleur_claire."'>
 		<td width='5%'valign='top'>

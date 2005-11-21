@@ -1,6 +1,6 @@
 <?php
 
-// This is a SPIP-forum module file for English --  Ceci est un fichier module de SPIP-forum
+// This is a SPIP-forum module file  --  Ceci est un fichier module de SPIP-forum
 
 $GLOBALS['i18n_phpbb_en'] = array(
 
@@ -33,6 +33,7 @@ The e-mail address will be used only to confirm the details of your registration
 'admclore' => 'Close this topic',
 'admbouger' => 'Move this topic',
 'admeffacer' => 'Delete this topic',
+'admfermer' => 'closed the article/forum:',
 'admin' => 'Administrator',
 'admseparer' => 'Split this topic',
 'admsurveiller_forum' => 'Watch this forum',
@@ -40,6 +41,8 @@ The e-mail address will be used only to confirm the details of your registration
 'admbouger_forum' => 'Move this forum',
 'admeffacer_forum' => 'Delete this forum',
 'admseparer_forum' => 'Split this forum',
+'article_forum' => ' Article / Forum<br>',
+'aucun' => 'none!',
 
 // B
 'bio' => 'Short biography',
@@ -53,13 +56,20 @@ The e-mail address will be used only to confirm the details of your registration
 'contact' => 'Contact',
 'courrier' => '<p>Once registered, you personal identifier will be sent to you as soon as possible by e-mail.</p>',
 'credits'=>'Developed with <a href=http://www.spip.net class=copyright>SPIP</a>: 2004-2005<br/><a href=http://www.uzine.net/spip_contrib/rubrique.php3?id_rubrique=43>spipBB 0.9 CSS</a> by <a href=http://www.laprise.org/>James aka Kliké</a>, <a href=http://bloog.net/>BoOz</a>, <a href=http://esprit-str.com/>Nikau</a> et <a href=http://www.missmopi.net/>Nadège aka Miss Mopi</a> (logos from Stéphane)',
+'credits_bis1' => 'GAFoSPIP v. ',
+'credits_bis2' => 'August 2005',
+'credits_bis3' => 'Adapted for, and, Inspired from, Forums management of:<br>',
+'credits_bis4' => '(James, BoOz, Nikau and Miss Mopi).',
+'creer_forum' => 'Create New Forum',
 
 //D
 'dans_forum' => 'in the forum',
 'date' => 'registered on',
 'deja_enregistree' => 'This e-mail address is already registered<p><a href=\'spip_pass.php3\'>[ Forgotten password ]</a></p>',
+'dernier' => '&nbsp;Last<br>',
 
 //E
+'ecrirea' => 'Write an e-mail to',
 'effacer' => 'Delete',
 'email' => 'E-mail',
 'enregistrement' => 'Registration',
@@ -70,23 +80,38 @@ The e-mail address will be used only to confirm the details of your registration
 'entree_infos_perso' => 'Who are you?',
 'entree_nom_site' => 'Your site\'s name',
 'entree_url' => 'Your site\'s address (URL)',
-'texte_login_precaution' => 'Warning! this is the login with which your are connected at present.
-	Use this formm with caution...',
 'entree_nouveau_passe' => 'New password',
 'entree_biographie' => 'Short biography (few words).',
+'etplus' => '... and more ...',
 
 //F
 'faq' => 'FAQ',
-'forum' => 'Forum',
-'forum_ferme' => 'This forum is disabled',
-'forum_ferme_texte' => 'This forum is disabled. You cannot post to it anymore.',
 'ferme' => 'This discussion is closed',
 'fil_alerte' => 'It is not possible to subscribe to this thread',
+'fil_annonce' => 'Turn this thread into an Announcement',
+'fil_deplace' => 'Move this thread',
+'fil_sujet' => ' End of thread / Topic<br>',
+'forum' => 'Forum',
+'forum_deplace' => 'Moved from Forum ...',
+'forum_ferme' => 'This forum is disabled',
+'forum_ferme_texte' => 'This forum is disabled. You cannot post to it anymore.',
+'forum_ouvrir' => 'Open this Forum',
+'forum_selection' => 'in the FORUM (article) to select:',
+'forum_vers' => 'To Forum ...',
+
+//G
+'gaf_titre' => 'GAFoSPIP<br>Alternative management of Forums',
+
+//H
+'haut_page' => 'Top of page',
 
 //I
+'icone_gafospip' => 'GAFoSPIP/Forums management',
+'icone_ferme' => 'Close',
 'identifiant' => 'Here are your identifiers to connect to the site ',
 'info' => 'Information',
 'info_reserve_admin' => 'Only administrators can modify this address.',
+'info_icones' => 'Icons Info',
 'item_login' => 'Login',
 'info_non_modifiable' => 'cannot be modified',
 'info_plus_cinq_car' => 'more than 5 characters',
@@ -102,6 +127,9 @@ The e-mail address will be used only to confirm the details of your registration
 'luiecrire' => 'Write to them',
 
 //M
+'maintenance' => 'Don\'t forget to remove<br>\"Closed for maintenance\",<br>
+				from the required Forums.',
+'maintenance_ferme' => 'Closed for maintenance',
 'membre' => 'Member',
 'membres_liste' => 'Members list',
 'membres_groupes' => 'Users groups',
@@ -115,6 +143,7 @@ The e-mail address will be used only to confirm the details of your registration
 'messages_pas_nouveaux' => 'No new messages',
 'messages_non_lus_grand' => 'No new messages',
 'messages_repondre' => 'New reply',
+'messages_verifier' => 'Verify the message',
 'messages_voir_dernier' => 'Show last message',
 'moderateurs' => 'Moderator(s)',
 'mp' => 'Private message',
@@ -128,7 +157,14 @@ The e-mail address will be used only to confirm the details of your registration
 //P
 'page' => 'Page',
 'pages_vues' => 'Pages read',
+'poste_effac' => 'Posts deleted!',
+'poste_efface' => 'Delete Posts',
+'poste_efface_lui' => 'This topic contains @$nbr_post@ Post(s). Deleted with it!\n',
+'poste_refuse' => 'Posts rejected, to be deleted!',
+'poste_reponse' => ' Post / Reply',
+'poste_valide' => 'Post(s) pending validation ...',
 'poster' => 'Post a Message',
+'pour_maintenance' => '"</b><br>for MAINTENANCE.<br>"',
 'profil' => 'Profile of',
 'paramprofil' => 'Modify your parameters',
 
@@ -143,6 +179,7 @@ The e-mail address will be used only to confirm the details of your registration
 'recherche_texte'=> 'Search is performed on messages subject and body. There are no Boolean operators, the implicit operator is more or less a logical OR.
 Words less than three letters long will be ignored.',
 'reda' => 'Editor',
+'repondre' => 'Reply',
 'reponse' => 'In reply to message',
 'reponses' => 'Replies',
 'resilier' => 'unsubscribe',
@@ -152,35 +189,55 @@ Words less than three letters long will be ignored.',
 'retour_site' => 'Back to site\'s home',
 'retour_forum' => 'Back to forum\'s home',
 'revenir_haut' => 'top of the page',
+'rubrique_secteur'=> ' Sector Section<br>',
 
 //S
 'sabonner'=> 'subscribe to this thread',
+'salon'=> 'Lounge .. ',
+'salon_ouvrir'=> 'Open this lounge',
+'secteur'=> 'Sector .. ',
+'secteur_forum'=> 'FORUMS SECTORS',
+'selection_efface'=> 'Delete selection .. ',
 'sinscrire'=> 'register',
 'site' => 'Web site',
+'sousrub_salon'=> ' Sub_section / Lounge<br>',
 'statistique' => 'Statistics',
 'statut' => 'Status',
+'sujet_ajout' => 'Add a topic to the forum:<br>&nbsp;&nbsp;..&nbsp;',
+'sujet_annonce' => 'Topic Announcement',
+'sujet_nombre' => 'Number of topics',
 'sujet_nouveau' => 'New topic',
 'sujet_auteur' => 'Author',
+'sujet_verifie' => 'Verify this topic',
 'sujet_visites' => 'Visits',
+'sujet_rejete' => 'Topic rejected',
+'sujet_valide' => 'Topic pending validation',
 'sujet' => 'Subject',
 'sujets' => 'Topics',
 'sujets_aucun' => 'No topics in this forum for the time being',
 'sujet_clos_titre' => 'Topic closed',
 'sujet_clos_texte' => 'This topic is closed, you cannot post to it.',
+'sujet_ouvrir' => 'Open this Topic',
 'sur' => 'on',
 
 
 //T
+'texte_login_precaution' => 'Warning! this is the login with which your are connected at present.
+	Use this formm with caution...',
+'texte_repondre' => 'Reply to:<br>&nbsp;&nbsp;..&nbsp;',
+'titre_cadre_signature_obligatoire' => '<B>Signature</B> [Compalsory]<BR>',
 'tous_forums' => 'All forums',
 'toutes_categories' => 'All categories',
 'tout_apropos' => 'All about',
-'titre_cadre_signature_obligatoire' => '<B>Signature</B> [Compalsory]<BR>',
+'total_messages' => 'Total messages',
 
 //V
 'visites_jour' => 'Today\'s visits',
 'visites_mois' => 'This month\'s visits',
 'visites_semaine' => 'This week\'s visits',
 'visiteurs_uniques' => 'Unique visitors',
+'voir' => 'SHOW',
+'voir_message' => 'Show this message',
 'voir_messages' => 'Show new messages',
 'voirprofil' => 'Show profile of',
 

@@ -67,7 +67,7 @@ if($id_sujet)
 debut_page("GAF", "suivi", "gafospip");
 	echo "<a name='haut_page'></a>";
 	echo "<br>";
-gros_titre("GAFoSPIP<br>Gestion Alternative des Forums");
+gros_titre(_T('phpbb:gaf_titre'));
 
 
 debut_gauche();
@@ -91,7 +91,7 @@ if ($connect_statut == '0minirezo' AND acces_rubrique($rub_act))
 	if($nbrprop)
 		{
 		echo "<div>&nbsp;</div><div class='bandeau_rubriques' style='z-index: 1;'>";
-		bandeau_titre_boite2("Post(s) à valider ...","gaf_p_prop.gif");
+		bandeau_titre_boite2(_T('phpbb:poste_valide'),"gaf_p_prop.gif");
 		echo "<div class='plan-articles'>";
 		while($row = spip_fetch_array($result))
 			{
@@ -102,7 +102,7 @@ if ($connect_statut == '0minirezo' AND acces_rubrique($rub_act))
 			$ico_prop = ($idprop==$idthread) ? "gaf_sujet-12.gif" : "gaf_post-12.gif" ;
 			echo "<a href='".$urlprop."'>".couper($titreprop,30)."</a>\n";
 			}
-		if($nbrprop>10) { echo "... et plus ..."; }
+		if($nbrprop>10) { echo _T('phpbb:etplus'); }
 		echo "</div></div><br>\n";
 		}
 	}
@@ -119,7 +119,7 @@ echo "<a href='gaf_admin.php?page=effacer'>";
 echo "<div style='margin-top:2px;' class='bouton36blanc' onMouseOver=\"changeclass(this,'bouton36gris')\"
 				onMouseOut=\"changeclass(this,'bouton36blanc')\">";
 echo "<img src='"._DIR_IMG_PACK."poubelle.gif' border='0' align='absmiddle'>";
-echo "<span class='verdana2'><b>&nbsp;Effacer Posts</b></span>";
+echo "<span class='verdana2'><b>&nbsp;"._T('phpbb:poste_efface')."</b></span>";
 echo "</div></a>";
 }
 
@@ -135,17 +135,17 @@ echo "</div></a>";
 		echo bouton_block_invisible("icones_gaf");
 	else
 		echo bouton_block_visible("icones_gaf");
-	echo "Infos Icônes";
+	echo _T('phpbb:info_icones');
 	if ($invisible)
 		echo debut_block_invisible("icones_gaf");
 	else
 		echo debut_block_visible("icones_gaf");
 	
-		echo http_img_pack("gaf_hall.gif", "", "vspace='4' align='absmiddle' border='0'")." Rubrique Secteur<br>";
-		echo http_img_pack("gaf_salon.gif", "", "vspace='4' align='absmiddle' border='0'")." Sous-rubrique / Salon<br>";
-		echo http_img_pack("gaf_forum.gif", "", "vspace='4' align='absmiddle' border='0'")." Article / Forum<br>";
-		echo http_img_pack("gaf_sujet.gif", "", "vspace='4' align='absmiddle' border='0'")." Pied de thread / Sujet<br>";
-		echo http_img_pack("gaf_post.gif", "", "vspace='4' align='absmiddle' border='0'")." Post / Réponse";
+		echo http_img_pack("gaf_hall.gif", "", "vspace='4' align='absmiddle' border='0'")._T('phpbb:rubrique_secteur');
+		echo http_img_pack("gaf_salon.gif", "", "vspace='4' align='absmiddle' border='0'")._T('phpbb:sousrub_salon');
+		echo http_img_pack("gaf_forum.gif", "", "vspace='4' align='absmiddle' border='0'")._T('phpbb:article_forum');
+		echo http_img_pack("gaf_sujet.gif", "", "vspace='4' align='absmiddle' border='0'")._T('phpbb:fil_sujet');
+		echo http_img_pack("gaf_post.gif", "", "vspace='4' align='absmiddle' border='0'")._T('phpbb:poste_reponse');
 	
 	echo fin_block();
 	fin_boite_info();
@@ -183,7 +183,7 @@ while ($row=spip_fetch_array($res_rg))
 	echo "</td>\n";
 	echo "<td>" . http_img_pack('rien.gif', " ", "width='10'") ."</td>\n";
 	echo "<td width='100%' valing='top'>\n";
-	echo "<span class='verdana2'>Secteur .. </span>";
+	echo "<span class='verdana2'>"._T('phpbb:secteur')."</span>";
 	gros_titre($titre_hotel);
 	echo "<span class='arial2'>".propre($desc_hotel)."</span>\n";
 	echo "</td><td>";
@@ -208,7 +208,7 @@ while ($row=spip_fetch_array($res_rg))
 		echo "\n<table cellpadding='3' cellspacing='0' border='0' width='100%'>";
 		echo "<tr width='100%'>";
 		echo "<td valign='top' rowspan='2'>";
-		icone("Ouvrir ce Salon", "gaf_admin.php?rub_act=$id_salon", "gaf_salon.gif", "rien.gif");
+		icone(_T('phpbb:salon_ouvrir'), "gaf_admin.php?rub_act=$id_salon", "gaf_salon.gif", "rien.gif");
 		echo "<span class='verdana2'>".$id_salon."</span>";
 		echo "</td>";
 		echo "<td  width='100%' valign='top'>";
@@ -271,7 +271,7 @@ debut_cadre_formulaire("");
 	if ($connect_statut == '0minirezo' AND acces_rubrique($id_salon))
 		{
 		echo "<div style='float:right; padding:2px;'>";
-		icone("Créer Nouveau Forum", "articles_edit.php3?id_rubrique=$rub_act&new=oui", "gaf_forum.gif","creer.gif");
+		icone(_T('phpbb:creer_forum'), "articles_edit.php3?id_rubrique=$rub_act&new=oui", "gaf_forum.gif","creer.gif");
 		echo "</div>";
 		}
 
@@ -283,7 +283,7 @@ debut_cadre_formulaire("");
 	echo "</td>";
 	echo "<td>" . http_img_pack('rien.gif', " ", "width='10'") ."</td>\n";
 	echo "<td width='100%' valing='top'>";
-	echo "<span class='verdana2'>Salon .. </span>";
+	echo "<span class='verdana2'>"._T('phpbb:salon')."</span>";
 	gros_titre($titre_salon);
 	echo "<span class='arial2'>".propre($desc_salon)."</span>";
 	echo "</td><td>";
@@ -342,7 +342,7 @@ debut_cadre_formulaire("");
 		echo "\n<table cellpadding=3 cellspacing=0 border=0 width='100%'>";
 		echo "<tr width='100%'>\n";
 		echo "<td width='6%' valign='top' class='verdana2'>\n";
-		icone("Ouvrir ce Forum", "gaf_admin.php?page=forum&id_article=$id_forum", "gaf_forum.gif", "rien.gif");
+		icone(_T('phpbb:forum_ouvrir'), "gaf_admin.php?page=forum&id_article=$id_forum", "gaf_forum.gif", "rien.gif");
 		echo $id_forum;
 		echo "</td>\n";
 		echo "<td valign='top' class='verdana2'>\n";
@@ -351,13 +351,13 @@ debut_cadre_formulaire("");
 		echo "</td>\n";
 		echo "<td width='8%' valign='top' class='verdana2'>\n";
 		debut_bloc_gricont();
-		echo "<img src='"._DIR_IMG_PACK."gaf_sujet-12.gif' border='0' align='absmiddle' title='Nombre de Sujets'><br>";		
+		echo "<img src='"._DIR_IMG_PACK."gaf_sujet-12.gif' border='0' align='absmiddle' title='"._T('phpbb:sujet_nombre')."'><br>";		
 		echo $nbr_sujet;
 		fin_bloc();
 		echo "</td>\n";
 		echo "<td width='8%' valign='top' class='verdana2'>\n";
 		debut_bloc_gricont();		
-		echo "<img src='"._DIR_IMG_PACK."gaf_post-12.gif' border='0' align='absmiddle' title='Total messages'><br>";		
+		echo "<img src='"._DIR_IMG_PACK."gaf_post-12.gif' border='0' align='absmiddle' title='"._T('phpbb:total_messages')."'><br>";		
 		echo $nbr_post;
 		fin_bloc();
 		echo "</td>\n";
@@ -366,7 +366,7 @@ debut_cadre_formulaire("");
 			{
 			echo "<a href='".$url_post."' title='Voir ce message'>";
 			echo "<img src='"._DIR_IMG_PACK."gaf_post-12.gif' border='0' align='absmiddle'>";
-			echo "&nbsp;Dernier<br>".$der_date."</a>";
+			echo _T('phpbb:dernier').$der_date."</a>";
 			}
 		echo "</div></td></tr></table>\n";
 		fin_bloc();
@@ -395,7 +395,7 @@ debut_cadre_formulaire("");
 	echo "</td>";
 	echo "<td>" . http_img_pack('rien.gif', " ", "width='10'") ."</td>\n";
 	echo "<td width='80%' valing='top'>\n";
-	echo "<span class='verdana2'>Forum .. </span>";
+	echo "<span class='verdana2'>"._T('phpbb:forum')." .. </span>";
 	bloc_art_ferme($art_ferme);
 	gros_titre($titre_forum);
 	echo "<span class='arial2'>".propre($desc_forum)."</span>";
@@ -520,7 +520,7 @@ while ($row=spip_fetch_array($res_sujet))
 		echo "\n<table cellpadding=1 cellspacing=2 border=0 width='100%'>";
 		echo "<tr width='100%'>";
 		echo "<td width='7%' valign='top' rowspan='".$rowspan_p."' class='verdana2'>";
-		icone("Ouvrir ce Sujet", "gaf_admin.php?page=sujet&id_sujet=$id_sujet", "gaf_sujet.gif", "rien.gif");
+		icone(_T('phpbb:sujet_ouvrir'), "gaf_admin.php?page=sujet&id_sujet=$id_sujet", "gaf_sujet.gif", "rien.gif");
 		echo $id_sujet;
 		
 		// bouton de déplacement du thread
@@ -530,7 +530,7 @@ while ($row=spip_fetch_array($res_sujet))
 		echo "</td>\n";
 		echo "<td width='' valign='top'>".$aff_statut.$aff_annonce;
 		echo "<span class='verdana3'><b>".propre($titre_sujet)."</b></span><br>\n";
-		echo "<span class='verdana2'>par <b>".$aut_sujet."</b> .. Le ".$date_sujet."<span></td>\n";
+		echo "<span class='verdana2'>par <b>".$aut_sujet."</b> .. "._T('phpbb:le')." ".$date_sujet."<span></td>\n";
 		echo "<td width='8%' valign='top' class='verdana2'>\n";
 		debut_bloc_gricont();
 			echo "<img src='"._DIR_IMG_PACK."gaf_post-12.gif' border='0' valign='absmiddle'><br>\n";
@@ -538,7 +538,7 @@ while ($row=spip_fetch_array($res_sujet))
 		fin_bloc();
 		echo "</td>";
 		echo "<td width='20%' valign='top' class='verdana2'>\n";
-		echo "<div align='right'><a href='".$url_post_der."' title='Voir ce message'>\n";
+		echo "<div align='right'><a href='".$url_post_der."' title='"._T('phpbb:voir_message')."'>\n";
 		echo $aut_post."<br>".$der_date."</a></div>";
 		echo "</td></tr>\n";
 
@@ -690,12 +690,12 @@ while($row=spip_fetch_array($res_post))
 	if ($mail_aut_post)
 		{
 		echo "<div style='float:left; margin:2px 3px 0px 0px;'>\n";
-		echo "<a href='mailto:$mail_aut_post?SUBJECT=".rawurlencode($titre_post)."' title='Ecrire Email à ".entites_html($aut_post)."'>\n";
+		echo "<a href='mailto:$mail_aut_post?SUBJECT=".rawurlencode($titre_post)."' title='"._T('phpbb:ecrirea')." ".entites_html($aut_post)."'>\n";
 		echo "<img src='"._DIR_IMG_PACK."cal-messagerie.png' width='18' height='13' border='0'></a>\n";
 		echo "</div>";
 		}
 	echo "<span class='verdana2'><b>".$aut_post."</b></span><br>\n";
-	echo "<span class='verdana2'>Le ".$date_post."</span>\n";	
+	echo "<span class='verdana2'>"._T('phpbb:le')." ".$date_post."</span>\n";	
 	echo "</td><td width='18%' valign='top'><div align='right'>\n";
 	echo "<span class='arial2'>".date_relative($date_post_relative)."</span></div>\n";
 	echo "</td></tr><tr bgcolor='$couleur'>";
@@ -717,7 +717,7 @@ while($row=spip_fetch_array($res_post))
 		echo "<form action='gaf_admin.php?page=annonce' method='post'>\n";
 		echo "<input type='hidden' name='id' value='".$id_post."'>\n";
 		echo "<input type='hidden' name='suj_anno' value='anno'>\n";
-		echo "<input type='image' src='"._DIR_IMG_PACK."gaf_annonce.gif' title='Transformer ce thread en Annonce'>\n";
+		echo "<input type='image' src='"._DIR_IMG_PACK."gaf_annonce.gif' title='"._T('phpbb:fil_annonce')."'>\n";
 		echo "</form></div>\n";
 		}
 	echo "</td><td>\n";
@@ -861,7 +861,7 @@ $req_rs =	"SELECT smr.id_rubrique, sr.titre, sr.descriptif
 			WHERE smr.id_mot = $id_mot_rub_gaf";
 $res_rs = spip_query($req_rs);
 
-echo "<div class='verdana3' style='padding:4px;'><b>dans le FORUM (article) à sélectionner :</b></div>";
+echo "<div class='verdana3' style='padding:4px;'><b>"._T('phpbb:forum_selection')."</b></div>";
 echo "<form action='gaf_admin.php?page=valid_affect' method='post'>";
 
 while ($row=spip_fetch_array($res_rs))
@@ -908,24 +908,24 @@ debut_cadre_relief("");
 	echo "<b>".propre($titre_sujet)."</b>\n";
 	fin_bloc();
 	
-	echo "<div class='verdana3' style='padding:3px;'>Déplacé depuis le Forum ...</div>\n";
+	echo "<div class='verdana3' style='padding:3px;'>"._T('phpbb:forum_deplace')."</div>\n";
 		
 	debut_ligne_grise('30');
 	echo "<div style='float:right; padding:3px; text-align:right; 
 			border:2px solid ".$couleur_claire."; -moz-border-radius:5px;'>\n";
-	echo " Retour <a href='gaf_admin.php?page=forum&id_article=$id_art_orig'>
+	echo " "._T('icone_retour')." <a href='gaf_admin.php?page=forum&id_article=$id_art_orig'>
 			<img src='"._DIR_IMG_PACK."gaf_forum.gif' border='0' align='absmiddle'></a>";
 	echo "</div>\n";
 	echo propre($titre_orig);
 	echo "<div style='clear:both;'></div>";
 	fin_bloc();
 	
-	echo "<div class='verdana3' style='padding:3px;'>Vers le Forum ...</div>\n";
+	echo "<div class='verdana3' style='padding:3px;'>"._T('phpbb:forum_vers')."</div>\n";
 
 	debut_ligne_grise('30');
 	echo "<div style='float:right; padding:3px; text-align:right; 
 			border:2px solid ".$couleur_claire."; -moz-border-radius:5px;'>\n";
-	echo " Retour <a href='gaf_admin.php?page=forum&id_article=$id_art_new'>
+	echo " "._T('icone_retour')." <a href='gaf_admin.php?page=forum&id_article=$id_art_new'>
 			<img src='"._DIR_IMG_PACK."gaf_forum.gif' border='0' align='absmiddle'></a>";
 	echo "</div>\n";
 	echo propre($titre_new);
@@ -935,8 +935,7 @@ debut_cadre_relief("");
 	echo "<br>";
 	
 	debut_bloc_gricont();
-		echo "<span class='verdana3'>N'oubliez pas d'enlever<br>\"Fermeture pour maintenance\",<br>
-				sur les Forums concernés.</span>\n";
+		echo "<span class='verdana3'>"._T('phpbb:maintenance')."</span>\n";
 	fin_bloc();
 	
 fin_cadre_relief();
@@ -959,16 +958,16 @@ if($action=='efface_select')
 	$tbl_eraze=$_POST['eraze'];
 	//suppresion des posts selectionnés
 	debut_cadre_relief("poubelle.gif");
-	gros_titre("Posts effacés !");
+	gros_titre(_T('phpbb:poste_effac'));
 	
 	$nbr_eraze = count($tbl_eraze);
 	if ($nbr_eraze==0)
-		{ echo "<div class='verdana3'><b>aucun !</b></div>"; }
+		{ echo "<div class='verdana3'><b>"._T('phpbb:aucun')."</b></div>"; }
 	else
 		{
 		foreach($tbl_eraze as $id)
 			{ $req = spip_query("DELETE FROM spip_forum WHERE id_forum=$id and statut='off'"); }
-		echo "<div class='verdana3'>".$nbr_eraze." Post(s) Effacé(s)</div>";
+		echo "<div class='verdana3'>".$nbr_eraze._T('phpbb:poste_effac')."</div>";
 		}
 	fin_cadre_relief();
 	}
@@ -982,7 +981,7 @@ debut_cadre_relief("");
 	echo "\n<table cellpadding='3' cellspacing='0' border=0 width='100%'>";
 	echo "<tr width='100%'>\n";
 	echo "<td height='35' valign='top' colspan='2'>\n";
-	gros_titre("Posts refusés, à effacer !");
+	gros_titre(_T('phpbb:poste_refuse'));
 	echo "</td></tr>";
 
 $ifond=0;
@@ -1002,7 +1001,7 @@ while ($row=spip_fetch_array($res))
 	
 	echo "<tr class='verdana2' bgcolor='".$couleur."'><td><div style='margin-left:".$retrait."px;'>";
 	echo "<img src='"._DIR_IMG_PACK.$ico_ligne."'> ".$id_post." - ".propre($titre);
-	echo "&nbsp;<a href='".url_post_tranche($id_post, $id_thread)."'><img src='"._DIR_IMG_PACK."plus.gif' align='absmiddle' border='0' title='VOIR'></a>";
+	echo "&nbsp;<a href='".url_post_tranche($id_post, $id_thread)."'><img src='"._DIR_IMG_PACK."plus.gif' align='absmiddle' border='0' title='"._T('phpbb:voir')."'></a>";
 	echo "</div>";
 	echo "</td><td valign='absmiddle'>";
 	echo "<input type='checkbox' name='eraze[]' value='".$id_post."'>";
@@ -1018,9 +1017,9 @@ while ($row=spip_fetch_array($res))
 			echo "<tr class='verdana2' bgcolor='".$couleur."'><td>";
 			echo "<div class='verdana2' style='color:#ED4242; margin-left:30px; padding:2px;'>\n";
 			echo "<img src='"._DIR_IMG_PACK."gaf_post-12.gif' align='absmiddle'>&nbsp;";
-			echo "Ce Sujet comprend ".$nbr_post." Post(s). Effacés avec lui !\n";
+			echo _T('phpbb:poste_efface_lui');
 			echo "<a href='gaf_admin.php?page=sujet&id_sujet=$id_post'>".
-					"&nbsp;<img src='"._DIR_IMG_PACK."plus.gif' border='0' align='absmiddle' title='Vérifier ce sujet'>";
+					"&nbsp;<img src='"._DIR_IMG_PACK."plus.gif' border='0' align='absmiddle' title='"._T('phpbb:sujet_verifie')."'>";
 			echo "</a></div>";
 			while ($row=spip_fetch_array($res2))
 				{ echo "<input type='hidden' name='eraze[]' value='".$row['id_forum']."'>"; }
@@ -1044,7 +1043,7 @@ while ($row=spip_fetch_array($res))
 		
 	echo "</table><br>";
 	echo "<div align='right' class='verdana3'>".
-			"Effacer la sélection .. <input type='submit' value='EFFACER' class='fondo'></div></form>\n";
+			_T('phpbb:selection_efface')."<input type='submit' value='"._T('phpbb:effacer')."' class='fondo'></div></form>\n";
 fin_cadre_relief();
 
 break;
@@ -1054,7 +1053,7 @@ break;
 } // fin switch
 
 // retour haut de page
-	echo "<div style='float:right; margin-top:6px;' class='icone36' title='Haut de page'>\n";
+	echo "<div style='float:right; margin-top:6px;' class='icone36' title='"._T('phpbb:haut_page')."'>\n";
 	echo "<a href='#haut_page'>";
 	echo "<img src='"._DIR_IMG_PACK."spip_out.gif' border='0' align='absmiddle'>\n";
 	echo "</a></div>";

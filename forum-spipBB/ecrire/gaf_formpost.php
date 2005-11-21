@@ -54,7 +54,7 @@ else
 	debut_cadre_relief("");
 	
 	echo "<div style='float:right; padding:2px;'>\n";
-	icone("Fermer", "javascript:window.close();", "rien.gif", "gaf_p_off.gif");
+	icone(_T('phpbb:icone_ferme'), "javascript:window.close();", "rien.gif", "gaf_p_off.gif");
 	echo "</div><br>\n";
 	
 	affiche_form_post();
