@@ -228,19 +228,6 @@ while (list($nom,$chem) = each($listimag))
 		
 }
 
-	/*
-	trier les forums par date de thread signifie
-	trier en fonction de la date de message la plus recente d'un thread
-	*/
-	function critere_tri_spipbb($idb, &$boucles, $crit) {
-		$boucle = &$boucles[$idb];
-		$boucle->select[] = "MAX(".$boucle->id_table.".".
-			$GLOBALS['table_date'][$boucle->type_requete]
-			.") AS date_thread";
-		$boucle->group = $boucle->id_table.".id_thread";
-		$boucle->order[] = "'date_thread DESC'";
-	}
-
 /*
  *   +----------------------------------+
  *    Nom du Filtre :    pagination                                               
