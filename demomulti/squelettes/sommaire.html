@@ -13,8 +13,30 @@ td {vertical-align: top}
 </head>
 <body bgcolor="white" dir="#LANG_DIR">
 
+<div class="navigation">
 #MENU_LANG
 
+<B_menu>
+<ul>
+<BOUCLE_menu(RUBRIQUES) {racine} {par lang} {id_rubrique!=7}>
+<li><a href="#URL_RUBRIQUE">[(#LANG|traduire_nom_langue)]</a>
+<B_sousmenu>
+<ul>
+<BOUCLE_sousmenu(RUBRIQUES) {lang} {lang=#ENV{lang,fr}} {id_parent}>
+<li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+<BOUCLE_recurs(BOUCLE_sousmenu)> </BOUCLE_recurs>
+</li>
+</BOUCLE_sousmenu>
+</ul>
+</B_sousmenu>
+</li>
+</BOUCLE_menu>
+</ul>
+</B_menu>
+
+</div>
+
+<div class="contenu">
 <BOUCLE_lang_choisie(ARTICLES) {lang} {doublons prefere} {par date} {inverse} {0,13}
 ><BOUCLE_exclus_trad(ARTICLES) {doublons exclustrad} {traduction} {exclus}
 > </BOUCLE_exclus_trad>
@@ -57,6 +79,7 @@ td {vertical-align: top}
 </BOUCLE_autres_articles>
 </ul>
 </B_autres_articles>
+</div>
 
 </body>
 </html>
