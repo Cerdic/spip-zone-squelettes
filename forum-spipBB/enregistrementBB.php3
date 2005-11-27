@@ -212,7 +212,7 @@ function formulaire_inscription($type,$acces_membres) {
 			$extras = bloog_extra_recup_saisie('auteurs');
 
 			$query = "INSERT INTO spip_auteurs (nom, email, login, pass, statut, htpass, extra, cookie_oubli) ".
-				"VALUES ('".addslashes($nom_inscription)."', '".addslashes($mail_inscription)."', '$login', '$mdpass', '$statut', '$htpass', '$extras', '$cookie')";
+				"VALUES ('".addslashes($nom_inscription)."', '".addslashes($mail_inscription)."', '$login', '$mdpass', '$statut', '$htpass', '".addslashes($extras)."', '$cookie')";
 			$result_ok = spip_query($query);
 			$id_auteur=spip_insert_id();
 			if(!$result_ok){
