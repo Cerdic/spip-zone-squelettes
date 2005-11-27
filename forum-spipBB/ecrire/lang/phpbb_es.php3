@@ -2,7 +2,7 @@
 
 // This is a SPIP-forum module file  --  Ceci est un fichier module de SPIP-forum
 
-$GLOBALS['i18n_phpbb_fr'] = array(
+$GLOBALS['i18n_phpbb_es'] = array(
 
 //Connexion
 'connexion' => 'Por favor ingresa tu identificante y tu contrase&ntilde;a para conectrarte.',
