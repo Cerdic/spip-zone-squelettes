@@ -1,0 +1,61 @@
+﻿[
+	(#REM) Ce squelette fait partie de hBones, un ensemble de squelettes
+	visant a implanter les microformats (http://microformats.org)
+
+][
+
+	(#REM) Commencons par XHTML 1.0 strict, et voyons si on peut y arriver
+
+]<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">[
+
+	(#REM) Preciser la langue principale du site dans l'entete, ainsi que sa
+	direction generale d'ecriture
+
+]<html xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+	<title><:resultats_recherche:> | [(#NOM_SITE_SPIP|textebrut)]</title>
+	<link rel="stylesheet" href="#DOSSIER_SQUELETTE/hBones.css" type="text/css" />
+</head>
+<body>
+[
+	(#REM) Une page recherche c'est un sommaire considere comme un "blog-post"
+	<http://microformats.org/wiki/blog-post-brainstorming>
+
+	On se base sur le format (draft) hAtom
+	<http://microformats.org/wiki/hatom>
+]
+<!-- Formulaire de recherche -->
+
+[(#FORMULAIRE_RECHERCHE)]
+
+
+<BOUCLE_recherche(ARTICLES){recherche}{par date}{inverse}{0,30}>
+
+[(#REM) "atomentry" = bloc article]
+<div class="atomentry"[ id="(#URL_ARTICLE|url_absolue)"] lang="#LANG" dir="#LANG_DIR">
+
+[(#REM) class="content" => contenu de l'article (pas ses meta-donnees)]
+
+
+	[<h2 class="content title">(#TITRE)</h2>]
+
+	[(#REM) la date doit figurer dans un format lisible par une machine
+		<http://microformats.org/wiki/datetime-design-pattern>
+	]
+	[<abbr class="published"
+		title="[(#DATE|date_iso)]">
+		[(#DATE|nom_jour)] (#DATE|affdate), [(#DATE|heures):][(#DATE|minutes)]
+	</abbr>]
+
+	[(#REM) on propose l'introduction en guise de contenu
+	][<div class="content text">(#INTRODUCTION)</div>]
+	
+</div>[(#REM) /atomentry]
+
+</BOUCLE_articles>
+
+</body>
+</html>
