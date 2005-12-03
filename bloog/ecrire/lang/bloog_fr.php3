@@ -1,3 +1,4 @@
+
 <?php
 
 // This is a SPIP module file  --  Ceci est un fichier module de SPIP
@@ -9,6 +10,7 @@ $GLOBALS['i18n_bloog_fr'] = array(
 
 // A
 'abonner' => 's\'abonner',
+'admin' => 'administration',
 
 // B
 'form_forum_bonjour' => 'Bonjour,',
@@ -17,7 +19,7 @@ $GLOBALS['i18n_bloog_fr'] = array(
 'titre_cadre_signature_obligatoire' => '<B>Signature</B> [Obligatoire]<BR>',
 'entree_adresse_email' => 'Votre adresse email',
 'info_reserve_admin' => 'Seuls les administrateurs peuvent modifier cette adresse.',
-'entree_infos_perso' => 'Qui &ecirc;tes-vous ?',
+'entree_infos_perso' => 'Qui êtes-vous ?',
 'entree_biographie' => 'Courte biographie en quelques mots.',
 'entree_nom_site' => 'Le nom de votre site',
 'entree_url' => 'L\'adresse (URL) de votre site',
@@ -83,6 +85,11 @@ $GLOBALS['i18n_bloog_fr'] = array(
 'bloogletter_charger_le_patron' => 'charger le patron',
 'bloogletter_patron_disponibles' => 'patrons disponibles pour les courriers',
  
+//C
+
+'contact' => 'Contact',
+
+
 
 //D
 'form_forum_identifiant_confirm'=>'Votre abonnement est enregistré, vous allez recevoir un mail de confirmation.',
@@ -114,6 +121,7 @@ Vous pourrez alors confirmer la modification de votre abonnement.',
 
 //E
 'email' => 'E-mail',
+'erreur_menu' => 'Erreur dans le menu, ajoutez le mot cle menu_rub sur des sites. Dans l\'adresse des sites, ciblez vos rubriques.',
 
 //F
 'faq' => 'FAQ',
@@ -129,7 +137,7 @@ Une fois enregistré, vous pourrez consulter les articles en cours de rédaction, 
 et participer à tous les forums.  L\'inscription permet également d\'accéder aux parties du site en accès restreint
 et de recevoir les lettres d\'informations.',
 
-
+'imprimez_article' => 'imprimez cet article',
 
 //L
 'login' => 'Connexion',
@@ -158,16 +166,21 @@ et de recevoir les lettres d\'informations.',
 'messages_repondre' => 'Nouvelle Réponse',
 'messages_voir_dernier' => 'Voir le dernier message',
 'moderateurs' => 'Modérateur(s)',
+'mise_en_ligne' => 'mise en ligne',
 
 //n
 'nom' => 'Nom d\'utilisateur',
 'nouveaux_messages' => 'Nouveaux messages',
-
+'nouveaute' => 'nouveauté;', 
+'newsletter' =>  'newsletter',
 //P
+'par' => 'par',
+'photos' => 'photos',
 'poster' => 'Poster un Message',
-
+'premiere_publi' => 'Première publication',
+'plan_du_site' => 'plan du site',
 //R
-'recherche' => 'Rechercher',
+'recherche' => 'rechercher',
 
 'revenir_haut' => 'Revenir en haut de la page',
 'reponse' => 'En réponse au message',
@@ -185,7 +198,7 @@ et de recevoir les lettres d\'informations.',
  
  //T
 'texte_lettre_information' => 'Voici la lettre d\'information du site',
-
+'telechargement' => 'téléchargement',
 //V
 'voir' => 'voir'
 
