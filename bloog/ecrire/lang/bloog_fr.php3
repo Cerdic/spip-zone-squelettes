@@ -1,3 +1,4 @@
+
 <?php
 
 // This is a SPIP module file  --  Ceci est un fichier module de SPIP
@@ -46,7 +47,7 @@ $GLOBALS['i18n_bloog_fr'] = array(
 'bloogletter_envoi_nouv' => 'Envoi des nouveaut&eacute;s',
 'bloogletter_definir_squel' => 'D&eacute;finir les squelettes',
 'bloogletter_message_en_cours' => 'Message en cours d\'envoi',
-'bloogletter_texte_boite_en_cours' => 'La bloOgletter envoie un message automatique en ce moment. <p> Vous pouvez provoquer l\'envoi acc&eacute;l&eacute;r&eacute; des lots grâce au lien ci-dessous.</p> <p>Cette boite disparaitra une fois l\'envoi achev&eacute;.</p>',
+'bloogletter_texte_boite_en_cours' => 'La bloOgletter envoie un message automatique en ce moment. <p> Vous pouvez provoquer l\'envoi acc&eacute;l&eacute;r&eacute; des lots gr&acirc;ce au lien ci-dessous.</p> <p>Cette boite disparaitra une fois l\'envoi achev&eacute;.</p>',
 'bloogletter_actualiser' => 'Actualiser',
 'bloogletter_lot_suivant' => 'Provoquer l\'envoi du lot suivant',
 'bloogletter_info_nouv' => 'Vous avez activ&eacute; l\'envoi des nouveaut&eacute;s',
@@ -75,7 +76,7 @@ $GLOBALS['i18n_bloog_fr'] = array(
 'bloogletter_definir_squel_choix' => 'A la r&eacute;daction d\'un nouveau courrier, la bloogletter vous permet de charger un patron. En appuyant sur un bouton, vous chargez dans le corps du message le contenu d\'un des squelettes du repertoire <b>/squelettes_bloogletter</b> (situ&eacute; &agrave; la racine de votre site Spip). <p><b>Vous pouvez &eacute;diter et modifier ces squelettes selon vos goûts.</b></p> <UL><li>Ces squelettes peuvent contenir du code HTML classique</li>
 <li>Ce squelette peut contenir des boucles Spip</li>
 <li>Apr&egrave;s le chargement du patron, vous pourrez re-&eacute;diter le message avant envoi (pour ajouter du texte)</li>
-</ul><p>La fonction "charger un patron" permet donc d\'utiliser des gabarits HTML personnalis&eacute;s pour vos courriers ou de cr&eacute;er des lettres d\'information th&eacute;matiques dont le contenu est d&eacute;fini grâce aux boucles Spip.</p><p>Attention : ce squelette ne doit pas contenir de balises body, head ou html mais juste du code HTML ou des boucles Spip.</p>',
+</ul><p>La fonction "charger un patron" permet donc d\'utiliser des gabarits HTML personnalis&eacute;s pour vos courriers ou de cr&eacute;er des lettres d\'information th&eacute;matiques dont le contenu est d&eacute;fini gr&acirc;ce aux boucles Spip.</p><p>Attention : ce squelette ne doit pas contenir de balises body, head ou html mais juste du code HTML ou des boucles Spip.</p>',
 'bloogletter_courriers' => 'Courriers',
 'bloogletter_messages_auto' => 'Messages automatiques',
 'bloogletter_charger_patron' => 'charger un patron',
@@ -170,7 +171,7 @@ et de recevoir les lettres d\'informations.',
 //n
 'nom' => 'Nom d\'utilisateur',
 'nouveaux_messages' => 'Nouveaux messages',
-'nouveaute' => 'nouveaut&eacute;;', 
+'nouveaute' => 'nouveaut&eacute;s', 
 'newsletter' =>  'newsletter',
 //P
 'par' => 'par',
