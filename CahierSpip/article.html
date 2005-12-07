@@ -16,25 +16,31 @@
 
 <!-- media="print" permet d'utiliser cette feuille de style quand vous imprimez depuis votre navigateur -->
 <link rel="stylesheet" href="#DOSSIER_SQUELETTE/impression.css" type="text/css" media="print"/>
+<BOUCLE_head(ARTICLES){id_article}>
+<title>#TITRE</title>
+<meta name="Description" content="#DESCRIPTIF">
+<meta name="Keywords" content="<BOUCLE_keywords(MOTS){id_article}{","}>#TITRE </BOUCLE_keywords>">
+<meta name="Author" content="<BOUCLE_author(AUTEURS){id_article}{","}>#NOM </BOUCLE_author>">
+</BOUCLE_head>
+</head>
 </head>
 
 <body>
+<div class="bord_banner">
  <INCLURE(banner.php3)>
-
+</div>
 <div id="navigation">
- <INCLURE(menu1.php3)>
- <INCLURE(menu2.php3)>
- <div class="bord_rubrique">
- <INCLURE(your_ads.php3)>
- </div>
+ <INCLURE(menu.php3)>
 </div>
 
 <!-- Une : derniers articles publies -->
 <div class="contenu" id="principal_large">
  <div class="bord_rubrique">
+
   <div class="encart_logo_gauche">
    [<img src="./IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)" alt="#TITRE" ></img>]
   </div><br/>
+  
   <div class="encart_titre_droite">
    <div class="surtitre">#SURTITRE</div>
    <h1 class="titre-texte">#TITRE</h1>
@@ -42,6 +48,7 @@
    [(#DATE|nom_jour)] [(#DATE|affdate).]
    <div style="line-height: 0em">&nbsp;</div><!-- Bug Mozilla http://bugzilla.mozilla.org/show_bug.cgi?id=200510 -->
   </div>
+
   <div class="encart_texte_dessous">
    <div class="bord_article">
     <div class="chapo">#CHAPO</div>
@@ -73,19 +80,21 @@
     </B_documents_joints>
    </div>
   </div>
-  <div class="bord_rubrique">
-  <!-- Forums -->
-
-  [<a  href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_article:></a>]
   <br />
-  <B_forums>
-   <h1 class="structure" width="200"><:Forum:></h1>
-   <ul class="forum-total">
-    <BOUCLE_forums(FORUMS){id_article}{par date}{inverse}>
-    <li>
-     <div class="forum-fil"> <div class="forum"> <div class="forum-chapo"> <div class="forum-titre">
+
+  <div class="bord_rubrique">
+   <!-- Forums -->
+
+   [<a  href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_article:></a>]
+   <br />
+   <B_forums>
+    <h1 class="structure" width="200"><:Forum:></h1>
+    <ul class="forum-total">
+     <BOUCLE_forums(FORUMS){id_article}{par date}{inverse}>
+     <li>
+      <div class="forum-fil"> <div class="forum"> <div class="forum-chapo"> <div class="forum-titre">
          <a name="forum#ID_FORUM"></a>#TITRE</div>
-         [(#DATE|affdate)][, <:par_auteur:> <a href="mailto:#EMAIL">(#NOM)</a>]
+         [(#DATE|affdate)][, <:par_auteur:> <a href="mailto:[(#EMAIL|antispam)]">[(#NOM)]</a>]
         </div>
         <div class="forum-item">
          <div class="bord_article">
@@ -101,7 +110,7 @@
 	  <div class="forum">
 	   <div class="forum-chapo">
 	    <div class="forum-titre"><a name="forum#ID_FORUM"></a>#TITRE</div>
-	    [(#DATE|affdate)][, <:par_auteur:> <a href="mailto:#EMAIL">(#NOM)</a>]
+	    [(#DATE|affdate)][, <:par_auteur:> <a href="mailto:[(#EMAIL|antispam)]">[(#NOM)]</a>]
 	   </div>
 	   <div class="forum-item">
 	    #TEXTE
@@ -121,22 +130,29 @@
     </BOUCLE_forums>
    </ul>
   </B_forums>
- </div>
-
- <div class="encart_google_large">
-  <B_mots> 
-  <div class="bord_rubrique">
-   <h1><:mots_clefs:></h1>
-   <BOUCLE_mots(MOTS) {id_article} {par type} {exclus}>
-   [<br /><div class="bord_article_encart"><div class="menu-mots">(#TYPE|unique{ouvre})</div></div>]
-   <br /><a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a><br />
-   [(#TYPE|unique{ferme}|?{' ',''})]
-   </BOUCLE_mots>
   </div>
-   </B_mots> 
+ </div>
 </div>
-</div>
-</div>
+ <div class="encart_google_large">
+
+  <div class="bord_rubrique" >
+ 
+   &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a href="http://1and1.fr/xml/order?k_id=9552987" target="_blank"><img src="http://commander.1and1.fr/oneandone_fr/img/banner/banner_6_1.gif" width="100" height="120" border="0"/></a>
+  </div>
+  <B_mots> 
+   <div class="bord_rubrique">
+    <h1><:mots_clefs:></h1>
+    <BOUCLE_mots(MOTS) {id_article} {par type} {exclus}>
+    [<br /><div class="bord_article_encart"><div class="menu-mots">(#TYPE|unique{ouvre})</div></div>]
+    <br /><a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a><br />
+    [(#TYPE|unique{ferme}|?{' ',''})]
+    </BOUCLE_mots>
+   </div>
+  </B_mots> 
+
+ <INCLURE(sur_web.php3)>
+
+ </div>
 
 </body>
 </html>

@@ -14,25 +14,23 @@
 </head>
 
 <body>
+<div class="bord_banner">
  <INCLURE(banner.php3)>
-
- <!-- Menu de navigation general -->
- <div id="navigation">
-  <INCLURE(menu1.php3)>
-  <INCLURE(menu2.php3)>
-  <INCLURE(your_ads.php3)>
- </div>
+</div>
+<div id="navigation">
+ <INCLURE(menu.php3)>
+ <INCLURE(sur_web.php3)>
+</div>
 
  <!-- fin div navigation menu -->
  <div id="principal_large" class="contenu">
   <div class="bord_rubrique">
   <BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
   <div class="bord_article">
-   <br />
    <div class="encart_logo_gauche_nolimit">
-    [<img src="./IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)" alt="#TITRE" height="134" width="134"></img>]
+    [<img src="./IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)" alt="#TITRE" height="134" width="134"></img>]<br />
    </div>
-   <div class="encart_titre_droite">
+   <div class="encart_titre_droite_nolimit">
     <div class="bord_rubrique">
      <h2><a href="#URL_RUBRIQUE">#TITRE</a></h2>
     </div>
@@ -48,9 +46,9 @@
     </B_articles_racine>
    </div>
    <B_rubriques>
-   <div class="encart_texte_dessous">
-    <div class="bord_rubrique">
+   <div class="encart_texte_dessous_nolimit">
     <BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+    <br /><div class="bord_rubrique">
      <ul>
       <li>
        <a href="#URL_RUBRIQUE">#TITRE</a>
@@ -63,14 +61,15 @@
        </B_articles>
        <BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
       </li>
-     </ul>
-    </BOUCLE_rubriques>
+     </ul><br />
     </div>
+    </BOUCLE_rubriques>
    </div>
    </B_rubriques>
   </div>
   </BOUCLE_secteurs>
   </div>
+</div>
   <div class="encart_google_large">
   <B_mots>
    <div class="bord_rubrique">
@@ -84,24 +83,6 @@
  </div>
  </div>
  </B_mots>
-
-
- <B_syndic>
-  <div class="liste_article">
-  <!-- <:sur_web:> -->
-  <div class="divers">
-   <div class="menu-titre"><:sur_web:></div>
-   <ul>
-    <BOUCLE_syndic(SYNDIC_ARTICLES) {par date} {inverse} {0,15}>
-    <li class="menu-item">
-    [<i>#NOM_SITE (#DATE|affdate_court)</i>:]
-    <a href="#URL_ARTICLE">[(#TITRE*)]</a>
-    </li>
-    </BOUCLE_syndic>
-   </ul>
-  </div>
-  </div>
- </B_syndic>
 
 </div>
  </div>
