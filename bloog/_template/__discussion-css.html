@@ -1,0 +1,96 @@
+<hr class="spacer" />
+<div class="avatar">
+<h2>Réagir</h2>
+</div><!-- fermeture avatar reagir -->
+<div class="reponse">
+<BOUCLE_compte_messages(FORUMS){id_article}{plat}>
+</BOUCLE_compte_messages>
+<?
+$duree = #TOTAL_BOUCLE -1 ;
+if ($duree == "0" OR $duree == "1") {$texte = "réponse";}
+	else {$texte = "réponses";}	
+echo $duree.'&nbsp;'.$texte;
+?>
+</B_compte_messages>
+[<a href="forum.php3?(#PARAMETRES_FORUM)" onclick="return !dspForm();"><:repondre_article:></a>]
+
+[<a name="forum#ID_FORUM" id="forum#ID_FORUM">(#TITRE).</a>]
+<!-- ici l ouveture de reponse avec l_acces moderateurs et les compteurs -->
+<a href="ecrire/articles_forum.php3?id_article=#ID_ARTICLE" title="Acc&egrave;s priv&eacute; pour mod&eacute;rateurs">Acc&egrave;s
+ mod&eacute;rateurs.</a> 
+ [Le (#DATE|affdate)]</div></div><!-- fermeture reponse en tete forum --> 
+
+ <hr class="spacer" />
+<BOUCLE_forums(FORUMS){id_article}{par date}>
+
+<div class="avatar"><div class="logogauche"><a href="_mon-profil.php3" title="Changer son avatar">
+[(#LOGO_AUTEUR||?{#LOGO_AUTEUR,'<img src="#URL_SITE_SPIP/avatars/ajoutez-un-avatar.gif">'})]</a>
+</div><!-- fermeture logogauche -->
+
+
+<BOUCLE_newpost_ouverture_lien(AUTEURS){id_auteur}> 
+<a href="_membre.php3?id_auteur=#ID_AUTEUR" title="Profil/contact"> <font color="[(#STATUT|=={'1comite'}|?{'#006699',''})]
+[(#STATUT|=={'0minirezo'}|?{'#ffa34f',''})]
+[(#STATUT|=={'6forum'}|?{'#006600',''})]
+[(#STATUT|=={'nouveau'}|?{'#000',''})]
+"> 
+</BOUCLE_newpost_ouverture_lien> 
+[(#NOM|couper{35})<br />]
+<BOUCLE_newpost_fermeture_lien(AUTEURS){id_auteur}> 
+[(#STATUT|=={'1comite'}|?{'Rédacteur',''})] [(#STATUT|=={'0minirezo'}|?{'Modérateur',''})]
+[(#STATUT|=={'6forum'}|?{'Invité',''})] [(#STATUT|=={'nouveau'}|?{'Bienvenue',''})] </font></a><br /> 
+</BOUCLE_newpost_fermeture_lien> 
+[(#ID_AUTEUR|nb_messages) messages]
+[<a href="#URL_SITE">(#NOM_SITE)</a><br />]
+
+<!-- Anti spam: seul l'admin du site voit l'adresse -->
+<?php if($auteur_session['id_auteur']== '1') {?> 
+[<a href="mailto:#EMAIL">(#EMAIL)</a><br />] [(#IP)<br />]
+<?php } ?> 
+</div><!-- fermeture avatar et info auteur -->
+<div class="reponse">
+     [(#TEXTE|norm_liens{blank}|liens_ouvrants|smileys)]
+
+  [<a href="forum.php3?(#PARAMETRES_FORUM)"  onclick="return !dspForm();"><:repondre_article:></a>
+  ]
+</div><!-- fermeture texte reponse --><hr class="spacer" />
+
+
+
+  <BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
+  <hr class="spacer" />
+
+<div class="reponse">
+
+  <div class="avatar">
+    <div class="logogauche"><a href="_mon-profil.php3" title="Changer son avatar"> [(#LOGO_AUTEUR||?{#LOGO_AUTEUR,'<img src="#URL_SITE_SPIP/avatars/ajoutez-un-avatar.gif">'})]</a></div>
+    <BOUCLE_newpost_ouverture_lien2(AUTEURS){id_auteur}>
+    <a href="_membre.php3?id_auteur=#ID_AUTEUR" title="Profil/contact"> <font color="[(#STATUT|=={'1comite'}|?{'#006699',''})]
+[(#STATUT|=={'0minirezo'}|?{'#ffa34f',''})]
+[(#STATUT|=={'6forum'}|?{'#006600',''})]
+[(#STATUT|=={'nouveau'}|?{'#000',''})]
+">
+    </BOUCLE_newpost_ouverture_lien2>
+  [(#NOM|couper{35})<br />
+  ]
+  <BOUCLE_newpost_fermeture_lien2(AUTEURS){id_auteur}>
+  [(#STATUT|=={'1comite'}|?{'R&eacute;dacteur',''})] [(#STATUT|=={'0minirezo'}|?{'Mod&eacute;rateur',''})]
+  [(#STATUT|=={'6forum'}|?{'Invit&eacute;',''})] [(#STATUT|=={'nouveau'}|?{'Bienvenue',''})] </font></a><br />
+  </BOUCLE_newpost_fermeture_lien2>
+  [(#ID_AUTEUR|nb_messages) messages] [<a href="#URL_SITE">(#NOM_SITE)</a><br />
+  ]
+  <!-- Anti spam: seul l'admin du site voit l'adresse -->
+  <?php if($auteur_session['id_auteur']== '1') {?>
+  [<a href="mailto:#EMAIL">(#EMAIL)</a><br />
+  ] [(#IP)<br />
+  ]
+  <?php } ?>
+  </div>
+  <div class="reponse"> [(#TEXTE|norm_liens{blank}|liens_ouvrants|smileys)]
+    [<a href="forum.php3?(#PARAMETRES_FORUM)"  onclick="return !dspForm();"><:repondre_article:></a> ] 
+</div><!-- fermeture reponse --><hr class="spacer" />
+
+</BOUCLE_forums_fils>
+</BOUCLE_forums>
+
+<hr class="spacer" />

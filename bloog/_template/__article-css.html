@@ -288,205 +288,10 @@ Ici un lecteur MP3 et une grille d'agenda pour marquer
 </div>   <!-- fermeture colone de droite --> 
 
 
-
-<!-- inclusion des forums --><!-- inclusion des forums -->
-<!-- inclusion des forums --><!-- inclusion des forums -->
-<!-- inclusion des forums --><!-- inclusion des forums -->
-<!-- inclusion des forums --><!-- inclusion des forums -->
-<!-- inclusion des forums --><!-- inclusion des forums -->
-<!-- inclusion des forums --><!-- inclusion des forums -->
-<!-- inclusion des forums --><!-- inclusion des forums -->
-<!-- inclusion des forums --><!-- inclusion des forums -->
-<!-- inclusion des forums --><!-- inclusion des forums -->
+<INCLURE(_discussion_css.php3){id_article}>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-	  
-    
-        <BOUCLE_forum(ARTICLES){id_article}>  
-			 
-			              
-<a href="#URL_SITE_SPIP/backend.php3?id_article=#ID_ARTICLE"><img src="/IMG/002/xml.gif" border="0"></a><
-                                  
-                     
-                <B_nb_forumtotal>
-                <BOUCLE_nb_forumtotal(FORUMS){id_thread}{plat}>
-                </BOUCLE_nb_forumtotal>
-                <?
-$duree = #TOTAL_BOUCLE -1 ;
-if ($duree == "0" OR $duree == "1") {$texte = "réponse";
-	}
-	else {
-		$texte = "réponses";}	
-echo $duree.'&nbsp;'.$texte;
-?>
-                </B_nb_forumtotal>
-                      &agrave; cette discussion. <a href="ecrire/articles_forum.php3?id_article=#ID_ARTICLE" target="_blank" title="Acc&egrave;s priv&eacute; pour mod&eacute;rateurs">Acc&egrave;s
-                mod&eacute;rateurs.</a>
-                      </BOUCLE_forum>
-             
-             
-			  
-<BOUCLE_Forums(FORUMS){id_thread}>	<a name="forum#ID_FORUM"></a>
-
-<!-- ici le div repete le forum --> 
- 
-[(#LOGO_AUTEUR||?{'',' '}) <a href="_mon-profil.php3" title="Changer son avatar"><img src="#URL_SITE_SPIP/avatars/ajoutez-un-avatar.gif" border="0"></a>
-]
-
-[(#LOGO_AUTEUR)
-]
-<BOUCLE_newpost_ouverture_lien(AUTEURS){id_auteur}>
-<a href="_membre.php3?id_auteur=#ID_AUTEUR" title="Profil/contact">
-<font color="[(#STATUT|=={'1comite'}|?{'#006699',''})]
-[(#STATUT|=={'0minirezo'}|?{'#ffa34f',''})]
-[(#STATUT|=={'6forum'}|?{'#006600',''})]
-[(#STATUT|=={'nouveau'}|?{'#000',''})]
-"></BOUCLE_newpost_ouverture_lien>
-
-[(#NOM|couper{35})<br/ >
-]
-
-<BOUCLE_newpost_fermeture_lien(AUTEURS){id_auteur}>
-[(#STATUT|=={'1comite'}|?{'Rédacteur',''})]
-[(#STATUT|=={'0minirezo'}|?{'Modérateur',''})]
-[(#STATUT|=={'6forum'}|?{'Invité',''})]
-[(#STATUT|=={'nouveau'}|?{'Bienvenue',''})]
-</font></a><br/ >
-</BOUCLE_newpost_fermeture_lien>
-
-          [(#DATE|affdate)<br/ >
-][<a href="#URL_SITE">(#NOM_SITE)</a><br/ >
-]
-<?php if($auteur_session['id_auteur']== '1') {?>
-[<a href="mailto:#EMAIL">(#EMAIL)</a><br/ >]
- [(#IP)<br/ >] 
-<?php } ?>
-
-
-  <h4>[(#TITRE|titre_forum|couper{50})]</h4>
-[(#TEXTE|norm_liens{blank}|liens_ouvrants|smileys)]  
-
-
-
- <?php $comptpost=$comptpost+1; if($duree+1==$comptpost) {?>  [<a href="forum.php3?(#PARAMETRES_FORUM)"><img src="IMG/002/reply.gif" border="0"></a>]
- <?php } else echo "<a href='#dernier'>Dernier message</a>";?> 
-  <br/ >
-</p>
-
-
-
-
-<BOUCLE_fils(FORUMS){id_parent}{par date}{inverse}>
-<a name="forum#ID_FORUM"></a>
-
-
-
-
-[(#LOGO_AUTEUR||?{'',' '}) <a href="_mon-profil.php3" title="Changer son avatar"><img src="#URL_SITE_SPIP/avatars/ajoutez-un-avatar.gif" border="0"></a><br/ >
-]
-[(#LOGO_AUTEUR)<br/ >
-]
-<BOUCLE_reponse_ouverture_lien(AUTEURS){id_auteur}>
-<a href="_membre.php3?id_auteur=#ID_AUTEUR" title="Profil/contact">
-<font color="[(#STATUT|=={'1comite'}|?{'#006699',''})]
-[(#STATUT|=={'0minirezo'}|?{'#ffa34f',''})]
-[(#STATUT|=={'6forum'}|?{'#006600',''})]
-[(#STATUT|=={'nouveau'}|?{'#000',''})]
-"></BOUCLE_reponse_ouverture_lien>
-
-[(#NOM|couper{35})<br/ >
-]
-
-<BOUCLE_reponse_fermeture_lien(AUTEURS){id_auteur}>
-[(#STATUT|=={'1comite'}|?{'Rédacteur',''})]
-[(#STATUT|=={'0minirezo'}|?{'Modérateur',''})]
-[(#STATUT|=={'6forum'}|?{'Invité',''})]
-[(#STATUT|=={'nouveau'}|?{'Bienvenue',''})]
-</font></a><br/ >
-</BOUCLE_reponse_fermeture_lien>
-[(#DATE|affdate)<br/ >
-][<a href="#URL_SITE">(#NOM_SITE)</a><br/ >
-]
-<?php if($auteur_session['id_auteur']== '1') {?>
-[<a href="mailto:#EMAIL">(#EMAIL)</a><br/ >]
- [(#IP)<br/ >] 
-<?php } ?>
-
-  <?php $comptpost=$comptpost+1; if($duree+1==$comptpost) {?>
-    <?php } ?>    
-[(#TITRE|titre_forum|couper{50})]
-[(#TEXTE|norm_liens{blank}|liens_ouvrants|smileys)]
-
-  <?php  if($duree+1==$comptpost) {?>
-  [<a href="forum.php3?(#PARAMETRES_FORUM)"><img src="IMG/002/reply.gif" border="0"></a>]
-  <?php } else echo "<a href='#premier'>Premier</a>&nbsp;/&nbsp;<a href='#dernier'>Dernier message</a>";?> 
-  <br/ >
-
-
-<BOUCLE_Forums_Boucle(boucle_fils)>
-</BOUCLE_Forums_Boucle>
-</BOUCLE_fils>
-</B_fils>
-</BOUCLE_Forums>
-
-
-
-
-                      <!-- les autres posts du forum -->
-                      <?	
-		<B_compt_thread>
-		
-		<BOUCLE_compt_thread(FORUMS){id_thread}>
-
-		</BOUCLE_compt_thread>
-
-			$total=#TOTAL_BOUCLE; 
-			if ($total>9)
-				for ($numero = 0; $numero < $total; $numero = $numero + 10){
-						echo "[<a HREF='article.php3?id_article=#ID_ARTICLE&debut_post=$numero'>".($numero+1)."</a>] ";
-				}
-		echo "<p>";
-		</B_compt_thread>
-		
-		?>
-                      </B_autres_posts>
-
-
-
-
-               
-
-
-
-
-
-
-<!-- inclusion des forums --><!-- inclusion des forums -->
-<!-- inclusion des forums --><!-- inclusion des forums -->
-<!-- inclusion des forums --><!-- inclusion des forums -->
-<!-- inclusion des forums --><!-- inclusion des forums -->
-<!-- inclusion des forums --><!-- inclusion des forums -->
-<!-- inclusion des forums --><!-- inclusion des forums -->
-<!-- inclusion des forums --><!-- inclusion des forums -->
-<!-- inclusion des forums --><!-- inclusion des forums -->
-<!-- inclusion des forums --><!-- inclusion des forums -->
-<!-- inclusion des forums --><!-- inclusion des forums -->
 
  
 
@@ -505,12 +310,11 @@ echo $duree.'&nbsp;'.$texte;
     [(#FORMULAIRE_ADMIN)]
 
     <!--  la validation peut expirer à chaque modif.   -->  
-    <p>Je travaille cette page en ce moment, la validation peut expirer &agrave; chaque instant.<br /> 
+ Je travaille cette page en ce moment, la validation peut expirer &agrave; chaque instant.<br /> 
     <a href="http://validator.w3.org/check?uri=referer"><img
         src="http://www.w3.org/Icons/valid-xhtml10"
         alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a>
 
-  </p>
 
 
 
