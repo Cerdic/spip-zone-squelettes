@@ -69,7 +69,7 @@
  
 <div id="colgau"> <!-- ouverture colone de gauche --> 
 
-  <div class="grande_boite"> <!-- ouverture grd boite texte --> [<div class="logogauche">(#LOGO_ARTICLE)</div>
+  <div class="grande_boite"> <!-- ouverture grd boite texte --> [<div class="logogauche">(#LOGO_ARTICLE|?{#LOGO_ARTICLE,'<img src="../icones/64x64/edit.png">'})</div>
   ]<BOUCLE_plan(HIERARCHIE){id_article}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)] </a>	
                   </BOUCLE_plan>[&gt; (#TITRE)] 
                   <h2>[(#TITRE)<br/> 
@@ -98,7 +98,6 @@
 
 
 <div id="minipics">
-
 <ul>
 <BOUCLE_vignettes_precedentes(DOCUMENTS){id_article}{mode=document}{extension==jpg|png|gif}{id_document < #ID_DOCUMENT}{par id_document}{inverse}{0,1}>
 	<li class="transparent"><div id="a#ID_DOCUMENT"><a href="#URL?id_document=#ID_DOCUMENT#a#ID_DOCUMENT" [title="(#TITRE|textebrut)"]>
@@ -125,6 +124,7 @@
 <!-- fermeture minipics --> 
 
 <div class="grande_boite">
+<div class="icone_photo"></div>
 <div class="centre">
 <!-- fleche jpg précédent -->
 
@@ -223,58 +223,54 @@
 </div><!-- fermeture colone de gauche -->
 					
 
- <div id="colonne">  <!-- ouverture de la colone de droite --> 
+ <div class="colonne">  <!-- ouverture de la colone de droite --> 
 
 
     <div class="boite"><!-- ouverture boite menu --> 
-      <BOUCLE_article_menu(ARTICLES){id_article}> 
+<div class="icone_menu"></div>
+      
       <INCLURE(_menu_rub.php3){id_rubrique}{id_article}> 
-      </BOUCLE_article_menu> 
-      <BOUCLE_rubrique_menu(RUBRIQUES){id_rubrique}> 
-      <INCLURE(_menu_rub.php3){id_rubrique}> 
-      </BOUCLE_rubrique_menu> 
-      <INCLURE(_menu_rub.php3)> 
-      <//B_rubrique_menu> 
-      <//B_article_menu> 
+    
     </div><!-- fermeture boite menu -->
-    <!-- Le champ de recherche pour tous le site --> 
+    <!-- La boite de recherche toujours à la même place pour tous le site même si la recherche est differente. --> 
     <div class="boite"> <!-- ouverture boite recherche --> 
+<div class="icone_loupe"></div>
      <form action="recherche.php3" method="post" /> 
         <input type="text" name="rechercher" class="rechercher" value="rechercher" />
-        <input type="submit" name="submit" class="submit" value="ok" />
+       <!-- remplacer le bouton standard par un bouton loupe -->
+ <input type="submit" name="submit" class="submit" value="ok" />
      
  
       
         <!--  <?
-   // Titre de l'article pour g&eacute;n&eacute;rer le corps du mail
+   // Titre de l'article pour générer le corps du mail
    $titre='[(#TITRE|texte_script)]';
-   // URL de l'article pour g&eacute;n&eacute;rer le corps du mail
+   // URL de l'article pour générer le corps du mail
    $url="[(#URL_SITE_SPIP)]/article.php3?id_article=#ID_ARTICLE";
    // URL de l'article pour recharger la page
    $url2="article.php3?id_article=#ID_ARTICLE";
 ?>
   -->
-    Ici un script "envoyer &agrave; un ami". 
-    
+    Ici le script "envoyer &agrave; un ami" xhtml strict. 
+    <!-- trouver une solution pour les navigateurs sans javascript -->
    <a href="javascript:window.print()"><:bloog:imprimez_article:>
    </a> 
     </div>
-    <!-- fermeture boite recherche --> 
+    <!-- fermeture boite recherche, envoyer à un ami et imprimer --> 
     
     <div class="boite"> <!-- ouverture boite agenda --> 
-      
+      <div class="icone_agenda"></div>
       <p>
 Ici un lecteur MP3 et une grille d'agenda pour marquer
           les br&egrave;ves si besoin. (Genre Dotclear) </p>
     </div> <!-- fermeture boite agenda --> 
 
-           
-    <!-- fermeture boite envoyer article pour un ami. -->
     <BOUCLE_retirer_doc(DOCUMENTS){id_article}{extension==jpg|gif|png}{doublons doc}>
-    <!-- Pour ne pas afficher les images et mp3 ici -->
+    <!-- Boucle pour ne pas afficher les images et mp3 ici -->
     </BOUCLE_retirer_doc>
     <B_documents>
 <div class="boite"> <!-- ouverture boite zip -->
+<div class="icone_zip"></div>
       <h2><:bloog:telechargement:></h2>
       <br />
   <BOUCLE_documents(DOCUMENTS){id_article}{par titre}{doublons doc}>
@@ -300,7 +296,7 @@ Ici un lecteur MP3 et une grille d'agenda pour marquer
 
 
   <div id="footer"> 
-
+<div class="icone_filxml"></div>
     <a href="_contact.php3"><:bloog:contact:></a>&nbsp;| <a href="_inscription.php3"><:bloog:newsletter:></a> | <a href="_plan.php3">
 <:bloog:plan_du_site:></a> | <a href="recherche.php3"><:bloog:recherche:></a> | <a href="article.php3?id_article=330"><:bloog:telechargement:></a> 
     <!-- à modifier en spip --> 

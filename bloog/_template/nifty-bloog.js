@@ -6,6 +6,7 @@ RoundedBottom("div#container","#ededf5","#fff");
 RoundedTop("ul#nav li","transparent","#fff");
 Rounded("div.boite","#ededf5","#FFF");
 Rounded("div.avatar","#ededf5","#FFF");
+Rounded("div.reponse","#ededf5","#FFF");
 Rounded("div.discussion","#ededf5","#FFF");
 Rounded("div.grande_boite","#ededf5","#FFF");
 Rounded("div#minipics li","#ededf5","#FFF");
