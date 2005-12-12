@@ -234,7 +234,7 @@
     </div><!-- fermeture boite menu -->
     <!-- La boite de recherche toujours à la même place pour tous le site même si la recherche est differente. --> 
     <div class="boite"> <!-- ouverture boite recherche --> 
-<div class="icone_loupe"></div>
+<div class="icone_recherche"></div>
      <form action="recherche.php3" method="post" /> 
         <input type="text" name="rechercher" class="rechercher" value="rechercher" />
        <!-- remplacer le bouton standard par un bouton loupe -->
@@ -258,12 +258,23 @@
     </div>
     <!-- fermeture boite recherche, envoyer à un ami et imprimer --> 
     
-    <div class="boite"> <!-- ouverture boite agenda --> 
-      <div class="icone_agenda"></div>
-      <p>
-Ici un lecteur MP3 et une grille d'agenda pour marquer
-          les br&egrave;ves si besoin. (Genre Dotclear) </p>
-    </div> <!-- fermeture boite agenda --> 
+    <div class="boite">
+      <!-- ouverture boite agenda -->
+      <div class="icone_article"></div>
+      <BOUCLE_meme_rubrique(ARTICLES){id_rubrique}{exclus}{par date}{inverse}{0,20}>
+                <a href="#URL_ARTICLE">#TITRE</a> 
+                <INCLURE(_cadenas.php3){id_article}>
+               
+                </BOUCLE_meme_rubrique>
+               
+    </div>
+    <div class="boite">
+      <!-- ouverture boite musique -->
+      <div class="icone_juk"></div>
+      <p> Ici un lecteur MP3 et une grille d'agenda pour marquer les br&egrave;ves
+        si besoin. (Genre Dotclear) </p>
+    </div>
+    <!-- fermeture boite agenda --> 
 
     <BOUCLE_retirer_doc(DOCUMENTS){id_article}{extension==jpg|gif|png}{doublons doc}>
     <!-- Boucle pour ne pas afficher les images et mp3 ici -->
