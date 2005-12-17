@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>#NOM_SITE_SPIP <:nouveautes:></title>
+	
+	<INCLURE(inc_balises_meta.php3)>
+	<INCLURE(inc_head.php3)>
+</head>
+
+<body id="accueil">
+
+<div id="page">
+	
+	<INCLURE(inc_entete.php3)>
+	<INCLURE(inc_menu.php3)>	
+		
+	<div id="barre_laterale">
+		<INCLURE(inc_rubriques.php3)>
+		<INCLURE(inc_recherche.php3)>
+		<INCLURE(inc_derniers_articles.php3)>
+	</div><!-- fin barre_laterale -->
+	
+	<div id="contenu_principal">
+		
+		<BOUCLE_breves(BREVES) {par date} {inverse} {0,3}>
+		<div class="breve">
+			<h1><a href="#URL_BREVE">[<img src="IMG/(#LOGO_BREVE|fichier)" alt="logo breve" />] #TITRE</a></h1>
+			<h4 class="date">[(#DATE|nom_jour)] [(#DATE|affdate)]</h4>
+			[<div class="texte">(#TEXTE)</div>]
+			[<div class="lien"><:sur_web:> <a href="#URL_SITE">(#NOM_SITE)</a></div>]
+		</div><!-- fin breves -->
+		</BOUCLE_breves>
+		
+		<BOUCLE_article(ARTICLES) {par date} {inverse} {0,6}>
+		<div class="breve">
+			<h1><a href="#URL_ARTICLE">[<img src="IMG/(#LOGO_ARTICLE|fichier)" alt="logo breve" />] #TITRE</a></h1>
+			<h4 class="date">[(#DATE|nom_jour)] [(#DATE|affdate)]</h4>
+			[<div class="texte">(#TEXTE)</div>]
+			[<div class="lien"><:sur_web:> <a href="#URL_SITE">(#NOM_SITE)</a></div>]
+		</div><!-- fin article -->
+		</BOUCLE_article>
+
+		<div class="total">
+			<a href="breve.php3">Voir toutes les brèves</a>
+		</div>
+
+	</div><!-- fin contenu_principal -->
+
+	<INCLURE(inc_pied_de_page.php3)>
+
+</div><!-- fin page -->
+
+</body>
+</html>

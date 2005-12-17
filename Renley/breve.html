@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<BOUCLE_breve_principale(BREVES) {id_breve}>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+<head>
+	<title>#NOM_SITE_SPIP [(#TITRE|textebrut)]</title>
+	
+	<!-- Balises META pour les moteurs de recherche -->
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	<meta name="Description" content="#DESCRIPTIF" />
+	<INCLURE(inc_head.php3)>
+
+</head>
+
+<body id="breves">
+
+<div id="page">
+
+	<INCLURE(inc_entete.php3)>
+	<INCLURE(inc_menu.php3)>	
+	
+	<div id="barre_laterale">
+		<INCLURE(inc_rubriques.php3)>
+		<INCLURE(inc_recherche.php3)>
+		<INCLURE(inc_derniers_articles.php3)>
+	</div><!-- fin barre_laterale -->
+	
+	<div id="contenu_principal">
+
+		<div class="breve">
+			<h1>[<img src="IMG/(#LOGO_BREVE|fichier)" alt="logo breve" />]<a href="#URL_BREVE">#TITRE</a></h1>
+			<h4>[(#DATE|nom_jour)] [(#DATE|affdate)]</h4>
+			[<div class="texte">(#TEXTE)</div>]
+			[<div class="lien"><:sur_web:> <a href="#URL_SITE">(#NOM_SITE)</a></div>]
+		</div><!-- fin breve -->
+		
+		<div class="forum">
+			[<a name="forum" href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_breve:></a>]
+			<B_forums>
+			<ul>
+				<BOUCLE_forums(FORUMS){id_breve}{par date}{inverse}>
+				<li>
+					<h3><a name="forum#ID_FORUM"></a>#TITRE</h3>
+					<h4 class="date">[(#DATE|affdate)][, <:par_auteur:> <a href="forum.php3?(#PARAMETRES_FORUM)">(#NOM)</a>]</h4>
+					[<p>(#TEXTE)</p>]
+					[<div class="lien"><a href="(#URL_SITE)">#NOM_SITE</a></div>]
+					[<p><a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a></p>]
+				</li>
+				<B_forums_fils>
+				<ul>
+					<BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
+					<li>
+						<h3><a name="forum#ID_FORUM"></a>#TITRE</h3>
+						<h4 class="date">[(#DATE|affdate)][, <:par_auteur:> <a href="forum.php3?(#PARAMETRES_FORUM)">(#NOM)</a>]</h4>
+						<p>[(#TEXTE)]</p>
+						[<div class="lien"><a href="(#URL_SITE)">#NOM_SITE</a></div>]
+						[<p><a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a><p>]
+					</li>
+					<BOUCLE_Forums_Boucle(boucle_forums_fils)></BOUCLE_Forums_Boucle>
+					</BOUCLE_forums_fils>
+				</ul>
+				</B_forums_fils>
+				</li>
+				</BOUCLE_forums>
+			</ul>
+			</B_forums>
+		</div><!-- fin forum -->
+
+	</div><!-- fin contenu_principal -->
+
+	<INCLURE(inc_pied_de_page.php3)>
+
+</div><!-- fin page -->
+
+</body>
+</html>
+
+</BOUCLE_breve_principale>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+<head>
+	<title>[#NOM_SITE_SPIP] <:dernieres_breves:></title>
+	
+	<INCLURE(inc_balises_meta.php3)>
+	<INCLURE(inc_head.php3)>
+</head>
+
+<body id="breves">
+
+<div id="page">
+	<INCLURE(inc_entete.php3)>
+	<INCLURE(inc_menu.php3)>	
+	
+	<div id="barre_laterale">
+		<INCLURE(inc_rubriques.php3)>
+		<INCLURE(inc_recherche.php3)>
+		<INCLURE(inc_derniers_articles.php3)>
+	</div><!-- fin barre_laterale -->
+	
+	<div id="contenu_principal">
+
+		<BOUCLE_breves_principales_vide(BREVES) {par date} {inverse}>
+		<div class="breve">
+			<h1>[<img src="IMG/(#LOGO_BREVE|fichier)" alt="logo breve" />]<a href="#URL_BREVE">#TITRE</a></h1>
+			<!--
+			<h4 class="date">[(#DATE|nom_jour)] [(#DATE|affdate)]</h4>
+			-->
+			[<p>(#INTRODUCTION)</p>]
+			[<div class="lien"><:sur_web:> <a href="#URL_SITE">(#NOM_SITE)</a></div>]
+			<BOUCLE_forums_decompte_breve_vide(FORUMS){id_breve}{plat}></BOUCLE_forums_decompte_breve_vide>[<div class="reactions"><a href="#URL_BREVE#forum">(#TOTAL_BOUCLE) r&eacute;action(s)</a></div>]<//B_forums_decompte_breve_vide>
+		</div><!-- fin breves -->
+		</BOUCLE_breves_principales_vide>
+		
+	</div><!-- fin contenu_principal -->
+
+	<INCLURE(inc_pied_de_page.php3)>
+
+</div><!-- fin page -->
+
+</body>
+</html>
+
+<//B_breve_principale>
+

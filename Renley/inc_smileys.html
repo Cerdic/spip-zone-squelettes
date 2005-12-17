@@ -1,0 +1,31 @@
+
+		<div class="element">
+			<h1>Smileys</h1>
+			<ul>
+
+<?php
+	$listimag=array();
+	$rep1="images/smileys/";
+	$listfich=opendir($rep1);
+	while ($fich=readdir($listfich))
+	{ 	
+		if(($fich !='..') and ($fich !='.') and ($fich !='.DS_Store'))
+		{ 
+			$nomfich=substr($fich,0,strrpos($fich, "."));
+			$listimag[$nomfich]=$rep1.$fich;
+		}
+	}
+	
+	ksort($listimag);
+	reset($listimag);
+	$compte=0;
+	
+	while (list($nom,$chem) = each($listimag))
+	{ 
+		echo '				<li><img src="' . $chem . '" alt="' . $chem . '" /> :' . $nom . '</li>' . "\n" ;
+		$compte++; 
+	}
+?>
+
+			</ul>
+		</div><!-- fin element -->

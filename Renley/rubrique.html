@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<BOUCLE_rubrique_principale(RUBRIQUES) {id_rubrique}>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+<head>
+	<title>#NOM_SITE_SPIP <:hierarchie_site:></title>
+	
+	<INCLURE(inc_balises_meta.php3)>
+	<INCLURE(inc_head.php3)>
+</head>
+
+<body id="rubriques">
+
+<div id="page">
+
+	<INCLURE(inc_entete.php3)>
+	<INCLURE(inc_menu.php3)>	
+	
+	<div id="barre_laterale">
+		<INCLURE(inc_rubriques.php3)>
+		<INCLURE(inc_recherche.php3)>
+		<INCLURE(inc_derniers_articles.php3)>
+	</div><!-- fin barre_laterale -->
+	
+	<div id="contenu_principal">
+
+		Vous êtes dans cette rubrique :<br />
+		<B_hierarchie>
+		<BOUCLE_hierarchie(HIERARCHIE)>
+			[<a href="#URL_RUBRIQUE" title="#DESCRIPTIF">(#TITRE)</a> / ]
+		</BOUCLE_hierarchie>
+		</B_hierarchie>
+		[(#TITRE)]<br /><br />
+
+		<B_sous_rubriques_principales>
+		<h2><:sous_rubriques:></h2>
+		<BOUCLE_sous_rubriques_principales(RUBRIQUES) {id_parent} {par titre}>
+		<div class="rubrique">
+			<h1><a href="#URL_RUBRIQUE">[<img src="IMG/(#LOGO_RUBRIQUE|fichier)" alt="logo" />] #TITRE</a></h1>
+			[(#DESCRIPTIF)]
+			<BOUCLE_rubriques_decompte(RUBRIQUES){id_parent}{plat}></BOUCLE_rubriques_decompte>[<div class="total">(#TOTAL_BOUCLE) rubrique(s)</div>]<//B_rubriques_decompte>
+			<BOUCLE_articles_decompte(ARTICLES){id_rubrique}{plat}></BOUCLE_articles_decompte>[<div class="total">(#TOTAL_BOUCLE) article(s)</div>]<//B_articles_decompte>
+			<BOUCLE_liens_decompte(SITES){id_rubrique}{plat}></BOUCLE_liens_decompte>[<div class="total">(#TOTAL_BOUCLE) lien(s)</div>]<//B_liens_decompte>
+		</div>
+		</BOUCLE_sous_rubriques_principales>
+		<br />
+		</B_sous_rubriques_principales>
+
+		<B_sites>
+		<h2>Outils</h2>
+		<BOUCLE_sites(SITES) {id_rubrique} {branche} {par nom_site}>
+		<div class="article">
+			<h1>[<img src="IMG/(#LOGO_SITE|fichier)" alt="logo site" />]<a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut|entites_html)]" target="_blank">#NOM_SITE</a></h1>
+			[<p>(#DESCRIPTIF)</p>]
+		</div><!-- fin sites_web -->
+		</BOUCLE_sites>
+		<br />
+		</B_sites>
+
+		<B_articles>
+		<h2><:articles:></h2>
+		<BOUCLE_articles(ARTICLES) {id_rubrique} {branche} {par date} {inverse}>
+		<div class="article">
+			<h1><a href="#URL_ARTICLE">[<img src="IMG/(#LOGO_ARTICLE|fichier)" alt="logo" />] #TITRE</a></h1>
+			<!--
+			[<h2>(#SOUSTITRE)</h2>]
+			<B_auteurs_articles><h4>[(#DATE|nom_jour)] [(#DATE|affdate)] par <BOUCLE_auteurs_articles(AUTEURS) {id_article} {", "}><a href="auteur.php3?id_auteur=#ID_AUTEUR">#NOM</a></BOUCLE_auteurs_articles></h4>
+			-->
+			[<p>(#INTRODUCTION)</p>]
+			<BOUCLE_forums_decompte(FORUMS){id_article}{plat}></BOUCLE_forums_decompte>[<div class="reactions"><a href="#URL_ARTICLE#forum">(#TOTAL_BOUCLE) r&eacute;action(s)</a></div>]<//B_forums_decompte>
+		</div><!-- fin article -->
+		</BOUCLE_articles>
+		</B_articles>
+
+	</div><!-- fin contenu_principal -->
+
+	<INCLURE(inc_pied_de_page.php3)>
+
+</div><!-- fin page -->
+	
+</body>
+</html>
+
+</BOUCLE_rubrique_principale>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+<head>
+	<title>[#NOM_SITE_SPIP] <:hierarchie_site:></title>
+	
+	<INCLURE(inc_balises_meta.php3)>
+	<INCLURE(inc_head.php3)>
+</head>
+
+<body id="rubriques">
+
+<div id="page">
+
+	<INCLURE(inc_entete.php3)>
+	<INCLURE(inc_menu.php3)>	
+	
+	<div id="barre_laterale">
+		<INCLURE(inc_rubriques.php3)>
+		<INCLURE(inc_recherche.php3)>
+		<INCLURE(inc_derniers_articles.php3)>
+	</div><!-- fin barre_laterale -->
+	
+	<div id="contenu_principal">
+
+		<B_sous_rubriques_principales_vide>
+		<h2><:rubriques:></h2>
+		<BOUCLE_sous_rubriques_principales_vide(RUBRIQUES) {racine} {par titre}>
+		<div class="rubrique">
+			<h1><a href="#URL_RUBRIQUE">[<img src="IMG/(#LOGO_RUBRIQUE|fichier)" alt="logo" />]#TITRE</a></h1>
+			[<p>(#DESCRIPTIF)</p>]
+			<BOUCLE_rubriques_decompte_vide(RUBRIQUES){id_parent}{plat}></BOUCLE_rubriques_decompte_vide>[<div class="total"><a href="#URL_RUBRIQUE">(#TOTAL_BOUCLE) rubrique(s)</a></div>]<//B_rubriques_decompte_vide>
+			<BOUCLE_articles_decompte_vide(ARTICLES){id_rubrique}{plat}></BOUCLE_articles_decompte_vide>[<div class="total"><a href="#URL_RUBRIQUE">(#TOTAL_BOUCLE) article(s)</a></div>]<//B_articles_decompte_vide>
+		</div>
+		</BOUCLE_sous_rubriques_principales_vide>
+		</B_sous_rubriques_principales_vide>
+
+	</div><!-- fin contenu_principal -->
+
+	<INCLURE(inc_pied_de_page.php3)>
+
+</div><!-- fin page -->
+	
+</body>
+</html>
+<//B_rubrique_principale>

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+<head>
+	<title>#NOM_SITE_SPIP <:poster_message:></title>
+	
+	<INCLURE(inc_balises_meta.php3)>
+
+	<INCLURE(inc_head.php3)>
+
+</head>
+
+<body id="articles">
+
+<div id="page">
+
+	<INCLURE(inc_entete.php3)>
+	<INCLURE(inc_menu.php3)>	
+	
+	<div id="barre_laterale">
+		<INCLURE(inc_rubriques.php3)>
+		<INCLURE(inc_recherche.php3)>
+		<INCLURE(inc_smileys.php3)>
+	</div><!-- fin barre_laterale -->
+	
+	<div id="contenu_principal">
+
+		<div class="article">
+			<h2><:poster_message:></h2>
+			<BOUCLE_commentaires(FORUMS) {id_forum}>
+			<h1><:en_reponse:> #TITRE</h1>
+			<h4>[(#DATE|nom_jour)] [(#DATE|affdate)]</h4>
+			[<p>(#TEXTE)</p>]
+			</BOUCLE_commentaires>
+				<BOUCLE_articles(ARTICLES) {id_article}>
+				<h1><:en_reponse:> [(#SURTITRE) ]<a href="#URL_ARTICLE">#TITRE</a></h1>
+				[<h2>(#SOUSTITRE)</h2>]
+				<h4>[(#DATE|nom_jour)] [(#DATE|affdate)] [par (#LESAUTEURS)]</h4>
+				[<p>(#INTRODUCTION)</p>]
+	 			[<div class="image"><a href="#URL_ARTICLE"><img src="IMG/(#LOGO_ARTICLE|fichier)" alt="logo" /></a></div>]
+				</BOUCLE_articles>
+	
+				<BOUCLE_breves(BREVES) {id_breve}>
+				<h1><:en_reponse:> <a href="#">#TITRE</a></h1>
+				<h4>[(#DATE|nom_jour)] [(#DATE|affdate)]</h4>
+				[<p>(#TEXTE)</p>]
+				</BOUCLE_breves>
+			<//B_commentaires>
+		</div><!-- fin article -->
+				
+		<div class="forum">
+			#FORMULAIRE_FORUM
+		</div>
+
+	</div><!-- fin contenu_principal -->
+
+	<INCLURE(inc_pied_de_page.php3)>
+
+</div><!-- fin page -->
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+<head>
+	<title>#NOM_SITE_SPIP <:hierarchie_site:></title>
+	
+	<INCLURE(inc_balises_meta.php3)>
+	<INCLURE(inc_head.php3)>
+</head>
+
+<body id="plan_site">
+
+<div id="page">
+
+	<INCLURE(inc_entete.php3)>
+	<INCLURE(inc_menu.php3)>
+
+	<div id="barre_laterale">
+		<INCLURE(inc_rubriques.php3)>
+		<INCLURE(inc_recherche.php3)>
+		<INCLURE(inc_derniers_articles.php3)>
+	</div><!-- fin barre_laterale -->
+	
+	<div id="contenu_principal">
+
+		<B_secteurs>
+		<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
+		<div class="encart">
+			<h2>&#149;&nbsp;<a href="#URL_RUBRIQUE">#TITRE</a></h2>
+			
+			<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par titre}>
+			<div class="encart">
+				<h4>&#149;&nbsp;<a href="#URL_RUBRIQUE">#TITRE</a></h4>
+
+				<BOUCLE_sous_rubriques_rec(BOUCLE_sous_rubriques)>
+				</BOUCLE_sous_rubriques_rec>
+				
+			</div>
+			</BOUCLE_sous_rubriques>
+
+		</div>
+		</BOUCLE_secteurs>
+		</B_secteurs>
+
+	</div><!-- fin contenu_principal -->
+
+	<INCLURE(inc_pied_de_page.php3)>
+
+</div><!-- fin page -->
+	
+</body>
+</html>

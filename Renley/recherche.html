@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+<head>
+	<title>#NOM_SITE_SPIP <:resultats_recherche:></title>
+
+	<INCLURE(inc_balises_meta.php3)>	
+	<INCLURE(inc_head.php3)>
+</head>
+
+<body id="articles">
+
+<div id="page">
+
+	<INCLURE(inc_entete.php3)>
+	<INCLURE(inc_menu.php3)>	
+	
+	<div id="barre_laterale">
+		<INCLURE(inc_rubriques.php3)>
+		<INCLURE(inc_recherche.php3)>
+		<INCLURE(inc_derniers_articles.php3)>
+	</div><!-- fin barre_laterale -->
+	
+	<div id="contenu_principal">
+
+		<h2><:resultats_recherche:> '#RECHERCHE'</h2>
+		<br />
+
+		<B_rubriques>
+		<h2><:rubriques:></h2>
+		<BOUCLE_rubriques(RUBRIQUES) {recherche} {par points} {inverse} {tout}>
+		<div class="rubrique">
+			<h1><a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h1>
+			[<p>(#DESCRIPTIF)</p>]
+		</div><!-- fin rubriques -->
+		</BOUCLE_rubriques>
+		<br />
+		</B_rubriques>
+
+		<B_articles>
+		<h2><:articles:></h2>
+		<BOUCLE_articles(ARTICLES) {recherche} {par points} {inverse} {tout}>
+		<div class="article">
+			<h1>[<img src="IMG/(#LOGO_ARTICLE|fichier)" alt="logo article" />]<a href="#URL_ARTICLE">#TITRE</a></h1>
+			<!--
+			[<h2>(#SOUSTITRE)</h2>]
+			<h4>[(#DATE|nom_jour)] [(#DATE|affdate)] par <BOUCLE_auteurs_articles(AUTEURS) {id_article} {", "}><a href="auteur.php3?id_auteur=#ID_AUTEUR">#NOM</a></BOUCLE_auteurs_articles></h4>
+			-->
+			[<p>(#INTRODUCTION)</p>]
+			<BOUCLE_forums_decompte_article(FORUMS){id_article}{plat}></BOUCLE_forums_decompte_article>[<div class="reactions"><a href="#URL_ARTICLE#forum">(#TOTAL_BOUCLE) r&eacute;action(s)</a></div>]<//B_forums_decompte_article>
+		</div><!-- fin article -->
+		</BOUCLE_articles>
+		<br />
+		</B_articles>
+
+		<B_breves>
+		<h2><:breves:></h2>
+		<div class="breve">
+		<BOUCLE_breves(BREVES) {recherche} {par points} {inverse} {tout}>
+			<h2><a href="#URL_BREVE">#TITRE</a></h2>
+			<!--
+			<h4 class="date">[(#DATE|nom_jour)] [(#DATE|affdate)]</h4>
+			-->
+ 			[<div class="image"><a href="#URL_BREVE"><img src="IMG/(#LOGO_BREVE|fichier)" alt="logo breve" /></a></div>]
+			[<p>(#INTRODUCTION)</p>]
+			[<div class="lien"><:sur_web:> <a href="#URL_SITE">(#NOM_SITE)</a></div>]
+			<BOUCLE_forums_decompte_breve(FORUMS){id_breve}{plat}></BOUCLE_forums_decompte_breve>[<div class="reactions"><a href="#URL_BREVE#forum">(#TOTAL_BOUCLE) r&eacute;action(s)</a></div>]<//B_forums_decompte_breve>
+		</BOUCLE_breves>
+		</div><!-- fin breves -->
+		<br />
+		</B_breves>
+
+		<B_sites>
+		<h2>Outils</h2>
+		<BOUCLE_sites(SITES) {recherche} {par points} {inverse} {tout}>
+		<div class="article">
+			<h1>[<img src="IMG/(#LOGO_SITE|fichier)" alt="logo site" />]<a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut|entites_html)]" target="_blank">#NOM_SITE</a></h1>
+			[<p>(#DESCRIPTIF)</p>]
+		</div><!-- fin sites_web -->
+		</BOUCLE_sites>
+		<br />
+		</B_sites>
+
+	</div><!-- fin contenu_principal -->
+
+	<INCLURE(inc_pied_de_page.php3)>
+
+</div><!-- fin page -->
+
+</body>
+</html>
