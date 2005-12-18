@@ -1,0 +1,1598 @@
+/*
+
+Squelette Sarka-SPIP
+Copyright (C) 2005 Sylvain Bellégo - sylvain.bellego@no-log.org
+
+Ce programme est libre, vous pouvez le redistribuer et/ou le modifier selon les termes
+de la Licence Publique Générale GNU publiée par la Free Software Foundation (version 2
+ou bien toute autre version ultérieure choisie par vous).
+
+Ce programme est distribué car potentiellement utile, mais SANS AUCUNE GARANTIE, ni
+explicite ni implicite, y compris les garanties de commercialisation ou d'adaptation
+dans un but spécifique. Reportez-vous à la Licence Publique Générale GNU pour plus de détails.
+
+Vous devez avoir reçu une copie de la Licence Publique Générale GNU en même temps que ce programme
+; si ce n'est pas le cas, écrivez à la Free Software Foundation, Inc., 59 Temple Place, Suite 330,
+Boston, MA 02111-1307, États-Unis.
+
+*/
+
+body {
+	background: #FFFFFF;
+        padding: 20px;
+        margin: 0px;
+}
+
+a {
+        text-decoration:none;
+}
+
+/*---comportement des liens de style bouton---*/
+
+a.bouton {
+        display:block;
+        background:#6262A4;
+        color:#F0F0FA;
+        text-decoration:none;
+        border: #6262A4 solid 1px;
+        text-align:center;
+        padding:1px;
+        margin:10px 0px 10px 0px;
+}
+a.bouton:hover {
+        background:#F0F0FA;
+        color:#6262A4;
+        text-decoration:none;
+}
+
+a.logo-sarka-spip {
+        display: block;
+        background:URL(../puces/sarka-spip.png);
+        background-repeat: no-repeat;
+        border: 0px;
+        margin: 0px;
+        padding: 0px;
+        width: 85px;
+}
+
+a.logo-sarka-spip:hover {
+        display: block;
+        background:URL(../puces/sarka-spip-hover.png);
+        background-repeat: no-repeat;
+        border: 0px;
+        margin: 0px;
+        padding: 0px;
+        width: 85px;
+}
+
+a.logo-spip-powered {
+        display: block;
+        background:URL(../puces/spip-powered.png);
+        background-repeat: no-repeat;
+        border: 0px;
+        margin: 0px;
+        padding: 0px;
+        width: 85px;
+}
+
+a.logo-spip-powered:hover {
+        display: block;
+        background:URL(../puces/spip-powered-hover.png);
+        background-repeat: no-repeat;
+        border: 0px;
+        margin: 0px;
+        padding: 0px;
+        width: 85px;
+}
+
+/*---comportement des éléments de formulaires---*/
+
+.saisie-texte, .forml {
+        display:block;
+        color: #6262A4;
+        background: #F0F0FA;
+        border: 1px solid #6262A4;
+        margin:5px 0px 5px 0px;
+        padding:1px;
+}
+
+.spip_bouton {
+        display: block;
+        background: #6262A4;
+        color: #F0F0FA;
+        border: 1px solid #6262A4;
+        margin:5px 0px 5px 0px;
+}
+
+.spip_bouton:hover {
+        background: #F0F0FA;
+        color: #6262A4;
+        border: 1px solid #6262A4;
+}
+
+fieldset {
+        margin: 0px;
+        padding: 0px;
+}
+
+/*---style des info-bulles perso adaptées au contexte (image, plan...)---*/
+
+a.info span {
+        display: none;
+}
+
+a.info:hover {
+        background: none; /* correction d'un bug IE */
+}
+
+.images a.info:hover span {
+        display: inline;
+        position: absolute;
+        z-index: 500;
+        margin:0em 0 0 1em;
+        background: #EEEEEE;
+        text-align: left;
+        color: #808080;
+        padding: 0px 3px 0px 3px;
+        border:1px solid #808080;
+        width: 200px;
+}
+
+.plan a.info:hover span {
+        display: inline;
+        position: absolute;
+        z-index: 500;
+        margin:0em 0 0 1em;
+        background: #EEEEEE;
+        text-align: left;
+        color: #808080;
+        padding: 0px 3px 0px 3px;
+        border:1px solid #808080;
+}
+
+/*---affichage de code (pour afficher en mode texte du code html)---*/
+
+tt {
+	display: block;
+        border-width: 1px 1px 1px 8px;
+	border-style: solid;
+	border-color: #669999;
+	padding: 1em;
+	margin: 1em 0em 1em 0.5em;
+	font-size: 90%;
+	background: #E0F0F0;
+	width: 90%;
+	overflow: auto;
+	max-height: 25em;
+}
+
+
+/* ====================== Blocs principaux, décomposition de la page en 3 colonnes et 1 bandeau ====================== */
+
+a.bandeau {
+	/*bandeau contenant le titre du site*/
+	display: block;
+	background: #6262A4;
+	margin: 0px;
+	font-family: Verdana,Helvetica,Arial,sans-serif;
+	padding: 10px;
+        font-size: 40px;
+        font-weight: bold;
+        color: #FFFFFF;
+        text-align: right;
+}
+
+a.bandeau:hover {
+        color: #EEEEEE;
+        text-decoration: none;
+}
+
+.bande-chemin {
+        /*bande accrochée au bandeau de titre, contenant le chemin hiérarchique de la page en cours*/
+        border-top: 2px solid #FFFFFF;
+        background: #6262A4;
+        padding: 4px 10px 4px 10px;
+        margin: 0px 0px 30px 210px;
+        text-align: left;
+        font-size: 11px;
+        color: #EEEEEE;
+        font-weight: bold;
+        font-family: Verdana,Helvetica,Arial,sans-serif;
+}
+
+.bande-chemin a {
+        color: #EEEEEE;
+        font-weight: bold;
+
+}
+
+.bande-chemin a:hover {
+        color: #AAAAAA;
+}
+
+
+.gauche {
+	/*colonne de gauche, contenant deux blocs de navigation*/
+	border: 0px;
+        width: 180px;
+        float: left;
+        font-family: Arial,Verdana,Helvetica,sans-serif;
+
+}
+
+.centre {
+	/*colonne centrale, contenant les blocs de contenu*/
+	border: 0px;
+        margin-left: 190px;
+        margin-right: 170px;
+        font-family: Arial,Verdana,Helvetica,sans-serif;
+}
+
+.droite {
+	/*colonne de droite, contenant les blocs de brèves et des articles frères*/
+	border: 0px;
+        width: 170px;
+        float: right;
+        font-family: Arial,Verdana,Helvetica,sans-serif;
+        font-size: 10px;
+}
+
+.footer {
+        /*pied de page, avec le lien vers SPIP et un raccourci pour écrire au webmaster (auteur N°1)*/
+        clear: both;
+        text-align: center;
+        font-size: 12px;
+        font-family: Arial,Verdana,Helvetica,sans-serif;
+        padding: 20px;
+}
+
+/* ================================ Formatage des éléments du pied de page =============================== */
+
+.footer a {
+        color: #6262A4;
+        text-decoration: none;
+}
+
+.footer a:hover {
+        text-decoration: underline;
+}
+
+/* ================================ Formatage des éléments de la colonne de gauche =============================== */
+
+.maj {
+        background: #FFFFFF;
+        font-size: 11px;
+        border: 1px solid #808080;
+        width: 100%;
+        text-align: center;
+        padding: 3px 0px 3px 0px;
+        color: #808080;
+}
+
+/* bloc de navigation 1 --> arborescence du site */
+
+.nav1 {
+        /*bloc contenant la hiérarchie*/
+        background: #B0B0B0;
+        font-size: 15px;
+        border: 1px solid #B0B0B0;
+        width: 100%;
+        padding: 5px 0px 10px 0px;
+}
+
+.bord {
+	padding: 0px;
+	margin-right: 10px;
+}
+
+.nav1 a.lien-menu-autre {
+        color: #FEFEFE;
+        font-weight: bold;
+}
+
+.nav1 a.lien-menu-autre:hover {
+        color: #606070;
+        text-decoration: none;
+}
+
+.nav1 a.lien-menu-courant {
+        color: #606070;
+        font-weight: bold;
+}
+
+.nav1 a.lien-menu-courant:hover {
+        color: #606070;
+        text-decoration: none;
+}
+
+.nav1 ul {
+        padding-left:15px;
+        margin:0px;
+        line-height: 95%;
+}
+
+.nav1 li {
+        margin:0.7em 0em 0.5em 0em;
+	padding:0px;
+	font-size:85%;
+	list-style-type:none;
+}
+
+/* bloc de navigation 2 --> contact + admin + formulaire + s'inscrire */
+
+.nav2 {
+        border: 1px solid #6262A4;
+        background: #E0E0E0;
+        width: 100%;
+}
+
+.nav2 .texte {
+        margin:10px;
+        font-size: 12px;
+}
+
+.nav2 .saisie-texte {
+        width:90%;
+}
+        
+.nav2 .forml{
+        width:90%;
+}
+
+/* ================================== Formatage des éléments de la colonne centrale ============================== */
+
+
+/* ~~~~~~~~~~~~ sommaire ~~~~~~~~~~~~ */
+
+
+.sommaire {
+        font-size: 12px;
+        margin: 0px 20px 0px 20px;
+}
+
+
+
+.sommaire .rubrique {
+        border: 2px solid #990000;
+        background: #FFFFFF;
+        margin: 20px 0px 20px 0px;
+        width: 95%;
+}
+
+.sommaire .rubrique a.titre {
+        display: block;
+        font-size: 150%;
+        color: #FFFFFF;
+        background: #990000;
+        border-right: 2px solid #990000;
+        border-bottom: 2px solid #990000;
+        padding: 1px 5px 1px 5px;
+        margin-right: 50%;
+        text-align:center;
+        font-weight:bold;
+}
+
+.sommaire .rubrique a.titre:hover {
+        display: block;
+        font-size: 150%;
+        color: #990000;
+        background: #FFFFFF;
+        border-right: 2px solid #990000;
+        border-bottom: 2px solid #990000;
+        padding: 1px 5px 1px 5px;
+        margin-right: 50%;
+        text-align:center;
+        font-weight:bold;
+}
+
+.sommaire .rubrique .texte {
+        margin: 10px;
+}
+
+.rubrique .texte a {
+        color:#990000;
+}
+
+.rubrique .texte a:hover {
+        text-decoration: underline;
+}
+
+
+.sommaire .rubrique .image .spip_logos {
+        display: block;
+        float: right;
+        margin: 10px;
+}
+
+/* ~~~~~~~~~~~~ contenu ~~~~~~~~~~~~ */
+
+.contenu {
+        font-size: 13px;
+        margin: 0px 20px 0px 20px;
+}
+
+.contenu .rubrique {
+        border: 2px solid #990000;
+        background: #FFFFFF;
+        margin: 20px 0px 40px 0px;
+        width: 95%;
+}
+
+.contenu .rubrique a.titre {
+        display: block;
+        font-size: 150%;
+        color: #FFFFFF;
+        background: #990000;
+        border-right: 2px solid #990000;
+        border-bottom: 2px solid #990000;
+        padding: 1px 5px 1px 5px;
+        margin-right: 50%;
+        text-align:center;
+        font-weight:bold;
+}
+
+.contenu .rubrique a.titre:hover {
+        display: block;
+        font-size: 150%;
+        color: #990000;
+        background: #FFFFFF;
+        border-right: 2px solid #990000;
+        border-bottom: 2px solid #990000;
+        padding: 1px 5px 1px 5px;
+        margin-right: 50%;
+        text-align:center;
+        font-weight:bold;
+}
+
+.contenu .rubrique .texte {
+        margin: 10px;
+}
+
+
+.contenu .rubrique .image .spip_logos {
+        display: block;
+        float: right;
+        margin: 10px;
+}
+
+.contenu .rubrique .descriptif {
+        margin: 10px 150px 5px 10px;
+        border-top: 1px solid;
+        border: 1px solid;
+        font-size: 85%;
+        padding: 5px;
+        font-family: Arial,Verdana,Helvetica,sans-serif;
+}
+
+
+/* contenu --> rubriques filles */
+
+
+.contenu .rubrique .filles {
+        margin: 10px;
+}
+
+.contenu .rubrique .filles a {
+        display:block;
+        color: #000000;
+        font-weight:bold;
+        background-image:url(../puces/puce0.jpg);
+        background-position: left center;
+        background-repeat: no-repeat;
+        padding-left:15px;
+        margin: 5px 0px 5px 30px;
+}
+
+.contenu .rubrique .filles a:hover {
+        background-image:url(../puces/puce1.jpg);
+        background-position: left center;
+        background-repeat: no-repeat;
+}
+
+/* mise en forme des documents insérés dans le texte de la rubrique*/
+
+.rubrique .spip_documents {
+        display: block;
+        padding: 10px;
+        font-size: 95%;
+        border: 1px solid #6262A4;
+        margin: 10px 5px 10px 5px;
+        padding: 5px;
+        background: #F0F0FA;
+        width: 200px !important;
+        text-align: center;
+}
+
+.rubrique .spip_documents_center {
+        margin-left: auto;
+		  margin-right: auto;
+}
+
+.rubrique .spip_doc_titre {
+        text-align: left;
+        padding: 5px 0px 0px 0px;
+        text-align: center;
+}
+
+.rubrique .spip_doc_descriptif {
+        font-size: 90%;
+        color: #808080;
+        text-align: left;
+        padding: 5px 0px 5px 0px;
+        text-align: center;
+}
+
+/* contenu --> documents joints */
+
+
+.contenu .doc {
+        padding: 10px;
+        color: #990000;
+        background: #FFFFFF;
+        margin: 10px;
+}
+
+.contenu .doc .en-tete {
+        font-size: 110%;
+        font-weight:bold;
+        margin: 5px 0px 5px -10px;
+}
+
+.contenu .doc .spip_logos {
+        margin: 5px 0px 0px 30px;
+}
+
+.contenu .doc a {
+        display:block;
+        text-decoration: none;
+        color: #990000;
+        margin: 0px 0px 5px 0px;
+}
+
+.contenu .doc a:hover {
+        text-decoration: underline;
+}
+
+.contenu .vignette a:hover {
+        text-decoration: none;
+}
+
+/* contenu --> images jointes */
+
+.contenu .images {
+        margin: 10px;
+        background: #FFFFFF;
+}
+
+.contenu .images .en-tete {
+        font-size: 110%;
+        font-weight: bold;
+        margin: 10px 0px 10px 0px;
+        color: #990000;
+}
+
+.contenu .images .vignette {
+        font-size: 80%;
+        margin: 10px;
+        padding: 10px 0px 10px 0px;
+}
+
+.contenu .images ul {
+        list-style-type: none;
+        padding: 0px;
+        margin: 0px;
+        color: #000000;
+}
+
+
+
+/* ~~~~~~~~~~~~ derniers articles ~~~~~~~~~~~~ */
+
+.derniers-articles {
+        background: #6262A4;
+        margin: 30px 0px 20px 0px;
+        font-family: Arial,Verdana,Helvetica,sans-serif;
+        font-size: 100%;
+        padding: 10px;
+        width: 92%;
+}
+
+.derniers-articles a {
+        color: #990000;
+        text-decoration: none;
+}
+
+.derniers-articles .image .spip_logos {
+        display: block;
+        float: left;
+        margin: 10px;
+}
+
+.derniers-articles a:hover {
+        color: #990000;
+        text-decoration: underline;
+}
+
+.derniers-articles .en-tete {
+        color: #FFFFFF;
+        font-size: 150%;
+        font-weight: bold;
+        margin: 0px 10px 10px 10px;
+}
+
+.derniers-articles .annonce {
+		  background: #FFFFFF;
+        margin: 10px;
+        padding: 0px 0px 10px 0px;
+}
+
+.derniers-articles .surtitre {
+        color: #6262A4;
+        font-weight: bold;
+        margin: 0px 10px 0px 10px;
+}
+
+.derniers-articles a.titre {
+        display: block;
+        color: #6262A4;
+        font-size: 130%;
+        font-weight: bold;
+        margin: 0px 10px 0px 10px;
+		  text-decoration: none;
+}
+
+.derniers-articles a.titre:hover {
+        color: #6262A4;
+        font-size: 130%;
+        font-weight: bold;
+        margin: 0px 10px 0px 10px;
+		  text-decoration: underline;
+}
+
+.derniers-articles .soustitre {
+        color: #6262A4;
+        font-weight: bold;
+        margin: 0px 10px 0px 10px;
+}
+
+.derniers-articles .detail {
+        color: #6262A4;
+        font-size: 90%;
+        font-weight: bold;
+        text-align: center;
+        margin: 0px 0px 10px 60%;
+        padding: 1px 5px 1px 5px;
+        border-left: 1px solid #6262A4;
+        border-bottom: 1px solid #6262A4;
+}
+
+.derniers-articles .chemin {
+        color: #990000;
+        font-weight: bold;
+        margin: 0px 10px 5px 10px;
+}
+
+.derniers-articles .introduction {
+        color: #000000;
+        margin: 10px 10px 0px 10px;
+}
+
+/* ~~~~~~~~~~~~ article (affichage presque semblable à "derniers articles" ~~~~~~~~~~~~ */
+
+/* contenu de l'article "proprement dit" */
+
+.contenu .article {
+        background: #6262A4;
+        margin: 20px 0px 20px 0px;
+        font-family: Arial,Verdana,Helvetica,sans-serif;
+        font-size: 12px;
+        padding: 10px;
+        width: 92%;
+}
+
+.article a {
+        color: #990000;
+        text-decoration: none;
+}
+
+.article a:hover {
+        color: #990000;
+        text-decoration: underline;
+}
+
+.article .image .spip_logos {
+        display: block;
+        float: left;
+        margin: 10px;
+}
+
+.article .surtitre {
+        color: #FFFFFF;
+        font-size: 120%;
+        font-weight: bold;
+        margin: 0px 10px 0px 10px;
+}
+
+.article .titre {
+        color: #FFFFFF;
+        font-size: 180%;
+        font-weight: bold;
+        margin: 0px 10px 0px 10px;
+}
+
+.article .soustitre {
+        color: #FFFFFF;
+        font-size: 130%;
+        font-weight: bold;
+        margin: 0px 10px 0px 10px;
+}
+
+.article .contenu {
+        background: #FFFFFF;
+        margin: 10px 10px 10px 10px;
+        padding: 0px 0px 10px 0px;
+}
+
+.article .detail {
+        color: #6262A4;
+        font-size: 90%;
+        font-weight: bold;
+        text-align: center;
+        margin: 0px 0px 10px 60%;
+        padding: 1px 5px 1px 5px;
+        border-left: 1px solid #6262A4;
+        border-bottom: 1px solid #6262A4;
+}
+
+.article .texte {
+        color: #000000;
+        margin: 0px 10px 0px 10px;
+}
+
+.article .chapo {
+        color: #6262A4;
+        margin: 10px 10px 0px 10px;
+        font-weight: bold;
+}
+
+.article .post-scriptum {
+        color: #000000;
+        margin: 10px 0px 10px 0px;
+        padding-top: 10px;
+        font-size: 100%;
+        border-top: 2px solid #6262A4;
+}
+
+.article .post-scriptum .annonce {
+        font-weight: bold;
+        color:#6262A4;
+        padding: 0px;
+        margin: 0px 0px 10px 0px;
+}
+
+.article .notes {
+        color: #000000;
+        margin: 10px 0px 10px 0px;
+        padding: 0px 10px 0px 10px;
+        border-top: 2px solid #6262A4;
+        font-size: 90%;
+}
+
+.article .en-tete {
+        color: #FFFFFF;
+        font-size: 130%;
+        font-weight: bold;
+        margin: 0px 10px 10px 10px;
+}
+
+.article h3 {
+        color: #6262A4;
+        font-weight: bold;
+        font-size: 140%;
+        margin: 1.5em 0em 0.5em 0em;
+}
+
+.article blockquote {
+        border: 1px solid #808080;
+        background: #EEEEEE;
+        padding: 0px 15px 0px 15px;
+}
+
+.article table {
+        font-size: 90%;
+        border-color: #FFFFFF;
+}
+
+.article tr.row_first {
+        background: #808080;
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 100%;
+}
+
+.article tr.row_odd {
+        background: #DDDDDD;
+        color: #000000;
+}
+
+.article tr.row_even {
+        background: #DDDDDD;
+        color: #000000;
+}
+
+.article td {
+        border: 1px solid #FFFFFF;
+        padding: 1px 5px 1px 5px;
+}
+
+/* mise en forme des documents insérés dans le texte de l'article */
+
+.article .spip_documents {
+        display: block;
+        padding: 10px;
+        font-size: 95%;
+        border: 1px solid #6262A4;
+        margin: 10px 5px 10px 5px;
+        padding: 5px;
+        background: #F0F0FA;
+        width: 200px !important;
+        text-align: center;
+}
+
+.article .spip_documents_center {
+        margin-left: auto;
+	margin-right: auto;
+}
+
+.article .spip_doc_titre {
+        text-align: left;
+        padding: 5px 0px 0px 0px;
+        text-align: center;
+}
+
+.article .spip_doc_descriptif {
+        font-size: 90%;
+        color: #808080;
+        text-align: left;
+        padding: 5px 0px 5px 0px;
+        text-align: center;
+}
+
+/* mise en forme du formulaire de pétition */
+
+.petition {
+        border: 2px solid #6262A4;
+        width: 92%;
+        padding: 10px;
+        margin: 0px 0px 20px 0px;
+        background: #EEEEEE;
+}
+
+.petition fieldset {
+        border: 1px solid #6262A4;
+        margin: 5px 0px 0px 0px;
+        padding: 10px;
+}
+
+.petition legend {
+        color: #6262A4;
+        font-weight: bold;
+        border: 1px solid #6262A4;
+        padding: 1px 5px 1px 5px;
+        margin: 0px 0px 5px 0px;
+}
+
+.petition .en-tete {
+        color: #6262A4;
+        font-size: 150%;
+        margin: 0px 0px 5px 0px;
+}
+
+.petition textarea {
+        width: 80%;
+}
+
+/* mise en forme de l'affichage des signataires de la pétition */
+
+.signatures {
+        border: 2px solid #6262A4;
+        width: 92%;
+        padding: 10px;
+        margin: 10px 0px 10px 0px;
+        background: #EEEEEE;
+		  font-size: 100%;
+}
+
+.signatures .en-tete{
+        color: #6262A4;
+        font-size: 150%;
+        margin: 0px 0px 5px 0px;
+}
+
+.signatures td {
+        border: 1px solid #6262A4;
+        margin: 0px;
+        padding: 2px 5px 2px 5px;
+        empty-cells: hide;
+		  font-size: 12px;
+}
+
+.signatures thead {
+        background: #6262A4;
+        font-weight: bold;
+        color: #FFFFFF;
+}
+
+.signatures a {
+        color: #990000;
+        text-decoration: none;
+}
+
+.signatures a:hover {
+        color: #990000;
+        text-decoration: underline;
+}
+
+/* ~~~~~~~~~~~~ dans la meme rubrique ~~~~~~~~~~~~ */
+
+.articles-freres {
+        border: 2px solid #6262A4;
+        width: 92%;
+        padding: 10px;
+        margin: 20px 0px 10px 0px;
+        background: #EEEEEE;
+}
+
+.articles-freres ol {
+        color: #6262A4;
+}
+
+.articles-freres .en-tete{
+        color: #6262A4;
+        font-size: 150%;
+        margin: 0px 0px 5px 0px;
+}
+
+.articles-freres .frere a {
+        color: #6262A4;
+        text-decoration: none;
+        font-weight: bold;
+}
+
+.articles-freres .frere a:hover {
+        color: #6262A4;
+        text-decoration: underline;
+}
+
+.articles-freres .frere .date {
+        color: #990000;
+}
+
+.articles-freres .en-cours {
+        color: #808080;
+}
+
+
+/* ~~~~~~~~~~~~ forum ~~~~~~~~~~~~ */
+
+.annonce-forum {
+        color: #990000;
+        font-size: 150%;
+        font-weight: bold;
+}
+
+.forum {
+        border: none;
+        padding: 0px;
+        width: 96%;
+        margin: 0px;
+        font-size: 100%;
+}
+
+a.repondre {
+        background: #990000;
+        color: #FFFFFF !important;
+        text-decoration:none !important;
+        border: #990000 solid 1px;
+        text-align:center;
+        padding: 1px 5px 1px 5px;
+        float: right;
+}
+
+a.repondre:hover {
+        background:#FFFFFF !important;
+        color:#990000 !important;
+        text-decoration:none !important;
+}
+
+
+.forum fieldset {
+        border: 1px solid #6262A4;
+        margin: 5px 0px 0px 0px;
+        padding: 10px;
+}
+
+.forum legend {
+        color: #6262A4;
+        font-weight: bold;
+        border: 1px solid #6262A4;
+        padding: 1px 5px 1px 5px;
+        margin: 0px 0px 5px 0px;
+}
+
+.forum .en-tete {
+        color: #6262A4;
+        font-size: 150%;
+        margin: 0px 0px 5px 0px;
+}
+
+.forum textarea {
+        width: 80%;
+}
+
+.forum .visualisation {
+        border: 1px solid #6262A4;
+        margin: 10px 0px 0px 0px;
+}
+
+.forum .visualisation a {
+        color: #990000;
+        text-decoration: none;
+}
+
+.forum .visualisation a:hover {
+        color: #990000;
+        text-decoration: underline;
+}
+
+.forum .visualisation .titre {
+        border-bottom: 1px solid #FFFFFF;
+        font-size: 120%;
+        font-weight: bold;
+        text-align: left;
+        color: #FFFFFF;
+        margin: 0px;
+        padding: 2px 10px 2px 10px;
+        background: #6262A4;
+        margin: 0px;
+}
+
+.forum .visualisation .detail {
+        border-bottom: 1px solid #FFFFFF;
+        border-left: 1px solid #FFFFFF;
+        font-size: 90%;
+        text-align: center;
+        color: #FFFFFF;
+        margin-left: 60%;
+        padding: 1px;
+        background: #6262A4;
+}
+
+.forum .visualisation .texte {
+        padding: 10px;
+}
+
+
+.forum a.article-forum {
+        text-decoration: none;
+        font-size: 110%;
+        color: #808080;
+        font-weight: bold;
+}
+
+.forum a.article-forum:hover {
+        text-decoration: underline;
+}
+
+/* ~~~~~~~~~~~~ plan du site et sites référencés ~~~~~~~~~~~~ */
+
+.plan {
+        font-size: 24px;
+        margin: 0px;
+}
+
+.plan .intitule {
+        color: #808080;
+        font-size: 100%;
+        font-weight: bold;
+        margin: 0px 20px 20px 20px;
+        width: 92%;
+}
+
+.plan a.rubrique {
+        display:block;
+        color: #990000;
+        font-weight:bold;
+        padding-left:15px;
+        margin: 0.5em 0px 0px 0px;
+}
+
+.plan a.rubrique:hover {
+        background-image:url(../puces/puce0.jpg);
+        background-position: left center;
+        background-repeat: no-repeat;
+}
+
+.plan a.article {
+
+        color: #6262A4;
+        padding: 0px 0px 0px 10px;
+        margin: 0px;
+        font-size: 11px;
+}
+
+.plan a.article:hover {
+        background-image:url(../puces/puce.gif);
+        background-position: left center;
+        background-repeat: no-repeat;
+        text-decoration: underline;
+}
+
+.plan a.breve {
+        color: #808080;
+        padding: 0px 0px 0px 10px;
+        font-size: 11px;
+}
+
+.plan a.breve:hover {
+        background-image:url(../puces/puce.gif);
+        background-position: left center;
+        background-repeat: no-repeat;
+        text-decoration: underline;
+}
+
+.plan .date {
+        color: #990000;
+}
+
+.plan ul {
+        list-style-type: none;
+        padding: 0px 0px 0px 30px;
+        margin: 0px;
+        border: 0px;
+}
+
+.plan li {
+        font-size: 80%;
+        padding:0px;
+        margin:0px;
+        border: 0px;
+}
+
+.plan hr {
+        margin: 10px 20px 10px 20px;
+        border: 1px solid #990000;
+}
+
+.plan a.article-syndic {
+        display: block;
+        color: #000000;
+        padding: 0px 0px 0px 10px;
+        margin: 0px;
+        font-size: 12px;
+        font-weight: bold;
+}
+
+.plan a.article-syndic:hover {
+        background-image:url(../puces/puce.gif);
+        background-position: left top;
+        background-repeat: no-repeat;
+}
+
+.plan .date-syndic {
+        color: #990000;
+        font-weight: bold;
+}
+
+.plan .a-propos {
+        display: block;
+        border: 0px;
+        background: #FFFFFF;
+        color: #909090;
+        font-size: 11px;
+        padding: 3px 30px 5px 40px;
+}
+
+.plan .a-propos .site-pere {
+        font-weight: bold;
+}
+
+.plan .a-propos .auteur-pere {
+        font-weight: bold;
+}
+
+
+/* ~~~~~~~~~~~~ auteur ~~~~~~~~~~~~ */
+
+.auteur {
+        padding: 0px;
+        margin: 0px;
+        font-size: 12px;
+}
+
+.auteur div {
+        text-align: left !important;
+}
+
+.auteur .image .spip_logos {
+        display: block;
+        float: right;
+        margin: 10px;
+}
+
+.auteur .nom {
+        color: #6262A4;
+        font-size: 150%;
+        font-weight: bold;
+        margin: 0px 0px 20px 0px;
+        padding: 0px;
+}
+
+.auteur .tchak {
+        color: #000000;
+        font-size: 130%;
+        font-weight: bold;
+        margin: 30px 0px 10px 0px;
+        padding: 0px;
+}
+
+.auteur .spip_encadrer {
+        border: 1px solid #6262A4;
+        color: #6262A4;
+        font-size: 100%;
+        margin: 5px 0px 10px 0px;
+        padding: 5px;
+}
+
+.auteur a {
+	color: #990000;
+	text-decoration: none;
+}
+
+.auteur a:hover {
+	text-decoration: underline;
+}
+
+/* ~~~~~~~~~~~~ recherche ~~~~~~~~~~~~ */
+
+.recherche .intitule {
+        color: #6262A4;
+        font-size: 200%;
+        font-weight: bold;
+        margin: 0px 0px 20px 0px;
+        padding: 1px 10px 1px 10px;
+        border: 2px solid #6262A4;
+        width: 92%;
+}
+
+.recherche .elements-trouves {
+        color: #990000;
+        font-size: 150%;
+        font-weight: bold;
+        margin: 0px 0px 15px 0px;
+        padding: 0px;
+        text-decoration: underline;
+}
+
+.recherche .mot-cle {
+        color: #6262A4;
+        font-size: 130%;
+        font-weight: bold;
+        margin: 0px 0px 20px 0px;
+        padding: 0px;
+        text-decoration: underline;
+}
+
+.indentation {
+        padding-left: 40px;
+}
+
+.redimensionnement {
+        width: 88%;
+        font-size: 11px;
+}
+
+
+
+/* ====================== Formatage des éléments de la colonne de droite ====================== */
+
+/* ~~~~~~~~~~~~ sites syndiqués ~~~~~~~~~~~~ */
+
+.web {
+        margin: 0px;
+        font-size: 10px;
+        padding: 0px 0px 5px 0px;
+        font-size: 100%;
+}
+
+.web a.en-tete {
+        display: block;
+        background-color: #808080;
+        font-weight: bold;
+        font-size: 200%;
+        color: #FFFFFF;
+        text-align: center;
+        border: 1px solid #808080;
+}
+
+.web a.en-tete:hover {
+        background-color: #EEEEEE;
+        color: #808080;
+        border: 1px solid #808080;
+}
+
+.web a.article-synd {
+        display: block;
+        color: #808080;
+        text-decoration: none;
+        background-image:url(../puces/puce.gif);
+        background-position: left top;
+        background-repeat: no-repeat;
+        padding: 0px 0px 5px 10px;
+        margin: 0px 5px 0px 5px;
+}
+
+.droite .web a.article-synd:hover {
+        color: #808080;
+        text-decoration: underline;
+}
+
+.centre .web a.article-synd:hover {
+        color: #808080;
+        text-decoration: none;
+        background-image:url(../puces/puce.gif);
+        background-position: left top;
+        background-repeat: no-repeat;
+}
+
+.web .site {
+        border: 1px solid #808080;
+        margin: 10px 0px 10px 0px;
+        padding: 0px;
+        font-size: 100%;
+}
+
+.web .site .descriptif {
+        border: 1px solid #808080;
+        background-color: #EEEEEE;
+        margin: 5px 10px 10px 10px;
+        padding: 5px;
+}
+
+
+.web .site a.nom-site {
+        display: block;
+        border-bottom: 1px solid #808080;
+        font-size: 130%;
+        font-weight: bold;
+        text-align: center;
+        color: #808080;
+        margin: 0px;
+        padding: 1px;
+        background: #EEEEEE;
+        margin-bottom: 10px;
+}
+
+.web .site a.nom-site:hover {
+        color: #FFFFFF;
+        background: #808080;
+}
+
+
+/* ~~~~~~~~~~~~ brèves ~~~~~~~~~~~~ */
+
+.breves {
+        margin: 0px 0px 0px 0px;
+        font-size: 100%;
+        color: #808080;
+}
+
+.droite .breves .spip_documents {
+        display: block;
+        width: 120px !important;
+	padding: 3px;
+}
+
+.centre .breves .spip_documents {
+        display: block;
+        width: 200px !important;
+	padding: 5px;
+}
+
+.breves .spip_documents_center {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.breves .spip_doc_titre {
+        text-align: left;
+        padding: 5px 0px 0px 0px;
+}
+
+.breves .spip_doc_descriptif {
+        font-size: 90%;
+        color: #808080;
+        text-align: left;
+        padding: 5px 0px 5px 0px;
+        text-align: center;
+}
+
+.breves a.en-tete {
+        display: block;
+        background-color: #808080;
+        font-weight: bold;
+        font-size: 200%;
+        color: #FFFFFF;
+        text-align: center;
+        border: 1px solid #808080;
+}
+
+.breves a.en-tete:hover {
+        background-color: #EEEEEE;
+        color: #808080;
+        border: 1px solid #808080;
+}
+
+.breves .contenu .titre {
+        border-bottom: 1px solid #808080;
+        font-size: 120%;
+        font-weight: bold;
+        text-align: center;
+        color: #808080;
+        margin: 0px;
+        padding: 1px;
+        background: #EEEEEE;
+}
+
+.breves .contenu {
+        border: 1px solid #808080;
+        margin: 10px 0px 10px 0px;
+        padding: 0px;
+        font-size: 100%;
+}
+
+.breves .contenu a.nom-breve {
+        display: block;
+        border-bottom: 1px solid #808080;
+        font-size: 150%;
+        font-weight: bold;
+        text-align: center;
+        color: #808080;
+        margin: 0px;
+        padding: 1px;
+        background: #EEEEEE;
+}
+
+.breves .contenu a.nom-breve:hover {
+        color: #FFFFFF;
+        background: #808080;
+        text-decoration: none;
+}
+
+.breves .contenu .date {
+        border-bottom: 1px solid #808080;
+        border-left: 1px solid #808080;
+        font-size: 90%;
+        text-align: center;
+        color: #808080;
+        margin-left: 40%;
+        padding: 1px;
+        background: #EEEEEE;
+        text-align: center;
+}
+
+.breves .contenu .texte {
+        margin: 0px;
+        padding: 5px;
+        font-size: 100%;
+        line-height: 110%;
+}
+
+.breves .contenu .texte h3 {
+        margin:0.3em 0em 0.3em 0em;
+        padding:0px;
+        font-size: 120%;
+        line-height: 110%;
+}
+
+.breves .contenu .texte p {
+        margin:0.7em 0em 0.7em 0em;
+        padding:0px;
+}
+
+.breves .contenu .texte strong {
+        color: #000000;
+}
+
+.breves .contenu  a {
+        color:#990000;
+}
+
+.breves .contenu a:hover {
+        text-decoration: underline;
+}
+
+.breves .contenu blockquote {
+        border: 1px solid #808080;
+        padding: 0px 5px 0px 5px;
+        margin: 0px 10px 0px 10px;
+}
+
+.breves .contenu .notes {
+        margin: 0px;
+        padding: 5px;
+        font-size: 100%;
+        line-height: 110%;
+        border-top: 1px solid #808080;
+}
+
+/* !!!!!!!!!!! Sarka-SPIP 1.1.1 !!!!!!!!!!!! */
+/* ~~~~~~~~~~~~ brèves ~~~~~~~~~~~~ */
+
+.droite .mots-cles {
+        margin: 0px 0px 0px 0px;
+        font-size: 100%;
+        color: #808080;
+}
+
+.droite .mots-cles a.en-tete {
+        display: block;
+        background-color: #669999;
+        font-weight: bold;
+        font-size: 200%;
+        color: #FFFFFF;
+        text-align: center;
+        border: 1px solid #669999;
+}
+
+.droite .mots-cles a.en-tete:hover {
+        background-color: #FFFFFF;
+        color: #669999;
+        border: 1px solid #669999;
+}
+
+.droite .mots-cles .contenu {
+        border: 1px solid #669999;
+        margin: 10px 0px 20px 0px;
+        padding: 0px;
+        font-size: 100%;
+}
+
+.droite .mots-cles .contenu a {
+        display: block;
+        color: #669999;
+        padding: 0px 5px 3px 5px;
+        font-size: 110%;
+        text-decoration: none;
+}
+
+.droite .mots-cles .contenu a:hover {
+        text-decoration: underline;
+}
+
+.droite .mots-cles .contenu .nom-groupe {
+        display: block;
+        padding: 2px 5px 0px 5px;
+        font-size: 110%;
+        text-decoration: none;
+        font-weight: bold;
+}
+
+.droite .mots-cles .contenu a.type {
+        display: block;
+        border-bottom: 1px solid #669999;
+        font-size: 130%;
+        font-weight: bold;
+        text-align: center;
+        color: #669999;
+        margin: 0px;
+        padding: 1px;
+        background: #FFFFFF;
+        margin-bottom: 10px;
+        text-decoration:none;
+}
+
+.droite .mots-cles .contenu a.type:hover {
+        color: #FFFFFF;
+        background: #669999;
+}

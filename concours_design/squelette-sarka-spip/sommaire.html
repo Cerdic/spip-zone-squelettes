@@ -1,0 +1,121 @@
+<!--
+
+Squelette Sarka-SPIP
+Copyright (C) 2005 Sylvain Bellégo - sylvain.bellego NO-SPM no-log.org - http://sylvain.bellego.free.fr
+
+Ce programme est libre, vous pouvez le redistribuer et/ou le modifier selon les termes
+de la Licence Publique Générale GNU publiée par la Free Software Foundation (version 2
+ou bien toute autre version ultérieure choisie par vous).
+
+Ce programme est distribué car potentiellement utile, mais SANS AUCUNE GARANTIE, ni
+explicite ni implicite, y compris les garanties de commercialisation ou d'adaptation
+dans un but spécifique. Reportez-vous à la Licence Publique Générale GNU pour plus de détails.
+
+Vous devez avoir reçu une copie de la Licence Publique Générale GNU en même temps que ce programme
+; si ce n'est pas le cas, écrivez à la Free Software Foundation, Inc., 59 Temple Place, Suite 330,
+Boston, MA 02111-1307, États-Unis.
+
+-->
+
+<!--
+
+REMERCIEMENTS
+
+Le squelette Sarka-SPIP est en constante évolution.
+
+Les modifications déployées s'appuient sur les commentaires et les conseils
+proposés par des utilisateurs du squelette. A ce titre, les évolutions apportées par T. STOUKY,
+pour son site http://webpublic.ac-dijon.fr/pedago/enspro/matsci/ ont été particulièrement utiles.
+Un grand merci, donc, à celles et ceux qui ont contribué (et qui vont contribuer) à l'amélioration
+de ce squelette.
+
+-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="#LANG">
+<head>
+<title>[#NOM_SITE_SPIP]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
+<link rel="stylesheet" href="squelette-sarka-spip/styles/style.css" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="backend.php3">
+<link rel="shortcut icon" href="squelette-sarka-spip/rblack.ico">
+</head>
+
+<body dir="#LANG_DIR">
+
+<INCLURE(bandeau.php3)>
+
+<INCLURE(bande-chemin.php3)>
+
+<INCLURE(bloc-gauche.php3)>
+
+<!-- ================================== BLOC DE DROITE  ================================== -->
+
+<div class="droite">
+
+<INCLURE(bloc-droite-all-news.php3)>
+
+</div>
+
+<!-- ================================== BLOC CENTRAL  ================================== -->
+
+<div class="centre">
+
+<!-- Rubriques de niveau zéro -->
+
+<div class="sommaire">
+
+<BOUCLE_rubriques_global_0(RUBRIQUES){racine}{par num titre}{par titre}>
+       <div class="rubrique">
+                [<div class=image>(#LOGO_RUBRIQUE||reduire_image{110})</div>]
+                [<a class="titre" href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
+                <div class="texte">[(#TEXTE|reduire_all_images{200,x})]</div>
+        </div>
+</BOUCLE_rubriques_global_0>
+
+
+<!-- Une : derniers articles publies -->
+
+     <div class="derniers-articles">
+          <div class="en-tete">Derniers articles publi&eacute;s</div>
+	  <BOUCLE_article(ARTICLES) {par date} {inverse} {0,5}>
+	       <div class="annonce">
+	           [<div class=image>(#LOGO_ARTICLE||reduire_image{150})</div>]
+	           <div class="detail">[(#DATE|nom_jour)] [(#DATE|affdate)]<br>
+	           <B_auteurs-article>
+                        <:par_auteur:>
+                        <BOUCLE_auteurs-article(AUTEURS) {id_article} {", "}>
+                              <a href="#URL_AUTEUR">#NOM</a>
+                        </BOUCLE_auteurs-article>
+                   </B_auteurs-article>
+                   </div>
+
+	           <div class="chemin">
+	                  <BOUCLE_rubrique-mere(RUBRIQUES){id_rubrique}>
+                                [<a HREF="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
+                          </BOUCLE_rubrique-mere>
+                   </div>
+                   [<div class="surtitre">(#SURTITRE)</div>]
+	   	   [<a class="titre" href="#URL_ARTICLE" title="lire la suite de l'article">(#TITRE|supprimer_numero)</a>]
+		   [<div class="soustitre">(#SOUSTITRE)</div>]
+
+		   <div class="introduction">
+                        #INTRODUCTION
+		        <br><br>
+                        <a href="#URL_ARTICLE">lire la suite de l'article</a>
+                   </div>
+	       </div>
+	   </BOUCLE_article>
+     </div>
+
+</div>
+
+</div>
+
+<INCLURE(footer.php3)>
+
+
+</body>
+</html>
+
+
