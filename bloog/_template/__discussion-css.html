@@ -22,9 +22,8 @@ echo $duree.'&nbsp;'.$texte;
  [Le (#DATE|affdate)]
 </div><!-- fermeture colonne droite --> <hr class="spacer" />
 </div><!-- fermeture reponse en tete forum --> 
-
- <hr class="spacer" />
 <BOUCLE_forums(FORUMS){id_article}{par date}>
+<hr class="spacer" />
 <div class="avatar"><div class="logogauche"><a href="_mon-profil.php3" title="Changer son avatar">
 [(#LOGO_AUTEUR||?{#LOGO_AUTEUR,'<img src="./avatars/ajoutez-un-avatar.gif">'})]</a>
 </div>
@@ -33,7 +32,7 @@ echo $duree.'&nbsp;'.$texte;
 ]
 
 <BOUCLE_newpost_ouverture_lien(AUTEURS){id_auteur}> 
-<a href="_membre.php3?id_auteur=#ID_AUTEUR" title="Profil/contact"> <font color="[(#STATUT|=={'1comite'}|?{'#006699',''})]
+<a href="_membre.php3?id_auteur=#ID_AUTEUR" title="Profil/contact"> <span style="color:[(#STATUT|=={'1comite'}|?{'#006699',''})]
 [(#STATUT|=={'0minirezo'}|?{'#ffa34f',''})]
 [(#STATUT|=={'6forum'}|?{'#006600',''})]
 [(#STATUT|=={'nouveau'}|?{'#000',''})]
@@ -42,8 +41,10 @@ echo $duree.'&nbsp;'.$texte;
 [(#NOM|couper{35})<br />
 ]
 <BOUCLE_newpost_fermeture_lien(AUTEURS){id_auteur}> 
-[(#STATUT|=={'1comite'}|?{'Rédacteur',''})] [(#STATUT|=={'0minirezo'}|?{'Modérateur',''})]
-[(#STATUT|=={'6forum'}|?{'Invité',''})] [(#STATUT|=={'nouveau'}|?{'Bienvenue',''})] </font></a><br /> 
+[(#STATUT|=={'1comite'}|?{'Rédacteur',''})]
+[(#STATUT|=={'0minirezo'}|?{'Modérateur',''})]
+[(#STATUT|=={'6forum'}|?{'Invité',''})]
+[(#STATUT|=={'nouveau'}|?{'Bienvenue',''})] </span></a><br /> 
 [(#ID_AUTEUR|nb_messages) messages, ][langue:(#LANG)<br />]
 
 [Site: <a href="#URL_SITE">(#NOM_SITE)</a><br />
@@ -57,10 +58,9 @@ echo $duree.'&nbsp;'.$texte;
 <?php } ?> 
 [Web:<a href="#URL_SITE">(#NOM_SITE)</a><br />
 ]<hr class="spacer" /></div><!-- fermeture avatar et info auteur -->
-
-<div class="reponse"> [(#TEXTE|norm_liens{blank}|liens_ouvrants|smileys)<br />
+<div class="reponse"> [(#TEXTE|norm_liens|smileys)<br />
   ][Sur la toile:<a href="#URL_SITE">(#NOM_SITE)</a><br />
-  ][<a href="forum.php3?(#PARAMETRES_FORUM)"  onclick="return !dspForm();"><:repondre_article:>.</a> ] </div>
+][<a href="forum.php3?(#PARAMETRES_FORUM)"  onclick="return !dspForm();"><:repondre_article:>.</a> ]</div>
 <!-- fermeture texte reponse -->
 
 
@@ -77,7 +77,7 @@ echo $duree.'&nbsp;'.$texte;
   ]
 
   <BOUCLE_newpost_ouverture_lien2(AUTEURS){id_auteur}>
-  <a href="_membre.php3?id_auteur=#ID_AUTEUR" title="Profil/contact"> <font color="[(#STATUT|=={'1comite'}|?{'#006699',''})]
+  <a href="_membre.php3?id_auteur=#ID_AUTEUR" title="Profil/contact"> <span style="color:[(#STATUT|=={'1comite'}|?{'#006699',''})]
 [(#STATUT|=={'0minirezo'}|?{'#ffa34f',''})]
 [(#STATUT|=={'6forum'}|?{'#006600',''})]
 [(#STATUT|=={'nouveau'}|?{'#000',''})]
@@ -87,7 +87,7 @@ echo $duree.'&nbsp;'.$texte;
   ]
   <BOUCLE_newpost_fermeture_lien2(AUTEURS){id_auteur}>
   [(#STATUT|=={'1comite'}|?{'R&eacute;dacteur',''})] [(#STATUT|=={'0minirezo'}|?{'Mod&eacute;rateur',''})]
-  [(#STATUT|=={'6forum'}|?{'Invit&eacute;',''})] [(#STATUT|=={'nouveau'}|?{'Bienvenue',''})] </font></a><br />
+  [(#STATUT|=={'6forum'}|?{'Invit&eacute;',''})] [(#STATUT|=={'nouveau'}|?{'Bienvenue',''})] </span></a><br />
   [(#ID_AUTEUR|nb_messages) messages, ][langue:(#LANG)<br />
   ] [Web: <a href="#URL_SITE">(#NOM_SITE)</a><br />
   ]
@@ -101,7 +101,7 @@ echo $duree.'&nbsp;'.$texte;
   <hr class="spacer" /></div>
   <!-- fermeture zone avatar -->
     
-<div class="reponse"> [(#TEXTE|norm_liens{blank}|liens_ouvrants|smileys)<br />][Sur
+<div class="reponse"> [(#TEXTE|norm_liens|smileys)<br />][Sur
     la toile:<a href="#URL_SITE">(#NOM_SITE)</a><br />
 ][<a href="forum.php3?(#PARAMETRES_FORUM)"  onclick="return !dspForm();"><:repondre_article:>.</a> ] 
 </div>

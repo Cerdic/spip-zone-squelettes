@@ -630,6 +630,8 @@ function pagination($total, $position=0, $pas=1, $fonction='') {
  return '';
 }
 // FIN du Filtre pagination
+
+
 /*
  *   +----------------------------------+
  *    Nom du Filtre :    smileys II
@@ -658,7 +660,7 @@ while ($fich=readdir($listfich))
 { 	if(($fich !='..') and ($fich !='.') and ($fich !='.test'))
 	{ 
 $nomfich=substr($fich,0,strrpos($fich, "."));
-$listimag[$nomfich]="<img ALT=\"smiley\" src=\"smileys/".$fich."\">";
+$listimag[$nomfich]="<img alt=\"smiley\" src=\"smileys/".$fich."\"/>";
 	}
 }
 ksort($listimag);

@@ -1,4 +1,5 @@
 <?php
+
 function verifier_JPG_TIFF($id_document) {
   	if ($id_document > 0) {
 		$query = "SELECT id_type FROM spip_documents WHERE id_document = $id_document";
