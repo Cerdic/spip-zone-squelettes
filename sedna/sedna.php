@@ -1,9 +1,9 @@
 <?php
 
+	define('_SPIP_PATH', './:sedna/');
 	include('ecrire/inc_version.php3');
 	if (@file_exists('ecrire/inc_cookie.php'))
 		include_ecrire('inc_cookie.php');
-	$dossier_squelettes = 'sedna/';
 	$forcer_lang = true;
 
 	// filtre |syndication_en_erreur
