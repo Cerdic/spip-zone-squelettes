@@ -3,7 +3,7 @@
 <!--html xmlns="http://www.w3.org/1999/xhtml"-->
 <html>
 <head>
-<title>[#NOM_SITE_SPIP] <:faq:> <BOUCLE_titre(MOTS) {titre == (#ENV{tags}|enregexp)} {having (#ENV{tags}|compte_having)} {doublons mots} {" "}>#TITRE [(#ID_MOT|tampons{'tags','mots','empile'})]</BOUCLE_titre></title>
+<title>[#NOM_SITE_SPIP] <:faq:> <BOUCLE_titre(MOTS) {titre == (#ENV{tags}|enregexp)} {having (#ENV{tags}|compte_having)} {doublons mots} {doublons tags} {" "}>#TITRE [(#ID_MOT|tampons{'tags','mots','empile'})]</BOUCLE_titre></title>
 <meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
 <meta name="Description" content="[(#TEXTE*|couper{100}|attribut_html)]" />
 <!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
@@ -35,7 +35,7 @@ et voici : les tags !
 
 [(#REM) ici on cherche les mots lies à des forums selectionnés par des mots
 dans l'url]
-<BOUCLE_voiraussi_compte(FORUMS) {titre_mot == (#ENV{tags}|enregexp)} {having (#ENV{tags}|compte_having)}>[(#REM)
+<BOUCLE_voiraussi_compte(FORUMS) {!doublons tags} {having (#ENV{tags}|compte_having)}>[(#REM)
 ] <BOUCLE_voiraussi_mot(MOTS) {id_forum} {doublons mots}>[(#REM)
 ][(#ID_MOT|tampons{'tags','mots','existe'}|?{'',' '})[(#ID_MOT|tampons{'relation','mots','empile'})]][(#REM)
 ]</BOUCLE_voiraussi_mot>[(#REM)
@@ -65,12 +65,12 @@ on utilise unique pour ne pas afficher les mots deja affiche par la boucle exist
 </div>
 
 [(#REM) simple test pour savoir s'il y a des mots dans l'url]
-<BOUCLE_mots_sel(MOTS) {titre == (#ENV{tags}|enregexp)}>
+<BOUCLE_mots_sel(MOTS) {!doublons tags}>
 </BOUCLE_mots_sel>
 <table cellpadding="5" cellspacing="3" border="0">
 	<B_art_rub>
 		<tr>
-	<BOUCLE_art_rub(ARTICLES){par num titre}{doublons} {0,2}><B_forums>
+	<BOUCLE_art_rub(ARTICLES){par num titre}{doublons}><B_forums>
 		<td width="50%">
 			<div class="droit">
 			<a href="#URL_ARTICLE"><img src="img_interface/carre-violet.gif" border="0"> <b>[<span class="droitpetit">(#SURTITRE)</span><br />][(#TITRE|supprimer_numero)][<br /><span class="droitpetit">(#SOUSTITRE)</span>]</b></a></div>
@@ -85,7 +85,7 @@ on utilise unique pour ne pas afficher les mots deja affiche par la boucle exist
 			<td background="img_interface/fond-degrade.png" align="center" class="droitxpetit"><b><:reponses:></b></td>
 			</tr>
 			
-			<BOUCLE_forums(FORUMS) {id_article} {par score} {inverse} {0,20} {titre_mot == (#ENV{tags}|enregexp)} {having (#ENV{tags}|compte_having)}>
+			<BOUCLE_forums(FORUMS) {id_article} {par score} {inverse} {0,20} {!doublons tags} {having (#ENV{tags}|compte_having)}>
 				<tr>
 					<td bgcolor=#eeeeee class="droitxpetit"><b><a href="#URL_FORUM" title="[(#TEXTE|couper{150}|texte_backend)]">[(#TITRE|spip_preg_replace{'/^>\s*/',''})]</a></b></td>
 					<td bgcolor=#eeeeee align="center" class="droitxpetit">

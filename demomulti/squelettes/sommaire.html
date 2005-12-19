@@ -16,12 +16,16 @@ td {vertical-align: top}
 <div class="navigation">
 #MENU_LANG
 
+<h1>sVAR: [(#SKELVAR{'test','rubriques_sommaire','TEST'})]</h1>
+
 <B_menu>
 <ul>
+[(#REM) On boucle sur les rubriques de la racine: les secteurs de langue.]
 <BOUCLE_menu(RUBRIQUES) {racine} {par lang} {id_rubrique!=7}>
 <li><a href="#URL_RUBRIQUE">[(#LANG|traduire_nom_langue)]</a>
 <B_sousmenu>
 <ul>
+[(#REM) On n'affiche les sous rubriques que si la langue de la rubrique correspond à la langue choisi dans l'url, ou à défaut, le français, langue par défaut.]
 <BOUCLE_sousmenu(RUBRIQUES) {lang} {lang=#ENV{lang,fr}} {id_parent}>
 <li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
 <BOUCLE_recurs(BOUCLE_sousmenu)> </BOUCLE_recurs>
@@ -37,17 +41,22 @@ td {vertical-align: top}
 </div>
 
 <div class="contenu">
-<BOUCLE_lang_choisie(ARTICLES) {lang} {doublons prefere} {par date} {inverse} {0,13}
-><BOUCLE_exclus_trad(ARTICLES) {doublons exclustrad} {traduction} {exclus}
+[(#REM) On veut affiche tous les derniers articles dans la langue choisie.]
+<BOUCLE_lang_choisie(ARTICLES) {lang} {doublons prefere} {par date} {inverse} {0,13}>[
+(#REM) On exclut donc tous les articles qui sont des traductions de ces articles, grâce au doublons]
+]<BOUCLE_exclus_trad(ARTICLES) {doublons exclustrad} {traduction} {exclus}
 > </BOUCLE_exclus_trad>
 </BOUCLE_lang_choisie>
 
-<BOUCLE_lang_origine(ARTICLES) {origine_traduction} {doublons prefere} {par date} {inverse} {0,13}
-><BOUCLE_exclus_trad2(ARTICLES)  {doublons prefere} {doublons exclustrad} {traduction} {exclus}
+[(#REM) Pour les articles qui restent, on ne veut pas afficher les traductions. On veut juste l'article dans sa langue d'orrigine.]
+<BOUCLE_lang_origine(ARTICLES) {origine_traduction} {doublons prefere} {par date} {inverse} {0,13}>[
+(#REM) On exlut donc les traductions des articles d'origines qui ne sont pas des articles dans la langue choisie.
+]<BOUCLE_exclus_trad2(ARTICLES)  {doublons prefere} {doublons exclustrad} {traduction} {exclus}
 > </BOUCLE_exclus_trad2>
 </BOUCLE_lang_origine>
 
-
+[(#REM) On peut maintenant afficher les articles qui n'ont pas été exlus plus tôt.
+]
 <B_derniers_articles>
 <ul>
 <BOUCLE_derniers_articles(ARTICLES) {par date} {inverse} {0,3} {doublons coupe} {doublons exclustrad}>
