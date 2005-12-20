@@ -1,5 +1,5 @@
 <?php
-   $GLOBALS['dossier_squelettes'] = 'squelette-sarka-spip';
+  // $GLOBALS['dossier_squelettes'] = 'squelette-sarka-spip';
    
    /*Filter Name: Reduire_all_images
   Author: Renato Formato
