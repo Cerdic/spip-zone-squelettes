@@ -1,0 +1,26 @@
+
+<BOUCLE_rubrique_annuaire_liens(RUBRIQUES) {id_rubrique}>
+	<B_sites_references_branche>
+	<div class="element">
+		<h2>[(#TITRE|supprimer_numero)] </h2>
+		<h5 class="gris">[(#DESCRIPTIF|smileys)]</h5>
+		<ul>
+	<BOUCLE_sites_references_branche(SITES) {branche}>
+		 <li>
+			<a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut|entites_html)]" target="_blank">[(#NOM_SITE|supprimer_numero)] </a><INCLURE(inclusions/inc_lien_rss_logo.php3) {id_syndic} {id_rubrique}>
+		</li>
+	</BOUCLE_sites_references_branche>				
+		</ul>
+	</div><!-- fin element -->
+	</B_sites_references_branche>
+
+	<BOUCLE_sites_references_branche_rss(SITES) {branche} {syndication=oui}>
+		<div class="element">
+		<a name="rss#ID_SYNDIC"></a><INCLURE(inclusions/inc_lien_rss_logo.php3) {id_syndic} {id_rubrique}><a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut|entites_html)]" target="_blank">[(#NOM_SITE|supprimer_numero)] </a>
+		<BOUCLE_sites_references_rss(SYNDIC_ARTICLES) {id_syndic} {0,10}>
+		<h5><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html)"] class="rss">[(#TITRE|supprimer_numero)] </a></h5>
+		</BOUCLE_sites_references_rss>
+		</div><!-- fin element -->
+	</BOUCLE_sites_references_branche_rss>				
+
+</BOUCLE_rubrique_annuaire_liens>

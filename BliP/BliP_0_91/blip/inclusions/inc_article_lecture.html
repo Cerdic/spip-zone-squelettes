@@ -1,0 +1,71 @@
+
+<BOUCLE_article_lecture(ARTICLES) {id_article}>
+
+	<h1 class="titre_article">
+		[(#SURTITRE) ]
+		<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a>
+		[ (#SOUSTITRE)]
+	</h1>
+	<h5>
+		[(#DATE|affdate{'d.m.Y'}) | ]
+		[	(#DATE_MODIF|affdate{'d.m.Y'}|=={[(#DATE|affdate{'d.m.Y'})]}|?{'',' '})
+			[Mis à jour le (#DATE_MODIF|affdate{'d.m.Y'}) | ]
+		]
+		<BOUCLE_auteurs_articles(AUTEURS) {id_article} {", "}>
+			<a href="auteur.php3?id_auteur=#ID_AUTEUR">#NOM</a>
+		</BOUCLE_auteurs_articles>
+	</h5>
+	<h5>
+		<INCLURE(inclusions/inc_article_decompte_visiteurs.php3) {id_article}>
+		&nbsp;-&nbsp;
+		[	(#POPULARITE_ABSOLUE|<{'3'}|?{'',' '}) 
+			<INCLURE(inclusions/inc_article_decompte_popularite.php3) {id_article}>
+			&nbsp;-&nbsp;
+		]
+		<INCLURE(inclusions/inc_article_decompte_commentaires.php3) {id_article}>
+	</h5>
+
+	<div class="padding_haut_10px">
+			
+	[<div class="chapo">(#CHAPO|smileys)</div>]
+	[<div class="texte">(#TEXTE|flashmp3|smileys)</div>]
+	[<div class="notes">(#NOTES|smileys)</div>]
+			
+	<BOUCLE_images_jointes(DOCUMENTS) {id_article} {mode=document} {extension==jpg|png|gif} {doublons}>
+		<div class="image">
+		<img src="#URL_DOCUMENT" alt="#TITRE" /><br />
+		<div class="titre">#TITRE</div>
+		<div class="legende">[(#DESCRIPTIF|smileys)]</div>
+		</div>
+	</BOUCLE_images_jointes>
+
+	</div> [(#REM) fin padding_haut_10px ]
+		
+	<B_documents_joints>
+		<div class="padding_haut_25px">
+		<h1 class="titre_article">
+		[(#TOTAL_BOUCLE|=={'1'}|?{Une pièce jointe :,#TOTAL_BOUCLE pièces jointes :})]
+		</h1>
+	<BOUCLE_documents_joints(DOCUMENTS) {id_article} {doublons}>
+		<div class="padding_haut_10px">
+		<div class="document_joint_logo">
+			<a href="#URL_DOCUMENT" title="#TITRE">
+			<img src="IMG/[(#LOGO_DOCUMENT|fichier)]" alt="[(#TITRE|textebrut)]" />
+			</a>
+		</div><!-- fin document_joint_logo -->
+		<div class="document_joint_descriptif">
+		<div class="document_joint_descriptif_entite">
+		<b>#TITRE</b></div>
+		<!-- fin document_joint_descriptif_entite -->
+		<div class="document_joint_descriptif_entite">
+			<h5>[(#TYPE_DOCUMENT) |][ (#TAILLE|taille_en_octets)] </h5>
+			<h5>[(#DESCRIPTIF|smileys)]</h5>
+		</div><!-- fin document_joint_descriptif_entite -->
+		</div><!-- fin document_joint_descriptif -->
+		&nbsp;
+		</div> [(#REM) fin padding_haut_10px ]
+	</BOUCLE_documents_joints>
+		</div> [(#REM) fin padding_haut_25px ]
+	</B_documents_joints>
+
+</BOUCLE_article_lecture>
