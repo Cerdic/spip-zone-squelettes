@@ -1,0 +1,79 @@
+
+[(#REM) Forum dépliant à la sauce Framasoft ]
+
+<B_msg>
+<div class="padding_haut_25px"><div class="padding_bas_10px">
+
+<a name="forum"></a>
+
+	<BOUCLE_article_forum(ARTICLES) {id_article}>
+		<h1 class="titre_article">
+		<INCLURE(inclusions/inc_article_decompte_commentaires.php3) {id_article}>
+		</h1>
+	</BOUCLE_article_forum>
+
+	<BOUCLE_msg(FORUMS){id_article}{par date}{inverse}>
+		<div class="forum_ext">
+		<a name="forum#ID_FORUM"></a>
+
+		<BOUCLE_msg_ans_ancre(FORUMS){id_parent} {plat}>
+			<a name="forum#ID_FORUM"></a>
+		</BOUCLE_msg_ans_ancre>
+
+		<? echo bouton_block_invisible("message#ID_FORUM"); ?>
+		[<strong>(#TITRE)</strong>]
+
+		<BOUCLE_new_msg(FORUMS){id_forum}{age < 7}>
+			<span class="new">...new!</span>
+		</BOUCLE_new_msg>
+
+		[(#DATE|affdate)] <a href="mailto:[(#EMAIL|antispam)]">[(#NOM)]</a>
+		<?php $yoopi = 0; ?>
+
+		<BOUCLE_nb_ans(FORUMS){id_parent} {plat}>
+		</BOUCLE_nb_ans>
+			<?php $yoopi = $yoopi + (#TOTAL_BOUCLE); ?>
+		</B_nb_ans>
+
+		<?php
+		if ($yoopi !== 0){
+		?><span class="ans">
+		<?php echo $yoopi; ?>&nbsp; rép.
+		</span><?php
+		}
+		?>
+
+	<BOUCLE_last_ans(FORUMS){id_parent}{age < 7}{par date}{inverse}{0,1}>
+		<div class="forum_last_ans">
+		<span class="new">Réponse récente :</span>
+		 [(#TITRE|smileys)][, (#DATE|affdate_court)][, (#NOM)]
+		</div>
+	</BOUCLE_last_ans>
+
+	<? echo debut_block_invisible("message#ID_FORUM"); ?>
+	<div class="forum_int_sub">
+	[(#TEXTE|smileys)]
+	[<p>-----&gt; <a href="#URL_SITE*">(#NOM_SITE)</a></p>]
+	</div>
+
+	<BOUCLE_son(FORUMS){id_parent}{par date}>
+		<div class="forum_int_ans">
+		[<strong>(#TITRE|smileys)</strong>]
+		<BOUCLE_new_rep(FORUMS){id_forum}{age < 7}>
+			<span class="new">...new!</span>
+		</BOUCLE_new_rep>
+		[(#DATE|affdate)] <a href="mailto:[(#EMAIL|antispam)]">[(#NOM)]</a>
+		[<p />(#TEXTE|smileys)][<p>-----&gt; <a href="#URL_SITE*">(#NOM_SITE)</a></p>]
+		</div>
+	</BOUCLE_son>
+
+	<div class="forum_ans">
+	[<strong><a href="forum.php3?(#PARAMETRES_FORUM)">Répondre à ce message</a></strong>]
+	</div></div><? echo fin_block(); ?>
+
+</BOUCLE_msg>
+
+</div> [(#REM) fin padding_bas_10px ] </div> [(#REM) fin padding_haut_25px ] 
+
+</B_msg>
+<//B_msg>

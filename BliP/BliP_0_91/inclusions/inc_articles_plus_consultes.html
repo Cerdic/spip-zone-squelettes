@@ -1,0 +1,28 @@
+
+<BOUCLE_articles_invisibles(ARTICLES) {doublons} {titre_mot==invisible} >
+</BOUCLE_articles_invisibles>
+
+<B_articles_plus_consultes>
+	<div class="element">
+	<h2>
+		<a href="#URL_SITE_SPIP/article.php3?tri=visites" title="Afficher la liste des articles et les trier par nombre de visiteurs" class="couleur_deux">
+		Articles les plus consultés
+		</a>
+	</h2>
+	<ul>
+<BOUCLE_articles_plus_consultes(ARTICLES) {doublons} {par visites} {inverse} {0,5}>
+	<li>
+		[(#SURTITRE|textebrut) ]
+		<a href="#URL_ARTICLE"[ title="(#INTRODUCTION|textebrut|entites_html|couper{200})"]>
+		[(#TITRE|supprimer_numero)]
+		</a>
+		<h4>
+			<INCLURE(inclusions/inc_article_decompte_visiteurs.php3) {id_article}>
+			-
+			<INCLURE(inclusions/inc_article_decompte_commentaires.php3) {id_article}>
+		</h4>
+	</li>
+</BOUCLE_articles_plus_consultes>				
+	</ul>
+	</div> [(#REM) fin element ]
+</B_articles_plus_consultes>

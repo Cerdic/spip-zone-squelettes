@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+<head>
+	<title>[#NOM_SITE_SPIP] <:resultats_recherche:></title>
+
+	<B_article_parametrage_balises_meta>
+	<BOUCLE_article_parametrage_balises_meta(ARTICLES) {titre_mot=annonce_recherche} {par date} {inverse} {0,1}>
+		<INCLURE(inclusions/inc_structure_balises_meta.php3) {id_article}>
+	</BOUCLE_article_parametrage_balises_meta>
+	</B_article_parametrage_balises_meta>
+		<INCLURE(inclusions/inc_structure_balises_meta.php3)>
+	<//B_article_parametrage_balises_meta>
+
+</head>
+
+<body id="articles"><a name="hautdepage"></a>
+
+<div id="page">
+
+<INCLURE(inclusions/inc_structure_entete.php3) {recherche} {type_page=recherche}>
+	
+	<div id="contenu_principal">
+
+		<INCLURE(inclusions/inc_information_navigation.php3) {info_navigation=annonce_recherche} >	
+
+		<h1 class="navigation"><:resultats_recherche:></h1>
+		<div class="padding_haut_10px">
+		<INCLURE(inclusions/inc_recherche_moteur_spip.php3) {recherche}>
+		</div><!-- fin padding_haut_10px -->
+
+		<BOUCLE_total(ARTICLES) {recherche}>
+		</BOUCLE_total>
+		<div class="padding_haut_25px">
+		<h1 class="navigation">#TOTAL_BOUCLE articles correspondent à la recherche</h1>
+		<div class="padding_haut_10px">		
+		[(#TOTAL_BOUCLE|pagination{debut_recherche,10})]
+		</div><!-- fin padding_haut_10px -->
+		</div><!-- fin padding_haut_25px -->
+		</B_total>
+
+		<B_recherche>
+		<div class="padding_haut_25px">
+		<BOUCLE_recherche(ARTICLES) {recherche} {par points} {inverse} {debut_recherche,10}>
+		<div class="padding_bas_25px">
+		<h1>[(#SURTITRE) ]<a href="#URL_ARTICLE">[(#TITRE||supprimer_numero)]</a>[ (#SOUSTITRE)]</h1>
+		<h5>[(#DATE|affdate{'d.m.Y'}) | ][Mis à jour le (#DATE_MODIF|affdate{'d.m.Y'}) | ]<BOUCLE_auteurs_articles(AUTEURS) {id_article} {", "}><a href="auteur.php3?id_auteur=#ID_AUTEUR">#NOM</a></BOUCLE_auteurs_articles></h5>
+		<h5><INCLURE(inclusions/inc_article_decompte_visiteurs.php3) {id_article}>&nbsp;-&nbsp;[(#POPULARITE_ABSOLUE|<{'3'}|?{'',' '}) <INCLURE(inclusions/inc_article_decompte_popularite.php3) {id_article}>&nbsp;-&nbsp;]<INCLURE(inclusions/inc_article_decompte_commentaires.php3) {id_article}></h5>
+		<a href="#URL_ARTICLE" class="resume">
+		<?php
+			$string  = '[(#TITRE|supprimer_numero|texte_script) ]';
+			$string .= '[(#CHAPO|textebrut|texte_script) ]';
+			$string .= '[(#DESCRIPTIF|textebrut|texte_script) ]';
+			$string .= '[(#TEXTE|textebrut|texte_script)]';
+			echo google_like($string);
+		?>
+		</a>
+
+ 		</div>
+
+
+		</BOUCLE_recherche>
+
+		<BOUCLE_total_bas(ARTICLES) {recherche}>
+		</BOUCLE_total_bas>
+		[(#TOTAL_BOUCLE|pagination{debut_recherche,10})]
+		</B_total_bas>
+
+		</div><!-- fin padding_haut_25px -->
+
+		<div class="padding_haut_10px">
+		<h1 class="navigation">Et sur la partie wiki ?</h1>
+		<div class="padding_haut_10px">		
+		<p>Vous pouvez <a href="#URL_SITE_SPIP/spikini/?wiki=RechercheTexte&phrase=#RECHERCHE">relancer cette recherche sur la partie wiki</a> de ce site.</p>
+		</div><!-- fin padding_haut_10px -->
+		</div><!-- fin padding_haut_10px -->
+
+		</B_recherche>
+
+		<div class="padding_haut_25px">
+		<h1 class="navigation">Aucun article article trouvé</h1>
+		<div class="padding_haut_10px">		
+		<p>Aucun résultat pour <strong>#RECHERCHE</strong>. :-(</p>
+		<p>Vous pouvez <a href="#URL_SITE_SPIP/spikini/?wiki=RechercheTexte&phrase=#RECHERCHE">relancer cette recherche sur la partie wiki</a> de ce site.</p>
+		</div><!-- fin padding_haut_10px -->
+		</div><!-- fin padding_haut_25px -->
+
+		<//B_recherche>
+
+	</div><!-- fin contenu_principal -->
+
+	<div id="barre_laterale">
+
+		<INCLURE(inclusions/inc_recherche_externe.php3) {recherche}>
+		<INCLURE(inclusions/inc_structure_barre_laterale.php3)>
+
+	</div><!-- fin barre_laterale -->
+	
+<INCLURE(inclusions/inc_structure_pied_de_page.php3)>
+
+</div><!-- fin page -->
+
+</body>
+</html>
