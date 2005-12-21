@@ -56,7 +56,7 @@ de ce squelette.
 
 <B_mots>
 	<div class="mots-cles">
-		<a class="en-tete" href="mot.php3"><:mots_clefs:></a>
+		<div id="mots_clefs"><a class="en-tete" href="mot.php3"><:mots_clefs:></a></div>
 		<div class="contenu">
 			<BOUCLE_mots(MOTS) {id_article} {par id_groupe}>
 				<BOUCLE_groupe(GROUPES_MOTS){id_groupe}>
@@ -111,7 +111,7 @@ de ce squelette.
 	<!-- Liens vers les documents joints, à l'exclusion des images -->
 	
 		<B_documents_article>
-			<div class=en-tete><:docu_article:> :</div>
+			<div id="docu_article" class="en-tete"><:docu_article:> :</div>
 			<div class="doc">
 				<BOUCLE_documents_article(DOCUMENTS){id_article}{extension !== jpg|png|gif}{mode=document}{doublons}>
 					<a href=#URL_DOCUMENT> #LOGO_DOCUMENT  #TITRE </a>
@@ -122,7 +122,7 @@ de ce squelette.
 	<!-- Liens vers les images jointes -->
 	
 		<B_images_article>
-			<div class=en-tete><:img_article:> :</div>
+			<div id="img_article" class="en-tete"><:img_article:> :</div>
 			<BOUCLE_images_article(DOCUMENTS){id_article}{extension == jpg|png|gif}{mode=document}{doublons}>
 				<div class="images">
 					<div class="vignette">
@@ -144,7 +144,7 @@ de ce squelette.
 <!-- Formulaire pour signer la pétition -->
 
 	[<div class="petition">
-		<div class="en-tete"><:signer_petition:></div>
+		<div id="signer_petition" class="en-tete"><:signer_petition:></div>
 		(#FORMULAIRE_SIGNATURE)
 	</div>]
 
@@ -153,7 +153,7 @@ de ce squelette.
 	<B_signatures>
 		<BOUCLE_signatures_decompte(SIGNATURES) {id_article}></BOUCLE_signatures_decompte>
 		[<div class="signatures">
-			<div class="en-tete"><:signatures_petition:>: (#TOTAL_BOUCLE)</div>
+			<div id="signatures_petitions" class="en-tete"><:signatures_petition:>: (#TOTAL_BOUCLE)</div>
 	
 			<table>
 				<thead>
@@ -179,26 +179,9 @@ de ce squelette.
 		</div>
 	</B_signatures>
 
-<!-- AFFICHAGE des articles frères : le code php permet de griser l'article en cours-->
-
-	<div class="articles-freres">
-		<B1>
-			<div class="en-tete"><:articles_rubrique:></div>
-			<ol>
-			<BOUCLE1(ARTICLES){id_rubrique}{par date}>
-				<li class="[(#EXPOSER|en-cours,frere)]">
-					<a [(#EXPOSER|id,href)]="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a><br>
-					[<div class="date">(#DATE|affdate)</div>]<br>
-				</li>
-			</BOUCLE1>
-			</ol>
-		</B1>
-	</div>
-
 <!-- Forums -->
 
 	<B_forums>
-		<br>
 		<div class="forum">
 			<div class="annonce-forum"><:messages_forum:> :</div>
 
@@ -245,8 +228,25 @@ de ce squelette.
 			</BOUCLE_forums>
 
 		</div>
-	</B_forums>
 	</div>
+	</B_forums>
+
+<!-- AFFICHAGE des articles frères : le code php permet de griser l'article en cours-->
+
+	<div class="articles-freres">
+		<B1>
+			<div id="articles_rubrique" class="en-tete"><:articles_rubrique:></div>
+			<ol>
+			<BOUCLE1(ARTICLES){id_rubrique}{par date}>
+				<li class="[(#EXPOSER|en-cours,frere)]">
+					<a [(#EXPOSER|id,href)]="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a><br>
+					[<div class="date">(#DATE|affdate)</div>]<br>
+				</li>
+			</BOUCLE1>
+			</ol>
+		</B1>
+	</div>
+
 </div>
 <INCLURE(inclusions/footer.php3)>
 </div>
