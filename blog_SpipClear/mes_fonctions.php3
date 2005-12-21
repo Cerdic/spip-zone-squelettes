@@ -20,7 +20,7 @@
 		}
 
 		if ($accept_xml) {
-			echo '<?xml version="1.0" encoding="'.$charset.'"?>'."\n";
+			echo '<?xml version="1.0" encoding="'.$charset.'"?'.'>'."\n";
 		}
 		return '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">';
 	}
@@ -61,7 +61,7 @@
 	//
 	function balise_SC_CUSTOM_TITLE($p) {
 		$p->code = "lire_meta('scCustomTitle')";
-		$p->statut = 'php';
+		$p->interdire_scripts = false;
 		return $p;
 	}
 
@@ -169,13 +169,13 @@
 	else {
 		function balise_PARAMETRES_TRACKBACK($p) {
 			$p->code = "''";
-			$p->statut ='html';
+			$p->interdire_scripts = false;
 			return $p;
 		}
 			
 		function balise_URL_TRACKBACK($p) {
 			$p->code = "''";
-			$p->statut ='html';
+			$p->interdire_scripts = false;
 			return $p;
 		}
 
