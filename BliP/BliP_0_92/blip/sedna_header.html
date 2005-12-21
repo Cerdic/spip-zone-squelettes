@@ -1,0 +1,105 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[Sedna RSS] [(#NOM_SITE_SPIP|supprimer_tags)]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<meta http-equiv="refresh" content="900;url=#URL_SITE_SPIP/sedna/#SELF" />
+[(#REM)
+	Liens vers le backend (voir ausi plus bas affichage html)
+]
+<BOUCLE_url_backend_ori(SITES){id_syndic}>
+	<link rel="alternate" type="application/rss+xml" title="RSS [(#NOM_SITE|attribut_html)], via [(#NOM_SITE_SPIP|attribut_html)]" href="#URL_SITE_SPIP/sedna/?rss=1&amp;id_syndic=#ID_SYNDIC[&amp;recherche=(#ENV{recherche})]" />
+	<link rel="alternate" type="application/rss+xml" title="RSS original" href="#URL_SYNDIC" />
+</BOUCLE_url_backend_ori>
+	<link rel="alternate" type="application/rss+xml" title="RSS [(#NOM_SITE_SPIP|attribut_html)]" href="#URL_SITE_SPIP/sedna/?rss=1[&amp;recherche=(#ENV{recherche})]" />
+<//B_url_backend_ori>
+<link rel="icon" type="image/png" href="sedna-icon.png" />
+<link href="sedna.css" rel="stylesheet" type="text/css" />
+
+<?php
+		# couleur		# hover		# selected
+	$couleurs = array (
+		'pink'	=> array('#c363a7','#ff33ff'),
+		'red'	=> array('#ff3333','#cc3333'),
+		'orange'=> array('#ff9966','#ff6633'),
+		'cyan'	=> array('#4280eb','#004080'),
+		'blue'	=> array('#6666ff','#3333ff')
+	);
+
+	if ($var_color) {
+		spip_setcookie('sedna_color', $var_color, time()+365*24*3600);
+		$_COOKIE['sedna_color'] = $var_color;
+	}
+
+	if (!$couleurs[$a = $_COOKIE['sedna_color']]) $a = 'blue';
+	list($b,$c) = $couleurs[$a];
+?>
+<style type="text/css" id="couleur">
+	h2 {
+		background: transparent url(sedna-<?php echo $a; ?>.gif);
+	}
+	div.top {
+		background: transparent url(sedna-<?php echo $a; ?>.gif);
+	}
+	div.bottom {
+		background: transparent url(sedna-<?php echo $a; ?>.gif);
+	}
+	div.marge a:hover {
+		background-color: <?php echo $b; ?>;
+	}
+	div.marge a.selected {
+		background-color: <?php echo $c; ?>;
+	}
+</style>
+
+<style type="text/css" id="rtl">
+	a.urlsite { float: #LANG_RIGHT; }
+	a.urlsiteon { float: #LANG_RIGHT; }
+	div.topdate { float: #LANG_RIGHT; }
+	div.marge { float: #LANG_RIGHT; }
+	#total_articles {
+		float: #LANG_RIGHT;
+		margin-#LANG_RIGHT: 50px;
+	}
+	div.desc {  
+		margin-#LANG_LEFT: 50px;
+		border-#LANG_LEFT: dotted 1px grey;
+	}
+	div.toptitle {
+	 	float:#LANG_LEFT;
+	}
+	div.marge a.selected {
+		border-#LANG_LEFT: 3px solid #324C48;
+	}
+	div.milieu {
+		margin-#LANG_LEFT: 30px;
+	}
+	.date {
+		margin-#LANG_LEFT: -30px;
+		text-align: #LANG_LEFT;
+	}
+	div.bottomrss {
+		float: #LANG_LEFT;
+	}
+	.titre {
+		padding-#LANG_LEFT: 40px;
+	}
+</style>
+
+<script type="text/javascript" src="sedna.js"></script>
+
+<?php
+include ("blip/inclusions/inc_structure_css.php3");
+?>
+
+</head>
+
+<body onload="sedna_init();">
+
+<div id="page">
+
+<div id="contenu_principal_wiki">
+
+<p> Cette page accueille sedna, qui va être intégré graphiquement à ce site. Pour l'instant, seul le footer (pied de page) a été inclus, l'inclusion du header (entete de la page ou le bandeau si vous préférez) plantant le site. Le header pose des soucis, tests et débugage en cours (comptez une bonne dizaine de jours).
+Une fois le header intégré, une refonte des CSS sera effectuées.</p>
