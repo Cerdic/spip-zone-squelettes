@@ -1,6 +1,6 @@
 <?php
-$fond = "header";
-$delais = 12 * 3600;
+$fond = "inclusions/bandeau";
+$delais = 0;
 
 include ("inc-public.php3");
 

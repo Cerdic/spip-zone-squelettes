@@ -32,87 +32,97 @@ de ce squelette.
 -->
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html lang="#LANG">
-<head>
-<title>[#NOM_SITE_SPIP]</title>
-<INCLURE(header.php3)>
-</head>
+
+<INCLURE(inclusions/header.php3)>
 
 <body dir="#LANG_DIR">
 
-<INCLURE(bandeau.php3)>
+<INCLURE(inclusions/bandeau.php3)>
 
-<INCLURE(bande-chemin.php3)>
+<INCLURE(inclusions/bande-chemin.php3)>
 
-<INCLURE(bloc-gauche.php3)>
+<INCLURE(inclusions/bloc-gauche.php3)>
 
-<!-- ================================== BLOC DE DROITE  ================================== -->
+[(#NOOP) <!-- ================================== BLOC DE DROITE  ================================== --> ]
 
 <div id="droite" class="droite">
 
-<INCLURE(bloc-droite-all-news.php3)>
+<INCLURE(inclusions/bloc-droite-all-news.php3)>
 
 </div>
 
-<!-- ================================== BLOC CENTRAL  ================================== -->
+[(#NOOP) <!-- ================================== BLOC CENTRAL  ================================== --> ]
 
-<div id="centre" class="centre">
+<div iid="centre" class="centre">
+<div class="sommaire">
+<!-- Editorial -->
+
+<B_edito>
+	<div class="edito">
+		<BOUCLE_edito(ARTICLES) {titre_mot="edito"} {doublons} {par date} {inverse} {0,1}>
+			[<div class="detail">(#DATE|nom_jour) [(#DATE|affdate)]</div>]
+			[<div class=image>(#LOGO_ARTICLE||reduire_image{150})</div>]
+			[<div class="surtitre">(#SURTITRE)</div>]
+			[<div class="titre">(#TITRE|supprimer_numero)</div>]
+			[<div class="soustitre">(#SOUSTITRE)</div>]
+			[<div class=chapo><:sur_web:> <a href=#URL_SITE>(#NOM_SITE)</a></div>]
+			[<div class=chapo>(#CHAPO)</div>]
+			<div class="texte">[(#TEXTE|reduire_image{200,0})]</div>
+			[<div class=post-scriptum><div class="annonce"><:ps:> :</div>(#PS)</div>]
+			[<div class="notes">(#NOTES)</div>]
+		</BOUCLE_edito>
+	</div>
+</B_edito>
 
 <!-- Rubriques de niveau zéro -->
 
-<div id="sommaire" class="sommaire">
-
 <BOUCLE_rubriques_global_0(RUBRIQUES){racine}{par num titre}{par titre}>
-       <div class="rubrique">
-                [<div class=image>(#LOGO_RUBRIQUE||reduire_image{110})</div>]
-                [<a class="titre" href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
-                <div class="texte">[(#TEXTE|reduire_all_images{200,x})]</div>
-        </div>
+	<div class="rubrique">
+		[<div class=image>(#LOGO_RUBRIQUE||reduire_image{110})</div>]
+		[<a class="titre" href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
+		<div class="texte">[(#TEXTE|reduire_image{200,0})]</div>
+	</div>
 </BOUCLE_rubriques_global_0>
 
 
 <!-- Une : derniers articles publies -->
 
-     <div class="derniers-articles">
-          <div class="en-tete">Derniers articles publi&eacute;s</div>
-	  <BOUCLE_article(ARTICLES) {par date} {inverse} {0,5}>
-	       <div class="annonce">
-	           [<div class=image>(#LOGO_ARTICLE||reduire_image{150})</div>]
-	           <div class="detail">[(#DATE|nom_jour)] [(#DATE|affdate)]<br>
-	           <B_auteurs-article>
-                        <:par_auteur:>
-                        <BOUCLE_auteurs-article(AUTEURS) {id_article} {", "}>
-                              <a href="#URL_AUTEUR">#NOM</a>
-                        </BOUCLE_auteurs-article>
-                   </B_auteurs-article>
-                   </div>
-
-	           <div class="chemin">
-	                  <BOUCLE_rubrique-mere(RUBRIQUES){id_rubrique}>
-                                [<a HREF="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
-                          </BOUCLE_rubrique-mere>
-                   </div>
-                   [<div class="surtitre">(#SURTITRE)</div>]
-	   	   [<a class="titre" href="#URL_ARTICLE" title="lire la suite de l'article">(#TITRE|supprimer_numero)</a>]
-		   [<div class="soustitre">(#SOUSTITRE)</div>]
-
-		   <div class="introduction">
-                        #INTRODUCTION
-		        <br><br>
-                        <a href="#URL_ARTICLE">lire la suite de l'article</a>
-                   </div>
-	       </div>
-	   </BOUCLE_article>
-     </div>
-
+<div class="derniers-articles">
+	<div class="en-tete"><:articles_recents:></div>
+	<BOUCLE_article(ARTICLES) {doublons} {par date} {inverse} {0,5}>
+		<div class="annonce">
+			[<div class=image>(#LOGO_ARTICLE||reduire_image{150})</div>]
+			<div class="detail">
+				[(#DATE|nom_jour)] [(#DATE|affdate)]<br>
+				<B_auteurs-article>
+					<:par_auteur:>
+					<BOUCLE_auteurs-article(AUTEURS) {id_article} {", "}>
+						<a href="#URL_AUTEUR">#NOM</a>
+					</BOUCLE_auteurs-article>
+				</B_auteurs-article>
+			</div>
+			<div class="chemin">
+				<BOUCLE_rubrique-mere(RUBRIQUES){id_rubrique}>
+					[<a HREF="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
+				</BOUCLE_rubrique-mere>
+			</div>
+			[<div class="surtitre">(#SURTITRE)</div>]
+			[<a class="titre" href="#URL_ARTICLE" title="<:lire_suite_article:>">(#TITRE|supprimer_numero)</a>]
+			[<div class="soustitre">(#SOUSTITRE)</div>]
+			<div class="introduction">
+				#INTRODUCTION
+				<br><br>
+				<a class="suite" href="#URL_ARTICLE"><:lire_suite_article:></a>
+			</div>
+		</div>
+	</BOUCLE_article>
+	</div>
+</div>
 </div>
 
-</div>
-
-<INCLURE(footer.php3)>
-
+<INCLURE(inclusions/footer.php3)>
 
 </body>
 </html>
-
-

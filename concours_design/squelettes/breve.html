@@ -32,91 +32,93 @@ de ce squelette.
 -->
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html lang="#LANG">
-<head>
-<title>[#NOM_SITE_SPIP] [Br&egrave;ves]</title>
-<INCLURE(header.php3)>
-</head>
+
+<INCLURE(inclusions/header.php3){id_breve}>
 
 <body dir="#LANG_DIR">
 
-<INCLURE(bandeau.php3)>
+<INCLURE(inclusions/bandeau.php3)>
 
-<INCLURE(bande-chemin.php3)>
+<INCLURE(inclusions/bande-chemin.php3)>
 
-<INCLURE(bloc-gauche.php3)>
+<INCLURE(inclusions/bloc-gauche.php3)>
 
-<!-- ================================== BLOC DE DROITE  ================================== -->
+[(#NOOP) <!-- ================================== BLOC DE DROITE  ================================== --> ]
 
 <div id="droite" class="droite">
 
 <!-- SPIP-1.1.1 : affichage des mots-clés associés à la breve-->
 
-<B_mots>
-  <div class="mots-cles">
-  <a class="en-tete" href="mot.php3">Mots-cl&eacute;s</a>
-  <div class="contenu">
-    <BOUCLE_mots(MOTS) {id_breve} {par titre}>
-      <a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
-    </BOUCLE_mots>
-  </div>
+	<B_mots>
+		<div class="mots-cles">
+			<a class="en-tete" href="mot.php3"><:mots_clefs:></a>
+			<div class="contenu">
+				<BOUCLE_mots(MOTS) {id_breve} {par titre}>
+					<a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
+				</BOUCLE_mots>
+			</div>
+		</div>
+	</B_mots>
+	
+	<INCLURE(inclusions/bloc-droite-all-news.php3)>
+
 </div>
-</B_mots>
 
-<INCLURE(bloc-droite-all-news.php3)>
-
-</div>
-
-<!-- ================================== BLOC CENTRAL  ================================== -->
+[(#NOOP) <!-- ================================== BLOC CENTRAL  ================================== --> ]
 
 <div id="centre" class="centre">
 
 <!-- affichage de la brève courante -->
 
-<div class="sommaire recherche">
+<div class="sommaire">
+<div class="recherche">
 
-<div class="redimensionnement">
-<div id="breves" class="breves">
-    <B_breve-principale>
-    	<BOUCLE_breve-principale(BREVES) {id_breve}>
-    	<div class="contenu">
-                <a class="nom-breve">#TITRE</a>
-                <div class="date">[(#DATE|nom_jour)] [(#DATE|jour)] [(#DATE|nom_mois)]</div>
-		<div class="texte">[(#TEXTE|reduire_all_images{200,x})]</div>
-		[<div class="notes">(#NOTES)</div>]
-                [<div class="notes">sur le web : <a href="#URL_SITE">(#NOM_SITE)</a></div>]
+	<div class="redimensionnement">
+	<div class="breves">
+		<B_breve-principale>
+			<BOUCLE_breve-principale(BREVES) {id_breve}>
+				<div class="contenu">
+					<a class="nom-breve">#TITRE</a>
+					<div class="date">[(#DATE|nom_jour)] [(#DATE|jour)] [(#DATE|nom_mois)]</div>
+					<div class="texte">[(#TEXTE|reduire_image{200,0})]</div>
+					[<div class="notes">(#NOTES)</div>]
+					[<div class="notes">sur le web : <a href="#URL_SITE">(#NOM_SITE)</a></div>]
+				</div>
+				<br>
+			</BOUCLE_breve-principale>
+		</B_breve-principale>
 	</div>
-	<br>
-	</BOUCLE_breve-principale>
-    </B_breve-principale>
-</div>
-</div>
+	</div>
 
+</div>
 </div>
 
 <!-- affichage du plan des brèves classées par secteurs -->
 
-<div id="plan" class="plan">
-<div class="intitule">Toutes les br&egrave;ves du site :</div>
-<B_rubrique-racine>
-<BOUCLE_rubrique-racine(RUBRIQUES){racine}{par num titre}>
-  <ul><li>
-  <B_breves-dans-rubrique>
-     [<a class="rubrique" href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
-     <ul>
-     <BOUCLE_breves-dans-rubrique(BREVES) {id_rubrique} {par date}>
-         <li><a class="breve" href="#URL_BREVE"><span class="date">[[(#DATE|affdate{'d-m-Y'})]] </span> #TITRE</a></li>
-     </BOUCLE_breves-dans-rubrique>
-     </ul>
-  </B_breves-dans-rubrique>
-  </li></ul>
-</BOUCLE_rubrique-racine>
-</B_rubrique-racine>
-
+<div class="plan">
+	<div class="intitule"><:toutes_les_breves:> :</div>
+	<B_rubrique-racine>
+		<BOUCLE_rubrique-racine(RUBRIQUES){racine}{par num titre}>
+			<B_breves-dans-rubrique>
+				<ul>
+					<li>
+						[<a class="rubrique" href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
+						<ul>
+							<BOUCLE_breves-dans-rubrique(BREVES) {id_rubrique} {par date}>
+								<li><a class="breve" href="#URL_BREVE"><span class="date">[[(#DATE|affdate{'d-m-Y'})]] </span> #TITRE</a></li>
+							</BOUCLE_breves-dans-rubrique>
+						</ul>
+					</li>
+				</ul>
+			</B_breves-dans-rubrique>
+		</BOUCLE_rubrique-racine>
+	</B_rubrique-racine>
+	</div>
 </div>
-</div>
 
-<INCLURE(footer.php3)>
+<INCLURE(inclusions/footer.php3)>
 
 </body>
 </html>

@@ -31,77 +31,75 @@ de ce squelette.
 
 -->
 
-<BOUCLE_auteur_principal(AUTEURS) {id_auteur}>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<BOUCLE_auteur_principal(AUTEURS) {id_auteur}>
+
 <html lang="#LANG">
-<head>
-<title>[#NOM_SITE_SPIP] Auteur : #NOM</title>
-<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
-<link rel="stylesheet" href="[(#DOSSIER_SQUELETTE)]/styles/style.css" type="text/css">
-<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="backend.php3">
-<link rel="shortcut icon" href="[(#DOSSIER_SQUELETTE)]/rblack.ico">
-</head>
+
+<INCLURE(inclusions/header.php3){id_auteur}>
 
 <body dir="#LANG_DIR">
 
-<INCLURE(bandeau.php3)>
+<INCLURE(inclusions/bandeau.php3)>
 
-<INCLURE(bande-chemin.php3)>
+<INCLURE(inclusions/bande-chemin.php3)>
 
-<INCLURE(bloc-gauche.php3)>
+<INCLURE(inclusions/bloc-gauche.php3)>
 
-<!-- ================================== BLOC DE DROITE  ================================== -->
+[(#NOOP) <!-- ================================== BLOC DE DROITE  ================================== --> ]
 
-<div class="droite">
+<div id="droite" class="droite">
 
-<INCLURE(bloc-droite-all-news.php3)>
+<INCLURE(inclusions/bloc-droite-all-news.php3)>
 
 </div>
 
-<!-- ================================== BLOC CENTRAL  ================================== -->
+[(#NOOP) <!-- ================================== BLOC CENTRAL  ================================== --> ]
 
-<div class="centre">
+<div id="centre" class="centre">
 <div class="sommaire">
 
-     <div class="auteur">
-          [<div class="image">(#LOGO_AUTEUR||reduire_image{100})</div>]
-          [<div class="nom">(#NOM)</div>]
-          [<div class="bio">(#BIO)</div>]
-          [sur le web : <a href="#URL_SITE">(#NOM_SITE)</a>]
-          [<div class="tchak"><:envoyer_message:></div>(#FORMULAIRE_ECRIRE_AUTEUR)]
+	<div class="auteur">
+		[<div class="image">(#LOGO_AUTEUR||reduire_image{100})</div>]
+		[<div class="nom">(#NOM)</div>]
+		[<div class="bio">(#BIO)</div>]
+		[sur le web : <a href="#URL_SITE">(#NOM_SITE)</a>]
+		[<div class="tchak"><:envoyer_message:></div>(#FORMULAIRE_ECRIRE_AUTEUR)]
 
-     </div>
+	</div>
 
 <!-- articles publies par l'auteur -->
 
-     <div class=derniers-articles>
-          <div class="en-tete">Articles publi&eacute;s</div>
-	  <BOUCLE_article(ARTICLES){id_auteur}{par date}{inverse}>
-	       <div class="annonce">
-	           [<div class=image>(#LOGO_ARTICLE||reduire_image{150})</div>]
-	           <div class="detail">[(#DATE|nom_jour)] [(#DATE|affdate)]<br>
-                   </div>
-	           <div class="chemin">
-	                  <BOUCLE_rubrique-mere(RUBRIQUES){id_rubrique}>
-                                [<a HREF="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
-                          </BOUCLE_rubrique-mere>
-                   </div>
-                   [<div class="surtitre">(#SURTITRE)</div>]
-	   	   [<a class="titre" href="#URL_ARTICLE" title="lire la suite de l'article">(#TITRE|supprimer_numero)</a>]
-		   [<div class="soustitre">(#SOUSTITRE)</div>]
-		   <div class="introduction">
-                        #INTRODUCTION
-		        <br><br>
-                        <a href="#URL_ARTICLE">lire la suite de l'article</a>
-                   </div>
-	       </div>
-	   </BOUCLE_article>
-     </div>
+	<div class=derniers-articles>
+		<div class="en-tete"><:articles_auteur:></div>
+		<BOUCLE_article(ARTICLES){id_auteur}{par date}{inverse}>
+			<div class="annonce">
+				[<div class=image>(#LOGO_ARTICLE||reduire_image{150})</div>]
+				<div class="detail">[(#DATE|nom_jour)] [(#DATE|affdate)]<br></div>
+				<div class="chemin">
+					<BOUCLE_rubrique-mere(RUBRIQUES){id_rubrique}>
+						[<a HREF="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
+					</BOUCLE_rubrique-mere>
+				</div>
+				[<div class="surtitre">(#SURTITRE)</div>]
+				[<a class="titre" href="#URL_ARTICLE" title="<:lire_suite_article:>">(#TITRE|supprimer_numero)</a>]
+				[<div class="soustitre">(#SOUSTITRE)</div>]
+				<div class="introduction">
+					#INTRODUCTION
+					<br><br>
+					<a class="suite" href="#URL_ARTICLE"><:lire_suite_article:></a>
+				</div>
+			</div>
+		</BOUCLE_article>
+	</div>
 
 </div>
 </div>
-<INCLURE(footer.php3)>
+<INCLURE(inclusions/footer.php3)>
 </body>
 </html>
-</BOUCLE_auteur_principal>
 
+</BOUCLE_auteur_principal>
+<INCLURE(inclusions/404.php3)>
+<//B_auteur_principal>

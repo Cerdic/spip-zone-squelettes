@@ -32,92 +32,93 @@ de ce squelette.
 -->
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html lang="#LANG">
-<head>
-<title>[#NOM_SITE_SPIP] Sites r&eacute;f&eacute;renc&eacute;s</title>
-<INCLURE(header.php3)>
-</head>
+
+<INCLURE(inclusions/header.php3)>
 
 <body dir="#LANG_DIR">
 
-<INCLURE(bandeau.php3)>
+<INCLURE(inclusions/bandeau.php3)>
 
-<INCLURE(bande-chemin.php3)>
+<INCLURE(inclusions/bande-chemin.php3)>
 
-<INCLURE(bloc-gauche.php3)>
+<INCLURE(inclusions/bloc-gauche.php3)>
 
-<!-- ================================== BLOC DE DROITE  ================================== -->
+[(#NOOP) <!-- ================================== BLOC DE DROITE  ================================== --> ]
 
 <div id="droite" class="droite">
 
-<INCLURE(bloc-droite-all-news.php3){id_secteur}>
+<INCLURE(inclusions/bloc-droite-all-news.php3){id_secteur}>
 
 </div>
 
-<!-- ================================== BLOC CENTRAL  ================================== -->
+[(#NOOP) <!-- ================================== BLOC CENTRAL  ================================== --> ]
 
 
 <div id="centre" class="centre">
 <div class="plan">
 
 <!-- affichage des derniers articles syndiqués, classés par secteur -->
-<BOUCLE_test-syndic(SYNDIC_ARTICLES){0,1}>
 
-<B_secteurs-syndic>
-<div class="intitule">Derni&egrave;res nouvelles du web :</div>
-<BOUCLE_secteurs-syndic(RUBRIQUES){racine}{par titre}>
-  <ul>
-  <li>
-  <B_syndic-nouveaux>
-      [<a class="rubrique" href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a><br>]
-      <ul>
-      <BOUCLE_syndic-nouveaux(SYNDIC_ARTICLES) {id_rubrique}{par date}{inverse}{0,5}>
-         <li><a class="article-syndic" href="#URL_ARTICLE"><span class="date-syndic">[[(#DATE|affdate{'d-m-Y'})]]</span> [(#TITRE|couper{75})]</a></li>
-         <div class="a-propos">
-                 [Publié sur le site <span class="site-pere">(#NOM_SITE)</span>]
-                 [par <span class="auteur-pere">(#LESAUTEURS)</span>.]<br>
-                 [<span class="commentaire">(#DESCRIPTIF|supprimer_tags)</span>]
-         </div>
-      </BOUCLE_syndic-nouveaux>
-      </ul>
-  </B_syndic-nouveaux>
-  </li>
-  </ul>
-</BOUCLE_secteurs-syndic>
-</B_secteurs-syndic>
+	<BOUCLE_test-syndic(SYNDIC_ARTICLES){0,1}>
+		<B_secteurs-syndic>
+			<div class="intitule"><:recents_syndic:> :</div>
+			<BOUCLE_secteurs-syndic(RUBRIQUES){racine}{par titre}>
+				<B_syndic-nouveaux>
+					<ul>
+						<li>
+							[<a class="rubrique" href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a><br>]
+							<ul>
+								<BOUCLE_syndic-nouveaux(SYNDIC_ARTICLES) {id_rubrique}{par date}{inverse}{0,5}>
+									<li><a class="article-syndic" href="#URL_ARTICLE"><span class="date-syndic">[[(#DATE|affdate{'d-m-Y'})]]</span> [(#TITRE|couper{75})]</a></li>
+									<div class="a-propos">
+										[<:publie_sur_site:> <span class="site-pere">(#NOM_SITE)</span>]
+										[<:par_auteur:> <span class="auteur-pere">(#LESAUTEURS)</span>.]<br>
+										[<span class="commentaire">(#DESCRIPTIF|supprimer_tags)</span>]
+									</div>
+								</BOUCLE_syndic-nouveaux>
+      						</ul>
+						</li>
+					</ul>
+				</B_syndic-nouveaux>
+			</BOUCLE_secteurs-syndic>
+			<br>
+		</B_secteurs-syndic>
+	</BOUCLE_test-syndic>
 
-</BOUCLE_test-syndic>
+	<div class="intitule"><:icone_sites_references:> :</div>
 
-<div class="intitule">Tous les sites r&eacute;f&eacute;renc&eacute;s :</div>
-<BOUCLE_secteurs(RUBRIQUES){racine}{par num titre}{par titre}>
-  <ul>
-  <li>
-  <B_site-secteur>
-    [<a class="rubrique" href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
-    <div class="indentation redimensionnement">
-    <div class="web">
-    <BOUCLE_site-secteur(SITES){id_secteur}{par date}{inverse}>
-           <div class=site>
-             <a class="nom-site" href="#URL_SITE">#NOM_SITE</a>
-             [<div class="descriptif">(#DESCRIPTIF)</div>]
-             <B_syndic-recherche1>
-                  <BOUCLE_syndic-recherche1(SYNDIC_ARTICLES) {id_syndic}{par date}{inverse}{0,20}>
-                       [<a class="article-synd info" href="#URL_ARTICLE">(#TITRE*|supprimer_numero)<span>[(#DATE|nom_jour)] [(#DATE|jour)] [(#DATE|nom_mois)]</span></a>]
-                  </BOUCLE_syndic-recherche1>
-             </B_syndic-recherche1>
-           </div>
-    </BOUCLE_site-secteur>
-    </div>
-    </div>
-  </B_site-secteur>
-  </li>
-  </ul>
-</BOUCLE_secteurs>
+	<BOUCLE_secteurs(RUBRIQUES){racine}{par num titre}{par titre}>
+		<B_site-secteur>
+			<ul>
+				<li>
+					[<a class="rubrique" href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
+					<div class="indentation redimensionnement">
+						<div class="web">
+							<BOUCLE_site-secteur(SITES){id_secteur}{par date}{inverse}>
+								<div class=site>
+									<a class="nom-site" href="#URL_SITE">#NOM_SITE</a>
+									[<div class="descriptif">(#DESCRIPTIF)</div>]
+									<B_syndic-recherche1>
+										<BOUCLE_syndic-recherche1(SYNDIC_ARTICLES) {id_syndic}{par date}{inverse}{0,20}>
+											[<a class="article-synd info" href="#URL_ARTICLE">(#TITRE*|supprimer_numero)<span>[(#DATE|nom_jour)] [(#DATE|jour)] [(#DATE|nom_mois)]</span></a>]
+										</BOUCLE_syndic-recherche1>
+									</B_syndic-recherche1>
+								</div>
+								<br>
+							</BOUCLE_site-secteur>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</B_site-secteur>
+	</BOUCLE_secteurs>
 
 </div>
 </div>
 
-<INCLURE(footer.php3)>
+<INCLURE(inclusions/footer.php3)>
 
 </body>
 </html>

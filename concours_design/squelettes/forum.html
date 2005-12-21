@@ -36,29 +36,19 @@ de ce squelette.
 <BOUCLE_article_principal(ARTICLES) {id_article}>
 
 <html lang="#LANG">
-<head>
-<title>[#NOM_SITE_SPIP] [(#TITRE|textebrut)] [<:poster_message:>]</title>
-<INCLURE(header.php3)>
-</head>
+
+<INCLURE(inclusions/header.php3){id_article}>
 
 <body dir="#LANG_DIR">
 
-<INCLURE(bandeau.php3)>
+<INCLURE(inclusions/bandeau.php3)>
 
-<INCLURE(bande-chemin.php3){id_rubrique}>
+<INCLURE(inclusions/bande-chemin.php3){id_rubrique}>
 
-<INCLURE(bloc-gauche.php3){id_rubrique}>
-
-<!-- ================================== BLOC DE DROITE  ================================== -->
-
-<div id="droite" class="droite">
-
-<INCLURE(bloc-droite-secteur-news.php3){id_secteur}>
-
-</div>
+<INCLURE(inclusions/bloc-gauche.php3){id_secteur}>
 
 
-<!-- ================================== BLOC CENTRAL  ================================== -->
+[(#NOOP) <!-- ================================== BLOC CENTRAL  ================================== --> ]
 
 <div id="centre" class="centre">
 
@@ -70,7 +60,7 @@ de ce squelette.
 
 <BOUCLE_article(ARTICLES) {id_article}>
 	<div class=derniers-articles>
-          <div class="en-tete">Votre r&eacute;ponse fait suite &agrave; l'article :</div>
+          <div class="en-tete"><:reponse_suite_article:> :</div>
 	       <div class="annonce">
 	           <div class="detail">[(#DATE|nom_jour)] [(#DATE|affdate)]<br>
 	           <B_auteurs-article>
@@ -86,12 +76,12 @@ de ce squelette.
                           </BOUCLE_rubrique-mere>
                    </div>
                    [<div class="surtitre">(#SURTITRE)</div>]
-	   	   [<a class="titre" href="#URL_ARTICLE" title="lire la suite de l'article">(#TITRE|supprimer_numero)</a>]
+	   	   [<a class="titre" href="#URL_ARTICLE" title="<:lire_suite_article:>">(#TITRE|supprimer_numero)</a>]
 		   [<div class="soustitre">(#SOUSTITRE)</div>]
 		   <div class="introduction">
                         #INTRODUCTION
 		        <br><br>
-                        <a href="#URL_ARTICLE">retour à l'article</a>
+                        <a class="suite" href="#URL_ARTICLE"><:retour_article:></a>
                    </div>
 	       </div>
 	 </div>
@@ -100,7 +90,7 @@ de ce squelette.
 <div id="forum" class="forum">
 
 <BOUCLE_forum_parent(FORUMS) {id_forum}>
-	<div class="annonce-forum">En r&eacute;ponse au message :</div>
+	<div class="annonce-forum"><:reponse_suite_message:> :</div>
 	<div class="visualisation">
 
 	     <div class="titre">
@@ -109,7 +99,7 @@ de ce squelette.
 
 	     <div class="detail">
 	          [(#DATE|nom_jour)] [(#DATE|affdate)]<br>
-	          [par (#NOM)]
+	          [<:par_auteur:> (#NOM)]
 	     </div>
 
 	     <div class="texte">
@@ -128,7 +118,7 @@ de ce squelette.
 
 </div>
 </div>
-<INCLURE(footer.php3)>
+<INCLURE(inclusions/footer.php3)>
 </body>
 </html>
 

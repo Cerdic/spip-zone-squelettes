@@ -36,251 +36,220 @@ de ce squelette.
 
 <html lang="#LANG">
 
-<head>
-<title>[#NOM_SITE_SPIP] [(#TITRE|textebrut|supprimer_numero)]</title>
-<INCLURE(header.php3)>
-</head>
+<INCLURE(inclusions/header.php3){id_article}>
 
 <body dir="#LANG_DIR">
 
-<INCLURE(bandeau.php3)>
+<INCLURE(inclusions/bandeau.php3)>
 
-<INCLURE(bande-chemin.php3){id_rubrique}>
+<INCLURE(inclusions/bande-chemin.php3){id_rubrique}>
 
-<INCLURE(bloc-gauche.php3){id_rubrique}>
+<INCLURE(inclusions/bloc-gauche.php3){id_rubrique}>
 
-<!-- ================================== BLOC DE DROITE  ================================== -->
+[(#NOOP) <!-- ================================== BLOC DE DROITE  ================================== --> ]
 
-<div id="droite" class="droite">
+<div div="droite" class="droite">
 
 <!-- SPIP-1.1.1 : affichage des mots-clés associés à l'article-->
 
 <B_mots>
-  <div class="mots-cles">
-  <a class="en-tete" href="mot.php3">Mots-cl&eacute;s</a>
-  <div class="contenu">
-    <BOUCLE_mots(MOTS) {id_article} {par id_groupe}>
-    <BOUCLE_groupe(GROUPES_MOTS){id_groupe}>
-      [<div class="nom-groupe">(#TITRE) :</div>]
-    </BOUCLE_groupe>
-      <a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
-    </BOUCLE_mots>
-  </div>
-</div>
+	<div class="mots-cles">
+		<a class="en-tete" href="mot.php3"><:mots_clefs:></a>
+		<div class="contenu">
+			<BOUCLE_mots(MOTS) {id_article} {par id_groupe}>
+				<BOUCLE_groupe(GROUPES_MOTS){id_groupe}>
+					[<div class="nom-groupe">(#TITRE) :</div>]
+				</BOUCLE_groupe>
+				<a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
+			</BOUCLE_mots>
+		</div>
+	</div>
 </B_mots>
 
-<INCLURE(bloc-droite-secteur-news.php3){id_secteur}>
+<INCLURE(inclusions/bloc-droite-secteur-news.php3){id_secteur}>
 
 </div>
 
-<!-- ================================== BLOC CENTRAL  ================================== -->
+[(#NOOP) <!-- ================================== BLOC CENTRAL  ================================== --> ]
 
 <div id="centre" class="centre">
 
-<div class="contenu">
-
-<!-- Contenu : article -->
-
-<div class="article">
-               [<div class="surtitre">(#SURTITRE)</div>]
-	       [<div class="titre">(#TITRE|supprimer_numero)</div>]
-               [<div class="soustitre">(#SOUSTITRE)</div>]
-
-	       <div class="contenu">
-	           [<div class=image>(#LOGO_ARTICLE||reduire_image{150})</div>]
-	           <div class="detail">[(#DATE|nom_jour)] [(#DATE|affdate)]<br>
-	           <B_auteurs-article>
-                        <:par_auteur:>
-                        <BOUCLE_auteurs-article(AUTEURS) {id_article} {", "}>
-                              <a href="#URL_AUTEUR">#NOM</a>
-                        </BOUCLE_auteurs-article>
-                   </B_auteurs-article>
-                   </div>
-                   [<div class=chapo>sur le web : <a href=#URL_SITE>(#NOM_SITE)</a></div>]
-                   [<div class=chapo>(#CHAPO)</div>]
-		   <div class="texte">
-                        [(#TEXTE|reduire_all_images{200,x})]
-                        [<div class=post-scriptum><div class="annonce">Post-scriptum :</div>(#PS)</div>]
-                        [<div class="notes">(#NOTES)</div>]
-                        [<br><a class="repondre" href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_article:></a><br>]
-                   </div>
-	       </div>
-                         <!-- Liens vers les documents joints, à l'exclusion des images -->
-
-	                 <B_documents_article>
-	                      <div class=en-tete>Documents joints &agrave; cet article :</div>
-                              <div class="doc">
-                                   <BOUCLE_documents_article(DOCUMENTS){id_article}{extension !== jpg|png|gif}{mode=document}>
-                                         <!-- Liens vers les documents joints, à l'exclusion des images -->
-                                         <a href=#URL_DOCUMENT> #LOGO_DOCUMENT  #TITRE </a>
-                                   </BOUCLE_documents_article>
-                              </div>
-                          </B_documents_article>
-                          
-                          <!-- Liens vers les images jointes -->
-
-                          <B_images_article>
-                                   <div class=en-tete>Images jointes &agrave; cet article :</div>
-
-                                   <BOUCLE_images_article(DOCUMENTS){id_article}{extension == jpg|png|gif}{mode=document}>
-                                   <div class="images">
-                                   <div class="vignette">
-                                         <a href=#URL_DOCUMENT target="_blank" class="info"> #LOGO_DOCUMENT [<span>(#DESCRIPTIF)</span>]</a>
-                                         <ul>
-                                               <li>Taille : #LARGEUR par #HAUTEUR
-                                               <li>Poids : [(#TAILLE|taille_en_octets)]
-                                               <li>Titre : #TITRE
-                                               <li>Format : #TYPE_DOCUMENT
-                                         </ul>
-
-                                   </div>
-                                   </div>
-                                   </BOUCLE_images_article>
-
-                              <div class="spacer">&nbsp;</div>
-                          </B_images_article>
-
-</div>
+	<div class="contenu">
+	
+	<!-- Contenu : article -->
+	
+		<div class="article">
+			<a class="imprimer" href="imprimer.php3?id_article=#ID_ARTICLE" title="<:imprimer_article:>" alt="<:imprimer_article:>" target="_blank"></a>
+			[<div class="surtitre">(#SURTITRE)</div>]
+			[<div class="titre">(#TITRE|supprimer_numero)</div>]
+			[<div class="soustitre">(#SOUSTITRE)</div>]
+		
+			<div class="contenu">
+				[<div class=image>(#LOGO_ARTICLE||reduire_image{150})</div>]
+				<div class="detail">[(#DATE|nom_jour)] [(#DATE|affdate)]<br>
+				<B_auteurs-article>
+					<:par_auteur:>
+					<BOUCLE_auteurs-article(AUTEURS) {id_article} {", "}>
+						<a href="#URL_AUTEUR">#NOM</a>
+					</BOUCLE_auteurs-article>
+				</B_auteurs-article>
+			</div>
+		
+			[<div class=chapo><:sur_web:> <a href=#URL_SITE>(#NOM_SITE)</a></div>]
+			[<div class=chapo>(#CHAPO)</div>]
+		
+			<div class="texte">
+				[(#TEXTE|reduire_image{200,0})]
+				[<div class=post-scriptum><div class="annonce"><:ps:> :</div>(#PS)</div>]
+				[<div class="notes">(#NOTES)</div>]
+				[<br><a class="repondre" href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_article:></a><br>]
+			</div>
+		</div>
+	
+	<!-- Liens vers les documents joints, à l'exclusion des images -->
+	
+		<B_documents_article>
+			<div class=en-tete><:docu_article:> :</div>
+			<div class="doc">
+				<BOUCLE_documents_article(DOCUMENTS){id_article}{extension !== jpg|png|gif}{mode=document}{doublons}>
+					<a href=#URL_DOCUMENT> #LOGO_DOCUMENT  #TITRE </a>
+				</BOUCLE_documents_article>
+			</div>
+		</B_documents_article>
+	                          
+	<!-- Liens vers les images jointes -->
+	
+		<B_images_article>
+			<div class=en-tete><:img_article:> :</div>
+			<BOUCLE_images_article(DOCUMENTS){id_article}{extension == jpg|png|gif}{mode=document}{doublons}>
+				<div class="images">
+					<div class="vignette">
+						<a href=#URL_DOCUMENT target="_blank" class="info"> #LOGO_DOCUMENT [<span>(#DESCRIPTIF)</span>]</a>
+						<ul>
+							<li><:img_taille:> : #LARGEUR par #HAUTEUR
+							<li><:img_poids:> : [(#TAILLE|taille_en_octets)]
+							<li><:img_titre:> : #TITRE
+							<li><:img_format:> : #TYPE_DOCUMENT
+						</ul>
+					</div>
+				</div>
+			</BOUCLE_images_article>
+			<div class="spacer">&nbsp;</div>
+		</B_images_article>
+	
+	</div>
 
 <!-- Formulaire pour signer la pétition -->
 
-[<div id="petition" class="petition">
-     <div class="en-tete"> Signer la p&eacute;tition </div>
-     (#FORMULAIRE_SIGNATURE)
-</div>]
-
+	[<div class="petition">
+		<div class="en-tete"><:signer_petition:></div>
+		(#FORMULAIRE_SIGNATURE)
+	</div>]
 
 <!-- Signatures petition -->
 
+	<B_signatures>
+		<BOUCLE_signatures_decompte(SIGNATURES) {id_article}></BOUCLE_signatures_decompte>
+		[<div class="signatures">
+			<div class="en-tete"><:signatures_petition:>: (#TOTAL_BOUCLE)</div>
+	
+			<table>
+				<thead>
+					<tr>
+						<td><:date:></td>
+						<td><:nom:></td>
+						<td><:sites_web:></td>
+						<td><:message:></td>
+					</tr>
+				</thead>
+				<tbody>]
+		<//B_signatures_decompte>
+				<BOUCLE_signatures(SIGNATURES) {id_article} {par date} {inverse} {0,30}>
+					<tr>
+						<td class="signature-date">[(#DATE|affdate_court)]</td>
+						<td class="signature-nom">#NOM</td>
+						<td class="signature-url"><a href="#URL_SITE">[(#NOM_SITE)]</a></td>
+						[<td class="signature-message">(#MESSAGE)</td>]
+					</tr>
+				</BOUCLE_signatures>
+				</tbody>
+			</table>
+		</div>
+	</B_signatures>
 
+<!-- AFFICHAGE des articles frères : le code php permet de griser l'article en cours-->
 
-     <BOUCLE_signatures_decompte(SIGNATURES) {id_article}></BOUCLE_signatures_decompte>
-
-     [<div class="signatures">
-     <div class="en-tete"><:signatures_petition:>: (#TOTAL_BOUCLE)</div>
-
-     <table>
-     <thead>
-     <tr>
-     	<td><:date:></td>
-      	<td><:nom:></td>
-       	<td>URL</td>
-	<td><:message:></td>
-     </tr>
-     </thead>
-     <tbody>]
-     <//B_signatures_decompte>
-
-     <BOUCLE_signatures(SIGNATURES) {id_article} {par date} {inverse} {0,30}>
-     <tr>
-     	<td class="signature-date">[(#DATE|affdate_court)]</td>
-      	<td class="signature-nom">#NOM</td>
-       	<td class="signature-url"><a href="#URL_SITE">[(#NOM_SITE)]</a></td>
-       	[<td class="signature-message">(#MESSAGE)</td>]
-      </tr>
-      </BOUCLE_signatures>
-      </tbody>
-      </table>
-      </div>
-      </B_signatures>
-      
- <!-- AFFICHAGE des articles frères : le code php permet de griser l'article en cours-->
-
-<div class="articles-freres">
-      <B1>
-        <div class="en-tete">Dans la rubrique :</div>
-        <ol>
-          <BOUCLE1(ARTICLES){id_rubrique}{par date}>
-          <li class="[(#EXPOSER|en-cours,frere)]">
-          <a [(#EXPOSER|id,href)]="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a><br>
-          [<div class="date">(#DATE|affdate)</div>]<br>
-          </li>
-          </BOUCLE1>
-         </ol>
-      </B1>
-</div>
+	<div class="articles-freres">
+		<B1>
+			<div class="en-tete"><:articles_rubrique:></div>
+			<ol>
+			<BOUCLE1(ARTICLES){id_rubrique}{par date}>
+				<li class="[(#EXPOSER|en-cours,frere)]">
+					<a [(#EXPOSER|id,href)]="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a><br>
+					[<div class="date">(#DATE|affdate)</div>]<br>
+				</li>
+			</BOUCLE1>
+			</ol>
+		</B1>
+	</div>
 
 <!-- Forums -->
 
-<B_forums>
-<br>
-<div id="forum" class="forum">
-     
-    <div class="annonce-forum">Forum associ&eacute; &agrave; l'article :</div>
+	<B_forums>
+		<br>
+		<div class="forum">
+			<div class="annonce-forum"><:messages_forum:> :</div>
 
-    <BOUCLE_forums(FORUMS){id_article}{par date}{inverse}>
-    
-    <div class="visualisation">
+			<BOUCLE_forums(FORUMS){id_article}{par date}{inverse}>
+				<div class="visualisation">
+					<div class="titre">
+						#TITRE
+					</div>
+					<div class="detail">
+						[(#DATE|nom_jour)] [(#DATE|affdate)]<br>
+						[<:par_auteur:> (#NOM)]
+					</div>
+					<div class="texte">
+						#TEXTE
+						<br><br>
+						[<a href="[(#URL_SITE)]">(#NOM_SITE)</a>]
+					</div>
+				</div>
+				[<br><a class="repondre" href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a><br><br>]
 
-          <div class="titre">
-                  #TITRE
-          </div>
+				<B_forums_fils>
+					<ul>
+						<BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
+	    					<div class="visualisation">
+								<div class="titre">
+									#TITRE
+								</div>
+								<div class="detail">
+									[(#DATE|nom_jour)] [(#DATE|affdate)]<br>
+									[<:par_auteur:> (#NOM)]
+								</div>
+								<div class="texte">
+									#TEXTE
+									[<br><br>
+									<a href="[(#URL_SITE)]">(#NOM_SITE)</a>]
+								</div>
+							</div>
+							[<br><a class="repondre" href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a><br><br>]
+							<BOUCLE_Forums_Boucle(boucle_forums_fils)></BOUCLE_Forums_Boucle>
+						</BOUCLE_forums_fils>
+					</ul>
+				</B_forums_fils>
 
-          <div class="detail">
-	          [(#DATE|nom_jour)] [(#DATE|affdate)]<br>
-	          [par (#NOM)]
-          </div>
+			</BOUCLE_forums>
 
-          <div class="texte">
-                  #TEXTE
-                  <br><br>
-                  [<a href="[(#URL_SITE)]">(#NOM_SITE)</a>]
-          </div>
-           
-     </div>
-     [<br><a class="repondre" href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a><br><br>]
-
-
-     <B_forums_fils>
-    
-        <ul>
-
-    	<BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
-    
-    	<div class="visualisation">
-
-          <div class="titre">
-                  #TITRE
-          </div>
-
-          <div class="detail">
-	          [(#DATE|nom_jour)] [(#DATE|affdate)]<br>
-	          [par (#NOM)]
-          </div>
-
-          <div class="texte">
-                  #TEXTE
-                  [<br><br>
-                  <a href="[(#URL_SITE)]">(#NOM_SITE)</a>]
-          </div>
-     </div>
-     
-     [<br><a class="repondre" href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a><br><br>]
-     
-
-    	<BOUCLE_Forums_Boucle(boucle_forums_fils)></BOUCLE_Forums_Boucle>
-
-    	</BOUCLE_forums_fils>
-    	
-    	</ul>
-
-    </B_forums_fils>
-
-</BOUCLE_forums>
-
+		</div>
+	</B_forums>
+	</div>
 </div>
-
-</B_forums>
-
-
-
-</div>
-</div>
-<INCLURE(footer.php3)>
+<INCLURE(inclusions/footer.php3)>
 </body>
 </html>
 
-
 </BOUCLE_article_principal>
-<:aucun_article:>
+<INCLURE(inclusions/404.php3)>
 <//B_article_principal>

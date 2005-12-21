@@ -1,5 +1,5 @@
 <?php
 $delais = 0;
-$fond = "bloc-droite-all-news";
+$fond = "inclusions/bloc-droite-all-news";
 include ("inc-public.php3");
 ?>

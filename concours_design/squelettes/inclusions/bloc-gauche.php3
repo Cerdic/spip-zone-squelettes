@@ -1,5 +1,5 @@
 <?php
-$fond = "bande-chemin";
+$fond = "inclusions/bloc-gauche";
 $delais = 0;
 
 include ("inc-public.php3");
