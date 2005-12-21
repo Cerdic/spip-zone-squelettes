@@ -28,16 +28,19 @@
 <div class="contenu" id="principal_large">
  <!-- Une : contenu de la rubrique -->
  <div class="bord_rubrique">
-  <div class="encart_logo_gauche">[<img src="./IMG/(#LOGO_RUBRIQUE|fichier)" alt="#TITRE" ></img>]</div>
+<div class="encart_logo_gauche">  [<img src="./IMG/(#LOGO_RUBRIQUE|fichier)" alt="#TITRE" ></img><br /><br /><br />]  </div>
   <div class="encart_titre_droite">
 
    <h2>[(#TITRE|supprimer_numero)]</h2>
    [<:dernier_ajout:> : (#DATE|nom_jour)] [(#DATE|affdate).]
   </div> 
-  <!-- Articles de la rubrique -->
   <div class="encart_texte_dessous">
+   <hr />
+   
    <h1 class="structure"><:articles_rubrique:></h1>
-   <BR /><BR /> #TEXTE <BR /><BR />
+   #TEXTE <BR />
+   <hr />
+  <!-- Articles de la rubrique -->
    <BOUCLE_articles_recents(ARTICLES) {id_rubrique} {par date} {inverse}>
     <div class="liste_article">
      <div class="h2"><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a></div>
@@ -55,7 +58,7 @@
  <!-- Sous-rubriques -->
  <B_sous_rubriques>
   <div class="bord_rubrique">
-   <div class="h2"><b><:sous_rubriques:></b></div><br />
+   <div class="h2"><b><:sous_rubriques:></b></div>
    <ul class="motscles" title="<:sous_rubriques:>">
     <BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par titre}>
     <li class="menu-titre">
@@ -74,22 +77,22 @@
  <!-- Sites syndiques -->
  <B_sites>
  <div class="bord_rubrique">
-   <div class="menu-titre"> <div class="h2"><b><:sur_web:></b></div> </div>
+  <div class="menu-titre"> <div class="h2"><b><:sur_web:></b></div> </div>
   <BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
-    <ul class="motscles" title="sites syndiques">
+  <div class="bord_article">
+   <div class="bord_rubrique">
      <li>
       <h2><a href="#URL_SITE">#NOM_SITE</a></h2>
-      <div class="bord_rubrique">
       <B_syndic>
-      <ul>
+      <ul class="motscles">
        <BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {par date} {inverse} {0,2}>
-       <li class="menu-item" class="h2">><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></li>
+       <li class="menu-item" class="h2"><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></li>
        </BOUCLE_syndic>
       </ul>
       </B_syndic>
-      </div>
      </li>
-    </ul>
+   </div>
+  </div>
   </BOUCLE_sites>
  </div>
  </B_sites>
@@ -97,7 +100,7 @@
  <B_mots>
  <div class="bord_rubrique">
   <div class="menu-titre"><div class="h2"><b><:mots_clefs:></b></div></div>
-  <BOUCLE_mots(MOTS) {id_rubrique} {par titre}>
+  <BOUCLE_mots(MOTS) {id_rubrique} {par titre}{0,3}>
    <div class="bord_article">
     <div class="bord_rubrique"><div class="menu-titre"> #TYPE</div></div>
     <div class="bord_rubrique">

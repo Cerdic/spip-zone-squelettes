@@ -17,12 +17,10 @@
 <!-- media="print" permet d'utiliser cette feuille de style quand vous imprimez depuis votre navigateur -->
 <link rel="stylesheet" href="#DOSSIER_SQUELETTE/impression.css" type="text/css" media="print"/>
 <BOUCLE_head(ARTICLES){id_article}>
-<title>#TITRE</title>
-<meta name="Description" content="#DESCRIPTIF">
-<meta name="Keywords" content="<BOUCLE_keywords(MOTS){id_article}{","}>#TITRE </BOUCLE_keywords>">
-<meta name="Author" content="<BOUCLE_author(AUTEURS){id_article}{","}>#NOM </BOUCLE_author>">
+<meta name="Description" content="[(#DESCRIPTIF|textebrut)]" />
+<meta name="Keywords" content="<BOUCLE_keywords(MOTS){id_article}{","}>#TITRE </BOUCLE_keywords>" />
+<meta name="Author" content="<BOUCLE_author(AUTEURS){id_article}{","}>#NOM </BOUCLE_author>" />
 </BOUCLE_head>
-</head>
 </head>
 
 <body>
@@ -34,18 +32,18 @@
 </div>
 
 <!-- Une : derniers articles publies -->
-<div class="contenu" id="principal_large">
+<div id="principal_large">
  <div class="bord_rubrique">
 
   <div class="encart_logo_gauche">
    [<img src="./IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)" alt="#TITRE" ></img>]
-  </div><br/>
-  
+  </div> 
   <div class="encart_titre_droite">
-   <div class="surtitre">#SURTITRE</div>
-   <h1 class="titre-texte">#TITRE</h1>
+   <br />
+   <div class="surtitre"><h3>#SURTITRE</h3></div>
+   <h2>#TITRE</h2>
    [<div class="surtitre">(#SOUSTITRE)</div>]
-   [(#DATE|nom_jour)] [(#DATE|affdate).]
+   [ <h2> le (#DATE|nom_jour)] [(#DATE|affdate)</h2>]
    <div style="line-height: 0em">&nbsp;</div><!-- Bug Mozilla http://bugzilla.mozilla.org/show_bug.cgi?id=200510 -->
   </div>
 
@@ -56,7 +54,7 @@
     <div class="ps">#PS</div>
     <div class="notes">#NOTES</div>
     <BOUCLE_afficher_document(DOCUMENTS){id_document}{par date}{inverse}{mode=document}{fichier==(png|jpg|gif)$}{doublons}>
-     [<h3 class="spip">(#TITRE)</h3>]
+     [<h3>(#TITRE)</h3>]
      [<div>(#DESCRIPTIF) (#DATE)</div>]
      <div>#EMBED_DOCUMENT</div>
     </BOUCLE_afficher_document>
@@ -88,24 +86,22 @@
    [<a  href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_article:></a>]
    <br />
    <B_forums>
-    <h1 class="structure" width="200"><:Forum:></h1>
+    <h1 class="structure"><:Forum:></h1>
     <ul class="forum-total">
      <BOUCLE_forums(FORUMS){id_article}{par date}{inverse}>
-     <li>
-      <div class="forum-fil"> <div class="forum"> <div class="forum-chapo"> <div class="forum-titre">
-         <a name="forum#ID_FORUM"></a>#TITRE</div>
-         [(#DATE|affdate)][, <:par_auteur:> <a href="mailto:[(#EMAIL|antispam)]">[(#NOM)]</a>]
+      <li>
+       <a name="forum#ID_FORUM">#TITRE</a>
+       [(#DATE|affdate)][, <:par_auteur:> <a href="mailto:[(#EMAIL|antispam)]">[(#NOM)]</a>]
+       <div class="forum-item">
+        <div class="bord_article">
+         #TEXTE
+         [<div class="forum-titre"><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
+         [<div class="forum-repondre-message"> <a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a></div>]
         </div>
-        <div class="forum-item">
-         <div class="bord_article">
-          #TEXTE
-          [<div class="forum-titre"><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
-          [<div class="forum-repondre-message"> <a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a></div>]
-         </div>
-        </div>
-        <B_forums_fils>
-	<ul>
-	 <BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
+       </div>
+       <B_forums_fils>
+       <ul>
+        <BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
 	 <li>
 	  <div class="forum">
 	   <div class="forum-chapo">
@@ -119,13 +115,10 @@
 	   </div>
 	  </div>
 	  <BOUCLE_Forums_Boucle(boucle_forums_fils)></BOUCLE_Forums_Boucle>
-	 </li>
-	 </BOUCLE_forums_fils>
-	</ul>
-        </B_forums_fils>
-       </div>
-      </div>
-     </div>
+         </li>
+        </BOUCLE_forums_fils>
+       </ul>
+       </B_forums_fils>
     </li>
     </BOUCLE_forums>
    </ul>
