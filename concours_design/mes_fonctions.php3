@@ -1,3 +1,3 @@
 <?php
-   $GLOBALS['dossier_squelettes'] = 'squelette-sarka-spip';
+   // $GLOBALS['dossier_squelettes'] = 'squelette-sarka-spip';
 ?>
