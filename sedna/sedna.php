@@ -1,6 +1,6 @@
 <?php
 
-	define('_SPIP_PATH', './:sedna/');
+	define('_SPIP_PATH', './:squelettes/:sedna/:formulaires/:dist/');
 	include('ecrire/inc_version.php3');
 	if (@file_exists('ecrire/inc_cookie.php'))
 		include_ecrire('inc_cookie.php');
