@@ -7,7 +7,8 @@
 <channel>
 	<title>[(#NOM_SITE_SPIP|texte_backend)]</title>
 	<link>#URL_SITE_SPIP/</link>
-	<description></description>
+        <managingEditor>feeder@waisse.org</managingEditor>
+	<description>Les news libres du nouveau monde [RC:1bec7cb5]</description>
 	<language>#LANG</language>
 
 	<image>
@@ -17,26 +18,22 @@
 		<description></description>
 	</image>
 
-	<BOUCLE_10recents(SYNDIC_ARTICLES){par date}{inverse}{0,10}{unique}>
+	<BOUCLE_10recents(SYNDIC_ARTICLES){id_syndic?}{par date}{inverse}{0,10}{unique}>
 		<item>
-		<title>[(#TITRE|texte_backend)]</title>
+		<title>[(#TITRE|texte_backend|texte_script)]</title>
 		<link>#URL_ARTICLE</link>
-		<date>#DATE</date>
-		<description>[(#DESCRIPTIF|texte_backend)]</description>
-		<author>[(#LESAUTEURS|texte_backend)]</author>
+		<description>[(#DESCRIPTIF|texte_backend|texte_script)]</description>
 		<dc:date>[(#DATE|date_iso)]</dc:date>
 		<dc:format>text/html</dc:format>
 		<dc:language>#LANG</dc:language>
 		<dc:creator>[(#LESAUTEURS|texte_backend)]</dc:creator>
 		</item>
 	</BOUCLE_10recents>
-	<BOUCLE_tres_recents(SYNDIC_ARTICLES){par date}{inverse}{age<2}{unique}>
+	<BOUCLE_tres_recents(SYNDIC_ARTICLES){id_syndic?}{par date}{inverse}{age<2}{0,17}{unique}>
 		<item>
 		<title>[(#TITRE|texte_backend)]</title>
 		<link>#URL_ARTICLE</link>
-		<date>#DATE</date>
 		<description>[(#DESCRIPTIF|texte_backend)]</description>
-		<author>[(#LESAUTEURS|texte_backend)]</author>
 		<dc:date>[(#DATE|date_iso)]</dc:date>
 		<dc:format>text/html</dc:format>
 		<dc:language>#LANG</dc:language>

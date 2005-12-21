@@ -22,11 +22,12 @@
   <meta name="author" content="fullahead.org" />
   <meta name="keywords" content="reflection, fullahead, pat, OSWD, more, keywords, separated, with, commas" />
   <meta name="description" content="OSWD reflection XHTML template by fullahead.org" />
-<!-- Lien vers le backend pour navigateurs eclaires -->
-<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="backend.php3" />
+  <!-- Lien vers le backend pour navigateurs eclaires -->
+  <link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="backend.php3" />
   <title>[#NOM_SITE_SPIP]</title>
-
-  <link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/screen.css" media="screen, tv, projection" />
+  <link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/screen_aqua.css" media="screen, tv, projection" />
+<!-- Lien vers le backend pour navigateurs eclaires -->
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="backend.php3"></link>
 
 </head>
 
@@ -39,58 +40,59 @@
   <div id="header">
 
     <!-- top rounded corner -->
-    <img src="#DOSSIER_SQUELETTE/images/corner_tl.gif" alt="corner" style="float:left;" />
+    <img src="images/corner_tl.gif" alt="corner" style="float:left;" />
 
 
     <!-- Site title and subTitle -->
     <span class="title">
-      <span class="white">#NOM_SITE_SPIP</span>
+      <span class="Orange">#NOM_SITE_SPIP</span>
       <span class="subTitle">
         #URL_SITE_SPIP
       </span>
     </span>
-
+    
     <!-- Menu is displayed in reverse order from how you define it (caused by float: right) -->
-    <a href="[mailto:(#EMAIL_WEBMASTER|antispam)]" title="contact" class="lastMenuItem">Contact<span class="desc">Courriel</span></a>
+    <a href="" title="contact" class="lastMenuItem">Contact<span class="desc">Courriel</span></a>
     <a href="/ecrire" title="services">Privé<span class="desc">Rédaction</span></a>
     <a href="/" title="Accueil" class="active">Accueil<span class="desc">Bienvenue</span></a>
 
   </div>
+ <div class="bord_banner">
+  <a href="http://neoskills.com">NeoSkills</a> &nbsp;&nbsp; <a href="http://blip.ww7.be">NeoSkillsBlog</a> &nbsp;&nbsp; <a href="http://cahierspip.ww7.be">CahierSpip</a> &nbsp;&nbsp; <a href="http://wesnothfr.ww7.be">WesnothFr</a>&nbsp;&nbsp; <a href="http://pixels.ww7.be">Pixels</a> &nbsp;&nbsp; <a href="http://punbb.neoskills.org/">forums</a>
+&nbsp;&nbsp;<a href="http://www.123pagerank.com/?site=feeder.ww7.be&action=submit" target="_blank"><img src="http://www.123pagerank.com//sme_rank.php?site=feeder.ww7.be" border="0" alt="Referencement Google Gratuit - Par 123pagerank.com"></a>
+&nbsp;&nbsp; <a href="http://www.myrank.org/index.php?site=feeder.ww7.be&action=submit" target="_blank"><img src="http://www.myrank.org/sme_rank.php?site=feeder.ww7.be" border="0" width="66" height="13" alt="Google PageRank? - Afficher son PR avec MyRank.org"></a><noscript><a href='http://www.myrank.org/annuaire/' title='annuaire gratuit'>Annuaire Gratuit</a></noscript>
+ </div>
 
   <!-- Content begins -->
   <div id="content">
 
     <!-- Left side menu : side bar links/news/search/etc. -->
     <div id="contentLeft">
-	<BOUCLE_breves(BREVES) {par date} {inverse} {age<15}>	
+ <INCLURE(menu1.php3)>
+      <BOUCLE_breves(BREVES) {par date} {inverse} {age<15}>
+        <span class="header">#TITRE</span>
+        [(#TEXTE)]
+        </BOUCLE_breves>
+        <BOUCLE_breves_derniere(BREVES) {par date} {inverse} {0,1}>
       <p>
         <span class="header">#TITRE</span>
         [(#TEXTE|textebrut)]
       </p>
-	</BOUCLE_breves>
-	<BOUCLE_breves_derniere(BREVES) {par date} {inverse} {0,1}>	
-      <p>
-        <span class="header">#TITRE</span>
-        [(#TEXTE|textebrut)]
-      </p>
-	</BOUCLE_breves_derniere>	
-	<//B_breves>
-      <p>
-        <span class="header">Syndication</span></p>
-        <div class="menu_gauche_d"><a href="backend.php3" class="menunoItem">Fil rss</a></div>	
-      <p>
-        <span class="header">Carnets inscrits</span></p>
-        <BOUCLE_syndic_sites(SITES) {par date} {inverse} {tout}>
-		<div class="menu_gauche"><a href="site.php3?id_syndic=#ID_SYNDIC" class="menunoItem">#NOM_SITE</a></div>
-		</BOUCLE_syndic_sites>
-      
+        </BOUCLE_breves_derniere>
+        <//B_breves>
 
+      <b><strong>Carnets inscrits</strong></b>
+      <br />
+      <BOUCLE_syndic_sites(SITES) {par nom_site} {tout}>
+       <div class="menu_gauche"><a href="site.php3?id_syndic=#ID_SYNDIC" class="menunoItem">#NOM_SITE</a></div>
+      </BOUCLE_syndic_sites>
 
       <!-- Creates the rounded corner on the bottom of the left menu -->
+ <INCLURE(menu2.php3)>
+<INCLURE(your_ads.php3)> 
       <div class="bottomCorner">
-        <img src="#DOSSIER_SQUELETTE/images/corner_sub_br.gif" alt="bottom corner" class="vBottom"/>
+        <img src="images/corner_sub_br.gif" alt="bottom corner" class="vBottom"/>
       </div>
-
     </div>
 
 
@@ -98,8 +100,8 @@
     <!-- Right side main content -->
     <div id="contentRight">
 
-		<BOUCLE_syndic_dec1(SYNDIC_ARTICLES){par date} {inverse}{0,600}> </BOUCLE_syndic_dec1>
-        <p class="centre"><?php
+		<BOUCLE_syndic_dec1(SYNDIC_ARTICLES){par date} {inverse}{0,777}> </BOUCLE_syndic_dec1>
+        <br /><?	
 			global $debut_articles;
 			$total="#TOTAL_BOUCLE";	
 			for ($numero = 0; $numero < $total; $numero = $numero + 50){
@@ -111,36 +113,32 @@
 					echo "[<a href='?debut_articles=$numero'>".($numero+1)."-$num_fin</a>] ";				
 
 			}
-		?></p>
-		</B_syndic_dec1>      
-	  	<BOUCLE_syndic(SYNDIC_ARTICLES) {par date} {inverse}{debut_articles,50}>
+		?><br />
+		</B_syndic_dec1>     
+                <BOUCLE_syndic(SYNDIC_ARTICLES) {par date} {inverse}{debut_articles,50}>
         [<p><span class="header_date">[(#DATE|nom_jour)] le (#DATE|affdate|unique)</span></p>]
-	<p><span class="header">[(#DATE|affdate{'H:i'})] - <a href="#URL_ARTICLE"> [(#TITRE*)]</a></span>
-		[(#DESCRIPTIF|textebrut)]
-		[ &mdash; <em>(#TAGS)</em>]
-		<a href="#URL_ARTICLE">(Lire la suite)</a><br />
-		[par: <a>(#LESAUTEURS)</a>]
-		en provenance du carnet: <a href="#URL_SITE">#NOM_SITE</a>
-		::
-		<BOUCLE_rss(SITES){id_syndic}><a href="#URL_SYNDIC">RSS</a></BOUCLE_rss></p>
-		</BOUCLE_syndic>
-		<BOUCLE_syndic_dec2(SYNDIC_ARTICLES){par date} {inverse}{0,600}> </BOUCLE_syndic_dec2>
-        <p class="centre"><?php
-			global $debut_articles;
-			$total="#TOTAL_BOUCLE";		
-			for ($numero = 0; $numero < $total; $numero = $numero + 50){
-				$num_fin = $numero + 50;
-				if ($num_fin > $total) $num_fin = $total;
-				if ($numero == $debut_articles)
-					echo " [".($numero+1)."-$num_fin]  ";
-				else
-					echo "[<a href='?debut_articles=$numero'>".($numero+1)."-$num_fin</a>] ";				
+                <p><span class="header">[(#DATE|affdate{'H:i'})] -<a href="#URL_ARTICLE"> [(#TITRE*)]</a></span>
+                [(#DESCRIPTIF|textebrut)] <a href="#URL_ARTICLE">(Lire la suite)</a><br />
+                par: <a>#LESAUTEURS</a> en provenance du carnet: <a href="#URL_SITE">#NOM_SITE</a> :: <BOUCLE_rss(SITES){id_syndic}><a href="#URL_SYNDIC">RSS</a></BOUCLE_rss></p>
+                </BOUCLE_syndic>
+                <BOUCLE_syndic_dec2(SYNDIC_ARTICLES){par date} {inverse}{0,777}> </BOUCLE_syndic_dec2>
+        <p class="centre"><?
+                        global $debut_articles;
+                        $total="#TOTAL_BOUCLE";
+                        for ($numero = 0; $numero < $total; $numero = $numero + 50){
+                                $num_fin = $numero + 50;
+                                if ($num_fin > $total) $num_fin = $total;
+                                if ($numero == $debut_articles)
+                                        echo " [".($numero+1)."-$num_fin]  ";
+                                else
+                                        echo "[<a href='?debut_articles=$numero'>".($numero+1)."-$num_fin</a>] ";
 
-			}
-		?></p>
-		</B_syndic_dec2>
+                        }
+                ?></p>
+                </B_syndic_dec2>
+
       <!-- Creates bottom left rounded corner -->
-      <img src="#DOSSIER_SQUELETTE/images/corner_sub_bl.gif" alt="bottom corner" class="vBottom"/>
+      <img src="images/corner_sub_bl.gif" alt="bottom corner" class="vBottom"/>
 
     </div>
 
@@ -152,7 +150,7 @@
   <div id="footer">
 
     <div id="footerLeft">
-      &nbsp;&nbsp;design <a href="http://oswd.org/userinfo.phtml?user=snop" title="OSWD design work">snop</a> <span class="grey">+</span> photo <a href="http://www.sxc.hu/browse.phtml?f=profile&amp;l=plasticboy&amp;p=1" title="stock.xchng">plasticboy</a> <span class="grey">=</span> valid <a href="http://validator.w3.org/check?uri=#URL_SITE_SPIP" title="validate XHTML">XHTML</a> &amp; <a href="http://jigsaw.w3.org/css-validator" title="validate CSS">CSS</a>
+      &nbsp;&nbsp;design <a href="http://oswd.org/userinfo.phtml?user=snop" title="OSWD design work">snop</a> <span class="grey">+</span> photo <a href="http://www.sxc.hu/browse.phtml?f=profile&amp;l=plasticboy&amp;p=1" title="stock.xchng">plasticboy</a> <span class="grey">=</span> valid <a href="http://validator.w3.org/check?uri=referer" title="validate XHTML">XHTML</a> &amp; <a href="http://jigsaw.w3.org/css-validator" title="validate CSS">CSS</a>
     </div>
 #SPIP_CRON
     <div id="footerRight">
