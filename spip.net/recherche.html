@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>[ #NOM_SITE_SPIP ]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
+<link rel="stylesheet" href="spip_style.css" type="text/css" />
+<style>
+<!--
+	a {text-decoration: none; }
+	a:hover {text-decoration: underline;}
+	a.voirsquel {color: #ffffff;}
+	a.voirsquel:hover {color: #999999; text-decoration: none;}
+	.droit {
+		font-family : verdana,helvetica,sans-serif;
+		font-size : medium;
+	}
+	.droitpetit {
+		font-family : verdana,helvetica,sans-serif;
+		font-size : small;
+	}
+	.droitxpetit {
+		font-family : verdana,helvetica,sans-serif;
+		font-size : x-small;
+	}
+	.memerub {
+		font-family : verdana,helvetica,sans-serif;
+		font-size : x-small;
+	}
+	.grostitre {
+		font-family : georgia,times,serif;
+		font-size : xx-large;
+		font-style: bold;
+		color: #666666;
+		text-align: center;
+		font-variant: small-caps;
+	}
+	.titrerubrique {
+		font-family : georgia,times,serif;
+		font-size : large;
+		font-style: bold;
+		color: #666666;
+		font-variant: small-caps;
+	}
+	.encadrer_gauche {
+		text-align: center;
+		border: 1px solid #aaaaaa;
+		padding: 5px;
+		width: 100%;
+		background-color: #dddddd;
+	}
+	.cadrerubrique {
+		border: 1px solid #600051;
+		padding: 5px;
+		width: 100%;
+		background-color: #ffffff;
+	}
+	.encadrerdescriptif {
+		border: 1px solid #aaaaaa;
+		padding: 5px;
+		background-color: #eeeeee;
+	}
+	.encadrerblanc {
+		border: 1px solid #aaaaaa;
+		padding: 5px;
+		background-color: #ffffff;
+	}
+	
+-->
+</style>
+
+</head>
+
+<body dir="#LANG_DIR" bgcolor="#ffffff" text="#000000" link="#600051" vlink="#5832B7" alink="#ff9900">
+<center><table width="750">
+<tr width="750">
+<td width="150" valign="middle" align="#LANG_LEFT">
+
+<a href="#URL_SITE_SPIP"><img src="img_interface/logo-spip.jpg" alt="SPIP" width="150" height="95" border="0" /></a>
+
+</td>
+<td width="50"></td>
+
+<td width="500" align="#LANG_LEFT">
+
+	<br /><br /><center><img src="img_interface/spip-haut.jpg" alt="SPIP ecureuil" width="403" height="137" border="0" /></center><br /><br />
+
+	<br /><br />
+	<div class="grostitre">[(#RECHERCHE)]</div>
+	<br />
+	
+
+	<br />
+	
+</td></tr>
+
+<B_rub_test>
+<BOUCLE_rub_test(RUBRIQUES){id_rubrique}>
+<tr width="750">
+<td width="150" valign="top" align="#LANG_LEFT" rowspan="2">
+	<br /><br /><br />
+	<form action='recherche.php3' method='get' name='form_rech' class="encadrerdescriptif">
+	<input type='text' id='formulaire_recherche' name='recherche' value="#RECHERCHE" size='20' class='formrecherche'>
+	<div class="droitxpetit"><input type="radio" id="limite" CHECKED name="id_rubrique" value="#ID_RUBRIQUE" /> <label for="limite">[(#LANG|afficher_nom_langue)]</label></div>
+	<div class="droitxpetit"><input type="radio" id="tout" name="id_rubrique" value="0" /> <label for="tout"><:rechercher_tout_site:></label></div>
+	<div align="#LANG_RIGHT"><input class="droitxpetit" type="submit" name="Valider" value="<:rechercher|attribut_html:>" /></div>
+	</form>
+
+</td>
+<td width="50"></td>
+
+<td width="500" align="#LANG_LEFT" valign="top">
+		<BOUCLE_test_art(ARTICLES){recherche}{id_secteur}{par points}{inverse}{0,20}>
+
+			<br /><div class="droit">
+				<BOUCLE_rub(RUBRIQUES){id_rubrique}>
+					<div class="droitxpetit">[(#TITRE|supprimer_numero)] <span class="droitxpetit" style="color: #999999;">[[(#DATE|affdate)]]</span></div>
+				</BOUCLE_rub>
+				<img src="img_interface/carre-violet.gif" border="0"> 
+				<a href="#URL_ARTICLE"><b>[<span class="droitpetit">(#SURTITRE)</span><br />][(#TITRE|supprimer_numero)][<br /><span class="droitpetit">(#SOUSTITRE)</span>]</b></a></div>
+				
+				[<div class="droitpetit" style="padding-#LANG_LEFT:40px">
+				(#DESCRIPTIF)
+				</div>]
+				</div>
+		</BOUCLE_test_art>
+		
+		
+		
+		<//B_test_art>
+</td></tr>
+</BOUCLE_rub_test>
+
+</B_rub_test>
+
+
+<tr width="750">
+<td width="150" valign="top" align="#LANG_LEFT" rowspan="2">
+
+	<br /><br /><br />
+	<form action='recherche.php3' method='get' name='form_rech' class="encadrerdescriptif">
+	
+	
+	<input type='text' id='formulaire_recherche' name='recherche' value="#RECHERCHE" size='20' class='droitpetit'>
+	<BOUCLE_toutes_langues(RUBRIQUES){id_parent=0}{id_rubrique!=4}>
+	<div class="droitxpetit"><input type="radio" id="limite#ID_RUBRIQUE" CHECKED name="id_rubrique" value="#ID_RUBRIQUE" /> <label for="limite#ID_RUBRIQUE">[(#LANG|afficher_nom_langue)]</label></div>
+	</BOUCLE_toutes_langues>
+	<div class="droitxpetit"><input type="radio" id="tout" CHECKED name="id_rubrique" value="0" /> <label for="tout"><:rechercher_tout_site:></label></div>
+	
+	<div align="#LANG_RIGHT"><input class="droitxpetit" type="submit" name="Valider" value="OK" /></div>
+	</form>
+
+</td>
+<td width="50"></td>
+
+<td width="500" align="#LANG_LEFT" valign="top">
+		<BOUCLE_test_art2(ARTICLES){recherche}{par points}{inverse}{0,20}>
+
+			<br /><div class="droit">
+				<BOUCLE_rub2(RUBRIQUES){id_rubrique}>
+					<div class="droitxpetit"><span dir="#LANG_DIR">[(#TITRE|supprimer_numero)]</span> <span class="droitxpetit" style="color: #999999;" dir="#LANG_DIR">[[(#DATE|affdate)]]</span></div>
+				</BOUCLE_rub2>
+				<img src="img_interface/carre-violet.gif" border="0"> 
+				<a href="#URL_ARTICLE"><b>[<span class="droitpetit">(#SURTITRE)</span><br />][(#TITRE|supprimer_numero)][<br /><span class="droitpetit">(#SOUSTITRE)</span>]</b></a></div>
+				
+				[<div class="droitpetit" style="padding-#LANG_LEFT:40px">
+				(#DESCRIPTIF)
+				</div>]
+				</div>
+		</BOUCLE_test_art2>
+		
+		
+		
+		<//B_test_art2>
+</td></tr>
+
+<//B_rub_test>
+
+
+
+<tr width="750">
+<td width="150"></td>
+<td width="50"></td>
+
+<td width="500">
+</td>
+</tr>
+
+</table></center>
+
+<br /><br /><br />
+<div class="droitpetit" align="#LANG_RIGHT"><a href="recherche.html" class='voirsquel'><:squelette:> <img src="img_interface/papillon.gif" alt="" align="middle" width="64" height="33" border="0" /></a></div>
+<br /><br /><br />
+
+
+
+</body>
+</BOUCLE_rubrique_principale>
+</html>

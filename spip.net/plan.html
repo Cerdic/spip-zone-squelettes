@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>[ #NOM_SITE_SPIP ]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
+<?php include ('entete.html'); ?>
+
+<style type="text/css" media="all">@import url(css/baseadoc.css);</style>
+<link rel="alternate stylesheet" type="text/css" media="screen" title="friendly fonts" href="css/baseadocami.css" />
+<link rel="stylesheet" type="text/css" media="print" href="css/print.css" />
+
+<!-- Ceci est la feuille de style du calendrier -->
+<link rel="stylesheet" href="css/calendrier.css" type="text/css">
+
+<!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
+<link rel="stylesheet" href="css/spip_style.css" type="text/css">
+
+<!-- Les feuilles de style specifiques aux presents squelettes -->
+<link rel="stylesheet" href="css/typographie.css" type="text/css">
+
+<!-- media="..." permet de ne pas utiliser ce style sous Netscape 4 (sinon plantage) -->
+<link rel="stylesheet" href="css/habillage.css" type="text/css" media="print, projection, screen, tv">
+
+</head>
+
+<body>
+<!-- No browser nag here. Who am I to tell you what user agent to use? -->
+<!-- Thank you, Paul Freeman, Dave Elfving, and Matt McIrvin. -->
+
+<div id="Header">
+	<h1 id="headerLogo"><strong><a  title="Retour au sommaire" href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></strong></h1>
+</div>
+
+<!-- The extra DIV is needed to overcome a shortcoming in Opera/Win. Please forgive me. -->
+<div id="Main">
+<div id="Content">
+		
+		
+<!-- Begin the log proper -->
+<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
+
+<div class="plan-secteur">
+
+	[(#LOGO_RUBRIQUE|left)]<h1><a href="#URL_RUBRIQUE">#TITRE</a></h1>
+
+	<div class="encart">
+
+	<!-- Breves -->
+
+	<h2 class="structure">Br&egrave;ves</h2>
+
+	<B_breves>
+	<div class="menu">
+	<div class="breves">
+		<div class="menu-titre">
+		Br&egrave;ves
+		</div>
+		<ul>
+	<BOUCLE_breves(BREVES) {id_secteur} {par date} {inverse} {0,15}>
+		<li class="menu-item">
+		<i>[(#DATE|affdate_court)]</i>:
+		<a href="#URL_BREVE">#TITRE</a>
+		</li>
+	</BOUCLE_breves>
+		</ul>
+	</div>
+	</div>
+	</B_breves>
+
+	<!-- Sur le Web -->
+
+	<h2 class="structure">Sites Web</h2>
+
+	<B_sites>
+	<div class="menu">
+	<div class="divers">
+		<div class="menu-titre">
+		Sur le Web
+		</div>
+		<ul>
+	<BOUCLE_sites(SITES) {id_secteur} {par nom_site}>
+		<li class="menu-item">
+		<a href="#URL_SITE">#NOM_SITE</a>
+		</li>
+	</BOUCLE_sites>
+		</ul>
+	</div>
+	</div>
+	</B_sites>
+
+	</div>
+
+<!-- Articles et sous-rubriques -->
+
+<h2 class="structure">Articles</h2>
+
+<B_articles_racine>
+<ul class="plan-articles">
+
+<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
+<li class="plan-article"><a href="#URL_ARTICLE">#TITRE</a></li>
+</BOUCLE_articles_racine>
+
+</ul>
+</B_articles_racine>
+
+<B_rubriques>
+
+<ul class="plan-rubriques">
+
+<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+<li>
+<div class="plan-rubrique"><a href="#URL_RUBRIQUE">#TITRE</a></div>
+
+	<B_articles>
+	<ul class="plan-articles">
+	<BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
+	<li class="plan-article"><a href="#URL_ARTICLE">#TITRE</a></li>
+	</BOUCLE_articles>
+	</ul>
+	</B_articles>
+
+	<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+
+</li>
+</BOUCLE_rubriques>
+
+</ul>
+</B_rubriques>
+
+
+</div>
+
+</BOUCLE_secteurs>
+
+
+<!-- End said log -->
+
+</div><!-- End Content -->
+</div><!-- End Main -->
+
+<div id="Menu">
+
+		<!-- Menu de navigation general -->
+
+		<div class="menu">
+		
+		<!-- Formulaire de recherche -->
+
+		<div>[(#FORMULAIRE_RECHERCHE)]</div>
+		
+		<h2>Navigation</h2>
+			<ul class="rubriques">
+			<li class="menu-item">
+	<a href="ecrire" title="Acc&eacute;der &agrave; l'espace r&eacute;serv&eacute; aux r&eacute;dacteurs">Administration</a>
+			</li>
+			</ul>
+		</div>
+		
+		<div id="calendrier"><INCLURE(calendrier.php3)></div>
+
+
+</div>
+
+<div id="Copyright">
+  <span id="copyrightText">&copy;2003&nbsp;#NOM_SITE_SPIP</span> </div>
+
+<!-- Just some window dressing here. -->
+<div id="headerOverlap"></div>
+</body>
+</html>
