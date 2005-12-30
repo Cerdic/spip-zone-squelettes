@@ -31,7 +31,8 @@ function smileys($chaine) {
 	$repertoire = $GLOBALS[ 'dossier_squelettes' ] . "/emoticones/" ;
 	$listfich = opendir($repertoire) ;
 	while ( $fich = readdir($listfich) ) {
-		if( ( $fich != '..' ) and ( $fich != '.' ) and ( $fich != '.DS_Store' ) ) { 
+		if(($fich !='..') and ($fich !='.') and ($fich !='.test') and preg_match(',\.(gif|jpg|png)$,', $fich)) 
+		{ 
 			$nomfich = substr($fich,0,strrpos($fich, ".")) ;
 			$listimag[$nomfich] = '<img class="smiley" alt="smiley" src="' . $repertoire . '' . $fich . '" />' ;
 		}
