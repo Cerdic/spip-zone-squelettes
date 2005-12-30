@@ -40,7 +40,7 @@ function fKeyDown()	{
 <div id="page">
 
 	<?php	
-		include ("blip/inclusions/inc_structure_entete_wiki.php3");
+		include ("blip/inclusions/inc_structure_entete_sedna.php3");
 	?> 	
 
 	<div id="contenu_principal_wiki">

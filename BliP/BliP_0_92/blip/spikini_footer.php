@@ -24,7 +24,7 @@
 
 
 	<?php
-	include ("blip/inclusions/inc_structure_pied_de_page.php3");
+	include ("blip/inclusions/inc_structure_pied_de_page_wiki.php3");
 	?> 	
 
 </div><!-- fin page -->

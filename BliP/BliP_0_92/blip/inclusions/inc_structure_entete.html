@@ -64,7 +64,7 @@
 	</BOUCLE_auteur>
 
 
-	<BOUCLE_liens(RUBRIQUES) {id_rubrique} {id_secteur=6} >
+	<BOUCLE_liens(RUBRIQUES) {id_rubrique} {id_secteur=5} >
 		<?php $liensencours = "#ID_RUBRIQUE"; ?>
 		<BOUCLE_hierarchie_rubrique_liens(HIERARCHIE) {id_rubrique}>
 			&nbsp;&gt;&nbsp;
@@ -75,8 +75,8 @@
 		&nbsp;&gt;&nbsp;
 		<a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>
 		[(#TITRE|supprimer_numero)]
-		[	(#ID_RUBRIQUE|=={'6'}|?{' ',''})
-			: <INCLURE(inclusions/inc_decompte_sites.php3)> sites référencés
+		[	(#ID_RUBRIQUE|=={'5'}|?{' ',''})
+			: <INCLURE(inclusions/inc_decompte_albums_photos.php3) {id_rubrique}> albums
 		]
 		</a>	
 	</BOUCLE_liens>
@@ -87,7 +87,7 @@
 		<a href="#URL_SITE_SPIP/rubrique.php3" title="Parcourir les rubriques">
 		Liste des rubriques
 		</a>
-	<BOUCLE_rubrique(RUBRIQUES) {id_rubrique}  {id_secteur!=6} >
+	<BOUCLE_rubrique(RUBRIQUES) {id_rubrique}  {id_secteur!=5} >
 		<BOUCLE_hierarchie_rubrique(HIERARCHIE) {id_rubrique}>
 			&nbsp;&gt;&nbsp;
 			<a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>
@@ -100,7 +100,9 @@
 		</a>
 	</BOUCLE_rubrique>
 
+
 	[(#REM) Merci à Pierre Andrews pour le coup de main sur la fin de cette page ]
+
 
 	[	(#ENV{type_page}|=={articles}|?{' ',''})
 		<a href="#URL_SITE_SPIP/article.php3" title="Découvrir les articles proposés">
@@ -138,6 +140,12 @@
 		<INCLURE(inclusions/inc_wiki_identification.php3)>
 	]
 
+	[	(#ENV{type_page}|=={sedna}|?{' ',''})
+		&nbsp;&gt;&nbsp;
+		<a href="#URL_SITE_SPIP/sedna/ "title="Lecteur de flux RSS sous SPIP">
+		Sedna
+		</a>
+	]
 
 	[	(#ENV{type_page}|=={auteurs}|?{' ',''})
 		&nbsp;&gt;&nbsp;
