@@ -21,10 +21,6 @@ if ($this->GetMethod() != 'show' || isset($_REQUEST["time"]))
 include ("blip/inclusions/inc_structure_css.php3");
 ?>
 
-<?php
-include ("blip/inclusions/inc_structure_spikini_css.php3");
-?>
-
 <script type="text/javascript">
 function fKeyDown()	{
 	if (event.keyCode == 9) {
