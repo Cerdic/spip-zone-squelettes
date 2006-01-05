@@ -129,7 +129,7 @@
 			class=\"link$class_link\"
 			id=\"news$id_lien\"
 			rel=\"bookmark\">",
-		$titre, "</span></a>",
+		$titre, "</a></span>",
 		$lesauteurs,
 		"\n<span class=\"source\"><a href=\"",
 		$GLOBALS['url_site_'.$id_syndic]."\">",
