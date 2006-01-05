@@ -19,11 +19,29 @@
 	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
 	<link rel="stylesheet" href="spip_style.css" type="text/css" />
 	<link rel="stylesheet" href="#DOSSIER_SQUELETTE/hBones.css" type="text/css" />
+	<!-- link rel="stylesheet" href="http://alternat.celeonet.fr/atelier/hBones.css" type="text/css" / -->
 	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
 	<link rel="alternate" type="application/rss+xml" title="RSS"
 		href="#URL_SITE_SPIP/backend.php3" />
 </head>
 <body>
+[(#FORMULAIRE_RECHERCHE|./)]
+[
+	(#REM) Outils de navigation primaire (haut du flux HTML)
+	le lien vers la rubrique contenante est rel-directory
+	<http://microformats.org/wiki/rel-directory> (???)
+]
+
+<ul class="breadcrumb">
+	<li><a href="#URL_SITE_SPIP/">#NOM_SITE_SPIP</a></li>
+<BOUCLE_hierarchie(HIERARCHIE){id_article}>
+	<li><a href="#URL_RUBRIQUE"[
+	(#COMPTEUR_BOUCLE|=={#TOTAL_BOUCLE}|?{rel="directory",''})]>#TITRE</a></li>
+</BOUCLE_hierarchie>
+</ul>
+
+
+
 [
 	(#REM) Un article peut etre considere comme un "blog-post"
 	<http://microformats.org/wiki/blog-post-brainstorming>
@@ -34,6 +52,7 @@
 
 
 [(#REM) "entry" = bloc article]
+<div class="feed">
 <div class="entry" id="article-#URL_ARTICLE">
 
 [(#REM) class="content" => contenu de l'article (pas ses meta-donnees)]
@@ -42,7 +61,10 @@
 	[<h2 class="content toptitle">(#SURTITRE)</h2>]
 
 	[<h1 class="content title">(#TITRE)</h1>]
-
+	[
+		(#REM) Auteurs
+	]
+	<INCLURE(page.php3){fond=auteurs}{id_article}>
 	[(#REM) la date doit figurer dans un format lisible par une machine
 		<http://microformats.org/wiki/datetime-design-pattern>
 	]
@@ -51,17 +73,17 @@
 		[(#DATE|nom_jour)] (#DATE|affdate), [(#DATE|heures):][(#DATE|minutes)]
 	</abbr>]
 
+
+	
+	
 	[<h2 class="content subtitle">(#SOUSTITRE)</h2>]
 
+	
 	[<div class="content deck">(#CHAPO)</div>]
 
-	[
-		(#REM) Auteurs
-	]
-	<INCLURE(page.php3){fond=auteurs}{id_article}>
 
 
-	[<div class="content text">(#TEXTE)</div>]
+	[<div class="content text">[<div class="spip_logos">(#LOGO_ARTICLE|right)</div>](#TEXTE)</div>]
 
 
 	[
@@ -87,6 +109,7 @@
 
 
 </div>[(#REM) /entry]
+</div>[(#REM) /feed]
 
 [
 	(#REM) Forums
