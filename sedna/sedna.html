@@ -1,4 +1,4 @@
-<INCLURE(sedna_header.php){id_syndic}{recherche}>
+<INCLURE(page.php3){fond=sedna_header}{id_syndic}{recherche}>
 
 <div class="top">
 <div class="toptitle">
@@ -166,22 +166,28 @@
 <li><a href="http://www.gnu.org/copyleft/gpl.html">copyleft - GNU/GPL</a></li>
 </ul>
 
-
-<div style="">#MENU_LANG</div>
+#MENU_LANG
 
 </div>
 
-<div class="milieu">
+
 [(#REM)
-	Voir la definition des criteres {contenu} et {tri_sedna} dans sedna.php
+	Pour la boucle principale, on se base
+	sur le microformat hAtom (voir le projet hBones)
+	<http://microformats.org/wiki/hatom>
 ]
+<div class="feed">
+
 <B_syndic>
+
 
 <div id="total_articles">
 #TOTAL_BOUCLE [(#TOTAL_BOUCLE|=={1}|?{<:sedna_liens:>,<:sedna_liens_pluriel:>})]
 </div>
 
-
+[(#REM)
+	Voir la definition des criteres {contenu} et {tri_sedna} dans sedna.php
+]
 <BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic?} {contenu} {tri_sedna} {age<=#ENV{age,1}} {0,500}>
 <?php
 	afficher_lien(
@@ -190,8 +196,8 @@
 	#ID_SYNDIC,
 	'#DATE',
 	'[(#URL_ARTICLE|attribut_html|texte_script)]',
-	'[(#TITRE*|supprimer_numero|sinon{<:ecrire:info_sans_titre:>}|nettoyer_texte)]',
-	'[ - (#LESAUTEURS*|nettoyer_texte)]',
+	'[(#TITRE|supprimer_numero|sinon{<:ecrire:info_sans_titre:>}|nettoyer_texte)]',
+	'[ - <span class="author">(#LESAUTEURS*|nettoyer_texte)</span>]',
 	'[(#DESCRIPTIF*|nettoyer_texte)][ -- (#TAGS|texte_script)][ ((#SOURCE|nettoyer_texte))]'
 	);
 ?>
@@ -253,4 +259,4 @@ title="RSS [(#NOM_SITE_SPIP|attribut_html)][ ((#ENV{recherche}|attribut_html))]"
 
 <div style='position: absolute; background-image: url("../spip_background.php3"); height: 1px; width: 1px;'></div>
 
-<INCLURE(sedna_footer.php)>
+<INCLURE(page.php3){fond=sedna_footer}>

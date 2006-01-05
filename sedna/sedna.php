@@ -115,21 +115,34 @@
 			$ex_syndic = $id_syndic;
 		}
 
-		echo "<li class='item'";
+		echo "<li class='entry'";
 		if (!$_GET['id_syndic'] AND !strlen($_GET['recherche']))
 			echo " id='item${id_syndic}_${id_syndic_article}'";
 		echo "	onmousedown=\"jai_lu('$id_lien');\">\n",
-		"<small>".affdate($date,'H:i')."</small>",
-		"<div class=\"titre\"><a href=\"$url\"
+#		"<small>".affdate($date,'H:i')."</small>",
+		"<abbr class='published'
+		title='".date_iso($date)."'>".affdate($date,'H:i')."</abbr>", 
+		"<div class=\"titre\">",
+		"<span class=\"title\">", # le "title" du microformat hAtom.feed.entry
+		"<a href=\"$url\"
 			title=\"$url\"
 			class=\"link$class_link\"
-			id=\"news$id_lien\">",
-		$titre, "</a>", $lesauteurs, "</div>";
-		
+			id=\"news$id_lien\"
+			rel=\"bookmark\">",
+		$titre, "</span></a>",
+		$lesauteurs,
+		"\n<span class=\"source\"><a href=\"",
+		$GLOBALS['url_site_'.$id_syndic]."\">",
+		$GLOBALS['nom_site_'.$id_syndic]."</a></span>\n",
+		"</div>\n";
+
 		if ($desc)
-			echo "<div class=\"desc\"><div class=\"$class_desc\" id=\"desc_".(++$iddesc)."\">\n",
-			$desc, '</div></div>';
+			echo "<div class=\"desc\">",
+			"<div class=\"$class_desc\" id=\"desc_".(++$iddesc)."\">\n",
+			"<span class=\"content\">", $desc, "</span>\n",
+			'</div></div>';
 		
+
 		echo "\n</li>\n";
 	}
 
