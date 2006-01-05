@@ -120,16 +120,16 @@
 			echo " id='item${id_syndic}_${id_syndic_article}'";
 		echo "	onmousedown=\"jai_lu('$id_lien');\">\n",
 #		"<small>".affdate($date,'H:i')."</small>",
-		"<abbr class='published'
+		"<abbr class='published updated'
 		title='".date_iso($date)."'>".affdate($date,'H:i')."</abbr>", 
 		"<div class=\"titre\">",
-		"<span class=\"title\">", # le "title" du microformat hAtom.feed.entry
 		"<a href=\"$url\"
 			title=\"$url\"
 			class=\"link$class_link\"
 			id=\"news$id_lien\"
 			rel=\"bookmark\">",
-		$titre, "</a></span>",
+		"<span class=\"title\">", # le "title" du microformat hAtom.feed.entry
+		$titre, "</span></a>",
 		$lesauteurs,
 		"\n<span class=\"source\"><a href=\"",
 		$GLOBALS['url_site_'.$id_syndic]."\">",
