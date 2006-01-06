@@ -1,0 +1,30 @@
+[(#REM) Cette noisette  fait partie de Bones Skeletor, elle permet de gerer le forum d'un article
+gros  copié-collé de la noisette de bones dotspip 1.8 ... :) ]
+<div class="inc-forum">
+  <BOUCLE_compte_messages(FORUMS){id_article}{plat}>
+  </BOUCLE_compte_messages>
+  <p><span>::</span>[(#TOTAL_BOUCLE) commentaire(s)] <strong>|</strong>
+    </B_compte_messages>
+    [<a href="forum.php3?(#PARAMETRES_FORUM)" name="forum" id="forum"><:repondre_article:></a>] </p>
+  <B_forums>
+  <h2><:forum:></h2>
+  <ul>
+    <BOUCLE_forums(FORUMS){id_article}{par date}{inverse}>
+    <li><a name="forum#ID_FORUM"></a> #TITRE [(#DATE|affdate)][, <:par_auteur:> <a href="mailto:[(#EMAIL|entites_html)]">(#NOM)</a>] [<strong><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></strong>] </li>
+    <blockquote> #TEXTE </blockquote>
+    <a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a>
+  </ul>
+  <B_forums_fils>
+  <ul>
+    <BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
+    <li> <a name="forum#ID_FORUM"></a> #TITRE [(#DATE|affdate)][, <:par_auteur:> <a href="mailto:[(#EMAIL|entites_html)]">(#NOM)</a>] [<strong><a href="(#URL_SITE)">#NOM_SITE</a></strong>] </li>
+    <blockquote> #TEXTE </blockquote>
+    [ <a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a> ]
+  </ul>
+  <BOUCLE_Forums_Boucle(boucle_forums_fils)>
+  </BOUCLE_Forums_Boucle>
+  </BOUCLE_forums_fils>
+  </B_forums_fils>
+  </BOUCLE_forums>
+  </B_forums>
+</div>
