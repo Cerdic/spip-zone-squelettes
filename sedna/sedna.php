@@ -64,7 +64,8 @@
 		$url,
 		$titre,
 		$lesauteurs,
-		$desc
+		$desc,
+		$lang
 		) {
 		static $vu, $lus, $ferme_ul, $id, $iddesc;
 		global $ex_syndic, $class_desc;
@@ -127,7 +128,9 @@
 			title=\"$url\"
 			class=\"link$class_link\"
 			id=\"news$id_lien\"
-			rel=\"bookmark\">",
+			rel=\"bookmark\"";
+		if ($lang) echo " hreflang=\"$lang\"";
+		echo ">",
 		"<span class=\"title\">", # le "title" du microformat hAtom.feed.entry
 		$titre, "</span></a>",
 		$lesauteurs,
