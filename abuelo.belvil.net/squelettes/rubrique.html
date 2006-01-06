@@ -1,0 +1,216 @@
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}
+><!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+  <meta content="text/html; charset=#CHARSET"
+ http-equiv="content-type">
+  <title>[#NOM_SITE_SPIP]</title>
+  <link rel="stylesheet" href="style/typographie.css" type="text/css">
+  <link rel="stylesheet" href="style/pagination.css" type="text/css">
+  <link rel="stylesheet" href="style/spip_style.css" type="text/css">
+
+<!-- Lien vers les jeux de couleurs variables par site -->
+
+  <link title="Site" rel="stylesheet" href="style/couleurs.css" type="text/css">
+  <link title="Bleu" rel="alternate stylesheet" href="style/couleurs.bleu.css" type="text/css">
+  <link title="Bleu &amp; jaune" rel="alternate stylesheet" href="style/couleursbleu-jaune.css" type="text/css">
+  <link title="Rouge" rel="alternate stylesheet" href="style/couleurs.rouge.css" type="text/css">
+
+<!-- Lien vers le backend pour navigateurs eclaires -->
+  <link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="backend.php3">
+</head>
+<body>
+
+<div class="page_principale">
+<div class="colonne_gauche">
+
+[(#LOGO_ARTICLE_RUBRIQUE|center||reduire_image{150})]
+
+<INCLURE(menu_general.php3){lang}>
+
+[(#FORMULAIRE_RECHERCHE)]
+
+
+<!-- Menu de navigation rubriques -->
+
+<B_rubriques>
+<div class="menu">
+<ul class="rubriques">
+<BOUCLE_rubriques(HIERARCHIE) {id_article}>
+<li class="menu-titre"><a class="cent_pct" href="#URL_RUBRIQUE&amp;lang=#LANG" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
+<B_sous_rubriques>
+	<ul class="menu-liste">
+<BOUCLE_sous_rubriques(RUBRIQUES) {meme_parent} {exclus} {par date} {inverse} {0,3}>
+	<li class="menu-item"><a class='cent_pct' href="#URL_RUBRIQUE&amp;lang=#LANG" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></li>
+</BOUCLE_sous_rubriques>
+	</ul>
+</B_sous_rubriques>
+</li>
+</BOUCLE_rubriques>
+</ul>
+</div>
+</B_rubriques>
+
+<!-- Breves dans la rubrique -->
+
+<B_breves_rubrique>
+
+<div class="menu">
+<div class="breves" title="<:dernieres_breves:>">
+	<div class="menu-titre">
+	<:breves:>
+	</div>
+	<ul>
+<BOUCLE_breves_rubrique(BREVES) {id_secteur} {par date} {inverse} {0,5}>
+	<li class="menu-item">
+	<i>[(#DATE|affdate_court)]</i>:
+	<a href="#URL_BREVE">#TITRE</a>
+	</li>
+</BOUCLE_breves_rubrique>
+	</ul>
+</div>
+</div>
+
+</B_breves_rubrique>
+
+<!--
+<form id="form-style" action="?" method="post" enctype="multipart/form-data" onchange="document.form-style.submit">
+ <fieldset>
+  <label for="css"><:styles:></label><select name="css" id="css" class="styleswitcher"><option selected="selected">Bleu</option><option>Bleu &amp; Jaune</option><option value="null">Pas de style</option></select>
+
+  <input value="Changer de style" type="submit">
+ </fieldset>
+</form>
+-->
+<!-- Logo SPIP -->
+
+<a href="http://www.spip.net"><img src="IMG/logo_spip.jpg" width="105" height="92" class="spip_logos" alt="<:site_realise_avec_spip:>"></a>
+
+
+</div>
+<div class="colonne_principale">
+
+
+<!-- Fil d'ariane -->
+
+<a href="#URL_SITE_SPIP"><:Accueil:></a>
+<B_filariane>
+<BOUCLE_filariane(HIERARCHIE) {id_rubrique}>
+ &gt; <a href="#URL_RUBRIQUE&amp;lang=#LANG" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
+</BOUCLE_filariane>
+
+<!-- Contenu de la rubrique -->
+
+
+<div class="cartouche">
+<h1 class="titre-texte">#TITRE</h1>
+[<:dernier_ajout:> : (#DATE|nom_jour)] [(#DATE|affdate).]
+</div>
+<div class="encart_blanc">
+
+
+	<!-- Menu de navigation mots-cles -->
+
+	<B_mots>
+	<div class="encart">
+
+	<div class="menu">
+	<ul class="divers" title="<:mots_clefs:>">
+	<BOUCLE_mots(MOTS) {id_rubrique} {par titre}>
+	<li>
+	<div class="menu-titre"><a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></div>
+	<B_rubriques_mots>
+		<ul class="menu-liste">
+	<BOUCLE_rubriques_mots(RUBRIQUES) {id_mot} {par hasard} {0,4}>
+		<li class="menu-item"><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|textebrut|entites_html)]">#TITRE</a></li>
+	</BOUCLE_rubriques_mots>
+		</ul>
+	</B_rubriques_mots>
+	</li>
+	</BOUCLE_mots>
+	</ul>
+	</div>
+	</div>
+	</B_mots>
+
+	
+	<!-- Sites syndiques -->
+	
+	<B_sites>
+	<div class="encart">
+	<div class="menu">
+	<div class="divers">
+		<div class="menu-titre">
+		<:sur_web:>
+		</div>
+		<ul>
+	<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
+		<li class="menu-item">
+		<a href="#URL_SITE">#NOM_SITE</a>
+		<B_syndic>
+		<ul class="menu-liste">
+		<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {par date} {inverse} {0,3}>
+			<li class="menu-item"><small><a href="#URL_ARTICLE">#TITRE</a></small></li>
+		</BOUCLE_syndic>
+		</ul>
+		</B_syndic>
+		</li>
+	</BOUCLE_sites>
+		</ul>
+	</div>
+	</div>
+	</div>
+	</B_sites>
+	[
+<div class="menu">
+    <div class="divers">
+      <div class="menu-titre"><:proposer_site:>
+	<div class='reponse_formulaire'>(#FORMULAIRE_SITE)</div>
+      </div>
+    </div>
+</div>
+]
+</div>
+
+
+[<div class="chapo">(#TEXTE)</div>]
+[<div class="notes">(#NOTES)</div>]
+
+<BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {mode=document} {doublons} {"<br />"}>
+[(#LOGO_DOCUMENT|#URL_DOCUMENT)][<br />(#TITRE)][ - (#DESCRIPTIF)]
+</BOUCLE_documents_joints>
+<br />
+
+<!-- Articles de la rubrique -->
+
+<div class="liste-articles">
+
+  <BOUCLE_exclure_trad(ARTICLES) {id_rubrique} {lang=#ENV{lang}} {"<br/>"}>
+		<BOUCLE_trad_exclus(ARTICLES){traduction}{exclus} {doublons}{" | "}>
+		</BOUCLE_trad_exclus>
+	</BOUCLE_exclure_trad>
+	
+<BOUCLE_articles_recents(ARTICLES) {id_rubrique} {par titre} {doublons}>
+	<h2><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h2>
+	<div class="detail">
+	([(#LANG|traduire_nom_langue)]) [(#DATE|nom_jour)] [(#DATE|affdate)]
+	<B_auteurs_recents><:par_auteur:> <BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_recents>
+	<B_traductions>
+	<br /><:traductions:>
+	<BOUCLE_traductions(ARTICLES){traduction} {exclus}>
+		<div class="langue">[<a href="#URL_ARTICLE" dir="#LANG_DIR">(#LANG|traduire_nom_langue)</a>]</div>
+	</BOUCLE_traductions>
+	</div>	
+	<br />
+</BOUCLE_articles_recents>
+
+
+</div>
+<div class="fin">
+</div>
+</div>
+#SPIP_CRON
+
+</body>
+</html>
+</BOUCLE_rubrique_principal>

@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+  <meta content="text/html; charset=#CHARSET"
+ http-equiv="content-type">
+  <title>[#NOM_SITE_SPIP]</title>
+  <link rel="stylesheet" href="style/typographie.css" type="text/css">
+  <link rel="stylesheet" href="style/pagination.css" type="text/css">
+  <link rel="stylesheet" href="style/spip_style.css" type="text/css">
+
+<!-- Lien vers les jeux de couleurs variables par site -->
+
+  <link title="Site" rel="stylesheet" href="style/couleurs.css" type="text/css">
+  <link title="Bleu" rel="alternate stylesheet" href="style/couleurs.bleu.css" type="text/css">
+  <link title="Bleu &amp; jaune" rel="alternate stylesheet" href="style/couleursbleu-jaune.css" type="text/css">
+  <link title="Rouge" rel="alternate stylesheet" href="style/couleurs.rouge.css" type="text/css">
+
+<!-- Lien vers le backend pour navigateurs eclaires -->
+  <link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="backend.php3">
+</head>
+<body>
+
+<div class="page_principale">
+<div class="colonne_gauche">
+
+[(#LOGO_SITE_SPIP|center||reduire_image{150})]
+
+<INCLURE(menu_general.php3){lang}>
+
+[(#FORMULAIRE_RECHERCHE)]
+
+<B_rubriques>
+<div class="menu">
+<ul class="rubriques">
+<BOUCLE_rubriques(RUBRIQUES) {racine} {par titre}>
+<li class="menu-item">
+<a class="cent_pct" href="#URL_RUBRIQUE&amp;lang=#LANG" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
+</li>
+</BOUCLE_rubriques>
+</ul>
+</div>
+</B_rubriques>
+
+<!--
+<form id="form-style" action="?" method="post" enctype="multipart/form-data" onchange="document.form-style.submit">
+ <fieldset>
+  <label for="css"><:styles:></label><select name="css" id="css" class="styleswitcher"><option selected="selected">Bleu</option><option>Bleu &amp; Jaune</option><option value="null">Pas de style</option></select>
+
+  <input value="Changer de style" type="submit">
+ </fieldset>
+</form>
+-->
+<!-- Logo SPIP -->
+
+<a href="http://www.spip.net"><img src="IMG/logo_spip.jpg" width="105" height="92" class="spip_logos" alt="<:site_realise_avec_spip:>"></a>
+
+
+</div>
+<div class="colonne_principale">
+
+<div class="encart_blanc">
+
+	<B_breves>
+	<!-- Breves -->
+	<div class="encart">
+	<div class="menu">
+	<div class="breves">
+		<div class="menu-titre">
+		<:breves:>
+		</div>
+		<ul>
+	<BOUCLE_breves(BREVES) {par date} {inverse} {0,8}>
+		<li class="menu-item">
+		<i>[(#DATE|affdate_court)]</i>:
+		<a href="#URL_BREVE">#TITRE</a>
+		</li>
+	</BOUCLE_breves>
+		</ul>
+	</div>
+	</div>
+	</div>
+	</B_breves>
+
+
+	<B_syndic>
+	<!-- Sur le Web -->
+	<div class="encart">
+	<div class="menu">
+	<div class="divers">
+		<div class="menu-titre">
+		<:sur_web:>
+		</div>
+		<ul>
+	<BOUCLE_syndic(SYNDIC_ARTICLES) {par date} {inverse} {0,5}>
+		<li class="menu-item">
+		<a href="#URL_ARTICLE">[(#TITRE*)]</a>
+		</li>
+	</BOUCLE_syndic>
+		</ul>
+	</div>
+	</div>
+	</div>
+	</B_syndic>
+
+	[<!-- Inscription au site -->
+
+		<div class="formulaire"><:participer_site:>
+			<br /><br />(#FORMULAIRE_INSCRIPTION)
+		</div>]
+
+</div>
+
+
+
+<!-- Articles recents, dans la langue de preference, forcee -->
+
+
+<!-- trad_lang_pref, trad_lang_pref2: exclure les traductions des 10 dernier articles 
+     dans la langue forcee -->
+	<BOUCLE_exclure_trad_pref(ARTICLES){par date} {inverse} {0,10} {lang}>
+		<BOUCLE_traductions_pref(ARTICLES){traduction}{exclus} 
+				{doublons trad_lang_pref} {doublons trad_lang_pref2}>
+		</BOUCLE_traductions_pref>
+	</BOUCLE_exclure_trad_pref>
+
+<!-- trad_lang_autres: exclure les traductions des 10 dernier articles, autres que les 10 derniers dans la langue forcee, dans d'autres langues que la langue forcee ou que la langue d'origine, si pas de trad en langue forcee -->
+	<BOUCLE_exclure_trad(ARTICLES) {par date} {inverse} {doublons trad_lang_pref2} {0,10}>
+		<BOUCLE_lang_pref_ex(ARTICLES) {traduction} {lang = #ENV{lang}}>
+			<BOUCLE_sel_trad_ex(ARTICLES) {traduction}{exclus}
+						{doublons trad_lang_autres}>
+			</BOUCLE_sel_trad_ex>
+		</BOUCLE_lang_pref_ex> 
+		</B_lang_pref_ex>
+			<BOUCLE_lang_origine_ex(ARTICLES) {traduction}{origine_traduction}>
+				<BOUCLE_sel_art_ex(ARTICLES) {traduction}{exclus}
+							{doublons trad_lang_autres}>
+				</BOUCLE_sel_art_ex>
+<!--				Langue de reference: #ID_ARTICLE, #LANG<br />--> 				</BOUCLE_lang_origine_ex>
+		<//B_lang_pref_ex> 
+	</BOUCLE_exclure_trad>
+
+<!-- inclure les deux articles plus recents, si possible dans la langue forcee --> 
+	<BOUCLE_article_un(ARTICLES) {par date} {inverse} {doublons trad_lang_pref} 
+					{doublons trad_lang_autres}{0,2}>
+		<BOUCLE_lang_pref(ARTICLES) {traduction} {lang = #ENV{lang}}>
+<!--			si l'article existe dans la lanue forcee -->
+			<INCLURE(article_une.php3){id_article}>
+		</BOUCLE_lang_pref> 
+		</B_lang_pref> 
+ 			<BOUCLE_lang_origine(ARTICLES) {traduction}{origine_traduction}>
+<!--				si l'article n'existe pas dans la langue forcee,
+				si l'article a des traductions on prend l'originale -->
+ 				<INCLURE(article_une.php3){id_article}>
+			</BOUCLE_lang_origine>
+<!--				si l'article n'existe pas dans la langue forcee,
+				si l'article est monolingue -->
+				<INCLURE(article_une.php3){id_article}>
+			<//B_lang_origine>
+		<//B_lang_pref> 
+	</BOUCLE_article_un>
+
+<!-- inclure les huit articles suivants, si possible dans la langue forcee --> 
+	<BOUCLE_articles_recents(ARTICLES) {par date} {inverse} {doublons trad_lang_pref}
+						 {doublons trad_lang_autres} {0,8}>
+		<BOUCLE_lang_pref2(ARTICLES) {traduction} {lang = #ENV{lang}}>
+<!--			si l'article existe dans la lanue forcee -->
+			<INCLURE(article_recents.php3){id_article}>
+		</BOUCLE_lang_pref2> 
+		</B_lang_pref2> 
+<!--			si l'article a des traductions on prend l'originale -->
+ 			<BOUCLE_lang_origine2(ARTICLES) {traduction}{origine_traduction}>
+<!--				si l'article n'existe pas dans la langue forcee,
+				si l'article a des traductions on prend l'originale -->
+ 				<INCLURE(article_recents.php3){id_article}>
+			</BOUCLE_lang_origine2>
+<!--				si l'article n'existe pas dans la langue forcee,
+				si l'article est monolingue -->
+ 				<INCLURE(article_recents.php3){id_article}>
+			<//B_lang_origine2>
+		<//B_lang_pref2> 
+	</BOUCLE_articles_recents>
+</div>
+<div class="fin">
+</div>
+</div>
+#SPIP_CRON
+
+</body>
+</html>

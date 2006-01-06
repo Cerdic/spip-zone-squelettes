@@ -1,0 +1,333 @@
+<BOUCLE_article_principal(ARTICLES) {id_article}><!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+  <meta content="text/html; charset=#CHARSET"
+ http-equiv="content-type">
+  <title>[#NOM_SITE_SPIP]</title>
+  <link rel="stylesheet" href="style/typographie.css" type="text/css">
+  <link rel="stylesheet" href="style/pagination.css" type="text/css">
+  <link rel="stylesheet" href="style/spip_style.css" type="text/css">
+
+<!-- Lien vers les jeux de couleurs variables par site -->
+
+  <link title="Site" rel="stylesheet" href="style/couleurs.css" type="text/css">
+  <link title="Bleu" rel="alternate stylesheet" href="style/couleurs.bleu.css" type="text/css">
+  <link title="Bleu &amp; jaune" rel="alternate stylesheet" href="style/couleursbleu-jaune.css" type="text/css">
+  <link title="Rouge" rel="alternate stylesheet" href="style/couleurs.rouge.css" type="text/css">
+
+<!-- Lien vers le backend pour navigateurs eclaires -->
+  <link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="backend.php3">
+</head>
+<body>
+
+<div class="page_principale">
+<div class="colonne_gauche">
+
+[(#LOGO_ARTICLE_RUBRIQUE|center||reduire_image{150})]
+
+<INCLURE(menu_general.php3){lang}>
+
+[(#FORMULAIRE_RECHERCHE)]
+
+
+<!-- Menu de navigation rubriques -->
+
+<B_rubriques>
+<div class="menu">
+<ul class="rubriques">
+<BOUCLE_rubriques(HIERARCHIE) {id_article}>
+<li class="menu-titre"><a class="cent_pct" href="#URL_RUBRIQUE&amp;lang=#LANG" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
+<B_sous_rubriques>
+	<ul class="menu-liste">
+<BOUCLE_sous_rubriques(RUBRIQUES) {meme_parent} {exclus} {par date} {inverse} {0,3}>
+	<li class="menu-item"><a class='cent_pct' href="#URL_RUBRIQUE&amp;lang=#LANG" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></li>
+</BOUCLE_sous_rubriques>
+	</ul>
+</B_sous_rubriques>
+</li>
+</BOUCLE_rubriques>
+</ul>
+</div>
+</B_rubriques>
+
+
+<!--
+<form id="form-style" action="?" method="post" enctype="multipart/form-data" onchange="document.form-style.submit">
+ <fieldset>
+  <label for="css"><:styles:></label><select name="css" id="css" class="styleswitcher"><option selected="selected">Bleu</option><option>Bleu &amp; Jaune</option><option value="null">Pas de style</option></select>
+
+  <input value="Changer de style" type="submit">
+ </fieldset>
+</form>
+-->
+<!-- Logo SPIP -->
+
+<a href="http://www.spip.net"><img src="IMG/logo_spip.jpg" width="105" height="92" class="spip_logos" alt="<:site_realise_avec_spip:>"></a>
+
+
+</div>
+<div class="colonne_principale">
+
+<!-- Menu de navigation mots-cles -->
+
+<div class="encart_blanc">
+
+<B_mots>
+<div class="encart">
+<div class="menu">
+
+
+<ul class="divers" title="<:mots_clefs:>">
+<BOUCLE_mots(MOTS) {id_article} {par titre}>
+<li>
+<div class="menu-titre"><a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></div>
+<B_articles_mots>
+	<ul class="menu-liste">
+<BOUCLE_articles_mots(ARTICLES) {id_mot} {par hasard} {0,4}>
+	<li class="menu-item"><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|textebrut|entites_html)]">#TITRE</a></li>
+</BOUCLE_articles_mots>
+	</ul>
+</B_articles_mots>
+</li>
+</BOUCLE_mots>
+</ul>
+</div>
+</B_mots>
+
+<!-- Liens des forums -->
+
+<B_forums_liens>
+<div class="encart">
+
+<div class="menu" title="<:derniers_commentaires:>">
+
+<ul class="forums">
+<BOUCLE_forums_decompte(FORUMS){id_article}{plat}></BOUCLE_forums_decompte>
+[<li class="menu-titre"><:messages_forum:>: (#TOTAL_BOUCLE)</li>]
+<//B_forums_decompte>
+
+<BOUCLE_forums_liens(FORUMS){id_article}{par date}{inverse}{0,5}>
+    <li class="menu-item">[<i>(#DATE|affdate_court)</i>:]
+    <a href="#forum#ID_FORUM">#TITRE</a>
+    </li>
+</BOUCLE_forums_liens>
+</ul>
+</div>
+</div>
+</B_forums_liens>
+<div class="encart">
+
+	<!-- Auteurs de l'article -->
+
+	<B_auteurs>
+
+	<div class="menu">
+	<ul class="divers">
+	<BOUCLE_auteurs(AUTEURS) {id_article} {par nom}>
+		<li>
+		<div class="menu-titre"><a href="#URL_AUTEUR">#NOM</a></div>
+		<ul>
+		[<li class="menu-item" style="text-align: center"><a href="(#URL_SITE)">#NOM_SITE</a></li>]
+		[<li class="menu-item" style="text-align: center">(#BIO)</li>]
+	<B_articles_auteur>
+	<BOUCLE_articles_auteur(ARTICLES) {id_auteur} {par popularite} {inverse} {0,5}>
+		<li class="menu-item"><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></li>
+	</BOUCLE_articles_auteur>
+		</ul>
+		</li>
+	</BOUCLE_auteurs>
+	</ul>
+	</div>
+
+	</B_auteurs>
+
+	<!-- Articles dans la meme rubrique -->
+
+	<B_articles_rubrique>
+
+	<div class="menu">
+	<div class="breves">
+		<div class="menu-titre">
+		<:meme_rubrique:>
+		</div>
+		<ul>
+	<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par hasard} {exclus} {0,8}>
+		<li class="menu-item">
+		<a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
+		</li>
+	</BOUCLE_articles_rubrique>
+		</ul>
+	</div>
+	</div>
+
+	</B_articles_rubrique>
+  [<div class='reponse_formulaire'>
+	<a name='sp#ID_ARTICLE' id='sp#ID_ARTICLE'></a>
+    (#FORMULAIRE_SIGNATURE)
+  </div>]
+</div>
+</div>
+
+<!-- Fil d'ariane -->
+
+<a href="#URL_SITE_SPIP"><:Accueil:></a>
+<B_filariane>
+<BOUCLE_filariane(HIERARCHIE) {id_article}>
+ &gt; <a href="#URL_RUBRIQUE&amp;lang=#LANG" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
+</BOUCLE_filariane>
+
+<!-- Contenu de l'article -->
+
+
+<div class="cartouche">
+#DEBUT_SURLIGNE[
+<div class="surtitre">(#SURTITRE)</div>
+]<h1 class="titre-texte">#TITRE</h1>[
+<div class="surtitre">(#SOUSTITRE)</div>
+]#FIN_SURLIGNE
+([(#LANG|traduire_nom_langue)]) [(#DATE|nom_jour)] [(#DATE|affdate).]
+<B_traductions>
+<br /><:traductions:>
+<BOUCLE_traductions(ARTICLES){traduction} {exclus}>
+	<div class="langue">[<a href="#URL_ARTICLE" dir="#LANG_DIR">(#LANG|traduire_nom_langue)</a>]</div>
+</BOUCLE_traductions>	
+</div>
+
+<div style="line-height: 0em">&nbsp;</div><!-- Bug Mozilla http://bugzilla.mozilla.org/show_bug.cgi?id=200510 -->
+
+
+
+#DEBUT_SURLIGNE[
+<div class="chapo">(#CHAPO)</div>
+][<div class="texte">(#TEXTE)</div>
+][<div class="ps">(#PS)</div>][
+<div class="notes">(#NOTES)</div>
+]#FIN_SURLIGNE
+
+
+<BOUCLE_afficher_document(DOCUMENTS){id_document}{mode=document}{fichier==(png|jpg|gif)$}{doublons}>
+[<h3 class="spip">(#TITRE)</h3>]
+[<div>(#DESCRIPTIF)</div>]
+
+<div>#EMBED_DOCUMENT</div>
+</BOUCLE_afficher_document>
+
+<B_documents_portfolio>
+<div><hr>
+<BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{fichier==(png|jpg|gif)$}{doublons}>
+	<div style="float: left;">
+	[<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{'?'}|?{'&amp;','?'})]id_document=#ID_DOCUMENT">(#LOGO_DOCUMENT||reduire_image{1000,52})</a>][<div><b>(#TITRE)</b></div>][<div>(#DESCRIPTIF)</div>]
+	</div>
+</BOUCLE_documents_portfolio>
+</div>
+<div style="clear: both;"></div>
+</B_documents_portfolio>
+
+<B_documents_joints>
+<div><hr>
+<BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {doublons} {"<br />"}>
+	<div style="float: left;">
+	[(#LOGO_DOCUMENT|#URL_DOCUMENT)][<div><b>(#TITRE)</b></div>][<div>(#DESCRIPTIF)</div>]
+	</div>
+</BOUCLE_documents_joints>
+</div>
+<div style="clear: both;"></div>
+</B_documents_joints>
+
+
+<!-- Signatures petition -->
+
+<BOUCLE_signatures_decompte(SIGNATURES) {id_article}></BOUCLE_signatures_decompte>
+[<div class="signatures-titre"><:signatures_petition:>: (#TOTAL_BOUCLE)</div>
+
+<table class="signatures">
+<thead class="structure">
+<tr>
+	<th><:date:></th>
+	<th><:nom:></th>
+	<th><:message:></th>
+</tr>
+</thead>
+<tbody>]
+<//B_signatures_decompte>
+<BOUCLE_signatures(SIGNATURES) {id_article} {par date} {inverse} {debut_signatures,30}>
+<tr>
+	<td class="signature-date">[(#DATE|affdate_court)]</td>
+	<td class="signature-nom">#NOM[ <a href="#URL_SITE">(#NOM_SITE)</a>]</td>
+	[<td class="signature-message">(#MESSAGE)</td>]
+</tr>
+</BOUCLE_signatures>
+</tbody>
+</table>
+</B_signatures>
+
+
+<!-- Forums -->
+
+[<div class="forum-repondre"><B><A  HREF="forum.php3?(#PARAMETRES_FORUM)"><:repondre_article:></A></B></div>]
+<br />
+
+<B_forums>
+
+<ul class="forum-total">
+
+<BOUCLE_forums(FORUMS){id_article}{par date}{inverse}>
+
+<li>
+<div class="forum-fil">
+
+<div class="forum">
+<div class="forum-chapo">
+<div class="forum-titre"><a name="forum#ID_FORUM"></a>#TITRE</div>
+[(#DATE|affdate)][, <:par_auteur:> <A HREF="mailto:#EMAIL">(#NOM)</A>]
+</div>
+<div class="forum-item">
+#TEXTE
+[<div class="forum-titre"><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
+[<div class="forum-repondre-message"><a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a></div>]
+</div>
+</div>
+
+<B_forums_fils>
+	<ul>
+	<BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
+
+	<li>
+	<div class="forum">
+	<div class="forum-chapo">
+	<div class="forum-titre"><a name="forum#ID_FORUM"></a>#TITRE</div>
+	[(#DATE|affdate)][, <:par_auteur:> <A HREF="mailto:#EMAIL">(#NOM)</A>]
+	</div>
+	<div class="forum-item">
+	#TEXTE
+	[<div class="forum-titre"><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
+	[<div class="forum-repondre-message"><a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a></div>]
+	</div>
+
+	</div>
+
+	<BOUCLE_Forums_Boucle(boucle_forums_fils)></BOUCLE_Forums_Boucle>
+	</li>
+
+	</BOUCLE_forums_fils>
+	</ul>
+</B_forums_fils>
+
+</div>
+</li>
+</BOUCLE_forums>
+
+</ul>
+</B_forums>
+
+
+</div>
+<div class="fin">
+</div>
+</div>
+#SPIP_CRON
+
+</body>
+</html>
+</BOUCLE_article_principal>
+
