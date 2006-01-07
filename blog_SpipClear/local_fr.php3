@@ -17,7 +17,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'aucun_trackback' => 'Aucun trackback',
 
 //C
-'calendrier' => 'Calendrier',
 'categorie' => 'Cat&eacute;gorie',
 'categories' => 'Cat&eacute;gories',
 'commentaire' => 'commentaire',
@@ -28,13 +27,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 <a href="http://www.spip-contrib.net/Spip-Clear">propuls&eacute; par Spip.Clear</a>',
 
 //D
-'date_jour_abbr_1' => 'dim',
-'date_jour_abbr_2' => 'lun',
-'date_jour_abbr_3' => 'mar',
-'date_jour_abbr_4' => 'mer',
-'date_jour_abbr_5' => 'jeu',
-'date_jour_abbr_6' => 'ven',
-'date_jour_abbr_7' => 'sam',
 'de' => 'de',
 
 //E
