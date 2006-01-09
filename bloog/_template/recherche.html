@@ -59,7 +59,7 @@ $url= ereg_replace( "http://", "", $url );
             <td class="content" height="40"> 
               <div class="h5">Rechercher :</div>
               <form action="recherche.php3" method="get" style="MARGIN: 0px">
-                <input name="recherche" size="50" value="<? echo $recherche; ?>">
+                <input name="recherche" size="50" value="#RECHERCHE">
                 <input name="submit" type="submit" class="submit" value="Ok">
 				
 			
@@ -85,7 +85,7 @@ $url= ereg_replace( "http://", "", $url );
                   <P class="grison"> 
                                       
                     La recherche sur 
-                   <b><?php //echo $recherche; ?></b>
+                   <b>#RECHERCHE</b>
                     donne les r&eacute;sultats suivants...<BR>
                   </P>
 				  
@@ -101,7 +101,7 @@ $NbResults++; // bête incrémentation (basique mais efficace)
 if ($MaxPts==0) $MaxPts = #POINTS; // ?>
                   </BOUCLE_CountArticles>
                   <?
-if (!isset($HTTP_GET_VARS["debut_lb"])) $debut_lb = 0; // ça, c'est mon paramètre à passer en GET dans l'URL
+if (!isset($_GET["debut_lb"])) $debut_lb = 0; // ça, c'est mon paramètre à passer en GET dans l'URL
 
 $Page = floor($debut_lb/5) + 1;  // numéro de page dans laquelle on est
 $MaxPage = floor($NbResults/5) + 1; // dernière page
@@ -117,22 +117,16 @@ if ($NbResults > 0) {
 //  ?>
                    
               <p> 
-                <?
-echo $NbResults; ?>
-                articles trouvés pour " 
-                <? //echo $recherche; ?>
-                " </p>
+                <? echo $NbResults; ?>
+                articles trouvés pour "#RECHERCHE" 
+				</p>
               <p align="center">
                   <? echo $debut_lb+1 ."-" .$Last; ?>
                  </p>
-                  <?
-}
-else { ?>
-                  Aucun r&eacute;sultat pour "
-                  <? echo //interdire_script($recherche); ?>
-                  ". 
-                  <?
-} ?>
+
+<?php }else { ?>
+                  Aucun r&eacute;sultat pour "#RECHERCHE"
+<?php } ?>
                   <BOUCLE_articlespert(ARTICLES){recherche}{par points}{inverse}{debut_lb,5}>
                   <? // calcul du pourcentage (option amusante mais pas performante)
 $PerCent = 100 * #POINTS / $MaxPts; ?>
@@ -164,11 +158,11 @@ if ($MaxPage>1) {
                 }
                 else {
 		     if ($i+1<$Page) { ?>
-                    <a href='recherche.php3?recherche=<? echo urlencode($recherche); ?><? if ($i) {echo "&debut_lb="; echo 5*$i;} ?>'><? echo $i+1; ?></a> 
+                    <a href='recherche.php3?recherche=#RECHERCHE<? if ($i) {echo "&debut_lb="; echo 5*$i;} ?>'><? echo $i+1; ?></a> 
                     <?
 			}
 			else { ?>
-                    <a href='recherche.php3?recherche=<? echo urlencode($recherche); ?>&debut_lb=<? echo 5*$i; ?>'><? echo $i+1; ?></a> 
+                    <a href='recherche.php3?recherche=#RECHERCHE&debut_lb=<? echo 5*$i; ?>'><? echo $i+1; ?></a> 
                     <?
 			}
 		}
@@ -272,7 +266,7 @@ $url= ereg_replace( "http://", "", $url );
             <tr> 
               <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
               <td class="content"> 
-                  <INCLURE (_menu_rub.php3){id_rubrique}>
+                  <INCLURE (_menu_rub.php3){id_rubrique?}>
                </td>
               <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
             <tr> 
@@ -293,7 +287,7 @@ $url= ereg_replace( "http://", "", $url );
             <td class="content" height="40"> 
              Aller plus loin : Rechercher avec <strong>Google</strong><br>
                   <form method=get name=recherche onSubmit="return RecherchePopup();">
-                    <input type=text name=s size=35 value="<? echo $recherche; ?>">
+                    <input type=text name=s size=35 value="#RECHERCHE">
                     <div align="right"><a href=javascript:RecherchePopup(); onKeyPress="return true">OK</a></div> 
                     <br>
                     <input type=radio name=sur value=site checked>
