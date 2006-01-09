@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="#LANG">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=#CHARSET">
+	<title>[Sommaire Livre (#NOM_SITE_SPIP) 2005]</title>
+			<style type="text/css" title="ma css" media="screen">
+	<!--
+		@import "#DOSSIER_SQUELETTES/book.css";
+		-->
+	</style>
+</head>
+<body>
+	<div id="liste">
+		<h1>[(#NOM_SITE_SPIP)]</h1>
+		<BOUCLE_TOUT_SITE(RUBRIQUES){racine}>
+			<div id="chapitre">
+				<h2><a href="chapitre.php3?id_rubrique=#ID_RUBRIQUE" [title="(#TITRE|texte_script)"]>#TITRE</a></h2>
+				<BOUCLE_SS_RUBRIQUE(RUBRIQUES){id_parent}>
+				<ol>
+				<li>
+					<h3><a href="chapitre.php3?id_rubrique=#ID_RUBRIQUE" [title="(#TITRE|texte_script)"]>#TITRE</a></h3>
+					<ol>
+					<BOUCLE_articles(ARTICLES) {id_rubrique}{par date}{inverse}{annee==2005}{id_mot= Livre}>
+					<li>
+					<dt><a href="./ecrire/articles.php3?id_article=#ID_ARTICLE">#TITRE</a></dt>
+						[<dd>(#PS|PtoBR)</dd>]
+					</li>
+					</BOUCLE_articles>
+					</ol>
+					<BOUCLE_sousSS_rubriques(BOUCLE_SS_RUBRIQUE)></BOUCLE_sousSS_rubriques>
+				</li>
+				</ol>
+				</BOUCLE_SS_RUBRIQUE>
+			</div>
+		</BOUCLE_TOUT_SITE>
+</div>
+</body>
+</html>
