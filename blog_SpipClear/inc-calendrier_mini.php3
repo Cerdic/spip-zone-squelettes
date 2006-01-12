@@ -1,5 +1,29 @@
 <?php
 
+if (!defined("_ECRIRE_INC_VERSION")) return;	#securite
+
+// Pas besoin de contexte de compilation
+global $balise_CALENDRIER_MINI_collecte;
+$balise_CALENDRIER_MINI_collecte = array('date', 'id_rubrique');
+
+function balise_CALENDRIER_MINI_stat($args, $filtres) {
+	return $args;
+}
+ 
+function balise_CALENDRIER_MINI_dyn($date, $id_rubrique = 0, $var_date = 'date', $url = '') {
+	if(!$url) {
+		$url = new Link();
+		$url = $url->getUrl();
+	}
+	return array('calendrier_mini', 3600, 
+		array(
+			'date' => $date,
+			'id_rubrique' => $id_rubrique,
+			'var_date' => $var_date,
+			'self' => $url
+		));
+}
+
 function agenda_mini($i) {
   $args = func_get_args();
   $une_date = array_shift($args); // une date comme balise
@@ -16,7 +40,7 @@ function agenda_mini($i) {
     }
 	$la_date = mktime(0, 0, 0, mois($une_date), 1, annee($une_date));
     include_ecrire('inc_calendrier.php');
-    return http_calendrier_init($la_date, $type, '', '', '', $evt);
+    return http_calendrier_init($la_date, $type, '', '', '', array('', $evt));
 }
 
 function http_calendrier_mini($annee, $mois, $jour, $echelle, $partie_cal, $script, $ancre, $evt) {
