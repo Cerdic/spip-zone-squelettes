@@ -75,6 +75,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'trackbacks_pour_faire' => 'Pour faire un trackback sur ce billet',
 'trackbacks_fermes' => 'Les trackbacks pour ce billet sont ferm&eacute;s.',
 
+//U
+'un_seul_mot' => 'un seul mot',
+
 );
 
 ?>

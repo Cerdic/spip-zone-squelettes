@@ -79,11 +79,6 @@ function http_calendrier_mini($annee, $mois, $jour, $echelle, $partie_cal, $scri
 			$ligne = '';
 		}
 
-		//aujourd'hui
-		if ($amj == date("Ymd")) {
-			/*$couleur_lien = "red";
-			$couleur_fond = "white";*/
-		}
 		$evts = $evenements[$amj];
 		if ($evts) {
 			$evts = "<a href=\"".$evts[0]['URL']."\">".$evts[0]['SUMMARY']."</a>";
@@ -91,10 +86,10 @@ function http_calendrier_mini($annee, $mois, $jour, $echelle, $partie_cal, $scri
 		else {
 			$evts = intval($jour);
 		}
-		$ligne .= "\n\t<td>" . $evts . "\n\t</td>";
+		$ligne .= "\n\t<td".($amj == date("Ymd")?' class="today"':'').">" . $evts . "\n\t</td>";
 	}
 	// affichage de la fin de semaine hors periode
-	for($j=$jour_semaine; $j<7; $j++) {
+	for($j=$jour_semaine ? $jour_semaine : 7; $j<7; $j++) {
 		$ligne .= "\n\t<td>&nbsp;</td>";			
 	}
 
