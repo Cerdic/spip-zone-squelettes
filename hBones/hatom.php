@@ -4,7 +4,8 @@
 # Voici un script qui permet de lire un "feed hAtom", et donc de
 # verifier que notre page est conforme aux specs.
 # Utilise la transformation XSLT hAtom2Atom de Luke Arno
-# (a telecharger @ http://lukearno.com/projects/hAtom/hAtom2Atom.xsl )
+# (a telecharger @ 
+# http://rbach.priv.at/repos/hatom/hatom2atom.xsl/trunk/hAtom2Atom.xsl )
 #
 
 include('ecrire/inc_version.php3');
@@ -12,8 +13,8 @@ include_ecrire('inc_sites');
 include_ecrire('inc_distant');
 
 #$url= 'http://blog.davidjanes.com/';
-$url= 'http://members.optusnet.com.au/benjamincarlyle/benjamin/blog/';
-#$url= 'http://blip.local/~fil/spip/';
+#$url= 'http://members.optusnet.com.au/benjamincarlyle/benjamin/blog/';
+$url= 'http://sedna.spip.org/sedna/';
 
 $hAtom = recuperer_page($url);  ## same as file_get_contents()
 ecrire_fichier('CACHE/atom.xml', $hAtom);  ## write_file
@@ -32,12 +33,12 @@ $proc->importStyleSheet($xsl); // attach xsl transform
 
 $atom = $proc->transformToXml($xml);
 
-echo "-------\n\n\n<hr><br>";  ## fool Safari's ugly feed: detector
-var_dump($atom);
+#echo "-------\n\n\n<hr><br>";  ## fool Safari's ugly feed: detector
+#var_dump($atom);
 
 $content = analyser_backend($atom);  ## process rss backend
 
-var_dump($content);
+#var_dump($content);
 
 ## print out processed data (title and url)
 foreach ($content as $element) {
