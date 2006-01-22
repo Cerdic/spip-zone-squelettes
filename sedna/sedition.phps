@@ -51,32 +51,18 @@ return str_replace(array_keys($r), array_values($r), $fichier);
 
 mkdir('sedition') or die('repertoire sedition/ pas cree');
 
-lire_fichier('sedna/sedna.php', $contenu);
-ecrire_fichier('sedition/sedition.php', transform_sedna($contenu));
-
-lire_fichier('sedna/index.php', $contenu);
-ecrire_fichier('sedition/index.php', transform_sedna($contenu));
-
-lire_fichier('sedna/local_fr.php3', $contenu);
-ecrire_fichier('sedition/local_fr.php3', transform_sedna($contenu));
-
-lire_fichier('sedna/local_en.php3', $contenu);
-ecrire_fichier('sedition/local_en.php3', transform_sedna($contenu));
-
-
-lire_fichier('sedna/sedna.html', $contenu);
-ecrire_fichier('sedition/sedition.html', transform_sedna($contenu));
-
-lire_fichier('sedna/sedna-rss.html', $contenu);
-ecrire_fichier('sedition/sedition-rss.html', transform_sedna($contenu));
-
-lire_fichier('sedna/sedna.css', $contenu);
-ecrire_fichier('sedition/sedition.css', transform_sedna($contenu));
-
-lire_fichier('sedna/sedna.js', $contenu);
-ecrire_fichier('sedition/sedition.js', transform_sedna($contenu));
+foreach (array(
+	'sedna.html', 'sedna.php', 'sedna_header.html', 'sedna_footer.html',
+	'local_fr.php3', 'local_en.php3', 'local_es.php3', 'local_fa.php3',
+	'index.php', 'sedna-rss.html', 'sedna.css', 'sedna.js'
+) as $source) {
+	lire_fichier('sedna/'.$source, $contenu);
+	$destination = str_replace('sedna', 'sedition', $source);
+	ecrire_fichier('sedition/'.$destination, transform_sedna($contenu));
+}
 
 copy('sedna/sedna-badge.png', 'sedition/sedition-badge.png');
+copy('sedna/sedna-icon.png', 'sedition/sedition-icon.png');
 copy('sedna/sedna-big.png', 'sedition/sedition-big.png');
 copy('sedna/sedna-pink.gif', 'sedition/sedition-pink.gif');
 copy('sedna/sedna-red.gif', 'sedition/sedition-red.gif');
