@@ -7,6 +7,11 @@
 // <http://www.microformats.org/wiki/reltag>
 // On appelle le squelette mf_tags.html
 //
+
+// Note : en fait c'est une sorte d'INCLURE statique ;
+// il faudrait plutot voir comment on pourrait developper
+// ce concept
+
 function sql_tags($id, $type) {
 	$page = cherche_page('' /* chemin_cache */,
 		array('id_'.$type => $id) /* contexte_inclus */,
