@@ -1,9 +1,8 @@
 <?php
 
 	define('_SPIP_PATH', './:squelettes/:sedna/:formulaires/:dist/');
-	include('ecrire/inc_version.php3');
-	if (@file_exists('ecrire/inc_cookie.php'))
-		include_ecrire('inc_cookie.php');
+	include('ecrire/inc_version.php');
+	include_ecrire('inc_cookie');
 	$forcer_lang = true;
 
 	// filtre |syndication_en_erreur
@@ -54,8 +53,7 @@
 
 	// l'identifiant du lien est fonction de son url et de sa date
 	// ce qui permet de reperer les "updated" *et* les doublons
-	include_ecrire('inc_filtres.php3');
-	if (@file_exists($f = 'ecrire/inc_cookie.php')) include_local($f);
+	include_ecrire('inc_filtres');
 	function afficher_lien(
 		$id_syndic_article,
 		$id_lien,
@@ -197,7 +195,7 @@
 	// authentification du visiteur
 	if ($GLOBALS['_COOKIE']['spip_session'] OR
 	($GLOBALS['_SERVER']['PHP_AUTH_USER']  AND !$ignore_auth_http)) {
-		include_ecrire ("inc_session.php3");
+		include_ecrire ("inc_session");
 		verifier_visiteur();
 	}
 
@@ -250,7 +248,7 @@
 
 	// forcer le refresh ?
 	if ($id = intval($refresh)) {
-		include_ecrire('inc_sites.php3');
+		include_ecrire('inc_syndic');
 		spip_touch('ecrire/data/sites.lock');
 		syndic_a_jour($id);
 	}
