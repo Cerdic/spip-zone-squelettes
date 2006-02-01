@@ -40,7 +40,6 @@ $GLOBALS['i18n_phpbb_es'] = array(
 
 //F
 'faq' => 'FAQ',
-'forum' => 'Foro',
 'forum_ferme' => 'Este foro est&aacute; desactivado',
 'forum_ferme_texte' => 'Este foro est&aacute; desactivado. Ya no puedes contribuir.',
 'ferme' => 'Esta discusi&oacute;n est&aacute; cerrada',
@@ -58,7 +57,6 @@ $GLOBALS['i18n_phpbb_es'] = array(
 'membres_liste' => 'Lista de miembros',
 'membres_groupes' => 'Groupo de usuarios/as',
 'membres_profil' => 'Perfil',
-'message' => 'Mensaje',
 'message_date' => 'Publicado el ',
 'message_sujet' => 'Asunto ',
 'messages' => 'Mensajes',
@@ -77,12 +75,10 @@ $GLOBALS['i18n_phpbb_es'] = array(
 'no_message' => 'Ningun tema o mensaje corresponde a los criterios de b&uacute;squeda',
 
 //P
-'poster' => 'Enviar un mensaje',
 'profil' => 'Perfil de',
 'paramprofil' => 'Modificar tus par&aacute;metros',
 
 //R
-'recherche' => 'Buscar',
 'recherch' => 'B&uacute;squeda',
 'recherche_elargie' => 'B&uacute;squeda ampliada',
 'revenir_haut' => 'Volver arriba de la p&aacute;gina',
