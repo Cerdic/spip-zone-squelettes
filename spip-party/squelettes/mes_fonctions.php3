@@ -1,5 +1,5 @@
 <?php
-$GLOBALS[ 'dossier_squelettes' ] = "squel_party" ;
+//$GLOBALS[ 'dossier_squelettes' ] = "squel_party" ;
 
 
 # titre homogene http://www.spip-contrib.net/article46.html
