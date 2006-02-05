@@ -1,0 +1,68 @@
+<?php
+  @header('Content-type: text/xml[; charset=(#CHARSET)]');
+  echo '<'.'?xml version="1.0"[ encoding="(#CHARSET)"]?'.">\n";
+?>
+<feed xmlns="http://www.w3.org/2005/Atom" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/" xml:lang="#LANG" >
+  <title>[(#NOM_SITE_SPIP|texte_backend)]</title>
+  <link rel="alternate" type="text/html" hreflang="#LANG" href="#URL_SITE_SPIP/"/>
+  <link rel="self" type="application/atom+xml" href="#URL_SITE_SPIP/atom1.php3"/>
+  <id>#URL_SITE_SPIP/</id>
+  <generator uri="http://www.spip.net/" version="<?php echo"$spip_version_affichee"; ?>">SPIP</generator>
+[  <logo>(#LOGO_SITE_SPIP||extraire_attribut{src}|url_absolue|texte_backend)</logo>]
+  <updated>[(#DATE|date_iso)]</updated>
+
+<BOUCLE_un_syndic(SYNDIC_ARTICLES){id_syndic_article}>
+  <entry xml:lang="#LANG">
+    <title>[(#TITRE|supprimer_numero|texte_backend)]</title>
+    <id>[(#URL_ARTICLE|url_absolue)]</id>
+[    <link rel="alternate" type="text/html" href="(#URL_ARTICLE|url_absolue)"/>]
+    <published>[(#DATE|date_iso)]</published>
+    <updated>[(#DATE|date_iso)]</updated>
+    <author><name>[(#LESAUTEURS|texte_backend)]</name><uri>[(#URL_SITE|url_absolue)]</uri></author>
+    <summary type="html">[(#DESCRIPTIF|texte_backend)]
+[(#REM)
+  Le bloc qui suit diffuse la rubrique et les mots-cles
+  sous forme de "microformats"
+
+]<BOUCLE_rubrique_mf(RUBRIQUES){id_rubrique}>-
+&lt;a href="[(#URL_RUBRIQUE|url_absolue)]" rel="category"&gt;[(#TEXTE|texte_backend)]&lt;/a&gt;
+</BOUCLE_rubrique_mf><B_mots_mf>
+/ <BOUCLE_mots_mf(MOTS){id_article} {par titre} {", "}>
+&lt;a href="[(#URL_MOT|url_absolue)]" rel="tag"&gt;[(#TITRE|texte_backend)]&lt;/a&gt;</BOUCLE_mots_mf>
+    </summary>
+<BOUCLE_rubrique_atom(RUBRIQUES){id_rubrique}>
+    <category term="[(#TEXTE|texte_backend)]" [scheme="(#URL_RUBRIQUE|url_absolue)"]/>
+</BOUCLE_rubrique_atom>
+<BOUCLE_mots_atom(MOTS){id_article} {par titre}>
+    <category term="[(#TITRE|texte_backend)]" [scheme="(#URL_MOT|url_absolue)"]/>
+    <dc:subject>[(#TITRE|texte_backend)]</dc:subject>
+</BOUCLE_mots_atom>[
+
+(#REM)
+  Le bloc qui suit diffuse aussi le texte integral de l'article,
+  ce qui permet une syndication plus riche (mais plus "lourde").
+  Fonction desactivable en modifiant backend.php3
+][
+(#ENV{texte_complet}|?{' ',''})<content type="html">[(#LOGO_ARTICLE|right||texte_backend)
+    ][&lt;div class='rss_chapo'&gt;(#CHAPO|texte_backend)&lt;/div&gt;
+    ][&lt;div class='rss_texte'&gt;(#TEXTE|texte_backend)&lt;/div&gt;
+    ][&lt;hr /&gt;
+    &lt;div class='rss_notes'&gt;(#NOTES|texte_backend)&lt;/div&gt;
+    ][&lt;div class='rss_ps'&gt;(#PS|texte_backend)&lt;/div&gt;]
+    </content>
+]
+[(#REM)
+  Le bloc qui suit diffuse l'adresse des documents associes aux articles ;
+  ajouter par ex. {extension=mp3} pour limiter a un certain type de document.
+]    <BOUCLE_documents(DOCUMENTS){id_article}{mode=document}{doublons}>[
+    <link rel="enclosure" href="(#URL_DOCUMENT|url_absolue|unique)"[ length="(#TAILLE)"][ type="(#MIME_TYPE)"] />]
+    </BOUCLE_documents>
+  </entry>
+</BOUCLE_un_syndic>
+
+<BOUCLE_30recents(SYNDIC_ARTICLES){par date}{inverse}{0,30}{unique}>
+<BOUCLE_a(BOUCLE_un_syndic)></BOUCLE_a>
+</BOUCLE_30recents>
+
+</feed>

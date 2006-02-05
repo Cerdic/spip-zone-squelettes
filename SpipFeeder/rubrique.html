@@ -1,4 +1,3 @@
-<BOUCLE_site(SITES) {id_syndic}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
 <!--
@@ -45,23 +44,24 @@
   <div id="content">
     <!-- Left side menu : side bar links/news/search/etc. -->
     <div id="contentLeft">
-        <p><span class="header">Rubriques des inscrits</span></p>
-        <BOUCLE_rubriques(RUBRIQUES) {par titre}>
-          <div class="menu_gauche"><b><a href="#URL_RUBRIQUE" class="menunoItem">#TITRE</a></b></div>
-          <?php
-            $spip_id_rub = "#ID_RUBRIQUE";
-            $get_id_rub = $_GET['id_rubrique'];
-            if ($spip_id_rub == $get_id_rub || !$get_id_rub) {
-          ?>
-          <BOUCLE_syndic_sites(SITES) {id_rubrique} {par nom_site}>
-            <div class="menu_gauche_s"><a href="site.php3?id_rubrique=#ID_RUBRIQUE&amp;id_syndic=#ID_SYNDIC" class="menunoItem" title="#DESCRIPTIF">#NOM_SITE</a></div>
-          </BOUCLE_syndic_sites>
-          <?php
-            }
-          ?>
-         </BOUCLE_rubriques>
-      <p>
-      <span class="header">Syndication</span></p>
+      <p><span class="header">Rubriques des inscrits</span></p>
+      <BOUCLE_rubriques(RUBRIQUES) {par titre}>
+        <div class="menu_gauche"><b><a href="#URL_RUBRIQUE" class="menunoItem">#TITRE</a></b></div>
+        <?php
+          $spip_id_rub = "#ID_RUBRIQUE";
+          $get_id_rub = $_GET['id_rubrique'];
+          if ($spip_id_rub == $get_id_rub) {
+            $spip_titre_rub = "#TITRE";
+            $spip_desc_rub = "#DESCRIPTIF";
+        ?>
+        <BOUCLE_syndic_sites(SITES) {id_rubrique} {par nom_site} {tout}>
+          <div class="menu_gauche_s"><a href="site.php3?id_rubrique=#ID_RUBRIQUE&amp;id_syndic=#ID_SYNDIC" class="menunoItem" title="#DESCRIPTIF">#NOM_SITE</a></div>
+        </BOUCLE_syndic_sites>
+        <?php
+          }
+        ?>
+      </BOUCLE_rubriques>
+      <p><span class="header">Syndication</span></p>
       <div class="menu_gauche"><a href="atom1.php3" class="menunoItem">Fil Atom 1.0</a></div>
       <div class="menu_gauche"><a href="rss2.php3" class="menunoItem">Fil RSS 2.0</a></div>
       <!-- Creates the rounded corner on the bottom of the left menu -->
@@ -74,12 +74,12 @@
           [(#URL_SITE_SPIP|monCalendrier)]
         </div>
         <div id="edito">
-          <span class="headerTop"><a href="#URL_SITE">#NOM_SITE</a> :: <BOUCLE_rss(SITES){id_syndic}><a href="#URL_SYNDIC">RSS</a></BOUCLE_rss></span><br />
-          #DESCRIPTIF
+          <span class="headerTop"><?php echo $spip_titre_rub; ?></span><br />
+          <?php echo $spip_desc_rub; ?>
         </div>
       </div>
       [(#URL_SITE_SPIP|monDrawSyndic)]
-       <!-- Creates bottom left rounded corner -->
+      <!-- Creates bottom left rounded corner -->
       <img src="#DOSSIER_SQUELETTE/images/corner_sub_bl.gif" alt="bottom corner" class="vBottom" />
     </div>
   </div>
@@ -95,4 +95,3 @@
 </div>
 </body>
 </html>
-</BOUCLE_site>
