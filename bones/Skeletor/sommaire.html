@@ -5,7 +5,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
-<title>[#NOM_SITE_SPIP] [(#TITRE|textebrut)]</title>
+<title>[#NOM_SITE_SPIP]</title>
 <INCLURE(page.php3){fond=inc-head}{id_article}>
 </head>
 <body>
@@ -17,27 +17,24 @@
   <!-- navigation -->
   <hr />
   <div id="primaryContent"> [
-    <h3>(#SURTITRE)</h3>
-    ]
-    <h2>#TITRE</h2>
+    <BOUCLE_articles(ARTICLES) {par date} {inverse} {0,3}>
+    [(#LOGO_ARTICLE_RUBRIQUE|right||reduire_image{100})]
     [
-    <h3>(#SURTITRE)</h3>
-    ]
-    <p>[(#DATE|nom_jour)] [(#DATE|affdate)]</p>
-    [<:sur_web:>: <a href="#URL_SITE" target="_blank">(#NOM_SITE)</a> ]
-    
-    [(#LOGO_ARTICLE_RUBRIQUE|right||reduire_image{200})]
-    
-    [(#CHAPO)]
-    
-    [(#DESCRIPTIF)]
-    
-    [(#TEXTE)]
-    
-    [(#PS)]
-    <INCLURE(page.php3){fond=inc-images}{id_article}{id_document}{doublons}>
-    #NOTES
-    <INCLURE(page.php3){fond=inc-forum}{id_article}{id_forum}{id_signature}>
+    <h2><a href="#URL_ARTICLE">(#TITRE)</a></h2>
+    ] <em> <:par_auteur:>
+    <BOUCLE_auteurs_articles(AUTEURS) {id_article} {" "}>
+    <a href="auteur.php3?id_auteur=#ID_AUTEUR">#NOM</a>
+    </BOUCLE_auteurs_articles>
+    , [(#DATE|nom_jour)] [(#DATE|affdate)] [(#DATE|heures)]:[(#DATE|minutes)] </em>
+    <p>#INTRODUCTION</p>
+    <em>
+    <BOUCLE_compte_messages(FORUMS){id_article}{plat}>
+    </BOUCLE_compte_messages>
+    <span>::</span> <a href="#URL_ARTICLE#forum">[(#TOTAL_BOUCLE) commentaire(s)]</a>
+    </B_compte_messages>
+    </em>
+    </BOUCLE_articles>
+    <hr />
   </div>
   <!-- primaryContent -->
   <hr />
@@ -45,9 +42,6 @@
     <INCLURE(page.php3){fond=inc-recherche}>
     <INCLURE(page.php3){fond=inc-rubrique}>
     <INCLURE(page.php3){fond=inc-breve}>
-    <INCLURE(page.php3){fond=inc-fichier}{id_article}{doublons}>
-    <INCLURE(page.php3){fond=inc-meme_rubrique}{id_rubrique}>
-    <INCLURE(page.php3){fond=inc-auteurs}{id_article}>
     <INCLURE(page.php3){fond=inc-mots}>
     <INCLURE(page.php3){fond=inc-syndic}>
     <INCLURE(page.php3){fond=inc-logo}>
