@@ -248,9 +248,9 @@ function monDrawSyndic() {
     $filtre .= "AND DATE_FORMAT(ssa.date , '$DateFormat') = '$CalDate' ";
   }
 
-  $ReqGlb = 
-    "SELECT SQL_CALC_FOUND_ROWS ".
-      "DISTINCT ( ssa.url) AS url_article, ".
+  $ReqGlb =
+    "SELECT SQL_CALC_FOUND_ROWS SQL_BIG_RESULT ".
+      "DISTINCT ( ssa.url ) AS url_article, ".
       "ssa.titre AS titre, ".
       "ssa.lesauteurs AS auteurs, ".
       "ssa.descriptif AS descr, ".
@@ -264,8 +264,9 @@ function monDrawSyndic() {
     "WHERE ss.id_syndic = ssa.id_syndic ".
     "AND ssa.statut = 'publie' ".
     $filtre.
-    "ORDER BY ssa.date DESC ".
+    "GROUP BY ssa.date, ssa.url DESC ".
     "LIMIT $DebutSyndic, $NbSyndic";
+
   $ResGlb = spip_query($ReqGlb);
 
   $ReqFnd = "SELECT FOUND_ROWS()";
