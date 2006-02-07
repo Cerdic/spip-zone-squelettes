@@ -51,7 +51,7 @@
 
 
 <B_articles>
-<div class="feed">
+<div class="hfeed">
 
 [(#REM) Selon les arguments passes dans l'URL, on obtient :
 	- les articles de la branche ?id_rubrique=xx
@@ -60,8 +60,8 @@
 ]
 <BOUCLE_articles(ARTICLES){branche?}{recherche?}{!par points}{!par date}{0,30}>
 
-[(#REM) "entry" = bloc article]
-<div class="entry"
+[(#REM) "hentry" = bloc article]
+<div class="hentry"
 	id="article-#ID_ARTICLE"
 	xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR"
 	onclick="document.location='#URL_ARTICLE';">
@@ -70,7 +70,7 @@
 
 [(#REM) rel="bookmark" pour l'URL de reference de l'article ]
 
-	[<h2 class="title"><a href="[(#URL_ARTICLE|url_absolue)]" rel="bookmark">(#TITRE)</a></h2>]
+	[<h2 class="headline"><a href="[(#URL_ARTICLE|url_absolue)]" rel="bookmark">(#TITRE)</a></h2>]
 
 	[(#REM) la date doit figurer dans un format lisible par une machine
 		<http://microformats.org/wiki/datetime-design-pattern>
@@ -85,21 +85,21 @@
 	]
 	<INCLURE(page.php3){fond=auteurs}{id_article}>
 
-	[(#REM) on propose l'introduction en guise de contenu
+	[(#REM) on propose l'introduction dans un div "excerpt"
 	]
-	<div class="content text">[<div class="spip_logos">(#LOGO_ARTICLE|left|#URL_ARTICLE|reduire_image{150})</div>][(#INTRODUCTION)]	</div>
+	<div class="excerpt">[<div class="spip_logos">(#LOGO_ARTICLE|left|#URL_ARTICLE|reduire_image{150})</div>][(#INTRODUCTION)]	</div>
 
-</div>[(#REM) /entry]
+</div>[(#REM) /hentry]
 
 </BOUCLE_articles>
 
-</div>[(#REM) /feed]
+</div>[(#REM) /hfeed]
 </B_articles>
 
 [
 	(#REM) Outil de navigation secondaire (bas du flux HTML)
 ]
-<INCLURE(page.php3){fond=menu}>
+<!-- INCLURE(page.php3){fond=menu} -->
 
 </body>
 </html>
