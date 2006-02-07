@@ -250,8 +250,8 @@ function monDrawSyndic() {
 
   $ReqGlb = 
     "SELECT SQL_CALC_FOUND_ROWS ".
+      "DISTINCT ( ssa.url) AS url_article, ".
       "ssa.titre AS titre, ".
-      "ssa.url AS url_article, ".
       "ssa.lesauteurs AS auteurs, ".
       "ssa.descriptif AS descr, ".
       "ss.nom_site AS site, ".
