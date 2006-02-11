@@ -8,24 +8,25 @@
 <INCLURE(page.php3){fond=inc-head}>
 </head>
 <body>
-<div id="container">
+
   <div id="navigation">
-    <h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
     <INCLURE(page.php3){fond=inc-navigation}>
   </div>
   <!-- navigation -->
+  <div id="container">
   <hr />
-  <div id="primaryContent"> [
+  <div id="primaryContent">
     <BOUCLE_articles(ARTICLES) {par date} {inverse} {0,3}>
-    [(#LOGO_ARTICLE_RUBRIQUE|right||reduire_image{100})]
+   
     [
-    <h2><a href="#URL_ARTICLE">(#TITRE)</a></h2>
+    <h2>(#TITRE)</h2>
     ] <em> <:par_auteur:>
     <BOUCLE_auteurs_articles(AUTEURS) {id_article} {" "}>
     <a href="auteur.php3?id_auteur=#ID_AUTEUR">#NOM</a>
     </BOUCLE_auteurs_articles>
     , [(#DATE|nom_jour)] [(#DATE|affdate)] [(#DATE|heures)]:[(#DATE|minutes)] </em>
-    <p>#INTRODUCTION</p>
+     [(#LOGO_ARTICLE_RUBRIQUE|right||reduire_image{100})]<p>#INTRODUCTION</p>
+    <h3><a href="#URL_ARTICLE"><:voir_en_ligne:></a></h3>
     <em>
     <BOUCLE_compte_messages(FORUMS){id_article}{plat}>
     </BOUCLE_compte_messages>
@@ -38,21 +39,23 @@
   <!-- primaryContent -->
   <hr />
   <div id="secondaryContent">
-    <INCLURE(page.php3){fond=inc-recherche}>
     <INCLURE(page.php3){fond=inc-rubrique}>
     <INCLURE(page.php3){fond=inc-breve}>
     <INCLURE(page.php3){fond=inc-mots}>
-    <INCLURE(page.php3){fond=inc-syndic}>
+	<INCLURE(page.php3){fond=inc-recherche}>
+	<INCLURE(page.php3){fond=inc-syndic}>
     <INCLURE(page.php3){fond=inc-logo}>
     <hr />
+   <!-- secondaryContent -->
+ </div>
+  <!-- container -->
   </div>
-  <!-- secondaryContent -->
   <div id="footer">
     <INCLURE(page.php3){fond=inc-footer}>
   </div>
   <!-- footer -->
-</div>
-<!-- container -->
+
+
 </body>
-</>
+
 </html>
