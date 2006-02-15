@@ -1,7 +1,7 @@
-<BOUCLE_article_principal(RUBRIQUES) {id_rubrique}>
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
-<!-- Bones K2 1.9  -->
+[(#REM) Spip party par Ben.spip, Gilles Vincent & IZO, basé sur K2 et Bones ]
 <head>
 <title>#NOM_SITE_SPIP - [(#TITRE|textebrut)]</title>
 <meta name="generator" content="SPIP BONES 1.8" />
@@ -10,7 +10,7 @@
 <meta name="Identifier-URL" content="#URL_SITE_SPIP" />
 <meta name="rating" content="General" />
 <meta name="revisit-after" content="15 days" />
-<INCLURE(inclusions/inc_head.php3){id_rubrique}>
+<INCLURE(page.php3){fond=inc_head}{id_rubrique}>
 </head>
 <body>
 <div id="page">
@@ -21,88 +21,74 @@
     </p>
     <ul class="menu">
       <li class="current_item">[<a href="(#URL_SITE_SPIP)" title="<:accueil_site:>"><b><:accueil_site:></b></a>]</li>
-      <INCLURE(inclusions/inc_menu-haut.php3){id_rubrique}>
+      <INCLURE(page.php3){fond=inc_menu-haut}{id_rubrique}>
     </ul>
   </div>
   <hr />
   <div class="primary">
     <div class="center">
       <h2>
-        <!--<:derniers_articles:>-->
+      [(#TITRE|supprimer_numero)]
       </h2>
     </div>
     <div id="post" class="item entry">
       <div class="itemhead"> [
-        <div class="image">(#LOGO_ARTICLE_RUBRIQUE|right||reduire_image{100,100})</div>
+        <div class="image">(#LOGO_RUBRIQUE|right||reduire_image{100})</div>
         ]
-      
-
-
-
-<BOUCLE_secteurs(RUBRIQUES) {id_rubrique} {par titre}>
-	<h1><a href="#URL_RUBRIQUE">#TITRE</a></h1>
-	#TEXTE
-
-<B_articles_racine>
-<ul >
-
-<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
-<li ><a href="#URL_ARTICLE">#TITRE</a></li>
-</BOUCLE_articles_racine>
-
-</ul>
-</B_articles_racine>
-
-<B_rubriques>
-
-<ul >
-
-<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
-<li>
-<div ><a href="#URL_RUBRIQUE">#TITRE</a></div>
-
-	<B_articles>
-	<ul >
-	<BOUCLE_articles(ARTICLES) {id_rubrique} {par date}{inverse}>
-	<li ><a href="#URL_ARTICLE">#TITRE</a></li>
-	</BOUCLE_articles>
-	</ul>
-	</B_articles>
-
-	<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
-
-</li>
-</BOUCLE_rubriques>
-
-</ul>
-</B_rubriques>
-
-
-
-</BOUCLE_secteurs>
-
-
-
-
-
-			</div> <!-- itemhead -->
-		</div> <!-- post -->
-	</div> <!-- primary -->
+        <BOUCLE_secteurs(RUBRIQUES) {id_rubrique} {par titre}>
+        <h1><a href="#URL_RUBRIQUE"> [(#TITRE|supprimer_numero)]</a></h1>
+        #TEXTE
+        <B_articles_racine>
+        <ul >
+          <BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
+          <li ><a href="#URL_ARTICLE">#TITRE</a></li>
+          </BOUCLE_articles_racine>
+        </ul>
+        </B_articles_racine>
+        <B_rubriques>
+        <ul >
+          <BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+          <li>
+            <div ><a href="#URL_RUBRIQUE"> [(#TITRE|supprimer_numero)]</a></div>
+            <B_articles>
+            <ul >
+              <BOUCLE_articles(ARTICLES) {id_rubrique} {par date}{inverse}>
+              <li ><a href="#URL_ARTICLE"> [(#TITRE|supprimer_numero)]</a></li>
+              </BOUCLE_articles>
+            </ul>
+            </B_articles>
+            <BOUCLE_sous_rubriques(BOUCLE_rubriques)>
+            </BOUCLE_sous_rubriques>
+          </li>
+          </BOUCLE_rubriques>
+        </ul>
+        </B_rubriques>
+        </BOUCLE_secteurs>
+      </div>
+	  <:proposer_site:>
+	  	#FORMULAIRE_SITE 
+      <!-- itemhead -->
+    </div>
+    <!-- post -->
+  </div>
+  <!-- primary -->
   <div class="secondary">
-    <INCLURE(inclusions/inc_agenda.php3)>
-    <INCLURE(inclusions/inc_recherche.php3)>
-    <INCLURE(inclusions/inc_dernieres_breves.php3)>
-    <INCLURE(inclusions/inc_meme_rubrique.php3)>
-    <INCLURE(inclusions/inc_sites.php3)>
-    <INCLURE(inclusions/inc_syndication.php3)>
+    <INCLURE(page.php3){fond=inc_agenda}>
+    <INCLURE(page.php3){fond=inc_recherche}>
+	<INCLURE(page.php3){fond=liste}>
+    <INCLURE(page.php3){fond=inc_dernieres_breves}>
+    <INCLURE(page.php3){fond=inc_meme_rubrique}>
+    <INCLURE(page.php3){fond=inc_sites}>
+    <INCLURE(page.php3){fond=inc_syndication}>
     <div id="logo-spip"><a href="http://www.spip.net" class="spip_out"><img src="#DOSSIER_SQUELETTE/images/logo-spip.gif" name="spip" border="0" id="spip" alt="spip"/></a></div>
-  </div><!-- secondary -->
-<div class="clear"><span></span></div>
+  </div>
+  <!-- secondary -->
+  <div class="clear"><span></span></div>
 </div>
 <!-- Close Page -->
-<p id="footer"><small>
-  <INCLURE(inclusions/inc_pied_de_page.php3)>
-  </small></p>
+<p id="footer">
+  <INCLURE(page.php3){fond=inc_pied_de_page}>
+</p>
 </body>
-</BOUCLE_article_principal>
+</BOUCLE_rubrique_principal>
 </html>

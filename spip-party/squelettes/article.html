@@ -1,16 +1,17 @@
 <BOUCLE_article_principal(ARTICLES) {id_article}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
-<!-- Bones K2 1.9 -->
+[(#REM) Spip party par Ben.spip, Gilles Vincent & IZO, basé sur K2 et Bones ]
 <head>
-<title>#NOM_SITE_SPIP</title>
+<title>[(#NOM_SITE_SPIP)] - [(#TITRE|textebrut)] </title>
 <meta name="generator" content="SPIP BONES 1.8" />
 <meta name="template" content="Bones K2" />
 <meta name="Robots" content="index,follow,all" />
 <meta name="Identifier-URL" content="#URL_SITE_SPIP" />
 <meta name="rating" content="General" />
 <meta name="revisit-after" content="15 days" />
-<INCLURE(inclusions/inc_head.php3){id_article}>
+<INCLURE(page.php3){fond=inc_head}{id_article}>
+
 <script type="text/javascript">
 <!--
 		
@@ -98,7 +99,7 @@ function showPreview(response) {
     </p>
     <ul class="menu">
       <li class="current_item">[<a href="(#URL_SITE_SPIP)" title="<:accueil_site:>"><b><:accueil_site:></b></a>]</li>
-      <INCLURE(inclusions/inc_menu-haut.php3){id_rubrique}>
+      <INCLURE(page.php3){fond=inc_menu-haut}{id_rubrique}>
     </ul>
   </div>
   <hr />
@@ -109,41 +110,35 @@ function showPreview(response) {
       </h2>
     </div>
     <div id="post" class="item entry">
-
-<div class="itemhead"> [
-        <div class="image"><a href="#URL_RUBRIQUE">(#LOGO_ARTICLE_RUBRIQUE|left||reduire_image{75,75})</a></div>
+      <div class="itemhead"> [
+        <div class="image"><a href="#URL_RUBRIQUE">(#LOGO_ARTICLE_RUBRIQUE|left||reduire_image{75})</a></div>
         ]
         <h3><a href="#URL_ARTICLE">#TITRE</a></h3>
         <span class="metadata">
         <BOUCLE_rubrique_article(RUBRIQUES){id_rubrique}>
         <a href="#URL_RUBRIQUE"[title="(#TEXTE|textebrut|entites_html)"]>#TITRE</a>
         </BOUCLE_rubrique_article>
-	</span>
-	<small class="metadata"><:par_auteur:>
+        </span> <small class="metadata"><:par_auteur:>
         <BOUCLE_auteurs_articles(AUTEURS) {id_article} {" "}>
         <a href=#URL_AUTEUR>[(#NOM|supprimer_numero)]</a>
-        </BOUCLE_auteurs_articles>, [(#DATE|nom_jour)] [(#DATE|affdate)]  -
-<BOUCLE_compte_messages(FORUMS){id_article}{plat}>
-	        </BOUCLE_compte_messages>
-	        <a href="#URL_ARTICLE#forum">[(#TOTAL_BOUCLE)]</a> 
-	        <span>[(#TOTAL_BOUCLE|=={1}|?{commentaire,commentaires})]</span>
-					</B_compte_messages>
-        . </small> 
-        
-      </div> <!-- itemhead -->
-
-
+        </BOUCLE_auteurs_articles>
+        , [(#DATE|nom_jour)] [(#DATE|affdate)]  -
+        <BOUCLE_compte_messages(FORUMS){id_article}{plat}>
+        </BOUCLE_compte_messages>
+        <a href="#URL_ARTICLE#forum">[(#TOTAL_BOUCLE)]</a> <span>[(#TOTAL_BOUCLE|=={1}|?{commentaire,commentaires})]</span>
+        </B_compte_messages>
+        . </small> </div>
+      <!-- itemhead -->
       <div class="itemtext">
         <p>#CHAPO</p>
         <p align="left">#DESCRIPTIF</p>
         <p align="justify">#TEXTE</p>
-        <em>#PS</em>      
-      </div> <!-- itemtext -->
-
-        <div class="center">
-          <!-- boucle image -->
-<div id="current_image">
-<BOUCLE_afficher_document(DOCUMENTS){id_document}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
+        <em>#PS</em> </div>
+      <!-- itemtext -->
+      <div class="center">
+        <!-- boucle image -->
+        <div id="current_image">
+          <BOUCLE_afficher_document(DOCUMENTS){id_document}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
           [
           <h3>(#TITRE)</h3>
           ] [
@@ -151,52 +146,52 @@ function showPreview(response) {
           ] [
           <div> <a href="#URL_DOCUMENT">(#FICHIER|reduire_image{500}) </a> </div>
           ]
-</BOUCLE_afficher_document>
-</div>
-          <B_documents_portfolio>
-          <div>
-            <BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
-            [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT" onclick="return !showpic('current_image','#URL_DOCUMENT','[(#FICHIER|reduire_image{500}|extraire_attribut{src})]',[(#FICHIER|reduire_image{500}|extraire_attribut{width})],[(#FICHIER|reduire_image{500}|extraire_attribut{height})]);">(#LOGO_DOCUMENT{0,60})</a>] [
-              <div style="clear: both;"><b>(#TITRE)</b></div>
-              ][
-              <div style="clear: both;">(#DESCRIPTIF)</div>
-              ] 
-            </BOUCLE_documents_portfolio>
-          </div>
-          <div style="clear: both;"></div>
-          </B_documents_portfolio>
-        </div> <!-- center -->
-        #NOTES    
-    </div> <!-- post -->
-
-        <!-- boucle forum -->
-        
-        <div class="comments" id="comments" >
-        <INCLURE(inclusions/inc_forum_article_sansajax.php3){id_article}{id_forum}{id_signature}>
-        </div> <!-- comments -->
-        
-
-  </div> <!-- primary -->
-
+          </BOUCLE_afficher_document>
+        </div>
+        <B_documents_portfolio>
+        <div>
+          <BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
+          [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT" onclick="return !showpic('current_image','#URL_DOCUMENT','[(#FICHIER|reduire_image{500}|extraire_attribut{src})]',[(#FICHIER|reduire_image{500}|extraire_attribut{width})],[(#FICHIER|reduire_image{500}|extraire_attribut{height})]);">(#LOGO_DOCUMENT{0,60})</a>] [
+          <div style="clear: both;"><b>(#TITRE)</b></div>
+          ][
+          <div style="clear: both;">(#DESCRIPTIF)</div>
+          ]
+          </BOUCLE_documents_portfolio>
+        </div>
+        <div style="clear: both;"></div>
+        </B_documents_portfolio>
+      </div>
+      <!-- center -->
+      #NOTES </div>
+    <!-- post -->
+    <!-- boucle forum -->
+    <div class="comments" id="comments" >
+      <INCLURE(page.php3){fond=inc_forum_article_sansajax}{id_rubrique}{id_article}{id_forum}{id_signature}>
+    </div>
+    <!-- comments -->
+  </div>
+  <!-- primary -->
   <div class="secondary">
-    <INCLURE(inclusions/inc_petition.php3){id_article}>
-    <INCLURE(inclusions/inc_agenda.php3)>
-    <INCLURE(inclusions/inc_recherche.php3)>
-    <INCLURE(inclusions/inc_dernieres_breves.php3)>
-    <INCLURE(inclusions/inc_memes_mots.php3){id_article}>
-    <INCLURE(inclusions/inc_pieces_jointes.php3){id_article}>
-    <INCLURE(inclusions/inc_meme_rubrique.php3)>
-    <INCLURE(inclusions/inc_sites.php3)>
-    <INCLURE(inclusions/inc_syndication.php3)>
+    <INCLURE(page.php3){fond=inc_agenda}>
+    <INCLURE(page.php3){fond=liste}>
+    <INCLURE(page.php3){fond=inc_recherche}>
+    <INCLURE(page.php3){fond=inc_dernieres_breves}>
+    <INCLURE(page.php3){fond=inc_petition}{id_article}>
+    <INCLURE(page.php3){fond=inc_memes_mots}{id_article}>
+    <INCLURE(page.php3){fond=inc_pieces_jointes}{id_article}>
+    <INCLURE(page.php3){fond=inc_meme_rubrique}>
+    <INCLURE(page.php3){fond=inc_sites}>
+    <INCLURE(page.php3){fond=inc_syndication}>
+    <INCLURE(page.php3){fond=inc_derniers_commentaires_plat}>
     <div id="logo-spip"><a href="http://www.spip.net" class="spip_out"><img src="#DOSSIER_SQUELETTE/images/logo-spip.gif" name="spip" border="0" id="spip" alt="spip"/></a></div>
-  </div> <!-- secondary -->
-
-<div class="clear"><span></span></div>
+  </div>
+  <!-- secondary -->
+  <div class="clear"><span></span></div>
 </div>
 <!-- Close Page -->
-<p id="footer"><small>
-  <INCLURE(inclusions/inc_pied_de_page.php3)>
-  </small></p>
+<p id="footer">
+  <INCLURE(page.php3){fond=inc_pied_de_page}>
+</p>
 </body>
 </BOUCLE_article_principal>
 </html>
