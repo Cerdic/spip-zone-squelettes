@@ -1,0 +1,55 @@
+<BOUCLE_head(RUBRIQUES){id_rubrique}><?php 
+ 	global $auteur_session;
+ 	$statut="5";
+ 	if ($auteur_session['statut']=="") $statut="5";
+ 	else if ($auteur_session['statut']=="6forum") $statut="4";
+ 	else $statut=substr($auteur_session['statut'],0,1);
+	$sq_id_rubrique=0;
+	$sq_securite='5'; 
+?><BOUCLE_HIERARCHIE(HIERARCHIE){id_rubrique}>
+ <BOUCLE_MOT_COULEUR_PARENT(MOTS){id_rubrique}{type=_sq_securites}{0,1}><?php 
+    if($sq_couleur=='') $sq_couleur='[(#TITRE|texte_script)]'; 
+?></BOUCLE_MOT_COULEUR_PARENT>
+ <BOUCLE_MOT_TYPO_PARENT(MOTS){id_rubrique}{type=_sq_typographies}{0,1}><?php 
+ 	if($sq_typographie=='') $sq_typographie='[(#TITRE|texte_script)]'; 
+?></BOUCLE_MOT_TYPO_PARENT>
+ <BOUCLE_MOT_SECU_PARENT(MOTS){id_rubrique}{type=_sq_securites}{0,1}><?php 
+ 	if ('[(#TITRE|texte_script)]'<$sq_securite)
+ 			$sq_securite='[(#TITRE|texte_script)]';
+ ?></BOUCLE_MOT_SECU_PARENT>
+</BOUCLE_HIERARCHIE>
+<BOUCLE_MOT_COULEUR(MOTS){id_rubrique}{type=_sq_securites}{0,1}><?php 
+	$sq_couleur='[(#TITRE|texte_script)]'; 
+?></BOUCLE_MOT_COULEUR>
+<BOUCLE_MOT_TYPO(MOTS){id_rubrique}{type=_sq_typographies}{0,1}><?php 
+ 	$sq_typographie='[(#TITRE|texte_script)]'; 
+?></BOUCLE_MOT_TYPO>
+<BOUCLE_MOT_SECU(MOTS){id_rubrique}{type=_sq_securites}{0,1}><?php 
+ 	if ('[(#TITRE|texte_script)]'<$sq_securite)
+ 			$sq_securite='[(#TITRE|texte_script)]';
+?></BOUCLE_MOT_SECU><?php 
+if ($statut<=$sq_securite)
+{	
+	if($sq_couleur=='') $sq_couleur='defaut'; 
+	if($sq_typographie=='') $sq_typographie='defaut';
+?><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML lang="#LANG">
+  <HEAD>
+   <TITLE>Proposer un site</TITLE>
+<INCLURE(bloc.php3){bloc=head}{sq_couleur}{sq_typographie}{id_rubrique}{sq_id_rubrique}>
+  </HEAD>
+	<body dir="#LANG_DIR">
+	[(#FORMULAIRE_SITE)]
+  </BODY>
+</HTML>
+</BOUCLE_princ>
+manque id_rubrique ?
+<//B_princ>
+<?php 
+} else {
+?>
+secu !!!
+<?php 
+}
+?>
+</BOUCLE_head>

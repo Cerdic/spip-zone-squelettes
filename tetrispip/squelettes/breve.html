@@ -1,0 +1,40 @@
+<BOUCLE_head(BREVES){id_breve}>
+<?php 
+ 	global $auteur_session;
+ 	$statut="5";
+ 	if ($auteur_session['statut']=="") $statut="5";
+ 	else if ($auteur_session['statut']=="6forum") $statut="4";
+ 	else $statut=substr($auteur_session['statut'],0,1);
+	$sq_squelette='';
+	$sq_id_rubrique=0;
+	$sq_securite='5'; 
+?><BOUCLE_MOT_COULEUR(MOTS){id_rubrique}{type=_sq_securites}{0,1}><?php 
+	$sq_couleur='[(#TITRE|texte_script)]'; 
+?></BOUCLE_MOT_COULEUR>
+<BOUCLE_MOT_TYPO(MOTS){id_rubrique}{type=_sq_typographies}{0,1}><?php 
+ 	$sq_typographie='[(#TITRE|texte_script)]'; 
+?></BOUCLE_MOT_TYPO>
+<BOUCLE_MOT_SQUELETTE(MOTS){id_rubrique}{type=_sq_squelettes}{0,1}><?php 
+	$sq_squelette='[(#TITRE|texte_script)]'; 
+		$sq_id_rubrique=[(#ID_RUBRIQUE)]; 
+?></BOUCLE_MOT_SQUELETTE>
+<BOUCLE_MOT_SECU(MOTS){id_rubrique}{type=_sq_securites}{0,1}><?php 
+ 	if ('[(#TITRE|texte_script)]'<$sq_securite)
+ 			$sq_securite='[(#TITRE|texte_script)]';
+?></BOUCLE_MOT_SECU><?php  
+if ($statut<=$sq_securite)
+{	
+	if($sq_couleur=='') $sq_couleur='defaut'; 
+	if($sq_typographie=='') $sq_typographie='defaut';
+	if($sq_squelette=='defaut') $sq_squelette='';
+	$sq_squelette='breve'.$sq_squelette; 
+
+?><INCLURE(bloc_sq.php3){id_breve}>
+<?php 
+} else {
+?>
+secu !!!
+<?php 
+}
+?>
+</BOUCLE_head>

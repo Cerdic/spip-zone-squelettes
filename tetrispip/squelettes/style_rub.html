@@ -1,0 +1,30 @@
+<?php 
+	$sq_couleur=''; 
+	$sq_typographie='';
+?>
+<BOUCLE_HIERARCHIE(HIERARCHIE){id_rubrique}>
+ <BOUCLE_MOT_COULEUR_PARENT(MOTS){id_rubrique}{type=_sq_securites}{0,1}>
+  <?php if($sq_couleur=='') $sq_couleur='[(#TITRE|texte_script)]'; ?>
+ </BOUCLE_MOT_COULEUR_PARENT>
+ <BOUCLE_MOT_TYPO_PARENT(MOTS){id_rubrique}{type=_sq_typographies}{0,1}>
+  <?php if($sq_typographie=='') $sq_typographie='[(#TITRE|texte_script)]'; ?>
+ </BOUCLE_MOT_TYPO_PARENT>
+</BOUCLE_HIERARCHIE>
+
+<BOUCLE_MOT_COULEUR(MOTS){id_rubrique}{type=_sq_securites}{0,1}>
+ <?php $sq_couleur='[(#TITRE|texte_script)]'; ?>
+</BOUCLE_MOT_COULEUR>
+<BOUCLE_MOT_TYPO(MOTS){id_rubrique}{type=_sq_typographies}{0,1}>
+ <?php $sq_typographie='[(#TITRE|texte_script)]'; ?>
+</BOUCLE_MOT_TYPO>
+
+
+<//B_MOT_COULEUR>
+<?php 
+	if($sq_couleur=='') $sq_couleur='defaut'; 
+	if($sq_typographie=='') $sq_typographie='defaut';
+?>
+
+<INCLURE(bloc_style.php3){bloc=style_habillage}{sq_couleur=defaut}{sq_typographie=defaut}{id_rubrique}>
+<INCLURE(bloc_style.php3){bloc=style_typographie}{sq_couleur=defaut}{sq_typographie=defaut}{id_rubrique}>
+<INCLURE(bloc_style.php3){bloc=style_menus}{sq_couleur=defaut}{sq_typographie=defaut}{id_rubrique}>
