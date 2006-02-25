@@ -12,55 +12,77 @@ function sq_style($id,$le_dossier_squelettes,$param) {
 	return $returned;
 }
 
+function tetris_x($texte,$xmax,$xsize,$xmarg){
+	return $xmax*($xsize+2*$xmarg);
+}
+function tetris_y($texte,$ymax,$ysize,$ymarg){
+	return $ymax*($ysize+2*$ymarg);
+}
+
+function tetris_style($texte,$xmax,$xsize,$xmarg,$ymax,$ysize,$ymarg){
+//return $texte.','.$xmax.','.$xsize.','.$xmarg.','.$ymax.','.$ysize.','.$ymarg;
+	$returned='';
+	for ($i=1;$i<=$xmax;$i++){
+		$returned.=".size_".$i."_full{
+	width: ".(($i*$xsize)+($i-1)*2*$xmarg)."px;
+	position: relative;
+	margin: 0px;
+}
+";
+		for ($j=1;$j<=$ymax;$j++){
+			$returned.=".size_".$i."_".$j."{
+	width: ".(($i*$xsize)+($i-1)*2*$xmarg)."px;
+	height: ".(($j*$ysize)+($j-1)*2*$ymarg)."px;
+	position: relative;
+	margin: 0px;
+}
+";
+			$returned.="#pos_".$i."_".$j."{
+	left: ".(($i-1)*($xsize+2*$xmarg))."px;
+	top: ".(($j-1)*($ysize+2*$ymarg))."px;
+	position: absolute;
+	margin: 0px
+}
+";
+		}
+		$returned.="#pos_right_".$i."{
+	position: absolute;
+	right:".$ymarg."px;
+	top: ".(($i-1)*($ysize+2*$ymarg))."px;
+	margin: 0px;
+}
+";
+		$returned.=".marg_".$i."_full{
+	margin-right:".(($i*$ysize)+($i-1)*2*$ymarg)."px;
+	position: relative;
+	padding: ".$ymarg."px ".$xmarg."px;
+}
+";
+		$returned.=".margl_".$i."_full{
+	margin-left:".(($i*$ysize)+($i-1)*2*$ymarg)."px;
+	position: relative;
+	padding: ".$ymarg."px ".$xmarg."px;
+}
+";
+	}
+	for ($j=1;$j<=$ymax;$j++){
+		$returned.=".size_full_".$j."{
+	height: ".(($j*$ysize)+($j-1)*2*$ymarg)."px;
+	position: relative;
+	margin: 0px;
+	padding: ".$ymarg."px ".$xmarg."px;
+}
+";
+	}
+	return $returned;
+}
+
+
 function somme($texte,$add){
 	return ($texte+$add);
 }
 function choixsiinferieur($a1,$a2,$v,$f) {
 	return ($a1 < $a2) ? $v : $f;
-}
-
-function abonnement($texte){
-	$tab=explode("_",$texte);
-	return $tab[2];
-}
-function abonnement_debut($texte){
-	$tab=explode("_",$texte);
-	$returned=date('Y-m-d H:i:s',mktime(0,0,0,$tab[1],1,$tab[0]));
-	return $returned;
-}
-function abonnement_fin($texte){
-	$tab=explode("_",$texte);
-	$returned=date('Y-m-d H:i:s',mktime(0,0,0,($tab[1]+1),1,$tab[0]));
-	return $returned;
-}
-
-function ajoute($txt,$offset=1){
-	global $mini_compteur;
-	if (!isset($mini_compteur))$mini_compteur=0;
-	$mini_compteur+=$offset;
-	return $mini_compteur;
-}
-
-function plus($txt,$offset=1){
-	global $mini_compteur;
-	if (!isset($mini_compteur))return $offset;
-	return ($mini_compteur+$offset);
-}
-
-function guiPos ($compteur, $offset){
-	return $offset+$compteur*20;
-}
-
-function url ($url){
-	list(,$url) = extraire_lien(array('','','',$url));
-	return $url;
-}
-function nl($texte){
-    $texte = eregi_replace("__bLg__[0-9@\.A-Z_-]+__bLg__","</head><body id=\"top\" dir=\"ltr\">",$texte);
-	return $texte;
-}
-function current_date($texte){
-	return date('Y-m-d');
 }
 
 /////////////////////////////////////////
@@ -99,4 +121,5 @@ function pdf_first_clean($texte) {
 }
 /////////////////////////////////////////
 //////////////////////////
+
 ?>
