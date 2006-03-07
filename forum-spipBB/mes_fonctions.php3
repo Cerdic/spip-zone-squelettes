@@ -109,8 +109,8 @@ return $retour;
  * http://spip-contrib.net/article.php3?id_article=421
 */
 function afficher_mots_clefs($texte) {
-// 10 à changer par le num du Groupe "Type de sujets"
-// 11 à changer par le num du Groupe de mot clé "Modération"
+// 3 à changer par le num du Groupe "Type de sujets"
+// 4 à changer par le num du Groupe de mot clé "Modération"
 if (($GLOBALS['auteur_session']['statut']=='0minirezo') OR ($GLOBALS['auteur_session']['statut']=='1comite'))
 {
 $GLOBALS['afficher_groupe'][]=3;
@@ -121,7 +121,7 @@ $GLOBALS['afficher_groupe'][]=0;
 }
 }
 
-// 11 à changer par le num du Groupe de mot clé "Modération"
+// 4 à changer par le num du Groupe de mot clé "Modération"
 function pas_afficher_mots_clefs($texte) {
 if (($GLOBALS['auteur_session']['statut']=='0minirezo'))
 {
