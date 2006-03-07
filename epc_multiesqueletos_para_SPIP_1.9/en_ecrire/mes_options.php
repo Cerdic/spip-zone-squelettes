@@ -43,4 +43,11 @@ elseif(isset($HTTP_COOKIE_VARS['esqueleto_selec'])) {
 else {
 $dossier_squelettes = "esqueletos/por_defecto";
 }
+
+// Si sigue sin haber esqueleto seleccionado coge esqueletos/por_defecto como esqueleto
+
+if ($dossier_squelettes=="" ) {
+$dossier_squelettes = "esqueletos/por_defecto";
+}
+
 ?>
