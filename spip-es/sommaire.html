@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+<head>
+	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+	<INCLURE(page.php3){fond=inc_meta}>
+	<INCLURE(page.php3){fond=inc_styles}>	
+</head>
+<body>
+	<div class="content">
+
+	
+	<INCLURE(page.php3){fond=inc_cabecera}>
+
+
+	<div class="right">
+
+<BOUCLE_destacados(MOTS){titre==destacado}>
+<BOUCLE_art_destacados(ARTICLES){id_mot}{par date}{inverse}{doublons portada}>
+
+	<div id="destacado1">
+			<h2><a href="#URL_ARTICLE">#TITRE</a></h2>
+			<p>#INTRODUCTION<a href="#URL_ARTICLE" title="leer completo">leer</a></p>		
+
+				</div>
+
+</BOUCLE_art_destacados>
+</BOUCLE_destacados>
+
+
+	<BOUCLE_last(ARTICLES){par date}{inverse}{0,5}{doublons portada}>
+
+	<INCLURE(page.php3){fond=inc_intro_articulo}{id_article}>
+
+	</BOUCLE_last>
+
+
+
+
+
+<div id="caja_derecha">
+				<h3>Ultimos comentados</h3>
+				<p>
+<BOUCLE_uf(FORUMS){par date}{inverse}{0,10}>
+<BOUCLE_art(ARTICLES){id_article}{doublons x}>
+<a href="#URL_ARTICLE#com#_uf:ID_FORUM" title="Comentario [(#_uf:NOM|?{por #_uf:NOM, 'anónimo'})]"> 
+<img src="squelettes/images/strelica2.gif" width="3px" height="5px" alt="" /> #TITRE</a>
+</BOUCLE_art>
+    	</BOUCLE_uf>
+
+</p>
+</div>
+
+
+<div id="caja_izquierda"><h3>Lo más popular</h3>
+	<p>
+<BOUCLE_popularidad(ARTICLES){par popularite}{inverse}{0,10}{doublons portada}>
+<a href="#URL_ARTICLE" title="[(#DESCRIPTIF|textebrut|couper{50})]"><img src="images/strelica2.gif" width="3px" height="5px" alt="" /> #URL_ARTICLE</a>
+</BOUCLE_popularidad>
+</p></div>
+
+
+
+	</div>
+	
+<div class="left">
+
+<INCLURE(page.php3){fond=inc_menu}>
+
+<INCLURE(page.php3){fond=inc_bajomenu}>
+</div>
+
+		<div class="footer">
+
+<INCLURE(page.php3){fond=inc_pie}>
+
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+<head>
+	<title><:plan_site:> [(#NOM_SITE_SPIP|textebrut)]</title>
+	<INCLURE(page.php3){fond=inc_meta}{id_rubrique}>
+	<INCLURE(page.php3){fond=inc_styles}>	
+</head>
+<body>
+	<div class="content">
+
+	
+	<INCLURE(page.php3){fond=inc_cabecera}>
+
+
+	<div class="right">
+
+			
+
+				<B_Autres>
+				<ul>
+				<BOUCLE_Autres(RUBRIQUES){id_parent=0}{par titre}{doublons}>
+					<li><strong>[(#TITRE|supprimer_numero)]</strong>
+
+					<B_articles_recents_Racine>
+						<ul>
+						<BOUCLE_articles_recents_Racine(ARTICLES) {tout}{id_rubrique}{par date}{inverse}>
+
+							<li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></li>
+						</BOUCLE_articles_recents_Racine>
+						</ul>
+					</B_articles_recents_Racine>
+
+					<B_Autres_Details>
+
+						<ul>
+						<BOUCLE_Autres_Details(RUBRIQUES){id_parent}{par num titre}{doublons}>
+
+							<li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+							<BOUCLE_Recurssion(BOUCLE_Autres_Details)>
+							</BOUCLE_Recurssion>
+							<B_articles_recents_Autres>
+								<ul>
+								<BOUCLE_articles_recents_Autres(ARTICLES) {tout}{id_rubrique}{par date}{inverse}>
+
+									<li><a href="#URL_ARTICLE" >[(#TITRE|supprimer_numero)]</a></li>
+
+								</BOUCLE_articles_recents_Autres>
+								</ul>
+							</B_articles_recents_Autres>
+							</li>
+						</BOUCLE_Autres_Details>
+						</ul>
+					</B_Autres_Details>
+
+					</li>
+
+				</BOUCLE_Autres>
+				</ul>
+				</B_Autres>
+
+
+	</div>
+	
+<div class="left">
+	
+<INCLURE(page.php3){fond=inc_menu}>
+
+
+<INCLURE(page.php3){fond=inc_bajomenu}>
+		
+	</div>
+		<div class="footer">
+		
+<INCLURE(page.php3){fond=inc_pie}>
+		</div>
+	</div>
+</body>
+</html>
+</BOUCLE_rub>
+
