@@ -3,7 +3,7 @@
 <html lang="#LANG">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=#CHARSET">
-	<title>[Sommaire Livre (#NOM_SITE_SPIP) 2005]</title>
+	<title>[Sommaire Livre (#NOM_SITE_SPIP) 2006]</title>
 			<style type="text/css" title="ma css" media="screen">
 	<!--
 		@import "#DOSSIER_SQUELETTES/book.css";
@@ -13,15 +13,24 @@
 <body>
 	<div id="liste">
 		<h1>[(#NOM_SITE_SPIP)]</h1>
+		<ol>
 		<BOUCLE_TOUT_SITE(RUBRIQUES){racine}>
-			<div id="chapitre">
-				<h2><a href="chapitre.php3?id_rubrique=#ID_RUBRIQUE" [title="(#TITRE|texte_script)"]>#TITRE</a></h2>
+		<li>
+			<span id="chapitre">
+			<h2><a href="chapitre.php3?id_rubrique=#ID_RUBRIQUE" [title="(#TITRE|texte_script)"]>#TITRE</a></h2>
 				<ol>
+				<!--
+		Dans une liste il n'est malheureusement pas possible de faire reprendre la numerotation par rapport a sa hierarchie
+		http://www.la-grange.net/w3c/html4.01/struct/lists.html#edef-OL
+		-->
 				<BOUCLE_SS_RUBRIQUE(RUBRIQUES){id_parent}>
 				<li>
 					<h3><a href="chapitre.php3?id_rubrique=#ID_RUBRIQUE" [title="(#TITRE|texte_script)"]>#TITRE</a></h3>
 					<ol>
-					<BOUCLE_articles(ARTICLES) {id_rubrique}{par date}{inverse}{annee==2005}{id_mot= Livre}>
+					<BOUCLE_articles(ARTICLES) {id_rubrique}{par date}{inverse}{annee==2006}{id_mot= Livre}>
+					<!--
+					Vide sauf si vous avez bien affecte le mot clef "Livre" a des articles de l'annee 2006
+					-->
 					<li>
 					<dt><a href="./ecrire/articles.php3?id_article=#ID_ARTICLE">#TITRE</a></dt>
 						[<dd>(#PS|PtoBR)</dd>]
@@ -34,8 +43,10 @@
 				</li>
 				</BOUCLE_SS_RUBRIQUE>
 				</ol>
-			</div>
+			</span>
+			</li>
 		</BOUCLE_TOUT_SITE>
+		</ol>
 </div>
 </body>
 </html>
