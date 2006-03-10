@@ -90,13 +90,15 @@
 ?>
 
 <li>
-<a href="../ecrire/[(#ENV{id_syndic}|?{sites,sites_tous})].php3[?id_syndic=(#ENV{id_syndic})]">[(#ENV{id_syndic}|?{<:ecrire:icone_modifier_site:>, <:login_acces_prive:>})]</a>
+<a href="../ecrire/?exec=[(#ENV{id_syndic}|?{sites,sites_tous})][&amp;id_syndic=(#ENV{id_syndic})]">[(#ENV{id_syndic}|?{<:ecrire:icone_modifier_site:>, <:login_acces_prive:>})]</a>
 </li>
 
 <?php } ?>
 
 <li>
-<a href="../spip_cookie.php3?logout=<?php echo $auteur_session['login']; ?>&amp;url=sedna/[(#SELF|urlencode)]"><:sedna_deconnexion:></a>
+[(#REM) Ici #SELF est passe "a cote'" de #URL_LOGOUT, car il y a des
+problemes dans les deux elements au sujet des sous-repertoires]
+<a href="[(#URL_LOGOUT|sedna/)][(#SELF|urlencode)]"><:sedna_deconnexion:></a>
 </li>
 </ul>
 
@@ -104,7 +106,7 @@
 
 <ul>
 <li>
-<a href="../spip_login.php3?url=sedna/[(#SELF|urlencode)]"><:sedna_connexion:></a>
+<a href="[(#URL_PAGE{login}|parametre_url{url,sedna/#SELF})]"><:sedna_connexion:></a>
 </li>
 </ul>
 
@@ -265,6 +267,6 @@ title="RSS [(#NOM_SITE_SPIP|attribut_html)][ ((#ENV{recherche}|attribut_html))]"
 </div>
 </div>[(#REM) /feed]
 
-<div style='position: absolute; background-image: url("../spip_background.php3"); height: 1px; width: 1px;'></div>
+#SPIP_CRON
 
 <INCLURE{fond=sedna_footer}>

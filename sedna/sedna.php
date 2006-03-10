@@ -1,5 +1,6 @@
 <?php
 	include('ecrire/inc_version.php');
+	$profondeur_url = 1; # nous sommes dans un sous-rep
 	$dossier_squelettes = 'sedna';
 	include_spip('inc/cookie');
 	$forcer_lang = true;
@@ -264,6 +265,6 @@
 	$flag_dynamique = true;
 
 	$flag_preserver=true;
-	include('inc-public.php3');
+	include 'spip.php';
 
 ?>
