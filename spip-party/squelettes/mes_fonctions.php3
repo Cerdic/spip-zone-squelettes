@@ -55,9 +55,16 @@ function compteur($truc='',$add=0) {
 
 
 
-
 function listeDesListes($chaine){
-	$contenu=file_get_contents("http://listes.rezo.net/listes.php");
+	include_spip('inc/flock');
+	//$contenu=file_get_contents("http://listes.rezo.net/listes.php");
+	$tempfile = _DIR_SESSIONS.'/listes.rezo.net';
+	if (!file_exists($tempfile)||(filemtime($tempfile)+24*3600)<time()){
+		$temp=file_get_contents("http://listes.rezo.net/listes.php");
+		ecrire_fichier ($tempfile, $temp);	
+	}
+	lire_fichier ($tempfile, $contenu);
+
 	$contenu=preg_replace("/<[\/]*strong>/","",$contenu);
 	$contenu=preg_replace("/\n/","",$contenu);
 	$contenu=preg_replace("/\<font color=\"\#666666\" size=2\>/","",$contenu);
@@ -69,4 +76,5 @@ function listeDesListes($chaine){
 	}
 	return $retour;
 }
+
 ?>
