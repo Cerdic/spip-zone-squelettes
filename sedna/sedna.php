@@ -1,8 +1,7 @@
 <?php
-
-	define('_SPIP_PATH', './:squelettes/:sedna/:formulaires/:dist/');
 	include('ecrire/inc_version.php');
-	include_ecrire('inc_cookie');
+	$dossier_squelettes = 'sedna';
+	include_spip('inc/cookie');
 	$forcer_lang = true;
 
 	// filtre |syndication_en_erreur
