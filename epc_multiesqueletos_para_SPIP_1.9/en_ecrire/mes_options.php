@@ -1,10 +1,10 @@
 <?php
 
-if ($ce=="si") {
-// Funci—n para purgar la cache y que todo el sitio funcione con el nuevo esqueleto 
+$existe_esq="";
+
+// Funcio—n para purgar la cache y que todo el sitio funcione con el nuevo esqueleto 
 // si se produce un cambio
 // de 3615MARLENE (http://marlene.c3ew.com/article.php?id_article=18)
-
 function purge($dir, $age='ignore', $regexp = '') { 
 	$handle = @opendir($dir);
 	if (!$handle) return;
@@ -20,31 +20,43 @@ function purge($dir, $age='ignore', $regexp = '') {
 			if ($fichier != 'CVS')
 				purge($chemin);
 	}
-	closedir($handle);
+	@closedir($handle);
 }
-
-// Guarda en una cookie el esqueleto seleccionado por un a–o o lo utiliza si existe
-// Comprueba qu exista y si no deja el "por_defecto"
 
 if (isset($esqueleto)) {
- 	purge(CACHE, 0);     // vaciar la cache
-	$dossier_squelettes = "esqueletos/".$esqueleto;
-	setcookie("esqueleto_selec","$esqueleto",time()+365*24*3600);
+$path= "esqueletos";
+$dir = @opendir($path);
+	while ($esqueleto_carp = @readdir($dir)) {
+		if (!is_file($esqueleto_carp) and $esqueleto_carp!="." and $esqueleto_carp!=".." and  ($esqueleto_carp==$esqueleto) ){
+		// Guarda en una cookie el esqueleto seleccionado durante un a–gno...
+ 		purge(CACHE, 0);     // vaciar la cache
+		$dossier_squelettes = "esqueletos/".$esqueleto;
+		setcookie("esqueleto_selec","$esqueleto",time()+365*24*3600);
+		$esqueleto = "";
+		$existe_esq="existe_esq";
+		break;
+		}
+	}
+@closedir($dir);
 }
 
-}
+// ...o, si el de la cookie existe, lo utiliza
 
 elseif(isset($HTTP_COOKIE_VARS['esqueleto_selec'])) {
-	$dossier_squelettes="esqueletos/".$HTTP_COOKIE_VARS['esqueleto_selec'];
+$path= "esqueletos";
+$dir = @opendir($path);
+	while ($esqueleto_carp = @readdir($dir)) {
+		if (!is_file($esqueleto_carp) and $esqueleto_carp!="." and $esqueleto_carp!=".." and  ($esqueleto_carp==isset($HTTP_COOKIE_VARS['esqueleto_selec'])) ){
+					$dossier_squelettes="esqueletos/".$HTTP_COOKIE_VARS['esqueleto_selec'];
+					$existe_esq="existe_esq";
+					break;
+		}
+	}
+@closedir($dir);
 }
 
-else {
-$dossier_squelettes = "esqueletos/por_defecto";
-}
-
-// Si  no hay esqueleto seleccionado coge esqueletos/por_defecto como esqueleto
-
-if ($dossier_squelettes=="") { 
+if ($existe_esq=="") { 	// ...si no existe esqueleto a cambiar, o cookie, utiliza el "por_defecto"
+	purge(CACHE, 0);     // vaciar la cache
 	$dossier_squelettes = "esqueletos/por_defecto";
 }
 
