@@ -1,0 +1,1 @@
+<?php$GLOBALS['debut_intertitre'] = "\n<h2 class=\"spip\">\n";$GLOBALS['fin_intertitre'] = "</h2>\n";$GLOBALS['ouvre_ref'] = '&nbsp;(';$GLOBALS['ferme_ref'] = ')';$GLOBALS['ouvre_note'] = '(';$GLOBALS['ferme_note'] = ') ';$GLOBALS['espace_logos'] = 0;?>
