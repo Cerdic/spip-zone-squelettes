@@ -1,4 +1,100 @@
-<INCLURE{fond=sedna_header}{id_syndic}{recherche}{age}{var_color}>
+<?php
+	// l'identifiant du lien est fonction de son url et de sa date
+	// ce qui permet de reperer les "updated" *et* les doublons
+	//include_spip('inc/filtres');
+	function afficher_lien(
+		$id_syndic_article,
+		$id_lien,
+		$id_syndic,
+		$date,
+		$url,
+		$titre,
+		$lesauteurs,
+		$desc,
+		$lang
+		) {
+		static $vu, $lus, $ferme_ul, $id, $iddesc;
+		global $ex_syndic, $class_desc;
+
+		// Articles a ignorer
+		if (!$_GET['id_syndic']
+		AND $_COOKIE['sedna_ignore_'.$id_syndic])
+			return;
+
+		// initialiser la liste des articles lus
+		if (!is_array($lus))
+			$lus = array_flip(split('-', '-'.$_COOKIE['sedna_lu']));
+
+		if ($vu[$id_lien]++) return;
+
+		// regler la classe des liens, en fonction du cookie sedna_lu
+		$class_link = $lus[$id_lien] ? 'vu' : '';
+
+		if (unique(substr($date,0,10)))
+			$affdate = '<h1 class="date">'
+				.jour($date).' '.nom_mois($date).'</h1>';
+
+
+		// indiquer un intertitre si on change de source ou de date
+		if ($affdate OR ($id_syndic != $ex_syndic)) {
+			echo $ferme_ul; $ferme_ul="</ul>\n";
+			echo $affdate;
+		}
+
+		// Suite intertitres
+		if ($affdate OR ($id_syndic != $ex_syndic)) {
+			echo "<h2 id='site${id_syndic}_".(++$id)."'
+			onmouseover=\"getElementById('url".$id."').className='urlsiteon';\"
+			onmouseout=\"getElementById('url".$id."').className='urlsite';\"
+			>";
+			echo "<a href=\"?id_syndic=$id_syndic";
+			if ($age = intval($GLOBALS['age']))
+				echo "&amp;age=$age";
+			echo "\">".$GLOBALS['nom_site_'.$id_syndic]
+				."</a>";
+			echo " <a class=\"urlsite\"
+					href=\""
+					.$GLOBALS['url_site_'.$id_syndic]
+					.'" id="url'.$id.'">'
+					.$GLOBALS['url_site_'.$id_syndic]
+					."</a>";
+			echo "</h2>\n<ul>\n";
+			$ex_syndic = $id_syndic;
+		}
+
+		echo "<li class='entry'";
+		if (!$_GET['id_syndic'] AND !strlen($_GET['recherche']))
+			echo " id='item${id_syndic}_${id_syndic_article}'";
+		echo "	onmousedown=\"jai_lu('$id_lien');\">\n",
+#		"<small>".affdate($date,'H:i')."</small>",
+		"<abbr class='published updated'
+		title='".date_iso($date)."'>".affdate($date,'H:i')."</abbr>", 
+		"<div class=\"titre\">",
+		"<a href=\"$url\"
+			title=\"$url\"
+			class=\"link$class_link\"
+			id=\"news$id_lien\"
+			rel=\"bookmark\"";
+		if ($lang) echo " hreflang=\"$lang\"";
+		echo ">",
+		"<span class=\"title\">", # le "title" du microformat hAtom.feed.entry
+		$titre, "</span></a>",
+		$lesauteurs,
+		"\n<span class=\"source\"><a href=\"",
+		$GLOBALS['url_site_'.$id_syndic]."\">",
+		$GLOBALS['nom_site_'.$id_syndic]."</a></span>\n",
+		"</div>\n";
+
+		if ($desc)
+			echo "<div class=\"desc\">",
+			"<div class=\"$class_desc\" id=\"desc_".(++$iddesc)."\">\n",
+			"<span class=\"content\">", $desc, "</span>\n",
+			'</div></div>';
+		
+
+		echo "\n</li>\n";
+		}
+?><INCLURE{fond=sedna_header}{id_syndic}{recherche}{age}{var_color}>
 
 [(#REM)
 	Microformat hAtom !
@@ -6,7 +102,7 @@
 <div class="feed">
 <div class="top">
 <div class="title">
-<a href="./">Sedna RSS</a>
+<a href="#URL_PAGE{sedna}">Sedna RSS</a>
 	&nbsp;
 <BOUCLE_titre(SITES){id_syndic}>#NOM_SITE
 	&nbsp;
@@ -91,23 +187,19 @@
 ?>
 
 <li>
-<a href="../ecrire/?exec=[(#ENV{id_syndic}|?{sites,sites_tous})][&amp;id_syndic=(#ENV{id_syndic})]">[(#ENV{id_syndic}|?{<:ecrire:icone_modifier_site:>, <:login_acces_prive:>})]</a>
+<a href="ecrire/?exec=[(#ENV{id_syndic}|?{sites,sites_tous})][&amp;id_syndic=(#ENV{id_syndic})]">[(#ENV{id_syndic}|?{<:ecrire:icone_modifier_site:>, <:login_acces_prive:>})]</a>
 </li>
 
 <?php } ?>
 
-<li>
-[(#REM) Ici #SELF est passe "a cote'" de #URL_LOGOUT, car il y a des
-problemes dans les deux elements au sujet des sous-repertoires]
-<a href="[(#URL_LOGOUT|sedna/)][(#SELF|urlencode)]"><:sedna_deconnexion:></a>
-</li>
+	<li><a href="#URL_LOGOUT"><:sedna_deconnexion:></a></li>
 </ul>
 
 <?php } else { ?>
 
 <ul>
 <li>
-<a href="[(#URL_PAGE{login}|parametre_url{url,sedna/#SELF})]"><:sedna_connexion:></a>
+<a href="[(#URL_PAGE{login}|parametre_url{url,#URL_PAGE{sedna}})]"><:sedna_connexion:></a>
 </li>
 </ul>
 
@@ -130,13 +222,13 @@ problemes dans les deux elements au sujet des sous-repertoires]
 
 <h1><:sedna_sources:></h1>
 <ul>
-	<li><a href="./" class="[(#ENV{id_syndic}|=={''}|?{'selected',''})]"><b><:sedna_toutes:></b></a></li>
+	<li><a href="#URL_PAGE{sedna}" class="[(#ENV{id_syndic}|=={''}|?{'selected',''})]"><b><:sedna_toutes:></b></a></li>
 </ul>
 
 <ul>
 <BOUCLE_sites(SITES){par nom_site}{syndication!=non}>
 <li>
-	<a href="?id_syndic=#ID_SYNDIC[&amp;age=(#ENV{age})]"
+<a href="[(#URL_PAGE{sedna}|parametre_url{id_syndic,#ID_SYNDIC})][&amp;age=(#ENV{age})]"
 		class="[(#ENV{id_syndic}|=={#ID_SYNDIC}|?{'selected',''})]"
 	><?php
 		if ($_COOKIE['sedna_ignore_[(#ID_SYNDIC)]']) {
@@ -228,7 +320,7 @@ problemes dans les deux elements au sujet des sous-repertoires]
 <div class="bottomrss">
 <BOUCLE_url_backend_ori2(SITES){id_syndic}>
 	 <a
-href="#URL_SITE_SPIP/sedna/?rss=1&amp;id_syndic=#ID_SYNDIC[&amp;recherche=(#ENV{recherche})]"
+href="#URL_SITE_SPIP/[(#URL_PAGE{sedna}|parametre_url{rss,1})]&amp;id_syndic=#ID_SYNDIC[&amp;recherche=(#ENV{recherche})]"
 title="RSS [(#NOM_SITE|attribut_html)], via [(#NOM_SITE_SPIP|attribut_html)]"
 	><span class="rss-button">RSS</span></a>
 [	 <a
@@ -238,7 +330,7 @@ title="RSS original [(#NOM_SITE|attribut_html)]"
 ]
 </BOUCLE_url_backend_ori2>
 	 <a
-href="#URL_SITE_SPIP/sedna/?rss=1[&amp;recherche=(#ENV{recherche})]"
+		 href="#URL_SITE_SPIP/[(#URL_PAGE{sedna}|parametre_url{rss,1})][&amp;recherche=(#ENV{recherche})]"
 title="RSS [(#NOM_SITE_SPIP|attribut_html)][ ((#ENV{recherche}|attribut_html))]"
 	><span class="rss-button">RSS</span></a>
 <//B_url_backend_ori2>
