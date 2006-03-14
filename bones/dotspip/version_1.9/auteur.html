@@ -1,0 +1,72 @@
+<BOUCLE_auteur_principal(AUTEURS) {id_auteur}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<!-- bones dotspip 1.9 -->
+<INCLURE{fond=inclusions/inc_head}>
+<title>[#NOM_SITE_SPIP] [(#NOM|textebrut)]</title>
+<meta name="MSSmartTagsPreventParsing" content="TRUE" />
+</head>
+<body>
+<div id="page">
+  <div id="top">
+    <h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+    <p id="prelude">
+      <INCLURE{fond=inclusions/inc_menu-haut}>
+    </p>
+  </div>
+  <div id="main">
+    <div id="content">
+      <!-- Une : affichage de l'auteur -->
+      <div class="post">
+      <p class="day-date"><:auteur:></p>
+        [<div class="image">(#LOGO_AUTEUR|right||reduire_image{100,100})</div>]
+        <h2 id="p1" class="post-title">#NOM</h2>
+        [
+        <p class="post-info">(#BIO)</p>
+        ] [<br />
+        #NOM_SITE : <a href="(#URL_SITE)">#URL_SITE</a><br />
+        ] [(#NOTES)]
+        <h2><:envoyer_message:></h2>
+        [(#FORMULAIRE_ECRIRE_AUTEUR)]
+        <!-- Articles de l'auteur -->
+        <h2><:articles_auteur:></h2>
+        <BOUCLE_articles(ARTICLES) {id_auteur} {par titre}>
+        <ul>
+          <li><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a> [(#DATE|nom_jour)] [(#DATE|affdate)]
+            <B_auteurs>
+<:par_auteur:>
+            <BOUCLE_auteurs(AUTEURS) {id_article} {", "}>
+            #NOM
+            </BOUCLE_auteurs>
+          </li>
+        </ul>
+        </BOUCLE_articles>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar">
+    <div id="calendar">
+      <INCLURE{fond=inclusions/inc_dernieres_breves}>
+    </div>
+    <div id="search">
+      <INCLURE{fond=inclusions/inc_recherche}>
+    </div>
+    <div id="categories">
+      <INCLURE{fond=inclusions/inc_rubriques}>
+    </div>
+    <div id="links">
+      <INCLURE{fond=inclusions/inc_sites}>
+    </div>
+    <div id="syndicate">
+      <INCLURE{fond=inclusions/inc_syndication}>
+    </div>
+  </div>
+  <p id="footer">
+    <INCLURE{fond=inclusions/inc_pied_de_page}>
+  </p>
+</div>
+<!-- end #page -->
+</body>
+</html>
+</BOUCLE_auteur_principal>

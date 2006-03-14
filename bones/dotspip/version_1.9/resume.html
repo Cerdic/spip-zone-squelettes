@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<!-- inculsion des metatag, des feuilles de styles ... -->
+<INCLURE{fond=inclusions/inc_head}>
+<title>[#NOM_SITE_SPIP] <:resume:></title>
+<meta name="MSSmartTagsPreventParsing" content="TRUE" />
+</head>
+<body>
+<div id="page">
+  <div id="top">
+    <h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+  </div>
+  <p id="prelude">
+    <INCLURE{fond=inclusions/inc_menu-haut}>
+  </p>
+  <div id="main">
+    <div id="content">
+      <!-- Boucle sur la liste de billets -->
+      <div class="post">
+        <p class="day-date"><:popularite:></p>
+        <h2 class="structure"><:articles_populaires:></h2>
+        <BOUCLE_article_un(ARTICLES) {par popularite} {inverse} {0,2}>
+        [
+        <div class="image">(#LOGO_ARTICLE_RUBRIQUE|right||reduire_image{100,100})</div>
+        ]
+        [
+        <div class="surtitre">(#SURTITRE)</div>
+        ]
+        <h2 class="titre-extrait"><a href="#URL_ARTICLE">#TITRE</a></h2>
+        [
+        <div class="surtitre">(#SOUSTITRE)</div>
+        ]
+        <div class="detail"> [(#DATE|nom_jour)] [(#DATE|affdate)]
+          <B_auteurs_un>
+          <:par_auteur:>
+          <BOUCLE_auteurs_un(AUTEURS) {id_article} {", "}>
+          #NOM
+          </BOUCLE_auteurs_un>
+          [<br />
+          <:popularite:>&nbsp;: <span class="important">(#POPULARITE)</span> %] </div>
+        <p>[(#INTRODUCTION|justifier)]</p>
+        <br />
+        </BOUCLE_article_un>
+        <h2 class="structure"><:articles_populaires:> (<:suite:>)</h2>
+        <!-- Articles les plus populaires (suite) -->
+        <BOUCLE_articles_populaires(ARTICLES) {par popularite} {inverse} {2,8}>
+        <h2><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h2>
+        <div class="detail"> [(#DATE|nom_jour)] [(#DATE|affdate)]
+          <B_auteurs_recents>
+          <:par_auteur:>
+          <BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>
+          #NOM
+          </BOUCLE_auteurs_recents>
+          <br />
+          <:popularite:>&nbsp;: <span class="important">#POPULARITE</span> % </div>
+        <br />
+        </BOUCLE_articles_populaires>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar">
+    <div id="search">
+      <INCLURE{fond=inclusions/inc_recherche}>
+    </div>
+    <div id="breves">
+      <INCLURE{fond=inclusions/inc_dernieres_breves}>
+    </div>
+    <div id="categories">
+      <INCLURE{fond=inclusions/inc_rubriques}>
+    </div>
+    <div id="links">
+      <INCLURE{fond=inclusions/inc_sites}>
+    </div>
+    <div id="syndicate">
+      <INCLURE{fond=inclusions/inc_syndication}>
+    </div>
+  </div>
+  <p id="footer">
+    <INCLURE{fond=inclusions/inc_pied_de_page}>
+  </p>
+</div>
+<!-- end #page -->
+</body>
+</html>

@@ -1,0 +1,119 @@
+<BOUCLE_article_principal(ARTICLES) {id_article}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- Bones Dotspip 1.9 -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[#NOM_SITE_SPIP] [(#TITRE|textebrut)]</title>
+<INCLURE{fond=inclusions/inc_head}>
+<meta name="MSSmartTagsPreventParsing" content="TRUE" />
+<meta name="Description" content="[(#INTRODUCTION|textebrut)]" />
+<meta name="Keywords" content="<BOUCLE_index(ARTICLES){id_article}{","}>#TITRE</BOUCLE_index>" />
+<meta name="Author" content="<BOUCLE_author(AUTEURS){id_article}{","}>#NOM</BOUCLE_author>" />
+<meta name="Robots" content="index,follow,all" />
+<meta name="Identifier-URL" content="#URL_SITE_SPIP" />
+<meta name="rating" content="General" />
+<meta name="revisit-after" content="15 days" />
+</head>
+<body>
+<div id="page">
+  <div id="top">
+    <h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+  </div>
+  <p id="prelude">
+    <INCLURE{fond=inclusions/inc_menu-haut}>
+  </p>
+  <div id="main">
+    <div id="content">
+      <!-- Boucle sur la liste de billets -->
+      <div class="post">
+        <p class="day-date"><:articles:></p>
+        [
+        <div class="surtitre">(#SURTITRE)</div>
+        ]
+        <h2 id="p1" class="post-title">#TITRE</h2>
+        [
+        <div class="soustitre">(#SOUSTITRE)</div>
+        ]
+        <p class="post-info">[(#DATE|nom_jour)] [(#DATE|affdate)] par
+          <BOUCLE_auteurs_articles(AUTEURS) {id_article} {", "}>
+          <a href="?page=auteur&amp;id_auteur=#ID_AUTEUR">#NOM</a>
+          </BOUCLE_auteurs_articles>
+          [ | <:sur_web:>: <a href="#URL_SITE">(#NOM_SITE)</a> ]</p>
+        [(#LOGO_ARTICLE_RUBRIQUE|right||reduire_image{100,100})]
+        <div class="post-content">
+          <p>#CHAPO</p>
+          <p align="left">#DESCRIPTIF</p>
+          <p align="justify">#TEXTE</p>
+          <em>#PS</em>
+          <div align="center">
+            <!-- boucle image -->
+            <BOUCLE_afficher_document(DOCUMENTS){id_document}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
+            <hr />
+            [
+            <h3>(#TITRE)</h3>
+            ] [
+            <div>(#DESCRIPTIF)</div>
+            ] [
+            <div>
+<a href="#URL_DOCUMENT">(#FICHIER|reduire_image{500}) </a>           </div>
+            ]
+            </BOUCLE_afficher_document>
+            <B_documents_portfolio>
+            <div>
+              <hr />
+              <BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
+              <div style="float: left;"> [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT">(#LOGO_DOCUMENT{0,60})</a>] [
+                <div style="clear: both;"><b>(#TITRE)</b></div>
+                ][
+                <div style="clear: both;">(#DESCRIPTIF)</div>
+                ] </div>
+              </BOUCLE_documents_portfolio>
+            </div>
+            <div style="clear: both;"></div>
+            </B_documents_portfolio>
+          </div>
+          #NOTES </div>
+        <!-- boucle forum -->
+      
+       <INCLURE{fond=inclusions/inc_forum_article}{id_article}{id_forum}{id_signature}>
+      
+        <!-- fin article -->
+        <br />
+        </BOUCLE_articles>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar">
+    <div id="search">
+      <INCLURE{fond=inclusions/inc_recherche}>
+    </div>
+    <div id="breves">
+      <INCLURE{fond=inclusions/inc_dernieres_breves}>
+    </div>
+    <div id="categories">
+      <INCLURE{fond=inclusions/inc_rubriques}>
+    </div>
+    <div id="documents">
+      <INCLURE{fond=inclusions/inc_pieces_jointes}{id_article}{doublons}>
+    </div>
+    <div id="Article-Rubrique">
+      <INCLURE{fond=inclusions/inc_meme_rubrique}{id_rubrique}>
+    </div>
+    <div id="Auteurs">
+      <INCLURE{fond=inclusions/inc_memes_auteurs}{id_article}>
+    </div>
+    <div id="links">
+      <INCLURE{fond=inclusions/inc_sites}>
+    </div>
+    <div id="syndicate">
+      <INCLURE{fond=inclusions/inc_syndication}>
+    </div>
+  </div>
+  <p id="footer">
+    <INCLURE{fond=inclusions/inc_pied_de_page}>
+  </p>
+</div>
+<!-- end #page -->
+</body>
+</BOUCLE_article_principal>
+</html>
