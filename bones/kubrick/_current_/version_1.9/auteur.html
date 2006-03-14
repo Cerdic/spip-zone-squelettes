@@ -1,0 +1,72 @@
+<BOUCLE_auteur_principal(AUTEURS) {id_auteur}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[#NOM_SITE_SPIP] [(#NOM|textebrut)]</title>
+<!-- Kubrickv1.5 BONES 2.0-->
+<INCLURE(inclusions/inc_head.php3)>
+</head><body>
+<div id="page">
+  <div id="header">
+    <div id="headerimg">
+      <h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+      <div class="description">
+        <INCLURE(inclusions/inc_menu-haut.php3)>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div id="content" class="narrowcolumn">
+    <div class="post">
+      <h2 id="post-1">#NOM</h2>
+      <small>[(#DATE|nom_jour)] [(#DATE|affdate)] </small>
+      <div class="entry">
+        <p>[(#LOGO_AUTEUR|right||reduire_image{100,100})]</p>
+        <p>[(#BIO|justifier)]</p>
+        <em>[<:sur_web:>: <a href="#URL_SITE" class="spip_out">(#NOM_SITE)</a>]</em> </div>
+      <h3><:envoyer_message:></h3>
+      [(#FORMULAIRE_ECRIRE_AUTEUR)] </div>
+    <div class="post">
+      <h3 class="storytitle"><:articles_auteur:></h3>
+      <BOUCLE_articles(ARTICLES) {id_auteur} {par titre}>
+      <h2><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h2>
+      [(#DATE|nom_jour)] [(#DATE|affdate)]
+      <B_auteurs>
+<:par_auteur:>
+      <BOUCLE_auteurs(AUTEURS) {id_article} {", "}>
+      #NOM
+      </BOUCLE_auteurs>
+      <br />
+      </BOUCLE_articles>
+    </div>
+    <div class="navigation">
+      <div class="alignleft"></div>
+      <div class="alignright"></div>
+    </div>
+  </div>
+  <div id="sidebar">
+    <div id="search">
+      <INCLURE(inclusions/inc_recherche.php3)>
+    </div>
+    <div id="categories">
+      <INCLURE(inclusions/inc_rubriques.php3)>
+    </div>
+    <div id="links">
+      <INCLURE(inclusions/inc_sites.php3)>
+    </div>
+    <div id="syndicate">
+      <INCLURE(inclusions/inc_syndication.php3)>
+    </div>
+  </div>
+  <hr />
+  <div id="footer">
+    <p>
+      <INCLURE(inclusions/inc_pied_de_page.php3)>
+    </p>
+  </div>
+</div>
+</body>
+</BOUCLE_auteur_principal>
+<:aucun_auteur:>
+<//B_auteur_principal>
+</html>
