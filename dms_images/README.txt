@@ -4,7 +4,7 @@
 
 
 Usage des squelettes est libre de chez libre, mais faites l'effort de changer le look, 
-les css et les images sont donnes a titre d'exemple.
+les css et les images sont donnees a titre d'exemple.
 
 EXPLICATIONS
 
