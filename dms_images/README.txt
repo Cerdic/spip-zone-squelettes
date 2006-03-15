@@ -1,4 +1,4 @@
-/* recherche et tri multiple des images */
+/* recherche et tri multiple des images - SPIP 1.9 */
 
 /* Proposer par dms [ http://www.dmsphoto.com ] */
 
