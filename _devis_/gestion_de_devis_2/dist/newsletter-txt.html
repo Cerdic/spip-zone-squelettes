@@ -1,0 +1,37 @@
+<BOUCLE_exclus_art(ARTICLES){tout}{titre_mot=exclus}{doublons}></BOUCLE_exclus_art>
+<?php # La langue et la date de recul de la newsletter sont fourni dans le URL par la page d'envoi de WANewsletter 
+
+//N'affiche que le titre si titre=true dans le URL
+if ($title=="true") { 
+?>[[(#NOM_SITE_SPIP|textebrut|texte_script)]] <:nouveautes|texte_script:>
+<?php
+} else {
+?>
+====================================
+<?php
+echo $intertitre_article;
+?>
+
+[[(#NOM_SITE_SPIP|textebrut|texte_script)]] <:nouveautes|texte_script:>
+<BOUCLE_newsletter_mot2(MOTS){id_groupe=11}{par num titre}><BOUCLE_newsletter_art2(ARTICLES){id_mot}{lang}>
+[(#TITRE|majuscules|textebrut|texte_script)]
+
+[(#INTRODUCTION|textebrut|texte_script)]
+
+-> [(#URL_SITE_SPIP)]/[(#URL_ARTICLE)]
+
+---------------------------
+</BOUCLE_newsletter_art2></BOUCLE_newsletter_mot2>
+<?php
+	
+	if ($mail=="true") {
+
+?>
+
+{LINKS}
+<?php
+	
+	} // fin if ($mail="true")
+
+} //Fin else de if ($titre="true")
+?>

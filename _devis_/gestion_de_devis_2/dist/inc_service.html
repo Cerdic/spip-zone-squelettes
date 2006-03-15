@@ -1,0 +1,103 @@
+<div id="Services">
+<div class="Service">
+		<BOUCLE_menu2(RUBRIQUES){id_rubrique==^(28|30)$}{lang}{par num titre}>
+			#LOGO_RUBRIQUE_NORMAL<ul>
+				<BOUCLE_sous_rubriques2(RUBRIQUES){id_parent}{par num titre}{doublons}>
+				<li><a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero)]"><strong>[(#TITRE|supprimer_numero)]</strong></a></li>
+				</BOUCLE_sous_rubriques2>
+			</ul>
+		</BOUCLE_menu2>
+		<BOUCLE_recette_rub(MOTS){id_groupe=1}>
+			<div align="center" class="Recette">
+<BOUCLE_service1(RUBRIQUES){id_rubrique==^(38|40)$}{lang}{par num titre}{doublons}><img src="../_imgs/recettes#LANG.gif" alt="" width="180" height="35" /></BOUCLE_service1>		  
+				<BOUCLE_recette_art(ARTICLES){id_mot}{par hasard}{0,1}{lang}>
+				<a href="#URL_ARTICLE" title="[(#TITRE|supprimer_numero)]">[(#LOGO_ARTICLE||reduire_image{120,0})]<br />
+			  <strong>[(#TITRE|supprimer_numero)]</strong></a>
+				</BOUCLE_recette_art>
+	</div>
+		</BOUCLE_recette_rub>	
+</div>
+
+
+<div class="Newsletter">
+					<img src="../_imgs/titre_newsletter.gif" alt="newsletter" />
+					<script type="text/javascript">
+					<!--
+					var submitted = false;
+					
+					function check_form(e)
+					{
+						var emailAddr = document.forms['subscribe-form'].elements['email'].value;
+					
+						if( emailAddr.indexOf('@', 1) == -1 || emailAddr.indexOf('.', 1) == -1 )
+						{
+							window.alert('L\'adresse email que vous avez indiquée n\'est pas valide');
+					
+							if( e && e.preventDefault ) { // standard
+								e.preventDefault();
+							} else { // MS
+								window.event.returnValue = false;
+							}
+						}
+						else if( submitted == true )
+						{
+							window.alert('Veuillez patienter pendant le chargement de la page');
+					
+							if( e && e.preventDefault ) { // standard
+								e.preventDefault();
+							} else { // MS
+								window.event.returnValue = false;
+							}
+						}
+						else
+						{
+							submitted = true;
+						}
+					}
+					
+					window.onload = function() {
+						document.forms['subscribe-form'].onsubmit = check_form;
+					}
+					//-->
+					</script>
+					<div class="NewsletterReponse"><?php
+					define('IN_WA_FORM', true);
+					$waroot = 'newsletter/'; 
+					include($waroot . 'newsletter.php');
+					?></div>
+					<form id="subscribe-form" method="post" action="#SELF?lang">
+					<fieldset>
+						<legend xml:lang="#LANG" lang="#LANG">#NOM_SITE_SPIP&#160;</legend>
+					
+						<div class="bloc">
+							<label for="email"><:email:> </label>
+							<input name="email" type="text" id="email" size="17" maxlength="100" />
+						</div>
+					
+						<div class="bloc">
+							<label for="format"><:format:> </label>
+							<select id="format" name="format"><option value="1">TXT</option><option value="2">HTML</option></select>
+						</div>
+					
+						<div class="bloc">
+							<label for="liste"><:langue:> </label>
+							<select id="liste" name="liste"><option value="2"> - Francais - </option><option value="3"> - Deutsch - </option></select>
+						</div>
+					
+						<div class="center">
+							<label><input type="radio" name="action" value="inscription" checked="checked" /> <:inscription:></label>
+							<label><br /><input type="radio" name="action" value="setformat" /> <:changementdeformat:></label>
+							<label><br /><input type="radio" name="action" value="desinscription" /> <:desinscription:></label>
+						</div>
+					
+						<div>
+						<table width="100%" border="0" cellpadding="0" cellspacing="0">
+						  <tr>
+							<td align="right" valign="top"><input class="ajout" type="submit" name="wanewsletter" value="Ok" /></td>
+						  </tr>
+						</table>
+						</div>
+					</fieldset>
+					</form>					
+</div>
+</div>

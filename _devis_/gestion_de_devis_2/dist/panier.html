@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- ***************************************************************************************
+//   Web Site Subject: © marche-francais.de                                               //
+//   Page Subject:  page de panier                                                        //
+//   Web Designer & Architect Designer: Sebastien Murat,  Karim BELKACEM                  //
+//   Graphic Designer: Sebastien Murat, Karim BELKACEM                                    //
+//   Developpement : Sebastien Murat, Karim BELKACEM                                      //
+//   Creation Date: février. 16, 2006                                                     //
+**************************************************************************************** -->
+<html lang="#LANG" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>#NOM_SITE_SPIP | #LANG | <:suivrepanier:></title>
+<meta name="keywords" content="<BOUCLE_metatags(MOTS){type=meta}{", "}>[(#TITRE|supprimer_numero)]</BOUCLE_metatags> /">
+<meta name="description" content="<BOUCLE_metadescriptif(MOTS){type=meta_descriptif}>[(#TEXTE)]</BOUCLE_metadescriptif>">
+<meta name="subjects" content="[ #NOM_SITE_SPIP ] - Version <?php echo $GLOBALS['spip_version_affichee']; ?>">
+<meta name="robots" content="ALL">
+<meta name="distribution" content="GLOBAL">
+<meta name="rating" content="GENERAL">
+<meta http-equiv="Reply-to" content="info@marche-francais.de">
+<meta name="ROBOTS" content="INDEX,FOLLOW">
+<meta name="author" content="Sebastien Murat, Karim BELKACEM - contact@lessardines.info">
+<meta name="copyright" content="© [ #NOM_SITE_SPIP ]">
+<meta name="revisit-after" content="7 days">
+<link href="#DOSSIER_SQUELETTE/_css/style_global.css" rel="stylesheet" type="text/css" media="screen" />
+<style type="text/css">
+<!--
+.Style1 {
+	color: #FFFFFF;
+	font-weight: bold;
+}
+.Style2 {color: #FFFFFF}
+-->
+</style>
+<script language=JavaScript src='_js/marche.js'></script> 
+</head>
+<body>
+<!-- ENTETE -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="Entete">
+  <tr>
+    <td align="center" valign="top">
+	
+	<table width="780" border="0" cellpadding="0" cellspacing="0" class="FormatEntete">
+  <tr>
+    <td width="600" align="left" valign="top">
+	<div id="accueil"><a href="#URL_SITE_SPIP?lang=#LANG" title="<:accueil_site:>"><img src="../_imgs/space.gif" alt="<:accueil_site:>" width="600" height="100" border="0" /></a></div>
+	</td>
+	<td width="180" align="left" valign="top">
+			<table width="180" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td align="left" valign="top"><INCLURE(inc_drapdevis.php3){id_rubrique}></td>
+			  </tr>
+			  <tr>
+				<td align="left" valign="top">
+				<div class="formRecherche">
+				<form action="recherche.php3" method="get" name="form_rech">
+				<input name="lang" type="hidden" id="lang" value="#LANG">
+				<table border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+					<td><input class="text" type="text" id="formulaire_recherche" name="recherche" value="<:info_rechercher:>" onfocus="javascript:if(this.value == '<:info_rechercher:>') this.value='';" onblur="javascript:if(this.value == '') this.value='<:info_rechercher:>';"></td>
+					<td><img src="../_imgs/space.gif" alt="" width="3" /></td>
+					<td><input class="ajout" type="submit" value="Ok" /></td>
+				  </tr>
+				</table>
+				</form>
+				</div>
+				</td>
+			  </tr>
+			</table>
+		</td>
+	  </tr>
+	</table>
+
+	</td>
+  </tr>
+</table>
+<!-- ENTETE -->
+
+<!-- CONTENU -->
+<table width="780" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="left" valign="top" class="FormatContenu">
+	<div id="FormatHierarchie">		
+	<!-- Hierarchie debut -->
+	<div class="FormatHierarchie"><a href="#URL_SITE_SPIP?lang=#LANG" title="<:accueil_site:>"><:accueil_site:></a> / <strong><:suivrepanier:></strong></div>
+	<!-- Hierarchie fin -->
+	</div><B_bouteilles_validees> 
+		<div class="Devis#LANG">
+      <div class="Devis"> 
+		
+      	<form name="form1" method="post" action="">
+		
+		<table width="100%" border="0" cellspacing="0" cellpadding="5">
+		  <tr>
+			<td colspan="2" align="left" valign="top" bgcolor="#006699"><span class="Style1"><:intituledeproduit:></span></td>
+			<td align="center" valign="middle" bgcolor="#006699"><span class="Style1"><:quantite:></span></td>
+			<td width="100" align="center" valign="middle" bgcolor="#006699"><span class="Style1"><:prix:></span></td>
+		    <td width="100" align="center" valign="middle" bgcolor="#006699"><span class="Style1"><:total:></span></td>
+		    <td width="100" align="center" valign="middle" bgcolor="#006699">&nbsp;</td>
+		  </tr>
+		  <!-- #ENV{mes_ids,' '})$}> --> 
+          <BOUCLE_bouteilles_validees(ARTICLES){id_article == #ENV{mes_ids}}> 
+		  <tr>
+		    <td width="50" align="left" valign="top">[(#LOGO_ARTICLE||reduire_image{50,0})]</td>
+		    <td align="left" valign="middle"><a href="#URL_ARTICLE" title="[(#TITRE|supprimer_numero)]">
+			<strong>[(#TITRE|supprimer_numero)]</strong><br  /></a>
+              [(#DESCRIPTION)]
+			</td>
+		    <td align="center" valign="middle"><input class="ajout" name="#ID_ARTICLE" type="text" id="#ID_ARTICLE" style="text-align:center;" value="<?php print_r($_SESSION['devis'][#ID_ARTICLE][quantite]); ?>" size="5" maxlength="5"></td>
+		    <td align="center" valign="middle">		
+			<strong><?php print_r($_SESSION['devis'][#ID_ARTICLE][prix]); ?> &euro;</strong></td>
+		    <td align="center" valign="middle">
+				<strong>
+				<?php
+	  				// Calcul du total pour cette bouteille
+	  				$qte = $_SESSION['devis'][#ID_ARTICLE][quantite];
+	  				$prix = $_SESSION['devis'][#ID_ARTICLE][prix];
+					settype($prix, "double");
+	  				$total_ligne = $qte*$prix;
+	  				$total_main = $total_ligne+ $total_main;
+	  				echo format_number($total_ligne);
+				?> 
+
+				&euro;</strong>			
+			</td>
+
+		    <td align="center" valign="middle">
+			<a href="panier.php?id_item=#ID_ARTICLE&action=delete&lang=#LANG"><:supprimer:></a></td>
+		  </tr>
+		  </BOUCLE_bouteilles_validees>
+		  <tr>
+		    <td align="right" valign="middle" bgcolor="#006699">&nbsp;</td>
+		    <td align="center" valign="middle" bgcolor="#006699">&nbsp;</td>
+		    <td colspan="2" align="right" valign="middle" bgcolor="#006699"><span class="Style2"><:totalttc:></span></td>
+		    <td align="center" valign="middle" bgcolor="#006699"><span class="Style1">
+			<?php echo format_number($total_main); ?> &euro;</span></td>
+		    <td align="center" valign="middle" bgcolor="#006699"><input class="ajout" type="submit" name="update" value="<:mettreajour:>" /></td>
+	      </tr>
+		</table>
+		</B_bouteilles_validees>
+		<div class="Devis#LANG">
+      <div class="Devis">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+			<td align="center"><br /><strong><:paniervide:></strong></td>
+		  </tr>
+		</table>    
+          <//B_bouteilles_validees>
+      </form> 
+      <!---------------------------------------------------------------------> 
+      <!-- AFFICHAGE DU DEVIS -->
+	  		<table width="100%" border="0" cellspacing="10" cellpadding="0">
+		  <tr>
+		    <td width="50%" align="center">
+			<form name="ajout-produit" id="ajout-produit" method="post" action="#URL_SITE_SPIP?lang=#LANG"> 
+        	<input class="ajout" type="submit" name="ajout-produit" value="<:ajouterproduit:>" /> 
+      		</form>
+			</td>
+			<td width="50%" align="center">
+			<form name="form-imprimer" id="form-imprimer" method="post" action="panier_print.php?lang=#LANG"> 
+        	<input class="ajout" type="submit" name="print" value="<:imprimer:>" /> 
+      		</form>
+	  		</td>
+		  </tr>
+		</table> 
+      <!--------------------------------------------------------------------->
+	  </div>
+		</div>
+  </tr>
+</table>
+<table width="780" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="center" valign="top"><INCLURE(inc_pieddepage.php3){lang}></td>
+  </tr>
+</table>
+<!-- CONTENU -->
+[(#FORMULAIRE_ADMIN{'spip-admin-float'})]
+#SPIP_CRON
+</body>
+</html>

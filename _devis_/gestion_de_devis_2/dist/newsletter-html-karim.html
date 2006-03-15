@@ -1,0 +1,39 @@
+<html>
+<head>
+<TITLE>[[(#NOM_SITE_SPIP|textebrut|texte_script)]] <:nouveautes|texte_script:></TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<base href="#URL_SITE_SPIP/">
+</head>
+<body bgcolor="#ffffff">
+[<h1 class="titre"><font size="5" face="Verdana, Arial, Helvetica, sans-serif">(#NOM_SITE_SPIP|textebrut|texte_script)</font></h1>
+]
+<h2 class="titre"><font size="4" face="Verdana, Arial, Helvetica, sans-serif"><:nouveautes|texte_script:></font></h2>
+<p><font color="#666666" size="1" face="Verdana, Arial, Helvetica, sans-serif">[(#DATE|jour)]
+		[(#DATE|nom_mois)]	[(#DATE|annee)]</font></p>
+<!-- Derniers articles -->
+<BOUCLE_newsletter_articles(ARTICLES){tout}{age_relatif<=0?}{lang?}{par date}{inverse}{0,30}{doublons}>
+						<ul>
+							<li><a href="#URL_ARTICLE"><font size="2" face="Verdana, Arial, Helvetica, sans-serif">[(#SURTITRE)<br>
+							] #TITRE<br>
+							[(#SOUSTITRE)<br>
+	]</font></a>
+	[<font size="2" face="Verdana, Arial, Helvetica, sans-serif">(#INTRODUCTION)<br>
+							</font>]</li>
+						</ul>
+						</BOUCLE_newsletter_articles>
+
+	<?php
+	// Affiche le lien de désabonnement si nécessaire
+	if ($mail=="true") {
+	?>
+	<div>
+	<hr align="left" width="50%" noshade>
+		<p><font size="2" face="Verdana, Arial, Helvetica, sans-serif">{LINKS}</font></p>
+	</div>
+		<?php
+	
+	} // fin if ($mail="true")
+	?>
+</body>
+</html>
+ 

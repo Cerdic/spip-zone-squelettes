@@ -1,0 +1,76 @@
+<html lang=#LANG>
+<head>
+<title>[(#NOM_SITE_SPIP)] - Newsletter</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<table width="550" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="65" colspan="3">&nbsp;</td>
+  </tr>
+   <tr>
+    <td width="10">&nbsp;</td>
+    <td width="530">&nbsp;</td>
+    <td width="10" height="10">&nbsp;</td>
+  </tr>
+     <tr>
+    <td width="10">&nbsp;</td>
+    <td width="530" class="textecourant">&nbsp;</td>
+    <td width="10" height="10">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="10" height="150">&nbsp;</td>
+    <td width="530" height="150"><form method="post" action="http://monsite.com/inscription_newsletter.php3?lang=#LANG">
+              <table width="530" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td height="30" class="textecourant"><:entree_adresse_email:> :&nbsp;<input name="email" type="text" size="30" maxlength="150" />
+                  &nbsp;Format :
+      <select name="format">
+        <option value="1">TXT</option>
+        <option value="2">HTML</option>
+      </select>
+
+	  <?php
+	  //script qui définit la liste choisie en fonction de la langue et définit la variable $language pour avoir les textes de Wanewsletter dans une langue ou dans une autre
+	  if ($lang == "fr"){
+		$valeurliste = 2;
+		$language = 'francais';
+	  }
+	  if ($lang == "en"){
+		$valeurliste = 3;
+		$language = 'english';
+	  }
+	  ?>
+      <input type="hidden" name="liste" value="<?php echo $valeurliste; ?>" />
+                  </td>
+                </tr>
+                <tr>
+                  <td height="25" class="textecourant">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <input type="radio" name="action" value="inscription" checked="checked" />
+      <:inscription:>&nbsp;&nbsp;&nbsp;
+      <input type="radio" name="action" value="setformat" />
+      <:changer_format:>&nbsp;&nbsp;&nbsp;
+      <input type="radio" name="action" value="desinscription" />
+      <:desinscription:> </td>
+                </tr>
+                <tr>
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="submit" name="wanewsletter" value="<:bouton_envoyer:>" />
+                  </td></tr>
+        </table></form>
+</td>
+    <td width="10" height="150"></td>
+  </tr>
+  <tr>
+    <td width="10">&nbsp;</td>
+    <td width="530" class="textetitreactus" align="center"><?php 
+define('IN_WA_FORM', true); 
+$waroot = 'newsletter/'; 
+include($waroot . 'newsletter.php');
+?></td>
+    <td width="10" height="10">&nbsp;</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

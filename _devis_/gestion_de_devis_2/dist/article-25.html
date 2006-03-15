@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- ***************************************************************************************
+//   Web Site Subject: © marche-francais.de                                               //
+//   Page Subject:  page d'article                                                        //
+//   Web Designer & Architect Designer: Sebastien Murat,  Karim BELKACEM                  //
+//   Graphic Designer: Sebastien Murat, Karim BELKACEM                                    //
+//   Developpement : Sebastien Murat, Karim BELKACEM                                      //
+//   Creation Date: février. 16, 2006                                                     //
+**************************************************************************************** -->
+<BOUCLE_article_principal(ARTICLES){id_article}{doublons}>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<title>#NOM_SITE_SPIP | #LANG | [(#TITRE|supprimer_numero)]</title>
+<meta name="keywords" content="<BOUCLE_metatags(MOTS){type=meta}{", "}>[(#TITRE|supprimer_numero)]</BOUCLE_metatags> /">
+<meta name="description" content="<BOUCLE_metadescriptif(MOTS){type=meta_descriptif}>[(#TEXTE)]</BOUCLE_metadescriptif>">
+<meta name="subjects" content="[ #NOM_SITE_SPIP ] - Version <?php echo $GLOBALS['spip_version_affichee']; ?>">
+<meta name="robots" content="ALL">
+<meta name="distribution" content="GLOBAL">
+<meta name="rating" content="GENERAL">
+<meta http-equiv="Reply-to" content="info@marche-francais.de">
+<meta name="ROBOTS" content="INDEX,FOLLOW">
+<meta name="author" content="Sebastien Murat, Karim BELKACEM - contact@lessardines.info">
+<meta name="copyright" content="© [ #NOM_SITE_SPIP ]">
+<meta name="revisit-after" content="7 days">
+<link href="#DOSSIER_SQUELETTE/_css/mfstyles.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body>
+<!-- ENTETE -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="Entete">
+  <tr>
+    <td align="center" valign="top">
+	
+	<table width="780" border="0" cellpadding="0" cellspacing="0" class="FormatEntete">
+  <tr>
+    <td width="600" align="left" valign="top">
+	<div id="accueil"><a href="#URL_SITE_SPIP?lang=#LANG" title="<:accueil_site:>"><img src="../_imgs/space.gif" alt="<:accueil_site:>" width="600" height="100" border="0" /></a></div>
+	</td>
+	<td width="180" align="left" valign="top">
+			<table width="180" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td align="left" valign="top"><INCLURE(inc_drapart.php3){id_article}></td>
+			  </tr>
+			  <tr>
+				<td align="left" valign="top">
+				<div class="formRecherche">
+				<form action="recherche.php3" method="get" name="form_rech">
+				<input name="lang" type="hidden" id="lang" value="#LANG">
+				<table border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+					<td><input class="text" type="text" id="formulaire_recherche" name="recherche" value="<:info_rechercher:>" onfocus="javascript:if(this.value == '<:info_rechercher:>') this.value='';" onblur="javascript:if(this.value == '') this.value='<:info_rechercher:>';"></td>
+					<td><img src="../_imgs/space.gif" alt="" width="3" /></td>
+					<td><input class="ajout" type="submit" value="Ok" /></td>
+				  </tr>
+				</table>
+				</form>
+				</div>
+				</td>
+			  </tr>
+			</table>
+		</td>
+	  </tr>
+	</table>
+
+	</td>
+  </tr>
+</table>
+<!-- ENTETE -->
+
+<!-- CONTENU -->
+<table width="780" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="180" align="left" valign="top"><INCLURE(inc_menu.php3){lang}{doublons}></td>
+    <td width="420" align="center" valign="top">
+		<div class="ProduitsRub">		
+		<INCLURE(inc_chemin.php3){id_article}{id_breve}{id_rubrique}{lang}>
+		<div class="NouveauxProduitsRub">
+		[(#LOGO_RUBRIQUE_NORMAL)]
+		<table width="100%" border="0" cellspacing="5" cellpadding="0">
+		  <tr>
+			<td colspan="2" align="center" valign="top">[<h3>(#TITRE|supprimer_numero)</h3>]</td>
+			</tr>
+			<tr>
+			[<td align="center" valign="top">(#LOGO_ARTICLE||reduire_image{330,0})</td>]
+			<td align="left" valign="top">
+			<table width="100%" border="0" cellspacing="0" cellpadding="2">
+			  <BOUCLE_mots(MOTS){id_article}{par titre}><tr>
+				<td><a href="picto.php3" target="spip_pass" onclick="javascript:window.open(this.href, 'spip_pass', 'scrollbars=yes, resizable=yes, width=420, height=440'); return false;">[(#LOGO_MOT)]</a></td>
+			  </tr></BOUCLE_mots>
+			  <tr><td><a href="picto.php3" target="spip_pass" onclick="javascript:window.open(this.href, 'spip_pass', 'scrollbars=yes, resizable=yes, width=420, height=440'); return false;"><img src="../_imgs/legende#LANG.gif" alt="" /></a></td></tr></B_mots>
+			</table>
+			</td>
+			</tr>
+			<tr>
+			  <td colspan="2" align="left" valign="top">[(#TEXTE|ptobr)]</td>
+			  </tr>
+		</table>
+		</div>
+
+<B_article_prix>
+		<div class="BlocBreve">
+		<BOUCLE_article_prix(ARTICLES){id_article}>
+		<form name="form-dernier" id="form-dernier" method="post" action="panier.php">
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="5">
+				<tr>
+				<td align="left" valign="middle">
+				<table border="0" cellspacing="0" cellpadding="0">
+                  [<tr>
+                    <td><:prixunitaire:></td>
+                    <td><input type="radio" name="prix-karim" value="[(#EXTRA|extra{unitaire}|format_number)]"></td>
+                    <td><strong>(#EXTRA|extra{unitaire}) &euro;</strong></td>
+                  </tr>]
+                  [<tr>
+                    <td><:prixlot:></td>
+                    <td><input type="radio" name="prix-karim" value="[(#EXTRA|extra{lot}|format_number)]"></td>
+                    <td><strong>(#EXTRA|extra{lot}) &euro;</strong></td>
+                  </tr>]
+				  [<tr>
+                    <td><:prix200g:></td>
+                    <td><input type="radio" name="prix-karim" value="[(#EXTRA|extra{200g}|format_number)]"></td>
+                    <td><strong>(#EXTRA|extra{200g}) &euro;</strong></td>
+                  </tr>]
+                </table>
+				</td>
+				<td align="center" valign="middle">
+				<input name="qte_dernier" type="text" value="1" size="5" maxlength="3" style="text-align:center;" /></td>
+				<td colspan="3" align="center" valign="middle">
+				<input name="id_dernier" type="hidden" id="id_dernier" value="#ID_ARTICLE" />
+				<input class="ajout" name="ajouter" type="submit" value="<:ajouteraupanier:>" />				
+				</td>
+				</tr>
+			</table>
+		</form>
+		</BOUCLE_article_prix>
+		</div>
+</B_article_prix>
+
+		<div class="BlocBreve">
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="5">
+				<tr>
+				<td align="left" valign="top">
+				<div align="left" class="liaison">
+				
+				<B_liaison2>
+				<strong><:suggestiondefromage:> : </strong> 
+				<BOUCLE_liaison2(MOTS){id_groupe=2}{id_article}>
+				<BOUCLE_liaisonart2(ARTICLES){id_mot}{id_rubrique IN 41,44,45,46,47,48,49,50,51,52,53,54,55,56,57}{lang}{", "}>
+				<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a>
+				</BOUCLE_liaisonart2>
+				</BOUCLE_liaison2>
+				</B_liaison2>
+				
+				</div>
+				</td>
+				</tr>
+			</table>
+		</div>
+	</td>
+    <td width="180" align="left" valign="top"><INCLURE(inc_service.php3){lang}{doublons}></td>
+  </tr>
+</table>
+<table width="780" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="center" valign="top"><INCLURE(inc_pieddepage.php3){lang}></td>
+  </tr>
+</table>
+<!-- CONTENU -->
+[(#FORMULAIRE_ADMIN{'spip-admin-float'})]
+#SPIP_CRON
+</body>
+</html>
+</BOUCLE_article_principal>

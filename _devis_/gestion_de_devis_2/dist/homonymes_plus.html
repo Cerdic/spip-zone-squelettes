@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+	<title><:login_acces_prive:></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
+	<link rel="stylesheet" href="spip_style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" text="#000000" link="#e86519" vlink="#6e003a" alink="#ff9900">
+<div align="center">
+
+<br /><br /><br /><center><table width="500"><tr><td width="500">
+
+<?php
+
+/***************************************************************************\
+ * Ce fichier ne peut être exécuté que par une personne s`étant identifier 
+ * comme administrateur du site.
+ *
+ * Il permet de créer pour les tables spip_articles, spip_rubriques, 
+ * spip_breves, spip_syndic et spip_mots 
+ * un nouveaux champs appellé « plus » .
+ *
+\***************************************************************************/
+$action='message';
+/*
+	Vérifier si la personne connectée a le statut d`administrateur du site
+*/
+
+if ($auteur_session['statut']=='0minirezo'){
+	// Liste des tables à modifier
+	$tables= array('auteurs','articles','rubriques','breves','syndic','mots');
+
+	foreach ($tables as $value) {
+		$table = $value;
+		$query = "SELECT spip_$table.plus FROM spip_$table";
+		$existe = spip_query_db($query);
+		
+			if ($existe){
+			$existe =1;
+			break;
+			}
+	}
+	
+	echo '<div align="left">';
+	if ((isset($HTTP_POST_VARS["action1"])) && ($HTTP_POST_VARS["action1"] == "suppression")) {
+	
+		$action='suppression';
+		$HTTP_POST_VARS["action1"]='';
+		
+	}else if ((isset($HTTP_POST_VARS["action1"])) && ($HTTP_POST_VARS["action1"] == "création")) {
+	
+		$action='création';
+		$HTTP_POST_VARS["action1"]='';
+	
+	}
+	else{
+		$action='message';
+	}
+	
+	//$tables= array('auteurs','articles','rubriques','breves','syndic','mots');
+
+	foreach ($tables as $value) {
+		$table = $value;
+		
+		if ($action=='création'){
+			$query = "SELECT spip_$table.plus FROM spip_$table";
+			$existe = spip_query_db($query);
+				if (!$existe){
+					$query = " ALTER TABLE spip_$table
+						ADD plus text NOT NULL DEFAULT ''
+					";
+					$création = spip_query_db($query);
+					//$création = $query;
+					//echo $création."<br>";
+					if ($création){
+					echo "<br>La <strong>création</strong> du champs <strong>'plus'</strong> de la table <strong>spip_$table</strong> a réussi.<br>";
+					$existe =1;
+					}
+					else{
+					echo "<br>La <strong>création</strong> du champs <strong>'plus'</strong> de la table <strong>spip_$table</strong> a échoué.<br>";
+					$echec=1;
+					}
+					
+				}else{
+					echo "<br>Le champs <strong>'plus'</strong> de la table <strong>spip_$table</strong> existe déjà.<br>";
+				}
+		}else if ($action=='suppression'){
+		
+			$query = "SELECT spip_$table.plus FROM spip_$table";
+			$existe = spip_query_db($query);
+				if ($existe){
+					$query = "ALTER TABLE spip_$table DROP plus ";
+					$suppression = spip_query_db($query);
+					//$suppression = $query;
+					//echo $suppression."<br>";
+					if ($suppression){
+					echo "<br>La <strong>suppression</strong> du champs <strong>'plus'</strong> de la table <strong>spip_$table</strong> a réussi.<br>";
+					$existe =0;
+					}
+					else{
+					echo "<br>La <strong>suppression</strong> du champs <strong>'plus'</strong> de la table <strong>spip_$table</strong> a échoué.<br>";
+					}
+					}else{
+					echo "<br>Le champs <strong>'plus'</strong> de la table <strong>spip_$table</strong> n'existe pas.<br>";
+					}
+		}
+	}
+if ($action=='message'){
+	if ($existe){
+	echo '<strong>'.$auteur_session['nom']. "</strong> est autorisé en tant qu'<strong>administrateur</strong> du site<br>à <strong>supprimer</strong> les champs <strong>'plus'</strong> pour les tables: <strong> <ul><li>spip_auteurs</li><li>spip_articles</li><li>spip_rubriques</li><li>spip_breves</li><li>spip_syndic</li><li>spip_mots</li></ul></strong>.";
+	}else{
+	echo '<strong>'.$auteur_session['nom']. "</strong> est autorisé en tant qu'<strong>administrateur</strong> du site<br>à <strong>créer</strong> les champs <strong>'plus'</strong> pour les tables: <strong> <ul><li>spip_auteurs</li><li>spip_articles</li><li>spip_rubriques</li><li>spip_breves</li><li>spip_syndic</li><li>spip_mots</li></ul></strong>.";
+	}
+}
+
+$action=[(#ENV{action}|?{#ENV{action},'form'})];
+
+switch ($action) {
+   case 'form':
+		?>
+		<form action="#SELF" method="post">
+			<?
+			if ($existe){
+			?>
+				<input name="action1" type="radio" value="suppression">
+				<strong>Supprimer</strong> les nouveaux champs <strong>'plus'</strong><br>
+			<?
+			}else{
+			?>
+				<input name="action" type="hidden" value="maj">
+				<input name="action1" type="radio" value="création">
+				<strong>Créer</strong> les nouveaux champs <strong>'plus'</strong><br>
+			<?
+			}
+			?>
+				<input name="valider" type="submit" value="Valider">
+		</form>
+		<?
+		break;
+		
+	case 'maj':
+		?>
+		<form action="#SELF" method="post">
+			<input name="action" type="hidden" value="test">
+			Mettre à jour les nouveaux champs avec leur champs EXTRAS homonymes.<br>
+			<input name="valider" type="submit" value="Mettre à jour">
+		</form>
+		<? 
+		break;
+		
+	case 'test'
+		?>
+		<BOUCLE_article(ARTICLES)>
+		[(#EXTRA|?{[(#EXTRA|extra_mise_a_jour{'articles',#ID_ARTICLE})],''})] 
+		</BOUCLE_article>
+		<BOUCLE_rubrique(RUBRIQUES)>
+		[(#EXTRA|?{[(#EXTRA|extra_mise_a_jour{'rubriques',#ID_RUBRIQUE})],''})] 
+		</BOUCLE_rubrique>
+		<BOUCLE_breve(BREVES)>
+		[(#EXTRA|?{[(#EXTRA|extra_mise_a_jour{'breves',#ID_BREVE})],''})] 
+		</BOUCLE_breve>
+		<BOUCLE_site(SITES)>
+		[(#EXTRA|?{[(#EXTRA|extra_mise_a_jour{'sites',#ID_SYNDIC})],''})] 
+		</BOUCLE_site>
+		<BOUCLE_mot(MOTS)>
+		[(#EXTRA|?{[(#EXTRA|extra_mise_a_jour{'mots',#ID_MOT})],''})] 
+		</BOUCLE_mot>
+		
+		<form action="homonymes_test.php3" method="post">
+		<input name="action" type="hidden" value="form">
+		Vérifier la mise à jour des nouveaux champs.<br>
+		<input name="valider" type="submit" value="Tester">
+		</form>
+		<?
+		break;
+}
+?>
+
+
+<?
+if (!$existe){
+}
+?>
+</div>
+<?
+}else{
+?>
+<div align="center">
+<h3 class="spip">Seuls les administrateurs peuvent accéder à cette page</h3>
+<h3 class="spip">#NOM_SITE_SPIP</h3>
+</div>
+
+#LOGIN_PUBLIC
+<div align='center' style='font-family: Verdana,arial,helvetica,sans-serif; font-size: 12px;'>
+
+[&#91;<a
+	href='spip_inscription.php3?mode=(#URL_SITE_SPIP|tester_config{mode_inscription})&amp;focus=nom_inscription'
+	target="spip_pass"
+	onclick="javascript:window.open(this.href, 'spip_pass', 'scrollbars=yes, resizable=yes, width=480, height=500'); return false;"><:login_sinscrire:></a>&#93;]
+
+&#91;<a
+	href="spip_pass.php3"
+	target="spip_pass" 
+	onclick="javascript:window.open(this.href, 'spip_pass', 'scrollbars=yes, resizable=yes, width=480, height=280'); return false;"><:login_motpasseoublie:></a>&#93;
+
+&#91;<a href='#URL_SITE_SPIP'><:login_retoursitepublic:></a>&#93;
+
+</div>
+<?
+}
+?>
+
+</td></tr></table></center>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+

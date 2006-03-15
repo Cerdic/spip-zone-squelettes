@@ -1,0 +1,81 @@
+<div class="Newsletter">
+					<img src="../_imgs/titre_newsletter.gif" alt="newsletter" />
+					<script type="text/javascript">
+					<!--
+					var submitted = false;
+					
+					function check_form(e)
+					{
+						var emailAddr = document.forms['subscribe-form'].elements['email'].value;
+					
+						if( emailAddr.indexOf('@', 1) == -1 || emailAddr.indexOf('.', 1) == -1 )
+						{
+							window.alert('L\'adresse email que vous avez indiquée n\'est pas valide');
+					
+							if( e && e.preventDefault ) { // standard
+								e.preventDefault();
+							} else { // MS
+								window.event.returnValue = false;
+							}
+						}
+						else if( submitted == true )
+						{
+							window.alert('Veuillez patienter pendant le chargement de la page');
+					
+							if( e && e.preventDefault ) { // standard
+								e.preventDefault();
+							} else { // MS
+								window.event.returnValue = false;
+							}
+						}
+						else
+						{
+							submitted = true;
+						}
+					}
+					
+					window.onload = function() {
+						document.forms['subscribe-form'].onsubmit = check_form;
+					}
+					//-->
+					</script>
+					<div class="NewsletterReponse"><?php
+					define('IN_WA_FORM', true);
+					$waroot = 'newsletter/'; 
+					include($waroot . 'newsletter.php');
+					?></div>
+					<form id="subscribe-form" method="post" action="#SELF">
+					<fieldset>
+						<legend xml:lang="#LANG" lang="#LANG">#NOM_SITE_SPIP&#160;</legend>
+					
+						<div class="bloc">
+							<label for="email"><:email:> </label>
+							<input name="email" type="text" id="email" size="17" maxlength="100" />
+						</div>
+					
+						<div class="bloc">
+							<label for="format"><:format:> </label>
+							<select id="format" name="format"><option value="1">TXT</option><option value="2">HTML</option></select>
+						</div>
+					
+						<div class="bloc">
+							<label for="liste"><:langue:> </label>
+							<select id="liste" name="liste"><option value="2"> - Francais - </option><option value="3"> - Deutsch - </option></select>
+						</div>
+					
+						<div class="center">
+							<label><input type="radio" name="action" value="inscription" checked="checked" /> <:inscription:></label>
+							<label><br /><input type="radio" name="action" value="setformat" /> <:changementdeformat:></label>
+							<label><br /><input type="radio" name="action" value="desinscription" /> <:desinscription:></label>
+						</div>
+					
+						<div>
+						<table width="100%" border="0" cellpadding="0" cellspacing="0">
+						  <tr>
+							<td align="right" valign="top"><input class="ajout" type="submit" name="wanewsletter" value="Ok" /></td>
+						  </tr>
+						</table>
+						</div>
+					</fieldset>
+					</form>					
+					</div>

@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="#LANG">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>#NOM_SITE_SPIP | #LANG | <:devis:></title>
+<style type="text/css">
+<!--
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+}
+body {
+	background-color: #FFFFFF;
+}
+.Style1 {
+	color: #FFFFFF;
+	font-weight: bold;
+}
+-->
+</style></head>
+<body>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center" valign="middle">
+	
+	<table width="780" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+		<td align="center" valign="middle"><h2>#NOM_SITE_SPIP - #LANG - <:panier:> n&deg; <?php echo generer_key();?></h2></td>
+	  </tr>
+	  <tr>
+	    <td align="center" valign="middle"><h4><a href="#URL_SITE_SPIP">#URL_SITE_SPIP</a></h4>			
+		  </td>
+	    </tr>
+	  <tr>
+	    <td align="center">
+		
+		<!-- DEBUT TABLEAU -->
+<B_bouteilles_validees> 
+      <form name="form1" method="post" action=""> 
+		<table width="780" border="1" cellpadding="5" cellspacing="0" bordercolor="#CCCCCC">
+          <tr>
+            <td align="left" valign="middle" bgcolor="#eeeeee">		<?php
+			function date_fr($date=0) 
+			{
+				if(!$date)
+				$date=date("Y-m-d H:i:s"); //Timestamp courant par d&eacute;faut
+				$a = substr($date, 0, 4);
+				$m = substr($date, 5, 2);
+				$j = substr($date, 8, 2);
+				$h = substr($date, 11, 2);
+				$min = substr($date, 14, 2);
+				$s = substr($date, 17, 2);
+				$datefr=$j.'/'.$m.'/'.$a;
+				$heurefr=$h.':'.$min;
+				return array("date"=>$datefr,"heure"=>$heurefr);
+			}
+			//Exemple d'utilisation:
+			$date = date_fr();
+			echo "<strong>";
+			echo "date ".$date["date"]." - ";
+			echo "heure ".$date["heure"];
+			echo "</strong>";
+			?></td>
+            <td align="center" valign="middle" bgcolor="#eeeeee"><strong><:quantite:></strong></td>
+            <td align="center" valign="middle" bgcolor="#eeeeee"><strong><:prix:></strong></td>
+            <td align="center" valign="middle" bgcolor="#eeeeee"><strong><:total:></strong></td>
+          </tr>
+		  
+		  <!-- #ENV{mes_ids,' '})$}> --> 
+          <BOUCLE_bouteilles_validees(ARTICLES){id_article == #ENV{mes_ids}}> 
+          <tr>
+		    <td align="left" valign="middle">
+			<strong>[(#TITRE|supprimer_numero)]</strong><br /> 
+            [(#DESCRIPTION)]
+			</td>
+            <td align="center" valign="middle"><?php print_r($_SESSION['devis'][#ID_ARTICLE][quantite]); ?></td>
+            <td align="center" valign="middle"><?php print_r($_SESSION['devis'][#ID_ARTICLE][prix]); ?> &euro;</td>
+            <td align="center" valign="middle">
+              <?php
+	  				// Calcul du total pour cette bouteille
+	  				$qte = $_SESSION['devis'][#ID_ARTICLE][quantite];
+	  				$prix = $_SESSION['devis'][#ID_ARTICLE][prix];
+					settype($prix, "double");
+	  				$total_ligne = $qte*$prix;
+	  				$total_main = $total_ligne+ $total_main;
+	  				echo format_number($total_ligne);
+	   			?> &euro;
+			</td>
+          </tr>
+		  </BOUCLE_bouteilles_validees>
+		  
+          <tr>
+            <td colspan="3" align="right" valign="middle" bgcolor="#CCCCCC"><strong>TOTAL T.T.C. :</strong></td>
+            <td align="center" valign="middle" bgcolor="#000000"><span class="Style1"><?php echo format_number($total_main); ?> &euro;</span></td>
+          </tr>
+        </table>
+		</form>
+</B_bouteilles_validees> 
+<div align="center"><h3><:paniervide:></strong></h3>
+<//B_bouteilles_validees> 
+      
+		
+		<!-- FIN TABLEAU -->
+		
+		</td>
+	    </tr>
+	  <tr>
+	    <td>
+		
+		<table width="100%" border="0" cellspacing="0" cellpadding="3">
+		  <!--DWLayoutTable-->
+		  <tr>
+			<td width="805" align="left" valign="top"><strong><:nom:></strong> ....................................................................................................................................................................................................................................</td>
+		  </tr>
+		  <tr>
+		    <td align="left" valign="top"><strong><:prenom:></strong> ..............................................................................................................................................................................................................................</td>
+		    </tr>
+		  <tr>
+		    <td align="left" valign="top"><strong><:societe:></strong> ...............................................................................................................................................................................................................................</td>
+		    </tr>
+		  <tr>
+		    <td align="left" valign="top">&nbsp;</td>
+		    </tr>
+		  <tr>
+		    <td align="left" valign="top"><strong><:telephone:> :</strong> ...........................................................................................................................................................................................................................</td>
+		    </tr>
+		  <tr>
+		    <td align="left" valign="top"><strong><:email:>  :</strong> ...................................................................................................................................................................................................................................</td>
+		    </tr>
+		  <tr>
+		    <td height="58" align="center" valign="top">&nbsp;</td>
+		    </tr>
+		  
+		  
+		  <tr>
+		    <td align="center" valign="top"><table width="100%" border="0" cellspacing="5" cellpadding="0">
+              <tr>
+                <td><table width="100%" border="1" cellpadding="5" cellspacing="0" bordercolor="#000000">
+                  <tr>
+                    <td><p><strong><:adresselivraison:></strong> .......................................................................................<br>
+                            <br>
+                      ...............................................................................................................................<br>
+                      <br>
+                      ...............................................................................................................................<br>
+                      <br>
+                      ...............................................................................................................................</p></td>
+                  </tr>
+                </table></td>
+                <td width="50%"><table width="100%" border="1" cellpadding="5" cellspacing="0" bordercolor="#000000">
+                  <tr>
+                    <td><p><strong><:adressefacturation:></strong>.......................................................................................<br>
+                        <br>
+...............................................................................................................................<br>
+<br>
+...............................................................................................................................<br>
+<br>
+...............................................................................................................................</p></td>
+                  </tr>
+                </table></td>
+              </tr>
+            </table>		      </td>
+		  </tr>
+		  <tr>
+		    <td align="center" valign="top">&nbsp;</td>
+		    </tr>
+		  <tr>
+		    <td align="center" valign="top"><strong>Le Marché Français</strong><br />
+        	Stuttgart <br />
+        	Tél. 0174 / 161 40 78 - Fax : 0711 / 508 92 92<br />
+			info@marche-francais.de 			</td>
+		    </tr>
+		</table>
+		
+		</td>
+	    </tr>
+	  <tr>
+	    <td>&nbsp;</td>
+	    </tr>
+	</table>
+
+	</td>
+  </tr>
+</table>
+<div align="center">++ <a href="panier.php3?lang=#LANG"> retour à mon panier </a> ++</div>
+<script language="javascript">
+<!--
+ window.print();
+//-->
+</script>
+</body>
+</html>
