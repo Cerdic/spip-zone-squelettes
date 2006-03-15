@@ -1,0 +1,85 @@
+#CACHE{7200}
+<!-- ***************************************************************************************
+//   web site subject: © dmsphoto.com                                                     //
+//   page subject:  page matrice                                                          //
+//   web designer & architect designer: sebastien murat, karim belkacem                   //
+//   graphic designer: sebastien murat, karim belkacem                                    //
+//   developpement : sebastien murat, karim belkacem, erational                           //
+//   creation date: mars. 04, 2006                                                        //
+**************************************************************************************** -->
+<!-- Initialisation des variables -->
+<BOUCLE_keyA(MOTS){id_groupe = #ENV{keyA}}><?php $motA=[(#ID_MOT|texte_script)]; ?></BOUCLE_keyA>
+<BOUCLE_keyB(MOTS){id_groupe = #ENV{keyB}}><?php $motB=[(#ID_MOT|texte_script)]; ?></BOUCLE_keyB>
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<title>#NOM_SITE_SPIP | matrice | <BOUCLE_titreA(GROUPES_MOTS){id_groupe = #ENV{keyA}}>#TITRE</BOUCLE_titreA>
+</B_titreA>choisir une matrice<//B_titreA>
+<BOUCLE_titreB(GROUPES_MOTS){id_groupe = #ENV{keyB}}>[-&nbsp;(#TITRE)]</BOUCLE_titreB></title>
+
+<meta name="keywords" content="<BOUCLE_metatags(MOTS){type=meta}{", "}>[(#TITRE|supprimer_numero)]</BOUCLE_metatags> /">
+<meta name="description" content="<BOUCLE_metadescriptif(MOTS){type=meta_descriptif}>[(#TEXTE)]</BOUCLE_metadescriptif>">
+<meta name="subjects" content="[ #NOM_SITE_SPIP ] - Version <?php echo $GLOBALS['spip_version_affichee']; ?>">
+<meta name="robots" content="ALL">
+<meta name="distribution" content="GLOBAL">
+<meta name="rating" content="GENERAL">
+<meta http-equiv="Reply-to" content="dmsphoto@free.fr">
+<meta name="ROBOTS" content="INDEX,FOLLOW">
+<meta name="author" content="sebastien murat,karim belkacem - contact@lessardines.info">
+<meta name="copyright" content="creative commons [ #NOM_SITE_SPIP ] http://creativecommons.org/licenses/by-nc-sa/2.0/fr/">
+<meta name="revisit-after" content="7 days">
+<!-- feuille de style dms -->
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/_css/dms.css" type="text/css" />
+<link rel="shortcut icon" href="#URL_SITE_SPIP/favicon.ico">
+<!-- Lien vers le backend pour navigateurs eclaires -->
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+</head>
+<body>
+<INCLURE{fond=inc-entete}>
+<B_groupe_un>
+<div id="Matrix">
+<table border="0" cellpadding="0" cellspacing="0">
+<!--Cette première boucle permet d'obtenir la première ligne du tableau (la liste des mots clés du groupe deux).-->
+<tr><td class="space"><img src="_imgs/spacer.gif" alt="" width="130" height="1" /></td>
+<BOUCLE_th_groupe_deux(MOTS){id_groupe = #ENV{keyB}}{par titre}>
+<th scope="row" class="theme"><a href="#URL_PAGE{transition-x}&amp;keyC=#ID_MOT&amp;keyD=<BOUCLE_keyD1(GROUPES_MOTS){id_groupe = #ENV{keyA}}>#ID_GROUPE</BOUCLE_keyD1>">[(#TITRE|supprimer_numero)]</a></th>
+</BOUCLE_th_groupe_deux>
+</tr>
+<BOUCLE_groupe_un(MOTS){id_groupe = #ENV{keyA}}{par titre}>
+      <!--Ici débute les lignes qui composent le tableau, une par élément contenu dans le groupe de mots clés 1.-->
+      <tr>
+      <!--Cette balise correspond à la première colonne du tableau.-->
+      <th scope="col" align="left" class="villes"><span><a href="#URL_PAGE{transition-y}&amp;keyC=#ID_MOT&amp;keyD=<BOUCLE_keyD2(GROUPES_MOTS){id_groupe = #ENV{keyB}}>#ID_GROUPE</BOUCLE_keyD2>">[(#TITRE|supprimer_numero)]</a></span></th>
+         <BOUCLE_groupe_deux(MOTS){id_groupe = #ENV{keyB}}{par num titre}>
+               <B_articles_lies_un>
+               <!--C'est ici que se remplissent caque case du tableau.-->
+               <td align="center" class="plus">
+                  <BOUCLE_articles_lies_un(ARTICLES){id_mot=#_groupe_un:ID_MOT}{id_mot=#_groupe_deux:ID_MOT}{par date}{inverse}{0,1}>
+                        <a href="#URL_PAGE{portfolio}&amp;id_article=#ID_ARTICLE&amp;keyA=#_groupe_un:ID_MOT&amp;keyB=#_groupe_deux:ID_MOT">&nbsp;</a>
+                  </BOUCLE_articles_lies_un>
+               </td>
+               </B_articles_lies_un>
+            <!--Ce code alternatif permet d'avoir une case vide dans le tableau dans le cas où il n'y a pas d'article lié à cette combinaison de mots clés.-->
+            <td class="Filet">&nbsp;</td>
+            <//B_articles_lies_un>
+         </BOUCLE_groupe_deux>
+      </tr>
+   </BOUCLE_groupe_un>
+</table>
+</div>
+</B_groupe_un>
+<div id="MenuMatrice">
+<INCLURE{fond=inc-menu-matrice-test2}>
+</div>
+<div id="FooterMatrice">
+<INCLURE{fond=inc_footer}>
+</div>
+[(#FORMULAIRE_ADMIN{'spip-admin-float'})]
+#SPIP_CRON
+</body>
+</html>

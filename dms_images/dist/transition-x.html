@@ -1,0 +1,61 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<title>#NOM_SITE_SPIP | matrice | <BOUCLE_titreA(GROUPES_MOTS){id_groupe = #ENV{keyA}}>#TITRE</BOUCLE_titreA>
+</B_titreA>choisir une matrice<//B_titreA>
+<BOUCLE_titreB(GROUPES_MOTS){id_groupe = #ENV{keyB}}>[-&nbsp;(#TITRE)]</BOUCLE_titreB></title>
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/_css/dms.css" type="text/css" />
+<!-- Lien vers le backend pour navigateurs eclaires -->
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+</head>
+<body>
+<INCLURE{fond=inc-entete}>
+
+<div id="Transitionx">
+<table border="0" cellspacing="0" cellpadding="0">
+<!--Cette première boucle permet d'obtenir la première ligne du tableau (la liste des mots clés du groupe deux).-->
+<tr><td class="Tspace"><img src="_imgs/spacer.gif" alt="" width="130" height="1" /></td>
+<BOUCLE_th_groupe_deux(MOTS){id_mot = #ENV{keyC}}{par titre}>
+<th align="center" valign="top" scope="row" class="Txtheme">[(#TITRE|supprimer_numero)]</th>
+</BOUCLE_th_groupe_deux>
+</tr>
+<BOUCLE_groupe_un(MOTS){id_groupe = #ENV{keyD}}{par titre}>
+      <!--Ici débute les lignes qui composent le tableau, une par élément contenu dans le groupe de mots clés 1.-->
+      <tr>
+      <!--Cette balise correspond à la première colonne du tableau.-->
+      <td align="left" valign="top" class="Txvilles"><span>[(#TITRE|supprimer_numero)]</span></td>
+         <BOUCLE_groupe_deux(MOTS){id_mot = #ENV{keyC}}{par num titre}>
+               <B_articles_lies_un>
+               <!--C'est ici que se remplissent caque case du tableau.-->
+               <td align="left" valign="top">
+			   <table border="0" cellspacing="3" cellpadding="0">
+                  <tr><BOUCLE_articles_lies_un(ARTICLES){id_mot=#_groupe_un:ID_MOT}{id_mot=#_groupe_deux:ID_MOT}{par titre}>
+							<td align="left">
+							<BOUCLE_doc_substitution(DOCUMENTS){id_article}{0,1}>
+							<a href="#URL_PAGE{portfolio}&amp;id_article=#ID_ARTICLE&amp;keyA=#_groupe_un:ID_MOT&amp;keyB=#_groupe_deux:ID_MOT">[(#LOGO_DOCUMENT||reduire_image{0,25})]</a>
+							</BOUCLE_doc_substitution>
+							</td>
+               </BOUCLE_articles_lies_un></tr></table>
+               </td>
+               </B_articles_lies_un>
+            <!--Ce code alternatif permet d'avoir une case vide dans le tableau dans le cas où il n'y a pas d'article lié à cette combinaison de mots clés.-->
+            <td class="Filet">&nbsp;</td>
+            <//B_articles_lies_un>
+         </BOUCLE_groupe_deux>
+      </tr>
+   </BOUCLE_groupe_un>
+</table>
+</div>
+</B_groupe_un>
+<div id="MenuMatrice">
+<INCLURE{fond=inc-menu-matrice-test2}>
+</div>
+<div id="FooterMatrice">
+<INCLURE{fond=inc_footer}>
+</div>
+[(#FORMULAIRE_ADMIN{'spip-admin-float'})]
+#SPIP_CRON
+</body>
+</html>

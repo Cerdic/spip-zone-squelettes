@@ -1,0 +1,114 @@
+#CACHE{7200}
+<!-- ***************************************************************************************
+//   web site subject: © dmsphoto.com                                                     //
+//   page subject:  page portefolio                                                       //
+//   web designer & architect designer: sebastien murat, karim belkacem                   //
+//   graphic designer: sebastien murat, karim belkacem                                    //
+//   developpement : sebastien murat, karim belkacem, erational                           //
+//   creation date: mars. 04, 2006                                                        //
+**************************************************************************************** -->
+<!-- Initialisation des variables -->
+<BOUCLE_doc(DOCUMENTS){id_document}{mode=document}>
+<?php $doc=[(#ID_DOCUMENT|texte_script)]; ?>
+</BOUCLE_doc>
+<BOUCLE_art(ARTICLES){id_article}>
+<?php $art=[(#ID_ARTICLE|texte_script)]; ?>
+</BOUCLE_art>
+<BOUCLE_keyA1(MOTS){id_mot = #ENV{keyA}}>
+<?php $motA=[(#ID_MOT|texte_script)]; ?>
+</BOUCLE_keyA1>
+<BOUCLE_keyB1(MOTS){id_mot = #ENV{keyB}}>
+<?php $motB=[(#ID_MOT|texte_script)]; ?>
+</BOUCLE_keyB1>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<title>#NOM_SITE_SPIP | 
+<BOUCLE_phototitre1(DOCUMENTS){id_document}{mode=document}>[(#TITRE|supprimer_numero|textebrut)]</BOUCLE_phototitre1>
+<BOUCLE_phototitre2(DOCUMENTS){0,1}{id_article}{mode=document}>[(#TITRE|supprimer_numero|textebrut)]</BOUCLE_phototitre2>
+<//B_phototitre1>
+</title>
+<meta name="keywords" content="<BOUCLE_metatags(MOTS){type=meta}{", "}>[(#TITRE|supprimer_numero)]</BOUCLE_metatags> /" />
+<meta name="description" content="<BOUCLE_metadescriptif(MOTS){type=meta_descriptif}>[(#TEXTE)]</BOUCLE_metadescriptif>" />
+<meta name="subjects" content="[ #NOM_SITE_SPIP ] - Version <?php echo $GLOBALS['spip_version_affichee']; ?>" />
+<meta name="robots" content="ALL" />
+<meta name="distribution" content="GLOBAL" />
+<meta name="rating" content="GENERAL" />
+<meta http-equiv="Reply-to" content="dmsphoto@free.fr" />
+<meta name="ROBOTS" content="INDEX,FOLLOW" />
+<meta name="author" content="sebastien murat,karim belkacem - contact@lessardines.info" />
+<meta name="copyright" content="creative commons [ #NOM_SITE_SPIP ] http://creativecommons.org/licenses/by-nc-sa/2.0/fr/" />
+<meta name="revisit-after" content="7 days" />
+<!-- feuille de style dms -->
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/_css/dms.css" type="text/css" />
+<link rel="shortcut icon" href="#URL_SITE_SPIP/favicon.ico" />
+<!-- Lien vers le backend pour navigateurs eclaires -->
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+</head>
+<body onLoad="init()">
+<INCLURE{fond=inc-entete}>
+<div id="Portfolio">
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="left" valign="top" class="mot">		
+	<BOUCLE_afficher_document(DOCUMENTS){id_document}{mode=document}{extension==(png|jpg|gif)$}>
+	[<div>(#EMBED_DOCUMENT)</div>]
+	<img src="_imgs/spacer.gif" alt="" width="50" height="45" /><hr />
+	[<h3 class="spip">(#TITRE)</h3>]
+	[<div>(#DESCRIPTIF)</div>]
+	</BOUCLE_afficher_document>
+	<BOUCLE_photofirst(DOCUMENTS){0,1}{id_article}{mode=document} >
+	[<div>(#EMBED_DOCUMENT)</div>]
+	<img src="_imgs/spacer.gif" alt="" width="50" height="45" /><hr />
+	[<h3 class="spip">(#TITRE)</h3>]
+	[<div>(#DESCRIPTIF)</div>]	
+	</BOUCLE_photofirst>
+	<//B_afficher_document>
+	<ul><li>&nbsp;</li>
+	<li><span>criteres</span></li>
+	<BOUCLE_groupe_un22(MOTS){id_mot = #ENV{keyA}}{id_article}{par titre}{doublons}>
+	<li>[(#TITRE|supprimer_numero)]</li>
+	<BOUCLE_groupe_deux22(MOTS){id_mot = #ENV{keyB}}{id_article}{par titre}{doublons}>
+	<li>[(#TITRE|supprimer_numero)]</li>
+	</BOUCLE_groupe_deux22>
+	</BOUCLE_groupe_un22>
+	<BOUCLE_mot(MOTS){id_article}{par titre}{doublons}>
+		<li>[(#TITRE|supprimer_numero)]</li>
+	</BOUCLE_mot>
+	</ul>	
+	</td>
+	<td width="50"><img src="_imgs/spacer.gif" alt="" width="50" height="1" /></td>
+    <td width="100%" align="left" valign="top" class="album_vignette">
+		<div class="PortfolioArt">	
+			<B_article_getA2>      
+    		<B_article_getB2>
+        	<B_getDoc2>
+
+				<BOUCLE_article_getA2(ARTICLES){id_mot = #ENV{keyA}}>      
+					<BOUCLE_article_getB2(MOTS){id_article}{id_mot = #ENV{keyB}}>
+						<BOUCLE_getDoc2(DOCUMENTS){id_article}{mode=document}{par titre}>
+						<a href="#URL_PAGE{portfolio}&amp;id_article=#ID_ARTICLE&amp;keyA=<?php echo $motA; ?>&amp;keyB=<?php echo $motB; ?>&amp;id_document=#ID_DOCUMENT" title="[(#TITRE)]">
+						[(#LOGO_DOCUMENT||reduire_image{0,30})]						
+						</a>
+						</BOUCLE_getDoc2>
+					</BOUCLE_article_getB2>
+				</BOUCLE_article_getA2>
+			</B_getDoc2>
+    		</B_article_getB2>
+			</B_article_getA2>
+		</div>	  </td>
+  </tr>
+</table>
+</div>
+<div id="MenuMatrice">
+<INCLURE{fond=inc-menu-matrice-test2}>
+</div>
+<div id="FooterMatrice">
+<INCLURE{fond=inc_footer}>
+</div>
+[(#FORMULAIRE_ADMIN{'spip-admin-float'})]
+#SPIP_CRON
+</body>
+</html>

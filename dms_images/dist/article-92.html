@@ -1,0 +1,70 @@
+#CACHE{86400}
+<BOUCLE_article_principal(ARTICLES) {id_article}{doublons}><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#TITRE|textebrut)]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<!-- feuille de style dms -->
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/_css/dms.css" type="text/css" />
+</head>
+
+<body>
+<!-- menu de navigation rubriques -->
+<div id="Entete">
+	<div id="MenuListe"><div class="menulistetop"></div><BOUCLE_racine(RUBRIQUES){racine}{id_rubrique!=3}{par num titre}{" | "}><a 			href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></BOUCLE_racine>
+	</div>
+
+<!-- article -->
+<div id="cadre-rub">
+	<div class="menuart">
+		<div class="artlogo">[(#LOGO_ARTICLE||reduire_image{120,120})]</div>
+	</div>
+	<div class="rub">
+		<div class="texte-rub">[(#TITRE|supprimer_numero)]</div>
+		<div class="texte-art">[(#TEXTE)]</div>
+		<div class="texte-art">[<a href="#URL_SITE" target="_blank">(#URL_SITE)</a>]</div>
+	</div>
+
+<!-- folio docs article-->
+<div id="cadre-folio">
+<BOUCLE_afficher_document(DOCUMENTS){id_document}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
+
+[<div class="artlogo">(#EMBED_DOCUMENT)</div>]
+</BOUCLE_afficher_document>
+
+<B_documents_portfolio>
+<div>
+<BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
+	<div class="artdlogo">
+	[<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT">(#LOGO_DOCUMENT{0,100})</a>]
+	</div>
+</BOUCLE_documents_portfolio>
+</div>
+
+</B_documents_portfolio>
+
+<B_documents_joints>
+<div>
+<BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {doublons}>
+	<div class="artlogo">
+	[(#LOGO_DOCUMENT|#URL_DOCUMENT)][<div style="clear: both;"><b>(#TITRE)</b></div>][<div style="clear: both;">(#DESCRIPTIF)</div>]
+	</div>
+</BOUCLE_documents_joints>
+</div>
+</B_documents_joints>
+
+</div>
+
+
+
+</div>
+
+<!-- choix matrice -->
+<div id="mydiv">
+<INCLURE{fond=inc-menu-matrice}>
+</div>
+[(#FORMULAIRE_ADMIN{'spip-admin-float'})]
+#SPIP_CRON
+</body>
+</html>
+</BOUCLE_article_principal>

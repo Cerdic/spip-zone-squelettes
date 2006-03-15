@@ -1,0 +1,111 @@
+#CACHE{86400}
+<!-- ***************************************************************************************
+//   web site subject: © dmsphoto.com                                                     //
+//   page subject:  page article                                                          //
+//   web designer & architect designer: sebastien murat, karim belkacem                   //
+//   graphic designer: sebastien murat, karim belkacem                                    //
+//   developpement : sebastien murat, karim belkacem, erational                           //
+//   creation date: mars. 04, 2006                                                        //
+**************************************************************************************** -->
+<BOUCLE_article_principal(ARTICLES) {id_article}{doublons}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>#NOM_SITE_SPIP | [(#TITRE|supprimer_numero|textebrut)]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<meta name="keywords" content="<BOUCLE_metatags(MOTS){type=meta}{", "}>[(#TITRE|supprimer_numero)]</BOUCLE_metatags> /">
+<meta name="description" content="<BOUCLE_metadescriptif(MOTS){type=meta_descriptif}>[(#TEXTE)]</BOUCLE_metadescriptif>" />
+<meta name="subjects" content="[ #NOM_SITE_SPIP ] - Version <?php echo $GLOBALS['spip_version_affichee']; ?>" />
+<meta name="robots" content="ALL" />
+<meta name="distribution" content="GLOBAL" />
+<meta name="rating" content="GENERAL" />
+<meta http-equiv="Reply-to" content="dmsphoto@free.fr" />
+<meta name="ROBOTS" content="INDEX,FOLLOW" />
+<meta name="author" content="sebastien murat,karim belkacem - contact@lessardines.info" />
+<meta name="copyright" content="creative commons [ #NOM_SITE_SPIP ] http://creativecommons.org/licenses/by-nc-sa/2.0/fr/" />
+<meta name="revisit-after" content="7 days" />
+<!-- feuille de style dms -->
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/_css/dms.css" type="text/css" />
+<link rel="shortcut icon" href="#URL_SITE_SPIP/favicon.ico" />
+</head>
+
+<body>
+<INCLURE{fond=inc-entete}>
+<!-- article -->
+<div id="cadre-rub">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="200" align="left" valign="top">
+	[(#LOGO_ARTICLE||reduire_image{200,0})]
+	<img src="_imgs/spacer.gif" alt="" width="200" height="50" />
+	<!-- menu logo article -->
+		<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {exclus}>
+		<a class="liste" href="#URL_ARTICLE">[<h4 class="art">(#TITRE|supprimer_numero)</h4>]</a>
+		</BOUCLE_articles_rubrique>	
+	</td>
+    <td width="50"><img src="_imgs/spacer.gif" alt="" width="50" height="1" /></td>
+    <td align="left" valign="top">	
+	<!-- contenu article -->
+	[<h2 class="TexteRub">(#TITRE|supprimer_numero)</h2>]
+	[<div class="TexteRub">(#TEXTE|justifier)</div>]
+	[<div class="texte-art"><a href="#URL_SITE" target="_blank">(#URL_SITE)</a></div>]
+	
+	<!-- folio mots-clefs doc/article -->
+	<div class="Textefolioart"><a name="doc" id="doc"></a><hr />
+	<BOUCLE_docs(DOCUMENTS){id_article}{mode=document}{par titre}>
+	<a href="#SELF&amp;id_document=#ID_DOCUMENT#doc" title="[(#TITRE)]">
+	[(#LOGO_DOCUMENT||reduire_image{0,25})]
+	</a>
+	</BOUCLE_docs>
+	</div>
+	
+
+			
+	<!-- folio mots-clefs doc/article -->
+	<BOUCLE_motclef(MOTS){id_article}>
+	<div class="Textefolioart">
+	<BOUCLE_motclefart(ARTICLES){id_mot}{doublons}>
+	<BOUCLE_logodoc(DOCUMENTS){id_article}{mode=document}{par titre}>
+	<a href="#SELF&amp;id_document=#ID_DOCUMENT#doc" title="[(#TITRE)]">
+	[(#LOGO_DOCUMENT||reduire_image{0,25})]
+	</a>
+	</BOUCLE_logodoc>
+	</BOUCLE_motclefart>
+	</BOUCLE_motclef>
+	</div>
+	
+	<BOUCLE_afficher_document(DOCUMENTS){id_document}{mode=document}{extension==(png|jpg|gif)$}>
+		[<div>(#EMBED_DOCUMENT)</div>]
+		
+		[<h3 class="spip">(#TITRE*)</h3>]
+		[<div>(#DESCRIPTIF)</div>]
+		</BOUCLE_afficher_document>
+		<BOUCLE_photofirst(DOCUMENTS){0,1}{id_article}{mode=document}>
+		[<div>(#EMBED_DOCUMENT)</div>]
+		[<h3 class="spip">(#TITRE*)</h3>]
+		[<div>(#DESCRIPTIF)</div>]	
+		</BOUCLE_photofirst>
+		<//B_afficher_document>
+	
+	<//BOUCLE_motclefart>
+	<//BOUCLE_motclef>
+		</td>
+  </tr>
+</table>
+</div> 
+
+<!-- choix matrice -->
+<div id="MenuMatrice">
+<INCLURE{fond=inc-menu-matrice-test2}>
+</div>
+
+<div id="FooterMatrice">
+<INCLURE{fond=inc_footer}>
+</div>
+
+
+[(#FORMULAIRE_ADMIN{'spip-admin-float'})]
+#SPIP_CRON
+</body>
+</html>
+</BOUCLE_article_principal>
