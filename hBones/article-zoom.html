@@ -1,0 +1,46 @@
+[
+	--------------------------------------------------------------------
+
+	(#REM) Ce squelette fait partie de hBones, un ensemble de squelettes
+	visant a implanter les microformats (http://microformats.org)
+
+	--------------------------------------------------------------------
+
+	Affiche un "zoom" de l'article, avec logo, date, auteurs et lien
+
+	code d'inclusion : < INCLURE{fond=article-zoom}{id_article} >
+
+	(c) 2006 - SPIP-Zone -- http://zone.spip.org/
+	Distribue sous licence publique generale GNU/GPL
+	--------------------------------------------------------------------
+
+
+]<BOUCLE_zoom(ARTICLES){id_article}>
+[(#REM) "hentry" = bloc article]
+<div class="hentry"
+	id="article-#ID_ARTICLE"
+	xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR"
+	onclick="document.location='#URL_ARTICLE';">
+
+[(#REM) class="content" => contenu de l'article (pas ses meta-donnees)]
+
+[(#REM) rel="bookmark" pour l'URL de reference de l'article ]
+
+	[<h2 class="headline"><a href="[(#URL_ARTICLE|url_absolue)]" rel="bookmark">(#TITRE)</a></h2>]
+
+	[(#REM) la date doit figurer dans un format lisible par une machine
+		<http://microformats.org/wiki/datetime-design-pattern>
+	]
+	[<abbr class="published"
+		title="[(#DATE|date_iso)]">
+		[(#DATE|nom_jour)] (#DATE|affdate), [(#DATE|heures):][(#DATE|minutes)]
+	</abbr>]
+
+	[
+		(#REM) Auteurs
+	]
+	<INCLURE{fond=auteurs}{id_article}>
+
+</div>[(#REM) /hentry]
+
+</BOUCLE_zoom>

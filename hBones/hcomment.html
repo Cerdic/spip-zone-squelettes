@@ -1,13 +1,23 @@
 [
+	--------------------------------------------------------------------
 
 	(#REM) Ce squelette fait partie de hBones, un ensemble de squelettes
 	visant a implanter les microformats (http://microformats.org)
 
+	--------------------------------------------------------------------
+
+	Affiche un message de forum
+
 	Les forums sont bases sur le format hComment
 	<http://microformats.org/wiki/hcomment>
 
-]
-<BOUCLE_hComment(FORUMS){id_forum}{plat}>
+	code d'inclusion : < INCLURE{fond=hcomment}{id_forum} >
+
+	(c) 2006 - SPIP-Zone -- http://zone.spip.org/
+	Distribue sous licence publique generale GNU/GPL
+	--------------------------------------------------------------------
+
+]<BOUCLE_hComment(FORUMS){id_forum}{plat}>
 <a name="forum#ID_FORUM" id="forum#ID_FORUM"></a>
 <div class="hcomment" id="comment-#ID_FORUM">
 	<cite class="poster vcard">
@@ -29,11 +39,13 @@
 		(#REM) Afficher le lien de reponse au commentaire
 		si on souhaite une possibilite d'arborescence des reponses
 	]
-	[<div class="repondre-message"><a href="forum.php3?(#PARAMETRES_FORUM)"
-		><:repondre_message:></a></div>]
+	[<div class="repondre-message"><a
+		href="(#PARAMETRES_FORUM|url_reponse_forum)"
+		title="<:repondre_message:>"
+		>ICI JOLIE IMAGE REPONDRE AU MESSAGE??</a></div>]
 
 	<BOUCLE_reponses(FORUMS){id_parent}{par date}{inverse}>
-	<INCLURE(page.php3){fond=hcomment}{id_forum}>
+	<INCLURE{fond=hcomment}{id_forum}>
 	</BOUCLE_reponses>
 </div>
 </BOUCLE_hComment>

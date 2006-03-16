@@ -1,6 +1,17 @@
 [
+	--------------------------------------------------------------------
+
 	(#REM) Ce squelette fait partie de hBones, un ensemble de squelettes
 	visant a implanter les microformats (http://microformats.org)
+
+	--------------------------------------------------------------------
+
+	Affiche un article
+
+	(c) 2006 - SPIP-Zone -- http://zone.spip.org/
+	Distribue sous licence publique generale GNU/GPL
+	--------------------------------------------------------------------
+
 
 ]<BOUCLE_article(ARTICLES){id_article}>[
 
@@ -49,82 +60,16 @@
 	On se base sur le format (draft) hAtom
 	<http://microformats.org/wiki/hatom>
 ]
-
-
-[(#REM) "hentry" = bloc article]
 <div class="hfeed">
-<div class="hentry" id="article-#URL_ARTICLE">
-
-[(#REM) class="content" => contenu de l'article (pas ses meta-donnees)]
-
-
-	[<h2 class="content toptitle">(#SURTITRE)</h2>]
-
-	[<h1 class="headline">(#TITRE)</h1>]
-	[
-		(#REM) Auteurs
-	]
-	<INCLURE(page.php3){fond=auteurs}{id_article}>
-	[(#REM) la date doit figurer dans un format lisible par une machine
-		<http://microformats.org/wiki/datetime-design-pattern>
-	]
-	[<abbr class="published updated"
-		title="[(#DATE|date_iso)]">
-		[(#DATE|nom_jour)] (#DATE|affdate), [(#DATE|heures):][(#DATE|minutes)]
-	</abbr>]
-
-
-	
-	
-	[<h2 class="content subtitle">(#SOUSTITRE)</h2>]
-
-	
-	[<div class="content deck">(#CHAPO)</div>]
-
-
-
-	[<div class="content text">[<div class="spip_logos">(#LOGO_ARTICLE|right)</div>](#TEXTE)</div>]
-
-
-	[
-		(#REM) Portfolio
-	]
-	<INCLURE(page.php3){fond=portfolio}{id_article}>
-
-
-	[<div class="content notes">(#NOTES)</div>]
-
-	[<div class="content postscriptum">(#PS)</div>]
-
-
-	[
-		(#REM) Mots-cles
-	]
-	<INCLURE(page.php3){fond=motscles}{id_article}>
-
-	[
-		(#REM) Traductions
-	]
-	<INCLURE(page.php3){fond=traductions}{id_article}>
-
-
-</div>[(#REM) /hentry]
+<INCLURE{fond=article-full}{id_article}>
 </div>[(#REM) /hfeed]
-
 [
 	(#REM) Forums
 ]
-<INCLURE(page.php3){fond=forums}{id_article}>
+<INCLURE{fond=forums}{id_article}>
 
 
 #SPIP_CRON
 </body>
 </html>
-</BOUCLE_article>[(#REM)
-SI id_article est dans l'url mais que l'article reference n'est pas publie ALORS
-	on affiche rien (404)
-SINON
-	on demande la liste des articles du site
-][
-(#ENV{id_article}|?{'',' '})<INCLURE(page.php3){fond=sommaire}>
-]<//B_article>
+</BOUCLE_article>
