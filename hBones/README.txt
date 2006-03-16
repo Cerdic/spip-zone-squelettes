@@ -7,34 +7,7 @@ Chacun peut participer, en gardant à l'esprit qu'il s'agit d'y aller très douc
 
 On essaie de passer tout ça en mode "noisettes", avec une structure où chaque noisette correspond à un composant microformat
 
-	article.html
-		<INCLURE(article-header.html)>
-		<body>
-		<INCLURE(article-long.html)>
-		</body>
 
-	article-header.html
-		<header><title>#TITRE</title>
-		<INCLURE(header-mots){id_article}>
-		</header>
+Remarque : pour que ça soit fonctionnel il faut encore, quand on installe, recopier le squelette sommaire.html sous le nom rubrique.html et recherche.html
 
-
-	article-long.html  (format blog-post)
-		#SURTITRE
-		#TITRE
-		#CHAPO
-		<INCLURE(auteurs.html){id_article}>
-		#TEXTE
-		<INCLURE(mots.html){id_article}>
-		<INCLURE(traductions.html){id_article}>
-
-
-	auteurs.html  (format hCard)
-		<BOUCLE(AUTEURS){id_article?}{id_auteur?}>
-
-
-	mots.html   (format relTag)
-		<BOUCLE(MOTS){id_article?}{id_breve?}{id_mot?}{id_rubrique?}{id_syndic?}>
-
-etc.
 
