@@ -4,17 +4,19 @@
 <head>
   <meta content="text/html; charset=#CHARSET"
  http-equiv="content-type">
-  <title>[#NOM_SITE_SPIP]</title>
-  <link rel="stylesheet" href="style/typographie.css" type="text/css">
-  <link rel="stylesheet" href="style/pagination.css" type="text/css">
-  <link rel="stylesheet" href="style/spip_style.css" type="text/css">
+  <title>[(#TITRE|supprimer_numero)]</title>
+ <link rel="stylesheet" href="#DOSSIER_SQUELETTE/style/menus.css" type="text/css"> 
+
+  <link rel="stylesheet" href="#DOSSIER_SQUELETTE/style/typographie.css" type="text/css">
+  <link rel="stylesheet" href="#DOSSIER_SQUELETTE/style/pagination.css" type="text/css">
+  <link rel="stylesheet" href="#DOSSIER_SQUELETTE/style/spip_style.css" type="text/css">
 
 <!-- Lien vers les jeux de couleurs variables par site -->
 
-  <link title="Site" rel="stylesheet" href="style/couleurs.css" type="text/css">
-  <link title="Bleu" rel="alternate stylesheet" href="style/couleurs.bleu.css" type="text/css">
-  <link title="Bleu &amp; jaune" rel="alternate stylesheet" href="style/couleursbleu-jaune.css" type="text/css">
-  <link title="Rouge" rel="alternate stylesheet" href="style/couleurs.rouge.css" type="text/css">
+  <link title="Site" rel="stylesheet" href="#DOSSIER_SQUELETTE/style/couleurs.css" type="text/css">
+  <link title="Bleu" rel="alternate stylesheet" href="#DOSSIER_SQUELETTE/style/couleurs.bleu.css" type="text/css">
+  <link title="Bleu &amp; jaune" rel="alternate stylesheet" href="#DOSSIER_SQUELETTE/style/couleursbleu-jaune.css" type="text/css">
+  <link title="Rouge" rel="alternate stylesheet" href="#DOSSIER_SQUELETTE/style/couleurs.rouge.css" type="text/css">
 
 <!-- Lien vers le backend pour navigateurs eclaires -->
   <link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="backend.php3">
@@ -33,23 +35,8 @@
 
 <!-- Menu de navigation rubriques -->
 
-<B_rubriques>
-<div class="menu">
-<ul class="rubriques">
-<BOUCLE_rubriques(HIERARCHIE) {id_article}>
-<li class="menu-titre"><a class="cent_pct" href="#URL_RUBRIQUE&amp;lang=#LANG" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
-<B_sous_rubriques>
-	<ul class="menu-liste">
-<BOUCLE_sous_rubriques(RUBRIQUES) {meme_parent} {exclus} {par date} {inverse} {0,3}>
-	<li class="menu-item"><a class='cent_pct' href="#URL_RUBRIQUE&amp;lang=#LANG" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></li>
-</BOUCLE_sous_rubriques>
-	</ul>
-</B_sous_rubriques>
-</li>
-</BOUCLE_rubriques>
-</ul>
-</div>
-</B_rubriques>
+<INCLURE(menu.php3){id_rubrique}{lang}>
+
 
 <!-- Breves dans la rubrique -->
 
@@ -94,16 +81,15 @@
 <!-- Fil d'ariane -->
 
 <a href="#URL_SITE_SPIP"><:Accueil:></a>
-<B_filariane>
-<BOUCLE_filariane(HIERARCHIE) {id_rubrique}>
- &gt; <a href="#URL_RUBRIQUE&amp;lang=#LANG" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
+<BOUCLE_filariane(HIERARCHIE) {id_rubrique} >
+ [&gt; <a href="#URL_RUBRIQUE&amp;lang=#LANG" [title="(#DESCRIPTIF|textebrut|entites_html)"]>(#TITRE|!={#LANG}|?{#TITRE,''}|supprimer_numero)</a>]
 </BOUCLE_filariane>
 
 <!-- Contenu de la rubrique -->
 
 
 <div class="cartouche">
-<h1 class="titre-texte">#TITRE</h1>
+<h1 class="titre-texte">[(#TITRE|supprimer_numero)]</h1>
 [<:dernier_ajout:> : (#DATE|nom_jour)] [(#DATE|affdate).]
 </div>
 <div class="encart_blanc">
@@ -191,7 +177,7 @@
 	</BOUCLE_exclure_trad>
 	
 <BOUCLE_articles_recents(ARTICLES) {id_rubrique} {par titre} {doublons}>
-	<h2><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h2>
+	<h2><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a></h2>
 	<div class="detail">
 	([(#LANG|traduire_nom_langue)]) [(#DATE|nom_jour)] [(#DATE|affdate)]
 	<B_auteurs_recents><:par_auteur:> <BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_recents>
