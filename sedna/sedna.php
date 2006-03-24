@@ -30,7 +30,7 @@
 	function critere_tri_sedna($idb, &$boucles, $crit) {
 		$boucle = &$boucles[$idb];
 		$boucle->order = array(
-			"'date_format(syndic_articles.date,\\'%Y-%m-%d 00:00:00\\') DESC', 'syndic_articles.maj DESC'"
+			"'date_format(syndic_articles.date,\\'%Y-%m-%d 00:00:00\\') DESC'", "'syndic_articles.maj DESC'", "'syndic_articles.date DESC'"
 		);
 	}
 
