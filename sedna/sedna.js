@@ -161,7 +161,7 @@ function sedna_init() {
 		}
 
 		// Reperer les liens mp3 et ajouter le player
-		if (a.href.match(/\.mp3$/i)) {
+		if (a.rel=='enclosure' && a.href.match(/\.mp3$/i)) {
 			play(a,a.href);
 		}
 	}
