@@ -114,7 +114,7 @@
 			$ex_syndic = $id_syndic;
 		}
 
-		echo "<li class='entry'";
+		echo "<li class='hentry'";
 		if (!$_GET['id_syndic'] AND !strlen($_GET['recherche']))
 			echo " id='item${id_syndic}_${id_syndic_article}'";
 		echo "	onmousedown=\"jai_lu('$id_lien');\">\n",
@@ -129,7 +129,7 @@
 			rel=\"bookmark\"";
 		if ($lang) echo " hreflang=\"$lang\"";
 		echo ">",
-		"<span class=\"title\">", # le "title" du microformat hAtom.feed.entry
+		"<span class=\"entry-title\">", # le "title" du microformat hAtom.hfeed.hentry
 		$titre, "</span></a>",
 		$lesauteurs,
 		"\n<span class=\"source\"><a href=\"",
@@ -140,7 +140,7 @@
 		if ($desc)
 			echo "<div class=\"desc\">",
 			"<div class=\"$class_desc\" id=\"desc_".(++$iddesc)."\">\n",
-			"<span class=\"content\">", $desc, "</span>\n",
+			"<span class=\"entry-summary\">", $desc, "</span>\n",
 			'</div></div>';
 		
 
