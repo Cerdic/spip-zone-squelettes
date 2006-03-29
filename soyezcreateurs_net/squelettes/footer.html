@@ -1,0 +1,200 @@
+#CACHE{2*3600}
+	<div class="retourtop">
+	  <a href="#<?php if ($titretop=='') { ?><:pyrat:sommaire|nettoyer_marqueur:><?php } else { echo $titretop; } ?>">[<:pyrat:retourtop:>]</a>
+	</div>
+</div><!-- id="content" -->
+	</div><!-- id="wrapper" -->
+	<div id="navigation">
+<div id="logo"><a href="/"><img src="#DOSSIER_SQUELETTE/images/1.gif" alt="<:pyrat:retouraccueil:> [(#NOM_SITE_SPIP|supprimer_tags)]" width="1" height="1" /></a></div>
+<div id="menu" class="navStuff">
+<div class="espaceavant">
+<ul>
+  <li><?php if ($jp_rubrique=='sommaire') { ?><strong><?php } ?><a name="menusite" accesskey="A" href="/" title="<:accueil_site:>"><:pyrat:accueil_menu:></a><?php if ($jp_rubrique=='sommaire') { ?></strong><?php } ?></li>
+
+<?php if (!$sous_menuhaut) { ?>
+
+<BOUCLE_Racines(ARTICLES){titre_mot=MENURACINE}{par num titre}>
+	<li><?php if ($jp_article==#ID_ARTICLE) { ?><strong><?php } ?><a href="[(#URL_ARTICLE)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img src="(#LOGO_ARTICLE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#TITRE|supprimer_numero)]</a><?php if ($jp_article==#ID_ARTICLE) { ?></strong><?php } ?></li>
+</BOUCLE_Racines>
+<?php } ?>
+</ul>
+</div>
+<BOUCLE_Rubriques_Exclues_Mots(RUBRIQUES){titre_mot=PasDansMenu}{doublons}>
+</BOUCLE_Rubriques_Exclues_Mots>
+<BOUCLE_MenuHaut(RUBRIQUES){racine}{titre_mot=MenuHaut}{doublons}>
+<?php if ($jp_secteur=='[(#ID_RUBRIQUE|texte_script)]') { ?>
+<div class="espaceavant">
+<INCLURE{fond=menuarticles}{id_rubrique}>
+<B_Rubriques_MenuHaut>
+<?php if (!$ul_menuarticles) { ?>
+<ul>
+<?php } ?>
+  <BOUCLE_Rubriques_MenuHaut(RUBRIQUES){id_parent}{par num titre}{doublons}>
+  <li><?php
+	if ($jp_rubrique=='[(#ID_RUBRIQUE|texte_script)]') {
+		$menuactifbefore='<strong>';
+		$menuactifafter='</strong>';
+	} else {
+		$menuactifbefore='';
+		$menuactifafter='';
+	}
+  echo $menuactifbefore;
+?><BOUCLE_articles_plusdun_MenuHaut(ARTICLES) {id_rubrique} {1,1}><a href="[(#URL_RUBRIQUE)]" title="[(#_Rubriques_MenuHaut:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img style="float:right; margin: 0 4px;" src="(#LOGO_RUBRIQUE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#_Rubriques_MenuHaut:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_Rubriques_MenuHaut:TITRE|supprimer_numero)]</a></BOUCLE_articles_plusdun_MenuHaut><BOUCLE_articles_unseul_MenuHaut(ARTICLES) {id_rubrique} {0,1}><a href="[(#URL_ARTICLE)]" title="[(#_Rubriques_MenuHaut:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img style="float:right; margin: 0 4px;" src="(#LOGO_RUBRIQUE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#_Rubriques_MenuHaut:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_Rubriques_MenuHaut:TITRE|supprimer_numero)]</a></BOUCLE_articles_unseul_MenuHaut><a href="[(#URL_RUBRIQUE)]" title="[(#_Rubriques_MenuHaut:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img style="float:right; margin: 0 4px;" src="(#LOGO_RUBRIQUE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#_Rubriques_MenuHaut:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_Rubriques_MenuHaut:TITRE|supprimer_numero)]</a><//B_articles_unseul_MenuHaut>  <//B_articles_plusdun_MenuHaut><?php echo $menuactifafter; ?><INCLURE{fond=menuarticles}{id_rubrique}><BOUCLE_SsRubriques_MenuHaut(BOUCLE_Rubriques_MenuHaut)></BOUCLE_SsRubriques_MenuHaut></li>
+  </BOUCLE_Rubriques_MenuHaut>
+</ul>
+</B_Rubriques_MenuHaut>
+</div>
+
+<B_RacinesBas_Systematique>
+<div class="espaceavant">
+<ul>
+<BOUCLE_RacinesBas_Systematique(ARTICLES){par num titre}{titre_mot=MENURACINEBAS_Systematique}>
+	<li><?php if ($jp_article==#ID_ARTICLE) { ?><strong><?php } ?><a href="[(#URL_ARTICLE)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img src="(#LOGO_ARTICLE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#TITRE|supprimer_numero)]</a><?php if ($jp_article==#ID_ARTICLE) { ?></strong><?php } ?></li>
+</BOUCLE_RacinesBas_Systematique>
+</ul>
+</div>
+</B_RacinesBas_Systematique>
+
+<?php } ?>
+
+</BOUCLE_MenuHaut>
+
+<?php if (!$sous_menuhaut) { ?>
+
+<div class="espaceavant">
+<B_Secteurs>
+<ul>
+  <BOUCLE_Secteurs(RUBRIQUES){racine}{par num titre}{doublons}>
+  <li><?php
+	if ($jp_rubrique=='[(#ID_RUBRIQUE|texte_script)]') {
+		$menuactifbefore='<strong>';
+		$menuactifafter='</strong>';
+	} else {
+		$menuactifbefore='';
+		$menuactifafter='';
+	}
+  echo $menuactifbefore;
+?><BOUCLE_articles_plusdunSecteurs(ARTICLES) {id_rubrique} {1,1}><a href="[(#URL_RUBRIQUE)]" title="[(#_Secteurs:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img style="float:right; margin: 0 4px;" src="(#LOGO_RUBRIQUE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#_Secteurs:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_Secteurs:TITRE|supprimer_numero)]</a></BOUCLE_articles_plusdunSecteurs><BOUCLE_articles_unseulSecteurs(ARTICLES) {id_rubrique} {0,1}><a href="[(#URL_ARTICLE)]" title="[(#_Secteurs:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img style="float:right; margin: 0 4px;" src="(#LOGO_RUBRIQUE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#_Secteurs:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_Secteurs:TITRE|supprimer_numero)]</a></BOUCLE_articles_unseulSecteurs><a href="[(#URL_RUBRIQUE)]" title="[(#_Secteurs:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img style="float:right; margin: 0 4px;" src="(#LOGO_RUBRIQUE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#_Secteurs:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_Secteurs:TITRE|supprimer_numero)]</a><//B_articles_unseulSecteurs>  <//B_articles_plusdunSecteurs><?php echo $menuactifafter; ?><INCLURE{fond=menuarticles}{id_rubrique}>
+<B_Rubriques>
+<?php if (!$ul_menuarticles) { ?>
+<ul>
+<?php } ?>
+  <BOUCLE_Rubriques(RUBRIQUES){id_parent}{par num titre}{doublons}>
+  <li><?php
+	if ($jp_rubrique=='[(#ID_RUBRIQUE|texte_script)]') {
+		$menuactifbefore='<strong>';
+		$menuactifafter='</strong>';
+	} else {
+		$menuactifbefore='';
+		$menuactifafter='';
+	}
+  echo $menuactifbefore;
+?><BOUCLE_articles_plusdun(ARTICLES) {id_rubrique} {1,1}><a href="[(#URL_RUBRIQUE)]" title="[(#_Rubriques:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img style="float:right; margin: 0 4px;" src="(#LOGO_RUBRIQUE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#_Rubriques:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_Rubriques:TITRE|supprimer_numero)]</a></BOUCLE_articles_plusdun><BOUCLE_articles_unseul(ARTICLES) {id_rubrique} {0,1}><a href="[(#URL_ARTICLE)]" title="[(#_Rubriques:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img style="float:right; margin: 0 4px;" src="(#LOGO_RUBRIQUE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#_Rubriques:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_Rubriques:TITRE|supprimer_numero)]</a></BOUCLE_articles_unseul><a href="[(#URL_RUBRIQUE)]" title="[(#_Rubriques:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img style="float:right; margin: 0 4px;" src="(#LOGO_RUBRIQUE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#_Rubriques:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_Rubriques:TITRE|supprimer_numero)]</a><//B_articles_unseul>  <//B_articles_plusdun><?php echo $menuactifafter; ?><INCLURE{fond=menuarticles}{id_rubrique}><BOUCLE_SsRubriques(BOUCLE_Rubriques)></BOUCLE_SsRubriques></li>
+  </BOUCLE_Rubriques>
+</ul>
+</B_Rubriques>
+   </li>
+  </BOUCLE_Secteurs>
+</ul>
+</B_Secteurs>
+</div>
+
+<B_RacinesBas>
+<div class="espaceavant">
+<ul>
+<BOUCLE_RacinesBas(ARTICLES){par num titre}{titre_mot==^MENURACINEBAS.*}>
+	<li><?php if ($jp_article==#ID_ARTICLE) { ?><strong><?php } ?><a href="[(#URL_ARTICLE)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img src="(#LOGO_ARTICLE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#TITRE|supprimer_numero)]</a><?php if ($jp_article==#ID_ARTICLE) { ?></strong><?php } ?></li>
+</BOUCLE_RacinesBas>
+</ul>
+</div>
+</B_RacinesBas>
+<?php } ?>
+
+<div class="espaceavant">
+<ul>
+<li><?php if ($jp_rubrique=='Plan') { ?><strong><?php } ?><a accesskey="P" href="plan.html" title="<:pyrat:toutleplan:>"><:pyrat:plan_menu:></a><?php if ($jp_rubrique=='Plan') { ?></strong><?php } ?></li>
+<BOUCLE_ModeStatique(MOTS){titre=ModeStatique}{texte=Oui}> </BOUCLE_ModeStatique>
+<li><?php if ($jp_rubrique=='Resume') { ?><strong><?php } ?><a accesskey="E" href="resume.html" title="<:public:en_resume:>"><:pyrat:enresume_menu:></a><?php if ($jp_rubrique=='Resume') { ?></strong><?php } ?></li>
+<//B_ModeStatique>
+</ul>
+</div>
+<INCLURE{fond=frmrecherche}>
+<BOUCLE_Aff_Google_Search(MOTS){titre=Aff_Google_Search}{texte!=""}>
+<div id="googlesearch">
+<!--[if IE]>
+<script type="text/javascript">
+google_ad_client = "#TEXTE";
+google_ad_width = 125;
+google_ad_height = 125;
+google_ad_format = "125x125_as_rimg";
+google_cpa_choice = "CAAQ3c7nzwEaCMETx1u3bvKiKNm493M";
+</script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+<![endif]-->
+<!-- Search Google -->
+<form method="get" action='http://www.google.fr/custom'>
+<div>
+<label for="inputsearchgoogle"><:pyrat:chercheravecgoogle:></label>
+<input type="text" name="q" size="15" maxlength="255" value='<:pyrat:recherche_value:>' id="inputsearchgoogle" onfocus="if (this.value=='<:pyrat:recherche_value:>') this.value=''" />
+<input type="submit" name="sa" value='<:pass_ok:>' id="oksearchgoogle" />
+
+<input type="hidden" name="client" value='#TEXTE' />
+<input type="hidden" name="forid" value='1' />
+<input type="hidden" name="ie" value="#CHARSET" />
+<input type="hidden" name="oe" value="#CHARSET" />
+<input type="hidden" name="cof" value='GALT:#0066CC;GL:1;DIV:#999999;VLC:336633;AH:center;BGC:FFFFFF;LBGC:000000;ALC:0066CC;LC:0066CC;T:000000;GFNT:666666;GIMP:666666;LH:32;LW:80;L:http://www.pyrat.net/squelette/images/realetlogo.gif;S:http://www.pyrat.net/;FORID:1;' />
+<input type="hidden" name="hl" value='fr' />
+</div>
+</form>
+<!-- Search Google -->
+</div>
+</BOUCLE_Aff_Google_Search>
+
+<BOUCLE_EstNewsLetter(MOTS){titre=NewsLetterID}{texte!=}>
+<div class="cadreinfo">
+<h2><:pyrat:newsletter_recevoir:></h2>
+<form method="post" action="@newsletter.html" style="margin:0;">
+<label for="email"><:pyrat:newsletter_email:></label><input id="email" style="width:97%;" type="text" name="email" maxlength="100" value="@" />
+<input type="hidden" name="format" value="1" />
+<input type="hidden" name="liste" value="[(#TEXTE|attribut_html)]" />
+<fieldset><legend><:pyrat:newsletter_action:></legend>
+<input type="radio" name="action" value="inscription" id="inscription" checked="checked" /><label for="inscription"> <:pyrat:newsletter_inscription:></label><br />
+<input type="radio" name="action" value="desinscription" id="desinscription" /><label for="desinscription"> <:pyrat:newsletter_desinscription:></label></fieldset>
+<input class="spip_bouton" type="submit" name="wanewsletter" value="<:pyrat:newsletter_valider:>" />
+</form>
+</div>
+</BOUCLE_EstNewsLetter>
+</div>
+<BOUCLE_ApparenceSwitcherLeft(MOTS){titre=Aff_Habillage}{texte=Left}>
+<INCLURE{fond=apparenceswitcher}>
+</BOUCLE_ApparenceSwitcherLeft>
+
+	</div><!-- id="navigation" -->
+<INCLURE{fond=menu_right}{id_rubrique}{id_article}>
+	<div id="footer">
+		<BOUCLE_BandeauContact(MOTS){titre=BandeauContact}{texte!=}>
+		<div id="bandeaucontact">#TEXTE</div>
+		</BOUCLE_BandeauContact>
+<div><span>&copy; 2005[, (#NOM_SITE_SPIP|supprimer_tags)] <img src="#DOSSIER_SQUELETTE/images/1.gif" alt="" width="1" height="1" />&nbsp;<:pyrat:copyright_realisation:></span><BOUCLE_amentionlegale(MOTS){type=_InformationsLegales}{texte!=}{0,1}> <img src="#DOSSIER_SQUELETTE/images/1.gif" alt="" width="1" height="1" />&nbsp;<a href="@mentionslegales.html"><:pyrat:mentionslegales|propre:></a></BOUCLE_amentionlegale><br /><span class="right"><:pyrat:copyright_spip:>[ (#SPIP_VERSION)] <img src="#DOSSIER_SQUELETTE/images/1.gif" alt="" width="1" height="1" />&nbsp;<:pyrat:copyright_valide:><BOUCLE_meta_tags(MOTS){type=_HTTP-EQUIV}{titre=pics-label}{texte!=}> <img src="#DOSSIER_SQUELETTE/images/1.gif" alt="" width="1" height="1" />&nbsp;<:pyrat:copyright_icra:></BOUCLE_meta_tags><BOUCLE_CNIL(MOTS){titre=CNIL}{texte!=}>[ <img src="#DOSSIER_SQUELETTE/images/1.gif" alt="" width="1" height="1" />&nbsp;<:pyrat:copyright_cnil:>(#TEXTE)]</BOUCLE_CNIL></span></div>
+	</div><!-- id="footer" -->
+<BOUCLE_AvertissementIE(MOTS){titre=AvertissementIE}{texte=Oui}>
+<:pyrat:avertissement_ie:>
+</BOUCLE_AvertissementIE>
+
+</div><!-- id="container" -->
+<script src="javascripts.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+window.onload = function() {
+  jp_expinit(); // Doit etre place *apres* le menu concerne!!!
+  // Show the footer
+  if (document.getElementById('apparenceswitcher')) {
+  	document.getElementById('apparenceswitcher').style.display='block';
+  }
+  window.onresize = adjustLayout;
+  adjustLayout();
+}
+//]]>
+</script>
+</body>
+</html>

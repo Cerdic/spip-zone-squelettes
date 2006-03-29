@@ -1,0 +1,75 @@
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+<?php $jp_rubrique = [(#ID_RUBRIQUE|texte_script)]; ?>
+<?php $jp_secteur = [(#ID_SECTEUR|texte_script)]; ?>
+<?php $titre = '[(#TITRE|textebrut|supprimer_numero|attribut_html|texte_script)]'; ?>
+<?php $titretop = '[(#TITRE|textebrut|supprimer_numero|attribut_html|nettoyer_marqueur|texte_script)]'; ?>
+<INCLURE{fond=header}{id_rubrique}>
+<BOUCLE_EstAgenda(MOTS){id_rubrique}{titre=Agenda}> </BOUCLE_EstAgenda>
+<INCLURE{fond=agendaliste}{id_rubrique}{date_ev}{genre}>
+</B_EstAgenda>
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
+	<BOUCLE_plan(HIERARCHIE){id_rubrique}>
+	<li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|textebrut|attribut_html|supprimer_numero)"]>[(#TITRE|supprimer_numero)]</a></li>
+	</BOUCLE_plan></B_plan>
+	<li>[(#TITRE|supprimer_numero)]</li>
+	</ul>
+	</div>
+
+<!-- Articles recents -->
+<BOUCLE_test_numero(ARTICLES){id_rubrique}{titre==^[0-9]+\.}{0,1}>
+	<B_articles_parnum>
+<div id="artrecents" class="flottant">
+	<h2>Contenu</h2>
+	<ul>
+	<BOUCLE_articles_parnum(ARTICLES) {id_rubrique} {par num titre}>
+		<li><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">[(#TITRE|Supprimer_numero)]</a></li>
+	</BOUCLE_articles_parnum>
+	</ul>
+</div>
+	</B_articles_parnum>
+</BOUCLE_test_numero>
+	<B_articles_recents>
+<div id="artrecents" class="flottant">
+	<h2>Contenu</h2>
+	<ul>
+	<BOUCLE_articles_recents(ARTICLES) {id_rubrique} {par date}{inverse}>
+		<li><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">[(#TITRE|Supprimer_numero)]</a></li>
+	</BOUCLE_articles_recents>
+	</ul>
+</div>
+	</B_articles_recents>
+		<B_SsRubriques>
+<div id="artrecents" class="flottant">
+	<h2>Contenu</h2>
+	<ul>
+		<BOUCLE_SsRubriques(RUBRIQUES) {id_parent}{par num titre}>
+		<li><BOUCLE_articles_plusdun(ARTICLES) {id_rubrique} {1,1}><a href="#URL_RUBRIQUE" title="[(#_SsRubriques:DESCRIPTIF|attribut_html)] ([(#_SsRubriques:DATE|nom_jour)] [(#_SsRubriques:DATE|affdate)])">[(#_SsRubriques:TITRE|Supprimer_numero)]</a></BOUCLE_articles_plusdun><BOUCLE_articles_unseul(ARTICLES) {id_rubrique} {0,1}><a href="#URL_ARTICLE" title="[(#_SsRubriques:DESCRIPTIF|attribut_html)] ([(#_SsRubriques:DATE|nom_jour)] [(#_SsRubriques:DATE|affdate)])">[(#_SsRubriques:TITRE|Supprimer_numero)]</a></BOUCLE_articles_unseul><a href="#URL_RUBRIQUE" title="[(#_SsRubriques:DESCRIPTIF|attribut_html)] ([(#_SsRubriques:DATE|nom_jour)] [(#_SsRubriques:DATE|affdate)])">[(#_SsRubriques:TITRE|Supprimer_numero)]</a><//B_articles_unseul>  <//B_articles_plusdun></li>
+		</BOUCLE_SsRubriques>
+	</ul>
+</div>
+		</B_SsRubriques>
+	<//B_articles_recents>
+<//B_test_numero>
+
+<!-- Une : contenu de la rubrique -->
+<div class="cartouche">
+<h1>[<img style="float:left;" src="(#LOGO_RUBRIQUE||reduire_image{64,64}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#TITRE|supprimer_numero)]</h1>
+</div>
+	<div id="letexte">
+[<div class="descriptif">(#DESCRIPTIF)</div>]
+[(#TEXTE)]
+<p>&nbsp;</p>
+[<div class="notes">(#NOTES)</div>]
+	</div><!-- Fin de #LeTexte -->
+[(#FORMULAIRE_ADMIN)]
+<//B_EstAgenda>
+</BOUCLE_rubrique_principal>
+</B_rubrique_principal>
+<?php $titre = '<:pyrat:erreur:>'; ?>
+<?php $titretop = '<:pyrat:erreur|nettoyer_marqueur:>'; ?>
+<INCLURE{fond=header}{id_rubrique}>
+Erreur : cette rubrique n'existe pas !
+<//B_rubrique_principal>
+<INCLURE{fond=footer}{id_rubrique}>

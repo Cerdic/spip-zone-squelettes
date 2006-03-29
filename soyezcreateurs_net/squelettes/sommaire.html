@@ -1,0 +1,70 @@
+<?php
+$jp_rubrique = 'sommaire';
+$titre='<:pyrat:accueil:>';
+
+?>
+<INCLURE{fond=header}>
+
+<BOUCLE_ModeNews(MOTS){titre=ModeNews}{texte=Oui}>
+	<INCLURE{fond=sommaire_modenews}>
+</BOUCLE_ModeNews>
+<!-- Edito : C'est le dernier article en date ayant pour mot-clef "EDITO" -->
+<BOUCLE_article_principal(ARTICLES) {titre_mot=EDITO}{par date}{inverse}{0,1}>
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="/"><:pyrat:accueil:></a></li>
+	<li>[(#TITRE|Supprimer_numero)]</li>
+	</ul>
+	</div>
+<?php 
+$jp_article = '[(#ID_ARTICLE|texte_script)]';
+$id_article = '[(#ID_ARTICLE|texte_script)]'; // Pour que la page affiche le bouton Gerer cet article !
+?>
+<!-- Articles recents -->
+<BOUCLE_Secteurs_Exclus(RUBRIQUES){titre_mot=SecteurPasDansQuoiDeNeuf}>
+	<BOUCLE_Articles_Secteurs_Exclus(ARTICLES){id_secteur}{doublons}>
+	</BOUCLE_Articles_Secteurs_Exclus>
+</BOUCLE_Secteurs_Exclus>
+<BOUCLE_Rubriques_Exclues(RUBRIQUES){titre_mot=PasDansQuoiDeNeuf}>
+	<BOUCLE_Articles_Exclus(ARTICLES){id_rubrique}{doublons}>
+	</BOUCLE_Articles_Exclus>
+</BOUCLE_Rubriques_Exclues>
+<BOUCLE_exclus(ARTICLES){titre_mot=PasDansQuoiDeNeuf}{doublons}>
+</BOUCLE_exclus>
+<div id="artrecents">
+<h2><:pyrat:quoideneuf:></h2>
+<B_articles_recentsAlaUne>
+<ul class="alaune">
+<BOUCLE_articles_recentsAlaUne(ARTICLES) {tout}{par date_modif}{inverse}{0,3}{doublons}{titre_mot=AlaUne}>
+	<li><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">[(#TITRE|supprimer_numero)]</a></li>
+</BOUCLE_articles_recentsAlaUne>
+</ul>
+</B_articles_recentsAlaUne>
+<B_articles_recents>
+<ul>
+<BOUCLE_articles_recents(ARTICLES) {tout}{par date_modif}{inverse}{0,10}{doublons}>
+	<li><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">[(#TITRE|supprimer_numero)]</a></li>
+</BOUCLE_articles_recents>
+</ul>
+</B_articles_recents>
+</div>
+
+<div class="cartouche">
+[<div class="surtitre"><span>(#SURTITRE)</span></div>]
+<div><INCLURE{fond=aff_datepublication}{id_article}></div>
+<h1 class="titre-texte">[<img style="float:left;" src="(#LOGO_ARTICLE||reduire_image{64,64}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#TITRE|Supprimer_numero)]</h1>
+<INCLURE{fond=liste_auteurs}{id_article}>[<div class="soustitre"><span>(#SOUSTITRE)</span></div>]
+</div>
+
+	<div id="letexte">
+[<div class="chapo">(#CHAPO)</div>]
+[(#TEXTE|reduire_image{400,0})]
+[<div class="ps">(#PS)</div>]
+[<div class="notes">(#NOTES)</div>]
+	</div><!-- Fin de LeTexte -->
+</BOUCLE_article_principal>
+<//B_ModeNews>
+
+[(#FORMULAIRE_ADMIN)]
+
+<INCLURE{fond=footer}>

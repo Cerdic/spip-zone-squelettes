@@ -1,0 +1,30 @@
+<div class='spip_encadrer'>
+<BOUCLE_GraverSonNom(ARTICLES){id_article}{titre_mot=GraverSonNom}>
+<div id="graversonnom">
+<BOUCLE_LogoGraverSonNom(MOTS){titre=GraverSonNom}>
+		<img src='[(#LOGO_MOT_NORMAL||extraire_attribut{src})]' title='[(#ENV*{auteur}|attribut_html)]' />
+</BOUCLE_LogoGraverSonNom>
+</div>
+</BOUCLE_GraverSonNom>
+<div style='font-size: 120%; font-weight: bold;'>[(#ENV*{titre})]</div>
+
+<br />
+
+[<b><a[ href="mailto:(#ENV{email_auteur})"]>(#ENV*{auteur})</a></b>]
+<BOUCLE_PasdeSiteDansForums(ARTICLES){id_article}{titre_mot=PasdeSiteDansForums}>
+[<br />(#ENV*{texte}|anti_glouton)]
+</BOUCLE_PasdeSiteDansForums>
+[<br />(#ENV*{texte})]
+<//B_PasdeSiteDansForums>
+
+[<br /><a [href="(#ENV{url_site}|attribut_html)"]>(#ENV*{nom_site_forum})</a>]
+
+[(#ENV*{mots_forum})]
+<//B_GraverSonNom>
+[<p align='right' style='color: red;'>(#ENV*{erreur})</p>]
+
+[<div align='right'><input type='submit' name='confirmer_forum' class='spip_bouton' value="(#ENV*{bouton})" /></div>]
+
+</div>
+
+<br />

@@ -1,0 +1,93 @@
+#CACHE{2*3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">
+<head><title><?php if ($titre=='') { ?><:pyrat:sommaire:><?php } else { echo $titre; } ?> - [(#NOM_SITE_SPIP|textebrut)]</title>
+<BOUCLE_Styles(MOTS){type=_ParamsSlyleSwitcher}{par descriptif}>
+<link rel="[(#DESCRIPTIF) ]stylesheet" type="text/css" href="[(#CHEMIN{images/#TITRE.css}|url_absolue)]" title="#TITRE" media="all" /></BOUCLE_Styles>
+<!--[if lt IE 6]>
+<BOUCLE_StylesIE(MOTS){type=_ParamsSlyleSwitcher}{par descriptif}>
+<link rel="[(#DESCRIPTIF) ]stylesheet" type="text/css" href="[(#CHEMIN{images/[(#TITRE)]_import.css}|url_absolue)]" title="#TITRE" media="all" /></BOUCLE_StylesIE>
+<![endif]-->
+<BOUCLE_LargeurMenuGauche(MOTS){titre=LargeurMenuGauche}>[(#REM) Attention : ne pas enlever les REMarques : elles servent à aérer le source sans que celui ne renvois d'espaces identifié comme une reussite du test ]
+	<BOUCLE_ArtRubLayout(ARTICLES){id_article}>[(#REM) Dans le cas d'un article
+		]<BOUCLE_ArtLayout(MOTS){id_article}{type=_LayoutGala}>[(#REM) Est-ce qu'il a un Layout appliqué ?
+			]<INCLURE{fond=layout}{layoutgala=(#TITRE|substr{0,2})}{colgauche=#_LargeurMenuGauche:TEXTE}>[(#REM) Appel du layout de l'article si oui
+		]</BOUCLE_ArtLayout>[(#REM) Sinon, dans le cas de la rubrique de l'article
+		]<BOUCLE_RubartLayout(MOTS){id_rubrique}{type=_LayoutGala}>[(#REM) Est-ce que sa rubrique a un layout ?
+			]<INCLURE{fond=layout}{layoutgala=(#TITRE|substr{0,2})}{colgauche=#_LargeurMenuGauche:TEXTE}>[(#REM) Appel du layout de la rubrique si oui
+		]</BOUCLE_RubartLayout>[(#REM) Fin de la recherche concernant un article
+		]<//B_ArtLayout>[(#REM) Si ce n'est pas un article...
+	]</BOUCLE_ArtRubLayout>[(#REM) ... Est-ce une rubrique ?
+		]<BOUCLE_RubLayout(MOTS){id_rubrique}{type=_LayoutGala}>[(#REM) Dans le cas d'une rubrique
+			]<INCLURE{fond=layout}{layoutgala=(#TITRE|substr{0,2})}{colgauche=#_LargeurMenuGauche:TEXTE}>[(#REM) Appel du layout de l'a rubrique si oui
+		]</BOUCLE_RubLayout>[(#REM) Sinon
+		]<BOUCLE_LayoutParDefaut(MOTS){type=_LayoutGala}{texte=Default}{0,1}>[(#REM) Récupération du layout par défaut
+			]<INCLURE{fond=layout}{layoutgala=(#TITRE|substr{0,2})}{colgauche=#_LargeurMenuGauche:TEXTE}>[(#REM) Appel du Layout par défaut
+		]</BOUCLE_LayoutParDefaut>[(#REM) Fin de la recherche du layout par défaut
+		]<//B_RubLayout>[(#REM) Fin de la recherche d'une rubrique
+	]<//B_ArtRubLayout>
+</BOUCLE_LargeurMenuGauche>
+<link rel="stylesheet" href="[(#CHEMIN{images/printer.css}|url_absolue)]" type="text/css" media="print" />
+<meta http-equiv="content-type" content="text/html; charset=#CHARSET" />
+<BOUCLE_http-equiv(MOTS){type=_HTTP-EQUIV}>[<meta[ http-equiv='(#TITRE|attribut_html)'] content='(#TEXTE|attribut_html|jp_replace{&quot;,'"'})' />]
+</BOUCLE_http-equiv>
+<BOUCLE_meta_tags(MOTS){type=_META}>[<meta[ name='(#TITRE|attribut_html)'] content='(#TEXTE|attribut_html|jp_replace{&quot;,'"'})' />]
+</BOUCLE_meta_tags>
+<meta name="robots" content="index,follow" />
+<meta name="author" content="Jacques PYRAT http://www.pyrat.net/" />
+<meta name="DC.title" content="[(#NOM_SITE_SPIP|textebrut|attribut_html)]" />
+<meta name="MSSmartTagsPreventParsing" content="TRUE" />
+<!-- Lien vers le backend pour navigateurs eclaires -->
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:> [(#NOM_SITE_SPIP|textebrut|attribut_html)]" href="#URL_PAGE{backend}" />
+<?php if (is_int($jp_rubrique)) { ?>
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:> : <?php echo $titre; ?>" href="#URL_PAGE{backend}&amp;id_rubrique=<?php echo($jp_rubrique); ?>" />
+<?php } ?>
+<link rel="shortcut icon" type="images/x-icon" href="#DOSSIER_SQUELETTE/images/favicon.ico" />
+<BOUCLE_Aff_Google_Analytics(MOTS){titre=Aff_Google_Analytics}{texte!=}>
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "[(#TEXTE|texte_script)]";
+urchinTracker();
+</script>
+</BOUCLE_Aff_Google_Analytics>
+</head>
+<body>
+<div id="container">
+	<div id="header">
+<div class="ahem"><ul>
+	<!--<li><:pyrat:accessibilite_politique:></li>-->
+	<li><a href="#letexte"><:pyrat:accessibilite_texte:></a></li>
+	<li><a href="#menusite"><:pyrat:accessibilite_menu:></a></li>
+	<li><a href="#formulaire_recherche"><:pyrat:accessibilite_recherche:></a></li>
+</ul></div>
+<div id="datemajsite"><BOUCLE_datemajsite(ARTICLES){par date}{inverse}{0,1}><:pyrat:dernieremaj:> [(#DATE|nom_jour)] [(#DATE|affdate)]</BOUCLE_datemajsite></div>
+<a name="<?php if ($titretop=='') { ?><:pyrat:sommaire|nettoyer_marqueur:><?php } else { echo $titretop; } ?>"></a><h1>[(#NOM_SITE_SPIP)]</h1>
+<BOUCLE_CitationsHeader(MOTS){titre=CitationsHeader}{texte=Oui}>
+<div id="citationsheader">
+<INCLURE{fond=citations}>
+</div>
+</BOUCLE_CitationsHeader>
+	</div><!-- id="header" -->
+
+	<div id="wrapper">
+<div id="content">
+<B_MenuHaut>
+<div id="menuhaut">
+	<ul>
+		<BOUCLE_MenuHaut(RUBRIQUES){racine}{titre_mot=MenuHaut}{par num titre}>
+		<li><?php
+	if ($jp_secteur=='[(#ID_RUBRIQUE|texte_script)]') {
+		$menuactifbefore='<strong>';
+		$menuactifafter='</strong>';
+		$sous_menuhaut = true;
+	} else {
+		$menuactifbefore='';
+		$menuactifafter='';
+	}
+  echo $menuactifbefore;
+?><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE|supprimer_numero)][<img style="margin: 0;" src="(#LOGO_RUBRIQUE||reduire_image{9,9}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />]</a><?php echo $menuactifafter; ?></li>
+		</BOUCLE_MenuHaut>
+	</ul>
+</div>
+</B_MenuHaut>

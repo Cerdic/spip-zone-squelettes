@@ -1,0 +1,37 @@
+<BOUCLE_image(DOCUMENTS) {id_document}>
+<?php $titre = '[(#TITRE|textebrut|supprimer_numero|attribut_html|texte_script)]'; ?>
+<?php $titretop = '[(#TITRE|textebrut|supprimer_numero|attribut_html|nettoyer_marqueur|texte_script)]'; ?>
+<INCLURE{fond=header}>
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
+	<BOUCLE_plan(HIERARCHIE){id_article}><? if ('#ID_PARENT'!='') { ?><li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|textebrut|attribut_html|supprimer_numero)"]><? } ?>[(#TITRE|supprimer_numero)]<? if ('#ID_PARENT'!='') { ?></a></li><? } ?>
+	</BOUCLE_plan>
+	<BOUCLE_Titre(ARTICLES){id_article}><li><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|attribut_html|supprimer_numero)"]>[(#TITRE)]</a></li>
+	</BOUCLE_Titre>
+	[<li>(#TITRE)</li>]
+	</ul>
+	</div>
+<div class="cartouche">
+<div><h1 class="titre-texte">[(#TITRE|Supprimer_numero)]</h1></div>
+</div>
+	<div id="letexte">
+
+		<div style="text-align:center;">
+		<div class="photo_articles"><a href="#URL_DOCUMENT" title="<:pyrat:voirimage:> : [(#TITRE|textebrut|attribut_html|supprimer_numero)] (#LARGEUR &times; #HAUTEUR, [(#TAILLE|taille_en_octets)])"><img class="galleriebig" src="[(#FICHIER|reduire_image{400,0}||extraire_attribut{src})]" width='[(#FICHIER|reduire_image{400,0}||extraire_attribut{width})]' height='[(#FICHIER|reduire_image{400,0}||extraire_attribut{height})]' [ alt="(#TITRE|textebrut|attribut_html|supprimer_numero)"] /></a></div>
+		[<div class="clearing"></div><div>(#DESCRIPTIF)</div>]
+		</div>
+		<BOUCLE_RetourBis(ARTICLES){id_article}><:pyrat:retourgalerie:><div>&nbsp;: <a href="#URL_ARTICLE" title="<:pyrat:retourgalerie:> : [(#TITRE|textebrut|attribut_html|supprimer_numero)]">[(#TITRE|textebrut|attribut_html|supprimer_numero)]</a></div></BOUCLE_RetourBis>
+		
+	</div>
+	</BOUCLE_image>
+	</B_image>
+	<?php $titre = '<:pyrat:erreur:>'; ?>
+	<?php $titretop = '<:pyrat:erreur|nettoyer_marqueur:>'; ?>
+	<INCLURE{fond=header}>
+	<:pyrat:erreur_imageexistepas:>
+	<//B_image>
+
+[(#FORMULAIRE_ADMIN)]
+
+<INCLURE{fond=footer}>

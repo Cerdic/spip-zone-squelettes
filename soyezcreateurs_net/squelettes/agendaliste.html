@@ -1,0 +1,94 @@
+#CACHE{24*3600}
+<BOUCLE_rubrique_principal(RUBRIQUES){id_rubrique}>
+<?php
+$titrePage = '<:pyrat:agenda:> - [(#ENV{date_ev,[(#ENV{date})]}|annee)]';
+?>
+
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
+	<BOUCLE_plan(HIERARCHIE){id_rubrique}><li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|textebrut|attribut_html|supprimer_numero)"]>[(#TITRE|supprimer_numero)]</a></li>
+	</BOUCLE_plan>
+	<li>[(#TITRE|supprimer_numero)]</li>
+	</ul>
+	</div>
+
+<div class="cartouche">
+<h1>[<img style="float:left;" src="(#LOGO_RUBRIQUE||reduire_image{64,64}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#TITRE|supprimer_numero)] - [(#ENV{date_ev,[(#ENV{date})]}|annee)]</h1>
+</div>
+<B_themes>
+<div id="artrecents" class="flottant">
+<h2><:pyrat:themes:></h2>
+<BOUCLE_themes(RUBRIQUES){racine}{id_secteur}{titre_mot=Agenda}><B_sous_rubriques1>
+	<ul>
+		<BOUCLE_sous_rubriques1(RUBRIQUES){id_parent}{par titre}>
+			<li[ style="list-style-image: url((#LOGO_RUBRIQUE||reduire_image{9,9}|extraire_attribut{src}));"]>
+			<?php if ($jp_rubrique != [(#ID_RUBRIQUE|texte_script)]) { ?>
+			<a href="#URL_RUBRIQUE?date_ev=[(#ENV{date_ev,[(#ENV{date})]}|annee)]-01-01[&amp;genre=(#ENV{genre,''}|urlencode)]" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])"><?php } ?>[(#TITRE|Supprimer_numero)]<?php if ($jp_rubrique != [(#ID_RUBRIQUE|texte_script)]) { ?></a><?php } ?>
+			<BOUCLE_RecursionRubriques(BOUCLE_sous_rubriques1)></BOUCLE_RecursionRubriques>
+			</li>
+		</BOUCLE_sous_rubriques1>
+	</ul>
+</B_sous_rubriques1></BOUCLE_themes>
+</div></B_themes>
+
+	<div id="letexte">
+[<div class="descriptif">(#DESCRIPTIF)</div>]
+[(#TEXTE)]
+
+
+		<form id="navigation" method="get" action="#SELF"><fieldset><legend><:pyrat:precisezrecherche:></legend>
+		<BOUCLE_PremiereAnnee(ARTICLES){id_secteur}{type_mot=CategorieAgenda}{par date_redac}{date_redac>1000}{0,1}>
+		<?php if ([(#DATE_REDAC|annee)]<[(#ENV{date_ev,[(#ENV{date})]}|annee)]) { ?>
+		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee)] - 1); ?>-01-01[&amp;genre=(#ENV{genre,''}|urlencode)]"><img src="#DOSSIER_SQUELETTE/images/prev.gif" title="<:precedent:>" alt="<:precedent:>" /></a>
+		<?php } ?>
+		</BOUCLE_PremiereAnnee>
+		<select id="var_nav_year">
+		<BOUCLE_Annees(ARTICLES){id_secteur}{par date_redac}>[
+		<option value="[(#DATE_REDAC|annee)]"[(#ENV{date_ev,[(#ENV{date})]}|annee|=={[(#DATE_REDAC|annee)]}|?{' selected="selected"',''})]>(#DATE_REDAC|annee|unique)</option>
+		]</BOUCLE_Annees>
+		</select>
+
+		<select id="var_nav_cle">
+		<option value=""[(#ENV{genre,''}|=={''}|?{' selected="selected"',''})]><:pyrat:tout:></option>
+		<BOUCLE_LstMotsClefs(MOTS){type=CategorieAgenda}{par titre}>
+		<option value="[(#TITRE|attribut_html)]"[(#ENV{genre}|=={[(#TITRE|attribut_html)]}|?{' selected="selected"',''})]>[(#TITRE)]</option>
+		</BOUCLE_LstMotsClefs>
+		</select>
+
+		<input type="button" value="<:pass_ok:>" onclick="document.location.href='#_rubrique_principal:URL_RUBRIQUE?date_ev=' + document.getElementById('var_nav_year').value + '-01-01&amp;genre=' + document.getElementById('var_nav_cle').value ; return false;" />
+		<BOUCLE_DerniereAnnee(ARTICLES){id_secteur}{type_mot=CategorieAgenda}{par date_redac}{inverse}{date_redac>1000}{0,1}>
+		<?php if ([(#DATE_REDAC|annee)]>[(#ENV{date_ev,[(#ENV{date})]}|annee)]) { ?>
+		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee)] + 1); ?>-01-01[&amp;genre=(#ENV{genre,''}|urlencode)]"><img src="#DOSSIER_SQUELETTE/images/next.gif" title="<:suivant:>" alt="<:suivant:>" /></a>
+		<?php } ?>
+		</BOUCLE_DerniereAnnee>
+		<?php if ( [(#ENV{date}|annee)] != [(#ENV{date_ev,[(#ENV{date})]}|annee)] ) { ?>
+		<input type="button" value="<:pyrat:aujourdhui:>" onclick="document.location.href='#_rubrique_principal:URL_RUBRIQUE[?genre=(#ENV{genre,''}|urlencode)]'; return false;" />
+		<?php } ?>
+		</fieldset>
+		</form>
+<BOUCLE_MemoRubrique(RUBRIQUES){id_rubrique}>
+<BOUCLE_article(ARTICLES){branche}{type_mot=CategorieAgenda}{titre_mot==^(#ENV{genre,''})}{date_redac==^(#ENV{date_ev,[(#ENV{date})]}|annee)}{par date_redac}>
+<BOUCLE_premierdumois(ARTICLES){id_article}{doublons}>
+<h2>[(#DATE_REDAC|nom_mois)] [(#DATE_REDAC|annee)]</h2>
+<ul>
+	<li><b><BOUCLE_TitreRub(RUBRIQUES){id_rubrique}>[(#TITRE|supprimer_numero)&nbsp;: ]</BOUCLE_TitreRub>[(#DATE_REDAC|nom_jour)] [(#DATE_REDAC|jour)][(#DATE_REDAC|heures_minutes|!={00h00min}|?{[, (#DATE_REDAC|heures_minutes)],''})]</b> : <a href="#URL_ARTICLE" >[(#TITRE|texte_script)]</a> (<BOUCLE_genres(MOTS){id_article}{type=CategorieAgenda}{", "}><a href="#URL_MOT" title="<:pyrat:savoirpluscritere:>: [(#TITRE|attribut_html|texte_script)]">[(#TITRE|texte_script)]</a></BOUCLE_genres>)</li>
+</BOUCLE_premierdumois>
+
+<BOUCLE_RestaureRubrique(RUBRIQUES){id_rubrique=#_MemoRubrique:ID_RUBRIQUE}>
+<BOUCLE_MOIS(ARTICLES){branche}{type_mot=CategorieAgenda}{titre_mot==^(#ENV{genre,''})}{mois_relatif_redac=0}{doublons}{par date_redac}>
+	<li><b><BOUCLE_TitreRub2(RUBRIQUES){id_rubrique}>[(#TITRE|supprimer_numero)&nbsp;: ]</BOUCLE_TitreRub2>[(#DATE_REDAC|nom_jour)] [(#DATE_REDAC|jour)][(#DATE_REDAC|heures_minutes|!={00h00min}|?{[, (#DATE_REDAC|heures_minutes)],''})]</b> : <a href="#URL_ARTICLE" >[(#TITRE|texte_script)]</a> (<BOUCLE_genres2(MOTS){id_article}{type=CategorieAgenda}{", "}><a href="#URL_MOT" title="<:pyrat:savoirpluscritere:>: [(#TITRE|attribut_html|texte_script)]">[(#TITRE|texte_script)]</a></BOUCLE_genres2>)</li>
+</BOUCLE_MOIS>
+</BOUCLE_RestaureRubrique>
+</ul>
+</B_premierdumois>
+</BOUCLE_article>
+</BOUCLE_MemoRubrique>
+
+[<div class="notes">(#NOTES)</div>]
+
+	</div><!-- Fin de #LeTexte -->
+
+[(#FORMULAIRE_ADMIN)]
+
+</BOUCLE_rubrique_principal>
