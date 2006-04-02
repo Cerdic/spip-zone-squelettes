@@ -1,0 +1,115 @@
+<!-- article personnalisé : mot clé "forum" -->
+<!--      ****** version 1.7.5 ********     -->
+
+<B_principale>
+<BOUCLE_principale(ARTICLES){id_article}>
+
+<!-- Entete de la page -->
+<INCLURE(entete.php3)>
+
+<!-- menu programmable -->
+<INCLURE(menup.php3){id_rubrique}>
+
+<!-- hierarchie de la page -->
+<INCLURE(hierarchie.php3){id_rubrique}>
+
+<div id="article">
+	<!-- l'article -->
+	<div class="titre-article">
+		<!-- fonctionnalité personnalisation du logo -->
+			<?php $logo_perso='0'; $test=''?>
+			<BOUCLE_mot(MOTS){id_article}><? $test='[(#LOGO_MOT|fichier)]' ; if ($test<>'' AND $selecteur_logo=='#ID_GROUPE') { $logo_perso='1' ; } ?>
+			<?php if ($logo_perso=='0') { ; ?>
+			[<div class="logo"><img src="IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)"] [alt="" (#LOGO_ARTICLE_RUBRIQUE|fichier|texte_script|redimlogo{200,60})></div>]
+			<?php } else { ?>
+			[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
+			<?php } ?>
+		</BOUCLE_mot>
+		<!-- fin fonctionnalité -->
+		[<div class="titre">(#TITRE|supprimer_numero)</div>]
+		[<div class="texte">(#TEXTE)</div>]
+	</div>
+
+	<div class="bouton">
+		[&nbsp;<a href="forum.php3?#PARAMETRES_FORUM" title="poster un nouveau sujet">Nouveau sujet</a>&nbsp;]
+		<BOUCLE_rub(RUBRIQUES){id_rubrique}>
+		[&nbsp;<a href="#URL_RUBRIQUE" title="retour au salon : [(#TITRE|supprimer_numero|textebrut)]">retour</a>&nbsp;]
+		</BOUCLE_rub>
+	</div>
+	
+	<!-- les sujets -->
+	<div class="ligne-sujet">
+		<div class="sujet">
+			<div class="titre-bloc">sujet</div>
+		</div>
+		<div class="reponse">
+			<div class="titre-bloc">r&eacute;ponse(s)</div>
+		</div>
+		<div class="auteur">
+			<div class="titre-bloc">auteur</div>
+		</div>
+		<div class="dernier">
+			<div class="titre-bloc">dernier(s) message(s)</div>
+		</div>
+	</div>
+	
+	<B_sujets>
+		<BOUCLE_sujets(FORUMS){id_article}{par date}{inverse}{debut_forum,20}>
+		
+		<?php if ($compt=='0') {$couleur_forum=$couleur1_forum; $compt='1'; } else {$couleur_forum=$couleur2_forum; $compt='0';} ?>
+		
+		<div class="ligne-sujet" >
+			<div  class="sujet" style="background:<?php echo $couleur_forum ?>">
+				<div class="titre"><a href="sujet.php3?id_article=#ID_ARTICLE&amp;id_forum=#ID_FORUM" title="voir le sujet">[(#TITRE|supprimer_numero)]</a></div>
+			</div>
+			<div class="reponse" style="background:<?php echo $couleur_forum ?>">
+				<BOUCLE_nbre_reponses(FORUMS){id_parent}{plat}></BOUCLE_nbre_reponses>
+					[<div class="nbrs">(#TOTAL_BOUCLE)</div>]
+				<//B_nbre_reponses>
+			</div>
+			<div class="auteur" style="background:<?php echo $couleur_forum ?>">
+				[<div class="nom">(#NOM)</div>]
+			</div>
+			<div class="dernier" style="background:<?php echo $couleur_forum ?>">
+				<B_dernier>
+				<BOUCLE_dernier(FORUMS){id_parent}{par date}{inverse}{plat}{0,1}>
+					<div class="date">le&nbsp;[(#DATE|jour)]/[(#DATE|mois)]/[(#DATE|annee)] à [(#DATE|heures)]h[(#DATE|minutes)]</div>
+					<div class="nom"><a href="#URL_AUTEUR
+					" title="&eacute;crire &agrave; #NOM">[(#NOM)]</a>
+						<a href="sujet.php3?id_article=#ID_ARTICLE&amp;id_forum=#ID_PARENT#mess#ID_FORUM" title="voir le message">
+						<img src="nono/images/voir.gif" alt="voir le message" ></a>
+					</div>
+				</BOUCLE_dernier></B_dernier>
+				<div class="nom">Pas<br>de réponse</div>
+				<//B_dernier>
+			</div>
+		</div>
+		</BOUCLE_sujets>
+	</B_sujets>
+</div>
+
+<!-- navigation basse -->
+<div id="nav2">
+	<div class="bouton">
+		<BOUCLE_suite_first(FORUMS){id_article}>                              
+		</BOUCLE_suite_first>
+			Sujets :
+			<?php $numero=#COMPTEUR_BOUCLE-1; $total=#TOTAL_BOUCLE;
+			for ($numero = 0; $numero < $total; $numero = $numero + 20){ $num_fin = $numero + 20;
+			if ($num_fin > $total) $num_fin = $total;
+			if ($numero == $debut_forum)
+			echo "[".($numero+1)."-$num_fin]";
+			else
+			echo '[<a href="#URL_ARTICLE&amp;debut_forum=$numero" title="nouvelle page">'.($numero+1)."-$num_fin</a>]";
+			} ?>
+		</B_suite_first>
+		
+		<BOUCLE_nav(RUBRIQUES){id_rubrique}>
+		[&nbsp;<a href="#URL_RUBRIQUE" title="retour au salon : [(#TITRE|supprimer_numero|textebrut)]">retour</a>&nbsp;]
+		</BOUCLE_nav>
+		</div>
+</div>
+</BOUCLE_principale>
+</B_principale>
+<INCLURE(erreur404.php3)>
+<//B_principale>

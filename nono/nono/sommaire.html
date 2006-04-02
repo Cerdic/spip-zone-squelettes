@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<?php include 'nono_conf.txt' ?>
+<html lang="fr">
+
+<!--      affichage sommaire       -->
+<!-- *****  squelettes nono  ***** -->
+<!-- ****** version 1.7.8 ******** -->
+<!-- ***** conception : jsb  ***** -->
+
+<head>
+	<?php if ($annee && $mois && $jour) $cal_date = $annee."-".$mois."-".$jour;
+	
+	$year = substr($cal_date, 0, 4);
+	$month = substr($cal_date, 5, 2);
+	$day = substr($cal_date, 8, 2);
+	?>
+	
+	<title>[#NOM_SITE_SPIP] - Sommaire</title>
+	
+	<meta name="description" content="<? echo $meta_description ?>">
+	<meta name="keywords" content="<? echo $meta_keywords ?>">
+	<meta name="robots" content="index, follow">
+	<meta name="revisit-after" content="15 days">
+	<meta http-equiv="content-Type" content="text/html; charset=#CHARSET">
+	<meta name="author" content="<? echo $meta_author ?>">
+	<meta name="copyright" content="<? echo $meta_copyright ?>">
+	
+	<link href="<?php echo $nono_habillage ?>" rel="stylesheet" type="text/css">
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="backend.php3">
+</head>
+
+<body >
+
+<!-- Entête de la page -->
+<INCLURE(entete.php3)>
+
+<!-- menu programmable-->
+<INCLURE(menup.php3){id_rubrique}>
+
+<!-- hierarchie -->
+<INCLURE(hierarchie.php3){id_rubrique}>
+
+<div id="sommaire">
+
+<!-- menu dynamique ( les rubriques ) -->
+<div id="menudyn"> 
+	<B_rub>
+		<BOUCLE_rub(RUBRIQUES){id_parent}{par titre}>
+			<?php if( !ereg("^($num1|$num2|$num3|$num4|$num5|$edito)$", '#ID_RUBRIQUE')) {	?>
+			<div class="rub"><a href="#URL_RUBRIQUE&amp;cal_date=<? echo $current ?>" title="voir la sous rubrique : #TITRE">[(#TITRE|supprimer_numero)]</a>	</div>			
+			<?php } ?>		
+		</BOUCLE_rub>
+	</B_rub>
+   <div class="calendier_som">
+	<?php if ($affiche_agenda=='1') {  require('inc-mescalendriers.php');
+			echo calendrier_jour($cal_date); } ?></div>
+			
+		
+	<div class="inscription">
+	#FORMULAIRE_INSCRIPTION
+	</div>
+
+</div>
+
+<!-- les contenus -->
+<div class="contenus">
+
+<?php $compt='0';
+	for ($ordre='1' ; $ordre<=$ordremax ; $ordre++) { if ($affiche_edito=='1' and $ordre_edito==$ordre) {;?>
+
+<div class="edito">
+	<B_edito>
+		<div class="titre-bloc">&Eacute;dito</div>
+		
+		<div class="caps">
+		<BOUCLE_edito(RUBRIQUES){id_parent=0}>
+			<?php if ( $edito == '#ID_RUBRIQUE' ){ "\n"; ?>
+			<BOUCLE_les_editos(ARTICLES){id_rubrique}{par date}{inverse}{0,1}>
+				[<div class="logo"><img src="IMG/(#LOGO_ARTICLE|fichier)"] [alt="" (#LOGO_ARTICLE|fichier|texte_script|redimlogo{150,150})></div>]
+				[<div class="titre">(#TITRE|supprimer_numero)</div>]
+				<div class="date">le [(#DATE|nom_jour)] [(#DATE|affdate)]<B_auteurs>, par 
+				<BOUCLE_auteurs(AUTEURS){id_article}{", "}><a href="#URL_AUTEUR" title="&eacute;crire &agrave; #NOM">#NOM</a></BOUCLE_auteurs></div>
+				[<div class="texte">(#TEXTE|w3c)</div>]
+			</BOUCLE_les_editos>
+			<?php  } ?>
+		</BOUCLE_edito>
+		</div>
+	</B_edito>
+</div>
+
+<? } if ($affiche_agenda=='1' and $ordre_agenda==$ordre) {;?>
+
+<B_evens>
+<!-- agenda -->
+<div class="agenda">
+	<div class="titre-bloc">Les prochains &eacute;v&eacute;nements</div>	
+	
+	<!-- les événements -->
+	<div class="evenements">
+		
+		
+			
+				<BOUCLE_evens(ARTICLES){par date_redac}{age_redac<=0}{0,3}>
+					<?php if ( $agenda == '#ID_SECTEUR'  ) { 
+						$date_redac = ereg_replace("^([0-9]{4})-([0-9]{2})-([0-9]{2}).*$", "\\1\\2\\3", '#DATE_REDAC');
+						
+						
+						 $new_date='#DATE_REDAC';$date_jour=substr($new_date,0,10);
+						if($new_date!=$date_test){; ?>
+						<div class="date">
+						<a title="voir les événements du jour" href="agendajour.php3?id_rubrique=#ID_RUBRIQUE&amp;cal_date=<? echo $date_jour ?>">
+							Le [(#DATE_REDAC|nom_jour)] [(#DATE_REDAC|affdate)]
+						</a>
+						</div>
+						<?php $date_test=$new_date; }; ?>
+						
+					
+					<div class="titre">
+					<div class="logo">
+						<span class="sousrub">
+							<BOUCLE_hier1(RUBRIQUES){id_rubrique}>
+							<?php if ('#ID_RUBRIQUE'!=$agenda and $affichage='1') {; ?>( [(#TITRE|supprimer_numero)] )
+							<?php }; ?>
+							</BOUCLE_hier1>
+						</span>
+						[<img src="IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)"] [alt="" (#LOGO_ARTICLE_RUBRIQUE|fichier|texte_script|redimlogo{100,25})>]
+					</div>
+					<a  href="#URL_ARTICLE&amp;cal_date=<? $date_jour=substr('#DATE_REDAC',0,10); echo $date_jour; ?>" title="[extrait : (#INTRODUCTION|textebrut|entites_html)]">[(#TITRE|supprimer_numero)]</a>
+					</div> <?php } ?>
+			</BOUCLE_evens>
+			
+		
+		
+		
+	</div>
+
+</div>
+</B_evens>
+<?php } if ($affiche_articles_breves=='1' and ($ordre_articles_breves==$ordre or $ordre_articles_breves=='')) {;?>
+
+<!-- articles / breves -->
+<div class="articles-breves">
+
+	<!-- les breves -->
+	<B_breve>
+	<div class="breves">
+		<div class="titre-bloc">Les derni&egrave;res br&egrave;ves</div>
+		<?php $compt=0;?>
+		 
+		 <BOUCLE_breve(BREVES) {par date}{inverse} {0,3}>
+			<div class="caps">
+					<BOUCLE_motbrev(MOTS){id_breve}{id_groupe==^$selecteur_logo}>
+						[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
+					</BOUCLE_motbrev>
+			
+					[<div class="logo"><img src="IMG/(#LOGO_BREVE|fichier)"] [alt="" (#LOGO_BREVE|fichier|texte_script|redimlogo{200,60})></div>]                <?php if( !ereg("^($agenda|$edito)$", '#ID_RUBRIQUE')) { "\n";?>	
+					   
+                    [<div class="date">(#DATE|nom_jour)] [(#DATE|affdate)</div>]
+                    <div class="titre"><a href="#URL_BREVE" title="voir la br&egrave;ve">[(#TITRE|supprimer_numero)]</a></div>
+                    [<div class="texte">(#TEXTE|textebrut|entites_html|couper{50})</div>]
+                    
+                <?php } ?>
+            </div>    
+		 </BOUCLE_breve>
+	</div>
+	</B_breve>
+
+	<!-- les articles -->
+	<B_articles>
+	<div class="articles">
+		<div class="titre-bloc">Les derniers articles</div>
+		   <?php $compt=0;?>			   
+			<BOUCLE_articles(ARTICLES){par date}{inverse}>
+				<?php if( !ereg("^($agenda|$edito)$", '#ID_SECTEUR')) {$compt++;	if ($compt <=3 ){; "\n";?>
+				<div class="caps">	
+					<BOUCLE_motART(MOTS){id_article}{id_groupe==^$selecteur_logo}>
+						[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
+					</BOUCLE_motART>
+		
+					[<div class="logo"><img src="IMG/(#LOGO_ARTICLE|fichier)"] [alt="" (#LOGO_ARTICLE|fichier|texte_script|redimlogo{200,60})></div>]					<div class="titre">	<a title="[extrait : (#INTRODUCTION|textebrut|entites_html)]"  href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></div>
+					<div class="date">[(#DATE|nom_jour)] [(#DATE|affdate)]<B_auteurs2>, par 
+					<BOUCLE_auteurs2(AUTEURS){id_article}{", "}><a href="#URL_AUTEUR" title="&eacute;crire &agrave; #NOM">#NOM</a></BOUCLE_auteurs2><div class="rep">(dans : 
+						<BOUCLE_hier(HIERARCHIE){id_article} {"/ "}>
+							<a title="[voir la rubrique : (#TITRE|supprimer_numero)]" href="#URL_RUBRIQUE" >[(#TITRE|supprimer_numero)]</a>
+						</BOUCLE_hier>)
+					</div>
+					[<div class="chapo">(#CHAPO)</div>]
+					</div>
+				</div>
+				<?php }} ?>
+			</BOUCLE_articles>	  
+	</div>	
+	</B_articles>
+</div>
+
+<?php } if ($affiche_syndication=='1' and $ordre_syndication==$ordre) {;?>
+
+<!--  sites syndiques -->
+<B_syndication>
+	<div class="syndic">
+		<div class="titre-bloc">Les derniers articles syndiqu&eacute;s</div>
+		<div class="caps">
+			<BOUCLE_syndication(SYNDIC_ARTICLES){par date}{inverse} {0,5}>
+				<?php $new_date='[(#DATE|affdate)]'; if ($new_date!=$brev_date){ ?>
+				<div class="date">[(#DATE|nom_jour)] [(#DATE|affdate)]</div>
+				<?php $brev_date=$new_date; }?>
+				<ul><li><a title="extrait : [(#DESCRIPTIF|textebrut|entites_html)]" href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a>
+				<B_auteurs3><span class="auteurs">, par 
+				<BOUCLE_auteurs3(AUTEURS){id_article}{", "}><a href="#URL_AUTEUR" title="&eacute;crire &agrave; #NOM">#NOM</a></BOUCLE_auteurs3>, sur </span><a class="site" title="[voir le site : (#NOM_SITE)]" href="#URL_SITE">#NOM_SITE</a>
+				</li></ul>
+			</BOUCLE_syndication>
+		</div>
+   </div>
+</B_syndication>
+
+<?php } if ($affiche_sites=='1' and $ordre_sites==$ordre) {;?>
+
+<!-- sites references -->
+<B_sites1>
+	<div class="sites">	
+	<div class="titre-bloc">Les derniers sites r&eacute;f&eacute;renc&eacute;s</div>
+		<BOUCLE_sites1(SITES){par date}{inverse}{syndication=non}{0,4}>
+			<div class="caps">
+				<BOUCLE_motsit(MOTS){id_syndic}{id_groupe==^$selecteur_logo}>
+					[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
+				</BOUCLE_motsit>
+		
+				[<div class="logo"><img src="IMG/(#LOGO_SITE|fichier)"] [alt="" (#LOGO_SITE|fichier|texte_script|redimlogo{200,60})></div>]
+				<div class="titre"><a title="[extrait : (#DESCRIPTIF|textebrut|entites_html|couper{50})]"  href="#URL_SITE">#NOM_SITE</a></div>
+				[<div class="url">(#URL_SITE)</div>]
+				<div class="rep">( dans : 
+				<BOUCLE_hier4(HIERARCHIE){id_article} {"/ "}>
+					<a href="#URL_RUBRIQUE" title="[voir la rubrique : (#TITRE|supprimer_numero)]">[(#TITRE|supprimer_numero)]</a>
+				</BOUCLE_hier4> )</div>
+			</div>
+		</BOUCLE_sites1>
+	</div>	
+</B_sites1>
+
+<?php } if ($affiche_messages=='1' and $ordre_messages==$ordre) {;?>
+
+<!-- messages -->
+<INCLURE(messages.php3)>
+
+<?php } } ?>
+
+</div>
+</div>
+
+<!-- pied de page -->
+<INCLURE(pied.php3)>
+
+<div id="nav2">
+	<!-- navigation rapide -->
+	<div class="navig">
+	<form name="rapide" action="">
+	<select name="acces direct"  onChange="if (options[selectedIndex].value) { location =options[selectedIndex].value; }">
+	<option selected value="">Navigation rapide dans les rubriques</option>
+	<BOUCLE_RUBRIQUES(RUBRIQUES){racine}{par titre}>
+	<?php if ($edito<>'#ID_RUBRIQUE') { ?>	<option value=""></option><option value="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</option><?php } ?>
+		<BOUCLE_SOUSRUBRIQUES(RUBRIQUES){id_parent}{par titre}>
+		<option value="#URL_RUBRIQUE"> __ [(#TITRE|supprimer_numero)]</option>
+			<BOUCLE_SOUSSOUSRUBRIQUES(RUBRIQUES){id_parent}{par titre}>
+			<option value="#URL_RUBRIQUE"> _____ [(#TITRE|supprimer_numero)]</option>
+			</BOUCLE_SOUSSOUSRUBRIQUES>
+		</BOUCLE_SOUSRUBRIQUES>
+	</BOUCLE_RUBRIQUES>
+	</select>
+	</form>
+	</div>
+	
+	<div class="bouton">
+		<BOUCLE_derniere_modif(ARTICLES){par date} {inverse}{0,1}>
+		Derni&egrave;re publication le [(#DATE|nom_jour)] [(#DATE|affdate)]
+		</BOUCLE_derniere_modif>
+	</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!-- affichage rubrique : mot clé "agenda" -->
+<!--    ******* version 1.7.8 ********     -->
+
+<BOUCLE_principale(RUBRIQUES){id_rubrique}>
+<!-- Entête de la page -->
+<INCLURE(entete.php3)>
+
+<!-- menu programmable -->
+<INCLURE(menup.php3){id_rubrique}>
+
+<!-- hierarchie -->
+<INCLURE(hierarchie.php3){id_rubrique}>
+
+<!-- la rubrique -->
+<div id="rubrique">
+	<div class="rubrique">
+		<div class="contenu">
+			<BOUCLE_motrub(MOTS){id_rubrique}{id_groupe==^$selecteur_logo}>
+				[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
+			</BOUCLE_motrub>
+		
+			[<div class="logo"><img src="IMG/(#LOGO_RUBRIQUE|fichier)"] [alt="" (#LOGO_RUBRIQUE|fichier|texte_script|redimlogo{200,60})></div>]
+			[<div class="titre">(#TITRE|supprimer_numero)</div>]
+			[<div class="texte">(#TEXTE)</div>]
+		</div>
+	</div>
+
+	<div class="agenda">
+	<?php if ($cal_date) { ; ?>
+		<div class="titre-bloc">Agenda du mois
+		<?php
+			list($year, $month, $day ) = explode("-", $cal_date);
+			$mois  = array('de janvier','de f&eacute;vrier','de mars','d&acute;avril','de mai','de juin','de juillet','d&acute;ao&ucirc;t','de septembre','d&acute;octobre','de novembre','de d&eacute;cembre');
+			echo " ".$mois[$month-1]." ".$year;
+		?>
+		</div>
+	<? } ?>
+
+	<!-- les événements du mois -->
+	<div class="evenements_jour">
+	<?php if ($cal_date) { ;?>
+	<B_articles>
+
+	<BOUCLE_articles(ARTICLES){par date}>
+		<?
+		$date_article='#DATE_REDAC';
+		$date_article=substr($date_article,5, 2);
+		
+		$cal_date_mois=substr($cal_date,5,2);
+		$annee_article=substr('#DATE_REDAC',0,4);
+		$annee_ref=substr($cal_date,0,4);
+		if ($date_article==$cal_date_mois AND $agenda=='#ID_SECTEUR' AND $annee_article==$annee_ref )
+		{; ?>
+
+		<?php $new_date='#DATE_REDAC';$date_jour=substr($new_date,0,10);
+			if($new_date!=$date_test){; ?>
+
+			<div class="date">
+				<a title="voir les événements du jour" href="agendajour.php3?id_rubrique=#ID_RUBRIQUE&amp;cal_date=<? echo $date_jour ?>">
+				Le [(#DATE_REDAC|nom_jour)] [(#DATE_REDAC|affdate)]
+				</a>
+			</div>
+			<?php $date_test=$new_date; }; ?>
+
+		<div class="titre">
+			<div class="logo">
+				<span class="sousrub">
+					<BOUCLE_hier1(RUBRIQUES){id_rubrique}>
+					<?php if (#ID_RUBRIQUE!=$agenda) {; ?>( [(#TITRE|supprimer_numero)] )
+					<?php }; ?>
+					</BOUCLE_hier1>
+				</span>
+			</div>
+			<a href="#URL_ARTICLE&amp;id_rubrique=#ID_RUBRIQUE&amp;cal_date=<? echo $date_jour ?>" title="extrait : [(#INTRODUCTION|textebrut|entites_html)]">#TITRE</a>
+			<B_auteurs><span class="auteurs">, par 
+			<BOUCLE_auteurs(AUTEURS){id_article}{", "}><a href="#URL_AUTEUR" title="&eacute;crire &agrave; #NOM">#NOM</a></BOUCLE_auteurs></span></B_auteurs>
+		</div>
+		<?php } ?>
+
+	</BOUCLE_articles>
+	</B_articles>
+
+	<//B_articles>
+
+	<?php } ?>
+
+	</div>
+	<!-- le calendrier -->
+	<div class="calendrier">
+		<? require('inc-mescalendriers.php');
+			echo calendrier_mois($cal_date); ?>
+	</div>
+
+</div>
+</div>
+
+<!-- navigation basse -->
+<div id="nav2">
+	<!-- navigation rapide -->
+	<div class="navig">
+		<form name="rapide" action="">
+		<select name="acces direct"  onChange="if (options[selectedIndex].value) { location =options[selectedIndex].value; }">
+		<option selected value="">Navigation rapide dans les rubriques</option>
+		<BOUCLE_RUBRIQUES(RUBRIQUES){racine}{par titre}>
+		<?php if ($edito<>'#ID_RUBRIQUE') { ?>	<option value=""></option><option value="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</option><?php } ?>
+			<BOUCLE_SOUSRUBRIQUES(RUBRIQUES){id_parent}{par titre}>
+			<option value="#URL_RUBRIQUE"> __ [(#TITRE|supprimer_numero)]</option>
+				<BOUCLE_SOUSSOUSRUBRIQUES(RUBRIQUES){id_parent}{par titre}>
+				<option value="#URL_RUBRIQUE"> _____ [(#TITRE|supprimer_numero)]</option>
+				</BOUCLE_SOUSSOUSRUBRIQUES>
+			</BOUCLE_SOUSRUBRIQUES>
+		</BOUCLE_RUBRIQUES>
+		</select>
+		</form>
+	</div>
+
+	<div class="bouton">
+	<B_rubrique_enfant>
+			<BOUCLE_rubrique_enfant(RUBRIQUES){id_enfant}>
+			[&nbsp;<a href="#URL_RUBRIQUE" title="retour &agrave; la rubrique : [(#TITRE|supprimer_numero)]">retour</a>&nbsp;]
+			</BOUCLE_rubrique_enfant>
+		</B_rubrique_enfant>
+		[&nbsp;<a href="#URL_SITE_SPIP" title="retour &agrave; la racine du site">retour</a>&nbsp;]
+		<//B_rubrique_enfant>
+	</div>
+</div>
+</BOUCLE_principale>

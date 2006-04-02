@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<?php include 'nono_conf.txt' ?>
+<html lang="fr">
+
+<!-- affichage formulaire article  -->
+<!-- *****  squelettes nono  ***** -->
+<!-- ******** version 1.7 ******** -->
+<!-- ***** conception : jsb  ***** -->
+
+<BOUCLE_principale(ARTICLES){id_article}>
+<head>
+
+<BOUCLE_head(ARTICLES){id_article}>
+	<title>[(#TITRE|supprimer_numero|textebrut|entites_html)] - saisie commentaire</title>
+	<meta name="Description" content="[(#DESCRIPTIF|textebrut|entites_html)]">
+	<meta name="Keywords" content="<BOUCLE_keywords(MOTS){id_article}{","}>#TITRE </BOUCLE_keywords>">
+	<meta name="Author" content="<BOUCLE_author(AUTEURS){id_article}{","}>#NOM </BOUCLE_author>">
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
+</BOUCLE_head>
+
+	<meta name="ROBOTS" content="INDEX, FOLLOW">
+	<meta name="REVISIT-AFTER" CONTENT="15 days">
+	<meta name="copyright" CONTENT="<? echo $meta_copyright ?>">
+	
+	<link href="<?php echo $nono_habillage ?>" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+
+<!-- Entête de la page -->
+<INCLURE(entete.php3)>
+
+<!-- menu programmable -->
+<INCLURE(menup.php3){id_rubrique}>
+
+<!-- hierarchie -->
+<INCLURE(hierarchie.php3){id_rubrique}>
+
+<!-- le Sujet du forum -->
+<div id="sujet">
+	<div class="titre-article">
+	[<div class="logo"><img src="IMG/(#LOGO_ARTICLE|fichier)"][alt="(#LOGO_ARTICLE|fichier)"][(#LOGO_ARTICLE|fichier|texte_script|redimlogo{200,60})></div>]
+		[<div class="titre">(#TITRE|supprimer_numero)</div>]
+		[<div class="texte">(#TEXTE)</div>]
+	</div>
+	
+</BOUCLE_principale>
+
+<!-- le formulaire de saisie -->
+#FORMULAIRE_FORUM
+
+</div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<BOUCLE_principale(ARTICLES){id_article}>
+<? include 'nono_conf.txt' ?>
+<html lang="fr">
+
+<!--    affichage sujet du forum   -->
+<!-- *****  squelettes nono  ***** -->
+<!-- ******** version 1.7 ******** -->
+<!-- ***** conception : jsb  ***** -->
+
+<head>
+
+<BOUCLE_head(ARTICLES){id_article}>
+	<title>Sujet : [(#TITRE|textebrut|entites_html)]</title>
+	<meta name="Description" content="[(#DESCRIPTIF|textebrut|entites_html)]">
+	<meta name="Keywords" content="<BOUCLE_keywords(MOTS){id_article}{","}>#TITRE </BOUCLE_keywords>">
+	<meta name="Author" content="<BOUCLE_author(AUTEURS){id_article}{","}>#NOM </BOUCLE_author>">
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" >
+</BOUCLE_head>
+	
+	<meta name="ROBOTS" content="INDEX, FOLLOW">
+	<meta name="REVISIT-AFTER" content="15 days">
+	<meta name="copyright" content="<? echo $meta_copyright ?>">
+	
+	<link href="<?php echo $nono_habillage ?>" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+
+<!-- Entête de la page -->
+<INCLURE(entete.php3)>
+
+<!-- menu programmable -->
+<INCLURE(menup.php3){id_rubrique}>
+
+<!-- hierarchie -->
+<INCLURE(hierarchie.php3){id_rubrique}>
+
+<!-- le fil du sujet -->
+<div id="article">	
+	<div class="titre-article">
+	[<div class="logo"><img src="IMG/(#LOGO_ARTICLE|fichier)"] [alt="" (#LOGO_ARTICLE|fichier|texte_script|redimlogo{200,60}|)></div>]
+		[<div class="titre">(#TITRE|supprimer_numero)</div>]
+		[<div class="texte">(#TEXTE)</div>]
+	</div>
+	
+	<div class="bouton">
+	<BOUCLE_rep(FORUMS){id_article}{id_forum}{par date}{inverse}>
+	[&nbsp;<a href="forum.php3?#PARAMETRES_FORUM" title="r&eacute;pondre &agrave; #NOM">r&eacute;pondre</a>&nbsp;]
+	</BOUCLE_rep>
+	<BOUCLE_rub(ARTICLES){id_article}>
+	[&nbsp;<a href="#URL_ARTICLE" title="retour au forum : [(#TITRE|supprimer_numero)]">retour</a>&nbsp;]
+	</BOUCLE_rub>
+	</div>
+</div>	
+
+<div id="sujet">
+	<div class="ligne-message">
+		<div class="auteur">
+			<div class="titre-bloc">auteur</div>
+		</div>
+		<div class="message">
+			<div class="titre-bloc">message</div>
+		</div>
+	</div>
+	<BOUCLE_Forums(FORUMS){id_article}{id_forum}{par date}{inverse}>
+	<div class="ligne-message" >
+		<div  class="auteur" style="background:<? echo $couleur1_forum ?>">
+			<div class="nom"><a href="#URL_AUTEUR" title="&eacute;crire &agrave; #NOM">[(#NOM)]</a></div>
+			[<div class="ip">(#IP)</div>]
+			[<div class="site"><a href="#URL_SITE" title="voir le site : #NOM_SITE">(#NOM_SITE)</a></div>]
+		</div>
+		<div class="message" style="background:<? echo $couleur1_forum ?>">
+			<div class="titre"><a name="mess#ID_FORUM">[(#TITRE|supprimer_numero)]</a>[, <span class="date">post&eacute; le (#DATE|affdate)] à [(#DATE|heures)]h[(#DATE|minutes) </span>]</div>
+			[<div class="texte">(#TEXTE)</div>]
+		</div>
+	</div>
+		
+		<div class="ligne-message">
+			<div class="auteur">
+				<div class="titre-bloc">auteur</div>
+			</div>
+			<div class="message">
+				<div class="titre-bloc">r&eacute;ponse</div>
+			</div>
+		</div>
+			
+			<B_fils>
+			<BOUCLE_fils(FORUMS){id_parent}{par date}>
+				
+				<? if ($compt=='0') {$couleur_forum=$couleur1_forum; $compt='1'; } else {$couleur_forum=$couleur2_forum; $compt='0';} ?>
+				
+				<div class="ligne-message" >
+					<div  class="auteur" style="background:<? echo $couleur_forum ?>">
+						<div class="nom"><a href="#URL_AUTEUR" title="&eacute;crire &agrave; #NOM">[(#NOM)]</a></div>
+						[<div class="ip">(#IP)</div>]
+						[<div class="site"><a href="#URL_SITE" title="voir le site : #NOM_SITE">(#NOM_SITE)</a></div>]
+					</div>
+					<div class="message" style="background:<? echo $couleur_forum ?>">
+						<div class="titre"><a name="mess#ID_FORUM">[(#TITRE|supprimer_numero)]</a>[, <span class="date">post&eacute; le (#DATE|affdate)] à [(#DATE|heures)]h[(#DATE|minutes) </span>]</div>
+						[<div class="texte">(#TEXTE)</div>]
+					</div>
+				</div>
+				<BOUCLE_reps(boucle_fils)></BOUCLE_reps>
+				
+			</BOUCLE_fils>
+		</B_fils>
+	</BOUCLE_Forums>
+</div>
+
+<!-- navigation basse -->
+<div id="nav2">
+	<div class="bouton">
+	<BOUCLE_nav1(FORUMS){id_article}{id_forum}{par date}{inverse}>
+	[&nbsp;<a href="forum.php3?#PARAMETRES_FORUM" title=" r&eacute;pondre à #NOM">r&eacute;pondre</a>&nbsp;]
+	</BOUCLE_nav1>
+	<BOUCLE_nav2(ARTICLES){id_article}>
+	[&nbsp;<a href="#URL_ARTICLE" title="retour au forum : [(#TITRE|supprimer_numero)]">retour</a>&nbsp;]
+	</BOUCLE_nav2>
+	</div>
+</div>
+
+</body>
+</html>
+</BOUCLE_principale>

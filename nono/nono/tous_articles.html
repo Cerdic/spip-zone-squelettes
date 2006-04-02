@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<BOUCLE_principale(RUBRIQUES){id_rubrique}>
+<?php include 'nono_conf.txt' ?>
+
+<!--  affichage articles rubrique  -->
+<!-- *****  squelettes nono  ***** -->
+<!-- ****** version 1.7.8 ******** -->
+<!-- ***** conception : jsb  ***** -->
+
+<html lang="fr">
+
+<head>
+
+	<title>Tous les articles de la rubrique : [(#TITRE|supprimer_numero|textebrut|entites_html)]</title>
+	
+	<meta name="Description" content="[(#TITRE|supprimer_numero|textebrut|entites_html)] / [(#DESCRIPTIF|textebrut|entites_html)]">
+	<meta name="Keywords" content="<BOUCLE_keywords(MOTS){id_rubrique}{","}>#TITRE </BOUCLE_keywords>">
+	<meta name="ROBOTS" content="INDEX, FOLLOW">
+	<meta name="REVISIT-AFTER" content="15 days">
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
+	<meta name="copyright" content="<?php echo $meta_copyright ?>">
+	
+	<link href="<?php echo $nono_habillage ?>" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<!-- Entête de la page -->
+<INCLURE(entete.php3)>
+
+<!-- menu programmable -->
+<INCLURE(menup.php3){id_rubrique}>
+
+<!-- hierarchie -->
+<INCLURE(hierarchie.php3){id_rubrique}>
+
+<!-- la rubrique -->
+<div id="rubrique">
+	<div class="contenu">
+		<BOUCLE_descrip(RUBRIQUES){id_rubrique}>
+			<BOUCLE_motrub(MOTS){id_rubrique}{id_groupe==^$selecteur_logo}>
+				[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
+			</BOUCLE_motrub>
+						
+		[<div class="logo"><img src="IMG/(#LOGO_RUBRIQUE|fichier)"] [alt="" (#LOGO_RUBRIQUE|fichier|texte_script|redimlogo{200,60})></div>]
+		[<div class="titre">(#TITRE|supprimer_numero)</div>]
+		[<div class="texte">(#TEXTE)</div>]
+		</BOUCLE_descrip>
+	</div>
+</div>
+
+<!-- navigation haute -->		
+<div id="nav">	
+	<div class="bouton">
+		<BOUCLE_first(ARTICLES){id_rubrique}>                              
+		</BOUCLE_first>
+			Articles :
+			<?php $numero=#COMPTEUR_BOUCLE-1; $total=#TOTAL_BOUCLE;
+			for ($numero = 0; $numero < $total; $numero = $numero + 6){ $num_fin = $numero + 6;
+			if ($num_fin > $total) $num_fin = $total;
+			if ($numero == $debut_article)
+			echo "[".($numero+1)."-$num_fin]";
+			else
+			echo '[<a href="tous_articles.php3?id_rubrique=#ID_RUBRIQUE&amp;debut_article='.$numero.'" title="nouvelle page">'.($numero+1)."-$num_fin</a>]";
+			}
+			?>
+		</B_first>
+	[&nbsp;<a href="#URL_RUBRIQUE" title="retour &agrave; la rubrique : [(#TITRE|supprimer_numero)]">retour</a>&nbsp;]
+	</div>
+</div>
+
+<!-- les articles -->
+<B_articles>
+ 	<div class="articles">
+	 <div class="titre-bloc">Tous les articles de la rubrique</div>
+		<BOUCLE_articles(ARTICLES){id_rubrique}{par date}{inverse}{debut_article,6}>
+			<div class="caps">
+				<BOUCLE_motart(MOTS){id_article}{id_groupe==^$selecteur_logo}>
+				[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
+				</BOUCLE_motart>
+		
+				[<div class="logo"><img src="IMG/(#LOGO_ARTICLE|fichier)"] [alt="" (#LOGO_ARTICLE|fichier|texte_script|redimlogo{200,60})></div>]
+
+				<div class="titre"><a href="#URL_ARTICLE" title="[extrait de l&acute;article : (#DESCRIPTIF|textebrut|entites_html|couper{50})]">#TITRE</a></div>
+				<div class="date">[(#DATE|nom_jour)] [(#DATE|affdate)] <B_auteurs>, par 
+				<BOUCLE_auteurs(AUTEURS){id_article}{", "}><a href="#URL_AUTEUR" title="&eacute;crire &agrave; #NOM">#NOM</a></BOUCLE_auteurs></div>
+				[<div class="chapo">(#CHAPO)</div>]
+				[<div class="texte">(#TEXTE|couper{200})</div>]
+			</div>
+		</BOUCLE_articles>
+	</div>
+</B_articles>
+
+<!-- navigation basse -->
+<div id="nav2">
+	<!-- navigation rapide -->
+	<div class="navig">
+		<form name="rapide" action="">
+		<select name="acces direct"  onChange="if (options[selectedIndex].value) { location =options[selectedIndex].value; }">
+		<option selected value="">Navigation rapide dans les rubriques</option>
+		<BOUCLE_RUBRIQUES(RUBRIQUES){racine}{par titre}>
+		<?php if ($edito<>'#ID_RUBRIQUE') { ?>	<option value=""></option><option value="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</option><?php } ?>
+			<BOUCLE_SOUSRUBRIQUES(RUBRIQUES){id_parent}{par titre}>
+			<option value="#URL_RUBRIQUE"> __ [(#TITRE|supprimer_numero)]</option>
+				<BOUCLE_SOUSSOUSRUBRIQUES(RUBRIQUES){id_parent}{par titre}>
+				<option value="#URL_RUBRIQUE"> _____ [(#TITRE|supprimer_numero)]</option>
+				</BOUCLE_SOUSSOUSRUBRIQUES>
+			</BOUCLE_SOUSRUBRIQUES>
+		</BOUCLE_RUBRIQUES>
+		</select>
+		</form>
+	</div>
+	
+	<div class="bouton">
+	<BOUCLE_suite_first(ARTICLES){id_rubrique}>                              
+	</BOUCLE_suite_first>
+		Articles :
+		<?php $numero=#COMPTEUR_BOUCLE-1;$total=#TOTAL_BOUCLE;
+		for ($numero = 0; $numero < $total; $numero = $numero + 6){$num_fin = $numero + 6;
+		if ($num_fin > $total) $num_fin = $total;
+		if ($numero == $debut_article)
+		echo "[".($numero+1)."-$num_fin]";
+		else
+		echo '[<a href="tous_articles.php3?id_rubrique=#ID_RUBRIQUE&amp;debut_article='.$numero.'" title="nouvelle page">'.($numero+1)."-$num_fin</a>]";
+		} ?>
+	</B_suite_first>
+	[&nbsp;<a href="#URL_RUBRIQUE" title="retour &agrave; la rubrique : [(#TITRE|supprimer_numero)]">retour</a>&nbsp;]
+	</div>
+</div>
+
+</body>
+</html>
+</BOUCLE_principale>

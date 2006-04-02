@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<BOUCLE_principale(RUBRIQUES){id_rubrique}>
+<?php include 'nono_conf.txt' ?>
+<html lang="fr">
+
+<!-- affichage de l'agenda du jour -->
+<!-- *****  squelettes nono  ***** -->
+<!-- *****  squelettes nono  ***** -->
+<!-- ******** version 1.7.8 ****** -->
+<!-- ***** conception : jsb  ***** -->
+
+<head>
+<?php if ($annee && $mois && $jour)	$cal_date = $annee."-".$mois."-".$jour;
+$year = substr($cal_date, 0, 4); $month = substr($cal_date, 5, 2);	$day = substr($cal_date, 8, 2); ?>
+
+<title>Les événements du 
+	<?php 
+		list($year, $month, $day ) = explode("-", $cal_date);
+		$mois = array('janvier','f&eacute;vrier','mars','avril','mai','juin','juillet','ao&ucirc;t','septembre','octobre','novembre','d&eacute;cembre'); 
+		echo $day." ".$mois[$month-1]." ".$year;
+	 ?>
+</title>
+
+<meta name="description" content="<?php echo $meta_description ?>">
+<meta name="keywords" content="<?php echo $meta_keywords ?>">
+<meta name="ROBOTS" content="INDEX, FOLLOW">
+<meta name="REVISIT-AFTER" content="15 days">
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
+<meta name="Author" content="<?php echo $meta_author ?>">
+<meta name="copyright" content="<?php echo $meta_copyright ?>">
+
+<link href="<?php echo $nono_habillage ?>" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!-- Entête de la page -->
+<INCLURE(entete.php3)>
+
+<!-- Menu programmable -->
+<INCLURE(menup.php3){id_rubrique}>
+
+<!-- position dans l'architecture du site -->
+<INCLURE(hierarchie.php3){id_rubrique}>
+
+<!-- les événements du jour -->
+<div id="rubrique">
+	<div class="rubrique">
+		<div class="contenu">
+			<BOUCLE_descrip(RUBRIQUES){id_rubrique}>
+			<BOUCLE_motrub(MOTS){id_rubrique}{id_groupe==^$selecteur_logo}>
+				[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
+			</BOUCLE_motrub>
+			
+			[<div class="logo"><img src="IMG/(#LOGO_RUBRIQUE|fichier)"] [alt="" (#LOGO_RUBRIQUE|fichier|texte_script|redimlogo{150,60})></div>]
+			[<div class="titre">(#TITRE|supprimer_numero)</div>]
+			[<div class="texte">(#TEXTE)</div>]
+			</BOUCLE_descrip>
+		</div>
+	</div>
+	<div class="agenda">
+					
+		<?php if ($cal_date) { ; ?>
+			<div class="titre-bloc">Agenda du
+			<?php 
+				list($year, $month, $day ) = explode("-", $cal_date);
+				$mois = array('janvier','f&eacute;vrier','mars','avril','mai','juin','juillet','ao&ucirc;t','septembre','octobre','novembre','d&eacute;cembre'); 
+				echo $day." ".$mois[$month-1]." ".$year;
+			?>
+			</div>   
+		<?php } ?>
+		
+		<div class="evenements_jour">
+			<?php if ($cal_date) { ;?>
+			<BOUCLE_articles(ARTICLES){par date}>
+				<?php if ($agenda=='#ID_SECTEUR') {
+				$date_article='#DATE_REDAC';
+				$date_article=substr($date_article, 0, 10);
+				
+				
+				if ($date_article==$cal_date) {; ?>
+				<div class="caps">
+					<div class="logo">
+						<span class="sousrub">
+							<BOUCLE_hier1(RUBRIQUES){id_rubrique}>
+							<?php if (#ID_RUBRIQUE!=$agenda) {; ?>[(&nbsp;(#TITRE|supprimer_numero)&nbsp;)]<?php }; ?>
+							</BOUCLE_hier1>
+						</span>
+					</div>
+					<div class="titre">
+						<a href="#URL_ARTICLE&amp;cal_date=<?php echo $cal_date ?>" >[(#TITRE|supprimer_numero)]</a>
+						<B_Mauteurs><span class="auteurs">, par
+						
+						<BOUCLE_Mauteurs(AUTEURS){id_article}{", "}><a href="#URL_AUTEUR" title="&amp;crire &agrave;">#NOM</a></BOUCLE_Mauteurs></span><B_Mauteurs>
+					</div>
+					[<div class="texte">(#TEXTE|couper{200})</div>]
+				</div>
+				<?php } }?>
+			</BOUCLE_articles>
+			<?php } ?>
+		</div>
+	
+		<!-- le calendrier -->
+		<div class="calendrier">
+			<? require('inc-mescalendriers.php');
+			echo calendrier_jour($cal_date); ?>
+		</div>
+	
+	</div>
+</div>
+
+<!-- navigation basse -->
+<div id="nav2">
+	<!-- navigation rapide -->
+	<div class="navig">
+	<form>
+	<select name="acces direct"  onChange="if (options[selectedIndex].value) { location =options[selectedIndex].value; }">
+	<option selected value="">Navigation rapide dans les rubriques</option>
+		<BOUCLE_RUBRIQUES(RUBRIQUES){racine}{par titre}>
+		<?php if ($edito<>'#ID_RUBRIQUE') { ?>	<option value=""></option><option value="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</option><?php } ?>
+			<BOUCLE_SOUSRUBRIQUES(RUBRIQUES){id_parent}{par titre}>
+			<option value="#URL_RUBRIQUE"> __ [(#TITRE|supprimer_numero)]</option>
+				<BOUCLE_SOUSSOUSRUBRIQUES(RUBRIQUES){id_parent}{par titre}>
+				<option value="#URL_RUBRIQUE"> _____ [(#TITRE|supprimer_numero)]</option>
+				</BOUCLE_SOUSSOUSRUBRIQUES>
+			</BOUCLE_SOUSRUBRIQUES>
+		</BOUCLE_RUBRIQUES>
+	</select>
+	</form>
+	</div>
+	
+	<div class="bouton">
+		<B_rubrique_enfant>
+			<BOUCLE_rubrique_enfant(RUBRIQUES){id_enfant}>
+			[&nbsp;<a href="#URL_RUBRIQUE" title="retour &agrave; la rubrique : [(#TITRE|supprimer_numero)]">retour</a>&nbsp;]
+			</BOUCLE_rubrique_enfant>
+		</B_rubrique_enfant>
+		[&nbsp;<a href="#URL_SITE_SPIP" title="retour &agrave; la racine du site">retour</a>&nbsp;]
+		<//B_rubrique_enfant>
+	</div>
+</div>
+
+</body>
+</html>
+</BOUCLE_principale>
+</B_principale>
+<INCLURE(erreur404.php3)>
+<//B_principale>
