@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<BOUCLE_article_principal(ARTICLES) {id_article}>
+<?php include 'nono_conf.txt'; $current =date("Y-m-d"); ?>
+<html lang="fr">
+
+<!-- affichage article imprimable  -->
+<!-- *****  squelettes nono  ***** -->
+<!-- ******* version 1.7.5 ******* -->
+<!-- ***** conception : jsb  ***** -->
+
+<head>
+
+<BOUCLE_head(ARTICLES){id_article}>
+	<title>#NOM_SITE_SPIP - [(#TITRE|textebrut|entites_html)]</title>
+	<meta name="Description" content="[(#TITRE|textebrut|entites_html)] / [(#DESCRIPTIF|textebrut|entites_html)]">
+	<meta name="Keywords" content="<BOUCLE_keywords(MOTS){id_article}{","}>#TITRE </BOUCLE_keywords>">
+	<meta name="Author" content="<BOUCLE_author(AUTEURS){id_article}{","}>#NOM </BOUCLE_author>">
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" >
+</BOUCLE_head>
+
+	<meta name="ROBOTS" content="INDEX, FOLLOW">
+	<meta name="REVISIT-AFTER" content="15 days">
+	<meta name="copyright" content="<? echo $meta_copyright ?>">
+	
+	<link href="<?php echo $nono_habillage ?>" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<!-- navigation haute -->
+<div class="bouton"><a href="#URL_ARTICLE" title="retour &agrave; l&acute;article">retour</a></div>
+
+#URL_ARTICLE
+
+<!-- l'article -->
+<div class="titre-article">
+	[<div class="logo"><img src="IMG/(#LOGO_ARTICLE|fichier)"] [alt="" (#LOGO_ARTICLE|fichier|texte_script|redimlogo{200,60})></div>]
+	[<div class="titre">(#TITRE|supprimer_numero)</div>]
+	<div class="date">	[(#DATE|nom_jour)] [(#DATE|affdate)], par 
+	<BOUCLE_auteurs(AUTEURS){id_article}{", "}><a href="#URL_AUTEUR" title="&eacute;crire &agrave; #NOM">#NOM</a></BOUCLE_auteurs></div>
+	[<div class="descrip">(#DESCRIPTIF)</div>]
+	[<div class="chapo">(#CHAPO)</div>]
+</div>
+
+<div class="imprim-article">
+	[<div class="texte">(#TEXTE)</div>]
+	[<div class="note">(#NOTES)</div>]
+	[<div class="ps">(#PS)</div>]
+</div>
+
+<!-- documents joints -->
+<B_docs_joints>
+<div class="doc-article">
+	<div class="titre-bloc">Documentation :</div>
+	<div class="ligne-doc">
+		<BOUCLE_docs_joints(DOCUMENTS) {id_article} {mode=document} {doublons} >
+			<div class="col5">[(#LOGO_DOCUMENT|#URL_DOCUMENT)]</div>
+			<div class="col6">
+				[<div class="titre">(#TITRE|supprimer_numero)</div>]
+				[<div class="descrip">(#DESCRIPTIF)</div>]
+				[<div class="taille">(#TAILLE)</div>]
+			</div>
+		</BOUCLE_docs_joints>
+	</div>
+</div>
+</B_docs_joints>
+
+<!-- navigation basse -->
+<div class="bouton"><a href="#URL_ARTICLE" title="retour &agrave; l&acute;article">retour</a></div>
+
+</body>
+</html>
+</BOUCLE_article_principal>

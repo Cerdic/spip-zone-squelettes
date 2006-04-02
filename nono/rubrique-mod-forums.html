@@ -1,0 +1,110 @@
+<!-- affichage rubrique : mot clé "forums" -->
+<!--     ******** version 1.7.5 ********     -->
+
+<BOUCLE_principale(RUBRIQUES){id_rubrique}>
+<!-- Entête de la page -->
+<INCLURE(entete.php3)>
+
+<!-- menu programmable -->
+<INCLURE(menup.php3){id_rubrique}>
+
+<!-- hierarchie -->
+<INCLURE(hierarchie.php3){id_rubrique}>
+
+<div id="rubrique">
+	
+	<!-- la rubrique -->
+	<div class="rubrique">
+		<div class="contenu">
+			<BOUCLE_motrub(MOTS){id_rubrique}{id_groupe==^$selecteur_logo}>
+				[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
+			</BOUCLE_motrub>
+		
+			[<div class="logo"><img src="IMG/(#LOGO_RUBRIQUE|fichier)"] [alt="" (#LOGO_RUBRIQUE|fichier|texte_script|redimlogo{200,60})></div>]
+			[<div class="titre">(#TITRE|supprimer_numero)</div>]
+			[<div class="texte">(#TEXTE)</div>]
+			</BOUCLE_descrip>
+		</div>
+	</div>
+</div>
+
+<!-- les forums -->
+<div id="forums">
+	<div class="ligne-forum">
+		<div class="forum">
+			<div class="titre-bloc">les forums</div>
+		</div>
+		<div class="sujet">
+			<div class="titre-bloc">sujets</div>
+		</div>
+		<div class="message">
+			<div class="titre-bloc">messages</div>
+		</div>
+		<div class="dernier">
+			<div class="titre-bloc">derniers messages</div>
+		</div>
+	</div>
+
+	<BOUCLE_affiche_forum(ARTICLES){id_rubrique}{par titre}{doublons}>
+	<?php if ($compt=='0') {$couleur_forum=$couleur1_forum; $compt='1'; } else {$couleur_forum=$couleur2_forum; $compt='0';} ?>
+	<div class="ligne-forum" >
+		<div  class="forum"style="background:<?php echo $couleur_forum ?>" >
+			<div class="titre"><a href="#URL_ARTICLE" title="voir le forum : [(#TITRE|supprimer_numero)]">[(#TITRE|supprimer_numero)]</a></div>
+			[<div class="texte">(#TEXTE)</div>]
+		</div>
+		<div  class="sujet" style="background:<?php echo $couleur_forum ?>">
+			<BOUCLE_nb_forum(FORUMS){id_article}></BOUCLE_nb_forum>
+			<div class="nbrs">&nbsp;#TOTAL_BOUCLE</div><//B_nb_forum>
+		</div>
+		<div class="message" style="background:<?php echo $couleur_forum ?>">
+			<BOUCLE_nb_forumtotal(FORUMS){id_article}{plat}></BOUCLE_nb_forumtotal>                        
+			<div class="nbrs">&nbsp;#TOTAL_BOUCLE</div><//B_nb_forumtotal>
+		</div>
+		<div class="dernier" style="background:<?php echo $couleur_forum ?>">
+		<B_derniers>
+		<BOUCLE_derniers(FORUMS){id_article}{id_parent>0}{par date}{inverse}{plat}{0,1}>
+			<div class="date">le&nbsp;[(#DATE|jour)]/[(#DATE|mois)]/[(#DATE|annee)] [&agrave; (#DATE|heures)][h(#DATE|minutes)]</div>
+			<div class="nom"><a href="#URL_AUTEUR" title="&eacute;crire &agrave; #NOM">[(#NOM)]</a>&nbsp;
+			
+			<a href="sujet.php3?id_article=#ID_ARTICLE&amp;id_forum=#ID_PARENT<?php echo"#mess" ?>#ID_FORUM" title="voir le message">
+			<img src="nono/images/voir.gif" alt="voir le message" ></a>
+			</div>
+		</BOUCLE_derniers>
+		</B_derniers>&nbsp;<//B_derniers>
+		</div>
+	</div>
+	</BOUCLE_affiche_forum>
+</div>
+
+
+<!-- navigation basse -->
+<div id="nav2">
+	<!-- navigation rapide -->
+	<div class="navig">
+		<form name="rapide" action="">
+		<select name="acces direct"  onChange="if (options[selectedIndex].value) { location =options[selectedIndex].value; }">
+		<option selected value="">Navigation rapide dans les rubriques</option>
+		<BOUCLE_RUBRIQUES(RUBRIQUES){racine}{par titre}>
+		<?php if ($edito<>'#ID_RUBRIQUE') { ?>	<option value=""></option><option value="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</option><?php } ?>
+			<BOUCLE_SOUSRUBRIQUES(RUBRIQUES){id_parent}{par titre}>
+			<option value="#URL_RUBRIQUE"> __ [(#TITRE|supprimer_numero)]</option>
+				<BOUCLE_SOUSSOUSRUBRIQUES(RUBRIQUES){id_parent}{par titre}>
+				<option value="#URL_RUBRIQUE"> _____ [(#TITRE|supprimer_numero)]</option>
+				</BOUCLE_SOUSSOUSRUBRIQUES>
+			</BOUCLE_SOUSRUBRIQUES>
+		</BOUCLE_RUBRIQUES>
+		</select>
+		</form>
+	</div>
+	
+	<div class="bouton">
+			<B_rubrique_enfant>
+			<BOUCLE_rubrique_enfant(RUBRIQUES){id_enfant}>
+				[&nbsp;<a href="#URL_RUBRIQUE" title="retour &agrave; la rubrique : [(#TITRE|supprimer_numero)]">retour</a>&nbsp;]
+			</BOUCLE_rubrique_enfant>
+		</B_rubrique_enfant>
+		[&nbsp;<a href="#URL_SITE_SPIP" title="Racine du site">retour</a>&nbsp;]
+		<//B_rubrique_enfant>
+	</div>
+</div>
+</BOUCLE_principale>

@@ -1,0 +1,137 @@
+<!-- article personnalisé : mot clé "agenda" -->
+<!-- ********    version 1.7.8   *********** -->
+<B_article_principal>
+<BOUCLE_article_principal(ARTICLES){id_article}>
+
+<!-- Entête de la page -->
+<INCLURE(entete.php3)>
+
+<!-- menu programmable -->
+<INCLURE(menup.php3){id_rubrique}>
+
+<!-- hierarchie de la page -->
+<INCLURE(hierarchie.php3){id_rubrique}>
+
+<!-- navigation haute -->
+<div id="nav">
+	<div class="navig">
+		<BOUCLE_precedent(ARTICLES){id_rubrique}{age_relatif>=0}{par date}{inverse}{1,1}>
+		[&nbsp;<a href="#URL_ARTICLE" title="article pr&eacute;c&eacute;dent : [(#TITRE|supprimer_numero)]">pr&eacute;c&eacute;dent</a>&nbsp;]
+		</BOUCLE_precedent>
+		
+		<BOUCLE_suivant(ARTICLES){id_rubrique}{age_relatif<0}{par date}{0,1}> 
+		[&nbsp;<a href="#URL_ARTICLE" title="article suivant : [(#TITRE|supprimer_numero)]">suivant</a>&nbsp;]
+		</BOUCLE_suivant>
+		[&nbsp;<a href="tous_articles.php3?id_rubrique=#ID_RUBRIQUE" title="voir tous les articles de la rubrique">tous</a>&nbsp;]
+	</div>
+
+	<div class="bouton">
+		<B_nav1>
+			<BOUCLE_nav1(RUBRIQUES){id_rubrique}>
+			[&nbsp;<a href="#URL_RUBRIQUE" title="retour &agrave; la rubrique : [(#TITRE|supprimer_numero)]">retour</a>&nbsp;]
+			</BOUCLE_nav1>
+		</B_nav1>
+		[&nbsp;<a href="#URL_SITE_SPIP" title="retour &agrave; la racine du site">retour</a>&nbsp;]
+		<//B_nav1>
+	</div>
+</div>
+
+<!-- la photo principale -->
+<div id="article">
+	<div class="titre-article">
+
+		<BOUCLE_mot(MOTS){id_article}{id_groupe==^$selecteur_logo}>
+			[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
+		</BOUCLE_mot>
+		[<div class="logo"><img src="IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)"] [alt="" (#LOGO_ARTICLE_RUBRIQUE|fichier|texte_script|redimlogo{200,60})></div>]
+
+		[<div class="titre">(#TITRE|supprimer_numero)</div>]
+		<div class="date">	[(#DATE|nom_jour)] [(#DATE|affdate)]<B_auteurs>, <span class="auteurs">par 
+		<BOUCLE_auteurs(AUTEURS){id_article}{", "}><a href="#URL_AUTEUR" title="&eacute;crire &agrave; #NOM">#NOM</a></BOUCLE_auteurs></span></B_auteurs></div>
+		[<div class="descrip">(#DESCRIPTIF)</div>]
+		[<div class="chapo">(#CHAPO)</div>]
+	</div>
+
+	<div class="contenu-article">
+	 <?php if (!$debut_img) { $debut_img=0;$debut_vign=0; } ?>
+		<BOUCLE_image(DOCUMENTS){id_article}{extension=jpg}{mode=document}{par titre}{debut_img,1}>
+			<div class="image"> 
+				<div class="image-info">
+					[<span class="image-titre">(#TITRE|supprimer_numero)</span>]
+					[&nbsp;:&nbsp;(#DESCRIPTIF)]
+				</div>
+				<a href="#URL_DOCUMENT" title="Afficher l&acute;image &agrave; sa taille r&eacute;elle"><img src="#URL_DOCUMENT" alt="[(#TITRE|texte_script)]" [(#URL_DOCUMENT|redimimage{500,500})]></a>
+			</div>
+		</BOUCLE_image>
+		</B_image>
+		<div class="info">Pas d&acute;image &agrave; afficher.</div>
+		<//B_image>
+		<div class="image-texte">
+			[<div class="texte">(#TEXTE|w3c)</div>]
+			[<div class="note">(#NOTES|w3c)</div>]
+			[<div class="ps">(#PS|w3c)</div>]
+		</div>
+	</div>
+
+	<!-- les vignettes -->
+	<div class="autres-articles">
+		<div class="vignettes">
+			<BOUCLE_nb_vigns(DOCUMENTS){id_article}{extension=jpg}{mode=document}></BOUCLE_nb_vigns>
+			<?php $nb_vigns = #TOTAL_BOUCLE; ?>
+			<//B_nb_vigns>
+			<?php $debut = $debut_vign + 1;	$fin = $debut + 3;
+				 if ( $debut_vign < 4 ){ $dprec = $nb_vigns - 4; $debut_vign = 0; $debut_image = 0;	} 
+				 else {	$dprec = $debut_vign - 4; }
+				 if ( $debut_vign > $nb_vigns - 4 ){ $dsuiv = 0; $fin = $nb_vigns; } 
+				 else {	$dsuiv = $debut_vign + 4; }
+				 if ( $debut_vign == $nb_vigns - 4 ){ $dsuiv = 0; $debut = $debut_vign + 1;	$fin = $nb_vigns;}
+				 
+				 echo '<a href="#URL_ARTICLE&amp;debut_img='.$dprec.'&amp;debut_vign='.$dprec.'"> << </a>';
+				 echo 'photos : <a href="#URL_ARTICLE" title="Retour">['.$debut."-".$fin."] / ".$nb_vigns."</a>";
+				 echo '<a href="#URL_ARTICLE&amp;debut_img='.$dsuiv.'&amp;debut_vign='.$dsuiv.'"> >> </a>';
+				
+				$debut_img = $debut_vign;
+			?>
+		</div>
+		<BOUCLE_vignettes(DOCUMENTS){id_article}{extension=jpg}{mode=document}{par titre}{debut_vign,4}>
+			<div style="display:none">#LOGO_DOCUMENT</div>
+			<div class="vignettes">		
+				<a href="#URL_ARTICLE&amp;debut_img=<?php print $debut_img; ?>&amp;debut_vign=<?php print $debut_vign ;?>">
+				<img src="[IMG/(#LOGO_DOCUMENT|fichier)]" alt="[vignette : (#TITRE|supprimer_numero)]"></a>
+				
+			</div>         
+			<?php $debut_img =  $debut_img + 1; ?>
+		 </BOUCLE_vignettes>
+		 </B_vignettes>
+			<div class="info">Pas de vignette &agrave; afficher.</div>
+		 <//B_vignettes>
+	</div>
+</div>
+
+<!-- navigation basse -->
+<div id="nav2">
+	<div class="navig">
+		<BOUCLE_precedent2(ARTICLES){id_rubrique}{age_relatif>=0}{par date}{inverse}{1,1}>
+		 [&nbsp;<a href="#URL_ARTICLE" title="article pr&eacute;c&eacute;dent : [(#TITRE|supprimer_numero)]">pr&eacute;c&eacute;dent</a>&nbsp;]
+		</BOUCLE_precedent2>
+		
+		<BOUCLE_suivant2(ARTICLES){id_rubrique}{age_relatif<0}{par date}{0,1}> 
+		 [&nbsp;<a href="#URL_ARTICLE" title="article suivant : [(#TITRE|supprimer_numero)]">suivant</a>&nbsp;]
+		</BOUCLE_suivant2>
+		[&nbsp;<a href="tous_articles.php3?id_rubrique=#ID_RUBRIQUE" title="voir tous les articles de la rubrique">tous</a>&nbsp;]
+	</div>
+	<div class="bouton">	
+		<B_nav2>
+			<BOUCLE_nav2(RUBRIQUES){id_rubrique}>
+			[&nbsp;<a href="#URL_RUBRIQUE" title="retour &agrave; la rubrique [(#TITRE|supprimer_numero)]">retour</a>&nbsp;]
+			</BOUCLE_nav2>
+		</B_nav2>
+			[&nbsp;<a href="#URL_SITE_SPIP" title="retour &agrave; la racine du site">retour</a>&nbsp;]
+		<//B_nav2>
+	</div>
+</div>
+
+</BOUCLE_article_principal>
+</B_article_principal>
+<INCLURE(erreur404.php3)>
+<//B_article_principal>

@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<?php include 'nono_conf.txt' ?>
+<html lang="fr">
+
+<!--    affichage brève imprimable   -->
+<!-- ******** version 1.7.5 ******** -->
+<!-- ***** conception : jsb  ***µµ** -->
+
+<head>
+<BOUCLE_head(BREVES){id_breve}>
+	<title>#NOM_SITE_SPIP - #TITRE</title>
+	<meta name="Keywords" content="<BOUCLE_keywords(MOTS){id_breve}{","}>#TITRE </BOUCLE_keywords>" >
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" >
+	<meta name="description" content="[(#TEXTE|textebrut|entites_html)]">
+</BOUCLE_head>
+
+	<meta name="ROBOTS" content="INDEX, FOLLOW">
+	<meta name="REVISIT-AFTER" CONTENT="15 days">
+	<meta name="copyright" CONTENT="<? echo $meta_copyright ?>">
+	
+	<link href="<?php echo $nono_habillage ?>" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<!-- navigation haute -->
+<div class="bouton"><a href="#URL_BREVE" title="retour &agrave; la br&egrave;ve">retour</a></div>
+
+<BOUCLE_breve(BREVES){id_breve}>
+
+<!-- la brève -->
+<div class="titre-breve">
+     [<div class="logo"><img src="IMG/(#LOGO_BREVE|fichier)"] [alt="" (#LOGO_BREVE|fichier|texte_script|redimlogo{200,60}|)></div>]
+	[<div class="titre">(#TITRE|supprimer_numero)</div>]
+	<div class="date">	[(#DATE|nom_jour)] [(#DATE|affdate)]</div>
+</div>
+	
+<div class="imprim-breve">
+	[<div class="texte">(#TEXTE)</div>]
+	[<div class="lien">Voir en ligne :<a href="#URL_SITE" >(#NOM_SITE)</a></div>]
+</div>
+
+<!-- navigation basse -->
+<div class="bouton"><a href="#URL_BREVE" title="retour &agrave; la br&egrave;ve">retour</a></div>
+
+</BOUCLE_breve>
+</body>
+</html>

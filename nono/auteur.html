@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> 
+<?php include "nono_conf.txt" ; $current =date("Y-m-d") ; ?> 
+<html lang="#LANG">  
+
+<head>  
+	<title>[#NOM_SITE_SPIP]</title>  
+	<link href="<?php echo $nono_habillage ?>" rel="stylesheet" type="text/css">  
+	<meta http-equiv="Content-Type" content="text/html ; charset=#CHARSET">  
+</head>
+
+<body> 
+<!— Entête de la page —> 
+<INCLURE(entete.php3)> 
+
+<!— menu programmable —> 
+<INCLURE(menup.php3)>
+
+<BOUCLE_auteur_principal(AUTEURS){id_auteur}>
+
+	<div id="article">
+		<div class="titre-article">
+			[(#LOGO_AUTEUR|left)] 
+			<h1 class="titre-texte">#NOM</h1> 
+		</div>
+		<div class="contenu-article">
+			[<p><b><:envoyer_message:></b></p>(#FORMULAIRE_ECRIRE_AUTEUR)]
+			[<div class="chapo">(#BIO)</div>]
+			[<div class="notes">(#NOTES)</div>]
+			[<br>#NOM_SITE : <a href="(#URL_SITE)">#URL_SITE</a><br>] 
+		</div>
+		
+		<B_mauteur>
+		<!-- les autres articles des auteurs -->
+		<div class="autres-articles">
+		<div class="titre-bloc">les derniers articles de #NOM</div>
+		<BOUCLE_mauteur(ARTICLES){id_auteur}{par date}{inverse}{0,20}>
+			
+				[<div class="titre">
+				<a href="#URL_ARTICLE" title="[(#TEXTE|textebrut|entites_html|couper{100})]">(#TITRE|supprimer_numero)</a>
+				</div>]
+				
+		</BOUCLE_mauteur></div></B_mauteur>
+	
+	</div>
+
+</BOUCLE_auteur_principal> 
+</body> 
+
+</html>
+
