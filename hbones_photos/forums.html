@@ -1,0 +1,50 @@
+[
+	--------------------------------------------------------------------
+
+	(#REM) Ce squelette fait partie de hBones, un ensemble de squelettes
+	visant a implanter les microformats (http://microformats.org)
+
+	--------------------------------------------------------------------
+
+	Affiche un "abstract" de l'article, avec logo, date, auteurs et lien
+
+	code d'inclusion : < INCLURE{fond=article-abstract}{id_article} >
+
+	(c) 2006 - SPIP-Zone -- http://zone.spip.org/
+	Distribue sous licence publique generale GNU/GPL
+	--------------------------------------------------------------------
+
+
+	TODO: pagination
+
+][
+	(#REM) Afficher les threads
+]
+<B_threads>
+	<div class="forums">
+	<h4><:forum:></h4>
+	[
+		(#REM) Afficher le lien de reponse a l'article
+	]
+	[<div class="repondre-article"><a
+		href="(#PARAMETRES_FORUM|url_reponse_forum)"
+		title="<:repondre_article:>"
+		><img src="#CHEMIN{comments-64.png}" border="0"
+			alt="<:repondre_article:>" /></a></div>]
+	</div>
+<BOUCLE_threads(FORUMS){id_article}{par date}{inverse}{0,10}>
+	<div class="thread">
+	<INCLURE{fond=hcomment}{id_forum}>
+	</div>
+</BOUCLE_threads>
+</B_threads>
+	[
+		(#REM) Ce bloc affiche le lien de reponse lorsqu'il n'y a
+		pas encore de commentaire dans le forum
+	]
+	[<div class="forums repondre-article"><a
+		href="(#PARAMETRES_FORUM|url_reponse_forum)"
+		title="<:repondre_article:>"
+		><img src="#CHEMIN{comments-64.png}" border="0"
+			alt="<:repondre_article:>" /></a></div>]
+<//B_threads>

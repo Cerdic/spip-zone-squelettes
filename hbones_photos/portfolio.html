@@ -1,0 +1,36 @@
+[
+	(#REM) Ce squelette fait partie de hBones, un ensemble de squelettes
+	visant a implanter les microformats (http://microformats.org)
+
+	Format relEnclosure pour les documents joints non inclus dans le texte
+	<http://microformats.org/wiki/rel-enclosure>
+
+	TODO :
+		- attention il manque #TITRE et #DESCRIPTION ;
+]
+
+[
+	(#REM) Calcule le texte une deuxieme fois, uniquement pour savoir quels
+	documents ont ete references a l'interieur : pas efficace, mais c'est le
+	prix a payer pour la mise en noisette :-(
+]
+<BOUCLE_doublons(ARTICLES){id_article}>
+[(#CHAPO|is_array)][(#TEXTE|is_array)]
+</BOUCLE_doublons>
+
+[
+	(#REM) Affichage du portfolio proprement dit
+]
+<B_portfolio>
+<div class="enclosures">
+<h4><:enclosures:></h4>
+<ul>
+<BOUCLE_portfolio(DOCUMENTS){id_article}{mode=document}{doublons}>
+	<li>
+	<a[ href="(#URL_DOCUMENT|url_absolue)"]
+	rel="enclosure"[ type="(#MIME_TYPE)"][ length="(#TAILLE)"]
+	>[(#LOGO_DOCUMENT||inserer_attribut{title,#TITRE})]</a></li>
+</BOUCLE_portfolio>
+</ul>
+</div>
+</B_portfolio>

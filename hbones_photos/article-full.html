@@ -1,0 +1,84 @@
+[
+	--------------------------------------------------------------------
+
+	(#REM) Ce squelette fait partie de hBones, un ensemble de squelettes
+	visant a implanter les microformats (http://microformats.org)
+
+	--------------------------------------------------------------------
+
+	Affiche un article complet, mais sans petition ni forums
+
+	code d'inclusion : < INCLURE{fond=article-full}{id_article} >
+
+	(c) 2006 - SPIP-Zone -- http://zone.spip.org/
+	Distribue sous licence publique generale GNU/GPL
+	--------------------------------------------------------------------
+
+
+]<BOUCLE_article(ARTICLES){id_article}>
+[(#REM) "hentry" = bloc article]
+<div class="hentry" id="article-#URL_ARTICLE">
+
+[(#REM) class="content" => contenu de l'article (pas ses meta-donnees)]
+
+
+	[<h2 class="content toptitle">(#SURTITRE)</h2>]
+
+	[<h1 class="entry-title">(#TITRE)</h1>]
+	[
+		(#REM) Auteurs
+	]
+	<INCLURE{fond=auteurs}{id_article}>
+	[(#REM) la date doit figurer dans un format lisible par une machine
+		<http://microformats.org/wiki/datetime-design-pattern>
+	]
+	[<abbr class="published updated"
+		title="[(#DATE|date_iso)]">
+		[(#DATE|nom_jour)] (#DATE|affdate), [(#DATE|heures):][(#DATE|minutes)]
+	</abbr>]
+
+
+	
+	
+	[<h2 class="content subtitle">(#SOUSTITRE)</h2>]
+
+	
+	[<div class="content deck">(#CHAPO)</div>]
+
+
+
+	[<div class="content text">[<div class="spip_logos">(#LOGO_ARTICLE|right)</div>](#TEXTE)</div>]
+
+
+	[
+		(#REM) Portfolio
+	]
+	<INCLURE{fond=portfolio}{id_article}>
+
+
+	[
+		(#REM) lien hypertexte
+	]
+	[<div class="content link">
+	<a href="(#URL_SITE)">[(#NOM_SITE|sinon{#URL_SITE})]</a>
+	</div>
+	]
+
+	[<div class="content notes">(#NOTES)</div>]
+
+	[<div class="content postscriptum">(#PS)</div>]
+
+
+	[
+		(#REM) Mots-cles
+	]
+	<INCLURE{fond=motscles}{id_article}>
+
+	[
+		(#REM) Traductions
+	]
+	<INCLURE{fond=traductions}{id_article}>
+
+
+</div>[(#REM) /hentry]
+</BOUCLE_article>

@@ -1,0 +1,60 @@
+[
+	--------------------------------------------------------------------
+
+	(#REM) Ce squelette fait partie de hBones, un ensemble de squelettes
+	visant a implanter les microformats (http://microformats.org)
+
+	--------------------------------------------------------------------
+
+	Affiche un "abstract" de l'article, avec logo, date, auteurs et lien
+
+	code d'inclusion : < INCLURE{fond=article-abstract}{id_article} >
+
+	(c) 2006 - SPIP-Zone -- http://zone.spip.org/
+	Distribue sous licence publique generale GNU/GPL
+	--------------------------------------------------------------------
+
+
+]<BOUCLE_abstract(ARTICLES){id_article}>
+[(#REM) "hentry" = bloc article]
+<div class="hentry"
+	id="article-#ID_ARTICLE"
+	xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR"
+	onclick="document.location='#URL_ARTICLE';">
+
+[(#REM) class="content" => contenu de l'article (pas ses meta-donnees)]
+
+[(#REM) rel="bookmark" pour l'URL de reference de l'article ]
+
+	[<h2 class="entry-title"><a href="[(#URL_ARTICLE|url_absolue)]" rel="bookmark">(#TITRE)</a></h2>]
+
+	[(#REM) la date doit figurer dans un format lisible par une machine
+		<http://microformats.org/wiki/datetime-design-pattern>
+	]
+	
+	 <BOUCLE_first(DOCUMENTS){0,1}{id_article}{fichier==(png|jpg|gif)}{paysage}{mode=document}>
+<!--        <a href="#URL_ARTICLE">[(#FICHIER||reduire_image{500})]</a>
+-->       
+[(#FICHIER||reduire_image{500})]
+        </BOUCLE_first>
+		
+		
+	[<abbr class="published"
+		title="[(#DATE|date_iso)]">
+		[(#DATE|nom_jour)] (#DATE|affdate), [(#DATE|heures):][(#DATE|minutes)]
+	</abbr>]
+
+	[
+		(#REM) Auteurs
+	]
+	<INCLURE{fond=auteurs}{id_article}>
+
+	[(#REM) on propose l'introduction dans un div "entry-summary"
+	]
+	<div class="entry-summary">
+		<p>#INTRODUCTION</p>
+	</div>
+
+</div>[(#REM) /hentry]
+
+</BOUCLE_abstract>
