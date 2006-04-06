@@ -55,7 +55,7 @@ $events = array();
 
 <!-- Une : contenu de la rubrique -->
 <div class="cartouche">
-<h1>[<img style="float:left;" src="(#LOGO_RUBRIQUE||reduire_image{64,64}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />]
+<h1>[<img class="logo_rubrique" src="(#LOGO_RUBRIQUE||reduire_image{64,64}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />]
 [(#TITRE|supprimer_numero)]<?php echo ' - '.$months[intval($M)].' '.$Y; ?></h1>
 </div>
 
@@ -137,7 +137,7 @@ $events = array();
 <tr>
 	<?php
 	for($i = 1; $i < 8; $i++) {
-		echo '<th style="width:14%;" class="agendahead" scope="col">'.$days[$i%7].'</th>';
+		echo '<th class="agendahead" scope="col">'.$days[$i%7].'</th>';
 	}
 	$TempD = 1;
 	if(date('w', mktime(0, 0, 0, $M, 1, $Y)) != 1) {
@@ -145,7 +145,7 @@ $events = array();
 		$tmp = '';
 		while(date('w', mktime(0, 0, 0, $M, $TempD, $Y)) != 1) {
 			$TempD--;
-			$case = '<td style="width:14%;" valign="top" class="agendanotthismonth">';
+			$case = '<td valign="top" class="agendanotthismonth">';
 			$case .= date('j', mktime(0, 0, 0, $M, $TempD, $Y));
 			$date_ev = date('Ymd', mktime(0, 0, 0, $M, $TempD, $Y));
 			if (isset($events[$date_ev])) {
@@ -163,7 +163,7 @@ $events = array();
 		if(date('w', mktime(0, 0, 0, $M, $TempD, $Y)) == 1) {
 			echo '</tr><tr>';
 		}
-		echo '<td style="width:14%;" valign="top" class="agenda'.(date('m', mktime(0, 0, 0, $M, $TempD, $Y)) != $M ? 'not' : '').'this'.(date('Ymd', mktime(0, 0, 0, $M, $TempD, $Y)) == date('Ymd') ? 'day' : 'month').'">';
+		echo '<td valign="top" class="agenda'.(date('m', mktime(0, 0, 0, $M, $TempD, $Y)) != $M ? 'not' : '').'this'.(date('Ymd', mktime(0, 0, 0, $M, $TempD, $Y)) == date('Ymd') ? 'day' : 'month').'">';
 		echo date('j', mktime(0, 0, 0, $M, $TempD, $Y));
 		$date_ev = date('Ymd', mktime(0, 0, 0, $M, $TempD, $Y));
 		if (isset($events[$date_ev])) {
