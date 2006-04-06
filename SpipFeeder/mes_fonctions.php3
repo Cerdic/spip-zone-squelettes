@@ -76,9 +76,9 @@ function monCalendrier($sortie) {
   $date_req = ($_GET['cal_date'] ? substr($_GET['cal_date'], 0, 7)  : date("Y-m"));
 
   if ($IdRubrique)
-    $filtre .= "AND ss.id_rubrique = $IdRubrique ";
+    $filtre .= "AND ss.id_rubrique = ".intval($IdRubrique);
   if ($IdSyndic)
-    $filtre .= "AND ss.id_syndic = $IdSyndic ";
+    $filtre .= "AND ss.id_syndic = ".intval($IdSyndic);
 
   $query =
     "SELECT ".
@@ -90,7 +90,7 @@ function monCalendrier($sortie) {
       "spip_syndic AS ss ".
     "WHERE ss.id_syndic = ssa.id_syndic ".
     "AND ssa.statut = 'publie' ".
-    "AND DATE_FORMAT(ssa.date, '%Y-%m') = '".$date_req."' ".
+    "AND DATE_FORMAT(ssa.date, '%Y-%m') = '".addslashes($date_req)."' ".
     $filtre.
     "ORDER BY ssa.date DESC";
   //$sortie .= "'$query'<br />";
@@ -233,9 +233,9 @@ function monDrawSyndic() {
 
   $filtre = "";
   if ($IdRubrique)
-    $filtre .= "AND ss.id_rubrique = $IdRubrique ";
+    $filtre .= "AND ss.id_rubrique = ".intval($IdRubrique);
   if ($IdSyndic)
-    $filtre .= "AND ss.id_syndic = $IdSyndic ";
+    $filtre .= "AND ss.id_syndic = ".intval($IdSyndic);
   if ($CalDate) {
     if (ereg("^([0-9]{4})-([0-9]{2})-([0-9]{2})$", $CalDate)) {
       $DateType = "jour";
@@ -245,7 +245,7 @@ function monDrawSyndic() {
       $DateType = "semaine";
       $DateFormat = "%Y-%v";
     }
-    $filtre .= "AND DATE_FORMAT(ssa.date , '$DateFormat') = '$CalDate' ";
+    $filtre .= "AND DATE_FORMAT(ssa.date , '$DateFormat') = '".addslashes($CalDate)."' ";
   }
 
   $ReqGlb =
