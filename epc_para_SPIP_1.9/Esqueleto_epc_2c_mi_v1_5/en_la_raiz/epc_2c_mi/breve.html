@@ -1,0 +1,215 @@
+<BOUCLE_breve_principal(BREVES) {id_breve}
+><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<head>
+<title>[(#TITRE|supprimer_numero|textebrut)]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+
+<!-- Los estilos personalizados de ColeWebs.org -->
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/estilos.css" type="text/css" />
+
+<!-- Los estilos por defecto de SPIP (typographie y spip_style de la 1.8) juntos en un archivo -->
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/estilos_spip.css" type="text/css" />
+
+<!-- media="..." permet de ne pas utiliser ce style sous Netscape 4 (sinon plantage) -->
+<link rel="stylesheet" href="habillage.css" type="text/css" media="projection, screen, tv" />
+
+<!-- media="print" permet d'utiliser cette feuille de style quand vous imprimez depuis votre navigateur -->
+<link rel="stylesheet" href="impression.css" type="text/css" media="print" />
+
+</head>
+
+<body>
+
+<div class="botones_admin">
+[(#FORMULAIRE_ADMIN)]
+</div>
+
+<!-- Todo el contenido -->
+<div id="pagina">
+
+<!-- La cabecera -->
+<div>
+<INCLURE {fond=cabecera}>
+</div>
+<!-- Fin de la cabecera -->
+
+<!-- Bloque central -->
+<div id="cuerpo">
+
+	<!-- Lado izquierdo -->
+	<div id="lado_izquierdo">
+	
+	<!-- Para "forzar" que la liLnea llegue hasta arriba -->
+	<div style="height: 1px;"></div>
+	
+		<!-- M?dulo men? -->
+		<div>
+		<INCLURE {fond=menu}>
+		</div>
+
+<!-- Menu de navigation mots-cles -->
+
+<B_mots>
+<div class="modulo">
+<BOUCLE_mots(MOTS) {id_article} {par titre}>
+<div style="font-size: 80%;"><a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></div>
+<B_breves_mots>
+<BOUCLE_breves_mots(BREVES) {id_mot} {par hasard} {0,4}>
+	<div style="font-size: 70%;"><a href="#URL_BREVE">#TITRE</a></div>
+</BOUCLE_breves_mots>
+</B_breves_mots>
+</BOUCLE_mots>
+</div>
+</B_mots>
+
+
+
+	<!-- Breves dans la meme rubrique -->
+
+	<B_breves_rubrique>
+
+	<div class="modulo">
+	<div style="font-size: 80%;"><b>
+		<:autres_breves:></b>
+		</div>
+	<BOUCLE_breves_rubrique(BREVES) {id_rubrique} {exclus} {par date} {inverse} {0,8}>
+		<div style="font-size: 70%;">
+		<i>[(#DATE|affdate_court)]</i>:
+		<a href="#URL_BREVE">#TITRE</a>
+		</div>
+	</BOUCLE_breves_rubrique>
+	</div>
+
+	</B_breves_rubrique>
+
+
+
+<!-- Articles dans le meme secteur -->
+
+<B_articles_secteur>
+
+<div class="modulo">
+	<div style="font-size: 80%;><b>ART&Iacute;CULOS</b></div>
+<BOUCLE_articles_secteur(ARTICLES) {id_secteur} {par date} {inverse} {0,5}>
+	<div  style="font-size: 70%;"><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></div>
+</BOUCLE_articles_secteur>
+</div>
+</B_articles_secteur>
+
+
+</div>
+
+	
+	<!-- Para "forzar" que la liLnea llegue hasta abajo -->
+	<div style="height: 1px;"></div>
+	
+	<!-- Fin lado izquierdo -->
+	</div>
+	
+	<!-- Zona principal -->
+	<div id="contenido">	
+	<div style="height: 100%;">
+
+<!-- Contenu : corps de la breve -->
+
+[(#LOGO_BREVE|left)]
+<h1 class="titre-texte">#TITRE</h1>
+[(#DATE|nom_jour)] [(#DATE|affdate).]
+</div>
+
+[
+<div class="texte">(#TEXTE)</div>][
+<div class="chapo"><:voir_en_ligne:>: <a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a>.</div>][
+<div class="notes">(#NOTES)</div>][
+
+<br />
+
+<!-- Forums -->
+
+<div class="forum-repondre"><b><a  href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_breve:></a></b></div>]
+<br />
+
+<h1 class="structure"><:forum:></h1>
+
+<B_forums>
+<ul class="forum-total">
+
+<BOUCLE_forums(FORUMS){id_breve}{par date}{inverse}>
+
+<li>
+<div class="forum-fil">
+<div class="forum">
+<a name="forum#ID_FORUM"></a>
+<div class="forum-chapo">
+<div class="forum-titre">#TITRE</div>
+[(#DATE|affdate)][, <:par_auteur:> <a href="mailto:[(#EMAIL|entites_html)]">(#NOM)</a>]
+</div>
+<div class="forum-item">
+#TEXTE
+[<div class="forum-titre"><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
+[<div class="forum-repondre-message"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_message:></a></div>]
+</div>
+</div>
+
+<B_forums_fils>
+	<ul>
+	<BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
+
+	<li>
+	<div class="forum">
+	<a id="forum#ID_FORUM"></a>
+	<div class="forum-chapo">
+	<div class="forum-titre">#TITRE</div>
+	[(#DATE|affdate)][, par <a href="mailto:[(#EMAIL|entites_html)]">(#NOM)</a>]
+	</div>
+	<div class="forum-item">
+	#TEXTE
+	[<div class="forum-titre"><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
+	[<div class="forum-repondre-message"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_message:></a></div>]
+	</div>
+
+	</div>
+
+	<BOUCLE_Forums_Boucle(boucle_forums_fils)></BOUCLE_Forums_Boucle>
+	</li>
+
+	</BOUCLE_forums_fils>
+	</ul>
+</B_forums_fils>
+
+</div>
+</li>
+</BOUCLE_forums>
+
+</ul>
+</B_forums>
+
+</div>
+
+
+	<!-- Fin zona principal -->
+</div>
+</div>
+
+
+<!-- Fin bloque central -->
+</div>
+
+<!-- El pie -->
+<div id="pie">
+	<INCLURE {fond=pie}>
+</div>
+<!-- Fin del pie -->
+
+<!-- Fin de todo el contenido -->	
+</div>
+
+<div class="cron">
+[(#SPIP_CRON)]
+</div>
+
+
+</body></html>
+</BOUCLE_breve_principal>
