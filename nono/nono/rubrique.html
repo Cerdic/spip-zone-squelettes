@@ -1,14 +1,22 @@
+<?
+if ($annee && $mois && $jour)
+	$cal_date = $annee."-".$mois."-".$jour;
+
+$year = substr($cal_date, 0, 4);
+$month = substr($cal_date, 5, 2);
+$day = substr($cal_date, 8, 2);
+?>
+
+<BOUCLE_principale(RUBRIQUES){id_rubrique}>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <?php include 'nono_conf.txt' ?>
 <html lang="fr">
 
 <!--      affichage rubrique       -->
 <!-- *****  squelettes nono  ***** -->
-<!-- ******** version 1.7 ******** -->
+<!-- ******** version 1.9 ******** -->
 <!-- ***** conception : jsb  ***** -->
 
-
-<BOUCLE_principale(RUBRIQUES){id_rubrique}>
 <head>
 
 	<title>#NOM_SITE_SPIP - [(#TITRE|supprimer_numero|textebrut|entites_html)]</title>
@@ -24,15 +32,202 @@
 
 </head>
 <body>
-<? $compt=0; ?>
 
-<BOUCLE_squelette_rubrique(MOTS){id_rubrique}>
-        <?php if( $selecteur_rubrique == '#ID_GROUPE' ) { if ($compt==0){ $compt++ ; "\n"; 	
-		 $squelette_rubrique='#TITRE'; 
-		 }}?>
- </BOUCLE_squelette_rubrique>
- <INCLURE(rubrique-mod.php3){id_rubrique}{id_syndic}>
 
+
+<!-- Entête de la page -->
+<INCLURE(entete.php3)>
+
+<!-- menu programmable -->
+<INCLURE(menup.php3){id_rubrique}>
+
+<!-- hierarchie -->
+<INCLURE(hierarchie.php3){id_rubrique}>
+
+<B_test_entree>
+<!-- boucle de test permettant de savoir s'il existe des sous rubriques -->
+<div id="rubrique">
+
+	<!-- menu dynamique ( les sous rubriques ) -->
+	<INCLURE(menudyn.php3){id_rubrique}>
+	
+	<div class="contenus">
+    <BOUCLE_test_entree(RUBRIQUES){id_parent}{0,1}>
+    </BOUCLE_test_entree>
+
+</B_test_entree>
+
+<!-- prend la totalité de l'écran s'il n'existe pas de sous rubriques -->
+<div style="width:100%">
+<//B_test_entree>	
+	
+	
+	<!-- la rubrique (description) -->
+	<div class="contenu">
+		<BOUCLE_descrip(RUBRIQUES){id_rubrique}>
+			<BOUCLE_motrub(MOTS){id_rubrique}{id_groupe==^$selecteur_logo}>
+				[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
+			</BOUCLE_motrub>
+		
+			[<div class="logo"><img src="IMG/(#LOGO_RUBRIQUE|fichier)"] [alt="" (#LOGO_RUBRIQUE|fichier|texte_script|redimlogo{200,60})></div>]
+			[<div class="titre">(#TITRE|supprimer_numero)</div>]
+			[<div class="texte">(#TEXTE)</div>]
+		</BOUCLE_descrip>
+	</div>
+	
+	<!-- debut articles / breves -->
+	<div class="articles-breves">
+	
+		<!-- les breves -->
+		<B_breve>
+		<div class="breves">
+			<div class="titre-bloc">Les br&egrave;ves</div>
+			
+				 <BOUCLE_breve(BREVES) {par date} {id_rubrique}{inverse} >
+					<div class="caps">
+						<BOUCLE_motbrev(MOTS){id_breve}{id_groupe==^$selecteur_logo}>
+							[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
+						</BOUCLE_motbrev>
+					[<div class="logo"><img src="IMG/(#LOGO_BREVE|fichier)"] [alt="" (#LOGO_BREVE|fichier|texte_script|redimlogo{200,60})></div>]
+
+					<div class="date">	[(#DATE|nom_jour)] [(#DATE|affdate)]</div>				
+					<div class="titre"><a href="#URL_BREVE" title="voir la brève">[(#TITRE|supprimer_numero)]</a></div>
+					[<div class="texte">(#TEXTE|textebrut|entites_html|couper{50})</div>]
+					</div>
+				 </BOUCLE_breve>
+				 
+		</div>
+		</B_breve>
+				
+		<!-- les articles -->
+		<B_articles>
+		<div class="articles">
+			 <div class="titre-bloc">Les articles</div>
+			   <BOUCLE_articles(ARTICLES){id_rubrique}{par date}{inverse}>
+					<div class="caps">
+						<BOUCLE_mot(MOTS){id_article}{id_groupe==^$selecteur_logo}>
+							[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
+						</BOUCLE_mot>
+						[<div class="logo"><img src="IMG/(#LOGO_ARTICLE|fichier)"] [alt="" (#LOGO_ARTICLE|fichier|texte_script|redimlogo{200,60})></div>]
+						<div class="titre"><a href="#URL_ARTICLE" title="[voir (#TITRE|supprimer_numero)]">[(#TITRE|supprimer_numero)]</a></div>
+						<div class="date">[(#DATE|nom_jour)] [(#DATE|affdate)]<B_auteurs>, par 
+						<BOUCLE_auteurs(AUTEURS){id_article}{", "}><a href="#URL_AUTEUR" title="&eacute;crire &agrave; #NOM">#NOM</a></BOUCLE_auteurs></div>
+						[<div class="chapo">(#CHAPO)</div>]
+						[<div class="texte">(#TEXTE|textebrut|entites_html|couper{50})</div>]
+						
+					</div>
+				</BOUCLE_articles>
+		</div>
+		</B_articles>
+	</div>	
+		
+	<!-- sites référencés -->
+	<B_sites1>
+	<div class="sites">
+		<div class="titre-bloc">Les sites r&eacute;f&eacute;renc&eacute;s</div>
+		<BOUCLE_sites1(SITES){id_rubrique}{par date}{inverse}{syndication=non}>
+			<div class="caps">
+				<BOUCLE_motsite(MOTS){id_syndic}{id_groupe==^$selecteur_logo}>
+					[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
+				</BOUCLE_motsite>
+
+				[<div class="logo"><img src="IMG/(#LOGO_SITE|fichier)"][ alt="" (#LOGO_SITE|fichier|texte_script|redimlogo{200,50})></div>]
+				<div class="titre"><a title="voir le site : #NOM_SITE" href="#URL_SITE">#NOM_SITE</a></div>
+				[<div class="url">(#URL_SITE)</div>]
+				[<div class="descrip">(#DESCRIPTIF)</div>]
+			</div>
+		</BOUCLE_sites1>
+	</div>
+	</B_sites1>
+		
+	<!-- sites syndiques -->
+	<B_syndication>
+	<div class="syndic">	
+		<div class="titre-bloc">Les articles syndiqu&eacute;s</div>
+		<div class="caps">
+			
+			<BOUCLE_syndication(SYNDIC_ARTICLES){par date} {id_rubrique}{inverse} >
+				<?php $new_date='[(#DATE|affdate)]'; if($new_date!=$brev_date){ ?>
+					<div class="date">[(#DATE|nom_jour)] [(#DATE|affdate)]</div> 
+				<?php $brev_date=$new_date;"\n"; }; ?>
+				<ul><li><a title="[extrait : (#DESCRIPTIF|textebrut|entites_html)]" href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a>
+				<B_auteurs2><span class="auteurs">, par 
+				<BOUCLE_auteurs2(AUTEURS){id_article}{", "}><a href="#URL_AUTEUR" title="&eacute;crire &agrave; #NOM">#NOM</a></BOUCLE_auteurs2>
+				 ,</span></B_auteurs2> sur <a class="site"  href="#URL_SITE" title="voir le site : #NOM_SITE">#NOM_SITE</a></li></ul>
+			</BOUCLE_syndication>
+			
+		</div>
+	</div>
+	</B_syndication>
+	
+	<B_docs_joints>
+	<!-- les documents joints -->
+	<div class="doc-rub">
+	
+		<div class="titre-bloc">Document(s) associ&eacute;(s) :</div>
+		
+			<BOUCLE_docs_joints(DOCUMENTS) {id_rubrique} {mode=document}{par titre}  >
+				<div class="ligne-doc">
+				[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
+					[<div class="titre"><a href="#URL_DOCUMENT" title="t&eacute;l&eacute;charger le document">(#TITRE|supprimer_numero)</a></div>]
+					[<div class="descrip">(#DESCRIPTIF)</div>]
+					[<div class="taille">(#TAILLE|taille_en_octets)</div>]
+				</div>
+			</BOUCLE_docs_joints>
+					
+	</div>
+	</B_docs_joints>
+
+<B_test_sortie>
+<!-- boucle de test permettant de savoir s'il existe des sous rubriques -->
+    <!-- fermeture du div contenus / cf première boucle de test -->
+    </div>
+	
+    <BOUCLE_test_sortie(RUBRIQUES){id_parent}{0,1}></BOUCLE_test_sortie>
+
+</B_test_sortie>
+	
+
+</div>
+
+<!-- navigation basse -->
+<div id="nav2">
+	<!-- navigation rapide -->
+	<div class="navig">
+	<form name="rapide" action="">
+	<select name="acces direct"  onChange="if (options[selectedIndex].value) { location =options[selectedIndex].value; }">
+	<option selected value="">Navigation rapide dans les rubriques</option>
+	
+	<BOUCLE_RUBRIQUES(RUBRIQUES){racine}{par titre}>
+								
+	<?php if ($edito<>'#ID_RUBRIQUE') { ?>	<option value=""></option><option value="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</option><?php } ?>
+	
+		<BOUCLE_SOUSRUBRIQUES(RUBRIQUES){id_parent}{par titre}>
+		
+		<option value="#URL_RUBRIQUE"> __ [(#TITRE|supprimer_numero)]</option>
+	
+			<BOUCLE_SOUSSOUSRUBRIQUES(RUBRIQUES){id_parent}{par titre}>
+		
+			<option value="#URL_RUBRIQUE"> _____ [(#TITRE|supprimer_numero)]</option>
+	
+			</BOUCLE_SOUSSOUSRUBRIQUES>
+		</BOUCLE_SOUSRUBRIQUES>
+	</BOUCLE_RUBRIQUES>
+	</select>
+	</form>
+	</div>
+
+	<div class="bouton">
+					
+		<B_rubrique_enfant>
+			<BOUCLE_rubrique_enfant(RUBRIQUES){id_enfant}>
+			[&nbsp;<a href="#URL_RUBRIQUE" title="retour à la rubrique : [(#TITRE|supprimer_numero)]">retour</a>&nbsp;]
+			</BOUCLE_rubrique_enfant>
+		</B_rubrique_enfant>
+		[&nbsp;<a href="#URL_SITE_SPIP" title="retour à la racine du site">retour</a>&nbsp;]
+		<//B_rubrique_enfant>
+	</div>
+</div>
 </BOUCLE_principale>
 </body>
 </html>
