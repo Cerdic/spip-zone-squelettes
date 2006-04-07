@@ -1,7 +1,37 @@
-<!-- affichage rubrique : mot clé "kiosque" -->
-<!--      ****** version 1.7.8 ********     -->
+<?
+if ($annee && $mois && $jour)
+	$cal_date = $annee."-".$mois."-".$jour;
+
+$year = substr($cal_date, 0, 4);
+$month = substr($cal_date, 5, 2);
+$day = substr($cal_date, 8, 2);
+?>
 
 <BOUCLE_kiosque(RUBRIQUES){id_rubrique}>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<?php include 'nono_conf.txt' ?>
+<html lang="fr">
+
+<!--      affichage rubrique       -->
+<!-- *****  squelettes nono  ***** -->
+<!-- ******** version 1.9 ******** -->
+<!-- ***** conception : jsb  ***** -->
+
+<head>
+
+	<title>#NOM_SITE_SPIP - [(#TITRE|supprimer_numero|textebrut|entites_html)]</title>
+	
+	<meta name="Description" content="[(#TITRE|textebrut|entites_html)] / [(#DESCRIPTIF|textebrut|entites_html)]">
+	<meta name="Keywords" content="<BOUCLE_keywords(MOTS){id_rubrique}{","}>[(#TITRE|supprimer_numero)]</BOUCLE_keywords>">
+	<meta name="ROBOTS" content="INDEX, FOLLOW">
+	<meta name="REVISIT-AFTER" content="15 days">
+	<meta http-equiv="content-Type" content="text/html; charset=#CHARSET">
+	<meta name="copyright" content="<? echo $meta_copyright ?>">
+	
+	<link href="<?php echo $nono_habillage ?>" rel="stylesheet" type="text/css">
+
+</head>
+<body>
 
 <!-- Entête de la page-->
 <INCLURE(entete.php3)>
@@ -134,3 +164,5 @@
 	</div>
 </div>
 </BOUCLE_kiosque>
+</body>
+</html>
