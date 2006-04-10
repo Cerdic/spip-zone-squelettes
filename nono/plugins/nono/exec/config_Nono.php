@@ -26,7 +26,7 @@ function exec_config_Nono() {
   include_spip("inc/presentation");
   include_spip ("base/abstract_sql");
 
-  debut_page('&laquo; '._T('squelettesnono:titre_page').' &raquo;', 'configurations', 'mots_partout','',_DIR_PLUGIN_CHERCHER_SQUELETTES.'/squelettes_Nono.css');
+  debut_page('&laquo; '._T('squelettesnono:titre_page').' &raquo;', 'configurations', 'mots_partout','',_DIR_PLUGIN_CHERCHER_SQUELETTES.'/squelettesNono.css');
 
   if ($connect_statut != '0minirezo' OR !$connect_toutes_rubriques) {
 	echo _T('avis_non_acces_page');
@@ -55,10 +55,68 @@ function exec_config_Nono() {
 
 	echo '<form action="'.generer_url_ecrire('config_Nono').'" method="post">';
 
-// ici on met le code de la page de configuration
+	// ici on met le code de la page
+
+	//
+	// Verifie que la table spip_conf_nono existe, sinon la creer
+	//
+	function Nono_verifier_table_conf() {
+		if (!spip_query("SELECT id_syndic, id_syndic_article, id_document FROM spip_conf_nono")) {
+			spip_log('creation de la table spip_conf_nono');
+			include_spip('base/create');
+			spip_create_table('spip_conf_nono',
+				$GLOBALS['tables_auxiliaires']['spip_conf_nono']['edito'],
+				false);
+		}
+	}	
 	
+	// configurer l'édito
 	
+	debut_cadre_trait_couleur("breve-24.gif", false, "", _T('squelettesnono:titre_edito').aide ("squelettesnono:confedito"));
+
+	$activer_edito = $GLOBALS['meta']["activer_edito"];
 	
+	echo _T('squelettesnono:texte_edito')."<br><br>";
+	echo bouton_radio("activer_edito", "oui", _T('squelettesnono:item_utiliser_edito'), $activer_edito == "oui", "changeVisible(this.checked, 'config-edito', 'block', 'none');");
+	echo " &nbsp;";
+	echo bouton_radio("activer_edito", "non", _T('squelettesnono:item_non_utiliser_edito'), $activer_edito == "non", "changeVisible(this.checked, 'config-edito', 'none', 'block');");
+	
+	if ($activer_edito = 'oui') $style = "display: none;";
+	else $style = "display: block;";
+	
+	echo "<div id='config-edito' style='$style'>";
+	
+	// Choix de la rubrique
+	//
+	include_spip('inc/rubriques');
+
+		echo "<p />";
+
+		echo "<TABLE BORDER=0 CELLSPACING=1 CELLPADDING=3 WIDTH=\"100%\">";
+		echo "<TR><TD BACKGROUND='" . _DIR_IMG_PACK . "rien.gif'>";
+		echo "<FONT FACE='Verdana,Arial,Sans,sans-serif' SIZE=2 COLOR='#000000'>";
+			
+			// selection de la rubrique
+			if ($id_rubrique == 0) $logo = "racine-site-24.gif";
+			elseif ($id_secteur == $id_rubrique) $logo = "secteur-24.gif";
+			else $logo = "rubrique-24.gif";
+
+			debut_cadre_couleur($logo, false, "", _T('squelettesnono:info_edito'). aide("artrub"));
+	 			echo selecteur_rubrique($id_edito, 'article', ($GLOBALS['statut'] == 'publie'));
+			fin_cadre_couleur();
+
+		echo "</FONT>";
+		echo "</TD></TR></table>";
+
+
+	echo "</div>";
+	
+	echo "<div style='text-align:right;'><input type='submit' name='Valider' value='"._T('bouton_enregistrer')."' CLASS='fondo'></div>";
+
+	echo "</form>";
+	
+	fin_cadre_trait_couleur();
+
   } 
   
   ecrire_meta('SquelettesNono:fond_pour_groupe',serialize($fonds));
