@@ -1,0 +1,170 @@
+#CACHE{7200}
+<B_article_principal>
+<BOUCLE_article_principal(ARTICLES) {id_article}{doublons}>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<?php include 'nono_conf.txt'; $current =date("Y-m-d"); ?>
+<html lang="fr">
+
+<!-- affichage de l&acute;article  -->
+<!-- *****  squelettes nono  ***** -->
+<!-- ******** version 1.9 ******** -->
+<!-- ***** conception : jsb  ***** -->
+
+<head>
+
+<BOUCLE_head(ARTICLES){id_article}>
+<title>#NOM_SITE_SPIP - [(#TITRE|supprimer_numero|textebrut|entites_html)]</title>
+<meta name="Description" content="[(#DESCRIPTIF|textebrut|entites_html)]">
+<meta name="Keywords" content="<BOUCLE_keywords(MOTS){id_article}{","}>#TITRE </BOUCLE_keywords>">
+<meta name="Author" content="<BOUCLE_author(AUTEURS){id_article}{","}>#NOM </BOUCLE_author>">
+<meta http-equiv="content-Type" content="text/html; charset=#CHARSET" >
+<? $test='#ID_RUBRIQUE';  ?>
+</BOUCLE_head>
+
+<meta name="ROBOTS" content="INDEX, FOLLOW">
+<meta name="REVISIT-AFTER" content="15 days">
+<meta name="copyright" content="<? echo $meta_copyright ?>">
+
+<link href="<?php echo $nono_habillage ?>" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+
+<!-- Entête de la page -->
+<INCLURE{fond=entete}{lang}{delais=24*3600}>
+
+<!-- le menu programmable -->
+<INCLURE{fond=menup}{lang}{id_rubrique}{delais=24*3600}>
+
+<!-- hierarchie de la page -->
+<INCLURE{fond=hierarchie}{lang}{delais=24*3600}{id_rubrique}>
+
+<!-- navigation haute -->
+<div id="nav">
+	<div class="navig">
+		<BOUCLE_precedent(ARTICLES){id_rubrique}{age_relatif>=0}{par date}{inverse}{1,1}>
+		[&nbsp;<a href="#URL_ARTICLE" title="article pr&eacute;c&eacute;dent : [(#TITRE|supprimer_numero)]">pr&eacute;c&eacute;dent</a>&nbsp;]
+		</BOUCLE_precedent>
+		
+		<BOUCLE_suivant(ARTICLES){id_rubrique}{age_relatif<0}{par date}{0,1}> 
+		[&nbsp;<a href="#URL_ARTICLE" title="article suivant : [(#TITRE|supprimer_numero)]">suivant</a>&nbsp;]
+		</BOUCLE_suivant>
+		[&nbsp;<a href="tous_articles.php3?id_rubrique=#ID_RUBRIQUE" title="voir tous les articles de la rubrique">tous</a>&nbsp;]
+	</div>
+
+	<div class="bouton">
+		[&nbsp;<a href="imprim-article.php3?id_article=#ID_ARTICLE" title="imprimer l&acute;article" >imprimer l&acute;article</a>&nbsp;]
+		<B_nav1>
+			<BOUCLE_nav1(RUBRIQUES){id_rubrique}>
+			[&nbsp;<a href="#URL_RUBRIQUE&cal_date=<?php echo $cal_date ?>" title="retour &agrave; la rubrique [(#TITRE|supprimer_numero)]">retour</a>&nbsp;]
+			</BOUCLE_nav1>
+		</B_nav1>
+		[&nbsp;<a href="#URL_SITE_SPIP" title="retour &agrave; la racine du site">retour</a>&nbsp;]
+		<//B_nav1>
+	</div>
+</div>
+
+
+<div id="article">
+<!-- l'événement de l'agenda -->	
+	
+	<div class="titre-article">
+		
+		<BOUCLE_mot(MOTS){id_article}{id_groupe==^$selecteur_logo}>
+			[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
+		</BOUCLE_mot>
+		[<div class="logo"><img src="IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)"] [alt="" (#LOGO_ARTICLE_RUBRIQUE|fichier|texte_script|redimlogo{200,60})></div>]
+		
+		[<div class="titre">(#TITRE|supprimer_numero)</div>]
+		<div class="date">[(#DATE|nom_jour)] [(#DATE|affdate)]<B_auteurs>, par 
+		<BOUCLE_auteurs(AUTEURS){id_article}{", "}><a href="#URL_AUTEUR" title="&eacute;crire &agrave; #NOM">#NOM</a></BOUCLE_auteurs></div>
+	
+		[<div class="descrip">(#DESCRIPTIF|w3c)</div>]
+		[<div class="chapo">(#CHAPO|w3c)</div>]
+	</div>
+
+	<div class="contenu-article">
+
+		[<div class="texte">(#TEXTE*|decouper_en_page|propre|limit_images_size{500,0,1}|w3c)</div>]
+		[<div class="ps">(#PS|w3c)</div>]
+		
+	</div>
+
+	<!-- les autres événements -->
+	<B_evens>
+	<div class="autres-articles">
+	<?php if ( $agenda == (#ID_RUBRIQUE) ){ "\n"; 	?>
+	<div class="titre-bloc">prochain(s) &eacute;v&eacute;nement(s)</div>
+		
+			<BOUCLE_evens(ARTICLES){exclus}{par date}{age<=0}{0,6}>
+				<div class="date"> Le [(#DATE_REDAC|nom_jour)] [(#DATE_REDAC|affdate)]</div>
+				<div class="titre">
+					<div class="logo">
+						<span class="sousrub">
+							<BOUCLE_hier1(RUBRIQUES){id_rubrique}>
+							<?php if (#ID_RUBRIQUE!=$agenda) {; ?>( [(#TITRE|supprimer_numero)] )
+							<?php }; ?>
+							</BOUCLE_hier1>
+						</span>
+					[<img src="IMG/(#LOGO_RUBRIQUE|fichier)"] [alt="" (#LOGO_RUBRIQUE|fichier|texte_script|redimlogo{100,25})>]
+					</div>
+					<a title="voir l&acute;événement" href="#URL_ARTICLE&amp;cal_date=<? $date_jour=substr('#DATE_REDAC',0,10); echo $date_jour; ?>">[(#TITRE|supprimer_numero)]</a>
+				</div>
+			</BOUCLE_evens>
+		
+	<?php  } ?>
+	</div>
+	</B_evens>
+
+	
+	<B_docs_joints>
+	<!-- les documents joints -->
+	<div class="doc-article">
+	
+		<div class="titre-bloc">Document(s) associ&eacute;(s) :</div>
+		
+			<BOUCLE_docs_joints(DOCUMENTS) {id_article} {mode=document} {doublons} >
+				<div class="ligne-doc">
+				[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
+					[<div class="titre"><a href="#URL_DOCUMENT" title="t&eacute;l&eacute;charger le document">(#TITRE|supprimer_numero)</a></div>]
+					[<div class="descrip">(#DESCRIPTIF)</div>]
+					[<div class="taille">(#TAILLE|taille_en_octets)</div>]
+				</div>
+			</BOUCLE_docs_joints>
+					
+	</div>
+	</B_docs_joints>
+	
+
+</div>
+
+<!-- navigation basse -->
+<div id="nav2">
+	<div class="navig">
+		<BOUCLE_precedent2(ARTICLES){id_rubrique}{age_relatif>=0}{par date}{inverse}{1,1}>
+		[&nbsp;<a href="#URL_ARTICLE" title="article pr&eacute;c&eacute;dent : [(#TITRE|supprimer_numero)]">pr&eacute;c&eacute;dent</a>&nbsp;]
+		</BOUCLE_precedent2>
+		
+		<BOUCLE_suivant2(ARTICLES){id_rubrique}{age_relatif<0}{par date}{0,1}> 
+		[&nbsp;<a href="#URL_ARTICLE" title="article suivant : [(#TITRE|supprimer_numero)]">suivant</a>&nbsp;]
+		</BOUCLE_suivant2>
+		[&nbsp;<a href="tous_articles.php3?id_rubrique=#ID_RUBRIQUE" title="voir tous les articles de la rubrique">tous</a>&nbsp;]
+	</div>
+
+	<div class="bouton">
+		<B_nav2>
+			<BOUCLE_nav2(RUBRIQUES){id_rubrique}>
+			[&nbsp;<a href="#URL_RUBRIQUE&cal_date=<?php echo $cal_date ?>" title="retour &agrave; la rubrique [(#TITRE|supprimer_numero)]">retour</a>&nbsp;]
+			</BOUCLE_nav2>
+		</B_nav2>
+		[&nbsp;<a href="#URL_SITE_SPIP" title="retour &agrave; la racine du site">retour</a>&nbsp;]
+		<//B_nav2>
+	</div>
+</div>
+</BOUCLE_article_principal>
+</B_article_principal>
+
+<//B_article_principal>
+</body>
+</html>
