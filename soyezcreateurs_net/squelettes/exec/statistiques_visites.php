@@ -771,7 +771,7 @@ echo "<br /><br /><br />";
 gros_titre(_T("onglet_origine_visites"));
 
 echo "<div style='font-family:Verdana,Arial,Sans,sans-serif; font-size:small;'><br />";
-echo aff_referers ($query, $limit);
+echo aff_referers ($query, $limit, generer_url_ecrire('statistiques_visites', ('limit=' . strval($limit+200))));
 echo "<br /></div>";	
 
 fin_page();
