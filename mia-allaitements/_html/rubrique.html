@@ -1,0 +1,108 @@
+#CACHE{7200}<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- ***********************************************************************
+//   Web Site Subject: © #NOM_SITE_SPIP  //
+//   Page Subject:  [(#TITRE|supprimer_numero|textebrut)]                                          //
+//   Web Designer & Architect Designer: Karim Belkacem & Sebastien Murat  //
+//   Graphic Designer: Les sardines, www.lessardines.info                 //
+//   Developpement : Les sardines, www.lessardines.info                   //
+//   Creation Date: Mars. 23, 2006                                        //
+********************************************************************* -->
+
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#NOM_SITE_SPIP)] | [(#TITRE|supprimer_numero|textebrut)]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+
+<meta name="keywords" content="<BOUCLE_metatags(GROUPES_MOTS){id_groupe=1}><BOUCLE_metatags2(MOTS){id_groupe}{par titre}{", "}>[(#TITRE|supprimer_numero)]</BOUCLE_metatags2></BOUCLE_metatags>" />
+<meta name="description" content="<BOUCLE_metadescriptif(GROUPES_MOTS){id_groupe=1}>[(#TEXTE|textebrut)]</BOUCLE_metadescriptif>" />
+<meta name="subjects" content="[ #NOM_SITE_SPIP ] - Version <?php echo $GLOBALS['spip_version_affichee']; ?>" />
+<meta name="robots" content="ALL" />
+<meta name="distribution" content="GLOBAL" />
+<meta name="rating" content="GENERAL" />
+<meta http-equiv="Reply-to" content="kbelkacem@gmail.com" />
+<meta name="ROBOTS" content="INDEX,FOLLOW" />
+<meta name="author" content="Karim BELKACEM - kbelkacem@gmail.com" />
+<meta name="copyright" content="© #NOM_SITE_SPIP" />
+<meta name="revisit-after" content="7 days" />
+
+<!-- Lien vers les CSS utilisees -->
+<link rel="stylesheet" href="#CHEMIN{_css/mia.css}" type="text/css" media="screen,projection" />
+<link rel="stylesheet" href="#CHEMIN{_css/spip_style.css}" type="text/css" media="screen,projection" />
+<!-- Lien vers le backend pour navigateurs eclaires -->
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="#URL_PAGE{backend,id_rubrique=#ID_RUBRIQUE}" />
+<link rel="icon" type="image/png" href="(#CHEMIN{favicon.png})" />
+</head>
+ <body>
+		<div id="Page">
+		
+			<!-- ENTETE -->
+			<div id="Entete">
+			[(#LOGO_SITE_SPIP|left)]
+				<h1>[(#NOM_SITE_SPIP|image_typo{police=Klill-Light.ttf,taille=16,couleur=4433bb})]</h1>
+				<h3><BOUCLE_mot_cle_20(MOTS){id_mot=20}>[(#DESCRIPTIF|image_typo{police=David Sans.ttf,taille=6,padding=4,largeur=300,couleur=666666,hauteur_ligne=10})]</BOUCLE_mot_cle_20></h3>
+			</div>
+
+			<!-- MENU DE NAVIGATION -->
+			<ul id="Menu">
+				<li><a href="#URL_SITE_SPIP" title="<:accueil_site:>">Accueil</a></li>
+				<BOUCLE_racine(RUBRIQUES){racine}{par num titre}>
+				<li><a href="#URL_RUBRIQUE" class="lien[(#EXPOSE{_active})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">[(#TITRE|supprimer_numero)]</a></li>
+				</BOUCLE_racine>
+			</ul>
+				<br class="clear" />
+				
+			<!-- COLONNE GAUCHE -->
+			<div id="Colonne">
+					
+				<BOUCLE_groupe_mot_cle_2(GROUPES_MOTS){id_groupe=2}>
+					<h1>[(#TITRE|image_typo{police=Klill-Light.ttf,taille=13,couleur=666666})]</h1>
+					<p><BOUCLE_mot_cle_2(MOTS){id_groupe}{par titre}{" <br /> "}>
+					[<em>(#DESCRIPTIF)</em>]
+					</BOUCLE_mot_cle_2></p>
+				</BOUCLE_groupe_mot_cle_2>
+				
+				<BOUCLE_plaquette(ARTICLES){id_article=6}{par titre}>
+					<h1>[(#TITRE|image_typo{police=Klill-Light.ttf,taille=13,couleur=666666})]</h1>
+					[(#TEXTE)]
+				</BOUCLE_plaquette>
+				
+				<div class="MenuColBas">
+					<a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validateur CSS">CSS</a>
+					<a href="http://validator.w3.org/check?uri=referer" title="Validateur xthml">XHTML 1.1</a>
+					<a href="http://www.spip.net" title="SPIP propulse ce site">v.<?php echo $GLOBALS['spip_version_affichee']; ?></a>
+					<a href="http://www.mozilla-europe.org/fr/" title="Telecharger Firefox">FF</a>
+				</div>
+				
+				<div id="Colonne_bas"></div>
+			</div>
+				
+			<!-- CONTENU -->
+			<div id="Contenu">
+					<BOUCLE_article(ARTICLES){id_rubrique}{id_article!=6}{par titre}>
+						<h1>[(#TITRE|image_typo{police=Klill-Light.ttf,taille=13,couleur=4433bb})]</h1>
+						[(#TEXTE)]
+						<BOUCLE_auteurs(AUTEURS) {id_article} {par nom}>
+						[(#FORMULAIRE_ECRIRE_AUTEUR)]
+						</BOUCLE_auteurs>
+					</BOUCLE_article>
+					
+					<BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {mode=document} {doublons}>
+					[(#LOGO_DOCUMENT|#URL_DOCUMENT)][<br />(#TITRE)][ - (#DESCRIPTIF)]
+					</BOUCLE_documents_joints>
+					
+			</div>
+		
+		</div>
+		
+		<!-- BAS DE PAGE -->
+		<div id="BasdePage">
+			<p>
+				&copy;2006, [(#NOM_SITE_SPIP)]. Tous droits r&eacute;serv&eacute;s. Association loi 1901 &agrave; but non lucratif.<br />
+				Web Design, developpement <a href="http://www.lessardines.info">Les sardines</a>.
+			</p>
+		</div>
+</body>
+</html>
+</BOUCLE_rubrique_principal>
