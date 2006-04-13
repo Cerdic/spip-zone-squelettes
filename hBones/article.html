@@ -98,21 +98,10 @@
 	</div>
 
 	[(#REM)
-		Ici un autre bloc sympa ou l'on met la navigation de forum, mot-clef, breves, petition
+		Ici un autre bloc sympa ou l'on met la navigation de forum, mot-clef, breves, petition, sites avec la syndication ou non
 	]
 	<div id="extra">
-	[(#REM) primum fora]
-	<ul class="forums">
-<BOUCLE_forums_decompte(FORUMS){id_article}{plat}></BOUCLE_forums_decompte>
-	<li class="menu-titre"><:messages_forum:>: #TOTAL_BOUCLE</li>
-<//B_forums_decompte>
-
-<BOUCLE_forums_liens(FORUMS){id_article}{par date}{inverse}{0,5}>
-	<li class="menu-item">[<em>(#DATE|affdate_court)</em>:]
-	<a href="#forum#ID_FORUM">#TITRE</a>
-	</li>
-</BOUCLE_forums_liens>
-</ul>
+	
 	[(#REM) mots clefs]
 	<ul class="divers" title="<:mots_clefs:>">
 <BOUCLE_mots(MOTS) {id_article} {par titre}>
@@ -130,33 +119,18 @@
 </ul>
 </div>
 </B_mots>
-	[(#REM) breves de la meme rubrique]
-	
-	[(#REM) signatures de la petition]
-	<B_signatures>
-<BOUCLE_signatures_decompte(SIGNATURES){id_article}></BOUCLE_signatures_decompte>
-<div class="signatures-titre"><:signatures_petition:>: #TOTAL_BOUCLE</div>
-<//B_signatures_decompte>
-
-<table class="signatures">
-<thead class="structure">
-<tr>
-	<th><:date:></th>
-	<th><:nom:></th>
-	<th><:message:></th>
-</tr>
-</thead>
-<tbody>
-<BOUCLE_signatures(SIGNATURES) {id_article} {par date} {inverse} {debut_signatures,30}>
-<tr>
-	<td class="signature-date">[(#DATE|affdate_court)]</td>
-	<td class="signature-nom">#NOM[ <a href="#URL_SITE">(#NOM_SITE)</a>]</td>
-	[<td class="signature-message">(#MESSAGE)</td>]
-</tr>
-</BOUCLE_signatures>
-</tbody>
-</table>
-</B_signatures>
+	[(#REM) breves du meme secteur]
+	<ul class="menu-liste-breves">
+<BOUCLE_breves_secteur(BREVES) {id_secteur}{0,4}>
+<li class="menu-item-breves"><a href="#URL_BREVE" title="[(#INTRO|textebrut|entites_html)]">#TITRE</a></li>
+</BOUCLE_breves_secteur>
+</ul>
+	[(#REM) sites web +/- syndication]
+	<ul class="menu-liste-sites">
+<BOUCLE_sites_secteur(SITES) {id_secteur}{0,5}>
+	<li class="menu-item-sites"><a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut|entites_html)]">#NOM_SITE</a></li>
+</BOUCLE_sites_secteur>
+	</ul>
 	</div>
 
 	[(#REM)
