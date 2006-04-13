@@ -49,6 +49,20 @@
 	<div id="header">
 		<h1>#NOM_SITE_SPIP</h1>
 		#DESCRIPTIF_SITE_SPIP
+			[
+			(#REM) Outils de navigation primaire (haut du flux HTML)
+			le lien vers la rubrique contenante est rel-directory
+			<http://microformats.org/wiki/rel-directory>
+		]
+		<ul id="breadcrumb">
+		<li><a href="#URL_SITE_SPIP/">#NOM_SITE_SPIP</a></li>
+		<BOUCLE_hierarchie(HIERARCHIE){id_article}>
+		<li><a href="#URL_RUBRIQUE"[
+			(#COMPTEUR_BOUCLE|=={#TOTAL_BOUCLE}|
+			?{rel="directory",''})]>#TITRE</a></li>
+		</BOUCLE_hierarchie>
+		</ul>
+		[(#FORMULAIRE_RECHERCHE|./)]
 	</div>
 
 	[(#REM)
@@ -78,30 +92,9 @@
 	</div>
 
 	[(#REM)
-		Ici installer la navigation secondaire ("lourde")
+		Ici installer la navigation secondaire ("lourde") ou l'on met la navigation de forum, mot-clef, breves, petition, sites avec la syndication ou non
 	]
 	<div id="navigation">
-		[
-			(#REM) Outils de navigation primaire (haut du flux HTML)
-			le lien vers la rubrique contenante est rel-directory
-			<http://microformats.org/wiki/rel-directory>
-		]
-		<ul id="breadcrumb">
-		<li><a href="#URL_SITE_SPIP/">#NOM_SITE_SPIP</a></li>
-		<BOUCLE_hierarchie(HIERARCHIE){id_article}>
-		<li><a href="#URL_RUBRIQUE"[
-			(#COMPTEUR_BOUCLE|=={#TOTAL_BOUCLE}|
-			?{rel="directory",''})]>#TITRE</a></li>
-		</BOUCLE_hierarchie>
-		</ul>
-		[(#FORMULAIRE_RECHERCHE|./)]
-	</div>
-
-	[(#REM)
-		Ici un autre bloc sympa ou l'on met la navigation de forum, mot-clef, breves, petition, sites avec la syndication ou non
-	]
-	<div id="extra">
-	
 	[(#REM) mots clefs]
 	<ul class="divers" title="<:mots_clefs:>">
 <BOUCLE_mots(MOTS) {id_article} {par titre}>
@@ -130,6 +123,14 @@
 	<li class="menu-item-sites"><a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut|entites_html)]">#NOM_SITE</a></li>
 </BOUCLE_sites_secteur>
 	</ul>
+	</div>
+
+	[(#REM)
+		Ici un autre bloc sympa 
+	]
+	<div id="extra">
+	
+	
 	</div>
 
 	[(#REM)
