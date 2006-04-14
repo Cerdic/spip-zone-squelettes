@@ -1,18 +1,16 @@
 <?php
 
-// {edito}
+// critère {edito}
 
+function critere_edito($idb, &$boucles, $crit) {
+	$not = $crit->not;
+	$boucle = &$boucles[$idb];
 
+	if ($not)
+		erreur_squelette(_T('zbug_info_erreur_squelette'), $crit->op);
 
-function critere_edito($idb, &$boucles) {
-  $boucle = &$boucles[$idb];
-  $table = $boucle->id_table;
-  $not = $param->not;
+	$boucle->where[] = $boucle->id_table.".id_rubrique=7";
 
-  if ($not) 
-	$boucle->where[] = $table.".hauteur <= ".$table.".largeur";
-  else
-	$boucle->where[] = $table.".hauteur > ".$table.".largeur";
 }
 
 ?>

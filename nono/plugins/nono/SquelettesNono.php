@@ -22,7 +22,7 @@ define('_DIR_PLUGIN_CHERCHER_SQUELETTES',(_DIR_PLUGINS.end(explode(basename(_DIR
 function SquelettesNono_ajouter_onglets($flux) {
   if($flux['args']=='configuration')
 	$flux['data']['config_Nono']= new Bouton(
-															 '../'._DIR_PLUGIN_CHERCHER_SQUELETTES.'/spip_nono.png', 'Configurer Squelettes Nono',
+															 '../'._DIR_PLUGIN_CHERCHER_SQUELETTES.'/spip_nono.png', 'Configurer Nono',
 																 generer_url_ecrire("config_Nono"));
   return $flux;
 }

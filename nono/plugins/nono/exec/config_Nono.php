@@ -35,7 +35,8 @@ function exec_config_Nono() {
 
   if ($connect_statut == '0minirezo' AND $connect_toutes_rubriques ) {
 
-	echo '<br><br><br>';
+
+		echo '<br><br><br>';
 
 	gros_titre(_T('squelettesnono:gros_titre'));
 
@@ -43,6 +44,7 @@ function exec_config_Nono() {
 
 	/*Affichage*/
 	debut_gauche();	
+
 	
 	debut_boite_info();
 	echo propre(_T('squelettesnono:help'));
@@ -57,15 +59,16 @@ function exec_config_Nono() {
 
 	// ici on met le code de la page
 
+	
 	//
-	// Verifie que la table spip_conf_nono existe, sinon la creer
+	// Verifie que la table spip_nono existe, sinon la creer
 	//
 	function Nono_verifier_table_conf() {
-		if (!spip_query("SELECT id_syndic, id_syndic_article, id_document FROM spip_conf_nono")) {
-			spip_log('creation de la table spip_conf_nono');
+		if (!spip_query("SELECT id_syndic, id_syndic_article, id_document FROM spip_nono")) {
+			spip_log('creation de la table spip_nono');
 			include_spip('base/create');
-			spip_create_table('spip_conf_nono',
-				$GLOBALS['tables_auxiliaires']['spip_conf_nono']['edito'],
+			spip_create_table('spip_nono',
+				$GLOBALS['tables_auxiliaires']['spip_nono']['edito'],
 				false);
 		}
 	}	
@@ -74,13 +77,15 @@ function exec_config_Nono() {
 	
 	debut_cadre_trait_couleur("breve-24.gif", false, "", _T('squelettesnono:titre_edito').aide ("squelettesnono:confedito"));
 
-	$activer_edito = $GLOBALS['meta']["activer_edito"];
 	
 	echo _T('squelettesnono:texte_edito')."<br><br>";
+	
 	echo bouton_radio("activer_edito", "oui", _T('squelettesnono:item_utiliser_edito'), $activer_edito == "oui", "changeVisible(this.checked, 'config-edito', 'block', 'none');");
 	echo " &nbsp;";
 	echo bouton_radio("activer_edito", "non", _T('squelettesnono:item_non_utiliser_edito'), $activer_edito == "non", "changeVisible(this.checked, 'config-edito', 'none', 'block');");
+
 	
+	// affichage optionnel	
 	if ($activer_edito = 'oui') $style = "display: none;";
 	else $style = "display: block;";
 	
@@ -89,29 +94,12 @@ function exec_config_Nono() {
 	// Choix de la rubrique
 	//
 	include_spip('inc/rubriques');
-
-		echo "<p />";
-
-		echo "<TABLE BORDER=0 CELLSPACING=1 CELLPADDING=3 WIDTH=\"100%\">";
-		echo "<TR><TD BACKGROUND='" . _DIR_IMG_PACK . "rien.gif'>";
-		echo "<FONT FACE='Verdana,Arial,Sans,sans-serif' SIZE=2 COLOR='#000000'>";
-			
-			// selection de la rubrique
-			if ($id_rubrique == 0) $logo = "racine-site-24.gif";
-			elseif ($id_secteur == $id_rubrique) $logo = "secteur-24.gif";
-			else $logo = "rubrique-24.gif";
-
-			debut_cadre_couleur($logo, false, "", _T('squelettesnono:info_edito'). aide("artrub"));
-	 			echo selecteur_rubrique($id_edito, 'article', ($GLOBALS['statut'] == 'publie'));
-			fin_cadre_couleur();
-
-		echo "</FONT>";
-		echo "</TD></TR></table>";
-
+	$restreint = ($GLOBALS['statut'] == 'publie');
+	echo selecteur_rubrique($id_parent, 'rubrique', $restreint, $id_rubrique);
 
 	echo "</div>";
 	
-	echo "<div style='text-align:right;'><input type='submit' name='Valider' value='"._T('bouton_enregistrer')."' CLASS='fondo'></div>";
+	echo "<div style='text-align:right;'><input type='submit' name='Enregistrer' value='"._T('bouton_enregistrer')."' CLASS='fondo'></div>";
 
 	echo "</form>";
 	
