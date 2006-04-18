@@ -74,7 +74,7 @@
 <ul>
 <BOUCLE_MotsClefsArticleConnexes(MOTS){id_article}{doublons 2}>
 <BOUCLE_ArticlesConnexes(ARTICLES){id_mot}{doublons}>
-<li><?php if (#_article_principal:ID_ARTICLE!=#ID_ARTICLE) {?><a href="#URL_ARTICLE" title="[(#_ExclureGpAdminConnexes:TITRE|attribut_html)]: [(#_MotsClefsArticleConnexes:TITRE|attribut_html)]"><?php } ?>[(#TITRE|supprimer_numero)]<?php if (#_article_principal:ID_ARTICLE!=#ID_ARTICLE) {?></a><?php } ?></li>
+<li><?php if (#_article_principal:ID_ARTICLE!=#ID_ARTICLE) {?><a href="#URL_ARTICLE" title="<BOUCLE_GpMot(GROUPES_MOTS){id_groupe}>[(#TITRE|attribut_html)]</BOUCLE_GpMot>: [(#_MotsClefsArticleConnexes:TITRE|attribut_html)]"><?php } ?>[(#TITRE|supprimer_numero)]<?php if (#_article_principal:ID_ARTICLE!=#ID_ARTICLE) {?></a><?php } ?></li>
 </BOUCLE_ArticlesConnexes>
 </BOUCLE_MotsClefsArticleConnexes>
 </ul>
@@ -105,6 +105,19 @@
 [(#TEXTE*|sommaire_article|propre)]</div>
 </B_SommaireArticle>
 <//B_Sommaire>
+
+<BOUCLE_EstAgenda2(MOTS){id_rubrique}{titre=Agenda}>
+<B_MotsAgenda>
+<div id="mots_agenda">
+<BOUCLE_MotsAgenda(MOTS){id_article}{type=CategorieAgenda}>
+<h2>#TITRE</h2>
+[<div class="descriptifmot">(#DESCRIPTIF)</div>]
+[<div class="textemot">(#TEXTE)</div>]
+</BOUCLE_MotsAgenda>
+</div>
+</B_MotsAgenda>
+</BOUCLE_EstAgenda2>
+
 	<div id="letexte">
 [<div class="chapo">(#CHAPO|sinon{#DESCRIPTIF})</div>]
 <BOUCLE_SommaireAncre(MOTS){id_rubrique}{titre = Sommaire}>
