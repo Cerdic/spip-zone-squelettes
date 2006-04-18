@@ -1,5 +1,9 @@
 <?php
 
+//critère {aff_even}
+//affichage des événements
+
+
 // critère {edito}
 // permet d'affecter une rubrique spécifique pour les éditos
 function critere_edito($idb, &$boucles, $crit) {
@@ -28,15 +32,42 @@ function critere_meslogos($idb, &$boucles, $crit) {
 		erreur_squelette(_T('zbug_info_erreur_squelette'), $crit->op);
 
 	$boucle->where[]= array("'='", "'$boucle->id_table." . "id_groupe'", 0);
-
 }
 
 // balise #DIRECTEUR
 
-function balise_DIRECTEUR_NONO(a$) {
+function balise_DIRECTEUR_NONO($p) {
 	
+	$p->code = "\$GLOBALS['meta']['directeur_nono']";
+	#$p->interdire_scripts = true;
+	return $p;
+}	
 
-}
+// balise #REDACTEUR
+
+function balise_REDACTEUR_NONO($p) {
 	
+	$p->code = "\$GLOBALS['meta']['redacteur_nono']";
+	#$p->interdire_scripts = true;
+	return $p;
+}	
+
+// balise #COPYRIGHT
+
+function balise_COPYRIGHT_NONO($p) {
+	
+	$p->code = "\$GLOBALS['meta']['copyright_nono']";
+	#$p->interdire_scripts = true;
+	return $p;
+}	
+
+// balise #KEYWORDS
+
+function balise_KEYWORDS_NONO($p) {
+	
+	$p->code = "\$GLOBALS['meta']['keywords_nono']";
+	#$p->interdire_scripts = true;
+	return $p;
+}	
 
 ?>
