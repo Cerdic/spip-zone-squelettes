@@ -149,6 +149,8 @@ $ajouter_mot, $ajouter_groupe, $afficher_texte, $url_param_retour)
 		$email_auteur = _request('email_auteur');
 		$nom_site_forum = _request('nom_site_forum');
 		$url_site = _request('url_site');
+		$ajouter_mot = _request('ajouter_mot');
+		$ajouter_groupe = _request('ajouter_groupe');
 
 		if ($afficher_texte != 'non') 
 			$previsu = inclure_previsu($texte, $titre, $email_auteur, $auteur, $url_site, $nom_site_forum, $ajouter_mot, $id_article);
@@ -196,32 +198,16 @@ $ajouter_mot, $ajouter_groupe, $afficher_texte, $url_param_retour)
 		'alea' => $alea,
 		'hash' => $hash,
 		'ajouter_groupe' => $ajouter_groupe,
-		'ajouter_mot' => (is_array($ajouter_mot) ? $ajouter_mot : array()),
+		'ajouter_mot' => (is_array($ajouter_mot) ? $ajouter_mot : array($ajouter_mot)),
 
 		));
 }
 
 function inclure_previsu($texte,$titre, $email_auteur, $auteur, $url_site, $nom_site_forum, $ajouter_mot, $id_article)
 {
-	$mots_forum = $erreur = $bouton = '';
-	if (is_array($ajouter_mot)) {
-		$result_mots = spip_query("SELECT id_mot, titre, type
-			FROM spip_mots
-			WHERE id_mot IN (" #securite XSS
-			. preg_replace('/[^0-9,]/', '', join(',',$ajouter_mot))
-			. ") ORDER BY 0+type,type,0+titre,titre");
-		if (spip_num_rows($result_mots)>0) {
-			$mots_forum = "<p>"._T('forum_avez_selectionne')."</p><ul>";
-			while ($row = spip_fetch_array($result_mots)) {
-				$mots_forum .= "<li style='font-size: 80%;'> "
-				. typo($row['type']) . "&nbsp;: <b>"
-				. typo($row['titre']) ."</b></li>";
-			}
-			$mots_forum .= '</ul>';
-		}
-	}
+	$erreur = $bouton = '';
 
-	if (strlen($texte) < 10 AND !$mots_forum)
+	if (strlen($texte) < 10 AND !$ajouter_mot)
 		$erreur = _T('forum_attention_dix_caracteres');
 	else if (strlen($titre) < 3)
 		$erreur = _T('forum_attention_trois_caracteres');
@@ -241,7 +227,7 @@ function inclure_previsu($texte,$titre, $email_auteur, $auteur, $url_site, $nom_
 			'texte' => safehtml(propre($texte)),
 			'url_site' => safehtml($url_site),
 			'nom_site_forum' => safehtml(typo($nom_site_forum)),
-			'mots_forum' => $mots_forum,
+			'ajouter_mot' => (is_array($ajouter_mot) ? $ajouter_mot : array($ajouter_mot)),
 			'erreur' => $erreur,
 			'bouton' => $bouton,
 			'id_article' => $id_article
@@ -290,39 +276,39 @@ function sql_recherche_donnees_forum ($idr, $idf, $ida, $idb, $ids) {
 
 	// changer la table de reference s'il y a lieu (pour afficher_groupes[] !!)
 	if ($ida) {
-		$r = "SELECT titre FROM spip_articles WHERE id_article = $ida";
+		$titre = spip_abstract_fetsel('titre', 'spip_articles', "id_article = $ida");
 		$table = "articles";
 	} else if ($idb) {
-		$r = "SELECT titre FROM spip_breves WHERE id_breve = $idb";
+		$titre = spip_abstract_fetsel('titre', 'spip_breves', "id_breve = $idb");
 		$table = "breves";
 	} else if ($ids) {
-		$r = "SELECT nom_site AS titre FROM spip_syndic WHERE id_syndic = $ids";
+		$titre = spip_abstract_fetsel('nom_site AS titre', 'spip_syndic', "id_syndic = $ids");
 		$table = "syndic";
 	} else if ($idr) {
-		$r = "SELECT titre FROM spip_rubriques WHERE id_rubrique = $idr";
+		$titre = spip_abstract_fetsel('titre', 'spip_rubriques', "id_rubrique = $idr");
 		$table = "rubriques";
 	}
 
 	if ($idf)
-		$r = "SELECT titre FROM spip_forum WHERE id_forum = $idf";
+		$titre = spip_abstract_fetsel('titre', 'spip_forum', "id_forum = $idf");
 
-	if ($r) {
-		list($titre) = spip_fetch_array(spip_query($r));
-		$titre = supprimer_numero($titre);
+	if ($titre) {
+		$titre = supprimer_numero($titre['titre']);
 	} else 
-		return;
-
-	// quelle est la configuration du forum ?
-	if ($ida)
-		list($accepter_forum) = spip_fetch_array(spip_query(
-		"SELECT accepter_forum FROM spip_articles WHERE id_article=$ida"));
-	if (!$accepter_forum)
-		$accepter_forum = substr($GLOBALS['meta']["forums_publics"],0,3);
-	// valeurs possibles : 'pos'teriori, 'pri'ori, 'abo'nnement
-	if ($accepter_forum == "non")
 		return false;
 
-	return array ($titre, $table, $accepter_forum);
+	// quelle est la configuration du forum ?
+	$type = !$ida ? false : spip_abstract_fetsel('accepter_forum', 'spip_articles', "id_article=$ida");
+
+	if ($type) $type = $type['accepter_forum'];
+
+	if (!$type) $type = substr($GLOBALS['meta']["forums_publics"],0,3);
+
+	// valeurs possibles : 'pos'teriori, 'pri'ori, 'abo'nnement
+	if ($type == "non")
+		return false;
+
+	return array ($titre, $table, $type);
 }
 
 ?>
