@@ -29,12 +29,18 @@ function init_config_nono() {
 		'directeur_nono' => '',
 		
 		'voir_agenda_nono' => 'non',
+		'nb_evens_nono' => '0',
 		'voir_calendrier_nono' => 'non',
 		'voir_articles_nono' => 'oui',
+		'nb_articles_nono' => '3',
 		'voir_breves_nono' => 'oui',
+		'nb_breves_nono' => '2',
 		'voir_sites_nono' => 'non',
+		'nb_sites_nono' => '0',
 		'voir_syndic_nono'=> 'non',
+		'nb_syndic_nono' => '0',
 		'voir_messages_nono' => 'non',
+		'nb_messages_nono' => '0',
 
 		
 		'activer_edito' => 'non',
@@ -64,7 +70,7 @@ function appliquer_modifs_nono() {
 	global $nono_base_version,$keywords,$directeur_nono,$redacteur_nono;
 	global $activer_edito,$id_edito,$activer_meslogos,$id_meslogos,$id_parent;
 	global $voir_agenda_nono,$voir_calendrier_nono,$voir_articles_nono,$voir_breves_nono,$voir_sites_nono,$voir_syndic_nono,$voir_messages_nono;
-
+	global $nb_evens_nono,$nb_articles_nono,$nb_breves_nono,$nb_sites_non,$nb_syndic_nono,$nb_messages_nono;
 	//include_spip(base/liste_meta_nono); // va chercher la liste des meta de nono
 		
 	$liste_meta_nono=array (
@@ -83,12 +89,18 @@ function appliquer_modifs_nono() {
 		'id_meslogos',
 		
 		'voir_agenda_nono',
+		'nb_evens_nono',
 		'voir_calendrier_nono',
 		'voir_articles_nono',
+		'nb_articles_nono',
 		'voir_breves_nono',
+		'nb_breves_nono',
 		'voir_sites_nono',
+		'nb_sites_nono',
 		'voir_syndic_nono',
-		'voir_messages_nono'
+		'nb_syndic_nono',
+		'voir_messages_nono',
+		'nb_messages_nono',
 
 	);
 
@@ -97,16 +109,14 @@ function appliquer_modifs_nono() {
 	while (list(,$i) = each($liste_meta_nono))
 		if (isset($GLOBALS[$i])) ecrire_meta($i, $GLOBALS[$i]);
 
-	
-
 	// mise à zero id
 	// évite les erreurs de critère
 	// permet de faire des requetes vides -> boucles valides
 	
-	
-	
-	
 	ecrire_metas();
+	
+	// purger les squelettes
+	$purger_skel = true;
 }
 
 ?>

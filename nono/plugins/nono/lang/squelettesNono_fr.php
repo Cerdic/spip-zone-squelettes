@@ -21,6 +21,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 									   
 									   'info_messages_nono' => 'Voir les messages post&eacute;s',
 									   'info_articles_nono' => 'Voir les articles publi&eacute;s',
+									   'nb_articles' => 'article(s)',
 									   'info_breves_nono' => 'Voir les br&egrave;ves publi&eacute;es',
 									   'info_sites_nono' => 'Voir les sites publi&eacute;s',
 									   'info_syndic_nono' => 'Voir les syndications publi&eacute;es',

@@ -1,8 +1,5 @@
 <?php
 
-//critère {aff_even}
-//affichage des événements
-
 
 // critère {edito}
 // permet d'affecter une rubrique spécifique pour les éditos
@@ -22,17 +19,69 @@ function critere_edito($idb, &$boucles, $crit) {
 	$boucle->where[]= array("'='", "'$boucle->id_table." . "id_rubrique'", $id_edito);
 }
 
+//critère {affiche_nb_articles}
+//affichage des événements
+
+function critere_affiche_nb_articles($idb, &$boucles, $crit) {
+	$boucle = &$boucles[$idb];
+	if ($GLOBALS ['meta']['voir_articles_nono']=='oui') {$var=$GLOBALS['meta']['nb_articles_nono'];} else {$var='0';};
+	$boucle->limit = '0, ' .$var. '' ;
+}
+
+//critère {affiche_nb_breves}
+//affichage des événements
+
+function critere_affiche_nb_breves($idb, &$boucles, $crit) {
+	$boucle = &$boucles[$idb];
+	if ($GLOBALS ['meta']['voir_breves_nono']=='oui') {$var=$GLOBALS['meta']['nb_breves_nono'];} else {$var='0';};
+	$boucle->limit = '0, ' .$var. '' ;
+}
+
+//critère {affiche_nb_sites}
+//affichage des événements
+
+function critere_affiche_nb_sites($idb, &$boucles, $crit) {
+	$boucle = &$boucles[$idb];
+	if ($GLOBALS ['meta']['voir_sites_nono']=='oui') {$var=$GLOBALS['meta']['nb_sites_nono'];} else {$var='0';};
+	$boucle->limit = '0, ' .$var. '' ;
+}
+
+//critère {affiche_nb_messages}
+//affichage des événements
+
+function critere_affiche_nb_messages($idb, &$boucles, $crit) {
+	$boucle = &$boucles[$idb];
+  	if ($GLOBALS ['meta']['voir_messages_nono']=='oui') {$var=$GLOBALS['meta']['nb_messages'];} else {$var='0';};
+	$boucle->limit = '0, ' .$var. '' ;
+
+}
+
+//critère {affiche_nb_syndic}
+//affichage des événements
+
+function critere_affiche_nb_syndic($idb, &$boucles, $crit) {
+	$boucle = &$boucles[$idb];
+ 	if ($GLOBALS ['meta']['voir_syndic_nono']=='oui') {$var=$GLOBALS['meta']['nb_syndic_nono'];} else {$var='0';};
+	$boucle->limit = '0, ' .$var. '' ;
+
+}
+
+//critère {affiche_nb_syndic}
+//affichage des événements
+
+function critere_affiche_nb_evens($idb, &$boucles, $crit) {
+	$boucle = &$boucles[$idb];
+ 	if ($GLOBALS ['meta']['voir_agenda_nono']=='oui') {$var=$GLOBALS['meta']['nb_evens_nono'];} else {$var='0';};
+	$boucle->limit = '0, ' .$var. '' ;
+
+}
+
+
 // critère {mes_logos}
 // permet d'affecter un logo à un objet SPIP (rubrique, article, breve, site)
-function critere_meslogos($idb, &$boucles, $crit) {
-	$not = $crit->not;
-	$boucle = &$boucles[$idb];
 
-	if ($not)
-		erreur_squelette(_T('zbug_info_erreur_squelette'), $crit->op);
 
-	$boucle->where[]= array("'='", "'$boucle->id_table." . "id_groupe'", 0);
-}
+
 
 // balise #DIRECTEUR
 
@@ -69,5 +118,7 @@ function balise_KEYWORDS_NONO($p) {
 	#$p->interdire_scripts = true;
 	return $p;
 }	
+
+
 
 ?>

@@ -54,10 +54,15 @@ function exec_config_squelettes_Nono() {
 	$voir_agenda_nono=$GLOBALS['meta']['voir_agenda_nono'];
 	$voir_calendrier_nono=$GLOBALS['meta']['voir_calendrier_nono'];
 	$voir_articles_nono=$GLOBALS['meta']['voir_articles_nono'];
+	$nb_articles_nono=$GLOBALS['meta']['nb_articles_nono'];
 	$voir_breves_nono=$GLOBALS['meta']['voir_breves_nono'];
+	$nb_breves_nono=$GLOBALS['meta']['nb_breves_nono'];
 	$voir_sites_nono=$GLOBALS['meta']['voir_sites_nono'];
+	$nb_sites_nono=$GLOBALS['meta']['nb_sites_nono'];
 	$voir_syndic_nono=$GLOBALS['meta']['voir_syndic_nono'];
+	$nb_syndic_nono=$GLOBALS['meta']['nb_syndic_nono'];
 	$voir_messages_nono=$GLOBALS['meta']['voir_messages_nono'];
+	$nb_messages_nono=$GLOBALS['meta']['nb_messages_nono'];
 	
 	//fonction edito
 		
@@ -84,6 +89,7 @@ function exec_config_squelettes_Nono() {
 	debut_boite_info();
 	echo propre(_T('squelettesnono:help'))."<br><br><strong>version de la base : ".$nono_base_version."</strong>";
 	fin_boite_info();
+	
 
 	/*partie droite de la page ... la config !*/
 	debut_droite();
@@ -98,7 +104,7 @@ function exec_config_squelettes_Nono() {
 	
 	/* interface de saisie des meta de nono */
 	
-		debut_cadre_trait_couleur("racine-site-24.gif", false, "", _T('squelettesnono:titre_meta_nono'));
+		debut_cadre_couleur("racine-site-24.gif", false, "", _T('squelettesnono:titre_meta_nono'));
 	
 		echo _T('squelettesnono:entetes_nono')."<br><br>";
 
@@ -140,22 +146,24 @@ function exec_config_squelettes_Nono() {
 	
 		echo "<TR>";
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
-		echo _T('squelettesnono:info_agenda_nono');
-		echo "</TD>";
-		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
-		afficher_choix('voir_agenda_nono', $voir_agenda_nono,
-			array('oui' => _T('item_oui'), 'non' => _T('item_non')), " &nbsp; ");
-		echo "</TD></TR>\n";
-
-		echo "<TR>";
-		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
 		echo _T('squelettesnono:info_calendrier_nono');
 		echo "</TD>";
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
 		afficher_choix('voir_calendrier_nono', $voir_calendrier_nono,
 			array('oui' => _T('item_oui'), 'non' => _T('item_non')), " &nbsp; ");
 		echo "</TD></TR>\n";
-	
+
+		echo "<TR>";
+		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
+		echo _T('squelettesnono:info_agenda_nono');
+		echo "</TD>";
+		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
+		afficher_choix('voir_agenda_nono', $voir_agenda_nono,
+			array('oui' => _T('item_oui'), 'non' => _T('item_non')), " &nbsp; ");
+				echo "</TD>";
+		echo "<TD ALIGN='$spip_lang_left' class='verdana2' ><input type='text' name='nb_evens_nono' value=\"$nb_evens_nono\" size='1' ></TD>";
+		echo "</TR>\n";
+
 		echo "<TR>";
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
 		echo _T('squelettesnono:info_articles_nono');
@@ -163,7 +171,9 @@ function exec_config_squelettes_Nono() {
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
 		afficher_choix('voir_articles_nono', $voir_articles_nono,
 			array('oui' => _T('item_oui'), 'non' => _T('item_non')), " &nbsp; ");
-		echo "</TD></TR>\n";
+		echo "</TD>";
+		echo "<TD ALIGN='$spip_lang_left' class='verdana2' ><input type='text' name='nb_articles_nono' value=\"$nb_articles_nono\" size='1' ></TD>";
+		echo "</TR>\n";
 
 		echo "<TR>";
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
@@ -172,7 +182,9 @@ function exec_config_squelettes_Nono() {
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
 		afficher_choix('voir_breves_nono', $voir_breves_nono,
 			array('oui' => _T('item_oui'), 'non' => _T('item_non')), " &nbsp; ");
-		echo "</TD></TR>\n";
+		echo "</TD>";
+		echo "<TD ALIGN='$spip_lang_left' class='verdana2' ><input type='text' name='nb_breves_nono' value=\"$nb_breves_nono\" size='1' ></TD>";
+		echo "</TR>\n";
 	
 		echo "<TR>";
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
@@ -181,6 +193,8 @@ function exec_config_squelettes_Nono() {
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
 		afficher_choix('voir_sites_nono', $voir_sites_nono,
 			array('oui' => _T('item_oui'), 'non' => _T('item_non')), " &nbsp; ");
+		echo "</TD>";
+		echo "<TD ALIGN='$spip_lang_left' class='verdana2' ><input type='text' name='nb_sites_nono' value=\"$nb_sites_nono\" size='1' >";
 		echo "</TD></TR>\n";
 
 		echo "<TR>";
@@ -190,6 +204,8 @@ function exec_config_squelettes_Nono() {
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
 		afficher_choix('voir_syndic_nono', $voir_syndic_nono,
 			array('oui' => _T('item_oui'), 'non' => _T('item_non')), " &nbsp; ");
+		echo "</TD>";
+		echo "<TD ALIGN='$spip_lang_left' class='verdana2' ><input type='text' name='nb_syndic_nono' value=\"$nb_syndic_nono\" size='1' >";
 		echo "</TD></TR>\n";
 	
 		echo "<TR>";
@@ -199,6 +215,8 @@ function exec_config_squelettes_Nono() {
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
 		afficher_choix('voir_messages_nono', $voir_messages_nono,
 			array('oui' => _T('item_oui'), 'non' => _T('item_non')), " &nbsp; ");
+		echo "</TD>";
+		echo "<TD ALIGN='$spip_lang_left' class='verdana2' ><input type='text' name='nb_messages_nono' value=\"$nb_messages_nono\" size='1' >";
 		echo "</TD></TR>\n";
 	
 		echo "</TABLE>";
@@ -208,7 +226,7 @@ function exec_config_squelettes_Nono() {
 
 	echo "<div style='text-align:right;'><input type='submit' name='Enregistrer' value='"._T('bouton_enregistrer')."' CLASS='fondo'></div>";
 
-	fin_cadre_trait_couleur();
+	fin_cadre_couleur();
 
 	/* interface de modification de la CSS */
 	
@@ -239,18 +257,19 @@ function exec_config_squelettes_Nono() {
 		echo bouton_radio("activer_edito", "oui", _T('squelettesnono:item_utiliser_edito'), $activer_edito == "oui", "changeVisible(this.checked, 'config-edito', 'block', 'none');");
 		echo " &nbsp;";
 		echo bouton_radio("activer_edito", "non", _T('squelettesnono:item_non_utiliser_edito'), $activer_edito == "non", "changeVisible(this.checked, 'config-edito', 'none', 'block');");
-	
+		
+		echo "<br><br>";
 		
 		// affichage optionnel	
-		if ($activer_edito = 'oui') $style = "display: none;";
-		else $style = "display: block;";
+		if ($activer_edito != 'non') $style = "display: block;";
+		else $style = "display: none;";
 		
 		echo "<div id='config-edito' style='$style'>";
 		
 		// Choix de la rubrique
 		include_spip('inc/rubriques');
 
-		echo selecteur_rubrique_html($id_edito, 'rubrique', ($GLOBALS['statut'] == 'publie'));
+		echo selecteur_rubrique($id_edito, 'rubrique', ($GLOBALS['statut'] == 'publie'));
 
 		echo "</div>";
 		
