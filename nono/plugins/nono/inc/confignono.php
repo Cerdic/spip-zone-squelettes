@@ -1,16 +1,23 @@
 <?php
 
-/***************************************************************************\
- *  SPIP, Systeme de publication pour l'internet                           *
- *                                                                         *
- *  Copyright (c) 2001-2006                                                *
- *  Arnaud Martin, Antoine Pitrou, Philippe Riviere, Emmanuel Saint-James  *
- *                                                                         *
- *  Ce programme est un logiciel libre distribue sous licence GNU/GPL.     *
- *  Pour plus de details voir le fichier COPYING.txt ou l'aide en ligne.   *
-
- *   modification faite des meta de Spip pour gérer les meta de Nono	   *
-\***************************************************************************/
+//    Fichier créé pour SPIP avec un bout de code emprunté à celui ci.
+//    Distribué sans garantie sous licence GPL./
+//    Copyright (C) 2006  Jean Sébastien Barboteu
+//
+//		code basé sur exec/config.php
+//
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 if (!defined("_ECRIRE_INC_VERSION")) return;
 include_ecrire('inc/meta');
@@ -28,18 +35,13 @@ function init_config_nono() {
 		'redacteur_nono' => '',
 		'directeur_nono' => '',
 		
-		'voir_agenda_nono' => 'non',
 		'nb_evens_nono' => '0',
-		'voir_calendrier_nono' => 'non',
+		'voir_calendrier_nono' => '',
 		'voir_articles_nono' => 'oui',
 		'nb_articles_nono' => '3',
-		'voir_breves_nono' => 'oui',
 		'nb_breves_nono' => '2',
-		'voir_sites_nono' => 'non',
 		'nb_sites_nono' => '0',
-		'voir_syndic_nono'=> 'non',
 		'nb_syndic_nono' => '0',
-		'voir_messages_nono' => 'non',
 		'nb_messages_nono' => '0',
 
 		
@@ -69,7 +71,7 @@ function init_config_nono() {
 function appliquer_modifs_nono() {
 	global $nono_base_version,$keywords,$directeur_nono,$redacteur_nono;
 	global $activer_edito,$id_edito,$activer_meslogos,$id_meslogos,$id_parent;
-	global $voir_agenda_nono,$voir_calendrier_nono,$voir_articles_nono,$voir_breves_nono,$voir_sites_nono,$voir_syndic_nono,$voir_messages_nono;
+	global $voir_calendrier_nono;
 	global $nb_evens_nono,$nb_articles_nono,$nb_breves_nono,$nb_sites_non,$nb_syndic_nono,$nb_messages_nono;
 	//include_spip(base/liste_meta_nono); // va chercher la liste des meta de nono
 		
@@ -88,18 +90,12 @@ function appliquer_modifs_nono() {
 		'activer_meslogos',
 		'id_meslogos',
 		
-		'voir_agenda_nono',
 		'nb_evens_nono',
 		'voir_calendrier_nono',
-		'voir_articles_nono',
 		'nb_articles_nono',
-		'voir_breves_nono',
 		'nb_breves_nono',
-		'voir_sites_nono',
 		'nb_sites_nono',
-		'voir_syndic_nono',
 		'nb_syndic_nono',
-		'voir_messages_nono',
 		'nb_messages_nono',
 
 	);

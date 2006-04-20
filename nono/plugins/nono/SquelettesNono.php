@@ -1,7 +1,8 @@
 <?php
+
 //    Fichier créé pour SPIP avec un bout de code emprunté à celui ci.
 //    Distribué sans garantie sous licence GPL./
-//    Copyright (C) 2006  Pierre ANDREWS
+//    Copyright (C) 2006  Jean Sébastien Barboteu
 //
 //    This program is free software; you can redistribute it and/or modify
 //    it under the terms of the GNU General Public License as published by
@@ -27,19 +28,5 @@ function SquelettesNono_ajouter_onglets($flux) {
   return $flux;
 }
 
-/*
-pas de tel point d'entree.
-function SquelettesMots_ajouter_boite_gauche($arguments) {  
-  global $connect_statut, $connect_toutes_rubriques, $spip_lang;
-  if ($connect_statut != '0minirezo' OR !$connect_toutes_rubriques) {
-	if($arguments['args']['exec'] == 'articles') {
-	  include('chercher_squelette.php');
-	  
-	$ext = $GLOBALS['extension_squelette'];
-	$arguments['data'] .= '<div class="cadre-info verdana1">'._T('SquelettesMots:utiliserasquelette',array('squelette' =>substr(cherher_squelette('article',$arguments['args']['id_rubrique'],$spip_lang),strpos('/')))).".$ext</div>";
-	}
-  }
-  return $arguments;
-}*/
 
 ?>

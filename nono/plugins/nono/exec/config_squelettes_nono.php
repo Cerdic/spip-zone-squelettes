@@ -51,17 +51,11 @@ function exec_config_squelettes_Nono() {
 	$directeur_nono=$GLOBALS['meta']['directeur_nono'];
 	$redacteur_nono=$GLOBALS['meta']['redacteur_nono'];
 		
-	$voir_agenda_nono=$GLOBALS['meta']['voir_agenda_nono'];
 	$voir_calendrier_nono=$GLOBALS['meta']['voir_calendrier_nono'];
-	$voir_articles_nono=$GLOBALS['meta']['voir_articles_nono'];
 	$nb_articles_nono=$GLOBALS['meta']['nb_articles_nono'];
-	$voir_breves_nono=$GLOBALS['meta']['voir_breves_nono'];
 	$nb_breves_nono=$GLOBALS['meta']['nb_breves_nono'];
-	$voir_sites_nono=$GLOBALS['meta']['voir_sites_nono'];
 	$nb_sites_nono=$GLOBALS['meta']['nb_sites_nono'];
-	$voir_syndic_nono=$GLOBALS['meta']['voir_syndic_nono'];
 	$nb_syndic_nono=$GLOBALS['meta']['nb_syndic_nono'];
-	$voir_messages_nono=$GLOBALS['meta']['voir_messages_nono'];
 	$nb_messages_nono=$GLOBALS['meta']['nb_messages_nono'];
 	
 	//fonction edito
@@ -149,8 +143,9 @@ function exec_config_squelettes_Nono() {
 		echo _T('squelettesnono:info_calendrier_nono');
 		echo "</TD>";
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
-		afficher_choix('voir_calendrier_nono', $voir_calendrier_nono,
-			array('oui' => _T('item_oui'), 'non' => _T('item_non')), " &nbsp; ");
+			echo bouton_radio_nono("voir_calendrier_nono", " ", _T('item_oui'), $voir_calendrier_nono == "oui");
+			echo " &nbsp;";
+			echo bouton_radio_nono("voir_calendrier_nono", "", _T('item_non'), $voir_calendrier_nono == "");
 		echo "</TD></TR>\n";
 
 		echo "<TR>";
@@ -158,66 +153,84 @@ function exec_config_squelettes_Nono() {
 		echo _T('squelettesnono:info_agenda_nono');
 		echo "</TD>";
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
-		afficher_choix('voir_agenda_nono', $voir_agenda_nono,
-			array('oui' => _T('item_oui'), 'non' => _T('item_non')), " &nbsp; ");
-				echo "</TD>";
-		echo "<TD ALIGN='$spip_lang_left' class='verdana2' ><input type='text' name='nb_evens_nono' value=\"$nb_evens_nono\" size='1' ></TD>";
-		echo "</TR>\n";
+		echo"<CENTER><select name='nb_evens_nono' class='fondo' size='1'>\n";
+			echo"<OPTION ".mySel('0',$nb_evens_nono).">0</OPTION>\n";
+			echo"<OPTION ".mySel('1',$nb_evens_nono).">1</OPTION>\n";
+			echo"<OPTION ".mySel('2',$nb_evens_nono).">2</OPTION>\n";
+			echo"<OPTION ".mySel('3',$nb_evens_nono).">3</OPTION>\n";
+			echo"<OPTION ".mySel('4',$nb_evens_nono).">4</OPTION>\n";
+			echo"<OPTION ".mySel('5',$nb_evens_nono).">5</OPTION>\n";
+		echo"</select></CENTER></TD></TR>\n";
 
 		echo "<TR>";
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
 		echo _T('squelettesnono:info_articles_nono');
 		echo "</TD>";
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
-		afficher_choix('voir_articles_nono', $voir_articles_nono,
-			array('oui' => _T('item_oui'), 'non' => _T('item_non')), " &nbsp; ");
-		echo "</TD>";
-		echo "<TD ALIGN='$spip_lang_left' class='verdana2' ><input type='text' name='nb_articles_nono' value=\"$nb_articles_nono\" size='1' ></TD>";
-		echo "</TR>\n";
+		echo"<CENTER><select name='nb_articles_nono' class='fondo' size='1'>\n";
+			echo"<OPTION ".mySel('0',$nb_articles_nono).">0</OPTION>\n";
+			echo"<OPTION ".mySel('1',$nb_articles_nono).">1</OPTION>\n";
+			echo"<OPTION ".mySel('2',$nb_articles_nono).">2</OPTION>\n";
+			echo"<OPTION ".mySel('3',$nb_articles_nono).">3</OPTION>\n";
+			echo"<OPTION ".mySel('4',$nb_articles_nono).">4</OPTION>\n";
+			echo"<OPTION ".mySel('5',$nb_articles_nono).">5</OPTION>\n";
+		echo"</select></CENTER></TD></TR>\n";
 
 		echo "<TR>";
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
 		echo _T('squelettesnono:info_breves_nono');
 		echo "</TD>";
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
-		afficher_choix('voir_breves_nono', $voir_breves_nono,
-			array('oui' => _T('item_oui'), 'non' => _T('item_non')), " &nbsp; ");
-		echo "</TD>";
-		echo "<TD ALIGN='$spip_lang_left' class='verdana2' ><input type='text' name='nb_breves_nono' value=\"$nb_breves_nono\" size='1' ></TD>";
-		echo "</TR>\n";
+		echo"<CENTER><select name='nb_breves_nono' class='fondo' size='1'>\n";
+			echo"<OPTION ".mySel('0',$nb_breves_nono).">0</OPTION>\n";
+			echo"<OPTION ".mySel('1',$nb_breves_nono).">1</OPTION>\n";
+			echo"<OPTION ".mySel('2',$nb_breves_nono).">2</OPTION>\n";
+			echo"<OPTION ".mySel('3',$nb_breves_nono).">3</OPTION>\n";
+			echo"<OPTION ".mySel('4',$nb_breves_nono).">4</OPTION>\n";
+			echo"<OPTION ".mySel('5',$nb_breves_nono).">5</OPTION>\n";
+		echo"</select></CENTER></TD></TR>\n";
 	
 		echo "<TR>";
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
 		echo _T('squelettesnono:info_sites_nono');
 		echo "</TD>";
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
-		afficher_choix('voir_sites_nono', $voir_sites_nono,
-			array('oui' => _T('item_oui'), 'non' => _T('item_non')), " &nbsp; ");
-		echo "</TD>";
-		echo "<TD ALIGN='$spip_lang_left' class='verdana2' ><input type='text' name='nb_sites_nono' value=\"$nb_sites_nono\" size='1' >";
-		echo "</TD></TR>\n";
+		echo"<CENTER><select name='nb_sites_nono' class='fondo' size='1'>\n";
+			echo"<OPTION ".mySel('0',$nb_sites_nono).">0</OPTION>\n";
+			echo"<OPTION ".mySel('1',$nb_sites_nono).">1</OPTION>\n";
+			echo"<OPTION ".mySel('2',$nb_sites_nono).">2</OPTION>\n";
+			echo"<OPTION ".mySel('3',$nb_sites_nono).">3</OPTION>\n";
+			echo"<OPTION ".mySel('4',$nb_sites_nono).">4</OPTION>\n";
+			echo"<OPTION ".mySel('5',$nb_sites_nono).">5</OPTION>\n";
+		echo"</select></CENTER></TD></TR>\n";
 
 		echo "<TR>";
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
 		echo _T('squelettesnono:info_syndic_nono');
 		echo "</TD>";
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
-		afficher_choix('voir_syndic_nono', $voir_syndic_nono,
-			array('oui' => _T('item_oui'), 'non' => _T('item_non')), " &nbsp; ");
-		echo "</TD>";
-		echo "<TD ALIGN='$spip_lang_left' class='verdana2' ><input type='text' name='nb_syndic_nono' value=\"$nb_syndic_nono\" size='1' >";
-		echo "</TD></TR>\n";
+		echo"<CENTER><select name='nb_syndic_nono' class='fondo' size='1'>\n";
+			echo"<OPTION ".mySel('0',$nb_syndic_nono).">0</OPTION>\n";
+			echo"<OPTION ".mySel('1',$nb_syndic_nono).">1</OPTION>\n";
+			echo"<OPTION ".mySel('2',$nb_syndic_nono).">2</OPTION>\n";
+			echo"<OPTION ".mySel('3',$nb_syndic_nono).">3</OPTION>\n";
+			echo"<OPTION ".mySel('4',$nb_syndic_nono).">4</OPTION>\n";
+			echo"<OPTION ".mySel('5',$nb_syndic_nono).">5</OPTION>\n";
+		echo"</select></CENTER></TD></TR>\n";
 	
 		echo "<TR>";
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
 		echo _T('squelettesnono:info_messages_nono');
 		echo "</TD>";
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
-		afficher_choix('voir_messages_nono', $voir_messages_nono,
-			array('oui' => _T('item_oui'), 'non' => _T('item_non')), " &nbsp; ");
-		echo "</TD>";
-		echo "<TD ALIGN='$spip_lang_left' class='verdana2' ><input type='text' name='nb_messages_nono' value=\"$nb_messages_nono\" size='1' >";
-		echo "</TD></TR>\n";
+		echo"<CENTER><select name='nb_messages_nono' class='fondo' size='1'>\n";
+			echo"<OPTION ".mySel('0',$nb_messages_nono).">0</OPTION>\n";
+			echo"<OPTION ".mySel('1',$nb_messages_nono).">1</OPTION>\n";
+			echo"<OPTION ".mySel('2',$nb_messages_nono).">2</OPTION>\n";
+			echo"<OPTION ".mySel('3',$nb_messages_nono).">3</OPTION>\n";
+			echo"<OPTION ".mySel('4',$nb_messages_nono).">4</OPTION>\n";
+			echo"<OPTION ".mySel('5',$nb_messages_nono).">5</OPTION>\n";
+		echo"</select></CENTER></TD></TR>\n";
 	
 		echo "</TABLE>";
 	
@@ -230,21 +243,21 @@ function exec_config_squelettes_Nono() {
 
 	/* interface de modification de la CSS */
 	
-	debut_cadre_trait_couleur("tout-site.png", false, "", _T('squelettesnono:css_nono'));
+	//debut_cadre_trait_couleur("tout-site.png", false, "", _T('squelettesnono:css_nono'));
 	
-		echo "<div style='text-align:right;'><input type='submit' name='Enregistrer' value='"._T('bouton_enregistrer')."' CLASS='fondo'></div>";
+		//echo "<div style='text-align:right;'><input type='submit' name='Enregistrer' value='"._T('bouton_enregistrer')."' CLASS='fondo'></div>";
 			
-	fin_cadre_trait_couleur();
+	//fin_cadre_trait_couleur();
 
 	
 	
 	/* interface de saisie des menus Programmables */
 	
-	debut_cadre_trait_couleur("site-24.gif", false, "", _T('squelettesnono:menus_nono'));
+	//debut_cadre_trait_couleur("site-24.gif", false, "", _T('squelettesnono:menus_nono'));
 	
-		echo "<div style='text-align:right;'><input type='submit' name='Enregistrer' value='"._T('bouton_enregistrer')."' CLASS='fondo'></div>";
+		//echo "<div style='text-align:right;'><input type='submit' name='Enregistrer' value='"._T('bouton_enregistrer')."' CLASS='fondo'></div>";
 			
-	fin_cadre_trait_couleur();
+	//fin_cadre_trait_couleur();
 
 	
 	

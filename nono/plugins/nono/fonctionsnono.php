@@ -1,5 +1,23 @@
 <?php
 
+//    Fichier créé pour SPIP avec un bout de code emprunté à celui ci.
+//    Distribué sans garantie sous licence GPL./
+//    Copyright (C) 2006  Jean Sébastien Barboteu
+//
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+
 $nono_habillage='nono_habillage.css';
 
 $GLOBALS['dossier_squelettes']='nono';
@@ -356,6 +374,144 @@ else {echo "Image inexistante ou aucun support ";
         if ($type){echo "pour le format $type";}
         else {echo "pour ce format de fichier";}
 exit();}}
+
+/*
+ *   +----------------------------------+
+ *    Nom du Filtre : Sommaire de l'article                                               
+ *   +----------------------------------+
+ *    Date : Vendredi 6 juin 2003
+ *    Auteur :  Noplay (noplay@altern.org) 
+ *              Aurélien PIERARD : aurelien.pierard@sig.premier-ministre.gouv.fr                                     
+ *   +-------------------------------------+
+ *    Fonctions de ce filtre :
+ *      Cette modification permet d'afficher le sommaire de l'article 
+ *      généré dynamiquement à partir du texte de l'article. Vous pouvez naviguer 
+ *      dans l'article en cliquant sur les titres du sommaires. 
+ *
+ *      Tous ce qui ce trouve entre {{{ et }}} est considéré comme un titre à ajouter au sommaire de l'article.
+ *   +-------------------------------------+ 
+ *  
+ * Pour toute suggestion, remarque, proposition d'ajout
+ * reportez-vous au forum de l'article :
+ * http://www.uzine.net/spip_contrib/article.php3?id_article=76
+*/
+//SOMMAIRE
+function sommaire_article($texte)
+{
+		$artsuite = 0;
+        $page = split('-----', $texte);
+        $uri_art = generer_url_article($GLOBALS['id_article']);
+        $uri_art .= strpos($uri_art, '?') ? '&' : '?';
+
+	$i=0;
+	$texte="";
+	while($page[$i]){
+		// On ajoute une ancre aux intertitres "{{{ }}}" que l'on utilise pour créer le sommaire
+		preg_match_all("|\{\{\{(.*)\}\}\}|U",$page[$i], $regs);
+	 	$nb=1;
+		for($j=0;$j<count($regs[1]);$j++){
+			$p=$i+1;
+	    	$texte=$texte."<a href=\"". $uri_art . "artsuite=" .$i. "#sommaire_".$nb."\" title=\"".$regs[1][$j]."\">".$regs[1][$j]."</a>, p$p<br />";
+			$nb++;
+	    }
+		$i++;
+	}
+		return $texte;
+}
+// Fin du filtre sommaire
+
+/*
+ *   +----------------------------------+
+ *    Nom du Filtre : decouper_en_page                                               
+ *   +----------------------------------+
+ *    Date : Vendredi 6 juin 2003
+ *    Auteur :  "gpl"  : gpl@macplus.org  
+ *              Aurélien PIERARD : aurelien.pierard@sig.premier-ministre.gouv.fr
+ *   +-------------------------------------+
+ *    Fonctions de ce filtre :
+ *		Il sert a présenter un article sur plusieurs pages  
+ *   +-------------------------------------+ 
+ *  
+ * Pour toute suggestion, remarque, proposition d'ajout
+ * reportez-vous au forum de l'article :
+ * http://www.uzine.net/spip_contrib/article.php3?id_article=62
+*/
+
+
+function decouper_en_page($texte) {
+        global $artsuite, $var_recherche, $num_pages;
+		
+        if (empty($artsuite)) $artsuite = 0;
+	
+		// on divise la page (séparateur : "-----")        
+        $page = split('-----', $texte);
+        // Nombre total de pages
+        $num_pages = count($page);
+
+        // Si une seule page ou numéro illégal, alors retourner tout le texte.
+        // Cas spécial : si var_recherche positionné, tout renvoyer pour permettre à la surbrillance de fonctionner correctement.
+        if ($num_pages == 1 || !empty($var_recherche) || $artsuite < 0 || $artsuite > $num_pages) {
+			// On place les ancres sur les intertitres
+			$texte = preg_replace("|\{\{\{(.*)\}\}\}|U","<a name=\"sommaire_#NB_TITRE_DE_MON_ARTICLE#\">$0</a>", $texte);
+			$array = explode("#NB_TITRE_DE_MON_ARTICLE#" , $texte);
+			$res =count($array);
+			$i =1;
+			$texte=$array[0];
+			while($i<$res){
+				$texte=$texte.$i.$array[$i];
+				$i++;
+			}
+			return $texte;
+        } 
+
+        $p_prec = $artsuite - 1;
+        $p_suiv = $artsuite + 1;
+        $uri_art = generer_url_article($GLOBALS['id_article']);
+        $uri_art .= strpos($uri_art, '?') ? '&' : '?';
+
+		// On place les ancres sur les intertitres
+		$page[$artsuite] = preg_replace("|\{\{\{(.*)\}\}\}|U","<a name=\"sommaire_#NB_TITRE_DE_MON_ARTICLE#\">$0</a>", $page[$artsuite]);
+		$array = explode("#NB_TITRE_DE_MON_ARTICLE#" , $page[$artsuite]);
+		$res =count($array);
+		$i =1;
+		$page[$artsuite]=$array[0];
+		while($i<$res){
+			$page[$artsuite]=$page[$artsuite].$i.$array[$i];
+			$i++;
+		}
+		// Pagination
+	    switch (TRUE) {
+			case ($artsuite == 0):
+				$precedent = "";
+				$suivant = "<a href='" . $uri_art . "artsuite=" . $p_suiv ."&recalcul=oui'>&gt;&gt;</a>";
+				break;
+			case ($artsuite == ($num_pages-1)):
+				$precedent = "<a href='" . $uri_art . "artsuite=" . $p_prec ."&recalcul=oui'>&lt;&lt;</a>";
+				$suivant = "";
+				break;
+			default:
+				$precedent = "<a href='" . $uri_art . "artsuite=" . $p_prec . "&recalcul=oui'>&lt;&lt;</a>";
+				$suivant = "<a href='" . $uri_art . "artsuite=" . $p_suiv . "&recalcul=oui'>&gt;&gt;</a>";
+				break;
+        }
+    
+        for ($i = 0; $i < $num_pages; $i++) {
+			$j = $i;
+			if ($i == $artsuite) {
+				$milieu .= " <strong>" . ++$j . "</strong> ";
+            } 
+			else {
+				$milieu .= " <a href='" . $uri_art . "artsuite=$i&recalcul=oui'>" . ++$j . "</a> ";
+			}
+        }
+
+        // Ici, on peut personnaliser la présentation
+        $resultat .= $page[$artsuite];
+        $resultat .= "<p class='pagination'><div class='pagination' align='center'>pages : $precedent $milieu $suivant</div></p>";
+        return $resultat;
+}
+// FIN du Filtre decouper_en_page
+
 
 
 ?>
