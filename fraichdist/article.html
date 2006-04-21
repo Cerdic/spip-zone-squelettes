@@ -1,192 +1,1 @@
-#CACHE{86400}
-<BOUCLE_article_principal(ARTICLES) {id_article}><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html dir="#LANG_DIR" lang="#LANG">
-<head>
-<title>[(#TITRE|textebrut)]</title>
-<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
-
-<!-- media="..." permet de ne pas utiliser ce style sous Netscape 4 (sinon plantage) -->
-<link rel="stylesheet" href="#CHEMIN{habillage.css}" type="text/css" media="projection, screen, tv" />
-
-<!-- media="print" permet d'utiliser cette feuille de style quand vous imprimez depuis votre navigateur -->
-<link rel="stylesheet" href="#CHEMIN{impression.css}" type="text/css" media="print" />
-
-[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
-</head>
-
-<body>
-<div id="principal">
-
-<!-- Entete de la page + titre du site -->
-<INCLURE{fond=inc-top}{lang}>
-
-<!-- Contenu de l'article -->
-<div id="contenu">
-
-<div class="cartouche">
-[(#LOGO_ARTICLE|right||reduire_image{200,200})]
-[<div class="surtitre">#DEBUT_SURLIGNE(#SURTITRE)#FIN_SURLIGNE</div>]
-<h1 class="titre">#DEBUT_SURLIGNE#TITRE#FIN_SURLIGNE</h1>
-[<div class="soustitre">#DEBUT_SURLIGNE(#SOUSTITRE)#FIN_SURLIGNE</div>]
-<small>[(#DATE|nom_jour)] [(#DATE|affdate).]</small>
-</div>
-
-<br class="spacer" />
-
-<div class="encart">
-
-<!-- Auteurs de l'article -->
-<B_auteurs>
-<div class="divers" title="<:memes_auteurs:>">
-<div class="structure"><:memes_auteurs:></div>
-<ul>
-<BOUCLE_auteurs(AUTEURS) {id_article} {par nom}>
-<li><div class="titre"><a href="#URL_AUTEUR">#NOM</a></div>
-[<p><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></p>]
-[<p>(#BIO)</p>]
-
-<B_articles_auteur>
-<ul>
-<BOUCLE_articles_auteur(ARTICLES) {id_auteur} {par popularite}{inverse} {0,5}>
-<li><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></li>
-</BOUCLE_articles_auteur>
-</ul>
-</B_articles_auteur>
-
-</li>
-</BOUCLE_auteurs>
-</ul>
-</div>
-</B_auteurs>
-
-<!-- Liens des forums -->
-<B_forums_liens>
-<div class="forums" title="<:derniers_commentaires:>">
-<BOUCLE_compte_messages(FORUMS){id_article}{plat}>
-</BOUCLE_compte_messages>[<h2 class="titre">(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|=={1}|?{<:commentaire:>,<:commentaires:>})]</h2>]</B_compte_messages>
-<ul>
-<BOUCLE_forums_liens(FORUMS){id_article}{par date}{0,5}>
-<li>[(#DATE|affdate_court) : ]<a href="#forum#ID_FORUM">#TITRE</a></li>
-</BOUCLE_forums_liens>
-</ul>
-</div>
-</B_forums_liens>
-
-[<div class='reponse_formulaire'><a name='sp#ID_ARTICLE' id='sp#ID_ARTICLE'></a>(#FORMULAIRE_SIGNATURE)</div>]
-
-</div>
-
-[<div class="chapo">#DEBUT_SURLIGNE(#CHAPO)#FIN_SURLIGNE</div>]
-[<div class="texte">#DEBUT_SURLIGNE(#TEXTE)#FIN_SURLIGNE</div>]
-[<div class="ps">#DEBUT_SURLIGNE(#PS)#FIN_SURLIGNE</div>]
-[<div class="notes">#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
-
-<BOUCLE_afficher_document(DOCUMENTS){id_document}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
-<div class="spip_documents spip_documents_center">
-[<h3 class="spip">(#TITRE)</h3>]
-[<div>(#EMBED_DOCUMENT)</div>]
-[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
-</div></BOUCLE_afficher_document>
-
-<B_documents_portfolio>
-<div class="spip_documents"><hr />
-<BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
-<div style="float: left;">
-[<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT">(#LOGO_DOCUMENT{0,60})</a>]
-<small>[<div class="spip_doc_titre">(#TITRE)</div>][<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]</small>
-</div>
-</BOUCLE_documents_portfolio>
-</div>
-<br class="spacer" />
-</B_documents_portfolio>
-
-<B_documents_joints>
-<div class="spip_documents"><hr />
-<BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {doublons}>
-[(#LOGO_DOCUMENT|#URL_DOCUMENT)]<small>[<div class="spip_doc_titre">(#TITRE)</div>][<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]</small>
-</BOUCLE_documents_joints>
-</div>
-<br class="spacer" />
-</B_documents_joints>
-
-<!-- Signatures petition -->
-
-<B_signatures>
-<BOUCLE_signatures_decompte(SIGNATURES){id_article}></BOUCLE_signatures_decompte>
-<div class="signatures-titre"><:signatures_petition:>: #TOTAL_BOUCLE</div>
-<//B_signatures_decompte>
-
-<table class="signatures">
-<thead class="structure">
-<tr>
-<th><:date:></th>
-<th><:nom:></th>
-<th><:message:></th>
-</tr>
-</thead>
-<tbody>
-<BOUCLE_signatures(SIGNATURES) {id_article} {par date}{inverse} {debut_signatures,30}>
-<tr>
-<td class="signature-date">[(#DATE|affdate_court)]</td>
-<td class="signature-nom">#NOM[ <a href="#URL_SITE">(#NOM_SITE)</a>]</td>
-[<td class="signature-message">(#MESSAGE)</td>]
-</tr>
-</BOUCLE_signatures>
-</tbody>
-</table>
-</B_signatures>
-
-
-<!-- Forums -->
-[<div class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a></div>]
-<INCLURE{fond=inc-forum}{id_article}>
-
-</div>
-
-<div id="navigation">
-<h1 class="structure"><:navigation:></h1>
-
-<!-- Formulaire de recherche -->
-[(#FORMULAIRE_RECHERCHE)]
-
-<!-- Menu de navigation mots-cles -->
-<B_mots>
-<div class="divers" title="<:mots_clefs:>">
-<h2 class="titre"><:mots_clefs:></h2>
-<ul>
-<BOUCLE_mots(MOTS) {id_article} {par titre}>
-<li><a href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
-<B_articles_mots>
-<ul>
-<BOUCLE_articles_mots(ARTICLES) {id_mot} {par hasard} {0,4}>
-<li><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></li>
-</BOUCLE_articles_mots>
-</ul>
-</B_articles_mots>
-</li>
-</BOUCLE_mots>
-</ul>
-</div>
-</B_mots>
-
-<!-- Articles dans la meme rubrique -->
-<B_articles_rubrique>
-<div class="breves">
-<h2 class="titre"><:meme_rubrique:></h2>
-<ul>
-<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par date}{inverse}>
-<li><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html)"][ class="(#EXPOSE)"]>#TITRE</a></li>
-</BOUCLE_articles_rubrique>
-</ul>
-</div>
-</B_articles_rubrique>
-
-</div>
-
-<!-- Pied de page -->
-<INCLURE{fond=inc-pied}{lang}>
-
-</div>
-</body>
-</html>
-</BOUCLE_article_principal>
+#CACHE{86400}<BOUCLE_article_principal(ARTICLES) {id_article}><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html dir="#LANG_DIR" lang="#LANG"><head><title>[(#TITRE|textebrut)]</title><meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" /><!-- media="..." permet de ne pas utiliser ce style sous Netscape 4 (sinon plantage) --><link rel="stylesheet" href="#CHEMIN{habillage.css}" type="text/css" media="projection, screen, tv" /><!-- media="print" permet d'utiliser cette feuille de style quand vous imprimez depuis votre navigateur --><link rel="stylesheet" href="#CHEMIN{impression.css}" type="text/css" media="print" />[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]</head><body><div id="principal"><!-- Entete de la page + titre du site --><INCLURE{fond=inc-top}{lang}><!-- Contenu de l'article --><div id="contenu"><div class="cartouche">[(#LOGO_ARTICLE|right||reduire_image{200,200})][<div class="surtitre">#DEBUT_SURLIGNE(#SURTITRE)#FIN_SURLIGNE</div>]<h1 class="titre">#DEBUT_SURLIGNE#TITRE#FIN_SURLIGNE</h1>[<div class="soustitre">#DEBUT_SURLIGNE(#SOUSTITRE)#FIN_SURLIGNE</div>]<small>[(#DATE|nom_jour)] [(#DATE|affdate).]</small></div><br class="spacer" /><div class="encart"><!-- Auteurs de l'article --><B_auteurs><div class="forums"><div class="structure"><:auteurs:></div><ul><BOUCLE_auteurs(AUTEURS) {id_article} {par nom}><li><div class="titre"><a href="#URL_AUTEUR">#NOM</a></div>[<p><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></p>][<p>(#BIO)</p>]<B_articles_auteur><ul title="<:articles_auteur:>"><BOUCLE_articles_auteur(ARTICLES) {id_auteur} {par popularite}{inverse} {exclus} {0,5}><li><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></li></BOUCLE_articles_auteur></ul></B_articles_auteur></li></BOUCLE_auteurs></ul></div></B_auteurs><!-- Liens des forums --><B_forums_liens><div class="forums" title="<:derniers_commentaires:>"><BOUCLE_compte_messages(FORUMS){id_article}{plat}></BOUCLE_compte_messages>[<h2 class="titre">(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|=={1}|?{<:commentaire:>,<:commentaires:>})]</h2>]</B_compte_messages><ul><BOUCLE_forums_liens(FORUMS){id_article}{par date}{0,5}><li>[(#DATE|affdate_court) : ]<a href="#forum#ID_FORUM">#TITRE</a></li></BOUCLE_forums_liens></ul></div></B_forums_liens>[<div class='reponse_formulaire'><a name='sp#ID_ARTICLE' id='sp#ID_ARTICLE'></a>(#FORMULAIRE_SIGNATURE)</div>]</div>[<div class="chapo">#DEBUT_SURLIGNE(#CHAPO)#FIN_SURLIGNE</div>][<div class="texte">#DEBUT_SURLIGNE(#TEXTE)#FIN_SURLIGNE</div>][<div class="ps">#DEBUT_SURLIGNE(#PS)#FIN_SURLIGNE</div>][<div class="notes">#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]<BOUCLE_afficher_document(DOCUMENTS){id_document}{mode=document}{extension==(png|jpg|gif)$}{doublons}><div class="spip_documents spip_documents_center">[<h3 class="spip">(#TITRE)</h3>][<div>(#EMBED_DOCUMENT)</div>][<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]</div></BOUCLE_afficher_document><B_documents_portfolio><div class="spip_documents"><hr /><BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension==(png|jpg|gif)$}{doublons}><div style="float: left;">[<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT">(#LOGO_DOCUMENT{0,60})</a>]<small>[<div class="spip_doc_titre">(#TITRE)</div>][<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]</small></div></BOUCLE_documents_portfolio></div><br class="spacer" /></B_documents_portfolio><B_documents_joints><div class="spip_documents"><hr /><BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {doublons}>[(#LOGO_DOCUMENT|#URL_DOCUMENT)]<small>[<div class="spip_doc_titre">(#TITRE)</div>][<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]</small></BOUCLE_documents_joints></div><br class="spacer" /></B_documents_joints><!-- Signatures petition --><B_signatures><BOUCLE_signatures_decompte(SIGNATURES){id_article}></BOUCLE_signatures_decompte><div class="signatures-titre"><:signatures_petition:>: #TOTAL_BOUCLE</div><//B_signatures_decompte><table class="signatures"><thead class="structure"><tr><th><:date:></th><th><:nom:></th><th><:message:></th></tr></thead><tbody><BOUCLE_signatures(SIGNATURES) {id_article} {par date}{inverse} {debut_signatures,30}><tr><td class="signature-date">[(#DATE|affdate_court)]</td><td class="signature-nom">#NOM[ <a href="#URL_SITE">(#NOM_SITE)</a>]</td>[<td class="signature-message">(#MESSAGE)</td>]</tr></BOUCLE_signatures></tbody></table></B_signatures><!-- Forums -->[<div class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a></div>]<INCLURE{fond=inc-forum}{id_article}></div><div id="navigation"><h1 class="structure"><:navigation:></h1><!-- Formulaire de recherche -->[(#FORMULAIRE_RECHERCHE)]<!-- Articles dans la meme rubrique --><B_articles_rubrique><div class="breves" title="<:meme_rubrique:>"><h2 class="titre"><a href="#URL_RUBRIQUE"><:meme_rubrique:></a></h2><ul><BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par date}{inverse}><li><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html)"][ class="(#EXPOSE)"]>#TITRE</a></li></BOUCLE_articles_rubrique></ul></div></B_articles_rubrique><!-- Menu de navigation mots-cles --><B_mots><div class="divers" title="<:mots_clefs:>"><h2 class="titre"><:mots_clefs:></h2><ul><BOUCLE_mots(MOTS) {id_article} {par titre}><li><a href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a><B_articles_mots><ul><BOUCLE_articles_mots(ARTICLES) {id_mot} {par hasard} {0,4}><li><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></li></BOUCLE_articles_mots></ul></B_articles_mots></li></BOUCLE_mots></ul></div></B_mots></div><!-- Pied de page --><INCLURE{fond=inc-pied}{lang}></div></body></html></BOUCLE_article_principal>
