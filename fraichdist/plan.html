@@ -1,111 +1,1 @@
-#CACHE{7200}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html dir="#LANG_DIR" lang="#LANG">
-<head>
-<title>[(#NOM_SITE_SPIP|textebrut)]</title>
-<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
-<meta name="robots" content="none" />
-
-<!-- media="..." permet de ne pas utiliser ce style sous Netscape 4 (sinon plantage) -->
-<link rel="stylesheet" href="#CHEMIN{habillage.css}" type="text/css" media="projection, screen, tv" />
-
-<!-- media="print" permet d'utiliser cette feuille de style quand vous imprimez depuis votre navigateur -->
-<link rel="stylesheet" href="#CHEMIN{impression.css}" type="text/css" media="print" />
-
-[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
-</head>
-
-<body>
-<div id="principal">
-
-<!-- Entete de la page + titre du site -->
-<INCLURE{fond=inc-top}{lang}>
-
-<h1 class="structure"><:plan_site:></h1>
-
-<!-- Plan du site -->
-
-<div id="contenu">
-
-[(#REM) Le plan de site ci-dessous est à adapter selon les besoins. En particulier, on n'aura pas nécessairement besoin de tous les éléments (sous-rubriques, articles, brèves et sites) ]
-
-<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
-
-<div id="plan">
-
-<h2><a href="#URL_RUBRIQUE">#TITRE</a></h2>
-
-<div class="encart">
-
-<!-- Breves -->
-<B_breves>
-<div class="breves">
-<h3 class="titre"><:breves:></h3>
-<ul>
-<BOUCLE_breves(BREVES) {id_secteur} {par date}{inverse} {0,15}>
-<li>[(#DATE|affdate_court) : ]<a href="#URL_BREVE">#TITRE</a></li>
-</BOUCLE_breves>
-</ul>
-</div>
-</B_breves>
-
-<!-- Sur le Web -->
-<B_sites>
-<div class="divers">
-<h3 class="titre"><:sites_web:></h3>
-<ul>
-<BOUCLE_sites(SITES) {id_secteur} {par nom_site}>
-<li><a href="#URL_PAGE?site#ID_SYNDIC">#NOM_SITE</a></li>
-</BOUCLE_sites>
-</ul>
-</div>
-</B_sites>
-
-</div>
-
-<!-- Articles et sous-rubriques -->
-
-<B_articles_racine>
-<h3 class="structure"><:articles:></h3><ul>
-<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
-<li><a href="#URL_ARTICLE">#TITRE</a></li>
-</BOUCLE_articles_racine>
-</ul>
-</B_articles_racine>
-
-<B_rubriques>
-<ul>
-
-<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
-<li><strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
-
-<B_articles>
-<ul>
-<BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
-<li><a href="#URL_ARTICLE">#TITRE</a></li>
-</BOUCLE_articles>
-</ul>
-</B_articles>
-
-<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
-
-</li>
-</BOUCLE_rubriques>
-
-</ul>
-</B_rubriques>
-
-
-</div>
-
-<br class="spacer" />
-</BOUCLE_secteurs>
-
-</div>
-
-<!-- Pied de page -->
-<INCLURE{fond=inc-pied}{lang}>
-
-</div>
-</body>
-</html>
+#CACHE{7200}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html dir="#LANG_DIR" lang="#LANG"><head><title>[(#NOM_SITE_SPIP|textebrut)] - <:plan_site:></title><meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" /><meta name="robots" content="none" /><!-- media="..." permet de ne pas utiliser ce style sous Netscape 4 (sinon plantage) --><link rel="stylesheet" href="#CHEMIN{habillage.css}" type="text/css" media="projection, screen, tv" /><!-- media="print" permet d'utiliser cette feuille de style quand vous imprimez depuis votre navigateur --><link rel="stylesheet" href="#CHEMIN{impression.css}" type="text/css" media="print" />[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]</head><body><div id="principal"><!-- Entete de la page + titre du site --><INCLURE{fond=inc-top}{lang}><h1 class="structure"><:plan_site:></h1><!-- Plan du site --><div id="contenu">[(#REM) Le plan de site ci-dessous est a adapter selon les besoins. En particulier, on n'aura pas necessairement besoin de tous les elements (sous-rubriques, articles, breves et sites) ]<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}><div id="plan"><h2><a href="#URL_RUBRIQUE">#TITRE</a></h2><div class="encart"><!-- Breves --><B_breves><div class="breves"><h3 class="titre"><:breves:></h3><ul><BOUCLE_breves(BREVES) {id_secteur} {par date}{inverse} {0,15}><li>[(#DATE|affdate_court) : ]<a href="#URL_BREVE">#TITRE</a></li></BOUCLE_breves></ul></div></B_breves><!-- Sur le Web --><B_sites><div class="divers"><h3 class="titre"><:sites_web:></h3><ul><BOUCLE_sites(SITES) {id_secteur} {par nom_site}><li><a href="#URL_PAGE?site#ID_SYNDIC">#NOM_SITE</a></li></BOUCLE_sites></ul></div></B_sites></div><!-- Articles et sous-rubriques --><B_articles_racine><h3 class="structure"><:articles:></h3><ul><BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}><li><a href="#URL_ARTICLE">#TITRE</a></li></BOUCLE_articles_racine></ul></B_articles_racine><B_rubriques><ul><BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}><li><strong><a href="#URL_RUBRIQUE">#TITRE</a></strong><B_articles><ul><BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}><li><a href="#URL_ARTICLE">#TITRE</a></li></BOUCLE_articles></ul></B_articles><BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques></li></BOUCLE_rubriques></ul></B_rubriques></div><br class="spacer" /></BOUCLE_secteurs></div><!-- Pied de page --><INCLURE{fond=inc-pied}{lang}></div></body></html>

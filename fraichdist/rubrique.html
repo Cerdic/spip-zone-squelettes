@@ -1,161 +1,1 @@
-#CACHE{7200}
-<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html dir="#LANG_DIR" lang="#LANG">
-<head>
-<title>[(#TITRE|textebrut)]</title>
-<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
-
-<!-- media="..." permet de ne pas utiliser ce style sous Netscape 4 (sinon plantage) -->
-<link rel="stylesheet" href="#CHEMIN{habillage.css}" type="text/css" media="projection, screen, tv" />
-
-<!-- media="print" permet d'utiliser cette feuille de style quand vous imprimez depuis votre navigateur -->
-<link rel="stylesheet" href="#CHEMIN{impression.css}" type="text/css" media="print" />
-
-<!-- Lien vers le backend pour navigateurs eclaires -->
-<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="#URL_PAGE{backend,id_rubrique=#ID_RUBRIQUE}" />
-
-[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
-</head>
-
-<body>
-<div id="principal">
-
-<!-- Entete de la page + titre du site -->
-<INCLURE{fond=inc-top}{lang}>
-
-<!-- Une : contenu de la rubrique -->
-
-<div id="contenu">
-
-<div class="cartouche">
-[(#LOGO_RUBRIQUE|right)]
-<h1 class="titre">#TITRE</h1>
-<small>[<:dernier_ajout:> : (#DATE|nom_jour)] [(#DATE|affdate).]</small>
-</div>
-
-[<div class="chapo">(#TEXTE)</div>]
-
-<br class="spacer" />
-
-<div class="encart">
-
-<!-- Sous-rubriques -->
-<B_sous_rubriques>
-<div class="rubriques" title="<:sous_rubriques:>">
-<h2 class="titre"><:sous_rubriques:></h2><ul>
-<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par titre}>
-<li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
-<B_sous_sous_rubriques>
-<ul>
-<BOUCLE_sous_sous_rubriques(RUBRIQUES) {id_parent} {par titre}>
-<li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></li>
-</BOUCLE_sous_sous_rubriques>
-</ul>
-</B_sous_sous_rubriques>
-</li>
-</BOUCLE_sous_rubriques>
-</ul>
-</div>
-</B_sous_rubriques>
-
-<!-- Sites syndiques -->
-
-<B_sites>
-<div class="divers">
-<h2 class="titre"><:sur_web:></h2>
-<ul>
-<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
-<li>
-<a href="#URL_SITE">#NOM_SITE</a>
-<B_syndic>
-<ul>
-<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {par date}{inverse} {0,3}>
-<li><small><a href="#URL_ARTICLE">#TITRE</a></small></li>
-</BOUCLE_syndic>
-</ul>
-</B_syndic>
-</li>
-</BOUCLE_sites>
-</ul>
-</div>
-</B_sites>
-
-[<div class="divers">
-<h2 class="titre"><:proposer_site:></h2>
-<div class='reponse_formulaire'>(#FORMULAIRE_SITE)</div>
-</div>]
-
-</div>
-
-<!-- Articles de la rubrique -->
-<h2 class="structure"><:articles_rubrique:></h2>
-<BOUCLE_articles_recents(ARTICLES) {id_rubrique} {par date}{inverse}><div class="extrait">
-<h3 class="titre"><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h3>
-<small>[(#DATE|nom_jour)] [(#DATE|affdate)]<B_auteurs_recents>, <:par_auteur:> <BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_recents></small>
-</div>
-</BOUCLE_articles_recents>
-
-<B_documents_joints>
-<div class="spip_documents"><hr />
-<BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {mode=document} {doublons}>
-[(#LOGO_DOCUMENT|#URL_DOCUMENT)]<small>[<div class="spip_doc_titre">(#TITRE)</div>][<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]</small>
-</BOUCLE_documents_joints>
-</div>
-<br class="spacer" />
-</B_documents_joints>
-
-[<div class="notes">(#NOTES)</div>]
-
-</div>
-
-<div id="navigation">
-<h1 class="structure"><:navigation:></h1>
-
-<!-- Formulaire de recherche -->
-[(#FORMULAIRE_RECHERCHE)]
-
-<!-- Menu de navigation rubriques -->
-<INCLURE{fond=inc-rubriques}{lang}>
-
-<!-- Breves dans la rubrique -->
-<B_breves_rubrique>
-<div class="breves" title="<:dernieres_breves:>">
-<h2 class="titre"><:breves:></h2>
-<ul>
-<BOUCLE_breves_rubrique(BREVES) {id_secteur} {par date}{inverse} {0,5}>
-<li>[(#DATE|affdate_court) : ]<a href="#URL_BREVE">#TITRE</a></li>
-</BOUCLE_breves_rubrique>
-</ul>
-</div>
-</B_breves_rubrique>
-
-<!-- Menu de navigation mots-cles -->
-<B_mots>
-<div class="divers" title="<:mots_clefs:>">
-<h2 class="titre"><:mots_clefs:></h2>
-<ul>
-<BOUCLE_mots(MOTS) {id_rubrique} {par titre}>
-<li><a href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
-<B_rubriques_mots>
-<ul>
-<BOUCLE_rubriques_mots(RUBRIQUES) {id_mot} {par hasard} {0,4}>
-<li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></li>
-</BOUCLE_rubriques_mots>
-</ul>
-</B_rubriques_mots>
-</li>
-</BOUCLE_mots>
-</ul>
-</div>
-</B_mots>
-
-</div>
-
-<!-- Pied de page -->
-<INCLURE{fond=inc-pied}{lang}>
-
-</div>
-</body>
-</html>
-</BOUCLE_rubrique_principal>
+#CACHE{7200}<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html dir="#LANG_DIR" lang="#LANG"><head><title>[(#TITRE|textebrut)]</title><meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" /><!-- media="..." permet de ne pas utiliser ce style sous Netscape 4 (sinon plantage) --><link rel="stylesheet" href="#CHEMIN{habillage.css}" type="text/css" media="projection, screen, tv" /><!-- media="print" permet d'utiliser cette feuille de style quand vous imprimez depuis votre navigateur --><link rel="stylesheet" href="#CHEMIN{impression.css}" type="text/css" media="print" /><!-- Lien vers le backend pour navigateurs eclaires --><link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="#URL_PAGE{backend,id_rubrique=#ID_RUBRIQUE}" />[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]</head><body><div id="principal"><!-- Entete de la page + titre du site --><INCLURE{fond=inc-top}{lang}><!-- Une : contenu de la rubrique --><div id="contenu"><div class="cartouche">[(#LOGO_RUBRIQUE|right)]<h1 class="titre">#TITRE</h1><small>[<:dernier_ajout:> : (#DATE|nom_jour)] [(#DATE|affdate).]</small></div>[<div class="chapo">(#TEXTE)</div>]<br class="spacer" /><div class="encart"><!-- Sous-rubriques --><B_sous_rubriques><div class="rubriques" title="<:sous_rubriques:>"><h2 class="titre"><:sous_rubriques:></h2><ul><BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par titre}><li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a><B_sous_sous_rubriques><ul><BOUCLE_sous_sous_rubriques(RUBRIQUES) {id_parent} {par titre}><li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></li></BOUCLE_sous_sous_rubriques></ul></B_sous_sous_rubriques></li></BOUCLE_sous_rubriques></ul></div></B_sous_rubriques><!-- Sites syndiques --><B_sites><div class="divers"><h2 class="titre"><:sur_web:></h2><ul><BOUCLE_sites(SITES) {id_rubrique} {par nom_site}><li><a href="#URL_SITE">#NOM_SITE</a><B_syndic><ul><BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {par date}{inverse} {0,3}><li><small><a href="#URL_ARTICLE">#TITRE</a></small></li></BOUCLE_syndic></ul></B_syndic></li></BOUCLE_sites></ul></div></B_sites>[<div class="divers"><h2 class="titre"><:proposer_site:></h2><div class='reponse_formulaire'>(#FORMULAIRE_SITE)</div></div>]</div><!-- Articles de la rubrique --><h2 class="structure"><:articles_rubrique:></h2><BOUCLE_articles_recents(ARTICLES) {id_rubrique} {par date}{inverse}><div class="extrait"><h3 class="titre"><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h3><small>[(#DATE|nom_jour) ][(#DATE|affdate)]<B_auteurs_recents>, <:par_auteur:> <BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_recents></small></div></BOUCLE_articles_recents><B_documents_joints><div class="spip_documents"><hr /><BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {mode=document} {doublons}>[(#LOGO_DOCUMENT|#URL_DOCUMENT)]<small>[<div class="spip_doc_titre">(#TITRE)</div>][<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]</small></BOUCLE_documents_joints></div><br class="spacer" /></B_documents_joints>[<div class="notes">(#NOTES)</div>]</div><div id="navigation"><h1 class="structure"><:navigation:></h1><!-- Formulaire de recherche -->[(#FORMULAIRE_RECHERCHE)]<!-- Menu de navigation rubriques --><INCLURE{fond=inc-rubriques}{lang}><!-- Breves dans la rubrique --><B_breves_rubrique><div class="breves" title="<:dernieres_breves:>"><h2 class="titre"><:breves:></h2><ul><BOUCLE_breves_rubrique(BREVES) {id_secteur} {par date}{inverse} {0,5}><li>[(#DATE|affdate_court) : ]<a href="#URL_BREVE">#TITRE</a></li></BOUCLE_breves_rubrique></ul></div></B_breves_rubrique><!-- Menu de navigation mots-cles --><B_mots><div class="divers" title="<:mots_clefs:>"><h2 class="titre"><:mots_clefs:></h2><ul><BOUCLE_mots(MOTS) {id_rubrique} {par titre}><li><a href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a><B_rubriques_mots><ul><BOUCLE_rubriques_mots(RUBRIQUES) {id_mot} {par hasard} {0,4}><li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></li></BOUCLE_rubriques_mots></ul></B_rubriques_mots></li></BOUCLE_mots></ul></div></B_mots></div><!-- Pied de page --><INCLURE{fond=inc-pied}{lang}></div></body></html></BOUCLE_rubrique_principal>
