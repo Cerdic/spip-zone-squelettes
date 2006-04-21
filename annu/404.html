@@ -1,0 +1,41 @@
+#CACHE{24 * 3600}
+#HTTP_HEADER{"Cache-Control: no-store, no-cache, must-revalidate"}
+#HTTP_HEADER{Pragma: no-cache}
+<?php header("HTTP/1.0 404 Not Found"); ?>
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+  <title><:pass_erreur:> 404</title>   
+  <INCLURE{fond=inc/inc_head}{lang}>
+  <meta name="Description" content="[(#INTRODUCTION|textebrut|couper{80})]" />
+</head>
+
+<body>
+<div id="page">
+  
+  <!-- main -->   
+  <div id="main"> 
+  #HTTP_HEADER{404 Not Found}
+
+    <!-- main: content -->     
+    <div id="content">    
+    <div id="post">
+      <h1><:pass_erreur:> 404</h1>
+	   [<p>(#ENV*{erreur}|propre)</p>] 
+      <p><:aucun_article:></p>
+    	<ul>
+    		<li><a href="#URL_SITE_SPIP"[ title="(#DESCRIPTIF_SITE_SPIP|sinon{<:accueil_site:>})"]><strong>#NOM_SITE_SPIP</strong></a></li>
+    		<li><a href="#" onclick="javascript:history.go(-1);"><:page_precedente:></a></li>
+    		<li><a href="#URL_PAGE{plan}"><:plan_site:></a></li> 		
+    	</ul>
+      	    	
+    	#SPIP_CRON  
+    </div>
+    </div>
+    <!-- main: content end -->
+    
+  </div>
+  <!-- main end --> 
+
+</div>
+</body>
+</html>

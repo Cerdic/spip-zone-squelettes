@@ -1,0 +1,74 @@
+#CACHE{7200}
+<BOUCLE_rub_principal(RUBRIQUES){id_rubrique}><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+  <title>#NOM_SITE_SPIP - [(#TITRE|textebrut|supprimer_numero)]</title>   
+  <INCLURE{fond=inc/inc_head}{lang}>
+  <meta name="Description" content="[(#INTRODUCTION|textebrut|couper{83})]" />
+</head>
+
+<body>
+<div id="page">
+
+  <!-- main -->   
+  <div id="main">    
+
+    <!-- main: content -->     
+    <div id="content">     
+      <INCLURE{fond=inc/inc_navbar}{id_rubrique}{lang}>  
+         
+       <!-- post start -->
+       <div id="post">
+         <INCLURE{fond=inc/inc_loupe}{lang}> 
+
+         <!-- rubrique desc -->
+         [<div style='margin:10px 0 10px 0'>(#TEXTE)</div>]
+             
+         <!-- formu recherche -->   
+          <div style="border:1px #666 dashed;padding:5px 12px">      
+             <h1 class="bg">Rechercher</h1>
+             <form method="get" action="#SELF">
+             <p>(formulaire non actif actuellement pour chercher un profil particulier, ajout un champs libre ?)</p>
+                <div style="width:40%; float:left;">
+                     <strong>R&eacute;gions:</strong><br />
+                     <BOUCLE_list_reg(MOTS){id_groupe=9}{par titre}>
+                     <input type='checkbox' value='#ID_MOT' />#TITRE<br /></BOUCLE_list_reg>
+                </div>     
+                 <div style="width:40%; float:left;">
+                     <strong>Comp&eacute;tences:</strong><br />
+                     <BOUCLE_list_comp(MOTS){id_groupe=10}{par titre}>
+                     <input type='checkbox' value='#ID_MOT' />#TITRE<br /></BOUCLE_list_comp>
+                 </div> 
+                 <hr />    
+                 <input type='submit' value='chercher un Pro2SPIP' />
+       
+            </form>      
+        </div>
+         
+
+         
+              
+         <!-- article list -->
+         <BOUCLE_rub_rub(RUBRIQUES){id_parent}{par num titre}>        
+            [<h1>(#TITRE|supprimer_numero)</h1>]
+            [(#TEXTE|couper{400}) <br />]
+            <BOUCLE_one_shot(ARTICLES){id_rubrique}{0,1}><a href="#URL_ARTICLE">Lire la suite...</a></BOUCLE_one_shot>            
+         <hr style="margin-bottom:20px" /> 
+         </BOUCLE_rub_rub>  
+
+        
+       </div>
+       <!-- post end -->
+       
+       <INCLURE{fond=inc/inc_footer}{lang}{id_rubrique}>
+       
+    </div>
+    <!-- main: content end -->
+    
+  </div>
+  <!-- main end --> 
+
+</div>
+</body>
+</html></BOUCLE_rub_principal></B_rub_principal><INCLURE{fond=404}><//B_rub_principal>

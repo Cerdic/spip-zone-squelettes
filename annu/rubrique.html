@@ -1,0 +1,60 @@
+#CACHE{7200}
+<BOUCLE_rub_principal(RUBRIQUES){id_rubrique}><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+  <title>#NOM_SITE_SPIP - [(#TITRE|textebrut|supprimer_numero)]</title>   
+  <INCLURE{fond=inc/inc_head}{lang}>
+  <meta name="Description" content="[(#INTRODUCTION|textebrut|couper{83})]" />
+</head>
+
+<body>
+<div id="page">
+
+  <!-- main -->   
+  <div id="main">    
+
+    <!-- main: content -->     
+    <div id="content">     
+      <INCLURE{fond=inc/inc_navbar}{id_rubrique}{lang}>  
+         
+       <!-- post start -->
+       <div id="post">
+         <INCLURE{fond=inc/inc_loupe}{lang}> 
+         <!-- rubrique desc -->
+         [<div style='margin:10px 0 0 0'>(#TEXTE)</div>]
+         
+         <!-- sous rub list -->
+         <BOUCLE_rub_rub(RUBRIQUES){id_parent}{par num titre}>        
+         [<h1>(#TITRE|supprimer_numero)</h1>]
+         [(#DESCRIPTIF) <br />]<a href="#URL_RUBRIQUE">lire la suite...</a>
+         <hr style="margin-bottom:20px" /> 
+         </BOUCLE_rub_rub>   
+                
+         <!-- articles list -->
+         <BOUCLE_art_rub(ARTICLES){id_rubrique}{par num titre}>        
+         [<div class="surtitre">(#SURTITRE)</div>][
+         <h1>(#TITRE|supprimer_numero)</h1>][
+         <div class="soustitre">(#SOUSTITRE)</div>][
+         <div class="chapo">(#CHAPO)</div>]
+         #TEXTE[
+         <div class="ps">(#PS)</div>][
+         <div class="note">(#NOTE)</div>]
+         <hr style="margin-bottom:40px" /> 
+         </BOUCLE_art_rub>         
+
+        
+       </div>
+       <!-- post end -->
+       
+       <INCLURE{fond=inc/inc_footer}{lang}{id_rubrique}>
+       
+    </div>
+    <!-- main: content end -->
+    
+  </div>
+  <!-- main end --> 
+
+</div>
+</body>
+</html></BOUCLE_rub_principal></B_rub_principal><INCLURE{fond=404}><//B_rub_principal>

@@ -1,0 +1,55 @@
+#CACHE{7200}
+<BOUCLE_mot_principal(MOTS){id_mot}><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+  <title>#NOM_SITE_SPIP - [(#TITRE|textebrut|supprimer_numero)]</title>   
+  <INCLURE{fond=inc/inc_head}{lang}>
+  <meta name="Description" content="[(#INTRODUCTION|textebrut|couper{83})]" />
+</head>
+
+<body>
+<div id="page">
+
+  <!-- main -->   
+  <div id="main">    
+
+    <!-- main: content -->     
+    <div id="content">     
+      <INCLURE{fond=inc/inc_navbar}{id_rubrique=1}{lang}>  
+         
+       <!-- post start -->
+       <div id="post">
+         <INCLURE{fond=inc/inc_loupe}{lang}> 
+         <!-- rubrique desc -->
+         [<h1>Annuaire Pro2SPIP: (#TITRE)</h1>]
+         [<p>(#TEXTE)</p>]
+         
+         
+         <BOUCLE_art_c(RUBRIQUES){id_mot}> </BOUCLE_art_c><div id='congratulation'>Nombre de réponses: <i>#COMPTEUR_BOUCLE personnes</i></div></B_art_c><div id='warning'><i>Aucune personne disponible</i></div><//B_art_c>
+         
+                        
+         <!-- articles list -->
+         <B_rub_rub><br />
+         <BOUCLE_rub_rub(RUBRIQUES){id_mot}{par num titre}>        
+         [<h1>(#TITRE|supprimer_numero)</h1>]
+         [(#TEXTE|couper{400}) <br />]
+            <BOUCLE_one_shot(ARTICLES){id_rubrique}{0,1}><a href="#URL_ARTICLE">Lire la suite...</a></BOUCLE_one_shot>
+         <hr style="margin-bottom:20px" /> 
+         </BOUCLE_rub_rub>         
+
+        
+       </div>
+       <!-- post end -->
+       
+       <INCLURE{fond=inc/inc_footer}{lang}{id_rubrique=1}>
+       
+    </div>
+    <!-- main: content end -->
+    
+  </div>
+  <!-- main end --> 
+
+</div>
+</body>
+</html></BOUCLE_mot_principal></B_mot_principal><INCLURE{fond=404}><//B_mot_principal>

@@ -1,0 +1,91 @@
+#CACHE{7200}
+<BOUCLE_art_principal(ARTICLES){id_article}><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+  <title>#NOM_SITE_SPIP - [(#TITRE|textebrut|supprimer_numero)]</title>   
+  <INCLURE{fond=inc/inc_head}{lang}>
+  <meta name="Description" content="[(#INTRODUCTION|textebrut|couper{83})]" />
+</head>
+
+<body>
+<div id="page">
+  
+  <!-- main -->   
+  <div id="main">     
+
+    <!-- main: content -->     
+    <div id="content">     
+      <INCLURE{fond=inc/inc_navbar}{id_article}{lang}>  
+         
+       <!-- post start -->
+       <div id="post">
+         <INCLURE{fond=inc/inc_loupe}{lang}> 
+         
+         <!-- sidebar -->
+         <div id="sidebar">
+             <!-- adresse -->
+             <div id="adresse">
+             <h1 class="bg">Contact</h1>
+                <div class="focuscontent">
+                #DESCRIPTIF
+                
+                <BOUCLE_auteur(AUTEURS){id_article}{0,1}>
+                <br /><a href="#URL_AUTEUR"><img src="#CHEMIN{img/contact.png}" alt='Contacter ce pro2spip'></a><br />
+                <a href="#URL_AUTEUR">Contacter</a></BOUCLE_auteur>                
+                </div> 
+                
+             </div>
+             
+             <!-- mot  --> 
+             <B_focus><div id="focus">
+             <h1 class="bg">Compétences</h1>
+             <BOUCLE_focus(MOTS){id_rubrique}{id_groupe=10}>             
+                <div class="focuscontent"><a href="#URL_MOT">#TITRE</a></div>               
+             </BOUCLE_focus></div></B_focus>
+            
+        </div>
+         
+         
+         [<div class="surtitre">(#SURTITRE)</div>][
+         <h1>(#TITRE|supprimer_numero)</h1>][
+         <div class="lien_site"><!--<strong>Site internet:</strong>--><a href="(#URL_SITE)">#URL_SITE</a></div>][
+         <div class="soustitre">(#SOUSTITRE)</div>][
+         <div class="chapo">(#CHAPO)</div>]
+         #TEXTE[
+         <div class="ps">(#PS)</div>][
+         <div class="note">(#NOTE)</div>]
+              
+        <!-- article doc / portfolio ? -->
+        <B_documents_portfolio><h3>Portfolio</h3>
+        
+                    <BOUCLE_afficher_document(DOCUMENTS){id_document}{mode=document}{extension==(png|jpg|gif)}>                        
+                         [<h3>(#TITRE|supprimer_numero)</h3>]                         
+                          [<div>(#DESCRIPTIF)</div>]
+                          [<div><a href="#URL_DOCUMENT" target='_blank'>(#FICHIER|reduire_image{500})</a> (cliquez pour l'image en taille r&eacute;elle)</div>]
+                    </BOUCLE_afficher_document>
+        <BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension==(png|jpg|gif)}{par num titre}>
+        <div style="float:left;margin: 4px;"> 
+                  [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT">(#LOGO_DOCUMENT{0,160})</a>] 
+                  [<div style="clear: both;"><b>(#TITRE|supprimer_numero)</b></div>]
+                  [<div style="clear: both;">(#DESCRIPTIF)</div>] 
+        </div>
+       </BOUCLE_documents_portfolio>   
+              
+              <!-- article forum ? -->
+              <!-- article petition ? --> 
+       <hr /> 
+       </div>
+       <!-- post end -->
+       
+       <INCLURE{fond=inc/inc_footer}{lang}{id_article}>
+       
+    </div>
+    <!-- main: content end -->
+    
+  </div>
+  <!-- main end --> 
+
+</div>
+</body>
+</html></BOUCLE_art_principal></B_art_principal><INCLURE{fond=404}><//B_art_principal>

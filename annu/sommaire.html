@@ -1,0 +1,105 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+  <title>#NOM_SITE_SPIP - [(#DESCRIPTIF_SITE_SPIP|textebrut|supprimer_numero)]</title>   
+  <INCLURE{fond=inc/inc_head}{lang}>
+  <meta name="Description" content="[(#INTRODUCTION|textebrut|couper{83})]" />
+</head>
+
+<body>
+<div id="page">
+  <!-- main -->   
+  <div id="main">    
+
+    <!-- main: content -->     
+    <div id="content">     
+      <INCLURE{fond=inc/inc_navbar}{id_rubrique=0}{lang}{homepage=true}>  
+         
+       <!-- post start -->
+       <div id="post">
+         <INCLURE{fond=inc/inc_loupe}{lang}> 
+         
+          <!-- sidebar -->
+         <div id="sidebar">
+             <!-- sommaire focus du mois (51) -->         
+             <div id="focus"><BOUCLE_focus(RUBRIQUES){id_mot=51}{0,1}{par hasard}> 
+             <h1 class="bg">Focus sur ...</h1>
+                <div class="focuscontent">        
+                    [<h1>(#TITRE|supprimer_numero)</h1>]
+                    [(#TEXTE|couper{123})...<br />]
+                    <BOUCLE_one_shot(ARTICLES){id_rubrique}{0,1}><a href="#URL_ARTICLE">Lire la suite...</a></BOUCLE_one_shot>
+                </div>
+             </BOUCLE_focus></div>
+        </div>
+        
+         
+         <!-- sommaire list intro  -->
+         <BOUCLE_art_sommaire(ARTICLES){id_mot=30}{par num titre}>
+         #TEXTE
+         <br />
+         </BOUCLE_art_sommaire> 
+         
+         <hr />
+         
+         <!-- sommaire recherche -->       
+         <div class="searchblock type1">
+            <h2>Vous cherchez un Pro2SPIP dans votre région</h2>
+            <p>Vous voulez un monter votre site SPIP avec un indépendant habitant près de chez vous ...</p>            
+            
+            <!-- france map -->
+            <img src="#CHEMIN{img/france.png}" id="frm" alt="carte des r&eacute;gions" usemap="#Damap" />
+            <map name="Damap" id="Damap">
+            <area href="spip.php?mot=36" onmouseout="document.frm.src='#CHEMIN{img/france.png}'" onmouseover="document.frm.src='#CHEMIN{img/france-sudest.png}'" alt='sud est' shape="poly" coords="166,128,145,117,130,128,130,160,143,184,129,200,114,201,120,216,114,221,119,226,140,224,139,213,158,197,169,201,178,202,196,208,225,180,209,173,206,154,211,144,206,137,205,120,198,121,189,129,178,122,167,127"  />
+            <area href="spip.php?mot=34" onmouseout="document.frm.src='#CHEMIN{img/france.png}'" onmouseover="document.frm.src='#CHEMIN{img/france-est.png}'" alt='est' shape="poly" coords="169,24,152,41,146,58,150,64,148,67,148,73,140,75,137,100,144,112,167,124,177,118,189,122,218,89,219,65,226,52,214,48,199,48,191,39,177,39,170,33,168,24"  />
+            <area href="spip.php?mot=32" onmouseout="document.frm.src='#CHEMIN{img/france.png}'" onmouseover="document.frm.src='#CHEMIN{img/france-nord.png}'" alt='nord' shape="poly" coords="130,3,115,6,111,24,89,37,93,41,88,45,98,60,114,45,126,49,138,49,144,55,148,41,160,28,152,18,139,16"  />
+            <area href="spip.php?mot=37" onmouseout="document.frm.src='#CHEMIN{img/france.png}'" onmouseover="document.frm.src='#CHEMIN{img/france-idf.png}'"  alt='ile de france' shape="poly" coords="115,49,111,55,124,74,134,74,136,71,142,70,145,64,137,54,128,54"  />
+            <area href="spip.php?mot=33" onmouseout="document.frm.src='#CHEMIN{img/france.png}'" onmouseover="document.frm.src='#CHEMIN{img/france-ouest.png}'" alt='ouest' shape="poly" coords="82,44,68,42,64,35,53,35,61,59,38,62,34,55,16,53,3,62,11,65,6,68,9,71,3,73,8,78,24,86,50,97,50,116,61,122,61,135,74,147,89,137,100,118,126,118,129,124,141,115,133,101,134,79,122,79,107,58,98,67"  />
+            <area href="spip.php?mot=35" onmouseout="document.frm.src='#CHEMIN{img/france.png}'" onmouseover="document.frm.src='#CHEMIN{img/france-sudouest.png}'" alt='sud ouest' shape="poly" coords="122,122,104,123,93,140,75,153,63,143,52,193,47,198,56,203,68,215,91,218,96,215,109,219,114,215,109,197,127,196,138,183,126,162,126,129"  />
+            </map>
+            
+            <form name="jump" method="get" action="#SELF">
+            <strong>Régions:</strong><br />
+            <select name='region' onchange="javascript:current = document.jump.region.selectedIndex;window.location.href = document.jump.region.options[current].value;"><BOUCLE_list_regions(MOTS){id_groupe=9}{par titre}>
+            <option value='spip.php?mot=#ID_MOT'>#TITRE</option></BOUCLE_list_regions>
+            </select>            
+            </form>
+         </div> 
+         
+         <div class="searchblock type2">
+            <h2>Vous cherchez une compétence particulière</h2>
+            <p>Si vous cherchez une compétence particulière sur SPIP ....</p>
+            
+            <form name="jump2" method="get" action="#SELF">
+            <strong>Compétences:</strong><br />
+            <select name='comp' onchange="javascript:current = document.jump2.comp.selectedIndex;window.location.href = document.jump2.comp.options[current].value;"><BOUCLE_list_comp(MOTS){id_groupe=10}{par titre}>
+            <option value='spip.php?mot=#ID_MOT'>#TITRE</option></BOUCLE_list_comp>
+            </select>            
+            </form>
+            
+            La compétence que vous rechercher n'est pas listée ?<br /> 
+            Merci de nous <a href="?auteur=3">contacter</a> pour que nous puissions la transmettre à membres du réseau Pro2SPIP.
+            
+            <div style="width:100%; text-align:center;padding:15px;">
+                <a href="http://www.spip.net" title="powered by spip"><img src='#CHEMIN{img/logo_spip.jpg}' alt='spip' /></a>
+            </div>
+         </div> 
+         
+         <hr />        
+
+        
+       </div>
+       <!-- post end -->
+       
+       <INCLURE{fond=inc/inc_footer}{lang}>
+       
+    </div>
+    <!-- main: content end -->
+    
+  </div>
+  <!-- main end --> 
+
+</div>
+</body>
+</html>
