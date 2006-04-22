@@ -18,15 +18,24 @@
 //    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 
-define('_DIR_PLUGIN_CHERCHER_SQUELETTES',(_DIR_PLUGINS.end(explode(basename(_DIR_PLUGINS)."/",str_replace('\\','/',realpath(dirname(__FILE__).'/..'))))));
+define('_DIR_PLUGIN_SQUELETTES_NONO',(_DIR_PLUGINS.end(explode(basename(_DIR_PLUGINS)."/",str_replace('\\','/',realpath(dirname(__FILE__).'/..'))))));
 
 function exec_config_squelettes_Nono() {
-  global $connect_statut, $connect_toutes_rubriques,$changer_config,$id_parent,$id_rubrique;
+  global $connect_statut, $connect_toutes_rubriques,$changer_config,$id_parent,$id_rubrique,$voir_cal_nono;
 
   include_spip("inc/presentation");
   include_spip("base/abstract_sql");
+  include_spip('inc/logos');
+    include_spip('inc/rubriques');
+	include_spip('inc/documents');
+include_spip('inc/presentation');
+include_spip('inc/rubriques');
+include_spip('inc/logos');
+include_spip('inc/mots');
+include_spip('inc/documents');
 
-  debut_page('&laquo; '._T('squelettesnono:titre_page').' &raquo;', 'configurations', 'mots_partout','',_DIR_PLUGIN_CHERCHER_SQUELETTES.'/squelettesNono.css');
+	
+  debut_page('&laquo; '._T('squelettesnono:titre_page').' &raquo;', 'configurations', 'mots_partout','',_DIR_PLUGIN_SQUELETTES_NONO.'/squelettesNono.css');
 
   if ($connect_statut != '0minirezo' OR !$connect_toutes_rubriques) {
 	echo _T('avis_non_acces_page');
@@ -39,11 +48,11 @@ function exec_config_squelettes_Nono() {
 	
 	include_spip('inc/confignono'); // declaration des fonctions propres aux méta de nono
 	
-	if ($changer_config == 'oui') {	appliquer_modifs_nono();	}
+	if ($changer_config == 'oui') {	appliquer_modifs_nono(); }
 
 	lire_metas();// lecture des meta nono
 
-	//les meta nono
+	//les meta nono âssage dans des variables
 	$nono_base_version=$GLOBALS['meta']['nono_base_version'];
 	
 	$keywords_nono=$GLOBALS['meta']['keywords_nono'];
@@ -51,13 +60,25 @@ function exec_config_squelettes_Nono() {
 	$directeur_nono=$GLOBALS['meta']['directeur_nono'];
 	$redacteur_nono=$GLOBALS['meta']['redacteur_nono'];
 		
-	$voir_calendrier_nono=$GLOBALS['meta']['voir_calendrier_nono'];
+	$voir_cal_nono=$GLOBALS['meta']['voir_cal_nono'];
+	$voir_une_nono=$GLOBALS['meta']['voir_une_nono'];
 	$nb_articles_nono=$GLOBALS['meta']['nb_articles_nono'];
 	$nb_breves_nono=$GLOBALS['meta']['nb_breves_nono'];
 	$nb_sites_nono=$GLOBALS['meta']['nb_sites_nono'];
 	$nb_syndic_nono=$GLOBALS['meta']['nb_syndic_nono'];
 	$nb_messages_nono=$GLOBALS['meta']['nb_messages_nono'];
 	
+	// menu programmable
+	$voir_menu_nono=$GLOBALS['meta']['voir_menu_nono'];
+	$nom_menu1_nono=$GLOBALS['meta']['nom_menu1_nono'];
+	$url_menu1_nono=$GLOBALS['meta']['url_menu1_nono'];
+	$nom_menu2_nono=$GLOBALS['meta']['nom_menu2_nono'];
+	$url_menu2_nono=$GLOBALS['meta']['url_menu2_nono'];
+	$nom_menu3_nono=$GLOBALS['meta']['nom_menu3_nono'];
+	$url_menu3_nono=$GLOBALS['meta']['url_menu3_nono'];
+	$nom_menu4_nono=$GLOBALS['meta']['nom_menu4_nono'];
+	$url_menu4_nono=$GLOBALS['meta']['url_menu4_nono'];
+
 	//fonction edito
 		
 	$activer_edito=$GLOBALS['meta']['activer_edito'];
@@ -81,10 +102,11 @@ function exec_config_squelettes_Nono() {
 	debut_gauche();	
 	
 	debut_boite_info();
-	echo propre(_T('squelettesnono:help'))."<br><br><strong>version de la base : ".$nono_base_version."</strong>";
+	echo propre(_T('squelettesnono:help'))."<br><br><strong>version de Nono : ".$nono_base_version."</strong>";
 	fin_boite_info();
 	
-
+	afficher_bandeau('nono', 'nono', 0, (0 ? _T('squelettesnono:logo_site_nono') : _T('squelettesnono:logo_standard_nono'))." ", 'config_squelettes_nono');
+	
 	/*partie droite de la page ... la config !*/
 	debut_droite();
 	
@@ -129,8 +151,6 @@ function exec_config_squelettes_Nono() {
 		
 		debut_cadre_relief("", false, "", _T('squelettesnono:info_options_sommaire'));
 	
-		$voir_messages_nono = $GLOBALS['meta']["voir_messages_nono"];
-		
 	
 		echo "<TABLE BORDER=0 CELLSPACING=1 CELLPADDING=3 WIDTH=\"100%\">";
 	
@@ -143,10 +163,18 @@ function exec_config_squelettes_Nono() {
 		echo _T('squelettesnono:info_calendrier_nono');
 		echo "</TD>";
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
-			echo bouton_radio_nono("voir_calendrier_nono", " ", _T('item_oui'), $voir_calendrier_nono == "oui");
-			echo " &nbsp;";
-			echo bouton_radio_nono("voir_calendrier_nono", "", _T('item_non'), $voir_calendrier_nono == "");
+			echo afficher_choix('voir_cal_nono', $voir_cal_nono,array('oui' => _T('item_oui'),'non' => _T('item_non')), ' &nbsp; ');
 		echo "</TD></TR>\n";
+		
+		echo "<TR>";
+		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
+		echo _T('squelettesnono:info_une_nono');
+		echo "</TD>";
+		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
+			echo afficher_choix('voir_une_nono', $voir_une_nono,array('oui' => _T('item_oui'),'non' => _T('item_non')), ' &nbsp; ');
+		echo "</TD></TR>\n";
+
+		echo "<TR><TD ALIGN='$spip_lang_left' class='verdana2'></TD><TD ALIGN='$spip_lang_left' class='verdana2'></TD></TR>";
 
 		echo "<TR>";
 		echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
@@ -253,11 +281,61 @@ function exec_config_squelettes_Nono() {
 	
 	/* interface de saisie des menus Programmables */
 	
-	//debut_cadre_trait_couleur("site-24.gif", false, "", _T('squelettesnono:menus_nono'));
-	
-		//echo "<div style='text-align:right;'><input type='submit' name='Enregistrer' value='"._T('bouton_enregistrer')."' CLASS='fondo'></div>";
+	debut_cadre_couleur("site-24.gif", false, "", _T('squelettesnono:menus_titre_nono'));
+		
+		echo _T('squelettesnono:menus_texte_nono')."<br><br>";
+		
+		echo bouton_radio("voir_menu_nono", "oui", _T('squelettesnono:item_utiliser_menu'), $voir_menu_nono == "oui", "changeVisible(this.checked, 'config-menu', 'block', 'none');");
+		echo " &nbsp;";
+		echo bouton_radio("voir_menu_nono", "non", _T('squelettesnono:item_non_utiliser_menu'), $voir_menu_nono == "non", "changeVisible(this.checked, 'config-menu', 'none', 'block');");
+		
+		echo "<br><br>";
+		// affichage optionnel	
+		if ($voir_menu_nono != 'non') $style = "display: block;";
+		else $style = "display: none;";
+		
+		echo "<div id='config-menu' style='$style'>";
+		
+		debut_cadre_relief("", false, "", _T('squelettesnono:menu1_nono'));
+			echo _T('squelettesnono:menu1_info_titre_nono')," ";
+			echo "<input type='text' name='nom_menu1_nono' class='forml' width='40' value=\"$nom_menu1_nono\"/><br />\n";
+			echo _T('squelettesnono:menu1_info_url_nono')," ";
+			echo "<input type='text' name='url_menu1_nono' class='forml' width='40' value=\"$url_menu1_nono\"/>";
+		fin_cadre_relief();
+		
+		debut_cadre_relief("", false, "", _T('squelettesnono:menu2_nono'));
+			echo _T('squelettesnono:menu2_info_titre_nono')," ";
+			echo "<input type='text' name='nom_menu2_nono' class='forml' width='40' value=\"$nom_menu2_nono\"/><br />\n";
+			echo _T('squelettesnono:menu2_info_url_nono')," ";
+			echo "<input type='text' name='url_menu2_nono' class='forml' width='40' value=\"$url_menu2_nono\"/>";
+		fin_cadre_relief();
+
+		debut_cadre_relief("", false, "", _T('squelettesnono:menu3_nono'));
+			echo _T('squelettesnono:menu3_info_titre_nono')," ";
+			echo "<input type='text' name='nom_menu3_nono' class='forml' width='40' value=\"$nom_menu3_nono\"/><br />\n";
+			echo _T('squelettesnono:menu3_info_url_nono')," ";
+			echo "<input type='text' name='url_menu3_nono' class='forml' width='40' value=\"$url_menu3_nono\"/>";
+		fin_cadre_relief();
+
+		debut_cadre_relief("", false, "", _T('squelettesnono:menu4_nono'));
+			echo _T('squelettesnono:menu4_info_titre_nono')," ";
+			echo "<input type='text' name='nom_menu4_nono' class='forml' width='40' value=\"$nom_menu4_nono\"/><br />\n";
+			echo _T('squelettesnono:menu4_info_url_nono')," ";
+			echo "<input type='text' name='url_menu4_nono' class='forml' width='40' value=\"$url_menu4_nono\"/>";
+		fin_cadre_relief();
+
+		debut_cadre_relief("", false, "", _T('squelettesnono:menu5_nono'));
+			echo _T('squelettesnono:menu5_info_titre_nono')," ";
+			echo "<input type='text' name='nom_menu5_nono' class='forml' width='40' value=\"$nom_menu5_nono\"/><br />\n";
+			echo _T('squelettesnono:menu5_info_url_nono')," ";
+			echo "<input type='text' name='url_menu5_nono' class='forml' width='40' value=\"$url_menu5_nono\"/>";
+		fin_cadre_relief();
+
+		echo "</div>"; //fin affichage conditionnel
+				
+		echo "<div style='text-align:right;'><input type='submit' name='Enregistrer' value='"._T('bouton_enregistrer')."' CLASS='fondo'></div>";
 			
-	//fin_cadre_trait_couleur();
+	fin_cadre_couleur();
 
 	
 	

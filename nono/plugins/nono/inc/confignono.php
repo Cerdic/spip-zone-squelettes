@@ -36,22 +36,30 @@ function init_config_nono() {
 		'directeur_nono' => '',
 		
 		'nb_evens_nono' => '0',
-		'voir_calendrier_nono' => '',
-		'voir_articles_nono' => 'oui',
+		'voir_cal_nono' => 'non',
+		'voir_une_nono' => 'non',
 		'nb_articles_nono' => '3',
 		'nb_breves_nono' => '2',
 		'nb_sites_nono' => '0',
 		'nb_syndic_nono' => '0',
 		'nb_messages_nono' => '0',
 
+		'voir_menu_nono' => 'non',
+		'nom_menu1_nono' => '',
+		'url_menu1_nono' => '',
+		'nom_menu2_nono' => '',
+		'url_menu2_nono' => '',
+		'nom_menu3_nono' => '',
+		'url_menu3_nono' => '',
+		'nom_menu4_nono' => '',
+		'url_menu4_nono' => '',
+		'nom_menu5_nono' => '',
+		'url_menu5_nono' => '',
 		
 		'activer_edito' => 'non',
 		'id_edito' => '0',
 		'activer_meslogos' => 'non',
 		'id_meslogos' => '0'
-		
-		
-		
 		);
 	while (list($nom, $valeur) = each($liste_meta)) {
 		if (!$GLOBALS['meta'][$nom]) {
@@ -69,11 +77,12 @@ function init_config_nono() {
 //
 
 function appliquer_modifs_nono() {
-	global $nono_base_version,$keywords,$directeur_nono,$redacteur_nono;
-	global $activer_edito,$id_edito,$activer_meslogos,$id_meslogos,$id_parent;
-	global $voir_calendrier_nono;
-	global $nb_evens_nono,$nb_articles_nono,$nb_breves_nono,$nb_sites_non,$nb_syndic_nono,$nb_messages_nono;
-	//include_spip(base/liste_meta_nono); // va chercher la liste des meta de nono
+	global $nono_base_version, $keywords, $directeur_nono, $redacteur_nono;
+	global $activer_edito, $id_edito, $activer_meslogos, $id_meslogos, $id_parent;
+	global $voir_une_nono, $voir_cal_nono, $voir_menu_nono;
+	global $nb_evens_nono, $nb_articles_nono, $nb_breves_nono, $nb_sites_nono, $nb_syndic_nono, $nb_messages_nono;
+	global $nom_menu1_nono, $url_menu1_nono, $nom_menu2_nono, $url_menu2_nono, $nom_menu3_nono, $url_menu3_nono, $nom_menu4_nono, $url_menu4_nono, $nom_menu5_nono, $url_menu5_nono;
+
 		
 	$liste_meta_nono=array (
 
@@ -83,6 +92,18 @@ function appliquer_modifs_nono() {
 		'copyright_nono',
 		'redacteur_nono',
 		'directeur_nono',
+		
+		'voir_menu_nono',
+		'nom_menu1_nono',
+		'url_menu1_nono',
+		'nom_menu2_nono',
+		'url_menu2_nono',
+		'nom_menu3_nono',
+		'url_menu3_nono',
+		'nom_menu4_nono',
+		'url_menu4_nono',
+		'nom_menu5_nono',
+		'url_menu5_nono',
 				
 		'activer_edito',
 		'id_edito',
@@ -91,12 +112,13 @@ function appliquer_modifs_nono() {
 		'id_meslogos',
 		
 		'nb_evens_nono',
-		'voir_calendrier_nono',
+		'voir_cal_nono',
+		'voir_une_nono',
 		'nb_articles_nono',
 		'nb_breves_nono',
 		'nb_sites_nono',
 		'nb_syndic_nono',
-		'nb_messages_nono',
+		'nb_messages_nono'
 
 	);
 

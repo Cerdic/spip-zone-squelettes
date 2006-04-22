@@ -24,17 +24,30 @@ function critere_edito($idb, &$boucles, $crit) {
 	$not = $crit->not;
 	$boucle = &$boucles[$idb];
 	
-	// on va chercher la meta
-	lire_metas();
 	$var=$GLOBALS['meta']['id_edito'];
-	if ($GLOBALS['meta']['activer_edito']='oui') {$id_edito=$var;} else {$id_edito=0;};
 	
+	if ($GLOBALS['meta']['activer_edito']=='oui') {$id_edito=$var;} else {$id_edito=0;};
 	
 	if ($not)
 		erreur_squelette(_T('zbug_info_erreur_squelette'), $crit->op);
 
 	$boucle->where[]= array("'='", "'$boucle->id_table." . "id_rubrique'", $id_edito);
 }
+
+// critère {une}
+// permet d'affecter une rubrique spécifique pour les éditos
+function critere_une($idb, &$boucles, $crit) {
+	$not = $crit->not;
+	$boucle = &$boucles[$idb];
+	
+	if ($GLOBALS['meta']['voir_une_nono']=='oui') {$var=1;} else {$var=0;};
+	
+	if ($not)
+		erreur_squelette(_T('zbug_info_erreur_squelette'), $crit->op);
+
+	$boucle->limit = '0, ' .$var. '' ;
+}
+
 
 //critère {affiche_nb_articles}
 //affichage des événements
@@ -89,7 +102,7 @@ function critere_affiche_nb_syndic($idb, &$boucles, $crit) {
 function critere_affiche_nb_evens($idb, &$boucles, $crit) {
 	$boucle = &$boucles[$idb];
  	$var=$GLOBALS['meta']['nb_evens_nono'];
-	$boucle->limit = '0, ' .$var. '' ;
+	$boucle->limit = '0, '.$var.' ' ;
 
 }
 
@@ -97,18 +110,34 @@ function critere_affiche_nb_evens($idb, &$boucles, $crit) {
 // critère {mes_logos}
 // permet d'affecter un logo à un objet SPIP (rubrique, article, breve, site)
 
+
+//balise de test pour l'affichage du calendrier
+
 function balise_CALENDRIER_NONO($p) {
+	$test=$GLOBALS['meta']['voir_cal_nono'];
+	$p->code = "\$test";
 	
-	$p->code = "\$GLOBALS['meta']['voir_calendrier_nono']";
 	#$p->interdire_scripts = true;
 	return $p;
 }	
 
+// balise #MENU_NONO
 
+function balise_MENU_NONO($p) {
+	
+	$test=$GLOBALS['meta']['voir_menu_nono'];
+	$p->code = "\$test";
+	
+	#$p->interdire_scripts = true;
+	return $p;
+	
+
+}
 
 // balise #DIRECTEUR
 
 function balise_DIRECTEUR_NONO($p) {
+	
 	
 	$p->code = "\$GLOBALS['meta']['directeur_nono']";
 	#$p->interdire_scripts = true;
@@ -142,21 +171,26 @@ function balise_KEYWORDS_NONO($p) {
 	return $p;
 }	
 
-// pour afficher mes boutons dans l'interface privée
+// insert du bandeau
 
-function bouton_radio_nono($nom, $valeur, $titre, $actif = false) {
-	static $id_label = 0;
+function afficher_bandeau($type, $id_objet, $id, $texteon, $script) {
+	global $spip_display;
+
+	if ($spip_display != 4) {
 	
-	
-	$texte = "<input type='radio' name='$nom' value='$valeur' id='label_$id_label'";
-	if ($actif) {
-		$texte .= ' checked="checked"';
-		$titre = '<b>'.$titre.'</b>';
+	  $redirect = generer_url_ecrire($script, "$id_objet=$id", true);
+		$logon = $type.'on'.$id;
+		
+		include_spip('inc/session');
+		echo "<p>";
+		debut_cadre_relief("image-24.gif");
+		echo "<div class='verdana1' style='text-align: center;'>";
+		$desc = afficher_logo($logon, $texteon, $type, 'on', $id, $redirect);
+
+		echo "</div>";
+		fin_cadre_relief();
+		echo "</p>";
 	}
-	$texte .= " /> <label for='label_$id_label'>$titre</label>\n";
-	$id_label++;
-	return $texte;
 }
-
 
 ?>

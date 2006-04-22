@@ -18,15 +18,15 @@
 //    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 
-define('_DIR_PLUGIN_CHERCHER_SQUELETTES',(_DIR_PLUGINS.end(explode(basename(_DIR_PLUGINS)."/",str_replace('\\','/',realpath(dirname(__FILE__)))))));
+define('_DIR_PLUGIN_SQUELETTES_NONO',(_DIR_PLUGINS.end(explode(basename(_DIR_PLUGINS)."/",str_replace('\\','/',realpath(dirname(__FILE__)))))));
 
 function SquelettesNono_ajouter_onglets($flux) {
   if($flux['args']=='configuration')
-	$flux['data']['config_squelettes_Nono']= new Bouton(
-															 '../'._DIR_PLUGIN_CHERCHER_SQUELETTES.'/spip_nono.png', 'Configurer Squelettes Nono',
+	$flux['data']['config_squelettes_nono']= new Bouton(
+															 '../'._DIR_PLUGIN_SQUELETTES_NONO.'/spip_nono.png', 'Configurer Squelettes Nono',
 																 generer_url_ecrire("config_squelettes_nono"));
+  
   return $flux;
 }
-
 
 ?>
