@@ -1,0 +1,33 @@
+[<p class="reponse_formulaire">(#ENV*{sujetko})<:form_prop_indiquer_sujet:></p>]
+[<p class="reponse_formulaire">(#ENV*{mailko})<:form_prop_indiquer_email:></p>]
+
+<form action="#SELF" method='post' id="ecrire_auteur">
+
+[(#REM) Previsualisation ... ]
+[<input type="hidden" name="num_formulaire_ecrire_auteur" value="(#ENV{valide})" />]
+[<div>
+<i>#ENV{mail}</i> - <strong>#ENV{sujet}</strong>
+<div>
+[(#ENV{texte}|nl2br)]
+</div>
+<div style="text-align: #LANG_RIGHT;">
+<input type="submit" name="confirmer#ENV{id}" value="(#ENV{boutonconfirmation})" class="spip_bouton" />
+</div>
+</div>
+]
+
+[(#REM) Formulaire normal ]
+<p><label><:form_pet_votre_email:><br />
+<input type="text" name="email_message_auteur#ENV{id}" value="#ENV{mail}" size="30" />
+</label></p>
+<p><label><:form_prop_sujet:><br />
+<input type="text" name="sujet_message_auteur#ENV{id}" value="#ENV{sujet}" size="30" />
+</label></p>
+<p>
+<textarea name="texte_message_auteur#ENV{id}" rows='10' cols='40'>#ENV{texte}</textarea>
+</p>
+<div style="text-align: #LANG_RIGHT;">
+<input type="submit" name="valide" value="#ENV{bouton}" class="spip_bouton" />
+</div>
+
+</form>
