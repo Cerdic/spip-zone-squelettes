@@ -28,7 +28,7 @@
 <div class="cartouche">
 [(#LOGO_BREVE|right)]
 <h1 class="titre">#TITRE</h1>
-<small>[(#DATE|nom_jour)] [(#DATE|affdate).]</small>
+<small>[(#DATE|nom_jour) ][(#DATE|affdate)]</small>
 </div>
 
 [<div class="texte">(#TEXTE)</div>]
@@ -52,8 +52,8 @@
 <div class="breves" title="<:meme_rubrique:>">
 <h2 class="titre"><:autres_breves:></h2>
 <ul>
-<BOUCLE_breves_rubrique(BREVES) {id_rubrique} {exclus} {par date}{inverse} {0,8}>
-<li>[(#DATE|affdate_court) : ]<a href="#URL_BREVE">#TITRE</a></li>
+<BOUCLE_breves_rubrique(BREVES) {id_rubrique} {par date}{inverse} {0,8}>
+<li>[(#DATE|affdate_court) : ]<a href="#URL_BREVE"[ class="(#EXPOSE)"]>#TITRE</a></li>
 </BOUCLE_breves_rubrique>
 </ul>
 </div>
@@ -64,13 +64,12 @@
 <div class="divers" title="<:mots_clefs:>">
 <h2 class="titre"><:mots_clefs:></h2>
 <ul>
-<BOUCLE_mots(MOTS) {id_article} {par titre}>
-<li>
-<div class="titre"><a href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></div>
+<BOUCLE_mots(MOTS) {id_breve} {par titre}>
+<li><a href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
 <B_breves_mots>
 <ul>
 <BOUCLE_breves_mots(BREVES) {id_mot} {par hasard} {0,4}>
-<li><a href="#URL_BREVE">#TITRE</a></li>
+<li>[(#DATE|affdate_court) : ]<a href="#URL_BREVE">#TITRE</a></li>
 </BOUCLE_breves_mots>
 </ul>
 </B_breves_mots>
