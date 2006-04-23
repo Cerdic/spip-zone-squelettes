@@ -1,9 +1,9 @@
 <form action="[(#ENV{url})][(#ENV**{previsu}|?{'#formulaire',''})]" method="post" id="formulaire_forum">
 [(#ENV{url_post}|form_hidden)]
-[<input type="hidden" name='alea' value='(#ENV{alea})' />]
-[<input type="hidden" name='hash' value='(#ENV{hash})' />]
-[<input type="hidden" name='afficher_texte' value='(#ENV{afficher_texte})' />]
-[<input type="hidden" name='retour_forum' value='(#ENV*{retour_forum}|rawurlencode)' />]
+[<input type="hidden" name="alea" id="alea" value="(#ENV{alea})" />]
+[<input type="hidden" name="hash" id="hash" value="(#ENV{hash})" />]
+[<input type="hidden" name="afficher_texte" id="afficher_texte" value="(#ENV{afficher_texte})" />]
+[<input type="hidden" name="retour_forum" id="retour_forum" value="(#ENV*{retour_forum}|rawurlencode)" />]
 [<p>(#ENV{modere})<:forum_info_modere:></p>]
 [(#ENV*{previsu})]
 <BOUCLE_G(GROUPES_MOTS){forum=oui}
@@ -21,17 +21,15 @@
 	</div>
 ]</BOUCLE_G>
 [(#ENV**{afficher_texte}|choixsiegal{'non', ' ',''})
-<br /><div align="right">
-[<input type="hidden" name="titre" value="(#ENV{titre})" />]
-<input type="submit" id="spip_bouton" value="<:forum_valider:>" />
-</div>]
+[<input type="hidden" name="titre" id="titre" style="float: #LANG_RIGHT;" value="(#ENV{titre})" />]
+<input type="submit" name="submit" id="spip_bouton" style="float: #LANG_RIGHT;" value="<:forum_valider:>" />
+]
 [(#ENV**{afficher_texte}|choixsiegal{'non', '',' '})
 		<fieldset class="spip_encadrer">
 		<legend><b><:forum_titre:></b></legend>
-		<label><input type="text" name="titre" [value="(#ENV{titre})" ] size="40" />
-		</label>
+		<p><label for="titre"><:forum_titre:></label>
+		<input type="text" name="titre" id="titre" [value="(#ENV{titre})" ] size="40" /></p>
 		</fieldset>
-		<br />
 		<fieldset class="spip_encadrer">
 		<legend><b><:forum_texte:></b></legend>
 		<p><:info_creation_paragraphe:></p>
@@ -41,24 +39,19 @@
 		<fieldset class="spip_encadrer">
 			<legend><:forum_lien_hyper:></legend>
 			<p><:forum_page_url:></p>
-			<p><label><:forum_titre:>
-				<input type="text" name="nom_site_forum" size="40" value="[(#ENV{nom_site_forum})]" />
-			</label></p>
-			<p><label><:forum_url:>
-			<input type="text" name="url_site" size="40" value="[(#ENV{url_site})]" />
-			</label></p>
+			<p><label for="nom_site_forum"><:forum_titre:></label>
+			<input type="text" name="nom_site_forum" id="nom_site_forum" size="40" value="[(#ENV{nom_site_forum})]" /></p>
+			<p><label for="url_site"><:forum_url:></label>
+			<input type="text" name="url_site" id="url_site" size="40" value="[(#ENV{url_site})]" /></p>
 		</fieldset>
 		<br />
 		<fieldset class="spip_encadrer">
 			<legend><:forum_qui_etes_vous:></legend>
-			<p><label><:forum_votre_nom:>
-				<input type="text" name="auteur" value="[(#ENV{auteur})]" size="40"[readonly='(#ENV{readonly})'] />
-			</label></p>
-			<p><label><:forum_votre_email:>
-				<input type="text" name="email_auteur" value="[(#ENV{email_auteur})]" size="40" [readonly='(#ENV{readonly})'] />
-			</label></p>
+			<p><label for="auteur"><:forum_votre_nom:></label>
+				<input type="text" name="auteur" id="auteur" value="[(#ENV{auteur})]" size="40"[readonly='(#ENV{readonly})'] /></p>
+			<p><label for="email_auteur"><:forum_votre_email:></label>
+				<input type="text" name="email_auteur" id="email_auteur" value="[(#ENV{email_auteur})]" size="40" [readonly='(#ENV{readonly})'] /></p>
 		</fieldset>
 
-		<div align="#LANG_RIGHT">
-		<input type="submit" value="<:forum_voir_avant:>" id="spip_bouton" /></div>
+<input type="submit" name="submit" id="spip_bouton" style="float: #LANG_RIGHT;" value="<:forum_voir_avant:>" />
 ]</form>

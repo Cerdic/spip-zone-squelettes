@@ -1,37 +1,32 @@
-<div class="spip_serif">
-[(#ENV*{message})]
-[(#ENV*{message}|?{'',' '})
+[<fieldset class="reponse_formulaire" style="text-align: #LANG_LEFT;">
+<legend><:pass_erreur:></legend>
+(#ENV*{message})
+</fieldset>]
 
+[(#ENV*{message}|?{'',' '})
 <form action="[(#ENV{action})]" method="post" id="formulaire_oubli">
-	<fieldset class="spip_sanscadre">
-	<legend><:pass_nouveau_pass:></legend>[
-	<input type="hidden" name="p" value="(#ENV{p})" />
-	<label>
-	    <:pass_choix_pass:>
-	    <input type="password" name="oubli" />
-	</label>][
-	(#ENV{p}|?{'',' '})
-	<label>
-	  <:pass_indiquez_cidessous:>
-	  <input type="text" name="oubli" />
-	</label>]
-	<input type="submit" class="fondl" value="<:pass_ok:>" />
-      </fieldset>
+	<fieldset>
+	<legend><:pass_mot_oublie:></legend>
+	[<input type="hidden" name="p" id="p" value="(#ENV{p})" />
+	<p><:pass_choix_pass:></p>
+	<p><label for="oubli"><:pass_nouveau_pass:></label>
+	<input type="password" name="oubli" id="oubli" /></p>]
+	[(#ENV{p}|?{'',' '})
+	<p><:pass_indiquez_cidessous:></p>
+	<p><label for="oubli"><:form_pet_votre_email:></label>
+	<input type="text" name="oubli" id="oubli" /></p>]
+	<input type="submit" name="submit" id="spip_bouton" value="<:pass_ok:>" />
+    </fieldset>
 </form>
 ]
-</div>
 
-<div align="right">
 <script type="text/javascript"><!--
-[
-(#ENV*{message}|?{'',' '})
-document.oubli_form.oubli.focus()
-]
-document.write("<a  style="color: #e86519" href='")
+[(#ENV*{message}|?{'',' '})
+document.oubli_form.oubli.focus()]
+document.write("<a href='")
 document.write((window.opener) ? "javascript:close()" : "./")
 document.write("'><:pass_quitter_fenetre:><" + "/a>");
 //--></script>
 <noscript>
-	&#91;<a style="color: #e86519" href='./'><:pass_retour_public:></a>&#93;
+	&#91;<a href='./'><:pass_retour_public:></a>&#93;
 </noscript>
-</div>

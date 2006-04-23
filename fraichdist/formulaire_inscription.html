@@ -1,43 +1,40 @@
-<h3 class="spip"><:pass_vousinscrire:></h3>[
+[<fieldset class="reponse_formulaire" style="text-align: #LANG_LEFT;">
+<legend><:pass_erreur:></legend>
 (#ENV*{message})
-][
-(#ENV*{message}|?{'',' '})[
- (#ENV{mode}|=={forum}|?{' ',''})
-	<:pass_forum_bla:><br /><br />
-][
- (#ENV{mode}|=={redac}|?{' ',''})<:pass_espace_prive_bla:>
-<br /><br />
-]<div class="spip_serif"><:form_forum_indiquer_nom_email:>
-<br /><br />
-<form method="post" action="[(#ENV{self})]" id="formulaire_inscription">
-	<fieldset class="spip_sanscadre">
+</fieldset>]
+
+[(#ENV*{message}|?{'',' '})
+
+<fieldset style="text-align: #LANG_LEFT;">
+<legend><:pass_vousinscrire:></legend>
+[(#ENV{mode}|=={forum}|?{' ',''})<p><:pass_forum_bla:></p>]
+[(#ENV{mode}|=={redac}|?{' ',''})<p><:pass_espace_prive_bla:></p>]
+</fieldset>
+
+<form method="post" action="[(#ENV{self})]" id="formulaire_inscription" style="text-align: #LANG_LEFT;">
+	<fieldset>
 		<legend><:form_forum_identifiants:></legend>
-		<label>
-		  <:form_pet_votre_nom:>
-		  <input type="text" name="nom_inscription" value="" size="30" />
-		</label>
-		<label>
-		  <:form_pet_votre_email:>
-		  <input type="text" name="mail_inscription" value="" size="30" />
-		</label>
+		<p><:form_forum_indiquer_nom_email:></p>
+		<p><label for="nom_inscription"><:form_pet_votre_nom:></label>
+		<input type="text" name="nom_inscription" id="nom_inscription" value="" size="30" /></p>
+		<p><label for="mail_inscription"><:form_pet_votre_email:></label>
+		<input type="text" name="mail_inscription" id="mail_inscription" value="" size="30" /></p>
+		<input type="submit" name="submit" id="spip_bouton" style="float: #LANG_RIGHT;" value="<:bouton_valider:>" />
 	</fieldset>
-	<div align="right">
-		<input type="submit" id="spip_bouton" value="<:bouton_valider:>" />
-	</div> 
 </form>
-</div>
+
 [<script type="text/javascript"><!--
 document.inscription.(#ENV{focus}).focus()
 --></script>]
+
 ]
-[<br /><div align="right">
-(#ENV{focus}|?{' ',''})
+
+[(#ENV{focus}|?{' ',''})
 <script type="text/javascript"><!--
 document.write("<a href='")
 document.write((window.opener) ? "javascript:close()" : "./")
 document.write("'><:pass_quitter_fenetre:><" + "/a>");
 //--></script>
 <noscript>
-        &#91;<a href='./'><:pass_retour_public:></a>&#93;
-</noscript>
-</div>]
+&#91;<a href='./'><:pass_retour_public:></a>&#93;
+</noscript>]
