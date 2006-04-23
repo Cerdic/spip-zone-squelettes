@@ -110,12 +110,27 @@ function critere_affiche_nb_evens($idb, &$boucles, $crit) {
 // critère {mes_logos}
 // permet d'affecter un logo à un objet SPIP (rubrique, article, breve, site)
 
+function critere_mes_logos($idb, &$boucles, $crit) {
+
+	
+	if ($GLOBALS['meta']['activer_edito']=='oui') {$var=$GLOBALS['meta']['id_meslogos'];} else {$var=0;};
+	
+	if ($not)
+		erreur_squelette(_T('zbug_info_erreur_squelette'), $crit->op);
+
+	$boucle->where[]= array("'='", "'$boucle->id_table." . "id_groupe'", $var);
+	
+
+	
+//	"id_groupe='\".$GLOBALS['meta']['id_meslogos'].\"'";
+}
+
 
 //balise de test pour l'affichage du calendrier
 
 function balise_CALENDRIER_NONO($p) {
 	$test=$GLOBALS['meta']['voir_cal_nono'];
-	$p->code = "\$test";
+	$p->code = "mon_calendrier()";
 	
 	#$p->interdire_scripts = true;
 	return $p;
@@ -125,15 +140,35 @@ function balise_CALENDRIER_NONO($p) {
 
 function balise_MENU_NONO($p) {
 	
-	$test=$GLOBALS['meta']['voir_menu_nono'];
-	$p->code = "\$test";
+	//$test=$GLOBALS['meta']['voir_menu_nono'];
+	//$p->code = "\$test";
 	
+	if ($GLOBALS['meta']['voir_menu_nono']=='oui') {
+		$url='';
+		$som='Sommaire';
+		$u->code = "
+				   lien_menu_nono(\$GLOBALS['meta']['voir_menu_nono'],\$GLOBALS['meta']['url_menu1_nono'],\$GLOBALS['meta']['nom_menu1_nono'])
+                   .lien_menu_nono(\$GLOBALS['meta']['voir_menu_nono'],\$GLOBALS['meta']['url_menu2_nono'],\$GLOBALS['meta']['nom_menu2_nono'])
+                   .lien_menu_nono(\$GLOBALS['meta']['voir_menu_nono'],\$GLOBALS['meta']['url_menu3_nono'],\$GLOBALS['meta']['nom_menu3_nono'])
+ 		           .lien_menu_nono(\$GLOBALS['meta']['voir_menu_nono'],\$GLOBALS['meta']['url_menu4_nono'],\$GLOBALS['meta']['nom_menu4_nono'])
+                   .lien_menu_nono(\$GLOBALS['meta']['voir_menu_nono'],\$GLOBALS['meta']['url_menu5_nono'],\$GLOBALS['meta']['nom_menu5_nono'])"
+	  
+	 ;} 
+		
 	#$p->interdire_scripts = true;
-	return $p;
+	return $u;
 	
-
 }
 
+// fonction annexe pour les menus
+
+function lien_menu_nono($test,$url,$nom) {
+
+	if	($test='oui') {
+						if ($url<>'') {$p= "<a href='".$url."' class='bouton'>".$nom."</a>\n";}
+						};
+	return $p;
+}
 // balise #DIRECTEUR
 
 function balise_DIRECTEUR_NONO($p) {
@@ -192,5 +227,19 @@ function afficher_bandeau($type, $id_objet, $id, $texteon, $script) {
 		echo "</p>";
 	}
 }
+
+// Le selecteur de rubriques en mode classique (menu)
+function selecteur_groupe_html($id) {
+
+$query="SELECT id_groupe,titre FROM spip_groupes_mots ORDER BY titre";
+$result=spip_query($query);
+echo "<br><SELECT name='id_meslogos' \nstyle='font-size: 90%; width: 99%; font-face: verdana,arial,helvetica,sans-serif; max-height: 24px;'>";
+while ($row=spip_fetch_array($result)) {
+	echo "<OPTION ".mySel($row['id_groupe'],$id).">".$row['titre']."</OPTION>\n";
+
+	}
+echo "</select>";
+}
+
 
 ?>

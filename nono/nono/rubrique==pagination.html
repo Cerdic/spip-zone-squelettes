@@ -1,0 +1,345 @@
+#CACHE{7200}
+<?
+if ($annee && $mois && $jour)
+	$cal_date = $annee."-".$mois."-".$jour;
+
+$year = substr($cal_date, 0, 4);
+$month = substr($cal_date, 5, 2);
+$day = substr($cal_date, 8, 2);
+?>
+
+<BOUCLE_principale(RUBRIQUES){id_rubrique}>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="fr">
+
+<!--      affichage rubrique       -->
+<!-- *****  squelettes nono  ***** -->
+<!-- ******** version 1.9 ******** -->
+<!-- ***** conception : jsb  ***** -->
+
+<head>
+
+	<title>#NOM_SITE_SPIP - [(#TITRE|supprimer_numero|textebrut|entites_html)]</title>
+	
+	<meta name="Description" content="[(#TITRE|textebrut|entites_html)] / [(#DESCRIPTIF|textebrut|entites_html)]">
+	<meta name="Keywords" content="<BOUCLE_keywords(MOTS){id_rubrique}{","}>[(#TITRE|supprimer_numero)]</BOUCLE_keywords>">
+	<meta name="ROBOTS" content="INDEX, FOLLOW">
+	<meta name="REVISIT-AFTER" content="15 days">
+	<meta http-equiv="content-Type" content="text/html; charset=#CHARSET">
+	<meta name="copyright" content="<? echo $meta_copyright ?>">
+	
+	<link href="#CHEMIN{css/nono_habillage.css}" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<!-- Entête de la page -->
+<INCLURE{fond=entete}{lang}{delais=24*3600}>
+
+<!-- menu programmable -->
+<INCLURE{fond=menup}{lang}{id_rubrique}{delais=24*3600}>
+
+<!-- hierarchie -->
+<INCLURE{fond=hierarchie}{lang}{delais=24*3600}{id_rubrique}>
+
+<B_test_entree>
+<!-- boucle de test permettant de savoir s'il existe des sous rubriques -->
+<div id="rubrique">
+
+	<!-- menu dynamique ( les sous rubriques ) -->
+	<INCLURE{fond=menudyn}{lang}{id_rubrique}{delais=24*3600}>
+	
+	<div class="contenus">
+    <BOUCLE_test_entree(RUBRIQUES){id_parent}{0,1}>
+    </BOUCLE_test_entree>
+
+</B_test_entree>
+
+<!-- prend la totalité de l'écran s'il n'existe pas de sous rubriques -->
+<div style="width:100%">
+<//B_test_entree>	
+	
+	
+	<!-- la rubrique (description) -->
+	<div class="contenu">
+		<BOUCLE_descrip(RUBRIQUES){id_rubrique}>
+			<BOUCLE_motrub(MOTS){id_rubrique}{id_groupe==^$selecteur_logo}>
+				[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
+			</BOUCLE_motrub>
+		
+			[<div class="logo"><img src="IMG/(#LOGO_RUBRIQUE|fichier)"] [alt="" (#LOGO_RUBRIQUE|fichier|texte_script|redimlogo{200,60})></div>]
+			[<div class="titre">(#TITRE|supprimer_numero)</div>]
+			[<div class="texte">(#TEXTE)</div>]
+		</BOUCLE_descrip>
+	</div>
+	
+	<!-- debut articles / breves -->
+	<div class="articles-breves">
+	
+	<!-- pagination des brèves -->
+	<B_page_breve>
+	<div class="breves">
+			<div class="titre-bloc">Les br&egrave;ves</div>
+		
+		<div class="bouton">
+		<BOUCLE_page_breve(BREVES){id_rubrique}>                              
+		</BOUCLE_page_breve>
+			<?php
+			$numero=#COMPTEUR_BOUCLE-1;
+			$total=#TOTAL_BOUCLE;
+			for ($numero = 0; $numero < $total; $numero = $numero + 4){
+			$num_fin = $numero + 4;
+			if ($num_fin > $total) $num_fin = $total;
+			if ($numero == $debut_breve)
+			echo "[".($numero+1)."-$num_fin] ";
+			else
+			echo '[<a name="breve" href="#URL_RUBRIQUE&amp;debut_breve='.$numero.'#breve" title="nouvelle page">'.($numero+1)."-$num_fin</a>] ";
+			}
+			?>
+	</B_page_breve>
+	</div>
+		
+	<!-- les breves -->
+	<B_breve>
+		
+		 <BOUCLE_breve(BREVES) {par date} {id_rubrique}{inverse}{debut_breve,4} >
+			<div class="caps">
+			<BOUCLE_motbrev(MOTS){id_breve}{id_groupe==^$selecteur_logo}>
+				[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
+			</BOUCLE_motbrev>
+		
+			[<div class="logo"><img src="IMG/(#LOGO_BREVE|fichier)"] [alt="" (#LOGO_BREVE|fichier|texte_script|redimlogo{200,60})></div>]
+			<div class="date">	[(#DATE|nom_jour)] [(#DATE|affdate)]</div>				
+			<div class="titre"><a href="#URL_BREVE" title="voir la br&egrave;ve">[(#TITRE|supprimer_numero)]</a></div>
+			[<div class="texte">(#TEXTE|textebrut|entites_html|couper{50})</div>]
+			</div>
+		 </BOUCLE_breve>
+			 
+	</div><!-- fermeture des brèves -->
+	</B_breve>
+	
+	
+	<!-- pagination des articles -->
+	<B_page_article>
+	<div class="articles">
+			<div class="titre-bloc">Les articles</div>
+		
+		<div class="bouton">
+		<BOUCLE_page_article(ARTICLES){id_rubrique}>                              
+		</BOUCLE_page_article>
+			<?php
+			$numero=#COMPTEUR_BOUCLE-1;
+			$total=#TOTAL_BOUCLE;
+			for ($numero = 0; $numero < $total; $numero = $numero + 4){
+			$num_fin = $numero + 4;
+			if ($num_fin > $total) $num_fin = $total;
+			if ($numero == $debut_article)
+			echo "[".($numero+1)."-$num_fin] ";
+			else
+			echo '[<a name="article" href="#URL_RUBRIQUE&amp;debut_article='.$numero.'#article" title="nouvelle page">'.($numero+1)."-$num_fin</a>] ";
+			}
+			?>
+	</B_page_article>
+	</div>
+				
+	<!-- les articles -->
+	<B_articles>
+	   <BOUCLE_articles(ARTICLES){id_rubrique}{par date}{inverse}{debut_article,4}>
+			<div class="caps">
+				<BOUCLE_motart(MOTS){id_article}{id_groupe==^$selecteur_logo}>
+					[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
+				</BOUCLE_motart>
+		
+				[<div class="logo"><img src="IMG/(#LOGO_ARTICLE|fichier)"] [alt="" (#LOGO_ARTICLE|fichier|texte_script|redimlogo{200,60})></div>]
+				<div class="titre"><a href="#URL_ARTICLE" title="[voir (#TITRE|supprimer_numero)]">[(#TITRE|supprimer_numero)]</a></div>
+				<div class="date">[(#DATE|nom_jour)] [(#DATE|affdate)]<B_auteurs>, par 
+				<BOUCLE_auteurs(AUTEURS){id_article}{", "}><a href="#URL_AUTEUR" title="&eacute;crire &agrave; #NOM">#NOM</a></BOUCLE_auteurs></div>
+				[<div class="chapo">(#CHAPO)</div>]
+				[<div class="texte">(#TEXTE|textebrut|entites_html|couper{50})</div>]
+				
+			</div>
+		</BOUCLE_articles>
+	</div><!-- fermeture articles -->
+	</B_articles>
+	
+	</div>	
+	
+	<!-- pagination des sites -->
+	
+	<B_page_site>
+	<div class="sites">
+		<div class="titre-bloc" >Les sites r&eacute;f&eacute;renc&eacute;s</div>
+		
+		<div class="bouton">
+		<BOUCLE_page_site(SITES){id_rubrique}{syndication=non}>                              
+		</BOUCLE_page_site>
+			<?php
+			$numero=#COMPTEUR_BOUCLE-1;
+			$total=#TOTAL_BOUCLE;
+			for ($numero = 0; $numero < $total; $numero = $numero + 4){
+			$num_fin = $numero + 4;
+			if ($num_fin > $total) $num_fin = $total;
+			if ($numero == $debut_site)
+			echo "[".($numero+1)."-$num_fin] ";
+			else
+			echo '[<a name="site" href="#URL_RUBRIQUE&amp;debut_site='.$numero.'#site" title="nouvelle page">'.($numero+1)."-$num_fin</a>] ";
+			}
+			?>
+		</div>
+	</B_page_site>
+	
+	
+	<!-- sites référencés -->
+	<B_sites1>
+		<BOUCLE_sites1(SITES){id_rubrique}{par date}{inverse}{syndication=non}{debut_site,4}>
+			<div class="caps">
+				<BOUCLE_motsite(MOTS){id_syndic}{id_groupe==^$selecteur_logo}>
+					[<div clasS="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
+				</BOUCLE_motsite>
+		
+				[<div class="logo"><img src="IMG/(#LOGO_SITE|fichier)"] [alt="" (#LOGO_SITE|fichier|texte_script|redimlogo{200,50})></div>]
+				<div class="titre"><a title="voir le site : #NOM_SITE" href="#URL_SITE">#NOM_SITE</a></div>
+				[<div class="url">(#URL_SITE)</div>]
+				[<div class="descrip">(#DESCRIPTIF)</div>]
+			</div>
+		</BOUCLE_sites1>
+	</div><!-- fermeture sites -->
+	</B_sites1>
+	
+	<!-- pagination des articles syndiqués -->
+	
+	<B_page_syndic>
+	<div class="syndic">	
+		<div class="titre-bloc">Les articles syndiqu&eacute;s</div>
+			<div class="bouton">
+			<BOUCLE_page_syndic(SYNDIC_ARTICLES){id_rubrique}>                              
+			</BOUCLE_page_syndic>
+				<?php
+				$numero=#COMPTEUR_BOUCLE-1;
+				$total=#TOTAL_BOUCLE;
+				for ($numero = 0; $numero < $total; $numero = $numero + 4){
+				$num_fin = $numero + 4;
+				if ($num_fin > $total) $num_fin = $total;
+				if ($numero == $debut_syndic)
+				echo "[".($numero+1)."-$num_fin] ";
+				else
+				echo '[<a name="syndic" href="#URL_RUBRIQUE&amp;debut_syndic='.$numero.'#syndic" title="nouvelle page">'.($numero+1)."-$num_fin</a>] ";
+				}
+				?>
+			</div>
+		
+	
+	</div>
+	</B_page_syndic>
+	<!-- articles syndiques -->
+	<B_syndication>
+		<div class="caps">
+			
+			<BOUCLE_syndication(SYNDIC_ARTICLES){par date} {id_rubrique}{inverse}{debut_syndic,4}>
+				<?php $new_date='[(#DATE|affdate)]'; if($new_date!=$brev_date){ ?>
+					<div class="date">[(#DATE|nom_jour)] [(#DATE|affdate)]</div> 
+				<?php $brev_date=$new_date;"\n"; }; ?>
+				<ul><li><a title="[extrait : (#DESCRIPTIF|textebrut|entites_html)]" href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a>
+				<B_auteurs2><span class="auteurs">, par 
+				<BOUCLE_auteurs2(AUTEURS){id_article}{", "}><a href="#URL_AUTEUR" title="&eacute;crire &agrave; #NOM">#NOM</a></BOUCLE_auteurs2>
+				 </span></B_auteurs2>, sur <a class="site"  href="#URL_SITE" title="voir le site : #NOM_SITE">#NOM_SITE</a></li></ul>
+			</BOUCLE_syndication>
+			
+		</div>
+	</div><!-- fermeture articles syndiqués -->
+	</B_syndication>
+	
+	<!-- pagination des documents joints -->
+	
+	<B_page_docs>
+	<div class="doc-rub">	
+		<div class="titre-bloc">Les documents joints</div>
+			<div class="bouton">
+			<BOUCLE_page_docs(DOCUMENTS){id_rubrique}>                              
+			</BOUCLE_page_docs>
+				<?php
+				$numero=#COMPTEUR_BOUCLE-1;
+				$total=#TOTAL_BOUCLE;
+				for ($numero = 0; $numero < $total; $numero = $numero + 6){
+				$num_fin = $numero + 6;
+				if ($num_fin > $total) $num_fin = $total;
+				if ($numero == $debut_syndic)
+				echo "[".($numero+1)."-$num_fin] ";
+				else
+				echo '[<a name="doc" href="#URL_RUBRIQUE&amp;debut_doc='.$numero.'#doc" title="nouvelle page">'.($numero+1)."-$num_fin</a>] ";
+				}
+				?>
+			</div>
+	
+	</div>
+	</B_page_docs>
+	
+	<B_docs_joints>
+	<!-- les documents joints -->
+	<div class="doc-rub">
+			<BOUCLE_docs_joints(DOCUMENTS) {id_rubrique} {mode=document} {doublons}{debut_doc,6} >
+				<div class="ligne-doc">
+				[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
+					[<div class="titre"><a href="#URL_DOCUMENT" title="t&eacute;l&eacute;charger le document">(#TITRE|supprimer_numero)</a></div>]
+					[<div class="descrip">(#DESCRIPTIF)</div>]
+					[<div class="taille">(#TAILLE|taille_en_octets)</div>]
+				</div>
+			</BOUCLE_docs_joints>
+					
+	</div>
+	</B_docs_joints>
+	
+	
+
+<B_test_sortie>
+<!-- boucle de test permettant de savoir s'il existe des sous rubriques -->
+    <!-- fermeture du div contenus / cf première boucle de test -->
+    </div>
+	
+    <BOUCLE_test_sortie(RUBRIQUES){id_parent}{0,1}></BOUCLE_test_sortie>
+
+</B_test_sortie>
+	
+
+</div>
+
+<!-- navigation basse -->
+<div id="nav2">
+	<!-- navigation rapide -->
+	<div class="navig">
+	<form name="rapide" action="">
+	<select name="acces direct"  onChange="if (options[selectedIndex].value) { location =options[selectedIndex].value; }">
+	<option selected value="">Navigation rapide dans les rubriques</option>
+	
+	<BOUCLE_RUBRIQUES(RUBRIQUES){racine}{par titre}>
+								
+	<?php if ($edito<>'#ID_RUBRIQUE') { ?>	<option value=""></option><option value="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</option><?php } ?>
+	
+		<BOUCLE_SOUSRUBRIQUES(RUBRIQUES){id_parent}{par titre}>
+		
+		<option value="#URL_RUBRIQUE"> __ [(#TITRE|supprimer_numero)]</option>
+	
+			<BOUCLE_SOUSSOUSRUBRIQUES(RUBRIQUES){id_parent}{par titre}>
+		
+			<option value="#URL_RUBRIQUE"> _____ [(#TITRE|supprimer_numero)]</option>
+	
+			</BOUCLE_SOUSSOUSRUBRIQUES>
+		</BOUCLE_SOUSRUBRIQUES>
+	</BOUCLE_RUBRIQUES>
+	</select>
+	</form>
+	</div>
+
+	<div class="bouton">
+		<B_rubrique_enfant>
+			<BOUCLE_rubrique_enfant(RUBRIQUES){id_enfant}>
+			[&nbsp;<a href="#URL_RUBRIQUE" title="retour à la rubrique : [(#TITRE|supprimer_numero)]">retour</a>&nbsp;]
+			</BOUCLE_rubrique_enfant>
+		</B_rubrique_enfant>
+		[&nbsp;<a href="#URL_SITE_SPIP" title="retour à la racine du site">retour</a>&nbsp;]
+		<//B_rubrique_enfant>
+	</div>
+</div>
+</BOUCLE_principale>
+</body>
+</html>

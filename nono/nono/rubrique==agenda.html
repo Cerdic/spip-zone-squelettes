@@ -47,59 +47,83 @@ $day = substr($cal_date, 8, 2);
 <div id="rubrique">
 	<div class="rubrique">
 		<div class="contenu">
-			<BOUCLE_descrip(RUBRIQUES){id_rubrique}>
-				<BOUCLE_motrub(MOTS){id_rubrique}{id_groupe==^$selecteur_logo}>
-					[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
-				</BOUCLE_motrub>
+			<BOUCLE_motrub(MOTS){id_rubrique}{id_groupe==^$selecteur_logo}>
+				[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
+			</BOUCLE_motrub>
+		
 			[<div class="logo"><img src="IMG/(#LOGO_RUBRIQUE|fichier)"] [alt="" (#LOGO_RUBRIQUE|fichier|texte_script|redimlogo{200,60})></div>]
-
 			[<div class="titre">(#TITRE|supprimer_numero)</div>]
 			[<div class="texte">(#TEXTE)</div>]
-			</BOUCLE_descrip>
 		</div>
 	</div>
-</div>
 
-<!-- les sous rubriques -->
-<B_rub1>
-<div id="annuaire">
-	<div class="titre-bloc">Les sous-rubriques</div>
-	<div class="col1">
-		<BOUCLE_rub1(RUBRIQUES){id_parent}{par titre}{1/2}>
-			<div class="rub"><a  href="#URL_RUBRIQUE" title=" voir sous rubrique : [(#TITRE|supprimer_numero)]">[(#TITRE|supprimer_numero)]</a></div>
-			[<div class="descrip_rub">(#TEXTE)</div>]
-		</BOUCLE_rub1>
-	</div>
-	
-	<B_rub2> 
-	<div class="col2">
-		<BOUCLE_rub2(RUBRIQUES){id_parent}{par titre}{2/2}>
-				<div class="rub"><a  href="#URL_RUBRIQUE" title=" voir sous rubrique : [(#TITRE|supprimer_numero)]">[(#TITRE|supprimer_numero)]</a></div>
-				[<div class="descrip_rub">(#TEXTE)</div>]
-		</BOUCLE_rub2>
-	</div>
-	</B_rub2>
-</div>
-</B_rub1>
+	<div class="agenda">
+	<?php if ($cal_date) { ; ?>
+		<div class="titre-bloc">Agenda du mois
+		<?php
+			list($year, $month, $day ) = explode("-", $cal_date);
+			$mois  = array('de janvier','de f&eacute;vrier','de mars','d&acute;avril','de mai','de juin','de juillet','d&acute;ao&ucirc;t','de septembre','d&acute;octobre','de novembre','de d&eacute;cembre');
+			echo " ".$mois[$month-1]." ".$year;
+		?>
+		</div>
+	<? } ?>
 
-<!-- l'annuaire  -->	
-<B_sites1>
-<div id="annuaire">
-	<div class="titre-bloc">Les sites r&eacute;f&eacute;renc&eacute;s</div>
-	<BOUCLE_sites1(SITES){id_rubrique}{par date}{inverse}{syndication=non}{debut_site,10}>
-			<div class="caps">
-				<BOUCLE_motsite(MOTS){id_syndic}{id_groupe==^$selecteur_logo}>
-					[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
-				</BOUCLE_motsite>
-				[<div class="logo"><img src="IMG/(#LOGO_SITE|fichier)"] [alt="" (#LOGO_SITE|fichier|texte_script|redimlogo{200,50})></div>]
-				
-				<div class="titre"><a title="voir le site : #NOM_SITE"  href="#URL_SITE">#NOM_SITE</a></div>
-				[<div class="url">(#URL_SITE)</div>]
-				[<div class="descrip">(#DESCRIPTIF)</div>]
+	<!-- les événements du mois -->
+	<div class="evenements_jour">
+	<?php if ($cal_date) { ;?>
+	<B_articles>
+
+	<BOUCLE_articles(ARTICLES){par date}>
+		<?
+		$date_article='#DATE_REDAC';
+		$date_article=substr($date_article,5, 2);
+		
+		$cal_date_mois=substr($cal_date,5,2);
+		$annee_article=substr('#DATE_REDAC',0,4);
+		$annee_ref=substr($cal_date,0,4);
+		if ($date_article==$cal_date_mois AND $agenda=='#ID_SECTEUR' AND $annee_article==$annee_ref )
+		{; ?>
+
+		<?php $new_date='#DATE_REDAC';$date_jour=substr($new_date,0,10);
+			if($new_date!=$date_test){; ?>
+
+			<div class="date">
+				<a title="voir les événements du jour" href="agendajour.php3?id_rubrique=#ID_RUBRIQUE&amp;cal_date=<? echo $date_jour ?>">
+				Le [(#DATE_REDAC|nom_jour)] [(#DATE_REDAC|affdate)]
+				</a>
 			</div>
-	</BOUCLE_sites1>
-</div>	
-</B_sites1>
+			<?php $date_test=$new_date; }; ?>
+
+		<div class="titre">
+			<div class="logo">
+				<span class="sousrub">
+					<BOUCLE_hier1(RUBRIQUES){id_rubrique}>
+					<?php if (#ID_RUBRIQUE!=$agenda) {; ?>( [(#TITRE|supprimer_numero)] )
+					<?php }; ?>
+					</BOUCLE_hier1>
+				</span>
+			</div>
+			<a href="#URL_ARTICLE&amp;id_rubrique=#ID_RUBRIQUE&amp;cal_date=<? echo $date_jour ?>" title="extrait : [(#INTRODUCTION|textebrut|entites_html)]">#TITRE</a>
+			<B_auteurs><span class="auteurs">, par 
+			<BOUCLE_auteurs(AUTEURS){id_article}{", "}><a href="#URL_AUTEUR" title="&eacute;crire &agrave; #NOM">#NOM</a></BOUCLE_auteurs></span></B_auteurs>
+		</div>
+		<?php } ?>
+
+	</BOUCLE_articles>
+	</B_articles>
+
+	<//B_articles>
+
+	<?php } ?>
+
+	</div>
+	<!-- le calendrier -->
+	<div class="calendrier">
+		<?php Nono_calendrier_mois($cal_date); ?>
+	</div>
+
+</div>
+</div>
 
 <!-- navigation basse -->
 <div id="nav2">
@@ -120,32 +144,14 @@ $day = substr($cal_date, 8, 2);
 		</select>
 		</form>
 	</div>
-		
+
 	<div class="bouton">
-		[&nbsp;<a href="site.php3?id_rubrique=#ID_RUBRIQUE" title="ajouter un site &agrave; la rubrique">ajouter un site</a>&nbsp;]
-		<BOUCLE_first(SITES){id_rubrique}>                              
-		</BOUCLE_first>
-			Sites :
-			<?php
-			$numero=#COMPTEUR_BOUCLE-1;
-			$total=#TOTAL_BOUCLE;
-			for ($numero = 0; $numero < $total; $numero = $numero + 10){
-			$num_fin = $numero + 10;
-			if ($num_fin > $total) $num_fin = $total;
-			if ($numero == $debut_site)
-			echo "[".($numero+1)."-$num_fin]";
-			else
-			echo '[<a href="#URL_RUBRIQUE&amp;debut_site='.$numero.'" title="nouvelle page">'.($numero+1)."-$num_fin</a>]";
-			}
-			?>
-		</B_first>
-		
-		<B_rubrique_enfant>
+	<B_rubrique_enfant>
 			<BOUCLE_rubrique_enfant(RUBRIQUES){id_enfant}>
 			[&nbsp;<a href="#URL_RUBRIQUE" title="retour &agrave; la rubrique : [(#TITRE|supprimer_numero)]">retour</a>&nbsp;]
 			</BOUCLE_rubrique_enfant>
 		</B_rubrique_enfant>
-		[&nbsp;<a href="(#URL_SITE_SPIP)" title="retour &agrave; la racine du site">retour</a>&nbsp;]
+		[&nbsp;<a href="#URL_SITE_SPIP" title="retour &agrave; la racine du site">retour</a>&nbsp;]
 		<//B_rubrique_enfant>
 	</div>
 </div>

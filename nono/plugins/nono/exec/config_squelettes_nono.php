@@ -21,18 +21,18 @@
 define('_DIR_PLUGIN_SQUELETTES_NONO',(_DIR_PLUGINS.end(explode(basename(_DIR_PLUGINS)."/",str_replace('\\','/',realpath(dirname(__FILE__).'/..'))))));
 
 function exec_config_squelettes_Nono() {
-  global $connect_statut, $connect_toutes_rubriques,$changer_config,$id_parent,$id_rubrique,$voir_cal_nono;
+  global $connect_statut, $connect_toutes_rubriques,$changer_config,$id_parent,$id_rubrique,$voir_cal_nono,$id_meslogos;
 
-  include_spip("inc/presentation");
-  include_spip("base/abstract_sql");
-  include_spip('inc/logos');
-    include_spip('inc/rubriques');
+	include_spip("inc/presentation");
+	include_spip("base/abstract_sql");
+	include_spip('inc/logos');
+	include_spip('inc/rubriques');
 	include_spip('inc/documents');
-include_spip('inc/presentation');
-include_spip('inc/rubriques');
-include_spip('inc/logos');
-include_spip('inc/mots');
-include_spip('inc/documents');
+	include_spip('inc/presentation');
+	include_spip('inc/rubriques');
+	include_spip('inc/logos');
+	include_spip('inc/mots');
+	include_spip('inc/documents');
 
 	
   debut_page('&laquo; '._T('squelettesnono:titre_page').' &raquo;', 'configurations', 'mots_partout','',_DIR_PLUGIN_SQUELETTES_NONO.'/squelettesNono.css');
@@ -383,20 +383,18 @@ include_spip('inc/documents');
 
 	
 	// affichage optionnel	
-	if ($activer_meslogos = 'oui') $style = "display: none;";
-	else $style = "display: block;";
+	if ($activer_meslogos != 'non') $style = "display: block;";
+	else $style = "display: none;";
 	
 	echo "<div id='config-meslogos' style='$style'>";
 	
 	// Choix du groupe de mots clés affecté
 
-	include_spip('inc/rubriques');
-	include_spip('inc/gestionnono');
-	$restreint = ($GLOBALS['statut'] == 'publie');
+	echo selecteur_groupe_html($id_meslogos);
 	
 	echo "</div>";
 	
-	echo "<div style='text-align:right;'><input type='submit' name='Valider' value='"._T('bouton_valider')."' CLASS='fondo'></div>";
+	echo "<br><div style='text-align:right;'><input type='submit' name='Valider' value='"._T('bouton_valider')."' CLASS='fondo'></div>";
 
 	echo "</form>";
 	

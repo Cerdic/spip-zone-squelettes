@@ -516,7 +516,7 @@ function decouper_en_page($texte) {
 //================================================================================
 //--------------------------------------------------------------------------------
 //----------------------------debut du calendier----------------------------------
-function mon_calendrier($param) {
+function mon_calendrier() {
 
 if ($GLOBALS['meta']['voir_cal_nono']=='oui') {
 
@@ -536,9 +536,9 @@ if ($GLOBALS['meta']['voir_cal_nono']=='oui') {
 	
 	// quelques variables à définir
 		$onlydayofmonth = true; // si true, on affiche que les jours de ce mois
-		$clicable = "agendajour.php3?id_rubrique=$agenda&amp;cal_date=";
-		$clicable2 ="sommaire.php3?cal_date=";
-		$clicable3 ="rubrique.php3?id_rubrique=$agenda&amp;cal_date=";
+		$clicable = "?cal_date=";
+		$clicable2 ="?cal_date=";
+		$clicable3 ="?cal_date=";
 			// url de votre page listant tous les articles d'un jour donné
 		$clicableformat = "%Y-%m-%d"; // format de la façon dont sont passés les arguments
 		$displayweeknumber = false; // affiche ou non le n° de la semaine à gauche
@@ -707,6 +707,8 @@ if ($GLOBALS['meta']['voir_cal_nono']=='oui') {
 	$sortie.="";
 
 	return $sortie;	
+	
+
 } }
 
 //=============================================================================================
@@ -911,7 +913,7 @@ function calendrier_mois($param) {
 
 function calendrier_jour($param) {
 
-	include("nono_conf.txt");
+
 	// est ce une date ? 
 	if (intval($param)==0) $param=date("Y-m-d");
 	$tmp = split ("-", $param);
@@ -929,7 +931,7 @@ function calendrier_jour($param) {
 	// quelques variables à définir
 		$onlydayofmonth = true; // si true, on affiche que les jours de ce mois
 		$clicable = "agendajour.php3?id_rubrique=$agenda&amp;cal_date=";
-		$clicable2 ="sommaire.php3?cal_date=";
+		$clicable2 ="?cal_date=";
 		$clicable3 ="rubrique.php3?id_rubrique=$agenda&amp;cal_date=";
 			// url de votre page listant tous les articles d'un jour donné
 		$clicableformat = "%Y-%m-%d"; // format de la façon dont sont passés les arguments
@@ -1103,19 +1105,4 @@ function calendrier_jour($param) {
 	return $sortie;	
 }
 
-function mes_menus($p) {
-
-if ($GLOBALS['meta']['voir_menu_nono']=='oui') {
-
-$p = "<a href='".$GLOBALS['meta']['adresse_site']."' class='bouton'>Sommaire</a>\n";
-$p .= "<a href='".$GLOBALS['meta']['url_menu1_nono']."' class='bouton'>".$GLOBALS['meta']['nom_menu1_nono']."</a>\n";
-$p .= "<a href='".$GLOBALS['meta']['url_menu2_nono']."' class='bouton'>".$GLOBALS['meta']['nom_menu2_nono']."</a>\n";
-$p .= "<a href='".$GLOBALS['meta']['url_menu3_nono']."' class='bouton'>".$GLOBALS['meta']['nom_menu3_nono']."</a>\n";
-$p .= "<a href='".$GLOBALS['meta']['url_menu4_nono']."' class='bouton'>".$GLOBALS['meta']['nom_menu4_nono']."</a>\n";
-$p .= "<a href='".$GLOBALS['meta']['url_menu5_nono']."' class='bouton'>".$GLOBALS['meta']['nom_menu5_nono']."</a>\n";
-
-} else { $p= "";}
-
-return $p;
-}
 ?>
