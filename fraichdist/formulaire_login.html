@@ -1,0 +1,68 @@
+#HTTP_HEADER{"Cache-Control: no-store, no-cache, must-revalidate"}
+#HTTP_HEADER{"Pragma: no-cache"}
+[(#ENV{echec_cookie})
+<h3 class="spip"><:avis_erreur_cookie:></h3>
+<strong><:login_cookie_oblige:></strong>
+<:login_cookie_accepte:><p />]
+
+<script type="text/javascript" src="#EVAL{_DIR_IMG_PACK}md5.js"></script>
+<form action="[(#ENV{action2})]" method="post"[(#ENV{source}|=={spip}|?{' ',''}) onsubmit='if (this.session_password.value) {
+			this.session_password_md5.value = calcMD5("[(#ENV{alea_actuel})]" + this.session_password.value);
+			this.next_session_password_md5.value = calcMD5("[(#ENV{alea_futur})]" + this.session_password.value);
+			this.session_password.value = "";
+			}'] id="login[_(#ENV{login})]">
+<div class="spip_encadrer" style="[(#URL_SITE_SPIP|style_align)]">
+[<div class="reponse_formulaire">(#ENV*{erreur})<br /><br /></div>]
+[<label for="var_login"><strong><:login_login2:></strong><br />(#ENV{login}|?{'',' '})
+<input type="text" name="var_login" id="var_login" value="" size="40" />
+</label>]
+[<div>
+[<div style="float: #LANG_RIGHT; padding-#LANG_LEFT: 10px;">(#LOGO_AUTEUR||reduire_image{100,80}|inserer_attribut{alt,#ENV{login_alt}})</div>]
+<input type="hidden" name="session_login_hidden" value="(#ENV{login})" />
+<script type="text/javascript"><!--
+document.write("<:login_login:>&nbsp;<strong>[(#ENV{login_alt})]<" + "/strong><br />&#91;<a style="color: #e86519" href='[(#ENV{action2}
+	|parametre_url{cookie_admin,non}
+	|parametre_url{url,#ENV*{url}}
+	|parametre_url{retour,#ENV*{self}})]'><font size='2'><:login_autre_identifiant:><" + "/font><" + "/a>&#93;")
+//--></script>
+<noscript>
+	<p class="notes" style='font-size: 130%'>
+		<:login_non_securise:>
+		<a href="[(#ENV{action})]"><:login_recharger:></a>.
+	</p>
+	<label><strong><:login_login2:></strong><br />
+	<input type="text" name="session_login" [value="(#ENV{login})" ]size="40" />
+	</label>
+</noscript>
+
+</div>
+<p>
+		<label><strong><:login_pass2:></strong>&nbsp;
+		<input type="password" name="session_password"[ id="var_login_(#ENV{login})"] style="width: 140px;" value="" size="20" />
+		</label>	
+		<br />&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="session_remember" id="session[_(#ENV{login})]" value="oui"[(#ENV*{prefs}|filtre_rester_connecte)checked="checked"]/>
+		<label for="session[_(#ENV{login})]"><:login_rester_identifie:></label>
+</p>
+		<input type="hidden" name="session_password_md5" value="" />
+		<input type="hidden" name="next_session_password_md5" value="" />
+		<input type="hidden" name="essai_login" value="oui" />
+]		<input type="hidden" name="url" value="[(#ENV{url})]" />
+		<div style="text-align: right"><input type="submit" id="spip_bouton" value="<:bouton_valider:>" /></div>
+		</div>
+	</form>
+<script type="text/javascript"><!--
+document.getElementById('var_login[_(#ENV{login})]').focus();
+--></script>[
+	<form action="(#ENV{auth_http})" method="get">[
+	(#ENV{auth_http}|form_hidden)
+	]
+		<fieldset>
+		<div>
+		<:login_preferez_refuser:>
+		<input type="hidden" name="essai_auth_http" value="oui"/>
+		[<input type="hidden" name="url" value="(#ENV{url})"/>]
+		</div>
+		<div style="text-align: right"><input type="submit" id="spip_bouton" value="<:login_sans_cookiie:>"/></div>
+		</fieldset>
+	</form>
+]
