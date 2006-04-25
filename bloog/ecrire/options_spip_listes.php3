@@ -62,7 +62,11 @@ function set_extra ($id, $extra, $objet) {
 
 
 // a partir de la liste des champs, generer la liste des input
-function bloog_extra_saisie($extra, $type, $ensemble='') {
+function bloog_extra_saisie($extra, $type, $ensemble='',$no_echo='') {
+	//get localized string for extra
+	if($type=="auteurs" && $ensemble=="inscription") 	
+		$GLOBALS['champs_extra']["auteurs"]["abo"]=_T("spiplistes:options");
+
 	$extra = unserialize($extra);
 
 	// quels sont les extras de ce type d'objet
@@ -103,7 +107,7 @@ function bloog_extra_saisie($extra, $type, $ensemble='') {
 		list($form, $filtre, $prettyname, $choix, $valeurs) = explode("|", $desc);
 
 		if (!$prettyname) $prettyname = ucfirst($champ);
-		$affiche .= "<b>$prettyname&nbsp;:</b><br />";
+		$affiche .= "<strong>$prettyname</strong><br />";
 
 		switch($form) {
 
@@ -165,7 +169,7 @@ function bloog_extra_saisie($extra, $type, $ensemble='') {
 					if (!$extra["$champ"] AND $i == 0)
 						$affiche .= " checked='checked'";
 
-					$affiche .= " value='$val'>$choix_</input><br>";
+					$affiche .= " value='$val' />$choix_<br />";
 					$i++;
 				}
 				break;
@@ -200,18 +204,20 @@ function bloog_extra_saisie($extra, $type, $ensemble='') {
 			case "line":
 			default:
 				$affiche .= "<input type='text' name='suppl_$champ' class='forml'\n";
-				$affiche .= " value=\"".entites_html($extra[$champ])."\" SIZE='40' />\n";
+				$affiche .= " value=\"".entites_html($extra[$champ])."\" size='40' />\n";
 				break;
 		}
 
-		$affiche .= "<p>\n";
+		$affiche .= "\n";
 	}
 
 	if ($affiche) {
-               	echo" <div align='left'>";
-		echo $affiche;
-		echo"</div>";
-
+		if(!$no_echo) {
+	    echo" <div style='text-align:left'>";
+			echo $affiche;
+			echo"</div>";
+		} else 
+			return $affiche;
 	}
 }
 
@@ -529,9 +535,9 @@ if($pub) include('ecrire/inc_presentation.php3') ;
 			
 
                         if ($afficher_desabo){
-			$s .= "<a href=?mode=liste_edit&id_article=$id_article>".typo($titre)."</a>&nbsp;<a href='spip_listes.php3?mode=abonne&id_auteur=$id_aut&suppr_auteur=$id_aut&id_article=$id_article'><tt>(désabonnement)</tt></a></div>";
+			$s .= "<a href=?mode=liste_edit&id_article=$id_article>".typo($titre)."</a>&nbsp;<a href='spip_listes.php3?mode=abonne&id_auteur=$id_aut&suppr_auteur=$id_aut&id_article=$id_article'><tt>("._T('spiplistes:desabonnement').")</tt></a></div>";
                         }else{
-                        $nb_inscr_nb = (($nb_inscr == 0) OR ($nb_inscr == 1)) ? "abonné" : "abonnés" ;
+                        $nb_inscr_nb = (($nb_inscr == 0) OR ($nb_inscr == 1)) ? "abonn&eacute;" : "abonn&eacute;s" ;
 			$auto = get_extra($row["id_article"],article);
                         $s .= "&nbsp;<a href=?mode=liste_edit&id_article=$id_article>".typo($titre)."</a>&nbsp;<tt>($nb_inscr $nb_inscr_nb)</tt>";
 			($auto["auto"] == "oui") ? $s .= "<img vspace='5' hspace='5' src='./img_pack/stock_timer-16.png' /></div>" : $s .= "</div>" ;
@@ -551,7 +557,7 @@ if($pub) include('ecrire/inc_presentation.php3') ;
 
 		echo "</table>";
 		echo "</div>";
-		echo"<p>";
+		echo "<p>";
 		fin_cadre_relief();
 
 	}
@@ -568,37 +574,52 @@ function propre_bloog($texte) {
 
         $texte = ereg_replace("<p class=\"spip\">(\r\n|\n|\r)?</p>",'',$texte);
         $texte = eregi_replace("\n{3}", "\n", $texte);
-
+       
+      
+      // div imbrique dans un p
+        $texte = eregi_replace( "<p class=\"spip\">(\r\n|\n|\r| )*<div([^>]*)>" , "<div\\2>" , $texte);
+        $texte = eregi_replace( "<\/div>(\r\n|\n|\r| )*<\/p>" , "</div>" , $texte);
+        
+        // style imbrique dans un p
+        $texte = eregi_replace( "<p class=\"spip\">(\r\n|\n|\r| )*<style([^>]*)>" , "<style>" , $texte);
+        $texte = eregi_replace( "<\/style>(\r\n|\n|\r| )*<\/p>" , "</style>" , $texte);
+      
+      
         // h3 imbrique dans un p
         $texte = eregi_replace( "<p class=\"spip\">(\r\n|\n|\r| )*<h3 class=\"spip\">" , "<h3>" , $texte);
         $texte = eregi_replace( "<\/h3>(\r\n|\n|\r| )*<\/p>" , "</h3>" , $texte);
-        
-        // h2 imbrique dans un p
+
+	// h2 imbrique dans un p
         $texte = eregi_replace( "<p class=\"spip\">(\r\n|\n|\r| )*<h2>" , "<h2>" , $texte);
         $texte = eregi_replace( "<\/h2>(\r\n|\n|\r| )*<\/p>" , "</h2>" , $texte);
+        
+    // h1 imbrique dans un p
+        $texte = eregi_replace( "<p class=\"spip\">(\r\n|\n|\r| )*<h1>" , "<h1>" , $texte);
+        $texte = eregi_replace( "<\/h1>(\r\n|\n|\r| )*<\/p>" , "</h1>" , $texte);
+        
 
-        // tableaux imbriques dans p
+	// tableaux imbriques dans p
        $texte = eregi_replace( "<p class=\"spip\">(\r\n|\n|\r| )*<(table|TABLE)" , "<table" , $texte);
        $texte = eregi_replace( "<\/(table|TABLE)>(\r\n|\n|\r| )*<\/p>" , "</table>" , $texte);
-	   
-	   // TD imbriques dans p
+
+	// TD imbriques dans p
        $texte = eregi_replace( "<p class=\"spip\">(\r\n|\n|\r| )*<(\/td|\/TD)" , "</td" , $texte);
        //$texte = eregi_replace( "<\/(td|TD)>(\r\n|\n|\r| )*<\/p>" , "</td>" , $texte);
-	   
-	   	   // p imbriques dans p
+
+	// p imbriques dans p
        $texte = eregi_replace( "<p class=\"spip\">(\r\n|\n|\r| )*<(p|P)" , "<p" , $texte);
        //$texte = eregi_replace( "<\/(td|TD)>(\r\n|\n|\r| )*<\/p>" , "</td>" , $texte);
-         
+
          // DIV imbriques dans p
        $texte = eregi_replace( "<p class=\"spip\">(\r\n|\n|\r| )*<(div|DIV)" , "<div" , $texte);
        $texte = eregi_replace( "<\/(DIV|div)>(\r\n|\n|\r| )*<\/p>" , "</div>" , $texte);
-  
+
  //$texte = PtoBR($texte);
   $texte = ereg_replace ("\.php3&nbsp;\?",".php3?", $texte);
   $texte = ereg_replace ("\.php&nbsp;\?",".php?", $texte);
 
   return $texte;
-} 
+}
 /****
  * titre : absolute_url
  * d'apres Clever Mail (-> NHoizey)
@@ -607,20 +628,22 @@ function propre_bloog($texte) {
 function absolute_url ($chaine) {
     // TBI : quid si le href n'est pas en premier ?     
     $URL_SITE_SPIP = lire_meta ('adresse_site');
-    
+
     // rajout d'un / éventuellement 
     if (substr ($URL_SITE_SPIP, strlen($URL_SITE_SPIP)-1, 1) != '/') $URL_SITE_SPIP .= '/';
 
     $chaine = eregi_replace ('<a href="' , '<a href="'.$URL_SITE_SPIP, $chaine); 
     $chaine = eregi_replace ('<a href="'.$URL_SITE_SPIP.'http://([^"]*)"', "<a href=\"http://\\1\"", $chaine);
-    
+    $chaine = eregi_replace ('<a href="'.$URL_SITE_SPIP.'mailto:([^"]*)"', "<a href=\"mailto:\\1\"", $chaine);
+    $chaine = eregi_replace ('<a href="'.$URL_SITE_SPIP.'#([^"]*)"', "<a href=\"#\\1\"", $chaine);
+
     $chaine = eregi_replace ('<img src="' , '<img src="'.$URL_SITE_SPIP, $chaine); 
     $chaine = eregi_replace ('<img src="'.$URL_SITE_SPIP.'http://([^"]*)"', "<img src=\"http://\\1\"", $chaine);
+    $chaine = eregi_replace ('<img src=\'' , '<img src=\''.$URL_SITE_SPIP, $chaine);  
+    $chaine = eregi_replace ('<img src=\''.$URL_SITE_SPIP.'http://([^"]*)\'', "<img src=\'http://\\1\'", $chaine);
 
-    return $chaine; 
+    return $chaine;
 }
-
-
 
 
 /****
@@ -632,25 +655,32 @@ function version_texte ($in) {
 // Nettoyage des liens des notes de bas de page
 $out = ereg_replace("<a href=\"#n(b|h)[0-9]+-[0-9]+\" name=\"n(b|h)[0-9]+-[0-9]+\" class=\"spip_note\">([0-9]+)</a>", "\\3", $in);
 
+// Supprimer tous les liens internes
+$patterns = array("/\<a href=['\"]#(.*?)['\"][^>]*>(.*?)<\/a>/");
+$replacements = array("\\2");
+$out = preg_replace($patterns,$replacements, $out);
+
+// Supprime feuille style
+$out = ereg_replace("<style[^>]*>[^<]*</style>", "", $out);
+
 // les puces
 $out = str_replace($GLOBALS['puce'], "\n".'-', $out);
 
 // Remplace tous les liens	
 $patterns = array(
-           "/\<a href=['\"](.*?)['\"][^>]*>(.*?)<\/a>/"         
+           "/\<a href=['\"](.*?)['\"][^>]*>(.*?)<\/a>/"
        );
        $replacements = array(
-           "\\2 (\\1)"    
+           "\\2 (\\1)"
        );
 $out = preg_replace($patterns,$replacements, $out);
 
-    
-$out = str_replace("<h3>", "\n\n", $out);
-$out = str_replace("</h3>", "\n\n", $out);
-$out = str_replace("<h2>", "\n\n", $out);
-$out = str_replace("</h2>", "\n\n", $out);
-//$out = ereg_replace("</(div|DIV)>", "\n°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°\n\n", $out);
-
+$out = ereg_replace("<h1[^>]*>", "\n--------------------------------------------------------\n", $out);
+$out = str_replace("</h1>", "\n--------------------------------------------------------\n", $out);
+$out = ereg_replace("<h2[^>]*>", "\n............... ", $out);
+$out = str_replace("</h2>", " ...............\n", $out);
+$out = ereg_replace("<h3[^>]*>", "\n + ", $out);
+$out = str_replace("</h3>", "\n", $out);
 $out = str_replace("<p class=\"spip\"[^>]*>", "\n", $out);
 
 // Les notes de bas de page
@@ -662,22 +692,22 @@ $out = ereg_replace ('<li[^>]>', "\n".'-', $out);
     //$out = str_replace('<li>', "\n".'-', $out);
 
 
-    // accentuation du gras - 
+    // accentuation du gras -
     // <b>texte</b> -> *texte*
     $out = ereg_replace ('<b[^>|r]*>','*' ,$out);
     $out = str_replace ('</b>','*' ,$out);
-    
+
     // accentuation de l'italique
     // <i>texte</i> -> *texte*
     $out = ereg_replace ('<i[^>|mg]*>','*' ,$out);
     $out = str_replace ('</i>','*' ,$out);
-    
-        $out = str_replace('&oelig;', 'oe', $out);
-	$out = str_replace("&nbsp;", " ", $out);
-        $out = filtrer_entites($out);
 
-   	$out = supprimer_tags($out);
-   	
+	$out = str_replace('&oelig;', 'oe', $out);
+	$out = str_replace("&nbsp;", " ", $out);
+	$out = filtrer_entites($out);
+
+	$out = supprimer_tags($out);
+
         //$out = ereg_replace("^(\n|\r|\r\n| )+", "", $out);
 		 //$out = ereg_replace("^( )", "", $out);
 		 //$out = ereg_replace("(\n\n\n)+", "", $out) ;
@@ -694,7 +724,59 @@ $out = ereg_replace ('<li[^>]>', "\n".'-', $out);
 		//$out = trim($out) ;
 		
     return $out;
-        
+
+}
+
+
+//Balises Spip-listes
+
+function calcul_MELEUSE_CRON() {
+  global $include_ok;
+   if(!$include_ok) {
+include("spip-listes/meleuse-cron.php3");
+$include_ok = true;
+}
+   return '';
+}
+
+function balise_MELEUSE_CRON($p) {
+   $p->code = "calcul_MELEUSE_CRON()";
+   $p->statut = 'php';
+   return $p;
+}
+
+
+function calcul_DATE_MODIF_SITE() {
+   $date_art=spip_query("SELECT date,titre FROM spip_articles WHERE statut='publie' ORDER BY date DESC LIMIT 0,1");
+   $date_art=spip_fetch_array($date_art);
+   $date_art= $date_art['date'];
+   
+   $date_bre=spip_query("SELECT date_heure,titre FROM spip_breves WHERE statut='publie' ORDER BY date_heure DESC LIMIT 0,1");
+   $date_bre=spip_fetch_array($date_bre);
+   $date_bre= $date_bre['date_heure'];
+   
+   $date_modif= ($date_bre>$date_art)? $date_bre : $date_art ;   
+   return  $date_modif;
+}
+
+function balise_DATE_MODIF_SITE($p) {
+   $p->code = "calcul_DATE_MODIF_SITE()";
+   $p->statut = 'php';
+   return $p;
+}
+
+function calcul_DATE_MODIF_FORUM() {
+   $date_f=spip_query("SELECT date_heure,titre FROM spip_forum WHERE statut='publie' ORDER BY date DESC LIMIT 0,1");
+   $date_f=spip_fetch_array($date_art);
+   $date_f= $date_f['date_heure'];
+   
+   return  $date_f;
+}
+
+function balise_DATE_MODIF_FORUM($p) {
+   $p->code = "calcul_DATE_MODIF_FORUM()";
+   $p->statut = 'php';
+   return $p;
 }
 
 /******************************************************************************************/
@@ -715,5 +797,4 @@ $out = ereg_replace ('<li[^>]>', "\n".'-', $out);
 /* Free Software Foundation,                                                              */
 /* Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307, États-Unis.                   */
 /******************************************************************************************/
-
 ?>

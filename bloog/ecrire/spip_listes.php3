@@ -1,8 +1,7 @@
 <?php
 
 /******************************************************************************************/
-/* spip-listes est un système de gestion de listes d'abonnés et d'envoi d'information     */
-/* par email  pour SPIP.                                                                  */
+/* SPIP-listes est un système de gestion de listes d'information par email pour SPIP      */
 /* Copyright (C) 2004 Vincent CARON  v.caron<at>laposte.net , http://bloog.net            */
 /*                                                                                        */
 /* Ce programme est libre, vous pouvez le redistribuer et/ou le modifier selon les termes */
@@ -19,8 +18,6 @@
 /* Free Software Foundation,                                                              */
 /* Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307, États-Unis.                   */
 /******************************************************************************************/
-
-
 
 
 include ("inc.php3");
@@ -42,12 +39,48 @@ if ($changer_config == 'oui') {
  
 $nomsite=lire_meta("nom_site"); 
 $urlsite=lire_meta("adresse_site"); 
- 
+
+// generation du fichier export ?
+if (isset($_POST['export_txt']) && isset($_POST['export_id']) && $connect_statut == "0minirezo" ) {
+    $export_id = (int) $_POST['export_id'];   
+    if ($export_id>0) {
+        $query="SELECT id_auteur FROM spip_auteurs_articles WHERE id_article='$export_id'";        
+				$abonnes = spip_query($query);
+				$str_export  = "# spip-listes\r\n"; 
+        $str_export .= "# "._T('spiplistes:membres_liste')."\r\n";
+				$str_export .= "# liste id: $export_id\r\n";
+				$str_export .= "# date: ".date("Y-m-d")."\r\n\r\n";				
+				while($row = spip_fetch_array($abonnes)) {
+					 $abonne = $row['id_auteur'];					 
+					 $extras = get_extra($abonne,"auteur");					 
+					 if ($extras["abo"]=="html" || $extras["abo"]=="texte") {					    
+					     $subquery = "SELECT email FROM spip_auteurs WHERE statut!='5poubelle' AND statut!='nouveau' AND id_auteur='$abonne' LIMIT 1";
+					     $subresult = spip_query($subquery);
+					     while ($subrow = spip_fetch_array($subresult)) {
+					       $str_export .= $subrow['email']."\r\n";					       
+               }					     
+           }          
+        }
+        header("Content-type: text/plain");
+        header("Content-Disposition: attachment; filename=\"export_liste$export_id-".date("Y-m-d").".txt\"");
+        echo $str_export;   
+        exit;               
+         
+    }
+}  	
+// generation du fichier export fin
 
  
- // Admin SPIP-Listes
+// Admin SPIP-Listes
 debut_page("Spip listes", "redacteurs", "spiplistes");
 
+// spip-listes bien installé ?
+if (!function_exists(spip_listes_onglets)){
+    echo("<h3>erreur: spip-listes est mal installé !</h3>"); 
+    echo("<p>Vérifier les étapes d'installation,notamment si vous avez bien renommé <i>mes_options.txt</i> en <i>mes_options.php3</i>.</p>");    
+    fin_page();
+	  exit;
+}
 
 if ($connect_statut != "0minirezo" ) {
 	echo "<p><b>"._T('spiplistes:acces_a_la_page')."</b></p>";
@@ -64,22 +97,14 @@ debut_gauche();
 
 // debut des racourcis
 debut_raccourcis("mailer_config.gif");
-//
-
-
-		
 if ($connect_statut == "0minirezo") {
-icone_horizontale(_T('spiplistes:Nouveau_courrier'), "spip_listes.php3?mode=courrier_edit&new=oui&type=nl", "stock_mail_send.gif");
-icone_horizontale(_T('spiplistes:Nouvelle_liste_de_diffusion'), "spip_listes.php3?mode=creer_liste&new=oui", "reply-to-all-24.gif");
-echo "<br />" ;
-echo "<br />" ;
-icone_horizontale(_T('spiplistes:Patrons'), "spip_listes.php3?mode=squelettes", "Palette-24.gif");
-icone_horizontale(_T('spiplistes:Configuration'), "spip_listes.php3?mode=config", "mailer_config.gif");
-	}
-	
-
-
-
+  icone_horizontale(_T('spiplistes:Nouveau_courrier'), "spip_listes.php3?mode=courrier_edit&new=oui&type=nl", "stock_mail_send.gif");
+  echo "<br />" ;
+  echo "<br />" ;
+  icone_horizontale(_T('spiplistes:Nouvelle_liste_de_diffusion'), "spip_listes.php3?mode=creer_liste&new=oui", "reply-to-all-24.gif");
+  icone_horizontale(_T('spiplistes:import_export'), "spip_listes.php3?mode=inout", "listes_inout.png");
+  icone_horizontale(_T('spiplistes:Configuration'), "spip_listes.php3?mode=config", "mailer_config.gif");
+}
 fin_raccourcis();
 //
 
@@ -95,16 +120,15 @@ $mssage_pile = spip_num_rows($rsult_pile);
 
 //initialiser le nombre total d'abonnes		
 $extra_meta = get_extra(1,"auteur");
-
 if(!$extra_meta["total_auteurs"]){
-$extra_meta["total_auteurs"] = "0";
-set_extra(1,$extra_meta,"auteur");
-$extra_meta = get_extra(1,"auteur");
+  $extra_meta["total_auteurs"] = "0";
+  set_extra(1,$extra_meta,"auteur");
+  $extra_meta = get_extra(1,"auteur");
 }
 
 
- if($mssage_pile > 0 ){
-	// Les valeurs sont deja initialisées
+if($mssage_pile > 0 ){
+	// Les valeurs sont deja initialisés
 	// Compter le nombre de mails à envoyer
 
 	$nb_inscrits = $extra_meta["total_auteurs"];
@@ -113,46 +137,38 @@ $extra_meta = get_extra(1,"auteur");
 
 	echo "<div style='font-weight:bold;text-align:center'>"._T('spiplistes:message_en_cours')."</div>";
 	echo "<div style='padding : 10px;text-align:center'><img src='img_pack/48_import.gif'></div>";
-		if($nb_inscrits > 0){
+	if($nb_inscrits > 0){
 		echo "<p align='center'><b>".round($extra_meta["debut"]/$nb_inscrits *100)." %</b></p>";
-		}
+	}
 	echo "<p>"._T('spiplistes:texte_boite_en_cours')."</p>" ;
-	echo "<p align='center'><a href='../spip-meleuse.php3'>["._T('spiplistes:suivi_envois')."]</a></p>";
+	echo "<p align='center'><a href='../spip-listes/spip-meleuse.php3'>["._T('spiplistes:suivi_envois')."]</a></p>";
 	
 	echo "<p align='center'><a href='".$PHP_SELF."?envoi_lot=oui'><tt>["._T('spiplistes:lot_suivant')."]</tt></a></p>";
-   echo "<p align='center'><a href='".$PHP_SELF."'><tt>["._T('spiplistes:actualiser')."]</tt></a></p>";
+  echo "<p align='center'><a href='".$PHP_SELF."'><tt>["._T('spiplistes:actualiser')."]</tt></a></p>";
 	if($envoi_lot == "oui"){
 	// echo"<iframe src='../spip-meleuse.php3' height='1' width='1' frameborder='0' >"._T('spiplistes:desole')."</iframe>";
-
-}
-	
+  }
 	
 	fin_boite_info();
- }elseif($extra_meta["debut"] != 0){
-	$extra_meta["debut"] = 0; // initialiser le compteur à zero pour etre sur
+ } elseif ($extra_meta["debut"] != 0){
+	$extra_meta["debut"] = 0; // initialiser le compteur a zero pour etre sur
 	set_extra(1,$extra_meta,"auteur");
- }
+}
 
 
-
+// colonne gauche boite info
 echo "<br />" ;
-
 debut_boite_info();
-
 echo _T('spiplistes:_aide');
-
 fin_boite_info();
 
 
 creer_colonne_droite();
 
 
-
 debut_droite("messagerie");
 
-
-// Rédaction d'un courrier
-
+// MODE EDIT: Rédaction d'un courrier ------------------------------------------
 if ($mode == "courrier_edit"){
 
 if ($new == "oui") {
@@ -160,7 +176,7 @@ if ($new == "oui") {
 	$query = "INSERT INTO spip_messages (titre, date_heure, statut, type, id_auteur) VALUES ('".addslashes(filtrer_entites(_T('texte_nouveau_message')))."', NOW(), '$statut', '$type', $connect_id_auteur)";
 	$result = spip_query($query);
 	$id_message = spip_insert_id();
-    spip_query("INSERT INTO spip_auteurs_messages (id_auteur,id_message,vu) VALUES ('$connect_id_auteur','$id_message','oui')");
+  spip_query("INSERT INTO spip_auteurs_messages (id_auteur,id_message,vu) VALUES ('$connect_id_auteur','$id_message','oui')");
 }
 
 
@@ -182,7 +198,7 @@ if ($row = spip_fetch_array($result)) {
 
      debut_cadre_relief("stock_insert-slide.gif");
      //Charger un patron ?    
-         
+
 	  // inclusion du script de gestion des layers de SPIP
 		
                 if($spip_version < 1.8 ){
@@ -215,16 +231,15 @@ if ($row = spip_fetch_array($result)) {
         		closedir($dh);
 			}
 				if ($dh = opendir($dir)) {
-        		echo "<SELECT name='patron' size='".$total_option."'>";
+        		echo "<select name='patron' size='".($total_option+2)."'>";
 				
 					while (($file = readdir($dh)) !== false) {
-               		 if($file != '..' && $file !='.' && $file !='') 
-						{
-						$titre_option=ereg_replace('(\.html|\.HTML)','',$file);
-						echo "<option value='$titre_option'>$titre_option</OPTION>";
+            if($file != '..' && $file !='.' && $file !='')	{
+						    $titre_option=ereg_replace('(\.html|\.HTML)','',$file);
+						    echo "<option value='$titre_option'>$titre_option</option>\n";
 						}
 					}
-				echo "</SELECT>";
+				echo "</select>";
         		closedir($dh);
    		  		}
 		}
@@ -281,12 +296,10 @@ if ($row = spip_fetch_array($result)) {
 
 
 }
+// MODE EDIT FIN ---------------------------------------------------------------
 
-// fin du courrier edit
 
-
-// Affichage d'un courrier
-
+// MODE COURRIER: Affichage d'un courrier---------------------------------------
 if ($mode == 'courrier') {
 
 
@@ -402,22 +415,31 @@ while($row = spip_fetch_array($result_m)) {
     //////////////////////////////////////////////////////
 	// Le message lui-meme
 	//
-    $texte = eregi_replace("__bLg__[0-9@\.A-Z_-]+__bLg__","",$texte);
+  $texte = eregi_replace("__bLg__[0-9@\.A-Z_-]+__bLg__","",$texte);
 	$texte = stripslashes($texte);
-	$texte = propre($texte); 
+	$texte_original = $texte;
+	
+	$temp_style = ereg("<style[^>]*>[^<]*</style>", $texte, $style_reg);
+  if (isset($style_reg[0])) $style_str = $style_reg[0]; 
+                         else $style_str = "";
+  $texte = ereg_replace("<style[^>]*>[^<]*</style>", "__STYLE__", $texte);
 
-    echo "<div align='left'>";
+$texte = propre($texte); // pb: enleve aussi <style>...  
+$texte = propre_bloog($texte);
+
+  $texte = ereg_replace("__STYLE__", $style_str, $texte);
+
+  echo "<div align='left'>";
 	echo "<table width=100% cellpadding=0 cellspacing=0 border=0>";
 	echo "<tr><td>";
 
 	echo "<br /><font face='Georgia,Garamond,Times,serif' size=3>";
 	debut_boite_info();
-    echo "<h2> "._T('spiplistes:version')." HTML </h2>";
-	echo "<p>$texte";
-	fin_boite_info();
-    
+  echo "<h2> "._T('spiplistes:version')." HTML </h2>";
+  echo "<iframe src=\"spip_listes_preview.php3?id_message=$id_message\" width=\"100%\" height=\"500\"></iframe>\n";
+	fin_boite_info();    
 	echo "<p>";
-    debut_boite_info();
+  debut_boite_info();
 	echo "<h2> "._T('spiplistes:version')." "._T('spiplistes:val_texte')." </h2>";
     echo "<textarea name='texte' rows='20' class='formo' cols='40' wrap=soft>";
 	echo version_texte($texte);
@@ -438,15 +460,15 @@ while($row = spip_fetch_array($result_m)) {
 if ($statut == 'redac' AND $type =='nl' ){     
 	
 	if(!$envoi && ($destinataire && $choisir_dest)){
-	$texte = "__bLg__".$destinataire."__bLg__".$texte ;
-	$texte = addslashes($texte);
-	spip_query("UPDATE spip_messages SET texte='$texte' WHERE id_message='$id_message'");
+	$texte_original = "__bLg__".$destinataire."__bLg__".$texte_original ;
+	$texte_original = addslashes($texte_original);
+	spip_query("UPDATE spip_messages SET texte='$texte_original' WHERE id_message='$id_message'");
 	}
-
+	
 	// email de test
 	elseif($envoi_test){
 	//vérifier si l adresse est valide ?
-	// si l'abonné est inscrit ?
+	// si l'abonnéest inscrit ?
      
      if(email_valide_bloog($adresse_test)){
 		$query = "SELECT id_auteur FROM ".$table_prefix."_auteurs WHERE email = '$adresse_test' ORDER BY id_auteur ASC ";
@@ -600,10 +622,10 @@ if ($statut == 'redac' AND $type =='nl' ){
 }//while
 
 }
+// MODE COURRIER FIN -----------------------------------------------------------
 
-// Suivi des abonnements
 
-
+// MODE STATUT: Suivi des abonnements-------------------------------------------
 if ($mode == "statut") {
 
 
@@ -768,8 +790,8 @@ $retour = "spip_listes.php3?mode=statut";
 if(!$statut) $statut=' ';
 
 if( ($changer_statut=='oui') AND ( ($statut=='html') OR ($statut=='texte') OR ($statut=='non') ) ){
-$extras = get_extra($id_auteur,"auteur") ;
-$extras["abo"] = $statut ;
+$extras = get_extra($id_auteur,"auteur");
+$extras["abo"] = $statut;
 set_extra($id_auteur,$extras,"auteur");
 }
 
@@ -975,6 +997,16 @@ if ($nombre_auteurs > $max_par_page) {
 
 
  if($debut)$retour .="&debut=".$debut;
+
+//translate extra field data
+list(,,,$trad,$val) = explode("|",_T("spiplistes:options")); 
+$trad = explode(",",$trad);
+$val = explode(",",$val);
+$trad_map = Array();
+for($index_map=0;$index_map<count($val);$index_map++) {
+	$trad_map[$val[$index_map]] = $trad[$index_map];
+}
+
 while ($i++ <= $fin && (list(,$row) = each ($auteurs))) {
 	// couleur de ligne
 	$couleur = ($i % 2) ? '#FFFFFF' : $couleur_claire;
@@ -1010,7 +1042,7 @@ while ($i++ <= $fin && (list(,$row) = each ($auteurs))) {
 			echo "</td><td>&nbsp;";
 	}
 
-	// Abonnés ou pas ?
+	// Abonné ou pas ?
 	echo '</td><td>';
 	
 	$extra = unserialize ($row["extra"]);
@@ -1025,16 +1057,16 @@ while ($i++ <= $fin && (list(,$row) = each ($auteurs))) {
         $abo = $extra["abo"];
 
 		if($abo == "non") echo "-";
-		else echo "&nbsp;".$abo;
+		else echo "&nbsp;".$trad_map[$abo];
 		
 		
 		// Modifier l'abonnement
 	echo '</td><td>';
 	
   if ($row["statut"] != '0minirezo') {
-if($extra["abo"] == 'html') $option_abo = "<a href='$retour&id_auteur=".$row['id_auteur']."&changer_statut=oui&statut=non'>désabo</a> | <a href='$retour&id_auteur=".$row['id_auteur']."&changer_statut=oui&statut=texte'>texte</a>";
-else if($extra["abo"] == 'texte') $option_abo = "<a href='$retour&id_auteur=".$row['id_auteur']."&changer_statut=oui&statut=non'>désabo</a> | <a href='$retour&id_auteur=".$row['id_auteur']."&changer_statut=oui&statut=html'>html</a>";
-else  if(($extra["abo"] == 'non')OR (!$extra["abo"])) $option_abo = "<a href='$retour&id_auteur=".$row['id_auteur']."&changer_statut=oui&statut=texte'>texte</a> | <a href='$retour&id_auteur=".$row['id_auteur']."&changer_statut=oui&statut=html'>html</a>";
+if($extra["abo"] == 'html') $option_abo = "<a href='$retour&id_auteur=".$row['id_auteur']."&changer_statut=oui&statut=non'>"._T('spiplistes:desabo')."</a> | <a href='$retour&id_auteur=".$row['id_auteur']."&changer_statut=oui&statut=texte'>"._T('spiplistes:texte')."</a>";
+else if($extra["abo"] == 'texte') $option_abo = "<a href='$retour&id_auteur=".$row['id_auteur']."&changer_statut=oui&statut=non'>"._T('spiplistes:desabo')."</a> | <a href='$retour&id_auteur=".$row['id_auteur']."&changer_statut=oui&statut=html'>html</a>";
+else  if(($extra["abo"] == 'non')OR (!$extra["abo"])) $option_abo = "<a href='$retour&id_auteur=".$row['id_auteur']."&changer_statut=oui&statut=texte'>"._T('spiplistes:texte')."</a> | <a href='$retour&id_auteur=".$row['id_auteur']."&changer_statut=oui&statut=html'>html</a>";
 echo "&nbsp;".$option_abo;
   }
 	echo "</td></tr>\n";
@@ -1076,12 +1108,11 @@ echo "</table>\n";
 fin_cadre_relief();
 
 
-
-//fin auteur
-
 }
 
+// MODE STATUT FIN -------------------------------------------------------------
 
+// MODE ABONNE: gestion d'un abonne---------------------------------------------
 if ($mode == "abonne") {
 
 
@@ -1205,11 +1236,9 @@ fin_cadre_relief();
 
 
 }
-//fin abonne
+//MODE ABONNE FIN abonne -------------------------------------------------------
 
-
-
-// Historique des envois
+// MODE HISTORIQUE: Historique des envois --------------------------------------
 
 if ($mode == "historique" OR !$mode){
 
@@ -1260,16 +1289,38 @@ if($extraa['auto'] == 'oui') $flag_auto = true ;
 
 if($flag_auto){
 debut_cadre_enfonce("stock_timer.gif");
-			echo "<div  class='chapo' style='border-top:1px #cccccc;width:100%;font-weight:bold;font-size:14px'>"._T('spiplistes:Messages_automatiques')."</div>";
-			echo "<p>" ;
+echo "<div  class='chapo' style='border-top:1px #cccccc;width:100%;font-weight:bold;font-size:14px'>"._T('spiplistes:Messages_automatiques')."</div>";
+		echo "<style>
+		table.tab td {
+		text-align:center;
+		padding:3px;
+		width:33%;
+		background-color:#cccccc;
+		}
+		table.tab {
+		margin-top:5px;
+		}
+		tr.row_even {
+		background-color:#cccccc;
+		}
+		</style>";
+		echo "<table class='tab'>" ;	
+			echo "<tr style='padding:5px'>";
+			echo "<td style='font-weight:bold;background-color:#eeeecc'>envoi du patron</td>";
+			echo "<td style='font-weight:bold;background-color:#eeeecc'>sur la liste</td>";
+			echo "<td style='font-weight:bold;background-color:#eeeecc'>"._T('spiplistes:prochain_envoi_prevu')."</td>";
+			echo "</tr>";
+			
+	
+			
 			$i = 0 ;
 			$list = spip_query ("SELECT * FROM spip_articles WHERE statut = 'inact' OR statut = 'liste' ");
-                        $message_pile = spip_num_rows($list);
-                        while($row = spip_fetch_array($list)) {
-                        $id_article = $row['id_article'] ;
-						$titre = $row['titre'] ;
+            $message_pile = spip_num_rows($list);
+            while($row = spip_fetch_array($list)) {
+            $id_article = $row['id_article'] ;
+			$titre = $row['titre'] ;
                          
-			// On récupère les extras
+						// On récupere les extras
                         $extra = get_extra($id_article, 'article');
                         // Tient il n'y avait pas d'extra pour cette liste
                         if (!is_array($extra)) {
@@ -1281,26 +1332,30 @@ debut_cadre_enfonce("stock_timer.gif");
 
 
 			if($extra['auto'] == "oui"){
-			if($i == 0){
-			echo "<div style='padding:5px'>" ;
-			$i = 1 ;
-			}else {
-			echo "<div style='padding:5px;background-color:#FFFFFF'>" ;
-			$i = 0 ;
-			}
-			echo "<div style='float:right'>";
-			if($proch != 0)echo "<br />"._T('spiplistes:prochain_envoi_prevu')."<b>$proch</b> "._T('spiplistes:jours')."</div>";
-                        else echo "<br />"._T('spiplistes:prochain_envoi_aujd')."</div>";
-                        $date_dernier = $extra['majnouv'] ;
-                        $date_dernier = date(_T('spiplistes:format_date'),$date_dernier) ;
+				if($i == 0){
+				echo "<tr style='padding:5px'>" ;
+				$i = 1 ;
+				}else {
+				echo "<tr style='padding:5px' class='row_even'>" ;
+				$i = 0 ;
+				}
+	
+			
+              	$date_dernier = $extra['majnouv'] ;
+                $date_dernier = date(_T('spiplistes:format_date'),$date_dernier) ;
 
-			echo "<a href='?mode=liste_edit&id_article=$id_article'>$titre</a> (".$extra['squelette'].")<br />
-			<i>"._T('spiplistes:Tous_les')." ".$extra['periode']." "._T('spiplistes:jours')." [<a href='../patron.php3?patron=".$extra['squelette']."&date=".$date_dernier."'>"._T('spiplistes:voir')."</a>]</i>" ;
-			echo "</div>" ;
+			echo "<td><a href='../patron.php3?patron=".$extra['squelette']."&date=".$date_dernier."'> ".$extra['squelette']."</a><br />"._T('spiplistes:Tous_les')." ".$extra['periode']." "._T('spiplistes:jours')."</td><td><a href='?mode=liste_edit&id_article=$id_article'>$titre</a><br />" ;
+			echo "</td>" ;
+					echo "<td>";
+			if($proch != 0) echo "dans <b>$proch</b> "._T('spiplistes:jours')."</td>";
+                        else echo "<b>aujourd'hui</b></td>";
 
                         }
-
+echo "</tr>" ;
 			}
+			
+			
+	echo "</table>" ;
 
 
 fin_cadre_enfonce();
@@ -1319,105 +1374,11 @@ bloog_afficher_messages(_T('spiplistes:aff_envoye'), $query_message, false,  fal
 
 }
 
+// MODE HISTORIQUE FIN ---------------------------------------------------------
 
 
 
-
-if ($mode == "squelettes"){
-
-
-//
-// Définir les squelettes
-//
-
-	debut_cadre_relief();
-
-
-
-
-
-
-
-
-	echo "<table border=0 cellspacing=1 cellpadding=3 width=\"100%\">";
-	echo "<tr><td bgcolor='$couleur_foncee' background='img_pack/rien.gif'>
-	<b><font face='Verdana,Arial,Sans,sans-serif' size=3 COLOR='#FFFFFF'>"._T('spiplistes:definir_squel')."</font></b></td></tr>";
-	echo "<tr><td bgcolor='#FFFFFF' background='img_pack/rien.gif' >";
-	echo " </td></tr>";
-	echo "<tr><td bgcolor='#EEEECC' background='img_pack/rien.gif' >";
-
-
-        //un patron ?
-
-
-
-	echo "<b><font face='Verdana,Arial,Sans,sans-serif' size=3>";
-	echo _T('spiplistes:patron_disponibles')."</font></b>";
-
-    echo "</td></tr>";
-
-    echo "<tr><td bgcolor='#FFFFFF' background='img_pack/rien.gif' >";
-
-
-        	echo "<form action='../patron.php3' METHOD='GET' TARGET='_blank'>";  
-      echo "<div>";
-	  echo "<div style='float:right;width:200px'>";
-
-
-    $auj = date(_T('spiplistes:format_date'));
-    echo "<p align='center'><b>"._T('spiplistes:date_ref')."</b><br /><input type='text' name='date' value=\"$auj\"></p>";
-	echo " <input type='radio' name='format' value='HTML'> HTML<br />";
-    echo "<input type='radio' name='format' value='texte'>"._T('spiplistes:val_texte')."<br />";
-	echo "<p align='center'>"._T('spiplistes:alerte_modif')."<br /><br /><input type='submit' name='Valider' value='"._T('spiplistes:charger_le_patron')."' class='fondo'></p>";
-	echo "</div>";
-	  
-	  
-	  $dir = "../patrons/";
-
-		// Ouvre un dossier bien connu, et liste tous les fichiers
-		if (is_dir($dir)) {
-    		if ($dh = opendir($dir)) {
-        		$total_option=0;
-				while (($file = readdir($dh)) !== false) {
-                if($file != '..' && $file !='.' && $file !='') $total_option=$total_option+1;
-        		}
-        		closedir($dh);
-			}
-				if ($dh = opendir($dir)) {
-        		echo "<SELECT name='patron' size='".$total_option."'>";
-				
-					while (($file = readdir($dh)) !== false) {
-               		 if($file != '..' && $file !='.' && $file !='') 
-						{
-						$titre_option=ereg_replace('(\.html|\.HTML)','',$file);
-						echo "<option value='$titre_option'>$titre_option</OPTION>";
-						}
-					}
-				echo "</SELECT>";
-        		closedir($dh);
-   		  		}
-		}
-	  		  
-	
-	echo "</div>";
-	echo "</FORM>";
-
-
-                echo "<blockquote><i>"._T('spiplistes:definir_squel_texte')."</i></blockquote>";
-				
-
-        echo "</td></tr>";
-
-
-	echo "</table>\n";
-
-	echo "</FORM>";
-
-	fin_cadre_relief();
-
-}
-
-
+// MODE CREER_LISTE: ajout liste------------------------------------------------
 if($mode == "creer_liste"){
 
 
@@ -1479,8 +1440,7 @@ if ($id_article) {
 
 		$flag_editable = (acces_rubrique($id_rubrique) OR ($flag_auteur > 0 AND ($statut == 'prepa' OR $statut == 'prop' OR $new == 'oui')));
 	}
-}
-else if ($new=='oui') {
+} else if ($new=='oui') {
 	if ($lier_trad) {
 		// Pas de langue choisie par defaut
 		$changer_lang = '';
@@ -1518,8 +1478,7 @@ else if ($new=='oui') {
 				// Si le menu de langues est autorise sur les articles,
 				// on peut changer la langue quelle que soit la rubrique
 				$changer_lang = $spip_lang;
-			}
-			else if (lire_meta('multi_rubriques') == 'oui') {
+			}	else if (lire_meta('multi_rubriques') == 'oui') {
 				// Chercher la rubrique la plus adaptee pour accueillir l'article
 				if (lire_meta('multi_secteurs') == 'oui')
 					$id_parent = 0;
@@ -1535,8 +1494,7 @@ else if ($new=='oui') {
 				}
 			}
 		}
-	}
-	else {
+	}	else {
 		// Nouvel article : titre par defaut
 		$titre = filtrer_entites(_T('spiplistes:Nouvelle_liste_de_diffusion'));
 		$onfocus = " onfocus=\"if(!antifocus){this.value='';antifocus=true;}\"";
@@ -1674,16 +1632,16 @@ echo "<p><HR><p>";
 
 	$lien = 'spip_listes.php3?mode=liste_edit';
 	if ($id_article) $lien .= "&id_article=$id_article";
-	echo "<form action='$lien' METHOD='post' name='formulaire'>\n";
+	echo "<form action='$lien' method='post' name='formulaire'>\n";
 
 	if ($id_article)
-		echo "<input type='Hidden' name='id_article' value='$id_article'>";
+		echo "<input type='hidden' name='id_article' value='$id_article'>";
 	else if ($new == 'oui')
-		echo "<input type='Hidden' name='new' value='oui'>";
+		echo "<input type='hidden' name='new' value='oui'>";
 
 	if ($lier_trad) {
-		echo "<input type='Hidden' name='lier_trad' value='$lier_trad'>";
-		echo "<input type='Hidden' name='changer_lang' value='$spip_lang'>";
+		echo "<input type='hidden' name='lier_trad' value='$lier_trad'>";
+		echo "<input type='hidden' name='changer_lang' value='$spip_lang'>";
 	}
 
 	/*
@@ -1718,9 +1676,9 @@ echo "<p><HR><p>";
 		echo "<p><b>"._T('texte_descriptif_rapide')."</b>";
 		echo aide ("artdesc");
 		echo "<br />"._T('texte_contenu_article')."<br />";
-		echo "<TEXTAREA name='descriptif' class='forml' ROWS='2' COLS='40' wrap=soft>";
+		echo "<textarea name='descriptif' class='forml' ROWS='2' COLS='40' wrap=soft>";
 		echo $descriptif;
-		echo "</TEXTAREA><p>\n";
+		echo "</textarea><p>\n";
 	}
 	else {
 		echo "<input type='hidden' name='descriptif' value=\"$descriptif\">";
@@ -1856,9 +1814,9 @@ fin_cadre_formulaire();
 
 
 }
+// MODE CREER LISTE FIN --------------------------------------------------------
 
-/// afficher une liste
-
+// MODE LISTE EDIT: afficher une liste -----------------------------------------
 if ($mode == "liste_edit"){
 ////
 
@@ -1915,7 +1873,7 @@ $query = "SELECT * FROM spip_auteurs_articles WHERE id_article=$id_article AND i
 $result_auteur = spip_query($query);
 
 //
-// Droits mieux structurés que ca ?
+// Droits mieux structuré que ca ?
 //
 
 $flag_auteur = (spip_num_rows($result_auteur) > 0);
@@ -1954,7 +1912,7 @@ function terminer_changement_statut() {
 
 if ($statut_nouv) {
 	if ($flag_auteur) {
-	     //il faut etre admin et abonné pour modifer une liste
+	     //il faut etre admin et abonnépour modifer une liste
 		if ($statut_nouv == 'liste' AND $statut_article == 'inact')
 			$ok_nouveau_statut = true;
 		else if ($statut_nouv == 'inact' AND $statut_article == 'poublist')
@@ -2216,7 +2174,7 @@ if (!function_exists('my_sel')) {
 // prendre en compte les modifs sur les extras
 if($Valider_auto){
 
-	// On récupère les extras
+	// On réupée les extras
    $extra = get_extra($id_article, 'article');
 
           // Tient il n'y avait pas d'extra
@@ -2243,7 +2201,7 @@ if($Valider_auto){
 
 
    if(($changer_extra == "oui") AND ($auto == "oui") ){
-	// On récupère les extras
+	// On recupere les extras
         $extra = get_extra($id_article, 'article');
 
         // Tient il n'y avait pas d'extra
@@ -2258,7 +2216,7 @@ if($Valider_auto){
         
         if($envoyer_direct){
         $extra['majnouv'] = (time() - ($periode * 3600*24));
-        //echo"<iframe src='../meleuse-cron.php3' height='1' width='1' frameborder='0' >Désolé</iframe>";
+        //echo"<iframe src='../meleuse-cron.php3' height='1' width='1' frameborder='0' >Déolé/iframe>";
         }elseif(!$extra['majnouv']){
         $extra['majnouv'] = time();
         }
@@ -2543,7 +2501,7 @@ debut_cadre_relief("reply-to-all-24.gif");
      
 echo "<form action='spip_listes.php3?mode=liste_edit' METHOD='post'>";
 		 
-	// On récupère les extras
+	// On réupée les extras
 $extra = get_extra($id_article, 'article');
 
 // Tient il n'y avait pas d'extra 
@@ -2576,7 +2534,7 @@ debut_cadre_relief("stock_timer.gif");
      
 echo "<form action='spip_listes.php3?mode=liste_edit' METHOD='post'>";
 		 
-	// On récupère les extras
+	// On réupere les extras
 $extra = get_extra($id_article, 'article');
 
 // Tient il n'y avait pas d'extra 
@@ -2599,14 +2557,18 @@ else {
      echo _T('spiplistes:env_esquel')." <em>".$extra['squelette']."</em> " ;
 	
 				
-    echo _T('spiplistes:Tous_les')."  <b>".$extra['periode']."</b>  "._T('info_jours') ;
+    echo "<br />"._T('spiplistes:Tous_les')."  <b>".$extra['periode']."</b>  "._T('info_jours') ;
 	
     $dernier_envoi =  $extra['majnouv'];
                  $periode= $extra['periode'];
 
             $sablier = (time() - $dernier_envoi) ;
+            
+           
            $proch = round(  (( (24*3600*$periode) - $sablier) / (3600*24)) ) ;
-            if($proch != 0) {
+            $last = round(  ($sablier / (3600*24)) ) ;
+            echo "<br />Dernier envoi il y a <b>$last</b> "._T('spiplistes:jours')."<br />";
+           if($proch != 0) {
             echo "<br />"._T('spiplistes:prochain_envoi_prevu')."<b>$proch</b> "._T('spiplistes:jours')."<br />";
             }
             else {
@@ -2654,16 +2616,16 @@ echo "<tr><td background='img_pack/rien.gif' align='$spip_lang_left' class='verd
 		}
 				if ($dh = opendir($dir)) {
         		//echo "<SELECT name='patron' size='".$total_option."'>";
-			echo "<SELECT name='patron'>";
+			echo "<select name='patron'>";
 			while (($file = readdir($dh)) !== false) {
                		 if($file != '..' && $file !='.' && $file !=''){
 			$titre_option=ereg_replace('(\.html|\.HTML)','',$file);
-			 ($extra['squelette'] == $titre_option) ? $selected = "SELECTED" : $selected ="" ;
+			 ($extra['squelette'] == $titre_option) ? $selected = "selected='selected" : $selected ="" ;
 
-                        echo "<option ".$selected." value='".$titre_option."'>".$titre_option."</OPTION>";
+                        echo "<option ".$selected." value='".$titre_option."'>".$titre_option."</option>\n";
 			}
 					}
-				echo "</SELECT>";
+				echo "</select>";
         		closedir($dh);
    		  		}
 		}
@@ -2714,14 +2676,7 @@ fin_cadre_relief();
 //
 
 echo "<a name='auteurs'></a>";
-
-
-if ($flag_editable AND $options == 'avancees') {
-	$bouton = bouton_block_invisible("auteursarticle");
-}
-
-debut_cadre_enfonce("auteur-24.gif", false, "", $bouton._T('spiplistes:abon').aide ("artauteurs"));
-
+debut_cadre_enfonce("auteur-24.gif", false, "",  _T('spiplistes:abon').aide ("artauteurs"));
 
 
 ////////////////////////////////////////////////////
@@ -2829,6 +2784,13 @@ if ($ajout_auteur && $flag_editable) {
 		$result=spip_query($query);
 		$query="INSERT INTO spip_auteurs_articles (id_auteur,id_article) VALUES ('$nouv_auteur','$id_article')";
 		$result=spip_query($query);
+		//attribuer un format de réception si besoin (ancien auteur)
+		$extra_format=get_extra($nouv_auteur,"auteur");
+		if(!$extra_format["abo"]){
+		$extra_format["abo"] = "html";
+		set_extra($nouv_auteur,$extra,'auteur');
+		}
+	
 	}
 
 	if (lire_meta('activer_moteur') == 'oui') {
@@ -2907,7 +2869,7 @@ if (spip_num_rows($result)) {
 		else $vals[] =  "&nbsp;";
 
 		if ($flag_editable AND ($connect_id_auteur != $id_auteur OR $connect_statut == '0minirezo') AND $options == 'avancees') {
-			$vals[] =  "<a href='spip_listes.php3?mode=liste_edit&id_article=$id_article&supp_auteur=$id_auteur#auteurs'>Désabonnement&nbsp;<img src='img_pack/croix-rouge.gif' alt='X' width='7' height='7' border='0' align='middle'></a>";
+			$vals[] =  "<a href='spip_listes.php3?mode=liste_edit&id_article=$id_article&supp_auteur=$id_auteur#auteurs'>"._T('spiplistes:desabonnement')."<img src='img_pack/croix-rouge.gif' alt='X' width='7' height='7' border='0' align='middle'></a>";
 		} else {
 			$vals[] = "";
 		}
@@ -3063,7 +3025,7 @@ fin_cadre_relief();
 
 echo "<br /><br />";
 
-$forum_retour = urlencode("articles.php3?id_article=$id_article");
+$forum_retour = urlencode("spip_listes.php3?mode=liste_edit&id_article=$id_article");
 
 
 echo "\n<div align='center'>";
@@ -3116,25 +3078,16 @@ if ($total > $total_afficher) {
 
 echo "</div>\n";
 
-
-
-
 if ($ok_nouveau_statut || $reindexer) {
 	@flush();
 	terminer_changement_statut();
 }
 
-
-
-
-
-
 ////
 }
+// MODE EDIT LISTE FIN ---------------------------------------------------------
 
-
-// afficher les listes
-
+// MODE LISTES: afficher les listes --------------------------------------------
 if ($mode == "listes"){
 
 
@@ -3203,10 +3156,9 @@ echo "<p>";
 afficher_articles_listes(_T('spiplistes:listes_poubelle'),
 	"WHERE articles.statut=\"poublist\"  ORDER BY articles.date DESC");
 }
+// MODE EDIT LISTES FIN --------------------------------------------------------
 
-
-
-
+// MODE CONFIG: Configuration de spip-listes -----------------------------------
 If ($mode == "config"){
 
 
@@ -3220,6 +3172,9 @@ echo _T('spiplistes:autorisation_inscription');
 }
 
 $extra = get_extra(1,'auteur');
+
+//print_r($extra);
+
 $deb = $extra['debut'] ;
 //echo "<h1>$deb</h1>";
 if( !is_array($extra) ){
@@ -3260,330 +3215,377 @@ echo "<input type='hidden' name='changer_config' value='oui'>";
 	 $texte2 = '' ;
         ($config == 'simple' ) ? $texte1 = "checked"  : $texte2 = "checked" ;
 
-    echo "<input type='radio' name='statut_abo' value='simple' $texte1 id='statut_simple'>";
+  echo "<input type='radio' name='statut_abo' value='simple' $texte1 id='statut_simple'>";
 	echo "<label for='statut_simple'>"._T('spiplistes:abonnement_simple')."</label> ";
 	echo "<p><input type='radio' name='statut_abo' value='membre' $texte2 id='statut_membre'>";
 	echo "<label for='statut_membre'>"._T('spiplistes:abonnement_code_acces')."</label></b> ";
-
-
-
 	echo "</td></tr>";
-
-
-
-
-
 	echo "<tr><td style='text-align:$spip_lang_right;'>";
 	echo "<input type='submit' name='Valider' value='"._T('bouton_valider')."' class='fondo'>";
 	echo "</td></tr>";
 	echo "</table>\n";
 
-
-         echo "</form>";
- 	
-
-	fin_cadre_relief();
+echo "</form>";
+fin_cadre_relief();
+	
+if ($reinitialiser_config == 'oui' AND $Valider_reinit) {
+spip_query("DELETE from spip_messages WHERE statut='encour'");
+$extra['debut'] = 0 ;
+$extra['locked'] = "non" ;
+$extra['total_auteurs'] = 0 ;
+set_extra(1,$extra,'auteur');
+$extra = get_extra(1,'auteur');
+}	
 	
 	debut_cadre_relief("redacteurs-24.gif", false, "", _T('spiplistes:tableau_bord'));
-	$meta = get_extra(1,"auteur");
-	//print_r($meta);
+//print_r($extra);
+echo "<form action='spip_listes.php3?mode=config' method='post'>";
+echo "<input type='hidden' name='reinitialiser_config' value='oui'>";	
+
+	echo "<br />"._T('spiplistes:lock').$extra['locked'] ;
+	echo "<br />"._T('spiplistes:mail_a_envoyer').$extra['total_auteurs'] ;
+	echo "<br />"._T('spiplistes:mail_tache_courante'). $extra['debut'] ;
 	
-	echo "<br />"._T('spiplistes:lock').$meta['locked'] ;
-	echo "<br />"._T('spiplistes:mail_a_envoyer').$meta['total_auteurs'] ;
-	echo "<br />"._T('spiplistes:mail_tache_courante'). $meta['debut'] ;
-	
+echo "<input type='submit' name='Valider_reinit' value='reinitialiser' class='fondo' style='float:right'>";
+echo "<hr style='clear:both;visibility:hidden'>";
+echo "</form>";	
+fin_cadre_relief();  
 
-	
-	fin_cadre_relief();
+// SQUELETTES: visionner les patrons---------------------------------------
+//
+// Définir les squelettes
+//
 
-
-               ////////import
-
-
-
-    function test_login2($mail) {
-	if (strpos($mail, "@") > 0) $login_base = substr($mail, 0, strpos($mail, "@"));
-	else $login_base = $mail;
-
-	$login_base = strtolower($login_base);
-	$login_base = ereg_replace("[^a-zA-Z0-9]", "", $login_base);
-	if (!$login_base) $login_base = "user";
-
-	for ($i = 0; ; $i++) {
-		if ($i) $login = $login_base.$i;
-		else $login = $login_base;
-		$query = "SELECT id_auteur FROM spip_auteurs WHERE login='$login'";
-		$result = spip_query($query);
-		if (!spip_num_rows($result)) break;
-	}
-
-	return $login;
-}
-
-
-
-
-
-
- $format = $GLOBALS['suppl_abo'];
-
-
-
-//print_r($list_abo);
-//echo $format."<br /><br /><br />";
-
-
-
-
-         ////////// formulaire
-
-         debut_cadre_relief("redacteurs-24.gif", false, "", _T('spiplistes:importer'));
+	debut_cadre_relief();
 
 	echo "<table border=0 cellspacing=1 cellpadding=3 width=\"100%\">";
+	echo "<tr><td bgcolor='$couleur_foncee' background='img_pack/rien.gif'>
+	<b><font face='Verdana,Arial,Sans,sans-serif' size=3 COLOR='#FFFFFF'>"._T('spiplistes:definir_squel')."</font></b></td></tr>";
+	echo "<tr><td bgcolor='#FFFFFF' background='img_pack/rien.gif' >";
+	echo " </td></tr>";
+	echo "<tr><td bgcolor='#EEEECC' background='img_pack/rien.gif' >";
 
-	echo "<tr><td background='img_pack/rien.gif' class='verdana2'>";
+
+        //un patron ?
+
+
+
+	echo "<b><font face='Verdana,Arial,Sans,sans-serif' size=3>";
+	echo _T('spiplistes:patron_disponibles')."</font></b>";
+
+    echo "</td></tr>";
+
+    echo "<tr><td bgcolor='#FFFFFF' background='img_pack/rien.gif' >";
+
+
+        	echo "<form action='spip_listes.php3' METHOD='get'>"; 
+          echo "<input type='hidden' name='mode' value='config' />\n";
+    echo "<div>";
+	  echo "<div style='float:right;width:200px'>";
+
+
+    $auj = date(_T('spiplistes:format_date'));
+    echo "<p align='center'><b>"._T('spiplistes:date_ref')."</b><br /><input type='text' name='date' value=\"$auj\"></p>";
+	echo "<p align='center'>"._T('spiplistes:alerte_modif')."<br /><br /><input type='submit' name='Valider' value='"._T('spiplistes:charger_le_patron')."' class='fondo'></p>";
+	echo "</div>";
+	  
+	  
+	  $dir = "../patrons/";
+
+		// Ouvre un dossier bien connu, et liste tous les fichiers
+		if (is_dir($dir)) {
+    		if ($dh = opendir($dir)) {
+        		$total_option=0;
+				while (($file = readdir($dh)) !== false) {
+                if($file != '..' && $file !='.' && $file !='') $total_option=$total_option+1;
+        		}
+        		closedir($dh);
+			}
+				if ($dh = opendir($dir)) {
+        		echo "<select name='patron' size='".($total_option+2)."'>";
+				
+					while (($file = readdir($dh)) !== false) {
+            if($file != '..' && $file !='.' && $file !='')		{
+						  $titre_option=ereg_replace('(\.html|\.HTML)','',$file);
+						  echo "<option value='$titre_option'>$titre_option</option>\n";
+						}
+					}
+				echo "</select>";
+        		closedir($dh);
+   		  		}
+		}
+	  		  
 	
-	 switch ($etape) {
-	    case "2" :
-        {
-			
-			
-			if (!$insert_file) $insert_file = $_FILES["insert_file"]["tmp_name"] ;
-			
-			if ($insert_file && $insert_file != "none") {
-			if(!file_exists("./temp"))
-			mkdir("./temp",0777);
-			else 
-			chmod("./temp",0777);
-
-			$import_file = "./temp/import.txt";
-				if(move_uploaded_file($insert_file,$import_file ))
-				{
-				//	   if(ereg("^php[0-9A-Za-z_.-]+$", basename($insert_file)))
-				if(!empty($insert_file) && $insert_file != "none" && ereg("^php[0-9A-Za-z_.-]+$", basename($insert_file)))
-				$liste = fread(fopen($import_file, "r"), filesize($import_file)); //pour NS et IE
-		 
-				$liste=ereg_replace("\n|\r|\n\r|\r\n|\n\n","\n",$liste);
-				$liste = explode( "\n",$liste);
-		 
-					for($i=0;$i<sizeof($liste); $i++)
-					{
-
-					/* Ajouter un nouvel enregistrement dans la table */
-					$liste[$i]=trim($liste[$i]);
-						if(!empty($liste[$i])){
-		       		     
-						// Inscription
-						// Ajouter un code pour retrouver l'abonné
-                        
-                        $mail_inscription = $liste[$i] ;
-						$ligne_nb = ($i+1) ;
-
-                           if(email_valide_bloog($mail_inscription)){
-                           echo $mail_inscription."<br />" ;
-                           $pass = creer_pass_aleatoire(8, $mail_inscription);
-						   $nom_inscription = test_login2($mail_inscription);
-                              
-                           $login = test_login2($mail_inscription);
-      		               $mdpass = md5($pass);
-      		               $htpass = generer_htpass($pass);
-                           $statut = "6forum" ;
-                           $cookie = creer_uniqid();
-      
-                           $extras = bloog_extra_recup_saisie('auteurs');
-
-                           $query = "SELECT * FROM spip_auteurs WHERE email='$mail_inscription'";
-						   $resulta = spip_query($query);
-                                
-								if ($row = spip_fetch_array($resulta)) {
-                                $nom = $row['nom'] ;
-                                $mail = $row['email'] ;
-                                //echo " Le fichier d'import présente une erreur à la ligne $ligne_nb <br />" ;
-								echo _T('spiplistes:adresse_deja_inclus')."<br /><br />" ;
-                                 } else {
-                                 
-								 // echo "$nom_inscription <br />$mail_inscription<br />$format";
-                              	$query = "INSERT INTO spip_auteurs (nom, email, login, pass, statut, htpass, extra, cookie_oubli) ".
-                        		"VALUES ('$nom_inscription', '$mail_inscription', '$login', '$mdpass', '$statut', '$htpass', '$extras', '$cookie')";
-                        		spip_query($query);
-								}
-                                                       
-                                // Inscription aux listes
-                                // abonnement aux listes http://www.phpfrance.com/tutorials/index.php?page=2&id=13
-                        
-                                $query = "SELECT * FROM spip_auteurs WHERE email='$mail_inscription'";
-                        		$resu = spip_query($query);
-                        
-									// l'abonne existe deja.
-									if ($row = spip_fetch_array($resu)) {
-									$id_auteur = $row['id_auteur'];
-									$statut = $row['statut'];
-									$nom = $row['nom'];
-	
-									// on abonne l'auteur aux listes
-									
-										if(is_array($list_abo)){
-											reset($list_abo);
-											while( list(,$val) = each($list_abo) ){
-												 //echo "<h2>$nom :liste $val </h2>" ;
-												 $query="DELETE FROM spip_auteurs_articles WHERE id_auteur='$id_auteur' AND id_article='$val'";
-												 $result=spip_query($query);
-												 $query="INSERT INTO spip_auteurs_articles (id_auteur,id_article) VALUES ('$id_auteur','$val')";
-												 $result=spip_query($query);
-											}
-								  
-										 }
-									}
-                        
-								//
-                        
-						                             
-                          
-							}else{
-                              	echo " "._T('spiplistes:erreur_import')." <br />" ;
-                             echo $liste[$i]." : <br /><br /> ";
-                            }//email valide
+	echo "</div>";
+	echo "</FORM>";
 
 
-                        
-                        }  //listei
-                     
-                     
-                     }  // for
+                echo "<blockquote><i>"._T('spiplistes:definir_squel_texte')."</i></blockquote>";
+				
+
+        echo "</td></tr>";
 
 
-		 unlink($import_file);
-		 echo "<br /><br /><center><b>"._T('spiplistes:adresses_importées')."</b></center>";
-	       }// move et file
-
-	   } // insert
-	   else echo "<br /><br /><center><b>"._T('spiplistes:erreur')."</b></center>";
-
-
-
-
-
-             	 echo  "<a href='spip_listes.php3?mode=config'>["._T('spiplistes:retour_link')."]</a>";
-
-             }
-            break ;
-            
-            default :
-         if($spip_version < 1.8 ){
-                echo "<h3>"._T('spiplistes:importer')."</h3>" ;
-          }
-         echo _T('spiplistes:importer_fichier_txt')."<center><div>";
-
-  $list = spip_query ("SELECT * FROM spip_articles WHERE statut = 'liste' OR statut = 'inact' ");
-  $nb_listes = spip_num_rows($list);
-  if($nb_listes == 0){
-	echo "<fieldset> ";
-	echo "<legend>"._T('spiplistes:abonnement_newsletter')."</legend>";
- echo _T('spiplistes:importer_preciser');
-	   echo "<form action='$PHP_SELF?etape=2' method='post'  enctype='multipart/form-data' name='importform'> ";
-        echo  "<div style='float:right'>";
-        //include('ecrire/inc_extra.php3');
-	bloog_extra_saisie('', 'auteurs', 'inscription');
-	echo  "</div>";
-        }
-  elseif($nb_listes == 1){
-        echo "<fieldset> ";
-	echo "<legend>"._T('spiplistes:abonnement_newsletter')."</legend>";
-        echo _T('spiplistes:importer_preciser');
-		echo "<form action='$PHP_SELF?etape=2' method='post'  enctype='multipart/form-data' name='importform'> ";
-       	echo  "<div style='float:right'>";
-	//include('ecrire/inc_extra.php3');
-	bloog_extra_saisie('', 'auteurs', 'inscription');
-	echo  "</div>";
-
-        echo "<ul style='width:350px'>" ;
-                	while($row = spip_fetch_array($list)) {
-                
-                	echo "<li>" ;
-                	$id_article = $row['id_article'] ;
-                	$titre = $row['titre'] ;
-                	echo "<a href='?liste=$id_article' title='"._T('spiplistes:infos_liste')."'>$titre</a>&nbsp;&nbsp;&nbsp;<input type=\"checkbox\" name=\"list_abo[]\" CHECKED  value=\"".$id_article."\">" ;
-                        echo "</li>" ;
-                	}
-	echo "</ul>" ;
-        }
-			
-  else{
-  
-  echo "<fieldset> ";
-  echo "<legend>"._T('spiplistes:abonnement_newsletter')."</legend>";
-  echo _T('spiplistes:importer_preciser');
-  echo "<div style='width:350px'>" ;
-  echo "<form action='$PHP_SELF?etape=2' method='post' enctype='multipart/form-data'  name='importform'> ";
-  echo  "<div style='float:right'>";
-  //include('ecrire/inc_extra.php3');
-  bloog_extra_saisie('', 'auteurs', 'inscription');
-  echo  "</div>";
-
-                        while($row = spip_fetch_array($list)) {
-					
-			echo "<div style='padding:0px 0px 6px 15px'>" ;
-			$id_article = $row['id_article'] ;
-			$titre = $row['titre'] ;
-			echo "<div style='float:right'><input type=\"checkbox\" name=\"list_abo[]\"   value=\"".$id_article."\"></div>" ;
-                        echo "<img src='./ecrire/img_pack/puceoff.gif' height='10px'>&nbsp;<a href='?liste=$id_article' title='informations sur cette liste'>$titre</a><br />" ;
-			echo "</div>" ;
-
-                        }
-
-
-} // fin du test nb listes
-
-
-   echo '<!--
-  <script language=\"javascript\">
-  function Soumettre()
-			{
-			//if  (document.importform.insert_file.value==\"\")
-	        //alert(\"Tous les champs doivent être remplis\");  
-			//else
-  document.importform.fich.value=document.importform.insert_file.value;
-  document.importform.submit();
-			 }
-  </script>
-   --> ';
-
- echo "<h5>"._T('spiplistes:importer_fichier')."</h5>";
-  echo "<input type=file name=\"insert_file\"><br /><br />";
-  echo "<input type=\"hidden\" name=\"mode\" value=\"config\">";
-  echo "<input type=\"hidden\" name=\"import\" value=\"oui\">";
-
-
-   echo "</div>" ;
-   echo "<input type='submit' name='Valider' value='"._T('bouton_valider')."' class='fondo' onclick='Soumettre()'>";
-   echo "</form>" ;
-
-
-   } // switch
-
-               /**************/
-
-
-
-                
-
-
-                echo  "</fieldset></div>";
-
-
-
-
-
-	echo "</td></tr>";
-
-	echo "<tr><td style='text-align:$spip_lang_right;'>";
-		echo "</td></tr>";
 	echo "</table>\n";
-       
+
+	echo "</FORM>";
+	
+	// doit on visualiser un squelette ?
+	if (isset($_GET['patron'])) {
+	   $patron = $_GET['patron'];
+	   echo "<br /><strong>$patron</strong><br /><br />\n";
+     echo _T('spiplistes:date_ref').": $date\n";
+     echo "<h3>HTML</h3><a href=\"../patron.php3?patron=$patron&amp;date=$date\">(Plein écran)</a><br /><br />\n";
+     echo "<iframe width=\"100%\" height=\"500\" src=\"../patron.php3?patron=$patron&amp;date=$date\"></iframe>\n";
+     echo "<h3>"._T('spiplistes:val_texte')."</h3><a href=\"../patron.php3?patron=$patron&amp;date=$date&amp;format=texte\">(Plein écran)</a><br /><br />\n";  
+     echo "<iframe width=\"100%\" height=\"500\" src=\"../patron.php3?patron=$patron&amp;date=$date&amp;format=texte\"></iframe>\n";       
+  }	
+	// doit on visualiser un squelette ? - fin
+
 	fin_cadre_relief();
 
+// SQUELETTES FIN ---------------------------------------------------------
 
-} //// fin config
+} 
+// MODE CONFIG FIN -------------------------------------------------------------
+
+// MODE INOUT: import / export abonnés------------------------------------------
+if ($mode == "inout"){
+   // import //  
+   function test_login2($mail) {
+      	if (strpos($mail, "@") > 0) $login_base = substr($mail, 0, strpos($mail, "@"));
+      	else $login_base = $mail;
+      
+      	$login_base = strtolower($login_base);
+      	$login_base = ereg_replace("[^a-zA-Z0-9]", "", $login_base);
+      	if (!$login_base) $login_base = "user";
+      
+      	for ($i = 0; ; $i++) {
+      		if ($i) $login = $login_base.$i;
+      		else $login = $login_base;
+      		$query = "SELECT id_auteur FROM spip_auteurs WHERE login='$login'";
+      		$result = spip_query($query);
+      		if (!spip_num_rows($result)) break;
+	     }
+
+	      return $login;
+  }
+
+   $format = $GLOBALS['suppl_abo'];
+
+   
+   /// import form
+   debut_cadre_relief("redacteurs-24.gif", false, "", _T('spiplistes:importer'));
+   
+   switch ($etape) {
+    	    case "2" :
+            {
+    						
+    			if (!$insert_file) $insert_file = $_FILES["insert_file"]["tmp_name"] ;
+    			if ($insert_file && $insert_file != "none") {
+    			if(!file_exists("./temp"))	mkdir("./temp",0777);
+    		                      	else 	chmod("./temp",0777);
+    			  $import_file = "./temp/import.txt";
+    				if(move_uploaded_file($insert_file,$import_file ))
+    				{
+    				//	   if(ereg("^php[0-9A-Za-z_.-]+$", basename($insert_file)))
+    				if(!empty($insert_file) && $insert_file != "none" && ereg("^php[0-9A-Za-z_.-]+$", basename($insert_file)))
+    				$liste = fread(fopen($import_file, "r"), filesize($import_file)); //pour NS et IE
+    		 
+    				$liste=ereg_replace("\n|\r|\n\r|\r\n|\n\n","\n",$liste);
+    				$liste = explode( "\n",$liste);
+    				$new_abonne = 0;
+    				$sub_report = "";
+    		 
+    					for($i=0;$i<sizeof($liste); $i++) {
+    
+    					/* Ajouter un nouvel enregistrement dans la table */
+    					$liste[$i]=trim($liste[$i]);
+    					  $ligne_nb = ($i+1);
+    						if(!empty($liste[$i])){
+    		       		     
+    						            // Inscription
+    						            // Ajouter un code pour retrouver l'abonné                            
+                            $mail_inscription = $liste[$i] ;    						
+    
+                            if(email_valide_bloog($mail_inscription)){
+                               
+                               $pass = creer_pass_aleatoire(8, $mail_inscription);
+    						               $nom_inscription = test_login2($mail_inscription);                                  
+                               $login = test_login2($mail_inscription);
+          		                 $mdpass = md5($pass);
+          		                 $htpass = generer_htpass($pass);
+                               $statut = "6forum" ;
+                               $cookie = creer_uniqid();
+          
+                               $extras = bloog_extra_recup_saisie('auteurs');
+    
+                               $query = "SELECT * FROM spip_auteurs WHERE email='$mail_inscription'";
+                						   $resulta = spip_query($query);
+                                                
+                							 if ($row = spip_fetch_array($resulta)) {
+                                                $nom = $row['nom'] ;
+                                                $mail = $row['email'] ;                                
+                								                echo _T('spiplistes:adresse_deja_inclus').": ";
+                								                echo "<span style='color:#999;margin-bottom:5px'>".$mail_inscription."</span><br />\n" ; 
+                               } else {                                                
+                								                $sub_report .= "<span style='color:#090;margin-bottom:5px'>$mail_inscription</span> ($format)<br />\n";
+                                              	$query = "INSERT INTO spip_auteurs (nom, email, login, pass, statut, htpass, extra, cookie_oubli) ".
+                                        		"VALUES ('$nom_inscription', '$mail_inscription', '$login', '$mdpass', '$statut', '$htpass', '$extras', '$cookie')";
+                                        		spip_query($query);                        		
+                							}
+                                                           
+                              // Inscription aux listes
+                              // abonnement aux listes http://www.phpfrance.com/tutorials/index.php?page=2&id=13
+                              $query = "SELECT * FROM spip_auteurs WHERE email='$mail_inscription'";
+                            	$resu = spip_query($query);
+                            
+                									// l'abonne existe deja.
+                									if ($row = spip_fetch_array($resu)) {
+                    									$id_auteur = $row['id_auteur'];
+                    									$statut = $row['statut'];
+                    									$nom = $row['nom'];
+                    									$mel = $row['email'];
+                	
+    									// on abonne l'auteur aux listes
+    									
+    										if(is_array($list_abo)){
+    											reset($list_abo);
+    											while( list(,$val) = each($list_abo) ){
+    												 //echo "<h2>$nom :liste $val </h2>" ;
+    												 $sub_report .= "<span style='color:#090;margin-bottom:5px'>".$mel."</span><br />\n" ;
+    												 $query="DELETE FROM spip_auteurs_articles WHERE id_auteur='$id_auteur' AND id_article='$val'";
+    												 $result=spip_query($query);
+    												 $query="INSERT INTO spip_auteurs_articles (id_auteur,id_article) VALUES ('$id_auteur','$val')";
+    												 $result=spip_query($query);
+    												 $new_abonne++;
+    											}
+    								  
+    										 }
+    									}
+                            
+    								//
+                              
+    							} else {
+                                 echo " "._T('spiplistes:erreur_import').$ligne_nb.": ";
+                                 echo "<span style='color:red;margin-bottom:5px'>".$liste[$i]." : </span><br />\n";
+                                }//email valide
+    
+                            
+                            }  //listei
+                                              
+                         }  // for
+    
+    
+      		 unlink($import_file);
+      		  echo "<br />".$sub_report;
+    		    echo "<div style='margin:10px 0'><strong>"._T('spiplistes:adresses_importees').": </strong> $new_abonne / $i</div>\n";
+    	       }// move et file
+    
+    	   } // insert
+    	   else echo "<br /><br /><center><strong>"._T('spiplistes:erreur')."</strong></center>";
+    
+    
+        echo  "<a href='spip_listes.php3?mode=inout'>["._T('spiplistes:retour_link')."]</a>";
+    
+        }
+        break ;
+                
+                default :
+             if($spip_version < 1.8 ){
+                    echo "<h3>"._T('spiplistes:importer')."</h3>" ;
+              }
+             echo _T('spiplistes:importer_fichier_txt')."<center><div>";
+    
+      $list = spip_query ("SELECT * FROM spip_articles WHERE statut = 'liste' OR statut = 'inact' ");
+      $nb_listes = spip_num_rows($list);
+      if($nb_listes == 0){
+    	     echo "<fieldset> ";
+    	     echo "<legend>"._T('spiplistes:abonnement_newsletter')."</legend>";
+           echo _T('spiplistes:importer_preciser');
+    	     echo "<form action='$PHP_SELF?etape=2' method='post'  enctype='multipart/form-data' name='importform'> ";        
+          bloog_extra_saisie('', 'auteurs', 'inscription');
+      } else {  
+      echo "<fieldset> ";
+      echo "<legend>"._T('spiplistes:abonnement_newsletter')."</legend>";
+      echo _T('spiplistes:importer_preciser');
+      echo "<div style='text-align:left'>" ;
+      echo "<form action='$PHP_SELF?etape=2' method='post' enctype='multipart/form-data'  name='importform'> ";
+      while($row = spip_fetch_array($list)) {					
+    			$id_article = $row['id_article'] ;
+    			$titre = $row['titre'] ;
+    			if ($nb_listes = 1) $ischecked = "";
+    			               else $ischecked = "checked='checked'";
+    			echo "<input type=\"checkbox\" name=\"list_abo[]\" $ischecked value=\"".$id_article."\">\n";
+          echo "<a href='?liste=$id_article' title='informations sur cette liste'>$titre</a><br />" ;
+    		 
+      }
+      echo "<br />";
+      bloog_extra_saisie('', 'auteurs', 'inscription');
+      echo "</div>";
+    
+    } // fin du test nb listes
+    
+    
+       echo '<!--
+      <script language=\"javascript\">
+      function Soumettre()
+    			{
+    			//if  (document.importform.insert_file.value==\"\")
+    	        //alert(\"Tous les champs doivent ére remplis\");  
+    			//else
+      document.importform.fich.value=document.importform.insert_file.value;
+      document.importform.submit();
+    			 }
+      </script>
+       --> ';
+    
+      echo "<h5>"._T('spiplistes:importer_fichier')."</h5>";
+      echo "<input type=file name=\"insert_file\"><br /><br />";
+      echo "<input type=\"hidden\" name=\"mode\" value=\"inout\">";
+      echo "<input type=\"hidden\" name=\"import\" value=\"oui\">";
+      echo "</div>" ;
+      echo "<input type='submit' name='Valider' value='"._T('bouton_valider')."' class='fondo' onclick='Soumettre()'>";
+      echo "</form>" ;
+    
+    
+       } // switch
+    
+      /**************/
+    
+      echo  "</fieldset></div>";           
+    	fin_cadre_relief();
+   /// import form end
+   
+   
+   
+   // import end //
+  
+  
+  /// export //(added by erational.org)
+	// formulaire d'export
+  $list = spip_query ("SELECT * FROM spip_articles WHERE statut = 'liste' OR statut = 'inact' ");
+  $nb_listes = spip_num_rows($list);
+  if ($nb_listes > 0) {	
+	   debut_cadre_relief("redacteurs-24.gif", false, "", _T('spiplistes:exporter'));
+	   echo "<form action='$PHP_SELF?mode=statut' method='post'>\n";	   
+	   while($row = spip_fetch_array($list)) {
+					$id_article = $row['id_article'] ;
+			     $titre = $row['titre'];
+			     if ($nb_listes==1) $checked = " checked='checked'";
+			                  else $checked = "";
+			    echo "<input type=\"radio\" name=\"export_id\"   value=\"".$id_article."\"$checked>$titre <br />\n"; 
+      }      
+	   echo "<input type='submit' name='export_txt' class='fondo' value='"._T('bouton_valider')."' />\n";
+	   echo "</form>\n";
+	   fin_cadre_relief();	
+	}
+	// export end //
+
+}
+// MODE INOUT FIN --------------------------------------------------------------
+$spiplistes_version = "SPIP-listes b1.8.3.1";
+echo "<p style='font-family: Arial, Verdana,sans-serif;font-size:10px;font-weight:bold'>".$spiplistes_version."<p>" ;
 
 fin_page();
 /******************************************************************************************/
