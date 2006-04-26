@@ -8,12 +8,18 @@
 
 [(#ENV*{previsu})]
 
-
+<BOUCLE_G(GROUPES_MOTS){forum=oui}{articles==(#ENV{table}|choixsiegal{articles,'oui','.*'})}{breves==(#ENV{table}|choixsiegal{breves,'oui','.*'})}{rubriques==(#ENV{table}|choixsiegal{rubriques,'oui','.*'})}{syndic==(#ENV{table}|choixsiegal{syndic,'oui','.*'})}
+>
+[(#ID_GROUPE|in_any{#ENV**{ajouter_groupe},' '})
+<fieldset class="spip_encadrer">
+	<legend><:mots_clefs:> : #TITRE</legend>
+	<INCLURE{fond=choix_mots}{id_groupe}{ajouter_mot}{unseul}>
+</fieldset>
+]</BOUCLE_G>
 
 [(#ENV**{afficher_texte}|choixsiegal{'non', ' ',''})
 [<input type="hidden" name="titre" id="titre" style="float: #LANG_RIGHT;" value="(#ENV{titre})" />]
-<input type="submit" name="submit" class="spip_bouton" style="float: #LANG_RIGHT;" value="<:forum_valider:>" />
-]
+<input type="submit" name="submit" class="spip_bouton" style="float: #LANG_RIGHT;" value="<:forum_valider:>" />]
 
 [(#ENV**{afficher_texte}|choixsiegal{'non', '',' '})
 		<fieldset class="spip_encadrer">
