@@ -36,12 +36,24 @@
 [<div class="soustitre">[(#NOM_SITE) : ]<a href="(#URL_SITE)" class="spip_url">#URL_SITE</a></div>]
 </div>
 
-[<div class="texte">(#BIO)</div>]
+[<div class="texte">(#BIO)</div><br />]
 
 <br class="spacer" />
 
-[<h2 class="spip"><:envoyer_message:></h2>
-(#FORMULAIRE_ECRIRE_AUTEUR)]
+
+[<div class="encart">
+<h2 class="structure"><:envoyer_message:></h2>
+(#FORMULAIRE_ECRIRE_AUTEUR)
+</div>]
+
+
+<!-- Articles de l'auteur -->
+<B_articles>
+<h2 class="structure"><:articles_auteur:></h2><ul>
+<BOUCLE_articles(ARTICLES) {id_auteur} {par date}{inverse}>
+<li class="extrait"><h3 class="titre"><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"]>#TITRE</a></h3></li>
+</BOUCLE_articles>
+</ul></B_articles>
 
 [<div class="notes">(#NOTES)</div>]
 
@@ -53,18 +65,6 @@
 
 <!-- Formulaire de recherche -->
 [(#FORMULAIRE_RECHERCHE)]
-
-<!-- Articles de l'auteur -->
-<B_articles>
-<div class="breves" title="<:articles_auteur:>">
-<h2 class="titre"><:articles_auteur:></h2>
-<ul>
-<BOUCLE_articles(ARTICLES) {id_auteur} {par date}{inverse}>
-<li><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"]>#TITRE</a></li>
-</BOUCLE_articles>
-</ul>
-</div>
-</B_articles>
 
 <!-- Autres auteurs -->
 <B_auteurs>
