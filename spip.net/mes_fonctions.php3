@@ -8,7 +8,7 @@ function filtres_telecharger($texte) {
 	$texte = str_replace('$$version_stable$$', VERSION_STABLE, $texte);
 	$texte = str_replace('$$version_stable_url$$', VERSION_STABLE_URL, $texte);
 
-	define_once('VERSION_STABLE_DATE', date("Y-m-d", @filemtime(VERSION_STABLE_URL)));
+	define('VERSION_STABLE_DATE', date("Y-m-d", @filemtime(VERSION_STABLE_URL)));
 	$texte = str_replace('$$version_stable_date$$', affdate(VERSION_STABLE_DATE), $texte);
 	return $texte;
 }
