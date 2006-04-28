@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="#LANG_DIR" lang="#LANG">
 <head>
-<title>[(#TITRE|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
+<title>[(#TITRE|supprimer_numero|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
 <meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
 [<meta name="description" content="(#DESCRIPTIF|textebrut|entites_html|couper{150}|sinon{'[(#DESCRIPTIF_SITE_SPIP|textebrut|entites_html|couper{150})]'})" />]
 
@@ -23,7 +23,7 @@
 <INCLURE{fond=inc-top}{lang}>
 
 <!-- Fil d'Arianne -->
-<div id="hierarchie">:: <a href="#URL_SITE_SPIP" title="<:accueil_site:>" ><:accueil_site:></a> > <a href="#URL_PAGE{mots}"><:mots_clefs:></a><BOUCLE_arianne(GROUPES_MOTS){id_groupe}> > [(#TITRE|textebrut|couper{60})]</BOUCLE_arianne>[ > (#TITRE|textebrut|couper{60})]</div>
+<div id="hierarchie">:: <a href="#URL_SITE_SPIP" title="<:accueil_site:>" ><:accueil_site:></a> > <a href="#URL_PAGE{mots}"><:mots_clefs:></a><BOUCLE_arianne(GROUPES_MOTS){id_groupe}> > [(#TITRE|supprimer_numero|textebrut|couper{60})]</BOUCLE_arianne>[ > (#TITRE|textebrut|couper{60})]</div>
 
 
 <!-- Contenu principal : contenu du mot-cle -->
@@ -32,7 +32,7 @@
 
 <div class="cartouche">
 [(#LOGO_MOT||reduire_image{200,200})]
-<h1 class="titre">#TITRE</h1>
+<h1 class="titre">[(#TITRE|supprimer_numero)]</h1>
 </div>
 
 [<div class="chapo">(#TEXTE)</div>]
@@ -59,7 +59,7 @@
 <h2><:breves:></h2>
 <ul>
 <BOUCLE_breves(BREVES) {id_mot} {par titre}>
-<li><a href="#URL_BREVE">#TITRE</a></li>
+<li><a href="#URL_BREVE">[(#TITRE|supprimer_numero)]</a></li>
 </BOUCLE_breves>
 </ul>
 </div>
@@ -83,7 +83,7 @@
 <h2><:sites_web:></h2>
 <ul>
 <BOUCLE_sites(SITES) {id_mot} {par nom_site}>
-<li><a href="spip.php?site#ID_SYNDIC">#NOM_SITE</a></li>
+<li><a href="spip.php?site#ID_SYNDIC">[(#NOM_SITE|supprimer_numero)]</a></li>
 </BOUCLE_sites>
 </ul>
 </div>
@@ -95,8 +95,8 @@
 <B_articles>
 <h2 class="structure"><:articles:></h2><ul>
 <BOUCLE_articles(ARTICLES) {id_mot} {par titre}><li class="extrait">
-<h3 class="titre"><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"]>#TITRE</a></h3>
-<small>[(#DATE|affdate)]<B_auteurs>, <:par_auteur:> <BOUCLE_auteurs(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs></small></li>
+<h3 class="titre"><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"]>[(#TITRE|supprimer_numero)]</a></h3>
+<small>[(#DATE|affdate)]<B_auteurs>, <:par_auteur:> <BOUCLE_auteurs(AUTEURS) {id_article} {", "}>[(#NOM|supprimer_numero)]</BOUCLE_auteurs></small></li>
 </BOUCLE_articles>
 </ul></B_articles>
 

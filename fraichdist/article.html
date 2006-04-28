@@ -2,7 +2,7 @@
 <BOUCLE_article_principal(ARTICLES) {id_article}><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="#LANG_DIR" lang="#LANG">
 <head>
-<title>[(#TITRE|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
+<title>[(#TITRE|supprimer_numero|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
 <meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
 [<meta name="description" content="(#DESCRIPTIF|textebrut|entites_html|couper{150}|sinon{'[(#DESCRIPTIF_SITE_SPIP|textebrut|entites_html|couper{150})]'})" />]
 
@@ -32,9 +32,9 @@
 <div class="cartouche">
 [(#LOGO_ARTICLE||reduire_image{200,200})]
 [<p class="surtitre">#DEBUT_SURLIGNE(#SURTITRE)#FIN_SURLIGNE</p>]
-<h1 class="titre">#DEBUT_SURLIGNE#TITRE#FIN_SURLIGNE</h1>
+<h1 class="titre">#DEBUT_SURLIGNE[(#TITRE|supprimer_numero)]#FIN_SURLIGNE</h1>
 [<p class="soustitre">#DEBUT_SURLIGNE(#SOUSTITRE)#FIN_SURLIGNE</p>]
-<small>[(#DATE|nom_jour) ][(#DATE|affdate)]<B_auteurs>, <:par_auteur:> <BOUCLE_auteurs(AUTEURS) {id_article} {", "}><a href="#URL_AUTEUR">#NOM</a></BOUCLE_auteurs></small>
+<small>[(#DATE|nom_jour) ][(#DATE|affdate)]<B_auteurs>, <:par_auteur:> <BOUCLE_auteurs(AUTEURS) {id_article} {", "}><a href="#URL_AUTEUR">[(#NOM|supprimer_numero)]</a></BOUCLE_auteurs></small>
 </div>
 
 <br class="spacer" />
@@ -143,7 +143,7 @@
 <h2><a href="[(#URL_RUBRIQUE|supprimer_numero)]"><:meme_rubrique:></a></h2>
 <ul>
 <BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par date}{inverse}>
-<li><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"][ class="(#EXPOSE)"]>#TITRE</a></li>
+<li><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"][ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero)]</a></li>
 </BOUCLE_articles_rubrique>
 </ul>
 </div>
@@ -155,14 +155,16 @@
 <h2><:mots_clefs:></h2>
 <ul>
 <BOUCLE_mots(MOTS) {id_article} {par titre}>
-<li><a href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"]>#TITRE</a>
+<li><a href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"]>[(#TITRE|supprimer_numero)]</a>
+
 <B_articles_mots>
 <ul>
 <BOUCLE_articles_mots(ARTICLES) {id_mot} {par hasard} {exclus}>
-<li><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"]>#TITRE</a></li>
+<li><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"]>[(#TITRE|supprimer_numero)]</a></li>
 </BOUCLE_articles_mots>
 </ul>
 </B_articles_mots>
+
 </li>
 </BOUCLE_mots>
 </ul>
