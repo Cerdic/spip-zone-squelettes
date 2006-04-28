@@ -113,30 +113,24 @@
 
 <!-- Menu de navigation mots-cles : les autres mots cles du meme groupe-->
 <B_mots_freres>
-<h2 class="structure"><:mots_clefs_meme_groupe:></h2>
-
 <div class="divers">
-<BOUCLE_groupe(GROUPES_MOTS) {id_groupe} {doublons}><h3 class="titre"[ title="(#DESCRIPTIF|attribut_html)"]>#TITRE</h3></BOUCLE_groupe>
+<BOUCLE_groupe(GROUPES_MOTS) {id_groupe} {doublons}><h2 class="titre"[ title="(#TITRE|textebrut|entites_html|couper{80})"]><:mots_clefs_meme_groupe:></h2></BOUCLE_groupe>
 <ul>
 <BOUCLE_mots_freres(MOTS) {type} {par titre}>
-<li><a[ (#EXPOSE{'',href})="#URL_MOT"][ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"][ class="(#EXPOSE)"]>#TITRE</a></li>
+<li><a[ (#EXPOSE{'',href})="#URL_MOT"][ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"][ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero)]</a></li>
 </BOUCLE_mots_freres>
 </ul>
 </div>
 </B_mots_freres>
 
-
 <!-- Menu de navigation mots-cles : les autres groupes avec un lien sur le premier mot du groupe -->
-
 <B_groupes_freres>
-<h2 class="structure"><:autres_groupes_mots_clefs:></h2>
-
 <div class="divers">
-<h3 class="titre"><a href="#URL_PAGE{mots}"><:autres_groupes_mots_clefs:></a></h3>
+<h2 class="titre"><a href="#URL_PAGE{mots}"><:autres_groupes_mots_clefs:></a></h2>
 <ul>
 <BOUCLE_groupes_freres(GROUPES_MOTS) {par titre} {doublons}>
 <BOUCLE_mot_cousin(MOTS) {id_groupe} {par titre} {0,1}>
-<li[ title="(#_groupes_freres:DESCRIPTIF|attribut_html)"]><a href="#URL_MOT">#TYPE</a></li>
+<li><a href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"]>[(#TYPE|supprimer_numero)]</a></li>
 </BOUCLE_mot_cousin>
 </BOUCLE_groupes_freres>
 </ul>
