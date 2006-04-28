@@ -12,7 +12,7 @@
       </BOUCLE_liens> 
       </BOUCLE_onglets> 
       </B_onglets>   </ul> 
-<p class="droite blanc">
+<p class="droite blanc img">
 
 
 
@@ -25,10 +25,11 @@ $result_messages = spip_query("SELECT * FROM spip_messages AS messages,spip_aute
            if ($total_messages == 1) {
                while($row = @spip_fetch_array($result_messages)) {
                    $ze_message=$row['id_message'];
-                   echo "<a href='ecrire/message.php3?id_message=$ze_message'><img src=\"./IMG/002/mail_generic.gif\" alt=\"Votre courrier.\">"._T('info_nouveau_message')."</a><br/>";
+                   echo "<a href='ecrire/message.php3?id_message=$ze_message'><img src=\"./IMG/002/mail_generic.gif\" alt=\"Votre courrier.\">&nbsp;"._T('info_nouveau_message')."</a><br/>";
                }
            }
-           if ($total_messages > 1) echo "<a href='ecrire/messagerie.php3'><img src=\"IMG/002/mail_generic.gif\" alt=\"Votre courrier.\">"._T('info_nouveaux_messages', array('total_messages' => $total_messages))."</a><br/>";
+           if ($total_messages > 1) echo "<a href='ecrire/messagerie.php3'><img src=\"IMG/002/mail_generic.gif\" alt=\"Votre courrier.\">&nbsp;"._T('info_nouveaux_messages', array('total_messages' => $total_messages))."</a><br/>";
+if ($total_messages ==0){
 ?>
 
 
@@ -39,7 +40,8 @@ $result_messages = spip_query("SELECT * FROM spip_messages AS messages,spip_aute
       </B_mon_compte>
       <//B_mon_compte>
       <a href="[(#URL_LOGOUT|sommaire.php3)]" >Quitter</a>
-      <?php } else { ?>
+
+      <?php }} else { ?>
       <B_connexion>
       <BOUCLE_connexion(RUBRIQUES){titre_mot=profil}>
       <a href="_mon-profil.php3">Connectez-vous</a>

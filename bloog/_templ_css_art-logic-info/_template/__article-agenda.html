@@ -37,7 +37,7 @@
 
 
   <?php
-$months = array('Décembre', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre', 'Janvier');
+$months = array('d&eacute;cembre', 'janvier', 'f&eacute;vrier', 'mars', 'avril', 'mai', 'juin', 'juillet', 'ao&ucirc;t', 'septembre', 'octobre', 'novembre', 'd&eacute;cembre', 'janvier');
 $days = array('Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam');
 $date1 = strtotime("#DATE");
 $date2 = strtotime("#DATE_REDAC");
@@ -63,9 +63,15 @@ $events = array();
 <div id="content">  <!-- ouverture contenu --> 
 
 <div id="colgau"> <!-- ouverture colone de gauche --> 
+
+
 <div class="grande_boite">
+<h4 class="icone_filter">Sélectionnez un filtre:</h4>
 <INCLURE (_menu_agenda.php3){id_rubrique}>
 </div>
+
+
+
   <div class="grande_boite"> <p> <!-- ouverture grd boite texte -->
 <BOUCLE_precedent(ARTICLES){branche}{age_relatif_redac>=0}{par date_redac}{inverse}{1,1}> <a href='#URL_ARTICLE'><img src="./IMG/002/left.gif" alt="précédent" />
                 <BOUCLE_lien(RUBRIQUES){id_rubrique}> 
@@ -77,17 +83,16 @@ $events = array();
                 <h3>#TITRE</h3> 
                <p>
 
-              <strong>[Du (#DATE_REDAC|nom_jour)] [(#DATE_REDAC|affdate),]
-                  [au (#DATE|nom_jour)] [(#DATE|affdate)&nbsp;inclus.]
-                  (<?php
+             
+                <?php
 $duree = $date1-$date2 ;
 $nbr_jrs = 1+ floor($duree / (24*3600));
-if ($nbr_jrs == "0" OR $nbr_jrs == "1") {$texte = "jour";
+if ($nbr_jrs == "0" OR $nbr_jrs == "1") {echo' [Le (#DATE|nom_jour)] [(#DATE|affdate)].';
 	}
 	else {
-		$texte = "jours";}	
-echo $nbr_jrs.'&nbsp;'.$texte;
-?>)</strong> 
+		echo' [Du (#DATE_REDAC|nom_jour)] [(#DATE_REDAC|affdate),] [au (#DATE|nom_jour)] [(#DATE|affdate)&nbsp;inclus.]&nbsp;('.$nbr_jrs.'&nbsp;jours)';
+}
+?> 
                   
 </p>               
                <p>  
@@ -165,13 +170,13 @@ $nbr_jrs = 1+ floor($duree / (24*3600));
 
     <div class="boite"><!-- ouverture boite menu --> 
 
-        <h4 class="icone_menu">navigation</h4>
-      <INCLURE(_menu_rub.php3){id_rubrique}{id_article}> 
+        <h4 class="icone_menu">Navigation</h4>
+        <INCLURE(_menu_rub.php3){id_rubrique}{id_article}> 
     
     </div><!-- fermeture boite menu -->
 
 <div class="boite">
-<h4 class="icone_agenda">agenda</h4>
+<h4 class="icone_agenda">Situez l'&eacute;v&eacute;nement: </h4>
 
 
  <p class="centre">
@@ -182,7 +187,7 @@ $nbr_jrs = 1+ floor($duree / (24*3600));
 					?> 
 <a href="rubrique.php3?id_rubrique=#ID_RUBRIQUE&amp;mois=<?=($M + 1)?>&amp;annee=<?=$Y?>"title="<?echo $months[intval($M +1)]?>[ : (#TITRE|supprimer_numero)] "><img src="./IMG/002/right.gif"alt="<?echo $months[intval($M +1)]?>[ : (#TITRE|supprimer_numero)] "/></a> 
                         </BOUCLE_affich_date>                   
-                    </p>
+          </p>
 
 <table class="agenda">
  <?php
@@ -236,8 +241,8 @@ echo '</tr>';
       <!-- La boite de recherche --> 
     <div class="boite"> <!-- ouverture boite recherche --> 
 
-  <h4 class="icone_recherche">recherche</h4>
- <form action='recherche.php3' method='post' class="form_rech" id="form_rech">
+  <h4 class="icone_recherche">Recherche</h4>
+  <form action='recherche.php3' method='post' class="form_rech" id="form_rech">
               <p><input name="recherche" type='text' id='recherche' size='20' />
               <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" /></p>             
           </form>
@@ -256,7 +261,7 @@ echo '</tr>';
     <B_musique>
     <div class="boite">
       <!-- ouverture boite musique -->
-      <h4 class="icone_juk">musique</h4>
+      <h4 class="icone_juk">Musique</h4>
       <BOUCLE_musique(DOCUMENTS){id_article}{par titre}{extension==MP3|m3u|wav|WMA|Ogg|FLAC|au|VQF|M4A|AIF|RM|RAM|MID}{doublons doc}>
         [<p class="logogauche"><a href="#URL_DOCUMENT" title="[(#TYPE_DOCUMENT)] [(#TAILLE|taille_en_octets)]">(#LOGO_DOCUMENT)</a></p>]
 [<a href="#URL_DOCUMENT" title="[(#TYPE_DOCUMENT)] [(#TAILLE|taille_en_octets)]">(#TITRE|majuscules)</a>]

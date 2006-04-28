@@ -37,15 +37,18 @@
 <div id="cel">
 <ul id="deco">
 <li>
-
 <BOUCLE_blogbox_haut(BREVES){titre_mot=homebox_haut}{par date}>
-<h4>[(#TITRE|supprimer_numero)]</h4><p>
-[<a href="#URL_SITE_SPIP/breve.php3?id_breve=#ID_BREVE" title="lire tout">(#LOGO_BREVE|?{#LOGO_BREVE,'<img src="./IMG/002/bienvenu.gif" alt="logo"/></a>'})]
+<h4>[(#TITRE|supprimer_numero)]</h4>
+  <p>
+[<span class="logogauche">(#LOGO_BREVE)</span>]
 
 [(#TEXTE|lier_au_glossaire)]</p>
 
+
 </BOUCLE_blogbox_haut>
-Bienvenue sur #NOM_SITE_SPIP.
+<h4>Bienvenue.</h4>
+<p>Bienvenue sur #NOM_SITE_SPIP.</p>
+
 <//B_blogbox_haut>
 </li>
 
@@ -70,7 +73,7 @@ Bienvenue sur #NOM_SITE_SPIP.
 <!-- aucun membre reconnu -->
 
 
-<h4>[(#TITRE|supprimer_numero)]</h4><p><a href=#URL_BREVE><img src="./IMG/002/cle.gif" alt="Cette page est reserv&eacute;e aux membres"/>
+<h4>[(#TITRE|supprimer_numero)]</h4><div><p><a href=#URL_BREVE><img src="./IMG/002/cle.gif" alt="Cette page est reserv&eacute;e aux membres"/>
 </a><a href="_authentification.php3">connexion</a></p>
 <?
     }else{
@@ -78,9 +81,8 @@ Bienvenue sur #NOM_SITE_SPIP.
 <a href="#URL_SITE_SPIP/breve.php3?id_breve=#ID_BREVE" title="lire tout">
 <h4>[(#TITRE|supprimer_numero)]</h4> 
 </a>
-  <p><!-- Le logo de la breve bloguee -->
-[<a href="#URL_SITE_SPIP/breve.php3?id_breve=#ID_BREVE" title="lire tout">(#LOGO_BREVE|?{#LOGO_BREVE,'<img src="./IMG/002/bienvenu.gif" alt="logo"/></a>'})]
-[(#TEXTE|justifier)]
+  <div><p><!-- Le logo de la breve bloguee -->
+[<span class="logogauche"><a href="#URL_SITE_SPIP/breve.php3?id_breve=#ID_BREVE" title="lire tout">(#LOGO_BREVE)</a></span>][(#TEXTE|justifier)]
 
 [::<a href="forum.php3?(#PARAMETRES_FORUM)">R&eacute;agir</a>::]
       <BOUCLE_forums2(FORUMS){id_breve}{plat}>
@@ -90,6 +92,7 @@ Bienvenue sur #NOM_SITE_SPIP.
       <? echo $total_forum2 == 1? " ($total_forum2&nbsp;message)" : " ($total_forum2&nbsp;messages)" ; ?>
       </a>
 	</B_forums2></p>
+  
       
      
  
@@ -97,7 +100,7 @@ Bienvenue sur #NOM_SITE_SPIP.
 <!-- la breve n_est pas restreinte -->
 <?php }} else {?> 
 <h4><a href="#URL_SITE_SPIP/breve.php3?id_breve=#ID_BREVE" title="lire tout">[(#TITRE|supprimer_numero)]</a></h4>
-<p> <span class="logogauche">[<a href="#URL_SITE_SPIP/breve.php3?id_breve=#ID_BREVE" title="lire tout">(#LOGO_BREVE)</a>]</span>
+<p> [<span class="logogauche"><a href="#URL_SITE_SPIP/breve.php3?id_breve=#ID_BREVE" title="lire tout">(#LOGO_BREVE)</a></span>]
 [(#TEXTE)]
 
 [<a href="forum.php3?(#PARAMETRES_FORUM)">R&eacute;agir</a>]
@@ -119,11 +122,43 @@ Bienvenue sur #NOM_SITE_SPIP.
   news.</p>
 <//B_blogue>
 </li>
+</ul>
+</div>
+
+
+
+
+
+
+ <div class="grande_boite">
+
+              <BOUCLE_appel(RUBRIQUES){titre_mot = menu_rub}{par titre}> [<a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero)]" class="logogauche">(#LOGO_RUBRIQUE)</a>]     
+[<h4><a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero)]">(#TITRE|supprimer_numero)</a></h4>]
+<p>
+<INCLURE(_cadenas.php3){id_rubrique}> #DESCRIPTIF
+             <BOUCLE_nouv_art(ARTICLES){id_rubrique}{age<14}{par date}{inverse}{0,20}>
+          Nouveau:<a href="#URL_ARTICLE">[(#TITRE)]</a> 
+              <INCLURE(_cadenas.php3){id_article}>
+              
+              <br/>
+              </BOUCLE_nouv_art> 
+ </p> <hr class="spacer" />      
+   
+  </BOUCLE_appel>  
+</div><!-- fermeture grande_boite -->
+
+
+
+
+
+<div id="celbas">
+<ul id="decobas">
+
 
 <!-- Les article en une -->
 <B_une>
 <li>
-<h4>A la une:</h4> <p>
+<h4>A la une:</h4><p>
 <BOUCLE_une(ARTICLES){tout}{titre_mot=une}{par date}{inverse}{0,2}>
 <strong><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></strong>
 <INCLURE(_cadenas.php3){id_article}><br/>
@@ -147,22 +182,7 @@ Bienvenue sur #NOM_SITE_SPIP.
 
 </ul>
 </div> <!-- fin de cel -->      
- <div class="grande_boite">
 
-              <BOUCLE_appel(RUBRIQUES){titre_mot = menu_rub}{par titre}> [<a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero)]" class="logogauche">(#LOGO_RUBRIQUE)</a>]     
-[<h4><a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero)]">(#TITRE|supprimer_numero)</a></h4>]<INCLURE(_cadenas.php3){id_rubrique}>
-<p>
-#DESCRIPTIF
-             <BOUCLE_nouv_art(ARTICLES){id_rubrique}{age<14}{par date}{inverse}{0,20}>
-          Nouveau:<a href="#URL_ARTICLE">[(#TITRE)]</a> 
-              <INCLURE(_cadenas.php3){id_article}>
-              
-              <br/>
-              </BOUCLE_nouv_art> 
- </p> <hr class="spacer" />      
-   
-  </BOUCLE_appel>  
-</div><!-- fermeture grande_boite -->
 
        
 </div><!-- fermeture colone de gauche -->
@@ -172,8 +192,8 @@ Bienvenue sur #NOM_SITE_SPIP.
 
 
     <div class="boite"><!-- ouverture boite menu --> 
-        <h4 class="icone_menu">navigation</h4>
-      <INCLURE(_menu_rub.php3)>
+        <h4 class="icone_menu">Navigation</h4>
+        <INCLURE(_menu_rub.php3)>
     
     </div><!-- fermeture boite menu -->
 
@@ -199,8 +219,8 @@ Bienvenue sur #NOM_SITE_SPIP.
       <!-- La boite de recherche --> 
     <div class="boite"> <!-- ouverture boite recherche --> 
 
-  <h4 class="icone_recherche">recherche</h4>
- <form action='recherche.php3' method='post' class="form_rech" id="form_rech">
+  <h4 class="icone_recherche">Recherche</h4>
+  <form action='recherche.php3' method='post' class="form_rech" id="form_rech">
               <p><input name="recherche" type='text' id='recherche' size='20' />
               <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" /></p>             
           </form>
