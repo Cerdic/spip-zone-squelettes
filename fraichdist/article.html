@@ -34,7 +34,7 @@
 [<p class="surtitre">#DEBUT_SURLIGNE(#SURTITRE)#FIN_SURLIGNE</p>]
 <h1 class="titre">#DEBUT_SURLIGNE#TITRE#FIN_SURLIGNE</h1>
 [<p class="soustitre">#DEBUT_SURLIGNE(#SOUSTITRE)#FIN_SURLIGNE</p>]
-<small>[(#DATE|nom_jour) ][(#DATE|affdate)]</small>
+<small>[(#DATE|nom_jour) ][(#DATE|affdate)]<B_auteurs>, <:par_auteur:> <BOUCLE_auteurs(AUTEURS) {id_article} {", "}><a href="#URL_AUTEUR">#NOM</a></BOUCLE_auteurs></small>
 </div>
 
 <br class="spacer" />
@@ -44,37 +44,13 @@
 <!-- Signer la petition -->
 [(#FORMULAIRE_SIGNATURE)]
 
-<!-- Auteurs de l'article -->
-<B_auteurs>
-<div class="forums">
-<h2 class="structure"><:auteurs:></h2>
-<ul>
-<BOUCLE_auteurs(AUTEURS) {id_article} {par nom}>
-<li><h3><a href="#URL_AUTEUR">#NOM</a></h3>
-[<p><a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{60})]})]</a></p>]
-[<p>(#BIO)</p>]
-
-<B_articles_auteur>
-<ul title="<:articles_auteur:>">
-<BOUCLE_articles_auteur(ARTICLES) {id_auteur} {par popularite}{inverse} {exclus} {0,5}>
-<li><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"]>#TITRE</a></li>
-</BOUCLE_articles_auteur>
-</ul>
-</B_articles_auteur>
-
-</li>
-</BOUCLE_auteurs>
-</ul>
-</div>
-</B_auteurs>
-
 <!-- Liens des forums -->
 <B_forums_liens>
 <div class="forums" title="<:derniers_commentaires:>">
-<BOUCLE_compte_messages(FORUMS){id_article}{plat}>
-</BOUCLE_compte_messages>[<h2>(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|=={1}|?{<:commentaire:>,<:commentaires:>})]</h2>]</B_compte_messages>
+<BOUCLE_decompte(FORUMS) {id_article} {plat}>
+</BOUCLE_decompte>[<h2>(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|=={1}|?{<:commentaire:>,<:commentaires:>})]</h2>]</B_decompte>
 <ul>
-<BOUCLE_forums_liens(FORUMS){id_article}{par date}{0,5}>
+<BOUCLE_forums_liens(FORUMS) {id_article} {par date} {0,5}>
 <li>[(#DATE|affdate_court) : ]<a href="#forum#ID_FORUM">#TITRE</a></li>
 </BOUCLE_forums_liens>
 </ul>
