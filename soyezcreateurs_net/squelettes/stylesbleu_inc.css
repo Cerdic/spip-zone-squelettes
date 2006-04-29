@@ -211,7 +211,6 @@ body {
 	text-align: left;
 	padding: 5px 0 5px 20px;
 	margin: 0;
-	width: [(#ENV{colgauche}|jp_calcul_addition{-20})]px; /*20px de moins que #menu*/
 	border-top: 1px solid #6BAFCF;
 	border-bottom: 1px solid #056693;
 	filter:alpha(opacity=70);
@@ -224,22 +223,9 @@ body {
 	font-size: 1em;
 	padding: 2px 0 2px 20px;
 	text-decoration: none;
-	width: [(#ENV{colgauche}|jp_calcul_addition{-30})]px;/*10px de moins que le niveau precedent*/
 	filter:alpha(opacity=70);
 	-moz-opacity:0.7;
 	opacity: 0.7;
-}
-
-#menu ul ul ul li a {
-	width: [(#ENV{colgauche}|jp_calcul_addition{-40})]px;/*10px de moins que le niveau precedent*/
-}
-
-#menu ul ul ul ul li a {
-	width: [(#ENV{colgauche}|jp_calcul_addition{-50})]px;/*10px de moins que le niveau precedent*/
-}
-
-#menu ul ul ul ul ul li a {
-	width: [(#ENV{colgauche}|jp_calcul_addition{-60})]px;/*10px de moins que le niveau precedent*/
 }
 
 #menu strong li {
@@ -253,7 +239,6 @@ body {
 	color: #087aaf;
 	background-color: #fff;
 	-moz-border-radius-topleft: 24px;
-	margin-left: 2px;
 	filter:alpha(opacity=100);
 	-moz-opacity:1;
 	opacity: 1;
@@ -310,8 +295,14 @@ body {
 	padding-right: 0px;
 	padding-top: 5px;
 	text-decoration: none;
-	width: 114px; /* il faut une hauteur pour que le rollover se fasse sous ie*/
-	list-style-image: none;
+}
+
+/* hack pour que le menu soit clicable sur toute sa largeur */
+#menu li a, .rightmenu li a {
+	height: 1%
+}
+html>body #menu li a, html>body .rightmenu li a {
+	height: auto
 }
 
 .rightmenu li a:link {
@@ -341,7 +332,6 @@ body {
 	margin-left: 0px;
 	margin-right: 0px;
 	padding-left: 0px;
-	list-style-type: none;
 }
 
 .rightmenu ul {
@@ -351,7 +341,8 @@ body {
 	margin-left: 0px;
 	margin-top: 0.5em;
 	padding-left: 0px;
-	list-style-type: none;
+	list-style: none;
+	list-style-image: none;
 }
 
 .rightmenu ul ul {
@@ -360,6 +351,7 @@ body {
 	margin-left: 0px;
 	margin-top: 0.5em;
 	padding-left: 10px;
+	font-size: 1em;
 }
 
 .rightmenu li strong a {
@@ -367,17 +359,9 @@ body {
 	color: #087AAF;
 	display: block;
 	font-weight: bold;
-	margin-bottom: 3px;
-	margin-left: 0px;
-	margin-right: 5px;
-	margin-top: 3px;
-	padding-bottom: 5px;
-	padding-left: 15px;
-	padding-right: 0px;
-	padding-top: 5px;
+	margin: 3px 5px 3px 0;
+	padding-top: 5px 0 5px 15px;
 	text-decoration: none;
-	text-decoration: none;
-	width: 112px;
 	-moz-border-radius-bottomright: 24px;
 }
 
@@ -439,8 +423,7 @@ body {
 .rightmenu h2 {
 	color: #fff;
 	font-size: 1.4em;
-	padding-left: 0px;
-	padding-right: 0px;
+	padding: .5em 0 0 0;
 	text-align: center;
 }
 
@@ -555,6 +538,7 @@ b {
 
 .cartouche {
 	margin-bottom: 2em;
+	position: relative;
 }
 
 #content h1 {
@@ -572,7 +556,6 @@ b {
 	padding-bottom: 0.5em;
 	padding-right: 50px;
 	border-bottom: 4px solid #c5c5c5;
-	z-index: 99;
 }
 
 #cadreforum h1 {
@@ -794,6 +777,7 @@ ul ul, ol ul, ul ol, ol ol {
 	z-index: 100;
 	float: right;
 	position: relative;
+	display: inline;
 }
 
 #artrecents h2, #signature h2 {
@@ -985,7 +969,7 @@ fieldset {
 
 .forml {
 	position: relative;
-	width: 100%;
+	width: 96%;
 	margin: 0;
 }
 
@@ -1452,7 +1436,6 @@ sub.dateevenement {
 	position:relative;
 	left:4em;
 	top:0.7em;
-	line-height: 0;
 	display: block;
 }
 
@@ -1491,15 +1474,7 @@ sub.dateevenement {
 	border-width: 0px;
 	padding: 0 !important;
 }
-
-#extra ul ul {
-	width: 130px;
-	margin: 0;
-	padding: 0;
-}
-
 #extra ul ul li {
-	width: 130px;
 	margin: 0;
 	padding: 0 0 0 10px;
 }
@@ -1507,7 +1482,6 @@ sub.dateevenement {
 #extra ul ul li a {
 	margin: 1px 0 0 0;
 	padding: 0 0 0 15px;
-	width: 115px;
 }
 
 #citations {
@@ -1576,14 +1550,8 @@ div.spip_poesie div {
 }
 
 #letexte form {
-	width:inherit;
-	margin:0 50px 0 0;
+	margin:0;
 	padding: 0;
-}
-
-#letexte form div {
-	width:100%;
-	margin: .5em 1em;
 }
 
 textarea.spip_cadre {
@@ -1617,6 +1585,8 @@ textarea.spip_cadre {
 #menuhaut {
 	padding-bottom: 1.7em;
 	background-color: #087aaf;
+	font-size: 130%;
+	padding-top: 3px;
 }
 
 #menuhaut ul {
@@ -1644,6 +1614,7 @@ textarea.spip_cadre {
 	border-top: 1px solid #087aaf;
 	border-right: 1px solid #087aaf;
 	border-left: 1px solid #087aaf;
+	margin-right: 2px;
 }
 
 #menuhaut ul li strong a {

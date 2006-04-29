@@ -122,11 +122,11 @@ function config_site() {
 ## -------------------------------------------->
 
 	create_groupe("CategorieAgenda", "Détermine la liste des éléments présentés en liste déroulante dans l\'Agenda du site", "Il est {{impératif}} pour le bon fonctionnement de l\'Agenda de sélectionner au moins un mot clef.\n\nUn événement de l\'Agenda peut avoir un ou {{plusieurs}} mot clefs ratachés.", 'non', 'non', 'oui', 'non', 'oui', 'non', 'oui', 'oui', 'non');
-		create_mot("CategorieAgenda", "Autres", "", "");
-		create_mot("CategorieAgenda", "Carême", "", "");
-		create_mot("CategorieAgenda", "Fête", "", "");
-		create_mot("CategorieAgenda", "Homélie", "", "");
-		create_mot("CategorieAgenda", "Paroisse", "", "Evénement concernant la Grande Paroisse");
+
+	create_groupe("_CouleurRubrique", "Permet de changer la couleur d\'une Rubrique.", "Affecter un mot clef de ce groupe à une rubrique (et ses descendants) pour en changer la tonalité de couleur.\n\nPour chacun des mots clefs, mettre en titre quelque chose d\'intelligible, un éventuel descriptif rapide sur l\'usage à en faire et le code hexadecimal de la couleur dans le texte. \n\nExemple : \n-* Titre: Orange\n-* Texte : f78221", 'oui', 'non', 'non', 'non', 'oui', 'non', 'oui', 'non', 'non');
+		create_mot("_CouleurRubrique", "Bleu", "", "6392A9");
+		create_mot("_CouleurRubrique", "Marron clair", "", "9F7561");
+		create_mot("_CouleurRubrique", "Turkoise pastel", "", "89A699");
 
 	create_groupe("_HTTP-EQUIV", "Paramétrage du site", "Paramétrage des entêtes HTML HTTP-EQUIV.\n\nÀ utiliser en sachant pourquoi.", 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_HTTP-EQUIV", "pics-label", "Mettre ci-dessous le contenu du label ICRA (XHTML) généré depuis [->http://www.icra.org/].\n\nIl s\'agit d\'une démarche volontaire du responsable du site visant à indiquer si le site peut ou non être visité sans dommage par des enfants.", "");
@@ -137,14 +137,16 @@ function config_site() {
 		create_mot("_InformationsLegales", "30. Liens vers ce site", "Mettre ci-dessous les conditions d\'utilisation du contenu", "Le site autorise tout site Internet ou tout autre support à le citer ou à mettre en place un lien hypertexte pointant vers son contenu.\n\nL’autorisation de mise en place d’un lien est valable pour tout support, à l’exception de ceux diffusant des informations à caractère polémique, pornographique, xénophobe ou pouvant, dans une plus large mesure porter atteinte à la sensibilité du plus grand nombre.\n\nLa reprise intégrale du contenu d\'une page est aussi autorisée, sous réserve d\'établir un lien clair vers sa source.");
 		create_mot("_InformationsLegales", "40. Réalisation", "Mettre ci-dessous les informations concernant la réalisation de ce site.", "Ce site a été réalisé par [PYRAT.net|Création de sites web->http://www.pyrat.net/] en utilisant l\'outil [SPIP->http://www.spip.net/].\n\n[PYRAT.net|Création de sites web->http://www.pyrat.net/] a réalisé ce site dans les respect des [normes pour l\'accessibilité->http://www.pyrat.net/Accessibilite-d-un-site-web,193.html] des sites web à tous.");
 
-	create_groupe("_LayoutGala", "Permet de faire appel à l\'une des 40 mises en page disponibles sur [Layout Gala->http://blog.html.it/layoutgala/]", "Mode d\'emploi : \n-* affecter un des mots mots clefs de ce groupe à un objet de SPIP (Articles, Rubriques, Brèves, Sites) permet de lui affecter la mise en page associée\n-* de plus, le mot clef de ce groupe ayant « Par défaut » dans son texte sera utilisé par défaut pour l\'ensemble du site", 'oui', 'non', 'oui', 'oui', 'oui', 'oui', 'oui', 'non', 'non');
-		create_mot("_LayoutGala", "13. Liquid, secondary columns fixed-width", "", "ParDefaut");
-		create_mot("_LayoutGala", "24. Two columns liquid, side fixed", "", "");
+	create_groupe("_LayoutGala", "Permet de faire appel à l\'une des 40 mises en page disponibles sur [Layout Gala->http://blog.html.it/layoutgala/]", "Mode d\'emploi : \n-* affecter un des mots mots clefs de ce groupe à un objet de SPIP (Articles, Rubriques, Brèves, Sites) permet de lui affecter la mise en page associée\n-* de plus, le mot clef de ce groupe ayant « ParDefaut » dans son texte sera utilisé par défaut pour l\'ensemble du site", 'oui', 'non', 'oui', 'oui', 'oui', 'oui', 'oui', 'non', 'non');
+		create_mot("_LayoutGala", "13. Liquid, secondary columns fixed-width", "", "Sommaire");
+		create_mot("_LayoutGala", "24. Two columns liquid, side fixed", "", "ParDefaut");
+		create_mot("_LayoutGala", "34. Two colums fixed", "", "");
+		create_mot("_LayoutGala", "7. Three fixed columns", "", "");
 
 	create_groupe("_META", "Paramètrage du site", "Permet de spécifier des META pour le site.\n\nIl est possible de rajouter des METAs non encore présents, mais, comme d\'habitude en la matière : sachez ce que vous faites !", 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_META", "Description", "Mettre ci-dessous la description du site", "");
 		create_mot("_META", "ICBM", "Mettre la latitude et la longitude du lieu sous la forme : XXX.XXXXX, XXX.XXXXX\n_ Pour trouver vos coordonnées : [Multimap->http://www.multimap.com/]\n_ Et [vous référencer sur GeoURL->http://geourl.org/ping/]", "");
-		create_mot("_META", "Keywords", "Mettre ci-dessous les mots clef du site séparés par des virgules", "SPIP, SQL, php, CSS, web, Internet, ADSL, consultant, formateur, dordogne, excideuil, 24, access, microsoft");
+		create_mot("_META", "Keywords", "Mettre ci-dessous les mots clef du site séparés par des virgules", "");
 		create_mot("_META", "revisit-after", "Fréquence d\'indexation du site", "3 days");
 
 	create_groupe("_Params", "Paramétrages globaux du site", "Ces paramètres règlent des comportements globaux pour tout le site.", 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
@@ -154,7 +156,7 @@ function config_site() {
 		create_mot("_Params", "Aff_Google_Search", "Mettre l\'identifiant Google dans le Texte explicatif ci-dessous pour voir la zone de recherche s\'afficher sur le site (pub-8531732540995542)", "pub-8531732540995542");
 		create_mot("_Params", "Aff_Habillage", "Permet de spécifier l\'emplacement de la zone de choix de l\'habillage du site, soit en haut à droite, soit en bas à gauche.\n\nValeurs possible à mettre ci-dessous : Left ou Right", "Left");
 		create_mot("_Params", "AnonymatGlobal", "Mettre Oui ci-dessous si le site ne doit pas afficher le nom des auteurs", "Oui");
-		create_mot("_Params", "BandeauContact", "Mettre ci-dessous le contenu à afficher dans le bandeau de contact (en bas du site). Laisser vide s\'il ne doit pas être affiché.", "Père Gilbert Adam 9 rue du Lavoir 60350 Trosly-Breuil. Tél : 03 44 85 92 00");
+		create_mot("_Params", "BandeauContact", "Mettre ci-dessous le contenu à afficher dans le bandeau de contact (en bas du site). Laisser vide s\'il ne doit pas être affiché.", "");
 		create_mot("_Params", "CitationsHeader", "Par défaut, les citations sont en haut du menu de droite (ou en dessous de la recherche si site en 2 colonnes).\n\nMettre Oui ci-dessous pour que les citations soient affichées dans le bandeau d\'en-tête du site.", "");
 		create_mot("_Params", "CNIL", "N° de déclaration CNIL, si non déclaration (ce qui est illégal!), laisser le texte explicatif vide.\n\nPour procéder à la déclarion, rendez-vous sur le [site de la CNIL->http://www.cnil.fr/index.php?id=32]", "");
 		create_mot("_Params", "ModeNews", "Mettre Oui ci-dessous si le site ne doit pas afficher un Edito seul, mais plutôt une liste des derniers articles", "Non");

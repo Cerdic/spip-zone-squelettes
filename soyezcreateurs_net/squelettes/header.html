@@ -21,13 +21,10 @@
 		]<BOUCLE_RubLayout(MOTS){id_rubrique}{type=_LayoutGala}>[(#REM) Dans le cas d'une rubrique
 			]<INCLURE{fond=layout}{layoutgala=(#TITRE|substr{0,2})}{colgauche=#_LargeurMenuGauche:TEXTE}>[(#REM) Appel du layout de l'a rubrique si oui
 		]</BOUCLE_RubLayout>[(#REM) Sinon
-		]<BOUCLE_LayoutParDefaut(MOTS){type=_LayoutGala}{texte=ParDefaut}>[(#REM) Récupération du layout par défaut
-			]<INCLURE{fond=layout}{layoutgala=(#TITRE|substr{0,2})}{colgauche=#_LargeurMenuGauche:TEXTE}>[(#REM) Appel du Layout par défaut
-		]</BOUCLE_LayoutParDefaut>[(#REM) Fin de la recherche du layout par défaut
-		]<//B_RubLayout>[(#REM) Fin de la recherche d'une rubrique
+		][(#ENV{template}|=={''}|?{'',' '})<INCLURE{fond=templates}{colgauche=#_LargeurMenuGauche:TEXTE}{template}>][(#ENV{template}|=={''}|?{' ',''})<INCLURE{fond=layoutpardefaut}{colgauche=#_LargeurMenuGauche:TEXTE}>]<//B_RubLayout>[(#REM) Fin de la recherche d'une rubrique
 	]<//B_ArtRubLayout>
 </BOUCLE_LargeurMenuGauche>
-<INCLURE{fond=couleurrubrique}{id_article}>
+<INCLURE{fond=couleurrubrique}{id_article}{id_rubrique}>
 <link rel="stylesheet" href="[(#CHEMIN{images/printer.css}|url_absolue)]" type="text/css" media="print" />
 <meta http-equiv="content-type" content="text/html; charset=#CHARSET" />
 <BOUCLE_http-equiv(MOTS){type=_HTTP-EQUIV}>[<meta[ http-equiv='(#TITRE|attribut_html)'] content='(#TEXTE|attribut_html|jp_replace{&quot;,'"'})' />]
@@ -87,7 +84,7 @@ urchinTracker();
 		$menuactifafter='';
 	}
   echo $menuactifbefore;
-?><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE|supprimer_numero)][<img class="menu_haut_logo" src="(#LOGO_RUBRIQUE||reduire_image{9,9}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />]</a><?php echo $menuactifafter; ?></li>
+?><BOUCLE_articles_plusdun_MenuHaut(ARTICLES) {id_rubrique} {1,1}><a href="[(#URL_RUBRIQUE)]" title="[(#_MenuHaut:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_RUBRIQUE||reduire_image{9,9}|extraire_attribut{src})" alt="[(#_MenuHaut:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_MenuHaut:TITRE|supprimer_numero)]</a></BOUCLE_articles_plusdun_MenuHaut><BOUCLE_articles_unseul_MenuHaut(ARTICLES) {id_rubrique} {0,1}><a href="[(#URL_ARTICLE)]" title="[(#_MenuHaut:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_RUBRIQUE||reduire_image{9,9}|extraire_attribut{src})" alt="[(#_MenuHaut:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_MenuHaut:TITRE|supprimer_numero)]</a></BOUCLE_articles_unseul_MenuHaut><a href="[(#URL_RUBRIQUE)]" title="[(#_MenuHaut:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_RUBRIQUE||reduire_image{9,9}|extraire_attribut{src})" alt="[(#_MenuHaut:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_MenuHaut:TITRE|supprimer_numero)]</a><//B_articles_unseul_MenuHaut>  <//B_articles_plusdun_MenuHaut><?php echo $menuactifafter; ?></li>
 		</BOUCLE_MenuHaut>
 	</ul>
 </div>
