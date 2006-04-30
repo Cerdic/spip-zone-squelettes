@@ -41,27 +41,10 @@
 
 <br class="spacer" />
 
-<div class="encart">
-
 <!-- Signer la petition -->
-[(#FORMULAIRE_SIGNATURE)]
-
-<!-- Liens des forums -->
-<B_forums_liens>
-<div class="forums" title="<:derniers_commentaires:>">
-<BOUCLE_decompte(FORUMS) {id_article} {plat}>
-</BOUCLE_decompte>[<h2>(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|=={1}|?{<:commentaire:>,<:commentaires:>})]</h2>]</B_decompte>
-<ul>
-<BOUCLE_forums_liens(FORUMS) {id_article} {par date} {0,5}>
-<li>[(#DATE|affdate_court) : ]<a href="#forum#ID_FORUM">#TITRE</a></li>
-</BOUCLE_forums_liens>
-</ul>
-</div>
-</B_forums_liens>
-
-</div>
-
-<h2 class="structure"><:article:></h2>
+[<div class="encart">
+(#FORMULAIRE_SIGNATURE)
+</div>]
 
 [<div class="chapo">#DEBUT_SURLIGNE(#CHAPO)#FIN_SURLIGNE</div>]
 [<p class="lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{60})]})]</a>.</p>]
@@ -129,7 +112,8 @@
 
 <!-- Forums -->
 [<h2 class="structure"><:Forum:></h2>
-<p class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a></p>]
+<p class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a></p>]<BOUCLE_decompte(FORUMS) {id_article} {plat}>
+</BOUCLE_decompte>[(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|=={1}|?{<:commentaire:>,<:commentaires:>})]]</B_decompte>
 <INCLURE{fond=inc-forum}{id_article}>
 
 </div>
@@ -146,7 +130,7 @@
 <div class="breves" title="<:meme_rubrique:>">
 <h2><a href="[(#URL_RUBRIQUE|supprimer_numero)]"><:meme_rubrique:></a></h2>
 <ul>
-<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par date}{inverse} {doublons}>
+<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par date}{inverse}>
 <li><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"][ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero)]</a></li>
 </BOUCLE_articles_rubrique>
 </ul>
@@ -159,17 +143,7 @@
 <h2><:mots_clefs:></h2>
 <ul>
 <BOUCLE_mots(MOTS) {id_article} {par titre}>
-<li><a href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"]>[(#TITRE|supprimer_numero)]</a>
-
-<B_articles_mots>
-<ul>
-<BOUCLE_articles_mots(ARTICLES) {id_mot} {par hasard} {doublons} {exclus}>
-<li><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"]>[(#TITRE|supprimer_numero)]</a></li>
-</BOUCLE_articles_mots>
-</ul>
-</B_articles_mots>
-
-</li>
+<li><a href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"]>[(#TITRE|supprimer_numero)]</a></li>
 </BOUCLE_mots>
 </ul>
 </div>
