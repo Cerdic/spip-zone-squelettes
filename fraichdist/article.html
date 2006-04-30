@@ -27,6 +27,40 @@
 	<div id="outer" >
  		<div id="inner">
 
+
+
+<!-- Menu de navigation laterale -->
+<div id="navigation">
+<h1 class="structure"><:navigation:></h1>
+
+<!-- Formulaire de recherche -->
+[(#FORMULAIRE_RECHERCHE)]
+
+<!-- Articles dans la meme rubrique -->
+<B_articles_rubrique>
+<div class="breves" title="<:meme_rubrique:>">
+<h2><a href="[(#URL_RUBRIQUE|supprimer_numero)]"><:meme_rubrique:></a></h2>
+<ul>
+<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par date}{inverse}>
+<li><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"][ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero)]</a></li>
+</BOUCLE_articles_rubrique>
+</ul>
+</div>
+</B_articles_rubrique>
+
+<!-- Menu de navigation mots-cles -->
+<B_mots>
+<div class="divers" title="<:mots_clefs:>">
+<h2><:mots_clefs:></h2>
+<ul>
+<BOUCLE_mots(MOTS) {id_article} {par titre}>
+<li><a href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"]>[(#TITRE|supprimer_numero)]</a></li>
+</BOUCLE_mots>
+</ul>
+</div>
+</B_mots>
+</div>
+
 <!-- Contenu principal : contenu de l'article -->
 
 <div id="contenu">
@@ -49,8 +83,8 @@
 [<div class="chapo">#DEBUT_SURLIGNE(#CHAPO)#FIN_SURLIGNE</div>]
 [<p class="lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{60})]})]</a>.</p>]
 [<div class="texte">#DEBUT_SURLIGNE(#TEXTE)#FIN_SURLIGNE</div>]
-[<div class="ps">#DEBUT_SURLIGNE(#PS)#FIN_SURLIGNE</div>]
-[<div class="notes">#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
+[<div class="ps"><h2>PS</h2>#DEBUT_SURLIGNE(#PS)#FIN_SURLIGNE</div>]
+[<div class="notes"><h2>Notes</h2>#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
 
 <BOUCLE_afficher_document(DOCUMENTS){id_document}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
 <div id="document_actif">
@@ -116,40 +150,6 @@
 </BOUCLE_decompte>[(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|=={1}|?{<:commentaire:>,<:commentaires:>})]]</B_decompte>
 <INCLURE{fond=inc-forum}{id_article}>
 
-</div>
-
-<!-- Menu de navigation laterale -->
-<div id="navigation">
-<h1 class="structure"><:navigation:></h1>
-
-<!-- Formulaire de recherche -->
-[(#FORMULAIRE_RECHERCHE)]
-
-<!-- Articles dans la meme rubrique -->
-<B_articles_rubrique>
-<div class="breves" title="<:meme_rubrique:>">
-<h2><a href="[(#URL_RUBRIQUE|supprimer_numero)]"><:meme_rubrique:></a></h2>
-<ul>
-<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par date}{inverse}>
-<li><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"][ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero)]</a></li>
-</BOUCLE_articles_rubrique>
-</ul>
-</div>
-</B_articles_rubrique>
-
-<!-- Menu de navigation mots-cles -->
-<B_mots>
-<div class="divers" title="<:mots_clefs:>">
-<h2><:mots_clefs:></h2>
-<ul>
-<BOUCLE_mots(MOTS) {id_article} {par titre}>
-<li><a href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"]>[(#TITRE|supprimer_numero)]</a></li>
-</BOUCLE_mots>
-</ul>
-</div>
-</B_mots>
-
-<br class="spacer" />
 </div>
 
 		</div><!-- end inner -->
