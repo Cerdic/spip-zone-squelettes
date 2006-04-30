@@ -23,7 +23,7 @@
 <INCLURE{fond=inc-top}{lang}>
 
 <!-- Fil d'Ariane -->
-<div id="hierarchie"><a href="#URL_SITE_SPIP" title="<:accueil_site:>" ><:accueil_site:></a> > <a href="#URL_PAGE{mots}"><:mots_clefs:></a><BOUCLE_ariane(GROUPES_MOTS){id_groupe}> > [(#TITRE|supprimer_numero|textebrut|couper{60})]</BOUCLE_ariane>[ > (#TITRE|supprimer_numero|textebrut|couper{60})]</div>
+<div id="hierarchie"><a href="#URL_SITE_SPIP" title="<:accueil_site:>" ><:accueil_site:></a> > <:mots_clefs:><BOUCLE_ariane(GROUPES_MOTS){id_groupe}> > [(#TITRE|supprimer_numero|textebrut|couper{60})]</BOUCLE_ariane>[ > (#TITRE|supprimer_numero|textebrut|couper{60})]</div>
 
 	<div id="outer" >
  		<div id="inner">
@@ -96,7 +96,7 @@
 <!-- Articles lies au mot-cle -->
 <B_articles>
 <h2 class="structure"><:articles:></h2><ul>
-<BOUCLE_articles(ARTICLES) {id_mot} {par titre}><li class="extrait">
+<BOUCLE_articles(ARTICLES) {id_mot} {par popularite}><li class="extrait">
 <h3 class="titre"><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"]>[(#TITRE|supprimer_numero)]</a></h3>
 <small>[(#DATE|affdate)]<B_auteurs>, <:par_auteur:> <BOUCLE_auteurs(AUTEURS) {id_article} {", "}>[(#NOM|supprimer_numero)]</BOUCLE_auteurs></small></li>
 </BOUCLE_articles>
@@ -128,7 +128,7 @@
 <!-- Menu de navigation mots-cles : les autres groupes avec un lien sur le premier mot du groupe -->
 <B_groupes_freres>
 <div class="divers">
-<h2 class="titre"><a href="#URL_PAGE{mots}"><:autres_groupes_mots_clefs:></a></h2>
+<h2 class="titre"><:autres_groupes_mots_clefs:></h2>
 <ul>
 <BOUCLE_groupes_freres(GROUPES_MOTS) {par titre} {doublons}>
 <BOUCLE_mot_cousin(MOTS) {id_groupe} {par titre} {0,1}>
@@ -136,7 +136,6 @@
 </BOUCLE_mot_cousin>
 </BOUCLE_groupes_freres>
 </ul>
-<p><strong><a href="#URL_PAGE{mots}"><:icone_voir_tous_mots_cles:></a></strong></p>
 </div>
 </B_groupes_freres>
 
