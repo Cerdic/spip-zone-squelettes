@@ -1,28 +1,57 @@
 [(#REM)
 	Barre de navigation, ouverte sur la hierarchie courante
 ]
-<B_soeurs>
+<B_rubriques>
 <div class="rubriques">
 <h2 class="titre"><:rubriques:></h2>
-<ul>
-<BOUCLE_soeurs(RUBRIQUES){meme_parent}{racine} {par num titre, titre}>
-	<li>
-		<a class="rubrique[(#EXPOSE{_courante})]"
-		href="#URL_RUBRIQUE"
-		>[(#TITRE|supprimer_numero|textebrut|couper{80})]</a>
-	<BOUCLE_deroule(RUBRIQUES){id_secteur}{id_rubrique=#ENV{id_rubrique}}>
-		<BOUCLE_hierarchie(HIERARCHIE){1,n}>
-			<ul><li>
-			<a class="rubrique_courante"
+<BOUCLE_rubriques (RUBRIQUES) {racine} {par num titre, titre}>
+[(#REM)
+	On deroule si la rubrique demandee est dans l'arborescence
+	de la rubrique lue.
+]
+<BOUCLE_deroule(RUBRIQUES) {branche} {id_rubrique=#ENV{id_rubrique}}>
+	[(#REM)
+		On va alors chercher un nouvel element dans la hierarchie.
+	]
+	<BOUCLE_hierarchie(HIERARCHIE) {doublons} {0,1}>
+		<ul>
+		[(#REM)
+			On affiche les rubriques de cet element
+		]
+		<BOUCLE_soeurs(RUBRIQUES) {meme_parent} {par num titre, titre}>
+			<li>
+			<a class="rubrique[(#EXPOSE{_courante})]"
 			href="#URL_RUBRIQUE"
 			>[(#TITRE|supprimer_numero|textebrut|couper{80})]</a>
-		</BOUCLE_hierarchie>
-		<BOUCLE_hierarchie_ferme(HIERARCHIE){1,n}>
-			</li></ul>
-		</BOUCLE_hierarchie_ferme>
-	</BOUCLE_deroule>
-	</li>
-</BOUCLE_soeurs>
-</ul>
+
+			[(#REM)
+				Sans oublier les sous-rubriques de la rubrique demandee
+			]
+			<B_sous_rubriques>
+			<ul>
+			<BOUCLE_sous_rubriques(RUBRIQUES)
+			{id_parent} {id_parent=#ENV{id_rubrique}}
+			{par num titre, titre}
+			>
+				<li><i>
+				<a class="rubrique"
+				href="#URL_RUBRIQUE"
+				>[(#TITRE|supprimer_numero|textebrut|couper{80})]</a>
+				</i></li>
+			</BOUCLE_sous_rubriques>
+			</ul>
+			</B_sous_rubriques>
+
+			[(#REM)
+				Et on relance pour un tour
+			]
+			<BOUCLE_re(BOUCLE_deroule)></BOUCLE_re>
+
+			</li>
+		</BOUCLE_soeurs>
+		</ul>
+	</BOUCLE_hierarchie>
+</BOUCLE_deroule>
+</BOUCLE_rubriques>
 </div>
-</B_soeurs>
+</B_rubriques>
