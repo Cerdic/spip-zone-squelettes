@@ -1,30 +1,3 @@
-[(#REM) Affichage d'un menu "deplie" en spip par rpapa
-  Reference : http://www.spip-contrib.net/Menu-depliant-tout-Spip ]
-
-<BOUCLE_contexte_noisette(RUBRIQUES){id_rubrique}>
-
-[(#REM) La premiere boucle permet de memoriser les rubriques filles , elles sont 
-  stockees dans {doublons filles}]
-<BOUCLE_filles(RUBRIQUES){id_parent}{doublons filles}> </BOUCLE_filles>
-
-[(#REM) La deuxième boucle permet de memoriser dans {doublon parents} les 
-  rubriques parentes de la rubrique en cours (les rubriques soeurs et les rubriques tantes)
-  Cette boucle est construite autour de la boucle hierarchie, elle cherche les 
-  rubriques soeurs de la racine a la rubrique courante, on remarquera le critere  
-  {tout} qui permet d’obtenir aussi la rubrique courante.]
-<BOUCLE_hierarchie_courante(HIERARCHIE){id_rubrique} {tout}>
-        <BOUCLE_parents(RUBRIQUES){meme_parent} {doublons parents} >
-        </BOUCLE_parents>
-</BOUCLE_hierarchie_courante>
-
-</BOUCLE_contexte_noisette>
-
-[(#REM) Toutes les rubriques qui ne doivent pas être affichees sont exclues grace 
-  a la boucle suivante. Elle liste toutes les rubriques du site en excluant  
-  {doublons filles} et {doublons parents}  le résultat est stocke dans {doublons exclus}]
-<BOUCLE_tout(RUBRIQUES){tout}{doublons parents}{doublons filles}{doublons exclus}>
-</BOUCLE_tout>
-
 [(#REM) La boucle principale est une boucle classique d’affichage du plan d’un site, en 
   limitant l’affichage aux seules rubriques utiles, les autres sont exclues par {doublons exclus}]
 <B_rubriques>
@@ -34,9 +7,10 @@
 <BOUCLE_rubriques(RUBRIQUES) {racine} {par titre}>
 <li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a>
 
+<div class="arbo_[(#EXPOSE{'visible','invisible'})]">
 <B_sous_rubriques>
 <ul>
-<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par titre}{doublons exclus}>
+<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} >
 <li><a class="rubrique[(#EXPOSE{'_courante'})]" href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a>
 
 <BOUCLE_sous_sous_rubriques(BOUCLE_sous_rubriques)></BOUCLE_sous_sous_rubriques>
@@ -45,6 +19,7 @@
 </BOUCLE_sous_rubriques>
 </ul>
 </B_sous_rubriques>
+</div>
 
 </li>
 </BOUCLE_rubriques>
