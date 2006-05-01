@@ -16,16 +16,16 @@
 </head>
 
 <body>
-<div id="page"><a href="#contenu" class="invisible"><:voir_en_ligne:></a>
+<div id="page">
 
 <!-- Entete de la page + titre du site -->
 <INCLURE{fond=inc-entete}{lang}{id_article}>
 
 <!-- Fil d'Ariane -->
-<div id="hierarchie"><a href="#URL_SITE_SPIP" title="<:accueil_site:>" ><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> > <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|textebrut|couper{60})]</a></BOUCLE_ariane>[ > (#TITRE|supprimer_numero|textebrut|couper{60})]</div>
+<div id="hierarchie"><a href="#URL_SITE_SPIP"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> > <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|textebrut|couper{60})]</a></BOUCLE_ariane>[ > (#TITRE|supprimer_numero|textebrut|couper{60})]</div>
 
-	<div id="outer" >
- 		<div id="inner">
+
+<div id="inner">
 
 
 
@@ -41,11 +41,11 @@
 
 <!-- Articles dans la meme rubrique -->
 <B_articles_rubrique>
-<div class="breves" title="<:meme_rubrique:>">
+<div class="breves">
 <h2><a href="[(#URL_RUBRIQUE|supprimer_numero)]"><:meme_rubrique:></a></h2>
 <ul>
 <BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par date}{inverse}>
-<li><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|couper{80}|entites_html|attribut_html)"][ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero)]</a></li>
+<li><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
 </BOUCLE_articles_rubrique>
 </ul>
 </div>
@@ -53,11 +53,11 @@
 
 <!-- Menu de navigation mots-cles -->
 <B_mots>
-<div class="divers" title="<:mots_clefs:>">
+<div class="divers">
 <h2><:mots_clefs:></h2>
 <ul>
 <BOUCLE_mots(MOTS) {id_article} {par titre}>
-<li><a href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|couper{80}|entites_html|attribut_html)"]>[(#TITRE|supprimer_numero)]</a></li>
+<li><a href="#URL_MOT">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
 </BOUCLE_mots>
 </ul>
 </div>
@@ -84,7 +84,7 @@
 <BOUCLE_traductions(ARTICLES){traduction}{exclus}>
 	<li><a[ href="(#URL_ARTICLE|url_absolue)"]
 		rel="alternate" hreflang="#LANG"[
-		title="(#TITRE|entites_html)"]><span
+		title="(#TITRE|supprimer_numero|textebrut|couper{80}|attribut_html)"]><span
 		lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">[(#LANG|traduire_nom_langue)]</span></a></li>
 </BOUCLE_traductions>
 </ul>
@@ -181,7 +181,6 @@
 </div>
 
 		</div><!-- end inner -->
-	</div><!-- end outer -->
 
 <!-- Pied de page -->
 <INCLURE{fond=inc-pied}{lang}>
