@@ -73,6 +73,25 @@
 [<p class="surtitre">#DEBUT_SURLIGNE(#SURTITRE)#FIN_SURLIGNE</p>]
 <h1 class="titre">#DEBUT_SURLIGNE[(#TITRE|supprimer_numero)]#FIN_SURLIGNE</h1>
 [<p class="soustitre">#DEBUT_SURLIGNE(#SOUSTITRE)#FIN_SURLIGNE</p>]
+
+[(#REM)
+	Traductions de l'article
+]<B_traductions>
+<div class="traductions">
+<h4><:traductions:></h4>
+<ul>
+	<li>[(#LANG|traduire_nom_langue)]</li>
+<BOUCLE_traductions(ARTICLES){traduction}{exclus}>
+	<li><a[ href="(#URL_ARTICLE|url_absolue)"]
+		rel="alternate" hreflang="#LANG"[
+		title="(#TITRE|entites_html)"]><span
+		lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">[(#LANG|traduire_nom_langue)]</span></a></li>
+</BOUCLE_traductions>
+</ul>
+</div>
+</B_traductions>
+
+
 <small>[(#DATE|nom_jour) ][(#DATE|affdate)]<B_auteurs>, <:par_auteur:> <BOUCLE_auteurs(AUTEURS) {id_article} {", "}><a href="#URL_AUTEUR">[(#NOM|supprimer_numero)]</a></BOUCLE_auteurs></small>
 </div>
 
