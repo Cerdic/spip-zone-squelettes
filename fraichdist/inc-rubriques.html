@@ -1,28 +1,28 @@
-[(#REM) La boucle principale est une boucle classique d’affichage du plan d’un site, en 
-  limitant l’affichage aux seules rubriques utiles, les autres sont exclues par {doublons exclus}]
-<B_rubriques>
+[(#REM)
+	Barre de navigation, ouverte sur la hierarchie courante
+]
+<B_soeurs>
 <div class="rubriques">
 <h2 class="titre"><:rubriques:></h2>
 <ul>
-<BOUCLE_rubriques(RUBRIQUES) {racine} {par titre}>
-<li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a>
-
-<div class="arbo_[(#EXPOSE{'visible','invisible'})]">
-<B_sous_rubriques>
-<ul>
-<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} >
-<li><a class="rubrique[(#EXPOSE{'_courante'})]" href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a>
-
-<BOUCLE_sous_sous_rubriques(BOUCLE_sous_rubriques)></BOUCLE_sous_sous_rubriques>
-
-</li>
-</BOUCLE_sous_rubriques>
+<BOUCLE_soeurs(RUBRIQUES){meme_parent}{racine} {par num titre, titre}>
+	<li>
+		<a class="rubrique[(#EXPOSE{_courante})]"
+		href="#URL_RUBRIQUE"
+		>[(#TITRE|supprimer_numero|textebrut|couper{80})]</a>
+	<BOUCLE_deroule(RUBRIQUES){id_secteur}{id_rubrique=#ENV{id_rubrique}}>
+		<BOUCLE_hierarchie(HIERARCHIE){1,n}>
+			<ul><li>
+			<a class="rubrique_courante"
+			href="#URL_RUBRIQUE"
+			>[(#TITRE|supprimer_numero|textebrut|couper{80})]</a>
+		</BOUCLE_hierarchie>
+		<BOUCLE_hierarchie_ferme(HIERARCHIE){1,n}>
+			</li></ul>
+		</BOUCLE_hierarchie_ferme>
+	</BOUCLE_deroule>
+	</li>
+</BOUCLE_soeurs>
 </ul>
-</B_sous_rubriques>
 </div>
-
-</li>
-</BOUCLE_rubriques>
-</ul>
-</div>
-</B_rubriques>
+</B_soeurs>
