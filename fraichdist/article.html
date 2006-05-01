@@ -123,10 +123,8 @@
 <B_signatures_decompte>
 	[(#REM) S'affiche s'il y a pagination]
 	<h2>#TOTAL_BOUCLE <:signatures_petition:></h2>
-	[(#ENV{debut_signature,0}|=={0}|?{'<strong>',<a href="[(#SELF|parametre_url{debut_signature,''})]">})]0[(#ENV{debut_signature,0}|=={0}|?{'</strong>',</a>})]
-<BOUCLE_signatures_decompte(SIGNATURES){id_article}>[ | 
-(#COMPTEUR_BOUCLE|modulo{30}|?{'',
-	[(#COMPTEUR_BOUCLE|=={#ENV{debut_signature,0}}|?{'<strong>',<a href="[(#SELF|parametre_url{debut_signature,#COMPTEUR_BOUCLE})]">})]#COMPTEUR_BOUCLE[(#COMPTEUR_BOUCLE|=={#ENV{debut_signature,0}}|?{'</strong>',</a>})]
+	[(#ENV{debut_signature,0}|=={0}|?{'<strong>',<a href="[(#SELF|parametre_url{debut_signature,''})]">})] 0 [(#ENV{debut_signature,0}|=={0}|?{'</strong>',</a>})]
+<BOUCLE_signatures_decompte(SIGNATURES){id_article}>[|(#COMPTEUR_BOUCLE|modulo{30}|?{'',[(#COMPTEUR_BOUCLE|=={#ENV{debut_signature,0}}|?{'<strong>',<a href="[(#SELF|parametre_url{debut_signature,#COMPTEUR_BOUCLE})]">})] #COMPTEUR_BOUCLE [(#COMPTEUR_BOUCLE|=={#ENV{debut_signature,0}}|?{'</strong>',</a>})]
 })]</BOUCLE_signatures_decompte>
 	[(#REM) S'affiche s'il n'y a pas de pagination]
 	<h2>#TOTAL_BOUCLE <:signatures_petition:></h2>
