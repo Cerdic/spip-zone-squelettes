@@ -1,3 +1,32 @@
+[(#REM) Affichage d'un menu "deplie" en spip par rpapa
+  Reference : http://www.spip-contrib.net/Menu-depliant-tout-Spip ]
+
+<BOUCLE_contexte_noisette(RUBRIQUES){id_rubrique}>
+
+[(#REM) La première boucle permet de mémoriser les rubriques filles , elles sont 
+  stockées dans {doublons filles}]
+<BOUCLE_filles(RUBRIQUES){id_parent}{doublons filles}> </BOUCLE_filles>
+
+[(#REM) La deuxième boucle permet de mémoriser dans {doublon parents} les 
+  rubriques parentes de la rubrique en cours (les rubriques sœurs et les rubriques tantes)
+  Cette boucle est construite autour de la boucle hiérarchie, elle cherche les 
+  rubriques soeurs de la racine à la rubrique courante, on remarquera le critère  
+  {tout} qui permet d’obtenir aussi la rubrique courante.]
+<BOUCLE_hierarchie_courante(HIERARCHIE){id_rubrique} {tout}>
+        <BOUCLE_parents(RUBRIQUES){meme_parent} {doublons parents} >
+        </BOUCLE_parents>
+</BOUCLE_hierarchie_courante>
+
+</BOUCLE_contexte_noisette>
+
+[(#REM) Toutes les rubriques qui ne doivent pas être affichées sont exclues grâce 
+  à la boucle suivante. Elle liste toutes les rubriques du site en excluant  
+  {doublons filles} et {doublons parents}  le résultat est stocké dans {doublons exclus}]
+<BOUCLE_tout(RUBRIQUES){tout}{doublons parents}{doublons filles}{doublons exclus}>
+</BOUCLE_tout>
+
+[(#REM) La boucle principale est une boucle classique d’affichage du plan d’un site, en 
+  limitant l’affichage aux seules rubriques utiles, les autres sont exclues par {doublons exclus}]
 <B_rubriques>
 <div class="rubriques">
 <h2 class="titre"><:rubriques:></h2>
@@ -7,8 +36,8 @@
 
 <B_sous_rubriques>
 <ul>
-<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par titre}>
-<li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a>
+<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par titre}{doublons exclus}>
+<li><a class="rubrique[(#EXPOSE{'_courante'})]" href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a>
 
 <BOUCLE_sous_sous_rubriques(BOUCLE_sous_rubriques)></BOUCLE_sous_sous_rubriques>
 
