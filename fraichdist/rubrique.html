@@ -20,150 +20,130 @@
 </head>
 
 <body>
-<div id="page"><a href="#contenu" class="invisible"><:voir_en_ligne:></a>
+<div id="page">
 
-<!-- Entete de la page + titre du site -->
-<INCLURE{fond=inc-entete}{lang}{id_rubrique}>
+    <!-- Entete de la page + titre du site -->
+    <INCLURE{fond=inc-entete}{lang}{id_rubrique}>
 
-<!-- Fil d'Ariane -->
-<div id="hierarchie"><a href="#URL_SITE_SPIP" title="<:accueil_site:>" ><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}{exclus}> > <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|textebrut|couper{60})]</a></BOUCLE_ariane>[ > (#TITRE|supprimer_numero|textebrut|couper{60})]</div>
+    <!-- Fil d'Ariane -->
+    <div id="hierarchie"><a href="#URL_SITE_SPIP" title="<:accueil_site:>" ><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}{exclus}> > <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></BOUCLE_ariane>[ > (#TITRE|supprimer_numero|textebrut|couper{80})]</div>
 
-	<div id="outer" >
- 		<div id="inner">
+    <div id="inner">
 
-<!-- Contenu principal : contenu de la rubrique -->
 
-<div id="contenu">
+        <!-- Menu de navigation laterale -->
+        <div id="navigation">
+            <h1 class="invisible"><:navigation:></h1>
 
-<div class="cartouche">
-[(#LOGO_RUBRIQUE||reduire_image{200,200})]
-<h1 class="titre">[(#TITRE|supprimer_numero)]</h1>
-<small><:dernier_ajout:> : [(#DATE|nom_jour) ][(#DATE|affdate).]</small>
-</div>
+            <!-- Formulaire de recherche -->
+            [(#FORMULAIRE_RECHERCHE)]
 
-[<div class="chapo">(#TEXTE)</div>]
+            <!-- Menu de navigation rubriques -->
+            <INCLURE{fond=inc-rubriques}{lang}{id_rubrique}>
 
-<br class="spacer" />
+            <!-- Menu de navigation mots-cles -->
+            <B_mots>
+            <div class="divers" title="<:mots_clefs:>">
+                <h2><:mots_clefs:></h2>
+                <ul>
+                    <BOUCLE_mots(MOTS) {id_rubrique} {par titre}>
+                    <li><a href="#URL_MOT">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
+                    </BOUCLE_mots>
+                </ul>
+            </div>
+            </B_mots>
 
-<div class="encart">
+            <div class="syndication">
+                <h2><:icone_suivi_activite:></h2>
+                <p><:ical_texte_rss:></p>
+                <ul>
+                    <li><a href="#URL_PAGE{backend}" ><img src="ecrire/img_pack/feed.png" alt="" width="16" height="16"/>&nbsp;<:syndiquer_site:></a></li>
+                    <li><a href="#URL_PAGE{backend,id_rubrique=#ID_RUBRIQUE}"><img src="ecrire/img_pack/feed.png" alt="" width="16" height="16"/>&nbsp;[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
+                </ul>
+            </div>
 
-<!-- Breves dans la rubrique -->
-<B_breves_rubrique>
-<div class="breves" title="<:dernieres_breves:>">
-<h2><:breves:></h2>
-<ul>
-<BOUCLE_breves_rubrique(BREVES) {id_secteur} {par date}{inverse} {0,5}>
-<li>[(#DATE|affdate_court) : ]<a href="#URL_BREVE">[(#TITRE|supprimer_numero)]</a></li>
-</BOUCLE_breves_rubrique>
-</ul>
-</div>
-</B_breves_rubrique>
+            <br class="spacer" />
+        </div>
 
-<!-- Sites syndiques -->
-<B_sites>
-<div class="syndic">
-<h2><:sur_web:></h2>
-<ul>
-<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
-<li>
-<a href="[(#ID_SYNDIC|generer_url_site)]">[(#NOM_SITE|supprimer_numero)]</a>
-<B_syndic>
-<ul title="<:nouveautes_web:>">
-<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {par date}{inverse} {0,3}>
-<li><a href="#URL_ARTICLE" class="spip_out">[(#TITRE*|supprimer_numero)]</a></li>
-</BOUCLE_syndic>
-</ul>
-</B_syndic>
-</li>
-</BOUCLE_sites>
-</ul>
-</div>
-</B_sites>
 
-<!-- Proposer un site -->
-[(#FORMULAIRE_SITE)]
+        <!-- Contenu principal : contenu de la rubrique -->
 
-</div>
+        <div id="contenu">
+            <div class="cartouche">
+                [(#LOGO_RUBRIQUE||reduire_image{200,200})]
+                <h1 class="titre">[(#TITRE|supprimer_numero)]</h1>
+                <small><:dernier_ajout:> : [(#DATE|nom_jour) ][(#DATE|affdate).]</small>
+            </div>
 
-<!-- Articles de la rubrique -->
-<B_articles>
-<h2 class="invisible"><:articles_rubrique:></h2><ul class="liste_fixe">
-<BOUCLE_articles(ARTICLES) {id_rubrique} {par date}{inverse}><li class="extrait">
-<h3 class="titre"><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"]>[(#TITRE|supprimer_numero)]</a></h3>
-<small>[(#DATE|affdate)]<B_auteurs>, <:par_auteur:> <BOUCLE_auteurs(AUTEURS) {id_article} {", "}>[(#NOM|supprimer_numero)]</BOUCLE_auteurs></small>
-</li>
-</BOUCLE_articles>
-</ul></B_articles>
+            [<div class="chapo">(#TEXTE)</div>]
 
-<br class="spacer" />
+            <!-- Articles de la rubrique -->
+            <B_articles>
+            <h2 class="invisible"><:articles_rubrique:></h2>
+            <ul class="liste_fixe">
+                <BOUCLE_articles(ARTICLES) {id_rubrique} {par date}{inverse}>
+                <li class="extrait">
+                <h3 class="titre"><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></h3>
+                <small>[(#DATE|affdate)]<B_auteurs>, <:par_auteur:> <BOUCLE_auteurs(AUTEURS) {id_article} {", "}>[(#NOM|supprimer_numero)]</BOUCLE_auteurs></small>
+                </li>
+                </BOUCLE_articles>
+            </ul>
+            </B_articles>
+            <B_documents_joints>
+            <ul class="spip_documents liste_fixe">
+                <BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {mode=document} {doublons}>
+                    <li>[(#LOGO_DOCUMENT|#URL_DOCUMENT||inserer_attribut{alt,[(#TITRE|supprimer_numero|textebrut|couper{80}|attribut_html)]})]
+                    [<div class="spip_doc_titre">(#TITRE)</div>]
+                    [<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]</li>
+                </BOUCLE_documents_joints>
+            </ul>
+            </B_documents_joints>
+            
+            <div class="encart">
 
-<BOUCLE_afficher_document(DOCUMENTS){id_document}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
-<div id="document_actif">
-[<h3>(#TITRE)</h3>]
-[(#EMBED_DOCUMENT)]
-[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
-</div></BOUCLE_afficher_document>
+                <!-- Breves dans la rubrique -->
+                <B_breves_rubrique>
+                <div class="breves">
+                    <h2><:breves:></h2>
+                    <ul>
+                        <BOUCLE_breves_rubrique(BREVES) {id_secteur} {par date}{inverse} {0,5}>
+                        <li>[(#DATE|affdate_court) : ]<a href="#URL_BREVE">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
+                        </BOUCLE_breves_rubrique>
+                    </ul>
+                </div>
+                </B_breves_rubrique>
 
-<B_documents_portfolio>
-<div id="documents_portfolio">
-<BOUCLE_documents_portfolio(DOCUMENTS){id_rubrique}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
-<span>
-[<a href="#URL_RUBRIQUE[(#URL_RUBRIQUE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT">(#LOGO_DOCUMENT{0,60})</a>]
-<small>[<div class="spip_doc_titre">(#TITRE)</div>][<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]</small>
-</span>
-</BOUCLE_documents_portfolio>
-</div>
-</B_documents_portfolio>
+                <!-- Sites syndiques -->
+                <B_sites>
+                <div class="syndic">
+                    <h2><:sur_web:></h2>
+                    <ul>
+                        <BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
+                        <li><a href="[(#ID_SYNDIC|generer_url_site)]">[(#NOM_SITE|supprimer_numero)]</a>
+                            <B_syndic>
+                            <ul>
+                                <BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {par date}{inverse} {0,3}>
+                                <li><a href="#URL_ARTICLE" class="spip_out">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
+                                </BOUCLE_syndic>
+                            </ul>
+                            </B_syndic>
+                        </li>
+                        </BOUCLE_sites>
+                    </ul>
+                </div>
+                </B_sites>
 
-<B_documents_joints>
-<div class="spip_documents"><hr />
-<BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {mode=document} {doublons}>
-[(#LOGO_DOCUMENT|#URL_DOCUMENT)]<small>[<div class="spip_doc_titre">(#TITRE)</div>][<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]</small>
-</BOUCLE_documents_joints>
-</div>
-<br class="spacer" />
-</B_documents_joints>
+                <!-- Proposer un site -->
+                [(#FORMULAIRE_SITE)]
 
-[<div class="notes">(#NOTES)</div>]
+            </div>
+            
+            [<br class="spacer" /><div class="notes">(#NOTES)</div>]
+        </div>
 
-</div>
+            
 
-<!-- Menu de navigation laterale -->
-<div id="navigation">
-<h1 class="invisible"><:navigation:></h1>
-
-<!-- Formulaire de recherche -->
-[(#FORMULAIRE_RECHERCHE)]
-
-<!-- Menu de navigation rubriques -->
-<INCLURE{fond=inc-rubriques}{lang}{id_rubrique}>
-
-<!-- Menu de navigation mots-cles -->
-<B_mots>
-<div class="divers" title="<:mots_clefs:>">
-<h2><:mots_clefs:></h2>
-<ul>
-<BOUCLE_mots(MOTS) {id_rubrique} {par titre}>
-<li><a href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|entites_html|couper{80})"]>[(#TITRE|supprimer_numero)]</a></li>
-</BOUCLE_mots>
-</ul>
-</div>
-</B_mots>
-
-<div class="syndication">
-<h2><:icone_suivi_activite:></h2>
-<p><:ical_texte_rss:></p>
-<ul>
-<li><a href="#URL_PAGE{backend}" title="<:syndiquer_site:>"><img src="ecrire/img_pack/feed.png" alt="RSS" width="16" height="16" border="0" />&nbsp;<:articles:></a></li>
-<li><a href="#URL_PAGE{backend,id_rubrique=#ID_RUBRIQUE}" title="<:syndiquer_rubrique:>"><img src="ecrire/img_pack/feed.png" alt="RSS" width="16" height="16" border="0" />&nbsp;[(#TITRE|supprimer_numero)]</a></li>
-</ul>
-</div>
-
-<br class="spacer" />
-</div>
-
-		</div><!-- end inner -->
-	</div><!-- end outer -->
+    </div><!-- end inner -->
 
 <!-- Pied de page -->
 <INCLURE{fond=inc-pied}{lang}>
