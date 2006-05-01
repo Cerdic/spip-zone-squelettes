@@ -28,42 +28,6 @@
 <div id="inner">
 
 
-
-<!-- Menu de navigation laterale -->
-<div id="navigation">
-<h1 class="invisible"><:navigation:></h1>
-
-<!-- Formulaire de recherche -->
-[(#FORMULAIRE_RECHERCHE)]
-
-<!-- Menu de navigation rubriques -->
-<INCLURE{fond=inc-rubriques}{lang}{id_rubrique}>
-
-<!-- Articles dans la meme rubrique -->
-<B_articles_rubrique>
-<div class="breves">
-<h2><a href="[(#URL_RUBRIQUE|supprimer_numero)]"><:meme_rubrique:></a></h2>
-<ul>
-<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par date}{inverse}>
-<li><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
-</BOUCLE_articles_rubrique>
-</ul>
-</div>
-</B_articles_rubrique>
-
-<!-- Menu de navigation mots-cles -->
-<B_mots>
-<div class="divers">
-<h2><:mots_clefs:></h2>
-<ul>
-<BOUCLE_mots(MOTS) {id_article} {par titre}>
-<li><a href="#URL_MOT">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
-</BOUCLE_mots>
-</ul>
-</div>
-</B_mots>
-</div>
-
 <!-- Contenu principal : contenu de l'article -->
 
 <div id="contenu">
@@ -179,6 +143,42 @@
 </BOUCLE_decompte>[(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|=={1}|?{<:commentaire:>,<:commentaires:>})]]</B_decompte>
 <INCLURE{fond=inc-forum}{id_article}>
 
+</div>
+
+
+
+<!-- Menu de navigation laterale -->
+<div id="navigation">
+<h1 class="invisible"><:navigation:></h1>
+
+
+
+<!-- Menu de navigation rubriques -->
+<INCLURE{fond=inc-rubriques}{lang}{id_rubrique}>
+
+<!-- Articles dans la meme rubrique -->
+<B_articles_rubrique>
+<div class="breves">
+<h2><a href="[(#URL_RUBRIQUE|supprimer_numero)]"><:meme_rubrique:></a></h2>
+<ul>
+<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par date}{inverse}>
+<li><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
+</BOUCLE_articles_rubrique>
+</ul>
+</div>
+</B_articles_rubrique>
+
+<!-- Menu de navigation mots-cles -->
+<B_mots>
+<div class="divers">
+<h2><:mots_clefs:></h2>
+<ul>
+<BOUCLE_mots(MOTS) {id_article} {par titre}>
+<li><a href="#URL_MOT">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
+</BOUCLE_mots>
+</ul>
+</div>
+</B_mots>
 </div>
 
 		</div><!-- end inner -->

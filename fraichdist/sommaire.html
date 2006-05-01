@@ -26,34 +26,6 @@
 
     <div id="inner">
 
-
-        <!-- Menu de navigation laterale -->
-        <div id="navigation">
-<h1 class="invisible"><:navigation:></h1>
-
-            <!-- Formulaire de recherche -->
-[(#FORMULAIRE_RECHERCHE)]
-
-<!-- Menu de navigation rubriques -->
-<INCLURE{fond=inc-rubriques}{lang}>
-
-            <!-- Inscription au site -->
-            [<h2 class="invisible"><:pass_vousinscrire:></h2>(#FORMULAIRE_INSCRIPTION)]
-            <div class="syndication">
-                <h2><:icone_suivi_activite:></h2>
-                <p><:ical_texte_rss:></p>
-                <ul>
-                    <li><a href="#URL_PAGE{backend}" ><img src="ecrire/img_pack/feed.png" alt="" width="16" height="16" />&nbsp;<:syndiquer_site:></a></li>
-                    <li><a href="#URL_PAGE{backend-breves}"><img src="ecrire/img_pack/feed.png" alt="" width="16" height="16" />&nbsp;<:syndiquer_breves:></a></li>
-                </ul>
-            </div>
-
-<!-- Logo SPIP -->
-<a href="http://www.spip.net" title="<:site_realise_avec_spip:>"><img src="IMG/logo_spip.jpg" alt="<:site_realise_avec_spip:>" width="105" height="92" class="spip_logos" /></a>
-
-        </div>
-        <!-- fin menu de navigation laterale -->
-
         <!-- Contenu principal : derniers articles publies -->
 
         <div id="contenu">
@@ -100,7 +72,7 @@
                 <div class="breves" title="<:dernieres_breves:>">
                     <h2><:dernieres_breves:></h2>
                     <ul>
-                        <BOUCLE_breves(BREVES) {par date}{inverse} {0,8}>
+                        <BOUCLE_breves(BREVES) {par date}{inverse} {0,5}>
                         <li>[(#DATE|affdate_court) : ]<a href="#URL_BREVE">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
                         </BOUCLE_breves>
                     </ul>
@@ -113,7 +85,7 @@
                     <h2><:derniers_commentaires:></h2>
                     <p><:messages_recents:></p>
                     <ul>
-                        <BOUCLE_forums_liens(FORUMS) {plat} {par date}{inverse} {0,15}>
+                        <BOUCLE_forums_liens(FORUMS) {plat} {par date}{inverse} {0,5}>
                         <li>[(#DATE|affdate_court) : ][<a href="#URL_FORUM">(#TITRE|textebrut|couper{80})</a>]</li>
                         </BOUCLE_forums_liens>
                     </ul>
@@ -125,7 +97,7 @@
                 <div class="syndic" title="<:nouveautes_web:>">
                     <h2><:nouveautes_web:></h2>
                     <ul>
-                    <BOUCLE_syndic(SYNDIC_ARTICLES) {par date}{inverse} {0,8}>
+                    <BOUCLE_syndic(SYNDIC_ARTICLES) {par date}{inverse} {0,5}>
                         <li>[(#DATE|affdate_court) : ]<a href="#URL_ARTICLE" class="spip_out">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
                     </BOUCLE_syndic>
                     </ul>
@@ -134,6 +106,31 @@
             </div>
 
         </div><!-- end contenu -->
+        
+        <!-- Menu de navigation laterale -->
+        <div id="navigation">
+            <h1 class="invisible"><:navigation:></h1>
+
+
+            <!-- Menu de navigation rubriques -->
+            <INCLURE{fond=inc-rubriques}{lang}>
+
+            <!-- Inscription au site -->
+            [<h2 class="invisible"><:pass_vousinscrire:></h2>(#FORMULAIRE_INSCRIPTION)]
+            <div class="syndication">
+                <h2><:icone_suivi_activite:></h2>
+                <p><:ical_texte_rss:></p>
+                <ul>
+                    <li><a href="#URL_PAGE{backend}" ><img src="ecrire/img_pack/feed.png" alt="" width="16" height="16" />&nbsp;<:syndiquer_site:></a></li>
+                    <li><a href="#URL_PAGE{backend-breves}"><img src="ecrire/img_pack/feed.png" alt="" width="16" height="16" />&nbsp;<:syndiquer_breves:></a></li>
+                </ul>
+            </div>
+
+            <!-- Logo SPIP -->
+            <a href="http://www.spip.net" title="<:site_realise_avec_spip:>"><img src="IMG/logo_spip.jpg" alt="<:site_realise_avec_spip:>" width="105" height="92" class="spip_logos" /></a>
+
+        </div>
+        <!-- fin menu de navigation laterale -->        
 
     </div><!-- end inner -->
 

@@ -30,41 +30,6 @@
 
     <div id="inner">
 
-
-        <!-- Menu de navigation laterale -->
-        <div id="navigation">
-            <h1 class="invisible"><:navigation:></h1>
-
-            <!-- Formulaire de recherche -->
-            [(#FORMULAIRE_RECHERCHE)]
-
-            <!-- Menu de navigation rubriques -->
-            <INCLURE{fond=inc-rubriques}{lang}{id_rubrique}>
-
-            <!-- Menu de navigation mots-cles -->
-            <B_mots>
-            <div class="divers" title="<:mots_clefs:>">
-                <h2><:mots_clefs:></h2>
-                <ul>
-                    <BOUCLE_mots(MOTS) {id_rubrique} {par titre}>
-                    <li><a href="#URL_MOT">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
-                    </BOUCLE_mots>
-                </ul>
-            </div>
-            </B_mots>
-
-            <div class="syndication">
-                <h2><:icone_suivi_activite:></h2>
-                <p><:ical_texte_rss:></p>
-                <ul>
-                    <li><a href="#URL_PAGE{backend}" ><img src="ecrire/img_pack/feed.png" alt="" width="16" height="16"/>&nbsp;<:syndiquer_site:></a></li>
-                    <li><a href="#URL_PAGE{backend,id_rubrique=#ID_RUBRIQUE}"><img src="ecrire/img_pack/feed.png" alt="" width="16" height="16"/>&nbsp;[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
-                </ul>
-            </div>
-
-        </div>
-
-
         <!-- Contenu principal : contenu de la rubrique -->
 
         <div id="contenu">
@@ -123,7 +88,7 @@
                         <li><a href="[(#ID_SYNDIC|generer_url_site)]">[(#NOM_SITE|supprimer_numero)]</a>
                             <B_syndic>
                             <ul>
-                                <BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {par date}{inverse} {0,3}>
+                                <BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {par date}{inverse} {0,5}>
                                 <li><a href="#URL_ARTICLE" class="spip_out">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
                                 </BOUCLE_syndic>
                             </ul>
@@ -142,7 +107,35 @@
             [<div class="notes">(#NOTES)</div>]
         </div>
 
-            
+        <!-- Menu de navigation laterale -->
+        <div id="navigation">
+            <h1 class="invisible"><:navigation:></h1>
+
+            <!-- Menu de navigation rubriques -->
+            <INCLURE{fond=inc-rubriques}{lang}{id_rubrique}>
+
+            <!-- Menu de navigation mots-cles -->
+            <B_mots>
+            <div class="divers" title="<:mots_clefs:>">
+                <h2><:mots_clefs:></h2>
+                <ul>
+                    <BOUCLE_mots(MOTS) {id_rubrique} {par titre}>
+                    <li><a href="#URL_MOT">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
+                    </BOUCLE_mots>
+                </ul>
+            </div>
+            </B_mots>
+
+            <div class="syndication">
+                <h2><:icone_suivi_activite:></h2>
+                <p><:ical_texte_rss:></p>
+                <ul>
+                    <li><a href="#URL_PAGE{backend}" ><img src="ecrire/img_pack/feed.png" alt="" width="16" height="16"/>&nbsp;<:syndiquer_site:></a></li>
+                    <li><a href="#URL_PAGE{backend,id_rubrique=#ID_RUBRIQUE}"><img src="ecrire/img_pack/feed.png" alt="" width="16" height="16"/>&nbsp;[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
+                </ul>
+            </div>
+
+        </div>            
 
     </div><!-- end inner -->
 
