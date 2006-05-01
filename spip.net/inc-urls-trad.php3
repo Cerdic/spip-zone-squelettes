@@ -97,6 +97,14 @@ function generer_url_document($id_document) {
 	return $url;
 }
 
+function generer_url_site($id_syndic) {
+	if ($id = intval($id_syndic)) {
+		$r = spip_query("SELECT url_site FROM spip_syndic WHERE id_syndic=$id");
+		$t = spip_fetch_array($r);
+		return $t['url_site'];
+	}
+}
+
 function recuperer_parametres_url($fond, $url) {
 	global $contexte, $sitelang;
 
