@@ -18,167 +18,169 @@
 <body>
 <div id="page">
 
-<!-- Entete de la page + titre du site -->
-<INCLURE{fond=inc-entete}{lang}{id_article}>
+    <!-- Entete de la page + titre du site -->
+    <INCLURE{fond=inc-entete}{lang}{id_article}>
 
-<!-- Fil d'Ariane -->
-<div id="hierarchie"><a href="#URL_SITE_SPIP"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> > <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|textebrut|couper{60})]</a></BOUCLE_ariane>[ > (#TITRE|supprimer_numero|textebrut|couper{60})]</div>
-
-
-<div id="conteneur">
+    <!-- Fil d'Ariane -->
+    <div id="hierarchie"><a href="#URL_SITE_SPIP"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> > <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|textebrut|couper{60})]</a></BOUCLE_ariane>[ > (#TITRE|supprimer_numero|textebrut|couper{60})]</div>
 
 
-<!-- Contenu principal : contenu de l'article -->
-
-<div id="contenu">
-
-<div class="cartouche">
-[(#LOGO_ARTICLE||reduire_image{200,200})]
-[<p class="surtitre">#DEBUT_SURLIGNE(#SURTITRE)#FIN_SURLIGNE</p>]
-<h1 class="titre">#DEBUT_SURLIGNE[(#TITRE|supprimer_numero)]#FIN_SURLIGNE</h1>
-[<p class="soustitre">#DEBUT_SURLIGNE(#SOUSTITRE)#FIN_SURLIGNE</p>]
-
-<p><small>[(#DATE|nom_jour) ][(#DATE|affdate)]<B_auteurs>, <:par_auteur:> <BOUCLE_auteurs(AUTEURS) {id_article} {", "}><a href="#URL_AUTEUR">[(#NOM|supprimer_numero)]</a></BOUCLE_auteurs></small></p>
-
-[(#REM) Traductions de l'article ]
-<B_traductions>
-<div class="traductions">
-<h2><:traductions:></h2>
-<ul>
-	<li>[(#LANG|traduire_nom_langue)]</li>
-<BOUCLE_traductions(ARTICLES){traduction}{exclus}>
-	<li><a[ href="(#URL_ARTICLE|url_absolue)"] rel="alternate" hreflang="#LANG"[ title="(#TITRE|supprimer_numero|textebrut|couper{80}|entites_html|attribut_html)"]><span lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">[(#LANG|traduire_nom_langue)]</span></a></li>
-</BOUCLE_traductions>
-</ul>
-</div>
-</B_traductions>
-
-</div>
-
-<br class="nettoyeur" />
-
-<!-- Signer la petition -->
-[<div class="encart">
-(#FORMULAIRE_SIGNATURE)
-</div>]
-
-<h2 class="invisible">[(#TITRE|supprimer_numero)]</h2>
-[<div class="chapo">#DEBUT_SURLIGNE(#CHAPO)#FIN_SURLIGNE</div>]
-[<p class="lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{60})]})]</a>.</p>]
-[<div class="texte">#DEBUT_SURLIGNE(#TEXTE)#FIN_SURLIGNE</div>]
-[<div class="ps"><h2><:info_ps:></h2>#DEBUT_SURLIGNE(#PS)#FIN_SURLIGNE</div>]
-[<div class="notes"><h2><:info_notes:></h2>#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
-
-<BOUCLE_afficher_document(DOCUMENTS) {id_document} {mode=document}{extension==(png|jpg|gif)$} {doublons}>
-<div id="document_actif">
-[<h3 class="spip">(#TITRE)</h3>]
-[(#EMBED_DOCUMENT)]
-[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
-</div></BOUCLE_afficher_document>
-
-<B_documents_portfolio>
-<div id="documents_portfolio">
-<h3 class="invisible"><:info_portfolio:></h3>
-<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document}{extension==(png|jpg|gif)$} {doublons}>
-[<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT#document_actif"[ title="(#TITRE|supprimer_numero|textebrut|couper{80}|entites_html|attribut_html)"]>(#LOGO_DOCUMENT{0,60})</a>]
-</BOUCLE_documents_portfolio>
-</div>
-</B_documents_portfolio>
-
-<B_documents_joints><div class="contenurub">
-<h2 class="invisible"><:titre_documents_joints:></h2>
-<ul>
-<BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {doublons}>
-<li class="extrait">[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
-[<div class="spip_doc_titre">(#TITRE)</div>]
-[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]</li>
-</BOUCLE_documents_joints>
-</ul></div>
-</B_documents_joints>
-
-<!-- Signatures de la petition -->
-<B_signatures>
-<div id="signatures">
-
-<B_signatures_decompte>
-	[(#REM) S'affiche s'il y a pagination]
-	<h2>#TOTAL_BOUCLE <:signatures_petition:></h2>
-	[(#ENV{debut_signatures,0}|=={0}|?{'<strong>',<a href="[(#SELF|parametre_url{debut_signatures,''})]#signatures"[ title="(#DATE|affdate)"]>})] 0 [(#ENV{debut_signatures,0}|=={0}|?{'</strong>',</a>})]<BOUCLE_signatures_decompte(SIGNATURES){id_article}
-{par date} {inverse}>[|(#COMPTEUR_BOUCLE|modulo{30}|?{'',[(#COMPTEUR_BOUCLE|=={#ENV{debut_signatures,0}}|?{'<strong>',<a href="[(#SELF|parametre_url{debut_signatures,#COMPTEUR_BOUCLE})]#signatures"[ title="(#DATE|affdate)"]>})] #COMPTEUR_BOUCLE [(#COMPTEUR_BOUCLE|=={#ENV{debut_signatures,0}}|?{'</strong>',</a>})]})]</BOUCLE_signatures_decompte>
-	[(#REM) S'affiche s'il n'y a pas de pagination]
-	<h2>#TOTAL_BOUCLE <:signatures_petition:></h2>
-<//B_signatures_decompte>
+    <div id="conteneur">
 
 
-<table summary="<:signatures_petition:>">
-<thead>
-<tr>
-<th><:date:></th>
-<th><:nom:></th>
-<th><:message:></th>
-</tr>
-</thead>
-<tbody>
-<BOUCLE_signatures(SIGNATURES) {id_article} {par date}{inverse} {debut_signatures,30}>
-<tr>
-<td class="signature-date">[(#DATE|affdate)]</td>
-<td class="signature-nom">#NOM[<br /><a href="(#URL_SITE)" class="spip_out"><small>[(#NOM_SITE|sinon{[(#URL_SITE|couper{40})]})</small>]</a>]</td>
-[<td class="signature-message">(#MESSAGE|PtoBR)</td>]
-</tr>
-</BOUCLE_signatures>
-</tbody>
-</table>
+        <!-- Contenu principal : contenu de l'article -->
 
-</div>
-</B_signatures>
+        <div id="contenu">
+
+            <div class="cartouche">
+                [(#LOGO_ARTICLE||reduire_image{200,200})]
+                [<p class="surtitre">#DEBUT_SURLIGNE(#SURTITRE)#FIN_SURLIGNE</p>]
+                <h1 class="titre">#DEBUT_SURLIGNE[(#TITRE|supprimer_numero)]#FIN_SURLIGNE</h1>
+                [<p class="soustitre">#DEBUT_SURLIGNE(#SOUSTITRE)#FIN_SURLIGNE</p>]
+
+                <p><small>[(#DATE|nom_jour) ][(#DATE|affdate)]<B_auteurs>, <:par_auteur:> <BOUCLE_auteurs(AUTEURS) {id_article} {", "}><a href="#URL_AUTEUR">[(#NOM|supprimer_numero)]</a></BOUCLE_auteurs></small></p>
+
+                [(#REM) Traductions de l'article ]
+                <B_traductions>
+                    <div class="traductions">
+                        <h2><:traductions:></h2>
+                        <ul>
+	                        <li>[(#LANG|traduire_nom_langue)]</li>
+                            <BOUCLE_traductions(ARTICLES){traduction}{exclus}>
+	                        <li><a[ href="(#URL_ARTICLE|url_absolue)"] rel="alternate" hreflang="#LANG"[ title="(#TITRE|supprimer_numero|textebrut|couper{80}|entites_html|attribut_html)"]><span lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">[(#LANG|traduire_nom_langue)]</span></a></li>
+                            </BOUCLE_traductions>
+                        </ul>
+                    </div>
+                </B_traductions>
+            </div>
+
+            <br class="nettoyeur" />
+
+            <h2 class="invisible">[(#TITRE|supprimer_numero)]</h2>
+            [<div class="chapo">#DEBUT_SURLIGNE(#CHAPO)#FIN_SURLIGNE</div>]
+            [<p class="lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{60})]})]</a>.</p>]
+            [<div class="texte">#DEBUT_SURLIGNE(#TEXTE)#FIN_SURLIGNE</div>]
+            [<div class="ps"><h2><:info_ps:></h2>#DEBUT_SURLIGNE(#PS)#FIN_SURLIGNE</div>]
+            [<div class="notes"><h2><:info_notes:></h2>#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
+            <div class="contenurub">
+                <BOUCLE_afficher_document(DOCUMENTS) {id_document} {mode=document}{extension==(png|jpg|gif)$} {doublons}>
+                <div id="document_actif">
+                    [<h3 class="spip">(#TITRE)</h3>]
+                    [(#EMBED_DOCUMENT)]
+                    [<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
+                </div>
+                </BOUCLE_afficher_document>
+                <B_documents_portfolio>
+                <div id="documents_portfolio">
+                    <h3 class="invisible"><:info_portfolio:></h3>
+                    <BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document}{extension==(png|jpg|gif)$} {doublons}>
+                    [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT#document_actif"[ title="(#TITRE|supprimer_numero|textebrut|couper{80}|entites_html|attribut_html)"]>(#LOGO_DOCUMENT{0,60})</a>]
+                    </BOUCLE_documents_portfolio>
+                </div>
+                </B_documents_portfolio>
+                
+                <B_documents_joints>
+                <div>
+                    <h2 class="invisible"><:titre_documents_joints:></h2>
+                    <ul>
+                        <BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {doublons}>
+                        <li class="extrait">[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
+                        [<div class="spip_doc_titre">(#TITRE)</div>]
+                        [<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]</li>
+                        </BOUCLE_documents_joints>
+                    </ul>
+                </div>
+                </B_documents_joints>
+                
+                <!-- Signatures de la petition -->
+                <B_signatures>
+                <div id="signatures">
+                    <B_signatures_decompte>
+                    [(#REM) S'affiche s'il y a pagination]
+                    <h2>#TOTAL_BOUCLE <:signatures_petition:></h2>
+                    [(#ENV{debut_signatures,0}|=={0}|?{'<strong>',<a href="[(#SELF|parametre_url{debut_signatures,''})]#signatures"[ title="(#DATE|affdate)"]>})] 0 [(#ENV{debut_signatures,0}|=={0}|?{'</strong>',</a>})]
+                    <BOUCLE_signatures_decompte(SIGNATURES){id_article}{par date} {inverse}>
+                    [|(#COMPTEUR_BOUCLE|modulo{30}|?{'',[(#COMPTEUR_BOUCLE|=={#ENV{debut_signatures,0}}|?{'<strong>',<a href="[(#SELF|parametre_url{debut_signatures,#COMPTEUR_BOUCLE})]#signatures"[ title="(#DATE|affdate)"]>})] #COMPTEUR_BOUCLE [(#COMPTEUR_BOUCLE|=={#ENV{debut_signatures,0}}|?{'</strong>',</a>})]})]
+                    </BOUCLE_signatures_decompte>
+                    [(#REM) S'affiche s'il n'y a pas de pagination]
+                    <h2>#TOTAL_BOUCLE <:signatures_petition:></h2>
+                    <//B_signatures_decompte>
 
 
-<!-- Forums -->
-[<h2 class="invisible"><:Forum:></h2>
-<p class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a></p>]
-<BOUCLE_decompte(FORUMS) {id_article} {plat}>
-</BOUCLE_decompte>[(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|=={1}|?{<:commentaire:>,<:commentaires:>})]]</B_decompte>
-<INCLURE{fond=inc-forum}{id_article}>
+                    <table summary="<:signatures_petition:>">
+                        <thead>
+                            <tr>
+                                <th><:date:></th>
+                                <th><:nom:></th>
+                                <th><:message:></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <BOUCLE_signatures(SIGNATURES) {id_article} {par date}{inverse} {debut_signatures,30}>
+                            <tr>
+                                <td class="signature-date">[(#DATE|affdate)]</td>
+                                <td class="signature-nom">#NOM[<br /><a href="(#URL_SITE)" class="spip_out"><small>[(#NOM_SITE|sinon{[(#URL_SITE|couper{40})]})</small>]</a>]</td>
+                                [<td class="signature-message">(#MESSAGE|PtoBR)</td>]
+                            </tr>
+                            </BOUCLE_signatures>
+                        </tbody>
+                    </table>
 
-</div><!-- end contenu -->
+                </div>
+                </B_signatures>
+
+                <!-- Forums -->
+                [<h2 class="invisible"><:Forum:></h2>
+                <p class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a></p>]
+                <BOUCLE_decompte(FORUMS) {id_article} {plat}>
+                </BOUCLE_decompte>[(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|=={1}|?{<:commentaire:>,<:commentaires:>})]]</B_decompte>
+                <INCLURE{fond=inc-forum}{id_article}>
+            </div>
+            
+            <!-- Signer la petition -->
+            [<div class="encart">
+            (#FORMULAIRE_SIGNATURE)
+            </div>]
+            
+        </div><!-- end contenu -->
 
 
-<!-- Menu de navigation laterale -->
-<div id="navigation">
-<h1 class="invisible"><:navigation:></h1>
+        <!-- Menu de navigation laterale -->
+        <div id="navigation">
+            <h1 class="invisible"><:navigation:></h1>
 
-<!-- Menu de navigation rubriques -->
-<INCLURE{fond=inc-rubriques}{lang}{id_rubrique}>
+            <!-- Menu de navigation rubriques -->
+            <INCLURE{fond=inc-rubriques}{lang}{id_rubrique}>
 
-<!-- Articles dans la meme rubrique -->
-<B_articles_rubrique>
-<div class="breves">
-<h2><a href="[(#URL_RUBRIQUE|supprimer_numero)]"><:meme_rubrique:></a></h2>
-<ul>
-<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par date}{inverse}>
-<li><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
-</BOUCLE_articles_rubrique>
-</ul>
-</div>
-</B_articles_rubrique>
+            <!-- Articles dans la meme rubrique -->
+            <B_articles_rubrique>
+            <div class="breves">
+                <h2><a href="[(#URL_RUBRIQUE|supprimer_numero)]"><:meme_rubrique:></a></h2>
+                <ul>
+                    <BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par date}{inverse}>
+                    <li><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
+                    </BOUCLE_articles_rubrique>
+                </ul>
+            </div>
+            </B_articles_rubrique>
 
-<!-- Menu de navigation mots-cles -->
-<B_mots>
-<div class="divers">
-<h2><:mots_clefs:></h2>
-<ul>
-<BOUCLE_mots(MOTS) {id_article} {par titre}>
-<li><a href="#URL_MOT">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
-</BOUCLE_mots>
-</ul>
-</div>
-</B_mots>
-</div><!-- end navigation -->        
+            <!-- Menu de navigation mots-cles -->
+            <B_mots>
+            <div class="divers">
+            <h2><:mots_clefs:></h2>
+            <ul>
+                <BOUCLE_mots(MOTS) {id_article} {par titre}>
+                <li><a href="#URL_MOT">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
+                </BOUCLE_mots>
+            </ul>
+            </div>
+            </B_mots>
+        </div><!-- end navigation -->        
 
-</div><!-- end conteneur -->
+    </div><!-- end conteneur -->
 
-<!-- Pied de page -->
-<INCLURE{fond=inc-pied}{lang}>
+    <!-- Pied de page -->
+    <INCLURE{fond=inc-pied}{lang}>
 
 </div><!-- end page -->
 </body>
