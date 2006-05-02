@@ -26,7 +26,7 @@
 <!-- Fil d'Ariane -->
 <div id="hierarchie"><a href="#URL_SITE_SPIP" title="<:accueil_site:>" ><:accueil_site:></a> > <:info_rechercher:>[ > (#RECHERCHE)]</div>
 
-	<div id="outer" >
+	
  		<div id="inner">
 
 <!-- Contenu principal : Resultats de la recherche -->
@@ -37,6 +37,15 @@
 <h1 class="surtitre"><:resultats_recherche:></h1>
 <p class="titre">&#171;&nbsp;(#RECHERCHE)&nbsp;&#187;</p>
 </div>]
+
+<!-- Articles trouves -->
+<B_articles><div class="contenurub"><ul>
+<BOUCLE_articles(ARTICLES) {recherche} {par points}{inverse} {0,10}><li class="extrait">
+<h2><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|couper{80}|entites_html|attribut_html)"]>[(#TITRE|supprimer_numero)]</a></h2>
+<small>[(#DATE|affdate)]<B_auteurs>, <:par_auteur:> <BOUCLE_auteurs(AUTEURS) {id_article} {", "}>[(#NOM|supprimer_numero)]</BOUCLE_auteurs></small>
+</li>
+</BOUCLE_articles>
+</ul></div></B_articles>
 
 <div class="encart">
 
@@ -100,16 +109,7 @@
 
 </div>
 
-<!-- Articles trouves -->
-<B_articles><ul>
-<BOUCLE_articles(ARTICLES) {recherche} {par points}{inverse} {0,10}><li class="extrait">
-<h2><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|couper{80}|entites_html|attribut_html)"]>[(#TITRE|supprimer_numero)]</a></h2>
-<small>[(#DATE|affdate)]<B_auteurs>, <:par_auteur:> <BOUCLE_auteurs(AUTEURS) {id_article} {", "}>[(#NOM|supprimer_numero)]</BOUCLE_auteurs></small>
-</li>
-</BOUCLE_articles>
-</ul></B_articles>
-
-</div>
+</div><!-- end contenu -->
 
 <!-- Menu de navigation laterale -->
 <div id="navigation">
@@ -118,14 +118,14 @@
 <!-- Menu de navigation rubriques -->
 <INCLURE{fond=inc-rubriques}{lang}>
 
-</div>
+</div><!-- end navigation -->        
 
-		</div><!-- end inner -->
-	</div><!-- end outer -->
+</div><!-- end inner -->
+	
 
 <!-- Pied de page -->
 <INCLURE{fond=inc-pied}{lang}>
 
-</div>
+</div><!-- end page -->
 </body>
 </html>
