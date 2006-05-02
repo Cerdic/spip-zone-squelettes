@@ -27,10 +27,13 @@
 	if (isset($_GET['var_skel'])) {
 		if ($_GET['var_skel'] == 'fraich')
 			setcookie('skel', $_COOKIE['skel'] = 'fraich', NULL, '/');
+		elseif ($_GET['var_skel'] == 'hBones')
+			setcookie('skel', $_COOKIE['skel'] = 'hBones', NULL, '/');
 		else
 			setcookie('skel', $_COOKIE['skel'] = '', time()-3600*24, '/');
 	}
 	if ($_COOKIE['skel'] == 'fraich')
-		$dossier_squelettes = '/var/shim/spipnet/:fraichdist/';
-
+		$dossier_squelettes = '/var/shim/spipnet:fraichdist';
+	elseif ($_COOKIE['skel'] == 'hBones')
+		$dossier_squelettes = '/var/shim/spipnet:hBones';
 ?>
