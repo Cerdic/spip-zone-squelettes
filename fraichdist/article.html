@@ -92,55 +92,58 @@
                 </div>
                 </B_documents_joints>
                 
-                <!-- Signatures de la petition -->
-                <B_signatures>
-                <div id="signatures">
-                    <B_signatures_decompte>
-                    [(#REM) S'affiche s'il y a pagination]
-                    <h2>#TOTAL_BOUCLE <:signatures_petition:></h2>
-                    [(#ENV{debut_signatures,0}|=={0}|?{'<strong>',<a href="[(#SELF|parametre_url{debut_signatures,''})]#signatures"[ title="(#DATE|affdate)"]>})] 0 [(#ENV{debut_signatures,0}|=={0}|?{'</strong>',</a>})]
-                    <BOUCLE_signatures_decompte(SIGNATURES){id_article}{par date} {inverse}>
-                    [|(#COMPTEUR_BOUCLE|modulo{30}|?{'',[(#COMPTEUR_BOUCLE|=={#ENV{debut_signatures,0}}|?{'<strong>',<a href="[(#SELF|parametre_url{debut_signatures,#COMPTEUR_BOUCLE})]#signatures"[ title="(#DATE|affdate)"]>})] #COMPTEUR_BOUCLE [(#COMPTEUR_BOUCLE|=={#ENV{debut_signatures,0}}|?{'</strong>',</a>})]})]
-                    </BOUCLE_signatures_decompte>
-                    [(#REM) S'affiche s'il n'y a pas de pagination]
-                    <h2>#TOTAL_BOUCLE <:signatures_petition:></h2>
-                    <//B_signatures_decompte>
-
-
-                    <table summary="<:signatures_petition:>">
-                        <thead>
-                            <tr>
-                                <th><:date:></th>
-                                <th><:nom:></th>
-                                <th><:message:></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <BOUCLE_signatures(SIGNATURES) {id_article} {par date}{inverse} {debut_signatures,30}>
-                            <tr>
-                                <td class="signature-date">[(#DATE|affdate)]</td>
-                                <td class="signature-nom">#NOM[<br /><a href="(#URL_SITE)" class="spip_out"><small>[(#NOM_SITE|sinon{[(#URL_SITE|couper{40})]})</small>]</a>]</td>
-                                [<td class="signature-message">(#MESSAGE|PtoBR)</td>]
-                            </tr>
-                            </BOUCLE_signatures>
-                        </tbody>
-                    </table>
-
-                </div>
-                </B_signatures>
-
-                <!-- Forums -->
-                [<h2 class="invisible"><:Forum:></h2>
-                <p class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a></p>]
-                <BOUCLE_decompte(FORUMS) {id_article} {plat}>
-                </BOUCLE_decompte>[(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|=={1}|?{<:commentaire:>,<:commentaires:>})]]</B_decompte>
-                <INCLURE{fond=inc-forum}{id_article}>
             </div>
             
             <!-- Signer la petition -->
             [<div class="encart">
             (#FORMULAIRE_SIGNATURE)
             </div>]
+            
+            <br class="nettoyeur" />
+            <!-- Signatures de la petition -->
+            <B_signatures>
+            <div id="signatures">
+                <B_signatures_decompte>
+                [(#REM) S'affiche s'il y a pagination]
+                <h2>#TOTAL_BOUCLE <:signatures_petition:></h2>
+                [(#ENV{debut_signatures,0}|=={0}|?{'<strong>',<a href="[(#SELF|parametre_url{debut_signatures,''})]#signatures"[ title="(#DATE|affdate)"]>})] 0 [(#ENV{debut_signatures,0}|=={0}|?{'</strong>',</a>})]
+                <BOUCLE_signatures_decompte(SIGNATURES){id_article}{par date} {inverse}>
+                [|(#COMPTEUR_BOUCLE|modulo{30}|?{'',[(#COMPTEUR_BOUCLE|=={#ENV{debut_signatures,0}}|?{'<strong>',<a href="[(#SELF|parametre_url{debut_signatures,#COMPTEUR_BOUCLE})]#signatures"[ title="(#DATE|affdate)"]>})] #COMPTEUR_BOUCLE [(#COMPTEUR_BOUCLE|=={#ENV{debut_signatures,0}}|?{'</strong>',</a>})]})]
+                </BOUCLE_signatures_decompte>
+                [(#REM) S'affiche s'il n'y a pas de pagination]
+                <h2>#TOTAL_BOUCLE <:signatures_petition:></h2>
+                <//B_signatures_decompte>
+
+
+                <table summary="<:signatures_petition:>">
+                    <thead>
+                        <tr>
+                            <th scope="cols"><:date:></th>
+                            <th scope="cols"><:nom:></th>
+                            <th scope="cols"><:message:></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <BOUCLE_signatures(SIGNATURES) {id_article} {par date}{inverse} {debut_signatures,30}>
+                        <tr>
+                            <td class="signature-date">[(#DATE|affdate)]</td>
+                            <td class="signature-nom">#NOM[<br /><a href="(#URL_SITE)" class="spip_out"><small>[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})</small>]</a>]</td>
+                            [<td class="signature-message">(#MESSAGE|PtoBR)</td>]
+                        </tr>
+                        </BOUCLE_signatures>
+                    </tbody>
+                </table>
+
+            </div>
+            </B_signatures>
+
+            <!-- Forums -->
+            [<h2 class="invisible"><:Forum:></h2>
+            <p class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a></p>]
+            <BOUCLE_decompte(FORUMS) {id_article} {plat}>
+            </BOUCLE_decompte>[(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|=={1}|?{<:commentaire:>,<:commentaires:>})]]</B_decompte>
+            <INCLURE{fond=inc-forum}{id_article}>
+        
             
         </div><!-- end contenu -->
 
