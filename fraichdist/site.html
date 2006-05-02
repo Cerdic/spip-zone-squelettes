@@ -3,7 +3,7 @@
 [(#REM) Les sites n'ont pas de "lang" a proprement parler ; on se base donc sur la langue de la rubrique qui les contient. Les articles syndiques, eux, ont une "lang". ]
 <BOUCLE_lang(RUBRIQUES){id_rubrique}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html dir="#LANG_DIR" lang="#LANG"></BOUCLE_lang>
+<html dir="#LANG_DIR" lang="#LANG">
 <head>
 <title>[(#NOM_SITE|supprimer_numero|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
 <meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="#CHEMIN{impression.css}" type="text/css" media="print" />
 
 [<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
-</head>
+</head></BOUCLE_lang>
 
 <body>
 <div id="page">
@@ -47,7 +47,7 @@
 <h2 class="invisible"><:articles:></h2>
 
 <BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {par date}{inverse} {0,10}><div class="extrait">
-<h3 class="titre"><a href="#URL_ARTICLE" class="spip_out">[(#TITRE*|supprimer_numero|supprimer_numero)]</a></h3>
+<h3 class="titre"><a href="#URL_ARTICLE" class="spip_out">[(#TITRE*|supprimer_numero)]</a></h3>
 [<div class="enclosures">(#TAGS|afficher_enclosures)</div>]
 <small>[(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)]</small>
 [<small>&mdash; <em>(#TAGS|afficher_tags{'directory'})</em></small>]
