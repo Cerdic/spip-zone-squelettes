@@ -47,10 +47,7 @@
 <ul>
 	<li>[(#LANG|traduire_nom_langue)]</li>
 <BOUCLE_traductions(ARTICLES){traduction}{exclus}>
-	<li><a[ href="(#URL_ARTICLE|url_absolue)"]
-		rel="alternate" hreflang="#LANG"[
-		title="(#TITRE|supprimer_numero|textebrut|couper{80}|attribut_html)"]><span
-		lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">[(#LANG|traduire_nom_langue)]</span></a></li>
+	<li><a[ href="(#URL_ARTICLE|url_absolue)"] rel="alternate" hreflang="#LANG"[ title="(#TITRE|supprimer_numero|textebrut|couper{80}|entites_html|attribut_html)"]><span lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">[(#LANG|traduire_nom_langue)]</span></a></li>
 </BOUCLE_traductions>
 </ul>
 </div>
@@ -72,20 +69,18 @@
 [<div class="ps"><h2><:info_ps:></h2>#DEBUT_SURLIGNE(#PS)#FIN_SURLIGNE</div>]
 [<div class="notes"><h2><:info_notes:></h2>#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
 
-<BOUCLE_afficher_document(DOCUMENTS){id_document}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
+<BOUCLE_afficher_document(DOCUMENTS) {id_document} {mode=document}{extension==(png|jpg|gif)$} {doublons}>
 <div id="document_actif">
-[<h3>(#TITRE)</h3>]
+[<h3 class="spip">(#TITRE)</h3>]
 [(#EMBED_DOCUMENT)]
 [<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
 </div></BOUCLE_afficher_document>
 
 <B_documents_portfolio>
 <div id="documents_portfolio">
-<BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
-<span>
-[<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT">(#LOGO_DOCUMENT{0,60})</a>]
-<small>[<div class="spip_doc_titre">(#TITRE)</div>][<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]</small>
-</span>
+<h3 class="invisible"><:info_portfolio:></h3>
+<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document}{extension==(png|jpg|gif)$} {doublons}>
+[<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT#document_actif"[ title="(#TITRE|supprimer_numero|textebrut|couper{80}|entites_html|attribut_html)"]>(#LOGO_DOCUMENT{0,60})</a>]
 </BOUCLE_documents_portfolio>
 </div>
 </B_documents_portfolio>
@@ -143,15 +138,12 @@
 </BOUCLE_decompte>[(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|=={1}|?{<:commentaire:>,<:commentaires:>})]]</B_decompte>
 <INCLURE{fond=inc-forum}{id_article}>
 
-</div>
-
+</div><!-- end contenu -->
 
 
 <!-- Menu de navigation laterale -->
 <div id="navigation">
 <h1 class="invisible"><:navigation:></h1>
-
-
 
 <!-- Menu de navigation rubriques -->
 <INCLURE{fond=inc-rubriques}{lang}{id_rubrique}>
@@ -179,14 +171,14 @@
 </ul>
 </div>
 </B_mots>
-</div>
+</div><!-- end navigation -->        
 
-		</div><!-- end inner -->
+</div><!-- end inner -->
 
 <!-- Pied de page -->
 <INCLURE{fond=inc-pied}{lang}>
 
-</div>
+</div><!-- end page -->
 </body>
 </html>
 </BOUCLE_article_principal>
