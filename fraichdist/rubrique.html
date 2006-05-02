@@ -55,19 +55,8 @@
                     </BOUCLE_articles>
                 </ul>
                 </B_articles>
+						</div>
 
-                <B_documents_joints>
-			    <h2 class="invisible"><:titre_documents_joints:></h2>
-                <ul>
-                    <BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {mode=document} {doublons}>
-                        <li class="extrait">[(#LOGO_DOCUMENT|#URL_DOCUMENT||inserer_attribut{alt,[(#TITRE|supprimer_numero|textebrut|couper{80}|entites_html|attribut_html)]})]
-                        [<div class="spip_doc_titre">(#TITRE)</div>]
-                        [<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]</li>
-                    </BOUCLE_documents_joints>
-                </ul>
-                </B_documents_joints>
-            </div>
-            
             <div class="encart">
 
                 <!-- Breves dans la rubrique -->
@@ -107,6 +96,19 @@
 
             </div>
             
+            <B_documents_joints>
+						<h2 class="invisible"><:titre_documents_joints:></h2>
+            <ul id="documents_joints">
+                <BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {mode=document} {doublons}>
+                <li class="extrait">
+									[(#LOGO_DOCUMENT|#URL_DOCUMENT||reduire_image{150,150}|inserer_attribut{alt,[(#TITRE|supprimer_numero|textebrut|couper{80}|entites_html|attribut_html)]})]
+                  [<p class="spip_doc_titre">(#TITRE)</p>]
+                  [<p class="spip_doc_descriptif">(#DESCRIPTIF)</p>]
+								</li>
+                </BOUCLE_documents_joints>
+            </ul>
+            </B_documents_joints>
+
             [<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
 
         </div><!-- end contenu -->
