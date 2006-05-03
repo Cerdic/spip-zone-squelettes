@@ -5,100 +5,100 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="#LANG_DIR" lang="#LANG">
 <head>
-<title>[(#NOM_SITE|supprimer_numero|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
-<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
-[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|textebrut|couper{150}|entites_html|attribut_html)" />]
-<meta name="robots" content="none" />
+	<title>[(#NOM_SITE|supprimer_numero|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|textebrut|couper{150}|entites_html|attribut_html)" />]
+	<meta name="robots" content="none" />
 
-<!-- Feuille de styles CSS pour l'affichage du site sur ecran -->
-<link rel="stylesheet" href="[(#URL_PAGE{style_habillage}|parametre_url{lang, #LANG})]" type="text/css" media="projection, screen, tv" />
+	<!-- Feuille de styles CSS pour l'affichage du site sur ecran -->
+	<link rel="stylesheet" href="[(#URL_PAGE{style_habillage}|parametre_url{lang, #LANG})]" type="text/css" media="projection, screen, tv" />
 
-<!-- Feuille de styles CSS pour l'impression -->
-<link rel="stylesheet" href="#CHEMIN{impression.css}" type="text/css" media="print" />
+	<!-- Feuille de styles CSS pour l'impression -->
+	<link rel="stylesheet" href="#CHEMIN{impression.css}" type="text/css" media="print" />
 
-[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
+	[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
 </head></BOUCLE_lang>
 
 <body>
-<div id="page">
+	<div id="page">
 
-<!-- Entete de la page + titre du site -->
-<INCLURE{fond=inc-entete}{lang}>
+		<!-- Entete de la page + titre du site -->
+		<INCLURE{fond=inc-entete}{lang}>
 
-<!-- Fil d'Ariane -->
-<div id="hierarchie"><a href="#URL_SITE_SPIP" title="<:accueil_site:>" ><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|textebrut|couper{60})]</a></BOUCLE_ariane>[ &gt; (#NOM_SITE|textebrut|couper{60})]</div>
+		<!-- Fil d'Ariane -->
+		<div id="hierarchie"><a href="#URL_SITE_SPIP" title="<:accueil_site:>" ><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|textebrut|couper{60})]</a></BOUCLE_ariane>[ &gt; (#NOM_SITE|textebrut|couper{60})]</div>
 
+		<div id="conteneur">
 
- 		<div id="conteneur">
+			<!-- Contenu principal : affichage du site -->
 
-<!-- Contenu principal : affichage du site -->
+			<div id="contenu">
 
-<div id="contenu">
+				<div class="cartouche">
+					<a href="#URL_SITE"[ title="(#NOM_SITE|textebrut|couper{80}|texte_backend)"]>[(#LOGO_SITE||reduire_image{150,100})]</a>
+					<h1 class="titre">[(#NOM_SITE|supprimer_numero)]</h1>
+					[<div class="soustitre"><a href="#URL_SITE" class="spip_out">(#URL_SITE|couper{60})</a></div>]
+				</div>
 
-<div class="cartouche">
-<a href="#URL_SITE"[ title="(#NOM_SITE|textebrut|couper{80}|texte_backend)"]>[(#LOGO_SITE||reduire_image{150,100})]</a>
-<h1 class="titre">[(#NOM_SITE|supprimer_numero)]</h1>
-[<div class="soustitre"><a href="#URL_SITE" class="spip_out">(#URL_SITE|couper{60})</a></div>]
-</div>
+				[<div class="chapo">(#DESCRIPTIF)</div>]
 
-[<div class="chapo">(#DESCRIPTIF)</div>]
+				<!-- Articles du site -->
+				<h2 class="invisible"><:articles:></h2>
 
-<!-- Articles du site -->
-<h2 class="invisible"><:articles:></h2>
+				<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {0,10}>
+				<div class="extrait">
+					<h3 class="titre"><a href="#URL_ARTICLE" class="spip_out">[(#TITRE*|supprimer_numero)]</a></h3>
+					[<div class="enclosures">(#TAGS|afficher_enclosures)</div>]
+					<small>[(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)]</small>
+					[<small>&mdash; <em>(#TAGS|afficher_tags{'directory'})</em></small>]
+					[<small>&mdash; <em>(#TAGS|afficher_tags{'tag'})</em></small>]
+					[<div class="texte">(#DESCRIPTIF)</div>]
+				</div>
+				</BOUCLE_articles>
 
-<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {0,10}><div class="extrait">
-<h3 class="titre"><a href="#URL_ARTICLE" class="spip_out">[(#TITRE*|supprimer_numero)]</a></h3>
-[<div class="enclosures">(#TAGS|afficher_enclosures)</div>]
-<small>[(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)]</small>
-[<small>&mdash; <em>(#TAGS|afficher_tags{'directory'})</em></small>]
-[<small>&mdash; <em>(#TAGS|afficher_tags{'tag'})</em></small>]
-[<div class="texte">(#DESCRIPTIF)</div>]
-</div>
-</BOUCLE_articles>
+				[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
 
-[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+			</div><!-- end contenu -->
 
-</div><!-- end contenu -->
+			<!-- Menu de navigation laterale -->
+			<div id="navigation">
+				<h1 class="invisible"><:navigation:></h1>
 
-<!-- Menu de navigation laterale -->
-<div id="navigation">
-<h1 class="invisible"><:navigation:></h1>
+				<!-- Menu de navigation rubriques -->
+				<INCLURE{fond=inc-rubriques}{lang}{id_rubrique}>
 
-<!-- Menu de navigation rubriques -->
-<INCLURE{fond=inc-rubriques}{lang}{id_rubrique}>
+				<!-- Sites Web lies au mot-cle -->
+				<B_sites>
+				<div class="syndic" title="<:sites_web:>">
+					<h2><:sites_web:></h2>
+					<ul>
+						<BOUCLE_sites(SITES) {par nom_site} {doublons}>
+						<li><a href="[(#ID_SYNDIC|generer_url_site)]"[ class="(#EXPOSE)"]>[(#NOM_SITE|supprimer_numero)]</a></li>
+						</BOUCLE_sites>
+					</ul>
+				</div>
+				</B_sites>
 
-<!-- Sites Web lies au mot-cle -->
-<B_sites>
-<div class="syndic" title="<:sites_web:>">
-<h2><:sites_web:></h2>
-<ul>
-<BOUCLE_sites(SITES) {par nom_site} {doublons}>
-<li><a href="[(#ID_SYNDIC|generer_url_site)]"[ class="(#EXPOSE)"]>[(#NOM_SITE|supprimer_numero)]</a></li>
-</BOUCLE_sites>
-</ul>
-</div>
-</B_sites>
+				<!-- Menu de navigation mots-cles -->
+				<B_mots>
+				<div class="divers" title="<:mots_clefs:>">
+					<h2><:mots_clefs:></h2>
+					<ul>
+						<BOUCLE_mots(MOTS) {id_syndic} {par titre}>
+						<li><a href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|couper{80}|texte_backend)"]>[(#TITRE|supprimer_numero)]</a></li>
+						</BOUCLE_mots>
+					</ul>
+				</div>
+				</B_mots>
 
-<!-- Menu de navigation mots-cles -->
-<B_mots>
-<div class="divers" title="<:mots_clefs:>">
-<h2><:mots_clefs:></h2>
-<ul>
-<BOUCLE_mots(MOTS) {id_syndic} {par titre}>
-<li><a href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|couper{80}|texte_backend)"]>[(#TITRE|supprimer_numero)]</a></li>
-</BOUCLE_mots>
-</ul>
-</div>
-</B_mots>
+			</div><!-- end navigation -->
 
-</div><!-- end navigation -->        
+		</div><!-- end conteneur -->
 
-</div><!-- end conteneur -->
+		<!-- Pied de page -->
+		<INCLURE{fond=inc-pied}{lang}>
 
-<!-- Pied de page -->
-<INCLURE{fond=inc-pied}{lang}>
-
-</div><!-- end page -->
+	</div><!-- end page -->
 </body>
 </html>
 </BOUCLE_site>
