@@ -26,7 +26,7 @@
 		<INCLURE{fond=inc-entete}{lang}>
 
 		<!-- Fil d'Ariane -->
-		<div id="hierarchie"><a href="#URL_SITE_SPIP" title="<:accueil_site:>" ><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_syndic}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|textebrut|couper{60})]</a></BOUCLE_ariane>[ &gt; (#NOM_SITE|textebrut|couper{60})]</div>
+		<div id="hierarchie"><a href="#URL_SITE_SPIP"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_syndic}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></BOUCLE_ariane>[ &gt; (#NOM_SITE|textebrut|couper{80})]</div>
 
 		<div id="conteneur">
 
@@ -35,9 +35,9 @@
 			<div id="contenu">
 
 				<div class="cartouche">
-					<a href="#URL_SITE"[ title="(#NOM_SITE|textebrut|couper{80}|texte_backend)"]>[(#LOGO_SITE||reduire_image{150,100})]</a>
+					<a href="#URL_SITE">[(#LOGO_SITE||reduire_image{150,100}|inserer_attribut{alt,[(#NOM_SITE|textebrut|couper{80}|texte_backend)]})]</a>
 					<h1 class="titre">[(#NOM_SITE|supprimer_numero)]</h1>
-					[<div class="soustitre"><a href="#URL_SITE" class="spip_out">(#URL_SITE|couper{60})</a></div>]
+					[<div class="soustitre"><a href="#URL_SITE" class="spip_out">(#URL_SITE|textebrut|couper{80})</a></div>]
 				</div>
 
 				[<div class="chapo">(#DESCRIPTIF)</div>]
@@ -47,7 +47,7 @@
 
 				<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {0,10}>
 				<div class="extrait">
-					<h3 class="titre"><a href="#URL_ARTICLE" class="spip_out">[(#TITRE*|supprimer_numero)]</a></h3>
+					<h3 class="titre"><a href="#URL_ARTICLE" class="spip_out">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></h3>
 					[<div class="enclosures">(#TAGS|afficher_enclosures)</div>]
 					<small>[(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)]</small>
 					[<small>&mdash; <em>(#TAGS|afficher_tags{'directory'})</em></small>]
@@ -69,11 +69,11 @@
 
 				<!-- Sites Web lies au mot-cle -->
 				<B_sites>
-				<div class="syndic" title="<:sites_web:>">
+				<div class="syndic">
 					<h2><:sites_web:></h2>
 					<ul>
 						<BOUCLE_sites(SITES) {par nom_site} {doublons}>
-						<li><a href="[(#ID_SYNDIC|generer_url_site)]"[ class="(#EXPOSE)"]>[(#NOM_SITE|supprimer_numero)]</a></li>
+						<li><a href="[(#ID_SYNDIC|generer_url_site)]"[ class="(#EXPOSE)"]>[(#NOM_SITE|supprimer_numero|textebrut|couper{80})]</a></li>
 						</BOUCLE_sites>
 					</ul>
 				</div>
@@ -81,11 +81,11 @@
 
 				<!-- Menu de navigation mots-cles -->
 				<B_mots>
-				<div class="divers" title="<:mots_clefs:>">
+				<div class="divers">
 					<h2><:mots_clefs:></h2>
 					<ul>
 						<BOUCLE_mots(MOTS) {id_syndic} {par titre}>
-						<li><a href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|couper{80}|texte_backend)"]>[(#TITRE|supprimer_numero)]</a></li>
+						<li><a href="#URL_MOT">[(#TITRE|supprimer_numero)]</a></li>
 						</BOUCLE_mots>
 					</ul>
 				</div>

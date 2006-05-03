@@ -5,7 +5,7 @@
 <head>
 	<title>[(#TITRE|supprimer_numero|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
-	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|textebrut|couper{150}|entites_html|attribut_html)" />]
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|textebrut|couper{150}|texte_backend)" />]
 
 	<!-- Feuille de styles CSS pour l'affichage du site sur ecran -->
 	<link rel="stylesheet" href="[(#URL_PAGE{style_habillage}|parametre_url{lang, #LANG})]" type="text/css" media="projection, screen, tv" />
@@ -26,7 +26,7 @@
 	<INCLURE{fond=inc-entete}{lang}>
 
 	<!-- Fil d'Ariane -->
-	<div id="hierarchie"><a href="#URL_SITE_SPIP" title="<:accueil_site:>" ><:accueil_site:></a><BOUCLE_ariane(RUBRIQUES){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|textebrut|couper{60})]</a></BOUCLE_ariane>[ &gt; (#TITRE|supprimer_numero|textebrut|couper{60})]</div>
+	<div id="hierarchie"><a href="#URL_SITE_SPIP" ><:accueil_site:></a><BOUCLE_ariane(RUBRIQUES){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></BOUCLE_ariane>[ &gt; (#TITRE|supprimer_numero|textebrut|couper{80})]</div>
 
 	<div id="conteneur">
 
@@ -41,7 +41,7 @@
 			</div>
 
 			[<div class="texte">(#TEXTE)</div>]
-			[<p class="lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{60})]})]</a>.</p>]
+			[<p class="lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a>.</p>]
 			[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
 
 			<!-- Forums -->
@@ -60,11 +60,11 @@
 
 			<!-- Breves dans la meme rubrique -->
 			<B_breves_rubrique>
-			<div class="breves" title="<:meme_rubrique:>">
+			<div class="breves" >
 				<h2><:autres_breves:></h2>
 				<ul>
 					<BOUCLE_breves_rubrique(BREVES) {id_rubrique} {par date}{inverse}>
-					<li>[(#DATE|affdate_court) : ]<a href="#URL_BREVE"[ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero)]</a></li>
+					<li>[(#DATE|affdate_court) : ]<a href="#URL_BREVE"[ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
 					</BOUCLE_breves_rubrique>
 				</ul>
 			</div>
@@ -72,11 +72,11 @@
 
 			<!-- Menu de navigation mots-cles -->
 			<B_mots>
-			<div class="divers" title="<:mots_clefs:>">
+			<div class="divers">
 				<h2><:mots_clefs:></h2>
 				<ul>
 				<BOUCLE_mots(MOTS) {id_breve} {par titre}>
-					<li><a href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|couper{80}|texte_backend)"]>[(#TITRE|supprimer_numero)]</a></li>
+					<li><a href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|couper{80}|texte_backend)"]>[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
 				</BOUCLE_mots>
 				</ul>
 			</div>
