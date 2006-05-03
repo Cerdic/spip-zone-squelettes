@@ -3,98 +3,103 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="#LANG_DIR" lang="#LANG">
 <head>
-<title><:poster_message:> - [(#NOM_SITE_SPIP|textebrut)]</title>
-<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
-[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|textebrut|couper{150}|entites_html|attribut_html)" />]
-<meta name="robots" content="none" />
+	<title><:poster_message:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|textebrut|couper{150}|entites_html|attribut_html)" />]
+	<meta name="robots" content="none" />
 
-<!-- Feuille de styles CSS pour l'affichage du site sur ecran -->
-<link rel="stylesheet" href="[(#URL_PAGE{style_habillage}|parametre_url{lang, #LANG})]" type="text/css" media="print, projection, screen, tv" />
+	<!-- Feuille de styles CSS pour l'affichage du site sur ecran -->
+	<link rel="stylesheet" href="[(#URL_PAGE{style_habillage}|parametre_url{lang, #LANG})]" type="text/css" media="print, projection, screen, tv" />
 
-[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
+	[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
 </head>
 
 <body>
-<div id="page">
+	<div id="page">
 
-<!-- Entete de la page + titre du site -->
-<INCLURE{fond=inc-entete}{lang}>
+		<!-- Entete de la page + titre du site -->
+		<INCLURE{fond=inc-entete}{lang}>
 
-<!-- Fil d'Ariane -->
-<div id="hierarchie"><a href="#URL_SITE_SPIP" title="<:accueil_site:>" ><:accueil_site:></a>[ &gt; ... &gt; (#TITRE|supprimer_numero|textebrut|couper{60})] &gt; <:poster_message:></div>
-
-
- 		<div id="conteneur">
-
-<!-- Contenu : poster un message dans le forum -->
-
-<div id="contenu">
-
-<h1 class="invisible"><:poster_message:></h1>
-
-<BOUCLE_forum_parent(FORUMS) {id_forum}><div class="extrait">
-<h2 class="surtitre"><:en_reponse:></h2>
-<p class="titre"><a href="#URL_FORUM">#TITRE</a></p>
-<small>[(#DATE|affdate)][, <:par_auteur:> (#NOM)]</small>
-[<div class="texte">(#INTRODUCTION)</div>]
-</div>
-</BOUCLE_forum_parent>
-
-<BOUCLE_article(ARTICLES) {id_article}><div class="extrait">
-<h2 class="surtitre"><:en_reponse:></h2>
-[(#LOGO_ARTICLE||reduire_image{120,120})]
-[<p class="surtitre">(#SURTITRE)</p>]
-<p class="titre"><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></p>
-[<p class="soustitre">(#SOUSTITRE)</p>]
-<small>[(#DATE|affdate)]<B_auteurs>, <:par_auteur:> <BOUCLE_auteurs(AUTEURS) {id_article} {", "}><a href="#URL_AUTEUR">[(#NOM|supprimer_numero)]</a></BOUCLE_auteurs></small>
-[<div class="texte">(#INTRODUCTION)</div>]
-</div>
-</BOUCLE_article>
-
-<BOUCLE_breve(BREVES) {id_breve}><div class="extrait">
-<h2 class="surtitre"><:en_reponse:></h2>
-[(#LOGO_BREVE||reduire_image{120,120})]
-<p class="titre"><a href="#URL_BREVE">[(#TITRE|supprimer_numero)]</a></p>
-<small>[(#DATE|affdate)]</small>
-[<div class="texte">(#INTRODUCTION)</div>]
-</div>
-</BOUCLE_breve>
-
-<BOUCLE_rubrique(RUBRIQUES) {id_rubrique}><div class="extrait">
-<h2 class="surtitre"><:en_reponse:></h2>
-<p class="titre"><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></p>
-[<div class="texte">(#TEXTE)</div>]
-</div>
-</BOUCLE_rubrique>
-
-<BOUCLE_syndic(SITES) {id_syndic}><div class="extrait">
-<h2 class="surtitre"><:en_reponse:></h2>
-<p class="titre"><a href="[(#ID_SYNDIC|generer_url_site)]">[(#NOM_SITE|supprimer_numero)]</a></p>
-</div>
-</BOUCLE_syndic>
+		<!-- Fil d'Ariane -->
+		<div id="hierarchie"><a href="#URL_SITE_SPIP" title="<:accueil_site:>" ><:accueil_site:></a>[ &gt; ... &gt; (#TITRE|supprimer_numero|textebrut|couper{60})] &gt; <:poster_message:></div>
 
 
-<//B_forum_parent>
+		<div id="conteneur">
 
-[<h2 class="spip"><:envoyer_message:></h2>
-(#FORMULAIRE_FORUM)]
+			<!-- Contenu : poster un message dans le forum -->
 
-</div><!-- end contenu -->
+			<div id="contenu">
 
-<!-- Menu de navigation laterale -->
-<div id="navigation">
-<h1 class="invisible"><:navigation:></h1>
+				<h1 class="invisible"><:poster_message:></h1>
 
-<!-- Menu de navigation rubriques -->
-<INCLURE{fond=inc-rubriques}{lang}>
+				<BOUCLE_forum_parent(FORUMS) {id_forum}>
+				<div class="extrait">
+					<h2 class="surtitre"><:en_reponse:></h2>
+					<p class="titre"><a href="#URL_FORUM">#TITRE</a></p>
+					<small>[(#DATE|affdate)][, <:par_auteur:> (#NOM)]</small>
+					[<div class="texte">(#INTRODUCTION)</div>]
+				</div>
+				</BOUCLE_forum_parent>
 
-</div><!-- end navigation -->        
+				<BOUCLE_article(ARTICLES) {id_article}>
+				<div class="extrait">
+					<h2 class="surtitre"><:en_reponse:></h2>
+					[(#LOGO_ARTICLE||reduire_image{120,120})]
+					[<p class="surtitre">(#SURTITRE)</p>]
+					<p class="titre"><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></p>
+					[<p class="soustitre">(#SOUSTITRE)</p>]
+					<small>[(#DATE|affdate)]<B_auteurs>, <:par_auteur:> <BOUCLE_auteurs(AUTEURS) {id_article} {", "}><a href="#URL_AUTEUR">[(#NOM|supprimer_numero)]</a></BOUCLE_auteurs></small>
+					[<div class="texte">(#INTRODUCTION)</div>]
+				</div>
+				</BOUCLE_article>
 
-</div><!-- end conteneur -->
+				<BOUCLE_breve(BREVES) {id_breve}>
+				<div class="extrait">
+					<h2 class="surtitre"><:en_reponse:></h2>
+					[(#LOGO_BREVE||reduire_image{120,120})]
+					<p class="titre"><a href="#URL_BREVE">[(#TITRE|supprimer_numero)]</a></p>
+					<small>[(#DATE|affdate)]</small>
+					[<div class="texte">(#INTRODUCTION)</div>]
+				</div>
+				</BOUCLE_breve>
 
-<!-- Pied de page -->
-<INCLURE{fond=inc-pied}{lang}>
+				<BOUCLE_rubrique(RUBRIQUES) {id_rubrique}>
+				<div class="extrait">
+					<h2 class="surtitre"><:en_reponse:></h2>
+					<p class="titre"><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></p>
+					[<div class="texte">(#TEXTE)</div>]
+				</div>
+				</BOUCLE_rubrique>
 
-</div><!-- end page -->
+				<BOUCLE_syndic(SITES) {id_syndic}>
+				<div class="extrait">
+					<h2 class="surtitre"><:en_reponse:></h2>
+					<p class="titre"><a href="[(#ID_SYNDIC|generer_url_site)]">[(#NOM_SITE|supprimer_numero)]</a></p>
+				</div>
+				</BOUCLE_syndic>
+
+
+				<//B_forum_parent>
+
+				[<h2 class="spip"><:envoyer_message:></h2>
+				(#FORMULAIRE_FORUM)]
+
+			</div><!-- end contenu -->
+
+			<!-- Menu de navigation laterale -->
+			<div id="navigation">
+				<h1 class="invisible"><:navigation:></h1>
+
+				<!-- Menu de navigation rubriques -->
+				<INCLURE{fond=inc-rubriques}{lang}>
+
+			</div><!-- end navigation -->
+
+		</div><!-- end conteneur -->
+
+		<!-- Pied de page -->
+		<INCLURE{fond=inc-pied}{lang}>
+
+	</div><!-- end page -->
 </body>
 </html>
