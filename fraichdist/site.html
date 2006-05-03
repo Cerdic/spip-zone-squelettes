@@ -1,23 +1,22 @@
 #CACHE{7200}
 <BOUCLE_site(SITES){id_syndic}>
 [(#REM) Les sites n'ont pas de "lang" a proprement parler ; on se base donc sur la langue de la rubrique qui les contient. Les articles syndiques, eux, ont une "lang". ]
-<BOUCLE_lang(RUBRIQUES){id_rubrique}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html dir="#LANG_DIR" lang="#LANG">
+<BOUCLE_lang(RUBRIQUES){id_rubrique}><html dir="#LANG_DIR" lang="#LANG"></BOUCLE_lang>
 <head>
 	<title>[(#NOM_SITE|supprimer_numero|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
-	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|textebrut|couper{150}|texte_backend)" />]
+	[<meta name="description" content="(#DESCRIPTIF|textebrut|couper{150}|attribut_html)" />]
 	<meta name="robots" content="none" />
 
 	<!-- Feuille de styles CSS pour l'affichage du site sur ecran -->
-	<link rel="stylesheet" href="[(#URL_PAGE{style_habillage}|parametre_url{lang, #LANG})]" type="text/css" media="projection, screen, tv" />
+	<BOUCLE_lang2(RUBRIQUES){id_rubrique}><link rel="stylesheet" href="[(#URL_PAGE{style_habillage}|parametre_url{lang, #LANG})]" type="text/css" media="projection, screen, tv" /></BOUCLE_lang2>
 
 	<!-- Feuille de styles CSS pour l'impression -->
 	<link rel="stylesheet" href="#CHEMIN{impression.css}" type="text/css" media="print" />
 
 	[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
-</head></BOUCLE_lang>
+</head>
 
 <body>
 	<div id="page">
@@ -35,7 +34,7 @@
 			<div id="contenu">
 
 				<div class="cartouche">
-					<a href="#URL_SITE">[(#LOGO_SITE||reduire_image{150,100}|inserer_attribut{alt,[(#NOM_SITE|textebrut|couper{80}|texte_backend)]})]</a>
+					<a href="#URL_SITE">[(#LOGO_SITE||reduire_image{150,100}|inserer_attribut{alt,[(#NOM_SITE|textebrut|couper{80})]})]</a>
 					<h1 class="titre">[(#NOM_SITE|supprimer_numero)]</h1>
 					[<div class="soustitre"><a href="#URL_SITE" class="spip_out">(#URL_SITE|textebrut|couper{80})</a></div>]
 				</div>
