@@ -3,93 +3,93 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="#LANG_DIR" lang="#LANG">
 <head>
-<title>[(#NOM|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
-<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
-[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|textebrut|couper{150}|entites_html|attribut_html)" />]
+	<title>[(#NOM|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|textebrut|couper{150}|entites_html|attribut_html)" />]
 
-<!-- Feuille de styles CSS pour l'affichage du site sur ecran -->
-<link rel="stylesheet" href="[(#URL_PAGE{style_habillage}|parametre_url{lang, #LANG})]" type="text/css" media="projection, screen, tv" />
+	<!-- Feuille de styles CSS pour l'affichage du site sur ecran -->
+	<link rel="stylesheet" href="[(#URL_PAGE{style_habillage}|parametre_url{lang, #LANG})]" type="text/css" media="projection, screen, tv" />
 
-<!-- Feuille de styles CSS pour l'impression -->
-<link rel="stylesheet" href="#CHEMIN{impression.css}" type="text/css" media="print" />
+	<!-- Feuille de styles CSS pour l'impression -->
+	<link rel="stylesheet" href="#CHEMIN{impression.css}" type="text/css" media="print" />
 
-[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
+	[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
 </head>
 
 <body>
-<div id="page">
+	<div id="page">
 
-<!-- Entete de la page + titre du site -->
-<INCLURE{fond=inc-entete}{lang}>
+	<!-- Entete de la page + titre du site -->
+	<INCLURE{fond=inc-entete}{lang}>
 
-<!-- Fil d'Ariane -->
-<div id="hierarchie"><a href="#URL_SITE_SPIP" title="<:accueil_site:>" ><:accueil_site:></a> &gt; <:info_auteurs:>[ &gt; (#NOM|supprimer_numero|textebrut|couper{60})]</div>
+	<!-- Fil d'Ariane -->
+	<div id="hierarchie"><a href="#URL_SITE_SPIP" title="<:accueil_site:>" ><:accueil_site:></a> &gt; <:info_auteurs:>[ &gt; (#NOM|supprimer_numero|textebrut|couper{60})]</div>
 
+	<div id="conteneur">
 
- 		<div id="conteneur">
+	<!-- Contenu principal : affichage de l'auteur -->
 
-<!-- Contenu principal : affichage de l'auteur -->
+		<div id="contenu">
 
-<div id="contenu">
+			<div class="cartouche">
+				[(#LOGO_AUTEUR||reduire_image{200,200})]
+				<h1 class="titre">[(#NOM|supprimer_numero)]</h1>
+				[<div class="soustitre"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{60})]})]</a></div>]
+			</div>
 
-<div class="cartouche">
-[(#LOGO_AUTEUR||reduire_image{200,200})]
-<h1 class="titre">[(#NOM|supprimer_numero)]</h1>
-[<div class="soustitre"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{60})]})]</a></div>]
-</div>
+			[<div class="texte">(#BIO)</div><br />]
 
-[<div class="texte">(#BIO)</div><br />]
+			<br class="nettoyeur" />
 
-<br class="nettoyeur" />
+			[<div class="encart">
+				<h2 class="invisible"><:envoyer_message:></h2>
+				(#FORMULAIRE_ECRIRE_AUTEUR)
+			</div>]
 
+			<!-- Articles de l'auteur -->
+			<B_articles>
+			<div class="contenurub">
+				<h2 class="invisible"><:articles_auteur:></h2>
+				<ul>
+					<BOUCLE_articles(ARTICLES) {id_auteur} {par date}{inverse}>
+					<li class="extrait"><h3 class="titre"><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|couper{80}|texte_backend)"]>[(#TITRE|supprimer_numero)]</a></h3>
+					<small>[(#DATE|affdate)]</small></li>
+					</BOUCLE_articles>
+				</ul>
+			</div><!-- end contenurub -->
+			</B_articles>
 
-[<div class="encart">
-<h2 class="invisible"><:envoyer_message:></h2>
-(#FORMULAIRE_ECRIRE_AUTEUR)
-</div>]
+			[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
 
-<!-- Articles de l'auteur -->
-<B_articles><div class="contenurub">
-<h2 class="invisible"><:articles_auteur:></h2>
-<ul>
-<BOUCLE_articles(ARTICLES) {id_auteur} {par date}{inverse}>
-<li class="extrait"><h3 class="titre"><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|couper{80}|texte_backend)"]>[(#TITRE|supprimer_numero)]</a></h3>
-<small>[(#DATE|affdate)]</small></li>
-</BOUCLE_articles>
-</ul>
-</div><!-- end contenurub --></B_articles>
+		</div><!-- end contenu -->
 
-[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+		<!-- Menu de navigation laterale -->
+		<div id="navigation">
+		<h1 class="invisible"><:navigation:></h1>
 
-</div><!-- end contenu -->
+		<!-- Menu de navigation rubriques -->
+		<INCLURE{fond=inc-rubriques}{lang}>
 
-<!-- Menu de navigation laterale -->
-<div id="navigation">
-<h1 class="invisible"><:navigation:></h1>
+		<!-- Autres auteurs -->
+		<B_auteurs>
+		<div class="forums">
+			<h2><:info_auteurs:></h2>
+			<ul>
+				<BOUCLE_auteurs(AUTEURS)>
+				<li><a href="#URL_AUTEUR"[ class="(#EXPOSE)"]>[(#NOM|supprimer_numero)]</a></li>
+				</BOUCLE_auteurs>
+			</ul>
+		</div>
+		</B_auteurs>
 
-<!-- Menu de navigation rubriques -->
-<INCLURE{fond=inc-rubriques}{lang}>
+		</div><!-- end navigation -->
 
-<!-- Autres auteurs -->
-<B_auteurs>
-<div class="forums">
-<h2><:info_auteurs:></h2>
-<ul>
-<BOUCLE_auteurs(AUTEURS)>
-<li><a href="#URL_AUTEUR"[ class="(#EXPOSE)"]>[(#NOM|supprimer_numero)]</a></li>
-</BOUCLE_auteurs>
-</ul>
-</div>
-</B_auteurs>
+	</div><!-- end conteneur -->
 
-</div><!-- end navigation -->        
+	<!-- Pied de page -->
+	<INCLURE{fond=inc-pied}{lang}>
 
-</div><!-- end conteneur -->
-
-<!-- Pied de page -->
-<INCLURE{fond=inc-pied}{lang}>
-
-</div><!-- end page -->
+	</div><!-- end page -->
 </body>
 </html>
 </BOUCLE_auteur_principal>
