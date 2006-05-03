@@ -23,10 +23,10 @@
 <div id="page">
 
     <!-- Entete de la page + titre du site -->
-    <INCLURE{fond=inc-entete}{lang}{id_rubrique}>
+    <INCLURE{fond=inc-entete}{lang}>
 
     <!-- Fil d'Ariane -->
-    <div id="hierarchie"><a href="#URL_SITE_SPIP" title="<:accueil_site:>" ><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></BOUCLE_ariane>[ &gt; (#TITRE|supprimer_numero|textebrut|couper{80})]</div>
+    <div id="hierarchie"><a href="#URL_SITE_SPIP" title="<:accueil_site:>" ><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}{exclus}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></BOUCLE_ariane>[ &gt; (#TITRE|supprimer_numero|textebrut|couper{80})]</div>
 
     <div id="conteneur">
 
@@ -63,7 +63,7 @@
 			        <h2><:titre_documents_joints:></h2>
                     <ul>
                         <BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {mode=document} {doublons}>
-                        <li>[(#LOGO_DOCUMENT|#URL_DOCUMENT||reduire_image{0,60}|inserer_attribut{alt,[(#TITRE|supprimer_numero|textebrut|couper{80}|entites_html|attribut_html)]})]
+                        <li>[(#LOGO_DOCUMENT|#URL_DOCUMENT||reduire_image{0,60}|inserer_attribut{alt,[(#TITRE|supprimer_numero|textebrut|couper{60}|entites_html|attribut_html)]})]
                         [<div class="spip_doc_titre">(#TITRE)</div>]
                         [<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]</li>
                         </BOUCLE_documents_joints>
@@ -123,7 +123,7 @@
         <div id="navigation">
             <h1 class="invisible"><:navigation:></h1>
 
-            <!-- Menu de navigation rubriques -->
+            <!-- Menu de navigation par rubriques -->
             <INCLURE{fond=inc-rubriques}{lang}{id_rubrique}>
 
             <!-- Menu de navigation mots-cles -->
@@ -142,8 +142,8 @@
                 <h2><:icone_suivi_activite:></h2>
                 <p><:ical_texte_rss:></p>
                 <ul>
-                    <li><a href="#URL_PAGE{backend}" ><img src="ecrire/img_pack/feed.png" alt="" width="16" height="16"/>&nbsp;<:syndiquer_site:></a></li>
-                    <li><a href="#URL_PAGE{backend,id_rubrique=#ID_RUBRIQUE}"><img src="ecrire/img_pack/feed.png" alt="" width="16" height="16"/>&nbsp;[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
+                    <li><a href="#URL_PAGE{backend}" ><img src="ecrire/img_pack/feed.png" alt="<:ical_texte_rss:>" width="16" height="16"/>&nbsp;<:syndiquer_site:></a></li>
+                    <li><a href="#URL_PAGE{backend,id_rubrique=#ID_RUBRIQUE}"><img src="ecrire/img_pack/feed.png" alt="<:ical_texte_rss:>" width="16" height="16"/>&nbsp;[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
                 </ul>
             </div>
 
