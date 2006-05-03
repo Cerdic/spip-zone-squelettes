@@ -63,36 +63,37 @@
             [<div class="ps"><h2><:info_ps:></h2>#DEBUT_SURLIGNE(#PS)#FIN_SURLIGNE</div>]
             [<div class="notes"><h2><:info_notes:></h2>#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
 
-                <BOUCLE_afficher_document(DOCUMENTS) {id_document} {mode=document}{extension==(png|jpg|gif)$} {doublons}>
-                <div id="document_actif">
-                    [<h3 class="spip">(#TITRE)</h3>]
-                    [(#EMBED_DOCUMENT)]
-                    [<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
-                </div>
-                </BOUCLE_afficher_document>
-                <B_documents_portfolio>
-                <div id="documents_portfolio">
-                    <h3 class="invisible"><:info_portfolio:></h3>
-                    <BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document}{extension==(png|jpg|gif)$} {doublons}>
-                    [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT#document_actif"[ title="(#TITRE|supprimer_numero|textebrut|couper{80}|texte_backend)"]>(#LOGO_DOCUMENT{0,60})</a>]
-                    </BOUCLE_documents_portfolio>
-                </div>
-                </B_documents_portfolio>
-                
-                <B_documents_joints>
-                <div id="documents_joints">
-                    <h2><:titre_documents_joints:></h2>
-                    <ul>
-                        <BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {doublons}>
-                        <li>[(#LOGO_DOCUMENT|#URL_DOCUMENT||reduire_image{0,60}|inserer_attribut{alt,[(#TITRE|supprimer_numero|textebrut|couper{80}|entites_html|attribut_html)]})]
-                        [<div class="spip_doc_titre">(#TITRE)</div>]
-                        [<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]</li>
-                        </BOUCLE_documents_joints>
-                    </ul>
-                </div>
-                </B_documents_joints>
+            <BOUCLE_afficher_document(DOCUMENTS) {id_document} {mode=document}{extension==(png|jpg|gif)$} {doublons}>
+            <div id="document_actif">
+                [<h3 class="spip">(#TITRE)</h3>]
+                [(#EMBED_DOCUMENT)]
+                [<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
+            </div>
+            </BOUCLE_afficher_document>
+            <B_documents_portfolio>
+            <div id="documents_portfolio">
+                <h3 class="invisible"><:info_portfolio:></h3>
+                <BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document}{extension==(png|jpg|gif)$} {doublons}>
+                [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT#document_actif"[ title="(#TITRE|supprimer_numero|textebrut|couper{80}|texte_backend)"]>(#LOGO_DOCUMENT{0,60})</a>]
+                </BOUCLE_documents_portfolio>
+            </div>
+            </B_documents_portfolio>
+            
+            <B_documents_joints>
+            <div id="documents_joints">
+                <h2><:titre_documents_joints:></h2>
+                <ul>
+                    <BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {doublons}>
+                    <li>[(#LOGO_DOCUMENT|#URL_DOCUMENT||reduire_image{0,60}|inserer_attribut{alt,[(#TITRE|supprimer_numero|textebrut|couper{80}|entites_html|attribut_html)]})]
+                    [<div class="spip_doc_titre">(#TITRE)</div>]
+                    [<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]</li>
+                    <br class="nettoyeur" />
+                    </BOUCLE_documents_joints>
+                </ul>
+            </div>
+            </B_documents_joints>
 
-            <br class="nettoyeur" />
+            
 
             <!-- Signer la petition -->
             [(#FORMULAIRE_SIGNATURE)]
