@@ -41,10 +41,10 @@
           [ | <:sur_web:>: <a href="#URL_SITE" target="_blank">(#NOM_SITE)</a> ]</p>
         [(#LOGO_ARTICLE_RUBRIQUE|right||reduire_image{100,100})]
         <div class="post-content">
-          <p>#CHAPO</p>
-          <p align="left">#DESCRIPTIF</p>
-          <p align="justify">#TEXTE</p>
-          <em>#PS</em>
+          [<p>(#CHAPO)</p>]
+          [<p align="left">(#DESCRIPTIF)</p>]
+          [<p align="justify">(#TEXTE)</p>]
+          [<em>(#PS)</em>]
           <div align="center">
             <!-- boucle image -->
             <BOUCLE_afficher_document(DOCUMENTS){id_document}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
@@ -55,11 +55,11 @@
             <div>(#DESCRIPTIF)</div>
             ] [
             <div>
-<a href="#URL_DOCUMENT">(#FICHIER|reduire_image{500}) </a>           </div>
+<a href="#URL_DOCUMENT">(#FICHIER|reduire_image{400}) </a>           </div>
             ]
             </BOUCLE_afficher_document>
             <B_documents_portfolio>
-            <div>
+            <div id="portefolio">
               <hr />
               <BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension==(png|jpg|gif)$}{doublons}>
               <div style="float: left;"> [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT">(#LOGO_DOCUMENT{0,60})</a>] [
@@ -72,14 +72,15 @@
             <div style="clear: both;"></div>
             </B_documents_portfolio>
           </div>
-          #NOTES </div>
+          #NOTES
+           </div>
         <!-- boucle forum -->
       
        <INCLURE(inclusions/inc_forum_article.php3){id_article}{id_forum}{id_signature}>
       
         <!-- fin article -->
         <br />
-        </BOUCLE_articles>
+        
       </div>
     </div>
   </div>
