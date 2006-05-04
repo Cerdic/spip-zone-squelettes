@@ -133,6 +133,7 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'recherche_title_ok' => 'Lancer la recherche',
 
 //S
+'savoirplus' => 'Pour en savoir plus...',
 'savoirpluscritere' => 'En savoir plus sur le crit&egrave;re',
 'sommaire' => 'Sommaire',
 

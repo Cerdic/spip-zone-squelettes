@@ -142,6 +142,11 @@ function config_site() {
 		create_mot("_LayoutGala", "24. Two columns liquid, side fixed", "", "ParDefaut");
 		create_mot("_LayoutGala", "34. Two colums fixed", "", "");
 		create_mot("_LayoutGala", "7. Three fixed columns", "", "");
+	create_groupe("_LogosExtra", "Permet de placer une image en fond de la colonne Extra (c\'est-à-dire, soit la colonne secondaire qui peut être afichée soit de l\'autre côté du menu, soit en dessous de celui-ci).", "{{Utilisation}} : affecter un ou plusieurs mots clefs de ce groupe aux rubriques (héritage automatique) qui doivent avoir une ou plusieurs image en fond. L\'image est choisie aléatoirement parmis celles disponibles.\n\n{{Configuration}} : \n-* créer des mots clefs dans ce groupe et leur donner un logo de mot clef.\n-* il est possible de mettre un logo de survol qui sera alors utilisé en fond de texte (en plus de l\'autre logo) et positionné en haut à droite sauf si le texte contient les ordres CSS de positionnement ({bottom left} par exemple)", 'non', 'non', 'non', 'non', 'oui', 'non', 'oui', 'non', 'non');
+		create_mot("_LogosExtra", "300. Tourisme sous-bois", "", "top right");
+		create_mot("_LogosExtra", "310. Tourisme Roches enchantées", "", "");
+		create_mot("_LogosExtra", "320. Tourisme La Loue (Rivière)", "", "bottom right");
+
 
 	create_groupe("_META", "Paramètrage du site", "Permet de spécifier des META pour le site.\n\nIl est possible de rajouter des METAs non encore présents, mais, comme d\'habitude en la matière : sachez ce que vous faites !", 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_META", "Description", "Mettre ci-dessous la description du site", "");
