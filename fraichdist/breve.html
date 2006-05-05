@@ -36,16 +36,16 @@
 
 			<div class="cartouche">
 				[(#LOGO_BREVE||reduire_image{200,200})]
-				<h1 class="titre">[(#TITRE|supprimer_numero)]</h1>
+				<h2 class="titre">[(#TITRE|supprimer_numero)]</h2>
 				<small>[(#DATE|nom_jour) ][(#DATE|affdate)]</small>
 			</div>
 
 			[<div class="texte">(#TEXTE)</div>]
 			[<p class="lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a>.</p>]
-			[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+			[<div class="notes"><h3><:info_notes:></h3>(#NOTES)</div>]
 
-			<!-- Forums -->
-			[<h2 class="invisible"><:Forum:></h2>
+			[(#REM) Forums ]
+			[<h3 class="invisible"><:Forum:></h3>
 			<p class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_breve:></a></p>]
 			<INCLURE{fond=inc-forum}{id_breve}>
 
@@ -53,7 +53,7 @@
 
 		<!-- Menu de navigation laterale -->
 		<div id="navigation">
-			<h1 class="invisible"><:navigation:></h1>
+			<h2 class="invisible"><:navigation:></h2>
 
 			<!-- Menu de navigation par rubriques -->
 			<INCLURE{fond=inc-rubriques}{lang}{id_rubrique}>
@@ -61,7 +61,7 @@
 			<!-- Breves dans la meme rubrique -->
 			<B_breves_rubrique>
 			<div class="breves" >
-				<h2><:autres_breves:></h2>
+				<h3><:autres_breves:></h3>
 				<ul>
 					<BOUCLE_breves_rubrique(BREVES) {id_rubrique} {par date}{inverse}>
 					<li>[(#DATE|affdate_court) : ]<a href="#URL_BREVE"[ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
@@ -73,7 +73,7 @@
 			<!-- Menu de navigation mots-cles -->
 			<B_mots>
 			<div class="divers">
-				<h2><:mots_clefs:></h2>
+				<h3><:mots_clefs:></h3>
 				<ul>
 				<BOUCLE_mots(MOTS) {id_breve} {par titre}>
 					<li><a href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|couper{80}|texte_backend)"]>[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>

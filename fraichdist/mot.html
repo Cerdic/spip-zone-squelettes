@@ -33,7 +33,7 @@
 
 				<div class="cartouche">
 					[(#LOGO_MOT||reduire_image{200,200})]
-					<h1 class="titre">[(#TITRE|supprimer_numero)]</h1>
+					<h2 class="titre">[(#TITRE|supprimer_numero)]</h2>
 				</div>
 
 				[<div class="chapo">(#TEXTE)</div>]
@@ -43,11 +43,11 @@
 				<!-- Articles lies au mot-cle -->
 				<B_articles>
 				<div class="contenurub">
-					<h2 class="invisible"><:articles:></h2>
+					<h3 class="invisible"><:articles:></h3>
 					<ul>
 						<BOUCLE_articles(ARTICLES) {id_mot} {par popularite}{inverse}>
 						<li class="extrait">
-						<h3 class="titre"><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></h3>
+						<h4 class="titre"><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></h4>
 						<small>[(#DATE|affdate)]<B_auteurs>, <:par_auteur:> <BOUCLE_auteurs(AUTEURS) {id_article} {", "}>[(#NOM|supprimer_numero)]</BOUCLE_auteurs></small></li>
 						</BOUCLE_articles>
 					</ul>
@@ -58,7 +58,7 @@
 				<!-- Rubriques liees au mot-cle -->
 				<B_rubriques>
 				<div class="rubriques">
-					<h2><:rubriques:></h2>
+					<h3><:rubriques:></h3>
 					<ul>
 						<BOUCLE_rubriques(RUBRIQUES) {id_mot} {par titre}>
 						<li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
@@ -70,7 +70,7 @@
 				<!-- Breves liees au mot-cle -->
 				<B_breves>
 				<div class="breves">
-					<h2><:breves:></h2>
+					<h3><:breves:></h3>
 					<ul>
 						<BOUCLE_breves(BREVES) {id_mot} {par titre}>
 						<li><a href="#URL_BREVE">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
@@ -82,7 +82,7 @@
 				<!-- Liens des forums -->
 				<B_forums_liens>
 				<div class="forums">
-					<h2><:messages_forum:></h2>
+					<h3><:messages_forum:></h3>
 					<ul>
 						<BOUCLE_forums_liens(FORUMS) {id_mot} {plat} {par date}{inverse}>
 						<li>[(#DATE|affdate_court) : ]<a href="#URL_FORUM">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
@@ -94,7 +94,7 @@
 				<!-- Sites Web lies au mot-cle -->
 				<B_sites>
 				<div class="syndic">
-					<h2><:sites_web:></h2>
+					<h3><:sites_web:></h3>
 					<ul>
 						<BOUCLE_sites(SITES) {id_mot} {par nom_site}>
 						<li><a href="[(#ID_SYNDIC|generer_url_site)]">[(#NOM_SITE|supprimer_numero|textebrut|couper{80})]</a></li>
@@ -105,13 +105,13 @@
 
 				</div>
 
-				[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+				[<div class="notes"><h3><:info_notes:></h3>(#NOTES)</div>]
 
 			</div><!-- end contenu -->
 
 			<!-- Menu de navigation laterale -->
 			<div id="navigation">
-				<h1 class="invisible"><:navigation:></h1>
+				<h2 class="invisible"><:navigation:></h2>
 
 				<!-- Menu de navigation par rubriques -->
 				<INCLURE{fond=inc-rubriques}{lang}>
@@ -119,7 +119,7 @@
 				<!-- Menu de navigation mots-cles : les autres mots cles du meme groupe-->
 				<B_mots_freres>
 				<div class="divers">
-					<BOUCLE_groupe(GROUPES_MOTS) {id_groupe} {doublons}><h2 class="titre"[ title="(#TITRE|textebrut|couper{80}|texte_backend)"]><:mots_clefs_meme_groupe:></h2></BOUCLE_groupe>
+					<BOUCLE_groupe(GROUPES_MOTS) {id_groupe} {doublons}><h3 class="titre"[ title="(#TITRE|textebrut|couper{80}|texte_backend)"]><:mots_clefs_meme_groupe:></h3></BOUCLE_groupe>
 					<ul>
 						<BOUCLE_mots_freres(MOTS) {type} {par titre}>
 						<li><a href="#URL_MOT"[ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
@@ -131,7 +131,7 @@
 				<!-- Menu de navigation mots-cles : les autres groupes avec un lien sur le premier mot du groupe -->
 				<B_groupes_freres>
 				<div class="divers">
-					<h2 class="titre"><:autres_groupes_mots_clefs:></h2>
+					<h3 class="titre"><:autres_groupes_mots_clefs:></h3>
 					<ul>
 						<BOUCLE_groupes_freres(GROUPES_MOTS) {par titre} {doublons}>
 						<BOUCLE_mot_cousin(MOTS) {id_groupe} {par titre} {0,1}>
