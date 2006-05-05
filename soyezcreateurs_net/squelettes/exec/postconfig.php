@@ -158,7 +158,7 @@ function config_site() {
 		create_mot("_Params", "Aff_DatePublication", "Mettre Oui ci-dessous si le site doit afficher la date de publication des articles", "Oui");
 		create_mot("_Params", "Aff_Google_Analytics", "Mettre ci-dessous la partie du code entre les guillemets (extrait du code fournis par Google) : _uacct = \"{{UA-00000-0}}\"; pour bénéficier des services de statistiques de [Google Analytics->http://www.google.com/analytics/fr-FR/].", "");
 		create_mot("_Params", "Aff_Google_Pub", "Mettre l\'identifiant Google dans le Texte explicatif ci-dessous pour voir la pub s\'afficher sur le site (pub-8531732540995542)", "");
-		create_mot("_Params", "Aff_Google_Search", "Mettre l\'identifiant Google dans le Texte explicatif ci-dessous pour voir la zone de recherche s\'afficher sur le site (pub-8531732540995542)", "pub-8531732540995542");
+		create_mot("_Params", "Aff_Google_Search", "Mettre l\'identifiant Google dans le Texte explicatif ci-dessous pour voir la zone de recherche s\'afficher sur le site (pub-8531732540995542)", "");
 		create_mot("_Params", "Aff_Habillage", "Permet de spécifier l\'emplacement de la zone de choix de l\'habillage du site, soit en haut à droite, soit en bas à gauche.\n\nValeurs possible à mettre ci-dessous : Left ou Right", "Left");
 		create_mot("_Params", "AnonymatGlobal", "Mettre Oui ci-dessous si le site ne doit pas afficher le nom des auteurs", "Oui");
 		create_mot("_Params", "BandeauContact", "Mettre ci-dessous le contenu à afficher dans le bandeau de contact (en bas du site). Laisser vide s\'il ne doit pas être affiché.", "");
