@@ -58,7 +58,7 @@
 
             [<div class="chapo">#DEBUT_SURLIGNE(#CHAPO)#FIN_SURLIGNE</div>]
             [<p class="lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|textebrut|couper{80})]})]</a>.</p>]
-            [<div class="texte">#DEBUT_SURLIGNE(#TEXTE)#FIN_SURLIGNE</div>]
+            [<div class="texte">#DEBUT_SURLIGNE(#TEXTE|reduire_image{520,0})#FIN_SURLIGNE</div>]
             [<div class="ps"><h3><:info_ps:></h3>#DEBUT_SURLIGNE(#PS)#FIN_SURLIGNE</div>]
             [<div class="notes"><h3><:info_notes:></h3>#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
 
@@ -66,7 +66,7 @@
             <BOUCLE_afficher_document(DOCUMENTS) {id_document} {mode=document}{extension==(png|jpg|gif)$}>
             <div id="document_actif">
                 [<h4 class="spip">(#TITRE)</h4>]
-                [(#EMBED_DOCUMENT)]
+                [(#EMBED_DOCUMENT||inserer_attribut{alt,[(#TITRE|supprimer_numero|textebrut|couper{80}|texte_backend)]})]
                 [<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
             </div>
             </BOUCLE_afficher_document>
@@ -74,7 +74,7 @@
             <div id="documents_portfolio">
                 <h4 class="invisible"><:info_portfolio:></h4>
                 <BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document}{extension==(png|jpg|gif)$}>
-                [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT#document_actif"[ title="(#TITRE|supprimer_numero|textebrut|couper{80}|texte_backend)"]>(#LOGO_DOCUMENT{0,60})</a>]
+                [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT#document_actif"[ title="(#TITRE|supprimer_numero|textebrut|couper{80}|texte_backend)"]>(#LOGO_DOCUMENT||reduire_image{0,60}|inserer_attribut{alt,[(#TITRE|supprimer_numero|textebrut|couper{80}|texte_backend)]})</a>]
                 </BOUCLE_documents_portfolio>
             </div>
             </B_documents_portfolio>
@@ -85,7 +85,7 @@
                 <h3><:titre_documents_joints:></h3>
                 <ul>
                     <BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {doublons}>
-                    <li>[(#LOGO_DOCUMENT|#URL_DOCUMENT||reduire_image{0,60}|inserer_attribut{alt,[(#TITRE|supprimer_numero|textebrut|couper{60})]})]
+                    <li>[(#LOGO_DOCUMENT|#URL_DOCUMENT||reduire_image{0,60}|inserer_attribut{alt,[(#TITRE|supprimer_numero|textebrut|couper{60}|texte_backend)]})]
                     [<div class="spip_doc_titre">(#TITRE)</div>]
                     [<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]</li>
                     <br class="nettoyeur" />
@@ -113,11 +113,12 @@
                 <//B_signatures_decompte>
 
                 <table summary="<:signatures_petition:>">
+                <caption><:signatures_petition:></caption>
                     <thead>
                         <tr>
-                            <th scope="cols"><:date:></th>
-                            <th scope="cols"><:nom:></th>
-                            <th scope="cols"><:message:></th>
+                            <th scope="col"><:date:></th>
+                            <th scope="col"><:nom:></th>
+                            <th scope="col"><:message:></th>
                         </tr>
                     </thead>
                     <tbody>
