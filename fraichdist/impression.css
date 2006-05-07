@@ -3,17 +3,60 @@
  * Feuille de style specifique a l'impression
  */
  
+/* Elements generiques
+   cf. http://www.alistapart.com/articles/alaprintstyles */
+
+body {
+	font: 10pt Verdana, sans-serif;
+	line-height: 12pt;
+	color: #000;
+	background: #FFF; }
+
+form,
+#entete,
+#pied,
+#navigation,
+.encart,
+.forum-repondre,
+.forum-repondre-message,
+.spip-admin-float {
+	display: none !important; }
+
+body,
+#page,
+#conteneur,
+#contenu {
+	float: none !important;
+	width: auto !important;
+	margin: 0 !important;
+	padding: 0 !important; }
+
+html body pre,
+html body code {
+	vertical-align: baseline;}
+
+.spip_logos {
+	width:0;
+	height:0;
+	display:none; }
+
+
 /* Pour les liens, on desactive les couleurs
    et on affiche l'URL cible a la suite du lien (!) */
 
-a, a:visited, a.spip_in, a.spip_out { 
-	color: #000000;; 
+a { 
+	color: #333;
 	text-decoration: underline; }
 	
-a:after {
+a[href]:after {
 	display: inline;
-	border: 1px solid #520;
-	content: " [" attr(href) "]";}
+	font-size: 80%;
+	content: " (" attr(href) ")";}
+
+a[href^="#"]:after,
+.hierarchie a:after,
+.cartouche a:after {
+	content:''; }
 
 /*
  * Un peu de coquetterie
@@ -33,19 +76,9 @@ a:after {
 	margin-bottom: 0.6em;
 	border-top: 1px solid #707070;}
 
-.invisible { display: none; }
-
-.spip-admin { display: none; }
-
-#contenu { margin: 10px; }
-
-#contenu .titre {
-	margin-top: 0;
-	margin-bottom: 0;}
-
+#contenu .titre,
 #contenu .surtitre {
-	margin-top: 0;
-	margin-bottom: 0;}
+	margin: 0;}
 
 .extrait {
 	margin-top: 0.5em;
@@ -54,17 +87,13 @@ a:after {
 	margin-right: 0;
 	line-height: 1.4em;}
 
+#hierarchie { border:0; }
 
 /*
- * Disposition : on elimine les elements de navigation (display: none)
- * et on choisit un affichage de base pour le principal
+ * Disposition : on choisit un affichage de base pour le principal
  */
 
 #page { margin: 10px; }
-
-#navigation { display: none; }
-
-.encart { display: none; }
 
 .cartouche {
 	margin-top: 0.5em;
@@ -76,18 +105,10 @@ a:after {
 	padding-left: 0;
 	margin-right: 0.8em;}
 
-
 /*
- * Forums
+ * Tableaux : il faut les relooker pour impression
  */
 
-.forum-repondre { display: none; }
-
-.forum-repondre-message { display: none; }
-
-
-/*
- * Boutons admin
- */
- 
-.spip-admin-float { display: none; }
+thead {
+	display: table-header-group;
+	border-bottom: 1px solid; }
