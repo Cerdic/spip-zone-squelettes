@@ -4,7 +4,7 @@
 <head>
 	<title>[(#TITRE|supprimer_numero|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
-	[<meta name="description" content="(#INTRODUCTION|textebrut|couper{150}|attribut_html)" />]
+	[<meta name="description" content="(#INTRODUCTION|couper{150}|attribut_html)" />]
 	<meta name="generator" content="SPIP" />
 
 	<!-- Feuille de styles CSS pour l'affichage du site sur ecran -->
@@ -26,7 +26,7 @@
     <INCLURE{fond=inc-entete}{lang}>
 
     <!-- Fil d'Ariane -->
-    <div id="hierarchie"><a href="#URL_SITE_SPIP"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></BOUCLE_ariane>[ &gt; (#TITRE|supprimer_numero|textebrut|couper{80})]</div>
+    <div id="hierarchie"><a href="#URL_SITE_SPIP"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane>[ &gt; (#TITRE|supprimer_numero|couper{80})]</div>
 
 
     <div id="conteneur">
@@ -51,7 +51,7 @@
                         <ul>
 	                        <li>[(#LANG|traduire_nom_langue)]</li>
                             <BOUCLE_traductions(ARTICLES){traduction}{exclus}>
-	                        <li><a[ href="(#URL_ARTICLE|url_absolue)"] rel="alternate" hreflang="#LANG"[ title="(#TITRE|supprimer_numero|textebrut|couper{80}|texte_backend)"]><span lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">[(#LANG|traduire_nom_langue)]</span></a></li>
+	                        <li><a[ href="(#URL_ARTICLE|url_absolue)"] rel="alternate" hreflang="#LANG"[ title="(#TITRE|supprimer_numero|couper{80}|texte_backend)"]><span lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">[(#LANG|traduire_nom_langue)]</span></a></li>
                             </BOUCLE_traductions>
                         </ul>
                     </div>
@@ -61,7 +61,7 @@
             <br class="nettoyeur" />
 
             [<div class="chapo">#DEBUT_SURLIGNE(#CHAPO)#FIN_SURLIGNE</div>]
-            [<p class="lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|textebrut|couper{80})]})]</a></p>]
+            [<p class="lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
             [<div class="texte">#DEBUT_SURLIGNE(#TEXTE|lignes_longues|reduire_image{520,0})#FIN_SURLIGNE</div>]
             [<div class="ps"><h3><:info_ps:></h3>#DEBUT_SURLIGNE(#PS)#FIN_SURLIGNE</div>]
 
@@ -69,7 +69,7 @@
             <BOUCLE_afficher_document(DOCUMENTS) {id_document} {mode=document}{extension==(png|jpg|gif)$}>
             <div id="document_actif">
                 [<h3 class="spip">(#TITRE)</h3>]
-                [(#EMBED_DOCUMENT||inserer_attribut{alt,[(#TITRE|supprimer_numero|textebrut|couper{80}|texte_backend)]})]
+                [(#EMBED_DOCUMENT||inserer_attribut{alt,[(#TITRE|supprimer_numero|couper{80}|texte_backend)]})]
                 [<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
             </div>
             </BOUCLE_afficher_document>
@@ -77,7 +77,7 @@
             <div id="documents_portfolio">
                 <h3 class="invisible"><:info_portfolio:></h3>
                 <BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document}{extension==(png|jpg|gif)$}>
-                [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT#document_actif"[ title="(#TITRE|supprimer_numero|textebrut|couper{80}|texte_backend)"]>(#LOGO_DOCUMENT||reduire_image{0,60}|inserer_attribut{alt,[(#TITRE|supprimer_numero|textebrut|couper{80}|texte_backend)]})</a>]
+                [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT#document_actif"[ title="(#TITRE|supprimer_numero|couper{80}|texte_backend)"]>(#LOGO_DOCUMENT||reduire_image{0,60}|inserer_attribut{alt,[(#TITRE|supprimer_numero|couper{80}|texte_backend)]})</a>]
                 </BOUCLE_documents_portfolio>
             </div>
             </B_documents_portfolio>
@@ -88,7 +88,7 @@
                 <h3><:titre_documents_joints:></h3>
                 <ul>
                     <BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {doublons}>
-                    <li>[(#LOGO_DOCUMENT|#URL_DOCUMENT||reduire_image{0,60}|inserer_attribut{alt,[(#TITRE|supprimer_numero|textebrut|couper{60}|texte_backend)]})]
+                    <li>[(#LOGO_DOCUMENT|#URL_DOCUMENT||reduire_image{0,60}|inserer_attribut{alt,[(#TITRE|supprimer_numero|couper{60}|texte_backend)]})]
                     [<div class="spip_doc_titre">(#TITRE)</div>]
                     [<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]</li>
                     <br class="nettoyeur" />
@@ -129,7 +129,7 @@
                         <BOUCLE_signatures(SIGNATURES) {id_article} {par date}{inverse} {debut_signatures,30}>
                         <tr>
                             <td class="signature-date">[(#DATE|affdate)]</td>
-                            <td class="signature-nom">#NOM[<br /><a href="(#URL_SITE)" class="spip_out"><small>[(#NOM_SITE|sinon{[(#URL_SITE|textebrut|couper{80})]})</small>]</a>]</td>
+                            <td class="signature-nom">#NOM[<br /><a href="(#URL_SITE)" class="spip_out"><small>[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})</small>]</a>]</td>
                             [<td class="signature-message">(#MESSAGE|PtoBR)</td>]
                         </tr>
                         </BOUCLE_signatures>
@@ -161,7 +161,7 @@
                 <h3><a href="[(#URL_RUBRIQUE|supprimer_numero)]"><:meme_rubrique:></a></h3>
                 <ul>
                     <BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par date}{inverse}>
-                    <li><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
+                    <li><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero|couper{80})]</a></li>
                     </BOUCLE_articles_rubrique>
                 </ul>
             </div>
@@ -173,7 +173,7 @@
             <h3><:mots_clefs:></h3>
             <ul>
                 <BOUCLE_mots(MOTS) {id_article} {par titre}>
-                <li><a href="#URL_MOT">[(#TITRE|supprimer_numero|textebrut|couper{80})]</a></li>
+                <li><a href="#URL_MOT">[(#TITRE|supprimer_numero|couper{80})]</a></li>
                 </BOUCLE_mots>
             </ul>
             </div>
