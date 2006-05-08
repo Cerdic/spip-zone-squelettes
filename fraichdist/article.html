@@ -63,19 +63,19 @@
             [<div class="chapo">#DEBUT_SURLIGNE(#CHAPO)#FIN_SURLIGNE</div>]
             [<p class="lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|textebrut|couper{80})]})]</a></p>]
             [<div class="texte">#DEBUT_SURLIGNE(#TEXTE|lignes_longues|reduire_image{520,0})#FIN_SURLIGNE</div>]
-            [<div class="ps"><h3><:info_ps:></h3>#DEBUT_SURLIGNE(#PS)#FIN_SURLIGNE</div>]
+            [<div class="ps"><h3 class="titre-discret"><:info_ps:></h3>#DEBUT_SURLIGNE(#PS)#FIN_SURLIGNE</div>]
 
             [(#REM) Portfolio : album d'images ]
             <BOUCLE_afficher_document(DOCUMENTS) {id_document} {mode=document}{extension==(png|jpg|gif)$}>
             <div id="document_actif">
-                [<h4 class="spip">(#TITRE)</h4>]
+                [<h3 class="spip">(#TITRE)</h3>]
                 [(#EMBED_DOCUMENT||inserer_attribut{alt,[(#TITRE|supprimer_numero|textebrut|couper{80}|texte_backend)]})]
                 [<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
             </div>
             </BOUCLE_afficher_document>
             <B_documents_portfolio>
             <div id="documents_portfolio">
-                <h4 class="invisible"><:info_portfolio:></h4>
+                <h3 class="invisible"><:info_portfolio:></h3>
                 <BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document}{extension==(png|jpg|gif)$}>
                 [<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT#document_actif"[ title="(#TITRE|supprimer_numero|textebrut|couper{80}|texte_backend)"]>(#LOGO_DOCUMENT||reduire_image{0,60}|inserer_attribut{alt,[(#TITRE|supprimer_numero|textebrut|couper{80}|texte_backend)]})</a>]
                 </BOUCLE_documents_portfolio>
@@ -85,7 +85,7 @@
             [(#REM) Autres documents joints a l'article ]
             <B_documents_joints>
             <div id="documents_joints">
-                <h3><:titre_documents_joints:></h3>
+                <h3 class="titre-discret"><:titre_documents_joints:></h3>
                 <ul>
                     <BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {doublons}>
                     <li>[(#LOGO_DOCUMENT|#URL_DOCUMENT||reduire_image{0,60}|inserer_attribut{alt,[(#TITRE|supprimer_numero|textebrut|couper{60}|texte_backend)]})]
@@ -97,7 +97,7 @@
             </div>
             </B_documents_joints>
 
-            [<div class="notes"><h3><:info_notes:></h3>#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
+            [<div class="notes"><h3 class="titre-discret"><:info_notes:></h3>#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
 
             [(#REM) Signer la petition ]
             [<div class="formulaire_spip">(#FORMULAIRE_SIGNATURE)</div>]
@@ -141,7 +141,7 @@
 
             [(#REM) Forums ]
             [<h3 class="invisible"><:Forum:></h3>
-            <p class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a></p>]
+            <p class="titre-discret repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a></p>]
             <INCLURE{fond=inc-forum}{id_article}>
 
 
