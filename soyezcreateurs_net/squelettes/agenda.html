@@ -33,7 +33,7 @@ $events = array();
 		$res="";
 		ereg("($genre)", '<BOUCLE_genre(MOTS){id_article}{type=CategorieAgenda}>[(#TITRE|texte_script)]</BOUCLE_genre>', $res);
 		if (($genre=='<:pyrat:tout:>') || ($genre==$res[1])) {
-			$events[$dateEvt][] = array('rub' => #ID_RUBRIQUE, 'link' => '#URL_ARTICLE', 'title' => '[(#TITRE|texte_script)]', 'logo' => '[<img src="(#LOGO_ARTICLE_RUBRIQUE||reduire_image{32,32}|extraire_attribut{src})" style="float:right;" alt="[(#DESCRIPTIF|attribut_html|texte_script)]"/>]', 'genres' => '<B_Genres><em>(<BOUCLE_Genres(MOTS){id_article}{type=CategorieAgenda}{", "}><a href="#URL_MOT" title="<:pyrat:savoirpluscritere:>: [(#TITRE|attribut_html|texte_script)]">[(#TITRE|texte_script)]</a></BOUCLE_Genres>)</em></B_Genres>', 'titre_rub' => '<B_TitreRub><strong><BOUCLE_CouleurRub(MOTS){id_rubrique}{type=_CouleurRubrique}> style="background-color:#[(#TEXTE|couleur_eclaircir)];"></BOUCLE_CouleurRub><BOUCLE_TitreRub(RUBRIQUES){id_rubrique}>[(#TITRE|supprimer_numero)</strong>&nbsp;: ]</BOUCLE_TitreRub>');
+			$events[$dateEvt][] = array('rub' => #ID_RUBRIQUE, 'link' => '#URL_ARTICLE', 'title' => '[(#TITRE|texte_script)]', 'logo' => '[<img src="(#LOGO_ARTICLE_RUBRIQUE_DIRECT||reduire_image{32,32}|extraire_attribut{src})" style="float:right;" alt="[(#DESCRIPTIF|attribut_html|texte_script)]"/>]', 'genres' => '<B_Genres><em>(<BOUCLE_Genres(MOTS){id_article}{type=CategorieAgenda}{", "}><a href="#URL_MOT" title="<:pyrat:savoirpluscritere:>: [(#TITRE|attribut_html|texte_script)]">[(#TITRE|texte_script)]</a></BOUCLE_Genres>)</em></B_Genres>', 'titre_rub' => '<B_TitreRub><strong><BOUCLE_CouleurRub(MOTS){id_rubrique}{type=_CouleurRubrique}> style="background-color:#[(#TEXTE|couleur_eclaircir)];"></BOUCLE_CouleurRub><BOUCLE_TitreRub(RUBRIQUES){id_rubrique}>[(#TITRE|supprimer_numero)</strong>&nbsp;: ]</BOUCLE_TitreRub>');
 		}
 	}
 </BOUCLE_evts_com>
@@ -55,7 +55,7 @@ $events = array();
 
 <!-- Une : contenu de la rubrique -->
 <div class="cartouche">
-<h1>[<img class="logo_rubrique" src="(#LOGO_RUBRIQUE||reduire_image{64,64}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />]
+<h1>[<img class="logo_rubrique" src="(#LOGO_RUBRIQUE_DIRECT||reduire_image{64,64}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />]
 [(#TITRE|supprimer_numero)]<?php echo ' - '.$months[intval($M)].' '.$Y; ?></h1>
 </div>
 
@@ -66,7 +66,7 @@ $events = array();
 <!-- Les themes avec recursivite -->
 	<ul>
 		<BOUCLE_sous_rubriques1(RUBRIQUES){id_parent}{par titre}>
-			<li[ style="list-style-image: url((#LOGO_RUBRIQUE||reduire_image{9,9}|extraire_attribut{src}));"]>
+			<li[ style="list-style-image: url((#LOGO_RUBRIQUE_DIRECT||reduire_image{9,9}|extraire_attribut{src}));"]>
 			<?php if ($jp_rubrique != [(#ID_RUBRIQUE|texte_script)]) { ?>
 			<a href="#URL_RUBRIQUE?date_ev=[(#ENV{date_ev,[(#ENV{date})]}|annee)]-01-01[&amp;genre=(#ENV{genre,''}|urlencode)]" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])"><?php } ?>[(#TITRE|Supprimer_numero)]<?php if ($jp_rubrique != [(#ID_RUBRIQUE|texte_script)]) { ?></a><?php } ?>
 			<BOUCLE_RecursionRubriques(BOUCLE_sous_rubriques1)></BOUCLE_RecursionRubriques>
@@ -130,7 +130,7 @@ $events = array();
 <caption>
 		<?php
 				echo $months[intval($M)].'&nbsp;';
-				echo '<a href="#URL_RUBRIQUE?date_ev='.$Y.'-01-01&amp;genre='.urlencode($genre).'" title="<:pyrat:voirdetailannee:> '.$Y.'">'.$Y.'</a>';
+				echo '<a href="#URL_RUBRIQUE?date_ev='.$Y.'-01-01&amp;genre='.urlencode((($genre=='<:pyrat:tout:>')?'':$genre)).'" title="<:pyrat:voirdetailannee:> '.$Y.'">'.$Y.'</a>';
 		?>
 </caption>
 <!-- Fabrication du tableau : les donnees -->
