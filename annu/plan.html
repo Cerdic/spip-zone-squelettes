@@ -24,8 +24,11 @@
         <!-- plan -->
         <B_rubriques><ul>
         <BOUCLE_rubriques(RUBRIQUES) {id_parent} {par num titre}>
-          <li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
-              <BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+          <BOUCLE_isspecial(MOTS){id_mot=51}{id_rubrique}> </BOUCLE_isspecial>
+          [(#REM)rubrique special auteur]<BOUCLE_findcv(ARTICLES){id_rubrique}{0,1}><li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></BOUCLE_findcv>
+          </B_isspecial>
+          [(#REM)rubrique courant]<li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+          <//B_isspecial><BOUCLE_sous_rubriques(BOUCLE_rubriques)> </BOUCLE_sous_rubriques>
           </li>
         </BOUCLE_rubriques></ul></B_rubriques>
         <!-- plan end -->

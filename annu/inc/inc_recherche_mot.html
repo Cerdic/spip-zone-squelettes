@@ -1,0 +1,43 @@
+       <script type="text/javascript"> 
+       <!--           
+            function makeit() {  // seralize checkbox by erational.org
+              document.selector.pattern.value = "";              
+              var ElNum = document.selector.elements.length;
+              for (var i=0;i<ElNum;i++){ // scan form elements to get checkbox
+                   if (document.selector.elements[i].type=="checkbox") { 
+                        if (document.selector.elements[i].checked) {
+                            document.selector.pattern.value += document.selector.elements[i].value+"|";                            
+                        }
+                   }
+              }               
+              return true;                                               
+            } 
+         //-->                    
+        </script>
+        <h1 class="bg">Rechercher un professionel de SPIP</h1>
+        
+        <h2>Par critères</h2>
+        <div style="border:1px #666 dashed;padding:5px 12px"> 
+             <form method="post" action="spip.php?page=recherche_mot" name="selector" onsubmit="return makeit(this)">             
+                <div style="width:40%; float:left;">
+                     <strong>R&eacute;gions:</strong><br />
+                     <BOUCLE_list_reg(MOTS){id_groupe=9}{par titre}>
+                     <input type='radio' name='region' value='#ID_MOT' />#TITRE<br /></BOUCLE_list_reg>
+                </div>     
+                 <div style="width:40%; float:left;">
+                     <strong>Comp&eacute;tences:</strong><br />
+                     <BOUCLE_list_comp(MOTS){id_groupe=10}{par titre}>
+                     <input type='checkbox' value='#ID_MOT' />#TITRE<br /></BOUCLE_list_comp>
+                 </div> 
+                 <hr /> 
+                 <input type="hidden" name="page" value="recherche_mot" />  
+                 <input type="hidden" name="pattern" value="" size="" />   
+                 <input type='submit' value='chercher un Pro2SPIP' />       
+            </form>      
+        </div>
+        
+        [<h2>Par mots clés</h2>
+        <div style="border:1px #666 dashed;padding:5px 12px"> 
+        <p>Entrez les mots, compétences que vous recherchez:</p>
+        (#FORMULAIRE_RECHERCHE)    
+        </div>]

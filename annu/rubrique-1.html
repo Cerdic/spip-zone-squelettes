@@ -26,31 +26,10 @@
          [<div style='margin:10px 0 10px 0'>(#TEXTE)</div>]
              
          <!-- formu recherche -->   
-          <div style="border:1px #666 dashed;padding:5px 12px">      
-             <h1 class="bg">Rechercher</h1>
-             <form method="get" action="#SELF">
-             <p>(formulaire non actif actuellement pour chercher un profil particulier, ajout un champs libre ?)</p>
-                <div style="width:40%; float:left;">
-                     <strong>R&eacute;gions:</strong><br />
-                     <BOUCLE_list_reg(MOTS){id_groupe=9}{par titre}>
-                     <input type='checkbox' value='#ID_MOT' />#TITRE<br /></BOUCLE_list_reg>
-                </div>     
-                 <div style="width:40%; float:left;">
-                     <strong>Comp&eacute;tences:</strong><br />
-                     <BOUCLE_list_comp(MOTS){id_groupe=10}{par titre}>
-                     <input type='checkbox' value='#ID_MOT' />#TITRE<br /></BOUCLE_list_comp>
-                 </div> 
-                 <hr />    
-                 <input type='submit' value='chercher un Pro2SPIP' />
-       
-            </form>      
-        </div>
-         
-
-         
+         <INCLURE{fond=inc/inc_recherche_mot}{lang}>
               
          <!-- article list -->
-         <BOUCLE_rub_rub(RUBRIQUES){id_parent}{par num titre}>        
+         <BOUCLE_rub_rub(RUBRIQUES){id_parent}{par num titre}{0,0}>        
             [<h1>(#TITRE|supprimer_numero)</h1>]
             [(#TEXTE|couper{400}) <br />]
             <BOUCLE_one_shot(ARTICLES){id_rubrique}{0,1}><a href="#URL_ARTICLE">Lire la suite...</a></BOUCLE_one_shot>            

@@ -1,0 +1,136 @@
+#CACHE{7200}
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+  <title>#NOM_SITE_SPIP - <:resultats_recherche:></title>   
+  <INCLURE{fond=inc/inc_head}{lang}>
+</head>
+
+<body>
+<div id="page">
+
+  <!-- main -->   
+  <div id="main">    
+
+    <!-- main: content -->     
+    <div id="content">     
+      <INCLURE{fond=inc/inc_navbar}{id_rubrique=1}{lang}>  
+         
+       <!-- post start -->
+       <div id="post">
+         <INCLURE{fond=inc/inc_loupe}{lang}> 
+        
+        <!-- rubrique desc -->
+        <h1>Recherche par critères</h1>
+       
+            <!-- recherche: articles -->
+            <?php 
+            // recherche croisée des mots cles par erational
+            //
+            // solution alternative:
+            // http://www.spip-contrib.net/Recherche-multi-critere-par-mots
+            // http://www.netdeveloppeur.com/tutoriaux-et-astuces-spip/spip-recherche-multicriteres-article34.html 
+                       
+            function array_included($array1, $array2) {  // if all value from $array1 included in $array2                 
+                foreach ($array1 as $k=>$val) {
+                      if (!in_array($val,$array2)) return false;
+                } 
+                return true;
+            }
+                        
+            if (isset($_POST['pattern'])) {     // on recupere le bouquet de mots (construit via la javascript)
+                $pattern = $_POST['pattern'];
+                $pattern = explode("|", $pattern);
+                $resultat = 0;                
+            ?>[(#REM) on boucle sur le critere region]<div class="search_advanced">
+            <BOUCLE_art(RUBRIQUES){id_mot=#ENV{region}}><B_mot><?php $pattern_current = ""; ?>
+                  <BOUCLE_mot(MOTS){id_rubrique}> <?php // on recupere le bouquet de la rubrique courante
+                  $pattern_current .= "#ID_MOT|";
+                  ?></BOUCLE_mot><?php                       
+                  $pattern_current = explode("|", $pattern_current);   
+                  if (array_included($pattern,$pattern_current)) { //  si le bouquet de la requete est inclus ds le bouquet courant, c'est ok !
+                      $resultat++;                                           
+                  ?>[<h1>(#TITRE|supprimer_numero)</h1>]
+                    [(#TEXTE|couper{400}) <br />]
+                    <BOUCLE_one_shot(ARTICLES){id_rubrique}{0,1}><a href="#URL_ARTICLE">Lire la suite...</a></BOUCLE_one_shot>
+                    <hr style="margin-bottom:20px" />                  
+                  <?php } ?></B_mot> 
+            </BOUCLE_art></B_art>[(#REM) pas region, on recherche sur tous l'annuaire ...]<BOUCLE_art2(RUBRIQUES){id_parent=1}><B_mot2><?php $pattern_current = ""; ?>
+                  <BOUCLE_mot2(MOTS){id_rubrique}> <?php // on recupere le bouquet de la rubrique courante
+                  $pattern_current .= "#ID_MOT|";
+                  ?></BOUCLE_mot2><?php                       
+                  $pattern_current = explode("|", $pattern_current);   
+                  if (array_included($pattern,$pattern_current)) { //  si le bouquet de la requete est inclus ds le bouquet courant, c'est ok !
+                      $resultat++;                                           
+                  ?>[<h1>(#TITRE|supprimer_numero)</h1>]
+                    [(#TEXTE|couper{400}) <br />]
+                    <BOUCLE_one_shot2(ARTICLES){id_rubrique}{0,1}><a href="#URL_ARTICLE">Lire la suite...</a></BOUCLE_one_shot2>
+                    <hr style="margin-bottom:20px" />                  
+                  <?php } ?></B_mot2></BOUCLE_art2>
+            <//B_art>
+            <?php 
+              if (!empty($resultat)) echo "<div id='congratulation'>$resultat résultat(s) sur la recherche</div></div>";
+                                else echo "<div id='warning'>$resultat résultat(s) sur la recherche</div></div>";
+            } ?> 
+            
+            <!-- formu recherche -->   
+            <script type="text/javascript"> 
+       <!--           
+            function makeit() {  // seralize checkbox by erational.org
+              document.selector.pattern.value = "";              
+              var ElNum = document.selector.elements.length;
+              for (var i=0;i<ElNum;i++){ // scan form elements to get checkbox
+                   if (document.selector.elements[i].type=="checkbox") { 
+                        if (document.selector.elements[i].checked) {
+                            document.selector.pattern.value += document.selector.elements[i].value+"|";                            
+                        }
+                   }
+              }               
+              return true;                                               
+            } 
+         //-->                    
+        </script>        
+        
+        <h2>Effectuer une nouvelle recherche par critères</h2>
+        <div style="border:1px #666 dashed;padding:5px 12px"> 
+             <form method="post" action="spip.php?page=recherche_mot" name="selector" onsubmit="return makeit(this)">             
+                <div style="width:40%; float:left;">
+                     <strong>R&eacute;gions:</strong><br />
+                     <BOUCLE_list_reg(MOTS){id_groupe=9}{par titre}>
+                     <input type='radio' name='region' value='#ID_MOT' <?php if (isset($_POST["region"])) { if ($_POST["region"]=='#ID_MOT') echo "checked='checked'";} ?>/>#TITRE<br /></BOUCLE_list_reg>
+                </div>     
+                 <div style="width:40%; float:left;">
+                     <strong>Comp&eacute;tences:</strong><br />
+                     <BOUCLE_list_comp(MOTS){id_groupe=10}{par titre}>
+                     <input type='checkbox' value='#ID_MOT' name="thema#ID_MOT" <?php if (isset($_POST["thema#ID_MOT"])) echo "checked='checked'"; ?>/>#TITRE<br /></BOUCLE_list_comp>
+                 </div> 
+                 <hr /> 
+                 <input type="hidden" name="page" value="recherche_mot" />  
+                 <input type="hidden" name="pattern" value="" size="" />   
+                 <input type='submit' value='chercher un Pro2SPIP' />       
+            </form>      
+        </div>
+        
+        [<h2>Par mots clés</h2>
+        <div style="border:1px #666 dashed;padding:5px 12px"> 
+        <p>Entrez les mots, compétences que vous recherchez:</p>
+        (#FORMULAIRE_RECHERCHE)    
+        </div>]
+            
+            
+            
+
+        
+       </div>
+       <!-- post end -->
+       
+       <INCLURE{fond=inc/inc_footer}{lang}{id_rubrique=1}>
+       
+    </div>
+    <!-- main: content end -->
+    
+  </div>
+  <!-- main end --> 
+
+</div>
+</body>
+</html>

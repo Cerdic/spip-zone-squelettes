@@ -1,0 +1,57 @@
+#CACHE{7200}
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+  <title>#NOM_SITE_SPIP - <:resultats_recherche:></title>   
+  <INCLURE{fond=inc/inc_head}{lang}>
+</head>
+
+<body>
+<div id="page">
+
+  <!-- main -->   
+  <div id="main">    
+
+    <!-- main: content -->     
+    <div id="content">     
+      <INCLURE{fond=inc/inc_navbar}{id_rubrique=1}{lang}>  
+         
+       <!-- post start -->
+       <div id="post">
+         <INCLURE{fond=inc/inc_loupe}{lang}> 
+         <!-- rubrique desc -->
+        <h1><:resultats_recherche:></h1>
+         [(#FORMULAIRE_RECHERCHE)] 
+        
+
+            <!-- recherche: articles -->
+            <div class="pagination">
+              <BOUCLE_art_rub_pagine(ARTICLES){recherche}{par points}{inverse}> </BOUCLE_art_rub_pagine>
+              [<div id='congratulation'><i>(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|<{2}|?{<:article_disponible:>,<:articles_disponibles:>})]</i> pour <span style="color:#f60">[(#RECHERCHE)]</span> [- <:pagination:> (#PAGINATION{debut_page,#ENV{pas,10}})]</div>]</B_art_rub_pagine>
+              [(#RECHERCHE|?{<div id='warning'><:aucun_resultat:> <span style='color:#f60'>#RECHERCHE</span></div>,<:indiquer_recherche:>})]
+              <//B_art_rub_pagine>             
+            </div>
+            
+            <BOUCLE_art_rub(ARTICLES){recherche}{par points}{inverse}{#ENV{debut_page},#ENV{pas,10}}>
+               [<h1>(#TITRE|supprimer_numero)</h1>]
+               [(#TEXTE|couper{400}) <br />]
+               <a href="#URL_ARTICLE">Lire la suite...</a>
+               <hr style="margin-bottom:20px" /> </BOUCLE_art_rub> 
+            <BOUCLE_art_rub_pagine2(ARTICLES){recherche}{par date}> </BOUCLE_art_rub_pagine2>
+            [<div class="pagination"><i>(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|<{2}|?{<:article_disponible:>,<:articles_disponibles:>})]</i> pour <span style="color:#f60">[(#RECHERCHE)]</span> [- <:pagination:> (#PAGINATION{debut_page,#ENV{pas,10}})]</div>]</B_art_rub_pagine2>
+                 
+
+        
+       </div>
+       <!-- post end -->
+       
+       <INCLURE{fond=inc/inc_footer}{lang}{id_rubrique=1}>
+       
+    </div>
+    <!-- main: content end -->
+    
+  </div>
+  <!-- main end --> 
+
+</div>
+</body>
+</html>
