@@ -506,19 +506,16 @@ function balise_POPULARITE_dist ($p) {
 //
 function calculer_balise_logo ($p) {
 
-	eregi("^LOGO_([A-Z]+)(_.*)?$", $p->nom_champ, $regs);
-	$type_objet = $regs[1];
-	$suite_logo = $regs[2];
-	
-	// cas #LOGO_?_DIRECT
-	if ($suite_logo == '_DIRECT') {
-		$suite_logo = '';
-		$logo_hierarchie = 0;
-	} else if (strpos($suite_logo, '_DIRECT')) {
-		$suite_logo = str_replace('_DIRECT', '', $suite_logo);
+	// cas #LOGO_?_RUBRIQUE_COURANTE_?
+	$p_nom_champ = $p->nom_champ;
+	if (strpos($p_nom_champ, 'RUBRIQUE_COURANTE')) {
+		$p_nom_champ = str_replace('_COURANTE', '', $p_nom_champ);
 		$logo_hierarchie = 0;
 	} else $logo_hierarchie = 1;
-	
+
+	eregi("^LOGO_([A-Z]+)(_.*)?$", $p_nom_champ, $regs);
+	$type_objet = $regs[1];
+	$suite_logo = $regs[2];
 
 	// cas de #LOGO_SITE_SPIP
 	if (ereg("^_SPIP(.*)$", $suite_logo, $regs)) {
