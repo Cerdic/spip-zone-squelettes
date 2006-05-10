@@ -1,0 +1,17 @@
+[(#REM) Articles des sites syndiques ]
+<BOUCLE_sites(SITES){lang ?}{id_rubrique ?}{id_mot ?}>
+<BOUCLE_syndic(SYNDIC_ARTICLES){id_syndic}{age<180}{!par date}{0,3}>
+	<item>
+		<title>[(#TITRE|supprimer_numero|texte_backend)]</title>
+		<link>[(#URL_ARTICLE|url_absolue)]</link>
+		[<guid isPermaLink="true">(#URL_ARTICLE|url_absolue)</guid>]
+		[<dc:date>(#DATE|date_iso)</dc:date>]
+		<dc:format>text/html</dc:format>
+		[<dc:language>(#LANG)</dc:language>]
+		[<dc:creator>(#LESAUTEURS|supprimer_tags|texte_backend)</dc:creator>]
+		[<category domain="#URL_SITE">(#NOM_SITE|texte_backend)</category>]
+		[<dc:subject>(#TAGS|texte_backend)</dc:subject>]
+		<description>[(#DESCRIPTIF|texte_backend)]</description>
+	</item>
+</BOUCLE_syndic>
+</BOUCLE_sites>
