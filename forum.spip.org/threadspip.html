@@ -14,6 +14,7 @@
 <title>[#NOM_SITE_SPIP] FORUMS - <BOUCLE_titre(FORUMS){id_forum}>[(#TITRE|supprimer_tags)]</BOUCLE_titre></title>
 <meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
 <!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
+<link rel="stylesheet" href="#CHEMIN{spip_style.css}" type="text/css" />
 <link rel="stylesheet" href="spip_net_style.css" type="text/css" />
 <link rel="stylesheet" href="#DOSSIER_SQUELETTE/forum.css" type="text/css" />
 <link rel="stylesheet" href="#DOSSIER_SQUELETTE/javascripts/ajaxTagMachine.css" type="text/css" media="screen"/>
@@ -117,41 +118,6 @@
 				</form>
 
 
-<br /><br /><a name="vote"></a>
-<?php
-	 // valider un vote (cf. forum.spip.org/vote.php)
-	a_vote();
-	if ($_POST['var_vote'])
-	  //echo "Merci !";
-	  echo "<:merci:> !";
-	else if (!strstr("/".$_COOKIE['spip_votes']."/", "/#ID_FORUM/")) {
-		?>
-			<div style='text-align: #LANG_LEFT;'>
-			  <:page_utile:>
-			  <br />
-			[(#ID_FORUM|afficher_vote{1,<:utile:>})]
-			[(#ID_FORUM|afficher_vote{-1,<:inutile:>})]
-			</div>
-		<?php
-	} else {
-		# echo "deja vote sur cette page";
-	}
-?>
-
-<div id="tagcloud">
-<h3><a name="tag">Tags</a></h3>
-<p id="explication">
-<:info_tag_forum:>
-</p>
-#FORMULAIRE_TAG_FORUM
-<B_mots>
-<div>
-<BOUCLE_mots(MOTS) {id_forum}>
-<a href="[(#ID_MOT|ajouter_mot{seul,tag.php3})]">#TITRE</a>
-</BOUCLE_mots>
-</div>
-</B_mots>
-</div>
 
 <td width="50"><td width="500">
 	<B_reponses>

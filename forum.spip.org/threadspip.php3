@@ -6,7 +6,7 @@
 $fond = "threadspip";
 $delais = 12 * 3600;
 $afficher_texte = "non";
-$afficher_groupe[] = 6;
+#$afficher_groupe[] = 6;
 include ("inc-public.php3");
 
 
