@@ -60,3 +60,4 @@ svn://zone.spip.org/spip-zone/_squelettes_/soyezcreateurs_net/tags/e-delib_squel
 svn://zone.spip.org/spip-zone/_squelettes_/soyezcreateurs_net/tags/e-delib_squelettes_tag-002
 .
 et on test le dossier local
+puis svn ci
