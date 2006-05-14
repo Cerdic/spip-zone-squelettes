@@ -1,31 +1,30 @@
-[(#REM) Commentaires des forums ]
-<BOUCLE_commentaires(FORUMS){lang ?}{id_rubrique ?}{id_mot ?}{plat}{age<180}{par date}{inverse}{0,10}>
-	<item>
-		<title>[(#TITRE|supprimer_numero|texte_backend)]</title>
-		<link>[(#URL_FORUM|url_absolue)]</link>
-		[<guid isPermaLink="true">(#URL_FORUM|url_absolue)</guid>]
-		[<dc:date>(#DATE|date_iso)</dc:date>]
-		<dc:format>text/html</dc:format>
-		[<dc:language>(#LANG)</dc:language>]
-		[<dc:creator>(#NOM|supprimer_numero|supprimer_tags|texte_backend)</dc:creator>]
+<BOUCLE_commentaires(FORUMS){id_forum}>
+<item>
+	<title>[(#TITRE|supprimer_numero|texte_backend)]</title>
+	<link>[(#URL_FORUM|url_absolue)]</link>
+	[<guid isPermaLink="true">(#URL_FORUM|url_absolue)</guid>]
+	[<dc:date>(#DATE|date_iso)</dc:date>]
+	<dc:format>text/html</dc:format>
+	[<dc:language>(#LANG)</dc:language>]
+	[<dc:creator>(#NOM|supprimer_numero|supprimer_tags|texte_backend)</dc:creator>]
 
-		[(#REM) Le bloc qui suit diffuse diffuse la rubrique et les mots-cles a la mode RSS ]
-		<BOUCLE_rubrique_forum_rss(RUBRIQUES){id_rubrique}>[<category[ domain="(#URL_RUBRIQUE|url_absolue)"]>(#TITRE|supprimer_numero|texte_backend)</category>]</BOUCLE_rubrique_forum_rss>
-		<BOUCLE_mots_forum_rss(MOTS){id_forum}>
-		[<dc:subject>(#TITRE|supprimer_numero|texte_backend)</dc:subject>]</BOUCLE_mots_forum_rss>
+	[(#REM) Le bloc qui suit diffuse diffuse la rubrique et les mots-cles a la mode RSS ]
+	<BOUCLE_rubrique_forum_rss(RUBRIQUES){id_rubrique}>[<category[ domain="(#URL_RUBRIQUE|url_absolue)"]>(#TITRE|supprimer_numero|texte_backend)</category>]</BOUCLE_rubrique_forum_rss>
+	<BOUCLE_mots_forum_rss(MOTS){id_forum}>
+	[<dc:subject>(#TITRE|supprimer_numero|texte_backend)</dc:subject>]</BOUCLE_mots_forum_rss>
 
-		<description>
-		[(#TEXTE|texte_backend)]
+	<description>
+	[(#TEXTE|texte_backend)]
 
-		[(#REM) Le bloc qui suit diffuse la rubrique et les mots-cles sous forme de "microformats" ]
-		<BOUCLE_rubrique_forum_mf(RUBRIQUES){id_rubrique}>-
-		[&lt;a href="[(#URL_RUBRIQUE|url_absolue)]" rel="directory"&gt;(#TITRE|supprimer_numero|texte_backend)&lt;/a&gt;]
-		</BOUCLE_rubrique_forum_mf>
-		<B_mots_forum_mf>/ <BOUCLE_mots_forum_mf(MOTS){id_forum}{", "}>
-		[&lt;a href="[(#URL_MOT|url_absolue)]" rel="tag"&gt;(#TITRE|supprimer_numero|texte_backend)&lt;/a&gt;]
-		</BOUCLE_mots_forum_mf>
+	[(#REM) Le bloc qui suit diffuse la rubrique et les mots-cles sous forme de "microformats" ]
+	<BOUCLE_rubrique_forum_mf(RUBRIQUES){id_rubrique}>-
+	[&lt;a href="[(#URL_RUBRIQUE|url_absolue)]" rel="directory"&gt;(#TITRE|supprimer_numero|texte_backend)&lt;/a&gt;]
+	</BOUCLE_rubrique_forum_mf>
+	<B_mots_forum_mf>/ <BOUCLE_mots_forum_mf(MOTS){id_forum}{", "}>
+	[&lt;a href="[(#URL_MOT|url_absolue)]" rel="tag"&gt;(#TITRE|supprimer_numero|texte_backend)&lt;/a&gt;]
+	</BOUCLE_mots_forum_mf>
 
-		</description>
+	</description>
 
-	</item>
+</item>
 </BOUCLE_commentaires>

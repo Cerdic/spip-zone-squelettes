@@ -19,12 +19,27 @@
 	</image>]
 
 
-[(#REM) ]
-<INCLURE{fond=inc-backend-articles}>
-<INCLURE{fond=inc-backend-breves}>
-<INCLURE{fond=inc-backend-forums}>
-<INCLURE{fond=inc-backend-syndic}>
+[(#REM) Articles ]
+<BOUCLE_articles(ARTICLES){lang ?}{id_rubrique ?}{id_mot ?}{age<180}{par date}{inverse}{0,10}>
+<INCLURE{fond=inc-backend-articles}{id_article}>
+</BOUCLE_articles>
 
+[(#REM) Breves ]
+<BOUCLE_breves(BREVES){lang ?}{id_rubrique ?}{id_mot ?}{age<180}{par date}{inverse}{0,10}>
+<INCLURE{fond=inc-backend-breves}{id_breve}>
+</BOUCLE_breves>
+
+[(#REM) Commentaires des forums ]
+<BOUCLE_commentaires(FORUMS){lang ?}{id_rubrique ?}{id_mot ?}{plat}{age<180}{par date}{inverse}{0,10}>
+<INCLURE{fond=inc-backend-forums}{id_forum}>
+</BOUCLE_commentaires>
+
+[(#REM) Articles des sites syndiques ]
+<BOUCLE_sites(SITES){lang ?}{id_rubrique ?}{id_mot ?}>
+<BOUCLE_syndic(SYNDIC_ARTICLES){id_syndic}{age<180}{!par date}{0,3}>
+<INCLURE{fond=inc-backend-syndic}{id_syndic_article}>
+</BOUCLE_syndic>
+</BOUCLE_sites>
 
 </channel>
 
