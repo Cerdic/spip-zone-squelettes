@@ -165,27 +165,18 @@ function adjustLayout() {
   // Get natural heights
   if (document.getElementById('content')) {
   	document.getElementById('content').style.height="auto";
-  	var cHeight = Number(document.getElementById('content').offsetHeight)
-		+ Number(document.getElementById('content').style.marginTop)
-		+ Number(document.getElementById('content').style.marginBottom);
-	var cTop = Number(document.getElementById('content').offsetTop)
-		+ Number(document.getElementById('content').style.marginTop);
+  	var cHeight = Number(document.getElementById('content').offsetHeight);
+	var cTop = Number(document.getElementById('content').offsetTop);
   }
   if (document.getElementById('navigation')) {
   	document.getElementById('navigation').style.height="auto";
-  	var lHeight = Number(document.getElementById('navigation').offsetHeight)
-		+ Number(document.getElementById('navigation').style.marginTop)
-		+ Number(document.getElementById('navigation').style.marginBottom);
-	var lTop = Number(document.getElementById('navigation').offsetTop)
-		+ Number(document.getElementById('navigation').style.marginTop);
+  	var lHeight = Number(document.getElementById('navigation').offsetHeight);
+	var lTop = Number(document.getElementById('navigation').offsetTop);
   }
   if (document.getElementById('extra')) {
   	document.getElementById('extra').style.height="auto";
-  	var rHeight = Number(document.getElementById('extra').offsetHeight)
-		+ Number(document.getElementById('extra').style.marginTop)
-		+ Number(document.getElementById('extra').style.marginBottom);
-	var rTop = Number(document.getElementById('extra').offsetTop)
-		+ Number(document.getElementById('extra').style.marginTop);
+  	var rHeight = Number(document.getElementById('extra').offsetHeight);
+	var rTop = Number(document.getElementById('extra').offsetTop);
   }
   // Find the maximum height
   if (lTop!=rTop) {
