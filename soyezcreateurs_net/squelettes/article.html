@@ -69,12 +69,25 @@
 [<div class="notes">(#NOTES)</div>]
 
 <BOUCLE_Est_Gallerie(MOTS){id_article}{titre=Gallerie}>
+<BOUCLE_afficher_document(DOCUMENTS) {id_document} {mode=document}{extension==(png|jpg|gif)$}>
+<div id="document_actif">
+	[<h2>(#TITRE)</h2>]
+<dl>
+	<dt class="photo_articles"><a href="#URL_DOCUMENT" title="<:pyrat:voirimage:> : [(#TITRE|supprimer_numero|textebrut|attribut_html|sinon{<:info_document:>})] (#LARGEUR &times; #HAUTEUR, [(#TAILLE|taille_en_octets)])"><img class="galleriebig" src="[(#FICHIER|reduire_image{400,0}||extraire_attribut{src})]" width='[(#FICHIER|reduire_image{400,0}||extraire_attribut{width})]' height='[(#FICHIER|reduire_image{400,0}||extraire_attribut{height})]' [ alt="(#TITRE|textebrut|attribut_html|supprimer_numero)"] /></a></dt>
+	[<dd>(#DESCRIPTIF)</dd>]
+</dl>
+</div>
+</BOUCLE_afficher_document>
 <B_imgs>
+<div id="documents_portfolio">
 <BOUCLE_imgs(DOCUMENTS){id_article}{mode=document}{par num titre}>
-	<h2>[(#TITRE)]</h2>
-    <div class="photo_articles"><a href="spip.php?page=affiche_image&amp;id_document=#ID_DOCUMENT&amp;id_rubrique=#ID_RUBRIQUE&amp;id_article=#ID_ARTICLE"><img src="[(#LOGO_DOCUMENT||reduire_image{150,150}|extraire_attribut{src})]" class="gallerie" alt="[(#TITRE|texte_script|supprimer_tags)] | #LARGEUR X #HAUTEUR | [(#TAILLE|taille_en_octets)]" /></a></div>
-	[<div>(#DESCRIPTIF)</div>]
+<dl[ (#ENV{id_document}|=={#ID_DOCUMENT}|?{class="doc_actif",''})]>
+    <dt>[(#ENV{id_document}|=={#ID_DOCUMENT}|?{'',<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT#document_actif">})]<img src="[(#LOGO_DOCUMENT||reduire_image{80,60}|extraire_attribut{src})]" alt="[(#TITRE|supprimer_numero|textebrut|attribut_html|sinon{<:info_document:>})] | #LARGEUR X #HAUTEUR | [(#TAILLE|taille_en_octets)]" />[(#ENV{id_document}|=={#ID_DOCUMENT}|?{'',</a>})]</dt>
+	[<dt>(#TITRE)</dt>]
+	[<dd>(#DESCRIPTIF)</dd>]
+</dl>
 </BOUCLE_imgs>
+</div>
 </B_imgs>
 </BOUCLE_Est_Gallerie>
 
