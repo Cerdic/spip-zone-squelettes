@@ -18,9 +18,9 @@
 
 
 <div class="cartouche">
-[<div class="surtitre"><span>(#SURTITRE)</span></div>]
+[<div class="surtitre"><span>#DEBUT_SURLIGNE(#SURTITRE)#FIN_SURLIGNE</span></div>]
 <INCLURE{fond=aff_datepublication}{id_article}>
-<div><h1>[<img class="logo_article" src="(#LOGO_ARTICLE||reduire_image{64,64}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#TITRE|Supprimer_numero)]<BOUCLE_EstAgenda(MOTS){id_rubrique}{titre=Agenda}>
+<div><h1>[<img class="logo_article" src="(#LOGO_ARTICLE||reduire_image{64,64}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][#DEBUT_SURLIGNE(#TITRE|Supprimer_numero)#FIN_SURLIGNE]<BOUCLE_EstAgenda(MOTS){id_rubrique}{titre=Agenda}>
 <sub class="dateevenement">[(#DATE_REDAC|nom_jour)] [(#DATE_REDAC|affdate)][(#DATE_REDAC|heures_minutes|!={00h00min}|?{[, (#DATE_REDAC|heures_minutes)],''})].</sub>
 </BOUCLE_EstAgenda></h1></div>
 <INCLURE{fond=liste_auteurs}{id_article}>[<div class="soustitre"><span>(#SOUSTITRE)</span></div>]
@@ -45,36 +45,36 @@
 <div id="mots_agenda">
 <BOUCLE_MotsAgenda(MOTS){id_article}{type=CategorieAgenda}>
 <h2>#TITRE</h2>
-[<div class="descriptifmot">(#DESCRIPTIF)</div>]
-[<div class="textemot">(#TEXTE)</div>]
+[<div class="descriptifmot">#DEBUT_SURLIGNE(#DESCRIPTIF)#FIN_SURLIGNE</div>]
+[<div class="textemot">#DEBUT_SURLIGNE(#TEXTE)#FIN_SURLIGNE</div>]
 </BOUCLE_MotsAgenda>
 </div>
 </B_MotsAgenda>
 </BOUCLE_EstAgenda2>
 
 	<div id="letexte">
-[<div class="chapo">(#CHAPO|sinon{#DESCRIPTIF})</div>]
+[<div class="chapo">#DEBUT_SURLIGNE(#CHAPO|sinon{#DESCRIPTIF})#FIN_SURLIGNE</div>]
 <BOUCLE_SommaireAncre(MOTS){id_rubrique}{titre = Sommaire}>
 </BOUCLE_SommaireAncre>
-[(#TEXTE|sommaire_ancre|reduire_image{400,0})]
+[#DEBUT_SURLIGNE(#TEXTE|sommaire_ancre|reduire_image{400,0})#FIN_SURLIGNE]
 </B_SommaireAncre>
 <BOUCLE_SommaireArticleAncre(MOTS){id_article}{titre = Sommaire}>
 </BOUCLE_SommaireArticleAncre>
-[(#TEXTE|sommaire_ancre|reduire_image{400,0})]
+[#DEBUT_SURLIGNE(#TEXTE|sommaire_ancre|reduire_image{400,0})#FIN_SURLIGNE]
 </B_SommaireArticleAncre>
-[(#TEXTE|reduire_image{400,0})]
+[#DEBUT_SURLIGNE(#TEXTE|reduire_image{400,0})#FIN_SURLIGNE]
 <//B_SommaireArticleAncre>
 <//B_SommaireAncre>
-[<div class="ps">(#PS)</div>]
-[<div class="notes">(#NOTES)</div>]
+[<div class="ps">#DEBUT_SURLIGNE(#PS)#FIN_SURLIGNE</div>]
+[<div class="notes">#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
 
 <BOUCLE_Est_Gallerie(MOTS){id_article}{titre=Gallerie}>
 <BOUCLE_afficher_document(DOCUMENTS) {id_document} {mode=document}{extension==(png|jpg|gif)$}>
 <div id="document_actif">
-	[<h2>(#TITRE)</h2>]
+	[<h2>#DEBUT_SURLIGNE(#TITRE)#FIN_SURLIGNE</h2>]
 <dl>
 	<dt class="photo_articles"><a href="#URL_DOCUMENT" title="<:pyrat:voirimage:> : [(#TITRE|supprimer_numero|textebrut|attribut_html|sinon{<:info_document:>})] (#LARGEUR &times; #HAUTEUR, [(#TAILLE|taille_en_octets)])"><img class="galleriebig" src="[(#FICHIER|reduire_image{400,0}||extraire_attribut{src})]" width='[(#FICHIER|reduire_image{400,0}||extraire_attribut{width})]' height='[(#FICHIER|reduire_image{400,0}||extraire_attribut{height})]' [ alt="(#TITRE|textebrut|attribut_html|supprimer_numero)"] /></a></dt>
-	[<dd>(#DESCRIPTIF)</dd>]
+	[<dd>#DEBUT_SURLIGNE(#DESCRIPTIF)#FIN_SURLIGNE</dd>]
 </dl>
 </div>
 </BOUCLE_afficher_document>
@@ -148,15 +148,16 @@
 <div class="forum">
 <a name="forum#ID_FORUM"></a>
 <div class="forum-chapo">
-<span class="forum-titre">[(#TITRE)]</span>
+<span class="forum-titre">[#DEBUT_SURLIGNE(#TITRE)#FIN_SURLIGNE]</span>
 <span class="forum-auteur">[(#DATE|affdate)][, <:pyrat:par:> (#NOM)]</span>
 </div>
 <div class="forum-item">
 
-<BOUCLE_PasdeSiteDansForums(ARTICLES){id_article}{titre_mot=PasdeSiteDansForums}>[(#_forums:TEXTE|anti_glouton)]</BOUCLE_PasdeSiteDansForums>
-[(#_forums:TEXTE)]
+<BOUCLE_PasdeSiteDansForums(ARTICLES){id_article}{titre_mot=PasdeSiteDansForums}>[#DEBUT_SURLIGNE(#_forums:TEXTE|anti_glouton)#FIN_SURLIGNE]</BOUCLE_PasdeSiteDansForums>
+[#DEBUT_SURLIGNE(#_forums:TEXTE)#FIN_SURLIGNE]
 [<div class='forum-titre'><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
 <//B_PasdeSiteDansForums>
+[<div class="notes">#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
 <B_LivredOr>
 <BOUCLE_LivredOr(MOTS){id_article}{titre = Livre d'Or}>
 </BOUCLE_LivredOr>
@@ -175,14 +176,15 @@
 	<div class="forum">
 	<a name="forum#ID_FORUM"></a>
 	<div class="forum-chapo">
-	<span class="forum-titre">[(#TITRE)]</span>
+	<span class="forum-titre">[#DEBUT_SURLIGNE(#TITRE)#FIN_SURLIGNE]</span>
 	<span class="forum-auteur">[(#DATE|affdate)][, <:pyrat:par:> (#NOM)]</span>
 	</div>
 	<div class="forum-item">
-	<BOUCLE_PasdeSiteDansSsForums(ARTICLES){id_article}{titre_mot=PasdeSiteDansForums}>[(#_forums_fils:TEXTE|anti_glouton)]</BOUCLE_PasdeSiteDansSsForums>
-	[(#_forums_fils:TEXTE)]
+	<BOUCLE_PasdeSiteDansSsForums(ARTICLES){id_article}{titre_mot=PasdeSiteDansForums}>[#DEBUT_SURLIGNE(#_forums_fils:TEXTE|anti_glouton)#FIN_SURLIGNE]</BOUCLE_PasdeSiteDansSsForums>
+	[#DEBUT_SURLIGNE(#_forums_fils:TEXTE)#FIN_SURLIGNE]
 	[<div class='forum-titre'><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
 	<//B_PasdeSiteDansSsForums>
+	[<div class="notes">#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
 	[<div class='forum-repondre-message'><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_message:></a></div>]
 	</div>
 
