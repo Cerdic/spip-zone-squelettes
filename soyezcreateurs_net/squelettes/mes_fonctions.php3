@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-//      Mes_fonctions.php3 
+//      Mes_fonctions.php3
 
 /*
 * les notes ont un petit bug :il manque parfois le <p> de debut
@@ -24,52 +24,52 @@ function nb_checkparas($str) {
 
 /*
  *   +----------------------------------+
- *    Nom du Filtre : Sommaire de l'article                                               
+ *    Nom du Filtre : Sommaire de l'article
  *   +----------------------------------+
  *    Date : dimanche 9 février 2003
- *    Auteur :  Noplay (noplay@altern.org)                                      
+ *    Auteur :  Noplay (noplay@altern.org)
  *   +-------------------------------------+
  *    Fonctions de ce filtre :
- *      Cette modification permet d'afficher le sommaire de son article 
- *      généré dynamiquement à partir du texte de l'article. Vous pouvez naviguer 
- *      dans l'article en cliquant sur les titres du sommaire. 
+ *      Cette modification permet d'afficher le sommaire de son article
+ *      généré dynamiquement à partir du texte de l'article. Vous pouvez naviguer
+ *      dans l'article en cliquant sur les titres du sommaire.
  *
  *      Tous ce qui ce trouve entre {{{ et }}} est considéré comme un titre à ajouter au sommaire de l'article.
- *   +-------------------------------------+ 
- *   
+ *   +-------------------------------------+
+ *
  * Pour toute suggestion, remarque, proposition d'ajout
  * reportez-vous au forum de l'article :
  * http://www.uzine.net/spip_contrib/article.php3?id_article=76
 */
 function sommaire_article($texte,$istxt=0)
 {
-	
+
 	preg_match_all("|(\{[\{12345]\{)(.*)(\}[\}12345]\})|U", $texte, $regs);
-	
-	
+
+
 	$nb=1;
 	$lastniveau=0;
-	if ($istxt==0) {	
+	if ($istxt==0) {
 		$texte="<a name='SommaireAutomatique'></a>";
 	for($j=0;$j<count($regs[2]);$j++)
 	{
 		$niveau=substr($regs[1][$j], 1, 1);
 		if ($niveau=='{') {$niveau=1;}
-		if ($niveau==$lastniveau) { 
-			$texte.="</li>\n"; 
+		if ($niveau==$lastniveau) {
+			$texte.="</li>\n";
 		}
-		if ($niveau>$lastniveau) { 
-			$texte.="<ul>"; 
+		if ($niveau>$lastniveau) {
+			$texte.="<ul>";
 			$lastniveau=$niveau;
 		}
-		if ($niveau<$lastniveau) { 
-			$texte.="</li>\n"; 
+		if ($niveau<$lastniveau) {
+			$texte.="</li>\n";
 			for($ulli=$niveau;$ulli<$lastniveau;$ulli++) {
 				$texte.="</ul></li>\n";
 			}
 			$lastniveau=$niveau;
 		}
-		
+
     		$texte.="<li><a href=\"#sommaire_".$nb."\">".$regs[2][$j]."</a>";
 		$nb++;
     }
@@ -88,7 +88,7 @@ function sommaire_article($texte,$istxt=0)
 			if ($niveau==5) { $puce="    ¤ ";}
 			$texte.=$puce.$regs[2][$j]."\n";
 		}
-		
+
 	}
 	return $texte;
 }
@@ -96,7 +96,7 @@ function sommaire_article($texte,$istxt=0)
 function sommaire_ancre($texte)
 {
 	$texte = preg_replace("|(<h[23456]>)(.*)(<\/h[23456]>)|U","<p class='retoursommaire'><a href='#SommaireAutomatique'>Retour Sommaire</a></p><a name=\"sommaire_#NB_TITRE_DE_MON_ARTICLE#\"></a>$1$2$3", $texte);
-	
+
 	$array = explode("#NB_TITRE_DE_MON_ARTICLE#" , $texte);
 	$res =count($array);
 	$i =1;
@@ -207,8 +207,43 @@ function DateAdd($d=null, $v, $f="Y-m-d"){
 function balise_SPIP_VERSION($p) {
 	global $spip_version_affichee;
 	$p->code = "'$spip_version_affichee'";
-	$p->statut = 'php';
+	$p->interdire_scripts = false;
 	return $p;
 }
 
+/* -------------
+
+Ces 2 balises permettent d'afficher dans une page :
+ - le(s) saint(s) du jour
+ - l'Evangile du jour
+
+Le tout remis en forme correctement.
+
+---------------*/
+function balise_SAINT_DU_JOUR($p) {
+	$saint_du_jour = str_replace('+','&dagger;',str_replace("\r",'',str_replace("\n",'',str_replace('&nbsp;',' ',supprimer_tags(recuperer_page('http://www.levangileauquotidien.org/ind-saints-d.php?language=FR', true))))));
+	if ($p->param[0][1][0]->texte == -1) {
+		if (($posvirg = strpos($saint_du_jour, ',')) > 0) $saint_du_jour = substr($saint_du_jour, 0, $posvirg);
+	}
+	$saint_du_jour = str_replace('ème','<sup>e</sup>', $saint_du_jour);
+	$p->code = "'$saint_du_jour'";
+	return $p;
+}
+
+function balise_EVANGILE_DU_JOUR($p) {
+	$evangile_du_jour = str_replace("'", '&#8217;', recuperer_page('http://www.levangileauquotidien.org/ind-gospel-d.php?language=FR', true));
+	$evangile_du_jour = ereg_replace("<script.*</script>", '', $evangile_du_jour);
+	$evangile_du_jour = ereg_replace("<center.*</form>", '', $evangile_du_jour);
+	$evangile_du_jour = ereg_replace("<center.*</center>", '', $evangile_du_jour);
+	$evangile_du_jour = ereg_replace("<p[^>]*>", '', $evangile_du_jour);
+	$evangile_du_jour = ereg_replace("<font[^>]*>", '', trim($evangile_du_jour));
+	$evangile_du_jour = str_replace("</font>", '', $evangile_du_jour);
+	$evangile_du_jour = str_replace("<br>", '<br />', $evangile_du_jour);
+	$evangile_du_jour = str_replace("</a><br /><br />", '</dt><dd><p>', '<dl><dt>'.$evangile_du_jour);
+	$evangile_du_jour = str_replace("<br /><br />E", '</p></dd><dd class="aelf">E', $evangile_du_jour);
+	$evangile_du_jour = str_replace("<br /><br />", '</dd></dl>', $evangile_du_jour);
+	$evangile_du_jour = str_replace("<br />", '</p><p>', $evangile_du_jour);
+	$p->code = "'$evangile_du_jour'";
+	return $p;
+}
 ?>
