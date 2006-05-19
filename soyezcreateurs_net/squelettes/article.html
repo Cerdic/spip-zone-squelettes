@@ -70,8 +70,8 @@
 
 <BOUCLE_Est_Gallerie(MOTS){id_article}{titre=Gallerie}>
 <BOUCLE_afficher_document(DOCUMENTS) {id_document} {mode=document}{extension==(png|jpg|gif)$}>
-<div id="document_actif">
-	[<h2>#DEBUT_SURLIGNE(#TITRE)#FIN_SURLIGNE</h2>]
+<div id="document_actif"[ style="background-color: #(#LOGO_DOCUMENT||couleur_extraire); color: #[(#LOGO_DOCUMENT||couleur_extraire|couleur_inverser|couleur_extreme)];"]>
+	[<h2[ style="background-color: #(#LOGO_DOCUMENT||couleur_extraire|couleur_eclaircir); color: #[(#LOGO_DOCUMENT||couleur_extraire|couleur_eclaircir|couleur_inverser|couleur_extreme)];"]>#DEBUT_SURLIGNE(#TITRE)#FIN_SURLIGNE</h2>]
 <dl>
 	<dt class="photo_articles"><a href="#URL_DOCUMENT" title="<:pyrat:voirimage:> : [(#TITRE|supprimer_numero|textebrut|attribut_html|sinon{<:info_document:>})] (#LARGEUR &times; #HAUTEUR, [(#TAILLE|taille_en_octets)])"><img class="galleriebig" src="[(#FICHIER|reduire_image{400,0}||extraire_attribut{src})]" width='[(#FICHIER|reduire_image{400,0}||extraire_attribut{width})]' height='[(#FICHIER|reduire_image{400,0}||extraire_attribut{height})]' [ alt="(#TITRE|textebrut|attribut_html|supprimer_numero)"] /></a></dt>
 	[<dd>#DEBUT_SURLIGNE(#DESCRIPTIF)#FIN_SURLIGNE</dd>]
@@ -81,11 +81,7 @@
 <B_imgs>
 <div id="documents_portfolio">
 <BOUCLE_imgs(DOCUMENTS){id_article}{mode=document}{par num titre}>
-<dl[ (#ENV{id_document}|=={#ID_DOCUMENT}|?{class="doc_actif",''})]>
-    <dt>[(#ENV{id_document}|=={#ID_DOCUMENT}|?{'',<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT#document_actif">})]<img src="[(#LOGO_DOCUMENT||reduire_image{80,60}|extraire_attribut{src})]" alt="[(#TITRE|supprimer_numero|textebrut|attribut_html|sinon{<:info_document:>})] | #LARGEUR X #HAUTEUR | [(#TAILLE|taille_en_octets)]" />[(#ENV{id_document}|=={#ID_DOCUMENT}|?{'',</a>})]</dt>
-	[<dt>(#TITRE)</dt>]
-	[<dd>(#DESCRIPTIF)</dd>]
-</dl>
+[(#ENV{id_document}|=={#ID_DOCUMENT}|?{'',<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT#document_actif">})]<img src="[(#LOGO_DOCUMENT||reduire_image{80,60}|extraire_attribut{src})]" alt="[(#TITRE|supprimer_numero|textebrut|attribut_html|sinon{<:info_document:>})] | #LARGEUR X #HAUTEUR | [(#TAILLE|taille_en_octets)]"[ style="border-color: #(#LOGO_DOCUMENT||couleur_extraire);",''})] />[(#ENV{id_document}|=={#ID_DOCUMENT}|?{'',</a>})]
 </BOUCLE_imgs>
 </div>
 </B_imgs>

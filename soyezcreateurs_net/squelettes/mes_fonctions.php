@@ -232,17 +232,17 @@ function balise_SAINT_DU_JOUR($p) {
 
 function balise_EVANGILE_DU_JOUR($p) {
 	$evangile_du_jour = str_replace("'", '&#8217;', recuperer_page('http://www.levangileauquotidien.org/ind-gospel-d.php?language=FR', true));
-	$evangile_du_jour = ereg_replace("<script.*</script>", '', $evangile_du_jour);
-	$evangile_du_jour = ereg_replace("<center.*</form>", '', $evangile_du_jour);
-	$evangile_du_jour = ereg_replace("<center.*</center>", '', $evangile_du_jour);
-	$evangile_du_jour = ereg_replace("<p[^>]*>", '', $evangile_du_jour);
-	$evangile_du_jour = ereg_replace("<font[^>]*>", '', trim($evangile_du_jour));
-	$evangile_du_jour = str_replace("</font>", '', $evangile_du_jour);
-	$evangile_du_jour = str_replace("<br>", '<br />', $evangile_du_jour);
-	$evangile_du_jour = str_replace("</a><br /><br />", '</dt><dd><p>', '<dl><dt>'.$evangile_du_jour);
-	$evangile_du_jour = str_replace("<br /><br />E", '</p></dd><dd class="aelf">E', $evangile_du_jour);
-	$evangile_du_jour = str_replace("<br /><br />", '</dd></dl>', $evangile_du_jour);
-	$evangile_du_jour = str_replace("<br />", '</p><p>', $evangile_du_jour);
+	if ($evangile_du_jour) {
+		$evangile_du_jour = ereg_replace("<script.*</script>", '', $evangile_du_jour); // Suppression du script
+		$evangile_du_jour = ereg_replace("<center.*</form>", '', $evangile_du_jour); // Suppression des mentions d'abonnement
+		$evangile_du_jour = ereg_replace("<p[^>]*>", '', $evangile_du_jour); // Suppression du debut de paragraphe inutile
+		$evangile_du_jour = ereg_replace("<font[^>]*>", '', trim($evangile_du_jour)); // Suppression des font inutiles
+		$evangile_du_jour = str_replace("</font>", '', $evangile_du_jour);
+		$evangile_du_jour = str_replace("</a><br><br>", '</dt><dd>', '<dl><dt>'.$evangile_du_jour); // Titre
+		$evangile_du_jour = str_replace("<br><br>E", '</dd><dt class="aelf">E', $evangile_du_jour); // Le copyright
+		$evangile_du_jour = str_replace("<br><br>", '</dt></dl>', $evangile_du_jour); // La fin du copyright
+		$evangile_du_jour = str_replace("<br>", '</dd><dd>', $evangile_du_jour); // Un dd par verset
+	}
 	$p->code = "'$evangile_du_jour'";
 	return $p;
 }
