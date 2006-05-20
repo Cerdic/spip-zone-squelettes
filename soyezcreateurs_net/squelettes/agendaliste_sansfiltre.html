@@ -1,16 +1,13 @@
 <BOUCLE_rubrique_principal(RUBRIQUES){id_rubrique}>
-<BOUCLE_article(ARTICLES){branche}{date_redac==^(#ENV{date_ev,[(#ENV{date})]}|annee)}{par date_redac}>
-<BOUCLE_premierdumois(ARTICLES){id_article}{doublons}>
-<h2>[(#DATE_REDAC|nom_mois)] [(#DATE_REDAC|annee)]</h2>
+<BOUCLE_article(EVENEMENTS){branche}{date_debut==^(#ENV{date_ev,(#ENV{date})}|annee)}{date_debut>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}{par date_debut}>
+<BOUCLE_premierdumois(EVENEMENTS){id_evenement}{doublons}>
+<h2>[(#DATE_DEBUT|nom_mois|ucfirst)] [(#DATE_DEBUT|annee)]</h2>
 <ul>
-	<B_TitreRub><li<BOUCLE_CouleurRub(MOTS){id_rubrique}{type=_CouleurRubrique}> style="background-color:#[(#TEXTE|couleur_eclaircir)];color: #[(#TEXTE|couleur_foncer|couleur_foncer)];"</BOUCLE_CouleurRub>><b><BOUCLE_TitreRub(RUBRIQUES){id_rubrique}>[(#TITRE|supprimer_numero)&nbsp;: ]</BOUCLE_TitreRub>[(#DATE_REDAC|nom_jour)] [(#DATE_REDAC|jour)][(#DATE_REDAC|heures_minutes|!={00h00min}|?{[, (#DATE_REDAC|heures_minutes)],''})]</b> : <a href="#URL_ARTICLE" >[(#TITRE|texte_script)]</a><B_genres> (<BOUCLE_genres(MOTS){id_article}{type=CategorieAgenda}{", "}><a href="#URL_MOT" title="<:pyrat:savoirpluscritere:>: [(#TITRE|attribut_html|texte_script)]">[(#TITRE|texte_script)]</a></BOUCLE_genres>)</B_genres></li>
+ <INCLURE{fond=agendaliste_evenement}{id_evenement}>
 </BOUCLE_premierdumois>
-
-<BOUCLE_RestaureRubrique(RUBRIQUES){id_rubrique=#_MemoRubrique:ID_RUBRIQUE}>
-<BOUCLE_MOIS(ARTICLES){branche}{mois_relatif_redac=0}{doublons}{par date_redac}>
-	<B_TitreRub2><li<BOUCLE_CouleurRub2(MOTS){id_rubrique}{type=_CouleurRubrique}> style="background-color:#[(#TEXTE|couleur_eclaircir)];color: #[(#TEXTE|couleur_foncer|couleur_foncer)];"</BOUCLE_CouleurRub2>><b><BOUCLE_TitreRub2(RUBRIQUES){id_rubrique}>[(#TITRE|supprimer_numero)&nbsp;: ]</BOUCLE_TitreRub2>[(#DATE_REDAC|nom_jour)] [(#DATE_REDAC|jour)][(#DATE_REDAC|heures_minutes|!={00h00min}|?{[, (#DATE_REDAC|heures_minutes)],''})]</b> : <a href="#URL_ARTICLE" >[(#TITRE|texte_script)]</a><B_genres2> (<BOUCLE_genres2(MOTS){id_article}{type=CategorieAgenda}{", "}><a href="#URL_MOT" title="<:pyrat:savoirpluscritere:>: [(#TITRE|attribut_html|texte_script)]">[(#TITRE|texte_script)]</a></BOUCLE_genres2>)</B_genres2></li>
+<BOUCLE_MOIS(EVENEMENTS){date_debut==^(#_article:DATE_DEBUT|affdate{'Y-m'})}{date_debut>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}{doublons}{par date_debut}>
+ <INCLURE{fond=agendaliste_evenement}{id_evenement}>
 </BOUCLE_MOIS>
-</BOUCLE_RestaureRubrique>
 </ul>
 </B_premierdumois>
 </BOUCLE_article>

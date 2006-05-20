@@ -246,4 +246,83 @@ function balise_EVANGILE_DU_JOUR($p) {
 	$p->code = "'$evangile_du_jour'";
 	return $p;
 }
+
+function afficher_les_dates($dateDebut,$dateFin,$horaire, $distance=0, $en_cours=1) {
+	if ($horaire=='oui') {
+		$heureDebut = affdate($dateDebut,'H:i');
+		$heureFin = affdate($dateFin,'H:i');
+	} else {
+		$heureDebut = '00:00';
+		$heureFin = '00:00';
+	}
+	$dateDebut = affdate($dateDebut,'Y-m-d');
+	$dateFin = affdate($dateFin,'Y-m-d');
+	
+		$str = '';
+		
+		if ( $dateDebut == $dateFin ) {
+			$str .=  'Le ';
+		} else {
+			$str .= 'Du ';
+		}
+		$str .= nom_jour($dateDebut).' '.affdate($dateDebut);
+		
+		if ( $dateDebut != $dateFin ) {
+			if ($horaire=='oui') {
+				$str .= ' &agrave; '.heures_minutes($heureDebut.':00');
+			}
+			$str .= ' au '.nom_jour($dateFin).' '.affdate($dateFin);
+			if ($horaire=='oui') {
+				$str .= ' &agrave; '.heures_minutes($heureFin.':00');
+			}
+		} else {
+			if ($horaire=='oui' && $heureDebut != $heureFin) {
+				$str .= ' de '.heures_minutes($heureDebut.':00').' &agrave; '.heures_minutes($heureFin.':00');
+			} elseif ($horaire=='oui') {
+				$str .= ' &agrave; '.heures_minutes($heureDebut.':00');
+			}
+		} 
+		
+		//combien de jour et de mois et d'années
+		$nb_an = intVal((strtotime($dateDebut) - strtotime(date('Y-m-d',time()))) / (3600*24*365.25));
+		$reste = intVal((strtotime($dateDebut) - strtotime(date('Y-m-d',time()))) % (3600*24*365.25));
+		
+		$nb_mois = intVal(($reste) / (3600*24*30));
+		$reste = intVal(($reste) % (3600*24*30));
+		
+		$nb_jour = intVal( ($reste) / (3600*24));
+		$msg = '';
+		
+		//affiche une phrase entre parenthèse type "dans 1 an, 3 mois et 4 jours".
+		if (strtotime($dateDebut.' '.$heureDebut.':00') < time() && strtotime($dateFin.' '.$heureFin.':00') < time()) {
+			$msg = '';
+		} elseif (strtotime($dateDebut.' '.$heureDebut.':00') < time() && strtotime($dateFin.' '.$heureFin.':00') > time()) {
+				if ($en_cours) $msg .= _L('<em>(en ce moment)</em>');
+		} else {
+			if ($distance && ($nb_an || $nb_mois || $nb_jour)){
+				$msg .= _L('(dans ');
+				if ($nb_an) {
+					if ($nb_an==1) {
+						$msg .= $nb_an._L(' an, ');
+					} else {
+						$msg .= $nb_an._L(' ans, ');
+					}
+				}
+				if ($nb_mois) {
+					$msg .= $nb_mois._L(' mois, ');
+				}
+				if ($nb_jour) {
+					if ($nb_jour==1) {
+						$msg .= $nb_jour._L(' jour, ');
+					} else {
+						$msg .= $nb_jour._L(' jours, ');
+					}
+				}
+			$msg = substr($msg,0,-2).')';
+			} 
+		}	 
+		
+		
+		return $str.' '.$msg;
+}
 ?>

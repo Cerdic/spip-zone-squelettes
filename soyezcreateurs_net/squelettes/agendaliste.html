@@ -38,22 +38,22 @@ $titrePage = '<:pyrat:agenda:> - [(#ENV{date_ev,[(#ENV{date})]}|annee)]';
 
 
 		<form id="timenavigation" method="get" action="#SELF"><fieldset><legend><:pyrat:precisezrecherche:></legend>
-		<BOUCLE_PremiereAnnee(ARTICLES){id_secteur}{par date_redac}{date_redac>1000}{0,1}>
-		<?php if ([(#DATE_REDAC|annee)]<[(#ENV{date_ev,[(#ENV{date})]}|annee)]) { ?>
+		<BOUCLE_PremiereAnnee(EVENEMENTS){id_secteur}{par date_debut}{0,1}>
+		<?php if ([(#DATE_DEBUT|annee)]<[(#ENV{date_ev,[(#ENV{date})]}|annee)]) { ?>
 		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee)] - 1); ?>-01-01[&amp;genre=(#ENV{genre,''}|urlencode)]"><img src="#DOSSIER_SQUELETTE/images/prev.gif" title="<:precedent:>" alt="<:precedent:>" /></a>
 		<?php } ?>
 		</BOUCLE_PremiereAnnee>
 		<select id="var_nav_year">
-		<BOUCLE_Annees(ARTICLES){id_secteur}{par date_redac}>[
-		<option value="[(#DATE_REDAC|annee)]"[(#ENV{date_ev,[(#ENV{date})]}|annee|=={[(#DATE_REDAC|annee)]}|?{' selected="selected"',''})]>(#DATE_REDAC|annee|unique)</option>
+		<BOUCLE_Annees(EVENEMENTS){id_secteur}{par date_debut}>[
+		<option value="[(#DATE_DEBUT|annee)]"[(#ENV{date_ev,[(#ENV{date})]}|annee|=={[(#DATE_DEBUT|annee)]}|?{' selected="selected"',''})]>(#DATE_DEBUT|annee|unique)</option>
 		]</BOUCLE_Annees>
 		</select>
 		
 		<B_LstMotsClefs>[(#REM) Objectif : n'afficher que les mots clefs effectivement utilisé dans le secteur]
 		<select id="var_nav_cle">
 		<option value=""[(#ENV{genre,''}|=={''}|?{' selected="selected"',''})]><:pyrat:tout:></option>
-		<BOUCLE_LstMotsClefs(ARTICLES){id_secteur}{type_mot=CategorieAgenda}{par titre}>
-		<BOUCLE_MotClefAssocie(MOTS){id_article}{unique}>
+		<BOUCLE_LstMotsClefs(EVENEMENTS){id_secteur}{par titre}>
+		<BOUCLE_MotClefAssocie(MOTS){id_evenement}{unique}>
 		<option value="[(#TITRE|attribut_html)]"[(#ENV{genre}|=={[(#TITRE|attribut_html)]}|?{' selected="selected"',''})]>[(#TITRE)]</option>
 		</BOUCLE_MotClefAssocie>
 		</BOUCLE_LstMotsClefs>
@@ -61,8 +61,8 @@ $titrePage = '<:pyrat:agenda:> - [(#ENV{date_ev,[(#ENV{date})]}|annee)]';
 		</B_LstMotsClefs>
 
 		<input type="button" value="<:pass_ok:>" onclick="document.location.href='#_rubrique_principal:URL_RUBRIQUE?date_ev=' + document.getElementById('var_nav_year').value + '-01-01&amp;genre=' + document.getElementById('var_nav_cle').value ; return false;" />
-		<BOUCLE_DerniereAnnee(ARTICLES){id_secteur}{par date_redac}{inverse}{date_redac>1000}{0,1}>
-		<?php if ([(#DATE_REDAC|annee)]>[(#ENV{date_ev,[(#ENV{date})]}|annee)]) { ?>
+		<BOUCLE_DerniereAnnee(EVENEMENTS){id_secteur}{par date_debut}{inverse}{0,1}>
+		<?php if ([(#DATE_DEBUT|annee)]>[(#ENV{date_ev,[(#ENV{date})]}|annee)]) { ?>
 		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee)] + 1); ?>-01-01[&amp;genre=(#ENV{genre,''}|urlencode)]"><img src="#DOSSIER_SQUELETTE/images/next.gif" title="<:suivant:>" alt="<:suivant:>" /></a>
 		<?php } ?>
 		</BOUCLE_DerniereAnnee>
