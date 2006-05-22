@@ -10,8 +10,6 @@ $D = date('d', $cal_day);
 $M = date('m', $cal_day);
 $Y = date('Y', $cal_day);
 
-// Le Menu de selection de genre
-$mot_cle = array('<:pyrat:tout:>', '<BOUCLE_LstMotsClefs(MOTS){type=CategorieAgenda}{par titre}{"', '"}>[(#TITRE|texte_script)]</BOUCLE_LstMotsClefs>');
 if (!isset($genre)) $genre = "<:pyrat:tout:>";
 
 $titrePage = '<:pyrat:agenda:> - '.$months[intval($M)].' '.$Y;
@@ -33,7 +31,7 @@ $events = array();
 		$res="";
 		ereg("($genre)", '<BOUCLE_genre(MOTS){id_evenement}>[(#TITRE|texte_script)]</BOUCLE_genre>', $res);
 		if (($genre=='<:pyrat:tout:>') || ($genre==$res[1])) {
-			<BOUCLE_EvenementArticle(ARTICLES){id_article}>$events[$dateEvt][] = array('rub' => #ID_RUBRIQUE, 'link' => '#URL_ARTICLE', 'title' => '[(#TITRE|texte_script)]&nbsp;: [(#_evts_com:TITRE|texte_script)]', 'logo' => '[<img src="(#LOGO_ARTICLE_RUBRIQUE_COURANTE||reduire_image{32,32}|extraire_attribut{src})" style="float:right;" alt="[(#DESCRIPTIF|attribut_html|texte_script)]"/>]', 'genres' => '<B_Genres><em>(<BOUCLE_Genres(MOTS){id_evenement}{type=CategorieAgenda}{", "}><a href="#URL_MOT" rel="tag" title="<:pyrat:savoirpluscritere:>: [(#TITRE|attribut_html|texte_script)]">[(#TITRE|texte_script)]</a></BOUCLE_Genres>)</em></B_Genres>', 'titre_rub' => '<B_TitreRub><strong><BOUCLE_CouleurRub(MOTS){id_rubrique}{type=_CouleurRubrique}> style="background-color:#[(#TEXTE|couleur_eclaircir)];"></BOUCLE_CouleurRub><BOUCLE_TitreRub(RUBRIQUES){id_rubrique}>[(#TITRE|supprimer_numero)</strong>&nbsp;: ]</BOUCLE_TitreRub>');</BOUCLE_EvenementArticle>
+			<BOUCLE_EvenementArticle(ARTICLES){id_article}>$events[$dateEvt][] = array('rub' => #ID_RUBRIQUE, 'link' => '#URL_ARTICLE', 'title' => '[(#TITRE|texte_script)]&nbsp;: [(#_evts_com:TITRE|texte_script)]', 'logo' => '[<img src="(#LOGO_ARTICLE_RUBRIQUE_COURANTE||reduire_image{32,32}|extraire_attribut{src})" style="float:right;" alt="[(#DESCRIPTIF|attribut_html|texte_script)]"/>]', 'genres' => '<B_Genres><em>(<BOUCLE_Genres(MOTS){id_evenement}{", "}><a href="#URL_MOT" rel="tag" title="<:pyrat:savoirpluscritere:>: [(#TITRE|attribut_html|texte_script)]">[(#TITRE|texte_script)]</a></BOUCLE_Genres>)</em></B_Genres>', 'titre_rub' => '<B_TitreRub><strong><BOUCLE_CouleurRub(MOTS){id_rubrique}{type=_CouleurRubrique}> style="background-color:#[(#TEXTE|couleur_eclaircir)];"></BOUCLE_CouleurRub><BOUCLE_TitreRub(RUBRIQUES){id_rubrique}>[(#TITRE|supprimer_numero)</strong>&nbsp;: ]</BOUCLE_TitreRub>');</BOUCLE_EvenementArticle>
 		}
 	}
 </BOUCLE_evts_com>
@@ -62,7 +60,7 @@ $events = array();
 <B_themes>
 <div id="artrecents" class="flottant">
 <h2><:pyrat:themes:></h2>
-<BOUCLE_themes(RUBRIQUES){racine}{id_secteur}{titre_mot=Agenda}><B_sous_rubriques1>
+<BOUCLE_themes(RUBRIQUES){racine}{id_secteur}><B_sous_rubriques1>
 <!-- Les themes avec recursivite -->
 	<ul>
 		<BOUCLE_sous_rubriques1(RUBRIQUES){id_parent}{par titre}>
