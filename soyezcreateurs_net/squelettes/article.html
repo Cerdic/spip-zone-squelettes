@@ -20,8 +20,8 @@
 <div class="cartouche">
 [<div class="surtitre"><span>#DEBUT_SURLIGNE(#SURTITRE)#FIN_SURLIGNE</span></div>]
 <INCLURE{fond=aff_datepublication}{id_article}>
-<div><h1>[<img class="logo_article" src="(#LOGO_ARTICLE||reduire_image{64,64}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][#DEBUT_SURLIGNE(#TITRE|Supprimer_numero)#FIN_SURLIGNE]<BOUCLE_EstAgenda(MOTS){id_rubrique}{titre=Agenda}>
-<sub class="dateevenement">[(#DATE_REDAC|nom_jour)] [(#DATE_REDAC|affdate)][(#DATE_REDAC|heures_minutes|!={00h00min}|?{[, (#DATE_REDAC|heures_minutes)],''})].</sub>
+<div><h1>[<img class="logo_article" src="(#LOGO_ARTICLE||reduire_image{64,64}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][#DEBUT_SURLIGNE(#TITRE|Supprimer_numero)#FIN_SURLIGNE]<BOUCLE_EstAgenda(EVENEMENTS){id_article}{par date_debut}>
+<sub class="dateevenement">[<strong>(#DATE_DEBUT|afficher_les_dates{#DATE_FIN,#HORAIRE,1,1})</strong>][&nbsp;: <a href="#[(#TITRE|supprimer_numero|sinon{[(#_article_principal:TITRE)#ID_EVENEMENT]}|textebrut|attribut_html|nettoyer_marqueur|texte_script)]">(#TITRE|supprimer_numero|sinon{[(#_article_principal:TITRE)]})</a>]</sub>
 </BOUCLE_EstAgenda></h1></div>
 <INCLURE{fond=liste_auteurs}{id_article}>[<div class="soustitre"><span>(#SOUSTITRE)</span></div>]
 <INCLURE{fond=article_cartouche}{id_article}>
@@ -40,17 +40,18 @@
 </B_SommaireArticle>
 <//B_Sommaire>
 
-<BOUCLE_EstAgenda2(MOTS){id_rubrique}{titre=Agenda}>
-<B_MotsAgenda>
+<B_EstAgenda2>
 <div id="mots_agenda">
-<BOUCLE_MotsAgenda(MOTS){id_article}{type=CategorieAgenda}>
+<BOUCLE_EstAgenda2(EVENEMENTS){id_article}>
+<BOUCLE_MotsAgenda(MOTS){id_evenement}{doublons mots_evenements}> </BOUCLE_MotsAgenda>
+</BOUCLE_EstAgenda2>
+<BOUCLE_MotsAgendaMemorise(MOTS){!doublons mots_evenements}{par titre}>
 <h2>#TITRE</h2>
 [<div class="descriptifmot">#DEBUT_SURLIGNE(#DESCRIPTIF)#FIN_SURLIGNE</div>]
 [<div class="textemot">#DEBUT_SURLIGNE(#TEXTE)#FIN_SURLIGNE</div>]
-</BOUCLE_MotsAgenda>
+</BOUCLE_MotsAgendaMemorise>
 </div>
-</B_MotsAgenda>
-</BOUCLE_EstAgenda2>
+</B_EstAgenda2>
 
 	<div id="letexte">
 [<div class="chapo">#DEBUT_SURLIGNE(#CHAPO|sinon{#DESCRIPTIF})#FIN_SURLIGNE</div>]
@@ -66,6 +67,22 @@
 <//B_SommaireArticleAncre>
 <//B_SommaireAncre>
 [<div class="ps">#DEBUT_SURLIGNE(#PS)#FIN_SURLIGNE</div>]
+[<div class="notes">#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
+
+<B_DetailAgenda>
+<ul id="ArticleAgendaDetail">
+<BOUCLE_DetailAgenda(EVENEMENTS){id_article}{par date_debut}>
+<li>
+<dl>
+<dt><a name="[(#TITRE|supprimer_numero|sinon{[(#_article_principal:TITRE)#ID_EVENEMENT]}|textebrut|attribut_html|nettoyer_marqueur|texte_script)]"></a>[<strong>(#DATE_DEBUT|afficher_les_dates{#DATE_FIN,#HORAIRE,1,1})</strong>][&nbsp;: (#TITRE|supprimer_numero|sinon{[(#_article_principal:TITRE)]})]<B_genres> (<BOUCLE_genres(MOTS){id_evenement}{", "}{par titre}><a href="#URL_MOT" rel="tag" title="<:pyrat:savoirpluscritere:>: [(#TITRE|attribut_html|texte_script)]">[(#TITRE|texte_script)]</a></BOUCLE_genres>)</B_genres></dt>
+[<dd>(#DESCRIPTIF)</dd>]
+[<dd class="lieu"><:agenda:evenement_lieu:>&nbsp;: (#LIEU)</dd>]
+</dl>
+</li>
+</BOUCLE_DetailAgenda>
+</ul>
+</B_DetailAgenda>
+
 [<div class="notes">#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
 
 <BOUCLE_Est_Gallerie(MOTS){id_article}{titre=Gallerie}>
