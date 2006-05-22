@@ -10,20 +10,22 @@ $events = array();
 ?>
 <B_agenda>
 <div id="miniagenda">
-<BOUCLE_agenda(RUBRIQUES){titre_mot =Agenda }{id_parent=0}>
+<BOUCLE_agenda(RUBRIQUES){titre_mot=Agenda}{id_parent=0}>
 	<?php
 	$events = array();
 	$eventstitle = array();
 	$eventscolor = array();
-	<BOUCLE_evenements(ARTICLES){branche}>
-	$date = ereg_replace("^([0-9]{4})-([0-9]{2})-([0-9]{2}).*$", "\\1\\2\\3", '#DATE_REDAC');
+	<BOUCLE_evenements(EVENEMENTS){branche}{date_debut==^(#ENV{date}|annee)}>
+	$date = ereg_replace("^([0-9]{4})-([0-9]{2})-([0-9]{2}).*$", "\\1\\2\\3", '#DATE_DEBUT');
 	if ($date > date("Ymd", mktime(0, 0, 0, $M, -7, $Y)) && $date < date("Ymd", mktime(0, 0, 0, $M + 1, 7, $Y))) {
+		<BOUCLE_EvenementArticle(ARTICLES){id_article}>
 			if (!isset($events[$date])) { $events[$date] = array(); }
 			$events[$date][] = '#URL_ARTICLE';
 			if (!isset($eventstitle[$date])) { $eventstitle[$date] = array(); }
 			$eventstitle[$date][] = '[(#TITRE|attribut_html|texte_script)]';
 			if (!isset($eventscolor[$date])) { $eventscolor[$date] = array(); }
 			$eventscolor[$date][] = '<BOUCLE_CouleurRub(MOTS){id_rubrique}{type=_CouleurRubrique}> style="background-color:#[(#TEXTE)];"</BOUCLE_CouleurRub>';
+		</BOUCLE_EvenementArticle>
 	}
 	</BOUCLE_evenements>
 	?>
