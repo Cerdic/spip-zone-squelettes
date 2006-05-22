@@ -8,6 +8,7 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'accueil' => 'Accueil',
 'accueil_menu' => '<em>A</em>ccueil', //le <em> indique la lettre AccessKey
 'agenda' => 'Agenda',
+'agenda_summary' => 'Agenda des &eacute;v&eacutesnements',
 'agendamoisde' => 'Agenda du mois de',
 'alaune' => '&Agrave; la Une',
 'auteur' => 'Auteur',
@@ -77,6 +78,7 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'forum_enreponse_message' => 'En r&eacute;ponse au message&nbsp;:',
 
 //G
+'geourl' => 'Voisinage GeoURL',
 'gpm_fontion' => 'Caract&eacute;ristiques',
 'gpm_ouinon' => 'Valeurs',
 
@@ -114,7 +116,7 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 //P
 'par' => 'par',
 'plan_menu' => '<em>P</em>lan du site',
-'plus_loin' => 'Pour aller<br />plus loin',
+'plus_loin' => '&Agrave; voir aussi',
 'plus_loin_title' => 'Site de r&eacute;f&eacute;rences',
 'precisezrecherche' => 'Pr&eacute;cisez votre recherche',
 'publiele' => 'Publi&eacute; le',
