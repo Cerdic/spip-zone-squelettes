@@ -7,17 +7,14 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
 	<meta name="robots" content="none" />
 	<meta name="generator" content="SPIP" />
-
-	<!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
-	<link rel="stylesheet" href="#CHEMIN{spip_style.css}" type="text/css" />
+	[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
 
 	<!-- Feuille de styles CSS pour l'affichage du site sur ecran -->
-	<link rel="stylesheet" href="#CHEMIN{habillage.css}" type="text/css" media="all" />
-
+	<link rel="stylesheet" href="#CHEMIN{habillage.css}" type="text/css" media="projection, screen, tv" />
+	<!-- Ceci est la feuille de style par defaut pour le code genere par SPIP -->
+	<link rel="stylesheet" href="#CHEMIN{spip_style.css}" type="text/css" media="projection, screen, tv" />
 	<!-- Feuille de styles CSS pour l'impression -->
 	<link rel="stylesheet" href="#CHEMIN{impression.css}" type="text/css" media="print" />
-
-	[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
 </head>
 
 <body id="page_forum">
@@ -26,8 +23,8 @@
 		[(#REM) Entete de la page + titre du site ]
 		<INCLURE{fond=inc-entete}{lang}>
 
-    [(#REM) Fil d'Ariane ]
-    <div id="hierarchie"><a href="#URL_SITE_SPIP"><:accueil_site:></a>
+	[(#REM) Fil d'Ariane ]
+	<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a>
 
 		<BOUCLE_contexte_article(ARTICLES) {id_article}>
 			<BOUCLE_ariane_article(HIERARCHIE) {id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane_article>
@@ -71,50 +68,50 @@
 
 			<div id="contenu">
 
-				<h2 class="invisible"><:poster_message:></h2>
+				<h1 class="invisible"><:poster_message:></h1>
 
 				<BOUCLE_forum_parent(FORUMS) {id_forum}>
 				<div class="extrait">
-					<h3 class="surtitre"><:en_reponse:></h3>
+					<h2 class="surtitre"><:en_reponse:></h2>
 					<p class="titre"><a href="#URL_FORUM">[(#TITRE|supprimer_numero|couper{80})]</a></p>
 					<small>[(#DATE|affdate)][&nbsp;(#DATE|heures)][:(#DATE|minutes)][, <:par_auteur:> (#NOM)]</small>
-					[<div class="texte">(#INTRODUCTION)</div>]
+					[<div class="texte">(#INTRODUCTION|lignes_longues)</div>]
 				</div>
 				</BOUCLE_forum_parent>
 
 				<BOUCLE_article(ARTICLES) {id_article}>
 				<div class="extrait">
-					<h3 class="surtitre"><:en_reponse:></h3>
+					<h2 class="surtitre"><:en_reponse:></h2>
 					[(#LOGO_ARTICLE||reduire_image{120,120})]
 					<p class="titre"><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero|couper{80})]</a></p>
 					<small>[(#DATE|affdate)]<B_auteurs>, <:par_auteur:> <BOUCLE_auteurs(AUTEURS) {id_article} {", "}><a href="#URL_AUTEUR">[(#NOM|supprimer_numero|couper{80})]</a></BOUCLE_auteurs></small>
-					[<div class="texte">(#INTRODUCTION)</div>]
+					[<div class="texte">(#INTRODUCTION|lignes_longues)</div>]
 				</div>
 				</BOUCLE_article>
 
 				<BOUCLE_breve(BREVES) {id_breve}>
 				<div class="extrait">
-					<h3 class="surtitre"><:en_reponse:></h3>
+					<h2 class="surtitre"><:en_reponse:></h2>
 					[(#LOGO_BREVE||reduire_image{120,120})]
 					<p class="titre"><a href="#URL_BREVE">[(#TITRE|supprimer_numero|couper{80})]</a></p>
 					<small>[(#DATE|affdate)]</small>
-					[<div class="texte">(#INTRODUCTION)</div>]
+					[<div class="texte">(#INTRODUCTION|lignes_longues)</div>]
 				</div>
 				</BOUCLE_breve>
 
 				<BOUCLE_rubrique(RUBRIQUES) {id_rubrique}>
 				<div class="extrait">
-					<h3 class="surtitre"><:en_reponse:></h3>
+					<h2 class="surtitre"><:en_reponse:></h2>
 					<p class="titre"><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></p>
-					[<div class="texte">(#TEXTE)</div>]
+					[<div class="texte">(#TEXTE|lignes_longues)</div>]
 				</div>
 				</BOUCLE_rubrique>
 
 				<BOUCLE_syndic(SITES) {id_syndic}>
 				<div class="extrait">
-					<h3 class="surtitre"><:en_reponse:></h3>
+					<h2 class="surtitre"><:en_reponse:></h2>
 					<p class="titre"><a href="[(#ID_SYNDIC|generer_url_site)]">[(#NOM_SITE|supprimer_numero|couper{80})]</a></p>
-					[<div class="texte">(#DESCRIPTIF)</div>]
+					[<div class="texte">(#DESCRIPTIF|lignes_longues)</div>]
 				</div>
 				</BOUCLE_syndic>
 
@@ -128,7 +125,7 @@
 
 			[(#REM) Menu de navigation laterale ]
 			<div id="navigation">
-				<h2 class="invisible"><:navigation:></h2>
+				<h1 class="invisible"><:navigation:></h1>
 
 				[(#REM) Menu de navigation par rubriques ]
 				<INCLURE{fond=inc-rubriques}{lang}>

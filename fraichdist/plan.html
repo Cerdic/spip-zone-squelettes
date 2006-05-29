@@ -7,17 +7,14 @@
 	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
 	<meta name="robots" content="none" />
 	<meta name="generator" content="SPIP" />
-
-	<!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
-	<link rel="stylesheet" href="#CHEMIN{spip_style.css}" type="text/css" />
+	[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
 
 	<!-- Feuille de styles CSS pour l'affichage du site sur ecran -->
-	<link rel="stylesheet" href="#CHEMIN{habillage.css}" type="text/css" media="all" />
-
+	<link rel="stylesheet" href="#CHEMIN{habillage.css}" type="text/css" media="projection, screen, tv" />
+	<!-- Ceci est la feuille de style par defaut pour le code genere par SPIP -->
+	<link rel="stylesheet" href="#CHEMIN{spip_style.css}" type="text/css" media="projection, screen, tv" />
 	<!-- Feuille de styles CSS pour l'impression -->
 	<link rel="stylesheet" href="#CHEMIN{impression.css}" type="text/css" media="print" />
-
-	[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
 </head>
 
 <body id="page_plan">
@@ -27,26 +24,26 @@
 		<INCLURE{fond=inc-entete}{lang}>
 
 		[(#REM) Fil d'Ariane ]
-		<div id="hierarchie"><a href="#URL_SITE_SPIP"><:accueil_site:></a> &gt; <:plan_site:></div>
+		<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:plan_site:></div>
 
 		<div id="conteneur">
 
 			[(#REM) Le plan de site ci-dessous est a adapter selon les besoins. En particulier, on n'aura pas necessairement besoin de tous les elements (sous-rubriques, articles, breves et sites) ]
 
-			<div id="contenu" class="plan">
+			<div id="contenu">
 
-				<h2 class="invisible"><:plan_site:></h2>
+				<h1 class="invisible"><:plan_site:></h1>
 
 				<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
 
-				<h3><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></h3>
+				<h2><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></h2>
 
 				[(#REM) Articles et sous-rubriques ]
 
 				<div class="contre-encart">
 
 					<B_articles_racine>
-					<h4 class="invisible"><:articles:></h4>
+					<h3 class="invisible"><:articles:></h3>
 					<ul>
 						<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
 						<li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero|couper{80})]</a></li>
@@ -82,7 +79,7 @@
 				[(#REM) Breves ]
 				<B_breves>
 				<div class="breves">
-					<h4 class="titre"><:breves:></h4>
+					<h3 class="titre"><:breves:></h3>
 					<ul>
 						<BOUCLE_breves(BREVES) {id_secteur} {par date}{inverse}>
 						<li><a href="#URL_BREVE">[(#TITRE|supprimer_numero|couper{80})]</a></li>
@@ -94,7 +91,7 @@
 				[(#REM) Sur le Web ]
 				<B_sites>
 				<div class="syndic">
-					<h4 class="titre"><:sites_web:></h4>
+					<h3 class="titre"><:sites_web:></h3>
 					<ul>
 						<BOUCLE_sites(SITES) {id_secteur} {par nom_site}>
 						<li><a href="[(#ID_SYNDIC|generer_url_site)]">[(#NOM_SITE|supprimer_numero|couper{80})]</a></li>
@@ -111,7 +108,7 @@
 
 			[(#REM) Menu de navigation laterale ]
 			<div id="navigation">
-				<h2 class="invisible"><:navigation:></h2>
+				<h1 class="invisible"><:navigation:></h1>
 
 				[(#REM) Menu de navigation par rubriques ]
 				<INCLURE{fond=inc-rubriques}{lang}>
