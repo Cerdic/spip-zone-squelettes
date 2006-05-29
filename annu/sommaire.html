@@ -21,9 +21,10 @@
        <div id="post">
          <INCLURE{fond=inc/inc_loupe}{lang}> 
          
-          <!-- sidebar -->
+         <!-- sidebar -->
          <div id="sidebar">
-             <!-- sommaire focus du mois (51) -->         
+             <!-- sommaire focus du mois (51) --> 
+             <!--        
              <div id="focus"><BOUCLE_focus(RUBRIQUES){id_mot=51}{0,1}{par hasard}> 
              <h1 class="bg">Focus sur ...</h1>
                 <div class="focuscontent">        
@@ -32,6 +33,7 @@
                     <BOUCLE_one_shot(ARTICLES){id_rubrique}{0,1}><a href="#URL_ARTICLE">Lire la suite...</a></BOUCLE_one_shot>
                 </div>
              </BOUCLE_focus></div>
+             -->
         </div>
         
          
@@ -49,6 +51,7 @@
             <p>Vous voulez un monter votre site SPIP avec un indépendant habitant près de chez vous ...</p>            
             
             <!-- france map -->
+            <!--
             <img src="#CHEMIN{img/france.png}" id="frm" alt="carte des r&eacute;gions" usemap="#Damap" />
             <map name="Damap" id="Damap">
             <area href="spip.php?mot=36" onmouseout="document.frm.src='#CHEMIN{img/france.png}'" onmouseover="document.frm.src='#CHEMIN{img/france-sudest.png}'" alt='sud est' shape="poly" coords="166,128,145,117,130,128,130,160,143,184,129,200,114,201,120,216,114,221,119,226,140,224,139,213,158,197,169,201,178,202,196,208,225,180,209,173,206,154,211,144,206,137,205,120,198,121,189,129,178,122,167,127"  />
@@ -65,6 +68,17 @@
             <option value='spip.php?mot=#ID_MOT'>#TITRE</option></BOUCLE_list_regions>
             </select>            
             </form>
+            -->
+            <!-- region listing -->
+            <BOUCLE_list_region(MOTS){type=Région}{par titre}>
+            <B_list_author_region><h3 style="border-bottom:2px solid #fff">#_list_region:TITRE</h3>
+            <ul class="silent">
+            <BOUCLE_list_author_region(RUBRIQUES){id_mot}{par titre}>
+            <li><BOUCLE_one_shot2(ARTICLES){id_rubrique}{0,1}>[<h4><a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a></h4>]
+            [(#_list_author_region:TEXTE|couper{400}) ]<a href="#URL_ARTICLE">Lire la suite...</a></BOUCLE_one_shot2></li>
+            </BOUCLE_list_author_region>
+            </ul></B_list_author_region>
+            </BOUCLE_list_region>
          </div> 
          
          <div class="searchblock type2">
