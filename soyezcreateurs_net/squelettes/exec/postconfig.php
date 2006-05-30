@@ -39,7 +39,7 @@ function id_rubrique($titre) {
 	return 0;
 }
 
-function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $obligatoire='non', $articles='oui', $breves='non', $rubriques='non', $syndic='non', $minirezo='oui', $comite='oui', $forum='non') {
+function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $obligatoire='non', $articles='oui', $breves='non', $rubriques='non', $syndic='non', $evenements='non', $minirezo='oui', $comite='oui', $forum='non') {
 	$groupe = importer_charset($groupe);
 	$id_groupe=id_groupe($groupe);
 	$texte = importer_charset($texte);
@@ -47,14 +47,14 @@ function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $oblig
 	if ($id_groupe == 0) {
 		//Création groupe + mots clé
 		$query = "INSERT INTO spip_groupes_mots SET titre='$groupe', descriptif='$descriptif', texte='$texte', unseul='$unseul', obligatoire='$obligatoire',
-			articles='$articles', breves='$breves', rubriques='$rubriques', syndic='$syndic',
+			articles='$articles', breves='$breves', rubriques='$rubriques', syndic='$syndic', evenements='$evenements',
 			minirezo='$minirezo', comite='$comite', forum='$forum'";
 		spip_query($query);
 		$id_groupe = spip_insert_id();
 	} else {
 		// Mise à jour
 		spip_query("UPDATE spip_groupes_mots SET descriptif='$descriptif', texte='$texte', unseul='$unseul', obligatoire='$obligatoire',
-			articles='$articles', breves='$breves', rubriques='$rubriques', syndic='$syndic',
+			articles='$articles', breves='$breves', rubriques='$rubriques', syndic='$syndic', evenements='$evenements',
 			minirezo='$minirezo', comite='$comite', forum='$forum' WHERE id_groupe=$id_groupe");
 	}
 	echo "<h2>Groupe: $groupe (<a href='?exec=mots_type&id_groupe=$id_groupe'>$id_groupe</a>)</h2>";
@@ -123,7 +123,7 @@ function config_site() {
 
 	create_groupe("Thèmes de l\'Agenda", "Détermine la liste des éléments pouvant être présentés en liste déroulante dans l\'Agenda du site", "Un événement de l\'Agenda peut avoir un ou {{plusieurs}} mot clefs ratachés (les sélectionner avec maj-clic).", 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'oui', 'oui', 'non');
 
-	create_groupe("_CouleurRubrique", "Permet de changer la couleur d\'une Rubrique.", "Affecter un mot clef de ce groupe à une rubrique (et ses descendants) pour en changer la tonalité de couleur.\n\nPour chacun des mots clefs, mettre en titre quelque chose d\'intelligible, un éventuel descriptif rapide sur l\'usage à en faire et le code hexadecimal de la couleur dans le texte. \n\nExemple : \n-* Titre: Orange\n-* Texte : f78221", 'oui', 'non', 'non', 'non', 'oui', 'non', 'oui', 'non', 'non');
+	create_groupe("_CouleurRubrique", "Permet de changer la couleur d\'une Rubrique.", "Affecter un mot clef de ce groupe à une rubrique (et ses descendants) pour en changer la tonalité de couleur.\n\nPour chacun des mots clefs, mettre en titre quelque chose d\'intelligible, un éventuel descriptif rapide sur l\'usage à en faire et le code hexadecimal de la couleur dans le texte. \n\nExemple : \n-* Titre: Orange\n-* Texte : f78221", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_CouleurRubrique", "Bleu", "", "6392A9");
 		create_mot("_CouleurRubrique", "Marron clair", "", "9F7561");
 		create_mot("_CouleurRubrique", "Turkoise pastel", "", "89A699");
@@ -131,7 +131,7 @@ function config_site() {
 	create_groupe("_HTTP-EQUIV", "Paramétrage du site", "Paramétrage des entêtes HTML HTTP-EQUIV.\n\nÀ utiliser en sachant pourquoi.", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_HTTP-EQUIV", "pics-label", "Mettre ci-dessous le contenu du label ICRA (XHTML) généré depuis [->http://www.icra.org/].\n\nIl s\'agit d\'une démarche volontaire du responsable du site visant à indiquer si le site peut ou non être visité sans dommage par des enfants.", "");
 
-	create_groupe("_InformationsLegales", "Mention légales obligatoire ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] et [LcEN|Loi sur la confiance en l\'Économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L])", "[Décryptage des obligations légales->http://maitre.eolas.free.fr/journal/index.php?2005/05/27/135-responsabilite-du-blogueur].", 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
+	create_groupe("_InformationsLegales", "Mention légales obligatoire ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] et [LcEN|Loi sur la confiance en l\'Économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L])", "[Décryptage des obligations légales->http://maitre.eolas.free.fr/journal/index.php?2005/05/27/135-responsabilite-du-blogueur].", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_InformationsLegales", "10. Propriétaire du site", "Mettre les coordonnées du propriétaire du site ci-dessous", "");
 		create_mot("_InformationsLegales", "20. Hébergeur", "");
 		create_mot("_InformationsLegales", "30. Liens vers ce site", "Mettre ci-dessous les conditions d\'utilisation du contenu", "Le site autorise tout site Internet ou tout autre support à le citer ou à mettre en place un lien hypertexte pointant vers son contenu.\n\nL’autorisation de mise en place d’un lien est valable pour tout support, à l’exception de ceux diffusant des informations à caractère polémique, pornographique, xénophobe ou pouvant, dans une plus large mesure porter atteinte à la sensibilité du plus grand nombre.\n\nLa reprise intégrale du contenu d\'une page est aussi autorisée, sous réserve d\'établir un lien clair vers sa source.");
@@ -142,7 +142,7 @@ function config_site() {
 		create_mot("_LayoutGala", "24. Two columns liquid, side fixed", "", "ParDefaut");
 		create_mot("_LayoutGala", "34. Two colums fixed", "", "");
 		create_mot("_LayoutGala", "7. Three fixed columns", "", "");
-	create_groupe("_LogosExtra", "Permet de placer une image en fond de la colonne Extra (c\'est-à-dire, soit la colonne secondaire qui peut être afichée soit de l\'autre côté du menu, soit en dessous de celui-ci).", "{{Utilisation}} : affecter un ou plusieurs mots clefs de ce groupe aux rubriques (héritage automatique) qui doivent avoir une ou plusieurs image en fond. L\'image est choisie aléatoirement parmis celles disponibles.\n\n{{Configuration}} : \n-* créer des mots clefs dans ce groupe et leur donner un logo de mot clef.\n-* il est possible de mettre un logo de survol qui sera alors utilisé en fond de texte (en plus de l\'autre logo) et positionné en haut à droite sauf si le texte contient les ordres CSS de positionnement ({bottom left} par exemple)", 'non', 'non', 'non', 'non', 'oui', 'non', 'oui', 'non', 'non');
+	create_groupe("_LogosExtra", "Permet de placer une image en fond de la colonne Extra (c\'est-à-dire, soit la colonne secondaire qui peut être afichée soit de l\'autre côté du menu, soit en dessous de celui-ci).", "{{Utilisation}} : affecter un ou plusieurs mots clefs de ce groupe aux rubriques (héritage automatique) qui doivent avoir une ou plusieurs image en fond. L\'image est choisie aléatoirement parmis celles disponibles.\n\n{{Configuration}} : \n-* créer des mots clefs dans ce groupe et leur donner un logo de mot clef.\n-* il est possible de mettre un logo de survol qui sera alors utilisé en fond de texte (en plus de l\'autre logo) et positionné en haut à droite sauf si le texte contient les ordres CSS de positionnement ({bottom left} par exemple)", 'non', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_LogosExtra", "300. Tourisme sous-bois", "", "top right");
 		create_mot("_LogosExtra", "310. Tourisme Roches enchantées", "", "");
 		create_mot("_LogosExtra", "320. Tourisme La Loue (Rivière)", "", "bottom right");
@@ -172,9 +172,12 @@ function config_site() {
 	create_groupe("_ParamsApparence", "Des paramètres pour régler l\'apparence du site", "Ces paramètres influent directement sur l\'apparence du site.\n\nLà encore, ne rien faire sans savoir pourquoi.", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_ParamsApparence", "AvertissementIE", "Mettre Oui ci-dessous pour afficher l\'avertissement d\'obsolescence d\'Internet Explorer 5 et 5.5", "Oui");
 		create_mot("_ParamsApparence", "FrmRecherchePerso", "Mettre ci-dessous le nom du Formulaire de Recherche s\'il doit être différent du formulaire de recherche par défaut.\n\nSi le fichier de squelette est {nomfichier.html}, mettre {nomfichier}", "");
-		create_mot("_ParamsApparence", "LargeurMenuGauche", "Pour régler la largeur du menu de gauche (l\'unité est le pixel)", "166");
+		create_mot("_ParamsApparence", "LargeurMenuDroit", "Pour régler la largeur du menu de droite si présent (l\'unité est le pixel)", "140");
+		create_mot("_ParamsApparence", "LargeurMenuGauche", "Pour régler la largeur du menu de gauche (l\'unité est le pixel)", "160");
+		create_mot("_ParamsApparence", "Nombre_ALaUne", "Mettre ci-dessous le nombre d\'élements que la zone « À la Une » de la page d\'accueil doit contenir.", "3");
+		create_mot("_ParamsApparence", "Nombre_QuoideNeuf", "Mettre ci-dessous le nombre d\'élements que le quoi de neuf de la page d\'accueil doit contenir.", "10");
 
-	create_groupe("_ParamsSlyleSwitcher", "Paramétrage du menu de choix d\'affichage du site", "Il est possible :\n\n-* d\'enlever un élément\n-* de changer de place un «alternate» pour changer le style par défaut du site", 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
+	create_groupe("_ParamsSlyleSwitcher", "Paramétrage du menu de choix d\'affichage du site", "Il est possible :\n\n-* d\'enlever un élément\n-* de changer de place un «alternate» pour changer le style par défaut du site", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_ParamsSlyleSwitcher", "centerbleu", "", "Bleu");
 
 	create_groupe("_Specialisation", "Spécialisation d’un article ", "Un mot clef pris dans ce groupe permettra de modifier\n\n-* le comportement d’un article particulier\n", 'non', 'non', 'oui', 'non', 'non', 'non', 'non', 'oui', 'oui', 'non');
