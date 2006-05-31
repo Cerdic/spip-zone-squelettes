@@ -57,6 +57,7 @@ function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $oblig
 			articles='$articles', breves='$breves', rubriques='$rubriques', syndic='$syndic', evenements='$evenements',
 			minirezo='$minirezo', comite='$comite', forum='$forum' WHERE id_groupe=$id_groupe");
 	}
+	$groupe = stripslashes($groupe);
 	echo "<h2>Groupe: $groupe (<a href='?exec=mots_type&id_groupe=$id_groupe'>$id_groupe</a>)</h2>";
 	return $id_groupe;
 }
@@ -77,6 +78,7 @@ function create_mot($groupe, $mot, $descriptif='', $texte='') {
 			spip_query("UPDATE spip_mots SET type='$groupe', id_groupe='$id_groupe', descriptif='$descriptif', texte='$texte' WHERE id_mot=$id_mot");
 		}
 	}
+	$mot = stripslashes($mot);
 	echo "<li>Mot: $mot (<a href='?exec=mots_edit&id_mot=$id_mot&redirect=%3Fexec%3Dmots_tous'>$id_mot</a>)</li>";
 	return $id_mot;
 }
@@ -90,6 +92,7 @@ function create_rubrique($titre, $id_parent='0', $descriptif='') {
 		spip_query($query);
 		$id_rubrique = spip_insert_id();
 	}
+	$titre = stripslashes($titre);
 	echo "<li>Rubrique: $titre (<a href='?exec=naviguer&id_rubrique=$id_rubrique'>$id_rubrique</a>)</li>";
 	return $id_rubrique;
 }
@@ -116,6 +119,8 @@ function config_site() {
 	spip_query("REPLACE spip_meta (nom, valeur) VALUES ('config_precise_groupes', 'oui')");
 	spip_query("REPLACE spip_meta (nom, valeur) VALUES ('articles_redac', 'oui')");
 	// Création rubriques
+	
+	echo "<h2>Cr&eacute;ation des rubriques sp&eacute;ciales</h2>";
 	create_rubrique('000. Racine', '0', "Vous trouverez dans cette rubrique:\n\n-* Les Éditos\n-* Des articles concernant le site lui-même\n");
 	create_rubrique('900. Agenda', '0');
 
@@ -221,17 +226,17 @@ function config_site() {
 	return TRUE;
 }
 
-//
-// Main
-//
-if (!defined("_ECRIRE_INC_VERSION")) return;
+function exec_postconfig() {
+	if (!defined("_ECRIRE_INC_VERSION")) return;
 
-include_ecrire ("inc_presentation");
-include_ecrire ("inc_lang");
-include_ecrire ("inc_charsets");
+	include_spip("inc/presentation");
+	include_spip("inc/lang");
+	include_spip("inc/charsets");
 
-install_debut_html("Configurateur site");
-config_site();
+	install_debut_html("Configurateur site");
+	config_site();
 
-install_fin_html();
+	echo "<h1>Installation termin&eacute;</h1><p>Vous pouvez revenir à l'<a href='./'>administration du site</a></p>";
+	install_fin_html();
+}
 ?>
