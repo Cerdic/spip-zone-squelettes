@@ -108,26 +108,20 @@ function est_lu(id) {
 }
 
 // lien player sur les mp3 ; src= http://musicplayer.sourceforge.net/
+// cf. http://www.alistapart.com/articles/flashsatay/
 function play(e,url) {
 	var player = document.createElement('div')
 	player.className = 'musicplayer';
-	player.innerHTML = '<object style="margin-left:0.1em" ' +
-	'classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" ' +
-	'codebase="' +
-	'http://fpdownload.macromedia.com/pub/shockwave/cabs/'+
-	'flash/swflash.cab#version=6,0,0,0"' +
-	'width="18" height="18" align="middle">' +
+
+	player.innerHTML = '<object type="application/x-shockwave-flash" ' +
+	'data="musicplayer.swf?autoplay=false" ' +
+	'width="18" height="18">' +
 	'<param name="wmode" value="transparent" />' +
 	'<param name="allowScriptAccess" value="sameDomain" />' +
-	'<param name="flashVars" value="song_url='+url+'" />' +
+	'<param name="flashVars" value="song_url='+url+" />' +
 	'<param name="movie" value="musicplayer.swf?autoplay=false" />' +
 	'<param name="quality" value="high" />' +
-	'<embed style="margin-left:0.1em" ' +
-	'src="musicplayer.swf?autoplay=false" '+
-	'flashVars="song_url='+url+'"' +
-	'quality="high" wmode="transparent" width="18" height="18" name="player"' +
-	' allowScriptAccess="sameDomain" type="application/x-shockwave-flash"' +
-	' pluginspage="http://www.macromedia.com/go/getflashplayer" /></object>';
+	'</object>';
 
 	var f = e.parentNode.parentNode.parentNode;
 	f.parentNode.insertBefore(player, f);
