@@ -118,7 +118,7 @@ function play(e,url) {
 	'width="18" height="18">' +
 	'<param name="wmode" value="transparent" />' +
 	'<param name="allowScriptAccess" value="sameDomain" />' +
-	'<param name="flashVars" value="song_url='+url+" />' +
+	'<param name="flashVars" value="song_url='+url+'" />' +
 	'<param name="movie" value="musicplayer.swf?autoplay=false" />' +
 	'<param name="quality" value="high" />' +
 	'</object>';
