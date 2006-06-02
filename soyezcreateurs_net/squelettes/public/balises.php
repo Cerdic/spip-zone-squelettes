@@ -118,7 +118,8 @@ function balise_DATE_NOUVEAUTES_dist($p) {
 }
 
 function balise_DOSSIER_SQUELETTE_dist($p) {
-	$p->code = "'" . addslashes(dirname($p->descr['sourcefile'])) . "'" ;
+	$code = addslashes(dirname($p->descr['sourcefile']));
+	$p->code = "'$code'" . 
 	$p->interdire_scripts = false;
 	return $p;
 }
@@ -140,7 +141,15 @@ function balise_URL_ARTICLE_dist($p) {
 
 	// Cas general : chercher un id_article dans la pile
 	else {
-		$_id_article = champ_sql('id_article', $p);
+		$_id_article = '';
+		if ($p->param && !$p->param[0][0]){
+			$_id_article =  calculer_liste($p->param[0][1],
+								$p->descr,
+								$p->boucles,
+								$p->id_boucle);
+		}
+		if (!$_id_article)
+			$_id_article = champ_sql('id_article', $p);
 		$p->code = "generer_url_article($_id_article)";
 
 		if ($p->boucles[$p->nom_boucle ? $p->nom_boucle : $p->id_boucle]->hash)
@@ -152,9 +161,17 @@ function balise_URL_ARTICLE_dist($p) {
 }
 
 function balise_URL_RUBRIQUE_dist($p) {
-	$p->code = "generer_url_rubrique(" . 
-	champ_sql('id_rubrique',$p) . 
-	")" ;
+	$_id_rubrique = '';
+	if ($p->param && !$p->param[0][0]){
+		$_id_rubrique =  calculer_liste($p->param[0][1],
+							$p->descr,
+							$p->boucles,
+							$p->id_boucle);
+	}
+	if (!$_id_rubrique)
+		$_id_rubrique = champ_sql('id_rubrique',$p);
+	$p->code = "generer_url_rubrique($_id_rubrique)" ;
+
 	if ($p->boucles[$p->nom_boucle ? $p->nom_boucle : $p->id_boucle]->hash)
 	$p->code = "url_var_recherche(" . $p->code . ")";
 
@@ -163,9 +180,17 @@ function balise_URL_RUBRIQUE_dist($p) {
 }
 
 function balise_URL_BREVE_dist($p) {
-	$p->code = "generer_url_breve(" .
-	champ_sql('id_breve',$p) . 
-	")";
+	$_id_breve = '';
+	if ($p->param && !$p->param[0][0]){
+		$_id_breve =  calculer_liste($p->param[0][1],
+							$p->descr,
+							$p->boucles,
+							$p->id_boucle);
+	}
+	if (!$_id_breve)
+		$_id_breve = champ_sql('id_breve',$p);
+	$p->code = "generer_url_breve($_id_breve)";
+	
 	if ($p->boucles[$p->nom_boucle ? $p->nom_boucle : $p->id_boucle]->hash)
 	$p->code = "url_var_recherche(" . $p->code . ")";
 
@@ -174,9 +199,16 @@ function balise_URL_BREVE_dist($p) {
 }
 
 function balise_URL_MOT_dist($p) {
-	$p->code = "generer_url_mot(" .
-	champ_sql('id_mot',$p) .
-	")";
+	$_id_mot = '';
+	if ($p->param && !$p->param[0][0]){
+		$_id_mot =  calculer_liste($p->param[0][1],
+							$p->descr,
+							$p->boucles,
+							$p->id_boucle);
+	}
+	if (!$_id_mot)
+		$_id_mot = champ_sql('id_mot',$p);
+	$p->code = "generer_url_mot($_id_mot)";
 
 	if ($p->boucles[$p->nom_boucle ? $p->nom_boucle : $p->id_boucle]->hash)
 	$p->code = "url_var_recherche(" . $p->code . ")";
@@ -205,8 +237,16 @@ function balise_NOM_SITE_dist($p) {
 # a part [(#ID_SYNDIC|generer_url_site)]
 
 function balise_URL_FORUM_dist($p) {
-	$p->code = "generer_url_forum(" .
-	champ_sql('id_forum',$p) .")";
+	$_id_forum = '';
+	if ($p->param && !$p->param[0][0]){
+		$_id_forum =  calculer_liste($p->param[0][1],
+							$p->descr,
+							$p->boucles,
+							$p->id_boucle);
+	}
+	if (!$_id_forum)
+		$_id_forum = champ_sql('id_forum',$p);
+	$p->code = "generer_url_forum($_id_forum)";
 
 	if ($p->boucles[$p->nom_boucle ? $p->nom_boucle : $p->id_boucle]->hash)
 	$p->code = "url_var_recherche(" . $p->code . ")";
@@ -216,16 +256,33 @@ function balise_URL_FORUM_dist($p) {
 }
 
 function balise_URL_DOCUMENT_dist($p) {
-	$p->code = "generer_url_document(" .
-	champ_sql('id_document',$p) . ")";
+	$_id_document = '';
+	if ($p->param && !$p->param[0][0]){
+		$_id_document =  calculer_liste($p->param[0][1],
+							$p->descr,
+							$p->boucles,
+							$p->id_boucle);
+	}
+	if (!$_id_document)
+		$_id_document = champ_sql('id_document',$p);
+	$p->code = "generer_url_document($_id_document)";
 
 	$p->interdire_scripts = false;
 	return $p;
 }
 
 function balise_URL_AUTEUR_dist($p) {
-	$p->code = "generer_url_auteur(" .
-	champ_sql('id_auteur',$p) .")";
+	$_id_auteur = '';
+	if ($p->param && !$p->param[0][0]){
+		$_id_auteur =  calculer_liste($p->param[0][1],
+							$p->descr,
+							$p->boucles,
+							$p->id_boucle);
+	}
+	if (!$_id_auteur)
+		$_id_auteur = champ_sql('id_auteur',$p);
+	$p->code = "generer_url_auteur($_id_auteur)";
+
 	if ($p->boucles[$p->nom_boucle ? $p->nom_boucle : $p->id_boucle]->hash)
 	$p->code = "url_var_recherche(" . $p->code . ")";
 
@@ -337,8 +394,8 @@ function balise_EXPOSER_dist($p)
 		// Gerer la notation [(#EXPOSER|on,off)]
 		$onoff = array_shift($a);
 		ereg("([^,]*)(,(.*))?", $onoff[0], $regs);
-		$on = "'" . addslashes($regs[1]) . "'";
-		$off = "'" . addslashes($regs[3]) . "'" ;
+		$on = "" . spip_abstract_quote($regs[1]);
+		$off = "" . spip_abstract_quote($regs[3]) ;
 		// autres filtres
 		array_shift($p->param);
 	}
@@ -499,6 +556,70 @@ function balise_POPULARITE_dist ($p) {
 	return $p;
 }
 
+// #PAGINATION
+// http://www.spip.net/fr_articleXXXX.html
+function balise_PAGINATION_dist($p, $liste='true') {
+	$b = $p->nom_boucle ? $p->nom_boucle : $p->descr['id_mere'];
+
+	if ($b === '') {
+		erreur_squelette(
+			_T('zbug_champ_hors_boucle',
+				array('champ' => "#$b" . 'PAGINATION')
+			), $p->id_boucle);
+		$p->code = "''";
+	}
+
+	if ($p->param) {
+		$option = calculer_liste($p->param[0][1],
+			$p->descr,
+			$p->boucles,
+			$p->id_boucle);
+		$option = str_replace("'", '', $option);
+	} else  $option = '';
+
+	$p->boucles[$b]->numrows = true;
+
+	if ($option)
+		$nom_boucle = $option;
+	else
+		$nom_boucle = $b;
+
+	$p->code = "calcul_pagination(
+	(isset(\$Numrows['$b']['grand_total']) ?
+		\$Numrows['$b']['grand_total'] : \$Numrows['$b']['total']
+	), '$nom_boucle', "
+	. $p->boucles[$b]->total_parties
+	. ", $liste)";
+
+	$p->interdire_scripts = false;
+	return $p;
+}
+
+// N'afficher que les ancres de la pagination (au-dessus, par exemple, alors
+// qu'on mettra les liens en-dessous de la liste paginee)
+function balise_ANCRES_PAGINATION_dist($p) {
+	$p = balise_PAGINATION_dist($p, $liste='false');
+	return $p;
+}
+
+// equivalent a #TOTAL_BOUCLE sauf pour les boucles paginees, ou elle
+// indique le nombre total d'articles repondant aux criteres hors pagination
+function balise_GRAND_TOTAL_dist($p) {
+	$b = $p->nom_boucle ? $p->nom_boucle : $p->descr['id_mere'];
+	if ($b === '' || !isset($p->boucles[$b])) {
+		erreur_squelette(
+			_T('zbug_champ_hors_boucle',
+				array('champ' => "#$b" . 'TOTAL_BOUCLE')
+			), $p->id_boucle);
+		$p->code = "''";
+	} else {
+		$p->code = "(isset(\$Numrows['$b']['grand_total'])
+			? \$Numrows['$b']['grand_total'] : \$Numrows['$b']['total'])";
+		$p->boucles[$b]->numrows = true;
+		$p->interdire_scripts = false;
+	}
+	return $p;
+}
 
 //
 // Fonction commune aux balises #LOGO_XXXX
@@ -515,7 +636,7 @@ function calculer_balise_logo ($p) {
 
 	eregi("^LOGO_([A-Z]+)(_.*)?$", $p_nom_champ, $regs);
 	$type_objet = $regs[1];
-	$suite_logo = $regs[2];
+	$suite_logo = $regs[2];	
 
 	// cas de #LOGO_SITE_SPIP
 	if (ereg("^_SPIP(.*)$", $suite_logo, $regs)) {
@@ -530,8 +651,7 @@ function calculer_balise_logo ($p) {
 	}
 
 	// analyser les faux filtres
-	$flag_fichier = 0;
-	$filtres = '';
+	$flag_fichier = $flag_stop = $flag_lien_auto = $code_lien = $filtres = $align = $lien = '';
 
 	if (is_array($p->fonctions)) {
 		foreach($p->fonctions as $couple) {
@@ -601,7 +721,7 @@ function calculer_balise_logo ($p) {
 	else {
 		if (!$code_lien)
 			$code_lien = "''";
-		$code_lien .= ", '". addslashes($align) . "'";
+		$code_lien .= ", '". $align . "'";
 	}
 
 	// cas des documents
@@ -749,6 +869,7 @@ function code_invalideur_forums($p, $code) {
 // Reference a l'URL de la page courante
 // Attention dans un INCLURE() ou une balise dynamique on n'a pas le droit de
 // mettre en cache #SELF car il peut correspondre a une autre page (attaque XSS)
+// (Dans ce cas faire <INCLURE{self=#SELF}> pour differencier les caches.)
 // http://www.spip.net/@self
 function balise_SELF_dist($p) {
 	$p->code = 'quote_amp(self())';
@@ -798,14 +919,6 @@ function balise_CHEMIN_dist($p) {
 					$p->boucles,
 					$p->id_boucle);
 
-		$args =  calculer_liste($p->param[0][2],
-					$p->descr,
-					$p->boucles,
-					$p->id_boucle);
-
-		if ($args != "''")
-			$p->code .= ','.$args;
-
 		// autres filtres (???)
 		array_shift($p->param);
 	}
@@ -846,7 +959,7 @@ function balise_ENV_dist($p, $src = NULL) {
 		$p->code = 'serialize('.$src.')';
 	} else {
 		// admet deux arguments : nom de variable, valeur par defaut si vide
-		$p->code = $src.'["' . addslashes($nom) . '"]';
+		$p->code = $src.'[\'' . addslashes($nom) . '\']';
 		if ($sinon)
 			$p->code = 'sinon('. 
 				$p->code

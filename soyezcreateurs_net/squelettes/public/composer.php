@@ -119,13 +119,13 @@ function affiche_logos($logos, $lien, $align) {
 	}
 
 	if ($artoff)
-		$mouseover = " onmouseover=\"this.src='$artoff'\" "
+		$artoff = " onmouseover=\"this.src='$artoff'\" "
 			."onmouseout=\"this.src='$arton'\"";
 
 	$milieu = "<img src=\"$arton\" alt=\"\""
 		. ($align ? " align=\"$align\"" : '') 
 		. $taille
-		. $mouseover
+		. $artoff
 		. ' style="border-width: 0px;" class="spip_logos" />';
 
 	return (!$lien ? $milieu :
@@ -310,7 +310,7 @@ function calcul_exposer ($id, $type, $reference) {
 	}
 
 	// And the winner is...
-	return $exposer[$type][$id];
+	return isset($exposer[$type]) ? $exposer[$type][$id] : '';
 }
 
 function lister_objets_avec_logos ($type) {
@@ -511,7 +511,7 @@ function lang_parametres_forum($s) {
 function spip_optim_select ($select = array(), $from = array(), 
 			    $where = array(), $join=array(),
 			    $groupby = '', $orderby = array(), $limit = '',
-			    $sousrequete = '', $cpt = '',
+			    $sousrequete = '', $having = array(),
 			    $table = '', $id = '', $serveur='') {
 
 // retirer les criteres vides:
@@ -527,6 +527,12 @@ function spip_optim_select ($select = array(), $from = array(),
 		}
 	}
 
+	foreach($having as $k => $v) { 
+		if ((!$v) OR ($v==1) OR ($v=='0=0')) {
+			unset($having[$k]);
+		}
+	}
+
 // Installer les jointures.
 // Retirer celles seulement utiles aux criteres finalement absents mais
 // parcourir de la plus recente a la moins recente pour pouvoir eliminer Ln
@@ -536,6 +542,7 @@ function spip_optim_select ($select = array(), $from = array(),
 		list($t,$c) = $join[$k];
 		$cle = "L$k";
 		if (!$menage
+		OR spip_optim_joint($cle, $select)
 		OR spip_optim_joint($cle, $join)
 		OR spip_optim_joint($cle, $where))
 			$where[]= "$t.$c=$cle.$c";
@@ -544,7 +551,7 @@ function spip_optim_select ($select = array(), $from = array(),
 
 	return spip_abstract_select($select, $from, $where,
 		  $groupby, array_filter($orderby), $limit,
-		  $sousrequete, $cpt,
+		  $sousrequete, $having,
 		  $table, $id, $serveur);
 
 }
