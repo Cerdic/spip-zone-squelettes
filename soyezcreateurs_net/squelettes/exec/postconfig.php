@@ -128,6 +128,10 @@ function config_site() {
 
 	create_groupe("Thèmes de l\'Agenda", "Détermine la liste des éléments pouvant être présentés en liste déroulante dans l\'Agenda du site", "Un événement de l\'Agenda peut avoir un ou {{plusieurs}} mot clefs ratachés (les sélectionner avec maj-clic).", 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'oui', 'oui', 'non');
 
+	create_groupe("_AgendaStatut", "Statut d\'un événement dans l\'Agenda", "Permet de spécifier un statut d\'un événement dans l\'Agenda.\n\nL\'événement sera affiché dans la couleur spécifiée par le {Texte} du Mot Clef.\n\nLe {Descriptif rapide} sera quant à lui utilisé en bulle d\'aide.", 'oui', 'oui', 'non', 'non', 'non', 'non', 'oui', 'oui', 'oui', 'non');
+		create_mot("_AgendaStatut", "Complète", "Il n\'y a plus de place", "F00");
+		create_mot("_AgendaStatut", "Liste d\'attente", "Inscrivez-vous en liste d\'attente", "DE8E39");
+
 	create_groupe("_CouleurRubrique", "Permet de changer la couleur d\'une Rubrique.", "Affecter un mot clef de ce groupe à une rubrique (et ses descendants) pour en changer la tonalité de couleur.\n\nPour chacun des mots clefs, mettre en titre quelque chose d\'intelligible, un éventuel descriptif rapide sur l\'usage à en faire et le code hexadecimal de la couleur dans le texte. \n\nExemple : \n-* Titre: Orange\n-* Texte : f78221", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_CouleurRubrique", "Bleu", "", "6392A9");
 		create_mot("_CouleurRubrique", "Marron clair", "", "9F7561");
