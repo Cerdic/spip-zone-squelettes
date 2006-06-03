@@ -269,17 +269,17 @@ function afficher_les_dates($dateDebut,$dateFin,$horaire, $distance=0, $en_cours
 		
 		if ( $dateDebut != $dateFin ) {
 			if ($horaire=='oui') {
-				$str .= ' &agrave; '.heures_minutes($heureDebut.':00');
+				$str .= ' &agrave; '.$heureDebut;
 			}
 			$str .= ' au '.nom_jour($dateFin).' '.affdate($dateFin);
 			if ($horaire=='oui') {
-				$str .= ' &agrave; '.heures_minutes($heureFin.':00');
+				$str .= ' &agrave; '.$heureFin;
 			}
 		} else {
 			if ($horaire=='oui' && $heureDebut != $heureFin) {
-				$str .= ' de '.heures_minutes($heureDebut.':00').' &agrave; '.heures_minutes($heureFin.':00');
+				$str .= ' de '.$heureDebut.' &agrave; '.$heureFin;
 			} elseif ($horaire=='oui') {
-				$str .= ' &agrave; '.heures_minutes($heureDebut.':00');
+				$str .= ' &agrave; '.$heureDebut;
 			}
 		} 
 		
