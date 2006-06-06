@@ -1,108 +1,63 @@
-[(#REM) Ce squelette fait partie de la famille bones, un ensemble de squelettes
-	open source pour SPIP]
+#CACHE{86400}
 <BOUCLE_article_principal(ARTICLES) {id_article}>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
-<head>
-<title>[#NOM_SITE_SPIP]- [(#TITRE|textebrut)]</title>
-<INCLURE{fond=inc-head}{id_article}>
-</head>
-<body>
-<<<<<<< .mine
-  <div id="navigation"> 
-    <INCLURE(page.php3){fond=inc-navigation}>
-  </div>
-<div id="container">
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+	<html dir="#LANG_DIR" lang="#LANG">
+	<head>
+	<title>[(#TITRE|textebrut)][, <:par_auteur:> (#LESAUTEURS|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#INTRODUCTION|couper{150}|attribut_html)" />]
+	<INCLURE{fond=inc-head}>
+	</head>
+	<body>
+	 <div id="navigation">
+	 	<INCLURE{fond=inc-navigation}>
+<BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; (#TITRE|couper{80})]	  </div>
+	  <!-- navigation -->
+	  <div id="container">
+	  <hr />
+	  <div id="primaryContent">
+	  		#DEBUT_SURLIGNE
+				[(#LOGO_ARTICLE||reduire_image{200,200})]
+				[<p>(#SURTITRE)</p>]
+				<h1>#TITRE</h1>
+				[<p>(#SOUSTITRE)</p>]
+				#FIN_SURLIGNE
 
-  <!-- navigation -->
-  <hr />
-  <div id="primaryContent"> [
-    <h3>(#SURTITRE)</h3>
-    ]
-    <h2>#TITRE</h2>
-    [
-    <h3>(#SURTITRE)</h3>
-    ] <em>[(#DATE|nom_jour)] [(#DATE|affdate)]</em> [<:sur_web:>: <a href="#URL_SITE" target="_blank">(#NOM_SITE)</a> ]
-  
-    [(#LOGO_ARTICLE_RUBRIQUE||reduire_image{200})]
-    
-    [(#CHAPO)]
-    
-    [(#DESCRIPTIF)]
-    
-    [(#TEXTE)]
-    
-    [(#PS)]
-    <INCLURE(page.php3){fond=inc-images}{id_article}{id_document}{doublons}>
-    #NOTES
-    <INCLURE(page.php3){fond=inc-forum}{id_article}{id_forum}{id_signature}>
-  </div>
-  <!-- primaryContent -->
-  <hr />
-  <div id="secondaryContent">
-    
-    <INCLURE(page.php3){fond=inc-rubrique}>
-    <INCLURE(page.php3){fond=inc-breve}>
-    <INCLURE(page.php3){fond=inc-recherche}>
-    <INCLURE(page.php3){fond=inc-fichier}{id_article}{doublons}>
-    <INCLURE(page.php3){fond=inc-meme_rubrique}{id_rubrique}>
-    <INCLURE(page.php3){fond=inc-auteurs}{id_article}>
-    <INCLURE(page.php3){fond=inc-mots}>
-    <INCLURE(page.php3){fond=inc-syndic}>
-    <INCLURE(page.php3){fond=inc-logo}>
-     <!-- secondaryContent -->
-=======
-  <div id="navigation">
-    <INCLURE{fond=inc-navigation}>
-  </div>
-<div id="container">
+				<p><small>[(#DATE|nom_jour) ][(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small></p>
 
-  <!-- navigation -->
-  <hr />
-  <div id="primaryContent"> [
-    <h3>(#SURTITRE)</h3>
-    ]
-    <h2>#TITRE</h2>
-    [
-    <h3>(#SURTITRE)</h3>
-    ] <em>[(#DATE|nom_jour)] [(#DATE|affdate)]</em> [<:sur_web:>: <a href="#URL_SITE" target="_blank">(#NOM_SITE)</a> ]
-  
-    [(#LOGO_ARTICLE_RUBRIQUE||reduire_image{200})]
-    
-    [(#CHAPO)]
-    
-    [(#DESCRIPTIF)]
-    
-    [(#TEXTE)]
-    
-    [(#PS)]
-    <INCLURE{fond=inc-images}{id_article}{id_document}{doublons}>
-    #NOTES
-    <INCLURE{fond=inc-forum}{id_article}{id_forum}{id_signature}>
-  </div>
-  <!-- primaryContent -->
-  <hr />
-  <div id="secondaryContent">
-    
-    <INCLURE{fond=inc-rubrique}>
-    <INCLURE{fond=inc-breve}>
-    <INCLURE{fond=inc-recherche}>
-    <INCLURE{fond=inc-fichier}{id_article}{doublons}>
-    <INCLURE{fond=inc-meme_rubrique}{id_rubrique}>
-    <INCLURE{fond=inc-auteurs}{id_article}>
-    <INCLURE{fond=inc-mots}>
-    <INCLURE{fond=inc-syndic}>
-    <INCLURE{fond=inc-logo}>
-     <!-- secondaryContent -->
->>>>>>> .r2060
- </div>
-  <!-- container -->
-  </div>
-  <div id="footer">
-    <INCLURE{fond=inc-footer}>
-  </div>
-  <!-- footer -->
-  </body>
+		#DEBUT_SURLIGNE
+			[<div class="texte">(#CHAPO)</div>]
+			[<small><:voir_en_ligne:> &mdash;
+				<a href="(#URL_SITE)"
+				class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></small>]
+			[<div class="texte">(#TEXTE|reduire_image{520,0})</div>]
+			#FIN_SURLIGNE
+
+			
+			  <INCLURE{fond=inc-images}{id_article}{id_document}>
+
+	  </div>
+	  <!-- primaryContent -->
+	  <hr />
+	  <div id="secondaryContent">
+	  <INCLURE{fond=inc-trad}{id_article}>
+	  <INCLURE{fond=inc-rubrique}>
+	  <INCLURE{fond=inc-forum}>
+		<INCLURE{fond=inc-recherche}>
+		<INCLURE{fond=inc-syndic}>
+	  [(#REM) Inscription au site ]
+		#FORMULAIRE_INSCRIPTION
+	    <hr />
+	   <!-- secondaryContent -->
+	 </div>
+	  <!-- container -->
+	  </div>
+	  <div id="footer">
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{lang}>
+	  </div>
+	  <!-- footer -->
+	
+	
+	</body>
 </BOUCLE_article_principal>
-</html>
+	</html>
