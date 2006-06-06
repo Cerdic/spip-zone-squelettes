@@ -1,11 +1,13 @@
-[(#REM) Cette noisette  fait partie de Bones Skeletor, elle permet de gerer les sites syndiqués et les liens vers les flux RSS du site]
-<B_syndic>
-<div class="inc-syndic">
-  <h2><:nouveautes_web:></h2>
-  <ul>
-    <BOUCLE_syndic(SYNDIC_ARTICLES) {par date} {inverse} {0,5}>
-    <li>[(#LOGO_SITE||reduire_image{16,16}|inserer_attribut{'alt',#NOM_SITE})]<a href="site.php3?id_syndic=#ID_SYNDIC"[title="(#DESCRIPTIF|textebrut|entites_html)"]> #NOM_SITE</a> :<a href="#URL_ARTICLE">[(#TITRE*)]</a></li>
-    </BOUCLE_syndic>
-  </ul>
-</div>
-</B_syndic>
+[(#REM) Cette noisette  fait partie de Bones Skeletor, elle permet de gerer les sites syndiquÃˆs et les liens vers les flux RSS du site]
+
+				<B_syndic>
+				<div class="inc-syndic">
+					<h2><:nouveautes_web:></h2>
+					<ul>
+					<BOUCLE_syndic(SYNDIC_ARTICLES) {age<180} {par date}{inverse} {0,6}>
+						<li>[(#DATE|affdate_court) &ndash; ]<a href="#URL_ARTICLE"[ title="(#TITRE|couper{80}|texte_backend)"] class="spip_out">#TITRE</a></li>
+					</BOUCLE_syndic>
+					</ul>
+				</div>
+				</B_syndic>
+
