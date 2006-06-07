@@ -13,15 +13,23 @@
 
 <?php if (!$sous_menuhaut) { ?>
 
-<BOUCLE_Racines(ARTICLES){titre_mot=MENURACINE}{par num titre}>
+<BOUCLE_Racines(ARTICLES){titre_mot==^MENURACINE([^B]).*}{par num titre}>
 	<li><?php if ($jp_article==#ID_ARTICLE) { ?><strong><?php } ?><a href="[(#URL_ARTICLE)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img src="(#LOGO_ARTICLE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#TITRE|supprimer_numero)]</a><?php if ($jp_article==#ID_ARTICLE) { ?></strong><?php } ?></li>
 </BOUCLE_Racines>
+<?php } else { ?>
+
+<B_Racines_Systematique>
+<BOUCLE_Racines_Systematique(ARTICLES){par num titre}{titre_mot=MENURACINE_Systematique}>
+	<li><?php if ($jp_article==#ID_ARTICLE) { ?><strong><?php } ?><a href="[(#URL_ARTICLE)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img src="(#LOGO_ARTICLE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#TITRE|supprimer_numero)]</a><?php if ($jp_article==#ID_ARTICLE) { ?></strong><?php } ?></li>
+</BOUCLE_Racines_Systematique>
+</B_Racines_Systematique>
+
 <?php } ?>
 </ul>
 </div>
 <BOUCLE_Rubriques_Exclues_Mots(RUBRIQUES){titre_mot=PasDansMenu}{doublons}>
 </BOUCLE_Rubriques_Exclues_Mots>
-<BOUCLE_MenuHaut(RUBRIQUES){racine}{titre_mot=MenuHaut}{doublons}>
+<BOUCLE_MenuHaut(RUBRIQUES){titre_mot=MenuHaut}{doublons}>
 <?php if ($jp_secteur=='[(#ID_RUBRIQUE|texte_script)]') { ?>
 <div class="espaceavant">
 <INCLURE{fond=menuarticles}{id_rubrique}>
@@ -114,7 +122,9 @@
 <ul>
 <li><?php if ($jp_rubrique=='Plan') { ?><strong><?php } ?><a accesskey="P" href="plan.html" title="<:pyrat:toutleplan:>"><:pyrat:plan_menu:></a><?php if ($jp_rubrique=='Plan') { ?></strong><?php } ?></li>
 <BOUCLE_ModeStatique(MOTS){titre=ModeStatique}{texte=Oui}> </BOUCLE_ModeStatique>
+<BOUCLE_PasDeResume(MOTS){titre=PasDeResume}{texte=Oui}> </BOUCLE_PasDeResume>
 <li><?php if ($jp_rubrique=='Resume') { ?><strong><?php } ?><a accesskey="E" href="resume.html" title="<:public:en_resume:>"><:pyrat:enresume_menu:></a><?php if ($jp_rubrique=='Resume') { ?></strong><?php } ?></li>
+<//B_PasDeResume>
 <//B_ModeStatique>
 </ul>
 </div>

@@ -129,7 +129,10 @@ function config_site() {
 	create_groupe("Thèmes de l\'Agenda", "Détermine la liste des éléments pouvant être présentés en liste déroulante dans l\'Agenda du site", "Un événement de l\'Agenda peut avoir un ou {{plusieurs}} mot clefs ratachés (les sélectionner avec maj-clic).", 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'oui', 'oui', 'non');
 
 	create_groupe("_AgendaStatut", "Statut d\'un événement dans l\'Agenda", "Permet de spécifier un statut d\'un événement dans l\'Agenda.\n\nL\'événement sera affiché dans la couleur spécifiée par le {Texte} du Mot Clef.\n\nLe {Descriptif rapide} sera quant à lui utilisé en bulle d\'aide.", 'oui', 'oui', 'non', 'non', 'non', 'non', 'oui', 'oui', 'oui', 'non');
-		create_mot("_AgendaStatut", "Complète", "Il n\'y a plus de place", "F00");
+		create_mot("_AgendaStatut", "Annulé", "Activité annulée pour des raisons indépendantes de notre volonté", "ab051c");
+		create_mot("_AgendaStatut", "Changement d\'animateur(s)", "Les des animateurs a été remplacé", "a70592");
+		create_mot("_AgendaStatut", "Complet", "Il n\'y a plus de place", "F00");
+		create_mot("_AgendaStatut", "Date changée", "La nouvelle date est ici indiquée.", "3a92d5");
 		create_mot("_AgendaStatut", "Liste d\'attente", "Inscrivez-vous en liste d\'attente", "DE8E39");
 
 	create_groupe("_CouleurRubrique", "Permet de changer la couleur d\'une Rubrique.", "Affecter un mot clef de ce groupe à une rubrique (et ses descendants) pour en changer la tonalité de couleur.\n\nPour chacun des mots clefs, mettre en titre quelque chose d\'intelligible, un éventuel descriptif rapide sur l\'usage à en faire et le code hexadecimal de la couleur dans le texte. \n\nExemple : \n-* Titre: Orange\n-* Texte : f78221", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
@@ -167,6 +170,8 @@ function config_site() {
 		create_mot("_Params", "Aff_DatePublication", "Mettre Oui ci-dessous si le site doit afficher la date de publication des articles", "Oui");
 		create_mot("_Params", "Aff_Google_Analytics", "Mettre ci-dessous la partie du code entre les guillemets (extrait du code fournis par Google) : _uacct = \"{{UA-00000-0}}\"; pour bénéficier des services de statistiques de [Google Analytics->http://www.google.com/analytics/fr-FR/].", "");
 		create_mot("_Params", "Aff_Habillage", "Permet de spécifier l\'emplacement de la zone de choix de l\'habillage du site, soit en haut à droite, soit en bas à gauche.\n\nValeurs possible à mettre ci-dessous : Left ou Right", "Left");
+		create_mot("_Params", "AgendaScolaire", "Mettre Oui ci-dessous si l\'agenda doit afficher des années scolaires (septembre à décembre de l\'année suivante inclus) et non des années légales.", "Oui");
+		create_mot("_Params", "AgendaThematique", "Mettre Oui ci-dessous afin de provoquer par défaut l\'affichage de l\'Agenda sous forme d\'un plan hiérarchique des rubriques et des articles présents dans ce dernier.", "Oui");
 		create_mot("_Params", "AnonymatGlobal", "Mettre Oui ci-dessous si le site ne doit pas afficher le nom des auteurs", "Oui");
 		create_mot("_Params", "BandeauContact", "Mettre ci-dessous le contenu à afficher dans le bandeau de contact (en bas du site). Laisser vide s\'il ne doit pas être affiché.", "");
 		create_mot("_Params", "CitationsHeader", "Par défaut, les citations sont en haut du menu de droite (ou en dessous de la recherche si site en 2 colonnes).\n\nMettre Oui ci-dessous pour que les citations soient affichées dans le bandeau d\'en-tête du site.", "");
@@ -175,6 +180,8 @@ function config_site() {
 		create_mot("_Params", "ModeStatique", "Mettre Oui ci-dessous si le site web est destiné à être utilisé dans un environement statique (par exemple dans le cas d\'une aspiration du site).\n\nCeci désactivera :\n-* le lien résumé en bas du menu de gauche (le résumé étant dynamique en fonction des visites, il n\'a pas de sens dans un environement statique)", "");
 		create_mot("_Params", "NavigationTransversaleSansAutresMenusHaut", "Limitation de la navigation transversale : mettre {{Oui}} ci-dessous.\n\nDans le cas d\'un site avec des Menus placés en haut du site (navigation horizontale), permet de limiter la fonctionalité de navigation transversale par mots clefs :\n-* à la rubrique en cours\n-* aux rubriques qui ne sont pas dans un secteur ayant le mot clef MenuHaut", "Oui");
 		create_mot("_Params", "NewsLetterID", "Mettre le numéro de la WaNewsLetter ici pour permettre l\'abonnement à la lettre (Si elle existe, sinon rien)", "");
+		create_mot("_Params", "PasDeMiniAgenda", "Mettre Oui ci-dessous pour que le mini Agenda ne soit pas affiché sur la page d\'accueil du site.", "Oui");
+		create_mot("_Params", "PasDeResume", "Mettre Oui ci-dessous pour ne pas afficher l\'accès à la page Résumé dans le menu du site (sous le Plan)", "Oui");
 		create_mot("_Params", "Xiti_ID", "IDENTIFICATION DU NUMÉRO D\'INSCRIPTION\nRemplacer ###### par votre numéro d\'inscription Xiti", "######");
 		create_mot("_Params", "Xiti_URL", "IDENTIFICATION DE  L\'ADRESSE DE VOTRE MARQUEUR XITI.\nRemplacer ###### par l\'adresse (URL) de votre marqueur.\nElle se trouve dans une ligne du code du marqueur Xiti qui ressemble à :\nhsi += \'src=\"http://logv24.xiti.com/hit.xiti?s=1234\';\nL\'adresse ici serait http://logv24.xiti.com/hit.xiti", "######");
 
@@ -199,6 +206,7 @@ function config_site() {
 		create_mot("_Specialisation", "MENURACINE", "Doit s\'afficher en dessous de Accueil", "Pour dire que l\'article s\'affiche en dessous de Accueil dans le menu de gauche avant les rubriques du site");
 		create_mot("_Specialisation", "MENURACINEBAS", "Pour dire que l\'article s\'affiche au dessus de Plan", "Permet de placer dans le menu de gauche un (ou plusieurs) article(s) en bas de menu, avant le plan du site.");
 		create_mot("_Specialisation", "MENURACINEBAS_Systematique", "Affichage systématique dans le menu de gauche en bas", "Affecter ce mot clef à un article qui devra être présent dans le menu de gauche, en bas, que l\'on soit dans un secteur avec MenuHaut ou non.");
+		create_mot("_Specialisation", "MENURACINE_Systematique", "Affichage systématique dans le menu de gauche en haut", "Affecter ce mot clef à un article qui devra être présent dans le menu de gauche, en haut, que l\'on soit dans un secteur avec MenuHaut ou non.");
 		create_mot("_Specialisation", "PasdeSiteDansForums", "Pour que les sites référencés n\'apparaissent pas dans un forum (mesure anti SPAM)", "Pour décourager ceux qui utiliseraient vos forums pour faire de la pub pour leurs site (généralement, des sonneries de téléphone)");
 
 	create_groupe("_Specialisation_Rubrique", "Spécialisation d’une rubrique", "Un mot clef pris dans ce groupe permettra de modifier\n\n-* le comportement d’une rubrique et de ses articles\n", 'non', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'oui', 'non');

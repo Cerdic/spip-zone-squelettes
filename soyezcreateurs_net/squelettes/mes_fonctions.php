@@ -247,7 +247,12 @@ function balise_EVANGILE_DU_JOUR($p) {
 	return $p;
 }
 
-function afficher_les_dates($dateDebut,$dateFin,$horaire, $distance=0, $en_cours=1) {
+function afficher_les_dates($dateDebut,$dateFin,$horaire, $distance=0, $en_cours=0, $duree=1, $format_court=1) {
+	$distance = intval($distance);
+	$en_cours = intval($en_cours);
+	$duree = intval($duree);
+	$format_court = intval($format_court);
+	
 	if ($horaire=='oui') {
 		$heureDebut = affdate($dateDebut,'H:i');
 		$heureFin = affdate($dateFin,'H:i');
@@ -258,8 +263,15 @@ function afficher_les_dates($dateDebut,$dateFin,$horaire, $distance=0, $en_cours
 	$dateDebut = affdate($dateDebut,'Y-m-d');
 	$dateFin = affdate($dateFin,'Y-m-d');
 	
-		$str = '';
-		
+	$str = '';
+	$msg = '';
+	
+	if ($format_court == 1) {
+		$str .= substr(nom_jour($dateDebut),0,2).' '.affdate($dateDebut,'d');
+		if ( $dateDebut != $dateFin ) {
+			$str .= ' &ndash; '.substr(nom_jour($dateFin),0,2).' '.affdate($dateFin,'d');
+		}
+	} else {
 		if ( $dateDebut == $dateFin ) {
 			$str .=  'Le ';
 		} else {
@@ -291,15 +303,14 @@ function afficher_les_dates($dateDebut,$dateFin,$horaire, $distance=0, $en_cours
 		$reste = intVal(($reste) % (3600*24*30));
 		
 		$nb_jour = intVal( ($reste) / (3600*24));
-		$msg = '';
 		
 		//affiche une phrase entre parenthèse type "dans 1 an, 3 mois et 4 jours".
 		if (strtotime($dateDebut.' '.$heureDebut.':00') < time() && strtotime($dateFin.' '.$heureFin.':00') < time()) {
 			$msg = '';
 		} elseif (strtotime($dateDebut.' '.$heureDebut.':00') < time() && strtotime($dateFin.' '.$heureFin.':00') > time()) {
-				if ($en_cours) $msg .= _L('<em>(en ce moment)</em>');
+				if ($en_cours==1) $msg .= _L('<em>(en ce moment)</em>');
 		} else {
-			if ($distance && ($nb_an || $nb_mois || $nb_jour)){
+			if ($distance==1 && ($nb_an || $nb_mois || $nb_jour)){
 				$msg .= _L('(dans ');
 				if ($nb_an) {
 					if ($nb_an==1) {
@@ -321,8 +332,12 @@ function afficher_les_dates($dateDebut,$dateFin,$horaire, $distance=0, $en_cours
 			$msg = substr($msg,0,-2).')';
 			} 
 		}	 
+		if ($duree==1) {
+			$msg .= ' ('.intVal((strtotime($dateFin)-strtotime($dateDebut)) / (3600*24)).' jours)';
+		}
 		
-		
-		return $str.' '.$msg;
+	}
+	
+	return $str.' '.$msg;
 }
 ?>

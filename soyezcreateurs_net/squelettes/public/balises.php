@@ -298,7 +298,7 @@ function balise_NOTES_dist($p) {
 }
 
 function balise_RECHERCHE_dist($p) {
-	$p->code = 'entites_html($GLOBALS["recherche"])';
+	$p->code = 'entites_html(_request("recherche"))';
 	$p->interdire_scripts = false;
 	return $p;
 }
@@ -457,7 +457,7 @@ function balise_FIN_SURLIGNE_dist($p) {
 // quasiment jamais se trouver ralenti par des taches de fond un peu lentes
 // ATTENTION: cette balise efface parfois les boutons admin implicites
 function balise_SPIP_CRON_dist ($p) {
-  $p->code = '"' . str_replace('"', '\"', (generer_spip_cron())) . '"';
+	$p->code = '"' . str_replace('"', '\"', (generer_spip_cron())) . '"';
 	$p->interdire_scripts = false;
 	return $p;
 }
@@ -487,6 +487,17 @@ function balise_LANG_dist ($p) {
 		$p->code = "htmlentities($_lang ? $_lang : \$GLOBALS['spip_lang'])";
 	else
 		$p->code = "htmlentities($_lang)";
+	$p->interdire_scripts = false;
+	return $p;
+}
+
+// #RANG
+// affiche le "numero de l'article" quand on l'a titre '1. Premier article';
+// ceci est transitoire afin de preparer une migration vers un vrai systeme de
+// tri des articles dans une rubrique (et plus si affinites)
+function balise_RANG_dist ($p) {
+	$_titre = champ_sql('titre', $p);
+	$p->code = "recuperer_numero($_titre)";
 	$p->interdire_scripts = false;
 	return $p;
 }
@@ -561,33 +572,34 @@ function balise_POPULARITE_dist ($p) {
 function balise_PAGINATION_dist($p, $liste='true') {
 	$b = $p->nom_boucle ? $p->nom_boucle : $p->descr['id_mere'];
 
+	// s'il n'y a pas de nom de boucle, on ne peut pas paginer
 	if ($b === '') {
 		erreur_squelette(
 			_T('zbug_champ_hors_boucle',
-				array('champ' => "#$b" . 'PAGINATION')
+				array('champ' => '#PAGINATION')
 			), $p->id_boucle);
 		$p->code = "''";
+		return $p;
 	}
 
-	if ($p->param) {
-		$option = calculer_liste($p->param[0][1],
-			$p->descr,
-			$p->boucles,
-			$p->id_boucle);
-		$option = str_replace("'", '', $option);
-	} else  $option = '';
+	// s'il n'y a pas de total_parties, c'est qu'on se trouve
+	// dans un boucle recurive ou qu'on a oublie le critere {pagination}
+	if (!$p->boucles[$b]->total_parties) {
+		erreur_squelette(
+			_L('zbug_xx: #PAGINATION sans critere {pagination}
+				ou employe dans une boucle recursive',
+				array('champ' => '#PAGINATION')
+			), $p->id_boucle);
+		$p->code = "''";
+		return $p;
+	}
 
 	$p->boucles[$b]->numrows = true;
-
-	if ($option)
-		$nom_boucle = $option;
-	else
-		$nom_boucle = $b;
 
 	$p->code = "calcul_pagination(
 	(isset(\$Numrows['$b']['grand_total']) ?
 		\$Numrows['$b']['grand_total'] : \$Numrows['$b']['total']
-	), '$nom_boucle', "
+	), '$b', "
 	. $p->boucles[$b]->total_parties
 	. ", $liste)";
 
@@ -595,9 +607,9 @@ function balise_PAGINATION_dist($p, $liste='true') {
 	return $p;
 }
 
-// N'afficher que les ancres de la pagination (au-dessus, par exemple, alors
+// N'afficher que l'ancre de la pagination (au-dessus, par exemple, alors
 // qu'on mettra les liens en-dessous de la liste paginee)
-function balise_ANCRES_PAGINATION_dist($p) {
+function balise_ANCRE_PAGINATION_dist($p) {
 	$p = balise_PAGINATION_dist($p, $liste='false');
 	return $p;
 }

@@ -1,9 +1,8 @@
 #CACHE{24*3600}
+<BOUCLE_EstAgendaThematique(MOTS){titre=AgendaThematique}{texte=(#ENV{calendrier,Oui})}>
+<INCLURE{fond=agendathematique_scolaire}{id_rubrique}>
+</BOUCLE_EstAgendaThematique>
 <BOUCLE_rubrique_principal(RUBRIQUES){id_rubrique}>
-<?php
-$titrePage = '<:pyrat:agenda:> - [(#ENV{date_ev,[(#ENV{date})]}|annee)]';
-?>
-
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
@@ -14,7 +13,7 @@ $titrePage = '<:pyrat:agenda:> - [(#ENV{date_ev,[(#ENV{date})]}|annee)]';
 	</div>
 
 <div class="cartouche">
-<h1>[<img class="logo_rubrique" src="(#LOGO_RUBRIQUE_COURANTE||reduire_image{64,64}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#TITRE|supprimer_numero)] - [(#ENV{date_ev,[(#ENV{date})]}|annee)]</h1>
+<h1>[<img class="logo_rubrique" src="(#LOGO_RUBRIQUE_COURANTE||reduire_image{64,64}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#TITRE|supprimer_numero)] - [(#ENV{date_ev,[(#ENV{date})]}|annee)]-[(#ENV{date_ev,[(#ENV{date})]}|annee|jp_calcul_addition{1})]</h1>
 </div>
 <B_themes>
 <div id="artrecents" class="flottant">
@@ -24,7 +23,7 @@ $titrePage = '<:pyrat:agenda:> - [(#ENV{date_ev,[(#ENV{date})]}|annee)]';
 		<BOUCLE_sous_rubriques1(RUBRIQUES){id_parent}{par titre}>
 			<li[ style="list-style-image: url((#LOGO_RUBRIQUE_COURANTE||reduire_image{9,9}|extraire_attribut{src}));"]>
 			<?php if ($jp_rubrique != [(#ID_RUBRIQUE|texte_script)]) { ?>
-			<a href="#URL_RUBRIQUE?date_ev=[(#ENV{date_ev,[(#ENV{date})]}|annee)]-01-01[&amp;genre=(#ENV{genre,''}|urlencode)]" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])"><?php } ?>[(#TITRE|Supprimer_numero)]<?php if ($jp_rubrique != [(#ID_RUBRIQUE|texte_script)]) { ?></a><?php } ?>
+			<a href="#URL_RUBRIQUE?date_ev=[(#ENV{date_ev,[(#ENV{date})]}|annee)]-09-01[&amp;genre=(#ENV{genre,''}|urlencode)]&amp;calendrier=1" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])"><?php } ?>[(#TITRE|Supprimer_numero)]<?php if ($jp_rubrique != [(#ID_RUBRIQUE|texte_script)]) { ?></a><?php } ?>
 			<BOUCLE_RecursionRubriques(BOUCLE_sous_rubriques1)></BOUCLE_RecursionRubriques>
 			</li>
 		</BOUCLE_sous_rubriques1>
@@ -37,20 +36,21 @@ $titrePage = '<:pyrat:agenda:> - [(#ENV{date_ev,[(#ENV{date})]}|annee)]';
 [(#TEXTE)]
 
 
-		<form id="timenavigation" method="get" action="#SELF"><fieldset><legend><:pyrat:precisezrecherche:></legend>
+		<form id="timenavigation" method="get" action="#URL_RUBRIQUE"><fieldset><legend><:pyrat:precisezrecherche:></legend>
+		<input type="hidden" id="calendrier" name="calendrier" value="1" />
 		<BOUCLE_PremiereAnnee(EVENEMENTS){id_secteur}{par date_debut}{0,1}>
 		<?php if ([(#DATE_DEBUT|annee)]<[(#ENV{date_ev,[(#ENV{date})]}|annee)]) { ?>
-		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee)] - 1); ?>-01-01[&amp;genre=(#ENV{genre,''}|urlencode)]"><img src="#DOSSIER_SQUELETTE/images/prev.gif" title="<:precedent:>" alt="<:precedent:>" /></a>
+		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee)] - 1); ?>-01-01[&amp;genre=(#ENV{genre,''}|urlencode)]&amp;calendrier=1"><img src="#DOSSIER_SQUELETTE/images/prev.gif" title="<:precedent:>" alt="<:precedent:>" /></a>
 		<?php } ?>
 		</BOUCLE_PremiereAnnee>
-		<select id="var_nav_year">
-		<BOUCLE_Annees(EVENEMENTS){id_secteur}{par date_debut}>[
-		<option value="[(#DATE_DEBUT|annee)]"[(#ENV{date_ev,[(#ENV{date})]}|annee|=={[(#DATE_DEBUT|annee)]}|?{' selected="selected"',''})]>(#DATE_DEBUT|annee|unique)</option>
+		<select id="date_ev" name="date_ev">
+		<BOUCLE_Annees(EVENEMENTS){id_secteur}{par date_debut}{date_debut==^[0-9][0-9][0-9][0-9]-(09|10|11|12)}>[
+		<option value="[(#DATE_DEBUT|annee)-01-01]"[(#ENV{date_ev,[(#ENV{date})]}|annee|=={[(#DATE_DEBUT|annee)]}|?{' selected="selected"',''})]>(#DATE_DEBUT|annee|unique)[-(#DATE_DEBUT|annee|jp_calcul_addition{1})]</option>
 		]</BOUCLE_Annees>
 		</select>
 		<BOUCLE_ExclureStatut(MOTS){type=_AgendaStatut}{doublons statut}></BOUCLE_ExclureStatut>
 		<B_LstMotsClefs>[(#REM) Objectif : n'afficher que les mots clefs effectivement utilisé dans le secteur]
-		<select id="var_nav_cle">
+		<select id="genre" name="genre">
 		<option value=""[(#ENV{genre,''}|=={''}|?{' selected="selected"',''})]><:pyrat:tout:></option>
 		<BOUCLE_LstMotsClefs(EVENEMENTS){id_secteur}{par titre}><BOUCLE_MotClefAssocie(MOTS){id_evenement}{unique}{doublons statut}>
 		<option value="[(#TITRE|attribut_html)]"[(#ENV{genre}|=={[(#TITRE|attribut_html)]}|?{' selected="selected"',''})]>[(#TITRE)]</option>
@@ -58,10 +58,10 @@ $titrePage = '<:pyrat:agenda:> - [(#ENV{date_ev,[(#ENV{date})]}|annee)]';
 		</select>
 		</B_LstMotsClefs>
 
-		<input type="button" value="<:pass_ok:>" onclick="document.location.href='#_rubrique_principal:URL_RUBRIQUE?date_ev=' + document.getElementById('var_nav_year').value + '-01-01&amp;genre=' + document.getElementById('var_nav_cle').value ; return false;" />
+		<input type="submit" value="<:pass_ok:>" />
 		<BOUCLE_DerniereAnnee(EVENEMENTS){id_secteur}{par date_debut}{inverse}{0,1}>
-		<?php if ([(#DATE_DEBUT|annee)]>[(#ENV{date_ev,[(#ENV{date})]}|annee)]) { ?>
-		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee)] + 1); ?>-01-01[&amp;genre=(#ENV{genre,''}|urlencode)]"><img src="#DOSSIER_SQUELETTE/images/next.gif" title="<:suivant:>" alt="<:suivant:>" /></a>
+		<?php if ([(#DATE_DEBUT|affdate{Y-m-d})]>[(#ENV{date_ev,[(#ENV{date})]}|affdate{Y}|jp_calcul_addition{1})-09-01]) { ?>
+		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee)] + 1); ?>-01-01[&amp;genre=(#ENV{genre,''}|urlencode)]&amp;calendrier=1"><img src="#DOSSIER_SQUELETTE/images/next.gif" title="<:suivant:>" alt="<:suivant:>" /></a>
 		<?php } ?>
 		</BOUCLE_DerniereAnnee>
 		<?php if ( [(#ENV{date}|annee)] != [(#ENV{date_ev,[(#ENV{date})]}|annee)] ) { ?>
@@ -71,7 +71,7 @@ $titrePage = '<:pyrat:agenda:> - [(#ENV{date_ev,[(#ENV{date})]}|annee)]';
 		</form>
 
 [(#REM) Si genre est dans les paramètres, alors on filtre selon le genre, sinon, on peut afficher tous les articles, même ceux sans mot clef]
-[(#ENV{genre,''}|=={''}|?{' ',''})<INCLURE{fond=agendaliste_sansfiltre}{id_rubrique}{date_ev}>][(#ENV{genre,''}|=={''}|?{'',' '})<INCLURE{fond=agendaliste_filtre}{id_rubrique}{date_ev}{genre}>]
+[(#ENV{genre,''}|=={''}|?{' ',''})<INCLURE{fond=agendaliste_scolaire_sansfiltre}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}>][(#ENV{genre,''}|=={''}|?{'',' '})<INCLURE{fond=agendaliste_scolaire_filtre}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{genre}>]
 
 [<div class="notes">(#NOTES)</div>]
 
@@ -80,3 +80,4 @@ $titrePage = '<:pyrat:agenda:> - [(#ENV{date_ev,[(#ENV{date})]}|annee)]';
 [(#FORMULAIRE_ADMIN)]
 
 </BOUCLE_rubrique_principal>
+<//B_EstAgendaThematique>

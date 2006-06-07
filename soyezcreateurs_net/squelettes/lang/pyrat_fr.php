@@ -115,7 +115,7 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 
 //P
 'par' => 'par',
-'plan_menu' => '<em>P</em>lan du site',
+'plan_menu' => '<em>P</em>lan du site Web',
 'plus_loin' => '&Agrave; voir aussi',
 'plus_loin_title' => 'Site de r&eacute;f&eacute;rences',
 'precisezrecherche' => 'Pr&eacute;cisez votre recherche',
