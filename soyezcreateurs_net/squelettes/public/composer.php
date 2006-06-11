@@ -126,14 +126,14 @@ function affiche_logos($logos, $lien, $align) {
 		. ($align ? " align=\"$align\"" : '') 
 		. $taille
 		. $artoff
-		. ' style="border-width: 0px;" class="spip_logos" />';
+		. ' class="spip_logos" />';
 
 	return (!$lien ? $milieu :
 		('<a href="' .
 		 quote_amp($lien) .
 		'">' .
 		$milieu .
-		'</a>'	 ));
+		'</a>'));
 }
 
 //
@@ -165,11 +165,11 @@ function calcule_logo($type, $onoff, $id, $id_rubrique, $ff, $logo_hierarchie = 
 				return array ($on[0], ($off ? $off[0] : ''));
 			}
 		}
-		else if ($id_rubrique and ($logo_hierarchie!=0)) {
+		else if ($id_rubrique AND ($logo_hierarchie!=0)) {
 			$type = 'rub';
 			$id = $id_rubrique;
 			$id_rubrique = 0;
-		} else if ($id AND $type == 'rub' and ($logo_hierarchie!=0))
+		} else if ($id AND $type == 'rub' AND ($logo_hierarchie!=0))
 			$id = sql_parent($id);
 		else return array('','');
 	}

@@ -23,7 +23,7 @@
 		<BOUCLE_sous_rubriques1(RUBRIQUES){id_parent}{par titre}>
 			<li[ style="list-style-image: url((#LOGO_RUBRIQUE_COURANTE||reduire_image{9,9}|extraire_attribut{src}));"]>
 			<?php if ($jp_rubrique != [(#ID_RUBRIQUE|texte_script)]) { ?>
-			<a href="#URL_RUBRIQUE?date_ev=[(#ENV{date_ev,[(#ENV{date})]}|annee)]-09-01[&amp;genre=(#ENV{genre,''}|urlencode)]&amp;calendrier=1" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])"><?php } ?>[(#TITRE|Supprimer_numero)]<?php if ($jp_rubrique != [(#ID_RUBRIQUE|texte_script)]) { ?></a><?php } ?>
+			<a href="#URL_RUBRIQUE?date_ev=[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)]-09-01[&amp;genre=(#ENV{genre,''}|urlencode)]&amp;calendrier=1" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])"><?php } ?>[(#TITRE|Supprimer_numero)]<?php if ($jp_rubrique != [(#ID_RUBRIQUE|texte_script)]) { ?></a><?php } ?>
 			<BOUCLE_RecursionRubriques(BOUCLE_sous_rubriques1)></BOUCLE_RecursionRubriques>
 			</li>
 		</BOUCLE_sous_rubriques1>
@@ -39,13 +39,13 @@
 		<form id="timenavigation" method="get" action="#URL_RUBRIQUE"><fieldset><legend><:pyrat:precisezrecherche:></legend>
 		<input type="hidden" id="calendrier" name="calendrier" value="1" />
 		<BOUCLE_PremiereAnnee(EVENEMENTS){id_secteur}{par date_debut}{0,1}>
-		<?php if ([(#DATE_DEBUT|annee)]<[(#ENV{date_ev,[(#ENV{date})]}|annee)]) { ?>
-		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee)] - 1); ?>-01-01[&amp;genre=(#ENV{genre,''}|urlencode)]&amp;calendrier=1"><img src="#DOSSIER_SQUELETTE/images/prev.gif" title="<:precedent:>" alt="<:precedent:>" /></a>
+		<?php if ('[(#DATE_DEBUT|affdate{Y-m-d}))]'<'[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)-09-01]') { ?>
+		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)] - 1); ?>-09-01[&amp;genre=(#ENV{genre,''}|urlencode)]&amp;calendrier=1"><img src="#DOSSIER_SQUELETTE/images/prev.gif" title="<:precedent:>" alt="<:precedent:>" /></a>
 		<?php } ?>
 		</BOUCLE_PremiereAnnee>
 		<select id="date_ev" name="date_ev">
-		<BOUCLE_Annees(EVENEMENTS){id_secteur}{par date_debut}{date_debut==^[0-9][0-9][0-9][0-9]-(09|10|11|12)}>[
-		<option value="[(#DATE_DEBUT|annee)-01-01]"[(#ENV{date_ev,[(#ENV{date})]}|annee|=={[(#DATE_DEBUT|annee)]}|?{' selected="selected"',''})]>(#DATE_DEBUT|annee|unique)[-(#DATE_DEBUT|annee|jp_calcul_addition{1})]</option>
+		<BOUCLE_Annees(EVENEMENTS){id_secteur}{par date_debut}>[
+		<option value="[(#DATE_DEBUT|annee_scolaire)-09-01]"[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire|=={[(#DATE_DEBUT|annee_scolaire)]}|?{' selected="selected"',''})]>(#DATE_DEBUT|annee_scolaire|unique)[-(#DATE_DEBUT|annee_scolaire|jp_calcul_addition{1})]</option>
 		]</BOUCLE_Annees>
 		</select>
 		<BOUCLE_ExclureStatut(MOTS){type=_AgendaStatut}{doublons statut}></BOUCLE_ExclureStatut>
@@ -60,11 +60,11 @@
 
 		<input type="submit" value="<:pass_ok:>" />
 		<BOUCLE_DerniereAnnee(EVENEMENTS){id_secteur}{par date_debut}{inverse}{0,1}>
-		<?php if ([(#DATE_DEBUT|affdate{Y-m-d})]>[(#ENV{date_ev,[(#ENV{date})]}|affdate{Y}|jp_calcul_addition{1})-09-01]) { ?>
-		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee)] + 1); ?>-01-01[&amp;genre=(#ENV{genre,''}|urlencode)]&amp;calendrier=1"><img src="#DOSSIER_SQUELETTE/images/next.gif" title="<:suivant:>" alt="<:suivant:>" /></a>
+		<?php if ('[(#DATE_DEBUT|affdate{Y-m-d})]'>='[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire|jp_calcul_addition{1})-09-01]') { ?>
+		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)] + 1); ?>-09-01[&amp;genre=(#ENV{genre,''}|urlencode)]&amp;calendrier=1"><img src="#DOSSIER_SQUELETTE/images/next.gif" title="<:suivant:>" alt="<:suivant:>" /></a>
 		<?php } ?>
 		</BOUCLE_DerniereAnnee>
-		<?php if ( [(#ENV{date}|annee)] != [(#ENV{date_ev,[(#ENV{date})]}|annee)] ) { ?>
+		<?php if ( [(#ENV{date}|annee_scolaire)] != [(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)] ) { ?>
 		<input type="button" value="<:pyrat:aujourdhui:>" onclick="document.location.href='#_rubrique_principal:URL_RUBRIQUE[?genre=(#ENV{genre,''}|urlencode)]'; return false;" />
 		<?php } ?>
 		</fieldset>
