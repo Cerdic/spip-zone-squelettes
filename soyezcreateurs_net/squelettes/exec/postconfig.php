@@ -170,6 +170,7 @@ function config_site() {
 		create_mot("_Params", "Aff_DatePublication", "Mettre Oui ci-dessous si le site doit afficher la date de publication des articles", "Oui");
 		create_mot("_Params", "Aff_Google_Analytics", "Mettre ci-dessous la partie du code entre les guillemets (extrait du code fournis par Google) : _uacct = \"{{UA-00000-0}}\"; pour bénéficier des services de statistiques de [Google Analytics->http://www.google.com/analytics/fr-FR/].", "");
 		create_mot("_Params", "Aff_Habillage", "Permet de spécifier l\'emplacement de la zone de choix de l\'habillage du site, soit en haut à droite, soit en bas à gauche.\n\nValeurs possible à mettre ci-dessous : Left ou Right", "Left");
+		create_mot("_Params", "AgendaFuturSeul", "Mettre Oui ci-dessous pour bénéficier d\'un agenda (format liste) qui affiche tous les événements futurs et seulement eux.", "");
 		create_mot("_Params", "AgendaScolaire", "Mettre Oui ci-dessous si l\'agenda doit afficher des années scolaires (septembre à décembre de l\'année suivante inclus) et non des années légales.", "Oui");
 		create_mot("_Params", "AgendaThematique", "Mettre Oui ci-dessous afin de provoquer par défaut l\'affichage de l\'Agenda sous forme d\'un plan hiérarchique des rubriques et des articles présents dans ce dernier.", "Oui");
 		create_mot("_Params", "AnonymatGlobal", "Mettre Oui ci-dessous si le site ne doit pas afficher le nom des auteurs", "Oui");
