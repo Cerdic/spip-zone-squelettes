@@ -267,9 +267,9 @@ function afficher_les_dates($dateDebut,$dateFin,$horaire, $distance=0, $en_cours
 	$msg = '';
 	
 	if ($format_court == 1) {
-		$str .= substr(nom_jour($dateDebut),0,2).' '.affdate($dateDebut,'d');
+		$str .= "<acronym title='".nom_jour($dateDebut)."' class='spip_acronym'>".substr(nom_jour($dateDebut),0,2).'</acronym> '.affdate($dateDebut,'d');
 		if ( $dateDebut != $dateFin ) {
-			$str .= ' &ndash; '.substr(nom_jour($dateFin),0,2).' '.affdate($dateFin,'d');
+			$str .= ' &ndash; '."<acronym title='".nom_jour($dateFin)."' class='spip_acronym'>".substr(nom_jour($dateFin),0,2).'</acronym> '.affdate($dateFin,'d');
 		}
 	} else {
 		if ( $dateDebut == $dateFin ) {
