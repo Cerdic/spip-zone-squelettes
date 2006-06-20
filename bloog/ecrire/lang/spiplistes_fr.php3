@@ -31,8 +31,8 @@ Vous pourrez alors confirmer la modification de votre abonnement.',
 'abonnement_modifie'=>'Vos modifications sont prises en compte',
 'abonnement_nouveau_format'=>'Votre format de r&eacute;ception est d&eacute;sormais : ',
 'abonnement_titre_mail'=>'Modifier votre abonnement',
-'abonnement_texte_mail'=>'Indiquez ci-dessous l\'adresse email sous laquelle vous vous &ecirc;tes pr&eacute;c&eacute;demment enregistr&eacute;s. 
-Vous recevrez un email permettant d\'acc&eacute;der &agrave; page de modification de votre abonnement.',
+'abonnement_texte_mail'=>'Indiquez ci-dessous l\'adresse email sous laquelle vous vous &ecirc;tes pr&eacute;c&eacute;demment enregistr&eacute;. 
+Vous recevrez un email permettant d\'acc&eacute;der &agrave; page la de modification de votre abonnement.',
 'abonner' => 's\'abonner',
 'actualiser' => 'Actualiser',
 'adresse' => 'Indiquez ici l\'adresse &agrave; utiliser pour les retours de mails (&agrave; d&eacute;faut, l\'adresse du webmestre sera utilis&eacute;e comme adresse de retour) :',
