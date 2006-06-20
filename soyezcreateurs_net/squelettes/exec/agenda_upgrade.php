@@ -129,19 +129,12 @@ function create_rubrique_mot($rubrique, $mot) {
 
 function config_site() {
 	// Autorisations dates antérieures et gestion avancée des mots clé
-	spip_query("INSERT INTO `spip_evenements` (`id_article`,`titre`,`date_debut`,`date_fin`,`horaire`) SELECT `id_article`,`titre`,`date_redac`, `date_redac` as date_fin, 'non' as horaire FROM `spip_articles` WHERE `date_redac`!='0000-00-00 00:00:00'");
-	spip_query("UPDATE `spip_articles` SET `date_redac`='0000-00-00 00:00:00' WHERE `date_redac`!='0000-00-00 00:00:00'");
-	spip_query("INSERT INTO `spip_mots_evenements` (`id_mot`,`id_evenement`) SELECT `spip_mots_articles`.`id_mot`, `spip_evenements`.`id_evenement` FROM `spip_mots_articles`, `spip_evenements` WHERE `spip_evenements`.`id_article`=`spip_mots_articles`.id_article");
-	// Création rubriques
-	
-
-## -------------------------------------------->
+	spip_query("INSERT INTO spip_evenements (id_article,titre,date_debut,date_fin,horaire) SELECT id_article,titre,date_redac, date_redac as date_fin, 'non' as horaire FROM spip_articles WHERE date_redac!='0000-00-00 00:00:00'");
+	spip_query("UPDATE spip_articles SET date_redac='0000-00-00 00:00:00' WHERE date_redac!='0000-00-00 00:00:00'");
+	spip_query("INSERT INTO spip_mots_evenements (id_mot,id_evenement) SELECT MA.id_mot, EV.id_evenement FROM spip_mots_articles AS MA, spip_evenements AS EV WHERE EV.id_article=MA.id_article");
+	spip_query("DELETE FROM spip_mots_articles AS MA USING  spip_mots_articles AS MA, spip_evenements AS EV WHERE EV.id_article=MA.id_article");
 
 	rename_groupe("", "Thèmes de l\'Agenda");
-
-
-## <--------------------------------------------
-
 }
 
 function exec_agenda_upgrade() {
@@ -151,10 +144,10 @@ function exec_agenda_upgrade() {
 	include_spip("inc/lang");
 	include_spip("inc/charsets");
 
-	install_debut_html("Mise &grave; jour de l'Agenda du site");
+	install_debut_html("Mise &agrave; jour de l'Agenda du site");
 	config_site();
 
-	echo "<h1>Migration termin&eacute;</h1><p>Vous pouvez revenir à l'<a href='./'>administration du site</a></p>";
+	echo "<h1>Migration termin&eacute;</h1><p>Vous pouvez revenir &agrave; l'<a href='./'>administration du site</a></p>";
 	install_fin_html();
 }
 ?>
