@@ -196,10 +196,6 @@ function jp_NewLine2str($texte) {
 	return str_replace('"','\"',str_replace("\r",'',str_replace("\n",'\n',$texte)));
 }
 
-function jp_calcul_addition($texte,$valeur) {
-	return $texte + $valeur;
-}
-
 function DateAdd($d=null, $v, $f="Y-m-d"){
   return date($f,strtotime($v." days",strtotime($d)));
 }
