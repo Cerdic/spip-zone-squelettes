@@ -8,9 +8,9 @@
 <title>[#NOM_SITE_SPIP] [(#TITRE|supprimer_numero)]</title>
 <meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" >
 <meta name="Description" content="[(#TEXTE*|couper{100}|attribut_html)]" >
-<!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
-<link rel="stylesheet" href="spip_net_style.css" type="text/css" >
-<link rel="stylesheet" href="topmenu.css" type="text/css" >
+<!-- Ceci est la feuille de style par defaut pour le code genere par SPIP -->
+<link rel="stylesheet" href="[(#CHEMIN{spip_style.css}|direction_css)]" type="text/css" />
+<link rel="stylesheet" href="[(#CHEMIN{topmenu.css}|direction_css)]" type="text/css" />
 <style type="text/css">
 <!--
 	body {
@@ -327,7 +327,7 @@ alt="Valid XHTML 1.0!" height="31" width="88" style="border: 0px;"  /></a>
 <B_quoideneuf>
 	<br /><br /><br />
 	<div class="droitxpetit"><b><:quoideneuf:></b></div>
-<BOUCLE_quoideneuf(ARTICLES){id_secteur}{par date_modif}{inverse}{0,10}>
+<BOUCLE_quoideneuf(ARTICLES){id_secteur}{!par date_modif}{0,10}>
 	<div class="memerub"><a href="#URL_ARTICLE"><img src="#CHEMIN{img_interface/carre-violet.gif}" alt="x" border="0">&nbsp;[(#TITRE|supprimer_numero)]</a></div>
 </BOUCLE_quoideneuf>
 
@@ -342,7 +342,7 @@ alt="Valid XHTML 1.0!" height="31" width="88" style="border: 0px;"  /></a>
 				<br /><div class="encadrerdescriptif">
 				<div class="droit"><img src="#CHEMIN{img_spip/documents-48.gif}" alt="Petition" width="48" height="48" border="0" align="#LANG_RIGHT" /><b><a href="#URL_ARTICLE">[<span class="droitpetit">(#SURTITRE)</span><br />][(#TITRE|supprimer_numero)][<br /><span class="droitpetit">(#SOUSTITRE)</span>]</a></b></div>
 				[<div class="droitpetit" style="padding-#LANG_LEFT:40px">(#DESCRIPTIF)</div>]
-				<BOUCLE_art_pet_rub(SIGNATURES){id_article}{par date}{inverse}{nom_site!=""}{0,7}>
+				<BOUCLE_art_pet_rub(SIGNATURES){id_article}{!par date}{nom_site!=""}{0,7}>
 					<div class="droitpetit" style="padding-#LANG_LEFT:60px"><a href="#URL_SITE"><img src="#CHEMIN{img_interface/carre-violet.gif}" alt="x" border="0"> #NOM_SITE</a></div>
 				</BOUCLE_art_pet_rub>
 					<div class="droit" align="#LANG_RIGHT"><a href="#URL_ARTICLE">[...]</a></div>
@@ -354,12 +354,12 @@ alt="Valid XHTML 1.0!" height="31" width="88" style="border: 0px;"  /></a>
 			</BOUCLE_art_rub>
 		</BOUCLE_test_art>
 			<br />
-			<BOUCLE_art_rub2(ARTICLES){id_rubrique}{par date}{inverse}{doublons}>
+			<BOUCLE_art_rub2(ARTICLES){id_rubrique}{!par date}{doublons}>
 				<B_art_pet_rub2>
 				<br /><div class="encadrerdescriptif">
 				<div class="droit"><img src="#CHEMIN{img_spip/documents-48.gif}" alt="Petition" width="48" height="48" border="0" align="#LANG_RIGHT" /><b><a href="#URL_ARTICLE">[<span class="droitpetit">(#SURTITRE)</span><br />][(#TITRE|supprimer_numero)][<br /><span class="droitpetit">(#SOUSTITRE)</span>]</a></b></div>
 				[<div class="droitpetit" style="padding-#LANG_LEFT:40px">(#DESCRIPTIF)</div>]
-				<BOUCLE_art_pet_rub2(SIGNATURES){id_article}{par date}{inverse}{nom_site!=""}{0,7}>
+				<BOUCLE_art_pet_rub2(SIGNATURES){id_article}{!par date}{nom_site!=""}{0,7}>
 					<div class="droitpetit" style="padding-#LANG_LEFT:60px"><a href="#URL_SITE"><img src="#CHEMIN{img_interface/carre-violet.gif}" alt="x" border="0"> #NOM_SITE</a></div>
 				</BOUCLE_art_pet_rub2>
 					<div class="droit" align="#LANG_RIGHT"><a href="#URL_ARTICLE">[...]</a></div>
@@ -377,18 +377,18 @@ alt="Valid XHTML 1.0!" height="31" width="88" style="border: 0px;"  /></a>
 		<//B_test_art>
 		
 		
-			<BOUCLE_liens_avec(SITES){id_rubrique}{descriptif!=""}{par date}{inverse}>
+			<BOUCLE_liens_avec(SITES){id_rubrique}{descriptif!=""}{!par date}>
 			<br /><br /><div class="encadrerdescriptif"><div class="droit">
 				<b><a href="#URL_SITE">#NOM_SITE</a></b>
 				<br />#DESCRIPTIF
 				
-				<BOUCLE_syndic_avec(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{0,7}>
+				<BOUCLE_syndic_avec(SYNDIC_ARTICLES){id_syndic}{!par date}{0,7}>
 				[<div class="droitpetit" style="padding-#LANG_LEFT:40px"><a href="#URL_ARTICLE"><img src="#CHEMIN{img_interface/carre-violet.gif}" alt="x" border="0"> (#TITRE*)</a></div>]
 				</BOUCLE_syndic_avec>
 				
 				</div></div>
 			</BOUCLE_liens_avec>
-			<BOUCLE_liens(SITES){id_rubrique}{descriptif=""}{par date}{inverse}>
+			<BOUCLE_liens(SITES){id_rubrique}{descriptif=""}{!par date}>
 			<br /><br /><div class="encadrerblanc"><div class="droit"><a href="#URL_SITE">#NOM_SITE</a></div></div>
 				<!-- BOUCLE_syndic(BOUCLE_syndic_avec)></BOUCLE_syndic -->
 			</BOUCLE_liens>
@@ -419,7 +419,7 @@ alt="Valid XHTML 1.0!" height="31" width="88" style="border: 0px;"  /></a>
 					<B_art_pet_rub_sous>
 						<br /><div class="encadrerdescriptif">
 						<div class="droitpetit"><img src="#CHEMIN{img_spip/documents-48.gif}" alt="Petition" width="48" height="48" border="0" align="#LANG_RIGHT" /><b><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></b></div>
-					<BOUCLE_art_pet_rub_sous(SIGNATURES){id_article}{par date}{inverse}{nom_site!=""}{0,7}>
+					<BOUCLE_art_pet_rub_sous(SIGNATURES){id_article}{!par date}{nom_site!=""}{0,7}>
 						<div class="droitpetit" style="padding-#LANG_LEFT:20px"><a href="#URL_SITE"><img src="#CHEMIN{img_interface/carre-violet.gif}" alt="x" border="0"> #NOM_SITE</a></div>
 					</BOUCLE_art_pet_rub_sous>
 						<div class="droitpetit" align="#LANG_RIGHT"><a href="#URL_ARTICLE">[...]</a></div>
@@ -437,11 +437,11 @@ alt="Valid XHTML 1.0!" height="31" width="88" style="border: 0px;"  /></a>
 				</BOUCLE_art_rubcomp_sous>
 			</BOUCLE_test_art_sous>
 				<br />
-				<BOUCLE_art_rub2_sous(ARTICLES){id_rubrique}{par date}{inverse}{0,7}>
+				<BOUCLE_art_rub2_sous(ARTICLES){id_rubrique}{!par date}{0,7}>
 					<B_art_pet_rub2_sous>
 						<br /><div class="encadrerdescriptif">
 						<div class="droitpetit"><img src="#CHEMIN{img_spip/documents-48.gif}" alt="Petition" width="48" height="48" border="0" align="#LANG_RIGHT" /><b><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></b></div>
-					<BOUCLE_art_pet_rub2_sous(SIGNATURES){id_article}{par date}{inverse}{nom_site!=""}{0,7}>
+					<BOUCLE_art_pet_rub2_sous(SIGNATURES){id_article}{!par date}{nom_site!=""}{0,7}>
 						<div class="droitpetit" style="padding-#LANG_LEFT:20px"><a href="#URL_SITE"><img src="#CHEMIN{img_interface/carre-violet.gif}" alt="x" border="0"> #NOM_SITE</a></div>
 					</BOUCLE_art_pet_rub2_sous>
 						<div class="droitpetit" align="#LANG_RIGHT"><a href="#URL_ARTICLE">[...]</a></div>
@@ -458,13 +458,13 @@ alt="Valid XHTML 1.0!" height="31" width="88" style="border: 0px;"  /></a>
 				</BOUCLE_art_rub2comp_sous>
 			<//B_test_art_sous>	
 			
-			<BOUCLE_liens_sous_avec(SITES){id_rubrique}{descriptif!=""}{par date}{inverse}>
+			<BOUCLE_liens_sous_avec(SITES){id_rubrique}{descriptif!=""}{!par date}>
 			<br /><div class="encadrerdescriptif"><div class="droitpetit">
 				<b><a href="#URL_SITE">#NOM_SITE</a></b>
 				<br />#DESCRIPTIF
 				</div></div>
 			</BOUCLE_liens_sous_avec>
-			<BOUCLE_liens_sous(SITES){id_rubrique}{descriptif=""}{par date}{inverse}>
+			<BOUCLE_liens_sous(SITES){id_rubrique}{descriptif=""}{!par date}>
 			<br /><div class="encadrerblanc"><div class="droitpetit"><a href="#URL_SITE">#NOM_SITE</a></div></div>
 			</BOUCLE_liens_sous>
 				

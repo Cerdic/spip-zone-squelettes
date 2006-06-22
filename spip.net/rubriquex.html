@@ -225,14 +225,14 @@
 		<div style="position: relative; z-index: 10;">
 			<div class="pave_survol" onMouseOver="changestyle('forums','visible');" onMouseOut="changestyle('forums','hidden');" id="forums" style="position: absolute; visibility: hidden;">
 				<div>
-				<img src="img_vignettes/forums.gif" alt="logo" /><br /><b>[(#TITRE|supprimer_numero)]</b>
+				<img src="#CHEMIN{img_vignettes/forums.gif}" alt="logo" /><br /><b>[(#TITRE|supprimer_numero)]</b>
 				<BOUCLE_haut_forums_articles(ARTICLES){id_rubrique}{par num titre}>
 				<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a>
 				</BOUCLE_haut_forums_articles>
 				</div>
 			</div>
 			<div class="pave_off" onMouseOver="changestyle('forums','visible');">
-				<div><img src="img_vignettes/forums.gif" alt="logo" /></div>
+				<div><img src="#CHEMIN{img_vignettes/forums.gif}" alt="logo" /></div>
 			</div>
 		</div>
 	
@@ -273,14 +273,14 @@
 		<div style='position: relative; z-index: 10;'>
 			<div class="pave_survol" onMouseOver="changestyle('langues','visible');" onMouseOut="changestyle('langues','hidden');" id="langues" style="position: absolute; visibility: hidden;">
 				<div>
-				<img src="img_vignettes/langues.gif" alt="logo" />
+				<img src="#CHEMIN{img_vignettes/langues.gif}" alt="logo" />
 				<BOUCLE_haut_sites(RUBRIQUES){id_rubrique!=4}{id_parent=0}{par lang}>
 				<a href="#URL_RUBRIQUE">[(#LANG|traduire_nom_langue)]</a>
 				</BOUCLE_haut_sites>
 				</div>
 			</div>
 			<div class="pave_off" onMouseOver="changestyle('langues','visible');">
-				<div><img src="img_vignettes/langues.gif" alt="logo" /></div>
+				<div><img src="#CHEMIN{img_vignettes/langues.gif}" alt="logo" /></div>
 			</div>
 		</div>
 	</td>
@@ -326,7 +326,7 @@
 			<a href="#URL_SITE" class="article_rub">#NOM_SITE</a>
 			
 			<div style="padding-#LANG_LEFT: 15px;">
-			<BOUCLE_sites_syndic_articles(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{0,5}>
+			<BOUCLE_sites_syndic_articles(SYNDIC_ARTICLES){id_syndic}{!par date}{0,5}>
 				<a href="#URL_ARTICLE" class="article_pet">#TITRE</a>
 			</BOUCLE_sites_syndic_articles>
 			</div>
@@ -340,7 +340,7 @@
 	
 		<p>
 		<BOUCLE_uzine(RUBRIQUES){id_rubrique}{id_rubrique=91}>
-		<a href="http://www.uzine.net"><img src="img_vignettes/logo-uzine.gif" alt="uZine" width="90" height="67" border="0" align="top" /></a>
+		<a href="http://www.uzine.net"><img src="#CHEMIN{img_vignettes/logo-uzine.gif}" alt="uZine" width="90" height="67" border="0" align="top" /></a>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="http://www.uzine.net/article60.html"><img src="#CHEMIN{img_spip/arton60.gif}" alt="Manifeste du Web ind&eacute;pendant" width="88" height="67" border="0" align="top" /></a>
 		</BOUCLE_uzine>
@@ -390,7 +390,7 @@
 			<div style="float: #LANG_RIGHT; width: 150px; margin-#LANG_LEFT: 30px; margin-bottom: 15px; font-size: 11px;">
 				<br />
 				<b><:nouveautes:></b>
-			<BOUCLE_recents(ARTICLES){id_secteur}{par date}{inverse}{0,5}>
+			<BOUCLE_recents(ARTICLES){id_secteur}{!par date}{0,5}>
 				<a href="#URL_ARTICLE" class="article_pet">[(#TITRE|supprimer_numero)]</a>
 				</BOUCLE_recents>
 			
@@ -420,13 +420,13 @@
 				[<div style="margin-#LANG_LEFT: 15px; font-size: 10px;">(#DESCRIPTIF)</div>]
 				<B_articles_num_pet>
 				<img src="#CHEMIN{img_spip/documents-48.gif}" alt="Petition" width="48" height="48" border="0" align="#LANG_RIGHT" />
-				<BOUCLE_articles_num_pet(SIGNATURES){id_article}{par date}{inverse}{nom_site!=""}{0,10}>
+				<BOUCLE_articles_num_pet(SIGNATURES){id_article}{!par date}{nom_site!=""}{0,10}>
 					<div style="padding-#LANG_LEFT:60px"><a href="#URL_SITE" class="article_pet">#NOM_SITE</a></div>
 				</BOUCLE_articles_num_pet>
 				
 				<B_articles_num_forum>
-					<img src="img_vignettes/forums.gif" alt="Forums" width="24" height="24" border="0" align="#LANG_RIGHT" />
-				<BOUCLE_articles_num_forum(FORUMS){id_article}{0,5}{par date}{inverse}>
+					<img src="#CHEMIN{img_vignettes/forums.gif}" alt="Forums" width="24" height="24" border="0" align="#LANG_RIGHT" />
+				<BOUCLE_articles_num_forum(FORUMS){id_article}{0,5}{!par date}>
 					<div style="padding-#LANG_LEFT:60px"><a href="threadspip#ID_ARTICLE-#ID_FORUM.html" class="article_pet">#TITRE</a></div>
 				</BOUCLE_articles_num_forum>
 
@@ -434,7 +434,7 @@
 				</div>
 				</BOUCLE_articles_numeros>
 		</BOUCLE_test_articles>
-			<BOUCLE_articles_sans(ARTICLES){id_rubrique}{par date}{inverse}{id_article!=927}>
+			<BOUCLE_articles_sans(ARTICLES){id_rubrique}{!par date}{id_article!=927}>
 				<div style="position: relative;">
 				<div>[<a href="#URL_ARTICLE" class="article_rub">(#TITRE|supprimer_numero)</a>]</div>
 				<div style="margin-#LANG_LEFT: 15px; font-size: 10px; color: #666666;">[(#DATE|affdate_court)]
@@ -451,13 +451,13 @@
 				[<div style="margin-#LANG_LEFT: 15px; font-size: 10px;">(#DESCRIPTIF)</div>]
 				<B_articles_sans_pet>
 				<img src="#CHEMIN{img_spip/documents-48.gif}" alt="Petition" width="48" height="48" border="0" align="#LANG_RIGHT" />
-				<BOUCLE_articles_sans_pet(SIGNATURES){id_article}{par date}{inverse}{nom_site!=""}{0,10}>
+				<BOUCLE_articles_sans_pet(SIGNATURES){id_article}{!par date}{nom_site!=""}{0,10}>
 					<div style="padding-#LANG_LEFT:60px"><a href="#URL_SITE" class="article_pet">#NOM_SITE</a></div>
 				</BOUCLE_articles_sans_pet>
 				
 				<B_articles_sans_forum>
-					<img src="img_vignettes/forums.gif" alt="Forums" width="24" height="24" border="0" align="#LANG_RIGHT" />
-				<BOUCLE_articles_sans_forum(FORUMS){id_article}{0,5}{par date}{inverse}>
+					<img src="#CHEMIN{img_vignettes/forums.gif}" alt="Forums" width="24" height="24" border="0" align="#LANG_RIGHT" />
+				<BOUCLE_articles_sans_forum(FORUMS){id_article}{0,5}{!par date}>
 					<div style="padding-#LANG_LEFT:60px"><a href="threadspip#ID_ARTICLE-#ID_FORUM.html" class="article_pet">#TITRE</a></div>
 				</BOUCLE_articles_sans_forum>
 
@@ -492,7 +492,7 @@
 				<div style="position: relative; z-index: 2; top: 0px; left: 0px; text-align: center; width: 350px; font-family: helvetica,arial,sans; font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px;">[<a href="#URL_RUBRIQUE" style="color: #91007B; text-decoration: none;">(#TITRE|supprimer_numero)]</a></div>
 				</div>
 				
-				[<div style="text-align: center;"><a href="#URL_RUBRIQUE">(#LOGO_RUBRIQUE|top||reduire_image{100})</a></div>]
+				[<div style="text-align: center;"><a href="#URL_RUBRIQUE">(#LOGO_RUBRIQUE|top||image_reduire{100})</a></div>]
 				
 				[<div style="padding-bottom: 5px; font-size: 10px; color: #444444;">(#DESCRIPTIF)</div>]
 				
@@ -501,7 +501,7 @@
 						<a href="#URL_ARTICLE" class="article_pet">[(#TITRE|supprimer_numero)]</a>
 					</BOUCLE_articles_sous_num>
 				</BOUCLE_test_art_sous>
-					<BOUCLE_articles_sous(ARTICLES){id_rubrique}{par date}{inverse}{0,5}>
+					<BOUCLE_articles_sous(ARTICLES){id_rubrique}{!par date}{0,5}>
 						<a href="#URL_ARTICLE" class="article_pet">#TITRE</a>
 					</BOUCLE_articles_sous>
 				<//B_test_art_sous>
@@ -529,17 +529,10 @@
 	</table>
 	<br /><br />
 	</BOUCLE_sous_rub>
-	
-	
-
-
 
 
 
 </div>
-
-
-
 
 
 
