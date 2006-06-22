@@ -84,7 +84,12 @@
 	<div style="border: 1px solid #600051; padding: 0px;"><table width="100%" cellpadding="5" cellspacing="1" border="0">
 		<tr>
 		<td background="img_interface/fond-degrade.png" align="#LANG_LEFT" valign="top" width="100">
-			<div class="droitpetit"><b>[(#NOM|raccourcir_nom)]</b></div>
+			<div class="droitpetit"><b>[(#NOM|raccourcir_nom)]</b>
+			<?php if ($auteur_session['statut'] == '0minirezo') {
+				echo "<a href='/ecrire/?exec=controle_forum&amp;page=public&amp;debut_id_forum=#ID_FORUM'><img src='ecrire/img_pack/croix-rouge.gif' alt='mod&eacute;rer' title='mod&eacute;rer' /></a>";
+				}
+			?>
+			</div>
 		</td>
 		<td background="img_interface/fond-degrade.png" align="#LANG_LEFT" valign="top" class="droitpetit">
 			<div class="droitpetit"><b>#TITRE</b></div>
@@ -123,17 +128,8 @@
 	<B_reponses>
 		&nbsp;<p /><div style="border: 1px solid #600051; padding: 0px;"><table width="100%" cellpadding="5" cellspacing="1" border="0">
 	<BOUCLE_reponses(FORUMS){id_thread}{plat}{id_parent!=0}{par date}>
-			<? 
-				if ($i == 0) {
-					$fond = "#eeeeee";
-					$i = 1;	
-				} else {
-					$fond = "#dddddd";
-					$i = 0;
-				}
-			?>
 		<tr>
-		<td bgcolor="<? echo $fond; ?>" align="#LANG_LEFT" valign="top" width="100">
+		<td bgcolor="[(#COMPTEUR_BOUCLE|alterner{#eeeeee,#dddddd})]" align="#LANG_LEFT" valign="top" width="100">
 			<a name="forum#ID_FORUM" id="forum#ID_FORUM"></a>
 			<div class="droitpetit"><b>[(#NOM|raccourcir_nom)]</b></div>
 			<div class="droitxpetit">[(#DATE|affdate)] [(#DATE|heures)][:(#DATE|minutes)]</div>
@@ -144,7 +140,7 @@
 			?>
 			</div>
 		</td>
-		<td bgcolor="<? echo $fond; ?>" align="#LANG_LEFT" valign="top" class="droitpetit">
+		<td bgcolor="[(#COMPTEUR_BOUCLE|alterner{#eeeeee,#dddddd})]" align="#LANG_LEFT" valign="top" class="droitpetit">
 			<div class="droitpetit"><b>#TITRE</b></div>
 			<p />#TEXTE
 		</td>
