@@ -63,7 +63,7 @@ function generer_url_forum($id_forum) {
 	$lang = langue_choix($id_forum, 'forum');
 	if ($t=spip_fetch_array($s)) {
 		$url = $lang."_".$t['id_thread'].'.html';
-		if ($t['id_forum'] <> $t['id_thread']) $url .= '#'.$t['id_forum'];
+		if ($t['id_forum'] <> $t['id_thread']) $url .= '#forum'.$t['id_forum'];
 	}
 	return $url;
 }
