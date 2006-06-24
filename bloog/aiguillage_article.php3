@@ -16,7 +16,7 @@ if($squelette_article){
 }}
 
 
-if(($restreint) OR ($squelette_article == "-photo")){
+if(($restreint) OR ($squelette_article == "-photo") OR ($squelette_article == "-forum")){
 
 //on construit $fond en fonction de $squelette_article
 $fond = "_template/__article".$squelette_article;
