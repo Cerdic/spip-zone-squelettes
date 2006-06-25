@@ -24,17 +24,17 @@ $branche = array();
 
 // Construction liste des evenements (1 liste par jour => liste des jours)
 $events = array();
-<BOUCLE_evts_com(EVENEMENTS){date_debut>(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-01'}|DateAdd{-6})}{date_debut<(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-01'}|DateAdd{35})}{par date_debut}>
+<BOUCLE_evts_com(EVENEMENTS){date_debut>(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-01'}|DateAdd{-6})}{date_debut<(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-01'}|DateAdd{35})}{par date_debut}><B_EvenementArticle>
 	if ('#DATE_DEBUT' != '' && in_array(#ID_RUBRIQUE, $branche)) {
 		$dateEvt = ereg_replace("^([0-9]{4})-([0-9]{2})-([0-9]{2}).*$", "\\1\\2\\3", '#DATE_DEBUT');
 		if (!isset($events[$dateEvt])) { $events[$dateEvt] = array(); }
 		$res="";
 		ereg("($genre)", '<BOUCLE_genre(MOTS){id_evenement}>[(#TITRE|texte_script)]</BOUCLE_genre>', $res);
 		if (($genre=='<:pyrat:tout:>') || ($genre==$res[1])) {
-			<BOUCLE_EvenementArticle(ARTICLES){id_article}>$events[$dateEvt][] = array('rub' => #ID_RUBRIQUE, 'link' => '#URL_ARTICLE', 'title' => '[(#TITRE|texte_script)]&nbsp;: [(#_evts_com:TITRE|texte_script)]', 'logo' => '[<img src="(#LOGO_ARTICLE_RUBRIQUE_COURANTE||reduire_image{32,32}|extraire_attribut{src})" style="float:right;" alt="[(#DESCRIPTIF|attribut_html|texte_script)]"/>]', 'genres' => '<B_Genres><em>(<BOUCLE_Genres(MOTS){id_evenement}{", "}><a href="#URL_MOT" rel="tag" title="<:pyrat:savoirpluscritere:>: [(#TITRE|attribut_html|texte_script)]">[(#TITRE|texte_script)]</a></BOUCLE_Genres>)</em></B_Genres>', 'titre_rub' => '<B_TitreRub><strong<BOUCLE_CouleurRub(MOTS){id_rubrique}{type=_CouleurRubrique}> style="background-color:#[(#TEXTE|couleur_eclaircir)];"</BOUCLE_CouleurRub>><BOUCLE_TitreRub(RUBRIQUES){id_rubrique}>[(#TITRE|supprimer_numero)</strong>&nbsp;: ]</BOUCLE_TitreRub>');</BOUCLE_EvenementArticle>
+			<BOUCLE_EvenementArticle(ARTICLES){id_article}>$events[$dateEvt][] = array('rub' => #ID_RUBRIQUE, 'link' => '#URL_ARTICLE', 'title' => '[(#TITRE|texte_script)][&nbsp;: (#_evts_com:TITRE|texte_script|=={#TITRE}|?{'',[(#_evts_com:TITRE|texte_script)]})]', 'logo' => '<BOUCLE_TitreRubrique(RUBRIQUES){id_rubrique}>[<img src="(#LOGO_ARTICLE_RUBRIQUE||reduire_image{32,32}|extraire_attribut{src})" class="logo_agenda" alt="[(#TITRE|supprimer_numero|attribut_html|texte_script)]" title="[(#TITRE|supprimer_numero|attribut_html|texte_script)]" />]</BOUCLE_TitreRubrique>', 'genres' => '<B_Genres><em>(<BOUCLE_Genres(MOTS){id_evenement}{", "}><a href="#URL_MOT" rel="tag" title="<:pyrat:savoirpluscritere:>: [(#TITRE|attribut_html|texte_script)]">[(#TITRE|texte_script)]</a></BOUCLE_Genres>)</em></B_Genres>', 'titre_rub' => '<B_TitreRub><strong<BOUCLE_CouleurRub(MOTS){id_rubrique}{type=_CouleurRubrique}> style="background-color:#[(#TEXTE|couleur_eclaircir)];"</BOUCLE_CouleurRub>><BOUCLE_TitreRub(RUBRIQUES){id_rubrique}>[(#TITRE|supprimer_numero|attribut_html|texte_script)</strong>&nbsp;: ]</BOUCLE_TitreRub>');</BOUCLE_EvenementArticle>
 		}
 	}
-</BOUCLE_evts_com>
+</B_EvenementArticle></BOUCLE_evts_com>
 
 ?>
 <BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
@@ -147,8 +147,10 @@ $events = array();
 			$case .= date('j', mktime(0, 0, 0, $M, $TempD, $Y));
 			$date_ev = date('Ymd', mktime(0, 0, 0, $M, $TempD, $Y));
 			if (isset($events[$date_ev])) {
+				$countev = $TempD;
 				while (list(, $event) = each($events[$date_ev])) {
-					$case .= '<br />'.$event['logo'].$event['titre_rub'].'<a href="'.$event['link'].'">'.$event['title'].'</a> '.$event['genres'];
+					$case .= ((($countev % 2)==0) ? '<div >' : '<div class="odd">').$event['logo'].(($event['logo'] == '') ? $event['titre_rub'] : '').'<a href="'.$event['link'].'">'.$event['title'].'</a> '.$event['genres'].'</div>';
+					$countev++;
 				}
 			}
 			$case .= '</td>';
@@ -165,8 +167,10 @@ $events = array();
 		echo date('j', mktime(0, 0, 0, $M, $TempD, $Y));
 		$date_ev = date('Ymd', mktime(0, 0, 0, $M, $TempD, $Y));
 		if (isset($events[$date_ev])) {
+			$countev = $TempD;
 			while (list(, $event) = each($events[$date_ev])) {
-				echo '<br />'.$event['logo'].$event['titre_rub'].'<a href="'.$event['link'].'">'.$event['title'].'</a> '.$event['genres'];
+				echo ((($countev % 2)==0) ? '<div >' : '<div class="odd">').$event['logo'].(($event['logo'] == '') ? $event['titre_rub'] : '').'<a href="'.$event['link'].'">'.$event['title'].'</a> '.$event['genres'].'</div>';
+				$countev++;
 			}
 		}
 		echo '</td>';
