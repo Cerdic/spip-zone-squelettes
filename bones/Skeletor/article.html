@@ -1,62 +1,78 @@
 #CACHE{86400}
 <BOUCLE_article_principal(ARTICLES) {id_article}>
-	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-	<html dir="#LANG_DIR" lang="#LANG">
-	<head>
-	<title>[(#TITRE|textebrut)][, <:par_auteur:> (#LESAUTEURS|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
-	[<meta name="description" content="(#INTRODUCTION|couper{150}|attribut_html)" />]
-	<INCLURE{fond=inc-head}>
-	</head>
-	<body>
-	 <div id="navigation">
-	 	<INCLURE{fond=inc-navigation}>
-<BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; (#TITRE|couper{80})]	  </div>
-	  <!-- navigation -->
-	  <div id="container">
-	  <hr />
-	  <div id="primaryContent">
-	  		#DEBUT_SURLIGNE
-				[(#LOGO_ARTICLE||reduire_image{200,200})]
-				[<p>(#SURTITRE)</p>]
-				<h1>#TITRE</h1>
-				[<p>(#SOUSTITRE)</p>]
-				#FIN_SURLIGNE
-
-				<p><small>[(#DATE|nom_jour) ][(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small></p>
-
-		#DEBUT_SURLIGNE
-			[<div class="texte">(#CHAPO)</div>]
-			[<small><:voir_en_ligne:> &mdash;
-				<a href="(#URL_SITE)"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#TITRE|textebrut)][, <:par_auteur:> (#LESAUTEURS|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
+[
+<meta name="description" content="(#INTRODUCTION|couper{150}|attribut_html)" />
+]
+<INCLURE{fond=inc-head}>
+</head>
+<body>
+<div id="navigation">
+  <INCLURE{fond=inc-navigation}>
+  <BOUCLE_ariane(HIERARCHIE){id_article}>
+  &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+  </BOUCLE_ariane>
+  [ &gt; (#TITRE|couper{80})] </div>
+<!-- navigation -->
+<div id="container">
+  <hr />
+  <div id="primaryContent">
+    <div class="item_head"> #DEBUT_SURLIGNE
+      [(#LOGO_ARTICLE||reduire_image{200,200})]
+      [
+      <p>(#SURTITRE)</p>
+      ]
+      <h1>#TITRE</h1>
+      [
+      <p>(#SOUSTITRE)</p>
+      ]
+      #FIN_SURLIGNE
+      
+      [
+      <p><small>(#DATE|nom_jour) ][(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)</small></p>
+      ] </div>
+    <div class="item_article"> #DEBUT_SURLIGNE
+      [
+      <div class="texte">(#CHAPO)</div>
+      ]
+      [<small><:voir_en_ligne:> &mdash; <a href="(#URL_SITE)"
 				class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></small>]
-			[<div class="texte">(#TEXTE|reduire_image{520,0})</div>]
-			#FIN_SURLIGNE
+      [
+      <div class="texte">(#TEXTE|reduire_image{520,0})</div>
+      ]
+      #FIN_SURLIGNE
+      <INCLURE{fond=inc-images}{id_article}{id_document}>
+      [(#PS)]
 
-			
-			  <INCLURE{fond=inc-images}{id_article}{id_document}>
+      [(#REM) Petition :
+			La petition ayant une PAGINATION il faut absolument lui passer SELF en argument. ]
+			[ #REM Conserver cet invalideur : (#PETITION|?{'',''}) ]
+			<INCLURE{fond=inc-petition}{id_article}{self=#SELF}>
 
-	  </div>
-	  <!-- primaryContent -->
-	  <hr />
-	  <div id="secondaryContent">
-	  <INCLURE{fond=inc-trad}{id_article}>
-	  <INCLURE{fond=inc-rubrique}>
-		<INCLURE{fond=inc-recherche}>
-		<INCLURE{fond=inc-syndic}>
-	  [(#REM) Inscription au site ]
-		#FORMULAIRE_INSCRIPTION
-	    <hr />
-	   <!-- secondaryContent -->
-	 </div>
-	  <!-- container -->
-	  </div>
-	  <div id="footer">
-	[(#REM) Pied de page ]
-	<INCLURE{fond=inc-pied}{lang}>
-	  </div>
-	  <!-- footer -->
-	
-	
-	</body>
+      [
+      <h2><:info_notes:></h2>
+      (#NOTES)] </div>
+  </div>
+  <!-- primaryContent -->
+  <hr />
+  <div id="secondaryContent">
+    <INCLURE{fond=inc-trad}{id_article}>
+    <INCLURE{fond=inc-rubrique}>
+    <INCLURE{fond=inc-recherche}>
+    <INCLURE{fond=inc-syndic}>
+  
+    <hr />
+    <!-- secondaryContent -->
+  </div>
+  <!-- container -->
+</div>
+<div id="footer"> [(#REM) Pied de page ]
+  <INCLURE{fond=inc-pied}{lang}>
+</div>
+<!-- footer -->
+</body>
 </BOUCLE_article_principal>
-	</html>
+</html>

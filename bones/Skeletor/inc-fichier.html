@@ -1,14 +1,15 @@
-[(#REM) Cette noisette  fait partie de Bones Skeletor, elle permet de gerer les fichiers à l'artice ou à la rubrique (sauf les images) ]
+[(#REM) Cette noisette  fait partie de Bones Skeletor, elle permet de gerer les fichiers â€¡ l'artice ou â€¡ la rubrique (sauf les images) ]
 <B_documents_joints>
 <div class="inc-fichier">
-  <h2><:docjoint:></h2>
+  <h2><:titre_documents_joints:></h2>
   <ul>
-    <BOUCLE_documents_joints(DOCUMENTS) {id_article} {extension!==jpg|png|gif} {mode=document} {doublons}>
-    <li> [(#LOGO_DOCUMENT|#URL_DOCUMENT||reduire_image{32})][
-      <div style="clear: both;"><b>(#TITRE)</b></div>
-      ][
-      <div style="clear: both;">(#DESCRIPTIF)</div>
-      ] </li>
+    <BOUCLE_documents_joints(DOCUMENTS) {id_rubrique?}{id_article?} {mode=document} {par date} {doublons}>
+    <li>
+      <div><a href="#URL_DOCUMENT" rel="enclosure" title="<:bouton_telecharger:>">[(#TITRE|sinon{<:info_document:>})]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
+      [
+      <div class="texte">(#DESCRIPTIF)</div>
+      ]</li>
+    <br />
     </BOUCLE_documents_joints>
   </ul>
 </div>

@@ -1,51 +1,83 @@
-<?php
-	@header('Content-type: text/xml[; charset=(#CHARSET)]');
-	echo '<'.'?xml version="1.0" encoding="#CHARSET"?'.">\n";
-?>
+#CACHE{3600}
+[(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})]
+<?php echo '<' ?>?xml version="1.0"[ encoding="(#CHARSET)"]?>
 
 
-<rss xmlns:itunes="http://www.itunes.com/DTDs/Podcast-1.0.dtd" version="2.0">
-  <channel>
-    <title>[(#NOM_SITE_SPIP|textebrut|entites_html|entites_unicode)]</title>
-    <link>#URL_SITE_SPIP/spiptunes.php3</link>
-    <description>podcast [(#NOM_SITE_SPIP|textebrut|entites_html|entites_unicode)]</description>
-    <generator>SPIP</generator>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+ <channel>
+    <title>[(#NOM_SITE_SPIP|texte_backend)]</title>
+    <link>#URL_SITE_SPIP</link>
+	<description>[(#DESCRIPTIF_SITE_SPIP|texte_backend)]</description>
+	  <generator>SPIP - www.spip.net with Spiptunes</generator>
     <docs>http://blogs.law.harvard.edu/tech/rss</docs>
     <language>#LANG</language>
-    <copyright>[(#NOM_SITE_SPIP|textebrut|entites_html|entites_unicode)] [(#DATE_annee|textebrut|entites_html|entites_unicode)]</copyright>
+    <copyright>[(#NOM_SITE_SPIP|texte_backend)] [(#DATE_annee|texte_backend)]</copyright>
     <managingEditor>#EMAIL_WEBMASTER</managingEditor>
-    <webMaster><BOUCLE_webmaster(AUTEURS) {id_auteur=1}>
-           [(#NOM|texte_backend)]
-            </BOUCLE_webmaster></webMaster>
     <pubDate>[(#DATE|affdate{'r'})]</pubDate>
     <lastBuildDate>[(#DATE_NOUVEAUTES|affdate{'r'})]</lastBuildDate>
-    <image>
-      <url>[href="(#LOGO_SITE_SPIP||extraire_attribut{src}|url_absolue|texte_backend)"]
-</url>      <title>#NOM_SITE_SPIP</title>
-      <link>#URL_SITE_SPIP</link>
-      <description>#NOM_SITE_SPIP</description>
-    </image>
-   	<BOUCLE_article(ARTICLES) {par date} {inverse} {0,9}>
+
+[<image>
+      <url>[(#LOGO_SITE_SPIP||extraire_attribut{src}|url_absolue|texte_backend)]</url>
+      <title>[(#NOM_SITE_SPIP|texte_backend)]</title>
+      <link>(#URL_SITE_SPIP)</link>
+      [<height>(#LOGO_SITE_SPIP||extraire_attribut{height})</height>]
+		  [<width>(#LOGO_SITE_SPIP||extraire_attribut{width})</width>]
+	<description>[(#DESCRIPTIF_SITE_SPIP|texte_backend)]</description>
+</image>]
+
+<itunes:author>[(#NOM_SITE_SPIP)]</itunes:author>
+<itunes:owner> 
+<BOUCLE_owner(AUTEURS) {id_auteur=1}>
+
+      [<itunes:name>(#NOM|texte_backend)</itunes:name>]
+      [<itunes:email>(#EMAIL)</itunes:email>]
+</BOUCLE_owner>
+
+</itunes:owner>
+
+
+ [<itunes:image href="(#LOGO_SITE_SPIP|url_absolue|fichier)"/>]
+
+
+<itunes:block>no</itunes:block>
+<itunes:category text="Public Radio"/>
+
+
+    
+<BOUCLE_un_article(ARTICLES)>
 
     <item>
-      <title>[(#TITRE|texte_backend)]</title>
+		<title>[(#TITRE|supprimer_numero|texte_backend)]</title>
       <link>[(#URL_ARTICLE|url_absolue|unique)]</link>
       <description>[(#INTRODUCTION|liens_absolus|texte_backend)]</description>
       <pubDate>[(#DATE|affdate)] [(#DATE|heures)]:[(#DATE|minutes)]:[(#DATE|secondes)]</pubDate>
-      <BOUCLE_podcast(DOCUMENTS){id_article}{mode=document}>[
+      <BOUCLE_podcast(DOCUMENTS){id_article}{mode=document}{doublons}>[
 			<enclosure url="(#URL_DOCUMENT|url_absolue|unique)" length="[(#TAILLE)]" type="#MIME_TYPE" />]
 		</BOUCLE_podcast>
 
       <guid isPermaLink="false">[(#URL_ARTICLE|url_absolue|unique)]</guid>
-      <itunes:author><BOUCLE_auteursb(AUTEURS){id_article}{", "}>[(#NOM|texte_backend)]</BOUCLE_auteursb></itunes:author>
+      <itunes:author>[(#LESAUTEURS|supprimer_tags|texte_backend)]</itunes:author>
       [<itunes:subtitle>(#SOUS_TITRE|texte_backend)</itunes:subtitle>]
       <itunes:summary>[(#INTRODUCTION|liens_absolus|texte_backend)]</itunes:summary>
-      <itunes:keywords><BOUCLE_articles_mots(ARTICLES) {id_mot} {par hasard} {0,4}>
-#TITRE
-</BOUCLE_articles_mots></itunes:keywords>  
+ <B_mots_itunes>
+ <itunes:keywords>
+ <BOUCLE_mots_itunes(MOTS){id_article}{", "}>
+ [(#TITRE|texte_backend)]
+</BOUCLE_mots_itunes>
+</itunes:keywords>
+</B_mots_itunes>
 
     </item>
-    </BOUCLE_article>
+    </BOUCLE_un_article>
+<BOUCLE_10recents(ARTICLES) {lang ?}{branche ?}{id_mot ?}
+	{par date}{inverse}{0,10}{unique}>
+<BOUCLE_a(BOUCLE_un_article)></BOUCLE_a>
+</BOUCLE_10recents>
+
+<BOUCLE_tres_recents(ARTICLES){lang ?}{branche ?}{id_mot ?}
+	{par date}{inverse}{age<3}{unique}>
+<BOUCLE_b(BOUCLE_un_article)></BOUCLE_b>
+</BOUCLE_tres_recents>
 
   </channel>
 </rss>

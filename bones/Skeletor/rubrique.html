@@ -1,60 +1,54 @@
-[(#REM) Ce squelette fait partie de la famille bones, un ensemble de squelettes
-	open source pour SPIP]
-<BOUCLE_rubrique_principale(RUBRIQUES) {id_rubrique}>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+#CACHE{7200}
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
 <head>
-<title>[#NOM_SITE_SPIP]-[(#TITRE|textebrut)]</title>
+<title>[(#TITRE|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
 <INCLURE{fond=inc-head}{id_article}>
 </head>
 <body>
 <div id="navigation">
-		<INCLURE{fond=inc-navigation}>
-  </div>
-  <!-- navigation -->
-  <hr />
-
+  <INCLURE{fond=inc-navigation}>
+  <a href="#URL_SITE_SPIP/"><:accueil_site:></a>
+  <BOUCLE_ariane(HIERARCHIE){id_rubrique}>
+  &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+  </BOUCLE_ariane>
+  [ &gt; (#TITRE|couper{80})] </div>
+<!-- navigation -->
+<hr />
 <div id="container">
-    <div id="primaryContent"> [
-    <h3>(#SURTITRE)</h3>
-    ]
-    <h2>#TITRE</h2>
+  <div id="primaryContent"> [
+    <div class="item_head"> [(#LOGO_RUBRIQUE||image_reduire{200,200})]
+      <h2>#TITRE</h2>
+      <small><:dernier_ajout:> &ndash; [(#DATE|nom_jour) ][(#DATE|affdate).]</small> [
+      <div class="texte">(#TEXTE)</div>
+      ] </div>
+    <INCLURE{fond=inc-article-rubrique}{lang}{id_rubrique}>
+    <INCLURE{fond=inc-sous-rubrique}{lang}{id_rubrique}>
     [
-    <h3>(#SURTITRE)</h3>
-    ] [<em> <:dernier_ajout:> : (#DATE|nom_jour)] [(#DATE|affdate).</em>] [<:sur_web:>: <a href="#URL_SITE" target="_blank">(#NOM_SITE)</a> ]
-    
-    [(#LOGO_RUBRIQUE||reduire_image{200})]
-    
-    [(#DESCRIPTIF)]
-    
-    [(#TEXTE)]
-    <INCLURE{fond=inc-images}{id_rubrique}{id_document}{doublons}>
-    #NOTES </div>
-  <h2><:proposer_site:></h2>
-  (#FORMULAIRE_SITE)]
-  <INCLURE{fond=inc-article-rubrique}{id_rubrique}>
-  <INCLURE{fond=inc-sous-rubrique}{id_rubrique}>
+    <div class="notes">
+      <h2><:info_notes:></h2>
+      (#NOTES)</div>
+    ] </div>
   <!-- primaryContent -->
   <hr />
   <div id="secondaryContent">
-  
-    <INCLURE{fond=inc-rubrique}>
+    <INCLURE{fond=inc-rubrique}{lang}{id_rubrique}>
     <INCLURE{fond=inc-breve}{id_secteur}>
+    <INCLURE{fond=inc-mots}{id_rubrique}>
     <INCLURE{fond=inc-recherche}>
     <INCLURE{fond=inc-fichier}{id_rubrique}{doublons}>
-    <INCLURE{fond=inc-meme_rubrique}{id_rubrique}>
-    <INCLURE{fond=inc-mots}>
     <INCLURE{fond=inc-syndic}{id_rubrique}>
-    <INCLURE{fond=inc-logo}>
+    [(#REM) Proposer un site ]
+    #FORMULAIRE_SITE
     <!-- secondaryContent -->
- </div>
+  </div>
   <!-- container -->
-  </div>
-  <div id="footer">
-    <INCLURE{fond=inc-footer}>
-  </div>
-  <!-- footer -->
+</div>
+<div id="footer">
+  <INCLURE{fond=inc-pied}{lang}>
+</div>
+<!-- footer -->
 </body>
-</BOUCLE_rubrique_principale>
 </html>
+</BOUCLE_rubrique_principale>

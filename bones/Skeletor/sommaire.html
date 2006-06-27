@@ -1,84 +1,83 @@
-	[(#REM) Ce squelette fait partie de la famille bones, un ensemble de squelettes
+[(#REM) Ce squelette fait partie de la famille bones, un ensemble de squelettes
 		open source pour SPIP]
 		#CACHE{7200}
-	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-	<html dir="#LANG_DIR" lang="#LANG">
-	<head>
-	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
-	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
-	<INCLURE{fond=inc-head}>
-	</head>
-	<body>
-	 <div id="navigation">
-	 	<INCLURE{fond=inc-navigation}>
-	  </div>
-	  <!-- navigation -->
-	  <div id="container">
-	  <hr />
-	  <div id="primaryContent">
-	<B_articles>
-				<h2><:derniers_articles:></h2>
-				<ul>
-					<BOUCLE_articles(ARTICLES) {par date}{inverse} {0,2}{doublons}>
-					<li>
-						[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE||reduire_image{120,100}|inserer_attribut{alt,[(#TITRE|supprimer_numero|couper{80}|texte_backend)]})]
-						[<p>(#SURTITRE)</p>]
-						<h3><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero|couper{80})]</a></h3>
-						[<p>(#SOUSTITRE)</p>]
-						<small>[(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small>
-						[<div class="texte">(#INTRODUCTION)</div>]
-	
-					</li>
-					</BOUCLE_articles>
-				</ul>
-				</B_articles>
-				
-		<br/>
-		
-				[(#REM) Articles suivants ]
-				<B_articles_suite>
-				
-				[(#ANCRE_PAGINATION)]
-				[(#ENV{debut_articles}|?{'',' '})
-				<h2><:articles_recents:></h2>
-				]
-				<ul>
-				<BOUCLE_articles_suite(ARTICLES) {par date}{inverse}{doublons}{pagination}>
-					<li>
-						<h3><a href="#URL_ARTICLE">#TITRE</a></h3>
-						<small>[(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small>
-					</li>
-				</BOUCLE_articles_suite>
-				</ul>
-				[<p>(#PAGINATION)</p>]
-						</B_articles_suite>
-	
-	
-		
-	  </div>
-	  <!-- primaryContent -->
-	  <hr />
-	  <div id="secondaryContent">
-	  <INCLURE{fond=inc-breve}>
-	  <INCLURE{fond=inc-rubrique}>
-	    [(#REM) &agrave; utiliser avec le plugin agenda   <INCLURE{fond=inc-agenda}> ]
-	  <INCLURE{fond=inc-commnentaire}>
-		<INCLURE{fond=inc-recherche}>
-		<INCLURE{fond=inc-syndic}>
-	  [(#REM) Inscription au site ]
-		#FORMULAIRE_INSCRIPTION
-	    <hr />
-	   <!-- secondaryContent -->
-	 </div>
-	  <!-- container -->
-	  </div>
-	  <div id="footer">
-	[(#REM) Pied de page ]
-	<INCLURE{fond=inc-pied}{lang}>
-	  </div>
-	  <!-- footer -->
-	
-	
-	</body>
-	#SPIP_CRON
-	</html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+[
+<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />
+]
+<INCLURE{fond=inc-head}>
+</head>
+<body>
+<div id="navigation">
+  <INCLURE{fond=inc-navigation}>
+</div>
+<!-- navigation -->
+<div id="container">
+  <hr />
+  <div id="primaryContent">
+    <B_articles>
+    <div class="intem_head"> </div>
+    <h2><:derniers_articles:></h2>
+    <ul>
+      <BOUCLE_articles(ARTICLES) {par date}{inverse} {0,2}{doublons}>
+      <li> [(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE||reduire_image{120,100}|inserer_attribut{alt,[(#TITRE|supprimer_numero|couper{80}|texte_backend)]})]
+        [
+        <p>(#SURTITRE)</p>
+        ]
+        <h3><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero|couper{80})]</a></h3>
+        [
+        <p>(#SOUSTITRE)</p>
+        ] <small>[(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small> [
+        <div class="texte">(#INTRODUCTION)</div>
+        ] </li>
+      </BOUCLE_articles>
+    </ul>
+  </div>
+  </B_articles>
+  <br/>
+  [(#REM) Articles suivants ]
+  <B_articles_suite>
+  <div class="item_article"> [(#ANCRE_PAGINATION)]
+    [(#ENV{debut_articles}|?{'',' '})
+    <h2><:articles_recents:></h2>
+    ]
+    <ul>
+      <BOUCLE_articles_suite(ARTICLES) {par date}{inverse}{doublons}{pagination}>
+      <li>
+        <h3><a href="#URL_ARTICLE">#TITRE</a></h3>
+        <small>[(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small> </li>
+      </BOUCLE_articles_suite>
+    </ul>
+    [
+    <p>(#PAGINATION)</p>
+    ] </div>
+  </B_articles_suite>
+</div>
+<!-- primaryContent -->
+<hr />
+<div id="secondaryContent">
+  <INCLURE{fond=inc-breve}>
+  <INCLURE{fond=inc-rubrique}>
+  [(#REM) &agrave; utiliser avec le plugin agenda
+  <INCLURE{fond=inc-agenda}>
+  ]
+  <INCLURE{fond=inc-commnentaire}>
+  <INCLURE{fond=inc-recherche}>
+  <INCLURE{fond=inc-syndic}>
+  [(#REM) Inscription au site ]
+  #FORMULAIRE_INSCRIPTION
+  <hr />
+  <!-- secondaryContent -->
+</div>
+<!-- container -->
+</div>
+<div id="footer"> [(#REM) Pied de page ]
+  <INCLURE{fond=inc-pied}{lang}>
+</div>
+<!-- footer -->
+</body>
+#SPIP_CRON
+</html>

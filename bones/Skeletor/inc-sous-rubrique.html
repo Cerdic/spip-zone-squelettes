@@ -3,15 +3,20 @@
 <div class="inc-sous-rubrique">
   <h2><:sous_rubriques:></h2>
   <ul>
-    <BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par titre}>
-    <li> <a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
-      <B_sous_sous_rubriques>
+    <BOUCLE_sous_rubriques(RUBRIQUES) {id_parent}
+						{par num titre, titre}>
+    <li> <a href="#URL_RUBRIQUE">[(#TITRE)]</a> [(#REM) Une boucle recursive pour le mini plan]
+      <B_miniplan>
       <ul>
-        <BOUCLE_sous_sous_rubriques(RUBRIQUES) {id_parent} {par titre}>
-        <li><a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></li>
-        </BOUCLE_sous_sous_rubriques>
+        <BOUCLE_miniplan(RUBRIQUES)
+								{id_parent} {par num titre, titre}>
+        <li> <a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+          <BOUCLE_m2(BOUCLE_miniplan)>
+          </BOUCLE_m2>
+        </li>
+        </BOUCLE_miniplan>
       </ul>
-      </B_sous_sous_rubriques>
+      </B_miniplan>
     </li>
     </BOUCLE_sous_rubriques>
   </ul>
