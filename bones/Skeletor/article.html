@@ -20,41 +20,21 @@
 <div id="container">
   <hr />
   <div id="primaryContent">
-    <div class="item_head"> #DEBUT_SURLIGNE
-      [(#LOGO_ARTICLE||reduire_image{200,200})]
-      [
-      <p>(#SURTITRE)</p>
-      ]
-      <h1>#TITRE</h1>
-      [
-      <p>(#SOUSTITRE)</p>
-      ]
-      #FIN_SURLIGNE
-      
-      [
-      <p><small>(#DATE|nom_jour) ][(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)</small></p>
-      ] </div>
-    <div class="item_article"> #DEBUT_SURLIGNE
-      [
-      <div class="texte">(#CHAPO)</div>
-      ]
-      [<small><:voir_en_ligne:> &mdash; <a href="(#URL_SITE)"
-				class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></small>]
-      [
-      <div class="texte">(#TEXTE|reduire_image{520,0})</div>
-      ]
-      #FIN_SURLIGNE
+      <INCLURE{fond=inc-article}{id_article}>
+
+
+      [(#REM) hreview :
+			on peut inserer la noisette review ici.    <INCLURE{fond=inc-hreview}{id_article}> ]
+
+        
       <INCLURE{fond=inc-images}{id_article}{id_document}>
-      [(#PS)]
+
 
       [(#REM) Petition :
 			La petition ayant une PAGINATION il faut absolument lui passer SELF en argument. ]
 			[ #REM Conserver cet invalideur : (#PETITION|?{'',''}) ]
 			<INCLURE{fond=inc-petition}{id_article}{self=#SELF}>
 
-      [
-      <h2><:info_notes:></h2>
-      (#NOTES)] </div>
   </div>
   <!-- primaryContent -->
   <hr />
