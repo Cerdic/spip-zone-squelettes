@@ -197,6 +197,7 @@ $ajouter_mot, $ajouter_groupe, $afficher_texte, $url_param_retour)
 		'id_article' => $id_article,
 		'alea' => $alea,
 		'hash' => $hash,
+		'nobot' => _request('nobot'),
 		'ajouter_groupe' => $ajouter_groupe,
 		'ajouter_mot' => (is_array($ajouter_mot) ? $ajouter_mot : array($ajouter_mot)),
 
