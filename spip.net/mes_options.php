@@ -33,7 +33,47 @@
 			setcookie('skel', $_COOKIE['skel'] = '', time()-3600*24, '/');
 	}
 	if ($_COOKIE['skel'] == 'fraich')
-		$dossier_squelettes = '/var/shim/spipnet:fraichdist';
+		$dossier_squelettes = '/var/shim/spipnet:dist';
 	elseif ($_COOKIE['skel'] == 'hBones')
 		$dossier_squelettes = '/var/shim/spipnet:hBones';
+
+
+	# raccourcis [->spip19] etc
+	function calculer_url_spip($id, $texte, $ancre) {
+	$spip = array( 
+		1 => 1309,
+		10 => 1309,
+		103 => 1309,
+		104 => 1309,
+		105 => 1309,
+		12 => 1310,
+		121 => 1310,
+		13 => 1253,
+		14 => 1832,
+		15 => 1911,
+		16 => 1965,
+		17 => 2102,
+		171 => 2102,
+		172 => 2102,
+		18 => 2991,
+		181 => 2991,
+		182 => 3173,
+		183 => 3333,
+		19 => 3368
+	);
+
+	if (isset($spip[$id])) {
+		$p= calculer_url_article($spip[$id], $texte, $ancre);
+		$p[1] = 'spip'; # class
+		return $p;
+	} else {
+		return array('/', 'spip', 'version inconnue');
+	}
+	}
+	# indisppensable ? ou pas ?
+	function generer_url_spip($id) {
+		$p= calculer_url_spip($id, $texte, $ancre);
+		return $p[0];
+	}
+	
 ?>
