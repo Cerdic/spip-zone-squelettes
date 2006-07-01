@@ -1,0 +1,63 @@
+#CACHE{365*24*3600}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>Site Timeline</title>
+    <meta name="author" content="Pierre Andrews">
+
+	<script src="http://simile.mit.edu.nyud.net:8080/timeline/api/timeline-api.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+
+   var tl;
+function onLoad() {
+  var eventSource = new Timeline.DefaultEventSource();
+  var bandInfos = [
+				   Timeline.createBandInfo({
+					 eventSource:    eventSource,
+						 
+						 date:           <BOUCLE_last(ARTICLES) {0,1} {!par date}>"[(#DATE|affdate{'M d Y H:i:s'})]"</BOUCLE_last>"Jun 28 2006 00:00:00 GMT"<//B_last>,
+						
+						 width:          "70%", 
+						 intervalUnit:   Timeline.DateTime.MONTH, 
+						 intervalPixels: 100
+						 }),
+				   Timeline.createBandInfo({
+					 showEventText:  false,
+						 trackHeight:    0.5,
+						 trackGap:       0.2,
+						 eventSource:    eventSource,
+						 date:           <BOUCLE_last2(ARTICLES) {0,1} {!par date}>"[(#DATE|affdate{'M d Y H:i:s'})]"</BOUCLE_last2>"Jun 28 2006 00:00:00 GMT"<//B_last2>,
+						 width:          "30%", 
+						 intervalUnit:   Timeline.DateTime.YEAR, 
+						 intervalPixels: 200
+						 })
+				   ];
+  bandInfos[1].syncWith = 0;
+  bandInfos[1].highlight = true;
+  
+  var tl = Timeline.create(document.getElementById("my-timeline"), bandInfos);
+  Timeline.loadXML("page.php?page=timeline_xml", function(xml, url) { eventSource.loadXML(xml, url); });
+}
+
+var resizeTimerID = null;
+function onResize() {
+  if (resizeTimerID == null) {
+	resizeTimerID = window.setTimeout(function() {
+										resizeTimerID = null;
+										tl.layout();
+									  }, 500);
+  }
+}
+	</script>
+
+  </head>
+
+  <body onload="onLoad();" onresize="onResize();">
+    <h1>Site Timeline</h1>
+
+    <div id="my-timeline" style="height: 150px; border: 1px solid #aaa" />
+    
+    <hr>
+  </body>
+</html>
