@@ -302,43 +302,33 @@
 </td>
 <td style="width: 50px;"></td>
 <td  style="width: 500px; vertical-align: top; text-align: #LANG_LEFT;">
-		<?php
-		<B_compt_signatures>
-		echo "<p>";
-		<BOUCLE_compt_signatures(SIGNATURES){id_article}>
-		</BOUCLE_compt_signatures>
-			$total=#TOTAL_BOUCLE;
-			for ($numero = 0; $numero < $total; $numero = $numero + 50){
-					echo "[<A HREF='article#ID_ARTICLE.html?debut_signatures=$numero'>".($numero+1)."</A>] ";
-			}
-		echo "<p>";
-		</B_compt_signatures>
-		
-		?>
+
+	<B_signatures>
+		[<p class="pagination">(#PAGINATION)</p>]
 		<table style="border: 0px; width:500px;" cellspacing="0" cellpadding="0">
 		<tr style="width:500px;">
 		<td style="vertical-align: top; width:240px;"><img src="#CHEMIN{IMG/NAVPICS/rien.gif}" alt="" width="240" height="1">
-			
-			<BOUCLE_signatures(SIGNATURES){id_article}{debut_signatures,50}{1/2}{!par date}>
-				<div class="droitpetit" style="margin-top: 5px;"><b><a href="#URL_SITE">#NOM_SITE</a></b>
-				<div class="droitpetit">[(#NOM), ]<span dir="#LANG_DIR">[(#DATE|affdate)]</span></div>
-				<div style="float: #LANG_RIGHT"><a href="#URL_SITE"><img src="http://open.thumbshots.org/image.pxf?url=#URL_SITE" alt="" border="0" /></a></div>				
-				[<div class="droitxpetit" style="padding-#LANG_LEFT: 15px; background: url(#CHEMIN{img_interface/carre-noir.gif}) 0px 3px no-repeat;"> (#MESSAGE)</div>]
-				<div style="clear:#LANG_RIGHT;"></div>
-	    	</BOUCLE_signatures>
-	    </TD>
-		<TD style="width: 20px;"><img src="#CHEMIN{IMG/NAVPICS/rien.gif}" alt="" width="20" height="8"></TD>
-		<TD style="vertical-align: top; width:240px;"><img src="#CHEMIN{IMG/NAVPICS/rien.gif}" alt="" width="240" height="1">
-			<BOUCLE_signatures2(SIGNATURES){id_article}{debut_signatures,50}{2/2}{!par date}>
-				<div class="droitpetit" style="margin-top: 5px;"><b><a href="#URL_SITE">#NOM_SITE</a></b>
-				<div class="droitpetit">[(#NOM), ]<span dir="#LANG_DIR">[(#DATE|affdate)]</span></div>
-				<div style="float: #LANG_RIGHT"><a href="#URL_SITE"><img src="http://open.thumbshots.org/image.pxf?url=#URL_SITE" alt="" border="0" /></a></div>				
-				[<div class="droitxpetit" style="padding-#LANG_LEFT: 15px; background: url(#CHEMIN{img_interface/carre-noir.gif}) 0px 3px no-repeat;"> (#MESSAGE)</div>]
-				<div style="clear:#LANG_RIGHT;"></div>
-	    	</BOUCLE_signatures2>
-	    </TD>
-	    </TR></table>
 
+	<BOUCLE_signatures(SIGNATURES){id_article}{pagination 50}{!par date}>
+
+			[(#COMPTEUR_BOUCLE|modulo{50}|=={26}|?{
+			</td><td style="width: 20px;"><img src="rien.gif" /></td>
+			<td style="vertical-align: top; width:240px;">
+			<img src="rien.gif" alt="" width="240" height="1" />
+			,''})]
+
+		<div class="droitpetit" style="margin-top: 5px;"><b><a href="#URL_SITE">#NOM_SITE</a></b>
+		<div class="droitpetit">[(#NOM), ]<span dir="#LANG_DIR">[(#DATE|affdate)]</span></div>
+		<div style="float: #LANG_RIGHT"><a href="#URL_SITE"><img src="http://open.thumbshots.org/image.pxf?url=#URL_SITE" alt="" border="0" /></a></div>				
+		[<div class="droitxpetit" style="padding-#LANG_LEFT: 15px; background: url(#CHEMIN{img_interface/carre-noir.gif}) 0px 3px no-repeat;"> (#MESSAGE)</div>]
+		<div style="clear:#LANG_RIGHT;"></div>
+
+	</BOUCLE_signatures>
+	
+		</td>
+		</tr></table>
+
+	</B_signatures>
 
 </td>
 </tr>
