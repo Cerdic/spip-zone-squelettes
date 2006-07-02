@@ -62,34 +62,6 @@ function onResize() {
   }
 }
 
-function addOnLoad(func){
-  var oldonload = window.onload;
-  
-  if (typeof window.onload != 'function') {
-	window.onload = func;
-  } else {
-	window.onload = function() {
-	  oldonload();
-	  func();
-	}
-  }
-}
-
-function addOnResize(func){
-  var oldonresize = window.onresize;
-  
-  if (typeof window.onresize != 'function') {
-	window.onresize = func;
-  } else {
-	window.onresize = function() {
-	  oldonresize();
-	  func();
-	}
-  }
-}
-addOnLoad(onLoad);
-addOnResize(onResize);
-
 </script>
 
 <style>
@@ -102,7 +74,7 @@ addOnResize(onResize);
 
   </head>
 
-  <body>
+  <body onload="onLoad();" onresize="onResize();">
     <h1>Test Chronology
 <BOUCLE_rubrique(RUBRIQUES) {id_rubrique}>
  - #TITRE
