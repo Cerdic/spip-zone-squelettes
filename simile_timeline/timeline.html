@@ -75,10 +75,20 @@ function addOnLoad(func){
   }
 }
 
-addOnLoad(function() {
-			document.body.addEventListener('load',onLoad,false);
-			document.body.addEventListener('resize',onResize,false);
-		  });
+function addOnResize(func){
+  var oldonresize = window.onresize;
+  
+  if (typeof window.onresize != 'function') {
+	window.onresize = func;
+  } else {
+	window.onresize = function() {
+	  oldonresize();
+	  func();
+	}
+  }
+}
+addOnLoad(onLoad);
+addOnResize(onResize);
 
 </script>
 
