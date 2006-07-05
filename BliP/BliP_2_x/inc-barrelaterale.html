@@ -1,0 +1,33 @@
+#CACHE{240*3600}
+[
+(#REM) Construire la barre_laterale du site à partir de la table "blip_config" et des éléments ayant un champs "position" commençant par "barre_laterale"
+]
+<BOUCLE_barre_laterale(BLIP_CONFIG){position IN barre_laterale,barre_laterale-#ENV{page_actuelle}}{actif=oui}{par ordre}>
+
+	[(#ID_ITEM|!={#ENV{id_actuel}}|?{'',
+		[(#TYPE|!={'statique'}|?{'',
+			<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+			<h1>#TITRE</h1>
+			[<h5 class="nopadding"><span[ class="(#STYLE)"]>(#DESCRIPTIF)</span></h5>]
+			[<p><span [class="(#STYLE)"]>(#TEXTE)</span></p>]
+			</div></div><!-- fin element-->
+		})]	
+		[(#TYPE|!={'dynamique'}|?{'',' '})
+			<INCLURE{fond=#TEXTE}{id_article}{id_auteur}{id_rubrique}{id_site}{id_mot}{id_groupe}{id_forum}{id_breve}{id_document}>
+		]	
+	})]	
+
+	[(#ID_ITEM|!={'0'}|?{'',
+		[(#TYPE|!={'statique'}|?{'',
+			<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+			<h1>#TITRE</h1>
+			[<h5 class="nopadding"><span[ class="(#STYLE)"]>(#DESCRIPTIF)</span></h5>]
+			[<p><span [class="(#STYLE)"]>(#TEXTE)</span></p>]
+			</div></div><!-- fin element-->
+		})]	
+		[(#TYPE|!={'dynamique'}|?{'',' '})
+			<INCLURE{fond=#TEXTE}{id_article}{id_auteur}{id_rubrique}{id_site}{id_mot}{id_groupe}{id_forum}{id_breve}{id_document}>
+		]	
+	})]	
+
+</BOUCLE_barre_laterale>	
