@@ -1,0 +1,37 @@
+<BOUCLE_auteur_lecture(AUTEURS) {id_auteur}>
+
+	<h1 class="titre_article">
+		<a href="auteur.php3?id_auteur=#ID_AUTEUR">#NOM</a>
+	</h1>
+
+	<div class="padding_haut_10px"><div class="document_joint_logo">
+		#LOGO_AUTEUR
+	</div> [(#REM) fin document_joint_logo ]
+	[(#BIO|smileys)]
+	</div> [(#REM) fin padding_haut_10px ]
+
+	<div class="padding_haut_25px">
+	<h1 class="titre_article"><a name="contact"></a><:envoyer_message:></h1>
+	<div class="padding_haut_10px">
+	<fieldset class='spip_encadrer'>#FORMULAIRE_ECRIRE_AUTEUR</fieldset>
+	</div> [(#REM) fin padding_haut_10px ]
+	</div> [(#REM) fin fin padding_haut_25px ]
+
+	<BOUCLE_articles_invisibles(ARTICLES) {doublons} {titre_mot==invisible} >
+	</BOUCLE_articles_invisibles>
+
+	<BOUCLE_articles_secret(ARTICLES) {doublons} {titre_mot==secret} >
+	</BOUCLE_articles_secret>
+
+	<B_articles_auteur>
+		<div class="padding_haut_25px">
+		<h1 class="titre_article"><:articles_auteur:></h1>
+		<ul>
+	<BOUCLE_articles_auteur(ARTICLES) {doublons} {id_auteur} {par date} {inverse}>
+		<li>[(#SURTITRE) ]<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>[ (#SOUSTITRE)]</li>
+	</BOUCLE_articles_auteur>
+		</ul>
+		</div> [(#REM) fin fin padding_haut_25px ]
+	</B_articles_auteur>
+
+</BOUCLE_auteur_lecture>
