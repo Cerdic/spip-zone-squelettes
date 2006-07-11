@@ -11,6 +11,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'autres_articles' => 'Autres articles',
 	'autre_mot_clef' => 'Autre mot-cl&eacute; associ&eacute; &agrave; cet article',
 	'autres_mots_clefs' => 'Autres mots-cl&eacute;s associ&eacute;s &agrave; cet article',
+	'a_voir' => '&Agrave; voir',
 	'breve' => 'br&egrave;ve',
 	'breve_trouvee' => 'br&egrave;ve trouv&eacute;e',
 	'breves_trouvees' => 'br&egrave;ves trouv&eacute;es',
