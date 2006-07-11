@@ -1,0 +1,58 @@
+<form action="[(#ENV{url})][(#ENV**{previsu}|?{'#formulaire',''})]" method="post" class="forum_form">[
+(#ENV{url_post}|form_hidden)]
+[<input type="hidden" name="alea" value="(#ENV{alea})" />]
+[<input type="hidden" name="hash" value="(#ENV{hash})" />]
+[<input type="hidden" name="afficher_texte" value="(#ENV{afficher_texte})" />]
+[<input type="hidden" name="retour_forum" value="(#ENV*{retour_forum}|rawurlencode)" />]
+<input type="hidden" [value="(#ENV{titre})"] name="titre" />
+[<p>(#ENV{modere})<:forum_info_modere:></p>]
+[(#ENV*{previsu})]
+<BOUCLE_G(GROUPES_MOTS){forum=oui}{articles==(#ENV{table}|choixsiegal{articles,'oui','.*'})}{breves==(#ENV{table}|choixsiegal{breves,'oui','.*'})}{rubriques==(#ENV{table}|choixsiegal{rubriques,'oui','.*'})}{syndic==(#ENV{table}|choixsiegal{syndic,'oui','.*'})}>
+[(#ID_GROUPE|in_any{#ENV**{ajouter_groupe},' '})
+<div class='spip_encadrer' style='font-size: 80%;'>
+<b>#TITRE</b>
+<INCLURE{fond=choix_mots}{id_groupe}{ajouter_mot}{unseul}>
+</div>]
+</BOUCLE_G>
+[(#ENV**{afficher_texte}|choixsiegal{'non', ' ',''})
+<br /><div align='right'>[
+<input type='hidden' name='titre' value='(#ENV{titre})' />]
+<input type='submit' class='spip_bouton' value="<:forum_valider:>" />
+</div>]
+<fieldset>
+<legend><:forum_votre_message:></legend>
+[(#ENV**{texte}|textarea{12,40})]
+</fieldset>
+<script type="text/javascript" src="#CHEMIN{barre.js}"></script>
+<script type="text/javascript">
+if (document.getElementById) {
+var tb = new dcWikiBar(document.getElementById('textarea'),'#DOSSIER_SQUELETTE/style/barre/');
+
+tb.btStrong('{{Forte emphase}}');
+tb.btEm('{Emphase}');
+tb.btIns('++Inséré++');
+tb.btDel('__Supprimé__');
+tb.btQ('\'\'Citation\'\'');
+tb.btCode('@@Code@@');
+tb.btBr('Saut de ligne');
+tb.btPre('<< Texte préformaté >>');
+tb.btList('-* Liste non ordonnée','ul');
+tb.btList('-# Liste ordonnée','ol');
+tb.btLink('Lien',
+	'URL ?');
+tb.addSpace(10);
+tb.draw('');
+}
+</script>
+<fieldset>
+<legend><:forum_vous:></legend>
+<label for="auteur"><:forum_votre_nom:>
+<input type="text" name="auteur" id="auteur" value="[(#ENV{auteur})]" class="forml" size="40"[ readonly='(#ENV{readonly})'] /></label>
+<label for="email_auteur"><:forum_votre_email:>
+<input type="text" name="email_auteur" id="email_auteur" value="[(#ENV{email_auteur})]" class="forml" size="40" [ readonly='(#ENV{readonly})'] /></label>
+<label for="url_site"><:forum_votre_site:>
+<input type="text" name="url_site" id="url_site" class="forml" size="40" value="[(#ENV{url_site})]" /></label>
+</fieldset>
+
+<input type="submit" value="<:forum_voir_avant:>" class="soumission" />
+</form>

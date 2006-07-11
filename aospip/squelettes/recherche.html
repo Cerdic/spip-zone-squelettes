@@ -1,0 +1,79 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<title><:resultats_recherche:> "#RECHERCHE" - #NOM_SITE_SPIP</title>
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="#URL_PAGE{backend,id_rubrique=#ID_RUBRIQUE}" />
+<link rel="stylesheet" type="text/css" href="#CHEMIN{style/ecran.css}" />
+<script type="text/javascript" src="#CHEMIN{prototype.js}"></script>
+<script type="text/javascript" src="#CHEMIN{scriptaculous.js}"></script>
+<script type="text/javascript" src="#URL_PAGE{lightbox}"></script>
+</head>
+
+<body>
+<div id="corps">
+<INCLURE{fond=haut}{recherche}{rechercher=oui}>
+
+<div id="colonneprincipale">
+<div class="padding">
+
+<div class="bienvenue">
+<h3 class="maj"><:resultats_recherche:></h3>
+<BOUCLE_compte_marecherche(INDEX){recherche}{id_table==^(articles)$}></BOUCLE_compte_marecherche>
+[(#TOTAL_BOUCLE|?{' ',''})
+<h2>#TOTAL_BOUCLE [(#TOTAL_BOUCLE|>{1}|?{<:articles:>,<:article:>})] <:pour:> [(#LANG|=={fr}|?{«,"})] #RECHERCHE [(#LANG|=={fr}|?{»,"})]</h2>]
+[(#TOTAL_BOUCLE|?{'',' '})
+<h2><:pas_d_article:> [(#LANG|=={fr}|?{«,"})] #RECHERCHE [(#LANG|=={fr}|?{»,"})]</h2>]
+[<h4><:suggestion:> <a href="[(#SELF|parametre_url{'recherche',[(#RECHERCHE|RechercheEtendue_recherche_semblable)]})]">(#RECHERCHE|RechercheEtendue_recherche_semblable)</a></h4>]
+<//B_compte_marecherche>
+<span class="espace">&nbsp;</span>
+</div>
+
+<BOUCLE_marecherche(INDEX){recherche}{!par points}{debut,10}>
+[(#REM|RechercheEtendue_google_like_string_raz)]
+<B_articles>
+<div class="listearticle">
+<BOUCLE_articles(ARTICLES){id_article}>
+<h3 onclick="document.location='[(#URL_ARTICLE|parametre_url{'var_recherche',[(#RECHERCHE)]})]';"><a href="[(#URL_ARTICLE|parametre_url{'var_recherche',[(#RECHERCHE)]})]"[ title="(#TITRE|supprimer_numero)"]>[(#TITRE|supprimer_numero)]</a></h3>
+<div class="infos"><span><B_auteurs><:par_auteur:> <BOUCLE_auteurs(AUTEURS) {id_article} {", "}><a href="#URL_AUTEUR" title="#NOM">#NOM</a></BOUCLE_auteurs></span> [<abbr class="published" title="[(#DATE|date_iso)]">
+<:le:> [(#DATE|nom_jour)] (#DATE|affdate)
+</abbr>]</div>
+<div class="sommairearticle entry-summary">
+<INCLURE{fond=logo}{id_article}>
+[(#TITRE|supprimer_numero|RechercheEtendue_google_like_string)]
+[(#SOUSTITRE|supprimer_numero|RechercheEtendue_google_like_string)]
+[(#DESCRIPTIF|supprimer_numero|RechercheEtendue_google_like_string)]
+[(#TEXTE|supprimer_numero|RechercheEtendue_google_like_string)]
+[(#RECHERCHE|RechercheEtendue_google_like{[(#CHAPO|attribut_html)]})]
+</div>
+</BOUCLE_articles>
+</div>
+</B_articles>
+</BOUCLE_marecherche>
+
+</div>
+</div>
+
+<div id="colonneactu" class="hfeed">
+<div class="padding paddinge">
+
+<INCLURE{fond=brevesrech}{recherche}>
+
+</div>
+</div>
+
+<div id="colonnemenu">
+<div class="paddinge">
+
+<INCLURE{fond=menu}>
+
+</div>
+</div>
+
+<INCLURE{fond=pied}>
+
+</div>
+</body>
+</html>

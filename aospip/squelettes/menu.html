@@ -1,0 +1,98 @@
+<B_rubrique>
+<ul class="menu">
+<BOUCLE_rubrique(RUBRIQUES){racine}{doublons}>
+<li><a href="#URL_RUBRIQUE" title="#TITRE">#TITRE</a>
+<B_sousmenuarticles>
+<ul>
+<BOUCLE_sousmenuarticles(ARTICLES){id_rubrique}{par titre}{!par date}{0,15}>
+[<li onclick="document.location='#URL_ARTICLE';"><a href="#URL_ARTICLE"[ title="(#TITRE|supprimer_numero)"]>(#TITRE|supprimer_numero)</a></li>]
+</BOUCLE_sousmenuarticles>
+<BOUCLE_sousmenurubriques(RUBRIQUES){id_parent}{par titre}{0,15}>
+<li class="sr"><a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero)]">[(#TITRE|supprimer_numero)]</a>
+<BOUCLE_soussousmenuarticles(boucle_sousmenuarticles)>
+</BOUCLE_soussousmenuarticles>
+</BOUCLE_sousmenurubriques>
+</ul></li>
+</B_sousmenuarticles>
+<B_sousmenurubrique>
+<ul>
+<BOUCLE_sousmenurubrique(boucle_sousmenurubriques)>
+</BOUCLE_sousmenurubrique>
+</ul></li>
+</B_sousmenurubrique>
+</li>
+<//B_sousmenurubrique>
+<//B_sousmenuarticles>
+</BOUCLE_rubrique>
+</ul>
+</B_rubrique>
+
+<B_mots>
+<h4 class="menu"><:mots_clefs_associes:></h4>
+<ul class="motsclefs">
+<BOUCLE_mots(MOTS) {id_rubrique}{par titre}>
+<li><a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></li>
+</BOUCLE_mots>
+</ul>
+</B_mots>
+<B_motsa>
+<h4 class="menu"><:mots_clefs_associes:></h4>
+<ul class="motsclefs">
+<BOUCLE_motsa(MOTS) {id_article}{par titre}>
+<li><a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></li>
+</BOUCLE_motsa>
+</ul>
+</B_motsa>
+<//B_mots>
+
+<B_mots_freres>
+<h4 class="menu"><:mots_clefs_meme_groupe:></h4>
+<BOUCLE_groupe(GROUPES_MOTS) {id_groupe!=[(#ENV{idgroupe})]} {doublons}><div class="menu-titre"[ title="(#DESCRIPTIF|attribut_html)"]>#TITRE</div></BOUCLE_groupe>
+<ul class="motsclefs">
+<BOUCLE_mots_freres(MOTS) {type} {par titre}>
+<li class="menu-item"><a [(#EXPOSE{name,href})]="#URL_MOT" title="[(#DESCRIPTIF|textebrut|entites_html)]">#TITRE</a></li>
+</BOUCLE_mots_freres>
+</ul>
+</B_mots_freres>
+
+<?php
+$mot = "[(#ENV{id_mot})]";
+if ($mot != "") {
+?>
+<B_groupes_freres>
+<h4 class="menu"><:autres_groupes_mots_clefs:></h4>
+
+<ul class="motsclefs">
+<BOUCLE_groupes_freres(GROUPES_MOTS) {id_groupe!=(#ENV{id_groupe})} {par titre} {doublons}>
+<BOUCLE_mot_cousin(MOTS) {id_groupe} {par titre} {0,1}>
+<li class="menu-item"[ title="(#_groupes_freres:DESCRIPTIF|attribut_html)"]><a href="#URL_MOT">#TYPE</a></li>
+</BOUCLE_mot_cousin>
+</BOUCLE_groupes_freres>
+</ul>
+</B_groupes_freres>
+<?php
+}
+?>
+<ul class="rapide">
+<li onclick="document.location='#URL_PAGE{plan}';"><a href="#URL_PAGE{plan}" title="<:plan_site:>"><:plan_site:></a></li>
+<li>Messages</li>
+<li><:contact:></li>
+<li><:espace_prive:></li>
+</ul>
+
+[<div class="formulaire">
+(#FORMULAIRE_INSCRIPTION)
+</div>]
+
+<B_articlessyndic>
+<h4 class="menu"><:sur_internet:></h4>
+<div class="web">
+<BOUCLE_articlessyndic(SYNDIC_ARTICLES){0,5}{!par date}>
+<h5><a href="#URL_ARTICLE"[ title="(#TITRE*)"]>[(#TITRE*)]</a></h5>
+<span class="info">[<abbr class="published" title="[(#DATE|date_iso)]" onclick="document.location='#URL_ARTICLE';">[(#DATE|nom_jour)] (#DATE|affdate) <:a:> [(#DATE|heures):][(#DATE|minutes)]</abbr>], <:sur:> <a href="#URL_SITE" title="#NOM_SITE">#NOM_SITE</a>, <:par_auteur:> #LESAUTEURS</span>
+<div class="resume">#DESCRIPTIF</div>
+<div class="ou"></div>
+</BOUCLE_articlessyndic>
+</div>
+</B_articlessyndic>
+<span class="espace">&nbsp;</span>

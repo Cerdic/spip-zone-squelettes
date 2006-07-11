@@ -1,0 +1,14 @@
+<BOUCLE_message(FORUMS){id_forum}{plat}>
+<div class="message [ (#ID_FORUM|=={#ID_THREAD}|?{'fil',''})]" id="forum#ID_FORUM">
+<p class="entetemessage"><cite class="poster vcard"><:par_auteur:>[(#URL_SITE|?{[<a class="url fn" href="(#URL_SITE)" rel="external">[(#NOM|sinon{#EMAIL}|sinon{#IP})]</a>],[(#NOM|?{#NOM,<:anonyme:>})]})]</cite>
+<:le:> <span class="dtposted"[ title="(#DATE|date_iso)"]><a rel="self bookmark"[ href="(#URL_FORUM|url_absolue)"]>[(#DATE|affdate)] <:a:> [(#DATE|heures)]:[(#DATE|minutes)]</a></span></p>
+
+<div class="summary tmessage">[(#TEXTE|typo_comments)]</div>
+
+[<p class="repondremessage"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" title="<:repondre_message:>"><:repondre_message:></a></p>]
+
+<BOUCLE_reponses(FORUMS){id_parent}{par date}{inverse}>
+<INCLURE{fond=message}{id_forum}>
+</BOUCLE_reponses>
+</div>
+</BOUCLE_message>

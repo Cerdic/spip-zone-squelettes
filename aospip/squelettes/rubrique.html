@@ -1,0 +1,76 @@
+#CACHE{7200}
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<title>[(#TITRE|textebrut)] - #NOM_SITE_SPIP</title>
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="#URL_PAGE{backend,id_rubrique=#ID_RUBRIQUE}" />
+<link rel="stylesheet" type="text/css" href="#CHEMIN{style/ecran.css}" />
+<script type="text/javascript" src="#CHEMIN{prototype.js}"></script>
+<script type="text/javascript" src="#CHEMIN{scriptaculous.js}"></script>
+<script type="text/javascript" src="#URL_PAGE{lightbox}"></script>
+</head>
+
+<body>
+<div id="corps">
+<INCLURE{fond=haut}{id_rubrique}>
+
+<div id="colonneprincipale">
+<div class="padding">
+
+<div class="bienvenue">
+[<img src="(#LOGO_RUBRIQUE_NORMAL||extraire_attribut{'src'})" [height="(#LOGO_RUBRIQUE_NORMAL||reduire_image{120,0}||reduire_image{0,100}||extraire_attribut{'height'})"] [width="(#LOGO_RUBRIQUE_NORMAL||reduire_image{120,0}||reduire_image{0,100}||extraire_attribut{'width'})"] alt="<:logo_rubrique:> #TITRE" title="#TITRE" class="logo" [onmouseover="this.src='(#LOGO_RUBRIQUE_SURVOL||extraire_attribut{'src'})';" [onmouseout="this.src='(#LOGO_RUBRIQUE_NORMAL||extraire_attribut{'src'})';"]] />]
+[<h6><:derniere_modification:> <:de_la_rubrique:> <:le:> (#DATE|nom_jour) [(#DATE|affdate)]</h6>]
+[<h2>(#TITRE|supprimer_numero)</h2>]
+[<div class="chapo" [style="margin-right:(#LOGO_RUBRIQUE_NORMAL||reduire_image{120,0}||reduire_image{0,100}||extraire_attribut{'width'}||plus{15})px"]>(#DESCRIPTIF)</div>]
+[<div class="texte">(#TEXTE|reduire_image{340,0})</div>]
+[<div class="notes"><h5><:notes:></h5>(#NOTES)</div>]
+<INCLURE{fond=portfolia}{id_rubrique}>
+<INCLURE{fond=rubriques}{id_rubrique}>
+<INCLURE{fond=discussion}{id_rubrique}>
+<span class="espace">&nbsp;</span>
+</div>
+
+<B_articles>
+<div class="listearticle hfeed">
+<BOUCLE_articles(ARTICLES){id_rubrique}{par titre}{!par date}>
+<div class="hentry" id="article-#ID_ARTICLE" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+[<h3 class="entry-title" onclick="document.location='#URL_ARTICLE';"><a href="#URL_ARTICLE" rel="bookmark"[ title="(#TITRE|supprimer_numero)"]>(#TITRE|supprimer_numero)</a></h3>]
+<div class="infos"><span><B_auteurs><:par_auteur:> <BOUCLE_auteurs(AUTEURS) {id_article} {", "}><a href="#URL_AUTEUR" title="#NOM">#NOM</a></BOUCLE_auteurs></span> [<abbr class="published" title="[(#DATE|date_iso)]">
+<:le:> [(#DATE|nom_jour)] (#DATE|affdate)
+</abbr>]</div>
+<div class="sommairearticle entry-summary">[<img src="(#LOGO_ARTICLE_NORMAL||reduire_image{120,0}||reduire_image{0,100}||extraire_attribut{'src'})" [height="(#LOGO_ARTICLE_NORMAL||reduire_image{120,0}||reduire_image{0,100}||extraire_attribut{'height'})"] [width="(#LOGO_ARTICLE_NORMAL||reduire_image{120,0}||reduire_image{0,100}||extraire_attribut{'width'})"] alt="<:logo_article:> #TITRE" title="#TITRE" class="logo" [onmouseover="this.src='(#LOGO_ARTICLE_SURVOL||reduire_image{120,0}||reduire_image{0,100}||extraire_attribut{'src'})';" [onmouseout="this.src='(#LOGO_ARTICLE_NORMAL||reduire_image{120,0}||reduire_image{0,100}||extraire_attribut{'src'})';"]] />] [(#DESCRIPTIF|sinon{[(#CHAPO|sinon{[(#TEXTE|couper{350})]})]}|reduire_image{150,0})]</div>
+</div>
+<B_autres_mcattach><p class="autremc">[(#TOTAL_BOUCLE>{1}|?{<:mots_clefs_a:>,<:mot_clef_a:>})] :
+<BOUCLE_autres_mcattach(MOTS){id_article}{", "}><a href="#URL_MOT" title="#TITRE">#TITRE</a></BOUCLE_autres_mcattach></p></B_autres_mcattach>
+</BOUCLE_articles>
+</div>
+</B_articles>
+
+</div>
+</div>
+
+<div id="colonneactu" class="hfeed">
+<div class="padding paddinge">
+
+<INCLURE{fond=breves}{id_rubrique=#ID_SECTEUR}>
+
+</div>
+</div>
+
+<div id="colonnemenu">
+<div class="paddinge">
+
+<INCLURE{fond=menu}{id_rubrique}>
+
+</div>
+</div>
+
+<INCLURE{fond=pied}>
+
+</div>
+</body>
+</html>
+</BOUCLE_rubrique_principal>

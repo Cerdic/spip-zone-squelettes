@@ -1,0 +1,43 @@
+<div id="haut">
+<ul id="ar">
+<li><a href="#colonneprincipale"><:aller_contenu:></a></li>
+<li><a href="#colonnemenu"><:aller_menu:></a></li>
+<li><a href="#recherche"><:aller_recherche:></a></li>
+</ul>
+<h1><a href="#URL_SITE_SPIP" title="#NOM_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+<p>#DESCRIPTIF_SITE_SPIP</p>
+
+[(#FORMULAIRE_RECHERCHE)]
+</div>
+<div id="location">
+<ul>
+<li class="racine"><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></li>
+<BOUCLE_hierarchie(HIERARCHIE){id_rubrique}>
+<li><a href="#URL_RUBRIQUE"[(#COMPTEUR_BOUCLE|=={#TOTAL_BOUCLE}|?{rel="directory" class="actuel",''})] title="#TITRE">#TITRE</a></li>
+</BOUCLE_hierarchie>
+<BOUCLE_articleh(ARTICLES){id_article}>
+<BOUCLE_hierarchiea(HIERARCHIE){id_article}>
+<li><a href="#URL_RUBRIQUE" title="#TITRE">#TITRE</a></li>
+</BOUCLE_hierarchiea>
+</BOUCLE_articleh>
+<BOUCLE_articlec(ARTICLES){id_article}>
+<li><a href="[(#URL_ARTICLE|url_absolue)]" title="[(#TITRE|supprimer_numero)]"[ (#ENV{forum}|=={oui}|?{'class="reponse"','class="actuel"'})]>[(#TITRE|supprimer_numero)]</a></li>
+</BOUCLE_articlec>
+<BOUCLE_brevec(BREVES){id_breve}>
+<BOUCLE_hierarchieb(RUBRIQUES){id_rubrique}>
+<li><a href="#URL_RUBRIQUE" title="#TITRE">#TITRE</a></li>
+</BOUCLE_hierarchieb>
+<li><a href="[(#URL_BREVE|url_absolue)]" title="[(#TITRE|supprimer_numero)]"[ (#ENV{forum}|=={oui}|?{'class="reponse"','class="actuel"'})]>[(#TITRE|supprimer_numero)]</a></li>
+</BOUCLE_brevec>
+<BOUCLE_motc(MOTS){id_mot}>
+<li><a href="#URL_PAGE{mots}" title="<:mots_clefs:>"><:mots_clefs:></a></li>
+<li><a href="[(#URL_MOT|url_absolue)]" title="[(#TITRE|supprimer_numero)]" class="actuel">[(#TITRE|supprimer_numero)]</a></li>
+</BOUCLE_motc>
+[<li><a href="#SELF" title="[(#ENV{forum}|=={oui}|?{[(#ENV*{type})],''})]" class="actuel">(#ENV{forum}|=={oui}|?{[(#ENV*{type})],''})</a></li>]
+[(#ENV{rechercher}|=={oui}|?{<li>, ''})<a href="#SELF" title="<:recherche:> <:sur:> #RECHERCHE" class="actuel">#RECHERCHE</a></li>]
+</ul>
+
+#DEBUT_SURLIGNE
+#FIN_SURLIGNE
+<span>&nbsp;</span>
+</div>

@@ -1,0 +1,97 @@
+#HTTP_HEADER{"Cache-Control: max-age=3600, must-revalidate"}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"accueil
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><BOUCLE_articlet(ARTICLES) {id_article}><:repondre_a_article:> [(#TITRE|supprimer_numero)]</BOUCLE_articlet><BOUCLE_brevet(BREVES){id_breve}><:repondre_a_breve:> [(#TITRE|supprimer_numero)]</BOUCLE_brevet><BOUCLE_rubriquea(RUBRIQUES){id_rubrique}><:repondre_a_rub:> [(#TITRE|supprimer_numero)]</BOUCLE_rubriquea> - [(#NOM_SITE_SPIP|textebrut)]</title>
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+<link rel="stylesheet" type="text/css" href="#CHEMIN{style/ecran.css}" />
+<script type="text/javascript" src="#CHEMIN{style/script.js}">
+</script>
+</head>
+
+<body>
+<div id="corps">
+
+<BOUCLE_a(ARTICLES){id_article}><INCLURE{fond=haut}{id_article}{forum=oui}{type=<:repondre_article:>}></BOUCLE_a>
+<BOUCLE_b(BREVES){id_breve}><INCLURE{fond=haut}{id_breve}{forum=oui}{type=<:repondre_breve:>}></BOUCLE_b>
+<BOUCLE_r(RUBRIQUES){id_rubrique}><INCLURE{fond=haut}{id_rubrique}{forum=oui}{type=<:repondre_rubrique:>}></BOUCLE_r>
+
+<div id="colonneprincipale">
+<div class="padding">
+
+<BOUCLE_article(ARTICLES) {id_article}>
+<h6 class="repcom"><:en_reponse:></h6>
+<div class="bienvenue">
+[<img src="(#LOGO_ARTICLE_NORMAL||extraire_attribut{'src'})" [height="(#LOGO_ARTICLE_NORMAL||reduire_image{120,0}||reduire_image{0,100}||extraire_attribut{'height'})"] [width="(#LOGO_ARTICLE_NORMAL||reduire_image{120,0}||reduire_image{0,100}||extraire_attribut{'width'})"] alt="<:logo_article:> #TITRE" title="#TITRE" class="logo" [onmouseover="this.src='(#LOGO_ARTICLE_SURVOL||extraire_attribut{'src'})';" [onmouseout="this.src='(#LOGO_ARTICLE_NORMAL||extraire_attribut{'src'})';"]] />]
+[<h3>(#SURTITRE)</h3>]
+[<h2 class="sous"><a href="#URL_ARTICLE" title="#TITRE">(#TITRE|supprimer_numero)</a></h2>]
+[<h4>(#SOUSTITRE)</h4>]
+<h6 class="sous">le [(#DATE|nom_jour)] [(#DATE|affdate)] <B_auteurs_un><:par_auteur:> <BOUCLE_auteurs_un(AUTEURS) {id_article} {", "}><a href="#URL_AUTEUR" title="#NOM">#NOM</a></BOUCLE_auteurs_un></h6>
+[<div class="texte">(#CHAPO|?{#CHAPO,#INTRODUCTION})</div>]
+</div>
+</BOUCLE_article>
+
+<BOUCLE_breve(BREVES) {id_breve}>
+<h6 class="repcom"><:en_reponse:></h6>
+<div class="bienvenue">
+[<img src="(#LOGO_BREVE_NORMAL||extraire_attribut{'src'})" [height="(#LOGO_BREVE_NORMAL||reduire_image{120,0}||reduire_image{0,100}||extraire_attribut{'height'})"] [width="(#LOGO_BREVE_NORMAL||reduire_image{120,0}||reduire_image{0,100}||extraire_attribut{'width'})"] alt="<:logo_article:> #TITRE" title="#TITRE" class="logo" [onmouseover="this.src='(#LOGO_BREVE_SURVOL||extraire_attribut{'src'})';" [onmouseout="this.src='(#LOGO_BREVE_NORMAL||extraire_attribut{'src'})';"]] />]
+<h2><a href="#URL_BREVE" title="#TITRE">#TITRE</a></h2>
+<h6>le [(#DATE|nom_jour)] [(#DATE|affdate)]</h6>
+[<div class="texte">(#INTRODUCTION)</div>]
+</div>
+</BOUCLE_breve>
+
+<BOUCLE_rubrique(RUBRIQUES) {id_rubrique}>
+<h6 class="repcom"><:en_reponse:></h6>
+<div class="bienvenue">
+<h2 class="titre-extrait"><a href="#URL_RUBRIQUE">#TITRE</a></h2>
+[<div class="texte">(#TEXTE)</div>]
+<span class="espace">&nbsp;</span></div>
+</BOUCLE_rubrique>
+
+<BOUCLE_syndic(SITES) {id_syndic}>
+<h6 class="repcom"><:en_reponse:></h6>
+<h2 class="titre-extrait"><a href="#URL_SYNDIC">#TITRE</a></h2>
+<br />
+</BOUCLE_syndic>
+
+<BOUCLE_forum_parent(FORUMS) {id_forum}>
+<h6 class="repcom"><:en_reponse:></h6>
+<div class="message couleurmessage0 repcom">
+<p class="entetemessage"><cite class="poster vcard">[(#URL_SITE|choixsivide{[(#NOM|sinon{#EMAIL}|sinon{#IP})],[<a class="url fn" href="(#URL_SITE)" rel="external">[(#NOM|sinon{#EMAIL}|sinon{#IP})]</a>]})]</cite>
+(<:le:> <span class="dtposted"[ title="(#DATE|date_iso)"]><a rel="self bookmark"[ href="(#URL_FORUM|url_absolue)"]>[(#DATE|affdate)] <:a:> [(#DATE|heures)]:[(#DATE|minutes)]</a></span>)</p>
+
+<div class="summary tmessage">#TEXTE</div>
+</div>
+</BOUCLE_forum_parent>
+
+
+#FORMULAIRE_FORUM
+
+</div>
+</div>
+
+<div id="colonneactu" class="hfeed">
+<div class="padding paddinge">
+
+<INCLURE{fond=breves}>
+
+</div>
+</div>
+
+<div id="colonnemenu">
+<div class="paddinge">
+
+<INCLURE{fond=menu}>
+
+</div>
+</div>
+
+<INCLURE{fond=pied}>
+
+</div>
+</body>
+</html>

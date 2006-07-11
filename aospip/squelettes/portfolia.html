@@ -1,0 +1,82 @@
+<BOUCLE_doublonsrub(RUBRIQUES){id_rubrique}>
+[(#TEXTE|is_array)]
+</BOUCLE_doublonsrub>
+<B_portfolio_flash>
+<div class="portfolio">
+<h4 class="animation">[(#TOTAL_BOUCLE|>{1}|?{<:documents_flash:>,<:document_flash:>})]</h4>
+<BOUCLE_portfolio_flash(DOCUMENTS){id_rubrique}{mode=document}{doublons}{extension==swf}>
+<div class="animation">
+<object type="application/x-shockwave-flash" data="#URL_DOCUMENT" width="#LARGEUR" height="#HAUTEUR" wmode="transparent">
+<param name="movie" value="#URL_DOCUMENT" />
+<param name="wmode" value="transparent" />
+</object>
+</div>
+</BOUCLE_portfolio_flash>
+</div>
+</B_portfolio_flash>
+<B_portfolio_images>
+<div class="portfolio">
+<h4>[(#TOTAL_BOUCLE|>{1}|?{<:images_jointes:>,<:image_jointe:>})]</h4>
+<ul>
+<BOUCLE_portfolio_images(DOCUMENTS){id_rubrique}{mode=document}{doublons}{extension==jpg|png|gif}>
+<li><a href="<?php if(#CONFIG{creer_preview} == "oui") { ?>[(#FICHIER||reduire_image{740,0}||reduire_image{0,480}||extraire_attribut{'src'})]<?php } else { ?>[(#URL_DOCUMENT|url_absolue)]<?php } ?>" rel="enclosure lightbox[portfolio]" [type="(#MIME_TYPE)"] [length="(#TAILLE)"] title="#TITRE">
+<img[ src="(#LOGO_DOCUMENT||reduire_image{150,0}||reduire_image{0,80}||extraire_attribut{'src'})"][ height="(#LOGO_DOCUMENT||reduire_image{150,0}||reduire_image{0,80}||extraire_attribut{'height'})"][ width="(#LOGO_DOCUMENT||reduire_image{150,0}||reduire_image{0,80}||extraire_attribut{'width'})"][ alt="<:miniature:> (#TITRE)"][ title="(#TITRE)"] [onmouseover="this.src='(#LOGO_DOCUMENT||reduire_image{150,0}||reduire_image{0,80}||image_masque{[(#LOGO_DOCUMENT||reduire_image{150,0}||reduire_image{0,80}||image_gamma{50}||extraire_attribut{'src'})]}||extraire_attribut{'src'})';" [onmouseout="this.src='(#LOGO_DOCUMENT||reduire_image{150,0}||reduire_image{0,80}||extraire_attribut{'src'})';"]] /></a></li>
+</BOUCLE_portfolio_images>
+<li class="espace">&nbsp;</li>
+</ul>
+</div>
+</B_portfolio_images>
+<BOUCLE_comptage_audio(DOCUMENTS){id_rubrique}{mode=document}{doublons}{extension=mp3}>
+</BOUCLE_comptage_audio>
+<?php
+if (#_comptage_audio:TOTAL_BOUCLE >= 2) {
+?>
+<B_portfolio_audio>
+<div class="portfolio">
+<h4 class="animation"><:documents_audio:></h4>
+<div class="animation">
+<object type="application/x-shockwave-flash" data="#DOSSIER_SQUELETTE/lecteur_multi.swf" width="200" height="100">
+<param name="movie" value="#DOSSIER_SQUELETTE/lecteur_multi.swf" />
+<param name="wmode" value="transparent" />
+<param name="FlashVars" value="mp3=<BOUCLE_portfolio_audio(DOCUMENTS){id_rubrique}{mode=document}{extension==mp3}{"|"}>#URL_DOCUMENT</BOUCLE_portfolio_audio>&amp;title=<BOUCLE_portfolio_audio_titre(DOCUMENTS){id_rubrique}{mode=document}{extension==mp3}{"|"}>#TITRE</BOUCLE_portfolio_audio_titre>&amp;bgcolor1=f6f6f6&amp;bgcolor2=cccccc&amp;buttoncolor=999999&amp;buttonovercolor=0&amp;slidercolor1=cccccc&amp;slidercolor2=999999&amp;sliderovercolor=666666&amp;textcolor=5F5F5F&amp;playlistcolor=E6EFF5&amp;currentmp3color=07456F&amp;scrollbarcolor=999999&amp;scrollbarovercolor=0" />
+</object>
+</div>
+</div>
+</B_portfolio_audio>
+<?php
+}
+else {
+?>
+<B_portfolio_audio_solo>
+<div class="portfolio">
+<h4 class="animation"><:document_audio:></h4>
+<BOUCLE_portfolio_audio_solo(DOCUMENTS){id_rubrique}{mode=document}{extension==mp3}>
+<div class="animation">
+<object type="application/x-shockwave-flash" data="#CHEMIN{lecteur.swf}" width="200" height="20">
+<param name="movie" value="#CHEMIN{lecteur.swf}" />
+<param name="wmode" value="transparent" />
+<param name="FlashVars" value="mp3=#URL_DOCUMENT&amp;bgcolor1=ffffff&amp;bgcolor2=cccccc&amp;buttoncolor=999999&amp;buttonovercolor=0&amp;slidercolor1=cccccc&amp;slidercolor2=999999&amp;sliderovercolor=666666">
+</object>
+</div>
+<span class="info"><a href="#URL_DOCUMENT" title="[(#TITRE|?{#TITRE,[(#URL_DOCUMENT|nom_musique)]})]">[(#TITRE|?{#TITRE,[(#URL_DOCUMENT|nom_musique)]})]</a> - mp3, [(#TAILLE|taille_en_octets)]</span>
+</BOUCLE_portfolio_audio_solo>
+</div>
+</B_portfolio_audio_solo>
+<?php } ?>
+<B_portfolio>
+<div class="portfolio">
+<h4>[(#TOTAL_BOUCLE|>{1}|?{<:documents_joints:>,<:document_joint:>})]</h4>
+<ul>
+<BOUCLE_portfolio(DOCUMENTS){id_rubrique}{mode=document}{doublons}>
+<li><a [href="(#URL_DOCUMENT|url_absolue)"] rel="enclosure" [type="(#MIME_TYPE)"] [length="(#TAILLE)"][ title="(#TITRE)"]>[(#LOGO_DOCUMENT||inserer_attribut{'alt',#TITRE})]</a>
+<ul class="descdoc">
+<li class="titre"><a [href="(#URL_DOCUMENT|url_absolue)"][ title="(#TITRE)"]>[(#TITRE|sinon{[(#URL_DOCUMENT|nom_fichier)]})]</a></li>
+[<li class="desc">(#DESCRIPTIF)</li>]
+<li class="type">#TYPE_DOCUMENT</li>
+<li class="taille">[(#TAILLE|taille_en_octets)]</li>
+</ul></li>
+</BOUCLE_portfolio>
+</ul>
+<span class="espace">&nbsp;</span>
+</div>
+</B_portfolio>

@@ -1,0 +1,28 @@
+[<br />(#ENV*{sujetko})<:form_prop_indiquer_sujet:><br />&nbsp;][
+<br />(#ENV*{mailko})<:form_prop_indiquer_email:><br /><br />
+]
+
+<form action="#SELF" method="post" class="ecrire">
+
+[<input type="hidden" name="num_formulaire_ecrire_auteur" value="(#ENV{valide})" />]
+<fieldset>
+<BOUCLE_auteur(AUTEURS){id_auteur=(#ENV{id}|vrai_id)}>
+<legend><:envoyer_message:> <:a:> #NOM</legend>
+</BOUCLE_auteur>
+<p>
+<label for="ecrire_adresse"><:form_pet_votre_email:> :</label>
+<input type="text" name="email_message_auteur#ENV{id}" value="#ENV{mail}" size="30" id="ecrire_adresse" />
+</p>
+<p><label for="ecrire_sujet"><:form_prop_sujet:> :</label>
+<input type="text" name="sujet_message_auteur#ENV{id}" value="#ENV{sujet}" size="30" id="ecrire_sujet" />
+</p>
+<p>
+<label for="ecrire_texte"><:forum_texte:></label>
+<textarea name="texte_message_auteur#ENV{id}" id="ecrire_texte">#ENV{texte}</textarea>
+</p>
+<p>
+<input type="submit" name="valide" value="#ENV{bouton}" class="soumission ec" />
+</p>
+</fieldset>
+
+</form>

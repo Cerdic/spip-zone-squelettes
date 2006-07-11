@@ -1,0 +1,70 @@
+<BOUCLE_article_principal(ARTICLES) {id_article}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<title>[(#TITRE|textebrut|supprimer_numero)] - <BOUCLE_titrerub(RUBRIQUES){id_rubrique=#ID_RUBRIQUE}>[(#TITRE|supprimer_numero)] -</BOUCLE_titrerub> #NOM_SITE_SPIP</title>
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="#URL_PAGE{backend,id_rubrique=#ID_RUBRIQUE}" />
+<link rel="stylesheet" type="text/css" href="#CHEMIN{style/ecran.css}" />
+<link rel="stylesheet" type="text/css" href="#CHEMIN{style/galerie.css}" />
+<script type="text/javascript" src="#CHEMIN{scripts/javascript.js}"></script>
+<script type="text/javascript" src="#CHEMIN{prototype.js}"></script>
+<script type="text/javascript" src="#CHEMIN{scriptaculous.js}"></script>
+<script type="text/javascript" src="#URL_PAGE{lightbox}"></script>
+</head>
+
+<body>
+<div id="corps">
+<INCLURE{fond=haut}{id_article}>
+
+<div id="colonneprincipale">
+<div class="padding">
+
+<div class="bienvenue article">
+<INCLURE{fond=logo}{id_article}>
+<h6>le [(#DATE|nom_jour)] [(#DATE|affdate)] <B_auteurs_un><:par_auteur:> <BOUCLE_auteurs_un(AUTEURS) {id_article} {", "}><a href="#URL_AUTEUR" title="<:fiche_de:> #NOM">#NOM</a></BOUCLE_auteurs_un></h6>
+[<h3>(#SURTITRE)</h3>]
+[<h2>(#TITRE|supprimer_numero)</h2>]
+[<h4>(#SOUSTITRE)</h4>]
+#DEBUT_SURLIGNE
+[<div class="chapo" [style="margin-right:(#LOGO_ARTICLE||reduire_image{120,0}||reduire_image{0,100}||extraire_attribut{'width'}||plus{15})px"]>(#CHAPO)</div>]
+[<div class="texte">(#TEXTE|reduire_image{340,0})</div>]
+#FIN_SURLIGNE
+<INCLURE{fond=portfolio}{id_article}>
+[<div class="lien"><a href="(#URL_SITE)" [title="(#NOM_SITE)"]>[(#NOM_SITE|sinon{#URL_SITE})]</a></div>]
+[<div class="notes"><h5><:notes:></h5>(#NOTES)</div>]
+[<div class=postscriptum><h5><:postscriptum:></h5>(#PS)</div>]
+[(#FORMULAIRE_SIGNATURE)]
+<INCLURE{fond=discussion}{id_article}>
+<span class="espace">&nbsp;</span>
+</div>
+
+<INCLURE{fond=liste-articles}{id_rubrique}{id_article}>
+
+
+</div>
+</div>
+
+<div id="colonneactu" class="hfeed">
+<div class="padding paddinge">
+
+<INCLURE{fond=breves}>
+
+</div>
+</div>
+
+<div id="colonnemenu">
+<div class="paddinge">
+
+<INCLURE{fond=menu}{id_article}>
+
+</div>
+</div>
+
+<INCLURE{fond=pied}>
+
+</div>
+</body>
+</html>
+</BOUCLE_article_principal>

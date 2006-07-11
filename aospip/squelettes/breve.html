@@ -1,0 +1,59 @@
+#CACHE{43200}
+<BOUCLE_breve_principal(BREVES) {id_breve}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<title>[(#TITRE|textebrut|supprimer_numero)] - <BOUCLE_titrerub(RUBRIQUES){id_rubrique=#ID_RUBRIQUE}>[(#TITRE|supprimer_numero)] -</BOUCLE_titrerub> #NOM_SITE_SPIP</title>
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="#URL_PAGE{backend,id_rubrique=#ID_RUBRIQUE}" />
+<link rel="stylesheet" type="text/css" href="#CHEMIN{style/ecran.css}" />
+</script>
+</head>
+
+<body>
+<div id="corps">
+<INCLURE{fond=haut}{id_breve}>
+
+<div id="colonneprincipale">
+<div class="padding">
+
+<div class="bienvenue article breve">
+[<img src="(#LOGO_BREVE_NORMAL||extraire_attribut{'src'})" [height="(#LOGO_BREVE_NORMAL||reduire_image{120,0}||reduire_image{0,100}||extraire_attribut{'height'})"] [width="(#LOGO_BREVE_NORMAL||reduire_image{120,0}||reduire_image{0,100}||extraire_attribut{'width'})"] alt="<:logo_article:> #TITRE" title="#TITRE" class="logo" [onmouseover="this.src='(#LOGO_BREVE_SURVOL||extraire_attribut{'src'})';" [onmouseout="this.src='(#LOGO_BREVE_NORMAL||extraire_attribut{'src'})';"]] />]
+[<h6>le (#DATE|nom_jour) [(#DATE|affdate)]</h6>]
+#DEBUT_SURLIGNE
+[<h2>(#TITRE|supprimer_numero)</h2>]
+[<div class="chapo" [style="margin-right:(#LOGO_ARTICLE||reduire_image{120,0}||reduire_image{0,100}||extraire_attribut{'width'}||plus{15})px"]>(#CHAPO)</div>]
+[<div class="texte">(#TEXTE|reduire_image{250,0})</div>]
+[<div class="notes"><h5><:notes:></h5>(#NOTES)</div>]
+#FIN_SURLIGNE
+<INCLURE{fond=discussion}{id_breve}>
+</div>
+
+<INCLURE{fond=liste-articles}{id_rubrique}>
+
+</div>
+</div>
+
+<div id="colonneactu" class="hfeed">
+<div class="padding paddinge">
+
+<INCLURE{fond=breves}{id_breve}>
+
+</div>
+</div>
+
+<div id="colonnemenu">
+<div class="paddinge">
+
+<INCLURE{fond=menu}{id_breve}>
+
+</div>
+</div>
+
+<INCLURE{fond=pied}>
+
+</div>
+</body>
+</html>
+</BOUCLE_breve_principal>

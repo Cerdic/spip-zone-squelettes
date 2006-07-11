@@ -1,0 +1,12 @@
+<B_breves>
+[(#ENV{resultat}|=={non}|?{<h3 class="info">, ''})<:aucune_breve_trouvee:></h3>]
+<BOUCLE_breves(BREVES){!par date}{par titre}{id_breve!=#ID_BREVE?}{id_rubrique?}>
+[<h3 class="jour">[(#DATE|nom_jour)] (#DATE|affdate_jourcourt|unique)</h3>]
+<div class="hentry" id="actu-#ID_BREVE" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+[<h2 class="entry-title"><a href="#URL_BREVE" rel="bookmark">(#TITRE)</a></h2>]
+<abbr class="published" title="[(#DATE|date_iso)]" onclick="document.location='#URL_BREVE';">
+<:a:> [(#DATE|heures)]:[(#DATE|minutes)]
+</abbr>
+[<div class="entry-content">(#TEXTE|reduire_image{140,0})</div>]
+</div>
+</BOUCLE_breves>

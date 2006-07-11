@@ -1,0 +1,89 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<title><:plan_site:> #NOM_SITE_SPIP</title>
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="#URL_PAGE{backend,id_rubrique=#ID_RUBRIQUE}" />
+<link rel="stylesheet" type="text/css" href="#CHEMIN{style/ecran.css}" />
+<script type="text/javascript" src="#CHEMIN{prototype.js}"></script>
+<script type="text/javascript" src="#CHEMIN{scriptaculous.js}"></script>
+<script type="text/javascript" src="#URL_PAGE{lightbox}"></script>
+</head>
+
+<body>
+<div id="corps">
+<INCLURE{fond=haut}>
+
+<div id="grandecolonneprincipale">
+<div class="padding">
+
+<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
+<div class="rubriqueprimaire">
+<h2 class="listerubrique" onclick="document.location='#URL_RUBRIQUE';"><a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero)]">[(#TITRE|supprimer_numero)]</a></h2>
+[<img src="(#LOGO_RUBRIQUE_NORMAL||extraire_attribut{'src'})" [height="(#LOGO_RUBRIQUE_NORMAL||reduire_image{120,0}||reduire_image{0,100}||extraire_attribut{'height'})"] [width="(#LOGO_RUBRIQUE_NORMAL||reduire_image{120,0}||reduire_image{0,100}||extraire_attribut{'width'})"] alt="<:logo_rubrique:> [(#TITRE|supprimer_numero)]" title="[(#TITRE|supprimer_numero)]" class="logo" [onmouseover="this.src='(#LOGO_RUBRIQUE_SURVOL||extraire_attribut{'src'})';" [onmouseout="this.src='(#LOGO_RUBRIQUE_NORMAL||extraire_attribut{'src'})';"]] />]
+
+<B_breves>
+<ul class="breves">
+<BOUCLE_breves(BREVES){id_rubrique}{par date}{inverse}{0,15}>
+<li><a href="#URL_BREVE" title="[(#TITRE|supprimer_numero)]">[(#TITRE|supprimer_numero)] <span class="infos">([(#DATE|affdate_court)])</span></a></li>
+</BOUCLE_breves>
+</ul>
+</B_breves>
+
+<B_articles>
+<h4><:articles:></h4>
+<ul class="articles">
+<BOUCLE_articles(ARTICLES){id_rubrique}{par titre}>
+<li><a href="#URL_ARTICLE" title="[(#TITRE|supprimer_numero)]">[(#TITRE|supprimer_numero)]</a></li>
+</BOUCLE_articles>
+</ul>
+</B_articles>
+
+<B_sites>
+<h4><:sur_web:></h4>
+<ul class="surleweb">
+<BOUCLE_sites(SITES){id_rubrique}{par nom_site}>
+<li><a href="#URL_SITE" title="#NOM_SITE">#NOM_SITE</a></li>
+</BOUCLE_sites>
+</ul>
+</B_sites>
+
+<BOUCLE_rubriques(RUBRIQUES){id_parent}{par titre}>
+<div class="rubriquesecondaire">
+<h3 class="listerubrique" onclick="document.location='#URL_RUBRIQUE';"><a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero)]">[(#TITRE|supprimer_numero)]</a></h3>
+[<img src="(#LOGO_RUBRIQUE_NORMAL||extraire_attribut{'src'})" [height="(#LOGO_RUBRIQUE_NORMAL||reduire_image{120,0}||reduire_image{0,100}||extraire_attribut{'height'})"] [width="(#LOGO_RUBRIQUE_NORMAL||reduire_image{120,0}||reduire_image{0,100}||extraire_attribut{'width'})"] alt="<:logo_rubrique:> [(#TITRE|supprimer_numero)]" title="[(#TITRE|supprimer_numero)]" class="logo" [onmouseover="this.src='(#LOGO_RUBRIQUE_SURVOL||extraire_attribut{'src'})';" [onmouseout="this.src='(#LOGO_RUBRIQUE_NORMAL||extraire_attribut{'src'})';"]] />]
+
+
+<BOUCLE_sarticles(boucle_articles)>
+</BOUCLE_sarticles>
+
+<BOUCLE_ssites(boucle_sites)>
+</BOUCLE_ssites>
+
+<BOUCLE_sousrub(boucle_rubriques)>
+</BOUCLE_sousrub>
+
+</div>
+</BOUCLE_rubriques>
+
+</div>
+</BOUCLE_secteurs>
+
+</div>
+</div>
+
+<div id="colonnemenu">
+<div class="paddinge">
+
+<INCLURE{fond=menu}{id_rubrique}>
+
+</div>
+</div>
+
+<INCLURE{fond=pied}>
+
+</div>
+</body>
+</html>
