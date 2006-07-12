@@ -5,8 +5,8 @@
 //include ("ecrire/inc.php3");
  
 include ("ecrire/inc_acces.php3");
-include ("ecrire/inc_layer.php3");
-include ("ecrire/inc_logos.php3");
+include_ecrire('inc_layer.php3');
+include_ecrire("inc_logos.php3");
 
 // Uploader un document, une image ou un logo,
 // supprimer cet element, creer les vignettes, etc.
