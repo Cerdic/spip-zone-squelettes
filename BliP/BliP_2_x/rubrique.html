@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="#LANG_DIR" lang="#LANG">
 <head>
-<title>[(#TITRE|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
+<title>[(#TITRE|supprimer_numero|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
 	[<meta name="description" content="(#INTRODUCTION|couper{150}|attribut_html)" />]
 	<meta name="generator" content="SPIP" />
@@ -38,38 +38,42 @@
 	
 	<div class="contenu">
 		
-		[(#REM) L'article ] #DEBUT_SURLIGNE
+		[(#REM) La rubrique ] #DEBUT_SURLIGNE
 		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
-		<h1>[(#TITRE|supprimer_numero)]</h1><div class="element_sous">
-		#TEXTE</div>
+		<div class="imgfloatright">[(#LOGO_RUBRIQUE| |reduire_image{100,0})]</div>
+		<h1>[(#TITRE|supprimer_numero)]</h1>
+		#TEXTE
+		
 		
 		[(#REM) Rubriques de la rubrique ]
 		<B_rubriques_rubrique>
-		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
-		<h1>Sous rubriques</h1><div class="element_sur"><div class="element_sous">
+		<div class="element"><div class="element_sur"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1>Sous rubriques</h1><div class="element_sur">
 			<BOUCLE_rubriques_rubrique(RUBRIQUES) {id_parent}{par titre}>
-				<div class="element_sous_bis"><h3><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|textebrut|entites_html|couper{200})]">
+				<div class="element_sous_bis">
+				<div class="imgfloatright">[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|reduire_image{100,0})]</div>
+				<h3><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|textebrut|entites_html|couper{200})]">
 				[(#TITRE|supprimer_numero)]
 				</a></h3>#TEXTE</div>
 			</BOUCLE_rubriques_rubrique>
-		</div></div> <!-- fin element_sur--></div></div> <!-- fin element-->
+		</div></div></div></div>
 		</B_rubriques_rubrique>
 			
 			
 		[(#REM) Articles de la rubrique ]
 		<B_articles_rubrique>
-		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<div class="element"><div class="element_sur"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
 		<h1>Articles de la rubrique</h1><div class="element_sur">
 		[<p class="pagination">(#PAGINATION)</p>]
 			<BOUCLE_articles_rubrique(ARTICLES){id_rubrique}{par date}{inverse}{pagination}>
 				<INCLURE{fond=inc_article_resume}{id_article}>
 			</BOUCLE_articles_rubrique>
-		</div> <!-- fin element_sur--></div></div> <!-- fin element-->
+		</div></div></div></div>
 		</B_articles_rubrique>
 				
 		[(#REM) Documents de la rubrique ]
 		<B_documents_rubrique>
-		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<div class="element"><div class="element_sur"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
 		<h1>Documents de la rubrique</h1><div class="element_sur">
 		[<p class="pagination">(#PAGINATION)</p>]
 			<BOUCLE_documents_rubrique(DOCUMENTS){id_rubrique}{par date}{inverse}{pagination}>
@@ -80,10 +84,23 @@
 				#DESCRIPTIF
 				</div><!-- fin element_sous-->
 			</BOUCLE_documents_rubrique>
-		</div> <!-- fin element_sur--></div></div> <!-- fin element-->
+		</div></div></div></div>
 		</B_documents_rubrique>
+		
+		[(#REM) Liens de la rubrique ]
+		<B_liens_rubrique>
+		<div class="element"><div class="element_sur"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1>Liens externe de la rubrique</h1><div class="element_sur">
+		[<p class="pagination">(#PAGINATION)</p>]
+			<BOUCLE_liens_rubrique(SITES){id_rubrique}{par nom_site}{pagination 25}>
+				<h5 class="nopadding">
+				[<a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut|entites_html|couper{200})]">(#NOM_SITE|supprimer_numero)</a>]
+				</h5>		
+			</BOUCLE_liens_rubrique>
+		</div></div></div></div>
+		</B_liens_rubrique>
 	
-	</div></div> <!-- fin element-->			
+	</div></div>		
 
 	</div><!-- fin contenu -->
 
@@ -146,7 +163,7 @@
 	<B_rubriques>
 		
 	<BOUCLE_rubriques(RUBRIQUES) {id_parent=0} {par titre}>
-		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<div class="element"><div class="imgfloatright">[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|reduire_image{100,0})]</div><div class="puce_principale">&nbsp;</div><div class="texte_principal">
 		<h1><a href="#URL_RUBRIQUE">
 		[(#TITRE|supprimer_numero)]</a>
 		</h1>

@@ -47,43 +47,31 @@
 	
 	<div class="contenu">
 	
-		[(#REM) L'article ] #DEBUT_SURLIGNE
-		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		[(#REM) L'article ]
+		#DEBUT_SURLIGNE
+		<div class="element"><div class="imgfloatright">[(#LOGO_ARTICLE_RUBRIQUE| |reduire_image{100,0})]</div><div class="puce_principale">&nbsp;</div><div class="texte_principal">
 		<h1>[<span class="gris_clair">(#SURTITRE) </span>]#TITRE[<span class="gris_clair"> (#SOUSTITRE) </span>]</h1>
 
-		<div class="element_sur"><div class="element_sous">
-			<h5 class="nopadding">[Le (#DATE|affdate)][, par (#LESAUTEURS),]</h5>
-		</div><!-- fin element_sous--></div><!-- fin element_sur-->
+		<p>[Le (#DATE|affdate)][, par (#LESAUTEURS),]</p>
 
 		[
-		<div class="element_sous">
-			<div class="imgfloatright">[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|reduire_image{100,0})]</div>
-			<b>(#CHAPO)</b>
-		</div> <!-- fin element_sous-->
+		<p><b>(#CHAPO)</b></p>
 		]
 
 		[
-		<div class="element_sous">
-			(#TEXTE|reduire_image{520,0}) 
-		</div><!-- fin element_sous-->
-		]#FIN_SURLIGNE
+		<div class="element_sous">(#TEXTE|reduire_image{520,0})</div><!-- fin element_sous-->
+		]
 			
 		[
 		<div class="element_sous">			
-			<h3 class="spip">Post-Scriptu</h3>#DEBUT_SURLIGNE(#PS)#FIN_SURLIGNE
+			<h3>Post-Scriptum :</h3>(#PS)
 		</div><!-- fin element_sous-->
+		]		
+
+		[
+		<div class="element_sous"><h3>Notes :</h3>(#NOTES)</div><!-- fin element_sous-->
 		]
-		
-
-			[
-			<div class="element_sous">	
-			<h5>Notes :</h5>
-			#DEBUT_SURLIGNE
-			(#NOTES)
-			#FIN_SURLIGNE				
-			</div><!-- fin element_sous-->
-			]			
-
+		#FIN_SURLIGNE			
 
 	</div></div> <!-- fin element-->
 
@@ -91,11 +79,11 @@
 	<B_documents_portfolio>
 	<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
 	<h1>Galerie d'images</h1>	
-	<div class="element_sur"><div class="element_sous">		
+	<div class="element_sur"><div class="element_sous"><div style="text-align: left;">		
 		<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document}{extension==(png|jpg|gif)$}{doublons} >
 			<a rel="lightbox[]" href="#URL_DOCUMENT"[ title="(#TITRE|couper{80}|texte_backend)"]>[(#FICHIER|image_masque{inc_masque_carre_vignette.png}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})]</a>
 		</BOUCLE_documents_portfolio>
-	</div><!-- fin element_sur--></div><!-- fin element_sous-->
+	</div></div><!-- fin element_sur--></div><!-- fin element_sous-->
 	</div></div> <!-- fin element-->			
 	</B_documents_portfolio>
 
