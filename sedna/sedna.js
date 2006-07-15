@@ -123,6 +123,14 @@ function play(e,url) {
 	'<param name="quality" value="high" />' +
 	'</object>';
 
+	// version alternative sans flash (N-K)
+	// ne fonctionne pas sur Safari ; sur firefox, charge tous les fichiers
+/*
+	player.innerHTML = '<object ' +
+            ' data="'+url+'" style="width:10em; height:1em;" '+
+            ' type="audio/mpeg"><param name="autostart" value="false"/></object>';
+*/
+
 	var f = e.parentNode.parentNode.parentNode;
 	f.parentNode.insertBefore(player, f);
 }
@@ -165,3 +173,27 @@ function sedna_init() {
 	document.title = sedna_title + ' (' + sedna_nouv + '/' + sedna_total + ')';
 
 }
+
+
+//
+// addLoadEvent()
+// Adds event to window.onload without overwriting currently assigned onload functions.
+// Function found at Simon Willison's weblog - http://simon.incutio.com/
+// & from lightbox.js
+function addLoadEvent(func)
+{	
+	var oldonload = window.onload;
+	if (typeof window.onload != 'function'){
+    	window.onload = func;
+	} else {
+		window.onload = function(){
+		oldonload();
+		func();
+		}
+	}
+
+}
+
+
+
+addLoadEvent(sedna_init);	// run initLightbox onLoad
