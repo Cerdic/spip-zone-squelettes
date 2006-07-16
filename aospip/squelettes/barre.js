@@ -146,7 +146,7 @@ function dcWikiBar(textarea,img_path)
 	
 	function btQ(label) {
 		addButton(img_path+'bt_quote.png',label,
-		function() { singleTag("''",'blockquote','}}'); });
+		function() { singleTag("''",'blockquote'); });
 	}
 	
 	function btCode(label) {
@@ -157,8 +157,8 @@ function dcWikiBar(textarea,img_path)
 	function btBr(label) {
 		addButton(img_path+'bt_br.png',label,
 		function() {
-			var tag = "\n_ ";
-			encloseSelection('',tag);
+			var tag = "\n";
+			encloseSelection(tag, '');
 		});
 	}
 		

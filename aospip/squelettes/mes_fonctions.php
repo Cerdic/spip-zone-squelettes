@@ -21,7 +21,9 @@ $chaine = preg_replace(",\+\+(.*?)\+\+,","<ins>\\1</ins>",$chaine);
 $chaine = preg_replace(",__(.*?)__,","<del>\\1</del>",$chaine);
 $chaine = preg_replace(",&#8217;&#8217;(.*?)&#8217;&#8217;,s","<blockquote>\\1</blockquote>",$chaine);
 $chaine = preg_replace(",@@(.*?)@@,s","<code>\\1</code>",$chaine);
-$chaine = preg_replace(",&lt;&lt; (.*?) >>,s","<pre>\\1</pre>",$chaine);
+$chaine = preg_replace(",&lt;&lt; (.*?) >>,ms","<pre>\\1</pre>",$chaine);
+$chaine = nl2br($chaine);
+$chaine = str_replace(array("<br /><br />", "<br />\n<br />", "<br />\n\r<br />"), array("<br />","<br />","<br />"),  $chaine);
 return $chaine;
 }
 function nom_musique($url) {
