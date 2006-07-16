@@ -1,5 +1,5 @@
 <?php
-	include('ecrire/inc_version.php');
+	include_once('ecrire/inc_version.php');
 	$profondeur_url = 1; # nous sommes dans un sous-rep
 	$dossier_squelettes = 'sedna';
 	include_spip('inc/cookie');
@@ -265,6 +265,8 @@
 	$flag_dynamique = true;
 
 	$flag_preserver=true;
+
+	// ou se trouvent les fichiers de langue
 	include 'spip.php';
 
 ?>
