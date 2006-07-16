@@ -88,7 +88,7 @@ $ajouter_mot, $ajouter_groupe, $afficher_texte, $url_param_retour)
 	// verifier l'identite des posteurs pour les forums sur abo
 	if ($type == "abo") {
 		if (!$GLOBALS["auteur_session"]) {
-			return array('formulaire_login_forum', 0,
+			return array('formulaires/formulaire_login_forum', 0,
 				array('inscription' => generer_url_public('spip_inscription'),
 					'oubli' => generer_url_public('spip_pass')));
 		} else {
@@ -133,8 +133,6 @@ $ajouter_mot, $ajouter_groupe, $afficher_texte, $url_param_retour)
 		AND is_array($cookie_user = unserialize($_COOKIE['spip_forum_user']))) {
 			$auteur = $cookie_user['nom'];
 			$email_auteur = $cookie_user['email'];
-			$nom_site_forum = $cookie_user['nom_site_forum'];
-			$url_site = $cookie_user['url_site'];
 		} else {
 			$auteur = $GLOBALS['auteur_session']['nom'];
 			$email_auteur = $GLOBALS['auteur_session']['email'];
@@ -164,9 +162,7 @@ $ajouter_mot, $ajouter_groupe, $afficher_texte, $url_param_retour)
 	include_spip('inc/cookie');
 	spip_setcookie('spip_forum_user',
 		       serialize(array('nom' => $auteur, 
-				       'email' => $email_auteur,
-				       'nom_site_forum' => $nom_site_forum,
-				       'url_site' => $url_site)));
+				       'email' => $email_auteur)));
 
 	// sauf si on a passe un parametre en argument (exemple : {#SELF})
 	if ($url_param_retour) {
@@ -178,7 +174,7 @@ $ajouter_mot, $ajouter_groupe, $afficher_texte, $url_param_retour)
 	foreach ($ids as $id => $v)
 		$script_hidden = parametre_url($script_hidden, $id, $v, '&');
 
-	return array('formulaire_forum', 0,
+	return array('formulaires/formulaire_forum', 0,
 	array(
 		'auteur' => $auteur,
 		'readonly' => ($type == "abo")? "readonly" : '',
@@ -219,7 +215,7 @@ function inclure_previsu($texte,$titre, $email_auteur, $auteur, $url_site, $nom_
 	// (sinon on ne peut pas faire <cadre>...</cadre> dans les forums)
 	return preg_replace("@<(/?)f(orm[>[:space:]])@ism",
 			    "<\\1no-f\\2",
-		inclure_balise_dynamique(array('formulaire_forum_previsu',
+		inclure_balise_dynamique(array('formulaires/formulaire_forum_previsu',
 		      0,
 		      array(
 			'titre' => safehtml(typo($titre)),

@@ -51,14 +51,18 @@ $events = array();
 		while(date('w', $Time) != 1) {
 			$TempD--;
 	        $Time =  mktime(0, 0, 0, $M, $TempD, $Y);
-			$case = '<td class="agendanotthismonth">';
 			if (isset($events[date('Ymd', $Time)])) {
 				if (count($events[date('Ymd', $Time)]) == 1) {
+				  $case = '<td class="agendanotthismonth event">';
 				  $case .= '<a'.$eventscolor[date('Ymd', $Time)][0].' href="'.$events[date('Ymd', $Time)][0].'" title="'.$eventstitle[date('Ymd', $Time)][0].'">'.date('j', $Time).'</a>';
 				} else {
+				  $case = '<td class="agendanotthismonth events">';
 				  $case .= '<a href="spip.php?page=agenda&amp;id_rubrique=#ID_RUBRIQUE" title="[(#TITRE|supprimer_numero|attribut_html)]">'.date('j', $Time).'</a>';
 				}
-			} else {$case .= date('j', $Time);}
+			} else {
+				$case = '<td class="agendanotthismonth">';
+				$case .= date('j', $Time);
+			}
 			$tmp = $case.'</td>'.$tmp;
 		}
 		echo $tmp;
@@ -69,15 +73,18 @@ $events = array();
 		if(date('w', $Time) == 1) {
 			echo '</tr><tr>';
 		}
-		echo '<td class="agenda'.(date('m', $Time) != $M ? 'not' : '').'this'.(date('Ymd', $Time) == date('Ymd') ? 'day' : 'month').'">';
-		$case .= date('j', $Time);
 		if (isset($events[date('Ymd', $Time)])) {
 				if (count($events[date('Ymd', $Time)]) == 1) {
+				  echo '<td class="agenda'.(date('m', $Time) != $M ? 'not' : '').'this'.(date('Ymd', $Time) == date('Ymd') ? 'day' : 'month').' event">';
 				  echo '<a'.$eventscolor[date('Ymd', $Time)][0].' href="'.$events[date('Ymd', $Time)][0].'" title="'.$eventstitle[date('Ymd', $Time)][0].'">'.date('j', $Time).'</a>';
 				} else {
+				  echo '<td class="agenda'.(date('m', $Time) != $M ? 'not' : '').'this'.(date('Ymd', $Time) == date('Ymd') ? 'day' : 'month').' events">';
 				  echo '<a href="spip.php?page=agenda&amp;id_rubrique=#ID_RUBRIQUE" title="[(#TITRE|supprimer_numero|attribut_html)]">'.date('j', $Time).'</a>';
 				}
-		} else  {echo date('j', $Time);}
+		} else  {
+			echo '<td class="agenda'.(date('m', $Time) != $M ? 'not' : '').'this'.(date('Ymd', $Time) == date('Ymd') ? 'day' : 'month').'">';
+			echo date('j', $Time);
+		}
 		echo '</td>';
 		$TempD++;
 	        $Time =  mktime(0, 0, 0, $M, $TempD, $Y);

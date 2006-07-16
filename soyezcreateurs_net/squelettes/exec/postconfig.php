@@ -123,74 +123,87 @@ function config_site() {
 	echo "<h2>Cr&eacute;ation des rubriques sp&eacute;ciales</h2>";
 	create_rubrique('000. Racine', '0', "Vous trouverez dans cette rubrique:\n\n-* Les Éditos\n-* Des articles concernant le site lui-même\n");
 	create_rubrique('900. Agenda', '0');
+	create_rubrique('999. Citations', '0', "Mettre dans cette rubrique une citation par article");
 
 ## -------------------------------------------->
 
-	create_groupe("Thèmes de l\'Agenda", "Détermine la liste des éléments pouvant être présentés en liste déroulante dans l\'Agenda du site", "Un événement de l\'Agenda peut avoir un ou {{plusieurs}} mot clefs ratachés (les sélectionner avec maj-clic).", 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'oui', 'oui', 'non');
+	create_groupe("Formations", "Les formations proposées dans le site", "Permet une navigation transversale entre les formations du site.\n\nPour cela, il faut affecter un même mot clef à plusiers articles de différentes rubriques.", 'non', 'non', 'oui', 'non', 'non', 'non', 'non', 'oui', 'oui', 'non');
+		create_mot("Formations", "FAQ SPIP", "Foire Aux Questions concernant SPIP", "Des questions reviennent souvent au sujet de SPIP. Voici des réponses.");
+		create_mot("Formations", "Plan de cours", "Vous trouvez ici des plans des cours que je suis en mesure d\'assurer.", "");
+		create_mot("Formations", "Squelettes Pyrat.net", "Mode d\'emploi des squelettes de Pyrat.net", "Les squelettes de Pyrat.net sont massivement paramétrés par des [mots-clefs->/@mot.html].\n\nEn voici le mode d\'emploi.");
 
-	create_groupe("_AgendaStatut", "Statut d\'un événement dans l\'Agenda", "Permet de spécifier un statut d\'un événement dans l\'Agenda.\n\nL\'événement sera affiché dans la couleur spécifiée par le {Texte} du Mot Clef.\n\nLe {Descriptif rapide} sera quant à lui utilisé en bulle d\'aide.", 'oui', 'oui', 'non', 'non', 'non', 'non', 'oui', 'oui', 'oui', 'non');
-		create_mot("_AgendaStatut", "Annulé", "Activité annulée pour des raisons indépendantes de notre volonté", "ab051c");
-		create_mot("_AgendaStatut", "Changement d\'animateur(s)", "Les des animateurs a été remplacé", "a70592");
-		create_mot("_AgendaStatut", "Complet", "Il n\'y a plus de place", "F00");
-		create_mot("_AgendaStatut", "Date changée", "La nouvelle date est ici indiquée.", "3a92d5");
-		create_mot("_AgendaStatut", "Liste d\'attente", "Inscrivez-vous en liste d\'attente", "DE8E39");
+	create_groupe("Thèmes de l\'Agenda", "Détermine la liste des éléments pouvant être présentés en liste déroulante dans l\'Agenda du site", "Un événement de l\'Agenda peut avoir un ou {{plusieurs}} mot clefs ratachés (les sélectionner avec maj-clic).", 'non', 'non', 'oui', 'non', 'non', 'non', 'oui', 'oui', 'oui', 'non');
+		create_mot("Thèmes de l\'Agenda", "Améliorations SPIP", "Tout ce qui concerne les améliorations de SPIP", "Il s\'agit d\'améliorations que j\'ai pu apporter à SPIP, soit en les puisant (et adaptant) dans [SPIP-Contrib->http://www.spip-contrib.net/], soit en les mettant en place à partir de zéro.");
+		create_mot("Thèmes de l\'Agenda", "Améliorations squelettes Pyrat.net", "Améliorations apportées aux squelettes du site", "");
+		create_mot("Thèmes de l\'Agenda", "Autres", "", "");
+		create_mot("Thèmes de l\'Agenda", "Freeware", "Logiciel gratuit, mais dont le source n\'est pas rendu public :(", "");
+		create_mot("Thèmes de l\'Agenda", "Open-Source", "Pour tout ce qui tourne autour de l\'Open-Source", "");
+		create_mot("Thèmes de l\'Agenda", "Versions de SPIP", "Les différentes versions de SPIP", "");
+		create_mot("Thèmes de l\'Agenda", "Wifi", "", "");
 
 	create_groupe("_CouleurRubrique", "Permet de changer la couleur d\'une Rubrique.", "Affecter un mot clef de ce groupe à une rubrique (et ses descendants) pour en changer la tonalité de couleur.\n\nPour chacun des mots clefs, mettre en titre quelque chose d\'intelligible, un éventuel descriptif rapide sur l\'usage à en faire et le code hexadecimal de la couleur dans le texte. \n\nExemple : \n-* Titre: Orange\n-* Texte : f78221", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
-		create_mot("_CouleurRubrique", "Bleu", "", "6392A9");
-		create_mot("_CouleurRubrique", "Marron clair", "", "9F7561");
-		create_mot("_CouleurRubrique", "Turkoise pastel", "", "89A699");
+		create_mot("_CouleurRubrique", "Vert superbe !", "", "94EE0C");
 
 	create_groupe("_HTTP-EQUIV", "Paramétrage du site", "Paramétrage des entêtes HTML HTTP-EQUIV.\n\nÀ utiliser en sachant pourquoi.", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
-		create_mot("_HTTP-EQUIV", "pics-label", "Mettre ci-dessous le contenu du label ICRA (XHTML) généré depuis [->http://www.icra.org/].\n\nIl s\'agit d\'une démarche volontaire du responsable du site visant à indiquer si le site peut ou non être visité sans dommage par des enfants.", "");
+		create_mot("_HTTP-EQUIV", "pics-label", "Mettre ci-dessous le contenu du label ICRA (XHTML) généré depuis [->http://www.icra.org/].\n\nIl s\'agit d\'une démarche volontaire du responsable du site visant à indiquer si le site peut ou non être visité sans dommage par des enfants.\n\nRessemble à (pics-1.1 \"http://www.icra.org/pics/vocabularyv03/\" l gen true for \"http://pyrat.net\" r (n 0 s 0 v 0 l 0 oa 0 ob 0 oc 0 od 0 oe 0 of 0 og 0 oh 0 c 1) gen true for \"http://www.pyrat.net\" r (n 0 s 0 v 0 l 0 oa 0 ob 0 oc 0 od 0 oe 0 of 0 og 0 oh 0 c 1))\n\nIl faudra aussi mettre le fichier label.rdf à la racine du site.", "(pics-1.1 \"http://www.icra.org/pics/vocabularyv03/\" l gen true for \"http://pyrat.net\" r (n 0 s 0 v 0 l 0 oa 0 ob 0 oc 0 od 0 oe 0 of 0 og 0 oh 0 c 1) gen true for \"http://www.pyrat.net\" r (n 0 s 0 v 0 l 0 oa 0 ob 0 oc 0 od 0 oe 0 of 0 og 0 oh 0 c 1))");
 
 	create_groupe("_InformationsLegales", "Mention légales obligatoire ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] et [LcEN|Loi sur la confiance en l\'Économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L])", "[Décryptage des obligations légales->http://maitre.eolas.free.fr/journal/index.php?2005/05/27/135-responsabilite-du-blogueur].", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
-		create_mot("_InformationsLegales", "10. Propriétaire du site", "Mettre les coordonnées du propriétaire du site ci-dessous", "");
-		create_mot("_InformationsLegales", "20. Hébergeur", "");
+		create_mot("_InformationsLegales", "10. Propriétaire du site", "Mettre les coordonnées du propriétaire du site ci-dessous", "<sc>Pyrat</sc>.net\n_ Jacques <sc>Pyrat</sc>\n_ Moulin de la Jaury\n_ 24160 <sc>Saint Médard d\'Excideuil</sc>\n_ Tél (FreeBox local) : 08 70 77 12 48\n\nN° Siret : 478~773~674~00021, Code APE : 772C\n\n[Formulaire de contact->auteur1]");
+		create_mot("_InformationsLegales", "20. Hébergeur", "Mettre les coordonnées de l\'hébergeur ci-dessous", "[Ouvaton->http://www.ouvaton.coop/]\n\nOuvaton Coop SA\n_ 25, rue Lucien Corbin\n_ 72250 Challes");
 		create_mot("_InformationsLegales", "30. Liens vers ce site", "Mettre ci-dessous les conditions d\'utilisation du contenu", "Le site autorise tout site Internet ou tout autre support à le citer ou à mettre en place un lien hypertexte pointant vers son contenu.\n\nL’autorisation de mise en place d’un lien est valable pour tout support, à l’exception de ceux diffusant des informations à caractère polémique, pornographique, xénophobe ou pouvant, dans une plus large mesure porter atteinte à la sensibilité du plus grand nombre.\n\nLa reprise intégrale du contenu d\'une page est aussi autorisée, sous réserve d\'établir un lien clair vers sa source.");
 		create_mot("_InformationsLegales", "40. Réalisation", "Mettre ci-dessous les informations concernant la réalisation de ce site.", "Ce site a été réalisé par [PYRAT.net|Création de sites web->http://www.pyrat.net/] en utilisant l\'outil [SPIP->http://www.spip.net/].\n\n[PYRAT.net|Création de sites web->http://www.pyrat.net/] a réalisé ce site dans les respect des [normes pour l\'accessibilité->http://www.pyrat.net/Accessibilite-d-un-site-web,193.html] des sites web à tous.");
 
 	create_groupe("_LayoutGala", "Permet de faire appel à l\'une des 40 mises en page disponibles sur [Layout Gala->http://blog.html.it/layoutgala/]", "Mode d\'emploi : \n-* affecter un des mots mots clefs de ce groupe à un objet de SPIP (Articles, Rubriques, Brèves, Sites) permet de lui affecter la mise en page associée\n-* de plus, le mot clef de ce groupe ayant « ParDefaut » dans son texte sera utilisé par défaut pour l\'ensemble du site", 'oui', 'non', 'oui', 'oui', 'oui', 'oui', 'non', 'oui', 'non', 'non');
-		create_mot("_LayoutGala", "13. Liquid, secondary columns fixed-width", "", "Sommaire");
-		create_mot("_LayoutGala", "24. Two columns liquid, side fixed", "", "ParDefaut");
+		create_mot("_LayoutGala", "01. Three percentage columns", "", "");
+		create_mot("_LayoutGala", "07. Three fixed columns", "", "");
+		create_mot("_LayoutGala", "13. Liquid, secondary columns fixed-width", "", "ParDefaut");
+		create_mot("_LayoutGala", "24. Two columns liquid, side fixed", "", "");
+		create_mot("_LayoutGala", "26. Two percentage columns", "", "");
+		create_mot("_LayoutGala", "27. One column liquid and two halves", "", "");
 		create_mot("_LayoutGala", "34. Two colums fixed", "", "");
 		create_mot("_LayoutGala", "7. Three fixed columns", "", "");
-	create_groupe("_LogosExtra", "Permet de placer une image en fond de la colonne Extra (c\'est-à-dire, soit la colonne secondaire qui peut être afichée soit de l\'autre côté du menu, soit en dessous de celui-ci).", "{{Utilisation}} : affecter un ou plusieurs mots clefs de ce groupe aux rubriques (héritage automatique) qui doivent avoir une ou plusieurs image en fond. L\'image est choisie aléatoirement parmis celles disponibles.\n\n{{Configuration}} : \n-* créer des mots clefs dans ce groupe et leur donner un logo de mot clef.\n-* il est possible de mettre un logo de survol qui sera alors utilisé en fond de texte (en plus de l\'autre logo) et positionné en haut à droite sauf si le texte contient les ordres CSS de positionnement ({bottom left} par exemple)", 'non', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
-		create_mot("_LogosExtra", "300. Tourisme sous-bois", "", "top right");
-		create_mot("_LogosExtra", "310. Tourisme Roches enchantées", "", "");
-		create_mot("_LogosExtra", "320. Tourisme La Loue (Rivière)", "", "bottom right");
 
+	create_groupe("_LogosExtra", "Permet de placer une image en fond de la colonne Extra (c\'est-à-dire, soit la colonne secondaire qui peut être afichée soit de l\'autre côté du menu, soit en dessous de celui-ci).", "{{Utilisation}} : affecter un ou plusieurs mots clefs de ce groupe aux rubriques (héritage automatique) qui doivent avoir une ou plusieurs image en fond. L\'image est choisie aléatoirement parmis celles disponibles.\n\n{{Configuration}} : \n-* créer des mots clefs dans ce groupe et leur donner un logo de mot clef.\n-* il est possible de mettre un logo de survol qui sera alors utilisé en fond de texte (en plus de l\'autre logo) et positionné en haut à droite sauf si le texte contient les ordres CSS de positionnement ({bottom left} par exemple)", 'non', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
 
 	create_groupe("_META", "Paramètrage du site", "Permet de spécifier des META pour le site.\n\nIl est possible de rajouter des METAs non encore présents, mais, comme d\'habitude en la matière : sachez ce que vous faites !", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
-		create_mot("_META", "Description", "Mettre ci-dessous la description du site", "");
-		create_mot("_META", "ICBM", "Mettre la latitude et la longitude du lieu sous la forme : XXX.XXXXX, XXX.XXXXX\n_ Pour trouver vos coordonnées : [Multimap->http://www.multimap.com/]\n_ Et [vous référencer sur GeoURL->http://geourl.org/ping/]", "");
-		create_mot("_META", "Keywords", "Mettre ci-dessous les mots clef du site séparés par des virgules", "");
+		create_mot("_META", "Description", "Mettre ci-dessous la description du site", "PYRAT.net, création de sites Web SPIP, référencement optimal et accessibilité pour tous. Conseils en informatique. Formations SPIP. Formateur SPIP.");
+		create_mot("_META", "ICBM", "Mettre la latitude et la longitude du lieu sous la forme : XXX.XXXXX, XXX.XXXXX\n_ Pour trouver vos coordonnées : [Multimap->http://www.multimap.com/]\n_ Et [vous référencer sur GeoURL->http://geourl.org/ping/]", "45.3391, 1.0629");
+		create_mot("_META", "Keywords", "Mettre ci-dessous les mots clef du site séparés par des virgules", "SPIP, SQL, php, CSS, web, AGORA, Internet, ADSL, accessibilité, handicap, consultant, services, prestataire, webagency, formateur, dordogne, périgord, excideuil, 24, access, microsoft");
 		create_mot("_META", "revisit-after", "Fréquence d\'indexation du site", "3 days");
+
+	create_groupe("_ModePortail", "Les mots clefs de ce groupe permettent de gérer les éléments qui s\'affichent sur la page d\'accueil du site si celui-ci est en mode portail.", "Les mots clefs numérotés dans leur titre de 0. à 9. verront leur logo utilisé dans les colonnes de gauche et de droite de la page d\'accueil (respectivement pour les numéros impairs et pairs).", 'oui', 'non', 'oui', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
 
 	create_groupe("_Params", "Paramétrages globaux du site", "Ces paramètres règlent des comportements globaux pour tout le site.", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_Params", "Aff_DatePublication", "Mettre Oui ci-dessous si le site doit afficher la date de publication des articles", "Oui");
-		create_mot("_Params", "Aff_Google_Analytics", "Mettre ci-dessous la partie du code entre les guillemets (extrait du code fournis par Google) : _uacct = \"{{UA-00000-0}}\"; pour bénéficier des services de statistiques de [Google Analytics->http://www.google.com/analytics/fr-FR/].", "");
+		create_mot("_Params", "Aff_Google_Analytics", "Mettre ci-dessous la partie du code entre les guillemets (extrait du code fournis par Google) : _uacct = \"{{UA-00000-0}}\"; pour bénéficier des services de statistiques de [Google Analytics->http://www.google.com/analytics/fr-FR/].", "UA-69859-1");
+		create_mot("_Params", "Aff_Google_Pub", "Mettre l\'identifiant Google dans le Texte explicatif ci-dessous pour voir la pub s\'afficher sur le site (pub-8531732540995542)", "pub-8531732540995542");
+		create_mot("_Params", "Aff_Google_Search", "Mettre l\'identifiant Google dans le Texte explicatif ci-dessous pour voir la zone de recherche s\'afficher sur le site (pub-8531732540995542)", "pub-8531732540995542");
 		create_mot("_Params", "Aff_Habillage", "Permet de spécifier l\'emplacement de la zone de choix de l\'habillage du site, soit en haut à droite, soit en bas à gauche.\n\nValeurs possible à mettre ci-dessous : Left ou Right", "Left");
 		create_mot("_Params", "AgendaFuturSeul", "Mettre Oui ci-dessous pour bénéficier d\'un agenda (format liste) qui affiche tous les événements futurs et seulement eux.", "");
-		create_mot("_Params", "AgendaScolaire", "Mettre Oui ci-dessous si l\'agenda doit afficher des années scolaires (septembre à décembre de l\'année suivante inclus) et non des années légales.", "Oui");
-		create_mot("_Params", "AgendaThematique", "Mettre Oui ci-dessous afin de provoquer par défaut l\'affichage de l\'Agenda sous forme d\'un plan hiérarchique des rubriques et des articles présents dans ce dernier.", "Oui");
+		create_mot("_Params", "AgendaScolaire", "Mettre Oui ci-dessous si l\'agenda doit afficher des années scolaires (septembre à décembre de l\'année suivante inclus) et non des années légales.", "");
+		create_mot("_Params", "AgendaThematique", "Mettre Oui ci-dessous afin de provoquer par défaut l\'affichage de l\'Agenda sous forme d\'un plan hiérarchique des rubriques et des articles présents dans ce dernier.", "");
 		create_mot("_Params", "AnonymatGlobal", "Mettre Oui ci-dessous si le site ne doit pas afficher le nom des auteurs", "Oui");
-		create_mot("_Params", "BandeauContact", "Mettre ci-dessous le contenu à afficher dans le bandeau de contact (en bas du site). Laisser vide s\'il ne doit pas être affiché.", "");
+		create_mot("_Params", "BandeauContact", "Mettre ci-dessous le contenu à afficher dans le bandeau de contact (en bas du site). Laisser vide s\'il ne doit pas être affiché.", "<sc>Pyrat.net</sc> — Moulin de la Jaury — 24160 <sc>Saint Médard d\'Excideuil</sc> — 08 70 77 12 48 (N° FreeBox local) — N° <sc>Siret</sc> : 478~773~674~00021");
 		create_mot("_Params", "CitationsHeader", "Par défaut, les citations sont en haut du menu de droite (ou en dessous de la recherche si site en 2 colonnes).\n\nMettre Oui ci-dessous pour que les citations soient affichées dans le bandeau d\'en-tête du site.", "");
-		create_mot("_Params", "CNIL", "N° de déclaration CNIL, si non déclaration (ce qui est illégal!), laisser le texte explicatif vide.\n\nPour procéder à la déclarion, rendez-vous sur le [site de la CNIL->http://www.cnil.fr/index.php?id=32]", "");
-		create_mot("_Params", "ModeNews", "Mettre Oui ci-dessous si le site ne doit pas afficher un Edito seul, mais plutôt une liste des derniers articles", "Non");
+		create_mot("_Params", "CNIL", "N° de déclaration CNIL, si non déclaration (ce qui est illégal!), laisser le texte explicatif vide.\n\nPour procéder à la déclarion, rendez-vous sur le [site de la CNIL->http://www.cnil.fr/index.php?id=32]", "1023302");
+		create_mot("_Params", "ModeNews", "Mettre Oui ci-dessous si le site ne doit pas afficher un Edito seul, mais plutôt une liste des derniers articles", "");
+		create_mot("_Params", "ModePortail", "Mettre Oui ci-dessous si le site ne doit s\'afficher sur sa page d\'accueil dans un mode portail.", "");
 		create_mot("_Params", "ModeStatique", "Mettre Oui ci-dessous si le site web est destiné à être utilisé dans un environement statique (par exemple dans le cas d\'une aspiration du site).\n\nCeci désactivera :\n-* le lien résumé en bas du menu de gauche (le résumé étant dynamique en fonction des visites, il n\'a pas de sens dans un environement statique)", "");
 		create_mot("_Params", "NavigationTransversaleSansAutresMenusHaut", "Limitation de la navigation transversale : mettre {{Oui}} ci-dessous.\n\nDans le cas d\'un site avec des Menus placés en haut du site (navigation horizontale), permet de limiter la fonctionalité de navigation transversale par mots clefs :\n-* à la rubrique en cours\n-* aux rubriques qui ne sont pas dans un secteur ayant le mot clef MenuHaut", "Oui");
 		create_mot("_Params", "NewsLetterID", "Mettre le numéro de la WaNewsLetter ici pour permettre l\'abonnement à la lettre (Si elle existe, sinon rien)", "");
-		create_mot("_Params", "PasDeMiniAgenda", "Mettre Oui ci-dessous pour que le mini Agenda ne soit pas affiché sur la page d\'accueil du site.", "Oui");
-		create_mot("_Params", "PasDeResume", "Mettre Oui ci-dessous pour ne pas afficher l\'accès à la page Résumé dans le menu du site (sous le Plan)", "Oui");
+		create_mot("_Params", "PasDeMiniAgenda", "Mettre Oui ci-dessous pour que le mini Agenda ne soit pas affiché sur la page d\'accueil du site.", "");
+		create_mot("_Params", "PasDeResume", "Mettre Oui ci-dessous pour ne pas afficher l\'accès à la page Résumé dans le menu du site (sous le Plan)", "");
 		create_mot("_Params", "Xiti_ID", "IDENTIFICATION DU NUMÉRO D\'INSCRIPTION\nRemplacer ###### par votre numéro d\'inscription Xiti", "######");
 		create_mot("_Params", "Xiti_URL", "IDENTIFICATION DE  L\'ADRESSE DE VOTRE MARQUEUR XITI.\nRemplacer ###### par l\'adresse (URL) de votre marqueur.\nElle se trouve dans une ligne du code du marqueur Xiti qui ressemble à :\nhsi += \'src=\"http://logv24.xiti.com/hit.xiti?s=1234\';\nL\'adresse ici serait http://logv24.xiti.com/hit.xiti", "######");
 
 	create_groupe("_ParamsApparence", "Des paramètres pour régler l\'apparence du site", "Ces paramètres influent directement sur l\'apparence du site.\n\nLà encore, ne rien faire sans savoir pourquoi.", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_ParamsApparence", "AvertissementIE", "Mettre Oui ci-dessous pour afficher l\'avertissement d\'obsolescence d\'Internet Explorer 5 et 5.5", "Oui");
+		create_mot("_ParamsApparence", "BandeauContactExtra", "Mettre Oui ci-dessous pour que le Bandeau de contact s\'affiche dans la navigation secondaire (et non pas dans le pied de la page).", "");
 		create_mot("_ParamsApparence", "FrmRecherchePerso", "Mettre ci-dessous le nom du Formulaire de Recherche s\'il doit être différent du formulaire de recherche par défaut.\n\nSi le fichier de squelette est {nomfichier.html}, mettre {nomfichier}", "");
 		create_mot("_ParamsApparence", "LargeurMenuDroit", "Pour régler la largeur du menu de droite si présent (l\'unité est le pixel)", "140");
 		create_mot("_ParamsApparence", "LargeurMenuGauche", "Pour régler la largeur du menu de gauche (l\'unité est le pixel)", "160");
+		create_mot("_ParamsApparence", "LogoHeader", "Mettre Oui ci-dessous pour que le logo du site soit dans la zone d\'entête au lieu d\'être en haut de la zone de menu.", "");
+		create_mot("_ParamsApparence", "MenuHautHeader", "Mettre Oui ci-dessous si le MenuHaut doit être dans le #header de la page", "");
 		create_mot("_ParamsApparence", "Nombre_ALaUne", "Mettre ci-dessous le nombre d\'élements que la zone « À la Une » de la page d\'accueil doit contenir.", "3");
 		create_mot("_ParamsApparence", "Nombre_QuoideNeuf", "Mettre ci-dessous le nombre d\'élements que le quoi de neuf de la page d\'accueil doit contenir.", "10");
 
@@ -198,7 +211,9 @@ function config_site() {
 		create_mot("_ParamsSlyleSwitcher", "centerbleu", "", "Bleu");
 
 	create_groupe("_Specialisation", "Spécialisation d’un article ", "Un mot clef pris dans ce groupe permettra de modifier\n\n-* le comportement d’un article particulier\n", 'non', 'non', 'oui', 'non', 'non', 'non', 'non', 'oui', 'oui', 'non');
-		create_mot("_Specialisation", "ALaUne", "Article qui doit rester à la une du site (soit dans quoi de neuf, soit dans la liste des articles en ModeNews)", "");
+		create_mot("_Specialisation", "AccesibiliteLien", "Affecter ce mot clef à l\'article traitant de la politique d\'accessibilité du site.", "Un fois l\'article écrit, lui affecter ce mot clef pour qu\'il soit disponible en lien en haut de la page (caché pour les voyants, sauf sur la page d\'accueil).");
+		create_mot("_Specialisation", "ALaUne", "Article qui doit rester à la une du site (soit dans quoi de neuf, soit dans la liste des articles en ModeNews, Soit dans le cartouche À la une en ModePortail)", "");
+		create_mot("_Specialisation", "DevoilerDate", "Mettre ce mot clef à un article dont on veut afficher la date de publication.", "");
 		create_mot("_Specialisation", "DevoilerIdentite", "Mettre ce mot clef à un article dont on veut afficher le nom du ou des auteurs (au sens de SPIP)", "");
 		create_mot("_Specialisation", "EDITO", "Sert à dire que l\'article est un éditorial.", "{{Attention}} : le site utilisera l\'article le plus récent ayant ce mot clef pour l\'afficher en tant qu\'éditorial.\n\n[*Conséquence*] : ne changez pas le contenu d\'un éditorial par le nouvel éditorial, créez un nouvel article éditorial!");
 		create_mot("_Specialisation", "Gallerie", "Si l\'article contient une galerie de photos (portofolio).", "Pour faire un portofolio, il faut attacher à un article des documents de type images (.jpeg, .gif et .png).\n\nAvec ce mot clef, ces images seront automatiquement affichées sous forme de vignettes avec la possibilité de cliquer sur une image pour en voir une version plus grande et pourvoir de nouveau cliquer pour avoir dans une nouvelle fenêtre l\'image de la taille originale.\n\n[*Attention*]: surveillez l\'espace occupé sur votre hébergement de site pour ne pas le dépasser avec trop d\'images...");
@@ -208,6 +223,7 @@ function config_site() {
 		create_mot("_Specialisation", "MENURACINEBAS", "Pour dire que l\'article s\'affiche au dessus de Plan", "Permet de placer dans le menu de gauche un (ou plusieurs) article(s) en bas de menu, avant le plan du site.");
 		create_mot("_Specialisation", "MENURACINEBAS_Systematique", "Affichage systématique dans le menu de gauche en bas", "Affecter ce mot clef à un article qui devra être présent dans le menu de gauche, en bas, que l\'on soit dans un secteur avec MenuHaut ou non.");
 		create_mot("_Specialisation", "MENURACINE_Systematique", "Affichage systématique dans le menu de gauche en haut", "Affecter ce mot clef à un article qui devra être présent dans le menu de gauche, en haut, que l\'on soit dans un secteur avec MenuHaut ou non.");
+		create_mot("_Specialisation", "PasDansRecherche", "Permet de masquer un article des résultats de la recherche", "À affecter aux articles qui ne doivent pas être affichées dans les résultats de la recherche");
 		create_mot("_Specialisation", "PasdeSiteDansForums", "Pour que les sites référencés n\'apparaissent pas dans un forum (mesure anti SPAM)", "Pour décourager ceux qui utiliseraient vos forums pour faire de la pub pour leurs site (généralement, des sonneries de téléphone)");
 
 	create_groupe("_Specialisation_Rubrique", "Spécialisation d’une rubrique", "Un mot clef pris dans ce groupe permettra de modifier\n\n-* le comportement d’une rubrique et de ses articles\n", 'non', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'oui', 'non');
@@ -226,16 +242,18 @@ function config_site() {
 		create_mot("_Specialisation_Rubrique_ou_Article", "Sommaire", "Pour dire que les articles de cette rubrique ont un sommaire ou que l\'article a un sommaire", "Un sommaire automatique sera placé en début d\'article.\n\nCe sommaire sera bati à partir des titres et sous-titres du texte de l\'article.");
 
 
-
 ## <--------------------------------------------
 
 	// Liaison entre rubrique et mot clé
 	create_rubrique_mot('000. Racine', 'SecteurPasDansQuoiDeNeuf');
-	create_rubrique_mot('000. Racine', 'MENURACINE');
 	create_rubrique_mot('000. Racine', 'PasDansMenu');
 	create_rubrique_mot('900. Agenda', 'Agenda');
 	create_rubrique_mot('900. Agenda', 'SecteurPasDansQuoiDeNeuf');
 	create_rubrique_mot('900. Agenda', 'PasDansMenu');
+	create_rubrique_mot('999. Citations', 'SecteurPasDansQuoiDeNeuf');
+	create_rubrique_mot('999. Citations', 'PasDansMenu');
+	create_rubrique_mot('999. Citations', 'PasDansPlan');
+	create_rubrique_mot('999. Citations', 'Citations');
 	return TRUE;
 }
 

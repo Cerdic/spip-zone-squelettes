@@ -189,7 +189,7 @@ function adjustLayout() {
   if (document.getElementById('content')) {
   	document.getElementById('content').style.height=maxHeight+'px';
   }
-  if (lTop!=rTop) {
+  if (abs(lTop-rTop)>50) {
 	  if (document.getElementById('extra')) {
 		document.getElementById('extra').style.height = maxHeight - lHeight+'px';
 	  }

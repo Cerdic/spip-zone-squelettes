@@ -2,27 +2,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">
 <head><title><?php if ($titre=='') { ?><:pyrat:sommaire:><?php } else { echo $titre; } ?> - [(#NOM_SITE_SPIP|textebrut)]</title>
-<BOUCLE_Styles(MOTS){type=_ParamsSlyleSwitcher}{par descriptif}>
-<link rel="[(#DESCRIPTIF) ]stylesheet" type="text/css" href="[(#CHEMIN{images/#TITRE.css}|url_absolue)]" title="#TITRE" media="screen, print" /></BOUCLE_Styles>
-<!--[if lt IE 6]>
-<BOUCLE_StylesIE(MOTS){type=_ParamsSlyleSwitcher}{par descriptif}>
-<link rel="[(#DESCRIPTIF) ]stylesheet" type="text/css" href="[(#CHEMIN{images/[(#TITRE)]_import.css}|url_absolue)]" title="#TITRE" media="screen, print" /></BOUCLE_StylesIE>
-<![endif]-->
+<BOUCLE_ModePortail2(MOTS){titre=ModePortail}{texte=Oui}>
+[(#ENV{template}|=={'Sommaire'}|?{'',' '})<INCLURE{fond=styleswitcher_classique}>]
+[(#ENV{template}|=={'Sommaire'}|?{' ',''})<INCLURE{fond=styleswitcher_modeportail}>]
+</BOUCLE_ModePortail2>
+<INCLURE{fond=styleswitcher_classique}>
+<//B_ModePortail2>
 <BOUCLE_LargeurMenuGauche(MOTS){titre=LargeurMenuGauche}>[(#REM) Attention : ne pas enlever les REMarques : elles servent à aérer le source sans que celui ne renvois d'espaces identifié comme une reussite du test ]
+<BOUCLE_LargeurMenuDroit(MOTS){titre=LargeurMenuDroit}>
 	<BOUCLE_ArtRubLayout(ARTICLES){id_article}>[(#REM) Dans le cas d'un article
 		]<BOUCLE_ArtLayout(MOTS){id_article}{type=_LayoutGala}>[(#REM) Est-ce qu'il a un Layout appliqué ?
-			]<INCLURE{fond=layout}{layoutgala=(#TITRE|substr{0,2})}{colgauche=#_LargeurMenuGauche:TEXTE}>[(#REM) Appel du layout de l'article si oui
+			]<INCLURE{fond=layout}{layoutgala=(#TITRE|substr{0,2})}{colgauche=#_LargeurMenuGauche:TEXTE}{coldroite=#_LargeurMenuDroit:TEXTE}>[(#REM) Appel du layout de l'article si oui
 		]</BOUCLE_ArtLayout>[(#REM) Sinon, dans le cas de la rubrique de l'article
 		]<BOUCLE_RubartLayout(MOTS){id_rubrique}{type=_LayoutGala}>[(#REM) Est-ce que sa rubrique a un layout ?
-			]<INCLURE{fond=layout}{layoutgala=(#TITRE|substr{0,2})}{colgauche=#_LargeurMenuGauche:TEXTE}>[(#REM) Appel du layout de la rubrique si oui
+			]<INCLURE{fond=layout}{layoutgala=(#TITRE|substr{0,2})}{colgauche=#_LargeurMenuGauche:TEXTE}{coldroite=#_LargeurMenuDroit:TEXTE}>[(#REM) Appel du layout de la rubrique si oui
 		]</BOUCLE_RubartLayout>[(#REM) Fin de la recherche concernant un article
 		]<//B_ArtLayout>[(#REM) Si ce n'est pas un article...
 	]</BOUCLE_ArtRubLayout>[(#REM) ... Est-ce une rubrique ?
 		]<BOUCLE_RubLayout(MOTS){id_rubrique}{type=_LayoutGala}>[(#REM) Dans le cas d'une rubrique
-			]<INCLURE{fond=layout}{layoutgala=(#TITRE|substr{0,2})}{colgauche=#_LargeurMenuGauche:TEXTE}>[(#REM) Appel du layout de l'a rubrique si oui
+			]<INCLURE{fond=layout}{layoutgala=(#TITRE|substr{0,2})}{colgauche=#_LargeurMenuGauche:TEXTE}{coldroite=#_LargeurMenuDroit:TEXTE}>[(#REM) Appel du layout de l'a rubrique si oui
 		]</BOUCLE_RubLayout>[(#REM) Sinon
-		][(#ENV{template}|=={''}|?{'',' '})<INCLURE{fond=templates}{colgauche=#_LargeurMenuGauche:TEXTE}{template}>][(#ENV{template}|=={''}|?{' ',''})<INCLURE{fond=layoutpardefaut}{colgauche=#_LargeurMenuGauche:TEXTE}>]<//B_RubLayout>[(#REM) Fin de la recherche d'une rubrique
+		][(#ENV{template}|=={''}|?{'',' '})<INCLURE{fond=templates}{colgauche=#_LargeurMenuGauche:TEXTE}{coldroite=#_LargeurMenuDroit:TEXTE}{template}>][(#ENV{template}|=={''}|?{' ',''})<INCLURE{fond=layoutpardefaut}{colgauche=#_LargeurMenuGauche:TEXTE}{coldroite=#_LargeurMenuDroit:TEXTE}>]<//B_RubLayout>[(#REM) Fin de la recherche d'une rubrique
 	]<//B_ArtRubLayout>
+</BOUCLE_LargeurMenuDroit>
 </BOUCLE_LargeurMenuGauche>
 <INCLURE{fond=couleurrubrique}{id_article}{id_rubrique}>
 <INCLURE{fond=inc_logoextra}{id_rubrique}>
@@ -51,42 +53,17 @@ urchinTracker();
 </script>
 </BOUCLE_Aff_Google_Analytics>
 </head>
-<body>
+<body[ (#ENV{template}|=={'Sommaire'}|?{'id="pagesommaire"',''})]>
 <div id="container">
-	<div id="header">
-<div class="ahem"><ul>
-	<!--<li><:pyrat:accessibilite_politique:></li>-->
-	<li><a href="#letexte"><:pyrat:accessibilite_texte:></a></li>
-	<li><a href="#menusite"><:pyrat:accessibilite_menu:></a></li>
-	<li><a href="#formulaire_recherche"><:pyrat:accessibilite_recherche:></a></li>
-</ul></div>
-<div id="datemajsite"><BOUCLE_datemajsite(ARTICLES){par date_modif}{inverse}{0,1}><:pyrat:dernieremaj:> [(#DATE_MODIF|nom_jour)] [(#DATE_MODIF|affdate)]</BOUCLE_datemajsite></div>
-<a name="<?php if ($titretop=='') { ?><:pyrat:sommaire|nettoyer_marqueur:><?php } else { echo 'T_'.$titretop; } ?>" id="<?php if ($titretop=='') { ?><:pyrat:sommaire|nettoyer_marqueur:><?php } else { echo 'T_'.$titretop; } ?>"></a><h1>[(#NOM_SITE_SPIP)]</h1>
-<BOUCLE_CitationsHeader(MOTS){titre=CitationsHeader}{texte=Oui}>
-<div id="citationsheader">
-<INCLURE{fond=citations}>
-</div>
-</BOUCLE_CitationsHeader>
-	</div><!-- id="header" -->
-
+<BOUCLE_ModePortail(MOTS){titre=ModePortail}{texte=Oui}>
+[(#ENV{template}|=={'Sommaire'}|?{'',' '})<INCLURE{fond=header_classique}>]
+[(#ENV{template}|=={'Sommaire'}|?{' ',''})<INCLURE{fond=header_modeportail}>]
+</BOUCLE_ModePortail>
+<INCLURE{fond=header_classique}>
+<//B_ModePortail>
+<div id="contenu">
 	<div id="wrapper">
 <div id="content">
-<B_MenuHaut>
-<div id="menuhaut">
-	<ul>
-		<BOUCLE_MenuHaut(RUBRIQUES){titre_mot=MenuHaut}{par num titre}>
-		<li><?php
-	if (($jp_secteur=='[(#ID_RUBRIQUE|texte_script)]') || ($jp_rubrique=='[(#ID_RUBRIQUE|texte_script)]')) {
-		$menuactifbefore='<strong>';
-		$menuactifafter='</strong>';
-		$sous_menuhaut = true;
-	} else {
-		$menuactifbefore='';
-		$menuactifafter='';
-	}
-  echo $menuactifbefore;
-?><BOUCLE_articles_plusdun_MenuHaut(ARTICLES) {id_rubrique} {1,1}><a href="[(#URL_RUBRIQUE)]" title="[(#_MenuHaut:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_RUBRIQUE_COURANTE||reduire_image{9,9}|extraire_attribut{src})" alt="[(#_MenuHaut:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_MenuHaut:TITRE|supprimer_numero)]</a></BOUCLE_articles_plusdun_MenuHaut><BOUCLE_articles_unseul_MenuHaut(ARTICLES) {id_rubrique} {0,1}><a href="[(#URL_ARTICLE)]" title="[(#_MenuHaut:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_RUBRIQUE_COURANTE||reduire_image{9,9}|extraire_attribut{src})" alt="[(#_MenuHaut:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_MenuHaut:TITRE|supprimer_numero)]</a></BOUCLE_articles_unseul_MenuHaut><a href="[(#URL_RUBRIQUE)]" title="[(#_MenuHaut:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_RUBRIQUE_COURANTE||reduire_image{9,9}|extraire_attribut{src})" alt="[(#_MenuHaut:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_MenuHaut:TITRE|supprimer_numero)]</a><//B_articles_unseul_MenuHaut>  <//B_articles_plusdun_MenuHaut><?php echo $menuactifafter; ?></li>
-		</BOUCLE_MenuHaut>
-	</ul>
-</div>
-</B_MenuHaut>
+<BOUCLE_PasMenuHautHeader(MOTS){titre=MenuHautHeader}{texte=Oui}> </BOUCLE_PasMenuHautHeader>
+<INCLURE{fond=menuhaut}>
+<//B_PasMenuHautHeader>

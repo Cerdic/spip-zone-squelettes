@@ -95,6 +95,7 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'menu_replier' => 'replier: ',
 'mot' => 'Mot',
 'mots' => 'Mots',
+'motsgroupe' => 'Groupe de Mots',
 'mots_title' => 'Les mots-clefs du site',
 'multimedia' => '&Eacute;couter',
 'multimedia_title' => '&Eacute;couter ou visioner l\'extrait (ouvre une nouvelle fen&ecirc;tre)',
