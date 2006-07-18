@@ -8,13 +8,14 @@
 	<meta name="generator" content="SPIP" />
 	[<link rel="shortcut icon" href="(#CHEMIN{#NOM_SITE_SPIP.ico})" />]
 
-	<!-- Lien vers le backend pour navigateurs eclaires -->
+	[
+	(#REM) Lien vers le backend pour navigateurs eclaires ]
 	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
-	
-	[(#REM) Script NiceTitle pour la gestion des title des liens ]	
+	[
+	(#REM) Script NiceTitle pour la gestion des title des liens ]	
 	[<script type="text/javascript" src="(#CHEMIN{nicetitle.js})"></script>]
-
-	[(#REM) Style CSS de blip ]
+	[
+	(#REM) Style CSS de blip ]
 	<link rel="stylesheet" type="text/css" href="#URL_SITE_SPIP/spip.php?page=inc-css" />	
 	
 </head>
@@ -28,25 +29,26 @@
 <div id="corps">
 	
 	[(#REM) Construction du menu auxiliaire de la page sommaire]
-	<div class="menu_auxiliaire"><ul>
+	<div class="menu_auxiliaire">
+		<ul>
+			[(#ENV{tri}|=={'documents'}|?{
+			<li><a class="active" href="[(#URL_PAGE{sommaire}|parametre_url{'tri','documents'})]">documents publiés</a></li>
+			,<li><a href="[(#URL_PAGE{sommaire}|parametre_url{'tri','documents'})]">documents publiés</a></li>
+			})]
 
-		[(#ENV{tri}|=={'documents'}|?{
-		<li><a class="active" href="[(#URL_PAGE{sommaire}|parametre_url{'tri','documents'})]">documents publiés</a></li>
-		,<li><a href="[(#URL_PAGE{sommaire}|parametre_url{'tri','documents'})]">documents publiés</a></li>
-		})]
+			[(#ENV{tri}|=={'commentaires'}|?{
+			<li><a class="active" href="[(#URL_PAGE{sommaire}|parametre_url{'tri','commentaires'})]">commentaires postés</a></li>
+			,<li><a href="[(#URL_PAGE{sommaire}|parametre_url{'tri','commentaires'})]">commentaires postés</a></li>
+			})]
 
-		[(#ENV{tri}|=={'commentaires'}|?{
-		<li><a class="active" href="[(#URL_PAGE{sommaire}|parametre_url{'tri','commentaires'})]">commentaires postés</a></li>
-		,<li><a href="[(#URL_PAGE{sommaire}|parametre_url{'tri','commentaires'})]">commentaires postés</a></li>
-		})]
+			[(#ENV{tri}|=={''}|?{<li><a class="active" href="[(#URL_PAGE{sommaire}|parametre_url{'tri','articles'})]">articles publiés</a></li>
+			, [(#ENV{tri}|=={'articles'}|?{<li><a class="active" href="[(#URL_PAGE{sommaire}|parametre_url{'tri','articles'})]">articles publiés</a></li>
+			,<li><a href="[(#URL_PAGE{sommaire}|parametre_url{'tri','articles'})]">articles publiés</a></li>})]
+			})]
 
-		[(#ENV{tri}|=={''}|?{<li><a class="active" href="[(#URL_PAGE{sommaire}|parametre_url{'tri','articles'})]">articles publiés</a></li>
-		, [(#ENV{tri}|=={'articles'}|?{<li><a class="active" href="[(#URL_PAGE{sommaire}|parametre_url{'tri','articles'})]">articles publiés</a></li>
-		,<li><a href="[(#URL_PAGE{sommaire}|parametre_url{'tri','articles'})]">articles publiés</a></li>})]
-		})]
-
-		<li> Afficher les derniers </li></ul>
-	</div><!-- menu_auxiliaire-->
+			<li> Afficher les derniers </li>
+		</ul>
+	</div><!-- fin menu_auxiliaire-->
 
 
 	[(#REM) Construction du contenu de la page sommaire en fonction des paramètres passés dans la variable tri]

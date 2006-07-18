@@ -9,13 +9,14 @@
 	<meta name="generator" content="SPIP" />
 	[<link rel="shortcut icon" href="(#CHEMIN{#NOM_SITE_SPIP.ico})" />]
 
-	<!-- Lien vers le backend pour navigateurs eclaires -->
+	[
+	(#REM) Lien vers le backend pour navigateurs eclaires ]
 	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
-
-	[(#REM) Script NiceTitle pour la gestion des title des liens ]	
+	[
+	(#REM) Script NiceTitle pour la gestion des title des liens ]	
 	[<script type="text/javascript" src="(#CHEMIN{nicetitle.js})"></script>]
-
-	[(#REM) Style CSS de blip ]
+	[
+	(#REM) Style CSS de blip ]
 	<link rel="stylesheet" type="text/css" href="#URL_SITE_SPIP/spip.php?page=inc-css" />	
 	
 </head>
@@ -29,35 +30,39 @@
 <div id="corps">
 
 	[(#REM) Construction du menu auxiliaire de la page article]
-	<div class="menu_auxiliaire"><ul>
-		<li>
-			<a href="#URL_PAGE{auteur}">Liste des auteurs</a>
-			&gt; #NOM
-		</li>
-	</ul></div><!-- menu_auxiliaire-->
+	<div class="menu_auxiliaire">
+		<ul>
+			<li><a href="#URL_PAGE{auteur}">Liste des auteurs</a>&gt; #NOM</li>
+		</ul>
+	</div><!-- fin menu_auxiliaire-->
 
 	<div class="contenu">
 
-	[(#REM) Fiche de l'auteur ]
-	<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
-	[<h1>(#NOM)</h1>]<div class="element_sur"><div class="element_sous">
-
-	[<div class="imgfloatleft">(#LOGO_AUTEUR||reduire_image{200,200})</div>]
-	
-	#BIO
-	
-	</div></div></div></div> <!-- fin element-->	
-	
-	
-	
-	<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
-	<h1>Envoyer un message à #NOM</h1><div class="element_sur"><div class="element_sous">
-
-	#FORMULAIRE_ECRIRE_AUTEUR
-	
-
-	
-	</div></div></div></div> <!-- fin element-->	
+		[(#REM) Fiche de l'auteur ]
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		[<h1>(#NOM)</h1>]<div class="element_sur">
+		[<div class="imgfloatleft">(#LOGO_AUTEUR||reduire_image{200,200})</div>]	
+		#BIO	
+		</div></div></div>		
+		
+		[(#REM) Formulaire de contact de l'auteur ]
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1>Envoyer un message à #NOM</h1><div class="element_sur">
+		#FORMULAIRE_ECRIRE_AUTEUR		
+		</div></div></div>
+		
+		[(#REM) Articles de l'auteur ]
+		<B_articles_auteur>
+		#ANCRE_PAGINATION
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1>Articles de #NOM</h1><div class="element_sur">
+		[<p>(#PAGINATION)</p>]
+			<BOUCLE_articles_auteur(ARTICLES) {id_auteur} {par date} {inverse} {pagination}>
+			<INCLURE{fond=inc_article_resume}{id_article}{recherche}>
+			</BOUCLE_articles_auteur>
+		[<p>(#PAGINATION)</p>]
+		</div></div></div>
+		</B_articles_auteur>
 	
 	</div><!-- fin contenu -->
 
@@ -76,10 +81,13 @@
 </body>
 </html>
 </BOUCLE_auteur_principal>
-
-
 [
+
+
+
+
 (#REM) Affiche la liste des auteurs, se produit si aucune des boucles précédentes n'a été exécutée 
+
 ] 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="#LANG_DIR" lang="#LANG">
@@ -90,14 +98,15 @@
 	<meta name="generator" content="SPIP" />
 	[<link rel="shortcut icon" href="(#CHEMIN{#NOM_SITE_SPIP.ico})" />]
 
-	<!-- Lien vers le backend pour navigateurs eclaires -->
+	[
+	(#REM) Lien vers le backend pour navigateurs eclaires ]
 	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
-
-	[(#REM) Script NiceTitle pour la gestion des title des liens ]	
+	[
+	(#REM) Script NiceTitle pour la gestion des title des liens ]	
 	[<script type="text/javascript" src="(#CHEMIN{nicetitle.js})"></script>]
-
-	[(#REM) Style CSS de blip ]
-	<link rel="stylesheet" type="text/css" href="#URL_SITE_SPIP/spip.php?page=inc-css" />	
+	[
+	(#REM) Style CSS de blip ]
+	<link rel="stylesheet" type="text/css" href="#URL_SITE_SPIP/spip.php?page=inc-css" />
 	
 </head>
 
@@ -110,22 +119,24 @@
 <div id="corps">
 
 	[(#REM) Construction du menu auxiliaire de la page article]
-	<div class="menu_auxiliaire"><ul>
-		<li><a class="active" href="#URL_PAGE{auteur}">Liste des auteurs</a></li>
-	</ul></div><!-- menu_auxiliaire-->
+	<div class="menu_auxiliaire">
+		<ul>
+			<li><a class="active" href="#URL_PAGE{auteur}">Liste des auteurs</a></li>
+		</ul>
+	</div><!-- fin menu_auxiliaire-->
 
 	<div class="contenu">
 	
-	<B_auteurs>
-	<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
-	<h1>Liste des auteurs</h1><div class="element_sur">
-	<BOUCLE_auteurs(AUTEURS){par nom}>
-		<div class="element_sous_bis">[<a href="#URL_AUTEUR">(#NOM)</a>]</div>		
-	</BOUCLE_auteurs>	
-	</div><!-- fin element sur--></div></div><!-- fin element-->
-	</B_auteurs>
-	AUCUN AUTEUR. (Conseil : Publier un article et attribuer lui au moins un auteur)
-	<//B_auteurs>
+		<B_auteurs>
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1>Liste des auteurs</h1><div class="element_sur">
+		<BOUCLE_auteurs(AUTEURS){par nom}>
+			<div class="element_sous_bis"><h3>[<a href="#URL_AUTEUR">(#NOM)</a>]</h3></div>		
+		</BOUCLE_auteurs>	
+		</div></div></div>
+		</B_auteurs>
+		AUCUN AUTEUR. (Conseil : Publiez un article et attribuez lui au moins un auteur)
+		<//B_auteurs>
 	
 	</div><!-- fin contenu-->
 	

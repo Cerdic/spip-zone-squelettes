@@ -1,3 +1,3 @@
 <?php
-$quota_cache = 5;
+$quota_cache = 50;
 ?>
