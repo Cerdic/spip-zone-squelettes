@@ -110,8 +110,8 @@ function balise_DATE_MODIF_dist ($p) {
 // http://www.spip.net/fr_article1971.html
 function balise_DATE_NOUVEAUTES_dist($p) {
 	$p->code = "((\$GLOBALS['meta']['quoi_de_neuf'] == 'oui'
-	AND @file_exists(_DIR_SESSIONS . 'mail.lock')) ?
-	normaliser_date(@filemtime(_DIR_SESSIONS . 'mail.lock')) :
+	AND @file_exists(_DIR_TMP . 'mail.lock')) ?
+	normaliser_date(@filemtime(_DIR_TMP . 'mail.lock')) :
 	\"'0000-00-00'\")";
 	$p->interdire_scripts = false;
 	return $p;
@@ -655,11 +655,13 @@ function calculer_balise_logo ($p) {
 		$type_objet = 'SITE';
 		$suite_logo = $regs[1];
 		$_id_objet = "\"'0'\"";
+		$id_objet = 'id_syndic'; # parait faux mais donne bien "siteNN"
 	} else {
 		if ($type_objet == 'SITE')
-			$_id_objet = champ_sql("id_syndic", $p);
+			$id_objet = "id_syndic";
 		else
-			$_id_objet = champ_sql("id_".strtolower($type_objet), $p);
+			$id_objet = "id_".strtolower($type_objet);
+		$_id_objet = champ_sql($id_objet, $p);
 	}
 
 	// analyser les faux filtres
@@ -746,7 +748,7 @@ function calculer_balise_logo ($p) {
 			."')";
 	}
 	else {
-		$p->code = "affiche_logos(calcule_logo('$type_objet', '" .
+		$p->code = "affiche_logos(calcule_logo('$id_objet', '" .
 			(($suite_logo == '_SURVOL') ? 'off' : 
 			(($suite_logo == '_NORMAL') ? 'on' : 'ON')) .
 			"', $_id_objet," .
