@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+ <BOUCLE_principale(RUBRIQUES){id_rubrique}{doublons}>
+ <BOUCLE_piratage(MOTS){id_rubrique}{titre=acces_restreint}>
+ <INCLURE(_authentification.php3)>
+</BOUCLE_piratage>
+<html>
+<head>
+<title>#NOM_SITE_SPIP</title>
+<meta http-equiv="content-type" content="text/html; charset=#CHARSET">
+<meta name="generator" content="SPIP">
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/bloog.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/niftyCorners.css">
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/niftyPrint.css" media="print">
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty.js"></script>
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty-bloog.js"></script>
+</head>
+<body>
+<div id="container">
+<INCLURE(page.php3){fond=entete}>
+<!-- star of main content -->
+<div id="content">
+
+<div id="colonne">	
+	<div class="boite">
+	<INCLURE (_menu_rub.php3)>
+	</div>
+	
+</div>
+
+<div class="grande_boite">
+ <div class="chemin" align="right"> 
+                <BOUCLE_plan(HIERARCHIE){id_rubrique}{" >
+                "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a> 
+                </BOUCLE_plan>
+              </div>
+              <br>
+              <br>
+              [(#LOGO_RUBRIQUE)] <br>
+              [ 
+              <h2>(#TITRE|supprimer_numero)</h2>
+              ]<br>
+              [(#TEXTE|justifier)] 
+              <p>[(#NOTES)</p>
+              ] 
+     
+</div>
+ <div class="grande_boite">
+ 
+  <BOUCLE_webzine_on(ARTICLES){id_rubrique}>
+                    </BOUCLE_webzine_on>
+                    <br>
+                    <BOUCLE_exclure(ARTICLES){titre_mot=exclure}{doublons}>
+                    </BOUCLE_exclure>
+                    <BOUCLE_exclure2(ARTICLES){titre_mot=forum}{doublons}>
+                    </BOUCLE_exclure2>
+                 
+                    <BOUCLE_articles1(ARTICLES){id_rubrique}{doublons}{par date}{inverse}{0,1}>
+                    <BOUCLE_nouv_art(ARTICLES){id_article}{age<2}>
+                    <p><font face="verdana,arial,helvetica,sans-serif" size="1" color="red"><b>NOUVEAU</b></font> 
+                      </BOUCLE_nouv_art>
+                      <font face="verdana, arial,helvetica,sans-serif" size=1> 
+                      <br>
+                      [(#LOGO_ARTICLE|right)]<b>[(#DATE|nom_jour)] [(#DATE|jour)] 
+                      [(#DATE|nom_mois)] [(#DATE|annee)]</b> 
+                      <B_AUTEUR1>
+                      <b>- par 
+                      <BOUCLE_AUTEUR1(AUTEURS){id_article}{", "}{par nom}>
+                      #NOM 
+                      </BOUCLE_AUTEUR1>
+                      </b></font> 
+                      </B_AUTEUR1>
+                      <br>
+                      <font face="verdana, arial,helvetica,sans-serif" size=2>[(#SURTITRE)<br>
+                      ]</font> <font face="verdana, arial,helvetica,sans-serif" size=4><a href="#URL_ARTICLE"><b>#TITRE</b></a></font> 
+                      <font face="verdana, arial,helvetica,sans-serif" size=3><b>[<br>
+                      (#SOUSTITRE)]</b></font> <font face="verdana, arial,helvetica,sans-serif" size=2>[<br>
+                      (#INTRODUCTION)] <br>
+                      </font></p>
+                    <p align="right"><font face="verdana, arial,helvetica,sans-serif" size=2><a href="#URL_ARTICLE">[Lire 
+                      la suite...]</a></font></p>
+                    <p align="left"><font face="verdana, arial,helvetica,sans-serif" size=2> 
+                      <font face="verdana, arial,helvetica,sans-serif" size=2> 
+                      <BOUCLE_forums1(FORUMS){id_article}{plat}>
+                      </BOUCLE_forums1>
+                      <? $total_forum = "#TOTAL_BOUCLE"; ?>
+                      <b> 
+                      <? echo $total_forum == 1? " ($total_forum&nbsp;message)" : " ($total_forum&nbsp;messages)" ; ?>
+                      </b> 
+                      </B_forums1>
+                      </font></font> 
+                      </BOUCLE_articles1>
+                      </B_articles1>
+              
+            
+                <div style="float:right;width:50%">
+                    
+                    <BOUCLE_articles2(ARTICLES){id_rubrique}{doublons}{par date}{inverse}{0,2}>
+                    <BOUCLE_nouv_art2(ARTICLES){id_article}{age<4}>
+                    <font face="verdana,arial,helvetica,sans-serif" size="1" color="red"><b>NOUVEAU</b></font> 
+                    </BOUCLE_nouv_art2>
+                    <br>
+                    <font face="verdana, arial,helvetica,sans-serif" size=1> <b>[(#DATE|nom_jour)] 
+                    [(#DATE|jour)] [(#DATE|nom_mois)] [(#DATE|annee)]</b> 
+                    <B_AUTEUR2>
+                    <b>- par 
+                    <BOUCLE_AUTEUR2(AUTEURS){id_article}{", "}{par nom}>
+                    #NOM 
+                    </BOUCLE_AUTEUR2>
+                    </b></font> 
+                    </B_AUTEUR2>
+                    <br>
+                    <font face="verdana, arial,helvetica,sans-serif" size=1>[(#SURTITRE)<br>
+                    ]</font> <font face="verdana, arial,helvetica,sans-serif" size=2><a href="#URL_ARTICLE"><b>#TITRE</b></a></font> 
+                    <font face="verdana, arial,helvetica,sans-serif" size=1><b>[<br>
+                    (#SOUSTITRE)]</b></font> <font face="verdana, arial,helvetica,sans-serif" size=1>[<br>
+                    (#INTRODUCTION)] 
+                    <p align="right"><font face="verdana, arial,helvetica,sans-serif" size=1><a href="#URL_ARTICLE">[Lire 
+                      la suite...]</a></font></p>
+                    <font face="verdana, arial,helvetica,sans-serif" size=1> 
+                    <BOUCLE_forums2(FORUMS){id_article}{plat}>
+                    </BOUCLE_forums2>
+                    <? $total_forum = "#TOTAL_BOUCLE"; ?>
+                    <b> 
+                    <? echo $total_forum == 1? " ($total_forum&nbsp;message)" : " ($total_forum&nbsp;messages)" ; ?>
+                    </b> 
+                    </B_forums2>
+                    </font></font> <br>
+                    </BOUCLE_articles2>
+                    </B_articles2>
+                  </div>
+                   
+                    <BOUCLE_articles3(ARTICLES){id_rubrique}{doublons}{par date}{inverse}{0,2}>
+                    <BOUCLE_nouv_artbis3(ARTICLES){id_article}{age<4}>
+                    <font face="verdana,arial,helvetica,sans-serif" size="1" color="red"><b>NOUVEAU</b></font> 
+                    </BOUCLE_nouv_artbis3>
+                    <br>
+                    <font face="verdana, arial,helvetica,sans-serif" size=1> <b>[(#DATE|nom_jour)] 
+                    [(#DATE|jour)] [(#DATE|nom_mois)] [(#DATE|annee)]</b> 
+                    <B_AUTEUR3>
+                    <b>- par 
+                    <BOUCLE_AUTEUR3(AUTEURS){id_article}{", "}{par nom}>
+                    #NOM 
+                    </BOUCLE_AUTEUR3>
+                    </b></font> 
+                    </B_AUTEUR3>
+                    <br>
+                    <font face="verdana, arial,helvetica,sans-serif" size=1>[(#SURTITRE)<br>
+                    ]</font> <font face="verdana, arial,helvetica,sans-serif" size=2><a href="#URL_ARTICLE"><b>#TITRE</b></a></font> 
+                    <font face="verdana, arial,helvetica,sans-serif" size=1><b>[<br>
+                    (#SOUSTITRE)]</b></font> <font face="verdana, arial,helvetica,sans-serif" size=1>[<br>
+                    (#INTRODUCTION)] 
+                    <p align="right"><font face="verdana, arial,helvetica,sans-serif" size=1><a href="#URL_ARTICLE">[Lire 
+                      la suite...]</a></font></p>
+                    <font face="verdana, arial,helvetica,sans-serif" size=1> 
+                    <BOUCLE_forums3(FORUMS){id_article}{plat}>
+                    </BOUCLE_forums3>
+                    <? $total_forum = "#TOTAL_BOUCLE"; ?>
+                    <b> 
+                    <? echo $total_forum == 1? " ($total_forum&nbsp;message)" : " ($total_forum&nbsp;messages)" ; ?>
+                    </b> 
+                    </B_forums3>
+                    </font></font> <br>
+                    </BOUCLE_articles3>
+                    </B_articles3>
+         
+        </B_webzine_on>
+ 
+ 
+ </div>
+   
+ <div class="grande_boite">
+ </div>
+ 
+</div> <!-- close main content -->
+<div id="footer">
+
+<address>
+<INCLURE(_inc_stats.php3)>
+</address>
+</div> <!--close footer -->
+
+</div> <!-- close container -->
+ <INCLURE (_page_bas.php3)>
+</body>
+</html>
+<//BOUCLE_piratage>
+</BOUCLE_principale>

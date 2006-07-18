@@ -1,0 +1,577 @@
+<HTML>
+<BOUCLE_principale(RUBRIQUES){id_rubrique}{doublons}>
+<HEAD>
+<title> [(#TITRE|supprimer_numero)] </title>
+[<META NAME="Description" CONTENT='(#DESCRIPTIF|supprimer_tags|texte_script)'>]
+<SCRIPT src="IMG/002/_interface.js" type="text/javascript"></SCRIPT>
+<link rel="stylesheet" href="IMG/002/_interface.css" type="text/css">
+<BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}> 
+<link rel="alternate" type="application/rss+xml" href="#URL_SITE_SPIP/_backend.php3?id_rubrique=#ID_RUBRIQUE" title="[(#TITRE|supprimer_numero)]"></BOUCLE_rub>
+ 
+</HEAD>
+<BODY>
+<div align="center"> 
+    <INCLURE (_page_barre_menu.php3)><br>
+
+  <TABLE width=750  border=0 cellPadding=0 cellSpacing=0>
+    <TBODY> 
+    <TR> 
+      <TD vAlign=top align="center" width="490"> 
+	  
+          
+          <table border=0 cellpadding=0 cellspacing=0 width="100%">
+            <tr> 
+              <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+              <td background="IMG/002/r-h.gif"><!--DWLayoutEmptyCell-->&nbsp;</td>
+              <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+            </tr>
+            <tr> 
+              <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+              <td class="content"><div class="chemin" align="right"></div>
+                <center>
+                  <table width="100%" border="0" cellspacing="0" cellpadding="5">
+                    <!--DWLayoutTable-->
+                    <tr> 
+                      <td width="470" valign="top"><div align=right><BOUCLE_plan(HIERARCHIE){id_rubrique}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>
+  </BOUCLE_plan>
+                      </div>                        <h3>[(#LOGO_RUBRIQUE)] &nbsp;&nbsp;[ 
+                          (#TITRE|supprimer_numero)] 
+                      </h3>                        <div align=right><a href="#URL_SITE_SPIP/backend.php3?id_rubrique=#ID_RUBRIQUE"><img src="/IMG/002/xml.gif" border="0"></a></div>                         </td>
+                    </tr>
+                    <tr>
+                      <td valign="top"> [(#TEXTE|justifier)<br>
+] 
+                       [(#NOTES)<br>
+] </td>
+                    </tr>
+                  </table>
+                </center></td>
+              <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+            <tr> 
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+              <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+            </tr>
+          </table>
+          
+        <div align="center"><a href="<?php echo $PHP_SELF ; ?>?id_rubrique=#ID_RUBRIQUE&var_mode=recalcul"><br>
+          [Rafraichir les messages]</a> <br>
+          <table width="100%" border=0 align="center" cellpadding=0 cellspacing=0>
+            <tr>
+              <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+              <td background="IMG/002/r-h.gif"><!--DWLayoutEmptyCell-->&nbsp;</td>
+              <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+            </tr>
+            <tr>
+              <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+              <td align="left" class="content">
+               
+<BOUCLE_themes(ARTICLES){titre_mot = forum}{id_rubrique=#ID_RUBRIQUE}{doublons A}{doublons B}>
+            <h3><a href="#URL_ARTICLE">[(#LOGO_ARTICLE)][<b>(#TITRE|supprimer_numero|majuscules)</b>]</a>&nbsp;&nbsp;&nbsp;[<a href="forum.php3?(#PARAMETRES_FORUM)"><img src="IMG/002/post.gif" border="0"></a>]</h3><br>
+
+              <table width="100%" border="0" cellpadding="3" cellspacing="0" bgcolor="#E7E7F1">
+                  <tr>
+                    <td align="center" ><font color="#666666"><b>Les derni&egrave;res
+                        discussions</b></font></td>
+                    <td align="center" ><font color="#666666"><b>Auteurs</b></font></td>
+                    <td align="center" ><font color="#666666"><b>Dates</b></font></td>
+                    <td align="center" ><font color="#666666"><b>R&eacute;ponses</b></font></td>
+                  </tr>
+                  <?php $couleur="0" ; ?>
+                  <B_discussions>
+                  <BOUCLE_discussions(FORUMS){id_article}{par date}{inverse}{0,6}>
+                  <?php
+$ze_titre = '[(#TITRE|texte_script|couper{30})]' ;
+$ze_titre = ereg_replace( "> ", "", $ze_titre );
+?>
+                  <tr>
+                    <td align="center" bgcolor="<?php echo $couleur == 0 ? '#ffffff' : '#F2F2F7' ; ?>" > <b> <a href="_discussion.php3?id_forum=#ID_FORUM#forum#ID_FORUM"	title=""><?php echo $ze_titre?></a> </b> </td>
+                    <td bgcolor="<?php echo $couleur == 0 ? '#ffffff' : '#F2F2F7' ; ?>" align="center" >[(#AUTEUR|couper{20})]</td>
+                    <td bgcolor="<?php echo $couleur == 0 ? '#ffffff' : '#F2F2F7' ; ?>" align="center" >[(#DATE|jour)]/[(#DATE|mois)]</td>
+                    <td bgcolor="<?php echo $couleur == 0 ? '#ffffff' : '#F2F2F7' ; ?>" align="center" >
+                      <B_nb_forumtotal>
+                      <BOUCLE_nb_forumtotal(FORUMS){id_thread}{plat}>
+                      </BOUCLE_nb_forumtotal>
+                      <?php echo #TOTAL_BOUCLE -1 ?>
+                      </B_nb_forumtotal>
+                    </td>
+                  </tr>
+                  <?php if($couleur == 0) {$couleur = 1 ; } else {$couleur=0 ; }	?>
+                  </BOUCLE_discussions>
+                  </B_discussions>
+                </table>
+                <div style='border-bottom:50px'>&nbsp;</div>
+                </BOUCLE_themes>             </td>
+              <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+            <tr>
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+              <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+            </tr>
+          </table>
+          <p>
+            <B_sousrub_on>
+          </p>
+          <table border=0 cellpadding=0 cellspacing=0 width="100%">
+              <tr> 
+                <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+                <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/classeur.gif" /></td>
+                <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+              </tr>
+              <tr> 
+                <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+                <td class="content"> <center>
+                    <p align="left"><strong> A voir : </strong> 
+                      <BOUCLE_sousrub_on(RUBRIQUES){id_parent}>
+                      </BOUCLE_sousrub_on>
+                    <table cellpadding=0 cellspacing=0 border=0>
+                      <tr> 
+                        <td width=330 align="right" valign="top"><strong> 
+                          <B_sous_rubriques>
+                          </strong> 
+                          <BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par titre}{1/2}>
+                          <br>
+                          <b>[<a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero|majuscules)</a>]</b>
+                          <INCLURE(_cadenas.php3){id_rubrique}>
+                          <BOUCLE_art_rub(ARTICLES){id_rubrique}{0,5}{par date}{inverse}>
+                          <br>
+                          &nbsp <img src="IMG/002/puce_fleche.png" width="8" height="7"><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a> 
+                          <INCLURE(_cadenas.php3){id_article}>
+                          </BOUCLE_art_rub>
+                          <br> 
+                          </BOUCLE_sous_rubriques>
+                          <br> 
+                          </B_sous_rubriques>
+                        </td>
+                        <td width=8 rowspan=2><img src="NAVPICS/rien.gif" alt="" width="8" height="1" border="0"></td>
+                        <td width=8 rowspan=2 background="NAVPICS/point.gif"><img src="NAVPICS/rien.gif" alt="" width="8" height="8" border="0"></td>
+                        <td width=8 rowspan=2><img src="NAVPICS/rien.gif" alt="" width="8" height="1" border="0"></td>
+                        <td width=320 rowspan=2 valign="top"> 
+                          <B_sous_rubriques2>
+                          <BOUCLE_sous_rubriques2(RUBRIQUES){id_parent}{par titre}{2/2}>
+                          <br>
+                          <b>[<a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero|majuscules)</a>]</b>
+                          <INCLURE(_cadenas.php3){id_rubrique}>
+                          <BOUCLE_art_rub2(ARTICLES){id_rubrique}{0,5}{par date}{inverse}>
+                          <br>
+                          &nbsp <img src="IMG/002/puce_fleche.png" width="8" height="7"><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a> 
+                          <INCLURE(_cadenas.php3){id_article}>
+                          </BOUCLE_art_rub2>
+                          <br> 
+                          </BOUCLE_sous_rubriques2>
+                          <br> 
+                          </B_sous_rubriques2>
+                        </td>
+                      </tr>
+                    </table>
+                    <br>
+                  </center>
+                  [ <a href="#">Haut</a> ] </td>
+                <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+              <tr> 
+                <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+                <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+                <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+              </tr>
+            </table>
+            
+          </B_sousrub_on>
+		  <BOUCLE_exclure(ARTICLES){titre_mot=exclure}{doublons}>
+                      </BOUCLE_exclure>
+          <B_webzine_on>
+          <table border=0 cellpadding=0 cellspacing=0 width="100%">
+            <tr> 
+              <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+              <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/article.gif" /></td>
+              <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+            </tr>
+            <tr> 
+              <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+              <td class="content"> 
+                <table width="100%" border="0" cellspacing="0" cellpadding="10">
+                  <tr> 
+                    <td align="left" valign="top"> <strong>Derniers articles</strong> 
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr align="left" valign="top"> 
+                          <td width="16"><img src="IMG/002/Lignesepa/lignesepa_gauche.gif" width="16" height="47"></td>
+                          <td> 
+                            <div style="background-image: url(IMG/002/Lignesepa/lignesepa_milieu.gif);"> 
+                              <img src="IMG/002/Lignesepa/lignesepa_milieu.gif" width="16" height="47"></div>
+                          </td>
+                          <td width="16"><img src="IMG/002/Lignesepa/lignesepa_droite.gif" width="16" height="47"></td>
+                        </tr>
+                      </table>
+                      
+					  
+					  <BOUCLE_webzine_on(ARTICLES){id_rubrique}{doublons A}>
+                      </BOUCLE_webzine_on>
+                      <br>
+                      
+                    
+                      <BOUCLE_articles1(ARTICLES){id_rubrique}{doublons B}{par date}{inverse}{0,1}>
+                      <BOUCLE_nouv_art(ARTICLES){id_article}{age<2}>
+                      <p><font face="verdana,arial,helvetica,sans-serif" size="1" color="#0000FF"><b>NOUVEAU</b></font> 
+                        </BOUCLE_nouv_art>
+                        <font face="verdana, arial,helvetica,sans-serif" size=1> 
+                        <br>
+                        [(#LOGO_ARTICLE|right)]<b>[(#DATE|nom_jour)] [(#DATE|jour)] 
+                        [(#DATE|nom_mois)] [(#DATE|annee)]</b> 
+                        <B_AUTEUR1>
+                        <b>- par 
+                        <BOUCLE_AUTEUR1(AUTEURS){id_article}{", "}{par nom}>
+                        #NOM 
+                        </BOUCLE_AUTEUR1>
+                        </b></font> 
+                        </B_AUTEUR1>
+                        <br>
+                        <font face="verdana, arial,helvetica,sans-serif" size=2>[(#SURTITRE)<br>
+                        ]</font> <font face="verdana, arial,helvetica,sans-serif" size=4><a href="#URL_ARTICLE"><b>#TITRE</b></a></font> 
+                        <font face="verdana, arial,helvetica,sans-serif" size=3><b>[<br>
+                        (#SOUSTITRE)]</b></font> <font face="verdana, arial,helvetica,sans-serif" size=2><br>
+                        [<br>
+                        (#INTRODUCTION)] <br>
+                        </font></p>
+                      <p align="right"><font face="verdana, arial,helvetica,sans-serif" size=2><a href="#URL_ARTICLE">[Lire 
+                        la suite...]</a></font></p>
+                      <p align="left"><font face="verdana, arial,helvetica,sans-serif" size=2> 
+                        <font face="verdana, arial,helvetica,sans-serif" size=2> 
+                        <BOUCLE_forums1(FORUMS){id_article}{plat}>
+                        </BOUCLE_forums1>
+                        <? $total_forum = "#TOTAL_BOUCLE"; ?>
+                        <b> 
+                        <? echo $total_forum == 1? " ($total_forum&nbsp;message)" : " ($total_forum&nbsp;messages)" ; ?>
+                        </b> 
+                        </B_forums1>
+                        </font></font> 
+                        </BOUCLE_articles1>
+                        </B_articles1>
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr align="left" valign="top"> 
+                    <td width="16"><img src="IMG/002/Lignesepa/lignesepa_gauche.gif" width="16" height="47"></td>
+                    <td>
+                      <div style="background-image: url(IMG/002/Lignesepa/lignesepa_milieu.gif);"> 
+                        <img src="IMG/002/Lignesepa/lignesepa_milieu.gif" width="16" height="47"></div>
+                    </td>
+                    <td width="16"><img src="IMG/002/Lignesepa/lignesepa_droite.gif" width="16" height="47"></td>
+                  </tr>
+                </table>
+                <table width="100%" border="0" cellspacing="0" cellpadding="10">
+                  <tr> 
+                    <td width="50%" align="left" valign="top"> 
+                     
+                      <BOUCLE_articles2(ARTICLES){id_rubrique}{doublons B}{par date}{inverse}{0,2}>
+                      <BOUCLE_nouv_art2(ARTICLES){id_article}{age<4}>
+                      <font face="verdana,arial,helvetica,sans-serif" size="1" color="#0000FF"><b>NOUVEAU</b></font> 
+                      </BOUCLE_nouv_art2>
+                      <br>
+                      <font face="verdana, arial,helvetica,sans-serif" size=1> 
+                      <b>[(#DATE|nom_jour)] [(#DATE|jour)] [(#DATE|nom_mois)] 
+                      [(#DATE|annee)]</b> 
+                      <B_AUTEUR2>
+                      <b>- par 
+                      <BOUCLE_AUTEUR2(AUTEURS){id_article}{", "}{par nom}>
+                      #NOM 
+                      </BOUCLE_AUTEUR2>
+                      </b></font> 
+                      </B_AUTEUR2>
+                      <br>
+                      <font face="verdana, arial,helvetica,sans-serif" size=1>[(#SURTITRE)<br>
+                      ]</font> <font face="verdana, arial,helvetica,sans-serif" size=2><a href="#URL_ARTICLE"><b>#TITRE</b></a></font> 
+                      <font face="verdana, arial,helvetica,sans-serif" size=1><b>[<br>
+                      (#SOUSTITRE)]</b></font> <font face="verdana, arial,helvetica,sans-serif" size=1>[<br>
+                      (#INTRODUCTION)] 
+                      <p align="right"><font face="verdana, arial,helvetica,sans-serif" size=1><a href="#URL_ARTICLE">[Lire 
+                        la suite...]</a></font></p>
+                      <font face="verdana, arial,helvetica,sans-serif" size=1> 
+                      <BOUCLE_forums2(FORUMS){id_article}{plat}>
+                      </BOUCLE_forums2>
+                      <? $total_forum = "#TOTAL_BOUCLE"; ?>
+                      <b> 
+                      <? echo $total_forum == 1? " ($total_forum&nbsp;message)" : " ($total_forum&nbsp;messages)" ; ?>
+                      </b> 
+                      </B_forums2>
+                      </font></font> <br>
+                      </BOUCLE_articles2>
+                      </B_articles2>                    </td>
+                    <td width="50%" align="left" valign="top"> 
+                      
+                      <BOUCLE_articles3(ARTICLES){id_rubrique}{doublons B}{par date}{inverse}{0,2}>
+                      <BOUCLE_nouv_art3(ARTICLES){id_article}{age<4}>
+                      <font face="verdana,arial,helvetica,sans-serif" size="1" color="#0000FF"><b>NOUVEAU</b></font> 
+                      </BOUCLE_nouv_art3>
+                      <br>
+                      <font face="verdana, arial,helvetica,sans-serif" size=1> 
+                      <b>[(#DATE|nom_jour)] [(#DATE|jour)] [(#DATE|nom_mois)] 
+                      [(#DATE|annee)]</b> 
+                      <B_AUTEUR3>
+                      <b>- par 
+                      <BOUCLE_AUTEUR3(AUTEURS){id_article}{", "}{par nom}>
+                      #NOM 
+                      </BOUCLE_AUTEUR3>
+                      </b></font> 
+                      </B_AUTEUR3>
+                      <br>
+                      <font face="verdana, arial,helvetica,sans-serif" size=1>[(#SURTITRE)<br>
+                      ]</font> <font face="verdana, arial,helvetica,sans-serif" size=2><a href="#URL_ARTICLE"><b>#TITRE</b></a></font> 
+                      <font face="verdana, arial,helvetica,sans-serif" size=1><b>[<br>
+                      (#SOUSTITRE)]</b></font> <font face="verdana, arial,helvetica,sans-serif" size=1>[<br>
+                      (#INTRODUCTION)] 
+                      <p align="right"><font face="verdana, arial,helvetica,sans-serif" size=1><a href="#URL_ARTICLE">[Lire 
+                        la suite...]</a></font></p>
+                      <font face="verdana, arial,helvetica,sans-serif" size=1> 
+                      <BOUCLE_forums3(FORUMS){id_article}{plat}>
+                      </BOUCLE_forums3>
+                      <? $total_forum = "#TOTAL_BOUCLE"; ?>
+                      <b> 
+                      <? echo $total_forum == 1? " ($total_forum&nbsp;message)" : " ($total_forum&nbsp;messages)" ; ?>
+                      </b> 
+                      </B_forums3>
+                      </font></font> <br>
+                      </BOUCLE_articles3>
+                      </B_articles3>                    </td>
+                  </tr>
+                </table>
+              </td>
+              <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+            <tr> 
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+              <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+            </tr>
+          </table>
+          </B_webzine_on>
+        </div>
+          <B_sites_web>
+          <br> <table border=0 cellpadding=0 cellspacing=0 width="100%">
+            <tr> 
+              <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+              <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/fiche-perso.gif" /></td>
+              <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+            </tr>
+            <tr> 
+              <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+              <td class="content"><p align="left"><strong>A voir sur le web</strong><br>
+                  <br>
+                  <BOUCLE_sites_web(SITES){id_rubrique}{par nom_site}{syndication=non}>
+                  &nbsp<img src="IMG/002/puce_fleche.png" width="8" height="7"> 
+                  <b>[<a href="#URL_SITE" target="_blank">(#NOM_SITE|majuscules) 
+                  </a>]</b> <br>
+                  [(#DESCRIPTIF)] <br>
+                  <br>
+                  </BOUCLE_sites_web>
+                </p>
+                <p></p></td>
+              <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+            <tr> 
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+              <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+            </tr>
+          </table>
+          </B_sites_web>
+          <br> 
+          <B_syndic_on>
+          <br> <table border=0 cellpadding=0 cellspacing=0 width="100%">
+            <tr> 
+              <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+              <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/fiche-perso.gif" /></td>
+              <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+            </tr>
+            <tr> 
+              <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+              <td class="content"> <p align="left"><strong>Sites syndiqu&eacute;s</strong><br>
+                  <br>
+                  <BOUCLE_syndic_on(SYNDICATION){id_rubrique}{syndication=oui}>
+                  </BOUCLE_syndic_on>
+                <center>
+                  <table cellpadding=0 cellspacing=0 border=0>
+                    <tr> 
+                      <td width=330 align="left" valign="top"> <strong> 
+                        <B_syndic>
+                        Sur le web</strong><br> 
+                        <BOUCLE_syndic(SYNDICATION){id_rubrique}{par nom_site}{1/2}{syndication=oui}>
+                        <br> <b>[<a href="#URL_SITE"  target="_blank">(#NOM_SITE|majuscules)</a>]</b><br> 
+                        <br> 
+                        <BOUCLE_items(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{0,10}>
+                        <img src="IMG/002/puce_fleche.png" width="8" height="7"><a  target="_blank" href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a><br>
+                        #DESCRIPTIF<br> 
+                        </BOUCLE_items>
+                        <br> 
+                        </BOUCLE_syndic>
+                        <br> 
+                        </B_syndic>
+                      </td>
+                      <td width=8 rowspan=2><img src="NAVPICS/rien.gif" alt="" width="8" height="1" border="0"></td>
+                      <td width=8 rowspan=2 background="NAVPICS/point.gif"><img src="NAVPICS/rien.gif" alt="" width="8" height="1" border="0"></td>
+                      <td width=8 rowspan=2><img src="NAVPICS/rien.gif" alt="" width="8" height="1" border="0"></td>
+                      <td width=320 rowspan=2 align="left" valign="top"> <b> 
+                        <B_syndic2>
+                        </b><strong>Sur le web</strong><br> 
+                        <BOUCLE_syndic2(SYNDICATION){id_rubrique}{par nom_site}{syndication=oui}{2/2}>
+                        <br> <b>[<a href="#URL_SITE" target="_blank">(#NOM_SITE|majuscules)</a>]</b><br> 
+                        <br> 
+                        <BOUCLE_items2(BOUCLE_items)>
+                        <img src="IMG/002/puce_fleche.png" width="8" height="7"><a  target="_blank" href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a><br>
+                        #DESCRIPTIF<br> 
+                        </BOUCLE_items2>
+                        <br> 
+                        </BOUCLE_syndic2>
+                        <br> 
+                        </B_syndic2>
+                      </td>
+                    </tr>
+                  </table>
+                </center>
+                [ <a href="#">Haut</a> ] </td>
+              <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+            <tr> 
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+              <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+            </tr>
+          </table>
+          </B_syndic_on>
+          <br>
+      </TD>
+      <TD width=19><IMG src="IMG/002/rien.gif" width=19></TD>
+        <TD vAlign=top width="241"> <table width="100%" border=0 align="center" cellpadding=0 cellspacing=0>
+            <tr> 
+              <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+              <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/secteur.gif" /></td>
+              <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+            </tr>
+            <tr> 
+              <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+              <td align="left" class="content"> 
+                <INCLURE (_menu_rub.php3)>
+              <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+            <tr> 
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+              <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+            </tr>
+          </table>
+          
+        <br>
+		  <B_breves>
+          <table border=0 cellpadding=0 cellspacing=0 width="100%">
+            <tr> 
+              <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+              <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/classeur.gif" /></td>
+              <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+            </tr>
+            <tr> 
+              <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+              <td class="content"> <div class="grison">Dans cette rubrique</div>
+                <br> <b>En bref :</b><br> 
+                <BOUCLE_breves(BREVES){id_secteur}{par date}{inverse}{0,10}>
+                <br> <img src="IMG/002/puce_fleche.png" width="8" height="7"> 
+                [(#DATE|nom_jour)] [(#DATE|jour)] [(#DATE|nom_mois)] <br>
+                <a href="#URL_BREVE">[(#TITRE|supprimer_numero)]
+               
+                </a>  <INCLURE(_cadenas.php3){id_breve}>
+                </BOUCLE_breves>
+                <br> <br>
+                [ <a href="#">Haut</a> ] </td>
+              <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+            <tr> 
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+              <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+            </tr>
+          </table>
+         <br>
+        </B_breves>
+        <table border=0 cellpadding=0 cellspacing=0 width="100%">
+            <tr> 
+              <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+              <td background="IMG/002/r-h.gif"><img alt="recherche forum"  src="IMG/002/loupe.gif" /></td>
+              <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+            </tr>
+            <tr> 
+              <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+              <td class="content"> <div class="grison">Rechercher dans les forums </div>
+
+                <BR />  
+				[(#FORMULAIRE_RECHERCHE|_recherche-forum.php3)]
+              </td>
+              <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+            <tr> 
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+              <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+            </tr>
+</table><br>
+
+        <table border=0 cellpadding=0 cellspacing=0 width="100%">
+          <tr> 
+            <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+            <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/forum.gif" /></td>
+            <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+          </tr>
+          <tr> 
+            <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+            <td align="left" valign="top" class="content"> 
+              <div class="menu"> 
+                <div class="forums"> 
+                  <div class="grison">Derniers messages</div>
+                  <br>
+                  <INCLURE(_derniers_messages.php3)>
+                </div>
+              </div>
+              <p>&nbsp; </p>
+            </td>
+            <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+          <tr> 
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+            <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+          </tr>
+        </table>
+        <br><?php 
+	
+   $etat=$auteur_session['statut'];
+   if ($etat=="")
+   {
+   ?> <?php } else { ?>
+          <table border=0 cellpadding=0 cellspacing=0 width="100%">
+            <tr> 
+              <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+              <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/membres.gif" /></td>
+              <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+            </tr>
+            <tr> 
+              <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+              <td align="left" valign="top" class="content">
+                <div class="grison">Les membres</div>
+                <p>
+                  <INCLURE(_liste-membres.php3)>
+                </p>
+              </td>
+              <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+            <tr> 
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+              <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+              <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+            </tr>
+          </table>
+		  <?php } ?>
+        <br>
+          <p>&nbsp;</p></TD>
+    </TR>
+    </TBODY> 
+  </TABLE>
+
+  <br>
+<br>
+   
+     <INCLURE (_page_bas.php3)><br></div>
+</BODY>
+</BOUCLE_principale>
+</HTML>
+
+

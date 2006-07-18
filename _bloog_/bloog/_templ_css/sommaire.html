@@ -1,0 +1,258 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>#NOM_SITE_SPIP</title>
+<meta http-equiv="content-type" content="text/html; charset=#CHARSET">
+<meta name="generator" content="SPIP">
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/bloog.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/niftyCorners.css">
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/niftyPrint.css" media="print">
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty.js"></script>
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty-bloog.js"></script>
+</head>
+<body>
+<div id="container">
+<INCLURE(page.php3){fond=entete}>
+<!-- star of main content -->
+<div id="content">
+
+<div id="colonne">	
+	<div class="boite">
+	<INCLURE (_menu_rub.php3)>
+	</div>
+	
+	<div class="boite">
+	<BOUCLE_archives(BREVES){par date}{inverse}{0,1}>	   
+		<INCLURE(_inc_archives.php3){date}>
+	</BOUCLE_archives>
+	</div>
+	
+	
+	<INCLURE(page.php3){fond=inc_dernieres_photos-css}>
+
+	
+</div>
+
+
+
+<B_blogbox_haut>
+<div class="grande_boite">
+<BOUCLE_blogbox_haut(BREVES){age>0}{titre_mot=homebox_haut}{doublons}{par date}{inverse}{0,1}> 
+[(#LOGO_BREVE)] 
+<BOUCLE_SECU1(MOTS){id_breve}{titre = acces_restreint}>
+<?php	  
+if (!$etat=$auteur_session['statut'];){
+?>
+<h2><a href=#URL_BREVE> #TITRE</a><img src="./IMG/002/cle.gif" alt="Cette page est reservée aux membres" border=0 ></h2>
+[(#DATE|nom_jour)] [(#DATE|affdate)] 
+<?
+}else{
+?>
+<h3><a href=#URL_BREVE> #TITRE</a></h3>
+
+<?php } ?>
+</BOUCLE_SECU1>
+<h3><a href=#URL_BREVE> #TITRE</a></h3>
+[(#INTRODUCTION|justifier)] 		
+<//B_SECU1>
+              
+</BOUCLE_blogbox_haut>
+</div>
+</B_blogbox_haut>
+<div class="grande_boite">		
+<BOUCLE_blogue(BREVES){titre_mot=blogue}{doublons}{par date}{inverse}{0,5}>
+[(#LOGO_BREVE|#URL_BREVE)]
+
+<BOUCLE_SECU(MOTS){id_breve}{titre = acces_restreint}>
+<?php	  
+if (!$etat=$auteur_session['statut'];){
+?>
+<a href="_authentification.php3">connexion</a> <br>
+<br>
+<div class="h5"><a href=#URL_BREVE> #TITRE</a><img src="./IMG/002/cle.gif" alt="Cette page est reservée aux membres" border=0 ></div>
+[(#DATE|nom_jour)] [(#DATE|affdate)]<br>
+<?
+}else{
+?>
+<div class="h5"><a href=#URL_BREVE>#TITRE</a></div>
+<p>[(#DATE|nom_jour)] [(#DATE|affdate)]<br>
+[(#TEXTE|smileys|justifier)]</p>
+       
+<a href=#URL_BREVE> Lien</a> -
+[<a href="forum.php3?(#PARAMETRES_FORUM)">R&eacute;agir</a>] 
+                
+<B_forums2>	- <BOUCLE_forums2(FORUMS){id_breve}{plat}>
+<? $id_forum2 = "#ID_FORUM"; ?>   
+</BOUCLE_forums2>
+<a href="#URL_BREVE#forum<?echo $id_forum2?>">  
+<? $total_forum2 = "#TOTAL_BOUCLE"; ?>
+<? echo ($total_forum2 == 1) ? " ($total_forum2&nbsp;commentaire)" : " ($total_forum2&nbsp;commentaires)" ?>
+</B_forums2>
+</a>
+<br><br>
+[Voir en ligne : <a href="(#URL_SITE)" target="_blank">][(#NOM_SITE)</a><br><br>]
+<br>
+</BOUCLE_SECU>
+
+
+<h2><a href=#URL_BREVE>#TITRE</a></h2>
+<p>[(#DATE|nom_jour)] [(#DATE|affdate)]</p>
+<div class="texte">[(#TEXTE|justifier)]</div>
+<div class="lien"><a href=#URL_BREVE> Lien</a> -
+[<a href="forum.php3?(#PARAMETRES_FORUM)">R&eacute;agir</a>]  
+<B_forums3>	- <BOUCLE_forums3(FORUMS){id_breve}{plat}>
+<? $id_forum3 = "#ID_FORUM"; ?>   
+</BOUCLE_forums3>
+<a href="#URL_BREVE#forum<?echo $id_forum3?>">
+<? $total_forum3 = "#TOTAL_BOUCLE"; ?>
+<? echo ($total_forum3 == 1) ? " ($total_forum3&nbsp;commentaire)" : " ($total_forum3&nbsp;commentaires)" ; ?>
+</B_forums3>
+</a>
+[Voir en ligne : <a href="(#URL_SITE)" target="_blank">][(#NOM_SITE)</a>]
+</div>
+
+<//B_SECU>             
+</BOUCLE_blogue>
+</div>
+ 
+<div class="grande_boite">	
+<BOUCLE_une(ARTICLES){tout}{titre_mot=une}{doublons}{par date}{inverse}{0,1}>
+
+                      <p>A la une</p>
+
+                  [<img src="./IMG/(#LOGO_ARTICLE|fichier)" >] 
+                    <BOUCLE_SECUart(MOTS){id_article}{titre = acces_restreint}>
+                    <?php	$secuart=1; ?>
+                    </BOUCLE_SECUart>
+                    <?php 
+	if ($secuart == 1) {
+   $etat=$auteur_session['statut'];
+   if ($etat=="")
+   {
+   ?>
+                    <div class="h5"><a href=#URL_ARTICLE> [(#TITRE|supprimer_numero)]</a><img src="./IMG/002/cle.gif" alt="Cette page est reservée aux membres" border=0 ></div>
+                    [(#DATE|nom_jour)] [(#DATE|affdate)] 
+                    <?
+    }else{
+  ?>
+
+                    <div class="h5"><a href=#URL_ARTICLE> [(#TITRE|supprimer_numero)]</a></div>
+                    [(#DATE|nom_jour)] [(#DATE|affdate)][(#INTRODUCTION|justifier)] 
+                    <?php }} else {?>
+                    <div class="h5"><a href=#URL_ARTICLE>[(#TITRE|supprimer_numero)]</a></div>
+                    [(#DATE|nom_jour)] [(#DATE|affdate)][(#INTRODUCTION|justifier)] 
+                    <?php } ?>
+                  
+                    <BOUCLE_une_suite(ARTICLES){tout}{titre_mot=une}{doublons}{par date}{inverse}{0,4}>
+
+                    <div class="h5"><a href=#URL_ARTICLE> [(#TITRE|supprimer_numero)] 
+                      <INCLURE(_cadenas.php3){id_article}>
+                      </a></div>
+                    [(#DATE|nom_jour)] [(#DATE|affdate)][(#INTRODUCTION|couper{300}|justifier)]<br>
+                      </BOUCLE_une_suite>
+
+</BOUCLE_une>
+</div>
+
+<div class="grande_boite">
+              <BOUCLE_appel(RUBRIQUES){doublons}{titre_mot = menu_rub}>
+
+              <div class=td_ln><b>[<a href="#URL_RUBRIQUE" class="noir">(#TITRE|supprimer_numero)</a>]</b> 
+              <INCLURE(_cadenas.php3){id_rubrique}></div>
+              <B_art>
+              <br>
+              <BOUCLE_art(ARTICLES){id_rubrique}{par date}{inverse}{0,5}>
+              <BOUCLE_nouv_art(ARTICLES){id_article}{age><7}>
+              <font face="verdana,arial,helvetica,sans-serif" size="1" color="red"><b>NOUVEAU</b></font><br>
+              </BOUCLE_nouv_art>
+
+              <a href="#URL_ARTICLE">#TITRE</a> 
+              <INCLURE(_cadenas.php3){id_article}>
+              <br>
+              </BOUCLE_art>
+              </B_art>
+           
+                    <BOUCLE_sous_rubriques(RUBRIQUES){branche}{id_parent!=0}{par titre}{1/2}>
+                    <img src="./IMG/002/puce.gif" border=0 >[<a href="#URL_RUBRIQUE" class="noir">(#TITRE|supprimer_numero)</a>] 
+                    <INCLURE(_cadenas.php3){id_rubrique}>
+
+                    <br>
+                    <BOUCLE_art2(ARTICLES){id_rubrique}{par date}{inverse}{0,5}>
+                    <BOUCLE_nouv_art2(ARTICLES){id_article}{age><7}>
+                    <font face="verdana,arial,helvetica,sans-serif" size="1" color="red"><b>NOUVEAU</b></font> 
+                    </BOUCLE_nouv_art2>
+                    <img src="./IMG/002/puce_fleche.png" border=0 ><a href="#URL_ARTICLE">#TITRE</a> 
+                     <INCLURE(_cadenas.php3){id_article}>
+                    <br>
+                    </BOUCLE_art2>
+
+                    <br>
+                    
+                    </BOUCLE_sous_rubriques>
+                
+                    <BOUCLE_sous_rubriques2(RUBRIQUES){branche}{id_parent!=0}{par titre}{2/2}>
+                    <img src="./IMG/002/puce.gif" border=0 >[<a href="#URL_RUBRIQUE" class="noir">(#TITRE|supprimer_numero)</a>] 
+                    <INCLURE(_cadenas.php3){id_rubrique}>
+                    <br>
+                    <BOUCLE_art3(ARTICLES){id_rubrique}{par date}{inverse}{0,5}>
+
+                    <BOUCLE_nouv_art3(ARTICLES){id_article}{age><7}>
+                    
+                    <font face="verdana,arial,helvetica,sans-serif" size="1" color="red"><b>NOUVEAU</b></font> 
+                    </BOUCLE_nouv_art3>
+                    <img src="./IMG/002/puce_fleche.png" border=0 ><a href="#URL_ARTICLE">#TITRE</a> 
+                    <INCLURE(_cadenas.php3){id_article}>
+                    <br>
+                    </BOUCLE_art3>
+                    <br>
+                    
+                    </BOUCLE_sous_rubriques2>
+
+              
+              </BOUCLE_appel>
+   </div>         
+
+<div style="clear:both">&nbsp;</div>
+
+<h2>Récemment sur le web</h2>
+<p>...en images</p>
+<div id="minipics">
+<ul>
+    <li><img src="egg_small.jpg" alt=""></li>
+    <li><img src="sea_small.jpg" alt=""></li>
+    <li><img src="sleep_small.jpg" alt=""></li>
+    <li><img src="join_small.jpg" alt=""></li>
+</ul>
+</div> 
+<h2>Récemment sur le web</h2>
+<div class="gradient"><p>Ieii euu ioi ou iiuuei oi iao ieiiuie ouuouauo euo euie oio aueiu eeui ueeuuui eio uiiio  uaeuouee oe uuouau eioiiue oeoii oeuo ia a iiiaui eiiea o u oau eio oeeouoeu oieo uo uue eoia oaieu oeu ooeoo oauou oeeeea iiaaeuee oeeieuo eoaooo iiooeu.</p></div>
+
+<B_syndic>
+<div class="grande_boite">
+<ul>
+<BOUCLE_syndic(SYNDIC_ARTICLES){tout}{par date}{inverse}{0,10}>
+<li><img src="./IMG/002/puce_fleche.png" width="8" height="7"> 
+              [(#DATE|jour)]/[(#DATE|mois)]/[(#DATE|annee)] : <a href="#URL_ARTICLE" target="_blank" title="A lire sur : #NOM_SITE">#TITRE</a><br>
+ par <a title="Tous les articles de #NOM_SITE" href="_kiosque.php3?id_syndic=#ID_SYNDIC">#NOM_SITE</a>
+ </li>
+</BOUCLE_syndic>
+</ul>
+        [ <strong><a href="_kiosque.php3" title="Retrouvez les articles syndiqués sur #NOM_SITE_SPIP" >Kiosque</a></strong> 
+        ] 
+</div>
+
+</B_syndic>
+
+
+</div> <!-- close main content -->
+<div id="footer">
+
+<address>
+<INCLURE(_inc_stats.php3)>
+</address>
+</div> <!--close footer -->
+
+</div> <!-- close container -->
+ <INCLURE (_page_bas.php3)>
+</body>
+</html>

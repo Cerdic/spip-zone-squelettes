@@ -1,0 +1,273 @@
+<HTML>
+<BOUCLE_principale(ARTICLES){id_article}{doublons}>
+<HEAD>
+<title> [ #TITRE - #NOM_SITE_SPIP ] </title>
+<SCRIPT src="IMG/002/_interface.js" type="text/javascript"></SCRIPT>
+<link rel="stylesheet" href="IMG/002/_interface.css" type="text/css">
+</HEAD>
+<BODY>
+<div align="center"> 
+    <INCLURE (_page_barre_menu.php3)><br>
+
+  <TABLE width=750  border=0 cellPadding=0 cellSpacing=0>
+    <TBODY> 
+    <TR> 
+      <TD vAlign=top width="490"> 
+	  
+<h2 align="center">#NOM_SITE_SPIP</h2>
+	  
+<table border=0 cellpadding=0 cellspacing=0 width="100%"><tr> 
+<td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+<td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/fiche-perso.gif" /></td>
+<td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td></tr>
+<tr><td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+            <td class="content"> 
+              <div class="chemin" align="right"> 
+                <BOUCLE_plan(HIERARCHIE){id_article}{" >
+                "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|textebrut|attribut_html)"]>#TITRE</a>	
+                </BOUCLE_plan>
+                </div>
+			  #LOGO_ARTICLE <br><br>
+              [(#SURTITRE)]<br>
+              <div class="h5">#TITRE</div>   
+              <br>[(#SOUSTITRE)] 
+              <br>[Premi&egrave;re publication : (#DATE_REDAC|affdate), mise en 
+                ligne: ] [(#DATE|nom_jour)] [(#DATE|affdate)][, <b>par (#LESAUTEURS)</b>] 
+                <br>
+                <br>
+                [<b>(#CHAPO|justifier)</b> 
+              <p>] [(#TEXTE|liens_ouvrants|justifier)] 
+              <p align="center"> 
+                <BOUCLE_documents_video(DOCUMENTS) {id_article} {mode=document} {doublons}>
+               
+				<?  $format = '[(#TYPE_DOCUMENT|texte_script)]' ;
+    $adr = '[(#URL_DOCUMENT|texte_script)]';
+	 $site = '[(#URL_SITE_SPIP|texte_script)]';
+		 
+	 if ( $format == 'RealAudio'){
+	 $url = "$site/player/rmplayer.php?file=$site/$adr";
+	 echo $url ;} 
+		else if ( $format == 'Windows Media'){
+	 $url = "$site/player/wmplayer.php?file=$site/$adr";
+	 echo $url ;} else if ( $format == 'Midi'){
+	 $url = "$site/player/wmplayer.php?file=$site/$adr";
+	 echo $url ;}   		
+
+	 
+	 ?>
+                <br>
+                <center>
+                  <?php if($url){?>
+                  <IFRAME ALLOWTRANSPARENCY="true" FRAMEBORDER="0" WIDTH="400" HEIGHT="330" SCROLLING="auto" SRC="<? echo "$url" ; ?>" ></IFRAME> 
+                  <?php } else {
+					  echo "<div class='grison'>" ;
+					  echo "BloOg Player" ;
+					  echo "</div>" ; 
+					  }?>
+                </center>
+                <br> 
+                </BOUCLE_documents_video>
+              <p>&nbsp;
+              <p>&nbsp; 
+              <center>
+                <table cellpadding=0 cellspacing=10>
+                  <B_portfolio>
+                  <tr width=100%> 
+                    <BOUCLE_portfolio(DOCUMENTS){id_article}{extension==jpg|png|gif}{mode=document}{doublons}{0,3}>
+                    <td width=33% valign="top" align="center"> [(#LOGO_DOCUMENT|#URL_DOCUMENT)] 
+                      [<br>
+                      <b>(#TITRE)</b>] [<br>
+                      (#DESCRIPTIF)] </td>
+                    </BOUCLE_portfolio>
+                    <BOUCLE_port_rec(BOUCLE_portfolio)>
+                    </BOUCLE_port_rec>
+                  </tr>
+                  </B_portfolio>
+                </table>
+              </center>
+              [ 
+              <p>(#PS|justifier)</p>
+              ] [ 
+              <hr>
+              <p>(#NOTES)</p>
+              ] 
+              <B_documents>
+              <table width=100% cellpadding=0 cellspacing=0 border=0>
+                <tr width=100%> 
+                  <td width=100% background="NAVPICS/point.gif"><img src="NAVPICS/rien.gif" alt="" width="8" height="8" border="0"></td>
+                </tr>
+              </table>
+              <center>
+                Documents li&eacute;s 
+              </center>
+              <table width=100% cellpadding=0 cellspacing=0 border=0>
+                <BOUCLE_documents(DOCUMENTS){id_article}{par titre}{mode=document}{doublons}>
+                <tr> 
+                  <td align='center'> [(#LOGO_DOCUMENT|#URL_DOCUMENT)] </td>
+                  <td width=10>&nbsp;</td>
+                  <td> <a href="#URL_DOCUMENT">[(#TITRE|majuscules)]</a> [: (#DESCRIPTIF)]<br>
+                    [(#TYPE_DOCUMENT) -] [(#TAILLE|taille_en_octets)][, (#LARGEUR) 
+                    x #HAUTEUR pixels] </td>
+                </tr>
+                </BOUCLE_documents>
+                <tr> 
+                  <td>&nbsp;</td>
+                </tr>
+              </table>
+              </B_documents><br>
+             [ <a href="article_print.php3?id_article=#ID_ARTICLE">Imprimer cet article</a> ]  [ <a href="#">Haut</a> ] <br>
+            </td>
+              <td background="IMG/002/r-d.gif" width="5">&nbsp;</td><tr> 
+ <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+<td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+<td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+</tr></table>
+        <table border=0 cellpadding=0 cellspacing=0 width="100%">
+          <tr> 
+            <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+            <td background="IMG/002/r-h.gif">&nbsp;</td>
+            <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+          </tr>
+          <tr> 
+            <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+            <td class="content"> 
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr valign="middle" align="left"> 
+                  <td width="191" valign="top"> 
+                    <p><b><img src="NAVPICS/rien.gif" width="12" height="5"> [<a href="forum.php3?(#PARAMETRES_FORUM)"><img src="IMG/002/post.gif" border="0"></a>]<br>
+                      </b></p>
+                    <p><b><br>
+                      </b></p>
+                  </td>
+                  <td width="10">&nbsp;</td>
+                  <td><font size="1"><b><font face="Verdana, Arial, Helvetica, sans-serif" color="#FFFFFF"><img src="NAVPICS/rien.gif" width="12" height="5"></font></b></font><b><br>
+                    </b></td>
+                </tr>
+                <tr> 
+                  <td align="center" valign="top" colspan="3"> 
+                    <BOUCLE_Forums(FORUMS){id_article}{par date}{inverse}>
+                    <a name="forum#ID_FORUM"></a> 
+                    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+                      <tr> 
+                        <td class="forummessage"> <b>[(#TITRE)] </b></td>
+                      </tr>
+                      <tr> 
+                        <td class="forummessage"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"> 
+                          [(#DATE|affdate)][, par <a href="mailto:#EMAIL">(#NOM)</a>] 
+                          &nbsp; [<br>
+                          <a href="#URL_SITE">(#NOM_SITE)</a>] </font></td>
+                      </tr>
+                      <tr> 
+                        <td class="forummessage" valign="bottom" align="left"> 
+                          <p>[(#TEXTE|smileys)] 
+                          <p align='right'>[<font size=1><a href="forum.php3?(#PARAMETRES_FORUM)"><img src="IMG/002/reply.gif" width="82" height="25" border="0"></a></font>]</p>
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td class="forumreponse" valign="bottom" align="left"> 
+                          <BOUCLE_fils(FORUMS){id_parent}{par date}>
+                          <p> <a name="forum#ID_FORUM"></a> 
+                          <p>&nbsp; 
+                          <li><b>[(#TITRE)]</b> <br>
+                            <font size=1> [(#DATE|affdate)][, par <a href="mailto:#EMAIL">(#NOM)</a>] 
+                            &nbsp; [<br>
+                            <a href="#URL_SITE">(#NOM_SITE)</a>] </font> 
+                            <hr NOSHADE size=1>
+                            [(#TEXTE|smileys)] 
+                            <p align="right">[<font size=1><a href="forum.php3?(#PARAMETRES_FORUM)"><img src="IMG/002/reply.gif" width="82" height="25" border="0"></a></font>]
+                              <BOUCLE_Forums_Boucle(boucle_fils)>
+                              </BOUCLE_Forums_Boucle>
+                              </BOUCLE_fils>
+                              </B_fils>
+                        </td>
+                      </tr>
+                    </table>
+                    </BOUCLE_Forums>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="191" align="left" valign="bottom" height="14">&nbsp;</td>
+                  <td width="10" height="14"><img src="NAVPICS/rien.gif" width="10" height="5"></td>
+                  <td valign="bottom" align="left">&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+            <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+          <tr> 
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+            <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+          </tr>
+        </table>
+        <br>
+      </TD>
+      <TD width=32>&nbsp;</TD>
+      <TD vAlign=top width="241"> 
+        <table border=0 cellpadding=0 cellspacing=0 width="100%">
+          <tr> 
+            <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+            <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/messagerie.gif" /></td>
+            <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+          </tr>
+          <tr> 
+            <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+            <td class="content"> 
+              <div class="h5"> 
+                <INCLURE (_menu_rub.php3)>
+              </div>
+            </td>
+            <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+          <tr> 
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+            <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+          </tr>
+        </table>
+        <p>&nbsp;</p>
+        
+        <table border=0 cellpadding=0 cellspacing=0 width="100%"><tr> 
+<td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+              <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/breve.gif" /></td>
+<td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td></tr>
+<tr><td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+              
+            <td class="content"> 
+			  <div class="h5">Dans la m&ecirc;me rubrique</div><br>
+              <B_meme_rubrique>
+              <b>Autres articles :</b> <br>
+              <BOUCLE_meme_rubrique(ARTICLES){id_rubrique}{doublons}{0,10}{par hasard}>
+              <img src="IMG/002/puce_fleche.png" width="8" height="7"> 
+              <a href="#URL_ARTICLE">#TITRE</a> <br>
+              </BOUCLE_meme_rubrique>
+              <br>
+              </B_meme_rubrique>
+              <B_syndic>
+              <b>SUR LE WEB :</b> 
+              <BOUCLE_syndic(SYNDIC_ARTICLES){id_rubrique}{par date}{inverse}{0,8}>
+              <br>
+              <img src="IMG/002/puce_fleche.png" width="8" height="7"> 
+              <a target="_blank" href="#URL_ARTICLE">#TITRE</a> 
+              </BOUCLE_syndic>
+              </B_syndic>
+              <br>
+              <br>
+              [ <a href="#">Haut</a> ] </td>
+              <td background="IMG/002/r-d.gif" width="5">&nbsp;</td><tr> 
+ <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+<td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+<td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+</tr></table>
+        
+      </TD>
+    </TR>
+    </TBODY> 
+  </TABLE>
+
+  <br>
+    <INCLURE (_page_barre_menu.php3)><br>  <INCLURE (_page_bas.php3)><br></div>
+  
+</BODY>
+</BOUCLE_principale>
+</HTML>
+
+

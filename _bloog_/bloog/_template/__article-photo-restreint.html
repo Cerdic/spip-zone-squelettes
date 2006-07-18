@@ -1,0 +1,880 @@
+<?php
+ 
+ // Disable caching
+    //
+    @header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+    @header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+
+    @header("Cache-Control: no-store, no-cache, must-revalidate");
+    @header("Cache-Control: post-check=0, pre-check=0", false);
+    @header("Pragma: no-cache");
+include_ecrire('inc_layer.php3');
+	$etat=$auteur_session['statut'];
+   if ($etat=="")
+   {
+   ?><INCLURE(_authentification.php3)>
+   <?php } else { ?>
+
+
+<HTML>
+<HEAD>
+<title>[#NOM_SITE_SPIP] <BOUCLE_titre(ARTICLES){id_article}>#TITRE</BOUCLE_titre></title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<BOUCLE_metatags(ARTICLES){id_article}>
+[<META NAME="Description" CONTENT='(#DESCRIPTIF|supprimer_tags|texte_script)'>]
+<meta name="Keywords" content="<BOUCLE_metamots(MOTS){id_article}{","}>#TITRE</BOUCLE_metamots><BOUCLE_metadocs(DOCUMENTS){id_article}{","}>#TITRE</BOUCLE_metadocs>">
+<meta name="Author" content="<BOUCLE_author(AUTEURS){id_article}{","}>#NOM</BOUCLE_author>">
+</BOUCLE_metatags>
+
+<!-- Utilisé pour popup GALERIEJPG -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function popup(photo, titre, largeur, hauteur) { // Ateliers CYM - Paris
+	var contenu="<html><head><title>"+titre+"</title></head><body topmargin='0' leftmargin='0'><p><a href='javascript:self.close()'><img border='0' src='"+photo+"'></a><div id='Layer1' style='position:absolute; z-index:1; left: 2; top: 2'><font size='1' color='blue' face='Comic Sans MS, Verdana, Arial, Helvetica, sans-serif'>cliquer pour fermer</font></div></p></body></html>";
+	var fenetre=open("","","title="+titre+",resizable=yes,scroll=no,width="+largeur+", height="+hauteur+"");
+	fenetre.document.write(contenu);
+	}
+// -->
+</script>
+
+
+<!-- Appel du fichier feuille de style spipstyle.css pour cette page -->
+<SCRIPT src="IMG/002/_interface.js" type="text/javascript"></SCRIPT>
+<link rel="stylesheet" href="IMG/002/_interface.css" type="text/css">
+
+</HEAD>
+<BODY topmargin="0" leftmargin="0" marginwidth="0" marginheight="0"> 
+
+<div align="center">
+<INCLURE (_page_barre_menu.php3)>
+</div>
+<CENTER>
+  
+  <BOUCLE_principale2(ARTICLES){id_article}>
+  <div align="center"> <br>
+    <table border=0 cellpadding=0 cellspacing=0 width="750">
+      <tr> 
+        <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+        <td background="IMG/002/r-h.gif" colspan="2"><img alt="" height="24"  width="24" src="IMG/002/photo.gif" /></td>
+        <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+      </tr>
+      <tr> 
+        <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+        <td class="content"> [(#SURTITRE|majuscules)]<br>
+          <div class="h5">#TITRE</div>
+          <p>[(#SOUSTITRE|majuscules)] </p>
+        </td>
+        <td class="content"> 
+          <div align="right"> 
+            <BOUCLE_plan(HIERARCHIE){id_article}{" >
+            "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>	
+            </BOUCLE_plan>
+            <br>
+            <br>
+            <!-- Envoyer l'article par mail -->
+            <?
+   // Titre de l'article pour générer le corps du mail
+   $titre='[(#TITRE|texte_script)]';
+   // URL de l'article pour générer le corps du mail
+   $url="[(#URL_SITE_SPIP)]/article.php3?id_article=#ID_ARTICLE";
+   // URL de l'article pour recharger la page
+   $url2="article.php3?id_article=#ID_ARTICLE";
+?>
+            <INCLURE(envoyer_par_mail.php3){url=$url}{url2=$url}{titre=$titre}>
+            <br>
+            <br>
+            [ <a href="article_print.php3?id_article=#ID_ARTICLE">Imprimer cet 
+            article</a> ] </div>
+        </td>
+        <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+      <tr> 
+        <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+        <td background="IMG/002/r-b.gif" colspan="2"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+        <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+      </tr>
+    </table>
+    
+    <br>
+  </div>
+
+  <a name="diapo"></a> <br>
+<br>
+  <!-- DEBUT GALERIE AUTOMATIQUE -->
+  <!-- taille de vignette automatique préconisée: 100 -->
+  <?php
+if (!$debut_img)  { $debut_img = 0;  }
+if (!$debut_vign) { $debut_vign = 0; }
+?>
+  <BOUCLE_nb_imgs(DOCUMENTS){id_article}{extension=jpg}{mode=document}{par titre}></BOUCLE_nb_imgs>
+  <?php $nb_vigns = #TOTAL_BOUCLE; ?>
+  <//B_nb_imgs>
+  <TABLE WIDTH=750 CELLPADDING=0 CELLSPACING=0 BORDER=0  valign="top">
+    <!--DWLayoutTable-->
+    <tr>
+
+
+              
+      <td width="79" height="33" align="left" valign="top" class="menuphoto"> <div align="center"><a href="article.php3?id_article=#ID_ARTICLE" ><img src="/IMG/002/photo-vignettes.gif" border="0"></a>&nbsp; 
+        <a href="article.php3?id_article=#ID_ARTICLE&menu=image&format=0" title="Slideshow"><img src="/IMG/002/photo-diapo.gif" border="0"></a>&nbsp;        </div></td>
+
+      <td  width="575" align="center" valign="top" class="menuphoto"> 
+        <?php
+// le menu indique la position de l'image en grand
+// bas  et droite (et vignette):  vignettes puis image
+// haut et gauche (et image):     image     puis vignettes
+
+if (!$menu) { $menu = 'vignettes'; } // choix menu par défaut
+
+if ($menu=='vignettes') { }
+if ($menu=='image')     { }
+if ($menu=='bas')       { echo "<font size='2'>&nbsp;</font></td></tr></table><TABLE WIDTH='95%' CELLPADDING='0' CELLSPACING='0' BORDER='0'  valign='top'><tr><td width='100%' align='center' valign='bottom'>\n"; }
+if ($menu=='haut')      { echo "<font size='2'>&nbsp;</font></td></tr></table><TABLE WIDTH='95%' CELLPADDING='0' CELLSPACING='0' BORDER='0'  valign='top'><tr><td width='100%' align='center' valign='middle'>\n"; }
+if ($menu=='droite')    { echo "<font size='2'>&nbsp;</font></td></tr></table><TABLE WIDTH='95%' CELLPADDING='0' CELLSPACING='0' BORDER='0'  valign='top'><tr><td width='30%' align='center' valign='top'>\n";     }
+if ($menu=='gauche')    { echo "<font size='2'>&nbsp;</font></td></tr></table><TABLE WIDTH='95%' CELLPADDING='0' CELLSPACING='0' BORDER='0'  valign='top'><tr><td width='70%' align='center' valign='middle'>\n";  }
+?>
+        <?php
+if ($menu=='vignettes') {
+?>
+        <?php
+      	$debut = $debut_vign + 1;
+        $fin = $debut + 14;
+     if ( $debut_vign < 15 ){
+	$dprec = $nb_vigns - 15;
+        $debut_vign = 0;
+        $debut_image = 0;
+        } else {
+        $dprec = $debut_vign - 15;
+ 	}
+     if ( $debut_vign > $nb_vigns - 15 ){
+ 	$dsuiv = 0;
+ 	$fin = $nb_vigns;
+ 	}else{
+ 	$dsuiv = $debut_vign + 15;
+	}
+     if ( $debut_vign == $nb_vigns - 15 ){
+ 	$dsuiv = 0;
+ 	$debut = $debut_vign + 1;
+ 	$fin = $nb_vigns;
+ 	}
+     echo "<font size='2'>";
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=$menu&debut_img=$dprec&debut_vign=$dprec'> <img alt=''  src='IMG/002/stock_media-rew-16.gif' border='0'> </a>";
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=$menu' >[$debut-$fin]/$nb_vigns</a>&nbsp;";
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=$menu&debut_img=$dsuiv&debut_vign=$dsuiv'><img alt=''  src='IMG/002/stock_media-fwd-16.gif' border='0'> </a>";
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=image&debut_img=0&format=0&diapo=1#diapo' title='Play'><img src='/IMG/002/stock_media-play-16.gif' border='0'></a>&nbsp;";
+	 echo "</font>";
+     ?>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+    </tr>
+  </table>
+  <TABLE WIDTH="750" CELLPADDING="0" CELLSPACING="5" BORDER="0"  valign="top">
+    <tr>
+	
+<td valign="top" width="250">
+<table border=0 cellpadding=0 cellspacing=0 width="100%">
+    <tr> 
+      <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+      <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/fiche-perso.gif" /></td>
+      <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+    </tr>
+    <tr> 
+      <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+      <td class="content"> 
+        [(#LOGO_ARTICLE|majuscules)]
+        [(#SURTITRE|majuscules)]<br>
+        <div class="h5">#TITRE</div>
+        [(#SOUSTITRE|majuscules)] 
+         <br>
+ [<br>
+        (#TEXTE|liens_ouvrants|justifier)] 
+        <center>
+        </center>
+        [ 
+        <p>(#PS|justifier)</p>
+        ] [ 
+        <hr>
+        <p>(#NOTES)</p>
+        ] <br>
+      </td>
+      <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+    <tr> 
+      <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+      <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+      <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+    </tr>
+  </table>
+</td>	
+<td width="500" align="center" valign="top">
+        <br>
+              <table width="100%"><tr>
+       <?php 
+		$b=0;	
+		$id_article = #ID_ARTICLE ;
+		?> 
+		
+		<BOUCLE_vignettes1(DOCUMENTS){id_article}{extension=jpg}{mode=document}{par titre}{debut_vign,3}{doublons}>
+		<?php $b++;	?>
+		<td width="20%" align="center" valign="top">
+	        <a href="article.php3?id_article=<? echo $id_article ?>&menu=image&debut_img=<? echo $b-1 ?>&format=0#diapo">
+              <img src="[./IMG/(#LOGO_DOCUMENT|fichier)]" border="0"  alt="[(#TAILLE|taille_en_octets)] ( #LARGEUR x #HAUTEUR ) "></a>
+              <font size="2">
+		[<br><b><A HREF="#URL_DOCUMENT" >(#TITRE)</A></b><br>]
+	        [(#DESCRIPTIF)<br>]
+		</font>
+              </td>
+        </BOUCLE_vignettes1>
+                </tr><tr>
+        <BOUCLE_vignettes2(DOCUMENTS){id_article}{extension=jpg}{mode=document}{par titre}{debut_vign,3}{doublons}>
+		<?php $b++;	?>
+		<td width="20%" align="center" valign="top">
+	         <a href="article.php3?id_article=<? echo $id_article ?>&menu=image&debut_img=<? echo $b-1 ?>&format=0#diapo">
+              <img src="[./IMG/(#LOGO_DOCUMENT|fichier)]" border="0"  alt="[(#TAILLE|taille_en_octets)] ( #LARGEUR x #HAUTEUR ) "></a>
+              <font size="2">
+		[<br><b><A HREF="#URL_DOCUMENT" >(#TITRE)</A></b><br>]
+	        [(#DESCRIPTIF)<br>]
+		</font>
+              </td>
+        </BOUCLE_vignettes2>
+                </tr><tr>
+        <BOUCLE_vignettes3(DOCUMENTS){id_article}{extension=jpg}{mode=document}{par titre}{debut_vign,3}{doublons}>
+		<?php $b++;	?>
+		<td width="20%" align="center" valign="top">
+	         <a href="article.php3?id_article=<? echo $id_article ?>&menu=image&debut_img=<? echo $b-1 ?>&format=0#diapo">
+              <img src="[./IMG/(#LOGO_DOCUMENT|fichier)]" border="0"  alt="[(#TAILLE|taille_en_octets)] ( #LARGEUR x #HAUTEUR ) "></a>
+              <font size="2">
+		[<br><b><A HREF="#URL_DOCUMENT" >(#TITRE)</A></b><br>]
+	        [(#DESCRIPTIF)<br>]
+		</font>
+              </td>
+        </BOUCLE_vignettes3>
+		 </tr><tr>
+		<BOUCLE_vignettes4(DOCUMENTS){id_article}{extension=jpg}{mode=document}{par titre}{debut_vign,3}{doublons}>
+		<?php $b++;	?>
+		<td width="20%" align="center" valign="top">
+	         <a href="article.php3?id_article=<? echo $id_article ?>&menu=image&debut_img=<? echo $b-1 ?>&format=0#diapo">
+              <img src="[./IMG/(#LOGO_DOCUMENT|fichier)]" border="0"  alt="[(#TAILLE|taille_en_octets)] ( #LARGEUR x #HAUTEUR ) "></a>
+              <font size="2">
+		[<br><b><A HREF="#URL_DOCUMENT" >(#TITRE)</A></b><br>]
+	        [(#DESCRIPTIF)<br>]
+		</font>
+              </td>
+        </BOUCLE_vignettes4>
+		 </tr><tr>
+		<BOUCLE_vignettes5(DOCUMENTS){id_article}{extension=jpg}{mode=document}{par titre}{debut_vign,3}{doublons}>
+		<?php $b++;	?>
+		<td width="20%" align="center" valign="top">
+	         <a href="article.php3?id_article=<? echo $id_article ?>&menu=image&debut_img=<? echo $b-1 ?>&format=0#diapo">
+              <img src="[./IMG/(#LOGO_DOCUMENT|fichier)]" border="0"  alt="[(#TAILLE|taille_en_octets)] ( #LARGEUR x #HAUTEUR ) "></a>
+              <font size="2">
+		[<br><b><A HREF="#URL_DOCUMENT" >(#TITRE)</A></b><br>]
+	        [(#DESCRIPTIF)<br>]
+		</font>
+              </td>
+        </BOUCLE_vignettes5>
+              </tr></table>
+<?php
+}
+?>
+
+<?php
+if ($menu=='image') {
+?>
+     <?php
+     if ($debut_img == $nb_vigns - 1){
+ 	$isuiv = 0;
+ 	}else{
+ 	$isuiv = $debut_img + 1;
+	}
+     if ($debut_img == 0){
+	$iprec = $nb_vigns - 1;
+ 	}else{
+ 	$iprec = $debut_img - 1;
+ 	}
+     $debut = $debut_img + 1;
+
+     $zoomp=$format+10;
+     $zoomm=$format-10;
+
+     echo "<font size='2'>";
+     if ($format == 2) {                  // autozoom
+
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=$menu&debut_img=$debut_img&format=0' title='Size'><img src='/IMG/002/zoom_1.gif' border='0'></a> &nbsp;";
+     }
+     if (!$format OR $format == 0) {      // taille réelle
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=$menu&debut_img=$debut_img&format=$zoomm' title='-10%'><img src='/IMG/002/zoom_out.gif' border='0'></a> &nbsp;";
+     echo "<img src='/IMG/002/zoom_1.gif' border='0'> &nbsp;";
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=$menu&debut_img=$debut_img&format=$zoomp' title='+10%'><img src='/IMG/002/zoom_in.gif' border='0'></a> &nbsp;";
+     }
+     if ($format <=-10 OR $format >=10) { //zoom+-
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=$menu&debut_img=$debut_img&format=2' title='Fit'><img src='/IMG/002/zoom_fit.gif' border='0'></a> &nbsp; &nbsp;";
+          if ($format >=10) {  echo "<font color='#FF6600'>[+"; } else { echo "<font color='#FF6600'>["; }
+     echo "$format%]</font> &nbsp; &nbsp;";
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=$menu&debut_img=$debut_img&format=$zoomm' title='-10%'><img src='/IMG/002/zoom_out.gif' border='0'></a> &nbsp;";
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=$menu&debut_img=$debut_img&format=0' title='real size'><img src='/IMG/002/zoom_1.gif' border='0'></a> &nbsp;";
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=$menu&debut_img=$debut_img&format=$zoomp' title='+10%'><img src='/IMG/002/zoom_in.gif' border='0'></a> &nbsp;";
+     }
+
+     echo "&nbsp;&nbsp;&nbsp;";
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=$menu&debut_img=$iprec&format=$format'><img alt=''  src='IMG/002/stock_media-rew-16.gif' border='0'></a>&nbsp;";
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=$menu&format=$format' >[ $debut / $nb_vigns ]</a>&nbsp;";
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=$menu&debut_img=$isuiv&format=$format'><img alt=''  src='IMG/002/stock_media-fwd-16.gif' border='0'></a>&nbsp;";
+     echo " &nbsp; &nbsp;<a href='article.php3?id_article=#ID_ARTICLE&menu=$menu&debut_img=$isuiv&format=$format&diapo=1#diapo' title='Play'><img src='/IMG/002/stock_media-play-16.gif' border='0'></a>&nbsp;";
+     
+     if ($diapo == 1) { // autodiapo 3 secondes
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=image&debut_img=$debut_img&format=$format' title='pause'><img src='/IMG/002/stock_media-pause-16.gif' border='0' ></a>&nbsp;";
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=$menu&format=$format' ><img src='/IMG/002/stock_media-stop-16.gif' border='0' ></a>&nbsp;";
+	 ?>
+     <script language="JavaScript">
+     timer=setTimeout("document.location = 'article.php3?id_article=#ID_ARTICLE&menu=<?php echo $menu; ?>&debut_img=<?php echo $isuiv; ?>&format=<?php echo $format; ?>&diapo=1#diapo' ", 8000)
+     </script>
+
+     <?php
+     }
+     echo "</font>";
+     ?>
+</td></tr>
+  </table>
+  <TABLE WIDTH='853' CELLPADDING='0' CELLSPACING='0' BORDER='0'  valign='top'>
+    <!--DWLayoutTable--><tr>
+      <td width="853" align="center" valign='middle'> 
+        <BOUCLE_imagezoom(DOCUMENTS){id_article}{extension=jpg}{mode=document}{par titre}{debut_img,1}>
+        <?php
+     $urlimage="#URL_DOCUMENT";
+     $largeur = #LARGEUR;
+     $hauteur = #HAUTEUR;
+     $urlvignette = substr_replace ($urlimage,"-s.jpg",-4);  // OPTION
+     $nomvignette = substr ($urlimage,8,-4);
+
+      if ($format >=10 OR $format <=-10 OR !$format) {   // zoom+-
+      $largeur = $largeur + ($largeur*$format/100);
+      $hauteur = $hauteur + ($hauteur*$format/100);
+      $largeur = ceil($largeur);
+      $hauteur = ceil($hauteur);
+      }
+      if ($format == 2) {                                // autozoom
+             // L400 si 200>L>600 et/oubien H300 si 200>h>400
+             if ($largeur < 200 OR $largeur > 600){
+                $xl = 100 * (400-$largeur) / $largeur;
+                $xl = ceil($xl);
+                $xh = $hauteur;
+                $xh = ceil($xh);
+                $hauteur = $hauteur * 400 / $largeur;
+                $largeur = 400;
+                if ($hauteur >= 200 AND $hauteur <= 400) {
+                             if ( $xl > 0 ) { echo "<font size='1'>+</font>"; }
+                        echo "<font size='1'>$xl% </font>";
+                }
+             }
+             if ($hauteur < 200 OR $hauteur > 400){
+                if ($xh) {
+                   $xh =  100 * (300-$xh) / $xh; 
+                } else {
+                   $xh = 100 * (300-$hauteur) / $hauteur; 
+                }
+                $xh = ceil($xh);
+                      if ( $xh > 0 ) { echo "<font size='1'>+</font>"; }
+                echo "<font size='1'>$xh% </font>";
+                $largeur = $largeur * 300 / $hauteur;
+                $hauteur = 300;
+             }
+      // ceil: arrondir a l'entier superieur
+      $largeur = ceil($largeur);
+      $hauteur = ceil($hauteur);
+                echo "<font size='1'>&nbsp;</font>"; // pour meme hauteur de trait hr
+      }
+      ?>
+        <a href="article.php3?id_article=<? echo $id_article ?>&menu=<?php print $menu?>&debut_img=<?php print $isuiv?>&format=<?php print $format?>#diapo"> 
+        <br>
+        <img src="<?php print $urlimage?>" border="0" width="<?php print $largeur?>" height="<?php print $hauteur?>" alt="[(#TAILLE|taille_en_octets)] Réel: #LARGEUR x #HAUTEUR Affiché: <?php print $largeur?> x <?php print $hauteur?> "><br>
+        </a> <br>
+        <A HREF="#URL_DOCUMENT" > </A> [<font size="2" >(#TITRE)</font>][<br>
+        <font size="2"><i>(#DESCRIPTIF)</i></font> <br>
+        ] <a href="#URL_DOCUMENT"  title="<?php echo $nomvignette; ?>"> 
+        <font size="1" color="#666666">#LARGEUR x [(#HAUTEUR)]</font>
+        
+        </a><br>
+        <br>
+        </BOUCLE_imagezoom>
+<?php
+}
+?>
+
+<?php
+if ($menu=='bas') {
+?>
+     <?php
+      	$debut = $debut_vign + 1;
+        $fin = $debut + 4;
+     if ( $debut_vign < 5 ){
+	$dprec = $nb_vigns - 5;
+        $debut_vign = 0;
+        $debut_image = 0;
+        } else {
+        $dprec = $debut_vign - 5;
+ 	}
+     if ( $debut_vign > $nb_vigns - 5 ){
+ 	$dsuiv = 0;
+ 	$fin = $nb_vigns;
+ 	}else{
+ 	$dsuiv = $debut_vign + 5;
+	}
+     if ( $debut_vign == $nb_vigns - 5 ){
+ 	$dsuiv = 0;
+ 	$debut = $debut_vign + 1;
+ 	$fin = $nb_vigns;
+ 	}
+	$debut_img = $debut_vign;
+     echo "<font size='2'><a href='article.php3?id_article=#ID_ARTICLE&menu=$menu&debut_img=$dprec&debut_vign=$dprec'> <img alt=''  src='IMG/002/stock_media-rew-16.gif' border='0'> </a>";
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=$menu' >[$debut-$fin]/$nb_vigns</a>&nbsp;";
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=$menu&debut_img=$dsuiv&debut_vign=$dsuiv'><img alt=''  src='IMG/002/stock_media-fwd-16.gif' border='0'> </a></font>";
+     ?>
+              <table width="750"><tr>
+                <BOUCLE_vignettesb(DOCUMENTS){id_article}{extension=jpg}{mode=document}{par titre}{debut_vign,5}>
+     <?php
+     $urlimage="#URL_DOCUMENT";
+     $urlvignette = substr_replace ($urlimage,"-s.jpg",-4);
+     $nomvignette = substr ($urlimage,8,-4);
+     ?>
+		<td width="20%" align="center" valign="bottom">
+              <a href="article.php3?id_article=#ID_ARTICLE&menu=<?php print $menu?>&debut_img=<?php print $debut_img?>&debut_vign=<?php print $debut_vign?>">
+              <img src="<?php print $urlvignette?>" border="0" alt="[(#TAILLE|taille_en_octets)] ( #LARGEUR x #HAUTEUR )"></a>
+              <font size="2">
+		[<br><b><A HREF="#URL_DOCUMENT" >(#TITRE)</A></b><br>]
+		</font>
+              </td>
+     <?php
+     $debut_img =  $debut_img + 1;
+     ?>
+                </BOUCLE_vignettesb>
+              </tr></table>
+<?php
+}
+?>
+
+<?php
+if ($menu=='droite') {
+?>
+     <?php
+      	$debut = $debut_vign + 1;
+        $fin = $debut + 3;
+     if ( $debut_vign < 4 ){
+	$dprec = $nb_vigns - 4;
+        $debut_vign = 0;
+        $debut_image = 0;
+        } else {
+        $dprec = $debut_vign - 4;
+ 	}
+     if ( $debut_vign > $nb_vigns - 4 ){
+ 	$dsuiv = 0;
+ 	$fin = $nb_vigns;
+ 	}else{
+ 	$dsuiv = $debut_vign + 4;
+	}
+     if ( $debut_vign == $nb_vigns - 4 ){
+ 	$dsuiv = 0;
+ 	$debut = $debut_vign + 1;
+ 	$fin = $nb_vigns;
+ 	}
+	$debut_img = $debut_vign;
+     echo "<font size='2'><a href='article.php3?id_article=#ID_ARTICLE&menu=$menu&debut_img=$dprec&debut_vign=$dprec'> <img alt=''  src='IMG/002/stock_media-rew-16.gif' border='0'> </a>";
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=$menu' >[$debut-$fin]/$nb_vigns</a>&nbsp;";
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=$menu&debut_img=$dsuiv&debut_vign=$dsuiv'><img alt=''  src='IMG/002/stock_media-fwd-16.gif' border='0'> </a><br></font>";
+     ?>
+              <BOUCLE_vignettesd(DOCUMENTS){id_article}{extension=jpg}{mode=document}{par titre}{debut_vign,4}>
+     <?php
+     $urlimage="#URL_DOCUMENT";
+     $urlvignette= substr_replace($urlimage,"-s.jpg",-4);
+?>
+		<font size="1">
+		[<b><A HREF="#URL_DOCUMENT" >(#TITRE)</A></b><br>]
+		</font>
+              <a href="article.php3?id_article=#ID_ARTICLE&menu=<?php print $menu?>&debut_img=<?php print $debut_img?>&debut_vign=<?php print $debut_vign?>">
+              <img src="<?php print $urlvignette?>" border="0" alt="[(#TAILLE|taille_en_octets)] ( #LARGEUR x #HAUTEUR )"></a>
+		<br>
+     <?php
+     $debut_img =  $debut_img + 1;
+     ?>
+              </BOUCLE_vignettesd>
+<?php
+}
+?>
+
+<?php
+if ($menu=='haut') {
+?>
+              <BOUCLE_imageh(DOCUMENTS){id_article}{extension=jpg}{mode=document}{par titre}{debut_img,1}>
+<?php
+     $urlimage="#URL_DOCUMENT";
+     $largeur = #LARGEUR;
+     $hauteur = #HAUTEUR;
+     $urlvignette = substr_replace ($urlimage,"-s.jpg",-4);  // OPTION
+     $nomvignette = substr ($urlimage,8,-4);
+             //  max H300 et/ousinon max l 600
+             if ($hauteur > 300){
+                echo "<font size='1'><li> </font>";
+                $largeur = $largeur * 300 / $hauteur;
+                $hauteur = 300;
+             }
+             if ($largeur > 600){
+                echo "<font size='1'><li> </font>";
+                $hauteur = $hauteur * 600 / $largeur;
+                $largeur = 600;
+
+             }
+             // ceil: arrondir a l'entier superieur
+             $largeur = ceil($largeur);
+             $hauteur = ceil($hauteur);
+?>
+		[<font size="2" color="#111111">(#TITRE)</font>]
+		<font size="1" color="#0000FF"><A HREF="#URL_DOCUMENT" ><?php echo $nomvignette; ?></A></font>
+              <br>
+          <a href=" javascript:popup('#URL_DOCUMENT','[(#TITRE)]','#LARGEUR','#HAUTEUR')">
+              <img src="#URL_DOCUMENT" border="0" width="<?php print $largeur?>" height="<?php print $hauteur?>" alt="[(#TAILLE|taille_en_octets)] Réel: #LARGEUR x #HAUTEUR Affiché: <?php print $largeur?> x <?php print $hauteur?>"></a>
+              <br>
+		[<font size="2" color="#333333"><i>(#DESCRIPTIF)</i></font> ]
+              <font size="1" color="#666666">#LARGEUR x [(#HAUTEUR)</font>]
+              </BOUCLE_imageh>
+<?php
+}
+?>
+
+<?php
+if ($menu=='gauche') {
+?>
+              <table><tr><td align="left" valign="top">
+                <BOUCLE_imageg(DOCUMENTS){id_article}{extension=jpg}{mode=document}{par titre}{debut_img,1}>
+<?php
+     $urlimage="#URL_DOCUMENT";
+     $largeur = #LARGEUR;
+     $hauteur = #HAUTEUR;
+     $urlvignette = substr_replace ($urlimage,"-s.jpg",-4);  // OPTION
+     $nomvignette = substr ($urlimage,8,-4);
+             //  max L500 et/ousinon max h400
+             if ($largeur > 500){
+                echo "<font size='1'><li> </font>";
+                $hauteur = $hauteur * 500 / $largeur;
+                $largeur = 500;
+             }
+             if ($hauteur > 400){
+                echo "<font size='1'><li> </font>";
+                $largeur = $largeur * 400 / $hauteur;
+                $hauteur = 400;
+             }
+             // ceil: arrondir a l'entier superieur
+             $largeur = ceil($largeur);
+             $hauteur = ceil($hauteur);
+?>
+		[<font size="2" color="#111111">(#TITRE)</font>]
+		<font size="1" color="#0000FF"><A HREF="#URL_DOCUMENT" ><?php echo $nomvignette; ?></A></font>
+                <br>
+                <a href=" javascript:popup('#URL_DOCUMENT','[(#TITRE)]','#LARGEUR','#HAUTEUR')">
+                <img src="#URL_DOCUMENT" border="0" width="<?php print $largeur?>" height="<?php print $hauteur?>" alt="[(#TAILLE|taille_en_octets)] Réel: #LARGEUR x #HAUTEUR Affiché: <?php print $largeur?> x <?php print $hauteur?> "></a>
+                <br>
+		[<font size="2" color="#333333"><i>(#DESCRIPTIF)</i></font> ]
+                <font size="1" color="#666666">#LARGEUR x [(#HAUTEUR)</font>]
+                </BOUCLE_imageg>
+              </td></tr></table>
+<?php
+}
+?>
+
+<?php
+if ($menu=='vignettes') { echo "</td></tr><tr><td width='100%' align='center' valign='top'>\n"; }
+if ($menu=='image')     { echo "</td></tr><tr><td width='100%' align='center' valign='top'>\n"; }
+if ($menu=='bas')       { echo "</td></tr><tr><td width='100%' align='center' valign='top'>\n"; }
+if ($menu=='haut')      { echo "</td></tr><tr><td width='100%' align='center' valign='top'>\n"; }
+if ($menu=='droite')    { echo "</td><td width='70%' align='center' valign='middle'>\n";        }
+if ($menu=='gauche')    { echo "</td><td width='30%' align='center' valign='top'>\n";           }
+
+?>
+
+<?php
+if ($menu=='bas') {
+?>
+              <BOUCLE_imageb(DOCUMENTS){id_article}{extension=jpg}{mode=document}{par titre}{debut_img,1}>
+<?php
+     $urlimage="#URL_DOCUMENT";
+     $largeur = #LARGEUR;
+     $hauteur = #HAUTEUR;
+     $urlvignette = substr_replace ($urlimage,"-s.jpg",-4);  // OPTION
+     $nomvignette = substr ($urlimage,8,-4);
+             //  max H300 et/ousinon max l600
+             if ($hauteur > 300){
+                echo "<font size='1'><li> </font>";
+                $largeur = $largeur * 300 / $hauteur;
+                $hauteur = 300;
+             }
+             if ($largeur > 600){
+                echo "<font size='1'><li> </font>";
+                $hauteur = $hauteur * 600 / $largeur;
+                $largeur = 600;
+             }
+             // ceil: arrondir a l'entier superieur
+             $largeur = ceil($largeur);
+             $hauteur = ceil($hauteur);
+?>
+		[<font size="2" color="#111111">(#TITRE)</font>]
+		<font size="1" color="#0000FF"><A HREF="#URL_DOCUMENT" ><?php echo $nomvignette; ?></A></font>
+              <br>
+          <a href=" javascript:popup('#URL_DOCUMENT','[(#TITRE)]','#LARGEUR','#HAUTEUR')">
+              <img src="#URL_DOCUMENT" border="0" width="<?php print $largeur?>" height="<?php print $hauteur?>" alt="[(#TAILLE|taille_en_octets)] Réel: #LARGEUR x #HAUTEUR Affiché: <?php print $largeur?> x <?php print $hauteur?> "></a>
+              <br>
+		[<font size="2" color="#333333"><i>(#DESCRIPTIF)</i></font> ]
+              <font size="1" color="#666666">#LARGEUR x [(#HAUTEUR)</font>]
+              </BOUCLE_imageb>
+<?php
+}
+?>
+
+<?php
+if ($menu=='droite') {
+?>
+              <table><tr><td align="left" valign="top">
+                <BOUCLE_imaged(DOCUMENTS){id_article}{extension=jpg}{mode=document}{par titre}{debut_img,1}>
+<?php
+     $urlimage="#URL_DOCUMENT";
+     $largeur = #LARGEUR;
+     $hauteur = #HAUTEUR;
+     $urlvignette = substr_replace ($urlimage,"-s.jpg",-4);  // OPTION
+     $nomvignette = substr ($urlimage,8,-4);
+             //  max L500 et/ousinon max h400
+             if ($largeur > 500){
+                echo "<font size='1'><li> </font>";
+                $hauteur = $hauteur * 500 / $largeur;
+                $largeur = 500;
+             }
+             if ($hauteur > 400){
+                echo "<font size='1'><li> </font>";
+                $largeur = $largeur * 400 / $hauteur;
+                $hauteur = 400;
+             }
+             // ceil: arrondir a l'entier superieur
+             $largeur = ceil($largeur);
+             $hauteur = ceil($hauteur);
+?>
+		[<font size="2" color="#111111">(#TITRE)</font>]
+		<font size="1" color="#0000FF"><A HREF="#URL_DOCUMENT" ><?php echo $nomvignette; ?></A></font>
+                <br>
+	        <a href=" javascript:popup('#URL_DOCUMENT','[(#TITRE)]','#LARGEUR','#HAUTEUR')">
+              <img src="#URL_DOCUMENT" border="0" width="<?php print $largeur?>" height="<?php print $hauteur?>" alt="[(#TAILLE|taille_en_octets)] Réel: #LARGEUR x #HAUTEUR Affiché: <?php print $largeur?> x <?php print $hauteur?> "></a>
+                <br>
+		[<font size="2" color="#333333"><i>(#DESCRIPTIF)</i></font> ]
+                <font size="1" color="#666666">#LARGEUR x [(#HAUTEUR)</font>]
+                </BOUCLE_imaged>
+              </td></tr></table>
+<?php
+}
+?>
+
+<?php
+if ($menu=='haut') {
+?>
+     <?php
+      	$debut = $debut_vign + 1;
+        $fin = $debut + 4;
+     if ( $debut_vign < 5 ){
+	$dprec = $nb_vigns - 5;
+        $debut_vign = 0;
+        $debut_image = 0;
+        } else {
+        $dprec = $debut_vign - 5;
+ 	}
+     if ( $debut_vign > $nb_vigns - 5 ){
+ 	$dsuiv = 0;
+ 	$fin = $nb_vigns;
+ 	}else{
+ 	$dsuiv = $debut_vign + 5;
+	}
+     if ( $debut_vign == $nb_vigns - 5 ){
+ 	$dsuiv = 0;
+ 	$debut = $debut_vign + 1;
+ 	$fin = $nb_vigns;
+ 	}
+	$debut_img = $debut_vign;
+     echo "<font size='2'><br><a href='article.php3?id_article=#ID_ARTICLE&menu=$menu&debut_img=$dprec&debut_vign=$dprec'> <img alt=''  src='IMG/002/stock_media-rew-16.gif' border='0'> </a>";
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=$menu' >[$debut-$fin]/$nb_vigns</a>&nbsp;";
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=$menu&debut_img=$dsuiv&debut_vign=$dsuiv'><img alt=''  src='IMG/002/stock_media-fwd-16.gif' border='0'> </a><br></font>";
+     ?>
+              <table width="750"><tr>
+                <BOUCLE_vignettesh(DOCUMENTS){id_article}{extension=jpg}{mode=document}{par titre}{debut_vign,5}>
+     <?php
+     $urlimage="#URL_DOCUMENT";
+     $urlvignette= substr_replace ($urlimage,"-s.jpg",-4);
+     ?>
+		<td width="20%" align="center" valign="bottom">
+              <a href="article.php3?id_article=#ID_ARTICLE&menu=<?php print $menu?>&debut_img=<?php print $debut_img?>&debut_vign=<?php print $debut_vign?>">
+              <img src="<?php print $urlvignette?>" border="0" alt="[(#TAILLE|taille_en_octets)] ( #LARGEUR x #HAUTEUR )"></a>
+              <font size="2">
+		[<br><b><A HREF="#URL_DOCUMENT" >(#TITRE)</A></b><br>]
+		</font>
+              </td>
+     <?php
+     $debut_img =  $debut_img + 1;
+     ?>
+                </BOUCLE_vignettesh>
+              </tr></table>
+<?php
+}
+?>
+
+<?php
+if ($menu=='gauche') {
+?>
+     <?php
+      	$debut = $debut_vign + 1;
+        $fin = $debut + 3;
+     if ( $debut_vign < 4 ){
+	$dprec = $nb_vigns - 4;
+        $debut_vign = 0;
+        $debut_image = 0;
+        } else {
+        $dprec = $debut_vign - 4;
+ 	}
+     if ( $debut_vign > $nb_vigns - 4 ){
+ 	$dsuiv = 0;
+ 	$fin = $nb_vigns;
+ 	}else{
+ 	$dsuiv = $debut_vign + 4;
+	}
+     if ( $debut_vign == $nb_vigns - 4 ){
+ 	$dsuiv = 0;
+ 	$debut = $debut_vign + 1;
+ 	$fin = $nb_vigns;
+ 	}
+     $debut_img = $debut_vign;
+     echo "<font size='2'><a href='article.php3?id_article=#ID_ARTICLE&menu=$menu&debut_img=$dprec&debut_vign=$dprec'> <img alt=''  src='IMG/002/stock_media-rew-16.gif' border='0'> </a>";
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=$menu' >[$debut-$fin]/$nb_vigns</a>&nbsp;";
+     echo "<a href='article.php3?id_article=#ID_ARTICLE&menu=$menu&debut_img=$dsuiv&debut_vign=$dsuiv'><img alt=''  src='IMG/002/stock_media-fwd-16.gif' border='0'> </a><br></font>";
+     ?>
+              <BOUCLE_vignettesg(DOCUMENTS){id_article}{extension=jpg}{mode=document}{par titre}{debut_vign,4}>
+     <?php
+     $urlimage="#URL_DOCUMENT";
+     $urlvignette= substr_replace ($urlimage,"-s.jpg",-4);
+     ?>
+		<font size="1">
+		[<b><A HREF="#URL_DOCUMENT" >(#TITRE)</A></b><br>]
+		</font>
+
+
+// C'est sur ce lien là qu'il y a un bug : 
+// L'#ID_ARTICLE n'apparaît pas dans l'adresse 
+// de la page apres le clic sur la grande photo.
+// Peut-être manque t'il une boucle ?
+// Ou est-ce le php au dessus qui interfere ? 
+// Chépas ... pige pas. Tu me diras. 
+
+
+
+              <a href="article.php3?id_article=#ID_ARTICLE&menu=<?php print $menu?>&debut_img=<?php print $debut_img?>&debut_vign=<?php print $debut_vign?>">
+              <img src="<?php print $urlvignette?>" border="0" alt="[(#TAILLE|taille_en_octets)] ( #LARGEUR x #HAUTEUR )"></a>
+              <br>
+     <?php
+     $debut_img =  $debut_img + 1;
+     ?>
+              </BOUCLE_vignettesg>
+<?php
+}
+?>
+
+
+</td></tr>
+    </TABLE>
+    <!-- FIN GALERIE AUTOMATIQUE -->
+
+
+
+
+    <!-- BAS de l'article -->
+  
+  
+  <br>
+  <table border=0 cellpadding=0 cellspacing=0 width="750">
+    <tr> 
+      <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+      <td background="IMG/002/r-h.gif">&nbsp;</td>
+      <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+    </tr>
+    <tr> 
+      <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+      <td class="content"> 
+        <table width="750" border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td align="center" valign="top" colspan="3"> 
+              <p> 
+              <b> 
+              <div class="h5"><img src="NAVPICS/rien.gif" width="12" height="5">Commenter 
+                cette galerie</div>
+              <br>
+              <img src="NAVPICS/rien.gif" width="12" height="5">[<a href="forum.php3?(#PARAMETRES_FORUM)"><img src="IMG/002/post.gif" border="0"></a>]<br>
+              <br>
+              </b> 
+              <BOUCLE_Forums(FORUMS){id_article}{par date}{inverse}>
+              <a name="forum#ID_FORUM"></a> 
+              <table width="100%" border="0" cellspacing="0" cellpadding="5">
+                <tr> 
+                  <td class="forummessage"> <b>[(#TITRE)] </b></td>
+                </tr>
+                <tr> 
+                  <td class="forummessage"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"> 
+                    [(#DATE|affdate)][, par <a href="mailto:#EMAIL">(#NOM)</a>] 
+                    &nbsp; [<br>
+                    <a href="#URL_SITE">(#NOM_SITE)</a>] </font></td>
+                </tr>
+                <tr> 
+                  <td class="forummessage" valign="bottom" align="left"> 
+                    <p>[(#TEXTE|smileys)] 
+                    <p align='right'>[<a href="forum.php3?(#PARAMETRES_FORUM)"><img src="IMG/002/reply.gif" width="82" height="25" border="0"></a>]</p>
+                  </td>
+                </tr>
+                <tr> 
+                  <td class="forumreponse" valign="bottom" align="left"> 
+                    <BOUCLE_fils(FORUMS){id_parent}{par date}>
+                    <p> <a name="forum#ID_FORUM"></a> 
+                    <p> 
+                    <li><b>[(#TITRE)]</b> <br>
+                      <font size=1> [(#DATE|affdate)][, par <a href="mailto:#EMAIL">(#NOM)</a>] 
+                      &nbsp; [<br>
+                      <a href="#URL_SITE">(#NOM_SITE)</a>] </font> 
+                      <hr NOSHADE size=1>
+                      <p>[(#TEXTE|smileys)] 
+                      <p align="right">[<a href="forum.php3?(#PARAMETRES_FORUM)"><img src="IMG/002/reply.gif" width="82" height="25" border="0"></a>]</p>
+                      <BOUCLE_Forums_Boucle(boucle_fils)>
+                      </BOUCLE_Forums_Boucle>
+                      </BOUCLE_fils>
+                      </B_fils>
+                  </td>
+                </tr>
+              </table>
+              </BOUCLE_Forums>
+            </td>
+          </tr>
+          <tr> 
+            <td width="191" align="left" valign="bottom" height="14">&nbsp;</td>
+            <td width="10" height="14"><img src="NAVPICS/rien.gif" width="10" height="5"></td>
+            <td valign="bottom" align="left">&nbsp;</td>
+          </tr>
+        </table>
+        
+      </td>
+      <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+    <tr> 
+      <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+      <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+      <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+    </tr>
+  </table>
+  <br>
+  </BOUCLE_principale2>
+  <!-- Va chercher le bas de page pied.html  -->
+  <br>
+  <br>
+</CENTER>
+<div align="center"><br>
+  <INCLURE (_page_barre_menu.php3)>
+  <br>
+  <INCLURE (_page_bas.php3)>
+</div>
+</BODY>
+</HTML>
+</BOUCLE_principale>
+<?php } ?>

@@ -1,0 +1,346 @@
+<BOUCLE_principale(ARTICLES){id_article}{doublons}>
+<BOUCLE_piratage(MOTS){id_article}{titre=acces_restreint}>
+ <INCLURE(_authentification.php3)>
+</BOUCLE_piratage>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>#NOM_SITE_SPIP</title>
+<meta http-equiv="content-type" content="text/html; charset=#CHARSET">
+<meta name="generator" content="SPIP">
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/bloog.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/niftyCorners.css">
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/niftyPrint.css" media="print">
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty.js"></script>
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty-bloog.js"></script>
+</head>
+<body>
+<div id="container">
+<INCLURE(page.php3){fond=entete}>
+<!-- star of main content -->
+<div id="content">
+
+<div id="colonne">	
+
+	<div class="boite">
+	<div class="icone_menu"></div>
+	<INCLURE (_menu_rub.php3)>
+	</div>
+	
+	<div class="boite">
+	<BOUCLE_archives(BREVES){par date}{inverse}{0,1}>	   
+		<INCLURE(_inc_archives.php3){date}>
+	</BOUCLE_archives>
+	</div>
+	
+
+	
+	<div class="boite">
+	<div class="icone_article"></div>
+	<!-- ouverture boite agenda -->
+	<BOUCLE_meme_rubrique(ARTICLES){id_rubrique}{exclus}{par date}{inverse}{0,20}>
+	<a href="#URL_ARTICLE">#TITRE</a> 
+	<INCLURE(_cadenas.php3){id_article}>
+	</BOUCLE_meme_rubrique>
+	</div>
+
+    <div class="boite">
+      <!-- ouverture boite musique -->
+      <div class="icone_juk"></div>
+      <p> Ici un lecteur MP3 et une grille d'agenda pour marquer les br&egrave;ves
+        si besoin. (Genre Dotclear) </p>
+    </div>
+    <!-- fermeture boite agenda --> 
+
+    <BOUCLE_retirer_doc(DOCUMENTS){id_article}{extension==jpg|gif|png}{doublons doc}>
+    <!-- Boucle pour ne pas afficher les images et mp3 ici -->
+    </BOUCLE_retirer_doc>
+    <B_documents>
+<div class="boite"> <!-- ouverture boite zip -->
+<div class="icone_zip"></div>
+      <h2><:bloog:telechargement:></h2>
+      <br />
+  <BOUCLE_documents(DOCUMENTS){id_article}{par titre}{doublons doc}>
+        [<div class="logogauche"><a href="dw2_out.php?id=#ID_DOCUMENT" title="[(#TYPE_DOCUMENT)] [(#TAILLE|taille_en_octets)]">(#LOGO_DOCUMENT)</a></div>]
+[<a href="dw2_out.php?id=#ID_DOCUMENT" title="[(#TYPE_DOCUMENT)] [(#TAILLE|taille_en_octets)]">(#TITRE|majuscules)</a>]
+ [<br />(#ID_DOCUMENT|compteur)][(#DESCRIPTIF)]<!-- séparation documents -->     
+        <hr class="spacer" /> 
+      </BOUCLE_documents>
+    </div> <!-- fermeture boite zip -->
+   </B_documents>
+
+
+   
+</div>
+
+
+<div class="grande_boite"> <!-- ouverture grd boite texte --> 
+<div class="logogauche"><img src="../icones/64x64/edit.png"></div>
+<BOUCLE_plan(HIERARCHIE){id_article}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|textebrut|attribut_html)"]>
+[(#TITRE|supprimer_numero)] </a>	
+</BOUCLE_plan>[&gt; (#TITRE)] 
+
+[(#LOGO_ARTICLE|#URL_ARTICLE||reduire_image{400})]
+
+<h2>[(#TITRE)]</h2> 
+[(#SOUSTITRE)<br/>]  
+ 
+ [(#TEXTE|liens_ouvrants|lier_au_glossaire|justifier|reduire_image{400})] 
+ [<:bloog:premiere_publi:>: (#DATE_REDAC|affdate),][ <:bloog:mise_en_ligne:>: (#DATE|nom_jour)]
+ [(#DATE|affdate)]
+ <BOUCLE_auteurs(AUTEURS){id_article}> 
+ [, <:bloog:par:> <a href="_membre.php3?id_auteur=#ID_AUTEUR">(#NOM)</a>] 
+ </BOUCLE_auteurs> 
+ [<br/> (#PS)]
+ 
+ <div class="lien">
+[<a href="forum.php3?(#PARAMETRES_FORUM)">R&eacute;agir</a>]  
+<B_forums3>	- <BOUCLE_forums3(FORUMS){id_article}{plat}>
+<? $id_forum3 = "#ID_FORUM"; ?>   
+</BOUCLE_forums3>
+<a href="#forum">
+<? $total_forum3 = "#TOTAL_BOUCLE"; ?>
+<? echo ($total_forum3 == 1) ? " ($total_forum3&nbsp;commentaire)" : " ($total_forum3&nbsp;commentaires)" ; ?>
+</B_forums3>
+</a>
+[Voir en ligne : <a href="(#URL_SITE)" target="_blank">][(#NOM_SITE)</a>]
+</div>
+ 
+</div> <!-- fermeture grande boite -->
+
+<!-- s_il y a plus d_un document alors afficher vignettes et fleches -->
+<? 
+<BOUCLE_nb_images(DOCUMENTS){id_article}{mode=document}{extension==jpg|gif|png}>
+if ('#ID_DOCUMENT'=='[(#ENV{id_document})]') $compteur= '#COMPTEUR_BOUCLE' ;
+</BOUCLE_nb_images>$nb_images = "#TOTAL_BOUCLE"; </B_nb_images>
+?>
+<? if ($nb_images >1) {?>
+
+<div id="minipics">
+<ul id="a">
+<!-- ici le css pour surligner l_image n_est plus -->
+<BOUCLE_vignettes_toutes(DOCUMENTS){id_article}{mode=document}{paysage}{extension==jpg|png|gif}{id_document < (#ENV{nb,0})}{par id_document}{doublons}>
+<li id="a#ID_DOCUMENT">
+<a href="#URL_ARTICLE&id_document=#ID_DOCUMENT#a#ID_DOCUMENT" [title="(#TITRE|textebrut)"]>
+[(#FICHIER|reduire_image{80,10000}|inserer_attribut{alt,#TITRE #TAILLE #LARGEUR x #HAUTEUR})]
+</a>
+</li>		
+</BOUCLE_vignettes_toutes>
+<BOUCLE_vignettes_portrait(DOCUMENTS){id_article}{mode=document}{portrait}{extension==jpg|png|gif}{id_document < (#ENV{nb,0})}{par id_document}{doublons}>
+<li id="a#ID_DOCUMENT">
+<a href="#URL_ARTICLE&id_document=#ID_DOCUMENT#a#ID_DOCUMENT" [title="(#TITRE|textebrut)"]>
+[(#FICHIER|reduire_image{80,10000}|inserer_attribut{alt,#TITRE #TAILLE #LARGEUR x #HAUTEUR})]
+</a>
+</li>		
+</BOUCLE_vignettes_portrait>
+<BOUCLE_vignettes_carre(DOCUMENTS){id_article}{mode=document}{carre}{extension==jpg|png|gif}{id_document < (#ENV{nb,0})}{par id_document}{doublons}>
+<li id="a#ID_DOCUMENT">
+<a href="#URL_ARTICLE&id_document=#ID_DOCUMENT#a#ID_DOCUMENT" [title="(#TITRE|textebrut)"]>
+[(#FICHIER|reduire_image{80,10000}|inserer_attribut{alt,#TITRE #TAILLE #LARGEUR x #HAUTEUR})]
+</a>
+</li>		
+</BOUCLE_vignettes_carre>
+
+<BOUCLE_vignettes_precedentes(DOCUMENTS){id_article}{mode=document}{extension==jpg|png|gif}{id_document < #ID_DOCUMENT}{par id_document}{inverse}{0,1}{doublons}>
+<li class="transparent" id="a#ID_DOCUMENT">
+<a href="#URL_ARTICLE&id_document=#ID_DOCUMENT#a#ID_DOCUMENT" [title="(#TITRE|textebrut)"]>
+[(#FICHIER|reduire_image{80,10000}|inserer_attribut{alt,#TITRE #TAILLE #LARGEUR x #HAUTEUR})]
+</a>
+</li>		
+</BOUCLE_vignettes_precedentes>
+
+<!-- ici le css pour surligner l_image n_est plus -->
+<BOUCLE_vignettes_dudit_document(DOCUMENTS){id_article}{mode=document}{extension==jpg|png|gif}{id_document = #ID_DOCUMENT}{par id_document}{0,1}{doublons}>
+<li id="a#ID_DOCUMENT">
+[(#FICHIER|reduire_image{80,10000}|inserer_attribut{alt,#TITRE #TAILLE #LARGEUR x #HAUTEUR})]
+</li>		
+</BOUCLE_vignettes_dudit_document>
+
+
+<BOUCLE_vignettes_suivantes(DOCUMENTS){id_article}{mode=document}{extension==jpg|png|gif}{id_document > #ID_DOCUMENT}{par id_document}{0,2}{doublons}>
+<li class="transparent" id="a#ID_DOCUMENT">
+<a href="#URL_ARTICLE&id_document=#ID_DOCUMENT#a#ID_DOCUMENT" [title="(#TITRE|textebrut)"]>
+[(#FICHIER|reduire_image{80,10000}|inserer_attribut{alt,#TITRE #TAILLE #LARGEUR x #HAUTEUR})]
+</a>
+</li>		
+</BOUCLE_vignettes_suivantes> 
+</ul>
+<!-- séparation minipics et boite -->
+</div>
+<!-- fermeture minipics --> 
+
+<div class="grande_boite" style="clear:both;text-align:center">
+<div class="icone_photo"></div>
+<!-- fleche jpg précédent -->
+
+<BOUCLE_precedent(DOCUMENTS){id_article}{id_document < #ID_DOCUMENT}{par id_document}{inverse}{0,1}{extension==jpg|png|gif}{mode=document}>
+<a  href="#URL_ARTICLE&id_document=#ID_DOCUMENT#a#ID_DOCUMENT"title="photo précédente">
+<img src="#DOSSIER_SQUELETTE/images/left.gif"  width="23" height="12" alt="photo précédente" /></a>
+</BOUCLE_precedent>
+
+ <? echo ($compteur>0)? $compteur."/".$nb_images : $nb_images ; ?> <:bloog:photos:>
+
+<!--fleche jpg suivant-->
+<BOUCLE_suivant(DOCUMENTS){id_article}{id_document > #ID_DOCUMENT}{0,1}{extension==jpg|png|gif}{mode=document}>
+<a  href="#URL_ARTICLE&id_document=#ID_DOCUMENT#a#ID_DOCUMENT"title="photo suivante">
+<img src="#DOSSIER_SQUELETTE/images/right.gif" width="23" height="12" alt="photo suivante" /></a>
+</BOUCLE_suivant>
+
+<a href="#SELF&nb=1000#a">Tout afficher</a>
+
+</div>
+<!-- fermeture grande boite avec fleches --> 
+<?php } ?>
+<!-- fermeture de la boucle d'article pour repasser en boucle document -->
+
+
+<B_afficher_document>
+<div class="grande_boite">
+<!-- l image en grand -->
+<div class="centre">
+<div class="photo">
+<div id="exif">
+<BOUCLE_afficher_document(DOCUMENTS){id_document}{extension==jpg|png|gif}{mode=document}>
+<a href="#a#ID_DOCUMENT">
+[(#FICHIER|reduire_image{450}|inserer_attribut{alt,#TITRE}|inserer_attribut{style,display:block;margin:auto})]
+<span>[(#DESCRIPTIF)<br />*****<br />]
+[Le (#EXIF{EXIF,DateTimeOriginal}|date_EXIF2spip|sinon{#DATE}||affdate)]
+[, appareil: (#EXIF{IFD0,Model})]
+[, iso: (#EXIF{EXIF,ISOSpeedRatings})]
+[, exposition: (#EXIF{EXIF,ExposureTime})]
+[, ouverture:(#EXIF{COMPUTED,ApertureFNumber})]
+[, focale:(#EXIF{EXIF,FocalLength})mm]
+[(analogie 35mm:(#EXIF{EXIF,FocalLengthIn35mmFilm})mm)]
+[, distance:(#EXIF{EXIF,SubjectDistanceValue})]
+[, valeur d'exposition:(#EXIF{EXIF,ExposureBiasValue})]
+[, luminosité:(#EXIF{EXIF,BrightnessBiasValue})]
+[, flash:(#EXIF{COMPUTED,Flash}),]
+[, balance:(#EXIF{COMPUTED,WhiteBalance}).]</span></a>
+</BOUCLE_afficher_document>
+</div>
+  <!-- fermeture exif -->
+  
+</div><!-- fermeture photo -->
+</div><!-- fermeture grande boite photo -->
+</div><!-- fermeture centrage -->
+</B_afficher_document>
+
+
+<!-- réouverture boucle principale -->
+
+<? if ($nb_images ==1) {?>
+<B_afficher_photo_seule>
+
+<div class="grande_boite">
+<!-- l image en grand -->
+
+
+<div class="photo">
+  <div id="exif">
+<BOUCLE_afficher_photo_seule(DOCUMENTS){id_article}{extension==jpg|png|gif}{mode=document}{0,1}>
+<a href="#"><img src="#URL_DOCUMENT" alt="#TITRE" >
+<span>[(#DESCRIPTIF)<br />*****<br />
+]
+[Le (#EXIF{EXIF,DateTimeOriginal}|date_EXIF2spip|sinon{#DATE}||affdate)]
+[, appareil: (#EXIF{IFD0,Model})]
+[, iso: (#EXIF{EXIF,ISOSpeedRatings})]
+[, exposition: (#EXIF{EXIF,ExposureTime})]
+[, ouverture:(#EXIF{COMPUTED,ApertureFNumber})]
+[, focale:(#EXIF{EXIF,FocalLength})mm]
+[(analogie 35mm:(#EXIF{EXIF,FocalLengthIn35mmFilm})mm)]
+[, distance:(#EXIF{EXIF,SubjectDistanceValue})]
+[, valeur d'exposition:(#EXIF{EXIF,ExposureBiasValue})]
+[, luminosité:(#EXIF{EXIF,BrightnessBiasValue})]
+[, flash:(#EXIF{COMPUTED,Flash}),]
+[, balance:(#EXIF{COMPUTED,WhiteBalance}).]</span></a>
+</BOUCLE_afficher_photo_seule>
+</div>
+  <!-- fermeture photo -->
+</div><!-- fermeture exif -->
+</div><!-- fermeture grande boite photo -->
+</B_afficher_photo_seule>
+<?php } ?>
+       
+
+<div style="clear:both">&nbsp;</div>
+
+<script>
+<!--
+function deplier(objet){
+	d = document.getElementById(objet);
+	var etat = d.style.display;
+	if (etat!='none') {
+	d.style.display = 'none';
+	} else {
+	d.style.display = 'block';
+	}
+}
+-->
+</script>
+
+<!-- Forums -->
+
+[<div id="forum" class="forum-repondre"><b><a  href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_article:></a></b></div>]
+<br />
+
+<B_forums>
+
+<ul class="forum-total">
+<BOUCLE_forums(FORUMS){id_article}{par date}{inverse}>
+<li>
+<a name="forum#ID_FORUM"></a><h3 style="cursor: pointer;" onclick="deplier('forum#ID_FORUM');">#TITRE</h3>
+
+[(#DATE|affdate)][, <:par_auteur:> <a href="mailto:[(#EMAIL|entites_html)]">(#NOM)</a>]
+
+<div id="forum#ID_FORUM" style="display: none;">
+	<div class="forum-item">
+	#TEXTE
+	[<div class="forum-titre"><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
+	[<div class="forum-repondre-message"><a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a></div>]
+	</div>
+
+<B_forums_fils>
+	<ul>
+	<BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
+
+	<li>
+	
+	<div class="forum-titre"><a name="forum#ID_FORUM"></a>#TITRE</div>
+	[(#DATE|affdate)][, <:par_auteur:> <a href="mailto:#EMAIL">(#NOM)</a>]
+
+	<div class="forum-item">
+	#TEXTE
+	[<div class="forum-titre"><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
+	[<div class="forum-repondre-message"><a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a></div>]
+	</div>
+
+
+
+	<BOUCLE_Forums_Boucle(boucle_forums_fils)></BOUCLE_Forums_Boucle>
+	</li>
+
+	</BOUCLE_forums_fils>
+	</ul>
+</B_forums_fils>
+</div>
+
+</li>
+</BOUCLE_forums>
+
+</ul>
+</B_forums>
+
+</div> <!-- close main content -->
+<div id="footer">
+
+<address>
+<INCLURE(_inc_stats.php3)>
+</address>
+</div> <!--close footer -->
+
+</div> <!-- close container -->
+ <INCLURE (_page_bas.php3)>
+</body>
+</html>
+<//B_piratage>
+</BOUCLE_principale>

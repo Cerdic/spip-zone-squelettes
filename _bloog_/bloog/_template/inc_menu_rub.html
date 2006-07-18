@@ -1,0 +1,80 @@
+<style>
+<!--
+
+a.secteuron, a.rubriqueon { font-weight: bold; color: #ff9999; }
+
+
+.menu{
+margin: 0px ;
+padding-left : 5px;
+padding-bottom : 10px;
+}
+.rubriques {
+margin: 0px ;
+padding-left : 20px;
+}
+
+.puce {
+	margin-left: -8px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-right: 3px;
+}
+-->
+</style>
+
+<?php 
+if(!function_exists('afficher_script_layer')){
+// inclusion du script de gestion des layers de SPIP
+$flag_ecrire = false;
+include_ecrire ('inc_layer.php3');
+include_spip('inc/presentation');
+}
+afficher_script_layer();
+?>
+
+<div class="menu">
+<BOUCLE_secteurs(RUBRIQUES){titre_mot=menu_rub}{par titre} >
+<?php $exp = '[(#EXPOSER)]' ; ?>
+<div>
+<BOUCLE_nb_rubriques(RUBRIQUES){id_parent}>
+</BOUCLE_nb_rubriques>
+<?php 
+echo ($exp=="on") ? bouton_block_visible('rub#ID_RUBRIQUE') : bouton_block_invisible('rub#ID_RUBRIQUE');
+?>
+</B_nb_rubriques>
+
+<a [class="secteur(#EXPOSER)"] href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero)]"><strong>[(#TITRE|supprimer_numero)]</strong></a>
+		
+	<B_rubriques>
+	<?php 
+	echo ($exp=="on") ? debut_block_visible('rub#ID_RUBRIQUE') : debut_block_invisible('rub#ID_RUBRIQUE');
+	?>
+	<BOUCLE_rubriques(RUBRIQUES){id_parent}{par titre}>
+	<div class="rubriques">
+		<?php $exp = '[(#EXPOSER)]' ; ?>
+		<BOUCLE_nb_srubriques(RUBRIQUES){id_parent}>
+		</BOUCLE_nb_srubriques>
+		<?php
+		echo ($exp=="on") ? bouton_block_visible('rub#ID_RUBRIQUE') : bouton_block_invisible('rub#ID_RUBRIQUE');
+		?>
+		</B_nb_srubriques>
+		<img class='puce' src="img_pack/puce<?php echo($exp=='on' ? 'on' : 'off')?>.gif" alt="puce" />
+		<//B_nb_srubriques>
+	
+	<a [class="rubrique(#EXPOSER)"] href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero)]">[(#TITRE|supprimer_numero)] </a>
+	
+		<BOUCLE_sous_rub(boucle_rubriques)></BOUCLE_sous_rub>
+	</div>
+	</BOUCLE_rubriques>
+	<?php
+	echo fin_block('rub#ID_RUBRIQUE');
+	?>
+	</B_rubriques>	
+	
+</div>
+</BOUCLE_secteurs>
+</div>
+
+<div style="text-align:right">[<a href="_resume.php3">R&eacute;sum&eacute;</a>]&nbsp;[<a href="_nouveautes.php3">Nouveaut&eacute;s</a>]
+      </div>

@@ -1,0 +1,177 @@
+<?php
+@header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+@header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+@header("Cache-Control: no-store, no-cache, must-revalidate");
+@header("Cache-Control: post-check=0, pre-check=0", false);
+@header("Pragma: no-cache");
+ ?>
+
+  
+  <html>
+<SCRIPT src="IMG/002/_interface.js" type="text/javascript"></SCRIPT>
+<link rel="stylesheet" href="IMG/002/_interface.css" type="text/css">
+<title>[#NOM_SITE_SPIP]
+<BOUCLE_titre(RUBRIQUES){id_rubrique}>#TITRE</BOUCLE_titre></title>
+</head>
+
+<body>
+<p align="center"> 
+  <INCLURE (_page_barre_menu.php3)>
+</p>
+
+<blockquote> 
+  <div align="center">
+    <table width=750  border=0 cellpadding=0 cellspacing=0>
+      <tbody> 
+      <tr> 
+        <TD vAlign=top align="center" width="490"> 
+	  
+        <BOUCLE_haut(DOCUMENTS){tout}{titre=logo_entete}>
+	<center>#EMBED_DOCUMENT<br><br></center>
+	</BOUCLE_haut>
+	<h2 >#NOM_SITE_SPIP</h2>
+	<//B_haut>
+	  
+<?php 
+$nomsite=lire_meta("nom_site");
+$urlsite=lire_meta("adresse_site");
+srand((double)microtime()*1000000);
+$boundary = md5(uniqid(rand()));
+
+// Empécher si lien vient d une autre page que celles du site (comparaison des 15 premiers caractères)
+if ( substr($HTTP_REFERER,0,15) != substr ($urlsite,0,15) ) { echo "<br>Envoi de page extérieure au site impossible."; exit; }
+
+$url = $HTTP_REFERER; // adresse page visitée avant
+if ($envoi) $url = $envoi; // garder adresse via le formulaire
+
+$tableau = file($url); // lecture de la page
+$total = count($tableau);
+for ($i = 0 ; $i<$total  ; $i++) {$article .= $tableau[$i];}
+//$article = str_replace ("IMG/", $urlsite."/IMG/", $article); // transformer adresses images relatives en absolues
+//$article = str_replace ('A HREF="', 'A HREF="'.$urlsite."/", $article); // transformer url relatives en absolues http://... (bug sur autres adresses)
+?>
+	  
+	  
+          <br>
+          <table border=0 cellpadding=0 cellspacing=0 width="100%">
+              <tr> 
+                <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+                <td background="IMG/002/r-h.gif">&nbsp;</td>
+                <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+              </tr>
+              <tr> 
+                <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+                <td class="content"><p>Envoyer la page : <br>
+                    <a href="<? echo"$url" ?>"><? echo"$url" ?></a> </p>
+                  <p><?php
+				  
+				  if ($envoi) {
+
+if($format_texte){
+
+$page="Bonjour\n".$emailexp." vous recommande  cette page du site ".$nomsite."\n";
+$page.=$comment;
+//$page.=$article;
+$page.="\nSOURCE: ".$url."\n";
+
+$headers = "From: $emailexp\n";
+$headers .= "Reply-to: $emailexp\n";
+//$headers .= "cc:sleclerc@actionweb.fr\n"; // CC to
+//$headers .= "bcc:sleclerc@actionweb.fr, sleclerc@actionweb.fr\n"; // BCCs to
+$headers .="MIME-Version: 1.0\n";
+$headers  .="Content-Type: text/plain; charset=\"iso-8859-1\"\n"; 
+$headers  .="Content-Transfer-Encoding:8bit\n"; 
+$headers  .="\n"; 
+}
+
+if($format_html){
+$page = "\nThis is a multi-part message in MIME format.";
+$page .="\n--$boundary\nContent-Type: text/html;charset=\"iso-8859-1\"\n\n";
+$page .="<HTML><HEAD><BASE HREF=".$url."></HEAD><BODY><hr ><br>";
+$page.="Bonjour,<br>".$emailexp." vous recommande  cette page du site <a href=".$url.">".$nomsite."</A>...<br>";
+$page.="<hr>".$comment;
+//$page.="<hr>".$article;
+$page.="<hr>SOURCE: <a href=".$url." target=\"_blank\">".$url."</a><hr ></BODY></HTML>";
+$page .="\n--$boundary--\n end of the multi-part";
+
+$headers = "From: $emailexp\n";
+$headers .= "Reply-to: $emailexp\n";
+//$headers .= "cc:sleclerc@actionweb.fr\n"; // CC to
+//$headers .= "bcc:sleclerc@actionweb.fr, sleclerc@actionweb.fr\n"; // BCCs to
+$headers .="MIME-Version: 1.0\n";
+$headers  .="Content-Type: multipart/alternative;boundary=$boundary\n"; 
+}
+				  
+     if ( @mail($emaildest,$objet,$page,$headers) ) {  // ALTERNATIVE SI ERREUR
+    //if ( envoyer_mail($emaildest,$objet,$page,$headers,"-f $emailexp") ) {  // envoi
+         echo "<br><b><font color='red'>====>  Le message est bien parti. Merci. <====</font></b><br>Voir ci-dessous votre commentaire - Un autre envoi ?<br><br>";
+    } else {
+         echo "<br><font color='red'>Erreur...</font> Réessayer ?<br><br>";
+    }
+}
+else {	  
+				  
+		echo "<br><a href='".$urlsite."' title='de ".$nomsite."'>Accueil</a> <a href='".$url."' title='sur la page'>Retour</a><br>";
+        echo "<br><b><font color=blue>ENVOYER CETTE PAGE</font><br><font size='1'>".$url."<br> [Garanti sans enregistrement des adresses]</font></b><br><br>";
+		echo "<FORM ACTION='_envoyer_ami.php3?envoi=".$url."' METHOD='POST'>";
+        echo "<TABLE NOBORDER><TR><TD align='right'>";
+        echo "Email Destinataire :</TD><TD>   <INPUT TYPE='TEXT' VALUE='@' NAME='emaildest'> </TD></TR><TR><TD align='right'>";
+        echo "Email Expediteur :  </TD><TD>   <INPUT TYPE='TEXT' VALUE='".$emailexp."' NAME='emailexp'> </TD></TR><TR><TD align='right'>";
+        echo "Objet :             </TD><TD>   <INPUT TYPE='TEXT' VALUE='".$objet."' NAME='objet'> </TD></TR><TR><TD align='right'>";
+        echo "Commentaire :       </TD><TD>   <TEXTAREA rows='4' cols='40' VALUE='".$comment."' NAME='comment'></TEXTAREA></TD></TR><TR><TD align='right'>";
+        echo "Format :             </TD><TD>  Texte <INPUT TYPE='checkbox' VALUE='checkbox' NAME='format_texte'> HTML <INPUT TYPE='checkbox' VALUE='checkbox2' NAME='format_html'></TD></TR><TR><TD align='right'>";
+		echo "validez...          </TD><TD ALIGN='center'><INPUT TYPE='SUBMIT' VALUE='Envoyer' name='submit'> </TD></TR>";
+        echo "</TABLE>";
+echo "</FORM>";
+}
+				  
+				   ?></p>
+                  </td>
+                <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+              <tr> 
+                <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+                <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+                <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+              </tr>
+            </table>
+          <br>
+          </td>
+        <TD width=19><IMG src="IMG/002/rien.gif" width=19></TD>
+        <td valign=top width="241" align="center"> 
+          <p><center>
+            <b> <font face="Arial, Helvetica, sans-serif" size="2"> </font></b> 
+            <table border=0 cellpadding=0 cellspacing=0 width="100%">
+              <tr> 
+                <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+                <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/secteur.gif" /></td>
+                <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+              </tr>
+              <tr> 
+                <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+                <td class="content"> 
+                  <div class="h5"> 
+                    <INCLURE (_menu_rub.php3){id_rubrique}>
+                  </div>
+                </td>
+                <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+              <tr> 
+                <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+                <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+                <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+              </tr>
+            </table>
+          </center>
+        </td>
+      </tr>
+      </tbody> 
+    </table>
+  </div>
+  <p align="center">&nbsp; </p>
+</blockquote>
+<div align="center">
+  <INCLURE (_page_barre_menu.php3)><br>
+  <INCLURE (_page_bas.php3)>
+  <br>
+</div>
+</body>
+</html>

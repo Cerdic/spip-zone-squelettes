@@ -1,0 +1,82 @@
+<?php
+/**********************************************************/
+/* Ce squelette tres specifique est utilise pour creer                     */
+/* un patron pour la bloogletter : lettre d'information.                   */
+/* voir aussi le patron patron_simple.html                                     */
+/**********************************************************/
+
+//Parametrer le logo et le fond du titre (url des images)
+$url_logo = "[(#URL_SITE_SPIP)]/logo.gif";
+$url_fond = "[(#URL_SITE_SPIP)]/IMG/fondgauche.gif";
+$largeur_mail = "500px";
+
+$periode = lire_meta("jours_neuf");
+
+
+/**********************************************************/
+/* Par défaut ce patron présente le logo en haut du       */
+/* message et le texte en dessous avec un titre de partie.*/
+/* Ce squelette envoi la liste des articles et brèves     */
+/* publiés depuis 7 jours. Vous pouvez faire des          */
+/* modifications des boucles spip ou en HTML, mais        */
+/* attention de ne pas faire un gabarit de plus de 10Ko.  */
+/*       */
+/**********************************************************/
+
+$neuf = "non" ;
+<BOUCLE_test(ARTICLES){age_relatif<0}>
+$neuf = "oui" ;
+</BOUCLE_test>
+<BOUCLE_test2(BREVES){age_relatif<0}>
+$neuf = "oui" ;
+</BOUCLE_test2>
+if($neuf == "non") exit();
+?>
+
+<table width='<?php echo $largeur_mail ?>' border='0' cellspacing='0' cellpadding='0' style='BORDER-BOTTOM: black 1px solid; BORDER-TOP: #333333 1px solid;'>
+  <tr>
+    <td background='<?php echo $url_fond ?>'>
+    <a href='[(#URL_SITE_SPIP)]'>
+    <img src='<?php echo $url_logo ?>' border='0'>
+    </a>
+    </td>
+  </tr>
+</table><br>
+<div style='width: <?php echo $largeur_mail ?>; background-color: #F5F5F5; text-align: left; PADDING: 1px; '>
+<b><:bonjour|texte_script:></b>,
+<br>voici la lettre d'information du site '[(#NOM_SITE_SPIP|textebrut|texte_script)]' (#URL_SITE_SPIP). Cette lettre recence les nouveautés publiées sur le site depuis <?php echo $periode ?> jour<?php echo ($periode > 1) ? "s" : "" ?>.
+</div>
+<br><table width='<?php echo $largeur_mail ?>' border='0' cellspacing='0' cellpadding='5'>
+  <tr>
+    <td valign='top'>
+
+<B_nv2>
+<div style='background: url(<?php echo $url_fond ?>) repeat-y left; font-family: Verdana, Arial, Helvetica, sans-serif; color: #FF9900; letter-spacing: 1px;  text-align: left;'><h3><:nouvelles_breves|texte_script:></h3></div>
+<BOUCLE_nv2(BREVES){age_relatif<0}{par date}{inverse}{0,5}>
+<p style ="padding-left:10px">
+[<IMG src="#URL_SITE_SPIP/ecrire/puce.gif" border="0"> <b>(#TITRE)</b>]
+[<br> le (#DATE|affdate)<br>]
+[(#INTRODUCTION|couper{200})<br>]
+<a href="#URL_SITE_SPIP/#URL_BREVE">Voir en ligne</a>
+</p>
+</BOUCLE_nv2>
+  </td><td valign='top' style='border-left : #000000 dashed 1px'>
+</B_nv2>
+
+<B_nv1>
+<div style='background: url(<?php echo $url_fond ?>) repeat-y left; font-family: Verdana, Arial, Helvetica, sans-serif; color: #FF9900; letter-spacing: 1px;  text-align: left;'><h3><:nouveaux_articles|texte_script:></h3></div>
+<BOUCLE_nv1(ARTICLES){age_relatif<0}{par date}{inverse}{0,5}>
+<p style ="padding-left:10px">
+[<IMG src="#URL_SITE_SPIP/ecrire/puce.gif" border="0"> <b>(#TITRE)</b><br>]
+<BOUCLE_aut(AUTEURS){id_article}>
+par [(#NOM) ]
+</BOUCLE_aut>
+[le (#DATE|affdate)<br>]
+[(#INTRODUCTION|couper{200})<br>]
+<a href="#URL_SITE_SPIP/#URL_ARTICLE">Voir en ligne</a>
+</p>
+</BOUCLE_nv1>
+
+</TD></TR></TABLE>
+
+
