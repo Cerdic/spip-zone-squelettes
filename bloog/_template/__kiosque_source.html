@@ -1,18 +1,5 @@
-<?php
- 
- // Disable caching
-    //
-    @header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-    @header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
-
-    @header("Cache-Control: no-store, no-cache, must-revalidate");
-    @header("Cache-Control: post-check=0, pre-check=0", false);
-    @header("Pragma: no-cache");
- ?>
-
-
- 
- <HTML><HEAD>
+<HTML>
+<HEAD>
 
 <title>[ #NOM_SITE_SPIP - Kiosque ] </title>
 
@@ -42,21 +29,19 @@
               [(#DESCRIPTIF)] <br>
               <br>
               <B_articles_syndic>
+             #ANCRE_PAGINATION
               <b>Articles publiés sur  #NOM_SITE</b> <br><br>
              
-                <BOUCLE_articles_syndic(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{debut_site,20}>
+                <BOUCLE_articles_syndic(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{pagination 20}>
                 
               <div  class="td_ln"> <img src="IMG/002/puce_fleche.png" width="8" height="7">[(#DATE|jour)]/[(#DATE|mois)]/[(#DATE|annee)] 
                 : <a href="#URL_ARTICLE" target="_blank" title="Voir l'article sur le site #NOM_SITE">[(#TITRE*)]</a></div>
                 </BOUCLE_articles_syndic>
          
-              </B_articles_syndic>
               
-<BOUCLE_articles_pagination(SYNDIC_ARTICLES){id_syndic}{age_relatif<=7}{par date}{inverse}{0,400}>
-</BOUCLE_articles_pagination>
-[(#TOTAL_BOUCLE|pagination{debut_site,20})]
-</B_articles_pagination>
+#PAGINATION
 
+              </B_articles_syndic>
             </td>
 
             <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
