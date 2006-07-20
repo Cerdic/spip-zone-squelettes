@@ -1,0 +1,60 @@
+
+<BOUCLE_articles_invisibles(ARTICLES) {doublons un} {titre_mot=invisible}>
+</BOUCLE_articles_invisibles>
+
+<B_article_pagination>
+	<div class="padding_bas_25px">
+
+	<h1 class="navigation">
+	Trier les articles par :
+	</h1>
+
+	<h5>
+
+	[	(#ENV{tri}|=={''}|?{Date de publication |
+		, [(#ENV{tri}|=={'date'}|?{Date de publication |
+		,<a href="#URL_SITE_SPIP/article.php3?tri=date">Date de publication</a> | })]
+	})]
+
+	[	(#ENV{tri}|=={'date_modif'}|?{
+		Date de mise à jour |
+		,<a href="#URL_SITE_SPIP/article.php3?tri=date_modif">Date de mise à jour</a> |
+	 })]
+
+	[	(#ENV{tri}|=={'popularite'}|?{
+		Popularité |
+		,<a href="#URL_SITE_SPIP/article.php3?tri=popularite">Popularité</a> | 
+	})]
+
+	[	(#ENV{tri}|=={'visites'}|?{
+		Nombre de visiteurs
+		,<a href="#URL_SITE_SPIP/article.php3?tri=visites">Nombre de visiteurs</a>
+	})]
+
+	</h5>
+	
+	<h5 class="infos_article">&nbsp;</h5>
+
+	<BOUCLE_article_pagination(ARTICLES){doublons un}>
+	</BOUCLE_article_pagination>
+
+	<div>
+	[(#TOTAL_BOUCLE|pagination{debut_page,10})]
+	</div>
+
+	</div> [(#REM) padding_bas_25px ]
+
+	<BOUCLE_articles_invisibles_bis(ARTICLES) {doublons deux} {titre_mot==invisible} >
+	</BOUCLE_articles_invisibles_bis>
+
+	<BOUCLE_liste_article(ARTICLES) {doublons deux} {par #ENV{tri,date}} {inverse} {debut_page,10} >
+		<INCLURE(inclusions/inc_article_apercu.php3) {id_article}>
+	</BOUCLE_liste_article>
+
+	<div>
+	[(#TOTAL_BOUCLE|pagination{debut_page,10})]
+	</div>
+
+</B_article_pagination>
+	aucun article publié
+<//B_article_pagination>

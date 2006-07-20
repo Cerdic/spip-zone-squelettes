@@ -1,0 +1,1 @@
+Squelette BliP : Avant de commiter dans ce répertoire, merci de lire 
