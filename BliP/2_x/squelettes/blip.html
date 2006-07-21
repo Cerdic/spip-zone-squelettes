@@ -1,0 +1,88 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
+	<meta name="generator" content="SPIP" />
+	[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
+
+	<!-- Lien vers le backend pour navigateurs eclaires -->
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+	
+	[(#REM) Script NiceTitle pour la gestion des title des liens ]	
+	[<script type="text/javascript" src="(#CHEMIN{nicetitle.js})"></script>]
+
+	[(#REM) Style CSS de blip ]
+	<link rel="stylesheet" type="text/css" href="#URL_SITE_SPIP/spip.php?page=inc-css" />	
+	
+</head>
+
+<body id="sommaire">
+<div id="page">
+
+[(#REM) Inclusion de l'Entete du site, qui se construit dynamiquement ]
+<INCLURE{fond=inc-tete}>
+	
+<div id="corps">
+	
+	[(#REM) Construction du menu auxiliaire de la page sommaire]
+	<div class="menu_auxiliaire"><ul>
+
+		[(#ENV{tri}|=={'documents'}|?{
+		<li><a class="active" href="[(#URL_PAGE{sommaire}|parametre_url{'tri','documents'})]">documents publiés</a></li>
+		,<li><a href="[(#URL_PAGE{sommaire}|parametre_url{'tri','documents'})]">documents publiés</a></li>
+		})]
+
+		[(#ENV{tri}|=={'commentaires'}|?{
+		<li><a class="active" href="[(#URL_PAGE{sommaire}|parametre_url{'tri','commentaires'})]">commentaires postés</a></li>
+		,<li><a href="[(#URL_PAGE{sommaire}|parametre_url{'tri','commentaires'})]">commentaires postés</a></li>
+		})]
+
+		[(#ENV{tri}|=={''}|?{<li><a class="active" href="[(#URL_PAGE{sommaire}|parametre_url{'tri','articles'})]">articles publiés</a></li>
+		, [(#ENV{tri}|=={'articles'}|?{<li><a class="active" href="[(#URL_PAGE{sommaire}|parametre_url{'tri','articles'})]">articles publiés</a></li>
+		,<li><a href="[(#URL_PAGE{sommaire}|parametre_url{'tri','articles'})]">articles publiés</a></li>})]
+		})]
+
+		<li> Afficher les derniers </li></ul>
+	</div><!-- menu_auxiliaire-->
+
+
+	[(#REM) Construction du contenu de la page sommaire en fonction des paramètres passés dans la variable tri]
+	<div class="contenu">
+		
+		Page en cours de construction
+		
+		<BOUCLE_blipeee(BLIP_CONFIG){par ordre}{position=menu_principal}{actif=oui}>
+		#ID_CONFIG
+		#POSITION
+		#ORDRE
+		#TYPE
+		#TITRE
+		#DESCRIPTIF
+		#TEXTE
+		#STYLE
+		#ACTIF	
+		</BOUCLE_blipeee>
+
+		
+	</div><!-- fin contenu-->
+
+	[(#REM) Inclusion de la Barre latérale du site, construite dynamiquement ]
+	<div class="barre_laterale">
+		<INCLURE{fond=inc-barrelaterale}>	
+	</div><!-- fin barre_laterale-->
+
+</div><!-- fin corps -->
+
+[(#REM)  Inclusion du Pied de page du site, qui se construit dynamiquement]
+<INCLURE{fond=inc-pied}>
+
+</div><!-- fin page -->
+
+[(#REM) Traitement des tâches de fond du site]
+#SPIP_CRON
+
+</body>
+</html>
