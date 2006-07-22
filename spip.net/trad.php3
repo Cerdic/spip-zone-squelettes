@@ -123,9 +123,9 @@ foreach ($keys as $nombre) {
 echo "</tr></table>";
 
 if ($afficher_non_traduits == 'oui')
-	echo "<br><a href='trad.php3'><font face='arial,helvetica,sans-serif' size='2' color='black'><u>Afficher les articles traduits</u></font></a>\n";
+	echo "<br /><a href='trad.php3'><font face='arial,helvetica,sans-serif' size='2' color='black'><u>Afficher les articles traduits</u></font></a>\n";
 else
-	echo "<br><a href='trad.php3?afficher_non_traduits=oui'><font face='arial,helvetica,sans-serif' size='2' color='black'><u>Afficher les articles non traduits</u></font></a>\n";
+	echo "<br /><a href='trad.php3?afficher_non_traduits=oui'><font face='arial,helvetica,sans-serif' size='2' color='black'><u>Afficher les articles non traduits</u></font></a>\n";
 
 install_fin_html();
 
