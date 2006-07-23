@@ -20,7 +20,7 @@
 
 define('_DIR_PLUGIN_SQUELETTES_NONO',(_DIR_PLUGINS.end(explode(basename(_DIR_PLUGINS)."/",str_replace('\\','/',realpath(dirname(__FILE__).'/..'))))));
 
-function exec_config_squelettes_Nono() {
+function exec_config_squelettes_nono() {
   global $connect_statut, $connect_toutes_rubriques,$changer_config,$id_parent,$id_rubrique,$voir_cal_nono,$id_meslogos;
 
 	include_spip("inc/presentation");
@@ -59,8 +59,9 @@ function exec_config_squelettes_Nono() {
 	$copyright_nono=$GLOBALS['meta']['copyright_nono'];
 	$directeur_nono=$GLOBALS['meta']['directeur_nono'];
 	$redacteur_nono=$GLOBALS['meta']['redacteur_nono'];
-		
+	
 	$voir_cal_nono=$GLOBALS['meta']['voir_cal_nono'];
+	$nb_evens_nono=$GLOBALS['meta']['nb_evens_nono'];
 	$voir_une_nono=$GLOBALS['meta']['voir_une_nono'];
 	$nb_articles_nono=$GLOBALS['meta']['nb_articles_nono'];
 	$nb_breves_nono=$GLOBALS['meta']['nb_breves_nono'];
@@ -105,8 +106,7 @@ function exec_config_squelettes_Nono() {
 	echo propre(_T('squelettesnono:help'))."<br><br><strong>version de Nono : ".$nono_base_version."</strong>";
 	fin_boite_info();
 	
-	afficher_bandeau('nono', 'nono', 0, (0 ? _T('squelettesnono:logo_site_nono') : _T('squelettesnono:logo_standard_nono'))." ", 'config_squelettes_nono');
-	
+
 	/*partie droite de la page ... la config !*/
 	debut_droite();
 	

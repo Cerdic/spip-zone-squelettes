@@ -1,4 +1,4 @@
-<?
+<?php
 
 // liste des meta ajoutées aux metas de SPIP
 
