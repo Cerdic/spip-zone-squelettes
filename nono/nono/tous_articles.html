@@ -5,7 +5,7 @@
 
 <!--  affichage articles rubrique  -->
 <!-- *****  squelettes nono  ***** -->
-<!-- ****** version 1.7.8 ******** -->
+<!-- ****** version 1.9 ********** -->
 <!-- ***** conception : jsb  ***** -->
 
 <html lang="fr">
@@ -19,7 +19,7 @@
 	<meta name="ROBOTS" content="INDEX, FOLLOW">
 	<meta name="REVISIT-AFTER" content="15 days">
 	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
-	<meta name="copyright" content="<?php echo $meta_copyright ?>">
+	<meta name="copyright" content="#COPYRIGHT_NONO">
 	
 	<link href="#CHEMIN{css/nono_habillage.css}" rel="stylesheet" type="text/css">
 
@@ -38,7 +38,7 @@
 <div id="rubrique">
 	<div class="contenu">
 		<BOUCLE_descrip(RUBRIQUES){id_rubrique}>
-			<BOUCLE_motrub(MOTS){id_rubrique}{id_groupe==^$selecteur_logo}>
+			<BOUCLE_motrub(MOTS){id_rubrique}{mes_logos}>
 				[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
 			</BOUCLE_motrub>
 						
@@ -61,7 +61,7 @@
 			if ($numero == $debut_article)
 			echo "[".($numero+1)."-$num_fin]";
 			else
-			echo '[<a href="tous_articles.php3?id_rubrique=#ID_RUBRIQUE&amp;debut_article='.$numero.'" title="nouvelle page">'.($numero+1)."-$num_fin</a>]";
+			echo '[<a href="#URL_PAGE{tous_articles,id_rubrique=#ID_RUBRIQUE}&amp;debut_article='.$numero.'" title="nouvelle page">'.($numero+1)."-$num_fin</a>]";
 			}
 			?>
 		</B_first>
@@ -75,7 +75,7 @@
 	 <div class="titre-bloc">Tous les articles de la rubrique</div>
 		<BOUCLE_articles(ARTICLES){id_rubrique}{par date}{inverse}{debut_article,6}>
 			<div class="caps">
-				<BOUCLE_motart(MOTS){id_article}{id_groupe==^$selecteur_logo}>
+				<BOUCLE_motart(MOTS){id_article}{mes_logos}>
 				[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
 				</BOUCLE_motart>
 		
@@ -121,7 +121,7 @@
 		if ($numero == $debut_article)
 		echo "[".($numero+1)."-$num_fin]";
 		else
-		echo '[<a href="tous_articles.php3?id_rubrique=#ID_RUBRIQUE&amp;debut_article='.$numero.'" title="nouvelle page">'.($numero+1)."-$num_fin</a>]";
+		echo '[<a href="#URL_PAGE{tous_articles,id_rubrique=#ID_RUBRIQUE}&amp;debut_article='.$numero.'" title="nouvelle page">'.($numero+1)."-$num_fin</a>]";
 		} ?>
 	</B_suite_first>
 	[&nbsp;<a href="#URL_RUBRIQUE" title="retour &agrave; la rubrique : [(#TITRE|supprimer_numero)]">retour</a>&nbsp;]

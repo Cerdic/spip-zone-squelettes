@@ -27,7 +27,7 @@ $day = substr($cal_date, 8, 2);
 	<meta name="ROBOTS" content="INDEX, FOLLOW">
 	<meta name="REVISIT-AFTER" content="15 days">
 	<meta http-equiv="content-Type" content="text/html; charset=#CHARSET">
-	<meta name="copyright" content="<? echo $meta_copyright ?>">
+	<meta name="copyright" content="#COPYRIGHT_NONO">
 	
 	<link href="#CHEMIN{css/nono_habillage.css}" rel="stylesheet" type="text/css">
 
@@ -48,7 +48,7 @@ $day = substr($cal_date, 8, 2);
 	<div class="rubrique">
 		<div class="contenu">
 			<BOUCLE_descrip(RUBRIQUES){id_rubrique}>
-				<BOUCLE_motrub(MOTS){id_rubrique}{id_groupe==^$selecteur_logo}>
+				<BOUCLE_motrub(MOTS){id_rubrique}{mes_logos}>
 					[<div class="logo"><img src="IMG/(#LOGO_MOT|fichier)"] [alt="" (#LOGO_MOT|fichier|texte_script|redimlogo{200,60})></div>]
 				</BOUCLE_motrub>
 		
@@ -82,7 +82,7 @@ $day = substr($cal_date, 8, 2);
 	<div class="col3">
 		<div class="titre-bloc">Les sites syndiqu&eacute;s</div>
 		<B_alpha1>
-			<BOUCLE_alpha1(sites){id_rubrique}{syndication=oui}{par nom_site}>
+			<BOUCLE_alpha1(SITES){id_rubrique}{syndication=oui}{par nom_site}>
 				<div class="texte">
 				[<a href="#URL_RUBRIQUE&amp;id_syndic=#ID_SYNDIC" title="voir les articles du site : #NOM_SITE">(#NOM_SITE)</a>]
 				</div>
@@ -93,13 +93,13 @@ $day = substr($cal_date, 8, 2);
 	<div class="col4">
 	<B_siteref>
 		<div class="titre-bloc">
-			<BOUCLE_siteref(sites){id_syndic}>
+			<BOUCLE_siteref(SITES){id_syndic}>
 			<span class="inverse">Sur le site <a  href="[(#URL_SITE)]" title="Acc&eacute;der au site : #NOM_SITE">[(#NOM_SITE|majuscules)]</a></span>
 			</BOUCLE_siteref>
 		</div>
 			<B_art>
 				<ul>
-				<BOUCLE_itemsa(syndic_articles){id_syndic}{par date}{inverse}{debut_syndic,15}>
+				<BOUCLE_itemsa(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{debut_syndic,15}>
 					<li><a title="[extrait : (#DESCRIPTIF|textebrut|entites_html)]" href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a>
 					<span class"date">[, le (#DATE|nom_jour)] [(#DATE|affdate)]</span><B_auteurs><span class="auteurs">, par 
 					<BOUCLE_auteurs(AUTEURS){id_article}{", "}><a href="#URL_AUTEUR" title="&eacute;crire &agrave; #NOM">#NOM</a></BOUCLE_auteurs>. </span></B_auteurs></li>
@@ -113,7 +113,7 @@ $day = substr($cal_date, 8, 2);
 <!-- navigation basse -->
 <div id="nav2">
 	<div class="bouton">
-	<BOUCLE_first(syndic_articles){id_rubrique}{id_syndic}> </BOUCLE_first>
+	<BOUCLE_first(SYNDIC_ARTICLES){id_rubrique}{id_syndic}> </BOUCLE_first>
 		Articles :
 		<?php
 		$numero=#COMPTEUR_BOUCLE-1;

@@ -8,12 +8,6 @@
 <!-- ***** conception : jsb  ***** -->
 
 <head>
-	<?php if ($annee && $mois && $jour) $cal_date = $annee."-".$mois."-".$jour;
-	
-	$year = substr($cal_date, 0, 4);
-	$month = substr($cal_date, 5, 2);
-	$day = substr($cal_date, 8, 2);
-	?>
 	
 	<title>[#NOM_SITE_SPIP] - Sommaire</title>
 	
@@ -49,7 +43,7 @@
 	<B_rub>
 		<BOUCLE_rub(RUBRIQUES){id_parent}{par titre}{doublons e}>
 			
-			<div class="rub"><a href="#URL_RUBRIQUE&amp;cal_date=<? echo $current ?>" title="voir la sous rubrique : #TITRE">[(#TITRE|supprimer_numero)]</a>	</div>			
+			<div class="rub"><a href="#URL_RUBRIQUE" title="voir la sous rubrique : #TITRE">[(#TITRE|supprimer_numero)]</a>	</div>			
 			
 		</BOUCLE_rub>
 	</B_rub>
@@ -78,7 +72,7 @@
 				[<div class="titre">(#TITRE|supprimer_numero)</div>]
 				<div class="date">le [(#DATE|nom_jour)] [(#DATE|affdate)]<B_auteurs>, par 
 				<BOUCLE_auteurs(AUTEURS){id_article}{", "}><a href="#URL_AUTEUR" title="&eacute;crire &agrave; #NOM">#NOM</a></BOUCLE_auteurs></div>
-				[<div class="texte">(#TEXTE|w3c)</div>]
+				[<div class="texte">(#TEXTE)</div>]
 			</BOUCLE_les_editos>
 		</div>
 	</B_les_editos>
@@ -91,26 +85,21 @@
 	<div class="titre-bloc">Les prochains &eacute;v&eacute;nements</div>	
 	
 	<!-- les événements -->
-	<div class="evenements">
-		
 		
 			
-				<BOUCLE_evens(ARTICLES){par date_redac}{age_redac<=0}{affiche_nb_evens}{doublons a}>
+				<BOUCLE_evens(ARTICLES){par date_redac}{inverse}{age_redac<=0}{affiche_nb_evens}{doublons a}>
+					<div class="caps">						
 						<div class="date">
-						<a title="voir les événements du jour" href="agendajour.php3?id_rubrique=#ID_RUBRIQUE&amp;cal_date=<? echo $date_jour ?>">
-							Le [(#DATE_REDAC|nom_jour)] [(#DATE_REDAC|affdate)]
-						</a>
+							[(#DATE_REDAC|nom_jour)] [(#DATE_REDAC|affdate)]  
 						</div>
 				
-					<div class="titre">
-
-					
-					<a  href="#URL_ARTICLE&amp;cal_date=<? $date_jour=substr('#DATE_REDAC',0,10); echo $date_jour; ?>" title="[extrait : (#INTRODUCTION|textebrut|entites_html)]">[(#TITRE|supprimer_numero)]</a>
-					</div> 
+						<div class="titre">
+							<a  href="#URL_PAGE{article-agenda,id_article=#ID_ARTICLE}" title="">[(#TITRE|supprimer_numero)]</a>
+						</div> 
+					</div>
 			</BOUCLE_evens>
-			
 		
-	</div>
+		
 
 </div>
 </B_evens>
