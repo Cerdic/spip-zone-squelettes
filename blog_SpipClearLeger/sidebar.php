@@ -11,6 +11,5 @@ else {
 	$contexte_inclus['annee'] = date('Y');
 	$contexte_inclus['mois'] = date('m');
 }
-include('inc-public.php3');
 
 ?>
