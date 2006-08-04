@@ -56,11 +56,12 @@
 */
 // -----------------------------------------------------------------------------------
 
+
 //
 //	Configuration
 //
 var fileLoadingImage = "squelettes/loading.gif";		
-var fileBottomNavCloseImage = "squelettes/closelabel.gif";
+var fileBottomNavCloseImage = "squelettes/close.gif";
 
 var resizeSpeed = 7;	// controls the speed of the image resizing (1=slowest and 10=fastest)
 
@@ -436,7 +437,7 @@ Lightbox.prototype = {
 		// if image is part of set display 'Image x of x' 
 		if(imageArray.length > 1){
 			Element.show('numberDisplay');
-			Element.setInnerHTML( 'numberDisplay', "Image " + eval(activeImage + 1) + " of " + imageArray.length);
+			Element.setInnerHTML( 'numberDisplay', "Image " + eval(activeImage + 1) + " sur " + imageArray.length);
 		}
 
 		new Effect.Parallel(
@@ -501,12 +502,12 @@ Lightbox.prototype = {
 		
 		if((key == 'x') || (key == 'o') || (key == 'c')){	// close lightbox
 			myLightbox.end();
-		} else if(key == 'p'){	// display previous image
+		} else if((key == 'p') || (keycode == '37')){	// display previous image
 			if(activeImage != 0){
 				myLightbox.disableKeyboardNav();
 				myLightbox.changeImage(activeImage - 1);
 			}
-		} else if(key == 'n'){	// display next image
+		} else if((key == 'n') || (keycode == '39') ){	// display next image
 			if(activeImage != (imageArray.length - 1)){
 				myLightbox.disableKeyboardNav();
 				myLightbox.changeImage(activeImage + 1);

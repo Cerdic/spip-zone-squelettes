@@ -1,232 +1,33 @@
-#CACHE{24*3600}
+#CACHE{1}
 #HTTP_HEADER{Content-Type: text/css; charset=iso-8859-15}
 #HTTP_HEADER{Vary: Accept-Encoding}
-
 <?php
+// Ce fichier est le compilateur de la feuille de style du squelette BliP. Il utilise divers fichiers inc-css_XXX.php dont-il procède à l'inclusion
 
-// Ce fichier defini les classes CSS en tant que variable php, pour permettre un changement de theme graphique comparable a celui de sedna
+// Les couleurs sont définies dans le fichier inc-css_couleur.php
+[include '(#CHEMIN{inc-css_couleur.php})';]
 
-/*
-Remplacer '8' par rand (0 ,9) dans la ligne 16 -> Switch autonome couleur (puis vider le cache)
-*/
+// SWITCHER COULEURS: Ce script permet de changer de couleur, et de la fixer par un cookie chez le visiteur
+// Le switcher ne marche que depuis la page "spip.php?page=switch"
 
-	// CHOIX CSS PAR DEFAUT DE BliP. Modifications possibles : remplacer les valeurs numériques par d'autres valeurs numériques, à condition que la déclaration CSS existe sinon plantage.
-$css_blip = array(	
-	'couleur' => '8',
-	'structure' => '0',
-	'tete' => '0',
-	'menu' => '0',
-	'corps' => '0',	
-	'pied' => '0',
-	'lateral' => '0',
-	'divers' => '0',	
-); 
+if ( empty($_GET["couleur"]) )
+	{ 
+	if ( empty($_COOKIE["css_blip"]) )
+		{ $css_blip_couleur = 'css_blip_couleur_'.$css_blip['couleur']; }
+	else { $css_blip_couleur = 'css_blip_couleur_'.$_COOKIE["css_blip"]; }
+	}
+else 
+	{
+	setcookie("css_blip",$_GET["couleur"], time()+365*24*3600,"/");
+	$css_blip_couleur = 'css_blip_couleur_'.$_GET["couleur"];
+	if ( empty(${$css_blip_couleur}) )
+		{
+		setcookie("css_blip",$css_blip['couleur'], time()+365*24*3600,"/");
+		$css_blip_couleur = 'css_blip_couleur_'.$css_blip['couleur'];
+		}	
+	}
 
-	// COULEURS ET PROPORTIONS DU SITE
-$css_blip_couleur_0 = array(
-	// Jeu de couleur n°1
-	'gris|fonce' => '#333333',
-	'gris|moyen' => '#666666',
-	'gris|clair' => '#aaaaaa',
-	'couleur|1' => '#85c329',
-	'couleur|1|clair' => '#bcde89',
-	'couleur|2' => '#fb9622',
-	'couleur|2|clair' => '#ffd600',
-	'couleur|neutre' => '#ffffff',
-	'couleur|neutre|bis' => 'transparent',
-	'taille|espacement_bloc' => '3em',
-	'taille|geant' => '1.5em',
-	'taille|grand' => '1.25em',
-	'taille|moyen' => '1em',
-	'taille|normal' => '0.75em',
-	'taille|petit' => '0.5em',
-	'taille|bordure' => '0.25em',
-);
-
-$css_blip_couleur_1 = array(
-	// Jeu de couleur n°1
-	'gris|fonce' => '#333333',
-	'gris|moyen' => '#666666',
-	'gris|clair' => '#aaaaaa',
-	'couleur|1' => '#1e73cd',
-	'couleur|1|clair' => '#c0daef',
-	'couleur|2' => '#fb9622',
-	'couleur|2|clair' => '#ffd600',
-	'couleur|neutre' => '#ffffff',
-	'couleur|neutre|bis' => 'transparent',
-	'taille|espacement_bloc' => '3em',
-	'taille|geant' => '1.5em',
-	'taille|grand' => '1.25em',
-	'taille|moyen' => '1em',
-	'taille|normal' => '0.75em',
-	'taille|petit' => '0.5em',
-	'taille|bordure' => '0.25em',
-); 
-
-$css_blip_couleur_2 = array(
-	// Jeu de couleur n°1
-	'gris|fonce' => '#333333',
-	'gris|moyen' => '#666666',
-	'gris|clair' => '#aaaaaa',
-	'couleur|1' => '#600051',
-	'couleur|1|clair' => '#925F6E',
-	'couleur|2' => '#fb9622',
-	'couleur|2|clair' => '#ffd600',
-	'couleur|neutre' => '#ffffff',
-	'couleur|neutre|bis' => 'transparent',
-	'taille|espacement_bloc' => '3em',
-	'taille|geant' => '1.5em',
-	'taille|grand' => '1.25em',
-	'taille|moyen' => '1em',
-	'taille|normal' => '0.75em',
-	'taille|petit' => '0.5em',
-	'taille|bordure' => '0.25em',
-); 
-
-$css_blip_couleur_3 = array(
-	// Jeu de couleur n°1
-	'gris|fonce' => '#333333',
-	'gris|moyen' => '#666666',
-	'gris|clair' => '#aaaaaa',
-	'couleur|1' => '#009999',
-	'couleur|1|clair' => '#66DEFF',
-	'couleur|2' => '#fb9622',
-	'couleur|2|clair' => '#ffd600',
-	'couleur|neutre' => '#ffffff',
-	'couleur|neutre|bis' => 'transparent',
-	'taille|espacement_bloc' => '3em',
-	'taille|geant' => '1.5em',
-	'taille|grand' => '1.25em',
-	'taille|moyen' => '1em',
-	'taille|normal' => '0.75em',
-	'taille|petit' => '0.5em',
-	'taille|bordure' => '0.25em',
-); 
-
-$css_blip_couleur_4 = array(
-	// Jeu de couleur n°1
-	'gris|fonce' => '#333333',
-	'gris|moyen' => '#666666',
-	'gris|clair' => '#aaaaaa',
-	'couleur|1' => '#D00000',
-	'couleur|1|clair' => '#DD7875',
-	'couleur|2' => '#fb9622',
-	'couleur|2|clair' => '#ffd600',
-	'couleur|neutre' => '#ffffff',
-	'couleur|neutre|bis' => 'transparent',
-	'taille|espacement_bloc' => '3em',
-	'taille|geant' => '1.5em',
-	'taille|grand' => '1.25em',
-	'taille|moyen' => '1em',
-	'taille|normal' => '0.75em',
-	'taille|petit' => '0.5em',
-	'taille|bordure' => '0.25em',
-); 
-
-$css_blip_couleur_5 = array(
-	// Jeu de couleur n°1
-	'gris|fonce' => '#333333',
-	'gris|moyen' => '#666666',
-	'gris|clair' => '#aaaaaa',
-	'couleur|1' => '#cc0066',
-	'couleur|1|clair' => '#ff6666',
-	'couleur|2' => '#fb9622',
-	'couleur|2|clair' => '#ffd600',
-	'couleur|neutre' => '#ffffff',
-	'couleur|neutre|bis' => 'transparent',
-	'taille|espacement_bloc' => '3em',
-	'taille|geant' => '1.5em',
-	'taille|grand' => '1.25em',
-	'taille|moyen' => '1em',
-	'taille|normal' => '0.75em',
-	'taille|petit' => '0.5em',
-	'taille|bordure' => '0.25em',
-); 
-
-$css_blip_couleur_6 = array(
-	// Jeu de couleur n°1
-	'gris|fonce' => '#333333',
-	'gris|moyen' => '#666666',
-	'gris|clair' => '#aaaaaa',
-	'couleur|1' => '#666633',
-	'couleur|1|clair' => '#999999',
-	'couleur|2' => '#fb9622',
-	'couleur|2|clair' => '#ffd600',
-	'couleur|neutre' => '#ffffff',
-	'couleur|neutre|bis' => 'transparent',
-	'taille|espacement_bloc' => '3em',
-	'taille|geant' => '1.5em',
-	'taille|grand' => '1.25em',
-	'taille|moyen' => '1em',
-	'taille|normal' => '0.75em',
-	'taille|petit' => '0.5em',
-	'taille|bordure' => '0.25em',
-); 
-
-$css_blip_couleur_7 = array(
-	// Jeu de couleur n°1
-	'gris|fonce' => '#333333',
-	'gris|moyen' => '#666666',
-	'gris|clair' => '#aaaaaa',
-	'couleur|1' => '#fb9622',
-	'couleur|1|clair' => '#ffd600',
-	'couleur|2' => '#1e73cd',
-	'couleur|2|clair' => '#c0daef',
-	'couleur|neutre' => '#ffffff',
-	'couleur|neutre|bis' => 'transparent',
-	'taille|espacement_bloc' => '3em',
-	'taille|geant' => '1.5em',
-	'taille|grand' => '1.25em',
-	'taille|moyen' => '1em',
-	'taille|normal' => '0.75em',
-	'taille|petit' => '0.5em',
-	'taille|bordure' => '0.25em',
-); 
-
-$css_blip_couleur_8 = array(
-	// Jeu de couleur n°1
-	'gris|fonce' => '#333333',
-	'gris|moyen' => '#666666',
-	'gris|clair' => '#aaaaaa',
-	'couleur|1' => '#1a8ab3',
-	'couleur|1|clair' => '#c2e2ee',
-	'couleur|2' => '#c43219',
-	'couleur|2|clair' => '#dc715e',
-	'couleur|neutre' => '#ffffff',
-	'couleur|neutre|bis' => 'transparent',
-	'taille|espacement_bloc' => '3em',
-	'taille|geant' => '1.5em',
-	'taille|grand' => '1.25em',
-	'taille|moyen' => '1em',
-	'taille|normal' => '0.75em',
-	'taille|petit' => '0.5em',
-	'taille|bordure' => '0.25em',
-); 
-
-$css_blip_couleur_9 = array(
-	// Jeu de couleur n°1
-	'gris|fonce' => '#333333',
-	'gris|moyen' => '#666666',
-	'gris|clair' => '#aaaaaa',
-	'couleur|1' => '#1e73cd',
-	'couleur|1|clair' => '#c0daef',
-	'couleur|2' => '#fb9622',
-	'couleur|2|clair' => '#ffd600',
-	'couleur|neutre' => '#ffffff',
-	'couleur|neutre|bis' => 'transparent',
-	'taille|espacement_bloc' => '3em',
-	'taille|geant' => '1.5em',
-	'taille|grand' => '1.25em',
-	'taille|moyen' => '1em',
-	'taille|normal' => '0.75em',
-	'taille|petit' => '0.5em',
-	'taille|bordure' => '0.25em',
-);  
-
-// PRE-COMPILATION DES COULEURS CSS (Utilisées massivement pour les autres déclarations CSS)
-$css_blip_couleur = 'css_blip_couleur_'.$css_blip['couleur'];
-
-$css_blip_structure_0 = array(
+$css_blip = array(
 
 	// BLOCS PRINCIPAUX ----------------------------------------------
 	// Personnalisation du style de la balise xhtml body
@@ -266,7 +67,7 @@ $css_blip_structure_0 = array(
 	'body|letter|spacing' => '',
 	'body|word|spacing' => '',
 	'body|background' => '',
-	'body|background|color' => '',
+	'body|background|color' => ${$css_blip_couleur}['couleur|neutre'],
 	'body|background|image' => '',
 	'body|background|repeat' => '',
 	'body|background|attachement' => '',
@@ -328,11 +129,6 @@ $css_blip_structure_0 = array(
 	'#page|background|repeat' => '',
 	'#page|background|attachement' => '',
 	'#page|background|position' => '',
-
-
-);
-
-$css_blip_tete_0 = array(
 
 	// BLOCS ENTETE
 	// Personnalisation du style du bloc #tete
@@ -544,9 +340,7 @@ $css_blip_tete_0 = array(
 	'.titre_auxiliaire|background|repeat' => '',
 	'.titre_auxiliaire|background|attachement' => '',
 	'.titre_auxiliaire|background|position' => '',
-); 
 
-$css_blip_menu_0 = array(
 	// Personnalisation du style du bloc .menu_principal
 	'.menu_principal|display' => '',
 	'.menu_principal|visibility' => '',
@@ -738,9 +532,8 @@ $css_blip_menu_0 = array(
 			'body##TEXTE .menu_principal ul li#menu_principal_#TEXTE a|border|color' => ${$css_blip_couleur}['couleur|1'].' '.${$css_blip_couleur}['couleur|neutre'].' '.${$css_blip_couleur}['couleur|neutre'].' '.${$css_blip_couleur}['couleur|neutre'],
 			'body##TEXTE #tete .menu_principal ul li#menu_principal_#TEXTE a|color' => ${$css_blip_couleur}['gris|fonce'],
 		</BOUCLE_menu_principal_css>
-); 
 
-$css_blip_corps_0 = array(
+		
 	// BLOCS CORPS
 	// Personnalisation du style du bloc .corps
 	'#corps|display' => 'block',
@@ -1026,9 +819,7 @@ $css_blip_corps_0 = array(
 		'.contenu a:hover|background|color' => '',
 		'.contenu a:focus|color' => '',
 		'.contenu a:focus|background|color' => '',
-); 
 
-$css_blip_lateral_0 = array(
 	// Personnalisation du style du bloc .barre_laterale
 	'.barre_laterale|display' => '',
 	'.barre_laterale|visibility' => '',
@@ -1318,9 +1109,6 @@ $css_blip_lateral_0 = array(
 	'.element_sur_bis|width' => '100%',
 	'.element_sur_bis|padding' => ${$css_blip_couleur}['taille|grand'].' 0 0 0',
 
-); 
-
-$css_blip_pied_0 = array(
 	// BLOCS PIED
 	// Personnalisation du style du bloc #pied
 	'#pied|display' => '',
@@ -1342,11 +1130,11 @@ $css_blip_pied_0 = array(
 	'#pied|margin' => 'auto',
 	'#pied|padding' => '',
 	'#pied|border|width' => ${$css_blip_couleur}['taille|bordure'].' 0 0 0',
-	'#pied|border|color' => ${$css_blip_couleur}['couleur|1|clair'],
+	'#pied|border|color' => ${$css_blip_couleur}['couleur|1'],
 	'#pied|border|style' => 'solid',
 	'#pied|font|family' => '',
 	'#pied|font|size' => '',
-	'#pied|color' => ${$css_blip_couleur}['gris|clair'],
+	'#pied|color' => ${$css_blip_couleur}['gris|moyen'],
 	'#pied|font|style' => '',
 	'#pied|font|weight' => '',
 	'#pied|font|variant' => '',
@@ -1363,14 +1151,6 @@ $css_blip_pied_0 = array(
 	'#pied|background|repeat' => '',
 	'#pied|background|attachement' => '',
 	'#pied|background|position' => '',
-
-			// Personnalisation du style des liens du bloc #pied
-			'#pied a|color' => ${$css_blip_couleur}['couleur|1|clair'],
-			'#pied a|background|color' => ${$css_blip_couleur}['couleur|neutre'],
-			'#pied a:hover|color' => ${$css_blip_couleur}['couleur|2|clair'],
-			'#pied a:hover|background|color' => ${$css_blip_couleur}['couleur|neutre'],
-			'#pied a:focus|color' => ${$css_blip_couleur}['couleur|2|clair'],
-			'#pied a:focus|background|color' => ${$css_blip_couleur}['couleur|neutre'],
 
 	// Personnalisation du style du bloc .mentions_techniques
 	'.mentions_techniques|display' => '',
@@ -1455,9 +1235,6 @@ $css_blip_pied_0 = array(
 	'.mentions_legales|background|repeat' => '',
 	'.mentions_legales|background|attachement' => '',
 	'.mentions_legales|background|position' => '',
-); 
-
-$css_blip_divers_0 = array(
 
 	// AUTRES BLOCS CSS  ----------------------------------------------
 
@@ -2176,53 +1953,48 @@ else
 // Pour le bon fonctionnement du compilateur, aucune declaration CSS ne doit avoir etre place avant la balise body, sinon plantage assuré !!!
 
 reset($css_blip);
-While (List($css_key,$css_value)=each($css_blip)):
-	$css_compilation = "css_blip_".$css_key.'_'.$css_value;
-	if ( $css_key != "couleur" )
-		{	
-		$css_key_compil_encours = '';
-		While (List($css_key_compil,$css_value_compil)=each(${$css_compilation})):
-			$css_key_compil_array = explode("|", $css_key_compil);
-		
-				if ( $css_value_compil !='')
+$css_compilation = 'css_blip';
+$css_key_compil_encours = '';
+	While (List($css_key_compil,$css_value_compil)=each(${$css_compilation})):
+		$css_key_compil_array = explode("|", $css_key_compil);
+	
+			if ( $css_value_compil !='')
+				{
+
+				if ( $css_key_compil_array[0] != $css_key_compil_encours ) 
 					{
-
-					if ( $css_key_compil_array[0] != $css_key_compil_encours ) 
+					if ( $css_key_compil_encours !='' ) 
 						{
-						if ( $css_key_compil_encours !='' ) 
-							{
-							echo "}"."\n".$css_key_compil_array[0]." { "; 
-							}
-						else
-							{
-							echo "\n".$css_key_compil_array[0]." { "; 
-							}
+						echo "}"."\n".$css_key_compil_array[0]." { "; 
 						}
-
-					if ( $css_key_compil_array[2] !='')
+					else
 						{
-						if ( $css_key_compil_array[3] !='')
-							{
-							echo $css_key_compil_array[1]."-".$css_key_compil_array[2]."-".$css_key_compil_array[3]." : ".$css_value_compil."; ";
-							}
-						else
-							{
-						echo $css_key_compil_array[1]."-".$css_key_compil_array[2]." : ".$css_value_compil."; ";
-							}
+						echo "\n".$css_key_compil_array[0]." { "; 
 						}
-					else 
-						{
-						echo $css_key_compil_array[1].' : '.$css_value_compil.'; ';
-						}
-						
-					$css_key_compil_encours = $css_key_compil_array[0];
 					}
-				
-				
-		EndWhile;
-		echo "}";
-		}
-EndWhile;
+
+				if ( $css_key_compil_array[2] !='')
+					{
+					if ( $css_key_compil_array[3] !='')
+						{
+						echo $css_key_compil_array[1]."-".$css_key_compil_array[2]."-".$css_key_compil_array[3]." : ".$css_value_compil."; ";
+						}
+					else
+						{
+					echo $css_key_compil_array[1]."-".$css_key_compil_array[2]." : ".$css_value_compil."; ";
+						}
+					}
+				else 
+					{
+					echo $css_key_compil_array[1].' : '.$css_value_compil.'; ';
+					}
+					
+				$css_key_compil_encours = $css_key_compil_array[0];
+				}
+			
+			
+	EndWhile;
+echo "}";
 ?>
 
 .formulaire_spip form, .formulaire_spip fieldset, .formulaire_spip legend, .formulaire_spip label, .formulaire_spip input, .formulaire_spip textarea, .formulaire_spip select, .formulaire_spip option { margin: 0; padding: 0;}
