@@ -1,0 +1,116 @@
+#CACHE{86400}
+<BOUCLE_article_principal(ARTICLES) {id_article}><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+	<title>[(#TITRE|supprimer_numero|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	[<meta name="description" content="(#INTRODUCTION|couper{150}|attribut_html)" />]
+	<meta name="generator" content="SPIP" />
+	[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
+
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+	<link rel="stylesheet" href="[(#CHEMIN{spip_style.css}|direction_css)]" type="text/css" media="all" />
+	<link rel="stylesheet" href="[(#CHEMIN{habillage.css}|direction_css)]" type="text/css" media="projection, screen, tv" />
+	<link rel="stylesheet" href="[(#CHEMIN{impression.css}|direction_css)]" type="text/css" media="print" />
+#INSERT_HEAD
+</head>
+
+<body class="page_article">
+<div id="page">
+<INCLURE{fond=inc-entete}{lang}>
+
+	<div id="conteneur">
+
+
+		[(#REM) Contenu principal : contenu de l'article ]
+
+		<div id="contenu">
+
+			<div class="cartouche">
+				#DEBUT_SURLIGNE
+				[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{100})]
+				[<p class="surtitre">(#SURTITRE)</p>]
+				<h1 class="titre">[(#TITRE|supprimer_numero)]</h1>
+				[<p class="soustitre">(#SOUSTITRE)</p>]
+				#FIN_SURLIGNE
+
+<small>[(#DATE|affdate_court)][ - (#DATE_MODIF|affdate_court)]</small>
+
+				[(#REM) Traductions de l'article ]
+				<B_traductions>
+				<div class="traductions">
+					<p class="invisible"><:trad_article_traduction:></p>
+					<ul>
+						<li[ class="(#EXPOSE)"]>[&#91;(#LANG)&#93;]</li>
+						<BOUCLE_traductions(ARTICLES){traduction}{exclus}>
+						<li><a[ href="(#URL_ARTICLE|url_absolue)"] rel="alternate" hreflang="#LANG" title="[(#LANG|traduire_nom_langue)][ : (#TITRE|supprimer_numero|couper{80}|texte_backend)]"><span lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">[&#91;(#LANG)&#93;]</span></a></li>
+						</BOUCLE_traductions>
+					</ul>
+				</div>
+				</B_traductions>
+
+			</div>
+
+
+			#DEBUT_SURLIGNE
+			[<div class="chapo">(#CHAPO)</div>]
+			<br class="nettoyeur" />
+			[<div class="texte">(#TEXTE|image_reduire{520,0})</div>]
+			#FIN_SURLIGNE
+
+			[<div class="ps"><h2><:info_ps:></h2>#DEBUT_SURLIGNE(#PS)#FIN_SURLIGNE</div>]
+
+			[(#REM) Autres documents joints a l'article ]
+			<B_documents_joints>
+			<div id="documents_joints">
+				<h2><:titre_documents_joints:></h2>
+				<ul>
+					<BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {par date} {doublons}>
+					<li>
+					<div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>">[(#TITRE|sinon{<:info_document:>})]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
+					[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]</li>
+					<br class="nettoyeur" />
+					</BOUCLE_documents_joints>
+				</ul>
+			</div>
+			</B_documents_joints>
+
+			[(#REM) Petition :
+			La petition ayant une PAGINATION il faut absolument lui passer SELF en argument. ]
+			[ #REM Conserver cet invalideur : (#PETITION|?{'',''}) ]
+			<INCLURE{fond=inc-petition}{id_article}{self=#SELF}>
+
+			[<div class="notes"><h2><:info_notes:></h2>#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
+
+		</div><!-- fin contenu -->
+
+
+		[(#REM) Menu de navigation laterale ]
+		<div id="navigation">
+
+			<INCLURE{fond=inc-download}>
+			<INCLURE{fond=inc-rubriques}{lang}{id_rubrique}{id_article}>
+
+			[(#REM) Articles dans la meme rubrique ]
+			<B_articles_rubrique>
+			<div class="memrub">
+				<h2 class="menu-titre"><a href="#URL_RUBRIQUE"><:meme_rubrique:></a></h2>
+				<ul>
+					<BOUCLE_articles_rubrique(ARTICLES){id_rubrique}{par num titre}{!par date}>
+					<li><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero)]</a></li>
+					</BOUCLE_articles_rubrique>
+				</ul>
+			</div>
+			</B_articles_rubrique>
+			
+		</div><!-- fin navigation -->
+
+	<br class="nettoyeur" />
+	</div><!-- fin conteneur -->
+
+<INCLURE{fond=inc-pied}{lang}>
+
+</div><!-- fin page -->
+</body>
+</html>
+</BOUCLE_article_principal>

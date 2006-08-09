@@ -1,0 +1,111 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
+	<meta name="generator" content="SPIP" />
+	[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
+
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+	<link rel="stylesheet" href="[(#CHEMIN{spip_style.css}|direction_css)]" type="text/css" media="all" />
+	<link rel="stylesheet" href="[(#CHEMIN{habillage.css}|direction_css)]" type="text/css" media="projection, screen, tv" />
+	<link rel="stylesheet" href="[(#CHEMIN{impression.css}|direction_css)]" type="text/css" media="print" />
+#INSERT_HEAD
+</head>
+
+<body class="page_sommaire">
+<div id="page">
+<INCLURE{fond=inc-entete}{lang}>
+
+	<div id="conteneur">
+
+		[(#REM) Contenu principal : derniers articles publies ]
+
+		<div id="contenu">
+			<div class="cartouche">
+				<h1 class="invisible">#NOM_SITE_SPIP</h1>
+			</div>
+			<BOUCLE_intro(RUBRIQUES){racine}{id_rubrique!=4}{id_rubrique!=324}{lang}>
+			[<div class="texte">(#TEXTE)</div>]
+			</BOUCLE_intro>
+
+			[(#REM) Les deux derniers articles ]
+			<B_articles_recents>
+			<div class="liste-articles">
+				<h2 class="invisible"><:derniers_articles:></h2>
+				<ul>
+					<BOUCLE_articles_recents(ARTICLES){lang}{!par date}{0,3}{doublons}>
+					<li>
+						[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{100})]
+						[<p class="surtitre">(#SURTITRE)</p>]
+						<h3 class="titre"><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h3>
+						[<p class="soustitre">(#SOUSTITRE)</p>]
+						<small>[(#DATE|affdate_court)]</small>
+						[<div class="texte">(#INTRODUCTION|couper{250})</div>]
+						<br class="nettoyeur" />
+					</li>
+					</BOUCLE_articles_recents>
+				</ul>
+			</div>
+			</B_articles_recents>
+
+			<br class="nettoyeur" />
+
+			[(#REM) Articles suivants ]
+			<B_articles>
+			<div class="contre-encart">
+
+				<div class="liste-articles">
+					[(#ENV{debut_articles}|?{'',' '})<h2 class="invisible"><:articles_recents:></h2>]
+					<ul>
+						<BOUCLE_articles(ARTICLES){lang}{!par date_modif}{0,3}{doublons}>
+						<li>
+							<h3 class="titre"><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h3>
+							<small>[(#DATE_MODIF|affdate_court)]</small>
+						</li>
+						</BOUCLE_articles>
+					</ul>
+				</div>
+
+			</div><!-- fin contre-encart -->
+			</B_articles>
+
+
+			<div class="encart">
+
+				[(#REM) Sur le Web ]
+				<B_syndic>
+				<div class="syndic">
+					<h2 class="menu-titre"><:nouveautes_web:></h2>
+					<ul>
+					<BOUCLE_syndic(SYNDIC_ARTICLES){lang} {age<180} {!par date} {0,6}>
+						<li>[(#DATE|affdate_court) &ndash; ]<a href="#URL_ARTICLE"[ title="(#NOM_SITE|texte_backend)"] class="spip_out">#TITRE</a></li>
+					</BOUCLE_syndic>
+					</ul>
+				</div>
+				</B_syndic>
+
+			</div><!-- fin encart -->
+
+		</div><!-- fin contenu -->
+
+		[(#REM) Menu de navigation laterale ]
+		<div id="navigation">
+
+			<INCLURE{fond=inc-download}>
+			<INCLURE{fond=inc-rubriques}{lang}>
+			<INCLURE{fond=inc-uzine}>
+
+		</div><!-- fin navigation -->
+
+	<br class="nettoyeur" />
+	</div><!-- fin conteneur -->
+
+<INCLURE{fond=inc-pied}{lang}>
+
+</div><!-- fin page -->
+#SPIP_CRON
+</body>
+</html>
