@@ -1,12 +1,25 @@
 <div id="entete">
 
-[<a rel="start" href="#URL_SITE_SPIP/">(#LOGO_SITE_SPIP
+[<a rel="start" href="#URL_SITE_SPIP/?lang=#ENV{lang}" style="float: #LANG_LEFT;">(#LOGO_SITE_SPIP
 	||image_reduire{770,200}
 	|inserer_attribut{alt,[(#NOM_SITE_SPIP|textebrut)]}
 	|inserer_attribut{title,[(#NOM_SITE_SPIP|textebrut)]}
 	)</a>]
 
-#FORMULAIRE_RECHERCHE
+<p style="clear: both; padding: 1em 1em 0 1em; font-size: 11px;">
+<BOUCLE_langues(RUBRIQUES){racine}{id_rubrique!=4}{id_rubrique!=324}{par lang}>
+<span lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">[&#91;<a href="#URL_SITE_SPIP/?lang=#LANG" rel="alternate" hreflang="#LANG"[ title="(#TITRE|supprimer_numero|couper{80}|texte_backend)"]>(#LANG|unique)</a>&#93;]</span></BOUCLE_langues>
+</p>
+
+<p class="invisible"><small>
+<BOUCLE_trad(RUBRIQUES){id_rubrique=4}{doublons}>
+[<a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
+</BOUCLE_trad>
+<B_trad_suite> : 
+<BOUCLE_trad_suite(RUBRIQUES){lang}{id_secteur=4}{doublons}{par num titre, titre}{" | "}>
+[<a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
+</BOUCLE_trad_suite>
+</small></p>
 
 <br class="nettoyeur" />
 
@@ -42,7 +55,11 @@
 <li><a href="http://forum.spip.org"><:forum:></a></li>
 <//B_forum>
 
-</ul></div>
+</ul>
+
+#FORMULAIRE_RECHERCHE
+
+</div>
 
 <br class="nettoyeur" />
 </div>
