@@ -11,12 +11,33 @@
 <br class="nettoyeur" />
 
 <div id="topnav"><ul>
-<li><a href="#URL_SITE_SPIP/?lang=#ENV{lang}" title="<:accueil_site:>">Accueil</a></li>
-<li><a href="#URL_SITE_SPIP/spip.php?article464">&Agrave;&nbsp;propos</a></li>
-<BOUCLE_doc(RUBRIQUES){racine}{id_rubrique!=4}{id_rubrique!=324}{lang}><li><a href="#URL_RUBRIQUE"[ title="(#TITRE|supprimer_numero|couper{80}|texte_backend)"]>Documentation</a></li></BOUCLE_doc>
-<li><a href="http://www.spip.net/@">Lexique</a></li>
-<li><a href="#URL_SITE_SPIP/spip.php?rubrique205">Contribuer</a></li>
-<li><a href="http://forum.spip.org">Forum</a></li>
+<li><a href="#URL_SITE_SPIP/?lang=#ENV{lang}" title="<:accueil_site:>"><:accueil_site:></a></li>
+
+[(#REM) Lien vers l'article presentant SPIP ]
+<BOUCLE_about(ARTICLES){id_article=464}>
+<BOUCLE_about_trad(ARTICLES){traduction}{lang=#ENV{lang}}>
+<li><a href="#URL_ARTICLE"[ title="(#TITRE|supprimer_numero|couper{80}|texte_backend)"]><:about:></a></li>
+</BOUCLE_about_trad>
+</BOUCLE_about>
+
+[(#REM) Lien vers la doc generale ]
+<BOUCLE_doc(RUBRIQUES){lang}{racine}{id_rubrique!=4}{id_rubrique!=324}><li><a href="#URL_RUBRIQUE"[ title="(#TITRE|supprimer_numero|couper{80}|texte_backend)"]><:documentation:></a></li></BOUCLE_doc>
+
+[(#REM) Lien vers le lexique de mots-clefs ]
+<li><a href="#URL_SITE_SPIP/@"><:lexique:></a></li>
+
+[(#REM) Lien vers la rub invitant a contribuer a SPIP ]
+<BOUCLE_contribuer(ARTICLES){id_article=825}{0,1}>
+<BOUCLE_contribuer_trad(ARTICLES){traduction}{lang=#ENV{lang}}>
+<BOUCLE_contribuer_rub(RUBRIQUES){id_rubrique}>
+<li><a href="#URL_RUBRIQUE"[ title="(#TITRE|supprimer_numero|couper{80}|texte_backend)"]><:contribuer:></a></li>
+</BOUCLE_contribuer_rub>
+</BOUCLE_contribuer_trad>
+</BOUCLE_contribuer>
+
+[(#REM) Lien direct vers les forums ]
+<li><a href="http://forum.spip.org"><:forum:></a></li>
+
 </ul></div>
 
 <br class="nettoyeur" />
