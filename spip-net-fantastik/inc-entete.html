@@ -1,29 +1,27 @@
 <div id="entete">
 
-[<a rel="start" href="#URL_SITE_SPIP/?lang=#ENV{lang}" style="float: #LANG_LEFT;">(#LOGO_SITE_SPIP
+[<a rel="start" href="#URL_SITE_SPIP/?lang=#ENV{lang}" title="<:accueil_site:>">(#LOGO_SITE_SPIP
 	||image_reduire{770,200}
 	|inserer_attribut{alt,[(#NOM_SITE_SPIP|textebrut)]}
-	|inserer_attribut{title,[(#NOM_SITE_SPIP|textebrut)]}
 	)</a>]
 
-<p style="clear: both; padding: 1em 1em 0 1em; font-size: 11px;">
+<p class="langues">
 <BOUCLE_langues(RUBRIQUES){racine}{id_rubrique!=4}{id_rubrique!=324}{par lang}>
-<span lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">[&#91;<a href="#URL_SITE_SPIP/?lang=#LANG" rel="alternate" hreflang="#LANG"[ title="(#TITRE|supprimer_numero|couper{80}|texte_backend)"]>(#LANG|unique{langues})</a>&#93;]</span></BOUCLE_langues>
-
-<BOUCLE_trad(RUBRIQUES){id_rubrique=4}{doublons}>
+<span lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">[&#91;<a href="#URL_SITE_SPIP/?lang=#LANG" rel="alternate" hreflang="#LANG" title="[(#LANG|traduire_nom_langue)]">(#LANG|unique{langues})</a>&#93;]</span></BOUCLE_langues>
+<BOUCLE_espace_trad(RUBRIQUES){id_rubrique=4}>
 &#91;<a href="#URL_RUBRIQUE"[ title="(#TITRE|supprimer_numero|couper{80}|texte_backend)"]>?</a>&#93;
-</BOUCLE_trad>
+</BOUCLE_espace_trad>
 </p>
 
 <br class="nettoyeur" />
 
 <div id="topnav"><ul>
-<li><a href="#URL_SITE_SPIP/?lang=#ENV{lang}" title="<:accueil_site:>"><:accueil_site:></a></li>
+<li class="invisible"><a href="#URL_SITE_SPIP/?lang=#ENV{lang}" title="<:accueil_site:>"><:accueil_site:></a></li>
 
 [(#REM) Lien vers l'article presentant SPIP ]
 <BOUCLE_about(ARTICLES){id_article=464}>
 <BOUCLE_about_trad(ARTICLES){traduction}{lang=#ENV{lang}}>
-<li><a href="#URL_ARTICLE"[ title="(#TITRE|supprimer_numero|couper{80}|texte_backend)"]><:about:></a></li>
+<li><a href="#URL_ARTICLE"[ title="(#TITRE|supprimer_numero|couper{80}|texte_backend)"]>[(#TITRE|supprimer_numero)]</a></li>
 </BOUCLE_about_trad>
 </BOUCLE_about>
 
@@ -31,7 +29,7 @@
 <BOUCLE_doc(RUBRIQUES){lang}{racine}{id_rubrique!=4}{id_rubrique!=324}><li><a href="#URL_RUBRIQUE"[ title="(#TITRE|supprimer_numero|couper{80}|texte_backend)"]><:documentation:></a></li></BOUCLE_doc>
 
 [(#REM) Lien vers le lexique de mots-clefs ]
-<li><a href="#URL_SITE_SPIP/@"><:lexique:></a></li>
+<li><a href="#URL_PAGE{lexique}&lang=#ENV{lang}"><:lexique:></a></li>
 
 [(#REM) Lien vers la rub invitant a contribuer a SPIP ]
 <BOUCLE_contribuer(ARTICLES){id_article=825}{0,1}>
