@@ -9,7 +9,6 @@
 	$dossier_squelettes = '/var/shim/spipnet/:squelettes/';
 	define('_TIDY_COMMAND', './tidy');
 	define('_TIDY_SIGNAL_ID_MOT', 280); # le mot cle a apposer aux articles non compliants
-	$GLOBALS["xhtml"] = true;
 	
 	# taille max du cache
 	$quota_cache = 20;
@@ -25,17 +24,17 @@
 	# choix du squelette www.spip.net/?var_skel=fraich
 	# www.spip.net/?var_skel= pour revenir au normal
 	if (isset($_GET['var_skel'])) {
-		if ($_GET['var_skel'] == 'fraich')
+		if ($_GET['var_skel'] == '2007')
+			setcookie('skel', $_COOKIE['skel'] = '2007', NULL, '/');
+		elseif ($_GET['var_skel'] == 'fraich')
 			setcookie('skel', $_COOKIE['skel'] = 'fraich', NULL, '/');
-		elseif ($_GET['var_skel'] == 'hBones')
-			setcookie('skel', $_COOKIE['skel'] = 'hBones', NULL, '/');
 		else
 			setcookie('skel', $_COOKIE['skel'] = '', time()-3600*24, '/');
 	}
 	if ($_COOKIE['skel'] == 'fraich')
 		$dossier_squelettes = '/var/shim/spipnet:dist';
-	elseif ($_COOKIE['skel'] == 'hBones')
-		$dossier_squelettes = '/var/shim/spipnet:hBones';
+	elseif ($_COOKIE['skel'] == '2007')
+		$dossier_squelettes = 'spip-net-fantastik:/var/shim/spipnet';
 
 
 	# raccourcis [->spip19] etc
