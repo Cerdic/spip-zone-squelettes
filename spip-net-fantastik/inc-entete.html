@@ -8,18 +8,12 @@
 
 <p style="clear: both; padding: 1em 1em 0 1em; font-size: 11px;">
 <BOUCLE_langues(RUBRIQUES){racine}{id_rubrique!=4}{id_rubrique!=324}{par lang}>
-<span lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">[&#91;<a href="#URL_SITE_SPIP/?lang=#LANG" rel="alternate" hreflang="#LANG"[ title="(#TITRE|supprimer_numero|couper{80}|texte_backend)"]>(#LANG|unique)</a>&#93;]</span></BOUCLE_langues>
-</p>
+<span lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">[&#91;<a href="#URL_SITE_SPIP/?lang=#LANG" rel="alternate" hreflang="#LANG"[ title="(#TITRE|supprimer_numero|couper{80}|texte_backend)"]>(#LANG|unique{langues})</a>&#93;]</span></BOUCLE_langues>
 
-<p class="invisible"><small>
 <BOUCLE_trad(RUBRIQUES){id_rubrique=4}{doublons}>
-[<a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
+&#91;<a href="#URL_RUBRIQUE"[ title="(#TITRE|supprimer_numero|couper{80}|texte_backend)"]>?</a>&#93;
 </BOUCLE_trad>
-<B_trad_suite> : 
-<BOUCLE_trad_suite(RUBRIQUES){lang}{id_secteur=4}{doublons}{par num titre, titre}{" | "}>
-[<a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
-</BOUCLE_trad_suite>
-</small></p>
+</p>
 
 <br class="nettoyeur" />
 
@@ -47,6 +41,16 @@
 </BOUCLE_contribuer_rub>
 </BOUCLE_contribuer_trad>
 </BOUCLE_contribuer>
+
+[(#REM) Aide : questions et reponses ]
+<BOUCLE_aide_rub(RUBRIQUES){id_rubrique=116}>
+<BOUCLE_aide_articles(ARTICLES){branche}>
+<BOUCLE_aide_articles_trad(ARTICLES){traduction}{lang=#ENV{lang}}><BOUCLE_aide_rub_trad(HIERARCHIE){id_rubrique}{1,1}>
+[<li><a href="(#URL_RUBRIQUE|unique{aide_rub_trad})"[ title="(#TITRE|supprimer_numero|couper{80}|texte_backend)"]><:aide:></a></li>]
+</BOUCLE_aide_rub_trad></BOUCLE_aide_articles_trad>
+</BOUCLE_aide_articles>
+</BOUCLE_aide_rub>
+
 
 [(#REM) Lien direct vers les forums ]
 <BOUCLE_forum(SITES){id_secteur}{id_mot=240}>
