@@ -7,7 +7,6 @@
 	# se trouvent dans /var/shim/spipnet/lang/ , on cherche donc
 	# lang/local_fr dans ../
 	$dossier_squelettes = '/var/shim/spipnet/:squelettes/';
-	define('_TIDY_COMMAND', './tidy');
 	define('_TIDY_SIGNAL_ID_MOT', 280); # le mot cle a apposer aux articles non compliants
 	
 	# taille max du cache
@@ -19,7 +18,7 @@
 
 	$type_urls = 'trad';
 
-	$plugins[] = 'ancres';
+	$table_des_traitements['TITRE'][]= 'typo(supprimer_numero(%s))';
 
 	# choix du squelette www.spip.net/?var_skel=fraich
 	# www.spip.net/?var_skel= pour revenir au normal
@@ -33,9 +32,10 @@
 	}
 	if ($_COOKIE['skel'] == 'fraich')
 		$dossier_squelettes = '/var/shim/spipnet:dist';
-	elseif ($_COOKIE['skel'] == '2007')
+	elseif ($_COOKIE['skel'] == '2007') {
 		$dossier_squelettes = 'spip-net-fantastik:/var/shim/spipnet';
-
+		define('_TIDY_COMMAND', '');
+	}
 
 	# raccourcis [->spip19] etc
 	function calculer_url_spip($id, $texte, $ancre) {
