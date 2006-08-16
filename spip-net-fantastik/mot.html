@@ -35,7 +35,7 @@
 
 <ul>
 <BOUCLE_mots(MOTS) {id_groupe} {par titre}>
-<li><h3 dir="ltr" lang="fr">#TITRE</h3>
+<li><h3 dir="ltr" lang="fr"><a href='#'>#TITRE</a></h3>
 
 <ul>
 <BOUCLE_article_fr(ARTICLES){lang=fr}{id_mot}{!par popularite}>
@@ -66,8 +66,16 @@
 <INCLURE{fond=inc-pied}{lang}>
 
 </div><!-- fin page -->
+<script type='text/javascript'><!--
 $(document).ready(function(){
-	$('li~h3+ul').hide();
+	$('h3+ul').hide();
+	$('li>h3>a').click(function(){
+		var ul = $("../../ul",this);
+		if (ul.is(":hidden")) ul.slideDown("fast");
+		else ul.slideUp("fast");
+		return false;
+	});
 });
+--></script>
 </body>
 </html>
