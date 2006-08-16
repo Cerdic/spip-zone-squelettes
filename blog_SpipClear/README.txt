@@ -6,7 +6,7 @@ Il est developpe par James et Ben depuis fevrier 2005 et ca fait leur bonheur.
 SpipClear est concu pour transformer un secteur (au moins) en blog, ou carnet web.
 Pour cela, il s'inspire de DotClear, un systeme de gestion de blog developpe en php par Neokraft.net.
 
-La version minimum de Spip est la 1.8.2e.
+La version minimum de Spip est la 1.9.1
 C'est comme ca, les auteurs aiment a etre ou a paraitre a la pointe du progres...
 
 Alors, sinon, forcement, SpipClear est distribue sous la licence GNU/GPL.
@@ -19,7 +19,7 @@ dans la mesure ou on ne s'appuie pas dessus pour fixer un planning,
 une feuille de route, ou une todo.
 
 Ah oui ! On vous a pas dit : pas de feuille de route, ni todo. Si vous esperez des modifications,
-venez sur le blog (<http://www.spip.blog.ouvaton.org/>) ou sur
+venez sur le blog (<http://www.spip-blog.net/>) ou sur
 la liste spip-zone (<http://listes.rezo.net/mailman/listinfo/spip-zone>)
 on en cause et on voit comment integrer vos attentes...
 
