@@ -36,7 +36,7 @@
 			<div class="liste-articles">
 				<h2 class="invisible"><:derniers_articles:></h2>
 				<ul>
-					<BOUCLE_articles_recents(ARTICLES){lang}{!par date}{0,3}{doublons}>
+					<BOUCLE_articles_recents(ARTICLES){lang}{!par date}{age<150}{0,3}{doublons}>
 					<li>
 						[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{100})]
 						[<p class="surtitre">(#SURTITRE)</p>]
@@ -58,12 +58,12 @@
 			<div class="contre-encart">
 
 				<div class="liste-articles">
-					[(#ENV{debut_articles}|?{'',' '})<h2 class="invisible"><:articles_recents:></h2>]
+					[(#ENV{debut_articles}|?{'',' '})<h2><:quoideneuf:></h2>]
 					<ul>
-						<BOUCLE_articles(ARTICLES){lang}{!par date_modif}{0,3}{doublons}>
+						<BOUCLE_articles(ARTICLES){!par date_modif}{age<150}{0,5}{doublons}>
 						<li>
 							<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
-							<small>[(#DATE_MODIF|affdate_court)]</small>
+							<small>&#91;#LANG&#93; &mdash; [(#DATE_MODIF|affdate_court)]</small>
 						</li>
 						</BOUCLE_articles>
 					</ul>
@@ -75,13 +75,13 @@
 
 			<div class="encart">
 
-				[(#REM) Sur le Web ]
+			[(#REM) Sur le Web ]
 			<BOUCLE_syndic_rub(RUBRIQUES){lang}{racine}{id_rubrique!=4}{id_rubrique!=324}>
 				<B_syndic>
 				<div class="syndic">
 					<h2 class="menu-titre"><:nouveautes_web:></h2>
 					<ul>
-					<BOUCLE_syndic(SYNDIC_ARTICLES){lang}{id_secteur} {age<180} {!par date} {0,6}>
+					<BOUCLE_syndic(SYNDIC_ARTICLES){lang} {id_secteur} {!par date}{age<150} {0,6}>
 						<li>[(#DATE|affdate_court) &ndash; ]<a href="#URL_ARTICLE"[ title="(#NOM_SITE|texte_backend)"] class="spip_out">#TITRE</a></li>
 					</BOUCLE_syndic>
 					</ul>
