@@ -34,12 +34,18 @@
 <h2>#TITRE</h2>
 
 <ul>
-<BOUCLE_mots(MOTS) {id_groupe} {par titre}>
+<BOUCLE_mots(MOTS) {id_groupe} {par titre}{0,5}>
 <li><h3>#TITRE</h3>
 
 <ul>
 <BOUCLE_article_fr(ARTICLES){lang=fr}{id_mot}{!par popularite}>
-<li><a href="#URL_ARTICLE">#TITRE</a></li>
+	<li>
+		<BOUCLE_article(ARTICLES){traduction}{lang=#ENV{lang}}>
+		<a href="#URL_ARTICLE">#TITRE</a>
+		</BOUCLE_article>
+		<em><a href="#_article_fr:URL_ARTICLE">#_article_fr:TITRE</a></em>
+		<//B_article>
+	</li>
 </BOUCLE_article_fr>
 </ul>
 
