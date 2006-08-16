@@ -72,23 +72,6 @@
 		return $GLOBALS['scEstUnBlog'][$id_secteur];
 	}
 
-	if(file_exists('inc-trackback.php')) include_local('inc-trackback.php');
-	else {
-		function balise_PARAMETRES_TRACKBACK($p) {
-			$p->code = "''";
-			$p->interdire_scripts = false;
-			return $p;
-		}
-			
-		function balise_URL_TRACKBACK($p) {
-			$p->code = "''";
-			$p->interdire_scripts = false;
-			return $p;
-		}
-
-		function critere_trackback($idb, &$boucles, $crit) {}
-	}
-
 	function affdate_long($date) {
 		return affdate_base($date, 'nom_jour').' '.affdate_base($date, 'entier');
 	}
