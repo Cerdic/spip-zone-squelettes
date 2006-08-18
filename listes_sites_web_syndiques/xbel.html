@@ -1,0 +1,18 @@
+[(REM) Squelette pour SPIP 1.9. Sortie au format XBEL 1.0 http://pyxml.sourceforge.net/topics/xbel/docs/html/xbel.html .]
+#CACHE{86400}
+[(#HTTP_HEADER{Content-type: application/atom+xml[; charset=(#CHARSET)]})]
+<?php echo '<' ?>?xml version="1.0"[ encoding="(#CHARSET)"]?>
+<!DOCTYPE xbel PUBLIC "+//IDN python.org//DTD XML Bookmark Exchange Language 1.0//EN//XML" "http://www.python.org/topics/xml/dtds/xbel-1.0.dtd">
+<xbel version="1.0">
+	<title>[(#NOM_SITE_SPIP|texte_backend) ]<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>[- (#TITRE|texte_backend) ]</BOUCLE_rubrique></title>
+<BOUCLE_rubriques(RUBRIQUES){branche ?}>
+<B_sites>
+	<folder>
+		[<title>(#_rubriques:TITRE|texte_backend)</title>]
+<BOUCLE_sites(SITES){id_rubrique}{syndication=oui}>
+		<bookmark[ href="(#URL_SYNDIC)"]>[<title>(#NOM_SITE|texte_backend)]</title>]</bookmark>
+</BOUCLE_sites>
+	</folder>
+</B_sites>
+</BOUCLE_rubriques>
+</xbel>
