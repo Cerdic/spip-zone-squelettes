@@ -1,0 +1,13 @@
+[(REM) Squelette pour SPIP 1.9. Sortie au format MozSearch pour Mozilla Firefox 2 http://developer.mozilla.org/en/docs/Creating_MozSearch_plugins .]
+#CACHE{86400}
+[(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})]
+<?php echo '<' ?>?xml version="1.0"[ encoding="(#CHARSET)"]?>
+<SearchPlugin xmlns="http://www.mozilla.org/2006/browser/search/">
+<ShortName>[(#NOM_SITE_SPIP|texte_backend)]</ShortName>
+<Description>Rechercher dans le site web [(#NOM_SITE_SPIP|texte_backend)]</Description>[(REM) Chaine devant etre internationnalisee]
+<InputEncoding>#CHARSET</InputEncoding>
+<Url type="text/html" method="GET" [template="(#URL_PAGE{recherche}|url_absolue)"]>
+ <Param name="recherche" value="{searchTerms}"/>
+</Url> [(REM) Pas sur que cela fonctionne.]
+[<SearchForm>(#URL_PAGE{recherche}|url_absolue|texte_backend)</SearchForm>]
+</SearchPlugin>
