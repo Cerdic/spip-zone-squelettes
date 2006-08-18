@@ -1,5 +1,8 @@
+[(#REM) Squelette pour SPIP 1.9. Sortie au format ATOM 1.0 http://www.ietf.org/rfc/rfc4287.txt .]
 #CACHE{7200}
 [(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})]
+[(REM) Remplacer text/xml par application/atom+xml des que 
+http://bugzilla.mozilla.org/show_bug.cgi?id=258012 est corrige.]
 <?php echo '<' ?>?xml version="1.0"[ encoding="(#CHARSET)"]?>
 <feed xmlns="http://www.w3.org/2005/Atom"[ xml:lang="(#LANG)"]>
 [	<title>(#NOM_SITE_SPIP|texte_backend)</title>]
@@ -16,8 +19,10 @@
 [		<title>(#TITRE|supprimer_numero|texte_backend)</title>]
 [		<id>#URL_SITE_SPIP/breve(#ID_BREVE)</id>]
 [		<link rel="alternate" type="text/html" href="(#URL_BREVE|url_absolue)"/>]
+[		<link rel="replies" type="application/atom+xml" href="(#PARAMETRES_FORUM|url_rss_forum|parametre_url{fmt,atom}|url_absolue)"/>]
 [		<published>(#DATE|date_iso)</published>]
 [		<updated>(#DATE|date_iso)</updated>]
+[(REM) L'absence de balise <author> ici rend ce document non conforme a la rfc 4287.]
 	<BOUCLE_breve_rubrique(RUBRIQUES){id_rubrique}>
 [		<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>]
 	</BOUCLE_breve_rubrique>
@@ -46,6 +51,7 @@
 [		<title>(#TITRE|supprimer_numero|texte_backend)</title>]
 [		<id>#URL_SITE_SPIP/article(#ID_ARTICLE)</id>]
 [		<link rel="alternate" type="text/html" href="(#URL_ARTICLE|url_absolue)"/>]
+[		<link rel="replies" type="application/atom+xml" href="(#PARAMETRES_FORUM|url_rss_forum|parametre_url{fmt,atom}|url_absolue)"/>]
 [		<published>(#DATE|date_iso)</published>]
 [		<updated>(#DATE_MODIF|date_iso)</updated>]
 	<BOUCLE_article_auteur(AUTEURS){id_article}>
