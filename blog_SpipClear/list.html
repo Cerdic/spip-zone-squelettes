@@ -1,4 +1,12 @@
-<BOUCLE_liste(ARTICLES){branche ?}{lang ?}{date==^#ENV{archives}}{par date}{inverse}{0,15}>
+<B_liste>[
+<div>(#PAGINATION)</div>
+]<BOUCLE_liste(ARTICLES)
+ {branche ?}
+ {lang ?}
+ {archives ?}
+ {recherche ?}
+ {par date}{inverse}
+ {pagination 15}>
 <div class="post">
 	[(#LOGO_ARTICLE|right)]
 	[<p class="day-date">(#DATE|affdate_long|unique)</p>]
@@ -6,14 +14,14 @@
 	<h2 id="p#ID_ARTICLE" class="post-title"><a href="#URL_ARTICLE">#TITRE</a></h2>
 
 	<p class="post-info">
-	<B_auteurs><:par_auteur|ucfirst:> <BOUCLE_auteurs(AUTEURS){id_article}{", "}>#NOM</BOUCLE_auteurs>, </B_auteurs>
+	[<:par_auteur|ucfirst:> (#LESAUTEURS), ]
 	[(#DATE|affdate_long)] <:attime:> [(#DATE|heures)]:[(#DATE|minutes)]
 	<span>::</span>
 	<BOUCLE_categorie(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">#TITRE</a></BOUCLE_categorie>
 	</p>
 
 	[<div class="post-content" lang="#LANG">
-		(#INTRODUCTION|retirer_hreflang)
+		(#INTRODUCTION)
 	</div>]
 	
 	[<div class="post-content" lang="#LANG"><strong><:voir_en_ligne:></strong> : <a href="(#URL_SITE)">#NOM_SITE</a></div>]
@@ -26,34 +34,6 @@
 	</a>
 	</p>
 </div>
-</BOUCLE_liste>
-<BOUCLE_liste2(ARTICLES){branche ?}{lang ?}{par date}{inverse}{0,15}>
-<div class="post">
-	[(#LOGO_ARTICLE|right)]
-	[<p class="day-date">(#DATE|affdate_long|unique)</p>]
-
-	<h2 id="p#ID_ARTICLE" class="post-title"><a href="#URL_ARTICLE">#TITRE</a></h2>
-
-	<p class="post-info">
-	<B_auteurs2><:par_auteur|ucfirst:> <BOUCLE_auteurs2(AUTEURS){id_article}{", "}>#NOM</BOUCLE_auteurs2>, </B_auteurs2>
-	[(#DATE|affdate_long)] <:attime:> [(#DATE|heures)]:[(#DATE|minutes)]
-	<span>::</span>
-	<BOUCLE_categorie2(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">#TITRE</a></BOUCLE_categorie2>
-	</p>
-
-	[<div class="post-content" lang="#LANG">
-		(#INTRODUCTION|retirer_hreflang)
-	</div>]
-	
-	[<div class="post-content" lang="#LANG"><strong><:voir_en_ligne:></strong> : <a href="(#URL_SITE)">#NOM_SITE</a></div>]
-	
-	<p class="post-info-co">
-	<a href="#URL_ARTICLE#co" title="<:commentaires_pour:> : [(#TITRE|textebrut|entites_html)]">
-		<BOUCLE_commentaires2(FORUMS){id_article}{plat}> </BOUCLE_commentaires2>
-		#TOTAL_BOUCLE [(#TOTAL_BOUCLE|=={1}|?{<:commentaire:>,<:commentaires:>})]
-		</B_commentaires2><:aucun_commentaire:><//B_commentaires2>
-	</a>
-	</p>
-</div>
-</BOUCLE_liste2>
-<//B_liste>
+</BOUCLE_liste>[
+<div>(#PAGINATION)</div>
+]</B_liste>
