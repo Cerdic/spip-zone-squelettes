@@ -1,23 +1,29 @@
-[(REM) Squelette pour SPIP 1.9. Sortie au format OpenSearch 1.1 Description http://opensearch.a9.com/spec/1.1/description/ .]
-#CACHE{86400}
+[(#REM) Squelette pour SPIP 1.9. Sortie au format OpenSearch 1.1 Description http://opensearch.a9.com/spec/1.1/description/ .
+N'utilise pas le systeme de pagination de OpenSearch 1.1: Query Syntax http://opensearch.a9.com/spec/1.1/querysyntax/#core
+car la pagination de SPIP 1.9.0 n'est pas encore mature.
+]#CACHE{86400}
 [(#HTTP_HEADER{Content-type: application/opensearchdescription+xml[; charset=(#CHARSET)]})]
 <?php echo '<' ?>?xml version="1.0"[ encoding="(#CHARSET)"]?>
 <SearchPlugin xmlns="http://a9.com/-/spec/opensearch/1.1/">
-<ShortName>[(#NOM_SITE_SPIP|texte_backend)]</ShortName>
-<Description>Rechercher dans le site web [(#NOM_SITE_SPIP|texte_backend)]</Description>[(REM) Chaine devant etre internationnalisee]
+<ShortName>[(#NOM_SITE_SPIP|texte_backend)][ rub(#ID_RUBRIQUE)]</ShortName>
+<Description>Rechercher dans le site web [(#NOM_SITE_SPIP|texte_backend)]<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>[- rubrique (#TITRE|texte_backend) ]</BOUCLE_rubrique></Description>[(#REM) Chaine devant etre internationnalisee]
 <InputEncoding>#CHARSET</InputEncoding>
-[(REM) 
+[(#REM) 
 <Url type="text/html" method="GET" [template="(#URL_PAGE{recherche}|url_absolue)"]>
+[ <Param name="id_rubrique" value="(#ID_RUBRIQUE")/>]
  <Param name="recherche" value="{searchTerms}"/>
 </Url>
 <Url type="application/atom+xml" method="GET" [template="(#URL_PAGE{recherche-atom}|url_absolue)"]>
+[ <Param name="id_rubrique" value="(#ID_RUBRIQUE")/>]
  <Param name="recherche" value="{searchTerms}"/>
 </Url>
 Ne convient pas, car les elements Param doivent etre ignores si method="GET" http://opensearch.a9.com/spec/1.1/querysyntax/#param ]
+[(#REM)
+<Url type="text/html" method="GET" [template="(#URL_PAGE{recherche}|parametre_url{id_rubrique,#ID_RUBRIQUE}|parametre_url{recherche,{searchTerms}}|url_absolue|texte_backend)"]/>
+<Url type="application/atom+xml" method="GET" [template="(#URL_PAGE{recherche-atom}|parametre_url{id_rubrique,#ID_RUBRIQUE}|parametre_url{recherche,{searchTerms}}|url_absolue|texte_backend)"]/>
+Ne convient pas, car les accolades sont encodées en %7B et %7D, la méthode de HTML 4 section B.2.1 http://www.la-grange.net/w3c/html4.01/appendix/notes.html#h-B.2.1 ]
 
-<Url type="text/html" method="GET" [template="(#URL_PAGE{recherche}|parametre_url{recherche,{searchTerms}}|url_absolue|texte_backend)"]>
-</Url>
-<Url type="application/atom+xml" method="GET" [template="(#URL_PAGE{recherche-atom}|parametre_url{recherche,{searchTerms}}|url_absolue|texte_backend)"]>
-</Url>
-[(REM) Ne convient pas, car les accolades sont encodées en %7B et %7D, la méthode de HTML 4 section B.2.1 http://www.la-grange.net/w3c/html4.01/appendix/notes.html#h-B.2.1 ]
+<Url type="text/html" method="GET" [template="(#URL_PAGE{recherche}|parametre_url{id_rubrique,#ID_RUBRIQUE}|url_absolue|texte_backend)&amp;recherche={searchTerms}"]/>
+<Url type="application/atom+xml" method="GET" [template="(#URL_PAGE{recherche-atom}|parametre_url{id_rubrique,#ID_RUBRIQUE}|url_absolue|texte_backend)&amp;recherche={searchTerms}"]/>
+[(#REM) N'est pas parfait a cause de l'ajout manuel du parametre de recherche. ]
 </SearchPlugin>
