@@ -1,0 +1,91 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<title><:sites_web:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
+<meta name="robots" content="none" />
+<meta name="generator" content="SPIP" />
+[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
+
+<link rel="stylesheet" href="[(#CHEMIN{spip_style.css}|direction_css)]" type="text/css" media="all" />
+<link rel="stylesheet" href="[(#CHEMIN{habillage.css}|direction_css)]" type="text/css" media="projection, screen, tv" />
+<link rel="stylesheet" href="[(#CHEMIN{impression.css}|direction_css)]" type="text/css" media="print" />
+#INSERT_HEAD
+</head>
+
+<body class="page_site">
+<div id="page">
+<INCLURE{fond=inc-entete}{lang}>
+
+	[(#REM) Fil d'Ariane ]
+	<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_syndic}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; (#NOM_SITE|couper{80})]</div>
+
+	<div id="conteneur">
+
+		[(#REM) Contenu principal : affichage des sites references ]
+		<div id="contenu">
+
+			<div class="cartouche">
+				<h1 class="titre invisible"><:sites_web:></h1>
+			</div>
+
+			<BOUCLE_secteurs(RUBRIQUES) {lang ?} {racine} {par num titre, titre}>
+
+				[(#REM) Sous-rubriques ]
+				<B_rubriques>
+				<ul>
+					<BOUCLE_rubriques(RUBRIQUES) {lang ?} {id_parent} {par num titre, titre}>
+					<li>
+
+				[(#REM) Sites de la rubrique ]
+				<B_sites>
+				<div class="syndic">
+					<h2 class="menu-titre">#_rubriques:TITRE</h2>
+					<ul>
+						<BOUCLE_sites(SITES){id_rubrique}{par num nom_site, nom_site}>
+						<li><strong class="titre"><a href="#URL_SITE" class="spip_out">#NOM_SITE</a></strong>
+							[<p>(#DESCRIPTIF|PtoBR)</p>]
+							<B_syndic>
+							<ul>
+								<BOUCLE_syndic(SYNDIC_ARTICLES){id_syndic}{age<150}{!par date}{0,3}>
+								<li><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></li>
+								</BOUCLE_syndic>
+							</ul>
+							</B_syndic>
+						</li>
+						</BOUCLE_sites>
+					</ul>
+				</div>
+				</B_sites>
+
+						<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+
+					</li>
+					</BOUCLE_rubriques>
+
+				</ul>
+				</B_rubriques>
+
+			</BOUCLE_secteurs>
+
+			[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+
+		</div><!-- fin contenu -->
+
+		[(#REM) Menu de navigation laterale ]
+		<div id="navigation">
+
+			<INCLURE{fond=inc-download}{lang}>
+			<INCLURE{fond=inc-rubriques}{lang}>
+
+		</div><!-- fin navigation -->
+
+	<br class="nettoyeur" />
+	</div><!-- fin conteneur -->
+
+<INCLURE{fond=inc-pied}{lang}>
+
+</div><!-- fin page -->
+</body>
+</html>
