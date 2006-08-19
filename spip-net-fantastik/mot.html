@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="#LANG_DIR" lang="#LANG">
 <head>
-<title><:glossaire:>[ - (#NOM_SITE_SPIP|textebrut)]</title>
+<title><:mots_clefs:>[ - (#NOM_SITE_SPIP|textebrut)]</title>
 <meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
 [<meta name="description" content="(#DESCRIPTIF|sinon{#TEXTE}|couper{150}|attribut_html)" />]
 <meta name="generator" content="SPIP" />
@@ -19,25 +19,21 @@
 <div id="page">
 <INCLURE{fond=inc-entete}{lang}>
 
-	[(#REM) Fil d'Ariane ]
-	<div id="hierarchie"><a href="#URL_SITE_SPIP/?lang=#ENV{lang}"><:accueil_site:></a> &gt; <:glossaire:></div>
-
 	<div id="conteneur">
 
 		[(#REM) Contenu principal : contenu du mot-cle ]
 		<div id="contenu">
 
 			<div class="cartouche">
-				<h1 class="invisible"><:glossaire:></h1>
+				<h1 class="invisible"><:mots_clefs:></h1>
 			</div>
 
-<BOUCLE_groupes_mots(GROUPES_MOTS) {titre==^[0-9]}{par num titre, titre}>
+<BOUCLE_groupes_mots(GROUPES_MOTS){id_groupe IN 8,10,11,9,13}>
 <div class="groupe_mot">
 <h2>#TITRE</h2>
 <dl>
 	<BOUCLE_mots(MOTS) {id_groupe} {par titre}>
 	<dl>
-		<a href="#ancre#ID_MOT" name="#ancre#ID_MOT" id="#ancre#ID_MOT"></a>
 		<dt dir="ltr" lang="fr">#TITRE</dt>
 	
 		<BOUCLE_article_fr(ARTICLES){lang=fr}{id_mot}{!par popularite}>
@@ -73,13 +69,15 @@ $(document).ready(function(){
 	$('dd').hide();
 	$('dt').click(function(){
 		var dl = $(this.parentNode);
-		$('dd',open_item).slideUp('fast');
-		if (dl!=open_item){
+		if ($('dd:first-of-type',dl).is(':hidden')){
+			$('dd',open_item).slideUp('fast');
 			$('dd',dl).slideDown("fast");
 			open_item=dl;
 		}
-		else
+		else{
+			$('dd',open_item).slideUp('fast');
 			open_item=$('empty');
+		}
 		return false;
 	});
 });
