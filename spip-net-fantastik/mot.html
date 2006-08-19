@@ -19,9 +19,6 @@
 <div id="page">
 <INCLURE{fond=inc-entete}{lang}>
 
-	[(#REM) Fil d'Ariane ]
-	<div id="hierarchie"><a href="#URL_SITE_SPIP/?lang=#ENV{lang}"><:accueil_site:></a> &gt; <:mots_clefs:></div>
-
 	<div id="conteneur">
 
 		[(#REM) Contenu principal : contenu du mot-cle ]
@@ -34,25 +31,25 @@
 <BOUCLE_groupes_mots(GROUPES_MOTS){id_groupe IN 8,10,11,9,13}>
 <div class="groupe_mot">
 <h2>#TITRE</h2>
-
 <dl>
-<BOUCLE_mots(MOTS) {id_groupe} {par titre}>
-<dt dir="ltr" lang="fr"><a href="#" class="motcle">#TITRE</a></dt>
-
-<BOUCLE_article_fr(ARTICLES){lang=fr}{id_mot}{!par popularite}>
+	<BOUCLE_mots(MOTS) {id_groupe} {par titre}>
+	<dl>
+		<dt dir="ltr" lang="fr"><a href="#" class="motcle">#TITRE</a></dt>
 	
-	<BOUCLE_article(ARTICLES){traduction}{lang=#ENV{lang}}>
-	<dd class="masque"><a href="#URL_ARTICLE">#TITRE</a></dd>
-	</BOUCLE_article>
-
-	<dd dir="ltr" lang="fr" class="masque"><em><a href="#_article_fr:URL_ARTICLE">#_article_fr:TITRE</a></em></dd>
-	<//B_article>
-
-</BOUCLE_article_fr>
-
-</BOUCLE_mots>
+		<BOUCLE_article_fr(ARTICLES){lang=fr}{id_mot}{!par popularite}>
+		
+		<BOUCLE_article(ARTICLES){traduction}{lang=#ENV{lang}}>
+		<dd class="masque"><a href="#URL_ARTICLE">#TITRE</a></dd>
+		</BOUCLE_article>
+	
+		<dd dir="ltr" lang="fr" class="masque"><em><a href="#_article_fr:URL_ARTICLE">#_article_fr:TITRE</a></em></dd>
+		<//B_article>
+	
+		</BOUCLE_article_fr>
+	
+	</dl>
+	</BOUCLE_mots>
 </dl>
-
 </div>
 </BOUCLE_groupes_mots>
 
@@ -69,16 +66,16 @@
 <script type='text/javascript'><!--
 $(document).ready(function(){
 	var open_item=$('empty');
-	$('dd.masque').hide();
-	$('a.motcle').click(function(){
-		var dl = $("../../dl",this);
-		if (dl.is(":hidden")) {
-			open_item.slideUp('fast');
-			//$('h3+dl:visible').slideUp('fast');
-			dl.slideDown("fast");
+	$('dd').hide();
+	$('dt').find('a').click(function(){
+		var dl = $(this.parentNode.parentNode);
+		$('dd',open_item).slideUp('fast');
+		if (dl!=open_item){
+			$('dd',dl).slideDown("fast");
 			open_item=dl;
 		}
-		else dl.slideUp("fast");
+		else
+			open_item=$('empty');
 		return false;
 	});
 });
