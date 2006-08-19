@@ -1,38 +1,79 @@
-#CACHE{24*3600}
+#CACHE{0}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html dir="#LANG_DIR" lang="#LANG">
 <head>
-	<title><:resultats_recherche:> - [(#NOM_SITE_SPIP|textebrut)]</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
-	<meta name="robots" content="none" />
-	<meta name="generator" content="SPIP" />
-	[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
+<title><:resultats_recherche:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<meta name="robots" content="none" />
+<meta name="generator" content="SPIP" />
+[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
 
-	<!-- Ceci est la feuille de style par defaut pour le code genere par SPIP -->
-	<link rel="stylesheet" href="[(#CHEMIN{spip_style.css}|direction_css)]" type="text/css" media="all" />
-	<!-- Feuille de styles CSS pour l'affichage du site sur ecran -->
-	<link rel="stylesheet" href="[(#CHEMIN{habillage.css}|direction_css)]" type="text/css" media="projection, screen, tv" />
-	<!-- Feuille de styles CSS pour l'impression -->
-	<link rel="stylesheet" href="[(#CHEMIN{impression.css}|direction_css)]" type="text/css" media="print" />
+<link rel="stylesheet" href="[(#CHEMIN{spip_style.css}|direction_css)]" type="text/css" media="all" />
+<link rel="stylesheet" href="[(#CHEMIN{habillage.css}|direction_css)]" type="text/css" media="projection, screen, tv" />
+<link rel="stylesheet" href="[(#CHEMIN{impression.css}|direction_css)]" type="text/css" media="print" />
+#INSERT_HEAD
 </head>
-
 
 <body class="page_recherche">
 <div id="page">
-
-	[(#REM) Entete de la page + titre du site ]
-	<INCLURE{fond=inc-entete}{lang}>
+<INCLURE{fond=inc-entete}{lang}>
 
 	[(#REM) Fil d'Ariane ]
-	<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:info_rechercher:>[ &gt; (#RECHERCHE)]</div>
+	<div id="hierarchie"><a href="#URL_SITE_SPIP/?lang=#ENV{lang}"><:accueil_site:></a> &gt; <:info_rechercher:>[ &gt; (#RECHERCHE)]</div>
 
-	#FORMULAIRE_RECHERCHE_GALAXIE
 	<div id="conteneur">
 
 		[(#REM) Contenu principal : Resultats de la recherche ]
 
 		<div id="contenu">
+
+			[<div class="cartouche">
+				<h1 class="surtitre"><:resultats_recherche:></h1>
+				<p class="titre">&#171;&nbsp;(#RECHERCHE)&nbsp;&#187;</p>
+			</div>]
+
+			<div class="contre-encart">
+
+				[(#REM) Articles trouves ]
+				<B_articles>
+				<div class="liste-articles">
+					#ANCRE_PAGINATION
+					<h2 class="invisible"><:articles:></h2>
+					<ul>
+						<BOUCLE_articles(ARTICLES) {lang} {recherche} {!par points} {pagination}>
+						<li>
+						<small style="font-variant: small-caps;"><strong>#POINTS</strong> &mdash; <BOUCLE_rub(RUBRIQUES){id_rubrique}>#TITRE</BOUCLE_rub></small>
+						<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+						</li>
+						</BOUCLE_articles>
+					</ul>
+					[<p class="pagination">(#PAGINATION)</p>]
+				</div>
+				</B_articles>
+				<p class="reponse_formulaire"><:avis_aucun_resultat:></p>
+				<//B_articles>
+
+			</div><!-- fin contre-encart -->
+
+			[(#REM) Mots-cles trouves ]
+			<B_mots>
+			<div class="encart">
+				<div class="groupe_mot">
+					<h2 class="menu-titre"><:glossaire:></h2>
+					<dl>
+						<BOUCLE_mots(MOTS) {type==^[0-9]} {recherche} {!par points}>
+						<dt dir="ltr" lang="fr"><a href="#URL_PAGE{mot}#ancre#ID_MOT[&lang=(#ENV{lang})]" class="motcle">#TITRE</a></dt>
+						</BOUCLE_mots>
+					</dl>
+				</div>
+			</div><!-- fin encart -->
+			</B_mots>
+
+
+<!-- essai recherche inter-galactique --><hr class="nettoyeur" />
+
+#FORMULAIRE_RECHERCHE_GALAXIE<hr class="nettoyeur" />
 
 			[(#REM) Recherche mnoGoSearch ]
 			<B_test>
@@ -135,21 +176,22 @@
 
 			</div><!-- fin encart -->
 
+<hr class="nettoyeur" /><!-- fin essai recherche inter-galactique -->
+
 		</div><!-- fin contenu -->
 
 		[(#REM) Menu de navigation laterale ]
 		<div id="navigation">
-			<h1 class="invisible"><:navigation:></h1>
 
-			[(#REM) Menu de navigation par rubriques ]
+			<INCLURE{fond=inc-download}{lang}>
 			<INCLURE{fond=inc-rubriques}{lang}>
 
 		</div><!-- fin navigation -->
 
+	<br class="nettoyeur" />
 	</div><!-- fin conteneur -->
-	
-	[(#REM) Pied de page ]
-	<INCLURE{fond=inc-pied}{lang}>
+
+<INCLURE{fond=inc-pied}{lang}>
 
 </div><!-- fin page -->
 </body>
