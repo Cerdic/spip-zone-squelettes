@@ -37,15 +37,15 @@
 <dl>
 	<BOUCLE_mots(MOTS) {id_groupe} {par titre}>
 	<dl>
-		<dt dir="ltr" lang="fr"><a href="#" class="motcle">#TITRE</a></dt>
+		<dt dir="ltr" lang="fr">#TITRE</dt>
 	
 		<BOUCLE_article_fr(ARTICLES){lang=fr}{id_mot}{!par popularite}>
 		
 		<BOUCLE_article(ARTICLES){traduction}{lang=#ENV{lang}}>
-		<dd class="masque"><a href="#URL_ARTICLE">#TITRE</a></dd>
+		<dd><a href="#URL_ARTICLE">#TITRE</a></dd>
 		</BOUCLE_article>
 	
-		<dd dir="ltr" lang="fr" class="masque"><em><a href="#_article_fr:URL_ARTICLE">#_article_fr:TITRE</a></em></dd>
+		<dd dir="ltr" lang="fr"><em><a href="#_article_fr:URL_ARTICLE">#_article_fr:TITRE</a></em></dd>
 		<//B_article>
 	
 		</BOUCLE_article_fr>
@@ -70,8 +70,8 @@
 $(document).ready(function(){
 	var open_item=$('empty');
 	$('dd').hide();
-	$('dt').find('a').click(function(){
-		var dl = $(this.parentNode.parentNode);
+	$('dt').click(function(){
+		var dl = $(this.parentNode);
 		$('dd',open_item).slideUp('fast');
 		if (dl!=open_item){
 			$('dd',dl).slideDown("fast");
