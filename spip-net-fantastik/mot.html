@@ -31,12 +31,27 @@
 				<h1 class="invisible"><:glossaire:></h1>
 			</div>
 
+[(#REM)
+
+	Seuls les groupes de mot-clefs dont le titre comporte un numero sont affiches sur cette page.
+
+	Les mots-clefs sont affiches en listes de definition, comme explique ici :
+	http://pompage.net/pompe/listesdefinitions
+
+	Pour chacun, on cherche d'abord les articles francais lies au mot, et qui servent de reference.
+	Puis, selon les traductions disponibles pour chaque article,
+	on affiche sa traduction dans la langue souhaitee,
+	sinon on affiche l'article de reference en francais.
+
+]
+
+
 <BOUCLE_groupes_mots(GROUPES_MOTS) {titre==^[0-9]}{par num titre, titre}>
 <div class="groupe_mot">
 	<h2>#TITRE</h2>
-	<dl>
 
 		<BOUCLE_mots(MOTS) {id_groupe} {par titre}>
+		<dl>
 		<a href="#ancre#ID_MOT" name="#ancre#ID_MOT" id="#ancre#ID_MOT"></a>
 		<dt dir="ltr" lang="fr">#TITRE</dt>
 	
@@ -51,9 +66,9 @@
 	
 			</BOUCLE_article_fr>
 
+		</dl>
 		</BOUCLE_mots>
 
-	</dl>
 </div>
 </BOUCLE_groupes_mots>
 
