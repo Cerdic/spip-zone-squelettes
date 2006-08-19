@@ -53,9 +53,10 @@
 
 			<br class="nettoyeur" />
 
+			<div class="contre-encart">
+
 			[(#REM) Modifications recentes ]
 			<B_articles>
-			<div class="contre-encart">
 				<div class="liste-articles">
 					[(#ENV{debut_articles}|?{'',' '})<h2><:quoideneuf:></h2>]
 					<ul>
@@ -67,11 +68,7 @@
 						</BOUCLE_articles>
 					</ul>
 				</div>
-			</div><!-- fin contre-encart -->
 			</B_articles>
-
-
-			<div class="encart">
 
 			[(#REM) Sur le Web ]
 			<BOUCLE_syndic_rub(RUBRIQUES){lang}{racine}{id_rubrique!=4}{id_rubrique!=324}>
@@ -86,6 +83,22 @@
 				</div>
 				</B_syndic>
 			</BOUCLE_syndic_rub>
+
+			</div><!-- fin contre-encart -->
+
+
+			<div class="encart">
+
+[(#REM) Derniers sites sous SPIP references ]
+<B_signatures><div class="syndic">
+<h2 class="menu-titre"><:site_realise_avec_spip:></h2><ul>
+<BOUCLE_signatures(SIGNATURES) {!par date}{age<150} {0,5}>
+<li>[(#DATE|affdate_court)][ &mdash; <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE)]</a>]</li>
+</BOUCLE_signatures>
+</ul>
+<p><BOUCLE_signatures_total(SIGNATURES)> </BOUCLE_signatures_total>
+<small>&#91; #GRAND_TOTAL <:sites_web:> &#93;</small></B_signatures_total></p>
+</div></B_signatures>
 
 			</div><!-- fin encart -->
 
