@@ -82,7 +82,7 @@
 <B_signatures><div class="syndic">
 <h2 class="menu-titre"><:derniers_sites_realises_avec_spip:></h2><ul class="box">
 <BOUCLE_signatures(SIGNATURES) {!par date}{age<150} {0,5}>
-<li class="link">[(#DATE|affdate_court)][ &ndash; <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE)]</a>]</li>
+[<li class="link">[(#DATE|affdate_court)] &ndash; <a href="(#URL_SITE|unique{signatures})" class="spip_out">#NOM_SITE</a></li>]
 </BOUCLE_signatures>
 </ul>
 <p><BOUCLE_signatures_total(SIGNATURES)> </BOUCLE_signatures_total>
@@ -91,13 +91,13 @@
 
 
 			[(#REM) Sur le Web ]
-			<BOUCLE_syndic_rub(RUBRIQUES){lang ?}{racine}{id_rubrique!=4}{id_rubrique!=324}>
+			<BOUCLE_syndic_rub(RUBRIQUES){lang=#ENV{lang}}{racine}{id_rubrique!=4}{id_rubrique!=324}>
 				<B_syndic>
 				<div class="syndic">
 					<h2 class="menu-titre"><:nouveautes_web:></h2>
 					<ul class="box">
 					<BOUCLE_syndic(SYNDIC_ARTICLES){id_secteur} {!par date}{age<150} {0,6}>
-						<li class="link">[(#DATE|affdate_court) &ndash; ]<a href="#URL_ARTICLE"[ title="(#NOM_SITE|texte_backend)"] class="spip_out">#TITRE</a></li>
+						[<li class="link">[(#DATE|affdate_court) &ndash; ]<a href="(#URL_ARTICLE|unique{syndic})"[ title="(#NOM_SITE|texte_backend)"] class="spip_out">#TITRE</a></li>]
 					</BOUCLE_syndic>
 					</ul>
 				</div>
