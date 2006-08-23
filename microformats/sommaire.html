@@ -18,9 +18,14 @@
 
 	<div id="conteneur">
 
-		[(#REM) Contenu principal : derniers articles publies ]
-
-		<div id="contenu">
+		[(#REM) Contenu principal : derniers articles publies
+		
+		Pour la signification des classes "hfeed, hentry,
+		entry-title, abbr.published, entry-content", voir
+		<http://microformats.org/wiki/hatom-fr>
+		
+		]
+		<div id="contenu" class="hfeed">
 
 			<h1 class="invisible">#NOM_SITE_SPIP</h1>
 			[<div class="chapo">(#DESCRIPTIF_SITE_SPIP)</div>]
@@ -31,13 +36,13 @@
 				<h2 class="invisible"><:derniers_articles:></h2>
 				<ul>
 					<BOUCLE_articles_recents(ARTICLES) {par date}{inverse} {0,2} {doublons}>
-					<li>
+					<li class="hentry" id="article-#ID_ARTICLE">
 						[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{150,100})]
 						[<p class="surtitre">(#SURTITRE)</p>]
-						<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+						<h3 class="titre entry-title"><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h3>
 						[<p class="soustitre">(#SOUSTITRE)</p>]
-						<small>[(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small>
-						[<div class="texte">(#INTRODUCTION)</div>]
+						<small>[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate)</abbr>][, <:par_auteur:> (#LESAUTEURS)]</small>
+						[<div class="texte entry-content">(#INTRODUCTION)</div>]
 						<br class="nettoyeur" />
 					</li>
 					</BOUCLE_articles_recents>
@@ -56,9 +61,9 @@
 					[(#ENV{debut_articles}|?{'',' '})<h2 class="invisible"><:articles_recents:></h2>]
 					<ul>
 						<BOUCLE_articles(ARTICLES) {par date}{inverse} {doublons} {pagination}>
-						<li>
-							<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
-							<small>[(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small>
+						<li class="hentry" id="article-#ID_ARTICLE">
+							<h3 class="titre entry-title"><a href="#URL_ARTICLE">#TITRE</a></h3>
+							<small>[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate)</abbr>][, <:par_auteur:> (#LESAUTEURS)]</small>
 						</li>
 						</BOUCLE_articles>
 					</ul>
