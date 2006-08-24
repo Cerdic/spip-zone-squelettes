@@ -1,5 +1,4 @@
 #CACHE{7200}
-<BOUCLE_plan(RUBRIQUES){lang}{3,1}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="#LANG_DIR" lang="#LANG">
 <head>
@@ -37,7 +36,7 @@
 				[(#REM) Articles par sous-rubriques ]
 
 					<B_rubriques>
-					<ul>
+					<ul lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR" style="text-align: #LANG_LEFT;">
 						<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
 						<li>
 							[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|image_reduire{77})]
@@ -45,8 +44,8 @@
 
 							<B_articles>
 							<ul>
-								<BOUCLE_articles(ARTICLES) {lang=#ENV{lang}} {id_rubrique} {par titre}{!par date}>
-								<li><a href="#URL_ARTICLE">#TITRE</a></li>
+								<BOUCLE_articles(ARTICLES) {lang} {id_rubrique} {par titre}{!par date}>
+								<li lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR" style="text-align: #LANG_LEFT;"><a href="#URL_ARTICLE">#TITRE</a></li>
 								</BOUCLE_articles>
 							</ul>
 							</B_articles>
@@ -70,7 +69,7 @@
 					<strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
 					</BOUCLE_espace_trad>
 
-						<BOUCLE_espace_trad_rub(RUBRIQUES) {lang=#ENV{lang}} {id_secteur=4}>
+						<BOUCLE_espace_trad_rub(RUBRIQUES) {lang ?} {id_secteur=4}>
 						<ul>
 							<li>
 							<strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
@@ -102,4 +101,3 @@
 </div><!-- fin page -->
 </body>
 </html>
-</BOUCLE_plan>
