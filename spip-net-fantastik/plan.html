@@ -24,29 +24,26 @@
 
 	<div id="conteneur">
 
-		[(#REM) Le plan de site ci-dessous est a adapter selon les besoins. En particulier, on n'aura pas necessairement besoin de tous les elements (sous-rubriques, articles, breves et sites) ]
-
 		<div id="contenu">
 
 			<div class="cartouche">
 			<h1 class="invisible"><:plan_site:></h1>
 			</div>
 
-				Plan de site (tout cass&eacute;...)<br /><br />
-				<div class="toto"><!-- Ouais, je sais, ça peut pas marcher avec ça -->
+				[(#REM) Plan du site, seulement le secteur de la langue ]
 				<BOUCLE_secteurs(RUBRIQUES) {lang ?} {racine}{id_rubrique!=4}{id_rubrique!=324} {par num titre, titre}>
 
 				[(#REM) Articles par sous-rubriques ]
 
 					<B_rubriques>
-					<ul class="subrub">
+					<ul>
 						<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
 						<li>
 							[(#LOGO_RUBRIQUE|right|#URL_RUBRIQUE|image_reduire{70})]
 							<strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
 
 							<B_articles>
-							<ul class="subart">
+							<ul>
 								<BOUCLE_articles(ARTICLES) {lang=#ENV{lang}} {id_rubrique} {par titre}{!par date}>
 								<li><a href="#URL_ARTICLE">#TITRE</a></li>
 								</BOUCLE_articles>
@@ -62,7 +59,28 @@
 					</B_rubriques>
 
 				</BOUCLE_secteurs>
-				</div>
+
+				[(#REM) N'oublions pas l'espace des traducteurs ]
+				<B_espace_trad_rub>
+				<ul>
+					<li>
+					<BOUCLE_espace_trad(RUBRIQUES){id_rubrique=4}>
+					[(#LOGO_RUBRIQUE|right|#URL_RUBRIQUE|image_reduire{70})]
+					<strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
+					</BOUCLE_espace_trad>
+
+						<BOUCLE_espace_trad_rub(RUBRIQUES) {lang=#ENV{lang}} {id_secteur=4}>
+						<ul>
+							<li>
+							<strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
+							<BOUCLE_espace_trad_rub_articles(BOUCLE_articles)></BOUCLE_espace_trad_rub_articles>
+							</li>
+						</ul>
+						</BOUCLE_espace_trad_rub>
+
+					</li>
+				</ul>
+				</B_espace_trad_rub>
 
 		</div><!-- fin contenu -->
 
