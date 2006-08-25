@@ -37,17 +37,17 @@
 
 				[(#REM) Articles trouves ]
 				<B_articles>
-				<div class="liste-articles">
+				<div class="liste-articles invisible">
 					#ANCRE_PAGINATION
 					<h2 class="invisible"><:articles:></h2>
-					<ol>
+					<ul>
 						<BOUCLE_articles(ARTICLES) {lang} {recherche} {!par points} {pagination}>
 						<li>
 						<small style="font-variant: small-caps;"><strong>#POINTS&nbsp;%</strong> &mdash; <BOUCLE_rub(RUBRIQUES){id_rubrique}>#TITRE</BOUCLE_rub></small>
 						<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
 						</li>
 						</BOUCLE_articles>
-					</ol>
+					</ul>
 					[<p class="pagination">(#PAGINATION) &mdash; #GRAND_TOTAL r&eacute;sultats</p>]
 				</div>
 				</B_articles>
@@ -71,31 +71,35 @@
 			</B_mots>
 
 
-<!-- essai recherche inter-galactique --><hr class="nettoyeur" />
-
-#FORMULAIRE_RECHERCHE_GALAXIE<hr class="nettoyeur" />
+<!-- essai recherche inter-galactique -->
+<hr class="nettoyeur" />
 
 			[(#REM) Recherche mnoGoSearch ]
-			<B_test>
-
-			[<p class="pagination">(#PAGINATION) &mdash; #GRAND_TOTAL r&eacute;sultats</p>]
-
-				<div class="liste-articles">
-					#ANCRE_PAGINATION
-					<ol>
-						<BOUCLE_test(MNOGOSEARCH) {recherche} {pagination}>
-						<li>
+			<B_mnogosearch>
+			<div class="liste-articles">
+				#ANCRE_PAGINATION
+				<h2 class="invisible"><:articles:></h2>
+				[<p class="pagination">(#PAGINATION) &mdash; #GRAND_TOTAL r&eacute;sultats</p>]
+				<ul>
+					<BOUCLE_mnogosearch(MNOGOSEARCH) {recherche} {pagination}>
+					<li>
 						<h3 class="titre">#NUMERO - <a href="#URL">#TITRE*</a></h3>
-						<small>[(#DATE|affdate)] - #MIME_TYPE [(#TAILLE|taille_en_octets)] [- <a href='#CONFIG{mnogo_url_search}(#CACHE_URL)'>(cache)</a>]</small>
+						<small>[(#DATE|affdate)] - #MIME_TYPE [(#TAILLE|taille_en_octets)] [- <a href="#CONFIG{mnogo_url_search}(#CACHE_URL)">(cache)</a>]</small>
 						<div class="texte">#DESCRIPTIF*</div>
-						</li>
-						</BOUCLE_test>
-					</ol>
-				</div>
+					</li>
+					</BOUCLE_mnogosearch>
+				</ul>
+				[<p class="pagination">(#PAGINATION) &mdash; #GRAND_TOTAL r&eacute;sultats</p>]
+			</div>
+			</B_mnogosearch>
+			<p class="reponse_formulaire"><:avis_aucun_resultat:></p>
+			<//B_mnogosearch>
 
-			</B_test>
-
-<hr class="nettoyeur" /><!-- fin essai recherche inter-galactique -->
+			<hr class="nettoyeur" />
+			#FORMULAIRE_RECHERCHE_GALAXIE
+			
+<hr class="nettoyeur" />
+<!-- fin essai recherche inter-galactique -->
 
 		</div><!-- fin contenu -->
 
