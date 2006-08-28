@@ -7,7 +7,9 @@
 
 		[(#MODELE{title}{id_article,id_rubrique,id_secteur,archives})]
 
-  [(#REM) Feuille de style par defaut pour le code genere par SPIP ]
+  [<link rel="alternate" type="application/rss+xml" title="RSS" href="(#URL_PAGE{rss}|parametre_url{id_rubrique,#ID_SECTEUR})" />]
+
+	 [(#REM) Feuille de style par defaut pour le code genere par SPIP ]
   <link rel="stylesheet" href="[(#CHEMIN{spip_style.css}|direction_css)]" type="text/css" media="all" />
 
   [(#REM) Feuille de style CSS pour l'affichage du site a l'ecran ]
@@ -34,10 +36,8 @@
      <BOUCLE_billet(ARTICLES){id_article}>
      #MODELE{billet}
      </BOUCLE_billet>
-     [(#ENV{home}|=={1}|?{' ',''})<INCLURE{fond=home}{id_rubrique}>]
-     [(#ENV{home}|=={1}|?{'',' '})
-      <INCLURE{fond=list}{id_rubrique}{recherche}{archives}{debut_liste}{self}>
-     ]<//B_billet>
+     [(#MODELE{liste}{id_rubrique}{recherche}{archives}{debut_liste}{self}{home})]
+     <//B_billet>
     			
 				</div>
 			</div>
@@ -50,11 +50,19 @@
 
     [(#MODELE{archives_mensuelles}{id_rubrique,archives,self=#SELF,lang})]
     
+   	<div id="syndicate">
+   		<h2><:syndication:></h2>
+   		<ul>[
+   			<li><a href="(#URL_PAGE{rss}|parametre_url{id_rubrique,#ID_SECTEUR})"><:fil_rss:></a></li>][
+   			<li><a href="(#URL_PAGE{rss}|parametre_url{id_rubrique,#ID_SECTEUR}|parametre_url{type,co})"><:fil_rss_commentaires:></a></li>]
+   		</ul>
+   	</div>
+
 			</div>
 
 			<p id="footer">
     <:credits:>,
-    <a href="#URL_SITE_SPIP"><:hebergement:> #NOM_SITE_SPIP</a>
+    <a href="#URL_SITE_SPIP/"><:hebergement:> #NOM_SITE_SPIP</a>
    </p>
 			
 		</div>

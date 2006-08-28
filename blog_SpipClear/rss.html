@@ -1,23 +1,26 @@
-<?php
-   @header("Content-type: application/rss+xml");
-   echo '<'.'?xml version="1.0" encoding="#CHARSET"?'.">\n";
-?>
-<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+#CACHE{3600}
+[(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})]
+<?php echo '<' ?>?xml version="1.0"[ encoding="(#CHARSET)"]?>
+<rss version="2.0"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+>
 
 <channel>
-	<title>[(#NOM_SITE_SPIP|texte_backend)]<?php echo ($type == "co")?" (commentaires)":""; ?></title>
+	<title><BOUCLE_ta(ARTICLES){id_articles}>[(#TITRE|texte_backend) - ]</BOUCLE_ta>[(#NOM_SITE_SPIP|texte_backend)][ (#ENV{type}|=={co}|?{(<:commentaires:>)})]</title>
 	<link>#URL_SITE_SPIP/</link>
-	<description></description>
+	<description>[(#DESCRIPTIF_SITE_SPIP|texte_backend)]</description>
 	<language>#LANG</language>
+	<generator>SPIP - www.spip.net</generator>
 
-	<image>
+[	<image>
 		<title>[(#NOM_SITE_SPIP|texte_backend)]</title>
-		<url>#URL_SITE_SPIP/images/logo.png</url>
+		<url>(#LOGO_SITE_SPIP||extraire_attribut{src}|url_absolue|texte_backend)</url>
 		<link>#URL_SITE_SPIP/</link>
-		<description></description>
+		[<height>(#LOGO_SITE_SPIP||extraire_attribut{height})</height>]
+		[<width>(#LOGO_SITE_SPIP||extraire_attribut{width})</width>]
 	</image>
-
-
+]
 
 <?php 
 if ($GLOBALS['type'] == "co") {
