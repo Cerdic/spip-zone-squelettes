@@ -1,0 +1,67 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+	<title>tests - [(#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
+	<meta name="generator" content="SPIP" />
+	[<link rel="shortcut icon" href="(#CHEMIN{#NOM_SITE_SPIP.ico})" />]
+
+	[
+	(#REM) Lien vers le backend pour navigateurs eclaires ]
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+	[
+	(#REM) Script NiceTitle pour la gestion des title des liens ]	
+	[<script type="text/javascript" src="(#CHEMIN{nicetitle.js})"></script>]
+	[
+	(#REM) Style CSS de blip ]
+	<link rel="stylesheet" type="text/css" href="#URL_SITE_SPIP/spip.php?page=inc-css" />	
+	
+</head>
+
+<body id="test">
+<div id="page">
+
+[(#REM) Inclusion de l'Entete du site, qui se construit dynamiquement ]
+<INCLURE{fond=inc-tete}{page_actuelle=sommaire}>
+	
+<div id="corps">
+	
+	[(#REM) Construction du menu auxiliaire de la page sommaire]
+	<div class="menu_auxiliaire">
+		<ul>
+			<li> Page de tests </li>
+		</ul>
+	</div><!-- fin menu_auxiliaire-->
+
+
+	[(#REM) Construction du contenu de la page sommaire en fonction des paramètres passés dans la variable tri]
+	<div class="contenu">	
+	
+	TOTO #BLIP_VERSION
+	
+	<BOUCLE_titre_lat(SPIP_BLIP)>
+	#DESCRIPTIF #TEXTE <br />
+	</BOUCLE_titre_lat>
+	
+	
+	</div><!-- fin contenu-->
+
+	[(#REM) Inclusion de la Barre latérale du site, construite dynamiquement ]
+	<div class="barre_laterale">
+		<INCLURE{fond=inc-barrelaterale}{page_actuelle=sommaire}>	
+	</div><!-- fin barre_laterale-->
+
+</div><!-- fin corps -->
+
+[(#REM)  Inclusion du Pied de page du site, qui se construit dynamiquement]
+<INCLURE{fond=inc-pied}{page_actuelle=sommaire}>
+
+</div><!-- fin page -->
+
+[(#REM) Traitement des tâches de fond du site]
+#SPIP_CRON
+
+</body>
+</html>

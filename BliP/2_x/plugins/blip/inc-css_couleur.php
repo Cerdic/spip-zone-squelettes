@@ -19,7 +19,7 @@ $css_blip = array(
 ); 
 
 	// COULEURS ET PROPORTIONS DU SITE
-$css_blip_couleur_1_nom = 'n°01 : Vert acidulé et orange pétillant';
+$css_blip_couleur_1_nom = 'n°01 : Vert acidul&eacute; et orange p&eacute;tillant';
 $css_blip_couleur_1 = array(
 	// Jeu de couleur n°1
 	'gris|fonce' => '#333333',
@@ -61,7 +61,7 @@ $css_blip_couleur_10 = array(
 	'taille|bordure' => '0.25em',
 ); 
 
-$css_blip_couleur_2_nom = 'n°02 : Violet intense et orange pétillant';
+$css_blip_couleur_2_nom = 'n°02 : Violet intense et orange p&eacute;tillant';
 $css_blip_couleur_2 = array(
 	// Jeu de couleur n°1
 	'gris|fonce' => '#333333',
@@ -82,7 +82,7 @@ $css_blip_couleur_2 = array(
 	'taille|bordure' => '0.25em',
 ); 
 
-$css_blip_couleur_3_nom = 'n°03 : Bleu azur et orange pétillant';
+$css_blip_couleur_3_nom = 'n°03 : Bleu azur et orange p&eacute;tillant';
 $css_blip_couleur_3 = array(
 	// Jeu de couleur n°1
 	'gris|fonce' => '#333333',
@@ -103,7 +103,7 @@ $css_blip_couleur_3 = array(
 	'taille|bordure' => '0.25em',
 ); 
 
-$css_blip_couleur_4_nom = 'n°04 : Rouge intense et orange pétillant';
+$css_blip_couleur_4_nom = 'n°04 : Rouge intense et orange p&eacute;tillant';
 $css_blip_couleur_4 = array(
 	// Jeu de couleur n°1
 	'gris|fonce' => '#333333',
@@ -124,7 +124,7 @@ $css_blip_couleur_4 = array(
 	'taille|bordure' => '0.25em',
 ); 
 
-$css_blip_couleur_5_nom = 'n°05 : Rose bonbon et orange pétillant';
+$css_blip_couleur_5_nom = 'n°05 : Rose bonbon et orange p&eacute;tillant';
 $css_blip_couleur_5 = array(
 	// Jeu de couleur n°1
 	'gris|fonce' => '#333333',
@@ -145,7 +145,7 @@ $css_blip_couleur_5 = array(
 	'taille|bordure' => '0.25em',
 ); 
 
-$css_blip_couleur_6_nom = 'n°06 : Vert kaki et orange pétillant';
+$css_blip_couleur_6_nom = 'n°06 : Vert kaki et orange p&eacute;tillant';
 $css_blip_couleur_6 = array(
 	// Jeu de couleur n°1
 	'gris|fonce' => '#333333',
@@ -166,7 +166,7 @@ $css_blip_couleur_6 = array(
 	'taille|bordure' => '0.25em',
 ); 
 
-$css_blip_couleur_7_nom = 'n°07 : Orange pétillant et bleu océan';
+$css_blip_couleur_7_nom = 'n°07 : Orange p&eacute;tillant et bleu oc&eacute;an';
 $css_blip_couleur_7 = array(
 	// Jeu de couleur n°1
 	'gris|fonce' => '#333333',
@@ -187,7 +187,7 @@ $css_blip_couleur_7 = array(
 	'taille|bordure' => '0.25em',
 ); 
 
-$css_blip_couleur_8_nom = 'n°08 : Bleu océan et rouge intense';
+$css_blip_couleur_8_nom = 'n°08 : Bleu oc&eacute;an et rouge intense';
 $css_blip_couleur_8 = array(
 	// Jeu de couleur n°1
 	'gris|fonce' => '#333333',
@@ -208,7 +208,7 @@ $css_blip_couleur_8 = array(
 	'taille|bordure' => '0.25em',
 ); 
 
-$css_blip_couleur_9_nom = 'n°09 : Bleu intense et orange pétillant';
+$css_blip_couleur_9_nom = 'n°09 : Bleu intense et orange p&eacute;tillant';
 $css_blip_couleur_9 = array(
 	// Jeu de couleur n°1
 	'gris|fonce' => '#333333',

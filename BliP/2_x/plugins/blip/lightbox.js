@@ -60,8 +60,8 @@
 //
 //	Configuration
 //
-var fileLoadingImage = "squelettes/loading.gif";		
-var fileBottomNavCloseImage = "squelettes/close.gif";
+var fileLoadingImage = "plugins/blip/loading.gif";		
+var fileBottomNavCloseImage = "plugins/blip/close.gif";
 
 var resizeSpeed = 7;	// controls the speed of the image resizing (1=slowest and 10=fastest)
 
