@@ -1,0 +1,19 @@
+#CACHE{24*3600}
+
+<BOUCLE_documents_portfolio(DOCUMENTS){mode=document}{extension==(png|jpg|gif)$}{doublons}>		
+</BOUCLE_documents_portfolio>
+
+[(#REM) Derniers documents publiés sur le site (hors photos) ]
+<B_sommaire_documents>
+<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+<h1>Derniers documents publiés</h1><div class="element_sur">
+	<BOUCLE_sommaire_documents(DOCUMENTS){mode=document} {par date} {inverse}{doublons}{0,10}>
+		<div class="element_sous">
+		<div class="imgfloatleft"><a href="#URL_DOCUMENT"[ title="(#TITRE|attribut_html)"]>[(#LOGO_DOCUMENT{0,60})]</a></div>
+		<h5 class="nopadding"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>">[(#TITRE|sinon{<:info_document:>}) ]</a></h5>
+		<h5>#TYPE_DOCUMENT[ | (#TAILLE|taille_en_octets)][ | document publié le (#DATE|affdate)]</h5>
+		#DESCRIPTIF
+		</div>
+	</BOUCLE_sommaire_documents>
+</div></div></div>
+</B_sommaire_documents>
