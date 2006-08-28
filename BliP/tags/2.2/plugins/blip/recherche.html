@@ -1,0 +1,136 @@
+#CACHE{0}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+	<title><:resultats_recherche:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
+	<meta name="generator" content="SPIP" />
+	[<link rel="shortcut icon" href="(#CHEMIN{#NOM_SITE_SPIP.ico})" />]
+
+	[
+	(#REM) Lien vers le backend pour navigateurs eclaires ]
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+	[
+	(#REM) Script NiceTitle pour la gestion des title des liens ]	
+	[<script type="text/javascript" src="(#CHEMIN{nicetitle.js})"></script>]
+	[
+	(#REM) Style CSS de blip ]
+	<link rel="stylesheet" type="text/css" href="#URL_SITE_SPIP/spip.php?page=inc-css" />	
+	
+</head>
+
+<body id="recherche">
+<div id="page">
+
+[(#REM) Inclusion de l'Entete du site, qui se construit dynamiquement ]
+<INCLURE{fond=inc-tete}{page_actuelle=recherche}{lang}>
+	
+<div id="corps">
+	
+	[(#REM) Construction du menu auxiliaire de la page article]
+	<div class="menu_auxiliaire">
+		<ul>
+			<li><a href="#URL_PAGE{recherche}" class="active">Rechercher : </a>[" (#RECHERCHE) "]</li>
+		</ul>
+	</div><!-- fin menu_auxiliaire-->
+
+
+	[(#REM) Construction du contenu de la page recherche]
+	<div class="contenu">
+
+		[(#REM) Recherche en cours ]
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+			<h1><:blip_recherche_votre:></h1><div class="element_sur">#FORMULAIRE_RECHERCHE	
+		</div></div></div>
+
+
+		[(#REM) Rubriques trouvées ]
+		<B_rubriques>
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1><:blip_rubriques:></h1><div class="element_sur">
+		<BOUCLE_rubriques(RUBRIQUES) {recherche} {par points} {inverse}{lang}>
+			<INCLURE{fond=inc_rubrique_resume}{id_rubrique}>
+		</BOUCLE_rubriques>		
+		</div></div></div>
+		</B_rubriques>	
+
+
+		[(#REM) Articles trouvés ]
+		<B_articles>
+		#ANCRE_PAGINATION
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1><:blip_articles:></h1><div class="element_sur">
+		[<p>(#PAGINATION)</p>]
+		<BOUCLE_articles(ARTICLES) {recherche} {par points} {inverse} {pagination}{lang}>
+			<INCLURE{fond=inc_article_resume}{id_article}{recherche}>
+		</BOUCLE_articles>
+		[<p>(#PAGINATION)</p>]
+		</div></div></div>
+		</B_articles>
+
+
+		[(#REM) Documents de la rubrique ]
+		<BOUCLE_documents_portfolio(DOCUMENTS){mode=document}{extension==(png|jpg|gif)$}{doublons}>		
+		</BOUCLE_documents_portfolio>
+		
+		<B_documents>
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1><:blip_documents:></h1><div class="element_sur">
+		[<p class="pagination">(#PAGINATION)</p>]
+		<BOUCLE_documents(DOCUMENTS) {recherche} {par points} {inverse} {pagination} {doublons}>
+			<div class="element_sous">
+			<div class="imgfloatleft"><a href="#URL_DOCUMENT"[ title="(#TITRE|attribut_html)"]>[(#LOGO_DOCUMENT{0,60})]</a></div>
+			<h5 class="nopadding"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>">[(#TITRE|sinon{<:info_document:>}) ]</a></h5>
+			<h5>#TYPE_DOCUMENT[ | (#TAILLE|taille_en_octets)][ | <:blip_document_publie_le:> (#DATE|affdate)]</h5>
+			#DESCRIPTIF
+			</div>
+		</BOUCLE_documents>
+		[<p>(#PAGINATION)</p>]
+		</div></div></div>
+		</B_documents>
+	
+
+		[(#REM) Sites trouvés ]
+		<B_liens>
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1><:blip_sites:></h1><div class="element_sur">
+		[<p class="pagination">(#PAGINATION)</p>]
+		<BOUCLE_liens(SITES) {recherche} {par points} {inverse} {pagination 25}>
+			<h5 class="nopadding">
+			[<a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut|entites_html|couper{200})]">(#NOM_SITE|supprimer_numero)</a>]
+			</h5>
+		</BOUCLE_liens>
+		[<p>(#PAGINATION)</p>]
+		</div></div></div>
+		</B_liens>
+
+
+		[(#REM) Messages de forum trouvés ]
+		<B_commentaires>
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1><:blip_commentaires_postes:></h1><div class="element_sur">
+		[<p class="pagination">(#PAGINATION)</p>]
+		<BOUCLE_commentaires(FORUMS) {recherche} {par points} {inverse} {plat} {pagination}>
+			<INCLURE{fond=inc_forum_message}{id_forum}{tri=#ENV{tri}}>
+		</BOUCLE_commentaires>
+		[<p>(#PAGINATION)</p>]
+		</div></div></div>
+		</B_commentaires>
+
+	</div><!-- fin contenu-->
+
+	[(#REM) Inclusion de la Barre latérale du site, construite dynamiquement ]
+	<div class="barre_laterale">
+		<INCLURE{fond=inc-barrelaterale}{page_actuelle=recherche}{id_actuel=#ENV{recherche}}{lang}>	
+	</div><!-- fin barre_laterale-->
+
+</div><!-- fin corps -->
+
+[(#REM)  Inclusion du Pied de page du site, qui se construit dynamiquement]
+<INCLURE{fond=inc-pied}{page_actuelle=recherche}{lang}>
+
+</div><!-- fin page -->
+
+</body>
+</html>

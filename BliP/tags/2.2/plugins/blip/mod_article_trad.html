@@ -1,0 +1,42 @@
+#CACHE{240*3600}
+[(#REM) Ce module s'intègre dans la barre latérale du site ]
+[(#REM) Ce module affiche les diverses traduction de l'article en cours de lecture. ]	
+
+
+<BOUCLE_articles(ARTICLES){id_article=#ENV{id_actuel}}>	
+
+				[(#REM) Traductions de l'article ]
+				<B_traductions>
+				<div class="traductions">
+					
+
+<B_articles>
+<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal"><h1><:trad_article_traduction:></h1>		
+<div class="element_sur_bis">
+
+
+
+
+					<ul>
+						<li[ class="(#EXPOSE)"]>[(#LANG|traduire_nom_langue)]</li>
+						<BOUCLE_traductions(ARTICLES){traduction}{exclus}>
+						<li><a[ href="(#URL_ARTICLE|url_absolue|parametre_url{'lang',#LANG})"] rel="alternate" hreflang="#LANG"[ title="([(#TITRE|supprimer_numero|couper{80}|texte_backend)"]><span lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">[(#LANG|traduire_nom_langue)]</span></a></li>
+						</BOUCLE_traductions>
+					</ul>				
+					
+					
+				</div>
+				</B_traductions>
+
+					<ul>
+						<BOUCLE_traduction(ARTICLES){traduction} {par lang} {exclus}>
+						<li lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">&#91;<a href="#URL_ARTICLE" rel="alternate" hreflang="#LANG" title="[(#LANG|traduire_nom_langue)][ : (#TITRE|couper{80}|texte_backend)]">#LANG</a>&#93;</li>
+						</BOUCLE_traduction>
+					</ul>
+
+				
+</BOUCLE_articles>
+</div>
+</div></div>
+</B_articles>		
+		

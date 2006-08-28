@@ -1,0 +1,205 @@
+#CACHE{86400}
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#TITRE|supprimer_numero|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	[<meta name="description" content="(#INTRODUCTION|couper{150}|attribut_html)" />]
+	<meta name="generator" content="SPIP" />
+	[<link rel="shortcut icon" href="(#CHEMIN{#NOM_SITE_SPIP.ico})" />]
+
+	[
+	(#REM) Lien vers le backend pour navigateurs eclaires ]
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+	[
+	(#REM) Script NiceTitle pour la gestion des title des liens ]	
+	[<script type="text/javascript" src="(#CHEMIN{nicetitle.js})"></script>]
+	[
+	(#REM) Style CSS de blip ]
+	<link rel="stylesheet" type="text/css" href="#URL_SITE_SPIP/spip.php?page=inc-css" />	
+	
+</head>
+
+<body id="rubrique">
+<div id="page">
+
+[(#REM) Inclusion de l'Entete du site, qui se construit dynamiquement ]
+<INCLURE{fond=inc-tete}{page_actuelle=rubrique}{id_actuel=#ID_RUBRIQUE}{lang}>
+
+<div id="corps">
+
+	[(#REM) Construction du Fil d'Ariane ]
+	<div class="menu_auxiliaire">
+		<ul>
+			<li><a href="#URL_PAGE{rubrique}"><:blip_rubriques_liste_des:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane>[ &gt; (#TITRE|supprimer_numero|couper{80})]</li>
+		</ul>
+	</div><!-- fin menu_auxiliaire-->
+
+	[(#REM) Construction du contenu de la page :
+	Affichage du contenu de la rubrique, sous rubriques et articles]
+	
+	<div class="contenu">
+
+		[(#REM) La rubrique ] #DEBUT_SURLIGNE
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<div class="imgfloatright">[(#LOGO_RUBRIQUE| |reduire_image{100,0})]</div>
+		<h1>[(#TITRE|supprimer_numero)]</h1>#TEXTE		
+		<div class="element_sur">
+
+
+			[(#REM) Rubriques de la rubrique ]
+			<B_rubriques_rubrique>
+			<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+			<h1><:blip_rubriques_sous:></h1><div class="element_sur">
+				<BOUCLE_rubriques_rubrique(RUBRIQUES) {id_parent}{par titre}{lang}>
+					<div class="element_sous_bis">
+					<div class="imgfloatright">[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|reduire_image{100,0})]</div>
+					<h3><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|textebrut|entites_html|couper{200})]">[(#TITRE|supprimer_numero)]</a></h3>#TEXTE
+					</div>
+				</BOUCLE_rubriques_rubrique>
+			</div></div></div>
+			</B_rubriques_rubrique>
+
+
+			[(#REM) Articles de la rubrique ]
+			<B_articles_rubrique>
+			<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+			<h1><:blip_rubrique_articles_de_la:></h1><div class="element_sur">
+			[<p">(#PAGINATION)</p>]
+				<BOUCLE_articles_rubrique(ARTICLES){id_rubrique}{par date}{inverse}{pagination}{lang}>
+					<INCLURE{fond=inc_article_resume}{id_article}{lang}>
+				</BOUCLE_articles_rubrique>
+			[<p>(#PAGINATION)</p>]
+			</div></div></div>
+			</B_articles_rubrique>
+
+	
+			[(#REM) Documents de la rubrique ]
+			<B_documents_rubrique>
+			<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+			<h1><:blip_rubrique_documents_de_la:></h1><div class="element_sur">
+			[<p>(#PAGINATION)</p>]
+				<BOUCLE_documents_rubrique(DOCUMENTS){id_rubrique}{par date}{inverse}{pagination}>
+					<div class="element_sous">
+					<div class="imgfloatleft"><a href="#URL_DOCUMENT"[ title="(#TITRE|attribut_html)"]>[(#LOGO_DOCUMENT{0,60})]</a></div>
+					<h5 class="nopadding"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>">[(#TITRE|sinon{<:info_document:>}) ]</a></h5>
+					<h5>#TYPE_DOCUMENT[ | (#TAILLE|taille_en_octets)][ | document publié le (#DATE|affdate)]</h5>
+					#DESCRIPTIF
+					</div>
+				</BOUCLE_documents_rubrique>
+			[<p>(#PAGINATION)</p>]
+			</div></div></div>
+			</B_documents_rubrique>
+
+
+			[(#REM) Liens de la rubrique ]
+			<B_liens_rubrique>
+			<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+			<h1><:blip_rubrique_liens_externe_de_la_rubrique:></h1><div class="element_sur">
+			[<p>(#PAGINATION)</p>]
+				<BOUCLE_liens_rubrique(SITES){id_rubrique}{par nom_site}{pagination 25}>
+					<h5 class="nopadding">
+					[<a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut|entites_html|couper{200})]">(#NOM_SITE|supprimer_numero)</a>]
+					</h5>
+				</BOUCLE_liens_rubrique>
+			[<p>(#PAGINATION)</p>]
+			</div></div></div>
+			</B_liens_rubrique>
+	
+		</div></div></div>		
+
+	</div><!-- fin contenu -->
+
+	[(#REM) Inclusion de la Barre latérale du site, construite dynamiquement ]
+	<div class="barre_laterale">
+		<INCLURE{fond=inc-barrelaterale}{page_actuelle=rubrique}{id_actuel=#ID_RUBRIQUE}{lang}>	
+	</div><!-- fin barre_laterale-->
+
+</div><!-- fin corps -->	
+
+[(#REM)  Inclusion du Pied de page du site, qui se construit dynamiquement]
+<INCLURE{fond=inc-pied}{page_actuelle=rubrique}{id_actuel=#ID_RUBRIQUE}{lang}>
+
+</div><!-- fin page -->
+</body>
+</html>
+</BOUCLE_rubrique_principal>
+[
+
+
+
+
+
+
+(#REM) Affiche la liste des rubrique à la racine : se produit si aucune des boucles précédentes n'a été exécutée 
+
+]
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title><:blip_rubriques_liste_des:> [ - (#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	<meta name="description" content="Liste des rubriques [- (#NOM_SITE_SPIP|textebrut)]" />
+	<meta name="generator" content="SPIP" />
+	[<link rel="shortcut icon" href="(#CHEMIN{#NOM_SITE_SPIP.ico})" />]
+
+	[
+	(#REM) Lien vers le backend pour navigateurs eclaires ]
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+	[
+	(#REM) Script NiceTitle pour la gestion des title des liens ]	
+	[<script type="text/javascript" src="(#CHEMIN{nicetitle.js})"></script>]
+	[
+	(#REM) Style CSS de blip ]
+	<link rel="stylesheet" type="text/css" href="#URL_SITE_SPIP/spip.php?page=inc-css" />	
+	
+</head>
+
+<body id="rubrique">
+<div id="page">
+
+[(#REM) Inclusion de l'Entete du site, qui se construit dynamiquement ]
+<INCLURE{fond=inc-tete}{page_actuelle=rubrique}{lang}>
+
+<div id="corps">
+
+	[(#REM) Construction du menu auxiliaire de la page rubrique]
+	<div class="menu_auxiliaire">
+		<ul>
+			<li><a class="active" href="#URL_PAGE{rubrique}"><:blip_rubriques_liste_des:></a></li>
+		</ul>
+	</div><!-- fin menu_auxiliaire-->
+
+	[(#REM) Affichage de la liste des rubriques à la racine du site]
+	<div class="contenu">
+		[<div class="element"><p class="couleur2"><:blip_rubrique_numero:> (#ENV{id_rubrique}) <:blip_nest_plus_disponible:></p></div>] 
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1><:blip_rubriques_du_site:></h1><div class="element_sur">
+		<BOUCLE_rubriques(RUBRIQUES) {id_parent=0} {par titre}{lang}>
+			<div class="element_sous_bis">
+			<div class="imgfloatright">[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|reduire_image{100,0})]</div>
+			<h3><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|textebrut|entites_html|couper{200})]">[(#TITRE|supprimer_numero)]</a></h3>#TEXTE
+			</div>
+		</BOUCLE_rubriques>	
+		</div></div></div>
+		</B_rubriques>
+		<:blip_rubrique_aucune:>.
+		<//B_rubriques>	
+		
+	</div><!-- fin contenu-->
+
+	[(#REM) Inclusion de la Barre latérale du site, construite dynamiquement ]
+	<div class="barre_laterale">
+		<INCLURE{fond=inc-barrelaterale}{page_actuelle=rubrique}{lang}>	
+	</div><!-- fin barre_laterale-->
+
+</div><!-- fin corps -->	
+	
+[(#REM)  Inclusion du Pied de page du site, qui se construit dynamiquement]
+<INCLURE{fond=inc-pied}{page_actuelle=rubrique}{lang}>
+
+</div><!-- fin page -->
+</body>
+</html>
+<//B_rubrique_principal>
