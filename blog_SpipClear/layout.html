@@ -1,24 +1,27 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 	<head>
+
 		<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
 		<meta name="MSSmartTagsPreventParsing" content="TRUE" />
+
 		[(#MODELE{title}{id_article,id_rubrique,id_secteur,archives})]
-		[<link rel="stylesheet" type="text/css" href="(#CHEMIN{themes/default/style.css})" media="screen" />]
+
+  [(#REM) Feuille de style par defaut pour le code genere par SPIP ]
+  <link rel="stylesheet" href="[(#CHEMIN{spip_style.css}|direction_css)]" type="text/css" media="all" />
+
+  [(#REM) Feuille de style CSS pour l'affichage du site a l'ecran ]
+		[<link rel="stylesheet" type="text/css" href="(#CHEMIN{themes/default/style.css}|direction_css)" media="screen" />]
+
 		#INSERT_HEAD
+
 	</head>
 
 	<body>
 		<div id="page">
-			
-			<div id="top">
-				<BOUCLE_titre(RUBRIQUES){id_secteur}{id_parent=0}>
-				[<h1>(#LOGO_RUBRIQUE|#URL_RUBRIQUE|inserer_attribut{alt,#TITRE}|inserer_attribut{title,#TITRE}|sinon{<a href="#URL_RUBRIQUE">#TITRE</a>})</h1>]
-				</BOUCLE_titre>
-				[(#FORMULAIRE_ADMIN)]
-				[(#SPIP_CRON)]
-			</div>
-			
+  
+   [(#MODELE{top}{id_secteur})]
+   			
 			<p id="prelude">
 				<a href="#main"><:go_main:></a> |
 				<a href="#sidebar"><:go_sidebar:></a> |
@@ -27,21 +30,27 @@
 
 			<div id="main">
 				<div id="content">
-				
-				 [(#ENV{home}|=={1}|?{' ',''})<INCLURE{fond=home}{id_rubrique}>]
-				 [(#ENV{home}|=={1}|?{'',' '})
+    
+     <BOUCLE_billet(ARTICLES){id_article}>
+     #MODELE{billet}
+     </BOUCLE_billet>
+     [(#ENV{home}|=={1}|?{' ',''})<INCLURE{fond=home}{id_rubrique}>]
+     [(#ENV{home}|=={1}|?{'',' '})
       <INCLURE{fond=list}{id_rubrique}{recherche}{archives}{debut_liste}{self}>
-     ]
-				 [(#ENV{id_article}|?{' ',''})#BILLET{id_article}]
-				
+     ]<//B_billet>
+    			
 				</div>
 			</div>
+			
+			<div id="sidebar">
+			
+				#CALENDRIER_MINI
 
-			<INCLURE{fond=sidebar}
-				{id_rubrique=#ENV{id_rubrique,#ENV{id_secteur}}}
-				{id_article}
-				{date=#ENV{archives,#ENV{date}}}
-				{recherche}>
+	   #FORMULAIRE_RECHERCHE
+
+    [(#MODELE{archives_mensuelles}{id_rubrique,archives,self=#SELF,lang})]
+    
+			</div>
 
 			<p id="footer">
     <:credits:>,

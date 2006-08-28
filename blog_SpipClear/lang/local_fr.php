@@ -62,6 +62,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //R
 'resultat_recherche' => 'R&eacute;sultats pour votre recherche de',
+'rss' => 'rss',
 'rss_pour' => 'fil RSS des commentaires de',
 
 //S
