@@ -1,0 +1,17 @@
+#CACHE{240*3600}
+[(#REM) Ce module s'intègre dans la barre latérale du site ]
+[(#REM) Ce module affiche la liste des articles frères de l'article en cours de lecture. ]	
+
+<B_articles>
+<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal"><h1>Dans la même rubrique</h1>		
+<div class="element_sur_bis">
+<BOUCLE_articles(ARTICLES){id_article=#ENV{id_actuel}}>
+	<BOUCLE_articles_meme_rubrique(ARTICLES){id_rubrique}>
+	[(#ID_ARTICLE|=={#ENV{id_actuel}}|?{<h5 class="nopadding">[(#TITRE|supprimer_numero)]</h5>,<h5 class="nopadding"><a href="#URL_ARTICLE"[ title="(#INTRODUCTION|textebrut|entites_html|couper{200})"]>[(#TITRE|supprimer_numero)]</a></h5>
+	})]	
+	</BOUCLE_articles_meme_rubrique>
+</BOUCLE_articles>
+</div>
+</div></div>
+</B_articles>		
+		
