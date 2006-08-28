@@ -2,7 +2,7 @@
 <BOUCLE_article_principal(ARTICLES) {id_article}><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="#LANG_DIR" lang="#LANG">
 <head>
-	<title>[(#SURTITRE) - ][(#TITRE|textebrut)][, <:par_auteur:> (#LESAUTEURS|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
+	<title>[(#SURTITRE) - ][(#TITRE|textebrut|supprimer_numero)][, <:par_auteur:> (#LESAUTEURS|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
 	[<meta name="description" content="(#INTRODUCTION|couper{150}|attribut_html)" />]
 	<meta name="generator" content="SPIP" />
@@ -27,31 +27,31 @@
 <div id="page">
 
 [(#REM) Inclusion de l'Entete du site, qui se construit dynamiquement ]
-<INCLURE{fond=inc-tete}{page_actuelle=article}{id_actuel=#ID_ARTICLE}>
+<INCLURE{fond=inc-tete}{page_actuelle=article}{id_actuel=#ID_ARTICLE}{lang}>
 
 <div id="corps">
 
 	[(#REM) Construction du Fil d'Ariane ]
 	<div class="menu_auxiliaire">
 		<ul>
-			<li><a href="#URL_SITE_SPIP/">Accueil</a><BOUCLE_ariane(HIERARCHIE){id_article}>&gt;<a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane>[ &gt; (#TITRE|couper{80})]</li>
+			<li><a href="#URL_SITE_SPIP/"><:blip_accueil:></a><BOUCLE_ariane(HIERARCHIE){id_article}>&gt;<a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane>[ &gt; (#TITRE|supprimer_numero|couper{80})]</li>
 		</ul>
 	</div><!-- fin menu_auxiliaire-->
 
 	[(#REM) Construction du contenu de la page : Affichage de l'article, du portfolio, des documents joints, du forum et du formulaire pour poster un message]
 	
 	
-
 	
+
 	<div class="contenu">
 	
 		[(#REM) L'article ]
 		#DEBUT_SURLIGNE
 		<div class="element"><div class="imgfloatright">[(#LOGO_ARTICLE_RUBRIQUE| |reduire_image{100,0})]</div><div class="puce_principale">&nbsp;</div><div class="texte_principal">
-		<h1>[<span class="gris_clair">(#SURTITRE) </span>]#TITRE[<span class="gris_clair"> (#SOUSTITRE) </span>]</h1>
-		<p>[Le (#DATE|affdate)][, par (#LESAUTEURS),]</p>
+		<h1>[<span class="gris_clair">(#SURTITRE) </span>][(#TITRE|supprimer_numero)][<span class="gris_clair"> (#SOUSTITRE) </span>]</h1>
+		<p>[<:blip_le:> (#DATE|affdate)][, <:blip_par:> (#LESAUTEURS),]</p>
 		[<p><b>(#CHAPO)</b></p>]
-		[<div class="element_sous">(#TEXTE|reduire_image{400,0})</div>]
+		[<div class="element_sous">(#TEXTE|reduire_image{450,0})</div>]
 		[<div class="element_sous"><h3>Post-Scriptum :</h3>(#PS)</div>]		
 		[<div class="element_sous"><h3>Notes :</h3>(#NOTES)</div>]
 		#FIN_SURLIGNE			
@@ -61,10 +61,10 @@
 		[(#REM) Le portfolio : Galerie des photos jointes à l'article ]
 		<B_documents_portfolio>
 		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
-		<h1>Galerie d'images</h1>	
+		<h1><:blip_galerie_dimages:></h1>	
 		<div class="element_sur"><div class="element_sous"><div style="text-align: left;">		
 			<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document}{extension==(png|jpg|gif)$}{doublons} >
-				<a rel="lightbox[]" href="#URL_DOCUMENT" title="[<h3>(#TITRE|texte_backend)</h3>][(#DESCRIPTIF|texte_backend)]">[(#FICHIER|image_masque{inc_masque_carre_vignette.png}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})]</a>
+				<a rel="lightbox[]" href="#URL_DOCUMENT" title="[<h3>(#TITRE|texte_backend)</h3>][(#DESCRIPTIF|texte_backend)]">[(#FICHIER|image_masque{inc_masque_carre_vignette.png}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]}|inserer_attribut{class,galerie})]</a>
 			</BOUCLE_documents_portfolio>
 		</div></div><!-- fin element_sur--></div><!-- fin element_sous-->
 		</div></div> <!-- fin element-->			
@@ -74,12 +74,12 @@
 		[(#REM) Autres documents joints à l'article ]
 		<B_documents_joints>
 		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
-		<h1>Documents joints à l'article</h1><div class="element_sur">
+		<h1><:blip_documents_joints_a_larticle:></h1><div class="element_sur">
 			<BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {par date} {doublons}>
 				<div class="element_sous">
 				<div class="imgfloatleft"><a href="#URL_DOCUMENT"[ title="(#TITRE|attribut_html)"]>[(#LOGO_DOCUMENT{0,60})]</a></div>
 				<h5 class="nopadding"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>">[(#TITRE|sinon{<:info_document:>}) ]</a></h5>
-				<h5>#TYPE_DOCUMENT[ | (#TAILLE|taille_en_octets)][ | document publié le (#DATE|affdate)]</h5>
+				<h5>#TYPE_DOCUMENT[ | (#TAILLE|taille_en_octets)][ | <:blip_document_publie_le:> (#DATE|affdate)]</h5>
 				#DESCRIPTIF
 				</div><!-- fin element_sous-->
 			</BOUCLE_documents_joints>
@@ -92,13 +92,13 @@
 			la petition ayant une PAGINATION il faut absolument
 			lui passer SELF en argument. ]
 		[ #REM Conserver cet invalideur : (#PETITION|?{'',''}) ]
-		<INCLURE{fond=inc_article_petition}{id_article}{self=#SELF}>	
+		<INCLURE{fond=inc_article_petition}{id_article}{self=#SELF}{lang}>	
 	
 
 		[(#REM) Le Forum) ]
 		<B_forum_article>
 		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
-		<h1>Forum de l'article</h1>
+		<h1><:blip_commentaires_de_larticle:></h1>
 		<div class="element_sur">
 		<BOUCLE_forum_article(FORUMS){par date}{id_article}{plat}>
 			<INCLURE{fond=inc_forum_message}{id_forum}>
@@ -109,7 +109,7 @@
 
 
 		[<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
-		<h1>Poster un message sur le forum de l'article</h1>
+		<h1><:blip_commentaire_poster_un:></h1>
 		<div class="element_sur">
 		(#FORMULAIRE_FORUM)
 		</div><!-- fin element_sur-->
@@ -120,13 +120,13 @@
 
 	[(#REM) Inclusion de la Barre latérale du site, construite dynamiquement ]
 	<div class="barre_laterale">
-		<INCLURE{fond=inc-barrelaterale}{page_actuelle=article}{id_actuel=#ID_ARTICLE}>
+		<INCLURE{fond=inc-barrelaterale}{page_actuelle=article}{id_actuel=#ID_ARTICLE}{lang}>
 	</div><!-- fin barre_laterale-->
 
 </div><!-- fin corps -->		
 
 [(#REM)  Inclusion du Pied de page du site, qui se construit dynamiquement]
-<INCLURE{fond=inc-pied}{page_actuelle=article}{id_actuel=#ID_ARTICLE}>
+<INCLURE{fond=inc-pied}{page_actuelle=article}{id_actuel=#ID_ARTICLE}{lang}>
 
 </div><!-- fin page -->
 </body>
@@ -143,7 +143,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="#LANG_DIR" lang="#LANG">
 <head>
-	<title>Liste des articles [- (#NOM_SITE_SPIP|textebrut)]</title>
+	<title><:blip_article_liste_des:> [- (#NOM_SITE_SPIP|textebrut)]</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
 	<meta name="description" content="Liste des articles [- (#NOM_SITE_SPIP|textebrut)]" />
 	<meta name="generator" content="SPIP" />
@@ -165,7 +165,7 @@
 <div id="page">
 
 [(#REM) Inclusion de l'Entete du site, qui se construit dynamiquement ]
-<INCLURE{fond=inc-tete}{page_actuelle=article}>
+<INCLURE{fond=inc-tete}{page_actuelle=article}{lang}>
 
 <div id="corps">
 
@@ -173,67 +173,68 @@
 	<div class="menu_auxiliaire">
 		<ul>
 			[(#ENV{tri}|=={'visites'}|?{
-			<li><a class="active" href="[(#URL_PAGE{article}|parametre_url{'tri','visites'})]">nombre de visiteurs</a></li>
-			,<li><a href="[(#URL_PAGE{article}|parametre_url{'tri','visites'})]">nombre de visiteurs</a></li>
+			<li><a class="active" href="[(#URL_PAGE{article}|parametre_url{'tri','visites'})]"><:blip_visiteurs_nombre_de:></a></li>
+			,<li><a href="[(#URL_PAGE{article}|parametre_url{'tri','visites'})]"><:blip_visiteurs_nombre_de:></a></li>
 			})]
 		
 			[(#ENV{tri}|=={'popularite'}|?{
-			<li><a class="active" href="[(#URL_PAGE{article}|parametre_url{'tri','popularite'})]">popularité</a></li>
-			,<li><a href="[(#URL_PAGE{article}|parametre_url{'tri','popularite'})]">popularité</a></li>
+			<li><a class="active" href="[(#URL_PAGE{article}|parametre_url{'tri','popularite'})]"><:blip_popularite:></a></li>
+			,<li><a href="[(#URL_PAGE{article}|parametre_url{'tri','popularite'})]"><:blip_popularite:></a></li>
 			})]
 
 			[(#ENV{tri}|=={'date_modif'}|?{
-			<li><a class="active" href="[(#URL_PAGE{article}|parametre_url{'tri','date_modif'})]">date de mise à jour</a></li>
-			,<li><a href="[(#URL_PAGE{article}|parametre_url{'tri','date_modif'})]">date de mise à jour</a></li>
+			<li><a class="active" href="[(#URL_PAGE{article}|parametre_url{'tri','date_modif'})]"><:blip_date_de_mise_a_jour:></a></li>
+			,<li><a href="[(#URL_PAGE{article}|parametre_url{'tri','date_modif'})]"><:blip_date_de_mise_a_jour:></a></li>
 			})]
 
-			[(#ENV{tri}|=={''}|?{<li><a class="active" href="[(#URL_PAGE{article}|parametre_url{'tri','date'})]">date de publication</a></li>
-			, [(#ENV{tri}|=={'date'}|?{<li><a class="active" href="[(#URL_PAGE{article}|parametre_url{'tri','date'})]">date de publication</a></li>
-			,<li><a href="[(#URL_PAGE{article}|parametre_url{'tri','date'})]">date de publication</a></li>})]
+			[(#ENV{tri}|=={''}|?{<li><a class="active" href="[(#URL_PAGE{article}|parametre_url{'tri','date'})]"><:blip_date_de_publication:></a></li>
+			, [(#ENV{tri}|=={'date'}|?{<li><a class="active" href="[(#URL_PAGE{article}|parametre_url{'tri','date'})]"><:blip_date_de_publication:></a></li>
+			,<li><a href="[(#URL_PAGE{article}|parametre_url{'tri','date'})]"><:blip_date_de_publication:></a></li>})]
 			})]
 
-			<li> Trier les articles par </li>
+			<li> <:blip_articles_trier_par:> </li>
 		</ul>
 	</div><!-- menu_auxiliaire-->
 	
 	[(#REM) Construction du contenu de la page article en fonction des paramètres passés dans la variable tri]
-	<div class="contenu">		
+	<div class="contenu">
+		[<div class="element"><p class="couleur2"><:blip_article_numero:> (#ENV{id_article}) <:blip_n_est_plus_disponible:></p></div>] 	
 		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
-		<h1>Liste des articles</h1><div class="element_sur">		
+		<h1>Liste des articles</h1><div class="element_sur">			
 			<B_article_liste>
 			[<p>(#PAGINATION)</p>]
-			<BOUCLE_article_liste(ARTICLES) {doublons} {par #ENV{tri,date}} {inverse}{pagination}>
+			<BOUCLE_article_liste(ARTICLES) {doublons} {par #ENV{tri,date}} {inverse}{pagination}{lang}>
 				
 				[(#ENV{tri}|=={'visites'}|?{
-				[<p>Lu <span class="couleur2"><b>(#VISITES|unique)</b></span> fois</p>]
+				[<p><:blip_lu:> <span class="couleur2"><b>(#VISITES|unique)</b></span> <:blip_fois:></p>]
 				,''})]
 				
 				[(#ENV{tri}|=={'popularite'}|?{
-				[<p><span class="couleur2"><b>(#POPULARITE_ABSOLUE|unique)</b></span> visiteurs quotidients</p>]
+				[<p><span class="couleur2"><b>(#POPULARITE_ABSOLUE|unique)</b></span> <:blip_visiteurs_quotidiens:></p>]
 				,''})]
 				
 				[(#ENV{tri}|=={'date_modif'}|?{
-				[<p>Mis à jour en <span class="couleur2"><b>(#DATE_MODIF|affdate_mois_annee|unique)</b></span></p>]
+				[<p><:blip_mis_a_jour_en:> <span class="couleur2"><b>(#DATE_MODIF|affdate_mois_annee|unique)</b></span></p>]
 				,''})]
 				
-				[(#ENV{tri}|=={''}|?{[<p>Publié en <span class="couleur2"><b>(#DATE|affdate_mois_annee|unique)</b></span></p>]
-				, [(#ENV{tri}|=={'date'}|?{[<p>Publié en <span class="couleur2"><b>(#DATE|affdate_mois_annee|unique)</b></span></p>]
+				[(#ENV{tri}|=={''}|?{[<p><:blip_Publie_en:> <span class="couleur2"><b>(#DATE|affdate_mois_annee|unique)</b></span></p>]
+				, [(#ENV{tri}|=={'date'}|?{[<p><:blip_Publie_en:> <span class="couleur2"><b>(#DATE|affdate_mois_annee|unique)</b></span></p>]
 				,''})]
 				})]
 				
-				<INCLURE{fond=inc_article_resume}{id_article}>
+				<INCLURE{fond=inc_article_resume}{id_article}{lang}>
 				
 			</BOUCLE_article_liste>
 			[<p>(#PAGINATION)</p>]
 			</B_article_liste>
-				Aucun article publié
+				<:blip_article_aucun_publie:>
 			<//B_article_liste>	
 		</div></div></div>		
 	</div><!-- fin contenu-->
 	
 	[(#REM) Inclusion de la Barre latérale du site, construite dynamiquement ]
 	<div class="barre_laterale">
-		<INCLURE{fond=inc-barrelaterale}{page_actuelle=article}>
+		<INCLURE{fond=inc-barrelaterale}{page_actuelle=article}{lang}>
 	</div><!-- fin barre_laterale-->
 
 </div><!-- fin corps -->

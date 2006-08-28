@@ -27,8 +27,14 @@ function exec_blip_effacer() {
 	
 	if (isset($_GET['action'])) {        
         switch ($action = $_GET['action']) {
-            case "desinstall" :
-                BliP_desinstaller_base();
+            case "desinstaller" :
+                BliP_supprimer_blip();
+                break;
+			case "vider" :
+                BliP_vider_table_blip();
+                break;
+			case "reinitialiser" :
+                BliP_installer_configuration();
                 break;
         }
     }
@@ -41,7 +47,7 @@ function exec_blip_effacer() {
 	
 	if (BliP_verifier_base())
 	{
-    barre_onglets("blip", "effacer");	        
+    barre_onglets("blip", "maintenance");	        
     } 
 	
 	
@@ -58,7 +64,7 @@ function exec_blip_effacer() {
 
 	debut_droite();
 
-	debut_cadre_enfonce("supprimer.gif", false, "", bouton_block_invisible('blip_general')._T('blipconfig:blip_configuration_effacer'));
+	debut_cadre_enfonce("supprimer.gif", false, "", bouton_block_invisible('blip_vider')._T('blipconfig:blip_maintenance_vider'));
 	if (BliP_verifier_base()) {
         echo _T('blipconfig:blip_info_base_ok');        
     } 
@@ -66,13 +72,13 @@ function exec_blip_effacer() {
         echo _T("blipconfig:blip_info_deja_ko");
     }
 	
-	echo debut_block_invisible('blip_general');
+	echo debut_block_invisible('blip_vider');
 		if (BliP_verifier_base()) {
         debut_boite_alerte();
-		echo _T('blipconfig:blip_info_desinstal');
+		echo _T('blipconfig:blip_info_vider');
 		echo '<div align="center">';
-	    echo '<form method="post" action="'.generer_url_ecrire('blip_effacer',"action=desinstall").'">';
-	    echo '<input type="submit" name="appliq" value="D&eacute;sinstaller BliP" />';
+	    echo '<form method="post" action="'.generer_url_ecrire('blip_effacer',"action=vider").'">';
+	    echo '<input type="submit" name="appliq" value="'._T('blipconfig:blip_maintenance_vider').'" />';
 	    echo '</form></div>';
 		fin_boite_alerte();        
 		} 
@@ -83,6 +89,54 @@ function exec_blip_effacer() {
 	fin_cadre_enfonce();
 	
 	
+	debut_cadre_enfonce("supprimer.gif", false, "", bouton_block_invisible('blip_reinitialiser')._T('blipconfig:blip_maintenance_reinitialiser'));
+	if (BliP_verifier_base()) {
+        echo _T('blipconfig:blip_info_base_ok');        
+    } 
+	else {
+        echo _T("blipconfig:blip_info_deja_ko");
+    }
+	
+	echo debut_block_invisible('blip_reinitialiser');
+		if (BliP_verifier_base()) {
+        debut_boite_alerte();
+		echo _T('blipconfig:blip_info_reinitialiser');
+		echo '<div align="center">';
+	    echo '<form method="post" action="'.generer_url_ecrire('blip_effacer',"action=reinitialiser").'">';
+	    echo '<input type="submit" name="appliq" value="'._T('blipconfig:blip_maintenance_reinitialiser').'" />';
+	    echo '</form></div>';
+		fin_boite_alerte();        
+		} 
+		else {
+		echo " ";
+    }
+	echo fin_block();
+	fin_cadre_enfonce();
+	
+	
+	debut_cadre_enfonce("supprimer.gif", false, "", bouton_block_invisible('blip_desinstaller')._T('blipconfig:blip_maintenance_desinstaller'));
+	if (BliP_verifier_base()) {
+        echo _T('blipconfig:blip_info_base_ok');        
+    } 
+	else {
+        echo _T("blipconfig:blip_info_deja_ko");
+    }
+	
+	echo debut_block_invisible('blip_desinstaller');
+		if (BliP_verifier_base()) {
+        debut_boite_alerte();
+		echo _T('blipconfig:blip_info_desinstaller');
+		echo '<div align="center">';
+	    echo '<form method="post" action="'.generer_url_ecrire('blip_effacer',"action=desinstaller").'">';
+	    echo '<input type="submit" name="appliq" value="'._T('blipconfig:blip_maintenance_desinstaller').'" />';
+	    echo '</form></div>';
+		fin_boite_alerte();        
+		} 
+		else {
+		echo " ";
+    }
+	echo fin_block();
+	fin_cadre_enfonce();
 	
 	fin_page();
 

@@ -16,7 +16,7 @@ function BliP_ajouterOnglets($flux) {
 											  generer_url_ecrire("blip"));
 	$flux['data']['modifier']= new Bouton(null, 'Modifier la configuration',
 											  generer_url_ecrire("blip_modifier","action=creer"));
-	$flux['data']['effacer']= new Bouton(null, 'Supprimer BliP',
+	$flux['data']['maintenance']= new Bouton(null, 'Maintenance',
 											  generer_url_ecrire("blip_effacer"));
 	}
 	return $flux;

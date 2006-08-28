@@ -1,4 +1,4 @@
-BliP 2.0
+BliP 2.2
 --------
 
 Article de référence   : http://www.cent20.net/spip.php?article100

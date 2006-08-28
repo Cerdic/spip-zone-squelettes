@@ -24,7 +24,7 @@
 <div id="page">
 
 [(#REM) Inclusion de l'Entete du site, qui se construit dynamiquement ]
-<INCLURE{fond=inc-tete}{page_actuelle=recherche}>
+<INCLURE{fond=inc-tete}{page_actuelle=recherche}{lang}>
 	
 <div id="corps">
 	
@@ -41,19 +41,16 @@
 
 		[(#REM) Recherche en cours ]
 		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
-			<h1>Votre recherche</h1><div class="element_sur">#FORMULAIRE_RECHERCHE	
+			<h1><:blip_recherche_votre:></h1><div class="element_sur">#FORMULAIRE_RECHERCHE	
 		</div></div></div>
 
 
 		[(#REM) Rubriques trouvées ]
 		<B_rubriques>
 		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
-		<h1>Rubriques</h1><div class="element_sur">
-		<BOUCLE_rubriques(RUBRIQUES) {recherche} {par points} {inverse}>
-			<div class="element_sous_bis">
-			<div class="imgfloatright">[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|reduire_image{100,0})]</div>
-			<h3><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|textebrut|entites_html|couper{200})]">[(#TITRE|supprimer_numero)]</a></h3>#TEXTE
-			</div>
+		<h1><:blip_rubriques:></h1><div class="element_sur">
+		<BOUCLE_rubriques(RUBRIQUES) {recherche} {par points} {inverse}{lang}>
+			<INCLURE{fond=inc_rubrique_resume}{id_rubrique}>
 		</BOUCLE_rubriques>		
 		</div></div></div>
 		</B_rubriques>	
@@ -63,9 +60,9 @@
 		<B_articles>
 		#ANCRE_PAGINATION
 		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
-		<h1>Articles</h1><div class="element_sur">
+		<h1><:blip_articles:></h1><div class="element_sur">
 		[<p>(#PAGINATION)</p>]
-		<BOUCLE_articles(ARTICLES) {recherche} {par points} {inverse} {pagination}>
+		<BOUCLE_articles(ARTICLES) {recherche} {par points} {inverse} {pagination}{lang}>
 			<INCLURE{fond=inc_article_resume}{id_article}{recherche}>
 		</BOUCLE_articles>
 		[<p>(#PAGINATION)</p>]
@@ -79,13 +76,13 @@
 		
 		<B_documents>
 		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
-		<h1>Documents</h1><div class="element_sur">
+		<h1><:blip_documents:></h1><div class="element_sur">
 		[<p class="pagination">(#PAGINATION)</p>]
 		<BOUCLE_documents(DOCUMENTS) {recherche} {par points} {inverse} {pagination} {doublons}>
 			<div class="element_sous">
 			<div class="imgfloatleft"><a href="#URL_DOCUMENT"[ title="(#TITRE|attribut_html)"]>[(#LOGO_DOCUMENT{0,60})]</a></div>
 			<h5 class="nopadding"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>">[(#TITRE|sinon{<:info_document:>}) ]</a></h5>
-			<h5>#TYPE_DOCUMENT[ | (#TAILLE|taille_en_octets)][ | document publié le (#DATE|affdate)]</h5>
+			<h5>#TYPE_DOCUMENT[ | (#TAILLE|taille_en_octets)][ | <:blip_document_publie_le:> (#DATE|affdate)]</h5>
 			#DESCRIPTIF
 			</div>
 		</BOUCLE_documents>
@@ -97,7 +94,7 @@
 		[(#REM) Sites trouvés ]
 		<B_liens>
 		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
-		<h1>Sites</h1><div class="element_sur">
+		<h1><:blip_sites:></h1><div class="element_sur">
 		[<p class="pagination">(#PAGINATION)</p>]
 		<BOUCLE_liens(SITES) {recherche} {par points} {inverse} {pagination 25}>
 			<h5 class="nopadding">
@@ -112,7 +109,7 @@
 		[(#REM) Messages de forum trouvés ]
 		<B_commentaires>
 		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
-		<h1>Messages des forums</h1><div class="element_sur">
+		<h1><:blip_commentaires_postes:></h1><div class="element_sur">
 		[<p class="pagination">(#PAGINATION)</p>]
 		<BOUCLE_commentaires(FORUMS) {recherche} {par points} {inverse} {plat} {pagination}>
 			<INCLURE{fond=inc_forum_message}{id_forum}{tri=#ENV{tri}}>
@@ -125,13 +122,13 @@
 
 	[(#REM) Inclusion de la Barre latérale du site, construite dynamiquement ]
 	<div class="barre_laterale">
-		<INCLURE{fond=inc-barrelaterale}{page_actuelle=recherche}{id_actuel=#ENV{recherche}}>	
+		<INCLURE{fond=inc-barrelaterale}{page_actuelle=recherche}{id_actuel=#ENV{recherche}}{lang}>	
 	</div><!-- fin barre_laterale-->
 
 </div><!-- fin corps -->
 
 [(#REM)  Inclusion du Pied de page du site, qui se construit dynamiquement]
-<INCLURE{fond=inc-pied}{page_actuelle=recherche}>
+<INCLURE{fond=inc-pied}{page_actuelle=recherche}{lang}>
 
 </div><!-- fin page -->
 
