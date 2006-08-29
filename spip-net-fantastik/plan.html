@@ -30,13 +30,17 @@
 			<h1 class="invisible"><:plan_site:></h1>
 			</div>
 
-				[(#REM) Plan du site, seulement le secteur de la langue ]
+			[(#REM) Debut du plan du site ]
+			<ul>
+
+				[(#REM) D'abord le secteur de la langue ]
 				<BOUCLE_secteurs(RUBRIQUES) {lang ?} {racine}{id_rubrique!=4}{id_rubrique!=324} {par num titre, titre}>
+				<li lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR" style="text-align: #LANG_LEFT;">
+					<h2 class="menu-titre"><a href="#URL_RUBRIQUE">#TITRE</a></h2>
 
-				[(#REM) Articles par sous-rubriques ]
-
+					[(#REM) Articles par sous-rubriques ]
 					<B_rubriques>
-					<ul lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR" style="text-align: #LANG_LEFT;">
+					<ul>
 						<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
 						<li>
 							[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|image_reduire{77})]
@@ -45,7 +49,7 @@
 							<B_articles>
 							<ul>
 								<BOUCLE_articles(ARTICLES) {lang} {id_rubrique} {par titre}{!par date}>
-								<li lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR" style="text-align: #LANG_LEFT;"><a href="#URL_ARTICLE">#TITRE</a></li>
+								<li><a href="#URL_ARTICLE">#TITRE</a></li>
 								</BOUCLE_articles>
 							</ul>
 							</B_articles>
@@ -58,29 +62,36 @@
 					</ul>
 					</B_rubriques>
 
+				</li>
 				</BOUCLE_secteurs>
+
 
 				[(#REM) N'oublions pas l'espace des traducteurs ]
 				<B_espace_trad_rub>
-				<ul>
-					<li>
-					<BOUCLE_espace_trad(RUBRIQUES){id_rubrique=4}>
-					[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|image_reduire{77})]
-					<strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
-					</BOUCLE_espace_trad>
 
-						<BOUCLE_espace_trad_rub(RUBRIQUES) {lang ?} {id_secteur=4}>
+					<BOUCLE_espace_trad(RUBRIQUES){id_rubrique=4}>
+					<li>
+						<h2 class="menu-titre"><a href="#URL_RUBRIQUE">#TITRE</a></h2>
 						<ul>
 							<li>
-							<strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
-							<BOUCLE_espace_trad_rub_articles(BOUCLE_articles)></BOUCLE_espace_trad_rub_articles>
+							[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|image_reduire{77})]
+							</BOUCLE_espace_trad>
+	
+								<BOUCLE_espace_trad_rub(RUBRIQUES) {lang ?} {id_secteur=4}{id_rubrique!=4}>
+								<ul lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR" style="text-align: #LANG_LEFT;">
+									<li>
+									<strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
+									<BOUCLE_espace_trad_rub_articles(BOUCLE_articles)></BOUCLE_espace_trad_rub_articles>
+									</li>
+								</ul>
+								</BOUCLE_espace_trad_rub>
 							</li>
 						</ul>
-						</BOUCLE_espace_trad_rub>
 
 					</li>
-				</ul>
 				</B_espace_trad_rub>
+
+			</ul>[(#REM) Fin du plan de site]
 
 		</div><!-- fin contenu -->
 
