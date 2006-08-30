@@ -1,6 +1,6 @@
 <?php
 
-// This is a BliP language file  --  Ceci est le fichier langue ANGLAIS du squelette BliP pour SPIP
+// This is a BliP language file  --  Ceci est le fichier langue ALLEMAND du squelette BliP pour SPIP
 //  Ce fichier langue a été compilé par Stéphane COTTIN pour BliP 2.2
 // Documentation sur le multilinguisme : http://www.cent20.net/spip.php?article79 et http://www.cent20.net/spip.php?article67
 // Les mises à jour sont suivies et assurées par ? 
