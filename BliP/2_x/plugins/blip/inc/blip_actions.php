@@ -46,15 +46,15 @@
 	
 	function BliP_installer_configuration() {
 		// Installe la configuration par défaut -- Une requête par ligne, car sinon cela bug et je ne sais pas pourquoi. 
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'menu_principal', 0, 20, 'dynamique', '<multi>[fr]Rubriques[en]Sections</multi>', '<multi>[fr]Parcourir les rubriques du site[en]To traverse the section of the site </multi>', 'rubrique', '', 'oui');";
+		$req = "INSERT INTO `spip_blip` VALUES ('', 'menu_principal', 0, 20, 'dynamique', '<multi>[fr]Rubriques[en]Sections[it]Rubriche</multi>', '<multi>[fr]Parcourir les rubriques du site[en]To traverse the section of the site[it]Per attraversare le rubriche del sito</multi>', 'rubrique', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'menu_principal', 0, 30, 'dynamique', '<multi>[fr]Articles[en]Articles</multi>', '<multi>[fr]Liste des articles du site[en]List articles of the site </multi>', 'article', '', 'oui');";
+		$req = "INSERT INTO `spip_blip` VALUES ('', 'menu_principal', 0, 30, 'dynamique', '<multi>[fr]Articles[en]Articles[it]Articoli</multi>', '<multi>[fr]Liste des articles du site[en]List articles of the site[it]Lista degli articoli del sito</multi>', 'article', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'menu_principal', 0, 10, 'dynamique', '<multi>[fr]Actualit&eacute;[en]News</multi>', '<multi>[fr]Suivre l''actualit&eacute; de ce site[en]News of this site </multi>', 'sommaire', '', 'oui');";
+		$req = "INSERT INTO `spip_blip` VALUES ('', 'menu_principal', 0, 10, 'dynamique', '<multi>[fr]Actualit&eacute;[en]News[it]Notizie</multi>', '<multi>[fr]Suivre l''actualit&eacute; de ce site[en]News of this site[it]Seguire le novita &agrave; del sito</multi>', 'sommaire', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'menu_principal', 0, 50, 'dynamique', '<multi>[fr]Auteurs[en]Authors</multi>', '<multi>[fr]Liste des auteurs du site[en]List authors of the site </multi>', 'auteur', '', 'oui');";
+		$req = "INSERT INTO `spip_blip` VALUES ('', 'menu_principal', 0, 50, 'dynamique', '<multi>[fr]Auteurs[en]Authors[it]Autore</multi>', '<multi>[fr]Liste des auteurs du site[en]List authors of the site[it]Elenco degli autori del sito </multi>', 'auteur', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'menu_principal', 0, 40, 'dynamique', '<multi>[fr]Mots cl&eacute;s[en]Tags</multi>', '<multi>[fr]Liste des mots cl&eacute;s du site[en]Tags of the site </multi>', 'mot', '', 'non');";
+		$req = "INSERT INTO `spip_blip` VALUES ('', 'menu_principal', 0, 40, 'dynamique', '<multi>[fr]Mots-cl&eacute;s[en]Tags[it]Parole chiave</multi>', '<multi>[fr]Liste des mots-cl&eacute;s du site[en]Tags of the site[it]Parole chiave del sito </multi>', 'mot', '', 'non');";
 		spip_query($req);
 		$req = "INSERT INTO `spip_blip` VALUES ('', 'barre_laterale', 0, 20, 'dynamique', '-', '-', 'mod_rubriques_rubriques_liste', '', 'oui');";
 		spip_query($req);
@@ -82,12 +82,10 @@
 		spip_query($req);
 		$req = "INSERT INTO `spip_blip` VALUES ('', 'titre_lateral', 0, 5, 'statique', 'Titre lat&eacute;ral', '/ceci est une zone personnalisable/', 'Vous pouvez y afficher du texte et/ou y inclure des modules.', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'barre_laterale', 0, 5, 'statique', 'Barre latÃ©rale', '/ceci est une zone personnalisable/', 'Vous pouvez y afficher du texte et/ou y inclure des modules.', '', 'oui');";
+		$req = "INSERT INTO `spip_blip` VALUES ('', 'barre_laterale', 0, 5, 'statique', 'Barre lat&eacute;rale', '/ceci est une zone personnalisable/', 'Vous pouvez y afficher du texte et/ou y inclure des modules.', '', 'oui');";
 		spip_query($req);		
 		$req = "INSERT INTO `spip_blip` VALUES ('', 'mentions_techniques', 0, 5, 'statique', 'Mentions techniques', '/ceci est une zone personnalisable/', 'Vous pouvez y afficher du texte et/ou y inclure des modules.', '', 'oui');";
 		spip_query($req);	
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'barre_laterale', 0, 20, 'dynamique', '-', '-', 'mod_rubriques_rubriques_liste', '', 'oui');";
-		spip_query($req);
 		$req = "INSERT INTO `spip_blip` VALUES ('', 'barre_laterale-sommaire', 0, 1, 'dynamique', '-', '-', 'mod_langue_site', '', 'oui');";
 		spip_query($req);
 	}

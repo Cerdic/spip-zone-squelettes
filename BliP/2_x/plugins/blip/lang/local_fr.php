@@ -1,10 +1,14 @@
 <?php
 
-// This is a SPIP language file  --  Ceci est le fichier langue du squelette BliP pour SPIP
-//  Ce fichier langue a été compilé par Philippe MERCIER
+// This is a BliP language file  --  Ceci est le fichier langue FRANCAIS du squelette BliP pour SPIP
+//  Ce fichier langue a été compilé par Philippe MERCIER pour BliP 2.2
+// Documentation sur le multilinguisme : http://www.cent20.net/spip.php?article79 et http://www.cent20.net/spip.php?article67
+// Les mises à jour sont suivies et assurées par Vincent ROBERT. 
+// Pour contacter la personne responsable du fichier langue, vous devez passer par http://groups.google.com/group/blip, sauf mentions contraires dans l'articles http://www.cent20.net/spip.php?article79
 
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
+ 
  
  
 // A
@@ -20,7 +24,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
  'blip_article_propos_de_cet' => 'A propos de cet article',
  'blip_article_liste_des' => 'Liste des articles',
  'blip_article_numero' => 'L\'article n&deg;',
- 'blip_n_est_plus_disponible' => 'n\'est plus disponible il a probablement &eacute;t&eacute; d&eacute;plac&eacute; ou supprim&eacute;. Vous avez &eacute;t&eacute; redirig&eacute; sur la page listant les articles publi&eacute;s',
+ 'blip_n_est_plus_disponible' => 'n\'est plus disponible : il a probablement &eacute;t&eacute; d&eacute;plac&eacute; ou supprim&eacute;. Vous avez &eacute;t&eacute; redirig&eacute; sur la page listant les articles publi&eacute;s',
  'blip_articles_publies' => 'articles publi&eacute;s', 
  'blip_populaires_articles' => 'Articles populaires',
  'blip_article_statistiques_de' => 'Statistiques de l\'article',
@@ -57,7 +61,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
  'blip_document_dernier_publie' => 'Derniers documents publi&eacute;s',
  'blip_documents_joints_a_larticle' => 'Documents joints &agrave; l\'article',
  'blip_document_publie_le' => 'document publi&eacute; le',
- 'blip_document_publie' => 'document publi&eacute;',
+ 'blip_document_publie' => 'documents publi&eacute;s',
 
 
 // E
@@ -92,8 +96,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
  'blip_mis_a_jour_en' => 'Mis &agrave; jour en',
  'blip_mis_a_jour_le' => 'Mis &agrave; jour le',
  'blip_modifier_les_couleurs_du_site' => 'Modifier les couleurs du site',
- 'blip_liste_des_mots_cles' => 'Liste des mots cl&eacute;s',
- 'blip_afficher_les_mots_cles_par' => 'Afficher les mots cl&eacute;s par',
+ 'blip_liste_des_mots_cles' => 'Liste des mots-cl&eacute;s',
+ 'blip_afficher_les_mots_cles_par' => 'Afficher les mots-cl&eacute;s par',
 
 // N
  'blip_nouveaute' => 'Nouveaut&eacute;',
@@ -125,13 +129,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
  'blip_rubrique_documents_de_la' => 'Documents de la rubrique',
  'blip_rubriques_du_site' => 'Rubriques du site',
  'blip_rubriques_liste_des' => 'Liste des rubriques',
- 'blip_rubrique_liens_externe_de_la_rubrique' => 'Liens externe de la rubrique',
+ 'blip_rubrique_liens_externe_de_la_rubrique' => 'Liens externes de la rubrique',
  'blip_rubrique_numero' => 'La rubrique n&deg;',
  'blip_nest_plus_disponible' => 'n\'est plus disponible, elle a probablement &eacute;t&eacute; d&eacute;plac&eacute;e ou supprim&eacute;e. Vous avez &eacute;t&eacute; redirig&eacute; sur la page listant les rubriques du site',
  'blip_rubriques_sous' => 'Sous rubriques',
 
 
-// S
+ // S
 
  'blip_sites' => 'Sites',
  
@@ -139,13 +143,17 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
  'blip_theme' => 'th&egrave;me',
 
 
-// V
+ // V
 
  'blip_visiteurs_nombre_de' => 'nombre de visiteurs',
  'blip_visiteurs_par_jour_cumul' => 'Visiteurs par jour (cumul)',
  'blip_visiteurs_quotidiens' => 'visiteurs quotidiens',
  'blip_visiteurs_aujourd_hui' => 'visiteurs aujourd\'hui',
  'blip_visiteurs_cumules' => 'visiteurs cumul&eacute;s',
+ 
+ 
+ // DEBUG
+ 'blip_z_debug' => 'NE RIEN METTRE SOUS CETTE LIGNE'
 
 
 );
