@@ -1,32 +1,28 @@
-[(#REM) Squelette pour SPIP 1.9. Publie au format ATOM 1.0 http://www.ietf.org/rfc/rfc4287.txt 
-la liste des sites web syndiques.
-]#CACHE{86400}
+[(#REM) Squelette pour SPIP 1.9. Publie au format ATOM 1.0 http://www.ietf.org/rfc/rfc4287.txt la liste des sites web syndiques. 
+]#CACHE{7200}
 [(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})]
-[(#REM) Remplacer text/xml par application/atom+xml des que 
-http://bugzilla.mozilla.org/show_bug.cgi?id=258012 est corrige.]
-<?php echo '<' ?>?xml version="1.0"[ encoding="(#CHARSET)"]?>
+[(#REM) Remplacer text/xml par application/atom+xml des lors que (...) 
+]<?php echo '<' ?>?xml version="1.0"[ encoding="(#CHARSET)"]?>
 <feed xmlns="http://www.w3.org/2005/Atom"[ xml:lang="(#LANG)"]>
-[	<title [ xml:lang="(#LANG)"]>(#NOM_SITE_SPIP|texte_backend)</title>]
-[	<subtitle type="html">(#DESCRIPTIF_SITE_SPIP|texte_backend)</subtitle>]
-	<link href="#URL_SITE_SPIP/"/>[(#REM) L'adresse du page web listant tous les 
-sites web serait preferable.] 
-[	<link rel="self" type="application/atom+xml" href="#URL_SITE_SPIP/(#SELF)"/>]
-	<id>#URL_SITE_SPIP/site</id>
-	<generator uri="http://www.spip.net/" version="<?php echo"$spip_version_affichee"; ?>">SPIP</generator>
-[	<logo>(#LOGO_SITE_SPIP||extraire_attribut{src}|url_absolue|texte_backend)</logo>]
-[	<updated>(#DATE|date_iso)</updated>]
+[	<title>(#NOM_SITE_SPIP|texte_backend)</title>
+][	<subtitle type="html">(#DESCRIPTIF_SITE_SPIP|texte_backend)</subtitle>
+]	<link href="#URL_SITE_SPIP/"/>[(#REM) Une adresse secifique et listant tous les sites web serait preferable.] 
+[	<link rel="self" type="application/atom+xml" href="#URL_SITE_SPIP/(#SELF)"/>
+]	<id>#URL_SITE_SPIP/</id>
+	<generator uri="http://www.spip.net/" [version="(#SPIP_VERSION)"]>SPIP</generator>[(#REM) La balise SPIP_VERSION est utilisable a partir de SPIP 1.9.1 http://www.spip.net/fr_article3462.html .]
+[	<logo>(#LOGO_SITE_SPIP||extraire_attribut{src}|url_absolue|texte_backend)</logo>
+][	<updated>(#DATE|date_iso)</updated>]
 
 <BOUCLE_sites(SITES){branche ?}{syndication=oui}>
 	<entry>
-[		<title>(#NOM_SITE|texte_backend)</title>]
-[		<id>#URL_SITE_SPIP/site(#ID_SYNDIC)</id>]
-[		<link rel="alternate" type="text/html" href="(#ID_SYNDIC|generer_url_site|url_absolue|texte_backend)"/>]
-		<link rel="related" type="text/html" href="#URL_SITE"/>
-[		<link rel="related" type="application/atom+xml" href="#URL_SYNDIC"/>]
-[(#REM) L'absence de balise <author> ici rend ce document non conforme a la rfc 4287.] 
-	<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
-[		<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>]
-	</BOUCLE_rubrique>
+[		<title>(#NOM_SITE|texte_backend)</title>
+][		<id>#URL_SITE_SPIP/site(#ID_SYNDIC)</id>
+][		<link rel="alternate" type="text/html" href="(#ID_SYNDIC|generer_url_site|url_absolue|texte_backend)"/>
+]		<link rel="related" type="text/html" href="#URL_SITE"/>
+[		<link rel="related" type="application/atom+xml" href="#URL_SYNDIC"/>
+][(#REM) L'absence de balise <author> ici rend ce document non conforme a la rfc 4287.
+]	<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>[	<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
+]	</BOUCLE_rubrique>
 [		<summary type="html">(#DESCRIPTIF|texte_backend)</summary>]
 	</entry>
 </BOUCLE_sites>

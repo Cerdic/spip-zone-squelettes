@@ -1,5 +1,5 @@
 [(#REM) Squelette pour SPIP 1.9. Publie au format ATOM 1.0 http://www.ietf.org/rfc/rfc4287.txt 
-les breves. Limite aux vingt dernieres, mais une eventuelle future 
+les articles et les breves. Limite aux vingt derniers, mais une eventuelle future 
 pagination SPIP pourrait permettre d'utiliser la pagination atom 
 http://www.iana.org/assignments/link-relations.html et de tout publier.
 ]#CACHE{7200}
@@ -19,23 +19,19 @@ http://bugzilla.mozilla.org/show_bug.cgi?id=258012 est corrige.]
 
 <BOUCLE_breves(BREVES){lang ?}{id_rubrique ?}{id_mot ?}{par date}{0,20}>
 	<entry[ xml:lang="(#LANG)"]>
-[		<title>(#TITRE|supprimer_numero|texte_backend)</title>]
-[		<id>#URL_SITE_SPIP/breve(#ID_BREVE)</id>]
-[		<link rel="alternate" type="text/html" href="(#URL_BREVE|url_absolue)"/>]
-[		<link rel="replies" type="application/atom+xml" href="(#PARAMETRES_FORUM|url_rss_forum|parametre_url{fmt,atom}|url_absolue)"/>]
-[		<published>(#DATE|date_iso)</published>]
-[		<updated>(#DATE|date_iso)</updated>]
-[(#REM) L'absence de balise <author> ici rend ce document non conforme a la rfc 4287.]
-	<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
-[		<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>]
-	</BOUCLE_rubrique>
-	<BOUCLE_mots(MOTS){id_breve}>
-[		<category scheme="#URL_SITE_SPIP/mot" term="(#ID_MOT)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>]
-	</BOUCLE_mots>
-[		<summary type="html">(#INTRODUCTION|texte_backend)</summary>]
-[
-
-(#REM)
+[		<title>(#TITRE|supprimer_numero|texte_backend)</title>
+][		<id>#URL_SITE_SPIP/breve(#ID_BREVE)</id>
+][		<link rel="alternate" type="text/html" href="(#URL_BREVE|url_absolue)"/>
+][		<link rel="replies" type="application/atom+xml" href="(#PARAMETRES_FORUM|url_rss_forum|parametre_url{fmt,atom}|url_absolue)"/>
+][		<published>(#DATE|date_iso)</published>
+][		<updated>(#DATE|date_iso)</updated>
+][(#REM) L'absence de balise <author> ici rend ce document non conforme a la rfc 4287.]
+	<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>[	<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
+]	</BOUCLE_rubrique>
+	<BOUCLE_mots(MOTS){id_breve}>[	<category scheme="#URL_SITE_SPIP/mot" term="(#ID_MOT)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
+]	</BOUCLE_mots>
+[		<summary type="html">(#INTRODUCTION|texte_backend)</summary>
+][(#REM)
 	Le bloc qui suit publie le texte integral de la breve,
 	ce qui permet une syndication plus riche (mais plus "lourde").
 	Fonction desactivable depuis les reglages du site.
@@ -44,8 +40,7 @@ http://bugzilla.mozilla.org/show_bug.cgi?id=258012 est corrige.]
 		][&lt;div class='rss_texte'&gt;(#TEXTE|texte_backend)&lt;/div&gt;
 		][&lt;hr /&gt;
 		&lt;div class='rss_notes'&gt;(#NOTES|texte_backend)&lt;/div&gt;]
-		</content>
-]
+		</content>]
 	</entry>
 </BOUCLE_breves>
 

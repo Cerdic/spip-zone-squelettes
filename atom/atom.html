@@ -1,41 +1,35 @@
-[(#REM) Squelette pour SPIP 1.9. Publie au format ATOM 1.0 http://www.ietf.org/rfc/rfc4287.txt 
-les articles et les breves. Limite aux vingt derniers, mais une eventuelle future 
-pagination SPIP pourrait permettre d'utiliser la pagination atom 
+[(#REM) Squelette pour SPIP 1.9. Publie au format ATOM 1.0 http://www.ietf.org/rfc/rfc4287.txt les articles. 
+Limite aux vingt derniers, mais une eventuelle future pagination SPIP pourrait permettre d'utiliser la pagination atom 
 http://www.iana.org/assignments/link-relations.html et de tout publier.
 ]#CACHE{7200}
 [(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})]
-[(#REM) Remplacer text/xml par application/atom+xml des que 
-http://bugzilla.mozilla.org/show_bug.cgi?id=258012 est corrige.]
-<?php echo '<' ?>?xml version="1.0"[ encoding="(#CHARSET)"]?>
+[(#REM) Remplacer text/xml par application/atom+xml des lors que (...) 
+]<?php echo '<' ?>?xml version="1.0"[ encoding="(#CHARSET)"]?>
 <feed xmlns="http://www.w3.org/2005/Atom"[ xml:lang="(#LANG)"]>
-[	<title>(#NOM_SITE_SPIP|texte_backend)</title>]
-[	<subtitle type="html">(#DESCRIPTIF_SITE_SPIP|texte_backend)</subtitle>]
-	<link href="#URL_SITE_SPIP/"/>
-[	<link rel="self" type="application/atom+xml" href="#URL_SITE_SPIP/(#SELF)"/>]
-	<id>#URL_SITE_SPIP/</id>
-	<generator uri="http://www.spip.net/" version="<?php echo"$spip_version_affichee"; ?>">SPIP</generator>
-[	<logo>(#LOGO_SITE_SPIP||extraire_attribut{src}|url_absolue|texte_backend)</logo>]
-[	<updated>(#DATE|date_iso)</updated>]
+[	<title>(#NOM_SITE_SPIP|texte_backend)</title>
+][	<subtitle type="html">(#DESCRIPTIF_SITE_SPIP|texte_backend)</subtitle>
+]	<link href="#URL_SITE_SPIP/"/>
+[	<link rel="self" type="application/atom+xml" href="#URL_SITE_SPIP/(#SELF)"/>
+]	<id>#URL_SITE_SPIP/</id>
+	<generator uri="http://www.spip.net/" [version="(#SPIP_VERSION)"]>SPIP</generator>[(#REM) La balise SPIP_VERSION est utilisable a partir de SPIP 1.9.1 http://www.spip.net/fr_article3462.html .]
+[	<logo>(#LOGO_SITE_SPIP||extraire_attribut{src}|url_absolue|texte_backend)</logo>
+][	<updated>(#DATE|date_iso)</updated>]
 
 <BOUCLE_breves(BREVES){lang ?}{id_rubrique ?}{id_mot ?}{par date}{0,20}>
 	<entry[ xml:lang="(#LANG)"]>
-[		<title>(#TITRE|supprimer_numero|texte_backend)</title>]
-[		<id>#URL_SITE_SPIP/breve(#ID_BREVE)</id>]
-[		<link rel="alternate" type="text/html" href="(#URL_BREVE|url_absolue)"/>]
-[		<link rel="replies" type="application/atom+xml" href="(#PARAMETRES_FORUM|url_rss_forum|parametre_url{fmt,atom}|url_absolue)"/>]
-[		<published>(#DATE|date_iso)</published>]
-[		<updated>(#DATE|date_iso)</updated>]
-[(#REM) L'absence de balise <author> ici rend ce document non conforme a la rfc 4287.]
-	<BOUCLE_breve_rubrique(RUBRIQUES){id_rubrique}>
-[		<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>]
+[		<title>(#TITRE|supprimer_numero|texte_backend)</title>
+][		<id>#URL_SITE_SPIP/breve(#ID_BREVE)</id>
+][		<link rel="alternate" type="text/html" href="(#URL_BREVE|url_absolue)"/>
+][		<link rel="replies" type="application/atom+xml" href="(#PARAMETRES_FORUM|url_rss_forum|parametre_url{fmt,atom}|url_absolue)"/>
+][		<published>(#DATE|date_iso)</published>
+][		<updated>(#DATE|date_iso)</updated>
+][(#REM) L'absence de balise <author> ici rend ce document non conforme a la rfc 4287.
+]	<BOUCLE_breve_rubrique(RUBRIQUES){id_rubrique}>[	<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>]
 	</BOUCLE_breve_rubrique>
-	<BOUCLE_breve_mots(MOTS){id_article}>
-[		<category scheme="#URL_SITE_SPIP/mot" term="(#ID_MOT)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>]
+	<BOUCLE_breve_mots(MOTS){id_article}>[	<category scheme="#URL_SITE_SPIP/mot" term="(#ID_MOT)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>]
 	</BOUCLE_breve_mots>
-[		<summary type="html">(#INTRODUCTION|texte_backend)</summary>]
-[
-
-(#REM)
+[		<summary type="html">(#INTRODUCTION|texte_backend)</summary>
+][(#REM)
 	Le bloc qui suit publie le texte integral de la breve,
 	ce qui permet une syndication plus riche (mais plus "lourde").
 	Fonction desactivable depuis les reglages du site.
@@ -44,32 +38,26 @@ http://bugzilla.mozilla.org/show_bug.cgi?id=258012 est corrige.]
 		][&lt;div class='rss_texte'&gt;(#TEXTE|texte_backend)&lt;/div&gt;
 		][&lt;hr /&gt;
 		&lt;div class='rss_notes'&gt;(#NOTES|texte_backend)&lt;/div&gt;]
-		</content>
-]
+		</content>]
 	</entry>
 </BOUCLE_breves>
 
 <BOUCLE_articles(ARTICLES){lang ?}{branche ?}{id_mot ?}{par date}{0,20}>
 	<entry[ xml:lang="(#LANG)"]>
-[		<title>(#TITRE|supprimer_numero|texte_backend)</title>]
-[		<id>#URL_SITE_SPIP/article(#ID_ARTICLE)</id>]
-[		<link rel="alternate" type="text/html" href="(#URL_ARTICLE|url_absolue)"/>]
-[		<link rel="replies" type="application/atom+xml" href="(#PARAMETRES_FORUM|url_rss_forum|parametre_url{fmt,atom}|url_absolue)"/>]
-[		<published>(#DATE|date_iso)</published>]
-[		<updated>(#DATE_MODIF|date_iso)</updated>]
-	<BOUCLE_article_auteur(AUTEURS){id_article}>
-[		<author><name>(#NOM)</name>[<uri>(#URL_AUTEUR|url_absolue)</uri>]</author>]
-	</BOUCLE_article_auteur>
-	<BOUCLE_article_rubrique(RUBRIQUES){id_rubrique}>
-[		<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>]
-	</BOUCLE_article_rubrique>
-	<BOUCLE_article_mots(MOTS){id_article}>
-[		<category scheme="#URL_SITE_SPIP/mot" term="(#ID_MOT)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>]
-	</BOUCLE_article_mots>
-[		<summary type="html">(#INTRODUCTION|texte_backend)</summary>]
-[
-
-(#REM)
+[		<title>(#TITRE|supprimer_numero|texte_backend)</title>
+][		<id>#URL_SITE_SPIP/article(#ID_ARTICLE)</id>
+][		<link rel="alternate" type="text/html" href="(#URL_ARTICLE|url_absolue)"/>
+][		<link rel="replies" type="application/atom+xml" href="(#PARAMETRES_FORUM|url_rss_forum|parametre_url{fmt,atom}|url_absolue)"/>
+][		<published>(#DATE|date_iso)</published>
+][		<updated>(#DATE_MODIF|date_iso)</updated>
+]	<BOUCLE_article_auteur(AUTEURS){id_article}>[	<author><name>(#NOM)</name>[<uri>(#URL_AUTEUR|url_absolue)</uri>]</author>
+]	</BOUCLE_article_auteur>
+	<BOUCLE_article_rubrique(RUBRIQUES){id_rubrique}>[	<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
+]	</BOUCLE_article_rubrique>
+	<BOUCLE_article_mots(MOTS){id_article}>[	<category scheme="#URL_SITE_SPIP/mot" term="(#ID_MOT)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
+]	</BOUCLE_article_mots>
+[		<summary type="html">(#INTRODUCTION|texte_backend)</summary>
+][(#REM)
 	Le bloc qui suit publie le texte integral de l'article,
 	ce qui permet une syndication plus riche (mais plus "lourde").
 	Fonction desactivable depuis les reglages du site.
@@ -81,12 +69,10 @@ http://bugzilla.mozilla.org/show_bug.cgi?id=258012 est corrige.]
 		&lt;div class='rss_notes'&gt;(#NOTES|texte_backend)&lt;/div&gt;
 		][&lt;div class='rss_ps'&gt;(#PS|texte_backend)&lt;/div&gt;]
 		</content>
-]
-[(#REM)
+][(#REM)
 	Le bloc qui suit indique les documents associes aux articles ;
 	ajouter par ex. {extension=mp3} pour limiter a un certain type de document.
-]		<BOUCLE_documents(DOCUMENTS){id_article}{mode=document}{unique}>[
-		<link rel="enclosure" href="(#URL_DOCUMENT|url_absolue|unique)"[ length="(#TAILLE)"][ type="(#MIME_TYPE)"] />]
+]		<BOUCLE_documents(DOCUMENTS){id_article}{mode=document}{unique}>[	<link rel="enclosure" href="(#URL_DOCUMENT|url_absolue|unique)"[ length="(#TAILLE)"][ type="(#MIME_TYPE)"] />]
 		</BOUCLE_documents>
 	</entry>
 </BOUCLE_articles>

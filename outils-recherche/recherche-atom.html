@@ -9,77 +9,71 @@ non utilisable pour du Atom 1.0, et pas encore suffisament mature
 - les indications de pagination de Atom 1.0 http://www.iana.org/assignments/link-relations.html
 car necessite une pagination
 - les indications de pagination de OpenSearch 1.1 Response http://opensearch.a9.com/spec/1.1/response/#elements
-car necessite une pagination
+parceque OpenSearch 1.1 est encore un brouillon et que cela necessiterait une pagination
 ]#CACHE{7200}
 [(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})]
-[(#REM) Remplacer text/xml par application/atom+xml des que 
-http://bugzilla.mozilla.org/show_bug.cgi?id=258012 est corrige.]
-<?php echo '<' ?>?xml version="1.0"[ encoding="(#CHARSET)"]?>
+[(#REM) Remplacer text/xml par application/atom+xml des lors que (...)
+]<?php echo '<' ?>?xml version="1.0"[ encoding="(#CHARSET)"]?>
 <feed xmlns="http://www.w3.org/2005/Atom"[ xml:lang="(#LANG)"]>
 	<title>[(#NOM_SITE_SPIP|texte_backend)] <:info_rechercher_02:> [(#RECHERCHE|texte_backend)]</title>]
-[	<subtitle type="html">(#DESCRIPTIF_SITE_SPIP|texte_backend)</subtitle>]
-[	<link rel="alternate" type="text/html" href="(#URL_PAGE{recherche}|parametre_url{recherche,#RECHERCHE}|url_absolue|texte_backend)"/>]
-[	<link rel="self" type="application/atom+xml" href="#URL_SITE_SPIP/(#SELF)"/>]
-	<id>#URL_SITE_SPIP/recherche[(#RECHERCHE|texte_backend)]</id>
-	<generator uri="http://www.spip.net/" version="<?php echo"$spip_version_affichee"; ?>">SPIP</generator>
+[	<subtitle type="html">(#DESCRIPTIF_SITE_SPIP|texte_backend)</subtitle>
+][	<link rel="alternate" type="text/html" href="(#URL_PAGE{recherche}|parametre_url{recherche,#RECHERCHE}|url_absolue|texte_backend)"/>
+][	<link rel="self" type="application/atom+xml" href="#URL_SITE_SPIP/(#SELF)"/>
+]	<id>#URL_SITE_SPIP/recherche[(#RECHERCHE|texte_backend)]</id>
+	<generator uri="http://www.spip.net/" [version="(#SPIP_VERSION)"]>SPIP</generator>[(#REM) La balise SPIP_VERSION est utilisable a partir de SPIP 1.9.1 http://www.spip.net/fr_article3462.html .]
 [	<updated>(#DATE|date_iso)</updated>]
+
 <BOUCLE_articles(ARTICLES){recherche}{lang ?}{id_rubrique ?}{par points}{inverse}{0,10}>
 	<entry[ xml:lang="(#LANG)"]>
-[		<title>(#TITRE|supprimer_numero|texte_backend)</title>]
-[		<id>#URL_SITE_SPIP/article(#ID_ARTICLE)</id>]
-[		<link rel="alternate" type="text/html" href="(#URL_ARTICLE|url_absolue)"/>]
-[		<link rel="replies" type="application/atom+xml" href="(#PARAMETRES_FORUM|url_rss_forum|parametre_url{fmt,atom}|url_absolue)"/>]
-[		<published>(#DATE|date_iso)</published>]
-[		<updated>(#DATE_MODIF|date_iso)</updated>]
-	<BOUCLE_article_auteur(AUTEURS){id_article}>
-[		<author><name>(#NOM)</name>[<uri>(#URL_AUTEUR|url_absolue)</uri>]</author>]
-	</BOUCLE_article_auteur>
-	<BOUCLE_article_rubrique(RUBRIQUES){id_rubrique}>
-[		<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>]
-	</BOUCLE_article_rubrique>
-	<BOUCLE_article_mots(MOTS){id_article}>
-[		<category scheme="#URL_SITE_SPIP/mot" term="(#ID_MOT)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>]
-	</BOUCLE_article_mots>
-[		<summary type="html">(#INTRODUCTION|texte_backend)</summary>]
-	</entry>
+[		<title>(#TITRE|supprimer_numero|texte_backend)</title>
+][		<id>#URL_SITE_SPIP/article(#ID_ARTICLE)</id>
+][		<link rel="alternate" type="text/html" href="(#URL_ARTICLE|url_absolue)"/>
+][		<link rel="replies" type="application/atom+xml" href="(#PARAMETRES_FORUM|url_rss_forum|parametre_url{fmt,atom}|url_absolue)"/>
+][		<published>(#DATE|date_iso)</published>
+][		<updated>(#DATE_MODIF|date_iso)</updated>
+]	<BOUCLE_article_auteur(AUTEURS){id_article}>[	<author><name>(#NOM)</name>[<uri>(#URL_AUTEUR|url_absolue)</uri>]</author>
+]	</BOUCLE_article_auteur>
+	<BOUCLE_article_rubrique(RUBRIQUES){id_rubrique}>[	<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
+]	</BOUCLE_article_rubrique>
+	<BOUCLE_article_mots(MOTS){id_article}>[	<category scheme="#URL_SITE_SPIP/mot" term="(#ID_MOT)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
+]	</BOUCLE_article_mots>
+[		<summary type="html">(#INTRODUCTION|texte_backend)</summary>
+]	</entry>
 </BOUCLE_articles>
 
 <BOUCLE_rubriques(RUBRIQUES){recherche}{id_rubrique ?}{par points}{inverse}{0,5}>
 	<entry[ xml:lang="(#LANG)"]>
-[		<title>(#TITRE|supprimer_numero|texte_backend)</title>]
-[		<id>#URL_SITE_SPIP/rubrique(#ID_RUBRIQUE)</id>]
-[		<link rel="alternate" type="text/html" href="(#URL_RUBRIQUE|url_absolue)"/>]
-[		<updated>(#DATE|date_iso)</updated>]
-[(#REM) L'absence de balise <author> ici rend ce document non conforme a la rfc 4287.]
-	<BOUCLE_rubrique_rubrique(RUBRIQUES){id_rubrique}>
-[		<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>]
-	</BOUCLE_rubrique_rubrique>
+[		<title>(#TITRE|supprimer_numero|texte_backend)</title>
+][		<id>#URL_SITE_SPIP/rubrique(#ID_RUBRIQUE)</id>
+][		<link rel="alternate" type="text/html" href="(#URL_RUBRIQUE|url_absolue)"/>
+][		<updated>(#DATE|date_iso)</updated>
+][(#REM) L'absence de balise <author> ici rend ce document non conforme a la rfc 4287.
+]	<BOUCLE_rubrique_rubrique(RUBRIQUES){id_rubrique}>[	<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
+]	</BOUCLE_rubrique_rubrique>
 [		<summary type="html">(#INTRODUCTION|texte_backend)</summary>]
 
 <BOUCLE_breves(BREVES){recherche}{id_rubrique ?}{par points}{inverse}{0,5}>
 	<entry[ xml:lang="(#LANG)"]>
-[		<title>(#TITRE|supprimer_numero|texte_backend)</title>]
-[		<id>#URL_SITE_SPIP/breve(#ID_BREVE)</id>]
-[		<link rel="alternate" type="text/html" href="(#URL_BREVE|url_absolue)"/>]
-[		<link rel="replies" type="application/atom+xml" href="(#PARAMETRES_FORUM|url_rss_forum|parametre_url{fmt,atom}|url_absolue)"/>]
-[		<published>(#DATE|date_iso)</published>]
-[		<updated>(#DATE|date_iso)</updated>]
-[(#REM) L'absence de balise <author> ici rend ce document non conforme a la rfc 4287.]
-	<BOUCLE_breve_rubrique(RUBRIQUES){id_rubrique}>
-[		<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>]
-	</BOUCLE_breve_rubrique>
-	<BOUCLE_breve_mots(MOTS){id_article}>
-[		<category scheme="#URL_SITE_SPIP/mot" term="(#ID_MOT)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>]
-	</BOUCLE_breve_mots>
+[		<title>(#TITRE|supprimer_numero|texte_backend)</title>
+][		<id>#URL_SITE_SPIP/breve(#ID_BREVE)</id>
+][		<link rel="alternate" type="text/html" href="(#URL_BREVE|url_absolue)"/>
+][		<link rel="replies" type="application/atom+xml" href="(#PARAMETRES_FORUM|url_rss_forum|parametre_url{fmt,atom}|url_absolue)"/>
+][		<published>(#DATE|date_iso)</published>
+][		<updated>(#DATE|date_iso)</updated>
+][(#REM) L'absence de balise <author> ici rend ce document non conforme a la rfc 4287.
+]	<BOUCLE_breve_rubrique(RUBRIQUES){id_rubrique}>[	<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
+]	</BOUCLE_breve_rubrique>
+	<BOUCLE_breve_mots(MOTS){id_article}>[	<category scheme="#URL_SITE_SPIP/mot" term="(#ID_MOT)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
+]	</BOUCLE_breve_mots>
 [		<summary type="html">(#INTRODUCTION|texte_backend)</summary>]
 
 <BOUCLE_mots(MOTS){recherche}{id_rubrique ?}{par points}{inverse}{0,5}>
 	<entry[ xml:lang="(#LANG)"]>
-[		<title>(#TITRE|supprimer_numero|texte_backend)</title>]
-[		<id>#URL_SITE_SPIP/mot(#ID_MOT)</id>]
-[		<link rel="alternate" type="text/html" href="(#URL_MOT|url_absolue)"/>]
-[		<updated>(#DATE|date_iso)</updated>]
-[(#REM) L'absence de balise <author> ici rend ce document non conforme a la rfc 4287.]
-		<summary type="html">[(#TITRE|texte_backend)][ (#DESCRIPTIF|texte_backend)]</summary>
+[		<title>(#TITRE|supprimer_numero|texte_backend)</title>
+][		<id>#URL_SITE_SPIP/mot(#ID_MOT)</id>
+][		<link rel="alternate" type="text/html" href="(#URL_MOT|url_absolue)"/>
+][		<updated>(#DATE|date_iso)</updated>
+][(#REM) L'absence de balise <author> ici rend ce document non conforme a la rfc 4287.
+]		<summary type="html">[(#TITRE|texte_backend)][ (#DESCRIPTIF|texte_backend)]</summary>
 
 </feed>
