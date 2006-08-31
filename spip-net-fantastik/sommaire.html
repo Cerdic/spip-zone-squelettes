@@ -16,17 +16,21 @@
 
 	<div id="conteneur">
 
-		[(#REM) Contenu principal : derniers articles publies ]
-
+		[(#REM)
+				Contenu principal : nouveautes sur le site, selon la langue.
+				Si aucun critere de langue, la page d'accueil est multilingue.
+		]
 		<div id="contenu">
 			<div class="cartouche">
 				<h1 class="invisible">#NOM_SITE_SPIP</h1>
 			</div>
+
+			[(#REM) Texte de presentation de SPIP : ]
 			<BOUCLE_intro(RUBRIQUES){lang}{racine}{id_rubrique!=4}{id_rubrique!=324}>
 			[<div class="texte">(#TEXTE)</div>]
 			</BOUCLE_intro>
 
-			[(#REM) Les deux derniers articles ]
+			[(#REM) Les trois derniers articles mis en ligne : ]
 			<B_articles_recents>
 			<div class="liste-articles">
 				<h2 class="invisible"><:derniers_articles:></h2>
@@ -37,7 +41,7 @@
 						[<p class="surtitre">(#SURTITRE)</p>]
 						<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
 						[<p class="soustitre">(#SOUSTITRE)</p>]
-						<small>[(#DATE|affdate_court)]</small>
+						<small>&#91;#LANG&#93; &mdash; [(#DATE|affdate_court)]</small>
 						[<div class="texte">(#INTRODUCTION|couper{250})</div>]
 						<br class="nettoyeur" />
 					</li>
@@ -70,31 +74,34 @@
 
 			<div class="encart">
 
-[(#REM) Derniers sites sous SPIP references ]
-<B_signatures><div class="syndic">
-<h2 class="menu-titre"><:derniers_sites_realises_avec_spip:></h2><ul class="box">
-<BOUCLE_signatures(SIGNATURES) {!par date}{age<150} {0,5}>
-[<li class="link">[(#DATE|affdate_court)] &ndash; <a href="(#URL_SITE|unique{signatures})" class="spip_out">#NOM_SITE</a></li>]
-</BOUCLE_signatures>
-</ul>
-<p><BOUCLE_signatures_total(SIGNATURES)> </BOUCLE_signatures_total>
-<small>&#91; #GRAND_TOTAL <:sites_references:> &#93;</small></B_signatures_total></p>
-</div></B_signatures>
-
-
-			[(#REM) Sur le Web ]
-			<BOUCLE_syndic_rub(RUBRIQUES){lang=#ENV{lang}}{racine}{id_rubrique!=4}{id_rubrique!=324}>
-				<B_syndic>
+				[(#REM) Derniers sites sous SPIP references ]
+				<B_signatures>
 				<div class="syndic">
-					<h2 class="menu-titre"><:nouveautes_web:></h2>
+					<h2 class="menu-titre"><:derniers_sites_realises_avec_spip:></h2>
 					<ul class="box">
-					<BOUCLE_syndic(SYNDIC_ARTICLES){id_secteur} {!par date}{age<150} {0,6}>
-						[<li class="link">[(#DATE|affdate_court) &ndash; ]<a href="(#URL_ARTICLE|unique{syndic})"[ title="(#NOM_SITE|texte_backend)"] class="spip_out">#TITRE</a></li>]
-					</BOUCLE_syndic>
+						<BOUCLE_signatures(SIGNATURES) {!par date}{age<150} {0,5}>
+						[<li class="link"><a href="(#URL_SITE|unique{signatures})" class="spip_out">#NOM_SITE</a></li>]
+						</BOUCLE_signatures>
 					</ul>
+					<p><BOUCLE_signatures_total(SIGNATURES)> </BOUCLE_signatures_total>
+					<small>&#91; #GRAND_TOTAL <:sites_references:> &#93;</small></B_signatures_total></p>
 				</div>
-				</B_syndic>
-			</BOUCLE_syndic_rub>
+				</B_signatures>
+
+
+				[(#REM) Sur le Web : articles issus de la syndication ]
+				<BOUCLE_syndic_rub(RUBRIQUES){lang=#ENV{lang}}{racine}{id_rubrique!=4}{id_rubrique!=324}>
+					<B_syndic>
+					<div class="syndic">
+						<h2 class="menu-titre"><:nouveautes_web:></h2>
+						<ul class="box">
+						<BOUCLE_syndic(SYNDIC_ARTICLES){id_secteur} {!par date}{age<150} {0,6}>
+							[<li class="link">[(#DATE|affdate_court) &ndash; ]<a href="(#URL_ARTICLE|unique{syndic})"[ title="(#NOM_SITE|texte_backend)"] class="spip_out">#TITRE</a></li>]
+						</BOUCLE_syndic>
+						</ul>
+					</div>
+					</B_syndic>
+				</BOUCLE_syndic_rub>
 
 			</div><!-- fin encart -->
 
@@ -106,8 +113,8 @@
 			<INCLURE{fond=inc-download}>
 			<INCLURE{fond=inc-rubriques}>
 			<INCLURE{fond=inc-uzine}>
+			<a href="#SQUELETTE" class="voirskel"><:squelette:></a>
 
-		<a href="#SQUELETTE" class="voirskel"><:squelette:></a>
 		</div><!-- fin navigation -->
 
 	<br class="nettoyeur" />
