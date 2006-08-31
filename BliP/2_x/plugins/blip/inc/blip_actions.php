@@ -4,7 +4,7 @@
 	// Toutes les fonctions ont étés regroupées ici.
 	
 	function BliP_version_ftp() {
-	    return (2.2);
+	    return (2.3);
 		// METTRE EGALEMENT A JOUR LA VERSION DU FICHIER plugin.xml
 	}
 	
@@ -17,7 +17,7 @@
 	// Script  d'installation de la table spip_blip et configuration par défaut du squelette. Utilisé sur exce=blip
 	function BliP_installer_blip() {
 		include_spip('inc/meta');
-		ecrire_meta('blip_version', 2.2);
+		ecrire_meta('blip_version', 2.3);
 		ecrire_metas();
 		BliP_installer_table();
 		BliP_installer_configuration();	
@@ -119,9 +119,9 @@
 		$v_instal = $GLOBALS['meta']["blip_version"];
 		$v_ftp = BliP_version_ftp();
 		
-		if ($v_ftp < 2.3) {
+		if ($v_ftp < 2.4) {
 			include_spip('inc/meta');
-			ecrire_meta('blip_version', 2.2);
+			ecrire_meta('blip_version', 2.3);
 			ecrire_metas();
 		}
 	}

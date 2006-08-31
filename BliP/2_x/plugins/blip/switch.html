@@ -15,7 +15,7 @@
 	[<script type="text/javascript" src="(#CHEMIN{nicetitle.js})"></script>]
 
 	[(#REM) Style CSS de blip ]
-	<link rel="stylesheet" type="text/css" href="#URL_SITE_SPIP/spip.php?page=inc-css[&amp;couleur=(#ENV{couleur})]" />	
+	<link rel="stylesheet" type="text/css" href="#URL_PAGE{inc-css}[&amp;couleur=(#ENV{couleur})]" />	
 	
 	<script language="JavaScript" type="text/JavaScript">
 	<!--
@@ -51,7 +51,7 @@
 
 	<form name="couleurs" method="post" action="">
 		<select name="menu1" onChange="MM_jumpMenu('parent',this,0)">
-			<option value="#URL_SITE_SPIP/spip.php?page=switch"><:blip_jeux_de_couleurs_disponibles:></option>
+			<option value="#URL_PAGE{switch}"><:blip_jeux_de_couleurs_disponibles:></option>
 		<?php
 		// Ce fichier est le switcher de la feuille de style du squelette BliP. Il utilise divers fichiers inc-css_XXX.php dont-il procède à l'inclusion
 		// Les couleurs sont définies dans le fichier inc-css_couleur.php
@@ -61,8 +61,8 @@
 		$css_blip_switch = "css_blip_couleur_".$i;
 		while (!empty(${$css_blip_switch}))
 		{
-		echo "<option value=".'"'."#URL_SITE_SPIP/spip.php?page=switch&amp;couleur=".$i.'">'.${"css_blip_couleur_".$i."_nom"}."</option>";
-		echo "<a href=".'"'.'#URL_SITE_SPIP/spip.php?page=switch&amp;item=couleurs&amp;couleur='.$i.'" '."class=".'"'."switch".'" '."style=".'"'."color:".${$css_blip_switch}['gris|moyen']."; border-color: ".${$css_blip_switch}['couleur|1'].' '.${$css_blip_switch}['couleur|1|clair'].' '.${$css_blip_switch}['couleur|1'].' '.${$css_blip_switch}['couleur|1|clair'].'">'."&nbsp;".$i."&nbsp;</a>";
+		echo "<option value=".'"'."#URL_PAGE{switch}&amp;couleur=".$i.'">'.${"css_blip_couleur_".$i."_nom"}."</option>";
+		echo "<a href=".'"'.'#URL_PAGE{switch}&amp;item=couleurs&amp;couleur='.$i.'" '."class=".'"'."switch".'" '."style=".'"'."color:".${$css_blip_switch}['gris|moyen']."; border-color: ".${$css_blip_switch}['couleur|1'].' '.${$css_blip_switch}['couleur|1|clair'].' '.${$css_blip_switch}['couleur|1'].' '.${$css_blip_switch}['couleur|1|clair'].'">'."&nbsp;".$i."&nbsp;</a>";
 		$i++;
 		$css_blip_switch = "css_blip_couleur_".$i;
 
@@ -71,13 +71,8 @@
 
 		</select>
 	</form>
-
-		</div></div></div>	
-
-
-	</div><!-- fin contenu-->
-	
-	
+</div></div></div>	
+</div><!-- fin contenu-->
 	
 	
 	[(#REM) Inclusion de la Barre latérale du site, construite dynamiquement ]
