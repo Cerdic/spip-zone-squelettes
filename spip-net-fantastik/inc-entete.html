@@ -9,7 +9,7 @@
 <p class="langues">
 <BOUCLE_langues(RUBRIQUES){racine}{id_rubrique!=4}{id_rubrique!=324}{par lang}>
 <span lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR"[ (#LANG|=={#ENV{lang}}|?{class="on",''})]>[&#91;<a href="#URL_SITE_SPIP/?lang=#LANG" rel="alternate" hreflang="#LANG" title="[(#LANG|traduire_nom_langue)]">(#LANG|unique{langues})</a>&#93;]</span></BOUCLE_langues>
-<BOUCLE_espace_trad(RUBRIQUES){id_rubrique=4}><a href="#URL_RUBRIQUE"[ title="(#TITRE|couper{80}|texte_backend)"]><img src="#CHEMIN{espace_trad.gif}"[ alt="(#TITRE|couper{80}|texte_backend)"]></a></BOUCLE_espace_trad></p>
+<BOUCLE_espace_trad(RUBRIQUES){id_rubrique=4}><a href="[(#URL_RUBRIQUE|parametre_url{lang,#ENV{lang}})]"[ title="(#TITRE|couper{80}|texte_backend)"]><img src="#CHEMIN{espace_trad.gif}"[ alt="(#TITRE|couper{80}|texte_backend)"] width="12" height="12"></a></BOUCLE_espace_trad></p>
 
 [(#REM) Barre de navigation rapide : ]
 <div id="topnav"><ul>
@@ -25,7 +25,7 @@
 <BOUCLE_doc(RUBRIQUES){lang}{racine}{id_rubrique!=4}{id_rubrique!=324}><li><a href="#URL_RUBRIQUE"[ title="(#TITRE|couper{80}|texte_backend)"]><:documentation:></a></li></BOUCLE_doc>
 
 [(#REM) Lien vers le lexique de mots-clefs ]
-<li><a href="#URL_PAGE{mot}&lang=#ENV{lang}"><:glossaire:></a></li>
+<li><a href="[(#URL_PAGE{mot}|parametre_url{lang,#ENV{lang}})]"><:glossaire:></a></li>
 
 [(#REM) Lien vers la rub invitant a contribuer a SPIP ]
 <BOUCLE_contribuer(ARTICLES){id_article=825}{0,1}>
