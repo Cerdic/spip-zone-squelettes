@@ -1,0 +1,67 @@
+[(#CHARSET|doctype)]
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+		<meta name="MSSmartTagsPreventParsing" content="TRUE" />
+		<INCLURE(page.php3){fond=headlinks}{delais=7200}{id_article}{id_rubrique}{id_secteur}>
+		[<link rel="alternate" type="application/rss+xml" title="RSS" href="(#ID_SECTEUR|generer_url_rss)" />]
+		[<link rel="alternate" type="application/xml" title="Atom" href="(#ID_SECTEUR|generer_url_atom)" />]
+		<INCLURE(page.php3){fond=title}{delais=7200}{id_article}{id_rubrique}{id_secteur}{archives}>
+		[<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/themes/(#ID_SECTEUR|theme|sinon{default})/style.css" media="screen" />]
+		<BOUCLE_article_trackback(ARTICLES){id_article}>
+[<!--(#PARAMETRES_TRACKBACK)
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+<rdf:Description
+  rdf:about="[(#URL_ARTICLE|url_absolue)]"
+  dc:identifier="[(#URL_ARTICLE|url_absolue)]"
+  dc:title="[(#TITRE|textebrut|entites_html)]"
+  trackback:ping="#URL_TRACKBACK" />
+</rdf:RDF>
+-->]
+		</BOUCLE_article_trackback>
+	</head>
+
+	<body>
+		<div id="page">
+			
+			<div id="top">
+				<BOUCLE_titre(RUBRIQUES){id_secteur}{id_parent=0}>
+				[<h1>(#LOGO_RUBRIQUE|#URL_RUBRIQUE|inserer_attribut{alt,#TITRE}|inserer_attribut{title,#TITRE}|sinon{<a href="#URL_RUBRIQUE">#TITRE</a>})</h1>]
+				</BOUCLE_titre>
+				[(#FORMULAIRE_ADMIN)]
+				[(#SPIP_CRON)]
+			</div>
+			
+			<p id="prelude">
+				<a href="#main"><:go_main:></a> |
+				<a href="#sidebar"><:go_sidebar:></a> |
+				<a href="#search"><:go_search:></a>
+			</p>
+
+			<div id="main">
+				<div id="content">
+					[(#RECHERCHE|?{'',' '})
+						[(#ENV{id_article}|?{'',' '})
+							<INCLURE(page.php3){fond=list}{id_rubrique}{archives}>
+						]
+					]
+					[(#RECHERCHE|?{' ',''})<INCLURE(page.php3){fond=search}{id_secteur}{recherche}>]
+					[(#ENV{id_article}|?{' ',''})<INCLURE(page.php3){fond=post}{id_article}>]
+				</div>
+			</div>
+
+			<INCLURE(page.php3)
+				{fond=sidebar}
+				{id_rubrique=#ENV{id_rubrique,#ENV{id_secteur}}}
+				{id_article}
+				{date=#ENV{archives,#ENV{date}}}
+				{recherche}{lang}>
+
+			<p id="footer"><:credits:>, <a href="#URL_SITE_SPIP"><:hebergement:> #NOM_SITE_SPIP</a></p>
+			
+		</div>
+
+	</body>
+</html>
