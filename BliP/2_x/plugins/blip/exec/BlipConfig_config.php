@@ -305,16 +305,16 @@ function exec_blipconfig_config() {
 	global $spip_lang_right;
 
 	if ($connect_statut != '0minirezo' OR !$connect_toutes_rubriques) {
-		debut_page(_T('blip_config'), "administration", "BLiP");
+		debut_page(_T('blibconfig:blip_config'), "administration", "BLiP");
 		echo _T('avis_non_acces_page');
 		fin_page();
 		exit;
 	}
 	
-	debut_page(_T('blip_config'), "administration", "BLiP");
+	debut_page(_T('blibconfig:blip_config'), "administration", "BLiP");
 	echo "<br/><br/><br/>";
 	
-	gros_titre(_T('blip_config'));
+	gros_titre(_T('blibconfig:blip_config'));
 
 	debut_gauche();
 	debut_boite_info();

@@ -6,7 +6,7 @@
 // Les mises à jour sont suivies et assurées par ? 
 // Pour contacter la personne responsable du fichier langue, vous devez passer par http://groups.google.com/group/blip, sauf mentions contraires dans l'articles http://www.cent20.net/spip.php?article79
 
-$GLOBALS[$GLOBALS['idx_lang']] = array(
+$GLOBALS[$GLOBALS['i18n_blip_de']] = array(
  
  
 // A
@@ -98,7 +98,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
  'blip_afficher_les_mots_cles_par' => 'Zeigt die Schlagworte in',
 
 // N
+
  'blip_nouveaute' => 'Neuigkeit',
+ 'blip_mis_a_jour_en' => 'Mis &agrave; jour en',
  
  
 // P
