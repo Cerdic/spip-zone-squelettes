@@ -6,7 +6,7 @@
 // Les mises à jour sont suivies et assurées par ? 
 // Pour contacter la personne responsable du fichier langue, vous devez passer par http://groups.google.com/group/blip, sauf mentions contraires dans l'articles http://www.cent20.net/spip.php?article79
 
-$GLOBALS[$GLOBALS['i18n_blip_es']] = array(
+$GLOBALS['i18n_blip_es'] = array(
  
  
 // A
@@ -150,7 +150,7 @@ $GLOBALS[$GLOBALS['i18n_blip_es']] = array(
  'blip_visiteurs_cumules' => 'visitantes acumulados',
 
  // DEBUG
- 'blip_z_debug' => 'NO PONER NADA BAJO ESTA L&iacute;NEA'
+ 'blip_z_debug' => 'NO PONER NADA BAJO ESTA L&iacute;NEA',
 
 
 );

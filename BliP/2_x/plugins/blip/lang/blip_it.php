@@ -6,7 +6,7 @@
 // Les mises à jour sont suivies et assurées par Philippe MERCIER. 
 // Pour contacter la personne responsable du fichier langue, vous devez passer par http://groups.google.com/group/blip, sauf mentions contraires dans l'articles http://www.cent20.net/spip.php?article79
 
-$GLOBALS[$GLOBALS['i18n_blip_it']] = array(
+$GLOBALS['i18n_blip_it'] = array(
  
  
 // A
@@ -152,7 +152,7 @@ $GLOBALS[$GLOBALS['i18n_blip_it']] = array(
 
  
  // DEBUG
- 'blip_z_debug' => 'NE RIEN METTRE SOUS CETTE LIGNE'
+ 'blip_z_debug' => 'NE RIEN METTRE SOUS CETTE LIGNE',
 
 
 );
