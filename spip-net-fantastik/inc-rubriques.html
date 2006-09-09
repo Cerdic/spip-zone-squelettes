@@ -32,19 +32,17 @@
 <div class="rubriques">
 <BOUCLE_rubriques(RUBRIQUES){lang}{racine}{id_rubrique!=4}{id_rubrique!=324}>
 
-<h2 class="menu-titre"><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a></h2>
+<h2 class="menu-titre"><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></h2>
 
 <B_sousrub><ul>
 <BOUCLE_sousrub(RUBRIQUES){id_parent}{par num titre, titre}>
 <li><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
 
-<BOUCLE_test_expose(RUBRIQUES){id_rubrique}>#EXPOSE{' '}</BOUCLE_test_expose>
-<B_articles><ul style="font-size: 11px;" class="invisible">
-<BOUCLE_articles(ARTICLES){id_rubrique} {par titre}{!par date}>
-<li># <a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>#TITRE</a></li>
+<B_articles><ul class="memrub">
+<BOUCLE_articles(ARTICLES){id_rubrique}{id_rubrique=#ENV{id_rubrique}} {par titre}{!par date}>
+<li><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a></li>
 </BOUCLE_articles>
 </ul></B_articles>
-</B_test_expose>
 
 <BOUCLE_re(BOUCLE_sousrub)></BOUCLE_re>
 
