@@ -19,7 +19,7 @@ function exec_BliP() {
 	global $spip_lang_right;
 	global $blip_version_ftp;
 	$surligne = "";
-  
+
 	if ($connect_statut != '0minirezo' OR !$connect_toutes_rubriques) {
 		debut_page(_T('blipconfig:blip_config'), "administration", "BLiP");
 		echo _T('avis_non_acces_page');
@@ -27,8 +27,7 @@ function exec_BliP() {
 		exit;
 	}
 
-	if (isset($_GET['action'])) {        
-		// Trop fort les switchs ...
+	if (isset($_GET['action'])) {
         switch ($action = $_GET['action']) {
             case "editer" :
             case "creer" :
@@ -49,7 +48,7 @@ function exec_BliP() {
             case "supprimer" :
                 if (isset($_GET['id'])) {
                     BliP_supprimer_ligne($_GET['id']);
-                }				
+                }
                 break;
             case "install" :
                 BliP_installer_blip();
@@ -58,22 +57,20 @@ function exec_BliP() {
                 BliP_maj_blip();
                 break;
         }
-    }	
-	
+    }
+
 	debut_page(_T('blipconfig:blip_config'), "administration", "BLiP");
 	echo "<br/>";
-	
+
 	gros_titre(_T('blipconfig:blip_config'));
-	
+
 	if (BliP_verifier_base())
 	{
-    barre_onglets("blip", "voir");	        
-    } 
+        barre_onglets("blip", "voir");
+    }
 
-	
-	
 	debut_gauche();
-	
+
 	debut_boite_info();
 	echo _T('blipconfig:blip_voir_info');
 	fin_boite_info();
@@ -82,50 +79,45 @@ function exec_BliP() {
 	echo _T('blipconfig:blip_raccourcis_documentation');
 	fin_raccourcis();
 	
-	debut_droite();	
-	
+	debut_droite();
+
 	debut_cadre_enfonce("racine-site-24.gif", false, "", bouton_block_invisible('blip_general')._T('blipconfig:blip_configuration_voir_general'));
 	if (BliP_verifier_base()) {
 		$v_instal = $GLOBALS['meta']["blip_version"];
 		$v_ftp = BliP_version_ftp();
 		if ($v_instal==$v_ftp) {
 			echo _T('blipconfig:blip_info_base_ok');
-			}
-		else {
+		} else {
 			echo _T('blipconfig:blip_maj_requise');
 			echo '<p /><div align="center">';
 			echo '<form method="post" action="'.generer_url_ecrire('blip',"action=maj").'">';
 			echo '<input type="submit" name="appliq" value="Mettre &agrave; jour le squelette BLiP" />';
 			echo '</form></div>';
-			}		
-		} 
-	else {
+		}
+	} else {
         echo _T("blipconfig:blip_info_base_ko");
 		echo '<p /><div align="center">';
 		echo '<form method="post" action="'.generer_url_ecrire('blip',"action=install").'">';
 		echo '<input type="submit" name="appliq" value="Installer le squelette BLiP" />';
 		echo '</form></div>';
-		}
+	}
 
 	echo debut_block_invisible('blip_general');
-		if (BliP_verifier_base()) {		
+	if (BliP_verifier_base()) {
 			if ($v_instal==$v_ftp) {
 				echo 'Version install&eacute;e : '.$v_instal;
-				}
-			else {
+			} else {
 				echo 'Version install&eacute;e : '.$v_instal;
 				echo '<br />Version sur le serveur : '.$v_ftp;
-				}		
-			} 	
-		else {
+			}
+		} else {
 		echo '<p />';
         echo _T("blipconfig:blip_info_base_ko_bis");
-
-		}
+	}
 	echo fin_block();
 	fin_cadre_enfonce();
 
-	BliP_afficher_configuration ();	
+	BliP_afficher_configuration ();
 
 	fin_page();
 
