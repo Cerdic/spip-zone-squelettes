@@ -1,12 +1,12 @@
 #CACHE{24*3600}
 <div id="tete">
-
+<!--<BOUCLE_bidon(BLIP)>#ID_ITEM</BOUCLE_bidon>-->
 [
 (#REM) Construire le surtitre du site à partir de la table "spip_blip" et des éléments ayant un champ "position" commençant par "surtitre"
 ]
 <B_surtitre>
 <div class="surtitre">
-<BOUCLE_surtitre(SPIP_BLIP){position IN surtitre,surtitre-#ENV{page_actuelle}}{actif=oui}>
+<BOUCLE_surtitre(BLIP){position IN surtitre,surtitre-#ENV{page_actuelle}}{actif=oui}>
 
 	[(#ID_ITEM|!={#ENV{id_actuel}}|?{'',
 		[(#TYPE|!={'statique'}|?{'',
@@ -35,7 +35,7 @@
 ]
 <B_titre_principal>
 <div class="titre_principal"><a href="[(#URL_PAGE{sommaire})]">
-<BOUCLE_titre_principal(SPIP_BLIP) {position=titre_principal} {par ordre} {actif=oui}>
+<BOUCLE_titre_principal(BLIP) {position=titre_principal} {par ordre} {actif=oui}>
 	[(#TYPE|!={'statique'}|?{'',
 		<span[ class="(#STYLE)"]>[<b>(#TITRE) </b>][<i>(#DESCRIPTIF) </i>]#TEXTE</span>
 	})]	
@@ -63,7 +63,7 @@
 ]
 <B_titre_lateral>
 <div class="titre_lateral">
-<BOUCLE_titre_lateral(SPIP_BLIP){position IN titre_lateral,titre_lateral-#ENV{page_actuelle}}{par ordre}{actif=oui}>
+<BOUCLE_titre_lateral(BLIP){position IN titre_lateral,titre_lateral-#ENV{page_actuelle}}{par ordre}{actif=oui}>
 	[(#ID_ITEM|!={#ENV{id_actuel}}|?{'',
 		[(#TYPE|!={'statique'}|?{'',
 			<span[ class="(#STYLE)"]>[<b>(#TITRE) </b>][<i>(#DESCRIPTIF) </i>]#TEXTE</span>
@@ -90,7 +90,7 @@
 ]
 <B_titre_auxiliaire>
 <div class="titre_auxiliaire">
-<BOUCLE_titre_auxiliaire(SPIP_BLIP){position IN sous_titre,sous_titre-#ENV{page_actuelle}}{par ordre}{actif=oui}>
+<BOUCLE_titre_auxiliaire(BLIP){position IN sous_titre,sous_titre-#ENV{page_actuelle}}{par ordre}{actif=oui}>
 	[(#ID_ITEM|!={#ENV{id_actuel}}|?{'',
 		[(#TYPE|!={'statique'}|?{'',
 			<span[ class="(#STYLE)"]>[<b>(#TITRE) </b>][<i>(#DESCRIPTIF) </i>]#TEXTE</span>
@@ -120,7 +120,7 @@
  ]
 <B_menu_principal>
 <div class="menu_principal"><ul>
-<BOUCLE_menu_principal(SPIP_BLIP){position=menu_principal}{par ordre}{actif=oui}>
+<BOUCLE_menu_principal(BLIP){position=menu_principal}{par ordre}{actif=oui}>
 	<li id="menu_principal_#TEXTE"><a href="#URL_PAGE{#TEXTE}" [title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a></li>
 </BOUCLE_menu_principal>
 </ul></div><!-- menu_principal-->

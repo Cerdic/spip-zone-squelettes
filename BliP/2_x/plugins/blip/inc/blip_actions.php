@@ -1,6 +1,5 @@
 <?php
 
-
 	// Toutes les fonctions ont étés regroupées ici.
 
 	function BliP_version_ftp() {
@@ -11,7 +10,8 @@
 
 	// Script de verification de l'existance de la base de donnée. Utilisé sur diverses pages
 	function BliP_verifier_base() {
-	    return (spip_query("SELECT * FROM `spip_blip`"));
+	    global $table_blip;
+	    return (spip_query("SELECT * FROM `".$table_blip."`"));
 	}
 
 	// Script  d'installation de la table spip_blip et configuration par défaut du squelette. Utilisé sur exce=blip
@@ -24,9 +24,10 @@
 	}
 
 	function BliP_installer_table() {
-		// Installe la table spip_blip - Processus différentié de celui des tables, comme ça en cas de platage on aura au moins la base.
+		// Installe la structure de la table blip - Processus différentié de celui des tables, comme ça en cas de platage on aura au moins la base.
+		global $table_blip;
 		$req = "
-		CREATE TABLE `spip_blip` (
+		CREATE TABLE `".$table_blip."` (
 		`id_config` bigint(21) NOT NULL auto_increment,
 		`position` tinytext NOT NULL,
 		`id_item` bigint(21) NOT NULL default '0',
@@ -45,48 +46,49 @@
 	}
 
 	function BliP_installer_configuration() {
+		global $table_blip;
 		// Installe la configuration par défaut -- Une requête par ligne, car sinon cela bug et je ne sais pas pourquoi.
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'menu_principal', 0, 20, 'dynamique', '<multi>[fr]Rubriques[en]Sections[it]Rubriche</multi>', '<multi>[fr]Parcourir les rubriques du site[en]To traverse the section of the site[it]Per attraversare le rubriche del sito</multi>', 'rubrique', '', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'menu_principal', 0, 20, 'dynamique', '<multi>[fr]Rubriques[en]Sections[it]Rubriche</multi>', '<multi>[fr]Parcourir les rubriques du site[en]To traverse the section of the site[it]Per attraversare le rubriche del sito</multi>', 'rubrique', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'menu_principal', 0, 30, 'dynamique', '<multi>[fr]Articles[en]Articles[it]Articoli</multi>', '<multi>[fr]Liste des articles du site[en]List articles of the site[it]Lista degli articoli del sito</multi>', 'article', '', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'menu_principal', 0, 30, 'dynamique', '<multi>[fr]Articles[en]Articles[it]Articoli</multi>', '<multi>[fr]Liste des articles du site[en]List articles of the site[it]Lista degli articoli del sito</multi>', 'article', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'menu_principal', 0, 10, 'dynamique', '<multi>[fr]Actualit&eacute;[en]News[it]Notizie</multi>', '<multi>[fr]Suivre l''actualit&eacute; de ce site[en]News of this site[it]Seguire le novita &agrave; del sito</multi>', 'sommaire', '', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'menu_principal', 0, 10, 'dynamique', '<multi>[fr]Actualit&eacute;[en]News[it]Notizie</multi>', '<multi>[fr]Suivre l''actualit&eacute; de ce site[en]News of this site[it]Seguire le novita &agrave; del sito</multi>', 'sommaire', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'menu_principal', 0, 50, 'dynamique', '<multi>[fr]Auteurs[en]Authors[it]Autore</multi>', '<multi>[fr]Liste des auteurs du site[en]List authors of the site[it]Elenco degli autori del sito </multi>', 'auteur', '', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'menu_principal', 0, 50, 'dynamique', '<multi>[fr]Auteurs[en]Authors[it]Autore</multi>', '<multi>[fr]Liste des auteurs du site[en]List authors of the site[it]Elenco degli autori del sito </multi>', 'auteur', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'menu_principal', 0, 40, 'dynamique', '<multi>[fr]Mots-cl&eacute;s[en]Tags[it]Parole chiave</multi>', '<multi>[fr]Liste des mots-cl&eacute;s du site[en]Tags of the site[it]Parole chiave del sito </multi>', 'mot', '', 'non');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'menu_principal', 0, 40, 'dynamique', '<multi>[fr]Mots-cl&eacute;s[en]Tags[it]Parole chiave</multi>', '<multi>[fr]Liste des mots-cl&eacute;s du site[en]Tags of the site[it]Parole chiave del sito </multi>', 'mot', '', 'non');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'barre_laterale', 0, 20, 'dynamique', '-', '-', 'mod_rubriques_rubriques_liste', '', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'barre_laterale', 0, 20, 'dynamique', '-', '-', 'mod_rubriques_rubriques_liste', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'barre_laterale-sommaire', 0, 60, 'dynamique', '', '', 'mod_articles_liste5_parpopularite', '', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'barre_laterale-sommaire', 0, 60, 'dynamique', '', '', 'mod_articles_liste5_parpopularite', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'barre_laterale-sommaire', 0, 50, 'dynamique', '-', '-', 'mod_forums_liste8_pardate', '-', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'barre_laterale-sommaire', 0, 50, 'dynamique', '-', '-', 'mod_forums_liste8_pardate', '-', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'barre_laterale-sommaire', 0, 70, 'dynamique', '', '', 'mod_articles_liste5_parmiseajour', '', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'barre_laterale-sommaire', 0, 70, 'dynamique', '', '', 'mod_articles_liste5_parmiseajour', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'barre_laterale-article', 0, 10, 'dynamique', '', '', 'mod_article_apropos', '', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'barre_laterale-article', 0, 10, 'dynamique', '', '', 'mod_article_apropos', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'barre_laterale-article', 0, 5, 'dynamique', '', '', 'mod_article_memerubrique', '', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'barre_laterale-article', 0, 5, 'dynamique', '', '', 'mod_article_memerubrique', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'barre_laterale', 0, 90, 'dynamique', '', '', 'mod_recherche', '', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'barre_laterale', 0, 90, 'dynamique', '', '', 'mod_recherche', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'barre_laterale-recherche', 0, 95, 'dynamique', '', '', 'mod_rechercheexterne', '', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'barre_laterale-recherche', 0, 95, 'dynamique', '', '', 'mod_rechercheexterne', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'barre_laterale', 0, 2, 'statique', 'Bonjour,', '', 'Votre site utilise le squelette modulaire <a href=\"http://www.cent20.net/spip.php?article100\">BliP</a>, et il semblerait que l\'installation se soit bien d&eacute;roul&eacute;e ;-)\r\n\r\nMaintenant, il ne vous reste plus qu\'&agrave;   d&eacute;sactiver les diff&eacute;rents messages affich&eacute;s un peu de partout, et &agrave;  lire le <a href=\"http://www.cent20.net/spip.php?rubrique81\">Guide de l\'administrateur</a> pour apprendre &agrave;  personnaliser le squelette BliP.\r\n\r\nPS : Pensez aussi &agrave; &eacute;crire et &agrave;  publier des articles pour que les diff&eacute;rentes fonctions du squelette s\'activent.\r\n\r\nAmusez-vous bien,\r\n\r\ncent20', '', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'barre_laterale', 0, 2, 'statique', 'Bonjour,', '', 'Votre site utilise le squelette modulaire <a href=\"http://www.cent20.net/spip.php?article100\">BliP</a>, et il semblerait que l\'installation se soit bien d&eacute;roul&eacute;e ;-)\r\n\r\nMaintenant, il ne vous reste plus qu\'&agrave;   d&eacute;sactiver les diff&eacute;rents messages affich&eacute;s un peu de partout, et &agrave;  lire le <a href=\"http://www.cent20.net/spip.php?rubrique81\">Guide de l\'administrateur</a> pour apprendre &agrave;  personnaliser le squelette BliP.\r\n\r\nPS : Pensez aussi &agrave; &eacute;crire et &agrave;  publier des articles pour que les diff&eacute;rentes fonctions du squelette s\'activent.\r\n\r\nAmusez-vous bien,\r\n\r\ncent20', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'mentions_techniques', 0, 50, 'statique', '', '', '<a href=\"spip.php?page=switch\">Oseriez-vous changer de couleurs ?</a>', '', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'mentions_techniques', 0, 50, 'statique', '', '', '<a href=\"spip.php?page=switch\">Oseriez-vous changer de couleurs ?</a>', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'surtitre', 0, 5, 'statique', 'Surtitre du site', '/ceci est une zone personnalisable/', 'Vous pouvez y afficher du texte et/ou y inclure des modules.', '', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'surtitre', 0, 5, 'statique', 'Surtitre du site', '/ceci est une zone personnalisable/', 'Vous pouvez y afficher du texte et/ou y inclure des modules.', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'sous_titre', 0, 5, 'statique', 'Sous titre', '/ceci est une zone personnalisable/', 'Vous pouvez y afficher du texte et/ou y inclure des modules.', '', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'sous_titre', 0, 5, 'statique', 'Sous titre', '/ceci est une zone personnalisable/', 'Vous pouvez y afficher du texte et/ou y inclure des modules.', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'titre_lateral', 0, 5, 'statique', 'Titre lat&eacute;ral', '/ceci est une zone personnalisable/', 'Vous pouvez y afficher du texte et/ou y inclure des modules.', '', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'titre_lateral', 0, 5, 'statique', 'Titre lat&eacute;ral', '/ceci est une zone personnalisable/', 'Vous pouvez y afficher du texte et/ou y inclure des modules.', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'barre_laterale', 0, 5, 'statique', 'Barre lat&eacute;rale', '/ceci est une zone personnalisable/', 'Vous pouvez y afficher du texte et/ou y inclure des modules.', '', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'barre_laterale', 0, 5, 'statique', 'Barre lat&eacute;rale', '/ceci est une zone personnalisable/', 'Vous pouvez y afficher du texte et/ou y inclure des modules.', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'mentions_techniques', 0, 5, 'statique', 'Mentions techniques', '/ceci est une zone personnalisable/', 'Vous pouvez y afficher du texte et/ou y inclure des modules.', '', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'mentions_techniques', 0, 5, 'statique', 'Mentions techniques', '/ceci est une zone personnalisable/', 'Vous pouvez y afficher du texte et/ou y inclure des modules.', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `spip_blip` VALUES ('', 'barre_laterale-sommaire', 0, 1, 'dynamique', '-', '-', 'mod_langue_site', '', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'barre_laterale-sommaire', 0, 1, 'dynamique', '-', '-', 'mod_langue_site', '', 'oui');";
 		spip_query($req);
 	}
 
@@ -98,7 +100,8 @@
 	}
 
 	function BliP_supprimer_table() {
-	    $req = "DROP table `spip_blip`";
+		global $table_blip;
+		$req = "DROP table `".$table_blip."`";
 		spip_query($req);
 	}
 
@@ -494,6 +497,7 @@
 function BliP_action_formulaire() {
     // TODO : vérifications d'usage de la validité des champs du formulaire
     // attention à ne par confondre les variables $_POST['action'] et $_GET['action']
+	global $table_blip;
     if (isset($_POST['action'])) {
         $valeurs = BliP_initialiser_valeurs_formulaire();
         // filtre antiparasite : ne retenir que les valeurs gérables par le système
@@ -513,14 +517,14 @@ function BliP_action_formulaire() {
         }
         switch ($_POST['action']) {
             case 'ajouter' :
-                $req  = "INSERT INTO `spip_blip` ( ";
+                $req  = "INSERT INTO `".$table_blip."` ( ";
                 $req .= implode(",", $preliste_c);
                 $req .= " ) VALUES ( ";
                 $req .= implode(",", $preliste_v);
                 $req .= " );";
             break;
             case 'modifier' :
-                $req  = "UPDATE `spip_blip` SET ";
+                $req  = "UPDATE `".$table_blip."` SET ";
                 $preliste = array();
                 foreach ($preliste_c as $position => $champ) {
                     array_push($preliste, $champ."=".$preliste_v[$position]);
@@ -540,6 +544,4 @@ function BliP_action_formulaire() {
 		}
     }
 }
-
-
 ?>

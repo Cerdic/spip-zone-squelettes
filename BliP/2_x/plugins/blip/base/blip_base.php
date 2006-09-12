@@ -4,6 +4,7 @@
 
 global $tables_principales;
 global $tables_auxiliaires;
+global $table_blip;
 
 $blip_champs = array(
 	"id_config"    => "bigint(21) NOT NULL",
@@ -23,7 +24,7 @@ $blip_keys = array(
 	"PRIMARY KEY"    => "id_config"
 	);
 
-$tables_principales['spip_blip'] =
+$tables_principales[$table_blip] =
 	array('field' => &$blip_champs, 'key' => &$blip_keys);
 
 ?>
