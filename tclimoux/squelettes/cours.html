@@ -1,0 +1,83 @@
+[(#REM)
+
+    ====================================
+    Une production SPIP-ZONE
+    http://zone.spip.org/trac/spip-zone/
+    ====================================
+
+
+]<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<BOUCLE_principale(RUBRIQUES){id_rubrique}{tout}>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+<style>
+.spip_code {border: 1px solid #CCC; padding: 5px; background: #EFEFEF;}
+</style>
+<head>
+    <title>[(#TITRE|supprimer_numero)]</title>
+    <!-- metadata -->
+    <meta name="generator" content="S5" />
+    <meta name="version" content="S5 1.1" />
+    <meta name="presdate" content="20050728" />
+    <meta name="author" content="Eric A. Meyer" />
+    <meta name="company" content="Complex Spiral Consulting" />
+    <meta name="#NOM_SITE_SPIP" content="[(#TITRE|supprimer_numero)]" />
+    <!-- style sheet links -->
+    <link rel="stylesheet" href="[(#DOSSIER_SQUELETTE)/]ui/slides.css" type="text/css" media="projection" id="slideProj" />
+    <link rel="stylesheet" href="[(#DOSSIER_SQUELETTE)/]ui/outline.css" type="text/css" media="screen" id="outlineStyle" />
+    <link rel="stylesheet" href="[(#DOSSIER_SQUELETTE)/]ui/print.css" type="text/css" media="print" id="slidePrint" />
+    <link rel="stylesheet" href="[(#DOSSIER_SQUELETTE)/]ui/opera.css" type="text/css" media="projection" id="operaFix" />
+    <!-- Scripts -->
+    <script type="text/javascript" src="[(#DOSSIER_SQUELETTE)/]ui/slides.js"></script>
+    <script type="text/javascript" src="[(#DOSSIER_SQUELETTE)/]ui/s5-spip.js"></script>
+</head>
+<body onload="depart(
+    '<:toggle|texte_script:>',
+    '<:prev|texte_script:>',
+    '<:next|texte_script:>')">
+
+    [(#REM) Structutre de la page ]
+    <div class="layout">
+        <div id="currentSlide"></div>
+        <div id="header">
+	        <h1 style='position: relative; top: 15px;text-align: right;'>
+            [(#TITRE|supprimer_numero)]
+            </h1>
+        </div>
+        <div id="footer">
+	        <h2 style="margin-left: 1em; "> #NOM_SITE_SPIP</h2>
+	        <BOUCLE_equipe(ARTICLES)
+		    {id_rubrique}><BOUCLE_auteurs(AUTEURS)
+		        {id_article}{doublons}{" "}
+		        >#NOM</BOUCLE_auteurs></BOUCLE_equipe>
+	            #FORMULAIRE_ADMIN
+        </div>
+        <div id="controls" lang="#LANG"></div>
+    </div>
+
+    [(#REM) Le contenu ]
+    <div class="presentation">
+        <div class="slide">
+            <h1>
+                [(#TITRE|supprimer_numero)][(#REM) 
+                    Le titre de la rubrique contenant la présentation ]
+            </h1>
+            #TEXTE
+	        [(#TEXTE|?{'','<br />'})#DESCRIPTIF][(#REM) 
+                Contenu du champ texte de la rubrique et/ou le contenu du champ descriptif ]
+        </div>
+        <BOUCLE_slide(ARTICLES){id_rubrique}{par titre}>
+        <div class="slide">
+	        <h1>
+                [(#TITRE|supprimer_numero)][(#REM)
+                    Titre de l'article]
+            </h1>
+            #TEXTE [(#REM)
+                Contenu du champ texte de l'article.  Vous pouvez utiliser les raccourcis
+                typographiques de SPIP pour générer de listes à puce simples ou numérotés ]
+        </div>
+        </BOUCLE_slide>
+    </div>
+</body>
+</html>
+</BOUCLE_principale>

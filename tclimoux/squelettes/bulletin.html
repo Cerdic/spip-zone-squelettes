@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	<title>#NOM_SITE_SPIP</title>
+	<style type="text/css" media="all">
+		<!-- 
+        @import url(#DOSSIER_SQUELETTE/css/style.css); 
+        @import url(#DOSSIER_SQUELETTE/css/style-perso.css);
+        -->
+	</style>
+	<!-- Lien vers le backend pour navigateurs eclaires -->
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="backend.php3" />
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+
+<!-- // Début du contenant // -->
+<div id="contenant"> 
+  <!-- // Début de l'entête // -->
+  <div id="entete"> 
+	<INCLURE(page.php3){fond=entete}{lang}>
+  </div>
+  <!-- // Fin de l'entête // -->
+
+  <!-- // Début de la colonne gauche // -->
+  <div id="colgauche"> 
+	<INCLURE(page.php3){fond=colgauche}{lang}>
+  </div>
+  <!-- // Fin de la colonne gauche // -->
+
+  <!-- // Début de la zone de contenu // -->
+  <div id="contenu"> 
+
+    <!-- Fil d'Ariane -->
+  	<p class="ariane">
+	<a href="#URL_SITE_SPIP"><:accueil_site:></a>&nbsp;»
+	</p>
+   <!-- Fin du Fil d'Ariane -->
+    <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td id="texte-article">
+		        <h2><strong>&gt;&gt;</strong><:bulletin:></h2>
+                <div class="texte">
+                    <form id="bulletin" method="post" action="bulletin.php3">
+                        <fieldset>
+		                <:bulletin_courriel:> <input type="text" name="email" maxlength="100" class="courriel" /> &nbsp;
+		                <:bulletin_format:> 
+		                <select name="format">
+		                    <option></option>
+		                    <option value="2"><:bulletin_format_html:></option>
+			                <option value="1"><:bulletin_format_texte:></option>
+		                </select>
+		                <input type="hidden" name="liste" value="1" />
+		                <br />
+		                <input type="radio" name="action" value="inscription" checked="checked" /><:bulletin_inscription:><br />
+		                <input type="radio" name="action" value="setformat" /><:bulletin_changer_format:><br />
+		                <input type="radio" name="action" value="desinscription" /><:bulletin_desinscription:><br />
+		                <input type="submit" class="bouton_valider" name="wanewsletter" value="<:bulletin_valider:>" />
+                        </fieldset>
+	                </form>
+
+		            <div id="bulletin_confirmation">
+			            <em>Attention ! </em>Le système de bulletin d'envoi n'est pas installé.  
+			            <p>Voir l'article de Thierry Gagnon sur SPIP-Contrib <a href="http://www.spip-contrib.net/article404.html">« Adaptation de WAnewsletter permettant l’envoi manuel de pages générées par Spip »</a> pour installer Wanewsletter et configuer ce formulaire pour ce système.</p>
+		
+		                <?php   // Messages de confirmation
+			                // define('IN_WA_FORM', true);
+			                // $waroot = 'wanewsletter/';
+			                // include($waroot . 'newsletter.php');
+		                ?>
+		            </div>               
+                </div>
+	        </td>
+        </tr>
+    </table>	 
+  </div>
+  <!-- // Fin de la zone de contenu // -->
+  
+  <!-- // Début du pied de page // -->
+  <div id="pied"> 
+	<INCLURE(page.php3){fond=pied}{lang}>
+  </div>
+  <!-- // Fin du pied de page // -->
+</div>
+<!-- // Fin du contenant // --> 
+</body>
+</html>
+

@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	<title>#NOM_SITE_SPIP</title>
+	<style type="text/css" media="print">
+		<!-- 
+        @import url(#DOSSIER_SQUELETTE/css/imprime.css); 
+        -->
+	</style>
+	<style type="text/css" media="screen">
+		<!-- 
+        @import url(#DOSSIER_SQUELETTE/css/style.css); 
+        @import url(#DOSSIER_SQUELETTE/css/style-perso.css);
+        @import url(squelettes/css/3c.css);
+        -->
+	</style>
+	
+	<!-- Lien vers le backend pour navigateurs eclaires -->
+    <link rel="alternate stylesheet" type="text/css" href="squelettes/css/3c.css" title="3 colonnes" />  
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="backend.php3" />
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+<!-- // Début du contenant // -->
+<div id="contenant"> 
+  <!-- // Début de l'entête // -->
+  <div id="entete"> 
+	<INCLURE(page.php3){fond=entete}{lang}>
+  </div>
+  <!-- // Fin de l'entête // -->
+
+  <!-- // Début de la colonne gauche // -->
+  <div id="colgauche"> 
+	<INCLURE(page.php3){fond=colgauche}{lang}>
+  </div>
+  <!-- // Fin de la colonne gauche // -->
+
+<!-- // Début de la colonne droite  // -->
+  <div id="coldroite"> 
+	<INCLURE(page.php3){fond=coldroite}{lang}>
+  </div>
+<!-- // Fin de la colonne droite // -->
+
+ <!-- // Début de la zone de contenu // -->
+  <div id="colcentre">
+    <B_message> 
+    <!-- // Début du message d'accueil // -->   
+    <div id="message_accueil">
+    <BOUCLE_message(ARTICLES){titre_mot=_message_accueil}{lang}{0,1}{par date}{inverse}{doublons}>
+    [(#TEXTE)]
+    </BOUCLE_message>
+    </div>
+    <!-- // Fin du message d'accueil // -->
+    </B_message>
+	<h2><:nouveau_site:></h2>
+    <BOUCLE_exclure_agenda(ARTICLES){id_mot=112}{doublons exclureAgenda}></BOUCLE_exclure_agenda>	
+	<B_articles>
+	<BOUCLE_articles(ARTICLES){par date}{inverse}{id_rubrique !=22}{0,5}{lang=fr}{doublons exclureAgenda}>
+	<div class="nouveau-boite" >
+		[<h3><strong>&gt;&gt;&nbsp;&nbsp;</strong>(#TITRE|supprimer_numero)</h3>]
+		<p><a href="#URL_ARTICLE" title="[(#TITRE|supprimer_numero)]">[(#LOGO_ARTICLE||reduire_image{72})][<span class="date">(#DATE|affdate)</span>][<span class="introduction">(#INTRODUCTION|couper{175})</span>]</a></p>
+	</div>
+ 	</BOUCLE_articles>
+	</B_articles>
+	
+  </div>
+  <!-- // Fin de la zone de contenu // -->
+  
+  <!-- // Début du pied de page // -->
+  <div id="pied"> 
+	<INCLURE(page.php3){fond=pied}{lang}>
+  </div>
+  <!-- // Fin du pied de page // -->
+
+</div>
+<!-- // Fin du contenant // --> 
+
+</body>
+</html>
+
+

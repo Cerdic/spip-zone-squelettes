@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<BOUCLE_article_principal(ARTICLES){id_article}>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	<title>#NOM_SITE_SPIP</title>
+	<style type="text/css" media="all">
+		<!-- 
+        @import url(#DOSSIER_SQUELETTE/css/style.css); 
+        @import url(#DOSSIER_SQUELETTE/css/style-perso.css);
+        #entete p, #topmenu {display: none;}
+        #pied {height: 60px; background-image: none;}
+        /*\*/
+        * html #pied {display: block; height: 50px;}
+        /**/
+        #entete {height: 80px; background-image: none;}
+        #contenu {margin: 0 25px;}
+        #contenant { width: 600px; border: 1px solid #808080; background-image: none; padding: 0;}  
+        #contenu .texte p.spip {background-color: #FFFFFF;}      
+        -->
+	</style>
+	<!-- Lien vers le backend pour navigateurs eclaires -->
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="backend.php3" />
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+<!-- // Début du contenant // -->
+<div id="contenant"> 
+  <!-- // Début de l'entête // -->
+  <div id="entete"> 
+	<INCLURE(page.php3){fond=entete}{lang}>
+  </div>
+  <!-- // Fin de l'entête // -->
+ <!-- // Début de la zone de contenu // -->
+  <div id="contenu">
+   <!-- Contenu de l'aticle -->
+	[<h2><strong>&gt;&gt;</strong>(#TITRE|supprimer_numero)</h2>]
+	<div id="boite-logo-article">
+		[(#LOGO_ARTICLE||reduire_image{142})]
+		[<div class="date" style="margin-bottom: 0;">(#DATE|affdate)</div>]
+		<B_auteur>
+			<div class="auteur-titre"><:auteur:></div>
+	        <div class="auteur">
+			<BOUCLE_auteur(AUTEURS){id_article}{", "}>
+			[<a href="mailto:(#EMAIL)">]#NOM</a>[<br />
+			<a href="(#URL_SITE)">][(#NOM_SITE)</a>]</BOUCLE_auteur>
+	        </div>
+		</B_auteur>
+        <div class="page-impression[(#LANG)]" ><a href="javascript:print()"></a></div>
+	</div>
+	[<div class="texte" style="margin: 0; background-color: white; padding: 10px 0 0 0;">(#TEXTE)</div>]
+	[<div class="notes">(#NOTES)</div>]	
+  </div>
+  <!-- // Fin de la zone de contenu // -->
+  <!-- // Début du pied de page // -->
+  <div id="pied"> 
+    <p style="border-top: 1px solid #808080; padding: 10px 0; margin-left: 25px;">
+    Article tiré du site : <a href="#URL_SITE_SPIP">#URL_SITE_SPIP</a><br />
+    Rubrique:&nbsp;	<BOUCLE_navtop(RUBRIQUES){id_rubrique}{tout}>
+	<a href="#URL_RUBRIQUE"> 
+	[(#TITRE|supprimer_numero)]</a>
+	</BOUCLE_navtop>
+	</p>
+  </div>
+  <!-- // Fin du pied de page // -->
+
+</div>
+<!-- // Fin du contenant // --> 
+
+</body>
+</html>
+</BOUCLE_article_principal>
+

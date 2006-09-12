@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<BOUCLE_article_principal(ARTICLES){id_article}>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	<title>#NOM_SITE_SPIP - [(#TITRE|supprimer_numero)]</title>
+	<style type="text/css" media="print">
+		<!-- 
+        @import url(#DOSSIER_SQUELETTE/css/imprime.css); 
+        -->
+	</style>
+	<style type="text/css" media="screen">
+		<!-- 
+        @import url(#DOSSIER_SQUELETTE/css/style.css); 
+        @import url(#DOSSIER_SQUELETTE/css/style-perso.css);
+		#formulaire-forum textarea.forml {height: 150px;}
+        -->
+	</style>
+	
+	<!-- Lien vers le backend pour navigateurs eclaires -->
+	<BOUCLE_syndic(RUBRIQUES){id_rubrique}>
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="backend.php3?id_rubrique=#ID_RUBRIQUE">
+</BOUCLE_syndic></head>
+<body>
+
+<!-- // Début du contenant // -->
+<div id="contenant"> 
+  <!-- // Début de l'entête // -->
+  <div id="entete"> 
+	<INCLURE(page.php3){fond=entete}{lang}>
+  </div>
+  <!-- // Fin de l'entête // -->
+
+  <!-- // Début de la colonne gauche // -->
+  <div id="colgauche"> 
+	<INCLURE(page.php3){fond=colgauche}{lang}>
+  </div>
+  <!-- // Fin de la colonne gauche // -->
+
+  <!-- // Début de la zone de contenu // -->
+  <div id="contenu">
+  
+  <!-- Fil d'Ariane -->
+  	<p class="ariane">
+	<a href="#URL_SITE_SPIP"><:accueil_site:></a>&nbsp;»
+	<BOUCLE_navtop(RUBRIQUES){id_rubrique}{tout}>
+	<BOUCLE_hierarchie(HIERARCHIE){tout}{" » "}>
+	<a href="#URL_RUBRIQUE"> 
+	[(#TITRE|supprimer_numero)]</a>
+	</BOUCLE_hierarchie>
+	</BOUCLE_navtop>
+	</p>
+
+   <!-- Contenu de l'aticle -->
+	[<h2><strong>&gt;&gt;</strong>(#TITRE|supprimer_numero)</h2>]
+
+[<div id="formulaire-forum">
+<h3 class="commentaire"><a name="forum"><:commentaire_dessous:></a> </h3>
+(#FORMULAIRE_FORUM)
+</div>
+]  </div>
+  <!-- // Fin de la zone de contenu // -->
+  
+  <!-- // Début du pied de page // -->
+  <div id="pied"> 
+	<INCLURE(page.php3){fond=pied}{lang}>
+  </div>
+  <!-- // Fin du pied de page // -->
+</div>
+<!-- // Fin du contenant // --> 
+</body>
+</html>
+</BOUCLE_article_principal>
+<:aucune_rubrique:>
+<//B_article_principal>
+
+
