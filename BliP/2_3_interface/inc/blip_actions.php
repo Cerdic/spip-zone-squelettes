@@ -1,6 +1,5 @@
 <?php
 
-
 	// Toutes les fonctions ont étés regroupées ici.
 
 	function BliP_version_ftp() {
@@ -293,8 +292,8 @@
 	/***************************************************/
 	/* Génération automatique d'éléments de formulaire */
 	/***************************************************/
-	function BliP_generer_option_select($nom, $valeurs, $actif="") {
-	    $s  = '<select name="'.$nom.'" id="'.$nom.'">';
+	function BliP_generer_option_select($nom, $valeurs, $actif="", $onchange="") {
+	    $s  = '<select name="'.$nom.'" id="'.$nom.'" onchange="'.$onchange.'">';
 	    foreach ($valeurs as $valeur => $description) {
 	        $s .= '<option value="'.$valeur.'"';
 	        if ($actif == $valeur) {
@@ -341,7 +340,9 @@
     return $blipconfig_item;
 	}
 
-	/* générer un formulaire prérempli pour l'item nouveau ou modifié */
+/* générer un formulaire prérempli pour l'item nouveau ou modifié */
+/* ajout d'un type à part entière : pointer vers une page spécifique ?
+  'page' => _T('blipconfig:blip_pointer_page') */
 	function BliP_generer_formulaire($action) {
     $blipconfig_menutypes = array(
         'dynamique' => "Inclure un module",
@@ -411,6 +412,116 @@
     );
 
     $formval = BliP_initialiser_valeurs_formulaire();
+    
+    $blipconfig_modules['null']=_T('blipconfig:blip_choisir_module');
+    if (is_dir("../")) {
+        if ($dh = opendir("../plugins/blip/modules/")) {
+            while (($file = readdir($dh)) !== false) {
+                if (!is_dir($file)) {
+                    $blipconfig_modules[$file] = BliP_nom_module_lisible($file);
+                }
+            }
+            closedir($dh);
+        }
+    }
+    asort($blipconfig_modules);
+
+    $blipconfig_pages[0]=_T('blipconfig:blip_choisir_page');
+    if (is_dir("../")) {
+        if ($dh = opendir("../plugins/blip/")) {
+            while (($file = readdir($dh)) !== false) {
+                if (!is_dir($file)) {
+                    if (! preg_match("/(^inc|^mod)(-|_)/", $file) && preg_match("/\.html$/", $file)) {
+                        $blipconfig_pages[preg_replace("/\.html$/", "", $file)] = BliP_nom_module_lisible($file);
+                    }
+                }
+            }
+            closedir($dh);
+        }
+    }
+    asort($blipconfig_pages);
+
+
+echo <<<END1
+<script language="JavaScript" type="text/JavaScript">
+//<!--
+END1;
+echo "\nvar item_type = ".$formval['type'].";";
+echo "\nvar item_pos  = ".$formval['position'].";\n";
+
+echo <<<END
+
+function blip_update_type(selObj) {
+    item_type = selObj.options[selObj.selectedIndex].value;
+    blip_update_layers();
+}
+function blip_update_pos(selObj) {
+    item_pos = selObj.options[selObj.selectedIndex].value;
+    blip_update_layers();
+}
+function blip_update_layers() {
+	if (item_type == "dynamique") {
+	    display_style = 'none';
+        display_text = "none";
+	    if (item_pos == "menu_principal") {
+	        display_modules = "none";
+            display_title = "block";
+            display_descr = "block";
+            display_pages = "block";
+        } else {
+            display_modules = "block";
+            display_title = "none";
+            display_descr = "none";
+            display_pages = "none";
+        }
+    } else {
+        display_modules = "none";
+        display_style = "block";
+        display_text = "block";
+        display_title = "block";
+        display_descr = "none";
+        display_pages = "none";
+    }
+
+	if (!(layer = findObj('Layer_texte'))) return;
+		layer.style.display = display_text;
+	if (!(layer = findObj('Layer_style'))) return;
+		layer.style.display = display_style;
+	if (!(layer = findObj('Layer_modules'))) return;
+		layer.style.display = display_modules;
+	if (!(layer = findObj('Layer_titre'))) return;
+		layer.style.display = display_title;
+	if (!(layer = findObj('Layer_descr'))) return;
+		layer.style.display = display_descr;
+	if (!(layer = findObj('Layer_pages'))) return;
+		layer.style.display = display_pages;
+}
+//-->
+</script>
+END;
+
+    if ($formval['type'] == "dynamique") {
+        $display_style = "none";
+        $display_texte = "none";
+        if ($formval['position'] == "menu_principal") {
+            $display_modules = "none";
+            $display_titre = "block";
+            $display_descr = "block";
+            $display_pages = "block";
+        } else {
+            $display_modules = "block";
+            $display_titre = "none";
+            $display_descr = "none";
+            $display_pages = "none";
+        }
+    } else {
+        $display_pages = "none";
+        $display_modules = "none";
+        $display_style = "block";
+        $display_texte = "block";
+        $display_titre = "block";
+        $display_descr = "none";
+    }
 
     echo '<form name="form1" id="form1" method="post" action="'.generer_url_ecrire('blip_modifier',"action=formulaire").'">';
 	echo '<input name="id_config" type="hidden" id="id_config" value="'.$formval['id_config'].'" />';
@@ -419,7 +530,7 @@
 	echo "<b>i :</b> Information | <b>r :</b> Restrictions | <b>c :</b> Conseils</p>";
 
 	debut_cadre_relief("", false, "", bouton_block_invisible('blip_position')._T('blipconfig:blip_position_info'));
-    echo BliP_generer_option_select('type', $blipconfig_menutypes, $formval['type']);
+    echo BliP_generer_option_select('type', $blipconfig_menutypes, $formval['type'], "blip_update_type(this)");
 	echo debut_block_invisible('blip_position');
 	echo "<p><b>c : </b>L'option 'Afficher du texte' ne doit pas &ecirc;tre utilis&eacute; en remplacement des articles ou br&egrave;ves, mais pour des messages ponctuels et/ou cibl&eacute;</p>";
 	echo fin_block();
@@ -427,7 +538,7 @@
 	echo "<br />";
 
 	debut_cadre_relief("", false, "", bouton_block_invisible('blip_restriction')._T('blipconfig:blip_restriction_info'));
-    echo BliP_generer_option_select('position', $blipconfig_positions, $formval['position']);
+    echo BliP_generer_option_select('position', $blipconfig_positions, $formval['position'], "blip_update_pos(this)");
 	echo debut_block_invisible('blip_restriction');
 	echo "<br />";
 	echo '<b>2.1 Restreindre l\'affichage &agrave; l\'ID n&deg; </b><input size="6" maxlength="6" name="id_item" type="text" id="id_item" value="'.$formval['id_item'].'" /><br />';
@@ -437,8 +548,9 @@
 	fin_cadre_relief();
 	echo "<br />";
 
+    echo '<div id="Layer_titre" style="display: '.$display_titre.'; margin-top: 1px;">';
 	debut_cadre_relief("", false, "", bouton_block_invisible('blip_titre')._T('blipconfig:blip_titre_info'));
-    echo '<input name="titre" type="text" id="titre" value="'.$formval['titre'].'" size="45" /> ';
+    echo '<input name="titre" type="text" id="titre" value="'.$formval['titre'].'" size="70" /> ';
 	echo debut_block_invisible('blip_titre');
 	echo "<p><b>i : </b>Si vous avez s&eacute;lectionn&eacute; 'Afficher du texte' au point 1. alors saisissez votre titre ici, il sera affich&eacute; en gras.</p>";
 	echo "<p><b>i : </b>Si vous avez s&eacute;lectionn&eacute; 'Inclure un module' au point 1. et 'Menu principal de navigation' au point 2, alors saisissez ici le texte qui apparaitra dans le menu de navigation</p>";
@@ -446,9 +558,11 @@
 	echo fin_block();
 	fin_cadre_relief();
 	echo "<br />";
+ 	echo "</div>\n";
 
+    echo '<div id="Layer_descr" style="display: '.$display_descr.'; margin-top: 1px;">';
 	debut_cadre_relief("", false, "", bouton_block_invisible('blip_descriptif')._T('blipconfig:blip_descriptif_info'));
- 	echo '<input name="descriptif" type="text" id="descriptif" value="'.$formval['descriptif'].'" size="45" />';
+ 	echo '<input name="descriptif" type="text" id="descriptif" value="'.$formval['descriptif'].'" size="70" />';
 	echo debut_block_invisible('blip_descriptif');
 	echo "<p><b>i : </b>Si vous avez s&eacute;lectionn&eacute; 'Afficher du texte' au point 1. alors saisissez votre descriptif ici, il sera affich&eacute; en italique.</p>";
 	echo "<p><b>i : </b>Si vous avez s&eacute;lectionn&eacute; 'Inclure un module' au point 1. et 'Menu principal de navigation' au point 2, alors saisissez ici le texte qui apparaitra au survol du menu de navigation</p>";
@@ -456,9 +570,22 @@
 	echo fin_block();
 	fin_cadre_relief();
 	echo "<br />";
+ 	echo "</div>\n";
 
 	debut_cadre_relief("", false, "", bouton_block_invisible('blip_texte')._T('blipconfig:blip_texte_info'));
- 	echo '<textarea name="texte" type="text" id="texte" cols="45" rows="5">'.$formval['texte'].'</textarea>';
+    
+    echo '<div id="Layer_texte" style="display: '.$display_texte.'; margin-top: 1px;">';
+ 	echo 'Texte<br /><textarea name="texte" type="text" id="texte" cols="50" rows="5">'.$formval['texte'].'</textarea>';
+ 	echo "</div>\n";
+    
+    echo '<div id="Layer_modules" style="display: '.$display_modules.'; margin-top: 1px;">';
+ 	echo 'Module '.BliP_generer_option_select('module', $blipconfig_modules, $formval['texte'].".html");
+ 	echo "</div>\n";
+	
+    echo '<div id="Layer_pages" style="display: '.$display_pages.'; margin-top: 1px;">';
+ 	echo 'Page '.BliP_generer_option_select('module', $blipconfig_pages, $formval['texte']);
+ 	echo "</div>\n";
+ 	
 	echo debut_block_invisible('blip_texte');
 	echo "<p><b>i : </b>Si vous avez s&eacute;lectionn&eacute; 'Afficher du texte' au point 1. alors saisissez votre texte ici.</p>";
 	echo "<p><b>i : </b>Si vous avez s&eacute;lectionn&eacute; 'Inclure un module' au point 1. alors saisissez le nom de votre fichier html, sans son extension.
@@ -467,6 +594,7 @@
 	fin_cadre_relief();
 	echo "<br />";
 
+    echo '<div id="Layer_style" style="display: '.$display_style.'; margin-top: 1px;">';
 	debut_cadre_relief("", false, "", bouton_block_invisible('blip_style')._T('blipconfig:blip_style_info'));
  	echo BliP_generer_option_select('style', $blipconfig_style, $formval['style']);
 	echo debut_block_invisible('blip_style');
@@ -475,6 +603,7 @@
 	echo "<p><b>c : </b>N'abuser pas de styles (...)'</p>";
 	echo fin_block();
 	fin_cadre_relief();
+	echo "<br />";
 
 	echo "Actif : ";
 	echo BliP_generer_option_select('actif', $blipconfig_actif, $formval['actif']);
@@ -541,5 +670,8 @@ function BliP_action_formulaire() {
     }
 }
 
+function BliP_nom_module_lisible($nomfichier) {
+    return ucfirst(preg_replace('/_/', ' ', preg_replace('/(^mod_)?(.*)\.html?/', '$2', $nomfichier)));
+}
 
 ?>
