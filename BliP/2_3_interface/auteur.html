@@ -1,0 +1,154 @@
+#CACHE{86400}
+<BOUCLE_auteur_principal(AUTEURS) {id_auteur}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+	<title>[(#NOM|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	[<meta name="description" content="(#BIO|couper{150}|attribut_html)" />]
+	<meta name="generator" content="SPIP" />
+	[<link rel="shortcut icon" href="(#CHEMIN{#NOM_SITE_SPIP.ico})" />]
+
+	[
+	(#REM) Lien vers le backend pour navigateurs eclaires ]
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+	[
+	(#REM) Script NiceTitle pour la gestion des title des liens ]	
+	[<script type="text/javascript" src="(#CHEMIN{nicetitle.js})"></script>]
+	[
+	(#REM) Style CSS de blip ]
+	<link rel="stylesheet" type="text/css" href="#URL_PAGE{inc-css}" />	
+	
+</head>
+
+<body id="auteur">
+<div id="page">
+
+[(#REM) Inclusion de l'Entete du site, qui se construit dynamiquement ]
+<INCLURE{fond=inc-tete}{page_actuelle=auteur}{id_actuel=#ID_AUTEUR}{lang}>
+
+<div id="corps">
+
+	[(#REM) Construction du menu auxiliaire de la page article]
+	<div class="menu_auxiliaire">
+		<ul>
+			<li><a href="#URL_PAGE{auteur}"><:blip:auteurs_liste_des:></a>&gt; &nbsp; #NOM</li>
+		</ul>
+	</div><!-- fin menu_auxiliaire-->
+
+	<div class="contenu">
+
+		[(#REM) Fiche de l'auteur ]
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		[<h1>(#NOM)</h1>]<div class="element_sur">
+		[<div class="imgfloatleft">(#LOGO_AUTEUR||reduire_image{200,200})</div>]	
+		#BIO	
+		</div></div></div>		
+		
+		[(#REM) Formulaire de contact de l'auteur ]
+		[<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1><:blip:envoyer_un_message_a:> #NOM</h1><div class="element_sur">
+		(#FORMULAIRE_ECRIRE_AUTEUR)		
+		</div></div></div>]
+		
+		[(#REM) Articles de l'auteur ]
+		<B_articles_auteur>
+		#ANCRE_PAGINATION
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1><:blip:article_de:> #NOM</h1><div class="element_sur">
+		[<p>(#PAGINATION)</p>]
+			<BOUCLE_articles_auteur(ARTICLES) {id_auteur} {par date} {inverse} {pagination}{lang}>
+			<INCLURE{fond=inc_article_resume}{id_article}{recherche}{lang}>
+			</BOUCLE_articles_auteur>
+		[<p>(#PAGINATION)</p>]
+		</div></div></div>
+		</B_articles_auteur>
+	
+	</div><!-- fin contenu -->
+
+	[(#REM) Inclusion de la Barre latérale du site, construite dynamiquement ]
+	<div class="barre_laterale">
+		<INCLURE{fond=inc-barrelaterale}{page_actuelle=rubrique}{id_actuel=#ID_RUBRIQUE}{lang}>	
+	</div><!-- fin barre_laterale-->
+
+</div><!-- fin corps -->		
+	
+	
+[(#REM) Pied de page ]
+<INCLURE{fond=inc-pied}{lang}{page_actuelle=auteur}{id_actuel=#ID_AUTEUR}{lang}>
+
+</div><!-- fin page -->
+</body>
+</html>
+</BOUCLE_auteur_principal>
+[
+
+
+
+
+(#REM) Affiche la liste des auteurs, se produit si aucune des boucles précédentes n'a été exécutée 
+
+] 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+	<title><:blip:auteurs_liste_des:>[ - (#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	<meta name="description" content="Liste des auteurs[ - (#NOM_SITE_SPIP|textebrut)]" />
+	<meta name="generator" content="SPIP" />
+	[<link rel="shortcut icon" href="(#CHEMIN{#NOM_SITE_SPIP.ico})" />]
+
+	[
+	(#REM) Lien vers le backend pour navigateurs eclaires ]
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+	[
+	(#REM) Script NiceTitle pour la gestion des title des liens ]	
+	[<script type="text/javascript" src="(#CHEMIN{nicetitle.js})"></script>]
+	[
+	(#REM) Style CSS de blip ]
+	<link rel="stylesheet" type="text/css" href="#URL_PAGE{inc-css}" />
+	
+</head>
+
+<body id="auteur">
+<div id="page">
+
+[(#REM) Inclusion de l'Entete du site, qui se construit dynamiquement ]
+<INCLURE{fond=inc-tete}{page_actuelle=auteur}{lang}>
+
+<div id="corps">
+
+	[(#REM) Construction du menu auxiliaire de la page article]
+	<div class="menu_auxiliaire">
+		<ul>
+			<li><a class="active" href="#URL_PAGE{auteur}"><:blip:auteurs_liste_des:></a></li>
+		</ul>
+	</div><!-- fin menu_auxiliaire-->
+
+	<div class="contenu">
+	[<div class="element"><p class="couleur2"><:blip:auteur_numero:>(#ENV{id_auteur}) <:blip:auteur_n_existe_pas:></p></div>] 
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1><:blip:auteurs_liste_des:></h1><div class="element_sur">
+		<BOUCLE_auteurs(AUTEURS){par nom}>
+			<div class="element_sous_bis"><h3>[<a href="#URL_AUTEUR">(#NOM)</a>]</h3></div>		
+		</BOUCLE_auteurs>
+		<:blip:auteur_aucun:>
+		<//B_auteurs>
+		</div></div></div>
+		
+	</div><!-- fin contenu-->
+	
+	[(#REM) Inclusion de la Barre latérale du site, construite dynamiquement ]
+	<div class="barre_laterale">
+		<INCLURE{fond=inc-barrelaterale}{page_actuelle=auteur}{lang}>	
+	</div><!-- fin barre_laterale-->	
+
+</div><!-- fin corps -->
+
+[(#REM)  Inclusion du Pied de page du site, qui se construit dynamiquement]
+<INCLURE{fond=inc-pied}{page_actuelle=auteur}{lang}>
+
+</div><!-- fin page -->
+</body>
+</html>
+<//B_auteur_principal>
