@@ -1,0 +1,44 @@
+[(#REM)
+	Le fichier est en cache dans SPIP, mais les navigateurs ne doivent pas
+	conserver cette page en memoire
+]
+#CACHE{24 * 3600}
+#HTTP_HEADER{Content-Type: text/html; charset=#CHARSET}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title><:login_acces_prive:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+<meta name="robots" content="none" />
+<INCLURE{fond=inc-head}{lang=#ENV{lang}}>
+</head>
+<body class="page_login">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}{lang=#ENV{lang}}>
+
+	<div id="contenu">
+
+		<div class="cartouche">
+		<h1 class="titre"><:login_acces_prive:></h1>
+		</div>
+
+		<span class="invisible">#MENU_LANG_ECRIRE</span>
+
+		<div class="formulaire_spip formulaire_login">
+			#LOGIN_PRIVE
+
+			[<h3 class="spip"><:pass_vousinscrire:></h3>
+			<p><:pass_espace_prive_bla:></p>
+			<p>&#91;<a href="#URL_PAGE{spip_inscription,focus=nom_inscription}&amp;mode=(#URL_SITE_SPIP|tester_config{mode_inscription})" target="spip_pass" onclick="javascript:window.open(this.href, 'spip_pass', 'scrollbars=yes, resizable=yes, width=480, height=400'); return false;"><:login_sinscrire:></a>&#93;</p>]
+
+		</div>
+
+	</div><!-- fin contenu -->
+
+	<INCLURE{fond=inc-navigation}{lang=#ENV{lang}|sinon{#LANG}}>
+	<INCLURE{fond=inc-pied}{lang=#ENV{lang}}>
+
+</div><!-- fin page -->
+</body>
+</html>
