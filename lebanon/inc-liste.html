@@ -2,7 +2,7 @@
 <div class="liste-articles">
 	[(#ANCRE_PAGINATION)]
 	[(#REM) Titre different si l'on est dans une rubrique ]
-	<h2 class="invisible"><BOUCLE_rub(RUBRIQUES){id_rubrique}><:articles_rubrique:></BOUCLE_rub><:derniers_articles:><//B_rub></h2>
+	<h2><BOUCLE_rub(RUBRIQUES){id_rubrique}><:articles_rubrique:></BOUCLE_rub><:derniers_articles:><//B_rub></h2>
 	<ul>
 		<BOUCLE_articles(ARTICLES) {id_rubrique ?} {!par date} {pagination 5}>
 		<li dir="#LANG_DIR" style="text-align: #LANG_LEFT;">
@@ -20,7 +20,7 @@
 
 				[(#REM) Si le champ texte contient quelque chose, on affiche l'introduction ]
 				[(#TEXTE|?{
-				[(#INTRODUCTION)&nbsp;<a href="#URL_ARTICLE" tile="<:suite:>" class="suite"><img src="squelettes/suite.png" alt="<:suite:>" width="7" height="7" />&nbsp;<:suite:></a>]
+				[(#INTRODUCTION)&nbsp;<a href="#URL_ARTICLE"[ title="(#TITRE|couper{80}|texte_backend)"] class="suite"><img src="#CHEMIN{suite-#LANG_LEFT.gif}" alt="<:suite:>" width="7" height="7" />&nbsp;<:suite:></a>]
 				,''})]
 	
 				[(#REM) Si le champ texte est vide, on affiche les images ]
