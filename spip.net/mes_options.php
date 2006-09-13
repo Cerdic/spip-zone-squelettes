@@ -38,7 +38,7 @@
 	}
 
 	# raccourcis [->spip19] etc
-	function calculer_url_spip($id, $texte, $ancre) {
+	function calculer_url_spip($id, $texte='') {
 	$spip = array( 
 		1 => 1309,
 		10 => 1309,
@@ -62,16 +62,16 @@
 	);
 
 	if (isset($spip[$id])) {
-		$p= calculer_url_article($spip[$id], $texte, $ancre);
+		$p= calculer_url_article($spip[$id], $texte='');
 		$p[1] = 'spip'; # class
 		return $p;
 	} else {
 		return array('/', 'spip', 'version inconnue');
 	}
 	}
-	# indisppensable ? ou pas ?
+	# indispensable ? ou pas ?
 	function generer_url_spip($id) {
-		$p= calculer_url_spip($id, $texte, $ancre);
+		$p= calculer_url_spip($id);
 		return $p[0];
 	}
 	
