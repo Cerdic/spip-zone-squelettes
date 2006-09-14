@@ -1,75 +1,14 @@
-<?php
-if ($confirmer) {
-    envoyer_mail("#EMAIL_WEBMASTER", "coucou", $id_message);
-//
-		// Envoi d'un mail aux auteurs
-		//
-	/*	$prevenir_auteurs = lire_meta("prevenir_auteurs");
-		if ($prevenir_auteurs == "oui" AND $afficher_texte != "non") {
-			if ($id_article = $forum_id_article) {
-				$url = ereg_replace('^/', '', generer_url_article($id_article));
-				$adresse_site = lire_meta("adresse_site");
-				$nom_site_spip = lire_meta("nom_site");
-				$url = "$adresse_site/$url";
-				$courr = _T('form_forum_message_auto')."\n\n";
-				$parauteur = '';
-				if (strlen($auteur) > 2) {
-					$parauteur = " "._T('forum_par_auteur',
-					array('auteur' => $auteur));
-					if ($email_auteur)
-						$parauteur .= " <$email_auteur>";
-				}
-				$courr .= _T('forum_poste_par',
-				array('parauteur' => $parauteur))."\n";
-				$courr .= _T('forum_ne_repondez_pas')."\n";
-				$courr .= "$url\n";
-				$courr .= "\n\n".$titre."\n\n".textebrut(propre($texte)).
-				"\n\n$nom_site_forum\n$url_site\n";
-				$sujet = "[$nom_site_spip] ["._T('forum_forum')."] $titre";
-				$query = "SELECT auteurs.* FROM spip_auteurs AS auteurs,
-				spip_auteurs_articles AS lien
-				WHERE lien.id_article='$id_article'
-				AND auteurs.id_auteur=lien.id_auteur";
-				$result = spip_query($query);
-
-				while ($row = spip_fetch_array($result)) {
-					$email_auteur = trim($row["email"]);
-					if (strlen($email_auteur) < 3) continue;
-					envoyer_mail($email_auteur, $sujet, $courr);
-				}
-			}    */
-  }
-?>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="#LANG">
 <head>
 <title>[#NOM_SITE_SPIP] <:poster_message:></title>
 <meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
 
-<!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
-<link rel="stylesheet" href="spip_style.css" type="text/css">
+[<!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
+<link rel="stylesheet" href="(#CHEMIN{spip_style.css}|direction_css)" type="text/css">]
 
-<!-- Les feuilles de style specifiques aux presents squelettes -->
-<link rel="stylesheet" href="spip_forum[(#LANG_DIR|=={rtl}|?{'_rtl',''})].css" type="text/css">
-
-<!-- Lien vers le backend pour navigateurs eclaires -->
-<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="spip.php?page=backend">
-
-<!-- From phpBB --> 
-<script language="JavaScript" type="text/javascript"> 
-
-function emoticon(text) { var txtarea =
-document.formulaire.texte; text = ' ' + text + ' '; if
-(txtarea.createTextRange && txtarea.caretPos) { var caretPos =
-txtarea.caretPos; caretPos.text =
-caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? caretPos.text +
-text + ' ' : caretPos.text + text; txtarea.focus(); } else {
-txtarea.value += text; txtarea.focus(); } } 
-
-</script>
-
-
+[<!-- Les feuilles de style specifiques aux presents squelettes -->
+<link rel="stylesheet" href="(#CHEMIN{spip_forum.css}|direction_css)" type="text/css">]
 
 </head>
 
@@ -166,9 +105,7 @@ Attention que cette boucle vaut son pesant de cachouettes ;o))
         		</tr>
         		</thead>
         		<tr> 
-          			<td class="postsmiley"> 
-              			<INCLURE{fond=_tableau_smileys}>
-          			</td>
+          			<td class="postsmiley">&nbsp;</td>
           			<td class="postformulaire"> 
           			<div class="tailformulaire">
           			<!-- Ce div est là pour pallier l'illogisme qui fait que selon l'avancement dans le post on se trouve un coup avec .spip_encadrer autour de form et un coup l'inverse -->
