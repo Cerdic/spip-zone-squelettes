@@ -4,45 +4,22 @@
 <div class="articles">
 	<h2><:derniers_articles:></h2>
 	<ul>
-		<BOUCLE_articles(ARTICLES) {!par date} {0,5}>
-		<li>[(#EXPOSE{
+		<BOUCLE_articles(ARTICLES) {!par date} {0,10}>
+		<li dir="#LANG_DIR" lang="#LANG" xml:lang="#LANG" style="text-align: #LANG_LEFT;">[(#EXPOSE{
 					<span[ class="(#EXPOSE)"]>,
 					<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]"title="[(#TITRE|couper{60}|texte_backend) - ][(#DATE|affdate)]">}
 					)][(#TITRE|couper{80})]#EXPOSE{</span>,</a>}
 		</li>
 		</BOUCLE_articles>
 	</ul>
-	<BOUCLE_articles_suite(ARTICLES) {!par date} {5,1}>
-	<p class="plus"><small><img src="#CHEMIN{plus.gif}" alt="+" width="6" height="6" /> <a href="[(#URL_PAGE{sommaire}|parametre_url{lang,#ENV{lang}}|parametre_url{debut_articles,5})]"><:articles_precedents:></a></small></p>
+	<BOUCLE_articles_suite(ARTICLES) {!par date} {10,1}>
+	<p class="plus"><small><img src="#CHEMIN{plus.gif}" alt="+" width="6" height="6" /> <a href="[(#URL_PAGE{sommaire}|parametre_url{lang,#ENV{lang}}|parametre_url{debut_articles,10})]"><:articles_precedents:></a></small></p>
 	</BOUCLE_articles_suite>
 </div>
 </B_articles>
 
 [(#REM) Menu de navigation par rubriques ]
-<BOUCLE_rubriques_combien(RUBRIQUES){3,1}>
-<B_rubriques>
-<div class="rubriques">
-	<h2><:rubriques:></h2>
-	<ul>
-	<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
-		<li[ class="(#EXPOSE)"]>
-			<h3><a href="#URL_RUBRIQUE"[ (#ENV{id_rubrique}|=={#ID_RUBRIQUE}|?{class="on",''})]>[(#TITRE|supprimer_numero|couper{80})]</a></h3>
-			<B_sous_rubriques>
-			<ul>
-				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
-				<li[ class="(#EXPOSE)"]>
-					<a href="#URL_RUBRIQUE"[ (#ENV{id_rubrique}|=={#ID_RUBRIQUE}|?{class="on",''})]>[(#TITRE|supprimer_numero|couper{80})]</a>
-					<BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>
-				</li>
-				</BOUCLE_sous_rubriques>
-			</ul>
-			</B_sous_rubriques>
-		</li>
-	</BOUCLE_rubriques>
-	</ul>
-</div>
-</B_rubriques>
-</BOUCLE_rubriques_combien>
+<INCLURE{fond=inc-rubriques}{id_rubrique}>
 
 [(#REM) Sur le Web : articles issus de la syndication ]
 <h2><:nouveautes_web:></h2>
