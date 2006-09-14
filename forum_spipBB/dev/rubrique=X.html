@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+<html lang="#LANG">
+<head>
+<title>[#NOM_SITE_SPIP] - [(#TITRE|supprimer_numero)] </title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
+
+[<!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
+<link rel="stylesheet" href="(#CHEMIN{spip_style.css}|direction_css)" type="text/css">]
+
+[<!-- Les feuilles de style specifiques aux presents squelettes -->
+<link rel="stylesheet" href="(#CHEMIN{spip_forum.css}|direction_css)" type="text/css">]
+
+</head>
+
+<body id="forumsect" dir="#LANG_DIR">
+<!-- rubrique=30 -->
+<?php
+define("_BBC_PAGE_NAME", "Forum (page d'accueil)");
+define("_BBCLONE_DIR", "bbclone/");
+define("COUNTER", _BBCLONE_DIR."mark_page.php");
+if (is_readable(COUNTER)) include_once(COUNTER);
+?>
+<a name="haut"></a>
+
+<div id="contenant">
+
+<INCLURE{fond=entete_BB}{id_rubrique}>
+
+	<div id="corps"> <!-- Section contenant les données -->
+<hr class="clr" /> <!-- Permet l'affichage correctement pour certaines versions de safari -->
+<p class="nav"><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></p>
+<p style="float:right;margin-bottom: 1em; padding-top:10px ; margin-right:10px"><a href="spip.php?page=nouveaux_messages&amp;id_rubrique=#ID_RUBRIQUE"><:phpbb:voir_messages:></a></p>
+
+		
+		<!-- boucles principales -->
+		<B_categories>
+	
+		<hr class="clr" /> <!-- Permet l'affichage correctement pour certaines versions de safari -->
+		<table class="spipforum">
+			<thead>
+			<tr>
+				<th colspan="2" class="tforum"><:titre_forum:></th>
+				<th class="tsujets"><:phpbb:sujets:></th>
+				<th class="tmsg"><:phpbb:messages:></th>
+				<th class="tdermsg"><:phpbb:messages_derniers:></th>
+			</tr>
+			</thead>
+		<BOUCLE_categories(RUBRIQUES){id_parent}{par num titre}>
+			<tr class="salon">
+				<td colspan="2" class="salontitre">[<h2><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a></h2>]</td>
+				<td colspan="3" class="salonreste">&nbsp;</td>
+			</tr>
+		<BOUCLE_forums(ARTICLES){id_rubrique}{par num titre}>
+			<tr class="forumligne">
+				<B_etat><BOUCLE_etat(ARTICLES){id_article}{titre_mot=Fermé}><td class="etatfor fermfor"><span><:phpbb:forum_ferme:></BOUCLE_etat></B_etat><td class="etatfor ouvfor"><span><:titre_forum:><//B_etat></span></td>
+				<td class="titre">[<h3><a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a></h3>]
+				[(#DESCRIPTIF)<br/>]
+				<!-- Ici les Modérateurs --></td>
+			<BOUCLE_sujets(FORUMS){id_article}{doublons sujets}></BOUCLE_sujets>
+				<td class="msgsuj">#TOTAL_BOUCLE</td>
+			<//B_sujets>
+			<BOUCLE_messages(FORUMS){id_article}{plat}{doublons sujets}></BOUCLE_messages>
+				<td class="msgpost">#TOTAL_BOUCLE</td>
+			<//B_messages>
+				<td class="dermsg"> 
+				<BOUCLE_dernier_message(FORUMS){id_article}{plat}{par date}{inverse}{0,1}>
+					[(#DATE|nom_jour)] [(#DATE|affdate),] [(#DATE|heures)]:[(#DATE|minutes)<br	/>] <:par_auteur:><B_auteurp><BOUCLE_auteurp(AUTEURS){id_auteur}{tout}>
+					<a href="spip.php?page=profil_BB&amp;id_auteur=#ID_AUTEUR&amp;id_rubrique=<?php echo $id_rubrique ?>">#NOM</a>
+					</BOUCLE_auteurp></B_auteurp>
+					<a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{<:phpbb:anonyme:>})]</a><//B_auteurp> 
+					<a href="spip.php?page=voirsujet&amp;id_forum=<BOUCLE_papa(FORUMS){id_thread}>[(#ID_FORUM|texte_script)]</BOUCLE_papa>#forum#ID_FORUM" class="adermsg" title="<:phpbb:messages_voir_dernier:>">&nbsp;
+					<span>(<:phpbb:messages_voir_dernier:>)</span></a></BOUCLE_dernier_message> - <//B_dernier_message></td>
+			</tr>
+		</BOUCLE_forums>
+		</BOUCLE_categories>
+		</table>
+		</B_categories>
+	</div> <!-- Fin de la Section corps -->
+	
+		<!-- BEGIN switch_user_logged_out -->
+	<?php if(!$GLOBALS['auteur_session']) { ?>
+	
+	<div class="login"> <!-- Section de login -->
+		<p><:phpbb:login:></p>
+		#LOGIN_PUBLIC
+	</div>
+	<?php }elseif($auteur_session['statut']=='0minirezo'){?><div style="text-align:center;margin:10px"><a href="spip.php?page=statistiquesBB&amp;id_rubrique=#ID_RUBRIQUE"><:icone_statistiques_visites:></a></div> <?php } ?>
+	<!-- END switch_user_logged_out -->
+
+<INCLURE{fond=pied_BB}{id_rubrique}>
+
+</div><!--Fin de la section contenant-->
+</body>
+</html>
+
+</BOUCLE_rubrique_principal>
+<:aucune_rubrique:>
+<//B_rubrique_principal>
