@@ -1,6 +1,5 @@
-
+<BOUCLE_rubrique_principal(RUBRIQUES){id_rubrique}>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
 <html lang="#LANG">
 <head>
 <title>[#NOM_SITE_SPIP] - [(#TITRE|supprimer_numero)] </title>
@@ -12,6 +11,16 @@
 [<!-- Les feuilles de style specifiques aux presents squelettes -->
 <link rel="stylesheet" href="(#CHEMIN{spip_forum.css}|direction_css)" type="text/css">]
 
+<BOUCLE_is_index(RUBRIQUES){id_rubrique}{id_secteur}{id_parent=0}>
+</BOUCLE_is_index>
+<B_display_index><style type="text/css">
+<!--<BOUCLE_display_index(RUBRIQUES){id_secteur}{id_parent!=0}{exclus}>[
+#salon(#ID_RUBRIQUE) { display: none; }
+
+]</BOUCLE_display_index>-->
+</style></B_display_index>
+<//B_is_index>
+
 </head>
 
 <body id="forumsect" dir="#LANG_DIR">
@@ -21,55 +30,18 @@
 
 <div id="contenant"> <!-- Section contenant la page -->
 
-<INCLURE{fond=entete_BB}{id_rubrique}>
+<INCLURE{fond=entete_BB}{id_rubrique=#ID_SECTEUR}>
 
-	<div id="corps"> <!-- Section contenant les données -->
+	<div id="corps"> <!-- Section Corps -->
 	<h2>#TITRE</h2>
 
                 <p class="nav"><BOUCLE_chemindefer(HIERARCHIE){id_rubrique}{" -&gt; "}><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a> </BOUCLE_chemindefer> -&gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></p>
 
 		<!-- boucles principales -->
 		<BOUCLE_secteur(HIERARCHIE){id_rubrique}{0,1}><?php $ze_sect='[(#ID_RUBRIQUE|texte_script)]' ;?></BOUCLE_secteur>
-	
-		<B_categories>
-		<hr class="clr" /> <!-- Permet l'affichage correctement pour certaines versions de safari -->
-		<table class="spipforum"> <!-- Tableau d'affichage des salons et forums -->
-			<thead>
-			<tr>
-		  		<th colspan="2" class="tforum"><:titre_forum:></th>
-				<th class="tsujets"><:phpbb:sujets:></th>
-				<th class="tmsg"><:phpbb:messages:></th>
-				<th class="tdermsg"><:phpbb:messages_derniers:></th>
-			</tr>
-			</thead>
-		<BOUCLE_categories(RUBRIQUES){meme_parent}{par num titre}>
-			<tr class="salon">
-  				<td colspan="2" class="salontitre">[<h2><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a></h2>]</td>
-		  		<td colspan="3" class="salonreste">&nbsp;</td>
-			</tr>
-		<?php if($id==#ID_RUBRIQUE) { ?>
-		<BOUCLE_forums(ARTICLES){id_rubrique}{par num titre}>
-			<tr class="forumligne">
-  				<B_etat><BOUCLE_etat(ARTICLES){id_article}{titre_mot=Fermé}><td class="etatfor fermfor"><span><:phpbb:forum_ferme:></BOUCLE_etat></B_etat><td class="etatfor ouvfor"><span><:titre_forum:><//B_etat></span></td>
-				<td class="titre">[<h3><a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a></h3>]
-	  			[(#DESCRIPTIF)<br/>]
-				<!-- Ici les modérateurs --></td>
-			<BOUCLE_sujets(FORUMS){id_article}{doublons sujets}></BOUCLE_sujets>
-				<td class="msgsuj">#TOTAL_BOUCLE</td>
-	    		<//B_sujets>
-			<BOUCLE_messages(FORUMS){id_article}{plat}{doublons sujets}></BOUCLE_messages>
-				<td class="msgpost">#TOTAL_BOUCLE</td>
-			<//B_messages>
-				<td class="dermsg"><BOUCLE_dernier_message(FORUMS){id_article}{plat}{par date}{inverse}{0,1}>
-				[(#DATE|nom_jour)] [(#DATE|affdate),] [(#DATE|heures)]:[(#DATE|minutes)<br />] <:par_auteur:> <B_auteurp><BOUCLE_auteurp(AUTEURS){id_auteur}{tout}>
-				<a href="./profil_BB.php3?id_auteur=#ID_AUTEUR&id_rubrique=<?php echo $ze_sect ?>">#NOM</a></BOUCLE_auteurp></B_auteurp><a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{<:phpbb:anonyme:>})]</a><//B_auteurp> 
-				<a href="spip.php?page=voirsujet&amp;id_forum=<BOUCLE_papa(FORUMS){id_thread}>[(#ID_FORUM|texte_script)]</BOUCLE_papa>#forum#ID_FORUM"class="adermsg" title="<:phpbb:messages_voir_dernier:>">&nbsp;<span>(<:phpbb:messages_voir_dernier:>)</span></a></BOUCLE_dernier_message> - <//B_dernier_message></td>
-			</tr>
-		</BOUCLE_forums>
-		<?php } ?>
-		</BOUCLE_categories>
-	</table> <!-- Fin de la table spipforum -->
-	</B_categories>
+
+[(#MODELE{spipbb_index}{id_secteur})]
+
 	</div> <!-- Fin de la section Corps -->
 	
 	<!-- BEGIN switch_user_logged_out -->
@@ -89,5 +61,3 @@
 </html>
 
 </BOUCLE_rubrique_principal>
-<:aucune_rubrique:>
-<//B_rubrique_principal>

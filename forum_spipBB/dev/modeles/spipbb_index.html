@@ -1,0 +1,48 @@
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_secteur}{id_parent=0}>
+
+	<B_categories>
+	<hr class="clr" /> <!-- Permet l'affichage correctement pour certaines versions de safari -->
+	<table summary="index" class="spipforum">
+		<thead>
+		<tr>
+			<th colspan="2" class="tforum"><:titre_forum:></th>
+			<th class="tsujets"><:phpbb:sujets:></th>
+			<th class="tmsg"><:phpbb:messages:></th>
+			<th class="tdermsg"><:phpbb:messages_derniers:></th>
+		</tr>
+		</thead>
+	<BOUCLE_categories(RUBRIQUES){id_parent}{par num titre}>
+		<tr class="salon">
+			<td colspan="2" class="salontitre">[<h2><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a></h2>]</td>
+			<td colspan="3" class="salonreste">&nbsp;</td>
+		</tr>
+		<tbody[ id="salon(#ID_RUBRIQUE)"]>
+	<BOUCLE_forums(ARTICLES){id_rubrique}{par num titre}>
+		<tr class="forumligne">
+			<BOUCLE_etat(ARTICLES){id_article}{titre_mot=Fermé}><td class="etatfor fermfor"><span><:phpbb:forum_ferme:></BOUCLE_etat><td class="etatfor ouvfor"><span><:titre_forum:><//B_etat></span></td>
+			<td class="titre">
+			[<h3><a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a></h3>]
+			[(#DESCRIPTIF)<br/>]
+			</td>
+		<BOUCLE_sujets(FORUMS){id_article}{doublons sujets}></BOUCLE_sujets>
+			<td class="msgsuj">#TOTAL_BOUCLE</td>
+		<//B_sujets>
+		<BOUCLE_messages(FORUMS){id_article}{plat}{doublons sujets}></BOUCLE_messages>
+			<td class="msgpost">#TOTAL_BOUCLE</td>
+		<//B_messages>
+			<td class="dermsg"> 
+			<BOUCLE_dernier_message(FORUMS){id_article}{plat}{par date}{inverse}{0,1}>
+				[(#DATE|nom_jour)] [(#DATE|affdate),] [(#DATE|heures)]:[(#DATE|minutes)<br	/>] <:par_auteur:><B_auteurp><BOUCLE_auteurp(AUTEURS){id_auteur}{tout}>
+				<a href="spip.php?page=profil_BB&amp;id_auteur=#ID_AUTEUR&amp;id_rubrique=<?php echo $id_rubrique ?>">#NOM</a>
+				</BOUCLE_auteurp></B_auteurp>
+				<a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{<:phpbb:anonyme:>})]</a><//B_auteurp> 
+				<a href="spip.php?page=voirsujet&amp;id_forum=<BOUCLE_papa(FORUMS){id_thread}>[(#ID_FORUM|texte_script)]</BOUCLE_papa>#forum#ID_FORUM" class="adermsg" title="<:phpbb:messages_voir_dernier:>">&nbsp;
+				<span>(<:phpbb:messages_voir_dernier:>)</span></a></BOUCLE_dernier_message> - <//B_dernier_message></td>
+		</tr>
+	</BOUCLE_forums>
+		</tbody>
+	</BOUCLE_categories>
+	</table>
+	</B_categories>
+
+</BOUCLE_rubrique_principal>
