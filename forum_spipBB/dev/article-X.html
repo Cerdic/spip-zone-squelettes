@@ -1,5 +1,5 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <BOUCLE_article_principal(ARTICLES) {id_article}>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="#LANG">
 <head>
 <title>[#NOM_SITE_SPIP] - <:titre_forum:> [(#TITRE|supprimer_numero)]</title>
@@ -14,12 +14,6 @@
 </head>
 
 <body id="artforum" dir="#LANG_DIR">
-<?php
-define("_BBC_PAGE_NAME", "Forum #ID_ARTICLE");
-define("_BBCLONE_DIR", "bbclone/");
-define("COUNTER", _BBCLONE_DIR."mark_page.php");
-if (is_readable(COUNTER)) include_once(COUNTER);
-?>
 <!-- On regarde si le forum n'est pas fermé-->
 <?php $forumferme=0 ?>
 <BOUCLE_etat(ARTICLES){id_article}{titre_mot=Fermé}><?php $forumferme=1 ?></BOUCLE_etat>
@@ -40,103 +34,8 @@ if (is_readable(COUNTER)) include_once(COUNTER);
 		<p class="nav"><BOUCLE_chemindefer(HIERARCHIE){id_article}{0,1}{" -&gt; "}><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></BOUCLE_chemindefer> -&gt; <a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></p>
 		<?php $tableau = array(); //permet de stocker les pieds de discussion ?>
 		
-		<INCLURE{fond=pagination}{delais=86400}{id_article}{debut_post}>
 
-		<hr class="clr" /> <!-- Permet l'affichage correctement pour certaines versions de safari -->
-		<table class="spipforum">
-			<thead>
-			<tr> 
-				<th colspan="2" class="tsujet"><:phpbb:sujets:></th>
-				<th class="tmsg"><:phpbb:messages:></th>
-				<th class="tsujaut"><:phpbb:sujet_auteur:></th>
-				<th class="tdermsg"><:phpbb:messages_derniers:></th>
-			</tr>
-			</thead>
-			<?php if($forumferme==1){ ?><tr class="clos">
-				<td colspan=5><:phpbb:forum_ferme:></td>
-			</tr><?php } ?>
-		<BOUCLE_message_annonce(FORUMS){id_article}{titre_mot=Annonce}{par date_thread}{inverse}>
-			<?php 
-			// On pense à ne pas l afficher plusieurs fois dans la liste
-			$tableau[$id_forum]='[(#ID_FORUM|texte_script)]';
-			
-			// C est forcement un pied de discussion
-			$id_sujet='[(#ID_FORUM|texte_script)]' ;
-			?>
-			<!-- BEGIN topicrow -->
-			<tr class="annonce"> 
-				<td class="etatsuj annpost"><span><:phpbb:annonce:></span>&nbsp;</td>
-				<td class="titre" id="forum#ID_FORUM"><span><:phpbb:annonce:> : </span><a href="spip.php?page=voirsujet&amp;id_forum=#ID_FORUM">#TITRE</a></td>
-				<td class="msgpost">
-					<BOUCLE_reponses01(FORUMS){id_thread}{plat}{exclus}></BOUCLE_reponses01>
-					#TOTAL_BOUCLE
-					<//B_reponses01>
-				</td>
-	  			<td class="autpost"><B_auteurpa><BOUCLE_auteurpa(AUTEURS){id_auteur}{tout}><a href="spip.php?page=profil_BB&amp;id_auteur=#ID_AUTEUR&amp;id_article=#ID_ARTICLE">#NOM</a></BOUCLE_auteurpa></B_auteurpa><a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{<:phpbb:anonyme:>})]</a><//B_auteurpa></td>
-				<td class="dermsg">
-					<BOUCLE_dernier_message01(FORUMS){id_thread}{plat}{par date}{inverse}{0,1}>
-				  		[(#DATE|nom_jour)] [(#DATE|affdate),] [(#DATE|heures)]:[(#DATE|minutes)<br />]
-						<:par_auteur:><B_auteurpar><BOUCLE_auteurpar(AUTEURS){id_auteur}{tout}>
-						<a href="spip.php?page=profil_BB&amp;id_auteur=#ID_AUTEUR&amp;id_article=#ID_ARTICLE">#NOM</a>
-						</BOUCLE_auteurpar></B_auteurpar><a href="mailto:[(#EMAIL|antispam)]">
-						[(#NOM|sinon{<:phpbb:anonyme:>})]</a><//B_auteurpar> 
-						<a href="spip.php?page=voirsujet&amp;id_forum=<?php echo $id_sujet?>#forum#ID_FORUM"class="adermsg" title="<:phpbb:messages_voir_dernier:>">&nbsp;<span>(<:phpbb:messages_voir_dernier:>)</span></a>
-						</BOUCLE_dernier_message01> - <//B_dernier_message01></td>
-			</tr>
-		</BOUCLE_message_annonce>
-
-		<BOUCLE_messages(FORUMS){id_article}{plat}{par date_thread}{inverse}{debut_post,25}> 
-
-			<BOUCLE_sujet(FORUMS){id_thread}>
-			<?php 
-				$id_forum='[(#ID_FORUM|texte_script)]';
-				$titre='[(#TITRE|texte_script)]';
-				
-				$closed='non'; 
-								
-				<BOUCLE_reponsesalt(FORUMS){id_thread}{plat}> 
-					<BOUCLE_reponse_fermealt(FORUMS){id_forum}{titre_mot=Fermé}>
-						$closed='[(#ID_FORUM|texte_script)]'; 
-					</BOUCLE_reponse_fermealt>
-				</BOUCLE_reponsesalt>
-
-				if(!in_array($id_forum,$tableau)){ 
-			?>
-			<!-- BEGIN topicrow -->
-			<tr> 
-				<?php echo ($closed == "non" & $forumferme==0)? "<td class='etatsuj normpost'>&nbsp;<span><:message:>" : "<td class='etatsuj fermpost'>&nbsp;<span><:phpbb:ferme:>" ; ?></span>&nbsp;</td>
-				<td class="titre" id="forum#ID_FORUM"><a href="spip.php?page=voirsujet&amp;id_forum=#ID_FORUM">#TITRE</a></td>
-				<td class="msgpost">
-					<BOUCLE_reponses(FORUMS){id_thread}{plat}{exclus}></BOUCLE_reponses>
-					#TOTAL_BOUCLE
-					<//B_reponses>
-				</td>
-				<td class="autpost"><B_auteurp><BOUCLE_auteurp(AUTEURS){id_auteur}{tout}><a href="spip.php?page=profil_BB&amp;id_auteur=#ID_AUTEUR&amp;id_article=#ID_ARTICLE">#NOM</a></BOUCLE_auteurp></B_auteurp><a href="mailto:[(#EMAIL|antispam)]">
-				[(#NOM|sinon{<:phpbb:anonyme:>})]</a><//B_auteurp></td>
-				<td class="dermsg">
-				<BOUCLE_dernier_message(FORUMS){id_thread}{plat}{par date}{inverse}{0,1}>
-					[(#DATE|nom_jour)] [(#DATE|affdate),] [(#DATE|heures)]:[(#DATE|minutes)]<br />
-					<:par_auteur:><B_auteurpr><BOUCLE_auteurpr(AUTEURS){id_auteur}{tout}>
-					<a href="spip.php?page=profil_BB&amp;id_auteur=#ID_AUTEUR&amp;id_article=#ID_ARTICLE">#NOM</a>
-					</BOUCLE_auteurpr></B_auteurpr>
-					<a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{<:phpbb:anonyme:>})]</a>
-					<//B_auteurpr> 
-					<a href="spip.php?page=voirsujet&amp;id_forum=<?php echo $id_forum?>#forum#ID_FORUM"class="adermsg" title="<:phpbb:messages_voir_dernier:>">
-					&nbsp;<span>(<:phpbb:messages_voir_dernier:>)</span></a>
-				</BOUCLE_dernier_message> - <//B_dernier_message>
-				</td>
-			</tr>
-			<!-- END topicrow -->
-			<?php } $tableau[$id_forum]=$id_forum; ?>
-			</BOUCLE_sujet>
-			</BOUCLE_messages>
-			<!-- BEGIN switch_no_topics -->
-			<tr> 
-				<td class="nopost" colspan="5"><:phpbb:sujets_aucun:></td>
-			</tr>
-			<!-- END switch_no_topics -->
-			<//B_messages>
-		</table><!--Fin table spipforum-->
+[(#MODELE{spipbb_liste_sujets})]
 
 		<ul class="actionforum">
 	 		<?php if($forumferme==0){ ?>
@@ -154,17 +53,12 @@ if (is_readable(COUNTER)) include_once(COUNTER);
 			<li class="admseparer"><a title="<:phpbb:admseparer_forum:>"><span><:phpbb:admseparer_forum:></span>&nbsp;</a></li>	
 		</ul>
 		<?php } ?>
-		
-		<INCLURE{fond=pagination}{delais=86400}{id_article}{debut_post}>
-	
-	</div> <!-- Fin de la section "corps" -->
-	
 
-<INCLURE{pied_BB}{id_article}>
+	</div> <!-- Fin de la section "corps" -->
+
+<!--INCLURE{pied_BB}{id_article}-->
 
 </div><!-- fin de la Section contenant -->
 </body>
 </html>
 </BOUCLE_article_principal>
-<:aucun_article:>
-<//B_article_principal>
