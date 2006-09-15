@@ -1,7 +1,8 @@
 <?php
 function BliP_ajouterBouton($boutons_admin) {
 	// si on est admin
-	if ($GLOBALS['connect_statut'] == "0minirezo") {
+	if (    ($GLOBALS['connect_statut'] == "0minirezo")
+	    AND ($GLOBALS['connect_toutes_rubriques'])) {
     // on voit le bouton dans la barre "naviguer"
 	    $boutons_admin['configuration']->sousmenu['blip']= new Bouton(
 		    '../'._DIR_PLUGINS.'blip/ecrire/img_pack/blipconfig-24.gif', _T('Configurer BliP'));
