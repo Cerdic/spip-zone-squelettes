@@ -30,6 +30,7 @@ include_spip('public/debug'); # toujours prevoir le pire
 # 3. des declaration de tables SQL supplementaires
 # Toutefois pour 2. et 3. preferer la technique de la surcharge
 
+// http://doc.spip.org/@public_composer_dist
 function public_composer_dist($squelette, $mime_type, $gram, $sourcefile) {
 
 	$nom = $mime_type . '_' . md5($squelette);
@@ -80,6 +81,7 @@ function public_composer_dist($squelette, $mime_type, $gram, $sourcefile) {
 }
 
 // Le squelette compile est-il trop vieux ?
+// http://doc.spip.org/@squelette_obsolete
 function squelette_obsolete($skel, $squelette) {
 	return (
 		($GLOBALS['var_mode'] AND $GLOBALS['var_mode']<>'calcul')
@@ -107,52 +109,81 @@ function squelette_obsolete($skel, $squelette) {
 // remarquable, mais a conserver pour compatibilite ascendante.
 // -> http://www.spip.net/fr_article901.html
 
+// http://doc.spip.org/@calcule_fichier_logo
 function calcule_fichier_logo($on) {
 	return ereg_replace("^" . _DIR_IMG, "", $on);
 }
 
 // Renvoie le code html pour afficher un logo, avec ou sans survol, lien, etc.
 
+// http://doc.spip.org/@affiche_logos
 function affiche_logos($logos, $lien, $align) {
 
 	list ($arton, $artoff) = $logos;
 
 	if (!$arton) return $artoff;
 
-	if ($taille = @getimagesize($arton)) {
-		$taille = " ".$taille[3];
+	if (strpos($arton, 'swf')) {
+		include_spip('inc/swfheader');
+		$swf = new swfheader();
+		$swf->loadswf($arton);
+		if ($swf->valid) {
+			$width = $swf->width;
+			$height = $swf->height;
+			return "<object classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' 
+	  codebase='http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0' 
+	  width='$width' height='$height' type='application/x-shockwave-flash'>
+	  <param name='movie' value='$arton' />
+	  <param name='quality' value='high' />
+	  <!--[if !IE]>-->
+	  <object type='application/x-shockwave-flash' 
+		data='$arton' 
+		width='$width' height='$height'>
+		<param name='movie' value='$arton' />
+		<param name='quality' value='high' />
+	  </object>
+	  <!--<![endif]-->
+	</object>";
+		} else {
+			return $arton;
+		}
+	} else {
+		if ($taille = @getimagesize($arton)) {
+			$taille = " ".$taille[3];
+		}
+
+		if ($artoff)
+			$artoff = " onmouseover=\"this.src='$artoff'\" "
+				."onmouseout=\"this.src='$arton'\"";
+
+		$milieu = "<img src=\"$arton\" alt=\"\""
+			. ($align ? " align=\"$align\"" : '') 
+			. $taille
+			. $artoff
+			. ' class="spip_logos" />';
+
+		return (!$lien ? $milieu :
+			('<a href="' .
+			 quote_amp($lien) .
+			'">' .
+			$milieu .
+			'</a>'));
 	}
-
-	if ($artoff)
-		$artoff = " onmouseover=\"this.src='$artoff'\" "
-			."onmouseout=\"this.src='$arton'\"";
-
-	$milieu = "<img src=\"$arton\" alt=\"\""
-		. ($align ? " align=\"$align\"" : '') 
-		. $taille
-		. $artoff
-		. ' class="spip_logos" />';
-
-	return (!$lien ? $milieu :
-		('<a href="' .
-		 quote_amp($lien) .
-		'">' .
-		$milieu .
-		'</a>'));
 }
 
 //
 // Retrouver le logo d'un objet (et son survol)
 //
 
-function calcule_logo($type, $onoff, $id, $id_rubrique, $ff, $logo_hierarchie = 1) {
+// http://doc.spip.org/@calcule_logo
+function calcule_logo($type, $onoff, $id, $id_rubrique, $flag_fichier, $logo_hierarchie = 1) {
 	$logo_f = charger_fonction('chercher_logo', 'inc');
 	$nom = strtolower($onoff);
 
 	while (1) {
 		$on = $logo_f($id, $type, $nom);
 		if ($on) {
-			if ($ff)
+			if ($flag_fichier)
 			  return  (array('', "$on[2].$on[3]"));
 			else {
 				$off = ($onoff != 'ON') ? '' :
@@ -175,6 +206,7 @@ function calcule_logo($type, $onoff, $id, $id_rubrique, $ff, $logo_hierarchie = 
 // on peut la surcharger en definissant dans mes_fonctions :
 // function introduction($type,$texte,$chapo,$descriptif) {...}
 //
+// http://doc.spip.org/@calcul_introduction
 function calcul_introduction ($type, $texte, $chapo='', $descriptif='') {
 	if (function_exists("introduction"))
 		return introduction ($type, $texte, $chapo, $descriptif);
@@ -209,6 +241,7 @@ function calcul_introduction ($type, $texte, $chapo='', $descriptif='') {
 //
 
 // elles sont traitees comme des inclusions
+// http://doc.spip.org/@synthetiser_balise_dynamique
 function synthetiser_balise_dynamique($nom, $args, $file, $lang, $ligne) {
 	return
 		('<'.'?php 
@@ -226,6 +259,7 @@ lang_dselect();
 ?"
 		.">");
 }
+// http://doc.spip.org/@argumenter_squelette
 function argumenter_squelette($v) {
 
 	if (!is_array($v))
@@ -234,6 +268,7 @@ function argumenter_squelette($v) {
 }
 
 // verifier leurs arguments et filtres, et calculer le code a inclure
+// http://doc.spip.org/@executer_balise_dynamique
 function executer_balise_dynamique($nom, $args, $filtres, $lang, $ligne) {
 	if (!$file = include_spip('balise/' . strtolower($nom)))
 		die ("pas de balise dynamique pour #". strtolower($nom)." !");
@@ -257,6 +292,7 @@ function executer_balise_dynamique($nom, $args, $filtres, $lang, $ligne) {
 
 # NB : a l'exception des fonctions pour les balises dynamiques
 
+// http://doc.spip.org/@calculer_hierarchie
 function calculer_hierarchie($id_rubrique, $exclure_feuille = false) {
 
 	if (!$id_rubrique = intval($id_rubrique))
@@ -277,6 +313,7 @@ function calculer_hierarchie($id_rubrique, $exclure_feuille = false) {
 }
 
 
+// http://doc.spip.org/@calcul_exposer
 function calcul_exposer ($id, $type, $reference) {
 	static $exposer;
 	static $ref_precedente;
@@ -308,6 +345,7 @@ function calcul_exposer ($id, $type, $reference) {
 	return isset($exposer[$type]) ? isset($exposer[$type][$id]) : '';
 }
 
+// http://doc.spip.org/@lister_objets_avec_logos
 function lister_objets_avec_logos ($type) {
 	$type_logos = array(
 	'hierarchie' => 'rub',
@@ -329,6 +367,7 @@ function lister_objets_avec_logos ($type) {
 	return join(',',$logos);
 }
 
+// http://doc.spip.org/@table_from_primary
 function table_from_primary($id) {
 	global $tables_principales;
 	include_spip('base/serial');
@@ -340,6 +379,7 @@ function table_from_primary($id) {
 }
 
 // fonction appelee par la balise #LOGO_DOCUMENT
+// http://doc.spip.org/@calcule_logo_document
 function calcule_logo_document($id_document, $doubdoc, &$doublons, $flag_fichier, $lien, $align, $params) {
 
 	if (!$id_document) return '';
@@ -354,9 +394,6 @@ function calcule_logo_document($id_document, $doubdoc, &$doublons, $flag_fichier
 	$id_vignette = $row['id_vignette'];
 	$fichier = $row['fichier'];
 	$mode = $row['mode'];
-
-	// Lien par defaut = l'adresse du document
-	## if (!$lien) $lien = $fichier;
 
 	// Y a t il une vignette personnalisee ?
 	if ($id_vignette) {
@@ -374,8 +411,20 @@ function calcule_logo_document($id_document, $doubdoc, &$doublons, $flag_fichier
 	}
 
 	// taille maximum [(#LOGO_DOCUMENT{300,52})]
-	list($x,$y) = split(',', ereg_replace("[}{]", "", $params)); 
+	if ($params
+	AND preg_match('/{\s*(\d+),\s*(\d+)\s*}/', $params, $r)) {
+		$x = intval($r[1]);
+		$y = intval($r[2]);
+	}
 
+	// Retrouver l'extension et le type mime
+	$ex = spip_abstract_fetch(spip_abstract_select(
+		array('extension', 'mime_type'),
+		array('spip_types_documents'),
+		array("id_type = " . intval($id_type))));
+	$extension = $ex['extension'];
+	$mime = $ex['mime_type'];
+	if (!$extension) $extension = 'txt';
 
 	if ($logo AND @file_exists($logo)) {
 		if ($x OR $y)
@@ -386,13 +435,6 @@ function calcule_logo_document($id_document, $doubdoc, &$doublons, $flag_fichier
 		}
 	}
 	else {
-		// Retrouver l'extension
-		$extension = spip_abstract_fetch(spip_abstract_select(array('extension'),
-			array('spip_types_documents'),
-			array("id_type = " . intval($id_type))));
-		$extension = $extension['extension'];
-		if (!$extension) $extension = 'txt';
-
 		// Pas de vignette, mais un fichier image -- creer la vignette
 		if (strstr($GLOBALS['meta']['formats_graphiques'], $extension)) {
 		  if ($img = copie_locale($fichier)
@@ -426,32 +468,14 @@ function calcule_logo_document($id_document, $doubdoc, &$doublons, $flag_fichier
 
 	// Calculer le code html complet (cf. calcule_logo)
 	$logo = inserer_attribut($logo, 'alt', '');
-	$logo = inserer_attribut($logo, 'style', 'border-width: 0px;');
 	$logo = inserer_attribut($logo, 'class', 'spip_logos');
 	if ($align)
 		$logo = inserer_attribut($logo, 'align', $align);
 
 	if ($lien)
-		$logo = "<a href='$lien'>$logo</a>";
+		$logo = "<a href='$lien' type='$mime'>$logo</a>";
 
 	return $logo;
-}
-
-
-// fonction appelee par la balise #EMBED
-function calcule_embed_document($id_document, $filtres, &$doublons, $doubdoc) {
-	if ($doubdoc && $id_document) $doublons["documents"] .= ', ' . $id_document;
-	return embed_document($id_document, $filtres, false);
-}
-
-// cherche les documents numerotes dans un texte traite par propre()
-// et affecte les doublons['documents']
-function traiter_doublons_documents(&$doublons, $letexte) {
-	if (preg_match_all(
-	',<(span|div\s)[^>]*class=["\']spip_document_([0-9]+) ,',
-	$letexte, $matches, PREG_PATTERN_ORDER))
-		$doublons['documents'] .= "," . join(',', $matches[2]);
-	return $letexte;
 }
 
 
@@ -459,15 +483,17 @@ function traiter_doublons_documents(&$doublons, $letexte) {
 // car en fait ce sont des arguments pas des filtres.
 // Si le besoin s'en fait sentir, il faudra recuperer la 2e moitie du tableau 
 
+// http://doc.spip.org/@argumenter_balise
 function argumenter_balise($fonctions, $sep) {
   $res = array();
   if ($fonctions)
-    foreach ($fonctions as $f) $res[] =
-      str_replace('\'', '\\\'', str_replace('\\', '\\\\',$f[0]));
+		foreach ($fonctions as $f)
+			$res[] = str_replace('\'', '\\\'', str_replace('\\', '\\\\',$f[0]));
   return ("'" . join($sep, $res) . "'");
 }
 
 // fonction appelee par la balise #NOTES
+// http://doc.spip.org/@calculer_notes
 function calculer_notes() {
 	$r = $GLOBALS["les_notes"];
 	$GLOBALS["les_notes"] = "";
@@ -477,11 +503,13 @@ function calculer_notes() {
 }
 
 // Renvoie le titre du "lien hypertexte"
+// http://doc.spip.org/@construire_titre_lien
 function construire_titre_lien($nom,$url) {
 	return typo(supprimer_numero(calculer_url($url, $nom, 'titre')));
 }
 
 // Ajouter "&lang=..." si la langue de base n'est pas celle du site
+// http://doc.spip.org/@lang_parametres_forum
 function lang_parametres_forum($s) {
 	// ne pas se fatiguer si le site est unilingue (plus rapide)
 	if (strstr($GLOBALS['meta']['langues_utilisees'], ',')
@@ -501,6 +529,7 @@ function lang_parametres_forum($s) {
 
 // La fonction presente dans les squelettes compiles
 
+// http://doc.spip.org/@spip_optim_select
 function spip_optim_select ($select = array(), $from = array(), 
 			    $where = array(), $join=array(),
 			    $groupby = '', $orderby = array(), $limit = '',
@@ -551,6 +580,7 @@ function spip_optim_select ($select = array(), $from = array(),
 
 //condition suffisante (mais non necessaire) pour qu'une jointure soit inutile
 
+// http://doc.spip.org/@spip_optim_joint
 function spip_optim_joint($cle, $exp)
 {
 	if (!is_array($exp))

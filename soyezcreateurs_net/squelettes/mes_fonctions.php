@@ -343,4 +343,51 @@ function annee_scolaire($ladate) {
 	if ($mois <= 8) $annee -= 1;
 	return $annee;
 }
+
+function aff_img_propre($src, $alt) {
+	if ($src) {
+		$width = extraire_attribut($src, 'width');
+		$height = extraire_attribut($src, 'height');
+		$src = extraire_attribut($src, 'src');
+		if ($link) {
+			return "<a href=\"$link\" id=\"logo\"><img$classe src=\"$src\" width=\"$width\" height=\"$height\" alt=\"$alt\" /></a>";
+		} else {
+			return "<img$classe src=\"$src\" width=\"$width\" height=\"$height\" alt=\"$alt\" />";
+		}
+	}
+}
+
+function logo_swf_or_img($src, $width, $height, $alt='', $link='', $classe='', $noobject='') {
+	if ($classe) $classe = " class=\"$classe\"";
+	if (strpos($src, '.swf')) {
+		preg_match("/.*<param name='movie' value='(.*)' \/>/", $src, $matches);
+		$src = $matches[1];
+		$noobject = aff_img_propre($noobject, $alt);
+		include_spip('inc/swfheader');
+		$swf = new swfheader();
+		$swf->loadswf($src);
+		if ($swf->valid) {
+			$taille_origine[0] = $swf->width;
+			$taille_origine[1] = $swf->height;
+			list ($width,$height, $ratio) = image_ratio($taille_origine[0], $taille_origine[1], $width, $height);
+			return "<object classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' 
+  codebase='http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0' 
+  width='$width' height='$height' type='application/x-shockwave-flash'$classe>
+  <param name='movie' value='$src' />
+  <param name='quality' value='high' />
+  <!--[if !IE]>-->
+  <object type='application/x-shockwave-flash' 
+    data='$src' 
+    width='$width' height='$height'$classe>
+	<param name='movie' value='$src' />
+	<param name='quality' value='high' />
+	$noobject
+  </object>
+  <!--<![endif]-->
+  </object>";
+		}
+	} else {
+		return aff_img_propre($src, $alt);
+	}
+}
 ?>
