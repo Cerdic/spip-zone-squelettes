@@ -253,11 +253,15 @@
 		syndic_a_jour($id);
 	}
 
-	// Calcul du $delais optimal (on est tjs a jour, mais quand meme en cache)
+	// Calcul du delais optimal (on est tjs a jour, mais quand meme en cache)
 	// valeur max = 15 minutes (900s) (et on hacke #ENV{max_maj} pour affichage
 	// de "Derniere syndication..." en pied de page).
 	$_GET['max_maj'] = @filemtime(_DIR_SESSIONS.'syndic.lock');
-	$delais= min(900,max(0,time()-$_GET['max_maj']));
+	if ($_GET['max_maj'] > lire_meta('derniere_modif')) {
+		include_spip('inc/meta');
+		ecrire_meta('derniere_modif', $_GET['max_maj']);
+		ecrire_metas();
+	}
 	$_GET['max_maj'] = date('Y-m-d H:i:s', $_GET['max_maj']); # format SPIP
 
 	// On ne veut pas de cache navigateur, pour le "*" de synchro et pour
