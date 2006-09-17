@@ -33,8 +33,33 @@
 
 	[(#REM) Construction du menu auxiliaire de la page sommaire]
 	<div class="menu_auxiliaire">
-		<ul>
-			<li>La boussole de BliP : Cette page centralise les ressources sur le squelette BliP</li>
+		<ul>		
+			[(#ENV{tri}|=={'developpement'}|?{
+			<li><a class="active" href="[(#URL_PAGE{blip}|parametre_url{'tri','developpement'})]">d&eacute;veloppement</a></li>
+			,<li><a href="[(#URL_PAGE{blip}|parametre_url{'tri','developpement'})]">d&eacute;veloppement</a></li>
+			})]
+			
+			[(#ENV{tri}|=={'utilisateurs'}|?{
+			<li><a class="active" href="[(#URL_PAGE{blip}|parametre_url{'tri','utilisateurs'})]">utilisateurs</a></li>
+			,<li><a href="[(#URL_PAGE{blip}|parametre_url{'tri','utilisateurs'})]">utilisateurs</a></li>
+			})]
+
+			[(#ENV{tri}|=={'discussions'}|?{
+			<li><a class="active" href="[(#URL_PAGE{blip}|parametre_url{'tri','discussions'})]">discussions</a></li>
+			,<li><a href="[(#URL_PAGE{blip}|parametre_url{'tri','discussions'})]">discussions</a></li>
+			})]
+
+			[(#ENV{tri}|=={''}|?{<li><a class="active" href="[(#URL_PAGE{blip}|parametre_url{'tri','documentation'})]">documentation</a></li>
+			, [(#ENV{tri}|=={'documentation'}|?{<li><a class="active" href="[(#URL_PAGE{blip}|parametre_url{'tri','documentation'})]">documentation</a></li>
+			,<li><a href="[(#URL_PAGE{blip}|parametre_url{'tri','documentation'})]">documentation</a></li>})]
+			})]
+			
+			[(#ENV{tri}|=={'decouvrir'}|?{
+			<li><a class="active" href="http://www.cent20.net/spip.php?article100">d&eacute;couvrir</a></li>
+			,<li><a href="http://www.cent20.net/spip.php?article100">d&eacute;couvrir</a></li>
+			})]
+			
+			<li>Le squelette BliP : </li>
 		</ul>
 	</div><!-- fin menu_auxiliaire-->
 
@@ -42,88 +67,49 @@
 	[(#REM) Construction du contenu de la page sommaire en fonction des paramètres passés dans la variable tri]
 	<div class="contenu">
 
+		[(#ENV{tri}|!={'developpement'}|?{'',' '})<INCLURE{fond=blip_developpement}{lang}>]
+		[(#ENV{tri}|!={'utilisateurs'}|?{'',' '})<INCLURE{fond=blip_utilisateurs}{tri=#ENV{tri}}{lang}>]
+		[(#ENV{tri}|!={'discussions'}|?{'',' '})<INCLURE{fond=blip_discussions}{lang}>]
+		[(#ENV{tri}|!={'documentation'}|?{'',' '})<INCLURE{fond=blip_documentation}{lang}>]
+		[(#ENV{tri}|!={''}|?{'',' '})<INCLURE{fond=blip_documentation}{lang}>]		
 
-	
-
-		<BOUCLE_rubriques_spip(RUBRIQUES) {id_rubrique=4} {par titre}>
-			<div class="element"><div class="element"><div class="imgfloatright">[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|reduire_image{100,0})]</div><div class="puce_principale">&nbsp;</div><div class="texte_principal">
-			<h1><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h1>#TEXTE	
-			
-			[(#REM) Articles de la rubrique ]			
-			<B_articles_rubrique_spip>
-			<div class="element_sur">			
-			<h3>Articles de la rubrique</h3>	
-			<BOUCLE_articles_rubrique_spip(ARTICLES){id_rubrique}{par date}>
-				<h5>[<span class="gris_clair">(#SURTITRE) </span>]<a href="#URL_ARTICLE[&amp;var_recherche=(#RECHERCHE)]" >[(#TITRE|supprimer_numero)]</a>[<span class="gris_clair"> (#SOUSTITRE) </span>]</h5>
-			</BOUCLE_articles_rubrique_spip>	
-			</div>	
-			</B_articles_rubrique_spip>			
-			
-			</div></div></div>
-		</BOUCLE_rubriques_spip>	
-
-		
-		
-		
-		<BOUCLE_rubriques_blip(RUBRIQUES) {id_parent=76} {par titre}>
-			<div class="element"><div class="element"><div class="imgfloatright">[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|reduire_image{100,0})]</div><div class="puce_principale">&nbsp;</div><div class="texte_principal">
-			<h1><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h1>#TEXTE
-			
-			[(#REM) Articles de la rubrique ]			
-			<B_articles_rubrique_blip>
-			<div class="element_sur">			
-			<h3>Articles de la rubrique</h3>	
-			<BOUCLE_articles_rubrique_blip(ARTICLES){id_rubrique}{par date}>
-				<h5>[<span class="gris_clair">(#SURTITRE) </span>]<a href="#URL_ARTICLE[&amp;var_recherche=(#RECHERCHE)]" >[(#TITRE|supprimer_numero)]</a>[<span class="gris_clair"> (#SOUSTITRE) </span>]</h5>
-			</BOUCLE_articles_rubrique_blip>	
-			</div>	
-			</B_articles_rubrique_blip>
-			
-			[(#REM) Liens de la rubrique ]
-			<B_liens_rubrique>
-			<div class="element_sur">
-			<h3>Liens de la rubrique</h3>
-			<BOUCLE_liens_rubrique(SITES){id_rubrique}{par nom_site}{pagination 25}>
-				<h5>
-				[<a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut|entites_html|couper{200})]">(#NOM_SITE|supprimer_numero)</a>]
-				</h5>
-			</BOUCLE_liens_rubrique>
-			</div>
-			</B_liens_rubrique>
-			
-			
-			</div></div></div>
-		</BOUCLE_rubriques_blip>		
 	</div><!-- fin contenu-->	
 
 	
 	
 	[(#REM) Inclusion de la Barre latérale du site, construite dynamiquement ]
 	<div class="barre_laterale">
-
-	<BOUCLE_sites_blip(SITES) {titre_mot=BliP}>
-		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal"><h1><a href="#URL_SITE">#NOM_SITE</a></h1>		
-		<div class="element_sur_bis">		
-			<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {0,8}>
-			<h5 class="nopadding"><a href="#URL_ARTICLE">#TITRE</a></h5>
-			<h5>[Le (#DATE|affdate)][ (#DATE|affdate{G:i})] </h5>				
-			</BOUCLE_articles>			
-		</div></div></div>		
-	</BOUCLE_sites_blip>				
-
+	
+	<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal"><h1>Plan de la documentation</h1>		
+	<div class="element_sur_bis">	
+	<BOUCLE_rubriques_blip(RUBRIQUES) {id_parent=76} {par titre}>
+	<h5 class="nopadding"><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h5>
+	</BOUCLE_rubriques_blip>
+	</div></div></div>
+	
+	<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal"><h1>BliP en quelques mots</h1>		
+	<div class="element_sur_bis">
+	<p><a href="http://www.cent20.net/spip.php?article100">BliP</a> est un squelette-plugin sous licence GPL conçu pour fonctionner avec le système de publication français <a href="http://fr.wikipedia.org/wiki/SPIP">SPIP</a>.</p>
+	<p>Vous êtes actuellement sur la Boussole de BliP, un ensemble de page conçu pour vous permettre d'accéder rapidement aux l'informations utiles sur le squelette BliP</p>
+	<p>La <a href="http://www.cent20.net/spip.php?page=blip&tri=documentation">documentation</a> est publiée sur cent20.net, et vous pourrez poser vos questions sur le <a href="http://www.cent20.net/spip.php?article102">groupe de discussion</a> crée à cet effet.</p>
+	<p>Le développement lui est réalisé collaborativement sur <a href="http://zone.spip.org/trac/spip-zone/">SPIP-Zone</a>, et pour que vous puissiez vous y retrouvez facilement, une page de <a href="http://trac.rezo.net/trac/spip-zone/wiki/cent20">raccourcis</a> est disponible.</p>
+	</div></div></div>	
+	
+	
 	<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal"><h1>Faire un don</h1>		
 	<div class="element_sur_bis">		
 	Afin d'encourager l'auteur à améliorer ce qui existe déjà et à créer d'autres applications, vous pouvez faire un don en cliquant sur le bouton ci-dessous.
 	<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="image" src="https://www.paypal.com/fr_FR/i/btn/x-click-butcc-donate.gif" border="0" name="submit" alt="Effectuez vos paiements via PayPal : une solution rapide, gratuite et sécurisée">
-<img alt="" border="0" src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
-<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHVwYJKoZIhvcNAQcEoIIHSDCCB0QCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYCUYpZCGUtJXlHhvMH+WDlXXlsAn+g5LQnzTsTM9jvN0eNOzZo6G+JH+VlevE7hyk3YOKjy7uzYMQFbmLkaphzu8YzQhTysYjue+uppkaq159CK3hIaYzqrL0k23ev2fEfbGaLzUjKsw1gkNeKMSMw9eKFtMW/NkLHEmTsht2vuhTELMAkGBSsOAwIaBQAwgdQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQInMjJIlmXVEqAgbDdn5MWaGahUKRp2noBfjgagOQlCfhvT2FsZVS0I42f49WA7NKSvr6PwXgggWi3HixFoSWfINrcgNj5yRDKCUZpeHixXC8T+4Kw49WURMwhdDVuvfYogWmLFfTgL2cyH+k6ebsIjySkfekW++P7cS2eTzI5mp703XNA+wnxfgQGQ+fRABS9yKlgSlRSc9GWbb3WkeYDyrO2gChA9+0KcAjnWiy5Rk/VXT+DQ1F4QBsmqqCCA4cwggODMIIC7KADAgECAgEAMA0GCSqGSIb3DQEBBQUAMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbTAeFw0wNDAyMTMxMDEzMTVaFw0zNTAyMTMxMDEzMTVaMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAwUdO3fxEzEtcnI7ZKZL412XvZPugoni7i7D7prCe0AtaHTc97CYgm7NsAtJyxNLixmhLV8pyIEaiHXWAh8fPKW+R017+EmXrr9EaquPmsVvTywAAE1PMNOKqo2kl4Gxiz9zZqIajOm1fZGWcGS0f5JQ2kBqNbvbg2/Za+GJ/qwUCAwEAAaOB7jCB6zAdBgNVHQ4EFgQUlp98u8ZvF71ZP1LXChvsENZklGswgbsGA1UdIwSBszCBsIAUlp98u8ZvF71ZP1LXChvsENZklGuhgZSkgZEwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tggEAMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEFBQADgYEAgV86VpqAWuXvX6Oro4qJ1tYVIT5DgWpE692Ag422H7yRIr/9j/iKG4Thia/Oflx4TdL+IFJBAyPK9v6zZNZtBgPBynXb048hsP16l2vi0k5Q2JKiPDsEfBhGI+HnxLXEaUWAcVfCsQFvd2A1sxRr67ip5y2wwBelUecP3AjJ+YcxggGaMIIBlgIBATCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwCQYFKw4DAhoFAKBdMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTA2MDgxNzE5MTkxM1owIwYJKoZIhvcNAQkEMRYEFPu3Vp6j5V3pC4opbgbWpF11b1cmMA0GCSqGSIb3DQEBAQUABIGAjiK6w1JQInQSXINw2jIv6LoneBsuPJIqfONQURB+HUbKEipA9uyNRBpUGF4lVfFZBYdinSLt6xqOXsbmh/Sz0PjEP4tbbWDjiy1n30L4AfjsNt43hmAUZVPys69hLlpYAhruiIJKpXQZRc7VbRJvFoxJyoxu4NAPTejqGjp2hrQ=-----END PKCS7-----
-">
-</form>
-	
+	<input type="hidden" name="cmd" value="_s-xclick">
+	<input type="image" src="https://www.paypal.com/fr_FR/i/btn/x-click-butcc-donate.gif" border="0" name="submit" alt="Effectuez vos paiements via PayPal : une solution rapide, gratuite et sécurisée">
+	<img alt="" border="0" src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
+	<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+	">
+	</form>	
 	</div></div></div>	
-
+	
+	
+	
 	</div><!-- fin barre_laterale-->
 
 
