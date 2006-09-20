@@ -1,5 +1,7 @@
+<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<!--Ã©liminer les forums des rubriques et articles appartenant aux autres-->secteurs
+<!--éliminer les forums des rubriques et articles appartenant aux autres
+secteurs-->
 <BOUCLE_contexte(RUBRIQUES){id_rubrique}>
 <BOUCLE_secteurs(RUBRIQUES){exclus}{racine}>
 <BOUCLE_supp(RUBRIQUES){id_secteur}>
@@ -18,20 +20,17 @@
 </BOUCLE_contexte>
 <html lang="#LANG">
 <head>
-<title>[#NOM_SITE_SPIP] - [<:phpbb:recherch:>] </title>
-<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
-
-<!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
-
-<link rel="stylesheet" href="spip_style.css" type="text/css">
-
-
-<!-- Les feuilles de style specifiques aux presents squelettes -->
-<link rel="stylesheet" href="[(#CHEMIN{spip_forum.css}|direction_css)]" type="text/css">
-
-<!-- Lien vers le backend pour navigateurs eclaires -->
-<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="spip.php?page=backend">
-
+	<title>[#NOM_SITE_SPIP] - [<:phpbb:recherch:>] </title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
+	
+	<!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
+	<link rel="stylesheet" href="[(#CHEMIN{spip_style.css}|direction_css)]" type="text/css">
+	
+	<!-- Les feuilles de style specifiques aux presents squelettes -->
+	<link rel="stylesheet" href="[(#CHEMIN{themes/defaut/spip_forum.css}|direction_css)]" type="text/css">
+	
+	<!-- Lien vers le backend pour navigateurs eclaires -->
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}">
 </head>
 
 <body id="resultforum" dir="#LANG_DIR">
@@ -42,7 +41,7 @@
 
 	<INCLURE{fond=entete_BB}{id_rubrique}>
 
-	<div id="corps"> <!-- Section contenant les donnÃ©es -->
+	<div id="corps"> <!-- Section contenant les données -->
 
 		[(#MODELE{spipbb_chemindefer}{id_rubrique})]
 
@@ -78,7 +77,7 @@
         				$closed='non'; 
 								
 				<BOUCLE_reponsesalt(FORUMS){id_thread}{plat}> 
-					<BOUCLE_reponse_fermealt(FORUMS){id_forum}{titre_mot=FermÃ©}>
+					<BOUCLE_reponse_fermealt(FORUMS){id_forum}{titre_mot=Fermé}>
 						$closed='[(#ID_FORUM|texte_script)]'; 
 					</BOUCLE_reponse_fermealt>
 				</BOUCLE_reponsesalt>
@@ -161,7 +160,7 @@
         				$closed='non'; 
 								
 				<BOUCLE_reponsesalt2(FORUMS){id_thread}{plat}> 
-					<BOUCLE_reponse_fermealt2(FORUMS){id_forum}{titre_mot=FermÃ©}>
+					<BOUCLE_reponse_fermealt2(FORUMS){id_forum}{titre_mot=Fermé}>
 						$closed='[(#ID_FORUM|texte_script)]'; 
 					</BOUCLE_reponse_fermealt2>
 				</BOUCLE_reponsesalt2>
@@ -213,12 +212,10 @@
       <//B_art_test>
 
 	</div> <!-- Fin de la section Corps -->
+
+	<INCLURE{fond=pied_BB}{id_rubrique}>
 	
-<INCLURE{fond=pied_BB}{id_rubrique}>
-
-</div> <!-- Fin de la section contenant -->
-
-
-
+	</div> <!-- Fin de la section contenant -->
 </body>
 </html> 
+</BOUCLE_rubrique>
