@@ -13,8 +13,8 @@
 	$quota_cache = 20;
 
 	# pour la page www.spip.fr/download
-	define('VERSION_STABLE', '1.9.0');
-	define('VERSION_STABLE_URL', 'spip-dev/DISTRIB/SPIP-v1-9-0.zip');
+	define('VERSION_STABLE', '1.9.1');
+	define('VERSION_STABLE_URL', 'spip-dev/DISTRIB/spip.zip');
 
 	$type_urls = 'trad';
 
