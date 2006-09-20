@@ -61,11 +61,11 @@ $fichier = '';
 
 if ($infos['statut']=="0minirezo" OR $infos[statut]=="1comite") {
   $racine="auton$infos[id_auteur]";
-	if (file_exists("IMG/$racine.gif")) {
-		$fichier = "$racine.gif";
+	if (file_exists("IMG/$racine.png")) {
+		$fichier = "$racine.png";
 		}
-		else if (file_exists("IMG/$racine.jpg")) {
-				 $fichier = "$racine.jpg";
+		else if (file_exists("IMG/$racine.png")) {
+				 $fichier = "$racine.png";
 				 }
 		else if (file_exists("IMG/$racine.png")) {
 				 $fichier = "$racine.png";
