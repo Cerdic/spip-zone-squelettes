@@ -1,5 +1,5 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <BOUCLE_sujet_principal(FORUMS){id_forum}{doublons}>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="#LANG">
 <head>
 <title>[#NOM_SITE_SPIP] - #TITRE</title>
@@ -19,70 +19,16 @@
 
 	<div id="contenant"> <!-- Section contenant tout le reste -->
 
-<INCLURE{fond=entete_BB}{id_article}>
+		<INCLURE{fond=entete_BB}{id_article}>
 
 		<div id="corps"> <!-- Section contenant les informations -->
-		<?php $parametre_forum='#PARAMETRES_FORUM' ?>
-			
-		<h2><a href="spip.php?page=voirsujet&amp;id_forum=#ID_FORUM">#TITRE</a></h2>
 
-		<?php $sujet_clos=0 ?>
-		<!--Déterminer si le forum est fermé-->
-		<BOUCLE_etat(ARTICLES){id_article}{titre_mot=Fermé}>
-		<?php $sujet_clos=1 ?>
-		<p class="nav"><BOUCLE_article_cdfca(ARTICLES){id_article}>
-		<BOUCLE_chemindeferca(HIERARCHIE){id_article}{0,1}{" -&gt; "}><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></BOUCLE_chemindeferca> -&gt; <a href="#URL_ARTICLE">
-		[(#TITRE|supprimer_numero) (<:phpbb:forum_ferme:>)]</a></BOUCLE_article_cdfca></p>
+			<h2><a href="#SELF">#TITRE</a></h2>
+
+			[(#MODELE{spipbb_chemindefer}{id_article})]
+
 		<hr class="clr" /> <!-- Permet l'affichage correctement pour certaines versions de safari -->
-		<table class="spipforum">
-		</BOUCLE_etat>
-		
 
-		<!-- le message qui cloture la discussion -->
-		<BOUCLE_reponse_ferme(FORUMS){id_thread}{plat}{titre_mot=Fermé}{doublons}>
-
-		<?php if($sujet_clos==0) { ?>
-		<p class="nav"><BOUCLE_article_cdfc2(ARTICLES){id_article}>
-		<BOUCLE_chemindeferc2(HIERARCHIE){id_article}{0,1}{" -&gt; "}><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></BOUCLE_chemindeferc2> -&gt; 
-		<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></BOUCLE_article_cdfc2></p>
-		<hr class="clr" /> <!-- Permet l'affichage correctement pour certaines versions de safari -->
-		<table class="spipforum"><?php } ?>
-		<?php $sujet_clos=1 ?>
-			<thead>
-			<tr class="clos">
-				<th class="tautvs"><:phpbb:sujet_auteur:></th>
-				<th class="tmsgvs"><:phpbb:ferme:></th>
-			</tr>
-			</thead>
-			<tr class="clos">
-				<td  class="autvs" id="forum#ID_FORUM"><B_auteurpc2><BOUCLE_auteurpc2(AUTEURS){id_auteur}{tout}><p><a href="spip.php?page=profil_BB&amp;id_auteur=#ID_AUTEUR&amp;id_article=#ID_ARTICLE">#NOM<br/>[(#NOM|afficher_avatar)]</a></p>
-				</BOUCLE_auteurpc2>
-				
-				<BOUCLE_modo(AUTEURS){id_article}>[<p>(#ID_AUTEUR|=={#_auteurpc2:ID_AUTEUR}|?{'(<:phpbb:moderateurs:>)',''})</p>]</BOUCLE_modo>
-				
-				</B_auteurpc2><p><a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{<:phpbb:anonyme:>})]</a></p><//B_auteurpc2>
-		
-				</td>
-				<td class="tabvs">
-	        			<ul class="titrevs">
-	        				<li class="tdatevs"><:phpbb:message_date:>: [(#DATE|nom_jour)] [(#DATE|affdate),] [(#DATE|heures)]:[(#DATE|minutes)]</li>
-	        				<li class="ttitrevs"><:phpbb:message_sujet:>: #TITRE</li>
-	        			</ul>
-					<div class="txtvs">
-						[(#TEXTE)]
-					</div>
-				</td>
-			</tr>
-			<tr class="clos"> 
-				<td class="retourvs"><a href="#top"><:phpbb:revenir_haut:></a></td>
-				<td class="videvs">&nbsp;</td>
-			</tr>
-		</BOUCLE_reponse_ferme>
-
-	
-		
-		<!-- FIN de sujet fermé  -->
-		<?php if($sujet_clos==0){ ?>
 		<ul class="actionforum">
 			<li class="poster"><BOUCLE_forum_pere(ARTICLES){id_article}><?php $id_article='[(#ID_ARTICLE|texte_script)]'; ?>[<a href="spip.php?page=poster&amp;(#PARAMETRES_FORUM)" title="<:phpbb:sujet_nouveau:>"><span><:phpbb:sujet_nouveau:></span>&nbsp;</a>]</BOUCLE_forum_pere></li>
 			<li class="repondre">[<a href="spip.php?page=poster&amp;(#PARAMETRES_FORUM)" title="<:phpbb:messages_repondre:>"><span><:phpbb:messages_repondre:></span>&nbsp;</a>]</li>	
@@ -92,7 +38,6 @@
 		<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></BOUCLE_article_cdf></p>
 		<hr class="clr" /> <!-- Permet l'affichage correctement pour certaines versions de safari -->
 		<table class="spipforum">
-		<?php } ?>
 			<thead>
 			<tr class="row1">
 				<th class="tautvs"><:phpbb:sujet_auteur:></th>
@@ -173,8 +118,6 @@
 			<li class="repondre">[<a href="spip.php?page=poster&amp;(#PARAMETRES_FORUM)" title="<:phpbb:messages_repondre:>"><span><:phpbb:messages_repondre:></span>&nbsp;</a>]</li>	
 		</ul>
 		<?php } ?>
-		<p class="nav"><BOUCLE_article_cdf2(ARTICLES){id_article}>
-		<BOUCLE_chemindefer2(HIERARCHIE){id_article}{0,1}{" -&gt; "}><a href="#URL_RUBRIQUE" >[(#TITRE|supprimer_numero)]</a></BOUCLE_chemindefer2> -&gt; <a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></BOUCLE_article_cdf2></p>
 		<?php if ($etat=='0minirezo'){?><!-- Modération pour les admin  -->
 		<ul class="actionadm">
 			<li class="admsurveiller"><a title="<:phpbb:admsurveiller:>"><span><:phpbb:admsurveiller:></span>&nbsp;</a></li>
@@ -184,9 +127,12 @@
 			<li class="admseparer"><a title="<:phpbb:admseparer:>"><span><:phpbb:admseparer:></span>&nbsp;</a></li>	
 		</ul>
 		<?php } ?>
+		
+			[(#MODELE{spipbb_chemindefer}{id_article})]
+
 	</div> <!-- Fin de la section "corps" -->
 
-<INCLURE{fond=pied_BB}{id_forum}>
+	<INCLURE{fond=pied_BB}{id_forum}>
 
 </div><!-- fin de la Section contenant -->
 </body>
