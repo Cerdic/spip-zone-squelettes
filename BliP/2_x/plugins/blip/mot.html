@@ -39,6 +39,8 @@
 	[(#REM) Construction du contenu de la page mots clefs]
 	<div class="contenu">
 	
+		[(#REM) Inclusion du debut de page, qui se construit dynamiquement ]
+		<INCLURE{fond=inc-surpage}{page_actuelle=mot}{id_actuel=#ID_MOT}{lang}>
 
 		[(#REM) Mot clefs en cours ]
 		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
@@ -84,6 +86,9 @@
 		[<p>(#PAGINATION)</p>]
 		</div></div></div>
 		</B_liens>	
+		
+		[(#REM) Inclusion du debut de page, qui se construit dynamiquement ]
+		<INCLURE{fond=inc-souspage}{page_actuelle=mot}{id_actuel=#ID_MOT}{lang}>
 	
 	</div><!-- fin contenu -->
 
@@ -163,10 +168,18 @@
 
 
 	<div class="contenu">
+	
+		[(#REM) Inclusion du debut de page, qui se construit dynamiquement ]
+		<INCLURE{fond=inc-surpage}{page_actuelle=mot}{lang}>
+	
 		[(#ENV{tri}|!={'theme'}|?{'',' '})<INCLURE{fond=mot_theme}{lang}>]
 		[(#ENV{tri}|!={'popularite'}|?{'',' '})<INCLURE{fond=mot_popularite}{tri=#ENV{tri}}{lang}>]
 		[(#ENV{tri}|!={'alphabetique'}|?{'',' '})<INCLURE{fond=mot_alphabetique}{lang}>]
 		[(#ENV{tri}|!={''}|?{'',' '})<INCLURE{fond=mot_theme}{lang}>]
+		
+		[(#REM) Inclusion de la fin de page, qui se construit dynamiquement ]
+		<INCLURE{fond=inc-souspage}{page_actuelle=mot}{lang}>
+		
 	</div><!-- fin contenu -->
 
 	[(#REM) Inclusion de la Barre latérale du site, construite dynamiquement ]
