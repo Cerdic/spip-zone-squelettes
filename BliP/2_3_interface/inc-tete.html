@@ -1,6 +1,5 @@
 #CACHE{24*3600}
 <div id="tete">
-
 [
 (#REM) Construire le surtitre du site à partir de la table "spip_blip" et des éléments ayant un champ "position" commençant par "surtitre"
 ]
@@ -21,6 +20,9 @@
 		[(#TYPE|!={'statique'}|?{'',
 			<div[ class="(#STYLE)"]>[<b>(#TITRE) </b>][<i>(#DESCRIPTIF) </i>]#TEXTE</div>
 		})]	
+		[(#TYPE|!={'lienpage'}|?{'',' '})
+		<ul><li id="menu_principal_#TEXTE"><a href="#URL_PAGE{#TEXTE}" [title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a></li></ul>
+		]	
 		[(#TYPE|!={'dynamique'}|?{'',' '})
 			<INCLURE{fond=#TEXTE}{lang}>
 		]	
