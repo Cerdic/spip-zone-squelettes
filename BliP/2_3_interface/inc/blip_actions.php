@@ -147,9 +147,9 @@
                 echo "<td><b>".$elements['titre']."</b><br /><i>".$elements['descriptif']."</i><br />".$elements['texte']."</td>";
             } else {
                 if ( $elements['position'] == 'menu_principal') {
-                    echo "<td><b>".$elements['titre']."</b><br /><i>".$elements['descriptif']."</i><br />".$elements['texte'].".html</td>";
+                    echo "<td><b>".$elements['titre']."</b><br /><i>".$elements['descriptif']."</i><br />".$elements['texte']."</td>";
                 } else {
-                    echo "<td>".$elements['texte'].".html</td>";
+                    echo "<td>".$elements['texte']."</td>";
                 }
             }
             if ( $restriction[1] =='') {
@@ -556,7 +556,7 @@ END;
     echo "<br />";
 
     debut_cadre_relief("", false, "", bouton_block_invisible('blip_restriction')._T('blipconfig:blip_restriction_info'));
-    echo BliP_generer_option_select('position', $blipconfig_positions, $formval['position'], "blip_update_pos(this)");
+    echo BliP_generer_option_select('position', $blipconfig_positions, $formval['position']);
     echo debut_block_invisible('blip_restriction');
     echo "<br />";
     echo '<b>2.1 Restreindre l\'affichage &agrave; l\'ID n&deg; </b><input size="6" maxlength="6" name="id_item" type="text" id="id_item" value="'.$formval['id_item'].'" /><br />';
@@ -601,8 +601,8 @@ END;
     echo "</div>\n";
 
     echo '<div id="Layer_pages" style="display: '.$display_pages.'; margin-top: 1px;">';
-    echo 'Page '.BliP_generer_option_select('module', $blipconfig_pages, $formval['texte']);
-    echo 'Parametre <input name="parametre" type="text" value="" size="5" />';
+    echo 'Page '.BliP_generer_option_select('page', $blipconfig_pages, $formval['texte']);
+//    echo 'Parametre <input name="parametre" type="text" value="" size="5" />';
     echo "</div>\n";
 
     echo debut_block_invisible('blip_texte');
@@ -645,6 +645,18 @@ function BliP_action_formulaire() {
     // attention à ne par confondre les variables $_POST['action'] et $_GET['action']
     if (isset($_POST['action'])) {
         $valeurs = BliP_initialiser_valeurs_formulaire();
+
+
+        switch ($_POST['type']) {
+        	case 'lienpage' :
+				$_POST['texte'] = $_POST['page'].$_POST['parametre'];
+				break;
+			case 'dynamique' :
+				$_POST['texte'] = $_POST['module'];
+				break;
+			default :
+		}
+
         // filtre antiparasite : ne retenir que les valeurs gérables par le système
         foreach ($_POST as $var => $val) {
             if (array_key_exists($var, $valeurs)) {
@@ -684,8 +696,8 @@ function BliP_action_formulaire() {
             echo " | ";
             echo "<a href='".generer_url_ecrire('blip_modifier',"action=creer")."'>Ajouter un nouvel &eacute;l&egrave;ment</a>";
         } else {
-        echo "ERREUR !!! La requete sql suivante a échoué:<br /><br />";
-        echo $req;
+	        echo "ERREUR !!! La requete sql suivante a échoué:<br /><br />";
+	        echo $req;
         }
     }
 }
