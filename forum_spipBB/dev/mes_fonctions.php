@@ -185,7 +185,6 @@ $nb_mess = spip_num_rows($result_auteurs);
  *  
  * Pour toute suggestion, remarque, proposition d'ajout
  * reportez-vous au forum de l'article :
- * http://www.spip-contrib.net/Pagination,663
 */
 
 function barre_forum_citer($texte, $lan)

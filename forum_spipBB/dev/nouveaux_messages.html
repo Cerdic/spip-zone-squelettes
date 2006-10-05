@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<!--éliminer les forums des rubriques et articles appartenant aux autres secteurs -->
+<!--eliminer les forums des rubriques et articles appartenant aux autres secteurs -->
 <BOUCLE_contexte(RUBRIQUES){id_rubrique}>
 <BOUCLE_secteurs(RUBRIQUES){exclus}{racine}>
 <BOUCLE_supp(RUBRIQUES){id_secteur}>
@@ -23,7 +23,7 @@
 
 <!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
 
-<link rel="stylesheet" href="spip_style.css" type="text/css">
+<link rel="stylesheet" href="[(#CHEMIN{spip_style.css})]" type="text/css">
 
 <!-- Les feuilles de style specifiques aux presents squelettes -->
 <link rel="stylesheet" href="[(#CHEMIN{themes/defaut/spip_forum.css}|direction_css)]" type="text/css">
@@ -44,8 +44,9 @@
 	<div id="corps"> <!-- Section contenant les données -->
 	<p class="nav"><a  href="rubrique#ID_RUBRIQUE"><:titre_forum:></a></p>
 
+	<B_forums_liens>
 	<hr class="clr" /> <!-- Permet l'affichage correctement pour certaines versions de safari -->
-	<table class="spipforum">
+	<table summary="nouveaux_messages" class="spipforum">
 		<thead>
 		<tr> 
 			<th colspan="2"><:titre_forum:></th>
@@ -56,7 +57,7 @@
 		</tr>
 		</thead>
 
-		<BOUCLE_forums_liens(FORUMS){doublons}{plat}{par date}{inverse}{age<15}{debut_post,20}> 
+		<BOUCLE_forums_liens(FORUMS){doublons}{plat}{par date}{inverse}{age<15}{pagination 20}> 
 			<?php
 				$ze_titre = '[(#TITRE|texte_script)]' ;
 				$ze_titre = ereg_replace( "> ", "", $ze_titre );
@@ -88,8 +89,10 @@
 				
 			</BOUCLE_fo>
 						
-			<tr> 
-				<? echo $closed == "non"? "<td class='etatsuj normpost'>&nbsp;<span><:message:>" : " <td class='etatsuj fermpost'>&nbsp;<span><:phpbb:ferme:>" ; ?></span></td>
+			<tr>
+				<td class="etatsuj normpost">
+					<span>&nbsp;</span>
+				</td> 
 				<td class="titre"><a href="#URL_FORUM"><?php echo $titre_forum ?></a></td>
 				<td class="titresuj"><?php $titre_sujet = ereg_replace( "> ", "", $titre_sujet ); ?><a href="spip.php?page=voirsujet&amp;id_forum=<?php echo $id_sujet ?>"><?php echo $titre_sujet ?></a></td>
 				<td class="autpost"><?php echo $auteur_sujet; ?></td>
@@ -102,31 +105,12 @@
 		</table>
 
 		
-		<div class="pagination"> <!-- Section présentant la pagination -->
-	
-		<div class="page"> <!-- Section de la page -->
-		<?	
-		 $limite=20; //Limite mais pas géniale, mettre un champs suppl 	
-<BOUCLE_pagination_posts(FORUMS){doublons a}{plat}{par date}{inverse}{age<15}> </BOUCLE_pagination_posts>		
-		$total=#TOTAL_BOUCLE;
-				$nb_pages=ceil($total/$limite);
-				$debut_post=$debut_post+$limite;
-				$page_nb=$debut_post/$limite;
-</B_pagination_posts>			
-		?>
-		<p class="nav"><:phpbb:page:> <?php echo ($page_nb)? $page_nb : '1'; ?> <:phpbb:sur:> <?php echo ($nb_pages)? $nb_pages : '1'; ?></p>
-		</div>
-
-		<div class="navigapage"> <!-- Section de la liste de page -->
-		<p class="nav"><?	
-			
-				if ($total>($limite-1))
-					for ($numero = 0; $numero < $total; $numero = $numero + $limite){
-					echo "<a HREF='".$PHP_SELF."?id_article=$id_article&debut_post=$numero'>".(($numero+$limite)/$limite)."</a>, "; }
-			
-		?></p>
-		</div>
-	</div> <!-- Fin de la section -->
+		[<div class="pagination"> <!-- Section présentant la pagination -->
+			<div class="page">
+			(#PAGINATION)
+			</div>
+		</div>]
+	</B_forums_liens>
 		
 	</div> <!--Fin de section Corps-->
 
