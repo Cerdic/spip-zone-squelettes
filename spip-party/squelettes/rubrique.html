@@ -1,7 +1,7 @@
 <BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
-[(#REM) SPIP Party par Ben.spip, Gilles Vincent & IZO, bas� sur K2 et Bones ]
+[(#REM) SPIP Party par Ben.spip, Gilles Vincent & IZO, base� sur K2 et Bones ]
 <head>
 	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
 	[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
@@ -18,9 +18,6 @@
   </div>
   <hr />
   <div class="primary">
-    <div class="center">
-      <h2>#TITRE</h2>
-    </div>
     <div id="post" class="item entry">
       <div class="itemhead">
 	  	[<div class="image">(#LOGO_RUBRIQUE|right||image_reduire{75})</div>]
@@ -29,8 +26,8 @@
         #TEXTE
         <B_articles_racine>
         <ul>
-          <BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
-          <li ><a href="#URL_ARTICLE">#TITRE</a></li>
+          <BOUCLE_articles_racine(ARTICLES) {id_rubrique} {!par date}>
+          <li><a href="#URL_ARTICLE">#TITRE</a></li>
           </BOUCLE_articles_racine>
         </ul>
         </B_articles_racine>
@@ -38,11 +35,11 @@
         <ul>
           <BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
           <li>
-            <div ><a href="#URL_RUBRIQUE">#TITRE</a></div>
+            <div><a href="#URL_RUBRIQUE">#TITRE</a></div>
             <B_articles>
             <ul>
               <BOUCLE_articles(ARTICLES) {id_rubrique} {!par date}>
-              <li ><a href="#URL_ARTICLE">#TITRE</a></li>
+              <li><a href="#URL_ARTICLE">#TITRE</a></li>
               </BOUCLE_articles>
             </ul>
             </B_articles>
@@ -52,13 +49,9 @@
         </ul>
         </B_rubriques>
         </BOUCLE_secteurs>
-      </div>
- 
-      <!-- itemhead -->
-    </div>
-    <!-- post -->
-  </div>
-  <!-- primary -->
+      </div><!-- itemhead -->
+    </div><!-- post -->
+  </div><!-- primary -->
   <div class="secondary">
     <INCLURE{fond=inc_agenda}>
     <INCLURE{fond=inc_recherche}>
@@ -68,14 +61,10 @@
     <INCLURE{fond=inc_sites}>
     <INCLURE{fond=inc_syndication}>
     <div id="logo-spip"><a href="http://www.spip.net" class="spip_out"><img src="#CHEMIN{images/logo-spip.gif}" name="spip" border="0" id="spip" alt="spip"/></a></div>
-  </div>
-  <!-- secondary -->
+  </div><!-- secondary -->
   <div class="clear"><span></span></div>
-</div>
-<!-- Close Page -->
-<p id="footer">
-  <INCLURE{fond=inc_pied_de_page}>
-</p>
+</div><!-- Close Page -->
+	<INCLURE{fond=inc_pied_de_page}>
 </body>
 </BOUCLE_rubrique_principal>
 </html>
