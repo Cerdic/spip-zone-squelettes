@@ -1,44 +1,38 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
-[(#REM) Spip party par Ben.spip, Gilles Vincent & IZO, basé sur K2 et Bones ]
+[(#REM) SPIP Party par Ben.spip, Gilles Vincent & IZO, basï¿½ sur K2 et Bones ]
 <head>
-<title>#NOM_SITE_SPIP</title>
-<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
-<meta name="generator" content="#NOM_SITE_SPIP" />
-<meta name="template" content="SPIP Party 1.5" />
-<meta name="Robots" content="index,follow,all" />
-<meta name="Identifier-URL" content="#URL_SITE_SPIP" />
-<meta name="rating" content="General" />
-<meta name="revisit-after" content="15 days" />
-<INCLURE{fond=inc_head}>
+	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+	<INCLURE{fond=inc_head}>
 </head>
-<body  class=" ">
+<body>
 <div id="page">
   <div id="header">
-    <!-- <h1><a href="#URL_SITE_SPIP"></a></h1>-->
+    <!-- <h1><a href="#URL_SITE_SPIP/"></a></h1>-->
     <p class="description">
       <!--vous pouvez mettre la description du site-->
     </p>
     <ul class="menu">
-      <li class="current_page_item">[<a href="(#URL_SITE_SPIP)" title="<:accueil_site:>"><:accueil_site:></a>]</li>
+      <li class="current_page_item"><a href="#URL_SITE_SPIP/" title="<:accueil_site:>"><:accueil_site:></a></li>
       <INCLURE{fond=inc_menu-haut}>
     </ul>
   </div>
   <hr />
   <div class="primary">
-    <BOUCLE_articlesune(ARTICLES){doublons}  {titre_mot=une}{par date} {inverse} {0,2}>
+    <BOUCLE_articlesune(ARTICLES){doublons}  {titre_mot=une}{!par date} {0,2}>
     <div class="article_une">
       <div class="itemhead"> [
-        <div class="image"><a href="#URL_RUBRIQUE">(#LOGO_ARTICLE_RUBRIQUE|left||reduire_image{75})</a></div>
+        <div class="image"><a href="#URL_RUBRIQUE">(#LOGO_ARTICLE_RUBRIQUE|left||image_reduire{75})</a></div>
         ]
         <h3><a href="#URL_ARTICLE">#TITRE</a></h3>
         <span class="metadata">
         <BOUCLE_rubrique_article_une(RUBRIQUES){id_rubrique}>
-        <a href="#URL_RUBRIQUE"[title="(#TEXTE|textebrut|entites_html)"]> [(#TITRE|supprimer_numero)]</a>
+        <a href="#URL_RUBRIQUE"[ title="(#TEXTE|textebrut|entites_html)"]> #TITRE</a>
         </BOUCLE_rubrique_article_une>
         </span> <small class="metadata"><:par_auteur:>
         <BOUCLE_auteurs_articles_une(AUTEURS) {id_article} {" "}>
-        [(#NOM|supprimer_numero)]
+        #NOM
         </BOUCLE_auteurs_articles_une>
         , [(#DATE|nom_jour)] [(#DATE|affdate)]
         <BOUCLE_compte_messages_une(FORUMS){id_article}{plat}>
@@ -53,19 +47,19 @@
       </div>
     </div>
     </BOUCLE_articlesune>
-    <BOUCLE_articles(ARTICLES) {doublons} {par date} {inverse} {0,5}>
+    <BOUCLE_articles(ARTICLES) {doublons} {!par date} {0,5}>
     <div class="item_article">
       <div class="itemhead">[
-        <div class="image"><a href="#URL_RUBRIQUE">(#LOGO_ARTICLE_RUBRIQUE|left||reduire_image{75})</a></div>
+        <div class="image"><a href="#URL_RUBRIQUE">(#LOGO_ARTICLE_RUBRIQUE|left||image_reduire{75})</a></div>
         ]
         <h3><a href="#URL_ARTICLE">#TITRE</a></h3>
         <span class="metadata">
         <BOUCLE_rubrique_article(RUBRIQUES){id_rubrique}>
-        <a href="#URL_RUBRIQUE"[title="(#TEXTE|textebrut|entites_html)"]>#TITRE</a>
+        <a href="#URL_RUBRIQUE"[ title="(#TEXTE|textebrut|entites_html)"]>#TITRE</a>
         </BOUCLE_rubrique_article>
         </span> <small class="metadata"><:par_auteur:>
         <BOUCLE_auteurs_articles(AUTEURS) {id_article} {" "}>
-        [(#NOM|supprimer_numero)]
+        #NOM
         </BOUCLE_auteurs_articles>
         , [(#DATE|nom_jour)] [(#DATE|affdate)]
         <BOUCLE_compte_messages(FORUMS){id_article}{plat}>
@@ -90,7 +84,7 @@
     <INCLURE{fond=inc_sites}>
     <INCLURE{fond=inc_syndication}>
     <INCLURE{fond=inc_derniers_commentaires_plat}>
-    <div id="logo-spip"><a href="http://www.spip.net" class="spip_out"><img src="#DOSSIER_SQUELETTE/images/logo-spip.gif" name="spip" border="0" id="spip" alt="spip"/></a></div>
+    <div id="logo-spip"><a href="http://www.spip.net" class="spip_out"><img src="#CHEMIN{images/logo-spip.gif}" name="spip" border="0" id="spip" alt="spip"/></a></div>
   </div>
   <!-- secondary -->
   <div class="clear"><span></span></div>
