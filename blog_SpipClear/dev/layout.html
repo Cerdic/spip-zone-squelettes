@@ -27,8 +27,7 @@
 
 			<p id="prelude">
 				<a href="#main"><:go_main:></a> |
-				<a href="#sidebar"><:go_sidebar:></a> |
-				<a href="#search"><:go_search:></a>
+				<a href="#sidebar"><:go_sidebar:></a>
 			</p>
 
 			<div id="main">
@@ -43,11 +42,18 @@
 				</div>
 			</div>
 			
+			<B_sidebar>
 			<div id="sidebar">
 
-				#CALENDRIER_MINI
-
-				[(#MODELE{archives_mensuelles}{id_rubrique,archives,self=#SELF,lang})]
+				<BOUCLE_sidebar(RUBRIQUES){id_secteur}{racine}>
+				[(#MODELE{rubrique_calendrier}
+					{self=#URL_RUBRIQUE}
+					{var_date=archives}
+					{date=#ENV{archives,#DATE}}
+					{lang}
+					{id_rubrique}
+				)]
+				</BOUCLE_sidebar>
 
 				<div id="syndicate">
 				<h2><:syndication:></h2>
@@ -57,6 +63,7 @@
 				</div>
 
 			</div>
+			</B_sidebar>
 
 			<p id="footer">
 			<:credits:>,
