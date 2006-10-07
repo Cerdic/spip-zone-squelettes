@@ -110,13 +110,12 @@ function showPreview(response) {
 				<ul class="spip">
 				<BOUCLE_event_list(EVENEMENTS) {id_article} {agendafull date_debut, date_fin, (#ENV{date}|annee)} {par date_fin} {age<7} {0,20}>
 					<li class="spip">
-						<a href="[(#URL_PAGE{event}|parametre_url{id_evenement,#ID_EVENEMENT})]">[(#TITRE|supprimer_numero)]</a>[ &ndash; (#DATE_DEBUT|nom_jour|ucfirst) ][(#DATE_DEBUT|affdate)][ &ndash; (#LIEU)]
+						<a href="[(#URL_PAGE{event}|parametre_url{id_evenement,#ID_EVENEMENT})]">[(#TITRE|supprimer_numero)]</a>[ &ndash; (#DATE_DEBUT|nom_jour|ucfirst) ][(#DATE_DEBUT|affdate_court)][ &ndash; (#HORAIRE|=={oui}|?{[(#DATE_DEBUT|heures)H][(#DATE_DEBUT|minutes)][&ndash;(#DATE_FIN|heures)H][(#DATE_FIN|minutes)],''})][ &ndash; (#LIEU)]
 						[<div>(#DESCRIPTIF|PtoBR)</div>]
 					</li>
 				</BOUCLE_event_list>
 				</ul>
 				</B_event_list>
-				
 				
 				[<em>(#PS)</em>]
 			</div><!-- itemtext -->
@@ -150,8 +149,7 @@ function showPreview(response) {
 	</div><!-- primary -->
 	<div class="secondary">
 		<INCLURE{fond=inc_petition}{id_article}>
-		<INCLURE{fond=inc_agenda}>
-		<INCLURE{fond=liste}>
+		<INCLURE{fond=inc_liste}{id_rubrique}>
 		<INCLURE{fond=inc_recherche}>
 		<INCLURE{fond=inc_dernieres_breves}>
 		<INCLURE{fond=inc_memes_mots}{id_article}>
