@@ -19,14 +19,15 @@
 	<div class="primary">
 		<div id="post" class="item entry">
 			<div class="itemhead">
-				[<div class="image">(#LOGO_RUBRIQUE|left||image_reduire{75})</div>]
+				[<div class="image">(#LOGO_RUBRIQUE|right||image_reduire{75})</div>]
 				<h3>[(#ENV{date}|nom_jour|ucfirst) ][(#ENV{date}|affdate)]</h3>
 			</div><!-- itemhead -->
+			<div class="clear"><span></span></div>
 			<div class="itemtext">
 				<B_event_list>
 				<ul class="spip">
 				<BOUCLE_event_list(EVENEMENTS) {agendafull date_debut, date_fin, jour, (#ENV{date}|annee), (#ENV{date}|mois), (#ENV{date}|jour)} {par date_fin}>
-					<li class="spip"><a href="[(#URL_PAGE{event}|parametre_url{id_evenement,#ID_EVENEMENT})]">[(#TITRE|supprimer_numero)]</a>[ &ndash; (#HORAIRE|=={oui}|?{[(#DATE_DEBUT|heures)H][(#DATE_DEBUT|minutes)][&ndash;(#DATE_FIN|heures)H][(#DATE_FIN|minutes)],''})][ &ndash; (#LIEU)]<BOUCLE_rub(RUBRIQUES){id_rubrique}> &ndash; <a href="#URL_RUBRIQUE">#TITRE</a></BOUCLE_rub></li>
+					<li class="spip"><BOUCLE_rub(RUBRIQUES){id_rubrique}>[(#TITRE|majuscules)] : </BOUCLE_rub><a href="[(#URL_PAGE{evenement}|parametre_url{id_evenement,#ID_EVENEMENT})]">#TITRE</a>[ &ndash; (#HORAIRE|=={oui}|?{[(#DATE_DEBUT|heures)H][(#DATE_DEBUT|minutes)][&ndash;(#DATE_FIN|heures)H][(#DATE_FIN|minutes)],''})][ &ndash; (#LIEU)]</li>
 				</BOUCLE_event_list>
 				</ul>
 				</B_event_list>

@@ -18,13 +18,16 @@
 	<div class="primary">
 		<div id="post" class="item entry">
 			<div class="itemhead">
-				[<div class="image">(#LOGO_BREVE_RUBRIQUE|right||image_reduire{100})</div>]
+				[<div class="image">(#LOGO_BREVE_RUBRIQUE|right||image_reduire{75})</div>]
 				<h3>#TITRE</h3>
 				<small class="metadata"><BOUCLE_rubrique_article(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">#TITRE</a>, </BOUCLE_rubrique_article>[(#DATE|nom_jour)] [(#DATE|affdate)] [(#DATE|heures)]:[(#DATE|minutes)]</small>
 			</div><!-- itemhead -->
-			[<div>(#TEXTE|image_reduire{500})</div>]
-			[<em>(#PS)</em>]
-			[(#NOTES)]
+			<div class="clear"><span></span></div>
+			<div class="itemtext">
+				[<div>(#TEXTE|image_reduire{500})</div>]
+				[<em>(#PS)</em>]
+				[(#NOTES)]
+			</div><!-- itemtext -->
 		</div><!-- post -->
 		<hr />
 		[(#REM) boucle forum ]
@@ -36,8 +39,9 @@
 	<hr />
 	<div class="secondary">
 		[(#CALENDRIER_MINI{#ENV{date},'date',#SELF})]
+		<INCLURE{fond=inc_liste}{id_rubrique}>
 		<INCLURE{fond=inc_dernieres_breves}>
-		<INCLURE{fond=inc_meme_rubrique}>
+		<INCLURE{fond=inc_meme_rubrique}{id_rubrique}>
 		<INCLURE{fond=inc_sites}{id_rubrique}>
 		<INCLURE{fond=inc_syndication}>
 		<div id="logo-spip"><a href="http://www.spip.net" class="spip_out"><img src="#CHEMIN{images/logo-spip.gif}" name="spip" border="0" id="spip" alt="SPIP" /></a></div>

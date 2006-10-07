@@ -95,10 +95,11 @@ function showPreview(response) {
 	<div class="primary">
 		<div id="post" class="item entry">
 			<div class="itemhead">
-				[<div class="image">(#LOGO_ARTICLE_RUBRIQUE|left|#URL_RUBRIQUE|image_reduire{75})</div>]
+				[<div class="image">(#LOGO_ARTICLE_RUBRIQUE|right||image_reduire{75})</div>]
 				<h3>#TITRE</h3>
-				<small class="metadata">[<:par_auteur:> (#LESAUTEURS) &mdash; ]<BOUCLE_rub(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">#TITRE</a>, </BOUCLE_rub>[(#DATE|nom_jour)] [(#DATE|affdate)]</small>
+				<small class="metadata">[<:par_auteur:> (#LESAUTEURS) &ndash; ]<BOUCLE_rub(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">[(#TITRE|majuscules)]</a> &ndash; </BOUCLE_rub>[(#DATE|affdate)]</small>
 			</div><!-- itemhead -->
+			<div class="clear"><span></span></div>
 			<div class="itemtext">
 				[<div>(#DESCRIPTIF)</div>]
 				[<div><strong>(#CHAPO)</strong></div>]
@@ -110,8 +111,8 @@ function showPreview(response) {
 				<ul class="spip">
 				<BOUCLE_event_list(EVENEMENTS) {id_article} {agendafull date_debut, date_fin, (#ENV{date}|annee)} {par date_fin} {age<7} {0,20}>
 					<li class="spip">
-						<a href="[(#URL_PAGE{evenement}|parametre_url{id_evenement,#ID_EVENEMENT})]">[(#TITRE|supprimer_numero)]</a>[ &ndash; (#DATE_DEBUT|nom_jour|ucfirst) ][(#DATE_DEBUT|affdate_court)][ &ndash; (#HORAIRE|=={oui}|?{[(#DATE_DEBUT|heures)H][(#DATE_DEBUT|minutes)][&ndash;(#DATE_FIN|heures)H][(#DATE_FIN|minutes)],''})][ &ndash; (#LIEU)]
-						[<div>(#DESCRIPTIF|PtoBR)</div>]
+						<a href="[(#URL_PAGE{evenement}|parametre_url{id_evenement,#ID_EVENEMENT})]">#TITRE</a>[ &ndash; (#DATE_DEBUT|nom_jour|ucfirst) ][(#DATE_DEBUT|affdate_court)][ &ndash; (#HORAIRE|=={oui}|?{[(#DATE_DEBUT|heures)H][(#DATE_DEBUT|minutes)][&ndash;(#DATE_FIN|heures)H][(#DATE_FIN|minutes)],''})][ &ndash; (#LIEU)]
+						[<br />(#DESCRIPTIF|PtoBR|couper{200})&nbsp;<a href="[(#URL_PAGE{evenement}|parametre_url{id_evenement,#ID_EVENEMENT})]" title="#TITRE">&gt;&nbsp;<:suite:></a>]
 					</li>
 				</BOUCLE_event_list>
 				</ul>

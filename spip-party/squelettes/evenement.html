@@ -19,12 +19,16 @@
 	<div class="primary">
 		<div id="post" class="item entry">
 			<div class="itemhead">
-				[<div class="image">(#LOGO_ARTICLE_RUBRIQUE|left||image_reduire{75})</div>]
+				[<div class="image">(#LOGO_ARTICLE_RUBRIQUE|right||image_reduire{75})</div>]
 				<h3>#TITRE</h3>
-				<p><strong>[(#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})]</strong>[ &ndash; (#LIEU)]</p>
+				<p><BOUCLE_rub(RUBRIQUES){id_rubrique}>[(#TITRE|majuscules)] &ndash; </BOUCLE_rub><strong>[(#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})]</strong>[ &ndash; (#LIEU)]</p>
 			</div><!-- itemhead -->
+			<div class="clear"><span></span></div>
 			<div class="itemtext">
 				[<div>(#DESCRIPTIF)</div>]
+				<BOUCLE_article(ARTICLES){id_article}>
+				[<br /><em><strong>#TITRE</strong> : (#INTRODUCTION|couper{200})&nbsp;<a href="#URL_ARTICLE" title="#TITRE">&gt;&nbsp;<:suite:></a></em>]
+				</BOUCLE_article>
 			</div><!-- itemtext -->
 		</div><!-- post -->
 
