@@ -22,17 +22,24 @@
 				<h3>[(#ENV{date}|nom_jour|ucfirst) ][(#ENV{date}|affdate)]</h3>
 			</div><!-- itemhead -->
 			<div class="clear"><span></span></div>
-			<div class="itemtext">
-				<B_event_list>
-				<ul class="spip">
-				<BOUCLE_event_list(EVENEMENTS) {agendafull date_debut, date_fin, jour, (#ENV{date}|annee), (#ENV{date}|mois), (#ENV{date}|jour)} {statut=publie}{par date_fin}>
-					<li class="spip"><BOUCLE_rub(RUBRIQUES){id_rubrique}>[(#TITRE|majuscules)] : </BOUCLE_rub><a href="[(#URL_PAGE{evenement}|parametre_url{id_evenement,#ID_EVENEMENT})]">#TITRE</a>[ &ndash; (#HORAIRE|=={oui}|?{[(#DATE_DEBUT|heures)H][(#DATE_DEBUT|minutes)][&ndash;(#DATE_FIN|heures)H][(#DATE_FIN|minutes)],''})][ &ndash; (#LIEU)]</li>
-				</BOUCLE_event_list>
-				</ul>
-				</B_event_list>
-				<em>Aucun &eacute;v&eacute;nement SPIP annonc&eacute; le [(#ENV{date}|affdate)]&nbsp;!</em>
-				<//B_event_list>
-			</div><!-- itemtext -->
+			[(#REM) debut hcal ]
+<B_event_list>
+<BOUCLE_event_list(EVENEMENTS) {agendafull date_debut, date_fin, jour, (#ENV{date}|annee), (#ENV{date}|mois), (#ENV{date}|jour)} {statut=publie}{par date_fin}>
+<div class="vevent">
+  <h3 class="summary"><a  class="url"href="[(#URL_PAGE{evenement}|parametre_url{id_evenement,#ID_EVENEMENT})]">#TITRE</a></h3>
+  <div style="display: none;"><abbr class="dtstamp" title="[(#DATE_DEBUT|date_iso)]">[(#DATE_DEBUT|nom_jour|ucfirst) ] [(#DATE_DEBUT|jour)] [(#DATE_DEBUT|nom_mois)]</abbr></div>
+  [
+  <div class="description">(#DESCRIPTIF)</div>
+  ]
+  <div class="date"><abbr class="dtstart" title="[(#DATE_DEBUT|date_iso)]">[ Le (#DATE_DEBUT|nom_jour|ucfirst) ][(#DATE_DEBUT|jour)] [(#DATE_DEBUT|nom_mois)] de [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)]</abbr> <abbr class="dtend" title="[(#DATE_FIN|date_iso)]"> à [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)]</abbr></div>
+  <div class="location">[(#LIEU)]</div>
+</div>
+</BOUCLE_event_list>
+</B_event_list>
+<em>Aucun &eacute;v&eacute;nement SPIP annonc&eacute; pour [(#ENV{date}|affdate_mois_annee)]&nbsp;!</em>
+<//B_event_list> 			
+[(#REM) fin hcal ]
+		
 		</div><!-- post -->
 
 	</div><!-- primary -->
