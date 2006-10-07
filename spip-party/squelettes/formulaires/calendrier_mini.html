@@ -1,8 +1,11 @@
 <BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
+<BOUCLE_event_test(EVENEMENTS){branche} {par date_fin}{age<7} {0,1}> </BOUCLE_event_test>
 
 [(#REM)
 	Tout d'abord on cherche dans quelle rubrique l'on est,
-	pour n'afficher que les evenements de celle-ci ]
+	pour n'afficher que les evenements de celle-ci.
+	Ensuite, on n'affiche le calendrier que s'il y a des
+	evenement a venir dans la branche. ]
 
 <div id="calendar">
 	<h2>Prochains rendez-vous</h2>
@@ -35,8 +38,9 @@
 		]</tbody>
 	</table>
 </div>
+<small style="display: block; text-align: center;">Abonnez-vous au calendier<br />#TITRE&nbsp;: <a href="[(#URL_PAGE{ical}|replace{^http,webcal}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" rel="nofollow" title="iCal [(#TITRE|textebrut)] [(#NOM_SITE_SPIP|textebrut)]">iCal</a> | <a href="[(#URL_PAGE{backend-calendrier}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" rel="nofollow" title="RSS Calendrier [(#TITRE|textebrut)] [(#NOM_SITE_SPIP|textebrut)]">RSS</a></small>
 
-
+</B_event_test>
 </BOUCLE_rubrique>
 
 [(#REM)
@@ -74,5 +78,6 @@
 		]</tbody>
 	</table>
 </div>
+<small style="display: block; text-align: center;">Abonnez-vous au<br />calendrier g&eacute;n&eacute;ral&nbsp;: <a href="[(#URL_PAGE{ical}|replace{^http,webcal})]" rel="nofollow" title="iCal [(#NOM_SITE_SPIP|textebrut)]">iCal</a> | <a href="[(#URL_PAGE{backend-calendrier})]" rel="nofollow" title="RSS Calendrier [(#NOM_SITE_SPIP|textebrut)]">RSS</a></small>
 
 <//B_rubrique>

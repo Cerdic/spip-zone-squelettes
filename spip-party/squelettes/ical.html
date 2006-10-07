@@ -1,0 +1,19 @@
+#HTTP_HEADER{Content-type: text/calendar}
+#CACHE{3600}
+BEGIN:VCALENDAR
+CALSCALE:GREGORIAN
+X-WR-CALNAME;VALUE=TEXT:[(#NOM_SITE_SPIP|filtrer_ical)]
+X-WR-RELCALID:[(#URL_SITE_SPIP|filtrer_ical)]
+<BOUCLE_evenement(EVENEMENTS) {branche ?} {par date_fin} {0,100}>
+BEGIN:VEVENT
+SUMMARY:[(#TITRE|filtrer_ical)] [[(#NOM_SITE_SPIP|filtrer_ical)]]
+UID:evenement#ID_EVENEMENT @ [(#URL_SITE_SPIP|filtrer_ical)]
+DTSTAMP:[(#DATE|date_ical)]
+DTSTART:[(#DATE_DEBUT|date_ical)]
+DTEND:[(#DATE_FIN|date_ical{60})]
+CATEGORIES:<:articles|filtrer_ical:>
+URL:[(#URL_PAGE{evenement}|parametre_url{id_evenement,#ID_EVENEMENT}|url_absolue|filtrer_ical)]
+STATUS:CONFIRMED
+END:VEVENT
+</BOUCLE_evenement>
+END:VCALENDAR
