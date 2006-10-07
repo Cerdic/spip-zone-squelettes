@@ -1,12 +1,11 @@
-<BOUCLE_breve_principal(SITES) {id_syndic}>
+<BOUCLE_evenement(EVENEMENTS) {id_evenement}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
-[(#REM) SPIP Party par Ben.spip, Gilles Vincent & IZO, base� sur K2 et Bones ]
+[(#REM) SPIP Party par Ben.spip, Gilles Vincent & IZO, base sur K2 et Bones ]
 <head>
-	<title>[(#NOM_SITE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
 	[<meta name="description" content="(#DESCRIPTIF|couper{150}|textebrut)" />]
-	<meta name="robots" content="none" />
-	<INCLURE{fond=inc_head}{id_syndic}{id_rubrique}>
+	<INCLURE{fond=inc_head}{id_rubrique}>
 </head>
 <body>
 <div id="page">
@@ -20,22 +19,21 @@
 	<div class="primary">
 		<div id="post" class="item entry">
 			<div class="itemhead">
-			<h3><a href="#URL_SITE">#NOM_SITE</a></h3>
-			[<div>(#DESCRIPTIF)</div>]
-			<ul>
-				<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {!par date}>
-				<li><a href="#URL_ARTICLE">#TITRE</a> ([(#DATE|affdate{'d/m/Y'})])</li>
-				</BOUCLE_articles>
-			</ul>
+				[<div class="image">(#LOGO_ARTICLE_RUBRIQUE|left||image_reduire{75})</div>]
+				<h3>#TITRE</h3>
+				<p><strong>[(#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})]</strong>[ &ndash; (#LIEU)]</p>
 			</div><!-- itemhead -->
+			<div class="itemtext">
+				[<div>(#DESCRIPTIF)</div>]
+			</div><!-- itemtext -->
 		</div><!-- post -->
+
 	</div><!-- primary -->
-	<hr />
 	<div class="secondary">
 		[(#CALENDRIER_MINI{#ENV{date},'date',#SELF})]
+		<INCLURE{fond=inc_liste}{id_rubrique}>
 		<INCLURE{fond=inc_dernieres_breves}>
-		<INCLURE{fond=inc_meme_rubrique}>
-		<INCLURE{fond=inc_sites}{id_rubrique}>
+		<INCLURE{fond=inc_meme_rubrique}{id_rubrique}>
 		<INCLURE{fond=inc_syndication}>
 		<div id="logo-spip"><a href="http://www.spip.net" class="spip_out"><img src="#CHEMIN{images/logo-spip.gif}" name="spip" border="0" id="spip" alt="SPIP" /></a></div>
 	</div><!-- secondary -->
@@ -43,5 +41,5 @@
 </div><!-- Close Page -->
 <INCLURE{fond=inc_pied_de_page}>
 </body>
-</BOUCLE_breve_principal>
+</BOUCLE_evenement>
 </html>

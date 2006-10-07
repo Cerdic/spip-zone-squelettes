@@ -97,7 +97,7 @@ function showPreview(response) {
 			<div class="itemhead">
 				[<div class="image">(#LOGO_ARTICLE_RUBRIQUE|left|#URL_RUBRIQUE|image_reduire{75})</div>]
 				<h3>#TITRE</h3>
-				<small class="metadata">[<:par_auteur:> (#LESAUTEURS) &mdash; ]<BOUCLE_rubrique_article(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">#TITRE</a>, </BOUCLE_rubrique_article>[(#DATE|nom_jour)] [(#DATE|affdate)]</small>
+				<small class="metadata">[<:par_auteur:> (#LESAUTEURS) &mdash; ]<BOUCLE_rub(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">#TITRE</a>, </BOUCLE_rub>[(#DATE|nom_jour)] [(#DATE|affdate)]</small>
 			</div><!-- itemhead -->
 			<div class="itemtext">
 				[<div>(#DESCRIPTIF)</div>]
@@ -110,7 +110,7 @@ function showPreview(response) {
 				<ul class="spip">
 				<BOUCLE_event_list(EVENEMENTS) {id_article} {agendafull date_debut, date_fin, (#ENV{date}|annee)} {par date_fin} {age<7} {0,20}>
 					<li class="spip">
-						<a href="[(#URL_PAGE{event}|parametre_url{id_evenement,#ID_EVENEMENT})]">[(#TITRE|supprimer_numero)]</a>[ &ndash; (#DATE_DEBUT|nom_jour|ucfirst) ][(#DATE_DEBUT|affdate_court)][ &ndash; (#HORAIRE|=={oui}|?{[(#DATE_DEBUT|heures)H][(#DATE_DEBUT|minutes)][&ndash;(#DATE_FIN|heures)H][(#DATE_FIN|minutes)],''})][ &ndash; (#LIEU)]
+						<a href="[(#URL_PAGE{evenement}|parametre_url{id_evenement,#ID_EVENEMENT})]">[(#TITRE|supprimer_numero)]</a>[ &ndash; (#DATE_DEBUT|nom_jour|ucfirst) ][(#DATE_DEBUT|affdate_court)][ &ndash; (#HORAIRE|=={oui}|?{[(#DATE_DEBUT|heures)H][(#DATE_DEBUT|minutes)][&ndash;(#DATE_FIN|heures)H][(#DATE_FIN|minutes)],''})][ &ndash; (#LIEU)]
 						[<div>(#DESCRIPTIF|PtoBR)</div>]
 					</li>
 				</BOUCLE_event_list>
@@ -148,9 +148,9 @@ function showPreview(response) {
 		</div><!-- comments -->
 	</div><!-- primary -->
 	<div class="secondary">
+		[(#CALENDRIER_MINI{#ENV{date},'date',#SELF})]
 		<INCLURE{fond=inc_petition}{id_article}>
 		<INCLURE{fond=inc_liste}{id_rubrique}>
-		<INCLURE{fond=inc_recherche}>
 		<INCLURE{fond=inc_dernieres_breves}>
 		<INCLURE{fond=inc_memes_mots}{id_article}>
 		<INCLURE{fond=inc_pieces_jointes}{id_article}>

@@ -1,6 +1,12 @@
+<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
+
+[(#REM)
+	Tout d'abord on cherche dans quelle rubrique l'on est,
+	pour n'afficher que les evenements de celle-ci ]
+
 <div id="calendar">
 	<center>
-	<h2 class="menu-titre">Rendez-vous</h2>
+	<h2 class="menu-titre">Prochains rendez-vous</h2>
 	<table summary="<:icone_calendrier:>">
 		<caption>[<a
 				href="(#ENV{self}|parametre_url{#ENV{var_date},[(#ENV{date}|Agenda_dateplus{-27*24*3600,'Y-m'})]})"
@@ -19,15 +25,58 @@
 				<th scope="col"><abbr title="<:date_jour_1:>"><:date_jour_1|spip_substr{0,1}|strtoupper:></abbr></th>
 			</tr>
 		</thead>
-		<tbody><BOUCLE_calendrier_article(EVENEMENTS) {id_rubrique} {agenda date_debut, mois, (#ENV{date}|annee), (#ENV{date}|mois)}>[(#DATE_DEBUT|Agenda_memo_full{
+		<tbody><BOUCLE_calendrier_rubrique(EVENEMENTS) {branche} {agenda date_debut, mois, (#ENV{date}|annee), (#ENV{date}|mois)}>[(#DATE_DEBUT|Agenda_memo_full{
 			#DATE_FIN,
 			[(#DATE_DEBUT|nom_jour|ucfirst) ][(#DATE_DEBUT|affdate)],
 			#DESCRIPTIF,
 			#LIEU,
 			[(#URL_PAGE{jour}|parametre_url{#ENV{var_date},[(#ENV{date}|affdate{'Y-m-d'})]})]
-		})]</BOUCLE_calendrier_article>[
+		})]</BOUCLE_calendrier_rubrique>[
 		(#ENV{date}|agenda_mini)
 		]</tbody>
 	</table>
 	</center>
 </div>
+
+
+</BOUCLE_rubrique>
+
+[(#REM)
+	Si l'on n'est pas dans une rubrique,
+	on affiche tous les evenements du site. ]
+
+<div id="calendar">
+	<center>
+	<h2 class="menu-titre">Prochains rendez-vous</h2>
+	<table summary="<:icone_calendrier:>">
+		<caption>[<a
+				href="(#ENV{self}|parametre_url{#ENV{var_date},[(#ENV{date}|Agenda_dateplus{-27*24*3600,'Y-m'})]})"
+				title="[(#ENV{date}|Agenda_dateplus{-27*24*3600,'Y-m'}|affdate_mois_annee)]">&#171;</a>][&nbsp;<a href="[(#URL_PAGE{mois}|parametre_url{#ENV{var_date},[(#ENV{date}|affdate{'Y-m'})]})]">(#ENV{date}|affdate_mois_annee|ucfirst)</a>&nbsp;][<a
+				href="(#ENV{self}|parametre_url{#ENV{var_date},[(#ENV{date}|Agenda_dateplus{33*24*3600,'Y-m'})]})"
+				title="[(#ENV{date}|Agenda_dateplus{33*24*3600,'Y-m'}|affdate_mois_annee)]">&#187;</a>]
+		</caption>
+		<thead>
+			<tr>
+				<th scope="col"><abbr title="<:date_jour_2:>"><:date_jour_2|spip_substr{0,1}|strtoupper:></abbr></th>
+				<th scope="col"><abbr title="<:date_jour_3:>"><:date_jour_3|spip_substr{0,1}|strtoupper:></abbr></th>
+				<th scope="col"><abbr title="<:date_jour_4:>"><:date_jour_4|spip_substr{0,1}|strtoupper:></abbr></th>
+				<th scope="col"><abbr title="<:date_jour_5:>"><:date_jour_5|spip_substr{0,1}|strtoupper:></abbr></th>
+				<th scope="col"><abbr title="<:date_jour_6:>"><:date_jour_6|spip_substr{0,1}|strtoupper:></abbr></th>
+				<th scope="col"><abbr title="<:date_jour_7:>"><:date_jour_7|spip_substr{0,1}|strtoupper:></abbr></th>
+				<th scope="col"><abbr title="<:date_jour_1:>"><:date_jour_1|spip_substr{0,1}|strtoupper:></abbr></th>
+			</tr>
+		</thead>
+		<tbody><BOUCLE_calendrier_general(EVENEMENTS) {agenda date_debut, mois, (#ENV{date}|annee), (#ENV{date}|mois)}>[(#DATE_DEBUT|Agenda_memo_full{
+			#DATE_FIN,
+			[(#DATE_DEBUT|nom_jour|ucfirst) ][(#DATE_DEBUT|affdate)],
+			#DESCRIPTIF,
+			#LIEU,
+			[(#URL_PAGE{jour}|parametre_url{#ENV{var_date},[(#ENV{date}|affdate{'Y-m-d'})]})]
+		})]</BOUCLE_calendrier_general>[
+		(#ENV{date}|agenda_mini)
+		]</tbody>
+	</table>
+	</center>
+</div>
+
+<//B_rubrique>
