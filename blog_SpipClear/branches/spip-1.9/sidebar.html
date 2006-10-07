@@ -1,16 +1,30 @@
 <div id="sidebar">
-	<div id="search">
-		<form action="rubrique.php" method="get">
+
+	<BOUCLE_tdm(ARTICLES){id_article}>[
+	<div id="tdm">
+		<h2><:tdm:table_matiere:></h2>
+		<ul>
+			(#TABLE_MATIERE{<li>,</li>})
+		</ul>
+	</div>
+	]</BOUCLE_tdm>
+
+	#CALENDRIER_MINI
+	
+	[(#FORMULAIRE_RECHERCHE|?{' '})<div id="search">
+		<form action="rubrique.php3" method="get">
 			<h2><label for="recherche"><:info_rechercher:></label></h2>
 			<input type="hidden" name="id_rubrique" value="1" />
 			<p class="field">
-			<input name="recherche" id="q" type="text" size="10" value="[(#RECHERCHE)]" accesskey="4" />
+			<input name="recherche" id="q" type="text" size="10" value="#RECHERCHE" accesskey="4" />
 			<input type="submit" class="submit" value="<:oksearch:>" />
 			</p>
 		</form>
-	</div>
+	</div>]
 
+	<INCLURE(flickr-spip-badge.html)>
 
+	<INCLURE{fond=todo}{delai=86400}>
 
 	<B_a_retenir>
 	<div id="selection">
@@ -69,9 +83,9 @@
 	<div id="archives">
 		<h2><:archives:></h2>
 		<ul>
-			<BOUCLE_chrono(ARTICLES){id_secteur?}{par date}{inverse}>
+			<BOUCLE_chrono(ARTICLES){id_secteur}{par date}{inverse}>
 			[<li>[(#DATE|affdate{'Y_m'}|choixsiegal{[(#ENV{date}|affdate{'Y_m'})],<strong>,''})]
-				<a href="?archives=[(#DATE|affdate{'Y-m'})]">(#DATE|affdate_mois_annee|unique)</a>
+				<a href="[(#DATE|affdate{'Y_m'})]">(#DATE|affdate_mois_annee|unique)</a>
 				[(#DATE|affdate{'Y_m'}|choixsiegal{[(#ENV{date}|affdate{'Y_m'})],</strong>,''})]</li>]
 			</BOUCLE_chrono>
 		</ul>

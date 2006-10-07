@@ -9,6 +9,20 @@
 		<INCLURE{fond=title}{delais=7200}{id_article}{id_rubrique}{id_secteur}{archives}>
 		[<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/themes/(#ID_SECTEUR|theme|sinon{default})/style.css" media="screen" />]
 		[<link REL="shortcut icon" HREF="#DOSSIER_SQUELETTE/themes/(#ID_SECTEUR|theme|sinon{default})/favicon.ico" />]
+		<BOUCLE_article_trackback(ARTICLES){id_article}>
+[<!--(#PARAMETRES_TRACKBACK)
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+<rdf:Description
+  rdf:about="[(#URL_ARTICLE|url_absolue)]"
+  dc:identifier="[(#URL_ARTICLE|url_absolue)]"
+  dc:title="[(#TITRE|textebrut|entites_html)]"
+  trackback:ping="#URL_TRACKBACK" />
+</rdf:RDF>
+-->]
+		</BOUCLE_article_trackback>
+		#INSERT_HEAD
 	</head>
 
 	<body>
@@ -18,8 +32,6 @@
 				<BOUCLE_titre(RUBRIQUES){id_secteur}{id_parent=0}>
 				[<h1>(#LOGO_RUBRIQUE|#URL_RUBRIQUE|inserer_attribut{alt,#TITRE}|inserer_attribut{title,#TITRE}|sinon{<a href="#URL_RUBRIQUE">#TITRE</a>})</h1>]
 				</BOUCLE_titre>
-	[(#REM) Fil d'Ariane ]
-	<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; (#TITRE|couper{80})]</div>
 				[(#FORMULAIRE_ADMIN)]
 				[(#SPIP_CRON)]
 			</div>
@@ -34,16 +46,16 @@
 				<div id="content">
 					[(#RECHERCHE|?{'',' '})
 						[(#ENV{id_article}|?{'',' '})
-						<INCLURE{fond=list}{id_rubrique}{archives}{self=#SELF}>
+						<INCLURE{fond=list}{id_rubrique}{archives}{debut_liste}{home}>
 						]
 					]
 					[(#RECHERCHE|?{' ',''})
-					<INCLURE{fond=search}{id_secteur}{recherche}>]
+					<INCLURE{fond=search}{id_secteur}{recherche}{debut_liste}>]
 					[(#ENV{id_article}|?{' ',''})<INCLURE{fond=post}{id_article}>]
 				</div>
 			</div>
 
-			<INCLURE(sidebar.php){id_secteur}{id_rubrique}{id_article}{date=#ENV{archives,#ENV{date}}}{recherche}>
+			<INCLURE{fond=sidebar}{id_secteur}{id_rubrique}{id_article}{date=#ENV{archives,#ENV{date}}}{archives=#ENV{archives,#ENV{date}}}{recherche}>
 
 			<p id="footer"><:credits:>, <a href="#URL_SITE_SPIP"><:hebergement:> #NOM_SITE_SPIP</a></p>
 			
