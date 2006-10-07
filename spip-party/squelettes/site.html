@@ -6,51 +6,43 @@
 	<title>[(#NOM_SITE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
 	[<meta name="description" content="(#DESCRIPTIF|couper{150}|textebrut)" />]
 	<meta name="robots" content="none" />
-	<INCLURE{fond=inc_head}{id_syndic}>
+	<INCLURE{fond=inc_head}{id_syndic}{id_rubrique}>
 </head>
 <body>
 <div id="page">
-  <div id="header">
-    
-    <ul class="menu">
-      <li class="current_item"><a href="#URL_SITE_SPIP/" title="<:accueil_site:>"><b><:accueil_site:></b></a></li>
-      <INCLURE{fond=inc_menu-haut}>
-    </ul>
-  </div>
-  <hr />
-  <div class="primary">
-    <div class="center">
-      <h2>
-        <!--<:derniers_breves:>-->
-      </h2>
-    </div>
-    <div id="post" class="item entry">
-      <div class="itemhead">
-        <h3><a href="#URL_SITE">#NOM_SITE</a></h3>
-        <p> #DESCRIPTIF </p>
-        <p> </p>
-        <ul>
-          <BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {!par date}>
-          <li><a href="#URL_ARTICLE">#TITRE</a> ([(#DATE|affdate{'d/m/Y'})])</li>
-          </BOUCLE_articles>
-        </ul>
-        <p></p>
-      </div><!-- itemhead -->
-    </div><!-- post -->
-  </div><!-- primary -->
-  <hr />
-  <div class="secondary">
-    <INCLURE{fond=inc_agenda}>
-    <INCLURE{fond=inc_recherche}>
-    <INCLURE{fond=inc_dernieres_breves}>
-    <INCLURE{fond=inc_meme_rubrique}>
-    <INCLURE{fond=inc_sites}>
-    <INCLURE{fond=inc_syndication}>
-    <div id="logo-spip"><a href="http://www.spip.net" class="spip_out"><img src="#CHEMIN{images/logo-spip.gif}" name="spip" border="0" id="spip" alt="spip"/></a></div>
-  </div><!-- secondary -->
-  <div class="clear"><span></span></div>
+	<div id="header">
+		<ul class="menu">
+			<li class="current_item"><a href="#URL_SITE_SPIP/" title="<:accueil_site:>"><b><:accueil_site:></b></a></li>
+			<INCLURE{fond=inc_menu-haut}{id_rubrique}>
+		</ul>
+	</div>
+	<hr />
+	<div class="primary">
+		<div id="post" class="item entry">
+			<div class="itemhead">
+			<h3><a href="#URL_SITE">#NOM_SITE</a></h3>
+			[<div>(#DESCRIPTIF)</div>]
+			<ul>
+				<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {!par date}>
+				<li><a href="#URL_ARTICLE">#TITRE</a> ([(#DATE|affdate{'d/m/Y'})])</li>
+				</BOUCLE_articles>
+			</ul>
+			</div><!-- itemhead -->
+		</div><!-- post -->
+	</div><!-- primary -->
+	<hr />
+	<div class="secondary">
+		<INCLURE{fond=inc_agenda}>
+		<INCLURE{fond=inc_recherche}>
+		<INCLURE{fond=inc_dernieres_breves}>
+		<INCLURE{fond=inc_meme_rubrique}>
+		<INCLURE{fond=inc_sites}>
+		<INCLURE{fond=inc_syndication}>
+		<div id="logo-spip"><a href="http://www.spip.net" class="spip_out"><img src="#CHEMIN{images/logo-spip.gif}" name="spip" border="0" id="spip" alt="SPIP" /></a></div>
+	</div><!-- secondary -->
+	<div class="clear"><span></span></div>
 </div><!-- Close Page -->
-  <INCLURE{fond=inc_pied_de_page}>
+<INCLURE{fond=inc_pied_de_page}>
 </body>
 </BOUCLE_breve_principal>
 </html>

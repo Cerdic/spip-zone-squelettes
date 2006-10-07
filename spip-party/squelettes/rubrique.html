@@ -9,62 +9,54 @@
 </head>
 <body>
 <div id="page">
-  <div id="header">
-    <h1><a href="#URL_SITE_SPIP/"></a></h1>
-    <ul class="menu">
-      <li class="current_item"><a href="#URL_SITE_SPIP/" title="<:accueil_site:>"><b><:accueil_site:></b></a></li>
-      <INCLURE{fond=inc_menu-haut}{id_rubrique}>
-    </ul>
-  </div>
-  <hr />
-  <div class="primary">
-    <div id="post" class="item entry">
-      <div class="itemhead">
-	  	[<div class="image">(#LOGO_RUBRIQUE|right||image_reduire{75})</div>]
-        <BOUCLE_secteurs(RUBRIQUES) {id_rubrique} {par titre}>
-        <h1><a href="#URL_RUBRIQUE">#TITRE</a></h1>
-        #TEXTE
-        <B_articles_racine>
-        <ul>
-          <BOUCLE_articles_racine(ARTICLES) {id_rubrique} {!par date}>
-          <li><a href="#URL_ARTICLE">#TITRE</a></li>
-          </BOUCLE_articles_racine>
-        </ul>
-        </B_articles_racine>
-        <B_rubriques>
-        <ul>
-          <BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
-          <li>
-            <div><a href="#URL_RUBRIQUE">#TITRE</a></div>
-            <B_articles>
-            <ul>
-              <BOUCLE_articles(ARTICLES) {id_rubrique} {!par date}>
-              <li><a href="#URL_ARTICLE">#TITRE</a></li>
-              </BOUCLE_articles>
-            </ul>
-            </B_articles>
-            <BOUCLE_sous_rubriques(BOUCLE_rubriques)> </BOUCLE_sous_rubriques>
-          </li>
-          </BOUCLE_rubriques>
-        </ul>
-        </B_rubriques>
-        </BOUCLE_secteurs>
-      </div><!-- itemhead -->
-    </div><!-- post -->
-  </div><!-- primary -->
-  <div class="secondary">
-    <INCLURE{fond=inc_agenda}>
-    <INCLURE{fond=inc_recherche}>
-	<INCLURE{fond=liste}>
-    <INCLURE{fond=inc_dernieres_breves}>
-    <INCLURE{fond=inc_meme_rubrique}>
-    <INCLURE{fond=inc_sites}>
-    <INCLURE{fond=inc_syndication}>
-    <div id="logo-spip"><a href="http://www.spip.net" class="spip_out"><img src="#CHEMIN{images/logo-spip.gif}" name="spip" border="0" id="spip" alt="spip"/></a></div>
-  </div><!-- secondary -->
-  <div class="clear"><span></span></div>
+	<div id="header">
+		<h1><a href="#URL_SITE_SPIP/"></a></h1>
+		<ul class="menu">
+			<li class="current_item"><a href="#URL_SITE_SPIP/" title="<:accueil_site:>"><b><:accueil_site:></b></a></li>
+			<INCLURE{fond=inc_menu-haut}{id_rubrique}>
+		</ul>
+	</div>
+	<hr />
+	<div class="primary">
+		<div id="post" class="item entry">
+			<div class="itemhead">
+				[<div class="image">(#LOGO_RUBRIQUE|right||image_reduire{75})</div>]
+				<h1><a href="#URL_RUBRIQUE">#TITRE</a></h1>
+				[<div>(#TEXTE)</div>]
+				<B_articles>
+				<ul>
+					<BOUCLE_articles(ARTICLES) {id_rubrique} {!par date}>
+					<li><a href="#URL_ARTICLE">#TITRE</a></li>
+					</BOUCLE_articles>
+				</ul>
+				</B_articles>
+				<B_rubriques>
+				<ul>
+					<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+					<li>
+						<strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
+						<BOUCLE_sous_articles(BOUCLE_articles)> </BOUCLE_sous_articles>
+						<BOUCLE_sous_rubriques(BOUCLE_rubriques)> </BOUCLE_sous_rubriques>
+					</li>
+					</BOUCLE_rubriques>
+				</ul>
+				</B_rubriques>
+			</div><!-- itemhead -->
+		</div><!-- post -->
+	</div><!-- primary -->
+	<div class="secondary">
+		<INCLURE{fond=inc_agenda}>
+		<INCLURE{fond=inc_recherche}>
+		<INCLURE{fond=liste}>
+		<INCLURE{fond=inc_dernieres_breves}>
+		<INCLURE{fond=inc_meme_rubrique}>
+		<INCLURE{fond=inc_sites}>
+		<INCLURE{fond=inc_syndication}>
+		<div id="logo-spip"><a href="http://www.spip.net" class="spip_out"><img src="#CHEMIN{images/logo-spip.gif}" name="spip" border="0" id="spip" alt="SPIP" /></a></div>
+	</div><!-- secondary -->
+	<div class="clear"><span></span></div>
 </div><!-- Close Page -->
-	<INCLURE{fond=inc_pied_de_page}>
+<INCLURE{fond=inc_pied_de_page}>
 </body>
 </BOUCLE_rubrique_principal>
 </html>

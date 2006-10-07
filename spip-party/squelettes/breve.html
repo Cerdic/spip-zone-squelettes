@@ -8,51 +8,42 @@
 	<INCLURE{fond=inc_head}{id_breve}{id_rubrique}>
 <body>
 <div id="page">
-  <div id="header">
-    
-    <ul class="menu">
-      <li class="current_item"><a href="#URL_SITE_SPIP/" title="<:accueil_site:>"><b><:accueil_site:></b></a></li>
-      <INCLURE  {fond=inc_menu-haut}{id_rubrique}>
-    </ul>
-  </div>
-  <hr />
-  <div class="primary">
-    <div class="center">
-      <h2>
-        <!--<:derniers_breves:>-->
-      </h2>
-    </div>
-    <div id="post" class="item entry">
-      <div class="itemhead"> [
-        <div class="image">(#LOGO_BREVE_RUBRIQUE|right||image_reduire{100})</div>
-        ]
-        <h3>#TITRE</h3>
-        [(#DATE|nom_jour)] [(#DATE|affdate)] [(#DATE|heures)]:[(#DATE|minutes)] -
-        <BOUCLE_rubrique_breve(RUBRIQUES){id_rubrique}>
-        <a href="#URL_RUBRIQUE"[ title="(#TEXTE|textebrut|entites_html)"]>#TITRE</a>
-        </BOUCLE_rubrique_breve>
-        . </div><!-- itemhead -->
-      <div class="itemtext">
-        <p align="justify">#TEXTE</p>
-        <em>#PS</em> </div><!-- itemtext -->
-      #NOTES </div><!-- post -->
-    <hr />
-    <!-- boucle forum -->
-    <div class="comments" id="comments">
-      <INCLURE  {fond=inc_forum_breve}{id_breve}{id_forum}{id_signature}>
-    </div><!-- comments -->
-  </div><!-- primary -->
-  <hr />
-  <div class="secondary">
-    <INCLURE  {fond=inc_agenda}>
-    <INCLURE  {fond=inc_recherche}>
-    <INCLURE  {fond=inc_dernieres_breves}>
-    <INCLURE  {fond=inc_meme_rubrique}>
-    <INCLURE  {fond=inc_sites}>
-    <INCLURE  {fond=inc_syndication}>
-    <div id="logo-spip"><a href="http://www.spip.net" class="spip_out"><img src="#CHEMIN{images/logo-spip.gif}" name="spip" border="0" id="spip" alt="spip"/></a></div>
-  </div><!-- secondary -->
-  <div class="clear"><span></span></div>
+	<div id="header">
+		<ul class="menu">
+			<li class="current_item"><a href="#URL_SITE_SPIP/" title="<:accueil_site:>"><b><:accueil_site:></b></a></li>
+			<INCLURE{fond=inc_menu-haut}{id_rubrique}>
+		</ul>
+	</div>
+	<hr />
+	<div class="primary">
+		<div id="post" class="item entry">
+			<div class="itemhead">
+				[<div class="image">(#LOGO_BREVE_RUBRIQUE|right||image_reduire{100})</div>]
+				<h3>#TITRE</h3>
+				<small class="metadata"><BOUCLE_rubrique_article(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">#TITRE</a>, </BOUCLE_rubrique_article>[(#DATE|nom_jour)] [(#DATE|affdate)] [(#DATE|heures)]:[(#DATE|minutes)]</small>
+			</div><!-- itemhead -->
+			[<div>(#TEXTE|image_reduire{500})</div>]
+			[<em>(#PS)</em>]
+			[(#NOTES)]
+		</div><!-- post -->
+		<hr />
+		[(#REM) boucle forum ]
+		<a href="#forum" name="forum" id="forum"></a>
+		<div class="comments" id="comments">
+		<INCLURE{fond=inc_forum_breve}{id_breve}{id_forum}{id_signature}>
+		</div><!-- comments -->
+	</div><!-- primary -->
+	<hr />
+	<div class="secondary">
+		<INCLURE{fond=inc_agenda}>
+		<INCLURE{fond=inc_recherche}>
+		<INCLURE{fond=inc_dernieres_breves}>
+		<INCLURE{fond=inc_meme_rubrique}>
+		<INCLURE{fond=inc_sites}>
+		<INCLURE{fond=inc_syndication}>
+		<div id="logo-spip"><a href="http://www.spip.net" class="spip_out"><img src="#CHEMIN{images/logo-spip.gif}" name="spip" border="0" id="spip" alt="SPIP" /></a></div>
+	</div><!-- secondary -->
+	<div class="clear"><span></span></div>
 </div><!-- Close Page -->
 	<INCLURE{fond=inc_pied_de_page}>
 </body>
