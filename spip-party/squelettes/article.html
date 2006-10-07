@@ -100,9 +100,23 @@ function showPreview(response) {
 				<small class="metadata">[<:par_auteur:> (#LESAUTEURS) &mdash; ]<BOUCLE_rubrique_article(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">#TITRE</a>, </BOUCLE_rubrique_article>[(#DATE|nom_jour)] [(#DATE|affdate)]</small>
 			</div><!-- itemhead -->
 			<div class="itemtext">
-				[<div>(#CHAPO)</div>]
-				[<div align="left">(#DESCRIPTIF)</div>]
+				[<div>(#DESCRIPTIF)</div>]
+				[<div><strong>(#CHAPO)</strong></div>]
 				[<div>(#TEXTE|image_reduire{500})</div>]
+				
+				[(#REM) Les prochains evenements ]
+				<B_event_list>
+				<ul class="spip">
+				<BOUCLE_event_list(EVENEMENTS) {agendafull date_debut, date_fin, (#ENV{date}|annee)} {par date_fin} {age<7}{0,20}>
+					<li class="spip">
+						<a href="[(#URL_PAGE{event}|parametre_url{id_evenement,#ID_EVENEMENT})]">[(#TITRE|supprimer_numero)]</a>[ &ndash; (#DATE_DEBUT|nom_jour|ucfirst) ][(#DATE_DEBUT|affdate)][ &ndash; (#LIEU)]
+						[<div>(#DESCRIPTIF|PtoBR)</div>]
+					</li>
+				</BOUCLE_event_list>
+				</ul>
+				</B_event_list>
+				
+				
 				[<em>(#PS)</em>]
 			</div><!-- itemtext -->
 			<div class="center">
