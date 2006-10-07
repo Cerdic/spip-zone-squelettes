@@ -1,5 +1,5 @@
 <BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
-<BOUCLE_event_test(EVENEMENTS){branche} {par date_fin}{age<7} {0,1}> </BOUCLE_event_test>
+<BOUCLE_event_test(EVENEMENTS){branche} {statut=publie}{par date_fin}{age<7} {0,1}> </BOUCLE_event_test>
 
 [(#REM)
 	Tout d'abord on cherche dans quelle rubrique l'on est,
@@ -27,7 +27,7 @@
 				<th scope="col"><abbr title="<:date_jour_1:>"><:date_jour_1|spip_substr{0,1}|strtoupper:></abbr></th>
 			</tr>
 		</thead>
-		<tbody><BOUCLE_calendrier_rubrique(EVENEMENTS) {branche} {agenda date_debut, mois, (#ENV{date}|annee), (#ENV{date}|mois)}>[(#DATE_DEBUT|Agenda_memo_full{
+		<tbody><BOUCLE_calendrier_rubrique(EVENEMENTS) {branche} {agenda date_debut, mois, (#ENV{date}|annee), (#ENV{date}|mois)} {statut=publie}>[(#DATE_DEBUT|Agenda_memo_full{
 			#DATE_FIN,
 			[(#DATE_DEBUT|nom_jour|ucfirst) ][(#DATE_DEBUT|affdate)],
 			#DESCRIPTIF,
@@ -38,7 +38,7 @@
 		]</tbody>
 	</table>
 </div>
-<small style="display: block; text-align: center;">Abonnez-vous au calendier<br />#TITRE&nbsp;: <a href="[(#URL_PAGE{ical}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" rel="nofollow" title="iCal [(#TITRE|textebrut)] [(#NOM_SITE_SPIP|textebrut)]">iCal</a> | <a href="[(#URL_PAGE{backend-calendrier}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" rel="nofollow" title="RSS Calendrier [(#TITRE|textebrut)] [(#NOM_SITE_SPIP|textebrut)]">RSS</a></small>
+<small style="display: block; text-align: center;">Abonnez-vous au<br />calendier #TITRE&nbsp;: <a href="[(#URL_PAGE{ical}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" rel="nofollow" title="iCal [(#TITRE|textebrut)] [(#NOM_SITE_SPIP|textebrut)]">iCal</a> | <a href="[(#URL_PAGE{backend-calendrier}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" rel="nofollow" title="RSS Calendrier [(#TITRE|textebrut)] [(#NOM_SITE_SPIP|textebrut)]">RSS</a></small>
 
 </B_event_test>
 </BOUCLE_rubrique>
@@ -67,7 +67,7 @@
 				<th scope="col"><abbr title="<:date_jour_1:>"><:date_jour_1|spip_substr{0,1}|strtoupper:></abbr></th>
 			</tr>
 		</thead>
-		<tbody><BOUCLE_calendrier_general(EVENEMENTS) {agenda date_debut, mois, (#ENV{date}|annee), (#ENV{date}|mois)}>[(#DATE_DEBUT|Agenda_memo_full{
+		<tbody><BOUCLE_calendrier_general(EVENEMENTS) {agenda date_debut, mois, (#ENV{date}|annee), (#ENV{date}|mois)} {statut=publie}>[(#DATE_DEBUT|Agenda_memo_full{
 			#DATE_FIN,
 			[(#DATE_DEBUT|nom_jour|ucfirst) ][(#DATE_DEBUT|affdate)],
 			#DESCRIPTIF,
