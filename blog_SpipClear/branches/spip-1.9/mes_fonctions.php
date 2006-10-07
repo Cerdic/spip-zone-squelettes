@@ -6,7 +6,7 @@
 
 	function doctype($charset) {
 		global $envoi_xml;
-		tester_variable("envoi_xml", false); //false par dÚfaut, mettre Ó true (vrai) dans ecrire/mes_options.php3 si on est s¹r de soi
+		tester_variable("envoi_xml", false); //false par dÚfaut, mettre Ó true (vrai) dans ecrire/mes_options.php3 si on est sšr de soi
 		# En-tÛtes et prologue
 		# Envoie des en-tÛte HTTP
 		$accept_xml =
@@ -59,25 +59,6 @@
 	//
 	function theme($id_secteur) {
 		return $GLOBALS['scEstUnBlog'][$id_secteur];
-	}
-
-	if(!include_spip('trackback')) {
-		function balise_PARAMETRES_TRACKBACK($p) {
-			$p->code = "''";
-			$p->statut ='html';
-			return $p;
-		}
-
-		function balise_URL_TRACKBACK($p) {
-			$p->code = "''";
-			$p->statut ='html';
-			return $p;
-		}
-
-		function critere_trackback($idb, &$boucles, $crit) {
-			$boucle = &$boucles[$idb];
-			$boucle->where[] = $boucle->id_table.".statut='fvlvpbuscc'";
-		}
 	}
 
 	function affdate_long($date) {
