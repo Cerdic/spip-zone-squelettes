@@ -1,0 +1,47 @@
+#CACHE{43200}
+<BOUCLE_breve_principal(BREVES) {id_breve}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[
+<meta name="description" content='(#INTRODUCTION|couper{150}|textebrut)' />
+]
+     [(#INCLURE{fond=noisettes/head})]
+</head>
+<body>
+<div id="bigwrapper"> [(#INCLURE{fond=noisettes/header}{id_breve})]  
+  [(#INCLURE{fond=noisettes/topbar}{id_rubrique}{archives})]
+  <div class="post">
+    <h3 class="posth3">#TITRE</h3>
+    [(#LOGO_BREVE_RUBRIQUE|image_reduire{80,80}|inserer_attribut{class,vignettegauche})]
+    
+    [
+    <div class="texte">(#TEXTE|image_reduire{420,0})</div>
+    ]
+    
+    [
+    <p><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>
+    ]
+    <p class="postdata">
+      <BOUCLE_decompte(FORUMS) {id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?} {plat}>
+      </BOUCLE_decompte>
+      [(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
+      [(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>})]]
+      <//B_decompte>
+      | [<a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a>] | [(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)] </p>
+    <B_mots>
+    <p class="tag">
+      <BOUCLE_mots(MOTS) {id_breve} {par titre}>
+      [<a href="[(#URL_MOT)]" rel="tag">(#TITRE)</a>|]
+      </BOUCLE_mots>
+    </p>
+    </B_mots>
+  </div>
+  [(#INCLURE{fond=noisettes/forum}{id_breve})]
+  <div class="postsnav"></div>
+  <div id="footer"> </div>
+  [(#INCLURE{fond=noisettes/footerx}{skel=#SQUELETTE})] </div>
+</body>
+</html>
+</BOUCLE_breve_principal>

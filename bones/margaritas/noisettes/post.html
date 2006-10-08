@@ -1,0 +1,20 @@
+<B_articles_recents>
+<BOUCLE_articles_recents(ARTICLES) {par date}{inverse} {0,2} {doublons}>
+
+<div class="post">
+  <h3 class="posth3"><a href="#URL_ARTICLE">#TITRE</a></h3>
+  [(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{60,60}|inserer_attribut{class,vignettegauche})]
+  
+  [
+  <div class="texte">(#INTRODUCTION)</div>
+  ]
+  <p class="postdata"><a href="#URL_ARTICLE">[(#REM) Nombre total de messages ]
+    <BOUCLE_decompte(FORUMS){id_article}{plat}>
+    </BOUCLE_decompte>
+    [(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
+    [(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>})] | ]
+    <//B_decompte>
+    </a> [(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</p>
+</div>
+</BOUCLE_articles_recents>
+</B_articles_recents>

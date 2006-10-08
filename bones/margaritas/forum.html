@@ -1,0 +1,81 @@
+#CACHE{3600}
+#HTTP_HEADER{"Cache-Control: max-age=3600, must-revalidate"}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#NOM|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[
+<meta name="description" content='(#BIO|couper{150}|textebrut)' />
+]
+     [(#INCLURE{fond=noisettes/head})]
+</head>
+<body>
+<div id="bigwrapper"> [(#INCLURE{fond=noisettes/header})]  
+  [(#INCLURE{fond=noisettes/topbar}{id_auteur}{archives})]
+  <div class="post">
+    <BOUCLE_contexte_article(ARTICLES) {id_article}>
+    <h3 class="posth3"><a href="#URL_ARTICLE">[(#TITRE|couper{80})]</a></h3>
+    </BOUCLE_contexte_article>
+    </B_contexte_article>
+    <BOUCLE_contexte_breve(BREVES) {id_breve}>
+    <h3 class="posth3"><a href="#URL_BREVE">[(#TITRE|couper{80})]</a></h3>
+    </BOUCLE_contexte_breve>
+    <BOUCLE_contexte_rubrique(RUBRIQUES) {id_rubrique}>
+    <h3 class="posth3"><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></h3>
+    </BOUCLE_contexte_rubrique>
+    <BOUCLE_contexte_site(SITES) {id_syndic}>
+    <h3 class="posth3"><a href="[(#ID_SYNDIC|generer_url_site)]">[(#TITRE|couper{80})</a></h3>
+    </BOUCLE_contexte_site>
+    <//B_contexte_site>
+    <//B_contexte_rubrique>
+    <//B_contexte_breve>
+    <//B_contexte_article>
+    <BOUCLE_contexte_forum(FORUMS) {id_forum}>
+    <h3 class="posth3"> <a href="#URL_FORUM">[(#TITRE|couper{80})]</a></h3>
+    </BOUCLE_contexte_forum>
+    <h3><:poster_message:></h3>
+    <p><:en_reponse:></p>
+    <BOUCLE_forum_parent(FORUMS) {id_forum}>
+    <p><a href="#URL_FORUM">#TITRE</a></p>
+    <p>[(#DATE|affdate)][(#DATE|heures)][:(#DATE|minutes)][, <:par_auteur:> (#NOM)]</p>
+    [
+    <div class="texte">(#INTRODUCTION|lignes_longues)</div>
+    ]
+    </BOUCLE_forum_parent>
+    <BOUCLE_article(ARTICLES) {id_article}>
+    [(#LOGO_ARTICLE||image_reduire{150,100})]
+    <p><a href="#URL_ARTICLE">#TITRE</a></p>
+    <p>[(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</p>
+    [
+    <div class="texte">(#INTRODUCTION)</div>
+    ]
+    </BOUCLE_article>
+    <BOUCLE_breve(BREVES) {id_breve}>
+    [(#LOGO_BREVE||image_reduire{150,100})]
+    <p><a href="#URL_BREVE">#TITRE</a></p>
+    <p>[(#DATE|affdate)]</p>
+    [
+    <div class="texte">(#INTRODUCTION)</div>
+    ]
+    </BOUCLE_breve>
+    <BOUCLE_rubrique(RUBRIQUES) {id_rubrique}>
+    <p><a href="#URL_RUBRIQUE">#TITRE</a></p>
+    [
+    <div class="texte">(#TEXTE)</div>
+    ]
+    </BOUCLE_rubrique>
+    <BOUCLE_syndic(SITES) {id_syndic}>
+    <p><a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a></p>
+    [
+    <div class="texte">(#DESCRIPTIF)</div>
+    ]
+    </BOUCLE_syndic>
+    <//B_forum_parent>
+    [
+    <div class="form"> (#FORMULAIRE_FORUM)</div>
+    ] </div>
+  <div class="postsnav"></div>
+  <div id="footer"> </div>
+  [(#INCLURE{fond=noisettes/footerx}{skel=#SQUELETTE})] </div>
+</body>
+</html>

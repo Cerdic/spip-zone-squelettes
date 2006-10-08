@@ -1,0 +1,64 @@
+<div id="topbar">
+  <div id="redline">
+    <p>&nbsp;&nbsp;<a href="#URL_SITE_SPIP"><:accueil_site:></a>
+      <BOUCLE_ariane(HIERARCHIE){id_article}>
+      | <a href="#URL_RUBRIQUE"> <span class="where">[(#TITRE|couper{80})]</span></a>
+      </BOUCLE_ariane>
+      [<span class="where">(#TITRE|couper{80})</span>]</p>
+    <div id="test" onmouseover="scale.sizeup()" onmouseout="scale.sizedown(33)">
+      <script type="text/javascript">var topbar = document.getElementById('topbar'); topbar.style.height = 33 + "px";</script>
+      <span class="test">.</span>
+      <div id="topbarmenuwrapper">
+        <div class="barmenuleft">
+          <B_rubriques>
+          <h3><:rubriques:></h3>
+          <ul>
+            <BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
+            <li class="page_item"> <a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"] title="[(#TITRE|texte_backend)]">[(#TITRE|couper{40})]</a> </li>
+            </BOUCLE_rubriques>
+          </ul>
+          </B_rubriques>
+          <B_breves>
+          <h3><:dernieres_breves:></h3>
+          <ul>
+            <BOUCLE_breves(BREVES) {par date}{inverse} {0,3}>
+            <li><a href="#URL_BREVE" title="[(#TITRE|texte_backend)]">[(#TITRE|couper{20})]</a></li>
+            </BOUCLE_breves>
+          </ul>
+          </B_breves>
+        </div>
+        <div class="barmenuright">
+          <B_chrono>
+          <h3><:archives:></h3>
+          <ul>
+            <BOUCLE_chrono(ARTICLES){par date}{inverse}>
+            [
+            <li>[(#DATE|affdate{'Y_m'}|choixsiegal{[(#ENV{date}|affdate{'Y_m'})],<strong>,''})] <a href="[(#ENV{self}|parametre_url{archives,[(#DATE|affdate{'Y-m'})]})]">(#DATE|affdate_mois_annee|unique)</a> [(#DATE|affdate{'Y_m'}|choixsiegal{[(#ENV{date}|affdate{'Y_m'})],</strong>,''})]</li>
+            ]
+            </BOUCLE_chrono>
+          </ul>
+          </B_chrono>
+        </div>
+        <div class="barmenuright2">
+          <B_forums_liens>
+          <h3><:commentaires:></h3>
+          <ul>
+            <BOUCLE_forums_liens(FORUMS) {plat} {par date}{inverse} {0,3}>
+            <li><a href="#URL_FORUM" title="[(#TITRE|texte_backend)]">[(#TITRE|couper{20})]</a></li>
+            </BOUCLE_forums_liens>
+          </ul>
+          </B_forums_liens>
+          <B_syndic>
+          <h3>Liens</h3>
+          <ul>
+            <BOUCLE_syndic(SYNDIC_ARTICLES) {age<180} {par date}{inverse} {0,3}>
+            <li><a href="#URL_ARTICLE"[ title="(#TITRE|texte_backend)"] class="spip_out">[(#NOM_SITE|couper{20})]</a></li>
+            </BOUCLE_syndic>
+          </ul>
+          </B_syndic>
+        </div>
+      </div>
+      <div class="barmenubas">&nbsp;</div>
+    </div>
+  </div>
+</div>

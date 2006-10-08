@@ -1,0 +1,38 @@
+[(#PARAMETRES_FORUM|?) Cette balise (invisible) provoque le recalcul du forum la premiere fois qu'un message est poste (cf. inc/invalideur). ]
+<div id="commentwrapper"> [(#REM) Messages du forum ]
+  <B_forums>
+  <BOUCLE_forums(FORUMS) {id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?} {par date}>
+  <div class="commentoddh"></div>
+  <div class="commentodd" id="comment-#ID_FORUM">
+    <div class="commentcontent1">
+      <p><a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM">#TITRE &agrave; virer</a></p>
+      [
+      <div class="texte">(#TEXTE|lignes_longues)</div>
+      ]
+      <p class="commentinfo">[<:par_auteur:> (#NOM|couper{80})] <a href="(#URL_SITE)" rel='external nofollow' class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a> &#8212; <a href="#comment-#ID_FORUM">[(#DATE|affdate)][&nbsp;(#DATE|heures)][:(#DATE|minutes)]</a></p>
+      [
+      <p class="commentinfo" align="right"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_message:></a></p>
+      ] </div>
+  </div>
+  <div class="commentoddb"></div>
+  <B_forums_fils>
+  <BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
+  <div class="commentevenh"></div>
+  <div class="commenteven" id="comment-#ID_FORUM">
+    <div class="commentcontent2">
+      <p><a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM">#TITRE &agrave; virer</a></p>
+      [
+      <div class="texte">(#TEXTE|lignes_longues)</div>
+      ]
+      <p class="commentinfo">[<:par_auteur:> (#NOM|couper{80})] <a href="(#URL_SITE)" rel='external nofollow' class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a> &#8212; <a href="#comment-#ID_FORUM">[(#DATE|affdate)][&nbsp;(#DATE|heures)][:(#DATE|minutes)]</a></p>
+      [
+      <p class="commentinfo" align="right"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_message:></a></p>
+      ] </div>
+  </div>
+  <BOUCLE_Forums_Boucle(boucle_forums_fils)>
+  </BOUCLE_Forums_Boucle>
+  </BOUCLE_forums_fils>
+  </B_forums_fils>
+  </BOUCLE_forums>
+  </B_forums>
+</div>

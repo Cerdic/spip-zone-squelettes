@@ -1,0 +1,85 @@
+#CACHE{86400}
+<BOUCLE_article_principal(ARTICLES) {id_article}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[
+<meta name="description" content='(#INTRODUCTION|couper{150}|textebrut)' />
+]
+     [(#INCLURE{fond=noisettes/head})]
+</head>
+<body>
+<div id="bigwrapper"> [(#INCLURE{fond=noisettes/header}{id_article})]  
+  [(#INCLURE{fond=noisettes/topbar}{id_rubrique}{archives})]
+  <div class="post">
+    <h3 class="posth3">#TITRE</h3>
+    [(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{80,80}|inserer_attribut{class,vignettegauche})]
+    
+    [
+    <div class="texte">(#CHAPO)</div>
+    ]
+    [
+    <div class="texte">(#TEXTE|image_reduire{420,0})</div>
+    ]
+    [
+    <div class="texte">(#PS)</div>
+    ]
+    
+    [
+    <p><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>
+    ]
+    <p class="postdata">
+      <BOUCLE_decompte(FORUMS) {id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?} {plat}>
+      </BOUCLE_decompte>
+      [(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
+      [(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>})]]|
+      <//B_decompte>
+      [<a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a>] | Le [(#DATE|affdate)]
+      <BOUCLE_rub(HIERARCHIE){id_article}>
+      <a href="#URL_RUBRIQUE"> <span class="where">, <:dans:> [(#TITRE|couper{80})]</span></a>
+      </BOUCLE_rub>
+      [ <:par_auteur:> (#LESAUTEURS)] </p>
+    <B_mots>
+    <p class="tag">
+      <BOUCLE_mots(MOTS) {id_article} {par titre}>
+      [<a href="[(#URL_MOT)]" rel="tag">(#TITRE)</a>|]
+      </BOUCLE_mots>
+    </p>
+    </B_mots>
+  </div>
+  <div class="post">
+    <B_documents_portfolio>
+    <div class="texte">
+      <h3><:info_portfolio:></h3>
+     <p> <BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
+     [ <a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|couper{80}|texte_backend)"]>(#FICHIER|copie_locale|image_reduire{0,50}|inserer_attribut{class,vignettegauche}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
+      </BOUCLE_documents_portfolio></p>
+    </div>
+    </B_documents_portfolio>
+    [(#REM) Portfolio : album d'images ]
+    <BOUCLE_afficher_document(DOCUMENTS) {id_article}{id_document}  {mode=document}{extension IN png,jpg,gif}>
+    <div  id="document_actif"> [(#FICHIER|reduire_image{420}|inserer_attribut{class,vignettegauche}) ]
+      [
+      <h3>(#TITRE)</h3>
+      ]
+      [
+      <p>(#DESCRIPTIF)</p>
+      ] </div>
+    </BOUCLE_afficher_document>
+  </div>
+  [(#INCLURE{fond=noisettes/forum}{id_article})]
+  <div class="postsnav"><!-- le lien vers l'article précédent, par ordre chronologique} -->
+<BOUCLE_precedent(ARTICLES){age_relatif>=0}{par date}{inverse}{1,1}>
+<p><a href='#URL_ARTICLE'>&#8592;[(#TITRE|couper{80})]</a> </p>
+</BOUCLE_precedent>
+
+<!-- le lien vers l'article suivant, par ordre chronologique-->
+<BOUCLE_suivant(ARTICLES){age_relatif<0}{par date}{0,1}>
+<p><a href='#URL_ARTICLE'>[(#TITRE|couper{80})]&#8594;</a></p>
+</BOUCLE_suivant></div>
+  <div id="footer"> </div>
+  [(#INCLURE{fond=noisettes/footerx}{skel=#SQUELETTE})] </div>
+</body>
+</html>
+</BOUCLE_article_principal>

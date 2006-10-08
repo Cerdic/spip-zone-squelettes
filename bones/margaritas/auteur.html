@@ -1,0 +1,53 @@
+#CACHE{86400}
+<BOUCLE_auteur_principal(AUTEURS) {id_auteur}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#NOM|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[
+<meta name="description" content='(#BIO|couper{150}|textebrut)' />
+]
+     [(#INCLURE{fond=noisettes/head})]
+</head>
+<body>
+<div id="bigwrapper"> [(#INCLURE{fond=noisettes/header})]  
+  [(#INCLURE{fond=noisettes/topbar}{id_auteur}{archives})]
+  <div class="post">
+    <h3 class="posth3">#NOM</h3>
+    [(#LOGO_AUTEUR||image_reduire{80,80}|inserer_attribut{class,vignettegauche})]
+    
+    [
+    <div class="texte">(#BIO|image_reduire{420,0})</div>
+    ]
+    
+    [
+    <p><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>
+    ]
+ [(#REM) Articles de l'auteur ]
+    <B_articles>
+    [(#ANCRE_PAGINATION)]
+    [(#ENV{debut_articles}|?{'',' '})
+    <h3 class="posth3"><:articles_recents:></h3>
+    ]
+    <BOUCLE_articles(ARTICLES) {id_auteur} {par date}{inverse}{doublons}{pagination 3}>
+    <p class="postdata"><a href="#URL_ARTICLE">[(#TITRE|couper{40})]</a></p>
+    </BOUCLE_articles>
+    [
+    <p>(#PAGINATION)</p>
+    ]
+    </B_articles>
+    [
+    <div class="notes">
+      <h2><:info_notes:></h2>
+      (#NOTES)</div>
+    ]
+    
+    [
+    <div class="form"> (#FORMULAIRE_ECRIRE_AUTEUR) </div>
+    ] </div>
+  <div class="postsnav"></div>
+  <div id="footer"> </div>
+  [(#INCLURE{fond=noisettes/footerx}{skel=#SQUELETTE})] </div>
+</body>
+</html>
+</BOUCLE_auteur_principal>
