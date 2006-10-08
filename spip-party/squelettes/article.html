@@ -108,11 +108,10 @@ function showPreview(response) {
 				[(#REM) Les prochains evenements ]
 				<B_event_list>
 				<h4>Prochaines dates :</h4>
-				<ul class="spip">
+				<ul>
 				<BOUCLE_event_list(EVENEMENTS) {id_article} {agendafull date_debut, date_fin, (#ENV{date}|annee)} {statut=publie}{par date_fin}{age<7} {0,10}>
-					<li class="spip">
-						<a href="[(#URL_PAGE{evenement}|parametre_url{id_evenement,#ID_EVENEMENT})]">#TITRE</a>[ &ndash; (#DATE_DEBUT|nom_jour|ucfirst) ][(#DATE_DEBUT|affdate_court)][ &ndash; (#HORAIRE|=={oui}|?{[(#DATE_DEBUT|heures)H][(#DATE_DEBUT|minutes)][&ndash;(#DATE_FIN|heures)H][(#DATE_FIN|minutes)],''})][ &ndash; (#LIEU)]
-						[<br />(#DESCRIPTIF|PtoBR|couper{200})&nbsp;<a href="[(#URL_PAGE{evenement}|parametre_url{id_evenement,#ID_EVENEMENT})]"[ title="(#TITRE|texte_backend)"]>&gt;&nbsp;<:suite:></a>]
+					<li>
+						<a href="[(#URL_PAGE{evenement}|parametre_url{id_evenement,#ID_EVENEMENT})]">#TITRE</a>[ &ndash; (#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})][ &ndash; (#LIEU)]
 					</li>
 				</BOUCLE_event_list>
 				</ul>
