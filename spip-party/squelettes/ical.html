@@ -9,12 +9,12 @@ X-WR-CALDESC:[(#DESCRIPTIF_SITE_SPIP|filtrer_ical)]
 X-WR-RELCALID:[(#URL_SITE_SPIP|filtrer_ical)]
 <BOUCLE_evenement(EVENEMENTS) {branche ?} {statut=publie}{par date_fin} {0,100}>
 BEGIN:VEVENT
-SUMMARY:[(#LIEU|filtrer_ical)][ -(#TITRE|filtrer_ical)] <BOUCLE_rub(RUBRIQUES){id_rubrique}>[ - (#TITRE|filtrer_ical)]</BOUCLE_rub>
+SUMMARY:[(#TITRE|filtrer_ical)] <BOUCLE_rub(RUBRIQUES){id_rubrique}>[ - (#TITRE|filtrer_ical)]</BOUCLE_rub>[ /(#LIEU|filtrer_ical)]
 UID:evenement#ID_EVENEMENT @ [(#URL_SITE_SPIP|filtrer_ical)]
 [DTSTAMP:(#DATE|date_ical)]
 [DTSTART:(#DATE_DEBUT|date_ical)]
 [DTEND:(#DATE_FIN|date_ical{60})]
-[LOCATION:(#LIEU|filtrer_ical)]
+[LOCATION:<BOUCLE_rub(RUBRIQUES){id_rubrique}>[ - (#TITRE|filtrer_ical)]</BOUCLE_rub>(#LIEU|filtrer_ical)]
 [DESCRIPTION:(#DESCRIPTIF|filtrer_ical)]
 CATEGORIES:<:articles|filtrer_ical:>
 URL:[(#URL_PAGE{evenement}|parametre_url{id_evenement,#ID_EVENEMENT}|url_absolue|filtrer_ical)]
