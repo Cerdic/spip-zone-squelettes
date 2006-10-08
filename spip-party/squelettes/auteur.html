@@ -3,51 +3,50 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 [(#REM) SPIP Party par Ben.spip, Gilles Vincent & IZO, base� sur K2 et Bones ]
 <head>
-	<title>[(#NOM|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+	<title>[(#NOM|supprimer_numero|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
 	[<meta name="description" content="(#BIO|couper{150}|textebrut)" />]
+	<meta name="robots" content="none" />
 	<INCLURE{fond=inc_head}{id_auteur}>
 </head>
 <body>
 <div id="page">
-  <div id="header">
-    
-    <ul class="menu">
-      <li class="current_item"><a href="#URL_SITE_SPIP/" title="<:accueil_site:>"><b><:accueil_site:></b></a></li>
-      <INCLURE{fond=inc_menu-haut}>
-    </ul>
-  </div>
-  <hr />
-  <div class="primary">
-    <div class="center">
-      <h2>
-        <!--<:derniers_breves:>-->
-      </h2>
-    </div>
-    <div id="post" class="item entry">
-      <div class="itemhead"> Auteur :
-        <h3>#NOM</h3>
-        <p>#BIO</p>
-        
-        <ul>
-          <BOUCLE_articles(ARTICLES){id_auteur}{!par date}>
-          <li><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a> &nbsp;([(#DATE|affdate{'d/m/Y'})])</li>
-          </BOUCLE_articles>
-        </ul>
-        
-      </div><!-- itemhead -->
+	<div id="header">
+		<ul class="menu">
+			<li class="current_item"><a href="#URL_SITE_SPIP/" title="<:accueil_site:>"><b><:accueil_site:></b></a></li>
+			<INCLURE{fond=inc_menu-haut}>
+		</ul>
+	</div>
+	<hr />
+	<div class="primary">
+		<div id="post" class="item entry">
+			<div class="itemhead">
+				[<div class="image">(#LOGO_AUTEUR|right||image_reduire{75})</div>]
+				<h3>[(#NOM|supprimer_numero)]</h3>
+				[<small class="metadata"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></small>]
+				<p>#BIO</p>
+			</div><!-- itemhead -->
 			<div class="clear"><span></span></div>
-    </div><!-- post -->
-  </div><!-- primary -->
-  <hr />
-  <div class="secondary">
-  	[(#CALENDRIER_MINI{#ENV{date},'date',#SELF})]
-    <INCLURE{fond=inc_dernieres_breves}>
-    <INCLURE{fond=inc_syndication}>
-    <div id="logo-spip"><a href="http://www.spip.net" class="spip_out"><img src="#CHEMIN{images/logo-spip.gif}" name="spip" border="0" id="spip" alt="SPIP" /></a></div>
-  </div><!-- secondary -->
-  <div class="clear"><span></span></div>
+			<div class="itemtext">
+				<ul>
+					<BOUCLE_articles(ARTICLES){id_auteur} {!par date}>
+					<li><BOUCLE_rub(RUBRIQUES){id_rubrique}>[(#TITRE|majuscules)&nbsp;: ]</BOUCLE_rub><a href="#URL_ARTICLE">#TITRE</a>&nbsp;<em style="color: #999;">[(#DATE|affdate_court)]</em></li>
+					</BOUCLE_articles>
+				</ul>
+			</div><!-- itemtext -->
+			<div class="clear"><span></span></div>
+		</div><!-- post -->
+	</div><!-- primary -->
+	<hr />
+	<div class="secondary">
+		[(#CALENDRIER_MINI{#ENV{date},'date',#SELF})]
+		<INCLURE{fond=inc_dernieres_breves}>
+		<INCLURE{fond=inc_auteurs_tous}>
+		<INCLURE{fond=inc_syndication}>
+		<div id="logo-spip"><a href="http://www.spip.net" class="spip_out"><img src="#CHEMIN{images/logo-spip.gif}" name="spip" border="0" id="spip" alt="SPIP" /></a></div>
+	</div><!-- secondary -->
+	<div class="clear"><span></span></div>
 </div><!-- Close Page -->
-  <INCLURE{fond=inc_pied_de_page}>
+<INCLURE{fond=inc_pied_de_page}>
 </body>
 </BOUCLE_breve_principal>
 </html>
