@@ -1,31 +1,15 @@
 <BOUCLE_compte_messages(FORUMS){id_article}{plat}> </BOUCLE_compte_messages>
 	<h4>[(#TOTAL_BOUCLE) commentaire(s)]</h4>
-	[<h5 ><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:nouveau_commentaire:></a></h5>]
 </B_compte_messages>
-	[<h5 ><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:nouveau_commentaire:></a></h5>]
-	<div id="formulaireForum"></div>
-<//B_compte_messages>
 
 <B_forums>
 <ol class="commentlist" id="commentlist">
 	<li id="formulaireForum"></li>		
-	<BOUCLE_forums(FORUMS){id_article}{!par date}>
-	<li class="item" id="comment"><a name="forum#ID_FORUM" id="forum#ID_FORUM"></a><strong>#TITRE</strong> &ndash; [(#DATE|affdate)] [(#DATE|heures)]:[(#DATE|minutes)][, <:par_auteur:> (#NOM)][ (<strong><a href="inclusions/(#URL_SITE)" class="spip_out">#NOM_SITE</a></strong>)]
-	[<div class="itemtext">(#TEXTE|PtoBR)</div>]
-	[<h5 align="right"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a></h5>]
-
-		<B_forums_fils>
-		<ol>
-			<BOUCLE_forums_fils(FORUMS){id_parent}{!par date}>
-			<li class="item" id="comment"><a name="forum#ID_FORUM" id="forum#ID_FORUM"></a><strong>#TITRE</strong> &ndash; [(#DATE|affdate)] [(#DATE|heures)]:[(#DATE|minutes)][, <:par_auteur:> (#NOM)][ (<strong><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></strong>)]
-			[<div class="itemtext">(#TEXTE|PtoBR)</div>]
-			[<p align="right"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a></h5>]
-			</li>
-			<BOUCLE_Forums_Boucle(boucle_forums_fils)> </BOUCLE_Forums_Boucle>
-			</BOUCLE_forums_fils>
-		</ol>
-		</B_forums_fils>
-	
+	<BOUCLE_forums(FORUMS){plat} {id_article ?}{id_breve ?} {par date}>
+	<li class="item" id="comment">
+		<a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM"><strong>#TITRE</strong></a> &ndash; [(#DATE|affdate)] [(#DATE|heures)]:[(#DATE|minutes)][, <:par_auteur:> (#NOM)]
+		[(#TEXTE)]
+		[<p><a href="inclusions/(#URL_SITE)" class="spip_out">&gt;&nbsp;#NOM_SITE</a></p>]
 	</li>
 	</BOUCLE_forums>
 </ol>
