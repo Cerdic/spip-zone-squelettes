@@ -1,0 +1,95 @@
+#CACHE{86400}
+<BOUCLE_mot_principal(MOTS) {id_mot} {doublons}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+	<title>[(#TITRE|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	[<meta name="description" content="(#DESCRIPTIF|sinon{#TEXTE}|couper{150}|attribut_html)" />]
+	<meta name="generator" content="SPIP" />
+	[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
+
+	<!-- Lien vers le backend pour navigateurs eclaires -->
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="#URL_PAGE{backend,id_rubrique=#ID_MOT}" />
+
+	<!-- Ceci est la feuille de style par defaut pour le code genere par SPIP -->
+	<link rel="stylesheet" href="[(#CHEMIN{andreas01.css}|direction_css)]" type="text/css" media="all" />
+	<!-- Feuille de styles CSS pour l'affichage du site sur ecran -->
+	<link rel="stylesheet" href="[(#CHEMIN{spip_style.css}|direction_css)]" type="text/css" media="projection, screen, tv" />
+	<!-- Feuille de styles CSS pour l'impression -->
+	<link rel="stylesheet" href="[(#CHEMIN{impression.css}|direction_css)]" type="text/css" media="print" />
+</head>
+
+
+
+
+<body >
+	<div id="wrap">
+
+		[(#REM) Entete de la page + titre du site ]
+		<INCLURE{fond=inc-entete}{lang}>
+
+		[(#REM) Fil d'Ariane ]
+		<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:mots_clefs:><BOUCLE_ariane(GROUPES_MOTS){id_groupe}> &gt; [(#TITRE|couper{80})]</BOUCLE_ariane>[ &gt; (#TITRE|couper{80})]</div>
+
+		<div id="avmenu">
+			<INCLURE{fond=inc-rubriques}{lang}>
+			<ul><li><a href="spip.php?page=metiers">Métiers</a></li></ul>
+		</div><!-- avmenu -->
+
+
+		<div id="extras">
+
+
+			[(#REM) Menu de navigation mots-cles : les autres mots cles du meme groupe ]
+			<B_mots_freres>
+				<h2 class="menu-titre"><:mots_clefs_meme_groupe:></h2>
+				<ul>
+					<BOUCLE_mots_freres(MOTS) {type} {par titre} >
+					<li><a href="#URL_MOT"[ class="(#EXPOSE)"] title="[(#TITRE|attribut_html)]">[(#TITRE|couper{27})]</a></li>
+					</BOUCLE_mots_freres>
+				</ul>
+			
+			</B_mots_freres>
+
+
+		</div><!-- extras -->
+
+		<div id="content">
+			
+			<div class="cartouche">
+				[(#LOGO_MOT||image_reduire{200,200})]
+				<h1 class="titre">#TITRE</h1>
+			</div>
+
+			[<div class="chapo">(#TEXTE)</div>]
+			[<div class="chapo">(#DESCRIPTIF)</div>]
+
+
+			[(#REM) Articles lies au mot-cle ]
+			<B_articles>
+					<ul>
+						<BOUCLE_articles(ARTICLES) {id_mot} >
+						<li>
+						<a href="#URL_ARTICLE">#TITRE</a>
+						</BOUCLE_articles>
+					</ul>
+			</B_articles>
+
+
+		</div><!-- content -->
+		
+		[(#REM) Pied de page ]
+		<INCLURE{fond=inc-pied}{lang}>
+
+</div><!-- wrap -->
+</body>
+</html>
+</BOUCLE_mot_principal>
+
+
+
+
+
+</div><!-- fin page -->
+</body>
