@@ -7,55 +7,57 @@
 >
 
 <channel>
-
+	
 	<title>[Calendrier (#NOM_SITE_SPIP|texte_backend)]</title>
 	<link>#URL_SITE_SPIP/</link>
 	<description>[(#DESCRIPTIF_SITE_SPIP|texte_backend)]</description>
 	<language>#LANG</language>
 	<generator>SPIP - www.spip.net</generator>
-
-[	<image>
-		<title>[(#NOM_SITE_SPIP|texte_backend)]</title>
-		<url>(#LOGO_SITE_SPIP||extraire_attribut{src}|url_absolue|texte_backend)</url>
-		<link>#URL_SITE_SPIP/</link>
-		[<height>(#LOGO_SITE_SPIP||extraire_attribut{height})</height>]
-		[<width>(#LOGO_SITE_SPIP||extraire_attribut{width})</width>]
-	</image>
-]
-
-<BOUCLE_evenement(EVENEMENTS){branche ?}{lang ?} {statut=publie}{par date_fin}{age<7} {0,60}>
+	
+	[<image>
+	<title>[(#NOM_SITE_SPIP|texte_backend)]</title>
+	<url>(#LOGO_SITE_SPIP||extraire_attribut{src}|url_absolue|texte_backend)</url>
+	<link>#URL_SITE_SPIP/</link>
+	[<height>(#LOGO_SITE_SPIP||extraire_attribut{height})</height>]
+	[<width>(#LOGO_SITE_SPIP||extraire_attribut{width})</width>]
+	</image>]
+	
+	<BOUCLE_evenement(EVENEMENTS) {lang ?} {branche ?} {statut=publie}{par date_fin}{age<7} {0,60}>
 	<item>
-		<title>[(#TITRE|supprimer_numero|texte_backend)]</title>
+		<title>[(#TITRE|supprimer_numero|texte_backend)]<BOUCLE_rub(RUBRIQUES){id_rubrique}>[ - (#TITRE|supprimer_numero|texte_backend)]</BOUCLE_rub></title>
 		<link>[(#URL_PAGE{evenement}|parametre_url{id_evenement,#ID_EVENEMENT}|url_absolue)]</link>
 		[<guid isPermaLink="true">(#URL_PAGE{evenement}|parametre_url{id_evenement,#ID_EVENEMENT}|url_absolue)</guid>]
 		[<dc:date>(#DATE_DEBUT|date_iso)</dc:date>]
 		<dc:format>text/html</dc:format>
 		[<dc:language>(#LANG)</dc:language>]
-		[(#REM)
-			Le bloc qui suit diffuse diffuse la rubrique a la mode RSS
-		]<BOUCLE_rubrique_rss(RUBRIQUES){id_rubrique}>[<category[ domain="(#URL_RUBRIQUE|url_absolue)"]>(#TITRE|supprimer_numero|texte_backend)</category>]</BOUCLE_rubrique_rss>
-		<description>[(#DESCRIPTIF|texte_backend)]
-
-[(#REM)
-	Le bloc qui suit diffuse la rubrique sous forme de "microformats"
-]<BOUCLE_rubrique_mf(RUBRIQUES){id_rubrique}>-
-[&lt;a href="[(#URL_RUBRIQUE|url_absolue)]" rel="directory"&gt;(#TITRE|supprimer_numero|texte_backend)&lt;/a&gt;]
-</BOUCLE_rubrique_mf>
-
+		[(#REM) Le bloc qui suit diffuse diffuse la rubrique a la mode RSS ]
+		<BOUCLE_rubrique_rss(RUBRIQUES){id_rubrique}>
+		[<category[ domain="(#URL_RUBRIQUE|url_absolue)"]>(#TITRE|supprimer_numero|texte_backend)</category>]
+		</BOUCLE_rubrique_rss>
+		<description>
+			[(#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE}|texte_backend)]
+			[ - (#LIEU|texte_backend)]
+			[ - (#DESCRIPTIF|texte_backend)]
+			[(#REM) Le bloc qui suit diffuse la rubrique sous forme de "microformats"]
+			<BOUCLE_rubrique_mf(RUBRIQUES){id_rubrique}>
+			[&lt;a href="[(#URL_RUBRIQUE|url_absolue)]" rel="directory"&gt;(#TITRE|supprimer_numero|texte_backend)&lt;/a&gt;]
+			</BOUCLE_rubrique_mf>
 		</description>
-
-[(#REM)
-	Le bloc qui suit diffuse aussi le texte integral de la breve,
-	ce qui permet une syndication plus riche (mais plus "lourde").
-	Fonction desactivable depuis les reglages du site.
-][
-(#CONFIG{syndication_integrale}|=={oui}|?{' ',''})<content:encoded>[(#LOGO_RUBRIQUE|right||texte_backend)
-		][&lt;div class='rss_texte'&gt;(#DESCRIPTIF|texte_backend)&lt;/div&gt;]
-		</content:encoded>
-]
+		
+		[(#REM) Le bloc qui suit diffuse aussi le texte integral de l'evenement,
+		ce qui permet une syndication plus riche (mais plus "lourde").
+		Fonction desactivable depuis les reglages du site.]
+		[(#CONFIG{syndication_integrale}|=={oui}|?{' ',''})<content:encoded>
+		[(#LOGO_RUBRIQUE|right||texte_backend)]
+		&lt;div class='rss_texte'&gt;
+			[(#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE}|texte_backend)]
+			[ - (#LIEU|texte_backend)]
+			[ - (#DESCRIPTIF|texte_backend)]
+		&lt;/div&gt;
+		</content:encoded>]
 	</item>
-</BOUCLE_evenement>
-
+	</BOUCLE_evenement>
+	
 </channel>
 
 </rss>
