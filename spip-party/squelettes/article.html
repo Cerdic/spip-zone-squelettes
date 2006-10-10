@@ -6,82 +6,6 @@
 	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
 	[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
 	<INCLURE{fond=inc_head}{id_article}{id_rubrique}>
-
-<script type="text/javascript">
-<!--
-function showpic (parent,url,src,w,h) {
-    // div : id de la div parente
-    // url : lien vers l'image complete
-    // src : source de l'image a afficher
-    // w et h sont la taille de l'image a afficher
-
-    var block = document.createElement('div');
-    var link = document.createElement('a');
-    var img = document.createElement('img');
-    var container = document.getElementById(parent);
-
-    container.style.marginLeft = 'auto';
-    container.style.marginRight = 'auto';
-
-    resize.custom(h,w);
-
-    link.href = url;
-    img.src = src;
-    img.style.border = 0;
-
-    link.appendChild(img);
-    block.appendChild(link);
-
-    if (document.getElementById) {
-        if (container.hasChildNodes()) {
-            container.replaceChild(block, container.firstChild);
-        }
-        else container.appendChild(block);
-        return(true);
-     } else return(false);
-}
-
-// recupere le formulaire via une requete AJAX
-function dspForm (titre) {
-	var url = "[(#DOSSIER_SQUELETTE)]/ajax_formulaire_commentaire.php";
-	var myparameters = 'titre=' + encodeURIComponent('[(#TITRE)]');
-	myparameters += '&id_article=[(#ID_ARTICLE)]';
-	myparameters += "&hash=" + '<?php echo($GLOBALS["auteur_session"]["hash_env"]); ?>';
-	var myAjax = new Ajax.Request(
-					url, 
-					{method: 'get', parameters: myparameters, onComplete: showResponse});
-    return myAjax;
-}
-
-// affiche le formulaire -- retourn�sous forme HTML
-function showResponse(contenuFormulaire) {
-	$('formulaireForum').innerHTML = contenuFormulaire.responseText;
-	$('submitComment').o.toggle();
-}
-
-
-function launchPreview() {
-	var message = Form.Element.serialize($('commentaire'));
-	message += '&' + Form.Element.serialize($('titre'));
-	message += '&' + Form.Element.serialize($('auteur'));
-	message += '&' + Form.Element.serialize($('email_auteur'));
-	var url = "[(#DOSSIER_SQUELETTE)]/ajax_transform_message.php";
-	var myAjax = new Ajax.Request(
-			url, 
-			{method: 'get', parameters: message, onComplete: showPreview} 
-	);
-	return myAjax;
-}
-
-function showPreview(response) {
-	if (!$("preview").o) $("preview").o = new fx.Opacity("preview");
-	$("preview").innerHTML = response.responseText;
-	$("preview").o.hide();
-	$("preview").o.toggle();
-}
-
-//-->
-</script>
 </head>
 <body>
 <div id="page">
@@ -93,7 +17,16 @@ function showPreview(response) {
 	</div>
 	
 	<div class="primary">
-		<div id="post" class="item entry">
+		<div class="item">
+			<div class="navigation">
+				<BOUCLE_precedent(ARTICLES){id_rubrique}{age_relatif>0}{!par date}{0,1}{doublons}>
+				<div class="alignleft">&laquo;&nbsp;<a href="#URL_ARTICLE">[(#TITRE|couper{60})]</a></div>
+				</BOUCLE_precedent>
+				<BOUCLE_suivant(ARTICLES){id_rubrique}{age_relatif<0}{par date}{0,1}{doublons}>
+				<div class="alignright"><a href="#URL_ARTICLE">[(#TITRE|couper{60})]</a>&nbsp;&raquo;</div>
+				</BOUCLE_suivant>
+				<div class="clear"><span></span></div>
+			</div>
 			<div class="itemhead">
 				[<div class="image">(#LOGO_ARTICLE_RUBRIQUE|right||image_reduire{75})</div>]
 				<h3>#TITRE</h3>
@@ -158,9 +91,5 @@ function showPreview(response) {
 </div><!-- Close Page -->
 <INCLURE{fond=inc_pied_de_page}>
 </body>
-<script type="text/javascript">
-	Element.cleanWhitespace('content');
-	init();
-</script>
 </BOUCLE_article_principal>
 </html>
