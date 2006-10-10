@@ -1,8 +1,9 @@
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 [(#REM) SPIP Party par Ben.spip, Gilles Vincent & IZO, base� sur K2 et Bones ]
 <head>
-	<title><:nouveautes_web:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+	<title>Photos - [(#NOM_SITE_SPIP|textebrut)]</title>
 	<meta name="robots" content="none" />
 	<INCLURE{fond=inc_head}>
 </head>
@@ -11,37 +12,46 @@
 	<div id="header">
 		<ul class="menu">
 			<li class="current_item"><a href="#URL_SITE_SPIP/" title="<:accueil_site:>"><b><:accueil_site:></b></a></li>
-			<INCLURE{fond=inc_menu-haut}>
+			<INCLURE{fond=inc_menu-haut}{id_rubrique}>
 		</ul>
 	</div>
 	<hr />
 	<div class="primary">
 		<div id="post" class="item entry">
 			<div class="itemhead">
-			[<div class="image">(#LOGO_RUBRIQUE|right||image_reduire{75})</div>]
-			<h3><:nouveautes_web:></h3>
+				[<div class="image">(#LOGO_RUBRIQUE|right||image_reduire{100})</div>]
+				<h1><a href="#URL_RUBRIQUE">#TITRE</a></h1>
+				[<div>(#TEXTE)</div>]
 			</div><!-- itemhead -->
 			<div class="clear"><span></span></div>
 			<div class="itemtext">
-
-				<BOUCLE_sites_atej(SITES) {id_secteur=35}>
+			
+				<BOUCLE_sites_oui(SITES){branche} {doublons sites}> </BOUCLE_sites_oui>
+				
+				<BOUCLE_sites_atej(SITES) {doublons sites}>
 				<BOUCLE_syndic_sites_atej(SYNDIC_ARTICLES) {id_syndic} {doublons}>
 				</BOUCLE_syndic_sites_atej>
 				</BOUCLE_sites_atej>
-				
-				<B_articles>
+							
+				<B_syndic>
 				#ANCRE_PAGINATION
 				[<p class="pagination">(#PAGINATION)</p>]
 				<ul>
-					<BOUCLE_articles(SYNDIC_ARTICLES) {!par date} {doublons} {pagination 5}>
-					<li>
-						<a href="#URL_ARTICLE">#TITRE</a> - #NOM_SITE - [(#DATE|affdate{'d/m/Y'})]
-						[<br />(#DESCRIPTIF|PtoBR)]
-					</li>
-					</BOUCLE_articles>
+				<BOUCLE_syndic(SYNDIC_ARTICLES) {!par date} {doublons} {pagination}>
+					[<li class="sb_flickr">
+						<h3 style="display: none;">#TITRE</h3>
+						<a href="#URL_ARTICLE">(#DESCRIPTIF
+								|extraire_balise{img}
+								|image_reduire{200,180}
+								|inserer_attribut{alt,[(#TITRE|textebrut)]})</a>
+						<p><small>[(#TITRE|couper{80})] &mdash; [(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)]</small></p>
+					</li>]
+				</BOUCLE_syndic>
 				</ul>
+				<div class="clear"><span></span></div>
 				[<p class="pagination">(#PAGINATION)</p>]
-				</B_articles>
+				</B_syndic>
+
 			</div><!-- itemtext -->
 			<div class="clear"><span></span></div>
 		</div><!-- post -->
@@ -57,4 +67,5 @@
 </div><!-- Close Page -->
 <INCLURE{fond=inc_pied_de_page}>
 </body>
+</BOUCLE_rubrique_principal>
 </html>
