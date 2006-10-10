@@ -1,6 +1,7 @@
 <?php
-//$GLOBALS[ 'dossier_squelettes' ] = "squel_party" ;
 
+$GLOBALS['puce'] = '- ';
+$GLOBALS['espace_logos'] = 0;
 
 # titre homogene http://www.spip-contrib.net/article46.html
 function titre_homogene($titre) {
