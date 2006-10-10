@@ -1,17 +1,16 @@
-[(#REM) Afficher les menus pas mots-clefs seulement dans le secteur 30 Archives ]
+[(#REM) Mots-cles pour la feria ]
 <BOUCLE_rub(RUBRIQUES){id_rubrique}{id_secteur=30}>
-<B_mots>
-<BOUCLE_mots(MOTS) {id_article}>
+<BOUCLE_mots(MOTS) {id_groupe IN 1,3,4}{id_article} {par id_groupe} {0,3}>
+<B_articles_mot>
 <div class="sb_latest">
-	<h2><a href="#URL_MOT">[(#TITRE|titre_homogene)]</a></h2>
+	<h2>[(#TITRE|titre_homogene)]</h2>
 	<ul>
-		<BOUCLE_articles_mot(ARTICLES) {id_mot} {par hasard} {0,3} {doublons mot}>
-		<li><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|texte_backend)"]>[(#TITRE|titre_homogene)]</a></li>
+		<BOUCLE_articles_mot(ARTICLES) {id_mot}{id_secteur=30} {par hasard} {0,3}>
+		<li><a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|couper{80}|texte_backend)"]>[(#TITRE|titre_homogene)]</a></li>
 		</BOUCLE_articles_mot>
-		<BOUCLE_articles_mot_suite(ARTICLES) {id_mot} {doublons mot}> </BOUCLE_articles_mot_suite><li><a href="#URL_MOT">&nbsp;(...)</a></li></B_articles_mot_suite>
 	</ul>
 </div>
+</B_articles_mot>
 </BOUCLE_mots>
-<!-- fin element -->
 </B_mots>
 </BOUCLE_rub>
