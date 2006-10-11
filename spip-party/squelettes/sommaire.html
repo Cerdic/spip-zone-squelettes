@@ -8,6 +8,7 @@
 </head>
 <body>
 <div id="page">
+	<h1 style="display: none;">#NOM_SITE_SPIP</h1>
 	<div id="header">
 		<ul class="menu">
 			<li class="current_page_item"><a href="#URL_SITE_SPIP/" title="<:accueil_site:>"><:accueil_site:></a></li>
@@ -16,34 +17,33 @@
 	</div>
 	
 	<div class="primary">
-		<BOUCLE_articles_une(ARTICLES) {titre_mot=une} {!par date} {0,2} {doublons}>
-		<div class="itemhead">
-			[<div class="image">(#LOGO_ARTICLE_RUBRIQUE|left|#URL_RUBRIQUE|image_reduire{75})</div>]
-			<h3><a href="#URL_ARTICLE">#TITRE</a></h3>
-			<span class="metadata"><BOUCLE_rubrique_article_une(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">[(#TITRE|majuscules)]</a></BOUCLE_rubrique_article_une></span>
-			<small class="metadata">[<:par_auteur:> (#LESAUTEURS), ][(#DATE|affdate_court)]
-			<BOUCLE_compte_messages_une(FORUMS){id_article}{plat}> </BOUCLE_compte_messages_une>
-			&mdash; <a href="#URL_ARTICLE#forum">[(#TOTAL_BOUCLE)]
-			[(#TOTAL_BOUCLE|=={1}|?{commentaire,commentaires})]</a></B_compte_messages_une>
-			</small>
-		</div><!-- itemhead -->
-		[<p class="itemtext">(#INTRODUCTION)&nbsp;<a href="#URL_ARTICLE"[ title="(#TITRE|couper{80}|texte_backend)"]>&gt;&nbsp;<:suite:></a></p>]
+
+		<BOUCLE_articles_une(ARTICLES) {titre_mot=une} {!par date}{age<150} {0,2} {doublons}>
+		[<div class="image">(#LOGO_ARTICLE_RUBRIQUE|left|#URL_RUBRIQUE|image_reduire{75})</div>]
+		<h3><a href="#URL_ARTICLE">#TITRE</a></h3>
+		<span class="metadata"><BOUCLE_rubrique_article_une(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">[(#TITRE|majuscules)]</a></BOUCLE_rubrique_article_une></span>
+		<small class="metadata">[<:par_auteur:> (#LESAUTEURS), ][(#DATE|affdate_court)]
+		<BOUCLE_compte_messages_une(FORUMS){id_article}{plat}> </BOUCLE_compte_messages_une>
+		&mdash; <a href="#URL_ARTICLE#forum">[(#TOTAL_BOUCLE)]
+		[(#TOTAL_BOUCLE|=={1}|?{commentaire,commentaires})]</a></B_compte_messages_une>
+		</small>
+		[<p>(#INTRODUCTION)&nbsp;<a href="#URL_ARTICLE"[ title="(#TITRE|couper{80}|texte_backend)"]>&gt;&nbsp;<:suite:></a></p>]
 		<div class="clear">&nbsp;</div>
 		</BOUCLE_articles_une>
+		
 		<BOUCLE_articles(ARTICLES) {!par date} {0,5} {doublons}>
-		<div class="itemhead">
-			[<div class="image">(#LOGO_ARTICLE_RUBRIQUE|left|#URL_RUBRIQUE|image_reduire{75})</div>]
-			<h3><a href="#URL_ARTICLE">#TITRE</a></h3>
-			<span class="metadata"><BOUCLE_rubrique_article(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">[(#TITRE|majuscules)]</a></BOUCLE_rubrique_article></span>
-			<small class="metadata">[<:par_auteur:> (#LESAUTEURS), ][(#DATE|affdate_court)]
-			<BOUCLE_compte_messages(FORUMS){id_article}{plat}> </BOUCLE_compte_messages>
-			&mdash; <a href="#URL_ARTICLE#forum">[(#TOTAL_BOUCLE)]
-			[(#TOTAL_BOUCLE|=={1}|?{commentaire,commentaires})]</a></B_compte_messages>
-			</small>
-		</div><!-- itemhead -->
-		[<p class="itemtext">(#INTRODUCTION)&nbsp;<a href="#URL_ARTICLE"[ title="(#TITRE|couper{80}|texte_backend)"]>&gt;&nbsp;<:suite:></a></p>]
-		<div class="clear"><span></span></div>
+		[<div class="image">(#LOGO_ARTICLE_RUBRIQUE|left|#URL_RUBRIQUE|image_reduire{60})</div>]
+		<h3><a href="#URL_ARTICLE">#TITRE</a></h3>
+		<span class="metadata"><BOUCLE_rubrique_article(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">[(#TITRE|majuscules)]</a></BOUCLE_rubrique_article></span>
+		<small class="metadata">[<:par_auteur:> (#LESAUTEURS), ][(#DATE|affdate_court)]
+		<BOUCLE_compte_messages(FORUMS){id_article}{plat}> </BOUCLE_compte_messages>
+		&mdash; <a href="#URL_ARTICLE#forum">[(#TOTAL_BOUCLE)]
+		[(#TOTAL_BOUCLE|=={1}|?{commentaire,commentaires})]</a></B_compte_messages>
+		</small>
+		[<p>(#INTRODUCTION)&nbsp;<a href="#URL_ARTICLE"[ title="(#TITRE|couper{80}|texte_backend)"]>&gt;&nbsp;<:suite:></a></p>]
+		<div class="clear">&nbsp;</div>
 		</BOUCLE_articles>
+
 	</div><!-- primary -->
 	<div class="secondary">
 		[(#CALENDRIER_MINI{#ENV{date},'date',#SELF})]
@@ -54,10 +54,9 @@
 		<INCLURE{fond=inc_sites}>
 		<INCLURE{fond=inc_galaxie}>
 	</div><!-- secondary -->
-	<div class="clear"><span></span></div>
+	<div class="clear">&nbsp;</div>
 </div><!-- Close Page -->
 <INCLURE{fond=inc_pied_de_page}>
 #SPIP_CRON
 </body>
-
 </html>

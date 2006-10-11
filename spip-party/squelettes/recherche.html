@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 [(#REM) SPIP Party par Ben.spip, Gilles Vincent, Tetue & IZO, base sur K2 et Bones ]
 <head>
-	<title>[(#ENV{date}|affdate_mois_annee|ucfirst)][ - (#NOM_SITE_SPIP|textebrut)]</title>
-	[<meta name="description" content="(#DESCRIPTIF|couper{150}|textebrut)" />]
+	<title><:resultats_recherche:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+	<meta name="robots" content="none" />
 	<INCLURE{fond=inc_head}>
 </head>
 <body>
@@ -17,28 +17,26 @@
 	</div>
 	
 	<div class="primary">
-		<div class="item">
-			<div class="itemhead">
-				<h3>[(#ENV{date}|affdate_mois_annee|ucfirst)]</h3>
-			</div><!-- itemhead -->
-			<div class="clear">&nbsp;</div>
-			<B_event_list>
-			<ul style="list-style: none; margin: 0; padding: 0;">
-				<BOUCLE_event_list(EVENEMENTS) {agendafull date_debut, date_fin, mois, (#ENV{date}|annee), (#ENV{date}|mois)} {statut=publie}{par date_fin}>
-				<li style="margin: 0; padding: 0;"><INCLURE{fond=inc_hcal}{id_evenement}></li>
-				</BOUCLE_event_list>
-			</ul>
-			</B_event_list>
-			<em>Aucun &eacute;v&eacute;nement SPIP annonc&eacute; pour [(#ENV{date}|affdate_mois_annee)]&nbsp;!</em>
-			<//B_event_list>
-		</div><!-- post -->
-
+		<div class="itemtext">
+			<B_articles>
+				#ANCRE_PAGINATION
+				<h2>#GRAND_TOTAL r&eacute;sultat(s) pour &laquo;&nbsp;#RECHERCHE&nbsp;&raquo;&nbsp;:</h2>
+				[<p class="pagination">(#PAGINATION)</p>]
+				<ul>
+					<BOUCLE_articles(ARTICLES) {recherche} {!par points} {pagination}>
+					<li><a href="#URL_ARTICLE">#TITRE</a></li>
+					</BOUCLE_articles>
+				</ul>
+			</B_articles>
+		</div><!-- itemtext -->
 	</div><!-- primary -->
 	<div class="secondary">
 		[(#CALENDRIER_MINI{#ENV{date},'date',#SELF})]
-		<INCLURE{fond=inc_liste}>
+    	<INCLURE{fond=inc_liste}>
 		<INCLURE{fond=inc_dernieres_breves}>
+		<INCLURE{fond=inc_derniers_commentaires}>
 		<INCLURE{fond=inc_syndication}>
+		<INCLURE{fond=inc_sites}>
 		<INCLURE{fond=inc_galaxie}>
 	</div><!-- secondary -->
 	<div class="clear">&nbsp;</div>
