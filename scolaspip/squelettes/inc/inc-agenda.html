@@ -1,6 +1,6 @@
 #CACHE{7200}
 [(#REM) code du calendrier tiré du squelette SPIP Epona http://spip-epona.org/ ]
-<BOUCLE_rubrique_principal(RUBRIQUES){tout}{id_rubrique}>
+<BOUCLE_rubrique_principal(RUBRIQUES){tout}>
 <?php
 [(#REM) Ajoute un evenement a la liste $events apres vérification secteur ]
 function ajoute_evt ($date_redac, $soustitre, $titre, $url_article, $logo) {
@@ -29,7 +29,7 @@ $Y = date('Y', $cal_day);
 
 // Construction liste des événements (1 liste par jour => liste des jours)
 $events = array();
-<BOUCLE_evts_com(ARTICLES){branche}{par date_redac}>
+<BOUCLE_evts_com(ARTICLES){agenda}{par date_redac}>
         ajoute_evt('#DATE_REDAC', '[(#SOUSTITRE|texte_script)]', '[(#TITRE|texte_script)]',
                    '#URL_ARTICLE', '[<img src="IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)" />]');
 </BOUCLE_evts_com>
@@ -42,9 +42,9 @@ $events = array();
 <tr>
 <th colspan="7" class="agendaNav">
 	
-<form name="navigation" method="get" action="spip.php?rubrique">
+<form name="navigation" method="get" action="#URL_PAGE{agenda}">
 
-<a href="spip.php?rubrique#ID_RUBRIQUE&amp;date=<?php echo (($M - 1 > 0) ? $Y : ($Y - 1)); ?>-<?php printf('%02d', ($M - 1) > 0 ? ($M - 1) : 12); ?>-01"><img src="#DOSSIER_SQUELETTE/css/images/agenda-nav-gauche.gif" title="Pr&eacute;c&eacute;dent" alt="" border=0></a>
+<a href="#URL_PAGE{agenda}&amp;date=<?php echo (($M - 1 > 0) ? $Y : ($Y - 1)); ?>-<?php printf('%02d', ($M - 1) > 0 ? ($M - 1) : 12); ?>-01"><img src="#DOSSIER_SQUELETTE/css/images/agenda-nav-gauche.gif" title="Pr&eacute;c&eacute;dent" alt="" border=0></a>
 
 	<select name="var_nav_month">
 	<?php
@@ -59,9 +59,9 @@ $events = array();
 	?>
 	</select>
         <!-- Construction Menu sélection -->
-	<input type="button" class="agendaBouton" value="Aller" onClick="document.location.href='spip.php?rubrique#ID_RUBRIQUE&amp;date=' + window.document.navigation.var_nav_year.value + '-' + window.document.navigation.var_nav_month.value + '-01' ; return false;" />
+	<input type="button" class="agendaBouton" value="Aller" onClick="document.location.href='#URL_PAGE{agenda}&amp;date=' + window.document.navigation.var_nav_year.value + '-' + window.document.navigation.var_nav_month.value + '-01' ; return false;" />
     
-<a href="spip.php?rubrique#ID_RUBRIQUE&amp;date=<?php echo (($M + 1 < 13) ? $Y : ($Y + 1)); ?>-<?php printf('%02d', ($M + 1) < 13 ? ($M + 1) : 1); ?>-01"><img src="#DOSSIER_SQUELETTE/css/images/agenda-nav-droite.gif" title="Suivant" alt="" border=0></a>
+<a href="#URL_PAGE{agenda}&amp;date=<?php echo (($M + 1 < 13) ? $Y : ($Y + 1)); ?>-<?php printf('%02d', ($M + 1) < 13 ? ($M + 1) : 1); ?>-01"><img src="#DOSSIER_SQUELETTE/css/images/agenda-nav-droite.gif" title="Suivant" alt="" border=0></a>
 
 </form>
 

@@ -53,6 +53,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // N
 'nouveau_anglophone' => 'What\'s New in English Sector',
 'nouveau_partenaire' => 'Nouveaut&eacute;s dans<br /> les sites R&eacute;f&eacute;renc&eacute;s',
+'nouveau_article' => 'Derni&egrave;res publications',
 'nouveau_site' => 'Nouveaux sites',
 'nouveau_web' => 'Nouveaut&eacute;s sur le Web',
 'nouveau_breve' => 'En bref',

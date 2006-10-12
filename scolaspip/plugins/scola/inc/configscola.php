@@ -129,8 +129,6 @@ function appliquer_modifs_scola() {
 	);
 
 	if (isset($id_parent)) ecrire_meta('id_edito',$id_parent);
-	if (isset($id_parent)) ecrire_meta('id_agenda',$id_parent);
-
 		
 	while (list(,$i) = each($liste_meta_scola))
 		if (isset($GLOBALS[$i])) ecrire_meta($i, $GLOBALS[$i]);
