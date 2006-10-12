@@ -1,0 +1,62 @@
+#CACHE{7200}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	<title>#NOM_SITE_SPIP</title>
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+    <INCLURE{fond=inc/inc-head}{lang}>
+</head>
+<body>
+
+<ul class="invisible">
+	<li><a href="#menu" title="accéder au menu" accesskey="s">Aller au menu</a></li>
+	<li><a href="#contenu" title="accéder au contenu">Aller au contenu</a></li>
+</ul>
+
+
+<div id="contenant"> 
+    <div id="entete">
+    <INCLURE{fond=inc/inc-entete}{lang}>  
+    </div><!-- // Fin de l'entête // -->
+
+    <div id="colgauche">
+	<INCLURE{fond=inc/inc-colgauche}{lang}>
+    </div><!-- // Fin de la colonne gauche // -->
+
+    <div id="coldroite">
+	 
+	<INCLURE{fond=inc/inc-coldroite}{lang}>
+    </div><!-- // Fin de la colonne droite // -->
+
+    <div id="colcentre">
+	
+                
+	    <h2><a id="contenu" name="contenu"><:nouveau_site:></a></h2>
+        
+	    <B_articles>
+	    <BOUCLE_articles(ARTICLES){par date}{inverse}{id_rubrique !=22}
+            {0,6}{lang}{doublons exclureAgenda}>
+	    <div class="nouveau-boite" >
+		    [<h3><strong>&gt;&gt;&nbsp;&nbsp;</strong>(#TITRE|supprimer_numero)</h3>]
+		    <p><a href="#URL_ARTICLE" title="[(#TITRE|supprimer_numero)]">
+                [(#LOGO_ARTICLE||reduire_image{72})][<span class="date">
+                    (#DATE|affdate)</span>][<span class="introduction">
+                        (#CHAPO)</span>]</a></p>
+	    </div>
+ 	    </BOUCLE_articles>
+	    </B_articles><!-- // Fin des nouveautes du site // -->
+	
+    </div><!-- // Fin de la zone de contenu // -->
+  
+    <div id="pied"> 
+	<INCLURE{fond=inc/inc-pied}{lang}>
+    </div><!-- // Fin du pied de page // -->
+
+</div><!-- // Fin du contenant // --> 
+</body>
+</html>
+
+
