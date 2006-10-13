@@ -42,10 +42,11 @@
 				<BOUCLE_syndic(SYNDIC_ARTICLES) {!par date} {doublons} {pagination}>
 					[<li>
 						<h3 style="display: none;">#TITRE</h3>
-						<a href="#URL_ARTICLE">(#DESCRIPTIF
+						<a href="#URL_ARTICLE"[ title="(#TITRE|textebrut)"]>(#DESCRIPTIF
 								|extraire_balise{img}
 								|image_reduire{200,180}
-								|inserer_attribut{alt,[(#TITRE|textebrut)]})</a>
+								|inserer_attribut{alt,[(#TITRE|textebrut)]}
+								|inserer_attribut{'align',''})</a>
 						<p><small>[(#TITRE|couper{80})] &mdash; [(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)]</small></p>
 					</li>]
 				</BOUCLE_syndic>
@@ -61,7 +62,6 @@
 	
 	<div class="secondary">
 		[(#CALENDRIER_MINI{#ENV{date},'date',#SELF})]
-		<INCLURE{fond=inc_dernieres_breves}>
 		<INCLURE{fond=inc_syndication}>
 		<INCLURE{fond=inc_galaxie}>
 	</div><!-- secondary -->
