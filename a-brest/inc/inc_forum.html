@@ -1,0 +1,17 @@
+[(#REM) forum affichage simplique (pas de thead) pour avoir un effet blog]    
+    <BOUCLE_compte_messages(FORUMS){id_article}{plat}> </BOUCLE_compte_messages><strong>[(#TOTAL_BOUCLE) commentaire(s)]</strong><br /></B_compte_messages>
+    
+    <BOUCLE_forums(FORUMS){id_article}{par date}{inverse}>
+      <div class="forum_item[ (#COMPTEUR_BOUCLE|alterner{'forum_odd','forum_even'})]">
+        <div class="forum_title"><a name="forum#ID_FORUM"></a> <strong>#TITRE</strong> [- (#DATE|affdate)][, <:par_auteur:> (#NOM)] [ - <a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a>]</div>
+        <div style="padding:0 4px">#TEXTE</div>        
+      </div>
+      
+      <BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
+      <div class="forum_item[ (#COMPTEUR_BOUCLE|alterner{'forum_odd','forum_even'})]">
+        <div class="forum_title"><a name="forum#ID_FORUM"></a> <strong>#TITRE</strong> [- (#DATE|affdate)][, <:par_auteur:> (#NOM)] [ - <a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a>]</div>
+        <div style="padding:0 4px">#TEXTE</div>        
+      </div>
+      <BOUCLE_Forums_Boucle(boucle_forums_fils)> </BOUCLE_Forums_Boucle>
+      </BOUCLE_forums_fils>
+    </BOUCLE_forums>

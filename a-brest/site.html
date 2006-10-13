@@ -1,0 +1,68 @@
+#CACHE{1200}
+<BOUCLE_site_principal(SITES){id_syndic}><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+  <title>#NOM_SITE_SPIP - <:sites_web:></title>   
+  <INCLURE{fond=inc/inc_head}{lang}>
+</head>
+
+<body>
+<div id="page">
+  <INCLURE{fond=inc/inc_banner}{lang}>
+  <INCLURE{fond=inc/inc_navbar}{lang}>
+  
+  <!-- main -->   
+  <div id="main"> 
+
+    <!-- main: content -->     
+    <div id="content">
+      
+      <!-- post start -->
+      <div id="post"> 
+      	[(#REM) Fil d'Ariane ]<div id="path"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_syndic}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane></div>
+ 
+             
+
+        <h1>#NOM_SITE</h1>[
+        (#LOGO_SITE||image_reduire{150,100})][
+       (#DESCRIPTIF)][
+       <div style="margin:10px 0">URL: <a href="#URL_SITE" class="spip_out">(#URL_SITE)</a></div>][
+       <div style="margin:10px 0">Flux de syndication: <a href="(#URL_SYNDIC)"><img src="#CHEMIN{img/rss.png}" alt="<:rss_site:>" /></a></div>]
+
+       
+			[(#REM) Articles issus de la syndication ]
+			<B_articles>
+				#ANCRE_PAGINATION	<h2 class="invisible"><:articles:></h2>
+				<ul class="discrete">
+					<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic}{age<700}{par date}{inverse} {pagination 5}><li>
+						<h3><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></h3>
+						[<div class="enclosures">(#TAGS|afficher_enclosures)</div>]
+						<small>[(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)][ &mdash; <em>(#TAGS|afficher_tags)</em>]</small>
+						[<div class="texte">(#DESCRIPTIF|image_reduire{300})
+						<br class="nettoyeur" /></div>]
+					</li></BOUCLE_articles>
+				</ul>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</B_articles>
+
+			[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]                 
+            
+      </div>
+      <!-- post end --> 
+       
+      <INCLURE{fond=inc/inc_footer}{lang}>
+       
+    </div>
+    <!-- main: content end -->
+    
+  </div>
+  <!-- main end -->
+  
+  <INCLURE{fond=inc/inc_sidebar}{lang}{id_syndic}> 
+
+</div>
+
+</body>
+</html></BOUCLE_site_principal></B_site_principal><INCLURE{fond=404}><//B_site_principal>

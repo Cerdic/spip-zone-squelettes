@@ -1,0 +1,50 @@
+#CACHE{7200}
+<BOUCLE_brev_principal(BREVES) {id_breve}><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+  <title>#NOM_SITE_SPIP - [(#TITRE|textebrut|supprimer_numero)]</title>   
+  <INCLURE{fond=inc/inc_head}{lang}>
+  <link rel="alternate" type="application/rss+xml" title="<:rss_rubrique:>" href="#URL_PAGE{backend,id_rubrique=#ID_RUBRIQUE}" />
+  <meta name="Description" content="[(#INTRODUCTION|textebrut|couper{83})]" />
+</head>
+
+<body>
+<div id="page">
+  <INCLURE{fond=inc/inc_banner}{lang}>
+  <INCLURE{fond=inc/inc_navbar}{lang}>
+  
+  <!-- main -->   
+  <div id="main"> 
+
+    <!-- main: content -->     
+    <div id="content">       
+      
+      <!-- post start -->
+      <div id="post"> 
+      	[(#REM) Fil d'Ariane ]<div id="path"><a href="#URL_SITE_SPIP/" ><:accueil_site:></a><BOUCLE_ariane(RUBRIQUES){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane></div>
+       
+        [<h1><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a></h1>]
+        
+        [(#LOGO_BREVE|left||reduire_image{120,120})][
+         <h2>(#TITRE|supprimer_numero)</h2>]            
+         #TEXTE[
+         <div class="hypertxt"><strong>Lien hypertexte:</strong> <a href="#URL_SITE" class="spip_out">(#NOM_SITE)</a></div>]
+         <div class="date">[<:posted:>(#DATE|affdate)]</div>
+
+         <INCLURE{fond=inc/inc_footer}{lang}>
+       </div>
+       <!-- post end -->      
+       
+    </div>
+    <!-- main: content end -->
+    
+  </div>
+  <!-- main end -->
+  
+  <INCLURE{fond=inc/inc_sidebar}{lang}{id_rubrique}{id_breve}> 
+
+</div>
+
+</body>
+</html></BOUCLE_brev_principal></B_brev_principal><INCLURE{fond=404}><//B_brev_principal>

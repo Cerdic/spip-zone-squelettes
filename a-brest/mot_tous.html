@@ -1,0 +1,57 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+  <title>#NOM_SITE_SPIP - [(#DESCRIPTIF_SITE_SPIP|textebrut|supprimer_numero)]</title>   
+  <INCLURE{fond=inc/inc_head}{lang}>  
+</head>
+
+<body>
+<div id="page">
+  <INCLURE{fond=inc/inc_banner}{lang}>
+  <INCLURE{fond=inc/inc_navbar}{lang}>
+  
+  <!-- main -->   
+  <div id="main"> 
+
+    <!-- main: content -->     
+    <div id="content">
+    
+      <!-- post start -->
+      <div id="post">
+            [(#REM) Fil d'Ariane ]<div id="path"><a href="#URL_SITE_SPIP/"><:accueil_site:></a></div>
+            <!-- mot tous: intro -->      
+             
+            <!-- mot tous: sous theme -->
+            <BOUCLE_listsecteur(GROUPES_MOTS){par titre}>
+            <B_indexsecteur>              
+                <div class='keyword' style='width:20%'>
+                [<h2>(#TITRE|supprimer_numero)</h2>]  
+                  <ul class="discrete">
+                  <BOUCLE_indexsecteur(MOTS){id_groupe}{type!==^[-]}{par titre}>
+                  <li><a href="#URL_MOT?&amp;lang=#LANG">[(#TITRE|supprimer_numero)]<BOUCLE_countArt(ARTICLES){lang}{id_mot}> </BOUCLE_countArt>(#TOTAL_BOUCLE)</B_countArt></a></li>
+                  </BOUCLE_indexsecteur></ul>
+                </div>
+                </B_indexsecteur>
+            </BOUCLE_listsecteur>            
+            
+            <hr /> 
+            [(#REM) fixme afficher le nuage de tags issus du plugins] 
+
+            <INCLURE{fond=inc/inc_footer}{lang}>
+       </div>
+       <!-- post end -->      
+       
+    </div>
+    <!-- main: content end -->
+    
+  </div>
+  <!-- main end --> 
+  
+  <INCLURE{fond=inc/inc_sidebar}{lang}{id_rubrique}>
+
+</div>
+
+</body>
+</html>

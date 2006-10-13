@@ -1,0 +1,63 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+  <title>#NOM_SITE_SPIP - <:plan_site:></title>   
+  <INCLURE{fond=inc/inc_head}{lang}>
+</head>
+
+<body>
+<div id="page">
+  <INCLURE{fond=inc/inc_banner}{lang}>
+  <INCLURE{fond=inc/inc_navbar}{lang}>
+  
+  <!-- main -->   
+  <div id="main"> 
+
+    <!-- main: content -->     
+    <div id="content">
+      
+      <!-- post start -->
+      <div id="post">
+        [(#REM) Fil d'Ariane ]<div id="path"><a href="#URL_SITE_SPIP/"><:accueil_site:></a></div>
+       
+        <h1><:plan_site:></h1>
+        
+                <!-- content: plan -->                
+              	<BOUCLE_secteurs(RUBRIQUES){racine}{par num titre}{lang}>	
+              	   <br /> 
+              		 <h2><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h2>[
+                   <div style='float:right'>(#LOGO_RUBRIQUE)</div>]
+              		 
+              		 <!-- Articles et sous-rubriques -->
+              		 <B_rubriques><ul><BOUCLE_rubriques(RUBRIQUES){id_parent}{par num titre}>
+              			<li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+                            <!--<B_articles><ul><BOUCLE_articles(ARTICLES) {id_rubrique} {par num titre}><li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></li>
+                            </BOUCLE_articles></ul></B_articles>-->
+                    <BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques></li>
+              		</BOUCLE_rubriques></ul></B_rubriques>  
+                  
+                  <!-- racine --> 
+                  <B_articless><ul class="discrete"><BOUCLE_articless(ARTICLES) {id_rubrique} {par num titre}>
+                  <li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></li></BOUCLE_articless></ul></B_articless>          		 	
+              
+              	  </BOUCLE_secteurs>	 
+                 <!-- content: plan end -->
+
+           <INCLURE{fond=inc/inc_footer}{lang}>
+       </div>
+       <!-- post end --> 
+       
+    </div>
+    <!-- main: content end -->
+    
+  </div>
+  <!-- main end --> 
+  
+  <INCLURE{fond=inc/inc_sidebar}{lang}>
+
+</div>
+
+</body>
+</html>

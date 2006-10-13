@@ -1,0 +1,10 @@
+[(#REM)
+  - on utilise un include pour limiter la portée de {doublons} à l'article sur lequel on travaille
+  - on exclut des mots clés dont les groupes commencent pas "-" (caché,reservé pour les groupes techniques) 
+]<BOUCLE_anykeywordonthatarticle(MOTS){id_article}{type!==^[-]}{0,1}><div class='keyword'>
+                  <BOUCLE_findtype(MOTS){id_article}{type=Support}{doublons}><a href="#URL_MOT" class='keywordtype'>#TITRE</a></BOUCLE_findtype>
+                  <B_findkeyword><:mots_clefs:> (<a href="#URL_PAGE{mot_tous}&amp;lang=#LANG"><:tous_mots_cles:></a>) 
+                  <ul>
+                  <BOUCLE_findkeyword(MOTS){id_article}{type!==^[-]}{par titre}{doublons}><li><a href="#URL_MOT" rel="tag">#TITRE</a></li></BOUCLE_findkeyword>
+                   </ul></B_findkeyword> 
+                 </div></BOUCLE_anykeywordonthatarticle>

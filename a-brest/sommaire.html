@@ -1,0 +1,61 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+  <title>#NOM_SITE_SPIP[ - (#DESCRIPTIF_SITE_SPIP|textebrut|couper{125})]</title>   
+  <INCLURE{fond=inc/inc_head}{lang}>[  
+  <meta name="Description" content="(#DESCRIPTIF_SITE_SPIP|textebrut|couper{125})" />]
+</head>
+
+<body>
+<div id="page">
+  <INCLURE{fond=inc/inc_banner}{lang}>
+  <INCLURE{fond=inc/inc_navbar}{lang}{sommaire=true}>
+  
+  <!-- main -->   
+  <div id="main"> 
+
+    <!-- main: content -->     
+    <div id="content">
+      
+      <!-- post start -->
+      <div id="post">            
+            <!-- site intro -->           
+            <BOUCLE_rub_intro(RUBRIQUES){titre_mot = A lister comme intro au site}{lang}> 
+            <div style="margin:18px 0;">                     
+            [<div class="logorub">(#LOGO_RUBRIQUE)</div>][(#TEXTE)]
+            </div><hr />                     
+            </BOUCLE_rub_intro>                    			
+            
+            <!-- last article site -->            
+            <BOUCLE_art_site(ARTICLES){id_rubrique!=68}{par date}{inverse}{pagination 10}>[
+             <div class="surtitre">(#SURTITRE)</div>][
+             <h2><a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a></h2>][
+              <div class="soustitre">(#SOUSTITRE)</div>]
+              <div class="date"><BOUCLE_nomRub(RUBRIQUES){id_rubrique} >[<a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a> ]</BOUCLE_nomRub>[ - <:posted:>(#DATE|affdate)] [<:par:> (#LESAUTEURS)]</div> 
+              <INCLURE{fond=inc/inc_keyword_list}{id_article}{lang}>              
+              [(#INTRODUCTION)]                            
+              <a href="#URL_ARTICLE" class="suite"><:lire_article_seul:></a>              
+               
+              <div class="printer"><a href="#top" ><:haut_page:></a></div>
+                             
+            </BOUCLE_art_site>
+            <div class="pagination">[(#PAGINATION{noancre}) - ]#GRAND_TOTAL[ (#GRAND_TOTAL|<{2}|?{<:article:>,<:articles:>})]</div></B_art_site>
+
+            <INCLURE{fond=inc/inc_footer}{lang}>
+       </div>
+       <!-- post end -->  
+       
+    </div>
+    <!-- main: content end -->
+    
+  </div>
+  <!-- main end --> 
+  
+  <INCLURE{fond=inc/inc_sidebar}{lang}{sommaire=true}>
+
+</div>
+
+</body>
+</html>

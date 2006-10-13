@@ -1,0 +1,58 @@
+#CACHE{7200}
+<BOUCLE_aut_principal(AUTEURS){id_auteur}><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+  <title>#NOM_SITE_SPIP - [(#NOM|textebrut|supprimer_numero)]</title>   
+  <INCLURE{fond=inc/inc_head}{lang}>
+  <meta name="Description" content="[(#BIO|textebrut|couper{83})]" />
+</head>
+
+<body>
+<div id="page">
+  <INCLURE{fond=inc/inc_banner}{lang}>
+  <INCLURE{fond=inc/inc_navbar}{lang}>
+  
+  <!-- main -->   
+  <div id="main"> 
+
+    <!-- main: content -->     
+    <div id="content"> 
+      
+      <!-- post start -->
+      <div id="post">
+        [(#REM) Fil d'Ariane ]<div id="path"><a href="#URL_SITE_SPIP/"><:accueil_site:></a></div>
+         
+        [<h1>(#NOM|supprimer_numero)</h1>]       
+        [(#LOGO_AUTEUR)<hr />]
+        [(#BIO)]
+        [<br />URL: <a href="(#URL_SITE)" class="spip_out">#URL_SITE</a>]
+        [<br /><div class="notes">(#NOTES)</div>]
+        
+              <!-- auteur contact ? -->
+              [<h2 style="margin-top:15px"><:envoyer_message:></h2>
+              (#FORMULAIRE_ECRIRE_AUTEUR)]
+
+              <!-- auteur article ? -->              
+              <B_biblio>
+              <h2><:articles_auteur:></h2>
+              <i>#TOTAL_BOUCLE [(#TOTAL_BOUCLE|<{2}|?{<:article_disponible:>,<:articles_disponibles:>})]</i>
+              <ul><BOUCLE_biblio(ARTICLES){id_auteur}{par date}{inverse}>
+              <li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero|couper{66})]</a></li></BOUCLE_biblio>
+
+          <INCLURE{fond=inc/inc_footer}{lang}{id_article}>
+       </div>
+       <!-- post end -->  
+             
+    </div>
+    <!-- main: content end -->
+    
+  </div>
+  <!-- main end --> 
+  
+  <INCLURE{fond=inc/inc_sidebar}{lang}> 
+
+</div>
+
+</body>
+</html></BOUCLE_aut_principal></B_aut_principal><INCLURE{fond=404}><//B_aut_principal>

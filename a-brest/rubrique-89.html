@@ -1,0 +1,87 @@
+#CACHE{7200}
+[(#REM) squelette 
+special syndication (affiche au milieu au lieu d'un affichage la colonne)
+]<BOUCLE_rub_principal(RUBRIQUES){id_rubrique}><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+  <title>#NOM_SITE_SPIP - [(#TITRE|textebrut|supprimer_numero)]</title>   
+  <INCLURE{fond=inc/inc_head}{lang}>  
+  <link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="#URL_PAGE{backend,id_rubrique=#ID_RUBRIQUE}" />
+  <meta name="Description" content="[(#INTRODUCTION|textebrut|couper{83})]" />
+</head>
+
+<body>
+<div id="page">
+  <INCLURE{fond=inc/inc_banner}{lang}>
+  <INCLURE{fond=inc/inc_navbar}{lang}{id_rubrique}>
+  
+  <!-- main -->   
+  <div id="main"> 
+
+    <!-- main: content -->     
+    <div id="content">
+     
+      <!-- post start -->
+      <div id="post">
+      	[(#REM) Fil d'Ariane ]<div id="path"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> <BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane></div>
+      
+        [<h1><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a></h1>]        
+        
+            <div class="printer">           
+            <a href="#" onclick="window.print()"><img src="#CHEMIN{img/print.png}" alt="<:imprimer_page:>" /><:imprimer_page:></a>
+            </div> 
+            
+            [<div class="logorub">(#LOGO_RUBRIQUE)</div>][(#TEXTE)]     
+            <!-- rubrique:doc joint -->
+            <BOUCLE_docjoint_rub(DOCUMENTS){id_rubrique}{mode=document}{doublons}>
+                <div class="portfolio">
+                  <a href="#URL_DOCUMENT" target="_blank">#LOGO_DOCUMENT</a><br />
+                  [<strong><a href="#URL_DOCUMENT" target="_blank">(#TITRE)</a></strong><br />]
+                  [(#DESCRIPTIF)]
+                </div>           
+            </BOUCLE_docjoint_rub>
+                    
+            [(#REM) rubrique syndication] 
+            <!-- rubrique: sous rubrique --><B_mm_rub>                 
+            <ul class="list_arrow"><BOUCLE_mm_rub(RUBRIQUES){id_parent}{par num titre}>
+                <li><a href="#URL_RUBRIQUE"[ title="(#INTRODUCTION|no_url|textebrut|cleaner|entites_html|couper{60})"]>[(#TITRE|supprimer_numero)]</a><BOUCLE_count_sit(SITES){id_rubrique}> </BOUCLE_count_sit><span style='color:#666'>- #TOTAL_BOUCLE [(#TOTAL_BOUCLE|<{2}|?{<:csite:>,<:csites:>})]</span></B_count_sit></li></BOUCLE_mm_rub>
+            </ul></B_mm_rub>  
+            <hr />
+                   
+            <!-- rubrique: syndication sur 2 cols -->
+            <B_sites><h2><:rub_syndication:></h2>
+            <div id='syndication_one' class="bicol">                        
+            <BOUCLE_sites(SITES){id_rubrique}{par nom_site}{1/2}>
+                 <INCLURE{fond=inc/inc_syndic_preview}{lang}{id_syndic}>
+            </BOUCLE_sites></div></B_sites>
+           
+            <B_sites2><div id='syndication_two' class="bicol">                        
+            <BOUCLE_sites2(SITES){id_rubrique}{par nom_site}{2/2}>
+                 <INCLURE{fond=inc/inc_syndic_preview}{lang}{id_syndic}>
+            </BOUCLE_sites2></div></B_sites2> 
+           
+           <hr />[
+           (#REM) Proposer un site ]#FORMULAIRE_SITE
+           
+            <!-- rubrique: articles -->
+            <BOUCLE_art_rub(ARTICLES){id_rubrique}{par date}{inverse}{pagination 10}>
+                      <INCLURE{fond=inc/inc_article_preview}{id_article}>             
+            </BOUCLE_art_rub>
+            <div class="pagination">[(#PAGINATION{noancre}) - ]#GRAND_TOTAL[ (#GRAND_TOTAL|<{2}|?{<:article:>,<:articles:>})]</div></B_art_rub>         
+
+          <INCLURE{fond=inc/inc_footer}{lang}>
+       </div>
+       <!-- post end --> 
+       
+    </div>
+    <!-- main: content end -->
+    
+  </div>
+  <!-- main end --> 
+  
+  <INCLURE{fond=inc/inc_sidebar}{lang}>
+
+</div>
+
+</body>
+</html></BOUCLE_rub_principal></B_rub_principal><INCLURE{fond=404}><//B_rub_principal>

@@ -1,0 +1,105 @@
+<!-- sidebar -->
+<div id="sidebar"> 
+  [(#REM) PAGE SOMMAIRE on affiche agenda]
+  [(#ENV{sommaire}|?{' ',''}) 
+   [(#INCLURE{fond=inc/inc_agenda_preview})]
+  ]    
+  
+  [(#REM) PAGE RUBRIQUE / ARTICLE (id_rubrique dispo)]  
+  <BOUCLE_getBranche(HIERARCHIE){id_rubrique}{tout}{0,1}>  
+      [(#REM) liste des breves en racine]<B_breves><h2 class="breve"><span><:breves:></span></h2>  
+      <ul><BOUCLE_breves(BREVES){id_rubrique}{0,5}{par date}{inverse}>
+      <li[ (#EXPOSER| class='current',)]>[<a href="#URL_BREVE">(#TITRE)</a>]</li></BOUCLE_breves>
+      </ul></B_breves>
+  </BOUCLE_getBranche>    
+    [(#REM) PAGE SOMMAIRE, PLAN ... (pas de id_rubrique) ]<BOUCLE_motx(MOTS){titre=A lister les breves dans sommaire}><BOUCLE_rubx(RUBRIQUES){id_mot}{lang}>    
+      <h2 class="breve"><span><:communique:><span></h2>
+      <B_last_BREVES><ul>
+    	<BOUCLE_last_BREVES(BREVES){id_rubrique}{par date}{inverse}{0,8}>
+    	<li>[<a href="#URL_BREVE">(#TITRE)</a>]</li></BOUCLE_last_BREVES>
+    	</ul></B_last_BREVES>
+      </BOUCLE_rubx></BOUCLE_motx>
+  <//B_getBranche>
+  
+  [(#REM) PAGE ARTICLE (id_article dispo) liste articles voisins]
+  <BOUCLE_isArticle(ARTICLES){id_rubrique}> </BOUCLE_isArticle>
+       <B_artR><h2 class="rubrique"><span><:breves:></span></h2>        
+        <ul><BOUCLE_artR(ARTICLES){id_rubrique}{par date}{inverse}{pagination 10}>
+        <li[ (#EXPOSER| class='current',)]>[<a href="#URL_ARTICLE">(#TITRE)</a>]</li></BOUCLE_artR>
+        </ul>#PAGINATION{noancre}</B_artR>
+  </B_isArticle>
+  
+  [(#REM) PAGE MOT (pas de id_mot)]
+  <B_motgp><BOUCLE_group(MOTS){id_groupe}{0,1}>[<h2>(#TYPE|supprimer_numero)</h2>]</BOUCLE_group>
+                  <B_motgp><ul><BOUCLE_motgp(MOTS){id_groupe}{type!==^[-]}{par titre}>
+                  <li[ (#EXPOSER| class='current',)]><a href="#URL_MOT?&amp;lang=#LANG">[(#TITRE|supprimer_numero)]<BOUCLE_countArt(ARTICLES){lang}{id_mot}> </BOUCLE_countArt>(#TOTAL_BOUCLE)</B_countArt></a></li>
+                  </BOUCLE_motgp></ul>
+                  
+                  <B_gp><h2><:all_groupes:></h2>
+                  <ul><BOUCLE_gp(GROUPES_MOTS){par titre}>
+                  <B_getFirstMot><li[ (#EXPOSER| class='current',)]><BOUCLE_getFirstMot(MOTS){id_groupe}{type!==^[-]}{0,1}><a href="#URL_MOT?&amp;lang=#LANG">[(#_gp:TITRE|supprimer_numero)]</a></BOUCLE_getFirstMot></li></B_getFirstMot>
+                  </BOUCLE_gp></ul></B_gp>
+  </B_motgp>
+  
+  [(#REM) PAGE SYNDIC affiche des sites ref.]
+  <BOUCLE_isSyndic(SITES){id_syndic}> </BOUCLE_isSyndic>
+    	<B_sites><h2 class="web"><span><:sites_web:></span></h2>
+    	<ul><BOUCLE_sites(SITES) {par nom_site} {pagination 20}>
+    	<li[ (#EXPOSER| class='current',)]><a href="[(#ID_SYNDIC|generer_url_site)]"[ class="(#EXPOSE)"]>#NOM_SITE</a></li>
+    	</BOUCLE_sites></ul></B_sites>
+	</B_isSyndic>
+	
+	[(#REM) PAGE SOMMAIRE on liste tout]
+  <?php if ("#ENV{sommaire}"=="true")  { ?>
+  <h2 class="breve"><span><:communique:></span></h2>
+    <B_lastall_BREVES><ul>
+  	<BOUCLE_lastall_BREVES(BREVES){par date}{inverse}{0,4}>
+  	<li>[<a href="#URL_BREVE">(#TITRE)</a>]</li></BOUCLE_lastall_BREVES>
+  	</ul></B_lastall_BREVES>
+  	
+  <B_syndic_wiki><h2 class="wiki"><span>Wikis #NOM_SITE_SPIP</span></h2>		  
+	<select onchange="javascript:document.location.href=this.value">
+	<option value="">choissisez votre wiki ...</option>
+	<BOUCLE_syndic_wiki(SITES){titre_mot=A lister comme wiki}{par nom_site}>
+	<option value="#URL_SITE">#NOM_SITE</option>
+	</BOUCLE_syndic_wiki>
+	</select></B_syndic_wiki>
+  <?php } ?>
+  
+  <!-- search engine -->
+  <h2 class="recherche"><span>Recherche</span></h2>
+  <form method='get' action=''>        
+            <label for='recherche'><:info_rechercher:></label>
+            <input type='text' id='recherche' name='recherche' size='12' />
+            <input type='hidden' name='page' value='recherche' />
+            <input type='hidden' name='lang' value='#LANG' />
+            <input type='submit' id='subsub' value='ok' />
+  </form>
+  
+  [(#REM)  Ajout de vos liens statiques]
+   <ul id="extra_tools">
+      <li><a href="#URL_PAGE{lettre}"><img src="#CHEMIN{img/icon_newsletter.png}" alt="<:abonnez_vous:>" /></a></li>
+		  <li><a href="#URL_PAGE{carte}"><img src="#CHEMIN{img/icon_map.png}" alt="Consulter la carte des inscrits" /></a></li>
+		  <li><a href="./ecrire/"><img src="#CHEMIN{img/icon_admin.png}" alt="Accèder à l'espace rédacteur" /></a></li>
+		  <li><a href="#URL_PAGE{inscription}"><img src="#CHEMIN{img/icon_register.png}" alt="S'inscrire pour devenir redacteur" /></a></li>
+		  <li><a href="#URL_PAGE{resume}"><img src="#CHEMIN{img/icon_post.png}" alt="Derniers commentaires" /></a></li>
+		  <li><a href="#URL_PAGE{rubrique,id_rubrique=89}"><img src="#CHEMIN{img/icon_rss.png}" alt="Lire les derniers fils d'informations" /></a></li>
+   </ul>
+   
+  [(#REM) PAGE RUBRIQUE / ARTICLE (id_rubrique dispo) liste syndication]  
+  <BOUCLE_getBranche2(HIERARCHIE){id_rubrique}{tout}{0,1}> </BOUCLE_getBranche2>    
+      <B_list_site><h2 class="web"><span><:rub_syndication:></span></h2>  
+      <BOUCLE_list_site(SITES){id_rubrique}{par nom_site}>
+      <strong><a href="#URL_SITE"[ title="(#DESCRIPTIF|textebrut|couper{120})"]>#NOM_SITE</a></strong>
+      <B_syndic><ul><BOUCLE_syndic(SYNDIC_ARTICLES){id_syndic}{0,5}>
+      <li><a href="#URL_ARTICLE" title="#NOM_SITE[, le (#DATE|affdate)]">[(#TITRE*)]</a></li></BOUCLE_syndic>
+      </ul></B_syndic><br /><//B_syndic>
+      </BOUCLE_list_site>    
+  </B_getBranche2> 
+  
+  [(#REM) Page sommaire: liens statiques][
+   (#ENV{sommaire}|?{' ',''}) 
+   [(#INCLURE{fond=inc/inc_sommaire_link})]
+  ]  
+</div>  
+<hr />

@@ -1,0 +1,83 @@
+#CACHE{7200}
+<BOUCLE_art_principal(ARTICLES){id_article}><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+  <title>#NOM_SITE_SPIP - [(#TITRE|textebrut|supprimer_numero)]</title>   
+  <INCLURE{fond=inc/inc_head}{lang}>
+  <link rel="alternate" type="application/rss+xml" title="<:rss_rubrique:>" href="#URL_PAGE{backend,id_rubrique=#ID_RUBRIQUE}" />
+  <meta name="Description" content="[(#INTRODUCTION|textebrut|couper{83})]" />
+</head>
+
+<body>
+<div id="page">
+  <INCLURE{fond=inc/inc_banner}{lang}>
+  <INCLURE{fond=inc/inc_navbar}{lang}{id_rubrique}{id_article}>
+  
+  <!-- main -->   
+  <div id="main"> 
+  
+    <!-- main: content -->     
+    <div id="content"> 
+    
+      <!-- post start -->
+      <div id="post">  
+      	[(#REM) Fil d'Ariane ]<div id="path"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <BOUCLE_ariane(HIERARCHIE){id_article}{" &gt; "}>  <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane></div>
+        
+        [<div class="surtitre">(#SURTITRE)</div>]       
+        [<h1><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a></h1>][
+        <div class="soustitre">(#SOUSTITRE)</div>]
+               
+        <div class="printer">           
+            <a href="#" onclick="window.print()"><img src="#CHEMIN{img/print.png}" alt="<:imprimer_page:>" /><:imprimer_page:></a>
+        </div>
+        
+         [(#LOGO_ARTICLE|left||reduire_image{120,120})][
+         <div class="chapo">(#CHAPO)</div>]
+         <!-- article keyword -->                                 
+         <INCLURE{fond=inc/inc_keyword_list}{id_article}{lang}> 
+         [(#TEXTE|opendocblank)][
+         <div class="hypertxt"><strong>Lien hypertexte:</strong> <a href="#URL_SITE" class="spip_out">(#NOM_SITE)</a></div>]
+         [<div class="ps">(#PS)</div>][
+         <div class="note">(#NOTES)</div>]
+
+              <!-- article doc / portfolio ? -->
+              <BOUCLE_docjoint(DOCUMENTS){id_article}{mode=document}{doublons}>
+                <div class="portfolio">
+                   <a href="#URL_DOCUMENT">#LOGO_DOCUMENT</a><br />
+                  [<strong><a href="#URL_DOCUMENT">(#TITRE)</a></strong><br />]
+                  [(#DESCRIPTIF)]
+                </div>           
+              </BOUCLE_docjoint>
+              
+              <!-- article meta -->              
+              <div class="date">[<:posted:>(#DATE|affdate)] [<:par:> (#LESAUTEURS)]</div>
+              <BOUCLE_licence(MOTS){id_article}{type=Licence}><div class="license">#TEXTE</div></BOUCLE_licence>
+              </B_licence><BOUCLE_licencedefaut(MOTS){titre = Creative Commons}><div class="license">#TEXTE</div></BOUCLE_licencedefaut>
+              <//B_licence>                               
+              
+              <!-- article forum ? -->
+              [<div id="forum">
+              <h3><a href="(#PARAMETRES_FORUM|url_reponse_forum)">Poster un nouveau commentaire</a></h3>              
+              <INCLURE{fond=inc/inc_forum}{id_article}{lang}>                                                                   
+              </div>]
+              
+              <!-- article petition ? --> 
+             <INCLURE{fond=inc/inc_footer}{lang}>
+             
+              
+       </div>
+       <!-- post end -->      
+       
+    </div>
+    <!-- main: content end -->
+    
+  </div>
+  <!-- main end -->
+  #SET{foo, #ENV{debut_artR}}  
+  <INCLURE{fond=inc/inc_sidebar}{lang}{id_rubrique}{id_article}{debut_artR=#GET{foo}}> 
+
+</div>
+
+</body>
+</html></BOUCLE_art_principal></B_art_principal><INCLURE{fond=404}><//B_art_principal>
