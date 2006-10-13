@@ -1,21 +1,8 @@
 #CACHE{7200}
 [(#REM) code du calendrier tiré du squelette SPIP Epona http://spip-epona.org/ ]
-<BOUCLE_rubrique_principal(RUBRIQUES){tout}>
+<BOUCLE_rubrique_principal(RUBRIQUES){agenda}>
 <?php
 [(#REM) Ajoute un evenement a la liste $events apres vérification secteur ]
-function ajoute_evt ($date_redac, $soustitre, $titre, $url_article, $logo) {
-  global $events, $genre;
-  if ($date_redac == '') return;
-  [(#REM) pour traiter événements sur N jours ]
-  ereg("([0-9]+) +jour", $soustitre, $nb_jour);
-  if ($nb_jour[1]=="") $nb_jour[1]=1;
-  if ($nb_jour[1]>20) $nb_jour[1]=1;
-  for ($i=0; $i < intval($nb_jour[1]); ++$i) {
-     $ymd = date("Ymd", strtotime($date_redac) + 24*3600*$i);
-     if (!isset($events[$ymd])) $events[$ymd] = array();
-     $events[$ymd][] = array('link' => $url_article, 'title' => $titre, 'logo' => $logo);
-  }
-}
 
 $months = array('', 'Janvier', 'F&eacute;vrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Ao&ucirc;t', 'Septembre', 'Octobre', 'Novembre', 'D&eacute;cembre');
 $days = array('Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi');
@@ -42,9 +29,9 @@ $events = array();
 <tr>
 <th colspan="7" class="agendaNav">
 	
-<form name="navigation" method="get" action="#URL_PAGE{agenda}">
+<form name="navigation" method="get" action="#URL_PAGE{calendrier}">
 
-<a href="#URL_PAGE{agenda}&amp;date=<?php echo (($M - 1 > 0) ? $Y : ($Y - 1)); ?>-<?php printf('%02d', ($M - 1) > 0 ? ($M - 1) : 12); ?>-01"><img src="#DOSSIER_SQUELETTE/css/images/agenda-nav-gauche.gif" title="Pr&eacute;c&eacute;dent" alt="" border=0></a>
+<a href="#URL_PAGE{calendrier}&amp;date=<?php echo (($M - 1 > 0) ? $Y : ($Y - 1)); ?>-<?php printf('%02d', ($M - 1) > 0 ? ($M - 1) : 12); ?>-01"><img src="#CHEMIN{css/images/agenda-nav-gauche.gif}" title="Pr&eacute;c&eacute;dent" alt="" border=0></a>
 
 	<select name="var_nav_month">
 	<?php
@@ -59,9 +46,9 @@ $events = array();
 	?>
 	</select>
         <!-- Construction Menu sélection -->
-	<input type="button" class="agendaBouton" value="Aller" onClick="document.location.href='#URL_PAGE{agenda}&amp;date=' + window.document.navigation.var_nav_year.value + '-' + window.document.navigation.var_nav_month.value + '-01' ; return false;" />
+	<input type="button" class="agendaBouton" value="Aller" onClick="document.location.href='#URL_PAGE{calendrier}&amp;date=' + window.document.navigation.var_nav_year.value + '-' + window.document.navigation.var_nav_month.value + '-01' ; return false;" />
     
-<a href="#URL_PAGE{agenda}&amp;date=<?php echo (($M + 1 < 13) ? $Y : ($Y + 1)); ?>-<?php printf('%02d', ($M + 1) < 13 ? ($M + 1) : 1); ?>-01"><img src="#DOSSIER_SQUELETTE/css/images/agenda-nav-droite.gif" title="Suivant" alt="" border=0></a>
+<a href="#URL_PAGE{calendrier}&amp;date=<?php echo (($M + 1 < 13) ? $Y : ($Y + 1)); ?>-<?php printf('%02d', ($M + 1) < 13 ? ($M + 1) : 1); ?>-01"><img src="#CHEMIN{css/images/agenda-nav-droite.gif}" title="Suivant" alt="" border=0></a>
 
 </form>
 

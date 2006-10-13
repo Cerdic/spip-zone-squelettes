@@ -1,9 +1,10 @@
-}#CACHE{7200}
+#CACHE{7200}
 
 <!-- // boucle d'exclusion des événements de L'agenda // -->
 <BOUCLE_agenda(ARTICLES){lang}{agenda}{doublons exclusion}></BOUCLE_agenda>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
@@ -15,7 +16,7 @@
 
 <ul class="invisible">
 	<li><a href="#menu" title="accéder au menu" accesskey="s">Aller au menu</a></li>
-	<li><a href="#contenu" title="accéder au contenu">Aller au contenu</a></li>
+	<li><a href="#cont" title="accéder au contenu">Aller au contenu</a></li>
 </ul>
 
 
@@ -29,7 +30,6 @@
     </div><!-- // Fin de la colonne gauche // -->
 
     <div id="coldroite">
-	 
 	<INCLURE{fond=inc/inc-coldroite}{lang}>
     </div><!-- // Fin de la colonne droite // -->
 
@@ -38,7 +38,7 @@
 		<B_edito>
 			<BOUCLE_edito(ARTICLES){edito}{par date}{inverse}{lang}{doublons exclusion}>
 			[<h2>(#TITRE|supprimer_numero)</h2>]
-			[(#LOGO_ARTICLE_RUBRIQUE|left||image_reduire{100}||inserer_attribut{alt,'blank'}||inserer_attribut{border,'5px'})]
+			[(#LOGO_ARTICLE_RUBRIQUE|left||image_reduire{100}||inserer_attribut{alt,'logo'}||inserer_attribut{border,'5px'})]
 			[(#TEXTE)]
 			[(#NOTES)]
 			[<p class="lien"><a href="#URL_SITE" title="[lien vers (#TITRE|supprimer_numero|textebrut|couper{50})]">
@@ -46,7 +46,19 @@
 			</BOUCLE_edito>
 		
 		</B_edito><!-- //Fin édito //-->
-			
+		
+		<B_Une>
+			<div id="une">
+				<BOUCLE_Une(ARTICLES){titre_mot=Une_site}{par date}{inverse}{lang}{une}{doublons exclusion}>
+				[(#LOGO_ARTICLE_RUBRIQUE|right||image_reduire{100}||inserer_attribut{alt,'logo'}||inserer_attribut{border,'5px'})]
+				[<h2>(#TITRE|supprimer_numero)</h2>]
+				[(#CHAPO)]
+				<p class="lien"><a href="#URL_ARTICLE" title="<:lien_une:>"><:texte_une:>
+				</a></p>
+				</BOUCLE_Une>
+			</div>
+		</B_Une><!-- //Fin de La une //-->
+	
                 
 	    <h2><:nouveau_article:></h2>
         
@@ -54,7 +66,7 @@
 	    <BOUCLE_articles(ARTICLES){par date}{inverse}{affiche_nb_articles}{lang}{doublons exclusion}>
 	    <div class="nouveau-boite" >
 		    [<h3>(#TITRE|supprimer_numero)</h3>]
-		    <p><a href="#URL_ARTICLE" title="[(#TITRE|supprimer_numero)]">
+		    <p><a href="#URL_ARTICLE" title="[(#TITRE|supprimer_numero)]"  id="cont" name="cont">
                 [(#LOGO_ARTICLE||reduire_image{72})][<span class="date">
                     (#DATE|affdate)</span>][<span class="introduction">
                         (#CHAPO)</span>]</a></p>

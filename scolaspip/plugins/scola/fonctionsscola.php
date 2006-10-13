@@ -17,7 +17,18 @@
 //    along with this program; if not, write to the Free Software
 //    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-
+function ajoute_evt ($date_redac, $soustitre, $titre, $url_article, $logo) {
+  global $events, $genre;
+  if ($date_redac == '') return;
+  ereg("([0-9]+) +jour", $soustitre, $nb_jour);
+  if ($nb_jour[1]=="") $nb_jour[1]=1;
+  if ($nb_jour[1]>20) $nb_jour[1]=1;
+  for ($i=0; $i < intval($nb_jour[1]); ++$i) {
+     $ymd = date("Ymd", strtotime($date_redac) + 24*3600*$i);
+     if (!isset($events[$ymd])) $events[$ymd] = array();
+     $events[$ymd][] = array('link' => $url_article, 'title' => $titre, 'logo' => $logo);
+  }
+}
   
 
 ?>

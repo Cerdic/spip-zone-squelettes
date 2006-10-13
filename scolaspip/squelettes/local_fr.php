@@ -45,6 +45,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'lien_flux' => 'voir tous les flux',
 'lien_site' => 'voir tous les sites',
 'lien_calendrier' => 'voir l\'agenda',
+'lien_une' => 'tout l\'article',
 
 // M 
 'mandat_organisme' => 'Mandat de notre organisme',
@@ -88,6 +89,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'texte_flux' => 'voir +',
 'texte_site' => 'voir +',
 'texte_calendrier' => 'voir +',
+'texte_une' => 'lire la suite',
 
 
 
