@@ -54,28 +54,4 @@ function compteur($truc='',$add=0) {
   return $compteur;
 }
 
-
-
-function listeDesListes($chaine){
-	include_spip('inc/flock');
-	//$contenu=file_get_contents("http://listes.rezo.net/listes.php");
-	$tempfile = _DIR_SESSIONS.'/listes.rezo.net';
-	if (!file_exists($tempfile)||(filemtime($tempfile)+24*3600)<time()){
-		$temp=file_get_contents("http://listes.rezo.net/listes.php");
-		ecrire_fichier ($tempfile, $temp);	
-	}
-	lire_fichier ($tempfile, $contenu);
-
-	$contenu=preg_replace("/<[\/]*strong>/","",$contenu);
-	$contenu=preg_replace("/\n/","",$contenu);
-	$contenu=preg_replace("/\<font color=\"\#666666\" size=2\>/","",$contenu);
-	$retour="<a href=\"<a href=\"http:\/\/listes.rezo.net\/mailman\/listinfo\/spip\ title=\"liste d\'entraide spip\">spip</a>&nbsp;";
-	preg_match_all("/<a href=\"(http:\/\/listes.rezo.net\/mailman\/listinfo\/[s|S]pip-[a-zA-Z]*)\">[s|S]pip-([a-zA-Z]*)<\/a><br>([^<]*)\</ms",$contenu,$matches, PREG_SET_ORDER);
-	foreach ($matches as $val )
-	{
-		$retour.= "<a href=\"".$val[1]."\" title=\"".$val[3]."\">".$val[2]."</a>&nbsp;";
-	}
-	return $retour;
-}
-
 ?>
