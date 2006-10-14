@@ -32,51 +32,45 @@
 				[<div class="image">(#LOGO_ARTICLE_RUBRIQUE|right||image_reduire{75})</div>]
 				<h3>#TITRE</h3>
 				<small class="metadata">[<:par_auteur:> (#LESAUTEURS) &ndash; ]<BOUCLE_rub(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">[(#TITRE|majuscules)]</a> &ndash; </BOUCLE_rub>[(#DATE|affdate)]<BOUCLE_compte_messages(FORUMS){id_article}{plat}> </BOUCLE_compte_messages> &mdash; <a href="#forum">[(#TOTAL_BOUCLE)] [(#TOTAL_BOUCLE|=={1}|?{commentaire,commentaires})]</a></B_compte_messages></small>
+				[<p><strong>(#DESCRIPTIF|PtoBR)</strong></p>]
 			</div><!-- itemhead -->
 			<div class="clear">&nbsp;</div>
 			<div class="itemtext">
-				[<div>(#DESCRIPTIF)</div>]
-				[<div><strong>(#CHAPO)</strong></div>]
 				[<div>(#TEXTE|image_reduire{490})</div>]
 				
 				[(#REM) Les prochains evenements ]
 				<B_event_list>
 				<h3>Prochaines dates :</h3>
 				<ul>
-				<BOUCLE_event_list(EVENEMENTS) {id_article} {agendafull date_debut, date_fin, (#ENV{date}|annee)} {statut=publie}{par date_fin}{age<7} {0,10}>
-					<li>
-						<a href="[(#URL_PAGE{evenement}|parametre_url{id_evenement,#ID_EVENEMENT})]">#TITRE</a>[ &ndash; (#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})][ &ndash; (#LIEU)]
-					</li>
-				</BOUCLE_event_list>
+					<BOUCLE_event_list(EVENEMENTS) {id_article} {agendafull date_debut, date_fin, (#ENV{date}|annee)} {statut=publie}{par date_fin}{age<7} {0,10}>
+					<li><a href="[(#URL_PAGE{evenement}|parametre_url{id_evenement,#ID_EVENEMENT})]">#TITRE</a>[ &ndash; (#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})][ &ndash; (#LIEU)]</li>
+					</BOUCLE_event_list>
 				</ul>
 				</B_event_list>
-				
 					<INCLURE{fond=inc_signatures}{id_article}>
-				
 				<//B_event_list>
 				
 				[(#PS)]
 			</div><!-- itemtext -->
-			<div class="center">
-				<!-- boucle image -->
-				<div id="current_image">
-					<BOUCLE_afficher_document(DOCUMENTS) {id_document} {mode=document}{extension==(png|jpg|gif)$} {doublons}>
-					[<h3>(#TITRE)</h3>]
-					[<div>(#DESCRIPTIF)</div>]
-					[<div><a href="#URL_DOCUMENT">(#FICHIER|image_reduire{490})</a></div>]
-					</BOUCLE_afficher_document>
-				</div>
-				<B_documents_portfolio>
-				<div>
-					<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document}{extension==(png|jpg|gif)$} {doublons}>
-					[<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT" onclick="return !showpic('current_image','#URL_DOCUMENT','[(#FICHIER|image_reduire{490}|extraire_attribut{src})]',[(#FICHIER|image_reduire{490}|extraire_attribut{width})],[(#FICHIER|image_reduire{490}|extraire_attribut{height})]);">(#LOGO_DOCUMENT{0,60})</a>]
-					[<div><b>(#TITRE)</b></div>]
-					[<div>(#DESCRIPTIF)</div>]
-					</BOUCLE_documents_portfolio>
-				</div>
-				<div class="clear">&nbsp;</div>
-				</B_documents_portfolio>
-			</div><!-- center -->
+			
+			<B_documents_portfolio>
+			<a name="portfolio" id="portfolio"></a>
+			<h2>Portfolio</h2>
+			<B_afficher_document>
+			<div class="spip_documents spip_documents_center">
+				<BOUCLE_afficher_document(DOCUMENTS) {id_document} {mode=document}{extension==(png|jpg|gif)$}>
+				[<a href="#URL_DOCUMENT">(#FICHIER|image_reduire{490})</a>]
+				<p>[(#TITRE)][ &mdash; (#DESCRIPTIF|PtoBR)]</p>
+				</BOUCLE_afficher_document>
+			</div>
+			</B_afficher_document>
+			<div class="spip_documents_portfolio">
+				<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document}{extension==(png|jpg|gif)$} {doublons}>[<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT#portfolio"[ title="(#TITRE|couper{80}|texte_backend)"]>(#LOGO_DOCUMENT{0,60})</a>]
+				</BOUCLE_documents_portfolio>
+			</div>
+			<div class="clear">&nbsp;</div>
+			</B_documents_portfolio>
+
 			[(#NOTES)]
 		</div><!-- post -->
 		<INCLURE{fond=inc_forum}{id_article}>
