@@ -1,9 +1,16 @@
 <B_documents_joints>
-<div>
-<h2>Document(s) Joint(s)</h2>
-<BOUCLE_documents_joints(DOCUMENTS) {id_article} {extension!==jpg|png|gif} {mode=document} {doublons}>
-	
-	[(#LOGO_DOCUMENT|#URL_DOCUMENT)]<br />[<b>(#TITRE)</b>]<br />[(#DESCRIPTIF)]
-</BOUCLE_documents_joints>
+<div class="demilist">
+	<h2><:titre_documents_joints:></h2>
+	<ul>
+		<BOUCLE_documents_joints(DOCUMENTS) {id_article} {extension!==jpg|png|gif} {mode=document} {doublons}>
+		<li>
+		[(#LOGO_DOCUMENT|#URL_DOCUMENT|image_reduire{200,180})]
+		<p><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[<strong>(#TITRE|sinon{<:info_document:>})</strong>]</a>
+		<br /><small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small>
+		<br />[(#DESCRIPTIF|PtoBR)]</p>
+		</li>
+		</BOUCLE_documents_joints>
+	</ul>
 </div>
+<div class="clear">&nbsp;</div>
 </B_documents_joints>
