@@ -2,6 +2,8 @@
 
 $GLOBALS['puce'] = '- ';
 $GLOBALS['espace_logos'] = 0;
+$GLOBALS['debut_intertitre'] = "\n<h2 class=\"spip\">\n";
+$GLOBALS['fin_intertitre'] = "</h2>\n";
 
 # titre homogene http://www.spip-contrib.net/article46.html
 function titre_homogene($titre) {
