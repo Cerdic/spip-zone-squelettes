@@ -7,7 +7,7 @@
 	<meta name="robots" content="none" />
 	<INCLURE{fond=inc_head}>
 </head>
-<body>
+<body class="page_index">
 <div id="page">
 	<div id="header">
 		<ul class="menu">
@@ -15,30 +15,29 @@
 			<INCLURE{fond=inc_menu-haut}>
 		</ul>
 	</div>
-	
 	<div class="primary">
 		<div class="itemhead">
-			[<div class="description">(#DESCRIPTIF_SITE_SPIP)</div>]
-			[<div class="image">(#LOGO_SITE_SPIP|right||image_reduire{100})</div>]
+			[<div>(#LOGO_SITE_SPIP|right||image_reduire{100})</div>]
 			<h1 style="display: none;"><:plan_site:></h1>
+			[<div class="description">(#DESCRIPTIF_SITE_SPIP)</div>]
 		</div><!-- itemhead -->
-
 		<div class="itemtext">
-			<BOUCLE_secteurs(RUBRIQUES) {racine} {par num titre, titre}>
-			<h2><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h2>
-
-				<B_rubriques>
-				<ul>
-					<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
-					<li>
-						<strong><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></strong>
-						<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
-					</li>
-					</BOUCLE_rubriques>
-				</ul>
-				</B_rubriques>
-
-			</BOUCLE_secteurs>
+			<ul>
+				<BOUCLE_secteurs(RUBRIQUES) {racine} {par num titre, titre}>
+				<li><h2><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h2>
+					<B_rubriques>
+					<ul>
+						<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+						<li>
+							<strong><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></strong>
+							<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+						</li>
+						</BOUCLE_rubriques>
+					</ul>
+					</B_rubriques>
+				</li>
+				</BOUCLE_secteurs>
+			</ul>
 		</div><!-- itemtext -->
 	</div><!-- primary -->
 	<div class="secondary">

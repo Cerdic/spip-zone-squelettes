@@ -7,7 +7,7 @@
 	[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
 	<INCLURE{fond=inc_head}{id_rubrique}>
 </head>
-<body>
+<body class="page_index">
 <div id="page">
 	<div id="header">
 		<ul class="menu">
@@ -15,37 +15,32 @@
 			<INCLURE{fond=inc_menu-haut}{id_rubrique}>
 		</ul>
 	</div>
-	
 	<div class="primary">
-		<div class="item">
-			<div class="itemhead">
-				[<div class="image">(#LOGO_RUBRIQUE|right||image_reduire{100})</div>]
-				[<h1>(#TITRE|supprimer_numero)</h1>]
-				[<div>(#TEXTE)</div>]
-			</div><!-- itemhead -->
+		<div class="itemhead">
+			[(#LOGO_RUBRIQUE|right||image_reduire{100})]
+			[<h1>(#TITRE|supprimer_numero)</h1>]
+			[<div>(#TEXTE)</div>]
+		</div><!-- itemhead -->
+		<div class="itemtext">
+			<B_articles>
+			<ul>
+				<BOUCLE_articles(ARTICLES) {id_rubrique} {!par date}>
+				<li><a href="#URL_ARTICLE">#TITRE</a></li>
+				</BOUCLE_articles>
+			</ul>
+			</B_articles>
+			<B_rubriques>
+			<ul class="damier">
+				<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+				<li>
+					<h2><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h2>
+					[(#LOGO_RUBRIQUE|#URL_RUBRIQUE||image_reduire{85}|inserer_attribut{title,[(#TITRE|couper{80}|texte_backend)]})]
+				</li>
+				</BOUCLE_rubriques>
+			</ul>
+			</B_rubriques>
 			<div class="clear">&nbsp;</div>
-			<div class="itemtext">
-				<B_articles>
-				<ul>
-					<BOUCLE_articles(ARTICLES) {id_rubrique} {!par date}>
-					<li><a href="#URL_ARTICLE">#TITRE</a></li>
-					</BOUCLE_articles>
-				</ul>
-				</B_articles>
-				<B_rubriques>
-				<ul class="damier">
-					<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
-					<li>
-						<h2><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h2>
-						[(#LOGO_RUBRIQUE|#URL_RUBRIQUE||image_reduire{85}|inserer_attribut{title,[(#TITRE|couper{80}|texte_backend)]})]
-					</li>
-					</BOUCLE_rubriques>
-				</ul>
-				</B_rubriques>
-				<div class="clear">&nbsp;</div>
-			</div><!-- itemtext -->
-			<div class="clear">&nbsp;</div>
-		</div><!-- post -->
+		</div><!-- itemtext -->
 	</div><!-- primary -->
 	<div class="secondary">
 		[(#CALENDRIER_MINI{#ENV{date},'date',#SELF})]

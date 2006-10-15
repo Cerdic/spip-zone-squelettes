@@ -5,8 +5,12 @@
 	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
 	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
 	<INCLURE{fond=inc_head}>
+	<style>
+		.primary .itemtext .spip_logos { margin: 0 6px 3px 0; }
+		.primary .itemtext p { margin: 3px 0; text-align: justify; }
+	</style>
 </head>
-<body>
+<body class="page_index">
 <div id="page">
 	<div id="header">
 		<ul class="menu">
@@ -14,32 +18,37 @@
 			<INCLURE{fond=inc_menu-haut}>
 		</ul>
 	</div>
-	
 	<div class="primary">
-		<h1 style="display: none;">#NOM_SITE_SPIP</h1>
+		<div class="itemhead">
+			<h1 style="display: none;">#NOM_SITE_SPIP</h1>
+		</div><!-- itemhead -->
+		<div class="itemtext">
 
-		<BOUCLE_articles_une(ARTICLES) {titre_mot=une} {!par date}{age<150} {0,2} {doublons}>
-		[<div class="image">(#LOGO_ARTICLE_RUBRIQUE|left|#URL_RUBRIQUE|image_reduire{75})</div>]
-		<h2><a href="#URL_ARTICLE">#TITRE</a></h2>
-		<span class="metadata"><BOUCLE_rubrique_article_une(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|majuscules)]</a></BOUCLE_rubrique_article_une></span>
-		<small class="metadata">[<:par_auteur:> (#LESAUTEURS), ][(#DATE|affdate_court)]
-		<BOUCLE_compte_messages_une(FORUMS){id_article}{plat}> </BOUCLE_compte_messages_une> &mdash; <a href="#URL_ARTICLE#forum">[(#TOTAL_BOUCLE)] [(#TOTAL_BOUCLE|=={1}|?{commentaire,commentaires})]</a></B_compte_messages_une>
-		</small>
-		[<p>(#INTRODUCTION)&nbsp;<a href="#URL_ARTICLE"[ title="(#TITRE|couper{80}|texte_backend)"]>&gt;&nbsp;<:suite:></a></p>]
-		<div class="clear">&nbsp;</div>
-		</BOUCLE_articles_une>
+			<BOUCLE_articles_une(ARTICLES) {titre_mot=une} {!par date}{age<150} {0,2} {doublons}>
+			[(#LOGO_ARTICLE_RUBRIQUE|left|#URL_RUBRIQUE|image_reduire{75})]
+			<h2><a href="#URL_ARTICLE">#TITRE</a></h2>
+			<span class="metadata"><BOUCLE_rubrique_article_une(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|majuscules)]</a></BOUCLE_rubrique_article_une></span>
+			<small class="metadata">[<:par_auteur:> (#LESAUTEURS), ][(#DATE|affdate_court)]
+			<BOUCLE_compte_messages_une(FORUMS){id_article}{plat}> </BOUCLE_compte_messages_une> &mdash; <a href="#URL_ARTICLE#forum">[(#TOTAL_BOUCLE)]&nbsp;[(#TOTAL_BOUCLE|=={1}|?{commentaire,commentaires})]</a></B_compte_messages_une>
+			</small>
+			[<p>(#INTRODUCTION|couper{500}|PtoBR)</p>]
+			<a href="#URL_ARTICLE"[ title="(#TITRE|couper{80}|texte_backend)"] class="suite">&gt;&nbsp;<:suite:></a>
+			<div class="clear">&nbsp;</div><br />
+			</BOUCLE_articles_une>
+			
+			<BOUCLE_articles(ARTICLES) {!par date} {0,6} {doublons}>
+			[(#LOGO_ARTICLE_RUBRIQUE|left|#URL_RUBRIQUE|image_reduire{60})]
+			<h2><a href="#URL_ARTICLE">#TITRE</a></h2>
+			<span class="metadata"><BOUCLE_rubrique_article(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|majuscules)]</a></BOUCLE_rubrique_article></span>
+			<small class="metadata">[<:par_auteur:> (#LESAUTEURS), ][(#DATE|affdate_court)]
+			<BOUCLE_compte_messages(FORUMS){id_article}{plat}> </BOUCLE_compte_messages> &mdash; <a href="#URL_ARTICLE#forum">[(#TOTAL_BOUCLE)]&nbsp;[(#TOTAL_BOUCLE|=={1}|?{commentaire,commentaires})]</a></B_compte_messages>
+			</small>
+			[<p>(#INTRODUCTION|couper{500}|PtoBR)</p>]
+			<a href="#URL_ARTICLE"[ title="(#TITRE|couper{80}|texte_backend)"] class="suite">&gt;&nbsp;<:suite:></a>
+			<div class="clear">&nbsp;</div><br />
+			</BOUCLE_articles>
 		
-		<BOUCLE_articles(ARTICLES) {!par date} {0,5} {doublons}>
-		[<div class="image">(#LOGO_ARTICLE_RUBRIQUE|left|#URL_RUBRIQUE|image_reduire{60})</div>]
-		<h2><a href="#URL_ARTICLE">#TITRE</a></h2>
-		<span class="metadata"><BOUCLE_rubrique_article(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|majuscules)]</a></BOUCLE_rubrique_article></span>
-		<small class="metadata">[<:par_auteur:> (#LESAUTEURS), ][(#DATE|affdate_court)]
-		<BOUCLE_compte_messages(FORUMS){id_article}{plat}> </BOUCLE_compte_messages> &mdash; <a href="#URL_ARTICLE#forum">[(#TOTAL_BOUCLE)] [(#TOTAL_BOUCLE|=={1}|?{commentaire,commentaires})]</a></B_compte_messages>
-		</small>
-		[<p>(#INTRODUCTION)&nbsp;<a href="#URL_ARTICLE"[ title="(#TITRE|couper{80}|texte_backend)"]>&gt;&nbsp;<:suite:></a></p>]
-		<div class="clear">&nbsp;</div>
-		</BOUCLE_articles>
-
+		</div><!-- itemtext -->
 	</div><!-- primary -->
 	<div class="secondary">
 		[(#CALENDRIER_MINI{#ENV{date},'date',#SELF})]

@@ -6,7 +6,7 @@
 	<meta name="robots" content="none" />
 	<INCLURE{fond=inc_head}>
 </head>
-<body>
+<body class="page_index">
 <div id="page">
 	<div id="header">
 		<ul class="menu">
@@ -14,39 +14,34 @@
 			<INCLURE{fond=inc_menu-haut}>
 		</ul>
 	</div>
-	
 	<div class="primary">
-		<div class="item">
-			<div class="itemhead">
-				[<div class="image">(#LOGO_RUBRIQUE|right||image_reduire{75})</div>]
-				<h1><:nouveautes_web:></h1>
-				<BOUCLE_rub(RUBRIQUES){id_rubrique=32}>[<div>(#TEXTE)</div>]</BOUCLE_rub>
-			</div><!-- itemhead -->
-			<div class="clear">&nbsp;</div>
-			<div class="itemtext">
+		<div class="itemhead">
+			[<div>(#LOGO_RUBRIQUE|right||image_reduire{75})</div>]
+			<h1><:nouveautes_web:></h1>
+			<BOUCLE_rub(RUBRIQUES){id_rubrique=32}>[<div>(#TEXTE)</div>]</BOUCLE_rub>
+		</div><!-- itemhead -->
+		<div class="itemtext">
 
-				<BOUCLE_sites_atej(SITES) {id_secteur=35}>
-				<BOUCLE_syndic_sites_atej(SYNDIC_ARTICLES) {id_syndic} {doublons}>
-				</BOUCLE_syndic_sites_atej>
-				</BOUCLE_sites_atej>
-				
-				<B_articles>
-				#ANCRE_PAGINATION
-				[<p class="pagination">(#PAGINATION)</p>]
-				<ul>
-					<BOUCLE_articles(SYNDIC_ARTICLES) {!par date} {doublons} {pagination 5}>
-					[<li>
-						<strong><a href="(#URL_ARTICLE|unique{syndic})">#TITRE</a></strong> - #NOM_SITE - [(#DATE|affdate{'d/m/Y'})]
-						[<br />(#DESCRIPTIF|PtoBR|couper{250})]
-					</li>]
-					</BOUCLE_articles>
-				</ul>
-				[<p class="pagination">(#PAGINATION)</p>]
-				</B_articles>
-				
-			</div><!-- itemtext -->
-			<div class="clear">&nbsp;</div>
-		</div><!-- post -->
+			<BOUCLE_sites_atej(SITES) {id_secteur=35}>
+			<BOUCLE_syndic_sites_atej(SYNDIC_ARTICLES) {id_syndic} {doublons}>
+			</BOUCLE_syndic_sites_atej>
+			</BOUCLE_sites_atej>
+			
+			<B_articles>
+			#ANCRE_PAGINATION
+			[<p class="pagination">(#PAGINATION)</p>]
+			<ul>
+				<BOUCLE_articles(SYNDIC_ARTICLES) {!par date} {doublons} {pagination 5}>
+				[<li>
+					<strong><a href="(#URL_ARTICLE|unique{syndic})">#TITRE</a></strong> - #NOM_SITE - [(#DATE|affdate{'d/m/Y'})]
+					[<br />(#DESCRIPTIF|PtoBR|couper{250})]
+				</li>]
+				</BOUCLE_articles>
+			</ul>
+			[<p class="pagination">(#PAGINATION)</p>]
+			</B_articles>
+			
+		</div><!-- itemtext -->
 	</div><!-- primary -->
 	
 	<div class="secondary">

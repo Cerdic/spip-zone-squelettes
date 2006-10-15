@@ -7,7 +7,7 @@
 	[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
 	<INCLURE{fond=inc_head}{id_rubrique}>
 </head>
-<body>
+<body class="page_index">
 <div id="page">
 	<div id="header">
 		<ul class="menu">
@@ -15,51 +15,46 @@
 			<INCLURE{fond=inc_menu-haut}{id_rubrique}>
 		</ul>
 	</div>
-	
 	<div class="primary">
-		<div class="item">
-			<div class="itemhead">
-				[<div class="image">(#LOGO_RUBRIQUE|right||image_reduire{100})</div>]
-				[<h1>(#TITRE|supprimer_numero)</h1>]
-				[<div>(#TEXTE)</div>]
-			</div><!-- itemhead -->
-			<div class="clear">&nbsp;</div>
-			<div class="itemtext">
-				<B_articles>
-				<ul>
-					<BOUCLE_articles(ARTICLES) {id_rubrique} {!par date}>
-					<li><a href="#URL_ARTICLE">#TITRE</a></li>
-					</BOUCLE_articles>
-				</ul>
-				</B_articles>
-				<B_rubriques>
-				<ul>
-					<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
-					<li>
-						<strong><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></strong>
-						<BOUCLE_sous_articles(BOUCLE_articles)> </BOUCLE_sous_articles>
-						<B_sous_rubriques>
-						<ul>
-							<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par titre}>
-							<li><strong><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></strong></li>
-							</BOUCLE_sous_rubriques>
-						</ul>
-						</B_sous_rubriques>
-					</li>
-					</BOUCLE_rubriques>
-				</ul>
-				</B_rubriques>
-				<B_sites>
-				<h2>Les sites du coin :</h2>
-				<ul>
-					<BOUCLE_sites(SITES){branche}>
-					[<li><a href="(#URL_SITE|unique)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a>[ : (#DESCRIPTIF)]</li>]
-					</BOUCLE_sites>
-				</ul>
-				</B_sites>
-			</div><!-- itemtext -->
-			<div class="clear">&nbsp;</div>
-		</div><!-- post -->
+		<div class="itemhead">
+			[(#LOGO_RUBRIQUE|right||image_reduire{100})]
+			[<h1>(#TITRE|supprimer_numero)</h1>]
+			[<div>(#TEXTE)</div>]
+		</div><!-- itemhead -->
+		<div class="itemtext">
+			<B_articles>
+			<ul>
+				<BOUCLE_articles(ARTICLES) {id_rubrique} {!par date}>
+				<li><a href="#URL_ARTICLE">#TITRE</a></li>
+				</BOUCLE_articles>
+			</ul>
+			</B_articles>
+			<B_rubriques>
+			<ul>
+				<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+				<li>
+					<strong><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></strong>
+					<BOUCLE_sous_articles(BOUCLE_articles)> </BOUCLE_sous_articles>
+					<B_sous_rubriques>
+					<ul>
+						<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par titre}>
+						<li><strong><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></strong></li>
+						</BOUCLE_sous_rubriques>
+					</ul>
+					</B_sous_rubriques>
+				</li>
+				</BOUCLE_rubriques>
+			</ul>
+			</B_rubriques>
+			<B_sites><br />
+			<h2>Les sites du coin :</h2>
+			<ul>
+				<BOUCLE_sites(SITES){branche}>
+				[<li>[(#LOGO_SITE_RUBRIQUE||image_reduire{16}) ]<a href="(#URL_SITE|unique)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a>[ : (#DESCRIPTIF)]</li>]
+				</BOUCLE_sites>
+			</ul>
+			</B_sites>
+		</div><!-- itemtext -->
 	</div><!-- primary -->
 	<div class="secondary">
 		[(#CALENDRIER_MINI{#ENV{date},'date',#SELF})]

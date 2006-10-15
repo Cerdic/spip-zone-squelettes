@@ -6,7 +6,7 @@
 	[<meta name="description" content="(#DESCRIPTIF|couper{150}|textebrut)" />]
 	<INCLURE{fond=inc_head}>
 </head>
-<body>
+<body class="page_jour">
 <div id="page">
 	<div id="header">
 		<ul class="menu">
@@ -16,25 +16,24 @@
 	</div>
 	
 	<div class="primary">
-		<div class="item">
-			<div class="itemhead">
-				<h1>[(#ENV{date}|nom_jour|ucfirst) ][(#ENV{date}|affdate)]</h1>
-			</div><!-- itemhead -->
-			<div class="clear">&nbsp;</div>
-			<B_event_list>
-			<ul style="list-style: none; margin: 0; padding: 0;">
-				<BOUCLE_event_list(EVENEMENTS) {agendafull date_debut, date_fin, jour, (#ENV{date}|annee), (#ENV{date}|mois), (#ENV{date}|jour)} {statut=publie}{par date_fin}>
-				<li style="margin: 0; padding: 0;"><INCLURE{fond=inc_hcal}{id_evenement}></li>
-				</BOUCLE_event_list>
-			</ul>
-			</B_event_list>
-			<em>Aucun &eacute;v&eacute;nement SPIP annonc&eacute; le [(#ENV{date}|affdate)]&nbsp;!</em>
-			<//B_event_list>
-		</div><!-- post -->
-
+		<div class="itemhead">
+			<h1>[(#ENV{date}|nom_jour|ucfirst) ][(#ENV{date}|affdate)]</h1>
+		</div><!-- itemhead -->
+		<B_event_list>
+		<ul style="list-style: none; margin: 0; padding: 0;">
+			<BOUCLE_event_list(EVENEMENTS) {agendafull date_debut, date_fin, jour, (#ENV{date}|annee), (#ENV{date}|mois), (#ENV{date}|jour)} {statut=publie}{par date_fin}>
+			<li style="margin: 0; padding: 0;"><INCLURE{fond=inc_hcal}{id_evenement}></li>
+			</BOUCLE_event_list>
+		</ul>
+		</B_event_list>
+		<em>Aucun &eacute;v&eacute;nement SPIP annonc&eacute; le [(#ENV{date}|affdate)]&nbsp;!</em>
+		<//B_event_list>
 	</div><!-- primary -->
 	<div class="secondary">
 		[(#CALENDRIER_MINI{#ENV{date},'date',#SELF})]
+		<INCLURE{fond=inc_derniers_commentaires}>
+		<INCLURE{fond=inc_syndication}>
+		<INCLURE{fond=inc_sites}>
 		<INCLURE{fond=inc_galaxie}>
 	</div><!-- secondary -->
 	<div class="clear">&nbsp;</div>

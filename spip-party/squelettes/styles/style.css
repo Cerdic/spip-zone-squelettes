@@ -50,6 +50,7 @@ Author URI: http://binarybonsai.com/
 ----------------------------------------------- */
 @import url("doc.css");
 @import url("calendrier_mini.css");
+@import url("formulaires.css");
 
 /*- Page Structure */
 
@@ -140,28 +141,22 @@ ul.menu li.current_page_item a:hover {
 	position: absolute;
 	right: 0; }
 
-/* Liste en 2 colonnes */
-.demilist ul { margin: 0; padding: 0 !important; list-style: none; }
-.demilist ul li { display: block; clear: none; width: 230px; float: left; margin: 0; padding: 0;
-margin-right: 20px; margin-bottom: 1em; }
-.demilist ul li p { width: 200px; margin: 0 !important; padding: 0; }
-
 /*- Headings */
 
 h1, h2, h3 { font: 1em 'Trebuchet MS', Verdana, Sans-Serif; }
 
-h1 {
+.page_index h1 {
 	font-size: 3em;
 	letter-spacing: -1px;
 	margin: 0 0 40px 40px;
 	padding-top: 25px;
 	font-weight: bold; }
 
-.page_article h1, .primary h2 { /* For use on Pages */
+.page_item h1, .primary h2 { /* For use on Pages */
 	margin: 0; padding: 0;
 	letter-spacing: -1px;
 	font-weight: normal; }
-.page_article h1 { font-size: 2.1em; }
+.page_item h1, .page_mois h1, .page_jour h1, .page_item .vevent .summary { font-size: 2.2em; }
 .primary h2 { font-size: 1.6em; }
 
 .secondary h2 { /* Secondary H2 is sidebar headlines */
@@ -170,16 +165,17 @@ h1 {
 	padding: 0;
 	display: inline; }
 
-.page_article h1, h2, h2 a { color: #444; }
-.page_article h1, h2, h2 a, h2 a:hover { text-decoration: none; }
+.page_item h1, h2, h2 a { color: #444; }
+.page_item h1, h2, h2 a, h2 a:hover { text-decoration: none; }
 
-/*.primary .aside h3 {
-	font-size: 1.4em;
-	font-weight: normal; }*/
+.itemhead { clear: both; margin: 10px 0; }
+.itemhead .spip_logos { margin: 0 0 10px 10px; }
 
-.itemhead {
-	clear: both;
-	margin-top: 10px; }
+.navigation { width: 100%; margin: 0.5em 0 2em 0; }
+.navigation div { width: 49%; }
+.navigation .alignleft { text-align: left; }
+.navigation .alignright { text-align: right; }
+.navigation, .navigation a { color: #999; }
 
 .secondary > div {
 	margin: 20px 0 0;
@@ -194,53 +190,36 @@ h1 {
 .secondary div > .metalink {
 	text-align: right; }
 
-/*.primary .aside {
-	padding: 8px;
-	margin: 0 4%; }
-
-.secondary .aside {
-	margin: 0;
-	padding: 0 0 10px;
-	word-spacing: -1px; }
-
-.secondary .aside .metalink {
-	padding-left: 0; }
-
-.secondary span a {
-	margin-left: 10px; }
-
-.metalink a span {
-	display: none; }
-
-.metalink a:hover > span {
-	display: inline; }*/
-
 .metadata { /* Time and category for blog entries */
-	display: block; }
+	display: block; color: #999; }
 
 /*- Primary Contents */
 
-.primary .item {
-	margin: 0;
-	padding: 5px 0 15px; }
+.itemtext { clear: both; }
 
-.primary .item .itemtext {
-	font: 1.1em/1.5em 'Lucida Grande', Verdana, Arial, Sans-Serif;
+.page_item .primary .itemtext {
+	font: 1em/1.5em 'Lucida Grande', Verdana, Arial, Sans-Serif;
 	/*text-align: justify;*/ }
 
-.primary .item .itemtext p,
-.primary .item .itemtext ul,
-.primary .item .itemtext ol,
-.primary .item .itemtext div,
-.primary .item .itemtext blockquote {
-	margin: 13px 0; }
+.page_item .primary .itemtext p,
+.page_item .primary .itemtext ul,
+.page_item .primary .itemtext ol,
+.page_item .primary .itemtext div {
+	margin: 1em 0; }
 
-.primary .aside .itemtext p,
-.primary .aside .itemtext ul,
-.primary .aside .itemtext ol,
-.primary .aside .itemtext div,
-.primary .aside .itemtext blockquote {
-	margin: 5px 0; }
+.page_index .primary .itemtext li { margin: 1.4em 0; }
+.page_index .primary .itemtext li p { margin: 0; padding: 0; }
+
+/* Liste en 2 colonnes */
+.demilist ul { margin: 0; padding: 0 !important; list-style: none; }
+.demilist ul li { display: block; clear: none; width: 230px; float: left; margin: 0; padding: 0;
+margin-right: 20px; margin-bottom: 1em; }
+.demilist ul li p { width: 200px; margin: 0 !important; padding: 0; }
+
+/* Aperos : damiers des villes */
+ul.damier { margin: 0; padding: 0; list-style: none; text-align: center; }
+ul.damier li { display: block; width: 124px; height: 140px; float: left; margin: 0 !important; padding: 0; }
+ul.damier li h2 { margin-bottom: 0; padding: 0; text-transform: uppercase; font-size: 1.1em; letter-spacing: 0.1em; }
 
 /*- Various Tags and Classes */
 
@@ -278,23 +257,15 @@ blockquote {
 	background: #eee url('images/quote.png') 10px top no-repeat;
 	-moz-border-radius: 1em;
 	border: none; }
-	
-.navigation { width: 100%; margin: 0.5em 0 2em 0; }
-.navigation div { width: 49%; }
-.navigation .alignleft { text-align: left; }
-.navigation .alignright { text-align: right; }
-.navigation, .navigation a { color: #999; }
-#hierarchie { padding: 1px 0 0 2px; }
-#hierarchie, #hierarchie a { color: #999; }
 
 /*- Begin Lists */
-.itemtext ol, .itemtext ul {
+/*.itemtext ol, .itemtext ul {
 	padding: 0 0 0 35px;
 	margin: 0; }
 
 .itemtext ol li, .itemtext ul li {
 	margin: 0 0 3px;
-	padding: 0; }
+	padding: 0; }*/
 
 .secondary ul, .secondary ol, .secondary > div > div {
 	margin: 5px 0 0;
@@ -317,103 +288,9 @@ blockquote {
 
 ol li { list-style: decimal outside; }
 
-/*- Brian's Latest Comments
-	http://meidell.dk/archives/2004/09/12/brians-latest-comments/
-*/
-
-div.sb_comments ul li { margin-bottom: 0.6em; }
-div.sb_comments ul li a {
-	color: #999;
-	font-weight: normal;
-	word-spacing: -1px; }
-div.sb_comments ul li a { text-decoration: none; }
-
-/* Commentaires de forum */
-.comments {
-	text-align: left;
-	padding: 30px 0 0;
-	position: relative; }
-
-.comments .commentlist {
-	margin: 0;
-	padding: 20px 0 0; }
-
-.comments .commentlist li {
-	margin: 10px 0;
-	padding: 10px 10px 5px;
-	list-style: none; }
-
-.counter {
-	font: normal 1.5em 'Century Gothic', 'Lucida Grande'; }
-.counter a { color: #999; text-decoration: none; }
-.counter a.spip_out { text-decoration: underline; }
-
-.comments .commentlist li img.gravatar {
-	float: right;
-	margin: -5px 0 0; }
-
-/* Formulaires */
-fieldset { border: none; margin: 0; padding: 0; }
-legend { display: none; }
-label { font: normal 1.1em 'Century Gothic', 'Lucida Grande'; }
-input[type=text], input[type=search], textarea {
-	margin: 0;
-	padding: 3px;
-	border: 2px inset #ececec;
-	font: 1em Verdana, Sans-Serif;
-	color: #444; }
-p.spip_bouton input { border: 2px outset #666; background: #666; color: #fff;
-font: normal 1.1em 'Century Gothic', 'Lucida Grande'; }
-.reponse_formulaire { font-weight: bold; color: red; }
-
-/* Formulaire de forum */
-.formulaire_forum { margin-left: 10px; }
-.formulaire_forum fieldset { margin: 1.6em 0; }
-.formulaire_forum p { position: relative; clear: both; margin-bottom: 1.6em; }
-.formulaire_forum input[type=text] { width: 180px; position: absolute; left: 0; top: 0; }
-.formulaire_forum label { position: relative; left: 195px; text-transform: uppercase; color: #999; }
-.formulaire_forum textarea { width: 360px; }
-/* Barre de raccourcis typo */
-table.spip_barre { margin: 0; padding: 0; }
-table.spip_barre input { display: none; }
-table.spip_barre a img { display: inline; background: #ececec; margin: 0 6px 4px 0; padding: 3px; border: 1px outset #CCC; -moz-border-radius: 3px; }
-table.spip_barre a:hover img { background: #FFF; border: 1px outset #666; }
-
-/* Formulaire de signature de petition */
-.formulaire_signature { background: #ececec; padding: 1em !important; }
-.formulaire_signature fieldset { margin-top: 1em; }
-.formulaire_signature input[type=text], .formulaire_signature textarea { width: 90%; }
-
-/*- Search Form and Livesearch */
-
-.formulaire_recherche { /*position: absolute; top: 0; right: 25px;*/ }
-.formulaire_recherche * { display: inline !important; }
-.formulaire_recherche legend, .formulaire_recherche label { display: none !important; }
-.formulaire_recherche input[type=text] { width: 100%; border: 1px inset; }
-
-/* microformats hcal */
-.vevent {
-	background: #FFF6BF;
-	border-top: 2px solid #FFD324;
-	border-bottom: 2px solid #FFD324;
-	text-align: left;
-	margin: 10px auto;
-	padding: 5px 20px; }
-.summary { font-weight: bold; letter-spacing: 2px; }
-.summary, .summary a { color: #000; }
-.date {}
-.dtstamp { border: none; }
-.dtstart, .dtend { display: none; }
-.location {}
-
 /* Boussole : liens vers les sites de la galaxie SPIP */
 #boussole a { display: table-cell; width: 50px; height: 50px; float: left; margin: 0 15px 15px 0; vertical-align: bottom; text-align: center; border: none; text-decoration: none; behavior: url(win_png.htc); }
 #boussole a#logo-spip { width: 115px; height: 115px; }
-
-/* Aperos : damiers des villes */
-ul.damier { margin: 0; padding: 0; list-style: none; text-align: center; }
-ul.damier li { display: block; width: 124px; height: 140px; float: left; margin: 0; padding: 0; }
-ul.damier li h2 { margin-bottom: 0; padding: 0; text-transform: uppercase; font-size: 1.1em; letter-spacing: 0.1em; }
 
 /* Pied de page */
 #footer p { text-align: center; }

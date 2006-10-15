@@ -8,7 +8,7 @@
 	<meta name="robots" content="none" />
 	<INCLURE{fond=inc_head}{id_auteur}>
 </head>
-<body class="page_article">
+<body class="page_item">
 <div id="page">
 	<div id="header">
 		<ul class="menu">
@@ -16,27 +16,22 @@
 			<INCLURE{fond=inc_menu-haut}>
 		</ul>
 	</div>
-	
 	<div class="primary">
-		<div class="item">
-			<div class="itemhead">
-				[<div class="image">(#LOGO_AUTEUR|right||image_reduire{75})</div>]
-				<h1>[(#NOM|supprimer_numero)]</h1>
-				[<small class="metadata"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></small>]
-				<p>#BIO</p>
-			</div><!-- itemhead -->
-			<div class="clear">&nbsp;</div>
-			<div class="itemtext">
-				<ul>
-					<BOUCLE_articles(ARTICLES){id_auteur} {!par date}>
-					<li><BOUCLE_rub(RUBRIQUES){id_rubrique}>[(#TITRE|supprimer_numero|majuscules)&nbsp;: ]</BOUCLE_rub><a href="#URL_ARTICLE">#TITRE</a>&nbsp;<em style="color: #999;">[(#DATE|affdate_court)]</em></li>
-					</BOUCLE_articles>
-				</ul>
-			</div><!-- itemtext -->
-			<div class="clear">&nbsp;</div>
-		</div><!-- post -->
+		<div class="itemhead">
+			[<div>(#LOGO_AUTEUR|right||image_reduire{75})</div>]
+			<h1>[(#NOM|supprimer_numero)]</h1>
+			[<small class="metadata"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></small>]
+			<p>#BIO</p>
+		</div><!-- itemhead -->
+		<div class="clear">&nbsp;</div>
+		<div class="itemtext">
+			<ul>
+				<BOUCLE_articles(ARTICLES){id_auteur} {!par date}>
+				<li><BOUCLE_rub(RUBRIQUES){id_rubrique}>[(#TITRE|supprimer_numero|majuscules)&nbsp;: ]</BOUCLE_rub><a href="#URL_ARTICLE">#TITRE</a>&nbsp;<em style="color: #999;">[(#DATE|affdate_court)]</em></li>
+				</BOUCLE_articles>
+			</ul>
+		</div><!-- itemtext -->
 	</div><!-- primary -->
-	
 	<div class="secondary">
 		[(#CALENDRIER_MINI{#ENV{date},'date',#SELF})]
 		<INCLURE{fond=inc_auteurs_tous}>

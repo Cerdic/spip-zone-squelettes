@@ -8,7 +8,7 @@
 	<meta name="robots" content="none" />
 	<INCLURE{fond=inc_head}{id_rubrique}>
 </head>
-<body>
+<body class="page_index">
 <div id="page">
 	<div id="header">
 		<ul class="menu">
@@ -16,53 +16,47 @@
 			<INCLURE{fond=inc_menu-haut}{id_rubrique}>
 		</ul>
 	</div>
-	
 	<div class="primary">
-		<div class="item">
-			<div class="itemhead">
-				[<div class="image">(#LOGO_RUBRIQUE|right||image_reduire{100})</div>]
-				[<h1>(#TITRE|supprimer_numero)</h1>]
-				[<div>(#TEXTE)</div>]
-			</div><!-- itemhead -->
-			<div class="clear">&nbsp;</div>
-			<div class="itemtext">
+		<div class="itemhead">
+			[(#LOGO_RUBRIQUE|right||image_reduire{100})]
+			[<h1>(#TITRE|supprimer_numero)</h1>]
+			[<div>(#TEXTE)</div>]
+		</div><!-- itemhead -->
+		<div class="itemtext">
+		
+			<BOUCLE_sites_oui(SITES){branche} {doublons sites}> </BOUCLE_sites_oui>
 			
-				<BOUCLE_sites_oui(SITES){branche} {doublons sites}> </BOUCLE_sites_oui>
-				
-				<BOUCLE_sites_atej(SITES) {doublons sites}>
-				<BOUCLE_syndic_sites_atej(SYNDIC_ARTICLES) {id_syndic} {doublons}>
-				</BOUCLE_syndic_sites_atej>
-				</BOUCLE_sites_atej>
-							
-				<B_syndic>
-				<div class="demilist">
-					#ANCRE_PAGINATION
-					[<p class="pagination">(#PAGINATION)</p>]
-					<ul class="flickr">
-					<BOUCLE_syndic(SYNDIC_ARTICLES) {!par date} {doublons} {pagination}>
-						[<li>
-							<h2 style="display: none;">#TITRE</h2>
-							<a href="#URL_ARTICLE"[ title="(#TITRE|textebrut)"]>(#DESCRIPTIF
-									|extraire_balise{img}
-									|image_reduire{200,180}
-									|inserer_attribut{alt,[(#TITRE|textebrut)]}
-									|inserer_attribut{'align',''}
-									|unique{photo}
-							)</a>
-							<p><small>[(#TITRE|couper{80})] &mdash; [(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)]</small></p>
-						</li>]
-					</BOUCLE_syndic>
-					</ul>
-					<div class="clear">&nbsp;</div>
-					[<p class="pagination">(#PAGINATION)</p>]
-				</div>
-				</B_syndic>
+			<BOUCLE_sites_atej(SITES) {doublons sites}>
+			<BOUCLE_syndic_sites_atej(SYNDIC_ARTICLES) {id_syndic} {doublons}>
+			</BOUCLE_syndic_sites_atej>
+			</BOUCLE_sites_atej>
+						
+			<B_syndic>
+			<div class="demilist">
+				#ANCRE_PAGINATION
+				[<p class="pagination">(#PAGINATION)</p>]
+				<ul class="flickr">
+				<BOUCLE_syndic(SYNDIC_ARTICLES) {!par date} {doublons} {pagination}>
+					[<li>
+						<h2 style="display: none;">#TITRE</h2>
+						<a href="#URL_ARTICLE"[ title="(#TITRE|textebrut)"]>(#DESCRIPTIF
+								|extraire_balise{img}
+								|image_reduire{200,180}
+								|inserer_attribut{alt,[(#TITRE|textebrut)]}
+								|inserer_attribut{'align',''}
+								|unique{photo}
+						)</a>
+						<p><small>[(#TITRE|couper{80})] &mdash; [(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)]</small></p>
+					</li>]
+				</BOUCLE_syndic>
+				</ul>
+				<div class="clear">&nbsp;</div>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</div>
+			</B_syndic>
 
-			</div><!-- itemtext -->
-			<div class="clear">&nbsp;</div>
-		</div><!-- post -->
+		</div><!-- itemtext -->
 	</div><!-- primary -->
-	
 	<div class="secondary">
 		[(#CALENDRIER_MINI{#ENV{date},'date',#SELF})]
 		<INCLURE{fond=inc_derniers_commentaires}>
