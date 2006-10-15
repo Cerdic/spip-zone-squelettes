@@ -17,9 +17,13 @@
 
 	<div class="articles">
 		<div class="logos format_png">[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{150,100})]</div>
-		<h3><a href="#URL_ARTICLE" class="widget article-titreurl-#ID_ARTICLE">#TITRE</a></h3>
-		[<div class="texte widget article-texte-#ID_ARTICLE">(#TEXTE|sinon{à suivre ...})</div>]
-		<div class="metadonne"> <p>[(#SURTITRE) |] [(#SOUSTITRE) |] <small>[(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small></div>
+		<h3><a href="#URL_ARTICLE">[(#SURTITRE) ]#TITRE[ ( (#SOUSTITRE) )]</a></h3>
+[		<div class="code">Autodoc :<pre>(#DESCRIPTIF)</pre></div>]
+		<h3>Vraie documentation :</h3>
+[		<div class="texte[ (#IF{ #SESSION**{statut}|!={''} })widget article-texte-#ID_ARTICLE]">(#TEXTE|sinon{<em><img src="#DOSSIER_SQUELETTE/img/alerte.png" alt="alerte" width="64" height="64" />On cherche un volontaire pour l'&eacute;crire ...</em>})</div>]
+[		<div class="code">code [de la (#SURTITRE)] : (#PS|urlVersTrac{#TITRE})</div>]
+[		<div class="code">appel&eacute; depuis (#EXTRA|extra{appelants}|urlVersTrac)</div>]
+ <div class="metadonne"> <p><small>[(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small></p></div>
 	</div>
 
 	<div class="clear">&nbsp;</div>
@@ -27,10 +31,9 @@
 </div>
 
 <div id="secondaire">
-	[(#INCLURE{fond=noisettes/block_rubrique})]
+		[(#INCLURE{fond=noisettes/block_rubrique})]
 
-	<div class="clear">&nbsp;</div>
-
+		<div class="clear">&nbsp;</div>
 </div>
 
 [(#INCLURE{fond=noisettes/pied}{skel=#SQUELETTE})]
