@@ -1,7 +1,8 @@
 <?php
 
 // Copyright 2005 Maxime GEORGE-BOURREAU
-// Adaptation pour SPIP 1.9 - 2006 © Fredo Mkb
+// Adaptation pour SPIP 1.9
+// MiniGriSpip 1.4 - 2006 (c) FredoMkb
 
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -66,7 +67,8 @@ function menu_rec($rubriques,$rubrique_active,$pere,$rang) {
 			$sortie .= '">'.$titre.'</a>';
 			$nb_articles = nombre_articles_rubrique($rubriques[$i]['id_rubrique']);
 			// Ajout du nombre d'articles publies existants dans la rubrique
-			$sortie .= '&nbsp;<small>('.$nb_articles.')</small></li>';
+			$sortie .= '&nbsp;<small>('.$nb_articles.')</small></li>
+		';
 			//Ici ajouter condition pour ne pas afficher toutes les noeuds
 			$sortie .= menu_rec($rubriques,$rubrique_active,$rubriques[$i]['id_rubrique'],$rang+1);
 		}
