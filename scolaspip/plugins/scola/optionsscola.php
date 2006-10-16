@@ -17,9 +17,6 @@
 //    along with this program; if not, write to the Free Software
 //    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-// réécriture des URLs
-
-$type_urls='propres2';
 
 // critère {edito}
 // permet d'affecter une rubrique spécifique pour les éditos

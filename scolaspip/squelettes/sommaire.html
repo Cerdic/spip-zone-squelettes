@@ -15,8 +15,8 @@
 <body>
 
 <ul class="invisible">
-	<li><a href="#menu" title="accéder au menu" accesskey="s">Aller au menu</a></li>
-	<li><a href="#cont" title="accéder au contenu">Aller au contenu</a></li>
+	<li><a href="#menu" title="acc&eacute;der au menu" accesskey="s" hreflang="#LANG">Aller au menu</a></li>
+	<li><a href="#cont" title="acc&eacute;der au contenu" hreflang="#LANG">Aller au contenu</a></li>
 </ul>
 
 
@@ -38,10 +38,10 @@
 		<B_edito>
 			<BOUCLE_edito(ARTICLES){edito}{par date}{inverse}{lang}{doublons exclusion}>
 			[<h2>(#TITRE|supprimer_numero)</h2>]
-			[(#LOGO_ARTICLE_RUBRIQUE|left||image_reduire{100}||inserer_attribut{alt,'logo'}||inserer_attribut{border,'5px'})]
+			[(#LOGO_ARTICLE_RUBRIQUE|left||image_reduire{100}||inserer_attribut{alt,''}||inserer_attribut{border,'5px'})]
 			[(#TEXTE)]
 			[(#NOTES)]
-			[<p class="lien"><a href="#URL_SITE" title="[lien vers (#TITRE|supprimer_numero|textebrut|couper{50})]">
+			[<p class="lien"><a href="#URL_SITE" title="[acc&der &agrave; (#TITRE|supprimer_numero|textebrut|couper{50})]" hreflang="#LANG">
 			(#NOM_SITE|supprimer_numero|textebrut|couper{30})</a></p>]
 			</BOUCLE_edito>
 		
@@ -50,10 +50,9 @@
 		<B_Une>
 			<div id="une">
 				<BOUCLE_Une(ARTICLES){titre_mot=Une_site}{par date}{inverse}{lang}{une}{doublons exclusion}>
-				[(#LOGO_ARTICLE_RUBRIQUE|right||image_reduire{100}||inserer_attribut{alt,'logo'}||inserer_attribut{border,'5px'})]
-				[<h2>(#TITRE|supprimer_numero)</h2>]
-				[(#CHAPO)]
-				<p class="lien"><a href="#URL_ARTICLE" title="<:lien_une:>"><:texte_une:>
+				[(#LOGO_ARTICLE_RUBRIQUE|right||image_reduire{100}||inserer_attribut{alt,''}||inserer_attribut{border,'5px'})]
+				[<h2><a href="[(#URL_ARTICLE)]" title="voir le contenu de l&rsquo;article">(#TITRE|supprimer_numero)</a></h2>]				[(#CHAPO)]
+				<p class="lien"><a href="#URL_ARTICLE" title="&lt;:lien_une:&gt;" hreflang="#LANG"><:texte_une:>
 				</a></p>
 				</BOUCLE_Une>
 			</div>
@@ -65,8 +64,8 @@
 	    <B_articles>
 	    <BOUCLE_articles(ARTICLES){par date}{inverse}{affiche_nb_articles}{lang}{doublons exclusion}>
 	    <div class="nouveau-boite" >
-		    [<h3>(#TITRE|supprimer_numero)</h3>]
-		    <p><a href="#URL_ARTICLE" title="[(#TITRE|supprimer_numero)]"  id="cont" name="cont">
+		    [<h3><a href="[(#URL_ARTICLE)]" name="cont" title="voir le contenu de l&rsquo;article" id="cont" hreflang="#LANG" tabindex="#COMPTEUR" >(#TITRE|supprimer_numero)</a></h3>]
+		    <p><a href="#URL_ARTICLE" title="[(#TITRE|supprimer_numero)]" hreflang="#LANG">
                 [(#LOGO_ARTICLE||reduire_image{72})][<span class="date">
                     (#DATE|affdate)</span>][<span class="introduction">
                         (#CHAPO)</span>]</a></p>
@@ -83,5 +82,3 @@
 </div><!-- // Fin du contenant // --> 
 </body>
 </html>
-
-
