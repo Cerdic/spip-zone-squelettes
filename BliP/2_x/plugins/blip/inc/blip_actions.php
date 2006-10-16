@@ -3,15 +3,14 @@
 	// Toutes les fonctions ont étés regroupées ici.
 
 	function BliP_version_ftp() {
-	    return (2.3);
+		return (2.3);
 		// METTRE EGALEMENT A JOUR LA VERSION DU FICHIER plugin.xml
 	}
 
-
 	// Script de verification de l'existance de la base de donnée. Utilisé sur diverses pages
 	function BliP_verifier_base() {
-	    global $table_blip;
-	    return (spip_query("SELECT * FROM `".$table_blip."`"));
+		global $table_blip;
+		return (spip_query("SELECT * FROM `".$table_blip."`"));
 	}
 
 	// Script  d'installation de la table spip_blip et configuration par défaut du squelette. Utilisé sur exce=blip
@@ -48,15 +47,15 @@
 	function BliP_installer_configuration() {
 		global $table_blip;
 		// Installe la configuration par défaut -- Une requête par ligne, car sinon cela bug et je ne sais pas pourquoi.
-		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'menu_principal', 0, 20, 'dynamique', '<multi>[fr]Rubriques[en]Sections[it]Rubriche[ca]Secci&oacute;</multi>', '<multi>[fr]Parcourir les rubriques du site[en]To traverse the section of the site[it]Per attraversare le rubriche del sito[ca]Fullejar les seccions del web</multi>', 'rubrique', '', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'menu_principal', 0, 20, 'lienpage', '<multi>[fr]Rubriques[en]Sections[it]Rubriche[ca]Secci&oacute;</multi>', '<multi>[fr]Parcourir les rubriques du site[en]To traverse the section of the site[it]Per attraversare le rubriche del sito[ca]Fullejar les seccions del web</multi>', 'rubrique', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'menu_principal', 0, 30, 'dynamique', '<multi>[fr]Articles[en]Articles[it]Articoli[ca]Articles</multi>', '<multi>[fr]Liste des articles du site[en]List articles of the site[it]Lista degli articoli del sito[ca]Llistat d''articles del web</multi>', 'article', '', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'menu_principal', 0, 30, 'lienpage', '<multi>[fr]Articles[en]Articles[it]Articoli[ca]Articles</multi>', '<multi>[fr]Liste des articles du site[en]List articles of the site[it]Lista degli articoli del sito[ca]Llistat d''articles del web</multi>', 'article', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'menu_principal', 0, 10, 'dynamique', '<multi>[fr]Actualit&eacute;[en]News[it]Notizie[ca]Actualitat</multi>', '<multi>[fr]Suivre l''actualit&eacute; de ce site[en]News of this site[it]Seguire le novita &agrave; del sito[ca]Seguir l''actualitat del lloc</multi>', 'sommaire', '', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'menu_principal', 0, 10, 'lienpage', '<multi>[fr]Actualit&eacute;[en]News[it]Notizie[ca]Actualitat</multi>', '<multi>[fr]Suivre l''actualit&eacute; de ce site[en]News of this site[it]Seguire le novita &agrave; del sito[ca]Seguir l''actualitat del lloc</multi>', 'sommaire', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'menu_principal', 0, 50, 'dynamique', '<multi>[fr]Auteurs[en]Authors[it]Autore[ca]Autors</multi>', '<multi>[fr]Liste des auteurs du site[en]List authors of the site[it]Elenco degli autori del sito[ca]Llistat d''autors del lloc</multi>', 'auteur', '', 'oui');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'menu_principal', 0, 50, 'lienpage', '<multi>[fr]Auteurs[en]Authors[it]Autore[ca]Autors</multi>', '<multi>[fr]Liste des auteurs du site[en]List authors of the site[it]Elenco degli autori del sito[ca]Llistat d''autors del lloc</multi>', 'auteur', '', 'oui');";
 		spip_query($req);
-		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'menu_principal', 0, 40, 'dynamique', '<multi>[fr]Mots-cl&eacute;s[en]Tags[it]Parole chiave[ca]Paraules clau</multi>', '<multi>[fr]Liste des mots-cl&eacute;s du site[en]Tags of the site[it]Parole chiave del sito[ca]Llistat de paraules clau del lloc web</multi>', 'mot', '', 'non');";
+		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'menu_principal', 0, 40, 'lienpage', '<multi>[fr]Mots-cl&eacute;s[en]Tags[it]Parole chiave[ca]Paraules clau</multi>', '<multi>[fr]Liste des mots-cl&eacute;s du site[en]Tags of the site[it]Parole chiave del sito[ca]Llistat de paraules clau del lloc web</multi>', 'mot', '', 'non');";
 		spip_query($req);
 		$req = "INSERT INTO `".$table_blip."` VALUES ('', 'barre_laterale', 0, 20, 'dynamique', '-', '-', 'mod_rubriques_rubriques_liste', '', 'oui');";
 		spip_query($req);
@@ -92,10 +91,9 @@
 		spip_query($req);
 	}
 
-
 	// Script  de suppression de la table spip_blip. Utilisé sur exec=blip_effacer
 	function BliP_supprimer_blip() {
-	    BliP_supprimer_table();
+		BliP_supprimer_table();
 		BliP_supprimer_meta();
 	}
 
@@ -104,7 +102,6 @@
 		$req = "DROP table `".$table_blip."`";
 		spip_query($req);
 	}
-
 	function BliP_supprimer_meta() {
 		include_spip('inc/meta');
 		ecrire_meta('blip_version', '');
@@ -132,7 +129,7 @@
 	// Génère un tableau dressant la configuration actuelle. Utilisé sur exec=blip
 	function BliP_tableau_config ($res) {
 		$compte = spip_num_rows($res);
-	    $index = 1;
+		$index = 1;
 		echo "<br />";
 		echo "<div class='verdana1'>";
 		echo "<table cellpadding='3' cellspacing='1' border='0'>";
@@ -144,29 +141,29 @@
 				<td class='verdana2' style='text-align:center;'><b>".'Options'."</b></td>
 			</tr>\n";
 		while ($elements = spip_fetch_array($res, SPIP_ASSOC)) {
-    		$bgcolor = alterner($i++, '#eeeeee','white');
-    		$restriction = explode("-", $elements['position']);
-    		echo "<tr bgcolor='$bgcolor'><td style='text-align:center;'><b>".$elements['ordre']."</b></td>";
+			$bgcolor = alterner($i++, '#eeeeee','white');
+			$restriction = explode("-", $elements['position']);
+			echo "<tr bgcolor='$bgcolor'><td style='text-align:center;'><b>".$elements['ordre']."</b></td>";
 			if ($elements['type'] == 'statique') {
 				echo "<td><b>".$elements['titre']."</b><br /><i>".$elements['descriptif']."</i><br />".$elements['texte']."</td>";
 			} else {
 				if ( $elements['position'] == 'menu_principal') {
-				    echo "<td><b>".$elements['titre']."</b><br /><i>".$elements['descriptif']."</i><br />".$elements['texte'].".html</td>";
+					echo "<td><b>".$elements['titre']."</b><br /><i>".$elements['descriptif']."</i><br />".$elements['texte']."</td>";
 				} else {
-				    echo "<td>".$elements['texte'].".html</td>";
+					echo "<td>".$elements['texte']."</td>";
 				}
 			}
 			if ( $restriction[1] =='') {
 				echo "<td style='text-align:center;'>aucune</td>";
 			} else  {
 				if ( $elements['id_item'] !='0') {
-				    echo "<td style='text-align:center;'>".$restriction[1]."<br /> n° ".$elements['id_item']."</td>";
+					echo "<td style='text-align:center;'>".$restriction[1]."<br /> n° ".$elements['id_item']."</td>";
 				} else if ( $elements['id_item'] =='0') {
-				    echo "<td style='text-align:center;'>".$restriction[1]."</td>";
+					echo "<td style='text-align:center;'>".$restriction[1]."</td>";
 				}
 			}
 
-		    echo "<td style='text-align:center;'>".$elements['actif']."</td><td style='text-align:center;'>";
+			echo "<td style='text-align:center;'>".$elements['actif']."</td><td style='text-align:center;'>";
 			if ( $elements['actif'] =='oui') {
 				echo "<a href='".generer_url_ecrire('blip',"action=desactiver&id=".$elements['id_config'])."'>d&eacute;sactiver</a>";
 			}elseif ( $elements['actif'] =='non') {
@@ -175,8 +172,8 @@
 			echo "<br /><a href='".generer_url_ecrire('blip_modifier',"action=editer&id=".$elements['id_config'])."'>modifier</a>";
 			echo "<br /><a href='".generer_url_ecrire('blip',"action=supprimer&id=".$elements['id_config'])."'>supprimer</a>";
 			echo "</td></tr>\n";
-		    $index++;
-	    }
+			$index++;
+		}
 		echo "</table></div>";
 
 	}
@@ -246,7 +243,7 @@
 		BliP_tableau_config ($result);
 		fin_cadre_trait_couleur();
 		echo "<br />";
-	    }
+		}
 	}
 
 	function BliP_afficher_config_menu_mentions_techniques () {
@@ -257,102 +254,105 @@
 		BliP_tableau_config ($result);
 		fin_cadre_trait_couleur();
 		echo "<br />";
-	    }
+		}
 	}
 
 	// Afficher toute la configuration ...
 	function BliP_afficher_configuration () {
 		if (BliP_verifier_base()) {
-    		echo "<br />";
-    		BliP_afficher_config_surtitre ();
-    		BliP_afficher_config_titre_principal ();
-    		BliP_afficher_config_titre_lateral ();
-    		BliP_afficher_config_sous_titre ();
-    		BliP_afficher_config_barre_laterale ();
-    		BliP_afficher_config_menu_principal ();
-    		BliP_afficher_config_menu_mentions_techniques ();
+			echo "<br />";
+			BliP_afficher_config_surtitre ();
+			BliP_afficher_config_titre_principal ();
+			BliP_afficher_config_titre_lateral ();
+			BliP_afficher_config_sous_titre ();
+			BliP_afficher_config_barre_laterale ();
+			BliP_afficher_config_menu_principal ();
+			BliP_afficher_config_menu_mentions_techniques ();
 		}
-    }
+	}
 
 	// Script rapide d'activation d'une ligne
 	function BliP_activer_ligne ($id_ligne) {
-    	$req = "UPDATE `spip_blip` SET `actif` = 'oui' WHERE `id_config` = ".$id_ligne." LIMIT 1 ;";
-    	spip_query($req);
+		$req = "UPDATE `spip_blip` SET `actif` = 'oui' WHERE `id_config` = ".$id_ligne." LIMIT 1 ;";
+		spip_query($req);
 	}
 
 	// Script rapide de desactivation d'une ligne
 	function BliP_desactiver_ligne ($id_ligne) {
-    	$req = "UPDATE `spip_blip` SET `actif` = 'non' WHERE `id_config` = ".$id_ligne." LIMIT 1 ;";
-    	spip_query($req);
+		$req = "UPDATE `spip_blip` SET `actif` = 'non' WHERE `id_config` = ".$id_ligne." LIMIT 1 ;";
+		spip_query($req);
 	}
 
 	// Script rapide de suppression d'une ligne
 	function BliP_supprimer_ligne ($id_ligne) {
-    	$req = "UPDATE `spip_blip` SET `position` = 'aucune' WHERE `id_config` = ".$id_ligne." LIMIT 1 ;";
-    	spip_query($req);
+		$req = "UPDATE `spip_blip` SET `position` = 'aucune' WHERE `id_config` = ".$id_ligne." LIMIT 1 ;";
+		spip_query($req);
 	}
 
 
 	/***************************************************/
 	/* Génération automatique d'éléments de formulaire */
 	/***************************************************/
-	function BliP_generer_option_select($nom, $valeurs, $actif="") {
-	    $s  = '<select name="'.$nom.'" id="'.$nom.'">';
-	    foreach ($valeurs as $valeur => $description) {
-	        $s .= '<option value="'.$valeur.'"';
-	        if ($actif == $valeur) {
-	            $s .= ' selected="selected"';
-	        }
-	        $s .= '>'.$description."</option>\n";
-	    }
-	    $s .= "</select>\n";
-	    return $s;
+	function BliP_generer_option_select($nom, $valeurs, $actif="", $onchange="") {
+		$s  = '<select name="'.$nom.'" id="'.$nom.'" onchange="'.$onchange.'">';
+		foreach ($valeurs as $valeur => $description) {
+			$s .= '<option value="'.$valeur.'"';
+			if ($actif == $valeur) {
+				$s .= ' selected="selected"';
+			}
+			$s .= '>'.$description."</option>\n";
+		}
+		$s .= "</select>\n";
+		return $s;
 	}
 
 	function BliP_generer_checkbox($nom, $valeur) {
-	    $r = '<input type="checkbox" name="'.$nom.'" value="'.$nom.'"';
-	    if ($valeur && ! preg_match("/non?/i", $valeur)) {
-	        $r .= ' checked="checked"';
-	    }
-	    $r .= ' />';
-	    return $r;
+		$r = '<input type="checkbox" name="'.$nom.'" value="'.$nom.'"';
+		if ($valeur && ! preg_match("/non?/i", $valeur)) {
+			$r .= ' checked="checked"';
+		}
+		$r .= ' />';
+		return $r;
 	}
 
 	function BliP_initialiser_valeurs_formulaire() {
-    //Valeurs par défaut, je les ai complété je pense que c'est ce que tu voulais que je fasse.
-    $blipconfig_item = array(
-        'id_config' => "",
-        'position' => "barre_laterale",
-        'id_item' => "0",
-        'ordre' => "50", // Chiffre clefs pour mettre le module au milieu
-        'type' => "statique",
-        'titre' => "",
-        'descriptif' => "",
-        'texte' => "",
-        'style' => "",
-        'actif' => "oui"
-        );
-    // surcharge de ces valeurs le cas échéant par celles de la base si action sur un item a priori existant
-    if (isset($_GET['action'])) {
-        $action = $_GET['action'];
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $res = spip_query("SELECT * FROM spip_blip WHERE id_config='$id' LIMIT 1");
-            $blipconfig_item = spip_fetch_array($res, SPIP_ASSOC);
-        }
-    }
-    return $blipconfig_item;
+	//Valeurs par défaut, je les ai complété je pense que c'est ce que tu voulais que je fasse.
+	$blipconfig_item = array(
+		'id_config' => "",
+		'position' => "barre_laterale",
+		'id_item' => "0",
+		'ordre' => "50", // Chiffre clefs pour mettre le module au milieu
+		'type' => "statique",
+		'titre' => "",
+		'descriptif' => "",
+		'texte' => "",
+		'style' => "",
+		'actif' => "oui"
+		);
+	// surcharge de ces valeurs le cas échéant par celles de la base si action sur un item a priori existant
+	if (isset($_GET['action'])) {
+		$action = $_GET['action'];
+		if (isset($_GET['id'])) {
+			$id = $_GET['id'];
+			$res = spip_query("SELECT * FROM spip_blip WHERE id_config='$id' LIMIT 1");
+			$blipconfig_item = spip_fetch_array($res, SPIP_ASSOC);
+		}
+	}
+	return $blipconfig_item;
 	}
 
-	/* générer un formulaire prérempli pour l'item nouveau ou modifié */
+/* générer un formulaire prérempli pour l'item nouveau ou modifié */
+/* ajout d'un type à part entière : pointer vers une page spécifique ?
+  'page' => _T('blipconfig:blip_pointer_page') */
 	function BliP_generer_formulaire($action) {
-    $blipconfig_menutypes = array(
-        'dynamique' => "Inclure un module",
-        'statique' => "Afficher du texte"
-    );
+	$blipconfig_menutypes = array(
+		'dynamique' => "Inclure un module",
+		'statique' => "Afficher du texte",
+		'lienpage' => "Lier vers une page du site"
+	);
 
-    $blipconfig_positions = array(
-        'surtitre' => "Surtitre",
+	$blipconfig_positions = array(
+		'surtitre' => "Surtitre",
 		'surtitre-sommaire' => "Surtitre - Restreindre aux pages 'sommaire'",
 		'surtitre-recherche' => "Surtitre - Restreindre aux pages de recherche",
 		'surtitre-article' => "Surtitre - Restreindre aux pages 'articles'",
@@ -396,33 +396,158 @@
 		'mentions_techniques-auteur' => "Mentions techniques - Restreindre aux pages 'auteurs'",
 		'mentions_techniques-mot' => "Mentions techniques - Restreindre aux pages 'mots cl&eacute;s'"
 
-    );
-    $blipconfig_actif = array(
-        'oui' => "Oui",
-        'non' => "Non"
-    );
+	);
+	$blipconfig_actif = array(
+		'oui' => "Oui",
+		'non' => "Non"
+	);
 
 	$blipconfig_style = array(
 		'' => "Aucun",
-        'couleur1' => "Couleur principale",
-        'couleur1_clair' => "Couleur principale claire",
+		'couleur1' => "Couleur principale",
+		'couleur1_clair' => "Couleur principale claire",
 		'couleur2' => "Couleur secondaire",
 		'couleur2_clair' => "Couleur secondaire claire",
 		'gris_fonce' => "Gris fonc&eacute;",
 		'gris_moyen' => "Gris moyen",
 		'gris_clair' => "Gris clair",
-    );
+	);
 
-    $formval = BliP_initialiser_valeurs_formulaire();
+	$formval = BliP_initialiser_valeurs_formulaire();
 
-    echo '<form name="form1" id="form1" method="post" action="'.generer_url_ecrire('blip_modifier',"action=formulaire").'">';
+	$blipconfig_modules['null']=_T('blipconfig:blip_choisir_module');
+	if (is_dir("../")) {
+		if ($dh = opendir("../plugins/blip/")) {
+			while (($file = readdir($dh)) !== false) {
+				if (!is_dir($file)) {
+					if (preg_match("/(^mod)(-|_).+\.html$/", $file)) {
+						$blipconfig_modules[$file] = BliP_nom_module_lisible($file);
+					}
+				}
+			}
+			closedir($dh);
+		}
+	}
+	asort($blipconfig_modules);
+
+	$blipconfig_pages[0]=_T('blipconfig:blip_choisir_page');
+	if (is_dir("../")) {
+		if ($dh = opendir("../plugins/blip/")) {
+			while (($file = readdir($dh)) !== false) {
+				if (!is_dir($file)) {
+					if (! preg_match("/(^\.|^inc|^mod)(-|_)/", $file) && preg_match("/\.html$/", $file)) {
+						$blipconfig_pages[preg_replace("/\.html$/", "", $file)] = BliP_nom_module_lisible($file);
+					}
+				}
+			}
+			closedir($dh);
+		}
+	}
+	asort($blipconfig_pages);
+
+
+echo <<<END1
+<script language="JavaScript" type="text/JavaScript">
+//<!--
+END1;
+echo "\nvar item_type = ".$formval['type'].";";
+echo "\nvar item_pos  = ".$formval['position'].";\n";
+echo <<<END
+function blip_update_type(selObj) {
+	item_type = selObj.options[selObj.selectedIndex].value;
+	blip_update_layers();
+}
+function blip_update_pos(selObj) {
+	item_pos = selObj.options[selObj.selectedIndex].value;
+	blip_update_layers();
+}
+function blip_update_layers() {
+	switch (item_type) {
+		case "dynamique" :
+			display_title   = "none";
+			display_descr   = "none";
+			display_text    = "none";
+			display_style   = 'none';
+			display_modules = "block";
+			display_pages   = "none";
+			break;
+		case "lienpage" :
+			display_title   = "block";
+			display_descr   = "block";
+			display_text    = "none";
+			display_style   = 'none';
+			display_modules = "none";
+			display_pages   = "block";
+			break;
+		case "statique" :
+			display_title   = "block";
+			display_descr   = "none";
+			display_text    = "block";
+			display_style   = "block";
+			display_modules = "none";
+			display_pages   = "none";
+			break;
+	}
+
+	if (!(layer = findObj('Layer_texte'))) return;
+		layer.style.display = display_text;
+	if (!(layer = findObj('Layer_style'))) return;
+		layer.style.display = display_style;
+	if (!(layer = findObj('Layer_modules'))) return;
+		layer.style.display = display_modules;
+	if (!(layer = findObj('Layer_titre'))) return;
+		layer.style.display = display_title;
+	if (!(layer = findObj('Layer_descr'))) return;
+		layer.style.display = display_descr;
+	if (!(layer = findObj('Layer_pages'))) return;
+		layer.style.display = display_pages;
+}
+//-->
+</script>
+END;
+
+	switch ($formval['type']) {
+		case "dynamique" :
+			$display_titre = "none";
+			$display_descr = "none";
+			$display_texte = "none";
+			$display_style = "none";
+			$display_modules = "block";
+			$display_pages = "none";
+		break;
+		case "lienpage" :
+			$display_titre = "block";
+			$display_descr = "block";
+			$display_texte = "none";
+			$display_style = "none";
+			$display_modules = "none";
+			$display_pages = "block";
+		break;
+		case "statique" :
+			$display_titre = "block";
+			$display_descr = "none";
+			$display_texte = "block";
+			$display_style = "block";
+			$display_modules = "none";
+			$display_pages = "none";
+		break;
+		default :
+			$display_titre = "none";
+			$display_descr = "none";
+			$display_texte = "none";
+			$display_style = "none";
+			$display_modules = "none";
+			$display_pages = "none";
+	}
+
+	echo '<form name="form1" id="form1" method="post" action="'.generer_url_ecrire('blip_modifier',"action=formulaire").'">';
 	echo '<input name="id_config" type="hidden" id="id_config" value="'.$formval['id_config'].'" />';
 
 	echo "<p>Cliquer sur les triangles pour d&eacute;velopper l'aide des formulaires <br />";
 	echo "<b>i :</b> Information | <b>r :</b> Restrictions | <b>c :</b> Conseils</p>";
 
 	debut_cadre_relief("", false, "", bouton_block_invisible('blip_position')._T('blipconfig:blip_position_info'));
-    echo BliP_generer_option_select('type', $blipconfig_menutypes, $formval['type']);
+	echo BliP_generer_option_select('type', $blipconfig_menutypes, $formval['type'], "blip_update_type(this)");
 	echo debut_block_invisible('blip_position');
 	echo "<p><b>c : </b>L'option 'Afficher du texte' ne doit pas &ecirc;tre utilis&eacute; en remplacement des articles ou br&egrave;ves, mais pour des messages ponctuels et/ou cibl&eacute;</p>";
 	echo fin_block();
@@ -430,7 +555,7 @@
 	echo "<br />";
 
 	debut_cadre_relief("", false, "", bouton_block_invisible('blip_restriction')._T('blipconfig:blip_restriction_info'));
-    echo BliP_generer_option_select('position', $blipconfig_positions, $formval['position']);
+	echo BliP_generer_option_select('position', $blipconfig_positions, $formval['position']);
 	echo debut_block_invisible('blip_restriction');
 	echo "<br />";
 	echo '<b>2.1 Restreindre l\'affichage &agrave; l\'ID n&deg; </b><input size="6" maxlength="6" name="id_item" type="text" id="id_item" value="'.$formval['id_item'].'" /><br />';
@@ -440,8 +565,9 @@
 	fin_cadre_relief();
 	echo "<br />";
 
+	echo '<div id="Layer_titre" style="display: '.$display_titre.'; margin-top: 1px;">';
 	debut_cadre_relief("", false, "", bouton_block_invisible('blip_titre')._T('blipconfig:blip_titre_info'));
-    echo '<input name="titre" type="text" id="titre" value="'.$formval['titre'].'" size="45" /> ';
+	echo '<input name="titre" type="text" id="titre" value="'.$formval['titre'].'" size="70" /> ';
 	echo debut_block_invisible('blip_titre');
 	echo "<p><b>i : </b>Si vous avez s&eacute;lectionn&eacute; 'Afficher du texte' au point 1. alors saisissez votre titre ici, il sera affich&eacute; en gras.</p>";
 	echo "<p><b>i : </b>Si vous avez s&eacute;lectionn&eacute; 'Inclure un module' au point 1. et 'Menu principal de navigation' au point 2, alors saisissez ici le texte qui apparaitra dans le menu de navigation</p>";
@@ -449,9 +575,11 @@
 	echo fin_block();
 	fin_cadre_relief();
 	echo "<br />";
+	echo "</div>\n";
 
+	echo '<div id="Layer_descr" style="display: '.$display_descr.'; margin-top: 1px;">';
 	debut_cadre_relief("", false, "", bouton_block_invisible('blip_descriptif')._T('blipconfig:blip_descriptif_info'));
- 	echo '<input name="descriptif" type="text" id="descriptif" value="'.$formval['descriptif'].'" size="45" />';
+	echo '<input name="descriptif" type="text" id="descriptif" value="'.$formval['descriptif'].'" size="70" />';
 	echo debut_block_invisible('blip_descriptif');
 	echo "<p><b>i : </b>Si vous avez s&eacute;lectionn&eacute; 'Afficher du texte' au point 1. alors saisissez votre descriptif ici, il sera affich&eacute; en italique.</p>";
 	echo "<p><b>i : </b>Si vous avez s&eacute;lectionn&eacute; 'Inclure un module' au point 1. et 'Menu principal de navigation' au point 2, alors saisissez ici le texte qui apparaitra au survol du menu de navigation</p>";
@@ -459,9 +587,23 @@
 	echo fin_block();
 	fin_cadre_relief();
 	echo "<br />";
+	echo "</div>\n";
 
 	debut_cadre_relief("", false, "", bouton_block_invisible('blip_texte')._T('blipconfig:blip_texte_info'));
- 	echo '<textarea name="texte" type="text" id="texte" cols="45" rows="5">'.$formval['texte'].'</textarea>';
+
+	echo '<div id="Layer_texte" style="display: '.$display_texte.'; margin-top: 1px;">';
+	echo 'Texte<br /><textarea name="texte" type="text" id="texte" cols="50" rows="5">'.$formval['texte'].'</textarea>';
+	echo "</div>\n";
+
+	echo '<div id="Layer_modules" style="display: '.$display_modules.'; margin-top: 1px;">';
+	echo 'Module '.BliP_generer_option_select('module', $blipconfig_modules, $formval['texte'].".html");
+	echo "</div>\n";
+
+	echo '<div id="Layer_pages" style="display: '.$display_pages.'; margin-top: 1px;">';
+	echo 'Page '.BliP_generer_option_select('page', $blipconfig_pages, $formval['texte']);
+//    echo 'Parametre <input name="parametre" type="text" value="" size="5" />';
+	echo "</div>\n";
+
 	echo debut_block_invisible('blip_texte');
 	echo "<p><b>i : </b>Si vous avez s&eacute;lectionn&eacute; 'Afficher du texte' au point 1. alors saisissez votre texte ici.</p>";
 	echo "<p><b>i : </b>Si vous avez s&eacute;lectionn&eacute; 'Inclure un module' au point 1. alors saisissez le nom de votre fichier html, sans son extension.
@@ -470,78 +612,97 @@
 	fin_cadre_relief();
 	echo "<br />";
 
+	echo '<div id="Layer_style" style="display: '.$display_style.'; margin-top: 1px;">';
 	debut_cadre_relief("", false, "", bouton_block_invisible('blip_style')._T('blipconfig:blip_style_info'));
- 	echo BliP_generer_option_select('style', $blipconfig_style, $formval['style']);
+	echo BliP_generer_option_select('style', $blipconfig_style, $formval['style']);
 	echo debut_block_invisible('blip_style');
 	echo "<p><b>i : </b>Applique un &eacute;l&egrave;ment de style.</p>";
 	echo "<p><b>r : </b>Utilis&eacute; uniquement si le point 1. est 'Afficher du texte'.</p>";
 	echo "<p><b>c : </b>N'abuser pas de styles (...)'</p>";
 	echo fin_block();
 	fin_cadre_relief();
+	echo "<br />";
+	echo "</div>\n";
 
 	echo "Actif : ";
 	echo BliP_generer_option_select('actif', $blipconfig_actif, $formval['actif']);
 
 	echo "<br /><div style='text-align:right;'>";
 
-    if ($action=="editer") {
-        echo '<input name="action" type="hidden" value="modifier" />';
-        echo '<input type="submit" name="ajout" value="'._T('Appliquer les modifications').'" class="fondo">';
-    } else { // Ajouter
-        echo '<input name="action" type="hidden" value="ajouter" />';
+	if ($action=="editer") {
+		echo '<input name="action" type="hidden" value="modifier" />';
+		echo '<input type="submit" name="ajout" value="'._T('Appliquer les modifications').'" class="fondo">';
+	} else { // Ajouter
+		echo '<input name="action" type="hidden" value="ajouter" />';
 		echo "<input type='submit' name='ajout' value='"._T('Ajouter ce nouvel element')."' class='fondo'>";
-    }
-    echo "</div><br /></form>";
+	}
+	echo "</div><br /></form>";
 }
 
 function BliP_action_formulaire() {
-    // TODO : vérifications d'usage de la validité des champs du formulaire
-    // attention à ne par confondre les variables $_POST['action'] et $_GET['action']
+	// TODO : vérifications d'usage de la validité des champs du formulaire
+	// attention à ne par confondre les variables $_POST['action'] et $_GET['action']
 	global $table_blip;
-    if (isset($_POST['action'])) {
-        $valeurs = BliP_initialiser_valeurs_formulaire();
-        // filtre antiparasite : ne retenir que les valeurs gérables par le système
-        foreach ($_POST as $var => $val) {
-            if (array_key_exists($var, $valeurs)) {
-                $valeurs[$var] = spip_abstract_quote($val);
-            }
-        }
-        // TODO : il doit exister une fonction dans spip ou ailleurs qui génère automatiquement une requète
-        // en fonction d'un tableau d'association au lieu de faire ça manuellement comme ici
-        $preliste_c = $preliste_v = array();
-        foreach ($valeurs as $champ => $valeur) {
-            if ($champ != 'id_config') {
-                array_push($preliste_c, " `".$champ."`");
-                array_push($preliste_v, $valeur);
-            }
-        }
-        switch ($_POST['action']) {
-            case 'ajouter' :
-                $req  = "INSERT INTO `".$table_blip."` ( ";
-                $req .= implode(",", $preliste_c);
-                $req .= " ) VALUES ( ";
-                $req .= implode(",", $preliste_v);
-                $req .= " );";
-            break;
-            case 'modifier' :
-                $req  = "UPDATE `".$table_blip."` SET ";
-                $preliste = array();
-                foreach ($preliste_c as $position => $champ) {
-                    array_push($preliste, $champ."=".$preliste_v[$position]);
-                }
-                $req .= implode(",", $preliste);
-                $req .= " WHERE `id_config`=".$valeurs['id_config']." LIMIT 1;";
-            break;
-        }
-        if (spip_query($req)) {
-            echo "Modification effectu&eacute;e";
+	if (isset($_POST['action'])) {
+		$valeurs = BliP_initialiser_valeurs_formulaire();
+
+		switch ($_POST['type']) {
+			case 'lienpage' :
+				$_POST['texte'] = $_POST['page'].$_POST['parametre'];
+				break;
+			case 'dynamique' :
+				$_POST['texte'] = $_POST['module'];
+				break;
+			default :
+		}
+
+		// filtre antiparasite : ne retenir que les valeurs gérables par le système
+		foreach ($_POST as $var => $val) {
+			if (array_key_exists($var, $valeurs)) {
+				$valeurs[$var] = spip_abstract_quote($val);
+			}
+		}
+		// TODO : il doit exister une fonction dans spip ou ailleurs qui génère automatiquement une requète
+		// en fonction d'un tableau d'association au lieu de faire ça manuellement comme ici
+		$preliste_c = $preliste_v = array();
+		foreach ($valeurs as $champ => $valeur) {
+			if ($champ != 'id_config') {
+				array_push($preliste_c, " `".$champ."`");
+				array_push($preliste_v, $valeur);
+			}
+		}
+		switch ($_POST['action']) {
+			case 'ajouter' :
+				$req  = "INSERT INTO `".$table_blip."` ( ";
+				$req .= implode(",", $preliste_c);
+				$req .= " ) VALUES ( ";
+				$req .= implode(",", $preliste_v);
+				$req .= " );";
+			break;
+			case 'modifier' :
+				$req  = "UPDATE `".$table_blip."` SET ";
+				$preliste = array();
+				foreach ($preliste_c as $position => $champ) {
+					array_push($preliste, $champ."=".$preliste_v[$position]);
+				}
+				$req .= implode(",", $preliste);
+				$req .= " WHERE `id_config`=".$valeurs['id_config']." LIMIT 1;";
+			break;
+		}
+		if (spip_query($req)) {
+			echo "Modification effectu&eacute;e";
 			echo "<br /><br /><a href='".generer_url_ecrire('blip')."'>Voir la configuration</a>";
 			echo " | ";
 			echo "<a href='".generer_url_ecrire('blip_modifier',"action=creer")."'>Ajouter un nouvel &eacute;l&egrave;ment</a>";
-        } else {
-		echo "ERREUR !!! La requete sql suivante a échoué:<br /><br />";
-		echo $req;
+		} else {
+			echo "ERREUR !!! La requete sql suivante a échoué:<br /><br />";
+			echo $req;
 		}
-    }
+	}
 }
+
+function BliP_nom_module_lisible($nomfichier) {
+	return ucfirst(preg_replace('/_/', ' ', preg_replace('/(^mod_)?(.*)\.html?/', '$2', $nomfichier)));
+}
+
 ?>
