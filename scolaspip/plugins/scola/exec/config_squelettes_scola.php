@@ -165,7 +165,7 @@ function exec_config_squelettes_scola() {
 	
 		echo "<TABLE BORDER=0 CELLSPACING=1 CELLPADDING=3 WIDTH=\"100%\">";
 	
-		echo "<TR><TD BACKGROUND='" . _DIR_IMG_PACK . "rien.gif' COLSPAN='2' class='verdana2'>";
+		echo "<TR><TD BACKGROUND='" . _DIR_IMG_PACK . "mot-cle-24.gif' COLSPAN='2' class='verdana2'>";
 		
 		echo "</TD></TR>";
 	

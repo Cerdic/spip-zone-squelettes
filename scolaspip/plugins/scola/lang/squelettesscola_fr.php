@@ -87,7 +87,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 															',
 									   'info_meslogos' => 'choisissez le groupe qui g&egrave;re les logos.',
 									   'item_utiliser_meslogos' => 'activer',
-									   'item_non_utiliser_meslogos' => 'd&eacute;sactiver'
+									   'item_non_utiliser_meslogos' => 'd&eacute;sactiver',
+									   
+									   'texte_date_publication_anterieure' => 'date de l\'&eacute;v&eacute;nement',
+									   'texte_date_publication_anterieure_nonaffichee' => 'Ne pas afficher l\'&eacute;v&eacute;nement dans l\'agenda du site',
+									   'changer_option_article' => 'Changer l\'apparence de l\'article'
 									   
 						
 );
