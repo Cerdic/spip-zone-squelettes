@@ -1,4 +1,5 @@
-<INCLURE(page.php3){fond="header"}>
+<INCLURE(page.php3){fond="header"}{delais=31*24*3600}>
+
 
 
 <html><head>
@@ -8,6 +9,7 @@
 <meta name="Description" content="Art aux couleurs des montagnes d Annecy, des cours et des demonstrations pour debutants accompagnent les galeries d art ..."/>
 <meta name="Keywords" content="Cours d art,galerie Annecy,art-logic,acheter aquarelle,artiste annecy,exposition annecy,aquarelle annecy,peindre lavis,comment dessiner,sculpture argile,forum aquarelle,forum dessin,diaporama flash,photo flash"/>
 <meta name="Author" content="Stephan lamielle, artiste d Annecy"/>
+<meta name="revisit-after" content="15 days" />
 <meta http-equiv="content-type"content="text/html; charset=#CHARSET"/>
 
 <!-- les css et js peuvent changer suivant type d article ou de breve-->
@@ -26,9 +28,9 @@
 </head>
 <body> 
 <div id="container">   <!-- centrage page -->
-<INCLURE(page.php3){fond="entete"}>
+<INCLURE(page.php3){fond="entete"}{delais=31*24*3600}> 
 <div id="surcontent">  <!-- ouverture entête -->
-<INCLURE(page.php3){fond="menuhoriz"}>
+<INCLURE(page.php3){fond="menuhoriz"}{delais=31*24*3600}>
 <div id="content">  <!-- ouverture contenu --> 
 <div id="colgau"> <!-- ouverture colone de gauche --> 
 
@@ -37,7 +39,7 @@
 <div id="cel">
 <ul id="deco">
 <li>
-<BOUCLE_blogbox_haut(BREVES){titre_mot=homebox_haut}{par date}>
+<BOUCLE_blogbox_haut(BREVES){titre_mot=homebox_haut}{par date}{0,1}>
 <h4>[(#TITRE|supprimer_numero)]</h4>
   <p>
 [<span class="logogauche">(#LOGO_BREVE)</span>]
@@ -135,9 +137,9 @@
               <BOUCLE_appel(RUBRIQUES){titre_mot = menu_rub}{par titre}> [<a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero)]" class="logogauche">(#LOGO_RUBRIQUE)</a>]     
 [<h4><a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero)]">(#TITRE|supprimer_numero)</a></h4>]
 <p>
-<INCLURE(_cadenas.php3){id_rubrique}> #DESCRIPTIF
+ #DESCRIPTIF
              <BOUCLE_nouv_art(ARTICLES){id_rubrique}{age<14}{par date}{inverse}{0,20}>
-          Nouveau:<a href="#URL_ARTICLE">[(#TITRE)]</a> 
+             <strong>Nouveau:</strong>&nbsp;<a href="#URL_ARTICLE">[(#TITRE)]</a> 
               <INCLURE(_cadenas.php3){id_article}>
               
               <br/>
@@ -236,13 +238,13 @@
 
   <h4 class="icone_agenda">L'agenda 74</h4>
   <p>
- <BOUCLE_sous_rubragenda(RUBRIQUES){titre_mot=Agenda}{par titre}>	
-	  <BOUCLE_articles(ARTICLES){id_rubrique}{par date}{inverse}{age<0}>
-  	  <a href="#URL_ARTICLE" title="Du [(#DATE_REDAC|affdate)] au [(#DATE|affdate):] [(#TITRE|couper{30})]">[:: (#SURTITRE)]</a><br/>
+ <BOUCLE_sous_rubragenda(RUBRIQUES){titre_mot=Agenda}>	
+	  <BOUCLE_articles(ARTICLES){id_rubrique}{par date_redac}{age<=0}>
+  	 :: <a href="#URL_ARTICLE" title="Du [(#DATE_REDAC|affdate)] au [(#DATE|affdate):] [(#TITRE|couper{30})]">[(#SURTITRE)]</a><br/>
 	                </BOUCLE_articles>       
                     </BOUCLE_sous_rubragenda>
                   <br/>                  
-         >>  <a href="article.php3?id_article=160" title= "C'est gratuit!">Ajoutez votre év&eacute;nement ici.</a></p>
+         >>  <a href="Diffusez-votre-evenement-votre" title= "C'est gratuit!">Ajoutez votre év&eacute;nement ici.</a></p>
            
 </div><!-- fermeture agenda --> 
 </B_sous_rubragenda>
@@ -262,7 +264,7 @@
 
 <hr class="spacer" />
 </div><!-- fermeture contenu --> 
-<INCLURE(page.php3){fond="pieddepage"}>
+<INCLURE(page.php3){fond="pieddepage"}{delais=31*24*3600}>
 
 </div> <!-- fermeture surcontenu --><br/>
 

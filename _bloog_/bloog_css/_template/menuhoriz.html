@@ -6,8 +6,8 @@
   <div id="menu"> 
     <ul id="nav"> 
       <B_onglets> 
-      <BOUCLE_onglets(RUBRIQUES){titre_mot=barre_menu}> 
-      <BOUCLE_liens(SITES){id_rubrique}{par nom_site}> 
+      <BOUCLE_onglets(RUBRIQUES){titre_mot=barre_menu}{0,1}> 
+      <BOUCLE_liens(SITES){id_rubrique}{par nom_site}{0,8}> 
       <li id="[site(#ID_SYNDIC)]"><a href="#URL_SITE">[(#NOM_SITE|supprimer_numero)]</a></li> 
       </BOUCLE_liens> 
       </BOUCLE_onglets> 
@@ -17,9 +17,8 @@
 
 
 <?  if ($auteur_session) {
-
-$connect_id_auteur = $auteur_session['id_auteur'];
-$result_messages = spip_query("SELECT * FROM spip_messages AS messages,spip_auteurs_messages AS lien WHERE lien.id_auteur='$connect_id_auteur'AND vu='non' AND statut='publie' AND type='normal' AND lien.id_message=messages.id_message");
+$connect_id_auteur_bis = $auteur_session['id_auteur'];
+$result_messages = spip_query("SELECT * FROM spip_messages AS messages,spip_auteurs_messages AS lien WHERE lien.id_auteur='$connect_id_auteur_bis'AND vu='non' AND statut='publie' AND type='normal' AND lien.id_message=messages.id_message");
            $total_messages = @spip_num_rows($result_messages);
 
            if ($total_messages == 1) {
@@ -29,26 +28,27 @@ $result_messages = spip_query("SELECT * FROM spip_messages AS messages,spip_aute
                }
            }
            if ($total_messages > 1) echo "<a href='ecrire/messagerie.php3'><img src=\"IMG/002/mail_generic.gif\" alt=\"Votre courrier.\">&nbsp;"._T('info_nouveaux_messages', array('total_messages' => $total_messages))."</a><br/>";
-if ($total_messages ==0){
-?>
+if ($total_messages ==0)
+
+{ ?>
 
 
       <B_mon_compte>
-      <BOUCLE_mon_compte(RUBRIQUES){titre_mot=profil}>
+      <BOUCLE_mon_compte(RUBRIQUES){titre_mot=profil}{0,1}>
       <a href="_mon-profil.php3">Mon profil</a>
       </BOUCLE_mon_compte>
       </B_mon_compte>
       <//B_mon_compte>
-      <a href="[(#URL_LOGOUT|sommaire.php3)]" >Quitter</a>
+      <a href="[(#URL_LOGOUT)]" >Quitter</a>
 
-      <?php }} else { ?>
+      <? }} else { ?>
       <B_connexion>
-      <BOUCLE_connexion(RUBRIQUES){titre_mot=profil}>
+      <BOUCLE_connexion(RUBRIQUES){titre_mot=profil}{0,1}>
       <a href="_mon-profil.php3">Connectez-vous</a>
       </BOUCLE_connexion>
       </B_connexion>
       <//B_connexion>
-<?php }?>
+<? }?>
 
 
 

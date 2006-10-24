@@ -1,4 +1,5 @@
-<INCLURE(page.php3){fond="header"}>
+<INCLURE(page.php3){fond="header"}{delais=31*24*3600}>
+
 
 <!-- Si mot clef acces_restreint alors on authentifie l internaute. -->
 <BOUCLE_restreint(MOTS){id_article}{titre=acces_restreint}>
@@ -7,11 +8,12 @@
 
 <html><head>
 
-<!-- les métas -->
-<title>[(#TITRE|supprimer_numero)]</title>
-<meta name="Description" content='Contactez <BOUCLE_author1(AUTEURS){id_auteur=1}>[(#NOM)]</BOUCLE_author1>, contactez [(#NOM_SITE_SPIP)]'/>
-<meta name="keywords" content="Contact <BOUCLE_author2(AUTEURS){id_auteur=1}>[(#NOM)]</BOUCLE_author2>,contact [(#NOM_SITE_SPIP)]"/>
-<meta name="author" content="<BOUCLE_author3(AUTEURS){id_auteur=1}>[(#NOM)]</BOUCLE_author3>"/>
+<!-- les métas --><BOUCLE_author0(AUTEURS){id_auteur=1}>
+<title>Contactez [(#NOM)], contactez [(#NOM_SITE_SPIP)]</title>
+<meta name="Description" content='Contactez [(#NOM)], contactez [(#NOM_SITE_SPIP)]'/>
+<meta name="keywords" content="[(#NOM)]"/>
+<meta name="author" content="[(#NOM)]"/></BOUCLE_author0>
+<meta name="revisit-after" content="15 days" />
 <meta http-equiv="content-type" content="text/html; charset=#CHARSET"/>
 
 <!-- les css et js peuvent changer suivant type d article ou de breve-->
@@ -30,16 +32,17 @@
 </head><body> 
 
 <div id="container">   <!-- centrage page -->
-<INCLURE(page.php3){fond="entete"}> 
+<INCLURE(page.php3){fond="entete"}{delais=31*24*3600}>  
 <div id="surcontent">  
-<INCLURE(page.php3){fond="menuhoriz"}><!-- ouverture entête -->
+<INCLURE(page.php3){fond="menuhoriz"}{delais=31*24*3600}><!-- ouverture entête -->
 <div id="content">  <!-- ouverture contenu --> 
 
 <div id="colgau"> <!-- ouverture colone de gauche --> 
  <BOUCLE1(AUTEURS){id_auteur=1}{unique}>
   <div class="grande_boite"> <!-- ouverture grd boite texte -->
 [<span class="logogauche">(#LOGO_AUTEUR)</span>]
-[<h4>(#NOM)</h4>] [<p>(#BIO)</p>] [<a href="#URL_SITE">(#NOM_SITE)</a>]
+[<h1>(#NOM) 
+      </h1><br/>] [<p>(#BIO)</p>] [<a href="#URL_SITE">(#NOM_SITE)</a>]
 [<h4>Sécurité, clé PGP</h4><p>(#PGP)</p>]
   </div>
 <div class="grande_boite">
@@ -59,8 +62,8 @@
 
     <div class="boite"><!-- ouverture boite menu --> 
 
-        <h4 class="icone_menu">navigation</h4>
-      <INCLURE(_menu_rub.php3)> 
+        <h4 class="icone_menu">Navigation</h4>
+        <INCLURE(_menu_rub.php3)> 
     
     </div><!-- fermeture boite menu -->
 
@@ -72,8 +75,8 @@
       <!-- La boite de recherche --> 
     <div class="boite"> <!-- ouverture boite recherche --> 
 
-  <h4 class="icone_recherche">recherche</h4>
- <form action='recherche.php3' method='post' class="form_rech" id="form_rech">
+  <h4 class="icone_recherche">Recherche</h4>
+  <form action='recherche.php3' method='post' class="form_rech" id="form_rech">
               <p><input name="recherche" type='text' id='recherche' size='20' />
               <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" /></p>             
           </form>
@@ -92,7 +95,7 @@
 
 
 </div><!-- fermeture contenu --> 
-<INCLURE(page.php3){fond="pieddepage"}>
+<INCLURE(page.php3){fond="pieddepage"}{delais=31*24*3600}>
 
 </div> <!-- fermeture surcontenu --><br/>
 

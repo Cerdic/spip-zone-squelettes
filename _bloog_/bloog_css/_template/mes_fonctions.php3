@@ -1,62 +1,115 @@
 <?php
 /*
- *   +----------------------------------+
- *    Nom du Filtre :                                 
- *   +----------------------------------+
- *    Auteur :                                     
- *   +-------------------------------------+
- *    Fonctions de ce filtre :
- *  
- *   +-------------------------------------+ 
++--------------------------------------------+
+| DW2 2.017 (03/2006) - SPIP 1.8.2 - 1.8.3
++--------------------------------------------+
+| le package : mes_fonctions
++--------------------------------------------+
+| H. AROUX . Scoty. koakidi.com 
+| Script certifié KOAK2.0 strict, mais si !
++--------------------------------------------+
 */
+include("ecrire/dw2_mesfonctions.php");
+//
 
- 
+
 /*
  *   +----------------------------------+
- *    Nom du critère : Portrait ou paysage                                 
+ *    Nom du Filtre : sitemap           
  *   +----------------------------------+
- *    Auteur :  Mortimer                                   
+ *    Auteur :  marabbeh. Dernier ajout mardi 14 juin 2005
  *   +-------------------------------------+
  *    Fonctions de ce filtre :
- *  
+ *   divise par 100 pour google
+ *   +-------------------------------------+ 
+*/
+function pourcent($valeur) {
+   return $valeur / 100;
+}
+/*
+ *   +----------------------------------+
+ *    Nom du Filtre : Boucles SPIP-listes                   
+ *   +----------------------------------+
+ *    Auteur :  spip liste       
+ *   +-------------------------------------+
+ *    Fonctions de ce filtre :
+ *    Ajoute des fonctions pour la news letter
  *   +-------------------------------------+ 
 */
 
-function critere_portrait($idb, &$boucles, $param) {
-  $not = $param->not;
-  $boucle = &$boucles[$idb];
-  $table = $boucle->id_table;
+// Boucles SPIP-listes
+global $tables_principales,$exceptions_des_tables,$table_date;
 
-  if ($not) 
-	$boucle->where[] = $table.".hauteur <= ".$table.".largeur";
-  else
-	$boucle->where[] = $table.".hauteur > ".$table.".largeur";
+$tables_principales['messages']= array(
+ 'field' => array(
+   "id_message" => "bigint(21)",
+   "titre" => "varchar(100)",
+   "texte" => "blob",
+   "type" => "varchar(6)",
+   "date_heure" => "datetime"
+ ),
+ 'key' => array("PRIMARY KEY" => "id_message")
+);
+
+$exceptions_des_tables['messages']['date']='date_heure';
+$table_date['messages']='date_heure';
+//
+// <BOUCLE(MESSAGES)>
+//
+function boucle_MESSAGES($id_boucle, &$boucles) {
+        $boucle = &$boucles[$id_boucle];
+        $id_table = $boucle->id_table;
+        $boucle->from[] =  "spip_messages AS $id_table";
+        $boucle->where[] = "type='nl'";
+        return calculer_boucle($id_boucle, $boucles);
+}
+
+// Filtres SPIP-listes
+function supprimer_destinataires($texte) {
+ return eregi_replace("__bLg__[0-9@\.A-Z_-]+__bLg__","",$texte);
 }
 
 
-function critere_paysage($idb, &$boucles, $param) {
-  $not = $param->not;
-  $boucle = &$boucles[$idb];
-  $table = $boucle->id_table;
-
-  if ($not) 
-	$boucle->where[] = $table.".largeur <= ".$table.".hauteur";
-  else 
-	$boucle->where[] = $table.".largeur > ".$table.".hauteur";
+function date_depuis($date) {
+	    
+	    if (!$date) return;
+ 	    $decal = date("U") - date("U", strtotime($date));
+ 	    
+	    if ($decal < 0) {
+ 	        $il_y_a = "date_dans";
+ 	        $decal = -1 * $decal;
+	    } else {
+ 	        $il_y_a = "spiplistes:date_depuis";
+	    }
+	    
+	    if ($decal < 3600) {
+ 	        $minutes = ceil($decal / 60);
+	        $retour = _T($il_y_a, array("delai"=>"$minutes "._T("date_minutes")));
+	    }
+	    else if ($decal < (3600 * 24) ) {
+	        $heures = ceil ($decal / 3600);
+ 	        $retour = _T($il_y_a, array("delai"=>"$heures "._T("date_heures")));
+ 	    }
+    else if ($decal < (3600 * 24 * 7)) {
+ 	        $jours = ceil ($decal / (3600 * 24));
+ 	        $retour = _T($il_y_a, array("delai"=>"$jours "._T("date_jours")));
+	    }
+	    else if ($decal < (3600 * 24 * 7 * 4)) {
+	        $semaines = ceil ($decal / (3600 * 24 * 7));
+ 	        $retour = _T($il_y_a, array("delai"=>"$semaines "._T("date_semaines")));
+	    }
+	    else if ($decal < (3600 * 24 * 30 * 6)) {
+ 	        $mois = ceil ($decal / (3600 * 24 * 30));
+ 	        $retour = _T($il_y_a, array("delai"=>"$mois "._T("date_mois")));
+ 	    }
+	    else {
+ 	        $retour = _T($il_y_a, array("delai"=>" ")).affdate_court($date);
+ 	    }
+ 	
+ 	
+ 	
+ 	    return $retour;
 }
-
-function critere_carre($idb, &$boucles, $param) {
-  $not = $param->not;
-  $boucle = &$boucles[$idb];
-  $table = $boucle->id_table;
-
-  if ($not) 
-	$boucle->where[] = $table.".largeur != ".$table.".hauteur";
-  else
-	$boucle->where[] = $table.".largeur = ".$table.".hauteur";
-}
-
- 
 
 
 /*
@@ -159,36 +212,7 @@ ELSE $resultat = "Vous n\'avez pas de nouveau message <a href=\"ecrire/messageri
 } else $resultat = "ERREUR : Vous devez definir un id_auteur !!";
 return $resultat;
 }
-// Filtre d'affichage du nombre de téléchargement et du dernier clic
-// appel dans les squelettes : [(#ID_DOCUMENT|compteur)]
-function compteur($id)
-	{
-	$result=spip_query("SELECT total, ".
-					"DATE_FORMAT(dateur,'%d/%m/%Y') AS date_d, ".
-					"DATE_FORMAT(dateur,'%H:%i') AS date_t ".
-					"FROM dw2_doc WHERE id_doc=$id");
-	while ($row=spip_fetch_array($result))
-		{
-		$date=$row['date_d'];
-		$heure=$row['date_t'];
-		$compteur=$row['total'];
-		// Suggestion de présentation, ex : 2155 | 15-05-2004 - 02:49
-		 $aff_compteur= "Téléchargé ".$compteur." fois." ;
-		//	ou
-		// $aff_compteur= $compteur." le ".$date." à ".$heure;
-		// ou $aff_compteur=$compteur." &#8212; (".$date.")";
-		// ...
-		}
-		return $aff_compteur;
-	}
-function texte_alternatif ($texte, $avant='', $altern='', $apres='')
-{
-    if ($texte)
-        return $avant.$texte.$apres;
-    else
-        return $altern;
-}
-
+	
 
 
 /* Filtre NORM_LIENS v2.0 - 29 juillet 2003 - Par Led
@@ -569,12 +593,12 @@ $nb_connectes = spip_num_rows($result_auteurs);
 $flag_cadre = ($nb_connectes > 0);
 if ($flag_cadre) {
 	$resultat.="<p>";
-	if ($nb_connectes > 1) $resultat.="<h5>Ils sont venus ces derniers temps </h5>";
-	else $resultat.="<h5>Il est venu ces derniers temps</h5>";
+	if ($nb_connectes > 1) $resultat.="Ils sont venus ces derniers temps:";
+	else $resultat.="Il est venu ces derniers temps:";
 	while ($row = spip_fetch_array($result_auteurs)) {
 		$nom_auteur = $row["nom"];
 		$en_ligne = $row["en_ligne"];
-		$resultat.="<br>$nom_auteur <span style='font-size:78%'> [ $en_ligne ]</span>";
+		$resultat.="<br/>$nom_auteur le $en_ligne ";
 	}
 }
 return $resultat;
@@ -755,9 +779,9 @@ function lier_au_glossaire($texte)
 {
 	# Config
 	# L'identifiant (id_rubrique) de la rubrique glossaire
-	$id_rubrique = 2;
+	$id_rubrique = 39;
 	# Limiter l'effet du filtre à la première occurence
-	$eviter_doublons = 1; // 0 : afficher toutes les occurences
+	$eviter_doublons = 0; // 0 : afficher toutes les occurences
 
 	# On checke si l'entrée est déjà présente dans la table
 	# Mettre l'identifiant de la rubrique contenant le glos

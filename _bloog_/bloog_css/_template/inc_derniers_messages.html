@@ -31,7 +31,17 @@
 <?php if("#ID_FORUM"== "#ID_THREAD") echo "<strong>" ; ?>
 [(#TITRE|titre_forum)]
 <?php if("#ID_FORUM"== "#ID_THREAD") echo "</strong>" ; ?>
-</a>[, par (#NOM)]</td></tr>
+</a>
+<BOUCLE_nom(AUTEURS){tout}{id_auteur}>
+[, par <a (#STATUT|=={'1comite'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de ce r&eacute;dacteur">]
+[, par <a (#STATUT|=={'0minirezo'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de cet admin">]
+[, par <a (#STATUT|=={'6forum'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de ce visiteur">]
+[, par <a (#STATUT|=={'nouveau'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Compte en attente">]
+[(#NOM|couper{18})</a><br/>]
+</BOUCLE_nom>
+[, par (#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
+<//B_nom>
+</td></tr>
 <?php if($couleurs == 0){$couleurs = 1;} else{$couleurs=0;}	?>
 </BOUCLE_forums_liens>
 </table>

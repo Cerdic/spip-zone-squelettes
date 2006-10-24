@@ -1,4 +1,4 @@
-<INCLURE(page.php3){fond="header"}>
+<INCLURE(page.php3){fond="header"}{delais=31*24*3600}>
 
 <BOUCLE_principale(ARTICLES){id_article}>
 
@@ -14,6 +14,7 @@
 [<meta name="Description" content='(#DESCRIPTIF|supprimer_tags|texte_script)'/>]
 <meta name="keywords" content="[(#CHAPO|texte_script)]<BOUCLE_metadocs(DOCUMENTS){id_article}{","}>#TITRE</BOUCLE_metadocs>"/>
 <meta name="author" content="<BOUCLE_author(AUTEURS){id_article}{","}>#NOM</BOUCLE_author>"/>
+<meta name="revisit-after" content="15 days" />
 <meta http-equiv="content-type" content="text/html; charset=#CHARSET"/>
 
 <!-- les css et js peuvent changer suivant type d article ou de breve-->
@@ -32,9 +33,9 @@
 </head><body> 
 
 <div id="container">   <!-- centrage page -->
-<INCLURE(page.php3){fond="entete"}> 
+<INCLURE(page.php3){fond="entete"}{delais=31*24*3600}> 
 <div id="surcontent">  
-<INCLURE(page.php3){fond="menuhoriz"}><!-- ouverture entête -->
+<INCLURE(page.php3){fond="menuhoriz"}{delais=31*24*3600}><!-- ouverture entête -->
 <div id="content">  <!-- ouverture contenu --> 
 
 <div id="colgau"> <!-- ouverture colone de gauche --> 
@@ -51,16 +52,12 @@
 <a href="sommaire.php3">Accueil</a> > <BOUCLE_plan(HIERARCHIE){id_article}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>	
                   </BOUCLE_plan>
 &gt; </p>                 
-<h2>[(#TITRE) 
-      ]</h2> <br/>
+[<h1>(#TITRE) 
+      </h1><br/>] 
     [(#SOUSTITRE)<br/> 
     ]   
   
-   [(#TEXTE|lier_au_glossaire)] 
- 
-
-    
-    [<br/>
+   [(#TEXTE|lier_au_glossaire)][<br/>
     (#PS)]
 
 <ul class="membres"><li class="modo"><a href="ecrire/articles_forum.php3?id_article=#ID_ARTICLE" title="Acc&egrave;s priv&eacute; pour mod&eacute;rateurs">Admin:</a></li>
@@ -96,9 +93,17 @@ $ze_titre = ereg_replace( "> ", "", $ze_titre );
 <td>
 <a href="_discussion.php3?id_forum=#ID_FORUM#forum#ID_FORUM"	title=""><?php echo $ze_titre?></a>
 </td>
-	<td>#AUTEUR</td>
+	<td><BOUCLE_nom2(AUTEURS){tout}{id_auteur}>
+[<a (#STATUT|=={'1comite'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de ce r&eacute;dacteur">]
+[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de cet admin">]
+[<a (#STATUT|=={'6forum'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de ce visiteur">]
+[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Compte en attente">]
+[(#NOM|couper{18})</a><br/>]
+</BOUCLE_nom2>
+[(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
+<//B_nom2></td>
 	<td>[(#DATE|affdate{'d/m/Y'})]<br/>
-	[(#DATE|affdate{'h:i:s'})]
+	[(#DATE|affdate{'H:i:s'})]
 </td>
 	</tr>
 	
@@ -143,9 +148,17 @@ $ze_titre = ereg_replace( "> ", "", $ze_titre );
 <td>
 <a href="_discussion.php3?id_forum=#ID_FORUM#forum#ID_FORUM"	title=""><?php echo $ze_titre?></a>
 </td>
-<td>#AUTEUR</td>
+<td><BOUCLE_nom3(AUTEURS){tout}{id_auteur}>
+[<a (#STATUT|=={'1comite'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de ce r&eacute;dacteur">]
+[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de cet admin">]
+[<a (#STATUT|=={'6forum'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de ce visiteur">]
+[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Compte en attente">]
+[(#NOM|couper{18})</a><br/>]
+</BOUCLE_nom3>
+[(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
+<//B_nom3></td>
 <td>[(#DATE|affdate{'d/m/Y'})]<br/>
-	[(#DATE|affdate{'h:i:s'})]
+	[(#DATE|affdate{'H:i:s'})]
 </td>
 <td><B_nb_forumtotal>
 <BOUCLE_nb_forumtotal(FORUMS){id_thread}{plat}>
@@ -222,7 +235,7 @@ $ze_titre = ereg_replace( "> ", "", $ze_titre );
 <hr class="spacer" />
 </div>
 <!-- fermeture contenu --> 
-<INCLURE(page.php3){fond="pieddepage"}>
+<INCLURE(page.php3){fond="pieddepage"}{delais=31*24*3600}{id_article}>
 
 </div> <!-- fermeture surcontenu --><br/>
 

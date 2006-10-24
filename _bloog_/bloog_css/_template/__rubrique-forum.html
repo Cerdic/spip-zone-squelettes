@@ -1,4 +1,5 @@
-<INCLURE(page.php3){fond="header"}>
+<INCLURE(page.php3){fond="header"}{delais=31*24*3600}>
+
 
  <BOUCLE_principale(RUBRIQUES){id_rubrique}>
 
@@ -12,7 +13,8 @@
 <!-- les métas -->
 <title>[(#TITRE|supprimer_numero)]</title>
 [<meta name="Description" content="(#DESCRIPTIF|supprimer_tags|texte_script)"/>]
-<meta name="keywords" content="[(#CHAPO|texte_script)]"/>
+<meta name="keywords" content="[(#DESCRIPTIF|supprimer_tags|texte_script)]"/>
+<meta name="revisit-after" content="15 days" />
 <meta http-equiv="content-type" content="text/html; charset=#CHARSET"/>
 
 <!-- les css et js peuvent changer suivant type d article ou de breve-->
@@ -32,9 +34,9 @@
 </head><body> 
 
 <div id="container">   <!-- centrage page -->
-<INCLURE(page.php3){fond="entete"}>
+<INCLURE(page.php3){fond="entete"}{delais=31*24*3600}> 
 <div id="surcontent">  <!-- ouverture entête -->
-<INCLURE(page.php3){fond="menuhoriz"}>
+<INCLURE(page.php3){fond="menuhoriz"}{delais=31*24*3600}>
 <div id="content">  <!-- ouverture contenu --> 
  
  
@@ -45,7 +47,7 @@
 <a href="sommaire.php3">Accueil</a> > <BOUCLE_plan(HIERARCHIE){id_rubrique}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>	
                   </BOUCLE_plan>
                  
-                  <h2>[(#TITRE|supprimer_numero)<br/>]</h2> 
+                  <h1>[(#TITRE|supprimer_numero)<br/>]</h1> 
     [(#SOUSTITRE)<br/> 
     ]   
    <p>[(#TEXTE|lier_au_glossaire)]</p>
@@ -74,7 +76,7 @@
 <td>Dernières discussions</td>
 <td>Auteur</td>
 <td>Date</td>
-<td>Messages</td>
+<td>R&eacute;ponses</td>
 </tr>
                   <?php $couleur="0" ; ?>
                   <B_discussions>
@@ -88,9 +90,17 @@ $ze_titre = ereg_replace( "> ", "", $ze_titre );
 <td>
 <a href="_discussion.php3?id_forum=#ID_FORUM#forum#ID_FORUM"	title=""><?php echo $ze_titre?></a>
 </td>
-<td>#AUTEUR</td>
+<td><BOUCLE_nom2(AUTEURS){tout}{id_auteur}>
+[<a (#STATUT|=={'1comite'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de ce r&eacute;dacteur">]
+[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de cet admin">]
+[<a (#STATUT|=={'6forum'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de ce visiteur">]
+[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Compte en attente">]
+[(#NOM|couper{18})</a><br/>]
+</BOUCLE_nom2>
+[(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
+<//B_nom2></td>
 <td>[(#DATE|affdate{'d/m/Y'})]<br/>
-	[(#DATE|affdate{'h:i:s'})]
+	[(#DATE|affdate{'H:i:s'})]
 </td>
 <td><B_nb_forumtotal>
 <BOUCLE_nb_forumtotal(FORUMS){id_thread}{plat}>
@@ -140,7 +150,7 @@ Parcourir</a></li>
                     <BOUCLE_sites2(SITES){id_rubrique}>
                   </BOUCLE_sites2><a href="#URL_RUBRIQUE">#TOTAL_BOUCLE
  sites r&eacute;f&eacute;renc&eacute;s.</a></B_sites2>
-<BOUCLE_art2(ARTICLES){id_rubrique}{par date}{inverse}{0,25}>
+<BOUCLE_art2(ARTICLES){id_rubrique}{par date}{inverse}{0,75}>
 ::
                     <BOUCLE_nouv_art23(ARTICLES){id_article}{age<7}>
                     Nouveau</BOUCLE_nouv_art23>
@@ -194,7 +204,7 @@ echo $total_photos == 1? "1&nbsp;photo" : "$total_photos&nbsp;photos" ; ?></a>
 echo ($i==0) ? 'float:left' : 'float:right' ; 
 if($i==0) {$i=1;}
 else {$i=0;} ?>
- "><a href="#URL_ARTICLE#content" title="Article à textes"><img src="IMG/002/pencil.gif" alt="Article à textes"/></a>
+ ">[<a href="#URL_ARTICLE#content" title="Article à textes">(#LOGO_ARTICLE||?{#LOGO_ARTICLE,'<img src="IMG/002/pencil.gif" alt="Article à textes"/>'})</a>]
 <!-- 2 -->
  </li>
  <//B_presence_logo>
@@ -224,7 +234,7 @@ else {$i=0;} ?>
 
     <div class="boite"><!-- ouverture boite menu --> 
 
-<h4 class="icone_menu">navigation</h4>    
+<h4 class="icone_menu">Navigation</h4>    
       <INCLURE(_menu_rub.php3){id_rubrique}>     
     </div><!-- fermeture boite menu -->
 
@@ -248,14 +258,14 @@ else {$i=0;} ?>
 </div>
 
 <div class="boite"> <!-- ouverture boite derniers messages --> 
-<h4 class="icone_post">derniers messages</h4>
+<h4 class="icone_post">Derniers messages</h4>
 <INCLURE(_derniers_messages.php3)>
 </div>
     
 <B_archives>
     <div class="boite">
-      <h4 class="icone_article">à voir également</h4>
-<BOUCLE_archives(ARTICLES){id_rubrique}{doublons}{par date}{inverse}{0,20}>
+      <h4 class="icone_article">A voir également</h4>
+      <BOUCLE_archives(ARTICLES){id_rubrique}{doublons}{par date}{inverse}{0,20}>
               <a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a> 
               <INCLURE(_cadenas.php3){id_article}>
               </BOUCLE_archives>
@@ -269,7 +279,7 @@ else {$i=0;} ?>
 <hr class="spacer" />
 
 </div> <!-- fermeture contenu -->
-<INCLURE(page.php3){fond="pieddepage"}>
+<INCLURE(page.php3){fond="pieddepage"}{delais=31*24*3600}{id_rubrique}>
 </div><!-- fermeture surcontenu --><br/>
 
 </div> <!-- fermeture container --> 

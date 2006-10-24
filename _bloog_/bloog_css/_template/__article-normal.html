@@ -1,4 +1,5 @@
-<INCLURE(page.php3){fond="header"}>
+<INCLURE(page.php3){fond="header"}{delais=31*24*3600}>
+
 
 <BOUCLE_principale(ARTICLES){id_article}>
 
@@ -12,8 +13,9 @@
 <!-- les métas -->
 <title>[(#TITRE|supprimer_numero)]</title>
 [<meta name="Description" content='(#DESCRIPTIF|supprimer_tags|texte_script)'/>]
-<meta name="keywords" content="[(#CHAPO|texte_script)]<BOUCLE_metadocs(DOCUMENTS){id_article}{","}>#TITRE</BOUCLE_metadocs>"/>
+<meta name="keywords" content="[(#CHAPO|supprimer_tags|texte_script)]<BOUCLE_metadocs(DOCUMENTS){id_article}{","}>[(#TITRE|supprimer_tags|texte_script)]</BOUCLE_metadocs>"/>
 <meta name="author" content="<BOUCLE_author(AUTEURS){id_article}{","}>#NOM</BOUCLE_author>"/>
+<meta name="revisit-after" content="15 days" />
 <meta http-equiv="content-type" content="text/html; charset=#CHARSET"/>
 
 <!-- les css et js peuvent changer suivant type d article ou de breve-->
@@ -24,19 +26,22 @@
 <script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty.js"></script>
 <script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty-bloog.js"></script>
 
+  <BOUCLE_form_agenda(RUBRIQUES){id_rubrique}{titre_mot=agenda}{0,1}>
+  <script type="text/javascript" src="#DOSSIER_SQUELETTE/formulaire.js"></script>
+   </BOUCLE_form_agenda>
+
 <!-- icones xml des fils des rubriques sous firefox -->
-<BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}>
+<BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}{0,10}>
 <link rel="alternate" type="application/rss+xml" href="#URL_SITE_SPIP/_backend.php3?id_rubrique=#ID_RUBRIQUE" title="[(#TITRE|supprimer_numero)]" />
 </BOUCLE_rub>
 
 </head><body> 
 
 <div id="container">   <!-- centrage page -->
-<INCLURE(page.php3){fond="entete"}> 
+<INCLURE(page.php3){fond="entete"}{delais=31*24*3600}> 
 <div id="surcontent">  
-<INCLURE(page.php3){fond="menuhoriz"}><!-- ouverture entête -->
+<INCLURE(page.php3){fond="menuhoriz"}{delais=31*24*3600}><!-- ouverture entête -->
 <div id="content">  <!-- ouverture contenu --> 
-
 <div id="colgau"> <!-- ouverture colone de gauche --> 
 
   <div class="grande_boite"> <!-- ouverture grd boite texte -->
@@ -44,26 +49,30 @@
 <BOUCLE_logo_article(MOTS){id_article}{titre=ImageUne}>
 <!-- Pas de logo si ce mot clé -->
 </BOUCLE_logo_article>
- [<div class="logogauche">(#LOGO_ARTICLE|?{#LOGO_ARTICLE,'<img src="./IMG/002/edit.gif" alt="logo"/>'})</div>
+ [
+<span class="logogauche">(#LOGO_ARTICLE||?{#LOGO_ARTICLE,'<img src="./IMG/002/edit.gif" alt="logo"/>'})</span>
   ]
 <//B_logo_article>
 
 <a href="sommaire.php3">Accueil</a> > <BOUCLE_plan(HIERARCHIE){id_article}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>	
                   </BOUCLE_plan>
 &gt; </p>                 
-<h2>[(#TITRE) 
-      ]</h2> <br/>
+[<h1>(#TITRE) 
+      </h1><br/>]
     [(#SOUSTITRE)<br/> 
     ]   
-   [(#TEXTE|lier_au_glossaire)] 
-   <p>[<:bloog:premiere_publi:>: (#DATE_REDAC|affdate),][ <:bloog:mise_en_ligne:>: (#DATE|nom_jour)]
-   [(#DATE|affdate)]
-      <BOUCLE_auteurs(AUTEURS){id_article}> 
-      [, <:bloog:par:> <a href="_membre.php3?id_auteur=#ID_AUTEUR">(#NOM)</a>] 
-      </BOUCLE_auteurs> </p>
-    
-    [<br/>
-    (#PS)]
+   [(#TEXTE|lier_au_glossaire)]
+   
+
+   <p>[<:bloog:premiere_publi:>: (#DATE_REDAC|affdate),][ <:bloog:mise_en_ligne:>: (#DATE|nom_jour)] [(#DATE|affdate)]<BOUCLE_auteurs(AUTEURS){id_article}>[, <:bloog:par:> <a href="_membre.php3?id_auteur=#ID_AUTEUR">(#NOM)</a>]</BOUCLE_auteurs>.</p>
+     
+   <hr class="spacer"/>
+   
+    <B_rub_agenda><br/>
+   <BOUCLE_rub_agenda(RUBRIQUES){id_rubrique}{titre_mot=agenda}{0,1}>
+   <INCLURE(page.php3){fond="inc_form_agenda"}{delais=31*24*3600}{id_rubrique}>
+   </BOUCLE_rub_agenda><br/></B_rub_agenda>
+   
 </div> <!-- fermeture grande boite -->
 
 
@@ -82,30 +91,31 @@
 
 <BOUCLE_vignettes_precedentes(DOCUMENTS){id_article}{mode=document}{extension==jpg|png|gif}{id_document < #ID_DOCUMENT}{par id_document}{inverse}{0,1}>
 	<li class="transparent"><a href="#URL?id_document=#ID_DOCUMENT&amp;#diapo" [title="(#TITRE|textebrut)"]>
-		      <img src="[./IMG/(#LOGO_DOCUMENT|fichier)]" [alt="(#TAILLE|taille_en_octets) ( #LARGEUR x #HAUTEUR )"]  />
+		      [(#FICHIER|reduire_image{80,1000}|inserer_attribut{alt,#TITRE #TAILLE
+		          #LARGEUR x #HAUTEUR})]
 		 </a> </li>		
-</BOUCLE_vignettes_precedentes>
+    </BOUCLE_vignettes_precedentes>
 <li class="centre"><? echo $nb_images ?> photos &agrave; visionner. </li>
 <//B_vignettes_precedentes>
 
 <!-- ici le css pour surligner l_image n_est plus -->
 <BOUCLE_vignettes_dudit_document(DOCUMENTS){id_article}{mode=document}{extension==jpg|png|gif}{id_document = #ID_DOCUMENT}{par id_document}{0,1}{doublons vignettes}>
-	<li><a id="diapo" name="diapo"><img src="[./IMG/(#LOGO_DOCUMENT|fichier)]" [alt="(#TAILLE|taille_en_octets) ( #LARGEUR x #HAUTEUR )"] /></a>
+	<li><a id="diapo" name="diapo">[(#FICHIER|reduire_image{80,200}|inserer_attribut{alt,#TITRE
+	    #TAILLE #LARGEUR x #HAUTEUR})]</a>
        </li>		
-</BOUCLE_vignettes_dudit_document>
+    </BOUCLE_vignettes_dudit_document>
 <BOUCLE_premiere_vignette(DOCUMENTS){id_article}{mode=document}{extension==jpg|png|gif}{id_article}{par id_document}{0,1}{doublons vignettes}>
-	<li><a id="diapo" name="diapo"><img src="[./IMG/(#LOGO_DOCUMENT|fichier)]" [alt="(#TAILLE|taille_en_octets) ( #LARGEUR x #HAUTEUR )"] /></a>
+	<li><a id="diapo" name="diapo">[(#FICHIER|reduire_image{80,200}|inserer_attribut{alt,#TITRE
+	    #TAILLE #LARGEUR x #HAUTEUR})]</a>
        </li>		
-</BOUCLE_premiere_vignette>
+    </BOUCLE_premiere_vignette>
 <//B_vignettes_dudit_document>
 
 
 
 <BOUCLE_vignettes_suivantes(DOCUMENTS){id_article}{mode=document}{extension==jpg|png|gif}{id_document > #ID_DOCUMENT}{par id_document}{0,2}{doublons vignettes}>
-	<li class="transparent"><a href="#URL?id_document=#ID_DOCUMENT&amp;#diapo" [title="(#TITRE|textebrut)"]>
-		      <img src="[./IMG/(#LOGO_DOCUMENT|fichier)]" [alt="(#TAILLE|taille_en_octets) ( #LARGEUR x #HAUTEUR )"]  />
-		</a> </li>		
-</BOUCLE_vignettes_suivantes>
+	<li class="transparent"><a href="#URL?id_document=#ID_DOCUMENT&amp;#diapo" [title="(#TITRE|textebrut)"]>[(#FICHIER|reduire_image{80,200}|inserer_attribut{alt,#TITRE #TAILLE})]</a> </li>		
+    </BOUCLE_vignettes_suivantes>
 <li><img src="./IMG/002/fin.gif" alt="fin" /></li>
 <//B_vignettes_suivantes>
 </ul>
@@ -213,6 +223,7 @@ timer= setTimeout("document.location = '#URL_ARTICLE#diapo' ", 12000)
 </BOUCLE_afficher_document>
 </div><!-- fermeture exif -->  
 </div><!-- fermeture photo -->
+
 </B_afficher_document>
 
 
@@ -295,26 +306,38 @@ pour obtenir plus d'informations.</strong></p></BOUCLE_premier_document>
 
 
   [<div class="grande_boite">(#NOTES)</div>]
-</div><!-- fermeture colone de gauche -->
+   [<div class="grande_boite"><p>(#PS)</p></div>] 
+
+<INCLURE(page.php3){fond="inc_petition"}{delais=31*24*3600}>
+	 
+ 
+  
+</div>
+<!-- fermeture colone de gauche -->
 					
 
  <div class="coldroit">  <!-- ouverture de la colone de droite --> 
-
-
     <div class="boite"><!-- ouverture boite menu --> 
 
-        <h4 class="icone_menu">navigation</h4>
-      <INCLURE(_menu_rub.php3){id_rubrique}{id_article}> 
-    
+        <h4 class="icone_menu">Navigation</h4>
+        <INCLURE(_menu_rub.php3){id_rubrique}{id_article}> 
+   
     </div><!-- fermeture boite menu -->
+	
+	
+
+
+
+
+[<div class="boite"> <h4 class="icone_membre">Inscription</h4>(#FORMULAIRE_SIGNATURE)<hr class="spacer"/></div>]
 
 
 
       <!-- La boite de recherche --> 
     <div class="boite"> <!-- ouverture boite recherche --> 
 
-  <h4 class="icone_recherche">recherche</h4>
- <form action='recherche.php3' method='post' class="form_rech" id="form_rech">
+  <h4 class="icone_recherche">Recherche</h4>
+  <form action='recherche.php3' method='post' class="form_rech" id="form_rech">
               <p><input name="recherche" type='text' id='recherche' size='20' />
               <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" /></p>             
           </form>
@@ -322,11 +345,15 @@ pour obtenir plus d'informations.</strong></p></BOUCLE_premier_document>
  </div>   <!-- fermeture boite recherche --> 
 
     
+	
+	
+	
  <B_meme_rubrique>
     <div class="boite">
       <!-- ouverture autre articles -->
    
-  <h4 class="icone_article">autres articles</h4><p>
+  <h4 class="icone_article">Autres articles</h4>
+  <p>
       <BOUCLE_meme_rubrique(ARTICLES){id_rubrique}{exclus}{par date}{inverse}{0,20}>
                 <a href="#URL_ARTICLE">#TITRE</a><br/>
                 <INCLURE(_cadenas.php3){id_article}>
@@ -341,7 +368,7 @@ pour obtenir plus d'informations.</strong></p></BOUCLE_premier_document>
     <B_musique>
     <div class="boite">
       <!-- ouverture boite musique -->
-      <h4 class="icone_juk">musique</h4>
+      <h4 class="icone_juk">Musique</h4>
       <BOUCLE_musique(DOCUMENTS){id_article}{par titre}{extension==MP3|m3u|wav|WMA|Ogg|FLAC|au|VQF|M4A|AIF|RM|RAM|MID}{doublons doc}>
         [<p class="logogauche"><a href="#URL_DOCUMENT" title="[(#TYPE_DOCUMENT)] [(#TAILLE|taille_en_octets)]">(#LOGO_DOCUMENT)</a></p>]
 [<a href="#URL_DOCUMENT" title="[(#TYPE_DOCUMENT)] [(#TAILLE|taille_en_octets)]">(#TITRE|majuscules)</a>]
@@ -361,8 +388,8 @@ pour obtenir plus d'informations.</strong></p></BOUCLE_premier_document>
       
   <BOUCLE_documents(DOCUMENTS){id_article}{par titre}{doublons doc}>
         [<p class="logogauche"><a href="dw2_out.php?id=#ID_DOCUMENT" title="[(#TYPE_DOCUMENT)] [(#TAILLE|taille_en_octets)]">(#LOGO_DOCUMENT)</a></p>]
-[<a href="dw2_out.php?id=#ID_DOCUMENT" title="[(#TYPE_DOCUMENT)] [(#TAILLE|taille_en_octets)]">(#TITRE|majuscules)</a>]
- [<br />(#ID_DOCUMENT|compteur)][(#DESCRIPTIF)]<!-- séparation documents -->     
+<p>[<a href="dw2_out.php?id=#ID_DOCUMENT" title="[(#TYPE_DOCUMENT)] [(#TAILLE|taille_en_octets)]">(#TITRE|majuscules)</a>]
+ [<br />(#ID_DOCUMENT|compteur)][(#DESCRIPTIF)]</p><!-- séparation documents -->     
         <hr class="spacer" /> 
       </BOUCLE_documents>
     </div> <!-- fermeture boite zip -->
@@ -371,12 +398,10 @@ pour obtenir plus d'informations.</strong></p></BOUCLE_premier_document>
 
 
 <hr class="spacer" />
-<INCLURE(_discussion_css.php3){id_article}>
-
-
-
-</div><!-- fermeture contenu --> 
-<INCLURE(page.php3){fond="pieddepage"}>
+<INCLURE(page.php3){fond="inc_discussion"}{delais=31*24*3600}{id_rubrique}{id_article}{id_forum}>
+</div>
+<!-- fermeture contenu --> 
+<INCLURE(page.php3){fond="pieddepage"}{delais=31*24*3600}{id_rubrique}{id_article}{id_forum}{id_thread}>
 
 </div> <!-- fermeture surcontenu --><br/>
 
