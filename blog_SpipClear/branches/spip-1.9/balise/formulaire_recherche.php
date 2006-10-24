@@ -17,7 +17,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;	#securite
 
 function balise_FORMULAIRE_RECHERCHE ($p) 
 {
-	return calculer_balise_dynamique($p, 'FORMULAIRE_RECHERCHE', array('id_secteur'));
+	return calculer_balise_dynamique($p, 'FORMULAIRE_RECHERCHE', array('id_rubrique'));
 }
 
 function balise_FORMULAIRE_RECHERCHE_stat($args, $filtres) {
@@ -30,17 +30,18 @@ function balise_FORMULAIRE_RECHERCHE_stat($args, $filtres) {
 	  return array($filtres[0], $args[0], $args[1]);
 }
  
-function balise_FORMULAIRE_RECHERCHE_dyn($lien, $id_secteur, $rech) {
+function balise_FORMULAIRE_RECHERCHE_dyn($lien, $id_rubrique, $rech) {
 
 	if ($GLOBALS['spip_lang'] != $GLOBALS['meta']['langue_site'])
 		$lang = $GLOBALS['spip_lang'];
 	else
 		$lang='';
 
+	include_spip('inc/utils');
+	charger_generer_url();
 	return array('formulaires/formulaire_recherche', 3600, 
 		array(
-			'id_secteur' => $id_secteur,
-			'lien' => ($lien ? $lien : generer_url_rubrique($id_secteur)),
+			'lien' => ($lien ? $lien : generer_url_rubrique($id_rubrique)),
 			'recherche' => _request('recherche'),
 			'lang' => $lang
 		));
