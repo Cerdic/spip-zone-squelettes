@@ -55,11 +55,17 @@
                      
             <!-- rubrique: articles -->[
             (#REM) on liste les evenements *a venir* chronologiquement (date de l'evenemnt=date de redac anterieur)
-            ]<B_art_rub>            
+            ]<B_art_rub_court><ul>            
+            <BOUCLE_art_rub_court(ARTICLES){id_rubrique}{age_redac<4}{par date_redac}{pagination 5}>
+            <li>[<a href="#art_#ID_ARTICLE">(#TITRE|supprimer_numero)</a>][ - (#SOUSTITRE)]</li>
+            </BOUCLE_art_rub_court>
+            </ul></B_art_rub_court>            
+            
+            <B_art_rub>            
             <BOUCLE_art_rub(ARTICLES){id_rubrique}{age_redac<4}{par date_redac}{pagination 5}>[
             (#REM) on n'utilise pas inc_article_preview car on va cacher la date et les auteurs pour eviter toute confusion
             ]   [<div class="surtitre">(#SURTITRE)</div>]       
-                    [<h2><a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a></h2>][
+                    [<h2><a href="#URL_ARTICLE" name="art_#ID_ARTICLE">(#TITRE|supprimer_numero)</a></h2>][
                     <div class="soustitre">(#SOUSTITRE)</div>]                  
                    [(#LOGO_ARTICLE|left||reduire_image{120,120})][
                    <div class="chapo">(#CHAPO)</div>]
