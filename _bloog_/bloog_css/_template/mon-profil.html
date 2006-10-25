@@ -1,0 +1,203 @@
+<?php if (!$auteur_session){?>
+<INCLURE(_authentification.php3)>
+<?php exit;}  ?>
+
+
+
+<INCLURE(page.php3){fond="header"}{delais=31*24*3600}>
+
+
+<!-- Si mot clef acces_restreint alors on authentifie l internaute. -->
+
+
+<html><head>
+
+<!-- les métas --><BOUCLE_author0(AUTEURS){tout}{id_auteur}>
+<title>Votre profil [(#NOM)].</title>
+<meta name="Description" content="Votre profil [(#NOM)]"/>
+<meta name="keywords" content="[(#NOM)]"/>
+<meta name="author" content="[(#NOM) via #NOM_SITE_SPIP]"/>
+</BOUCLE_author0>
+
+<meta name="revisit-after" content="15 days" />
+<meta http-equiv="content-type" content="text/html; charset=#CHARSET"/>
+
+
+<!-- les css et js peuvent changer suivant type d article ou de breve-->
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/menu.css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/bloog.css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/niftyCorners.css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/print.css" media="print" />
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty.js"></script>
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty-bloog.js"></script>
+
+<!-- icones xml des fils des rubriques sous firefox -->
+<BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}>
+<link rel="alternate" type="application/rss+xml" href="#URL_SITE_SPIP/_backend.php3?id_rubrique=#ID_RUBRIQUE" title="[(#TITRE|supprimer_numero)]" />
+</BOUCLE_rub>
+
+</head>
+
+
+<body> 
+
+
+
+<div id="container">   <!-- centrage page -->
+<INCLURE(page.php3){fond="entete"}{delais=31*24*3600}>  
+<div id="surcontent">  
+<INCLURE(page.php3){fond="menuhoriz"}{delais=31*24*3600}><!-- ouverture entête -->
+<div id="content">  <!-- ouverture contenu --> 
+<div id="colgau"> <!-- ouverture colone de gauche --> 
+<div class="grande_boite">
+<h4>Bonjour <?php 
+     echo $auteur_session['nom'];
+	 ?></h4> 
+<p> Vous &ecirc;tes connect&eacute;, vous pouvez interagir avec #NOM_SITE_SPIP.<br/>
+  Que souhaitez-vous faire? Choisissez dans ces options: </p>
+
+</div>
+<div id="cel">
+<ul id="deco">
+
+
+<li>
+<h4>Participer, contribuer:</h4>
+<p>
+
+<BOUCLE_RUB_FORUM(RUBRIQUES){titre_mot=forum}{0,1}>
+<span class="ecrire"><a href="#URL_RUBRIQUE">Poster dans un forum</a>.</span><br/>
+</BOUCLE_RUB_FORUM>
+
+
+<?  if ($auteur_session['statut']!='nouveau'&&$auteur_session['statut']!='1comite'&& $auteur_session['statut']!='0minirezo'){
+?>
+<span class="ecrire"><a href="_contact.php3">Demander au
+webmestre la conversion de mon compte et devenir r&eacute;dacteur</a>.</span><br/>
+<? } ?>
+
+<?  if ($auteur_session['statut']!='6forum'&&$auteur_session['statut']!='1comite'&& $auteur_session['statut']!='0minirezo'){
+?>
+<span class="ecrire"><a href="ecrire/index.php3">Bienvenue, visitez votre interface de
+r&eacute;daction</a>.</span><br/>
+<? } ?>
+
+
+<?  if ($auteur_session['statut']!='nouveau'&& $auteur_session['statut']!='6forum'){
+?>
+<span class="ecrire"><a href="ecrire/articles_edit.php3?new=oui">Commencer
+un nouvel article</a>.</span><br/>
+<span class="ecrire"><a href="ecrire/articles_page.php3">Travailler sur mes
+articles</a>.</span>
+<? } ?>
+
+
+
+<B_ARTICLE_PREPA><br/>
+<BOUCLE_ARTICLE_PREPA(ARTICLES){id_auteur=(#ENV{id_auteur_session})}{statut=prepa}{0,10}>
+<img src="ecrire/img_pack/puce-blanche.gif"><a href="ecrire/">#TITRE</a><br/>
+</BOUCLE_ARTICLE_PREPA>
+
+	
+
+<?  if ($auteur_session['statut']!='6forum'&&$auteur_session['statut']!='1comite'&& $auteur_session['statut']!='nouveau'){
+?>
+<br/><a href="ecrire/index.php3">Agir sur les articles proposés</a>.<br/>
+    <a href="ecrire/controle_forum.php3">Modérer un message abusif</a>.<br/>
+    <a href="ecrire/auteurs.php3">Ejecter un membre pénible</a>.
+<? } ?>
+
+</p>
+</li>
+
+
+<li>
+<h4>Gérer mon profil:</h4><p>
+<?  if ($auteur_session['statut']!='6forum'&& $auteur_session['statut']!='nouveau'){
+?>
+<a href="ecrire/index.php3">Acc&eacute;der &agrave; l'interface de r&eacute;daction</a><br/>
+
+<? } ?>
+<?  if ($auteur_session['statut']!='0minirezo'&& $auteur_session['statut']!='nouveau'&& $auteur_session['statut']!='1comite'){?>
+Seul un r&eacute;dacteur peut modifier sa bio et son profil. 
+<? } ?>
+
+
+</p>
+</li>
+
+</ul>
+</div>
+
+
+
+
+
+
+
+<!-- fermeture grande boite -->
+
+
+<div class="grande_boite abonnement"><a name="abonnement" id="abonnement"></a>
+  <h4 class="icone_article">Modifiez votre abonnement</h4>
+ <p>
+ #FORMULAIRE_MODIF_ABONNEMENT
+ </p>
+ <hr class="spacer"/>
+
+</div>
+
+
+
+
+
+</div>
+<!-- fermeture colone de gauche -->
+ <div class="coldroit">  <!-- ouverture de la colone de droite --> 
+
+
+    <div class="boite"><!-- ouverture boite menu --> 
+
+        <h4 class="icone_menu">Navigation</h4>
+        <INCLURE(_menu_rub.php3)> 
+    
+    </div><!-- fermeture boite menu -->
+
+
+
+
+
+
+      <!-- La boite de recherche --> 
+    <div class="boite"> <!-- ouverture boite recherche --> 
+
+  <h4 class="icone_recherche">Recherche</h4>
+  <form action='recherche.php3' method='post' class="form_rech" id="form_rech">
+              <p><input name="recherche" type='text' id='recherche' size='20' />
+              <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" /></p>             
+          </form>
+
+ </div>   <!-- fermeture boite recherche --> 
+<div class="boite"> <!-- ouverture boite les membres --> 
+<INCLURE(_liste-membres.php3)>
+</div>
+
+
+
+<?php if ($auteur_session['statut']=='0minirezo') { ?>
+<div class="boite"> <!-- ouverture qui est venu --> 
+<h4 class="icone_recherche">Qui est venu?</h4>
+<p>[(#URL_SITE|nb_connect)]</p>
+</div>
+<?php } ?>
+<!-- fermeture boite menu -->
+</div>
+<!-- fermeture colone de droite --> 
+<hr class="spacer" />
+</div><!-- fermeture contenu --> 
+<INCLURE(page.php3){fond="pieddepage"}{delais=31*24*3600}>
+
+</div> <!-- fermeture surcontenu --><br/>
+</div> <!-- fermeture container --> 
+</body>
+</html>

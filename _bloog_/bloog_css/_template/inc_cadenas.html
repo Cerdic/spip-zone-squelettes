@@ -1,0 +1,68 @@
+<?php if ($auteur_session=="") { ?>
+
+<BOUCLE_article(ARTICLES){id_article}>
+<!-- on commence par regarder s'il y a des mots clés chez les rubriques parents -->
+<BOUCLE_hierarchie(HIERARCHIE){id_rubrique}>
+<!-- on vérifie si il y a le mot clé acces_restreint chez un parent-->
+<BOUCLE_secu(MOTS){id_rubrique}{titre = acces_restreint}>
+<?php $restreint='restreint'; ?>
+</BOUCLE_secu>
+</BOUCLE_hierarchie>
+<!-- Un peu de php pour faire le tri dans ce qu'on a trouvé-->
+<?php 
+if (isset($restreint)){
+?>
+              <span class="cadenas">Acc&egrave;s r&eacute;serv&eacute; aux membres.</span>
+ <?php unset($restreint);
+} else{?> 
+<BOUCLE_cadenas(ARTICLES){id_article}{titre_mot = acces_restreint}>
+<span class="cadenas">Acc&egrave;s r&eacute;serv&eacute; aux membres.</span>
+</BOUCLE_cadenas>
+ <?php } ?> 
+</BOUCLE_article>
+
+<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
+<!-- on commence par regarder s'il y a des mots clés chez les rubriques parents -->
+<BOUCLE_hierarchie2(HIERARCHIE){id_rubrique}>
+<!-- on vérifie si il y a le mot clé acces_restreint chez un parent-->
+<BOUCLE_secu2(MOTS){id_rubrique}{titre = acces_restreint}>
+<?php $restreint2='restreint'; ?>
+</BOUCLE_secu2>
+</BOUCLE_hierarchie2>
+<!-- Un peu de php pour faire le tri dans ce qu'on a trouvé-->
+<?php 
+if (isset($restreint2)){
+?>
+<span class="cadenas">Acc&egrave;s r&eacute;serv&eacute; aux membres.</span>
+<?php unset($restreint2); } else{?> 
+<BOUCLE_cadenas2(RUBRIQUES){id_rubrique}{titre_mot = acces_restreint}>
+<span class="cadenas">Acc&egrave;s r&eacute;serv&eacute; aux membres.</span>
+
+</BOUCLE_cadenas2>
+ <?php } ?> 
+</BOUCLE_rubrique>
+
+<BOUCLE_breve(BREVES){id_breve}>
+<!-- on commence par regarder s'il y a des mots clés chez les rubriques parents -->
+<BOUCLE_hierarchie3(HIERARCHIE){id_rubrique}>
+<!-- on vérifie si il y a le mot clé acces_restreint chez un parent-->
+<BOUCLE_secu3(MOTS){id_rubrique}{titre = acces_restreint}>
+<?php $restreint3='restreint'; ?>
+</BOUCLE_secu3>
+</BOUCLE_hierarchie3>
+<!-- Un peu de php pour faire le tri dans ce qu'on a trouvé-->
+<?php 
+if (isset($restreint3)){
+?>
+<span class="cadenas">Acc&egrave;s r&eacute;serv&eacute; aux membres.</span>
+<?php unset($restreint3); } else{?> 
+<BOUCLE_cadenas3(BREVES){id_breve}{titre_mot = acces_restreint}>
+<span class="cadenas">Acc&egrave;s r&eacute;serv&eacute; aux membres.</span>
+
+</BOUCLE_cadenas3>
+ <?php } ?> 
+</BOUCLE_breve>
+<?php } ?>
+
+			  
+			

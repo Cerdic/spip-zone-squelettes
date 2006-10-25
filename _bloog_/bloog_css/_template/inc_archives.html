@@ -1,0 +1,40 @@
+ <br>
+              <b> <a href="_archives.php3">[(#DATE|nom_mois|majuscules)] [(#DATE|annee)]</a></b><br>
+              <br>
+              <BOUCLE_exclure(BREVES){mois_relatif=0}{titre_mot=blogue}{doublons}>
+              </BOUCLE_exclure>
+              <BOUCLE_blog(BREVES){mois_relatif=0}{par date}{doublons}{inverse}{"</br>
+              "}>
+              <BOUCLE_nouv_breve(BREVES){id_breve}{age<1}>
+              <font face="verdana,arial,helvetica,sans-serif" size="1" color="red"><b>N</b></font> 
+              </BOUCLE_nouv_breve>
+              
+			  <BOUCLE_ru(RUBRIQUES){id_rubrique}>
+              <?php $title='[(#TITRE|supprimer_numero|texte_script)]'; ?> 
+              </BOUCLE_ru>
+			  
+			  <a href="#URL_BREVE" title="<?php echo $title ?>"> [(#TITRE|supprimer_numero)]</a> 
+              <INCLURE(_cadenas.php3){id_breve}>
+              |
+              
+              <BOUCLE_fofo(FORUMS){id_breve}{plat}>
+              <a href="#URL_BREVE#forum#ID_FORUM"> 
+              </BOUCLE_fofo>
+              <? $total_fofo = "#TOTAL_BOUCLE"; ?>
+              <b> 
+              <? echo $total_fofo == 1? " ($total_forum)" : " ($total_forum)" ; ?>
+              </b></a>
+		
+              </BOUCLE_blog>
+              <br>
+              <br>
+              <BOUCLE_brevem(BREVES){par date}{inverse}>
+              <BOUCLE_premierdumois(BREVES){id_breve}{doublons}>
+              <br>
+              <b> <a href="_archives.php3?date=[(#DATE|annee)]/[(#DATE|mois)]">[(#DATE|nom_mois|majuscules)] 
+              [(#DATE|annee)<br>
+              ]</a></b> 
+              </BOUCLE_premierdumois>
+              <BOUCLE_MOIS(BREVES) {mois_relatif=0}{doublons}{par date}{inverse} >
+              </BOUCLE_MOIS>
+              </BOUCLE_brevem>

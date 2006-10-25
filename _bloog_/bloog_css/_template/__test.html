@@ -1,0 +1,400 @@
+<INCLURE(page.php3){fond="header"}{delais=31*24*3600}>
+
+
+<BOUCLE_principale(ARTICLES){id_article}>
+
+<!-- Si mot clef acces_restreint alors on authentifie l internaute. -->
+<BOUCLE_restreint(MOTS){id_article}{titre=acces_restreint}>
+ <INCLURE(_authentification.php3)>
+</BOUCLE_restreint>
+
+<html><head>
+
+<!-- les métas -->
+<title>[(#TITRE|supprimer_numero)]</title>
+[<meta name="Description" content='(#DESCRIPTIF|supprimer_tags|texte_script)'/>]
+<meta name="keywords" content="[(#CHAPO|supprimer_tags|texte_script)]<BOUCLE_metadocs(DOCUMENTS){id_article}{","}>[(#TITRE|supprimer_tags|texte_script)]</BOUCLE_metadocs>"/>
+<meta name="author" content="<BOUCLE_author(AUTEURS){id_article}{","}>#NOM</BOUCLE_author>"/>
+<meta name="revisit-after" content="15 days" />
+<meta http-equiv="content-type" content="text/html; charset=#CHARSET"/>
+
+<!-- les css et js peuvent changer suivant type d article ou de breve-->
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/menu.css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/bloog.css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/niftyCorners.css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/print.css" media="print" />
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty.js"></script>
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty-bloog.js"></script>
+
+<!-- icones xml des fils des rubriques sous firefox -->
+<BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}{0,10}>
+<link rel="alternate" type="application/rss+xml" href="#URL_SITE_SPIP/_backend.php3?id_rubrique=#ID_RUBRIQUE" title="[(#TITRE|supprimer_numero)]" />
+</BOUCLE_rub>
+
+</head><body> 
+
+<div id="container">   <!-- centrage page -->
+<INCLURE(page.php3){fond="entete"}{delais=31*24*3600}> 
+<div id="surcontent">  
+<INCLURE(page.php3){fond="menuhoriz"}{delais=31*24*3600}><!-- ouverture entête -->
+<div id="content">  <!-- ouverture contenu --> 
+<div id="colgau"> <!-- ouverture colone de gauche --> 
+
+  <div class="grande_boite"> <!-- ouverture grd boite texte -->
+<p>
+<BOUCLE_logo_article(MOTS){id_article}{titre=ImageUne}>
+<!-- Pas de logo si ce mot clé -->
+</BOUCLE_logo_article>
+ [
+<span class="logogauche">(#LOGO_ARTICLE||?{#LOGO_ARTICLE,'<img src="./IMG/002/edit.gif" alt="logo"/>'})</span>
+  ]
+<//B_logo_article>
+
+<a href="sommaire.php3">Accueil</a> > <BOUCLE_plan(HIERARCHIE){id_article}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>	
+                  </BOUCLE_plan>
+&gt; </p>                 
+[<h1>(#TITRE) 
+      </h1><br/>]
+    [(#SOUSTITRE)<br/> 
+    ]   
+   [(#TEXTE|lier_au_glossaire)] 
+   <p>[<:bloog:premiere_publi:>: (#DATE_REDAC|affdate),][ <:bloog:mise_en_ligne:>: (#DATE|nom_jour)] [(#DATE|affdate)]<BOUCLE_auteurs(AUTEURS){id_article}>[, <:bloog:par:> <a href="_membre.php3?id_auteur=#ID_AUTEUR">(#NOM)</a>]</BOUCLE_auteurs>.</p>
+    
+   <hr class="spacer"/>
+</div> <!-- fermeture grande boite -->
+
+
+
+<!-- s_il y a plus d_un document alors afficher vignettes et fleches -->
+<B_nb_images>
+<BOUCLE_nb_images(DOCUMENTS){id_article}{mode=document}{extension==jpg|gif|png}{doublons}>
+</BOUCLE_nb_images><? $nb_images = "#TOTAL_BOUCLE"; ?></B_nb_images>
+ <? if ($nb_images >1) {?>
+
+
+<div id="minipics">
+<ul>
+ 
+
+
+<BOUCLE_vignettes_precedentes(DOCUMENTS){id_article}{mode=document}{extension==jpg|png|gif}{id_document < #ID_DOCUMENT}{par id_document}{inverse}{0,1}>
+	<li class="transparent"><a href="#URL?id_document=#ID_DOCUMENT&amp;#diapo" [title="(#TITRE|textebrut)"]>
+		      [(#FICHIER|reduire_image{80,1000}|inserer_attribut{alt,#TITRE #TAILLE
+		          #LARGEUR x #HAUTEUR})]
+		 </a> </li>		
+    </BOUCLE_vignettes_precedentes>
+<li class="centre"><? echo $nb_images ?> photos &agrave; visionner. </li>
+<//B_vignettes_precedentes>
+
+<!-- ici le css pour surligner l_image n_est plus -->
+<BOUCLE_vignettes_dudit_document(DOCUMENTS){id_article}{mode=document}{extension==jpg|png|gif}{id_document = #ID_DOCUMENT}{par id_document}{0,1}{doublons vignettes}>
+	<li><a id="diapo" name="diapo">[(#FICHIER|reduire_image{80,200}|inserer_attribut{alt,#TITRE
+	    #TAILLE #LARGEUR x #HAUTEUR})]</a>
+       </li>		
+    </BOUCLE_vignettes_dudit_document>
+<BOUCLE_premiere_vignette(DOCUMENTS){id_article}{mode=document}{extension==jpg|png|gif}{id_article}{par id_document}{0,1}{doublons vignettes}>
+	<li><a id="diapo" name="diapo">[(#FICHIER|reduire_image{80,200}|inserer_attribut{alt,#TITRE
+	    #TAILLE #LARGEUR x #HAUTEUR})]</a>
+       </li>		
+    </BOUCLE_premiere_vignette>
+<//B_vignettes_dudit_document>
+
+
+
+<BOUCLE_vignettes_suivantes(DOCUMENTS){id_article}{mode=document}{extension==jpg|png|gif}{id_document > #ID_DOCUMENT}{par id_document}{0,2}{doublons vignettes}>
+	<li class="transparent"><a href="#URL?id_document=#ID_DOCUMENT&amp;#diapo" [title="(#TITRE|textebrut)"]>[(#FICHIER|reduire_image{80,200}|inserer_attribut{alt,#TITRE #TAILLE})]</a> </li>		
+    </BOUCLE_vignettes_suivantes>
+<li><img src="./IMG/002/fin.gif" alt="fin" /></li>
+<//B_vignettes_suivantes>
+</ul>
+
+</div><!-- fermeture minipics --> 
+
+
+
+<div class="grande_boite">
+
+
+<div class="centre">
+<B_precedent>
+
+<!-- fleche jpg début -->
+       
+ <BOUCLE_debut(DOCUMENTS){id_article}{par id_document}{0,1}{extension==jpg|png|gif}{mode=document}>
+         <a  href="#URL?id_document=#ID_DOCUMENT&amp;#diapo"title="Début">
+         <img src="./IMG/002/player_start.gif" alt="Début" /></a>
+           </BOUCLE_debut>
+          
+<!-- fleche jpg précédent -->
+
+        <BOUCLE_precedent(DOCUMENTS){id_article}{id_document < #ID_DOCUMENT}{par id_document}{inverse}{0,1}{extension==jpg|png|gif}{mode=document}>
+         <a  href="#URL?id_document=#ID_DOCUMENT&amp;#diapo"title="Précédente">
+         <img src="./IMG/002/player_rew.gif" alt="Précédente" /></a>
+        
+</BOUCLE_precedent>
+
+<!-- ajoute deux images transparantes sans liens quand premieres images -->
+<img src="./IMG/002/player_start_trans.gif" alt="inactif" /> <img src="./IMG/002/player_rew_trans.gif" alt="inactif" />
+
+<//B_precedent>
+
+
+<!-- fin du multiple document. Fermeture de la boucle d'article pour repasser en boucle document -->
+</BOUCLE_principale>
+
+
+<?    if ($diapo != 1) {  ?>
+
+<BOUCLE_lecture(DOCUMENTS){id_article}{mode=document}{extension==jpg|png|gif}{id_document > #ID_DOCUMENT}{par id_document}{1,1}>
+<a href='#URL?id_document=#ID_DOCUMENT&amp;diapo=1&amp;#diapo' title='Lecture'><img src="./IMG/002/player_play.gif" alt="Lecture" /></a>
+</BOUCLE_lecture>
+
+   <? } else {?>
+
+    <BOUCLE_pause_diapo(DOCUMENTS){id_article}{mode=document}{extension==jpg|png|gif}{id_document}{par id_document}{0,1}>
+    <a href="#URL?id_document=#ID_DOCUMENT&amp;#diapo" title="Pause"><img src="./IMG/002/player_pause.gif" alt="Pause" /></a>
+ </BOUCLE_pause_diapo>
+
+<BOUCLE_diaporama_auto(DOCUMENTS){id_article}{mode=document}{extension==jpg|png|gif}{id_document > #ID_DOCUMENT}{par id_document}{0,1}>
+  <script type="text/javascript"><!--
+timer= setTimeout("document.location = '#URL?id_document=#ID_DOCUMENT&diapo=1&#diapo' ", 7000)
+     // --></script>
+</BOUCLE_diaporama_auto>
+  <script type="text/javascript"><!--
+timer= setTimeout("document.location = '#URL_ARTICLE#diapo' ", 12000)
+      // --></script>
+<//B_diaporama_auto>
+  <? } ?>
+
+
+  <!--fleche jpg suivant-->
+
+        <BOUCLE_suivant(DOCUMENTS){id_article}{id_document > #ID_DOCUMENT}{0,1}{extension==jpg|png|gif}{mode=document}>
+           <a  href="#URL?id_document=#ID_DOCUMENT&amp;#diapo" title="Suivante">
+        <img src="./IMG/002/player_fwd.gif" alt="Suivante" /></a>
+       </BOUCLE_suivant>  
+
+  <!--fleche de redémarrage-->
+ 
+		<BOUCLE_retour(DOCUMENTS){id_article}{0,1}{extension==jpg|png|gif}{mode=document}>
+       <a  href="#URL?id_document=#ID_DOCUMENT&amp;diapo=1&amp;#diapo" title="Recommencer">
+         <img src="./IMG/002/reload.gif" alt="Recommencer" /></a>
+       </BOUCLE_retour>  
+
+
+<//B_suivant>
+
+
+<B_afficher_document>
+
+<!-- l image en grand -->
+
+
+<div class="photo">
+<div id="exif">
+<BOUCLE_afficher_document(DOCUMENTS){id_document = #ID_DOCUMENT}{par id_document}{0,1}{extension==jpg|png|gif}{mode=document}>
+<a href="#diapo"><img src="#URL_DOCUMENT" [alt="(#TAILLE|taille_en_octets) ( #LARGEUR x #HAUTEUR )"]/>
+<span>[(#TITRE)<br />
+][(#DESCRIPTIF)<br /><br />]
+[Le (#EXIF{EXIF,DateTimeOriginal}|date_EXIF2spip|sinon{#DATE}||affdate)]
+[, appareil: (#EXIF{IFD0,Model})]
+[, iso: (#EXIF{EXIF,ISOSpeedRatings})]
+[, exposition: (#EXIF{EXIF,ExposureTime})]
+[, ouverture:(#EXIF{COMPUTED,ApertureFNumber})]
+[, focale:(#EXIF{EXIF,FocalLength})mm]
+[(analogie 35mm:(#EXIF{EXIF,FocalLengthIn35mmFilm})mm)]
+[, distance:(#EXIF{EXIF,SubjectDistanceValue})]
+[, valeur d'exposition:(#EXIF{EXIF,ExposureBiasValue})]
+[, luminosité:(#EXIF{EXIF,BrightnessBiasValue})]
+[, flash:(#EXIF{COMPUTED,Flash}),]
+[, balance:(#EXIF{COMPUTED,WhiteBalance}).]</span></a>
+</BOUCLE_afficher_document>
+</div><!-- fermeture exif -->  
+</div><!-- fermeture photo -->
+
+</B_afficher_document>
+
+
+<!-- la première image en grand -->
+
+
+<div class="photo">
+<div id="exif">
+<BOUCLE_premier_document(DOCUMENTS){id_article}{par id_document}{0,1}{extension==jpg|png|gif}{mode=document}>
+<a href="#diapo"><img src="#URL_DOCUMENT" [alt="(#TAILLE|taille_en_octets) ( #LARGEUR x #HAUTEUR )"] /><span>[(#TITRE)<br />
+][(#DESCRIPTIF)<br /><br />
+]
+[Le (#EXIF{EXIF,DateTimeOriginal}|date_EXIF2spip|sinon{#DATE}||affdate)]
+[, appareil: (#EXIF{IFD0,Model})]
+[, iso: (#EXIF{EXIF,ISOSpeedRatings})]
+[, exposition: (#EXIF{EXIF,ExposureTime})]
+[, ouverture:(#EXIF{COMPUTED,ApertureFNumber})]
+[, focale:(#EXIF{EXIF,FocalLength})mm]
+[(analogie 35mm:(#EXIF{EXIF,FocalLengthIn35mmFilm})mm)]
+[, distance:(#EXIF{EXIF,SubjectDistanceValue})]
+[, valeur d'exposition:(#EXIF{EXIF,ExposureBiasValue})]
+[, luminosité:(#EXIF{EXIF,BrightnessBiasValue})]
+[, flash:(#EXIF{COMPUTED,Flash}),]
+[, balance:(#EXIF{COMPUTED,WhiteBalance}).] </span></a><p class="centre">
+<strong>Survolez les photographies
+pour obtenir plus d'informations.</strong></p></BOUCLE_premier_document>
+</div>
+<!-- fermeture exif -->  
+</div><!-- fermeture photo -->
+
+
+<//B_afficher_document>
+</div><!-- fermeture centrage -->
+</div><!-- fermeture grande boite photo -->
+
+
+<?php } ?>
+
+
+
+
+
+
+<!-- réouverture boucle principale -->
+<BOUCLE_principale2(ARTICLES){id_article}>
+
+<? if ($nb_images ==1) {?>
+<B_afficher_photo_seule>
+
+<div class="grande_boite">
+<!-- l image en grand -->
+
+
+<div class="photo">
+<div id="exif">
+<BOUCLE_afficher_photo_seule(DOCUMENTS){id_article}{extension==jpg|png|gif}{mode=document}{0,1}>
+<a id="diapo" name="diapo"></a><a href="#diapo"><img src="#URL_DOCUMENT" [alt="(#TAILLE|taille_en_octets) ( #LARGEUR x #HAUTEUR )"] /><span>[(#TITRE)<br />
+][(#DESCRIPTIF)<br /><br />]
+[Le (#EXIF{EXIF,DateTimeOriginal}|date_EXIF2spip|sinon{#DATE}||affdate)]
+[, appareil: (#EXIF{IFD0,Model})]
+[, iso: (#EXIF{EXIF,ISOSpeedRatings})]
+[, exposition: (#EXIF{EXIF,ExposureTime})]
+[, ouverture:(#EXIF{COMPUTED,ApertureFNumber})]
+[, focale:(#EXIF{EXIF,FocalLength})mm]
+[(analogie 35mm:(#EXIF{EXIF,FocalLengthIn35mmFilm})mm)]
+[, distance:(#EXIF{EXIF,SubjectDistanceValue})]
+[, valeur d'exposition:(#EXIF{EXIF,ExposureBiasValue})]
+[, luminosité:(#EXIF{EXIF,BrightnessBiasValue})]
+[, flash:(#EXIF{COMPUTED,Flash}),]
+[, balance:(#EXIF{COMPUTED,WhiteBalance}).]</span></a>
+
+</BOUCLE_afficher_photo_seule>
+</div>
+<!-- fermeture exif -->
+</div><!-- fermeture photo -->
+
+</div><!-- fermeture grande boite photo -->
+</B_afficher_photo_seule>
+<?php } ?>
+
+
+  [<div class="grande_boite">(#NOTES)</div>]
+   [<div class="grande_boite"><p>(#PS)</p></div>] 
+
+<INCLURE(page.php3){fond="inc_petition"}{delais=31*24*3600}>
+	 
+ 
+  
+</div>
+<!-- fermeture colone de gauche -->
+					
+
+ <div class="coldroit">  <!-- ouverture de la colone de droite --> 
+    <div class="boite"><!-- ouverture boite menu --> 
+
+        <h4 class="icone_menu">Navigation</h4>
+        <INCLURE(_menu_rub.php3){id_rubrique}{id_article}> 
+   
+    </div><!-- fermeture boite menu -->
+	
+	
+
+
+
+
+[<div class="boite"> <h4 class="icone_membre">Inscription</h4>(#FORMULAIRE_SIGNATURE)<hr class="spacer"/></div>]
+
+
+
+      <!-- La boite de recherche --> 
+    <div class="boite"> <!-- ouverture boite recherche --> 
+
+  <h4 class="icone_recherche">Recherche</h4>
+  <form action='recherche.php3' method='post' class="form_rech" id="form_rech">
+              <p><input name="recherche" type='text' id='recherche' size='20' />
+              <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" /></p>             
+          </form>
+
+ </div>   <!-- fermeture boite recherche --> 
+
+    
+	
+	
+	
+ <B_meme_rubrique>
+    <div class="boite">
+      <!-- ouverture autre articles -->
+   
+  <h4 class="icone_article">Autres articles</h4>
+  <p>
+      <BOUCLE_meme_rubrique(ARTICLES){id_rubrique}{exclus}{par date}{inverse}{0,20}>
+                <a href="#URL_ARTICLE">#TITRE</a><br/>
+                <INCLURE(_cadenas.php3){id_article}>
+               
+                </BOUCLE_meme_rubrique></p>
+               
+    </div></B_meme_rubrique>
+ <BOUCLE_retirer_doc(DOCUMENTS){id_article}{extension==jpg|gif|png}{doublons doc}>
+    <!-- Boucle pour ne pas afficher les images et mp3 ici -->
+    </BOUCLE_retirer_doc>
+
+    <B_musique>
+    <div class="boite">
+      <!-- ouverture boite musique -->
+      <h4 class="icone_juk">Musique</h4>
+      <BOUCLE_musique(DOCUMENTS){id_article}{par titre}{extension==MP3|m3u|wav|WMA|Ogg|FLAC|au|VQF|M4A|AIF|RM|RAM|MID}{doublons doc}>
+        [<p class="logogauche"><a href="#URL_DOCUMENT" title="[(#TYPE_DOCUMENT)] [(#TAILLE|taille_en_octets)]">(#LOGO_DOCUMENT)</a></p>]
+[<a href="#URL_DOCUMENT" title="[(#TYPE_DOCUMENT)] [(#TAILLE|taille_en_octets)]">(#TITRE|majuscules)</a>]
+ [<br />(#ID_DOCUMENT|compteur)][(#DESCRIPTIF)]<!-- séparation documents -->      
+        <hr class="spacer" /> 
+      </BOUCLE_musique>
+    </div> <!-- fermeture boite musique -->
+   </B_musique>
+
+
+
+
+   
+    <B_documents>
+<div class="boite"> <!-- ouverture boite zip -->
+      <h4 class="icone_zip"><:bloog:telechargement:></h4>
+      
+  <BOUCLE_documents(DOCUMENTS){id_article}{par titre}{doublons doc}>
+        [<p class="logogauche"><a href="dw2_out.php?id=#ID_DOCUMENT" title="[(#TYPE_DOCUMENT)] [(#TAILLE|taille_en_octets)]">(#LOGO_DOCUMENT)</a></p>]
+<p>[<a href="dw2_out.php?id=#ID_DOCUMENT" title="[(#TYPE_DOCUMENT)] [(#TAILLE|taille_en_octets)]">(#TITRE|majuscules)</a>]
+ [<br />(#ID_DOCUMENT|compteur)][(#DESCRIPTIF)]</p><!-- séparation documents -->     
+        <hr class="spacer" /> 
+      </BOUCLE_documents>
+    </div> <!-- fermeture boite zip -->
+   </B_documents>
+</div>   <!-- fermeture colone de droite --> 
+
+
+<hr class="spacer" />
+<INCLURE(page.php3){fond="inc_discussion"}{delais=31*24*3600}{id_rubrique}{id_article}{id_forum}>
+</div>
+<!-- fermeture contenu --> 
+<INCLURE(page.php3){fond="pieddepage"}{delais=31*24*3600}{id_rubrique}{id_article}{id_forum}{id_thread}>
+
+</div> <!-- fermeture surcontenu --><br/>
+
+
+</div> <!-- fermeture container --> 
+</body>
+</html>
+</BOUCLE_principale2>
