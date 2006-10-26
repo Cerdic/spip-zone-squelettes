@@ -1,18 +1,20 @@
 [(#REM) Squelette pour SPIP 1.9. Sortie au format ATOM 1.0 http://www.ietf.org/rfc/rfc4287.txt .
 Publication des resultats d'une recherche au format Atom, comme le squelette 
-recherche.html, cependant il n'y a pas pour le moment de pagination --d'ou un 
-nombre de resultats limite, qui pourrait etre faite avec 
+recherche.html, cependant il n'y a pas encore de pagination --d'ou un 
+nombre de resultats limite-- qui pourrait etre faite avec 
 - le systeme de pagination de SPIP 1.9.0 
 http://www.spip.net/fr_article3367.html (insuffisament developpe) 
 - les indications de pagination de Atom 1.0 http://www.iana.org/assignments/link-relations.html
 - les indications de pagination de OpenSearch 1.1 http://www.opensearch.org/Specifications/OpenSearch/1.1
 startIndex et itemsPerPage
 ]#CACHE{7200}
-[(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})]
-[(#REM) Remplacer text/xml par application/atom+xml des lors que (...)
+[(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})][
+(#REM) Remplacer text/xml par application/atom+xml des lors que (...)
 ]<?php echo '<' ?>?xml version="1.0"[ encoding="(#CHARSET)"]?>
 <feed xmlns="http://www.w3.org/2005/Atom"[ xml:lang="(#LANG)"]>
-	<title>[(#NOM_SITE_SPIP|texte_backend)] - <:resultats_recherche|texte_backend:>[(#RECHERCHE|texte_backend)]</title>]
+	<title>[(#NOM_SITE_SPIP|texte_backend)] - 
+<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>[<:rubrique|texte_backend:> (#TITRE|texte_backend) - ]</BOUCLE_rubrique>
+<:resultats_recherche|texte_backend:>[(#RECHERCHE|texte_backend)]</title>]
 [	<subtitle type="html">(#DESCRIPTIF_SITE_SPIP|texte_backend)</subtitle>
 ][	<link rel="alternate" type="text/html" href="(#URL_PAGE{recherche}|parametre_url{recherche,#RECHERCHE}|url_absolue|texte_backend)"/>
 ][	<link rel="self" type="application/atom+xml" href="#URL_SITE_SPIP/(#SELF)"/>
