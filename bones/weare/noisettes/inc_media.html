@@ -5,15 +5,16 @@
             [(#REM) Articles de la rubrique ]
 				<B_media>
 					#ANCRE_PAGINATION
-						<BOUCLE_media(ARTICLES){id_secteur=8}{par date}{inverse}{doublons}{pagination 10}>
+						<BOUCLE_media(ARTICLES){id_secteur=8}{par date}{inverse}{doublons}{pagination 20}>
               <div class="fichemenudroite">
 
-   [(#LOGO_ARTICLE_RUBRIQUE||image_recadre{50,50}|sinon{})]
 
-<BOUCLE_image_media(DOCUMENTS){id_article}{mode=document}{extension==(png|jpg|gif)}{par hasard}{0,1}>
-	    [(#FICHIER|copie_locale||image_recadre{500,500,'center center'}|image_reduire{50,50})] 
-</BOUCLE_image_media>
-	 	      
+   <BOUCLE_image_media(DOCUMENTS){id_article}{mode=document}{paysage}{extension==(png|jpg|gif)}{par hasard}{0,1}>
+	    [(#FICHIER|copie_locale||image_recadre{400,400,'center center'}|image_reduire{50,50})] 
+   </BOUCLE_image_media>
+	 	         [(#LOGO_ARTICLE_RUBRIQUE||image_recadre{50,50,'center center'}|image_reduire{50,50})]
+   <//BOUCLE_image_media>
+
 							<h5><a href="#URL_ARTICLE">#TITRE</a></h5>
 							<p><small>[(#DATE|affdate)]</small></p>
 						</div>
@@ -25,6 +26,3 @@
 
 
           </div><!-- coldroitemenudroite2 -->
-
-
-
