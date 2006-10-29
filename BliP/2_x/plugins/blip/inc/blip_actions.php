@@ -421,7 +421,7 @@
 			while (($file = readdir($dh)) !== false) {
 				if (!is_dir($file)) {
 					if (preg_match("/(^mod)(-|_).+\.html$/", $file)) {
-						$blipconfig_modules[$file] = BliP_nom_module_lisible($file);
+						$blipconfig_modules[preg_replace("/\.html$/", "", $file)] = BliP_nom_module_lisible($file);
 					}
 				}
 			}
