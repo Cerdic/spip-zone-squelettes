@@ -1,0 +1,53 @@
+#CACHE{24*3600}
+
+[
+(#REM) Construire les inclusions à partir de la table "spip_blip".
+Il s'agit du compilateur de BliP, c'est ce fichier qui rend le squelette modulaire
+]
+
+	[(#ENV{zone}|=={'mentions_techniques'}|?{' ',''})<INCLURE{fond=inc-infos}{lang}>]
+	
+<B_compilateur>
+	<div class="#ENV{zone}">
+<BOUCLE_compilateur(BLIP){position IN #ENV{zone},#ENV{zone_restreinte}}{actif=oui}{par ordre}>
+
+	[(#ID_ITEM|!={#ENV{id_actuel}}|?{'',
+		[(#TYPE|!={'statique'}|?{'',
+			<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+			<h1>[(#TITRE|supprimer_numero)]</h1>
+			<div class="element_sur"><div[ class="(#STYLE)"]>#TEXTE</div>
+			</div></div></div><!-- fin element-->
+		})]	
+		[(#TYPE|!={'dynamique'}|?{'',' '})
+			[(#ENV{zone}|!={'barre_laterale'}|?{' ',''})<INCLURE{fond=#TEXTE}{lang}>]
+			[(#ENV{zone}|=={'barre_laterale'}|?{' ',''})<INCLURE{fond=#TEXTE}{id_actuel}{lang}>]
+		]
+		[(#TYPE|!={'lienpage'}|?{'',' '})
+			<div class="liens">
+			<a href="[(#URL_PAGE{#TEXTE})]#STYLE" [title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>
+			</div><!-- fin liens-->
+		]	
+	
+	})]	
+
+	[(#ID_ITEM|!={'0'}|?{'',
+		[(#TYPE|!={'statique'}|?{'',
+			<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+			<h1>[(#TITRE|supprimer_numero)]</h1>
+			<div class="element_sur"><div[ class="(#STYLE)"]>#TEXTE</div>
+			</div></div></div><!-- fin element-->
+		})]
+		[(#TYPE|!={'dynamique'}|?{'',' '})
+			[(#ENV{zone}|!={'barre_laterale'}|?{' ',''})<INCLURE{fond=#TEXTE}{lang}>]
+			[(#ENV{zone}|=={'barre_laterale'}|?{' ',''})<INCLURE{fond=#TEXTE}{id_actuel}{lang}>]
+		]
+		[(#TYPE|!={'lienpage'}|?{'',' '})
+			<div class="liens">
+			<a href="[(#URL_PAGE{#TEXTE})]#STYLE" [title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>
+			</div><!-- fin liens-->
+		]	
+	})]	
+
+</BOUCLE_compilateur>
+	</div><!-- fin #ENV{zone} -->
+</B_compilateur>
