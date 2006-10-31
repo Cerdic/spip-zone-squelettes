@@ -8,8 +8,12 @@ Il sera possible de participer à cette documentation sur :
 http://www.soyezcreateurs.net/ecrire/
 
 En l'état, ce squelette nécessite :
-- SPIP 1.9 SVN
-- le plugin http://zone.spip.org/trac/spip-zone/browser/_plugins_/_typo_/barre_typo_enrichie
+- SPIP 1.9.1
+- les plugins :
+ - agenda
+ - barre_typo_enrichie
+ - -jQuery
+ - widget_calendar
 - d'être installé à la racine d'un serveur (sous dossier impossible, à moins de refaire le .htaccess), voir le virtual host d'apache pour disposer de plusieurs serveurs sur une seule IP
 - les rewrite rules doivent être disponibles sous apache (M$ IIS impossible) 
 
@@ -23,7 +27,7 @@ En l'état (avant travail en commun), le squelette a l'aspect de http://vallee-ai
 Méthode de travail en commun : le principe pour toucher au squelette :
 - rajouter un mot clef
 - rajouter la boucle utilisant le mot clef pour obtenir le comportement différent
-- mettre à jour postconfig avec le mot clef ayant la valeur qui fait que la fonctionnalité est débrayée par défaut
+- mettre à jour postconfig avec le mot clef ayant la valeur qui fait que la fonctionnalité est débrayée par défaut (sauf si elle apporte un vrai plus)
 - vérifier que c'est toujours valide XHTML avec et sans la fonctionnalité et commiter si possible avec une url d'exemple
 
 ----
