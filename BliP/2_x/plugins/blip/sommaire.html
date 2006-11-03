@@ -25,8 +25,13 @@
 <body id="sommaire">
 <div id="page">
 
-[(#REM) Inclusion de l'Entete du site, qui se construit dynamiquement ]
-<INCLURE{fond=inc-tete}{page_actuelle=sommaire}{lang}>
+<div id="tete">
+	<INCLURE{fond=inc-compilateur}{page_actuelle=article}{zone=surtitre}{lang}>			
+	<INCLURE{fond=inc-compilateur}{page_actuelle=article}{zone=titre_principal}{lang}>
+	<INCLURE{fond=inc-compilateur}{page_actuelle=article}{zone=titre_lateral}{lang}>
+	<INCLURE{fond=inc-compilateur}{page_actuelle=article}{zone=sous_titre}{lang}>
+	<INCLURE{fond=inc-compilateur}{page_actuelle=article}{zone=menu_principal}{lang}>
+</div><!-- fin tete -->
 	
 <div id="corps">
 	
@@ -56,28 +61,27 @@
 	[(#REM) Construction du contenu de la page sommaire en fonction des paramètres passés dans la variable tri]
 	<div class="contenu">
 	
-		[(#REM) Inclusion du debut de page, qui se construit dynamiquement ]
-		<INCLURE{fond=inc-surpage}{page_actuelle=sommaire}{lang}>
+	<INCLURE{fond=inc-compilateur}{page_actuelle=sommaire}{zone=sur_contenu}
+			{zone_restreinte=sur_contenu-sommaire}{lang}>
 	
 		[(#ENV{tri}|!={'documents'}|?{'',' '})<INCLURE{fond=sommaire_documents}{lang}>]
 		[(#ENV{tri}|!={'commentaires'}|?{'',' '})<INCLURE{fond=sommaire_commentaires}{tri=#ENV{tri}}{lang}>]
 		[(#ENV{tri}|!={'articles'}|?{'',' '})<INCLURE{fond=sommaire_articles}{lang}>]
 		[(#ENV{tri}|!={''}|?{'',' '})<INCLURE{fond=sommaire_articles}{lang}>]
 		
-		[(#REM) Inclusion de la fin de page, qui se construit dynamiquement ]
-		<INCLURE{fond=inc-souspage}{page_actuelle=sommaire}{lang}>
+	<INCLURE{fond=inc-compilateur}{page_actuelle=sommaire}{zone=sous_contenu}
+			{zone_restreinte=sous_contenu-sommaire}{lang}>
 		
 	</div><!-- fin contenu-->
 
-	[(#REM) Inclusion de la Barre latérale du site, construite dynamiquement ]
-	<div class="barre_laterale">
-		<INCLURE{fond=inc-barrelaterale}{page_actuelle=sommaire}{lang}>	
-	</div><!-- fin barre_laterale-->
+	<INCLURE{fond=inc-compilateur}{page_actuelle=sommaire}{zone=barre_laterale}
+			{zone_restreinte=barre_laterale-sommaire}{lang}>
 
 </div><!-- fin corps -->
 
-[(#REM)  Inclusion du Pied de page du site, qui se construit dynamiquement]
-<INCLURE{fond=inc-pied}{page_actuelle=sommaire}{lang}>
+<div id="pied">
+	<INCLURE{fond=inc-compilateur}{zone=mentions_techniques}{lang}>	
+</div><!-- fin pied -->
 
 </div><!-- fin page -->
 

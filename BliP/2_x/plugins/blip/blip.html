@@ -28,8 +28,13 @@
 <body id="blip">
 <div id="page">
 
-[(#REM) Inclusion de l'Entete du site, qui se construit dynamiquement ]
-<INCLURE{fond=inc-tete}>
+<div id="tete">
+	<INCLURE{fond=inc-compilateur}{zone=surtitre}{lang}>			
+	<INCLURE{fond=inc-compilateur}{zone=titre_principal}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=titre_lateral}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=sous_titre}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=menu_principal}{lang}>
+</div><!-- fin tete -->
 	
 <div id="corps">
 
@@ -69,7 +74,7 @@
 	[(#REM) Construction du contenu de la page sommaire en fonction des paramètres passés dans la variable tri]
 	<div class="contenu">
 
-		[(#ENV{tri}|!={'developpement'}|?{'',' '})<INCLURE{fond=blip_developpement}{lang}>]
+		[(#ENV{tri}|!={'developpement'}|?{'',' '})<INCLURE{fond=blip_developpement}{debut_blip_modif}{lang}>]
 		[(#ENV{tri}|!={'utilisateurs'}|?{'',' '})<INCLURE{fond=blip_utilisateurs}{tri=#ENV{tri}}{lang}>]
 		[(#ENV{tri}|!={'discussions'}|?{'',' '})<INCLURE{fond=blip_discussions}{lang}>]
 		[(#ENV{tri}|!={'documentation'}|?{'',' '})<INCLURE{fond=blip_documentation}{lang}>]
@@ -117,8 +122,9 @@
 
 </div><!-- fin corps -->
 
-[(#REM)  Inclusion du Pied de page du site, qui se construit dynamiquement]
-<INCLURE{fond=inc-pied}>
+<div id="pied">
+	<INCLURE{fond=inc-compilateur}{zone=mentions_techniques}{lang}>	
+</div><!-- fin pied -->
 
 </div><!-- fin page -->
 

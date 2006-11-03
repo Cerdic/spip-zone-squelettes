@@ -1,23 +1,28 @@
 #CACHE{24*3600}
-
 [
 (#REM) Construire les inclusions à partir de la table "spip_blip".
 Il s'agit du compilateur de BliP, c'est ce fichier qui rend le squelette modulaire
 ]
-
-	[(#ENV{zone}|=={'mentions_techniques'}|?{' ',''})<INCLURE{fond=inc-infos}{lang}>]
-	
-<B_compilateur>
-	<div class="#ENV{zone}">
-<BOUCLE_compilateur(BLIP){position IN #ENV{zone},#ENV{zone_restreinte}}{actif=oui}{par ordre}>
-
-	[(#ID_ITEM|!={#ENV{id_actuel}}|?{'',
-		[(#TYPE|!={'statique'}|?{'',
+[(#REM) Boucle de déclaration de la table, ne pas supprimer]
+<!-- <BOUCLE_bidon(BLIP)>#ID_ITEM</BOUCLE_bidon> -->
+[
+(#ENV{zone}|=={'mentions_techniques'}|?{' ',''})<INCLURE{fond=inc-infos}{lang}>
+]	
+<B_compilateur_blip>
+	<div class="#ENV{zone}">[(#ENV{zone}|!={'titre_principal'}|?{'',<a href="#URL_SITE_SPIP">})]
+<BOUCLE_compilateur_blip(BLIP){position IN #ENV{zone},#ENV{zone_restreinte}}{actif=oui}{par ordre}>
+	[(#ID_ITEM|!={#ENV{id_actuel}}|?{'',' '})
+		[(#TYPE|!={'statique'}|?{'',' '})
+			[(#ENV{zone}|!={'barre_laterale'}|?{' ',''})
+			<span[ class="(#STYLE)"]>[<b>(#TITRE|supprimer_numero)</b> ]#TEXTE</span>					
+			]			
+			[(#ENV{zone}|=={'barre_laterale'}|?{' ',''})
 			<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
 			<h1>[(#TITRE|supprimer_numero)]</h1>
-			<div class="element_sur"><div[ class="(#STYLE)"]>#TEXTE</div>
-			</div></div></div><!-- fin element-->
-		})]	
+			<div class="element_sur"><span[ class="(#STYLE)"]>#TEXTE</span>
+			</div></div></div><!-- fin element-->			
+			]
+		]	
 		[(#TYPE|!={'dynamique'}|?{'',' '})
 			[(#ENV{zone}|!={'barre_laterale'}|?{' ',''})<INCLURE{fond=#TEXTE}{lang}>]
 			[(#ENV{zone}|=={'barre_laterale'}|?{' ',''})<INCLURE{fond=#TEXTE}{id_actuel}{lang}>]
@@ -26,28 +31,49 @@ Il s'agit du compilateur de BliP, c'est ce fichier qui rend le squelette modulai
 			<div class="liens">
 			<a href="[(#URL_PAGE{#TEXTE})]#STYLE" [title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>
 			</div><!-- fin liens-->
-		]	
-	
-	})]	
-
-	[(#ID_ITEM|!={'0'}|?{'',
-		[(#TYPE|!={'statique'}|?{'',
+		]		
+	]
+	[(#ID_ITEM|!={'0'}|?{'',' '})
+		[(#TYPE|!={'statique'}|?{'',' '})
+			[(#ENV{zone}|!={'barre_laterale'}|?{' ',''})
+			<span[ class="(#STYLE)"]>[<b>(#TITRE|supprimer_numero)</b> ]#TEXTE</span>					
+			]		
+			[(#ENV{zone}|=={'barre_laterale'}|?{' ',''})
 			<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
 			<h1>[(#TITRE|supprimer_numero)]</h1>
-			<div class="element_sur"><div[ class="(#STYLE)"]>#TEXTE</div>
-			</div></div></div><!-- fin element-->
+			<div class="element_sur"><span[ class="(#STYLE)"]>#TEXTE</span>
+			</div></div></div><!-- fin element-->			
+			]
+		]
+		[(#TYPE|!={'dynamique'}|?{'',' '})
+			[(#ENV{zone}|!={'barre_laterale'}|?{' ',''})<INCLURE{fond=#TEXTE}{lang}>]
+			[(#ENV{zone}|=={'barre_laterale'}|?{' ',''})<INCLURE{fond=#TEXTE}{id_actuel}{lang}>]
+		]
+		[(#TYPE|!={'lienpage'}|?{'',' '})
+			<div class="liens">
+			<a href="[(#URL_PAGE{#TEXTE})]#STYLE" class="menu_principal_#TEXTE" [title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>
+			</div><!-- fin liens-->
+		]	
+	]	
+</BOUCLE_compilateur_blip>
+	[(#ENV{zone}|!={'titre_principal'}|?{'',</a>})]</div><!-- fin #ENV{zone} -->
+</B_compilateur_blip>	
+	[(#ENV{zone}|!={'sous_titre'}|?{'',' '})
+		<div class="#ENV{zone}">
+		<h5 class="nopadding">[(#DESCRIPTIF_SITE_SPIP)]</h5>
+		</div><!-- fin #ENV{zone} -->
+	]
+	
+	[(#ENV{zone}|!={'titre_principal'}|?{'',' '})
+		<div class="#ENV{zone}">
+		[(#LOGO_SITE_SPIP||?{
+			[(#LOGO_SITE_SPIP
+				||reduire_image{770,200}
+				|inserer_attribut{alt,[(#NOM_SITE_SPIP|textebrut)]}
+				|inserer_attribut{title,[(#NOM_SITE_SPIP|textebrut)]}
+				)]</a>
+			,#NOM_SITE_SPIP
 		})]
-		[(#TYPE|!={'dynamique'}|?{'',' '})
-			[(#ENV{zone}|!={'barre_laterale'}|?{' ',''})<INCLURE{fond=#TEXTE}{lang}>]
-			[(#ENV{zone}|=={'barre_laterale'}|?{' ',''})<INCLURE{fond=#TEXTE}{id_actuel}{lang}>]
-		]
-		[(#TYPE|!={'lienpage'}|?{'',' '})
-			<div class="liens">
-			<a href="[(#URL_PAGE{#TEXTE})]#STYLE" [title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>
-			</div><!-- fin liens-->
-		]	
-	})]	
-
-</BOUCLE_compilateur>
-	</div><!-- fin #ENV{zone} -->
-</B_compilateur>
+		</a></div><!-- fin #ENV{zone} -->
+	]	
+<//B_compilateur_blip>
