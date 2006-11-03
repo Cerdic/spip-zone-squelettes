@@ -5,17 +5,18 @@
             [(#REM) Articles de la rubrique ]
 				<B_media>
 					#ANCRE_PAGINATION
-						<BOUCLE_media(ARTICLES){id_secteur=8}{par date}{inverse}{doublons}{pagination 20}>
+						<BOUCLE_media(ARTICLES){id_secteur=8}{par date}{inverse}{doublons}{pagination 8}>
               <div class="fichemenudroite">
 
 
    <BOUCLE_image_media(DOCUMENTS){id_article}{mode=document}{paysage}{extension==(png|jpg|gif)}{par hasard}{0,1}>
-	    [(#FICHIER|copie_locale||image_recadre{400,400,'center center'}|image_reduire{50,50})] 
+	     <a class="thickbox" href="#URL_DOCUMENT" title="voir le reste" rel="photos">[(#FICHIER|copie_locale||image_recadre{400,400,'center center'}|image_reduire{50,50})]</a>
+
    </BOUCLE_image_media>
-	 	         [(#LOGO_ARTICLE_RUBRIQUE||image_recadre{50,50,'center center'}|image_reduire{50,50})]
+	 	       <a class="thickbox" href="#URL_ARTICLE" title="[(#TITRE|texte_backend)]" rel="[(#TITRE|texte_backend)]">[(#LOGO_ARTICLE_RUBRIQUE||image_recadre{400,400,'center center'}|image_reduire{50,50})]</a>
    <//BOUCLE_image_media>
 
-							<h5><a href="#URL_ARTICLE">#TITRE</a></h5>
+							<h5>#TITRE</h5>
 							<p><small>[(#DATE|affdate)]</small></p>
 						</div>
 						</BOUCLE_media>
