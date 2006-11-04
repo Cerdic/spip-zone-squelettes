@@ -7,7 +7,7 @@
 	<INCLURE{fond=inc_head}>
 	<style>
 		.primary .itemtext .spip_logos { margin: 0 6px 3px 0; }
-		.primary .itemtext p { margin: 3px 0; text-align: justify; }
+		.primary .itemtext p { /*margin: 3px 0; text-align: justify;*/ }
 	</style>
 </head>
 <body class="page_index">
@@ -23,6 +23,14 @@
 			<h1 style="display: none;">#NOM_SITE_SPIP</h1>
 		</div><!-- itemhead -->
 		<div class="itemtext">
+		
+			<B_event_list>
+			<ul style="list-style: none; margin: 0; padding: 0;">
+				<BOUCLE_event_list(EVENEMENTS) {agendafull date_debut, date_fin} {statut=publie}{par date_fin}{age_fin<0} {0,3}>
+				<li style="margin: 0; padding: 0;"><INCLURE{fond=inc_hcal}{id_evenement}></li>
+				</BOUCLE_event_list>
+			</ul><br /><br />
+			</B_event_list>
 
 			<BOUCLE_articles_une(ARTICLES) {titre_mot=une} {!par date}{age<150} {0,2} {doublons}>
 			[(#LOGO_ARTICLE_RUBRIQUE|left|#URL_RUBRIQUE|image_reduire{75})]
