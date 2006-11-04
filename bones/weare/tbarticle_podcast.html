@@ -17,18 +17,59 @@
   <h3>(#SURTITRE)</h3>
   ]
   <h2>#TITRE</h2>
- 
+    <p><small>[(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small></p>
+
+ [<p class="lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+
    [<div class="tbimage">(#LOGO_ARTICLE_RUBRIQUE||image_recadre{100,100,'center center'}|image_reduire{100,100})</div>]	
+
+
 
 [
   <div class="tbtexte">(#TEXTE)
 </div>]
+
+
         <br class="nettoyeur" />
 
-  <p><small>[(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small></p>
- [<h3>(#SOUSTITRE)</h3>]
-  [ <p>(#MODELE{doc_player,id_article})</p>] 
-  </BOUCLE_article_principal>
+
+
+<BOUCLE_doc (DOCUMENTS) {id_document}>
+<div class='spip_document_#ID_DOCUMENT spip_documents[ spip_documents_(#ENV{align})][ (#ENV{class})] spip_lien_ok'[ style='float:(#ENV{align}|match{left|right});']>
+[(#TYPE_DOCUMENT|=={MP3}|?{
+[(#ID_VIGNETTE|?{
+[(#LOGO_DOCUMENT||image_reduire{200,200})]
+,
+''
+})]
+[<div class='spip_doc_titre'[ style='width:(#LOGO_DOCUMENT||largeur|min{200}|max{200})px;']>
+<strong>(#TITRE)</strong>
+</div>]
+[<div class='spip_doc_descriptif'[ style='width:(#LOGO_DOCUMENT||largeur|min{200}|max{200})px;']>
+(#DESCRIPTIF)#NOTES
+</div>]
+[(#URL_DOCUMENT|dewplayer)]
+,
+<a href="[(#ENV{lien}|sinon{#URL_DOCUMENT})]" type="#MIME_TYPE"[ class="(#ENV{lien_class})"]><img src='[(#LOGO_DOCUMENT||extraire_attribut{src})]' width='[(#LOGO_DOCUMENT||largeur)]' height='[(#LOGO_DOCUMENT||hauteur)]' alt='#TYPE_DOCUMENT - [(#TAILLE|taille_en_octets)]' title='#TYPE_DOCUMENT - [(#TAILLE|taille_en_octets)]' /></a>
+[
+<div class='spip_doc_titre'[ style='width:(#LOGO_DOCUMENT||largeur|min{350}|max{120})px;']>
+<strong>(#TITRE)</strong>
+</div>][
+<div class='spip_doc_descriptif'[ style='width:(#LOGO_DOCUMENT||largeur|min{350}|max{120})px;']>
+(#DESCRIPTIF)#NOTES
+</div>]
+})]
+</div>
+</BOUCLE_doc>
+
+
+[(#MODELE{article_portfolio,id_article})]
+
+ [<p>(#SOUSTITRE)</p>]
+
+
+ </BOUCLE_article_principal>
+   #FORMULAIRE_ADMIN
 </div>
 </body>
 </html>
