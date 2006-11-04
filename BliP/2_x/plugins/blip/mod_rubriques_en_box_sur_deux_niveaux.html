@@ -1,0 +1,23 @@
+#CACHE{240*3600}
+[(#REM) Informations sur http://www.cent20.net/spip.php?article117 ]
+
+<div class="element"><div class="texte_principal">		
+<div class="menu_lateral">
+<BOUCLE_article(ARTICLES) {id_article=#ENV{id_actuel}}>
+[(#ENV{page_actuelle}|=={'article'}|?{' ',''})<INCLURE{fond=imod_rubriques_en_box_sur_deux_niveaux}{id_rubrique}{lang}>]
+</BOUCLE_article>
+
+<BOUCLE_rubrique(RUBRIQUES) {id_rubrique=#ENV{id_actuel}}>
+[(#ENV{page_actuelle}|=={'rubrique'}|?{' ',''})<INCLURE{fond=imod_rubriques_en_box_sur_deux_niveaux}{id_rubrique}{lang}>]
+</BOUCLE_rubrique>
+
+
+[(#ENV{id_actuel}|!={''}|?{'',' '})	<INCLURE{fond=imod_rubriques_en_box_sur_deux_niveaux}{lang}>]
+
+[(#ENV{page_actuelle}|=={'rubrique'}|?{'',' '})
+	[(#ENV{page_actuelle}|=={'article'}|?{'',' '})
+	<INCLURE{fond=imod_rubriques_en_box_sur_deux_niveaux}{lang}>
+	]
+]
+</div>
+</div></div>

@@ -1,0 +1,108 @@
+#CACHE{240*3600}
+[(#REM) Informations sur http://www.cent20.net/spip.php?article117 ]
+
+<div class="element"><div class="texte_principal">		
+<div class="menu_lateral">
+
+	<div class="menu">
+		<a href="#URL_PAGE{sommaire}"[(#ENV{page_actuelle}|=={'sommaire'}|?{' class="on"',' })]><:blip:actualite:></a>
+	</div>	
+	[(#ENV{page_actuelle}|=={'sommaire'}|?{' ',''})
+	
+		<div class="sous_menu gris_fonce"><:blip:afficher_les_derniers:></div>
+		
+		[(#ENV{tri}|=={''}|?{<div class="sous_menu"><a class="on" href="[(#URL_PAGE{sommaire}|parametre_url{'tri','articles'})]"><:blip:articles_publies:></a></div>
+			, [(#ENV{tri}|=={'articles'}|?{<div class="sous_menu"><a class="on" href="[(#URL_PAGE{sommaire}|parametre_url{'tri','articles'})]"><:blip:articles_publies:></a></div>
+			,<div class="sous_menu"><a href="[(#URL_PAGE{sommaire}|parametre_url{'tri','articles'})]"><:blip:articles_publies:></a></div>})]
+		})]
+		
+		[(#ENV{tri}|=={'commentaires'}|?{
+			<div class="sous_menu"><a class="on" href="[(#URL_PAGE{sommaire}|parametre_url{'tri','commentaires'})]"><:blip:commentaires_postes2:></a></div>
+			,<div class="sous_menu"><a href="[(#URL_PAGE{sommaire}|parametre_url{'tri','commentaires'})]"><:blip:commentaires_postes2:></a></div>
+		})]
+		
+		[(#ENV{tri}|=={'documents'}|?{
+			<div class="sous_menu"><a class="on" href="[(#URL_PAGE{sommaire}|parametre_url{'tri','documents'})]"><:blip:document_publie:></a></div>
+			,<div class="sous_menu"><a href="[(#URL_PAGE{sommaire}|parametre_url{'tri','documents'})]"><:blip:document_publie:></a></div>
+		})]
+		
+	]
+	<div class="menu">
+		<a href="#URL_PAGE{rubrique}"[(#ENV{page_actuelle}|=={'rubrique'}|?{' class="on"',' })]><:blip:rubriques:></a>
+	</div>
+	<div class="menu">
+		<a href="#URL_PAGE{article}"[(#ENV{page_actuelle}|=={'article'}|?{' class="on"',' })]><:blip:articles:></a>
+	</div>
+	[(#ENV{page_actuelle}|=={'article'}|?{' ',''})
+	
+		[(#ENV{id_actuel}|=={''}|?{' ',''})
+			<div class="sous_menu gris_fonce"><:blip:articles_trier_par:></div>
+
+			[(#ENV{tri}|=={''}|?{<div class="sous_menu"><a class="on" href="[(#URL_PAGE{article}|parametre_url{'tri','date'})]"><:blip:date_de_publication:></a></div>
+			, [(#ENV{tri}|=={'date'}|?{<div class="sous_menu"><a class="on" href="[(#URL_PAGE{article}|parametre_url{'tri','date'})]"><:blip:date_de_publication:></a></div>
+			,<div class="sous_menu"><a href="[(#URL_PAGE{article}|parametre_url{'tri','date'})]"><:blip:date_de_publication:></a></div>})]
+			})]	
+
+			[(#ENV{tri}|=={'date_modif'}|?{
+			<div class="sous_menu"><a class="on" href="[(#URL_PAGE{article}|parametre_url{'tri','date_modif'})]"><:blip:date_de_mise_a_jour:></a></div>
+			,<div class="sous_menu"><a href="[(#URL_PAGE{article}|parametre_url{'tri','date_modif'})]"><:blip:date_de_mise_a_jour:></a></div>
+			})]
+
+			[(#ENV{tri}|=={'popularite'}|?{
+			<div class="sous_menu"><a class="on" href="[(#URL_PAGE{article}|parametre_url{'tri','popularite'})]"><:blip:popularite:></a></div>
+			,<div class="sous_menu"><a href="[(#URL_PAGE{article}|parametre_url{'tri','popularite'})]"><:blip:popularite:></a></div>
+			})]
+
+			[(#ENV{tri}|=={'visites'}|?{
+			<div class="sous_menu"><a class="on" href="[(#URL_PAGE{article}|parametre_url{'tri','visites'})]"><:blip:visiteurs_nombre_de:></a></div>
+			,<div class="sous_menu"><a href="[(#URL_PAGE{article}|parametre_url{'tri','visites'})]"><:blip:visiteurs_nombre_de:></a></div>
+			})]
+		]
+
+
+
+
+
+
+
+	
+	
+	]
+
+
+
+
+
+	
+
+<BOUCLE_article(ARTICLES) {id_article=#ENV{id_actuel}}>
+[(#ENV{page_actuelle}|=={'article'}|?{' ',''})<INCLURE{fond=imod_rubriques_en_box_depliables}{id_rubrique}{lang}>]
+</BOUCLE_article>
+
+<BOUCLE_rubrique(RUBRIQUES) {id_rubrique=#ENV{id_actuel}}>
+[(#ENV{page_actuelle}|=={'rubrique'}|?{' ',''})<INCLURE{fond=imod_rubriques_en_box_depliables}{id_rubrique}{lang}>]
+</BOUCLE_rubrique>
+
+
+[(#ENV{id_actuel}|!={''}|?{' ',''})
+	[(#ENV{page_actuelle}|=={'rubrique'}|?{'',' '})
+		[(#ENV{page_actuelle}|=={'article'}|?{'',' '})
+			<INCLURE{fond=imod_rubriques_en_box_depliables}{lang}>
+		]
+	]
+]
+
+[(#ENV{id_actuel}|=={''}|?{' ',''})	<INCLURE{fond=imod_rubriques_en_box_depliables}{lang}>]
+
+
+
+
+	<div class="menu"><a href="#URL_PAGE{auteur}"[(#ENV{page_actuelle}|=={'auteur'}|?{' class="on"',' })]>
+	<:blip:auteurs:>
+	</a></div>
+
+
+
+
+</div>
+</div></div>
