@@ -1,42 +1,24 @@
-<!-- coldroitemenudroite2 -->
-<h4>MP3 VIDEO PODCAST PHOTO</h4>
-<BOUCLE_mediacast(RUBRIQUES){id_secteur=8}>
+<!-- inc_media.html -->
+<h4>MP3 VIDEO PODCAST PHOTO&nbsp;<a href="#URL_PAGE{backend,id_rubrique=8}" title="<:syndiquer_site:>"><img src="#CHEMIN{feed.png}" alt="<:icone_suivi_activite:>" width="16" height="16" class="format_png" /></a> </h4>
+    <B_articles>
 
 <div id="coldroitemenudroite2">
-<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par date} {inverse}>
 
-  <BOUCLE_syndic(SYNDIC_ARTICLES){par date} {inverse}>
-  <BOUCLE_articles(ARTICLES){id_rubrique=#_principale:ID_RUBRIQUE} {par date} {inverse} {doublons} {date>#DATE}>
+  <BOUCLE_articles(ARTICLES){id_secteur=8}{par date}{inverse}{doublons}{pagination}>
   <div class="fichemenudroite">
     <BOUCLE_image_media(DOCUMENTS){id_article}{mode=document}{paysage}{extension==(png|jpg|gif)}{par hasard}{0,1}>
     <a class="thickbox" href="#URL_DOCUMENT" title="voir le reste" rel="photos">[(#FICHIER|copie_locale||image_recadre{400,400,'center center'}|image_reduire{50,50})]</a>
     </BOUCLE_image_media>
     <a class="thickbox" href="#URL_ARTICLE" title="[(#TITRE|texte_backend)]" rel="photos">[(#LOGO_ARTICLE_RUBRIQUE||image_recadre{400,400,'center center'}|image_reduire{50,50})]</a>
     <//BOUCLE_image_media>
-    <h5><a href="[(#URL_PAGE{tbarticle_podcast,id_article=#ID_ARTICLE})]?keepThis=true&TB_iframe=false&height=600&width=600" title="[(#TITRE|texte_backend)]" class="thickbox">#TITRE</a></h5>
+    <h5><a href="[(#URL_PAGE{tbarticle_podcast,id_article=#ID_ARTICLE})]?keepThis=true&amp;TB_iframe=false&amp;height=400&amp;width=400" title="[(#TITRE|texte_backend)]" class="thickbox">#TITRE</a></h5>
     <p><small>[(#DATE|affdate)]</small></p>
   </div>
   </BOUCLE_articles>
-  <div class="fichemenudroite">
-    <h5><a href="[(#URL_PAGE{tbarticle_podcast,id_article=#ID_ARTICLE})]?keepThis=true&TB_iframe=false&height=600&width=600" title="[(#TITRE|texte_backend)]" class="thickbox">#TITRE</a></h5>
-    <p><small>[(#DATE|affdate)]</small></p>
+   [
+  <p class="pagination">(#PAGINATION)</p>
+  ]
   </div>
-  </BOUCLE_syndic>
-    </BOUCLE_rubriques>
-  <BOUCLE_article_fin(ARTICLES){id_secteur}{par date} {inverse} {doublons}>
-  <div class="fichemenudroite">
-  <BOUCLE_image_media2(DOCUMENTS){id_article}{mode=document}{paysage}{extension==(png|jpg|gif)}{par hasard}{0,1}>
-    <a class="thickbox" href="#URL_DOCUMENT" title="voir le reste" rel="photos">[(#FICHIER|copie_locale||image_recadre{400,400,'center center'}|image_reduire{50,50})]</a>
-    </BOUCLE_image_media2>
-    <a class="thickbox" href="#URL_ARTICLE" title="[(#TITRE|texte_backend)]" rel="[(#TITRE|texte_backend)]">[(#LOGO_ARTICLE_RUBRIQUE||image_recadre{400,400,'center center'}|image_reduire{50,50})]</a>
-    <//BOUCLE_image_media2>
 
-    <h5><a href="[(#URL_PAGE{tbarticle_podcast,id_article=#ID_ARTICLE})]?keepThis=true&TB_iframe=false&height=600&width=600" title="[(#TITRE|texte_backend)]" class="thickbox">#TITRE</a></h5>
-    <p><small>[(#DATE|affdate)]</small></p>
-  </div>
-  </BOUCLE_article_fin>
-
-</div>
-</BOUCLE_mediacast>
-
+  </B_articles>
 
