@@ -5,7 +5,7 @@
 
 <div id="coldroitemenudroite2">
 
-  <BOUCLE_articles(ARTICLES){id_secteur=8}{par date}{inverse}{doublons}{pagination}>
+  <BOUCLE_articles(ARTICLES){id_secteur=8}{par date}{inverse}{doublons}{pagination 10}>
   <div class="fichemenudroite">
       <B_image_media>
 
@@ -18,14 +18,43 @@
 
      <//B_image_media>
      
-    <h5><a href="[(#URL_PAGE{tbarticle_podcast,id_article=#ID_ARTICLE})]?keepThis=true&amp;TB_iframe=false&amp;height=200&amp;width=400" title="[(#TITRE|texte_backend)]" class="thickbox">#TITRE</a></h5>
+    <h5><a href="[(#URL_PAGE{tbarticle_podcast,id_article=#ID_ARTICLE})]?keepThis=true&amp;TB_iframe=false&amp;height=400&amp;width=400" title="[(#TITRE|texte_backend)]" class="thickbox">#TITRE</a></h5>
     <p><small>[(#DATE|affdate)]</small></p>
   </div>
   </BOUCLE_articles>
    [
   <p class="pagination">(#PAGINATION)</p>
   ]
+  
   </div>
 
 </B_articles>
 
+
+<h4>PHOTOSLINKS&nbsp;<a href="#URL_PAGE{backend,id_rubrique=8}" title="<:syndiquer_site:>"><img src="#CHEMIN{feed.png}" alt="<:icone_suivi_activite:>" width="16" height="16" class="format_png" /></a> </h4>
+
+<B_liens>
+
+<div id="coldroitemenudroite2">
+
+  <BOUCLE_liens(SYNDIC_ARTICLES) {age<180} {par date}{inverse}{doublons}{pagination 10}>
+  <div class="fichemenudroite">
+      
+
+             <a class="thickbox" href="[(#DESCRIPTIF|extraire_attribut{src})]" [ title="(#TITRE|texte_backend)"]  rel="photos"><img src="[(#DESCRIPTIF||extraire_attribut{src})]" width="50" height="50"  [ alt="(#NOM_SITE|texte_backend)"] /></a>
+
+
+
+     
+    <h5><a href="[(#URL_PAGE{tblinks,id_syndic=#ID_SYNDIC})]?keepThis=true&amp;TB_iframe=false&amp;height=400&amp;width=400" [ title="(#NOM_SITE|texte_backend)"]  class="thickbox">#TITRE</a></h5>
+    <p><small>[(#DATE|affdate)]</small></p>
+  </div>
+  </BOUCLE_liens>
+   [
+  <p class="pagination">(#PAGINATION)</p>
+  ]
+  
+  </div>
+
+</B_liens>
+	[(#MODELE{fpiprbox}{tags=wearenameless})]
