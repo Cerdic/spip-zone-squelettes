@@ -1,5 +1,5 @@
 
-[(#REM)<!-- MiniGriSpip 1.4 - 2006 (c) FredoMkb -->]
+[(#REM)<!-- MiniGriSpip 1.4.2 - 2006 (c) FredoMkb -->]
 #CACHE{7200}
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="#LANG"> <!-- plan.html -->
@@ -39,6 +39,8 @@
 							<a href="#mgs_plan_auteurs"><:mgs_auteurs:></a>
 							&nbsp;&nbsp;|&nbsp;&nbsp;
 							<a href="#mgs_plan_mots"><:mgs_mots:></a>
+							&nbsp;&nbsp;|&nbsp;&nbsp;
+							<a href="#mgs_plan_sites"><:mgs_sites:></a>
 							</li>
 						</ul>
 					</div> <!-- /mgs_bloc -->
@@ -154,6 +156,31 @@
 						</ul>
 					</div> <!-- /mgs_bloc -->
 					</B_plan_mots>
+					
+					<!-- Bloc liste sites -->
+					<B_plan_sites>
+					<div class="mgs_bloc" id="mgs_plan_sites">
+						<ul class="general">
+							<li class="mgs_menu_titre">
+								<:mgs_sites_ref:>#GRAND_TOTAL&nbsp;<small><:mgs_sites_tri_nom:></small>
+								[&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;]
+							</li>
+							<BOUCLE_plan_sites(SITES) {tout} {par nom_site} {pagination}>
+							<li class="mgs_menu_item_article"> 
+								[<div class="mgs_logo">(#LOGO_SITE|right|#URL_SITE|image_reduire{45})</div>]
+								<h3 class="mgs_titre">&nbsp;&nbsp;<a href="#URL_SITE">#NOM_SITE</a></h3>
+								<p class="mgs_infos"><:mgs_site_syndic:>[(#URL_SYNDIC|?{<strong>#URL_SYNDIC</strong>,<:mgs_site_syndic_non:>})]</p> 
+								<div class="mgs_chemin"></div>
+							</li> 
+							</BOUCLE_plan_sites>
+							<li class="mgs_menu_titre">
+								[<:mgs_sites_ref:>#GRAND_TOTAL&nbsp;<small><:mgs_sites_tri_nom:></small>
+								&nbsp;&nbsp;&#124;&nbsp;(#PAGINATION)&nbsp;&#124;&nbsp;-&nbsp;]
+								<small><a href="[(#SELF)]"><:mgs_haut:></a></small>
+							</li>
+						</ul>
+					</div> <!-- /mgs_bloc -->
+					</B_plan_sites>
 					
 				</div> <!-- /contenu -->
 			</div> <!-- /corps -->

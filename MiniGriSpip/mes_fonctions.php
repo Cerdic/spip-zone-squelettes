@@ -2,7 +2,7 @@
 
 // Copyright 2005 Maxime GEORGE-BOURREAU
 // Adaptation pour SPIP 1.9
-// MiniGriSpip 1.4 - 2006 (c) FredoMkb
+// MiniGriSpip 1.4.2 - 2006 (c) FredoMkb
 
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by

@@ -1,13 +1,13 @@
 <?php
 
-// MiniGriSpip 1.4 - 2006 (c) FredoMkb
+// MiniGriSpip 1.4.2 - 2006 (c) FredoMkb
 // This is a SPIP language file  --  Ceci est un fichier langue de SPIP
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // A
 'mgs_accueil' => 'Accueil',
-'mgs_aucun_article' => 'La rubrique s&eacute;lectionn&eacute;e ne contient aucun article...',
+'mgs_aucun_article' => 'Il n\'y a aucun article publi&eacute; pour l\'instant...',
 'mgs_aucune_rubrique' => 'La rubrique demand&eacute;e est intruvable...',
 'mgs_aucun_article_auteur' => 'Aucun article publi&eacute; pour l\'instant...',
 'mgs_article' => 'Article',
@@ -26,6 +26,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'mgs_articles_syndic' => 'Articles syndiqu&eacute;s',
 
 // B
+'mgs_bienvenue' => 'Bienvenue',
 'mgs_breve' => 'Br&egrave;ve',
 'mgs_breves' => 'Br&egrave;ves',
 'mgs_breves_trouvees' => 'Br&egrave;ves trouv&eacute;es : ',
@@ -77,6 +78,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // S
 'mgs_sites' => 'Sites',
+'mgs_sites_ref' => 'Sites r&eacute;f&eacute;renc&eacute;s : ',
+'mgs_sites_tri_nom' => '(tri&eacute;s par nom)',
+'mgs_site_syndic' => 'Syndication : ',
+'mgs_site_syndic_non' => 'ce site n\'est pas encore syndiqu&eacute;...',
 
 );
 
