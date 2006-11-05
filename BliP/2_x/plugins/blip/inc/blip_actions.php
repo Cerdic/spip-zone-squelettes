@@ -278,6 +278,9 @@
 	}
 
 	// Afficher toute la configuration ...
+	
+	//IDEM ICI : tout ceci est bien compliqué me semble t'il ...
+	
 	function BliP_afficher_configuration () {
 		if (BliP_verifier_base()) {
 			echo "<br />";
@@ -371,6 +374,8 @@
 		'lienpage' => "Lier vers une page du site"
 	);
 
+	//IDEM ICI : tout ceci est bien compliqué me semble t'il ...
+	
 	$blipconfig_positions = array(
 		'surtitre' => "Surtitre",
 		'surtitre-sommaire' => "Surtitre - Restreindre aux pages 'sommaire'",
