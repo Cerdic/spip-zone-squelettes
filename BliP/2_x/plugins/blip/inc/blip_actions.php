@@ -370,8 +370,8 @@
 	function BliP_generer_formulaire($action) {
 	$blipconfig_menutypes = array(
 		'dynamique' => "Inclure un module",
-		'statique' => "Afficher du texte",
-		'lienpage' => "Lier vers une page du site"
+		'statique' => "Afficher un texte",
+		'lienpage' => "Afficher un lien vers une page du site"
 	);
 
 	//IDEM ICI : tout ceci est bien compliqué me semble t'il ...
@@ -573,7 +573,7 @@ END;
 	debut_cadre_relief("", false, "", bouton_block_invisible('blip_position')._T('blipconfig:blip_position_info'));
 	echo BliP_generer_option_select('type', $blipconfig_menutypes, $formval['type'], "blip_update_type(this)");
 	echo debut_block_invisible('blip_position');
-	echo "<p>Le menu déroulant ci-dessus vous permet de choisir le type de modification que vous voulez faire.</p>";
+	echo "<p>Le menu d&eacute;roulant ci-dessus vous permet de choisir le type de modification que vous voulez faire.</p>";
 	echo fin_block();
 	fin_cadre_relief();
 	echo "<br />";
@@ -581,10 +581,9 @@ END;
 	debut_cadre_relief("", false, "", bouton_block_invisible('blip_restriction')._T('blipconfig:blip_restriction_info'));
 	echo BliP_generer_option_select('position', $blipconfig_positions, $formval['position']);
 	echo "<br />";
-	echo '<br /><b>Restreindre l\'affichage &agrave; l\'ID n&deg; </b><input size="6" maxlength="6" name="id_item" type="text" id="id_item" value="'.$formval['id_item'].'" /><br />';
 	echo '<br /><b>Ordre de positionnement dans le flux </b><input size="2" maxlength="2" name="ordre" type="text" id="ordre" value="'.$formval['ordre'].'" /> ';
 	echo debut_block_invisible('blip_restriction');
-	echo "<p>Choisissez le positionnement de votre &eacute;l&egrave;ment de configuration. Pour plus d'information, reportez vous aux exemples de la documentation de BliP</p>";
+	echo "<p>Choisissez le positionnement de votre inclusion.</p>";
 	echo fin_block();
 	fin_cadre_relief();
 	echo "<br />";
@@ -593,7 +592,7 @@ END;
 	debut_cadre_relief("", false, "", bouton_block_invisible('blip_titre')._T('blipconfig:blip_titre_info'));
 	echo '<input name="titre" type="text" id="titre" value="'.$formval['titre'].'" size="70" /> ';
 	echo debut_block_invisible('blip_titre');
-	echo "<p>Le titre sera affiché en ligne</p>";
+	echo "<p>Le titre sera affich&eacute; en ligne.</p>";
 	echo fin_block();
 	fin_cadre_relief();
 	echo "<br />";
@@ -603,31 +602,45 @@ END;
 	debut_cadre_relief("", false, "", bouton_block_invisible('blip_descriptif')._T('blipconfig:blip_descriptif_info'));
 	echo '<input name="descriptif" type="text" id="descriptif" value="'.$formval['descriptif'].'" size="70" />';
 	echo debut_block_invisible('blip_descriptif');
-	echo "<p><Le descriptif sera affiché au survol du lien.</p>";
+	echo "<p><Le descriptif sera affich&eacute; au survol du lien.</p>";
 	echo fin_block();
 	fin_cadre_relief();
 	echo "<br />";
-	echo "</div>\n";
+	echo "</div>";
 
-	debut_cadre_relief("", false, "", bouton_block_invisible('blip_texte')._T('blipconfig:blip_texte_info'));
-
+	
+	
 	echo '<div id="Layer_texte" style="display: '.$display_texte.'; margin-top: 1px;">';
-	echo 'Texte<br /><textarea name="texte" type="text" id="texte" cols="50" rows="5">'.$formval['texte'].'</textarea>';
-	echo "</div>\n";
-
-	echo '<div id="Layer_modules" style="display: '.$display_modules.'; margin-top: 1px;">';
-	echo 'Module '.BliP_generer_option_select('module', $blipconfig_modules, $formval['texte'].".html");
-	echo "</div>\n";
-
-	echo '<div id="Layer_pages" style="display: '.$display_pages.'; margin-top: 1px;">';
-	echo 'Page '.BliP_generer_option_select('page', $blipconfig_pages, $formval['texte']);
-//    echo 'Parametre <input name="parametre" type="text" value="" size="5" />';
-	echo "</div>\n";
-
+	debut_cadre_relief("", false, "", bouton_block_invisible('blip_texte')._T('blipconfig:blip_texte_info'));
+	echo '<br /><textarea name="texte" type="text" id="texte" cols="50" rows="5">'.$formval['texte'].'</textarea>';
 	echo debut_block_invisible('blip_texte');
 	echo fin_block();
 	fin_cadre_relief();
 	echo "<br />";
+	echo "</div>";
+
+
+	echo '<div id="Layer_modules" style="display: '.$display_modules.'; margin-top: 1px;">';
+	debut_cadre_relief("", false, "", bouton_block_invisible('blip_modules')._T('blipconfig:blip_modules_info'));
+	echo BliP_generer_option_select('module', $blipconfig_modules, $formval['texte'].".html");
+	echo debut_block_invisible('blip_modules');
+	echo fin_block();
+	fin_cadre_relief();
+	echo "<br />";
+	echo "</div>";
+
+	echo '<div id="Layer_pages" style="display: '.$display_pages.'; margin-top: 1px;">';
+	debut_cadre_relief("", false, "", bouton_block_invisible('blip_pages')._T('blipconfig:blip_pages_info'));
+	
+	echo BliP_generer_option_select('page', $blipconfig_pages, $formval['texte']);
+	echo '<b> n&deg; </b><input size="6" maxlength="6" name="id_item" type="text" id="id_item" value="'.$formval['id_item'].'" /><br />';
+//    echo 'Parametre <input name="parametre" type="text" value="" size="5" />';
+	echo debut_block_invisible('blip_pages');
+	echo "<p>Exemple : Pour faire un lien vers l'article n°1, choisir 'article' dans le premier menu déroulant, et saisir '1' comme n&deg;.</p>";
+	echo fin_block();
+	fin_cadre_relief();
+	echo "<br />";
+	echo "</div>";
 
 	echo '<div id="Layer_style" style="display: '.$display_style.'; margin-top: 1px;">';
 	debut_cadre_relief("", false, "", bouton_block_invisible('blip_style')._T('blipconfig:blip_style_info'));
