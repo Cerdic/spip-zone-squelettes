@@ -1,0 +1,23 @@
+[(#REM)
+Necessite le plugin splikrbox et d'etre inclus dans un squelette avec la balise #INSERT_HEAD
+]	
+<h4>PHOTOSLINKS&nbsp;<a href="#URL_PAGE{backend,id_rubrique=8}" title="<:syndiquer_site:>"><img src="#CHEMIN{feed.png}" alt="<:icone_suivi_activite:>" width="16" height="16" class="format_png" /></a> </h4>
+
+<B_flickr>
+
+			<BOUCLE_flickr(FLICKR_PHOTOS_SEARCH){user_id?}{tags #ENV{tags,''}}{!par date_taken}{0,#ENV{taille,12}}>
+					 <a class="thickbox" href="#URL_PHOTO" rel="photos">
+			   [(#LOGO_PHOTO{s}|inserer_attribut{'style','widht:75px;height:75px;'})]
+			 </a>
+			
+			[(#COMPTEUR_BOUCLE)]
+			</BOUCLE_flickr>
+		
+
+			</B_flickr>
+
+<BOUCLE_info(FLICKR_PHOTOS_SEARCH) {tags wearenameless}{tag_mode all}{par date_posted}>
+ <a class="thickbox" href="#URL_PHOTO" rel="photos">
+			   [(#LOGO_PHOTO{s})]
+			 </a>
+</BOUCLE_info>
