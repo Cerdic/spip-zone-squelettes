@@ -25,6 +25,42 @@
 <body id="accueil">
 <div id="portail">
 
+<div class="portail_element">
+
+#LOGO_SITE_SPIP
+
+<p>
+#DESCRIPTIF_SITE_SPIP
+</p>
+
+logo site + descriptif + mention légales ...
+</div>
+
+
+
+<BOUCLE_rubriques_secteurs(RUBRIQUES) {id_parent=0} {par titre}{lang}>
+	<div class="portail_element">
+	
+	<div class="imgfloatleft">[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|reduire_image{100,0})]</div>
+	<p><h3><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h3></p><p>#TEXTE</p>
+	
+	
+	<div style="clear:left; float:left; padding: 10px 0 0 10px">
+	<a href="#URL_RUBRIQUE"><span class="gris_fonce"><:blip:articles_derniers_publies:><span> :</a>
+	</div>	
+		
+	<BOUCLE_articles_rubrique(ARTICLES){id_secteur}{par date}{inverse}{pagination}{lang}{0,2}>
+		<div style="clear:left; float:left; padding: 0 0 0 10px">
+		<a style="clear:left; float:left;" href="#URL_RUBRIQUE">- [<span class="gris_clair">(#SURTITRE)</span> ]#TITRE[ (#SOUSTITRE)]</a>
+		</div>	
+	</BOUCLE_articles_rubrique>	
+	
+	</div>		
+</BOUCLE_rubriques_secteurs>
+
+<div style="clear:left; float:left; margin:10px; padding:10px;">
+<INCLURE{fond=inc-compilateur}{zone=mentions_techniques}{lang}>	
+</div>	
 
 
 </div><!-- fin portail -->

@@ -41,9 +41,7 @@
 
 	[(#REM) Construction du Fil d'Ariane ]
 	<div class="menu_auxiliaire">
-		<ul>
-			<li><a href="[(#URL_PAGE{sommaire})]"><:blip:accueil:></a><BOUCLE_ariane(HIERARCHIE){id_article}>&gt;<a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane>[ &gt; (#TITRE|supprimer_numero|couper{80})]</li>
-		</ul>
+		<a href="[(#URL_PAGE{accueil})]"><:blip:accueil:></a> &amp; <a href="[(#URL_PAGE{sommaire})]"><:blip:actualite:></a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane>[ &gt; (#TITRE|supprimer_numero|couper{80})]
 	</div><!-- fin menu_auxiliaire-->
 
 	[(#REM) Construction du contenu de la page : Affichage de l'article, du portfolio, des documents joints, du forum et du formulaire pour poster un message]
@@ -185,32 +183,18 @@
 
 <div id="corps">
 
-	[(#REM) Construction du menu auxiliaire de la page article]
+	[(#REM) Construction du Fil d'Ariane ]
 	<div class="menu_auxiliaire">
-		<ul>
-			[(#ENV{tri}|=={'visites'}|?{
-			<li><a class="active" href="[(#URL_PAGE{article}|parametre_url{'tri','visites'})]"><:blip:visiteurs_nombre_de:></a></li>
-			,<li><a href="[(#URL_PAGE{article}|parametre_url{'tri','visites'})]"><:blip:visiteurs_nombre_de:></a></li>
-			})]
+	
+		<a href="[(#URL_PAGE{accueil})]"><:blip:accueil:></a> &amp; <a href="[(#URL_PAGE{sommaire})]"><:blip:actualite:></a> &gt; <:blip:articles:> <:blip:tries:> <:blip:par:>
+ 
+		[(#ENV{tri}|=={'visites'}|?{<:blip:visiteurs_nombre_de:>,''})]	
+		[(#ENV{tri}|=={'popularite'}|?{<:blip:popularite:>,''})]
+		[(#ENV{tri}|=={'date_modif'}|?{<:blip:date_de_mise_a_jour:>,''})]
+		[(#ENV{tri}|=={''}|?{<:blip:date_de_publication:>,[(#ENV{tri}|=={'date'}|?{<:blip:date_de_publication:>,''})]})]
 		
-			[(#ENV{tri}|=={'popularite'}|?{
-			<li><a class="active" href="[(#URL_PAGE{article}|parametre_url{'tri','popularite'})]"><:blip:popularite:></a></li>
-			,<li><a href="[(#URL_PAGE{article}|parametre_url{'tri','popularite'})]"><:blip:popularite:></a></li>
-			})]
+	</div><!-- fin menu_auxiliaire-->
 
-			[(#ENV{tri}|=={'date_modif'}|?{
-			<li><a class="active" href="[(#URL_PAGE{article}|parametre_url{'tri','date_modif'})]"><:blip:date_de_mise_a_jour:></a></li>
-			,<li><a href="[(#URL_PAGE{article}|parametre_url{'tri','date_modif'})]"><:blip:date_de_mise_a_jour:></a></li>
-			})]
-
-			[(#ENV{tri}|=={''}|?{<li><a class="active" href="[(#URL_PAGE{article}|parametre_url{'tri','date'})]"><:blip:date_de_publication:></a></li>
-			, [(#ENV{tri}|=={'date'}|?{<li><a class="active" href="[(#URL_PAGE{article}|parametre_url{'tri','date'})]"><:blip:date_de_publication:></a></li>
-			,<li><a href="[(#URL_PAGE{article}|parametre_url{'tri','date'})]"><:blip:date_de_publication:></a></li>})]
-			})]
-
-			<li> <:blip:articles_trier_par:> </li>
-		</ul>
-	</div><!-- menu_auxiliaire-->
 	
 	[(#REM) Construction du contenu de la page article en fonction des paramètres passés dans la variable tri]
 	<div class="contenu">	

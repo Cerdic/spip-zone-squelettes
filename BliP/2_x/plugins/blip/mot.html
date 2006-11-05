@@ -38,9 +38,7 @@
 
 	[(#REM) Construction du Fil d'Ariane ]
 	<div class="menu_auxiliaire">
-		<ul>
-			<li><a href="[(#URL_PAGE{sommaire})]"><:blip:accueil:></a>&gt; <a href="#URL_PAGE{mot}"><:mots_clefs:></a><BOUCLE_ariane(GROUPES_MOTS){id_groupe}> &gt; [&nbsp;(#TITRE|couper{80})&nbsp;]</BOUCLE_ariane>[ &gt; &nbsp;(#TITRE|couper{80})&nbsp;]</li>
-		</ul>
+		<a href="[(#URL_PAGE{accueil})]"><:blip:accueil:></a> &amp; <a href="[(#URL_PAGE{sommaire})]"><:blip:actualite:></a> &gt; <a href="#URL_PAGE{mot}"><:mots_clefs:></a><BOUCLE_ariane(GROUPES_MOTS){id_groupe}> &gt; [&nbsp;(#TITRE|couper{80})&nbsp;]</BOUCLE_ariane>[ &gt; &nbsp;(#TITRE|couper{80})&nbsp;]
 	</div><!-- fin menu_auxiliaire-->
 	
 	[(#REM) Construction du contenu de la page mots clefs]
@@ -153,26 +151,13 @@
 
 	[(#REM) Construction du menu auxiliaire de la page mot]
 	<div class="menu_auxiliaire">
-		<ul>		
-			[(#ENV{tri}|=={'alphabetique'}|?{
-			<li><a class="active" href="[(#URL_PAGE{mot}|parametre_url{'tri','alphabetique'})]"><:blip:ordre_alphabetique:></a></li>
-			,<li><a href="[(#URL_PAGE{mot}|parametre_url{'tri','alphabetique'})]"><:blip:ordre_alphabetique:></a></li>
-			})]
+	
+		<a href="[(#URL_PAGE{accueil})]"><:blip:accueil:></a> &amp; <a href="[(#URL_PAGE{sommaire})]"><:blip:actualite:></a> &gt; <:blip:mots_cles_tries_par:>
+		[(#ENV{tri}|=={''}|?{<:blip:theme:>, [(#ENV{tri}|=={'theme'}|?{<:blip:theme:>,''})]})]
+		[(#ENV{tri}|=={'alphabetique'}|?{<:blip:ordre_alphabetique:>,''})]
+		[(#ENV{tri}|=={'popularite'}|?{<:blip:popularite:>,''})]		
 		
-			[(#ENV{tri}|=={'popularite'}|?{
-			<li><a class="active" href="[(#URL_PAGE{mot}|parametre_url{'tri','popularite'})]"><:blip:popularite:></a></li>
-			,<li><a href="[(#URL_PAGE{mot}|parametre_url{'tri','popularite'})]"><:blip:popularite:></a></li>
-			})]
-
-			[(#ENV{tri}|=={''}|?{<li><a class="active" href="[(#URL_PAGE{mot}|parametre_url{'tri','theme'})]"><:blip:theme:></a></li>
-			, [(#ENV{tri}|=={'theme'}|?{<li><a class="active" href="[(#URL_PAGE{mot}|parametre_url{'tri','theme'})]"><:blip:theme:></a></li>
-			,<li><a href="[(#URL_PAGE{mot}|parametre_url{'tri','theme'})]"><:blip:theme:></a></li>})]
-			})]
-
-			<li> <:blip:afficher_les_mots_cles_par:> </li>
-		</ul>
-	</div><!-- menu_auxiliaire-->
-
+	</div><!-- fin menu_auxiliaire-->
 
 	<div class="contenu">
 	
