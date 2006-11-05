@@ -180,6 +180,26 @@
 
 	// SCRIPTS GENERANT LA CONFIGURATION ACTUELLE PAR ZONE. Utilisé sur exec=blip
 	// LIKE car en fait, on peut mettre différent codes : surtitre, surtitre-article etc ... Ceci est géré par le squelette lui même.
+	
+	// TODO : Ci-dessous, c'est pas évolutif. Si on rajoute des zones, il faut faire des copiés collés massif.
+	// L'idéal serait de faire un tableau déclarant les zones possibles et une fonction qui croise le tout.
+	// je fais le tableau php
+
+	function BliP_zone_personnalisables() {
+	$blipconfig_zone = array(
+		"surtitre",
+		"titre_principal",
+		"sous_titre",
+		"menu_principal",
+		"sur_contenu",
+		"barre_laterale",
+		"sous_contenu",
+		"mentions_techniques"
+		);
+	return blipconfig_zone;
+	}
+
+	
 	function BliP_afficher_config_surtitre () {
 		$result = spip_query("SELECT * FROM spip_blip where position LIKE 'surtitre%' ORDER BY ordre");
 		$compte_result = spip_num_rows($result);
@@ -316,8 +336,8 @@
 	}
 
 	function BliP_initialiser_valeurs_formulaire() {
-	//Valeurs par défaut, je les ai complété je pense que c'est ce que tu voulais que je fasse.
 	$blipconfig_item = array(
+	//Valeurs par défaut, je les ai complété je pense que c'est ce que tu voulais que je fasse.
 		'id_config' => "",
 		'position' => "barre_laterale",
 		'id_item' => "0",
