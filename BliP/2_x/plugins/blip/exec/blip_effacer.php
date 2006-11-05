@@ -51,7 +51,6 @@ function exec_blip_effacer() {
     } 
 	
 	
-	
 	debut_gauche();
 	
 	debut_boite_info();

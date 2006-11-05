@@ -9,7 +9,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 include_spip('inc/config');
 include_spip('inc/presentation');
 include_spip('inc/layer');
-
+include_spip('inc/meta');
 include_spip('inc/blip_actions');
 
 function exec_blip_fonctions() {

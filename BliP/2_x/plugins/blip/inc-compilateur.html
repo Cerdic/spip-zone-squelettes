@@ -11,31 +11,6 @@ Il s'agit du compilateur de BliP, c'est ce fichier qui rend le squelette modulai
 <B_compilateur_blip>
 	<div class="#ENV{zone}">[(#ENV{zone}|!={'titre_principal'}|?{'',<a href="#URL_SITE_SPIP">})]
 <BOUCLE_compilateur_blip(BLIP){position IN #ENV{zone},#ENV{zone_restreinte}}{actif=oui}{par ordre}>
-	[(#ID_ITEM|!={#ENV{id_actuel}}|?{'',' '})
-		[(#TYPE|!={'statique'}|?{'',' '})
-			[(#ENV{zone}|!={'barre_laterale'}|?{' ',''})
-			<span[ class="(#STYLE)"]>[<b>(#TITRE|supprimer_numero)</b> ]#TEXTE</span>					
-			]			
-			[(#ENV{zone}|=={'barre_laterale'}|?{' ',''})
-			<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
-			<h1>[(#TITRE|supprimer_numero)]</h1>
-			<div class="element_sur"><span[ class="(#STYLE)"]>#TEXTE</span>
-			</div></div></div><!-- fin element-->			
-			]
-		]	
-		[(#TYPE|!={'dynamique'}|?{'',' '})
-			[(#ENV{zone}|!={'barre_laterale'}|?{' ',''})<INCLURE{fond=#TEXTE}{lang}>]
-			[(#ENV{zone}|=={'barre_laterale'}|?{' ',''})<INCLURE{fond=#TEXTE}{page_actuelle}{id_actuel}{tri}{lang}>]
-			[(#ENV{zone}|=={'sur_contenu'}|?{' ',''})<INCLURE{fond=#TEXTE}{page_actuelle}{id_actuel}{lang}>]
-			[(#ENV{zone}|=={'sous_contenu'}|?{' ',''})<INCLURE{fond=#TEXTE}{page_actuelle}{id_actuel}{lang}>]
-		]
-		[(#TYPE|!={'lienpage'}|?{'',' '})
-			<div class="liens">
-			<a href="[(#URL_PAGE{#TEXTE})]#STYLE" class="menu_#TEXTE" [title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>
-			</div><!-- fin liens-->
-		]		
-	]
-	[(#ID_ITEM|!={'0'}|?{'',' '})
 		[(#TYPE|!={'statique'}|?{'',' '})
 			[(#ENV{zone}|!={'barre_laterale'}|?{' ',''})
 			<span[ class="(#STYLE)"]>[<b>(#TITRE|supprimer_numero)</b> ]#TEXTE</span>					
@@ -55,10 +30,9 @@ Il s'agit du compilateur de BliP, c'est ce fichier qui rend le squelette modulai
 		]
 		[(#TYPE|!={'lienpage'}|?{'',' '})
 			<div class="liens">
-			<a href="[(#URL_PAGE{#TEXTE})]#STYLE" class="menu_#TEXTE" [title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>
+			<a href="[(#URL_SITE_SPIP)]/spip.php?[(#TEXTE)][(#ID_ITEM)]" class="menu_#TEXTE"[ title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>
 			</div><!-- fin liens-->
 		]	
-	]	
 </BOUCLE_compilateur_blip>
 	[(#ENV{zone}|!={'titre_principal'}|?{'',</a>})]</div><!-- fin #ENV{zone} -->
 </B_compilateur_blip>	

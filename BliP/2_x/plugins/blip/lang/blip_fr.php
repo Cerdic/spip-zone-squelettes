@@ -31,9 +31,10 @@ $GLOBALS['i18n_blip_fr'] = array(
  'auteurs_liste_des' => 'Liste des auteurs',
  'auteur_numero' => 'L\'auteur n&deg;',
  'auteur_n_existe_pas' => 'n\'existe pas. Vous avez &eacute;t&eacute; redirig&eacute; sur la page listant les auteurs du site',
- 'articles_derniers_publies' => 'Derniers articles publi&eacute;s',
-
-
+ 'articles_derniers' => 'Derniers articles',
+ 'actualite' => 'Actualit&eacute;',
+ 'auteurs' => 'Auteurs',
+ 
 
 // C
 
@@ -60,6 +61,7 @@ $GLOBALS['i18n_blip_fr'] = array(
  'documents_joints_a_larticle' => 'Documents joints &agrave; l\'article',
  'document_publie_le' => 'document publi&eacute; le',
  'document_publie' => 'documents publi&eacute;s',
+ 'documents_derniers' => 'Derniers documents',
 
 
 // E
@@ -96,7 +98,8 @@ $GLOBALS['i18n_blip_fr'] = array(
  'modifier_les_couleurs_du_site' => 'Modifier les couleurs du site',
  'liste_des_mots_cles' => 'Liste des mots-cl&eacute;s',
  'afficher_les_mots_cles_par' => 'Afficher les mots-cl&eacute;s par',
-
+ 'mots_cles_tries_par' => 'Mots-cl&eacute;s tri&eacute;s par ',
+ 
 // N
 
  'nouveaute' => 'Nouveaut&eacute;',
@@ -149,6 +152,7 @@ $GLOBALS['i18n_blip_fr'] = array(
  'visiteurs_quotidiens' => 'visiteurs quotidiens',
  'visiteurs_aujourd_hui' => 'visiteurs aujourd\'hui',
  'visiteurs_cumules' => 'visiteurs cumul&eacute;s',
+ 'voir_la_liste_complete' => 'Voir la liste comp&egrave;te',
  
  
  // DEBUG

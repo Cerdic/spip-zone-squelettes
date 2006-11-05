@@ -22,6 +22,31 @@
 		BliP_installer_configuration();
 	}
 
+	function BliP_installer_blip_meta() {
+		include_spip('inc/meta');
+		ecrire_meta('blip_accueil', "oui");
+		ecrire_meta('blip_sommaire_articles', "oui");
+		ecrire_meta('blip_sommaire_commentaires', "oui");
+		ecrire_meta('blip_sommaire_documents', "oui");
+		ecrire_meta('blip_rubriques', "oui");
+		ecrire_meta('blip_articles', "oui");
+		ecrire_meta('blip_articles_datepub', "oui");
+		ecrire_meta('blip_articles_datemaj', "oui");
+		ecrire_meta('blip_articles_popularite', "oui");
+		ecrire_meta('blip_articles_visiteurs', "oui");
+		ecrire_meta('blip_mots', "oui");
+		ecrire_meta('blip_mots_theme', "oui");
+		ecrire_meta('blip_mots_popularite', "oui");
+		ecrire_meta('blip_mots_alphabetique', "oui");
+		ecrire_meta('blip_auteur', "oui");
+		ecrire_meta('blip_espaceprive', "oui");
+		ecrire_meta('blip_switch', "oui");	
+		ecrire_meta('blip_prefixe', "neutre");	
+		ecrire_metas();
+	
+	}
+	
+	
 	function BliP_installer_table() {
 		// Installe la structure de la table blip - Processus différentié de celui des tables, comme ça en cas de platage on aura au moins la base.
 		global $table_blip;
@@ -123,6 +148,7 @@
 			include_spip('inc/meta');
 			ecrire_meta('blip_version', 2.3);
 			ecrire_metas();
+			BliP_installer_blip_meta();
 		}
 	}
 
