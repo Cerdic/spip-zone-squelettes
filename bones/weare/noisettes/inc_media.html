@@ -14,15 +14,18 @@
     </BOUCLE_image_media>
 
      </B_image_media>
-             <a class="thickbox" href="#URL_ARTICLE" title="[(#TITRE|texte_backend)]" rel="photos">[(#LOGO_ARTICLE_RUBRIQUE|extraire_balise{img}||image_recadre{100,100,'center center'}|image_reduire{50,50})]</a>
+             <a class="thickbox" href="#URL_ARTICLE" title="[(#TITRE|texte_backend)]" rel="photos">[(#LOGO_ARTICLE_RUBRIQUE||image_recadre{100,100,'center center'}|image_reduire{50,50}|extraire_balise{img})]</a>
 	   <//B_image_media>
      
-    <h5><a href="[(#URL_PAGE{tbarticle_podcast,id_article=#ID_ARTICLE})]?keepThis=true&amp;TB_iframe=true&amp;height=400&amp;width=600" title="[(#TITRE|texte_backend)]" class="thickbox">#TITRE</a></h5>
+    <h5><a href="[(#URL_PAGE{tbarticle_podcast,id_article=#ID_ARTICLE})]?keepThis=true&amp;TB_iframe=true&amp;height=400&amp;width=600" title="[(#TITRE|texte_backend)]" class="thickbox">[(#TITRE|couper{40})]</a></h5>
 <p><small>[(#DATE|affdate)]</small></p>
   </div>
   </BOUCLE_articles>
+   [
+  <p class="pagination">(#PAGINATION)</p>
+  ]
   
-</div>
+
 
 </B_articles>
 
@@ -30,18 +33,17 @@
 
 <B_liens>
 
-<div id="coldroitemenudroite2">
 
   <BOUCLE_liens(SYNDIC_ARTICLES) {age<180} {par date}{inverse}{doublons}{pagination 10}>
   <div class="fichemenudroite">
       
 
-             <a class="thickbox" href="[(#URL_PAGE{tblinks,id_syndic=#ID_SYNDIC})]?keepThis=true&amp;TB_iframe=false&amp;height=400&amp;width=400" [ title="(#TITRE|texte_backend)"]  rel="photos"><img src="[(#DESCRIPTIF||extraire_attribut{src})]" width="50" height="50"  [ alt="(#NOM_SITE|texte_backend)"] /></a>
+             <a class="thickbox" href="[(#DESCRIPTIF||extraire_attribut{src})]" [ title="(#TITRE|texte_backend)"]  rel="photos"><img src="[(#DESCRIPTIF|image_reduire{50}||extraire_attribut{src})]" width="50" height="50"  [ alt="(#NOM_SITE|texte_backend)"] /></a>
 
 
 
      
-    <h5><a href="[(#URL_PAGE{tblinks,id_syndic=#ID_SYNDIC})]?keepThis=true&amp;TB_iframe=false&amp;height=400&amp;width=400" [ title="(#NOM_SITE|texte_backend)"]  class="thickbox">#TITRE</a></h5>
+    <h5><a href="#URL_ARTICLE" title="[(#NOM_SITE|texte_backend)]">[(#TITRE|couper{40})]</a></h5>
     <p><small>[(#DATE|affdate)]</small></p>
   </div>
   </BOUCLE_liens>
@@ -52,4 +54,3 @@
   </div>
 
 </B_liens>
-	[(#MODELE{fpipr}{tags=wearenameless})]
