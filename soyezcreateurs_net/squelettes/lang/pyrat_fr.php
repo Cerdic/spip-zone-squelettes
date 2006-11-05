@@ -126,7 +126,6 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'quoideneuf' => 'Quoi de neuf&nbsp;?',
 
 //R
-'forum_repondre' => 'Rajouter votre t&eacute;moignage',
 'retouraccueil' => 'Revenir &agrave; l\'accueil du site',
 'retourgalerie' => 'Retour &agrave; la galerie',
 'retourtop' => 'Revenir en haut',
