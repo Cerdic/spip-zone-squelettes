@@ -135,15 +135,33 @@
 		echo "<table cellpadding='3' cellspacing='1' border='0'>";
 		echo "<tr bgcolor='#aaaaaa' style='color:white; text-align:center;'>
 				<td class='verdana2' style='text-align:center;'><b>".'Ordre'."</b></td>
-				<td class='verdana2' style='text-align:center;'><b>".'Texte affich&eacute; <br /> ou fichier inclu'."</b></td>
-				<td class='verdana2' style='text-align:center;'><b>".'Restriction d\'affichage'."</b></td>
 				<td class='verdana2' style='text-align:center;'><b>".'Actif'."</b></td>
+				<td class='verdana2' style='text-align:center;'><b>".'Restriction d\'affichage'."</b></td>
 				<td class='verdana2' style='text-align:center;'><b>".'Options'."</b></td>
+				<td class='verdana2' style='text-align:center;'><b>".'Texte affich&eacute; <br /> ou fichier inclu'."</b></td>
 			</tr>\n";
 		while ($elements = spip_fetch_array($res, SPIP_ASSOC)) {
 			$bgcolor = alterner($i++, '#eeeeee','white');
 			$restriction = explode("-", $elements['position']);
 			echo "<tr bgcolor='$bgcolor'><td style='text-align:center;'><b>".$elements['ordre']."</b></td>";
+			echo "<td style='text-align:center;'>".$elements['actif']."</td><td style='text-align:center;'>";
+			if ( $elements['actif'] =='oui') {
+				echo "<a href='".generer_url_ecrire('blip',"action=desactiver&id=".$elements['id_config'])."'>d&eacute;sactiver</a>";
+			}elseif ( $elements['actif'] =='non') {
+				echo "<a href='".generer_url_ecrire('blip',"action=activer&id=".$elements['id_config'])."'>activer</a>";
+			}
+			echo "<br /><a href='".generer_url_ecrire('blip_modifier',"action=editer&id=".$elements['id_config'])."'>modifier</a>";
+			echo "<br /><a href='".generer_url_ecrire('blip',"action=supprimer&id=".$elements['id_config'])."'>supprimer</a>";
+			echo "</td>";
+			if ( $restriction[1] =='') {
+				echo "<td style='text-align:center;'>aucune</td>";
+			} else  {
+				if ( $elements['id_item'] !='0') {
+					echo "<td style='text-align:center;'>".$restriction[1]."<br /> n° ".$elements['id_item']."</td>";
+				} else if ( $elements['id_item'] =='0') {
+					echo "<td style='text-align:center;'>".$restriction[1]."</td>";
+				}
+			}			
 			if ($elements['type'] == 'statique') {
 				echo "<td><b>".$elements['titre']."</b><br /><i>".$elements['descriptif']."</i><br />".$elements['texte']."</td>";
 			} else {
@@ -153,25 +171,7 @@
 					echo "<td>".$elements['texte']."</td>";
 				}
 			}
-			if ( $restriction[1] =='') {
-				echo "<td style='text-align:center;'>aucune</td>";
-			} else  {
-				if ( $elements['id_item'] !='0') {
-					echo "<td style='text-align:center;'>".$restriction[1]."<br /> n° ".$elements['id_item']."</td>";
-				} else if ( $elements['id_item'] =='0') {
-					echo "<td style='text-align:center;'>".$restriction[1]."</td>";
-				}
-			}
-
-			echo "<td style='text-align:center;'>".$elements['actif']."</td><td style='text-align:center;'>";
-			if ( $elements['actif'] =='oui') {
-				echo "<a href='".generer_url_ecrire('blip',"action=desactiver&id=".$elements['id_config'])."'>d&eacute;sactiver</a>";
-			}elseif ( $elements['actif'] =='non') {
-				echo "<a href='".generer_url_ecrire('blip',"action=activer&id=".$elements['id_config'])."'>activer</a>";
-			}
-			echo "<br /><a href='".generer_url_ecrire('blip_modifier',"action=editer&id=".$elements['id_config'])."'>modifier</a>";
-			echo "<br /><a href='".generer_url_ecrire('blip',"action=supprimer&id=".$elements['id_config'])."'>supprimer</a>";
-			echo "</td></tr>\n";
+			echo "</tr>\n";
 			$index++;
 		}
 		echo "</table></div>";
