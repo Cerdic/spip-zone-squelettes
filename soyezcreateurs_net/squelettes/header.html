@@ -8,7 +8,7 @@
 </BOUCLE_ModePortail2>
 <INCLURE{fond=styleswitcher_classique}>
 <//B_ModePortail2>
-<BOUCLE_LargeurMenuGauche(MOTS){titre=LargeurMenuGauche}>[(#REM) Attention : ne pas enlever les REMarques : elles servent à aérer le source sans que celui ne renvois d'espaces identifié comme une reussite du test ]
+<BOUCLE_LargeurMenuGauche(MOTS){titre=LargeurMenuGauche}>[(#REM) Attention : ne pas enlever les REMarques : elles servent à aérer le source sans que celui ne renvoit d'espaces identifié comme une reussite du test ]
 <BOUCLE_LargeurMenuDroit(MOTS){titre=LargeurMenuDroit}>
 	<BOUCLE_ArtRubLayout(ARTICLES){id_article}>[(#REM) Dans le cas d'un article
 		]<BOUCLE_ArtLayout(MOTS){id_article}{type=_LayoutGala}>[(#REM) Est-ce qu'il a un Layout appliqué ?
@@ -20,7 +20,7 @@
 		]<//B_ArtLayout>[(#REM) Si ce n'est pas un article...
 	]</BOUCLE_ArtRubLayout>[(#REM) ... Est-ce une rubrique ?
 		]<BOUCLE_RubLayout(MOTS){id_rubrique}{type=_LayoutGala}>[(#REM) Dans le cas d'une rubrique
-			]<INCLURE{fond=layout}{layoutgala=(#TITRE|substr{0,2})}{colgauche=#_LargeurMenuGauche:TEXTE}{coldroite=#_LargeurMenuDroit:TEXTE}>[(#REM) Appel du layout de l'a rubrique si oui
+			]<INCLURE{fond=layout}{layoutgala=(#TITRE|substr{0,2})}{colgauche=#_LargeurMenuGauche:TEXTE}{coldroite=#_LargeurMenuDroit:TEXTE}>[(#REM) Appel du layout de la rubrique si oui
 		]</BOUCLE_RubLayout>[(#REM) Sinon
 		][(#ENV{template}|=={''}|?{'',' '})<INCLURE{fond=templates}{colgauche=#_LargeurMenuGauche:TEXTE}{coldroite=#_LargeurMenuDroit:TEXTE}{template}>][(#ENV{template}|=={''}|?{' ',''})<INCLURE{fond=layoutpardefaut}{colgauche=#_LargeurMenuGauche:TEXTE}{coldroite=#_LargeurMenuDroit:TEXTE}>]<//B_RubLayout>[(#REM) Fin de la recherche d'une rubrique
 	]<//B_ArtRubLayout>
@@ -38,7 +38,7 @@
 <meta name="author" content="Jacques PYRAT http://www.pyrat.net/" />
 <meta name="DC.title" content="[(#NOM_SITE_SPIP|textebrut|attribut_html)]" />
 <meta name="MSSmartTagsPreventParsing" content="TRUE" />
-<!-- Lien vers le backend pour navigateurs eclaires -->
+[(#REM)Lien vers le backend pour navigateurs eclaires]
 <link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:> [(#NOM_SITE_SPIP|textebrut|attribut_html)]" href="#URL_PAGE{backend}" />
 <?php if (is_int($jp_rubrique)) { ?>
 <link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:> : <?php echo $titre; ?>" href="#URL_PAGE{backend}&amp;id_rubrique=<?php echo($jp_rubrique); ?>" />
@@ -59,10 +59,18 @@ urchinTracker();
 [(#ENV{template}|=={'Sommaire'}|?{'',' '})<INCLURE{fond=header_classique}>]
 [(#ENV{template}|=={'Sommaire'}|?{' ',''})<INCLURE{fond=header_modeportail}>]
 </BOUCLE_ModePortail>
+<BOUCLE_ModePortailv2(MOTS){titre=ModePortail2}{texte=Oui}>
+[(#ENV{template}|=={'Sommaire'}|?{'',' '})<INCLURE{fond=header_classique}>]
+[(#ENV{template}|=={'Sommaire'}|?{' ',''})<INCLURE{fond=header_modeportail2}>]
+</BOUCLE_ModePortailv2>
 <INCLURE{fond=header_classique}>
 <//B_ModePortail>
+<INCLURE{fond=header_classique}>
+<//B_ModePortailv2>
+<BOUCLE_ModePortailDivContenu(MOTS){titre=ModePortail2}{texte=Oui}></BOUCLE_ModePortailDivContenu>
 <div id="contenu">
-	<div id="wrapper">
+<//B_ModePortailDivContenu>
+<div id="wrapper">
 <div id="content">
 <BOUCLE_PasMenuHautHeader(MOTS){titre=MenuHautHeader}{texte=Oui}> </BOUCLE_PasMenuHautHeader>
 <INCLURE{fond=menuhaut}>
