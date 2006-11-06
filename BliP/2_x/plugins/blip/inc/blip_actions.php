@@ -486,7 +486,7 @@
 		if ($dh = opendir("../plugins/blip/")) {
 			while (($file = readdir($dh)) !== false) {
 				if (!is_dir($file)) {
-					if (! preg_match("/(^\.|^inc|^mod)(-|_)/", $file) && preg_match("/\.html$/", $file)) {
+					if (preg_match("/^[^-_]+\.html$/", $file)) {
 						$blipconfig_pages[preg_replace("/\.html$/", "", $file)] = BliP_nom_module_lisible($file);
 					}
 				}
