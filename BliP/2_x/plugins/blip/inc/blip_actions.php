@@ -648,7 +648,7 @@ END;
 
 	echo '<div id="Layer_modules" style="display: '.$display_modules.'; margin-top: 1px;">';
 	debut_cadre_relief("", false, "", bouton_block_invisible('blip_modules')._T('blipconfig:blip_modules_info'));
-	echo BliP_generer_option_select('module', $blipconfig_modules, $formval['texte'].".html");
+	echo BliP_generer_option_select('module', $blipconfig_modules, $formval['texte']);
 	echo debut_block_invisible('blip_modules');
 	echo fin_block();
 	fin_cadre_relief();
