@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title><:le_site:></title>
+<INCLURE{fond=inc-header}{lang}>
+</head>
+
+<body onload="setHover('menu')">
+[(#REM) Division principale pour texte et liste auteurs ]
+<div class="contenu" id="principal">
+		[<div class="encart">
+			<div class="formulaire" title="<:inscription:>"> (#FORMULAIRE_INSCRIPTION) </div>
+		</div> ]
+	<div class="cartouche">
+	<div class="texte">
+              #PUCE<a href=mailto:#EMAIL_WEBMASTER><:ecrire_webmestre:></a>
+	</div>
+	<p>
+	<center><:administrateurs:></center>
+	<BOUCLE_admin(AUTEURS){statut=0minirezo}{par nom}{doublons}>
+		<div class="liste-articles">
+		<a href="#URL_PAGE{auteur}&id_auteur=#ID_AUTEUR">#NOM</a><i>[, (#BIO).] </i>
+		</div>
+	</BOUCLE_admin>
+	<center><:redacteurs:></center>
+	<BOUCLE_redact(AUTEURS){doublons}{par nom}>
+		<div class="liste-articles">
+		<a href="#URL_PAGE{auteur}&id_auteur=#ID_AUTEUR">#NOM</a><i>[, (#BIO).] </i>
+		</div>
+	</BOUCLE_redact>
+	</div>
+</div>
+[(#REM) colonne de gauche pour Logo,  menu de navigation etc.]
+<div id="navigation">
+	<INCLURE{fond=inc-logo}{lang}>
+	<INCLURE{fond=inc-menu}{lang}>
+	[<div class="formulaire" title="<:recherche:>"> (#FORMULAIRE_RECHERCHE) </div>]
+ 	<INCLURE{fond=inc-credit}{lang}>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,168 @@
+<?php
+
+ $menu_sel = array('<:tout:>', '<BOUCLE_LstMotsClefs(MOTS){type=_Agenda}{par titre}{"', '"}>[(#TITRE|texte_script)]</BOUCLE_LstMotsClefs>');
+if (!isset($date)) $date = date('Y-m');
+if (!isset($genre)) $genre = "<:tout:>";
+
+ereg("^([0-9]{4})-([0-9]+).*$", $date, $regs);
+$M = sprintf('%02d', $regs[2]);
+$Y = $regs[1];
+
+$events = array();
+
+/* 
+ * Ajoute un evenement a la liste (Agenda secteur)
+ */
+function ajoute_evt ($date_redac, $soustitre, $titre, $url_article, $logo) {
+  global $events;
+  if ($date_redac == '') return;
+  // pour traiter evenements sur N jours
+  ereg("([0-9]+) +jour", $soustitre, $nb_jour);
+  if ($nb_jour[1]=="") $nb_jour[1]=1;
+  if ($nb_jour[1]>20) $nb_jour[1]=1;
+  for ($i=0; $i < intval($nb_jour[1]); ++$i) {
+     $ymd = date("Ymd", strtotime($date_redac) + 24*3600*$i);
+     if (!isset($events[$ymd])) $events[$ymd] = array();
+     $events[$ymd][] = array('link' => $url_article, 'title' => $titre, 'logo' => $logo);
+  }
+}
+
+/* 
+ * Ajoute un evenement a la liste apres examen du critere de genre (Agenda complet et Agenda mot)
+ */
+function ajoute_evt_mot ($date_redac, $soustitre, $titre, $mot, $url_article, $logo) {
+  global $events, $genre;
+  if ($date_redac == '') return;
+  ereg("($genre)", $mot, $res);
+  if (($genre!='<:tout:>') && ($genre!=$res[1]) ) return;
+  // pour traiter evenements sur N jours
+  ereg("([0-9]+) +jour", $soustitre, $nb_jour);
+  if ($nb_jour[1]=="") $nb_jour[1]=1;
+  if ($nb_jour[1]>20) $nb_jour[1]=1;
+  for ($i=0; $i < intval($nb_jour[1]); ++$i) {
+     $ymd = date("Ymd", strtotime($date_redac) + 24*3600*$i);
+     if (!isset($events[$ymd])) $events[$ymd] = array();
+     $events[$ymd][] = array('link' => $url_article, 'title' => $titre, 'logo' => $logo);
+  }
+}
+
+
+/*
+ * Affiche boutons pour defilement par mois
+ */
+function boutons_mois_voisin ($pagemois, $M, $Y) {
+   $url = $pagemois.'&amp;date='.(($M - 1 > 0) ? $Y : ($Y - 1)).'-'.(($M - 1) > 0 ? ($M - 1) : 12);
+   echo '<a href="'.$url.'"><img src="#DOSSIER_SQUELETTE/prev.gif" title="<:precedent:>" alt="" border=0 /></a>';
+   $url = $pagemois.'&amp;date='.date('Y-m');
+   echo '<input type="button" value="<:aujourdhui:>" onClick="document.location.href=\''.$url.'\'; return false;" />';
+   $url = $pagemois.'&amp;date='.(($M + 1 < 13) ? $Y : ($Y + 1)).'-'.(($M + 1) < 13 ? ($M + 1) : 1);
+   echo '<a href="'.$url.'"><img src="#DOSSIER_SQUELETTE/next.gif" title="<:suivant:>" alt="" border=0 /></a>';
+}
+
+/*
+ * Affiche agenda mensuel (hors partie navigation)
+ */
+function affiche_tableau_mois ($M, $Y) {
+   global $events;
+   $days = array('<:nom_jour_1:>', '<:nom_jour_2:>', '<:nom_jour_3:>', '<:nom_jour_4:>', '<:nom_jour_5:>', '<:nom_jour_6:>', '<:nom_jour_7:>');
+   echo '<tr> ';
+   for($i = 1; $i < 8; $i++) { echo '<th width="14%" class="agendaHead">'.$days[$i%7].'</th>'; }
+   $TempD = 1;
+   $Time = mktime(0, 0, 0, $M, 1, $Y);
+   if(date('w', $Time) != 1) {
+       // jours du mois precedent
+      echo '</tr><tr>';
+      $tmp = '';
+      while(date('w', $Time) != 1) {
+         $TempD--;
+         $Time = mktime(0, 0, 0, $M, $TempD, $Y);
+         $case = '<td width="14%" height="50" valign="top" class="agendaNotThisMonth">';
+         $case .= date('j', $Time);
+         if (isset($events[date('Ymd', $Time)])) {
+            while (list(, $event) = each($events[date('Ymd', $Time)])) {
+               $case .= '<br />'.$event['logo'].'<a href="'.$event['link'].'">'.$event['title'].'</a>';
+            }
+         }
+         $case .= '</td>';
+         $tmp = $case.$tmp;
+      }
+      echo $tmp;
+   }
+   $TempD = 1;
+   $Time = mktime(0, 0, 0, $M, 1, $Y);
+   while((date('m', $Time) == $M) || (date('w', $Time) != 1)) {
+      if(date('w', $Time) == 1) { echo '</tr><tr>'; }
+      echo '<td width="14%" height="50" valign="top" ';
+      echo ' class="agenda'.(date('m', $Time) != $M ? 'Not' : '').'This'.(date('Ymd', $Time) == date('Ymd') ? 'Day' : 'Month').'">';
+      echo date('j', $Time);
+      if (isset($events[date('Ymd', $Time)])) {
+         while (list(, $event) = each($events[date('Ymd', $Time)])) {
+            echo '<br />'.$event['logo'].'<a href="'.$event['link'].'">'.$event['title'].'</a>';
+         }
+      }
+      echo '</td>';
+      $TempD++;
+      $Time = mktime(0, 0, 0, $M, $TempD, $Y);
+   }
+   echo '</tr> </table>';
+}
+
+/*
+ * Affiche Menu mois/annee
+ */
+function affiche_menu_date ($M, $Y) {
+   $months = array('', '<:nom_mois_1:>', '<:nom_mois_2:>', '<:nom_mois_3:>', '<:nom_mois_4:>', '<:nom_mois_5:>', '<:nom_mois_6:>',
+       '<:nom_mois_7:>', '<:nom_mois_8:>', '<:nom_mois_9:>', '<:nom_mois_10:>', '<:nom_mois_11:>', '<:nom_mois_12:>');
+   echo '<select name="var_nav_month">';
+   for($i = 1; $i < 13; $i++) 
+      echo '<option value="'.sprintf('%02d', $i).'"'.($i == $M ? ' selected="selected" ' : '').'>'.$months[$i].'</option>';
+   echo '</select>';
+   echo '<select name="var_nav_year">';
+   for($i = 2000; $i < 2011; $i++) 
+      echo '<option value="'.$i.'"'.($i == $Y ? ' selected="selected" ' : '').'>'.$i.'</option>';
+   echo '</select>';
+}
+
+/*
+ * Affiche agenda mensuel (Agenda secteur)
+ */
+function affiche_mois ($pagemois) {
+   global $menu_sel, $M, $Y;
+   echo '<table cellpadding="5" cellspacing="0" align="center" border="1"  class="agenda"> <tr> <th colspan="7" class="agendaNav">';
+   boutons_mois_voisin($pagemois, $M, $Y);
+   echo '<br> <form name="navigation" method="get" action="">';
+   affiche_menu_date ($M, $Y);
+   // Affiche Bouton Ok
+   echo '<input type="button" value="Ok" onClick="document.location.href=\''.$pagemois;
+   echo '&amp;date=\' + window.document.navigation.var_nav_year.value';
+   echo ' + \'-\' + window.document.navigation.var_nav_month.value; return false;" />';
+   echo '</form> </th> </tr>';
+   affiche_tableau_mois($M, $Y);
+}
+
+/*
+ * Affiche agenda mensuel (Agenda complet et Agenda mot)
+ */
+function affiche_mois_mot ($pagemois) {
+   global $genre, $menu_sel, $M, $Y;
+   echo '<table cellpadding="5" cellspacing="0" align="center" border="1"  class="agenda"> <tr> <th colspan="7" class="agendaNav">';
+   boutons_mois_voisin($pagemois.'&amp;genre='.$genre, $M, $Y);
+   echo '<br> <form name="navigation" method="get" action="">';
+   affiche_menu_date ($M, $Y);
+   // Affiche le menu de selection de genre
+   echo '<select name="var_nav_cle">';
+   for($i = 0; $i < count($menu_sel); $i++) {
+      $t = strcmp($menu_sel[$i], $genre);
+      echo '<option value="'.$menu_sel[$i].'"'.($t == 0 ? ' selected="selected"' : '').'>'.$menu_sel[$i].'</option>';
+   }
+   echo '</select>';
+   // Affiche Bouton Ok
+   echo '<input type="button" value="Ok" onClick="document.location.href=\''.$pagemois;
+   echo '&amp;date=\' + window.document.navigation.var_nav_year.value';
+   echo ' + \'-\' + window.document.navigation.var_nav_month.value';
+   echo ' + \'&amp;genre=\' + window.document.navigation.var_nav_cle.value ; return false;" />';
+   echo '</form> </th> </tr>';
+   affiche_tableau_mois($M, $Y);
+}
+
+?>

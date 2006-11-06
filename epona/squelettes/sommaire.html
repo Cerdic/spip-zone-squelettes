@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[#NOM_SITE_SPIP] </title>
+<INCLURE{fond=inc-header}{lang}>
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/agenda.css" type="text/css" media="screen">
+</head>
+
+<body onload="setHover('menu')">
+[(#REM) Partie centrale a declarer en premier pour assurer le recouvrement par le menu ]
+<div id="second" class="contenu">
+	[(#REM) Encart de droite]
+	<div class="encart">
+		[(#REM) Breves : affichage des 3 dernieres si moins de 30 jours]
+		<B_breves>
+			<div class="menu">
+			<div class="breves">
+			<div class="menu-titre">
+			<:breves:>
+			</div>
+			<ul>
+		<BOUCLE_breves(BREVES) {par date} {inverse} {0,3}{age_relatif < 30}>
+			<li class="menu-item"> #PUCE
+			<i>[(#DATE|affdate_court)]</i>:
+			<a href="#URL_BREVE">#TITRE</a>
+			</li>
+		</BOUCLE_breves>
+			</ul>
+			</div>
+			</div>
+		</B_breves>
+		[(#REM) Affichage de l'Agenda suivant valeur du groupe mot cle Agenda
+		        On pourra supprimer les boucles agenda que l'on l'utilise pas ]
+		<INCLURE{fond=agen_mini_php}{lang}>
+		<BOUCLE_complet(RUBRIQUES){type_mot=Agenda}{titre_mot=agenda_complet}{tout}{0,1}>
+			<BOUCLE_evts_c(ARTICLES){branche}{age_redac > -58}{age_redac < 38}{type_mot=_Agenda}>
+				<?php ajout_evenement("#DATE_REDAC", '[(#TITRE|texte_script)]', '[(#SOUSTITRE|texte_script)]', "#URL_ARTICLE"); ?>
+			</BOUCLE_evts_c>
+			<?php affiche_agenda_mini("#URL_PAGE{agen_mois_complet}&amp;id_rubrique=#ID_RUBRIQUE&amp;genre=<:tout:>",
+			                          "#URL_PAGE{agen_an_complet}&amp;id_rubrique=#ID_RUBRIQUE&amp;genre=<:tout:>"); ?>
+		</BOUCLE_complet>
+		<BOUCLE_secteur(RUBRIQUES){type_mot=Agenda}{titre_mot=agenda_secteur}{tout}{0,1}>
+			<BOUCLE_evts_s(ARTICLES){branche}{age_redac > -58}{age_redac < 38}>
+				<?php ajout_evenement("#DATE_REDAC", '[(#TITRE|texte_script)]', '[(#SOUSTITRE|texte_script)]', "#URL_ARTICLE"); ?>
+			</BOUCLE_evts_s>
+			<?php affiche_agenda_mini("#URL_PAGE{agen_mois_secteur}&amp;id_rubrique=#ID_RUBRIQUE",
+			                          "#URL_PAGE{agen_an_secteur}&amp;id_rubrique=#ID_RUBRIQUE"); ?>
+		</BOUCLE_secteur>
+		<BOUCLE_mot(MOTS){type=Agenda}{titre=agenda_mot}{0,1}>
+			<BOUCLE_evts_m(ARTICLES){age_redac > -58}{age_redac < 38}{type_mot=_Agenda}>
+				<?php ajout_evenement("#DATE_REDAC", '[(#TITRE|texte_script)]', '[(#SOUSTITRE|texte_script)]', "#URL_ARTICLE"); ?>
+			</BOUCLE_evts_m>
+			<?php affiche_agenda_mini("#URL_PAGE{agen_mois_mot}&amp;genre=<:tout:>", "#URL_PAGE{agen_an_mot}&amp;genre=<:tout:>"); ?>
+		</BOUCLE_mot>
+	
+		[(#REM) les derniers commentaires]
+		<INCLURE{fond=inc-forums}{lang}>
+	</div>
+	[(#REM) Selection des 50 derniers articles caches ]
+	<BOUCLE_exclurec(ARTICLES){titre_mot==cacher}{par date}{0,50}{doublons}> </BOUCLE_exclurec>
+	[(#REM) Affichage 10 derniers articles apres elimination des doublons des selections precedentes]
+	[(#REM) on peut ajouter des criteres pour exclure les articles agenda comme {id_secteur !=10 }]
+	<BOUCLE_detail(ARTICLES){par date} {inverse}{0,10}{doublons}>
+		[(#LOGO_ARTICLE_RUBRIQUE|left)]
+		[<div class="surtitre">(#SURTITRE)</div>]
+		<h2 class="titre-extrait"><a href="#URL_ARTICLE">#TITRE</a></h2>
+		[<div class="surtitre">(#SOUSTITRE)</div>]
+		<div class="detail">
+		[(#DATE|nom_jour)] [(#DATE|affdate)]
+		<B_auteurs1><:par_auteur:> <BOUCLE_auteurs1(AUTEURS) {id_article} {", "}>#NOM [((#BIO))]</BOUCLE_auteurs1>
+		</div>
+		[<div class="texte">(#INTRODUCTION|couper{250})</div>] 
+		<BOUCLE_forums_decpt(FORUMS){id_article}{plat}> </BOUCLE_forums_decpt>
+			<div class="reponse">
+			[<b><a href="#URL_ARTICLE">(#TOTAL_BOUCLE|accorder{<:reponse:>})</a></b>]
+			</div>
+		</B_forums_decpt>
+		<br>
+	</BOUCLE_detail>
+	
+	[(#REM) S'il y a au moins 10 articles, ce lien ouvre la pages d'articles tries ]
+	<BOUCLE_suite(ARTICLES){10,1}>
+		<center><h2 class="titre-extrait"><a href="#URL_PAGE{articles}"><:suite:>...</a></h2></center>
+	</BOUCLE_suite>
+	<br>
+</div>
+
+[(#REM) colonne de gauche pour Logo, menu de navigation et sites]
+<div id="navigation">
+	<INCLURE{fond=inc-logo}{lang}>
+	<INCLURE{fond=inc-menu}{lang}>
+	[<div class="formulaire" title="<:recherche:>"> (#FORMULAIRE_RECHERCHE) </div>]
+	[(#REM) les sites Web autorises au sommaire]
+	<B_sites>
+		<div class="menu">
+		<div class="divers">
+		<div class="menu-titre"><:sur_web:></div>
+		<ul>
+	<BOUCLE_sites(SITES){titre_mot=sommaire}{par nom_site}>
+		<li class="menu-item">#PUCE <a href="#URL_SITE">#NOM_SITE</a> </li>
+	</BOUCLE_sites>
+		</ul>
+		</div>
+		</div>
+	</B_sites>
+ 	<INCLURE{fond=inc-credit}{lang}>
+</div>
+
+[(#REM) Bandeau a declarer apres id="navigation" pour cacher le trait vertical ]
+[(#REM) Pour supprimer le bandeau, oter la ligne suivante et remplacer id="second" par id="principal" plus haut ]
+<INCLURE{fond=inc-bandeau}{lang}>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<BOUCLE_article_principal(ARTICLES){id_article}>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#TITRE|textebrut)]</title>
+<INCLURE{fond=inc-header}{lang}>
+</head>
+
+<body onload="setHover('menu')">
+
+[(#REM) Division principale pour article et forums ]
+<div class="contenu" id="principal">
+	[(#REM) Chemin de la rubrique ]
+	<div style="margin-top:0px; font-size:80%;">
+	<a href="#URL_SITE_SPIP" title="<:accueil_site:>"><:accueil_site:></a>
+	<BOUCLE_chemin(HIERARCHIE){id_article}>
+    		[ #PUCE <a href="#URL_RUBRIQUE">(#TITRE)</a>]
+	</BOUCLE_chemin>
+	</div>
+	[(#REM) Encart flottant, auteurs, articles connexes]
+	<div class="encart">
+		[(#REM) Auteur(s) de l'article]
+		<B_auteurs>
+			<div class="menu">
+			<div class="divers">
+		<BOUCLE_auteurs(AUTEURS) {id_article} {par nom}>
+			<div class="menu-titre" title="<:poster_message:>">
+			<a href="mailto:#EMAIL">#NOM</a> [(#LOGO_AUTEUR_NORMAL|center)]
+			</div>
+			<ul>
+			[<li class="menu-item" style="text-align: center"><a href="(#URL_SITE)">#NOM_SITE</a></li>]
+			[<li class="menu-item" style="text-align: center">(#BIO)</li>]
+			<B_articles_auteur>
+			<BOUCLE_articles_auteur(ARTICLES) {id_auteur}{par popularite} {inverse} {0,5}>
+				<li class="menu-item">
+				#PUCE <a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
+				</li>
+			</BOUCLE_articles_auteur>
+			</ul>
+		</BOUCLE_auteurs>
+			</div>
+			</div>
+		</B_auteurs>
+	</div>
+	[(#REM) Ici commence l'affichage de l'article ]
+	<div class="cartouche">
+	[(#LOGO_ARTICLE|left)]
+	[<div class="surtitre">(#SURTITRE)</div>]
+	<h1 class="titre-texte">#TITRE</h1>
+	[<div class="surtitre">(#SOUSTITRE)</div>]
+	[<:publication:> (#DATE|nom_jour)] [(#DATE|affdate).]
+	</div>
+	<br> <br>
+	[<div class="chapo">(#CHAPO)</div>]
+	[<div class="texte">(#TEXTE)</div>]
+	[<div class="ps">(#PS)</div>]
+	[<div class="notes">(#NOTES)</div>]
+	[<div class="ps"><a href="#URL_SITE">(#NOM_SITE)</a></div>]
+	<br>
+	[<div class="forum-repondre"><b><a href="#URL_PAGE{forum}&(#PARAMETRES_FORUM)"><:repondre_article:></a></b></div>]
+	<br>
+	[(#REM) Les Forums en dernier ]
+	<B_page>
+		<ul class="forum-total">
+	<BOUCLE_page(FORUMS){id_article}{par date}{inverse}{pagination 10}>
+		[(#REM) Affichage page ]
+		<li>
+		<div class="forum-fil">
+		
+		<div class="forum">
+		<a name="forum#ID_FORUM"></a>
+		<div class="forum-chapo">
+		<div class="forum-titre">#TITRE</div>
+		[(#DATE|affdate)] [, par <b><a href="mailto:#EMAIL">(#NOM|sinon{[(#IP)]})</a></b>]
+		</div>
+		<div class="forum-item">
+		#TEXTE
+		[<div class='forum-titre'><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
+		</div>
+		</div>
+		</div>
+		</li>
+	</BOUCLE_page>
+		</ul>
+		[<div class="page"><:pages:>: (#PAGINATION)</div>]
+	</B_page>
+</div>
+
+[(#REM) colonne de gauche pour Logo,  menu de navigation et mot-cles de l'article]
+<div id="navigation">
+	<INCLURE{fond=inc-logo}{lang}>
+	<INCLURE{fond=inc-menu}{lang}>
+	[<div class="formulaire" title="<:recherche:>"> (#FORMULAIRE_RECHERCHE) </div>]
+	<B_mots>
+		<div class="menu">
+		<div class="divers" title="<:mots_clefs:>">
+	<BOUCLE_mots(MOTS) {id_article} {par titre}>
+		<div class="menu-titre"><a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></div>
+		<B_articles_mots>
+			<ul class="menu-liste">
+		<BOUCLE_articles_mots(ARTICLES) {id_mot} {par hasard} {0,4}>
+			<li class="menu-item">#PUCE <a href="#URL_ARTICLE" title="[(#DESCRIPTIF|textebrut|entites_html)]">#TITRE</a></li>
+		</BOUCLE_articles_mots>
+			</ul>
+		</B_articles_mots>
+	</BOUCLE_mots>
+		</div>
+		</div>
+	</B_mots>
+ 	<INCLURE{fond=inc-credit}{lang}>
+</div>
+</body>
+</html>
+
+</BOUCLE_article_principal>
+        <:aucun_article:>
+<//B_article_principal>

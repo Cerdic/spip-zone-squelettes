@@ -1,0 +1,67 @@
+<?php
+  // calcul du menu de navigation
+  $fw=fopen ("#DOSSIER_SQUELETTE/inc-menu.html","w");
+  if (!$fw) {echo "<h1>Pas d'accès en écriture dans #DOSSIER_SQUELETTE</h1>"; exit;} 
+  // Prologue
+  fputs ($fw, "<div style=\"margin-left: 10px\">");
+  fputs ($fw, "<ul id=menu>\n");
+  fputs ($fw, "    <li><a href="#URL_SITE_SPIP"><:accueil:></a></li>\n");
+
+  [(#REM) On pourra supprimer les 2 boucles agenda que l'on l'utilise pas ]
+  <BOUCLE_agenda_complet(RUBRIQUES) {racine}{type_mot=Agenda}{titre_mot=agenda_complet}{tout}>
+	fputs ($fw, "<li class=smenu><a href=\"?page=agen_mois_complet&amp;id_rubrique=#ID_RUBRIQUE\"><:agenda:></a>\n");
+	fputs ($fw, "<ul>\n");
+	fputs ($fw, "<li><a href=\"?page=agen_mois_complet&amp;id_rubrique=#ID_RUBRIQUE\"><:agenda_mois:></a></li>\n");
+	fputs ($fw, "<li><a href=\"?page=agen_an_complet&amp;id_rubrique=#ID_RUBRIQUE\"><:agenda_an:></a></li>\n");
+	fputs ($fw, "</ul>\n");
+	fputs ($fw, "</li>\n");
+  </BOUCLE_agenda_complet>
+
+  <BOUCLE_agenda_secteur(RUBRIQUES) {racine}{type_mot=Agenda}{titre_mot=agenda_secteur}{tout}>
+	fputs ($fw, "<li class=smenu><a href=\"?page=agen_mois_secteur&amp;id_rubrique=#ID_RUBRIQUE\"><:agenda:></a>\n");
+	fputs ($fw, "<ul>\n");
+	fputs ($fw, "<li><a href=\"?page=agen_mois_secteur&amp;id_rubrique=#ID_RUBRIQUE\"><:agenda_mois:></a></li>\n");
+	fputs ($fw, "<li><a href=\"?page=agen_an_secteur&amp;id_rubrique=#ID_RUBRIQUE\"><:agenda_an:></a></li>\n");
+	fputs ($fw, "</ul>\n");
+	fputs ($fw, "</li>\n");
+  </BOUCLE_agenda_secteur>
+
+  <BOUCLE_agenda_mot(MOTS){type=Agenda}{titre=agenda_mot}>
+    fputs ($fw, "<li class=smenu><a href=\"?page=agen_mois_mot\"><:agenda:></a>\n");
+      fputs ($fw, "<ul>\n");
+      fputs ($fw, "<li><a href=\"?page=agen_mois_mot\"><:agenda_mois:></a></li>\n");
+      fputs ($fw, "<li><a href=\"?page=agen_an_mot\"><:agenda_an:></a></li>\n");
+      fputs ($fw, "</ul>\n");
+    fputs ($fw, "</li>\n");
+  </BOUCLE_agenda_mot>
+
+
+  [(#REM) Toutes les rubriques du site sauf Agenda ]
+  <BOUCLE_secteurs(RUBRIQUES) {racine}{titre!=Agenda} {par titre}>
+	fputs ($fw, '<li<BOUCLE_smenr(RUBRIQUES){id_parent}{0,1}> class=smenu</BOUCLE_smenr>><a href="#URL_RUBRIQUE">[(#TITRE|texte_script)]</a>');
+  	<B_rubriques>
+		fputs ($fw, "\n<ul>\n");
+  	<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+		fputs ($fw, '<li<BOUCLE_smen(RUBRIQUES){id_parent}{0,1}> class=smenu</BOUCLE_smen>><a href="#URL_RUBRIQUE">[(#TITRE|texte_script)]</a>');
+  		<BOUCLE_sous_rubriques(BOUCLE_rubriques)> </BOUCLE_sous_rubriques>fputs ($fw, "</li>\n");<//B_sous_rubriques>
+  	</BOUCLE_rubriques>
+		fputs ($fw, "</ul>\n");
+   	</B_rubriques>
+	fputs ($fw, "</li>\n");
+  </BOUCLE_secteurs>
+  
+  // Epilogue
+  fputs ($fw, "    <li class=\"smenu\"><a href=ecrire><:le_site:></a>\n");
+  fputs ($fw, "    <ul>\n");
+  fputs ($fw, "      <li><a href=\"?page=articles\"><:articles:></a></li>\n");
+  fputs ($fw, "      <li><a href=\"?page=le_site\"><:participer:></a></li>\n");
+  fputs ($fw, "      <li><a href=ecrire><:espace_prive:></a></li>\n");
+  fputs ($fw, "    </ul>\n");
+  fputs ($fw, "    </li>\n");
+  fputs ($fw, "    <li><a href=?page=plan><:plan_site:></a></li>\n");
+  fputs ($fw, "</ul>\n</div>");
+  fclose($fw);
+  echo "<h1>inc-menu.html recalculé</h1>";
+
+?> 
+

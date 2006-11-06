@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[#NOM_SITE_SPIP] </title>
+<INCLURE{fond=inc-header}{lang}>
+</head>
+
+<body onload="setHover('menu')">
+
+<div id="principal" class="contenu">
+
+<!-- Tous les Forums  -->
+</B_forums>
+	<table style="width: 100%" cellpadding="2" cellspacing="3" border="0" >
+	<?php $rank= [(#ENV{debut_forums,0})] + 1; ?>
+	<th align=right><div class="detail"><span class="important"><:choix_tri:> : </span></div></th>
+	<th><a href="#URL_PAGE{forums}&amp;critere=date_heure"><div class="detail"><span class="important"><:date:></span></div></a></th>
+	<th><a href="#URL_PAGE{forums}&amp;critere=auteur"><div class="detail"><span class="important"><:auteur:></span></div></a></th>
+<BOUCLE_forums(FORUMS) {par #ENV{critere,date_heure}}{plat} {inverse}{pagination 50}>
+	<tr>
+	<td><b><?php echo $rank++.'. ' ?><a href="#URL_FORUM" [title="(#DESCRIPTIF|textebrut)"]>[(#TITRE|couper{60})]</a></b></td>
+	<td align=right> <div class="detail"> <span class="important">[(#DATE|affdate_court)]</span></div></td>
+	<td align=right> <div class="detail"> <span class="important">[(#NOM|sinon{[(#IP|)]})]</span></div></td>
+	</tr>
+</BOUCLE_forums>
+	</table>
+	[<div class="page"><:pages:>: (#PAGINATION)</div>]
+</B_forums>
+</div>
+[(#REM) colonne de gauche pour Logo,  menu de navigation et mot-cles de l'article]
+<div id="navigation">
+	<INCLURE{fond=inc-logo}{lang}>
+	<INCLURE{fond=inc-menu}{lang}>
+	[<div class="formulaire" title="<:recherche:>"> (#FORMULAIRE_RECHERCHE) </div>]
+ 	<INCLURE{fond=inc-credit}{lang}>
+</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<div style="margin-left: 10px">
+  <ul id=menu>
+  <li><a href="#URL_SITE_SPIP"><:accueil_site:></a></li>
+
+  [(#REM) On pourra supprimer les 2 boucles agenda que l'on l'utilise pas ]
+  <BOUCLE_agenda_complet(RUBRIQUES) {racine}{type_mot=Agenda}{titre_mot=agenda_complet}{tout}>
+	<li class="smenu"><a href="#URL_PAGE{agen_mois_complet}&amp;id_rubrique=#ID_RUBRIQUE"><:agenda:></a>
+		<ul>
+		<li><a href="#URL_PAGE{agen_mois_complet}&amp;id_rubrique=#ID_RUBRIQUE"><:agenda_mois:></a></li>
+		<li><a href="#URL_PAGE{agen_an_complet}&amp;id_rubrique=#ID_RUBRIQUE"><:agenda_an:></a></li>
+		</ul>
+	</li>
+  </BOUCLE_agenda_complet>
+
+  <BOUCLE_agenda_secteur(RUBRIQUES) {racine}{type_mot=Agenda}{titre_mot=agenda_secteur}{tout}>
+	<li class="smenu"><a href="#URL_PAGE{agen_mois_secteur}&amp;id_rubrique=#ID_RUBRIQUE"><:agenda:></a>
+		<ul>
+		<li><a href="#URL_PAGE{agen_mois_secteur}&amp;id_rubrique=#ID_RUBRIQUE"><:agenda_mois:></a></li>
+		<li><a href="#URL_PAGE{agen_an_secteur}&amp;id_rubrique=#ID_RUBRIQUE"><:agenda_an:></a></li>
+		</ul>
+	</li>
+  </BOUCLE_agenda_secteur>
+
+  <BOUCLE_agenda_mot(MOTS){type=Agenda}{titre=agenda_mot}>
+    <li class=smenu><a href="#URL_PAGE{agen_mois_mot}"><:agenda:></a>
+      <ul>
+      <li><a href="#URL_PAGE{agen_mois_mot}"><:agenda_mois:></a></li>
+      <li><a href="#URL_PAGE{agen_an_mot}"><:agenda_an:></a></li>
+      </ul>
+    </li>
+  </BOUCLE_agenda_mot>
+
+  [(#REM) Toutes les rubriques du site sauf Agenda ]
+  <BOUCLE_secteurs(RUBRIQUES) {racine} {titre!=Agenda}{par titre}>
+	<li<BOUCLE_smenr(RUBRIQUES){id_parent}{0,1}> class="smenu"</BOUCLE_smenr>><a href="#URL_RUBRIQUE">#TITRE</a>
+  	<B_rubriques>
+		<ul>
+  	<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+		<li<BOUCLE_smen(RUBRIQUES){id_parent}{0,1}> class="smenu"</BOUCLE_smen>><a href="#URL_RUBRIQUE">#TITRE</a>
+  		<BOUCLE_sous_rubriques(BOUCLE_rubriques)> </BOUCLE_sous_rubriques></li><//B_sous_rubriques>
+  	</BOUCLE_rubriques>
+		</ul>
+   	</B_rubriques>
+	</li>
+  </BOUCLE_secteurs>
+
+  <li class="smenu"><a href=ecrire><:le_site:></a>
+  <ul>
+  <li><a href="#URL_PAGE{articles}"><:articles:></a></li>
+  <li><a href="#URL_PAGE{le_site}"><:equipe:></a></li>
+  <li><a href=ecrire><:espace_prive:></a></li>
+  </ul>
+  </li>
+  <li><a href=#URL_PAGE{plan}><:plan_site:></a></li>
+  </ul>
+</div>
+

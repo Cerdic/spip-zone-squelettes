@@ -1,0 +1,122 @@
+<BOUCLE_principale(ARTICLES){id_article}>
+<?php 
+
+$id_article = "#ID_ARTICLE";
+define("VIGNETTES_PAGE", 4);
+$debut_bloc = isset($_GET["debut_bloc"]) ? $_GET["debut_bloc"] : 0; 
+
+function flecheGauche($id_article, $nb_images, $debut_bloc) {
+    if ($nb_images <= VIGNETTES_PAGE) return;
+    if ($debut_bloc < VIGNETTES_PAGE) return;
+    $r=$debut_bloc-VIGNETTES_PAGE;
+    echo "<a href='#URL_PAGE{vignettes_image}&id_article=$id_article";
+    echo "&debut_bloc=$r&debut_image=$r'";
+    echo " title='" . htmlentities("<:precedent:>", ENT_QUOTES) . "'><img src=#DOSSIER_SQUELETTE/prev.gif title=<:precedent:> border=0 /></a>";
+}
+
+function flecheDroite($id_article, $nb_images, $debut_bloc) {
+    if ($nb_images <= VIGNETTES_PAGE) return;
+    if ($debut_bloc >= ($nb_images-VIGNETTES_PAGE)) return;
+    $r=$debut_bloc+VIGNETTES_PAGE;
+    echo "<a href='#URL_PAGE{vignettes_image}&id_article=$id_article";
+    echo "&debut_bloc=$r&debut_image=$r'";
+    echo " title='" . htmlentities("<:suivant:>", ENT_QUOTES) . "'><img src=#DOSSIER_SQUELETTE/next.gif title=<:suivant:> border=0 /></a>";
+}
+
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<!-- album photo : affichage de vignettes et d'une image  -->
+
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#TITRE|textebrut)]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
+
+<INCLURE{fond=inc-header}{lang}>
+<style type="text/css">
+<!--
+#album-vignettes {
+	width: 100%;
+	text-align: center;
+}
+
+#album-photo {
+	float: bottom;
+	width: 100%;
+	text-align: center;
+}
+
+.album-pagination {
+	margin: 10px 0px;
+	font-size: 11pt;
+	text-align: center;
+}
+
+.album-pagination a { color: #ff6519; }
+-->
+</style>
+
+</head>
+<body>
+
+<!-- calcule le nombre de photos jointes sous forme de document -->
+<B_nb_images>
+<BOUCLE_nb_images(DOCUMENTS){id_article}{extension==jpg|png|gif}{mode=document}>
+</BOUCLE_nb_images>
+<?php $nb_images = "#TOTAL_BOUCLE"; ?>
+	
+<div>
+
+<!-- affiche un lot de vignettes dont le rang de la 1ere est indique par debut_bloc -->
+<center>
+<table cellpadding="0" cellspacing="5" border="0" >
+<tbody>
+<tr>
+<td style="vertical-align: center" > <?php flecheGauche($id_article, $nb_images, $debut_bloc); ?> </td>
+<td style="vertical-align: top;">
+<center>
+        <?php $id_vignette = $debut_bloc; ?>
+    <BOUCLE_vignettes(DOCUMENTS){id_article}{extension==jpg|png|gif}{mode=document}{debut_bloc,4}>
+        <?php 
+    		echo "<a href='#URL_PAGE{vignettes_image}&id_article=$id_article";
+		echo "&debut_bloc=$debut_bloc&debut_image=$id_vignette'";
+		echo " title='" . htmlentities(Aggrandir, ENT_QUOTES) . "'>";
+		$id_vignette++; 
+        ?>
+	#LOGO_DOCUMENT
+	</a>
+    </BOUCLE_vignettes>
+</center>
+</td>
+<td style="vertical-align: center;"> <?php flecheDroite($id_article, $nb_images, $debut_bloc); ?> </td>
+</tr>
+</tbody>
+</table>
+</center>
+
+<div class="album-pagination">
+        <?php echo '<a href=?article'.$id_article.'><:retour_article:></a>'; ?>
+</div>
+
+<!-- affichage de la photo  -->
+<div id="album-photo">
+    <BOUCLE_photo(DOCUMENTS){id_article}{extension==jpg|png|gif}{mode=document}{debut_image,1}>
+     <img src=#URL_DOCUMENT alt="" /> 
+        <!-- affichage de la legende (titre et descriptif) de la photo -->
+        <dl class="album-photo-titre">
+           [<dd>(#TITRE)</dd>][<dd>(#DESCRIPTIF)</dd>]
+        </dl>
+    </BOUCLE_photo>
+</div>
+
+</B_nb_images>
+
+<//B_nb_images>
+
+</div>
+</body>
+</html>
+</BOUCLE_principale>
+

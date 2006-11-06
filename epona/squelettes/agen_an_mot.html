@@ -1,0 +1,34 @@
+<INCLURE{fond=agen_an_php}{lang}>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title> <:agenda:> </title>
+<INCLURE{fond=inc-header}{lang}>
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/agenda.css" type="text/css" media="screen">
+</head>
+
+<body onload="setHover('menu')">
+<!-- Titre de la rubrique -->
+<div class="contenu" id="principal">
+<div class="cartouche">
+<h1 class="titre-texte">Agenda</h1>
+</div>
+
+<BOUCLE_evcom(ARTICLES){age_relatif_redac > -388}{age_relatif_redac < 388}{par date_redac}{type_mot=_Agenda}>
+        <?php ajoute_evt_mot('#DATE_REDAC', '[(#SOUSTITRE|texte_script)]', '[(#TITRE|texte_script)]',
+                   '<BOUCLE_genre(MOTS){id_article}{type=_Agenda}>[(#TITRE|texte_script)]</BOUCLE_genre>',
+                   '#URL_ARTICLE'); ?>
+</BOUCLE_evcom>
+<?php affiche_an_mot("#URL_PAGE{agen_an_mot}"); ?>
+
+</div>
+[(#REM) colonne de gauche pour Logo,  menu de navigation et mot-cles de l'article]
+<div id="navigation">
+	<INCLURE{fond=inc-logo}{lang}>
+	<INCLURE{fond=inc-menu}{lang}>
+	[<div class="formulaire" title="<:recherche:>"> (#FORMULAIRE_RECHERCHE) </div>]
+ 	<INCLURE{fond=inc-credit}{lang}>
+</div>
+</body>
+</html>

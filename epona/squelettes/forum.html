@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[#NOM_SITE_SPIP] <:poster-message:></title>
+<INCLURE{fond=inc-header}{lang}>
+</head>
+
+<body onload="setHover('menu')">
+
+<!-- Contenu : poster un message dans le forum -->
+<div id="principal" class="contenu">
+
+<BOUCLE_article(ARTICLES) {id_article}>
+	<:en_reponse:>
+	[(#LOGO_ARTICLE|right)]
+	[<div class="surtitre">(#SURTITRE)</div>]
+	<h2 class="titre-extrait"><a href="#URL_ARTICLE">#TITRE</a></h2>
+	[<div class="surtitre">(#SOUSTITRE)</div>]
+	<div class="detail">
+	[(#DATE|nom_jour)] [(#DATE|affdate)]
+	<B_auteurs_un>par <BOUCLE_auteurs_un(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_un>
+	</div>
+	[<div class="texte"><div class="extrait">(#INTRODUCTION)</div></div>]
+	<br>
+</BOUCLE_article>
+
+<BOUCLE_breve(BREVES) {id_breve}>
+	<:en_reponse:>
+	[(#LOGO_BREVE|right)]
+	<h2 class="titre-extrait"><a href="#URL_BREVE">#TITRE</a></h2>
+	<div class="detail">
+	[(#DATE|nom_jour)] [(#DATE|affdate)]
+	</div>
+	[<div class="texte"><div class="extrait">(#INTRODUCTION)</div></div>]
+	<br>
+</BOUCLE_breve>
+
+<BOUCLE_forum_parent(FORUMS) {id_forum}>
+	<:en_reponse:>
+	<h2 class="titre-extrait"><a href="#URL_BREVE">#TITRE</a></h2>
+	<div class="detail">
+	[(#DATE|nom_jour)] [(#DATE|affdate)]
+	</div>
+	[<div class="texte"><div class="extrait">(#TEXTE)</div></div>]
+	<br>
+</BOUCLE_forum_parent>
+
+#FORMULAIRE_FORUM
+
+</div>
+[(#REM) colonne de gauche pour Logo,  menu de navigation et mot-cles de l'article]
+<div id="navigation">
+	<INCLURE{fond=inc-logo}{lang}>
+	<INCLURE{fond=inc-menu}{lang}>
+	[<div class="formulaire" title="<:recherche:>"> (#FORMULAIRE_RECHERCHE) </div>]
+ 	<INCLURE{fond=inc-credit}{lang}>
+</div>
+</body>
+</html>

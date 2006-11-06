@@ -1,0 +1,63 @@
+<INCLURE{fond=agen_mois_php}{lang}>
+
+<BOUCLE_rubrique_principal(RUBRIQUES){tout}{id_rubrique}>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title> <:agenda:> </title>
+<INCLURE{fond=inc-header}{lang}>
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/agenda.css" type="text/css" media="screen">
+</head>
+
+<body onload="setHover('menu')">
+[(#REM)Titre de la rubrique ]
+<div class="contenu" id="principal">
+<div class="cartouche">
+[(#LOGO_RUBRIQUE|left)]
+<h1 class="titre-texte">#TITRE</h1>
+</div>
+
+[(#REM) Affichage du tableau agenda ]
+<BOUCLE_evts_com(ARTICLES){branche}{age_relatif_redac > -58}{age_relatif_redac < 38}{par date_redac}{type_mot=_Agenda}>
+	<?php ajoute_evt_mot('#DATE_REDAC', '[(#SOUSTITRE|texte_script)]', '[(#TITRE|texte_script)]',
+                   '<BOUCLE_genre(MOTS){id_article}{type=_Agenda}>[(#TITRE|texte_script)]</BOUCLE_genre>',
+                   '#URL_ARTICLE', '[<img src="IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)" alt="" />]'); ?>
+</BOUCLE_evts_com>
+<?php affiche_mois_mot("#URL_PAGE{agen_mois_complet}&amp;id_rubrique=#ID_RUBRIQUE"); ?>
+
+[(#REM) Les themes avec recursivite ]
+<br>
+<BOUCLE_themes(RUBRIQUES){titre_mot=agenda_complet}>
+	<ul class="agendaThemes">
+	<li>
+	[<img src="IMG/(#LOGO_RUBRIQUE|fichier)" alt="" />]
+	<a href="#URL_PAGE{agen_mois_complet}&amp;id_rubrique=#ID_RUBRIQUE&amp;date=[(#ENV{date}|couper{7})]&amp;genre=[(#ENV{genre})]">#TITRE</a>
+	<ul class="agendaThemes">
+	<BOUCLE_sous_rubriques1(RUBRIQUES){id_parent}{par titre}>
+		<li>
+		[<img src="IMG/(#LOGO_RUBRIQUE|fichier)" alt="" />]
+		<a href="#URL_PAGE{agen_mois_complet}&amp;id_rubrique=#ID_RUBRIQUE&amp;date=[(#ENV{date}|couper{7})]&amp;genre=[(#ENV{genre})]">#TITRE</a>
+		<B_sous_rubriques>
+			<ul class="agendaThemes">
+		<BOUCLE_sous_rubriques(BOUCLE_sous_rubriques1)></BOUCLE_sous_rubriques>
+			</ul>
+		</B_sous_rubriques>
+		</li>
+	</BOUCLE_sous_rubriques1>
+	</ul>
+	</li>
+	</ul>
+</BOUCLE_themes>
+</div>
+[(#REM) colonne de gauche pour Logo,  menu de navigation et mot-cles de l'article]
+<div id="navigation">
+	<INCLURE{fond=inc-logo}{lang}>
+	<INCLURE{fond=inc-menu}{lang}>
+	[<div class="formulaire" title="<:recherche:>"> (#FORMULAIRE_RECHERCHE) </div>]
+ 	<INCLURE{fond=inc-credit}{lang}>
+</div>
+
+</body>
+</html>
+</BOUCLE_rubrique_principal>

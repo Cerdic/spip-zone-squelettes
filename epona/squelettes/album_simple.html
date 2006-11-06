@@ -1,0 +1,77 @@
+<?php 
+function paginationImage($id_article, $nb_images) {
+    // affiche des liens permettant d'afficher les images precedente et suivante
+    if ($nb_images > 1) {
+        $debut_image = $_GET["debut_image"];
+        if ($debut_image > 0) {
+            lienPage($id_article, ($debut_image-1), ":<precedent:>", "<img src=#DOSSIER_SQUELETTE/prev.gif title=<:precedent:> border=0 />");
+        }
+	$num = $debut_image +1;
+        echo ' Image '.$num.' / '.$nb_images.' ';
+        if ($debut_image < $nb_images-1) 
+            lienPage($id_article, ($debut_image+1), "<:suivant:>", "<img src=#DOSSIER_SQUELETTE/next.gif title=<:suivant:> border=0 />");
+    }
+}
+
+function lienPage($id_article, $image, $titre, $texte) {
+    // affiche un lien avec les parametres en argument
+    echo "<a href='#URL_PAGE{album_simple}&id_article=$id_article";
+    echo "&debut_image=$image' title='" . htmlentities($titre, ENT_QUOTES) . "'>$texte</a>";
+}    
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<BOUCLE_principale(ARTICLES){id_article}>
+
+<!-- album photo : une seule photo par page -->
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#TITRE|textebrut)]</title>
+<INCLURE{fond=inc-header}{lang}>
+
+<?php $id_article = "#ID_ARTICLE"; ?>
+<style type="text/css">
+<!--
+.album-photo { text-align: center; }
+
+.album-pagination {
+	margin: 10px 0px;
+	font-size: 11pt;
+	text-align: center;
+}
+
+.album-pagination a { color: #ff6519; }
+-->
+</style>
+</head>
+<body>
+
+<!-- calcule le nombre de photos jointes sous forme de document -->
+<B_nb_images>
+<BOUCLE_nb_images(DOCUMENTS){id_article}{extension==jpg|png|gif}{mode=document}>
+</BOUCLE_nb_images>
+    <?php $nb_images = "#TOTAL_BOUCLE"; ?>
+
+<!-- liens de pagination pour passer d'une image a l'autre -->
+<div class="album-pagination">
+        <?php echo '<a href=?article'.$id_article.'><:retour_article:></a>'; ?>
+</div>
+<div class="album-pagination">
+	<?php paginationImage($id_article, $nb_images); ?>
+</div>
+
+<!-- affiche l'image dont le rang est indique par le parametre debut_image -->
+<BOUCLE_photo(DOCUMENTS){id_article}{par titre}{extension==jpg|png|gif}{mode=document}{debut_image,1}>
+    <div class="album-photo"><img src="#URL_DOCUMENT" width="#LARGEUR" height="#HAUTEUR" border="0" alt="" /></div>
+    <dl class="album-photo-legende">
+        [<dd>(#TITRE)</dd>][<dd>(#DESCRIPTIF)</dd>]
+    </dl>
+</BOUCLE_photo>
+
+</B_nb_images>
+<//B_nb_images>
+
+</body>
+</html>
+</BOUCLE_principale>
+

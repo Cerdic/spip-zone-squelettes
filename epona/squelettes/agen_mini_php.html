@@ -1,0 +1,86 @@
+<?php
+
+$events = array();
+
+/*
+ *   Ajoute un element a la liste des evenements agenda
+ *   le sous-titre est utilise pour les evenements sur plusieurs jours
+ *   pour une plage de N jours (max = 20), on ajoute N elements a la liste
+ */
+function ajout_evenement ($date, $titre, $soustitre, $url_article) {
+  global $events;
+  $dateEvt = strtotime("$date");
+  ereg("([0-9]+) +jour", $soustitre, $nb_jour);
+  if ($nb_jour[1]=="") $nb_jour[1]=1;
+  if ($nb_jour[1]>20) $nb_jour[1]=20;
+  for ($i=0; $i < intval($nb_jour[1]);++$i) {
+   $chaineDate = date("Ymd",mktime(0, 0, 0, date("m",$dateEvt) , date("d",$dateEvt) + $i, date("Y",$dateEvt)));
+   if (!isset($events[$chaineDate])) $events[$chaineDate] = array();
+   $events[$chaineDate][] = array('link' => "$url_article", 'title' => "$titre");
+  }
+}
+
+/*
+ *   Affiche l'agenda miniature, d'apres la liste d'evenements
+ *   en parametre le nom de page agenda mensuel et annuel
+ */
+function affiche_agenda_mini ($pagemois, $pagean) {
+   global $events;
+  $months = array('', '<:nom_mois_1:>', '<:nom_mois_2:>', '<:nom_mois_3:>', '<:nom_mois_4:>', '<:nom_mois_5:>', '<:nom_mois_6:>', '<:nom_mois_7:>', '<:nom_mois_8:>', '<:nom_mois_9:>', '<:nom_mois_10:>', '<:nom_mois_11:>', '<:nom_mois_12:>');
+  $days = array('<:nom_j_1:>', '<:nom_j_2:>', '<:nom_j_3:>', '<:nom_j_4:>', '<:nom_j_5:>', '<:nom_j_6:>', '<:nom_j_7:>');
+   $M = intval(date('m', time()));
+   $Y = intval(date('Y', time()));
+   // en tete tableau
+   echo '<table cellpadding="5" cellspacing="0" align="center"  class="agenda">';
+   echo '<tr> <th colspan="7" class="agendaNav">';
+   echo '<a href="'.$pagemois.'" title="<:agenda_mois:>">'.$months[intval($M)].'</a>&nbsp;';
+   echo '<a href="'.$pagean.'" title="<:agenda_an:>">'.$Y.'</a>';
+   echo '</th> </tr> <tr>';
+   // affichage jours et evenements
+   for($i = 1; $i < 8; $i++) { echo '<th width="14%" class="agendaHead">'.$days[$i%7].'</th>'; }
+   $TempD = 1;
+   $Time = mktime(0, 0, 0, $M, 1, $Y);
+   if(date('w', $Time) != 1) {
+      echo '</tr><tr>';
+      $tmp = '';
+      while(date('w', $Time) != 1) {
+         $TempD--;
+         $Time = mktime(0, 0, 0, $M, $TempD, $Y);
+         $case = '<td width="14%" class="agendaNotThisMonth">';
+              $date=date('Ymd', $Time);
+         if (isset($events[$date])) {
+            if (count($events[$date]) == 1) {
+              $case .= '<u><a href='.$events[$date][0]['link'].' title="'.$events[$date][0]['title'].'">';
+            } else {
+              $case .= '<u><a href="'.$pagemois.'" title="'.count($events[$date]).' <:evenements:>">';
+            }
+            $case .= date('j', $Time).'</a></u>';
+         } else {$case .= date('j', $Time);}
+         $tmp = $case.'</td>'.$tmp;
+      }
+      echo $tmp;
+   }
+   $TempD = 1;
+   $Time = mktime(0, 0, 0, $M, 1, $Y);
+   while((date('m', $Time) == $M) || (date('w', $Time) != 1)) {
+      if(date('w', $Time) == 1) { echo '</tr><tr>'; }
+      echo '<td width="14%" align=center';
+      echo ' class="agenda'.(date('m', $Time) != $M ? 'Not' : '').'This'.(date('Ymd', $Time) == date('Ymd') ? 'Day' : 'Month').'">';
+      $date=date('Ymd', $Time);
+      if (isset($events[$date])) {
+            if (count($events[$date]) == 1) {
+              echo '<u><a href='.$events[$date][0]['link'].' title="'.$events[$date][0]['title'].'">';
+            } else {
+              echo '<u><a href="'.$pagemois.'" title="'.count($events[$date]).' <:evenements:>">';
+            }
+            echo date('j', $Time).'</a></u>';
+      } else {echo date('j', $Time);}
+      echo '</td>';
+      $TempD++;
+      $Time = mktime(0, 0, 0, $M, $TempD, $Y);
+   }
+   echo '</tr> </table> <br>';
+   $events = array();
+}
+
+?>
