@@ -1,13 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="#LANG">
-<head>
-	<title>[#NOM_SITE_SPIP] <:poster_message:></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
-	[<!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
-	<link rel="stylesheet" href="(#CHEMIN{spip_style.css}|direction_css)" type="text/css">]
-	[<!-- Les feuilles de style specifiques aux presents squelettes -->
-	<link rel="stylesheet" href="(#CHEMIN{themes/defaut/spip_forum.css}|direction_css)" type="text/css">]
-</head>
+#CACHE{0}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head> 
+	<title>[(#NOM_SITE_SPIP|textebrut)] <:poster_message:></title>
+	<INCLURE{fond=inc-forum-head}>
+</head> 
 
 <body id="posterfor" dir="#LANG_DIR">
 
@@ -50,12 +47,7 @@ Attention que cette boucle vaut son pesant de cachouettes ;o))
 <?php $forumferme=0 ?>
 <BOUCLE_etat(ARTICLES){id_article}{titre_mot=Fermé}>
 <?php $forumferme=1 ?>
-</BOUCLE_etat>
-
-<!-- On récupère le secteur -->
-<BOUCLE_secteur(HIERARCHIE){id_article}{0,1}>
-<?php $ze_sect=#ID_RUBRIQUE ?>
-</BOUCLE_secteur>
+</BOUCLE_etat> 
 
 <a name="haut"></a>
 <div id="contenant"> <!-- Section contenant la page -->
@@ -86,7 +78,7 @@ Attention que cette boucle vaut son pesant de cachouettes ;o))
 		<BOUCLE_forum_parent(FORUMS){id_forum}>
 		<div class="prec">
 			<h2><:phpbb:reponse:></h2>
-			<h3><a href="spip.php?page=voirsujet&amp;id_forum=<?php echo $id_sujet?>#forum#ID_FORUM">#TITRE</a> <:par_auteur:> <B_auteurp><BOUCLE_auteurp(AUTEURS){id_auteur}{tout}><a href="spip.php?page=profil_BB.php3&amp;id_auteur=#ID_AUTEUR&amp;id_rubrique=<?php echo $ze_sect?>">#NOM</a></BOUCLE_auteurp></B_auteurp><a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{<:phpbb:anonyme:>})]</a><//B_auteurp></h3>
+			<h3><a href="spip.php?page=voirsujet&amp;id_forum=<?php echo $id_sujet?>#forum#ID_FORUM">#TITRE</a> <:par_auteur:> <B_auteurp><BOUCLE_auteurp(AUTEURS){id_auteur}{tout}><a href="[(#URL_PAGE{profil_BB}|parametre_url{id_auteur,#ID_AUTEUR}|parametre_url{id_rubrique=#ID_RUBRIQUE})]">#NOM</a></BOUCLE_auteurp></B_auteurp><a href="mailto:[(#EMAIL|antispam)]">[(#NOM|sinon{<:phpbb:anonyme:>})]</a><//B_auteurp></h3>
 			<p>[<:phpbb:le:> (#DATE|nom_jour)] [(#DATE|jour)] [(#DATE|nom_mois)] [(#DATE|annee)]</p>
 			[(#TEXTE|justifier)]
 		</div>

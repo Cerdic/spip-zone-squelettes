@@ -1,9 +1,22 @@
-<BOUCLE_secteura(ARTICLES){id_article}>
-#SET{secteur,#ID_SECTEUR}
-</BOUCLE_secteura>
-<BOUCLE_secteurr(RUBRIQUES){id_rubrique}>
-#SET{secteur,#ID_SECTEUR}
-</BOUCLE_secteurr>
+#CACHE{0}
+<div class="fondbleu"><div class="logotele">
+<a href="[(#URL_SITE_SPIP)]" class="liensite"></a>
+<a href="teleplaisance.php?rubrique19"><div class="logodroite"></div></a>
+</div></div>
+
+<div class="mainmenu">
+
+		<div id="linknewmessages">
+		[(#ENV{id_rubrique,19}|=={19}|?{"
+		<a href='?page=nouveaux_messages&amp;id_rubrique=19'>
+		Voir les nouveaux messages</a>
+		", <a href="?rubrique19">[Les Forums de (#NOM_SITE_SPIP)]</a>})]
+		</div>
+
+[(#REM) personnaliser! ICI il faut définir le numero de la rubrique de forum!]
+[(#SET{secteur,[(#ID_SECTEUR|sinon{19})]})]
+
+
 <div id="entete"><!-- La section d'en-tete -->
 	<BOUCLE_secteur(RUBRIQUES){id_rubrique=#GET{secteur}}>
 	[(#LOGO_RUBRIQUE|fichier||?{
@@ -16,12 +29,7 @@
 		// -->
 		</style>]
 	})]
-	<div class="logofor"> <!-- le secteur du titre et de la description -->
-		<a style="font-size:30px;font-weight:bold" href="#URL_RUBRIQUE">
-		#NOM_SITE_SPIP
-		</a>[
-		<br />(#DESCRIPTIF|sinon{"&nbsp;"})
-	]</div> 
+ 
 	</BOUCLE_secteur>
 
 	<div class="actionfor" > <!-- Le secteur des actions -->
@@ -49,11 +57,13 @@
 			</li>]
 			<?php } else { ?>
 			[<li class="profil">
-			<a href="(#URL_PAGE{profile}|parametre_url{id_rubrique,#GET{secteur}})">
+			#NOM
+			<a href="(#URL_PAGE{forum_profile}|parametre_url{id_rubrique,#GET{secteur}})">
 			<:phpbb:membres_profil:>
 			</a>
 			</li>]
 			<li class="login">
+			
 			<a href="#URL_LOGOUT">
 			<:phpbb:logout:> [<?php echo $GLOBALS['auteur_session']['nom']; ?>]
 			</a>
@@ -69,4 +79,6 @@
 		</ul>
 	</div>
 
-</div>
+</div></div>
+
+

@@ -1,22 +1,11 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
-<html lang="#LANG">
+#CACHE{7200}
+<BOUCLE_rubrique_principal(RUBRIQUES){id_rubrique}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
 <head>
-<title>[#NOM_SITE_SPIP] - [(#TITRE|supprimer_numero)] </title>
-<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
-
-<!-- Ceci est la feuille de style par defaut pour les types internes a SPIP -->
-
-<link rel="stylesheet" href="spip_style.css" type="text/css">
-
-
-<!-- Les feuilles de style specifiques aux presents squelettes -->
-<link rel="stylesheet" href="[(#CHEMIN{themes/defaut/spip_forum.css}|direction_css)]" type="text/css">
-
-<!-- Lien vers le backend pour navigateurs eclaires -->
-<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="spip.php?page=backend">
-
-</head>
+	<title>[(#NOM_SITE_SPIP|textebrut)] - [(#TITRE)] </title>
+	<INCLURE{fond=inc-forum-head}> 
+</head> 
 
 <body id="forumsect" dir="#LANG_DIR">
 <?php 
@@ -41,7 +30,7 @@
 
 	<div id="corps"> <!-- Section contenant les données -->
 <hr class="clr" /> <!-- Permet l'affichage correctement pour certaines versions de safari -->
-<p class="nav"><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></p>
+<p class="nav"><a href="#URL_RUBRIQUE">[(#TITRE)]</a></p>
 <p style="float:right;margin-bottom: 1em; padding-top:10px ; margin-right:10px"><a href="spip.php?page=nouveaux_messages&amp;id_rubrique=#ID_RUBRIQUE"><:phpbb:voir_messages:></a></p>
 
 		
@@ -78,13 +67,13 @@
 		
 		<BOUCLE_categories(RUBRIQUES){id_parent}{par num titre}>
 			<tr class="salon">
-				<td colspan="2" class="salontitre">[<h2><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a></h2>]</td>
+				<td colspan="2" class="salontitre">[<h2><a href="#URL_RUBRIQUE">(#TITRE)</a></h2>]</td>
 				<td colspan="3" class="salonreste">&nbsp;</td>
 			</tr>
 		<BOUCLE_forums(ARTICLES){id_rubrique}{par num titre}>
 			<tr class="forumligne">
 				<B_etat><BOUCLE_etat(ARTICLES){id_article}{titre_mot=Fermé}><td class="etatfor fermfor"><span><:phpbb:forum_ferme:></BOUCLE_etat></B_etat><td class="etatfor ouvfor"><span><:titre_forum:><//B_etat></span></td>
-				<td class="titre">[<h3><a title="<:phpbb:voir_evolution:>" href="ecrire/?exec=statistiques_visites&amp;id_article=#ID_ARTICLE">(#TITRE|supprimer_numero)</a></h3><br/>]
+				<td class="titre">[<h3><a title="<:phpbb:voir_evolution:>" href="ecrire/?exec=statistiques_visites&amp;id_article=#ID_ARTICLE">(#TITRE)</a></h3><br/>]
 				<!-- Ici les Modérateurs --></td>
 			
 				<td class="msgsuj" colspan="3">

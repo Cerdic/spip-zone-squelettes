@@ -1,8 +1,13 @@
+#CACHE{0}
 <?php
 // La ligne suivante permet d'intercepter si le formulaire vient d'être validé, auquel cas on redirige vers la page d'affichage des éléments en la mettant à jour
-if ($redirect==oui) {echo "<meta http-equiv='refresh' content='0; url=spip.php?profile&amp;id_auteur=$id_auteur&amp;id_rubrique=$id_rubrique&amp;var_mode=recalcul'>"; }
+if ($redirect==oui) {
+	echo "<meta http-equiv='refresh' content='0; url=spip.php?page=profile&id_auteur=$id_auteur&id_rubrique=$id_rubrique&var_mode=recalcul'>";
+}
 
-if (!$auteur_session){ //Si pas loggé, on affiche le formulaire de login' ?> <INCLURE{connexion}{id_rubrique}>
+if (!$auteur_session){ //Si pas loggé, on affiche le formulaire de login' 
+?> 
+<INCLURE{connexion}{id_rubrique}>
 <?php exit; }
  
  // permet la zolie mise en page comme dans l'espace admin
@@ -65,7 +70,7 @@ if ($modif) {
 
 	// recoller les champs du extra
 	if ($champs_extra) {
-		include_ecrire("/inc/extra.php");
+		include_spip("inc/extra");
 		$extra = extra_recup_saisie("auteurs");
 		$add_extra = ", extra = '".addslashes($extra)."'";
 	} else
@@ -95,22 +100,20 @@ if ($modif) {
 	}
 	
 	// Subtilité, spip passe avant le php, donc la page est créée avant la mise à jour, donc l'avatar n'est pas à jour si on ne recharge pas la page !
-if(!echec){header("Location: spip.php?page=profile&amp;id_auteur=$id_auteur_session&amp;id_rubrique=$id_rubrique");}
+if(!echec){header("Location: spip.php?page=profile&id_auteur=$id_auteur_session&id_rubrique=$id_rubrique");}
 }	
 	
 //Si visiteur (et vérification de la correspondance des $id_auteurs) afficher la page.
 if ($auteur_session AND $auteur_session['id_auteur']==$id_auteur) { 
 ?>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
   <BOUCLE_auteur_principal(AUTEURS){id_auteur}{tout}>
   <html lang="#LANG">
   <head>
   <title><:phpbb:profil:> #NOM</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
-  
-    <!-- Les feuilles de style specifiques aux presents squelettes -->
-<link rel="stylesheet" href="[(#CHEMIN{themes/defaut/spip_forum.css}|direction_css)]" type="text/css">
+  <INCLURE{fond=inc-forum-head}>
   </head>
   
 <body id="profilmod" dir="#LANG_DIR">
@@ -126,10 +129,11 @@ if ($auteur_session AND $auteur_session['id_auteur']==$id_auteur) {
 
 		<div id="detail"> <!-- Section pour mise en forme spécifique des informations d'un utilisateur -->
  			<h2><:phpbb:profil:> #NOM</h2>
-			<div id="avatar"> <!--Section de l'avatar-->
+			[<div id="avatar"> <!--Section de l'avatar-->
 				<h3><:phpbb:avatar:></h3>
-				<?php if($auteur_session['statut']=="6forum"){?><p>[(#NOM|afficher_avatar{''})]</p><?php } elseif(($auteur_session['statut']=="1comite")OR($auteur_session['statut']=="0minirezo")){?><INCLURE(ecrire/inc/logos.php)><?php } ?>
-			</div>
+				<p>[(#NOM|afficher_avatar{''})] <br /><img src="(#EXTRA|avatar)" /></p> 
+				
+			</div>]
 			<div id="information"> <!-- Section  des informations -->
 			<h3><:phpbb:paramprofil:></h3>
  <?php if ($echec){
@@ -167,7 +171,7 @@ if ($auteur_session AND $auteur_session['id_auteur']==$id_auteur) {
 	echo entites_html($auteur['bio']);
 	echo "</textarea>\n";
 	if ($champs_extra) {
-		include_ecrire("/inc/extra.php");
+		include_spip("inc/extra");
 		extra_saisie($auteur['extra'], 'auteurs', 'inscription'); }
 		fin_cadre_relief();
 		echo "<p>";
@@ -252,5 +256,5 @@ fin_cadre_formulaire(); ?>
 <:aucun_auteur:>
 <//B_auteur_principal>
 <?php
-} else header("Location: spip.php?page=profile&amp;id_auteur=$id_auteur_session&amp;id_rubrique=$id_rubrique"); // Ca c'est si un p'tit malin essaye d'éditer le profile d'un autre...
+} else header("Location: spip.php?page=profile&id_auteur=$id_auteur_session&id_rubrique=$id_rubrique"); // Ca c'est si un p'tit malin essaye d'éditer le profile d'un autre...
 ?>
