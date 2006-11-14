@@ -73,7 +73,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rss_pour' => 'Comments RSS feed for',
 
 //S
-'selection' => '&agrave; retenir',
+'selection' => 'worth a thought',
 'site_comment' => 'site',
 'syndication' => 'Syndication',
 
