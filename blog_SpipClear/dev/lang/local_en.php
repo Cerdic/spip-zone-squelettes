@@ -44,14 +44,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //F
 'fil_rss' => 'rss feed',
-'fil_rss_commentaires' => 'comments rss feed',
+'fil_rss_commentaires' => 'comments\' rss feed',
 'fil_atom' => 'atom feed',
-'fil_atom_commentaires' => 'comments atom feed',
+'fil_atom_commentaires' => 'comments\' atom feed',
 
 //G
 'go_main' => 'Go to the content',
 'go_sidebar' => 'Go to the menu',
-'go_search' => 'Go to search',
+'go_search' => 'Go to the search',
 
 //H
 'hebergement' => 'hosted by',
