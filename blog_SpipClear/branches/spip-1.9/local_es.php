@@ -73,7 +73,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rss_pour' => 'hilo RSS de los comentarios de',
 
 //S
-'selection' => '&agrave; retenir',
+'selection' => 'para recordar',
 'site_comment' => 'sitio',
 'syndication' => 'Syndication',
 
