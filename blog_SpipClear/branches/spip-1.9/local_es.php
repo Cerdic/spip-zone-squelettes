@@ -1,6 +1,6 @@
 <?php
 
-// This is a SPIP-forum module file  --  Ceci est un fichier module de SPIP-forum
+// This is a SPIP-forum module file  --  Ceci est un fichier module de SPIP-forum -- Este es un fichero módulo de SPIP-forum
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
@@ -12,7 +12,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'aucune_archive' => 'Ning&uacute;n archivo',
 'aucune_categorie' => 'Ninguna categor&iacute;a',
 'aucun_commentaire' => 'Ning&uacute;n comentario',
-'aucune_langue' => 'Ninguna lengua',
+'aucune_langue' => 'Ning&uacute;n idioma',
 'aucun_lien' => 'Ning&uacute;n enlace',
 'aucun_trackback' => 'Ning&uacute;n trackback',
 
@@ -23,7 +23,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'commentaire' => 'comentario',
 'commentaires' => 'comentarios',
 'commentaires_pour' => 'comentarios para',
-'commentaires_fermes' => 'Los comentarios para esta anotaci&oacute; est&aacute; cerrados',
+'commentaires_fermes' => 'Los comentarios para esta anotaci&oacute;n est&aacute;n cerrados',
 'credits' => '<a href="http://www.spip.net/es">generado por SPIP</a>,
 <a href="http://www.spip-contrib.net/Spip-Clear">propulsado por Spip.Clear</a>',
 
@@ -57,8 +57,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'hebergement' => 'Alojado en',
 
 //L
-'langue' => 'Lengua',
-'langues' => 'Lenguas',
+'langue' => 'Idioma',
+'langues' => 'Idiomas',
 'lien' => 'Enlace',
 'liens' => 'Enlaces',
 
@@ -70,7 +70,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //R
 'resultat_recherche' => 'Resultados para la b&uacute;squeda de',
-'rss_pour' => 'hilo RSS de los comentarios de',
+'rss_pour' => 'RSS de los comentarios de',
 
 //S
 'selection' => 'para recordar',
@@ -80,8 +80,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //T
 'trackback' => 'trackback',
 'trackbacks' => 'trackbacks',
-'trackbacks_pour_faire' => 'Para hacer un trackback sobre esta anotaci&oacute;',
-'trackbacks_fermes' => 'Los trackbacks para esta anotaci&oacute; est&aacute;n cerrados.',
+'trackbacks_pour_faire' => 'Para hacer un trackback sobre esta anotaci&oacute;n',
+'trackbacks_fermes' => 'Los trackbacks para esta anotaci&oacute;n est&aacute;n cerrados.',
 
 );
 
