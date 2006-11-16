@@ -342,8 +342,9 @@ ondbclick='storeCaret(this);'>$texte</textarea>";
 }
 
 /* surcharge du critere par pour ajouter le tri par date de thread
-   {par date_thread} introduit dans spip 1.9 en cours de developpement.
-   Si vous testez cette version avec ce squelette, supprimez la fonction ci-dessous. */
+   {par date_thread} introduit dans SPIP1.9.
+   Si vous utilisez SPIP1.9, utilisez la version adaptee de SpipBB
+ */
 function critere_par($idb, &$boucles, $crit) {
 	
 	$boucle = &$boucles[$idb];
