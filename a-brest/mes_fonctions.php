@@ -89,7 +89,7 @@ function licence($titre, $param="") {
 					$str .= "<a href=\"http://www.gnu.org/copyleft/gpl.html\">licence GPL</a>\n";
 					break;	
 		case "cc by":	// Creative Commons - Paternité 
-					$str .= "<a rel=\"license\" href=\"http://creativecommons.org/licenses/by/2.0/fr/deed.fr\"><img alt=\"Contrat Creative Commons\" border=\"0\" src=\"http://creativecommons.org/images/public/somerights20.gif\" /></a><br />\n";
+					$str .= "<a rel=\"license\" href=\"http://creativecommons.org/licenses/by/2.0/fr/deed.fr\"><img alt=\"Contrat Creative Commons\" src=\"http://creativecommons.org/images/public/somerights20.gif\" /></a><br />\n";
 					$str .= "<a rel=\"license\" href=\"http://creativecommons.org/licenses/by/2.0/fr/deed.fr\">Creative Commons</a>\n";
 					$str .= "<!--\n";
 					$str .= "<rdf:RDF xmlns=\"http://web.resource.org/cc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n";
@@ -109,7 +109,7 @@ function licence($titre, $param="") {
 					$str .= "-->\n";
 					break;
 		case "cc by-nd":	// Creative Commons - Paternité pas de modification	
-					$str .= "<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nd/2.0/fr/deed.fr\"><img alt=\"Contrat Creative Commons\" border=\"0\" src=\"http://creativecommons.org/images/public/somerights20.gif\" /></a><br />\n";
+					$str .= "<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nd/2.0/fr/deed.fr\"><img alt=\"Contrat Creative Commons\" src=\"http://creativecommons.org/images/public/somerights20.gif\" /></a><br />\n";
 					$str .= "<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nd/2.0/fr/deed.fr\">Creative Commons</a>\n";
 					$str .= "<!--\n";
 					$str .= "<rdf:RDF xmlns=\"http://web.resource.org/cc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n";
@@ -129,7 +129,7 @@ function licence($titre, $param="") {
 					break;
 					
 		case "cc by-nc-nd":	// Creative Commons - Paternité Pas d"Utilisation Commerciale Pas de Modification	
-					$str .= "<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc-nd/2.0/fr/deed.fr\"><img alt=\"Contrat Creative Commons\" border=\"0\" src=\"http://creativecommons.org/images/public/somerights20.gif\" /></a><br />\n";
+					$str .= "<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc-nd/2.0/fr/deed.fr\"><img alt=\"Contrat Creative Commons\" src=\"http://creativecommons.org/images/public/somerights20.gif\" /></a><br />\n";
 					$str .= "<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc-nd/2.0/fr/deed.fr\">Creative Commons</a>\n";
 					$str .= "<!--\n";
 					$str .= "<rdf:RDF xmlns=\"http://web.resource.org/cc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n";
@@ -149,7 +149,7 @@ function licence($titre, $param="") {
 					$str .= "-->\n";
 					break;
 		case "cc by-nc":	// Creative Commons - Paternité Pas d"Utilisation Commerciale 	
-					$str .= "<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/2.0/fr/deed.fr\"><img alt=\"Contrat Creative Commons\" border=\"0\" src=\"http://creativecommons.org/images/public/somerights20.gif\" /></a><br />\n";
+					$str .= "<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/2.0/fr/deed.fr\"><img alt=\"Contrat Creative Commons\" src=\"http://creativecommons.org/images/public/somerights20.gif\" /></a><br />\n";
 					$str .= "<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/2.0/fr/deed.fr\">Creative Commons</a>\n";
 					$str .= "<!--\n";
 					$str .= "<rdf:RDF xmlns=\"http://web.resource.org/cc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n";
@@ -172,7 +172,7 @@ function licence($titre, $param="") {
 					break;
 					
 		case "cc by-nc-sa":	// Creative Commons - Paternité Pas d"Utilisation Commerciale Partage des Conditions Initiales à  l"Identique 	
-					$str .= "<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc-sa/2.0/fr/deed.fr\"><img alt=\"Contrat Creative Commons\" border=\"0\" src=\"http://creativecommons.org/images/public/somerights20.gif\" /></a><br />\n";
+					$str .= "<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc-sa/2.0/fr/deed.fr\"><img alt=\"Contrat Creative Commons\" src=\"http://creativecommons.org/images/public/somerights20.gif\" /></a><br />\n";
 					$str .= "<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc-sa/2.0/fr/deed.fr\" style=\"display:none\">Creative Commons</a>\n";
 					$str .= "<!--\n";
 					$str .= "<rdf:RDF xmlns=\"http://web.resource.org/cc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n";
@@ -196,7 +196,7 @@ function licence($titre, $param="") {
 					
 			
 		case "cc by-sa":	// Creative Commons - Paternité  Partage des Conditions Initiales à  l"Identique	
-					$str .= "<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr\"><img alt=\"Contrat Creative Commons\" border=\"0\" src=\"http://creativecommons.org/images/public/somerights20.fr.png\" /></a><br />\n";
+					$str .= "<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr\"><img alt=\"Contrat Creative Commons\" src=\"http://creativecommons.org/images/public/somerights20.fr.png\" /></a><br />\n";
 					$str .= "<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr\">Creative Commons</a>\n";
 					$str .= "<!--\n";
 					$str .= "<rdf:RDF xmlns=\"http://web.resource.org/cc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n";
