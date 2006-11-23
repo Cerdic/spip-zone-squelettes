@@ -19,7 +19,7 @@ $css_blip = array(
 ); 
 
 	// COULEURS ET PROPORTIONS DU SITE
-$css_blip_couleur_1_nom = '<multi>[fr]Rubriques[en]Sections[it]Rubriche[ca]Secci&oacute;</multi>';
+$css_blip_couleur_1_nom = 'n°01 : Vert p&eacute;tillant et orange intense';
 $css_blip_couleur_1 = array(
 	// Jeu de couleur n°1
 	'gris|fonce' => '#333333',

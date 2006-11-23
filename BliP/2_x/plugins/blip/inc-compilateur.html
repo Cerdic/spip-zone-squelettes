@@ -7,24 +7,28 @@ Il s'agit du compilateur de BliP, c'est ce fichier qui rend le squelette modulai
 <!-- <BOUCLE_bidon(BLIP)>#ID_ITEM</BOUCLE_bidon> -->
 [
 (#ENV{zone}|=={'mentions_techniques'}|?{' ',''})<INCLURE{fond=inc-infos}{lang}>
-]	
+]
 <B_compilateur_blip>
 	<div class="#ENV{zone}">[(#ENV{zone}|!={'titre_principal'}|?{'',<a href="#URL_SITE_SPIP">})]
 <BOUCLE_compilateur_blip(BLIP){position IN #ENV{zone},#ENV{zone_restreinte}}{actif=oui}{par ordre}>
 		[(#TYPE|!={'statique'}|?{'',' '})
 			[(#ENV{zone}|!={'barre_laterale'}|?{' ',''})
-			<span[ class="(#STYLE)"]>[<b>(#TITRE|supprimer_numero)</b> ]#TEXTE</span>					
+				<span[ class="(#STYLE)"]>[<b>(#TITRE|supprimer_numero)</b> ]#TEXTE</span>					
 			]		
 			[(#ENV{zone}|=={'barre_laterale'}|?{' ',''})
-			<div class="element"><div class="texte_principal">
-			<h3><span class="couleur2"><b>[(#TITRE|supprimer_numero)]</b></span></h3>
-			<span[ class="(#STYLE)"]>#TEXTE</span>
-			</div></div><!-- fin element-->			
+				<div class="element"><div class="texte_principal">
+				<h3><span class="couleur2"><b>[(#TITRE|supprimer_numero)]</b></span></h3>
+				<span[ class="(#STYLE)"]>#TEXTE</span>
+				</div></div><!-- fin element-->			
 			]
 		]
 		[(#TYPE|!={'dynamique'}|?{'',' '})
 			[(#ENV{zone}|!={'barre_laterale'}|?{' ',''})<INCLURE{fond=#TEXTE}{lang}>]
-			[(#ENV{zone}|=={'barre_laterale'}|?{' ',''})<INCLURE{fond=#TEXTE}{page_actuelle}{id_actuel}{tri}{lang}>]
+			[(#ENV{zone}|=={'barre_laterale'}|?{' ',''})
+				<div class="element"><div class="texte_principal">
+				<INCLURE{fond=#TEXTE}{page_actuelle}{id_actuel}{tri}{lang}>
+				</div></div><!-- fin element-->
+			]
 			[(#ENV{zone}|=={'sur_contenu'}|?{' ',''})<INCLURE{fond=#TEXTE}{page_actuelle}{id_actuel}{lang}>]
 			[(#ENV{zone}|=={'sous_contenu'}|?{' ',''})<INCLURE{fond=#TEXTE}{page_actuelle}{id_actuel}{lang}>]
 		]

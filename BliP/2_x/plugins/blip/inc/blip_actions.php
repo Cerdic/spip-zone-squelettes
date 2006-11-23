@@ -515,7 +515,7 @@ function blip_update_pos(selObj) {
 function blip_update_layers() {
 	switch (item_type) {
 		case "dynamique" :
-			display_title   = "none";
+			display_title   = "block";
 			display_descr   = "none";
 			display_text    = "none";
 			display_style   = 'none';
@@ -567,7 +567,7 @@ END;
 			$display_pages = "none";
 		break;
 		case "lienpage" :
-			$display_titre = "block";
+			$display_titre = "none";
 			$display_descr = "block";
 			$display_texte = "none";
 			$display_style = "none";

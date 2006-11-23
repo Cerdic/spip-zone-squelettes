@@ -15,7 +15,6 @@ $GLOBALS['i18n_blip_fr'] = array(
  'accueil' => 'Accueil',
  'afficher_les_derniers' => 'Afficher les derniers',
  'articles' => 'Articles',
- 'articles_aucun_publies' => 'Aucun article publi&eacute;s',
  'article_aucun_publie' => 'Aucun article publi&eacute;',
  'article_de' => 'Articles de',
  'articles_derniers_publies' => 'Derniers articles publi&eacute;s',
@@ -54,15 +53,14 @@ $GLOBALS['i18n_blip_fr'] = array(
  'date_de_publication' => 'date de publication',
  'depuis_cette_page_vous_pouvez_personnaliser_laffichage_de_ce_site_internet' => 'Depuis cette page, vous pouvez personnaliser l\'affichage de ce site Internet',
  'derniere_mise_a_jour_le' => 'Derni&egrave;re mise &agrave; jour le',
- 'derniere_mise_a_jour' => 'Derni&egrave;res mises &agrave; jour',
  'documents' => 'Documents',
  'document_aucun_publie' => 'Aucun document publi&eacute;',
  'document_dernier_publie' => 'Derniers documents publi&eacute;s',
  'documents_joints_a_larticle' => 'Documents joints &agrave; l\'article',
  'document_publie_le' => 'document publi&eacute; le',
- 'document_publie' => 'documents publi&eacute;s',
+ 'documents_publies' => 'documents publi&eacute;s',
  'documents_derniers' => 'Derniers documents',
-
+ 'dernieres_mises_a_jour' => 'Derni&egrave;res mises &agrave; jour',
 
 // E
 

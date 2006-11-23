@@ -11,6 +11,7 @@ include_spip('inc/presentation');
 include_spip('inc/layer');
 include_spip('inc/meta');
 include_spip('inc/blip_actions');
+include_spip('inc/config');
 
 function exec_blip_contenu() {
 	global $connect_statut;
@@ -28,15 +29,14 @@ function exec_blip_contenu() {
 	
 	init_config();
 	if ($changer_config == 'oui') {
+			ecrire_meta("blip_prefixe", $_POST['blip_prefixe']);
+			ecrire_metas();		
+	
+	
+	
+	
 		appliquer_modifs_config();
 	}
-	else {
-		$forums_publics = $GLOBALS['meta']["forums_publics"];
-		if (!$forums_publics) {
-			ecrire_meta("forums_publics", "posteriori");
-			ecrire_metas();
-		}
-	 }
 	lire_metas();
 	
 	
@@ -71,6 +71,10 @@ function exec_blip_contenu() {
 	// Je n'arrive pas à faire le scrip qui met à jour... Je crois que mon formulaire n'est pas correct, il manque l'entete qui va bien et le traitement php associé.	
 	
 
+	echo "TOTO";
+	echo $changer_config;
+	echo $_POST['blip_prefixe'];
+	
 	echo generer_url_post_ecrire('blip_contenu');
 	echo "<input type='hidden' name='changer_config' value='oui'>";
 	
@@ -81,6 +85,7 @@ function exec_blip_contenu() {
 		
 	echo "<input type='text' name='blip_prefixe' value=\"$blip_prefixe\" size='40' CLASS='forml'>";
 	echo "<div style='text-align:right;'><input type='submit' name='Valider' value='"._T('bouton_enregistrer')."' CLASS='fondo'></div>";
+
 	
 	echo debut_block_invisible('blip_prefixe_style');
 	echo fin_block();
@@ -95,7 +100,6 @@ function exec_blip_contenu() {
 	
 	
 	
-	
 	debut_cadre_trait_couleur("mot-cle-24.gif", false, "", _T('blipconfig:options'));
 
 	//
@@ -104,6 +108,12 @@ function exec_blip_contenu() {
 
 	debut_cadre_relief("", false, "", _T('blipconfig:menu_parametrage_'));
 
+	echo "TOTO";
+	echo $changer_config;
+	echo $_POST['blip_accueil'];
+	
+	
+	
 	$blip_accueil = $GLOBALS['meta']["blip_accueil"];
 	$articles_soustitre = $GLOBALS['meta']["articles_soustitre"];
 	$articles_descriptif = $GLOBALS['meta']["articles_descriptif"];
@@ -195,8 +205,12 @@ function exec_blip_contenu() {
 
 	fin_cadre_trait_couleur();
 	
+	echo "</form>";
+	
+	
+	
  
-	fin_page();
+	echo fin_page();
 
 }
 ?>
