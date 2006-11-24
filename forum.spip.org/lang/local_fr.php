@@ -19,6 +19,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // D
 'download' => 'T&eacute;l&eacute;charger la derni&egrave;re version',
 
+// F
+'forum_votre_email' => 'Votre adresse email (si vous souhaitez recevoir les r&eacute;ponses)&nbsp;:',
 
 // I
 'info_tag_forum' => 'Vous pouvez &eacute;tiqueter cette page de forum avec des mots-cl&eacute;s qui vous semblent importants ; ils permettront aux prochains visiteurs du site de mieux se rep&eacute;rer.',
