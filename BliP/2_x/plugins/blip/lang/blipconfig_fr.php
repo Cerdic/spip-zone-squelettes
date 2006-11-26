@@ -11,8 +11,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'blip_modifier_info' => '<b>Cette page est uniquement accessible aux responsables du site.</b><p /> Elle vous permet de modifier votre configuration de BliP. <p /> Les modifications effectu&eacute;es dans ces pages influent notablement sur le fonctionnement de votre site. Nous vous recommandons de ne pas y intervenir tant que vous n\'&ecirc;tes pas familier du fonctionnement du squelette BliP. <p /> <b>Plus g&eacute;n&eacute;ralement, il est fortement conseill&eacute; de laisser la charge de ces pages au webmestre principal de votre site.</b>',
 	'blip_fonctions_info' => '<b>Cette page est uniquement accessible aux responsables du site.</b><p /> Elle vous permet d\'activer ou modifier les fonctions avanc&eacute;es de BliP. <p /> Les modifications effectu&eacute;es dans ces pages influent notablement sur le fonctionnement de votre site. Nous vous recommandons de ne pas y intervenir tant que vous n\'&ecirc;tes pas familier du fonctionnement du squelette BliP. <p /> <b>Plus g&eacute;n&eacute;ralement, il est fortement conseill&eacute; de laisser la charge de ces pages au webmestre principal de votre site.</b>',
 	'blip_effacer_info' => '<b>Cette page est uniquement accessible aux responsables du site.</b><p /> Elle vous permet d\'effectuer les op&eacute;rations de maintenance le squelette BliP. <p /> Les modifications effectu&eacute;es dans ces pages influent notablement sur le fonctionnement de votre site. Nous vous recommandons de ne pas y intervenir tant que vous n\'&ecirc;tes pas familier du fonctionnement du squelette BliP. <p /> <b>Plus g&eacute;n&eacute;ralement, il est fortement conseill&eacute; de laisser la charge de ces pages au webmestre principal de votre site.</b>',
-	'blip_raccourcis_documentation' => '<a href=\'http://www.cent20.net/spip.php?rubrique76\'>Documentation de BliP</a>
-										<br /><a href=\'http://www.cent20.net/spip.php?page=blip\'> La boussole de BliP</a>',
 	'blip_choisir_module' => '&lt;Choisir un module&gt;',
 	'blip_choisir_page' => '&lt;Choisir une page&gt;',
 	'blip_configuration_voir_general' => 'Configuration du squelette BLiP de votre site internet',
@@ -49,7 +47,45 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'blip_info_vider' => '<b>Cette commande efface votre configuration du squelette BliP.</b><p /> Les &eacute;l&eacute;ments effac&eacute;s sont visibles depuis le premier onglet intitul&eacute; : "Voir la configuration" ',
 	'blip_info_reinitialiser' => '<b>Cette commande restaure la configuration par d&eacute;faut du squelette BliP.</b><p />',
 	
-	'blip_maj_requise' => 'Vous devez lancer la proc&eacute;dure de mise &agrave; jour',	
+	'blip_maj_requise' => 'Vous devez lancer la proc&eacute;dure de mise &agrave; jour',
+	'blip_menu_navigation_aide' => 'Vous pouvez d&eacute;cidez que certains &eacute;l&eacute;ments du menu de navigation ne doivent pas etre affich&eacute;s. Utilisez la liste ci-dessous pour indiquer quels &eacute;l&eacute;ments seront disponibles ',
+	
+	'blip_raccourcis_documentation' => 'BliP est un squelette-plugin sous licence libre GNU/GPL conçu pour fonctionner avec le syst&egrave;me de publication SPIP.
+										<br /><br />										
+										<a href=\'http://www.cent20.net/spip.php?article100\'>Pr&eacute;sentation de BliP 2.x</a>
+										<br /><br />	
+										<b>ACCES RAPIDE : </b>
+										<br /><a href=\'http://www.cent20.net/spip.php?page=blip\'> La boussole de BliP</a>
+										<br /><br />
+										<b>DOCUMENTATION :</b>
+										<br /><a href=\'http://www.cent20.net/spip.php?rubrique88\'>&Eacute;volutions et mises &agrave; jour</a>
+										<br /><a href=\'http://www.cent20.net/spip.php?rubrique84\'>T&eacute;l&eacute;charger</a>
+										<br /><a href=\'http://www.cent20.net/spip.php?rubrique79\'>Installer</a>
+										<br /><a href=\'http://www.cent20.net/spip.php?rubrique81\'>Administrer</a>
+										<br /><a href=\'http://www.cent20.net/spip.php?rubrique80\'>D&eacute;velopper</a>
+										<br /><a href=\'http://www.cent20.net/spip.php?rubrique82\'>Questions et r&eacute;ponses</a>
+										<br /><br />
+										<b>LISTES DE DISCUSSION :</b>
+										<br /><a href=\'http://groups.google.com/group/blip\'>Liste des utilisateurs</a>
+										<br /><a href=\'http://groups.google.com/group/blip-trad\'>Liste des traducteurs</a>
+										<br /><a href=\'http://groups.google.com/group/blip-dev\'>Liste des d&eacute;veloppeurs</a>
+										<br /><br />
+										<b>SOUTENIR LE DEVELOPPEMENT :</b>
+										<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+										<input type="hidden" name="cmd" value="_xclick">
+										<input type="hidden" name="business" value="cent20@gmail.com">
+										<input type="hidden" name="item_name" value="Soutenir le d&eacute;veloppement du squelette BliP">
+										<input type="hidden" name="no_shipping" value="2">
+										<input type="hidden" name="no_note" value="1">
+										<input type="hidden" name="currency_code" value="EUR">
+										<input type="hidden" name="tax" value="0">
+										<input type="hidden" name="lc" value="FR">
+										<input type="hidden" name="bn" value="PP-DonationsBF">
+										<input type="image" src="https://www.paypal.com/fr_FR/i/btn/x-click-but21.gif" border="0" name="submit" alt="Effectuez vos paiements via PayPal : une solution rapide, gratuite et sécurisée">
+										<img alt="" border="0" src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
+										</form>
+										',
+	
 	
 	
 	'blip_vide_virgule' => 'tueur de bug à cause de la virgule'
