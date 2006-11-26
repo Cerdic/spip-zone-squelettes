@@ -50,7 +50,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'blip_maj_requise' => 'Vous devez lancer la proc&eacute;dure de mise &agrave; jour',
 	'blip_menu_navigation_aide' => 'Vous pouvez d&eacute;cidez que certains &eacute;l&eacute;ments du menu de navigation ne doivent pas etre affich&eacute;s. Utilisez la liste ci-dessous pour indiquer quels &eacute;l&eacute;ments seront disponibles ',
 	
-	'blip_raccourcis_documentation' => 'BliP est un squelette-plugin sous licence libre GNU/GPL conçu pour fonctionner avec le syst&egrave;me de publication SPIP.
+	'blip_raccourcis_documentation' => 'BliP est un squelette-plugin sous licence libre GNU/GPL con&ccedil;u pour fonctionner avec le syst&egrave;me de publication SPIP.
 										<br /><br />										
 										<a href=\'http://www.cent20.net/spip.php?article100\'>Pr&eacute;sentation de BliP 2.x</a>
 										<br /><br />	
