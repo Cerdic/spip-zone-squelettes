@@ -2,8 +2,25 @@
 	include_once('ecrire/inc_version.php');
 	$profondeur_url = 1; # nous sommes dans un sous-rep
 	$dossier_squelettes = 'sedna';
-	include_spip('inc/cookie');
 	$forcer_lang = true;
+	include_spip('inc/cookie');
+
+		# couleur		# hover		# selected
+	$couleurs = array (
+		'pink'	=> array('#c363a7','#ff33ff'),
+		'red'	=> array('#ff3333','#cc3333'),
+		'orange'=> array('#ff9966','#ff6633'),
+		'cyan'	=> array('#4280eb','#004080'),
+		'blue'	=> array('#6666ff','#3333ff')
+	);
+
+	if ($var_color) {
+		spip_setcookie('sedna_color', $var_color, time()+365*24*3600);
+		$_COOKIE['sedna_color'] = $var_color;
+	}
+
+	if (!$couleurs[$a = $_COOKIE['sedna_color']]) $a = 'blue';
+	list($b,$c) = $couleurs[$a];
 
 	// filtre |syndication_en_erreur
 	function syndication_en_erreur($statut_syndication) {
@@ -53,7 +70,7 @@
 
 	// l'identifiant du lien est fonction de son url et de sa date
 	// ce qui permet de reperer les "updated" *et* les doublons
-	include_ecrire('inc_filtres');
+	include_spip('inc/filtres');
 	function afficher_lien(
 		$id_syndic_article,
 		$id_lien,
@@ -160,18 +177,6 @@
 		return preg_replace(',(\w+)@(\w+\.\w+),','\\1&#x24d0;\\2', $texte);
 	}
 
-	## fonction integree dans inc_filtres a partir de SPIP >= 1.8.2d
-	if (!function_exists('parametre_url')) {
-	function parametre_url($url, $parametre, $valeur = '__global__') {
-		$link = new Link(str_replace('&amp;', '&', $url));
-		if($valeur == '__global__')
-			$valeur = $GLOBALS[$parametre];
-		if(empty($valeur)) $link->DelVar($parametre);
-		else $link->AddVar($parametre, $valeur);
-		return quote_amp($link->getUrl());
-	}
-	}
-
 	// Choix du $fond (rss ou sedna)
 	if ($rss) {
 		$fond = 'sedna-rss';
@@ -179,7 +184,6 @@
 	else {
 		$fond='sedna';
 	}
-
 
 	// Descriptifs : affiches ou masques ?
 	// l'accessibilite sans javascript => affiches par defaut
