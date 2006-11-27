@@ -1,0 +1,98 @@
+#CACHE{7200}
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique} {lang_select}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+	<title>[[(#NOM_SITE_SPIP|textebrut)]] : [(#TITRE|supprimer_numero|textebrut|entites_html)]</title>
+	<INCLURE{fond=page}{fond=styles}{lang}{id_rubrique}>
+	<link rel="stylesheet" href="#CHEMIN{calendrier.css}" type="text/css" />
+	<script type="text/javascript" src="#EVAL{_DIR_IMG_PACK}layer.js"></script>
+	<script type="text/javascript" src="#EVAL{_DIR_IMG_PACK}presentation.js"></script>
+<style type="text/css" media="screen">
+/* <![CDATA[ */
+
+	#menu-rubriques,
+	#menu-agenda {display:none}
+	#menu-recherche {margin-left:620px;}
+	.agenda #bloc-contenu {margin-left: 5px}
+	
+	.calendrier-helvetica16 
+	{
+		font-family: Tahoma, arial,helvetica,sans-serif;
+		font-size: 1em;
+		color: maroon;
+	}
+	
+	
+	.calendrier-table-large,
+	.calendrier-table-etroit { width: 100% }
+	
+	.calendrier-td
+	{
+		max-width: 50px;
+		white-space: normal;
+	}
+	
+/* ]]> */
+</style>
+</head>
+<body dir="#LANG_DIR" class="#LANG rubrique sect#ID_SECTEUR <BOUCLE_rubriques_body(HIERARCHIE) {id_secteur}{" "}>rub#ID_RUBRIQUE</BOUCLE_rubriques_body></B_rubriques_body> rub#ID_RUBRIQUE">
+<div id="page" class="agenda">
+
+<!-- *****************************************************************
+	Bandeau, titre du site et menu langue
+	Header and main menu (top and right) 
+    ************************************************************* -->
+	
+<INCLURE{fond=inc/inc-bandeau}{lang}{id_rubrique}>
+
+<!-- *****************************************************************
+	Contenu principal (centre)
+	Main content (center) 
+    ************************************************************* -->
+	<div id="bloc-contenu">
+		[(#LOGO_RUBRIQUE|right)]
+		<B_rubriques_chemin>
+		<h5>
+		<BOUCLE_rubriques_chemin(HIERARCHIE) {id_secteur}>
+              <a href="#URL_SITE_SPIP/#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a> <b class="separateur">&nbsp;</b>
+		</BOUCLE_rubriques_chemin>
+		</h5>
+			<div class="ligne-debut"></div><!-- ligne-debut -->
+		</B_rubriques_chemin>
+		<h1 class="structure"><:icone_agenda:></h1>
+		[<h2>(#TITRE|supprimer_numero)</h2>]
+		[<div class="chapo">(#TEXTE)</div><br />]
+		[<div class="notes">(#NOTES)</div>]
+
+	<div id="calendrier" lang="#LANG"> 
+ 	<!-- Agenda -->
+[(#REM) Voir :
+		http://spip-epona.org/article.php3?id_article=10 et variante
+		http://6v8.gamboni.org/test-aig/squelettes/agenda.html ]
+
+<BOUCLE_rub(RUBRIQUES){id_rubrique}>
+        <BOUCLE_evts_com(ARTICLES){branche}{age_relatif_redac > -58}{age_relatif_redac < 58}{par date_redac}>
+        [(#DATE_REDAC|agenda_memo{#DESCRIPTIF,#TITRE,#URL_ARTICLE,couleur1})]
+        </BOUCLE_evts_com>
+</BOUCLE_rub>
+[(#NOM_SITE_SPIP|agenda_affiche{<:aucun_article:>, 'mois'})]
+
+	<!-- Fin de l'agenda -->
+	</div>
+
+	</div><!-- bloc-contenu -->
+	
+<!-- *****************************************************************
+	Menus contextuels (gauche) et pied de page
+	Contextual menus (left) and footer
+    ************************************************************* -->
+<INCLURE{fond=inc/inc-menu}{lang}{id_rubrique}>
+<INCLURE{fond=inc/inc-bas}{lang}{id_rubrique}>
+</div><!-- page -->
+</body>
+</html>
+</BOUCLE_rubrique_principal>
+<INCLURE{fond=404}{lang}{id_rubrique}>
+<//B_rubrique_principal>
