@@ -20,6 +20,7 @@
 		ecrire_metas();
 		BliP_installer_table();
 		BliP_installer_configuration();
+		BliP_installer_blip_meta();
 	}
 
 	function BliP_installer_blip_meta() {
@@ -45,7 +46,8 @@
 		ecrire_meta('blip_auteur', "oui");
 		ecrire_meta('blip_espaceprive', "oui");
 		ecrire_meta('blip_switch', "oui");	
-		ecrire_meta('blip_prefixe', "neutre");	
+		ecrire_meta('blip_prefixe', "neutre");
+		ecrire_meta('blip_recherche', "oui");			
 		ecrire_metas();
 	
 	}
@@ -149,6 +151,7 @@
 		$v_ftp = BliP_version_ftp();
 
 		if ($v_ftp < 2.4) {
+			BliP_vider_table_blip ();
 			include_spip('inc/meta');
 			ecrire_meta('blip_version', 2.3);
 			ecrire_metas();
@@ -164,24 +167,26 @@
 		echo "<div class='verdana1'>";
 		echo "<table cellpadding='3' cellspacing='1' border='0'>";
 		echo "<tr bgcolor='#aaaaaa' style='color:white; text-align:center;'>
+				<td class='verdana2' style='text-align:center;'><b>".'Statut'."</b></td>
 				<td class='verdana2' style='text-align:center;'><b>".'Ordre'."</b></td>
-				<td class='verdana2' style='text-align:center;'><b>".'Actif'."</b></td>
+				<td class='verdana2' style='text-align:center;'><b>".'&nbsp;Options&nbsp;'."</b></td>
 				<td class='verdana2' style='text-align:center;'><b>".'Restriction d\'affichage'."</b></td>
-				<td class='verdana2' style='text-align:center;'><b>".'Options'."</b></td>
 				<td class='verdana2' style='text-align:center;'><b>".'Texte affich&eacute; <br /> ou fichier inclu'."</b></td>
 			</tr>\n";
 		while ($elements = spip_fetch_array($res, SPIP_ASSOC)) {
 			$bgcolor = alterner($i++, '#eeeeee','white');
 			$restriction = explode("-", $elements['position']);
-			echo "<tr bgcolor='$bgcolor'><td style='text-align:center;'><b>".$elements['ordre']."</b></td>";
-			echo "<td style='text-align:center;'>".$elements['actif']."</td><td style='text-align:center;'>";
+			echo "<tr bgcolor='$bgcolor'><td style='text-align:center;'>";
 			if ( $elements['actif'] =='oui') {
-				echo "<a href='".generer_url_ecrire('blip',"action=desactiver&id=".$elements['id_config'])."'>d&eacute;sactiver</a>";
-			}elseif ( $elements['actif'] =='non') {
-				echo "<a href='".generer_url_ecrire('blip',"action=activer&id=".$elements['id_config'])."'>activer</a>";
+				echo "<span style='margin:5px;'><a href='".generer_url_ecrire('blip',"action=desactiver&id=".$elements['id_config'])."'><img src='../plugins/blip/ecrire/img_pack/blipconfig-green.gif' title='D&eacute;sactiver cet &eacute;lement'/></a></span>";
 			}
-			echo "<br /><a href='".generer_url_ecrire('blip_modifier',"action=editer&id=".$elements['id_config'])."'>modifier</a>";
-			echo "<br /><a href='".generer_url_ecrire('blip',"action=supprimer&id=".$elements['id_config'])."'>supprimer</a>";
+			elseif ( $elements['actif'] =='non') {
+				echo "<a href='".generer_url_ecrire('blip',"action=activer&id=".$elements['id_config'])."'><img src='../plugins/blip/ecrire/img_pack/blipconfig-red.gif' title='Activer cet &eacute;lement'/></a>";
+			}
+			echo "</td>";
+			echo "<td style='text-align:center;'>".$elements['ordre']."</td><td style='text-align:center;'>";
+			echo "<span style='margin:2px;'><a href='".generer_url_ecrire('blip_modifier',"action=editer&id=".$elements['id_config'])."' title='Modifier cet &eacute;lement'><img src='../dist/images/edit.gif' /></a></span>";
+			echo "<span style='margin:2px;'><a href='".generer_url_ecrire('blip',"action=supprimer&id=".$elements['id_config'])."' title='Suprimer cet &eacute;lement'><img src='../plugins/blip/ecrire/img_pack/blipconfig-delete.gif' /></a></span>";
 			echo "</td>";
 			if ( $restriction[1] =='') {
 				echo "<td style='text-align:center;'>aucune</td>";
@@ -273,23 +278,46 @@
 		echo "<br />";
 		}
 	}
-
-	function BliP_afficher_config_barre_laterale () {
-		$result = spip_query("SELECT * FROM spip_blip where position LIKE 'barre_laterale%' ORDER BY ordre");
+	
+	function BliP_afficher_config_menu_principal () {
+		$result = spip_query("SELECT * FROM spip_blip where position LIKE 'menu_principal%' ORDER BY ordre");
 		$compte_result = spip_num_rows($result);
 		if ($compte_result != '0') {
-		debut_cadre_trait_couleur("breve-24.gif", false, "", _T('blipconfig:blip_configuration_barre_laterale'));
+		debut_cadre_trait_couleur("breve-24.gif", false, "", _T('blipconfig:blip_configuration_menu_principal'));
 		BliP_tableau_config ($result);
 		fin_cadre_trait_couleur();
 		echo "<br />";
 		}
 	}
 
-	function BliP_afficher_config_menu_principal () {
-		$result = spip_query("SELECT * FROM spip_blip where position LIKE 'menu_principal%' ORDER BY ordre");
+	function BliP_afficher_config_sur_contenu () {
+		$result = spip_query("SELECT * FROM spip_blip where position LIKE 'sur_contenu%' ORDER BY ordre");
 		$compte_result = spip_num_rows($result);
 		if ($compte_result != '0') {
-		debut_cadre_trait_couleur("breve-24.gif", false, "", _T('blipconfig:blip_configuration_menu_principal'));
+		debut_cadre_trait_couleur("breve-24.gif", false, "", _T('blipconfig:blip_configuration_sur_contenu'));
+		BliP_tableau_config ($result);
+		fin_cadre_trait_couleur();
+		echo "<br />";
+		}
+	}
+	
+	function BliP_afficher_config_sous_contenu () {
+		$result = spip_query("SELECT * FROM spip_blip where position LIKE 'sous_contenu%' ORDER BY ordre");
+		$compte_result = spip_num_rows($result);
+		if ($compte_result != '0') {
+		debut_cadre_trait_couleur("breve-24.gif", false, "", _T('blipconfig:blip_configuration_sous_contenu'));
+		BliP_tableau_config ($result);
+		fin_cadre_trait_couleur();
+		echo "<br />";
+		}
+	}
+	
+	
+	function BliP_afficher_config_barre_laterale () {
+		$result = spip_query("SELECT * FROM spip_blip where position LIKE 'barre_laterale%' ORDER BY ordre");
+		$compte_result = spip_num_rows($result);
+		if ($compte_result != '0') {
+		debut_cadre_trait_couleur("breve-24.gif", false, "", _T('blipconfig:blip_configuration_barre_laterale'));
 		BliP_tableau_config ($result);
 		fin_cadre_trait_couleur();
 		echo "<br />";
@@ -318,8 +346,10 @@
 			BliP_afficher_config_titre_principal ();
 			BliP_afficher_config_titre_lateral ();
 			BliP_afficher_config_sous_titre ();
-			BliP_afficher_config_barre_laterale ();
 			BliP_afficher_config_menu_principal ();
+			BliP_afficher_config_sur_contenu ();
+			BliP_afficher_config_sous_contenu ();
+			BliP_afficher_config_barre_laterale ();			
 			BliP_afficher_config_menu_mentions_techniques ();
 		}
 	}
@@ -408,34 +438,22 @@
 	
 	$blipconfig_positions = array(
 		'surtitre' => "Surtitre",
-		'surtitre-sommaire' => "Surtitre - Restreindre aux pages 'sommaire'",
-		'surtitre-recherche' => "Surtitre - Restreindre aux pages de recherche",
-		'surtitre-article' => "Surtitre - Restreindre aux pages 'articles'",
-		'surtitre-rubrique' => "Surtitre - Restreindre aux pages 'rubriques'",
-		'surtitre-auteur' => "Surtitre - Restreindre aux pages 'auteurs'",
-		'surtitre-mot' => "Surtitre - Restreindre aux pages 'mots cl&eacute;s'",
 		'titre_principal' => "Titre du site",
-		'titre_principal-sommaire' => "Titre - Restreindre aux pages 'sommaire'",
-		'titre_principal-recherche' => "Titre - Restreindre aux pages de recherche",
-		'titre_principal-article' => "Titre - Restreindre aux pages 'articles'",
-		'titre_principal-rubrique' => "Titre - Restreindre aux pages 'rubriques'",
-		'titre_principal-auteur' => "Titre - Restreindre aux pages 'auteurs'",
-		'titre_principal-mot' => "Titre - Restreindre aux pages 'mots cl&eacute;s'",
 		'sous_titre' => "Sous titre",
-		'sous_titre-sommaire' => "Sous titre - Restreindre aux pages 'sommaire'",
-		'sous_titre-recherche' => "Sous titre - Restreindre aux pages de recherche",
-		'sous_titre-article' => "Sous titre - Restreindre aux pages 'articles'",
-		'sous_titre-rubrique' => "Sous titre - Restreindre aux pages 'rubriques'",
-		'sous_titre-auteur' => "Sous titre - Restreindre aux pages 'auteurs'",
-		'sous_titre-mot' => "Sous titre - Restreindre aux pages 'mots cl&eacute;s'",
 		'titre_lateral' => "Titre lat&eacute;ral",
-		'titre_lateral-sommaire' => "Titre lat&eacute;ral - Restreindre aux pages 'sommaire'",
-		'titre_lateral-recherche' => "Titre lat&eacute;ral - Restreindre aux pages de recherche",
-		'titre_lateral-article' => "Titre lat&eacute;ral - Restreindre aux pages 'articles'",
-		'titre_lateral-rubrique' => "Titre lat&eacute;ral - Restreindre aux pages 'rubriques'",
-		'titre_lateral-auteur' => "Titre lat&eacute;ral - Restreindre aux pages 'auteurs'",
-		'titre_lateral-mot' => "Titre lat&eacute;ral - Restreindre aux pages 'mots cl&eacute;s'",
 		'menu_principal' => "Menu principal de navigation",
+		'sur_contenu' => "Au dessus du contenu principal",
+		'sur_contenu-sommaire' => "Au dessus du contenu principal - Restreindre aux pages 'sommaire'",
+		'sur_contenu-article' => "Au dessus du contenu principal - Restreindre aux pages 'articles'",
+		'sur_contenu-recherche' => "Au dessus du contenu principal - Restreindre aux pages de recherche",
+		'sur_contenu-auteur' => "Au dessus du contenu principal - Restreindre aux pages 'auteurs'",
+		'sur_contenu-login' => "Au dessus du contenu principal - Restreindre aux pages 'login'",
+		'sous_contenu' => "Au dessous du contenu principal",
+		'sous_contenu-sommaire' => "Au dessous du contenu principal - Restreindre aux pages 'sommaire'",
+		'sous_contenu-article' => "Au dessous du contenu principal - Restreindre aux pages 'articles'",
+		'sous_contenu-recherche' => "Au dessous du contenu principal - Restreindre aux pages de recherche",
+		'sous_contenu-auteur' => "Au dessous du contenu principal - Restreindre aux pages 'auteurs'",
+		'sous_contenu-login' => "Au dessous du contenu principal - Restreindre aux pages 'login'",		
 		'barre_laterale' => "Barre laterale",
 		'barre_laterale-sommaire' => "Barre lat&eacute;rale - Restreindre aux pages 'sommaire'",
 		'barre_laterale-recherche' => "Barre lat&eacute;rale - Restreindre aux pages de recherche",
@@ -443,14 +461,8 @@
 		'barre_laterale-rubrique' => "Barre lat&eacute;rale - Restreindre aux pages 'rubriques'",
 		'barre_laterale-auteur' => "Barre lat&eacute;rale - Restreindre aux pages 'auteurs'",
 		'barre_laterale-mot' => "Barre lat&eacute;rale - Restreindre aux pages 'mots cl&eacute;s'",
-		'mentions_techniques' => "Mentions techniques",
-		'mentions_techniques-sommaire' => "Mentions techniques - Restreindre aux pages 'sommaire'",
-		'mentions_techniques-recherche' => "Mentions techniques - Restreindre aux pages de recherche",
-		'mentions_techniques-article' => "Mentions techniques - Restreindre aux pages 'articles'",
-		'mentions_techniques-rubrique' => "Mentions techniques - Restreindre aux pages 'rubriques'",
-		'mentions_techniques-auteur' => "Mentions techniques - Restreindre aux pages 'auteurs'",
-		'mentions_techniques-mot' => "Mentions techniques - Restreindre aux pages 'mots cl&eacute;s'"
-
+		'barre_laterale-login' => "Barre lat&eacute;rale - Restreindre aux pages 'login'",
+		'mentions_techniques' => "Mentions techniques"
 	);
 	$blipconfig_actif = array(
 		'oui' => "Oui",
@@ -519,7 +531,7 @@ function blip_update_pos(selObj) {
 function blip_update_layers() {
 	switch (item_type) {
 		case "dynamique" :
-			display_title   = "block";
+			display_title   = "none";
 			display_descr   = "none";
 			display_text    = "none";
 			display_style   = 'none';
@@ -603,58 +615,43 @@ END;
 	debut_cadre_relief("", false, "", bouton_block_invisible('blip_position')._T('blipconfig:blip_position_info'));
 	echo BliP_generer_option_select('type', $blipconfig_menutypes, $formval['type'], "blip_update_type(this)");
 	echo debut_block_invisible('blip_position');
-	echo "<p>Le menu d&eacute;roulant ci-dessus vous permet de choisir le type de modification que vous voulez faire.</p>";
+	echo "<p>Le menu d&eacute;roulant ci-dessus vous permet de choisir le type de modification que vous voulez faire. Pour que les modifications soient visibles sur la partie publique du site, il est n&eacute;cessaire de <a href='http://www.cent20.net/spip.php?article90'>vider le cache de spip</a>.</p>";
 	echo fin_block();
 	fin_cadre_relief();
 	echo "<br />";
 
-	debut_cadre_relief("", false, "", bouton_block_invisible('blip_restriction')._T('blipconfig:blip_restriction_info'));
+	debut_cadre_relief("", false, "", _T('blipconfig:blip_restriction_info'));
 	echo BliP_generer_option_select('position', $blipconfig_positions, $formval['position']);
 	echo "<br />";
 	echo '<br /><b>Ordre de positionnement dans le flux </b><input size="2" maxlength="2" name="ordre" type="text" id="ordre" value="'.$formval['ordre'].'" /> ';
-	echo debut_block_invisible('blip_restriction');
-	echo "<p>Choisissez le positionnement de votre inclusion.</p>";
-	echo fin_block();
 	fin_cadre_relief();
 	echo "<br />";
 
 	echo '<div id="Layer_titre" style="display: '.$display_titre.'; margin-top: 1px;">';
-	debut_cadre_relief("", false, "", bouton_block_invisible('blip_titre')._T('blipconfig:blip_titre_info'));
+	debut_cadre_relief("", false, "", _T('blipconfig:blip_titre_info'));
 	echo '<input name="titre" type="text" id="titre" value="'.$formval['titre'].'" size="70" /> ';
-	echo debut_block_invisible('blip_titre');
-	echo "<p>Le titre sera affich&eacute; en ligne.</p>";
-	echo fin_block();
 	fin_cadre_relief();
 	echo "<br />";
 	echo "</div>\n";
 
 	echo '<div id="Layer_descr" style="display: '.$display_descr.'; margin-top: 1px;">';
-	debut_cadre_relief("", false, "", bouton_block_invisible('blip_descriptif')._T('blipconfig:blip_descriptif_info'));
+	debut_cadre_relief("", false, "", _T('blipconfig:blip_descriptif_info'));
 	echo '<input name="descriptif" type="text" id="descriptif" value="'.$formval['descriptif'].'" size="70" />';
-	echo debut_block_invisible('blip_descriptif');
-	echo "<p><Le descriptif sera affich&eacute; au survol du lien.</p>";
-	echo fin_block();
 	fin_cadre_relief();
 	echo "<br />";
-	echo "</div>";
-
-	
+	echo "</div>";	
 	
 	echo '<div id="Layer_texte" style="display: '.$display_texte.'; margin-top: 1px;">';
-	debut_cadre_relief("", false, "", bouton_block_invisible('blip_texte')._T('blipconfig:blip_texte_info'));
+	debut_cadre_relief("", false, "", _T('blipconfig:blip_texte_info'));
 	echo '<br /><textarea name="texte" type="text" id="texte" cols="50" rows="5">'.$formval['texte'].'</textarea>';
-	echo debut_block_invisible('blip_texte');
-	echo fin_block();
 	fin_cadre_relief();
 	echo "<br />";
 	echo "</div>";
 
 
 	echo '<div id="Layer_modules" style="display: '.$display_modules.'; margin-top: 1px;">';
-	debut_cadre_relief("", false, "", bouton_block_invisible('blip_modules')._T('blipconfig:blip_modules_info'));
+	debut_cadre_relief("", false, "", _T('blipconfig:blip_modules_info'));
 	echo BliP_generer_option_select('module', $blipconfig_modules, $formval['texte']);
-	echo debut_block_invisible('blip_modules');
-	echo fin_block();
 	fin_cadre_relief();
 	echo "<br />";
 	echo "</div>";
@@ -673,10 +670,8 @@ END;
 	echo "</div>";
 
 	echo '<div id="Layer_style" style="display: '.$display_style.'; margin-top: 1px;">';
-	debut_cadre_relief("", false, "", bouton_block_invisible('blip_style')._T('blipconfig:blip_style_info'));
+	debut_cadre_relief("", false, "", _T('blipconfig:blip_style_info'));
 	echo BliP_generer_option_select('style', $blipconfig_style, $formval['style']);
-	echo debut_block_invisible('blip_style');
-	echo fin_block();
 	fin_cadre_relief();
 	echo "<br />";
 	echo "</div>\n";

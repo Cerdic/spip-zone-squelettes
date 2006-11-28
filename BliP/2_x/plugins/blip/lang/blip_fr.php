@@ -1,9 +1,9 @@
 <?php
 
 // This is a BliP language file  --  Ceci est le fichier langue FRANCAIS du squelette BliP pour SPIP
-//  Ce fichier langue a été compilé par Philippe MERCIER pour BliP 2.2
+//  Ce fichier langue a ?t? compil? par Philippe MERCIER pour BliP 2.2
 // Documentation sur le multilinguisme : http://www.cent20.net/spip.php?article79 et http://www.cent20.net/spip.php?article67
-// Les mises à jour sont suivies et assurées par Vincent ROBERT. 
+// Les mises ? jour sont suivies et assur?es par Vincent ROBERT. 
 // Pour contacter la personne responsable du fichier langue, vous devez passer par http://groups.google.com/group/blip, sauf mentions contraires dans l'articles http://www.cent20.net/spip.php?article79
 
 $GLOBALS['i18n_blip_fr'] = array(
@@ -15,13 +15,14 @@ $GLOBALS['i18n_blip_fr'] = array(
  'accueil' => 'Accueil',
  'afficher_les_derniers' => 'Afficher les derniers',
  'articles' => 'Articles',
+ 'articles_aucun_publies' => 'Aucun article publi&eacute;s',
  'article_aucun_publie' => 'Aucun article publi&eacute;',
  'article_de' => 'Articles de',
  'articles_derniers_publies' => 'Derniers articles publi&eacute;s',
- 'article_propos_de_cet' => 'A propos de cet article',
+ 'article_propos_de_cet' => '&Agrave; propos de cet article',
  'article_liste_des' => 'Liste des articles',
  'article_numero' => 'L\'article n&deg;',
- 'n_est_plus_disponible' => 'n\'est plus disponible : il a probablement &eacute;t&eacute; d&eacute;plac&eacute; ou supprim&eacute;. Vous avez &eacute;t&eacute; redirig&eacute; sur la page listant les articles publi&eacute;s',
+ 'n_est_plus_disponible' => 'n\'est plus disponible&nbsp;: il a probablement &eacute;t&eacute; d&eacute;plac&eacute; ou supprim&eacute;. Vous avez &eacute;t&eacute; redirig&eacute; sur la page listant les articles publi&eacute;s',
  'articles_publies' => 'articles publi&eacute;s', 
  'populaires_articles' => 'Articles populaires',
  'article_statistiques_de' => 'Statistiques de l\'article',
@@ -53,14 +54,15 @@ $GLOBALS['i18n_blip_fr'] = array(
  'date_de_publication' => 'date de publication',
  'depuis_cette_page_vous_pouvez_personnaliser_laffichage_de_ce_site_internet' => 'Depuis cette page, vous pouvez personnaliser l\'affichage de ce site Internet',
  'derniere_mise_a_jour_le' => 'Derni&egrave;re mise &agrave; jour le',
+ 'derniere_mise_a_jour' => 'Derni&egrave;res mises &agrave; jour',
  'documents' => 'Documents',
  'document_aucun_publie' => 'Aucun document publi&eacute;',
  'document_dernier_publie' => 'Derniers documents publi&eacute;s',
  'documents_joints_a_larticle' => 'Documents joints &agrave; l\'article',
  'document_publie_le' => 'document publi&eacute; le',
- 'documents_publies' => 'documents publi&eacute;s',
+ 'document_publie' => 'documents publi&eacute;s',
  'documents_derniers' => 'Derniers documents',
- 'dernieres_mises_a_jour' => 'Derni&egrave;res mises &agrave; jour',
+
 
 // E
 
@@ -132,7 +134,7 @@ $GLOBALS['i18n_blip_fr'] = array(
  'rubrique_liens_externe_de_la_rubrique' => 'Liens externes de la rubrique',
  'rubrique_numero' => 'La rubrique n&deg;',
  'nest_plus_disponible' => 'n\'est plus disponible, elle a probablement &eacute;t&eacute; d&eacute;plac&eacute;e ou supprim&eacute;e. Vous avez &eacute;t&eacute; redirig&eacute; sur la page listant les rubriques du site',
- 'rubriques_sous' => 'Sous rubriques',
+ 'rubriques_sous' => 'Sous-rubriques',
 
 
  // S
@@ -150,7 +152,7 @@ $GLOBALS['i18n_blip_fr'] = array(
  'visiteurs_quotidiens' => 'visiteurs quotidiens',
  'visiteurs_aujourd_hui' => 'visiteurs aujourd\'hui',
  'visiteurs_cumules' => 'visiteurs cumul&eacute;s',
- 'voir_la_liste_complete' => 'Voir la liste comp&egrave;te',
+ 'voir_la_liste_complete' => 'Voir la liste compl&egrave;te',
  
  
  // DEBUG

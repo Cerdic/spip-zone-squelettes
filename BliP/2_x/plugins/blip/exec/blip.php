@@ -20,6 +20,8 @@ function exec_BliP() {
 	global $blip_version_ftp;
 	$surligne = "";
 
+	BliP_installer_blip_meta();
+	
 	if ($connect_statut != '0minirezo' OR !$connect_toutes_rubriques) {
 		debut_page(_T('blipconfig:blip_config'), "administration", "BLiP");
 		echo _T('avis_non_acces_page');

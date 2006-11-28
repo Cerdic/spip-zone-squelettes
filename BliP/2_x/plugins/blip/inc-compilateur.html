@@ -23,19 +23,26 @@ Il s'agit du compilateur de BliP, c'est ce fichier qui rend le squelette modulai
 			]
 		]
 		[(#TYPE|!={'dynamique'}|?{'',' '})
-			[(#ENV{zone}|!={'barre_laterale'}|?{' ',''})<INCLURE{fond=#TEXTE}{lang}>]
+			[(#ENV{zone}|!={'barre_laterale'}|?{' ',''})
+				[(#ENV{zone}|=={'sous_contenu'}|?{' ',''})<INCLURE{fond=#TEXTE}{page_actuelle}{id_actuel}{lang}>]
+				[(#ENV{zone}|!={'sous_contenu'}|?{' ',''})<INCLURE{fond=#TEXTE}{page_actuelle}{lang}>]
+			]
 			[(#ENV{zone}|=={'barre_laterale'}|?{' ',''})
 				<div class="element"><div class="texte_principal">
 				<INCLURE{fond=#TEXTE}{page_actuelle}{id_actuel}{tri}{lang}>
 				</div></div><!-- fin element-->
-			]
-			[(#ENV{zone}|=={'sur_contenu'}|?{' ',''})<INCLURE{fond=#TEXTE}{page_actuelle}{id_actuel}{lang}>]
-			[(#ENV{zone}|=={'sous_contenu'}|?{' ',''})<INCLURE{fond=#TEXTE}{page_actuelle}{id_actuel}{lang}>]
+			]		
 		]
 		[(#TYPE|!={'lienpage'}|?{'',' '})
+			[(#ENV{zone}|=={'barre_laterale'}|?{' ',''}) 
+			<div class="element"><div class="texte_principal">
+			]
 			<div class="liens">
-			<a href="[(#URL_SITE_SPIP)]/spip.php?[(#TEXTE)][(#ID_ITEM)]" class="menu_#TEXTE"[ title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>
-			</div><!-- fin liens-->
+			<a href="[(#URL_SITE_SPIP)]/spip.php?[(#TEXTE)][(#ID_ITEM|=={'0'}|?{'',#ID_ITEM})]" class="menu_#TEXTE"[ title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>
+			</div>
+			[(#ENV{zone}|=={'barre_laterale'}|?{' ',''}) 
+			</div></div><!-- fin element-->
+			]
 		]	
 </BOUCLE_compilateur_blip>
 	[(#ENV{zone}|!={'titre_principal'}|?{'',</a>})]</div><!-- fin #ENV{zone} -->
