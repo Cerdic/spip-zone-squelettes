@@ -4,6 +4,14 @@
 	# SPIP_LOADER recupere et installe la version stable de SPIP
 	#
 
+	# code de reinstallation
+	if (@file_exists('ecrire/inc_version.php')) {
+		include_once 'ecrire/inc_version.php';
+		if (defined('_FILE_CONNECT')
+		AND _FILE_CONNECT)
+			spip_loader_reinstalle();
+	}
+
 	######################### CONFIGURATION #
 	#
 	# decommenter la ligne ci-dessous pour charger la version
@@ -24,28 +32,27 @@
 	# auteur(s) autorise(s) a proceder aux mises a jour : '1:2:3'
 	define('_SPIP_LOADER_UPDATE_AUTEURS', '1');
 
+	# surcharger le script
+	define('_NOM_PAQUET_ZIP','SPIP');
+	define('_SPIP_LOADER_URL_RETOUR', "ecrire/");
+	define('_SPIP_LOADER_SCRIPT', "spip_loader.php");
 	#
 	#######################################################################
-
-	# code de reinstallation
-	if (@file_exists('ecrire/inc_version.php')) {
-		include_once 'ecrire/inc_version.php';
-		if (defined('_FILE_CONNECT')
-		AND _FILE_CONNECT)
-			spip_loader_reinstalle();
-	}
 
 	# langues disponibles
 	$langues = array (
 		'ar' => '&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;',
 		'br' => 'brezhoneg',
 		'ca' => 'catal&agrave;',
+		'cs' => '&#269;e&#353;tina',
+		'de' => 'Deutsch',
 		'en' => 'English',
 		'eo' => 'Esperanto',
 		'es' => 'espa&ntilde;ol',
 		'fr' => 'fran&ccedil;ais',
 		'gl' => 'galego',
 		'it' => 'italiano',
+		'lb' => 'L&euml;tzebuergesch',
 		'pt_br' => 'Portugu&#234;s do Brasil',
 		'ro' => 'rom&#226;n&#259;'
 	);
@@ -95,10 +102,18 @@
 	}
 
 	function menu_languesT($lang) {
+		global $dir_base;
 		$r = '<div style="float:'.$GLOBALS['spip_lang_right'].';">';
-		$r .= '<form action="./spip_loader.php" method="get">';
+		$r .= '<form action="'.$dir_base._SPIP_LOADER_SCRIPT.'" method="get">';
+		if(preg_match(',action=([a-z_]+),', _SPIP_LOADER_SCRIPT, $m)) {
+			$r .= "<input type='hidden' name='action' value='".$m[1]."' />";
+			$sep = '&amp;';
+		}
+		else
+			$sep = '?';
 		$r .= '<select name="lang"
-			onchange="window.location=\'spip_loader.php?lang=\'+this.value;">';
+			onchange="window.location=\''.$dir_base._SPIP_LOADER_SCRIPT.$sep.'lang=\'+this.value;">';
+		
 		foreach ($GLOBALS['langues'] as $l => $nom)
 			$r .= '<option value="'.$l.'"' . ($l == $lang ? ' selected' : '')
 				. '>'.$nom.'</option>';
@@ -346,7 +361,7 @@
 		?>
 		<HTML <?php echo "dir='".$GLOBALS['spip_lang_dir']."'";?>>
 		<HEAD>
-		<TITLE><?php echo _TT('tradloader:titre'); ?></TITLE>
+		<TITLE><?php echo _TT('tradloader:titre', array('paquet'=>_NOM_PAQUET_ZIP)); ?></TITLE>
 		<META HTTP-EQUIV="Expires" CONTENT="0">
 		<META HTTP-EQUIV="cache-control" CONTENT="no-cache,no-store">
 		<META HTTP-EQUIV="pragma" CONTENT="no-cache">
@@ -375,7 +390,7 @@
 		<?php echo menu_languesT($GLOBALS['lang']); ?>
 
 		<FONT FACE="Verdana,Arial,Helvetica,sans-serif" SIZE=4 COLOR="#970038"><B><?php
-			echo _TT('tradloader:titre');
+			echo _TT('tradloader:titre', array('paquet'=>_NOM_PAQUET_ZIP));
 		?></B></FONT>
 		<FONT FACE="Georgia,Garamond,Times,serif" SIZE=3>
 		<?php
@@ -418,9 +433,8 @@
 	if ($lang = selectionner_langue($droits)) {
 		if(!$droits) {
 			//on ne peut pas ecrire
-			debut_html(_TT('tradloader:titre'));
-			echo _TT('tradloader:texte_preliminaire');
-
+			debut_html();
+			echo _TT('tradloader:texte_preliminaire', array('paquet'=>_NOM_PAQUET_ZIP, 'chmod'=>$chmod));
 			fin_html();
 			exit;
 		}
@@ -445,6 +459,7 @@
 				die ('fonctions zip non disponibles');
 
 			$fichier = basename(_URL_PAQUET_ZIP);
+			$paquet = (isset($_GET['paquet']) AND preg_match(',[a-zA-Z0-9_]+,', $_GET['paquet'])) ? $_GET['paquet'] : '';
 
 			//
 			// deploiement de l'archive
@@ -454,7 +469,8 @@
 				$zip = new PclZip($dir_base.$fichier);
 				$ok = $zip->extract(
 					PCLZIP_OPT_PATH, $dir_base,
-					PCLZIP_OPT_SET_CHMOD, $chmod & ~0111,
+					PCLZIP_OPT_SET_CHMOD, $chmod,
+					PCLZIP_OPT_REPLACE_NEWER,
 					PCLZIP_OPT_REMOVE_PATH, "spip/");
 				if ($zip->error_code<0) {
 					debut_html();
@@ -464,7 +480,7 @@
 					exit;
 				}
 				nettoyer_racine($fichier);
-				header("Location: ".$dir_base."ecrire/");
+				header("Location: ".$dir_base._SPIP_LOADER_URL_RETOUR);
 				exit;
 			}
 			//
@@ -472,10 +488,17 @@
 			//
 			if ($_GET['charger'] != 'oui') {
 				debut_html();
-				echo _TT('tradloader:texte_intro');
+				echo _TT('tradloader:texte_intro', array('paquet'=>_NOM_PAQUET_ZIP));
 				echo "<DIV ALIGN='".$GLOBALS['spip_lang_right']."'>";
-				echo "<FORM ACTION='spip_loader.php' METHOD='get'>";
-				echo "<INPUT TYPE='hidden' NAME='charger' VALUE='oui'>";
+				echo "<FORM ACTION='".$dir_base._SPIP_LOADER_SCRIPT."' METHOD='get'>";
+				if(preg_match(',action=([a-z_]+),', _SPIP_LOADER_SCRIPT, $m))
+					echo "<input type='hidden' name='action' value='".$m[1]."' />";
+				if($paquet != '')
+					echo "<INPUT TYPE='hidden' NAME='paquet' VALUE='$paquet'>";
+				if(file_exists($dir_base.$fichier))
+					echo "<INPUT TYPE='hidden' NAME='fichier' VALUE='oui'>";
+				else
+					echo "<INPUT TYPE='hidden' NAME='charger' VALUE='oui'>";
 				echo "<INPUT TYPE='submit' NAME='Valider' VALUE=\""._TT('tradloader:bouton_suivant')."\">";
 				echo "</FORM>";
 
@@ -493,7 +516,8 @@
 			}
 
 			// Passer a l'etape suivante (desarchivage)
-			header("Location: spip_loader.php?fichier=oui");
+			$sep = strpos(_SPIP_LOADER_SCRIPT, '?') ? '&' : '?';
+			header("Location: ".$dir_base._SPIP_LOADER_SCRIPT.$sep."fichier=oui".($paquet?"&paquet=".$paquet:''));
 			exit;
 		}
 	}
@@ -509,6 +533,8 @@
 	}
 
 	function spip_loader_reinstalle() {
+		if(!defined(_SPIP_LOADER_UPDATE_AUTEURS))
+			define('_SPIP_LOADER_UPDATE_AUTEURS', '1');
 		if ($GLOBALS['auteur_session']['statut'] != '0minirezo'
 		OR !in_array($GLOBALS['auteur_session']['id_auteur'],
 		explode(':', _SPIP_LOADER_UPDATE_AUTEURS))) {
