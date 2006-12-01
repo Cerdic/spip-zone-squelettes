@@ -50,6 +50,36 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'blip_maj_requise' => 'Vous devez lancer la proc&eacute;dure de mise &agrave; jour',
 	'blip_menu_navigation_aide' => 'Vous pouvez d&eacute;cidez que certains &eacute;l&eacute;ments du menu de navigation ne doivent pas etre affich&eacute;s. Utilisez la liste ci-dessous pour indiquer quels &eacute;l&eacute;ments seront disponibles ',
 	
+	'blip_theme_graphique' => 'Choix du th&egrave;me graphique',
+	'blip_couleur_du_site' => 'Choix des couleurs du site',
+	'blip_options' => 'Options &amp; personnalisation',
+	'blip_menu_navigation' => 'Menu de navigation de la barre lat&eacute;rale',
+
+	'blip_accueil' => '<b>Accueil</b>',
+	'blip_sommaire' => '<b>Actualit&eacute;</b>',
+	'blip_sommaire_afficher' => 'Actualit&eacute; - Afficher les derniers',
+	'blip_sommaire_articles' => 'Actualit&eacute; - articles publi&eacute;s',
+	'blip_sommaire_commentaires' => 'Actualit&eacute; - commentaires post&eacute;s',
+	'blip_sommaire_documents' => 'Actualit&eacute; - documents publi&eacute;s',
+	'blip_rubriques' => '<b>Rubriques</b>',
+	'blip_articles' => '<b>Articles</b>',
+	'blip_articles_trier' => 'Articles - Trier les articles par',
+	'blip_articles_datepub' => 'Articles - date de publication',
+	'blip_articles_datemaj' => 'Articles - date de mise &agrave; jour',
+	'blip_articles_popularite' => 'Articles - popularit&eacute;s',
+	'blip_articles_visiteurs' => 'Articles - nombre de visiteurs',
+	'blip_mots' => '<b>Mots-cl&eacute;s</b>',
+	'blip_mots_afficher' => 'Mots-cl&eacute;s - Afficher les mots-cl&eacute;s par',
+	'blip_mots_theme' => 'Mots-cl&eacute;s - th&egrave;me',
+	'blip_mots_popularite' => 'Mots-cl&eacute;s - popularit&eacute;',
+	'blip_mots_alphabetique' => 'Mots-cl&eacute;s - ordre alphab&eacute;tique',
+	'blip_auteur' => '<b>Auteurs</b>',
+	'blip_rechercher' => '<b>Rechercher</b>',	
+	'blip_espaceprive' => '<b>Espace priv&eacute;</b>',
+	'blip_switch' => '<b>Changer les couleurs du site</b>',
+	
+	
+	
 	'blip_raccourcis_documentation' => 'BliP est un squelette-plugin sous licence libre GNU/GPL con&ccedil;u pour fonctionner avec le syst&egrave;me de publication SPIP.
 										<br /><br />										
 										<a href=\'http://www.cent20.net/spip.php?article100\'>Pr&eacute;sentation de BliP 2.x</a>
@@ -81,14 +111,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 										<input type="hidden" name="tax" value="0">
 										<input type="hidden" name="lc" value="FR">
 										<input type="hidden" name="bn" value="PP-DonationsBF">
-										<input type="image" src="https://www.paypal.com/fr_FR/i/btn/x-click-but21.gif" border="0" name="submit" alt="Effectuez vos paiements via PayPal : une solution rapide, gratuite et sécurisée">
+										<input type="image" src="https://www.paypal.com/fr_FR/i/btn/x-click-but21.gif" border="0" name="submit" alt="Effectuez vos paiements via PayPal : une solution rapide, gratuite et s&eacute;curis&eacute;e">
 										<img alt="" border="0" src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
 										</form>
-										',
+										',	
 	
-	
-	
-	'blip_vide_virgule' => 'tueur de bug à cause de la virgule'
+	'blip_vide_virgule' => 'tueur de bug a cause de la virgule'
 );
 
 ?>

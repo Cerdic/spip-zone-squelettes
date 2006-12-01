@@ -1,8 +1,11 @@
 #CACHE{1}
 #HTTP_HEADER{Content-Type: text/css; charset=iso-8859-15}
 #HTTP_HEADER{Vary: Accept-Encoding}
+
+
 <?php
 // Ce fichier est le compilateur de la feuille de style du squelette BliP. Il utilise divers fichiers inc-css_XXX.php dont-il procède à l'inclusion
+// <BOUCLE_bidon(BLIP)>#ID_ITEM</BOUCLE_bidon>
 
 // Les couleurs sont définies dans le fichier inc-css_couleur.php
 [include '(#CHEMIN{inc-css_couleur.php})';]
@@ -11,12 +14,12 @@
 // Le switcher ne marche que depuis la page "spip.php?page=switch"
 
 if ( empty($_GET["couleur"]) )
-	{ 
+	{
 	if ( empty($_COOKIE["css_blip"]) )
-		{ $css_blip_couleur = 'css_blip_couleur_'.$css_blip['couleur']; }
+		{ $css_blip_couleur = "css_blip_couleur_[(#CONFIG{blip_couleur})]"; }
 	else { $css_blip_couleur = 'css_blip_couleur_'.$_COOKIE["css_blip"]; }
 	}
-else 
+else
 	{
 	setcookie("css_blip",$_GET["couleur"], time()+365*24*3600,"/");
 	$css_blip_couleur = 'css_blip_couleur_'.$_GET["couleur"];
@@ -27,6 +30,8 @@ else
 		}	
 	}
 
+	
+	
 $css_blip = array(
 
 	// BLOCS PRINCIPAUX ----------------------------------------------
@@ -1688,7 +1693,8 @@ $css_blip = array(
 		'.gris_moyen|color' => ${$css_blip_couleur}['gris|moyen'],
 		'.gris_clair|display' => 'inline',
 		'.gris_clair|color' => ${$css_blip_couleur}['gris|clair'],
-
+		'.neutre|color' => ${$css_blip_couleur}['couleur|neutre'],
+		'.neutre|display' => 'inline',
 	
 	// BLOCS CSS COULEURS FLOAT : classes génériques utilisable pour personnaliser le positionnement des logos.
 		'.imgfloatleft|display' => 'inline',
@@ -2045,6 +2051,11 @@ $css_blip = array(
 //  Cette surcharge est dynamique, elle doit être codé en php, et sera compilé par le compilateur de CSS
 [include '(#CHEMIN{inc-css_surcharge.php})';]
 
+// Surcharges de la feuille de style définies dans le fichier theme_XXX.php
+//  Cette surcharge est dynamique, elle doit être codé en php, et sera compilé par le compilateur de CSS
+[include '(#CHEMIN{theme_[(#CONFIG{blip_prefixe})].php})';]
+
+
 
 // EN COURS EN COURS EN COURS EN COURS EN COURS EN COURS
 // Ce tableau défini un thème graphique. 
@@ -2145,10 +2156,19 @@ img, .spip_logos { margin: 0; padding: 0; border: 0; }
 .forum_pied {background: url(#CHEMIN{forum_message_pied.gif}) repeat-x bottom; }
 .forum_pied_g {float: left; width: 11px; height: 11px; background: url(#CHEMIN{forum_message_pied_g.gif}) repeat-x bottom ; }
 .forum_pied_d {float: right; width: 11px; height: 11px; background: url(#CHEMIN{forum_message_pied_d.gif}) repeat-x bottom ; }
+.spip_documents { text-align: center; }
+.spip_documents_center { clear: both; width: 100%; margin: auto; }
+.spip_documents_center { display: block; margin-top:1em; }
+.spip_documents_left { float: left; margin-right: 15px; margin-bottom: 5px; }
+.spip_documents_right { float: right; margin-left: 15px; margin-bottom: 5px; }
 
 
 <?php 
 // Surcharges de la feuille de style définies dans le fichier inc-css_surcharge.html
 //  Cette surcharge est statique, et sera collé ici-même et doit-être codée en CSS
 [include '(#CHEMIN{inc-css_surcharge.html})';]
+
+// Surcharges de la feuille de style définies dans le fichier theme_XXX.html
+//  Cette surcharge est statique, et sera collé ici-même et doit-être codée en CSS
+[include '(#CHEMIN{theme_[(#CONFIG{blip_prefixe})].html})';]
 ?>

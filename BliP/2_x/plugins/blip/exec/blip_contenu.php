@@ -48,12 +48,14 @@ function exec_blip_contenu() {
 		'blip_mots_popularite',
 		'blip_mots_alphabetique',
 		'blip_auteur',
+		'blip_rechercher',
 		'blip_espaceprive',
 		'blip_switch'
 	);
 	
 	if ($changer_config == 'oui') {
 		ecrire_meta("blip_prefixe", $_POST['blip_prefixe']);
+		ecrire_meta("blip_couleur", $_POST['blip_couleur']);
 		ecrire_metas();
 		foreach($liste_meta_navigation as $i)
 			if ($_POST[$i]!=NULL)
@@ -95,27 +97,33 @@ function exec_blip_contenu() {
 	echo "<input type='hidden' name='changer_config' value='oui'>";
 	
 	debut_cadre_couleur();
-		
+
+	debut_cadre_relief("", false, "", _T('blipconfig:blip_couleur_du_site'));
+	$blip_couleur = entites_html($GLOBALS['meta']["blip_couleur"]);
+	echo "<input type='text' name='blip_couleur' value=\"$blip_couleur\" size='40' CLASS='forml'>";
+	echo "<div style='text-align:right;'><input type='submit' name='Valider' value='"._T('bouton_enregistrer')."' CLASS='fondo'></div>";
+	echo "Saisir un num&eacute;ro entre 1 et 10.";
+	fin_cadre_relief();	
+	
 	debut_cadre_relief("", false, "", _T('blipconfig:blip_theme_graphique'));
 	$blip_prefixe = entites_html($GLOBALS['meta']["blip_prefixe"]);
-	
 	echo "<input type='text' name='blip_prefixe' value=\"$blip_prefixe\" size='40' CLASS='forml'>";
 	echo "<div style='text-align:right;'><input type='submit' name='Valider' value='"._T('bouton_enregistrer')."' CLASS='fondo'></div>";
-
+	echo "<br />";
+	echo "Dans votre dossier 'blip' vous trouverez des fichiers theme_XXXX.php. Saisir : XXXX";
 	fin_cadre_relief();
-	fin_cadre_couleur();
+
+	fin_cadre_couleur();	
+
 	
 	
-	
-	
-	
-	debut_cadre_trait_couleur("mot-cle-24.gif", false, "", _T('blipconfig:options'));
+	debut_cadre_trait_couleur("mot-cle-24.gif", false, "", _T('blipconfig:blip_options'));
 
 	//
 	// Activer ou désactiver les élèments du menu.
 	//
 
-	debut_cadre_relief("", false, "", _T('blipconfig:menu_navigation'));
+	debut_cadre_relief("", false, "", _T('blipconfig:blip_menu_navigation'));
 
 	echo "<TABLE BORDER=0 CELLSPACING=1 CELLPADDING=3 WIDTH=\"100%\">";
 	echo "<TR><TD BACKGROUND='" . _DIR_IMG_PACK . "rien.gif' COLSPAN='2' class='verdana2'>";

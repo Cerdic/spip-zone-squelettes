@@ -45,7 +45,8 @@ $GLOBALS['i18n_blip_fr'] = array(
  'commentaires_postes2' => 'commentaires post&eacute;s',
  'commentaire_poster_un' => 'Poster un commentaire',
  'commentaires_de_larticle' => 'Commentaires de l\'article',
-
+ 'certaines_rubriques'  => 'Certaines rubriques du site ne sont accessibles qu\'aux visiteurs identifi&eacute;s',
+ 'changer_couleurs' => 'Changer les couleurs du site',
 
 // D
 
@@ -54,7 +55,7 @@ $GLOBALS['i18n_blip_fr'] = array(
  'date_de_publication' => 'date de publication',
  'depuis_cette_page_vous_pouvez_personnaliser_laffichage_de_ce_site_internet' => 'Depuis cette page, vous pouvez personnaliser l\'affichage de ce site Internet',
  'derniere_mise_a_jour_le' => 'Derni&egrave;re mise &agrave; jour le',
- 'derniere_mise_a_jour' => 'Derni&egrave;res mises &agrave; jour',
+ 'dernieres_mises_a_jour' => 'Derni&egrave;res mises &agrave; jour',
  'documents' => 'Documents',
  'document_aucun_publie' => 'Aucun document publi&eacute;',
  'document_dernier_publie' => 'Derniers documents publi&eacute;s',
@@ -64,6 +65,7 @@ $GLOBALS['i18n_blip_fr'] = array(
  'documents_derniers' => 'Derniers documents',
 
 
+ 
 // E
 
  'envoyer_un_message_a' => 'Envoyer un message &agrave;',
@@ -78,6 +80,11 @@ $GLOBALS['i18n_blip_fr'] = array(
 // G
 
  'galerie_dimages' => 'Galerie d\'images',
+ 
+ 
+ // I
+ 
+ 'identifiez_vous' => 'Identifiez-vous',
  
 
 // J
@@ -152,7 +159,8 @@ $GLOBALS['i18n_blip_fr'] = array(
  'visiteurs_quotidiens' => 'visiteurs quotidiens',
  'visiteurs_aujourd_hui' => 'visiteurs aujourd\'hui',
  'visiteurs_cumules' => 'visiteurs cumul&eacute;s',
- 'voir_la_liste_complete' => 'Voir la liste compl&egrave;te',
+ 'voir_la_liste_complete' => 'Voir la liste compl&egrave;te', 
+ 'vous_etes_identifie'  => 'Vous &ecirc;tes actuellement authentifi&eacute;',
  
  
  // DEBUG

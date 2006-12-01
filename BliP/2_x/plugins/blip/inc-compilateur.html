@@ -4,12 +4,15 @@
 Il s'agit du compilateur de BliP, c'est ce fichier qui rend le squelette modulaire
 ]
 [(#REM) Boucle de déclaration de la table, ne pas supprimer]
-<!-- <BOUCLE_bidon(BLIP)>#ID_ITEM</BOUCLE_bidon> -->
+<?php
+// <BOUCLE_bidon(BLIP)>#ID_ITEM</BOUCLE_bidon>
+?>
+
 [
 (#ENV{zone}|=={'mentions_techniques'}|?{' ',''})<INCLURE{fond=inc-infos}{lang}>
 ]
 <B_compilateur_blip>
-	<div class="#ENV{zone}">[(#ENV{zone}|!={'titre_principal'}|?{'',<a href="#URL_SITE_SPIP">})]
+	<div class="#ENV{zone}">[(#ENV{zone}|!={'titre_principal'}|?{'',<a rel="start" href="#URL_SITE_SPIP/">})]
 <BOUCLE_compilateur_blip(BLIP){position IN #ENV{zone},#ENV{zone_restreinte}}{actif=oui}{par ordre}>
 		[(#TYPE|!={'statique'}|?{'',' '})
 			[(#ENV{zone}|!={'barre_laterale'}|?{' ',''})
@@ -38,7 +41,7 @@ Il s'agit du compilateur de BliP, c'est ce fichier qui rend le squelette modulai
 			<div class="element"><div class="texte_principal">
 			]
 			<div class="liens">
-			<a href="[(#URL_SITE_SPIP)]/spip.php?[(#TEXTE)][(#ID_ITEM|=={'0'}|?{'',#ID_ITEM})]" class="menu_#TEXTE"[ title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>
+			<a href="[(#URL_SITE_SPIP)]/spip.php?[(#ID_ITEM|=={'0'}|?{page=[(#TEXTE)],[(#TEXTE)][(#ID_ITEM)]})]" class="menu_#TEXTE"[ title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>
 			</div>
 			[(#ENV{zone}|=={'barre_laterale'}|?{' ',''}) 
 			</div></div><!-- fin element-->
@@ -48,16 +51,15 @@ Il s'agit du compilateur de BliP, c'est ce fichier qui rend le squelette modulai
 	[(#ENV{zone}|!={'titre_principal'}|?{'',</a>})]</div><!-- fin #ENV{zone} -->
 </B_compilateur_blip>	
 	[(#ENV{zone}|!={'sous_titre'}|?{'',' '})
-		<div class="#ENV{zone}">
-		<h5 class="nopadding">[(#DESCRIPTIF_SITE_SPIP)]</h5>
+		<div class="#ENV{zone}">[(#DESCRIPTIF_SITE_SPIP)]
 		</div><!-- fin #ENV{zone} -->
 	]
 	
 	[(#ENV{zone}|!={'titre_principal'}|?{'',' '})
-		<div class="#ENV{zone}">
+		<div class="#ENV{zone}"><a rel="start" href="#URL_SITE_SPIP/">
 		[(#LOGO_SITE_SPIP||?{
 			[(#LOGO_SITE_SPIP
-				||reduire_image{770,200}
+				||reduire_image{0,200}
 				|inserer_attribut{alt,[(#NOM_SITE_SPIP|textebrut)]}
 				|inserer_attribut{title,[(#NOM_SITE_SPIP|textebrut)]}
 				)]</a>
