@@ -40,8 +40,29 @@ $css_blip_couleur_1 = array(
 	'taille|bordure' => '0.25em',
 );
 
-$css_blip_couleur_10_nom = 'n&ordm; 10 : Test en cours';
+$css_blip_couleur_10_nom = 'n&ordm; 10 : Vert feutr&eacute; et bleu oc&eacute;an';
 $css_blip_couleur_10 = array(
+	// Jeu de couleur n°10
+	'gris|fonce' => '#aaaaaa',
+	'gris|moyen' => '#666666',
+	'gris|clair' => '#333333',
+	'couleur|1' => '#549e46',
+	'couleur|1|clair' => '#c6dfc1',
+	'couleur|2' => '#1e73cd',
+	'couleur|2|clair' => '#c5e1f4',
+	'couleur|neutre' => '#ffffff',
+	'couleur|neutre|bis' => 'transparent',
+	'taille|espacement_bloc' => '3em',
+	'taille|geant' => '1.5em',
+	'taille|grand' => '1.25em',
+	'taille|moyen' => '1em',
+	'taille|normal' => '0.75em',
+	'taille|petit' => '0.5em',
+	'taille|bordure' => '0.25em',
+); 
+
+$css_blip_couleur_11_nom = 'n&ordm; 11 : Test en cours';
+$css_blip_couleur_11 = array(
 	// Jeu de couleur n°10
 	'gris|fonce' => '#aaaaaa',
 	'gris|moyen' => '#666666',
