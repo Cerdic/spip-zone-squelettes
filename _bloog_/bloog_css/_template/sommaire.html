@@ -2,18 +2,16 @@
 
 <html><head>
 
-<!-- les métas -->
-<BOUCLE_logo(ARTICLES){titre_mot=logo}{0,1}>
-<title>[(#TITRE) sur ][(#NOM_SITE_SPIP)]</title> 
-<meta name="Description" content="[(#DESCRIPTIF|textebrut) sur ][(#NOM_SITE_SPIP)]"/>
-<meta name="Keywords" content="[(#CHAPEAU|textebrut) sur ][(#NOM_SITE_SPIP)"/>]
-<BOUCLE_auteurs(AUTEURS){id_article}>
-[<meta name="Author" content="<:bloog:par:> (#NOM) "/>]</BOUCLE_auteurs></B_auteurs>
-</BOUCLE_logo>
+	[(#REM) Les métatags ]
+
+<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+<meta name="Keywords" content="<BOUCLE_rub_keywords(RUBRIQUES){titre_mot=syndic}>[(#TITRE|supprimer_numero|textebrut),]</BOUCLE_rub_keywords>">
 <meta name="revisit-after" content="15 days" />
 <meta http-equiv="content-type"content="text/html; charset=#CHARSET"/>
 
-<!-- les css et js peuvent changer suivant type d article ou de breve-->
+	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
+	
 <link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/menu.css" />
 <link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/bloog.css" />
 <link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/niftyCorners.css" />
@@ -21,10 +19,11 @@
 <script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty.js"></script>
 <script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty-bloog.js"></script>
 
-<!-- icones xml des fils des rubriques sous firefox -->
-<BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}>
+	[(#REM) icones xml des fils des rubriques sous firefox ]
+
+<BOUCLE_rub_css(RUBRIQUES){tout}{titre_mot=syndic}>
 <link rel="alternate" type="application/rss+xml" href="#URL_SITE_SPIP/_backend.php3?id_rubrique=#ID_RUBRIQUE" title="[(#TITRE|supprimer_numero)]" />
-</BOUCLE_rub>
+</BOUCLE_rub_css>
 
 </head>
 <body> 
