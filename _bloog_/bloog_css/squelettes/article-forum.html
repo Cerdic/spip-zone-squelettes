@@ -1,0 +1,244 @@
+<INCLURE{fond="header"}{delais=31*24*3600}>
+
+<BOUCLE_principale(ARTICLES){id_article}>
+
+<!-- Si mot clef acces_restreint alors on authentifie l internaute. -->
+<BOUCLE_restreint(MOTS){id_article}{titre=acces_restreint}><INCLURE{fond="__authentification"}
+</BOUCLE_restreint>
+
+<html><head>
+
+<!-- les métas -->
+<title>[(#TITRE|supprimer_numero)]</title>
+[<meta name="Description" content='(#DESCRIPTIF|supprimer_tags|texte_script)'/>]
+<meta name="keywords" content="[(#CHAPO|texte_script)]<BOUCLE_metadocs(DOCUMENTS){id_article}{","}>#TITRE</BOUCLE_metadocs>"/>
+<meta name="author" content="<BOUCLE_author(AUTEURS){id_article}{","}>#NOM</BOUCLE_author>"/>
+<meta name="revisit-after" content="15 days" />
+<meta http-equiv="content-type" content="text/html; charset=#CHARSET"/>
+
+<!-- les css et js peuvent changer suivant type d article ou de breve-->
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/menu.css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/bloog.css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/niftyCorners.css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/print.css" media="print" />
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty.js"></script>
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty-bloog.js"></script>
+
+<!-- icones xml des fils des rubriques sous firefox -->
+<BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}>
+<link rel="alternate" type="application/rss+xml" href="#URL_SITE_SPIP/_backend.php3?id_rubrique=#ID_RUBRIQUE" title="[(#TITRE|supprimer_numero)]" />
+</BOUCLE_rub>
+
+</head><body> 
+
+<div id="container">   <!-- centrage page -->
+<INCLURE{fond="entete"}{delais=31*24*3600}> 
+<div id="surcontent">  
+<INCLURE{fond="menuhoriz"}{delais=31*24*3600}><!-- ouverture entête -->
+<div id="content">  <!-- ouverture contenu --> 
+
+<div id="colgau"> <!-- ouverture colone de gauche --> 
+
+  <div class="grande_boite"> <!-- ouverture grd boite texte -->
+<p>
+
+<BOUCLE_logo_article(MOTS){id_article}{titre=ImageUne}>
+<!-- Pas de logo si ce mot clé -->
+</BOUCLE_logo_article>
+ [<span class="logogauche">(#LOGO_ARTICLE)</span>]
+<//B_logo_article>
+
+<a href="sommaire.php3">Accueil</a> > <BOUCLE_plan(HIERARCHIE){id_article}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>	
+                  </BOUCLE_plan>
+&gt; </p>                 
+[<h1>(#TITRE) 
+      </h1><br/>] 
+    [(#SOUSTITRE)<br/> 
+    ]   
+  
+   [(#TEXTE|lier_au_glossaire)][<br/>
+    (#PS)]
+
+<ul class="membres"><li class="modo"><a href="ecrire/articles_forum.php3?id_article=#ID_ARTICLE" title="Acc&egrave;s priv&eacute; pour mod&eacute;rateurs">Admin:</a></li>
+<BOUCLE_admin(AUTEURS){statut=0minirezo}{par id_auteur}>
+<li class="modo"><a href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact/Profil">#NOM</a></li>
+</BOUCLE_admin>
+</ul>
+
+</div> <!-- fermeture grande boite -->
+
+
+
+<!-- les derniers messages et discussions -->
+<div class="grande_boite">
+
+<table class="spip">
+
+<tr class="row_first gras blanc">
+<td>Derniers messages</td>
+<td>Auteur</td>
+<td>Date</td>
+</tr>
+<?php $couleur="0" ; ?>	
+
+<B_discussions>
+<BOUCLE_messages(FORUMS){id_article}{plat}{par date}{inverse}{0,5}>
+<?php
+$ze_titre = '[(#TITRE|texte_script)]' ;
+$ze_titre = ereg_replace( "> ", "", $ze_titre );
+?>
+
+<tr class="<?php echo $couleur == 0 ? 'row_even' : 'row_odd' ; ?>" >
+<td>
+<a href="_discussion.php3?id_forum=#ID_FORUM#forum#ID_FORUM"	title=""><?php echo $ze_titre?></a>
+</td>
+	<td><BOUCLE_nom2(AUTEURS){tout}{id_auteur}>
+[<a (#STATUT|=={'1comite'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de ce r&eacute;dacteur">]
+[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de cet admin">]
+[<a (#STATUT|=={'6forum'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de ce visiteur">]
+[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Compte en attente">]
+[(#NOM|couper{18})</a><br/>]
+</BOUCLE_nom2>
+[(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
+<//B_nom2></td>
+	<td>[(#DATE|affdate{'d/m/Y'})]<br/>
+	[(#DATE|affdate{'H:i:s'})]
+</td>
+	</tr>
+	
+<?php if($couleur == 0) {$couleur = 1 ; } else {$couleur=0 ; }	?>
+
+</BOUCLE_messages>
+</table><hr class="spacer"/> 
+
+<ul class="forum centre">
+<li>
+<a href="_mon-profil.php3" title="S'inscrire">
+S'inscrire</a></li>
+<li>
+[<a href="forum.php3?(#PARAMETRES_FORUM)" title="Créer une discussion">Dialoguer</a>]
+</li>
+<li>
+<a href="<?php echo $PHP_SELF ; ?>?id_article=#ID_ARTICLE&amp;var_mode=recalcul" title="Rafraichir les messages">
+          Actualiser</a>
+</li>
+</ul>
+
+			
+<hr class="spacer"/>  
+			  
+<table class="spip">
+<tr class="row_first gras blanc">
+<td>Dernières discussions</td>
+<td>Auteur</td>
+<td>Date</td>
+<td>Messages</td>
+</tr>
+
+
+<?php $couleur="0" ; ?>	
+
+<BOUCLE_discussions(FORUMS){id_article}{par date}{inverse}{debut_post,30}>
+<?php $ze_titre = '[(#TITRE|texte_script)]' ;
+$ze_titre = ereg_replace( "> ", "", $ze_titre );
+?>
+
+<tr class="<?php echo $couleur == 0 ? 'row_even' : 'row_odd' ; ?>" >
+<td>
+<a href="_discussion.php3?id_forum=#ID_FORUM#forum#ID_FORUM"	title=""><?php echo $ze_titre?></a>
+</td>
+<td><BOUCLE_nom3(AUTEURS){tout}{id_auteur}>
+[<a (#STATUT|=={'1comite'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de ce r&eacute;dacteur">]
+[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de cet admin">]
+[<a (#STATUT|=={'6forum'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de ce visiteur">]
+[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Compte en attente">]
+[(#NOM|couper{18})</a><br/>]
+</BOUCLE_nom3>
+[(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
+<//B_nom3></td>
+<td>[(#DATE|affdate{'d/m/Y'})]<br/>
+	[(#DATE|affdate{'H:i:s'})]
+</td>
+<td><B_nb_forumtotal>
+<BOUCLE_nb_forumtotal(FORUMS){id_thread}{plat}>
+</BOUCLE_nb_forumtotal>
+<?php echo #TOTAL_BOUCLE -1 ?>
+</B_nb_forumtotal>
+</td>
+</tr>
+	
+<?php if($couleur == 0) {$couleur = 1 ; } else {$couleur=0 ; }	?>
+
+</BOUCLE_discussions>
+</B_discussions>
+</table>
+<hr class="spacer"/> 
+
+
+
+
+</div>
+
+
+</div><!-- fermeture colone de gauche -->
+ <div class="coldroit">  <!-- ouverture de la colone de droite --> 
+
+
+    <div class="boite"><!-- ouverture boite menu --> 
+
+        <h4 class="icone_menu">Navigation</h4>
+        <INCLURE{fond="inc_menu_rub"}{delais="7*24*3600"}{id_rubrique}{id_article}> </div><!-- fermeture boite menu -->
+
+
+<!-- La boite de recherche --> 
+<div class="boite"> <!-- ouverture boite recherche --> 
+  <h4 class="icone_recherche">Chercher dans les forums</h4>
+  <form action='_recherche-forum.php3' method='post' class="form_rech" id="form_rech">
+              <p><input name="recherche" type='text' id='recherche' size='20' />
+              <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" /></p>             
+          </form>
+
+ </div>   <!-- fermeture boite recherche --> 
+
+
+<div class="boite"> <!-- ouverture boite les membres --> 
+<INCLURE(_liste-membres.php3)>
+</div>
+
+
+
+
+
+    
+ <B_meme_rubrique>
+    <div class="boite">
+      <!-- ouverture autre articles -->
+   
+  <h4 class="icone_article">Autres forums</h4>
+  <p>
+      <BOUCLE_meme_rubrique(ARTICLES){id_rubrique}{titre_mot=forum}{exclus}{par date}{inverse}{0,20}>
+                <a href="#URL_ARTICLE">#TITRE</a><br/>
+                <INCLURE{fond="inc_cadenas"}{delais="7*24*3600"}{id_article}> 
+               
+                </BOUCLE_meme_rubrique></p>
+               
+    </div></B_meme_rubrique>
+ <BOUCLE_retirer_doc(DOCUMENTS){id_article}{extension==jpg|gif|png}{doublons doc}>
+    <!-- Boucle pour ne pas afficher les images et mp3 ici -->
+    </BOUCLE_retirer_doc>
+     </div>
+ <!-- fermeture colone de droite --> 
+
+
+<hr class="spacer" />
+</div>
+<!-- fermeture contenu --> 
+<INCLURE{fond="pieddepage"}{delais=31*24*3600}{id_article}>
+
+</div> <!-- fermeture surcontenu --><br/>
+
+
+</div> <!-- fermeture container --> 
+</body>
+</html>
+</BOUCLE_principale>

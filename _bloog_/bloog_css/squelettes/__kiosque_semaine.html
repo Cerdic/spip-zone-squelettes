@@ -1,0 +1,186 @@
+<?php
+ 
+ // Disable caching
+    //
+    @header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+    @header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+
+    @header("Cache-Control: no-store, no-cache, must-revalidate");
+    @header("Cache-Control: post-check=0, pre-check=0", false);
+    @header("Pragma: no-cache");
+ ?>
+
+
+ 
+ <HTML><HEAD>
+
+<title>[ #NOM_SITE_SPIP - Kiosque ] </title>
+
+<SCRIPT src="IMG/002/_interface.js" type="text/javascript"></SCRIPT>
+<link rel="stylesheet" href="IMG/002/_interface.css" type="text/css">
+</HEAD>
+<BODY>
+<div align="center"> 
+    <INCLURE (_page_barre_menu.php)><br>
+
+  <TABLE width=750  border=0 cellPadding=0 cellSpacing=0>
+    <TBODY> 
+    <TR> 
+      <td valign=top align="center" width="490"> 
+        
+        
+        <table border=0 cellpadding=0 cellspacing=0 width="490">
+          <tr> 
+            <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+            <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/News.gif" /></td>
+            <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+          </tr>
+          <tr> 
+            <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+            <td class="content"> 
+              
+              <table border=0 cellpadding=3 cellspacing=0 width="100%">
+                <tr > 
+                  <td colspan="2"><a name="semaine"></a><b>Cette semaine sur le 
+                    web</b></td>
+                </tr>
+                <BOUCLE_semaine_syndic(SYNDIC_ARTICLES){age_relatif<=7}{age_relatif>
+                0}{par date}{inverse}{debut_semaine,40}> 
+                <tr> 
+                  <td class="td_ln"><img src="IMG/002/puce_fleche.png" width="8" height="7"> 
+                    [(#DATE|jour)]/[(#DATE|mois)]/[(#DATE|annee)] : <a href="#URL_ARTICLE" target="_blank" title="A lire sur : #NOM_SITE">#TITRE</a><br>
+                    #DESCRIPTIF </td>
+                  <td class="td_ln"> par <a title="Tous les articles de #NOM_SITE" href="_kiosque.php?id_syndic=#ID_SYNDIC">#NOM_SITE</a> 
+                  </td>
+                </tr>
+                </BOUCLE_semaine_syndic>
+                <tr > 
+                  <td colspan="2" > 
+                   
+		<BOUCLE_articles_pagination(SYNDIC_ARTICLES){age_relatif<=7}{par date}{inverse}>
+</BOUCLE_articles_pagination>
+[(#TOTAL_BOUCLE|pagination{debut_semaine,40})]
+</B_articles_pagination>
+
+
+		
+                  </td>
+                </tr>
+              </table>
+              
+
+            </td>
+            <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+          <tr> 
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+            <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+          </tr>
+        </table>
+      </td>
+      <TD width=19><IMG src="IMG/002/rien.gif" width=19></TD>
+      <td valign=top width="241"> 
+        <table border=0 cellpadding=0 cellspacing=0 width="100%">
+          <tr> 
+            <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+            <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/secteur.gif" /></td>
+            <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+          </tr>
+          <tr> 
+            <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+            <td align="left" class="content"> 
+              <INCLURE{fond="inc_menu_rub"}{delais="7*24*3600"}> <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+          <tr> 
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+            <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+          </tr>
+        </table>
+        
+        		<div class="bloog_bouton" style="padding : 10 20 30 40">
+
+			<ul>
+			
+			<li><a href="_kiosque.php">Aujourd'hui</a></li>
+			<li><a href="_kiosque_semaine.php">Cette semaine</a></li>
+
+			</ul>
+
+<form style="text-align:center" action="_kiosque_recherche.php" method="post">
+                        <input type="text" name="recherche" value="recherche" id="joe">
+                        </form>
+			
+		 </div>
+
+
+        <BOUCLE_context(SITES){id_syndic}>
+        <br>
+        <B_sites>
+        <table border=0 cellpadding=0 cellspacing=0 width="100%">
+          <tr> 
+            <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+            <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/classeur.gif" /></td>
+            <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+          </tr>
+          <tr> 
+            <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+            <td class="content"> 
+              <div class="grison">Dans la m&ecirc;me rubrique</div><br>
+              <BOUCLE_sites(SITES){id_rubrique}{syndication=oui}{doublons}{0,20}>
+              <img src="IMG/002/puce_fleche.png" width="8" height="7"> <a href="_kiosque_source.php?id_syndic=#ID_SYNDIC">[(#NOM_SITE)]</a> 
+              <br>
+              </BOUCLE_sites>
+            </td>
+            <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+          <tr> 
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+            <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+          </tr>
+        </table>
+        </B_sites>
+        </BOUCLE_context>
+        <br>
+        <B_autres_sites>
+        <table border=0 cellpadding=0 cellspacing=0 width="100%">
+          <tr> 
+            <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
+            <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/logolistesites.gif" /></td>
+            <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
+          </tr>
+          <tr> 
+            <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
+            <td class="content"> <div class="grison">Sources</div>
+              <br>
+              <BOUCLE_autres_sites(SITES){syndication=oui}>
+              <BOUCLE_rub(RUBRIQUES){id_rubrique}{par num titre}{doublons}>
+              <div class="td_ln"><a href="#URL_RUBRIQUE">[<strong>(#TITRE|supprimer_numero)</strong>]</a> 
+              </div>
+              <BOUCLE_nom(SITES){id_rubrique}{syndication=oui}>
+              <div><img src="IMG/002/puce_fleche.png" width="8" height="7"><a href="_kiosque_source.php?id_syndic=#ID_SYNDIC">[(#NOM_SITE)]</a>
+              </div>
+              </BOUCLE_nom>
+              </BOUCLE_rub>
+              </BOUCLE_autres_sites>
+            </td>
+            <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
+          <tr> 
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
+            <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
+            <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
+          </tr>
+        </table>
+        </B_autres_sites>
+        <br>
+        <p>&nbsp;</p>
+      </td>
+    </TR>
+    </TBODY> 
+  </TABLE>
+
+  <br>
+   
+      <INCLURE (_page_bas.php)><br></div>
+</BODY>
+
+</HTML>

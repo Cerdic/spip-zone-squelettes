@@ -1,0 +1,81 @@
+  <p>
+
+<?
+
+// Période d'analyse couverte (nb de jours avant aujourd'hui)
+
+$periode = '31' ;
+
+// Sur tout le site, nombre de visites pendant la période
+$query="SELECT UNIX_TIMESTAMP(date) AS date_unix, visites FROM spip_visites ".
+		"WHERE 1 AND date > DATE_SUB(NOW(),INTERVAL $periode DAY) ORDER BY date";
+	$result=spip_query($query);
+
+        $i=0 ;
+        $total_absolu=0;
+
+	while ($row = spip_fetch_array($result)) {
+
+                $total_absolu = $total_absolu + $row['visites'];
+                $i++;
+	}
+
+
+// Nombre moyen de visites par jour sur la période
+
+        $moyenne =  round($total_absolu / $periode );
+
+// Sur tout le site, nombre de visiteurs uniques la veille
+
+         $query="SELECT visites FROM spip_visites ORDER BY date DESC LIMIT 1";
+         $result = spip_query($query);
+         if ($row = @spip_fetch_array($result))
+         $visites_veille = $row['visites'];
+         else
+         $visites_veille = 0;
+
+		 // Sur tout le site, nombre de visiteurs uniques depuis le début
+
+            $query="SELECT UNIX_TIMESTAMP(date) AS date_unix, visites FROM
+            spip_visites ORDER BY date";
+                $result=spip_query($query);
+                       $i=0 ;
+                    $total_absolu=0;
+                while ($row = spip_fetch_array($result)) {
+                          $total_absolu = $total_absolu + $row['visites'];
+                            $i++;
+                } 
+	
+	
+ // afficher les résultats
+ 
+ echo "#NOM_SITE_SPIP a reçu hier $visites_veille visiteurs uniques." ;
+ if($moyenne != 0) $ppv = round(#POPULARITE_SITE / $visites_veille) ;
+?>
+    La base d'articles est consultée environ #POPULARITE_SITE fois
+              par jour, soit environ <?php echo $ppv ?> articles par visite.
+			  #NOM_SITE_SPIP contient:
+             
+    <BOUCLE_nb_breves(BREVES){tout}>
+    </BOUCLE_nb_breves>
+    #TOTAL_BOUCLE breves,
+    </B_nb_breves>
+    <BOUCLE_nb_articles(ARTICLES){tout}>    
+    </BOUCLE_nb_articles>
+    #TOTAL_BOUCLE articles, 
+    </B_nb_articles>
+    <BOUCLE_nb_sites(SITES){tout}>
+    </BOUCLE_nb_sites>
+    #TOTAL_BOUCLE sites référéncés,
+    </B_nb_sites>
+    <BOUCLE_nb_messages(FORUMS){plat}>
+    </BOUCLE_nb_messages>
+    #TOTAL_BOUCLE messages dans les forums. 
+    </B_nb_messages>
+[(#NOM_SITE_SPIP|list_prop)]  <?php if(($auteur_session['statut']== '0minirezo') OR ($auteur_session['statut']== '1comite')){
+     echo $auteur_session['nom'];?> , <a href="#URL_SITE_SPIP/ecrire/index.php3">vous
+    pouvez commenter ces articles.</a>
+<?php } ?> 
+    </p>
+
+

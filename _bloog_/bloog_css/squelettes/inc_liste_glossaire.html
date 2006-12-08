@@ -1,0 +1,47 @@
+<B_rubrique_glossaire>
+<div class="grande_boite">
+<BOUCLE_rubrique_glossaire(rubriques){id_rubrique=#ID_RUBRIQUE}{titre_mot==glossaire}{0,1}>
+
+<h4 class="icone_recherche">
+<BOUCLE_comptbreves(BREVES){id_rubrique}> </BOUCLE_comptbreves>
+[(#TOTAL_BOUCLE) Définitions]
+</B_comptbreves>
+<a name="breves" id="breves"></a>
+</h4>
+
+
+<p class="interne">Glossaire:&nbsp;
+<?php
+$alpha=array();
+<BOUCLE_decompte(BREVES){id_rubrique}{par titre}>
+$initiale=strtoupper(substr('#TITRE',0,1));
+if (!in_array($initiale,$alpha)) $alpha[#COMPTEUR_BOUCLE-1]=$initiale;
+</BOUCLE_decompte>
+$uri=ereg_replace('&{0,1}lettre=\^[a-zA-Z]{1}','',$REQUEST_URI);
+if ((eregi('\?',$uri)) AND (!eregi('\?lettre',$uri))) {
+$prefixe= "&amp;" ;
+} else {
+$prefixe= "?" ;
+}
+foreach ($alpha as $valeur) {
+   echo '<a href="'.$uri.''.$prefixe.'lettre=^'.$valeur.'#breves">'.$valeur.'</a>&nbsp; ';
+}
+$lettre='[(#ENV{lettre})]';
+if($lettre !=''){
+?>
+</p>
+
+<ul class="liste_plane">
+<BOUCLE_breves_liste(BREVES){id_rubrique}{doublons breves}{titre == #ENV{lettre,^A}}>
+[<li><a href="#URL_BREVE" title="Lire cette définition">(#TITRE)</a></li>]
+</BOUCLE_breves_liste></ul>
+<?php } else { ?>
+</p>
+<p>Choisissez une lettre dans le glossaire technique.</p>
+
+<?php } ?>
+
+<hr class="spacer"/>
+</BOUCLE_rubrique_glossaire>
+</div>
+</B_rubrique_glossaire>

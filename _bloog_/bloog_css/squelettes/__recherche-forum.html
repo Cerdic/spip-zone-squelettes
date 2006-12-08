@@ -1,0 +1,231 @@
+<INCLURE{fond="header"}{delais=31*24*3600}>
+
+
+
+<html><head>
+
+<!-- les métas -->
+<title>[(#RECHERCHE) ][trouvé dans les forums de (#NOM_SITE_SPIP)]</title> 
+<meta name="Description" content="[(#RECHERCHE) ][trouvé dans les forums de (#NOM_SITE_SPIP)]"/>
+<meta name="Keywords" content="forum,trouver[,(#RECHERCHE)]"/>
+<meta http-equiv="content-type"content="text/html; charset=#CHARSET"/>
+
+<!-- les css et js peuvent changer suivant type d article ou de breve-->
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/menu.css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/bloog.css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/niftyCorners.css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/print.css" media="print" />
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty.js"></script>
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty-bloog.js"></script>
+
+<!-- icones xml des fils des rubriques sous firefox -->
+<BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}>
+<link rel="alternate" type="application/rss+xml" href="#URL_SITE_SPIP/_backend.php?id_rubrique=#ID_RUBRIQUE" title="[(#TITRE|supprimer_numero)]" />
+</BOUCLE_rub>
+<!-- enlève http:// de l'adresse du site -->
+
+<?php
+$url = "art-logic.info";
+?>
+<!--$url= ereg_replace( "http://www.", "", $url );-->
+<script type="text/javascript"><!--
+// Moteur interne par Google (fenetre popup)
+ function RecherchePopup()
+ {
+ chaine = document.forms.google.s.value;
+  if (document.forms.google.elements[1].checked) {   
+   URL="http://www.google.fr/search?as_q="+chaine+"&num=100&btnG=Recherche+Google&as_epq=&as_oq=&as_eq=&lr=&as_ft=i&as_filetype=&as_qdr=all&as_occt=any&as_dt=i&as_sitesearch=<? echo $url; ?>";
+   window.open(URL,'','toolbar=yes,location=yes,status=yes,menubar=yes,scrollbars=yes,resizable=yes,width=700,height=400'); 
+   }
+  if (document.forms.google.elements[2].checked) {
+   URL="http://www.google.fr/search?q="+chaine+"&hl=fr&meta=lr%3Dlang_fr";
+   window.open(URL,'','toolbar=yes,location=yes,status=yes,menubar=yes,scrollbars=yes,resizable=yes,width=700,height=400'); 
+   }
+} // -->
+</script>
+
+
+</head>
+<body> 
+<div id="container">   <!-- centrage page -->
+<INCLURE{fond="entete"}{delais=31*24*3600}> 
+<div id="surcontent">  <!-- ouverture entête -->
+<INCLURE{fond="menuhoriz"}{delais=31*24*3600}>
+<div id="content">  <!-- ouverture contenu --> 
+<div id="colgau"> <!-- ouverture colone de gauche --> 
+
+
+
+<div id="cel">
+<ul id="deco">
+<li>
+
+<h4>Recherche interne</h4>
+<form action='_recherche-forum.php' method='post'>
+  <p>
+    <input name="recherche" type='text' value="#RECHERCHE" id='recherche' size='20' />  
+    <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" />
+  <br/>
+                Lancez une recherche dans les forums du site: 
+                Les mots de moins de quatre lettres ne sont pas indexés
+    par le moteur interne. Ajoutez plusieurs mots pour cibler votre recherche.</p>
+</form>
+		
+</li>
+
+
+ 
+<!-- recherche sur Google -->
+<li>
+<h4>Moteur Google</h4>
+
+                                <form action='' method='get' name="google"
+                  onsubmit="return RecherchePopup();" id="google">
+                    <p>
+                      <input type='text' name="s" size="20" value="#RECHERCHE" /><a href="javascript:RecherchePopup();" onkeypress="return true"><img src="./IMG/002/loupe.gif" alt="chercher" /></a>
+					  <br />
+                      Lancez une recherche avec Google:<br />
+                      <input name="sur" type='radio' value="site checked" checked /> 
+                      sur Art-logic.info.
+                      <input type='radio' name="sur" value="voila" /> sur le Web.<br />
+                      Les derniers messages de Art-logic.info ne
+                      sont pas indéxés par Google, préférez le
+                      moteur interne pour une recherche exhaustive.
+                    </p>
+
+                  </form>
+</li>
+</ul>
+</div>
+
+
+
+
+
+
+ <div class="grande_boite">
+ 
+ <p> <!-- recherche par pertinence -->
+                  <?
+$NbResults = 0; // initialisation du comptage
+$MaxPts = 0;?>
+                  <BOUCLE_CountArticles(FORUMS){tous}{recherche}{par points}{inverse}>
+ <?
+$NbResults++; // incrémentation 
+if ($MaxPts==0) $MaxPts = #POINTS; 
+ ?>
+                  </BOUCLE_CountArticles>
+ <?
+if (!isset($HTTP_GET_VARS["debut_lb"])) $debut_lb = 0; // paramètre à passer en GET dans lURL
+$Page = floor($debut_lb/5) + 1;  // numéro de page dans laquelle on est
+$MaxPage = floor($NbResults/5) + 1; // dernière page
+$Last = ($debut_lb+6<$NbResults) ? $debut_lb+5 : $NbResults; // dernier résultat affiché (permet d'écrire:"résultats X à Y affichés sur un total de Z" -> voir plus bas)
+
+?>
+ <?
+if ($NbResults > 0) {
+//  ?>
+[<?echo $NbResults; ?> discussions trouvés pour &quot;(#RECHERCHE)&quot;]
+<? echo $debut_lb+1 ."-" .$Last; ?>
+
+<?
+}
+else { ?>
+[Aucun r&eacute;sultat pour "(#RECHERCHE)".] 
+<? } ?>
+
+<BOUCLE_articlespert(FORUMS){tous}{recherche}{par points}{inverse}{debut_lb,5}>
+<? // calcul du pourcentage (option amusante mais pas performante)
+$PerCent = 100 * #POINTS / $MaxPts; ?>
+<br/>
+<br/>
+[<? echo number_format($PerCent, 0); ?>%]
+[<a href="_discussion.php?var_recherche=#RECHERCHE&amp;id_forum=#ID_FORUM#forum#ID_FORUM"><strong>(#TITRE|supprimer_numero)</strong></a>][<br/>
+(#INTRODUCTION)]<br/> 
+[(#DATE|nom_jour)] [(#DATE|jour)] [(#DATE|nom_mois)] [(#DATE|annee)] 
+</BOUCLE_articlespert>
+<br/>
+<br/>
+
+</p>
+<p class="centre gras">
+                    <?
+if ($MaxPage>1) {
+	for ($i=0;$i<$MaxPage;$i++) {
+		if ($i+1==$Page) { ?>
+                    <? echo $i+1; ?> 
+                    <?
+                }
+                else {
+		     if ($i+1<$Page) { ?>
+                    <a href='_recherche-forum.php?recherche=<? echo urlencode($recherche); ?><? if ($i) {echo "&debut_lb="; echo 5*$i;} ?>'><? echo $i+1; ?></a> 
+                    <?
+			}
+			else { ?>
+                    <a href='_recherche-forum.php?recherche=<? echo urlencode($recherche); ?>&debut_lb=<? echo 5*$i; ?>'><? echo $i+1; ?></a> 
+                    <?
+			}
+		}
+	}
+} ?> 
+          </p>
+                  
+              <!-- fin   recherche par pertinence -->
+              <!-- Recherche interne par google -->
+              <!-- debut recherche interne par google -->
+              <?php
+$url = "#URL_SITE_SPIP";
+$url= ereg_replace( "http://", "", $url );
+?>
+
+         
+</div><!-- fermeture grande_boite -->
+
+
+
+
+
+<!-- fin de cel -->
+</div>
+<!-- fermeture colone de gauche -->
+		
+
+<div class="coldroit"><!-- ouverture de la colone de droite --> 
+
+
+    <div class="boite"><!-- ouverture boite menu --> 
+        <h4 class="icone_menu">Navigation</h4>
+        <INCLURE{fond="inc_menu_rub"}{delais="7*24*3600"}> </div><!-- fermeture boite menu -->
+
+
+
+
+
+<div class="boite"> <!-- ouverture boite derniers messages --> 
+<h4 class="icone_post">Derniers messages</h4>
+<INCLURE(_derniers_messages.php)>
+</div>
+
+<div class="boite">
+  <h4 class="icone_stats">Stats</h4>
+
+<INCLURE(_inc_stats.php)>
+
+</div>
+      
+ 
+
+</div>   <!-- fermeture colone de droite --> 
+
+
+<hr class="spacer" />
+</div><!-- fermeture contenu --> 
+<INCLURE{fond="pieddepage"}{delais=31*24*3600}>
+
+</div> <!-- fermeture surcontenu --><br/>
+
+
+</div> <!-- fermeture container --> 
+</body>
+</html>
+

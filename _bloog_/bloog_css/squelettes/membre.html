@@ -1,0 +1,193 @@
+<?php if (!$auteur_session && $_GET['connect']=="yes"){ ?>
+<INCLURE{fond="__authentification"}>
+<?php exit;} ?>
+
+
+<INCLURE{fond="header"}{delais=31*24*3600}>
+
+
+<!-- Si mot clef acces_restreint alors on authentifie l internaute. -->
+
+
+<html><head>
+
+<!-- les métas --><BOUCLE_author0(AUTEURS){tout}{id_auteur}>
+<title>Contactez [(#NOM)].</title>
+<meta name="Description" content="Contact et profil de [(#NOM)]"/>
+<meta name="keywords" content="[(#NOM)]"/>
+<meta name="author" content="[(#NOM) via #NOM_SITE_SPIP]"/>
+</BOUCLE_author0>
+
+<meta name="revisit-after" content="15 days" />
+<meta http-equiv="content-type" content="text/html; charset=#CHARSET"/>
+
+
+<!-- les css et js peuvent changer suivant type d article ou de breve-->
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/menu.css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/bloog.css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/niftyCorners.css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/print.css" media="print" />
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty.js"></script>
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty-bloog.js"></script>
+
+<!-- icones xml des fils des rubriques sous firefox -->
+<BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}>
+<link rel="alternate" type="application/rss+xml" href="#URL_SITE_SPIP/_backend.php?id_rubrique=#ID_RUBRIQUE" title="[(#TITRE|supprimer_numero)]" />
+</BOUCLE_rub>
+
+</head>
+
+
+<body> 
+
+
+
+<div id="container">   <!-- centrage page -->
+<INCLURE{fond="entete"}{delais=31*24*3600}>  
+<div id="surcontent">  
+<INCLURE{fond="menuhoriz"}{delais=31*24*3600}><!-- ouverture entête -->
+<div id="content">  <!-- ouverture contenu --> 
+<div id="colgau"> <!-- ouverture colone de gauche --> 
+
+<!-- Si l internaute est connecte ou s il contact l admin principal du site -->
+<BOUCLE_AUTEURS(AUTEURS){tous}{id_auteur}>
+<?php if ($auteur_session||#ID_AUTEUR== '1') { ?>
+<div class="grande_boite"> <!-- ouverture grd boite texte -->[<h1>(#NOM)</h1>]
+
+[(#LOGO_AUTEUR||?{<span class="gauche">#LOGO_AUTEUR</span>,<p>#NOM n'a pas encore d'avatar<p/>})]
+
+<p>[(#BIO||?{#BIO,#NOM n'a pas encore &eacute;crit sa bio.})]</p>
+[<h4 class="icone_site">Site web préféré:</h4>
+<p><a href="#URL_SITE">(#NOM_SITE)</a></p>]
+
+[<h4 class="cadenas">Sécurité, clé PGP, protection:</h4><p>(#PGP)</p>]
+	  
+<?php if ($auteur_session['id_auteur']==#ID_AUTEUR) { ?>
+
+<h4 class="icone_membre">#NOM, modifiez votre profil:</h4>
+<p>Cette page affiche votre profil tel qu'il apparaît auprès des autres membres de #NOM_SITE_SPIP. 
+<a href="_mon-profil.php"><strong>En cliquant ici, vous pouvez modifier ou ajouter</strong></a>:</p>
+<ul classe="petite_liste">
+<li>votre nom et votre biographie;</li>
+<li>votre avatar et votre site web préféré;</li>
+<li>vos informations de sécurité (clé PGP ect...).</li>
+</ul>
+<?php } ?>
+
+<hr class="spacer"/>
+  </div>
+<div class="grande_boite">
+
+[<h4 class="icone_post">Contactez (#NOM)</h4>
+] 
+<p>
+[(#FORMULAIRE_ECRIRE_AUTEUR)]</p><hr class="spacer"/>
+</div><!-- fermeture grande boite -->
+
+
+
+<div id="cel">
+<ul id="deco">
+
+
+<li>
+  <h4>Ses  articles populaires:</h4>
+<p>
+<BOUCLE_COMPT_ARTICLE_AUTEUR(ARTICLES){tout}{id_auteur}> </BOUCLE_COMPT_ARTICLE_AUTEUR>
+[#NOM a travaill&eacute; sur (#TOTAL_BOUCLE) articles.]
+<//B_COMPT_ARTICLE_AUTEUR>
+
+<BOUCLE_ARTICLE_AUTEUR(ARTICLES){id_auteur}{par popularite}{inverse}{0,10}>
+[::&nbsp;<a href="#URL_ARTICLE">(#TITRE)</a>&nbsp;(<? $total_visites = "#VISITES"; 
+    echo $total_visites == 1? "1&nbsp;visite." : "$total_visites&nbsp;visites." ; ?>)<br/>
+]
+</BOUCLE_ARTICLE_AUTEUR>
+#NOM n'a pas encore &eacute;crit d'article.
+<//B_ARTICLE_AUTEUR>
+              </p>
+			</li>
+					
+					
+
+<li>
+<h4>Ses derniers messages:</h4>
+<p>
+<BOUCLE_forum(FORUMS){id_auteur}{plat}{par date}{inverse}{0,10}>
+                    [::&nbsp;<a href="_discussion.php?id_forum=#ID_FORUM#forum#ID_FORUM">(#TITRE)</a><br/>]
+                    </BOUCLE_forum>
+					#NOM n'a pas encore &eacute;crit de message.
+					<//B_forum>
+			</p>
+</li>
+</ul>
+</div>
+
+
+<?php }else{ ?>
+
+
+
+<div class="grande_boite">
+<h4 class="icone_membre">Connectez-vous!</h4>
+<p>Vous ne pouvez contacter #NOM sans &ecirc;tre connect&eacute; &agrave; #NOM_SITE_SPIP.
+<a href="_membre.php?id_auteur=#ID_AUTEUR&amp;connect=yes"><strong>Connectez-vous ici</strong></a> pour contacter
+#NOM.</p>
+
+</div>
+
+
+<?php } ?>
+
+</BOUCLE_AUTEURS>
+
+
+
+</div>
+<!-- fermeture colone de gauche -->
+ <div class="coldroit">  <!-- ouverture de la colone de droite --> 
+
+
+    <div class="boite"><!-- ouverture boite menu --> 
+
+        <h4 class="icone_menu">Navigation</h4>
+        <INCLURE{fond="inc_menu_rub"}{delais="7*24*3600"}> </div><!-- fermeture boite menu -->
+
+
+
+
+
+
+      <!-- La boite de recherche --> 
+    <div class="boite"> <!-- ouverture boite recherche --> 
+
+  <h4 class="icone_recherche">Recherche</h4>
+  <form action='recherche.php' method='post' class="form_rech" id="form_rech">
+              <p><input name="recherche" type='text' id='recherche' size='20' />
+              <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" /></p>             
+          </form>
+
+ </div>   <!-- fermeture boite recherche --> 
+<div class="boite"> <!-- ouverture boite les membres --> 
+<INCLURE(_liste-membres.php)>
+</div>
+
+
+
+<?php if ($auteur_session['statut']!='0minizero') { ?>
+
+<div class="boite"> <!-- ouverture qui est venu --> 
+<h4 class="icone_recherche">Qui est venu?</h4>
+<p>[(#URL_SITE|nb_connect)]</p>
+</div>
+<?php } ?>
+<!-- fermeture boite menu -->
+</div>
+<!-- fermeture colone de droite --> 
+<hr class="spacer" />
+</div><!-- fermeture contenu --> 
+<INCLURE{fond="pieddepage"}{delais=31*24*3600}>
+
+</div> <!-- fermeture surcontenu --><br/>
+</div> <!-- fermeture container --> 
+</body>
+</html>
