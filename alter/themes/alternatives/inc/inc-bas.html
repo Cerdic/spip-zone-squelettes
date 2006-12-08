@@ -14,11 +14,6 @@
 		<a href="http://www.spip.net" title="<:site_realise_avec_spip:> #SPIP_VERSION"> <:site_realise_avec_spip:> #SPIP_VERSION</a> + <a href="http://www.stages.alternatives.ca/article73.html" title="<multi>Squelette ALTERNATIVES pour SPIP [en] Template ALTERNATIVES for SPIP [es]Esqueleto ALTERNATIVES para SPIP[pt]Esqueleto ALTERNATIVES para SPIP</multi>">ALTERNATIVES</a>
 	</p>
 	<p>
-	[(#REM)	Ce lien ne renvoit pas toutes les langues, mais seulement la langue du contexte.
-			Nous le cachons en attendant de trouver une solution.
-		<a href="#URL_PAGE{backend}" rel="nofollow" title="<:syndiquer_site:>">
-	<span style="border:1px solid;border-color:#FC9 #630 #330 #F96; padding:0 3px;font:bold 10px verdana,sans-serif;color:#FFF;background:#F60;text-decoration:none;margin:0;">RSS</span></a> 
-	]
 		<a href="#URL_PAGE{backend}" rel="nofollow" title="<:bouton_radio_syndication:> [(#LANG|traduire_nom_langue)]">
 	<span style="border-width:1px 0px 1px 1px; border-style: solid; border-color:#FC9 #630 #330 #F96;  padding:0 3px; font:bold 10px verdana,sans-serif; color:#FFF; background:#F60; text-decoration:none; margin:0;">RSS</span><span style="border-width:1px 1px 1px 0px;border-style: solid;border-color:#dcb #330 #330 #F96; padding:0 3px;font:normal 10px verdana,sans-serif;color:#333;background:#FFE8D9;text-decoration:none;margin:0;text-transform:uppercase;">#LANG</span></a>
 <BOUCLE_syndic_rub(RUBRIQUES) {id_rubrique}>
@@ -26,12 +21,6 @@
 	<span style="border-width:1px 0px 1px 1px; border-style: solid; border-color:#FC9 #630 #330 #F96;  padding:0 3px; font:bold 10px verdana,sans-serif; color:#FFF; background:#F60; text-decoration:none; margin:0;">RSS</span><span style="border-width:1px 1px 1px 0px;border-style: solid;border-color:#dcb #330 #330 #F96; padding:0 3px;font:normal 10px verdana,sans-serif;color:#333;background:#FFE8D9;text-decoration:none;margin:0;">[(#TITRE|supprimer_numero)]</span></a>
 </BOUCLE_syndic_rub>
 	</p>
-[(#REM)	<p>
-		<a href="http://validator.w3.org/check?uri=referer"><img
-			src="http://www.w3.org/Icons/valid-xhtml10"
-			alt="Valid XHTML 1.0 Transitional" height="31" width="88"
-			style="border:0" /></a>
-	</p>]
 
 [(#REM)
 	La balise SPIP_CRON permet de deporter les calculs lourds (indexation, etc)
@@ -39,16 +28,28 @@
 ]	#SPIP_CRON
 
 <!-- Creative Commons License -->
-[(#REM) Enlever le code de commentaire devant et après le paragraphe suivant
-		pour afficher sur votre site la licence CC (by-sa) 
-		compatible avec le licence GNU-GPL.
-		Remove comment's code before and after the next paragraph
-		to display de CC Licence (by-sa) compatible with GNU/GPL ]
-<!--
+[(#REM) Pour afficher la Licence CC (by-sa), compatible avec le licence GNU-GPL.
+		Pour modifier, changer toutes les occurences 'by-sa', a votre choix, par :
+		- by
+		- by-sa
+		- by-nc
+		- by-nd
+		- by-nc-sa
+		- by-nc-nd
+		Voir : http://creativecommons.org/about/licenses/meet-the-licenses
+		----
+		To display the CC Licence (by-sa), compatible with GNU/GPL. 
+		To modify the Licence, change every occurence of'by-sa' to what you want:
+		- by
+		- by-sa
+		- by-nc
+		- by-nd
+		- by-nc-sa
+		- by-nc-nd
+		Details : http://creativecommons.org/about/licenses/meet-the-licenses]
 <p>
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/deed.#LANG"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights<multi>20[fr]20.fr[es]20.es[pt]20.pt</multi>.png" /></a> 
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/deed.#LANG"><img alt="Creative Commons License" border="0" src="http://i.creativecommons.org/l/by-sa/2.5/88x31.png" /></a> 
 </p>
--->
 
 [(#REM) Laisser le passage suivant sous forme de commentaire
 		Don't remove comment's code in the following lines ]
@@ -67,3 +68,23 @@
     </License></rdf:RDF> -->
 
 </div><!-- fin bas -->
+
+    [(#REM) Menu contextuel des langues du site public :
+    	- si une seule langue publiee, ne s'affiche pas
+    	- si plus d'une langue publiee, affiche toutes les langues publiees
+    	- la langue du contexte est en emphase, sans lien
+    	- les autres langues du site avec lien vers la page d'accueil
+    	- cliquer sur le lien d'une autres langue change le cookie de langue
+    	  et tout le site bascule dans cette langue
+    	- certaines pages (Plan, Resume) possedent leur propre menu de langue
+    	  qui renvoie sur elles-memes; dans ce cas, on n'affiche pas les autres 
+    	  langues du site]
+<BOUCLE_langue_contexte_exclus(RUBRIQUES){tout}{doublons exclus}{lang}></BOUCLE_langue_contexte_exclus>
+<B_langues>
+<div id="menu-lang">
+<span class="structure"><:info_langues:> : </span>
+[<strong class="langue_contexte">(#LANG|traduire_nom_langue)</strong>]
+<BOUCLE_langues(RUBRIQUES){racine}{par lang}{doublons exclus}>
+[<span lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">| <a href="spip.php?action=cookie&amp;url=#URL_SITE_SPIP/&amp;var_lang=#LANG" rel="alternate" hreflang="#LANG" title="<:accueil_site:> : [(#LANG|traduire_nom_langue)]">(#LANG|unique|traduire_nom_langue{lang})</a></span>]</BOUCLE_langues>
+</div>
+
