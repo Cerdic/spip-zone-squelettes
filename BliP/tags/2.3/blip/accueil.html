@@ -1,0 +1,82 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+	<title><:blip:accueil:>[ - (#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
+	<meta name="generator" content="SPIP" />
+	[<link rel="shortcut icon" href="(#CHEMIN{#NOM_SITE_SPIP.ico})" />]
+
+	[
+	(#REM) Lien vers le backend pour navigateurs eclaires ]
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+	[
+	(#REM) Script NiceTitle pour la gestion des title des liens ]	
+	[<script type="text/javascript" src="(#CHEMIN{nicetitle.js})"></script>]
+	[
+	(#REM) Style CSS de blip ]
+	<link rel="stylesheet" type="text/css" href="#URL_PAGE{inc-css}" />	
+	
+	<INCLURE{fond=inc-head}>
+	
+</head>
+
+<body id="accueil">
+<div id="portail">
+
+<div class="portail_element">
+
+[(#LOGO_SITE_SPIP|#URL_SITE_SPIP|reduire_image{450,75})]
+
+<div style="clear:left; float:left; padding: 10px 0 0 10px">
+<span class="couleur2">#DESCRIPTIF_SITE_SPIP</span>
+</div>
+
+<div style="clear:left; float:left; padding: 10px 0 0 10px">
+<span class="gris_fonce"><:blip:actualite:></span> : <br />
+<a href="[(#URL_PAGE{sommaire}|parametre_url{'tri','articles'})]"><:blip:articles_derniers:></a> | 
+<a href="[(#URL_PAGE{sommaire}|parametre_url{'tri','commentaires'})]"><:blip:derniers_commentaires:></a> |
+<a href="[(#URL_PAGE{sommaire}|parametre_url{'tri','documents'})]"><:blip:documents_derniers:></a>
+</div>
+
+
+</div>
+
+
+
+<BOUCLE_rubriques_secteurs(RUBRIQUES){id_parent=0}{par titre}{lang}>
+	<div class="portail_element">
+	
+	<div class="imgfloatleft">[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|reduire_image{100,0})]</div>
+	<br /><h3><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h3><p>#TEXTE</p>
+	
+	
+	<div style="clear:left; float:left; padding: 10px 0 0 10px">
+	<a href="#URL_RUBRIQUE"><span class="gris_fonce"><:blip:articles_derniers_publies:></span> :</a>
+	</div>	
+		
+	<BOUCLE_articles_rubrique(ARTICLES){id_secteur}{par date}{inverse}{lang}{0,2}>
+		<div style="clear:left; float:left; padding: 0 0 0 10px">
+		<a style="clear:left; float:left; width:100%;" href="#URL_ARTICLE">- [<span class="gris_clair">(#SURTITRE)</span> ][(#TITRE|supprimer_numero)][ (#SOUSTITRE)]</a>
+		</div>	
+	</BOUCLE_articles_rubrique>	
+	
+	</div>		
+</BOUCLE_rubriques_secteurs>
+
+<div style="clear:left; float:left; margin:10px; padding:10px; width:900px;">
+<INCLURE{fond=inc-compilateur}{zone=mentions_techniques}{lang}>	
+</div>
+
+
+</div><!-- fin portail -->
+
+[(#REM) Traitement des tâches de fond du site]
+#SPIP_CRON
+
+
+
+
+</body>
+</html>

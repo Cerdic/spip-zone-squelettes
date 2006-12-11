@@ -1,0 +1,98 @@
+#CACHE{1}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
+	<meta name="generator" content="SPIP" />
+	[<link rel="shortcut icon" href="(#CHEMIN{#NOM_SITE_SPIP.ico})" />]
+
+	<!-- Lien vers le backend pour navigateurs eclaires -->
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+	
+	[(#REM) Script NiceTitle pour la gestion des title des liens ]	
+	[<script type="text/javascript" src="(#CHEMIN{nicetitle.js})"></script>]
+
+	[(#REM) Style CSS de blip ]
+	<link rel="stylesheet" type="text/css" href="#URL_PAGE{inc-css}[&amp;couleur=(#ENV{couleur})]" />	
+	
+	<script language="JavaScript" type="text/JavaScript">
+	<!--
+	function MM_jumpMenu(targ,selObj,restore){ //v3.0
+	  eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+	  if (restore) selObj.selectedIndex=0;
+	}
+	//-->
+	</script>
+	
+	<INCLURE{fond=inc-head}>
+	
+</head>
+
+<body id="switch">
+<div id="page">
+<div id="tete">
+	<INCLURE{fond=inc-compilateur}{zone=surtitre}{lang}>			
+	<INCLURE{fond=inc-compilateur}{zone=titre_principal}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=titre_lateral}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=sous_titre}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=menu_principal}{lang}>
+</div><!-- fin tete -->
+	
+<div id="corps">
+	
+	[(#REM) Construction du Fil d'Ariane ]
+	<div class="menu_auxiliaire">
+		<a href="[(#URL_PAGE{accueil})]"><:blip:accueil:></a> &amp; <a href="[(#URL_PAGE{sommaire})]"><:blip:actualite:></a> &gt; <:blip:depuis_cette_page_vous_pouvez_personnaliser_laffichage_de_ce_site_internet:>
+	</div><!-- fin menu_auxiliaire-->
+
+	[(#REM) Construction du contenu de la page switch en fonction des paramètres passés dans la variable item]
+	<div class="contenu">	
+	
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1><:blip:modifier_les_couleurs_du_site:></h1><div class="element_sur">
+
+	<form name="couleurs" method="post" action="">
+		<select name="menu1" onChange="MM_jumpMenu('parent',this,0)">
+			<option value="#URL_PAGE{switch}"><:blip:jeux_de_couleurs_disponibles:></option>
+		<?php
+		// Ce fichier est le switcher de la feuille de style du squelette BliP. Il utilise divers fichiers inc-css_XXX.php dont-il procède à l'inclusion
+		// Les couleurs sont définies dans le fichier inc-css_couleur.php
+		[include '(#CHEMIN{inc-css_couleur.php})';]
+
+		$i=1;
+		$css_blip_switch = "css_blip_couleur_".$i;
+		while (!empty(${$css_blip_switch}))
+		{
+		echo "<option value=".'"'."#URL_PAGE{switch}&amp;couleur=".$i.'">'.${"css_blip_couleur_".$i."_nom"}."</option>";
+		echo "<a href=".'"'.'#URL_PAGE{switch}&amp;item=couleurs&amp;couleur='.$i.'" '."class=".'"'."switch".'" '."style=".'"'."color:".${$css_blip_switch}['gris|moyen']."; border-color: ".${$css_blip_switch}['couleur|1'].' '.${$css_blip_switch}['couleur|1|clair'].' '.${$css_blip_switch}['couleur|1'].' '.${$css_blip_switch}['couleur|1|clair'].'">'."&nbsp;".$i."&nbsp;</a>";
+		$i++;
+		$css_blip_switch = "css_blip_couleur_".$i;
+
+		}
+		?>
+
+		</select>
+	</form>
+</div></div></div>
+	
+</div><!-- fin contenu-->
+	
+	
+	<INCLURE{fond=inc-compilateur}{page_actuelle=switch}{zone=barre_laterale}
+			{zone_restreinte=barre_laterale-switch}{lang}>
+
+</div><!-- fin corps -->
+
+<div id="pied">
+	<INCLURE{fond=inc-compilateur}{zone=mentions_techniques}{lang}>	
+</div><!-- fin pied -->
+
+</div><!-- fin page -->
+
+[(#REM) Traitement des tâches de fond du site]
+#SPIP_CRON
+
+</body>
+</html>

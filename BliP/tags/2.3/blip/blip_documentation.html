@@ -1,0 +1,52 @@
+#CACHE{12*3600}
+
+<div class="element"><div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+<h1>Articles de la documentation</h1>
+
+<BOUCLE_rubriques_blip(RUBRIQUES) {id_parent=76} {par titre}>
+
+	<B_articles_rubrique_blip>					
+	<div class="element_sur">
+	<h3>[(#TITRE|supprimer_numero)]</h3>
+	<div class="element_sur">	
+	<BOUCLE_articles_rubrique_blip(ARTICLES){id_rubrique}{par date}>
+		<INCLURE{fond=inc_article_resume}{id_article}{lang}>
+	</BOUCLE_articles_rubrique_blip>	
+	</div></div>	
+	</B_articles_rubrique_blip>
+
+</BOUCLE_rubriques_blip>	
+
+</div></div></div>
+
+<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+<h1>Autres ressources documentaires</h1><div class="element_sur">
+
+<BOUCLE_rubriques_spip(RUBRIQUES) {id_rubrique=4} {par titre}>
+
+	[(#REM) Articles de la rubrique ]			
+	<B_articles_rubrique_spip>
+	<div class="element_sur">
+	<h3>[(#TITRE|supprimer_numero)]</h3>
+	<div class="element_sur">	
+	<BOUCLE_articles_rubrique_spip(ARTICLES){id_rubrique}{par date}>
+		<INCLURE{fond=inc_article_resume}{id_article}{lang}>
+	</BOUCLE_articles_rubrique_spip>	
+	</div></div>	
+	</B_articles_rubrique_spip>	
+	
+	[(#REM) Liens de la rubrique ]
+	<B_liens_rubrique>
+	<div class="element_sur">
+	<h3>Ressources documentaires externes</h3>
+	<BOUCLE_liens_rubrique(SITES){id_rubrique}{par nom_site}{pagination 25}>
+		<h5>
+		[<a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut|entites_html|couper{200})]">(#NOM_SITE|supprimer_numero)</a>]
+		</h5>
+	</BOUCLE_liens_rubrique>
+	</div>
+	</B_liens_rubrique>
+
+</BOUCLE_rubriques_spip>	
+
+</div></div></div>

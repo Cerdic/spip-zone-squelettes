@@ -1,0 +1,256 @@
+#CACHE{86400}
+<BOUCLE_article_principal(ARTICLES) {id_article}><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+	<title>[(#SURTITRE) - ][(#TITRE|textebrut|supprimer_numero)][, <:par_auteur:> (#LESAUTEURS|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	[<meta name="description" content="(#INTRODUCTION|couper{150}|attribut_html)" />]
+	<meta name="generator" content="SPIP" />
+	[<link rel="shortcut icon" href="(#CHEMIN{#NOM_SITE_SPIP.ico})" />]
+
+	[
+	(#REM) Lien vers le backend pour navigateurs eclaires ]
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+	[
+	(#REM) Script Lightbox JS v2.0 pour la gestion de l'album photo ]	
+	<script type="text/javascript" src="#CHEMIN{prototype.js}"></script>
+	<script type="text/javascript" src="#CHEMIN{scriptaculous.js}?load=effects"></script>
+	<script type="text/javascript" src="#CHEMIN{lightbox.js}"></script>
+	<link type="text/css" rel="stylesheet" href="#CHEMIN{lightbox.css}"  media="screen" />
+	[
+	(#REM) Style CSS de blip ]
+	<link rel="stylesheet" type="text/css" href="#URL_PAGE{inc-css}" />	
+
+	<INCLURE{fond=inc-head}>
+	
+</head>
+
+<body id="article">
+<div id="page">
+
+<div id="tete">
+	<INCLURE{fond=inc-compilateur}{zone=surtitre}{lang}>			
+	<INCLURE{fond=inc-compilateur}{zone=titre_principal}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=titre_lateral}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=sous_titre}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=menu_principal}{lang}>
+</div><!-- fin tete -->
+
+
+<div id="corps">
+
+	[(#REM) Construction du Fil d'Ariane ]
+	<div class="menu_auxiliaire">
+		<a href="[(#URL_PAGE{accueil})]"><:blip:accueil:></a> &amp; <a href="[(#URL_PAGE{sommaire})]"><:blip:actualite:></a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane>[ &gt; (#TITRE|supprimer_numero|couper{80})]
+	</div><!-- fin menu_auxiliaire-->
+
+	[(#REM) Construction du contenu de la page : Affichage de l'article, du portfolio, des documents joints, du forum et du formulaire pour poster un message]
+	<div class="contenu">
+	
+	<INCLURE{fond=inc-compilateur}{page_actuelle=article}{zone=sur_contenu}
+			{id_actuel=#ID_ARTICLE}{zone_restreinte=sur_contenu-article}{lang}>
+	
+		[(#REM) L'article ]
+		#DEBUT_SURLIGNE
+		<div class="element"><div class="imgfloatright">[(#LOGO_ARTICLE_RUBRIQUE| |reduire_image{100,0})]</div><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1>[<span class="gris_clair">(#SURTITRE) </span>][(#TITRE|supprimer_numero)][<i><span class="gris_clair"> (#SOUSTITRE) </span></i>]</h1>
+		<p>[<:blip:le:> (#DATE|affdate)][, <:blip:par:> (#LESAUTEURS),]</p>
+		[<p><b>(#CHAPO)</b></p>]
+		[<div class="element_sous">(#TEXTE|reduire_image{500,0})</div>]
+		[<div class="element_sous"><h3>Post-Scriptum :</h3>(#PS)</div>]		
+		[<div class="element_sous"><h3>Notes :</h3>(#NOTES)</div>]
+		#FIN_SURLIGNE			
+		</div></div>
+
+
+		[(#REM) Le portfolio : Galerie des photos jointes à l'article ]
+		<B_documents_portfolio>
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1><:blip:galerie_dimages:></h1>	
+		<div class="element_sur"><div class="element_sous"><div style="text-align: left;">		
+			<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document}{extension==(png|jpg|gif)$}{doublons} >
+				<a rel="lightbox[]" href="#URL_DOCUMENT" title="[<h3>(#TITRE|texte_backend)</h3>][(#DESCRIPTIF|texte_backend)]">[(#FICHIER|image_masque{inc_masque_carre_vignette.png}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]}|inserer_attribut{class,galerie})]</a>
+			</BOUCLE_documents_portfolio>
+		</div></div><!-- fin element_sur--></div><!-- fin element_sous-->
+		</div></div> <!-- fin element-->			
+		</B_documents_portfolio>
+
+
+		[(#REM) Autres documents joints à l'article ]
+		<B_documents_joints>
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1><:blip:documents_joints_a_larticle:></h1><div class="element_sur">
+			<BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {par date} {doublons}>
+				<div class="element_sous">
+				<div class="imgfloatleft"><a href="#URL_DOCUMENT"[ title="(#TITRE|attribut_html)"]>[(#LOGO_DOCUMENT{0,60})]</a></div>
+				<h5 class="nopadding"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>">[(#TITRE|sinon{<:info_document:>}) ]</a></h5>
+				<h5>#TYPE_DOCUMENT[ | (#TAILLE|taille_en_octets)][ | <:blip:document_publie_le:> (#DATE|affdate)]</h5>
+				#DESCRIPTIF
+				</div><!-- fin element_sous-->
+			</BOUCLE_documents_joints>
+		</div><!-- fin element_sur-->
+		</div></div> <!-- fin element-->	
+		</B_documents_joints>
+
+
+		[(#REM) Petition
+			la petition ayant une PAGINATION il faut absolument
+			lui passer SELF en argument. ]
+		[ #REM Conserver cet invalideur : (#PETITION|?{'',''}) ]
+		<INCLURE{fond=inc_article_petition}{id_article}{self=#SELF}{lang}>	
+	
+
+		[(#REM) Le Forum) ]
+		<B_forum_article>
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1><:blip:commentaires_de_larticle:></h1>
+		<div class="element_sur">
+		<BOUCLE_forum_article(FORUMS){par date}{id_article}{plat}>
+			<INCLURE{fond=inc_forum_message}{id_forum}>
+		</BOUCLE_forum_article>
+		</div><!-- fin element_sur-->
+		</div></div> <!-- fin element-->	
+		</B_forum_article>	
+
+
+		[<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1><:blip:commentaire_poster_un:></h1>
+		<div class="element_sur">
+		(#FORMULAIRE_FORUM)
+		</div><!-- fin element_sur-->
+		</div></div> <!-- fin element-->	
+		]
+	
+	<INCLURE{fond=inc-compilateur}{page_actuelle=article}{zone=sous_contenu}
+			{id_actuel=#ID_ARTICLE}{zone_restreinte=sous_contenu-article}{lang}>
+	
+	</div><!-- fin contenu -->
+
+	<INCLURE{fond=inc-compilateur}{page_actuelle=article}{zone=barre_laterale}
+			{id_actuel=#ID_ARTICLE}{zone_restreinte=barre_laterale-article}{tri}{lang}>	
+
+</div><!-- fin corps -->		
+
+<div id="pied">
+	<INCLURE{fond=inc-compilateur}{zone=mentions_techniques}{lang}>	
+</div><!-- fin pied -->
+
+</div><!-- fin page -->
+</body>
+</html>
+</BOUCLE_article_principal>
+[
+
+
+
+
+(#REM) Affiche la liste des articles : se produit si aucune des boucles précédentes n'a été exécutée 
+
+] 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+	<title><:blip:article_liste_des:> [- (#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	<meta name="description" content="Liste des articles [- (#NOM_SITE_SPIP|textebrut)]" />
+	<meta name="generator" content="SPIP" />
+	[<link rel="shortcut icon" href="(#CHEMIN{#NOM_SITE_SPIP.ico})" />]
+
+	[
+	(#REM) Lien vers le backend pour navigateurs eclaires ]
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+	[
+	(#REM) Script NiceTitle pour la gestion des title des liens ]	
+	[<script type="text/javascript" src="(#CHEMIN{nicetitle.js})"></script>]
+	[
+	(#REM) Style CSS de blip ]
+	<link rel="stylesheet" type="text/css" href="#URL_PAGE{inc-css}" />
+
+	<INCLURE{fond=inc-head}>
+	
+</head>
+
+<body id="article">
+<div id="page">
+
+<div id="tete">
+	<INCLURE{fond=inc-compilateur}{zone=surtitre}{lang}>			
+	<INCLURE{fond=inc-compilateur}{zone=titre_principal}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=titre_lateral}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=sous_titre}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=menu_principal}{lang}>
+</div><!-- fin tete -->
+
+<div id="corps">
+
+	[(#REM) Construction du Fil d'Ariane ]
+	<div class="menu_auxiliaire">
+	
+		<a href="[(#URL_PAGE{accueil})]"><:blip:accueil:></a> &amp; <a href="[(#URL_PAGE{sommaire})]"><:blip:actualite:></a> &gt; <:blip:articles:> <:blip:tries:> <:blip:par:>
+ 
+		[(#ENV{tri}|=={'visites'}|?{<:blip:visiteurs_nombre_de:>,''})]	
+		[(#ENV{tri}|=={'popularite'}|?{<:blip:popularite:>,''})]
+		[(#ENV{tri}|=={'date_modif'}|?{<:blip:date_de_mise_a_jour:>,''})]
+		[(#ENV{tri}|=={''}|?{<:blip:date_de_publication:>,[(#ENV{tri}|=={'date'}|?{<:blip:date_de_publication:>,''})]})]
+		
+	</div><!-- fin menu_auxiliaire-->
+
+	
+	[(#REM) Construction du contenu de la page article en fonction des paramètres passés dans la variable tri]
+	<div class="contenu">	
+	
+		[<div class="element"><p class="couleur2"><:blip:article_numero:> (#ENV{id_article}) <:blip:n_est_plus_disponible:></p></div>] 	
+		
+			<INCLURE{fond=inc-compilateur}{page_actuelle=article}{zone=sur_contenu}
+					{zone_restreinte=sur_contenu-article}{lang}>		
+		
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1>Liste des articles</h1><div class="element_sur">			
+			<B_article_liste>
+			[<p>(#PAGINATION)</p>]
+			<BOUCLE_article_liste(ARTICLES) {doublons} {par #ENV{tri,date}} {inverse}{pagination}{lang}>
+				
+				[(#ENV{tri}|=={'visites'}|?{
+				[<p><:blip:lu:> <span class="couleur2"><b>(#VISITES|unique)</b></span> <:blip:fois:></p>]
+				,''})]
+				
+				[(#ENV{tri}|=={'popularite'}|?{
+				[<p><span class="couleur2"><b>(#POPULARITE_ABSOLUE|unique)</b></span> <:blip:visiteurs_quotidiens:></p>]
+				,''})]
+				
+				[(#ENV{tri}|=={'date_modif'}|?{
+				[<p><:blip:mis_a_jour_en:> <span class="couleur2"><b>(#DATE_MODIF|affdate_mois_annee|unique)</b></span></p>]
+				,''})]
+				
+				[(#ENV{tri}|=={''}|?{[<p><:blip:Publie_en:> <span class="couleur2"><b>(#DATE|affdate_mois_annee|unique)</b></span></p>]
+				, [(#ENV{tri}|=={'date'}|?{[<p><:blip:Publie_en:> <span class="couleur2"><b>(#DATE|affdate_mois_annee|unique)</b></span></p>]
+				,''})]
+				})]
+				
+				<INCLURE{fond=inc_article_resume}{id_article}{lang}>
+				
+			</BOUCLE_article_liste>
+			[<p>(#PAGINATION)</p>]
+			</B_article_liste>
+				<:blip:article_aucun_publie:>
+			<//B_article_liste>	
+		</div></div></div>
+		
+		<INCLURE{fond=inc-compilateur}{page_actuelle=article}{zone=sous_contenu}
+		{zone_restreinte=sous_contenu-article}{lang}>	
+		
+	</div><!-- fin contenu-->
+	
+	<INCLURE{fond=inc-compilateur}{page_actuelle=article}{zone=barre_laterale}
+			{zone_restreinte=barre_laterale-article}{tri}{lang}>
+
+</div><!-- fin corps -->
+
+<div id="pied">
+	<INCLURE{fond=inc-compilateur}{zone=mentions_techniques}{lang}>	
+</div><!-- fin pied -->
+
+</div><!-- fin page -->
+</body>
+</html>
+<//B_article_principal>

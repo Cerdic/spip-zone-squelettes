@@ -1,0 +1,48 @@
+#CACHE{24*3600}
+	
+<div class="mentions_techniques">
+	<div style="float : left;">
+		<a href="http://fr.wikipedia.org/wiki/Syst%C3%A8me_de_publication_pour_l%27internet_partag%C3%A9">SPIP</a> #SPIP_VERSION |
+		<a href="http://www.cent20.net/spip.php?article100">BliP</a> #CONFIG{blip_version}&nbsp;|
+		<a href="http://validator.w3.org/check?uri=referer">XHTML</a> 1.0 |
+		<a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> 2.0 |
+		<a href="#URL_PAGE{backend}">RSS</a> 2.0 |
+		<a href="ecrire/"><:espace_prive:></a>
+	</div>
+
+	[(#REM) Merci à BoOz pour ce script php/mysql de comptage des visiteurs uniques du site]
+	<?php
+	// Période d'analyse couverte (nb de jours avant aujourd'hui).
+			$periode = '45' ;
+
+	// Nombre de visiteurs uniques pendant la période d'analyse.
+			$query="SELECT UNIX_TIMESTAMP(date) AS date_unix, visites FROM spip_visites ".
+			"WHERE 1 AND date > DATE_SUB(NOW(),INTERVAL $periode DAY) ORDER BY date";
+			$result=spip_query($query);
+			$i=0 ;
+			$total_absolu=0;
+			while ($row = spip_fetch_array($result)) {
+			$total_absolu = $total_absolu + $row['visites'];
+			$i++;
+			}
+
+	// Nombre moyen de visites par jour sur la période d'analyse.
+			$moyenne =  round($total_absolu / $periode );
+
+	// Nombre de visiteurs uniques depuis la création du site.
+			$query="SELECT UNIX_TIMESTAMP(date) AS date_unix, visites FROM 
+			spip_visites ORDER BY date";
+			$result=spip_query($query);
+			$i=0 ;
+			$total_absolu=0;
+			while ($row = spip_fetch_array($result)) {
+				$total_absolu = $total_absolu + $row['visites'];
+				$i++;
+				} ?>
+
+	<div style="float : right;">
+	<:blip:visiteurs_par_jour_cumul:> : <?php echo "$moyenne" ?> (<?php echo "$total_absolu" ?>)
+	</div>
+	
+	<div style="float : right;"></div>
+</div><!-- fin mentions_techniques-->

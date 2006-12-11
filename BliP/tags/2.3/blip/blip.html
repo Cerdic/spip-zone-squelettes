@@ -1,0 +1,145 @@
+#CACHE{3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+	<title>La boussole de BliP - [(#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	<meta name="description" content="La boussole de BliP : Cette page centralise les ressources sur le squelette BliP" />
+	<meta name="generator" content="SPIP" />
+	[<link rel="shortcut icon" href="(#CHEMIN{#NOM_SITE_SPIP.ico})" />]
+
+	[
+	(#REM) Lien vers le backend pour navigateurs eclaires ]
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+	[
+	(#REM) Script Lightbox JS v2.0 pour la gestion de l'album photo ]	
+	<script type="text/javascript" src="#CHEMIN{prototype.js}"></script>
+	<script type="text/javascript" src="#CHEMIN{scriptaculous.js}?load=effects"></script>
+	<script type="text/javascript" src="#CHEMIN{lightbox.js}"></script>
+	<link type="text/css" rel="stylesheet" href="#CHEMIN{lightbox.css}"  media="screen" />
+	[
+	(#REM) Style CSS de blip ]
+	<link rel="stylesheet" type="text/css" href="#URL_PAGE{inc-css}" />	
+	
+	<INCLURE{fond=inc-head}>
+	
+</head>
+
+<body id="blip">
+<div id="page">
+
+<div id="tete">
+	<INCLURE{fond=inc-compilateur}{zone=surtitre}{lang}>			
+	<INCLURE{fond=inc-compilateur}{zone=titre_principal}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=titre_lateral}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=sous_titre}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=menu_principal}{lang}>
+</div><!-- fin tete -->
+	
+<div id="corps">
+
+	[(#REM) Construction du menu auxiliaire de la page sommaire]
+	<div class="menu_auxiliaire">
+		<a href="[(#URL_PAGE{accueil})]"><:blip:accueil:></a> &amp; <a href="[(#URL_PAGE{sommaire})]"><:blip:actualite:></a> &gt; 
+		<a href="[(#URL_PAGE{blip})]">La boussole du squelette BliP</a> &gt; 		
+		[(#ENV{tri}|=={'developpement'}|?{D&eacute;veloppement,''})]			
+		[(#ENV{tri}|=={'utilisateurs'}|?{Utilisateurs,''})]
+		[(#ENV{tri}|=={'discussions'}|?{Discussions,''})]
+		[(#ENV{tri}|=={''}|?{Documentation, [(#ENV{tri}|=={'documentation'}|?{Documentation,''})]})]
+	</div><!-- fin menu_auxiliaire-->
+
+
+	[(#REM) Construction du contenu de la page sommaire en fonction des paramètres passés dans la variable tri]
+	<div class="contenu">
+
+		[(#ENV{tri}|!={'developpement'}|?{'',' '})<INCLURE{fond=blip_developpement}{debut_blip_modif}{lang}>]
+		[(#ENV{tri}|!={'utilisateurs'}|?{'',' '})<INCLURE{fond=blip_utilisateurs}{tri=#ENV{tri}}{lang}>]
+		[(#ENV{tri}|!={'discussions'}|?{'',' '})<INCLURE{fond=blip_discussions}{lang}>]
+		[(#ENV{tri}|!={'documentation'}|?{'',' '})<INCLURE{fond=blip_documentation}{lang}>]
+		[(#ENV{tri}|!={''}|?{'',' '})<INCLURE{fond=blip_documentation}{lang}>]		
+
+	</div><!-- fin contenu-->	
+
+	
+	
+	[(#REM) Inclusion de la Barre latérale du site, construite dynamiquement ]
+	<div class="barre_laterale">
+	
+	<div class="element"><div class="texte_principal">		
+	<div class="menu_lateral">
+	
+	<div class="menu couleur2">La boussole du squelette BliP</div>	
+
+		<div class="sous_menu"><a href="http://www.cent20.net/spip.php?article100">Découvrir le squelette BliP</a></div>
+			
+		[(#ENV{tri}|=={''}|?{<div class="sous_menu"><a class="on" href="[(#URL_PAGE{blip}|parametre_url{'tri','documentation'})]">Documentation</a></div>
+			, [(#ENV{tri}|=={'documentation'}|?{<div class="sous_menu"><a class="on" href="[(#URL_PAGE{blip}|parametre_url{'tri','documentation'})]">Documentation</a></div>
+			,<div class="sous_menu"><a href="[(#URL_PAGE{blip}|parametre_url{'tri','documentation'})]">Documentation</a></div>})]
+		})]
+		
+		[(#ENV{tri}|=={'discussions'}|?{
+			<div class="sous_menu"><a class="on" href="[(#URL_PAGE{blip}|parametre_url{'tri','discussions'})]">Discussions</a></div>
+			,<div class="sous_menu"><a href="[(#URL_PAGE{blip}|parametre_url{'tri','discussions'})]">Discussions</a></div>
+		})]
+		
+		[(#ENV{tri}|=={'utilisateurs'}|?{
+			<div class="sous_menu"><a class="on" href="[(#URL_PAGE{blip}|parametre_url{'tri','utilisateurs'})]">Utilisateurs</a></div>
+			,<div class="sous_menu"><a href="[(#URL_PAGE{blip}|parametre_url{'tri','utilisateurs'})]">Utilisateurs</a></div>
+		})]
+		
+		[(#ENV{tri}|=={'developpement'}|?{
+			<div class="sous_menu"><a class="on" href="[(#URL_PAGE{blip}|parametre_url{'tri','developpement'})]">D&eacute;veloppement</a></div>
+			,<div class="sous_menu"><a href="[(#URL_PAGE{blip}|parametre_url{'tri','developpement'})]">D&eacute;veloppement</a></div>
+		})]
+	
+	<div class="menu">BliP est un squelette-plugin sous licence GPL conçu pour fonctionner avec le système de publication SPIP.</div>	
+	
+	</div>
+	</div></div>	
+	
+	
+	<div class="element"><div class="texte_principal"><div class="menu_lateral">		
+	<div class="menu couleur2">Plan de la documentation	</div>	
+
+	<BOUCLE_rubriques_blip(RUBRIQUES) {id_parent=76} {par titre}>
+	<div class="sous_menu"><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></div>
+	</BOUCLE_rubriques_blip>
+	<div class="menu"><a href="http://groups.google.com/group/blip">Liste de discussion</a></div>	
+
+	</div></div></div>
+
+	<div class="element"><div class="texte_principal"><div class="menu_lateral">		
+	<div class="menu couleur2">Soutenir le développement de BliP</div>
+
+	<div class="sous_menu">Pourquoi soutenir un logiciel libre</div>
+	<div class="sous_menu">Comment soutenir un logiciel libre</div>
+	
+	<div class="menu">Vous pouvez faire un don en cliquant sur le bouton ci-dessous
+	<div style="float:center;"><form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+	<input type="hidden" name="cmd" value="_s-xclick">
+	<input type="image" src="https://www.paypal.com/fr_FR/i/btn/x-click-butcc-donate.gif" border="0" name="submit" alt="Effectuez vos paiements via PayPal : une solution rapide, gratuite et sécurisée">
+	<img alt="" border="0" src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
+	<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+	">
+	</form>	
+	</div>	
+	</div>	
+	
+	</div></div></div>
+		
+	</div><!-- fin barre_laterale-->
+
+
+</div><!-- fin corps -->
+
+<div id="pied">
+	<INCLURE{fond=inc-compilateur}{zone=mentions_techniques}{lang}>	
+</div><!-- fin pied -->
+
+</div><!-- fin page -->
+
+[(#REM) Traitement des tâches de fond du site]
+#SPIP_CRON
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+#CACHE{24*3600}
+[
+(#REM) Construire les inclusions à partir de la table "spip_blip".
+Il s'agit du compilateur de BliP, c'est ce fichier qui rend le squelette modulaire
+]
+[(#REM) Boucle de déclaration de la table, ne pas supprimer]
+<?php
+// <BOUCLE_bidon(BLIP)>#ID_ITEM</BOUCLE_bidon>
+?>
+
+[
+(#ENV{zone}|=={'mentions_techniques'}|?{' ',''})<INCLURE{fond=inc-infos}{lang}>
+]
+<B_compilateur_blip>
+	<div class="#ENV{zone}">[(#ENV{zone}|!={'titre_principal'}|?{'',<a rel="start" href="#URL_SITE_SPIP/">})]
+<BOUCLE_compilateur_blip(BLIP){position IN #ENV{zone},#ENV{zone_restreinte}}{actif=oui}{par ordre}>
+		[(#TYPE|!={'statique'}|?{'',' '})
+			[(#ENV{zone}|!={'barre_laterale'}|?{' ',''})
+				<span[ class="(#STYLE)"]>[<b>(#TITRE|supprimer_numero)</b> ]#TEXTE</span>					
+			]		
+			[(#ENV{zone}|=={'barre_laterale'}|?{' ',''})
+				<div class="element"><div class="texte_principal">
+				<h3><span class="couleur2"><b>[(#TITRE|supprimer_numero)]</b></span></h3>
+				<span[ class="(#STYLE)"]>#TEXTE</span>
+				</div></div><!-- fin element-->			
+			]
+		]
+		[(#TYPE|!={'dynamique'}|?{'',' '})
+			[(#ENV{zone}|!={'barre_laterale'}|?{' ',''})
+				[(#ENV{zone}|=={'sous_contenu'}|?{' ',''})<INCLURE{fond=#TEXTE}{page_actuelle}{id_actuel}{lang}>]
+				[(#ENV{zone}|!={'sous_contenu'}|?{' ',''})<INCLURE{fond=#TEXTE}{page_actuelle}{lang}>]
+			]
+			[(#ENV{zone}|=={'barre_laterale'}|?{' ',''})
+				<div class="element"><div class="texte_principal">
+				<INCLURE{fond=#TEXTE}{page_actuelle}{id_actuel}{tri}{lang}>
+				</div></div><!-- fin element-->
+			]		
+		]
+		[(#TYPE|!={'lienpage'}|?{'',' '})
+			[(#ENV{zone}|=={'barre_laterale'}|?{' ',''}) 
+			<div class="element"><div class="texte_principal">
+			]
+			<div class="liens">
+			<a href="[(#URL_SITE_SPIP)]/spip.php?[(#ID_ITEM|=={'0'}|?{page=[(#TEXTE)],[(#TEXTE)][(#ID_ITEM)]})]" class="menu_#TEXTE"[ title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>
+			</div>
+			[(#ENV{zone}|=={'barre_laterale'}|?{' ',''}) 
+			</div></div><!-- fin element-->
+			]
+		]	
+</BOUCLE_compilateur_blip>
+	[(#ENV{zone}|!={'titre_principal'}|?{'',</a>})]</div><!-- fin #ENV{zone} -->
+</B_compilateur_blip>	
+	[(#ENV{zone}|!={'sous_titre'}|?{'',' '})
+		<div class="#ENV{zone}">[(#DESCRIPTIF_SITE_SPIP)]
+		</div><!-- fin #ENV{zone} -->
+	]
+	
+	[(#ENV{zone}|!={'titre_principal'}|?{'',' '})
+		<div class="#ENV{zone}"><a rel="start" href="#URL_SITE_SPIP/">
+		[(#LOGO_SITE_SPIP||?{
+			[(#LOGO_SITE_SPIP
+				||reduire_image{0,200}
+				|inserer_attribut{alt,[(#NOM_SITE_SPIP|textebrut)]}
+				|inserer_attribut{title,[(#NOM_SITE_SPIP|textebrut)]}
+				)]</a>
+			,#NOM_SITE_SPIP
+		})]
+		</a></div><!-- fin #ENV{zone} -->
+	]	
+<//B_compilateur_blip>
