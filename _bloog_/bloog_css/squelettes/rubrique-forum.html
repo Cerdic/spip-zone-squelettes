@@ -1,16 +1,5 @@
-<?php
-	<BOUCLE_test404(RUBRIQUES){id_rubrique}>
-		/*
-			erreur 404
-		*/
-	</BOUCLE_test404>
-header("HTTP/1.1 404 Not found");
-		header("Status: 404 Not found");
-		include("_erreur404.php");
-		exit();
-	<//B_test404>
-?>
-<INCLURE(page.php3){fond="header"}{delais=31*24*3600}{id_rubrique}>
+<INCLURE{fond="header"}{delais=31*24*3600}>
+
 
  <BOUCLE_principale(RUBRIQUES){id_rubrique}>
 
@@ -57,53 +46,125 @@ header("HTTP/1.1 404 Not found");
 <a href="sommaire.php3">Accueil</a> > <BOUCLE_plan(HIERARCHIE){id_rubrique}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>	
                   </BOUCLE_plan>
                  
-                  <h1>[(#TITRE|supprimer_numero)<br/> 
-      ]</h1> 
+                  <h1>[(#TITRE|supprimer_numero)<br/>]</h1> 
     [(#SOUSTITRE)<br/> 
     ]   
    <p>[(#TEXTE|lier_au_glossaire)]</p>
-<hr class="spacer"/></div> 
+<hr class="spacer"/>
+<ul class="membres"><li class="modo"><a href="ecrire/controle_forum.php3" title="Acc&egrave;s priv&eacute; pour mod&eacute;rateurs">Admin:</a></li>
+<BOUCLE_admin(AUTEURS){statut=0minirezo}{par id_auteur}>
+<li class="modo"><a href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact/Profil">#NOM</a></li>
+</BOUCLE_admin>
+</ul></div> 
   <!-- fermeture grande boite -->
 
 
 
 [<div class="grande_boite">(#NOTES)</div>]
 
-<div id="celbas">
+
+
+<div class="grande_boite">
+
+
+<BOUCLE_themes(ARTICLES){titre_mot = forum}{id_rubrique=#ID_RUBRIQUE}{doublons}>
+            <span class="logogauche"><a href="#URL_ARTICLE" title="Voir tous les messages">[(#LOGO_ARTICLE)]</a></span><h4><a href="#URL_ARTICLE" title="Voir tous les messages">[(#TITRE|supprimer_numero)]</a></h4>
+<p>[(#DESCRIPTIF)]</p>
+              <table class="spip">
+<tr class="row_first gras blanc">
+<td>Dernières discussions</td>
+<td>Auteur</td>
+<td>Date</td>
+<td>R&eacute;ponses</td>
+</tr>
+                  <?php $couleur="0" ; ?>
+                  <B_discussions>
+                  <BOUCLE_discussions(FORUMS){id_article}{par date}{inverse}{0,4}>
+                  <?php
+$ze_titre = '[(#TITRE|texte_script|couper{30})]' ;
+$ze_titre = ereg_replace( "> ", "", $ze_titre );
+?>
+          
+<tr class="<?php echo $couleur == 0 ? 'row_even' : 'row_odd' ; ?>" >
+<td>
+<a href="_discussion.php3?id_forum=#ID_FORUM#forum#ID_FORUM"	title=""><?php echo $ze_titre?></a>
+</td>
+<td><BOUCLE_nom2(AUTEURS){tout}{id_auteur}>
+[<a (#STATUT|=={'1comite'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de ce r&eacute;dacteur">]
+[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de cet admin">]
+[<a (#STATUT|=={'6forum'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de ce visiteur">]
+[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Compte en attente">]
+[(#NOM|couper{18})</a><br/>]
+</BOUCLE_nom2>
+[(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
+<//B_nom2></td>
+<td>[(#DATE|affdate{'d/m/Y'})]<br/>
+	[(#DATE|affdate{'H:i:s'})]
+</td>
+<td><B_nb_forumtotal>
+<BOUCLE_nb_forumtotal(FORUMS){id_thread}{plat}>
+</BOUCLE_nb_forumtotal>
+<?php echo #TOTAL_BOUCLE -1 ?>
+</B_nb_forumtotal>
+</td>
+</tr>
+                  <?php if($couleur == 0) {$couleur = 1 ; } else {$couleur=0 ; }	?>
+                  </BOUCLE_discussions>
+                  </B_discussions>
+          </table>
+<ul class="forum droite">
+<li>
+
+<a href="_mon-profil.php3" title="S'inscrire">
+S'inscrire</a></li>
+
+<li>
+<a href="#URL_ARTICLE" title="Voir tous les messages">
+Parcourir</a></li>
+
+<li>
+[<a href="forum.php3?(#PARAMETRES_FORUM)" title="Créer une discussion">Dialoguer</a>]
+</li>
+</ul>
+<hr class="spacer"/><br/>
+
+</BOUCLE_themes> 
+
+
+
+</div>
+
+
+<div id="minipics">
 <B_sous_rubriques> 
-<ul id="decobas">
+<ul>
 <!-- Les rubriques de la branche et leurs contenus -->
 
-   
 
-                    <BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par titre}>
-<li>
-                   [<h4><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a><INCLURE(_cadenas.php3){id_rubrique}></h4>] 
-                  <p>[<span class="minilogogauche"><a href="#URL_RUBRIQUE">(#LOGO_RUBRIQUE||reduire_image{20}|inserer_attribut{alt,[(#TITRE|supprimer_numero)]})</a></span>]
 
+                    <BOUCLE_sous_rubriques(RUBRIQUES){branche}{exclus}{par titre}>
+<li class="endeux">
+                   <p>[<strong><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a></strong>] 
+                   <INCLURE(_cadenas.php3){id_rubrique}><br/>
                     <BOUCLE_sites2(SITES){id_rubrique}>
                   </BOUCLE_sites2><a href="#URL_RUBRIQUE">#TOTAL_BOUCLE
- sites r&eacute;f&eacute;renc&eacute;s.</a><br/><br/></B_sites2>
-<BOUCLE_art2(ARTICLES){id_rubrique}{par date}{inverse}{0,25}>
+ sites r&eacute;f&eacute;renc&eacute;s.</a></B_sites2>
+<BOUCLE_art2(ARTICLES){id_rubrique}{par date}{inverse}{0,75}>
 ::
                     <BOUCLE_nouv_art23(ARTICLES){id_article}{age<7}>
-                    <span class="gras">Nouveau:</span>&nbsp;</BOUCLE_nouv_art23><a href="#URL_ARTICLE">#TITRE</a> 
+                    Nouveau</BOUCLE_nouv_art23>
+                    <a href="#URL_ARTICLE">#TITRE</a> 
                     <INCLURE{fond="inc_cadenas"}{delais="7*24*3600"}{id_article}> <br/>
+
                     </BOUCLE_art2>
-<B_sous_sous_rub>
-<BOUCLE_sous_sous_rub(RUBRIQUES){id_parent}{par titre}>
-[<img class="puce" src="img_pack/puceoff.gif" alt="puce"/><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a><INCLURE(_cadenas.php3){id_rubrique}><br/>]
-</BOUCLE_sous_sous_rub>
-</B_sous_sous_rub>
-
-
-
-</p>
+</p><!--  -->
 </li>
 </BOUCLE_sous_rubriques>
+
 </ul>
 </B_sous_rubriques>
-</div>
+
+<hr class="spacer"/>
 
 
 <!-- les articles de la rubrique -->
@@ -113,7 +174,7 @@ header("HTTP/1.1 404 Not found");
 
 
 
-<div id="minipics">
+
 <?php $i=0; ?>
 <BOUCLE_articles(ARTICLES){id_rubrique}{par date}{inverse}{doublons}>
 <ul>
@@ -122,12 +183,11 @@ header("HTTP/1.1 404 Not found");
 echo ($i==0) ? 'float:left' : 'float:right' ; 
 if($i==0) {$i=1;}
 else {$i=0;} ?>
- "><a href="#URL_ARTICLE#diapo">[(#LOGO_DOCUMENT||reduire_image{80,10000}|inserer_attribut{alt,#TITRE})]</a>
+ "><a href="#URL_ARTICLE#diapo" title="article photographique">#LOGO_DOCUMENT</a>
 </BOUCLE_logo_documents>
 
 <BOUCLE_photocmpt(DOCUMENTS){id_article}{mode=document}{extension=jpg}>
-</BOUCLE_photocmpt>
-<p class="centre">
+</BOUCLE_photocmpt><p class="centre">
 <a href="#URL_ARTICLE#diapo">
 <? $total_photos = "#TOTAL_BOUCLE"; 
 echo $total_photos == 1? "1&nbsp;photo" : "$total_photos&nbsp;photos" ; ?></a>
@@ -143,14 +203,13 @@ echo $total_photos == 1? "1&nbsp;photo" : "$total_photos&nbsp;photos" ; ?></a>
 echo ($i==0) ? 'float:left' : 'float:right' ; 
 if($i==0) {$i=1;}
 else {$i=0;} ?>
- "><a href="#URL_ARTICLE#content" title="Article à textes"><img src="IMG/002/pencil.gif" alt="Article à textes"/></a>
+ ">[<a href="#URL_ARTICLE#content" title="Article à textes">(#LOGO_ARTICLE||?{#LOGO_ARTICLE,'<img src="IMG/002/pencil.gif" alt="Article à textes"/>'})</a>]
 <!-- 2 -->
  </li>
  <//B_presence_logo>
 <li class="textepics">
   <p>[<a href="#URL_ARTICLE">(#TITRE) </a>](<? $total_visites = "#VISITES"; 
-    echo $total_visites == 1? "1&nbsp;visite." : "$total_visites&nbsp;visites." ; ?>)&nbsp;[(#DESCRIPTIF|couper{200})]
-    <INCLURE{fond="inc_cadenas"}{delais="7*24*3600"}{id_article}>  
+    echo $total_visites == 1? "1&nbsp;visite." : "$total_visites&nbsp;visites." ; ?>)&nbsp;[(#DESCRIPTIF|couper{200})] 
    <BOUCLE_forum(FORUMS){id_article}{plat}>
     </BOUCLE_forum> <a href="#URL_ARTICLE#forum">
     <? $total_commentaires = "#TOTAL_BOUCLE"; 
@@ -164,46 +223,9 @@ else {$i=0;} ?>
 </div><!-- fermeture minipics -->
 
 
-                      <B_syndic>
-<div class="grande_boite">
-
-<h4 class="icone_site">Vu sur le web</h4><br/>
-                      <BOUCLE_syndic(SYNDICATION){id_rubrique}{par nom_site}{syndication=oui}>                      
-                      <span class="logogauche"><a href="_kiosque_source.php3?id_syndic=#ID_SYNDIC" title="Toutes les news de #NOM_SITE"><img  src="./IMG/002/News.gif" alt="Toutes les news de #NOM_SITE"/></a><br/>
-                      </span>
-					  <h4>[<a href="_kiosque_source.php3?id_syndic=#ID_SYNDIC" title="Toutes les news de #NOM_SITE">(#NOM_SITE)</a>]</h4>
-                      <BOUCLE_items(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{0,2}>
-                     <p>[<strong><a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a></strong><br/>]
-                      [(#DESCRIPTIF)<br/>]</p>
-                      </BOUCLE_items>
-                      </BOUCLE_syndic>
+                     
 </div>
-</B_syndic>
-<B_sites_web>
-<div class="grande_boite">
-<h4 class="icone_site">A visiter</h4>
-<BOUCLE_sites_web(SITES){id_rubrique}{par nom_site}{syndication=non}><p>
-                [<strong><a href="#URL_SITE">(#NOM_SITE|supprimer_numero)</a></strong><br/>]
-                [(#DESCRIPTIF)<br/><br/>] 
-                </p>
-                </BOUCLE_sites_web>
-</div><!-- fermeture site classique -->
-</B_sites_web>
-
-<!-- un formulaire proposer un site web -->
-<B_formsite>
-<div class="grande_boite">
-<h4 class="icone_ajouter">Proposer un site</h4>
-<BOUCLE_formsite(MOTS){id_rubrique}{titre=liens}>
-#FORMULAIRE_SITE
-<br/>
-</BOUCLE_formsite>
-</div>
-</B_formsite>
-<INCLURE{fond="inc_liste_glossaire"}{id_breve}{id_rubrique}>
-
-
-</div><!-- fermeture colone de gauche -->
+<!-- fermeture colone de gauche -->
 					
 
  <div class="coldroit">  <!-- ouverture de la colone de droite --> 
@@ -218,15 +240,26 @@ else {$i=0;} ?>
 
 
  <!-- La boite de recherche --> 
-    <div class="boite"> <!-- ouverture boite recherche --> 
-  <h4 class="icone_recherche">Recherche</h4>
-  <form action='recherche.php3' method='post' class="form_rech" id="form_rech">
-              <p><input name="recherche" type='text' id='recherche' size='20' />
-              <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" /></p>             
-          </form>
+    <div class="boite">
+      <!-- ouverture boite recherche -->
+      <h4 class="icone_recherche">Chercher dans les forums</h4>
+      <form action='_recherche-forum.php3' method='post' class="form_rech" id="form_rech">
+        <p>
+          <input name="recherche" type='text' id='recherche' size='20' />
+          <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" />
+        </p>
+      </form>
+    </div>
 
- </div>   <!-- fermeture boite recherche --> 
 
+<div class="boite"> <!-- ouverture boite les membres --> 
+<INCLURE{fond="inc_liste_membres"}{delais="12*3600"}>
+</div>
+
+<div class="boite"> <!-- ouverture boite derniers messages --> 
+<h4 class="icone_post">Derniers messages</h4>
+<INCLURE{fond="inc_derniers_messages"}>
+</div>
     
 <B_archives>
     <div class="boite">
@@ -238,14 +271,8 @@ else {$i=0;} ?>
         </div> <!-- fermeture boite --> 
 </B_archives>
 
-<B_STATS>
-<div class="boite">
-  <h4 class="icone_stats">Stats</h4>
-<BOUCLE_STATS(RUBRIQUES){id_rubrique}{titre_mot==^(annuaire_home|partenaire|liens)$}{0,1}>
-<INCLURE(page.php3){fond="inc_stats"}{delais=24*3600}>
-</BOUCLE_STATS>
-</div>
-</B_STATS>
+
+
 
 </div>   <!-- fermeture colone de droite --> 
 <hr class="spacer" />
