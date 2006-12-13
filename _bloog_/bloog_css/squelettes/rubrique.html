@@ -1,22 +1,9 @@
-<?php
-	<BOUCLE_test404(RUBRIQUES){id_rubrique}>
-		/*
-			erreur 404
-		*/
-	</BOUCLE_test404>
-header("HTTP/1.1 404 Not found");
-		header("Status: 404 Not found");
-		include("_erreur404.php");
-		exit();
-	<//B_test404>
-?>
+
 <INCLURE(page.php3){fond="header"}{delais=31*24*3600}{id_rubrique}>
 
- <BOUCLE_principale(RUBRIQUES){id_rubrique}>
+<BOUCLE_principale(RUBRIQUES){id_rubrique}>
 
-<!-- Si mot clef acces_restreint alors on authentifie l internaute. -->
-<BOUCLE_restreint(MOTS){id_rubrique}{titre=acces_restreint}><INCLURE{fond="__authentification"}
-</BOUCLE_restreint>
+
 
 <html><head>
 
@@ -36,9 +23,10 @@ header("HTTP/1.1 404 Not found");
 <script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty-bloog.js"></script>
 
 <!-- icones xml des fils des rubriques sous firefox -->
-<BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}>
-<link rel="alternate" type="application/rss+xml" href="#URL_SITE_SPIP/_backend.php3?id_rubrique=#ID_RUBRIQUE" title="[(#TITRE|supprimer_numero)]" />
+<BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}{0,10}>
+<link rel="alternate" type="application/rss+xml" href="#URL_SITE_SPIP/spip.php?page=backend&amp;id_rubrique=#ID_RUBRIQUE" title="[(#TITRE|supprimer_numero)]" />
 </BOUCLE_rub>
+
 
 
 </head><body> 
@@ -78,7 +66,7 @@ header("HTTP/1.1 404 Not found");
 
                     <BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par titre}>
 <li>
-                   [<h4><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a><INCLURE(_cadenas.php3){id_rubrique}></h4>] 
+                   [<h4><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a><INCLURE{fond="inc_cadenas"}{id_rubrique}></h4>] 
                   <p>[<span class="minilogogauche"><a href="#URL_RUBRIQUE">(#LOGO_RUBRIQUE||reduire_image{20}|inserer_attribut{alt,[(#TITRE|supprimer_numero)]})</a></span>]
 
                     <BOUCLE_sites2(SITES){id_rubrique}>
@@ -92,7 +80,7 @@ header("HTTP/1.1 404 Not found");
                     </BOUCLE_art2>
 <B_sous_sous_rub>
 <BOUCLE_sous_sous_rub(RUBRIQUES){id_parent}{par titre}>
-[<img class="puce" src="img_pack/puceoff.gif" alt="puce"/><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a><INCLURE(_cadenas.php3){id_rubrique}><br/>]
+[<img class="puce" src="img_pack/puceoff.gif" alt="puce"/><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a><INCLURE{fond="inc_cadenas"}{id_rubrique}><br/>]
 </BOUCLE_sous_sous_rub>
 </B_sous_sous_rub>
 
@@ -257,3 +245,8 @@ else {$i=0;} ?>
 </div> <!-- fermeture container --> 
 </body></html>
 </BOUCLE_principale>
+[(#ID_RUBRIQUE|AccesRestreint_article_restreint|?{' ',''})    
+<INCLURE{fond="__authentification"}> ]
+[(#ID_RUBRIQUE|AccesRestreint_article_restreint|?{'',' '})
+<INCLURE{fond="__erreur404"}> ]
+<//B_principale>
