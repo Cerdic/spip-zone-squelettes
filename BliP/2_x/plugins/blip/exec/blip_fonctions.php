@@ -29,7 +29,7 @@ function exec_blip_fonctions() {
 	echo "<br/>";
 	
 	gros_titre(_T('blipconfig:blip_config'));
-	barre_onglets("blip", "fonctions");
+	echo barre_onglets("blip", "fonctions");
 	
 	debut_gauche();
 	

@@ -74,7 +74,7 @@ function exec_blip_contenu() {
 	
 	if (BliP_verifier_base())
 	{
-        barre_onglets("blip", "options");
+        echo barre_onglets("blip", "options");
     }
 	
 	debut_gauche();

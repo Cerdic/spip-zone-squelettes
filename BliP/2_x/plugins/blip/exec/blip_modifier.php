@@ -30,7 +30,7 @@ function exec_blip_modifier() {
 	echo "<br/>";
 	
 	gros_titre(_T('blipconfig:blip_config'));
-	barre_onglets("blip", "modifier");
+	echo barre_onglets("blip", "modifier");
 	
 	debut_gauche();
 	

@@ -47,7 +47,7 @@ function exec_blip_effacer() {
 	
 	if (BliP_verifier_base())
 	{
-    barre_onglets("blip", "maintenance");	        
+    echo barre_onglets("blip", "maintenance");	        
     } 
 	
 	

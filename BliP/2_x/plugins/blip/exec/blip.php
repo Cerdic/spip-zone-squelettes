@@ -66,7 +66,7 @@ function exec_BliP() {
 
 	if (BliP_verifier_base())
 	{
-        barre_onglets("blip", "voir");
+        echo barre_onglets("blip", "voir");
     }
 
 	debut_gauche();
