@@ -7,7 +7,7 @@
 
 <title>[(#NOM_SITE_SPIP|textebrut)]</title>
 [<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{300}|textebrut)" />]
-<meta name="Keywords" content="<BOUCLE_rub_keywords(RUBRIQUES){titre_mot=syndic}>[(#TITRE|supprimer_numero|textebrut),]</BOUCLE_rub_keywords>">
+<meta name="Keywords" content="<BOUCLE_rub_keywords(RUBRIQUES){titre_mot=syndic}>[(#TITRE|textebrut),]</BOUCLE_rub_keywords>">
 <meta name="revisit-after" content="15 days" />
 <meta http-equiv="content-type"content="text/html; charset=#CHARSET"/>
 
@@ -23,17 +23,17 @@
 	[(#REM) icones xml des fils des rubriques sous firefox ]
 
 <BOUCLE_rub_css(RUBRIQUES){tout}{titre_mot=syndic}>
-<link rel="alternate" type="application/rss+xml" href="#URL_SITE_SPIP/spip.php?fond=backend&amp;id_rubrique=#ID_RUBRIQUE" title="[(#TITRE|supprimer_numero)]" />
+<link rel="alternate" type="application/rss+xml" href="#URL_SITE_SPIP/spip.php?fond=backend&amp;id_rubrique=#ID_RUBRIQUE" title="[(#TITRE)]" />
 </BOUCLE_rub_css>
 
 </head>
 <body> 
-<div id="container">   <!-- centrage page -->
+<div id="container">   [(#REM) centrage page ]
 <INCLURE{fond="entete"}{delais=31*24*3600}> 
-<div id="surcontent">  <!-- ouverture entête -->
+<div id="surcontent">   [(#REM) ouverture entête ]
 <INCLURE{fond="menuhoriz"}{delais=31*24*3600}>
-<div id="content">  <!-- ouverture contenu --> 
-<div id="colgau"> <!-- ouverture colone de gauche --> 
+<div id="content">  [(#REM)   ouverture contenu   ]
+<div id="colgau">  [(#REM)  ouverture colone de gauche   ]
 
 
 
@@ -41,9 +41,9 @@
 <ul id="deco">
 <li>
 <BOUCLE_blogbox_haut(BREVES){titre_mot=homebox_haut}{par date}{0,1}>
-<h4>[(#TITRE|supprimer_numero)]</h4>
+<h4>[(#TITRE)]</h4>
   <p>
-[<span class="logogauche">(#LOGO_BREVE||reduire_image{48}|inserer_attribut{alt,[(#TITRE|supprimer_numero)]})</span>]
+[<span class="logogauche">(#LOGO_BREVE||reduire_image{48}|inserer_attribut{alt,[(#TITRE)]})</span>]
 
 [(#TEXTE|lier_au_glossaire)]</p>
 
@@ -57,72 +57,26 @@
 
 
  
-<!-- Les breves sur la une -->
+[(#REM)  Les breves sur la une   ]
 <li>
 <BOUCLE_blogue(BREVES){titre_mot=blogue}{doublons}{age_relatif<60}{par date}{inverse}{0,1}>
-
-
-<!-- la breve est-elle restreinte? -->
-
-<BOUCLE_SECU(MOTS){id_breve}{titre = acces_restreint}>
-<?php	$secu2= 1 ; ?>
-</BOUCLE_SECU>
-<?php 
-	if ($secu2 == 1) {
-   $etat=$auteur_session['statut'];
-   if ($etat=="")
-   {
-   ?>
-<!-- aucun membre reconnu -->
-
-
-<h4>[(#TITRE|supprimer_numero)]</h4><div><p><a href=#URL_BREVE><img src="./IMG/002/cle.gif" alt="Cette page est reserv&eacute;e aux membres"/>
-</a><a href="_authentification.php3">connexion</a></p>
-<?
-    }else{
-  ?>
-<a href="#URL_SITE_SPIP/breve.php3?id_breve=#ID_BREVE" title="lire tout">
-<h4>[(#TITRE|supprimer_numero)]</h4> 
+<a href="#URL_BREVE">
+<h4>[(#TITRE)]</h4> 
 </a>
-  <div><p><!-- Le logo de la breve bloguee -->
-[<span class="logogauche">(#LOGO_BREVE||reduire_image{48}|inserer_attribut{alt,[(#TITRE|supprimer_numero)]})</span>][(#TEXTE|justifier)]
+  <div><p>[(#REM)  Le logo de la breve bloguee  ]
+[<span class="logogauche">(#LOGO_BREVE||reduire_image{48}|inserer_attribut{alt,[(#TITRE)]})</span>][(#TEXTE|justifier)]
 
-[::<a href="forum.php3?(#PARAMETRES_FORUM)">R&eacute;agir</a>::]
-      <BOUCLE_forums2(FORUMS){id_breve}{plat}>
-       </BOUCLE_forums2>
-     <a href="#URL_BREVE#forum#ID_FORUM">
-      <? $total_forum2 = "#TOTAL_BOUCLE"; ?>
-      <? echo $total_forum2 == 1? " ($total_forum2&nbsp;message)" : " ($total_forum2&nbsp;messages)" ; ?>
-      </a>
-	</B_forums2></p>
-  
-      
-     
- 
-    ] 
-<!-- la breve n_est pas restreinte -->
-<?php }} else {?> 
-<h4><a href="#URL_SITE_SPIP/breve.php3?id_breve=#ID_BREVE" title="lire tout">[(#TITRE|supprimer_numero)]</a></h4>
-<p> [<span class="logogauche"><a href="#URL_SITE_SPIP/breve.php3?id_breve=#ID_BREVE">(#LOGO_BREVE||reduire_image{48}|inserer_attribut{alt,[(#TITRE|supprimer_numero)]})</a></span>]
+<h4><a href="#URL_BREVE" title="lire tout">[(#TITRE)]</a></h4>
+<p> [<span class="logogauche"><a href="#URL_BREVE">(#LOGO_BREVE||reduire_image{48}|inserer_attribut{alt,[(#TITRE)]})</a></span>]
 [(#TEXTE)]
-
-[<a href="forum.php3?(#PARAMETRES_FORUM)">R&eacute;agir</a>]
-  <BOUCLE_forums3(FORUMS){id_breve}{plat}>     
-      </BOUCLE_forums3> <a href="#URL_BREVE#forum#ID_FORUM">
-      <? $total_forum3 = "#TOTAL_BOUCLE"; ?>
-     <? echo $total_forum2 == 1? " ($total_forum3&nbsp;message)" : " ($total_forum3&nbsp;messages)" ; ?>
-        </a></B_forums3></p>
-    
-
-
-<?php } ?>
 </BOUCLE_blogue>
-<h4>Plus de news</h4><p>
+<h4>Plus de news</h4>
+<p>
  Vous pouvez surveiller les nouveaut&eacute;s du site par ses différents
-  fils de <a href="_syndication.php3">syndication RSS</a>,  sa <a href="_inscription.php3">lettre
-  d'information</a>  irr&eacute;gulomadaire, ou sa <a href="_nouveautes.php3">page
-  de nouveaut&eacute;s</a>.Parcourez aussi les <a href="_archives.php3">archives</a> de
-  news.</p>
+  fils de <a href="spip.php?page=__syndication">syndication RSS</a>,  sa <a href="spip.php?page=__inscription">lettre
+  d'information</a>  irr&eacute;gulomadaire, ou sa <a href="spip.php?page=__nouveautes">page
+  de nouveaut&eacute;s</a>.
+  </p>
 <//B_blogue>
 </li>
 </ul>
@@ -135,11 +89,10 @@
 
  <div class="grande_boite">
 
-              <BOUCLE_appel(RUBRIQUES){titre_mot = menu_rub}{par titre}> [<a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero)]" class="logogauche">(#LOGO_RUBRIQUE||reduire_image{48}|inserer_attribut{alt,[(#TITRE|supprimer_numero)]})</a>]     
-[<h4><a href="#URL_RUBRIQUE" title="[(#TITRE|supprimer_numero)]">(#TITRE|supprimer_numero)</a></h4>]
-<p>
- #DESCRIPTIF
-             <BOUCLE_nouv_art(ARTICLES){id_rubrique}{age<14}{par date}{inverse}{0,20}>
+              <BOUCLE_appel(RUBRIQUES){titre_mot = menu_rub}{par titre}{tout_voir}> [<a href="#URL_RUBRIQUE" title="[(#TITRE)]" class="logogauche">(#LOGO_RUBRIQUE||reduire_image{48}|inserer_attribut{alt,[(#TITRE)]})</a>]     
+[<h4><a href="#URL_RUBRIQUE" title="[(#TITRE)]">(#TITRE)</a></h4>]
+<p> #DESCRIPTIF <INCLURE{fond="inc_cadenas"}{id_rubrique}>
+             <BOUCLE_nouv_art(ARTICLES){id_rubrique}{age<14}{par date}{inverse}{0,20}{tout_voir}>
              <strong>Nouveau:</strong>&nbsp;<a href="#URL_ARTICLE">[(#TITRE)]</a> 
               <INCLURE{fond="inc_cadenas"){id_article}>
                  <br/>
@@ -147,7 +100,7 @@
  </p> <hr class="spacer" />      
    
   </BOUCLE_appel>  
-</div><!-- fermeture grande_boite -->
+</div>[(#REM) fermeture grande_boite   ]
 
 
 
@@ -157,25 +110,25 @@
 <ul id="decobas">
 
 
-<!-- Les article en une -->
+[(#REM)  Les article en une  ]
 <B_une>
 <li>
 <h4>A la une</h4>
 <p>
-<BOUCLE_une(ARTICLES){tout}{titre_mot=une}{par date}{inverse}{0,2}>
-[<span class="logogauche"><a href="#URL_ARTICLE">(#LOGO_ARTICLE||reduire_image{30}|inserer_attribut{alt,[(#TITRE|supprimer_numero)]})</a></span>]<strong><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></strong>
+<BOUCLE_une(ARTICLES){tout}{titre_mot=une}{par date}{inverse}{0,2}{tout_voir}>
+[<span class="logogauche"><a href="#URL_ARTICLE">(#LOGO_ARTICLE||reduire_image{30}|inserer_attribut{alt,[(#TITRE)]})</a></span>]<strong><a href="#URL_ARTICLE">[(#TITRE)]</a></strong>
 <INCLURE{fond="inc_cadenas"}{id_article}><br/>
 [(#INTRODUCTION|couper{300})]<br/>
 </BOUCLE_une></p>
 </li>
 </B_une>
 
-<!-- Les article populaires -->
+[(#REM)  Les article populaires  ]
 <B_popu>
 <li>
 <h4>Les articles en vogue</h4> <p>
-<BOUCLE_popu(ARTICLES){tout}{par popularite}{inverse}{0,2}>
-[<span class="logogauche"><a href="#URL_ARTICLE">(#LOGO_ARTICLE||reduire_image{30}|inserer_attribut{alt,[(#TITRE|supprimer_numero)]})</a></span>]<strong><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></strong>
+<BOUCLE_popu(ARTICLES){tout}{par popularite}{inverse}{0,2}{tout_voir}>
+[<span class="logogauche"><a href="#URL_ARTICLE">(#LOGO_ARTICLE||reduire_image{30}|inserer_attribut{alt,[(#TITRE)]})</a></span>]<strong><a href="#URL_ARTICLE">[(#TITRE)]</a></strong>
 <INCLURE{fond="inc_cadenas"}{id_article}><br/>
 [(#INTRODUCTION|couper{300})]<br/>
 </BOUCLE_popu></p>
@@ -184,23 +137,23 @@
 
 
 </ul>
-</div> <!-- fin de cel -->      
+</div>     [(#REM)  fin de cel  ]
 
 
        
-</div><!-- fermeture colone de gauche -->
+</div>[(#REM) fermeture colone de gauche   ]
 		
 
-<div class="coldroit"><!-- ouverture de la colone de droite --> 
+<div class="coldroit"> [(#REM)  ouverture de la colone de droite  ]
 
 
-    <div class="boite"><!-- ouverture boite menu --> 
+    <div class="boite"> [(#REM)  ouverture boite menu  ]
         <h4 class="icone_menu">Navigation</h4>
         <INCLURE{fond="inc_menu_rub"}{delais="7*24*36"}>
     
-    </div><!-- fermeture boite menu -->
+    </div>[(#REM)   fermeture boite menu  ]
 
-<div class="boite"> <!-- ouverture boite recherche --> 
+<div class="boite"> [(#REM) ouverture boite recherche   ]
 
   <h4 class="icone_photo">Sélection photo</h4>
 
@@ -214,28 +167,23 @@
 
 
 
-
-
-
-
-
-      <!-- La boite de recherche --> 
-    <div class="boite"> <!-- ouverture boite recherche --> 
+ [(#REM)  La boite de recherche  ]
+    <div class="boite">  [(#REM)  ouverture boite recherche  ]
 
   <h4 class="icone_recherche">Recherche</h4>
-  <form action='recherche.php3' method='post' class="form_rech" id="form_rech">
+  <form action='spip.php?page=recherche' method='post' class="form_rech" id="form_rech">
               <p><input name="recherche" type='text' id='recherche' size='20' />
               <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" /></p>             
           </form>
 
- </div>   <!-- fermeture boite recherche --> 
+ </div>   [(#REM)  fermeture boite recherche   ]
 
     
  
 
 
 <B_sous_rubragenda>
-    <div class="boite">   <!-- La boite agenda --> 
+    <div class="boite">  [(#REM)  La boite agenda  ]
 
   <h4 class="icone_agenda">L'agenda 74</h4>
   <p>
@@ -247,7 +195,7 @@
                   <br/>                  
          >>  <a href="Diffusez-votre-evenement-votre" title= "C'est gratuit!">Ajoutez votre év&eacute;nement ici.</a></p>
            
-</div><!-- fermeture agenda --> 
+</div> [(#REM) fermeture agenda   ]
 </B_sous_rubragenda>
 
 
@@ -260,17 +208,17 @@
       
  
 
-</div>   <!-- fermeture colone de droite --> 
+</div>   [(#REM)  fermeture colone de droite  ]
 
 
 <hr class="spacer" />
-</div><!-- fermeture contenu --> 
+</div> [(#REM)   fermeture contenu  ]
 <INCLURE{fond="pieddepage"}{delais=31*24*3600}>
 
-</div> <!-- fermeture surcontenu --><br/>
+</div> [(#REM) fermeture surcontenu   ]<br/>
 
 
-</div> <!-- fermeture container --> 
+</div>  [(#REM)  fermeture container  ]
 </body>
 </html>
 

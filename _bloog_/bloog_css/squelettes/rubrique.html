@@ -8,7 +8,7 @@
 <html><head>
 
 <!-- les métas -->
-<title>[(#TITRE|supprimer_numero)]</title>
+<title>[(#TITRE)]</title>
 [<meta name="Description" content="(#DESCRIPTIF|supprimer_tags|texte_script)"/>]
 <meta name="keywords" content="[(#DESCRIPTIF|supprimer_tags|texte_script)]"/>
 <meta name="revisit-after" content="15 days" />
@@ -24,7 +24,7 @@
 
 <!-- icones xml des fils des rubriques sous firefox -->
 <BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}{0,10}>
-<link rel="alternate" type="application/rss+xml" href="#URL_SITE_SPIP/spip.php?page=backend&amp;id_rubrique=#ID_RUBRIQUE" title="[(#TITRE|supprimer_numero)]" />
+<link rel="alternate" type="application/rss+xml" href="#URL_SITE_SPIP/spip.php?page=backend&amp;id_rubrique=#ID_RUBRIQUE" title="[(#TITRE)]" />
 </BOUCLE_rub>
 
 
@@ -42,10 +42,10 @@
   <div class="grande_boite"> <!-- ouverture grd boite texte --> 
 [<p class="logogauche">(#LOGO_RUBRIQUE)</p>
 ]
-<a href="sommaire.php3">Accueil</a> > <BOUCLE_plan(HIERARCHIE){id_rubrique}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE|supprimer_numero)]</a>	
+<a href="sommaire.php3">Accueil</a> > <BOUCLE_plan(HIERARCHIE){id_rubrique}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a>	
                   </BOUCLE_plan>
                  
-                  <h1>[(#TITRE|supprimer_numero)<br/> 
+                  <h1>[(#TITRE)<br/> 
       ]</h1> 
     [(#SOUSTITRE)<br/> 
     ]   
@@ -66,8 +66,8 @@
 
                     <BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par titre}>
 <li>
-                   [<h4><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a><INCLURE{fond="inc_cadenas"}{id_rubrique}></h4>] 
-                  <p>[<span class="minilogogauche"><a href="#URL_RUBRIQUE">(#LOGO_RUBRIQUE||reduire_image{20}|inserer_attribut{alt,[(#TITRE|supprimer_numero)]})</a></span>]
+                   [<h4><a href="#URL_RUBRIQUE">(#TITRE)</a><INCLURE{fond="inc_cadenas"}{id_rubrique}></h4>] 
+                  <p>[<span class="minilogogauche"><a href="#URL_RUBRIQUE">(#LOGO_RUBRIQUE||reduire_image{20}|inserer_attribut{alt,[(#TITRE)]})</a></span>]
 
                     <BOUCLE_sites2(SITES){id_rubrique}>
                   </BOUCLE_sites2><a href="#URL_RUBRIQUE">#TOTAL_BOUCLE
@@ -80,7 +80,7 @@
                     </BOUCLE_art2>
 <B_sous_sous_rub>
 <BOUCLE_sous_sous_rub(RUBRIQUES){id_parent}{par titre}>
-[<img class="puce" src="img_pack/puceoff.gif" alt="puce"/><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a><INCLURE{fond="inc_cadenas"}{id_rubrique}><br/>]
+[<img class="puce" src="img_pack/puceoff.gif" alt="puce"/><a href="#URL_RUBRIQUE">(#TITRE)</a><INCLURE{fond="inc_cadenas"}{id_rubrique}><br/>]
 </BOUCLE_sous_sous_rub>
 </B_sous_sous_rub>
 
@@ -161,7 +161,7 @@ else {$i=0;} ?>
                       </span>
 					  <h4>[<a href="_kiosque_source.php3?id_syndic=#ID_SYNDIC" title="Toutes les news de #NOM_SITE">(#NOM_SITE)</a>]</h4>
                       <BOUCLE_items(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{0,2}>
-                     <p>[<strong><a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a></strong><br/>]
+                     <p>[<strong><a href="#URL_ARTICLE">(#TITRE)</a></strong><br/>]
                       [(#DESCRIPTIF)<br/>]</p>
                       </BOUCLE_items>
                       </BOUCLE_syndic>
@@ -171,7 +171,7 @@ else {$i=0;} ?>
 <div class="grande_boite">
 <h4 class="icone_site">A visiter</h4>
 <BOUCLE_sites_web(SITES){id_rubrique}{par nom_site}{syndication=non}><p>
-                [<strong><a href="#URL_SITE">(#NOM_SITE|supprimer_numero)</a></strong><br/>]
+                [<strong><a href="#URL_SITE">(#NOM_SITE)</a></strong><br/>]
                 [(#DESCRIPTIF)<br/><br/>] 
                 </p>
                 </BOUCLE_sites_web>
@@ -220,7 +220,7 @@ else {$i=0;} ?>
     <div class="boite">
       <h4 class="icone_article">A voir également</h4>
       <BOUCLE_archives(ARTICLES){id_rubrique}{doublons}{par date}{inverse}{0,20}>
-              <a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a> 
+              <a href="#URL_ARTICLE">[(#TITRE)]</a> 
               <INCLURE{fond="inc_cadenas"}{delais="7*24*3600"}{id_article}> 
               </BOUCLE_archives>
         </div> <!-- fermeture boite --> 
