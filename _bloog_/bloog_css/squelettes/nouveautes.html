@@ -1,0 +1,201 @@
+<INCLURE{fond="header"}{delais=31*24*3600}>
+
+
+<html><head>
+
+<!-- les métas -->
+<title>[Plan de (#NOM_SITE_SPIP)]</title> 
+<meta name="Description" content="[News de (#NOM_SITE_SPIP)]"/>
+<meta name="Keywords" content="[News de (#NOM_SITE_SPIP)]"/>
+<meta http-equiv="content-type"content="text/html; charset=#CHARSET"/>
+
+<!-- les css et js peuvent changer suivant type d article ou de breve-->
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/menu.css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/bloog.css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/niftyCorners.css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/print.css" media="print" />
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty.js"></script>
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty-bloog.js"></script>
+
+<!-- icones xml des fils des rubriques sous firefox -->
+<BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}>
+<link rel="alternate" type="application/rss+xml" href="[(#URL_PAGE{backend}|parametre_url{'id_rubrique',#ID_RUBRIQUE})]title="[(#TITRE)]" />
+</BOUCLE_rub>
+
+</head>
+<body> 
+<div id="container"> <!-- centrage page -->
+<INCLURE{fond="entete"}{delais=31*24*3600}> 
+<div id="surcontent"> <!-- ouverture entête -->
+<INCLURE{fond="menuhoriz"}{delais=31*24*3600}>
+<div id="content"> <!-- ouverture contenu --> 
+<div id="colgau"> <!-- ouverture colone de gauche --> 
+<div id="cel">
+<ul id="deco">
+<li>
+<h4>Les news du site</h4>
+<p>
+<a href="#article">Les derniers articles</a>;<br/>
+<a href="#breve">les derni&egrave;res brèves</a>;<br/>
+<a href="#modifs">les articles modifiés r&eacute;cemment</a>;<br/>
+<a href="#agenda">les prochains événements</a>;
+</p>
+</li>
+
+<li>
+<h4>&nbsp;</h4>
+<p><a href="#sites">les derniers sites web référencés</a>;<br/>
+<a href="#messages">les derniers messages des forums</a>;<br/>
+<a href="#newsletter">les derni&egrave;res newsletter</a>.</p>
+</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+<div class="grande_boite">
+
+<B_derniers_articles><a name="article"></a>
+<h4 class="icone_article">Les derniers articles:</h4>
+<p>
+<BOUCLE_derniers_articles(ARTICLES){titre_mot!=agenda}{par date}{inverse}{0,5}>
+<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|attribut_html|couper{60})"]>
+#TITRE</a>[ le (#DATE|nom_jour)] [(#DATE|affdate),] 
+<BOUCLE_rubriques_art(RUBRIQUES){id_rubrique}>
+[ dans la rubrique: &quot;(#TITRE)&quot;.]
+</BOUCLE_rubriques_art><br/>
+</BOUCLE_derniers_articles>
+</p>
+</B_derniers_articles>
+
+
+
+
+<B_breves><a name="breve"></a>
+<h4 class="icone_article">Les dernières brèves:</h4>
+<p>
+<BOUCLE_breves(BREVES){titre_mot!=glossaire}{par date}{inverse}{0,5}>
+<a href="#URL_BREVE"[ title="(#INTRODUCTION|textebrut|attribut_html|couper{60})"]>
+#TITRE</a>[ le (#DATE|nom_jour)] [(#DATE|affdate),] 
+<BOUCLE_rubriques_brv(RUBRIQUES){id_rubrique}>
+[ dans la rubrique: &quot;(#TITRE)&quot;.]
+</BOUCLE_rubriques_brv><br/>
+</BOUCLE_breves>
+</p>
+</B_breves>
+
+
+<B_articles_modif>
+<a name="modifs"></a>
+<h4 class="icone_article">Les articles modifi&eacute;s r&eacute;cemment:</h4>
+<p>
+<BOUCLE_articles_modif(ARTICLES){titre_mot!=agenda}{par date_modif}{inverse}{0,5}>
+<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|attribut_html|couper{60})"]>#TITRE</a> [
+modifi&eacute; le (#DATE_MODIF|nom_jour)] [(#DATE_MODIF|affdate),]
+<BOUCLE_rubriques_art2(RUBRIQUES){id_rubrique}>
+[ dans la rubrique: &quot;(#TITRE)&quot;.]
+</BOUCLE_rubriques_art2>
+<br/>
+</BOUCLE_articles_modif>
+</p>
+</B_articles_modif>
+
+
+
+<B_derniers_sites>
+<a name="sites"></a>
+<h4 class="icone_site">Les derniers sites r&eacute;f&eacute;renc&eacute;s:</h4>
+<p><BOUCLE_derniers_sites(SITES){tout}{par date}{inverse}{0,5}>
+         <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#NOM_SITE)]</a> 
+             [ référencé le (#DATE|nom_jour)][ (#DATE|affdate)] <br/>
+                    </BOUCLE_derniers_sites></p>
+                    </B_derniers_sites>
+					
+<B_sous_rubragenda>
+<a name="agenda"></a>
+<h4 class="icone_agenda">Les prochains événements.</h4>				
+<p>
+<BOUCLE_sous_rubragenda(RUBRIQUES){titre_mot=Agenda}{par titre}>
+<BOUCLE_articles_agenda(ARTICLES){id_rubrique}{par date}{inverse}{age<0}>
+<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|attribut_html|couper{60})"]>#TITRE</a> [
+Du (#DATE_REDAC|nom_jour)] [(#DATE_REDAC|affdate),]
+[au (#DATE|nom_jour)] [(#DATE|affdate)&nbsp;inclus.]
+<BOUCLE_rubriques_art3(RUBRIQUES){id_rubrique}>
+[ dans la rubrique: &quot;(#TITRE)&quot;.]
+</BOUCLE_rubriques_art3>
+<br/>
+</BOUCLE_articles_agenda>
+</BOUCLE_sous_rubragenda>
+</p>
+</B_sous_rubragenda>
+
+<B_message>
+<a name="newsletter"></a>
+<h4 class="icone_post">Les derni&egrave;res newsletter.</h4>
+<p>
+<BOUCLE_message(MESSAGES){par date}{inverse}{0,5}>
+[<a href="voir_ce_courrier_sur_le_web.php3?fond=message&amp;id_message=#ID_MESSAGE">(#TITRE)</a>]
+[ envoyé le (#DATE|affdate)]<br/>
+</BOUCLE_message> 
+</p>
+</B_message>
+</div>
+
+
+
+
+</div>
+<!-- fermeture colone de gauche -->
+<div class="coldroit"><!-- ouverture de la colone de droite --> 
+
+
+    <div class="boite"><!-- ouverture boite menu --> 
+        <h4 class="icone_menu">Navigation</h4>
+        <INCLURE{fond="inc_menu_rub"}{delais=31*24*3600}>
+    
+    </div><!-- fermeture boite menu -->
+
+  
+<div class="boite">
+ <h4 class="icone_recherche">Recherche</h4>
+<form action='recherche.php3' method='post'>
+<p><input name="recherche" type='text' value="#RECHERCHE" id='recherche' size='20' /> 
+<input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" />
+            </p>			           
+          </form>
+	    </div>
+
+<div class="boite"><a name="messages"></a> <!-- ouverture boite derniers messages --> 
+<h4 class="icone_post">Derniers messages</h4>
+<INCLURE{fond="inc_derniers_messages"}>
+</div>
+
+  
+<div class="boite">
+  <h4 class="icone_stats">Stats</h4>
+
+<INCLURE{fond="inc_stats"}{delais=24*3600}>
+
+</div>
+      
+ 
+
+</div>   <!-- fermeture colone de droite --> 
+
+
+<hr class="spacer" />
+</div><!-- fermeture contenu --> 
+<INCLURE{fond="pieddepage"}{delais=31*24*3600}>
+
+</div> <!-- fermeture surcontenu --><br/>
+
+
+</div> <!-- fermeture container --> 
+</body>
+</html>
+

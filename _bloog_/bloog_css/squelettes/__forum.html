@@ -28,9 +28,9 @@ $GLOBALS['afficher_groupe'][]=0;
 
 <!-- icones xml des fils des rubriques sous firefox -->
 <BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}>
-<link rel="alternate" type="application/rss+xml" href="#URL_SITE_SPIP/spip.php?page=backend&amp;id_rubrique=#ID_RUBRIQUE" title="[(#TITRE)]" />
+<link rel="alternate" type="application/rss+xml" href="[(#URL_PAGE{backend}|parametre_url{'id_rubrique',#ID_RUBRIQUE})]title="[(#TITRE)]" />
 </BOUCLE_rub>
-
+[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]
 
 <!-- Les smilleys -->
 <script type="text/javascript"> <!--
@@ -63,7 +63,7 @@ txtarea.value += text; txtarea.focus(); } }
 <!-- quelle breve -->
 <BOUCLE_breve(BREVES){id_breve}>
 <span class="logogauche">[<a href="#URL_BREVE">(#LOGO_BREVE)</a>]</span>
-<a href="sommaire.php3">Accueil</a> > 
+<a href="[(#URL_PAGE{sommaire})]">Accueil</a>
 <BOUCLE_rub2(HIERARCHIE){id_article}>[<a href="#URL_RUBRIQUE">(#TITRE)</a> >]
 </BOUCLE_rub2>
 [<a href="#URL_BREVE">(#TITRE)</a> >]
@@ -72,7 +72,8 @@ txtarea.value += text; txtarea.focus(); } }
 <!-- quel article -->
 <BOUCLE_article(ARTICLES){id_article}>
 <span class="logogauche">[<a href="#URL_ARTICLE">(#LOGO_ARTICLE)</a>]</span>
-<a href="sommaire.php3">Accueil</a> > 
+<a href="[(#URL_PAGE{sommaire}]">Accueil</a> 
+
 <BOUCLE_rub3(HIERARCHIE){id_article}>[<a href="#URL_RUBRIQUE">(#TITRE)</a> >]
 </BOUCLE_rub3>
 [<a href="#URL_ARTICLE">(#TITRE)</a> >]
@@ -81,7 +82,8 @@ txtarea.value += text; txtarea.focus(); } }
 <!-- quel forum -->
 <BOUCLE_forum_parent(FORUMS){id_forum}>
 
-[<a href="_discussion.php3?id_forum=#ID_FORUM">(#TITRE)</a>]
+[<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})]">(#TITRE)</a>]
+
 </p>
 
 
@@ -133,7 +135,8 @@ txtarea.value += text; txtarea.focus(); } }
       <!-- La boite de recherche --> 
     <div class="boite"> <!-- ouverture boite recherche --> 
   <h4 class="icone_recherche">Chercher dans les forums</h4>
-  <form action='_recherche-forum.php3' method='post' class="form_rech" id="form_rech">
+  <form action='[(#URL_PAGE{recherche-forum})]' method='post' class="form_rech" id="form_rech">
+
               <p><input name="recherche" type='text' id='recherche' size='20' />
               <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" /></p>             
           </form>
