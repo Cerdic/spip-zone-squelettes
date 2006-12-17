@@ -62,7 +62,7 @@ $url = "art-logic.info";
 <li>
 
 <h4>Recherche interne</h4>
-<form action='recherche.php' method='post'>
+<form action='  [(#URL_PAGE{recherche})]' method='post' >
   <p>
     <input name="recherche" type='text' value="#RECHERCHE" id='recherche' size='20' />  
     <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" />
@@ -106,43 +106,25 @@ $url = "art-logic.info";
 
  <div class="grande_boite">
  
- <p> <!-- recherche par pertinence -->
-                  <?
-$NbResults = 0; // initialisation du comptage
-$MaxPts = 0;?>
-                  <BOUCLE_CountArticles(ARTICLES){recherche}{par points}{inverse}>
- <?
-$NbResults++; // incrémentation 
-if ($MaxPts==0) $MaxPts = #POINTS; 
- ?>
+ <p> 
+                  <BOUCLE_CountArticles(ARTICLES){recherche}{par points}{pagination}{inverse}>
                   </BOUCLE_CountArticles>
- <?
-if (!isset($HTTP_GET_VARS["debut_lb"])) $debut_lb = 0; // paramètre à passer en GET dans lURL
-$Page = floor($debut_lb/5) + 1;  // numéro de page dans laquelle on est
-$MaxPage = floor($NbResults/5) + 1; // dernière page
-$Last = ($debut_lb+6<$NbResults) ? $debut_lb+5 : $NbResults; // dernier résultat affiché (permet d'écrire:"résultats X à Y affichés sur un total de Z" -> voir plus bas)
+Il y a au total #GRAND_TOTAL articles, cette page en affiche #TOTAL_BOUCLE
+</B_CountArticles>
 
-?>
- <?
-if ($NbResults > 0) {
-//  ?>
-[<?echo $NbResults; ?> articles trouvés pour &quot;(#RECHERCHE)&quot;]
-<? echo $debut_lb+1 ."-" .$Last; ?>
 
-<?
-}
-else { ?>
-[Aucun r&eacute;sultat pour "(#RECHERCHE)".] 
-<? } ?>
 
-<BOUCLE_articlespert(ARTICLES){recherche}{par points}{inverse}{debut_lb,5}>
+
+
+<BOUCLE_articlespert(ARTICLES){recherche}{par points}{inverse}{pagination}>
+
 <? // calcul du pourcentage (option amusante mais pas performante)
-$PerCent = 100 * #POINTS / $MaxPts; ?>
+$PerCent = 100 * #POINTS / #GRAND_TOTAL; ?>
 <br/>
-<br/>
+
 [<? echo number_format($PerCent, 0); ?>%]
-[<a href="#URL_ARTICLE"><strong>(#TITRE)</strong></a>][<br/>
-(#INTRODUCTION)]<br/> 
+[<a href="#URL_ARTICLE"><strong>(#TITRE)</strong></a><br/>][
+(#INTRODUCTION)<br/>]
 [(#DATE|nom_jour)] [(#DATE|jour)] [(#DATE|nom_mois)] [(#DATE|annee)] 
 <B_AUTEUR2>
 par  <BOUCLE_AUTEUR2(AUTEURS){id_article}{", "}{par nom}>
@@ -152,31 +134,17 @@ par  <BOUCLE_AUTEUR2(AUTEURS){id_article}{", "}{par nom}>
 
 </p>
 <p class="centre gras">
-                    <?
-if ($MaxPage>1) {
-	for ($i=0;$i<$MaxPage;$i++) {
-		if ($i+1==$Page) { ?>
-                    <? echo $i+1; ?> 
-                    <?
-                }
-                else {
-		     if ($i+1<$Page) { ?>
-                    <a href='recherche.php?recherche=<? echo urlencode($recherche); ?><? if ($i) {echo "&debut_lb="; echo 5*$i;} ?>'><? echo $i+1; ?></a> 
-                    <?
-			}
-			else { ?>
-                    <a href='recherche.php?recherche=<? echo urlencode($recherche); ?>&debut_lb=<? echo 5*$i; ?>'><? echo $i+1; ?></a> 
-                    <?
-			}
-		}
-	}
-} ?> 
+                    [(#PAGINATION{page_precedent_suivant})]
+		
+            
           </p>
                   
               <!-- fin   recherche par pertinence -->
               <!-- Recherche interne par google -->
               <!-- debut recherche interne par google -->
-              <?php
+
+
+<?php
 $url = "#URL_SITE_SPIP";
 $url= ereg_replace( "http://", "", $url );
 ?>
