@@ -7,8 +7,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // A
 'mgs_accueil' => 'Home page',
-'mgs_aucun_article' => 'Al momento non c\'è nessun articolo pubblicato...',
-'mgs_aucune_rubrique' => 'La rubrica richiesta è introvabile...',
+'mgs_aucun_article' => 'Al momento non c\'&egrave; nessun articolo pubblicato...',
+'mgs_aucune_rubrique' => 'La rubrica richiesta &egrave; introvabile...',
 'mgs_aucun_article_auteur' => 'Al momento, nessun articolo pubblicato...',
 'mgs_article' => 'Articolo',
 'mgs_articles' => 'Articoli',
@@ -83,7 +83,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'mgs_sites_ref' => 'Siti citati: ',
 'mgs_sites_tri_nom' => '(ordinati per nome)',
 'mgs_site_syndic' => 'Syndication : ',
-'mgs_site_syndic_non' => 'questo sito non è ancora in syndication...',
+'mgs_site_syndic_non' => 'questo sito non &egrave; ancora in syndication...',
 
 );
 
