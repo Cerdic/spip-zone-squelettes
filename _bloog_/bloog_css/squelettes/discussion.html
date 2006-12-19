@@ -1,14 +1,3 @@
-<?php  <BOUCLE_test404(FORUMS){id_forum}>
-		/*
-			redirection vers _erreur-forum.php3 si erreur.
-		*/
-	</BOUCLE_test404>
-header("HTTP/1.1 404 Not found");
-		header("Status: 404 Not found");
-		include("_erreur-forum.php3");
-		exit();
-	<//B_test404> ?>
-
 <INCLURE{fond="header"}{delais=31*24*3600}>
 
 
@@ -69,7 +58,8 @@ txtarea.value += text; txtarea.focus(); } }
 <a name="premier" id="premier"></a>
 <BOUCLE_article(ARTICLES){id_article}>
 <span class="logogauche">[<a href="#URL_ARTICLE">(#LOGO_ARTICLE)</a>]</span>
-<a href="sommaire.php3">Accueil</a> > 
+
+<a href="[(#URL_PAGE{sommaire})]">Accueil</a> > 
 <BOUCLE_rub3(HIERARCHIE){id_article}>[<a href="#URL_RUBRIQUE">(#TITRE)</a> >]
 </BOUCLE_rub3>
 [<a href="#URL_ARTICLE">(#TITRE)</a> >]
@@ -96,8 +86,8 @@ txtarea.value += text; txtarea.focus(); } }
 
 <!-- premier message -->
 			  
-<BOUCLE_Forums(FORUMS){id_thread}{plat}{par date}>	<a name="forum#ID_FORUM"></a>
-<div class="grande_boite">
+<BOUCLE_Forums(FORUMS){id_thread}{plat}{par date}>	<a name="id_forum=#ID_FORUM"></a>
+<div class="grande_boite id_forum=#ID_FORUM">
 
 
 
@@ -106,7 +96,7 @@ txtarea.value += text; txtarea.focus(); } }
 
 
 
-<div class="gauche carte"><span class="avatar"><a href="_mon-profil.php3" title="Changer son avatar">[(#LOGO_AUTEUR||?{#LOGO_AUTEUR,'<img src="./avatars/ajoutez-un-avatar.gif" alt="avatar"/>'})]</a></span>
+<div class="gauche carte"><span class="avatar"><a href="[(#URL_PAGE{mon-profil})]" title="Changer son avatar">[(#LOGO_AUTEUR||?{#LOGO_AUTEUR,'<img src="./avatars/ajoutez-un-avatar.gif" alt="avatar"/>'})]</a></span>
 <br/>
 
 
@@ -115,10 +105,10 @@ txtarea.value += text; txtarea.focus(); } }
 ]
 [&agrave; (#DATE|affdate{'H:i:s'}) par<br/>
 ]<BOUCLE_nom(AUTEURS){tout}{id_auteur}>
-[<a (#STATUT|=={'1comite'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de ce r&eacute;dacteur">]
-[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de cet admin">]
-[<a (#STATUT|=={'6forum'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de ce visiteur">]
-[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Compte en attente">]
+[<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Contact et profil de ce r&eacute;dacteur">]
+[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Contact et profil de cet admin">]
+[<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Contact et profil de ce visiteur">]
+[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Compte en attente">]
 [(#NOM|couper{18})</a><br/>]
 </BOUCLE_nom>
 [(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
@@ -146,7 +136,7 @@ txtarea.value += text; txtarea.focus(); } }
 <?
 
 $comptpost=$comptpost+1;
- if($duree+1==$comptpost) {?>  [<span class="repondre"><a href="forum.php3?(#PARAMETRES_FORUM)" >Répondre</a></span><a name="dernier"></a>]
+ if($duree+1==$comptpost) {?>  [<span class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" >Répondre</a></span><a name="dernier"></a>]
  <?php }
  else {echo "Aller au ";
  if($comptpost!=1){echo "<span class=\"gras\"><a href=\"#premier\">premier</a></span>/";}
@@ -185,7 +175,7 @@ $comptpost=$comptpost+1;
 
   <div class="boite"> <!-- ouverture boite recherche --> 
   <h4 class="icone_recherche">Chercher dans les forums</h4>
-  <form action='_recherche-forum.php3' method='post' class="form_rech" id="form_rech">
+  <form action='[(#URL_PAGE{recherche-forum})]' method='post' class="form_rech" id="form_rech">
               <p><input name="recherche" type='text' id='recherche' size='20' />
               <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" /></p>             
           </form>

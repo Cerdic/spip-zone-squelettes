@@ -2,9 +2,7 @@
 
 <BOUCLE_principale(ARTICLES){id_article}>
 
-<!-- Si mot clef acces_restreint alors on authentifie l internaute. -->
-<BOUCLE_restreint(MOTS){id_article}{titre=acces_restreint}><INCLURE{fond="authentification"}
-</BOUCLE_restreint>
+
 
 <html><head>
 
@@ -59,9 +57,10 @@
    [(#TEXTE|lier_au_glossaire)][<br/>
     (#PS)]
 
-<ul class="membres"><li class="modo"><a href="ecrire/articles_forum.php3?id_article=#ID_ARTICLE" title="Acc&egrave;s priv&eacute; pour mod&eacute;rateurs">Admin:</a></li>
+<ul class="membres"><li class="modo"><a href="ecrire/?exec=articles_forum&id_article=#ID_ARTICLE" title="Acc&egrave;s priv&eacute; pour mod&eacute;rateurs">Admin:</a></li>
 <BOUCLE_admin(AUTEURS){statut=0minirezo}{par id_auteur}>
-<li class="modo"><a href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact/Profil">#NOM</a></li>
+<li class="modo"><a href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]title="Contact/Profil" />#NOM</a></li>
+
 </BOUCLE_admin>
 </ul>
 
@@ -90,13 +89,15 @@ $ze_titre = ereg_replace( "> ", "", $ze_titre );
 
 <tr class="<?php echo $couleur == 0 ? 'row_even' : 'row_odd' ; ?>" >
 <td>
-<a href="_discussion.php3?id_forum=#ID_FORUM#forum#ID_FORUM"	title=""><?php echo $ze_titre?></a>
+<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})#forum#ID_FORUM]" />
+<?php echo $ze_titre?></a>
 </td>
 	<td><BOUCLE_nom2(AUTEURS){tout}{id_auteur}>
-[<a (#STATUT|=={'1comite'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de ce r&eacute;dacteur">]
-[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de cet admin">]
-[<a (#STATUT|=={'6forum'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de ce visiteur">]
-[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Compte en attente">]
+	
+[<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Contact et profil de ce r&eacute;dacteur">]
+[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Contact et profil de cet admin">]
+[<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Contact et profil de ce visiteur">]
+[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Compte en attente">]
 [(#NOM|couper{18})</a><br/>]
 </BOUCLE_nom2>
 [(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
@@ -113,13 +114,13 @@ $ze_titre = ereg_replace( "> ", "", $ze_titre );
 
 <ul class="forum centre">
 <li>
-<a href="_mon-profil.php3" title="S'inscrire">
+<a href="[(#URL_PAGE{mon-profil}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="S'inscrire">
 S'inscrire</a></li>
 <li>
-[<a href="forum.php3?(#PARAMETRES_FORUM)" title="Créer une discussion">Dialoguer</a>]
+[<a href="(#PARAMETRES_FORUM|url_reponse_forum)" title="Créer une discussion">Dialoguer</a>]
 </li>
 <li>
-<a href="<?php echo $PHP_SELF ; ?>?id_article=#ID_ARTICLE&amp;var_mode=recalcul" title="Rafraichir les messages">
+<a href="#SELF&amp;var_mode=calcul" title="Rafraichir les messages">
           Actualiser</a>
 </li>
 </ul>

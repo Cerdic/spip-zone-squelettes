@@ -1,20 +1,32 @@
-<?php
-//Empecher l'affichage des mots clés de forum
-$GLOBALS['afficher_groupe'][]=0;
-?>
+<INCLURE{fond="header"}{delais=31*24*3600}>
 
-<HTML>
+<html>
+<head>
 
-<HEAD>
-<BOUCLE_titre(ARTICLES){id_article}>
-<title> [ #TITRE - #NOM_SITE_SPIP ] </title>
-</BOUCLE_titre>
-<SCRIPT src="IMG/002/_interface.js" type="text/javascript"></SCRIPT>
-<link rel="stylesheet" href="IMG/002/_interface.css" type="text/css">
+<!-- les métas -->
+<BOUCLE_meta(ARTICLES){id_article}>
+<title>Participez sur ce forum[, (#TITRE)]</title>
+<meta name="Description" content='[(#INTRODUCTION)][, (#TITRE)]'/>
+</BOUCLE_meta>
+<meta name="revisit-after" content="15 days" />
+<meta http-equiv="content-type" content="text/html; charset=#CHARSET"/>
 
-<!-- From phpBB --> 
-<script language="JavaScript" type="text/javascript"> 
+<!-- les css et js peuvent changer suivant type d article ou de breve-->
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/menu.css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/bloog.css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/niftyCorners.css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/print.css" media="print" />
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty.js"></script>
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/nifty-bloog.js"></script>
 
+<!-- icones xml des fils des rubriques sous firefox -->
+<BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}>
+<link rel="alternate" type="application/rss+xml" href="[(#URL_PAGE{backend}|parametre_url{'id_rubrique',#ID_RUBRIQUE})]title="[(#TITRE)]" />
+</BOUCLE_rub>
+
+
+<!-- Les smilleys -->
+<script type="text/javascript"> <!--
 function emoticon(text) { var txtarea =
 document.formulaire.texte; text = ' ' + text + ' '; if
 (txtarea.createTextRange && txtarea.caretPos) { var caretPos =
@@ -22,136 +34,127 @@ txtarea.caretPos; caretPos.text =
 caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? caretPos.text +
 text + ' ' : caretPos.text + text; txtarea.focus(); } else {
 txtarea.value += text; txtarea.focus(); } } 
+--> </script>
 
-</script>
 
-</HEAD>
-<BODY>
-<div align="center"> 
-    <INCLURE (_page_barre_menu.php3)><br>
+</head>
+<body> 
 
-  <TABLE width=750  border=0 cellPadding=0 cellSpacing=0>
-    <TBODY> 
-    <TR> 
-       
-      <TD vAlign=top align="center" width="490"> 
-        <table border=0 cellpadding=0 cellspacing=0 width="100%"><tr> 
-<td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
-<td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/fiche-perso.gif" /></td>
-<td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td></tr>
-<tr><td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
-            <td class="content"> 
-              <BOUCLE_article(ARTICLES) {id_article}>
-              En r&eacute;ponse &agrave; l'article ou au forum: [(#LOGO_ARTICLE|right)]
-           [(#SURTITRE)] <a href="#URL_ARTICLE"><br>
-                #TITRE</a><br>
-                [(#SOUSTITRE)] <br>
-                
-                [<div class="texte">
-                  <div class="extrait">(#INTRODUCTION)</div>
-                </div>
-                
-              <p>] <br>
-                </BOUCLE_article>
-                <BOUCLE_breve(BREVES) {id_breve}>
-                En r&eacute;ponse &agrave; la br&egrave;ve&nbsp;: [(#LOGO_BREVE|right)]</p>
-              <p> <a href="#URL_BREVE">#TITRE</a> <br>
-                [Le (#DATE|nom_jour)] [(#DATE|jour)] [(#DATE|nom_mois)] [(#DATE|annee)] 
-                [ </p>
-              <div class="texte">
-                  <div class="extrait">(#INTRODUCTION)</div>
-                </div>
-              <p>] <br>
-                </BOUCLE_breve>
-                <BOUCLE_forum_parent(FORUMS) {id_forum}>
-                En r&eacute;ponse au message: </p>
-              <p>#TITRE</p>
-              <div class="detail"> [Le (#DATE|nom_jour)] [(#DATE|jour)] [(#DATE|nom_mois)] 
-                  [(#DATE|annee)] </div>
-                [
-                <div class="texte">
-                  <div class="extrait">(#TEXTE|smileys)</div>
-                </div>
-                ] <br>
-              [ par (#NOM)] <br>
-                </BOUCLE_forum_parent>
-              
-			  <table width=100% cellpadding=0 cellspacing=0 border=0>
-                <tr width=100%> 
-                  <td width=100% background="NAVPICS/point.gif"><img src="NAVPICS/rien.gif" alt="" width="8" height="8" border="0"></td>
-                </tr>
-              </table>
-              <center>
-              </center>
-              <br>
-              <br>            </td>
-              <td background="IMG/002/r-d.gif" width="5">&nbsp;</td><tr> 
- <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
-<td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
-<td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
-</tr></table>
-          
-        <table border=0 cellpadding=0 cellspacing=0 width="100%">
-          <tr> 
-            <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
-            <td background="IMG/002/r-h.gif">&nbsp;</td>
-            <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
-          </tr>
-          <tr>
-            <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
-            <td class="content"> #FORMULAIRE_FORUM 
-              <table width=100% cellpadding=0 cellspacing=0 border=0>
-                <tr width=100%> 
-                  <td width=100% background="NAVPICS/point.gif"><img src="NAVPICS/rien.gif" alt="" width="8" height="8" border="0"></td>
-                </tr>
-              </table>
-              <center>
-              </center>
-              <br>
-              [ <a href="#">Haut</a> ] <br>
-            </td>
-            <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
-          <tr> 
-            <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
-            <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
-            <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
-          </tr>
-        </table>
-        <br>
-      </TD>
-      <TD width=32>&nbsp;</TD>
-      <TD vAlign=top> 
-        <table border=0 cellpadding=0 cellspacing=0 width="200">
-          <tr> 
-            <td width=5><img alt="" height="24"  width="5" src="IMG/002/r-hg.gif" /></td>
-            <td background="IMG/002/r-h.gif"><img alt="" height="24"  width="24" src="IMG/002/breve.gif" /></td>
-            <td width=5><img alt="" height="24" width="5" src="IMG/002/r-hd.gif" /></td>
-          </tr>
-          <tr>
-            <td background="IMG/002/r-g.gif" width="5">&nbsp;</td>
-            <td class="content"> 
-              <div > 
-                  <p>
-                    <INCLURE(_tableau_smileys.php3)>
-                </div>
-              </td>
-            <td background="IMG/002/r-d.gif" width="5">&nbsp;</td>
-          <tr> 
-            <td><img alt="" width="5" height="5" src="IMG/002/r-bg.gif" /></td>
-            <td background="IMG/002/r-b.gif"><img alt="" width="5" height="5" src="IMG/002/rien.gif" /></td>
-            <td><img alt="" width="5" height="5" src="IMG/002/r-bd.gif" /></td>
-          </tr>
-        </table>
-        <br>
-      </TD>
-    </TR>
-    </TBODY> 
-  </TABLE>
-  <br>  
-    <INCLURE (_page_bas.php3)><br></div>
-  
-</BODY>
+<div id="container">   <!-- centrage page -->
+<INCLURE{fond="entete"}{delais=31*24*3600}>  
+<div id="surcontent">  
+<INCLURE{fond="menuhoriz"}{delais=31*24*3600}><!-- ouverture entête -->
+<div id="content">  <!-- ouverture contenu --> 
 
-</HTML>
+<div id="colgau"> <!-- ouverture colone de gauche --> 
+ <div class="grande_boite">
 
+
+
+<p>
+
+<!-- quelle breve -->
+<BOUCLE_breve(BREVES){id_breve}>
+<span class="logogauche">[<a href="#URL_BREVE">(#LOGO_BREVE)</a>]</span>
+<a href="[(#URL_PAGE{sommaire})]">Accueil</a>
+<BOUCLE_rub2(HIERARCHIE){id_article}>[<a href="#URL_RUBRIQUE">(#TITRE)</a> >]
+</BOUCLE_rub2>
+[<a href="#URL_BREVE">(#TITRE)</a> >]
+</BOUCLE_breve>
+
+<!-- quel article -->
+<BOUCLE_article(ARTICLES){id_article}>
+<span class="logogauche">[<a href="#URL_ARTICLE">(#LOGO_ARTICLE)</a>]</span>
+<a href="[(#URL_PAGE{sommaire}]">Accueil</a> 
+
+<BOUCLE_rub3(HIERARCHIE){id_article}>[<a href="#URL_RUBRIQUE">(#TITRE)</a> >]
+</BOUCLE_rub3>
+[<a href="#URL_ARTICLE">(#TITRE)</a> >]
+</BOUCLE_article>
+
+<!-- quel forum -->
+<BOUCLE_forum_parent(FORUMS){id_forum}>
+
+[<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})]">(#TITRE)</a>]
+
+</p>
+
+
+<h1>Réagissez à:[ (#TITRE)]</h1>
+<p>
+[(#TEXTE|norm_liens{blank}|liens_ouvrants|smileys|lignes_longues{45}|couper{350})]</p>
+<p>[Ecrit par (#NOM)] </p>
+</BOUCLE_forum_parent>
+		<BOUCLE_descri_article(ARTICLES){id_article}>
+		<p>
+		[(#SOUSTITRE)<br/>]
+		[(#INTRODUCTION)]
+		</p>
+		</BOUCLE_descri_article>
+		<BOUCLE_descri_breve(BREVES){id_breve}>
+		<p>
+		[(#SOUSTITRE)<br/>]
+		[(#INTRODUCTION)]
+		</p>
+		</BOUCLE_descri_breve>
+		
+<//B_forum_parent>
+
+
+#FORMULAIRE_FORUM
+
+<hr class="spacer"/>
+</div>
+
+
+
+
+</div><!-- fermeture colone de gauche -->
+ <div class="coldroit">  <!-- ouverture de la colone de droite --> 
+
+
+    <div class="boite"><!-- ouverture boite menu --> 
+
+        <h4 class="icone_menu">navigation</h4>
+      <INCLURE{fond="inc_menu_rub"}{delais=31*24*3600}> 
+    
+    </div><!-- fermeture boite menu -->
+
+
+
+
+
+
+      <!-- La boite de recherche --> 
+    <div class="boite"> <!-- ouverture boite recherche --> 
+  <h4 class="icone_recherche">Chercher dans les forums</h4>
+  <form action='[(#URL_PAGE{recherche-forum})]' method='post' class="form_rech" id="form_rech">
+
+              <p><input name="recherche" type='text' id='recherche' size='20' />
+              <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" /></p>             
+          </form>
+
+ </div>   <!-- fermeture boite recherche --> 
+ 
+<div class="boite"> <!-- ouverture boite smilleys --> 
+<INCLURE{fond="inc_tableau_smileys"}></div>
+
+</div>   
+ <!-- fermeture colone de droite --> 
+
+
+<hr class="spacer" />
+
+
+
+
+</div><!-- fermeture contenu --> 
+<INCLURE{fond="pieddepage"}{delais=31*24*3600}{id_article}>
+
+</div> <!-- fermeture surcontenu --><br/>
+
+
+</div> <!-- fermeture container --> 
+</body>
+</html>
 

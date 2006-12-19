@@ -69,7 +69,7 @@ $url = "art-logic.info";
   <br/>
                 Lancez une recherche dans les forums du site: 
                 Les mots de moins de quatre lettres ne sont pas indexés
-    par le moteur interne. Ajoutez plusieurs mots pour cibler votre recherche.</p>
+    par le moteur interne. Utilisez un seul mots pour cibler votre recherche.</p>
 </form>
 		
 </li>
@@ -103,84 +103,43 @@ $url = "art-logic.info";
 
 
 
-
  <div class="grande_boite">
- 
- <p> <!-- recherche par pertinence -->
-                  <?
-$NbResults = 0; // initialisation du comptage
-$MaxPts = 0;?>
-                  <BOUCLE_CountArticles(FORUMS){tous}{recherche}{par points}{inverse}>
- <?
-$NbResults++; // incrémentation 
-if ($MaxPts==0) $MaxPts = #POINTS; 
- ?>
-                  </BOUCLE_CountArticles>
- <?
-if (!isset($HTTP_GET_VARS["debut_lb"])) $debut_lb = 0; // paramètre à passer en GET dans lURL
-$Page = floor($debut_lb/5) + 1;  // numéro de page dans laquelle on est
-$MaxPage = floor($NbResults/5) + 1; // dernière page
-$Last = ($debut_lb+6<$NbResults) ? $debut_lb+5 : $NbResults; // dernier résultat affiché (permet d'écrire:"résultats X à Y affichés sur un total de Z" -> voir plus bas)
+ <B_CountForums>
+ <p> 
+<BOUCLE_CountForums(FORUMS){recherche}{par points}{pagination}{inverse}>
+</BOUCLE_CountForums>
+Il y a au total #GRAND_TOTAL discussions, cette page en affiche #TOTAL_BOUCLE
+ </p> 
+ </B_CountForums>
 
-?>
- <?
-if ($NbResults > 0) {
-//  ?>
-[<?echo $NbResults; ?> discussions trouvés pour &quot;(#RECHERCHE)&quot;]
-<? echo $debut_lb+1 ."-" .$Last; ?>
+<B_cherchforums>
+ <p> 
+<BOUCLE_cherchforums(FORUMS){recherche}{par points}{inverse}{pagination}>
+[<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})]"><strong>(#TITRE|titre_forum|couper{70})</strong></a><br/>]
+<br/>
+[(#TEXTE|norm_liens{blank}|liens_ouvrants|smileys|lignes_longues{45})]
 
-<?
-}
-else { ?>
-[Aucun r&eacute;sultat pour "(#RECHERCHE)".] 
-<? } ?>
-
-<BOUCLE_articlespert(FORUMS){tous}{recherche}{par points}{inverse}{debut_lb,5}>
-<? // calcul du pourcentage (option amusante mais pas performante)
-$PerCent = 100 * #POINTS / $MaxPts; ?>
-<br/>
-<br/>
-[<? echo number_format($PerCent, 0); ?>%]
-[<a href="_discussion.php?var_recherche=#RECHERCHE&amp;id_forum=#ID_FORUM#forum#ID_FORUM"><strong>(#TITRE)</strong></a>][<br/>
-(#INTRODUCTION)]<br/> 
-[(#DATE|nom_jour)] [(#DATE|jour)] [(#DATE|nom_mois)] [(#DATE|annee)] 
-</BOUCLE_articlespert>
-<br/>
-<br/>
-
+<br/><br/>
+</BOUCLE_cherchforums>
 </p>
 <p class="centre gras">
-                    <?
-if ($MaxPage>1) {
-	for ($i=0;$i<$MaxPage;$i++) {
-		if ($i+1==$Page) { ?>
-                    <? echo $i+1; ?> 
-                    <?
-                }
-                else {
-		     if ($i+1<$Page) { ?>
-                    <a href='_recherche-forum.php?recherche=<? echo urlencode($recherche); ?><? if ($i) {echo "&debut_lb="; echo 5*$i;} ?>'><? echo $i+1; ?></a> 
-                    <?
-			}
-			else { ?>
-                    <a href='_recherche-forum.php?recherche=<? echo urlencode($recherche); ?>&debut_lb=<? echo 5*$i; ?>'><? echo $i+1; ?></a> 
-                    <?
-			}
-		}
-	}
-} ?> 
-          </p>
-                  
-              <!-- fin   recherche par pertinence -->
-              <!-- Recherche interne par google -->
-              <!-- debut recherche interne par google -->
-              <?php
+[(#PAGINATION{page_precedent_suivant})]
+</p>
+</B_cherchforums>
+
+<!-- fin   recherche par pertinence -->
+<!-- Recherche interne par google -->
+<!-- debut recherche interne par google -->
+
+<?php
 $url = "#URL_SITE_SPIP";
 $url= ereg_replace( "http://", "", $url );
 ?>
 
          
 </div><!-- fermeture grande_boite -->
+
+
 
 
 
