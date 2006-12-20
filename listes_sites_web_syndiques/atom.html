@@ -1,15 +1,14 @@
-[(#REM) Squelette pour SPIP 1.9. Publie au format ATOM 1.0 http://www.ietf.org/rfc/rfc4287.txt la liste des sites web syndiques. 
+[(#REM) Squelette pour SPIP 1.9.2. Publie au format ATOM 1.0 http://www.ietf.org/rfc/rfc4287.txt la liste des sites web syndiques. 
 ]#CACHE{7200}
-[(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})]
-[(#REM) Remplacer text/xml par application/atom+xml des lors que (...) 
-]<?php echo '<' ?>?xml version="1.0"[ encoding="(#CHARSET)"]?>
+[(#HTTP_HEADER{Content-type: application/atom+xml[; charset=(#CHARSET)]})
+]<?xml version="1.0"[ encoding="(#CHARSET)"]?>
 <feed xmlns="http://www.w3.org/2005/Atom"[ xml:lang="(#LANG)"]>
 [	<title>(#NOM_SITE_SPIP|texte_backend)</title>
 ][	<subtitle type="html">(#DESCRIPTIF_SITE_SPIP|texte_backend)</subtitle>
 ]	<link href="#URL_SITE_SPIP/"/>[(#REM) Une adresse secifique et listant tous les sites web serait preferable.] 
 [	<link rel="self" type="application/atom+xml" href="#URL_SITE_SPIP/(#SELF)"/>
 ]	<id>#URL_SITE_SPIP/</id>
-	<generator uri="http://www.spip.net/" [version="(#SPIP_VERSION)"]>SPIP</generator>[(#REM) La balise SPIP_VERSION est utilisable a partir de SPIP 1.9.1 http://www.spip.net/fr_article3462.html .]
+	<generator uri="http://www.spip.net/" [version="(#SPIP_VERSION)"]>SPIP</generator>
 [	<logo>(#LOGO_SITE_SPIP||extraire_attribut{src}|url_absolue|texte_backend)</logo>
 ][	<updated>(#DATE|date_iso)</updated>]
 
