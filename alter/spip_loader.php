@@ -25,7 +25,6 @@
 	# Adresse des librairies necessaires a spip_loader
 	# (pclzip et fichiers de langue)
 	define('_URL_LOADER_DL',"http://www.spip.net/spip-dev/INSTALL/");
-
 	# telecharger a travers un proxy
 	define('_URL_LOADER_PROXY', '');
 
@@ -104,7 +103,7 @@
 	function menu_languesT($lang) {
 		global $dir_base;
 		$r = '<div style="float:'.$GLOBALS['spip_lang_right'].';">';
-		$r .= '<form action="'.$dir_base._SPIP_LOADER_SCRIPT.'" method="get">';
+		$r .= '<form action="'.$dir_base._SPIP_LOADER_SCRIPT.'" method="get"><div>';
 		if(preg_match(',action=([a-z_]+),', _SPIP_LOADER_SCRIPT, $m)) {
 			$r .= "<input type='hidden' name='action' value='".$m[1]."' />";
 			$sep = '&amp;';
@@ -115,9 +114,9 @@
 			onchange="window.location=\''.$dir_base._SPIP_LOADER_SCRIPT.$sep.'lang=\'+this.value;">';
 		
 		foreach ($GLOBALS['langues'] as $l => $nom)
-			$r .= '<option value="'.$l.'"' . ($l == $lang ? ' selected' : '')
-				. '>'.$nom.'</option>';
-		$r .= '</select> <noscript><input type="submit" name="ok" value="ok" /></noscript></form>';
+			$r .= '<option value="'.$l.'"' . ($l == $lang ? ' selected="selected"' : '')
+				. '>'.$nom."</option>\n";
+		$r .= '</select> <noscript><div><input type="submit" name="ok" value="ok" /></div></noscript></div></form>';
 		$r .= '</div>';
 		return $r;
 	}
@@ -359,52 +358,65 @@
 
 	function debut_html() {
 		?>
-		<HTML <?php echo "dir='".$GLOBALS['spip_lang_dir']."'";?>>
-		<HEAD>
-		<TITLE><?php echo _TT('tradloader:titre', array('paquet'=>_NOM_PAQUET_ZIP)); ?></TITLE>
-		<META HTTP-EQUIV="Expires" CONTENT="0">
-		<META HTTP-EQUIV="cache-control" CONTENT="no-cache,no-store">
-		<META HTTP-EQUIV="pragma" CONTENT="no-cache">
-		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
-
-
-		<style>
-		<!--
-			a {text-decoration: none; }
-			A:Hover {color:#FF9900; text-decoration: underline;}
-			.forml {width: 100%; background-color: #FFCC66; background-position: center bottom; float: none; color: #000000}
-			.formo {width: 100%; background-color: #970038; background-position: center bottom; float: none; color: #FFFFFF}
-			.fondl {background-color: #FFCC66; background-position: center bottom; float: none; color: #000000}
-			.fondo {background-color: #970038; background-position: center bottom; float: none; color: #FFFFFF}
-			.fondf {background-color: #FFFFFF; border-style: solid ; border-width: 1; border-color: #E86519; color: #E86519}
-		-->
+		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+		   "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+		<html <?php echo "dir='".$GLOBALS['spip_lang_dir']."'";?>>
+		<head>
+		<title><?php echo _TT('tradloader:titre', array('paquet'=>_NOM_PAQUET_ZIP)); ?></title>
+		<meta http-equiv="Expires" content="0" />
+		<meta http-equiv="cache-control" content="no-cache,no-store" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<style type="text/css">
+			body {
+				background-color:white;
+				color:black;
+				margin:50px 0 0 0;
+			}
+			#main {
+				margin-left: auto;
+				margin-right: auto;
+				width:450px;
+			}
+			a {
+				text-decoration: none;
+				color: #E86519;
+			}
+			a:hover {
+				color:#FF9900;
+				text-decoration: underline;
+			}
+			a:visited {
+				color:#6E003A;
+			}
+			a:active {
+				color:#FF9900;
+			}
+			h1 {
+				font-family:Verdana ,Arial,Helvetica,sans-serif;
+				color:#970038;
+				display:inline;
+				font-size:120%;
+			}
 		</style>
-		</HEAD>
-
-		<body bgcolor="#FFFFFF" text="#000000" link="#E86519" vlink="#6E003A" alink="#FF9900" TOPMARGIN="0" LEFTMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0">
-
-		<BR><BR><BR>
-		<CENTER>
-		<TABLE WIDTH=450>
-		<TR><TD WIDTH=450>
+		</head>
+		<body>
+		<div id="main">
 		<?php echo menu_languesT($GLOBALS['lang']); ?>
 
-		<FONT FACE="Verdana,Arial,Helvetica,sans-serif" SIZE=4 COLOR="#970038"><B><?php
+		<h1><?php
 			echo _TT('tradloader:titre', array('paquet'=>_NOM_PAQUET_ZIP));
-		?></B></FONT>
-		<FONT FACE="Georgia,Garamond,Times,serif" SIZE=3>
+		?></h1>
+		<div style="font-family:Georgia,Garamond,Times,serif; font-size:110%;">
 		<?php
 	}
-
-
 	function fin_html() {
 		?>
-		</FONT>
-		</TD></TR></TABLE>
-		</CENTER>
-		</BODY>
+		</div>
+		</div>
+		</body>
 
-		</HTML>
+		</html>
 		<?php
 	}
 
@@ -489,18 +501,18 @@
 			if ($_GET['charger'] != 'oui') {
 				debut_html();
 				echo _TT('tradloader:texte_intro', array('paquet'=>_NOM_PAQUET_ZIP));
-				echo "<DIV ALIGN='".$GLOBALS['spip_lang_right']."'>";
-				echo "<FORM ACTION='".$dir_base._SPIP_LOADER_SCRIPT."' METHOD='get'>";
+				echo "<div style='text-align:".$GLOBALS['spip_lang_right']."'>";
+				echo "<form action='".$dir_base._SPIP_LOADER_SCRIPT."' method='get'><div>";
 				if(preg_match(',action=([a-z_]+),', _SPIP_LOADER_SCRIPT, $m))
 					echo "<input type='hidden' name='action' value='".$m[1]."' />";
 				if($paquet != '')
-					echo "<INPUT TYPE='hidden' NAME='paquet' VALUE='$paquet'>";
+					echo "<input type='hidden' name='paquet' value='$paquet' />";
 				if(file_exists($dir_base.$fichier))
-					echo "<INPUT TYPE='hidden' NAME='fichier' VALUE='oui'>";
+					echo "<input type='hidden' name='fichier' value='oui' />";
 				else
-					echo "<INPUT TYPE='hidden' NAME='charger' VALUE='oui'>";
-				echo "<INPUT TYPE='submit' NAME='Valider' VALUE=\""._TT('tradloader:bouton_suivant')."\">";
-				echo "</FORM>";
+					echo "<input type='hidden' name='charger' value='oui'>";
+				echo '<input type="submit" name="Valider" value="'._TT('tradloader:bouton_suivant').'" />';
+				echo "</div></form>";
 
 				fin_html();
 				exit;
