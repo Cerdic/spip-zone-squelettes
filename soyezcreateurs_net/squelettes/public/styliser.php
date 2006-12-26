@@ -3,7 +3,7 @@
 /***************************************************************************\
  *  SPIP, Systeme de publication pour l'internet                           *
  *                                                                         *
- *  Copyright (c) 2001-2006                                                *
+ *  Copyright (c) 2001-2007                                                *
  *  Arnaud Martin, Antoine Pitrou, Philippe Riviere, Emmanuel Saint-James  *
  *                                                                         *
  *  Ce programme est un logiciel libre distribue sous licence GNU/GPL.     *
@@ -20,6 +20,7 @@ function public_styliser_dist($fond, $id_rubrique, $lang) {
 	
   // html est une extension permise pour gérer le cas fichier.css.html
   $extension_squelette_permises = array ('css', 'js', 'svg', 'xml', 'htc', 'html', 'spip'); 
+  $extension_spip = 'html';
 	// Si $fond a une extension parmi .css, .js .svg, .xml, .htc, .spip
 	// la prendre dans $ext et ramener $fond au nom prive de l'extension
 	// Sinon, considérer que l'extension est html
@@ -30,20 +31,24 @@ function public_styliser_dist($fond, $id_rubrique, $lang) {
 	} else {
 		// Actuellement tous les squelettes se terminent par .html
 		// pour des raisons historiques, ce qui est trompeur
-		$ext = 'html';
+		$ext = $extension_spip;
 	}
 	
 	// Accrocher un squelette de base dans le chemin, sinon erreur
 	if (!$base = find_in_path("$fond.$ext")) {
-		include_spip('public/debug');
-		erreur_squelette(_T('info_erreur_squelette2',
-			array('fichier'=>"'$fond'")),
-			$GLOBALS['dossier_squelettes']);
-		$f = find_in_path("404.$ext");
-		return array(substr($f, 0, -strlen(".$ext")),
-			     $ext,
-			     $ext,
-			     $f);
+		if (!$base = find_in_path("$fond.$ext.$extension_spip")) {
+			include_spip('public/debug');
+			erreur_squelette(_T('info_erreur_squelette2',
+				array('fichier'=>"'$fond'")),
+				$GLOBALS['dossier_squelettes']);
+			$f = find_in_path("404.$extension_spip");
+			return array(substr($f, 0, -strlen(".$extension_spip")),
+					 $extension_spip,
+					 $extension_spip,
+					 $f);
+		} else {
+			$ext = $extension_spip;
+		}
 	}
 
 	// supprimer l'extension pour pouvoir affiner par id_rubrique ou par langue
@@ -70,7 +75,8 @@ function public_styliser_dist($fond, $id_rubrique, $lang) {
 	// Affiner par lang
 	if ($lang) {
 		lang_select($lang);
-		$f = "$squelette.$lang";
+		$f = "$squelette.".$GLOBALS['spip_lang'];
+		lang_dselect();
 		if (@file_exists("$f.$ext"))
 			$squelette = $f;
 	}
