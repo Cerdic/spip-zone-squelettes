@@ -10,22 +10,16 @@
 <meta name="Keywords" content="trouver[,(#RECHERCHE)]"/>
 <meta http-equiv="content-type"content="text/html; charset=#CHARSET"/>
 
-	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
-	
-<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/menu.css})]" />
-<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/logic.css})]" />
-<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/niftyCorners.css})]" />
-<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/print.css})]" media="print" />
-	[(#REM) 4 css qui changent l aspect du site suivant la saison.]
-<BOUCLE_mot_saison(MOTS){titre=saison}{0,1}>
-<link rel="stylesheet" type="text/css" href="[squelettes/css/(#ENV{date}|saison|translitteration).css]" />
-</BOUCLE_mot_saison>
-<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/couleurs.css})]" />
-<//B_mot_saison>
+<!-- les css et js peuvent changer suivant type d article ou de breve-->
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{menu.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{logic.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{couleurs.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{niftyCorners.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{print.css})]" media="print" />
 <script type="text/javascript" src="[(#CHEMIN{nifty.js})]"></script>
 <script type="text/javascript" src="[(#CHEMIN{nifty-bloog.js})]"></script>
 
-	[(#REM) icones xml des fils des rubriques sous firefox ]
+<!-- icones xml des fils des rubriques sous firefox -->
 <BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}>
 
 <link rel="alternate" type="application/rss+xml" href="[(#URL_PAGE{backend}|parametre_url{'id_rubrique',#ID_RUBRIQUE})]title="[(#TITRE)]" />
@@ -33,9 +27,11 @@
 <!-- enlève http:// de l'adresse du site -->
 
 <?php
-$url = "art-logic.info";
+$url = "#URL_SITE_SPIP";
+$url= ereg_replace( "http://www.", "", $url );
+$url= ereg_replace( "http://", "", $url );
 ?>
-<!--$url= ereg_replace( "http://www.", "", $url );-->
+
 <script type="text/javascript"><!--
 // Moteur interne par Google (fenetre popup)
  function RecherchePopup()
@@ -94,9 +90,9 @@ $url = "art-logic.info";
 					  <br />
                       Lancez une recherche avec Google:<br />
                       <input name="sur" type='radio' value="site checked" checked /> 
-                      sur Art-logic.info.
+                      sur #NOM_SITE_SPIP.
                       <input type='radio' name="sur" value="voila" /> sur le Web.<br />
-                      Les derniers articles de Art-logic.info ne
+                      Les derniers articles de #NOM_SITE_SPIP ne
                       sont pas indéxés par Google, préférez le
                       moteur interne pour une recherche exhaustive.
                     </p>
