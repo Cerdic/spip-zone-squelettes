@@ -13,11 +13,16 @@
 
 	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
 	
-<link rel="stylesheet" type="text/css" href="[(#CHEMIN{menu.css})]" />
-<link rel="stylesheet" type="text/css" href="[(#CHEMIN{logic.css})]" />
-<link rel="stylesheet" type="text/css" href="[(#CHEMIN{couleurs.css})]" />
-<link rel="stylesheet" type="text/css" href="[(#CHEMIN{niftyCorners.css})]" />
-<link rel="stylesheet" type="text/css" href="[(#CHEMIN{print.css})]" media="print" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/menu.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/logic.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/niftyCorners.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/print.css})]" media="print" />
+	[(#REM) 4 css qui changent l aspect du site suivant la saison.]
+<BOUCLE_mot_saison(MOTS){titre=saison}{0,1}>
+<link rel="stylesheet" type="text/css" href="[squelettes/css/(#ENV{date}|saison|translitteration).css]" />
+</BOUCLE_mot_saison>
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/couleurs.css})]" />
+<//B_mot_saison>
 <script type="text/javascript" src="[(#CHEMIN{nifty.js})]"></script>
 <script type="text/javascript" src="[(#CHEMIN{nifty-bloog.js})]"></script>
 
@@ -41,6 +46,9 @@
 <div id="cel">
 <ul id="deco">
 <li>
+
+[(#REM) une breve en haut à gauche.]
+
 <BOUCLE_blogbox_haut(BREVES){titre_mot=homebox_haut}{par date}{0,1}>
 <h4>[(#TITRE)]</h4>
   <p>
@@ -57,8 +65,8 @@
 </li>
 
 
- 
-[(#REM)  Les breves sur la une   ]
+ [(#REM)  Une breve de news sur la une en haut à droite pendant 60jours. Se remplace illico par une plus récente.]
+
 <li>
 <BOUCLE_blogue(BREVES){titre_mot=blogue}{doublons}{age_relatif<60}{par date}{inverse}{0,1}>
 <a href="#URL_BREVE">
@@ -89,9 +97,27 @@
 
 
  <div class="grande_boite">
+ 
+ [(#REM)La description d'un article important sur l'accueil]
+ 
+<BOUCLE_blogue_article(ARTICLES){titre_mot=blogue}{doublons}{par date}{inverse}{0,1}>
+	
+	<span class="logogauche"><a href="#URL_ARTICLE#diapo">[(#LOGO_ARTICLE||reduire_image{48}|inserer_attribut{alt,#TITRE})]</a></span>
+	
+[<h4><a href="#URL_ARTICLE">(#TITRE)</a></h4>]
+[<p>(#DESCRIPTION) <a href="#URL_ARTICLE">Lire la suite...</a></p>]
+<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document} {par num titre, date}>
+[<p><a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})';return false;" title="[(#TITRE|couper{200}|texte_backend)]">[(#FICHIER|image_reduire{450,10000})]</a></p>]
+</BOUCLE_documents_portfolio>
+
+</BOUCLE_blogue_article>
+
+<hr class="spacer"/>
+</B_blogue_article>
+  [(#REM)Les rubriques importante sur l'accueil]
 
               <BOUCLE_appel(RUBRIQUES){titre_mot = menu_rub}{par titre}{tout_voir}> [<a href="#URL_RUBRIQUE" title="[(#TITRE)]" class="logogauche">(#LOGO_RUBRIQUE||reduire_image{48}|inserer_attribut{alt,[(#TITRE)]})</a>]     
-[<h4><a href="#URL_RUBRIQUE" title="[(#TITRE)]">(#TITRE)</a></h4>]
+[<h4><a href="#URL_RUBRIQUE" title="(#TITRE)">(#TITRE)</a></h4>]
 <p> #DESCRIPTIF <INCLURE{fond="inc_cadenas"}{id_rubrique}>
              <BOUCLE_nouv_art(ARTICLES){id_rubrique}{age<14}{par date}{inverse}{0,20}{tout_voir}>
              <strong>Nouveau:</strong>&nbsp;<a href="#URL_ARTICLE">[(#TITRE)]</a> 
@@ -101,7 +127,7 @@
  </p> <hr class="spacer" />      
    
   </BOUCLE_appel>  
-</div>[(#REM) fermeture grande_boite   ]
+</div>[(#REM) fermeture grande_boite]
 
 
 

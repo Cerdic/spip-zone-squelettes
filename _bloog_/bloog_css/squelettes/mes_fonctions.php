@@ -1,8 +1,27 @@
 <?php
 
- 
+ /*
+ *   +----------------------------------+
+ *    Nom du Filtre :    tuer les accents
+ *   +----------------------------------+
+ *    Date : lundi 11 mai 2005
+ *    Auteur :  Posted by cy_altern
+ *   +-------------------------------------+
+ *    Fonctions de ce filtre :
+ *    Nettoie les accents
+ *    [(#TITRE|caracteres_accents)]
+ *   +-------------------------------------+ 
+ *  
+ * Pour toute suggestion, remarque, proposition d'ajout
 
+*/
 
+function caracteres_accents($chaine) {
+    $a = "àáâãäåòóôõöøèéêëçìíîïùúûüÿñ";
+    $b = "aaaaaaooooooeeeeciiiiuuuuyn";
+    return (strtr($chaine, $a, $b));
+
+}
 
 
 /*
