@@ -15,13 +15,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'blip_choisir_page' => '&lt;Choisir une page&gt;',
 	'blip_configuration_voir_general' => 'Configuration du squelette BLiP de votre site internet',
 	'blip_configuration_effacer' => 'D&eacute;sinstaller le squelette BliP',
-	'blip_configuration_surtitre' => 'Modules inclus dans le surtitre.',
-	'blip_configuration_titre_principal' => 'Modules inclus dans le titre principal.',
-	'blip_configuration_sous_titre' => 'Modules inclus dans le sous titre.',
-	'blip_configuration_titre_lateral' => 'Modules inclus dans le titre lat&eacute;ral.',
+	'blip_configuration_surtitre' => 'El&eacute;ments du surtitre.',
+	'blip_configuration_titre_principal' => 'El&eacute;ments du titre principal.',
+	'blip_configuration_sous_titre' => 'El&eacute;ments du sous titre.',
+	'blip_configuration_titre_lateral' => 'El&eacute;ments du titre lat&eacute;ral.',
 	'blip_configuration_menu_principal' => 'El&eacute;ments du menu principal de navigation.',
-	'blip_configuration_barre_laterale' => 'Modules inclus dans la barre lat&eacute;rale.',
-	'blip_configuration_mentions_techniques' => 'Modules inclus dans le pied de page',	
+	'blip_configuration_barre_laterale' => 'El&eacute;ments de la barre lat&eacute;rale.',
+	'blip_configuration_mentions_techniques' => 'El&eacute;ments du pied de page',	
 	'blip_info_base_ok' => 'Le squelette BliP est correctement install&eacute;',
 	'blip_info_base_ko' => 'Le squelette BliP n\'est pas install&eacute;.',
 	'blip_info_deja_ko' => 'Le squelette BliP a &eacute;t&eacute; d&eacute;sinstall&eacute;',
@@ -78,7 +78,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'blip_espaceprive' => '<b>Espace priv&eacute;</b>',
 	'blip_switch' => '<b>Changer les couleurs du site</b>',
 	
-	
+	'blip_aucune' => 'aucune',
+	'blip_article' => '<b>Articles</b>',
+	'blip_recherche' => '<b>Recherche</b>',
+	'blip_rubrique' => '<b>Rubriques</b>',
+	'blip_mot' => '<b>Mots cl&eacute;s</b>',
+	'blip_login' => '<b>Page de login</b>',
 	
 	'blip_raccourcis_documentation' => 'BliP est un squelette-plugin sous licence libre GNU/GPL con&ccedil;u pour fonctionner avec le syst&egrave;me de publication SPIP.
 										<br /><br />										
