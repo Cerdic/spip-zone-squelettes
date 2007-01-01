@@ -1,0 +1,31 @@
+<BOUCLE_principale(RUBRIQUES){id_rubrique}>
+<?php
+	$nom = "";
+?>
+<BOUCLE_articles(ARTICLES){id_rubrique}{par num titre}>
+<?php
+	$mon_texte = '[(#TEXTE*|texte_script)]';
+
+	$lignes = explode("\n", $mon_texte);
+
+	foreach ($lignes as $l) {
+		if (preg_match("/^<h2>([_a-z0-9]+).*/", $l, $regs)) {
+			if ($nom)
+				echo "</" . $nom . ">\n";
+
+			$nom = $regs[1];
+			echo "<" . $nom . ">\n";
+		} else {
+			echo entites_unicode($l) . "\n";
+		}
+	}
+
+?>
+</BOUCLE_articles>
+<?php
+	if ($nom) {
+		echo "</" . $nom . ">\n";
+		$nom = "";
+	}
+?>
+</BOUCLE_principale>

@@ -1,0 +1,81 @@
+<?php
+	// envoyer vers la nouvelle adresse
+	if ($id_groupe) {@header('Location: http://www.spip.net/@'); exit;}
+?>
+<br /><br />
+
+<table width=700>
+<tr width=700>
+<td width=200 valign="top">
+
+
+	<font size=1>
+	<div style='text-align: center; padding: 3px; border-top: 1px solid black; border-bottom: 1px solid black;'><b>INDEX DE LA DOCUMENTATION</b></div>
+	</font>
+	<div><a href="#8">#PUCE Les balises des squelettes</a></div>
+	<div><a href="#11">#PUCE Les crit&egrave;res de s&eacute;lection</a></div>
+	<div><a href="#9">#PUCE Les filtres</a></div>
+	<div><a href="#10">#PUCE Les boucles</a></div>
+
+
+</td>
+<td width=50>&nbsp;</td>
+<td width=450 valign="top">
+
+<BOUCLE_titre(MOTS){id_groupe}{0,1}>
+<a name=#ID_GROUPE></a>
+
+<table width=450>
+<tr width=450> <td colspan=3>
+	<div class="gros-titre">
+	[(#TYPE|supprimer_numero)]
+	</div>
+</BOUCLE_titre>
+</td></tr>
+
+<tr width=450>
+
+<td width=220 valign="top">
+<BOUCLE_mots(MOTS){id_groupe}{par titre}{1/2}>
+<p><font face="verdana,helvetica,sans-serif"><b>#TITRE</b></font>
+	<B_articles>
+	<font size=2>
+	<BOUCLE_articles(ARTICLES){id_mot}{par titre}{lang=fr}>
+		<br />#PUCE[<a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a>]
+	<B_trad><br /><font size=1>&nbsp; &nbsp;
+	<BOUCLE_trad(ARTICLES){traduction}{lang!=fr}{par lang}>
+		&#91;<a href="#URL_ARTICLE"[ title="(#TITRE|supprimer_numero|texte_backend)]">#LANG</a>&#93;
+	</BOUCLE_trad>
+	</font><br />
+	</B_trad>
+	</BOUCLE_articles>
+	</font>
+	</B_articles>
+</BOUCLE_mots>
+</td>
+
+<td width=10></td>
+
+<td width=220 valign="top">
+<BOUCLE_mots2(MOTS){id_groupe}{par titre}{2/2}>
+<p><font face="verdana,helvetica,sans-serif"><b>#TITRE</b></font>
+	<B_articles2>
+	<font size=2>
+	<BOUCLE_articles2(ARTICLES){id_mot}{par titre}{lang=fr}>
+		<br />#PUCE[<a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a>]
+	<B_trad2><br /><font size=1>&nbsp; &nbsp;
+	<BOUCLE_trad2(ARTICLES){traduction}{lang!=fr}{par lang}>
+		&#91;<a href="#URL_ARTICLE"[ title="(#TITRE|supprimer_numero|texte_backend)]">#LANG</a>&#93;
+	</BOUCLE_trad2>
+	</font><br />
+	</B_trad2>
+	</BOUCLE_articles2>
+	</font>
+	</B_articles2>
+</BOUCLE_mots2>
+</td>
+</tr>
+
+</table>
+
+</table>

@@ -1,0 +1,105 @@
+ <html dir="#LANG_DIR" lang="#LANG">
+    <HEAD>
+    <TITLE>Comment traduire SPIP</TITLE>
+    <META HTTP-EQUIV="Expires" CONTENT="0" />
+    <META HTTP-EQUIV="cache-control" CONTENT="no-cache,no-store" />
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache" />
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1" />
+	
+   <style>
+    <!--
+     a {text-decoration: none; }
+     A:Hover {color:#FF9900; text-decoration: underline;}
+     .forml {width: 100%; background-color: #FFCC66; background-position: center bottom; float: none;color: #000000}
+     .formo {width: 100%; background-color: #970038; background-position: center bottom; float: none;color: #FFFFFF}
+     .fondl {background-color: #FFCC66; background-position: center bottom; float: none; color: #000000}
+     .fondo {background-color: #970038; background-position: center bottom; float: none; color: #FFFFFF}
+     .fondf {background-color: #FFFFFF; border-style: solid ; border-width: 1; border-color: #E86519;color: #E86519}
+    -->
+   </style>
+	    
+    </HEAD>
+	
+    <body>
+	
+    <br /><br /><br />
+	<CENTER>
+	<TABLE WIDTH='550'>
+	<TR><TD WIDTH='550'> 
+
+<P><B>Documentation pour la traduction.</B>
+
+<P>L'interface "trad_lang.php3" permet d'assurer la traduction des fichiers "langues" de SPIP. La proc&eacute;dure d'installation suppose que vous disposez d'un serveur web correctement configur&eacute; avec PHP.
+
+<P><b>1 - Installation de l'interface : </B>
+
+<P>Se d&eacute;placer dans le r&eacute;pertoire racine du serveur web.
+
+<P>--> Pour une nouvelle traduction :
+<UL>
+<LI> cr&eacute;er un r&eacute;pertoire "lang".
+<LI> cr&eacute;er un r&eacute;pertoire "lang/bak".
+<LI> cr&eacute;er un r&eacute;pertoire "spip_gen".
+<LI> copier le fichier "trad_lang.php3" dans le r&eacute;pertoire "spip_gen".
+<LI> copier le fichier "spip_fr.php3" dans le r&eacute;pertoire "lang".
+<LI> allouer les droits en &eacute;criture &agrave; l'utilisateur du serveur Web pour les r&eacute;pertoires "lang" et "lang/bak".
+<LI> depuis un navigateur, appeler l'URL "/spip_gen/trad_lang.php3"
+</UL>
+
+<P>--- Exemple en Unix :<br />
+<TABLE><TR><TD WIDTH='10%'></TD><TD>
+<CODE>
+~/dev/www/tl$ mkdir lang<br />
+~/dev/www/tl$ mkdir lang/bak<br />
+~/dev/www/tl$ mkdir spip_gen<br />
+~/dev/www/tl$ cp /tmp/trad_lang.php3 ./spip_gen/<br />
+~/dev/www/tl$ cp /tmp/spip_fr.php3 ./lang/<br />
+~/dev/www/tl$ chmod 777 lang<br />
+~/dev/www/tl$ chmod 777 lang/bak<br />
+</CODE>
+</TD></TR>
+</TABLE>
+
+<P>--> Pour la reprise d'une traduction d&eacute;j&agrave; commenc&eacute;e :
+<UL>
+<LI> cr&eacute;er un r&eacute;pertoire "lang".
+<LI> cr&eacute;er un r&eacute;pertoire "lang/bak".
+<LI> cr&eacute;er un r&eacute;pertoire "spip_gen".
+<LI> copier le fichier "trad_lang.php3" dans le r&eacute;pertoire "spip_gen".
+<LI> copier le fichier "spip_fr.php3" dans le r&eacute;pertoire "lang".
+<LI> copier le fichier de la langue cible "spip_&lt;LANGUE&gt;.php3" dans le r&eacute;pertoire "lang".
+<LI> allouer les droits en &eacute;criture &agrave; l'utilisateur du serveur Web pour les r&eacute;pertoires "lang", "lang/bak" et sur le fichier "spip_&lt;LANGUE&gt;.php3".
+<LI> depuis un navigateur, appeler l'URL "/spip_gen/trad_lang.php3"
+</UL>
+
+<P><B>2 - Utilisation</B>
+
+<P>La premi&egrave;re page permet de s&eacute;lectionner les codes langues origine et cible. Les valeurs pour les codes sont connues &agrave; partir des fichiers "langues" pr&eacute;sents dans le r&eacute;pertoire "lang". En outre, il est possible d'entrer un nouveau code cible dans le cas de la cr&eacute;ation d'une nouvelle traduction. Les codes langues sont normalement des codes ISO-639. Cependant, aucun contr&ocirc;le n'est fait par l'interface sur le code langue choisi.
+
+<P>Apr&egrave;s v&eacute;rification des droits, la seconde page affiche les identifiants-chaine &agrave; traduire avec les statuts suivants :
+<UL>
+<LI> [NON TRADUIT] : le message associ&eacute; &agrave; l'identifiant doit &ecirc;tre traduit.
+<LI> [CONFLIT] : le message associ&eacute; &agrave; l'identifiant est pr&eacute;sent dans le fichier cible mais pas dans le fichier origine (situation normalement impossible).
+<LI> [traduit] : le message est d&eacute;j&agrave; traduit.	     
+</UL>
+
+<P>Tout identifiant, quel que soit sont statut, peut &ecirc;tre traduit. Lorsque l'identifiant est traduit, sa nouvelle valeur est sauvegard&eacute;e dans le fichier "spip_&lt;LANGUE&gt;.php3".
+
+<P>Les statuts des identifiants sont calcul&eacute;s gr&acirc;ce &agrave; la pr&eacute;sence de la cha&icirc;ne "&lt;NEW&gt;" au d&eacute;but de la valeur associ&eacute;e &agrave; l'identifiant. Cette cha&icirc;ne doit &ecirc;tre supprim&eacute;e pour valider la traduction.
+
+<P>R&eacute;guli&eacute;rement, il est pr&eacute;f&eacute;rable de faire une copie de sauvegarde du fichier langue. Pour cela, cliquer sur le lien en haut de la page. Le fichier langue est alors sauvegard&eacute; dans le r&eacute;pertoire "lang/bak". Ces sauvegardes sont normalement inutiles, mais peuvent permettre de reprendre le travail en cas de bug du programme (et perte du fichier langue). Si c'est le cas, il faut aller &agrave; la main recopier le dernier fichier sauvegard&eacute; depuis le r&eacute;pertoire "lang/bak" vers le r&eacute;pertoire "bak" en supprimant l'extension ".bak.&lt;DATE&gt;" en fin de fichier (le dernier fichier sauvegard&eacute; est celui qui appara&icirc;t en dernier en listant par ordre alphab&eacute;tique).
+
+<P><B>3 - R&egrave;gles</B>
+
+<P>Lorsque du code HTML est pr&eacute;sent dans la cha&icirc;ne &agrave; traduire (exemple, &lt;B&gt;, &lt;A HREF=...&gt;), celui-ci doit &ecirc;tre laiss&eacute; dans la cha&icirc;ne traduite.
+
+<P>Idem pour les noms de variables. Les noms de variables sont rep&eacute;r&eacute;s par le symbole '@' (exemple : '@nom_admin@'). Ces noms ne doivent en aucun cas &ecirc;tre traduits.
+
+<P>&nbsp;
+
+</FONT>
+</TD></TR></TABLE>
+</CENTER>
+</BODY>
+
+</HTML>
