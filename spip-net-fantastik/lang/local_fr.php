@@ -20,6 +20,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sites_realises_avec_spip' => 'Sites r&eacute;alis&eacute;s avec SPIP',
 'derniers_sites_realises_avec_spip' => 'Derniers sites r&eacute;alis&eacute;s avec SPIP',
 'sites_references' => 'Sites r&eacute;f&eacute;renc&eacute;s',
+'bouton_download' => 'T&eacute;l&eacute;charger', // eh oui, 'bouton_telecharger' c'est 'subir' ou 'upload'...
+
 
 //
 // Des trucs qui manquent, quelque soit le site...

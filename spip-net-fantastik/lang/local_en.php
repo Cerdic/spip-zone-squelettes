@@ -20,6 +20,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sites_realises_avec_spip' => 'SPIP inside',
 'derniers_sites_realises_avec_spip' => 'Latest sites designed by SPIP',
 'sites_references' => 'Referenced sites',
+'bouton_download' => 'Download',
 
 //
 // Des trucs qui manquent, quelque soit le site...
