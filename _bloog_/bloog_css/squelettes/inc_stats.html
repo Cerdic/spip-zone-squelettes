@@ -58,24 +58,28 @@ $query="SELECT UNIX_TIMESTAMP(date) AS date_unix, visites FROM spip_visites ".
              
     <BOUCLE_nb_breves(BREVES){tout}>
     </BOUCLE_nb_breves>
-    #TOTAL_BOUCLE breves,
+[#TOTAL_BOUCLE&nbsp;(#TOTAL_BOUCLE|choixsiegal{1,'brève','brèves'}),]
     </B_nb_breves>
     <BOUCLE_nb_articles(ARTICLES){tout}>    
     </BOUCLE_nb_articles>
-    #TOTAL_BOUCLE articles, 
+[#TOTAL_BOUCLE&nbsp;(#TOTAL_BOUCLE|choixsiegal{1,'article','articles'}),]
     </B_nb_articles>
     <BOUCLE_nb_sites(SITES){tout}>
     </BOUCLE_nb_sites>
-    #TOTAL_BOUCLE sites référéncés,
+[#TOTAL_BOUCLE&nbsp;(#TOTAL_BOUCLE|choixsiegal{1,'site référéncé','sites référéncés'}),]
     </B_nb_sites>
     <BOUCLE_nb_messages(FORUMS){plat}>
     </BOUCLE_nb_messages>
-    #TOTAL_BOUCLE messages dans les forums. 
+[#TOTAL_BOUCLE&nbsp;(#TOTAL_BOUCLE|choixsiegal{1,'message','messages'})] dans les forums,
     </B_nb_messages>
-[(#NOM_SITE_SPIP|list_prop)]  <?php if(($auteur_session['statut']== '0minirezo') OR ($auteur_session['statut']== '1comite')){
-     echo $auteur_session['nom'];?> , <a href="#URL_SITE_SPIP/ecrire/index.php3">vous
-    pouvez commenter ces articles.</a>
+	<BOUCLE_nb_article_proposes(ARTICLES){statut=prop}>
+    </BOUCLE_nb_article_proposes>
+   [#TOTAL_BOUCLE&nbsp;(#TOTAL_BOUCLE|choixsiegal{1,'article proposé','articles proposés'})].
+   
+  <?php if(($auteur_session['statut']== '0minirezo') OR ($auteur_session['statut']== '1comite')){
+     echo $auteur_session['nom'];?>, <a href="#URL_SITE_SPIP/ecrire/">vous pouvez commenter [(#TOTAL_BOUCLE|choixsiegal{1,'cet article','ces articles'})]</a>.
 <?php } ?> 
+ </B_nb_article_proposes>
     </p>
 
 
