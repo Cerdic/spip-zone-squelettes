@@ -26,42 +26,24 @@
 				<p class="titre">&#171;&nbsp;(#RECHERCHE)&nbsp;&#187;</p>
 			</div>]
 
-			<div class="contre-encart">
-
-				[(#REM) Articles trouves ]
-				<B_articles>
-				<div class="liste-articles">
-					#ANCRE_PAGINATION
-					<h2 class="invisible"><:resultats_recherche:></h2>
-					<ul>
-						<BOUCLE_articles(ARTICLES) {lang} {recherche} {!par points} {pagination}>
-						<li>
-						<small style="font-variant: small-caps;"><strong>#POINTS&nbsp;%</strong> &mdash; <BOUCLE_rub(RUBRIQUES){id_rubrique}>#TITRE</BOUCLE_rub></small>
-						<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
-						</li>
-						</BOUCLE_articles>
-					</ul>
-					[<p class="pagination">(#PAGINATION) &mdash; #GRAND_TOTAL&nbsp;r&eacute;sultats</p>]
-				</div>
-				</B_articles>
-				<p class="reponse_formulaire"><:avis_aucun_resultat:></p>
-				<//B_articles>
-
-			</div><!-- fin contre-encart -->
-
-			[(#REM) Mots-cles trouves ]
-			<B_mots>
-			<div class="encart">
-				<div class="groupe_mot">
-					<h2 class="menu-titre"><:glossaire:></h2>
-					<dl>
-						<BOUCLE_mots(MOTS) {type==^[0-9]} {recherche} {!par points}>
-						<dt lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR"><a href="[(#URL_PAGE{mot}|parametre_url{lang,#ENV{lang}}|parametre_url{var_recherche,#TITRE})]#mot#ID_MOT">#TITRE</a></dt>
-						</BOUCLE_mots>
-					</dl>
-				</div>
-			</div><!-- fin encart -->
-			</B_mots>
+			[(#REM) Articles trouves ]
+			<B_articles>
+			<div class="liste-articles">
+				#ANCRE_PAGINATION
+				<h2 class="invisible"><:resultats_recherche:></h2>
+				<ul>
+					<BOUCLE_articles(ARTICLES) {lang} {recherche} {!par points} {pagination}>
+					<li>
+					<small style="font-variant: small-caps;"><strong>#POINTS&nbsp;%</strong> &mdash; <BOUCLE_rub(RUBRIQUES){id_rubrique}>#TITRE</BOUCLE_rub></small>
+					<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+					</li>
+					</BOUCLE_articles>
+				</ul>
+				[<p class="pagination">(#PAGINATION) &mdash; #GRAND_TOTAL&nbsp;r&eacute;sultats</p>]
+			</div>
+			</B_articles>
+			<p class="reponse_formulaire"><:avis_aucun_resultat:></p>
+			<//B_articles>
 
 		</div><!-- fin contenu -->
 
