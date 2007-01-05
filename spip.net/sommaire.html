@@ -30,19 +30,9 @@
 			[<div class="texte">(#TEXTE)</div>]
 			</BOUCLE_intro>
 			
-			<br class="nettoyeur" />
+			<br class="nettoyeur" /><br />
 			
 			<div class="liste-articles"><ul>
-			
-			[(#REM) La derniere version de SPIP ]
-			<BOUCLE_derniere_version(ARTICLES) {id_rubrique=155} {!par date} {0,1} {doublons}>
-				<li>
-					[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{100})]
-					<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
-					[<div class="texte">(#INTRODUCTION|couper{250})</div>]
-					<br class="nettoyeur" />
-				</li>
-			</BOUCLE_derniere_version>
 			
 			[(#REM) Lien vers l'article presentant SPIP ]
 			<BOUCLE_about(ARTICLES) {id_article=464} {doublons}>
@@ -54,21 +44,31 @@
 				</li>
 			</BOUCLE_about>
 			
+			[(#REM) La derniere version de SPIP ]
+			<BOUCLE_derniere_version(ARTICLES) {id_rubrique=155} {!par date} {0,1} {doublons}>
+				<li>
+					[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{100})]
+					<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+					[<div class="texte">(#INTRODUCTION|couper{250})</div>]
+					<br class="nettoyeur" />
+				</li>
+			</BOUCLE_derniere_version>
+			
 			</ul></div>
 
 			<br class="nettoyeur" />
 
 			<div class="contre-encart">
 			
-			[(#REM) Les trois derniers articles mis en ligne : ]
+			[(#REM) Les derniers articles mis en ligne ]
 			<B_articles_recents>
 			<div class="liste-articles">
 				<h2 class="menu-titre"><:derniers_articles:></h2>
 				<ul>
-					<BOUCLE_articles_recents(ARTICLES){lang ?} {!par date}{age<150} {0,7} {doublons}>
+					<BOUCLE_articles_recents(ARTICLES){lang ?} {!par date}{age<300} {0,7} {doublons}>
 					<li>
 						<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
-						<small>&#91;#LANG&#93; &mdash; <:maj:> : [(#DATE_MODIF|affdate_court)]</small>
+						<small>&#91;#LANG&#93; &mdash; [(#DATE|affdate_court)]</small>
 					</li>
 					</BOUCLE_articles_recents>
 				</ul>
