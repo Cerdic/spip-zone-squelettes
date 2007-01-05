@@ -63,7 +63,7 @@ $css_blip_couleur_10 = array(
 
 $css_blip_couleur_11_nom = 'n&ordm; 11 : Test en cours';
 $css_blip_couleur_11 = array(
-	// Jeu de couleur n°10
+	// Jeu de couleur n°11
 	'gris|fonce' => '#aaaaaa',
 	'gris|moyen' => '#666666',
 	'gris|clair' => '#333333',
@@ -81,6 +81,50 @@ $css_blip_couleur_11 = array(
 	'taille|petit' => '0.5em',
 	'taille|bordure' => '0.25em',
 ); 
+
+$css_blip_couleur_12_nom = 'n&ordm; 12 : Noir intense, Gris sobre et bleu oc&eacute;an (th&egrave;me earth)';
+$css_blip_couleur_12 = array(
+	// Jeu de couleur n°12
+	'gris|fonce' => '#333333',
+	'gris|moyen' => '#666666',
+	'gris|clair' => '#aaaaaa',
+	'couleur|1' => '#224570',
+	'couleur|1|clair' => '#7797B3',
+	'couleur|2' => '#000000',
+	'couleur|2|clair' => '#cccccc',
+	'couleur|neutre' => '#ffffff',
+	'couleur|neutre|bis' => 'transparent',
+	'taille|espacement_bloc' => '3em',
+	'taille|geant' => '1.5em',
+	'taille|grand' => '1.25em',
+	'taille|moyen' => '1em',
+	'taille|normal' => '0.75em',
+	'taille|petit' => '0.5em',
+	'taille|bordure' => '0.25em',
+); 
+
+
+$css_blip_couleur_13_nom = 'n&ordm; 13 : Gris sobre, rouge p&eacute;tillant et vert nature (th&egrave;me coccinelle)';
+$css_blip_couleur_13 = array(
+	// Jeu de couleur n°13
+	'gris|fonce' => '#333333',
+	'gris|moyen' => '#666666',
+	'gris|clair' => '#aaaaaa',
+	'couleur|1' => '#3D6300',
+	'couleur|1|clair' => '#A6CB31',
+	'couleur|2' => '#D70900',
+	'couleur|2|clair' => '#CA5533',
+	'couleur|neutre' => '#ffffff',
+	'couleur|neutre|bis' => 'transparent',
+	'taille|espacement_bloc' => '3em',
+	'taille|geant' => '1.5em',
+	'taille|grand' => '1.25em',
+	'taille|moyen' => '1em',
+	'taille|normal' => '0.75em',
+	'taille|petit' => '0.5em',
+	'taille|bordure' => '0.25em',
+); 
+
 
 $css_blip_couleur_2_nom = 'n&ordm; 02 : Violet intense et orange p&eacute;tillant';
 $css_blip_couleur_2 = array(
