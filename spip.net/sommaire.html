@@ -29,45 +29,51 @@
 			<BOUCLE_intro(RUBRIQUES){lang}{racine}{id_rubrique!=4}{id_rubrique!=324}>
 			[<div class="texte">(#TEXTE)</div>]
 			</BOUCLE_intro>
+			
+			<br class="nettoyeur" />
+			
+			<div class="liste-articles"><ul>
+			
+			[(#REM) La derniere version de SPIP ]
+			<BOUCLE_derniere_version(ARTICLES) {id_rubrique=155} {!par date} {0,1} {doublons}>
+				<li>
+					[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{100})]
+					<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+					[<div class="texte">(#INTRODUCTION|couper{250})</div>]
+					<br class="nettoyeur" />
+				</li>
+			</BOUCLE_derniere_version>
+			
+			[(#REM) Lien vers l'article presentant SPIP ]
+			<BOUCLE_about(ARTICLES) {id_article=464} {doublons}>
+				<li>
+					[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{100})]
+					<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+					[<div class="texte">(#INTRODUCTION|couper{250})</div>]
+					<br class="nettoyeur" />
+				</li>
+			</BOUCLE_about>
+			
+			</ul></div>
 
+			<br class="nettoyeur" />
+
+			<div class="contre-encart">
+			
 			[(#REM) Les trois derniers articles mis en ligne : ]
 			<B_articles_recents>
 			<div class="liste-articles">
-				<h2 class="invisible"><:derniers_articles:></h2>
+				<h2 class="menu-titre"><:derniers_articles:></h2>
 				<ul>
-					<BOUCLE_articles_recents(ARTICLES){lang ?} {!par date}{age<150} {0,3} {doublons}>
+					<BOUCLE_articles_recents(ARTICLES){lang ?} {!par date}{age<150} {0,7} {doublons}>
 					<li>
-						[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{100})]
-						[<p class="surtitre">(#SURTITRE)</p>]
 						<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
-						[<p class="soustitre">(#SOUSTITRE)</p>]
-						<small>&#91;#LANG&#93; &mdash; [(#DATE|affdate_court)]</small>
-						[<div class="texte">(#INTRODUCTION|couper{250})</div>]
-						<br class="nettoyeur" />
+						<small>&#91;#LANG&#93; &mdash; <:maj:> : [(#DATE_MODIF|affdate_court)]</small>
 					</li>
 					</BOUCLE_articles_recents>
 				</ul>
 			</div>
 			</B_articles_recents>
-
-			<br class="nettoyeur" />
-
-			<div class="contre-encart">
-
-			[(#REM) Modifications recentes ]
-			<B_articles>
-				<div class="liste-articles">
-					[(#ENV{debut_articles}|?{'',' '})<h2 class="menu-titre"><:dernieres_modifs:></h2>]
-					<ul>
-						<BOUCLE_articles(ARTICLES){lang ?} {!par date_modif}{age_modif<150} {0,7} {doublons}>
-						<li>
-							<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
-							<small>&#91;#LANG&#93; &mdash; <:maj:> : [(#DATE_MODIF|affdate_court)]</small>
-						</li>
-						</BOUCLE_articles>
-					</ul>
-				</div>
-			</B_articles>
 
 			</div><!-- fin contre-encart -->
 
