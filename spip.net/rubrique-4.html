@@ -41,45 +41,18 @@
 				</ul>
 			</div>
 			</B_articles>
+
+			<br class="nettoyeur" />
 			
-			[(#REM) On affiche un plan de la rubrique ]
-			<B_sous_rubriques>
-			<div class="sousrub">
-				<h2><:sous_rubriques:></h2>
-				<ul>
-					<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
-					<li>
-						[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|image_reduire{70})]
-						<h3><a href="#URL_RUBRIQUE">[(#TITRE|majuscules)]</a></h3>
-						[<p class="texte">(#DESCRIPTIF|PtoBR)</p>]
-						<B_sous_articles><ul class="subart invisible">
-							<BOUCLE_sous_articles(ARTICLES){id_rubrique} {par num titre, titre}{!par date} {0,5}>
-							<li><a href="#URL_ARTICLE">#TITRE</a></li>
-							</BOUCLE_sous_articles>
-							<li class="suite"><a href="#URL_RUBRIQUE" title="<:suite:>">[...]</a></li>
-							<br class="nettoyeur" />
-						</ul></B_sous_articles>
-
-						[(#REM) Une boucle recursive pour le mini plan]
-						<B_miniplan>
-						<ul class="subrub">
-							<BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre, titre}>
-							<li>
-								<h4><a href="#URL_RUBRIQUE">[(#TITRE|majuscules)]</a></h4>
-								<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2>
-							</li>
-							</BOUCLE_miniplan>
-						</ul>
-						</B_miniplan>
-
-					<br class="nettoyeur" /></li>
-					</BOUCLE_sous_rubriques>
-				</ul>
-				</div>
-			</B_sous_rubriques>
-
-			<//B_articles>
-
+			[(#REM) Bilan des traductions ]
+			<BOUCLE_bilan(RUBRIQUES){id_rubrique}{id_rubrique=4}>
+			<div class="liste-articles">
+				<h2 class="menu-titre">Bilan des traductions</h2>
+				<iframe width="100%" height="400" src="#URL_SITE_SPIP/trad-lang/trad_bilan.php"></iframe>
+				<div align="#LANG_RIGHT"><small><a href="trad_lang.php?etape=bilan">&#91;D&eacute;tails&#93;</a></small></div>
+			</div>
+			</BOUCLE_bilan>
+			
 			<br class="nettoyeur" />
 
 			[(#REM) Sites de la rubrique ]
@@ -109,7 +82,20 @@
 		<div id="navigation">
 
 			<INCLURE{fond=inc-download}>
-			<INCLURE{fond=inc-rubriques}{id_rubrique}>
+			
+			<div class="rubriques">
+				<BOUCLE_rubriques_trad(RUBRIQUES){id_rubrique=4}>
+				<h2 class="menu-titre">[(#TITRE|couper{80})]</h2>
+				<B_sousrub_trad><ul>
+				<BOUCLE_sousrub_trad(RUBRIQUES){id_parent}{par lang}>
+				<li><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]><em>&#91;#LANG&#93;</em> [(#TITRE|couper{80})]</a></li>
+				</BOUCLE_sousrub_trad>
+				</ul></B_sousrub_trad>
+				</BOUCLE_rubriques_trad>
+			</div>
+			
+			#FORMULAIRE_INSCRIPTION
+			
 			<a href="#SQUELETTE" rel="nofollow" class="voirskel"><:voir_squelette:></a>
 
 		</div><!-- fin navigation -->
