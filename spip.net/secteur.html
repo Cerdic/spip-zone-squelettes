@@ -1,4 +1,5 @@
 #CACHE{7200}
+<BOUCLE_principale(RUBRIQUES){lang}{racine}{id_rubrique!=4}{id_rubrique!=324}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="#LANG_DIR" lang="#LANG">
 <head>
@@ -9,7 +10,7 @@
 
 <body class="page_sommaire">
 <div id="page">
-<INCLURE{fond=inc-entete}{lang}>
+<INCLURE{fond=inc-entete}>
 
 	[(#REM) Fil d'Ariane ]
 	<div id="hierarchie"><:accueil_site:></div>
@@ -35,7 +36,7 @@
 			<div class="liste-articles">
 				<h2 class="invisible"><:derniers_articles:></h2>
 				<ul>
-					<BOUCLE_articles_recents(ARTICLES){lang} {!par date}{age<150} {0,3} {doublons}>
+					<BOUCLE_articles_recents(ARTICLES){id_secteur} {!par date}{age<300} {0,3} {doublons}>
 					<li>
 						[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{100})]
 						[<p class="surtitre">(#SURTITRE)</p>]
@@ -59,7 +60,7 @@
 				<div class="liste-articles">
 					[(#ENV{debut_articles}|?{'',' '})<h2 class="menu-titre"><:dernieres_modifs:></h2>]
 					<ul>
-						<BOUCLE_articles(ARTICLES){lang} {!par date_modif}{age_modif<300} {0,7} {doublons}>
+						<BOUCLE_articles(ARTICLES){id_secteur} {!par date_modif}{age_modif<300} {0,7} {doublons}>
 						<li>
 							<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
 							<small><:maj:> : [(#DATE_MODIF|affdate_court)]</small>
@@ -114,3 +115,4 @@
 #SPIP_CRON
 </body>
 </html>
+</BOUCLE_principale>
