@@ -63,7 +63,7 @@
 			<div class="liste-articles">
 				<h2 class="menu-titre"><:derniers_articles:></h2>
 				<ul>
-					<BOUCLE_articles_recents(ARTICLES){lang ?} {!par date}{age<300} {0,7} {doublons}>
+					<BOUCLE_articles_recents(ARTICLES) {!par date}{age<300} {0,7} {doublons}>
 					<li>
 						<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
 						<small>&#91;#LANG&#93; &mdash; [(#DATE|affdate_court)]</small>
@@ -79,21 +79,30 @@
 			<div class="encart">
 
 				[(#REM) Derniers sites sous SPIP references ]
-				<INCLURE{fond=inc-sites-spip}>
+				<B_signatures_toutes>
+				<div class="syndic">
+					<h2 class="menu-titre"><:derniers_sites_realises_avec_spip:></h2>
+					<ul class="box">
+						<BOUCLE_signatures_toutes(SIGNATURES) {!par date} {0,5}>
+						[<li class="link"><a href="(#URL_SITE|unique{signatures_toutes})" class="spip_out">#NOM_SITE</a></li>]
+						</BOUCLE_signatures_toutes>
+					</ul>
+					<p><BOUCLE_signatures_toutes_total(SIGNATURES)> </BOUCLE_signatures_toutes_total>
+					<small>#GRAND_TOTAL <:sites_web:></small></B_signatures_toutes_total></p>
+				</div>
+				</B_signatures_toutes>
 
 				[(#REM) Sur le Web : articles issus de la syndication ]
-				<BOUCLE_syndic_rub(RUBRIQUES){lang=#LANG}{racine}{id_rubrique!=4}{id_rubrique!=324}>
-					<B_syndic>
-					<div class="syndic">
-						<h2 class="menu-titre"><:nouveautes_web:></h2>
-						<ul class="box">
-						<BOUCLE_syndic(SYNDIC_ARTICLES){id_secteur} {!par date}{age<150} {0,5}>
-							[<li class="link">[(#DATE|affdate_court) &ndash; ]<a href="(#URL_ARTICLE|unique{syndic})"[ title="(#NOM_SITE|texte_backend)"] class="spip_out">#TITRE</a></li>]
+				<B_syndic>
+				<div class="syndic">
+					<h2 class="menu-titre"><:nouveautes_web:></h2>
+					<ul class="box">
+						<BOUCLE_syndic(SYNDIC_ARTICLES) {!par date} {0,5}>
+						[<li class="link">[(#DATE|affdate_court) &ndash; ]<a href="(#URL_ARTICLE|unique{syndic})"[ title="(#NOM_SITE|texte_backend)"] class="spip_out">#TITRE</a></li>]
 						</BOUCLE_syndic>
-						</ul>
-					</div>
-					</B_syndic>
-				</BOUCLE_syndic_rub>
+					</ul>
+				</div>
+				</B_syndic>
 
 			</div><!-- fin encart -->
 
