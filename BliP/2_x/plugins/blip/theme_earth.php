@@ -12,7 +12,7 @@ $css_blip["#tete|background"] = 'url(plugins/blip/theme_earth_bandeau.jpg) no-re
 $css_blip['#tete|height'] = '100px';
 $css_blip[".titre_principal|margin"] = '0';
 $css_blip[".titre_principal|padding"] = '20px 20px';
-$css_blip["..sous_titre|margin"] = '0';
+$css_blip[".sous_titre|margin"] = '0';
 $css_blip[".sous_titre|padding"] = '0 0 10px 20px';
 
 $css_blip["#pied|background"] = '#ffffff';

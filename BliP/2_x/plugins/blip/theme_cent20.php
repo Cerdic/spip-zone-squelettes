@@ -9,7 +9,7 @@ $css_blip["#page|border|color"] = ${$css_blip_couleur}['couleur|1'];
 $css_blip["#page|background|color"] = ${$css_blip_couleur}['couleur|neutre'];
 $css_blip[".titre_principal|margin"] = '0';
 $css_blip[".titre_principal|padding"] = '20px 20px';
-$css_blip["..sous_titre|margin"] = '0';
+$css_blip[".sous_titre|margin"] = '0';
 $css_blip[".sous_titre|padding"] = '0 0 10px 20px';
 
 ?>

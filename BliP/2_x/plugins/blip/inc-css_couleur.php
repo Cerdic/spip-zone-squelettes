@@ -104,7 +104,7 @@ $css_blip_couleur_12 = array(
 ); 
 
 
-$css_blip_couleur_13_nom = 'n&ordm; 13 : Gris sobre, rouge p&eacute;tillant et vert nature (th&egrave;me coccinelle)';
+$css_blip_couleur_13_nom = 'n&ordm; 13 : Gris sobre, rouge p&eacute;tillant et vert nature (th&egrave;me rose)';
 $css_blip_couleur_13 = array(
 	// Jeu de couleur n°13
 	'gris|fonce' => '#333333',
@@ -124,6 +124,52 @@ $css_blip_couleur_13 = array(
 	'taille|petit' => '0.5em',
 	'taille|bordure' => '0.25em',
 ); 
+
+
+$css_blip_couleur_14_nom = 'n&ordm; 14 : Violet p&eacute;tillant et vert nature (th&egrave;me fleur)';
+$css_blip_couleur_14 = array(
+	// Jeu de couleur n°14
+	'gris|fonce' => '#333333',
+	'gris|moyen' => '#666666',
+	'gris|clair' => '#aaaaaa',
+	'couleur|1' => '#4B7B15',
+	'couleur|1|clair' => '#86AE56',
+	'couleur|2' => '#BC1D71',
+	'couleur|2|clair' => '#FF9BDA',
+	'couleur|neutre' => '#ffffff',
+	'couleur|neutre|bis' => 'transparent',
+	'taille|espacement_bloc' => '3em',
+	'taille|geant' => '1.5em',
+	'taille|grand' => '1.25em',
+	'taille|moyen' => '1em',
+	'taille|normal' => '0.75em',
+	'taille|petit' => '0.5em',
+	'taille|bordure' => '0.25em',
+); 
+
+
+$css_blip_couleur_15_nom = 'n&ordm; 14 : Vert prononc&eacute; et marron nature (th&egrave;me kiwi)';
+$css_blip_couleur_15 = array(
+	// Jeu de couleur n°15
+	'gris|fonce' => '#333333',
+	'gris|moyen' => '#666666',
+	'gris|clair' => '#aaaaaa',
+	'couleur|1' => '#49A004',
+	'couleur|1|clair' => '#9FD05B',
+	'couleur|2' => '#894D05',
+	'couleur|2|clair' => '#F0CD55',
+	'couleur|neutre' => '#ffffff',
+	'couleur|neutre|bis' => 'transparent',
+	'taille|espacement_bloc' => '3em',
+	'taille|geant' => '1.5em',
+	'taille|grand' => '1.25em',
+	'taille|moyen' => '1em',
+	'taille|normal' => '0.75em',
+	'taille|petit' => '0.5em',
+	'taille|bordure' => '0.25em',
+); 
+
+
 
 
 $css_blip_couleur_2_nom = 'n&ordm; 02 : Violet intense et orange p&eacute;tillant';

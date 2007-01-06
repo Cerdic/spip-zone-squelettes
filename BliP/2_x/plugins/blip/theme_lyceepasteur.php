@@ -12,7 +12,7 @@ $css_blip[".titre_principal|width"] = '900px';
 $css_blip[".titre_principal|margin"] = '0';
 $css_blip[".titre_principal|padding"] = '0';
 $css_blip[".sous_titre|width"] = '880px';
-$css_blip["..sous_titre|margin"] = '0';
+$css_blip[".sous_titre|margin"] = '0';
 $css_blip[".sous_titre|padding"] = '10px 0 10px 20px';
 
 ?>
