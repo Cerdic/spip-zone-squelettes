@@ -54,7 +54,7 @@
  [<span class="logogauche">(#LOGO_ARTICLE)</span>]
 <//B_logo_article>
 
-<a href="sommaire.php3">Accueil</a> > <BOUCLE_plan(HIERARCHIE){id_article}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a>	
+<a href="[(#URL_PAGE{sommaire})]">Accueil</a> > <BOUCLE_plan(HIERARCHIE){id_article}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a>	
                   </BOUCLE_plan>
 &gt; </p>                 
 [<h1>(#TITRE) 
@@ -154,13 +154,13 @@ $ze_titre = ereg_replace( "> ", "", $ze_titre );
 
 <tr class="<?php echo $couleur == 0 ? 'row_even' : 'row_odd' ; ?>" >
 <td>
-<a href="_discussion.php3?id_forum=#ID_FORUM#forum#ID_FORUM"	title=""><?php echo $ze_titre?></a>
+<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',##ID_FORUM#forum#ID_FORUM})]"	title=""><?php echo $ze_titre?></a>
 </td>
 <td><BOUCLE_nom3(AUTEURS){tout}{id_auteur}>
-[<a (#STATUT|=={'1comite'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de ce r&eacute;dacteur">]
-[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de cet admin">]
-[<a (#STATUT|=={'6forum'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Contact et profil de ce visiteur">]
-[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="_membre.php3?id_auteur=#ID_AUTEUR" title="Compte en attente">]
+[<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Contact et profil de ce r&eacute;dacteur">]
+[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Contact et profil de cet admin">]
+[<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Contact et profil de ce visiteur">]
+[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Compte en attente">]
 [(#NOM|couper{18})</a><br/>]
 </BOUCLE_nom3>
 [(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
@@ -202,7 +202,7 @@ $ze_titre = ereg_replace( "> ", "", $ze_titre );
 <!-- La boite de recherche --> 
 <div class="boite"> <!-- ouverture boite recherche --> 
   <h4 class="icone_recherche">Chercher dans les forums</h4>
-  <form action='_recherche-forum.php3' method='post' class="form_rech" id="form_rech">
+  <form action='[(#URL_PAGE{recherche-forum})]' method='post' class="form_rech" id="form_rech">
               <p><input name="recherche" type='text' id='recherche' size='20' />
               <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" /></p>             
           </form>
