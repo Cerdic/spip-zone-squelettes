@@ -58,44 +58,25 @@
 			
 			</ul></div>
 
-			[(#REM) Les trois derniers articles mis en ligne : ]
-			<B_articles_recents>
-			<div class="liste-articles invisible">
-				<h2 class="invisible"><:derniers_articles:></h2>
-				<ul>
-					<BOUCLE_articles_recents(ARTICLES) {id_secteur} {!par date}{age<300} {0,3} {doublons}>
-					<li>
-						[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{100})]
-						[<p class="surtitre">(#SURTITRE)</p>]
-						<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
-						[<p class="soustitre">(#SOUSTITRE)</p>]
-						<small>[(#DATE|affdate_court)]</small>
-						[<div class="texte">(#INTRODUCTION|couper{250})</div>]
-						<br class="nettoyeur" />
-					</li>
-					</BOUCLE_articles_recents>
-				</ul>
-			</div>
-			</B_articles_recents>
-
 			<br class="nettoyeur" />
 
 			<div class="contre-encart">
 
-			[(#REM) Modifications recentes ]
+			[(#REM) Derniers articles mis en ligne ]
 			<B_articles>
 				<div class="liste-articles">
 					<h2 class="menu-titre"><:derniers_articles:></h2>
 					<ul>
 						<BOUCLE_articles(ARTICLES){id_secteur} {!par date}{age<300} {0,7} {doublons}>
-						<li>
-							<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
-							<small><:maj:> : [(#DATE_MODIF|affdate_court)]</small>
-						</li>
+						<li><h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3></li>
 						</BOUCLE_articles>
 					</ul>
 				</div>
 			</B_articles>
+			
+			<BOUCLE_maj(ARTICLES){id_secteur} {!par date} {0,1}>
+			<small class="invisible"><:maj:> : [(#DATE_MODIF|affdate_court)]</small>
+			</BOUCLE_maj>
 
 			</div><!-- fin contre-encart -->
 
