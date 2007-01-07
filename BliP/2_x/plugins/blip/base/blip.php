@@ -27,4 +27,9 @@ $blip_keys = array(
 $tables_principales[$table_blip] =
 	array('field' => &$blip_champs, 'key' => &$blip_keys);
 
+//-- Table des tables ----------------------------------------------------
+
+global $table_des_tables;
+$table_des_tables[$table_blip]=$table_blip;
+
 ?>

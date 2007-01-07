@@ -55,25 +55,9 @@
 	}
 	
 	function BliP_installer_table() {
-		// Installe la structure de la table blip - Processus différentié de celui des tables, comme ça en cas de platage on aura au moins la base.
-		global $table_blip;
-		$req = "
-		CREATE TABLE `spip_blip` (
-		`id_config` bigint(21) NOT NULL auto_increment,
-		`position` tinytext NOT NULL,
-		`id_item` bigint(21) NOT NULL default '0',
-		`ordre` bigint(21) NOT NULL default '0',
-		`type` tinytext NOT NULL,
-		`titre` text NOT NULL,
-		`descriptif` text NOT NULL,
-		`texte` text NOT NULL,
-		`style` tinytext NOT NULL,
-		`actif` char(3) NOT NULL default '',
-		PRIMARY KEY  (`id_config`),
-		KEY `actif` (`actif`)
-		) ENGINE=MyISAM;
-		";
-		spip_query($req);
+		include_spip('base/blip');
+		include_spip('base/create');
+		creer_base();
 	}
 
 	function BliP_installer_configuration() {
