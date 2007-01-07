@@ -84,6 +84,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'blip_rubrique' => '<b>Rubriques</b>',
 	'blip_mot' => '<b>Mots cl&eacute;s</b>',
 	'blip_login' => '<b>Page de login</b>',
+	'blip_monter_dun_cran' => 'Monter dans le flux',
+	'blip_descendre_dun_cran' => 'Descendre dans le flux',
 	
 	'blip_raccourcis_documentation' => 'BliP est un squelette-plugin sous licence libre GNU/GPL con&ccedil;u pour fonctionner avec le syst&egrave;me de publication SPIP.
 										<br /><br />										

@@ -13,7 +13,7 @@
 		return (spip_query("SELECT * FROM `spip_blip`"));
 	}
 
-	// Script  d'installation de la table spip_blip et configuration par défaut du squelette. Utilisé sur exce=blip
+	// Script  d'installation de la table spip_blip et configuration par défaut du squelette. Utilisé sur exec=blip
 	function BliP_installer_blip() {
 		include_spip('inc/meta');
 		ecrire_meta('blip_version', 2.3);
@@ -52,9 +52,7 @@
 		ecrire_meta('blip_theme', "toto");
 		ecrire_meta('blip_couleur', "1");	
 		ecrire_metas();
-	
 	}
-	
 	
 	function BliP_installer_table() {
 		// Installe la structure de la table blip - Processus différentié de celui des tables, comme ça en cas de platage on aura au moins la base.
@@ -172,11 +170,12 @@
 		echo "<table cellpadding='3' cellspacing='1' border='0'>";
 		echo "<tr bgcolor='#aaaaaa' style='color:white; text-align:center;'>
 				<td class='verdana2' style='text-align:center;'><b>".'Statut'."</b></td>
-				<td class='verdana2' style='text-align:center;'><b>".'Ordre'."</b></td>
+				<td class='verdana2' style='text-align:center;'><b>".'&nbsp;Ordre&nbsp;'."</b></td>
 				<td class='verdana2' style='text-align:center;'><b>".'&nbsp;Options&nbsp;'."</b></td>
 				<td class='verdana2' style='text-align:center;'><b>".'Restriction d\'affichage'."</b></td>
 				<td class='verdana2' style='text-align:center;'><b>".'Texte affich&eacute; <br /> ou fichier inclu'."</b></td>
 			</tr>\n";
+		$nblignes = spip_num_rows($res);
 		while ($elements = spip_fetch_array($res, SPIP_ASSOC)) {
 			$bgcolor = alterner($i++, '#eeeeee','white');
 			$restriction = explode("-", $elements['position']);
@@ -188,7 +187,23 @@
 				echo "<a href='".generer_url_ecrire('blip',"action=activer&id=".$elements['id_config'])."'><img src='../plugins/blip/ecrire/img_pack/blipconfig-red.gif' title='Activer cet &eacute;lement'/></a>";
 			}
 			echo "</td>";
-			echo "<td style='text-align:center;'>".$elements['ordre']."</td><td style='text-align:center;'>";
+			
+			echo "<td style='text-align:center;'>";
+			// Ne pas afficher si dernier element
+			if ($index != $nblignes) {
+				echo "<a href='".generer_url_ecrire('blip',"action=monter&id=".$elements['id_config'])."'>";
+				echo "<img src='"._DIR_IMG_PACK."descendre-16.png' style='border:0' title='"._T('blipconfig:blip_descendre_dun_cran')."' />";
+				echo "</a>";
+			}
+			/*echo $elements['ordre'];*/
+			if ($index != 1) {
+				echo "<a href='".generer_url_ecrire('blip',"action=descendre&id=".$elements['id_config'])."'>";
+				echo "<img src='"._DIR_IMG_PACK."monter-16.png' style='border:0' title='"._T('blipconfig:blip_monter_dun_cran')."' />";
+				echo "</a>";
+			}
+			echo "</td>";
+			
+			echo "<td style='text-align:center;'>";
 			echo "<span style='margin:2px;'><a href='".generer_url_ecrire('blip_modifier',"action=editer&id=".$elements['id_config'])."' title='Modifier cet &eacute;lement'><img src='../plugins/blip/ecrire/img_pack/blipconfig-modif.gif' /></a></span>";
 			echo "<span style='margin:2px;'><a href='".generer_url_ecrire('blip',"action=supprimer&id=".$elements['id_config'])."' title='Suprimer cet &eacute;lement'><img src='../plugins/blip/ecrire/img_pack/blipconfig-delete.gif' /></a></span>";
 			echo "</td>";
@@ -370,6 +385,11 @@
 		spip_query($req);
 	}
 
+	function BliP_changer_position($id_ligne, $changement) {
+		if ($changement == "monter")
+		$req = "";
+		echo $req;
+	}
 
 	/***************************************************/
 	/* Génération automatique d'éléments de formulaire */
@@ -397,29 +417,29 @@
 	}
 
 	function BliP_initialiser_valeurs_formulaire() {
-	$blipconfig_item = array(
-	//Valeurs par défaut, je les ai complété je pense que c'est ce que tu voulais que je fasse.
-		'id_config' => "",
-		'position' => "barre_laterale",
-		'id_item' => "0",
-		'ordre' => "50", // Chiffre clefs pour mettre le module au milieu
-		'type' => "statique",
-		'titre' => "",
-		'descriptif' => "",
-		'texte' => "",
-		'style' => "",
-		'actif' => "oui"
-		);
-	// surcharge de ces valeurs le cas échéant par celles de la base si action sur un item a priori existant
-	if (isset($_GET['action'])) {
-		$action = $_GET['action'];
-		if (isset($_GET['id'])) {
-			$id = $_GET['id'];
-			$res = spip_query("SELECT * FROM spip_blip WHERE id_config='$id' LIMIT 1");
-			$blipconfig_item = spip_fetch_array($res, SPIP_ASSOC);
+		$blipconfig_item = array(
+		//Valeurs par défaut, je les ai complété je pense que c'est ce que tu voulais que je fasse.
+			'id_config' => "",
+			'position' => "barre_laterale",
+			'id_item' => "0",
+			'ordre' => "50", // Chiffre clefs pour mettre le module au milieu
+			'type' => "statique",
+			'titre' => "",
+			'descriptif' => "",
+			'texte' => "",
+			'style' => "",
+			'actif' => "oui"
+			);
+		// surcharge de ces valeurs le cas échéant par celles de la base si action sur un item a priori existant
+		if (isset($_GET['action'])) {
+			$action = $_GET['action'];
+			if (isset($_GET['id'])) {
+				$id = $_GET['id'];
+				$res = spip_query("SELECT * FROM spip_blip WHERE id_config='$id' LIMIT 1");
+				$blipconfig_item = spip_fetch_array($res, SPIP_ASSOC);
+			}
 		}
-	}
-	return $blipconfig_item;
+		return $blipconfig_item;
 	}
 
 /* générer un formulaire prérempli pour l'item nouveau ou modifié */
@@ -646,7 +666,6 @@ END;
 	fin_cadre_relief();
 	echo "<br />";
 	echo "</div>";
-
 
 	echo '<div id="Layer_modules" style="display: '.$display_modules.'; margin-top: 1px;">';
 	debut_cadre_relief("", false, "", _T('blipconfig:blip_modules_info'));

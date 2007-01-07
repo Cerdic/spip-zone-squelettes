@@ -35,6 +35,10 @@ function exec_BliP() {
                 break;
             case "monter" :
             case "descendre" :
+                if (isset($_GET['id'])) {
+                    BliP_changer_position($_GET['id'], $action);
+                }
+                break;            
             case "activer" :
                 if (isset($_GET['id'])) {
                     BliP_activer_ligne($_GET['id']);
