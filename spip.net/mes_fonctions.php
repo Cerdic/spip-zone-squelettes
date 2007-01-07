@@ -1,5 +1,7 @@
 <?php
 
+$GLOBALS['puce'] = '- ';
+
 // mettre en place la version et date de la release stable de SPIP
 # valeurs definies dans ecrire/mes_options.php3 
 #define_once('VERSION_STABLE', '1.8.1');
