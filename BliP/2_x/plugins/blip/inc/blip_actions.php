@@ -1,4 +1,8 @@
 <?php
+	if (!defined('_DIR_PLUGIN_BLIP')){ // definie automatiquement en 1.9.2
+		$p=explode(basename(_DIR_PLUGINS)."/",str_replace('\\','/',realpath(dirname(__FILE__).'/..')));
+		define('_DIR_PLUGIN_BLIP',(_DIR_PLUGINS.end($p)));
+	}
 
 	// Toutes les fonctions ont étés regroupées ici.
 
@@ -378,8 +382,8 @@
 	/***************************************************/
 	/* Génération automatique d'éléments de formulaire */
 	/***************************************************/
-	function BliP_generer_option_select($nom, $valeurs, $actif="", $onchange="") {
-		$s  = '<select name="'.$nom.'" id="'.$nom.'" onchange="'.$onchange.'">';
+	function BliP_generer_option_select($nom, $valeurs, $actif="", $onchange="", $class="") {
+		$s  = "\n".'<select name="'.$nom.'" id="'.$nom.'" onchange="'.$onchange.'" class="'.$class.'">'."\n";
 		foreach ($valeurs as $valeur => $description) {
 			$s .= '<option value="'.$valeur.'"';
 			if ($actif == $valeur) {
@@ -424,6 +428,30 @@
 			}
 		}
 		return $blipconfig_item;
+	}
+
+// $pattern : expression régulière pour choisir les fichiers
+// $defaut  : valeur à placer en debut de tableau
+// $dossier : dossier relatif à celui du plugin
+// $filtre  : expression régulière à retirer des indexes
+// retourne un tableau associatif trié array[nomfichier_sans_suffixe]=nomfichier_propre
+	function BliP_generer_liste_fichiers($pattern, $defaut='', $filtre='/(.+)\.html?$/', $dossier='.') {
+		$liste = array();
+		if (is_dir(_DIR_PLUGIN_BLIP."/".$dossier)) {
+			if ($dh = opendir(_DIR_PLUGIN_BLIP."/".$dossier)) {
+				while (($file = readdir($dh)) !== false) {
+					if (!is_dir($file)) {
+						if (preg_match($pattern, $file)) {
+							$liste[preg_replace($filtre, '\1', $file)] = BliP_nom_module_lisible($file);
+						}
+					}
+				}
+				closedir($dh);
+			}
+		}
+		ksort($liste);
+		if ($defaut) array_unshift($liste, $defaut);
+		return ($liste);	
 	}
 
 /* générer un formulaire prérempli pour l'item nouveau ou modifié */
@@ -484,37 +512,8 @@
 	);
 
 	$formval = BliP_initialiser_valeurs_formulaire();
-
-	$blipconfig_modules['null']=_T('blipconfig:blip_choisir_module');
-	if (is_dir("../")) {
-		if ($dh = opendir("../plugins/blip/")) {
-			while (($file = readdir($dh)) !== false) {
-				if (!is_dir($file)) {
-					if (preg_match("/(^mod)(-|_).+\.html$/", $file)) {
-						$blipconfig_modules[preg_replace("/\.html$/", "", $file)] = BliP_nom_module_lisible($file);
-					}
-				}
-			}
-			closedir($dh);
-		}
-	}
-	asort($blipconfig_modules);
-
-	$blipconfig_pages[0]=_T('blipconfig:blip_choisir_page');
-	if (is_dir("../")) {
-		if ($dh = opendir("../plugins/blip/")) {
-			while (($file = readdir($dh)) !== false) {
-				if (!is_dir($file)) {
-					if (preg_match("/^[^-_]+\.html$/", $file)) {
-						$blipconfig_pages[preg_replace("/\.html$/", "", $file)] = BliP_nom_module_lisible($file);
-					}
-				}
-			}
-			closedir($dh);
-		}
-	}
-	asort($blipconfig_pages);
-
+	$blipconfig_modules = BliP_generer_liste_fichiers('/^mod_.+\.html$/', _T('blipconfig:blip_choisir_module'));
+	$blipconfig_pages = BliP_generer_liste_fichiers('/^[^-_]+\.html$/' ,_T('blipconfig:blip_choisir_page'));
 
 echo <<<END1
 <script language="JavaScript" type="text/JavaScript">
@@ -756,7 +755,7 @@ function BliP_action_formulaire() {
 }
 
 function BliP_nom_module_lisible($nomfichier) {
-	return ucfirst(preg_replace('/_/', ' ', preg_replace('/(^mod_)?(.*)\.html?/', '$2', $nomfichier)));
+	return ucfirst(preg_replace('/_/', ' ', preg_replace('/(^mod_|^theme_)?(.*)(\.[^\.]+)/', '$2', $nomfichier)));
 }
 
 ?>

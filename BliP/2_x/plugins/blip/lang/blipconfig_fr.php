@@ -54,6 +54,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'blip_couleur_du_site' => 'Choix des couleurs du site',
 	'blip_options' => 'Options &amp; personnalisation',
 	'blip_menu_navigation' => 'Menu de navigation de la barre lat&eacute;rale',
+	'blip_theme_neutre' => 'Neutre',
 
 	'blip_accueil' => '<b>Accueil</b>',
 	'blip_sommaire' => '<b>Actualit&eacute;</b>',

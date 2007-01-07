@@ -107,10 +107,9 @@ function exec_blip_contenu() {
 
 	debut_cadre_relief("", false, "", _T('blipconfig:blip_theme_graphique'));
 	$blip_prefixe = entites_html($GLOBALS['meta']["blip_prefixe"]);
-	echo "<input type='text' name='blip_prefixe' value=\"$blip_prefixe\" size='40' CLASS='forml'>";
+	$blipconfig_themes = BliP_generer_liste_fichiers('/^theme_.+\.php$/' ,_T('blipconfig:blip_theme_neutre'), '/^theme_(.+)\.php$/');
+	echo BliP_generer_option_select('blip_prefixe', $blipconfig_themes, $blip_prefixe, "", "forml");
 	echo "<div style='text-align:right;'><input type='submit' name='Valider' value='"._T('bouton_enregistrer')."' CLASS='fondo'></div>";
-	echo "<br />";
-	echo "Dans votre dossier 'blip' vous trouverez des fichiers theme_XXXX.php. Saisir : XXXX";
 	fin_cadre_relief();
 	fin_cadre_couleur();
 
