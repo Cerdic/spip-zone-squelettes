@@ -2,10 +2,37 @@
 		Menu de navigation par rubriques,
 		different dans l'espace traducteurs du reste du site.
 ]
+<BOUCLE_espace_trad(RUBRIQUES){id_rubrique}{id_secteur=4}>
+
+<div class="rubriques">
+<BOUCLE_rubriques_trad(RUBRIQUES){id_rubrique=4}>
+
+<h2 class="menu-titre"><:navigation:></h2>
+
+<B_sousrub_trad><ul>
+<BOUCLE_sousrub_trad(RUBRIQUES){id_parent}{par lang}{par num titre, titre}>
+<li><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]><em>&#91;#LANG&#93;</em> [(#TITRE|couper{80})]</a>
+
+<BOUCLE_test_expose_trad(RUBRIQUES){id_rubrique}>#EXPOSE{' '}</BOUCLE_test_expose_trad>
+<B_articles_trad><ul class="memrub">
+<BOUCLE_articles_trad(ARTICLES){branche}><li><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a></li></BOUCLE_articles_trad>
+</ul></B_articles_trad>
+</B_test_expose_trad>
+
+</li>
+</BOUCLE_sousrub_trad>
+</ul></B_sousrub_trad>
+
+</BOUCLE_rubriques_trad>
+</div>
+
+</BOUCLE_espace_trad>
+
+
 <div class="rubriques">
 <BOUCLE_rubriques(RUBRIQUES){lang}{racine}{id_rubrique!=4}{id_rubrique!=324}>
 
-<h2 class="menu-titre"><a href="#URL_RUBRIQUE"><:navigation:></a></h2>
+<h2 class="menu-titre"><:navigation:></h2>
 
 <B_sousrub><ul>
 <BOUCLE_sousrub(RUBRIQUES){id_parent}{par num titre, titre}>
@@ -25,3 +52,5 @@
 
 </BOUCLE_rubriques>
 </div>
+
+<//B_espace_trad>
