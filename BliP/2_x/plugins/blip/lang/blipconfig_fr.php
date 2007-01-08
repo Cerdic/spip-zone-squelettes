@@ -48,7 +48,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'blip_info_reinitialiser' => '<b>Cette commande restaure la configuration par d&eacute;faut du squelette BliP.</b><p />',
 	
 	'blip_maj_requise' => 'Vous devez lancer la proc&eacute;dure de mise &agrave; jour',
-	'blip_menu_navigation_aide' => 'Vous pouvez d&eacute;cidez que certains &eacute;l&eacute;ments du menu de navigation ne doivent pas etre affich&eacute;s. Utilisez la liste ci-dessous pour indiquer quels &eacute;l&eacute;ments seront disponibles ',
+	'blip_menu_navigation_aide' => 'Vous pouvez d&eacute;cider que certains &eacute;l&eacute;ments du menu de navigation ne soient pas affich&eacute;s. Utilisez la liste ci-dessous pour indiquer quels &eacute;l&eacute;ments seront disponibles ',
 	
 	'blip_theme_graphique' => 'Choix du th&egrave;me graphique',
 	'blip_couleur_du_site' => 'Choix des couleurs du site',
