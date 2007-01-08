@@ -56,6 +56,11 @@
 			</BOUCLE_derniere_version_trad>
 			</BOUCLE_derniere_version>
 			
+			[(#REM) Articles de la rubrique ]
+			<BOUCLE_articles(ARTICLES) {id_rubrique} {par num titre, titre}{!par date} {doublons}>
+			<li><h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3></li>
+			</BOUCLE_articles>
+			
 			</ul></div>
 
 			<br class="nettoyeur" />
@@ -63,16 +68,16 @@
 			<div class="contre-encart">
 
 			[(#REM) Derniers articles mis en ligne ]
-			<B_articles>
+			<B_articles_maj>
 				<div class="liste-articles">
 					<h2 class="menu-titre"><:derniers_articles:></h2>
 					<ul>
-						<BOUCLE_articles(ARTICLES){id_secteur} {!par date}{age<300} {0,7} {doublons}>
+						<BOUCLE_articles_maj(ARTICLES){id_secteur} {!par date}{age<300} {0,7} {doublons}>
 						<li><h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3></li>
-						</BOUCLE_articles>
+						</BOUCLE_articles_maj>
 					</ul>
 				</div>
-			</B_articles>
+			</B_articles_maj>
 			
 			<BOUCLE_maj(ARTICLES){id_secteur} {!par date} {0,1}>
 			<small class="invisible"><:maj:> : [(#DATE_MODIF|affdate_court)]</small>
