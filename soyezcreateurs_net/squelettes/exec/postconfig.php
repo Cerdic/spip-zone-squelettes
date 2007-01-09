@@ -164,7 +164,6 @@ function config_site() {
 		create_mot("_LogosExtra", "310. Tourisme Roches enchantées", "", "");
 		create_mot("_LogosExtra", "320. Tourisme La Loue (Rivière)", "", "bottom right");
 
-
 	create_groupe("_META", "Paramètrage du site", "Permet de spécifier des META pour le site.\n\nIl est possible de rajouter des METAs non encore présents, mais, comme d\'habitude en la matière : sachez ce que vous faites !", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_META", "Description", "Mettre ci-dessous la description du site", "");
 		create_mot("_META", "ICBM", "Mettre la latitude et la longitude du lieu sous la forme : XXX.XXXXX, XXX.XXXXX\n_ Pour trouver vos coordonnées : [Multimap->http://www.multimap.com/]\n_ Et [vous référencer sur GeoURL->http://geourl.org/ping/]", "");
