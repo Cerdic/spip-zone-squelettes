@@ -3,7 +3,7 @@
 /***************************************************************************\
  *  SPIP, Systeme de publication pour l'internet                           *
  *                                                                         *
- *  Copyright (c) 2001-2006                                                *
+ *  Copyright (c) 2001-2007                                                *
  *  Arnaud Martin, Antoine Pitrou, Philippe Riviere, Emmanuel Saint-James  *
  *                                                                         *
  *  Ce programme est un logiciel libre distribue sous licence GNU/GPL.     *
@@ -58,12 +58,11 @@ function public_composer_dist($squelette, $mime_type, $gram, $sourcefile) {
 
 	// charger le source, si possible, et compiler 
 	if (lire_fichier ($sourcefile, $skel)) {
-		$f = charger_fonction('compiler', 'public');
-		$skel_code = $f($skel, $nom, $gram, $sourcefile);
+		$compiler = charger_fonction('compiler', 'public');
+		$skel_code = $compiler($skel, $nom, $gram, $sourcefile);
 	}
 
 	// Tester si le compilateur renvoie une erreur
-
 	if (is_array($skel_code))
 		erreur_squelette($skel_code[0], $skel_code[1]);
 	else {
@@ -109,10 +108,6 @@ function squelette_obsolete($skel, $squelette) {
 // remarquable, mais a conserver pour compatibilite ascendante.
 // -> http://www.spip.net/fr_article901.html
 
-// http://doc.spip.org/@calcule_fichier_logo
-function calcule_fichier_logo($on) {
-	return ereg_replace("^" . _DIR_IMG, "", $on);
-}
 
 // Renvoie le code html pour afficher un logo, avec ou sans survol, lien, etc.
 
@@ -177,17 +172,17 @@ function affiche_logos($logos, $lien, $align) {
 
 // http://doc.spip.org/@calcule_logo
 function calcule_logo($type, $onoff, $id, $id_rubrique, $flag_fichier, $logo_hierarchie = 1) {
-	$logo_f = charger_fonction('chercher_logo', 'inc');
+	$chercher_logo = charger_fonction('chercher_logo', 'inc');
 	$nom = strtolower($onoff);
 
 	while (1) {
-		$on = $logo_f($id, $type, $nom);
+		$on = $chercher_logo($id, $type, $nom);
 		if ($on) {
 			if ($flag_fichier)
 			  return  (array('', "$on[2].$on[3]"));
 			else {
 				$off = ($onoff != 'ON') ? '' :
-				  $logo_f($id, $type, 'off');
+					$chercher_logo($id, $type, 'off');
 				return array ($on[0], ($off ? $off[0] : ''));
 			}
 		}
@@ -213,7 +208,7 @@ function calcul_introduction ($type, $texte, $chapo='', $descriptif='') {
 
 	switch ($type) {
 		case 'articles':
-			if ($descriptif)
+			if (trim($descriptif))
 				return propre($descriptif);
 			else if (substr($chapo, 0, 1) == '=')	// article virtuel
 				return '';
@@ -401,7 +396,7 @@ function calcule_logo_document($id_document, $doubdoc, &$doublons, $flag_fichier
 				array('spip_documents'),
 				array("id_document = $id_vignette"))) {
 			$vignette = spip_abstract_fetch($res);
-			if (@file_exists($vignette['fichier']))
+			if (@file_exists(_DIR_RACINE.$vignette['fichier']))
 				$logo = generer_url_document($id_vignette);
 		}
 	} else if ($mode == 'vignette') {
@@ -437,7 +432,7 @@ function calcule_logo_document($id_document, $doubdoc, &$doublons, $flag_fichier
 	else {
 		// Pas de vignette, mais un fichier image -- creer la vignette
 		if (strstr($GLOBALS['meta']['formats_graphiques'], $extension)) {
-		  if ($img = copie_locale($fichier)
+		  if ($img = _DIR_RACINE.copie_locale($fichier)
 			AND @file_exists($img)) {
 				if (!$x AND !$y) {
 					$logo = reduire_image($img);
@@ -463,7 +458,8 @@ function calcule_logo_document($id_document, $doubdoc, &$doublons, $flag_fichier
 
 	// flag_fichier : seul le fichier est demande
 	if ($flag_fichier)
-		return ereg_replace("^" . _DIR_IMG, "", (extraire_attribut($logo, 'src')));
+		return preg_replace(',^' . preg_quote(_DIR_IMG).',', '',
+			extraire_attribut($logo, 'src'));
 
 
 	// Calculer le code html complet (cf. calcule_logo)
