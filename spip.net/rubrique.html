@@ -41,44 +41,6 @@
 				</ul>
 			</div>
 			</B_articles>
-			
-			[(#REM) On affiche un plan de la rubrique ]
-			<B_sous_rubriques>
-			<div class="sousrub">
-				<h2><:sous_rubriques:></h2>
-				<ul>
-					<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
-					<li>
-						[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|image_reduire{70})]
-						<h3><a href="#URL_RUBRIQUE">[(#TITRE|majuscules)]</a></h3>
-						[<p class="texte">(#DESCRIPTIF|PtoBR)</p>]
-						<B_sous_articles><ul class="subart invisible">
-							<BOUCLE_sous_articles(ARTICLES){id_rubrique} {par num titre, titre}{!par date} {0,5}>
-							<li><a href="#URL_ARTICLE">#TITRE</a></li>
-							</BOUCLE_sous_articles>
-							<li class="suite"><a href="#URL_RUBRIQUE" title="<:suite:>">[...]</a></li>
-							<br class="nettoyeur" />
-						</ul></B_sous_articles>
-
-						[(#REM) Une boucle recursive pour le mini plan]
-						<B_miniplan>
-						<ul class="subrub">
-							<BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre, titre}>
-							<li>
-								<h4><a href="#URL_RUBRIQUE">[(#TITRE|majuscules)]</a></h4>
-								<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2>
-							</li>
-							</BOUCLE_miniplan>
-						</ul>
-						</B_miniplan>
-
-					<br class="nettoyeur" /></li>
-					</BOUCLE_sous_rubriques>
-				</ul>
-				</div>
-			</B_sous_rubriques>
-
-			<//B_articles>
 
 			<br class="nettoyeur" />
 
