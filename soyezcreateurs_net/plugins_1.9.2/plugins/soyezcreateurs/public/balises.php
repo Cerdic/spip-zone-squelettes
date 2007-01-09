@@ -1162,11 +1162,10 @@ function balise_CACHE_dist($p) {
 // #INSERT_HEAD
 // pour permettre aux plugins d'inserer des styles, js ou autre
 // dans l'entete sans modification du squelette
-// #INSERT_HEAD
 //
 // http://doc.spip.org/@balise_INSERT_HEAD_dist
 function balise_INSERT_HEAD_dist($p) {
-	$p->code = "pipeline('insert_head','')";
+	$p->code = "pipeline('insert_head','<!-- insert_head -->')";
 	$p->interdire_scripts = false;
 	return $p;
 }
@@ -1338,7 +1337,8 @@ function balise_ARRAY_dist($p) {
 		$_val = interprete_argument_balise($n++,$p);
 	}
 	if (strlen($_code))
-		$p->code = "array(".substr($_code,2).")";
+		$_code = substr($_code,2);
+	$p->code = "array($_code)";
 	$p->interdire_scripts = false;
 	return $p;
 }

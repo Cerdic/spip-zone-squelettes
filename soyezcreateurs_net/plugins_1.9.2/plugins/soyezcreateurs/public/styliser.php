@@ -81,6 +81,6 @@ function public_styliser_dist($fond, $id_rubrique, $lang) {
 			$squelette = $f;
 	}
 
-	return array($squelette, $ext, 'html', "$squelette.$ext");
+	return array($squelette, $ext, $extension_spip, "$squelette.$ext");
 }
 ?>
