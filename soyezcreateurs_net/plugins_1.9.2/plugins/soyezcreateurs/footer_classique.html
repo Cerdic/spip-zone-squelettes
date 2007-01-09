@@ -4,7 +4,7 @@
 	</div>
 </div><!-- id="content" -->
 	</div><!-- id="wrapper" -->
-	<div id="navigation">
+	<div id="navigation" class="equilibre">
 <BOUCLE_LogoHeader(MOTS){titre=LogoHeader}{texte=Oui}> </BOUCLE_LogoHeader>
 <div id="logo">[(#LOGO_SITE_SPIP_NORMAL||logo_swf_or_img{
 	#LOGO_SITE_SPIP_NORMAL||extraire_attribut{width},
@@ -81,7 +81,7 @@
 
 <div class="espaceavant">
 <B_Secteurs>
-<ul>
+<ul class="tv">
   <BOUCLE_Secteurs(RUBRIQUES){racine}{par num titre}{doublons}>
   <li><?php
 	if ($jp_rubrique=='[(#ID_RUBRIQUE|texte_script)]') {
@@ -127,7 +127,13 @@
 </div>
 </B_RacinesBas>
 <?php } ?>
-
+[(#CONFIG{plugin}|match{ACCESRESTREINT}|?{' '})
+<div class="espaceavant">
+<ul>
+<li><INCLURE(session.php){fond=login-logout}{connexion}{id_article}{id_rubrique}></li>
+</ul>
+</div>
+]
 <div class="espaceavant">
 <ul>
 <li><?php if ($jp_rubrique=='Plan') { ?><strong><?php } ?><a accesskey="P" href="plan.html" title="<:pyrat:toutleplan:>"><:pyrat:plan_menu:></a><?php if ($jp_rubrique=='Plan') { ?></strong><?php } ?></li>
@@ -140,6 +146,8 @@
 </div>
 <INCLURE{fond=frmrecherche}>
 <INCLURE{fond=inc_ads_search}>
+
+[(#FORMULAIRE_ABONNEMENT)]
 
 <BOUCLE_EstNewsLetter(MOTS){titre=NewsLetterID}{texte!=}>
 <div class="cadreinfo">

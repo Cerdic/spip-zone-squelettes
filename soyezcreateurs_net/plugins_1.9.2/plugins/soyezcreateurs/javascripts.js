@@ -1,6 +1,6 @@
-#CACHE{30*24*3600}
+#CACHE{0*30*24*3600}
 #HTTP_HEADER{Content-Type: text/javascript; charset=iso-8859-1}
-// Menu accessible dynamique et CSS alternatives, V 1.0
+// Menu accessible dynamique et CSS alternatives, V 2.0 (avec jquery)
 //
 // Copyright (c) 2004 Jacques PYRAT
 // http://www.pyrat.net/
@@ -15,7 +15,7 @@
 // **********************************************************************
 //
 // Presets
-var jp_blankpic='#DOSSIER_SQUELETTE/images/1.gif';
+var jp_blankpic='/#CHEMIN{images/1.gif}';
 var jp_onclass='menu_plus';
 var jp_offclass='menu_minus';
 var jp_picalt='<:pyrat:menu_picalt:>';
@@ -103,102 +103,20 @@ function inputKeyHandler(ev) {
 		if (ev.stopPropagation) ev.stopPropagation();
 	}
 }
-	
-function makeCookie(Name,Value,Expiry,Path,Domain,Secure){
-  if (Expiry != null) {
-    var datenow = new Date();
-    datenow.setTime(datenow.getTime() + Math.round(86400000*Expiry));
-    Expiry = datenow.toGMTString();
-  }
-
-  Expiry = (Expiry != null) ? '; expires='+Expiry : '';
-  Path = (Path != null)?'; path='+Path:'';
-  Domain = (Domain != null) ? '; domain='+Domain : '';
-  Secure = (Secure != null) ? '; secure' : '';
-
-  document.cookie = Name + '=' + escape(Value) + Expiry + Path + Domain + Secure;
-}
-
-function readCookie(Name) {
-  var cookies = document.cookie;
-  if (cookies.indexOf(Name + '=') == -1) return null;
-  var start = cookies.indexOf(Name + '=') + (Name.length + 1);
-  var finish = cookies.substring(start,cookies.length);
-  finish = (finish.indexOf(';') == -1) ? cookies.length : start + finish.indexOf(';');
-  return unescape(cookies.substring(start,finish));
-}
-
-function setActiveStyleSheet(pTitle) {
-  var vLoop, vLink, vFound;
-  vFound = false;
-  for(vLoop=0; (vLink = document.getElementsByTagName("link")[vLoop]); vLoop++) {
-  	if(vLink.getAttribute("rel").indexOf("style") != -1 && vLink.getAttribute("title")) {
-      if(vLink.getAttribute("title") == pTitle) vFound = true;
-	}
-  }
-  if (vFound) {
-	for(vLoop=0; (vLink = document.getElementsByTagName("link")[vLoop]); vLoop++) {
-	  if(vLink.getAttribute("rel").indexOf("style") != -1 && vLink.getAttribute("title")) {
-		if(vLink.getAttribute("title") == pTitle) vLink.disabled = false
-		  else vLink.disabled = true;
-	  }
-	}
-  }
-}
-
-function selectStyle (vCookieName, vSelection) {
-  //WRITE COOKIE
-  makeCookie(vCookieName, vSelection, 90, '/');
-  //ACTIVE SELECTED ALTERNAT STYLE SHEET
-  setActiveStyleSheet(vSelection);
-  adjustLayout();
-  return void(0); //Pour pouvoir mettre un lien du type : <a href="javascript:selectStyle('style','fichierstyle');">Nom du style</a>
-}
-
-if (document.cookie.indexOf('style=')!=-1) {
-  css = readCookie('style');
-  //ACTIVATE SELECTED STYLE SHEET
-  setActiveStyleSheet(css);
-}
 
 function adjustLayout() {
-  // Get natural heights
-  if (document.getElementById('content')) {
-  	document.getElementById('content').style.height="auto";
-  	var cHeight = Number(document.getElementById('content').offsetHeight);
-	var cTop = Number(document.getElementById('content').offsetTop);
-  }
-  if (document.getElementById('navigation')) {
-  	document.getElementById('navigation').style.height="auto";
-  	var lHeight = Number(document.getElementById('navigation').offsetHeight);
-	var lTop = Number(document.getElementById('navigation').offsetTop);
-  }
-  if (document.getElementById('extra')) {
-  	document.getElementById('extra').style.height="auto";
-  	var rHeight = Number(document.getElementById('extra').offsetHeight);
-	var rTop = Number(document.getElementById('extra').offsetTop);
-  }
-  // Find the maximum height
-  if (lTop!=rTop) {
-    var maxHeight = Math.max(cHeight, Number(lHeight)+Number(rHeight));
-  } else {
-    var maxHeight = Math.max(cHeight, Math.max(lHeight, rHeight));
-  }
-
-  // Assign maximum height to all columns
-  if (document.getElementById('content')) {
-  	document.getElementById('content').style.height=maxHeight+'px';
-  }
-  if (Math.abs(lTop-rTop)>50) {
-	  if (document.getElementById('extra')) {
-		document.getElementById('extra').style.height = maxHeight - lHeight+'px';
-	  }
-  } else {
-	  if (document.getElementById('navigation')) {
-		document.getElementById('navigation').style.height=maxHeight+'px';
-	  }
-	  if (document.getElementById('extra')) {
-		document.getElementById('extra').style.height=maxHeight+'px';
-	  }
-  }
+	var h=0;
+	$("div.equilibre").height("auto");
+	$("div.equilibre").each(function(){ h=Math.max(h,this.offsetHeight); }).css({'height': h+'px'});
 }
+
+$(document).ready(function() {
+	jp_expinit();
+	adjustLayout();
+	$("body").resize(
+		function () {
+		adjustLayout();
+		}
+	);
+	$("div#footer").corner("bottom 10px", "#53B0DE");
+});

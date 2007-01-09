@@ -5,7 +5,7 @@
 </BOUCLE_RacineMenuHaut>
 <?php $titre = '[(#TITRE|textebrut|supprimer_numero|attribut_html|texte_script)]'; ?>
 <?php $titretop = '[(#TITRE|textebrut|supprimer_numero|attribut_html|nettoyer_marqueur|texte_script)]'; ?>
-<INCLURE{fond=header}{id_rubrique}>
+<INCLURE{fond=header}{id_rubrique}{connexion}>
 <BOUCLE_EstAgenda(HIERARCHIE){id_rubrique}{tout}{titre_mot=Agenda}{inverse}{0,1}>
 <BOUCLE_AgendaScolaire(MOTS){titre=AgendaScolaire}{texte=Oui}>
 <INCLURE{fond=agendaliste_scolaire}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{genre}{calendrier}>
@@ -25,6 +25,11 @@
 	</BOUCLE_plan>
 	<li>[(#TITRE|supprimer_numero)]</li>
 	</ul>
+
+	<BOUCLE_aff_Complet_Pour_Impression(MOTS){titre=aff_Complet_Pour_Impression}{texte=Oui}>
+	<a href="@aff_rub_complet.html">Chapitre complet pour impression</a>
+	</BOUCLE_aff_Complet_Pour_Impression>
+
 	</div>
 
 [(#REM) Ne pas afficher le cartouche si le texte est vide : on affiche déjà la liste des articles avec un extrait à la place du texte
@@ -45,7 +50,7 @@
 </B_rubrique_principal>
 <?php $titre = '<:pyrat:erreur:>'; ?>
 <?php $titretop = '<:pyrat:erreur|nettoyer_marqueur:>'; ?>
-<INCLURE{fond=header}{id_rubrique}>
+<INCLURE{fond=header}{id_rubrique}{connexion}>
 Erreur : cette rubrique n'existe pas !
 <//B_rubrique_principal>
 <INCLURE{fond=footer}{id_rubrique}>

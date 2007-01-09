@@ -66,6 +66,8 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'erreur_documentexistepas' => 'Erreur : ce document n\'existe pas !',
 
 //F
+'fil_rss' => 'Fil RSS',
+'fil_rss_title' => 'Utilisez ce lien dans votre agr&eacute;teur de flux RSS',
 'forum_graversonnom' => 'Votre intention',
 'forum_prenom' => 'Qui &ecirc;tes-vous ?',
 'forum_votre_prenom' => 'Votre pr&eacute;nom :',

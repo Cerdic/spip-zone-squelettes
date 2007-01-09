@@ -1,0 +1,88 @@
+#CACHE{30*24*3600}
+<INCLURE{fond=header}{connexion}>
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
+	<li>Site complet pour impression</li>
+	</ul>
+	</div>
+<!-- Contenu : Tous les mots -->
+<div class="cartouche">
+<h1 class="titre-texte">Site complet pour impression</h1>
+</div>
+<div id="letexte">
+<BOUCLE_secteurs(RUBRIQUES) {id_rubrique}>
+
+				<h2><a href="#URL_RUBRIQUE">[(#TITRE|Supprimer_numero)]</a></h2>
+
+				[(#TEXTE|reduire_image{400,0})]
+
+					<B_articles_racine>
+					<ul>
+						<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
+						<li><strong>[(#TITRE|Supprimer_numero)]</strong></li>
+						[(#TEXTE|reduire_image{400,0})]
+						</BOUCLE_articles_racine>
+					</ul>
+					</B_articles_racine>
+
+					<B_rubriques>
+					<ul>
+						<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+						<li>[(#TITRE|Supprimer_numero)]
+						[(#TEXTE|reduire_image{400,0})]
+
+							<B_articles>
+							<ul>
+								<BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
+								<li>[(#TITRE|Supprimer_numero)]</li>
+								[(#TEXTE|reduire_image{400,0})]
+								</BOUCLE_articles>
+							</ul>
+							</B_articles>
+
+							<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+
+						</li>
+						</BOUCLE_rubriques>
+
+					</ul>
+					</B_rubriques>
+
+				
+
+				
+
+				[(#REM) Breves ]
+				<B_breves>
+				<div class="breves">
+					<h3 class="menu-titre"><:breves:></h3>
+					<ul>
+						<BOUCLE_breves(BREVES) {id_secteur} {par date}{inverse}>
+						<li>[(#TITRE|Supprimer_numero)]</li>
+						[(#TEXTE|reduire_image{400,0})]
+						</BOUCLE_breves>
+					</ul>
+				</div>
+				</B_breves>
+
+				[(#REM) Sur le Web ]
+				<B_sites>
+				<div class="syndic">
+					<h3 class="menu-titre"><:sites_web:></h3>
+					<ul>
+						<BOUCLE_sites(SITES) {id_secteur} {par nom_site}>
+						<li>#NOM_SITE</li>
+						[(#TEXTE|reduire_image{400,0})]
+						</BOUCLE_sites>
+					</ul>
+				</div>
+				</B_sites>
+
+				
+
+				</BOUCLE_secteurs>
+</div><!-- Fin de #LeTexte -->
+[(#FORMULAIRE_ADMIN)]
+
+<INCLURE{fond=footer}>
