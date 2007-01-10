@@ -41,15 +41,15 @@ function insecable ($texte) {
 define('secteurs_aide', '324');
 if (!defined('aide_en_ligne')) {
 	function boucle_ARTICLES($id_boucle, &$boucles) {
-		$boucles[$id_boucle]->where[] = '"id_secteur NOT IN ('.secteurs_aide.')"';
+		$boucles[$id_boucle]->where[] = array("'NOT IN'", "'id_secteur'", '"('.secteurs_aide.')"');
 		return boucle_ARTICLES_dist($id_boucle, $boucles);
 	}
 	function boucle_RUBRIQUES($id_boucle, &$boucles) {
-		$boucles[$id_boucle]->where[] = '"id_secteur NOT IN ('.secteurs_aide.')"';
+		$boucles[$id_boucle]->where[] = array("'NOT IN'", "'id_secteur'", '"('.secteurs_aide.')"');
 		return boucle_RUBRIQUES_dist($id_boucle, $boucles);
 	}
 	function boucle_HIERARCHIE($id_boucle, &$boucles) {
-		$boucles[$id_boucle]->where[] = '"id_secteur NOT IN ('.secteurs_aide.')"';
+		$boucles[$id_boucle]->where[] = array("'NOT IN'", "'id_secteur'", '"('.secteurs_aide.')"');
 		return boucle_HIERARCHIE_dist($id_boucle, $boucles);
 	}
 }
