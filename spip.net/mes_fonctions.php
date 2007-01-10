@@ -2,10 +2,6 @@
 
 $GLOBALS['puce'] = '- ';
 
-# syez sympa de ne pas casser l'aide en ligne avec ce genre de blagues
-#$GLOBALS['debut_intertitre'] = "\n<h2 class=\"spip\">\n";
-#$GLOBALS['fin_intertitre'] = "</h2>\n";
-
 // mettre en place la version et date de la release stable de SPIP
 # valeurs definies dans ecrire/mes_options.php3 
 #define_once('VERSION_STABLE', '1.8.1');
