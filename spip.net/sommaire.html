@@ -1,6 +1,6 @@
 #CACHE{7200}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html dir="#LANG_DIR" lang="#LANG">
+<html lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">
 <head>
 <title>[(#NOM_SITE_SPIP|textebrut)][ - (#ENV{lang}|traduire_nom_langue)]</title>
 [<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
@@ -14,8 +14,7 @@
 	<div id="conteneur">
 
 		[(#REM)
-				Contenu principal : nouveautes sur le site, selon la langue.
-				Si aucun critere de langue, la page d'accueil est multilingue.
+				Contenu principal : nouveautes sur le site, presentation de SPIP.
 		]
 		<div id="contenu">
 			<div class="cartouche">
@@ -23,7 +22,7 @@
 			</div>
 
 			[(#REM) Texte de presentation de SPIP : ]
-			<BOUCLE_intro(RUBRIQUES){lang}{racine}{id_rubrique!=4}{id_rubrique!=324}>
+			<BOUCLE_intro(RUBRIQUES) {id_rubrique=91}>
 			[<div class="texte">(#TEXTE)</div>]
 			</BOUCLE_intro>
 			
@@ -61,7 +60,7 @@
 				<h2 class="menu-titre"><:derniers_articles:></h2>
 				<ul>
 					<BOUCLE_articles_recents(ARTICLES) {!par date}{age<300} {0,7} {doublons}>
-					<li>
+					<li lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR" style="text-align: #LANG_LEFT;">
 						<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
 						<small>&#91;#LANG&#93; &mdash; [(#DATE|affdate_court)]</small>
 					</li>
