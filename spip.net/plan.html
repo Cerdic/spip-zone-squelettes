@@ -29,7 +29,7 @@
 				ce squelette affiche le plan de site general de spip.net
 				Sinon, il affiche le plan du secteur de la langue.
 				
-				L'espace de traduction est traite n'est pas oublie,
+				L'espace de traduction n'est pas oublie,
 				et affiche de meme les contenus dans la langue demandee,
 				sinon tous.
 			
@@ -41,7 +41,7 @@
 				[(#REM) D'abord le secteur de la langue ]
 				<BOUCLE_secteurs(RUBRIQUES) {lang ?} {racine}{id_rubrique!=4}{id_rubrique!=324} {par num titre}>
 				<li lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR" style="text-align: #LANG_LEFT;">
-					<h2 class="menu-titre"><a href="#URL_RUBRIQUE">#TITRE</a></h2>
+					<h2 class="menu-titre">#TITRE</h2>
 
 					[(#REM) Articles par sous-rubriques ]
 					<B_rubriques>
@@ -73,20 +73,16 @@
 
 				[(#REM) N'oublions pas l'espace de traduction ]
 				<B_espace_trad_rub>
-
-					<BOUCLE_espace_trad(RUBRIQUES){id_rubrique=4}>
 					<li>
-						<h2 class="menu-titre"><a href="#URL_RUBRIQUE"><:trad_espace:></a></h2>
+						<h2 class="menu-titre"><:trad_espace:></h2>
 						<ul>
 							<li>
-							[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|image_reduire{77})]
-							</BOUCLE_espace_trad>
-	
+								<BOUCLE_espace_trad(RUBRIQUES){id_rubrique=4}>[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|image_reduire{77})]</BOUCLE_espace_trad>
 								<BOUCLE_espace_trad_rub(RUBRIQUES) {lang ?} {id_secteur=4}{id_rubrique!=4}>
 								<ul lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR" style="text-align: #LANG_LEFT;">
 									<li>
-									<strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
-									<BOUCLE_espace_trad_rub_articles(BOUCLE_articles)></BOUCLE_espace_trad_rub_articles>
+										<strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
+										<BOUCLE_espace_trad_rub_articles(BOUCLE_articles)></BOUCLE_espace_trad_rub_articles>
 									</li>
 								</ul>
 								</BOUCLE_espace_trad_rub>
@@ -102,10 +98,8 @@
 
 		[(#REM) Menu de navigation laterale ]
 		<div id="navigation">
-
 			<INCLURE{fond=inc-download}>
 			<INCLURE{fond=inc-rubriques}>
-
 		</div><!-- fin navigation -->
 	
 	<br class="nettoyeur" />

@@ -39,26 +39,27 @@
 					<BOUCLE_rubriques(RUBRIQUES) {lang ?} {id_parent} {par num titre}>
 					<li>
 
-				[(#REM) Sites de la rubrique ]
-				<B_sites>
-				<div class="syndic">
-					<h2 class="menu-titre">#_rubriques:TITRE</h2>
-					<ul>
-						<BOUCLE_sites(SITES){id_rubrique}{par num nom_site, nom_site}>
-						<li class="box"><strong class="titre"><a href="#URL_SITE" class="spip_out">#NOM_SITE</a></strong>
-							[<p>(#DESCRIPTIF|PtoBR)</p>]
-							<B_syndic>
+						[(#REM) Sites de la rubrique ]
+						<B_sites>
+						<div class="syndic">
+							<h2 class="menu-titre">#_rubriques:TITRE</h2>
 							<ul>
-								<BOUCLE_syndic(SYNDIC_ARTICLES){id_syndic}{age<150}{!par date}{0,3}>
-								<li class="link"><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></li>
-								</BOUCLE_syndic>
+								<BOUCLE_sites(SITES) {id_rubrique} {par num nom_site, nom_site}>
+								<li class="box">
+									<strong class="titre"><a href="#URL_SITE" class="spip_out">#NOM_SITE</a></strong>
+									[<p>(#DESCRIPTIF|PtoBR)</p>]
+									<B_syndic>
+									<ul>
+										<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {age<150}{!par date} {0,3}>
+										<li class="link"><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></li>
+										</BOUCLE_syndic>
+									</ul>
+									</B_syndic>
+								</li>
+								</BOUCLE_sites>
 							</ul>
-							</B_syndic>
-						</li>
-						</BOUCLE_sites>
-					</ul>
-				</div>
-				</B_sites>
+						</div>
+						</B_sites>
 
 						<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
 
@@ -69,22 +70,19 @@
 				</B_rubriques>
 
 			</BOUCLE_secteurs>
-
+			
 		</div><!-- fin contenu -->
 
 		[(#REM) Menu de navigation laterale ]
 		<div id="navigation">
 
-			<INCLURE{fond=inc-download}>
-			<INCLURE{fond=inc-rubriques}>
-			
 			[(#REM) Rappels visuels des sites de reference - EN TEST ! ]
-			<div class="uzine">
+			<div class="uzine"><br />
 			<BOUCLE_sites_logos(SITES){id_secteur=91}>
 			[<a href="#URL_SITE"[ title="(#NOM_SITE|couper{80}|texte_backend)"]>(#LOGO_SITE||image_reduire{160})</a><br /><br />]
 			</BOUCLE_sites_logos>
 			</div>
-
+		
 		</div><!-- fin navigation -->
 	
 	<br class="nettoyeur" />
