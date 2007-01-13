@@ -136,7 +136,7 @@ function exec_blip_contenu() {
 			echo _T('blipconfig:'.$i);
 			echo "</TD>";
 			echo "<TD ALIGN='$spip_lang_left' class='verdana2'>";
-			afficher_choix($i, $GLOBALS['meta'][$i],
+			echo afficher_choix($i, $GLOBALS['meta'][$i],
 				array('oui' => _T('item_oui'), 'non' => _T('item_non')), " &nbsp; ");
 			echo "</TD></TR>\n";
 		}
@@ -152,7 +152,7 @@ function exec_blip_contenu() {
 
 	echo "</form>";
 
-	echo fin_page();
+	echo fin_gauche(), fin_page();
 
 }
 ?>
