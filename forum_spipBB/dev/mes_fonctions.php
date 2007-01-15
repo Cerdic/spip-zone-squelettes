@@ -193,7 +193,7 @@ $nb_mess = spip_num_rows($result_auteurs);
 
 function barre_forum_citer($texte, $lan)
 {
-	include_ecrire('/inc/layer.php');
+	include_ecrire('inc/layer');
 
 if (!$premiere_passe = rawurldecode(_request('retour_forum'))) {
 	if($GLOBALS['citer']){
@@ -215,7 +215,7 @@ $texte="\{\{$row[auteur] $lan:}}\n\n<quote>\n$row[texte]\n</quote>\n";
 		return "<textarea name='texte' rows='12' class='forml' cols='40'>$texte</textarea>";
 	static $num_formulaire = 0;
 	$num_formulaire++;
-	include_ecrire('inc_barre.php3');
+	include_spip('inc/barre');
 	return afficher_barre("document.getElementById('formulaire_$num_formulaire')", true) .
 	  "
 <textarea name='texte' rows='12' class='forml' cols='40'
