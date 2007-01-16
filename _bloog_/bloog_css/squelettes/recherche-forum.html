@@ -31,6 +31,8 @@
 
 <link rel="alternate" type="application/rss+xml" href="[(#URL_PAGE{backend}|parametre_url{'id_rubrique',#ID_RUBRIQUE})]title="[(#TITRE)]" />
 </BOUCLE_rub>
+
+
 [(#REM)   enlève http:// de l'adresse du site   ]
 
 <?php
@@ -38,9 +40,10 @@ $url = "#URL_SITE_SPIP";
 $url= ereg_replace( "http://www.", "", $url );
 $url= ereg_replace( "http://", "", $url );
 ?>
-[(#REM)  $url= ereg_replace( "http://www.", "", $url );  ]
 
-<script type="text/javascript">[(#REM)  
+
+
+<script type="text/javascript"><!--  
 // Moteur interne par Google (fenetre popup)
  function RecherchePopup()
  {
@@ -53,7 +56,7 @@ $url= ereg_replace( "http://", "", $url );
    URL="http://www.google.fr/search?q="+chaine+"&hl=fr&meta=lr%3Dlang_fr";
    window.open(URL,'','toolbar=yes,location=yes,status=yes,menubar=yes,scrollbars=yes,resizable=yes,width=700,height=400'); 
    }
-} //   ]
+} // -->
 </script>
 
 
@@ -73,14 +76,14 @@ $url= ereg_replace( "http://", "", $url );
 <li>
 
 <h4>Recherche interne</h4>
-<form action='_recherche-forum.php' method='post'>
+<form action='[(#URL_PAGE{recherche-forum})]' method='post'>
   <p>
     <input name="recherche" type='text' value="#RECHERCHE" id='recherche' size='20' />  
     <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" />
   <br/>
                 Lancez une recherche dans les forums du site: 
                 Les mots de moins de quatre lettres ne sont pas indexés
-    par le moteur interne. Utilisez un seul mots pour cibler votre recherche.</p>
+    par le moteur interne. Utilisez un seul mot pour cibler votre recherche.</p>
 </form>
 		
 </li>
@@ -181,7 +184,7 @@ $url= ereg_replace( "http://", "", $url );
 <div class="boite">
   <h4 class="icone_stats">Stats</h4>
 
-<INCLURE{_inc_stats}{delai=24*3600}>
+<INCLURE{fond="inc_stats"}{delai=24*3600}>
 
 </div>
       
