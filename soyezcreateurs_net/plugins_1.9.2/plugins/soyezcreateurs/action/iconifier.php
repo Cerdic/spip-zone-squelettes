@@ -76,18 +76,18 @@ function action_spip_image_ajouter_dist($arg) {
 		spip_log("pb de copie pour $f");
 	else {
 		$size = @getimagesize($f);
-		$type = decoder_type_image($size[2], true);
+		$type = !$size ? '': ($size[2] > 3 ? '' : $formats_logos[$size[2]-1]);
         
-        if (!$type) {
-            include_spip('inc/swfheader');
-            $swf = new swfheader();
-            $swf->loadswf($f);
-            if ($swf->valid) {
-                $type='swf';
-                $size[0] = $swf->width;
-                $size[1] = $swf->height;
-            }
-        }
+        	if (!$type) {
+         	   include_spip('inc/swfheader');
+         	   $swf = new swfheader();
+         	   $swf->loadswf($f);
+         	   if ($swf->valid) {
+         	       $type='swf';
+         	       $size[0] = $swf->width;
+        	        $size[1] = $swf->height;
+        	    }
+        	}
         
 		if ($type) {
 			$poids = filesize($f);
