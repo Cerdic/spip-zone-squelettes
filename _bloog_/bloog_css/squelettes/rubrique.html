@@ -1,3 +1,4 @@
+#CACHE2678400
 
 <INCLURE{fond="header"}{delais=31*24*3600}>
 
@@ -109,8 +110,10 @@
 
 
 <div id="minipics">
+<B_articles>
+#ANCRE_PAGINATION
 <?php $i=0; ?>
-<BOUCLE_articles(ARTICLES){id_rubrique}{par date}{inverse}{doublons}>
+<BOUCLE_articles(ARTICLES){id_rubrique}{par date}{inverse}{doublons}{pagination}>
 <ul>
 <BOUCLE_logo_documents(DOCUMENTS){id_article}{mode=document}{par date}{inverse}{extension=jpg}{0,1}>
 <li style=" <?php
@@ -156,10 +159,14 @@ else {$i=0;} ?>
 </li></ul>
 <hr class="spacer"/>
 </BOUCLE_articles>
+<div class="centre">
+[<p class="pagination">(#PAGINATION{page_precedent_suivant})</p>]
+</div>
+</B_articles>
 </div>[(#REM)   fermeture minipics   ]
 
 
-                      <B_syndic>
+<B_syndic>
 <div class="grande_boite">
 
 <h4 class="icone_site">Vu sur le web</h4><br/>
@@ -226,10 +233,14 @@ else {$i=0;} ?>
 <B_archives>
     <div class="boite">
       <h4 class="icone_article">A voir également</h4>
+      <ul>
       <BOUCLE_archives(ARTICLES){id_rubrique}{doublons}{par date}{inverse}{0,20}>
-              <a href="#URL_ARTICLE">[(#TITRE)]</a> 
-              <INCLURE{fond="inc_cadenas"}{delais="7*24*3600"}{id_article}> 
+      <li>
+              [<a href="#URL_ARTICLE" [title="(#DESCRIPTIF|couper{100})"]>(#TITRE)</a><br/>]
+              <INCLURE{fond="inc_cadenas"}{delais="7*24*3600"}{id_article}>
+      </li>                
               </BOUCLE_archives>
+      </ul>        
         </div> [(#REM)   fermeture boite   ] 
 </B_archives>
 
