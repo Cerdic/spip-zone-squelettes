@@ -36,6 +36,8 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'copyright_icra' => '&Eacute;tiquet&eacute; gr&acirc;ce &agrave; <a href="http://www.icra.org/labelv02.html">ICRA</a>',
 'copyright_cnil' => 'D&eacute;claration CNIL n&ordm;',
 'copyright_droits' => 'Tous droits r&eacute;serv&eacute;s.',
+'chapitre_complet' => 'Chapitre complet pour impression',
+'chapitre_complet_title' => 'Afficher en entier le contenu de la rubrique&nbsp;: ',
 
 //D
 'date_j_1' => 'D',
@@ -134,6 +136,8 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'recherche_value' => 'Recherche ?',
 'recherche_title' => 'Veuillez saisir votre recherche',
 'recherche_label' => 'Rechercher sur le site',
+'recherche_motclef' => 'Choisissez un mot clefs',
+'recherche_motclef_label' => 'Recherche par mots clefs',
 'recherche_title_ok' => 'Lancer la recherche',
 
 //S

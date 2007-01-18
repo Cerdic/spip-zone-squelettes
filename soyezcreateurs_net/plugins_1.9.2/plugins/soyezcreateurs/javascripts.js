@@ -107,7 +107,22 @@ function inputKeyHandler(ev) {
 function adjustLayout() {
 	var h=0;
 	$("div.equilibre").height("auto");
+	var lastheight = -1;
+	var stacked = 0;
+	$("div.stackable").each(function(){ if ((lastheight!=0) && (lastheight!=this.offsetTop)) {stacked=-1} ; lastheight=this.offsetTop; });
+	if (stacked) {
+		var hstacked = 0;
+		$("div.stackable").each(function(){ hstacked+=this.offsetHeight; });
+		var hnotstackable = 0;
+		hnotstackable = $("div.notstackable")[0].offsetHeight;
+		if (hnotstackable>hstacked) {
+			$("div.laststackable").css({'height': hnotstackable + parseInt($("div.laststackable")[0].offsetHeight) - hstacked+'px'});
+		} else {
+			$("div.notstackablet").css({'height': hstacked+'px'});
+		}
+	} else {
 	$("div.equilibre").each(function(){ h=Math.max(h,this.offsetHeight); }).css({'height': h+'px'});
+}
 }
 
 $(document).ready(function() {

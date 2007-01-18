@@ -2,18 +2,21 @@
 <BOUCLE_ActiverRechercheparMots(MOTS){titre=ActiverRechercheparMots}{texte=Oui}>
 <B_RechercheMot>
 <div class="espaceavant">
-<form action="/@mot.html" method="get">
-	<select id="recherchemot" name="id_mot" class="formrecherche" onchange="return submit(this);">
-	<option value="0">Recherche mots clefs</option>
+<form action="/@mot.html" method="get" id="frmrecherchemot" class="searchfrm">
+<div>
+	<label for="recherchemot" title="<:pyrat:recherche_title:>"><:pyrat:recherche_motclef_label:></label>
+	<select id="recherchemot" name="id_mot" class="searchfield" onchange="return submit(this);">
+		<option value="0" selected="selected"><:pyrat:recherche_motclef:></option>
 	<BOUCLE_RechercheMot(GROUPES_MOTS){par titre}{titre==^[^_]}>
 	<optgroup label="[(#TITRE|supprimer_numero)]">
 		<BOUCLE_Mots(MOTS mots_articles){id_groupe}{par titre}{id_article>0}>
 			<option value="#ID_MOT">#TITRE<BOUCLE_ArticleMot(ARTICLES){id_mot}></BOUCLE_ArticleMot>(#TOTAL_BOUCLE)<//B_ArticleMot></option>
 		</BOUCLE_Mots>
 	</optgroup>
-		
 	</BOUCLE_RechercheMot>
 		</select>
+	<input name="Submit" type="submit" id="sendsearchmc" class="okfield" title="<:pyrat:recherche_title_ok:>" value="<:pass_ok:>" />
+</div>
 </form>
 </div>
 </B_RechercheMot>
