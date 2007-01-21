@@ -9,18 +9,16 @@
 #entete { text-align: center; }
 #entete .spip_logos { margin: 1em auto; }
 #conteneur { text-align: center; border-top: 1px solid #FFF; }
-#conteneur #contenu { float: none; display: block; width: 80%; margin: 0 auto; }
-
-h3 { font-family: Georgia, Times, serif; font-size: 1.1em; font-weight: bold; }
-
-.langue { /*float: left; width: 10em;*/ height: 5em; text-align: center; vertical-align: top;
+#conteneur #contenu { float: none; display: block; width: 47em; margin: 0 auto; }
+#conteneur #contenu li { float: left; width: 6.6em; height: 4em; text-align: center;
 /*background: #eee;*/ margin: .2em; padding: .3em .4em; }
-.langue img { float: right; margin: 0 0 0 .4em; }
-.langue h3 { margin-bottom: .2em; padding: 0; }
-.langue p { color: #666; font-size: 0.77em; }
-
-.langue:hover { background-color: #eee; }
-
+#conteneur #contenu li#ref { width: 97%; }
+#conteneur #contenu li#trad { width: auto; clear: both; text-align: right; padding-left: 7em; }
+#conteneur #contenu li img { float: right; margin: 0 0 0 .4em; }
+#conteneur #contenu li h3 { font-family: Georgia, Times, serif; font-size: .9em; font-weight: bold;
+margin-bottom: .2em; padding: 0; }
+#conteneur #contenu li p {  font-size: 0.71em; }
+#conteneur #contenu li:hover { background-color: #F6F6F6; }
 </style>
 </head>
 
@@ -41,41 +39,32 @@ h3 { font-family: Georgia, Times, serif; font-size: 1.1em; font-weight: bold; }
 			<h1 class="invisible">#NOM_SITE_SPIP</h1>
 			
 			<h2 class="invisible"><:info_langues:></h2>
+			<ul>
 			
 			<BOUCLE_langue_ref(RUBRIQUES){racine}{id_rubrique!=4}{id_rubrique!=324}{lang=fr} {doublons}>
-			<div class="langue">
+			<li id="ref">
 				<h3><a href="#URL_RUBRIQUE"[ title="(#TITRE|texte_backend)]">[(#LANG|afficher_nom_langue)]</a></h3>
-				<p>Documentation de r&eacute;f&eacute;rence
-				<BOUCLE_total_lang_ref(ARTICLES){id_secteur}></BOUCLE_total_lang_ref><br />(<:icone_articles:>&nbsp;: #TOTAL_BOUCLE)<//B_total_lang_ref></p>
-			</div>
+				<p>Documentation de r&eacute;f&eacute;rence<br />
+				<BOUCLE_total_lang_ref(ARTICLES){id_secteur}></BOUCLE_total_lang_ref>(<:icone_articles:>&nbsp;: #TOTAL_BOUCLE)<//B_total_lang_ref></p>
+			</li>
 			</BOUCLE_langue_ref>
 			
-			<br class="nettoyeur" />
-			
-			<B_langues>
-			<table>
 			<BOUCLE_langues(RUBRIQUES){racine}{id_rubrique!=4}{id_rubrique!=324}{lang!=fr} {par lang} {doublons}>
-			[(#COMPTEUR_BOUCLE|alterner{<tr>,'','',''})]
-			<td class="langue" dir="#LANG_DIR">
+			<li dir="#LANG_DIR">
 				<h3><a href="#URL_RUBRIQUE"[ title="(#TITRE|texte_backend)]">[(#LANG|afficher_nom_langue)]</a></h3>
-				<p>#TITRE
-				<BOUCLE_total_lang(ARTICLES){id_secteur}></BOUCLE_total_lang>[<br />(<:icone_articles:>: (#TOTAL_BOUCLE))]<//B_total_lang></p>
-			</td>
-			[(#COMPTEUR_BOUCLE|alterner{'','','',</tr>})]
+				<p><BOUCLE_total_lang(ARTICLES){id_secteur}></BOUCLE_total_lang>[(<:icone_articles:>: (#TOTAL_BOUCLE))]<//B_total_lang></p>
+			</li>
 			</BOUCLE_langues>
-			</table>
-			</B_langues>
-			
-			<br class="nettoyeur" />
 			
 			<BOUCLE_trad(RUBRIQUES){id_rubrique=4}>
-			<div class="langue" style="text-align: right; padding-left: 4em;">
+			<li id="trad">
 				[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|image_reduire{70})]
 				<h3><a href="#URL_RUBRIQUE">#TITRE</a></h3>
 				[<p>(#DESCRIPTIF|PtoBR)</p>]
-			</div>
+			</li>
 			</BOUCLE_trad>
 			
+			</ul>
 
 		<br class="nettoyeur" />
 		</div><!-- fin contenu -->
