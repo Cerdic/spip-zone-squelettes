@@ -2,116 +2,83 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">
 <head>
-<title>[(#NOM_SITE_SPIP|textebrut)][ - (#ENV{lang}|traduire_nom_langue)]</title>
+<title>[(#NOM_SITE_SPIP|textebrut)]</title>
 [<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
 <INCLURE{fond=inc-head}>
+<style type="text/css">
+#entete { text-align: center; }
+#entete .spip_logos { margin: 1em auto; }
+#conteneur { text-align: center; border-top: 1px solid #FFF; }
+#conteneur #contenu { float: none; display: block; width: 80%; margin: 0 auto; }
+
+h3 { font-family: Georgia, Times, serif; font-size: 1.1em; font-weight: bold; }
+
+.langue { /*float: left; width: 10em;*/ height: 5em; text-align: center; vertical-align: top;
+/*background: #eee;*/ margin: .2em; padding: .3em .4em; }
+.langue img { float: right; margin: 0 0 0 .4em; }
+.langue h3 { margin-bottom: .2em; padding: 0; }
+.langue p { color: #666; font-size: 0.77em; }
+
+.langue:hover { background-color: #eee; }
+
+</style>
 </head>
 
 <body class="page_sommaire">
 <div id="page">
-<INCLURE{fond=inc-entete}{lang=#LANG}>
+<div id="entete">
+[(#LOGO_SITE_SPIP
+	||inserer_attribut{alt,[(#NOM_SITE_SPIP|textebrut)]}
+	)]
+</div>
 
 	<div id="conteneur">
 
 		[(#REM)
-				Contenu principal : nouveautes sur le site, presentation de SPIP.
+				Contenu principal : langue par langue...
 		]
 		<div id="contenu">
-			<div class="cartouche">
-				<h1 class="invisible">#NOM_SITE_SPIP</h1>
+			<h1 class="invisible">#NOM_SITE_SPIP</h1>
+			
+			<h2 class="invisible"><:info_langues:></h2>
+			
+			<BOUCLE_langue_ref(RUBRIQUES){racine}{id_rubrique!=4}{id_rubrique!=324}{lang=fr} {doublons}>
+			<div class="langue">
+				<h3><a href="#URL_RUBRIQUE"[ title="(#TITRE|texte_backend)]">[(#LANG|afficher_nom_langue)]</a></h3>
+				<p>Documentation de r&eacute;f&eacute;rence
+				<BOUCLE_total_lang_ref(ARTICLES){id_secteur}></BOUCLE_total_lang_ref><br />(<:icone_articles:>&nbsp;: #TOTAL_BOUCLE)<//B_total_lang_ref></p>
 			</div>
-
-			[(#REM) Texte de presentation de SPIP : ]
-			<BOUCLE_intro(RUBRIQUES) {id_rubrique=91}>
-			[<div class="texte">(#TEXTE)</div>]
-			</BOUCLE_intro>
+			</BOUCLE_langue_ref>
 			
-			<div class="liste-articles"><ul>
-			
-			[(#REM) Lien vers l'article presentant SPIP ]
-			<BOUCLE_about(ARTICLES) {id_article=464} {doublons}>
-				<li>
-					[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{100})]
-					<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
-					[<div class="texte">(#INTRODUCTION|couper{250})</div>]
-					<br class="nettoyeur" />
-				</li>
-			</BOUCLE_about>
-			
-			[(#REM) La derniere version de SPIP ]
-			<BOUCLE_derniere_version(ARTICLES) {id_rubrique=155} {!par date} {0,1} {doublons}>
-				<li>
-					[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{100})]
-					<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
-					[<div class="texte">(#INTRODUCTION|couper{250})</div>]
-					<br class="nettoyeur" />
-				</li>
-			</BOUCLE_derniere_version>
-			
-			</ul></div>
-
 			<br class="nettoyeur" />
-
-			<div class="contre-encart">
 			
-			[(#REM) Les derniers articles mis en ligne ]
-			<B_articles_recents>
-			<div class="liste-articles">
-				<h2 class="menu-titre"><:derniers_articles:></h2>
-				<ul>
-					<BOUCLE_articles_recents(ARTICLES) {!par date}{age<300} {0,7} {doublons}>
-					<li lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR" style="text-align: #LANG_LEFT;">
-						<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
-						<small>&#91;#LANG&#93; &mdash; [(#DATE|affdate_court)]</small>
-					</li>
-					</BOUCLE_articles_recents>
-				</ul>
+			<B_langues>
+			<table>
+			<BOUCLE_langues(RUBRIQUES){racine}{id_rubrique!=4}{id_rubrique!=324}{lang!=fr} {par lang} {doublons}>
+			[(#COMPTEUR_BOUCLE|alterner{<tr>,'','',''})]
+			<td class="langue" dir="#LANG_DIR">
+				<h3><a href="#URL_RUBRIQUE"[ title="(#TITRE|texte_backend)]">[(#LANG|afficher_nom_langue)]</a></h3>
+				<p>#TITRE
+				<BOUCLE_total_lang(ARTICLES){id_secteur}></BOUCLE_total_lang>[<br />(<:icone_articles:>: (#TOTAL_BOUCLE))]<//B_total_lang></p>
+			</td>
+			[(#COMPTEUR_BOUCLE|alterner{'','','',</tr>})]
+			</BOUCLE_langues>
+			</table>
+			</B_langues>
+			
+			<br class="nettoyeur" />
+			
+			<BOUCLE_trad(RUBRIQUES){id_rubrique=4}>
+			<div class="langue" style="text-align: right; padding-left: 4em;">
+				[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|image_reduire{70})]
+				<h3><a href="#URL_RUBRIQUE">#TITRE</a></h3>
+				[<p>(#DESCRIPTIF|PtoBR)</p>]
 			</div>
-			</B_articles_recents>
+			</BOUCLE_trad>
+			
 
-			</div><!-- fin contre-encart -->
-
-
-			<div class="encart">
-
-				[(#REM) Derniers sites sous SPIP references ]
-				<B_signatures_toutes>
-				<div class="syndic">
-					<h2 class="menu-titre"><:derniers_sites_realises_avec_spip:></h2>
-					<ul class="box">
-						<BOUCLE_signatures_toutes(SIGNATURES) {!par date} {0,5}>
-						[<li class="link"><a href="(#URL_SITE|unique{signatures_toutes})" class="spip_out">#NOM_SITE</a></li>]
-						</BOUCLE_signatures_toutes>
-					</ul>
-					<p><BOUCLE_signatures_toutes_total(SIGNATURES)> </BOUCLE_signatures_toutes_total>
-					<small>#GRAND_TOTAL <:sites_web:></small></B_signatures_toutes_total></p>
-				</div>
-				</B_signatures_toutes>
-
-				[(#REM) Sur le Web : articles issus de la syndication ]
-				<B_syndic>
-				<div class="syndic">
-					<h2 class="menu-titre"><:nouveautes_web:></h2>
-					<ul class="box">
-						<BOUCLE_syndic(SYNDIC_ARTICLES) {!par date} {0,6}>
-						[<li class="link">[(#DATE|affdate_court) &ndash; ]<a href="(#URL_ARTICLE|unique{syndic})"[ title="(#NOM_SITE|texte_backend)"] class="spip_out">#TITRE</a></li>]
-						</BOUCLE_syndic>
-					</ul>
-				</div>
-				</B_syndic>
-
-			</div><!-- fin encart -->
-
+		<br class="nettoyeur" />
 		</div><!-- fin contenu -->
-
-		[(#REM) Menu de navigation laterale ]
-		<div id="navigation">
-
-			<INCLURE{fond=inc-download}>
-			<INCLURE{fond=inc-rubriques}>
-			<INCLURE{fond=inc-uzine}>
-
-		</div><!-- fin navigation -->
 	
 	<br class="nettoyeur" />
 	</div><!-- fin conteneur -->
