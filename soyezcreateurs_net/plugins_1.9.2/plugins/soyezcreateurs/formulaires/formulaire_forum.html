@@ -4,7 +4,7 @@
 
 <form action="#ENV{url}#formulaire_forum" method="post"><div>
 [(#ENV{url_post}|form_hidden)]
-[<input type="hidden" name="alea" value="(#ENV{alea})" />]
+[<input type="hidden" name="arg" value="(#ENV{arg})" />]
 [<input type="hidden" name="hash" value="(#ENV{hash})" />]
 [<input type="hidden" name="verif_(#ENV{hash})" value="ok" />]
 [<input type="hidden" name="afficher_texte" value="(#ENV{afficher_texte})" />]
@@ -33,7 +33,7 @@
 <BOUCLE_PasdeSiteDansForums(ARTICLES){id_article}{titre_mot=PasdeSiteDansForums}>
 [(#ENV**{afficher_texte}|choixsiegal{'non', ' ',''})
 [<input type="hidden" name="titre" value="(#ENV{titre})" />]
-<div class="spip_bouton"><input type="submit" value="<:forum_valider:>" /></div>]
+<p class="spip_bouton"><input type="submit" value="<:forum_valider:>" /></p>]
 
 [(#ENV**{afficher_texte}|choixsiegal{'non', '',' '})
 
@@ -56,12 +56,16 @@
 	<input type="text" class="forml" name="email_auteur" id="email_auteur" value="#ENV{email_auteur}" size="40"[ readonly="(#ENV{readonly})"] /></p>
 	</fieldset>
 
-	<div class="spip_bouton_div"><input type="submit" class="spip_bouton" value="<:forum_voir_avant:>" /></div>
+	[(#REM) Piege a robots spammeurs ]
+	<p style='display:none;'><label for="nobot"><:antispam_champ_vide:></label>
+	<input type="text" name="nobot" id="nobot" value="#ENV{nobot}" size="10" /></p>
+
+	<p class="spip_bouton_div"><input type="submit" class="spip_bouton" value="<:forum_voir_avant:>" /></p>
 ]
 </BOUCLE_PasdeSiteDansForums><BOUCLE_GraverSonNom(ARTICLES){id_article}{titre_mot=GraverSonNom}>
 [(#ENV**{afficher_texte}|choixsiegal{'non', ' ',''})
 [<input type="hidden" name="titre" value="(#ENV{titre})" />]
-<div class="spip_bouton"><input type="submit" value="<:forum_valider:>" /></div>]
+<p class="spip_bouton"><input type="submit" value="<:forum_valider:>" /></p>]
 [(#ENV**{afficher_texte}|choixsiegal{'non', '',' '})
 
 	<fieldset>
@@ -88,11 +92,15 @@
 			</label></p>
 		</fieldset>
 
-	<div class="spip_bouton_div"><input type="submit" class="spip_bouton" value="<:forum_voir_avant:>" /></div>
+	[(#REM) Piege a robots spammeurs ]
+	<p style='display:none;'><label for="nobot"><:antispam_champ_vide:></label>
+	<input type="text" name="nobot" id="nobot" value="#ENV{nobot}" size="10" /></p>
+
+	<p class="spip_bouton_div"><input type="submit" class="spip_bouton" value="<:forum_voir_avant:>" /></p>
 ]</BOUCLE_GraverSonNom>
 [(#ENV**{afficher_texte}|choixsiegal{'non', ' ',''})
 [<input type="hidden" name="titre" value="(#ENV{titre})" />]
-<div class="spip_bouton"><input type="submit" value="<:forum_valider:>" /></div>]
+<p class="spip_bouton"><input type="submit" value="<:forum_valider:>" /></p>]
 [(#ENV**{afficher_texte}|choixsiegal{'non', '',' '})
 
 	<fieldset>
@@ -108,8 +116,8 @@
 	<fieldset>
 	<legend><:forum_lien_hyper:></legend>
 	<p><:forum_page_url:></p>
-	<p><label for="nom_site_forum"><:forum_titre:></label>
-	<input type="text" class="forml" name="nom_site_forum" id="nom_site_forum" size="40" value="#ENV{nom_site_forum}" /></p>
+	<p><label for="nom_site"><:forum_titre:></label>
+	<input type="text" class="forml" name="nom_site" id="nom_site" size="40" value="#ENV{nom_site}" /></p>
 	<p><label for="url_site"><:forum_url:></label>
 	<input type="text" class="forml" name="url_site" id="url_site" style="text-align: left;" dir="ltr" size="40" value="#ENV{url_site}" /></p>
 	</fieldset>
@@ -124,13 +132,14 @@
 
 	[(#REM) Piege a robots spammeurs ]
 	<p style='display:none;'><label for="nobot"><:antispam_champ_vide:></label>
-	<input type="text" name="nobot" value="#ENV{nobot}" size="10" /></p>
+	<input type="text" name="nobot" id="nobot" value="#ENV{nobot}" size="10" /></p>
 
-	<div class="spip_bouton"><input type="submit" value="<:forum_voir_avant:>" /></div>
+	<p class="spip_bouton"><input type="submit" value="<:forum_voir_avant:>" /></p>
 ]
 
 <//B_GraverSonNom><//B_PasdeSiteDansForums>
 
-</div></form>
+</div>
+</form>
 
 </div>

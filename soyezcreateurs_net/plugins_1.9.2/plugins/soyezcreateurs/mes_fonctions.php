@@ -344,13 +344,13 @@ function annee_scolaire($ladate) {
 	return $annee;
 }
 
-function aff_img_propre($src, $alt) {
+function aff_img_propre($src, $alt, $link='') {
 	if ($src) {
 		$width = extraire_attribut($src, 'width');
 		$height = extraire_attribut($src, 'height');
 		$src = extraire_attribut($src, 'src');
 		if ($link) {
-			return "<a href=\"$link\" id=\"logo\"><img$classe src=\"$src\" width=\"$width\" height=\"$height\" alt=\"$alt\" /></a>";
+			return "<a href=\"$link\"><img$classe src=\"$src\" width=\"$width\" height=\"$height\" alt=\"$alt\" /></a>";
 		} else {
 			return "<img$classe src=\"$src\" width=\"$width\" height=\"$height\" alt=\"$alt\" />";
 		}
@@ -364,6 +364,7 @@ function logo_swf_or_img($src, $width, $height, $alt='', $link='', $classe='', $
 		$src = $matches[1];
 		$noobject = aff_img_propre($noobject, $alt);
 		include_spip('inc/swfheader');
+		include_spip('inc/filtres_images');
 		$swf = new swfheader();
 		$swf->loadswf($src);
 		if ($swf->valid) {
@@ -387,7 +388,7 @@ function logo_swf_or_img($src, $width, $height, $alt='', $link='', $classe='', $
   </object>";
 		}
 	} else {
-		return aff_img_propre($src, $alt);
+		return aff_img_propre($src, $alt, $link);
 	}
 }
 ?>
