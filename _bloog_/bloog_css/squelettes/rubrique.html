@@ -72,23 +72,23 @@
 
    
 
-                    <BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par titre}>
+                    <BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par titre}{tout_voir}>
 <li>
                    [<h4><a href="#URL_RUBRIQUE">(#TITRE)</a><INCLURE{fond="inc_cadenas"}{id_rubrique}></h4>] 
                   <p>[<span class="minilogogauche"><a href="#URL_RUBRIQUE">(#LOGO_RUBRIQUE||reduire_image{20}|inserer_attribut{alt,[(#TITRE)]})</a></span>]
 
-                    <BOUCLE_sites2(SITES){id_rubrique}>
+                    <BOUCLE_sites2(SITES){id_rubrique}{tout_voir}>
                   </BOUCLE_sites2><a href="#URL_RUBRIQUE">#TOTAL_BOUCLE
  sites r&eacute;f&eacute;renc&eacute;s.</a><br/><br/></B_sites2>
-<BOUCLE_art2(ARTICLES){id_rubrique}{par date}{inverse}{0,25}>
+<BOUCLE_art2(ARTICLES){id_rubrique}{par date}{inverse}{0,25}{tout_voir}>
 ::
                     <BOUCLE_nouv_art23(ARTICLES){id_article}{age<7}>
                     <span class="gras">Nouveau:</span>&nbsp;</BOUCLE_nouv_art23><a href="#URL_ARTICLE">#TITRE</a> 
                     <INCLURE{fond="inc_cadenas"}{delais="7*24*3600"}{id_article}> <br/>
                     </BOUCLE_art2>
 <B_sous_sous_rub>
-<BOUCLE_sous_sous_rub(RUBRIQUES){id_parent}{par titre}>
-[<img class="puce" src="img_pack/puceoff.gif" alt="puce"/><a href="#URL_RUBRIQUE">(#TITRE)</a><INCLURE{fond="inc_cadenas"}{id_rubrique}><br/>]
+<BOUCLE_sous_sous_rub(RUBRIQUES){id_parent}{par titre}{tout_voir}>
+[>&nbsp;<a href="#URL_RUBRIQUE">(#TITRE)</a><INCLURE{fond="inc_cadenas"}{id_rubrique}><br/>]
 </BOUCLE_sous_sous_rub>
 </B_sous_sous_rub>
 
@@ -113,7 +113,7 @@
 <B_articles>
 #ANCRE_PAGINATION
 <?php $i=0; ?>
-<BOUCLE_articles(ARTICLES){id_rubrique}{par date}{inverse}{doublons}{pagination}>
+<BOUCLE_articles(ARTICLES){id_rubrique}{par date}{inverse}{doublons}{tout_voir}{pagination}>
 <ul>
 <BOUCLE_logo_documents(DOCUMENTS){id_article}{mode=document}{par date}{inverse}{extension=jpg}{0,1}>
 <li style=" <?php
@@ -123,7 +123,7 @@ else {$i=0;} ?>
  "><a href="#URL_ARTICLE#diapo">[(#LOGO_DOCUMENT||reduire_image{80,10000}|inserer_attribut{alt,#TITRE})]</a>
 </BOUCLE_logo_documents>
 
-<BOUCLE_photocmpt(DOCUMENTS){id_article}{mode=document}{extension=jpg|gif|png}>
+<BOUCLE_photocmpt(DOCUMENTS){id_article}{mode=document}{extension=jpg}>
 </BOUCLE_photocmpt>
 <p class="centre">
 <a href="#URL_ARTICLE#diapo">
@@ -145,6 +145,7 @@ else {$i=0;} ?>
 [(#REM)   2   ]
  </li>
  <//B_presence_logo>
+ 
 <li class="textepics">
   <p>[<a href="#URL_ARTICLE">(#TITRE) </a>](<? $total_visites = "#VISITES"; 
     echo $total_visites == 1? "1&nbsp;visite." : "$total_visites&nbsp;visites." ; ?>)&nbsp;[(#DESCRIPTIF|couper{200})]
@@ -160,10 +161,10 @@ else {$i=0;} ?>
 <hr class="spacer"/>
 </BOUCLE_articles>
 <div class="centre">
-[<p class="pagination">(#PAGINATION{page_precedent_suivant})</p>]
+[<p>(#PAGINATION{page_precedent_suivant})</p>]
 </div>
 </B_articles>
-</div>[(#REM)   fermeture minipics   ]
+</div>[(#REM) fermeture minipics   ]
 
 
 <B_syndic>

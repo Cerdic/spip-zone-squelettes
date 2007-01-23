@@ -1,4 +1,4 @@
-
+#CACHE86400
 <INCLURE{fond="header"}{delais=31*24*3600}>
 
 <html><head>
@@ -7,7 +7,7 @@
 
 <title>[(#NOM_SITE_SPIP|textebrut)]</title>
 [<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{300}|textebrut)" />]
-<meta name="Keywords" content="<BOUCLE_rub_keywords(RUBRIQUES){titre_mot=syndic}>[(#TITRE|textebrut),]</BOUCLE_rub_keywords>">
+<meta name="Keywords" content="<BOUCLE_rub_keywords(RUBRIQUES){titre_mot=syndic}>[(#TITRE|textebrut),]</BOUCLE_rub_keywords>" />
 <meta name="revisit-after" content="15 days" />
 <meta http-equiv="content-type"content="text/html; charset=#CHARSET"/>
 
@@ -31,7 +31,7 @@
 <BOUCLE_rub_css(RUBRIQUES){tout}{titre_mot=syndic}>
 <link rel="alternate" type="application/rss+xml" href="[(#URL_PAGE{backend}|parametre_url{'id_rubrique',#ID_RUBRIQUE})]title="[(#TITRE)]" />
 </BOUCLE_rub_css>
-
+ #INSERT_HEAD
 </head>
 <body> 
 <div id="container">   [(#REM) centrage page ]
@@ -83,7 +83,7 @@
 <p>
  Vous pouvez surveiller les nouveaut&eacute;s du site par ses différents
   fils de <a href="[(#URL_PAGE{syndication})]">syndication RSS</a>,  sa <a href="[(#URL_PAGE{inscription})]">lettre
-  d'information</a>  irr&eacute;gulomadaire, ou sa <a href="[(#URL_PAGE{nouveautes})]">page
+  d'information</a>, ou sa <a href="[(#URL_PAGE{nouveautes})]">page
   de nouveaut&eacute;s</a>.
   </p>
 <//B_blogue>
@@ -105,7 +105,7 @@
 	<span class="logogauche"><a href="#URL_ARTICLE#diapo">[(#LOGO_ARTICLE||reduire_image{48}|inserer_attribut{alt,#TITRE})]</a></span>
 	
 [<h4><a href="#URL_ARTICLE">(#TITRE)</a></h4>]
-[<p>(#DESCRIPTION) <a href="#URL_ARTICLE">Lire la suite...</a></p>]
+[<p>(#DESCRIPTIF) <a href="#URL_ARTICLE">Lire la suite...</a></p>]
 <BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document} {par num titre, date}>
 [<p><a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})';return false;" title="[(#TITRE|couper{200}|texte_backend)]">[(#FICHIER|image_reduire{450,10000})]</a></p>]
 </BOUCLE_documents_portfolio>
@@ -179,16 +179,27 @@
         <INCLURE{fond="inc_menu_rub"}{delais="7*24*36"}>
     
     </div>[(#REM)   fermeture boite menu  ]
+	
+<B_flickr>
+<div class="boite">
+[(#REM) ouverture boite photos flickr ]
+<h4 class="icone_photo">Sélection photos</h4>
 
-<div class="boite"> [(#REM) ouverture boite recherche   ]
+<div style="position:relative;[float(#ENV{align}|match{left|right});]" class="splickrbox [splickrbox_(#ENV{align})]">
+			<table cellpadding="0" cellspacing="0" ><tr>
+			
+			<BOUCLE_flickr(DOCUMENTS){!par date}{extension==jpg|png|gif}{0,#ENV{taille,8}}>
+			<td> <a href="#FICHIER" class="thickbox">[(#FICHIER|copie_locale|image_masque{carre-112.png}|image_sepia{a1a4c3}|inserer_attribut{style,'width:112px;height:112px'})]</a></td>
+			[(#COMPTEUR_BOUCLE|Splickr_juste_a_x{#ENV{colonnes,4},</tr><tr>})]
+			</BOUCLE_flickr>
+			
+			  <td></td>
+			</tr></table>
+</div>
+			
 
-  <h4 class="icone_photo">Sélection photo</h4>
-
-    <BOUCLE_photo(ARTICLES){titre_mot=ImageUne}{par hasard}{0,1}>
-<p class="centre"><a href="#URL_ARTICLE#diapo" title="Grande photo, cliquez." >[<img src="IMG/(#LOGO_ARTICLE|fichier)" alt="Grande photo, cliquez." />]</a></p>
-</BOUCLE_photo>
- </div>
-
+</div>
+</B_flickr>
 
 
 
