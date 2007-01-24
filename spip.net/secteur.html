@@ -16,7 +16,6 @@
 
 		[(#REM)
 				Contenu principal : nouveautes sur le site, selon la langue.
-				Si aucun critere de langue, la page d'accueil est multilingue.
 		]
 		<div id="contenu">
 			<div class="cartouche">
@@ -26,34 +25,34 @@
 			[(#REM) Texte de presentation de SPIP : ]
 			[<div class="texte">(#TEXTE)</div>]
 			
+			[(#REM) Code en stand-by... ]
+			<p style="text-align: right;" class="invisible"><small>
+			
 			[(#REM) Lien vers l'article presentant SPIP ]
 			<BOUCLE_about(ARTICLES) {id_article=464}>
 			<BOUCLE_about_trad(ARTICLES) {traduction}{lang=#_principale:LANG} {doublons}>
-			<a href="#URL_ARTICLE" class="invisible">#TITRE</a>
+			&#91; <a href="#URL_ARTICLE">#TITRE</a> &#93;
 			</BOUCLE_about_trad>
 			</BOUCLE_about>
 			
-			<div class="liste-articles"><ul>
-			
 			[(#REM) La derniere version de SPIP ]
 			<BOUCLE_derniere_version(ARTICLES) {id_rubrique=155} {!par date} {0,1}>
-			<BOUCLE_derniere_version_trad(ARTICLES) {traduction}{lang=#_principale:LANG} {doublons}>
-				<li>
-					[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{100})]
-					<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
-					[<div class="texte">(#INTRODUCTION|couper{250})</div>]
-					<br class="nettoyeur" />
-				</li>
-			<BOUCLE_derniere_version_memrub(ARTICLES) {id_rubrique} {doublons}> </BOUCLE_derniere_version_memrub>
+			<BOUCLE_derniere_version_trad(ARTICLES) {traduction}{lang=#_principale:LANG} {doublons standby}>
+			&#91; <a href="#URL_ARTICLE">#TITRE</a> &#93;
+			<BOUCLE_derniere_version_memrub(ARTICLES) {id_rubrique} {doublons standby}> </BOUCLE_derniere_version_memrub>
 			</BOUCLE_derniere_version_trad>
 			</BOUCLE_derniere_version>
 			
-			[(#REM) Articles de la rubrique ]
-			<BOUCLE_articles(ARTICLES) {id_rubrique} {par num titre}{!par date} {doublons}>
-			<li><h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3></li>
-			</BOUCLE_articles>
+			</small></p>
 			
+			[(#REM) Articles de la rubrique ]
+			<B_articles>
+			<div class="liste-articles"><ul>
+				<BOUCLE_articles(ARTICLES) {id_rubrique} {par num titre}{!par date} {doublons}>
+				<li><h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3></li>
+				</BOUCLE_articles>
 			</ul></div>
+			</B_articles>
 
 			<br class="nettoyeur" />
 
