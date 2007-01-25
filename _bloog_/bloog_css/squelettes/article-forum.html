@@ -68,7 +68,7 @@
 
 <ul class="membres"><li class="modo"><a href="ecrire/?exec=articles_forum&id_article=#ID_ARTICLE" title="Acc&egrave;s priv&eacute; pour mod&eacute;rateurs">Admin:</a></li>
 <BOUCLE_admin(AUTEURS){statut=0minirezo}{par id_auteur}>
-<li class="modo"><a href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]title="Contact/Profil" />#NOM</a></li>
+<li class="modo"><a href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]title="Contact/Profil" />#NOM</a></li>
 
 </BOUCLE_admin>
 </ul>
@@ -80,50 +80,11 @@
 [(#REM)   les derniers messages et discussions   ]
 <div class="grande_boite">
 
-<table class="spip">
-
-<tr class="row_first gras blanc">
-<td>Derniers messages</td>
-<td>Auteur</td>
-<td>Date</td>
-</tr>
-<?php $couleur="0" ; ?>	
-
-<B_discussions>
-<BOUCLE_messages(FORUMS){id_article}{plat}{par date}{inverse}{0,5}>
-<?php
-$ze_titre = '[(#TITRE|texte_script)]' ;
-$ze_titre = ereg_replace( "> ", "", $ze_titre );
-?>
-
-<tr class="<?php echo $couleur == 0 ? 'row_even' : 'row_odd' ; ?>" >
-<td>
-<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})#forum#ID_FORUM]" />
-<?php echo $ze_titre?></a>
-</td>
-	<td><BOUCLE_nom2(AUTEURS){tout}{id_auteur}>
-	
-[<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Contact et profil de ce r&eacute;dacteur">]
-[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Contact et profil de cet admin">]
-[<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Contact et profil de ce visiteur">]
-[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Compte en attente">]
-[(#NOM|couper{18})</a><br/>]
-</BOUCLE_nom2>
-[(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
-<//B_nom2></td>
-	<td>[(#DATE|affdate{'d/m/Y'})]<br/>
-	[(#DATE|affdate{'H:i:s'})]
-</td>
-	</tr>
-	
-<?php if($couleur == 0) {$couleur = 1 ; } else {$couleur=0 ; }	?>
-
-</BOUCLE_messages>
-</table><hr class="spacer"/> 
+ 
 
 <ul class="forum centre">
 <li>
-<a href="[(#URL_PAGE{mon-profil}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="S'inscrire">
+<a href="[(#URL_PAGE{mon-profil}|parametre_url{id_auteur,#ID_AUTEUR})]" title="S'inscrire">
 S'inscrire</a></li>
 <li>
 [<a href="(#PARAMETRES_FORUM|url_reponse_forum)" title="Créer une discussion">Dialoguer</a>]
@@ -155,13 +116,13 @@ $ze_titre = ereg_replace( "> ", "", $ze_titre );
 
 <tr class="<?php echo $couleur == 0 ? 'row_even' : 'row_odd' ; ?>" >
 <td>
-<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum','#ID_FORUM'})#forum#ID_FORUM]"	title=""><?php echo $ze_titre?></a>
+<a href="[(#URL_PAGE{discussion}|parametre_url{id_forum,#ID_FORUM})]"	title=""><?php echo $ze_titre?></a>
 </td>
 <td><BOUCLE_nom3(AUTEURS){tout}{id_auteur}>
-[<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Contact et profil de ce r&eacute;dacteur">]
-[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Contact et profil de cet admin">]
-[<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Contact et profil de ce visiteur">]
-[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Compte en attente">]
+[<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de ce r&eacute;dacteur">]
+[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de cet admin">]
+[<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de ce visiteur">]
+[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Compte en attente">]
 [(#NOM|couper{18})</a><br/>]
 </BOUCLE_nom3>
 [(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
