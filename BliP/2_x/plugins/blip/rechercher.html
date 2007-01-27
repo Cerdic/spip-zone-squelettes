@@ -1,0 +1,291 @@
+#CACHE{0}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+	<title><:resultats_recherche:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
+	<meta name="generator" content="SPIP" />
+	[<link rel="shortcut icon" href="(#CHEMIN{#NOM_SITE_SPIP.ico})" />]
+
+	[
+	(#REM) Lien vers le backend pour navigateurs eclaires ]
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+	[
+	(#REM) Script NiceTitle pour la gestion des title des liens ]	
+	[<script type="text/javascript" src="(#CHEMIN{nicetitle.js})"></script>]
+	[
+	(#REM) Style CSS de blip ]
+	<link rel="stylesheet" type="text/css" href="#URL_PAGE{inc-css}" />	
+	
+	<INCLURE{fond=inc-head}>
+	
+</head>
+
+<body id="recherche">
+<div id="page">
+
+<div id="tete">
+	<INCLURE{fond=inc-compilateur}{zone=surtitre}{lang}>			
+	<INCLURE{fond=inc-compilateur}{zone=titre_principal}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=titre_lateral}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=sous_titre}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=menu_principal}{lang}>
+</div><!-- fin tete -->
+	
+<div id="corps">
+	
+	[(#REM) Construction du Fil d'Ariane ]
+	<div class="menu_auxiliaire">
+		<a href="[(#URL_PAGE{accueil})]"><:blip:accueil:></a> &amp; <a href="[(#URL_PAGE{sommaire})]"><:blip:actualite:></a> &gt; Rechercher : </a>[" (#RECHERCHE) "]
+	</div><!-- fin menu_auxiliaire-->
+
+	[(#REM) Construction du contenu de la page recherche]
+	<div class="contenu">
+	
+		<INCLURE{fond=inc-compilateur}{page_actuelle=recherche}{zone=sur_contenu}
+				{zone_restreinte=sur_contenu-recherche}{id_actuel=#ENV{recherche}}{lang}>
+
+		[(#REM) Recherche en cours ]
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+			<h1><:blip:recherche_votre:> : <span class="gris_clair">#RECHERCHE</span></h1>
+			[(#REM) Affichage du nombre de resultats trouves]
+			<BOUCLE_compte_marecherche(INDEX){recherche}{type_table IN articles,documents,rubriques,breves,spip_syndic,spip_forum,mots,auteurs}></BOUCLE_compte_marecherche>
+				[(#TOTAL_BOUCLE|?{' ',''})
+					<srong>#TOTAL_BOUCLE r&eacute;sultat[s(#TOTAL_BOUCLE|>{1}|?{' ',''})] pour #RECHERCHE.</strong>
+					[	<br />
+						Vous pouvez aussi essayer 
+						<a href='[(#SELF|parametre_url{'recherche',[(#RECHERCHE|RechercheEtendue_recherche_semblable)]})]'>
+						(#RECHERCHE|RechercheEtendue_recherche_semblable)</a>.]
+				]
+				[(#TOTAL_BOUCLE|?{'',' '})
+					<strong>Aucun r&eacute;sultats pour #RECHERCHE.</strong>
+					[	<br />
+						Vous devriez peut-&ecirc;tre essayer
+						<a href='[(#SELF|parametre_url{'recherche',[(#RECHERCHE|RechercheEtendue_recherche_semblable)]})]'>
+						(#RECHERCHE|RechercheEtendue_recherche_semblable)</a>.]
+				]
+			<//B_compte_marecherche>
+		</div></div>
+		
+		[(#REM) Modifier la recherche]	
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+			<h1>Modifier la recherche</h1>
+			[(#FORMULAIRE_RECHERCHE|spip.php?page=rechercher)]	
+		</div></div>
+	
+	[(#REM) Initialisation de la jauge]
+	<BOUCLE_init_jauge(INDEX){recherche}{!par points}{type_table IN articles,documents,rubriques,breves,spip_syndic,spip_forum,mots,auteurs} {0,1}>
+	[(#POINTS|RechercheEtendue_jauge_init{150})]
+	</BOUCLE_init_jauge>
+	
+	[(#REM) Resultats de la recherche]
+	<B_marecherche>
+	<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+			<h1>Résultats</h1><p />
+	[(#PAGINATION)<p />]
+	<BOUCLE_marecherche(INDEX){recherche}{!par points}{type_table IN articles,documents,rubriques,breves,spip_syndic,spip_forum,mots,auteurs} {pagination}>
+		<!-- Articles trouves -->
+		<BOUCLE_articles(ARTICLES) {id_article}>
+			<div class="element_sous">[<img src="(#CHEMIN{images/article.png})" alt="Article" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_bleu'})]
+			<div class="imgfloatright">[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|reduire_image{100,0})]</div>
+				<h3>[<span class="gris_clair">(#SURTITRE) </span>]<a href="#URL_ARTICLE[&amp;var_recherche=(#RECHERCHE)]" >[(#TITRE|supprimer_numero)]</a>[<i><span class="gris_clair"> (#SOUSTITRE) </span></i>]</h3>
+			<h5>
+				[<:blip:le:> (#DATE|affdate)][, <:blip:par:> (#LESAUTEURS),]
+				<BOUCLE_article_resume_rubrique(RUBRIQUES){id_rubrique =#ID_RUBRIQUE}>
+				<:blip:dans:> <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>		
+				</BOUCLE_article_resume_rubrique>
+			</h5>
+			[(#REM) concatenation du texte complet, pour creer le resume type google]
+			[(#REM|RechercheEtendue_google_like_string_raz)]
+			[(#SURTITRE|supprimer_numero|RechercheEtendue_google_like_string)]
+			[(#TITRE|supprimer_numero|RechercheEtendue_google_like_string)]
+			[(#SOUSTITRE|supprimer_numero|RechercheEtendue_google_like_string)]
+			[(#DESCRIPTIF|supprimer_numero|RechercheEtendue_google_like_string)]
+			[(#CHAPO|supprimer_numero|RechercheEtendue_google_like_string)]
+			[(#TEXTE|supprimer_numero|RechercheEtendue_google_like_string)]
+			[(#PS|supprimer_numero|RechercheEtendue_google_like_string)]
+			[(#REM) affichage, avec introduction en alternative si rien de trouve]
+			[(#RECHERCHE|RechercheEtendue_google_like{[(#INTRODUCTION|attribut_html)]})]
+			</div> <!-- fin element_sous-->
+		</BOUCLE_articles>
+		<!-- Rubriques trouvées -->
+		<BOUCLE_rubriques(RUBRIQUES) {id_rubrique}>
+			<div class="element_sous">[<img src="(#CHEMIN{images/rubrique.png})" alt="Rubrique" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_bleu'})]</img>
+			<div class="imgfloatright">[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|reduire_image{100,0})]</div>
+				<h3><a href="#URL_RUBRIQUE[&amp;var_recherche=(#RECHERCHE)]" >[(#TITRE|supprimer_numero)]</a></h3>
+			<h5>
+				<BOUCLE_rubrique_resume_rubrique(RUBRIQUES){id_enfant =#ID_RUBRIQUE}>
+				<:blip:dans:> <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>		
+				</BOUCLE_rubrique_resume_rubrique>
+			</h5>
+			[(#REM) concatenation du texte complet, pour creer le resume type google]
+			[(#REM|RechercheEtendue_google_like_string_raz)]
+			[(#TITRE|supprimer_numero|RechercheEtendue_google_like_string)]
+			[(#DESCRIPTIF|supprimer_numero|RechercheEtendue_google_like_string)]
+			[(#TEXTE|supprimer_numero|RechercheEtendue_google_like_string)]
+			[(#REM) affichage, avec introduction en alternative si rien de trouve]
+			[(#RECHERCHE|RechercheEtendue_google_like{[(#INTRODUCTION|attribut_html)]})]
+			</div> <!-- fin element_sous-->
+		</BOUCLE_rubriques>
+		<!-- Brèves trouvées -->
+		<BOUCLE_breves(BREVES) {id_breve}>
+			<div class="element_sous">[<img src="(#CHEMIN{images/breve.png})" alt="Brève" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_bleu'})]
+			<div class="imgfloatright">[(#LOGO_BREVE_RUBRIQUE|#URL_BREVE|reduire_image{100,0})]</div>
+				<h3>[<span class="gris_clair">(#DATE|affdate) :</span>] <a href="#URL_ARTICLE[&amp;var_recherche=(#RECHERCHE)]" >[(#TITRE|supprimer_numero)]</a></h3>
+			<h5>
+				<BOUCLE_breve_resume_rubrique(RUBRIQUES){id_rubrique =#ID_RUBRIQUE}>
+				<:blip:dans:> <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>		
+				</BOUCLE_breve_resume_rubrique>
+			</h5>
+			[(#REM) concatenation du texte complet, pour creer le resume type google]
+			[(#REM|RechercheEtendue_google_like_string_raz)]
+			[(#TITRE|supprimer_numero|RechercheEtendue_google_like_string)]
+			[(#TEXTE|supprimer_numero|RechercheEtendue_google_like_string)]
+			[(#REM) affichage, avec introduction en alternative si rien de trouve]
+			[(#RECHERCHE|RechercheEtendue_google_like{[(#INTRODUCTION|attribut_html)]})]
+			</div> <!-- fin element_sous-->
+		</BOUCLE_breves>
+		<!-- Sites trouves -->
+		<BOUCLE_sites(SITES) {id_syndic}>
+			<div class="element_sous">[<img src="(#CHEMIN{images/site.png})" alt="Site" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_bleu'})]
+			<div class="imgfloatright"><BOUCLE_logo_rub_site(RUBRIQUES){id_rubrique}><a href="spip.php?site#ID_SYNDIC[&amp;var_recherche=(#RECHERCHE)]">[(#_site_resume:LOGO_SITE|fichier|?{#_site_resume:LOGO_SITE,#LOGO_RUBRIQUE}||reduire_image{100,0})]</a></BOUCLE_logo_rub_site></div>
+				<h3><a href="spip.php?site#ID_SYNDIC[&amp;var_recherche=(#RECHERCHE)]" >[(#NOM_SITE|supprimer_numero)]</a></h3>
+			<h5>
+				[<a href="#URL_SITE">(#URL_SITE)</a>, ]
+				<BOUCLE_site_resume_rubrique(RUBRIQUES){id_rubrique =#ID_RUBRIQUE}>
+				<:blip:dans:> <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>		
+				</BOUCLE_site_resume_rubrique>
+			</h5>
+			[(#REM) concatenation du texte complet, pour creer le resume type google]
+			[(#REM|RechercheEtendue_google_like_string_raz)]
+			[(#NOM_SITE|supprimer_numero|RechercheEtendue_google_like_string)]
+			[(#DESCRIPTIF|supprimer_numero|RechercheEtendue_google_like_string)]
+			[(#REM) affichage, avec descriptif en alternative si rien de trouve]
+			[(#RECHERCHE|RechercheEtendue_google_like{[(#IDESCRIPTIF|attribut_html)]})]
+			</div> <!-- fin element_sous-->
+		</BOUCLE_sites>
+		<!-- Documents trouves -->
+		<BOUCLE_documents(DOCUMENTS) {id_document}>
+			<div class="element_sous">[<img src="(#CHEMIN{images/document.png})" alt="Document" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_bleu'})]
+			<div class="imgfloatright">[(#LOGO_DOCUMENT|#URL_DOCUMENT|reduire_image{100,0})]</div>
+				<h3><a href="#URL_DOCUMENT" >[(#TITRE|supprimer_numero)]</a></h3>
+			<h5>
+				#TYPE_DOCUMENT[ | (#TAILLE|taille_en_octets)][ | <:blip:document_publie_le:> (#DATE|affdate)]
+				<BOUCLE_doc_resume_article(ARTICLES){id_document =#ID_DOCUMENT}>
+				<br /><:blip:dans:> <a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a>		
+				</BOUCLE_doc_resume_article>
+				<BOUCLE_doc_resume_rubrique(RUBRIQUES){id_document =#ID_DOCUMENT}>
+				<br /><:blip:dans:> <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>		
+				</BOUCLE_doc_resume_rubrique>
+				<BOUCLE_doc_resume_breve(BREVES){id_document =#ID_DOCUMENT}>
+				<br /><:blip:dans:> <a href="#URL_BREVE">[(#TITRE|supprimer_numero)]</a>		
+				</BOUCLE_doc_resume_breve>
+				<//B_doc_resume_rubrique>
+				<//B_doc_resume_article>
+			</h5>
+			[(#REM) concatenation du texte complet, pour creer le resume type google]
+			[(#REM|RechercheEtendue_google_like_string_raz)]
+			[(#TITRE|supprimer_numero|RechercheEtendue_google_like_string)]
+			[(#DESCRIPTIF|RechercheEtendue_google_like_string)]
+			[(#REM) affichage, avec descriptif en alternative si rien de trouve]
+			[(#RECHERCHE|RechercheEtendue_google_like{[(#DESCRIPTIF|attribut_html)]})]
+			</div> <!-- fin element_sous-->
+		</BOUCLE_documents>
+		<!-- Auteurs trouves -->
+		<BOUCLE_auteurs(AUTEURS) {id_auteur}>
+			<div class="element_sous">[<img src="(#CHEMIN{images/auteur.png})" alt="Auteur" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_bleu'})]
+			<div class="imgfloatright">[(#LOGO_AUTEUR|#URL_AUTEUR|reduire_image{100,0})]</div>
+				<h3><a href="#URL_AUTEUR[&amp;var_recherche=(#RECHERCHE)]" >[(#NOM|supprimer_numero)]</a></h3>
+			[(#REM) concatenation du texte complet, pour creer le resume type google]
+			[(#REM|RechercheEtendue_google_like_string_raz)]
+			[(#NOM|supprimer_numero|RechercheEtendue_google_like_string)]
+			[(#BIO|supprimer_numero|RechercheEtendue_google_like_string)]
+			[(#REM) affichage, avec bio en alternative si rien de trouve]
+			[(#RECHERCHE|RechercheEtendue_google_like{[(#BIO|attribut_html)]})]
+			</div> <!-- fin element_sous-->
+		</BOUCLE_auteurs>
+		<!-- Mots trouves -->
+		<BOUCLE_mots(MOTS) {id_mot}>
+			<div class="element_sous">[<img src="(#CHEMIN{images/mot.png})" alt="Mot" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_bleu'})]
+			<div class="imgfloatright">[(#LOGO_MOT|#URL_MOT|reduire_image{100,0})]</div>
+				<h3><a href="#URL_MOT[&amp;var_recherche=(#RECHERCHE)]" >[(#TITRE|supprimer_numero)]</a></h3>
+				<h5>Type de mot : #TYPE</h5>
+			[(#REM) concatenation du texte complet, pour creer le resume type google]
+			[(#REM|RechercheEtendue_google_like_string_raz)]
+			[(#TITRE|supprimer_numero|RechercheEtendue_google_like_string)]
+			[(#DESCRIPTIF|supprimer_numero|RechercheEtendue_google_like_string)]
+			[(#TEXTE|supprimer_numero|RechercheEtendue_google_like_string)]
+			[(#REM) affichage, avec texte en alternative si rien de trouve]
+			[(#RECHERCHE|RechercheEtendue_google_like{[(#TEXTE|attribut_html)]})]
+			</div> <!-- fin element_sous-->
+		</BOUCLE_mots>
+		<!-- Documents trouves -->
+		<BOUCLE_forum(FORUMS) {id_forum}>
+			<div class="element_sous">[<img src="(#CHEMIN{images/forum.png})" alt="Message de Forum" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_bleu'})]
+				<BOUCLE_forum_logo_article(ARTICLES){id_article =#ID_ARTICLE}>
+				<div class="imgfloatright">[(#LOGO_ARTICLE_RUBRIQUE|#_forum:URL_FORUM|reduire_image{100,0})]</div>		
+				</BOUCLE_forum_logo_article>
+				<BOUCLE_forum_logo_rubrique(RUBRIQUES){id_rubrique =#ID_RUBRIQUE}>
+				<div class="imgfloatright">[(#LOGO_RUBRIQUE|#_forum:URL_FORUM|reduire_image{100,0})]</div>		
+				</BOUCLE_forum_logo_rubrique>
+				<BOUCLE_forum_logo_breve(BREVES){id_breve =#ID_BREVE}>
+				<div class="imgfloatright">[(#LOGO_BREVE_RUBRIQUE|#_forum:URL_FORUM|reduire_image{100,0})]</div>
+				</BOUCLE_forum_logo_breve>
+				<BOUCLE_forum_logo_site(SITES){id_syndic =#ID_SYNDIC}>
+				<div class="imgfloatright">[(#LOGO_SITE|#_forum:URL_FORUM|reduire_image{100,0})]</div>	
+				</BOUCLE_forum_logo_site>
+				<//B_logo_logo_breve>
+				<//B_logo_logo_rubrique>
+				<//B_logo_logo_article>
+				<h3><a href="#URL_FORUM" >[(#TITRE|supprimer_numero)]</a></h3>
+			<h5>
+				[<:blip:le:> (#DATE|affdate)][, <:par:> (#NOM|?{#NOM,"Anonyme"})]
+				<BOUCLE_forum_resume_article(ARTICLES){id_article =#ID_ARTICLE}>
+				<br /><:blip:dans:> <a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a>		
+				</BOUCLE_forum_resume_article>
+				<BOUCLE_forum_resume_rubrique(RUBRIQUES){id_rubrique =#ID_RUBRIQUE}>
+				<br /><:blip:dans:> <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>		
+				</BOUCLE_forum_resume_rubrique>
+				<BOUCLE_forum_resume_breve(BREVES){id_breve =#ID_BREVE}>
+				<br /><:blip:dans:> <a href="#URL_BREVE">[(#TITRE|supprimer_numero)]</a>		
+				</BOUCLE_forum_resume_breve>
+				<BOUCLE_forum_resume_site(SITES){id_syndic =#ID_SYNDIC}>
+				<br /><:blip:dans:> <a href="spip.php?site#ID_SYNDIC">[(#NOM_SITE|supprimer_numero)]</a>		
+				</BOUCLE_forum_resume_site>
+				<//B_forum_resume_breve>
+				<//B_forum_resume_rubrique>
+				<//B_forum_resume_article>
+			</h5>
+			[(#REM) concatenation du texte complet, pour creer le resume type google]
+			[(#REM|RechercheEtendue_google_like_string_raz)]
+			[(#TEXTE|RechercheEtendue_google_like_string)]
+			[(#REM) affichage, avec texte en alternative si rien de trouve]
+			[(#RECHERCHE|RechercheEtendue_google_like{[(#TEXTE|attribut_html|couper{200})]})]
+			</div> <!-- fin element_sous-->
+		</BOUCLE_forum>
+
+	</BOUCLE_marecherche>
+	[<p>(#PAGINATION)</p>]
+	</div></div>
+	</B_marecherche>
+
+
+		<INCLURE{fond=inc-compilateur}{page_actuelle=recherche}{zone=sous_contenu}{id_actuel=#ENV{recherche}}
+				{zone_restreinte=sous_contenu-recherche}{lang}>
+
+	</div><!-- fin contenu-->
+
+	<INCLURE{fond=inc-compilateur}{page_actuelle=recherche}{zone=barre_laterale}{id_actuel=#ENV{recherche}}
+			{zone_restreinte=barre_laterale-recherche}{lang}>
+
+</div><!-- fin corps -->
+
+<div id="pied">
+	<INCLURE{fond=inc-compilateur}{zone=mentions_techniques}{lang}>	
+</div><!-- fin pied -->
+
+</div><!-- fin page -->
+
+</body>
+</html>
