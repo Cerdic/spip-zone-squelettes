@@ -11,6 +11,7 @@
 	[
 	(#REM) Lien vers le backend pour navigateurs eclaires ]
 	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+
 	[
 	(#REM) Script NiceTitle pour la gestion des title des liens ]	
 	[<script type="text/javascript" src="(#CHEMIN{nicetitle.js})"></script>]
@@ -29,6 +30,7 @@
 	<INCLURE{fond=inc-compilateur}{zone=surtitre}{lang}>			
 	<INCLURE{fond=inc-compilateur}{zone=titre_principal}{lang}>
 	<INCLURE{fond=inc-compilateur}{zone=titre_lateral}{lang}>
+
 	<INCLURE{fond=inc-compilateur}{zone=sous_titre}{lang}>
 	<INCLURE{fond=inc-compilateur}{zone=menu_principal}{lang}>
 </div><!-- fin tete -->
@@ -44,7 +46,7 @@
 	<div class="contenu">
 	
 		<INCLURE{fond=inc-compilateur}{page_actuelle=recherche}{zone=sur_contenu}
-				{zone_restreinte=sur_contenu-recherche}{lang}>
+				{zone_restreinte=sur_contenu-recherche}{id_actuel=#ENV{recherche}}{lang}>
 
 		[(#REM) Recherche en cours ]
 		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
@@ -54,6 +56,7 @@
 
 		[(#REM) Rubriques trouvées ]
 		<B_rubriques>
+
 		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
 		<h1><:blip:rubriques:></h1><div class="element_sur">
 		<BOUCLE_rubriques(RUBRIQUES) {recherche} {par points} {inverse}{lang}>
@@ -67,6 +70,7 @@
 		<B_articles>
 		#ANCRE_PAGINATION
 		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+
 		<h1><:blip:articles:></h1><div class="element_sur">
 		[<p>(#PAGINATION)</p>]
 		<BOUCLE_articles(ARTICLES) {recherche} {par points} {inverse} {pagination}{lang}>
@@ -74,6 +78,7 @@
 		</BOUCLE_articles>
 		[<p>(#PAGINATION)</p>]
 		</div></div></div>
+
 		</B_articles>
 
 
@@ -86,6 +91,7 @@
 		<h1><:blip:documents:></h1><div class="element_sur">
 		[<p class="pagination">(#PAGINATION)</p>]
 		<BOUCLE_documents(DOCUMENTS) {recherche} {par points} {inverse} {pagination} {doublons}>
+
 			<div class="element_sous">
 			<div class="imgfloatleft"><a href="#URL_DOCUMENT"[ title="(#TITRE|attribut_html)"]>[(#LOGO_DOCUMENT{0,60})]</a></div>
 			<h5 class="nopadding"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>">[(#TITRE|sinon{<:info_document:>}) ]</a></h5>
@@ -93,6 +99,7 @@
 			#DESCRIPTIF
 			</div>
 		</BOUCLE_documents>
+
 		[<p>(#PAGINATION)</p>]
 		</div></div></div>
 		</B_documents>
@@ -104,6 +111,7 @@
 		<h1><:blip:sites:></h1><div class="element_sur">
 		[<p class="pagination">(#PAGINATION)</p>]
 		<BOUCLE_liens(SITES) {recherche} {par points} {inverse} {pagination 25}>
+
 			<h5 class="nopadding">
 			[<a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut|entites_html|couper{200})]">(#NOM_SITE|supprimer_numero)</a>]
 			</h5>
@@ -111,7 +119,6 @@
 		[<p>(#PAGINATION)</p>]
 		</div></div></div>
 		</B_liens>
-
 
 		[(#REM) Messages de forum trouvés ]
 		<B_commentaires>
@@ -121,16 +128,17 @@
 		<BOUCLE_commentaires(FORUMS) {recherche} {par points} {inverse} {plat} {pagination}>
 			<INCLURE{fond=inc_forum_message}{id_forum}{lien=article}>
 		</BOUCLE_commentaires>
+
 		[<p>(#PAGINATION)</p>]
 		</div></div></div>
 		</B_commentaires>
 		
-		<INCLURE{fond=inc-compilateur}{page_actuelle=recherche}{zone=sur_contenu}
-				{zone_restreinte=sur_contenu-recherche}{lang}>
+		<INCLURE{fond=inc-compilateur}{page_actuelle=recherche}{zone=sous_contenu}{id_actuel=#ENV{recherche}}
+				{zone_restreinte=sous_contenu-recherche}{lang}>
 
 	</div><!-- fin contenu-->
 
-	<INCLURE{fond=inc-compilateur}{page_actuelle=recherche}{zone=barre_laterale}
+	<INCLURE{fond=inc-compilateur}{page_actuelle=recherche}{zone=barre_laterale}{id_actuel=#ENV{recherche}}
 			{zone_restreinte=barre_laterale-recherche}{lang}>
 
 </div><!-- fin corps -->
