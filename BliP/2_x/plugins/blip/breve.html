@@ -1,0 +1,195 @@
+#CACHE{86400}
+<BOUCLE_breve_principale(BREVES) {id_breve}><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+	<title>[(#TITRE|textebrut|supprimer_numero)][- [ (#DATE|nom_jour)] (#DATE|affdate)][ - (#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	[<meta name="description" content="(#INTRODUCTION|couper{150}|attribut_html)" />]
+	<meta name="generator" content="SPIP" />
+	[<link rel="shortcut icon" href="(#CHEMIN{#NOM_SITE_SPIP.ico})" />]
+
+	[
+	(#REM) Lien vers le backend pour navigateurs eclaires ]
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+	[
+	(#REM) Script NiceTitle pour la gestion des title des liens ]	
+	[<script type="text/javascript" src="(#CHEMIN{nicetitle.js})"></script>]
+	[
+	(#REM) Style CSS de blip ]
+	<link rel="stylesheet" type="text/css" href="#URL_PAGE{inc-css}" />	
+
+	<INCLURE{fond=inc-head}>
+	
+</head>
+
+<body id="breve">
+<div id="page">
+
+<div id="tete">
+	<INCLURE{fond=inc-compilateur}{zone=surtitre}{lang}>			
+	<INCLURE{fond=inc-compilateur}{zone=titre_principal}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=titre_lateral}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=sous_titre}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=menu_principal}{lang}>
+</div><!-- fin tete -->
+
+
+<div id="corps">
+
+	[(#REM) Construction du Fil d'Ariane ]
+	<div class="menu_auxiliaire">
+		<a href="[(#URL_PAGE{accueil})]"><:blip:accueil:></a> &amp; <a href="[(#URL_PAGE{sommaire})]"><:blip:actualite:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane><BOUCLE_ariane_rub_actuelle(RUBRIQUES){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane_rub_actuelle>[ &gt; (#TITRE|supprimer_numero|couper{80})]
+	</div><!-- fin menu_auxiliaire-->
+
+	[(#REM) Construction du contenu de la page : Affichage de la breve]
+	<div class="contenu">
+	
+	<INCLURE{fond=inc-compilateur}{page_actuelle=breve}{zone=sur_contenu}
+			{id_actuel=#ID_BREVE}{zone_restreinte=sur_contenu-breve}{lang}>
+	
+		[(#REM) L'article ]
+		#DEBUT_SURLIGNE
+		<div class="element"><div class="imgfloatright">[(#LOGO_BREVE_RUBRIQUE| |reduire_image{100,0})]</div><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1>[<span class="gris_clair">[(#DATE|nom_jour)] (#DATE|affdate) </span></h1><h1>][(#TITRE|supprimer_numero)]</h1>
+		<p>[<:ecrire:entree_liens_sites:>&nbsp;: <a href="(#URL_SITE)">#NOM_SITE</a>]</p>
+		[<div class="element_sous">(#TEXTE|reduire_image{500,0})</div>]
+		[<div class="element_sous"><h3>Notes :</h3>(#NOTES)</div>]
+		#FIN_SURLIGNE			
+		</div></div>
+
+
+
+		[(#REM) Le Forum) ]
+		<B_forum_breve>
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1><:blip:commentaires_postes:></h1>
+		<div class="element_sur">
+		<BOUCLE_forum_breve(FORUMS){par date}{id_breve}{plat}>
+			<INCLURE{fond=inc_forum_message}{id_forum}>
+		</BOUCLE_forum_breve>
+		</div><!-- fin element_sur-->
+		</div></div> <!-- fin element-->	
+		</B_forum_breve>	
+
+
+		[<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1><:blip:commentaire_poster_un:></h1>
+		<div class="element_sur">
+		(#FORMULAIRE_FORUM)
+		</div><!-- fin element_sur-->
+		</div></div> <!-- fin element-->	
+		]
+	
+	<INCLURE{fond=inc-compilateur}{page_actuelle=breve}{zone=sous_contenu}
+			{id_actuel=#ID_BREVE}{zone_restreinte=sous_contenu-breve}{lang}>
+	
+	</div><!-- fin contenu -->
+
+	<INCLURE{fond=inc-compilateur}{page_actuelle=breve}{zone=barre_laterale}
+			{id_actuel=#ID_BREVE}{zone_restreinte=barre_laterale-breve}{tri}{lang}>	
+
+</div><!-- fin corps -->		
+
+<div id="pied">
+	<INCLURE{fond=inc-compilateur}{zone=mentions_techniques}{lang}>	
+</div><!-- fin pied -->
+
+</div><!-- fin page -->
+</body>
+</html>
+</BOUCLE_breve_principale>
+[
+
+
+
+
+(#REM) Affiche la liste des brèves : se produit si aucune des boucles précédentes n'a été exécutée 
+
+] 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+	<title><:dernieres_breves:> [- (#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	<meta name="description" content="Liste des brèves [- (#NOM_SITE_SPIP|textebrut)]" />
+	<meta name="generator" content="SPIP" />
+	[<link rel="shortcut icon" href="(#CHEMIN{#NOM_SITE_SPIP.ico})" />]
+
+	[
+	(#REM) Lien vers le backend pour navigateurs eclaires ]
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+	[
+	(#REM) Script NiceTitle pour la gestion des title des liens ]	
+	[<script type="text/javascript" src="(#CHEMIN{nicetitle.js})"></script>]
+	[
+	(#REM) Style CSS de blip ]
+	<link rel="stylesheet" type="text/css" href="#URL_PAGE{inc-css}" />
+
+	<INCLURE{fond=inc-head}>
+	
+</head>
+
+<body id="article">
+<div id="page">
+
+<div id="tete">
+	<INCLURE{fond=inc-compilateur}{zone=surtitre}{lang}>			
+	<INCLURE{fond=inc-compilateur}{zone=titre_principal}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=titre_lateral}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=sous_titre}{lang}>
+	<INCLURE{fond=inc-compilateur}{zone=menu_principal}{lang}>
+</div><!-- fin tete -->
+
+<div id="corps">
+
+	[(#REM) Construction du Fil d'Ariane ]
+	<div class="menu_auxiliaire">
+	
+		<a href="[(#URL_PAGE{accueil})]"><:blip:accueil:></a> &amp; <a href="[(#URL_PAGE{sommaire})]"><:blip:actualite:></a> &gt; <:breves:> 
+		
+	</div><!-- fin menu_auxiliaire-->
+
+	
+	[(#REM) Construction du contenu de la page breve en fonction des paramètres passés dans la variable tri]
+	<div class="contenu">	
+	
+		[<div class="element"><p class="couleur2"><:aucune_breve:> (n° (#ENV{id_breve})).</p></div>] 	
+		
+			<INCLURE{fond=inc-compilateur}{page_actuelle=breve}{zone=sur_contenu}
+					{zone_restreinte=sur_contenu-breve}{lang}>		
+		
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+		<h1>Liste des brèves</h1><div class="element_sur">			
+			<B_breve_liste>
+			[<p>(#PAGINATION)</p>]
+			<BOUCLE_breve_liste(BREVES) {doublons} {par date} {inverse}{pagination}{lang}>
+				
+				[<p>Publiée(s) en <span class="couleur2"><b>(#DATE|affdate_mois_annee|unique)</b></span></p>]
+								
+				<INCLURE{fond=inc_breve_resume}{id_breve}{lang}>
+				
+			</BOUCLE_breve_liste>
+			[<p>(#PAGINATION)</p>]
+			</B_breve_liste>
+				Aucune brève n'a été publiée
+			<//B_breve_liste>	
+		</div></div></div>
+		
+		<INCLURE{fond=inc-compilateur}{page_actuelle=breve}{zone=sous_contenu}
+		{zone_restreinte=sous_contenu-breve}{lang}>	
+		
+	</div><!-- fin contenu-->
+	
+	<INCLURE{fond=inc-compilateur}{page_actuelle=breve}{zone=barre_laterale}
+			{zone_restreinte=barre_laterale-breve}{tri}{lang}>
+
+</div><!-- fin corps -->
+
+<div id="pied">
+	<INCLURE{fond=inc-compilateur}{zone=mentions_techniques}{lang}>	
+</div><!-- fin pied -->
+
+</div><!-- fin page -->
+</body>
+</html>
+<//B_breve_principale>
