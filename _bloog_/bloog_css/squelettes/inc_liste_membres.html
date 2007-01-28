@@ -29,14 +29,16 @@
 
 <p class="interne">
 <BOUCLE_initial_nom(AUTEURS){tous}{par nom}>
-<a href="#SELF&amp;lettre=[^(#NOM|translitteration|couper{1}|unique{lien}) ]">[(#NOM|translitteration|couper{1}|unique{2}) ]</a>
+
+<a href="#SELF&amp;nom=[(#NOM|translitteration|couper{1}|unique{lien})]">[(#NOM|translitteration|couper{1}|unique{titrelien})]</a>
 </BOUCLE_initial_nom>
 
 </p>
 
 
+
 <ul class="membres">
-<BOUCLE_auteurs(AUTEURS){nom == ^#ENV{lettre,A}} >
+<BOUCLE_auteurs(AUTEURS){nom==#ENV{nom,.}}{statut==#ENV{statut,(0minirezo|1comite|nouveau|6forum)}}>
 [<li class="auteur"><a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="R&eacute;dacteur d'article">]
 [<li class="modo"><a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Webmaster/modo">]
 [<li class="visiteur"><a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Invit&eacute; ou visiteur">]
