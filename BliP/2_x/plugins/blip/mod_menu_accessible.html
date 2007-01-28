@@ -1,0 +1,116 @@
+﻿<h3><span class="couleur2"><b>Menu</b></span></h3>
+
+<div id="menu_accessible">
+<ul>
+
+[(#CONFIG{blip_accueil}|=={'oui'}|?{' ',''})
+	<li>[(#ENV{page_actuelle}|=={'accueil'}|?{'<strong>',''})][<a href="(#URL_PAGE{accueil})">]<:blip:accueil:>[(#ENV{page_actuelle}|=={'accueil'}|?{'</strong>',''})]</a></li>
+	]
+
+[(#CONFIG{blip_sommaire}|=={'oui'}|?{' ',''})
+	<li>[(#ENV{page_actuelle}|=={'sommaire'}|?{'<strong>',''})][<a href="(#URL_PAGE{sommaire})">]<:blip:actualite:>[(#ENV{page_actuelle}|=={'sommaire'}|?{'</strong>',''})]</a></li>
+	]
+	<ul>
+	[(#CONFIG{blip_sommaire_articles}|=={'oui'}|?{' ',''})
+		<li>[(#ENV{page_actuelle}|=={'sommaire'}|?{[(#ENV{tri}|=={'articles'}|?{'<strong>',''})],''})][<a href="(#URL_PAGE{sommaire}|parametre_url{'tri','articles'})">]Derniers <:blip:articles_publies:></a>[(#ENV{page_actuelle}|=={'sommaire'}|?{[(#ENV{tri}|=={'articles'}|?{'</strong>',''})],''})]</li>
+		]
+	[(#CONFIG{blip_sommaire_commentaires}|=={'oui'}|?{' ',''})
+		<li>[(#ENV{page_actuelle}|=={'sommaire'}|?{[(#ENV{tri}|=={'commentaires'}|?{'<strong>',''})],''})][<a href="(#URL_PAGE{sommaire}|parametre_url{'tri','commentaires'})">]Derniers <:blip:commentaires_postes2:></a>[(#ENV{page_actuelle}|=={'sommaire'}|?{[(#ENV{tri}|=={'commentaires'}|?{'</strong>',''})],''})]</li>
+		]
+	[(#CONFIG{blip_sommaire_documents}|=={'oui'}|?{' ',''})
+		<li>[(#ENV{page_actuelle}|=={'sommaire'}|?{[(#ENV{tri}|=={'documents'}|?{'<strong>',''})],''})][<a href="(#URL_PAGE{sommaire}|parametre_url{'tri','documents'})">]Derniers <:blip:document_publie:></a>[(#ENV{page_actuelle}|=={'sommaire'}|?{[(#ENV{tri}|=={'documents'}|?{'</strong>',''})],''})]</li>
+		]
+	</ul>
+
+<BOUCLE_rubrique(RUBRIQUES) {id_rubrique=#ENV{id_actuel}}>
+[(#ENV{page_actuelle}|=={'rubrique'}|?{' ',''})<INCLURE{fond=inc_menu_rubriques}{id_rubrique}{lang}>]
+</BOUCLE_rubrique>
+<BOUCLE_article(ARTICLES) {id_article=#ENV{id_actuel}}>
+[(#ENV{page_actuelle}|=={'article'}|?{' ',''})<INCLURE{fond=inc_menu_rubriques}{id_rubrique}{lang}>]
+</BOUCLE_article>
+<BOUCLE_site(SITES) {id_syndic=#ENV{id_actuel}}>
+[(#ENV{page_actuelle}|=={'site'}|?{' ',''})<INCLURE{fond=inc_menu_rubriques}{id_rubrique=#ID_RUBRIQUE}{lang}>]
+</BOUCLE_site>
+<BOUCLE_breve(BREVES) {id_breve=#ENV{id_actuel}}>
+[(#ENV{page_actuelle}|=={'breve'}|?{' ',''})<INCLURE{fond=inc_menu_rubriques}{id_rubrique}{lang=#ID_RUBRIQUE}>]
+</BOUCLE_breve>
+<BOUCLE_evenement(EVENEMENTS) {id_evenement=#ENV{id_actuel}}>
+[(#ENV{page_actuelle}|=={'evenement'}|?{' ',''})<INCLURE{fond=inc_menu_rubriques}{id_rubrique=#ID_RUBRIQUE}{lang}>]
+</BOUCLE_evenement>
+
+[(#ENV{id_actuel}|!={''}|?{' ',''})
+	[(#ENV{page_actuelle}|=={'rubrique'}|?{'',' '})
+		[(#ENV{page_actuelle}|=={'article'}|?{'',' '})
+			[(#ENV{page_actuelle}|=={'site'}|?{'',' '})
+				[(#ENV{page_actuelle}|=={'breve'}|?{'',' '})
+					[(#ENV{page_actuelle}|=={'evenement'}|?{'',' '})
+						<INCLURE{fond=inc_menu_rubriques}{lang}>
+					]
+				]
+			]
+		]
+	]
+]
+[(#ENV{id_actuel}|=={''}|?{' ',''})	<INCLURE{fond=inc_menu_rubriques}{lang}>]
+
+
+[(#CONFIG{blip_rubriques}|=={'oui'}|?{' ',''})
+	<li>[(#ENV{page_actuelle}|=={'rubrique'}|?{'<strong>',''})][<a href="(#URL_PAGE{rubrique})">]<:blip:rubriques:>[(#ENV{page_actuelle}|=={'rubrique'}|?{'</strong>',''})]</a></li>
+	]
+	
+[(#CONFIG{blip_articles}|=={'oui'}|?{' ',''})
+	<li>[(#ENV{page_actuelle}|=={'article'}|?{'<strong>',''})][<a href="(#URL_PAGE{article})">]<:blip:articles:>[(#ENV{page_actuelle}|=={'article'}|?{'</strong>',''})]</a></li>
+	]
+	<ul>
+	[(#CONFIG{blip_articles_datepub}|=={'oui'}|?{' ',''})
+		<li>[(#ENV{page_actuelle}|=={'article'}|?{[(#ENV{tri}|=={'date'}|?{'<strong>',''})],''})][<a href="(#URL_PAGE{article}|parametre_url{'tri','date'})">]<:par:> <:blip:date_de_publication:></a>[(#ENV{page_actuelle}|=={'article'}|?{[(#ENV{tri}|=={'date'}|?{'</strong>',''})],''})]</li>
+		]
+	[(#CONFIG{blip_articles_datemaj}|=={'oui'}|?{' ',''})
+		<li>[(#ENV{page_actuelle}|=={'article'}|?{[(#ENV{tri}|=={'date_modif'}|?{'<strong>',''})],''})][<a href="(#URL_PAGE{article}|parametre_url{'tri','date_modif'})">]<:par:> <:blip:date_de_mise_a_jour:></a>[(#ENV{page_actuelle}|=={'article'}|?{[(#ENV{tri}|=={'date_modif'}|?{'</strong>',''})],''})]</li>
+		]
+	[(#CONFIG{blip_articles_popularite}|=={'oui'}|?{' ',''})
+		<li>[(#ENV{page_actuelle}|=={'article'}|?{[(#ENV{tri}|=={'popularite'}|?{'<strong>',''})],''})][<a href="(#URL_PAGE{article}|parametre_url{'tri','popularite'})">]<:par:> <:blip:popularite:></a>[(#ENV{page_actuelle}|=={'article'}|?{[(#ENV{tri}|=={'popularite'}|?{'</strong>',''})],''})]</li>
+		]
+	[(#CONFIG{blip_articles_visiteurs}|=={'oui'}|?{' ',''})
+		<li>[(#ENV{page_actuelle}|=={'visites'}|?{[(#ENV{tri}|=={'popularite'}|?{'<strong>',''})],''})][<a href="(#URL_PAGE{article}|parametre_url{'tri','visites'})">]<:par:> <:blip:visiteurs_nombre_de:></a>[(#ENV{page_actuelle}|=={'article'}|?{[(#ENV{tri}|=={'visites'}|?{'</strong>',''})],''})]</li>
+		]
+	</ul>
+	
+[(#CONFIG{blip_mots}|=={'oui'}|?{' ',''})
+	<li>[(#ENV{page_actuelle}|=={'mot'}|?{'<strong>',''})][<a href="(#URL_PAGE{mot})">]<:mots_clefs:>[(#ENV{page_actuelle}|=={'mot'}|?{'</strong>',''})]</a></li>
+	]
+	<ul>
+	[(#CONFIG{blip_mots_theme}|=={'oui'}|?{' ',''})
+		<li>[(#ENV{page_actuelle}|=={'mot'}|?{[(#ENV{tri}|=={'theme'}|?{'<strong>',''})],''})][<a href="(#URL_PAGE{mot}|parametre_url{'tri','theme'})">]<:par:> <:blip:theme:></a>[(#ENV{page_actuelle}|=={'mot'}|?{[(#ENV{tri}|=={'theme'}|?{'</strong>',''})],''})]</li>
+		]
+	[(#CONFIG{blip_mots_popularite}|=={'oui'}|?{' ',''})
+		<li>[(#ENV{page_actuelle}|=={'mot'}|?{[(#ENV{tri}|=={'popularite'}|?{'<strong>',''})],''})][<a href="(#URL_PAGE{mot}|parametre_url{'tri','popularite'})">]<:par:> <:blip:popularite:></a>[(#ENV{page_actuelle}|=={'mot'}|?{[(#ENV{tri}|=={'popularite'}|?{'</strong>',''})],''})]</li>
+		]
+	[(#CONFIG{blip_mots_alphabetique}|=={'oui'}|?{' ',''})
+		<li>[(#ENV{page_actuelle}|=={'mot'}|?{[(#ENV{tri}|=={'alphabetique'}|?{'<strong>',''})],''})][<a href="(#URL_PAGE{mot}|parametre_url{'tri','alphabetique'})">]<:par:> <:blip:ordre_alphabetique:></a>[(#ENV{page_actuelle}|=={'mot'}|?{[(#ENV{tri}|=={'alphabetique'}|?{'</strong>',''})],''})]</li>
+		]
+	</ul>
+
+[(#CONFIG{blip_rechercher}|=={'oui'}|?{' ',''})
+	<li>[(#ENV{page_actuelle}|=={'recherche'}|?{'<strong>',''})][<a href="(#URL_PAGE{recherche})">]<:blip:rechercher:>[(#ENV{page_actuelle}|=={'recherche'}|?{'</strong>',''})]</a></li>
+	]
+
+[(#CONFIG{blip_espaceprive}|=={'oui'}|?{' ',''})
+	<li>[(#ENV{page_actuelle}|=={'login'}|?{'<strong>',''})][<a href="(#URL_PAGE{login})">]<:espace_prive:>[(#ENV{page_actuelle}|=={'login'}|?{'</strong>',''})]</a></li>
+	]
+
+[(#CONFIG{blip_switch}|=={'oui'}|?{' ',''})
+	<li>[(#ENV{page_actuelle}|=={'switch'}|?{'<strong>',''})][<a href="(#URL_PAGE{switch})">]<:blip:changer_couleurs:>[(#ENV{page_actuelle}|=={'switch'}|?{'</strong>',''})]</a></li>
+	]
+
+</ul>
+</div>
+<script src="menuAccessible/menuAcc.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+window.onload = function() {
+  jp_expinit(); // Doit etre place *apres* le menu concerne!!!
+  adjustLayout();
+}
+//]]>
+</script>

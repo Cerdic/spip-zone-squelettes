@@ -42,16 +42,24 @@
 
 	[(#REM) Construction du contenu de la page recherche]
 	<div class="contenu">
-	
+
+		[(#REM) Effectuer une recherche]	
+		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
+			<h1>Effectuer une recherche</h1>
+			[(#FORMULAIRE_RECHERCHE|spip.php?page=rechercher)]	
+		</div></div>
+
 		<INCLURE{fond=inc-compilateur}{page_actuelle=recherche}{zone=sur_contenu}
 				{zone_restreinte=sur_contenu-recherche}{id_actuel=#ENV{recherche}}{lang}>
 
 		[(#REM) Recherche en cours ]
+		[(#ENV{recherche}|=={''}|?{'',' '})
 		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
 			<h1><:blip:recherche_votre:> : <span class="gris_clair">#RECHERCHE</span></h1>
+		]
 			[(#REM) Affichage du nombre de resultats trouves]
 			<BOUCLE_compte_marecherche(INDEX){recherche}{type_table IN articles,documents,rubriques,breves,spip_syndic,spip_forum,mots,auteurs}></BOUCLE_compte_marecherche>
-				[(#TOTAL_BOUCLE|?{' ',''})
+				[(#ENV{recherche}|=={''}|?{'',' '})[(#TOTAL_BOUCLE|?{' ',''})
 					<srong>#TOTAL_BOUCLE r&eacute;sultat[s(#TOTAL_BOUCLE|>{1}|?{' ',''})] pour #RECHERCHE.</strong>
 					[	<br />
 						Vous pouvez aussi essayer 
@@ -64,18 +72,12 @@
 						Vous devriez peut-&ecirc;tre essayer
 						<a href='[(#SELF|parametre_url{'recherche',[(#RECHERCHE|RechercheEtendue_recherche_semblable)]})]'>
 						(#RECHERCHE|RechercheEtendue_recherche_semblable)</a>.]
-				]
+				]]
 			<//B_compte_marecherche>
-		</div></div>
+		[(#ENV{recherche}|=={''}|?{'',' '})</div></div>]
 		
-		[(#REM) Modifier la recherche]	
-		<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
-			<h1>Modifier la recherche</h1>
-			[(#FORMULAIRE_RECHERCHE|spip.php?page=rechercher)]	
-		</div></div>
-	
 	[(#REM) Initialisation de la jauge]
-	<BOUCLE_init_jauge(INDEX){recherche}{!par points}{type_table IN articles,documents,rubriques,breves,spip_syndic,spip_forum,mots,auteurs} {0,1}>
+	<BOUCLE_init_jauge(INDEX){recherche}{type_table IN articles,documents,rubriques,breves,spip_syndic,spip_forum,mots,auteurs}{!par points} {0,1}>
 	[(#POINTS|RechercheEtendue_jauge_init{150})]
 	</BOUCLE_init_jauge>
 	
@@ -84,10 +86,10 @@
 	<div class="element"><div class="puce_principale">&nbsp;</div><div class="texte_principal">
 			<h1>Résultats</h1><p />
 	[(#PAGINATION)<p />]
-	<BOUCLE_marecherche(INDEX){recherche}{!par points}{type_table IN articles,documents,rubriques,breves,spip_syndic,spip_forum,mots,auteurs} {pagination}>
+	<BOUCLE_marecherche(INDEX){recherche}{type_table IN articles,documents,rubriques,breves,spip_syndic,spip_forum,mots,auteurs}{!par points}{pagination}>
 		<!-- Articles trouves -->
 		<BOUCLE_articles(ARTICLES) {id_article}>
-			<div class="element_sous">[<img src="(#CHEMIN{images/article.png})" alt="Article" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_bleu'})]
+			<div class="element_sous">[<img src="(#CHEMIN{images/article.png})" alt="Article" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_perso'})]
 			<div class="imgfloatright">[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|reduire_image{100,0})]</div>
 				<h3>[<span class="gris_clair">(#SURTITRE) </span>]<a href="#URL_ARTICLE[&amp;var_recherche=(#RECHERCHE)]" >[(#TITRE|supprimer_numero)]</a>[<i><span class="gris_clair"> (#SOUSTITRE) </span></i>]</h3>
 			<h5>
@@ -111,7 +113,7 @@
 		</BOUCLE_articles>
 		<!-- Rubriques trouvées -->
 		<BOUCLE_rubriques(RUBRIQUES) {id_rubrique}>
-			<div class="element_sous">[<img src="(#CHEMIN{images/rubrique.png})" alt="Rubrique" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_bleu'})]</img>
+			<div class="element_sous">[<img src="(#CHEMIN{images/rubrique.png})" alt="Rubrique" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_perso'})]</img>
 			<div class="imgfloatright">[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|reduire_image{100,0})]</div>
 				<h3><a href="#URL_RUBRIQUE[&amp;var_recherche=(#RECHERCHE)]" >[(#TITRE|supprimer_numero)]</a></h3>
 			<h5>
@@ -130,9 +132,9 @@
 		</BOUCLE_rubriques>
 		<!-- Brèves trouvées -->
 		<BOUCLE_breves(BREVES) {id_breve}>
-			<div class="element_sous">[<img src="(#CHEMIN{images/breve.png})" alt="Brève" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_bleu'})]
+			<div class="element_sous">[<img src="(#CHEMIN{images/breve.png})" alt="Brève" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_perso'})]
 			<div class="imgfloatright">[(#LOGO_BREVE_RUBRIQUE|#URL_BREVE|reduire_image{100,0})]</div>
-				<h3>[<span class="gris_clair">(#DATE|affdate) :</span>] <a href="#URL_ARTICLE[&amp;var_recherche=(#RECHERCHE)]" >[(#TITRE|supprimer_numero)]</a></h3>
+				<h3>[<span class="gris_clair">(#DATE|affdate) :</span>] <a href="#URL_BREVE[&amp;var_recherche=(#RECHERCHE)]" >[(#TITRE|supprimer_numero)]</a></h3>
 			<h5>
 				<BOUCLE_breve_resume_rubrique(RUBRIQUES){id_rubrique =#ID_RUBRIQUE}>
 				<:blip:dans:> <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>		
@@ -148,7 +150,7 @@
 		</BOUCLE_breves>
 		<!-- Sites trouves -->
 		<BOUCLE_sites(SITES) {id_syndic}>
-			<div class="element_sous">[<img src="(#CHEMIN{images/site.png})" alt="Site" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_bleu'})]
+			<div class="element_sous">[<img src="(#CHEMIN{images/site.png})" alt="Site" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_perso'})]
 			<div class="imgfloatright"><BOUCLE_logo_rub_site(RUBRIQUES){id_rubrique}><a href="spip.php?site#ID_SYNDIC[&amp;var_recherche=(#RECHERCHE)]">[(#_site_resume:LOGO_SITE|fichier|?{#_site_resume:LOGO_SITE,#LOGO_RUBRIQUE}||reduire_image{100,0})]</a></BOUCLE_logo_rub_site></div>
 				<h3><a href="spip.php?site#ID_SYNDIC[&amp;var_recherche=(#RECHERCHE)]" >[(#NOM_SITE|supprimer_numero)]</a></h3>
 			<h5>
@@ -167,7 +169,7 @@
 		</BOUCLE_sites>
 		<!-- Documents trouves -->
 		<BOUCLE_documents(DOCUMENTS) {id_document}>
-			<div class="element_sous">[<img src="(#CHEMIN{images/document.png})" alt="Document" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_bleu'})]
+			<div class="element_sous">[<img src="(#CHEMIN{images/document.png})" alt="Document" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_perso'})]
 			<div class="imgfloatright">[(#LOGO_DOCUMENT|#URL_DOCUMENT|reduire_image{100,0})]</div>
 				<h3><a href="#URL_DOCUMENT" >[(#TITRE|supprimer_numero)]</a></h3>
 			<h5>
@@ -194,7 +196,7 @@
 		</BOUCLE_documents>
 		<!-- Auteurs trouves -->
 		<BOUCLE_auteurs(AUTEURS) {id_auteur}>
-			<div class="element_sous">[<img src="(#CHEMIN{images/auteur.png})" alt="Auteur" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_bleu'})]
+			<div class="element_sous">[<img src="(#CHEMIN{images/auteur.png})" alt="Auteur" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_perso'})]
 			<div class="imgfloatright">[(#LOGO_AUTEUR|#URL_AUTEUR|reduire_image{100,0})]</div>
 				<h3><a href="#URL_AUTEUR[&amp;var_recherche=(#RECHERCHE)]" >[(#NOM|supprimer_numero)]</a></h3>
 			[(#REM) concatenation du texte complet, pour creer le resume type google]
@@ -207,7 +209,7 @@
 		</BOUCLE_auteurs>
 		<!-- Mots trouves -->
 		<BOUCLE_mots(MOTS) {id_mot}>
-			<div class="element_sous">[<img src="(#CHEMIN{images/mot.png})" alt="Mot" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_bleu'})]
+			<div class="element_sous">[<img src="(#CHEMIN{images/mot.png})" alt="Mot" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_perso'})]
 			<div class="imgfloatright">[(#LOGO_MOT|#URL_MOT|reduire_image{100,0})]</div>
 				<h3><a href="#URL_MOT[&amp;var_recherche=(#RECHERCHE)]" >[(#TITRE|supprimer_numero)]</a></h3>
 				<h5>Type de mot : #TYPE</h5>
@@ -222,7 +224,7 @@
 		</BOUCLE_mots>
 		<!-- Documents trouves -->
 		<BOUCLE_forum(FORUMS) {id_forum}>
-			<div class="element_sous">[<img src="(#CHEMIN{images/forum.png})" alt="Message de Forum" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_bleu'})]
+			<div class="element_sous">[<img src="(#CHEMIN{images/forum.png})" alt="Message de Forum" />&nbsp;][(#_marecherche:POINTS|RechercheEtendue_jauge{'barre_perso'})]
 				<BOUCLE_forum_logo_article(ARTICLES){id_article =#ID_ARTICLE}>
 				<div class="imgfloatright">[(#LOGO_ARTICLE_RUBRIQUE|#_forum:URL_FORUM|reduire_image{100,0})]</div>		
 				</BOUCLE_forum_logo_article>
