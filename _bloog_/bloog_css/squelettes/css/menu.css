@@ -1,20 +1,14 @@
-a.secteuron, a.rubriqueon {
-	font-weight: bold; color: #ff9999; 
-}
-
-.menu{
-	margin: 0px ;
-	padding-left : 5px;
-	padding-bottom : 10px;
-}
-.rubriques {
-	margin: 0px ;
-	padding-left : 20px;
-}
-
-.puce {
-	margin-left: -8px;
-	margin-top: 0px;
-	margin-bottom: 0px;
-	margin-right: 3px;
-}
+$(document).ready(function () {
+	$('#alphabet a').removeAttr('href')
+	$('.alphabet').click(function(){
+		var lettre = $(this).text();
+		var rubrique = $('#id_rubrique_lettre').text();
+		var from = $('#id_from').text();
+		$('#alphabet a').removeClass('lettreon');
+		$(this).addClass('lettreon');
+		$('#content-alphabet').slideUp();
+		
+$('#content-alphabet').load('spip.php?page=inc-ajax-lettres&lettre='+lettre+'&id_rubrique='+rubrique+'&from='+from+'');
+		$('#content-alphabet').slideDown();
+	});
+});

@@ -9,11 +9,12 @@
 <html lang="#LANG"><head>
 
 [(#REM)   les métas   ]
-<title>Communauté artistique</title>
-<meta name="Description" content='Contactez <BOUCLE_author1(AUTEURS){id_auteur=1}>[(#NOM)]</BOUCLE_author1>, contactez [(#NOM_SITE_SPIP)]'/>
-<meta name="keywords" content="Contact <BOUCLE_author2(AUTEURS){id_auteur=1}>[(#NOM)]</BOUCLE_author2>,contact [(#NOM_SITE_SPIP)]"/>
-<meta name="author" content="<BOUCLE_author3(AUTEURS){id_auteur=1}>[(#NOM)]</BOUCLE_author3>"/>
-<meta name="revisit-after" content="15 days" />
+<title>L'acc&egrave;s &agrave; cette page est restreint
+    aux membres de #NOM_SITE_SPIP</title>
+<BOUCLE_auteur(AUTEURS){id_auteur=1}>
+<meta name="Description" content='L'acc&egrave;s &agrave; cette page est restreint aux membres de #NOM_SITE_SPIP'/>
+<meta name="author" content="[(#NOM)]</BOUCLE_auteur>"/>
+<meta name="revisit-after" content="30 days" />
 <meta http-equiv="content-type" content="text/html; charset=#CHARSET"/>
 
 	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
@@ -49,52 +50,65 @@
   <div class="grande_boite">
   
   
-  <h4 class="centre icone_membre">
-  Bienvenu dans cet espace communautaire gratuit.<br/>
- L'inscription  &agrave; la communaut&eacute; Art-logic c'est:</h4> 
+
+
+
+ <?php
+	$accepter_inscriptions = lire_meta("accepter_inscriptions");
+        $accepter_visiteurs = lire_meta('accepter_visiteurs');
+        $acces_abonne = get_extra(1,"auteur");
+        ($acces_abonne['config'] == "membre") ? $acces_membres = "oui" : $acces_membres = "non";
+               
+                        if ($accepter_inscriptions == "oui")  {   ?>
+  
+ <p class="centre">Cette page est accessible aux membres de #NOM_SITE_SPIP</p>
+    <h4 class="centre icone_membre">  Devenir membre de #NOM_SITE_SPIP c'est:</h4> 
  
 
-<ul class="centre">
-            
-                    <li> Une communaut&eacute; d'amoureux d'art, de photo, de
-                    montagne.</li>
-                    <li> La possibilit&eacute; d'ajouter ses textes, photos
-                    et liens sur ce site.</li>      
-					<li> Une messagerie, un agenda et la gestion de votre
-					inscription.</li>
-                    <li>Et en option, l'abonnement aux lettres d'informations
-                      ci-dessous. </li>
-</ul> 
-<form action='[(#URL_PAGE{inscription})&amp;type=redac]' method='post'>                                         
-                      <p class="centre"> <input type="submit" value="Inscription : cliquez ici."></p>
-        </form>
-<br/><br/>
-				  
+<ul class="centre petite_liste">
+<li>Un acc&egrave;s libre &agrave; toutes les pages de #NOM_SITE_SPIP.</li>
+<li>La possibilit&eacute; d'y ajouter ses textes, documents, photos et liens.</li>      
+<li>La possibilité de s'abonner à des lettres d'informations qui vous concerne.</li>
+<li>La possibilité d'ajouter votre votre bio, site web, et avatar.</li>
 
-<h4 class="centre icone_post">Les lettres d'informations mensuelles.<br/>
-Chaque mois, l'actualit&eacute; qui vous concerne : </h4>
-<ul class="centre">
-                    <li>Des invitations pour des &eacute;v&eacute;nements du 74,</li>
-                    <li>Des rencontres, des &eacute;changes artistiques, </li>
-                    <li>Des d&eacute;mos, photos et astuces d'artistes,</li>
-                    <li>Les derniers articles et les news du site,</li>
-                    <li>Un espace de gestion de vos abonnements.</li>
-        </ul>
-	
-                  <form action='[(#URL_PAGE{inscription})]' method='post'>
-                 <p class="centre"><input type="submit" value="Inscriptions : cliquez ici."></p>
-                  </form>
-<br/><br/>
-                 <p class="centre">Soyez assur&eacute; de la confidentialit&eacute; 
+</ul> #FORMULAIRE_ABONNEMENT
+        <p class="centre">Soyez assur&eacute; de la confidentialit&eacute; 
                     des donn&eacute;es vous concernant.<br/>
-                    Ce site est prot&eacute;g&eacute; du spam et est inscrit &agrave; 
-                    la CNIL. <a href="http://www.art-logic.info/annecy/article.php3?id_article=59">Notice
-                    l&eacute;gale</a>.</p>
-  
+           Ce site est prot&eacute;g&eacute; contre les robots spammeur et
+           est inscrit &agrave; 
+           la CNIL.</p>
   
 
-	<hr class="spacer"/>
-   </div>
+		
+		<? }else{  ?>
+		
+		
+		
+		
+	<p> L'acc&egrave;s &agrave; cette page est restreint
+    aux membres de #NOM_SITE_SPIP</p>
+   	 <h4 class="centre icone_membre"> Si vous possédez un accès, merci de vous connecter à #NOM_SITE_SPIP pour continuer.</h4> 
+ 
+
+<p class="centre">
+Un accès restreint à quelques utilisateurs protège le contenu de cette page.
+Contactez un administrateur de #NOM_SITE_SPIP pour obtenir votre accès.
+Seul un administrateur peut vous autoriser à accéder à cette page.
+Une gestion de votre profil et de votre inscription vous sera alors accessible.
+ <br/><br/>
+        Soyez assur&eacute; de la confidentialit&eacute; 
+                    des donn&eacute;es vous concernant.<br/>
+           Ce site est prot&eacute;g&eacute; contre les robots spammeur et
+           est inscrit &agrave; 
+           la CNIL.</p>
+
+    <? }  ?>
+
+
+	    <hr class="spacer"/>
+		
+		
+   </div>   
 
 
 
@@ -110,38 +124,9 @@ Chaque mois, l'actualit&eacute; qui vous concerne : </h4>
                         de passe pour vous connecter.                       
 </p>
 
-
-                    <?php
-	$accepter_inscriptions = lire_meta("accepter_inscriptions");
-        $accepter_visiteurs = lire_meta('accepter_visiteurs');
-        $acces_abonne = get_extra(1,"auteur");
-        ($acces_abonne['config'] == "membre") ? $acces_membres = "oui" : $acces_membres = "non";
-
-               
+             </div>
 		
-		echo "<ul>"  ;
-
-               
-
-                        if ($type == "redac") {
-			 echo "<li><a href=\"[(#URL_PAGE{inscription})]\">NEWSLETTER UNIQUEMENT</a></li>" ;
-                        }
-                        if( ($accepter_inscriptions == "oui") AND ($type != "redac") ) {
-			echo "<li><a href=\"[(#URL_PAGE{inscription})&amp;type=redac]\">"._T('bloog:devenir_redac')."</a></li>";
-                        }
-			if( ($acces_membres == "oui") OR ($accepter_inscriptions =="oui")  ) {
-                        echo "<li><a href=\"[(#URL_PAGE{inscription})&amp;oubli_pass=oui]\">"._T('login_motpasseoublie')."</a></li>";
-		        }
-                        
-                        echo "<li><a href='[(#URL_PAGE{abonnement})]'>"._T('bloog:abonnement_bouton')."</a></li>";
-		        
-                        
-                        echo "</ul>";
-			
-			echo "</div>";
-			
-          ?>
-                
+		 
 				
 				
                  
@@ -174,6 +159,7 @@ Chaque mois, l'actualit&eacute; qui vous concerne : </h4>
 
 
 </div> [(#REM)   fermeture container   ] 
+
 </body>
 </html>
 
