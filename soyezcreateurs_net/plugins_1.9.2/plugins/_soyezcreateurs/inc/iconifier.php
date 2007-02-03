@@ -15,19 +15,15 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 include_spip('inc/actions');
 
 // http://doc.spip.org/@inc_iconifier_dist
-function inc_iconifier_dist($id_objet, $id,  $script, $iframe_script='') {
+function inc_iconifier_dist($id_objet, $id,  $script) {
 
 	$texteon = $GLOBALS['logo_libelles'][($id OR $id_objet != 'id_rubrique') ? $id_objet : 'id_racine'];
 
 	$chercher_logo = charger_fonction('chercher_logo', 'inc');
 	
 	// Add the redirect url when uploading via iframe
-
-  $iframe = "";
-  if($iframe_script) {
-    $iframe_script = generer_url_ecrire($iframe_script,"type=$id_objet&$id_objet=$id&script=$script",true);
+	$iframe_script = generer_url_ecrire('iconifier',"type=$id_objet&$id_objet=$id&script=$script",true);
     $iframe = "<input type='hidden' name='iframe_redirect' value='".rawurlencode($iframe_script)."' />\n";
-  }
 	
 	if (!$logo = $chercher_logo($id, $id_objet, 'on')) {
 		$masque = indiquer_logo($texteon, $id_objet, 'on', $id, $script, $iframe);
@@ -88,11 +84,11 @@ $logo_libelles = array(
 function indiquer_logo($titre, $id_objet, $mode, $id, $script, $iframe_script) {
 
 	global $formats_logos;
-	$dir_ftp = determine_upload();
 	$afficher = "";
 	$reg = '[.](' . join('|', $formats_logos) . ')$';
 
 	if ($GLOBALS['flag_upload']
+	AND $dir_ftp = determine_upload()
 	AND $fichiers = preg_files($dir_ftp, $reg)) {
 		foreach ($fichiers as $f) {
 			$f = substr($f, strlen($dir_ftp));
@@ -100,9 +96,10 @@ function indiquer_logo($titre, $id_objet, $mode, $id, $script, $iframe_script) {
 		}
 	}
 	if (!$afficher) {
-		  if ($dir_ftp) 
+		if ($dir_ftp) {
 			$afficher = _T('info_installer_images_dossier',
 				array('upload' => '<b>' . joli_repertoire($dir_ftp) . '</b>'));
+		}
 		} else {
 		$afficher = "\n<div style='text-align: left'>" .
 			_T('info_selectionner_fichier',
@@ -115,6 +112,7 @@ function indiquer_logo($titre, $id_objet, $mode, $id, $script, $iframe_script) {
 			_T('bouton_choisir') .
 			"' class='fondo spip_xx-small'  /></div>";
 		}
+
 		$afficher = "\n" .
 			_T('info_telecharger_nouveau_logo') .
 			"<br />" .
@@ -176,7 +174,7 @@ function decrire_logo($id_objet, $mode, $id, $width, $height, $img, $titre="", $
 			"<div class='spip_xx-small'>" .
 		     $taille .
 		     "\n<br />[" .
-		     ajax_action_auteur("iconifier", "$id-$nom.$format", $script, "$id_objet=$id&type=$id_objet", array(_T('lien_supprimer')),'',"function(r,noeud) {noeud.innerHTML = r; \$('.form_upload_icon',noeud).async_upload(async_upload_icon);}") .
+		     ajax_action_auteur("iconifier", "$id-$nom.$format", $script, "$id_objet=$id&type=$id_objet", array(_T('lien_supprimer')),'',"function(r,status) {this.innerHTML = r; \$('.form_upload_icon',this).async_upload(async_upload_icon);}") .
 		     "]</div>");
 }
 ?>
