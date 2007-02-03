@@ -1,10 +1,16 @@
 #CACHE{30*24*3600}
 <BOUCLE_secteurs(RUBRIQUES) {id_rubrique}>
+<?php $jp_rubrique = [(#ID_RUBRIQUE|texte_script)]; ?>
+<BOUCLE_RacineMenuHaut(HIERARCHIE){id_rubrique}{tout}{titre_mot=MenuHaut}{inverse} {0,1}>
+<?php $jp_secteur = [(#ID_RUBRIQUE|texte_script)]; ?>
+</BOUCLE_RacineMenuHaut>
+<?php $titre = '[(#TITRE|textebrut|supprimer_numero|attribut_html|texte_script)] (<:pyrat:chapitre_complet:>)'; ?>
+<?php $titretop = '[(#TITRE|textebrut|supprimer_numero|attribut_html|nettoyer_marqueur|texte_script)]'; ?>
 <INCLURE{fond=header}{connexion}>
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
-	<li>[(#TITRE|supprimer_numero) (<:pyrat:chapitre_complet:>)]</li>
+	<li>[<a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a> (<:pyrat:chapitre_complet:>)]</li>
 	</ul>
 	</div>
 <div class="texte">
@@ -14,41 +20,54 @@
 </div>
 <div id="letexte">
 	[(#REM) Le texte de la rubrique ]
+	<div class="rubriques_chapitres">
+	[<div class="descriptif">(#DESCRIPTIF)</div>]
 	[(#TEXTE|reduire_image{400,0})]
+	[<div class="notes">(#NOTES)</div>]
 	
+		<BOUCLE_Articles_Racine(ARTICLES) {id_rubrique} {par titre}>
+		<h2>[(#TITRE|supprimer_numero)]</h2>
+		<div class="contenu_chapitres">
+		[<div class="chapo">(#CHAPO|sinon{#DESCRIPTIF})</div>]
+		[<div>(#TEXTE|reduire_image{400,0})</div>]
+		[<div class="ps">(#PS)</div>]
+		[<div class="notes">(#NOTES)</div>]
+		</div>
+		</BOUCLE_Articles_Racine>
+
 	[(#REM) 
 		Les sous rubriques, puis les articles, de manière récursive
 	]
-	#SET{niveau,1}
-	<B_rubriques>
-	#SET{niveau,(#GET{niveau})}
-	
-		<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
-		<li>[(#TITRE|Supprimer_numero)]
+	<?php $niveau = 1 ?>
+	<B_Rubriques>
+	<?php $niveau += 1 ?>
+		<BOUCLE_Rubriques(RUBRIQUES) {id_parent} {par titre}>
+		<h<?php echo $niveau; ?>>[(#TITRE|supprimer_numero)]</h<?php echo $niveau; ?>>
+		<div class="rubriques_chapitres">
+		[<div class="descriptif">(#DESCRIPTIF)</div>]
 		[(#TEXTE|reduire_image{400,0})]
+		[<div class="notes">(#NOTES)</div>]
 
-			<B_articles>
-			<ul>
-				<BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
-				<li>[(#TITRE|Supprimer_numero)]</li>
-				[(#TEXTE|reduire_image{400,0})]
-				</BOUCLE_articles>
-			</ul>
-			</B_articles>
+			<B_Articles>
+			
+				<BOUCLE_Articles(ARTICLES) {id_rubrique} {par titre}>
+				<h<?php echo $niveau+1; ?>>[(#TITRE|supprimer_numero)]</h<?php echo $niveau+1; ?>>
+				<div class="contenu_chapitres">
+				[<div class="chapo">(#CHAPO|sinon{#DESCRIPTIF})</div>]
+				[<div>(#TEXTE|reduire_image{400,0})</div>]
+				[<div class="ps">(#PS)</div>]
+				[<div class="notes">(#NOTES)</div>]
+				</div>
+				</BOUCLE_Articles>
+			</B_Articles>
 
-			<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+			<BOUCLE_Sous_Rubriques(BOUCLE_Rubriques)></BOUCLE_Sous_Rubriques>
+		</div>
 
-		</li>
-		</BOUCLE_rubriques>
-
-	</ul>
-	</B_rubriques>
-	<B_articles_racine>
-		<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
-		<h2>[(#TITRE|Supprimer_numero)]</h2>
-		[(#TEXTE|reduire_image{400,0})]
-		</BOUCLE_articles_racine>
-	</B_articles_racine>
+		</BOUCLE_Rubriques>
+	<?php $niveau -= 1 ?>
+	</B_Rubriques>
+	</div>
 
 </div><!-- Fin de #LeTexte -->
 </div><!-- Fin de .texte -->
