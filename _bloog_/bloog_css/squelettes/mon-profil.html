@@ -58,12 +58,48 @@
 <div class="grande_boite">
 <h4>Bonjour #SESSION{nom}</h4>
 <p> Vous &ecirc;tes connect&eacute;, vous pouvez interagir avec #NOM_SITE_SPIP.<br/>
-  Que souhaitez-vous faire ? Choisissez dans ces options: </p>
+  Que souhaitez-vous faire ? Choisissez dans ces options : </p>
 
 </div>
 
 <div id="cel">
 <ul id="deco">
+
+<li>
+<h4 class="icone_article">Mon Profil</h4>
+<p>
+
+<BOUCLE_infos_perso(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>        
+
+Statut actuel : <strong>[(#SESSION{statut}|=={0minirezo}|?{' '})Administrateur][(#SESSION{statut}|=={1comite}|?{' '})
+                                  R&eacute;dacteur][(#SESSION{statut}|=={6forum}|?{' '}) Visiteur authentifi&eacute;][(#SESSION{statut}|=={6forum}|?{' '}) Visiteur attendu]</strong><br/>
+Biographie : <i>[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#BIO|sinon{merci de remplir votre biographie})</a>]</i><br/>
+Adresse email : <i>[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#EMAIL|sinon{merci d'indiquer votre email})</a>]</i><br/>
+Site web : <i>[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#NOM_SITE|sinon{vous n'avez pas renseign&eacute; de site web inscrit})</a>]</i><br/>
+Clé publique pour PGP : <i>[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#PGP|sinon{pas de cl&eacute; PGP})</a>]</i><br/><br/>
+
+</BOUCLE_infos_perso>
+
+
+
+<B_nombretotal><BOUCLE_nombretotal(ARTICLES){id_auteur=#SESSION{id_auteur}}>
+</BOUCLE_nombretotal><strong>=> Vous avez a publié #TOTAL_BOUCLE articles.</strong>
+</B_nombretotal>
+
+</p>
+</li>
+
+<li>
+<h4 class="icone_article">Mon avatar</h4><p>
+<br/>
+<br/>
+
+<BOUCLE_AFFICHER_AVATAR(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
+[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#LOGO_AUTEUR||image_reduire{100}||sinon{Aucun logo n'apparait ?<br/>Ajoutez en un en suivant ce lien !})</a>]
+</BOUCLE_AFFICHER_AVATAR>
+
+</p>
+</li>
 
 
 <li>
@@ -76,35 +112,35 @@
 
 
 
-<BOUCLE_infos_persos(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
+<BOUCLE_acces_perso(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
 [<a href="[(#URL_PAGE{contact})]">(#SESSION{statut}|match{nouveau|6forum}|?{:: Demander au webmestre la conversion de mon compte et devenir r&eacute;dacteur})</a><br/>]
 [<a href="ecrire/">(#SESSION{statut}|=={nouveau}?{:: Visitez votre interface de r&eacute;daction})</a><br/>]
 [<a href="ecrire/?exec=articles_edit&new=oui">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Commencer un nouvel article})</a><br/>]
-[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Travailler sur mes articles})</a><br/>]
-[<a href="ecrire/">(#SESSION{statut}|=={0minirezo}?{:: Agir sur les articles proposés})</a><br/>]
+[<a href="ecrire/?exec=articles_page">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Travailler sur mes articles})</a><br/>]
+[<a href="ecrire/">(#SESSION{statut}|=={0minirezo}?{:: Agir sur les articles propos&eacute;s})</a><br/>]
 [<a href="ecrire/?exec=controle_forum">(#SESSION{statut}|=={0minirezo}?{:: Modérer un message abusif})</a><br/>]
 [<a href="ecrire/?exec=auteurs">(#SESSION{statut}|=={0minirezo}?{:: Ejecter un membre pénible})</a><br/>]
 [<a href="ecrire/">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Acc&eacute;der &agrave; l'interface de r&eacute;daction})</a><br/>]
-[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Modifier votre profil et votre avatar})</a><br/>]
+[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Modifier mon profil / mon avatar})</a><br/><br/>]
 
-</BOUCLE_infos_persos>
+</BOUCLE_acces_perso>
 
 <B_ARTICLE_PREPA>
 :: Articles en cours de rédaction :<br/>
 <BOUCLE_ARTICLE_PREPA(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=prepa}{0,10}>
-<img src="dist/images/puce-blanche.gif"><a href="ecrire/">#TITRE</a><br/>
+<img src="dist/images/puce-blanche.gif"><a href="ecrire/" alt="article en cours de rédaction">#TITRE</a><br/>
 </BOUCLE_ARTICLE_PREPA>
 
 <B_ARTICLE_PROP>
 :: Articles proposés à l'évaluation :<br/>
 <BOUCLE_ARTICLE_PROP(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=prop}{0,10}>
-<img src="dist/images/puce-orange.gif"><a href="ecrire/">#TITRE</a><br/>
+<img src="dist/images/puce-orange.gif"><a href="ecrire/" alt="article proposé à l'évaluation">#TITRE</a><br/>
 </BOUCLE_ARTICLE_PROP>
 
 <B_ARTICLE_REF>
 :: Articles refusés :<br/>
 <BOUCLE_ARTICLE_REF(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=refuse}{0,10}>
-<img src="dist/images/puce-poubelle.gif"><a href="ecrire/">#TITRE</a><br/>
+<img src="dist/images/puce-poubelle.gif"><a href="ecrire/" alt="article refusé">#TITRE</a><br/>
 </BOUCLE_ARTICLE_REF>
 
 </p>
@@ -112,28 +148,14 @@
 
 
 <li>
-<h4 class="icone_article">Vos 10 derniers articles publiés:</h4><p>
-<BOUCLE_ARTICLE_PUB(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=publie}{0,10}>
-<img src="dist/images/puce-verte.gif"><a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">#TITRE</a><br/>
+<h4 class="icone_article">Mes derniers articles publiés:</h4><p>
+
+<B_ARTICLE_PUB><BOUCLE_ARTICLE_PUB(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=publie}{0,10}>
+<img src="dist/images/puce-verte.gif" alt="article en ligne"><a
+href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">#TITRE</a><br/>
 </BOUCLE_ARTICLE_PUB>
-
-</p>
-</li>
-
-<li>
-<h4 class="icone_article">Modifier votre profil</h4><p>
-
-ici, le formulaire, des que le plugin auteurs complets est opé
-
-</p>
-</li>
-
-<li>
-<h4 class="icone_article">Changer votre avatar</h4><p>
-Votre avatar actuel : <br/>
-<BOUCLE_AFFICHER_AVATAR(AUTEURS){id_auteur=#SESSION{id_auteur}}>
-#LOGO_AUTEUR
-</BOUCLE_AFFICHER_AVATAR>
+Vous n'avez pas rédigé d'article pour le moment. Si vous voulez vous lancer...cliquez sur <a href="ecrire/?exec=articles_edit&new=oui">Commencer un nouvel article</a>
+<//B_ARTICLE_PUB>
 
 </p>
 </li>
@@ -142,27 +164,16 @@ Votre avatar actuel : <br/>
 </div> [(#REM)   fermeture cellule ]
 
 
-<div class="grande_boite pass"><a name="abonnement" id="abonnement"></a>
-  <h4 class="icone_article">Modifiez votre profil.</h4>
- <p> 
- 
- [(#REM)   cette balise ne fonctionne pas   ]
-#FORMULAIRE_AUTEUR_EDIT
- 
- </p>
- <hr class="spacer"/>
-
-</div>
-
 <div class="grande_boite abonnement"><a name="abonnement" id="abonnement"></a>
-  <h4 class="icone_article">Modifiez votre abonnement</h4>
+  <h4 class="icone_article"> Gérer mon abonnement : </h4>
  <p>
- #FORMULAIRE_MODIF_ABONNEMENT
+
+#FORMULAIRE_MODIF_ABONNEMENT
  
 </p>
  <hr class="spacer"/>
 
-</div> >[(#REM)   fermeture grande boite ]
+</div> [(#REM)   fermeture grande boite ]
 
 </div> [(#REM)   fermeture colone de gauche   ]
 
