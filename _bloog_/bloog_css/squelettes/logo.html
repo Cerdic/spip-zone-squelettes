@@ -1,0 +1,69 @@
+
+#CACHE{0}
+
+<BOUCLE_logo_saison(MOTS){titre=saison}{0,1}>
+
+<BOUCLE_logo_article(documents){id_article}{0,1}>
+[(#LOGO_ARTICLE||?{[(#LOGO_ARTICLE||reduire_image{64}|image_sepia{a1a4c3})],[(#LOGO_DOCUMENT||reduire_image{48}|image_sepia{a1a4c3}|inserer_attribut{alt,[(#TITRE)]})] })]
+</BOUCLE_logo_article>
+
+<BOUCLE_logo_breve(documents){id_breve}{0,1}>
+[(#LOGO_BREVE||?{[(#LOGO_BREVE||reduire_image{64}|image_sepia{a1a4c3})],[(#LOGO_DOCUMENT||reduire_image{48}|image_sepia{a1a4c3}|inserer_attribut{alt,[(#TITRE)]})] })]
+</BOUCLE_logo_breve>
+
+<BOUCLE_logo_rubrique(rubriques){id_rubrique}{0,1}>
+[(#LOGO_RUBRIQUE||?{[(#LOGO_RUBRIQUE||reduire_image{64}|image_sepia{a1a4c3})],[(#LOGO_SITE||#URL_RUBRIQUE)]})]
+</BOUCLE_logo_rubrique>
+
+
+
+
+<BOUCLE_logo_auteur_identifie(AUTEURS){id_auteur}{id_auteur=#SESSION{id_auteur}}>
+ [(#LOGO_AUTEUR||?{[(#LOGO_AUTEUR||reduire_image{64}|image_sepia{a1a4c3})],[<a href="(#URL_PAGE{mon-profil})" title="Ajoutez votre logo"><img src="./avatars/ajoutez-un-avatar.gif" alt="Ajoutez votre logo"/></a>]})]
+</BOUCLE_logo_auteur_identifie>
+
+<BOUCLE_logo_auteur_inconnu(AUTEURS){tout}{id_auteur}>
+[(#LOGO_AUTEUR||?{[(#LOGO_AUTEUR||reduire_image{64}|image_sepia{a1a4c3})],'Sans logo'})]
+
+</BOUCLE_logo_auteur_inconnu>
+<a href="(#URL_PAGE{authentification})" title="Connectez-vous">Auteur non connecté</a>
+<//B_logo_auteur_inconnu>
+
+<//B_logo_auteur_identifie>
+
+
+
+</BOUCLE_logo_saison>
+
+<//B_logo_saison>
+
+
+
+
+[(#REM) On va récupérer la date et suivant la saison choisir une couleur.
+chaque affichage va être testé par ordre d'importance:
+ *Si on est dans un article:
+ 	-affichage du logo article si l'article en possède un
+ 	-et sinon affichage de la vignette du document si l'article possède une image jpg
+ 	-et sinon ... on affiche rien.
+	idem pour breve.
+ *Si on est dans une rubrique alors:
+ 	-affichage du logo rubrique si la rubrique en possède un
+	-sinon affichage du logo site.
+	
+	
+ *Si on est dans le cas d'un mini logo comme dans le cas d'un affichage d'une sous rubrique:
+ 	-trouver une astuce pour que le template sache faire la différence (sic je sèche)
+	-sinon dupliquer les templates par deux
+ *Si c'est un logo auteur, on fait passer l'ID auteur
+ 	-s'il y a un logo auteur on affiche le logo redimentionné avec un lien dessus vers sa page de membre
+	-s'il n'y a pas de logo auteur:
+		- si l'auteur est connecté (SESSION), alors on affiche un logo "modifier son logo".
+		- si l'auteur n'est pas connecté alors on affiche "cet auteur n'a pas de logo".
+	- si on a besoin d'un mini logo genre signature en pied d'article, on affiche juste un mini-logo.
+	- si l'auteur n'a pas de logo alors on affiche rien.
+	
+ *Le tout est multiplié par deux suivant s'il y a l'option saison. ]
+
+
+[(#REM) le mot clé saison est-il validé sur quelque chose? ]

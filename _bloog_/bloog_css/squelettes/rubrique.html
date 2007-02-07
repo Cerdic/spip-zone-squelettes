@@ -84,7 +84,7 @@
 ::
                     <BOUCLE_nouv_art23(ARTICLES){id_article}{age<7}>
                     <span class="gras">Nouveau:</span>&nbsp;</BOUCLE_nouv_art23><a href="#URL_ARTICLE">#TITRE</a> 
-                    <INCLURE{fond="inc_cadenas"}{delais="7*24*3600"}{id_article}> <br/>
+                    <INCLURE{fond="inc_cadenas"}{id_article}> <br/>
                     </BOUCLE_art2>
 <B_sous_sous_rub>
 <BOUCLE_sous_sous_rub(RUBRIQUES){id_parent}{par titre}{tout_voir}>
@@ -120,7 +120,7 @@
 echo ($i==0) ? 'float:left' : 'float:right' ; 
 if($i==0) {$i=1;}
 else {$i=0;} ?>
- "><a href="#URL_ARTICLE#diapo">[(#LOGO_DOCUMENT||reduire_image{80,10000}|inserer_attribut{alt,#TITRE})]</a>
+ "><a href="#URL_ARTICLE#diapo"><INCLURE{fond="logo"}{id_article}></a>
 </BOUCLE_logo_documents>
 
 <BOUCLE_photocmpt(DOCUMENTS){id_article}{mode=document}{extension=jpg}>
@@ -132,24 +132,14 @@ echo $total_photos == 1? "1&nbsp;photo" : "$total_photos&nbsp;photos" ; ?></a>
 </p>
 </B_photocmpt>
 [(#REM)   1   ]
+</li>
 
 
-<BOUCLE_presence_logo(DOCUMENTS){id_article}{mode=document}{extension=jpg}{0,1}></li>
-</BOUCLE_presence_logo>
-
-<li style=" <?php
-echo ($i==0) ? 'float:left' : 'float:right' ; 
-if($i==0) {$i=1;}
-else {$i=0;} ?>
- "><a href="#URL_ARTICLE#content" title="Article à textes"><img src="IMG/002/pencil.gif" alt="Article à textes"/></a>
-[(#REM)   2   ]
- </li>
- <//B_presence_logo>
  
 <li class="textepics">
   <p>[<a href="#URL_ARTICLE">(#TITRE) </a>](<? $total_visites = "#VISITES"; 
     echo $total_visites == 1? "1&nbsp;visite." : "$total_visites&nbsp;visites." ; ?>)&nbsp;[(#DESCRIPTIF|couper{200})]
-    <INCLURE{fond="inc_cadenas"}{delais="7*24*3600"}{id_article}>  
+    <INCLUDE{fond="inc_cadenas"}{id_article}>  
    <BOUCLE_forum(FORUMS){id_article}{plat}>
     </BOUCLE_forum> <a href="#URL_ARTICLE#forum">
     <? $total_commentaires = "#TOTAL_BOUCLE"; 
@@ -259,7 +249,7 @@ else {$i=0;} ?>
 <B_COMMUNAUTE>
 <div class="boite">
 <BOUCLE_COMMUNAUTE(RUBRIQUES){id_rubrique}{titre_mot==^(communaute|partenaire)$}{0,1}>
-<INCLURE{fond="inc_liste_membres"}{self=#SELF}{nom = #ENV{nom}}>
+<INCLURE{fond="inc_liste_membres"}{nom==^#ENV{lettre}}>
 </BOUCLE_COMMUNAUTE>
 </div>
 </B_COMMUNAUTE>

@@ -6,12 +6,16 @@
 
 #ANCRE_PAGINATION
 
-<BOUCLE_Forums_fil(FORUMS){id_thread}{plat}{par date}{pagination 3}>	<a name="forum#ID_FORUM"></a>
+<BOUCLE_Forums_fil(FORUMS){id_thread}{plat}{par date}{pagination}>	<a name="forum#ID_FORUM"></a>
 
 <div class="discussion">
 
 
-<div class="gauche carte">[<a href="(#URL_PAGE{mon-profil})" title="Changer son avatar">]<span class="avatar">[(#LOGO_AUTEUR||?{#LOGO_AUTEUR,'<img src="./avatars/ajoutez-un-avatar.gif" alt="avatar"/>'})]</span></a>
+<div class="gauche carte"><span class="avatar">
+<BOUCLE_qui(AUTEURS){tout}{id_auteur}>
+<INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}>
+</BOUCLE_qui>
+</span>
 <br/>
 
 
@@ -20,10 +24,10 @@
 ]
 [&agrave; (#DATE|affdate{'H:i:s'}) par<br/>
 ]<BOUCLE_nom(AUTEURS){tout}{id_auteur}>
-[<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,'#ID_AUTEUR'})]" title="Contact et profil de ce r&eacute;dacteur">]
-[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,'#ID_AUTEUR'})]" title="Contact et profil de cet admin">]
-[<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,'#ID_AUTEUR'})]" title="Contact et profil de ce visiteur">]
-[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,'#ID_AUTEUR'})]" title="Compte en attente">]
+[<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de ce r&eacute;dacteur">]
+[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de cet admin">]
+[<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de ce visiteur">]
+[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Compte en attente">]
 [(#NOM|couper{18})</a><br/>]
 </BOUCLE_nom>
 [(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
