@@ -1,31 +1,57 @@
-<div id='nav-container'>
-<B_rubriques>
-	<ul>
-	<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
-		<li>
-			<a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80}|supprimer_numero)]</a>
+<?php 
+if(!function_exists('afficher_script_layer')){
+// inclusion du script de gestion des layers de SPIP
+$flag_ecrire = false;
+include_ecrire ('inc_layer.php3');
+include_spip('inc/presentation');
+}
+afficher_script_layer();
+?>
 
-			<B_sous_rubriques>
+<div class="menu">
+<BOUCLE_secteurs(RUBRIQUES){titre_mot=menu_rub}{par titre} >
+<?php $exp = '[(#EXPOSER)]' ; ?>
+<div>
+<BOUCLE_nb_rubriques(RUBRIQUES){id_parent}>
+</BOUCLE_nb_rubriques>
+<?php 
+echo ($exp=="on") ? bouton_block_visible('rub#ID_RUBRIQUE') : bouton_block_invisible('rub#ID_RUBRIQUE');
+?>
+</B_nb_rubriques>
 
-			<ul>
-				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
-					<BOUCLE_test_expose(RUBRIQUES) {id_enfant}>#EXPOSE{' '}</BOUCLE_test_expose>
-						<li>
-							<a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
-							<BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>
-						</li>
-					</B_test_expose>
+<a [class="secteur(#EXPOSER)"] href="#URL_RUBRIQUE" title="[(#TITRE)]"><strong>[(#TITRE)]</strong></a>
+		
+	<B_rubriques>
 
-				</BOUCLE_sous_rubriques>
-			</ul>
-			</B_sous_rubriques>
+	<?php 
+	echo ($exp=="on") ? debut_block_visible('rub#ID_RUBRIQUE') : debut_block_invisible('rub#ID_RUBRIQUE');
+	?>
+	<BOUCLE_rubriques(RUBRIQUES){id_parent}{par titre}>
+	<div class="rubriques">
+		<?php $exp = '[(#EXPOSER)]' ; ?>
+		<BOUCLE_nb_srubriques(RUBRIQUES){id_parent}>
+		</BOUCLE_nb_srubriques>
+		<?php
+		echo ($exp=="on") ? bouton_block_visible('rub#ID_RUBRIQUE') : bouton_block_invisible('rub#ID_RUBRIQUE');
+		?>
+		</B_nb_srubriques>
+		<img class='puce' src="img_pack/puce<?php echo($exp=='on' ? 'on' : 'off')?>.gif" alt="puce" />
 
-		</li>
+		<//B_nb_srubriques>
+	
+	<a [class="rubrique(#EXPOSER)"] href="#URL_RUBRIQUE" title="[(#TITRE)]">[(#TITRE)] </a>
+	
+		<BOUCLE_sous_rub(boucle_rubriques)></BOUCLE_sous_rub>
+	</div>
 	</BOUCLE_rubriques>
+	<?php
+	echo fin_block('rub#ID_RUBRIQUE');
+	?>
+	</B_rubriques>	
+	
+</div>
+</BOUCLE_secteurs>
 
-	</ul>
-</B_rubriques></div>
-
+</div>
 <p>
 <a href="[(#URL_PAGE{inscription})]">Lettre</a>&nbsp;|&nbsp;<a href="[(#URL_PAGE{plan})]">Plan</a>&nbsp;|&nbsp;<a href="[(#URL_PAGE{nouveautes})]">News</a><BOUCLE_RUBRIQUE_LIENS(RUBRIQUES){titre_mot==annuaire_home}{0,1}>&nbsp;|&nbsp;<a href="#URL_RUBRIQUE"[title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a></BOUCLE_RUBRIQUE_LIENS></p>
-

@@ -1,9 +1,7 @@
-#CACHE86400
-<INCLURE{fond="header"}>
-#SPIP_CRON
-<html>
-<head>
 
+<INCLURE{fond="header"}{delais=31*24*3600}>
+
+<html><head>
 
 	[(#REM) Les métatags ]
 
@@ -28,7 +26,6 @@
 <script type="text/javascript" src="[(#CHEMIN{nifty.js})]"></script>
 <script type="text/javascript" src="[(#CHEMIN{nifty-bloog.js})]"></script>
 
-
 	[(#REM) icones xml des fils des rubriques sous firefox ]
 
 <BOUCLE_rub_css(RUBRIQUES){tout}{titre_mot=syndic}>
@@ -38,9 +35,9 @@
 </head>
 <body> 
 <div id="container">   [(#REM) centrage page ]
-<INCLURE{fond="entete"}> 
+<INCLURE{fond="entete"}{delais=31*24*3600}> 
 <div id="surcontent">   [(#REM) ouverture entête ]
-<INCLURE{fond="menuhoriz"}>
+<INCLURE{fond="menuhoriz"}{delais=31*24*3600}>
 <div id="content">  [(#REM)   ouverture contenu   ]
 <div id="colgau">  [(#REM)  ouverture colone de gauche   ]
 
@@ -93,6 +90,10 @@
 </li>
 </ul>
 </div>
+
+
+
+
 
 
  <div class="grande_boite">
@@ -179,26 +180,24 @@
     
     </div>[(#REM)   fermeture boite menu  ]
 	
-<BOUCLE_huit_images_une(ARTICLES){titre_mot=images_une}{0,1}>
+<B_flickr>
 <div class="boite">
 [(#REM) ouverture boite photos flickr ]
 <h4 class="icone_photo">Sélection photos</h4>
-<B_flickr>
+
 <div style="position:relative;[float(#ENV{align}|match{left|right});]" class="splickrbox [splickrbox_(#ENV{align})]">
 			<table cellpadding="0" cellspacing="0" ><tr>
-			
-			<BOUCLE_flickr(DOCUMENTS){id_article}{!par date}{extension==jpg|png|gif}{0,#ENV{taille,8}}>
-			<td> <a href="#URL_ARTICLE">[(#FICHIER|copie_locale|image_masque{carre-112.png}|image_sepia{a1a4c3}|inserer_attribut{style,'width:112px;height:112px'})]</a></td>
-			[(#COMPTEUR_BOUCLE|Splickr_juste_a_x{#ENV{colonnes,4},</tr><tr>})]
+			<BOUCLE_flickr(DOCUMENTS){!par date}{extension==jpg|png|gif}{0,#ENV{taille,6}}{id_article?}{id_rubrique?}>
+			<td> <a href="#FICHIER" class="thickbox">[(#FICHIER|copie_locale|image_masque{carre-100.png}|inserer_attribut{style,'width:50px;height:50px'})]</a></td>
+			[(#COMPTEUR_BOUCLE|Splickr_juste_a_x{#ENV{colonnes,3},</tr><tr>})]
 			</BOUCLE_flickr>
-			
 			  <td></td>
 			</tr></table>
 </div>
-</B_flickr>			
+			
 
 </div>
-</BOUCLE_huit_images_une>
+</B_flickr>
 
 
 
@@ -251,7 +250,7 @@
 
 <hr class="spacer" />
 </div> [(#REM)   fermeture contenu  ]
-<INCLURE{fond="pieddepage"}>
+<INCLURE{fond="pieddepage"}{delais=31*24*3600}>
 
 </div> [(#REM) fermeture surcontenu   ]<br/>
 

@@ -1,5 +1,5 @@
 
-<INCLURE{fond="header"}>
+<INCLURE{fond="header"}{delais=31*24*3600}>
 
 
 <BOUCLE_principale(ARTICLES){id_article}>
@@ -51,9 +51,9 @@
 </head><body> 
 
 <div id="container">   [(#REM)   centrage page   ]
-<INCLURE{fond="entete"}> 
+<INCLURE{fond="entete"}{delais=31*24*3600}> 
 <div id="surcontent">  
-<INCLURE{fond="menuhoriz"}>[(#REM)   ouverture entête   ]
+<INCLURE{fond="menuhoriz"}{delais=31*24*3600}>[(#REM)   ouverture entête   ]
 <div id="content">  [(#REM)   ouverture contenu   ] 
 <div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
 
@@ -80,13 +80,13 @@
    <p>[<:bloog:premiere_publi:> le (#DATE_REDAC|nom_jour) ][(#DATE_REDAC|jour)
      ][(#DATE_REDAC|nom_mois) [(#DATE_REDAC|annee)]][ <:bloog:mise_en_ligne:> le
      (#DATE|nom_jour) ][(#DATE|jour) ] [(#DATE|nom_mois) [(#DATE|annee)]]<BOUCLE_auteurs(AUTEURS){id_article}>[, <:bloog:par:>                 
- <a href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]">(#NOM)</a>]</BOUCLE_auteurs>.</B_auteurs></p>
+ <a href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]">(#NOM)</a>]</BOUCLE_auteurs>.</B_auteurs></p>
       
    <hr class="spacer"/>
    
     <B_rub_agenda>
    <BOUCLE_rub_agenda(RUBRIQUES){id_rubrique}{titre_mot=agenda}{0,1}>
-   <INCLURE{fond="inc_form_agenda"}{id_rubrique}>
+   <INCLURE{fond="inc_form_agenda"}{delais=31*24*3600}{id_rubrique}>
    </BOUCLE_rub_agenda></B_rub_agenda>
    
 </div> [(#REM)   fermeture grande boite   ]
@@ -172,7 +172,7 @@ x #HAUTEUR})]
     <div class="boite">[(#REM)   ouverture boite menu   ] 
 
         <h4 class="icone_menu">Navigation</h4>
-        <INCLURE{fond="inc_menu_rub"}{id_rubrique}{id_article}> 
+        <INCLURE{fond="inc_menu_rub"}{delais=31*24*3600}{id_rubrique}{id_article}> 
    
     </div>[(#REM)   fermeture boite menu   ]
 	
@@ -207,7 +207,7 @@ x #HAUTEUR})]
   <p>
       <BOUCLE_meme_rubrique(ARTICLES){id_rubrique}{exclus}{par date}{inverse}{0,20}>
                 <a href="#URL_ARTICLE">#TITRE</a><br/>
-                <INCLURE{fond="inc_cadenas"}{id_article}>
+                <INCLURE{fond="inc_cadenas"}{delais=31*24*3600}{id_article}>
                
                 </BOUCLE_meme_rubrique></p>
                
@@ -259,7 +259,7 @@ x #HAUTEUR})]
    <B_COMMUNAUTE>
 <div class="boite">
 <BOUCLE_COMMUNAUTE(RUBRIQUES){id_rubrique}{titre_mot==^(communaute|partenaire)$}{0,1}>
-<INCLURE{fond="inc_liste_membres"}{self=#SELF}>
+<INCLURE{fond="inc_liste_membres"}{delais="12*3600"}>
 </BOUCLE_COMMUNAUTE>
 </div>
 </B_COMMUNAUTE>
@@ -269,62 +269,11 @@ x #HAUTEUR})]
 </div>   [(#REM)   fermeture colone de droite   ] 
 
 
-
-
-
-
 <hr class="spacer" />
-
-
-
-
-
-
-<div class="discussion">
-<h4 class="icone_forum"><a href="[(#URL_PAGE{forum}|parametre_url{'id_forum',#ID_FORUM})]" onclick="return !dspForm();">Réagissez</a></h4>
-<a name="premier" id="premier"></a>
-
-<B_forum_archive>
-<p class="droite">
-
-
-<BOUCLE_compt_archive(FORUMS){id_article}{par date}{inverse}{1,20}>
-</BOUCLE_compt_archive>
-<strong>[(#TOTAL_BOUCLE)] [(#TOTAL_BOUCLE|=={1}|?{<:discussion:>,<:discussions:>})&nbsp;en&nbsp;archive:]
-</strong><br/>
-</B_compt_archive>
-
-
-<BOUCLE_forum_archive(FORUMS){id_article}{par date}{inverse}{1,20}>
-::&nbsp;<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})#forum#ID_FORUM]">[(#TITRE|couper{40})]</a><br/>
-</BOUCLE_forum_archive></p></B_forum_archive>
-
-<hr class="spacer" />
-
-<B_messages>
-<p class="droite">
-<BOUCLE_messages(FORUMS){id_article}{par date}{inverse}{0,1}>
-<BOUCLE_compte_messages(FORUMS){id_thread}{plat}>
-</BOUCLE_compte_messages>
-<? $duree = #TOTAL_BOUCLE -1; ?>
-</B_compte_messages>
-</BOUCLE_messages>
-<a name="forum#ID_FORUM" id="forum#ID_FORUM"></a>
-</p>
-</B_messages>
-
-
-
-
-<hr class="spacer" />
-</div>[(#REM)   fermeture reponse en tete forum   ] 
-
-
-
-<INCLURE{fond="inc_discussion"}{id_rubrique}{id_article}{id_forum}>
+<INCLURE{fond="inc_discussion"}{delais=31*24*3600}{id_rubrique}{id_article}{id_forum}>
 </div>
 [(#REM)   fermeture contenu   ] 
-<INCLURE{fond="pieddepage"}{id_rubrique}{id_article}{id_forum}{id_thread}>
+<INCLURE{fond="pieddepage"}{delais=31*24*3600}{id_rubrique}{id_article}{id_forum}{id_thread}>
 
 </div> [(#REM)   fermeture surcontenu   ]<br/>
 

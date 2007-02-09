@@ -1,6 +1,5 @@
 #SPIP_CRON
-#CACHE86400
-<INCLURE{fond="header"}>
+<INCLURE{fond="header"}{delais=31*24*3600}>
 
 <html lang="#LANG"><head>
 
@@ -27,21 +26,15 @@
 </head><body dir="#LANG_DIR"> 
 
 <div id="container">   [(#REM)   centrage page   ]
-<INCLURE{fond="entete"}>  
+<INCLURE{fond="entete"}{delais=31*24*3600}>  
 <div id="surcontent">  
-<INCLURE{fond="menuhoriz"}>[(#REM)   ouverture entête   ]
-
+<INCLURE{fond="menuhoriz"}{delais=31*24*3600}>[(#REM)   ouverture entête   ]
 <div id="content">  [(#REM)   ouverture contenu   ] 
 
 <div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
-
   <div class="grande_boite">
-  <p>#FORMULAIRE_ABONNEMENT 
- 
-  </p>
-  
-
- <hr class="spacer"/>
+ #FORMULAIRE_ABONNEMENT
+   <hr class="spacer"/>
    </div>
 
 
@@ -52,33 +45,41 @@
 
     <div class="boite">[(#REM)   ouverture boite menu   ] 
 
-        <h4 class="icone_menu">Navigation</h4>
-      <INCLURE{fond="inc_menu_rub"}{delais="7*24*3600"}> </div>
-	  [(#REM)   fermeture boite menu   ]
+        <h4 class="icone_menu">navigation</h4>
+      <INCLURE{fond="inc_menu_rub"}{delais="7*24*3600"}> </div>[(#REM)   fermeture boite menu   ]
 
-<? 
+<div class="boite"> <?php
 	$accepter_inscriptions = lire_meta("accepter_inscriptions");
         $accepter_visiteurs = lire_meta('accepter_visiteurs');
         $acces_abonne = get_extra(1,"auteur");
         ($acces_abonne['config'] == "membre") ? $acces_membres = "oui" : $acces_membres = "non";
-if( ($acces_membres == "oui") OR ($accepter_inscriptions =="oui")  ) { ?>
 
-<div class="boite">
-<h4>Gestion</h4><ul class="petite_liste">
+               
 
-         [<li><a href="(#URL_PAGE{inscription})&oubli_pass=oui">Mot de passe
-             oubli&eacute;?</a></li>
-         ]
-		 [<li><a href="(#URL_PAGE{mon-profil})#profil">Modifier mon profil</a>]
-		 [<li><a href="(#URL_PAGE{mon-profil})">Passer à l'écriture</a>]
-		</ul>
-		  
-		  </div>
-		  
-		<? }  ?>  
-		  
-		   <hr class="spacer" />
 
+			
+		echo "<ul class=\"petite_liste\">"  ;
+
+               
+
+                        if ($type == "redac") {
+			 echo "<li><a href='[(#URL_PAGE{inscription})]'>Newsletter uniquement</a></li>" ;
+                        }
+                        if( ($accepter_inscriptions == "oui") AND ($type != "redac") ) {
+			echo "<li><a href='[(#URL_PAGE{inscription})]&type=redac'>"._T('bloog:devenir_redac')."</a></li>";
+                        }
+			if( ($acces_membres == "oui") OR ($accepter_inscriptions =="oui")  ) {
+                        echo "<li><a href='[(#URL_PAGE{inscription})]&oubli_pass=oui'>"._T('login_motpasseoublie')."</a></li>";
+		        }
+                                                               
+                        echo "</ul>";			
+          ?>
+		  
+		   #FORMULAIRE_MODIF_ABONNEMENT 
+		  
+		  <hr class="spacer" />
+
+</div>   
 </div>   
  [(#REM)   fermeture colone de droite   ] 
 
@@ -89,7 +90,9 @@ if( ($acces_membres == "oui") OR ($accepter_inscriptions =="oui")  ) { ?>
 
 
 </div>[(#REM)   fermeture contenu   ] 
-<INCLURE{fond="pieddepage"}></div> [(#REM)   fermeture surcontenu   ]<br/>
+<INCLURE{fond="pieddepage"}{delais=31*24*3600}>
+
+</div> [(#REM)   fermeture surcontenu   ]<br/>
 
 
 </div> [(#REM)   fermeture container   ] 

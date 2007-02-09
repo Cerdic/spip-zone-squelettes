@@ -2,28 +2,25 @@
 
  /*
  *   +----------------------------------+
- *    Nom du Filtre :    tuer les lettres!
+ *    Nom du Filtre :    tuer les accents
  *   +----------------------------------+
  *    Date : lundi 11 mai 2005
- *    Auteur :  Posted by cerdic
+ *    Auteur :  Posted by cy_altern
  *   +-------------------------------------+
  *    Fonctions de ce filtre :
- *   remplacement des caractères accentués
- *    exemple trouvé là: 
- *    http://be.php.net/manual/fr/function.strtr.php#52098
+ *    Nettoie les accents
+ *    [(#TITRE|caracteres_accents)]
  *   +-------------------------------------+ 
  *  
+ * Pour toute suggestion, remarque, proposition d'ajout
+
 */
 
+function caracteres_accents($chaine) {
+    $a = "àáâãäåòóôõöøèéêëçìíîïùúûüÿñ";
+    $b = "aaaaaaooooooeeeeciiiiuuuuyn";
+    return (strtr($chaine, $a, $b));
 
-function lettre1($texte) {
-	$texte = $texte{0}; // première lettre
-		$texte = 
-strtr($texte, "\xA1\xAA\xBA\xBF\xC0\xC1\xC2\xC3\xC5\xC7\xC8\xC9\xCA\xCB\xCC\xCD\xCE\xCF\xD0\xD1\xD2\xD3\xD4\xD5\xD8\xD9\xDA\xDB\xDD\xE0\xE1\xE2\xE3\xE5\xE7\xE8\xE9\xEA\xEB\xEC\xED\xEE\xEF\xF0\xF1\xF2\xF3\xF4\xF5\xF8\xF9\xFA\xFB\xFD\xFF", "!ao?AAAAACEEEEIIIIDNOOOOOUUUYaaaaaceeeeiiiidnooooouuuyy");
-	$texte = strtr($texte, 
-array("\xC4"=>"Ae", "\xC6"=>"AE", "\xD6"=>"Oe", "\xDC"=>"Ue", "\xDE"=>"TH", "\xDF"=>"ss", "\xE4"=>"ae", "\xE6"=>"ae", "\xF6"=>"oe", "\xFC"=>"ue", "\xFE"=>"th"));
-	$texte = strtoupper($texte); // tout en majuscules
-	return $texte;
 }
 
 
@@ -507,6 +504,73 @@ if ($flag_cadre) {
 return $resultat;
 }
 // FIN du Filtre new_connect
+/*
+*   +----------------------------------+
+ *    Nom du Filtre :    pagination                                               
+ *   +----------------------------------+
+ *    Date : dimanche 22 août 2004
+ *    Auteur :  James (klike<at>free.fr)
+ *   +-------------------------------------+
+ *    Fonctions de ce filtre :
+ *     affiche la liste des pages d'une boucle contenant
+ *     un critère de limite du type {debut_xxx, yyy}
+ *   +-------------------------------------+ 
+ *  
+ * Pour toute suggestion, remarque, proposition d'ajout
+ * reportez-vous au forum de l'article :
+ * http://www.uzine.net/spip_contrib/article.php3?id_article=663
+*/
+function pagination($total, $position=0, $pas=1, $fonction='') {
+  global $clean_link;
+  global $pagination_item_avant, $pagination_item_apres, $pagination_separateur;
+  tester_variable('pagination_separateur', '&nbsp;| ');
+  if (ereg('^debut([-_a-zA-Z0-9]+)$', $position, $match)) {
+    $debut_lim = "debut".$match[1];
+    $position = intval($GLOBALS['HTTP_GET_VARS'][$debut_lim]);
+  }
+  $nombre_pages = floor(($total-1)/$pas)+1;
+  $texte = '';
+  if($nombre_pages>1) {
+    $i = 0;
+    while($i<$nombre_pages) {
+      $clean_link->delVar($debut_lim);
+      $clean_link->addVar($debut_lim, strval($i*$pas));
+      $url = $clean_link->getUrl()."&amp;var_mode=recalcul";
+       if(function_exists($fonction)) $item = call_user_func($fonction, $i+1);
+      else $item = strval($i+1);
+      if(($i*$pas) != $position) {
+        if(function_exists('lien_pagination')) $item = lien_pagination($url, $item, $i+1);
+        else $item = "<a href=\"".$url."\">".$item."</a>";
+      }
+      $texte .= $pagination_item_avant.$item.$pagination_item_apres;
+      if($i<($nombre_pages-1)) $texte .= $pagination_separateur;
+      $i++;
+    }
+   //Correction bug: $clean_link doit revenir à son état initial
+   $clean_link->delVar($debut_lim);
+   if($position) $clean_link->addVar($debut_lim, $position);
+                IF ($position > 0){
+                $clean_link->delVar($debut_lim);
+                $clean_link->addVar($debut_lim, strval($position-$pas));
+                $prev_link = $clean_link->getUrl()."&amp;var_mode=recalcul";
+                $prev = "<a href=\"$prev_link\"><img src=\"./IMG/002/left.gif\" border=\"0\" align=\"absmiddle\"></a> | ";
+                } ELSE $prev = "pages ";
+                $nextposition=$position+$pas;
+                IF ($nextposition < ($total)){
+                $clean_link->delVar($debut_lim);
+                $clean_link->addVar($debut_lim, strval($nextposition));
+                $next_link = $clean_link->getUrl()."&amp;var_mode=recalcul";
+                $string = "-page-".$position.".html";
+                $next_link = ereg_replace($string, "-page-".$nextposition.".html", $next_link);
+                $next = " | <a href=\"$next_link\"><img src=\"./IMG/002/right.gif\" border=\"0\" align=\"absmiddle\"></a>";
+                } ELSE $next = " pages";
+        $texte = $prev . $texte . $next;
+    return $texte;
+ }
+ return '';
+}
+// FIN du Filtre pagination
+
 
 /*
  *   +----------------------------------+

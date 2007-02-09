@@ -1,4 +1,4 @@
-<INCLURE{fond="header"}>
+<INCLURE{fond="header"}{delais=31*24*3600}>
 
 
 
@@ -47,14 +47,14 @@ text + ' ' : caretPos.text + text; txtarea.focus(); } else {
 txtarea.value += text; txtarea.focus(); } } 
   ] </script>
 
-#INSERT_HEAD
+
 </head>
 <body> 
 
 <div id="container">   [(#REM)   centrage page   ]
-<INCLURE{fond="entete"}>  
+<INCLURE{fond="entete"}{delais=31*24*3600}>  
 <div id="surcontent">  
-<INCLURE{fond="menuhoriz"}>[(#REM)   ouverture entête   ]
+<INCLURE{fond="menuhoriz"}{delais=31*24*3600}>[(#REM)   ouverture entête   ]
 <div id="content">  [(#REM)   ouverture contenu   ] 
 <div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
  <div class="grande_boite">
@@ -63,6 +63,7 @@ txtarea.value += text; txtarea.focus(); } }
 
 <p>
 [(#REM)   quel article   ]
+<a name="premier" id="premier"></a>
 <BOUCLE_article(ARTICLES){id_article}>
 <span class="logogauche">[<a href="#URL_ARTICLE">(#LOGO_ARTICLE)</a>]</span>
 
@@ -79,41 +80,123 @@ txtarea.value += text; txtarea.focus(); } }
 [(#REM)   compteur de thread   ]
 
 <B_nb_forumtotal><BOUCLE_nb_forumtotal(FORUMS){id_thread}{plat}> </BOUCLE_nb_forumtotal>
+<? $duree = #TOTAL_BOUCLE -1 ;?>
 [(#TOTAL_BOUCLE)]&nbsp;[(#TOTAL_BOUCLE|=={1}|?{<:commentaire:>,<:commentaires:>})]&nbsp;dans&nbsp;cette&nbsp;discussion.</B_nb_forumtotal>
-#DESCRIPTIF
 </p>
-
-
-<hr class="spacer"/>
-
-  <h4 class="icone_recherche">Chercher dans les forums</h4>
-  <form action='[(#URL_PAGE{recherche-forum})]' method='post' class="form_rech" id="form_rech">
-              <p><input name="recherche" type='text' id='recherche' size='20' />
-              <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" /></p>             
-          </form>
-		  
 </BOUCLE_article>
 
-
+<hr class="spacer"/>
 </div> [(#REM)   fermeture grande boite   ]
 
 
+
+
+
+[(#REM)   premier message   ]
+			  
+<BOUCLE_Forums(FORUMS){id_thread}{plat}{par date}>	<a name="id_forum=#ID_FORUM"></a>
+<div class="grande_boite id_forum=#ID_FORUM">
+
+
+
+
+
+
+
+
+<div class="gauche carte"><span class="avatar"><a href="[(#URL_PAGE{mon-profil})]" title="Changer son avatar">[(#LOGO_AUTEUR||?{#LOGO_AUTEUR,'<img src="./avatars/ajoutez-un-avatar.gif" alt="avatar"/>'})]</a></span>
+<br/>
+
+
+
+[Le&nbsp;(#DATE|affdate{'d/m/Y'})<br/>
+]
+[&agrave; (#DATE|affdate{'H:i:s'}) par<br/>
+]<BOUCLE_nom(AUTEURS){tout}{id_auteur}>
+[<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Contact et profil de ce r&eacute;dacteur">]
+[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Contact et profil de cet admin">]
+[<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Contact et profil de ce visiteur">]
+[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Compte en attente">]
+[(#NOM|couper{18})</a><br/>]
+</BOUCLE_nom>
+[(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
+<//B_nom>
+<?  if ($auteur_session['statut']=='1comite'|| $auteur_session['statut']=='0minirezo'  || $auteur_session['statut']=='6forum' || $auteur_session['statut']=='nouveau'){
+?>
+[<a href="#URL_SITE">(#NOM_SITE)</a><br/>]
+<? } if($auteur_session['id_auteur']=='1'){?>
+[<a href="mailto:#EMAIL">(#EMAIL)</a><br/>]
+[(#IP)<br/>]
+<?php } ?>  
+</div>[(#REM)   fermeture gauche   ]
+
+
+
+
+
+<div class="interforum">
+ <h4 class="icone_fleche">[(#TITRE|titre_forum|couper{50})]</h4>
+   
+<p>[(#TEXTE|norm_liens{blank}|liens_ouvrants|smileys|lignes_longues{45})]</p>  
+
+</div><hr class="spacer"/>
+<p class="droite"> 
+<?
+
+$comptpost=$comptpost+1;
+ if($duree+1==$comptpost) {?>  [<span class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" >Répondre</a></span><a name="dernier"></a>]
+ <?php }
+ else {echo "Aller au ";
+ if($comptpost!=1){echo "<span class=\"gras\"><a href=\"#premier\">premier</a></span>/";}
+ echo "<span class=\"gras\"><a href=\"#dernier\">dernier</a></span> message.";}?></p>
+<hr class="spacer"/>
+</div>[(#REM)   fermeture grande boite   ]
+
+</BOUCLE_Forums>
+
+
+[(#REM)   messages suivants   ]
+
+
+
+             
+			  
+
+
 </div>[(#REM)   fermeture colone de gauche   ]
-
-
-
-
-
  <div class="coldroit">  [(#REM)   ouverture de la colone de droite   ] 
 
 
     <div class="boite">[(#REM)   ouverture boite menu   ] 
 
         <h4 class="icone_menu">Navigation</h4>
-        <INCLURE{fond="inc_menu_rub"}> 
+        <INCLURE{fond="inc_menu_rub"}{delais=31*24*3600}> 
     
     </div>[(#REM)   fermeture boite menu   ]
 
+
+
+
+
+
+      [(#REM)   La boite de recherche   ] 
+
+  <div class="boite"> [(#REM)   ouverture boite recherche   ] 
+  <h4 class="icone_recherche">Chercher dans les forums</h4>
+  <form action='[(#URL_PAGE{recherche-forum})]' method='post' class="form_rech" id="form_rech">
+              <p><input name="recherche" type='text' id='recherche' size='20' />
+              <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" /></p>             
+          </form>
+
+ </div>   [(#REM)   fermeture boite recherche   ] 
+
+<div class="boite"> [(#REM)   ouverture boite smilleys   ] 
+<INCLURE{fond="inc_liste_membres"}{delais="12*3600"}></div>
+
+<div class="boite">
+<h4 class="icone_post">Derniers messages</h4>
+<INCLURE{fond="inc_derniers_messages"}>
+</div>
 
 
 </div>   
@@ -123,15 +206,10 @@ txtarea.value += text; txtarea.focus(); } }
 <hr class="spacer" />
 
 
-<INCLURE{fond="inc_discussion"}{id_article}{id_forum}{id_thread}{id_auteur}{self=#SELF}>
-
-
-
-
 
 
 </div>[(#REM)   fermeture contenu   ] 
-<INCLURE{fond="pieddepage"}{id_article}>
+<INCLURE{fond="pieddepage"}{delais=31*24*3600}{id_article}>
 
 </div> [(#REM)   fermeture surcontenu   ]<br/>
 
@@ -145,3 +223,4 @@ txtarea.value += text; txtarea.focus(); } }
 <INCLURE{fond="erreur-forum"}> ]
 <//B_principale>
 </html>
+
