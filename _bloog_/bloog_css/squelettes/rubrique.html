@@ -1,5 +1,6 @@
+#CACHE2678400
 
-<INCLURE(fond="header"){delais=31*24*3600}>
+<INCLURE{fond="header"}>
 
 <BOUCLE_principale(RUBRIQUES){id_rubrique}>
 
@@ -39,18 +40,17 @@
 </head><body> 
 
 <div id="container">   [(#REM)   centrage page   ]
-<INCLURE{fond="entete"}{delais=31*24*3600}> 
+<INCLURE{fond="entete"}> 
 <div id="surcontent">  [(#REM)   ouverture entête   ]
-<INCLURE{fond="menuhoriz"}{delais=31*24*3600}>
+<INCLURE{fond="menuhoriz"}>
 <div id="content">  [(#REM)   ouverture contenu   ] 
  
  
 <div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
   <div class="grande_boite"> [(#REM)   ouverture grd boite texte   ] 
-[<p class="logogauche">(#LOGO_RUBRIQUE)</p>
-]
+<p class="logogauche"><INCLURE{fond="logo"}{id_rubrique}{taille=46}><p>
 <a href="[(#URL_PAGE{sommaire})]">Accueil</a> > <BOUCLE_plan(HIERARCHIE){id_rubrique}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a>	
-                  </BOUCLE_plan>
+                  </BOUCLE_plan></p>
                  
                   <h1>[(#TITRE)<br/> 
       ]</h1> 
@@ -71,23 +71,23 @@
 
    
 
-                    <BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par titre}>
+                    <BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par titre}{tout_voir}>
 <li>
                    [<h4><a href="#URL_RUBRIQUE">(#TITRE)</a><INCLURE{fond="inc_cadenas"}{id_rubrique}></h4>] 
-                  <p>[<span class="minilogogauche"><a href="#URL_RUBRIQUE">(#LOGO_RUBRIQUE||reduire_image{20}|inserer_attribut{alt,[(#TITRE)]})</a></span>]
+                  <p><span class="minilogogauche"><a href="#URL_RUBRIQUE"><INCLURE{fond="logo"}{id_rubrique}{taille=20}></a></span>
 
-                    <BOUCLE_sites2(SITES){id_rubrique}>
+                    <BOUCLE_sites2(SITES){id_rubrique}{tout_voir}>
                   </BOUCLE_sites2><a href="#URL_RUBRIQUE">#TOTAL_BOUCLE
  sites r&eacute;f&eacute;renc&eacute;s.</a><br/><br/></B_sites2>
-<BOUCLE_art2(ARTICLES){id_rubrique}{par date}{inverse}{0,25}>
+<BOUCLE_art2(ARTICLES){id_rubrique}{par date}{inverse}{0,25}{tout_voir}>
 ::
                     <BOUCLE_nouv_art23(ARTICLES){id_article}{age<7}>
                     <span class="gras">Nouveau:</span>&nbsp;</BOUCLE_nouv_art23><a href="#URL_ARTICLE">#TITRE</a> 
-                    <INCLURE{fond="inc_cadenas"}{delais="7*24*3600"}{id_article}> <br/>
+                    <INCLURE{fond="inc_cadenas"}{id_article}> <br/>
                     </BOUCLE_art2>
 <B_sous_sous_rub>
-<BOUCLE_sous_sous_rub(RUBRIQUES){id_parent}{par titre}>
-[<img class="puce" src="img_pack/puceoff.gif" alt="puce"/><a href="#URL_RUBRIQUE">(#TITRE)</a><INCLURE{fond="inc_cadenas"}{id_rubrique}><br/>]
+<BOUCLE_sous_sous_rub(RUBRIQUES){id_parent}{par titre}{tout_voir}>
+[>&nbsp;<a href="#URL_RUBRIQUE">(#TITRE)</a><INCLURE{fond="inc_cadenas"}{id_rubrique}><br/>]
 </BOUCLE_sous_sous_rub>
 </B_sous_sous_rub>
 
@@ -109,18 +109,20 @@
 
 
 <div id="minipics">
+<B_articles>
+#ANCRE_PAGINATION
 <?php $i=0; ?>
-<BOUCLE_articles(ARTICLES){id_rubrique}{par date}{inverse}{doublons}>
+<BOUCLE_articles(ARTICLES){id_rubrique}{par date}{inverse}{doublons}{tout_voir}{pagination}>
 <ul>
 <BOUCLE_logo_documents(DOCUMENTS){id_article}{mode=document}{par date}{inverse}{extension=jpg}{0,1}>
 <li style=" <?php
 echo ($i==0) ? 'float:left' : 'float:right' ; 
 if($i==0) {$i=1;}
 else {$i=0;} ?>
- "><a href="#URL_ARTICLE#diapo">[(#LOGO_DOCUMENT||reduire_image{80,10000}|inserer_attribut{alt,#TITRE})]</a>
+ "><a href="#URL_ARTICLE#diapo"><INCLURE{fond="logo"}{id_article}{id_document}{taille=46}></a>
 </BOUCLE_logo_documents>
 
-<BOUCLE_photocmpt(DOCUMENTS){id_article}{mode=document}{extension=jpg|gif|png}>
+<BOUCLE_photocmpt(DOCUMENTS){id_article}{mode=document}{extension=jpg}>
 </BOUCLE_photocmpt>
 <p class="centre">
 <a href="#URL_ARTICLE#diapo">
@@ -129,23 +131,14 @@ echo $total_photos == 1? "1&nbsp;photo" : "$total_photos&nbsp;photos" ; ?></a>
 </p>
 </B_photocmpt>
 [(#REM)   1   ]
+</li>
 
 
-<BOUCLE_presence_logo(DOCUMENTS){id_article}{mode=document}{extension=jpg}{0,1}></li>
-</BOUCLE_presence_logo>
-
-<li style=" <?php
-echo ($i==0) ? 'float:left' : 'float:right' ; 
-if($i==0) {$i=1;}
-else {$i=0;} ?>
- "><a href="#URL_ARTICLE#content" title="Article à textes"><img src="IMG/002/pencil.gif" alt="Article à textes"/></a>
-[(#REM)   2   ]
- </li>
- <//B_presence_logo>
+ 
 <li class="textepics">
   <p>[<a href="#URL_ARTICLE">(#TITRE) </a>](<? $total_visites = "#VISITES"; 
     echo $total_visites == 1? "1&nbsp;visite." : "$total_visites&nbsp;visites." ; ?>)&nbsp;[(#DESCRIPTIF|couper{200})]
-    <INCLURE{fond="inc_cadenas"}{delais="7*24*3600"}{id_article}>  
+    <INCLUDE{fond="inc_cadenas"}{id_article}>  
    <BOUCLE_forum(FORUMS){id_article}{plat}>
     </BOUCLE_forum> <a href="#URL_ARTICLE#forum">
     <? $total_commentaires = "#TOTAL_BOUCLE"; 
@@ -156,16 +149,19 @@ else {$i=0;} ?>
 </li></ul>
 <hr class="spacer"/>
 </BOUCLE_articles>
-</div>[(#REM)   fermeture minipics   ]
+<div class="centre">
+[<p>(#PAGINATION{page_precedent_suivant})</p>]
+</div>
+</B_articles>
+</div>[(#REM) fermeture minipics   ]
 
 
-                      <B_syndic>
+<B_syndic>
 <div class="grande_boite">
 
 <h4 class="icone_site">Vu sur le web</h4><br/>
                       <BOUCLE_syndic(SYNDICATION){id_rubrique}{par nom_site}{syndication=oui}>                      
-                      <span class="logogauche"><a href="_kiosque_source.php3?id_syndic=#ID_SYNDIC" title="Toutes les news de #NOM_SITE"><img  src="./IMG/002/News.gif" alt="Toutes les news de #NOM_SITE"/></a><br/>
-                      </span>
+                    
 					  <h4>[<a href="_kiosque_source.php3?id_syndic=#ID_SYNDIC" title="Toutes les news de #NOM_SITE">(#NOM_SITE)</a>]</h4>
                       <BOUCLE_items(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{0,2}>
                      <p>[<strong><a href="#URL_ARTICLE">(#TITRE)</a></strong><br/>]
@@ -195,7 +191,7 @@ else {$i=0;} ?>
 </BOUCLE_formsite>
 </div>
 </B_formsite>
-<INCLURE{fond="inc_liste_glossaire"}{id_breve}{id_rubrique}>
+<INCLURE{fond="inc_liste_glossaire"}{id_breve}{id_rubrique} >
 
 
 </div>[(#REM)   fermeture colone de gauche   ]
@@ -226,10 +222,14 @@ else {$i=0;} ?>
 <B_archives>
     <div class="boite">
       <h4 class="icone_article">A voir également</h4>
+      <ul class="petite_liste">
       <BOUCLE_archives(ARTICLES){id_rubrique}{doublons}{par date}{inverse}{0,20}>
-              <a href="#URL_ARTICLE">[(#TITRE)]</a> 
-              <INCLURE{fond="inc_cadenas"}{delais="7*24*3600"}{id_article}> 
+      <li>
+              [<a href="#URL_ARTICLE" [title="(#DESCRIPTIF|couper{100})"]>(#TITRE)</a><br/>]
+              <INCLURE{fond="inc_cadenas"}{delais="7*24*3600"}{id_article}>
+      </li>                
               </BOUCLE_archives>
+      </ul>        
         </div> [(#REM)   fermeture boite   ] 
 </B_archives>
 
@@ -237,7 +237,7 @@ else {$i=0;} ?>
 <div class="boite">
   <h4 class="icone_stats">Stats</h4>
 <BOUCLE_STATS(RUBRIQUES){id_rubrique}{titre_mot==^(annuaire_home|partenaire|liens)$}{0,1}>
-<INCLURE(fond="inc_stats"){delais=24*3600}>
+
 </BOUCLE_STATS>
 </div>
 </B_STATS>
@@ -247,7 +247,7 @@ else {$i=0;} ?>
 <B_COMMUNAUTE>
 <div class="boite">
 <BOUCLE_COMMUNAUTE(RUBRIQUES){id_rubrique}{titre_mot==^(communaute|partenaire)$}{0,1}>
-<INCLURE{fond="inc_liste_membres"}{delais="12*3600"}>
+<INCLURE{fond="inc_liste_membres"}{nom==^#ENV{lettre}}>
 </BOUCLE_COMMUNAUTE>
 </div>
 </B_COMMUNAUTE>
@@ -256,7 +256,7 @@ else {$i=0;} ?>
 <hr class="spacer" />
 
 </div> [(#REM)   fermeture contenu   ]
-<INCLURE{fond="pieddepage"}{delais=31*24*3600}{id_rubrique}>
+<INCLURE{fond="pieddepage"}{id_rubrique}>
 </div>[(#REM)   fermeture surcontenu   ]<br/>
 
 </div> [(#REM)   fermeture container   ] 

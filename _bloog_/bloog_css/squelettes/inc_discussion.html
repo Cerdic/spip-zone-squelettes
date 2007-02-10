@@ -1,53 +1,21 @@
+<B_Forums>
+[(#REM)   dernier message ]
+<BOUCLE_Forums(FORUMS){id_article ?}{id_breve ?}{id_forum}{par date}{inverse}{0,1}>	
+
+<B_Forums_fil>
+
+#ANCRE_PAGINATION
+
+<BOUCLE_Forums_fil(FORUMS){id_thread}{plat}{par date}{pagination}>	<a name="forum#ID_FORUM"></a>
 
 <div class="discussion">
-<h4 class="icone_forum"><a href="[(#URL_PAGE{forum}|parametre_url{'id_forum',#ID_FORUM})]" onclick="return !dspForm();">Réagissez</a></h4>
-<a name="premier" id="premier"></a>
-
-<B_forum_archive>
-<p class="droite">
 
 
-<BOUCLE_compt_archive(FORUMS){id_article ?}{id_breve ?}{par date}{inverse}{1,20}>
-</BOUCLE_compt_archive>
-<strong>[(#TOTAL_BOUCLE)] [(#TOTAL_BOUCLE|=={1}|?{<:discussion:>,<:discussions:>})&nbsp;en&nbsp;archive:]
-</strong><br/>
-</B_compt_archive>
-
-
-<BOUCLE_forum_archive(FORUMS){id_article ?}{id_breve ?}{par date}{inverse}{1,20}>
-::&nbsp;<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum','#ID_FORUM'})#forum#ID_FORUM]">[(#TITRE|couper{40})]</a><br/>
-</BOUCLE_forum_archive></p></B_forum_archive>
-
-<hr class="spacer" />
-
-<B_messages>
-<p class="droite">
-<BOUCLE_messages(FORUMS){id_article ?}{id_breve ?}{par date}{inverse}{0,1}>
-<BOUCLE_compte_messages(FORUMS){id_thread}{plat}>
-</BOUCLE_compte_messages>
-<? $duree = #TOTAL_BOUCLE -1; ?>
-</B_compte_messages>
-</BOUCLE_messages>
-<a name="forum#ID_FORUM" id="forum#ID_FORUM"></a>
-</p>
-</B_messages>
-
-
-
-
-<hr class="spacer" />
-</div>[(#REM)   fermeture reponse en tete forum   ] 
-
-
-
-
-[(#REM)   dernier message   ]
-<BOUCLE_Forums(FORUMS){id_article ?}{id_breve ?}{par date}{inverse}{0,1}>			  
-<BOUCLE_Forums_fil(FORUMS){id_thread}{plat}{par date}>	<a name="forum#ID_FORUM"></a>
-<div class="discussion">
-
-
-<div class="gauche carte"><a href="[(#URL_PAGE{mon-profil}]" title="Changer son avatar"><span class="avatar">[(#LOGO_AUTEUR||?{#LOGO_AUTEUR,'<img src="./avatars/ajoutez-un-avatar.gif" alt="avatar"/>'})]</span></a>
+<div class="gauche carte"><span class="avatar">
+<BOUCLE_qui(AUTEURS){tout}{id_auteur}>
+<INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=46}>
+</BOUCLE_qui>
+</span>
 <br/>
 
 
@@ -56,10 +24,10 @@
 ]
 [&agrave; (#DATE|affdate{'H:i:s'}) par<br/>
 ]<BOUCLE_nom(AUTEURS){tout}{id_auteur}>
-[<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur','#ID_AUTEUR'})]" title="Contact et profil de ce r&eacute;dacteur">]
-[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur','#ID_AUTEUR'})]" title="Contact et profil de cet admin">]
-[<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur','#ID_AUTEUR'})]" title="Contact et profil de ce visiteur">]
-[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur','#ID_AUTEUR'})]" title="Compte en attente">]
+[<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de ce r&eacute;dacteur">]
+[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de cet admin">]
+[<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de ce visiteur">]
+[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Compte en attente">]
 [(#NOM|couper{18})</a><br/>]
 </BOUCLE_nom>
 [(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
@@ -70,30 +38,35 @@
 <? } if($auteur_session['id_auteur']=='1'){?>
 [<a href="mailto:#EMAIL">(#EMAIL)</a><br/>]
 [(#IP)<br/>]
-<?php } ?>  
+
+
+<?php } ?>
+  <br/>
 </div>[(#REM)   fermeture gauche   ]
 
 <div class="interforumgrand">
  <h4 class="icone_fleche">[(#TITRE|titre_forum|couper{50})]</h4>
    
-<p>[(#TEXTE|norm_liens{blank}|liens_ouvrants|smileys|lignes_longues{65})]</p>  
+<p class="#EDIT{texte}">[(#TEXTE|norm_liens{blank}|liens_ouvrants|smileys|lignes_longues{100})]</p>  
 
 </div><hr class="spacer"/>
-<p class="droite"> 
-<?
 
-$comptpost=$comptpost+1;
- if($duree+1==$comptpost){?>  [<span class="repondre"><a href="[(#URL_PAGE{forum}|parametre_url{'id_forum',#ID_FORUM})]" >Répondre</a></span><a name="dernier"></a>]
- <?php }
- else {echo "Aller au ";
- if($comptpost!=1){echo "<span class=\"gras\"><a href=\"#premier\">premier</a></span>/";}
- echo "<span class=\"gras\"><a href=\"#dernier\">dernier</a></span> message.";}?></p>
-<hr class="spacer"/>
-</div>[(#REM)   fermeture discussion   ]
+</div>[(#REM)   fermeture texte   ]
+
+
 
 
 </BOUCLE_Forums_fil>
+<div class="centre">
+#PAGINATION{page_precedent_suivant}
+</div>
+</B_Forums_fil>
 
+
+
+<BOUCLE_Forums_fin(FORUMS){id_forum}{par id_forum}{inverse}{0,1}><p class="centre">
+[<span class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)">Répondre</a></span>]
+</p></BOUCLE_Forums_fin>
 
 </BOUCLE_Forums>
 

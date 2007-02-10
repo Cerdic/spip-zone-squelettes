@@ -1,4 +1,5 @@
-<INCLURE{fond="header"}{delais=31*24*3600}>
+#CACHE86400
+<INCLURE{fond="header"}>
 [(#REM)   ci-dessus l'include du fichier header avec un délai de 31 jours.   ]
 
 <html><head>
@@ -35,9 +36,9 @@
 <body> 
 
 <div id="container">   [(#REM)   cette div centre la page   ]
-<INCLURE{fond="entete"}{delais=31*24*3600}>  [(#REM)   include du fichier entete avec le logo   ] 
+<INCLURE{fond="entete"}>  [(#REM)   include du fichier entete avec le logo   ] 
 <div id="surcontent">  [(#REM)   ouverture entête   ]
-<INCLURE{fond="menuhoriz"}{delais=31*24*3600}> [(#REM)   le menu horizontal avec les onglets   ] 
+<INCLURE{fond="menuhoriz"}> [(#REM)   le menu horizontal avec les onglets   ] 
 <div id="content">  [(#REM)   ouverture contenu   ] 
 <div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
 
@@ -90,9 +91,10 @@ Ou s&eacute;lectionnez une rubrique dans cette liste&nbsp;:
  <//B_rub_rss>
 
    
- <form action="[(#URL_PAGE{syndication})]" method="get" name="affichage_rss_rubrique">
+ <form action="[(#SELF)]" method="get" name="affichage_rss_rubrique">
+[(#URL_PAGE{syndication}|parametre_url{rubrique,#ID_RUBRIQUE})]
   	<B_rubriquesracine> 
-                        <select name="id_rubrique" class="list370">
+                        <select name="rubrique" class="list370">
 						        <BOUCLE_rubriquesracine(RUBRIQUES) {titre_mot=menu_rub} {par num titre}> 
                                 <option value="#ID_RUBRIQUE">[(#TITRE)]</option> 
                                 <B_sous_categories1>
@@ -178,7 +180,7 @@ Ou s&eacute;lectionnez une rubrique dans cette liste&nbsp;:
 
     <div class="boite">[(#REM)   ouverture boite menu   ] 
         <h4 class="icone_menu">Navigation</h4>
-        <INCLURE{fond="inc_menu_rub"}{delais=31*24*3600}>
+        <INCLURE{fond="inc_menu_rub"}>
     
     </div>[(#REM)   fermeture boite menu   ]
 
@@ -220,7 +222,7 @@ Ou s&eacute;lectionnez une rubrique dans cette liste&nbsp;:
 
 <hr class="spacer" /> [(#REM)   ajoute une barre hr invisible   ] 
 </div>[(#REM)   fermeture contenu   ] 
-<INCLURE{fond="pieddepage"}{delais=31*24*3600}> [(#REM)   le pied de page inclu avec délai   ] 
+<INCLURE{fond="pieddepage"}> [(#REM)   le pied de page inclu avec délai   ] 
 
 </div> [(#REM)   fermeture surcontenu   ]<br/>
 

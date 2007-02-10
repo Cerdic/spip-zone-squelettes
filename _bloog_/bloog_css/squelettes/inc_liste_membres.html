@@ -1,3 +1,6 @@
+#CACHE{0}
+
+
 <h4 class="icone_membre">
 <BOUCLE_comptauteurs(AUTEURS){tous}> </BOUCLE_comptauteurs>
 [(#TOTAL_BOUCLE) Membres]
@@ -26,52 +29,42 @@
 </B_leg_att>
 </ul>
 
+<p>Il y a là les initiales des auteurs avec un lien, qui s'il est cliqué renseigne # ENV.
+Pour info voici ce que donne le # ENV:   #ENV</p>
+<p class="interne">
+<BOUCLE_initial_nom(AUTEURS){tous}{par nom}>
 
+<a href="[(#SELF|parametre_url{lettre,#NOM|translitteration|couper{1}|unique{lien}})]">[(#NOM|translitteration|couper{1}|unique{titrelien})]</a>
+</BOUCLE_initial_nom>
 
-<p class="interne">Annuaire:&nbsp;
-<?php
-$alpha=array();
-<BOUCLE_decompte(AUTEURS){tous}{par nom}>
-$initiale=strtoupper(substr('#NOM',0,1));
-if (!in_array($initiale,$alpha)) $alpha[#COMPTEUR_BOUCLE-1]=$initiale;
-</BOUCLE_decompte>
-$uri=ereg_replace('&{0,1}lettre=\^[a-zA-Z]{1}','',$REQUEST_URI);
-if ((eregi('\?',$uri)) AND (!eregi('\?lettre',$uri))) {
-$prefixe= "&amp;" ;
-} else {
-$prefixe= "?" ;
-}
-foreach ($alpha as $valeur) {
-   echo '<a href="'.$uri.''.$prefixe.'lettre=^'.$valeur.'#membres">'.$valeur.'</a>&nbsp; ';
-}
-$lettre='[(#ENV{lettre})]';
-if($lettre !=''){
-?>
 </p>
 
 
+<p>Hors un seul nom apparaît quelque soit la lettre cliquée. Le # CACHE est à {0}.
+ </p>
 <ul class="membres">
-<BOUCLE_auteurs(AUTEURS){tous}{nom == #ENV{lettre,^A}}>
-[<li class="auteur"><a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="R&eacute;dacteur d'article">]
-[<li class="modo"><a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Webmaster/modo">]
-[<li class="visiteur"><a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Invit&eacute; ou visiteur">]
-[<li class="attente"><a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Compte en attente">]
-#NOM</a></li>
+<BOUCLE_auteurs(AUTEURS){nom==^#ENV{lettre}}>
+
+[<li class="auteur"><a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="R&eacute;dacteur d'article">]
+[<li class="modo"><a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Webmaster/modo">]
+[<li class="visiteur"><a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Invit&eacute; ou visiteur">]
+[<li class="attente"><a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Compte en attente">]
+#NOM</li></a>
 </BOUCLE_auteurs>
 </ul>
 
-<?php } else { ?>
+
 </p>
-<p>Bienvenue aux nouveaux membres:</p>
+<p>La liste des auteurs à afficher par initiale:</p>
 <ul class="membres">
 <BOUCLE_auteurs_recents(AUTEURS){tous}{par id_auteur}{inverse}{0,15}>
-[<li class="auteur"><a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="R&eacute;dacteur d'article">]
-[<li class="modo"><a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Webmaster/modo">]
-[<li class="visiteur"><a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Invit&eacute; ou visiteur">]
-[<li class="attente"><a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR})]" title="Compte en attente">]
-#NOM</a></li>
+[<li class="auteur"><a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="R&eacute;dacteur d'article">]
+[<li class="modo"><a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Webmaster/modo">]
+[<li class="visiteur"><a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Invit&eacute; ou visiteur">]
+[<li class="attente"><a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Compte en attente">]
+#NOM</li></a>
 </BOUCLE_auteurs_recents>
 </ul>
-<?php } ?>
+
 
 <hr class="spacer"/>

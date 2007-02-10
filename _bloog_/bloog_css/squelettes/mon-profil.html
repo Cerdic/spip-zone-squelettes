@@ -4,10 +4,8 @@
 
 
 
-<INCLURE{fond="header"}{delais=31*24*3600}>
-
-
-
+#CACHE{0}
+<INCLURE{fond="header"}>
 
 
 <html><head>
@@ -52,25 +50,58 @@
 
 
 <div id="container">   [(#REM)   centrage page   ]
-<INCLURE{fond="entete"}{delais=31*24*3600}>  
+<INCLURE{fond="entete"}>  
 <div id="surcontent">  
-<INCLURE{fond="menuhoriz"}{delais=31*24*3600}>[(#REM)   ouverture entête   ]
+<INCLURE{fond="menuhoriz"}>[(#REM)   ouverture entête   ]
 <div id="content">  [(#REM)   ouverture contenu   ] 
 <div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
 <div class="grande_boite">
-<h4>Bonjour <?php 
-     echo $auteur_session['nom'];
-	 ?></h4> 
+<h4>Bonjour #SESSION{nom}</h4>
 <p> Vous &ecirc;tes connect&eacute;, vous pouvez interagir avec #NOM_SITE_SPIP.<br/>
-  Que souhaitez-vous faire? Choisissez dans ces options: </p>
+  Que souhaitez-vous faire ? Choisissez dans ces options : </p>
 
 </div>
+
 <div id="cel">
 <ul id="deco">
 
+<li>
+<h4 class="icone_article">Mon Profil</h4>
+<p>
+
+<BOUCLE_infos_perso(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>        
+
+Statut actuel : <strong>[(#SESSION{statut}|=={0minirezo}|?{' '})Administrateur][(#SESSION{statut}|=={1comite}|?{' '})
+                                  R&eacute;dacteur][(#SESSION{statut}|=={6forum}|?{' '}) Visiteur authentifi&eacute;][(#SESSION{statut}|=={6forum}|?{' '}) Visiteur attendu]</strong><br/>
+Biographie : <i>[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#BIO|sinon{merci de remplir votre biographie})</a>]</i><br/>
+Adresse email : <i>[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#EMAIL|sinon{merci d'indiquer votre email})</a>]</i><br/>
+Site web : <i>[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#NOM_SITE|sinon{vous n'avez pas renseign&eacute; de site web inscrit})</a>]</i><br/>
+Clé publique pour PGP : <i>[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#PGP|sinon{pas de cl&eacute; PGP})</a>]</i><br/><br/>
+
+</BOUCLE_infos_perso>
+
+
+
+<B_nombretotal><BOUCLE_nombretotal(ARTICLES){id_auteur=#SESSION{id_auteur}}>
+</BOUCLE_nombretotal><strong>=> Vous avez a publié #TOTAL_BOUCLE articles.</strong>
+</B_nombretotal>
+
+</p>
+</li>
 
 <li>
-<h4>Participer, contribuer:</h4>
+<h4 class="icone_article">Mon avatar</h4><p>
+<br/>
+<br/>
+
+<INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=46}>
+
+</p>
+</li>
+
+
+<li>
+<h4>Participer et gérer son profil:</h4>
 <p>
 
 <BOUCLE_RUB_FORUM(RUBRIQUES){titre_mot=forum}{0,1}>
@@ -78,106 +109,80 @@
 </BOUCLE_RUB_FORUM>
 
 
-<?  if ($auteur_session['statut']!='nouveau'&&$auteur_session['statut']!='1comite'&& $auteur_session['statut']!='0minirezo'){
-?>
-<span class="ecrire"><a href="[(#URL_PAGE{contact})]">Demander au
-webmestre la conversion de mon compte et devenir r&eacute;dacteur</a>.</span><br/>
-<? } ?>
 
-<?  if ($auteur_session['statut']!='6forum'&&$auteur_session['statut']!='1comite'&& $auteur_session['statut']!='0minirezo'){
-?>
-<span class="ecrire"><a href="ecrire/index.php3">Bienvenue, visitez votre interface de
-r&eacute;daction</a>.</span><br/>
-<? } ?>
+<BOUCLE_acces_perso(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
+[<a href="[(#URL_PAGE{contact})]">(#SESSION{statut}|match{nouveau|6forum}|?{:: Demander au webmestre la conversion de mon compte et devenir r&eacute;dacteur})</a><br/>]
+[<a href="ecrire/">(#SESSION{statut}|=={nouveau}?{:: Visitez votre interface de r&eacute;daction})</a><br/>]
+[<a href="ecrire/?exec=articles_edit&new=oui">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Commencer un nouvel article})</a><br/>]
+[<a href="ecrire/?exec=articles_page">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Travailler sur mes articles})</a><br/>]
+[<a href="ecrire/">(#SESSION{statut}|=={0minirezo}?{:: Agir sur les articles propos&eacute;s})</a><br/>]
+[<a href="ecrire/?exec=controle_forum">(#SESSION{statut}|=={0minirezo}?{:: Modérer un message abusif})</a><br/>]
+[<a href="ecrire/?exec=auteurs">(#SESSION{statut}|=={0minirezo}?{:: Ejecter un membre pénible})</a><br/>]
+[<a href="ecrire/">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Acc&eacute;der &agrave; l'interface de r&eacute;daction})</a><br/>]
+[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Modifier mon profil / mon avatar})</a><br/><br/>]
 
+</BOUCLE_acces_perso>
 
-<?  if ($auteur_session['statut']!='nouveau'&& $auteur_session['statut']!='6forum'){
-?>
-<span class="ecrire"><a href="ecrire/articles_edit.php3?new=oui">Commencer
-un nouvel article</a>.</span><br/>
-<span class="ecrire"><a href="ecrire/articles_page.php3">Travailler sur mes
-articles</a>.</span>
-<? } ?>
-
-
-
-<B_ARTICLE_PREPA><br/>
-<BOUCLE_ARTICLE_PREPA(ARTICLES){id_auteur=(#ENV{id_auteur_session})}{statut=prepa}{0,10}>
-<img src="ecrire/img_pack/puce-blanche.gif"><a href="ecrire/">#TITRE</a><br/>
+<B_ARTICLE_PREPA>
+:: Articles en cours de rédaction :<br/>
+<BOUCLE_ARTICLE_PREPA(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=prepa}{0,10}>
+<img src="dist/images/puce-blanche.gif"><a href="ecrire/" alt="article en cours de rédaction">#TITRE</a><br/>
 </BOUCLE_ARTICLE_PREPA>
 
-	
+<B_ARTICLE_PROP>
+:: Articles proposés à l'évaluation :<br/>
+<BOUCLE_ARTICLE_PROP(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=prop}{0,10}>
+<img src="dist/images/puce-orange.gif"><a href="ecrire/" alt="article proposé à l'évaluation">#TITRE</a><br/>
+</BOUCLE_ARTICLE_PROP>
 
-<?  if ($auteur_session['statut']!='6forum'&&$auteur_session['statut']!='1comite'&& $auteur_session['statut']!='nouveau'){
-?>
-<br/><a href="ecrire/index.php3">Agir sur les articles proposés</a>.<br/>
-    <a href="ecrire/controle_forum.php3">Modérer un message abusif</a>.<br/>
-    <a href="ecrire/auteurs.php3">Ejecter un membre pénible</a>.
-<? } ?>
+<B_ARTICLE_REF>
+:: Articles refusés :<br/>
+<BOUCLE_ARTICLE_REF(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=refuse}{0,10}>
+<img src="dist/images/puce-poubelle.gif"><a href="ecrire/" alt="article refusé">#TITRE</a><br/>
+</BOUCLE_ARTICLE_REF>
 
 </p>
 </li>
 
 
 <li>
-<h4>Gérer mon profil:</h4><p>
-<?  if ($auteur_session['statut']!='6forum'&& $auteur_session['statut']!='nouveau'){
-?>
-<a href="ecrire/index.php3">Acc&eacute;der &agrave; l'interface de r&eacute;daction</a><br/>
+<h4 class="icone_article">Mes derniers articles publiés:</h4><p>
 
-<? } ?>
-<?  if ($auteur_session['statut']!='0minirezo'&& $auteur_session['statut']!='nouveau'&& $auteur_session['statut']!='1comite'){?>
-Seul un r&eacute;dacteur peut modifier sa bio et son profil. 
-<? } ?>
-
+<B_ARTICLE_PUB><BOUCLE_ARTICLE_PUB(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=publie}{0,10}>
+<img src="dist/images/puce-verte.gif" alt="article en ligne"><a
+href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">#TITRE</a><br/>
+</BOUCLE_ARTICLE_PUB>
+Vous n'avez pas rédigé d'article pour le moment. Si vous voulez vous lancer...cliquez sur <a href="ecrire/?exec=articles_edit&new=oui">Commencer un nouvel article</a>
+<//B_ARTICLE_PUB>
 
 </p>
 </li>
 
 </ul>
-</div>
+</div> [(#REM)   fermeture cellule ]
 
-
-
-
-
-
-
-[(#REM)   fermeture grande boite   ]
-
-
-<div class="grande_boite pass"><a name="abonnement" id="abonnement"></a>
-  <h4 class="icone_article">Modifiez votre profil.</h4>
- <p>
- [(#REM)   cette balise ne fonctionne pas   ]
-#FORMULAIRE_AUTEUR_EDIT
- 
- </p>
- <hr class="spacer"/>
-
-</div>
 
 <div class="grande_boite abonnement"><a name="abonnement" id="abonnement"></a>
-  <h4 class="icone_article">Modifiez votre abonnement</h4>
+  <h4 class="icone_article"> Gérer mon abonnement : </h4>
  <p>
- #FORMULAIRE_MODIF_ABONNEMENT
+
+#FORMULAIRE_MODIF_ABONNEMENT
  
- </p>
+</p>
  <hr class="spacer"/>
 
-</div>
+</div> [(#REM)   fermeture grande boite ]
+
+</div> [(#REM)   fermeture colone de gauche   ]
 
 
-
-</div>
-[(#REM)   fermeture colone de gauche   ]
  <div class="coldroit">  [(#REM)   ouverture de la colone de droite   ] 
 
 
     <div class="boite">[(#REM)   ouverture boite menu   ] 
 
         <h4 class="icone_menu">Navigation</h4>
-        <INCLURE{fond="inc_menu_rub"}{delais=31*24*3600}> 
+        <INCLURE{fond="inc_menu_rub"}> 
     
     </div>[(#REM)   fermeture boite menu   ]
 
@@ -213,7 +218,7 @@ Seul un r&eacute;dacteur peut modifier sa bio et son profil.
 [(#REM)   fermeture colone de droite   ] 
 <hr class="spacer" />
 </div>[(#REM)   fermeture contenu   ] 
-<INCLURE{fond="pieddepage"}{delais=31*24*3600}>
+<INCLURE{fond="pieddepage"}>
 
 </div> [(#REM)   fermeture surcontenu   ]<br/>
 </div> [(#REM)   fermeture container   ] 
