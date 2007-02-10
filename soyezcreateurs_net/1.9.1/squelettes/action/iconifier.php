@@ -3,7 +3,7 @@
 /***************************************************************************\
  *  SPIP, Systeme de publication pour l'internet                           *
  *                                                                         *
- *  Copyright (c) 2001-2007                                                *
+ *  Copyright (c) 2001-2006                                                *
  *  Arnaud Martin, Antoine Pitrou, Philippe Riviere, Emmanuel Saint-James  *
  *                                                                         *
  *  Ce programme est un logiciel libre distribue sous licence GNU/GPL.     *
@@ -16,26 +16,20 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 function action_iconifier_dist()
 {
 	include_spip('inc/actions');
-	$securiser_action = charger_fonction('securiser_action', 'inc');
-	$arg = $securiser_action();
-	$iframe_redirect = _request('iframe_redirect');
+	$var_f = charger_fonction('controler_action_auteur', 'inc');
+	$var_f();
+	$arg = _request('arg');
 
 	$arg = rawurldecode($arg);
-	if (!preg_match(',^\d*(\D)(.*)$,',$arg, $r))
-		spip_log("action iconifier: $arg pas compris");
-	elseif ($r[1] == '+')
-		action_spip_image_ajouter_dist($r[2]);
-	else	action_spip_image_effacer_dist($r[2]);
-	
-	if(_request("iframe") == 'iframe') {
-		$redirect = urldecode($iframe_redirect)."&iframe=iframe";
-		redirige_par_entete(urldecode($redirect));
-	}
+	if (!preg_match(',^unlink\s,',$arg))
+		action_spip_image_ajouter_dist($arg);
+	else	action_spip_image_effacer_dist($arg);
 }
 
 // http://doc.spip.org/@action_spip_image_effacer_dist
 function action_spip_image_effacer_dist($arg) {
 
+	$arg = preg_replace(',^unlink\s*,','',rawurldecode($arg));
 	if (!strstr($arg, ".."))
 		@unlink(_DIR_LOGOS . $arg);
 }
@@ -75,6 +69,7 @@ function action_spip_image_ajouter_dist($arg) {
 	if (!$source)
 		spip_log("pb de copie pour $f");
 	else {
+
 		$size = @getimagesize($f);
 		$type = decoder_type_image($size[2], true);
         
@@ -91,7 +86,6 @@ function action_spip_image_ajouter_dist($arg) {
         
 		if ($type) {
 			$poids = filesize($f);
-
 			if (_LOGO_MAX_SIZE > 0
 			AND $poids > _LOGO_MAX_SIZE*1024) {
 				@unlink ($f);

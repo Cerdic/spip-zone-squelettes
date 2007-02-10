@@ -3,7 +3,7 @@
 /***************************************************************************\
  *  SPIP, Systeme de publication pour l'internet                           *
  *                                                                         *
- *  Copyright (c) 2001-2007                                                *
+ *  Copyright (c) 2001-2006                                                *
  *  Arnaud Martin, Antoine Pitrou, Philippe Riviere, Emmanuel Saint-James  *
  *                                                                         *
  *  Ce programme est un logiciel libre distribue sous licence GNU/GPL.     *
@@ -33,21 +33,15 @@ charger_generer_url();
 // dans le fichier d'appel, et si la table de reference est OK, proposer
 // la liste des mots-cles
 
-// http://doc.spip.org/@balise_FORMULAIRE_FORUM
 function balise_FORMULAIRE_FORUM ($p) {
 
 	$p = calculer_balise_dynamique($p,'FORMULAIRE_FORUM', array('id_rubrique', 'id_forum', 'id_article', 'id_breve', 'id_syndic', 'ajouter_mot', 'ajouter_groupe', 'afficher_texte'));
-
-	// Ajouter le code d'invalideur specifique aux forums
-	include_spip('inc/invalideur');
-	if (function_exists($i = 'code_invalideur_forums'))
-		$p->code = $i($p, $p->code);
-
+	// Ajouter l'invalideur forums sur les pages contenant ce formulaire
+	$p->code = code_invalideur_forums($p, $p->code);
 	return $p;
 }
 
 // verification des droits a faire du forum
-// http://doc.spip.org/@balise_FORMULAIRE_FORUM_stat
 function balise_FORMULAIRE_FORUM_stat($args, $filtres) {
 
 	// Note : ceci n'est pas documente !!
@@ -85,7 +79,6 @@ function balise_FORMULAIRE_FORUM_stat($args, $filtres) {
 		$idr, $idf, $ida, $idb, $ids, $am, $ag, $af, $url);
 }
 
-// http://doc.spip.org/@balise_FORMULAIRE_FORUM_dyn
 function balise_FORMULAIRE_FORUM_dyn(
 $titre, $table, $type, $script,
 $id_rubrique, $id_forum, $id_article, $id_breve, $id_syndic,
@@ -153,7 +146,7 @@ $ajouter_mot, $ajouter_groupe, $afficher_texte, $url_param_retour)
 		$texte = _request('texte');
 		$auteur = _request('auteur');
 		$email_auteur = _request('email_auteur');
-		$nom_site = _request('nom_site');
+		$nom_site_forum = _request('nom_site_forum');
 		$url_site = _request('url_site');
 		$ajouter_mot = _request('ajouter_mot');
 		$ajouter_groupe = _request('ajouter_groupe');
@@ -161,11 +154,10 @@ $ajouter_mot, $ajouter_groupe, $afficher_texte, $url_param_retour)
 		if ($afficher_texte != 'non') 
 			$previsu = inclure_previsu($texte, $titre, $email_auteur, $auteur, $url_site, $nom_site_forum, $ajouter_mot, $id_article);
 
-		$arg = forum_fichier_tmp(join('', $ids));
+		$alea = forum_fichier_tmp();
 
-		$securiser_action = charger_fonction('securiser_action', 'inc');
-		// on sait que cette fonction est dans le fichier associe
-		$hash = calculer_action_auteur("ajout_forum-$arg");
+		include_spip('inc/actions');
+		$hash = calculer_action_auteur('ajout_forum'.join(' ', $ids).' '.$alea);
 
 	// Poser un cookie pour ne pas retaper les infos invariables
 	include_spip('inc/cookie');
@@ -185,7 +177,7 @@ $ajouter_mot, $ajouter_groupe, $afficher_texte, $url_param_retour)
 		'readonly' => ($type == "abo")? "readonly" : '',
 		'email_auteur' => $email_auteur,
 		'modere' => (($type != 'pri') ? '' : ' '),
-		'nom_site' => $nom_site,
+		'nom_site_forum' => $nom_site_forum,
 		'retour_forum' => $retour_forum,
 		'afficher_texte' => $afficher_texte,
 		'previsu' => $previsu,
@@ -196,7 +188,7 @@ $ajouter_mot, $ajouter_groupe, $afficher_texte, $url_param_retour)
 		'url_post' => $script_hidden, # pour les variables hidden
 		'url_site' => ($url_site ? $url_site : "http://"),
 		'id_article' => $id_article,
-		'arg' => $arg,
+		'alea' => $alea,
 		'hash' => $hash,
 		'nobot' => _request('nobot'),
 		'ajouter_groupe' => $ajouter_groupe,
@@ -205,22 +197,14 @@ $ajouter_mot, $ajouter_groupe, $afficher_texte, $url_param_retour)
 		));
 }
 
-// http://doc.spip.org/@inclure_previsu
-function inclure_previsu($texte,$titre, $email_auteur, $auteur, $url_site, $nom_site, $ajouter_mot, $id_article)
+function inclure_previsu($texte,$titre, $email_auteur, $auteur, $url_site, $nom_site_forum, $ajouter_mot, $id_article)
 {
 	$erreur = $bouton = '';
+
 	if (strlen($texte) < 10 AND !$ajouter_mot)
 		$erreur = _T('forum_attention_dix_caracteres');
 	else if (strlen($titre) < 3)
 		$erreur = _T('forum_attention_trois_caracteres');
-	else if (defined('_FORUM_LONGUEUR_MAXI')
-	AND _FORUM_LONGUEUR_MAXI > 0
-	AND strlen($texte) > _FORUM_LONGUEUR_MAXI)
-		$erreur = _T('forum_attention_trop_caracteres',
-			array(
-				'compte' => strlen($texte),
-				'max' => _FORUM_LONGUEUR_MAXI
-			));
 	else
 		$bouton = _T('forum_message_definitif');
 
@@ -235,8 +219,8 @@ function inclure_previsu($texte,$titre, $email_auteur, $auteur, $url_site, $nom_
 			'email_auteur' => safehtml($email_auteur),
 			'auteur' => safehtml(typo($auteur)),
 			'texte' => safehtml(propre($texte)),
-			'url_site' => vider_url($url_site),
-			'nom_site' => safehtml(typo($nom_site)),
+			'url_site' => htmlspecialchars(vider_url($url_site)),
+			'nom_site_forum' => safehtml(typo($nom_site_forum)),
 			'ajouter_mot' => (is_array($ajouter_mot) ? $ajouter_mot : array($ajouter_mot)),
 			'erreur' => $erreur,
 			'bouton' => $bouton,
@@ -255,11 +239,10 @@ function inclure_previsu($texte,$titre, $email_auteur, $auteur, $url_site, $nom_
 // Ce systeme n'est pas fonctionnel pour les forums sans previsu (notamment
 // si $afficher_texte = 'non')
 
-// http://doc.spip.org/@forum_fichier_tmp
-function forum_fichier_tmp($arg)
+function forum_fichier_tmp()
 {
 # astuce : mt_rand pour autoriser les hits simultanes
-	while (($alea = time() + @mt_rand()) + intval($arg)
+	while (($alea = time() + @mt_rand())
 	       AND @file_exists($f = _DIR_TMP."forum_$alea.lck"))
 	  {};
 	spip_touch ($f);
@@ -283,26 +266,25 @@ function forum_fichier_tmp($arg)
 // Chercher le titre et la configuration du forum de l'element auquel on repond
 //
 
-// http://doc.spip.org/@sql_recherche_donnees_forum
 function sql_recherche_donnees_forum ($idr, $idf, $ida, $idb, $ids) {
 
 	// changer la table de reference s'il y a lieu (pour afficher_groupes[] !!)
 	if ($ida) {
-		$titre = spip_abstract_fetsel('titre', 'spip_articles', "statut = 'publie' AND id_article = $ida");
+		$titre = spip_abstract_fetsel('titre', 'spip_articles', "id_article = $ida");
 		$table = "articles";
 	} else if ($idb) {
-		$titre = spip_abstract_fetsel('titre', 'spip_breves', "statut = 'publie' AND id_breve = $idb");
+		$titre = spip_abstract_fetsel('titre', 'spip_breves', "id_breve = $idb");
 		$table = "breves";
 	} else if ($ids) {
-		$titre = spip_abstract_fetsel('nom_site AS titre', 'spip_syndic', "statut = 'publie' AND id_syndic = $ids");
+		$titre = spip_abstract_fetsel('nom_site AS titre', 'spip_syndic', "id_syndic = $ids");
 		$table = "syndic";
 	} else if ($idr) {
-		$titre = spip_abstract_fetsel('titre', 'spip_rubriques', "statut = 'publie' AND id_rubrique = $idr");
+		$titre = spip_abstract_fetsel('titre', 'spip_rubriques', "id_rubrique = $idr");
 		$table = "rubriques";
 	}
 
-	if ($idf AND $titre)
-		$titre = spip_abstract_fetsel('titre', 'spip_forum', "statut = 'publie' AND id_forum = $idf");
+	if ($idf)
+		$titre = spip_abstract_fetsel('titre', 'spip_forum', "id_forum = $idf");
 
 	if ($titre) {
 		$titre = supprimer_numero($titre['titre']);
