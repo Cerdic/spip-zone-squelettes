@@ -21,7 +21,8 @@ Licence : Creative Commons by-sa
 
 Installation :
 
-mettre le répertoire s5-slideshow
+mettre le répertoire s5-slideshow dans le répertoire squelettes/ (ou quelque
+part sur le "chemin" du système)
 
 Rubrique > Présentations   (ex: id_rubrique = 196)
 
