@@ -1,9 +1,9 @@
 #CACHE{2*3600}
 <BOUCLE_ModePortail(MOTS){titre=ModePortail}{texte=Oui}>
-[(#ENV{template}|=={'Sommaire'}|?{'',' '})<INCLURE{fond=footer_classique}{id_rubrique}{id_article}>]
+[(#ENV{template}|=={'Sommaire'}|?{'',' '})<INCLURE{fond=footer_classique}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}>]
 [(#ENV{template}|=={'Sommaire'}|?{' ',''})<INCLURE{fond=footer_modeportail}>]
 </BOUCLE_ModePortail>
-<INCLURE{fond=footer_classique}{id_rubrique}{id_article}>
+<INCLURE{fond=footer_classique}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}>
 <//B_ModePortail>
 <span id="clearbottom" style="display:block;clear:both;">&nbsp;</span></div><!-- id="contenu" -->	
 	<div id="footer">
@@ -12,7 +12,11 @@
 		<div id="bandeaucontact">#_BandeauContact:TEXTE</div>
 		<//B_BandeauContactExtra>
 		</BOUCLE_BandeauContact>
-<div><span>&copy; [(#DATE|annee)][, (#NOM_SITE_SPIP|supprimer_tags)]</span><BOUCLE_amentionlegale(MOTS){type=_InformationsLegales}{texte!=}{0,1}> <img src="/#CHEMIN{images/1.gif}" alt="" width="1" height="1" />&nbsp;<a href="@mentionslegales.html"><:pyrat:mentionslegales|propre:></a></BOUCLE_amentionlegale><br /><span class="right"><:pyrat:copyright_realisation:> <img src="/#CHEMIN{images/1.gif}" alt="" width="1" height="1" />&nbsp;<:pyrat:copyright_spip:>[(#SPIP_VERSION)] <img src="/#CHEMIN{images/1.gif}" alt="" width="1" height="1" />&nbsp;<:pyrat:copyright_valide:><BOUCLE_meta_tags(MOTS){type=_HTTP-EQUIV}{titre=pics-label}{texte!=}> <img src="/#CHEMIN{images/1.gif}" alt="" width="1" height="1" />&nbsp;<:pyrat:copyright_icra:></BOUCLE_meta_tags><BOUCLE_CNIL(MOTS){titre=CNIL}{texte!=}>[ <img src="/#CHEMIN{images/1.gif}" alt="" width="1" height="1" />&nbsp;<:pyrat:copyright_cnil:>(#TEXTE)]</BOUCLE_CNIL>[ <img src="/#CHEMIN{images/1.gif}" alt="" width="1" height="1" />&nbsp;(#CONFIG{accepter_inscriptions}|=={oui}|?{<a href="[(#NOOP|generer_url_ecrire)]"><:pyrat:participez:></a>})]</span></div>
+		<div>
+			<div>&copy; [(#DATE|annee)][, (#NOM_SITE_SPIP|supprimer_tags)]<BOUCLE_amentionlegale(MOTS){type=_InformationsLegales}{texte!=}{0,1}> <img src="/#CHEMIN{images/1.gif}" alt="" width="1" height="1" />&nbsp;<a href="@mentionslegales.html"><:pyrat:mentionslegales|propre:></a></BOUCLE_amentionlegale></div>
+			<div><:pyrat:copyright_realisation:> <img src="/#CHEMIN{images/1.gif}" alt="" width="1" height="1" />&nbsp;<:pyrat:copyright_spip:>[ (#SPIP_VERSION)]</div>
+			<div><span class="right"><:pyrat:copyright_valide:><BOUCLE_meta_tags(MOTS){type=_HTTP-EQUIV}{titre=pics-label}{texte!=}> <img src="/#CHEMIN{images/1.gif}" alt="" width="1" height="1" />&nbsp;<:pyrat:copyright_icra:></BOUCLE_meta_tags><BOUCLE_CNIL(MOTS){titre=CNIL}{texte!=}>[ <img src="/#CHEMIN{images/1.gif}" alt="" width="1" height="1" />&nbsp;<:pyrat:copyright_cnil:>(#TEXTE)]</BOUCLE_CNIL>[ <img src="/#CHEMIN{images/1.gif}" alt="" width="1" height="1" />&nbsp;(#CONFIG{accepter_inscriptions}|=={oui}|?{<a href="[(#NOOP|generer_url_ecrire)]"><:pyrat:participez:></a>})]</span></div>
+		</div>
 	</div><!-- id="footer" -->
 <BOUCLE_AvertissementIE(MOTS){titre=AvertissementIE}{texte=Oui}>
 <:pyrat:avertissement_ie:>

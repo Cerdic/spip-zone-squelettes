@@ -43,21 +43,9 @@
 <div class="espaceavant">
 <INCLURE{fond=menuarticles}{id_rubrique}>
 <B_Rubriques_MenuHaut>
-<?php if (!$ul_menuarticles) { ?>
 <ul>
-<?php } ?>
-  <BOUCLE_Rubriques_MenuHaut(RUBRIQUES){id_parent}{par num titre}{doublons}><?php
-	if ($jp_rubrique=='[(#ID_RUBRIQUE|texte_script)]') {
-		$menuactifbefore='<strong>';
-		$menuactifafter='</strong>';
-		$menuclasse = ' class="encours"';
-	} else {
-		$menuactifbefore='';
-		$menuactifafter='';
-		$menuclasse = '';
-	}
-?>
-  <li<?php echo $menuclasse; ?>><?php echo $menuactifbefore; ?><BOUCLE_articles_plusdun_MenuHaut(ARTICLES) {id_rubrique} {1,1}><a href="[(#URL_RUBRIQUE)]" title="[(#_Rubriques_MenuHaut:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_RUBRIQUE_COURANTE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#_Rubriques_MenuHaut:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_Rubriques_MenuHaut:TITRE|supprimer_numero)]</a></BOUCLE_articles_plusdun_MenuHaut><BOUCLE_articles_unseul_MenuHaut(ARTICLES) {id_rubrique} {0,1}><a href="[(#URL_ARTICLE)]" title="[(#_Rubriques_MenuHaut:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_RUBRIQUE_COURANTE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#_Rubriques_MenuHaut:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_Rubriques_MenuHaut:TITRE|supprimer_numero)]</a></BOUCLE_articles_unseul_MenuHaut><a href="[(#URL_RUBRIQUE)]" title="[(#_Rubriques_MenuHaut:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_RUBRIQUE_COURANTE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#_Rubriques_MenuHaut:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_Rubriques_MenuHaut:TITRE|supprimer_numero)]</a><//B_articles_unseul_MenuHaut>  <//B_articles_plusdun_MenuHaut><?php echo $menuactifafter; ?><INCLURE{fond=menuarticles}{id_rubrique}><BOUCLE_SsRubriques_MenuHaut(BOUCLE_Rubriques_MenuHaut)></BOUCLE_SsRubriques_MenuHaut></li>
+  <BOUCLE_Rubriques_MenuHaut(RUBRIQUES){id_parent}{par num titre}{doublons}>
+  <li[(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{' class="encours"',''})]>[(#MODELE{rubrique_li}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]<BOUCLE_SsRubriques_MenuHaut(BOUCLE_Rubriques_MenuHaut)></BOUCLE_SsRubriques_MenuHaut></li>
   </BOUCLE_Rubriques_MenuHaut>
 </ul>
 </B_Rubriques_MenuHaut>
@@ -83,31 +71,11 @@
 <B_Secteurs>
 <ul class="tv">
   <BOUCLE_Secteurs(RUBRIQUES){racine}{par num titre}{doublons}>
-  <li><?php
-	if ($jp_rubrique=='[(#ID_RUBRIQUE|texte_script)]') {
-		$menuactifbefore='<strong>';
-		$menuactifafter='</strong>';
-	} else {
-		$menuactifbefore='';
-		$menuactifafter='';
-	}
-  echo $menuactifbefore;
-?><BOUCLE_articles_plusdunSecteurs(ARTICLES) {id_rubrique} {1,1}><a href="[(#URL_RUBRIQUE)]" title="[(#_Secteurs:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_RUBRIQUE_COURANTE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#_Secteurs:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_Secteurs:TITRE|supprimer_numero)]</a></BOUCLE_articles_plusdunSecteurs><BOUCLE_articles_unseulSecteurs(ARTICLES) {id_rubrique} {0,1}><a href="[(#URL_ARTICLE)]" title="[(#_Secteurs:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_RUBRIQUE_COURANTE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#_Secteurs:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_Secteurs:TITRE|supprimer_numero)]</a></BOUCLE_articles_unseulSecteurs><a href="[(#URL_RUBRIQUE)]" title="[(#_Secteurs:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_RUBRIQUE_COURANTE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#_Secteurs:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_Secteurs:TITRE|supprimer_numero)]</a><//B_articles_unseulSecteurs>  <//B_articles_plusdunSecteurs><?php echo $menuactifafter; ?><INCLURE{fond=menuarticles}{id_rubrique}>
+  <li>[(#MODELE{rubrique_li}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]
 <B_Rubriques>
-<?php if (!$ul_menuarticles) { ?>
 <ul>
-<?php } ?>
   <BOUCLE_Rubriques(RUBRIQUES){id_parent}{par num titre}{doublons}>
-  <li><?php
-	if ($jp_rubrique=='[(#ID_RUBRIQUE|texte_script)]') {
-		$menuactifbefore='<strong>';
-		$menuactifafter='</strong>';
-	} else {
-		$menuactifbefore='';
-		$menuactifafter='';
-	}
-  echo $menuactifbefore;
-?><BOUCLE_articles_plusdun(ARTICLES) {id_rubrique} {1,1}><a href="[(#URL_RUBRIQUE)]" title="[(#_Rubriques:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_RUBRIQUE_COURANTE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#_Rubriques:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_Rubriques:TITRE|supprimer_numero)]</a></BOUCLE_articles_plusdun><BOUCLE_articles_unseul(ARTICLES) {id_rubrique} {0,1}><a href="[(#URL_ARTICLE)]" title="[(#_Rubriques:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_RUBRIQUE_COURANTE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#_Rubriques:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_Rubriques:TITRE|supprimer_numero)]</a></BOUCLE_articles_unseul><a href="[(#URL_RUBRIQUE)]" title="[(#_Rubriques:DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_RUBRIQUE_COURANTE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#_Rubriques:TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#_Rubriques:TITRE|supprimer_numero)]</a><//B_articles_unseul>  <//B_articles_plusdun><?php echo $menuactifafter; ?><INCLURE{fond=menuarticles}{id_rubrique}><BOUCLE_SsRubriques(BOUCLE_Rubriques)></BOUCLE_SsRubriques></li>
+  <li>[(#MODELE{rubrique_li}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]<BOUCLE_SsRubriques(BOUCLE_Rubriques)></BOUCLE_SsRubriques></li>
   </BOUCLE_Rubriques>
 </ul>
 </B_Rubriques>
