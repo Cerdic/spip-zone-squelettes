@@ -71,12 +71,16 @@
 
 <BOUCLE_infos_perso(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>        
 
-Statut actuel : <strong>[(#SESSION{statut}|=={0minirezo}|?{' '})Administrateur][(#SESSION{statut}|=={1comite}|?{' '})
-                                  R&eacute;dacteur][(#SESSION{statut}|=={6forum}|?{' '}) Visiteur authentifi&eacute;][(#SESSION{statut}|=={6forum}|?{' '}) Visiteur attendu]</strong><br/>
+Statut actuel : <i>[(#SESSION{statut}|=={0minirezo}|?{' '})Administrateur][(#SESSION{statut}|=={1comite}|?{' '})
+    R&eacute;dacteur][(#SESSION{statut}|=={6forum}|?{' '}) Visiteur authentifi&eacute;][(#SESSION{statut}|=={6forum}|?{' '}) Visiteur attendu]</i><br/>
 Biographie : <i>[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#BIO|sinon{merci de remplir votre biographie})</a>]</i><br/>
-Adresse email : <i>[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#EMAIL|sinon{merci d'indiquer votre email})</a>]</i><br/>
 Site web : <i>[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#NOM_SITE|sinon{vous n'avez pas renseign&eacute; de site web inscrit})</a>]</i><br/>
 Clé publique pour PGP : <i>[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#PGP|sinon{pas de cl&eacute; PGP})</a>]</i><br/><br/>
+
+
+
+[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Modifier mon profil / mon avatar})</a><br/><br/>]
+
 
 </BOUCLE_infos_perso>
 
@@ -90,25 +94,37 @@ Clé publique pour PGP : <i>[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSIO
 </li>
 
 <li>
-<h4 class="icone_article">Mon avatar</h4><p>
-<br/>
-<br/>
+<h4 class="icone_article">Mon avatar</h4>
+<p>
 
-<INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=46}>
+<BOUCLE_monprofil_saison(MOTS){titre=saison}{0,1}>
+
+<BOUCLE_AFFICHER_AVATAR1(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}><br/><br/>
+Mon logo d'origine : [(#LOGO_AUTEUR||image_reduire{80})]<br/>
+</BOUCLE_AFFICHER_AVATAR1>
+
+#NOM_SITE_SPIP change de coloris au gr&eacute; des saisons...
+Il en est de m&ecirc;me pour votre logo, qui n'aura pas les m&ecirc;mes teintes sous un soleil de Juillet ou une averse de Mars<br/>
+
+Mon logo Recoloris&eacute; : <INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=80}><br/><br/>
+
+
+</BOUCLE_monprofil_saison>
+
+<BOUCLE_AFFICHER_AVATAR2(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}><br/><br/>
+[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#LOGO_AUTEUR||image_reduire{80}||sinon{Aucun logo n'apparait ?<br/>Ajoutez en un en suivant ce lien !})</a>]
+</BOUCLE_AFFICHER_AVATAR2>
+
+<//B_monprofil_saison>
 
 </p>
+
 </li>
 
 
 <li>
-<h4>Participer et gérer son profil:</h4>
+<h4>Participer, Contribuer :</h4>
 <p>
-
-<BOUCLE_RUB_FORUM(RUBRIQUES){titre_mot=forum}{0,1}>
-<span class="ecrire"><a href="#URL_RUBRIQUE">Poster dans un forum</a>.</span><br/>
-</BOUCLE_RUB_FORUM>
-
-
 
 <BOUCLE_acces_perso(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
 [<a href="[(#URL_PAGE{contact})]">(#SESSION{statut}|match{nouveau|6forum}|?{:: Demander au webmestre la conversion de mon compte et devenir r&eacute;dacteur})</a><br/>]
@@ -119,41 +135,55 @@ Clé publique pour PGP : <i>[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSIO
 [<a href="ecrire/?exec=controle_forum">(#SESSION{statut}|=={0minirezo}?{:: Modérer un message abusif})</a><br/>]
 [<a href="ecrire/?exec=auteurs">(#SESSION{statut}|=={0minirezo}?{:: Ejecter un membre pénible})</a><br/>]
 [<a href="ecrire/">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Acc&eacute;der &agrave; l'interface de r&eacute;daction})</a><br/>]
-[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Modifier mon profil / mon avatar})</a><br/><br/>]
-
 </BOUCLE_acces_perso>
+<BOUCLE_RUB_FORUM(RUBRIQUES){titre_mot=forum}{0,1}>
+<span class="ecrire"><a href="#URL_RUBRIQUE">:: Poster dans un forum</a>.</span><br/>
+</BOUCLE_RUB_FORUM>
 
-<B_ARTICLE_PREPA>
-:: Articles en cours de rédaction :<br/>
-<BOUCLE_ARTICLE_PREPA(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=prepa}{0,10}>
-<img src="dist/images/puce-blanche.gif"><a href="ecrire/" alt="article en cours de rédaction">#TITRE</a><br/>
-</BOUCLE_ARTICLE_PREPA>
-
-<B_ARTICLE_PROP>
-:: Articles proposés à l'évaluation :<br/>
-<BOUCLE_ARTICLE_PROP(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=prop}{0,10}>
-<img src="dist/images/puce-orange.gif"><a href="ecrire/" alt="article proposé à l'évaluation">#TITRE</a><br/>
-</BOUCLE_ARTICLE_PROP>
-
-<B_ARTICLE_REF>
-:: Articles refusés :<br/>
-<BOUCLE_ARTICLE_REF(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=refuse}{0,10}>
-<img src="dist/images/puce-poubelle.gif"><a href="ecrire/" alt="article refusé">#TITRE</a><br/>
-</BOUCLE_ARTICLE_REF>
 
 </p>
 </li>
 
 
 <li>
-<h4 class="icone_article">Mes derniers articles publiés:</h4><p>
+<h4 class="icone_article">Mes articles :</h4>
+<p>
 
-<B_ARTICLE_PUB><BOUCLE_ARTICLE_PUB(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=publie}{0,10}>
+
+
+<BOUCLE_TOTAL_ARTICLE(ARTICLES) {id_auteur=#SESSION{id_auteur}} {0,1}>
+
+<B_ARTICLE_PUB>
+:: Articles publiés :<br/>
+<BOUCLE_ARTICLE_PUB(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=publie}{0,5}>
 <img src="dist/images/puce-verte.gif" alt="article en ligne"><a
 href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">#TITRE</a><br/>
 </BOUCLE_ARTICLE_PUB>
+
+
+<B_ARTICLE_PREPA>
+:: Articles en cours de rédaction :<br/>
+<BOUCLE_ARTICLE_PREPA(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=prepa}{0,3}>
+<img src="dist/images/puce-blanche.gif"><a href="ecrire/" alt="article en cours de rédaction">#TITRE</a><br/>
+</BOUCLE_ARTICLE_PREPA>
+
+<B_ARTICLE_PROP>
+:: Articles proposés à l'évaluation :<br/>
+<BOUCLE_ARTICLE_PROP(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=prop}{0,3}>
+<img src="dist/images/puce-orange.gif"><a href="ecrire/" alt="article proposé à l'évaluation">#TITRE</a><br/>
+</BOUCLE_ARTICLE_PROP>
+
+<B_ARTICLE_REF>
+:: Articles refusés :<br/>
+<BOUCLE_ARTICLE_REF(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=refuse}{0,3}>
+<img src="dist/images/puce-poubelle.gif"><a href="ecrire/" alt="article refusé">#TITRE</a><br/>
+</BOUCLE_ARTICLE_REF>
+
+</BOUCLE_TOTAL_ARTICLE>
+
+
 Vous n'avez pas rédigé d'article pour le moment. Si vous voulez vous lancer...cliquez sur <a href="ecrire/?exec=articles_edit&new=oui">Commencer un nouvel article</a>
-<//B_ARTICLE_PUB>
+<//B_TOTAL_ARTICLE>
 
 </p>
 </li>
