@@ -92,6 +92,15 @@ $events = array();
 	?>
 </tr>
 </table>
+<div class="agendaderniersajouts">
+	<B_AgendaDerniersAjouts>
+	<ul>
+	<BOUCLE_AgendaDerniersAjouts(EVENEMENTS){branche}{!par id_evenement}{0,7}{date_debut>=(#ENV{date}|affdate{'Y-m-d'})}>
+	<li><BOUCLE_DernierEvenementArticle(ARTICLES){id_article}><a href="#URL_ARTICLE##ID_EVENEMENT"[ title="(#_DernierEvenementArticle:TITRE|!={#_AgendaDerniersAjouts:TITRE}|?{[(#TITRE|supprimer_numero|attribut_html)],[(#DESCRIPTIF|supprimer_numero|attribut_html)]})"]></BOUCLE_DernierEvenementArticle>#TITRE</a></li>
+	</BOUCLE_AgendaDerniersAjouts>
+	</ul>
+	</B_AgendaDerniersAjouts>
+	</div>
 </BOUCLE_agenda>
 </div><!-- id="miniagenda" -->
 </B_agenda>

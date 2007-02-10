@@ -120,6 +120,7 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 
 //P
 'par' => 'par',
+'participez' => 'Participez &agrave; la vie du site&nbsp;!',
 'plan_menu' => '<em>P</em>lan du site Web',
 'plus_loin' => '&Agrave; voir aussi',
 'plus_loin_title' => 'Site de r&eacute;f&eacute;rences',
