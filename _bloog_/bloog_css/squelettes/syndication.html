@@ -15,6 +15,7 @@
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/menu.css})]" />
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/logic.css})]" />
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/niftyCorners.css})]" />
+
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/print.css})]" media="print" />
 	[(#REM) 4 css qui changent l aspect du site suivant la saison.]
 <BOUCLE_mot_saison(MOTS){titre=saison}{0,1}>
@@ -28,6 +29,7 @@
 	[(#REM) icones xml des fils des rubriques sous firefox ]
 <BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}>
 <link rel="alternate" type="application/rss+xml" href="[(#URL_PAGE{backend}|parametre_url{'id_rubrique',#ID_RUBRIQUE})]title="[(#TITRE)]" />
+
 </BOUCLE_rub>
 
 </head>
@@ -44,6 +46,7 @@
 
 
 
+
 <div id="cel"> [(#REM)   ouverture des deux cellules en haut   ] 
 <ul id="deco"> 
 <li> [(#REM)   ouverture de la premiere cellule   ]
@@ -54,6 +57,7 @@
  sur votre ordinateur ou dans votre site web, vous synth&eacute;tiserez l'actualit&eacute;
  publi&eacute;e
  sur les sites web que vous aurez s&eacute;lectionn&eacute;.</p>
+
 		
 </li>
 
@@ -66,6 +70,7 @@
   lecteur de nouvelles RSS: Internet Explorer v7, Firefox v1,
   Thunderbird, Safari, Mozilla, ainsi que d'autres navigateurs poss&egrave;dent
   des lecteurs de nouvelles ou de flux RSS.</p>
+
 </li>[(#REM)   fermeture des cellules   ]
 </ul>
 [(#REM)   fermeture des cellules   ]
@@ -77,24 +82,30 @@
  
  <h4 class="icone_site">Profitez du contenu de #NOM_SITE_SPIP</h4>
 <p>
+
+
+
 <BOUCLE_rub_rss(RUBRIQUES){id_rubrique}{0,1}>
 Dans votre lecteur RSS, votre logiciel courrier RSS, votre agrégateur RSS,
-ajoutez l'adresse de news de la rubrique[ "(#TITRE)"]&nbsp;:<br/>
-<span class="vert">[(#URL_PAGE{backend}|parametre_url{'id_rubrique','#ID_RUBRIQUE'})]</span><br/>
+ajoutez l'adresse de news de la rubrique <span class="vert">[ "(#TITRE)"]&nbsp;</span>:<br/>
+<span class="vert">[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]</span><br/>
 Ou s&eacute;lectionnez une autre rubrique dans cette liste&nbsp;:
+
 </BOUCLE_rub_rss>
 
 Dans votre lecteur RSS,  votre logiciel courrier RSS, votre agrégateur RSS,
 ajoutez cette adresse  pour afficher les news du site entier&nbsp;:<br/>
 <span class="vert">[(#URL_PAGE{backend})]</span><br/>
 Ou s&eacute;lectionnez une rubrique dans cette liste&nbsp;:
- <//B_rub_rss>
 
-   
- <form action="[(#SELF)]" method="get" name="affichage_rss_rubrique">
-[(#URL_PAGE{syndication}|parametre_url{rubrique,#ID_RUBRIQUE})]
-  	<B_rubriquesracine> 
-                        <select name="rubrique" class="list370">
+<//B_rub_rss>
+
+<form action="[(#SELF)]" method="post" name="affichage_rss_rubrique">
+     
+     <B_rubriquesracine> 
+                        <select name="id_rubrique" class="list370">
+                        
+                                <option selected="">--> Profiter du site entier</option>
 						        <BOUCLE_rubriquesracine(RUBRIQUES) {titre_mot=menu_rub} {par num titre}> 
                                 <option value="#ID_RUBRIQUE">[(#TITRE)]</option> 
                                 <B_sous_categories1>
@@ -112,12 +123,14 @@ Ou s&eacute;lectionnez une rubrique dans cette liste&nbsp;:
                                 </B_sous_categories2> 
                                 </BOUCLE_sous_categories1> 
                                 </B_sous_categories1> 
-                                </BOUCLE_rubriquesracine>
-								<option value="">--> PROFITER DU SITE ENTIER</option>
+                                </BOUCLE_rubriquesracine>								
   			            </select>
          </B_rubriquesracine> 
 <input type="submit" value="afficher" />
 </form>
+
+
+
 </p>    
 <hr class="spacer"/>
 
@@ -125,12 +138,13 @@ Ou s&eacute;lectionnez une rubrique dans cette liste&nbsp;:
   <h4 class="icone_post">Des javascript pour sites web</h4>
   
   <BOUCLE_rub_java(RUBRIQUES){id_rubrique}{0,1}>
+
   <p>Un site web non &eacute;quip&eacute; d'agr&eacute;gateur en ligne peut aussi
     profiter du contenu de #NOM_SITE_SPIP. Affichez les news de la rubrique[ "(#TITRE)"].
     Insérez
     ce Javascript entre les balises body de votre page html: 
 <form><textarea name="textfield" class="form450"><!-- A ajouter entre les balises <body> -->
-<script type="text/javascript" src="[(#URL_PAGE{distrib}|parametre_url{'id_rubrique','#ID_RUBRIQUE'})]">
+<script type="text/javascript" src="[(#URL_PAGE{distrib}|parametre_url{id_rubrique,#ID_RUBRIQUE})]">
 </script></textarea></form>
 <p>Le contenu de la rubrique apparaitra comme dans la d&eacute;monstration ci-contre.
   Vous pouvez en modifier le style css.</p>
@@ -140,8 +154,9 @@ Ou s&eacute;lectionnez une rubrique dans cette liste&nbsp;:
     de #NOM_SITE_SPIP. Insérez ce Javascript entre les balises body de votre
     page html:
 <form><textarea name="textfield" class="form450"><!-- A ajouter entre les balises <body> -->
-<script type="text/javascript" src="[(#URL_PAGE{distrib}|parametre_url{'id_rubrique','#ID_RUBRIQUE'})]">
+<script type="text/javascript" src="[(#URL_PAGE{distrib}|parametre_url{id_rubrique,#ID_RUBRIQUE})]">
 </script></textarea></form>
+
 <p>Le contenu texte apparaitra comme dans la d&eacute;monstration ci-contre. Vous pouvez
   en modifier le style css.</p>
  <//B_rub_java>
@@ -158,6 +173,7 @@ Ou s&eacute;lectionnez une rubrique dans cette liste&nbsp;:
  affich&eacute;s sur votre site.  Nous gagnons
  quelques liens, vous gagnez du contenu dynamique agr&eacute;able aux
  internautes et aux moteurs de recherches. </p>
+
 </li>
 
 
@@ -167,6 +183,7 @@ Ou s&eacute;lectionnez une rubrique dans cette liste&nbsp;:
                 fils RSS au pied des pages. Sur le bouton, r&eacute;cup&eacute;rez l'adresse
                 du fil d'information de la rubrique, du forum ou du site entier.</p>
   </li> 
+
 </ul>
 </div> [(#REM)   fin de cel   ]      
 
@@ -188,6 +205,7 @@ Ou s&eacute;lectionnez une rubrique dans cette liste&nbsp;:
 
   <h4 class="icone_recherche">Recherche</h4>
   <form action='[(#URL_PAGE{recherche})]' method='post' class="form_rech" id="form_rech">
+
               <p><input name="recherche" type='text' id='recherche' size='20' />
               <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" /></p>             
           </form>
@@ -200,6 +218,7 @@ Ou s&eacute;lectionnez une rubrique dans cette liste&nbsp;:
 
 <BOUCLE_rub_demo(RUBRIQUES){id_rubrique}{0,1}>
 [<h4>(#TITRE)</h4>]
+
 <ul class="petite_liste">
 <BOUCLE_art_demo(ARTICLES){branche}{par date}{inverse}{0,5}>
 <li>[<strong><a href="#URL_ARTICLE">(#TITRE)</a></strong>][ (#DESCRIPTIF|couper{100})]</li>
@@ -211,6 +230,7 @@ Ou s&eacute;lectionnez une rubrique dans cette liste&nbsp;:
 <li>[<strong><a href="#URL_ARTICLE">(#TITRE)</a></strong>][ (#DESCRIPTIF|couper{100})]</li>
 </BOUCLE_art_tous>
 </ul>
+
 <//B_rub_demo>
 
 </div>
@@ -228,5 +248,6 @@ Ou s&eacute;lectionnez une rubrique dans cette liste&nbsp;:
 
 
 </div> [(#REM)   fermeture container   ] 
+
 </body>
 </html>
