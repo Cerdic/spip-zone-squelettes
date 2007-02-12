@@ -148,7 +148,7 @@ $css_blip_couleur_14 = array(
 ); 
 
 
-$css_blip_couleur_15_nom = 'n&ordm; 14 : Vert prononc&eacute; et marron nature (th&egrave;me kiwi)';
+$css_blip_couleur_15_nom = 'n&ordm; 15 : Vert prononc&eacute; et marron nature (th&egrave;me kiwi)';
 $css_blip_couleur_15 = array(
 	// Jeu de couleur n°15
 	'gris|fonce' => '#333333',
@@ -170,6 +170,26 @@ $css_blip_couleur_15 = array(
 ); 
 
 
+$css_blip_couleur_16_nom = 'n&ordm; 16 : Rose tendre; et rouge sang (th&egrave;me saint valentin)';
+$css_blip_couleur_16 = array(
+	// Jeu de couleur n°15
+	'gris|fonce' => '#333333',
+	'gris|moyen' => '#666666',
+	'gris|clair' => '#aaaaaa',
+	'couleur|1' => '#E80000',
+	'couleur|1|clair' => '#FFDAD8',
+	'couleur|2' => '#A25353',
+	'couleur|2|clair' => '#A25353',
+	'couleur|neutre' => '#ffffff',
+	'couleur|neutre|bis' => 'transparent',
+	'taille|espacement_bloc' => '3em',
+	'taille|geant' => '1.5em',
+	'taille|grand' => '1.25em',
+	'taille|moyen' => '1em',
+	'taille|normal' => '0.75em',
+	'taille|petit' => '0.5em',
+	'taille|bordure' => '0.25em',
+); 
 
 
 $css_blip_couleur_2_nom = 'n&ordm; 02 : Violet intense et orange p&eacute;tillant';
