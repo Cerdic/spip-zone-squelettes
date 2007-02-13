@@ -1,4 +1,4 @@
-#CACHE{0}
+#CACHE{30000}
 
 
 <h4 class="icone_membre">
@@ -29,8 +29,6 @@
 </B_leg_att>
 </ul>
 
-<p>Il y a là les initiales des auteurs avec un lien, qui s'il est cliqué renseigne # ENV.
-Pour info voici ce que donne le # ENV:   #ENV</p>
 <p class="interne">
 <BOUCLE_initial_nom(AUTEURS){tous}{par nom}>
 
@@ -39,11 +37,11 @@ Pour info voici ce que donne le # ENV:   #ENV</p>
 
 </p>
 
-
-<p>Hors un seul nom apparaît quelque soit la lettre cliquée. Le # CACHE est à {0}.
- </p>
+<B_auteurs>
+#ANCRE_PAGINATION
 <ul class="membres">
-<BOUCLE_auteurs(AUTEURS){nom==^#ENV{lettre}}>
+<BOUCLE_auteurs(AUTEURS){tous}{par nom}{nom==^#ENV{lettre}}{pagination 20}>
+
 
 [<li class="auteur"><a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="R&eacute;dacteur d'article">]
 [<li class="modo"><a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Webmaster/modo">]
@@ -51,20 +49,5 @@ Pour info voici ce que donne le # ENV:   #ENV</p>
 [<li class="attente"><a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Compte en attente">]
 #NOM</li></a>
 </BOUCLE_auteurs>
-</ul>
-
-
-</p>
-<p>La liste des auteurs à afficher par initiale:</p>
-<ul class="membres">
-<BOUCLE_auteurs_recents(AUTEURS){tous}{par id_auteur}{inverse}{0,15}>
-[<li class="auteur"><a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="R&eacute;dacteur d'article">]
-[<li class="modo"><a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Webmaster/modo">]
-[<li class="visiteur"><a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Invit&eacute; ou visiteur">]
-[<li class="attente"><a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Compte en attente">]
-#NOM</li></a>
-</BOUCLE_auteurs_recents>
-</ul>
-
-
-<hr class="spacer"/>
+</ul><p class="centre">#PAGINATION</p>
+</B_auteurs>

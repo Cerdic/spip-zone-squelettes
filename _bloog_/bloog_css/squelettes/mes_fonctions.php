@@ -1,13 +1,5 @@
 <?php
 
-
-
-
-
-
-
-
-
 function image_histo($im) {
 	
 	$image = valeurs_image_trans($im, "courbes", "gif");
