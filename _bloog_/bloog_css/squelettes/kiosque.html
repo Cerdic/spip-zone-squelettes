@@ -1,0 +1,157 @@
+<INCLURE{fond="header"}>
+<!-- ci-dessus l'include du fichier header avec un délai de 31 jours. -->
+
+
+<html><head>
+
+<!-- les métas avec dans l'ordre le titre de la page, la description pour les moteurs de recherches, les mots clés. -->
+<BOUCLE_descri_site(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{0,1}>
+<title>[Les articles de (#NOM_SITE).]</title> 
+<meta name="Description" content="[La liste des derniers articles de (#NOM_SITE).]"/>
+<meta name="Keywords" content="[Les articles de (#NOM_SITE),][Profitez du kiosque de (#NOM_SITE_SPIP)]"/>
+</BOUCLE_descri_site>
+<title>[Le kiosque web de (#NOM_SITE_SPIP).]</title> 
+<meta name="Description" content="[Profitez du kiosque web de (#NOM_SITE_SPIP).]"/>
+<meta name="Keywords" content="[Kiosque web de (#NOM_SITE_SPIP).]"/>
+<//B_descri_site>
+
+<meta http-equiv="content-type"content="text/html; charset=#CHARSET"/>
+
+	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
+	
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/menu.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/logic.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/niftyCorners.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/print.css})]" media="print" />
+	[(#REM) 4 css qui changent l aspect du site suivant la saison.]
+<BOUCLE_mot_saison(MOTS){titre=saison}{0,1}>
+<link rel="stylesheet" type="text/css" href="[squelettes/css/(#ENV{date}|saison|translitteration).css]" />
+</BOUCLE_mot_saison>
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/couleurs.css})]" />
+<//B_mot_saison>
+<script type="text/javascript" src="[(#CHEMIN{nifty.js})]"></script>
+<script type="text/javascript" src="[(#CHEMIN{nifty-bloog.js})]"></script>
+
+	[(#REM) icones xml des fils des rubriques sous firefox ]
+<BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}>
+<link rel="alternate" type="application/rss+xml" href="[(#URL_PAGE{backend}|parametre_url{'id_rubrique',#ID_RUBRIQUE})]title="[(#TITRE)]" />
+</BOUCLE_rub>
+
+</head>
+<body> 
+
+<div id="container">   [(#REM) cette div centre la page ]
+<INCLURE{fond="entete"}{delais=31*24*3600}>   
+<div id="surcontent"> 
+<INCLURE{fond="menuhoriz"}{delais=31*24*3600}> 
+<div id="content"> 
+<div id="colgau"> 
+
+
+ <div class="grande_boite">[(#REM) ouverture d une grande boite ]
+
+ 
+  
+      
+ 
+ <B_syndic_sites>#ANCRE_PAGINATION
+<BOUCLE_nom_site(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{0,1}>  <h4>Les articles de #NOM_SITE.</h4></BOUCLE_nom_site>
+<ul>
+<BOUCLE_syndic_sites(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{pagination 5}>        
+<li>[<a href="#URL_ARTICLE">(#TITRE|textebrut)</a>] [(#DESCRIPTIF|textebrut|couper{300})<a href="[(#URL_PAGE{kiosque}|parametre_url{date,#DATE})]">[ Afficher tous les articles de (#DATE|nom_mois)]</br>]</a>
+</li>
+</BOUCLE_syndic_sites>
+</ul>
+<p class="centre">#PAGINATION</p>
+</B_syndic_sites>
+		   
+		   
+            <B_syndic_dates>#ANCRE_PAGINATION
+            <ul>
+                <BOUCLE_syndic_dates(SYNDIC_ARTICLES){par date}{inverse}{mois_relatif=0}{pagination 5}>
+                <li> [Le (#DATE|jour)]/[(#DATE|mois): ][<a href="#URL_ARTICLE">(#TITRE|textebrut)</a> ][(#DESCRIPTIF|textebrut|couper{300}) ][Par <a href="[(#URL_PAGE{kiosque}|parametre_url{id_syndic,#ID_SYNDIC})]">(#NOM_SITE)</a></br>]
+				</li>
+                </BOUCLE_syndic_dates>
+				</ul>
+				<p class="centre">#PAGINATION</p>
+                </B_syndic_dates>   
+<//B_syndic_sites>
+ 	            
+</div><!-- fermeture grande_boite -->
+
+
+
+
+
+<div id="celbas"> 
+<ul id="deco"><li>
+<BOUCLE_un_site(SYNDIC_ARTICLES){id_syndic}{0,1}>    
+<h4>#NOM_SITE</h4>
+<p>Ce kiosque web présente les articles diffusés par #NOM_SITE via un fil de syndication RSS.
+</p>
+</BOUCLE_un_site>
+<h4>Kiosque à sites web</h4>
+<p>Ce kiosque présente les articles diffusés dans les sites web partenaires de #NOM_SITE_SPIP.
+</p>
+<//B_un_site>
+</li>
+
+<li>
+<h4>Par date ou par site web?</h4>
+<p>
+Choisissez de naviguer dans un seul site web ou dans toutes les actualités de tous les sites web.
+</p>
+  </li> 
+</ul>
+</div> <!-- fin de cel -->      
+
+
+       
+</div><!-- fermeture colone de gauche -->
+		
+
+<div class="coldroit"><!-- ouverture de la colone de droite --> 
+
+
+    <div class="boite"><!-- ouverture boite menu --> 
+        <h4 class="icone_menu">Navigation</h4>
+        <INCLURE{fond="inc_menu_rub"}>
+    
+    </div><!-- fermeture boite menu -->
+
+
+
+ 
+<div class="boite">
+  <h4 class="icone_agenda">Affichage par date</h4>
+
+<p>Plugin minical</p>
+
+</div>
+      
+	  
+  
+<div class="boite">
+  <h4 class="icone_site">Affichage par site</h4>
+<ul>  
+<BOUCLE_navig_sites(SYNDICATION){syndication=oui}{tous}>
+<li><a href="[(#URL_PAGE{kiosque}|parametre_url{id_syndic,#ID_SYNDIC})]">(#NOM_SITE)</a></li>
+</BOUCLE_navig_sites>
+</ul>
+</div>
+	  
+ 
+
+</div>   <!-- fermeture colone de droite --> 
+
+
+<hr class="spacer" /> <!-- ajoute une barre hr invisible --> 
+</div><!-- fermeture contenu --> 
+<INCLURE{fond="pieddepage"}{delais=31*24*3600}> <!-- le pied de page inclu avec délai --> 
+
+</div> <!-- fermeture surcontenu --><br/>
+
+
+</div> <!-- fermeture container --> 
+</body>
+</html>
