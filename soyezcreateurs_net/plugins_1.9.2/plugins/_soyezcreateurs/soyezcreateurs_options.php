@@ -24,4 +24,6 @@ $GLOBALS['fin_intertitre_4'] = '</h5>';
 $GLOBALS['debut_intertitre_5'] = '<h6 class="spip">';
 $GLOBALS['fin_intertitre_5'] = '</h6>';
 
+$GLOBALS['set_options']='avancees';
+
 ?>
