@@ -1,3 +1,4 @@
+
 <INCLURE{fond="header"}>
 <!-- ci-dessus l'include du fichier header avec un délai de 31 jours. -->
 
@@ -22,6 +23,8 @@
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/menu.css})]" />
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/logic.css})]" />
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/niftyCorners.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/minical.css})]" />
+
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/print.css})]" media="print" />
 	[(#REM) 4 css qui changent l aspect du site suivant la saison.]
 <BOUCLE_mot_saison(MOTS){titre=saison}{0,1}>
@@ -55,10 +58,10 @@
       
  
  <B_syndic_sites>#ANCRE_PAGINATION
-<BOUCLE_nom_site(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{0,1}>  <h4>Les articles de #NOM_SITE.</h4></BOUCLE_nom_site>
+<BOUCLE_nom_site(SYNDIC_ARTICLES){id_syndic}{0,1}>  <h4>Les articles de #NOM_SITE.</h4></BOUCLE_nom_site>
 <ul>
-<BOUCLE_syndic_sites(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{pagination 5}>        
-<li>[<a href="#URL_ARTICLE">(#TITRE|textebrut)</a>] [(#DESCRIPTIF|textebrut|couper{300})<a href="[(#URL_PAGE{kiosque}|parametre_url{date,#DATE})]">[ Afficher tous les articles de (#DATE|nom_mois)]</br>]</a>
+<BOUCLE_syndic_sites(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{pagination}>        
+<li>[<a href="#URL_ARTICLE">(#TITRE|textebrut)</a>] [(#DESCRIPTIF|textebrut|couper{300})<a href="[(#URL_PAGE{kiosque}|parametre_url{date,[(#DATE|affdate{'Y-m'})]})]">[ Afficher tous les articles de (#DATE|nom_mois)]</br>]</a>
 </li>
 </BOUCLE_syndic_sites>
 </ul>
@@ -66,15 +69,33 @@
 </B_syndic_sites>
 		   
 		   
-            <B_syndic_dates>#ANCRE_PAGINATION
-            <ul>
-                <BOUCLE_syndic_dates(SYNDIC_ARTICLES){par date}{inverse}{mois_relatif=0}{pagination 5}>
+            <B_syndic_jours>#ANCRE_PAGINATION
+			 <ul>
+                <BOUCLE_syndic_jours(SYNDIC_ARTICLES){par date}{inverse}{jour_relatif=0}{pagination}>
                 <li> [Le (#DATE|jour)]/[(#DATE|mois): ][<a href="#URL_ARTICLE">(#TITRE|textebrut)</a> ][(#DESCRIPTIF|textebrut|couper{300}) ][Par <a href="[(#URL_PAGE{kiosque}|parametre_url{id_syndic,#ID_SYNDIC})]">(#NOM_SITE)</a></br>]
 				</li>
-                </BOUCLE_syndic_dates>
+                </BOUCLE_syndic_jours>
 				</ul>
 				<p class="centre">#PAGINATION</p>
-                </B_syndic_dates>   
+                </B_syndic_jours>   
+				
+				
+				<B_syndic_mois>#ANCRE_PAGINATION
+		            <ul>
+                <BOUCLE_syndic_mois(SYNDIC_ARTICLES){par date}{inverse}{mois_relatif=0}{pagination}>
+                <li> [Le (#DATE|jour)]/[(#DATE|mois): ][<a href="#URL_ARTICLE">(#TITRE|textebrut)</a> ][(#DESCRIPTIF|textebrut|couper{300}) ][Par <a href="[(#URL_PAGE{kiosque}|parametre_url{id_syndic,#ID_SYNDIC})]">(#NOM_SITE)</a></br>]
+				</li>
+                </BOUCLE_syndic_mois>
+				</ul>
+				<p class="centre">#PAGINATION</p>
+                </B_syndic_mois>   
+				
+				 <//B_syndic_jours>   
+				
+				
+				
+				
+				
 <//B_syndic_sites>
  	            
 </div><!-- fermeture grande_boite -->
@@ -121,11 +142,41 @@ Choisissez de naviguer dans un seul site web ou dans toutes les actualités de to
 
 
 
+
+
+
+
  
 <div class="boite">
   <h4 class="icone_agenda">Affichage par date</h4>
 
-<p>Plugin minical</p>
+<div id="calendar" class="divers">
+
+	<table summary="<:icone_calendrier:>">
+		<caption><BOUCLE_mois_precedent(SYNDIC_ARTICLES){mois_relatif<0}{n-1,1}>[
+			<a
+				href="(#URL_PAGE{kiosque}|parametre_url{date,[(#DATE|affdate{'Y-m'})]})"
+				title="[(#DATE|affdate_mois_annee)]">&#171;</a>]</BOUCLE_mois_precedent>
+				[(#ENV{date}|affdate_mois_annee)]<BOUCLE_mois_suivant(SYNDIC_ARTICLES){mois_relatif>0}{0,1}>[
+			<a
+				href="(#URL_PAGE{kiosque}|parametre_url{date,[(#DATE|affdate{'Y-m'})]})"
+				title="[(#DATE|affdate_mois_annee)]">&#187;</a>]</BOUCLE_mois_suivant>
+		</caption>[
+		(#LANG|thead)
+		]<tbody><BOUCLE_calendrier(SYNDIC_ARTICLES)
+			
+			{agenda date, mois, (#ENV{date}|annee), (#ENV{date}|mois)}>[
+			(#DATE|agenda_memo{'',
+				[(#DATE|affdate{'j'})],
+				[(#URL_PAGE{kiosque}|parametre_url{date,[(#DATE|affdate{'Y-m-d'})]})]})
+							
+			]</BOUCLE_calendrier>[
+			(#ENV{date}|agenda_mini)
+			]</tbody>
+	</table>
+	<span>&nbsp;</span>
+</div>
+
 
 </div>
       
