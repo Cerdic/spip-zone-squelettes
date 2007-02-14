@@ -114,7 +114,7 @@
 <?php $i=0; ?>
 <BOUCLE_articles(ARTICLES){id_rubrique}{par date}{inverse}{doublons}{tout_voir}{pagination}>
 <ul>
-<BOUCLE_logo_documents(DOCUMENTS){id_article}{mode=document}{par date}{inverse}{extension=jpg}{0,1}>
+<BOUCLE_logo_documents(DOCUMENTS){id_article}{mode=document}{par date}{inverse}{extension IN jpg,png,gif}{0,1}>
 <li style=" <?php
 echo ($i==0) ? 'float:left' : 'float:right' ; 
 if($i==0) {$i=1;}
@@ -122,7 +122,7 @@ else {$i=0;} ?>
  "><a href="#URL_ARTICLE#diapo"><INCLURE{fond="logo"}{id_article}{id_document}{taille=46}></a>
 </BOUCLE_logo_documents>
 
-<BOUCLE_photocmpt(DOCUMENTS){id_article}{mode=document}{extension=jpg}>
+<BOUCLE_photocmpt(DOCUMENTS){id_article}{mode=document}{extension IN jpg,png,gif}>
 </BOUCLE_photocmpt>
 <p class="centre">
 <a href="#URL_ARTICLE#diapo">
@@ -162,7 +162,7 @@ echo $total_photos == 1? "1&nbsp;photo" : "$total_photos&nbsp;photos" ; ?></a>
 <h4 class="icone_site">Vu sur le web</h4><br/>
                       <BOUCLE_syndic(SYNDICATION){id_rubrique}{par nom_site}{syndication=oui}>                      
                     
-					  <h4>[<a href="_kiosque_source.php3?id_syndic=#ID_SYNDIC" title="Toutes les news de #NOM_SITE">(#NOM_SITE)</a>]</h4>
+					  <h4>[<a href="[(#URL_PAGE{kiosque}|parametre_url{'id_syndic',#ID_SYNDIC})]" title="Toutes les news de #NOM_SITE">(#NOM_SITE)</a>]</h4>
                       <BOUCLE_items(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{0,2}>
                      <p>[<strong><a href="#URL_ARTICLE">(#TITRE)</a></strong><br/>]
                       [(#DESCRIPTIF)<br/>]</p>
