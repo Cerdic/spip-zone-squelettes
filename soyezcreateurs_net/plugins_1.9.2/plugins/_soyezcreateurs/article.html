@@ -1,11 +1,11 @@
 <BOUCLE_article_principal(ARTICLES) {id_article}><BOUCLE_EstNewsLetter(MOTS){id_rubrique}{titre=NewsLetter}><INCLURE{fond=articlenewsletter}{id_article}></BOUCLE_EstNewsLetter><?php $jp_rubrique = '[(#ID_RUBRIQUE|texte_script)]'; ?>
 <BOUCLE_RacineMenuHaut(HIERARCHIE){id_rubrique}{tout}{titre_mot=MenuHaut}{inverse} {0,1}>
-<?php $jp_secteur = [(#ID_RUBRIQUE|texte_script)]; ?>
+[(#SET{secteurencours,#ID_RUBRIQUE})]
 </BOUCLE_RacineMenuHaut>
 <?php $jp_article = '[(#ID_ARTICLE|texte_script)]'; ?>
 <?php $titre = '[(#TITRE|textebrut|supprimer_numero|attribut_html|texte_script)]'; ?>
 <?php $titretop = '[(#TITRE|textebrut|supprimer_numero|attribut_html|nettoyer_marqueur|texte_script)]'; ?>
-<INCLURE{fond=header}{id_article}{id_rubrique}{rubriqueencours=#ID_RUBRIQUE}{secteurencours=#ID_SECTEUR}{connexion}>
+<INCLURE{fond=header}{id_article}{id_rubrique}{rubriqueencours=#ID_RUBRIQUE}{connexion}{secteurencours=#GET{secteurencours}}>
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
@@ -224,13 +224,13 @@
 
 [(#FORMULAIRE_ADMIN)]
 
-<INCLURE{fond=footer}{rubriqueencours=#ID_RUBRIQUE}{id_rubrique}{id_article}>
+<INCLURE{fond=footer}{rubriqueencours=#ID_RUBRIQUE}{id_rubrique}{id_article}{secteurencours=#GET{secteurencours}}>
 	<//B_EstNewsLetter>
 </BOUCLE_article_principal>
 </B_article_principal>
 <?php $titre = '<:pyrat:erreur:>'; ?>
 <?php $titretop = '<:pyrat:erreur|nettoyer_marqueur:>'; ?>
-<INCLURE{fond=header}{connexion}>
+<INCLURE{fond=header}{connexion}{secteurencours=#GET{secteurencours}}>
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
@@ -247,5 +247,5 @@
 
 [(#FORMULAIRE_ADMIN)]
 
-<INCLURE{fond=footer}{rubriqueencours=#ID_RUBRIQUE}{id_rubrique}>
+<INCLURE{fond=footer}{rubriqueencours=#ID_RUBRIQUE}{id_rubrique}{secteurencours=#GET{secteurencours}}>
 <//B_article_principal>

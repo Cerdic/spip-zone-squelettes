@@ -18,14 +18,9 @@
 <div id="menu" class="navStuff">
 <div class="espaceavant">
 <ul>
-  <li><?php if ($jp_rubrique=='sommaire') { ?><strong><?php } ?><a name="menusite" accesskey="A" href="/" title="<:accueil_site:>"><:pyrat:accueil_menu:></a><?php if ($jp_rubrique=='sommaire') { ?></strong><?php } ?></li>
+  <li>[(#ENV{template}|=={Sommaire}|?{'<strong>',''})]<a name="menusite" accesskey="A" href="/" title="<:accueil_site:>"><:pyrat:accueil_menu:></a>[(#ENV{template}|=={Sommaire}|?{'</strong>',''})]</li>
 
-<?php if (!$sous_menuhaut) { ?>
-
-<BOUCLE_Racines(ARTICLES){titre_mot==^(MENURACINE|MENURACINE_Systematique)$}{par num titre}>
-	<li><?php if ($jp_article==#ID_ARTICLE) { ?><strong><?php } ?><a href="[(#URL_ARTICLE)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img src="(#LOGO_ARTICLE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#TITRE|supprimer_numero)]</a><?php if ($jp_article==#ID_ARTICLE) { ?></strong><?php } ?></li>
-</BOUCLE_Racines>
-<?php } else { ?>
+<BOUCLE_EstMenuHaut(RUBRIQUES){titre_mot=MenuHaut}{id_rubrique=#ENV{secteurencours}}>
 
 <B_Racines_Systematique>
 <BOUCLE_Racines_Systematique(ARTICLES){par num titre}{titre_mot=MENURACINE_Systematique}>
@@ -33,13 +28,18 @@
 </BOUCLE_Racines_Systematique>
 </B_Racines_Systematique>
 
-<?php } ?>
+</BOUCLE_EstMenuHaut>
+
+<BOUCLE_Racines(ARTICLES){titre_mot==^(MENURACINE|MENURACINE_Systematique)$}{par num titre}>
+	<li><?php if ($jp_article==#ID_ARTICLE) { ?><strong><?php } ?><a href="[(#URL_ARTICLE)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img src="(#LOGO_ARTICLE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#TITRE|supprimer_numero)]</a><?php if ($jp_article==#ID_ARTICLE) { ?></strong><?php } ?></li>
+</BOUCLE_Racines>
+
+<//B_EstMenuHaut>
 </ul>
 </div>
 <BOUCLE_Rubriques_Exclues_Mots(RUBRIQUES){titre_mot=PasDansMenu}{doublons}>
 </BOUCLE_Rubriques_Exclues_Mots>
-<BOUCLE_MenuHaut(RUBRIQUES){titre_mot=MenuHaut}{doublons}>
-<?php if ($jp_secteur=='[(#ID_RUBRIQUE|texte_script)]') { ?>
+<BOUCLE_MenuHaut(RUBRIQUES){titre_mot=MenuHaut}{id_rubrique=#ENV{secteurencours}}{doublons}>
 <div class="espaceavant">
 <INCLURE{fond=menuarticles}{id_rubrique}>
 <B_Rubriques_MenuHaut>
@@ -60,12 +60,9 @@
 </ul>
 </div>
 </B_RacinesBas_Systematique>
-
-<?php } ?>
-
 </BOUCLE_MenuHaut>
 
-<?php if (!$sous_menuhaut) { ?>
+<BOUCLE_ExclureMenuHaut(RUBRIQUES){titre_mot=MenuHaut}{doublons}> </BOUCLE_ExclureMenuHaut>
 
 <div class="espaceavant">
 <B_Secteurs>
@@ -94,14 +91,10 @@
 </ul>
 </div>
 </B_RacinesBas>
-<?php } ?>
-[(#CONFIG{plugin}|match{ACCESRESTREINT}|?{' '})
-<div class="espaceavant">
-<ul>
-<li><INCLURE(session.php){fond=login-logout}{connexion}{id_article}{id_rubrique}></li>
-</ul>
-</div>
-]
+
+<//B_MenuHaut>
+
+[(#CONFIG{plugin}|match{ACCESRESTREINT}|?{' '})<INCLURE(session.php){fond=login-logout}{connexion}>]
 <div class="espaceavant">
 <ul>
 <li><?php if ($jp_rubrique=='Plan') { ?><strong><?php } ?><a accesskey="P" href="plan.html" title="<:pyrat:toutleplan:>"><:pyrat:plan_menu:></a><?php if ($jp_rubrique=='Plan') { ?></strong><?php } ?></li>
@@ -137,4 +130,4 @@
 </BOUCLE_ApparenceSwitcherLeft>
 
 	</div><!-- id="navigation" -->
-<INCLURE{fond=menu_right}{id_rubrique}{id_article}>
+<INCLURE{fond=menu_right}{id_rubrique}{id_article}{template}>
