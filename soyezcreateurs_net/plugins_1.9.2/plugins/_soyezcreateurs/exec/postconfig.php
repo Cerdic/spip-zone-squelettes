@@ -177,8 +177,10 @@ function config_site() {
 		create_mot("_ModePortail", "ZoomSur", "Affecter ce mot clef à l\'objet que vous voulez placer dans le cadre « Zoom sur » (facultatif).\n\nLe site prendra les 3 derniers articles ayant ce mot clef", "S\'applique aux :\n-* articles\n-* rubriques");
 
 	create_groupe("_Params", "Paramétrages globaux du site", "Ces paramètres règlent des comportements globaux pour tout le site.", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
+		create_mot("_Params", "ActiverRechercheparMots", "", "");
+		create_mot("_Params", "aff_Complet_Pour_Impression", "", "");
 		create_mot("_Params", "Aff_DatePublication", "Mettre Oui ci-dessous si le site doit afficher la date de publication des articles", "Oui");
-		create_mot("_Params", "Aff_Google_Analytics", "Mettre ci-dessous la partie du code entre les guillemets (extrait du code fournis par Google) : _uacct = \"{{UA-00000-0}}\"; pour bénéficier des services de statistiques de [Google Analytics->http://www.google.com/analytics/fr-FR/].", "");
+		create_mot("_Params", "Aff_Google_Analytics", "Mettre ci-dessous la partie du code entre les guillemets (extrait du code fournis par Google) : _uacct = \"UA-00000-0\"; pour bénéficier des services de statistiques de [Google Analytics->http://www.google.com/analytics/fr-FR/].", "");
 		create_mot("_Params", "Aff_Habillage", "Permet de spécifier l\'emplacement de la zone de choix de l\'habillage du site, soit en haut à droite, soit en bas à gauche.\n\nValeurs possible à mettre ci-dessous : Left ou Right", "Left");
 		create_mot("_Params", "AgendaFuturSeul", "Mettre Oui ci-dessous pour bénéficier d\'un agenda (format liste) qui affiche tous les événements futurs et seulement eux.", "");
 		create_mot("_Params", "AgendaScolaire", "Mettre Oui ci-dessous si l\'agenda doit afficher des années scolaires (septembre à décembre de l\'année suivante inclus) et non des années légales.", "");
