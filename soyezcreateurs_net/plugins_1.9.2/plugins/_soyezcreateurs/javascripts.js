@@ -109,7 +109,7 @@ function adjustLayout() {
 	$("div.equilibre").height("auto");
 	var lastheight = -1;
 	var stacked = 0;
-	$("div.stackable").each(function(){ if ((lastheight!=0) && (lastheight!=this.offsetTop)) {stacked=-1} ; lastheight=this.offsetTop; });
+	$("div.stackable").each(function(){ if ((lastheight!=0) && (lastheight!=this.offsetTop) && (lastheight!=-1)) {stacked=-1} ; lastheight=this.offsetTop; });
 	if (stacked) {
 		var hstacked = 0;
 		$("div.stackable").each(function(){ hstacked+=this.offsetHeight; });
