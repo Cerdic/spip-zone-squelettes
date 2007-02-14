@@ -38,6 +38,8 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'copyright_droits' => 'Tous droits r&eacute;serv&eacute;s.',
 'chapitre_complet' => 'Chapitre complet pour impression',
 'chapitre_complet_title' => 'Afficher en entier le contenu de la rubrique&nbsp;: ',
+'connexion' => 'Connexion',
+'connexiontitle' => 'Acc&eacute;der &agrave; l\'espace r&eacute;serv&eacute;',
 
 //D
 'date_j_1' => 'D',
@@ -47,6 +49,8 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'date_j_5' => 'J',
 'date_j_6' => 'V',
 'date_j_7' => 'S',
+'deconnexion' => 'd&eacute;connexion',
+'deconnexiontitle' => 'Vous d&eacute;connecter',
 'deposer_intention' => 'D&eacute;poser une intention de pri&egrave;re',
 'docatelecharger' => 'Documents &agrave; t&eacute;l&eacute;charger',
 'dernieremaj' => 'Derni&egrave;re mise &agrave; jour du site :',
