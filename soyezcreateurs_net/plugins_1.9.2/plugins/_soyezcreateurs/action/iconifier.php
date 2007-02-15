@@ -21,7 +21,8 @@ function action_iconifier_dist()
 	$iframe_redirect = _request('iframe_redirect');
 
 	$arg = rawurldecode($arg);
-	if (!preg_match(',^\d*(\D)(.*)$,',$arg, $r))
+
+	if (!preg_match(',^-?\d*(\D)(.*)$,',$arg, $r))
 		spip_log("action iconifier: $arg pas compris");
 	elseif ($r[1] == '+')
 		action_spip_image_ajouter_dist($r[2]);
@@ -77,17 +78,17 @@ function action_spip_image_ajouter_dist($arg) {
 	else {
 		$size = @getimagesize($f);
 		$type = !$size ? '': ($size[2] > 3 ? '' : $formats_logos[$size[2]-1]);
-        
-        	if (!$type) {
-         	   include_spip('inc/swfheader');
-         	   $swf = new swfheader();
-         	   $swf->loadswf($f);
-         	   if ($swf->valid) {
-         	       $type='swf';
-         	       $size[0] = $swf->width;
-        	        $size[1] = $swf->height;
-        	    }
-        	}
+
+		if (!$type) {
+			include_spip('inc/swfheader');
+			$swf = new swfheader();
+			$swf->loadswf($f);
+			if ($swf->valid) {
+				$type='swf';
+				$size[0] = $swf->width;
+				$size[1] = $swf->height;
+			}
+		}
         
 		if ($type) {
 			$poids = filesize($f);

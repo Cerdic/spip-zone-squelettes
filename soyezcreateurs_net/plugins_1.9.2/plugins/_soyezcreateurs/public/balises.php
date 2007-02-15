@@ -515,8 +515,13 @@ function balise_SPIP_CRON_dist ($p) {
 function balise_INTRODUCTION_dist ($p) {
 	$type = $p->type_requete;
 	$_texte = champ_sql('texte', $p);
+	if ($type == 'articles') {
 	$_chapo = champ_sql('chapo', $p);
 	$_descriptif = champ_sql('descriptif', $p);
+	} else {
+	  $_chapo = "''";
+	  $_descriptif =  "''";
+	}
 	$p->code = "calcul_introduction('$type', $_texte, $_chapo, $_descriptif)";
 
 	#$p->interdire_scripts = true;
