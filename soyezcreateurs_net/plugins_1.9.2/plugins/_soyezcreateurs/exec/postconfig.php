@@ -130,11 +130,6 @@ function config_site() {
 	create_groupe("Thèmes de l\'Agenda", "Détermine la liste des éléments pouvant être présentés en liste déroulante dans l\'Agenda du site", "Un événement de l\'Agenda peut avoir un ou {{plusieurs}} mot clefs ratachés (les sélectionner avec maj-clic).", 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'oui', 'oui', 'non');
 
 	create_groupe("_AgendaStatut", "Statut d\'un événement dans l\'Agenda", "Permet de spécifier un statut d\'un événement dans l\'Agenda.\n\nL\'événement sera affiché dans la couleur spécifiée par le {Texte} du Mot Clef.\n\nLe {Descriptif rapide} sera quant à lui utilisé en bulle d\'aide.", 'oui', 'oui', 'non', 'non', 'non', 'non', 'oui', 'oui', 'oui', 'non');
-		create_mot("_AgendaStatut", "Annulé", "Activité annulée pour des raisons indépendantes de notre volonté", "ab051c");
-		create_mot("_AgendaStatut", "Changement d\'animateur(s)", "Les des animateurs a été remplacé", "a70592");
-		create_mot("_AgendaStatut", "Complet", "Il n\'y a plus de place", "F00");
-		create_mot("_AgendaStatut", "Date changée", "La nouvelle date est ici indiquée.", "3a92d5");
-		create_mot("_AgendaStatut", "Liste d\'attente", "Inscrivez-vous en liste d\'attente", "DE8E39");
 
 	create_groupe("_CouleurRubrique", "Permet de changer la couleur d\'une Rubrique.", "Affecter un mot clef de ce groupe à une rubrique (et ses descendants) pour en changer la tonalité de couleur.\n\nPour chacun des mots clefs, mettre en titre quelque chose d\'intelligible, un éventuel descriptif rapide sur l\'usage à en faire et le code hexadecimal de la couleur dans le texte. \n\nExemple : \n-* Titre: Orange\n-* Texte : f78221", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_CouleurRubrique", "Bleu", "", "6392A9");
@@ -160,9 +155,6 @@ function config_site() {
 		create_mot("_LayoutGala", "34. Two colums fixed", "", "");
 
 	create_groupe("_LogosExtra", "Permet de placer une image en fond de la colonne Extra (c\'est-à-dire, soit la colonne secondaire qui peut être afichée soit de l\'autre côté du menu, soit en dessous de celui-ci).", "{{Utilisation}} : affecter un ou plusieurs mots clefs de ce groupe aux rubriques (héritage automatique) qui doivent avoir une ou plusieurs image en fond. L\'image est choisie aléatoirement parmis celles disponibles.\n\n{{Configuration}} : \n-* créer des mots clefs dans ce groupe et leur donner un logo de mot clef.\n-* il est possible de mettre un logo de survol qui sera alors utilisé en fond de texte (en plus de l\'autre logo) et positionné en haut à droite sauf si le texte contient les ordres CSS de positionnement ({bottom left} par exemple)", 'non', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
-		create_mot("_LogosExtra", "300. Tourisme sous-bois", "", "top right");
-		create_mot("_LogosExtra", "310. Tourisme Roches enchantées", "", "");
-		create_mot("_LogosExtra", "320. Tourisme La Loue (Rivière)", "", "bottom right");
 
 	create_groupe("_META", "Paramètrage du site", "Permet de spécifier des META pour le site.\n\nIl est possible de rajouter des METAs non encore présents, mais, comme d\'habitude en la matière : sachez ce que vous faites !", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_META", "Description", "Mettre ci-dessous la description du site", "");
