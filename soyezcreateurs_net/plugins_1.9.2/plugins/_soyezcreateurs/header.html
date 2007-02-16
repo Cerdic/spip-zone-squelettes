@@ -2,12 +2,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">
 <head><title><?php if ($titre=='') { ?><:pyrat:sommaire:><?php } else { echo $titre; } ?> - [(#NOM_SITE_SPIP|textebrut)]</title>
-<BOUCLE_ModePortail2(MOTS){titre=ModePortail}{texte=Oui}>
+[(#CONFIG{soyezcreateurs/mode_affichage}|=={portail}|?{' ',''})
 [(#ENV{template}|=={'Sommaire'}|?{'',' '})<INCLURE{fond=styleswitcher_classique}>]
 [(#ENV{template}|=={'Sommaire'}|?{' ',''})<INCLURE{fond=styleswitcher_modeportail}>]
-</BOUCLE_ModePortail2>
+]
+[(#CONFIG{soyezcreateurs/mode_affichage}|=={portail}|?{'',' '})
 <INCLURE{fond=styleswitcher_classique}>
-<//B_ModePortail2>
+]
 <BOUCLE_LargeurMenuGauche(MOTS){titre=LargeurMenuGauche}>[(#REM) Attention : ne pas enlever les REMarques : elles servent �a�er le source sans que celui ne renvois d'espaces identifi�comme une reussite du test ]
 <BOUCLE_LargeurMenuDroit(MOTS){titre=LargeurMenuDroit}>
 	<BOUCLE_ArtRubLayout(ARTICLES){id_article}>[(#REM) Dans le cas d'un article
@@ -58,12 +59,13 @@ urchinTracker();
 </head>
 <body[ (#ENV{template}|=={'Sommaire'}|?{'id="pagesommaire"',''})]>
 <div id="container">
-<BOUCLE_ModePortail(MOTS){titre=ModePortail}{texte=Oui}>
+[(#CONFIG{soyezcreateurs/mode_affichage}|=={portail}|?{' ',''})
 [(#ENV{template}|=={'Sommaire'}|?{'',' '})<INCLURE{fond=header_classique}{secteurencours}>]
 [(#ENV{template}|=={'Sommaire'}|?{' ',''})<INCLURE{fond=header_modeportail}{secteurencours}>]
-</BOUCLE_ModePortail>
+]
+[(#CONFIG{soyezcreateurs/mode_affichage}|=={portail}|?{'',' '})
 <INCLURE{fond=header_classique}{secteurencours}>
-<//B_ModePortail>
+]
 <div id="contenu">
 	<div id="wrapper">
 <div id="content" class="equilibre notstackable">
