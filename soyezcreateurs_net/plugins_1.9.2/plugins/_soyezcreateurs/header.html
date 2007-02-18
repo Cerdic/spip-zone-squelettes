@@ -9,24 +9,21 @@
 [(#CONFIG{soyezcreateurs/mode_affichage}|=={portail}|?{'',' '})
 <INCLURE{fond=styleswitcher_classique}>
 ]
-<BOUCLE_LargeurMenuGauche(MOTS){titre=LargeurMenuGauche}>[(#REM) Attention : ne pas enlever les REMarques : elles servent �a�er le source sans que celui ne renvois d'espaces identifi�comme une reussite du test ]
-<BOUCLE_LargeurMenuDroit(MOTS){titre=LargeurMenuDroit}>
+[(#REM) Attention : ne pas enlever les REMarques : elles servent �a�er le source sans que celui ne renvois d'espaces identifi�comme une reussite du test ]
 	<BOUCLE_ArtRubLayout(ARTICLES){id_article}>[(#REM) Dans le cas d'un article
 		]<BOUCLE_ArtLayout(MOTS){id_article}{type=_LayoutGala}>[(#REM) Est-ce qu'il a un Layout appliqu�?
-			]<INCLURE{fond=layout}{layoutgala=(#TITRE|substr{0,2})}{colgauche=#_LargeurMenuGauche:TEXTE}{coldroite=#_LargeurMenuDroit:TEXTE}>[(#REM) Appel du layout de l'article si oui
+			]<INCLURE{fond=layout}{layoutgala=(#TITRE|substr{0,2})}{colgauche=#CONFIG{soyezcreateurs/largeurmenugauche,160}}{coldroite=#CONFIG{soyezcreateurs/largeurmenudroit,140}}>[(#REM) Appel du layout de l'article si oui
 		]</BOUCLE_ArtLayout>[(#REM) Sinon, dans le cas de la rubrique de l'article
 		]<BOUCLE_RubartLayout(MOTS){id_rubrique}{type=_LayoutGala}>[(#REM) Est-ce que sa rubrique a un layout ?
-			]<INCLURE{fond=layout}{layoutgala=(#TITRE|substr{0,2})}{colgauche=#_LargeurMenuGauche:TEXTE}{coldroite=#_LargeurMenuDroit:TEXTE}>[(#REM) Appel du layout de la rubrique si oui
+			]<INCLURE{fond=layout}{layoutgala=(#TITRE|substr{0,2})}{colgauche=#CONFIG{soyezcreateurs/largeurmenugauche,160}}{coldroite=#CONFIG{soyezcreateurs/largeurmenudroit,140}}>[(#REM) Appel du layout de la rubrique si oui
 		]</BOUCLE_RubartLayout>[(#REM) Fin de la recherche concernant un article
 		]<//B_ArtLayout>[(#REM) Si ce n'est pas un article...
 	]</BOUCLE_ArtRubLayout>[(#REM) ... Est-ce une rubrique ?
 		]<BOUCLE_RubLayout(MOTS){id_rubrique}{type=_LayoutGala}>[(#REM) Dans le cas d'une rubrique
-			]<INCLURE{fond=layout}{layoutgala=(#TITRE|substr{0,2})}{colgauche=#_LargeurMenuGauche:TEXTE}{coldroite=#_LargeurMenuDroit:TEXTE}>[(#REM) Appel du layout de l'a rubrique si oui
+			]<INCLURE{fond=layout}{layoutgala=(#TITRE|substr{0,2})}{colgauche=#CONFIG{soyezcreateurs/largeurmenugauche,160}}{coldroite=#CONFIG{soyezcreateurs/largeurmenudroit,140}}>[(#REM) Appel du layout de l'a rubrique si oui
 		]</BOUCLE_RubLayout>[(#REM) Sinon
-		][(#ENV{template}|=={''}|?{'',' '})<INCLURE{fond=templates}{colgauche=#_LargeurMenuGauche:TEXTE}{coldroite=#_LargeurMenuDroit:TEXTE}{template}>][(#ENV{template}|=={''}|?{' ',''})<INCLURE{fond=layoutpardefaut}{colgauche=#_LargeurMenuGauche:TEXTE}{coldroite=#_LargeurMenuDroit:TEXTE}>]<//B_RubLayout>[(#REM) Fin de la recherche d'une rubrique
+		][(#ENV{template}|=={''}|?{'',' '})<INCLURE{fond=templates}{colgauche=#CONFIG{soyezcreateurs/largeurmenugauche,160}}{coldroite=#CONFIG{soyezcreateurs/largeurmenudroit,140}}{template}>][(#ENV{template}|=={''}|?{' ',''})<INCLURE{fond=layoutpardefaut}{colgauche=#CONFIG{soyezcreateurs/largeurmenugauche,160}}{coldroite=#CONFIG{soyezcreateurs/largeurmenudroit,140}}>]<//B_RubLayout>[(#REM) Fin de la recherche d'une rubrique
 	]<//B_ArtRubLayout>
-</BOUCLE_LargeurMenuDroit>
-</BOUCLE_LargeurMenuGauche>
 <INCLURE{fond=couleurrubrique}{id_article}{id_rubrique}>
 <INCLURE{fond=inc_logoextra}{id_rubrique}>
 <link rel="stylesheet" href="[(#CHEMIN{images/printer.css}|url_absolue)]" type="text/css" media="print" />
