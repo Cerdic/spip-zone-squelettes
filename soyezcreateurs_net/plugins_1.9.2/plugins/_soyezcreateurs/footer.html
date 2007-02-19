@@ -8,11 +8,9 @@
 ]
 <span id="clearbottom" style="display:block;clear:both;">&nbsp;</span></div><!-- id="contenu" -->	
 	<div id="footer">
-		<BOUCLE_BandeauContact(MOTS){titre=BandeauContact}{texte!=}>
-		<BOUCLE_BandeauContactExtra(MOTS){titre=BandeauContactExtra}{texte=Oui}> </BOUCLE_BandeauContactExtra>
-		<div id="bandeaucontact">#_BandeauContact:TEXTE</div>
-		<//B_BandeauContactExtra>
-		</BOUCLE_BandeauContact>
+	[(#CONFIG{soyezcreateurs/bandeau_contact_extra}|=={bas}|?{' ',''})
+		[<div id="bandeaucontact">(#CONFIG{soyezcreateurs/bandeau_contact}|propre)</div>]
+	]
 		<div>
 			<div>&copy; [(#DATE|annee)][, (#NOM_SITE_SPIP|supprimer_tags)]<BOUCLE_amentionlegale(MOTS){type=_InformationsLegales}{texte!=}{0,1}> <img src="/#CHEMIN{images/1.gif}" alt="" width="1" height="1" />&nbsp;<a href="@mentionslegales.html"><:pyrat:mentionslegales|propre:></a></BOUCLE_amentionlegale></div>
 			<div><:pyrat:copyright_realisation:> <img src="/#CHEMIN{images/1.gif}" alt="" width="1" height="1" />&nbsp;<:pyrat:copyright_spip:>[ (#SPIP_VERSION)]</div>
