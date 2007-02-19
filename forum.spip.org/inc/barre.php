@@ -127,12 +127,4 @@ function afficher_barre($champ, $forum=false, $lang='') {
 	return $ret;
 }
 
-// pour compatibilite arriere. utiliser directement le corps a present.
-
-// http://doc.spip.org/@afficher_claret
-function afficher_claret() {
-	include_spip('inc/layer');
-	return $GLOBALS['browser_caret'];
-}
-
 ?>
