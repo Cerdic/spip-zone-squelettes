@@ -105,7 +105,7 @@
 	
 [<h4><a href="#URL_ARTICLE">(#TITRE)</a></h4>]
 [<p>(#DESCRIPTIF) <a href="#URL_ARTICLE">Lire la suite...</a></p>]
-<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document} {par num titre, date}>
+<BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{par num titre, date}{0,1}>
 [<p><a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})';return false;" title="[(#TITRE|couper{200}|texte_backend)]">[(#FICHIER|image_reduire{450,10000})]</a></p>]
 </BOUCLE_documents_portfolio>
 
@@ -179,7 +179,35 @@
     
     </div>[(#REM)   fermeture boite menu  ]
 	
-<BOUCLE_huit_images_une(ARTICLES){titre_mot=images_une}{0,1}>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+<BOUCLE_huit_images_une(ARTICLES){titre_mot=images_une}{par date}{inverse}{0,1}>
+
+<BOUCLE_huit_saison(MOTS){titre=saison}{0,1}>
+
+
+[(#REM) On donne des couleurs hexadécimales aux saisons]
+
+
+[(#ENV{date}|saison|translitteration|=={printemps}|?{' ',''})#SET{'colo','7d9941'}]
+[(#ENV{date}|saison|translitteration|=={ete}|?{' ',''})#SET{'colo','b18c43'}]
+[(#ENV{date}|saison|translitteration|=={automne}|?{' ',''})#SET{'colo','33231c'}]
+[(#ENV{date}|saison|translitteration|=={hiver}|?{' ',''})#SET{'colo','b18c43'}]
+
+
+</BOUCLE_huit_saison>
+
+
+
+
 <div class="boite">
 [(#REM) ouverture boite photos flickr ]
 <h4 class="icone_photo">Sélection photos</h4>
@@ -188,7 +216,7 @@
 			<table cellpadding="0" cellspacing="0" ><tr>
 			
 			<BOUCLE_flickr(DOCUMENTS){id_article}{!par date}{extension==jpg|png|gif}{0,#ENV{taille,8}}>
-			<td> <a href="#URL_ARTICLE">[(#FICHIER|copie_locale|image_masque{carre-112.png}|image_sepia{a1a4c3}|inserer_attribut{style,'width:112px;height:112px'})]</a></td>
+			<td> <a href="#URL_ARTICLE">[(#FICHIER|copie_locale|image_masque{carre-112.png}|image_sepia{#GET{colo}}|inserer_attribut{style,'width:112px;height:112px'})]</a></td>
 			[(#COMPTEUR_BOUCLE|Splickr_juste_a_x{#ENV{colonnes,4},</tr><tr>})]
 			</BOUCLE_flickr>
 			
