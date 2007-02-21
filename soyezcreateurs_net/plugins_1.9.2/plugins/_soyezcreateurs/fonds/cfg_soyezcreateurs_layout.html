@@ -1,0 +1,22 @@
+#CACHE{0}
+
+<form method="post" action="#SELF">[(#ENV{_cfg_}|form_hidden)]
+
+[(#REM) descriptif=
+<h4>Configuration du Squelette SoyezCreateurs</h4>
+]
+[(#REM) titre=SoyezCreateurs]
+
+<p>Basé sur <a href="http://blog.html.it/layoutgala/" hreflang="en">Layout Gala</a></p>
+<fieldset><legend><:pyrat:default_layout:></legend>
+<p>Présentation par défaut du site.</p>
+	<BOUCLE_Layouts(MOTS){type=_LayoutGala}{par num titre}>
+	<input type="radio" name="default_layout" id="sc_default_layout#ID_MOT" value="[(#TITRE|substr{0,2})]"[ checked="(#ENV{default_layout,13}|=={#TITRE|substr{0,2}}|?{checked})"] /><label for="sc_default_layout#ID_MOT"><img src="#CHEMIN{img_pack/layout0(#TITRE|substr{0,2}).gif}" alt="" style="vertical-align: center;" />&nbsp;[(#TITRE)]</label><br />
+	</BOUCLE_Layouts>
+</fieldset>
+
+<input type="submit" name="_cfg_ok" value="<:oK:>" class="fondo" />
+<input type="reset" value="<:reset:>" class="fondo" />
+<input type="submit" name="_cfg_delete" value="<:supprimer:>" class="fondo" />
+</form>
+
