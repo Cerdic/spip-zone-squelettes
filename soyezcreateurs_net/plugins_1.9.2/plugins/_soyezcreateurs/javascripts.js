@@ -121,8 +121,8 @@ function adjustLayout() {
 			$("div.notstackablet").css({'height': hstacked+'px'});
 		}
 	} else {
-	$("div.equilibre").each(function(){ h=Math.max(h,this.offsetHeight); }).css({'height': h+'px'});
-}
+		$("div.equilibre").each(function(){ h=Math.max(h,this.offsetHeight); }).css({'height': h+'px'});
+	}
 }
 
 $(document).ready(function() {
@@ -133,5 +133,4 @@ $(document).ready(function() {
 		adjustLayout();
 		}
 	);
-	$("div#footer").corner("bottom 10px", "#53B0DE");
 });
