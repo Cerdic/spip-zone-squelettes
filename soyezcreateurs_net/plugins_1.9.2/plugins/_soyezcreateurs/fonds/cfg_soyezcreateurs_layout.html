@@ -8,11 +8,28 @@
 [(#REM) titre=SoyezCreateurs]
 
 <p>Basé sur <a href="http://blog.html.it/layoutgala/" hreflang="en">Layout Gala</a></p>
-<fieldset><legend><:pyrat:default_layout:></legend>
-<p>Présentation par défaut du site.</p>
-	<BOUCLE_Layouts(MOTS){type=_LayoutGala}{par num titre}>
-	<input type="radio" name="default_layout" id="sc_default_layout#ID_MOT" value="[(#TITRE|substr{0,2})]"[ checked="(#ENV{default_layout,13}|=={#TITRE|substr{0,2}}|?{checked})"] /><label for="sc_default_layout#ID_MOT"><img src="#CHEMIN{img_pack/layout0(#TITRE|substr{0,2}).gif}" alt="" style="vertical-align: center;" />&nbsp;[(#TITRE)]</label><br />
-	</BOUCLE_Layouts>
+<fieldset><legend><:pyrat:layout_gala:></legend>
+<p>Agencement du site.<br />Pour les articles et les rubriques, le réglage peut être fait de manière individuelle en affectant un des mots clefs de layout à ces derniers.</p>
+<table style="border:1px solid #888;border-collapse:collapse;" class="spip">
+	<thead class="spip">
+		<tr class="spip">
+			<th class="spip" style="border:1px solid #888;">Agencement</th>
+			<th class="spip" style="border:1px solid #888;">Par défaut</th>
+			<th class="spip" style="border:1px solid #888;">Accueil</th>
+			<th class="spip" style="border:1px solid #888;">Autres pages</th>
+		</tr>
+	</thead>
+	<tbody class="spip">
+		<BOUCLE_Layouts(MOTS){type=_LayoutGala}{par num titre}>
+		<tr class="spip">
+			<td class="spip" style="border:1px solid #888;"><img src="#CHEMIN{img_pack/layout0(#TITRE|substr{0,2}).gif}" alt="[(#TITRE|attribut_html)]" title="[(#TITRE|attribut_html)]" /></td>
+			<td class="spip" style="border:1px solid #888;"><input type="radio" name="default_layout" id="sc_default_layout#ID_MOT" value="[(#TITRE|substr{0,2})]"[ checked="(#ENV{default_layout,13}|=={#TITRE|substr{0,2}}|?{checked})"] /><label for="sc_default_layout#ID_MOT">&nbsp;[(#TITRE|substr{0,2})]</label></td>
+			<td class="spip" style="border:1px solid #888;"><input type="radio" name="sommaire_layout" id="sc_sommaire_layout#ID_MOT" value="[(#TITRE|substr{0,2})]"[ checked="(#ENV{sommaire_layout,13}|=={#TITRE|substr{0,2}}|?{checked})"] /><label for="sc_sommaire_layout#ID_MOT">&nbsp;[(#TITRE|substr{0,2})]</label></td>
+			<td class="spip" style="border:1px solid #888;"><input type="radio" name="autrespages_layout" id="sc_autrespages_layout#ID_MOT" value="[(#TITRE|substr{0,2})]"[ checked="(#ENV{autrespages_layout,13}|=={#TITRE|substr{0,2}}|?{checked})"] /><label for="sc_autrespages_layoutt#ID_MOT">&nbsp;[(#TITRE|substr{0,2})]</label></td>
+		</tr>
+		</BOUCLE_Layouts>
+	</tbody>
+</table>
 </fieldset>
 
 <input type="submit" name="_cfg_ok" value="<:oK:>" class="fondo" />
