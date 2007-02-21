@@ -1177,8 +1177,8 @@ function balise_INSERT_HEAD_dist($p) {
 //
 // #INCLURE statique
 // l'inclusion est realisee au calcul du squelette, pas au service
-// corrolairement, le produit du squelette peut etre utilise en entree de filtres a suivre
-//
+// ainsi le produit du squelette peut etre utilise en entree de filtres a suivre
+// on peut faire un #INCLURE{fichier} sans squelette
 // http://doc.spip.org/@balise_INCLUDE_dist
 function balise_INCLUDE_dist($p) {
 	if(function_exists('balise_INCLURE'))
@@ -1191,11 +1191,13 @@ function balise_INCLURE_dist($p) {
 	$champ = phraser_arguments_inclure($p, true);
 	$l = argumenter_inclure($champ, $p->descr, $p->boucles, $p->id_boucle, false);
 
-	$code = "recuperer_fond('',array(".implode(',',$l)."))";
+	if (isset($l['fond'])) {
+		$p->code = "recuperer_fond('',array(".implode(',',$l)."))";
+	} else {
+		$n = interprete_argument_balise(1,$p);
+		$p->code = '(($c = find_in_path(' . $n . ')) ? spip_file_get_contents($c) : "")';
+	}
 
-	$commentaire = '#INCLURE ' . str_replace("\n", ' ', $code);
-
-	$p->code = "\n//$commentaire.\n$code";
 	$p->interdire_scripts = false;
 	return $p;
 }
@@ -1257,10 +1259,11 @@ function balise_MODELE_dist($p) {
 function balise_SET_dist($p){
 	$_nom = interprete_argument_balise(1,$p);
 	$_valeur = interprete_argument_balise(2,$p);
-		// autres filtres (???)
-		array_shift($p->param);
 
+	if ($_nom AND $_valeur)
 	$p->code = "vide(\$Pile['vars'][$_nom] = $_valeur)";
+	else
+		$p->code = "''";
 
 	$p->interdire_scripts = false; // la balise ne renvoie rien
 	return $p;
