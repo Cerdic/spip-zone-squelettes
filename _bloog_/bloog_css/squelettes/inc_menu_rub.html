@@ -1,31 +1,95 @@
-<div id='nav-container'>
-<B_rubriques>
-	<ul>
-	<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
-		<li>
-			<a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80}|supprimer_numero)]</a>
 
-			<B_sous_rubriques>
+<!-- début jscript -->
+<script type="text/javascript">
 
-			<ul>
-				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
-					<BOUCLE_test_expose(RUBRIQUES) {id_enfant}>#EXPOSE{' '}</BOUCLE_test_expose>
-						<li>
-							<a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
-							<BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>
-						</li>
-					</B_test_expose>
+function toggle(id){
 
-				</BOUCLE_sous_rubriques>
-			</ul>
-			</B_sous_rubriques>
+  ul = "ul_" + id;
+  img = "img_" + id;
+  ulElement = document.getElementById(ul);
+  imgElement = document.getElementById(img);
 
-		</li>
-	</BOUCLE_rubriques>
+  if (ulElement){
+          if (ulElement.className == 'closed'){
+ 
+                  ulElement.className = "open";
+                  imgElement.src = "squelettes/images/opened.gif";
+                  }else{
+                  ulElement.className = "closed";
+                  imgElement.src = "squelettes/images/closed.gif";
+                 
+                  }
+          }
+         
+         
+  }
 
-	</ul>
-</B_rubriques></div>
+function hierarchie (listRubriques) {
+
+var itemList = listRubriques;
+var restoredArray = itemList.split(",");
+var numberItem = restoredArray.length;
+
+for (i=0; i<numberItem; i++) {
+    currentRub = restoredArray[i]
+                 ul = "ul_" + currentRub;
+    img = "img_" + currentRub;
+    ulElement = document.getElementById(ul);
+    imgElement = document.getElementById(img);
+
+    if (ulElement) {
+        ulElement.className = "open";
+        imgElement.src = "squelettes/images/opened.gif";
+
+      }
+
+
+  }
+
+}
+
+</script>
+<!-- fin jscript -->
+
+     
+
+<BOUCLE_selectMenu (RUBRIQUES){racine}{par num titre}>
+<ul class="open">
+<li id="#ID_RUBRIQUE"><a  onclick="toggle('#ID_RUBRIQUE');"><img src="squelettes/images/closed.gif" alt="" id="img_#ID_RUBRIQUE" border="0"></a>&nbsp;
+<a href="#URL_RUBRIQUE" title="#NOM_SITE_SPIP - [(#TITRE|supprimer_numero)]" [class="(#EXPOSE{actif})"]>[(#TITRE|supprimer_numero)]</a>
+
+<ul id="ul_#ID_RUBRIQUE" [class="(#EXPOSE{open,closed})"]>
+
+    <BOUCLE_secteurs(RUBRIQUES){id_parent}{par num titre}>
+    <li id="#ID_RUBRIQUE"><a  onclick="toggle('#ID_RUBRIQUE');"><img src="squelettes/images/closed.gif" alt="" id="img_#ID_RUBRIQUE" border="0"></a>&nbsp;
+    <a href="#URL_RUBRIQUE" title="#NOM_SITE_SPIP - [(#TITRE|supprimer_numero)]" [class="(#EXPOSE{actif})"]>[(#TITRE|supprimer_numero)]</a>
+        <B_sousrub>
+
+            <ul id="ul_#ID_RUBRIQUE" [class="(#EXPOSE{open,closed})"]>
+             <BOUCLE_sousrub(RUBRIQUES){id_parent}{par num titre}>
+             <li id="#ID_RUBRIQUE"><a  onclick="toggle('#ID_RUBRIQUE');"><img src="squelettes/images/closed.gif" alt="" id="img_#ID_RUBRIQUE" border="0"></a>&nbsp;
+             <a href="#URL_RUBRIQUE" title="#NOM_SITE_SPIP - [(#TITRE|supprimer_numero)]" [class="(#EXPOSE{actif})"]>[(#TITRE|supprimer_numero)]</a>
+             </li>
+            </BOUCLE_sousrub>
+        </ul>
+        </B_sousrub>
+    </li>
+    </BOUCLE_secteurs>
+</ul>
+</li>
+</ul>
+</BOUCLE_selectMenu>
+
+</ul>
 
 <p>
 <a href="[(#URL_PAGE{inscription})]">Lettre</a>&nbsp;|&nbsp;<a href="[(#URL_PAGE{plan})]">Plan</a>&nbsp;|&nbsp;<a href="[(#URL_PAGE{nouveautes})]">News</a><BOUCLE_RUBRIQUE_LIENS(RUBRIQUES){titre_mot==annuaire_home}{0,1}>&nbsp;|&nbsp;<a href="#URL_RUBRIQUE"[title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a></BOUCLE_RUBRIQUE_LIENS></p>
+
+
+
+
+
+
+
+
 
