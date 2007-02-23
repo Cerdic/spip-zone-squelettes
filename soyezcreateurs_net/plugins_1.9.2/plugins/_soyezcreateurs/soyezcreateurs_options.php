@@ -29,4 +29,12 @@ $GLOBALS['fin_intertitre_5'] = '</h6>';
 
 $GLOBALS['set_options']='avancees';
 
+# si vous n'avez aucun fichier .php3, redefinissez a ""
+# ca fera foncer find_in_path
+define('_EXTENSION_PHP', '');
+
+# La liste des webmestres n'ayant pas besoin d'autentification FTP pour les actions avancées de SPIP
+# Séparer les id_auteurs par ':'
+define('_ID_WEBMESTRES', '1');
+
 ?>
