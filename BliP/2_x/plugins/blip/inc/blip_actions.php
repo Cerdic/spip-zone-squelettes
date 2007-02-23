@@ -755,7 +755,7 @@ function BliP_action_formulaire() {
 }
 
 function BliP_nom_module_lisible($nomfichier) {
-	return ucfirst(preg_replace('/_/', ' ', preg_replace('/(^mod_|^theme_)?(.*)(\.[^\.]+)/', '$2', $nomfichier)));
+	return ucfirst(preg_replace('/_/', ' ', preg_replace('/(^mod_|^theme_|^couleur)?(.*)(\.[^\.]+)/', '$2', $nomfichier)));
 }
 
 ?>

@@ -5,14 +5,21 @@
 
 <?php
 // Ce fichier est le compilateur de la feuille de style du squelette BliP. Il utilise divers fichiers inc-css_XXX.php dont-il procède à l'inclusion
+// NE PAS SUPPRIMER LA LIGNE CI-DESSOUS !!!!
 // <BOUCLE_bidon(BLIP)>#ID_ITEM</BOUCLE_bidon>
+// NE PAS SUPPRIMER LA LIGNE CI-DESSUS !!!!
 
-// Les couleurs sont définies dans le fichier inc-css_couleur.php
+
+
+
+/*
 [include '(#CHEMIN{inc-css_couleur.php})';]
+*/
 
 // SWITCHER COULEURS: Ce script permet de changer de couleur, et de la fixer par un cookie chez le visiteur
 // Le switcher ne marche que depuis la page "spip.php?page=switch"
 
+/*
 if ( empty($_GET["couleur"]) )
 	{
 	if ( empty($_COOKIE["css_blip"]) )
@@ -23,14 +30,18 @@ else
 	{
 	setcookie("css_blip",$_GET["couleur"], time()+365*24*3600,"/");
 	$css_blip_couleur = 'css_blip_couleur_'.$_GET["couleur"];
-	if ( empty(${$css_blip_couleur}) )
+	if ( empty($css_blip_couleur) )
 		{
 		setcookie("css_blip",$css_blip['couleur'], time()+365*24*3600,"/");
 		$css_blip_couleur = 'css_blip_couleur_'.$css_blip['couleur'];
 		}	
 	}
-
+*/
 	
+// Les couleurs sont définies dans les fichiers couleur_xxx.php	
+[include '(#CHEMIN{couleur_[(#CONFIG{blip_couleur})].php})';]
+
+
 	
 $css_blip = array(
 
@@ -59,8 +70,8 @@ $css_blip = array(
 	'body|border|color' => '',
 	'body|border|style' => '',
 	'body|font|family' => 'verdana, lucida, arial, helvetica, sans-serif',
-	'body|font|size' => ${$css_blip_couleur}['taille|normal'],
-	'body|color' => ${$css_blip_couleur}['gris|moyen'],
+	'body|font|size' => $css_blip_couleur['taille|normal'],
+	'body|color' => $css_blip_couleur['gris|moyen'],
 	'body|font|style' => '',
 	'body|font|weight' => '',
 	'body|font|variant' => '',
@@ -68,7 +79,7 @@ $css_blip = array(
 	'body|text|align' => '',
 	'body|text|transform' => '',
 	'body|text|indent' => '',
-	'body|line|height' => ${$css_blip_couleur}['taille|geant'],
+	'body|line|height' => $css_blip_couleur['taille|geant'],
 	'body|letter|spacing' => '',
 	'body|word|spacing' => '',
 	'body|background' => '',
@@ -79,16 +90,16 @@ $css_blip = array(
 	'body|background|position' => '',
 
 		// BLOCS CSS COULEURS DES LIENS
-		'a|color' => ${$css_blip_couleur}['couleur|1'],
+		'a|color' => $css_blip_couleur['couleur|1'],
 		'a|text|decoration' => 'none',
 		'a|background|color' => '',
-		'a:visited|color' => ${$css_blip_couleur}['couleur|1'],
+		'a:visited|color' => $css_blip_couleur['couleur|1'],
 		'a:visited|text|decoration' => 'none',
 		'a:visited|background|color' => '',
-		'a:hover|color' => ${$css_blip_couleur}['couleur|2'],
+		'a:hover|color' => $css_blip_couleur['couleur|2'],
 		'a:hover|text|decoration' => 'none',
 		'a:hover|background|color' => '',
-		'a:active|color' => ${$css_blip_couleur}['couleur|2'],
+		'a:active|color' => $css_blip_couleur['couleur|2'],
 		'a:active|text|decoration' => 'none',
 		'a:active|background|color' => '',
 
@@ -177,7 +188,7 @@ $css_blip = array(
 	'#portail|background|attachement' => '',
 	'#portail|background|position' => '',	
 	
-	'body#accueil|background' => ${$css_blip_couleur}['couleur|1|clair'],
+	'body#accueil|background' => $css_blip_couleur['couleur|1|clair'],
 	
 	// Personnalisation du style du bloc .portail_element
 	'.portail_element|display' => '',
@@ -199,7 +210,7 @@ $css_blip = array(
 	'.portail_element|margin' => '10px',
 	'.portail_element|padding' => '10px',
 	'.portail_element|border|width' => '1px',
-	'.portail_element|border|color' => ${$css_blip_couleur}['gris|clair'],
+	'.portail_element|border|color' => $css_blip_couleur['gris|clair'],
 	'.portail_element|border|style' => 'solid',
 	'.portail_element|font|family' => '',
 	'.portail_element|font|size' => '',
@@ -215,7 +226,7 @@ $css_blip = array(
 	'.portail_element|letter|spacing' => '',
 	'.portail_element|word|spacing' => '',
 	'.portail_element|background' => '',
-	'.portail_element|background|color' => ${$css_blip_couleur}['couleur|neutre'],
+	'.portail_element|background|color' => $css_blip_couleur['couleur|neutre'],
 	'.portail_element|background|image' => '',
 	'.portail_element|background|repeat' => '',
 	'.portail_element|background|attachement' => '',
@@ -239,10 +250,10 @@ $css_blip = array(
 	'#tete|max|width' => '',
 	'#tete|min|height' => '',
 	'#tete|max|height' => '',	
-	'#tete|margin' => '0 0 '.${$css_blip_couleur}['taille|petit'].' 0',
+	'#tete|margin' => '0 0 '.$css_blip_couleur['taille|petit'].' 0',
 	'#tete|padding' => '',
-	'#tete|border|width' => '0 0 '.${$css_blip_couleur}['taille|normal'].' 0',
-	'#tete|border|color' => ${$css_blip_couleur}['couleur|1'],
+	'#tete|border|width' => '0 0 '.$css_blip_couleur['taille|normal'].' 0',
+	'#tete|border|color' => $css_blip_couleur['couleur|1'],
 	'#tete|border|style' => 'solid',
 	'#tete|font|family' => '',
 	'#tete|font|size' => '',
@@ -324,12 +335,12 @@ $css_blip = array(
 	'.titre_principal|min|height' => '',
 	'.titre_principal|max|height' => '',	
 	'.titre_principal|margin' => '',
-	'.titre_principal|padding' => ${$css_blip_couleur}['taille|normal'].' '.${$css_blip_couleur}['taille|normal'].' '.${$css_blip_couleur}['taille|petit'].' '.${$css_blip_couleur}['taille|normal'],
+	'.titre_principal|padding' => $css_blip_couleur['taille|normal'].' '.$css_blip_couleur['taille|normal'].' '.$css_blip_couleur['taille|petit'].' '.$css_blip_couleur['taille|normal'],
 	'.titre_principal|border|width' => '',
 	'.titre_principal|border|color' => '',
 	'.titre_principal|border|style' => '',
 	'.titre_principal|font|family' => '',
-	'.titre_principal|font|size' => ${$css_blip_couleur}['taille|geant'],
+	'.titre_principal|font|size' => $css_blip_couleur['taille|geant'],
 	'.titre_principal|color' => '',
 	'.titre_principal|font|style' => '',
 	'.titre_principal|font|weight' => '',
@@ -408,7 +419,7 @@ $css_blip = array(
 	'.sous_titre|min|height' => '',
 	'.sous_titre|max|height' => '',	
 	'.sous_titre|margin' => '',
-	'.sous_titre|padding' => ${$css_blip_couleur}['taille|normal'].' 0 '.${$css_blip_couleur}['taille|geant'].' '.${$css_blip_couleur}['taille|geant'],
+	'.sous_titre|padding' => $css_blip_couleur['taille|normal'].' 0 '.$css_blip_couleur['taille|geant'].' '.$css_blip_couleur['taille|geant'],
 	'.sous_titre|border|width' => '',
 	'.sous_titre|border|color' => '',
 	'.sous_titre|border|style' => '',
@@ -450,7 +461,7 @@ $css_blip = array(
 	'.menu_principal|min|height' => '',
 	'.menu_principal|max|height' => '',	
 	'.menu_principal|margin' => '',
-	'.menu_principal|padding' => '0 0 0 '.${$css_blip_couleur}['taille|geant'],
+	'.menu_principal|padding' => '0 0 0 '.$css_blip_couleur['taille|geant'],
 	'.menu_principal|border|width' => '',
 	'.menu_principal|border|color' => '',
 	'.menu_principal|border|style' => '',
@@ -496,7 +507,7 @@ $css_blip = array(
 		'#tete .menu_principal .liens|min|height' => '',
 		'#tete .menu_principal .liens|max|height' => '',	
 		'#tete .menu_principal .liens|margin' => '0',
-		'#tete .menu_principal .liens|padding' => ${$css_blip_couleur}['taille|bordure'].' '.${$css_blip_couleur}['taille|bordure'].' '.${$css_blip_couleur}['taille|petit'].' '.${$css_blip_couleur}['taille|bordure'],
+		'#tete .menu_principal .liens|padding' => $css_blip_couleur['taille|bordure'].' '.$css_blip_couleur['taille|bordure'].' '.$css_blip_couleur['taille|petit'].' '.$css_blip_couleur['taille|bordure'],
 		'#tete .menu_principal .liens|border|width' => '',
 		'#tete .menu_principal .liens|border|color' => '',
 		'#tete .menu_principal .liens|border|style' => '',
@@ -539,13 +550,13 @@ $css_blip = array(
 		'#tete .menu_principal .liens a|min|height' => '',
 		'#tete .menu_principal .liens a|max|height' => '',	
 		'#tete .menu_principal .liens a|margin' => '',
-		'#tete .menu_principal .liens a|padding' => ${$css_blip_couleur}['taille|bordure'].' '.${$css_blip_couleur}['taille|normal'],
-		'#tete .menu_principal .liens a|border|width' => ${$css_blip_couleur}['taille|bordure'].' '.${$css_blip_couleur}['taille|bordure'].' 0 '.${$css_blip_couleur}['taille|bordure'],
-		'#tete .menu_principal .liens a|border|color' => ${$css_blip_couleur}['couleur|neutre'].' '.${$css_blip_couleur}['couleur|neutre'].' '.${$css_blip_couleur}['couleur|neutre'].' '.${$css_blip_couleur}['couleur|neutre'],
+		'#tete .menu_principal .liens a|padding' => $css_blip_couleur['taille|bordure'].' '.$css_blip_couleur['taille|normal'],
+		'#tete .menu_principal .liens a|border|width' => $css_blip_couleur['taille|bordure'].' '.$css_blip_couleur['taille|bordure'].' 0 '.$css_blip_couleur['taille|bordure'],
+		'#tete .menu_principal .liens a|border|color' => $css_blip_couleur['couleur|neutre'].' '.$css_blip_couleur['couleur|neutre'].' '.$css_blip_couleur['couleur|neutre'].' '.$css_blip_couleur['couleur|neutre'],
 		'#tete .menu_principal .liens a|border|style' => 'solid',
 		'#tete .menu_principal .liens a|font|family' => '',
-		'#tete .menu_principal .liens a|font|size' => ${$css_blip_couleur}['taille|grand'],
-		'#tete .menu_principal .liens a|color' => ${$css_blip_couleur}['couleur|1'],
+		'#tete .menu_principal .liens a|font|size' => $css_blip_couleur['taille|grand'],
+		'#tete .menu_principal .liens a|color' => $css_blip_couleur['couleur|1'],
 		'#tete .menu_principal .liens a|font|style' => '',
 		'#tete .menu_principal .liens a|font|weight' => 'bold',
 		'#tete .menu_principal .liens a|font|variant' => '',
@@ -564,21 +575,21 @@ $css_blip = array(
 		'#tete .menu_principal .liens a|background|position' => '',
 
 		// #tete .menu_principal .liens a:hover
-		'#tete .menu_principal .liens a:hover|border|color' => ${$css_blip_couleur}['couleur|1|clair'].' '.${$css_blip_couleur}['couleur|neutre'].' '.${$css_blip_couleur}['couleur|neutre'].' '.${$css_blip_couleur}['couleur|neutre'],
-		'#tete .menu_principal .liens a:hover|color' => ${$css_blip_couleur}['couleur|2'],
+		'#tete .menu_principal .liens a:hover|border|color' => $css_blip_couleur['couleur|1|clair'].' '.$css_blip_couleur['couleur|neutre'].' '.$css_blip_couleur['couleur|neutre'].' '.$css_blip_couleur['couleur|neutre'],
+		'#tete .menu_principal .liens a:hover|color' => $css_blip_couleur['couleur|2'],
 
 		// #tete .menu_principal .liens a:focus
-		'#tete .menu_principal .liens a:focus|color' => ${$css_blip_couleur}['couleur|2'],
+		'#tete .menu_principal .liens a:focus|color' => $css_blip_couleur['couleur|2'],
 
 		// #tete .menu_principal .liens a:focus
-		'#tete .menu_principal .liens a:focus|color' => ${$css_blip_couleur}['couleur|2'],
+		'#tete .menu_principal .liens a:focus|color' => $css_blip_couleur['couleur|2'],
 
 		// Les classes CSS du menu sélectionnés sont générées dynamiquement par le moteur de spip
 		// A moins de savoir ce que vous faites, je vous déconseille formellement de modifier le code ci-dessous.
 		// body#sommaire #tete .menu_principal .liens li#sommaire a
 		<BOUCLE_menu_principal_css(BLIP){position=menu_principal}{par ordre}{actif=oui}>
-			'body##TEXTE .menu_principal .liens a.menu_#TEXTE|border|color' => ${$css_blip_couleur}['couleur|1'].' '.${$css_blip_couleur}['couleur|neutre'].' '.${$css_blip_couleur}['couleur|neutre'].' '.${$css_blip_couleur}['couleur|neutre'],
-			'body##TEXTE #tete .menu_principal .liens a.menu_#TEXTE|color' => ${$css_blip_couleur}['gris|fonce'],
+			'body##TEXTE .menu_principal .liens a.menu_#TEXTE|border|color' => $css_blip_couleur['couleur|1'].' '.$css_blip_couleur['couleur|neutre'].' '.$css_blip_couleur['couleur|neutre'].' '.$css_blip_couleur['couleur|neutre'],
+			'body##TEXTE #tete .menu_principal .liens a.menu_#TEXTE|color' => $css_blip_couleur['gris|fonce'],
 		</BOUCLE_menu_principal_css>
 
 		
@@ -643,7 +654,7 @@ $css_blip = array(
 	'.menu_auxiliaire|min|height' => '',
 	'.menu_auxiliaire|max|height' => '',	
 	'.menu_auxiliaire|margin' => '',
-	'.menu_auxiliaire|padding' => '0 0 '.${$css_blip_couleur}['taille|moyen'].' 0',
+	'.menu_auxiliaire|padding' => '0 0 '.$css_blip_couleur['taille|moyen'].' 0',
 	'.menu_auxiliaire|border|width' => '',
 	'.menu_auxiliaire|border|color' => '',
 	'.menu_auxiliaire|border|style' => '',
@@ -688,7 +699,7 @@ $css_blip = array(
 	'.menu|margin' => '1px 0 0 0',
 	'.menu|padding' => '3px',
 	'.menu|border|width' => '1px',
-	'.menu|border|color' => ${$css_blip_couleur}['gris|clair'],
+	'.menu|border|color' => $css_blip_couleur['gris|clair'],
 	'.menu|border|style' => 'solid',
 	'.menu|font|family' => '',
 	'.menu|font|size' => '',
@@ -753,15 +764,15 @@ $css_blip = array(
 		'.menu a|background|position' => '',
 	
 		// Personnalisation du style des bloc .menu a.on	
-		'.menu a.on|background|color' => ${$css_blip_couleur}['couleur|1|clair'],
+		'.menu a.on|background|color' => $css_blip_couleur['couleur|1|clair'],
 
 		// Personnalisation du style des bloc .menu a:hover
-		'.menu a:hover|background|color' => ${$css_blip_couleur}['couleur|2|clair'],
-		'.menu a:hover|color' => ${$css_blip_couleur}['couleur|neutre'],		
+		'.menu a:hover|background|color' => $css_blip_couleur['couleur|2|clair'],
+		'.menu a:hover|color' => $css_blip_couleur['couleur|neutre'],		
 		
 		// Personnalisation du style des bloc .menu a:focus
-		'.menu a:focus|background|color' => ${$css_blip_couleur}['couleur|2|clair'],
-		'.menu a:focus|color' => ${$css_blip_couleur}['couleur|neutre'],
+		'.menu a:focus|background|color' => $css_blip_couleur['couleur|2|clair'],
+		'.menu a:focus|color' => $css_blip_couleur['couleur|neutre'],
 		
 	// Personnalisation du style des bloc .sous_menu	
 	'.sous_menu|display' => '',
@@ -781,9 +792,9 @@ $css_blip = array(
 	'.sous_menu|min|height' => '',
 	'.sous_menu|max|height' => '',	
 	'.sous_menu|margin' => '',
-	'.sous_menu|padding' => ${$css_blip_couleur}['taille|bordure'],
+	'.sous_menu|padding' => $css_blip_couleur['taille|bordure'],
 	'.sous_menu|border|width' => '0px 1px',
-	'.sous_menu|border|color' => ${$css_blip_couleur}['gris|clair'],
+	'.sous_menu|border|color' => $css_blip_couleur['gris|clair'],
 	'.sous_menu|border|style' => 'solid',
 	'.sous_menu|font|family' => '',
 	'.sous_menu|font|size' => '',
@@ -850,15 +861,15 @@ $css_blip = array(
 		'.sous_menu a|list|style|type' => 'none',
 
 		// Personnalisation du style des bloc .sous_menu a.on	
-		'.sous_menu a.on|background|color' => ${$css_blip_couleur}['couleur|1|clair'],
+		'.sous_menu a.on|background|color' => $css_blip_couleur['couleur|1|clair'],
 
 		// Personnalisation du style des bloc .menu a.on:hover
-		'.sous_menu a:hover|background|color' => ${$css_blip_couleur}['couleur|2|clair'],
-		'.sous_menu a:hover|color' => ${$css_blip_couleur}['couleur|neutre'],
+		'.sous_menu a:hover|background|color' => $css_blip_couleur['couleur|2|clair'],
+		'.sous_menu a:hover|color' => $css_blip_couleur['couleur|neutre'],
 
 		// Personnalisation du style des bloc .menu a.on:focus
-		'.sous_menu a:hover|background|color' => ${$css_blip_couleur}['couleur|2|clair'],
-		'.sous_menu a:hover|color' => ${$css_blip_couleur}['couleur|neutre'],
+		'.sous_menu a:hover|background|color' => $css_blip_couleur['couleur|2|clair'],
+		'.sous_menu a:hover|color' => $css_blip_couleur['couleur|neutre'],
 		
 	// Personnalisation du style du bloc .contenu
 	'.contenu|display' => '',
@@ -878,7 +889,7 @@ $css_blip = array(
 	'.contenu|min|height' => '',
 	'.contenu|max|height' => '',	
 	'.contenu|margin' => '',
-	'.contenu|padding' => ${$css_blip_couleur}['taille|espacement_bloc'].' 0 ',
+	'.contenu|padding' => $css_blip_couleur['taille|espacement_bloc'].' 0 ',
 	'.contenu|border|width' => '',
 	'.contenu|border|color' => '',
 	'.contenu|border|style' => '',
@@ -928,13 +939,13 @@ $css_blip = array(
 	'.barre_laterale|min|height' => '',
 	'.barre_laterale|max|height' => '',	
 	'.barre_laterale|margin' => '',
-	'.barre_laterale|padding' => ${$css_blip_couleur}['taille|espacement_bloc'].' 0 ',
+	'.barre_laterale|padding' => $css_blip_couleur['taille|espacement_bloc'].' 0 ',
 	'.barre_laterale|border|width' => '',
 	'.barre_laterale|border|color' => '',
 	'.barre_laterale|border|style' => '',
 	'.barre_laterale|font|family' => '',
 	'.barre_laterale|font|size' => '',
-	'.barre_laterale|color' => ${$css_blip_couleur}['gris|clair'],
+	'.barre_laterale|color' => $css_blip_couleur['gris|clair'],
 	'.barre_laterale|font|style' => '',
 	'.barre_laterale|font|weight' => '',
 	'.barre_laterale|font|variant' => '',
@@ -946,7 +957,7 @@ $css_blip = array(
 	'.barre_laterale|letter|spacing' => '',
 	'.barre_laterale|word|spacing' => '',
 	'.barre_laterale|background' => '',
-	'.barre_laterale|background|color' => ${$css_blip_couleur}['couleur|neutre'],
+	'.barre_laterale|background|color' => $css_blip_couleur['couleur|neutre'],
 	'.barre_laterale|background|image' => '',
 	'.barre_laterale|background|repeat' => '',
 	'.barre_laterale|background|attachement' => '',
@@ -980,7 +991,7 @@ $css_blip = array(
 	'.contenu_large|min|height' => '',
 	'.contenu_large|max|height' => '',	
 	'.contenu_large|margin' => '',
-	'.contenu_large|padding' => ${$css_blip_couleur}['taille|espacement_bloc'].' 0 ',
+	'.contenu_large|padding' => $css_blip_couleur['taille|espacement_bloc'].' 0 ',
 	'.contenu_large|border|width' => '',
 	'.contenu_large|border|color' => '',
 	'.contenu_large|border|style' => '',
@@ -1030,7 +1041,7 @@ $css_blip = array(
 	'.trois_colonnes|min|height' => '',
 	'.trois_colonnes|max|height' => '',	
 	'.trois_colonnes|margin' => '',
-	'.trois_colonnes|padding' => ${$css_blip_couleur}['taille|espacement_bloc'].' 0 ',
+	'.trois_colonnes|padding' => $css_blip_couleur['taille|espacement_bloc'].' 0 ',
 	'.trois_colonnes|border|width' => '',
 	'.trois_colonnes|border|color' => '',
 	'.trois_colonnes|border|style' => '',
@@ -1122,7 +1133,7 @@ $css_blip = array(
 	'.element|min|height' => '',
 	'.element|max|height' => '',	
 	'.element|margin' => '',
-	'.element|padding' => '0 0 '.${$css_blip_couleur}['taille|espacement_bloc'].' 0',
+	'.element|padding' => '0 0 '.$css_blip_couleur['taille|espacement_bloc'].' 0',
 	'.element|border|width' => '',
 	'.element|border|color' => '',
 	'.element|border|style' => '',
@@ -1164,7 +1175,7 @@ $css_blip = array(
 	'.element_sous|min|height' => '',
 	'.element_sous|max|height' => '',	
 	'.element_sous|margin' => '',
-	'.element_sous|padding' => '0 0 '.${$css_blip_couleur}['taille|espacement_bloc'].' 0',
+	'.element_sous|padding' => '0 0 '.$css_blip_couleur['taille|espacement_bloc'].' 0',
 	'.element_sous|border|width' => '',
 	'.element_sous|border|color' => '',
 	'.element_sous|border|style' => '',
@@ -1192,7 +1203,7 @@ $css_blip = array(
 	'.element_sous_bis|float' => 'left',
 	'.element_sous_bis|clear' => 'left',
 	'.element_sous_bis|width' => '100%',
-	'.element_sous_bis|padding' => '0 0 '.${$css_blip_couleur}['taille|grand'].' 0',
+	'.element_sous_bis|padding' => '0 0 '.$css_blip_couleur['taille|grand'].' 0',
 	
 
 	// Personnalisation du style du bloc .element_sur
@@ -1213,7 +1224,7 @@ $css_blip = array(
 	'.element_sur|min|height' => '',
 	'.element_sur|max|height' => '',	
 	'.element_sur|margin' => '',
-	'.element_sur|padding' => ${$css_blip_couleur}['taille|espacement_bloc'].' 0 0 0',
+	'.element_sur|padding' => $css_blip_couleur['taille|espacement_bloc'].' 0 0 0',
 	'.element_sur|border|width' => '',
 	'.element_sur|border|color' => '',
 	'.element_sur|border|style' => '',
@@ -1239,7 +1250,7 @@ $css_blip = array(
 	
 	// Personnalisation du style du bloc .element_sur_bis
 	'.element_sur_bis|width' => '100%',
-	'.element_sur_bis|padding' => ${$css_blip_couleur}['taille|grand'].' 0 0 0',
+	'.element_sur_bis|padding' => $css_blip_couleur['taille|grand'].' 0 0 0',
 
 	// BLOCS PIED
 	// Personnalisation du style du bloc #pied
@@ -1261,12 +1272,12 @@ $css_blip = array(
 	'#pied|max|height' => '',	
 	'#pied|margin' => 'auto',
 	'#pied|padding' => '',
-	'#pied|border|width' => ${$css_blip_couleur}['taille|bordure'].' 0 0 0',
-	'#pied|border|color' => ${$css_blip_couleur}['couleur|1'],
+	'#pied|border|width' => $css_blip_couleur['taille|bordure'].' 0 0 0',
+	'#pied|border|color' => $css_blip_couleur['couleur|1'],
 	'#pied|border|style' => 'solid',
 	'#pied|font|family' => '',
 	'#pied|font|size' => '',
-	'#pied|color' => ${$css_blip_couleur}['gris|moyen'],
+	'#pied|color' => $css_blip_couleur['gris|moyen'],
 	'#pied|font|style' => '',
 	'#pied|font|weight' => '',
 	'#pied|font|variant' => '',
@@ -1278,7 +1289,7 @@ $css_blip = array(
 	'#pied|letter|spacing' => '',
 	'#pied|word|spacing' => '',
 	'#pied|background' => '',
-	'#pied|background|color' => ${$css_blip_couleur}['couleur|neutre'],
+	'#pied|background|color' => $css_blip_couleur['couleur|neutre'],
 	'#pied|background|image' => '',
 	'#pied|background|repeat' => '',
 	'#pied|background|attachement' => '',
@@ -1394,8 +1405,8 @@ $css_blip = array(
 		'h1|border|color' => '',
 		'h1|border|style' => '',
 		'h1|font|family' => '',
-		'h1|font|size' => ${$css_blip_couleur}['taille|geant'],
-		'h1|color' => ${$css_blip_couleur}['gris|fonce'],
+		'h1|font|size' => $css_blip_couleur['taille|geant'],
+		'h1|color' => $css_blip_couleur['gris|fonce'],
 		'h1|font|style' => '',
 		'h1|font|weight' => 'normal',
 		'h1|font|variant' => '',
@@ -1403,11 +1414,11 @@ $css_blip = array(
 		'h1|text|align' => '',
 		'h1|text|transform' => '',
 		'h1|text|indent' => '',
-		'h1|line|height' => ${$css_blip_couleur}['taille|geant'],
+		'h1|line|height' => $css_blip_couleur['taille|geant'],
 		'h1|letter|spacing' => '',
 		'h1|word|spacing' => '',
 		'h1|background' => '',
-		'h1|background|color' => ${$css_blip_couleur}['couleur|neutre'],
+		'h1|background|color' => $css_blip_couleur['couleur|neutre'],
 		'h1|background|image' => '',
 		'h1|background|repeat' => '',
 		'h1|background|attachement' => '',
@@ -1421,9 +1432,9 @@ $css_blip = array(
 
 			// Bloc h1 quand il est inclu dans un bloc .barre_laterale
 			'.barre_laterale h1|font|size' => '',
-			'.barre_laterale h1|color' => ${$css_blip_couleur}['gris|moyen'],
+			'.barre_laterale h1|color' => $css_blip_couleur['gris|moyen'],
 			'.barre_laterale h1|line|height' => '',	
-			'.barre_laterale h1|background|color' => ${$css_blip_couleur}['couleur|neutre'],
+			'.barre_laterale h1|background|color' => $css_blip_couleur['couleur|neutre'],
 
 			// Bloc h1 quand il est inclu dans un bloc .contenu_large
 			'.contenu_large h1|font|size' => '',
@@ -1460,8 +1471,8 @@ $css_blip = array(
 		'h3|border|color' => '',
 		'h3|border|style' => '',
 		'h3|font|family' => '',
-		'h3|font|size' => ${$css_blip_couleur}['taille|grand'],
-		'h3|color' => ${$css_blip_couleur}['couleur|2'],
+		'h3|font|size' => $css_blip_couleur['taille|grand'],
+		'h3|color' => $css_blip_couleur['couleur|2'],
 		'h3|font|style' => '',
 		'h3|font|weight' => 'bold',
 		'h3|font|variant' => '',
@@ -1469,11 +1480,11 @@ $css_blip = array(
 		'h3|text|align' => '',
 		'h3|text|transform' => '',
 		'h3|text|indent' => '',
-		'h3|line|height' => ${$css_blip_couleur}['taille|grand'],
+		'h3|line|height' => $css_blip_couleur['taille|grand'],
 		'h3|letter|spacing' => '',
 		'h3|word|spacing' => '',
 		'h3|background' => '',
-		'h3|background|color' => ${$css_blip_couleur}['couleur|neutre'],
+		'h3|background|color' => $css_blip_couleur['couleur|neutre'],
 		'h3|background|image' => '',
 		'h3|background|repeat' => '',
 		'h3|background|attachement' => '',
@@ -1487,9 +1498,9 @@ $css_blip = array(
 			'.contenu h3|background|color' => '',
 
 			// Bloc h3 quand il est inclu dans un bloc .barre_laterale
-			'.barre_laterale h3|font|size' => ${$css_blip_couleur}['taille|moyen'],
+			'.barre_laterale h3|font|size' => $css_blip_couleur['taille|moyen'],
 			'.barre_laterale h3|font|weight' => 'normal',
-			'.barre_laterale h3|color' => ${$css_blip_couleur}['gris|clair'],
+			'.barre_laterale h3|color' => $css_blip_couleur['gris|clair'],
 			'.barre_laterale h3|line|height' => '',	
 			'.barre_laterale h3|background|color' => '',
 
@@ -1525,13 +1536,13 @@ $css_blip = array(
 		'h5|min|height' => '',
 		'h5|max|height' => '',	
 		'h5|margin' => '0',
-		'h5|padding' => '0 0 0 '.${$css_blip_couleur}['taille|geant'],
+		'h5|padding' => '0 0 0 '.$css_blip_couleur['taille|geant'],
 		'h5|border|width' => '',
 		'h5|border|color' => '',
 		'h5|border|style' => '',
 		'h5|font|family' => '',
-		'h5|font|size' => ${$css_blip_couleur}['taille|moyen'],
-		'h5|color' => ${$css_blip_couleur}['gris|clair'],
+		'h5|font|size' => $css_blip_couleur['taille|moyen'],
+		'h5|color' => $css_blip_couleur['gris|clair'],
 		'h5|font|style' => '',
 		'h5|font|weight' => 'normal',
 		'h5|font|variant' => '',
@@ -1539,11 +1550,11 @@ $css_blip = array(
 		'h5|text|align' => '',
 		'h5|text|transform' => '',
 		'h5|text|indent' => '',
-		'h5|line|height' => ${$css_blip_couleur}['taille|grand'],
+		'h5|line|height' => $css_blip_couleur['taille|grand'],
 		'h5|letter|spacing' => '',
 		'h5|word|spacing' => '',
 		'h5|background' => '',
-		'h5|background|color' => ${$css_blip_couleur}['couleur|neutre'],
+		'h5|background|color' => $css_blip_couleur['couleur|neutre'],
 		'h5|background|image' => '',
 		'h5|background|repeat' => '',
 		'h5|background|attachement' => '',
@@ -1589,20 +1600,20 @@ $css_blip = array(
 		'.puce_principale|z|index' => '',	
 		'.puce_principale|float' => 'left',
 		'.puce_principale|clear' => '',
-		'.puce_principale|width' => ${$css_blip_couleur}['taille|geant'],
-		'.puce_principale|height' => ${$css_blip_couleur}['taille|geant'],
+		'.puce_principale|width' => $css_blip_couleur['taille|geant'],
+		'.puce_principale|height' => $css_blip_couleur['taille|geant'],
 		'.puce_principale|min|width' => '',
 		'.puce_principale|max|width' => '',
 		'.puce_principale|min|height' => '',
 		'.puce_principale|max|height' => '',	
-		'.puce_principale|margin' => ${$css_blip_couleur}['taille|petit'].' 0 0 0',
+		'.puce_principale|margin' => $css_blip_couleur['taille|petit'].' 0 0 0',
 		'.puce_principale|padding' => '',
 		'.puce_principale|border|width' => '',
 		'.puce_principale|border|color' => '',
 		'.puce_principale|border|style' => '',
 		'.puce_principale|font|family' => '',
-		'.puce_principale|font|size' => ${$css_blip_couleur}['taille|moyen'],
-		'.puce_principale|color' => ${$css_blip_couleur}['couleur|neutre'],
+		'.puce_principale|font|size' => $css_blip_couleur['taille|moyen'],
+		'.puce_principale|color' => $css_blip_couleur['couleur|neutre'],
 		'.puce_principale|font|style' => '',
 		'.puce_principale|font|weight' => 'bold',
 		'.puce_principale|font|variant' => '',
@@ -1610,23 +1621,23 @@ $css_blip = array(
 		'.puce_principale|text|align' => 'center',
 		'.puce_principale|text|transform' => '',
 		'.puce_principale|text|indent' => '',
-		'.puce_principale|line|height' => ${$css_blip_couleur}['taille|grand'],
+		'.puce_principale|line|height' => $css_blip_couleur['taille|grand'],
 		'.puce_principale|letter|spacing' => '',
 		'.puce_principale|word|spacing' => '',
 		'.puce_principale|background' => '',
-		'.puce_principale|background|color' => ${$css_blip_couleur}['couleur|2'],
+		'.puce_principale|background|color' => $css_blip_couleur['couleur|2'],
 		'.puce_principale|background|image' => '',
 		'.puce_principale|background|repeat' => '',
 		'.puce_principale|background|attachement' => '',
 		'.puce_principale|background|position' => '',
 
 			// .puce_principale quand elle est incluse dans un bloc .contenu
-			'.contenu .puce_principale|color' => ${$css_blip_couleur}['couleur|neutre'],
-			'.contenu .puce_principale|background|color' => ${$css_blip_couleur}['couleur|2'],
+			'.contenu .puce_principale|color' => $css_blip_couleur['couleur|neutre'],
+			'.contenu .puce_principale|background|color' => $css_blip_couleur['couleur|2'],
 
 			// .puce_principale quand elle est incluse dans un bloc .barre_laterale
-			'.barre_laterale .puce_principale|color' => ${$css_blip_couleur}['couleur|neutre'],
-			'.barre_laterale .puce_principale|background|color' => ${$css_blip_couleur}['couleur|2|clair'],
+			'.barre_laterale .puce_principale|color' => $css_blip_couleur['couleur|neutre'],
+			'.barre_laterale .puce_principale|background|color' => $css_blip_couleur['couleur|2|clair'],
 
 			// .puce_principale quand elle est incluse dans un bloc .contenu_large
 			'.contenu_large .puce_principale|color' => '',
@@ -1653,7 +1664,7 @@ $css_blip = array(
 			'.texte_principal|max|width' => '',
 			'.texte_principal|min|height' => '',
 			'.texte_principal|max|height' => '',	
-			'.texte_principal|margin' => '0 0 0 '.${$css_blip_couleur}['taille|espacement_bloc'],
+			'.texte_principal|margin' => '0 0 0 '.$css_blip_couleur['taille|espacement_bloc'],
 			'.texte_principal|padding' => '',
 			'.texte_principal|border|width' => '',
 			'.texte_principal|border|color' => '',
@@ -1680,29 +1691,29 @@ $css_blip = array(
 
 	// BLOCS CSS COULEURS DES LIENS : classes génériques utilisable pour personnaliser les couleurs.
 		'.couleur1|display' => 'inline',
-		'.couleur1|color' => ${$css_blip_couleur}['couleur|1'],
+		'.couleur1|color' => $css_blip_couleur['couleur|1'],
 		'.couleur1_clair|display' => 'inline',
-		'.couleur1_clair|color' => ${$css_blip_couleur}['couleur|1|clair'],
+		'.couleur1_clair|color' => $css_blip_couleur['couleur|1|clair'],
 		'.couleur2|display' => 'inline',
-		'.couleur2|color' => ${$css_blip_couleur}['couleur|2'],
+		'.couleur2|color' => $css_blip_couleur['couleur|2'],
 		'.couleur2_clair|display' => 'inline',
-		'.couleur2_clair|color' => ${$css_blip_couleur}['couleur|2|clair'],
+		'.couleur2_clair|color' => $css_blip_couleur['couleur|2|clair'],
 		'.gris_fonce|display' => 'inline',
-		'.gris_fonce|color' => ${$css_blip_couleur}['gris|fonce'],
+		'.gris_fonce|color' => $css_blip_couleur['gris|fonce'],
 		'.gris_moyen|display' => 'inline',
-		'.gris_moyen|color' => ${$css_blip_couleur}['gris|moyen'],
+		'.gris_moyen|color' => $css_blip_couleur['gris|moyen'],
 		'.gris_clair|display' => 'inline',
-		'.gris_clair|color' => ${$css_blip_couleur}['gris|clair'],
-		'.neutre|color' => ${$css_blip_couleur}['couleur|neutre'],
+		'.gris_clair|color' => $css_blip_couleur['gris|clair'],
+		'.neutre|color' => $css_blip_couleur['couleur|neutre'],
 		'.neutre|display' => 'inline',
 	
 	// BLOCS CSS COULEURS FLOAT : classes génériques utilisable pour personnaliser le positionnement des logos.
 		'.imgfloatleft|display' => 'inline',
 		'.imgfloatleft|float' => 'left',
-		'.imgfloatleft|padding' => ${$css_blip_couleur}['taille|petit'].' '.${$css_blip_couleur}['taille|normal'].' '.${$css_blip_couleur}['taille|petit'].' 0',
+		'.imgfloatleft|padding' => $css_blip_couleur['taille|petit'].' '.$css_blip_couleur['taille|normal'].' '.$css_blip_couleur['taille|petit'].' 0',
 		'.imgfloatright|display' => 'inline',
 		'.imgfloatright|float' => 'right',
-		'.imgfloatright|padding' => ${$css_blip_couleur}['taille|petit'].' 0 '.${$css_blip_couleur}['taille|petit'].' '.${$css_blip_couleur}['taille|normal'],
+		'.imgfloatright|padding' => $css_blip_couleur['taille|petit'].' 0 '.$css_blip_couleur['taille|petit'].' '.$css_blip_couleur['taille|normal'],
 
 	// 
 		'.nopadding|padding' => '0',
@@ -1715,13 +1726,13 @@ $css_blip = array(
 		'div.nicetitle|position' => 'absolute',
 		'div.nicetitle|top' => '0',
 		'div.nicetitle|left' => '0',
-		'div.nicetitle|padding' => ${$css_blip_couleur}['taille|petit'],
-		'div.nicetitle|border|width' => ${$css_blip_couleur}['taille|bordure'],
-		'div.nicetitle|border|color' => ${$css_blip_couleur}['couleur|1'],
+		'div.nicetitle|padding' => $css_blip_couleur['taille|petit'],
+		'div.nicetitle|border|width' => $css_blip_couleur['taille|bordure'],
+		'div.nicetitle|border|color' => $css_blip_couleur['couleur|1'],
 		'div.nicetitle|border|style' => 'solid',
-		'div.nicetitle|color' => ${$css_blip_couleur}['couleur|2'],
+		'div.nicetitle|color' => $css_blip_couleur['couleur|2'],
 		'div.nicetitle|font|weight' => 'bold',
-		'div.nicetitle|background|color' => ${$css_blip_couleur}['couleur|neutre'],
+		'div.nicetitle|background|color' => $css_blip_couleur['couleur|neutre'],
 		'div.nicetitle p|margin' => '0',
 		'div.nicetitle p|padding' => '0',
 		'div.nicetitle p.destination|display' => 'none',
@@ -1830,7 +1841,7 @@ $css_blip = array(
 		'forml|min|height' => '',
 		'forml|max|height' => '',	
 		'forml|margin' => '',
-		'forml|padding' => ${$css_blip_couleur}['taille|bordure'],
+		'forml|padding' => $css_blip_couleur['taille|bordure'],
 		'forml|border|width' => '',
 		'forml|border|color' => '',
 		'forml|border|style' => '',
@@ -1872,13 +1883,13 @@ $css_blip = array(
 		'.spip_bouton|min|height' => '',
 		'.spip_bouton|max|height' => '',	
 		'.spip_bouton|margin' => '',
-		'.spip_bouton|padding' => ${$css_blip_couleur}['taille|bordure'],
+		'.spip_bouton|padding' => $css_blip_couleur['taille|bordure'],
 		'.spip_bouton|border|width' => '1px',
-		'.spip_bouton|border|color' => ${$css_blip_couleur}['couleur|1|clair'],
+		'.spip_bouton|border|color' => $css_blip_couleur['couleur|1|clair'],
 		'.spip_bouton|border|style' => 'solid',
 		'.spip_bouton|font|family' => '',
 		'.spip_bouton|font|size' => '',
-		'.spip_bouton|color' => ${$css_blip_couleur}['couleur|1'],
+		'.spip_bouton|color' => $css_blip_couleur['couleur|1'],
 		'.spip_bouton|font|style' => '',
 		'.spip_bouton|font|weight' => 'bold',
 		'.spip_bouton|font|variant' => '',
@@ -1890,7 +1901,7 @@ $css_blip = array(
 		'.spip_bouton|letter|spacing' => '',
 		'.spip_bouton|word|spacing' => '',
 		'.spip_bouton|background' => '',
-		'.spip_bouton|background|color' => ${$css_blip_couleur}['couleur|neutre'],
+		'.spip_bouton|background|color' => $css_blip_couleur['couleur|neutre'],
 		'.spip_bouton|background|image' => '',
 		'.spip_bouton|background|repeat' => '',
 		'.spip_bouton|background|attachement' => '',
@@ -1914,7 +1925,7 @@ $css_blip = array(
 		'h3.spip|min|height' => '',
 		'h3.spip|max|height' => '',	
 		'h3.spip|margin' => '',
-		'h3.spip|padding' => ${$css_blip_couleur}['taille|geant'].' 0',
+		'h3.spip|padding' => $css_blip_couleur['taille|geant'].' 0',
 		'h3.spip|border|width' => '',
 		'h3.spip|border|color' => '',
 		'h3.spip|border|style' => '',
@@ -1955,10 +1966,10 @@ $css_blip = array(
 		'blockquote.spip|max|width' => '',
 		'blockquote.spip|min|height' => '',
 		'blockquote.spip|max|height' => '',	
-		'blockquote.spip|margin' => ${$css_blip_couleur}['taille|geant'].' '.${$css_blip_couleur}['taille|espacement_bloc'],
-		'blockquote.spip|padding' => '0 '.${$css_blip_couleur}['taille|normal'],
-		'blockquote.spip|border|width' => '0 0 0 '.${$css_blip_couleur}['taille|bordure'],
-		'blockquote.spip|border|color' => ${$css_blip_couleur}['couleur|2|clair'],
+		'blockquote.spip|margin' => $css_blip_couleur['taille|geant'].' '.$css_blip_couleur['taille|espacement_bloc'],
+		'blockquote.spip|padding' => '0 '.$css_blip_couleur['taille|normal'],
+		'blockquote.spip|border|width' => '0 0 0 '.$css_blip_couleur['taille|bordure'],
+		'blockquote.spip|border|color' => $css_blip_couleur['couleur|2|clair'],
 		'blockquote.spip|border|style' => 'solid',
 		'blockquote.spip|font|family' => '',
 		'blockquote.spip|font|size' => '',
@@ -1990,25 +2001,25 @@ $css_blip = array(
 		'ol.spip li|list|style' => 'inherit',
 		
 		'li.spip|list|style|position' => 'outside',
-		'li.spip|margin|left' => ${$css_blip_couleur}['taille|normal'],
+		'li.spip|margin|left' => $css_blip_couleur['taille|normal'],
 		
 		//Style du code informatique
 		'.spip_code|font|family' => 'monospace',
 		'.spip_code|font|style' => 'normal',
-		'.spip_code|font|size' => ${$css_blip_couleur}['taille|grand'],
+		'.spip_code|font|size' => $css_blip_couleur['taille|grand'],
 		
 		'.spip_cadre|width' => '99%',
-		'.spip_cadre|border|color' => ${$css_blip_couleur}['couleur|2|clair'],
+		'.spip_cadre|border|color' => $css_blip_couleur['couleur|2|clair'],
 		'.spip_cadre|font|family' => 'monospace',
 		'.spip_cadre|font|style' => 'normal',
-		'.spip_cadre|font|size' => ${$css_blip_couleur}['taille|grand'],
-		'.spip_cadre|background|color' => ${$css_blip_couleur}['couleur|neutre'],
+		'.spip_cadre|font|size' => $css_blip_couleur['taille|grand'],
+		'.spip_cadre|background|color' => $css_blip_couleur['couleur|neutre'],
 		
 		//Style des tableaux
 		'table.spip|margin' => '',
-		'table.spip|margin|bottom' => ${$css_blip_couleur}['taille|grand'],
+		'table.spip|margin|bottom' => $css_blip_couleur['taille|grand'],
 		'table.spip|border|width' => '1px',
-		'table.spip|border|color' => ${$css_blip_couleur}['couleur|2|clair'],
+		'table.spip|border|color' => $css_blip_couleur['couleur|2|clair'],
 		'table.spip|border|style' => 'solid',
 		'table.spip|border|collapse' => 'collapse',
 
@@ -2016,32 +2027,32 @@ $css_blip = array(
 
 		'table.spip tr|border|width' => '1px',
 		'table.spip tr|border|style' => 'solid',
-		'table.spip tr|border|color' => ${$css_blip_couleur}['gris|clair'],
+		'table.spip tr|border|color' => $css_blip_couleur['gris|clair'],
 
-		'tr.row_first|color' => ${$css_blip_couleur}['couleur|2|clair'],
-		'tr.row_first|font|size' => ${$css_blip_couleur}['taille|moyen'],
+		'tr.row_first|color' => $css_blip_couleur['couleur|2|clair'],
+		'tr.row_first|font|size' => $css_blip_couleur['taille|moyen'],
 		
-		'table.spip tr.row_first th|padding' => ${$css_blip_couleur}['taille|petit'].' '.${$css_blip_couleur}['taille|geant'].' '.${$css_blip_couleur}['taille|petit'].' '.${$css_blip_couleur}['taille|petit'],
+		'table.spip tr.row_first th|padding' => $css_blip_couleur['taille|petit'].' '.$css_blip_couleur['taille|geant'].' '.$css_blip_couleur['taille|petit'].' '.$css_blip_couleur['taille|petit'],
 		
 		
-		'table.spip td|padding' => ${$css_blip_couleur}['taille|bordure'].' '.${$css_blip_couleur}['taille|moyen'].' '.${$css_blip_couleur}['taille|bordure'].' '.${$css_blip_couleur}['taille|petit'],
+		'table.spip td|padding' => $css_blip_couleur['taille|bordure'].' '.$css_blip_couleur['taille|moyen'].' '.$css_blip_couleur['taille|bordure'].' '.$css_blip_couleur['taille|petit'],
 		'table.spip td|text|align' => 'left',
 		'table.spip td|vertical|align' => 'middle',
 		
 		//Style des documents et images : Classes supplémentairesen fin de doc
 		'.spip_documents_left|float' => 'left',
-		'.spip_documents_left|margin' => '0 '.${$css_blip_couleur}['taille|grand'].' '.${$css_blip_couleur}['taille|petit'].' 0',
+		'.spip_documents_left|margin' => '0 '.$css_blip_couleur['taille|grand'].' '.$css_blip_couleur['taille|petit'].' 0',
 		
 		'.spip_documents_right|float' => 'right',
-		'.spip_documents_right|margin' => '0 0 '.${$css_blip_couleur}['taille|petit'].' '.${$css_blip_couleur}['taille|grand'],
+		'.spip_documents_right|margin' => '0 0 '.$css_blip_couleur['taille|petit'].' '.$css_blip_couleur['taille|grand'],
 		
 		//Surlignage dans les recherche
-		'.spip_surligne|background' => ${$css_blip_couleur}['couleur|2|clair'],
+		'.spip_surligne|background' => $css_blip_couleur['couleur|2|clair'],
 		
 		//Galerie d'image
 		'.galerie|border|width' => '1px',
 		'.galerie|border|style' => 'solid',
-		'.galerie|border|color' => ${$css_blip_couleur}['gris|clair'],
+		'.galerie|border|color' => $css_blip_couleur['gris|clair'],
 		
 		
 

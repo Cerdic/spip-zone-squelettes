@@ -2,12 +2,12 @@
 
 // Ce fichier defini les classes CSS en tant que variable php, pour permettre une  surcharge de la feuille de style
 
-$css_blip["body|background"] = ${$css_blip_couleur}['couleur|1|clair'];
+$css_blip["body|background"] = $css_blip_couleur['couleur|1|clair'];
 $css_blip["body|margin"] = '25px 0';
 $css_blip["#page|border|style"] = 'solid';
 $css_blip["#page|width"] = '950px';
 $css_blip["#page|border|width"] = '2px';
-$css_blip["#page|border|color"] = ${$css_blip_couleur}['couleur|1'];
+$css_blip["#page|border|color"] = $css_blip_couleur['couleur|1'];
 $css_blip["#page|background"] = '#ffffff url(plugins/blip/theme_kiwi_logo.jpg) top right no-repeat';
 $css_blip['#tete|height'] = '100px';
 $css_blip['#tete|width'] = '600px';

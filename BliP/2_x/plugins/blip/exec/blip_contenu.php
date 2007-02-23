@@ -98,11 +98,13 @@ function exec_blip_contenu() {
 
 	debut_cadre_couleur();
 
+
+
 	debut_cadre_relief("", false, "", _T('blipconfig:blip_couleur_du_site'));
 	$blip_couleur = entites_html($GLOBALS['meta']["blip_couleur"]);
-	echo "<input type='text' name='blip_couleur' value=\"$blip_couleur\" size='40' CLASS='forml'>";
+	$blipconfig_couleur = BliP_generer_liste_fichiers('/^couleur_.+\.php$/' ,_T('blipconfig:blip_theme_neutre'), '/^couleur_(.+)\.php$/');
+	echo BliP_generer_option_select('blip_couleur', $blipconfig_couleur, $blip_couleur, "", "forml");
 	echo "<div style='text-align:right;'><input type='submit' name='Valider' value='"._T('bouton_enregistrer')."' CLASS='fondo'></div>";
-	echo "Saisir un num&eacute;ro entre 1 et 10.";
 	fin_cadre_relief();
 
 	debut_cadre_relief("", false, "", _T('blipconfig:blip_theme_graphique'));

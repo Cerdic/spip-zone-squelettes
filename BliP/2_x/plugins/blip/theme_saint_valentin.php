@@ -25,8 +25,8 @@ $css_blip[".contenu .puce_principale|background|color"] = '';
 $css_blip[".barre_laterale .puce_principale|background|color"] = '';
 $css_blip[".contenu_large .puce_principale|background|color"] = '';
 $css_blip[".trois_colonnes .puce_principale|background|color"] = '';
-$css_blip[".puce_principale|width"] = ${$css_blip_couleur}['taille|espacement_bloc'];
-$css_blip[".puce_principale|height"] = ${$css_blip_couleur}['taille|espacement_bloc'];
+$css_blip[".puce_principale|width"] = $css_blip_couleur['taille|espacement_bloc'];
+$css_blip[".puce_principale|height"] = $css_blip_couleur['taille|espacement_bloc'];
 
 
 
