@@ -33,13 +33,13 @@ On limite l'affichage du plan aux seules rubriques utiles, les autres sont exclu
 	<ul>
 	<BOUCLE_RubExclues_sect(RUBRIQUES){titre_mot=agenda}{doublons}></BOUCLE_RubExclues_sect>
 
-	<BOUCLE_secteurs2(RUBRIQUES){racine}{lang}{par num titre}{doublons} >
+	<BOUCLE_secteurs2(RUBRIQUES){racine}{lang}{par num titre} {par titre}{doublons} >
 		<li>
 				<a class="lien[(#EXPOSER)]" href="#URL_RUBRIQUE" [title="(#INTRODUCTION|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
 		<B_art_secteur>
 		[(#REM) debut BOUCLE art_secteur pour afficher dans les articles des rubriques racine (secteur) ]
 			<ul>
-		<BOUCLE_art_secteur(ARTICLES){id_rubrique}{par num titre}{lang}>
+		<BOUCLE_art_secteur(ARTICLES){id_rubrique}{par num titre} {par titre}{lang}>
 				<li>
 					<a class="lien[(#EXPOSER)] article" href="#URL_ARTICLE" [title="(#INTRODUCTION|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
 				</li>
@@ -48,7 +48,7 @@ On limite l'affichage du plan aux seules rubriques utiles, les autres sont exclu
 		</B_art_secteur>[(#REM) fin BOUCLE art_secteur  ]
 		<B_sousrub2>
 			<ul>
-		<BOUCLE_sousrub2(RUBRIQUES){id_parent}{lang}{par num titre}{doublons exclus}>
+		<BOUCLE_sousrub2(RUBRIQUES){id_parent}{lang}{par num titre} {par titre}{doublons exclus}>
 				<li>
 					<a class="lien[(#EXPOSER)]" href="#URL_RUBRIQUE" [title="(#INTRODUCTION|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
 		<BOUCLE_sousousrub2(boucle_sousrub2)></BOUCLE_sousousrub2>
@@ -72,12 +72,12 @@ si on veut afficher uniquement le premier niveau (secteur) des autres langues, o
 <B_sommaire>
 	<h3 class="structure"><:rubriques:></h3>
 	<ul>
-<BOUCLE_sommaire(RUBRIQUES){racine}{lang}{par num titre} {doublons}>
+<BOUCLE_sommaire(RUBRIQUES){racine}{lang}{par num titre} {par titre} {doublons}>
 		<li>
 			<a class="lien[(#EXPOSER)]" href="#URL_RUBRIQUE" [title="(#INTRODUCTION|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
 <B_art_sommaire><!-- debut BOUCLE art_somm pour afficher des articles dans les rubriques racine (secteur) -->
 			<ul>
-		<BOUCLE_art_sommaire(ARTICLES){id_rubrique}{par num titre}{lang}>
+		<BOUCLE_art_sommaire(ARTICLES){id_rubrique}{par num titre} {par titre}{lang}>
 				<li>
 					<a class="lien[(#EXPOSER)] article" href="#URL_ARTICLE" [title="(#INTRODUCTION|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
 				</li>
@@ -86,7 +86,7 @@ si on veut afficher uniquement le premier niveau (secteur) des autres langues, o
 </B_art_sommaire>
 		<B_sousrub_sommaire>[(#REM) pour afficher dans le menu 2 niveaux de rubriques ]
 			<ul>
-		<BOUCLE_sousrub_sommaire(RUBRIQUES){id_parent}{par num titre}{lang}>
+		<BOUCLE_sousrub_sommaire(RUBRIQUES){id_parent}{par num titre} {par titre}{lang}>
 				<li>
 					<a class="lien[(#EXPOSER)]" href="#URL_RUBRIQUE" [title="(#INTRODUCTION|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
 				</li>
