@@ -140,8 +140,8 @@ function balise_DATE_NOUVEAUTES_dist($p) {
 
 // http://doc.spip.org/@balise_DOSSIER_SQUELETTE_dist
 function balise_DOSSIER_SQUELETTE_dist($p) {
-	$code = addslashes(dirname($p->descr['sourcefile']));
-	$p->code = "'$code'" . 
+	$code = substr(addslashes(dirname($p->descr['sourcefile'])), strlen(_DIR_RACINE));
+	$p->code = "_DIR_RACINE . '$code'" . 
 	$p->interdire_scripts = false;
 	return $p;
 }
@@ -401,7 +401,7 @@ function balise_EXPOSER_dist($p)
 	if ($a = ($p->fonctions)) {
 		// Gerer la notation [(#EXPOSER|on,off)]
 		$onoff = array_shift($a);
-		ereg("([^,]*)(,(.*))?", $onoff[0], $regs);
+		preg_match("#([^,]*)(,(.*))?#", $onoff[0], $regs);
 		$on = "" . _q($regs[1]);
 		$off = "" . _q($regs[3]) ;
 		// autres filtres
@@ -705,12 +705,12 @@ function calculer_balise_logo_dist ($p) {
 		$logo_hierarchie = 0;
 	} else $logo_hierarchie = 1;
 
-	eregi("^LOGO_([A-Z]+)(_.*)?$", $p_nom_champ, $regs);
+	preg_match(",^LOGO_([A-Z]+)(_.*)?$,i", $p->nom_champ, $regs);
 	$type_objet = $regs[1];
 	$suite_logo = $regs[2];	
 
 	// cas de #LOGO_SITE_SPIP
-	if (ereg("^_SPIP(.*)$", $suite_logo, $regs)) {
+	if (preg_match(",^_SPIP(.*)$,", $suite_logo, $regs)) {
 		$type_objet = 'SITE';
 		$suite_logo = $regs[1];
 		$_id_objet = "\"'0'\"";
@@ -780,7 +780,7 @@ function calculer_balise_logo_dist ($p) {
 	// 2. lien indique en clair (avec des balises : imprimer#ID_ARTICLE.html)
 	else if ($lien) {
 		$code_lien = "'".texte_script(trim($lien))."'";
-		while (ereg("^([^#]*)#([A-Za-z_]+)(.*)$", $code_lien, $match)) {
+		while (preg_match(",^([^#]*)#([A-Za-z_]+)(.*)$,", $code_lien, $match)) {
 			$c = new Champ();
 			$c->nom_champ = $match[2];
 			$c->id_boucle = $p->id_boucle;
@@ -790,7 +790,7 @@ function calculer_balise_logo_dist ($p) {
 			$code_lien = str_replace('#'.$match[2], "'.".$c.".'", $code_lien);
 		}
 		// supprimer les '' disgracieux
-		$code_lien = ereg_replace("^''\.|\.''$", "", $code_lien);
+		$code_lien = preg_replace("@^''\.|\.''$@", "", $code_lien);
 	}
 
 	if ($flag_fichier)
