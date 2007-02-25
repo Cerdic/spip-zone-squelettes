@@ -1,4 +1,3 @@
-
 <!-- début jscript -->
 <script type="text/javascript">
 
@@ -57,18 +56,21 @@ for (i=0; i<numberItem; i++) {
 <ul class="open">
 <li id="#ID_RUBRIQUE"><a  onclick="toggle('#ID_RUBRIQUE');"><img src="squelettes/images/closed.gif" alt="" id="img_#ID_RUBRIQUE" border="0"></a>&nbsp;
 <a href="#URL_RUBRIQUE" title="#NOM_SITE_SPIP - [(#TITRE|supprimer_numero)]" [class="(#EXPOSE{actif})"]>[(#TITRE|supprimer_numero)]</a>
+[(#ENV{id_rubrique}|=={#ID_RUBRIQUE}|?{<img src="squelettes/images/curseur.png">})]
 
 <ul id="ul_#ID_RUBRIQUE" [class="(#EXPOSE{open,closed})"]>
 
     <BOUCLE_secteurs(RUBRIQUES){id_parent}{par num titre}>
     <li id="#ID_RUBRIQUE"><a  onclick="toggle('#ID_RUBRIQUE');"><img src="squelettes/images/closed.gif" alt="" id="img_#ID_RUBRIQUE" border="0"></a>&nbsp;
     <a href="#URL_RUBRIQUE" title="#NOM_SITE_SPIP - [(#TITRE|supprimer_numero)]" [class="(#EXPOSE{actif})"]>[(#TITRE|supprimer_numero)]</a>
+    [(#ENV{id_rubrique}|=={#ID_RUBRIQUE}|?{<img src="squelettes/images/curseur.png">})]
+        
         <B_sousrub>
-
             <ul id="ul_#ID_RUBRIQUE" [class="(#EXPOSE{open,closed})"]>
              <BOUCLE_sousrub(RUBRIQUES){id_parent}{par num titre}>
-             <li id="#ID_RUBRIQUE"><a  onclick="toggle('#ID_RUBRIQUE');"><img src="squelettes/images/closed.gif" alt="" id="img_#ID_RUBRIQUE" border="0"></a>&nbsp;
-             <a href="#URL_RUBRIQUE" title="#NOM_SITE_SPIP - [(#TITRE|supprimer_numero)]" [class="(#EXPOSE{actif})"]>[(#TITRE|supprimer_numero)]</a>
+             <li id="#ID_RUBRIQUE">&nbsp;
+             <a href="#URL_RUBRIQUE" title="#NOM_SITE_SPIP - [(#TITRE|supprimer_numero)]" [class="(#EXPOSE{actif})"]>-&nbsp;[(#TITRE|supprimer_numero)]</a>
+             [(#ENV{id_rubrique}|=={#ID_RUBRIQUE}|?{<img src="squelettes/images/curseur.png">})]
              </li>
             </BOUCLE_sousrub>
         </ul>
@@ -82,8 +84,11 @@ for (i=0; i<numberItem; i++) {
 
 </ul>
 
-<p>
-<a href="[(#URL_PAGE{inscription})]">Lettre</a>&nbsp;|&nbsp;<a href="[(#URL_PAGE{plan})]">Plan</a>&nbsp;|&nbsp;<a href="[(#URL_PAGE{nouveautes})]">News</a><BOUCLE_RUBRIQUE_LIENS(RUBRIQUES){titre_mot==annuaire_home}{0,1}>&nbsp;|&nbsp;<a href="#URL_RUBRIQUE"[title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a></BOUCLE_RUBRIQUE_LIENS></p>
+<p class="centre">
+<a href="[(#URL_PAGE{inscription})]">Lettre</a>&nbsp;|&nbsp;<a href="[(#URL_PAGE{plan})]">Plan</a>&nbsp;|&nbsp;<a href="[(#URL_PAGE{nouveautes})]">
+News</a><BOUCLE_RUBRIQUE_LIENS(RUBRIQUES){titre_mot==annuaire_home}{0,1}>&nbsp;
+|&nbsp;<a href="#URL_RUBRIQUE"[title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a></BOUCLE_RUBRIQUE_LIENS>
+</p>
 
 
 
