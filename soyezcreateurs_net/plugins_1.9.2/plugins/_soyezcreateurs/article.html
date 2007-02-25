@@ -52,13 +52,23 @@ $titretop = '[(#TITRE|textebrut|supprimer_numero|attribut_html|nettoyer_marqueur
 	<div id="letexte">
 [<div class="chapo">#DEBUT_SURLIGNE(#CHAPO|sinon{#DESCRIPTIF})#FIN_SURLIGNE</div>]
 
-<B_DetailAgenda>
-<ul id="ArticleAgendaDetail">
-<BOUCLE_DetailAgenda(EVENEMENTS){id_article}{par date_debut}{date_debut>=(#ENV{date}|affdate{'Y-m-d'})}>
-<INCLURE{fond=agendaliste_evenement}{id_evenement}>
-</BOUCLE_DetailAgenda>
-</ul>
-</B_DetailAgenda>
+<BOUCLE_AgendaFuturSeul(MOTS){titre=AgendaFuturSeul}{texte=Oui}>
+	<B_DetailAgendaFuturSeul>
+	<ul id="ArticleAgendaDetail">
+	<BOUCLE_DetailAgendaFuturSeul(EVENEMENTS){id_article}{par date_debut}{date_debut>=(#ENV{date}|affdate{'Y-m-d'})}>
+	<INCLURE{fond=agendaliste_evenement}{id_evenement}>
+	</BOUCLE_DetailAgendaFuturSeul>
+	</ul>
+	</B_DetailAgendaFuturSeul>
+</BOUCLE_AgendaFuturSeul>
+	<B_DetailAgenda>
+	<ul id="ArticleAgendaDetail">
+	<BOUCLE_DetailAgenda(EVENEMENTS){id_article}{par date_debut}>
+	<INCLURE{fond=agendaliste_evenement}{id_evenement}>
+	</BOUCLE_DetailAgenda>
+	</ul>
+	</B_DetailAgenda>
+<//B_AgendaFuturSeul>
 
 <BOUCLE_SommaireAncre(MOTS){id_rubrique}{titre = Sommaire}>
 </BOUCLE_SommaireAncre>
