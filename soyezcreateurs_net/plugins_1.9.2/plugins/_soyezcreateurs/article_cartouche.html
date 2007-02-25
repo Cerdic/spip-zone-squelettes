@@ -15,8 +15,7 @@
 <//B_test_numero>
 		</ul>
 </BOUCLE_MemeRubriques>
-<BOUCLE_mots(MOTS){id_article}{titre=Gallerie}>
-</BOUCLE_mots>
+<BOUCLE_mots(MOTS){id_article}{titre=Gallerie}> </BOUCLE_mots>
 </B_mots>
 <B_documents_joints>
 	<hr />
@@ -44,25 +43,13 @@
 </ul>
 </B_MotsClefsArticle>
 
-<BOUCLE_GpAdmin2(GROUPES_MOTS){titre==^_}>
-	<BOUCLE_MotsExclus2(MOTS){id_groupe}{doublons 2}> </BOUCLE_MotsExclus2>
-</BOUCLE_GpAdmin2>
-<BOUCLE_NavigationTransversaleSansAutresMenusHaut(MOTS){titre=NavigationTransversaleSansAutresMenusHaut}{texte=Oui}>
-	<BOUCLE_SecteursAutresMenusHaut(RUBRIQUES){id_secteur!=#_article_principal:ID_SECTEUR}{titre_mot=MenuHaut}>
-		<BOUCLE_ExcluresArticlesAutresMenusHaut(ARTICLES){branche}{doublons}> </BOUCLE_ExcluresArticlesAutresMenusHaut>
-	</BOUCLE_SecteursAutresMenusHaut>
-</BOUCLE_NavigationTransversaleSansAutresMenusHaut>
-<B_MotsClefsArticleConnexes>
-<hr />
-<h2><:pyrat:articlesconnexes:></h2>
-<ul>
-<BOUCLE_MotsClefsArticleConnexes(MOTS){id_article}{doublons 2}>
-<BOUCLE_ArticlesConnexes(ARTICLES){id_mot}{doublons}>
-<li><?php if (#_article_principal:ID_ARTICLE!=#ID_ARTICLE) {?><a href="#URL_ARTICLE" title="<BOUCLE_GpMot(GROUPES_MOTS){id_groupe}>[(#TITRE|attribut_html)]</BOUCLE_GpMot>: [(#_MotsClefsArticleConnexes:TITRE|attribut_html)]"><?php } ?>[(#TITRE|supprimer_numero)]<?php if (#_article_principal:ID_ARTICLE!=#ID_ARTICLE) {?></a><?php } ?></li>
-</BOUCLE_ArticlesConnexes>
-</BOUCLE_MotsClefsArticleConnexes>
-</ul>
-</B_MotsClefsArticleConnexes>
+<BOUCLE_EstDansUnMenuHaut(RUBRIQUES){id_secteur}{titre_mot=MenuHaut}>
+[(#CONFIG{soyezcreateurs/navigationtransversalelocale,locale}|=={locale}|?{' ',''})[(#MODELE{articles_connexes_locaux}{id_secteur}{id_article})]]
+[(#CONFIG{soyezcreateurs/navigationtransversalelocale,locale}|=={globale}|?{' ',''})[(#MODELE{articles_connexes}{id_secteur}{id_article})]]
+</BOUCLE_EstDansUnMenuHaut>
+[(#MODELE{articles_connexes}{id_secteur}{id_article})]]
+<//B_EstDansUnMenuHaut>
+
 </div>
 [<div id="signature">
 (#FORMULAIRE_SIGNATURE)
