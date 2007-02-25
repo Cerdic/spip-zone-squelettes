@@ -1,6 +1,6 @@
 <?php if (!$auteur_session){?>
 <INCLURE{fond="authentification"}>
- <?php exit;}  ?>
+<?php exit;}  ?>
 
 
 
@@ -10,7 +10,7 @@
 
 <html><head>
 
-[(#REM)   les métas   ]<BOUCLE_author0(AUTEURS){tout}{id_auteur}>
+[(#REM)   les métas   ]<BOUCLE_author0(AUTEURS){id_auteur}>
 <title>Votre profil [(#NOM)].</title>
 <meta name="Description" content="Votre profil [(#NOM)]"/>
 <meta name="keywords" content="[(#NOM)]"/>
@@ -96,34 +96,43 @@
 
 <li>
 
-<BOUCLE_TOTAL_ARTICLE(ARTICLES) {id_auteur=#SESSION{id_auteur}} {0,1}>
 <h4 class="icone_article">Mes articles</h4>
 
+<BOUCLE_TOTAL_ARTICLE(ARTICLES){statut IN prepa, prop, refuse, poubelle, publie}{id_auteur=#SESSION{id_auteur}}{0,1}>
 <p>
 
 <B_ARTICLE_PREPA>
 ::&nbsp;Mes derniers articles en rédaction :<br/>
 <BOUCLE_ARTICLE_PREPA(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=prepa}{par date}{inverse}>
-<img src="dist/images/puce-blanche.gif"><a href="ecrire/?exec=articles&id_article=#ID_ARTICLE" alt="article en cours de rédaction">#TITRE</a><br/>
+<img src="dist/images/puce-blanche.gif" alt="article en rédaction"><a href="ecrire/?exec=articles&id_article=#ID_ARTICLE" alt="article en cours de rédaction">#TITRE</a><br/>
 </BOUCLE_ARTICLE_PREPA>
 
-</B_ARTICLE_PREPA>
+
 
 <B_ARTICLE_PROP>
 ::&nbsp;Mes derniers articles proposés :<br/>
 <BOUCLE_ARTICLE_PROP(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=prop}{par date}{inverse}>
-<img src="dist/images/puce-orange.gif"><a href="ecrire/?exec=articles&id_article=#ID_ARTICLE" alt="article proposé à l'évaluation">#TITRE</a><br/>
+<img src="dist/images/puce-orange.gif" alt="article proposé"><a href="ecrire/?exec=articles&id_article=#ID_ARTICLE" alt="article proposé à l'évaluation">#TITRE</a><br/>
 </BOUCLE_ARTICLE_PROP>
 
-</B_ARTICLE_PROP>
+
 
 <B_ARTICLE_REF>
 ::&nbsp;Mes derniers articles refusés :<br/>
 <BOUCLE_ARTICLE_REF(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=refuse}{par date}{inverse}>
-<img src="dist/images/puce-poubelle.gif"><a href="ecrire/?exec=articles&id_article=#ID_ARTICLE" alt="article refusé">#TITRE</a><br/>
+<img src="dist/images/puce-rouge.gif" alt="article en rédaction"><a href="ecrire/?exec=articles&id_article=#ID_ARTICLE" alt="article refusé">#TITRE</a><br/>
 </BOUCLE_ARTICLE_REF>
 
-</B_ARTICLE_REF>
+
+
+<B_ARTICLE_POUB>
+::&nbsp;Mes derniers articles jetés :<br/>
+<BOUCLE_ARTICLE_POUB(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=poubelle}{par date}{inverse}>
+<img src="dist/images/puce-poubelle.gif" alt="article en rédaction"><a href="ecrire/?exec=articles&id_article=#ID_ARTICLE" alt="article refusé">#TITRE</a><br/>
+</BOUCLE_ARTICLE_POUB>
+
+
+
 
 <B_ARTICLE_PUB>
 ::&nbsp;Mes derniers articles publiés :<br/>

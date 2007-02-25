@@ -1,4 +1,4 @@
-<?php if (!$auteur_session && $_GET['connect']=="yes"){ ?>
+<?php if (!$auteur_session){?>
 <INCLURE{fond="authentification"}>
 <?php exit;} ?>
 
@@ -22,12 +22,15 @@
 <meta http-equiv="content-type" content="text/html; charset=#CHARSET"/>
 
 
+
+
 	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
 	
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/menu.css})]" />
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/logic.css})]" />
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/niftyCorners.css})]" />
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/print.css})]" media="print" />
+	
 	[(#REM) 4 css qui changent l aspect du site suivant la saison.]
 <BOUCLE_mot_saison(MOTS){titre=saison}{0,1}>
 <link rel="stylesheet" type="text/css" href="[squelettes/css/(#ENV{date}|saison|translitteration).css]" />
@@ -57,14 +60,23 @@
 <div id="content">  [(#REM)   ouverture contenu   ] 
 <div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
 
+
+
 [(#REM)   Si l internaute est connecte ou s il contact l admin principal du site   ]
 <BOUCLE_AUTEURS(AUTEURS){tous}{id_auteur}>
+
+
+
+[(#REM)   Vous pouvez changer le numéro de l'admin principal ou ajouter des admins]
+
 <?php if ($auteur_session||#ID_AUTEUR== '1') { ?>
-<div class="grande_boite"> [(#REM)   ouverture grd boite texte   ][<h1>(#NOM)</h1>]
+<div class="grande_boite"> [(#REM)   ouverture grd boite texte   ]
 
+<span class="logodroite">
 <INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=46}>
-
-<p>[(#BIO||?{#BIO,#NOM n'a pas encore &eacute;crit sa bio.})]</p>
+</span>
+[<h1>(#NOM)</h1>]
+[<p>(#BIO||?{#BIO,#NOM n'a pas encore &eacute;crit sa bio.})</p>]
 [<h4 class="icone_site">Site web préféré:</h4>
 <p><a href="#URL_SITE">(#NOM_SITE)</a></p>]
 
@@ -74,13 +86,11 @@
 
 <h4 class="icone_membre">#NOM, modifiez votre profil:</h4>
 <p>Cette page affiche votre profil tel qu'il apparaît auprès des autres membres de #NOM_SITE_SPIP. 
-<a href="_mon-profil.php"><strong>En cliquant ici, vous pouvez modifier ou ajouter</strong></a>:</p>
-<ul classe="petite_liste">
-<li>votre nom et votre biographie;</li>
-<li>votre avatar et votre site web préféré;</li>
-<li>vos informations de sécurité (clé PGP ect...).</li>
-</ul>
-<?php } ?>
+<br/><br/>
+[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">::&nbsp;(#BIO|sinon{Renseigner ma biographie})</a><br/>]
+[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">::&nbsp;(#NOM_SITE|sinon{Ajouter mon site web favori})</a><br/>]
+[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">::&nbsp;(#PGP|sinon{Diffuser ma clé publique PGP})</a><br/>]
+</p><?php } ?>
 
 <hr class="spacer"/>
   </div>
