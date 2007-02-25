@@ -27,7 +27,7 @@ $GLOBALS['fin_intertitre_4'] = '</h5>';
 $GLOBALS['debut_intertitre_5'] = '<h6 class="spip">';
 $GLOBALS['fin_intertitre_5'] = '</h6>';
 
-$GLOBALS['set_options']='avancees';
+$_GET["set_options"] = $GLOBALS["set_options"] = 'avancees';
 
 # si vous n'avez aucun fichier .php3, redefinissez a ""
 # ca fera foncer find_in_path
