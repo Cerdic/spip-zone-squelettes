@@ -104,24 +104,25 @@
 </ul>
 </div>
 <INCLURE{fond=#CONFIG{soyezcreateurs/frmrecherche,'frmrecherche'}}>
-<INCLURE{fond=inc_ads_search}>
+[(#CONFIG{soyezcreateurs_google/google_search}|!={''}|?{' ',''})<INCLURE{fond=inc_ads_search}>]
 
 [(#FORMULAIRE_ABONNEMENT)]
 
-<BOUCLE_EstNewsLetter(MOTS){titre=NewsLetterID}{texte!=}>
-<div class="cadreinfo">
-<h2><:pyrat:newsletter_recevoir:></h2>
-<form method="post" action="@newsletter.html" style="margin:0;">
-<label for="email"><:pyrat:newsletter_email:></label><input id="email" style="width:97%;" type="text" name="email" maxlength="100" value="@" />
-<input type="hidden" name="format" value="1" />
-<input type="hidden" name="liste" value="[(#TEXTE|attribut_html)]" />
-<fieldset><legend><:pyrat:newsletter_action:></legend>
-<input type="radio" name="action" value="inscription" id="inscription" checked="checked" /><label for="inscription"> <:pyrat:newsletter_inscription:></label><br />
-<input type="radio" name="action" value="desinscription" id="desinscription" /><label for="desinscription"> <:pyrat:newsletter_desinscription:></label></fieldset>
-<input class="spip_bouton" type="submit" name="wanewsletter" value="<:pyrat:newsletter_valider:>" />
-</form>
-</div>
-</BOUCLE_EstNewsLetter>
+[<div class="cadreinfo">
+	<h2><:pyrat:newsletter_recevoir:></h2>
+	<form method="post" action="@newsletter.html" style="margin:0;">
+		<div>
+			<label for="email"><:pyrat:newsletter_email:></label><input id="email" style="width:97%;" type="text" name="email" maxlength="100" value="@" />
+			<input type="hidden" name="format" value="1" />
+			<input type="hidden" name="liste" value="(#CONFIG{soyezcreateurs/newsletterid})" />
+			<fieldset><legend><:pyrat:newsletter_action:></legend>
+				<input type="radio" name="action" value="inscription" id="inscription" checked="checked" /><label for="inscription"> <:pyrat:newsletter_inscription:></label><br />
+				<input type="radio" name="action" value="desinscription" id="desinscription" /><label for="desinscription"> <:pyrat:newsletter_desinscription:></label>
+			</fieldset>
+			<input class="spip_bouton" type="submit" name="wanewsletter" value="<:pyrat:newsletter_valider:>" />
+		</div>
+	</form>
+</div>]
 </div>
 	</div><!-- id="navigation" -->
 <INCLURE{fond=menu_right}{id_rubrique}{id_article}{template}>
