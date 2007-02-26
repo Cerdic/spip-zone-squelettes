@@ -1,79 +1,74 @@
-<!-- début jscript -->
 <script type="text/javascript">
-
+<!-- 
 function toggle(id){
-
   ul = "ul_" + id;
   img = "img_" + id;
   ulElement = document.getElementById(ul);
   imgElement = document.getElementById(img);
-
   if (ulElement){
           if (ulElement.className == 'closed'){
- 
                   ulElement.className = "open";
                   imgElement.src = "squelettes/images/opened.gif";
                   }else{
                   ulElement.className = "closed";
-                  imgElement.src = "squelettes/images/closed.gif";
-                 
+                  imgElement.src = "squelettes/images/closed.gif"; 
                   }
           }
-         
-         
   }
-
 function hierarchie (listRubriques) {
-
 var itemList = listRubriques;
 var restoredArray = itemList.split(",");
 var numberItem = restoredArray.length;
-
 for (i=0; i<numberItem; i++) {
     currentRub = restoredArray[i]
-                 ul = "ul_" + currentRub;
+    ul = "ul_" + currentRub;
     img = "img_" + currentRub;
     ulElement = document.getElementById(ul);
     imgElement = document.getElementById(img);
-
     if (ulElement) {
         ulElement.className = "open";
         imgElement.src = "squelettes/images/opened.gif";
-
       }
-
-
   }
-
 }
-
+-->
 </script>
-<!-- fin jscript -->
 
-     
 
-<BOUCLE_selectMenu (RUBRIQUES){racine}{par num titre}>
+<BOUCLE_selectMenu (RUBRIQUES){racine}{par num titre} {titre_mot=menu_rub}>
 <ul class="open">
-<li id="#ID_RUBRIQUE"><a  onclick="toggle('#ID_RUBRIQUE');"><img src="squelettes/images/closed.gif" alt="" id="img_#ID_RUBRIQUE" border="0"></a>&nbsp;
-<a href="#URL_RUBRIQUE" title="#NOM_SITE_SPIP - [(#TITRE|supprimer_numero)]" [class="(#EXPOSE{actif})"]>[(#TITRE|supprimer_numero)]</a>
+<li id="li_#ID_RUBRIQUE">
+
+<B_virefleche><a onclick="toggle('#ID_RUBRIQUE');"><BOUCLE_virefleche(RUBRIQUES){id_parent}{0,1}><img src="squelettes/images/closed.gif" alt="#DESCRIPTIF" </BOUCLE_virefleche>
+id="img_#ID_RUBRIQUE"></a></B_virefleche><img src="squelettes/images/puceoff.gif" alt="#DESCRIPTIF"><//B_virefleche>
+
+<a href="#URL_RUBRIQUE" title="[(#TITRE)]">[[(#ENV{id_rubrique}|=={#ID_RUBRIQUE}|?{<strong>})](#TITRE)[(#ENV{id_rubrique}|=={#ID_RUBRIQUE}|?{</strong>})]]</a>&nbsp;
 [(#ENV{id_rubrique}|=={#ID_RUBRIQUE}|?{<img src="squelettes/images/curseur.png">})]
 
 <ul id="ul_#ID_RUBRIQUE" [class="(#EXPOSE{open,closed})"]>
 
     <BOUCLE_secteurs(RUBRIQUES){id_parent}{par num titre}>
-    <li id="#ID_RUBRIQUE"><a  onclick="toggle('#ID_RUBRIQUE');"><img src="squelettes/images/closed.gif" alt="" id="img_#ID_RUBRIQUE" border="0"></a>&nbsp;
-    <a href="#URL_RUBRIQUE" title="#NOM_SITE_SPIP - [(#TITRE|supprimer_numero)]" [class="(#EXPOSE{actif})"]>[(#TITRE|supprimer_numero)]</a>
+    <li id="li_#ID_RUBRIQUE">
+	
+    <B_vireflechessrub><a onclick="toggle('#ID_RUBRIQUE');"><BOUCLE_vireflechessrub(RUBRIQUES){id_parent}{0,1}><img src="squelettes/images/closed.gif" alt="#DESCRIPTIF" </BOUCLE_vireflechessrub>
+    id="img_#ID_RUBRIQUE"></a></B_vireflechessrub><img src="squelettes/images/puceoff.gif" alt="#DESCRIPTIF"><//B_vireflechessrub>
+
+    <a href="#URL_RUBRIQUE" title="[(#TITRE)]">[[(#ENV{id_rubrique}|=={#ID_RUBRIQUE}|?{<strong>})](#TITRE)[(#ENV{id_rubrique}|=={#ID_RUBRIQUE}|?{</strong>})]]</a>&nbsp;
     [(#ENV{id_rubrique}|=={#ID_RUBRIQUE}|?{<img src="squelettes/images/curseur.png">})]
+   
         
-        <B_sousrub>
+            <B_sousrub>
+
             <ul id="ul_#ID_RUBRIQUE" [class="(#EXPOSE{open,closed})"]>
              <BOUCLE_sousrub(RUBRIQUES){id_parent}{par num titre}>
-             <li id="#ID_RUBRIQUE">&nbsp;
-             <a href="#URL_RUBRIQUE" title="#NOM_SITE_SPIP - [(#TITRE|supprimer_numero)]" [class="(#EXPOSE{actif})"]>-&nbsp;[(#TITRE|supprimer_numero)]</a>
+             <li id="li_#ID_RUBRIQUE">
+             <img src="squelettes/images/puceoff.gif" alt="#DESCRIPTIF">
+             <a href="#URL_RUBRIQUE" title="[(#TITRE)]">[[(#ENV{id_rubrique}|=={#ID_RUBRIQUE}|?{<strong>})](#TITRE)[(#ENV{id_rubrique}|=={#ID_RUBRIQUE}|?{</strong>})]]</a>&nbsp;
              [(#ENV{id_rubrique}|=={#ID_RUBRIQUE}|?{<img src="squelettes/images/curseur.png">})]
              </li>
             </BOUCLE_sousrub>
         </ul>
+
         </B_sousrub>
     </li>
     </BOUCLE_secteurs>
@@ -86,15 +81,8 @@ for (i=0; i<numberItem; i++) {
 
 <p class="centre">
 <a href="[(#URL_PAGE{inscription})]">Lettre</a>&nbsp;|&nbsp;<a href="[(#URL_PAGE{plan})]">Plan</a>&nbsp;|&nbsp;<a href="[(#URL_PAGE{nouveautes})]">
+
 News</a><BOUCLE_RUBRIQUE_LIENS(RUBRIQUES){titre_mot==annuaire_home}{0,1}>&nbsp;
 |&nbsp;<a href="#URL_RUBRIQUE"[title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a></BOUCLE_RUBRIQUE_LIENS>
 </p>
-
-
-
-
-
-
-
-
 
