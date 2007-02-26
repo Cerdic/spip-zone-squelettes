@@ -3,12 +3,11 @@ $titre = '[(#TITRE|textebrut|supprimer_numero|attribut_html|texte_script)]';
 $titretop = '[(#TITRE|textebrut|supprimer_numero|attribut_html|nettoyer_marqueur|texte_script)]';
 ?><INCLURE{fond=header}{id_rubrique}{connexion}{secteurencours=#GET{secteurencours}}>
 <BOUCLE_EstAgenda(HIERARCHIE){id_rubrique}{tout}{titre_mot=Agenda}{inverse}{0,1}>
-<BOUCLE_AgendaScolaire(MOTS){titre=AgendaScolaire}{texte=Oui}>
-<INCLURE{fond=agendaliste_scolaire}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{genre}{calendrier}>
-</BOUCLE_AgendaScolaire>
+[(#CONFIG{soyezcreateurs/agendascolaire,annuel}|=={scolaire}|?{' ',''})<INCLURE{fond=agendaliste_scolaire}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{genre}{calendrier}>]
+[(#CONFIG{soyezcreateurs/agendascolaire,annuel}|=={annuel}|?{' ',''})
 [(#CONFIG{soyezcreateurs/agendafuturseul,Oui}|=={Oui}|?{' ',''})<INCLURE{fond=agendaliste_futurseul}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{genre}{calendrier}>]
 [(#CONFIG{soyezcreateurs/agendafuturseul,Oui}|=={Non}|?{' ',''})<INCLURE{fond=agendaliste}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{genre}{calendrier}>]
-<//B_AgendaScolaire>
+]
 </BOUCLE_EstAgenda>
 	<div id="miettesdepain">
 	<ul>
