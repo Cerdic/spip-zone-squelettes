@@ -67,6 +67,8 @@
 		creer_base();
 	}
 
+// ci-dessous, ça ne marche pas ...	
+	
 	function BliP_installer_configuration() {
 		global $table_blip;
 		// Installe la configuration par défaut -- Une requête par ligne, car sinon cela bug et je ne sais pas pourquoi.
@@ -110,6 +112,8 @@
 		spip_query($req);
 	}
 
+// ci-dessus, ça ne marche pas ...		
+	
 	// Script  de suppression de la table spip_blip. Utilisé sur exec=blip_effacer
 	function BliP_supprimer_blip() {
 		BliP_supprimer_table();
@@ -156,6 +160,8 @@
 			ecrire_meta('blip_breves', "oui");
 			ecrire_meta('blip_plan', "oui");
 			ecrire_meta('blip_sites', "oui");
+			ecrire_meta('blip_theme', "");
+			ecrire_meta('blip_couleur', "");
 			ecrire_metas();
 		}
 	}
