@@ -292,93 +292,8 @@ $row=serialize($row);
 }
 return $row;
 }
-/*
- *   +----------------------------------+
- *    Nom du Filtre :    afficher_avatar
- *   +----------------------------------+
- *    Date : lundi 23 février 2004
- *    Auteur :  Nikau (luchier@nerim.fr)
- *   +-------------------------------------+
- *    Fonctions de ce filtre :
- *    Cette fonction permet d'afficher 
- *    l'avatar d'un auteur.
- *    On peut passer une classe CSS pour régler        
- *    l'affichage
- *    EXEMPLE :
- *    [(#NOM|afficher_avatar{''})] ou
- *     [(#NOM|afficher_avatar{'nom_de_la_classe'})]
- *   +-------------------------------------+ 
- *  
- * Pour toute suggestion, remarque, proposition d'ajout
- * reportez-vous au forum de l'article :
- * http://www.uzine.net/spip_contrib/article.php3?id_article=261
-*/
-function afficher_avatar($nom, $classe='') {
-if ($classe!='') $insert=" class=\"$classe\""; else $insert="";
 
-$infos=unserialize(get_auteur_infos('', $nom));
 
-if ($infos['statut']=="0minirezo" OR $infos[statut]=="1comite") {
-  $racine="auton$infos[id_auteur]";
-	if (file_exists("IMG/$racine.gif")) {
-		$fichier = "$racine.gif";
-		}
-		else if (file_exists("IMG/$racine.jpg")) {
-				 $fichier = "$racine.jpg";
-				 }
-		else if (file_exists("IMG/$racine.png")) {
-				 $fichier = "$racine.png";
-		}
-	$retour="<img".$insert." src=\"IMG/$fichier\" alt=\"avatar de $nom\">";
-	}
-	else {
-	if ($infos['statut']=="6forum") {
-	$infos=unserialize(get_auteur_infos('', $nom));
-$source=unserialize($infos[extra]);
-$source_extra=$source[avatar];
-$retour="<img".$insert."  src=\"".$source_extra."\" alt=\"Avatar de $nom\">";
-}
-}
-return $retour;
-}
-/*
- *   +----------------------------------+
- *    Nom des Filtres :  afficher_mots_clefs et pas_afficher_mots_clefs
- *   +----------------------------------+
- *    Date : lundi 25 février 2004
- *    Auteur :  Nikau (luchier@nerim.fr)
- *   +-------------------------------------+
- *    Fonctions de ce filtre :
- *    Permet d'afficher ou non les mots clefs pour 
- *    les forums selon le statut de l'auteur du message
- *    EXEMPLE :
- *    [(#ID_FORUM|afficher_mots_clefs] ou
- *     [(#ID_FORUM|pas_afficher_mots_clefs]
- *   +-------------------------------------+ 
- *  
- * Pour toute suggestion, remarque, proposition d'ajout
- * reportez-vous au forum de l'article :
- * http://www.uzine.net/spip_contrib/article.php3?id_article=421
-*/
-function afficher_mots_clefs($texte) {
-if (($GLOBALS['auteur_session']['statut']=='0minirezo') OR ($GLOBALS['auteur_session']['statut']=='1comite'))
-{
-$GLOBALS['afficher_groupe'][]=10;
-$GLOBALS['afficher_groupe'][]=11;
-}
-else {
-$GLOBALS['afficher_groupe'][]=0; 
-}
-}
-function pas_afficher_mots_clefs($texte) {
-if (($GLOBALS['auteur_session']['statut']=='0minirezo') OR ($GLOBALS['auteur_session']['statut']=='1comite'))
-{
-$GLOBALS['afficher_groupe'][]=11;
-}
-else{
-$GLOBALS['afficher_groupe'][]=0;
-}
-}
 /*
  *   +----------------------------------+
  *    Nom des Filtres :  citation
@@ -703,7 +618,7 @@ function lier_au_glossaire($texte)
 {
 	# Config
 	# L'identifiant (id_rubrique) de la rubrique glossaire
-	$id_rubrique = 39;
+	$id_rubrique = 33;
 	# Limiter l'effet du filtre à la première occurence
 	$eviter_doublons = 0; // 0 : afficher toutes les occurences
 
@@ -715,11 +630,11 @@ function lier_au_glossaire($texte)
 	{
 		if($eviter_doublons == 1)
 		{
-			$texte = first_replace("$o[titre]","<a href=\"breve.php3?id_breve=".$o[id_breve]."\" class=\"glossaire\">$o[titre]</a>",$texte);
+			$texte = first_replace("$o[titre]","<a href=\"spip.php?breve".$o[id_breve]."\" class=\"glossaire\">$o[titre]</a>",$texte);
 		}
 		else
 		{
-			$texte = str_replace("$o[titre]","<a href=\"breve.php3?id_breve=".$o[id_breve]."\" class=\"glossaire\">$o[titre]</a>",$texte);
+			$texte = str_replace("$o[titre]","<a href=\"spip.php?breve".$o[id_breve]."\" class=\"glossaire\">$o[titre]</a>",$texte);
 		}
 	}
 	return $texte;
