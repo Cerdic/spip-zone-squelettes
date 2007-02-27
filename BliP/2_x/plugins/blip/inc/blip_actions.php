@@ -7,7 +7,7 @@
 	// Toutes les fonctions ont étés regroupées ici.
 
 	function BliP_version_ftp() {
-		return (2.392);
+		return (2.4);
 		// METTRE EGALEMENT A JOUR LA VERSION DU FICHIER plugin.xml
 	}
 	
@@ -20,7 +20,7 @@
 	// Script  d'installation de la table spip_blip et configuration par défaut du squelette. Utilisé sur exec=blip
 	function BliP_installer_blip() {
 		include_spip('inc/meta');
-		ecrire_meta('blip_version', 2.3);
+		ecrire_meta('blip_version', 2.4);
 		ecrire_metas();
 		BliP_installer_table();
 		BliP_installer_configuration();
@@ -53,8 +53,11 @@
 		ecrire_meta('blip_switch', "oui");
 		ecrire_meta('blip_rechercher', "oui");		
 		ecrire_meta('blip_prefixe', "neutre");
-		ecrire_meta('blip_theme', "toto");
-		ecrire_meta('blip_couleur', "1");	
+		ecrire_meta('blip_theme', "");
+		ecrire_meta('blip_couleur', "");
+		ecrire_meta('blip_breves', "oui");
+		ecrire_meta('blip_plan', "oui");
+		ecrire_meta('blip_sites', "oui");		
 		ecrire_metas();
 	}
 	
@@ -147,9 +150,9 @@
 			ecrire_meta('blip_version', 2.31);
 			ecrire_metas();
 		}
-		if ($v_instal < 2.392) {
+		if ($v_instal < 2.4) {
 			include_spip('inc/meta');
-			ecrire_meta('blip_version', 2.392);
+			ecrire_meta('blip_version', 2.4);
 			ecrire_meta('blip_breves', "oui");
 			ecrire_meta('blip_plan', "oui");
 			ecrire_meta('blip_sites', "oui");
