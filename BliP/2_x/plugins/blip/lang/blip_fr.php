@@ -35,7 +35,10 @@ $GLOBALS['i18n_blip_fr'] = array(
  'actualite' => 'Actualit&eacute;',
  'auteurs' => 'Auteurs',
  
+// B
 
+ 'breves' => 'Br&egrave;ves',
+ 
 // C
 
  'commentaires_aucun_publie' => 'Aucun commentaire publi&eacute;',
@@ -119,6 +122,7 @@ $GLOBALS['i18n_blip_fr'] = array(
  'par' => 'par',
  'popularite' => 'popularit&eacute;',
  'publie_en' => 'Publi&eacute; en',
+  'plan_du_site' => 'Plan du site',
  
  
 // O

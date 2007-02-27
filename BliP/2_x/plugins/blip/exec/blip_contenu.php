@@ -30,6 +30,7 @@ function exec_blip_contenu() {
 
 	$liste_meta_navigation = array(
 		'blip_accueil',
+		'blip_breves',
 		'blip_sommaire',
 		'blip_sommaire_afficher',
 		'blip_sommaire_articles',
@@ -49,8 +50,9 @@ function exec_blip_contenu() {
 		'blip_mots_alphabetique',
 		'blip_auteur',
 		'blip_rechercher',
+		'blip_sites',
 		'blip_espaceprive',
-		'blip_switch'
+		'blip_plan'
 	);
 
 	if ($changer_config == 'oui') {

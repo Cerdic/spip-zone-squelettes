@@ -7,7 +7,7 @@
 	// Toutes les fonctions ont étés regroupées ici.
 
 	function BliP_version_ftp() {
-		return (2.31);
+		return (2.392);
 		// METTRE EGALEMENT A JOUR LA VERSION DU FICHIER plugin.xml
 	}
 	
@@ -145,6 +145,14 @@
 		if ($v_instal < 2.31) {
 			include_spip('inc/meta');
 			ecrire_meta('blip_version', 2.31);
+			ecrire_metas();
+		}
+		if ($v_instal < 2.392) {
+			include_spip('inc/meta');
+			ecrire_meta('blip_version', 2.392);
+			ecrire_meta('blip_breves', "oui");
+			ecrire_meta('blip_plan', "oui");
+			ecrire_meta('blip_sites', "oui");
 			ecrire_metas();
 		}
 	}

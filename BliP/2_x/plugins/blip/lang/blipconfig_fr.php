@@ -57,6 +57,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'blip_theme_neutre' => 'Neutre',
 
 	'blip_accueil' => '<b>Accueil</b>',
+	'blip_breves' => '<b>Br&egrave;ves</b>',
 	'blip_sommaire' => '<b>Actualit&eacute;</b>',
 	'blip_sommaire_afficher' => 'Actualit&eacute; - Afficher les derniers',
 	'blip_sommaire_articles' => 'Actualit&eacute; - articles publi&eacute;s',
@@ -76,8 +77,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'blip_mots_alphabetique' => 'Mots-cl&eacute;s - ordre alphab&eacute;tique',
 	'blip_auteur' => '<b>Auteurs</b>',
 	'blip_rechercher' => '<b>Rechercher</b>',	
+	'blip_sites' => '<b>Sites</b>',	
 	'blip_espaceprive' => '<b>Espace priv&eacute;</b>',
-	'blip_switch' => '<b>Changer les couleurs du site</b>',
+	'blip_plan' => '<b>Plan du site</b>',
 	
 	'blip_aucune' => 'aucune',
 	'blip_article' => '<b>Articles</b>',

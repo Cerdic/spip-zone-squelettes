@@ -15,8 +15,15 @@ $css_blip[".titre_principal|padding"] = '20px 20px';
 $css_blip[".sous_titre|margin"] = '0';
 $css_blip[".sous_titre|padding"] = '0 0 10px 20px';
 
+
+$css_blip["#tete .menu_principal .liens a|border|width"] = '0px';
+
 $css_blip["#pied|background"] = '#ffffff';
 $css_blip["#pied|height"] = '20px';
 $css_blip["#pied|border|width"] = '0px';
+
+
+
+
 
 ?>
