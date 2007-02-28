@@ -7,17 +7,16 @@ global $tables_auxiliaires;
 global $table_blip;
 
 $blip_champs = array(
-	"id_config"    => "bigint(21) NOT NULL",
-	"id_article"    => "bigint(21) DEFAULT '0' NOT NULL",
-	"date_debut"    => "datetime DEFAULT '0000-00-00 00:00:00' NOT NULL",
-	"date_fin"    => "datetime DEFAULT '0000-00-00 00:00:00' NOT NULL",
-	"titre"    => "text NOT NULL",
+	"id_config"   	=> "bigint(21) NOT NULL",
+	"position"    	=> "text NOT NULL",	
+	"id_item"    	=> "bigint(21) NOT NULL",
+	"ordre"    		=> "bigint(21) NOT NULL",
+	"type"    		=> "text NOT NULL",	
+	"titre"    		=> "text NOT NULL",
 	"descriptif"    => "text NOT NULL",
-	"lieu"    => "text NOT NULL",
-	"horaire" => "ENUM('oui','non') DEFAULT 'oui' NOT NULL",
-	"id_evenement_source"    => "bigint(21) NOT NULL",
-	"idx"        => "ENUM('', '1', 'non', 'oui', 'idx') DEFAULT '' NOT NULL",
-	"maj"    => "TIMESTAMP"
+	"texte"    		=> "text NOT NULL",
+	"style"    		=> "text NOT NULL",
+	"actif"    		=> "text NOT NULL"
 	);
 
 $blip_keys = array(
