@@ -3,12 +3,23 @@
 <BOUCLE_Pictos(MOTS){type=_ModePortail}{titre==^[02468]\.}>
 <BOUCLE_ArticlePicto(ARTICLES){id_mot}{par hasard}{0,1}>
 <a href="#URL_ARTICLE" class="vignette">
-<img src="[(#LOGO_MOT_NORMAL||extraire_attribut{src})]" alt="[(#_Pictos:TITRE|supprimer_numero)]" />
+#SET{masque,#LOGO_MOT_SURVOL||extraire_attribut{src}}
+#SET{largeur,#LOGO_MOT_SURVOL||extraire_attribut{width}}
+#SET{hauteur,#LOGO_MOT_SURVOL||extraire_attribut{height}}
+#SET{masquetaille,#LOGO_MOT_SURVOL||image_alpha{127}|image_aplatir{png,7f7f7f}|extraire_attribut{src}}
+#SET{texteombre,(#TITRE|supprimer_numero|utf_8_to_unicode|strtolower|image_typo{police=timesi.ttf,taille=24,couleur=000000,align=center,largeur=#GET{largeur},padding=4}|image_recadre{#GET{largeur},#GET{hauteur},center bottom,7f7f7f}|image_aplatir{png,7f7f7f}|image_masque{#GET{masquetaille}}|extraire_attribut{src})}
+#SET{texteclair,(#TITRE|supprimer_numero|utf_8_to_unicode|strtolower|image_typo{police=timesi.ttf,taille=24,couleur=f1e5cf,align=center,largeur=#GET{largeur},padding=5}|image_recadre{#GET{largeur},#GET{hauteur},center bottom,7f7f7f}|image_aplatir{png,7f7f7f}|image_masque{#GET{masquetaille}}|extraire_attribut{src})}
+<img src="[(#LOGO_MOT_NORMAL||extraire_attribut{src}|image_masque{#GET{masque}}|image_masque{#GET{texteombre}}|image_masque{#GET{texteclair}}|image_masque{#GET{texteclair}}|extraire_attribut{src})]" alt="[(#_Pictos:TITRE|supprimer_numero)]" width="#GET{largeur}" height="#GET{hauteur}" />
 </a>
 </BOUCLE_ArticlePicto>
 <a href="#URL_MOT" class="vignette">
-<img src="[(#LOGO_MOT_NORMAL||extraire_attribut{src})]" alt="[(#TITRE|supprimer_numero)]" />
-</a>
+#SET{masque,#LOGO_MOT_SURVOL||extraire_attribut{src}}
+#SET{largeur,#LOGO_MOT_SURVOL||extraire_attribut{width}}
+#SET{hauteur,#LOGO_MOT_SURVOL||extraire_attribut{height}}
+#SET{masquetaille,#LOGO_MOT_SURVOL||image_alpha{127}|image_aplatir{png,7f7f7f}|extraire_attribut{src}}
+#SET{texteombre,(#TITRE|supprimer_numero|utf_8_to_unicode|strtolower|image_typo{police=timesi.ttf,taille=24,couleur=000000,align=center,largeur=#GET{largeur},padding=4}|image_recadre{#GET{largeur},#GET{hauteur},center bottom,7f7f7f}|image_aplatir{png,7f7f7f}|image_masque{#GET{masquetaille}}|extraire_attribut{src})}
+#SET{texteclair,(#TITRE|supprimer_numero|utf_8_to_unicode|strtolower|image_typo{police=timesi.ttf,taille=24,couleur=f1e5cf,align=center,largeur=#GET{largeur},padding=5}|image_recadre{#GET{largeur},#GET{hauteur},center bottom,7f7f7f}|image_aplatir{png,7f7f7f}|image_masque{#GET{masquetaille}}|extraire_attribut{src})}
+<img src="[(#LOGO_MOT_NORMAL||extraire_attribut{src}|image_masque{#GET{masque}}|image_masque{#GET{texteombre}}|image_masque{#GET{texteclair}}|image_masque{#GET{texteclair}}|extraire_attribut{src})]" alt="[(#_Pictos:TITRE|supprimer_numero)]" width="#GET{largeur}" height="#GET{hauteur}" /></a>
 <//B_ArticlePicto>
 </BOUCLE_Pictos>
 [(#CONFIG{soyezcreateurs/citationsheader,extra}|=={extra}|?{' ',''})<INCLURE{fond=citations}>]
