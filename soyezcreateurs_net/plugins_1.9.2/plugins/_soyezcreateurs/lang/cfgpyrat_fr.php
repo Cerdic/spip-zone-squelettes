@@ -5,7 +5,9 @@
 $GLOBALS['i18n_cfgpyrat_fr'] = array(
 
 // pour cfg_soyezcreateurs_layout
+'layout_gala_intro' => '<p>Bas&eacute; sur <a href="http://blog.html.it/layoutgala/" hreflang="en">Layout Gala</a></p>',
 'layout_gala' => 'Agencement des colonnes sur la page',
+'layout_gala_explications' => '<p>Agencement du site.<br />Pour les articles et les rubriques, le r&eacute;glage peut &ecirc;tre fait de mani&egrave;re individuelle en affectant un des mots clefs de layout &agrave; ces derniers.</p>',
 'layout_agencement' => 'Agencement',
 'layout_defaut' => 'Par d&eacute;faut',
 'layout_accueil' => 'Accueil',
