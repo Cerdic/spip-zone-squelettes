@@ -54,6 +54,7 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'deposer_intention' => 'D&eacute;poser une intention de pri&egrave;re',
 'docatelecharger' => 'Documents &agrave; t&eacute;l&eacute;charger',
 'dernieremaj' => 'Derni&egrave;re mise &agrave; jour du site :',
+'derniereactualites' => 'Derni&egrave;res actualit&eacute;s',
 'descriptif' => 'Descriptif',
 
 //E
