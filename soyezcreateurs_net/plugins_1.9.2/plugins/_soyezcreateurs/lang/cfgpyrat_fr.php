@@ -4,7 +4,12 @@
 
 $GLOBALS['i18n_cfgpyrat_fr'] = array(
 
-'layout_gala' => 'Agencement des colonnes sur la page'
+// pour cfg_soyezcreateurs_layout
+'layout_gala' => 'Agencement des colonnes sur la page',
+
+// pour cfg_soyezcreateurs_google
+'parametres_google' => 'Param&egrave;tres pour Google',
+'parametres_xiti' => 'Param&egrave;tres pour Xiti'
 
 );
 
