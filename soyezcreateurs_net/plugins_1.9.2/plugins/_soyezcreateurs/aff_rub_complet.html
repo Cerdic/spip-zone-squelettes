@@ -16,60 +16,11 @@
 <div class="texte">
 <!-- Contenu : Tous les mots -->
 <div class="cartouche">
-<h1 class="titre-texte">[(#TITRE|supprimer_numero)]</h1>
+<h1 class="titre-texte">[(#TITRE|supprimer_numero)][ (#SECTEUR_PDF)]</h1>
 </div>
-<div id="letexte">
-	[(#REM) Le texte de la rubrique ]
-	<div class="rubriques_chapitres">
-	[<div class="descriptif">(#DESCRIPTIF)</div>]
-	[(#TEXTE|reduire_image{400,0})]
-	[<div class="notes">(#NOTES)</div>]
-	
-		<BOUCLE_Articles_Racine(ARTICLES) {id_rubrique} {par titre}>
-		<h2>[(#TITRE|supprimer_numero)]</h2>
-		<div class="contenu_chapitres">
-		[<div class="chapo">(#CHAPO|sinon{#DESCRIPTIF})</div>]
-		[<div>(#TEXTE|reduire_image{400,0})</div>]
-		[<div class="ps">(#PS)</div>]
-		[<div class="notes">(#NOTES)</div>]
-		</div>
-		</BOUCLE_Articles_Racine>
-
-	[(#REM) 
-		Les sous rubriques, puis les articles, de manière récursive
-	]
-	<?php $niveau = 1 ?>
-	<B_Rubriques>
-	<?php $niveau += 1 ?>
-		<BOUCLE_Rubriques(RUBRIQUES) {id_parent} {par titre}>
-		<h<?php echo $niveau; ?>>[(#TITRE|supprimer_numero)]</h<?php echo $niveau; ?>>
-		<div class="rubriques_chapitres">
-		[<div class="descriptif">(#DESCRIPTIF)</div>]
-		[(#TEXTE|reduire_image{400,0})]
-		[<div class="notes">(#NOTES)</div>]
-
-			<B_Articles>
-			
-				<BOUCLE_Articles(ARTICLES) {id_rubrique} {par titre}>
-				<h<?php echo $niveau+1; ?>>[(#TITRE|supprimer_numero)]</h<?php echo $niveau+1; ?>>
-				<div class="contenu_chapitres">
-				[<div class="chapo">(#CHAPO|sinon{#DESCRIPTIF})</div>]
-				[<div>(#TEXTE|reduire_image{400,0})</div>]
-				[<div class="ps">(#PS)</div>]
-				[<div class="notes">(#NOTES)</div>]
-				</div>
-				</BOUCLE_Articles>
-			</B_Articles>
-
-			<BOUCLE_Sous_Rubriques(BOUCLE_Rubriques)></BOUCLE_Sous_Rubriques>
-		</div>
-
-		</BOUCLE_Rubriques>
-	<?php $niveau -= 1 ?>
-	</B_Rubriques>
-	</div>
-
-</div><!-- Fin de #LeTexte -->
+	<div id="letexte">
+<INCLURE{fond=aff_rub_complet_texte}{id_rubrique}>
+	</div><!-- Fin de #LeTexte -->
 </div><!-- Fin de .texte -->
 [(#FORMULAIRE_ADMIN)]
 
