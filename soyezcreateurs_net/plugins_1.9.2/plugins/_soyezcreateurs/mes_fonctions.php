@@ -344,8 +344,9 @@ function annee_scolaire($ladate) {
 	return $annee;
 }
 
-function aff_img_propre($src, $alt, $link='') {
+function aff_img_propre($src, $width, $height, $alt, $link='') {
 	if ($src) {
+		$src = reduire_image($src, $width, $height); 
 		$width = extraire_attribut($src, 'width');
 		$height = extraire_attribut($src, 'height');
 		$src = extraire_attribut($src, 'src');
@@ -388,7 +389,7 @@ function logo_swf_or_img($src, $width, $height, $alt='', $link='', $classe='', $
   </object>";
 		}
 	} else {
-		return aff_img_propre($src, $alt, $link);
+		return aff_img_propre($src, $width, $height, $alt, $link);
 	}
 }
 ?>
