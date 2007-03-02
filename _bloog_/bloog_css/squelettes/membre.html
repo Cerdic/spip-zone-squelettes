@@ -111,18 +111,13 @@
 <li>
   <h4>Ses  articles populaires:</h4>
 <p>
-<BOUCLE_COMPT_ARTICLE_AUTEUR(ARTICLES){tout}{id_auteur}> </BOUCLE_COMPT_ARTICLE_AUTEUR>
-[#NOM a travaill&eacute; sur (#TOTAL_BOUCLE) articles.]
-<//B_COMPT_ARTICLE_AUTEUR>
-
 <BOUCLE_ARTICLE_AUTEUR(ARTICLES){id_auteur}{par popularite}{inverse}{0,10}>
 [::&nbsp;<a href="#URL_ARTICLE">(#TITRE)</a>&nbsp;(<? $total_visites = "#VISITES"; 
     echo $total_visites == 1? "1&nbsp;visite." : "$total_visites&nbsp;visites." ; ?>)<br/>
 ]
 </BOUCLE_ARTICLE_AUTEUR>
 #NOM n'a pas encore &eacute;crit d'article.
-<//B_ARTICLE_AUTEUR>
-              </p>
+<//B_ARTICLE_AUTEUR>              </p>
 			</li>
 					
 					
@@ -131,7 +126,7 @@
 <h4>Ses derniers messages:</h4>
 <p>
 <BOUCLE_forum(FORUMS){id_auteur}{plat}{par date}{inverse}{0,10}>
-                    [::&nbsp;<a href="_discussion.php?id_forum=#ID_FORUM#forum#ID_FORUM">(#TITRE)</a><br/>]
+                    [::&nbsp;<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})]" title="#TITRE">(#TITRE)</a><br/>]
                     </BOUCLE_forum>
 					#NOM n'a pas encore &eacute;crit de message.
 					<//B_forum>

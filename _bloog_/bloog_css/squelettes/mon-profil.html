@@ -70,19 +70,18 @@
 <p>
 
 <BOUCLE_acces_perso(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
-[<a href="[(#URL_PAGE{contact})]">(#SESSION{statut}|match{nouveau|6forum}|?{:: Demander au webmestre la conversion de mon compte et devenir r&eacute;dacteur})</a><br/>]
+[<a href="[(#URL_PAGE{contact})]">(#SESSION{statut}|=={6forum}?{:: Demander la conversion de mon compte et devenir r&eacute;dacteur})</a><br/>]
 [<a href="ecrire/">(#SESSION{statut}|=={nouveau}?{:: Visitez votre interface de r&eacute;daction})</a><br/>]
 [<a href="ecrire/?exec=articles_edit&new=oui">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Commencer un nouvel article})</a><br/>]
-[<a href="ecrire/?exec=articles_page">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Travailler sur mes articles})</a><br/>]
 [<a href="ecrire/">(#SESSION{statut}|=={0minirezo}?{:: Agir sur les articles propos&eacute;s})</a><br/>]
-[<a href="ecrire/?exec=controle_forum">(#SESSION{statut}|=={0minirezo}?{:: Modérer un message abusif})</a><br/>]
 [<a href="ecrire/?exec=auteurs">(#SESSION{statut}|=={0minirezo}?{:: Ejecter un membre pénible})</a><br/>]
 [<a href="ecrire/">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Acc&eacute;der &agrave; l'interface de r&eacute;daction})</a><br/>]
-</BOUCLE_acces_perso>
+[<a href="ecrire/?exec=controle_forum">(#SESSION{statut}|=={0minirezo}?{:: Effacer un message abusif})</a><br/>]
 <BOUCLE_RUB_FORUM(RUBRIQUES){titre_mot=forum}{0,1}>
-<span class="ecrire"><a href="#URL_RUBRIQUE">:: Poster dans un forum</a>.</span><br/>
+[<a href="#URL_RUBRIQUE">(#SESSION{statut}|=={0minirezo}?{:: Corriger ou poster un message dans un forum})</a><br/>]
+[<a href="#URL_RUBRIQUE">(#SESSION{statut}|match{1comite|6forum|nouveau}|?{:: Poster dans un forum})</a><br/>]
 </BOUCLE_RUB_FORUM>
-
+</BOUCLE_acces_perso>
 
 </p>
 </li>
@@ -94,46 +93,45 @@
 <BOUCLE_TOTAL_ARTICLE(ARTICLES){statut IN prepa, prop, refuse, poubelle, publie}{id_auteur=#SESSION{id_auteur}}{0,1}>
 <p>
 
-<B_ARTICLE_PREPA>
+<B_ARTICLE_PREP>
 ::&nbsp;Mes derniers articles en rédaction :<br/>
-<BOUCLE_ARTICLE_PREPA(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=prepa}{par date}{inverse}>
+<BOUCLE_ARTICLE_PREP(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=prepa}{par date}{inverse}{0,4}>
 <img src="dist/images/puce-blanche.gif" alt="article en rédaction"><a href="ecrire/?exec=articles&id_article=#ID_ARTICLE" alt="article en cours de rédaction">#TITRE</a><br/>
-</BOUCLE_ARTICLE_PREPA>
-
+</BOUCLE_ARTICLE_PREP>
+</B_ARTICLE_PREP>
 
 
 <B_ARTICLE_PROP>
 ::&nbsp;Mes derniers articles proposés :<br/>
-<BOUCLE_ARTICLE_PROP(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=prop}{par date}{inverse}>
+<BOUCLE_ARTICLE_PROP(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=prop}{par date}{inverse}{0,4}>
 <img src="dist/images/puce-orange.gif" alt="article proposé"><a href="ecrire/?exec=articles&id_article=#ID_ARTICLE" alt="article proposé à l'évaluation">#TITRE</a><br/>
 </BOUCLE_ARTICLE_PROP>
-
+</B_ARTICLE_PROP>
 
 
 <B_ARTICLE_REF>
 ::&nbsp;Mes derniers articles refusés :<br/>
-<BOUCLE_ARTICLE_REF(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=refuse}{par date}{inverse}>
+<BOUCLE_ARTICLE_REF(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=refuse}{par date}{inverse}{0,4}>
 <img src="dist/images/puce-rouge.gif" alt="article en rédaction"><a href="ecrire/?exec=articles&id_article=#ID_ARTICLE" alt="article refusé">#TITRE</a><br/>
 </BOUCLE_ARTICLE_REF>
-
+</B_ARTICLE_REF>
 
 
 <B_ARTICLE_POUB>
 ::&nbsp;Mes derniers articles jetés :<br/>
-<BOUCLE_ARTICLE_POUB(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=poubelle}{par date}{inverse}>
+<BOUCLE_ARTICLE_POUB(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=poubelle}{par date}{inverse}{0,4}>
 <img src="dist/images/puce-poubelle.gif" alt="article en rédaction"><a href="ecrire/?exec=articles&id_article=#ID_ARTICLE" alt="article refusé">#TITRE</a><br/>
 </BOUCLE_ARTICLE_POUB>
-
+</B_ARTICLE_POUB>
 
 
 
 <B_ARTICLE_PUB>
 ::&nbsp;Mes derniers articles publiés :<br/>
-<BOUCLE_ARTICLE_PUB(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=publie}{par date}{inverse}>
+<BOUCLE_ARTICLE_PUB(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=publie}{par date}{inverse}{0,4}>
 <img src="dist/images/puce-verte.gif" alt="article en ligne"><a
 href="#URL_ARTICLE">#TITRE</a><br/>
 </BOUCLE_ARTICLE_PUB>
-
 </B_ARTICLE_PUB>
 
 </p>
@@ -172,7 +170,7 @@ href="#URL_ARTICLE">#TITRE</a><br/>
 
 </p>
 <BOUCLE_infos_perso(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>   
-<h4 class="icone_article">Mon Profil 
+<h4 class="icone_membre">Mon Profil 
 [(#SESSION{statut}|=={0minirezo}|?{' '})d'administrateur]
 [(#SESSION{statut}|=={1comite}|?{' '})de r&eacute;dacteur]
 [(#SESSION{statut}|=={6forum}|?{' '}) de visiteur]</h4>
@@ -185,7 +183,7 @@ href="#URL_ARTICLE">#TITRE</a><br/>
 </BOUCLE_infos_perso>
 
 
-
+<hr class="spacer"/>
 
 </div> [(#REM) fermeture cellule ]
 

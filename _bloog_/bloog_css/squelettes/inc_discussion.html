@@ -9,9 +9,12 @@
 <BOUCLE_Forums_fil(FORUMS){id_thread}{plat}{par date}{pagination}>	<a name="forum#ID_FORUM"></a>
 
 <div class="discussion">
-
-
 <div class="gauche carte"><span class="avatar">
+
+
+<BOUCLE_Forums_crayon_parent(FORUMS){id_parent}{statut=original}>
+
+
 <BOUCLE_qui(AUTEURS){tout}{id_auteur}>
 <INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=46}>
 </BOUCLE_qui>
@@ -23,7 +26,10 @@
 [Le&nbsp;(#DATE|affdate{'d/m/Y'})<br/>
 ]
 [&agrave; (#DATE|affdate{'H:i:s'}) par<br/>
-]<BOUCLE_nom(AUTEURS){tout}{id_auteur}>
+]
+
+
+<BOUCLE_nom(AUTEURS){tout}{id_auteur}>
 [<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de ce r&eacute;dacteur">]
 [<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de cet admin">]
 [<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de ce visiteur">]
@@ -37,12 +43,66 @@
 [<a href="#URL_SITE">(#NOM_SITE)</a><br/>]
 <? } if($auteur_session['id_auteur']=='1'){?>
 [<a href="mailto:#EMAIL">(#EMAIL)</a><br/>]
+[(#IP)<br/>
+]
+
+
+<?php } ?>
+Message  &eacute;dit&eacute;.
+</BOUCLE_Forums_crayon_parent>
+
+
+
+
+
+<BOUCLE_qui_ori(AUTEURS){tout}{id_auteur}>
+<INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=46}>
+</BOUCLE_qui_ori>
+</span>
+<br/>
+
+
+
+[Le&nbsp;(#DATE|affdate{'d/m/Y'})<br/>
+]
+[&agrave; (#DATE|affdate{'H:i:s'}) par<br/>
+]
+
+
+<BOUCLE_nom_ori(AUTEURS){tout}{id_auteur}>
+[<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de ce r&eacute;dacteur">]
+[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de cet admin">]
+[<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de ce visiteur">]
+[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Compte en attente">]
+[(#NOM|couper{18})</a><br/>]
+</BOUCLE_nom_ori>
+[(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
+<//B_nom_ori>
+<?  if ($auteur_session['statut']=='1comite'|| $auteur_session['statut']=='0minirezo'  || $auteur_session['statut']=='6forum' || $auteur_session['statut']=='nouveau'){
+?>
+[<a href="#URL_SITE">(#NOM_SITE)</a><br/>]
+<? } if($auteur_session['id_auteur']=='1'){?>
+[<a href="mailto:#EMAIL">(#EMAIL)</a><br/>]
 [(#IP)<br/>]
 
 
 <?php } ?>
-  <br/>
+
+
+<//B_Forums_crayon_parent>
+
+  
+  
+  
+  
 </div>[(#REM)   fermeture gauche   ]
+
+
+
+
+
+
+
 
 <div class="interforumgrand">
  <h4 class="#EDIT{titre} icone_fleche">[(#TITRE|titre_forum|couper{50})]</h4>
