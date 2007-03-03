@@ -351,9 +351,9 @@ function aff_img_propre($src, $width, $height, $alt, $link='') {
 		$height = extraire_attribut($src, 'height');
 		$src = extraire_attribut($src, 'src');
 		if ($link) {
-			return "<a href=\"$link\"><img$classe src=\"$src\" width=\"$width\" height=\"$height\" alt=\"$alt\" /></a>";
+			return "<a href=\"$link\"><img$classe src=\"/$src\" width=\"$width\" height=\"$height\" alt=\"$alt\" /></a>";
 		} else {
-			return "<img$classe src=\"$src\" width=\"$width\" height=\"$height\" alt=\"$alt\" />";
+			return "<img$classe src=\"/$src\" width=\"$width\" height=\"$height\" alt=\"$alt\" />";
 		}
 	}
 }
@@ -363,7 +363,7 @@ function logo_swf_or_img($src, $width, $height, $alt='', $link='', $classe='', $
 	if (strpos($src, '.swf')) {
 		preg_match("/.*<param name='movie' value='(.*)' \/>/", $src, $matches);
 		$src = $matches[1];
-		$noobject = aff_img_propre($noobject, $alt);
+		$noobject = aff_img_propre($noobject, $width, $height, $alt, $link);
 		include_spip('inc/swfheader');
 		include_spip('inc/filtres_images');
 		$swf = new swfheader();
@@ -375,13 +375,13 @@ function logo_swf_or_img($src, $width, $height, $alt='', $link='', $classe='', $
 			return "<object classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' 
   codebase='http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0' 
   width='$width' height='$height' type='application/x-shockwave-flash'$classe>
-  <param name='movie' value='$src' />
+  <param name='movie' value='/$src' />
   <param name='quality' value='high' />
   <!--[if !IE]>-->
   <object type='application/x-shockwave-flash' 
-    data='$src' 
+    data='/$src' 
     width='$width' height='$height'$classe>
-	<param name='movie' value='$src' />
+	<param name='movie' value='/$src' />
 	<param name='quality' value='high' />
 	$noobject
   </object>
