@@ -38,16 +38,13 @@
 </BOUCLE_nom>
 [(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
 <//B_nom>
-<?  if ($auteur_session['statut']=='1comite'|| $auteur_session['statut']=='0minirezo'  || $auteur_session['statut']=='6forum' || $auteur_session['statut']=='nouveau'){
-?>
-[<a href="#URL_SITE">(#NOM_SITE)</a><br/>]
-<? } if($auteur_session['id_auteur']=='1'){?>
-[<a href="mailto:#EMAIL">(#EMAIL)</a><br/>]
-[(#IP)<br/>
-]
 
+<BOUCLE_profil_forum1(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
+[<a href="#URL_SITE">(#SESSION{statut}|match{1comite|6forum|nouveau}|?{#NOM_SITE})</a><br/>]
+[<a href="mailto:#EMAIL">(#SESSION{statut}|=={0minirezo}?{#EMAIL})</a><br/>]
+[(#SESSION{statut}|=={0minirezo}?{#IP})<br/>]
+</BOUCLE_profil_forum1>
 
-<?php } ?>
 Message  &eacute;dit&eacute;.
 </BOUCLE_Forums_crayon_parent>
 
@@ -78,16 +75,12 @@ Message  &eacute;dit&eacute;.
 </BOUCLE_nom_ori>
 [(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
 <//B_nom_ori>
-<?  if ($auteur_session['statut']=='1comite'|| $auteur_session['statut']=='0minirezo'  || $auteur_session['statut']=='6forum' || $auteur_session['statut']=='nouveau'){
-?>
-[<a href="#URL_SITE">(#NOM_SITE)</a><br/>]
-<? } if($auteur_session['id_auteur']=='1'){?>
-[<a href="mailto:#EMAIL">(#EMAIL)</a><br/>]
-[(#IP)<br/>]
 
-
-<?php } ?>
-
+<BOUCLE_profil_forum2(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
+[<a href="#URL_SITE">(#SESSION{statut}|match{1comite|6forum|nouveau}|?{#NOM_SITE})</a><br/>]
+[<a href="mailto:#EMAIL">(#SESSION{statut}|=={0minirezo}?{#EMAIL})</a><br/>]
+[(#SESSION{statut}|=={0minirezo}?{#IP})<br/>]
+</BOUCLE_profil_forum2>
 
 <//B_Forums_crayon_parent>
 
