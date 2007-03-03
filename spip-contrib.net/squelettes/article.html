@@ -1,219 +1,162 @@
-<BOUCLE_artprincipale(ARTICLES){id_article}>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+#CACHE{86400}
+<BOUCLE_article_principal(ARTICLES){id_article}><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
 <head>
-<title>[(#TITRE|supprimer_numero|textebrut)] - [#NOM_SITE_SPIP]</title>
-<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
-<meta name="Keywords" content="<:keywords_meta:>" />
-[<meta name="Description" content="(#DESCRIPTIF|textebrut|attribut_html) - sur SPIP CONTRIB" />]
-<meta name="robot" content="follow, index, all" />
-<meta name="revisit-after" content="1 days" />
-	<link href="#DOSSIER_SQUELETTE/structure[(#LANG_DIR|=={rtl}|?{'_rtl',''})].css" rel="stylesheet" type="text/css" />
-	<link href="#DOSSIER_SQUELETTE/police.css" rel="stylesheet" type="text/css" />
-	<link href="#DOSSIER_SQUELETTE/espace.css" rel="stylesheet" type="text/css" />
-	<link href="#DOSSIER_SQUELETTE/deco[(#LANG_DIR|=={rtl}|?{'_rtl',''})].css" rel="stylesheet" type="text/css" /><link rel="alternate stylesheet" type="text/css" title="en2col" href="screen2col.css" />
-<link rel="author" title="<:auteur_design:>" href="http://www.iesanetwork.com/a.levy/" />
-<link rel="author" title="<:auteur_logo:>" href="http://www.erational.org/"/>
-<link rel="start" title="<:accueil:>" href="/" />
-<link rel="index" title="<:carte:>" href="plan.php3" />
-<link rel="alternate" type="application/rss+xml" title="RSS" href="backend.php3" />
-<link rel="shortcut icon" type="images/x-icon" href="favicon.ico" />
-<style type="text/css">
-	@import url("spipstyle.css");
-</style>
-<link href="print.css" rel="stylesheet" type="text/css" media="print" />
+	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+	<INCLURE{fond=inc-head}{lang}>
 </head>
-<body dir="#LANG_DIR">
+
+<body id="page_article">
 <div id="page">
-  <div id="accessibiliylinks">[(#SPIP_CRON)]<a href="#content"><:acces_contenu:></a> | <a href="#lefter"><:acces_navigation:></a> | <a href="#recherche"><:acces_recherche:></a></div>
-  <INCLURE(entete1.php3)>
-  <div id="outercolonne">
-    <div id="innercolonne">
-      <div id="lefter">
-		  <INCLURE(menu1.php3){id_rubrique}{lang}>
-		  
-<B_Versions>
-<div class="bloctype2"> 
-    <img class="borderTL2" src="#DOSSIER_SQUELETTE/images/bloctype2/topleft.gif" alt="" width="5" height="5"/>
-    <img class="borderTR2" src="#DOSSIER_SQUELETTE/images/bloctype2/topright.gif" alt="" width="5" height="5"/>
-    <h3>Version(s)</h3>
-    <ul>
-    <B_Reference>
-    <li>Article de R&eacute;f&eacute;rence :
-    <BOUCLE_Reference(ARTICLES){traduction}{origine_traduction}{doublons}{lang}>
-    [<a href="#URL_ARTICLE" dir="#LANG_DIR">(#TITRE|couper_liens{75})</a>]
-    </BOUCLE_Reference>
-    </li>
-    <BOUCLE_Versions(ARTICLES){traduction}{exclus}{doublons}{lang}{par date}{inverse}>
-    <li>[<a href="#URL_ARTICLE" dir="#LANG_DIR">(#TITRE|couper_liens{75})</a>]</li>
-    </BOUCLE_Versions>
-    </ul>
-    <div class="spacer">&nbsp;</div>
-</div>
-<div class="bottomCorners">
-    <img class="borderBL2" src="#DOSSIER_SQUELETTE/images/bloctype2/bottomleft.gif" alt="" width="5" height="5" />
-    <img class="borderBR2" src="#DOSSIER_SQUELETTE/images/bloctype2/bottomright.gif" alt="" width="5" height="5"/>
-</div>
-</B_Versions>
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}{lang}{site=#ENV{site,'www.spip-contrib.net'}}>
 
-<B_traductions>
-<div class="bloctype2"> 
-    <img class="borderTL2" src="#DOSSIER_SQUELETTE/images/bloctype2/topleft.gif" alt="" width="5" height="5"/>
-    <img class="borderTR2" src="#DOSSIER_SQUELETTE/images/bloctype2/topright.gif" alt="" width="5" height="5"/>
-    <h3>Traduction(s)</h3>
-    <ul>
-    <BOUCLE_traductions(ARTICLES){traduction}{doublons}{exclus}{par date}{inverse}>
-    <li>[<a href="#URL_ARTICLE" dir="#LANG_DIR">(#TITRE|couper_liens{75})</a>] [<em> (#LANG)</em>]</li>
-    </BOUCLE_traductions>
-    </ul>
-    <div class="spacer">&nbsp;</div>
-</div>
-<div class="bottomCorners">
-    <img class="borderBL2" src="#DOSSIER_SQUELETTE/images/bloctype2/bottomleft.gif" alt="" width="5" height="5" />
-    <img class="borderBR2" src="#DOSSIER_SQUELETTE/images/bloctype2/bottomright.gif" alt="" width="5" height="5"/>
-</div>
-</B_traductions>	  
-		  
-	</div>
-
-      <div id="content">
-        <div class="bloctype3 first"> <img class="borderTL2" src="#DOSSIER_SQUELETTE/images/bloctype3/topleft.gif" alt="" width="5" height="5"/> <img class="borderTR2" src="#DOSSIER_SQUELETTE/images/bloctype3/topright.gif" alt="" width="5" height="5"/>
-
-          <p class="hierarchie"><a href="/"><:accueil_site:></a> > <BOUCLE_chemindenav(HIERARCHIE){id_article}{" > "}><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></BOUCLE_chemindenav> > [(#TITRE|supprimer_numero)]</p>
-          <div class="spacer">&nbsp;</div>
-        </div>
-        <div class="bottomCorners"> <img class="borderBL3" src="#DOSSIER_SQUELETTE/images/bloctype3/bottomleft.gif" alt="" width="5" height="5" /> <img class="borderBR3" src="#DOSSIER_SQUELETTE/images/bloctype3/bottomright.gif" alt="" width="5" height="5"/> </div>
-
-        <div class="inside2col hollyfix">
-          <p class="ie5bug">&nbsp;</p>
-					<BOUCLE_avertissement(RUBRIQUES){id_rubrique}>[<div id="avertadmin">(#TEXTE)</div>]</BOUCLE_avertissement>
-          <h1 class="2col">[(#TITRE|supprimer_numero)]</h1>
-          <h2>[(#DATE|affdate)]
-		<BOUCLE_origine(ARTICLES){traduction}{origine_traduction}{exclus}>
-			<B_auteurs>
-				<BOUCLE_auteurs(AUTEURS){id_article}{", "}>
-				<a href="#URL_AUTEUR">#NOM</a>
-				</BOUCLE_auteurs> 
-  			| <:traduit_par:>
-			</B_auteurs>
-		</BOUCLE_origine>
-		<BOUCLE_recupauteur(AUTEURS){id_article}{", "}><a href="#URL_AUTEUR"> #NOM</a></BOUCLE_recupauteur>
-		</h2>
-          [<p class="description">(#DESCRIPTIF)</p>]
-
-          <hr />
-          [(#TEXTE)]
-          [(#NOTES)<hr />]
-		  [(#PS)<hr />]
-		<BOUCLE_avertissement2(RUBRIQUES){id_rubrique}>[<div id="avertadmin">(#TEXTE)</div>]</BOUCLE_avertissement2>
-	<hr />
-
-
-	<B_recupdocarticle>
-          <div id="zonedoc">
-            <p class="textezonedoc"><img src="#DOSSIER_SQUELETTE/images/content/zonedoc.gif" width="12" height="12" alt="" />&nbsp;T&eacute;l&eacute;chargements</p>
-            <div id="zonedocinterne">
-              <p class="textezonedocinterne"><:telechargement_click:></p>
-              <div class="en2col" style="border-right: 1px dotted #006666;  position:relative;">
-                <div><BOUCLE_recupdocarticle(DOCUMENTS){mode=document}{id_article}{"<div style='width:75%;height:5px;border-bottom:1px dotted #006666;'>&nbsp;</div>"}{doublons}{1/2}>  
-				<a href="[(#URL_DOCUMENT)]"><img src="IMG/[(#LOGO_DOCUMENT|fichier)]" alt="[(#TITRE)]"/></a><br />
-                  <strong>[(#TITRE)<br />]#TYPE_DOCUMENT: [(#TAILLE|taille_en_octets)]</strong>
-                  [<br />(#DESCRIPTIF)]  </BOUCLE_recupdocarticle></div>
-              </div>
-              <div class="en2col">
-                <div><BOUCLE_recupdocarticle2(DOCUMENTS){mode=document}{id_article}{"<div style='width:75%;height:5px;border-bottom:1px dotted #006666;'>&nbsp;</div>"}{doublons}>
-				<a href="[(#URL_DOCUMENT)]"><img src="IMG/[(#LOGO_DOCUMENT|fichier)]" alt="[(#TITRE)]" /></a><br />
-                  <strong>[(#TITRE)<br />]#TYPE_DOCUMENT: [(#TAILLE|taille_en_octets)]</strong>
-                  [<br />(#DESCRIPTIF)] </BOUCLE_recupdocarticle2></div>
-              </div>
-              <div class="clear mozclear">&nbsp;</div>
-            </div>
-          </div></B_recupdocarticle>
+	[(#REM) Fil d'Ariane ]
+	<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}{1,n}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane></div>
+	<div id="conteneur">
 	
-	<p class="repondrearticle">
-	<img src="#DOSSIER_SQUELETTE/images/content/bgrepondre.gif" alt="" />&nbsp;<a href="[(#URL_ARTICLE|LienVariante)]" class="spip_out"><:variantes_spikini:></a>
-	</p>
+		[(#REM) Contenu principal : contenu de l'article ]
+		<div id="contenu">
 
-	  		[<p class="repondrearticle"><img src="#DOSSIER_SQUELETTE/images/content/bgrepondre.gif" alt="" />&nbsp;<a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_article:></a></p>]
-			<B_forums>
-			<ul id="reponsearticle">
-				<BOUCLE_forums(FORUMS){id_article}{par date}{inverse}>
-				<?php 
-					$compteur= "#COMPTEUR_BOUCLE" ; 
-					if($compteur%2==0) $compteur="2"; else $compteur="";
-				?>
+			<div class="cartouche">
+				#DEBUT_SURLIGNE
+				[(#LOGO_ARTICLE||image_reduire{200,200})]
+				[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
+				<h1 class="#EDIT{titre} titre">#TITRE</h1>
+				[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
+				#FIN_SURLIGNE
 
-			   <a name="forum#ID_FORUM"></a>
-			   <li> Message <?php $message=("#TOTAL_BOUCLE"-"#COMPTEUR_BOUCLE"+1); echo $message; ?>
-				   <ul class="[(#COMPTEUR_BOUCLE|paire)]hollyfix">
-					   <li>
-						   <p><img src="#DOSSIER_SQUELETTE/images/content/bgreponse[(#COMPTEUR_BOUCLE|imgpaire)].gif" alt="" />
-						   [<:par_auteur:> [<a href="mailto:(#EMAIL|antispam)">](#NOM|sinon{#EMAIL}|antispam)[(#EMAIL|?{</a>,''})], ][(#DATE|date_relative)]  
-						   [<span class="gras">(#TITRE)</span>]</p>
-					   		<div>[(#TEXTE)]
-					   		 [<:info_site:>: <a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a>]
-						   		<p><img src="#DOSSIER_SQUELETTE/images/content/bgrepondre[(#COMPTEUR_BOUCLE|imgpaire)].gif" alt="" />&nbsp;<a href="forum.php3?[(#PARAMETRES_FORUM)]"><:repondre_message:></a></p>
-							</div>
-							<B_forums_fils>
-				   			<ul class="hollyfix">
-				   			<BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
-					 		  <a name="forum#ID_FORUM"></a>
-					 		  <li>
-						  		 <p><img src="#DOSSIER_SQUELETTE/images/content/bgreponse<?php echo $compteur; ?>.gif" alt="" />
-						  		 [<:par_auteur:> [<a href="mailto:(#EMAIL|antispam)">](#NOM|sinon{#EMAIL}|antispam)[(#EMAIL|?{</a>,''})], ][(#DATE|date_relative)]  
-						  		 [<span class="gras">(#TITRE)</span>]</p>
-						  		 <div>[(#TEXTE)]
-						  		  [<:info_site:>: <a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a>]
-							  		 <p><img src="#DOSSIER_SQUELETTE/images/content/bgrepondre<?php echo $compteur; ?>.gif" alt="" />&nbsp;<a href="forum.php3?#PARAMETRES_FORUM"><:repondre_message:></a></p>
-						  		 </div>
-								<BOUCLE_Forums_Boucle(boucle_forums_fils)></BOUCLE_Forums_Boucle>
-							 </li>
-				  			</BOUCLE_forums_fils>
-				   			</ul>
-          					</B_forums_fils>
-  			 		   </li>
+				<p>[(#DATE|nom_jour) ][(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]. <:dernier_ajout:> [(#DATE_MODIF|nom_jour) ][(#DATE_MODIF|affdate)]</p>
+
+				[(#REM) Traductions de l'article ]
+				<B_traductions>
+				<div class="traductions">
+					<p><:trad_article_traduction:></p>
+					<ul>
+						<li[ class="(#EXPOSE)"]>[(#LANG|traduire_nom_langue)]</li>
+						<BOUCLE_traductions(ARTICLES){traduction}{exclus}>
+							<li><a[ href="(#URL_ARTICLE|url_absolue)"] rel="alternate" hreflang="#LANG"[ title="(#TITRE|couper{80}|texte_backend)"]><span lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">[(#LANG|traduire_nom_langue)]</span></a></li>
+						</BOUCLE_traductions>
 					</ul>
-				</li>
-				</BOUCLE_forums>
-		    </ul>
-			</B_forums> 
-
-        </div>
-          </div>
-      <div id="righter">
-
-		  <B_articles_rubrique2>
-			<div class="bloctype2 first"> <img class="borderTL2" src="#DOSSIER_SQUELETTE/images/bloctype2/topleft.gif" alt="" width="5" height="5"/> <img class="borderTR2" src="#DOSSIER_SQUELETTE/images/bloctype2/topright.gif" alt="" width="5" height="5"/>
-			  <h3><:meme_rubrique:> </h3>
-			<ul>
-			<BOUCLE_articles_rubrique2(ARTICLES) {id_rubrique} {par date} {inverse} {0,6} {exclus}>
-			 <li><a href="#URL_ARTICLE">[(#TITRE|couper_liens{75})]</a></li>
-			</BOUCLE_articles_rubrique2>
-			</ul>
-			  <div class="spacer">&nbsp;</div>
+				</div>
+				</B_traductions>
 			</div>
-			<div class="bottomCorners"> <img class="borderBL2" src="#DOSSIER_SQUELETTE/images/bloctype2/bottomleft.gif" alt="" width="5" height="5" /> <img class="borderBR2" src="#DOSSIER_SQUELETTE/images/bloctype2/bottomright.gif" alt="" width="5" height="5"/> </div>
-		  </B_articles_rubrique2>
-  <B_recupmot2>
-			<div class="bloctype1"> <img class="borderTL2" src="#DOSSIER_SQUELETTE/images/bloctype1/topleft.gif" alt="" width="5" height="5"/> <img class="borderTR2" src="#DOSSIER_SQUELETTE/images/bloctype1/topright.gif" alt="" width="5" height="5"/>
-			  <h3><:mots_clefs:></h3>
-			<ul>
-			<BOUCLE_recupmot2(MOTS){id_article}>
-			[<li><a href="#URL_MOT">(#TITRE|couper_liens{75})</a></li>]
-			</BOUCLE_recupmot2>
-			</ul>
-			 <div class="spacer">&nbsp;</div>
+			<br class="nettoyeur" />
+
+			#DEBUT_SURLIGNE
+			[<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
+			[<p class="#EDIT{hyperlien} lien"><:voir_en_ligne:> : 
+			<a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+			[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
+			<br class="nettoyeur" />
+			
+			<div class="encart">
+		
+				[(#REM) Menu de navigation mots-cles ]
+				<B_mots>
+				<div class="divers">
+					<h2 class="menu-titre"><:mots_clefs:></h2>
+					<ul>
+						<BOUCLE_mots(MOTS) {id_article} {par titre}>
+							<li><a href="#URL_MOT" rel="tag">#TITRE</a></li>
+						</BOUCLE_mots>
+					</ul>
+				</div>
+				</B_mots>
+			
+				[(#REM) Sites dans la meme rubrique ]
+				<B_sites_rubrique>
+				<div class="divers">
+					<h2 class="menu-titre"><a href="#URL_RUBRIQUE"><:sur_web:></a></h2>
+					<ul>
+						<BOUCLE_sites_rubrique(SITES){id_rubrique}{par nom_site}>
+						<li><a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a>
+							<B_syndic_rubrique>
+								<ul>
+									<BOUCLE_syndic_rubrique(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{0,3}>
+										<li><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></li>
+									</BOUCLE_syndic_rubrique>
+								</ul>
+							</B_syndic_rubrique>
+						</li>
+						</BOUCLE_sites_rubrique>
+					</ul>
+				</div>
+				</B_sites_rubrique>
+			
+			</div><!-- fin encart -->
+			[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{520,0})</div>]
+			#FIN_SURLIGNE
+
+			[(#REM) Portfolio : album d'images ]
+			<B_documents_portfolio>
+			<div id="documents_portfolio">
+				<h2><:info_portfolio:></h2>
+				<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document}{extension==(png|jpg|gif)$} {doublons}>
+				[<a href="[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio"[ title="(#TITRE|couper{80}|texte_backend)"]>(#LOGO_DOCUMENT||image_reduire{0,60}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
+				</BOUCLE_documents_portfolio>
 			</div>
-			<div class="bottomCorners"> <img class="borderBL2" src="#DOSSIER_SQUELETTE/images/bloctype1/bottomleft.gif" alt="" width="5" height="5" /> <img class="borderBR2" src="#DOSSIER_SQUELETTE/images/bloctype1/bottomright.gif" alt="" width="5" height="5"/> </div>
-			</B_recupmot2>
+			</B_documents_portfolio>
+			<BOUCLE_afficher_document(DOCUMENTS) {id_document} {mode=document}{extension==(png|jpg|gif)$}>
+			<div class="spip_documents spip_documents_center" id="document_actif">
+				#EMBED_DOCUMENT
+				[<div class="#EDIT{titre} spip_doc_titre">(#TITRE)</div>]
+				[<div class="#EDIT{descriptif} spip_doc_descriptif">(#DESCRIPTIF)</div>]
+			</div>
+			</BOUCLE_afficher_document>
 
-</div>
+			[<div class="ps"><h2><:info_ps:></h2>#DEBUT_SURLIGNE<div class="#EDIT{ps}">(#PS)</div>#FIN_SURLIGNE</div>]
 
-      <div class="clear mozclear">&nbsp;</div>
-    </div>
-  </div>
-  <INCLURE(pied1.php3){lang}>
-</div>
+			[(#REM) Autres documents joints a l'article ]
+			<B_documents_joints>
+			<div id="documents_joints">
+				<h2><:titre_documents_joints:></h2>
+				<ul>
+					<BOUCLE_documents_joints(DOCUMENTS){id_article}{mode=document}{par date}{doublons}>
+					<li>
+					<div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>">[(#TITRE|sinon{<:info_document:>})]</a> 
+					<a href="[(#URL_DOCUMENT)]">[(#LOGO_DOCUMENT||inserer_attribut{'alt',#TITRE})]</a>
+					<small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
+					[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]</li>
+					<br class="nettoyeur" />
+					</BOUCLE_documents_joints>
+				</ul>
+			</div>
+			</B_documents_joints>
+
+			[(#REM) Petition :
+			La petition ayant une PAGINATION il faut absolument lui passer SELF en argument. ]
+			[ #REM Conserver cet invalideur : (#PETITION|?{'',''}) ]
+			<INCLURE{fond=inc-petition}{id_article}{self=#SELF}>
+
+			[<div class="notes"><h2><:info_notes:></h2>#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
+
+		</div><!-- fin contenu article -->
+
+		[(#REM) Menu de navigation laterale ]
+		<div id="navigation">
+			<h1 class="invisible"><:navigation:></h1>
+			
+			[(#REM) Menu de navigation par rubriques - modif spip-contrib = place sous articles dans meme rubrique ]
+			<INCLURE{fond=inc-rubriques}{lang}{id_rubrique}{id_article}>
+
+		</div><!-- fin navigation -->		
+	</div><!-- fin conteneur corps article -->
+		
+	[(#REM) suite article : forums dans une div conteneur independante pour etre de toute largeur ]
+	<br class="nettoyeur" />	
+	<div id="conteneur-forum">
+		[(#REM) ancre debut forum]<a name="debut_forums"></a>
+		[<h2 class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a></h2>]
+		<INCLURE{fond=inc-forum}{id_article}>
+		<br class="nettoyeur-forum" /><!-- pour tout purger de l'inclure -->
+	</div><!-- fin conteneur forums -->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{lang}>
+
+</div><!-- fin page -->
 </body>
 </html>
-</BOUCLE_artprincipale>
+</BOUCLE_article_principal>

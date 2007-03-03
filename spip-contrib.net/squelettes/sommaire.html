@@ -1,228 +1,159 @@
+#CACHE{7200}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+<html dir="#LANG_DIR" lang="#LANG">
 <head>
-	<title>[#NOM_SITE_SPIP]</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
-	<meta name="robot" content="follow, index, all" />
-	<meta name="revisit-after" content="1 days" />
-	<meta name="Keywords" content="<:keywords_meta:>" />
-	<meta name="Description" content="<:description_meta:>" />
+	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
 
-	<link href="#DOSSIER_SQUELETTE/structure[(#LANG_DIR|=={rtl}|?{'_rtl',''})].css" rel="stylesheet" type="text/css" />
-	<link href="#DOSSIER_SQUELETTE/police.css" rel="stylesheet" type="text/css" />
-	<link href="#DOSSIER_SQUELETTE/espace.css" rel="stylesheet" type="text/css" />
-	<link href="#DOSSIER_SQUELETTE/deco[(#LANG_DIR|=={rtl}|?{'_rtl',''})].css" rel="stylesheet" type="text/css" />
-	<link rel="author" title="<:auteur_design:>" href="http://www.iesanetwork.com/a.levy/" />
-	<link rel="author" title="<:auteur_logo:>" href="http://www.erational.org/"/>
-	<link rel="start" title="<:accueil:>" href="/" />
-	<link rel="index" title="<:carte:>" href="plan.php3" />
-<link rel="alternate" type="application/rss+xml" title="<:RSS:>" href="backend.php3" />
-<link rel="shortcut icon" type="images/x-icon" href="favicon.ico" />
+	<INCLURE{fond=inc-head}{lang}>
 </head>
 
-<body dir="#LANG_DIR">
+<body id="page_sommaire">
 <div id="page">
-	<div id="accessibiliylinks">[(#SPIP_CRON)]<a href="#content"><:acces_contenu:></a> | <a href="#lefter"><:acces_navigation:></a> | <a href="#recherche"><:acces_recherche:></a></div>
-  	<INCLURE(entete1.php3)>
-	<div id="outercolonne">
-		<div id="innercolonne">
-			<div id="lefter">
-				<INCLURE(menu1.php3){lang}>
-				<div class="bloctype1">
-					<img class="borderTL2" src="#DOSSIER_SQUELETTE/images/bloctype1/topleft.gif" alt="" width="5" height="5"/>
-					<img class="borderTR2" src="#DOSSIER_SQUELETTE/images/bloctype1/topright.gif" alt="" width="5" height="5"/>
-					<h3><label for="selectlangue"><:langue:></label></h3>
-					<form action='spip_cookie.php3' method='post'><input type='hidden' name='url' value='/' />
-					<select name='var_lang' id="selectlangue">
-					<option value='ar'[(#NOM_SITE_SPIP|select_lang{ar})]>&#1593;&#1585;&#1576;&#1610;</option>
-					<option value='en'[(#NOM_SITE_SPIP|select_lang{en})]>English</option>
-					<option value='es'[(#NOM_SITE_SPIP|select_lang{es})]>Espa&#241;ol</option>
-					<option value='fr'[(#NOM_SITE_SPIP|select_lang{fr})]>Fran&#231;ais</option>
-					<option value='it'[(#NOM_SITE_SPIP|select_lang{it})]>Italiano</option>
-					</select>
-					<input type='submit' name='Valider' value='<:pass_ok:>' /></form> 
-               		<div class="spacer">&nbsp;</div>
-				</div>
-				<div class="bottomCorners">
-        			<img class="borderBL2" src="#DOSSIER_SQUELETTE/images/bloctype1/bottomleft.gif" alt="" width="5" height="5" />
-        			<img class="borderBR2" src="#DOSSIER_SQUELETTE/images/bloctype1/bottomright.gif" alt="" width="5" height="5"/>
-				</div>
-			<div class="bloctype2">
-				<img class="borderTL2" src="#DOSSIER_SQUELETTE/images/bloctype2/topleft.gif" alt="" width="5" height="5"/>
-				<img class="borderTR2" src="#DOSSIER_SQUELETTE/images/bloctype2/topright.gif" alt="" width="5" height="5"/>
-				<h3><:aimez:></h3>
-				<ul>
-				<BOUCLE_top5popu(ARTICLES){par popularite}{inverse}{lang}{0,5}>
-					[<li><a href="#URL_ARTICLE">(#TITRE|couper_liens{75})</a></li>]
-				</BOUCLE_top5popu>         		
-				</ul>
-               <div class="spacer">&nbsp;</div>
-			</div>
-			<div class="bottomCorners">
-        	<img class="borderBL2" src="#DOSSIER_SQUELETTE/images/bloctype2/bottomleft.gif" alt="" width="5" height="5" />
-        	<img class="borderBR2" src="#DOSSIER_SQUELETTE/images/bloctype2/bottomright.gif" alt="" width="5" height="5"/>
-		  </div>
-		  
-		  <B_articles_maj>
-		  <div class="bloctype1">
-					<img class="borderTL2" src="#DOSSIER_SQUELETTE/images/bloctype1/topleft.gif" alt="" width="5" height="5"/>
-					<img class="borderTR2" src="#DOSSIER_SQUELETTE/images/bloctype1/topright.gif" alt="" width="5" height="5"/>
-					<h3><:modifications:></h3>
-                    <ul>
-				        <BOUCLE_articles_maj(ARTICLES){date_modif!=0}{par date_modif}{inverse}{lang}{0,10}>
-					   [<li><a href="#URL_ARTICLE">(#TITRE|couper_liens{70})</a>]([(#DATE_MODIF|jour)]/[(#DATE_MODIF|mois)])</li>
-				        </BOUCLE_articles_maj>         		
-				    </ul>
-               		<div class="spacer">&nbsp;</div>
-				</div>
-				<div class="bottomCorners">
-        			<img class="borderBL2" src="#DOSSIER_SQUELETTE/images/bloctype1/bottomleft.gif" alt="" width="5" height="5" />
-        			<img class="borderBR2" src="#DOSSIER_SQUELETTE/images/bloctype1/bottomright.gif" alt="" width="5" height="5"/>
-				</div>
-			</div>
-			</B_articles_maj>
-			<div id="content">
 
-<B_rub_communication>
-<div class="bloctype3 first">
-	<img class="borderTL2" src="%5BSPIP%20-%20contrib%5D_files/topleft.gif" alt="" height="5" width="5">
-	<img class="borderTR2" src="%5BSPIP%20-%20contrib%5D_files/topright_004.gif" alt="" height="5" width="5">
-<BOUCLE_rub_communication(RUBRIQUES) {id_rubrique=119}><B_communication>
-	<h2>#TITRE</h2>
-	<p>#DESCRIPTIF</p>			
-<BOUCLE_communication(ARTICLES) {id_rubrique} {par date} {inverse} {titre_mot=_en_communication}>
-	<h3>#TITRE</h3>
-	<p>#DESCRIPTIF
-	<a href="#URL_ARTICLE"><:la_suite:></a>
-    </p>
-</BOUCLE_communication></BOUCLE_rub_communication>
-	<div class="spacer">&nbsp;</div> 
-</div>
-</B_rub_communication>
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}{lang}{site=#ENV{site,'www.spip-contrib.net'}}>
 
-				<INCLURE(page.php3){fond=benNeedsYou}{delai=84600}>
-				<div class="bottomCorners">
-				<img class="borderBL3" src="#DOSSIER_SQUELETTE/images/bloctype3/bottomleft.gif" alt="" width="5" height="5" />
-				<img class="borderBR3" src="#DOSSIER_SQUELETTE/images/bloctype3/bottomright.gif" alt="" width="5" height="5"/>
-				</div>
-						
-				<div class="inside">
-				<p class="ie5bug">&nbsp;</p>
-				
-				
-				
-				<h1><:dernieres_contribs:></h1>
-				<BOUCLE_last_articles(ARTICLES){par date}{inverse}{doublons centre}{0,10}{lang}>
-				<h2><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero|couper_liens{75})]</a> [<span class="date"> - (#DATE|affdate_court)</span>]
-				<B_motcles><em>
-				<BOUCLE_motcles(MOTS){id_article}{par titre}{id_groupe>2}{id_groupe<7}>[<span class="date"> - (#TITRE) </span>]</BOUCLE_motcles>
-				</em></B_motcles></h2>
-				[<p>(#INTRODUCTION|textebrut) <a href="#URL_ARTICLE" class="spip_in" title="[(#TITRE|couper_liens{75}|attribut_html)]"><:la_suite:></a></p>]
-				</BOUCLE_last_articles>
-				
-				<h1><:tout_site:></h1>
-				<BOUCLE_touteslangues(ARTICLES){par date}{inverse}{doublons centre}{0,10}{lang_select=non}>
-                [(#LANG|lang_select)]
-                <h2><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero|couper_liens{75})]</a>  <span class="date"> [- (#DATE|affdate_court)] [ - <em>(#LANG)</em>]</span></h2>
-				[<p>(#INTRODUCTION|textebrut) <a href="#URL_ARTICLE" class="spip_in" title="[(#TITRE|couper_liens{75}|attribut_html)]"><:la_suite:></a></p>]
-				[(#LANG|lang_dselect)]
-				</BOUCLE_touteslangues>
-				</div>
-			</div>
-			<div id="righter">
-			<div class="bloctype1 first">
-				<img class="borderTL2" src="#DOSSIER_SQUELETTE/images/bloctype1/topleft.gif" alt="" width="5" height="5"/>
-				<img class="borderTR2" src="#DOSSIER_SQUELETTE/images/bloctype1/topright.gif" alt="" width="5" height="5"/>
-				<h3><:vie_site:></h3>
-				<p><:inscription:></p>
+	<div id="conteneur">
+		[(#REM) Contenu principal : derniers articles publies ]
+		<div id="contenu">
 
-				#FORMULAIRE_INSCRIPTION
-
-               <div class="spacer">&nbsp;</div>
-			</div>
+			<h1 class="invisible">#NOM_SITE_SPIP</h1>
+			[<div class="descriptif">(#DESCRIPTIF_SITE_SPIP)</div>]
+			<hr class="separateur" />
 			
-			
-			
-			
-
-
-
-			<div class="bottomCorners">
-        	<img class="borderBL2" src="#DOSSIER_SQUELETTE/images/bloctype1/bottomleft.gif" alt="" width="5" height="5" />
-        	<img class="borderBR2" src="#DOSSIER_SQUELETTE/images/bloctype1/bottomright.gif" alt="" width="5" height="5"/>
-			</div>
-			<div class="bloctype2">
-				<img class="borderTL2" src="#DOSSIER_SQUELETTE/images/bloctype2/topleft.gif" alt="" width="5" height="5"/>
-				<img class="borderTR2" src="#DOSSIER_SQUELETTE/images/bloctype2/topright.gif" alt="" width="5" height="5"/>
-				<h3><:calendrier:></h3>
-
-				<BOUCLE_last_modif(ARTICLES){par date}{inverse}{0,1}>
-				<a href="agenda.php3?annee=[(#DATE|annee)]&amp;mois=[(#DATE|mois)]"><:contrib_calendrier:>[(#DATE|nom_mois)]</a>
-				</BOUCLE_last_modif>
-               <div class="spacer">&nbsp;</div>
-			</div>
-			<div class="bottomCorners">
-        	<img class="borderBL2" src="#DOSSIER_SQUELETTE/images/bloctype2/bottomleft.gif" alt="" width="5" height="5" />
-        	<img class="borderBR2" src="#DOSSIER_SQUELETTE/images/bloctype2/bottomright.gif" alt="" width="5" height="5"/>
-			</div>
-
-
-
-			
-			<div class="bottomCorners">
-        	<img class="borderBL2" src="#DOSSIER_SQUELETTE/images/bloctype1/bottomleft.gif" alt="" width="5" height="5" />
-        	<img class="borderBR2" src="#DOSSIER_SQUELETTE/images/bloctype1/bottomright.gif" alt="" width="5" height="5"/>
-			</div>
-			<B_last_BREVES>
-			<div class="bloctype2">
-				<img class="borderTL2" src="#DOSSIER_SQUELETTE/images/bloctype2/topleft.gif" alt="" width="5" height="5"/>
-				<img class="borderTR2" src="#DOSSIER_SQUELETTE/images/bloctype2/topright.gif" alt="" width="5" height="5"/>
-				<h3><:ailleurs:></h3>
-				<ul>
-					<BOUCLE_last_BREVES(BREVES){par date}{inverse}{0,8}{lang}>
-					[<li><a href="#URL_BREVE">(#TITRE|couper_liens{75})</a></li>]
-					</BOUCLE_last_BREVES>
-				</ul>
-               <div class="spacer">&nbsp;</div>
-			</div>
-			<div class="bottomCorners">
-        	<img class="borderBL2" src="#DOSSIER_SQUELETTE/images/bloctype2/bottomleft.gif" alt="" width="5" height="5" />
-        	<img class="borderBR2" src="#DOSSIER_SQUELETTE/images/bloctype2/bottomright.gif" alt="" width="5" height="5"/>
-			</div>
-			</B_last_BREVES>
-
-
-			<div class="bottomCorners">
-        	<img class="borderBL2" src="#DOSSIER_SQUELETTE/images/bloctype1/bottomleft.gif" alt="" width="5" height="5" />
-        	<img class="borderBR2" src="#DOSSIER_SQUELETTE/images/bloctype1/bottomright.gif" alt="" width="5" height="5"/>
-			</div>
-			
-
+			<div class="contre-encart">
+			[(#REM) Articles]
 			<B_articles>
-			<div class="bloctype2">
-				<img class="borderTL2" src="#DOSSIER_SQUELETTE/images/bloctype2/topleft.gif" alt="" width="5" height="5"/>
-				<img class="borderTR2" src="#DOSSIER_SQUELETTE/images/bloctype2/topright.gif" alt="" width="5" height="5"/>
-				<h3><:forum_spip_org:></h3>
-				<ul>
-					<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic=57} {par date}{inverse}{0,10}>
-					[<li><a href="#URL_ARTICLE" title="(#DESCRIPTIF|textebrut|attribut_html)">#TITRE</a></li>]
-					</BOUCLE_articles>
-				</ul>
-               <div class="spacer">&nbsp;</div>
+				<div class="liste-articles">
+					[(#ANCRE_PAGINATION)]
+					[(#ENV{debut_articles}|?{'',' '})<h2 class="invisible"><:articles_recents:></h2>]
+					<ul>
+						<BOUCLE_articles(ARTICLES){par date}{inverse}{doublons}{lang?}{pagination 10}>
+						<li>[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{100,100})]
+							[<p class="#EDIT{surtitre}">(#SURTITRE)</p>]
+							<h3 class="#EDIT{titre} titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+							[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
+							<small>
+								[<:par_auteur:> (#LESAUTEURS)]
+								[(#REM) Les mots clefs de l'article]
+								<B_motsarticle>
+								 &mdash; 
+								 <BOUCLE_motsarticle(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|13|18|21|22|25)$}{0,n-1}>
+									[<em><a href="#URL_MOT">(#TITRE)</a>, </em>]
+								</BOUCLE_motsarticle>
+								<BOUCLE_motsarticle2(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|13|18|21|22|25)$}{n-1,n}>
+									[<em><a href="#URL_MOT">(#TITRE)</a></em>]
+								</BOUCLE_motsarticle2>
+							</small>
+							[(#INTRODUCTION|?{[<div class="#EDIT{intro} texte">(#INTRODUCTION|couper{180})</div>],<hr />}) ]
+							<br class="nettoyeur" />
+						</li>
+						</BOUCLE_articles>
+					</ul>
+					[<p class="pagination">(#PAGINATION)</p>]
+				</div>
+
+			</div><!-- fin contre-encart -->
+			</B_articles>
+			
+				<div class="encart"><!--  debut encart -->
+
+				[(#REM) Liens des forums ]
+				<B_forums_liens>
+				<div class="divers">
+					#ANCRE_PAGINATION
+					<h2 class="menu-titre"><:derniers_commentaires:></h2>
+					<p><:messages_recents:></p>
+					<ul>
+						<BOUCLE_forums_liens(FORUMS){plat}{!par date}{0,80}{pagination 20}>
+						<li>[<br />&ndash; (#DATE|affdate_court|unique) &ndash;<br />]<a href="#URL_FORUM">[(#TITRE|couper{48})]</a></li>
+						</BOUCLE_forums_liens>
+					</ul>
+					[<p class="pagination">(#PAGINATION)</p>]
+				</div>
+				</B_forums_liens>
+
+				[(#REM) Sur le Web ]
+				<B_syndic>
+				<div class="divers">
+					#ANCRE_PAGINATION
+					<h2 class="menu-titre"><:nouveautes_web:></h2>
+					<ul>
+					<BOUCLE_syndic(SYNDIC_ARTICLES){id_syndic!=129}{age<180}{!par date}{0,20}{pagination 5}>
+						<li>[(#DATE|affdate_court) &ndash; ]<a href="#URL_ARTICLE"[ title="(#NOM_SITE|texte_backend)"] class="spip_out">#TITRE</a></li>
+					</BOUCLE_syndic>
+					</ul>
+					[<p class="pagination">(#PAGINATION)</p>]
+				</div>
+				</B_syndic>
+				
+				[(#REM) Rendez-vous de Spip-party ]
+				<B_syndic2>
+				<div class="divers">
+					<h2 class="menu-titre">Spip-party</h2>
+					<ul>
+					<BOUCLE_syndic2(SYNDIC_ARTICLES){id_syndic=129}{age<180}{!par date}{0,5}>
+						<li>[(#DATE|affdate_court) &ndash; ]<a href="#URL_ARTICLE"[ title="(#NOM_SITE|texte_backend)"] class="spip_out">#TITRE</a></li>
+					</BOUCLE_syndic2>
+					</ul>
+				</div>
+				</B_syndic2>
+				
+				[(#REM) Breves ]
+				<B_breves>
+				<div class="divers">
+					#ANCRE_PAGINATION
+					<h2 class="menu-titre"><:dernieres_breves:></h2>
+					<ul>
+						<BOUCLE_breves(BREVES) {par date}{inverse}{lang?}{0,12}{pagination 3}>
+						<li>[(#DATE|affdate_court) &ndash; ]<a href="#URL_BREVE">#TITRE</a></li>
+						</BOUCLE_breves>
+					</ul>
+					[<p class="pagination">(#PAGINATION)</p>]
+				</div>
+				</B_breves>
+
+
+			</div><!-- fin encart -->
+
+		</div><!-- fin contenu -->
+
+		[(#REM) Menu de navigation laterale ]
+		<div id="navigation">
+			<h1 class="invisible"><:navigation:></h1>
+
+			[(#REM) Menu de navigation par rubriques ]
+			<INCLURE{fond=inc-rubriques}{lang}>
+			
+			[(#REM) Menu de navigation par mots-cles, sauf certains, avec un lien sur le premier mot du groupe ]
+			[(#REM) Nuage de mot clef avec le plugin "Nuage", pour groupes "Fonctionnalites" (id=24), "Thematique" (id=23) ]
+			<div class="rubriques">
+				<h2 class="invisible"><:mots_clefs:></h2>
+				[(#MODELE{nuage}{id=24|23})]
 			</div>
-			<div class="bottomCorners">
-        	<img class="borderBL2" src="#DOSSIER_SQUELETTE/images/bloctype2/bottomleft.gif" alt="" width="5" height="5" />
-        	<img class="borderBR2" src="#DOSSIER_SQUELETTE/images/bloctype2/bottomright.gif" alt="" width="5" height="5"/>
+			[(#REM) suite ... mots clefs volontairement distincts : groupe "Type contribution" (id=20) ]
+			<div class="rubriques">
+				[(#MODELE{nuage}{id=20})]
 			</div>
+			
+			[(#REM) Lien "manifeste du web independant" sur uzine ]
+			<INCLURE{fond=inc-uzine}>
+			
+			[(#REM) Une image de site au hasard dans l'Herbier ]			<INCLURE{fond=inc-herbier}>
+			<br /><br />
+			
+			[(#REM) Inscription au site ]
+			#FORMULAIRE_INSCRIPTION
 
+		</div><!-- fin navigation -->
 
-		</div>
-			<div class="clear mozclear"></div>
-		</div>
-	</div>
-  <INCLURE(pied1.php3){lang}>
-</div>
+	</div><!-- fin conteneur -->
 
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{lang}>
+
+</div><!-- fin page -->
+#SPIP_CRON
 </body>
 </html>
-

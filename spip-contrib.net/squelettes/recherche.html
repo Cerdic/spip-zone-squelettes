@@ -1,133 +1,171 @@
+#CACHE{0}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+
+<html dir="#LANG_DIR" lang="#LANG">
 <head>
-<title>Recherche - [#NOM_SITE_SPIP]</title>
-<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
-<meta name="Keywords" content="<:keywords_meta:>" />
-<meta name="Description" content="<:description_meta:> - sur SPIP CONTRIB" />
-	<link href="#DOSSIER_SQUELETTE/structure[(#LANG_DIR|=={rtl}|?{'_rtl',''})].css" rel="stylesheet" type="text/css" />
-	<link href="#DOSSIER_SQUELETTE/police.css" rel="stylesheet" type="text/css" />
-	<link href="#DOSSIER_SQUELETTE/espace.css" rel="stylesheet" type="text/css" />
-	<link href="#DOSSIER_SQUELETTE/deco[(#LANG_DIR|=={rtl}|?{'_rtl',''})].css" rel="stylesheet" type="text/css" />
-<link rel="author" title="<:auteur_design:>" href="http://www.iesanetwork.com/a.levy/" />
-<link rel="author" title="<:auteur_logo:>" href="http://www.erational.org/"/>
-<link rel="start" title="<:accueil:>" href="/" />
-<link rel="index" title="<:carte:>" href="plan.php3" />
-<link rel="alternate" type="application/rss+xml" title="RSS" href="backend.php3" />
-<link rel="shortcut icon" type="images/x-icon" href="favicon.ico" />
-<style type="text/css">
-	@import url("spipstyle.css");
-</style>
-<link href="print.css" rel="stylesheet" type="text/css" media="print" />
+	<title><:resultats_recherche:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+	<INCLURE{fond=inc-head}>
+	<meta name="robots" content="none" />
 </head>
-<body dir="#LANG_DIR">
+
+<body class="page_recherche">
 <div id="page">
-  <div id="accessibiliylinks"><a href="#content"><:acces_contenu:></a> | <a href="#lefter"><:acces_navigation:></a> | <a href="#recherche"><:acces_recherche:></a></div>
-  <INCLURE(entete1.php3)>
-  <div id="outercolonne">
-    <div id="innercolonne">
-      <div id="lefter">
-      <INCLURE(menu1.php3){lang}>
 
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
 
+	[(#REM) Fil d'Ariane ]
+	<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:info_rechercher:>[ &gt; (#RECHERCHE)]</div>
+	
+	<div id="conteneur">
 
-      </div>
+		[(#REM) Contenu principal : Resultats de la recherche ]
+		<div id="contenu">
 
-      <div id="content">
-            <div class="bloctype3 first">
+			[<div class="cartouche">
+				<h1 class="surtitre"><:resultats_recherche:></h1>
+				<p class="titre">&#171;&nbsp;(#RECHERCHE)&nbsp;&#187;</p>
+			</div>]
+			<br class="nettoyeur" />
+			<hr class="separateur">
 
-				<img class="borderTL2" src="#DOSSIER_SQUELETTE/images/bloctype3/topleft.gif" alt="" width="5" height="5"/>
+			[(#REM) Articles trouves - sauf archives ]
+			[(#REM) boucle d'exclusion articles sur mot clef "Archives, id=154"]
+			<BOUCLE_exclu_articles(ARTICLES){id_mot=154}{doublons articlesarchives}></BOUCLE_exclu_articles>
+			[(#REM) boucle d'exclusion articles dans rubriques sur mot clef "Archives, id=154", compris toutes sous-rubriques incluses]
+			<BOUCLE_exclu_rubriques(RUBRIQUES){id_mot=154}>
+				<BOUCLE_exclu_articles2(ARTICLES){id_rubrique}{doublons articlesarchives}></BOUCLE_exclu_articles2>
+				<BOUCLE_exclu_sousrubriques(RUBRIQUES){id_parent}>
+					<BOUCLE_exclu_articles3(ARTICLES){id_rubrique}{doublons articlesarchives}></BOUCLE_exclu_articles3>
+					<BOUCLE_recursive1(BOUCLE_exclu_sousrubriques)></BOUCLE_recursive1>
+				</BOUCLE_exclu_sousrubriques>
+			</BOUCLE_exclu_rubriques>
 
-				<img class="borderTR2" src="#DOSSIER_SQUELETTE/images/bloctype3/topright.gif" alt="" width="5" height="5"/>
+			<B_articles>
+			<div class="liste-articles">
+				<h2 class="invisible"><:articles:></h2>
+				[(#ANCRE_PAGINATION)]
+				<ul>
+					<BOUCLE_articles(ARTICLES){recherche}{lang?}{doublons articlesarchives}{!par points}{pagination 20}>
+					<li>
+						[(#LOGO_ARTICLE|#URL_ARTICLE|image_reduire{50,50})]
+						[<p class="surtitre">(#SURTITRE)</p>]
+						<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+						[<p class="soustitre">(#SOUSTITRE)</p>]
+						<small>
+							 [(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS) - ]
+							 <BOUCLE_motsarticle1(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|13|18|21|22|25)$}{0,n-1}>
+								[<em><a href="#URL_MOT">(#TITRE)</a>, </em>]
+							</BOUCLE_motsarticle1>
+							<BOUCLE_motsarticle2(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|13|18|21|22|25)$}{n-1,n}>
+								[<em><a href="#URL_MOT">(#TITRE)</a></em>]
+							</BOUCLE_motsarticle2>
+						</small>
+						[<div class="texte">(#INTRODUCTION|couper{85})</div>]
+					</li>
+					</BOUCLE_articles>
+				</ul>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</div>
+			</B_articles>
 
-				<h1>R&eacute;sultat de la recherche</h1>
+		</div><!-- fin contenu -->
 
-                [<p>(#DESCRIPTIF)</p>]
-<?php
-$NbResults = 0; // initialisation du comptage
-$MaxPts = 0;
-?>
+		[(#REM) bandeau laterale (utilisation de la colonne de navigation latÃ©rale des autres pages) ]
+		<div id="navigation">
 
-<BOUCLE_CountArticles(ARTICLES){recherche}{par points}{inverse}>
-<?php
-$NbResults++; // bête incrémentation (basique mais efficace)
-if ($MaxPts==0) $MaxPts = #POINTS; // ?>
-</BOUCLE_CountArticles>
+			[(#REM) Rubriques trouvees - sauf archives ]
+			[(#REM) boucle d'exclusion rubriques sur mot clef "Archives, id=154"]
+			<BOUCLE_exclu_rubriquesarchives(RUBRIQUES){id_mot=154}{doublons rubriquesarchives}>
+				<BOUCLE_exclu_sousrubriquesarchives(RUBRIQUES){branche}{doublons rubriquesarchives}></BOUCLE_exclu_sousrubriquesarchives>
+			</BOUCLE_exclu_rubriquesarchives>
+			<B_rubriques>
+			<div class="rubriques">
+				#ANCRE_PAGINATION
+				<h2 class="menu-titre"><:rubriques:></h2>
+				[<p class="pagination">(#PAGINATION)</p>]
+				<ul>
+					<BOUCLE_rubriques(RUBRIQUES){recherche}{lang?}{doublons rubriquesarchives}{!par points}{pagination 20}>
+					<li><a href="#URL_RUBRIQUE">#TITRE</a></li>
+					</BOUCLE_rubriques>
+				</ul>
+			</div>
+			</B_rubriques>
 
-<?php
-if (!isset($HTTP_GET_VARS["debut_lb"])) $debut_lb = 0; // ça, c'est mon paramètre à passer en GET dans l'URL
+			[(#REM) Mots-cles trouves - sauf certains groupes ]
+			<B_mots>
+			<div class="divers">
+				#ANCRE_PAGINATION
+				<h2 class="menu-titre"><:mots_clefs:></h2>
+				[<p class="pagination">(#PAGINATION)</p>]
+				<ul>
+					<BOUCLE_mots(MOTS) {recherche}{par points}{inverse}{id_groupe!==^(3|5|6|13|18|21|22|25)$}{pagination 10}>
+					<li><a href="#URL_MOT">#TITRE</a></li>
+					</BOUCLE_mots>
+				</ul>
+			</div>
+			</B_mots>
 
-$Page = floor($debut_lb/10) + 1;  // numéro de page dans laquelle on est
-$MaxPage = ceil($NbResults/10) ; // dernière page
-$Last = ($debut_lb+11<$NbResults) ? $debut_lb+10 : $NbResults; // dernier résultat affiché (permet d'écrire:"résultats X à Y affichés sur un total de Z" -> voir plus bas)
+			[(#REM) Messages trouves ]
+			[(#REM) boucle d'exclusion forums dans articles sur mot clef "Archives, id=154"]
+			<BOUCLE_exclu_forumsarticles(ARTICLES){tout}{id_mot=154}>
+				<BOUCLE_exclu_forums(FORUMS){id_article}{doublons forumsarchives}></BOUCLE_exclu_forums>
+			</BOUCLE_exclu_forumsarticles>
+			[(#REM) boucle d'exclusion forums dans articles dans rubriques sur mot clef "Archives, id=154"]
+			<BOUCLE_exclu_forumsrubriques(RUBRIQUES){tout}{id_mot=154}>
+				<BOUCLE_exclu_forumsarticles2(ARTICLES){id_rubrique}>
+						<BOUCLE_exclu_forums2(FORUMS){id_article}{doublons forumsarchives}></BOUCLE_exclu_forums2>
+				</BOUCLE_exclu_forumsarticles2>
+			</BOUCLE_exclu_forumsrubriques>
 
-if ($NbResults > 0) {
-//  ?>
-		 <p>R&eacute;sultats <? echo $debut_lb+1 ."-" .$Last; ?>, <?
-echo $NbResults; ?> au total, pour "<? echo $recherche; ?>"</p>
-<?
-}
-else { ?>
-		 <p>Aucun r&eacute;sultat pour "<? echo $recherche; ?>".</p>
-<?
-} ?>
+			<B_messages>
+			<div class="forums">
+				#ANCRE_PAGINATION
+				<h2 class="menu-titre"><:messages_forum:></h2>
+				[<p class="pagination">(#PAGINATION)</p>]
+				<ul>
+					<BOUCLE_messages(FORUMS){recherche}{doublons forumsarchives}{!par date}{pagination 20}>
+					<li>[(#DATE|affdate_court) : ]<a href="#URL_FORUM">#TITRE</a></li>
+					</BOUCLE_messages>
+				</ul>
+			</div>
+			</B_messages>
 
-				<div class="spacer">&nbsp;</div>
+			[(#REM) Sites web trouves ]
+			<B_sites>
+			<div class="divers">
+				#ANCRE_PAGINATION
+				<h2 class="menu-titre"><:sites_web:></h2>
+				[<p class="pagination">(#PAGINATION)</p>]
+				<ul>
+					<BOUCLE_sites(SITES) {recherche}{!par points}{pagination 10}>
+					<li><a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a></li>
+					</BOUCLE_sites>
+				</ul>
+			</div>
+			</B_sites>
+			
+			[(#REM) Breves trouvees - sauf archives ]
+			[(#REM) boucle d'exclusion breves sur mot clef "Archives, id=154"]
+			<BOUCLE_exclu_breves(BREVES){id_mot=154}{doublons brevesarchives}></BOUCLE_exclu_breves>
+			<B_breves>
+			<div class="breves">
+				#ANCRE_PAGINATION
+				<h2 class="menu-titre"><:breves:></h2>
+				[<p class="pagination">(#PAGINATION)</p>]
+				<ul>
+					<BOUCLE_breves(BREVES) {recherche}{lang?}{doublons brevesarchives}{!par points}{pagination 5}>
+					<li>[(#DATE|affdate_court) : ]<a href="#URL_BREVE">#TITRE</a></li>
+					</BOUCLE_breves>
+				</ul>
+			</div>
+			</B_breves>
 
-            </div>
+	</div><!-- fin conteneur -->
+	
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
 
-            <div class="bottomCorners">
-
-				<img class="borderBL3" src="#DOSSIER_SQUELETTE/images/bloctype3/bottomleft.gif" alt="" width="5" height="5" />
-
-				<img class="borderBR3" src="#DOSSIER_SQUELETTE/images/bloctype3/bottomright.gif" alt="" width="5" height="5"/>
-
-            </div>
-
-
-        <div class="inside3col hollyfix">
-
-          <p class="ie5bug">&nbsp;</p>
-<h2>mes r&eacute;sultats</h2>
-  <BOUCLE_articles(ARTICLES){recherche}{par points}{inverse}{debut_lb,10}>
-<? // calcul du pourcentage (option amusante mais pas performante)
-$PerCent = 100 * #POINTS / $MaxPts; ?>
-   <h3><span class="date">[<? echo number_format($PerCent, 0); ?> %]</span> [<a href="#URL_ARTICLE">(#TITRE|supprimer_numero|couper_liens{75})</a>][<span class="date"> - (#DATE|affdate)</span>]</h3>
-   [<p class="intro">(#INTRODUCTION|textebrut) <a href="#URL_ARTICLE" class="spip_in" title="[(#TITRE|couper_liens{75})]"><:la_suite:></a></p>]
-               
-</BOUCLE_articles>
-
-<BOUCLE_articles_pagination(ARTICLES){recherche}{par points}{inverse}>
-</BOUCLE_articles_pagination>
-[ <p id="pagination"><:pages:> (#TOTAL_BOUCLE|pagination{debut_lb,10})</p>]
-</B_articles_pagination>
-
-<p id="pagination"><:super_recherche:>
-		  <a href='moteur.php?recherche=<? echo urlencode($recherche); ?>'><:super_recherche_lien:></a>
-</p>
-        </div>
-
-        </div>
-
-        
-
-      <div id="righter">
-
-      <!-- Les dernieres breves  -->
-   &nbsp;
-
-       </div>
-
-      <div class="clear mozclear"></div>
-
-    </div>
-
-  </div>
-
-  <INCLURE(pied1.php3)>
-
-</div>
-
+</div><!-- fin page -->
 </body>
-
 </html>

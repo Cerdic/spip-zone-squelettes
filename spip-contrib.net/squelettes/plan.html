@@ -1,194 +1,118 @@
+#CACHE{7200}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+<html dir="#LANG_DIR" lang="#LANG">
 <head>
-	<title><:plan_site:> - [#NOM_SITE_SPIP]</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
-	<meta name="Description" content="SPIP-Contrib regroupe les utilisateurs qui veulent partager leurs trucs et astuces. Outre de l'aide pour vos projets autour de spip, vous trouverez des techniques éprouvées pour la pagination, l'authentification, les galeries d'images, les menus de navigation ou encore la typographie." />
-	<meta name="Keywords" content="spip, contributions, squelettes,  boucles, filtres, wiki, aide, modifications, adaptations, forum , agenda , newsletter, pagination, améliorations" />
-	<meta name="robot" content="follow, index, all" />
-	<meta name="revisit-after" content="1 days" />
-	<link href="#DOSSIER_SQUELETTE/structure[(#LANG_DIR|=={rtl}|?{'_rtl',''})].css" rel="stylesheet" type="text/css" />
-	<link href="#DOSSIER_SQUELETTE/police.css" rel="stylesheet" type="text/css" />
-	<link href="#DOSSIER_SQUELETTE/espace.css" rel="stylesheet" type="text/css" />
-	<link href="#DOSSIER_SQUELETTE/deco[(#LANG_DIR|=={rtl}|?{'_rtl',''})].css" rel="stylesheet" type="text/css" />
-	<link rel="author" title="Web design et intégration" href="http://www.iesanetwork.com/a.levy/" />
-	<link rel="author" title="Logo design" href="http://www.erational.org/"/>
-	<link rel="start" title="Accueil" href="/" />
-	<link rel="index" title="Carte" href="plan.php3" />
-<link rel="alternate" type="application/rss+xml" title="RSS" href="backend.php3" />
-<link rel="shortcut icon" type="images/x-icon" href="favicon.ico" />
-<style type="text/css">
-	@import url("spipstyle.css");
-</style>
-<link href="print.css" rel="stylesheet" type="text/css" media="print" />
+	<title><:plan_site:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+	<INCLURE{fond=inc-head}>
+
+	<meta name="robots" content="none" />
 </head>
 
-<body dir="#LANG_DIR">
+<body class="page_plan">
 <div id="page">
-	<div id="accessibiliylinks"><a href="#content">Aller au contenu</a> | <a href="#lefter">Aller à la navigation</a> | <a href="#recherche">Aller à la recherche</a></div>
-  	<INCLURE(entete1.php3)>
 
-	<div id="outercolonne">
-		<div id="innercolonne">
-			<div id="lefter">
-				<INCLURE(menu1.php3){lang}>
-				<div class="bloctype1">
-					<img class="borderTL2" src="#DOSSIER_SQUELETTE/images/bloctype1/topleft.gif" alt="" width="5" height="5"/>
-					<img class="borderTR2" src="#DOSSIER_SQUELETTE/images/bloctype1/topright.gif" alt="" width="5" height="5"/>
-					<h3><label for="selectlangue">Langue</label></h3>
-					<form action='spip_cookie.php3' method='post'><input type='hidden' name='url' value='/' />
-					<select name='var_lang' id="selectlangue">
-					<option value='ar'[(#NOM_SITE_SPIP|select_lang{ar})]>&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;</option>
-					<option value='en'[(#NOM_SITE_SPIP|select_lang{en})]>English</option>
-					<option value='es'[(#NOM_SITE_SPIP|select_lang{es})]>Espa&#241;ol</option>
-					<option value='fr'[(#NOM_SITE_SPIP|select_lang{fr})]>fran&#231;ais</option>
-					</select>
-					<input type='submit' name='Valider' value='<:pass_ok:>' /></form> 
-               		<div class="spacer">&nbsp;</div>
-				</div>
-				<div class="bottomCorners">
-        			<img class="borderBL2" src="#DOSSIER_SQUELETTE/images/bloctype1/bottomleft.gif" alt="" width="5" height="5" />
-        			<img class="borderBR2" src="#DOSSIER_SQUELETTE/images/bloctype1/bottomright.gif" alt="" width="5" height="5"/>
-				</div>
-			<div class="bloctype2">
-				<img class="borderTL2" src="#DOSSIER_SQUELETTE/images/bloctype2/topleft.gif" alt="" width="5" height="5"/>
-				<img class="borderTR2" src="#DOSSIER_SQUELETTE/images/bloctype2/topright.gif" alt="" width="5" height="5"/>
-				<h3>Vous aimez</h3>
-				<ul>
-				<BOUCLE_top5popu(ARTICLES){par popularite}{inverse}{lang}{0,5}>
-					[<li><a href="#URL_ARTICLE">(#TITRE|couper_liens{75})</a></li>]
-				</BOUCLE_top5popu>         		
-				</ul>
-               <div class="spacer">&nbsp;</div>
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+
+	[(#REM) Fil d'Ariane ]
+	<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:plan_site:></div>
+
+	<div id="conteneur">
+
+		[(#REM) Le plan de site ci-dessous est a adapter selon les besoins. En particulier, on n'aura pas necessairement besoin de tous les elements (sous-rubriques, articles, breves et sites) ]
+
+		<div id="contenu">
+
+			<div class="cartouche">
+				<h1 class="titre"><:plan_site:></h1>
 			</div>
-			<div class="bottomCorners">
-        	<img class="borderBL2" src="#DOSSIER_SQUELETTE/images/bloctype2/bottomleft.gif" alt="" width="5" height="5" />
-        	<img class="borderBR2" src="#DOSSIER_SQUELETTE/images/bloctype2/bottomright.gif" alt="" width="5" height="5"/>
-		  </div>
-			</div>
-			<div id="content">
 
- 				<div class="bloctype3 first">
-					<img class="borderTL2" src="#DOSSIER_SQUELETTE/images/bloctype3/topleft.gif" alt="" width="5" height="5"/>
-					<img class="borderTR2" src="#DOSSIER_SQUELETTE/images/bloctype3/topright.gif" alt="" width="5" height="5"/>
-					<h1><:plan_site:></h1>
-					<div class="spacer">&nbsp;</div>
-				</div>
-				<div class="bottomCorners">
-					<img class="borderBL3" src="#DOSSIER_SQUELETTE/images/bloctype3/bottomleft.gif" alt="" width="5" height="5" />
-					<img class="borderBR3" src="#DOSSIER_SQUELETTE/images/bloctype3/bottomright.gif" alt="" width="5" height="5"/>
-				</div>
+				<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
 
-				<div class="inside3col hollyfix">
-				<p class="ie5bug">&nbsp;</p>
-				<p>Voir les articles par <a href="antichrono.php3" >ordre antichronologique</a></p>
-				<BOUCLE_RubExclues(RUBRIQUES){titre_mot=_ExclusDuMenu}{doublons}>
-				</BOUCLE_RubExclues>
+				<h2><a href="#URL_RUBRIQUE">#TITRE</a></h2>
 
+				[(#REM) Articles et sous-rubriques ]
 
-				<B_Autres>
-				<ol>
-				<BOUCLE_Autres(RUBRIQUES){id_parent=0}{par lang}{doublons}>
-					<li><strong>[(#TITRE|supprimer_numero)]</strong>
-					<B_articles_recents_Racine>
-						<ul>
-						<BOUCLE_articles_recents_Racine(ARTICLES) {tout}{id_rubrique}{par date}{inverse}>
-							<li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero|couper_liens{75})]</a></li>
-						</BOUCLE_articles_recents_Racine>
-						</ul>
-					</B_articles_recents_Racine>
+				<div class="contre-encart">
 
-					<B_Autres_Details>
-						<ul>
-						<BOUCLE_Autres_Details(RUBRIQUES){id_parent}{par num titre}{doublons}>
-							<li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
-							<BOUCLE_Recurssion(BOUCLE_Autres_Details)>
-							</BOUCLE_Recurssion>
-							<B_articles_recents_Autres>
-								<ul>
-								<BOUCLE_articles_recents_Autres(ARTICLES) {tout}{id_rubrique}{par date}{inverse}>
-									<li><a href="#URL_ARTICLE" >[(#TITRE|supprimer_numero|couper_liens{75})]</a></li>
-								</BOUCLE_articles_recents_Autres>
-								</ul>
-							</B_articles_recents_Autres>
-							</li>
-						</BOUCLE_Autres_Details>
-						</ul>
-					</B_Autres_Details>
-					</li>
-				</BOUCLE_Autres>
-				</ol>
-				</B_Autres>
+					<B_articles_racine>
+					<h3 class="invisible"><:articles:></h3>
+					<ul>
+						<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
+						<li><a href="#URL_ARTICLE">#TITRE</a></li>
+						</BOUCLE_articles_racine>
+					</ul>
+					</B_articles_racine>
 
+					<B_rubriques>
+					<ul>
+						<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+						<li><strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
 
+							<B_articles>
+							<ul>
+								<BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
+								<li><a href="#URL_ARTICLE">#TITRE</a></li>
+								</BOUCLE_articles>
+							</ul>
+							</B_articles>
 
+							<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
 
-				</div>
-			</div>
-			<div id="righter">
-			<BOUCLE_RubExclues_Breves(RUBRIQUES){titre_mot=_ExclusDuMenu}{doublons breves}>
-			</BOUCLE_RubExclues_Breves>
+						</li>
+						</BOUCLE_rubriques>
 
-			<B_Autres_Breves>
-			<div class="bloctype1 first">
-				<img class="borderTL2" src="#DOSSIER_SQUELETTE/images/bloctype1/topleft.gif" alt="" width="5" height="5"/>
-				<img class="borderTR2" src="#DOSSIER_SQUELETTE/images/bloctype1/topright.gif" alt="" width="5" height="5"/>
-				<h3>Br&egrave;ves</h3>
-				
-				<ul>
-				<BOUCLE_Autres_Breves(RUBRIQUES){id_parent=0}{par lang}{doublons breves}>
+					</ul>
+					</B_rubriques>
+
+				</div><!-- fin contre-encart -->
+
+				<div class="encart">
+
+				[(#REM) Breves ]
 				<B_breves>
-					
-					<li><span class="gras">[(#TITRE|supprimer_numero)]</span>
+				<div class="breves">
+					<h3 class="menu-titre"><:breves:></h3>
 					<ul>
-					<BOUCLE_breves(BREVES) {id_secteur} {par date} {inverse} {0,15}>
-						<li><span class="datebreve">[(#DATE|affdate_court)]:</span> <a href="#URL_BREVE">[(#TITRE|couper_liens{75})]</a></li>
-					</BOUCLE_breves>
-					</ul></li>
-					
+						<BOUCLE_breves(BREVES) {id_secteur} {par date}{inverse}>
+						<li><a href="#URL_BREVE">#TITRE</a></li>
+						</BOUCLE_breves>
+					</ul>
+				</div>
 				</B_breves>
-				</BOUCLE_Autres_Breves></ul>
 
-               		<div class="spacer">&nbsp;</div>
-			</div>
-			<div class="bottomCorners">
-			<img class="borderBL2" src="#DOSSIER_SQUELETTE/images/bloctype1/bottomleft.gif" alt="" width="5" height="5" />
-			<img class="borderBR2" src="#DOSSIER_SQUELETTE/images/bloctype1/bottomright.gif" alt="" width="5" height="5"/>
-			</div>
-			</B_Autres_Breves>
-
-			<BOUCLE_RubExclues_sites(RUBRIQUES){titre_mot=_ExclusDuMenu}{doublons sites}>
-			</BOUCLE_RubExclues_sites>
-			<B_Autres_sites>
-			<div class="bloctype2">
-				<img class="borderTL2" src="#DOSSIER_SQUELETTE/images/bloctype2/topleft.gif" alt="" width="5" height="5"/>
-				<img class="borderTR2" src="#DOSSIER_SQUELETTE/images/bloctype2/topright.gif" alt="" width="5" height="5"/>
-				<h3>Ailleurs</h3>
-					<ul>					
-					<BOUCLE_Autres_sites(RUBRIQUES){id_parent=0}{par lang}{doublons sites}>
-					<B_sites>
-					<li><span class="gras">[(#TITRE|supprimer_numero)]</span>
+				[(#REM) Sur le Web ]
+				<B_sites>
+				<div class="syndic">
+					<h3 class="menu-titre"><:sites_web:></h3>
 					<ul>
-					<BOUCLE_sites(SITES) {id_secteur} {par nom_site}>
-						<li><a href="#URL_SITE">[(#NOM_SITE|couper_liens{75})]</a></li>
-					</BOUCLE_sites>
-					</ul></li>
-					</B_sites>
-					</BOUCLE_Autres_sites></ul>
-					<div class="spacer">&nbsp;</div>
-			</div>
-			<div class="bottomCorners">
-        	<img class="borderBL2" src="#DOSSIER_SQUELETTE/images/bloctype2/bottomleft.gif" alt="" width="5" height="5" />
-        	<img class="borderBR2" src="#DOSSIER_SQUELETTE/images/bloctype2/bottomright.gif" alt="" width="5" height="5"/>
-			</div>
-			</B_Autres_sites>
-		</div>
-			<div class="clear mozclear"></div>
-		</div>
-	</div>
-  <INCLURE(pied1.php3)>
-</div>
+						<BOUCLE_sites(SITES) {id_secteur} {par nom_site}>
+						<li><a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a></li>
+						</BOUCLE_sites>
+					</ul>
+				</div>
+				</B_sites>
 
+				</div><!-- fin encart -->
+
+				</BOUCLE_secteurs>
+
+		</div><!-- fin contenu -->
+
+		[(#REM) Menu de navigation laterale ]
+		<div id="navigation">
+
+			[(#REM) Menu de navigation par rubriques ]
+			<INCLURE{fond=inc-rubriques}>
+
+		</div><!-- fin navigation -->
+
+	</div><!-- fin conteneur -->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+</div><!-- fin page -->
 </body>
 </html>
-

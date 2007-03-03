@@ -1,80 +1,171 @@
-<BOUCLE_mot_principal(MOTS) {id_mot} {doublons}>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
-<head>
-	<title><:mots_clefs:> : [(#TITRE|supprimer_numero|textebrut)] - [#NOM_SITE_SPIP] </title>
-	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
-	<meta name="Keywords" content="spip, contributions, squelettes,  boucles, filtres, wiki, aide, modifications, adaptations, forum , agenda , newsletter, pagination, améliorations" />
-	[<meta name="Description" content="(#DESCRIPTIF|textebrut|attribut_html|sinon{"SPIP-Contrib regroupe les utilisateurs qui veulent partager leurs trucs et astuces. Outre de l'aide pour vos projets autour de spip, vous trouverez des techniques éprouvées pour la pagination, l'authentification, les galeries d'images, les menus de navigation ou encore la typographie."}) - sur SPIP CONTRIB" />]
-	<meta name="robot" content="follow, index, all" />
-	<meta name="revisit-after" content="1 days" />
-	<link href="screen.css" rel="stylesheet" type="text/css" />
-    <link rel="start" title="Accueil" href="/" />
-    <link rel="index" title="Carte" href="plan.php3" />
-	<link rel="author" title="Web design et intégration" href="http://www.iesanetwork.com/a.levy/" />
-	<link rel="author" title="Logo design" href="http://www.erational.org/"/>
-<link rel="alternate" type="application/rss+xml" title="RSS" href="backend.php3" />
-<link rel="shortcut icon" type="images/x-icon" href="favicon.ico" />
-    <style type="text/css">
-	@import url("spipstyle.css");
-    </style>
-<link href="print.css" rel="stylesheet" type="text/css" media="print" />
-</head>
-
-<body dir="#LANG_DIR">
-<div id="page">
-	<div id="accessibiliylinks"><a href="#content">Aller au contenu</a> | <a href="#lefter">Aller à la navigation</a> | <a href="#recherche">Aller à la recherche</a></div>
-<INCLURE(entete1.php3)>
-    <div id="outercolonne">
-        <div id="innercolonne">
-         <div id="lefter">
-		
-		  <INCLURE(menu1.php3){lang}>
-       		  
-        </div>
-			
-        <div id="content">       
-            <div class="bloctype3 first">
-				<img class="borderTL2" src="images/bloctype3/topleft.gif" alt="" width="5" height="5"/>
-				<img class="borderTR2" src="images/bloctype3/topright.gif" alt="" width="5" height="5"/>
-				<h1><:mots_clefs:> : #TITRE</h1>
-                [<p>(#DESCRIPTIF)</p>]
-                [<hr /><p>(#NOTES)</p>]
-				<div class="spacer">&nbsp;</div>
-            </div>
-            <div class="bottomCorners">
-				<img class="borderBL3" src="images/bloctype3/bottomleft.gif" alt="" width="5" height="5" />
-				<img class="borderBR3" src="images/bloctype3/bottomright.gif" alt="" width="5" height="5"/>
-            </div>
-				
-        <div class="inside3col hollyfix">
-				<p class="ie5bug">&nbsp;</p>
-
-				<B_articles_liste>
-                <h2><:articles:></h2>
-                <BOUCLE_articles_liste(ARTICLES){id_mot}{par date}{inverse}{lang}{debut_page,15}>
-                <h3><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero|couper_liens{75})]</a>[<span class="date"> - (#DATE|affdate)</span>]</h3>
-                [<p class="intro">(#INTRODUCTION|textebrut) <a href="#URL_ARTICLE" class="spip_in" title="[(#TITRE|couper_liens{75})]">lire la suite</a></p>]
-                </BOUCLE_articles_liste>
-                </B_articles_liste><p>Aucun article trouvé ayant ce mot clef</p> <//B_articles_liste>
-                <BOUCLE_articles_pagination(ARTICLES){id_mot}{par date}{inverse}{lang}>
-                </BOUCLE_articles_pagination>
-                [ <p id="pagination">Pages: (#TOTAL_BOUCLE|pagination{debut_page,15})</p>]
-                </B_articles_pagination>
-			
-			
-         </div>
-        </div>
-        <div id="righter">
-			 <INCLURE(menumot.php3)>
-		</div>
-			<div class="clear mozclear"></div>
-</div>
-</div>
-
-	<INCLURE(pied1.php3)>
-
-</div>
-</body>
-</html>
-</BOUCLE_mot_principal>
+#CACHE{86400}
+<BOUCLE_mot_principal(MOTS) {id_mot} {doublons}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#DESCRIPTIF|couper{150}|textebrut)" />]
+	<INCLURE{fond=inc-head}{lang}>
+
+	[(#REM) Lien vers le flux RSS du mot cle ]
+	<link rel="alternate" type="application/rss+xml" title="[(#TITRE|textebrut|texte_backend)]" href="[(#URL_PAGE{backend}|parametre_url{id_mot,#ID_MOT})]" />
+</head>
+
+<body id="page_mot">
+<div id="page">
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}{lang}>
+
+	[(#REM) Fil d'Ariane ]
+	<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:mots_clefs:><BOUCLE_ariane(GROUPES_MOTS){id_groupe}> &gt; [(#TITRE|couper{80})]</BOUCLE_ariane></div>
+	<div id="conteneur">
+
+		[(#REM) Contenu principal : contenu du mot-cle ]
+		<div id="contenu">
+
+			<div class="cartouche">
+				[(#LOGO_MOT||image_reduire{200,200})]
+				<h1 class="titre">#TITRE</h1>
+			</div>
+
+			[<div class="chapo">(#TEXTE)</div>]
+			<br class="nettoyeur" />
+			<hr class="separateur">
+			
+			[(#REM) Articles lies au mot-cle, stockage avec critere doublons ]
+			<BOUCLE_articlesmot(ARTICLES){id_mot}{doublons articlesmot}></BOUCLE_articlesmot>
+			[(#REM) Articles dans rubriques liees au mot-cle, stockage avec critere doublons ]
+			<BOUCLE_rubriquesmot(RUBRIQUES){id_mot}>
+				<BOUCLE_articlesrubriquesmot(ARTICLES){id_rubrique}{doublons articlesmot}></BOUCLE_articlesrubriquesmot>
+			</BOUCLE_rubriquesmot>
+			[(#REM) affichage de l'ensemble avec critere anti-doublons ]
+			<B_articles>
+				<div class="liste-articles">
+					#ANCRE_PAGINATION
+					<h2 class="invisible"><:articles:></h2>
+					<ul>
+						<BOUCLE_articles(ARTICLES){!doublons articlesmot}{lang?}{!par popularite}{pagination 20}>
+						<li>
+							[(#LOGO_ARTICLE|#URL_ARTICLE|image_reduire{50,50})]
+							[<p class="surtitre">(#SURTITRE)</p>]
+							<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+							[<p class="soustitre">(#SOUSTITRE)</p>]
+							<small>
+								 [(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS) - ]
+								 [(#REM) les mots clefs de l'article et de sa rubrique ]
+								<BOUCLE_motsarticle1(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|13|18|21|22|25)$}{0,n-1}>
+									[<em><a href="#URL_MOT">(#TITRE)</a>, </em>]
+								</BOUCLE_motsarticle1>
+								<BOUCLE_motsarticle2(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|13|18|21|22|25)$}{n-1,n}{exclus}>
+									[<em><a href="#URL_MOT">(#TITRE)</a></em>]
+								</BOUCLE_motsarticle2>
+							</small>
+							[<div class="texte">(#INTRODUCTION|couper{100})</div>]
+						</li>
+						</BOUCLE_articles>
+					</ul>
+					[<p class="pagination">(#PAGINATION)</p>]
+				</div>
+			</B_articles>
+
+		</div><!-- fin contenu -->
+
+		[(#REM) bandeau lateral ]
+		<div id="navigation">
+			<h1 class="invisible"><:navigation:></h1>
+
+			[(#REM) Menu de navigation mots-cles : les autres mots cles du meme groupe ]
+			<B_mots_freres>
+			<div class="divers">
+				#ANCRE_PAGINATION
+				<h2 class="menu-titre"><:mots_clefs_meme_groupe:></h2>
+				[<p class="pagination">(#PAGINATION)</p>]
+				<ul>
+					<BOUCLE_mots_freres(MOTS) {type}{par titre}{pagination 30}>
+					<li><a href="#URL_MOT"[ class="(#EXPOSE)"]>#TITRE</a></li>
+					</BOUCLE_mots_freres>
+				</ul>
+				</div>
+			</B_mots_freres>
+
+			[(#REM) Menu de navigation mots-cles : les autres groupes avec un lien sur le premier mot du groupe ]
+			<B_groupes_freres>
+			<div class="divers">
+				<h2 class="menu-titre"><:autres_groupes_mots_clefs:></h2>
+				<ul>
+					<BOUCLE_groupes_freres(GROUPES_MOTS){par titre}{id_groupe!==^(3|5|6|13|18|21|22|25)$}{doublons}>
+					<BOUCLE_mot_cousin(MOTS){id_groupe}{par titre}{0,1}>
+					<li><a href="#URL_MOT">#TYPE</a></li>
+					</BOUCLE_mot_cousin>
+					</BOUCLE_groupes_freres>
+				</ul>
+			</div>
+			</B_groupes_freres>
+			
+			[(#REM) Rubriques liees au mot-cle ]
+			<B_rubriques>
+			<div class="rubriques">
+				#ANCRE_PAGINATION
+				<h2 class="menu-titre"><:rubriques:></h2>
+				[<p class="pagination">(#PAGINATION)</p>]
+				<ul>
+					<BOUCLE_rubriques(RUBRIQUES){id_mot}{lang?}{par titre}{pagination 20}>
+						<li><a href="<INCLURE{fond=inc-triurlrubrique}{id_rubrique}>"[title="(#INTRODUCTION|supprimer_tags|texte_script|couper{100})"]>#TITRE</a></li>
+					</BOUCLE_rubriques>
+				</ul>
+			</div>
+			</B_rubriques>
+
+			[(#REM) Liens des forums ]
+			<B_forums_liens>
+			<div class="forums">
+				#ANCRE_PAGINATION
+				<h2 class="menu-titre"><:messages_forum:></h2>
+				[<p class="pagination">(#PAGINATION)</p>]
+				<ul>
+					<BOUCLE_forums_liens(FORUMS) {id_mot}{plat}{!par date}{pagination 20}>
+					<li>[(#DATE|affdate_court) &ndash; ]<a href="#URL_FORUM">#TITRE</a></li>
+					</BOUCLE_forums_liens>
+				</ul>
+			</div>
+			</B_forums_liens>
+
+			[(#REM) Sites web lies au mot-cle ]
+			<B_sites>
+			#ANCRE_PAGINATION
+			<div class="divers">
+				<h2 class="menu-titre"><:sites_web:></h2>
+				[<p class="pagination">(#PAGINATION)</p>]
+				<ul>
+					<BOUCLE_sites(SITES){id_mot}{par nom_site}{pagination 10}>
+					<li><a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a></li>
+					</BOUCLE_sites>
+				</ul>
+			</div>
+			</B_sites>
+
+			[(#REM) Breves liees au mot-cle ]
+			<B_breves>
+			<div class="breves">
+				#ANCRE_PAGINATION
+				<h2 class="menu-titre"><:breves:></h2>
+				[<p class="pagination">(#PAGINATION)</p>]
+				<ul>
+					<BOUCLE_breves(BREVES) {id_mot}{lang?}{par titre}{pagination 5}>
+					<li><a href="#URL_BREVE">#TITRE</a></li>
+					</BOUCLE_breves>
+				</ul>
+			</div>
+			</B_breves>
+
+		</div><!-- fin navigation -->
+
+	</div><!-- fin conteneur -->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{lang}>
+
+</div><!-- fin page -->
+</body>
+</html>
+</BOUCLE_mot_principal>

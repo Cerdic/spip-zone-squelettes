@@ -1,82 +1,49 @@
+#CACHE{24 * 3600}
+#HTTP_HEADER{"Cache-Control: no-store, no-cache, must-revalidate"}
+#HTTP_HEADER{Pragma: no-cache}
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+<html dir="#LANG_DIR" lang="#LANG">
 <head>
-<title>[#NOM_SITE_SPIP - <:pass_erreur:> 404]</title>
-<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
-	<link href="#DOSSIER_SQUELETTE/structure[(#LANG_DIR|=={rtl}|?{'_rtl',''})].css" rel="stylesheet" type="text/css" />
-	<link href="#DOSSIER_SQUELETTE/police.css" rel="stylesheet" type="text/css" />
-	<link href="#DOSSIER_SQUELETTE/espace.css" rel="stylesheet" type="text/css" />
-	<link href="#DOSSIER_SQUELETTE/deco[(#LANG_DIR|=={rtl}|?{'_rtl',''})].css" rel="stylesheet" type="text/css" />
-<link rel="author" title="<:auteur_design:>" href="http://www.iesanetwork.com/a.levy/" />
-<link rel="author" title="<:auteur_logo:>" href="http://www.erational.org/"/>
-<link rel="start" title="<:accueil:>" href="/" />
-<link rel="index" title="<:carte:>" href="plan.php3" />
-<link rel="alternate" type="application/rss+xml" title="RSS" href="backend.php3" />
-<link rel="shortcut icon" type="images/x-icon" href="favicon.ico" />
-<style type="text/css">
-	@import url("2col.css");
-</style>
-<link href="print.css" rel="stylesheet" type="text/css" media="print" />
+	<title><:pass_erreur:> 404 - [(#NOM_SITE_SPIP|textebrut)]</title>
+	<meta name="robots" content="none" />
+	<INCLURE{fond=inc-head}{lang}>
 </head>
-<body dir="#LANG_DIR">
-<div id="page">
-  <div id="accessibiliylinks"><a href="#content"><:acces_contenu:></a> | <a href="#lefter"><:acces_navigation:></a> | <a href="#recherche"><:acces_recherche:></a></div>
-  <INCLURE(entete1.php3)>
-  <div id="outercolonne">
-    <div id="innercolonne">
-      <div id="lefter">
-      <INCLURE(menu1.php3){lang}>
-      </div>
+<body id="page_404">
+	<div id="page">
 
-      <div id="content">
-            <div class="bloctype3 first">
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}{lang}>
 
-				<img class="borderTL2" src="#DOSSIER_SQUELETTE/images/bloctype3/topleft.gif" alt="" width="5" height="5"/>
+	[(#REM) Fil d'Ariane ]
+	<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:pass_erreur:> 404</div>
 
-				<img class="borderTR2" src="#DOSSIER_SQUELETTE/images/bloctype3/topright.gif" alt="" width="5" height="5"/>
+	<div id="conteneur">
 
-				<h1><:erreur:> 404</h1>
-				<div class="spacer">&nbsp;</div>
+		<div id="contenu">
 
-            </div>
+			<div class="cartouche">
+			<h1 class="titre"><:pass_erreur:> 404</h1>
+			</div>
+			[<div class="chapo">(#ENV*{erreur}|propre)</div>]
 
-            <div class="bottomCorners">
+		</div><!-- fin contenu -->
 
-				<img class="borderBL3" src="#DOSSIER_SQUELETTE/images/bloctype3/bottomleft.gif" alt="" width="5" height="5" />
+		[(#REM) Menu de navigation laterale ]
+		<div id="navigation">
+			<h1 class="invisible"><:navigation:></h1>
 
-				<img class="borderBR3" src="#DOSSIER_SQUELETTE/images/bloctype3/bottomright.gif" alt="" width="5" height="5"/>
+			[(#REM) Menu de navigation par rubriques ]
+			<INCLURE{fond=inc-rubriques}{lang}>
 
-            </div>
+		</div><!-- fin navigation -->
 
+	</div><!-- fin conteneur -->
 
-        <div class="inside3col hollyfix">
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{lang}>
 
-          <p class="ie5bug">&nbsp;</p>
-
-   		<p><:texte_404:></p>
-        </div>
-
-        </div>
-
-        
-
-      <div id="righter">
-&nbsp;
-   
-       </div>
-
-      <div class="clear mozclear"></div>
-
-    </div>
-
-  </div>
-
-  <INCLURE(pied1.php3)>
-
-</div>
-
+	</div><!-- fin page -->
+#SPIP_CRON
 </body>
-
 </html>
-
-</BOUCLE_rubprincipale>

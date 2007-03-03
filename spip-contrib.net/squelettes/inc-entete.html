@@ -1,0 +1,43 @@
+<div id="entete">
+
+	<div id="entetelogos">
+		[(#REM) Afficher le logo ou le titre du site ]
+		<a rel="start" href="#URL_SITE_SPIP/">
+		[(#LOGO_SITE_SPIP||?{
+			[(#LOGO_SITE_SPIP
+				||image_reduire{350,200}
+				|inserer_attribut{alt,[(#NOM_SITE_SPIP|textebrut)]}
+				|inserer_attribut{title,[(#NOM_SITE_SPIP|textebrut)]}
+				)]
+			, <span id="nom_site_spip">#NOM_SITE_SPIP</span>
+		})]
+		</a>
+		[(#REM) Toutes les langues du site public : ]
+		<p class="langues">
+			<span class="invisible"><:info_langues:> : </span>
+			<BOUCLE_langues(RUBRIQUES){racine}{par lang}>
+				<span lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR"[ (#LANG|=={#ENV{lang}}|?{class="on",''})]>[&#91;<a href="#URL_SITE_SPIP/?lang=#LANG" rel="alternate" hreflang="#LANG" title="[(#LANG|traduire_nom_langue)]">(#LANG|unique{langues})</a>&#93;]</span>
+			</BOUCLE_langues>
+		</p>
+	</div><!-- fin logos -->
+	
+	[(#REM) Sites de la rubrique "boussole" , id=167]
+	<INCLURE{fond=inc-boussole}>	
+	<br class="nettoyeur" />
+	
+	[(#REM) Barre de navigation rapide : ]
+	<div id="topnav">
+		<ul>
+			[(#REM) Lien vers le lexique de mots-clefs de spip.net ]
+			<li><a href="http://www.spip.net/@" title="glossaire spip.net"><:glossaire:></a></li>
+			[(#REM) Lien vers liens de telechargement ]
+			<BOUCLE_rubrique_telechargement(RUBRIQUES){id_rubrique=123}><li><a href="#URL_RUBRIQUE">#TITRE</a></li></BOUCLE_rubrique_telechargement>
+			[(#REM) boutons fixes pour le plugin "boutontexte" pour eviter les repetitions ]
+			<li><img src="#CHEMIN{images/fontsizeup.png}" alt="fontsizeup" class="textsizeup" /></li>
+			<li><img src="#CHEMIN{images/fontsizedown.png}" alt="fontsizedown" class="textsizedown" /></li>
+			
+		</ul>
+		#FORMULAIRE_RECHERCHE
+	</div><!--  fin barre nav rapide -->
+	<br class="nettoyeur" />
+</div> <!--  fin en-tete -->

@@ -1,0 +1,60 @@
+[(#REM)
+Barre de navigation, ouverte sur la hierarchie courante. 
+On fait un plan, et, quand on avance vers une rubrique,
+on l'affiche si son parent est expose ou est la racine du site. ]
+[(#REM) adaptations spip-contrib:
+- exclusion archives
+- si 1 seul article dans rubrique, alors acces direct
+- ajout title
+]
+
+<BOUCLE_testcontexterubrique(RUBRIQUES){id_rubrique}{id_rubrique!=167}>
+</BOUCLE_testcontexterubrique>
+				
+	[(#REM) avec EXPOSER si contexte courant rubrique existe, hors boussole ]
+	<B_secteur1>
+	<div class="rubriques">
+		[(#REM) selection secteurs langues, sauf secteur "boussole" id=167 - pas d'affichage du titre de secteur]
+		<BOUCLE_secteur1(RUBRIQUES){lang}{racine}{id_rubrique!=167}>
+			<B_rubriques1>
+			<ul>
+				[(#REM) conserver les sauts a la lignes des boucles tel que fait, sinon cela introduit des interlignes parasites dans le resultat]
+				<BOUCLE_rubriques1(RUBRIQUES){id_parent}{par num titre, titre}><BOUCLE_test_expose(RUBRIQUES){id_enfant}>#EXPOSE{' '}</BOUCLE_test_expose>
+					<li><a href="<INCLURE{fond=inc-triurlrubrique}{id_rubrique}>"[ class="(#EXPOSE)"][title="(#INTRODUCTION|supprimer_tags|texte_script|couper{100})"]>
+						[(#TITRE|supprimer_numero|couper{80})]</a>
+						<BOUCLE_recursive1(BOUCLE_rubriques1)></BOUCLE_recursive1>
+						[(#REM) les articles inclus ]
+						<B_articles_rubrique><ul>
+							<BOUCLE_articles_rubrique(ARTICLES){id_rubrique}{id_rubrique=#ENV{id_rubrique}}{par num titre, titre}{exclus}>
+								<li><a href="#URL_ARTICLE"[ class="(#EXPOSE)"][title="(#TITRE|supprimer_tags|texte_script|couper{80})"]>[(#TITRE|couper{40})]</a></li>
+							</BOUCLE_articles_rubrique>
+						</ul></B_articles_rubrique>
+					</li>
+				</B_test_expose></BOUCLE_rubriques1>
+			</ul>
+			</B_rubriques1>
+		</BOUCLE_secteur1>
+	</div>
+	</B_secteur1>
+
+</B_testcontexterubrique>
+
+	[(#REM) sans EXPOSER et sans recursivite si pas contexte courant rubrique, inclus boussole ]
+	<B_secteur2>
+	<div class="rubriques">
+		[(#REM) selection secteurs langues, sauf secteur "boussole" id=167, et archives - pas d'affichage du titre des ecteur]
+		<BOUCLE_secteur2(RUBRIQUES){lang}{racine}{id_rubrique!=167}>
+				<B_rubriques2>
+				<ul>
+					[(#REM) conserver les sauts a la lignes des boucles tel que fait, sinon cela introduit des interlignes parasites dans le resultat]
+					<BOUCLE_rubriques2(RUBRIQUES){id_parent}{par num titre, titre}>
+						<li><a href="<INCLURE{fond=inc-triurlrubrique}{id_rubrique}>"[title="(#INTRODUCTION|supprimer_tags|texte_script|couper{100})"]>
+						[(#TITRE|supprimer_numero|couper{80})]</a></li>
+					</BOUCLE_rubriques2>
+				</ul>
+				</B_rubriques2>
+		</BOUCLE_secteur2>
+	</div>
+	</B_secteur2>
+
+<//B_testcontexterubrique>
