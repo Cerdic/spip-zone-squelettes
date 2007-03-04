@@ -17,7 +17,7 @@
 	# decommenter la ligne ci-dessous pour charger la version
 	# de developpement (nightly build SVN) et commenter la ligne de
 	# telechargement de la version STABLE
-	# define('_URL_PAQUET_ZIP','http://trac.rezo.net/files/spip/spip.zip');
+	# define('_URL_PAQUET_ZIP','http://files.spip.org/spip/spip.zip');
 
 	# URL du paquet de la version STABLE a telecharger
 	define('_URL_PAQUET_ZIP','http://www.spip.net/spip-dev/DISTRIB/spip.zip');
@@ -32,9 +32,10 @@
 	define('_SPIP_LOADER_UPDATE_AUTEURS', '1');
 
 	# surcharger le script
-	define('_NOM_PAQUET_ZIP','SPIP');
+	define('_NOM_PAQUET_ZIP','spip');
 	define('_SPIP_LOADER_URL_RETOUR', "ecrire/");
 	define('_SPIP_LOADER_SCRIPT', "spip_loader.php");
+	define('_DEST_PAQUET_ZIP','');
 	#
 	#######################################################################
 
@@ -358,11 +359,10 @@
 
 	function debut_html() {
 		?>
-		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
-		   "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-		<html <?php echo "dir='".$GLOBALS['spip_lang_dir']."'";?>>
+		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+		<html <?php echo "xml:lang='".$GLOBALS['lang']."' dir='".$GLOBALS['spip_lang_dir']."'";?>>
 		<head>
-		<title><?php echo _TT('tradloader:titre', array('paquet'=>_NOM_PAQUET_ZIP)); ?></title>
+		<title><?php echo _TT('tradloader:titre', array('paquet'=>strtoupper(_NOM_PAQUET_ZIP))); ?></title>
 		<meta http-equiv="Expires" content="0" />
 		<meta http-equiv="cache-control" content="no-cache,no-store" />
 		<meta http-equiv="pragma" content="no-cache" />
@@ -398,6 +398,11 @@
 				display:inline;
 				font-size:120%;
 			}
+			h2 {
+				font-family: Verdana,Arial,Sans,sans-serif;
+				font-weigth: normal;
+				font-size: 100%;
+			}
 		</style>
 		</head>
 		<body>
@@ -405,7 +410,7 @@
 		<?php echo menu_languesT($GLOBALS['lang']); ?>
 
 		<h1><?php
-			echo _TT('tradloader:titre', array('paquet'=>_NOM_PAQUET_ZIP));
+			echo _TT('tradloader:titre', array('paquet'=>strtoupper(_NOM_PAQUET_ZIP)));
 		?></h1>
 		<div style="font-family:Georgia,Garamond,Times,serif; font-size:110%;">
 		<?php
@@ -446,7 +451,7 @@
 		if(!$droits) {
 			//on ne peut pas ecrire
 			debut_html();
-			echo _TT('tradloader:texte_preliminaire', array('paquet'=>_NOM_PAQUET_ZIP, 'chmod'=>$chmod));
+			echo _TT('tradloader:texte_preliminaire', array('paquet'=>strtoupper(_NOM_PAQUET_ZIP), 'chmod'=>sprintf('%04o',$chmod)));
 			fin_html();
 			exit;
 		}
@@ -480,10 +485,10 @@
 			AND file_exists($dir_base.$fichier)) {
 				$zip = new PclZip($dir_base.$fichier);
 				$ok = $zip->extract(
-					PCLZIP_OPT_PATH, $dir_base,
+					PCLZIP_OPT_PATH, $dir_base._DEST_PAQUET_ZIP,
 					PCLZIP_OPT_SET_CHMOD, $chmod,
 					PCLZIP_OPT_REPLACE_NEWER,
-					PCLZIP_OPT_REMOVE_PATH, "spip/");
+					PCLZIP_OPT_REMOVE_PATH, _NOM_PAQUET_ZIP."/");
 				if ($zip->error_code<0) {
 					debut_html();
 					echo _TT('tradloader:donnees_incorrectes',
@@ -500,7 +505,10 @@
 			//
 			if ($_GET['charger'] != 'oui') {
 				debut_html();
-				echo _TT('tradloader:texte_intro', array('paquet'=>_NOM_PAQUET_ZIP));
+				$dest = (_DEST_PAQUET_ZIP == '') ? 
+					_TT('tradloader:ce_repertoire') :
+					_TT('tradloader:du_repertoire').' <tt>'._DEST_PAQUET_ZIP.'</tt>';   
+				echo _TT('tradloader:texte_intro', array('paquet'=>strtoupper(_NOM_PAQUET_ZIP),'dest'=> $dest));
 				echo "<div style='text-align:".$GLOBALS['spip_lang_right']."'>";
 				echo "<form action='".$dir_base._SPIP_LOADER_SCRIPT."' method='get'><div>";
 				if(preg_match(',action=([a-z_]+),', _SPIP_LOADER_SCRIPT, $m))
