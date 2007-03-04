@@ -1,9 +1,12 @@
+#CACHE{24 * 3600}
+#HTTP_HEADER{"Cache-Control: no-store, no-cache, must-revalidate"}
+#HTTP_HEADER{Pragma: no-cache}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="#LANG_DIR" lang="#LANG">
 <head>
 <!-- inclusion des metatag, des feuilles de styles ... -->
 <INCLURE{fond=inclusions/inc_head}>
-<title>[#NOM_SITE_SPIP - <:pass_erreur:> 404]</title>
+<title><:pass_erreur:> 404 - [(#NOM_SITE_SPIP|textebrut)]</title>
 <meta name="MSSmartTagsPreventParsing" content="TRUE" />
 <meta name="Robots" content="index,follow,all" />
 <meta name="Identifier-URL" content="#URL_SITE_SPIP" />
@@ -15,42 +18,30 @@
   <div id="top">
     <h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
   </div>
-  <p id="prelude">
     <INCLURE{fond=inclusions/inc_menu-haut}>
-  </p>
   <div id="main">
     <div id="content">
       <div class="post">
         <h2 class="titre-texte"><:pass_erreur:> 404</h2>
-        <p>#ERREUR_AUCUN</p>
+      
+        	[<p>(#ENV*{erreur}|propre)</p>]
+
       </div>
     </div>
   </div>
-  <div id="sidebar">
-    <div id="search">
-      <INCLURE{fond=inclusions/inc_recherche}>
-    </div>
-    <div id="breve">
-      <INCLURE{fond=inclusions/inc_dernieres_breves}>
-    </div>
-    <div id="categories">
-      <INCLURE{fond=inclusions/inc_rubriques}>
-    </div>
-    <div id="Commentaires">
-      <INCLURE{fond=inclusions/inc_derniers_commentaires}>
-    </div>
-    <div id="links">
-      <INCLURE{fond=inclusions/inc_sites}>
-    </div>
-    <div id="syndicate">
-      <INCLURE{fond=inclusions/inc_syndication}>
-    </div>
-  </div>
-  <p id="footer">
-    <INCLURE{fond=inclusions/inc_pied_de_page}>
-  </p>
+ 
+<div id="sidebar">
+<INCLURE{fond=inclusions/inc_recherche}>
+<INCLURE{fond=inclusions/inc_dernieres_breves}>
+<INCLURE{fond=inclusions/inc_rubriques}>
+<INCLURE{fond=inclusions/inc_derniers_commentaires}>
+<INCLURE{fond=inclusions/inc_sites}>
+<INCLURE{fond=inclusions/inc_logo}>
+</div>
+  	[(#REM) Pied de page ]
+	<INCLURE{fond=inclusions/inc_pied_de_page}{skel=#SQUELETTE}>
+
 </div>
 <!-- fin de page -->
-#SPIP_CRON
 </body>
 </html>
