@@ -148,7 +148,7 @@ function config_site() {
 	create_groupe("_LayoutGala", "Permet de faire appel à l\'une des 40 mises en page disponibles sur [Layout Gala->http://blog.html.it/layoutgala/]", "Mode d\'emploi : \n-* affecter un des mots mots clefs de ce groupe à un objet de SPIP (Articles, Rubriques, Brèves, Sites) permet de lui affecter la mise en page associée\n-* de plus, le mot clef de ce groupe ayant « ParDefaut » dans son texte sera utilisé par défaut pour l\'ensemble du site", 'oui', 'non', 'oui', 'oui', 'oui', 'oui', 'non', 'oui', 'non', 'non');
 		create_mot("_LayoutGala", "01. Three percentage columns", "", "");
 		create_mot("_LayoutGala", "07. Three fixed columns", "", "");
-		create_mot("_LayoutGala", "13. Liquid, secondary columns fixed-width", "", "ParDefaut");
+		create_mot("_LayoutGala", "13. Liquid, secondary columns fixed-width", "", "");
 		create_mot("_LayoutGala", "24. Two columns liquid, side fixed", "", "");
 		create_mot("_LayoutGala", "26. Two percentage columns", "", "");
 		create_mot("_LayoutGala", "27. One column liquid and two halves", "", "");
@@ -167,43 +167,6 @@ function config_site() {
 		create_mot("_ModePortail", "2. Mot2", "", "");
 		create_mot("_ModePortail", "Goodies", "Affecter ce mot clef aux objets SPIP devant apparaitre dans la zone des Goodies.", "Ne pas oublier de mettre un logo (120×30) aux objet concernés.");
 		create_mot("_ModePortail", "ZoomSur", "Affecter ce mot clef à l\'objet que vous voulez placer dans le cadre « Zoom sur » (facultatif).\n\nLe site prendra les 3 derniers articles ayant ce mot clef", "S\'applique aux :\n-* articles\n-* rubriques");
-
-	create_groupe("_Params", "Paramétrages globaux du site", "Ces paramètres règlent des comportements globaux pour tout le site.", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
-		create_mot("_Params", "ActiverRechercheparMots", "", "");
-		create_mot("_Params", "aff_Complet_Pour_Impression", "", "");
-		create_mot("_Params", "Aff_DatePublication", "Mettre Oui ci-dessous si le site doit afficher la date de publication des articles", "Oui");
-		create_mot("_Params", "Aff_Google_Analytics", "Mettre ci-dessous la partie du code entre les guillemets (extrait du code fournis par Google) : _uacct = \"UA-00000-0\"; pour bénéficier des services de statistiques de [Google Analytics->http://www.google.com/analytics/fr-FR/].", "");
-		create_mot("_Params", "Aff_Habillage", "Permet de spécifier l\'emplacement de la zone de choix de l\'habillage du site, soit en haut à droite, soit en bas à gauche.\n\nValeurs possible à mettre ci-dessous : Left ou Right", "Left");
-		create_mot("_Params", "AgendaFuturSeul", "Mettre Oui ci-dessous pour bénéficier d\'un agenda (format liste) qui affiche tous les événements futurs et seulement eux.", "");
-		create_mot("_Params", "AgendaScolaire", "Mettre Oui ci-dessous si l\'agenda doit afficher des années scolaires (septembre à décembre de l\'année suivante inclus) et non des années légales.", "");
-		create_mot("_Params", "AgendaThematique", "Mettre Oui ci-dessous afin de provoquer par défaut l\'affichage de l\'Agenda sous forme d\'un plan hiérarchique des rubriques et des articles présents dans ce dernier.", "");
-		create_mot("_Params", "AnonymatGlobal", "Mettre Oui ci-dessous si le site ne doit pas afficher le nom des auteurs", "Oui");
-		create_mot("_Params", "BandeauContact", "Mettre ci-dessous le contenu à afficher dans le bandeau de contact (en bas du site). Laisser vide s\'il ne doit pas être affiché.", "");
-		create_mot("_Params", "CitationsHeader", "Par défaut, les citations sont en haut du menu de droite (ou en dessous de la recherche si site en 2 colonnes).\n\nMettre Oui ci-dessous pour que les citations soient affichées dans le bandeau d\'en-tête du site.", "");
-		create_mot("_Params", "CNIL", "N° de déclaration CNIL, si non déclaration (ce qui est illégal!), laisser le texte explicatif vide.\n\nPour procéder à la déclarion, rendez-vous sur le [site de la CNIL->http://www.cnil.fr/index.php?id=32]", "");
-		create_mot("_Params", "ModeNews", "Mettre Oui ci-dessous si le site ne doit pas afficher un Edito seul, mais plutôt une liste des derniers articles", "");
-		create_mot("_Params", "ModePortail", "Mettre Oui ci-dessous si le site ne doit s\'afficher sur sa page d\'accueil dans un mode portail.", "");
-		create_mot("_Params", "ModeStatique", "Mettre Oui ci-dessous si le site web est destiné à être utilisé dans un environement statique (par exemple dans le cas d\'une aspiration du site).\n\nCeci désactivera :\n-* le lien résumé en bas du menu de gauche (le résumé étant dynamique en fonction des visites, il n\'a pas de sens dans un environement statique)", "");
-		create_mot("_Params", "NavigationTransversaleSansAutresMenusHaut", "Limitation de la navigation transversale : mettre {{Oui}} ci-dessous.\n\nDans le cas d\'un site avec des Menus placés en haut du site (navigation horizontale), permet de limiter la fonctionalité de navigation transversale par mots clefs :\n-* à la rubrique en cours\n-* aux rubriques qui ne sont pas dans un secteur ayant le mot clef MenuHaut", "Oui");
-		create_mot("_Params", "NewsLetterID", "Mettre le numéro de la WaNewsLetter ici pour permettre l\'abonnement à la lettre (Si elle existe, sinon rien)", "");
-		create_mot("_Params", "PasDeMiniAgenda", "Mettre Oui ci-dessous pour que le mini Agenda ne soit pas affiché sur la page d\'accueil du site.", "");
-		create_mot("_Params", "PasDeResume", "Mettre Oui ci-dessous pour ne pas afficher l\'accès à la page Résumé dans le menu du site (sous le Plan)", "");
-		create_mot("_Params", "Xiti_ID", "IDENTIFICATION DU NUMÉRO D\'INSCRIPTION\nRemplacer ###### par votre numéro d\'inscription Xiti", "######");
-		create_mot("_Params", "Xiti_URL", "IDENTIFICATION DE  L\'ADRESSE DE VOTRE MARQUEUR XITI.\nRemplacer ###### par l\'adresse (URL) de votre marqueur.\nElle se trouve dans une ligne du code du marqueur Xiti qui ressemble à :\nhsi += \'src=\"http://logv24.xiti.com/hit.xiti?s=1234\';\nL\'adresse ici serait http://logv24.xiti.com/hit.xiti", "######");
-
-	create_groupe("_ParamsApparence", "Des paramètres pour régler l\'apparence du site", "Ces paramètres influent directement sur l\'apparence du site.\n\nLà encore, ne rien faire sans savoir pourquoi.", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
-		create_mot("_ParamsApparence", "AvertissementIE", "Mettre Oui ci-dessous pour afficher l\'avertissement d\'obsolescence d\'Internet Explorer 5 et 5.5", "Oui");
-		create_mot("_ParamsApparence", "BandeauContactExtra", "Mettre Oui ci-dessous pour que le Bandeau de contact s\'affiche dans la navigation secondaire (et non pas dans le pied de la page).", "");
-		create_mot("_ParamsApparence", "FrmRecherchePerso", "Mettre ci-dessous le nom du Formulaire de Recherche s\'il doit être différent du formulaire de recherche par défaut.\n\nSi le fichier de squelette est {nomfichier.html}, mettre {nomfichier}", "");
-		create_mot("_ParamsApparence", "LargeurMenuDroit", "Pour régler la largeur du menu de droite si présent (l\'unité est le pixel)", "140");
-		create_mot("_ParamsApparence", "LargeurMenuGauche", "Pour régler la largeur du menu de gauche (l\'unité est le pixel)", "160");
-		create_mot("_ParamsApparence", "LogoHeader", "Mettre Oui ci-dessous pour que le logo du site soit dans la zone d\'entête au lieu d\'être en haut de la zone de menu.", "");
-		create_mot("_ParamsApparence", "MenuHautHeader", "Mettre Oui ci-dessous si le MenuHaut doit être dans le #header de la page", "");
-		create_mot("_ParamsApparence", "Nombre_ALaUne", "Mettre ci-dessous le nombre d\'élements que la zone « À la Une » de la page d\'accueil doit contenir.", "3");
-		create_mot("_ParamsApparence", "Nombre_QuoideNeuf", "Mettre ci-dessous le nombre d\'élements que le quoi de neuf de la page d\'accueil doit contenir.", "10");
-
-	create_groupe("_ParamsSlyleSwitcher", "Paramétrage du menu de choix d\'affichage du site", "Il est possible :\n\n-* d\'enlever un élément\n-* de changer de place un «alternate» pour changer le style par défaut du site", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
-		create_mot("_ParamsSlyleSwitcher", "centerbleu", "", "Bleu");
 
 	create_groupe("_Specialisation", "Spécialisation d’un article ", "Un mot clef pris dans ce groupe permettra de modifier\n\n-* le comportement d’un article particulier\n", 'non', 'non', 'oui', 'non', 'non', 'non', 'non', 'oui', 'oui', 'non');
 		create_mot("_Specialisation", "AccesibiliteLien", "Affecter ce mot clef à l\'article traitant de la politique d\'accessibilité du site.", "Un fois l\'article écrit, lui affecter ce mot clef pour qu\'il soit disponible en lien en haut de la page (caché pour les voyants, sauf sur la page d\'accueil).");
