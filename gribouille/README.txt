@@ -44,48 +44,8 @@ et
 	autoriser('publierdans', 'rubrique', $id_rubrique)
 
 
-Pour (par exemple) ouvrir à tous les visiteurs (enregistrés ou non) la possibilité d'éditer un article, et réserver aux seuls rédacteurs la possibilité de créer une nouvelle page, on créera les deux fonctions d'autorisation suivantes (à installer dans mes_options.php) :
+Pour (par exemple) ouvrir à tous les visiteurs (enregistrés ou non) la possibilité d'éditer un article, et réserver aux seuls rédacteurs la possibilité de créer une nouvelle page, on créera deux fonctions d'autorisation suivantes (à installer dans mes_options.php, cf. fichier d'exemple).
 
-
-function autoriser_article_modifier($faire, $type, $id, $qui, $opt) {
-	// Si on est deja autorise en standard, dire 'OK'
-	if (autoriser_article_modifier_dist($faire, $type, $id, $qui, $opt))
-		return true;
-
-	// Sinon, verifier si l'article est dans un secteur gribouille
-	// (par exemple : 201 et 202)
-	$s = spip_query("SELECT id_secteur FROM spip_articles WHERE id_article="._q($id));
-	if ($t = spip_fetch_array($s)
-	AND in_array($t['id_secteur'], array(201,202)))
-		return true;
-
-	// par defaut, NIET
-	return false;
-}
-
-function autoriser_rubrique_publierdans($faire, $type, $id, $qui, $opt) {
-	// Si on est deja autorise en standard, dire 'OK'
-	if (autoriser_rubrique_publierdans_dist($faire, $type, $id, $qui, $opt))
-		return true;
-
-	// Sinon, verifier si la rubrique est dans un secteur gribouille
-	// et si on est bien redacteur
-	if (
-	in_array($qui['statut'], array('0minirezo', '1comite'))
-
-	AND
-	(in_array($id, array(201,202))
-	OR (
-		$s = spip_query("SELECT id_secteur FROM spip_rubriques WHERE id_rubrique="._q($id))
-		AND $t = spip_fetch_array($s)
-		AND in_array($t['id_secteur'], array(201,202))
-	))
-	)
-		return true;
-
-	// par defaut, NIET
-	return false;
-}
 
 Il faut aussi signaler au plugin crayons qu'un simple visiteur peut avoir
 des droits d'édition : pour cela ajouter aussi dans ecrire/mes_options la
