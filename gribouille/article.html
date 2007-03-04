@@ -1,0 +1,101 @@
+<BOUCLE_a(ARTICLES){id_article}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+
+<head>
+<title>#TITRE</title>
+<INCLURE{fond=gribouille/inc-head}>
+</head>
+
+
+<body id="contenu">
+
+<BOUCLE_r(RUBRIQUES){id_rubrique}>
+<h1 class="wiki_name">#TITRE</h1>
+</BOUCLE_r>
+
+[(#ENV{id_version}|?{
+	<h1 class="page_name">[(#TITRE|safehtml)]
+	&mdash; version [(#ENV{id_version})]
+	::
+	<a href="#URL_ARTICLE">Retour &#224; la version actuelle</a>
+	</h1>
+,
+	<h1 class="[(#EDIT{titre}) ]page_name">[(#TITRE|safehtml)]</h1>
+})]
+
+<INCLURE{fond=gribouille/inc-entete}{id_rubrique}>
+
+
+<div class="texte page">
+
+<?php if (!_request('id_version')) { ?>
+
+	[<div style='float:left;[width:(#LOGO_ARTICLE||extraire_attribut{width})px;]margin:0 9px 5px 0;'>(#LOGO_ARTICLE)</div>]
+
+	<div class="#EDIT{texte}">[(#TEXTE|safehtml|sinon{Double-cliquez pour ajouter du texte dans cet article})]</div>
+
+	[<div class="notes">(#NOTES|safehtml)</div>]
+
+<?php } else /* affichage des revisions */ { ?>
+
+<BOUCLE_revision(spip_versions){id_version=#ENV{id_version}}{id_article}>
+<h2>Version #ID_VERSION <span style="color:gray;">&mdash;
+[(#DATE|date_relative),]
+[(#ID_AUTEUR|affiche_auteur_diff)] [-- (#TITRE_VERSION)]</span>
+</h2>
+
+
+[<blockquote>(#ID_ARTICLE|affiche_diff{#ID_VERSION}|safehtml)</blockquote>]
+
+
+</BOUCLE_revision>
+
+<hr />
+<ul>
+<BOUCLE_rev(spip_versions){id_article}{par date}{inverse}{pagination 40}>
+[(#SET{a,[(#ENV{id_version}|=={#ID_VERSION}|?{span,a})]})]
+<li><[(#GET{a})]
+	href="[(#SELF|parametre_url{id_version,#ID_VERSION})]">#DATE</#GET{a}>
+	<span style="color:gray;">&mdash; [(#ID_AUTEUR|affiche_auteur_diff)] [-- (#TITRE_VERSION)]</span>
+	</li>
+</BOUCLE_rev>
+</ul>
+
+<?php } ?>
+
+
+<hr class="hr_clear" />
+</div>[(#REM) /page]
+
+
+<div class="footer">
+
+<script type='text/javascript'><!--
+	if (typeof cQuery != 'undefined') {
+		cQuery(function(){
+			cQuery('<span><a>&Eacute;diter cette page<\/a> :: <\/span>')
+			.bind('click',function(e){
+				cQuery('.crayon-autorise')
+				.opencrayon(e);
+			})
+			.prependTo(".footer");
+		});
+	}
+// --></script>
+
+
+<a rel="noindex,nofollow" [(#ENV{id_version}|?{
+	href="#URL_ARTICLE">retour à la version courante
+,
+	href="[(#URL_ARTICLE|parametre_url{id_version,#ID_VERSION})]">Historique
+})]</a>
+</div>
+
+
+<INCLURE{fond=gribouille/inc-pied}{id_rubrique}{url=#URL_ARTICLE}>
+
+</body>
+</html>
+</BOUCLE_a>
