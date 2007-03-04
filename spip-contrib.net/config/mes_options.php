@@ -147,17 +147,17 @@ function critere_doublons_trad_dist($idb, &$boucles, $crit) {
 ###################
 # Gestion du wiki #
 ###################
-define('RUBRIQUES_WIKI', '607');
+define('SECTEURS_WIKI', '607');
 
 function autoriser_article_modifier($faire, $type, $id, $qui, $opt) {
 	// Si on est deja autorise en standard, dire 'OK'
 	if (autoriser_article_modifier_dist($faire, $type, $id, $qui, $opt))
 		return true;
 
-	// Sinon, verifier si l'article est dans une rubrique wiki (ici 201 et 202)
-	$s = spip_query("SELECT id_rubrique FROM spip_articles WHERE id_article="._q($id));
+	// Sinon, verifier si l'article est dans un secteur wiki
+	$s = spip_query("SELECT id_secteur FROM spip_articles WHERE id_article="._q($id));
 	if ($t = spip_fetch_array($s)
-	AND in_array($t['id_rubrique'], explode(',', RUBRIQUES_WIKI))
+	AND in_array($t['id_secteur'], explode(',', SECTEURS_WIKI))
 #	AND in_array($qui['statut'], array('0minirezo', '1comite'))
 	)
 		return true;
@@ -171,10 +171,18 @@ function autoriser_rubrique_publierdans($faire, $type, $id, $qui, $opt) {
 	if (autoriser_rubrique_publierdans_dist($faire, $type, $id, $qui, $opt))
 		return true;
 
-	// Sinon, verifier si la rubrique est wiki
+	// Sinon, verifier si la rubrique est dans un secteur gribouille
 	// et si on est bien redacteur
-	if (in_array($id, explode(',', RUBRIQUES_WIKI))
-	AND in_array($qui['statut'], array('0minirezo', '1comite'))
+	if (
+	in_array($qui['statut'], array('0minirezo', '1comite'))
+
+	AND
+	(in_array($id, array(201,202))
+	OR (
+		$s = spip_query("SELECT id_secteur FROM spip_rubriques WHERE id_rubrique="._q($id))
+		AND $t = spip_fetch_array($s)
+		AND in_array($t['id_secteur'], explode(',', SECTEURS_WIKI))
+	))
 	)
 		return true;
 
