@@ -6,11 +6,10 @@
 <head>
 
 [(#REM)   les métas   ]
-<BOUCLE_sujet(FORUMS){id_thread}><title>[(#TITRE|titre_forum)]</title>
+<BOUCLE_sujet(FORUMS){id_thread}>
+<title>[(#TITRE|titre_forum)]</title>
+<meta name="Description" content='[(#TITRE|titre_forum)][, (#INTRODUCTION)]'/>
 </BOUCLE_sujet>
-<BOUCLE_meta(ARTICLES){id_article}>
-<meta name="Description" content='[(#INTRODUCTION)][, (#TITRE)]'/>
-</BOUCLE_meta>
 <meta name="revisit-after" content="15 days" />
 <meta http-equiv="content-type" content="text/html; charset=#CHARSET"/>
 
@@ -61,30 +60,44 @@ txtarea.value += text; txtarea.focus(); } }
 
 
 
-<p>
 [(#REM)   quel article   ]
-<BOUCLE_article(ARTICLES){id_article}>
+<BOUCLE_article(ARTICLES){id_article}><p>
 <span class="logogauche"><a href="#URL_ARTICLE"><INCLURE{fond="logo"}{id_article,#ID_ARTICLE}{taille=46}></a></span>
-
 <a href="[(#URL_PAGE{sommaire})]">Accueil</a> > 
-<BOUCLE_rub3(HIERARCHIE){id_article}>[<a href="#URL_RUBRIQUE">(#TITRE)</a> >]
+<BOUCLE_rub3(HIERARCHIE){id_article}>
+[<a href="#URL_RUBRIQUE">(#TITRE)</a> >]
 </BOUCLE_rub3>
 [<a href="#URL_ARTICLE">(#TITRE)</a> >]
 [(#REM)   quel forum   ]
 <BOUCLE_forum_parent(FORUMS){id_forum}{0,1}>
 [<strong>(#TITRE)</strong>]
 </BOUCLE_forum_parent>
-
-
 [(#REM)   compteur de thread   ]
-
 <B_nb_forumtotal><BOUCLE_nb_forumtotal(FORUMS){id_thread}{plat}> </BOUCLE_nb_forumtotal>
 [(#TOTAL_BOUCLE)]&nbsp;[(#TOTAL_BOUCLE|=={1}|?{<:commentaire:>,<:commentaires:>})]&nbsp;dans&nbsp;cette&nbsp;discussion.</B_nb_forumtotal>
 #DESCRIPTIF
-</p>
+</p><hr class="spacer"/></BOUCLE_article>
 
 
-<hr class="spacer"/>
+[(#REM)   quel breve   ]
+<BOUCLE_breve(BREVES){id_breve}><p>
+<span class="logogauche"><a href="#URL_BREVE"><INCLURE{fond="logo"}{id_breve,#ID_BREVE}{taille=46}></a></span>
+<a href="[(#URL_PAGE{sommaire})]">Accueil</a> > 
+<BOUCLE_rub4(HIERARCHIE){id_rubrique}>
+[<a href="#URL_RUBRIQUE">(#TITRE)</a> >]
+</BOUCLE_rub4>
+[<a href="#URL_BREVE">(#TITRE)</a> >]
+[(#REM)   quel forum   ]
+<BOUCLE_forum_parent2(FORUMS){id_forum}{0,1}>
+[<strong>(#TITRE)</strong>]
+</BOUCLE_forum_parent2>
+[(#REM)   compteur de thread   ]
+<BOUCLE_nb_forumtotal2(FORUMS){id_thread}{plat}> </BOUCLE_nb_forumtotal2>
+[(#TOTAL_BOUCLE)]&nbsp;[(#TOTAL_BOUCLE|=={1}|?{<:commentaire:>,<:commentaires:>})]&nbsp;dans&nbsp;cette&nbsp;discussion.</B_nb_forumtotal2>
+#DESCRIPTIF
+</p><hr class="spacer"/></BOUCLE_breve>
+
+
 
   <h4 class="icone_recherche">Chercher dans les forums</h4>
   <form action='[(#URL_PAGE{recherche-forum})]' method='post' class="form_rech" id="form_rech">
@@ -92,7 +105,7 @@ txtarea.value += text; txtarea.focus(); } }
               <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" /></p>             
           </form>
 		  
-</BOUCLE_article>
+
 
 
 </div> [(#REM)   fermeture grande boite   ]
@@ -123,7 +136,7 @@ txtarea.value += text; txtarea.focus(); } }
 <hr class="spacer" />
 
 
-<INCLURE{fond="inc_discussion"}{id_article}{id_forum}{id_thread}{id_auteur}{self=#SELF}>
+<INCLURE{fond="inc_discussion"}{id_article}{id_breve}{id_forum}{id_thread}{id_auteur}{self=#SELF}>
 
 
 
@@ -131,7 +144,7 @@ txtarea.value += text; txtarea.focus(); } }
 
 
 </div>[(#REM)   fermeture contenu   ] 
-<INCLURE{fond="pieddepage"}{id_article}>
+<INCLURE{fond="pieddepage"}{id_article}{id_breve}>
 
 </div> [(#REM)   fermeture surcontenu   ]<br/>
 
