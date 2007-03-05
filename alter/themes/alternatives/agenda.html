@@ -1,98 +1,109 @@
 #CACHE{7200}
-<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique} {lang_select}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
-	<title>[[(#NOM_SITE_SPIP|textebrut)]] : [(#TITRE|supprimer_numero|textebrut|entites_html)]</title>
-	<INCLURE{fond=page}{fond=styles}{lang}{id_rubrique}>
-	<link rel="stylesheet" href="#CHEMIN{calendrier.css}" type="text/css" />
-	<script type="text/javascript" src="#EVAL{_DIR_IMG_PACK}layer.js"></script>
-	<script type="text/javascript" src="#EVAL{_DIR_IMG_PACK}presentation.js"></script>
-<style type="text/css" media="screen">
-/* <![CDATA[ */
-
-	#menu-rubriques,
-	#menu-agenda {display:none}
-	#menu-recherche {margin-left:620px;}
-	.agenda #bloc-contenu {margin-left: 5px}
-	
-	.calendrier-helvetica16 
-	{
-		font-family: Tahoma, arial,helvetica,sans-serif;
-		font-size: 1em;
-		color: maroon;
-	}
-	
-	
-	.calendrier-table-large,
-	.calendrier-table-etroit { width: 100% }
-	
-	.calendrier-td
-	{
-		max-width: 50px;
-		white-space: normal;
-	}
-	
-/* ]]> */
-</style>
+	<title>[[(#NOM_SITE_SPIP|textebrut)]] : <:icone_agenda:></title>
+	<INCLURE{fond=page}{fond=styles}>
+	<INCLURE{fond=inc/inc-meta}{lang}>
 </head>
-<body dir="#LANG_DIR" class="#LANG rubrique sect#ID_SECTEUR <BOUCLE_rubriques_body(HIERARCHIE) {id_secteur}{" "}>rub#ID_RUBRIQUE</BOUCLE_rubriques_body></B_rubriques_body> rub#ID_RUBRIQUE">
-<div id="page" class="agenda">
+<body dir="#LANG_DIR" class="#LANG plan">
+<div id="page">
 
 <!-- *****************************************************************
 	Bandeau, titre du site et menu langue
 	Header and main menu (top and right) 
     ************************************************************* -->
 	
-<INCLURE{fond=inc/inc-bandeau}{lang}{id_rubrique}>
+<INCLURE{fond=inc/inc-bandeau}{lang}>
 
 <!-- *****************************************************************
 	Contenu principal (centre)
 	Main content (center) 
     ************************************************************* -->
+
 	<div id="bloc-contenu">
-		[(#LOGO_RUBRIQUE|right)]
-		<B_rubriques_chemin>
-		<h5>
-		<BOUCLE_rubriques_chemin(HIERARCHIE) {id_secteur}>
-              <a href="#URL_SITE_SPIP/#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a> <b class="separateur">&nbsp;</b>
-		</BOUCLE_rubriques_chemin>
-		</h5>
-			<div class="ligne-debut"></div><!-- ligne-debut -->
-		</B_rubriques_chemin>
-		<h1 class="structure"><:icone_agenda:></h1>
-		[<h2>(#TITRE|supprimer_numero)</h2>]
-		[<div class="chapo">(#TEXTE)</div><br />]
-		[<div class="notes">(#NOTES)</div>]
+		<BOUCLE_langue_contexte_exclus(ARTICLES){tout}{doublons contexte}{lang}></BOUCLE_langue_contexte_exclus>
+		<B_langues>
+		<div id="sommaire">
+			<h4><:info_langues:></h4>
+			<ul>
+			<BOUCLE_langues(ARTICLES){tout}{doublons contexte}{par lang}>[
+				<li lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">
+					<a href="spip.php?action=cookie&amp;url=[(#SELF)]&amp;var_lang=#LANG" hreflang="#LANG">(#LANG|unique|traduire_nom_langue{lang})</a>
+				</li>
+			]</BOUCLE_langues>
+			</ul>
+		</div>
+		</B_langues>
 
-	<div id="calendrier" lang="#LANG"> 
- 	<!-- Agenda -->
-[(#REM) Voir :
-		http://spip-epona.org/article.php3?id_article=10 et variante
-		http://6v8.gamboni.org/test-aig/squelettes/agenda.html ]
+		<h2><:icone_agenda:></h2>
 
-<BOUCLE_rub(RUBRIQUES){id_rubrique}>
-        <BOUCLE_evts_com(ARTICLES){branche}{age_relatif_redac > -58}{age_relatif_redac < 58}{par date_redac}>
-        [(#DATE_REDAC|agenda_memo{#DESCRIPTIF,#TITRE,#URL_ARTICLE,couleur1})]
-        </BOUCLE_evts_com>
-</BOUCLE_rub>
-[(#NOM_SITE_SPIP|agenda_affiche{<:aucun_article:>, 'mois'})]
+    <B_article_langue>
+    <BOUCLE_article_langue(ARTICLES) {lang} {par date} {inverse} {pagination} {!par date_redac}{age_redac < 1}{doublons archives}>
+    <hr />
+        <h3>[(#DATE_REDAC|nom_jour)] [(#DATE_REDAC|affdate)]</h3>
+    <hr />
+      [<span style="float:right;">(#LOGO_ARTICLE||reduire_image{150,0})</span>]
+			[<div class="surtitre">(#SURTITRE)</div>]
+      <h3><a href="#URL_SITE_SPIP/#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h3>
+      [<div class="sous-titre">(#SOUSTITRE)</div>]
+      <div class="detail">
+      </div><!-- detail -->
+      [<div class="texte">
+      	<div class="extrait">
+      	 (#DESCRIPTIF|sinon{[(#CHAPO|sinon{#TEXTE}|couper{300})]})&nbsp;<b class="separateur">&gt;</b>&nbsp;<a  class="suite" href="#URL_SITE_SPIP/#URL_ARTICLE" title="...<:suite:>" ><:suite:></a>
+      	</div>
+      </div>]
+      <br />
+    </BOUCLE_article_langue>
+    </B_article_langue>
+    <//B_article_langue>
 
-	<!-- Fin de l'agenda -->
-	</div>
+    <hr />
+		
+	[(#REM) ARCHIVES : 
+	Boucle tiré de "Usage du filtre 'unique' pour classer des articles"
+	sur SPIP-Contrib : http://www.spip-contrib.net/Usage-du-filtre-unique-pour]
+		<h3><:info_visites_par_mois:></h3>
+	<BOUCLE_archive(ARTICLES){titre_mot=Agenda}{lang}{doublons archives}>
+		[
+			[(#COMPTEUR_BOUCLE|>{1}|?{'</ul></li></ul></div>',''})]
+			<div class="archives">
+			<h3 class="plan-archives" style="cursor: pointer; margin-top:.5em;" onclick="deplier('bloc[(#COMPTEUR_BOUCLE)]');">(#DATE|annee|unique)</h3>
 
+			<ul id="bloc[(#COMPTEUR_BOUCLE)]" style="display: block;">
+		]
+		[
+			[(#DATE|annee|unique{nouvelle}|?{'','</ul></li>'})]
+			<li style="cursor: pointer;" onclick="deplier('bloc[(#COMPTEUR_BOUCLE)2]');">(#DATE|affdate{'Y-m'}|unique|nom_mois)
+  			<ul id="bloc[(#COMPTEUR_BOUCLE)2]" style="display: none;">
+		]
+		<li><a href="#URL_ARTICLE" title="commentaire">[(#TITRE|supprimer_numero)]</a></li>
+	</BOUCLE_archive>
+		</ul></li></ul>
+			</div><!-- archives -->
+	</B_archive>
 	</div><!-- bloc-contenu -->
-	
+
+	[(#REM) Fin de l'archive]
+        
+
 <!-- *****************************************************************
-	Menus contextuels (gauche) et pied de page
-	Contextual menus (left) and footer
+	Menus contextuels (droite)
+	Contextual menus (right) 
     ************************************************************* -->
-<INCLURE{fond=inc/inc-menu}{lang}{id_rubrique}>
-<INCLURE{fond=inc/inc-bas}{lang}{id_rubrique}>
+	<div id="encart">
+    <INCLURE{fond=inc/inc-annonces}{lang}>
+    <INCLURE{fond=inc/inc-breves}{lang}>
+    <INCLURE{fond=inc/inc-syndic}{lang}>
+
+	</div><!-- encart -->
+<INCLURE{fond=inc/inc-menu}{lang}>
+<INCLURE{fond=inc/inc-bas} {lang}>
 </div><!-- page -->
+
 </body>
 </html>
-</BOUCLE_rubrique_principal>
-<INCLURE{fond=404}{lang}{id_rubrique}>
-<//B_rubrique_principal>
+
+
