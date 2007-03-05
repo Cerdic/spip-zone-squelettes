@@ -39,21 +39,38 @@ function affiche_auteur_diff($auteur) {
 // Creation d'un nouvel article du WIKI -- cf. inc-entete
 if (isset($_POST['ajouter_page_wiki'])
 AND isset($_POST['id_rubrique'])
-AND $_POST['id_rubrique'] == $GLOBALS['contexte_inclus']['id_rubrique']) {
+AND $_POST['id_rubrique'] == $GLOBALS['contexte']['id_rubrique']) {
 	$id_rubrique = intval($_POST['id_rubrique']);
-	include_spip('inc/autoriser');
-	if (autoriser('publierdans', 'rubrique', $id_rubrique)) {
-		$s = spip_query("SELECT id_secteur FROM spip_rubriques WHERE id_rubrique=$id_rubrique");
-		if ($t = spip_fetch_array($s)) {
-			$id_secteur = $t['id_secteur'];
-			spip_query("INSERT spip_articles (id_rubrique, id_secteur, statut, titre, date) VALUES ($id_rubrique, $id_secteur, 'publie', "._q($_POST['ajouter_page_wiki']).", NOW())");
-			$id_article = spip_insert_id();
-			charger_generer_url();
-			include_spip('inc/headers');
-			redirige_par_entete(generer_url_article($id_article, '&'));
-		}
+	$id_article = null;
 
+	// on verifie d'abord qu'un article de ce titre n'existe pas deja
+	$s = spip_query("SELECT id_article FROM spip_articles WHERE titre="
+	._q($_POST['ajouter_page_wiki'])." OR url_propre="
+	._q($_POST['ajouter_page_wiki']));
+	if ($t = spip_fetch_array($s)) {
+		$id_article = $t['id_article'];
+	} else {
+		include_spip('inc/autoriser');
+		if (autoriser('publierdans', 'rubrique', $id_rubrique)) {
+			include_spip('action/editer_article');
+			$id_article = insert_article($id_rubrique);
+			include_spip('inc/modifier');
+			$r = modifier_contenu('article', $id_article,
+				array('champs' => array('titre', 'statut')),
+				array(
+					'titre' => $_POST['ajouter_page_wiki'],
+					'statut' => 'publie'
+				)
+			);
+		}
 	}
+
+	if (!$id_article)
+		die("Erreur : creation d'article interdite");
+
+	charger_generer_url();
+	include_spip('inc/headers');
+	redirige_par_entete(generer_url_article($id_article, '&'));
 }
 
 define ('RUBRIQUE_WIKI_OK', true);
