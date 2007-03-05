@@ -1,10 +1,8 @@
-[(#REM) Squelette pour SPIP 1.9.2, par Nicolas Krebs (copyright 2006, distribue sous licence GPL version 2). 
+[(#REM) Squelette pour SPIP 1.9.2, Copyright (c) Nicolas Krebs 2006-2007, distribue sous licence GPL version 2. 
 Publie un formulaire de recherche au format OpenSearch 1.1 http://www.opensearch.org/Specifications/OpenSearch/1.1 http://developer.mozilla.org/fr/docs/Cr%C3%A9ation_de_plugins_OpenSearch_pour_Firefox http://www.spip-contrib.net/article1465.html.
-Ne donne pas d'indication de pagination car SPIP 1.9.2 n'est pas suffisament developpe dans ce domaine. 
+Ne donne pas d'indication de pagination.  
 ]#CACHE{86400}
-[(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})
-][(#REM) Remplacer text/xml par application/opensearchdescription+xml a condition que (...)
-]<?xml version="1.0"[ encoding="(#CHARSET)"]?>
+[(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})]<?xml version="1.0"[ encoding="(#CHARSET)"]?>
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
 	<ShortName>[(#NOM_SITE_SPIP|couper{16}|texte_backend)][ (#ID_RUBRIQUE)]</ShortName>
 	<Description>Rechercher dans [(#NOM_SITE_SPIP|texte_backend)]<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>[- <:rubrique|texte_backend:> (#TITRE|texte_backend)]</BOUCLE_rubrique></Description>[(#REM) texte traduisible = xmlns:its="http://www.w3.org/2005/11/its" its:translate="yes" ]
