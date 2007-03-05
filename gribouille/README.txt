@@ -15,12 +15,22 @@ INSTALLATION
 * repérer le numéro NN du secteur qui sera "gribouille", et/ou contiendra
   des sous-rubriques de gribouillage.
 
-* dans squelettes/ recopier les fichiers :
-    - gribouille/rubrique.html
+* avec SPIP 1.9.2:
+ ------------------
+  dans squelettes/ recopier les fichiers :
     - gribouille/article.html
-  en remplacant xx par NN (repeter autant de fois
-  qu'il existe de secteurs gribouille)
+    - gribouille/rubrique.html
+    - gribouille/article_fonctions.php
+    - gribouille/rubrique_fonctions.php
+  sous le nom article-NN.html, rubrique-NN.html
+  article-NN_fonctions.php et  rubrique-NN_fonctions.php
 
+* avec SPIP 1.9.3 dev, c'est plus simple :
+ ------------------
+ Faire un article-NN.html contenant exactement :
+ [(#INCLURE{fond=gribouille/article}{env})]
+ Faire un rubrique-NN.html contenant exactement :
+ [(#INCLURE{fond=gribouille/rubrique}{env})]
 
 
 
