@@ -6,6 +6,7 @@ $formats_logos =  array ('gif', 'jpg', 'png', 'swf');
 $type_urls = 'propres2';
 
 $GLOBALS['barre_typo_pas_de_fausses_puces'] = true;
+$GLOBALS['BarreTypoEnrichie_Preserve_Header'] = true;
 
 global $couleurs_spip;
 $couleurs_spip[] = array(
