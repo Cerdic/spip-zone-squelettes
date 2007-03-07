@@ -3,7 +3,7 @@
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-// Anciens ajouts accessibilite Agora (non implémente actuellement)
+// Anciens ajouts accessibilite Agora (non implemente actuellement)
 'info_nouvelle_fenetre' => 'Lien ouvrant ',
 'info_meme_fenetre' => 'Lien ',
 'info_lien_in' => 'interne',
@@ -25,7 +25,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'admin_modifier_mot' => 'G&eacute;rer ce mot-cl&eacute;',
 'admin_modifier_rubrique' => 'G&eacute;rer cette rubrique',
 	
-// Aide des boutons supplémentaires de la barre typo
+// Aide des boutons supplementaires de la barre typo
 'barre_intertitre2' => 'Transformer en {2{intertitre niveau deux}2}',
 'barre_intertitre3' => 'Transformer en {3{intertitre niveau trois}3}',
 'barre_miseenevidence' => 'Mettre le texte en [*&eacute;vidence*]',

@@ -133,4 +133,5 @@ $(document).ready(function() {
 		adjustLayout();
 		}
 	);
+	$.jqem.bind(function(a,b,c) { adjustLayout(); });
 });
