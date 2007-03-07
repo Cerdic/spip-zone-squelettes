@@ -18,7 +18,10 @@ $GLOBALS['i18n_cfgpyrat_fr'] = array(
 
 // pour cfg_soyezcreateurs_google
 'parametres_google' => 'Param&egrave;tres pour Google',
-'parametres_xiti' => 'Param&egrave;tres pour Xiti'
+'parametres_xiti' => 'Param&egrave;tres pour Xiti',
+
+// pour cfg_soyezcreateurs
+'textesiplanvide' => 'Texte si le plan est vide'
 
 );
 
