@@ -65,20 +65,12 @@ urchinTracker();
 	<div id="wrapper">
 <div id="content" class="equilibre notstackable">
 [(#CONFIG{soyezcreateurs/menuhautheader,content}|=={content}|?{' ',''})<INCLURE{fond=menuhaut}{secteurencours}>]
-[(#REM) le bloc s'ouvre en milieu de page, mais bon là si on est sur / faut rediriger proprement bidouille si sommaire...]
 [(#ENV{connexion}|=={y}|?{' ',''})
-<div id="connexion">
-[(#SELF|=={?connexion=y}|?{
-<!--accueil-->
-[(#LOGIN_PUBLIC|?)]
-,
-<!--autre-->
-[(#LOGIN_PUBLIC)]
-})]
-</div>
+[(#REM) Meme si connexion=y est dans l'url, il ne faut pas chercher a afficher le panneau de login si on est deja identifie...]
+[(#SESSION{id_auteur}|?{'',' '})
+[<div id="connexion">(#LOGIN_PUBLIC)</div>]
+]
 ]
 <?php if ($_GET['var_erreur']=='pass') { ?>
-<div id="connexion">
-Erreur de mot de passe...
-</div>
+<div id="connexion"><:pyrat:erreur_connexion:></div>
 <?php } ?>
