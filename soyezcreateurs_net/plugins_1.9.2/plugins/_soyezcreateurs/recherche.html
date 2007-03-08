@@ -15,6 +15,7 @@
 </div>
 	<div id="letexte">
 <BOUCLE_ArticlesExclus(ARTICLES){titre_mot=PasDansRecherche}{doublons}></BOUCLE_ArticlesExclus>
+[(#SET{nbelementstrouves,0})]
 <B_articles>
 	<h2>#ANCRE_PAGINATION<:articles:></h2>
 	<ul>
@@ -23,6 +24,7 @@
 		</BOUCLE_articles>
 	</ul>
 	[<p class="pagination">(#PAGINATION)</p>]
+	[(#SET{nbelementstrouves,#GET{nbelementstrouves}|plus{#GRAND_TOTAL}})]
 </B_articles>
 
 <!-- Rubriques trouvees -->
@@ -34,6 +36,7 @@
 		</BOUCLE_rubriques>
 	</ul>
 	[<p class="pagination">(#PAGINATION)</p>]
+	[(#SET{nbelementstrouves,#GET{nbelementstrouves}|plus{#GRAND_TOTAL}})]
 </B_rubriques>
 
 <B_breves>
@@ -45,6 +48,7 @@
 		</BOUCLE_breves>
 	</ul>
 	[<p class="pagination">(#PAGINATION)</p>]
+	[(#SET{nbelementstrouves,#GET{nbelementstrouves}|plus{#GRAND_TOTAL}})]
 </B_breves>
 
 <!-- Sites Web trouves -->
@@ -57,8 +61,10 @@
 		</BOUCLE_sites>
 	</ul>
 	[<p class="pagination">(#PAGINATION)</p>]
+	[(#SET{nbelementstrouves,#GET{nbelementstrouves}|plus{#GRAND_TOTAL}})]
 </B_sites>
-
+[(#GET{nbelementstrouves}|=={0}|?{<:pyrat:recherche_infructueuse:>})]
+[(#GET{nbelementstrouves}|>{0}|?{<hr /><:pyrat:recherche_total:>&nbsp;: [<strong>(#GET{nbelementstrouves})</strong>]})]
 	</div>
 </div><!-- Fin de .texte -->
 [(#FORMULAIRE_ADMIN)]

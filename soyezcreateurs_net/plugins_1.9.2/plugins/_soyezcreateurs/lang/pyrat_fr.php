@@ -71,6 +71,7 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'erreur_imageexistepas' => 'Erreur : cette image n\'existe pas !',
 'erreur_rubriqueexistepas' => 'Erreur : cette rubrique n\'existe pas !',
 'erreur_documentexistepas' => 'Erreur : ce document n\'existe pas !',
+'erreur_connexion' => '<h2>Erreur de mot de passe</h2><p>Veuillez recommencer.</p>',
 
 //F
 'fil_rss' => 'Fil RSS',
@@ -145,6 +146,8 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'recherche_motclef' => 'Choisissez un mot clefs',
 'recherche_motclef_label' => 'Recherche par mots clefs',
 'recherche_title_ok' => 'Lancer la recherche',
+'recherche_infructueuse' => 'Recherche infructueuse.',
+'recherche_total' => 'Nombre total d\'&eacute;l&eacute;ments trouv&eacute;s',
 
 //S
 'savoirplus' => 'Pour en savoir plus...',
