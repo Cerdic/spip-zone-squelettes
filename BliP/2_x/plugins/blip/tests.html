@@ -1,4 +1,4 @@
-#CACHE{7200}
+#CACHE{0}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="#LANG_DIR" lang="#LANG">
 <head>
@@ -44,20 +44,31 @@
 	[(#REM) Construction du contenu de la page sommaire en fonction des paramètres passés dans la variable tri]
 	<div class="contenu">	
 	
-	TOTO #BLIP_VERSION
+	T1 <br />	
 	
-	<BOUCLE_titre_lat(BLIP)>
-	#DESCRIPTIF #TEXTE <br />
-	</BOUCLE_titre_lat>
+	<BOUCLE_test(ARTICLES){id_mot= #ENV{id1,#ENV{id2,29}}}{id_mot= 29}>
+	#TITRE<br />		
+	</BOUCLE_test>
 	
-	
-	</div><!-- fin contenu-->
+	T2 <br />	
 
 
+<BOUCLE_mots_multiples(ARTICLES) 
+ {id_mot= #ENV{id1,#ENV{id2,#ENV{id3}}}}
+ {id_mot= #ENV{id2,#ENV{id3,#ENV{id1}}}}
+ {id_mot= #ENV{id3,#ENV{id1,#ENV{id3}}}}
+>
+#TITRE<br />		
+</BOUCLE_mots_multiples>
 	
+	T3 <br />	
+
+	<BOUCLE_mots_multiplese(ARTICLES){id_mot==  (27|28)(29)}>
+	#SURTITRE #TITRE<br />		
+	</BOUCLE_mots_multiplese>
 	
-	<INCLURE{fond=inc-compilateur}{page_actuelle=tests}{zone=barre_laterale}
-			{zone_restreinte=barre_laterale-tests}{lang}>
+	</div><!-- fin contenu-->	
+	
 	
 	
 </div><!-- fin corps -->
@@ -68,8 +79,7 @@
 
 </div><!-- fin page -->
 
-[(#REM) Traitement des tâches de fond du site]
-#SPIP_CRON
+
 
 </body>
 </html>
