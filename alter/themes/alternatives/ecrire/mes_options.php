@@ -7,8 +7,10 @@
 #                                                            #
 # Permet de configurer :                                     #
 # 1. le mode multilingue du site (ACTIVE)                    #
-# 2. le type d'adressage (URL) (ACTIVE)                      #
+# 2. le type d'adressage (URL) (INACTIVE)                    #
 #    le mode propsose ici est 'html'                         #
+# 3. la suppression des numeros devant les TITRES            #
+#    pour en forcer le tri (ACTIVE)                          #
 #                                                            #
 # Pour utiliser ce fichier copiez-le dans le repertoire      #
 # /ecrire, en veillant a ne pas ecraser un mes_options.php   #
@@ -44,23 +46,5 @@
 // que l'on utilise (backend, formulaire, etc...).
 
 	$table_des_traitements['TITRE'][]= 'supprimer_numero(typo(%s))';
-
-################ CONFIGURATION PLUGINS ######################
-
-// Configuration pour divers plugin, si actives
-
-######### Les divers plugins de "Barre typo enrichi" ########
-// Conserve les triangles noir comme puces avec les listes dites
-// "a puces" de SPIP (- en debut de ligne), assurant une compatibilite
-// ascendante avec le contenu de sites deja existants.
-//
-// Pour obtenir en lieu et place de veritables listes a puces du 
-// type (-*), simplement commenter la ligne suivante en placant 
-// un '#' au debut de la ligne suivante :
-
-	$GLOBALS['barre_typo_preserve_puces'] = true;
-
-// Pour les nouveaux sites, il est recommande de commenter 
-// la ligne precedente.
 
 ?>
