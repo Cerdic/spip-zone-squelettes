@@ -1,11 +1,11 @@
-<!-- menu permanent de navigation - permanent navigation -->
+#CACHE{7200}
 <div id="navigation">
     <h2 class="structure"><:navigation:></h2>
 [(#REM) *********************************************************
 	Menu de navigation principal - liens statiques
 	Main navigation - static links 
     ************************************************************* ]
-<INCLURE{fond=inc/inc-menu-principal}>
+<INCLURE{fond=inc/inc-menu-principal}{lang}>
 
 [(#REM) *********************************************************
 	Menu rubriques DEPLIANT dynamique
@@ -20,11 +20,10 @@
    <BOUCLE_hierarchie_courante(HIERARCHIE){id_rubrique} {tout}>
         <BOUCLE_parents(RUBRIQUES){meme_parent} {doublons parents} ></BOUCLE_parents>
    </BOUCLE_hierarchie_courante>
-[(#REM) L'ensemble des rubriques contenues dans {doublons filles} et {doublons parents} représente
-l'ensembles des rubriques à afficher  
 
-		 Toutes les rubriques qui ne doivent pas être affichées sont exclues dans la  boucle suivante
- qui liste toutes les rubriques du site - {doublons filles} et {doublons parents} le resultat est stocké dans {doublons exclus} ]
+[(#REM) L'ensemble des rubriques contenues dans {doublons filles} et {doublons parents} représente l'ensembles des rubriques à afficher.
+Toutes les rubriques qui ne doivent pas être affichées sont exclues dans la  boucle suivante qui liste toutes les rubriques du site - {doublons filles} et {doublons parents} le resultat est stocké dans {doublons exclus} ]
+
 <BOUCLE_tout(RUBRIQUES){tout}{doublons parents}{doublons filles}{doublons exclus}></BOUCLE_tout>
 
 [(#REM) boucle principale d'affichage pour squelettes rubriques, articles, brèves...
@@ -114,8 +113,8 @@ Pour s'afficher dans ce menu, un article doit se voir attribuer le mot-cle "Agen
 		<li>
 			<a class="lien" href="#URL_PAGE{agenda}" title="<:icone_agenda:>"><:icone_agenda:></a>
 			<ul>
-		<BOUCLE_art_agenda(ARTICLES){titre_mot=Agenda}{!par date_redac}{age_redac < 1}{0,5}{lang}>
-				<li>[<span>(#DATE_REDAC|affdate)</span>]
+		<BOUCLE_art_agenda(ARTICLES){titre_mot=Agenda}{par date_redac}{age_redac < 1}{0,5}{lang}>
+				<li>[<span>(#DATE_REDAC|affdate) [- (#DATE_REDAC|heures|!={0}|?{[(#DATE_REDAC|heures):][(#DATE_REDAC|minutes)],''})]</span>]
 					<a class="lien[(#EXPOSER)] article" href="#URL_ARTICLE" [title="(#INTRODUCTION|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
 
 				</li>
