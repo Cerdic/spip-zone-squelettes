@@ -1,36 +1,5 @@
 <?php
 
-/*
- *   +----------------------------------+
- *    Nom de la balise : Afficher version SPIP                                              
- *   +----------------------------------+
- *    Fonctions de cette balise :
- *      Afficher le numero de version de SPIP.
- *
- *    Utilisation 
- *      Inserer #VERSION_SPIP dans votre squelette
- *   +-------------------------------------+ 
- *   REMARQUE
- *  	#SPIP_VERSION = $spip_version_affichee = 1.9.1
- *		#CONFIG{version_installee} = $version_installee = 1.916
-*/
-
-function balise_SPIP_VERSION($p) {
-	global $spip_version_affichee;
-	$p->code = "'$spip_version_affichee'";
-	$p->interdire_scripts = false;
-	return $p;
-}
-
-function bellespuces_pre_typo($texte) {
-    $texte = preg_replace('/^-\s+/m','-* ',$texte);
-    return $texte;
-}
-
-
-
-
-
 
 /*
  *   +----------------------------------+
