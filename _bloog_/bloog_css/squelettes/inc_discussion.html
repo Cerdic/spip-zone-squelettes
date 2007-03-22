@@ -1,3 +1,5 @@
+#CACHE0
+
 <B_Forums>
 [(#REM)   dernier message ]
 <BOUCLE_Forums(FORUMS){id_article ?}{id_breve ?}{id_forum}{par date}{inverse}{0,1}>	
@@ -35,11 +37,10 @@
 [(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
 <//B_nom>
 
-<BOUCLE_profil_forum1(AUTEURS){tout}{id_auteur}>
-[<a href="#URL_SITE">(#SESSION{statut}|match{1comite|6forum|nouveau}|?{#NOM_SITE})</a><br/>]
-[<a href="mailto:#EMAIL">(#SESSION{statut}|=={0minirezo}?{#EMAIL})</a><br/>]
+<BOUCLE_profil_forum1(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
+[<a href="#URL_SITE">(#SESSION{statut}|match{1comite|6forum|nouveau|0minirezo}|?{#NOM_SITE})</a><br/>]
+</BOUCLE_profil_forum1>[<a href="mailto:#EMAIL">(#SESSION{statut}|=={0minirezo}?{#EMAIL})</a><br/>]
 [(#SESSION{statut}|=={0minirezo}?{#IP})<br/>]
-</BOUCLE_profil_forum1>
 
 Message  &eacute;dit&eacute;.
 </BOUCLE_Forums_crayon_parent>
@@ -72,12 +73,12 @@ Message  &eacute;dit&eacute;.
 [(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
 <//B_nom_ori>
 
-<BOUCLE_profil_forum2(AUTEURS){tout}{id_auteur}>
-[<a href="#URL_SITE">(#SESSION{statut}|match{1comite|6forum|nouveau}|?{#NOM_SITE})</a><br/>]
-[<a href="mailto:#EMAIL">(#SESSION{statut}|=={0minirezo}?{#EMAIL})</a><br/>]
-[(#SESSION{statut}|=={0minirezo}?{#IP})<br/>]
+<BOUCLE_profil_forum2(AUTEURS){id_auteur}>
+[<a href="#URL_SITE">(#SESSION{statut}|match{1comite|6forum|nouveau|0minirezo}|?{#NOM_SITE})</a><br/>]
 </BOUCLE_profil_forum2>
 
+[<a href="mailto:#EMAIL">(#SESSION{statut}|=={0minirezo}?{#EMAIL})</a><br/>]
+[(#SESSION{statut}|=={0minirezo}?{#IP})<br/>]
 <//B_Forums_crayon_parent>
 
   
