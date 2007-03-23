@@ -155,36 +155,42 @@ Parcourir</a></li>
 </div>
 
 
-<div id="minipics">
+
+<div id="celbas">
 <B_sous_rubriques> 
-<ul>
+<ul id="decobas">
 [(#REM)   Les rubriques de la branche et leurs contenus   ]
 
+   
 
+                    <BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par titre}{tout_voir}>
+<li>
+                   [<h4><a href="#URL_RUBRIQUE">(#TITRE)</a><INCLURE{fond="inc_cadenas"}{id_rubrique}></h4>] 
+                  <p><span class="minilogogauche"><a href="#URL_RUBRIQUE"><INCLURE{fond="logo"}{id_rubrique}{taille=20}></a></span>
 
-                    <BOUCLE_sous_rubriques(RUBRIQUES){branche}{exclus}{par titre}>
-<li class="endeux">
-                   <p>[<strong><a href="#URL_RUBRIQUE">(#TITRE)</a></strong>] 
-                   <INCLURE{fond="inc_cadenas"}{id_rubrique}><br/>
-                    <BOUCLE_sites2(SITES){id_rubrique}>
+                    <BOUCLE_sites2(SITES){id_rubrique}{tout_voir}>
                   </BOUCLE_sites2><a href="#URL_RUBRIQUE">#TOTAL_BOUCLE
- sites r&eacute;f&eacute;renc&eacute;s.</a></B_sites2>
-<BOUCLE_art2(ARTICLES){id_rubrique}{par date}{inverse}{0,75}>
+ sites r&eacute;f&eacute;renc&eacute;s.</a><br/><br/></B_sites2>
+<BOUCLE_art2(ARTICLES){id_rubrique}{par date}{inverse}{0,25}{tout_voir}>
 ::
                     <BOUCLE_nouv_art23(ARTICLES){id_article}{age<7}>
-                    Nouveau</BOUCLE_nouv_art23>
-                    <a href="#URL_ARTICLE">#TITRE</a> 
-                    <INCLURE{fond="inc_cadenas"}{delais="7*24*3600"}{id_article}> <br/>
-
+                    <span class="gras">Nouveau:</span>&nbsp;</BOUCLE_nouv_art23><a href="#URL_ARTICLE">#TITRE</a> 
+                    <INCLURE{fond="inc_cadenas"}{id_article}> <br/>
                     </BOUCLE_art2>
-</p>[(#REM)      ]
+<B_sous_sous_rub>
+<BOUCLE_sous_sous_rub(RUBRIQUES){id_parent}{par titre}{tout_voir}>
+[>&nbsp;<a href="#URL_RUBRIQUE">(#TITRE)</a><INCLURE{fond="inc_cadenas"}{id_rubrique}><br/>]
+</BOUCLE_sous_sous_rub>
+</B_sous_sous_rub>
+
+
+
+</p>
 </li>
 </BOUCLE_sous_rubriques>
-
 </ul>
 </B_sous_rubriques>
-
-<hr class="spacer"/>
+</div>
 
 
 [(#REM)   les articles de la rubrique   ]
@@ -194,42 +200,51 @@ Parcourir</a></li>
 
 
 
-
+<div id="minipics">
+<B_articles>
+#ANCRE_PAGINATION
 <?php $i=0; ?>
-<BOUCLE_articles(ARTICLES){id_rubrique}{par date}{inverse}{doublons}>
+<BOUCLE_articles(ARTICLES){id_rubrique}{par date}{inverse}{doublons}{tout_voir}{pagination}>
 <ul>
-<BOUCLE_logo_documents(DOCUMENTS){id_article}{mode=document}{par date}{inverse}{extension=jpg}{0,1}>
+<BOUCLE_logo_documents(DOCUMENTS){id_article}{mode=document}{par date}{inverse}{extension IN jpg,png,gif}{0,1}>
 <li style=" <?php
 echo ($i==0) ? 'float:left' : 'float:right' ; 
 if($i==0) {$i=1;}
 else {$i=0;} ?>
- "><a href="#URL_ARTICLE#diapo" title="article photographique">#LOGO_DOCUMENT</a>
+ "><a href="#URL_ARTICLE#diapo"><INCLURE{fond="logo"}{id_article}{id_document}{taille=46}></a>
 </BOUCLE_logo_documents>
 
-<BOUCLE_photocmpt(DOCUMENTS){id_article}{mode=document}{extension=jpg}>
-</BOUCLE_photocmpt><p class="centre">
+<BOUCLE_photocmpt(DOCUMENTS){id_article}{mode=document}{extension IN jpg,png,gif}>
+</BOUCLE_photocmpt>
+<p class="centre">
 <a href="#URL_ARTICLE#diapo">
 <? $total_photos = "#TOTAL_BOUCLE"; 
 echo $total_photos == 1? "1&nbsp;photo" : "$total_photos&nbsp;photos" ; ?></a>
-</p>
+</p></li>
 </B_photocmpt>
-[(#REM)   1   ]
 
 
-<BOUCLE_presence_logo(DOCUMENTS){id_article}{mode=document}{extension=jpg}{0,1}></li>
-</BOUCLE_presence_logo>
+[(#REM)   s'il n'y a pas de jpg gif ou png alors on demande le logo de l'article et on ne compte rien  ]
+</B_logo_documents>
 
+
+<BOUCLE_logo_articles(ARTICLES){id_article}{0,1}>
 <li style=" <?php
 echo ($i==0) ? 'float:left' : 'float:right' ; 
 if($i==0) {$i=1;}
 else {$i=0;} ?>
- ">[<a href="#URL_ARTICLE#content" title="Article à textes">(#LOGO_ARTICLE||?{#LOGO_ARTICLE,'<img src="IMG/002/pencil.gif" alt="Article à textes"/>'})</a>]
-[(#REM)   2   ]
- </li>
- <//B_presence_logo>
+ "><a href="#URL_ARTICLE"><INCLURE{fond="logo"}{id_article}{taille=46}></a></li>
+</BOUCLE_logo_articles>
+
+
+<//B_logo_documents>
+
+
+ 
 <li class="textepics">
   <p>[<a href="#URL_ARTICLE">(#TITRE) </a>](<? $total_visites = "#VISITES"; 
-    echo $total_visites == 1? "1&nbsp;visite." : "$total_visites&nbsp;visites." ; ?>)&nbsp;[(#DESCRIPTIF|couper{200})] 
+    echo $total_visites == 1? "1&nbsp;visite." : "$total_visites&nbsp;visites." ; ?>)&nbsp;[(#DESCRIPTIF|couper{200})]
+    <INCLUDE{fond="inc_cadenas"}{id_article}>  
    <BOUCLE_forum(FORUMS){id_article}{plat}>
     </BOUCLE_forum> <a href="#URL_ARTICLE#forum">
     <? $total_commentaires = "#TOTAL_BOUCLE"; 
@@ -240,8 +255,11 @@ else {$i=0;} ?>
 </li></ul>
 <hr class="spacer"/>
 </BOUCLE_articles>
-</div>[(#REM)   fermeture minipics   ]
-
+<div class="centre">
+[<p>(#PAGINATION{page_precedent_suivant})</p>]
+</div>
+</B_articles>
+</div>[(#REM) fermeture minipics   ]
 
                      
 </div>
