@@ -56,7 +56,7 @@
 <BOUCLE_blogbox_haut(BREVES){titre_mot=homebox_haut}{par date}{0,1}>
 <h4>[(#TITRE)]</h4>
   <p>
-[<span class="logogauche"><INCLURE{fond="logo"}{id_breve}{taille=46}></span>]
+[<span class="logogauche"><INCLURE{fond=logo}{id_breve}{taille=46}{date=#ENV{date}}></span>]
 
 [(#TEXTE|lier_au_glossaire)]</p>
 
@@ -77,10 +77,10 @@
 <h4>[(#TITRE)]</h4> 
 </a>
   <div><p>[(#REM)  Le logo de la breve bloguee  ]
-<span class="logogauche"><INCLURE{fond="logo"}{id_breve}{taille=46}></span>[(#TEXTE|justifier)]
+<span class="logogauche"><INCLURE{fond="logo"}{id_breve}{taille=46}{date=#ENV{date}}></span>[(#TEXTE|justifier)]
 
 <h4><a href="#URL_BREVE" title="lire tout">[(#TITRE)]</a></h4>
-<p> <span class="logogauche"><a href="#URL_BREVE"><INCLURE{fond="logo"}{id_breve}{taille=46}></a></span>
+<p> <span class="logogauche"><a href="#URL_BREVE"><INCLURE{fond="logo"}{id_breve}{taille=46}{date=#ENV{date}}></a></span>
 [(#TEXTE)]
 </BOUCLE_blogue>
 <h4>Plus de news</h4>
@@ -102,7 +102,7 @@
  
 <BOUCLE_blogue_article(ARTICLES){titre_mot=blogue}{doublons}{par date}{inverse}{0,1}>
 	
-	<span class="logogauche"><a href="#URL_ARTICLE#diapo"><INCLURE{fond=logo}{id_article}{taille=46}></a></span>
+	<span class="logogauche"><a href="#URL_ARTICLE#diapo"><INCLURE{fond=logo}{id_article}{taille=46}{date=#ENV{date}}></a></span>
 	
 [<h4><a href="#URL_ARTICLE">(#TITRE)</a></h4>]
 [<p>(#DESCRIPTIF) <a href="#URL_ARTICLE">Lire la suite...</a></p>]
@@ -116,7 +116,7 @@
 </B_blogue_article>
   [(#REM)Les rubriques importante sur l'accueil]
 
-              <BOUCLE_appel(RUBRIQUES){titre_mot = menu_rub}{par titre}{tout_voir}> <a href="#URL_RUBRIQUE" title="[(#TITRE)]" class="logogauche"><INCLURE{fond="logo"}{id_rubrique}{taille=46}></a>   
+              <BOUCLE_appel(RUBRIQUES){titre_mot = menu_rub}{par titre}{tout_voir}> <a href="#URL_RUBRIQUE" title="[(#TITRE)]" class="logogauche"><INCLURE{fond="logo"}{id_rubrique}{taille=46}{date=#ENV{date}}></a>   
 [<h4><a href="#URL_RUBRIQUE" title="(#TITRE)">(#TITRE)</a></h4>]
 <p> #DESCRIPTIF <INCLURE{fond="inc_cadenas"}{id_rubrique}>
              <BOUCLE_nouv_art(ARTICLES){id_rubrique}{age<14}{par date}{inverse}{0,20}{tout_voir}>
@@ -143,7 +143,7 @@
 <h4>A la une</h4>
 <p>
 <BOUCLE_une(ARTICLES){tout}{doublons}{titre_mot=une}{par date}{inverse}{0,2}{tout_voir}>
-<span class="logogauche"><a href="#URL_ARTICLE"><INCLURE{fond="logo"}{id_article}{taille=30}></a></span><strong><a href="#URL_ARTICLE">[(#TITRE)]</a></strong>
+<span class="logogauche"><a href="#URL_ARTICLE"><INCLURE{fond="logo"}{id_article}{taille=30}{date=#ENV{date}}></a></span><strong><a href="#URL_ARTICLE">[(#TITRE)]</a></strong>
 <INCLURE{fond="inc_cadenas"}{id_article}><br/>
 [(#INTRODUCTION|couper{300})]<br/>
 </BOUCLE_une></p>
@@ -155,7 +155,7 @@
 <li>
 <h4>Les articles en vogue</h4> <p>
 <BOUCLE_popu(ARTICLES){tout}{doublons}{par popularite}{inverse}{0,2}{tout_voir}>
-<span class="logogauche"><a href="#URL_ARTICLE"><INCLURE{fond="logo"}{id_article}{taille=30}></a></span><strong><a href="#URL_ARTICLE">[(#TITRE)]</a></strong>
+<span class="logogauche"><a href="#URL_ARTICLE"><INCLURE{fond="logo"}{id_article}{taille=30}{date=#ENV{date}}></a></span><strong><a href="#URL_ARTICLE">[(#TITRE)]</a></strong>
 <INCLURE{fond="inc_cadenas"}{id_article}><br/>
 [(#INTRODUCTION|couper{300})]<br/>
 </BOUCLE_popu></p>
@@ -189,10 +189,10 @@
 
 [(#REM) On donne des couleurs hexadécimales aux saisons]
 
-[(#ENV{date}|saison|translitteration|=={printemps}|?{' ',''})#SET{'colo','f0c490'}]
-[(#ENV{date}|saison|translitteration|=={ete}|?{' ',''})#SET{'colo','b18c43'}]
-[(#ENV{date}|saison|translitteration|=={automne}|?{' ',''})#SET{'colo','33231c'}]
-[(#ENV{date}|saison|translitteration|=={hiver}|?{' ',''})#SET{'colo','b18c43'}]
+[(#ENV{date}|saison|translitteration|=={printemps}|?{' ',''})#SET{'colo','e3ae9b'}]
+[(#ENV{date}|saison|translitteration|=={ete}|?{' ',''})#SET{'colo','fab072'}]
+[(#ENV{date}|saison|translitteration|=={automne}|?{' ',''})#SET{'colo','96aa84'}]
+[(#ENV{date}|saison|translitteration|=={hiver}|?{' ',''})#SET{'colo','8d8ba3'}]
 
 </BOUCLE_huit_saison>
 
@@ -204,7 +204,7 @@
 <h4 class="icone_photo">Sélection photos</h4>
 <B_flickr>
 <div style="position:relative;[float(#ENV{align}|match{left|right});]" class="splickrbox [splickrbox_(#ENV{align})]">
-			<table cellpadding="0" cellspacing="0" ><tr>
+			<table><tr>
 			
 			<BOUCLE_flickr(DOCUMENTS){id_article}{!par date}{extension==jpg|png|gif}{0,#ENV{taille,8}}>
 			<td> <a href="#URL_ARTICLE">[(#FICHIER|copie_locale|image_masque{carre-112.png}|image_sepia{#GET{colo}}|inserer_attribut{style,'width:112px;height:112px'}|inserer_attribut{alt,'Cliquez pour en voir plus'})]</a></td>
