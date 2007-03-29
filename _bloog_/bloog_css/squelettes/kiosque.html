@@ -1,11 +1,11 @@
 #CACHE1036800
 <INCLURE{fond="header"}>
-<!-- ci-dessus l'include du fichier header avec un délai de 31 jours. -->
+[(#REM) ci-dessus l'include du fichier header avec un délai de 31 jours. ]
 
 
 <html><head>
 
-<!-- les métas avec dans l'ordre le titre de la page, la description pour les moteurs de recherches, les mots clés. -->
+[(#REM) les métas avec dans l'ordre le titre de la page, la description pour les moteurs de recherches, les mots clés. ]
 <BOUCLE_descri_site(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{0,1}>
 <title>[Les articles de (#NOM_SITE).]</title> 
 <meta name="Description" content="[La liste des derniers articles de (#NOM_SITE).]"/>
@@ -61,7 +61,9 @@
 <BOUCLE_nom_site(SYNDIC_ARTICLES){id_syndic}{0,1}>  <h4>Les articles de #NOM_SITE.</h4></BOUCLE_nom_site>
 <ul>
 <BOUCLE_syndic_sites(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{pagination}>        
-<li>[<a href="#URL_ARTICLE">(#TITRE|textebrut)</a>] [(#DESCRIPTIF|textebrut|couper{300})<a href="[(#URL_PAGE{kiosque}|parametre_url{date,[(#DATE|affdate{'Y-m'})]})]">[ Afficher tous les articles de (#DATE|nom_mois)]</br>]</a>
+<li class="grande_liste">[<a href="#URL_ARTICLE">(#TITRE|textebrut)</a><br/>] [(#DESCRIPTIF|textebrut|couper{300})
+[(#REM) lien inutile tant que la boucle syndic_mois ne tourne pas
+<a href="[(#URL_PAGE{kiosque}|parametre_url{date,[(#DATE|affdate{'Y-m'})]})]">[ Afficher tous les articles de (#DATE|nom_mois)]</br>]</a>]
 </li>
 </BOUCLE_syndic_sites>
 </ul>
@@ -70,9 +72,10 @@
 		   
 		   
             <B_syndic_jours>#ANCRE_PAGINATION
+            <BOUCLE_date_site(SYNDIC_ARTICLES){par date}{jour_relatif=0}{0,1}>  <h4>Les articles du [(#DATE|jour)]&nbsp;[(#DATE|nom_mois)].</h4></BOUCLE_date_site>
 			 <ul>
                 <BOUCLE_syndic_jours(SYNDIC_ARTICLES){par date}{inverse}{jour_relatif=0}{pagination}>
-                <li> [Le (#DATE|jour)]/[(#DATE|mois): ][<a href="#URL_ARTICLE">(#TITRE|textebrut)</a> ][(#DESCRIPTIF|textebrut|couper{300}) ][Par <a href="[(#URL_PAGE{kiosque}|parametre_url{id_syndic,#ID_SYNDIC})]">(#NOM_SITE)</a></br>]
+                <li class="grande_liste"> [<a href="#URL_ARTICLE">(#TITRE|textebrut)</a><br/>][(#DESCRIPTIF|textebrut|couper{300}) ][Par <a href="[(#URL_PAGE{kiosque}|parametre_url{id_syndic,#ID_SYNDIC})]">(#NOM_SITE)</a></br>]
 				</li>
                 </BOUCLE_syndic_jours>
 				</ul>
@@ -81,24 +84,21 @@
 				
 				
 				<B_syndic_mois>#ANCRE_PAGINATION
+                <BOUCLE_mois_site(SYNDIC_ARTICLES){par date}{mois_relatif=0}{0,1}>  <h4>Les articles de [(#DATE|nom_mois)].</h4></BOUCLE_mois_site>
 		            <ul>
                 <BOUCLE_syndic_mois(SYNDIC_ARTICLES){par date}{inverse}{mois_relatif=0}{pagination}>
-                <li> [Le (#DATE|jour)]/[(#DATE|mois): ][<a href="#URL_ARTICLE">(#TITRE|textebrut)</a> ][(#DESCRIPTIF|textebrut|couper{300}) ][Par <a href="[(#URL_PAGE{kiosque}|parametre_url{id_syndic,#ID_SYNDIC})]">(#NOM_SITE)</a></br>]
+                <li class="grande_liste"> [Le (#DATE|jour)]/[(#DATE|mois): ][<a href="#URL_ARTICLE">(#TITRE|textebrut)</a><br/>][(#DESCRIPTIF|textebrut|couper{300}) ][Par <a href="[(#URL_PAGE{kiosque}|parametre_url{id_syndic,#ID_SYNDIC})]">(#NOM_SITE)</a></br>]
 				</li>
                 </BOUCLE_syndic_mois>
 				</ul>
 				<p class="centre">#PAGINATION</p>
-                </B_syndic_mois>   
+                </B_syndic_mois>
 				
-				 <//B_syndic_jours>   
-				
-				
-				
-				
+				 <//B_syndic_jours>			
 				
 <//B_syndic_sites>
  	            
-</div><!-- fermeture grande_boite -->
+</div>[(#REM) fermeture grande_boite ]
 
 
 
@@ -124,21 +124,21 @@ Choisissez de naviguer dans un seul site web ou dans toutes les actualités de to
 </p>
   </li> 
 </ul>
-</div> <!-- fin de cel -->      
+</div> [(#REM) fin de cel ]      
 
 
        
-</div><!-- fermeture colone de gauche -->
+</div>[(#REM) fermeture colone de gauche ]
 		
 
-<div class="coldroit"><!-- ouverture de la colone de droite --> 
+<div class="coldroit">[(#REM) ouverture de la colone de droite ] 
 
 
-    <div class="boite"><!-- ouverture boite menu --> 
+    <div class="boite">[(#REM) ouverture boite menu ] 
         <h4 class="icone_menu">Navigation</h4>
         <INCLURE{fond="inc_menu_rub"}>
     
-    </div><!-- fermeture boite menu -->
+    </div>[(#REM) fermeture boite menu ]
 
 
 
@@ -194,16 +194,16 @@ Choisissez de naviguer dans un seul site web ou dans toutes les actualités de to
 	  
  
 
-</div>   <!-- fermeture colone de droite --> 
+</div>   [(#REM) fermeture colone de droite ] 
 
 
-<hr class="spacer" /> <!-- ajoute une barre hr invisible --> 
-</div><!-- fermeture contenu --> 
-<INCLURE{fond="pieddepage"}{delais=31*24*3600}> <!-- le pied de page inclu avec délai --> 
+<hr class="spacer" /> [(#REM) ajoute une barre hr invisible ] 
+</div>[(#REM) fermeture contenu ] 
+<INCLURE{fond="pieddepage"}{delais=31*24*3600}> [(#REM) le pied de page inclu avec délai ] 
 
-</div> <!-- fermeture surcontenu --><br/>
+</div> [(#REM) fermeture surcontenu ]<br/>
 
 
-</div> <!-- fermeture container --> 
+</div> [(#REM) fermeture container ] 
 </body>
 </html>
