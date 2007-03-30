@@ -152,6 +152,7 @@ function config_site() {
 		create_mot("_LayoutGala", "24. Two columns liquid, side fixed", "", "");
 		create_mot("_LayoutGala", "26. Two percentage columns", "", "");
 		create_mot("_LayoutGala", "27. One column liquid and two halves", "", "");
+		create_mot("_LayoutGala", "33. Two colums fixed (Right)", "", "");
 		create_mot("_LayoutGala", "34. Two colums fixed", "", "");
 
 	create_groupe("_LogosExtra", "Permet de placer une image en fond de la colonne Extra (c\'est-à-dire, soit la colonne secondaire qui peut être afichée soit de l\'autre côté du menu, soit en dessous de celui-ci).", "{{Utilisation}} : affecter un ou plusieurs mots clefs de ce groupe aux rubriques (héritage automatique) qui doivent avoir une ou plusieurs image en fond. L\'image est choisie aléatoirement parmis celles disponibles.\n\n{{Configuration}} : \n-* créer des mots clefs dans ce groupe et leur donner un logo de mot clef.\n-* il est possible de mettre un logo de survol qui sera alors utilisé en fond de texte (en plus de l\'autre logo) et positionné en haut à droite sauf si le texte contient les ordres CSS de positionnement ({bottom left} par exemple)", 'non', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
