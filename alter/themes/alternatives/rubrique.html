@@ -24,27 +24,41 @@
     ************************************************************* -->
 	<div id="bloc-contenu">
 		<h5>
+		<a href="#URL_SITE_SPIP" title="<:accueil_site:> : #NOM_SITE_SPIP"><:accueil_site:></a>
     <B_rubriques_chemin>
-    <BOUCLE_rubriques_chemin(HIERARCHIE){id_secteur}{" <b class='separateur'>&gt;</b> "}>
+    <BOUCLE_rubriques_chemin(HIERARCHIE){id_secteur}>
+		<b class='separateur'>&gt;</b> 
 		<a href="#URL_SITE_SPIP/#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{60})]</a>
 	</BOUCLE_rubriques_chemin>
 	</B_rubriques_chemin>
 		[<b class='separateur'>&gt;</b> (#TITRE|supprimer_numero|couper{60})]
 		</h5>
 		<div class="ligne-debut"></div><!-- ligne-debut -->
-    [<span style="float:right;">(#LOGO_RUBRIQUE||reduire_image{120,0})</span>]
-    [<div class="chapo">(#TEXTE|reduire_image{440,0}|sinon{[(#DESCRIPTIF)]})</div><br />]
+    	[<div class="logo-liste-art">
+    		(#LOGO_RUBRIQUE||reduire_image{120,0})
+    	</div>]
+    <h1 class="titre-article">[(#TITRE|supprimer_numero)]</h1>
+    <div class="chapo">
+    	[(#TEXTE|reduire_image{440,0}|sinon{[(#DESCRIPTIF)]})]
 		[<div class="notes">(#NOTES)</div>]
-		<BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {mode=document} {doublons} {"<br />"}>
-			[<div class="texte">(#TITRE|supprimer_numero)][ - (#DESCRIPTIF)</div>][(#LOGO_DOCUMENT|#URL_DOCUMENT)]<br />
+		<BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {mode=document} {doublons} {"<hr />"}>
+			[<div class="texte">
+			<div style="float:left;">(#LOGO_DOCUMENT|#URL_DOCUMENT)</div>
+			[(#TITRE|supprimer_numero)][<br />(#DESCRIPTIF)]
+			</div>]
 		</BOUCLE_documents_joints>
+	</div><!-- chapo -->
+	<br class="nettoyeur" />
 
 		<!-- Articles de la rubrique -->
 		<B_articles_rubrique>
 		<h2 class="structure"><:articles_rubrique:></h2>
 		 #ANCRE_PAGINATION
 		<BOUCLE_articles_rubrique(ARTICLES) {branche} {par num titre} {!par date} {pagination}>
-			[<div class="logo-liste-art">(#LOGO_ARTICLE_RUBRIQUE|right|#URL_ARTICLE||reduire_image{120,0})</div>]
+			<br class="nettoyeur" />
+			[<div class="logo-liste-art">
+				(#LOGO_ARTICLE|#URL_ARTICLE||reduire_image{120,0})
+			</div>]
 			[<div class="surtitre">(#SURTITRE)</div>]
 			<h3>
 			<a href="#URL_SITE_SPIP/#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
@@ -75,6 +89,7 @@
 		</div>]
 
 		</B_articles_rubrique>
+		<br class="nettoyeur" />
 	</div><!-- bloc-contenu -->
 	
 <!-- *****************************************************************
