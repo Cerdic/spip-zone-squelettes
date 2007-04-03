@@ -29,7 +29,7 @@ En l'état, ce squelette nécessite :
  - svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/typo_guillemets
  - svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/w3c_go_home
  - svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/widget_calendar
- - svn checkout svn://zone.spip.org/spip-zone/_plugins_/_dev_/cfg
+ - svn checkout svn://zone.spip.org/spip-zone/_plugins_/_test_/cfg
  - svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/forms/forms_et_tables_1_9_1
 - d'être installé à la racine d'un serveur (sous dossier impossible, à moins de refaire le .htaccess). Doncn, voir le virtual host d'apache pour disposer de plusieurs serveurs sur une seule IP
 - les rewrite rules doivent être disponibles sous apache (M$ IIS impossible) 
