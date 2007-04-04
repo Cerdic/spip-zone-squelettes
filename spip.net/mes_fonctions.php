@@ -54,4 +54,16 @@ if (!defined('aide_en_ligne')) {
 	}
 }
 
+// Prend une URL et lui ajoute/retire une ancre après l'avoir nettoyee
+// pour l'ancre on vire les non alphanum du debut, et on remplace ceux dans le mot par -
+// http://doc.spip.org/@ancre_url replace{}
+function ancre_url_propre($url, $ancre) {
+	// lever l'#ancre
+	if (preg_match(',^([^#]*)(#.*)$,', $url, $r)) {
+		$url = $r[1];
+	}
+	$ancre = preg_replace(array('/^[^-_a-zA-Z0-9]+/', '/[^-_a-zA-Z0-9]/'), array('', '-'), $ancre);
+	return $url .'#'. $ancre;
+}
+
 ?>
