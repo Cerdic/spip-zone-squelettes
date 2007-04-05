@@ -1,4 +1,4 @@
-#CACHE{0*30*24*3600}
+#CACHE{30*24*3600,cache-client}
 #HTTP_HEADER{Content-Type: text/javascript; charset=iso-8859-1}
 // Menu accessible dynamique et CSS alternatives, V 2.0 (avec jquery)
 //
@@ -109,16 +109,17 @@ function adjustLayout() {
 	$("div.equilibre").height("auto");
 	var lastheight = -1;
 	var stacked = 0;
-	$("div.stackable").each(function(){ if ((lastheight!=0) && (lastheight!=this.offsetTop) && (lastheight!=-1)) {stacked=-1} ; lastheight=this.offsetTop; });
+	$("div.stackable").each(function(){ if ((lastheight!=0) && (lastheight!=parseInt(this.offsetTop)) && (lastheight!=-1)) {stacked=-1} ; lastheight=parseInt(this.offsetTop); });
 	if (stacked) {
 		var hstacked = 0;
-		$("div.stackable").each(function(){ hstacked+=this.offsetHeight; });
+		$("div.stackable").each(function(){ hstacked+=parseInt(this.offsetHeight); });
 		var hnotstackable = 0;
-		hnotstackable = $("div.notstackable")[0].offsetHeight;
+		hnotstackable = parseInt($("div.notstackable")[0].offsetHeight);
 		if (hnotstackable>hstacked) {
 			$("div.laststackable").css({'height': hnotstackable + parseInt($("div.laststackable")[0].offsetHeight) - hstacked+'px'});
+			$("div.notstackable").css({'height': hnotstackable+'px'});
 		} else {
-			$("div.notstackablet").css({'height': hstacked+'px'});
+			$("div.notstackable").css({'height': hstacked+'px'});
 		}
 	} else {
 		$("div.equilibre").each(function(){ h=Math.max(h,this.offsetHeight); }).css({'height': h+'px'});
