@@ -162,13 +162,45 @@ function config_site() {
 
 	create_groupe("_LayoutGala", "Permet de faire appel à l\'une des 40 mises en page disponibles sur [Layout Gala->http://blog.html.it/layoutgala/]", "Mode d\'emploi : \n-* affecter un des mots mots clefs de ce groupe à un objet de SPIP (Articles, Rubriques, Brèves, Sites) permet de lui affecter la mise en page associée\n-* de plus, le mot clef de ce groupe ayant « ParDefaut » dans son texte sera utilisé par défaut pour l\'ensemble du site", 'oui', 'non', 'oui', 'oui', 'oui', 'oui', 'non', 'oui', 'non', 'non');
 		create_mot("_LayoutGala", "01. Three percentage columns", "", "");
+		create_mot("_LayoutGala", "02. Three percentage columns (InverseColor)", "", "");
+		create_mot("_LayoutGala", "03. Three percentage columns (Right)", "", "");
+		create_mot("_LayoutGala", "04. Three percentage columns (Right InverseColor)", "", "");
+		create_mot("_LayoutGala", "05. Three percentage columns (Left)", "", "");
+		create_mot("_LayoutGala", "06. Three percentage columns (Left InverseColor)", "", "");
 		create_mot("_LayoutGala", "07. Three fixed columns", "", "");
+		create_mot("_LayoutGala", "08. Three fixed columns (InverseColor)", "", "");
+		create_mot("_LayoutGala", "09. Three fixed columns (Right)", "", "");
+		create_mot("_LayoutGala", "10. Three fixed columns (Right InverseColor)", "", "");
+		create_mot("_LayoutGala", "11. Three fixed columns (Left)", "", "");
+		create_mot("_LayoutGala", "12. Three fixed columns (Left InverseColor)", "", "");
 		create_mot("_LayoutGala", "13. Liquid, secondary columns fixed-width", "", "");
+		create_mot("_LayoutGala", "14. Liquid, secondary columns fixed-width (InverseColor)", "", "");
+		create_mot("_LayoutGala", "15. Liquid, secondary columns fixed-width (Right)", "", "");
+		create_mot("_LayoutGala", "16. Liquid, secondary columns fixed-width (Right InverseColor)", "", "");
+		create_mot("_LayoutGala", "17. Liquid, secondary columns fixed-width (Left)", "", "");
+		create_mot("_LayoutGala", "18. Liquid, secondary columns fixed-width (Left InverseColor)", "", "");
+		create_mot("_LayoutGala", "19. Liquid, three columns, hybrid widths", "", "");
+		create_mot("_LayoutGala", "20. Liquid, three columns, hybrid widths (InverseColor)", "", "");
+		create_mot("_LayoutGala", "21. Liquid, three columns, hybrid widths (Right)", "", "");
+		create_mot("_LayoutGala", "22. Liquid, three columns, hybrid widths (Right InverseColor)", "", "");
+		create_mot("_LayoutGala", "23. Two columns liquid, side fixed", "", "");
 		create_mot("_LayoutGala", "24. Two columns liquid, side fixed", "", "");
+		create_mot("_LayoutGala", "25. Two percentage columns", "", "");
 		create_mot("_LayoutGala", "26. Two percentage columns", "", "");
 		create_mot("_LayoutGala", "27. One column liquid and two halves", "", "");
+		create_mot("_LayoutGala", "28. One column liquid and two halves (InverseColor)", "", "");
+		create_mot("_LayoutGala", "29. Two percentage columns and one larger", "", "");
+		create_mot("_LayoutGala", "30. Two percentage columns and one larger (Right)", "", "");
+		create_mot("_LayoutGala", "31. Two columns liquid, fixed side and large one", "", "");
+		create_mot("_LayoutGala", "32. Two columns liquid, fixed side and large one (Right)", "", "");
 		create_mot("_LayoutGala", "33. Two colums fixed (Right)", "", "");
 		create_mot("_LayoutGala", "34. Two colums fixed", "", "");
+		create_mot("_LayoutGala", "35. Two colums fixed (ShortLeft)", "", "");
+		create_mot("_LayoutGala", "36. Two colums fixed (ShortRight)", "", "");
+		create_mot("_LayoutGala", "37. Two colums fixed (Right)", "", "");
+		create_mot("_LayoutGala", "38. Two colums fixed", "", "");
+		create_mot("_LayoutGala", "39. One column fixed and two halves (Right)", "", "");
+		create_mot("_LayoutGala", "40. One column fixed and two halves", "", "");
 
 	create_groupe("_LogosExtra", "Permet de placer une image en fond de la colonne Extra (c\'est-à-dire, soit la colonne secondaire qui peut être afichée soit de l\'autre côté du menu, soit en dessous de celui-ci).", "{{Utilisation}} : affecter un ou plusieurs mots clefs de ce groupe aux rubriques (héritage automatique) qui doivent avoir une ou plusieurs image en fond. L\'image est choisie aléatoirement parmis celles disponibles.\n\n{{Configuration}} : \n-* créer des mots clefs dans ce groupe et leur donner un logo de mot clef.\n-* il est possible de mettre un logo de survol qui sera alors utilisé en fond de texte (en plus de l\'autre logo) et positionné en haut à droite sauf si le texte contient les ordres CSS de positionnement ({bottom left} par exemple)", 'non', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
 
