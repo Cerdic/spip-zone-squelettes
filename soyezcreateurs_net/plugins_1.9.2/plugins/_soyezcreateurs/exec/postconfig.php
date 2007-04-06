@@ -58,7 +58,12 @@ function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $oblig
 			minirezo='$minirezo', comite='$comite', forum='$forum' WHERE id_groupe=$id_groupe");
 	}
 	$groupe = stripslashes($groupe);
-	echo "<h2>Groupe: $groupe (<a href='?exec=mots_type&id_groupe=$id_groupe'>$id_groupe</a>)</h2>";
+	global $ul_ouvert;
+	if ($ul_ouvert)	{
+		echo "</ul>\n";
+		$ul_ouvert = false;
+	}
+	echo "<h2>Groupe: $groupe (<a href='?exec=mots_type&amp;id_groupe=$id_groupe'>$id_groupe</a>)</h2>\n";
 	return $id_groupe;
 }
 
@@ -79,7 +84,13 @@ function create_mot($groupe, $mot, $descriptif='', $texte='') {
 		}
 	}
 	$mot = stripslashes($mot);
-	echo "<li>Mot: $mot (<a href='?exec=mots_edit&id_mot=$id_mot&redirect=%3Fexec%3Dmots_tous'>$id_mot</a>)</li>";
+	global $ul_ouvert;
+	if (!$ul_ouvert)	{
+		echo "<ul>\n";
+		$ul_ouvert = true;
+	}
+
+	echo "<li>Mot: $mot (<a href='?exec=mots_edit&amp;id_mot=$id_mot&amp;redirect=%3Fexec%3Dmots_tous'>$id_mot</a>)</li>\n";
 	return $id_mot;
 }
 
@@ -93,7 +104,7 @@ function create_rubrique($titre, $id_parent='0', $descriptif='') {
 		$id_rubrique = spip_insert_id();
 	}
 	$titre = stripslashes($titre);
-	echo "<li>Rubrique: $titre (<a href='?exec=naviguer&id_rubrique=$id_rubrique'>$id_rubrique</a>)</li>";
+	echo "<li>Rubrique: $titre (<a href='?exec=naviguer&amp;id_rubrique=$id_rubrique'>$id_rubrique</a>)</li>\n";
 	return $id_rubrique;
 }
 
@@ -110,20 +121,24 @@ function create_rubrique_mot($rubrique, $mot) {
 			}
 		}
 	}
-	echo "<li>Liaison entre Rubrique (<a href='?exec=naviguer&id_rubrique=$id_rubrique'>$id_rubrique</a>) et Mot (<a href='?exec=mots_edit&id_mot=$id_mot&redirect=%3Fexec%3Dmots_tous'>$id_mot</a>)</li>";
+	echo "<li>Liaison entre Rubrique (<a href='?exec=naviguer&amp;id_rubrique=$id_rubrique'>$id_rubrique</a>) et Mot (<a href='?exec=mots_edit&amp;id_mot=$id_mot&amp;redirect=%3Fexec%3Dmots_tous'>$id_mot</a>)</li>\n";
 	return TRUE;
 }
 
 function config_site() {
+	include_spip('inc/minipres');
+	
+	echo install_debut_html("Configurateur des mots clefs");
 	// Autorisations dates antérieures et gestion avancée des mots clé
 	spip_query("REPLACE spip_meta (nom, valeur) VALUES ('config_precise_groupes', 'oui')");
 	spip_query("REPLACE spip_meta (nom, valeur) VALUES ('articles_redac', 'oui')");
 	// Création rubriques
 	
-	echo "<h2>Cr&eacute;ation des rubriques sp&eacute;ciales</h2>";
+	echo "<h2>Cr&eacute;ation des rubriques sp&eacute;ciales</h2><ul>";
 	create_rubrique('000. Racine', '0', "Vous trouverez dans cette rubrique:\n\n-* Les Éditos\n-* Des articles concernant le site lui-même\n");
 	create_rubrique('900. Agenda', '0');
 	create_rubrique('999. Citations', '0', "Mettre dans cette rubrique une citation par article");
+	echo '</ul>';
 
 ## -------------------------------------------->
 
@@ -202,8 +217,14 @@ function config_site() {
 
 
 ## <--------------------------------------------
+	global $ul_ouvert;	
+	if ($ul_ouvert)	{
+		echo "</ul>\n";
+		$ul_ouvert = false;
+	}
 
 	// Liaison entre rubrique et mot clé
+	echo "<ul>\n";
 	create_rubrique_mot('000. Racine', 'SecteurPasDansQuoiDeNeuf');
 	create_rubrique_mot('000. Racine', 'PasDansMenu');
 	create_rubrique_mot('900. Agenda', 'Agenda');
@@ -213,20 +234,23 @@ function config_site() {
 	create_rubrique_mot('999. Citations', 'PasDansMenu');
 	create_rubrique_mot('999. Citations', 'PasDansPlan');
 	create_rubrique_mot('999. Citations', 'Citations');
+	echo "</ul>\n";
+	
+	echo "<h1>Installation termin&eacute;</h1><p>Vous pouvez revenir &agrave; l'<a href='./'>administration du site</a></p>";
+	echo install_fin_html();
+	
 	return TRUE;
 }
 
 function exec_postconfig() {
 	if (!defined("_ECRIRE_INC_VERSION")) return;
 
-	include_spip("inc/presentation");
+	include_spip('inc/admin');
 	include_spip("inc/lang");
-	include_spip("inc/charsets");
+	include_spip("inc/charsets");	
 
-	install_debut_html("Configurateur site");
+	debut_admin("postconfig", "Configurateur des mots clefs", "Voulez-vous vraiment installer (ou r&eacute;-installer) les mots clefs du site ?");
 	config_site();
-
-	echo "<h1>Installation termin&eacute;</h1><p>Vous pouvez revenir à l'<a href='./'>administration du site</a></p>";
-	install_fin_html();
+	fin_admin("Configurateur site");
 }
 ?>
