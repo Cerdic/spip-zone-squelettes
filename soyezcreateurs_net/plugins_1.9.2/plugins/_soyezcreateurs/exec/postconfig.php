@@ -40,10 +40,10 @@ function id_rubrique($titre) {
 }
 
 function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $obligatoire='non', $articles='oui', $breves='non', $rubriques='non', $syndic='non', $evenements='non', $minirezo='oui', $comite='oui', $forum='non') {
-	$groupe = importer_charset($groupe);
+	$groupe = importer_charset($groupe, 'iso-8859-1');
 	$id_groupe=id_groupe($groupe);
-	$texte = importer_charset($texte);
-	$descriptif = importer_charset($descriptif);
+	$texte = importer_charset($texte, 'iso-8859-1');
+	$descriptif = importer_charset($descriptif, 'iso-8859-1');
 	if ($id_groupe == 0) {
 		//Création groupe + mots clé
 		$query = "INSERT INTO spip_groupes_mots SET titre='$groupe', descriptif='$descriptif', texte='$texte', unseul='$unseul', obligatoire='$obligatoire',
@@ -68,11 +68,11 @@ function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $oblig
 }
 
 function create_mot($groupe, $mot, $descriptif='', $texte='') {
-	$groupe = importer_charset($groupe);
+	$groupe = importer_charset($groupe, 'iso-8859-1');
 	$id_groupe=id_groupe($groupe);
-	$mot = importer_charset($mot);
-	$texte = importer_charset($texte);
-	$descriptif = importer_charset($descriptif);
+	$mot = importer_charset($mot, 'iso-8859-1');
+	$texte = importer_charset($texte, 'iso-8859-1');
+	$descriptif = importer_charset($descriptif, 'iso-8859-1');
 	if ($id_groupe != 0) {
 		$id_mot=id_mot($mot);
 		if ($id_mot == 0 ) {
@@ -97,8 +97,8 @@ function create_mot($groupe, $mot, $descriptif='', $texte='') {
 function create_rubrique($titre, $id_parent='0', $descriptif='') {
 	$id_rubrique = id_rubrique($titre);
 	if ($id_rubrique==0) {
-		$titre = importer_charset($titre);
-		$descriptif = importer_charset($descriptif);
+		$titre = importer_charset($titre, 'iso-8859-1');
+		$descriptif = importer_charset($descriptif, 'iso-8859-1');
 		$query="INSERT INTO spip_rubriques (titre, id_parent, descriptif) VALUES ('$titre', '$id_parent', '$descriptif')";
 		spip_query($query);
 		$id_rubrique = spip_insert_id();
