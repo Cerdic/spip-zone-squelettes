@@ -35,10 +35,18 @@
 	  [(#INCLURE{fond=include/menu})]
 	      
     <!-- LE CONTENU -->
-    <div>
+    <div id="content">
 		
-	<BOUCLE_list (ARTICLES){!par date}><a href="#URL_ARTICLE">#TITRE ([(#DATE|affdate)])<br />
-              </a></BOUCLE_list>
+	<BOUCLE_articlem(ARTICLES){par date}{inverse}>
+<BOUCLE_premierdumois(ARTICLES){id_article}{doublons}>
+<br /><ul><b> [(#DATE|nom_mois|majuscules)] [(#DATE|annee)] </b>
+   <li><a href="#URL_ARTICLE">[(#TITRE|couper{50})]</a> - [(#DATE|jour)]/[(#DATE|mois)]</li>
+</BOUCLE_premierdumois>
+   <BOUCLE_MOIS(ARTICLES) {mois_relatif=0}{doublons}{par date}{inverse} >
+       <li><a href="#URL_ARTICLE">[(#TITRE|couper{50})]</a> - [(#DATE|jour)]/[(#DATE|mois)]</li>
+   </BOUCLE_MOIS>
+</ul>
+</BOUCLE_articlem> 
 	</div>            
 	<!-- LE PIED -->
     <div id="pied">[(#INCLURE{fond=include/footer})]</div>
