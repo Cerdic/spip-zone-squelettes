@@ -1,0 +1,193 @@
+#CACHE{86400}
+<INCLURE{fond="header"}>
+
+
+
+<html><head>
+
+[(#REM)   les métas   ]
+<title>[(#RECHERCHE) ][trouvé dans les forums de (#NOM_SITE_SPIP)]</title> 
+<meta name="Description" content="[(#RECHERCHE) ][trouvé dans les forums de (#NOM_SITE_SPIP)]"/>
+<meta name="Keywords" content="forum,trouver[,(#RECHERCHE)]"/>
+<meta http-equiv="content-type"content="text/html; charset=#CHARSET"/>
+
+	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
+	
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/menu.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/logic.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/niftyCorners.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/print.css})]" media="print" />
+	[(#REM) 4 css qui changent l aspect du site suivant la saison.]
+<BOUCLE_mot_saison(MOTS){titre=saison}{0,1}>
+<link rel="stylesheet" type="text/css" href="[squelettes/css/(#ENV{date}|saison|translitteration).css]" />
+</BOUCLE_mot_saison>
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/couleurs.css})]" />
+<//B_mot_saison>
+<script type="text/javascript" src="[(#CHEMIN{nifty.js})]"></script>
+<script type="text/javascript" src="[(#CHEMIN{nifty-bloog.js})]"></script>
+
+	[(#REM) icones xml des fils des rubriques sous firefox ]
+	
+<BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}>
+
+<link rel="alternate" type="application/rss+xml" href="[(#URL_PAGE{backend}|parametre_url{'id_rubrique',#ID_RUBRIQUE})]title="[(#TITRE)]" />
+</BOUCLE_rub>
+
+
+[(#REM)   enlève http:// de l'adresse du site   ]
+
+<?php
+$url = "#URL_SITE_SPIP";
+$url= ereg_replace( "http://www.", "", $url );
+$url= ereg_replace( "http://", "", $url );
+?>
+
+
+
+<script type="text/javascript"><!--  
+// Moteur interne par Google Images (fenetre popup)
+ function RecherchePopup()
+ {
+ chaine = document.forms.google.s.value;
+  if (document.forms.google.elements[1].checked) {   
+   URL="http://images.google.fr/search?as_q="+chaine+"&num=100&btnG=Recherche+Google&as_epq=&as_oq=&as_eq=&lr=&as_ft=i&as_filetype=&as_qdr=all&as_occt=any&as_dt=i&as_sitesearch=<? echo $url; ?>";
+   window.open(URL,'','toolbar=yes,location=yes,status=yes,menubar=yes,scrollbars=yes,resizable=yes,width=700,height=400'); 
+   }
+  if (document.forms.google.elements[2].checked) {
+   URL="http://images.google.fr/search?q="+chaine+"&hl=fr&meta=lr%3Dlang_fr";
+   window.open(URL,'','toolbar=yes,location=yes,status=yes,menubar=yes,scrollbars=yes,resizable=yes,width=700,height=400'); 
+   }
+} // -->
+</script>
+
+
+</head>
+<body> 
+<div id="container">   [(#REM)   centrage page   ]
+<INCLURE{fond="entete"}> 
+<div id="surcontent">  [(#REM)   ouverture entête   ]
+<INCLURE{fond="menuhoriz"}>
+<div id="content">  [(#REM)   ouverture contenu   ] 
+<div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
+
+
+
+<div id="cel">
+<ul id="deco">
+
+[(#REM)   recherche sur Google   ]
+<li>
+<h4>Moteur Google</h4>
+
+                <form action='' method='get' name="google"
+                  onsubmit="return RecherchePopup();" id="google">
+                    <p>
+                      <input type='text' name="s" size="20" value="#RECHERCHE" /><a href="javascript:RecherchePopup();" onkeypress="return true"><img src="./IMG/002/loupe.gif" alt="chercher" /></a>
+					  <br />
+                      Lancez une recherche avec Google:<br />
+                      <input name="sur" type='radio' value="site checked" checked /> 
+                      sur #NOM_SITE_SPIP.
+                      <input type='radio' name="sur" value="voila" /> sur le Web.<br />
+                      Les derniers messages [de (#NOM_SITE_SPIP) ]ne
+                      sont pas indéxés par Google, préférez le
+                      moteur interne pour une recherche exhaustive.
+                    </p>
+
+                  </form>
+</li>
+
+[(#REM)   recherche des documents internes   ]
+<li>
+<h4>Recherche interne</h4>
+<form action='[(#SELF)]' method='post'>
+  <p>
+    <input name="recherche" type='text' value="#RECHERCHE" id='recherche' size='20' />  
+    <input type="image" src="./IMG/002/loupe.gif" name="submit" value="ok" />
+  <br/>
+                Lancez une recherche dans les documents du site: 
+                Les mots de moins de quatre lettres ne sont pas indexés
+    par le moteur interne. Utilisez un seul mot pour cibler votre recherche.</p>
+</form>
+		
+</li>
+</ul>
+</div>
+
+
+
+
+
+<div class="grande_boite">
+
+<B_CountDocs>
+#ANCRE_PAGINATION
+<BOUCLE_CountDocs(DOCUMENTS){recherche}>
+</BOUCLE_CountDocs>
+<p>Il y a au total #GRAND_TOTAL documents en rapport avec votre recherche, cette page affiche #TOTAL_BOUCLE documents correspondants.</p>
+</B_CountDocs>
+
+<B_CherchDocs>
+#ANCRE_PAGINATION
+    <div id="minipics">
+    <ul id="diapo">    
+    <BOUCLE_CherchDocs(DOCUMENTS){recherche}{pagination 20}>
+    [<li class="transparent" id="a#ID_DOCUMENT">
+    <a href="#URL_DOCUMENT" class="thickbox">(#LOGO_DOCUMENT||image_reduire{80}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>
+    </li>]
+    </BOUCLE_CherchDocs>
+    </ul>
+    </div>[(#REM)   fermeture minipics   ]
+    
+<p class="centre gras">
+#PAGINATION
+</p>
+</B_CherchDocs>
+
+[(#REM)   fin   recherche par pertinence   ]
+  
+</div>[(#REM)   fermeture grande_boite   ]
+
+[(#REM)   fin de cel   ]
+</div>
+[(#REM)   fermeture colone de gauche   ]
+		
+
+<div class="coldroit">[(#REM)   ouverture de la colone de droite   ] 
+
+
+    <div class="boite">[(#REM)   ouverture boite menu   ] 
+        <h4 class="icone_menu">Navigation</h4>
+        <INCLURE{fond="inc_menu_rub"}{delais="7*24*3600"}> </div>[(#REM)   fermeture boite menu   ]
+
+
+
+
+
+<div class="boite"> [(#REM)   ouverture boite derniers messages   ] 
+<h4 class="icone_post">Derniers messages</h4>
+<INCLURE{fond="inc_derniers_messages"}>
+</div>
+
+<div class="boite">
+  <h4 class="icone_stats">Stats</h4>
+
+<INCLURE{fond="inc_stats"}{delai=24*3600}>
+
+</div>
+      
+ 
+
+</div>   [(#REM)   fermeture colone de droite   ] 
+
+
+<hr class="spacer" />
+</div>[(#REM)   fermeture contenu   ] 
+<INCLURE{fond="pieddepage"}>
+
+</div> [(#REM)   fermeture surcontenu   ]<br/>
+
+
+</div> [(#REM)   fermeture container   ] 
+</body>
+</html>
+
