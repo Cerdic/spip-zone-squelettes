@@ -31,7 +31,7 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'choisirhabillage' => 'Choisir un habillage',
 'choisirhabillage_title' => 'Choisissez la mise en page qui vous convient',
 'copyright_realisation' => 'R&eacute;alisation : <a href=\'http://www.pyrat.net/\' title=\'Visiter le site du cr&eacute;ateur de ce site\'>Pyrat.net</a>',
-'copyright_spip' => 'Ce site utilise <a href=\'http://www.spip.net/\' title=\'Visiter le site de SPIP, logiciel de gestion de contenu web en licence libre GPL\'>SPIP</a>',
+'copyright_spip' => 'Ce site utilise le squelette&nbsp;: <a href=\'http://www.pyrat.net/\' title=\'Visiter le site du cr&eacute;ateur de ce squelette\'>Pyrat.net</a> propuls&eacute; par <a href=\'http://www.spip.net/\' title=\'Visiter le site de SPIP, logiciel de gestion de contenu web en licence libre GPL\'>SPIP</a>',
 'copyright_valide' => '<a href="http://validator.w3.org/check/referer" title="V&eacute;rifier la conformit&eacute; au standard XHTML 1.0 transitional">XHTML</a> &amp; <a href="http://www.w3.org/TR/CSS21/" title="Standard CSS2">CSS</a> valides',
 'copyright_icra' => '&Eacute;tiquet&eacute; gr&acirc;ce &agrave; <a href="http://www.icra.org/sitelabel">ICRA</a>',
 'copyright_cnil' => 'D&eacute;claration CNIL n&ordm;',
