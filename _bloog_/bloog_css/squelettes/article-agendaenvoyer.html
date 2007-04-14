@@ -1,0 +1,185 @@
+#CACHE86400
+<INCLURE{fond="header"}>
+<!-- ci-dessus l'include du fichier header avec un délai de 31 jours. -->
+
+<html><head>
+
+	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
+	
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/menu.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/logic.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/niftyCorners.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/print.css})]" media="print" />
+	[(#REM) 4 css qui changent l aspect du site suivant la saison.]
+<BOUCLE_mot_saison(MOTS){titre=saison}{0,1}>
+<link rel="stylesheet" type="text/css" href="[squelettes/css/(#ENV{date}|saison|translitteration).css]" />
+</BOUCLE_mot_saison>
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/couleurs.css})]" />
+<//B_mot_saison>
+<script type="text/javascript" src="[(#CHEMIN{nifty.js})]"></script>
+<script type="text/javascript" src="[(#CHEMIN{nifty-bloog.js})]"></script>
+
+	[(#REM) icones xml des fils des rubriques sous firefox ]
+<BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}>
+<link rel="alternate" type="application/rss+xml" href="[(#URL_PAGE{backend}|parametre_url{'id_rubrique',#ID_RUBRIQUE})]title="[(#TITRE)]" />
+</BOUCLE_rub>
+
+</head>
+
+
+<body> 
+
+<div id="container">   <!-- cette div centre la page -->
+<INCLURE{fond="entete"}>  <!-- include du fichier entete avec le logo --> 
+<div id="surcontent">  <!-- ouverture entête -->
+<INCLURE{fond="menuhoriz"}> <!-- le menu horizontal avec les onglets --> 
+<div id="content">  <!-- ouverture contenu --> 
+<div id="colgau"> <!-- ouverture colone de gauche --> 
+
+
+
+<div id="cel"> <!-- ouverture des deux cellules en haut --> 
+<ul id="deco"> 
+<li> <!-- ouverture de la premiere cellule -->
+
+<h4>&Eacute;v&eacute;nement enregistr&eacute; !</h4>
+
+<p><span class="vert">Votre &eacute;v&eacute;nement est enregistr&eacute;!</span> Vous
+  recevrez un courrier de confirmation tr&egrave;s prochainement. Votre &eacute;v&eacute;nement
+  sera publi&eacute; en ligne apr&egrave;s
+  approbation. Utilisez cette page de <a href="_contact.php3">contact</a> pour
+   signaler  toutes modifications. Merci.</p>
+		
+</li>
+
+
+ 
+<li>  <!-- ouverture de la premiere cellule -->
+<h4>Diffusion optimis&eacute;e. </h4>
+
+<p>En plus de la publication en ligne, la diffusion
+  de l'&eacute;v&eacute;nement est dupliqu&eacute;e: L'&eacute;v&eacute;nement
+  est propos&eacute;
+  aux sites web partenaires,  aux  lecteurs
+  de nouvelles et agendas portables des internautes, aux
+  annuaires et aux moteurs.</p>
+</li></ul>
+<!-- fermeture des cellules -->
+</div><!-- fermeture des cellules -->
+ <div class="grande_boite"><!-- ouverture d une grande boite  -->
+ 
+ <h4 class="icone_agenda">Affichez l'agenda
+   74</h4>
+ <p>
+   Les moteurs de recherches
+   sont gourmands de nouveaux textes et de dynamismes. Les internautes appr&eacute;cient
+   les nouveaut&eacute;s
+   et les informations artistiques et locales. Boostez votre site web en ajoutant
+    du contenu renouvel&eacute; r&eacute;guli&egrave;rement: 
+Dans votre page web, ajoutez l'agenda avec un fil de syndication de contenu ou
+ un javascript: 
+<BOUCLE_rub_rss(RUBRIQUES){titre_mot=agenda}{0,1}>
+ <h4 class="icone_post">Fil de syndication RSS</h4><p>[ajoutez l'adresse de news de l'(#TITRE)]&nbsp;:<br/>
+[<span class="vert">(#URL_PAGE{backend}|parametre_url{'id_rubrique',#ID_RUBRIQUE})</span>]<br/>
+</BOUCLE_rub_rss>
+
+
+ </p>
+<hr class="spacer"/>
+
+ 
+<h4 class="icone_post">L'agenda en javascript</h4>
+  
+  <BOUCLE_rub_java(RUBRIQUES){titre_mot=agenda}{0,1}>
+  <p>Un site web non &eacute;quip&eacute; d'agr&eacute;gateur en ligne peut aussi
+    profiter du contenu de #NOM_SITE_SPIP. Affichez les news de la rubrique[ "(#TITRE)"].
+    Insérez
+    ce Javascript entre les balises body de votre page html: 
+<form><textarea name="textfield" class="form450"><!-- A ajouter entre les balises <body> -->
+<script type="text/javascript" src="#URL_SITE_SPIP/distrib.php3?id_rubrique=#ID_RUBRIQUE">
+</script></textarea></form>
+
+
+ </BOUCLE_rub_java>
+   <p>
+     <!-- fermeture grande_boite -->
+ </div>
+ <div id="celbas">
+<ul id="decobas">
+<li>
+  <h4>Fonctionnement</h4>
+  <p> 
+Sans que vous ayez &agrave; faire de mise &agrave; jour de votre page, les &eacute;v&eacute;nements
+s'afficheront comme dans l'exemple de droite.
+Vous pouvez  modifier le style css pour adapter le graphisme &agrave; votre site.</p>
+</li>
+
+
+  <li>
+    <h4>&Eacute;change et réciprocité</h4>
+              <p>Réciprocité sans équivoque: Nous gagnons quelques liens, vous gagnez du contenu dynamique agr&eacute;able
+aux internautes et aux moteurs de recherches. </p>
+  </li> 
+</ul>
+</div> <!-- fin de cel -->      
+
+
+       
+</div><!-- fermeture colone de gauche -->
+		
+
+<div class="coldroit"><!-- ouverture de la colone de droite --> 
+
+
+    <div class="boite"><!-- ouverture boite menu --> 
+        <h4 class="icone_menu">Navigation</h4>
+        <INCLURE{fond="inc_menu_rub"}>
+    
+    </div><!-- fermeture boite menu -->
+
+  <div class="boite"> <!-- ouverture boite recherche --> 
+
+  <h4 class="icone_recherche">Recherche</h4>
+  <form action='recherche.php3' method='post' class="form_rech" id="form_rech">
+              <p><input name="recherche" type='text' id='recherche' size='20' />
+              <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" /></p>             
+          </form>
+
+ </div>
+ 
+<div class="boite">
+  <h4 class="icone_stats">Démonstration:</h4>
+
+
+<BOUCLE_rub_demo(RUBRIQUES){titre_mot=agenda}{0,1}>
+[<h4>(#TITRE)</h4>]
+<ul class="petite_liste">
+<BOUCLE_art_demo(ARTICLES){branche}{par date}{inverse}{0,5}>
+<li>[<strong><a href="#URL_ARTICLE">(#TITRE)</a></strong>][ (#DESCRIPTIF|couper{100})]</li>
+</BOUCLE_art_demo>
+</ul>
+</BOUCLE_rub_demo>
+<ul class="petite_liste">
+<BOUCLE_art_tous(ARTICLES){tous}{par date}{inverse}{0,5}>
+<li>[<strong><a href="#URL_ARTICLE">(#TITRE)</a></strong>][ (#DESCRIPTIF|couper{100})]</li>
+</BOUCLE_art_tous>
+</ul>
+<//B_rub_demo>
+
+</div>
+      
+ 
+
+</div>   <!-- fermeture colone de droite --> 
+
+
+<hr class="spacer" /> <!-- ajoute une barre hr invisible --> 
+</div><!-- fermeture contenu --> 
+<INCLURE{fond="pieddepage"}> <!-- le pied de page inclu avec délai --> 
+
+</div> <!-- fermeture surcontenu --><br/>
+
+
+</div> <!-- fermeture container --> 
+</body>
+</html>

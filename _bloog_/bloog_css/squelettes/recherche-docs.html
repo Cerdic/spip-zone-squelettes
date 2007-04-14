@@ -1,4 +1,4 @@
-#CACHE{86400}
+#CACHE{0}
 <INCLURE{fond="header"}>
 
 
@@ -6,9 +6,9 @@
 <html><head>
 
 [(#REM)   les métas   ]
-<title>[(#RECHERCHE) ][trouvé dans les forums de (#NOM_SITE_SPIP)]</title> 
-<meta name="Description" content="[(#RECHERCHE) ][trouvé dans les forums de (#NOM_SITE_SPIP)]"/>
-<meta name="Keywords" content="forum,trouver[,(#RECHERCHE)]"/>
+<title>[(#RECHERCHE) ][trouvé dans les documents de (#NOM_SITE_SPIP)]</title> 
+<meta name="Description" content="[(#RECHERCHE) ][trouvé dans les documents de (#NOM_SITE_SPIP)]"/>
+<meta name="Keywords" content="documents,trouver[,(#RECHERCHE)]"/>
 <meta http-equiv="content-type"content="text/html; charset=#CHARSET"/>
 
 	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
@@ -59,7 +59,7 @@ $url= ereg_replace( "http://", "", $url );
    }
 } // -->
 </script>
-
+ #INSERT_HEAD
 
 </head>
 <body> 
@@ -88,7 +88,7 @@ $url= ereg_replace( "http://", "", $url );
                       <input name="sur" type='radio' value="site checked" checked /> 
                       sur #NOM_SITE_SPIP.
                       <input type='radio' name="sur" value="voila" /> sur le Web.<br />
-                      Les derniers messages [de (#NOM_SITE_SPIP) ]ne
+                      Les derniers documents [de (#NOM_SITE_SPIP) ]ne
                       sont pas indéxés par Google, préférez le
                       moteur interne pour une recherche exhaustive.
                     </p>
@@ -115,37 +115,36 @@ $url= ereg_replace( "http://", "", $url );
 
 
 
+<B_CherchDocs_Articles>    <div id="minipics">  <ul id="diapo">   
+ <BOUCLE_CherchDocs_Articles(ARTICLES){recherche}>[(#REM) On cherche dans les
+ articles le mot clé ]
+   
+<BOUCLE_CherchDocs(DOCUMENTS){id_article}{pagination 20}>[(#REM) ...Et si on trouve
+dans l'article on affiche les docs ] #ANCRE_PAGINATION
+<li class="transparent" id="a#ID_DOCUMENT">
+[<a href="#URL_DOCUMENT" class="thickbox">(#LOGO_DOCUMENT||image_reduire{80}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>[(#TITRE)<br/>]]
+	[<a href="(#URL_ARTICLE)">Voir l'article</a>]</li>
+</BOUCLE_CherchDocs>
 
 
-<div class="grande_boite">
-
-<B_CountDocs>
-#ANCRE_PAGINATION
-<BOUCLE_CountDocs(DOCUMENTS){recherche}>
-</BOUCLE_CountDocs>
-<p>Il y a au total #GRAND_TOTAL documents en rapport avec votre recherche, cette page affiche #TOTAL_BOUCLE documents correspondants.</p>
-</B_CountDocs>
-
-<B_CherchDocs>
-#ANCRE_PAGINATION
-    <div id="minipics">
-    <ul id="diapo">    
-    <BOUCLE_CherchDocs(DOCUMENTS){recherche}{pagination 20}>
-    [<li class="transparent" id="a#ID_DOCUMENT">
-    <a href="#URL_DOCUMENT" class="thickbox">(#LOGO_DOCUMENT||image_reduire{80}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>
-    </li>]
-    </BOUCLE_CherchDocs>
-    </ul>
-    </div>[(#REM)   fermeture minipics   ]
-    
+[<div class="grande_boite">
 <p class="centre gras">
-#PAGINATION
+(#PAGINATION)<br/>Il y a au total #GRAND_TOTAL documents, cette page en affiche
+#TOTAL_BOUCLE
 </p>
-</B_CherchDocs>
+</div>]    
+ </B_CherchDocs>
 
+</BOUCLE_CherchDocs_Articles>
+    </ul>
+</div>[(#REM)   fermeture minipics   ]
+</B_CherchDocs_Articles>
+[<div class="grande_boite">
+<p class="centre gras">(#RECHERCHE) n'a pas &eacute;t&eacute; trouv&eacute; dans les documents.</p></div>]
+<//B_CherchDocs_Articles>
 [(#REM)   fin   recherche par pertinence   ]
   
-</div>[(#REM)   fermeture grande_boite   ]
+
 
 [(#REM)   fin de cel   ]
 </div>
