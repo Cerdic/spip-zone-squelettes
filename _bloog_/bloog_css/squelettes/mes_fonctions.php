@@ -119,7 +119,6 @@ for ($x = 0; $x < $x_i; $x++) {
 
 
 
-
  /*
  *   +----------------------------------+
  *    Nom du Filtre :    tuer les lettres!

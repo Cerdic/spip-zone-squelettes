@@ -88,13 +88,24 @@
 
 <div id="minipics">
 <ul id="diapo">
+<B_documents_portfolio>
+#ANCRE_PAGINATION
+<BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension IN png,jpg,gif}{par num titre, date}{pagination 20}>
+				<li class="transparent" id="a#ID_DOCUMENT">
+<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;" title="[(#TITRE|couper{80}|texte_backend) ][ (#DESCRIPTIF|couper{80}|texte_backend)]
 
-<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date}>
-				[<li class="transparent" id="a#ID_DOCUMENT">
-				<a href="#URL_DOCUMENT" class="thickbox">(#LOGO_DOCUMENT||image_reduire{80,200}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend) ][(#NOM|couper{80}|texte_backend)][ (#DESCRIPTIF|couper{80}|texte_backend)...]})</a>
-				</li>]
+<BOUCLE_ajout_exif(ARTICLES){id_article}{titre_mot==exif}{0,1}>
+        <INCLURE{fond="photo"}{id_article}{id_document}> 
+</BOUCLE_ajout_exif>
+
+" class="thickbox">
+[(#FICHIER|copie_locale|image_masque{carre-80.png}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend) ][ (#DESCRIPTIF|couper{80}|texte_backend)]})]</a>
+</li>
+				
+				
 </BOUCLE_documents_portfolio>
-
+[<div class="grande_boite"><p class="centre gras">(#PAGINATION)<br/>Il y a au total #GRAND_TOTAL photos, cette page en affiche #TOTAL_BOUCLE.</p></div>]
+</B_documents_portfolio>
 </ul>
 
 
