@@ -1,39 +1,23 @@
 #CACHE{864000}
 
-<script type="text/javascript"><!--  
-// Moteur interne par Google (fenetre popup)
- function RechercheRadio()
- {
-  if (document.forms.form_rech.elements[1].checked) {   
-   URL="[(#URL_PAGE{recherche})]";
-   window.open(URL,'','toolbar=yes,location=yes,status=yes,menubar=yes,scrollbars=yes,resizable=yes,width=700,height=400'); 
-   }
-  if (document.forms.form_rech.elements[2].checked) {
-   URL="[(#URL_PAGE{recherche-docs})]";
-   window.open(URL,'','toolbar=yes,location=yes,status=yes,menubar=yes,scrollbars=yes,resizable=yes,width=700,height=400'); 
-   }
-   if (document.forms.form_rech.elements[3].checked) {   
-   URL="[(#URL_PAGE{recherche-forum})]";
-   window.open(URL,'','toolbar=yes,location=yes,status=yes,menubar=yes,scrollbars=yes,resizable=yes,width=700,height=400'); 
-   }
-} // -->
-</script>
-
-<form name ="form_rech" action='' method='post' id="form_rech" onsubmit="return RechercheRadio();" value="rechercher">
-    <p><input name="recherche" type='text' id='recherche' size='20' value="#RECHERCHE" />
-    <input type="image" src="./IMG/002/loupe.gif" name="submit" value="ok" /></p>       
-
+<form name ="form_rech" action="javascript:window.location.replace(url)" method="get" id="form_rech" value="rechercher">
 <p class="centre">
 <label>
-<input type='radio' name="textes" value="[(#URL_PAGE{recherche})]" checked /> Textes
+
+<input type="radio" name="puce" Onchange= javascript:url="[(#URL_PAGE{recherche}|parametre_url{'recherche',#RECHERCHE})]" /> 
+Textes
 </label>
 <label>
-<input type='radio' name="docs" value="[(#URL_PAGE{recherche-docs})]" /> Docs/Images
+<input type="radio" name="puce" Onchange= javascript:url="[(#URL_PAGE{recherche-docs}|parametre_url{'recherche',#RECHERCHE})]" /> 
+Docs/Images
 </label>
 <label>
-<input type='radio' name="forums" value="[(#URL_PAGE{recherche-forum})]" /> Forums
+<input type="radio" name="puce" Onchange= javascript:url="[(#URL_PAGE{recherche-forum}|parametre_url{'recherche',#RECHERCHE})]" /> 
+Forums
 </label>
 </p>
+    <p><input name="recherche" type="text" id="recherche" size="25" value="#RECHERCHE" />
+    <input type="image" src="./IMG/002/loupe.gif" name="submit" value="ok" /></p>       
 
 </form> 
 
