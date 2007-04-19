@@ -25,66 +25,21 @@
 
 		<script type="text/javascript" src="#CHEMIN{interface.js}"></script>
 	<link rel="stylesheet" href="#CHEMIN{interface.css}" type="text/css" media="projection, screen, tv" /></head>
+  	<link rel="stylesheet" href="spip.php?page=accordeon.css" type="text/css" media="projection, screen, tv" />
 
-<style type="text/css" media="all">
-<BOUCLE_css(RUBRIQUES){racine}>
-#myAccordion#ID_RUBRIQUE{
-	width: 95%;
-	float:left ;
-	border: 1px solid #6CAF00;
-	left: 3px;
-	top: 3px;
-}
-#myAccordion#ID_RUBRIQUE dt{
-	line-height: 15px;
-	background-color: #80df20;
-	border-top: 2px solid #DAFF9F;
-	border-bottom: 2px solid #6CAF00;
-	padding: 0 3px 3px 3px;
-	font-weight: bold;
-	color: #fff;
-	text-align:left ;
-}
-#myAccordion#ID_RUBRIQUE dd{
-	overflow: auto;
-	padding-left :3px;
-  padding-right: 3px;
-  	text-align:left ;
-}
-#myAccordion#ID_RUBRIQUE ul{
-	padding-left :3px;
-  padding-right: 3px;
-}
-#myAccordion#ID_RUBRIQUE p{
-	margin: 2px 3px;
-	color:black ;
-	font-size:1em;
-}
-#myAccordion#ID_RUBRIQUE dt.myAccordionHover#ID_RUBRIQUE
-{
-	background-color: #90ef30;
-}
-#myAccordion#ID_RUBRIQUE dt.myAccordionActive#ID_RUBRIQUE
-{
-	background-color: #6CAF00;
-	border-top: 2px solid #80df20;
-	border-bottom: 2px solid #000;
-	padding-left :3px;
-  padding-right: 3px;
-}
-</BOUCLE_css>
-
-</style>
 
 
 <body>
 
+<INCLURE{fond=bandeau}>
 
 <INCLURE{fond=fond}>
-<a href="#" id="windowOpen">Ouvrir</a>
-<a href="squelettes/squelette.html">squelette appelant</a>
-<a href="squelettes/fond.html" >squelette du fond</a>
-<a href="squelettes/interface"> js et css</a>
+
+
+
+<div class="alaligne"></div>
+<INCLURE{fond=pied-de-page}>
+
 
 [(#ENV{skl}|=={skl_rubrique}|?{' ',''})
   <INCLURE{fond=fenetre-rubrique}{id_rubrique}>
@@ -96,6 +51,10 @@
 [(#ENV{skl}|=={skl_forum}|?{' ',''})
   <INCLURE{fond=fenetre-forum}{id_article}{id_forum}>
 ]
+[(#ENV{skl}|=={skl_article-syndic}|?{' ',''})
+  <INCLURE{fond=fenetre-article-syndic}{id_syndic_article}>
+]
+
 
 
 
@@ -213,12 +172,15 @@ $(document).ready(
 		$.ImageBox.init(
 			{
 				loaderSRC: '#CHEMIN{imagebox/loading.gif}',
-				closeHTML: '<img src="#CHEMIN{imagebox/close.jpg}" />'
+				closeHTML: '<img src="#CHEMIN{imagebox/close.jpg}" alt="fermer"/>'
 			}
 		);
 	}
 );
 </script>
+
+
+
 
 </body>
 </html>
