@@ -14,6 +14,46 @@ $couleurs_spip[] = array(
 		"couleur_lien_off" => "#0d6f99"
 );
 
+// Compatibilite 1.9.3
+if ($GLOBALS['spip_version_code']>='1.9250') {
+	$couleurs = charger_fonction('couleurs', 'inc');
+	$couleurs( array(
+		// Vert
+		1 => array (
+				"couleur_foncee" => "#9DBA00",
+				"couleur_claire" => "#C5E41C",
+				),
+		// Violet clair
+		2 => array (
+				"couleur_foncee" => "#eb68b3",
+				"couleur_claire" => "#ffa9e6",
+				),
+		// Orange
+		3 => array (
+				"couleur_foncee" => "#fa9a00",
+				"couleur_claire" => "#ffc000",
+				),
+		// Saumon
+		4 => array (
+				"couleur_foncee" => "#CDA261",
+				"couleur_claire" => "#FFDDAA",
+				),
+		//  Bleu pastel
+		5 => array (
+				"couleur_foncee" => "#5da7c5",
+				"couleur_claire" => "#97d2e1",
+				),
+		//  Gris
+		6 => array (
+				"couleur_foncee" => "#85909A",
+				"couleur_claire" => "#C0CAD4",
+				),
+		7 => array ("couleur_foncee" => "#0F7FB3",
+			"couleur_claire" => "#0094d3",
+				),
+	));
+}
+
 // Tous ces parametres sont inutiles et non pris en compte si le plugin cfg est installe
 $GLOBALS['barre_typo_pas_de_fausses_puces'] = true;
 $GLOBALS['BarreTypoEnrichie_Preserve_Header'] = true;
