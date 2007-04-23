@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+
+	terrafirma1.0 by nodethirtythree design
+	http://www.nodethirtythree.com
+
+-->
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<title>[(#TITRE|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/default.css" />
+
+
+[(#REM) Feuille de style par defaut pour le code genere par SPIP ]
+<link rel="stylesheet" href="[(#CHEMIN{spip_style.css}|direction_css)]" type="text/css" media="all" />
+
+[(#REM) Feuille de style CSS pour l'impression ]
+<link rel="stylesheet" href="[(#CHEMIN{impression.css}|direction_css)]" type="text/css" media="print" />
+
+</head>
+<body>
+
+<div id="outer">
+
+	<div id="upbg"></div>
+
+	<div id="inner">
+
+		<div id="header">
+			<h1><span>[(#NOM_SITE_SPIP|textebrut)]</span></h1>
+			<h2>#DESCRIPTIF_SITE_SPIP</h2>
+		</div>
+	
+		<div id="splash"></div>
+	
+
+				<ul>
+					<li class="extrait">
+					<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+					<small>[(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small>
+					</li>
+					</BOUCLE_articles>
+				</ul>
+				</B_articles>
+
+
+		<div id="menu">
+			<ul>
+					<BOUCLE_articles5(ARTICLES) {id_article=1} {doublons menu}{par num titre}>
+						<li class="first"><a href="#URL_SITE_SPIP">[(#TITRE|supprimer_numero)]</a></li>
+					</BOUCLE_articles5>
+
+				
+					<BOUCLE_articles(ARTICLES) {id_rubrique=1} {doublons menu}{par num titre}>
+						<li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></li>
+					</BOUCLE_articles>
+			</ul>
+		</div>
+	
+
+		<div id="primarycontent">
+		
+			<!-- primary content start -->
+		
+			<div class="post">
+				<div class="header">
+					<h3>[(#NOM_SITE_SPIP|textebrut)]</h3>
+				</div>
+				<div class="content">
+					<BOUCLE_articles3(ARTICLES) {id_article=1} >
+						[(#TEXTE|image_reduire{75,0})]
+					</BOUCLE_articles3>
+				</div>			
+			</div>
+		
+
+			<!-- primary content end -->
+	
+		</div>
+		
+		<div id="secondarycontent">
+
+			<!-- secondary content start -->
+		
+			<div class="content">
+					<BOUCLE_articles2(ARTICLES) {id_rubrique=1} {par num titre}>
+						[<a href="#URL_ARTICLE"><img src="./IMG/(#LOGO_ARTICLE|fichier)" class="picB" border='0' alt="[(#TITRE|supprimer_numero|textebrut)]" alt="[(#TITRE|supprimer_numero|textebrut)]"  /></a>]
+					</BOUCLE_articles2>
+			</div>
+			
+
+			<!-- secondary content end -->
+
+		</div>
+	
+		<div id="footer">
+		
+			Site realise avec <a href="http://www.spip.net">SPIP</a> Design by <a href="http://_On_le_spammera_de_visites_quand_le_site_sera_termine.Com">NodeThirtyThree</a>.
+		
+		</div>
+
+	</div>
+
+</div>
+
+</body>
+</html>
