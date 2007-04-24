@@ -1,4 +1,4 @@
-#CACHE{2678400}
+#CACHE2678400
 
 <INCLURE{fond="header"}>
 
@@ -35,7 +35,7 @@
 <link rel="alternate" type="application/rss+xml" href="[(#URL_PAGE{backend}|parametre_url{'id_rubrique',#ID_RUBRIQUE})]title="[(#TITRE)]" />
 </BOUCLE_rub>
 
-
+ #INSERT_HEAD
 
 </head><body> 
 
@@ -48,12 +48,14 @@
  
 <div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
   <div class="grande_boite"> [(#REM)   ouverture grd boite texte   ] 
-<p class="logogauche"><INCLURE{fond="logo"}{id_rubrique}{taille=46}{date=#ENV{date}}>
+<p class="logogauche"><INCLURE{fond="logo"}{id_rubrique}{taille=46}{date=#ENV{date}}><p>
 <a href="[(#URL_PAGE{sommaire})]">Accueil</a> > <BOUCLE_plan(HIERARCHIE){id_rubrique}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a>	
                   </BOUCLE_plan></p>
                  
-    <h1>[(#TITRE)<br/>]</h1> 
-    [(#SOUSTITRE)<br/>]   
+                  <h1>[(#TITRE)<br/> 
+      ]</h1> 
+    [(#SOUSTITRE)<br/> 
+    ]   
    <p>[(#TEXTE|lier_au_glossaire)]</p>
 <hr class="spacer"/></div> 
   [(#REM)   fermeture grande boite   ]
@@ -103,54 +105,74 @@
    
 
 
+<div class="grande_boite">
 
 
 
-<div id="minipics">
-<B_articles>
-#ANCRE_PAGINATION
 
-<BOUCLE_articles(ARTICLES){id_rubrique}{par date}{inverse}{doublons}{tout_voir}{pagination}>
-<ul>
-    <BOUCLE_logo_documents(DOCUMENTS){id_article}{mode=document}{par date}{inverse}{extension IN jpg,png,gif}{0,1}>
-    <li [style="(#EVAL{[(#_articles:COMPTEUR_BOUCLE)]}|alterner{'float:left','float:right'})"]>
-    <a href="#URL_ARTICLE#diapo"><INCLURE{fond="logo"}{id_article}{id_document}{taille=46}{date=#ENV{date}}></a>
-    </BOUCLE_logo_documents>
 
-    <BOUCLE_photocmpt(DOCUMENTS){id_article}{mode=document}{extension IN jpg,png,gif}>
-    </BOUCLE_photocmpt>
-    [<p class="centre"><a href="#URL_ARTICLE#diapo">(#TOTAL_BOUCLE)&nbsp;[(#TOTAL_BOUCLE|>{1}|?{'photos','photo'})]</a></p>]
-    </B_photocmpt>
-    </li>
-    </B_logo_documents>
-    
-[(#REM)   s'il n'y a pas de jpg gif ou png alors on demande le logo de l'article et on ne compte rien  ]
 
-    <BOUCLE_logo_articles(ARTICLES){id_article}{0,1}>
-    <li [style="(#EVAL{[(#_articles:COMPTEUR_BOUCLE)]}|alterner{'float:left','float:right'})"]>
-    <a href="#URL_ARTICLE#diapo"><INCLURE{fond="logo"}{id_article}{id_document}{taille=46}{date=#ENV{date}}></a>
-    </li>
-    </BOUCLE_logo_articles>    
 
-    <//B_logo_documents>
+<B_evenements_mois>
+[<h3>&Eacute;v&eacute;nements en (#ENV{date}|affdate_mois_annee)</h3><br/>
+]
+
+
+
+<BOUCLE_evenements_mois(EVENEMENTS){id_rubrique}{agendafull date_debut, date_fin, mois,(#ENV{date}|annee), (#ENV{date}|mois)} {statut=publie}{par date_fin}>
+
+<p>
+
+<span class="logogauche"><INCLURE{fond="logo"}{id_article}{id_document}{taille=46}{date=#ENV{date}}></span> <a href="#URL_ARTICLE">[(#TITRE|couper{120})]</a>&nbsp;:[(#DESCRIPTIF)]
+
+ [(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
+ le [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+[(#HORAIRE|=={oui}|?{
+  [(#REM) memes heures ?]
+    [(#DATE_DEBUT|=={#DATE_FIN}|?{&agrave
+[(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)],''})]
+  [(#REM) pas memes heures ?]
+    [(#DATE_DEBUT|!={#DATE_FIN}|?{de
+[(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] &agrave;
+[(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)],''})]
+,''})]
+,
+ du [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+[(#HORAIRE|=={oui}|?{&agrave; partir de
+ [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)],''})] au
+[(#DATE_FIN|nom_jour)]
+ [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{jusqu'&agrave;
+ [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})]  })]
+[-&nbsp;lieu&nbsp;: (#LIEU)]
+<BOUCLE_jour_passe(EVENEMENTS){id_evenement}{age_fin>0}>
+<strong> &Eacute;v&eacute;nement pass&eacute;. </strong>
+ </BOUCLE_jour_passe> <hr class="spacer"/>
  
-    <li class="textepics">
-    <p>[<a href="#URL_ARTICLE">(#TITRE)</a>]&nbsp;[((#VISITES)&nbsp;[(#VISITES|>{1}|?{'visites','visite'}))]]&nbsp;[(#DESCRIPTIF|couper{200})]
+</p>
+ </BOUCLE_evenements_mois>
 
-    <INCLUDE{fond="inc_cadenas"}{id_article}>  
-   
-    <BOUCLE_forum(FORUMS){id_article}{plat}></BOUCLE_forum>
-    [(#TOTAL_BOUCLE|>={1}|?{[,&nbsp;<a href="#URL_ARTICLE#forum">(#TOTAL_BOUCLE)&nbsp;messages</a>&nbsp;,],''})]<//B_forum>
-    <a href="#URL_ARTICLE">Lire la suite...</a></p>[(#REM)   3   ]
-    </li>
-</ul>
-<hr class="spacer"/>
-</BOUCLE_articles>
-<div class="centre">
-[<p>(#PAGINATION{page_precedent_suivant})</p>]
+</B_evenements_mois>
+<p>Pas d'événement ce mois. Cherchez dans la grille.</p>
+<//B_evenements_mois>
+
+
+
+
+<p><a href='[(#SELF|parametre_url{ajout_evenement,oui})]'><:agenda:titre_cadre_ajouter_evenement:></a>
+</p>
+   <B_form_agenda>
+   <BOUCLE_form_agenda(ARTICLES){statut IN prepa, prop, refuse, poubelle, publie}{!par id_article}{0,1}>
+<BOUCLE_plus(ARTICLES){id_article=[(#ID_ARTICLE|plus{1})]} >
+#FORMULAIRE_EDITION_EVENEMENT
+</BOUCLE_plus>
+
+</BOUCLE_form_agenda> 
+
 </div>
-</B_articles>
-</div>[(#REM) fermeture minipics   ]
+ 
+
+
+
 
 
 <B_syndic>
@@ -159,7 +181,7 @@
 <h4 class="icone_site">Vu sur le web</h4><br/>
                       <BOUCLE_syndic(SYNDICATION){id_rubrique}{par nom_site}{syndication=oui}>                      
                     
-					  <h4>[<a href="[(#URL_PAGE{kiosque}|parametre_url{'id_syndic',#ID_SYNDIC})]" title="Toutes les news de #NOM_SITE">(#NOM_SITE)</a>]</h4>
+					  <h4>[<a href="[(#URL_PAGE{#SELF}|parametre_url{'id_syndic',#ID_SYNDIC})]" title="Toutes les news de #NOM_SITE">(#NOM_SITE)</a>]</h4>
                       <BOUCLE_items(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{0,2}>
                      <p>[<strong><a href="#URL_ARTICLE">(#TITRE)</a></strong><br/>]
                       [(#DESCRIPTIF)<br/>]</p>
@@ -167,61 +189,44 @@
                       </BOUCLE_syndic>
 </div>
 </B_syndic>
-<B_sites_web>
-<div class="grande_boite">
-<h4 class="icone_site">A visiter</h4>
-<BOUCLE_sites_web(SITES){id_rubrique}{par nom_site}{syndication=non}><p>
-                [<strong><a href="#URL_SITE">(#NOM_SITE)</a></strong><br/>]
-                [(#DESCRIPTIF)<br/><br/>] 
-                </p>
-                </BOUCLE_sites_web>
-</div>[(#REM)   fermeture site classique   ]
-</B_sites_web>
 
-[(#REM)   un formulaire proposer un site web   ]
-<B_formsite>
-<div class="grande_boite">
-<h4 class="icone_ajouter">Proposer un site</h4>
-<BOUCLE_formsite(MOTS){id_rubrique}{titre=liens}>
-#FORMULAIRE_SITE
-<br/>
-</BOUCLE_formsite>
-</div>
-</B_formsite>
 
-<INCLURE{fond=inc_liste_glossaire}{id_breve}{id_rubrique}{lettre=#ENV{lettre}}>
 </div>[(#REM)   fermeture colone de gauche   ]
 					
 
  <div class="coldroit">  [(#REM)   ouverture de la colone de droite   ] 
 
 
-<div class="boite">[(#REM)   ouverture boite menu   ] 
-    <h4 class="icone_menu">Navigation</h4>    
-    <INCLURE{fond="inc_menu_rub"}{id_rubrique}>     
-</div>[(#REM)   fermeture boite menu   ]
-
-
-[(#REM)   La boite de recherche   ] 
-<div class="boite"> [(#REM)   ouverture boite recherche   ] 
-  <h4 class="icone_recherche">Recherche</h4>
-  <INCLURE{fond="inc-recherche"}>
-</div>   [(#REM)   fermeture boite recherche   ] 
-
+    <div class="boite"><!-- ouverture boite menu --> 
+        <h4 class="icone_menu">Navigation</h4>
+        <INCLURE{fond="inc_menu_rub"}>
     
-<B_archives>
-    <div class="boite">
-      <h4 class="icone_article">A voir également</h4>
-      <ul class="petite_liste">
-      <BOUCLE_archives(ARTICLES){id_rubrique}{doublons}{par date}{inverse}{0,20}>
-      <li>
-              [<a href="#URL_ARTICLE" [title="(#DESCRIPTIF|couper{100})"]>(#TITRE)</a><br/>]
-              <INCLURE{fond="inc_cadenas"}{delais="7*24*3600"}{id_article}>
-      </li>                
-              </BOUCLE_archives>
-      </ul>        
-        </div> [(#REM)   fermeture boite   ] 
-</B_archives>
+    </div><!-- fermeture boite menu -->
+
+
+
+
+<div class="boite">
+  <h4 class="icone_agenda">Affichage par date</h4>
+
+[(#CALENDRIER_MINI{#ENV{date},'date',#SELF})]
+</div>
+
+
+
+
+
+ [(#REM)   La boite de recherche   ] 
+    <div class="boite"> [(#REM)   ouverture boite recherche   ] 
+  <h4 class="icone_recherche">Recherche</h4>
+  <form action='[(#URL_PAGE{recherche})]' method='post' class="form_rech" id="form_rech">
+              <p><input name="recherche" type='text' id='recherche' size='20' />
+              <input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" /></p>             
+          </form>
+
+ </div>   [(#REM)   fermeture boite recherche   ] 
+
+
 
 <B_STATS>
 <div class="boite">
