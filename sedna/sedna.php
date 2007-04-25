@@ -36,10 +36,12 @@
 			antispam2(
 			corriger_toutes_entites_html(
 			entites_html(
+			couper(
 			lignes_longues(
 			textebrut(
 				$texte
-			))))));
+			)), 600)
+			))));
 	}
 
 	// tri maison : d'abord par jour de syndication,
