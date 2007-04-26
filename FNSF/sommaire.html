@@ -38,7 +38,7 @@
 	   
     <!-- LE CONTENU -->
     <div id="Article">
-    <div id="fond_article"><h5 style="margin:0"><BOUCLE_articles(ARTICLES) {par date}{inverse} {0,1} {doublons}{id_rubrique !=10}{id_article !=13}{id_article !=12}{id_article !=30}{id_article !=43}>
+    <div id="fond_article"><h5 style="margin:0"><BOUCLE_articles(ARTICLES) {par date_modif}{inverse} {0,1} {doublons}{id_rubrique !=10}{id_article !=13}{id_article !=12}{id_article !=30}{id_article !=43}>
 <BOUCLE_article_hierarchie(ARTICLES){id_article}>
    		<BOUCLE_rubrique_hierarchie(RUBRIQUES){id_rubrique}>
                 <a href="#URL_SITE_SPIP">ACCUEIL</a>
@@ -63,7 +63,7 @@
 		[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{150,100})]
 		[<p class="surtitre">(#SOUSTITRE)</p>]
 								
-		<small>publié le [(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small>
+		<small>Publié le [(#DATE|nom_jour)] [(#DATE|affdate)] [(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|?{[à [(#DATE|heures)]:[(#DATE|minutes)], mis à jour le (#DATE_MODIF|nom_jour)] [(#DATE_MODIF|affdate)],''})] à [(#DATE_MODIF|heures)]:[(#DATE_MODIF|minutes)], par #LESAUTEURS</small>
 		<br /><br />
 		<a href="#URL_PAGE{article_print,id_article=#ID_ARTICLE}" title="afficher une version imprimable de cet article">
 		<img border="0" height="20" width="20" src='#DOSSIER_SQUELETTE/img/print.png' alt="impression" title="impression" /></a> 
