@@ -10,7 +10,10 @@ function boucle_ARTICLES($id_boucle, &$boucles) {
 	$boucle = &$boucles[$id_boucle];
 	$id_table = $boucle->id_table;
 
-	define ('RUBRIQUE_WIKI_OK', false); // true quand on vient du wiki
+	// true quand on vient du wiki
+	// true dans l'espace prive
+	// false dans les autres pages (publiques hors wiki)
+	define ('RUBRIQUE_WIKI_OK', _DIR_RESTREINT=='');
 
 	if (!RUBRIQUE_WIKI_OK) {
 		// et le filtrage d'acces filtre !
@@ -27,7 +30,7 @@ function boucle_RUBRIQUES($id_boucle, &$boucles) {
 	$boucle = &$boucles[$id_boucle];
 	$id_table = $boucle->id_table;
 
-	define ('RUBRIQUE_WIKI_OK', false); // true quand on vient du wiki
+	define ('RUBRIQUE_WIKI_OK', _DIR_RESTREINT=='');
 
 	if (!RUBRIQUE_WIKI_OK) {
 		// et le filtrage d'acces filtre !
