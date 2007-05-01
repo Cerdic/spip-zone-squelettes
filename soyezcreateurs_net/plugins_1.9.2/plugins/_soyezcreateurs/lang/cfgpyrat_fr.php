@@ -13,7 +13,7 @@ $GLOBALS['i18n_cfgpyrat_fr'] = array(
 'layout_accueil' => 'Accueil',
 'layout_autres' => 'Autres pages',
 'layout_defaut_title' => 'Agencement par d&eacute;faut pour le site (articles et rubriques)',
-'layout_accueil_title' => 'Agencement sp&eacute;cifique à la page d\'accueil',
+'layout_accueil_title' => 'Agencement sp&eacute;cifique &agrave; la page d\'accueil',
 'layout_autres_title' => 'Agencement pour les pages sp&eacute;cifiques (plan...)',
 
 // pour cfg_soyezcreateurs_google
