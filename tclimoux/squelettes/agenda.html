@@ -1,11 +1,11 @@
-[(#REM) code du calendrier tirÃ© du squelette SPIP Epona    http://spip-epona.org/ ]
+[(#REM) code du calendrier tiré du squelette SPIP Epona http://spip-epona.org/ ]
 <BOUCLE_rubrique_principal(RUBRIQUES){tout}{id_rubrique}>
 <?php
-[(#REM) Ajoute un evenement a la liste $events apres vÃ©rification secteur ]
+[(#REM) Ajoute un evenement a la liste $events apres vérification secteur ]
 function ajoute_evt ($date_redac, $soustitre, $titre, $url_article, $logo) {
   global $events, $genre;
   if ($date_redac == '') return;
-  [(#REM) pour traiter Ã©vÃ©nements sur N jours ]
+  [(#REM) pour traiter événements sur N jours ]
   ereg("([0-9]+) +jour", $soustitre, $nb_jour);
   if ($nb_jour[1]=="") $nb_jour[1]=1;
   if ($nb_jour[1]>20) $nb_jour[1]=1;
@@ -26,7 +26,7 @@ $cal_day = mktime(0, 0, 0, $regs[2], $regs[3], $regs[1]);
 $M = date('m', $cal_day);
 $Y = date('Y', $cal_day);
 
-// Construction liste des Ã©vÃ©nements (1 liste par jour => liste des jours)
+// Construction liste des événements (1 liste par jour => liste des jours)
 $events = array();
 <BOUCLE_evts_com(ARTICLES){branche}{age_relatif_redac > -58}{age_relatif_redac < 38}{par date_redac}>
         ajoute_evt('#DATE_REDAC', '[(#SOUSTITRE|texte_script)]', '[(#TITRE|texte_script)]',
@@ -36,7 +36,7 @@ $events = array();
 ?>
 
 
-<!-- Fabrication du tableau : l'en tÃªte -->
+<!-- Fabrication du tableau : l'en tête -->
 <table cellpadding="5" cellspacing="0" align="center" border="0" class="agenda">
 <tr>
 <th colspan="7" class="agendaNav">
@@ -57,7 +57,7 @@ $events = array();
 		echo '<option value="'.$i.'"'.($i == $Y ? ' selected="selected" ' : '').'>'.$i.'</option>';
 	?>
 	</select>
-        <!-- Construction Menu sÃ©lection -->
+        <!-- Construction Menu sélection -->
 	<input type="button" class="agendaBouton" value="Aller" onClick="document.location.href='spip.php?id_rubrique=#ID_RUBRIQUE&amp;date=' + window.document.navigation.var_nav_year.value + '-' + window.document.navigation.var_nav_month.value + '-01' ; return false;" />
     
 <a href="#URL_RUBRIQUE&amp;date=<?php echo (($M + 1 < 13) ? $Y : ($Y + 1)); ?>-<?php printf('%02d', ($M + 1) < 13 ? ($M + 1) : 1); ?>-01"><img src="#DOSSIER_SQUELETTE/css/images/agenda-nav-droite.gif" title="Suivant" alt="" border=0></a>
@@ -67,7 +67,7 @@ $events = array();
 </th>
 </tr>
 
-<!-- Fabrication du tableau : les donnÃ©es -->
+<!-- Fabrication du tableau : les données -->
 <tr> 
 <?php
 for($i = 1; $i < 8; $i++) { echo '<th width="14%" class="agendaHead">'.$days[$i%7].'</th>'; }

@@ -11,6 +11,6 @@ if($squelette_rubrique){
 $fond = "sous_rubrique".$squelette_rubrique;
 $delais = 24 * 3600;
 
-include ("inc-public.php");
+include ("inc-public.php3");
 
 ?>
