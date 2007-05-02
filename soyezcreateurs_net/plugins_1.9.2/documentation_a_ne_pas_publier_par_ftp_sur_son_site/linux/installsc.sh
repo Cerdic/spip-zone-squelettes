@@ -29,7 +29,7 @@ cd ..
 #car sinon, conflit avec le .svn de SPIP
 svn checkout svn://zone.spip.org/spip-zone/_squelettes_/soyezcreateurs_net/plugins_1.9.2/ ./__sc/
 #Deplacement du squelette au bon endroit
-mv ./__sc/.htaccess ./.htaccess
+mv ./__sc/htaccess.txt ./.htaccess
 mv ./__sc/plugins/_soyezcreateurs ./plugins/_soyezcreateurs
 
 #Effacer ses traces
