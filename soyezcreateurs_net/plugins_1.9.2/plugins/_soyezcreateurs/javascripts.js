@@ -1,4 +1,4 @@
-#CACHE{30*24*3600,cache-client}
+#CACHE{0*30*24*3600,cache-client}
 #HTTP_HEADER{Content-Type: text/javascript; charset=iso-8859-1}
 // Menu accessible dynamique et CSS alternatives, V 2.0 (avec jquery)
 //
@@ -104,27 +104,74 @@ function inputKeyHandler(ev) {
 	}
 }
 
+
 function adjustLayout() {
-	var h=0;
-	$("div.equilibre").height("auto");
-	var lastheight = -1;
-	var stacked = 0;
-	$("div.stackable").each(function(){ if ((lastheight!=0) && (lastheight!=parseInt(this.offsetTop)) && (lastheight!=-1)) {stacked=-1} ; lastheight=parseInt(this.offsetTop); });
-	if (stacked) {
-		var hstacked = 0;
-		$("div.stackable").each(function(){ hstacked+=parseInt(this.offsetHeight); });
-		var hnotstackable = 0;
-		hnotstackable = parseInt($("div.notstackable")[0].offsetHeight);
-		if (hnotstackable>hstacked) {
-			$("div.laststackable").css({'height': hnotstackable + parseInt($("div.laststackable")[0].offsetHeight) - hstacked+'px'});
-			$("div.notstackable").css({'height': hnotstackable+'px'});
-		} else {
-			$("div.notstackable").css({'height': hstacked+'px'});
+	/*******************************************CAS N°1********************************************************************/
+	/*Nav, Contenu et Extra alignés top (Layout 1 à 22)*/
+	var tnotstackable =0;
+	tnotstackable = parseInt($("div.notstackable")[0].offsetTop);
+	tlaststackable = parseInt($("div.laststackable")[0].offsetTop);
+	if (tnotstackable==tlaststackable) {
+			var h=0;
+			$("div.equilibre").each(function(){ h=Math.max(h,this.offsetHeight); }).css({'height': h+'px'});
+			$("div.equilibre").css({'height': parseInt($("div.equilibre")[0].offsetHeight)});
+			/*alert("Cas 1");*/
+	}
+	else {
+/*********************************************CAS 2*********************************************************************/
+	/* Navigation et Extra sont empil?s (Layout 23 > 26 et 33 et 34)*/
+		leftlaststackable = parseInt($("div.laststackable")[0].offsetLeft);
+		leftnavigation = parseInt($("div.navigation").offsetLeft);
+		var lastheight = -1;
+		var stacked = 0;
+		$("div.stackable").each(function(){ if ((lastheight!=0) && (lastheight!=parseInt(this.offsetTop)) && (lastheight!=-1) && (leftlaststackable==leftnavigation)) {stacked=-1} ; lastheight=parseInt(this.offsetTop); });
+		if (stacked) {
+			var hstacked = 0;
+			$("div.stackable").each(function(){ hstacked+=parseInt(this.offsetHeight); });
+			var hnotstackable = 0;
+			hnotstackable = parseInt($("div.notstackable")[0].offsetHeight);
+			if (hnotstackable>hstacked) {
+				$("div.laststackable").css({'height': hnotstackable + parseInt($("div.laststackable")[0].offsetHeight) - hstacked+'px'});
+				$("div.notstackable").css({'height': hnotstackable+'px'});
+				/*alert("Cas 2");*/
+			}
+			else {
+			alert("Erreur");
+			};
 		}
-	} else {
-		$("div.equilibre").each(function(){ h=Math.max(h,this.offsetHeight); }).css({'height': h+'px'});
+		else {
+/**********************************************CAS 3*******************************************************************/
+	/* Navigation et Extra m?me Top et differents de Contenu (Layout 27-28-39-40)*/
+			tlaststackable = parseInt($("div.laststackable")[0].offsetTop);
+			tstackable =0;
+			tstackable = parseInt($("div.stackable")[0].offsetTop);
+			if (tstackable==tlaststackable){
+				$("div.stackable").css({'height': parseInt($("div.stackable")[0].offsetHeight)});
+				var h=0;
+				$("div.stackable").each(function(){ h=Math.max(h,this.offsetHeight); }).css({'height': h+'px'});
+				/*alert("Cas 3");*/
+			}
+			else {
+/**********************************************CAS 4*******************************************************************/
+	/* Navigation et Contenu m?me alignement Top (Layout 35 et 36)*/
+				largeurextra = parseInt($("div.laststackable")[0].offsetWidth);
+				largeurcontenu = parseInt($("div.notstackable")[0].offsetWidth);
+				if (largeurcontenu==largeurextra) {
+					hauteurcontenu = parseInt($("div.notstackable")[0].offsetHeight);
+					$("#navigation").css({'height': hauteurcontenu + parseInt($("div.laststackable")[0].offsetHeight)+'px'});
+					/*alert("Cas 4");*/
+				}
+				else	{
+/**********************************************CAS 5*******************************************************************/
+	/* Navigation et Contenu m?me alignement Top (Layout 29 > 32 et 37 et 38)*/
+					$("#navigation").css({'height': parseInt($("div.notstackable")[0].offsetHeight)+'px'});
+					/*alert("Cas 5");*/
+				}
+			}
+		}
 	}
 }
+
 
 $(document).ready(function() {
 	jp_expinit();
