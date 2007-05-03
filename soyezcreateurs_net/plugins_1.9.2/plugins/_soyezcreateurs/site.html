@@ -1,0 +1,139 @@
+#CACHE{7200}
+<BOUCLE_site(SITES){id_syndic}>
+<?php
+$jp_rubrique = [(#ID_RUBRIQUE|texte_script)];
+$jp_site = '[(#ID_SYNDIC|texte_script)]';
+$jp_syndication = '[(#ENV{id_syndic_article}|texte_script)]';
+$titre = '<:sites_web:> : #NOM_SITE';
+$titretop = '<:sites_web|nettoyer_marqueur:> : [(#NOM_SITE|nettoyer_marqueur)]';
+?><INCLURE{fond=header}{connexion}>
+	<div id="miettesdepain">
+	<ul>
+		<li><a href="#URL_SITE_SPIP" title="Accueil"><:pyrat:accueil:></a></li>
+		<li><BOUCLE_ariane(HIERARCHIE){id_syndic}><li><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></li></BOUCLE_ariane><li><a href="#URL_PAGE{site}"><:sites_web:></a></li>
+		<BOUCLE_UnArticleSyndique(SYNDIC_ARTICLES) {id_syndic_article}>
+		<li><a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a></li>
+		<li>#TITRE</li>
+		</BOUCLE_UnArticleSyndique>
+		<li>[(#NOM_SITE|couper{80})]</li>
+	<//B_UnArticleSyndique>
+	</ul>
+	</div>
+	
+<div class="texte">
+<!-- Contenu : corps du site syndiqué -->
+<div class="cartouche">
+<a href="#URL_SITE">[(#LOGO_SITE||image_reduire{150,100})]</a>
+				<h1 class="#EDIT{nom_site} titre">#NOM_SITE</h1>
+				[<p class="#EDIT{url_site} soustitre"><a href="#URL_SITE" class="spip_out">(#URL_SITE|couper{80})</a></p>]
+<div class="datepublication"><span><:pyrat:publiele:> [(#DATE|nom_jour)] [(#DATE|affdate)]</span></div>
+</div>
+
+	<div id="sites">
+	[<div class="chapo">(#DESCRIPTIF)</div>]
+	[(#REM) Affichage du détail de la syndication si applicable ]
+		<B_ArticleSyndique>
+		<div class="liste_auteurs">
+			<BOUCLE_ArticleSyndique(SYNDIC_ARTICLES) {id_syndic_article} >
+				<h2><a href="#URL_ARTICLE">#TITRE</a></h2>
+				[<div class="enclosures">(#TAGS|afficher_enclosures)</div>]
+				<small>[(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)][ &mdash; <em>(#TAGS|afficher_tags)</em>]</small>
+				[<div>(#DESCRIPTIF|image_reduire{300})
+				<br class="nettoyeur" /></div>]
+			</BOUCLE_ArticleSyndique>
+		</div>
+		</B_ArticleSyndique>
+	
+		[(#REM) Articles issus de la syndication ]
+		<B_articles>
+		<div class="liste_auteurs">
+			#ANCRE_PAGINATION
+			<h2><:articles:></h2>
+			<ul>
+				<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {pagination 15}>
+				<li>
+					<h3><a href="[(#ID_SYNDIC|generer_url_site|parametre_url{'id_syndic_article',#ID_SYNDIC_ARTICLE})]">#TITRE</a></h3>
+					<small>[(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)]</small>
+					[<div>(#DESCRIPTIF|couper{300}|image_reduire{300})
+					<br class="nettoyeur" /></div>]
+				</li>
+				</BOUCLE_articles>
+			</ul>
+			[<p class="pagination">(#PAGINATION)</p>]
+		</div>
+		</B_articles>
+		
+		<//B_ArticleSyndique>
+			[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+			
+	</div><!-- Fin de #Site -->
+</div><!-- Fin de #texte -->
+	
+</BOUCLE_site>
+
+</B_site>
+<?php
+$jp_rubrique = 'Sites';
+$titre = '<:sites_web:>';
+$titretop = '<:sites_web|nettoyer_marqueur:>';
+?>
+<INCLURE{fond=header}{connexion}>
+
+<div id="miettesdepain">
+	<ul>
+		<li><a href="#URL_SITE_SPIP" title="Accueil"><:pyrat:accueil:></a></li>
+		<li><:sites_web:></li>
+	</ul>
+</div>
+	
+	<div class="texte">
+<!-- Contenu : corps di site syndiqué -->
+<div class="cartouche">
+<a href="#URL_SITE">[(#LOGO_SITE||image_reduire{150,100})]</a>
+				<h1 class="#EDIT{nom_site} titre">Plan des sites référencés</h1>
+				[<p class="#EDIT{url_site} soustitre"><a href="#URL_SITE" class="spip_out">(#URL_SITE|couper{80})</a></p>]
+<div class="datepublication"><span><:pyrat:publiele:> [(#DATE|nom_jour)] [(#DATE|affdate)]</span></div>
+</div>
+<div id="sites">
+			<div class="syndic">
+			
+			<B_Autres>
+<BOUCLE_Autres(RUBRIQUES){id_parent=0}{par num titre}{doublons plan}>
+	<h2><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE|supprimer_numero)]</a></h2>
+
+			<B_sites>
+				<ul>
+					<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}><li><a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a></li></BOUCLE_sites>
+				</ul>
+			</B_sites>
+	
+
+	<B_Autres_Details>
+		<ul>
+		<BOUCLE_Autres_Details(RUBRIQUES){id_parent}{par num titre}{doublons plan}>
+			<li><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE|supprimer_numero)]</a>
+			<BOUCLE_Recurssion(BOUCLE_Autres_Details)>
+			</BOUCLE_Recurssion>
+				<B_sites2>
+				<ul>
+					<BOUCLE_sites2(SITES) {id_rubrique} {par nom_site}>[<li><a href="(#ID_SYNDIC|generer_url_site)">#NOM_SITE</a></li>]</BOUCLE_sites2>
+				</ul>
+			</B_sites2>
+			<//B_test_numero>
+			</li>
+		</BOUCLE_Autres_Details>
+		</ul>
+	</B_Autres_Details>
+</BOUCLE_Autres>
+<//B_Autres>
+			</div>
+
+	</div><!-- Fin de #Site2 -->
+
+</div><!-- Fin de #texte -->
+					
+<//B_site>
+
+[(#FORMULAIRE_ADMIN)]
+
+<INCLURE{fond=footer}{secteurencours=#GET{secteurencours}}>
