@@ -1,10 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<!--
 
-	terrafirma1.0 by nodethirtythree design
-	http://www.nodethirtythree.com
-
--->
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
@@ -32,19 +27,18 @@
 		</div>
 	
 		<div id="splash"></div>
-	
-		<div id="menu">
-			<ul>
-					<BOUCLE_articles5(ARTICLES) {id_article=1} {doublons menu}{par num titre}>
-						<li class="first"><a href="#URL_SITE_SPIP">[(#TITRE|supprimer_numero)]</a></li>
-					</BOUCLE_articles5>
-
-				
-					<BOUCLE_articles(ARTICLES) {id_rubrique=1} {doublons menu}{par num titre}>
-						<li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></li>
-					</BOUCLE_articles>
+		<B_rubriques>
+				<div id="menu">
+					<ul>
+					<li class="first"><a href="#URL_SITE_SPIP">Accueil</a></li>
+			<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
+				<li [ class="(#EXPOSE)"]><a [ class="(#EXPOSE)"] href="#URL_RUBRIQUE">[(#TITRE|couper{80}|supprimer_numero)]</a></li>
+			</BOUCLE_rubriques>
+		
 			</ul>
 		</div>
+		</B_rubriques>
+		
 	
 
 		<div id="primarycontent">
@@ -72,9 +66,9 @@
 			<!-- secondary content start -->
 		
 			<div class="content">
-					<BOUCLE_articles2(ARTICLES) {id_rubrique=1} {par num titre}>
-						[<a href="#URL_ARTICLE"><img src="./IMG/(#LOGO_ARTICLE|fichier)" class="picB" border='0' alt="[(#TITRE|supprimer_numero|textebrut)]" alt="[(#TITRE|supprimer_numero|textebrut)]"  /></a>]
-					</BOUCLE_articles2>
+				<BOUCLE_rubriques2(RUBRIQUES) {racine} {par num titre, titre}>
+					[<a href="#URL_RUBRIQUE"><img src="./IMG/(#LOGO_RUBRIQUE|fichier)" class="picB" border='0' alt="[(#TITRE|supprimer_numero|textebrut)]" alt="[(#TITRE|supprimer_numero|textebrut)]"  /></a>]
+				</BOUCLE_rubriques2>
 			</div>
 			
 
@@ -82,11 +76,7 @@
 
 		</div>
 	
-		<div id="footer">
-		
-			Site realise avec <a href="http://www.spip.net">SPIP</a> Design by <a href="http://_On_le_spammera_de_visites_quand_le_site_sera_termine.Com">NodeThirtyThree</a>.
-		
-		</div>
+	<INCLURE{fond=inc_footer}>
 
 	</div>
 
