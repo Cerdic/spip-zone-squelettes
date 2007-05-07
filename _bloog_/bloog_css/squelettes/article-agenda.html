@@ -65,10 +65,49 @@
    <p>[<:bloog:premiere_publi:> le (#DATE_REDAC|nom_jour) ][(#DATE_REDAC|jour)
      ][(#DATE_REDAC|nom_mois) [(#DATE_REDAC|annee)]][ <:bloog:mise_en_ligne:> le
      (#DATE|nom_jour) ][(#DATE|jour) ] [(#DATE|nom_mois) [(#DATE|annee)]]
-	 <BOUCLE_auteurs(AUTEURS){id_article}>[, <:bloog:par:>                 
- <a href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]">(#NOM)</a>]
- <INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=20}{date=#ENV{date}}>
- </BOUCLE_auteurs>.</B_auteurs></p>
+	
+	
+</B_evenements>
+<h4>Cet événement est répété:</h4>
+<ul>
+<BOUCLE_evenements(EVENEMENTS){id_article} {statut=publie}{par date_fin}{age_fin>0}>
+
+<li class="grande_liste">
+
+[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
+ Le [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+[(#HORAIRE|=={oui}|?{
+  [(#REM) memes heures ?]
+    [(#DATE_DEBUT|=={#DATE_FIN}|?{&agrave
+[(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)],''})]
+  [(#REM) pas memes heures ?]
+    [(#DATE_DEBUT|!={#DATE_FIN}|?{de
+[(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] &agrave;
+[(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)],''})]
+,''})]
+,
+ Du [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+[(#HORAIRE|=={oui}|?{&agrave; partir de
+ [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)],''})] au
+[(#DATE_FIN|nom_jour)]
+ [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{jusqu'&agrave;
+ [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})]  })]
+[-&nbsp;lieu&nbsp;: (#LIEU)]
+</li>
+ 
+
+</BOUCLE_evenements>
+</ul>
+</B_evenements>
+
+
+
+	
+	
+	
+	
+	
+	 </p>
   <hr class="spacer"/>
 
 

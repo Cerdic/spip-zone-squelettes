@@ -84,7 +84,9 @@
 				
 				
 				<B_syndic_mois>#ANCRE_PAGINATION
-                <BOUCLE_mois_site(SYNDIC_ARTICLES){par date}{mois_relatif=0}{0,1}>  <h4>Les articles de [(#DATE|nom_mois)].</h4></BOUCLE_mois_site>
+                <BOUCLE_mois_site(SYNDIC_ARTICLES){par date}{mois_relatif=0}{0,1}>  <h4>Les
+                  articles en [(#DATE|nom_mois)].</h4>
+                </BOUCLE_mois_site>
 		            <ul>
                 <BOUCLE_syndic_mois(SYNDIC_ARTICLES){par date}{inverse}{mois_relatif=0}{pagination}>
                 <li class="grande_liste"> [Le (#DATE|jour)]/[(#DATE|mois): ][<a href="#URL_ARTICLE">(#TITRE|textebrut)</a><br/>][(#DESCRIPTIF|textebrut|couper{300}) ][Par <a href="[(#URL_PAGE{kiosque}|parametre_url{id_syndic,#ID_SYNDIC})]">(#NOM_SITE)</a>]
@@ -120,8 +122,10 @@
 
 <h4>Par date ou par site web?</h4>
 <p>
-[(#ID_SYNDIC|?{"Vous avez la possibilité de suivre l'actualité par date, des différents sites web du kiosque, via le calendrier",
-"Vous avez la possibilité de suivre l'actualité de chaque site web du kiosque, via le menu Affichage par site"})]
+[(#ID_SYNDIC|?{Vous affichez l'actualit&eacute; d'un site web. Vous pouvez aussi
+afficher <a href="#icone_agenda">l'actualit&eacute;
+par date</a>.,Vous affichez l'actualit&eacute;  par mois. Vous pouvez aussi afficher
+l'actualit&eacute; pour <a href="#icone_site">un seul site web</a>.})]
 </p>
   </li> 
 </ul>
@@ -146,59 +150,30 @@
 
 
 
-
+<B_mois>
  
-<div class="boite">
+<div class="boite" id="icone_agenda">
   <h4 class="icone_agenda">Affichage par date</h4>
   
   
-  
-  
-  
-
-<div id="calendar" class="divers">
-
-	<table summary="<:icone_calendrier:>">
-		<caption><BOUCLE_mois(SYNDIC_ARTICLES){0,1}>[
+  		<p><BOUCLE_mois(SYNDIC_ARTICLES){0,1}>[
 			<a
 				href="(#URL_PAGE{kiosque}|parametre_url{date,[(#ENV{date}|Agenda_moisdecal{-1,'Y-m'})]})"
-				title="[(#ENV{date}|Agenda_moisdecal{-1,'Y-m'}|affdate_mois_annee)]">&#171;</a>]
+				title="[(#ENV{date}|Agenda_moisdecal{-1,'Y-m'}|affdate_mois_annee)]">&#171;&nbsp;[(#ENV{date}|Agenda_moisdecal{-1,'Y-m'}|affdate_mois_annee)]</a>]
 				[(#ENV{date}|affdate_mois_annee)]
 				
 				[
 			<a
 				href="(#URL_PAGE{kiosque}|parametre_url{date,[(#ENV{date}|Agenda_moisdecal{1,'Y-m'})]})"
-				title="[(#ENV{date}|Agenda_moisdecal{1,'Y-m'}|affdate_mois_annee)]">&#187;</a>]</BOUCLE_mois>
-		</caption>
+				title="[(#ENV{date}|Agenda_moisdecal{1,'Y-m'}|affdate_mois_annee)]">[(#ENV{date}|Agenda_moisdecal{1,'Y-m'}|affdate_mois_annee)]&nbsp;&#187;</a>]
+				</BOUCLE_mois>
+		</p>
 		
-		<thead>
-			<tr>
-				<th scope="col"><abbr title="<:date_jour_2:>"><:date_jour_2|spip_substr{0,1}|strtoupper:></abbr></th>
-				<th scope="col"><abbr title="<:date_jour_3:>"><:date_jour_3|spip_substr{0,1}|strtoupper:></abbr></th>
-				<th scope="col"><abbr title="<:date_jour_4:>"><:date_jour_4|spip_substr{0,1}|strtoupper:></abbr></th>
-				<th scope="col"><abbr title="<:date_jour_5:>"><:date_jour_5|spip_substr{0,1}|strtoupper:></abbr></th>
-				<th scope="col"><abbr title="<:date_jour_6:>"><:date_jour_6|spip_substr{0,1}|strtoupper:></abbr></th>
-				<th scope="col"><abbr title="<:date_jour_7:>"><:date_jour_7|spip_substr{0,1}|strtoupper:></abbr></th>
-				<th scope="col"><abbr title="<:date_jour_1:>"><:date_jour_1|spip_substr{0,1}|strtoupper:></abbr></th>
-			</tr>
-		</thead>
-		<tbody><BOUCLE_calendrier(SYNDIC_ARTICLES){agenda date, mois, (#ENV{date}|annee), (#ENV{date}|mois)}>[
-			(#ENV{date}|agenda_memo{'',[(#ENV{date}|affdate{'j'})],
-				[(#URL_PAGE{kiosque}|parametre_url{date,[(#ENV{date}|affdate{'Y-m-d'})]})]})
-							
-														
-			]</BOUCLE_calendrier>[
-			(#ENV{date}|agenda_mini)
-			]</tbody>
-	</table>
-	<span>&nbsp;</span>
-</div>
-
 </div>
       
-	  
-  
-<div class="boite">
+	 </B_mois> 
+  <B_navig_sites>
+<div class="boite" id="icone_site">
   <h4 class="icone_site">Affichage par site</h4>
 <ul>  
 <BOUCLE_navig_sites(SYNDICATION){syndication=oui}{tous}>
@@ -206,6 +181,7 @@
 </BOUCLE_navig_sites>
 </ul>
 </div>
+</B_navig_sites>
 	  
  
 
