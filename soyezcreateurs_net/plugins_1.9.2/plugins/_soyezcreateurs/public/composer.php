@@ -171,7 +171,7 @@ function affiche_logos($logos, $lien, $align) {
 //
 
 // http://doc.spip.org/@calcule_logo
-function calcule_logo($type, $onoff, $id, $id_rubrique, $flag_fichier, $logo_hierarchie = 1) {
+function calcule_logo($type, $onoff, $id, $id_rubrique, $flag_fichier) {
 	$chercher_logo = charger_fonction('chercher_logo', 'inc');
 	$nom = strtolower($onoff);
 
@@ -186,11 +186,11 @@ function calcule_logo($type, $onoff, $id, $id_rubrique, $flag_fichier, $logo_hie
 				return array ($on[0], ($off ? $off[0] : ''));
 			}
 		}
-		else if ($id_rubrique AND ($logo_hierarchie!=0)) {
+		else if ($id_rubrique) {
 			$type = 'id_rubrique';
 			$id = $id_rubrique;
 			$id_rubrique = 0;
-		} else if ($id AND $type == 'id_rubrique' AND ($logo_hierarchie!=0))
+		} else if ($id AND $type == 'id_rubrique')
 			$id = sql_parent($id);
 		else return array('','');
 	}
