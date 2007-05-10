@@ -175,6 +175,24 @@ x #HAUTEUR})]
 
 
 
+<B_set_moi>
+<div class="grande_boite">
+<BOUCLE_set_moi(GIS){id_article}>
+#SET{latitude,#LAT}
+#SET{lonxitude,#LONX}
+<p>Coordonnées GPS: Latitude: #LAT, Longitude: #LONX.<br/>
+
+<a href="[(#URL_ARTICLE|parametre_url{'zoom',9}|parametre_url{'latit',#GET{latitude}}|parametre_url{'lonxit',#GET{lonxitude}})]">Localiser l'événement sur une carte</a>
+
+<INCLURE{fond=inc-gis_map}{id_rubrique}{id_mot}{id_auteur}{recherche}{id_article=#ID_ARTICLE}{zoom}{latit}{lonxit}>
+</p>
+</BOUCLE_set_moi>
+
+</div>
+</B_set_moi>
+
+<INCLURE{fond=inc-gis_map}{id_rubrique}{id_mot}{id_auteur}{recherche}{id_article=#ID_ARTICLE}{zoom}{latit}{lonxit}>
+
   [<div class="grande_boite">(#NOTES)</div>]
    [<div class="grande_boite"><p>(#PS)</p></div>] 
 
@@ -210,19 +228,7 @@ x #HAUTEUR})]
 </div>   [(#REM)   fermeture boite recherche   ] 
 	
 	
- <B_meme_rubrique>
-    <div class="boite">
-      [(#REM)   ouverture autre articles   ]
-   
-    <h4 class="icone_article">Autres articles</h4>
-    <ul class="petite_liste">
-        <BOUCLE_meme_rubrique(ARTICLES){id_rubrique}{exclus}{par date}{inverse}{0,20}>
-        <li>
-        <INCLURE{fond="inc_cadenas"}{id_article}><a href="#URL_ARTICLE">#TITRE</a><br/>
-        </li>
-        </BOUCLE_meme_rubrique>
-    </ul>
-    </div></B_meme_rubrique>
+
  <BOUCLE_retirer_doc(DOCUMENTS){id_article}{extension==jpg|gif|png}{doublons doc}>
     [(#REM)   Boucle pour ne pas afficher les images et mp3 ici   ]
     </BOUCLE_retirer_doc>
@@ -243,14 +249,32 @@ x #HAUTEUR})]
       </BOUCLE_documents>
     </div> [(#REM) fermeture boite zip ]
    </B_documents>
-<B_STATS>
+
+
+
+
+<B_meteo>
 <div class="boite">
-  <h4 class="icone_stats">Stats</h4>
-<BOUCLE_STATS(RUBRIQUES){id_rubrique}{titre_mot==^(annuaire_home|partenaire|liens|agenda)$}{0,1}>
-<INCLURE{fond="inc_stats"}{delais=24*3600}>
-</BOUCLE_STATS>
+
+
+<BOUCLE_meteo(METEO) {id_meteo?}>
+<h4 class="icone_soleil">Météo à #VILLE</h4>
+<p>
+
+
+
+<BOUCLE_previsions(PREVISIONS) {id_meteo} {par date} {0,3} >
+[(#TEMPS|icone_meteo{squelettes/images/meteo/,png}) ][(#DATE|affdate): ][(#TEMPS|traduire_meteo).]
+[ Mini:(#MINIMA)&deg;C][ maxi: (#MAXIMA)&deg;C.]<br/>
+
+</BOUCLE_previsions>
+
+</p>
+
+</BOUCLE_meteo>
+
 </div>
-</B_STATS>   
+</B_meteo>   
    
    
    <B_COMMUNAUTE>
