@@ -1,0 +1,98 @@
+#CACHE{864000}
+<INCLURE{fond="header"}>
+
+<html lang="#LANG"><head>
+
+[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
+	
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/menu.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/logic.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/niftyCorners.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/print.css})]" media="print" />
+	[(#REM) 4 css qui changent l aspect du site suivant la saison.]
+<BOUCLE_mot_saison(MOTS){titre=saison}{0,1}>
+<link rel="stylesheet" type="text/css" href="[squelettes/css/(#ENV{date}|saison|translitteration).css]" />
+</BOUCLE_mot_saison>
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/couleurs.css})]" />
+<//B_mot_saison>
+<script type="text/javascript" src="[(#CHEMIN{nifty.js})]"></script>
+<script type="text/javascript" src="[(#CHEMIN{nifty-bloog.js})]"></script>
+
+	[(#REM) icones xml des fils des rubriques sous firefox ]
+<BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}>
+<link rel="alternate" type="application/rss+xml" href="[(#URL_PAGE{backend}|parametre_url{'id_rubrique',#ID_RUBRIQUE})]title="[(#TITRE)]" />
+</BOUCLE_rub>
+
+</head><body dir="#LANG_DIR"> 
+
+<div id="container">   [(#REM)   centrage page   ]
+<INCLURE{fond="entete"}>  
+<div id="surcontent">  
+<INCLURE{fond="menuhoriz"}>[(#REM)   ouverture entête   ]
+
+<div id="content">  [(#REM)   ouverture contenu   ] 
+
+<div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
+
+  <div class="grande_boite">
+  <p>
+  #FORMULAIRE_ABONNEMENT 
+ 
+  </p>
+  
+
+ <hr class="spacer"/>
+   </div>
+
+
+
+</div>[(#REM)   fermeture colone de gauche   ]
+ <div class="coldroit">  [(#REM)   ouverture de la colone de droite   ] 
+
+
+    <div class="boite">[(#REM)   ouverture boite menu   ] 
+
+        <h4 class="icone_menu">Navigation</h4>
+      <INCLURE{fond="inc_menu_rub"}{delais="7*24*3600"}> </div>
+	  [(#REM)   fermeture boite menu   ]
+
+<? 
+	$accepter_inscriptions = lire_meta("accepter_inscriptions");
+        $accepter_visiteurs = lire_meta('accepter_visiteurs');
+        $acces_abonne = get_extra(1,"auteur");
+        ($acces_abonne['config'] == "membre") ? $acces_membres = "oui" : $acces_membres = "non";
+if( ($acces_membres == "oui") OR ($accepter_inscriptions =="oui")  ) { ?>
+
+<div class="boite">
+<h4>Gestion</h4><ul class="petite_liste">
+
+         [<li><a href="(#URL_PAGE{inscription})&oubli_pass=oui">Mot de passe
+             oubli&eacute;?</a></li>
+         ]
+		 [<li><a href="(#URL_PAGE{mon-profil})#profil">Modifier mon profil</a>]
+		 [<li><a href="(#URL_PAGE{mon-profil})">Passer à l'écriture</a>]
+		</ul>
+		  
+		  </div>
+		  
+		<? }  ?>  
+		  
+		   <hr class="spacer" />
+
+</div>   
+ [(#REM)   fermeture colone de droite   ] 
+
+
+<hr class="spacer" />
+
+
+
+
+</div>[(#REM)   fermeture contenu   ] 
+<INCLURE{fond="pieddepage"}></div> [(#REM)   fermeture surcontenu   ]<br/>
+
+
+</div> [(#REM)   fermeture container   ] 
+</body>
+</html>
+
