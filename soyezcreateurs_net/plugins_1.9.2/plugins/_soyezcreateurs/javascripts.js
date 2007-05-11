@@ -107,7 +107,7 @@ function inputKeyHandler(ev) {
 
 function adjustLayout() {
 	/*******************************************CAS N°1********************************************************************/
-	/*Nav, Contenu et Extra alignés top (Layout 1 à 22)*/
+	/*Nav, Contenu et Extra alignes top (Layout 1 a 22)*/
 	var tnotstackable =0;
 	tnotstackable = parseInt($("div.notstackable")[0].offsetTop);
 	tlaststackable = parseInt($("div.laststackable")[0].offsetTop);
@@ -119,13 +119,10 @@ function adjustLayout() {
 	}
 	else {
 /*********************************************CAS 2*********************************************************************/
-	/* Navigation et Extra sont empil?s (Layout 23 > 26 et 33 et 34)*/
+	/* Navigation et Extra sont empiles (Layout 23 a 26 et 33 et 34)*/
 		leftlaststackable = parseInt($("div.laststackable")[0].offsetLeft);
-		leftnavigation = parseInt($("div.navigation").offsetLeft);
-		var lastheight = -1;
-		var stacked = 0;
-		$("div.stackable").each(function(){ if ((lastheight!=0) && (lastheight!=parseInt(this.offsetTop)) && (lastheight!=-1) && (leftlaststackable==leftnavigation)) {stacked=-1} ; lastheight=parseInt(this.offsetTop); });
-		if (stacked) {
+		leftnavigation = parseInt($("div#navigation")[0].offsetLeft);
+		if (leftlaststackable == leftnavigation) {
 			var hstacked = 0;
 			$("div.stackable").each(function(){ hstacked+=parseInt(this.offsetHeight); });
 			var hnotstackable = 0;
@@ -136,14 +133,13 @@ function adjustLayout() {
 				/*alert("Cas 2");*/
 			}
 			else {
-			alert("Erreur");
+				$("div.notstackable").css({'height': hstacked+'px'});
 			};
 		}
 		else {
 /**********************************************CAS 3*******************************************************************/
-	/* Navigation et Extra m?me Top et differents de Contenu (Layout 27-28-39-40)*/
+	/* Navigation et Extra meme Top et differents de Contenu (Layout 27-28-39-40)*/
 			tlaststackable = parseInt($("div.laststackable")[0].offsetTop);
-			tstackable =0;
 			tstackable = parseInt($("div.stackable")[0].offsetTop);
 			if (tstackable==tlaststackable){
 				$("div.stackable").css({'height': parseInt($("div.stackable")[0].offsetHeight)});
@@ -153,7 +149,7 @@ function adjustLayout() {
 			}
 			else {
 /**********************************************CAS 4*******************************************************************/
-	/* Navigation et Contenu m?me alignement Top (Layout 35 et 36)*/
+	/* Navigation et Contenu meme alignement Top (Layout 35 et 36)*/
 				largeurextra = parseInt($("div.laststackable")[0].offsetWidth);
 				largeurcontenu = parseInt($("div.notstackable")[0].offsetWidth);
 				if (largeurcontenu==largeurextra) {
@@ -163,7 +159,7 @@ function adjustLayout() {
 				}
 				else	{
 /**********************************************CAS 5*******************************************************************/
-	/* Navigation et Contenu m?me alignement Top (Layout 29 > 32 et 37 et 38)*/
+	/* Navigation et Contenu meme alignement Top (Layout 29 a 32 et 37 et 38)*/
 					$("#navigation").css({'height': parseInt($("div.notstackable")[0].offsetHeight)+'px'});
 					/*alert("Cas 5");*/
 				}
