@@ -1,0 +1,169 @@
+<?php
+
+// This is a SPIP-forum module file  --  Ceci est un fichier module de SPIP-forum
+
+$GLOBALS['i18n_pyrat_en'] = array(
+
+// A
+'accueil' => 'Home',
+'accueil_menu' => 'Home', //le <em> indique la lettre AccessKey
+'agenda' => 'Planning',
+'agenda_summary' => 'Events planning',
+'agendamoisde' => 'Agenda du mois de',
+'alaune' => '&Agrave; la Une',
+'auteur' => 'Auteur',
+'auteurs' => 'Auteurs',
+'auteurs_liste' => 'Liste des auteurs',
+'auteurs_site' => 'Auteurs du site',
+'aujourdhui' => 'Today',
+'articlesordreantichrono' => 'Articles par ordre antichronologique',
+'articlesconnexes' => 'Articles connexes',
+'accessibilite_politique' => 'Politique d\'accessibilit&eacute;',
+'accessibilite_texte' => 'Aller au texte',
+'accessibilite_menu' => 'Aller au menu',
+'accessibilite_recherche' => 'Aller &agrave; la recherche',
+'avertissement_ie' => '<!--[if lt IE 6]><div style="color:#fff; background-color:#000; border:2px solid red; padding:1em; font-family: \'Trebuchet MS\', verdana, arial, helvetica, sans-serif; font-size: 120%; position:relative;"><p><strong style="color:#f00;">Avertissement</strong>&nbsp;: vous utilisez une version p&eacute;rim&eacute;e d\'Internet Explorer&nbsp;! L\'int&eacute;gralit&eacute; du site vous est n&eacute;anmoins accessible.</p><p>Nous vous invitons&nbsp;:</p><ol style="color:#fff;position:relative;"><li>&agrave; <a href="http://update.microsoft.com/">mettre &agrave; jour</a> votre syst&egrave;me d\'exploitation et &agrave; installer la derni&egrave;re version d\'Internet Explorer (pour des raisons de <a href="http://www.pyrat.net/Utilisez-Windows-Update.html">s&eacute;curit&eacute;</a>)</li><li>et &agrave; utiliser un navigateur moderne : <a href="http://www.mozilla-europe.org/fr/">FireFox</a>.</li></ol></div><![endif]-->',
+
+// B
+
+//C
+'chercheravecgoogle' => 'Search the Web with <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> !',
+'copyright_realisation' => 'Realisation : ',
+'copyright_spip' => 'Ce site utilise le squelette&nbsp;: <a href=\'http://www.pyrat.net/\' title=\'Visiter le site du cr&eacute;ateur de ce squelette\'>Pyrat.net</a> propuls&eacute; par <a href=\'http://www.spip.net/\' title=\'Visiter le site de SPIP, logiciel de gestion de contenu web en licence libre GPL\'>SPIP</a>',
+'copyright_valide' => '<a href="http://validator.w3.org/check/referer" title="V&eacute;rifier la conformit&eacute; au standard XHTML 1.0 transitional">XHTML</a> &amp; <a href="http://www.w3.org/TR/CSS21/" title="Standard CSS2">CSS</a> valides',
+'copyright_icra' => '&Eacute;tiquet&eacute; gr&acirc;ce &agrave; <a href="http://www.icra.org/sitelabel">ICRA</a>',
+'copyright_cnil' => 'D&eacute;claration CNIL n&ordm;',
+'copyright_droits' => 'Tous droits r&eacute;serv&eacute;s.',
+'chapitre_complet' => 'Chapitre complet pour impression',
+'chapitre_complet_title' => 'Afficher en entier le contenu de la rubrique&nbsp;: ',
+'connexion' => 'Connexion',
+'connexiontitle' => 'Acc&eacute;der &agrave; l\'espace r&eacute;serv&eacute;',
+
+//D
+'date_j_1' => 'S',
+'date_j_2' => 'M',
+'date_j_3' => 'T',
+'date_j_4' => 'W',
+'date_j_5' => 'T',
+'date_j_6' => 'F',
+'date_j_7' => 'S',
+'deconnexion' => 'deconnexion',
+'deconnexiontitle' => 'Perform deconnexion',
+'deposer_intention' => 'D&eacute;poser une intention de pri&egrave;re',
+'docatelecharger' => 'Documents download',
+'dernieremaj' => 'Last update of the site :',
+'derniereactualites' => 'Derni&egrave;res actualit&eacute;s',
+'descriptif' => 'Descriptif',
+
+//E
+'edito' => '&Eacute;dito',
+'editos' => '&Eacute;ditos',
+'enresume_menu' => '<em>E</em>n r&eacute;sum&eacute;',
+'entravaux' => 'En travaux',
+'entravaux_int_serv' => 'Int&eacute;ruption de service',
+'entravaux_rev_plus_tard' => 'Merci de revenir un peu plus tard...',
+'entravaux_info' => 'Op&eacute;ration de maintenance en cours. Merci de votre compr&eacute;hension.',
+'erreur' => 'Erreur !',
+'erreur_articleexistepas' => 'Erreur : cet article n\'existe pas !',
+'erreur_breveexistepas' => 'Erreur : cette br&egrave;ve n\'existe pas !',
+'erreur_imageexistepas' => 'Erreur : cette image n\'existe pas !',
+'erreur_rubriqueexistepas' => 'Erreur : cette rubrique n\'existe pas !',
+'erreur_documentexistepas' => 'Erreur : ce document n\'existe pas !',
+'erreur_connexion' => '<h2>Erreur de mot de passe</h2><p>Veuillez recommencer.</p>',
+
+//F
+'fil_rss' => 'Fil RSS',
+'fil_rss_title' => 'Utilisez ce lien dans votre agr&eacute;teur de flux RSS',
+'forum_graversonnom' => 'Votre intention',
+'forum_prenom' => 'Qui &ecirc;tes-vous ?',
+'forum_votre_prenom' => 'Votre pr&eacute;nom :',
+'forum_repondre' => 'Rajouter votre t&eacute;moignage',
+'forum_vosreponses' => 'Vos t&eacute;moignages',
+'forum_postermessage' => 'Poster un message',
+'forum' => 'Forum',
+'forum_enreponse' => 'En r&eacute;ponse &agrave; l\'article&nbsp;:',
+'forum_enreponse_breve' => 'En r&eacute;ponse &agrave; la br&egrave;ve&nbsp;:',
+'forum_enreponse_message' => 'En r&eacute;ponse au message&nbsp;:',
+
+//G
+'geourl' => 'Voisinage GeoURL',
+'gpm_fontion' => 'Caract&eacute;ristiques',
+'gpm_ouinon' => 'Valeurs',
+
+//I
+
+//L
+'derniersarticlespublies' => 'Les derniers articles publi&eacute;s',
+
+//M
+'memerubrique' => 'Dans la m&ecirc;me rubrique...',
+'mentionslegales' => 'Legal mentions &amp; usage',
+'menu_deplier' => 'd\351plier: ',
+'menu_picalt' => 'Cliquer pour ',
+'menu_replier' => 'replier: ',
+'mot' => 'Mot',
+'mots' => 'Mots',
+'motsgroupe' => 'Groupe de Mots',
+'mots_title' => 'Les mots-clefs du site',
+'multimedia' => '&Eacute;couter',
+'multimedia_title' => '&Eacute;couter ou visioner l\'extrait (ouvre une nouvelle fen&ecirc;tre)',
+
+//N
+'newsletter' => 'NewsLetter du site',
+'newsletter_recevoir' => 'Recevoir la newsletter du site',
+'newsletter_email' => 'Adresse email',
+'newsletter_action' => 'Action',
+'newsletter_inscription' => 'Inscription',
+'newsletter_desinscription' => 'D&eacute;sinscription',
+'newsletter_valider' => 'Valider',
+'newsletter_desabonnement' => 'Vous d&eacute;sabonner : {LINKS} (attention, le clic sur ce lien provoque un d&eacute;sabonnement imm&eacute;diat !)',
+'newsletter_cnil' => 'Conform&eacute;ment &agrave; la loi n&ordm;78-17 du 6 janvier 1978, vous disposez d\'un droit d\'acc&egrave;s, de rectification et de suppression des donn&eacute;es vous concernant.',
+
+//O
+'ordreantichronologique' => 'ordre antichronologique',
+
+//P
+'par' => 'by',
+'participez' => 'Participez &agrave; la vie du site&nbsp;!',
+'plan_menu' => 'Site map',
+'plus_loin' => 'See also',
+'plus_loin_title' => 'Site de r&eacute;f&eacute;rences',
+'precisezrecherche' => 'Pr&eacute;cisez votre recherche',
+'publiele' => 'Publi&eacute; le',
+
+//Q
+'quoideneuf' => 'Quoi de neuf&nbsp;?',
+
+//R
+'retouraccueil' => 'Back to home page',
+'retourgalerie' => 'Back to the gallery',
+'retourtop' => 'Back to top',
+'recherche_value' => 'Search ?',
+'recherche_title' => 'Please, enter your search',
+'recherche_label' => 'Search this site',
+'recherche_motclef' => 'Choose en keyword',
+'recherche_motclef_label' => 'Searching by keywords',
+'recherche_title_ok' => 'Lauch searching',
+'recherche_infructueuse' => 'Nothing found.',
+'recherche_total' => 'Total items found',
+
+//S
+'savoirplus' => 'More...',
+'savoirpluscritere' => 'En savoir plus sur le crit&egrave;re',
+'sommaire' => 'Sommaire',
+
+//T
+'tout' => 'All',
+'toutleplan' => 'The entire site on one page',
+'themes' => 'Th&egrave;mes',
+
+//V
+'voirarticlespar' => 'Voir les articles par',
+'voirdetailannee' => 'Voir le d&eacute;tail de l\\\'ann&eacute;e',
+'voirdetailmois' => 'Voir le d&eacute;tail du mois de',
+'voirle' => 'Voir le',
+'voirimage' => 'Voir l\'image seule'
+
+);
+
+?>

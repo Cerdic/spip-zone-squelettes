@@ -1,8 +1,8 @@
-<BOUCLE_article_principal(ARTICLES) {id_article}><BOUCLE_EstNewsLetter(MOTS){id_rubrique}{titre=NewsLetter}><INCLURE{fond=articlenewsletter}{id_article}></BOUCLE_EstNewsLetter><?php $jp_rubrique = '[(#ID_RUBRIQUE|texte_script)]'; ?><BOUCLE_RacineMenuHaut(HIERARCHIE){id_rubrique}{tout}{titre_mot=MenuHaut}{inverse} {0,1}>[(#SET{secteurencours,#ID_RUBRIQUE})]</BOUCLE_RacineMenuHaut><?php
+<BOUCLE_article_principal(ARTICLES) {id_article}><BOUCLE_EstNewsLetter(MOTS){id_rubrique}{titre=NewsLetter}><INCLURE{fond=articlenewsletter}{id_article}{lang}></BOUCLE_EstNewsLetter><?php $jp_rubrique = '[(#ID_RUBRIQUE|texte_script)]'; ?><BOUCLE_RacineMenuHaut(HIERARCHIE){id_rubrique}{tout}{titre_mot=MenuHaut}{inverse} {0,1}>[(#SET{secteurencours,#ID_RUBRIQUE})]</BOUCLE_RacineMenuHaut><?php
 $jp_article = '[(#ID_ARTICLE|texte_script)]';
 $titre = '[(#TITRE|textebrut|supprimer_numero|attribut_html|texte_script)]';
 $titretop = '[(#TITRE|textebrut|supprimer_numero|attribut_html|nettoyer_marqueur|texte_script)]';
-?><INCLURE{fond=header}{id_article}{id_rubrique}{rubriqueencours=#ID_RUBRIQUE}{connexion}{secteurencours=#GET{secteurencours}}>
+?><INCLURE{fond=header}{id_article}{id_rubrique}{rubriqueencours=#ID_RUBRIQUE}{connexion}{secteurencours=#GET{secteurencours}}{lang}>
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
@@ -13,15 +13,15 @@ $titretop = '[(#TITRE|textebrut|supprimer_numero|attribut_html|nettoyer_marqueur
 	<//B_EstRacine> 
 	<li>[(#TITRE|Supprimer_numero)]</li>
 	</ul>
-<INCLURE{fond=inc_affrubcomplete}{id_rubrique}>
+<INCLURE{fond=inc_affrubcomplete}{id_rubrique}{lang}>
 	</div>
 
-<INCLURE{fond=article_cartouche}{id_article}>
+<INCLURE{fond=article_cartouche}{id_article}{lang}>
 
 <div class="texte">
 <div class="cartouche">
 [<div class="surtitre"><span>#DEBUT_SURLIGNE(#SURTITRE)#FIN_SURLIGNE</span></div>]
-<INCLURE{fond=aff_datepublication}{id_article}>
+<INCLURE{fond=aff_datepublication}{id_article}{lang}>
 <div><h1>[(#LOGO_ARTICLE_NORMAL||logo_swf_or_img{
 	64,
 	64,
@@ -30,7 +30,7 @@ $titretop = '[(#TITRE|textebrut|supprimer_numero|attribut_html|nettoyer_marqueur
 	"logo_article",
 	#LOGO_ARTICLE_SURVOL||image_reduire{64,64}}
 	)][#DEBUT_SURLIGNE(#TITRE|Supprimer_numero)#FIN_SURLIGNE][(#CONFIG{plugin}|match{ARTICLE_PDF}|?{' '})#ARTICLE_PDF]</h1></div>
-[<div class="soustitre"><span>(#SOUSTITRE)</span></div>]<INCLURE{fond=liste_auteurs}{id_article}>
+[<div class="soustitre"><span>(#SOUSTITRE)</span></div>]<INCLURE{fond=liste_auteurs}{id_article}{lang}>
 </div>
 
 <B_Sommaire>
@@ -49,8 +49,8 @@ $titretop = '[(#TITRE|textebrut|supprimer_numero|attribut_html|nettoyer_marqueur
 	<div id="letexte">
 [<div class="chapo">#DEBUT_SURLIGNE(#CHAPO|sinon{#DESCRIPTIF})#FIN_SURLIGNE</div>]
 
-[(#CONFIG{soyezcreateurs/agendafuturseul,Non}|=={Oui}|?{' ',''})[(#MODELE{agenda_detail_futur_seul}{id_article})]]
-[(#CONFIG{soyezcreateurs/agendafuturseul,Non}|=={Non}|?{' ',''})[(#MODELE{agenda_detail}{id_article})]]
+[(#CONFIG{soyezcreateurs/agendafuturseul,Non}|=={Oui}|?{' ',''})[(#MODELE{agenda_detail_futur_seul}{id_article}{lang})]]
+[(#CONFIG{soyezcreateurs/agendafuturseul,Non}|=={Non}|?{' ',''})[(#MODELE{agenda_detail}{id_article}{lang})]]
 
 <BOUCLE_SommaireAncre(MOTS){id_rubrique}{titre = Sommaire}>
 </BOUCLE_SommaireAncre>
@@ -213,13 +213,13 @@ $titretop = '[(#TITRE|textebrut|supprimer_numero|attribut_html|nettoyer_marqueur
 
 [(#FORMULAIRE_ADMIN)]
 
-<INCLURE{fond=footer}{rubriqueencours=#ID_RUBRIQUE}{id_rubrique}{id_article}{secteurencours=#GET{secteurencours}}>
+<INCLURE{fond=footer}{rubriqueencours=#ID_RUBRIQUE}{id_rubrique}{id_article}{secteurencours=#GET{secteurencours}}{lang}>
 	<//B_EstNewsLetter>
 </BOUCLE_article_principal>
 </B_article_principal>
 <?php $titre = '<:pyrat:erreur:>'; ?>
 <?php $titretop = '<:pyrat:erreur|nettoyer_marqueur:>'; ?>
-<INCLURE{fond=header}{connexion}{secteurencours=#GET{secteurencours}}>
+<INCLURE{fond=header}{connexion}{secteurencours=#GET{secteurencours}}{lang}>
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
@@ -231,10 +231,10 @@ $titretop = '[(#TITRE|textebrut|supprimer_numero|attribut_html|nettoyer_marqueur
 <h1><:pyrat:erreur_articleexistepas:></h1>
 </div>
 
-<INCLURE{fond=inc_plan}>
+<INCLURE{fond=inc_plan}{lang}>
 </div><!-- Fin de .texte -->
 
 [(#FORMULAIRE_ADMIN)]
 
-<INCLURE{fond=footer}{rubriqueencours=#ID_RUBRIQUE}{id_rubrique}{secteurencours=#GET{secteurencours}}>
+<INCLURE{fond=footer}{rubriqueencours=#ID_RUBRIQUE}{id_rubrique}{secteurencours=#GET{secteurencours}}{lang}>
 <//B_article_principal>
