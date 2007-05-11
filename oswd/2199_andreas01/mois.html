@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
+	<meta name="generator" content="SPIP" />
+	[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
+
+	<!-- Lien vers le backend pour navigateurs eclaires -->
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+
+	<!-- Ceci est la feuille de style par defaut pour le code genere par SPIP -->
+	<link rel="stylesheet" href="[(#CHEMIN{spip_style.css}|direction_css)]" type="text/css" media="all" />
+	<!-- Feuille de styles CSS pour l'affichage du site sur ecran -->
+	<link rel="stylesheet" href="[(#CHEMIN{andreas01.css}|direction_css)]" type="text/css" media="projection, screen, tv" />
+	<!-- Feuille de styles CSS pour l'impression -->
+	<link rel="stylesheet" href="[(#CHEMIN{print.css}|direction_css)]" type="text/css" media="print" />
+
+	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+
+</head>
+
+<body>
+<div id="wrap">
+	
+	<div id="header">
+			<p>#LOGO_SITE_SPIP 
+			<br>#NOM_SITE_SPIP
+			<br>#DESCRIPTIF_SITE_SPIP
+			</p>
+	</div>
+	
+	<img id="frontphoto" src="[(#CHEMIN{img/__front.jpg})]" width="760" height="175" alt="" />
+	
+	<div id="leftside">
+		<h2 class="hide">Menu:</h2>
+		
+		[(#REM) Menu de navigation par rubriques ]
+		<INCLURE{fond=inc-rubriques}>
+		
+		<br><br>
+		<div class="announce">
+
+
+
+
+
+
+	</div>
+
+</div>
+	
+	<div id="contentwide">
+				<p>
+
+
+		<B_event_list>
+		<ul style="list-style: none; margin: 0; padding: 0;">
+			<BOUCLE_event_list(EVENEMENTS) {agendafull date_debut, date_fin, mois, (#ENV{date}|annee), (#ENV{date}|mois)} {statut=publie}{par date_fin}>
+				<li><a href="[(#URL_PAGE{article}|parametre_url{id_article,#ID_ARTICLE})]">#TITRE</a>[ &ndash; (#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})][ &ndash; (#LIEU)]</li>
+			</BOUCLE_event_list>
+		</ul>
+		</B_event_list>
+		<em>Aucun &eacute;v&eacute;nement SPIP annonc&eacute; pour [(#ENV{date}|affdate_mois_annee)]&nbsp;!</em>
+		<//B_event_list>
+
+	</div>
+	
+	<div id="footer">
+			<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+	</div>
+	
+</div>
+</body>
+</html>

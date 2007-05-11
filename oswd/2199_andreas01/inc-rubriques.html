@@ -5,17 +5,15 @@
 	on l'affiche si son parent est expose ou est la racine du site. ]
 
 <B_rubriques>
-<div class="rubriques">
-<!--	<h2 class="menu-titre"><:rubriques:></h2>-->
-	<ul>
+	<ul class="avmenu">
 	<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
 		<li>
-			<a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
+			<a href="#URL_RUBRIQUE"[ class="(#EXPOSE{current})"]>[(#TITRE|couper{80}|supprimer_numero)]</a>
 
 			<B_sous_rubriques>
 			<ul>
 				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}>#EXPOSE{' '}</BOUCLE_test_expose>
-					<li><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
+					<li><a href="#URL_RUBRIQUE"[ class="(#EXPOSE{current})"]>[(#TITRE|couper{80}|supprimer_numero)]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
 				</B_test_expose></BOUCLE_sous_rubriques>
 			</ul>
 			</B_sous_rubriques>
@@ -24,5 +22,4 @@
 	</BOUCLE_rubriques>
 
 	</ul>
-</div>
 </B_rubriques>

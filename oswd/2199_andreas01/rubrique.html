@@ -1,56 +1,112 @@
-#CACHE{00}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html dir="#LANG_DIR" lang="#LANG">
-	<head>
-		<title>[(#NOM_SITE_SPIP|textebrut)]</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
-		[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
-		<meta name="generator" content="SPIP" />
-		[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>  
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
+	<meta name="generator" content="SPIP" />
+	[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
 
-		<!-- Lien vers le backend pour navigateurs eclaires -->
-		<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+	<!-- Lien vers le backend pour navigateurs eclaires -->
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
 
-		<!-- Ceci est la feuille de style par defaut pour le code genere par SPIP -->
-		<link rel="stylesheet" href="[(#CHEMIN{spip_style.css}|direction_css)]" type="text/css" media="all" />
-		<!-- Feuille de styles CSS pour l'affichage du site sur ecran -->
-		<link rel="stylesheet" href="[(#CHEMIN{andreas01.css}|direction_css)]" type="text/css" media="projection, screen, tv" />
-		<!-- Feuille de styles CSS pour l'impression -->
-		<link rel="stylesheet" href="[(#CHEMIN{impression.css}|direction_css)]" type="text/css" media="print" />
-	</head>
+	<!-- Ceci est la feuille de style par defaut pour le code genere par SPIP -->
+	<link rel="stylesheet" href="[(#CHEMIN{spip_style.css}|direction_css)]" type="text/css" media="all" />
+	<!-- Feuille de styles CSS pour l'affichage du site sur ecran -->
+	<link rel="stylesheet" href="[(#CHEMIN{andreas01.css}|direction_css)]" type="text/css" media="projection, screen, tv" />
+	<!-- Feuille de styles CSS pour l'impression -->
+	<link rel="stylesheet" href="[(#CHEMIN{print.css}|direction_css)]" type="text/css" media="print" />
 
-	<body >
-		<div id="wrap">
+	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
 
-			[(#REM) Entete de la page + titre du site ]
-			<INCLURE{fond=inc-entete}{lang}>
+</head>
 
-				<div id="avmenu">
+<body>
+<div id="wrap">
+	
+	<div id="header">
+	</div>
+	
+	<img id="frontphoto" src="[(#CHEMIN{img/front.jpg})]" width="760" height="175" alt="" />
+	
+	<div id="leftside">
+									<p><a href="#URL_SITE_SPIP">#LOGO_SITE_SPIP</a> - #NOM_SITE_SPIP - #DESCRIPTIF_SITE_SPIP</p>
 
-					<INCLURE{fond=inc-rubriques}{lang}{id_rubrique}>
+		<h2 class="hide">Menu:</h2>
+		
+		[(#REM) Menu de navigation par rubriques ]
+		<INCLURE{fond=inc-rubriques}{id_rubrique}>
+		
+	</div>
+	
+	
+	<div id="contentwide">
+		
+			[<p>(#TEXTE)</p>]
 
-						<ul><li><a href="spip.php?page=metiers">Métiers</a></li></ul>
+				[(#REM) Articles de la rubrique ]
+				<B_articles>
+				<p>
+				<div class="liste-articles">
+					#ANCRE_PAGINATION
+					<h2 class="invisible"><:articles_rubrique:></h2>
+					<ul>
+						<BOUCLE_articles(ARTICLES) {id_rubrique} {par date}{inverse} {pagination}>
+						<li>
+							<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+							<small>[(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small>
+						</li>
+						</BOUCLE_articles>
+					</ul>
+					[<p class="pagination">(#PAGINATION)</p>]
+				</div>
+			</p>
+				</B_articles>
+				
+				
+				
+				
+				[(#REM) Sites de la rubrique ]
+				<B_sites>
+				<p>
+				<div class="syndic">
+					<h2 class="menu-titre"><:sur_web:></h2>
+					<ul>
+						<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
+						<li><a href="(#URL_SITE)" title="[(#DESCRIPTIF|textebrut)]">#NOM_SITE</a></li>
+						</BOUCLE_sites>
+					</ul>
+				</div>
+				</p>
+				</B_sites>
 
-					</div><!-- avmenu -->
+
+				[(#REM) Syndications de la rubrique ]
+				<B_sites2>
+				<BOUCLE_sites2(SITES) {id_rubrique} {par nom_site}>
+					<B_syndic>
+						<ul>
+						<li><a href="(#URL_SITE)" title="[(#DESCRIPTIF|textebrut)]">#NOM_SITE</a></li>
+						<ul>
+					<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {0,3}>
+						<li><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></li>
+					</BOUCLE_syndic>
+							</ul>
+					</ul>
+							</B_syndic>
+						</BOUCLE_sites2>
+				</B_sites2>
 
 
-					<div id="extras">
-						<INCLURE{fond=inc-breves}>
-							#FORMULAIRE_RECHERCHE
-						</div><!-- extras -->
+				[(#REM) Proposer un site ]
+				#FORMULAIRE_SITE
 
-						<div id="content">
-
-							<h1 class="invisible">#NOM_SITE_SPIP</h1>
-							[<div class="chapo">(#DESCRIPTIF_SITE_SPIP)</div>]
-
-							<INCLURE{fond=inc-articles-rubrique}{id_rubrique}>
-
-						</div><!-- content -->
-
-						[(#REM) Pied de page ]
-						<INCLURE{fond=inc-pied}{lang}>
-
-							</div><!-- wrap -->
-						</body>
-					</html>
+	
+	<div id="footer">
+			<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+	</div>
+	
+</div>
+</body>
+</html>
+</BOUCLE_rubrique_principal>

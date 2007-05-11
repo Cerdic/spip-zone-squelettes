@@ -1,91 +1,103 @@
-#CACHE{00}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html dir="#LANG_DIR" lang="#LANG">
-	<head>
-		<title>[(#NOM_SITE_SPIP|textebrut)]</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
-		[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
-		<meta name="generator" content="SPIP" />
-		[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
+	<meta name="generator" content="SPIP" />
+	[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
 
-		<!-- Lien vers le backend pour navigateurs eclaires -->
-		<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+	<!-- Lien vers le backend pour navigateurs eclaires -->
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
 
-		<!-- Ceci est la feuille de style par defaut pour le code genere par SPIP -->
-		<link rel="stylesheet" href="[(#CHEMIN{spip_style.css}|direction_css)]" type="text/css" media="all" />
-		<!-- Feuille de styles CSS pour l'affichage du site sur ecran -->
-		<link rel="stylesheet" href="[(#CHEMIN{andreas01.css}|direction_css)]" type="text/css" media="projection, screen, tv" />
-		<!-- Feuille de styles CSS pour l'impression -->
-		<link rel="stylesheet" href="[(#CHEMIN{impression.css}|direction_css)]" type="text/css" media="print" />
-	</head>
+	<!-- Ceci est la feuille de style par defaut pour le code genere par SPIP -->
+	<link rel="stylesheet" href="[(#CHEMIN{spip_style.css}|direction_css)]" type="text/css" media="all" />
+	<!-- Feuille de styles CSS pour l'affichage du site sur ecran -->
+	<link rel="stylesheet" href="[(#CHEMIN{andreas01.css}|direction_css)]" type="text/css" media="projection, screen, tv" />
+	<!-- Feuille de styles CSS pour l'impression -->
+	<link rel="stylesheet" href="[(#CHEMIN{print.css}|direction_css)]" type="text/css" media="print" />
 
-	<body >
-		<div id="wrap">
+	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
 
-			[(#REM) Entete de la page + titre du site ]
-			<INCLURE{fond=inc-entete}{lang}>
+</head>
 
-				<div id="avmenu">
+<body>
+<div id="wrap">
+	
+	<div id="header">	</div>
+	
+	<img id="frontphoto" src="[(#CHEMIN{img/front.jpg})]" width="760" height="175" alt="" />
+	
+	<div id="leftside">
+							<p><a href="#URL_SITE_SPIP">#LOGO_SITE_SPIP</a>  #NOM_SITE_SPIP  #DESCRIPTIF_SITE_SPIP</p>
 
-					<INCLURE{fond=inc-rubriques}{lang}>
+		<h2 class="hide">Menu:</h2>
+		
+		[(#REM) Menu de navigation par rubriques ]
+		<INCLURE{fond=inc-rubriques}>
+		
+		<br><br>
+		<div class="announce">
+
+		[(#REM) Les deux derniers articles ]
+		<B_articles_recents2>
+			<h2><:derniers_articles:></h2>
+				<BOUCLE_articles_recents2(ARTICLES) {par date}{inverse} {0,3} {doublons}>
+				<p>
+					<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
 					
-					<ul><li><a href="spip.php?page=metiers">Métiers</a></li></ul>
+					[(#DESCRIPTIF)]
+				</p>
+				</BOUCLE_articles_recents2>
+			
+		</B_articles_recents2>
+	</div>
 
-					</div><!-- fin navigation -->
+</div>
+	
+	<div id="extras">
+				[(#CALENDRIER_MINI{#ENV{date},'date',#SELF})]
+<br>
+		
+		[(#REM) Breves du secteur ]
+		<B_breves>
+							<BOUCLE_breves(BREVES)  {par date}{inverse} {0,2}>
+				<p><a href="#URL_BREVE">#TITRE</a><br>[ &ndash; (#DATE|affdate_court) &ndash; ]<br>#INTRODUCTION</p>
+				</BOUCLE_breves>
+		</B_breves>
 
-
-					<div id="extras">
-						<INCLURE{fond=inc-breves}>
-						#FORMULAIRE_RECHERCHE
-					</div><!-- extras -->
-
-
-
-
-
-
-					<div id="content">
-
-						<h1 class="invisible">#NOM_SITE_SPIP</h1>
-						[<div class="chapo">(#DESCRIPTIF_SITE_SPIP)</div>]
-
-						[(#REM) Les deux derniers articles ]
-						<B_articles_une>
-							<BOUCLE_articles_une(ARTICLES) {par date}{inverse} {0,2} {titre_mot='une'} >
-
-								[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{150,100})]
-								[<p class="surtitre">(#SURTITRE)</p>]
-								<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
-								[<p class="soustitre">(#SOUSTITRE)</p>]
-								[<div class="texte">(#TEXTE)</div>]
-							</li>
-						</BOUCLE_articles_une>
-
-
-					</B_articles_une>
-
-
-
-
-
-
-
-				</div><!-- fin contenu -->
-
-
-
-
-
-
-
-
-
-
-
-				[(#REM) Pied de page ]
-				<INCLURE{fond=inc-pied}{lang}>
-
-				</div><!-- fin page -->
-				#SPIP_CRON
-			</body>
-		</html>
+		<h2>Partenaires :</h2>
+		<ul>
+		<li><a href="http://www.mairie-lille.fr/">Mairie de Lille</a></li>
+		<li><a href="http://www.nordpasdecalais.fr/">Conseil Régional NPdC</a></li>
+		</ul>
+		
+		<img src="[(#CHEMIN{img/test.jpg})]" height="50" width="140" class="left" alt="Example sidebar image" /></p>
+	
+	</div>
+	
+	<div id="content">
+		[(#REM) Les deux derniers articles ]
+		<B_articles_recents>
+			<h2 class="invisible"><:derniers_articles:></h2>
+			<ul>
+				<BOUCLE_articles_recents(ARTICLES) {par date_modif}{inverse} {0,2} >
+				<li>
+					[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{150,100})]
+					[<p class="surtitre">(#SURTITRE)</p>]
+					<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+					[<p class="soustitre">(#SOUSTITRE)</p>]
+					<small>[(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small>
+					[<div class="texte">(#INTRODUCTION)</div>]
+				</li>
+				</BOUCLE_articles_recents>
+			</ul>
+		</B_articles_recents>
+	</div>
+	
+	<div id="footer">
+			<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+	</div>
+	
+</div>
+</body>
+</html>

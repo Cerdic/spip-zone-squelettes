@@ -1,0 +1,153 @@
+<BOUCLE_article_principal(ARTICLES) {id_article}><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
+	<meta name="generator" content="SPIP" />
+	[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
+
+	<!-- Lien vers le backend pour navigateurs eclaires -->
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+
+	<!-- Ceci est la feuille de style par defaut pour le code genere par SPIP -->
+	<link rel="stylesheet" href="[(#CHEMIN{spip_style.css}|direction_css)]" type="text/css" media="all" />
+	<!-- Feuille de styles CSS pour l'affichage du site sur ecran -->
+	<link rel="stylesheet" href="[(#CHEMIN{andreas01.css}|direction_css)]" type="text/css" media="projection, screen, tv" />
+	<!-- Feuille de styles CSS pour l'impression -->
+	<link rel="stylesheet" href="[(#CHEMIN{print.css}|direction_css)]" type="text/css" media="print" />
+
+	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+
+</head>
+
+<body>
+<div id="wrap">
+	
+	<div id="header">
+	</div>
+	
+	<img id="frontphoto" src="[(#CHEMIN{img/front.jpg})]" width="760" height="175" alt="" />
+	
+	<div id="leftside">
+									<p><a href="#URL_SITE_SPIP">#LOGO_SITE_SPIP</a> - #NOM_SITE_SPIP - #DESCRIPTIF_SITE_SPIP</p>
+
+		<h2 class="hide">Menu:</h2>
+		
+		[(#REM) Menu de navigation par rubriques ]
+		<INCLURE{fond=inc-rubriques}{id_article}>
+		
+		<br><br>
+		<div class="announce">
+
+
+
+
+
+
+	</div>
+
+</div>
+	
+	<div id="contentwide">
+				<p>
+	[(#REM) Fil d'Ariane ]
+	<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; (#TITRE|couper{80})]</div>
+
+		[(#REM) Contenu principal : contenu de l'article ]
+		<div id="contenu">
+
+			<div class="cartouche">
+				#DEBUT_SURLIGNE
+				[(#LOGO_ARTICLE||image_reduire{200,200})]
+				[<p class="surtitre">(#SURTITRE)</p>]
+				<h1 class="titre">#TITRE</h1>
+				[<p class="soustitre">(#SOUSTITRE)</p>]
+				#FIN_SURLIGNE
+
+				<p><small>[(#DATE|nom_jour) ][(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small></p>
+
+				[(#REM) Inclure le modele des liens de traductions ]
+				#MODELE{article_traductions}
+
+			</div>
+			
+			#DEBUT_SURLIGNE
+			[<div class="chapo">(#CHAPO)</div>]
+			<br class="nettoyeur" />
+			[<p class="lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+			[<div class="texte">(#TEXTE|image_reduire{520,0})</div>]
+			#FIN_SURLIGNE
+
+
+
+			[(#REM) Les prochains evenements ]
+			<B_event_list>
+			<h2>Prochaines dates :</h2>
+			<ul>
+				<BOUCLE_event_list(EVENEMENTS) {id_article} {agendafull date_debut, date_fin, (#ENV{date}|annee)} {statut=publie}{par date_fin}{age<7} >
+				<li><a href="[(#URL_PAGE{evenement}|parametre_url{id_evenement,#ID_EVENEMENT})]">#TITRE</a>[ &ndash; (#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})][ &ndash; (#LIEU)]</li>
+				</BOUCLE_event_list>
+			</ul>
+			</B_event_list>
+			<//B_event_list>
+
+
+			[(#REM) Portfolio : album d'images ]
+			<B_documents_portfolio>
+			<div id="documents_portfolio">
+				<h2><:info_portfolio:></h2>
+				<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
+				[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|couper{80}|texte_backend)"]>(#LOGO_DOCUMENT||image_reduire{0,60}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
+				</BOUCLE_documents_portfolio>
+			</div>
+			</B_documents_portfolio>
+			<BOUCLE_afficher_document(DOCUMENTS) {id_document} {id_article} {mode=document}{extension IN png,jpg,gif}>
+			<div class="spip_documents spip_documents_center" id="document_actif">
+				#EMBED_DOCUMENT
+				[<div class="spip_doc_titre">(#TITRE)</div>]
+				[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
+			</div>
+			</BOUCLE_afficher_document>
+
+			[<div class="ps"><h2><:info_ps:></h2>#DEBUT_SURLIGNE(#PS)#FIN_SURLIGNE</div>]
+
+			[(#REM) Autres documents joints a l'article ]
+			<B_documents_joints>
+			<div id="documents_joints">
+				<h2><:titre_documents_joints:></h2>
+				<ul>
+					<BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {par num titre, date} {doublons}>
+					<li>
+						<div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
+						[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
+					</li>
+					</BOUCLE_documents_joints>
+				</ul>
+			</div>
+			</B_documents_joints>
+			
+			[(#REM) Petition :
+			La petition ayant une PAGINATION il faut absolument lui passer SELF]
+			[(#PETITION|?{' '})
+				<INCLURE{fond=inc-petition}{id_article}{self=#SELF}>
+			]
+
+			[<div class="notes"><h2><:info_notes:></h2>#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
+
+			[(#REM) Forum de l'article ]
+			<a href="#forum" name="forum" id="forum"></a>
+			[<h2 class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a></h2>]
+			<INCLURE{fond=inc-forum}{id_article}>
+
+
+		</div><!-- fin contenu -->
+	</div>
+	
+	<div id="footer">
+			<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+	</div>
+	
+</div>
+</body>
+</html>
+</BOUCLE_article_principal>
