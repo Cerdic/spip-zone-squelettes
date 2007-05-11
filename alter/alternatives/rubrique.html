@@ -7,6 +7,11 @@
 	<title>[[(#NOM_SITE_SPIP|textebrut)]] : [(#TITRE|supprimer_numero|textebrut|entites_html)]</title>
 	<INCLURE{fond=page}{fond=styles}{lang}{id_rubrique}>
 	<INCLURE{fond=inc/inc-meta}{lang}{id_rubrique}>
+	<style type="text/css" media="screen">
+<!--
+
+-->
+</style>
 </head>
 <body dir="#LANG_DIR" class="#LANG rubrique sect#ID_SECTEUR <BOUCLE_rubriques_body(HIERARCHIE) {id_secteur}{" "}>rub#ID_RUBRIQUE</BOUCLE_rubriques_body></B_rubriques_body> rub#ID_RUBRIQUE">
 <div id="page" class="rubrique rub#ID_RUBRIQUE">
@@ -38,57 +43,62 @@
     		(#LOGO_RUBRIQUE||reduire_image{120,0})
     	</div>]
     <h1 class="titre-article">[(#TITRE|supprimer_numero)]</h1>
-    <div class="chapo">
-    	[(#TEXTE|reduire_image{440,0}|sinon{[(#DESCRIPTIF)]})]
-		[<div class="notes">(#NOTES)</div>]
-		<BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {mode=document} {doublons} {"<hr />"}>
-			[<div class="texte">
-			<div style="float:left;">(#LOGO_DOCUMENT|#URL_DOCUMENT)</div>
-			[(#TITRE|supprimer_numero)][<br />(#DESCRIPTIF)]
-			</div>]
+    [<div class="chapo" id="description">   	
+    	(#TEXTE|reduire_image{440,0}|sinon{[(#DESCRIPTIF)]})
+		[<div class="notes" style="padding: 0 1.5em;">(#NOTES)</div>]
+	</div><!-- chapo -->]
+	
+			[(#REM) Portfolio : album d'images ]
+			<B_documents_portfolio>
+				<h2><:info_portfolio:></h2>
+			<div  class="chapo" id="documents_portfolio">
+				<BOUCLE_documents_portfolio(DOCUMENTS) {id_rubrique} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
+				[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_RUBRIQUE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|couper{80}|texte_backend)"]>(#LOGO_DOCUMENT||image_reduire{0,60}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
+				</BOUCLE_documents_portfolio>
+			</div>
+			</B_documents_portfolio>
+
+			<BOUCLE_afficher_document(DOCUMENTS) {id_document} {id_rubrique} {mode=document}{extension IN png,jpg,gif}>
+			<div class="spip_documents spip_documents_center" id="document_actif">
+				[<a href="[(#URL_DOCUMENT|abs_url)]">(#FICHIER|reduire_image{450,0}|inserer_attribut{alt,[(#TITRE|supprimer_numero|couper{80}|texte_backend)]})</a>]
+				[<div class="spip_doc_titre">(#TITRE)</div>]
+				[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
+			</div>
+			</BOUCLE_afficher_document>
+
+	<B_documents_joints>
+	<h2><:ecrire:titre_documents_joints:></h2>
+	<div class="chapo" id="documents" style="line-height:1;"> 
+		<BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {mode=document} {doublons} {"<hr style='clear:both' />"} {par num titre} {!par date}>
+				[<h3 style="margin-bottom: .6em;"><a href="#URL_DOCUMENT">(#TITRE|supprimer_numero)</a></h3>]
+				[<div style="float:left;padding-right: .5em; margin-right: .5em; width:40%;">
+					<div style="float:left; margin-right: .5em;">(#LOGO_DOCUMENT|#URL_DOCUMENT||reduire_image{60,0})</div>
+					<small>
+						[(#DATE|affdate)<br />]
+						[<:spip:info_document:> : (#TYPE_DOCUMENT)<br />]
+						[(#TAILLE|taille_en_octets)]
+					</small>
+				</div>]
+				[<div style="margin: 0 0 0 40%; border-left: 1px gray dotted;">(#DESCRIPTIF)</div>]
 		</BOUCLE_documents_joints>
+		<br class="nettoyeur" />
 	</div><!-- chapo -->
-	<br class="nettoyeur" />
+	</B_documents_joints>
+	
 
-		<!-- Articles de la rubrique -->
-		<B_articles_rubrique>
-		<h2 class="structure"><:articles_rubrique:></h2>
-		 #ANCRE_PAGINATION
-		<BOUCLE_articles_rubrique(ARTICLES) {branche} {par num titre} {!par date} {pagination}>
-			<br class="nettoyeur" />
-			[<div class="logo-liste-art">
-				(#LOGO_ARTICLE|#URL_ARTICLE||reduire_image{120,0})
-			</div>]
-			[<div class="surtitre">(#SURTITRE)</div>]
-			<h3>
-			<a href="#URL_SITE_SPIP/#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
-			<BOUCLE_articles_rubrique_nom(RUBRIQUES) {id_rubrique} >
-				<b class="petit-info"><a href="#URL_SITE_SPIP/#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>([(#TITRE|supprimer_numero)])</a></b>
-			</BOUCLE_articles_rubrique_nom>
-			</h3>
-      [<div class="sous-titre">(#SOUSTITRE)</div>]
-			<div class="detail">
-				[(#DATE|nom_jour)] [(#DATE|affdate)]
-				<B_auteurs_recents><:par_auteur:> <BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}><a href="#URL_SITE_SPIP/#URL_AUTEUR">#NOM</a></BOUCLE_auteurs_recents>
-			</div><!-- detail -->
-      [<div class="texte">
-      	<div class="extrait">
-      	 (#DESCRIPTIF|sinon{[(#CHAPO|sinon{#TEXTE}|couper{300})]})&nbsp;<b class="separateur">&gt;</b>&nbsp;<a  class="suite" href="#URL_SITE_SPIP/#URL_ARTICLE" title="...<:suite:>" ><:suite:></a>
-      	</div>
-      </div>]
-			<br />
-		</BOUCLE_articles_rubrique>
+[(#REM) - Plan de la rubrique si mot-cle de la rubrique = Rub_type_plan ]
+		<BOUCLE_type_miniplan(MOTS){id_rubrique}{titre=Rub_type_plan}>
+		<div class="chapo" id="miniplan">   	
+    		[(#MODELE{miniplan}{id_rubrique})]
+		</div><!-- chapo, miniplan -->
+		</BOUCLE_type_miniplan>
+		</B_type_miniplan>
+
+[(#REM) - Sinon, articles de la rubrique par numero du titre ou date inversee ]
+		<INCLURE{fond=inc/inc-rub-articles}{lang}{id_rubrique}{id_secteur}>
 		
-		[<div class="pagination">
-			<div class="ligne1">
-				<div dir="#LANG_DIR">#TOTAL_BOUCLE/#GRAND_TOTAL <:articles:></div>
-			</div>
-			<div class="ligne2">
-        (#PAGINATION)
-			</div>
-		</div>]
-
-		</B_articles_rubrique>
+		<//B_type_miniplan>
+		
 		<br class="nettoyeur" />
 	</div><!-- bloc-contenu -->
 	
