@@ -9,6 +9,7 @@
 
 <html><head>
 
+
 [(#REM)   les métas ]
 <title>[(#TITRE)]</title>
 [<meta name="Description" content='(#DESCRIPTIF|supprimer_tags|texte_script)'/>]
@@ -44,8 +45,9 @@
 <link rel="alternate" type="application/rss+xml" href="[(#URL_PAGE{backend}|parametre_url{'id_rubrique',#ID_RUBRIQUE})]title="[(#TITRE)]" />
 </BOUCLE_rub>
 
+
 #INSERT_HEAD
-</head><body> 
+</head><body>
 
 <div id="container">   [(#REM)   centrage page   ]
 <INCLURE{fond="entete"}> 
@@ -67,7 +69,7 @@
      (#DATE|nom_jour) ][(#DATE|jour) ] [(#DATE|nom_mois) [(#DATE|annee)]]
 	
 	
-</B_evenements>
+<B_evenements>
 <h4>Cet événement est répété:</h4>
 <ul>
 <BOUCLE_evenements(EVENEMENTS){id_article} {statut=publie}{par date_fin}{age_fin>0}>
@@ -101,12 +103,6 @@
 </B_evenements>
 
 
-
-	
-	
-	
-	
-	
 	 </p>
   <hr class="spacer"/>
 
@@ -181,17 +177,15 @@ x #HAUTEUR})]
 #SET{latitude,#LAT}
 #SET{lonxitude,#LONX}
 <p>Coordonnées GPS: Latitude: #LAT, Longitude: #LONX.<br/>
-
-<a href="[(#URL_ARTICLE|parametre_url{'zoom',9}|parametre_url{'latit',#GET{latitude}}|parametre_url{'lonxit',#GET{lonxitude}})]">Localiser l'événement sur une carte</a>
-
-<INCLURE{fond=inc-gis_map}{id_rubrique}{id_mot}{id_auteur}{recherche}{id_article=#ID_ARTICLE}{zoom}{latit}{lonxit}>
+[<a href="(#URL_PAGE{localiser}|parametre_url{'zoom',9}|parametre_url{'latit',#GET{latitude}}|parametre_url{'lonxit',#GET{lonxitude}})">Localiser l'événement sur une carte imprimable</a>.]
 </p>
 </BOUCLE_set_moi>
+
 
 </div>
 </B_set_moi>
 
-<INCLURE{fond=inc-gis_map}{id_rubrique}{id_mot}{id_auteur}{recherche}{id_article=#ID_ARTICLE}{zoom}{latit}{lonxit}>
+
 
   [<div class="grande_boite">(#NOTES)</div>]
    [<div class="grande_boite"><p>(#PS)</p></div>] 

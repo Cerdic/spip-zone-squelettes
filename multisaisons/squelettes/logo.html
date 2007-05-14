@@ -6,10 +6,10 @@
 [(#REM) On donne des couleurs hexadécimales aux saisons]
 
 
-[(#ENV{date}|saison|translitteration|=={printemps}|?{' ',''})#SET{'colo','e3ae9b'}]
+[(#ENV{date}|saison|=={printemps}|?{' ',''})#SET{'colo','e3ae9b'}]
 [(#ENV{date}|saison|translitteration|=={ete}|?{' ',''})#SET{'colo','fab072'}]
-[(#ENV{date}|saison|translitteration|=={automne}|?{' ',''})#SET{'colo','96aa84'}]
-[(#ENV{date}|saison|translitteration|=={hiver}|?{' ',''})#SET{'colo','8d8ba3'}]
+[(#ENV{date}|saison|=={automne}|?{' ',''})#SET{'colo','96aa84'}]
+[(#ENV{date}|saison|=={hiver}|?{' ',''})#SET{'colo','8d8ba3'}]
 
 
 
@@ -29,15 +29,15 @@ chaque affichage va être testé par ordre d'importance:
 
 
 <BOUCLE_logo_article(articles){id_article}{0,1}>
-[(#LOGO_ARTICLE||?{[(#LOGO_ARTICLE||reduire_image{#ENV{taille}}|image_sepia{#GET{colo}}|inserer_attribut{'alt',#TITRE})],[(#LOGO_DOCUMENT||reduire_image{48}|image_sepia{a1a4c3}|inserer_attribut{alt,[(#TITRE)]})]})]
+[(#LOGO_ARTICLE||?{[(#LOGO_ARTICLE||reduire_image{#ENV{taille}}|image_sepia{#GET{colo}}|image_aplatir{gif,ffffff}|inserer_attribut{'alt',#TITRE})],[(#LOGO_DOCUMENT||reduire_image{#ENV{taille}}|image_sepia{#GET{colo}}|image_aplatir{jpg,ffffff}|inserer_attribut{alt,[(#TITRE)]})]})]
 </BOUCLE_logo_article>
 
 <BOUCLE_logo_breve(documents){id_breve}{0,1}>
-[(#LOGO_BREVE||?{[(#LOGO_BREVE||reduire_image{#ENV{taille}}|image_sepia{#GET{colo}}|inserer_attribut{'alt',#TITRE})],[(#LOGO_DOCUMENT||reduire_image{48}|image_sepia{a1a4c3}|inserer_attribut{alt,[(#TITRE)]})]})]
+[(#LOGO_BREVE||?{[(#LOGO_BREVE||reduire_image{#ENV{taille}}|image_sepia{#GET{colo}}|image_aplatir{gif,ffffff}|inserer_attribut{'alt',#TITRE})],[(#LOGO_DOCUMENT||reduire_image{#ENV{taille}}|image_sepia{#GET{colo}}|image_aplatir{jpg,ffffff}|inserer_attribut{alt,[(#TITRE)]})]})]
 </BOUCLE_logo_breve>
 
 <BOUCLE_logo_rubrique(rubriques){id_rubrique}{0,1}>
-[(#LOGO_RUBRIQUE||?{[(#LOGO_RUBRIQUE||reduire_image{#ENV{taille}}|image_sepia{#GET{colo}}|inserer_attribut{'alt',#TITRE})],[(#LOGO_SITE||reduire_image{64}|image_sepia{a1a4c3}|inserer_attribut{'alt',#NOM_SITE_SPIP})]})]
+[(#LOGO_RUBRIQUE||?{[(#LOGO_RUBRIQUE||reduire_image{#ENV{taille}}|image_sepia{#GET{colo}}|image_aplatir{gif,ffffff}|inserer_attribut{'alt',#TITRE})],[(#LOGO_SITE||reduire_image{#ENV{taille}}|image_sepia{#GET{colo}}|image_aplatir{jpg,ffffff}|inserer_attribut{'alt',#NOM_SITE_SPIP})]})]
 </BOUCLE_logo_rubrique>
 
 
@@ -53,10 +53,10 @@ chaque affichage va être testé par ordre d'importance:
 
 
 <BOUCLE_logo_auteur_identifie(AUTEURS){id_auteur}{id_auteur=#SESSION{id_auteur}}>
- [(#LOGO_AUTEUR||?{[(#LOGO_AUTEUR||reduire_image{#ENV{taille}}|image_sepia{#GET{colo}}|inserer_attribut{'alt',#NOM})],[<a href="(#URL_PAGE{mon-profil})" title="Ajoutez votre logo"><img src="./avatars/ajoutez-un-avatar.gif" alt="Ajoutez votre logo"/></a>]})]
+ [(#LOGO_AUTEUR||?{[(#LOGO_AUTEUR||reduire_image{#ENV{taille}}|image_sepia{#GET{colo}}|image_aplatir{gif,ffffff}|inserer_attribut{'alt',#NOM})],[<a href="(#URL_PAGE{mon-profil})" title="Ajoutez votre logo"><img src="./avatars/ajoutez-un-avatar.gif" alt="Ajoutez votre logo"/></a>]})]
 </BOUCLE_logo_auteur_identifie>
 <BOUCLE_logo_auteur_inconnu(AUTEURS){tout}{id_auteur}>
-[(#LOGO_AUTEUR||?{[(#LOGO_AUTEUR||reduire_image{#ENV{taille}}|image_sepia{#GET{colo}}|inserer_attribut{'alt',#NOM})],'Sans logo'})]
+[(#LOGO_AUTEUR||?{[(#LOGO_AUTEUR||reduire_image{#ENV{taille}}|image_sepia{#GET{colo}}|image_aplatir{gif,ffffff}|inserer_attribut{'alt',#NOM})],'Sans logo'})]
 </BOUCLE_logo_auteur_inconnu>
 <//B_logo_auteur_identifie>
 
@@ -64,27 +64,27 @@ chaque affichage va être testé par ordre d'importance:
 
 
 </BOUCLE_logo_saison>
-[(#REM) S'il n'y ai pas l'option saison, on laisse les couleurs d'origine.]
+[(#REM) S'il n'y a pas l'option saison, on laisse les couleurs d'origine.]
  
  
 <BOUCLE_mono_article(articles){id_article}{0,1}>
-[(#LOGO_ARTICLE||?{[(#LOGO_ARTICLE||reduire_image{#ENV{taille}}|inserer_attribut{'alt',#TITRE})],[(#LOGO_DOCUMENT||reduire_image{48}|image_sepia{a1a4c3}|inserer_attribut{alt,[(#TITRE)]})] })]
+[(#LOGO_ARTICLE||?{[(#LOGO_ARTICLE||reduire_image{#ENV{taille}}|image_aplatir{gif,ffffff}|inserer_attribut{'alt',#TITRE})],[(#LOGO_DOCUMENT||reduire_image{#ENV{taille}}|image_aplatir{jpg,ffffff}|inserer_attribut{alt,[(#TITRE)]})]})]
 </BOUCLE_mono_article>
 
 <BOUCLE_mono_breve(documents){id_breve}{0,1}>
-[(#LOGO_BREVE||?{[(#LOGO_BREVE||reduire_image{#ENV{taille}}|inserer_attribut{'alt',#TITRE})],[(#LOGO_DOCUMENT||reduire_image{48}|image_sepia{a1a4c3}|inserer_attribut{alt,[(#TITRE)]})] })]
+[(#LOGO_BREVE||?{[(#LOGO_BREVE||reduire_image{#ENV{taille}}|image_aplatir{gif,ffffff}|inserer_attribut{'alt',#TITRE})],[(#LOGO_DOCUMENT||reduire_image{#ENV{taille}}|image_aplatir{jpg,ffffff}|inserer_attribut{alt,[(#TITRE)]})]})]
 </BOUCLE_mono_breve>
 
 <BOUCLE_mono_rubrique(rubriques){id_rubrique}{0,1}>
-[(#LOGO_RUBRIQUE||?{[(#LOGO_RUBRIQUE||reduire_image{#ENV{taille}}|inserer_attribut{'alt',#TITRE})],[(#LOGO_SITE||reduire_image{64}|image_sepia{a1a4c3}|inserer_attribut{'alt',#NOM_SITE_SPIP})]})]
+[(#LOGO_RUBRIQUE||?{[(#LOGO_RUBRIQUE||reduire_image{#ENV{taille}}|image_aplatir{gif,ffffff}|inserer_attribut{'alt',#TITRE})],[(#LOGO_SITE||reduire_image{#ENV{taille}}|image_aplatir{jpg,ffffff}|inserer_attribut{'alt',#NOM_SITE_SPIP})]})]
 </BOUCLE_mono_rubrique>
 
 
 <BOUCLE_mono_auteur_identifie(AUTEURS){id_auteur}{id_auteur=#SESSION{id_auteur}}>
- [(#LOGO_AUTEUR||?{[(#LOGO_AUTEUR||reduire_image{#ENV{taille}}|inserer_attribut{'alt',#NOM})],[<a href="(#URL_PAGE{mon-profil})" title="Ajoutez votre logo"><img src="./avatars/ajoutez-un-avatar.gif" alt="Ajoutez votre logo"/></a>]})]
+ [(#LOGO_AUTEUR||?{[(#LOGO_AUTEUR||reduire_image{#ENV{taille}} |image_aplatir{gif,ffffff}|inserer_attribut{'alt',#NOM})],[<a href="(#URL_PAGE{mon-profil})" title="Ajoutez votre logo"><img src="./avatars/ajoutez-un-avatar.gif" alt="Ajoutez votre logo"/></a>]})]
 </BOUCLE_mono_auteur_identifie>
 <BOUCLE_mono_auteur_inconnu(AUTEURS){tout}{id_auteur}>
-[(#LOGO_AUTEUR||?{[(#LOGO_AUTEUR||reduire_image{#ENV{taille}}|inserer_attribut{'alt',#NOM})],'Sans logo'})]
+[(#LOGO_AUTEUR||?{[(#LOGO_AUTEUR||reduire_image{#ENV{taille}} |image_aplatir{gif,ffffff}|inserer_attribut{'alt',#NOM})],'Sans logo'})]
 </BOUCLE_mono_auteur_inconnu>
 <//B_mono_auteur_identifie>
  

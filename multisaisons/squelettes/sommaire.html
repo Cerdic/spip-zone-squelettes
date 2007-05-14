@@ -193,12 +193,12 @@
 
 <BOUCLE_huit_saison(MOTS){titre=saison}{0,1}>
 
-[(#REM) On donne des couleurs hexadécimales aux saisons]
+[(#REM) On donne des couleurs hexadécimales aux saisons. Vous pouvez les modifier "#eef"  devient  "eeeeff"]
 
-[(#ENV{date}|saison|translitteration|=={printemps}|?{' ',''})#SET{'colo','e3ae9b'}]
+[(#ENV{date}|saison|=={printemps}|?{' ',''})#SET{'colo','e3ae9b'}]
 [(#ENV{date}|saison|translitteration|=={ete}|?{' ',''})#SET{'colo','fab072'}]
-[(#ENV{date}|saison|translitteration|=={automne}|?{' ',''})#SET{'colo','96aa84'}]
-[(#ENV{date}|saison|translitteration|=={hiver}|?{' ',''})#SET{'colo','8d8ba3'}]
+[(#ENV{date}|saison|=={automne}|?{' ',''})#SET{'colo','96aa84'}]
+[(#ENV{date}|saison|=={hiver}|?{' ',''})#SET{'colo','8d8ba3'}]
 
 
 
@@ -213,7 +213,7 @@
 			<table><tr>
 			
 			<BOUCLE_flickr(DOCUMENTS){id_article}{!par date}{extension==jpg|png|gif}{0,#ENV{taille,8}}>
-			<td> <a href="#URL_ARTICLE">[(#FICHIER|copie_locale|image_masque{carre-112.png}|image_sepia{#GET{colo}}|inserer_attribut{style,'width:112px;height:112px'}|inserer_attribut{alt,'Cliquez pour en voir plus'})]</a></td>
+			<td> <a href="#URL_ARTICLE">[(#FICHIER|copie_locale|image_masque{carre-112.png}|image_sepia{#GET{colo}}|image_aplatir{jpg,ffffff}|inserer_attribut{style,'width:112px;height:112px'}|inserer_attribut{alt,'Cliquez pour en voir plus'})]</a></td>
 
 			[(#COMPTEUR_BOUCLE|Splickr_juste_a_x{#ENV{colonnes,4},</tr><tr>})]
 			</BOUCLE_flickr>
@@ -236,7 +236,7 @@
 			<table><tr>
 			
 			<BOUCLE_flickr2(DOCUMENTS){id_article}{!par date}{extension==jpg|png|gif}{0,#ENV{taille,8}}>
-			<td> <a href="#URL_ARTICLE">[(#FICHIER|copie_locale|image_masque{carre-112.png}|inserer_attribut{style,'width:112px;height:112px'}|inserer_attribut{alt,'Cliquez pour en voir plus'})]</a></td>
+			<td> <a href="#URL_ARTICLE">[(#FICHIER|copie_locale|image_masque{carre-112.png}|image_aplatir{jpg,ffffff}|inserer_attribut{style,'width:112px;height:112px'}|inserer_attribut{alt,'Cliquez pour en voir plus'})]</a></td>
 			[(#COMPTEUR_BOUCLE|Splickr_juste_a_x{#ENV{colonnes,4},</tr><tr>})]
 			</BOUCLE_flickr2>
 			
