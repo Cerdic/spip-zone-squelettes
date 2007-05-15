@@ -1,7 +1,7 @@
 #Installation de SPIP
-svn checkout svn://trac.rezo.net/spip/spip/ ./
+#svn checkout svn://trac.rezo.net/spip/spip/ ./
 #Eventuellement, une branche ?
-#svn checkout svn://trac.rezo.net/spip/branches/spip-1.9.2 ./
+svn checkout svn://trac.rezo.net/spip/branches/spip-1.9.2 ./
 
 #Installation des plugins
 mkdir plugins
