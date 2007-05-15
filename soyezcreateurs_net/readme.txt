@@ -25,7 +25,7 @@ En l'état (avant travail en commun), le squelette a l'aspect de http://vallee-ai
 
 ----
 Méthode de travail en commun : le principe pour toucher au squelette :
-- rajouter un mot clef
+- rajouter un mot clef ou une config
 - rajouter la boucle utilisant le mot clef pour obtenir le comportement différent
 - mettre à jour postconfig avec le mot clef ayant la valeur qui fait que la fonctionnalité est débrayée par défaut (sauf si elle apporte un vrai plus)
 - vérifier que c'est toujours valide XHTML avec et sans la fonctionnalité et commiter si possible avec une url d'exemple
