@@ -82,12 +82,14 @@
 <BOUCLE_nb_images(DOCUMENTS){id_article}{mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
 </BOUCLE_nb_images> $nb_images = "#TOTAL_BOUCLE";</B_nb_images> ?>
  <?php  if ($nb_images >1) {?>
-
+<B_documents_portfolio>
 <div id="minipics">
 <ul id="diapo">
-<B_documents_portfolio>
+
+
+
 #ANCRE_PAGINATION
-<BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension IN png,jpg,gif}{par num titre, date}{pagination 20}>
+<BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension IN png,jpg,gif}{par num titre, date}{pagination 5}>
 <li class="transparent" id="a#ID_DOCUMENT">
 <a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;" 
 title="[(#TITRE|couper{80}|texte_backend) ][ (#DESCRIPTIF|couper{80}|texte_backend)]
@@ -98,18 +100,21 @@ title="[(#TITRE|couper{80}|texte_backend) ][ (#DESCRIPTIF|couper{80}|texte_backe
 
 " class="thickbox">
 [(#FICHIER|copie_locale|image_masque{carre-80.png}|image_aplatir{jpg,ffffff}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend) ][ (#DESCRIPTIF|couper{80}|texte_backend)]})]</a>
+	
 </li>
-				
-				
-</BOUCLE_documents_portfolio>
-[<div class="grande_boite"><p class="centre gras">(#PAGINATION)<br/>Il y a au total #GRAND_TOTAL photos, cette page en affiche #TOTAL_BOUCLE.</p></div>]
-</B_documents_portfolio>
+</BOUCLE_documents_portfolio>				
+
+
+
 </ul>
+</div>[(#REM)   fermeture minipics   ] 	
+
+[<div class="grande_boite"><p class="centre gras">(#PAGINATION)<br/>Il y a au total #GRAND_TOTAL photos, cette page en affiche #TOTAL_BOUCLE.</p></div>]		
+
+</B_documents_portfolio>		
 
 
-</div>[(#REM)   fermeture minipics   ] 
-			</B_documents_portfolio>
-
+	
  <?php  } if ($nb_images ==1) {?>
 
 <B_afficher_photo_seule>
