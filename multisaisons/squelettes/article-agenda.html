@@ -28,7 +28,7 @@
 	[(#REM) 4 css qui changent l aspect du site suivant la saison.]
 
 <BOUCLE_mot_saison(MOTS){titre=saison}{0,1}>
-<link rel="stylesheet" type="text/css" href="[squelettes/css/(#ENV{date}|saison|translitteration).css]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{[css/(#ENV{date}|saison|translitteration).css]})]" />
 
 </BOUCLE_mot_saison>
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/couleurs.css})]" />
@@ -185,7 +185,7 @@ x #HAUTEUR})]
 #SET{latitude,#LAT}
 #SET{lonxitude,#LONX}
 <p>Coordonnées GPS: Latitude: #LAT, Longitude: #LONX.<br/>
-[<a href="(#URL_PAGE{localiser}|parametre_url{'zoom',9}|parametre_url{'latit',#GET{latitude}}|parametre_url{'lonxit',#GET{lonxitude}})">Localiser l'événement sur une carte imprimable</a>.]
+[<a href="(#URL_PAGE{localiser}|parametre_url{'id_article',#ID_ARTICLE}|parametre_url{'id_evenement',#ID_EVENEMENT}|parametre_url{'zoom',9}|parametre_url{'latit',#GET{latitude}}|parametre_url{'lonxit',#GET{lonxitude}})">Localiser l'événement sur une carte imprimable</a>.]
 </p>
 </BOUCLE_set_moi>
 
@@ -266,7 +266,7 @@ x #HAUTEUR})]
 
 
 <BOUCLE_previsions(PREVISIONS) {id_meteo} {par date} {0,3} >
-[(#TEMPS|icone_meteo{squelettes/images/meteo/,png}) ][(#DATE|affdate): ][(#TEMPS|traduire_meteo).]
+[(#TEMPS|icone_meteo{#CHEMIN{images/meteo/,png}}) ][(#DATE|affdate): ][(#TEMPS|traduire_meteo).]
 [ Mini:(#MINIMA)&deg;C][ maxi: (#MAXIMA)&deg;C.]<br/>
 
 </BOUCLE_previsions>
