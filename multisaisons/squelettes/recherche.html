@@ -76,7 +76,7 @@
 </div>
 
 [(#REM)   Résultats recherche textes  ]
-
+<B_marecherche_textes>
 <div class="grande_boite">
 <B_marecherche_textes>
 <h4 class="icone_recherche">Dans les articles :</h4>
@@ -93,16 +93,19 @@
     </BOUCLE_articles>
 </BOUCLE_marecherche_textes>
 [<p class="centre gras">(#PAGINATION{page_precedent_suivant})<br/>Il y a au total #GRAND_TOTAL articles, cette page en affiche #TOTAL_BOUCLE</p>]
-</B_marecherche_textes>
-[<h4 class="icone_recherche">Dans les articles :</h4>
-<p>"(#RECHERCHE)" n'a pas &eacute;t&eacute; trouv&eacute; dans les articles.</p>]
-<//B_marecherche_textes>
 </div>
+</B_marecherche_textes>
+[<div class="grande_boite"><h4 class="icone_recherche">Dans les articles :</h4>
+<p>"(#RECHERCHE)" n'a pas &eacute;t&eacute; trouv&eacute; dans les articles.</p></div>]
+<//B_marecherche_textes>
 
+
+
+
+<B_marecherche_docs>
 [(#REM)   Résultats recherche docs ]
 <div id="minipics">
 <ul id="diapo">
-<B_marecherche_docs>
 <div class="grande_boite">
 <h4 class="icone_recherche"> Dans les documents :</h4></div>
 [(#ANCRE_PAGINATION)]
@@ -113,21 +116,23 @@
     <p class="centre">[(#TITRE)<br/>][<a href="(#URL_ARTICLE)">Voir l'article</a>]</p></li>
     </BOUCLE_documents>
 </BOUCLE_marecherche_docs>
+</ul></div>[(#REM)   fermeture minipics   ]
 [<div class="grande_boite"><p class="centre gras">(#PAGINATION)<br/>Il y a au total #GRAND_TOTAL documents, cette page en affiche #TOTAL_BOUCLE</p></div>]
 </B_marecherche_docs>
 [<div class="grande_boite">
 <h4 class="icone_recherche"> Dans les Documents :</h4>
 <p>"(#RECHERCHE)" n'a pas &eacute;t&eacute; trouv&eacute; dans les documents du site.</p></div>]
 <//B_marecherche_docs>
-</ul>
-</div>[(#REM)   fermeture minipics   ]
 
 
+
+
+
+
+<B_marecherche_forum>
 [(#REM)   Résultats recherche forums  ]
 <div class="grande_boite">
-<B_marecherche_forum>
-
-<h4 class="icone_recherche">Dans les forums</h4>
+<h4 class="icone_recherche">Dans les forums :</h4>
 [(#ANCRE_PAGINATION)]
 <BOUCLE_marecherche_forum(INDEX){recherche}{!par points}{type_table IN spip_forum} {pagination 5}>
     <BOUCLE_forum(FORUMS){id_forum}{unique}>
@@ -138,19 +143,20 @@
     </BOUCLE_forum>
 </BOUCLE_marecherche_forum>
 [<p class="centre gras">(#PAGINATION{page_precedent_suivant})<br/>Il y a au total #GRAND_TOTAL discussions, cette page en affiche #TOTAL_BOUCLE</p>]
-</B_marecherche_forum>
-[<h4 class="icone_recherche"> Dans les forums :</h4>
-<p>"(#RECHERCHE)" n'a pas &eacute;t&eacute; trouv&eacute; dans les forums de discussion.</p>]
+</div></B_marecherche_forum>
+[<div class="grande_boite"><h4 class="icone_recherche"> Dans les forums :</h4>
+<p>"(#RECHERCHE)" n'a pas &eacute;t&eacute; trouv&eacute; dans les forums de discussion.</p></div>]
 <//B_marecherche_forum>
-</div>
+
+
+
 
 
 
 [(#REM)   Résultats recherche brèves  ]
-<div class="grande_boite">
     <B_marecherche_breves>
-    
-<h4 class="icone_recherche">Dans les  brèves</h4>
+	<div class="grande_boite">
+<h4 class="icone_recherche">Dans les  brèves :</h4>
     [(#ANCRE_PAGINATION)]
     <BOUCLE_marecherche_breves(INDEX){recherche}{!par points}{type_table IN breves} {pagination 5}>
         <BOUCLE_breves(BREVES){id_breve}>
@@ -160,59 +166,57 @@
         </BOUCLE_breves>
     </BOUCLE_marecherche_breves>
     [<p class="centre gras">(#PAGINATION{page_precedent_suivant})<br/>Il y a au total #GRAND_TOTAL br&egrave;ves, cette page en affiche #TOTAL_BOUCLE</p>]
-    </B_marecherche_breves>
-    [
-<h4 class="icone_recherche">Dans les  brèves</h4>
-    <p>"(#RECHERCHE)" n'a pas &eacute;t&eacute; trouv&eacute; dans les br&egrave;ves.</p>]
+   </div> </B_marecherche_breves>
+    [<div class="grande_boite">
+<h4 class="icone_recherche">Dans les  brèves :</h4>
+    <p>"(#RECHERCHE)" n'a pas &eacute;t&eacute; trouv&eacute; dans les br&egrave;ves.</p></div>]
     <//B_marecherche_breves>
-</div>
 
 
 
 
+<B_marecherche_rubriques>
 [(#REM)   Résultats recherche rubriques  ]
 <div class="grande_boite">
-<h4 class="icone_recherche">Dans les rubriques:</h4>
-<B_marecherche_rubriques>
+<h4 class="icone_recherche">Dans les rubriques :</h4>
  [(#ANCRE_PAGINATION)]
 <BOUCLE_marecherche_rubriques(INDEX){recherche}{!par points}{type_table IN rubriques}{pagination 5}>
-   
-    <a href="#URL_RUBRIQUE" title="[(#TITRE)]" class="logogauche">
+       <p> <a href="#URL_RUBRIQUE" title="[(#TITRE)]" class="logogauche">
     <INCLURE{fond="logo"}{id_rubrique,#ID_RUBRIQUE}{taille=46}{date=#ENV{date}}></a>     
     [<h4><a href="#URL_RUBRIQUE" title="[(#TITRE)]">(#TITRE)</a></h4>]
-    <p>
-    [(#DESCRIPTIF|couper{60})] </p> 
+   [(#DESCRIPTIF|couper{60})]</p> 
     <hr class="spacer" />   
    </BOUCLE_marecherche_rubriques>
 		    [<p class="centre gras">(#PAGINATION{page_precedent_suivant})<br/>Il y a au total #GRAND_TOTAL rubriques, cette page en affiche #TOTAL_BOUCLE</p>]
-    </B_marecherche_rubriques>
-	<p>[&quot;(#RECHERCHE)&quot; n'a pas &eacute;t&eacute; trouv&eacute; dans les
-    descriptifs et les titres des rubriques.]</p>
+   </div> </B_marecherche_rubriques>
+	[<div class="grande_boite">
+	<h4 class="icone_recherche">Dans les rubriques :</h4>
+	<p>&quot;(#RECHERCHE)&quot; n'a pas &eacute;t&eacute; trouv&eacute; dans les
+    descriptifs et les titres des rubriques.</p></div>]
    <//B_marecherche_rubriques>
 
-</div>
 
 
 
-[(#REM)   Résultats recherche sites web  ]
+
+[(#REM)   Résultats recherche sites web  ] 
+<B_marecherche_sitesweb>
 <div class="grande_boite">
-    <B_marecherche_sitesweb>
-
-<h4 class="icone_recherche">Dans les sites web </h4>
+   <h4 class="icone_recherche">Dans les sites web :</h4>
     [(#ANCRE_PAGINATION)]
     <BOUCLE_marecherche_sitesweb(INDEX){recherche}{!par points}{type_table IN spip_syndic} {pagination 5}>
         <BOUCLE_sitesweb(SITES){id_syndic}>
-        <a href="#URL_SITE"><strong>[(#NOM_SITE)]</strong></a> [<br/>(#DESCRIPTIF|couper{60})]<br/>
+     <p>   <a href="#URL_SITE"><strong>[(#NOM_SITE)]</strong></a> [<br/>(#DESCRIPTIF|couper{60})]</p>
         </BOUCLE_sitesweb>
     </BOUCLE_marecherche_sitesweb>
     [<p class="centre gras">(#PAGINATION{page_precedent_suivant})<br/>Il y a au total #GRAND_TOTAL sites, cette page en affiche #TOTAL_BOUCLE</p>]
-    </B_marecherche_sitesweb>
-    [
+  </div>  </B_marecherche_sitesweb>
+    [<div class="grande_boite">
 <h4 class="icone_recherche">Dans les sites web </h4>
-    <p>"(#RECHERCHE)" n'a pas &eacute;t&eacute; trouv&eacute; dans les descriptifs des sites web partenaires.</p>]
+    <p>"(#RECHERCHE)" n'a pas &eacute;t&eacute; trouv&eacute; dans les descriptifs des sites web partenaires.</p></div>]
     <//B_marecherche_sitesweb>
     
-</div>
+
 
 </div>  [(#REM)   fermeture colone de gauche]
 		
