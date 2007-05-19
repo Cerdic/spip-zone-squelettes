@@ -44,29 +44,6 @@
 [(#REM)   enlève http:// de l'adresse du site   ]
 
 
-<?php
-$url = "#URL_SITE_SPIP";
-$url= ereg_replace( "http://www.", "", $url );
-$url= ereg_replace( "http://", "", $url );
-?>
-
-
-<script type="text/javascript"><!--  
-// Moteur interne par Google (fenetre popup)
- function RecherchePopup()
- {
- chaine = document.forms.google.s.value;
-  if (document.forms.google.elements[1].checked) {   
-   URL="http://www.google.fr/search?as_q="+chaine+"&num=100&btnG=Recherche+Google&as_epq=&as_oq=&as_eq=&lr=&as_ft=i&as_filetype=&as_qdr=all&as_occt=any&as_dt=i&as_sitesearch=<?php  echo $url; ?>";
-   window.open(URL,'','toolbar=yes,location=yes,status=yes,menubar=yes,scrollbars=yes,resizable=yes,width=700,height=400'); 
-   }
-  if (document.forms.google.elements[2].checked) {
-   URL="http://www.google.fr/search?q="+chaine+"&hl=fr&meta=lr%3Dlang_fr";
-   window.open(URL,'','toolbar=yes,location=yes,status=yes,menubar=yes,scrollbars=yes,resizable=yes,width=700,height=400'); 
-   }
-} // -->
-</script>
-
 </head>
 <body> 
 <div id="container">   [(#REM)   centrage page   ]
@@ -75,53 +52,13 @@ $url= ereg_replace( "http://", "", $url );
 <INCLURE{fond="menuhoriz"}>
 <div id="content">  [(#REM)   ouverture contenu   ] 
 <div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
-<div id="cel">
-<ul id="deco">
-<li>
-
-<h4>Recherche interne</h4>
-<form action='_recherche-forum.php' method='post'>
-<p><input name="recherche" type='text' value="#RECHERCHE" id='recherche' size='20' /> 
-<input type="image" src="./IMG/002/loupe.gif" name="submit" value="Ok" />
-<br/>
-              Lancez une recherche dans les forums du site: 
-              Les mots de moins de quatre lettres ne sont pas indexés
-  par le moteur interne. Ajoutez plusieurs mots pour cibler votre recherche.</p>			           
-          </form>
-		
-</li>
-
-
- 
-[(#REM)   recherche sur Google   ]
-<li>
-<h4>Recherche Google</h4>
-
-                  <form action='' method='get' name="google"
-                  onsubmit="return RecherchePopup();" id="google">
-                    <p>
-                      <input type='text' name="s" size="20" value="#RECHERCHE" /><a href="javascript:RecherchePopup();" onkeypress="return true"><img src="./IMG/002/loupe.gif" alt="chercher" /></a> <br />
-    Lancez une recherche avec Google:<br />
-    <input name="sur" type='radio' value="site checked" checked />
-    sur Art-logic.info.
-    <input type='radio' name="sur" value="voila" />
-    sur le Web.<br />
-    Les derniers forums[ de (#NOM_SITE_SPIP)]ne sont pas ind&eacute;x&eacute;s
-    par Google, pr&eacute;f&eacute;rez le moteur interne pour une recherche exhaustive. </p>
-                  </form>
-                  <br/>
-</li>
-</ul>
-</div>
-
 
 <div class="grande_boite">
 <p class="centre gras">Le message a &eacute;t&eacute; d&eacute;plac&eacute; ou mod&eacute;r&eacute;.<br/>
 Utilisez le bouton RETOUR de votre navigateur<br/> 
-ou lancez une recherche dans les forums:
+ou lancez une recherche dans les forums:<br/>
+<INCLURE{fond="inc-recherche"}>  
 </p>
-<br />
-
 
 
 
@@ -143,7 +80,7 @@ ou lancez une recherche dans les forums:
   <li>
     <h4>D&eacute;plac&eacute;? </h4>
               <p>Le message peut avoir &eacute;t&eacute; d&eacute;plac&eacute; d'un
-                forum &agrave; l'autre. Utilisez le moteur de <a href="#">recherche
+                forum &agrave; l'autre. Utilisez le moteur de <a href="(#URL_PAGE{recherche})">recherche
                 interne</a> ou surfez
               les forums.</p>
   </li> 
