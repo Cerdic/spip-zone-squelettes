@@ -1,47 +1,53 @@
-<BOUCLE_breve_principal(BREVES) {id_breve}>
+#CACHE{43200}<BOUCLE_breve_principal(BREVES) {id_breve}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <!-- Bones Dotspip 1.9 -->
 <head>
-<title>[#NOM_SITE_SPIP] [(#TITRE|textebrut)]</title>
-<!-- inculsion des metatags, des feuilles de styles ... -->
-<INCLURE{fond=inclusions/inc_head}>
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[
+<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />
+]<INCLURE{fond=inclusions/inc_head}>
 <meta name="MSSmartTagsPreventParsing" content="TRUE" />
-</head>
-<body>
+<meta name="Robots" content="index,follow,all" />
+<meta name="Identifier-URL" content="#URL_SITE_SPIP" />
+<meta name="rating" content="General" />
+<meta name="revisit-after" content="15 days" />
+</head><body>
 <div id="page">
   <div id="top">
     <h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
   </div>
-    <INCLURE{fond=inclusions/inc_menu-haut}>
+  <INCLURE{fond=inclusions/inc_menu-haut}>
   <div id="main">
     <div id="content">
       <div class="post">
-        <p class="day-date"><:breves:></p>
-        <h2 id="p1" class="post-title">#TITRE</h2>
-        <p class="post-info">[(#DATE|nom_jour)] [(#DATE|affdate)]</p>
-        <div class="image">[(#LOGO_BREVE_RUBRIQUE|right||reduire_image{100,100})]</div>
-        [<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{520,0})</div>]
+        <p class="day-date">[(#DATE|nom_jour)] [(#DATE|affdate)]</p>
+        <h2 id="p#ID_BREVE" class="post-title">#TITRE</h2>
+        <div class="images">[(#LOGO_BREVE_RUBRIQUE|right||reduire_image{100,100})]</div>
         [
-        <h4><:sur_web:>: <a href="#URL_SITE">(#NOM_SITE)</a></h4>
+        <div class="#EDIT{texte} texte">(#TEXTE)</div>
         ]
-        <!-- boucle forum  -->
-        <INCLURE{fond=inclusions/inc_forum_breve}{id_breve}{id_forum}{id_signature}>
-        <!-- fin breve -->
-      </div>
+        [
+        <p class="lien">
+          <:voir_en_ligne:>
+          : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>
+        ]
+        [
+        <div class="notes">
+          <h2>
+            <:info_notes:>
+          </h2>
+          (#NOTES)</div>
+        ]
+        [(#REM) Forum de la breve	NB : pour desactiver les forums de breve, supprimez simplement les lignes ci-dessous ] <a href="#forum" name="forum" id="forum"></a> [
+        <h3><a href="(#PARAMETRES_FORUM|url_reponse_forum)">
+          <:repondre_breve:>
+          </a></h3>
+        ] <INCLURE{fond=inc-forum}{id_breve}> </div>
     </div>
   </div>
-  <div id="sidebar">
-          <INCLURE{fond=inclusions/inc_recherche}>
-   <INCLURE{fond=inclusions/inc_dernieres_breves}>
-<INCLURE{fond=inclusions/inc_rubriques}>
-      <INCLURE{fond=inclusions/inc_sites}>
-  <INCLURE{fond=inclusions/inc_logo}>
-  </div>
-
-	[(#REM) Pied de page ]
-	<INCLURE{fond=inclusions/inc_pied_de_page}{skel=#SQUELETTE}>
-</div>
+  <div id="sidebar"> <INCLURE{fond=inclusions/inc_recherche}> <INCLURE{fond=inclusions/inc_dernieres_breves}> <INCLURE{fond=inclusions/inc_rubriques}> <INCLURE{fond=inclusions/inc_sites}> <INCLURE{fond=inclusions/inc_logo}> </div>
+  [(#REM) Pied de page ] <INCLURE{fond=inclusions/inc_pied_de_page}{skel=#SQUELETTE}> </div>
 <!-- end #page -->
 </body>
 </BOUCLE_breve_principal>

@@ -9,34 +9,40 @@
 </head>
 <body>
 <div id="page">
-  <div id="top">
-    <h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
-    <p id="prelude">
-      <INCLURE{fond=inclusions/inc_menu-haut}>
-    </p>
-  </div>
-  <div id="main">
-    <div id="content">
-      <!-- Une : affichage de l'auteur -->
-      <div class="post">
-      <p class="day-date"><:auteur:></p>
-        [<div class="image">(#LOGO_AUTEUR|right||reduire_image{100,100})</div>]
-        <h2 id="p1" class="post-title">#NOM</h2>
-        [
-        <p class="post-info">(#BIO)</p>
-        ] [<br />
-        #NOM_SITE : <a href="(#URL_SITE)">#URL_SITE</a><br />
-        ] [(#NOTES)]
-        <h2><:envoyer_message:></h2>
-        [(#FORMULAIRE_ECRIRE_AUTEUR)]
-        <!-- Articles de l'auteur -->
-        <h2><:articles_auteur:></h2>
-        <BOUCLE_articles(ARTICLES) {id_auteur} {par titre}>
-        <ul>
-          <li><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a> [(#DATE|nom_jour)] [(#DATE|affdate)]
-            <B_auteurs>
-<:par_auteur:>
-            <BOUCLE_auteurs(AUTEURS) {id_article} {", "}>
+<div id="top">
+  <h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+  <p id="prelude"> <INCLURE{fond=inclusions/inc_menu-haut}> </p>
+</div>
+<div id="main">
+<div id="content">
+<!-- Une : affichage de l'auteur -->
+<div class="post">
+<p class="day-date">
+  <:auteur:>
+</p>
+[
+<div class="image">(#LOGO_AUTEUR|right||reduire_image{100,100})</div>
+]
+<h2 id="p1" class="post-title">#NOM</h2>
+[
+<p class="post-info">(#BIO)</p>
+] [<br />
+#NOM_SITE : <a href="(#URL_SITE)">#URL_SITE</a><br />
+] [(#NOTES)]
+<h2>
+  <:envoyer_message:>
+</h2>
+[(#FORMULAIRE_ECRIRE_AUTEUR)]
+<!-- Articles de l'auteur -->
+<h2>
+  <:articles_auteur:>
+</h2>
+<BOUCLE_articles(ARTICLES) {id_auteur} {par titre}>
+<ul>
+<li><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a> [(#DATE|nom_jour)] [(#DATE|affdate)]
+  <B_auteurs>
+  <:par_auteur:>
+  <BOUCLE_auteurs(AUTEURS) {id_article} {", "}>
             #NOM
             </BOUCLE_auteurs>
           </li>
@@ -46,16 +52,10 @@
     </div>
   </div>
   <div id="sidebar">
-    <div id="calendar">
-      <INCLURE{fond=inclusions/inc_dernieres_breves}>
-    </div>
-          <INCLURE{fond=inclusions/inc_recherche}>
-<INCLURE{fond=inclusions/inc_rubriques}>
-      <INCLURE{fond=inclusions/inc_sites}>
-  <INCLURE{fond=inclusions/inc_logo}>
-  </div>
-	[(#REM) Pied de page ]
-	<INCLURE{fond=inclusions/inc_pied_de_page}{skel=#SQUELETTE}>
+  <div id="calendar"> <INCLURE{fond=inclusions/inc_dernieres_breves}> </div>
+  <INCLURE{fond=inclusions/inc_recherche}> <INCLURE{fond=inclusions/inc_rubriques}> <INCLURE{fond=inclusions/inc_sites}> <INCLURE{fond=inclusions/inc_logo}>
+</div>
+[(#REM) Pied de page ] <INCLURE{fond=inclusions/inc_pied_de_page}{skel=#SQUELETTE}>
 </div>
 <!-- end #page -->
 </body>

@@ -1,84 +1,75 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html dir="#LANG_DIR" lang="#LANG">
+#CACHE{3600}
+#HTTP_HEADER{"Cache-Control: max-age=3600, must-revalidate"}
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
 <head>
 <!-- Bones DotSPIP 1.9 -->
-<title>[#NOM_SITE_SPIP]<:poster_message:></title>
+<title>
+<:poster_message:>
+- [(#NOM_SITE_SPIP|textebrut)]</title>
 <INCLURE{fond=inclusions/inc_head}>
-<meta name="MSSmartTagsPreventParsing" content="TRUE" />
+<meta name="robots" content="none" />
 </head>
 <body>
 <div id="page">
   <div id="top">
     <h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
   </div>
-  <p id="prelude">
-    <INCLURE(inclusions/inc_menu-haut.php3)>
-  </p>
+  <INCLURE{fond=inclusions/inc_menu-haut}>
   <div id="main">
     <div id="content">
       <!-- Boucle sur les articles-->
       <div class="post">
-        <p class="day-date"><:forum:> </p>
-        <h1><:poster_message:></h1>
-        <BOUCLE_article(ARTICLES) {id_article}>
-        [
-        <h3>(#SURTITRE)</h3>
-        ]
-        [(#LOGO_ARTICLE_RUBRIQUE|right||reduire_image{100,100})]
-        <h3><:en_reponse:></h3>
-        <h2 id="p1" class="post-title"><a href="#URL_ARTICLE">#TITRE</a></h2>
-        [
-        <h3>(#SOUSTITRE)</h3>
-        ]
-        <p class="post-info"> [(#DATE|nom_jour)] [(#DATE|affdate)]
-          <B_auteurs_un>
-          <:par_auteur:>
-          <BOUCLE_auteurs_un(AUTEURS) {id_article} {", "}>
-          #NOM
-          </BOUCLE_auteurs_un>
+        <p class="day-date">
+          <:poster_message:>
         </p>
-        <div class="post-content"> [
-          <p align="justify">(#INTRODUCTION)</p>
-          ] </div>
-        </BOUCLE_article>
-        <!-- Boucle sur brevess-->
-        <BOUCLE_breve(BREVES) {id_breve}>
-        [(#LOGO_BREVE_RUBRIQUE|right||reduire_image{100,100})]
-        <h2 id="p1" class="post-title"><a href="#URL_BREVE">#TITRE</a></h2>
-        <p class="post-info"> [(#DATE|nom_jour)] [(#DATE|affdate)] </p>
-        <div class="post-content">
-          <p>[(#INTRODUCTION|justifier)]</p>
-        </div>
-        </BOUCLE_breve>
         <BOUCLE_forum_parent(FORUMS) {id_forum}>
-        <:en_reponse:>
-        <h2 id="p1" class="post-title">#TITRE</h2>
-        <p class="post-info"> [(#DATE|nom_jour)] [(#DATE|affdate)] </p>
-        <div class="post-content"> [
-          <p align="justify">(#INTRODUCTION)</p>
-          ] </div>
-        <br />
+        <h2 class="post-title"><a href="#URL_FORUM">#TITRE</a></h2>
+        <p class="post-info">[(#DATE|affdate_jourcourt)][&nbsp;(#DATE|heures)][:(#DATE|minutes)][,
+          <:par_auteur:>
+          (#LESAUTEURS)]</p>
+        [
+        <div class="texte introduction">(#INTRODUCTION|lignes_longues)</div>
+        ]
         </BOUCLE_forum_parent>
+        <BOUCLE_article(ARTICLES) {id_article}>
+        <div class="images">[(#LOGO_ARTICLE||image_reduire{150,100})]</div>
+        <h2 class="post-title"><a href="#URL_ARTICLE">#TITRE</a></h2>
+        <p class="post-info">[(#DATE|nom_jour) ][(#DATE|affdate)][,
+          <:par_auteur:>
+          (#LESAUTEURS)]</p>
+        [
+        <div class="texte introduction">(#INTRODUCTION)</div>
+        ]
+        </BOUCLE_article>
+        <BOUCLE_breve(BREVES) {id_breve}>
+        <div class="images">[(#LOGO_BREVE||image_reduire{150,100})]</div>
+        <h2 class="post-title"><a href="#URL_BREVE">#TITRE</a></h2>
+        <p class="post-info">[(#DATE|nom_jour) ][(#DATE|affdate)]</p>
+        [
+        <div class="texte introduction">(#INTRODUCTION)</div>
+        ]
+        </BOUCLE_breve>
+        <BOUCLE_rubrique(RUBRIQUES) {id_rubrique}>
+        <h2 class="post-title"><a href="#URL_RUBRIQUE">#TITRE</a></h2>
+        [
+        <div class="texte">(#TEXTE)</div>
+        ]
+        </BOUCLE_rubrique>
+        <BOUCLE_syndic(SITES) {id_syndic}>
+        <h2><a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a></h2>
+        [
+        <div class="texte">(#DESCRIPTIF)</div>
+        ]
+        </BOUCLE_syndic>
+        <//B_forum_parent>
+        
+        
+        
         #FORMULAIRE_FORUM </div>
     </div>
   </div>
-  <div id="sidebar">
-    <div id="calendar">
-      <INCLURE{fond=inclusions/inc_dernieres_breves}>
-    </div>
-    <div id="recherche">
-      <INCLURE{fond=inclusions/inc_recherche}>
-    </div>
-<INCLURE{fond=inclusions/inc_rubriques}>
-      <INCLURE{fond=inclusions/inc_sites}>
-    <div id="syndicate">
-      <h2>Syndication</h2>
-      <INCLURE{fond=inclusions/inc_logo}>
-    </div>
-  </div>
-	[(#REM) Pied de page ]
-	<INCLURE{fond=inclusions/inc_pied_de_page}{skel=#SQUELETTE}>
-</div>
+  <div id="sidebar"> <INCLURE{fond=inclusions/inc_dernieres_breves}> <INCLURE{fond=inclusions/inc_recherche}> <INCLURE{fond=inclusions/inc_rubriques}> <INCLURE{fond=inclusions/inc_sites}> <INCLURE{fond=inclusions/inc_logo}> </div>
+  [(#REM) Pied de page ] <INCLURE{fond=inclusions/inc_pied_de_page}{skel=#SQUELETTE}> </div>
 <!-- end #page -->
 </body>
 </html>

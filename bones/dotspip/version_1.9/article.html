@@ -1,119 +1,138 @@
-<BOUCLE_article_principal(ARTICLES) {id_article}>
+#CACHE{43200}<BOUCLE_article_principal(ARTICLES) {id_article}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- Bones Dotspip 1.9 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
-
-	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
-	[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
-	<INCLURE{fond=inclusions/inc_head}>
-		<meta name="MSSmartTagsPreventParsing" content="TRUE" />
-		<meta name="Author" content="[(#LESAUTEURS|textebrut)]" />
-		<meta name="Robots" content="index,follow,all" />
-		<meta name="Identifier-URL" content="#URL_SITE_SPIP" />
-		<meta name="rating" content="General" />
-		<meta name="revisit-after" content="15 days" />
-	</head>
-	<body>
-		<div id="page">
-			<div id="top">
-				<h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
-			</div>
-			<INCLURE{fond=inclusions/inc_menu-haut}>
-				<div id="main">
-					<div id="content">
-						<!-- Boucle sur la liste de billets -->
-						<div class="post">
-							<p class="day-date">[(#DATE|nom_jour) ][(#DATE|affdate)]</p>
-
-							[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
-
-							[<h2 id="p#ID_ARTICLE" class="#EDIT{titre} post-title">(#TITRE)</h2>]
-
-							[<p class="#EDIT{soustitre} surtitre">(#SURTITRE)</p>]
-
-							<p class="post-info"><small>[<:par_auteur:> (#LESAUTEURS)]</small> [| <:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">()#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})</a>]</p>
-
-							[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{200,200})]
-
-							<div class="post-content">
-
-								#DEBUT_SURLIGNE
-								[<div class="#EDIT{chapo} texte">(#CHAPO)</div>]
-								[<div class="#EDIT{descriptif} texte" align="left">(#DESCRIPTIF)</div>]
-								[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{520,0})</div>]
-								#FIN_SURLIGNE
-
-								[(#REM) Inclure le modele des liens de traductions ]
-								#MODELE{article_traductions}
-
-								[<div class="#EDIT{ps} texte"><em>(#PS)</em></div>]
-
-								[(#REM) Portfolio : album d'images ]
-								<B_documents_portfolio>
-								<div id="documents_portfolio">
-									<h2><:info_portfolio:></h2>
-									<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
-									[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|couper{80}|texte_backend)"]>(#FICHIER|copie_locale|image_reduire{0,60}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
-									</BOUCLE_documents_portfolio>
-								</div>
-								</B_documents_portfolio>
-								<BOUCLE_afficher_document(DOCUMENTS) {id_document} {id_article} {mode=document}{extension IN png,jpg,gif}>
-								<div class="spip_documents spip_documents_center" id="document_actif">
-									#EMBED_DOCUMENT
-									[<div class="#EDIT{titre} spip_doc_titre">(#TITRE)</div>]
-									[<div class="#EDIT{descriptif} spip_doc_descriptif">(#DESCRIPTIF)</div>]
-								</div>
-								</BOUCLE_afficher_document>
-
-								[<div class="ps"><h2><:info_ps:></h2>#DEBUT_SURLIGNE<div class="#EDIT{ps}">(#PS)</div>#FIN_SURLIGNE</div>]
-
-								[(#REM) Autres documents joints a l'article ]
-								<B_documents_joints>
-								<div id="documents_joints">
-									<h2><:titre_documents_joints:></h2>
-									<ul>
-										<BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {par num titre, date} {doublons}>
-										<li>
-											<div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
-											[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
-										</li>
-										</BOUCLE_documents_joints>
-									</ul>
-								</div>
-								</B_documents_joints>
-							</div>
-
-							[<div class="notes"><h2><:info_notes:></h2>#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
-
-
-							[(#REM) Forum de l'article ]
-							<a href="#forum" name="forum" id="forum"></a>
-							[<p class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a></p>]
-							<INCLURE{fond=inclusions/inc_forum}{id_article}>
-
-								[(#REM) Petition :
-								La petition ayant une PAGINATION il faut absolument lui passer SELF]
-								[(#PETITION|?{' '})
-								<INCLURE{fond=inclusions/inc-petition}{id_article}{self=#SELF}>
-									]
-								</div>
-							</div>
-						</div>
-						<div id="sidebar">
-							<INCLURE{fond=inclusions/inc_recherche}>
-								<INCLURE{fond=inclusions/inc_dernieres_breves}>
-									<INCLURE{fond=inclusions/inc_rubriques}>
-										<INCLURE{fond=inclusions/inc_meme_rubrique}{id_rubrique}>
-											[(#REM) Menu de navigation mots-cles ]
-											#MODELE{article_mots}
-											<INCLURE{fond=inclusions/inc_sites}>
-												<INCLURE{fond=inclusions/inc_logo}>
-												</div>
-												[(#REM) Pied de page ]
-												<INCLURE{fond=inclusions/inc_pied_de_page}{skel=#SQUELETTE}>
-												</div>
-												<!-- end #page -->
-											</body>
-											</BOUCLE_article_principal>
-											</html>
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[
+<meta name="description" content="(#INTRODUCTION|textebrut)" />
+]<INCLURE{fond=inclusions/inc_head}>
+<meta name="MSSmartTagsPreventParsing" content="TRUE" />
+<meta name="Author" content="[(#LESAUTEURS|textebrut)]" />
+<meta name="Robots" content="index,follow,all" />
+<meta name="Identifier-URL" content="#URL_SITE_SPIP" />
+<meta name="rating" content="General" />
+<meta name="revisit-after" content="15 days" />
+</head><body>
+<div id="page">
+  <div id="top">
+    <h1><a href="#URL_SITE_SPIP">#NOM_SITE_SPIP</a></h1>
+  </div>
+  <INCLURE{fond=inclusions/inc_menu-haut}>
+  <div id="main">
+    <div id="content">
+      <!-- Boucle sur la liste de billets -->
+      <div class="post">
+        <p class="day-date">[(#DATE|nom_jour) ][(#DATE|affdate)]</p>
+        [
+        <p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>
+        ]
+        
+        [
+        <h2 id="p#ID_ARTICLE" class="#EDIT{titre} post-title">(#TITRE)</h2>
+        ]
+        
+        [
+        <p class="#EDIT{soustitre} surtitre">(#SURTITRE)</p>
+        ]
+        <p class="post-info">[<small>
+          <:par_auteur:>
+          (#LES_AUTEURS)</small>] [|
+          <:voir_en_ligne:>
+          : <a href="(#URL_SITE)" class="spip_out">()#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})</a>]</p>
+        <div class="post-content"> #DEBUT_SURLIGNE
+          [
+          <div class="#EDIT{chapo} texte">(#CHAPO)</div>
+          ]
+          [
+          <div class="#EDIT{descriptif} texte" align="left">(#DESCRIPTIF)</div>
+          ]
+          [
+          <div class="images">(#LOGO_ARTICLE_RUBRIQUE||image_reduire{200,200}) </div>
+          ]
+          [
+          <div class="#EDIT{texte} texte">(#TEXTE|image_reduire{520,0})</div>
+          ]
+          #FIN_SURLIGNE
+          
+          [(#REM) Inclure le modele des liens de traductions ]
+          #MODELE{article_traductions}
+          
+          [
+          <div class="#EDIT{ps} texte"><em>(#PS)</em></div>
+          ]
+          
+          [(#REM) Portfolio : album d'images ]
+          <B_documents_portfolio>
+            <div id="documents_portfolio">
+              <h3>
+                <:info_portfolio:>
+              </h3>
+              <BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}> [<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|couper{80}|texte_backend)"]>(#FICHIER|copie_locale|image_reduire{0,60}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
+              </BOUCLE_documents_portfolio>
+            </div>
+          </B_documents_portfolio>
+          <BOUCLE_afficher_document(DOCUMENTS) {id_document} {id_article} {mode=document}{extension IN png,jpg,gif}>
+          <div class="spip_documents spip_documents_center" id="document_actif"> #EMBED_DOCUMENT
+            [
+            <div class="#EDIT{titre} spip_doc_titre">(#TITRE)</div>
+            ]
+            [
+            <div class="#EDIT{descriptif} spip_doc_descriptif">(#DESCRIPTIF)</div>
+            ] </div>
+          </BOUCLE_afficher_document>
+          [
+          <div class="ps">
+            <h2>
+              <:info_ps:>
+            </h2>
+            #DEBUT_SURLIGNE
+            <div class="#EDIT{ps}">(#PS)</div>
+            #FIN_SURLIGNE</div>
+          ]
+          
+          [(#REM) Autres documents joints a l'article ]
+          <B_documents_joints>
+            <div id="documents_joints">
+              <h3>
+                <:titre_documents_joints:>
+              </h3>
+              <ul>
+                <BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {par num titre, date} {doublons}>
+                <li>
+                  <div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{
+                    <:info_document:>
+                    })]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
+                  [
+                  <div class="spip_doc_descriptif">(#DESCRIPTIF)</div>
+                  ] </li>
+                </BOUCLE_documents_joints>
+              </ul>
+            </div>
+          </B_documents_joints>
+        </div>
+        [
+        <div class="notes">
+          <h2>
+            <:info_notes:>
+          </h2>
+          #DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>
+        ]
+        
+        
+        [(#REM) Forum de l'article ] <a href="#forum" name="forum" id="forum"></a> [
+        <p class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)">
+          <:repondre_article:>
+          </a></p>
+        ] <INCLURE{fond=inclusions/inc_forum}{id_article}> [(#REM) Petition :
+        La petition ayant une PAGINATION il faut absolument lui passer SELF]
+        [(#PETITION|?{' '}) <INCLURE{fond=inclusions/inc-petition}{id_article}{self=#SELF}> ] </div>
+    </div>
+  </div>
+  <div id="sidebar"> <INCLURE{fond=inclusions/inc_recherche}> <INCLURE{fond=inclusions/inc_dernieres_breves}> <INCLURE{fond=inclusions/inc_rubriques}> <INCLURE{fond=inclusions/inc_meme_rubrique}{id_rubrique}> [(#REM) Menu de navigation mots-cles ]
+    #MODELE{article_mots} <INCLURE{fond=inclusions/inc_sites}> <INCLURE{fond=inclusions/inc_logo}> </div>
+  [(#REM) Pied de page ] <INCLURE{fond=inclusions/inc_pied_de_page}{skel=#SQUELETTE}> </div>
+<!-- end #page -->
+</body>
+</BOUCLE_article_principal>
+</html>
