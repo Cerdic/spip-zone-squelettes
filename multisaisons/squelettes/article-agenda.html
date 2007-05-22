@@ -64,15 +64,12 @@
 [<h1>(#TITRE) 
       </h1><br/>]
    [<p>(#TEXTE|lier_au_glossaire)</p>]
-   <p>[<:bloog:premiere_publi:> le (#DATE_REDAC|nom_jour) ][(#DATE_REDAC|jour)
-     ][(#DATE_REDAC|nom_mois) [(#DATE_REDAC|annee)]][ <:bloog:mise_en_ligne:> le
-     (#DATE|nom_jour) ][(#DATE|jour) ] [(#DATE|nom_mois) [(#DATE|annee)]]
-	
+
 	
 <B_evenements>
-<h4>Cet événement est répété:</h4>
+<h4>Dates:</h4>
 <ul>
-<BOUCLE_evenements(EVENEMENTS){id_article} {statut=publie}{par date_fin}{age_fin>0}>
+<BOUCLE_evenements(EVENEMENTS){id_article}{statut=publie}{par date_fin}{age_fin>0}>
 
 <li class="grande_liste">
 
@@ -103,7 +100,6 @@
 </B_evenements>
 
 
-	 </p>
   <hr class="spacer"/>
 
 
@@ -179,17 +175,18 @@ x #HAUTEUR})]
 
 
 
+[(#REM)   ajoute un lien et les coordonnées gis  ]
+
+
 <B_set_moi>
 <div class="grande_boite">
 <BOUCLE_set_moi(GIS){id_article}>
 #SET{latitude,#LAT}
 #SET{lonxitude,#LONX}
-<p>Coordonnées GPS: Latitude: #LAT, Longitude: #LONX.<br/>
-[<a href="(#URL_PAGE{localiser}|parametre_url{'id_article',#ID_ARTICLE}|parametre_url{'id_evenement',#ID_EVENEMENT}|parametre_url{'zoom',9}|parametre_url{'latit',#GET{latitude}}|parametre_url{'lonxit',#GET{lonxitude}})">Localiser l'événement sur une carte imprimable</a>.]
-</p>
+[<p>Coordonnées GPS: Latitude: #LAT, Longitude: #LONX.<br/>
+<a href="(#URL_PAGE{localiser}|parametre_url{'id_article',#ID_ARTICLE}|parametre_url{'zoom',14}|parametre_url{'latit',#GET{latitude}}|parametre_url{'lonxit',#GET{lonxitude}})">Localiser l'événement sur une carte imprimable</a>.
+</p>]
 </BOUCLE_set_moi>
-
-
 </div>
 </B_set_moi>
 
@@ -213,7 +210,7 @@ x #HAUTEUR})]
     
 
 <div class="boite">
-  <h4 class="icone_agenda">Affichage par date</h4>
+  <h4 class="icone_agenda">Afficher un seul jour</h4>
 
 #CALENDRIER_MINI{#ENV{date},'date',#SELF}
 </div>
@@ -254,29 +251,8 @@ x #HAUTEUR})]
 
 
 
+<INCLURE{fond=meteo}>
 
-<B_meteo>
-<div class="boite">
-
-
-<BOUCLE_meteo(METEO) {id_meteo?}>
-<h4 class="icone_soleil">Météo à #VILLE</h4>
-<p>
-
-
-
-<BOUCLE_previsions(PREVISIONS) {id_meteo} {par date} {0,3} >
-[(#TEMPS|icone_meteo{#CHEMIN{images/meteo/,png}}) ][(#DATE|affdate): ][(#TEMPS|traduire_meteo).]
-[ Mini:(#MINIMA)&deg;C][ maxi: (#MAXIMA)&deg;C.]<br/>
-
-</BOUCLE_previsions>
-
-</p>
-
-</BOUCLE_meteo>
-
-</div>
-</B_meteo>   
    
    
    <B_COMMUNAUTE>
