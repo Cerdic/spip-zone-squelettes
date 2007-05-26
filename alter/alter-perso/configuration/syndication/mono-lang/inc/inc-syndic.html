@@ -1,0 +1,67 @@
+[(#REM)
+    Les 5 articles syndiques les plus recents - dans la meme rubrique
+    The 5 last syndicated articles - in the same section 
+
+]    <B_art_syndic>
+      <div class="menu rub">
+      <ul>
+        <li><a href="#URL_PAGE{site}" title="<:autres_sites:>"><:nouveautes_web:></a>
+          <ul>
+
+            <BOUCLE_art_syndic(SYNDIC_ARTICLES) {id_rubrique} {par date} {inverse} {0,5}>
+            <li>[<span>(#DATE|affdate)</span>]
+                [<a href="#URL_ARTICLE" [title="<:form_prop_nom_site:> : (#NOM_SITE|supprimer_tags|attribut_html)"]>(#TITRE*|supprimer_numero|couper{60})</a>]
+            </li>
+            </BOUCLE_art_syndic>
+
+          </ul>
+        </li>
+      </ul>
+      </div><!-- menu -->                
+    </B_art_syndic>
+
+[(#REM)
+    Sinon, les 5 articles syndiques les plus recents - de toutes les rubriques 
+    de la langue du contexte.
+    Otherwise, the 5 last syndicated articles - from all sections, but only
+    in the language of the context.
+
+]	<B_art_syndic2>
+      <div class="menu rub">
+      <ul>
+        <li><a href="#URL_PAGE{site}" title="<:autres_sites:>"><:nouveautes_web:></a>
+          <ul>
+
+            <BOUCLE_art_syndic2(SYNDIC_ARTICLES) {par date}{inverse} {0,10} {lang}>
+            <li>[<span>(#DATE|affdate)</span>]
+                [<a href="#URL_ARTICLE" [title="<:form_prop_nom_site:> : (#NOM_SITE|supprimer_tags|attribut_html)"]>(#TITRE*|supprimer_numero|couper{60})</a>]
+            </li>
+            </BOUCLE_art_syndic2>
+
+          </ul>
+        </li>
+      </ul>
+      </div><!-- menu -->                
+    </B_art_syndic2>
+
+    <//B_art_syndic>
+      	
+[(#REM)
+    Plus, les 5 sites references non-syndiques les plus recents - dans la meme rubrique
+    Plus, the 5 last non-syndicated sites - in the same section 
+
+]    <B_sites>
+      <div class="menu rub">
+      <ul>
+        <li><a href="#URL_PAGE{site}" title="<:autres_sites:>"><:sites_web:></a>
+          <ul>
+            <BOUCLE_sites(SITES) {syndication=non} {id_rubrique} {par nom_site} {0,5}>
+            <li>
+                [<a href="#URL_SITE" [title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>(#NOM_SITE)</a>]
+            </li>            
+            </BOUCLE_sites>
+          </ul>
+        </li>
+      </ul>
+      </div><!-- menu -->
+    </B_sites>
