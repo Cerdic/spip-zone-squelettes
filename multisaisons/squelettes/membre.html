@@ -1,4 +1,10 @@
 
+[(#SESSION{id_auteur}|?{'',' '})
+[(#ENV{connect}|=={yes}|?{' ',''})
+<INCLURE{fond=authentification}><?php exit; ?>]
+]
+
+
 
 #CACHE{864000}
 <INCLURE{fond="header"}>
@@ -61,14 +67,10 @@
 
 [(#REM)   Si l internaute est connecte ou s il contact l admin principal du site   ]
 <BOUCLE_AUTEURS(AUTEURS){tous}{id_auteur}>
-
-
-
 [(#REM)   Vous pouvez changer le numéro de l'admin principal ou ajouter des admins]
 
-<?php if ($auteur_session||#ID_AUTEUR== '1') { ?>
-<div class="grande_boite"> [(#REM)   ouverture grd boite texte   ]
 
+<div class="grande_boite"> [(#REM)   ouverture grd boite texte   ]
 <span class="logodroite">
 <INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=46}{date=#ENV{date}}>
 </span>
@@ -90,11 +92,14 @@
 </p>
 
 <hr class="spacer"/>
-  </div>
+
   <?php } ?>
   
   
+    </div>
   
+  
+<?php if ($auteur_session||#ID_AUTEUR== '1') { ?>
   
 <div class="grande_boite">
 
@@ -104,6 +109,25 @@
 [(#FORMULAIRE_ECRIRE_AUTEUR)]</p><hr class="spacer"/>
 </div>[(#REM)   fermeture grande boite   ]
 
+
+
+
+
+
+<?php }else{ ?>
+
+
+
+<div class="grande_boite">
+<h4 class="icone_membre">Connectez-vous!</h4>
+<p>Vous ne pouvez contacter #NOM sans &ecirc;tre connect&eacute; &agrave; #NOM_SITE_SPIP.<br/>
+[<a href="(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR}|parametre_url{'connect',yes})"><strong>Se&nbsp;connecter pour contacter
+#NOM.]</strong></a></p>
+<hr class="spacer"/>
+</div>
+
+
+<?php } ?>
 
 
 <div id="cel">
@@ -137,22 +161,6 @@
 </ul>
 </div>
 
-
-<?php }else{ ?>
-
-
-
-<div class="grande_boite">
-<h4 class="icone_membre">Connectez-vous!</h4>
-<p>Vous ne pouvez contacter #NOM sans &ecirc;tre connect&eacute; &agrave; #NOM_SITE_SPIP.
-[<a href="(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR}|parametre_url{'connect',yes})><strong>Se connecter</strong></a>, pour contacter
-#NOM.]</p>
-<hr class="spacer"/>
-</div>
-
-
-<?php } ?>
-
 </BOUCLE_AUTEURS>
 
 
@@ -165,7 +173,7 @@
     <div class="boite">[(#REM)   ouverture boite menu   ] 
 
         <h4 class="icone_menu">Navigation</h4>
-        <INCLURE{fond="inc_menu_rub"}{delais="7*24*3600"}> </div>[(#REM)   fermeture boite menu   ]
+        <INCLURE{fond="inc_menu_rub"}> </div>[(#REM)   fermeture boite menu   ]
 
 
 
