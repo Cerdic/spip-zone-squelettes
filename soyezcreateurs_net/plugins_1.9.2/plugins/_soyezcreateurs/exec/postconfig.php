@@ -131,7 +131,7 @@ function config_site() {
 	echo install_debut_html("Configurateur des mots clefs");
 	// Autorisations dates antérieures et gestion avancée des mots clé
 	spip_query("REPLACE spip_meta (nom, valeur) VALUES ('config_precise_groupes', 'oui')");
-	spip_query("REPLACE spip_meta (nom, valeur) VALUES ('articles_redac', 'oui')");
+	spip_query("REPLACE spip_meta (nom, valeur) VALUES ('articles_redac', 'non')");
 	// Création rubriques
 	
 	echo "<h2>Cr&eacute;ation des rubriques sp&eacute;ciales</h2><ul>";
