@@ -67,8 +67,8 @@ $titretop = '[(#TITRE|textebrut|supprimer_numero|attribut_html|nettoyer_marqueur
 [<div class="ps">#DEBUT_SURLIGNE(#PS)#FIN_SURLIGNE</div>]
 [<div class="notes">#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
 
-<BOUCLE_Est_Gallerie(MOTS){id_article}{titre=Gallerie}>
-<BOUCLE_afficher_document(DOCUMENTS) {id_document} {mode=document}{extension==(png|jpg|gif)$}>
+<B_imgs>
+<BOUCLE_afficher_document(DOCUMENTS) {id_document} {mode=document}>
 <div id="document_actif"[ style="background-color: #(#LOGO_DOCUMENT||couleur_extraire); color: #[(#LOGO_DOCUMENT||couleur_extraire|couleur_inverser|couleur_extreme)];"]>
 	[<h2[ style="background-color: #(#LOGO_DOCUMENT||couleur_extraire|couleur_eclaircir); color: #[(#LOGO_DOCUMENT||couleur_extraire|couleur_eclaircir|couleur_inverser|couleur_extreme)];"]>#DEBUT_SURLIGNE(#TITRE|supprimer_numero)#FIN_SURLIGNE</h2>]
 <dl>
@@ -77,14 +77,13 @@ $titretop = '[(#TITRE|textebrut|supprimer_numero|attribut_html|nettoyer_marqueur
 </dl>
 </div>
 </BOUCLE_afficher_document>
-<B_imgs>
 <div id="documents_portfolio">
-<BOUCLE_imgs(DOCUMENTS){id_article}{mode=document}{par num titre}>
-[(#ENV{id_document}|=={#ID_DOCUMENT}|?{'',<a href="#URL_ARTICLE[(#URL_ARTICLE|strpos{?}|?{&amp;,?})]id_document=#ID_DOCUMENT#document_actif">})]<img src="[(#LOGO_DOCUMENT||reduire_image{0,60}|extraire_attribut{src})]" alt="[(#TITRE|supprimer_numero|textebrut|attribut_html|sinon{<:info_document:>})]"[(#ENV{id_document}|=={#ID_DOCUMENT}|?{[ style="border-color: #(#LOGO_DOCUMENT||couleur_extraire|couleur_inverser);"],[ style="border-color: #(#LOGO_DOCUMENT||couleur_extraire);"]})] />[(#ENV{id_document}|=={#ID_DOCUMENT}|?{'',</a>})]
+<BOUCLE_imgs(DOCUMENTS){id_article}{mode=document}{extension IN png,jpg,gif}{par num titre, date}>
+[(#ENV{id_document}|=={#ID_DOCUMENT}|?{'',[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|couper{80}|texte_backend)"]>(#FICHIER|copie_locale|image_reduire{0,60}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
+})]
 </BOUCLE_imgs>
 </div>
 </B_imgs>
-</BOUCLE_Est_Gallerie>
 
 <B_MotsArticles>
 <div id="mots_agenda">
