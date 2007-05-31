@@ -23,7 +23,13 @@ $titretop = '<:sites_web|nettoyer_marqueur:>_[(#NOM_SITE|nettoyer_marqueur)]';
 <div class="texte">
 <!-- Contenu : corps du site syndiqué -->
 <div class="cartouche">
-				<h1 class="#EDIT{nom_site} titre"><:sites_web:>&nbsp;: #NOM_SITE</h1>
+				<h1 class="#EDIT{nom_site} titre">
+				[(#LOGO_SITE{site_logo}{mode=normal}|logo_swf_or_img{64,64,[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)],"","logo_site",
+				[(#LOGO_SITE{site_logo}{mode=survol}|image_reduire{64,64})]})][#DEBUT_SURLIGNE(#TITRE|supprimer_numero)#FIN_SURLIGNE]
+				<:sites_web:>&nbsp;: 
+				#NOM_SITE
+				</h1>
+				
 				[<p class="#EDIT{url_site} soustitre"><a href="#URL_SITE" class="spip_out">(#URL_SITE|couper{80})</a></p>]
 <div class="datepublication"><span><:pyrat:publiele:> [(#DATE|nom_jour)] [(#DATE|affdate)]</span></div>
 </div>
@@ -100,7 +106,7 @@ $titretop = '<:sites_web|nettoyer_marqueur:>';
 
 			<B_sites>
 				<ul class="alaune">
-					<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}><li><a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a></li></BOUCLE_sites>
+					<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}><li><a href="[(#ID_SYNDIC|generer_url_site)]">[<img class="menu_right_logo" src="/(#LOGO_SITE_NORMAL||reduire_image{120,50}|extraire_attribut{src})"[ width="(#LOGO_SITE_NORMAL||reduire_image{120,50}|extraire_attribut{width})"][ height="(#LOGO_SITE_NORMAL||reduire_image{120,50}|extraire_attribut{height})"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />]#NOM_SITE</a></li></BOUCLE_sites>
 				</ul>
 			</B_sites>
 
