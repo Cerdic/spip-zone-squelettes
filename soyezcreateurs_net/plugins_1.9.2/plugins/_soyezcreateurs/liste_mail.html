@@ -1,0 +1,123 @@
+#CACHE{10*24*3600*0}
+
+<BOUCLE_messages(cm_posts){pst_id}>
+<?php
+$jp_rubrique = 'Liste_mail';
+$titre = '<:pyrat:newsletter:>';
+$titretop = '<:pyrat:newsletter|nettoyer_marqueur:>';
+ ?>
+ <INCLURE{fond=header}{connexion}>
+	<div id="miettesdepain">
+		<ul>
+			<li><a href="#URL_SITE_SPIP" title="Accueil"><:pyrat:accueil:></a></li>
+			<li><a href="#URL_PAGE{liste_mail}"><:pyrat:newsletter:></a></li>
+			<BOUCLE_Uneliste2(cm_lists){lst_id}>
+			<li><a href="[(#URL_PAGE{liste_mail}|parametre_url{'lst_id',#LST_ID})]">#LST_NAME</a></li>
+			</BOUCLE_Uneliste2>
+			<li>#PST_SUBJECT</li>
+		</ul>
+	</div>
+	
+<div class="texte">
+
+<div class="cartouche">
+<h1 class="#EDIT{lst_name} titre">#LST_NAME</h1>
+<div class="datepublication"><span><:pyrat:publiele:> [(#DATE|nom_jour)] [(#DATE|affdate)]</span></div>
+</div>
+
+	<div id="letexte">
+	
+	[(#REM) Affichage du détail du message du courrier ]
+		<BOUCLE_archives_mesages(cm_posts){pst_id}>
+		#PST_HTML
+		</BOUCLE_archives_mesages>
+
+
+	</div><!-- Fin de .letexte -->
+</div><!-- Fin de .texte -->
+
+</BOUCLE_messages>
+
+<BOUCLE_list(cm_lists){lst_id}>
+<?php
+$jp_rubrique = 'Liste_mail';
+$titre = '<:pyrat:newsletter:>';
+$titretop = '<:pyrat:newsletter|nettoyer_marqueur:>';
+ ?>
+ <INCLURE{fond=header}{connexion}>
+	<div id="miettesdepain">
+		<ul>
+			<li><a href="#URL_SITE_SPIP" title="Accueil"><:pyrat:accueil:></a></li>
+			<li><a href="#URL_PAGE{liste_mail}"><:pyrat:newsletter:></a></li>
+			<BOUCLE_Uneliste(cm_lists) {lst_id}>
+			<li>#LST_NAME</li>
+			</BOUCLE_Uneliste>
+		</ul>
+	</div>
+
+<div class="texte">
+
+<div class="cartouche">
+<h1 class="#EDIT{nom_liste} titre">#LST_NAME</h1>
+<div class="datepublication"><span><:pyrat:publiele:> [(#DATE|nom_jour)] [(#DATE|affdate)]</span></div>
+</div>
+
+	<div id="letexte">
+	[<div class="chapo">(#DESCRIPTIF)</div>]
+[(#REM) Affichage du détail de la liste ]
+	<B_archives>
+		<BOUCLE_archives(cm_posts) {lst_id}>
+	<ul>
+		<li><a href="[(#URL_PAGE{liste_mail}|parametre_url{'pst_id',#PST_ID})]">[(#PST_SUBJECT|supprimer_numero)]</a>
+		<small>[(#DATE|affdate_court)]</small></li>
+	</ul>	
+		<div><br class="nettoyeur" /></div>
+		</BOUCLE_archives>
+	</B_archives>
+			 
+
+	</div><!-- Fin de .letexte -->
+</div><!-- Fin de .texte -->
+
+</BOUCLE_list>
+<?php
+$jp_rubrique = 'Liste_mail';
+$titre = '<:pyrat:newsletter:>';
+$titretop = '<:pyrat:newsletter|nettoyer_marqueur:>';
+ ?>
+ <INCLURE{fond=header}{connexion}>
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
+	<li><:pyrat:newsletter:></li>
+	</ul>
+	</div>
+	
+<div class="texte">
+<div class="cartouche">
+<h1><:pyrat:newsletter:></h1>
+</div>
+
+	<div id="letexte">
+
+<BOUCLE_listes(cm_lists){lst_moderation!=closed}>
+	
+	<h2><a href="[(#URL_PAGE{liste_mail}|parametre_url{'lst_id',#LST_ID})]" title="#LST_NAME">#LST_NAME</a></h2>
+	<B_lettres>
+	<ul>
+	<BOUCLE_lettres(cm_posts){lst_id}>
+			<li><a href="[(#URL_PAGE{liste_mail}|parametre_url{'pst_id',#PST_ID})]" title="<:pyrat:publiele|attribut_html|:> [(#DATE|nom_jour|attribut_html|)] [(#DATE|affdate|attribut_html|)]">#PST_SUBJECT</a></li>
+	</BOUCLE_lettres>
+	</ul>
+	</B_lettres>
+</BOUCLE_listes>
+
+	</div><!-- Fin de .letexte -->
+</div><!-- Fin de .texte -->
+
+<//B_list>
+
+<//B_messages>
+[(#FORMULAIRE_ADMIN)]
+
+<INCLURE{fond=footer}>

@@ -102,13 +102,18 @@
 [(#CONFIG{soyezcreateurs/mode_statique,dynamique}|=={dynamique}|?{' ',''})[(#CONFIG{soyezcreateurs/resumesite,Oui}|=={Oui}|?{' ',''})
 <li><?php if ($jp_rubrique=='Resume') { ?><strong><?php } ?><a accesskey="E" href="resume.html" title="<:public:en_resume:>"><:pyrat:enresume_menu:></a><?php if ($jp_rubrique=='Resume') { ?></strong><?php } ?></li>
 ]]
-<li><?php if ($jp_rubrique=='Liste') { ?><strong><?php } ?><a accesskey="N" href="@liste.html" title="<:pyrat:newsletter:>"><:pyrat:newsletter:></a><?php if ($jp_rubrique=='Liste') { ?></strong><?php } ?></li>
+[(#CONFIG{plugin}|match{spiplistes}|?{' ',''})
+<li><?php if ($jp_rubrique=='Liste') { ?><strong><?php } ?><a accesskey="N" href="@liste.html" title="<:pyrat:newsletter:>"><:pyrat:newsletter:></a><?php if ($jp_rubrique=='Liste') { ?></strong><?php } ?></li>]
+[(#CONFIG{plugin}|match{clevermail}|?{' ',''})
+<li><?php if ($jp_rubrique=='Liste_mail') { ?><strong><?php } ?><a href="@liste_mail.html" title="<:pyrat:newsletter:>"><:pyrat:newsletter:></a><?php if ($jp_rubrique=='Liste_mail') { ?></strong><?php } ?></li>]
 </ul>
 </div>
 <INCLURE{fond=#CONFIG{soyezcreateurs/frmrecherche,'frmrecherche'}}>
 [(#CONFIG{soyezcreateurs_google/google_search}|!={''}|?{' ',''})<INCLURE{fond=inc_ads_search}>]
 
 [<div class="cadreinfo">(#FORMULAIRE_ABONNEMENT)</div>]
+
+[<div class="cadreinfo">(#FORMULAIRE_CLEVERMAIL)</div>]
 
 </div>
 	</div><!-- id="navigation" -->
