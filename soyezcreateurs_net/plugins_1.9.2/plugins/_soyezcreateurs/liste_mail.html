@@ -1,4 +1,4 @@
-#CACHE{10*24*3600*0}
+#CACHE{10*24*3600}
 
 <BOUCLE_messages(cm_posts){pst_id}>
 <?php
@@ -28,7 +28,7 @@ $titretop = '<:pyrat:newsletter|nettoyer_marqueur:>';
 	<div id="letexte">
 	
 	[(#REM) Affichage du détail du message du courrier ]
-		<BOUCLE_archives_mesages(cm_posts){pst_id}>
+		<BOUCLE_archives_mesages(cm_posts){pst_id}{pst_date_sent!=0}>
 		#PST_HTML
 		</BOUCLE_archives_mesages>
 
@@ -66,7 +66,7 @@ $titretop = '<:pyrat:newsletter|nettoyer_marqueur:>';
 	[<div class="chapo">(#DESCRIPTIF)</div>]
 [(#REM) Affichage du détail de la liste ]
 	<B_archives>
-		<BOUCLE_archives(cm_posts) {lst_id}>
+		<BOUCLE_archives(cm_posts) {lst_id}{pst_date_sent!=0}>
 	<ul>
 		<li><a href="[(#URL_PAGE{liste_mail}|parametre_url{'pst_id',#PST_ID})]">[(#PST_SUBJECT|supprimer_numero)]</a>
 		<small>[(#DATE|affdate_court)]</small></li>
@@ -105,7 +105,7 @@ $titretop = '<:pyrat:newsletter|nettoyer_marqueur:>';
 	<h2><a href="[(#URL_PAGE{liste_mail}|parametre_url{'lst_id',#LST_ID})]" title="#LST_NAME">#LST_NAME</a></h2>
 	<B_lettres>
 	<ul>
-	<BOUCLE_lettres(cm_posts){lst_id}>
+	<BOUCLE_lettres(cm_posts){lst_id}{pst_date_sent!=0}>
 			<li><a href="[(#URL_PAGE{liste_mail}|parametre_url{'pst_id',#PST_ID})]" title="<:pyrat:publiele|attribut_html|:> [(#DATE|nom_jour|attribut_html|)] [(#DATE|affdate|attribut_html|)]">#PST_SUBJECT</a></li>
 	</BOUCLE_lettres>
 	</ul>
