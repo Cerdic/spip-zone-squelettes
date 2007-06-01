@@ -1,0 +1,41 @@
+<BOUCLE_art(AUTEURS){id_auteur} >
+<div id="window">
+	<div id="windowTop">
+		<div id="windowTopContent">[(#NOM|supprimer_numero)]</div>
+		<img src="#CHEMIN{window_min.jpg}" id="windowMin" alt="reduire" />
+		<img src="#CHEMIN{window_max.jpg}" id="windowMax" alt="agrandir"/>
+		<img src="#CHEMIN{window_close.jpg}" id="windowClose" alt="fermer"/>
+	</div>
+	<div id="windowBottom"><div id="windowBottomContent">&nbsp;</div></div>
+	<div id="windowContent">
+    <div  class="contenu">
+          <BOUCLE_auteur(AUTEURS){id_auteur}>
+          [<img src="IMG/(#LOGO_AUTEUR|fichier||reduire_image{120,0})" title="#NOM" alt="#NOM" class="logo" /><br />]
+          <h2>[(#NOM)]</h2>
+          [Site : <a href="(#URL_SITE)">[(#NOM_SITE)]</a>]<br />
+          [(#BIO)]
+          <div class="alaligne"> </div>
+
+	  <h3>Les articles de #NOM publiés sur le site :</h3>
+               <FORM ACTION="spip.php" METHOD="get">
+               <p align="left">
+                  	<SELECT NAME="article">
+		        <BOUCLE_menu(ARTICLES){id_auteur}{par num titre}>
+		        <OPTION VALUE="#ID_ARTICLE">[(#TITRE|supprimer_numero)]</OPTION>
+		        </BOUCLE_menu>
+	                </SELECT>
+                        <INPUT TYPE="submit" NAME="Valider" VALUE="Lire cet article">
+               </FORM>
+          [<h3><:envoyer_message:></h3>
+	  <div class="form_auteur">(#FORMULAIRE_ECRIRE_AUTEUR) </div>]
+          </BOUCLE_auteur>
+          </B_auteur>
+
+     </div>
+  </div>
+	<img src="#CHEMIN{window_resize.gif}" id="windowResize" alt="redimensionner"/>
+</div>
+</BOUCLE_art>
+
+
+
