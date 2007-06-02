@@ -1,9 +1,10 @@
 <?php
 ##############################################################
-# Fichier mes_options.php                        SPIP v1.9.2 #
+# Fichier mes_options.php                   pour SPIP v1.9.2 #
 #                                                            #
 # L'utilisation de ce fichier est optionnelle,               #
-# mais fortement recommandee                                 #
+# mais fortement recommandee, surtout pour un site           #
+# multilingue.                                               #
 #                                                            #
 # Permet de configurer :                                     #
 # 1. le mode multilingue du site (ACTIVE)                    #
@@ -13,7 +14,7 @@
 #    pour en forcer le tri (ACTIVE)                          #
 #                                                            #
 # Pour utiliser ce fichier copiez-le dans le repertoire      #
-# /config, en veillant a ne pas ecraser un mes_options.php   #
+# /config/, en veillant a ne pas ecraser un mes_options.php  #
 # personnalise qui s'y trouverait deja                       #
 #                                                            #
 ##############################################################
@@ -28,7 +29,8 @@
 ############# CONFIGURATION ADRESSAGE .html ##################
 
 // Pour activer, 
-// 1. activer le fichier .htaccess (lire INSTALL.txt situe a la racine du repertoire de SPIP)
+// 1. activer le fichier .htaccess (lire INSTALL.txt situe a 
+//    la racine du repertoire de SPIP)
 // 2. lire les instructions dans le fichier 'htaccess.txt' 
 // 3. pour obtenir des adresses du type /article23.html,
 //    supprimer le '#' devant la ligne suivante :
