@@ -16,7 +16,7 @@ $titretop = '<:sites_web|nettoyer_marqueur:>_[(#NOM_SITE|nettoyer_marqueur)]';
 		<li>[(#TITRE|supprimer_numero)]</li>
 		</BOUCLE_UnArticleSyndique>
 		<li>[(#NOM_SITE|couper{80})]</li>
-	<//B_UnArticleSyndique>
+		<//B_UnArticleSyndique>
 	</ul>
 	</div>
 	
@@ -54,16 +54,16 @@ $titretop = '<:sites_web|nettoyer_marqueur:>_[(#NOM_SITE|nettoyer_marqueur)]';
 		<div class="syndic">
 			#ANCRE_PAGINATION
 			<h2><:ecrire:titre_articles_syndiques:></h2>
-				<dl>
-				<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {pagination}>
-					<dt><a href="[(#ID_SYNDIC|generer_url_site|parametre_url{'id_syndic_article',#ID_SYNDIC_ARTICLE})]">[(#TITRE|supprimer_numero)]</a></dt>
-					<dd>
-						<small>[(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)]</small>
-						[<div>(#DESCRIPTIF|couper{300}|image_reduire{300})
-						<br class="nettoyeur" /></div>]
-					</dd>
-				</BOUCLE_articles>
-				</dl>
+			<dl>
+			<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {pagination}>
+				<dt><a href="[(#ID_SYNDIC|generer_url_site|parametre_url{'id_syndic_article',#ID_SYNDIC_ARTICLE})]">[(#TITRE|supprimer_numero)]</a></dt>
+				<dd>
+					<small>[(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)]</small>
+					[<div>(#DESCRIPTIF|couper{300}|image_reduire{300})
+					<br class="nettoyeur" /></div>]
+				</dd>
+			</BOUCLE_articles>
+			</dl>
 			[<p class="pagination">(#PAGINATION)</p>]
 		</div>
 		</B_articles>
@@ -74,9 +74,12 @@ $titretop = '<:sites_web|nettoyer_marqueur:>_[(#NOM_SITE|nettoyer_marqueur)]';
 	</div><!-- Fin de .letexte -->
 </div><!-- Fin de #texte -->
 	
+[(#FORMULAIRE_ADMIN)]
+
+<INCLURE{fond=footer}{rubriqueencours=#ID_RUBRIQUE}{id_rubrique}{secteurencours=#GET{secteurencours}}>
+
 </BOUCLE_site>
 
-</B_site>
 <?php
 $jp_rubrique = 'Sites';
 $titre = '<:sites_web:>';
@@ -100,30 +103,28 @@ $titretop = '<:sites_web|nettoyer_marqueur:>';
 </div>
 <div id="letexte">
 			
-			<B_Autres>
 <BOUCLE_Autres(RUBRIQUES){id_parent=0}{par num titre}{doublons plan}>
 	<h2><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE|supprimer_numero)]</a></h2>
 
-			<B_sites>
-				<ul class="alaune">
-					<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}><li><a href="[(#ID_SYNDIC|generer_url_site)]">[<img class="menu_right_logo" src="/(#LOGO_SITE_NORMAL||reduire_image{120,50}|extraire_attribut{src})"[ width="(#LOGO_SITE_NORMAL||reduire_image{120,50}|extraire_attribut{width})"][ height="(#LOGO_SITE_NORMAL||reduire_image{120,50}|extraire_attribut{height})"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />]#NOM_SITE</a></li></BOUCLE_sites>
-				</ul>
-			</B_sites>
+	<B_sites>
+	<ul class="alaune">
+		<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}><li><a href="[(#ID_SYNDIC|generer_url_site)]">[<img class="menu_right_logo" src="/(#LOGO_SITE_NORMAL||reduire_image{120,50}|extraire_attribut{src})"[ width="(#LOGO_SITE_NORMAL||reduire_image{120,50}|extraire_attribut{width})"][ height="(#LOGO_SITE_NORMAL||reduire_image{120,50}|extraire_attribut{height})"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />]#NOM_SITE</a></li></BOUCLE_sites>
+	</ul>
+	</B_sites>
 
 	<B_Autres_Details>
-		<ul>
-		<BOUCLE_Autres_Details(RUBRIQUES){id_parent}{par num titre}{doublons plan}>
-			<li><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE|supprimer_numero)]</a>
-			<BOUCLE_Recurssion(BOUCLE_Autres_Details)>
-			</BOUCLE_Recurssion>
-				<B_sites2>
-				<ul class="alaune">
-					<BOUCLE_sites2(SITES) {id_rubrique} {par nom_site}><li><a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a></li></BOUCLE_sites2>
-				</ul>
-				</B_sites2>
-			</li>
-		</BOUCLE_Autres_Details>
-		</ul>
+	<ul>
+	<BOUCLE_Autres_Details(RUBRIQUES){id_parent}{par num titre}{doublons plan}>
+		<li><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE|supprimer_numero)]</a>
+		<BOUCLE_Recurssion(BOUCLE_Autres_Details)></BOUCLE_Recurssion>
+			<B_sites2>
+			<ul class="alaune">
+				<BOUCLE_sites2(SITES) {id_rubrique} {par nom_site}><li><a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a></li></BOUCLE_sites2>
+			</ul>
+			</B_sites2>
+		</li>
+	</BOUCLE_Autres_Details>
+	</ul>
 	</B_Autres_Details>
 </BOUCLE_Autres>
 <//B_Autres>
@@ -132,8 +133,8 @@ $titretop = '<:sites_web|nettoyer_marqueur:>';
 
 </div><!-- Fin de #texte -->
 					
-<//B_site>
-
 [(#FORMULAIRE_ADMIN)]
 
 <INCLURE{fond=footer}{secteurencours=#GET{secteurencours}}>
+
+<//B_site>
