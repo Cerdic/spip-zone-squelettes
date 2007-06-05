@@ -4,41 +4,40 @@
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // Anciens ajouts accessibilite Agora (non implemente actuellement)
-'info_nouvelle_fenetre' => 'Lien ouvrant ',
-'info_meme_fenetre' => 'Lien ',
-'info_lien_in' => 'interne',
-'info_lien_out' => 'externe',
-'info_lien_url' => 'externe',
-'info_lien_glossaire' => 'externe',
-'lien_vers' => 'Lien vers',
-'lien_vers_doc' => 'Lien vers le document',
-'info_summary_tab' => 'Tableau de donn&eacute;es',
-'lien_vers' => 'Lien vers',
-'lien_vers_doc' => 'Lien vers le document',
-'info_summary_tab' => 'Tableau de donn&eacute;es',
+'info_nouvelle_fenetre' => 'Open in new window ',
+'info_meme_fenetre' => 'Link ',
+'info_lien_in' => 'internal',
+'info_lien_out' => 'external',
+'info_lien_url' => 'external',
+'info_lien_glossaire' => 'external',
+'lien_vers' => 'Link to',
+'lien_vers_doc' => 'Link to document',
+'info_summary_tab' => 'Data table',
+'lien_vers' => 'Link to',
+'lien_vers_doc' => 'Link to document',
+'info_summary_tab' => 'Data table',
 
 // Modification de l'interface d'admin
-'texte_date_publication_anterieure' => 'DATE DE L\'&Eacute;V&Eacute;NEMENT',
-'texte_date_publication_anterieure_nonaffichee' => 'L\'article n\'a pas de date d\'&eacute;v&eacute;nement.',
-'admin_modifier_article' => 'G&eacute;rer cet article',
-'admin_modifier_breve' => 'G&eacute;rer cette br&egrave;ve',
-'admin_modifier_mot' => 'G&eacute;rer ce mot-cl&eacute;',
-'admin_modifier_rubrique' => 'G&eacute;rer cette rubrique',
+'texte_date_publication_anterieure' => 'DATE OF THE EVENT',
+'texte_date_publication_anterieure_nonaffichee' => 'The article has no event date.',
+'admin_modifier_article' => 'Manage this article',
+'admin_modifier_breve' => 'Manage this news item',
+'admin_modifier_mot' => 'Manage this keyword',
+'admin_modifier_rubrique' => 'Manage this section',
 	
 // Aide des boutons supplementaires de la barre typo
-'barre_intertitre2' => 'Transformer en {2{intertitre niveau deux}2}',
-'barre_intertitre3' => 'Transformer en {3{intertitre niveau trois}3}',
-'barre_miseenevidence' => 'Mettre le texte en [*&eacute;vidence*]',
-'barre_exposant' => 'Mettre le texte en &lt;sup&gt;exposant&lt;/sup&gt;',
-'barre_petitescapitales' => 'Mettre le texte en &lt;sc&gt;petites capitales&lt;/sc&gt;',
-'barre_centrer' => '[|Centrer|] le paragraphe',
-'barre_alignerdroite' => '[/Aligne &agrave; droite/] le paragraphe',
-'barre_encadrer' => '[(Encadrer)] le paragraphe',
-'barre_lien_input' => 'Veuillez indiquer l\'adresse de votre lien ; vous pouvez indiquer une adresse Web sous la forme http://www.monsite/com ou simplement indiquer le numero d\'un article de ce site.',
+'barre_intertitre2' => 'Convert to {2{level 2 subtitle}2}',
+'barre_intertitre3' => 'Convert to {3{level 3 subtitle}3}',
+'barre_miseenevidence' => '[*Emphasize*] the text',
+'barre_exposant' => 'Convert to &lt;sup&gt;superscript&lt;/sup&gt;',
+'barre_petitescapitales' => 'Convert to &lt;sc&gt;small caps&lt;/sc&gt;',
+'barre_centrer' => '[|Centre|] the paragraph',
+'barre_alignerdroite' => '[/Right align/] the paragraph',
+'barre_encadrer' => '[(Add a border)] to the paragraph',
+'barre_lien_input' => 'Please give the address of your link. You may give a web address in the form http://www.mysite.com or put simply the number of an article on this site.',
 
 // Modification du texte du formulaire de forum
-'forum_votre_email' => 'Votre adresse email (<strong>ne sera pas rendue publique sur le site</strong>, n&eacute;cessaire pour pouvoir vous r&eacute;pondre personnellement) :'
-
+'forum_votre_email' => 'Your email address (<strong>This will not be made public on the site,</strong>, but is necessary in order to send replies to you.) :'
 
 );
 ?>
