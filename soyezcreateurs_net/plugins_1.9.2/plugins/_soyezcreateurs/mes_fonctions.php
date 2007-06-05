@@ -200,13 +200,6 @@ function DateAdd($d=null, $v, $f="Y-m-d"){
   return date($f,strtotime($v." days",strtotime($d)));
 }
 
-function balise_SPIP_VERSION($p) {
-	global $spip_version_affichee;
-	$p->code = "'$spip_version_affichee'";
-	$p->interdire_scripts = false;
-	return $p;
-}
-
 /* -------------
 
 Ces 2 balises permettent d'afficher dans une page :
