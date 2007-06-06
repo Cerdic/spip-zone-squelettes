@@ -71,6 +71,10 @@ $titrePage = '<:pyrat:agenda:> - [(#ENV{date_ev,[(#ENV{date})]}|annee)]';
 		</fieldset>
 		</form>
 
+<BOUCLE_LiensMois(EVENEMENTS){branche}{date_debut>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}{par date_debut}{"&nbsp;| "}>[
+<a href="#m(#DATE_DEBUT|affdate{'Ym'}|unique)">[(#DATE_DEBUT|nom_mois|ucfirst)]&nbsp;[(#DATE_DEBUT|annee)]</a>
+]</BOUCLE_LiensMois>
+
 [(#REM) Si genre est dans les paramètres, alors on filtre selon le genre, sinon, on peut afficher tous les articles, même ceux sans mot clef]
 [(#ENV{genre,''}|=={''}|?{' ',''})<INCLURE{fond=agendaliste_sansfiltre}{id_rubrique}{date_ev}>][(#ENV{genre,''}|=={''}|?{'',' '})<INCLURE{fond=agendaliste_filtre}{id_rubrique}{date_ev}{genre}>]
 
