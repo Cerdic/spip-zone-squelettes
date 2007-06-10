@@ -42,7 +42,7 @@ function public_styliser_dist($fond, $id_rubrique, $lang) {
 			erreur_squelette(_T('info_erreur_squelette2',
 				array('fichier'=>"'$fond'")),
 				$GLOBALS['dossier_squelettes']);
-			$f = find_in_path("404.$extension_spip");
+		$f = find_in_path(".$ext"); // on ne renvoie rien ici, c'est le resultat vide qui provoquere un 404 si necessaire
 			return array(substr($f, 0, -strlen(".$extension_spip")),
 					 $extension_spip,
 					 $extension_spip,
@@ -75,9 +75,9 @@ function public_styliser_dist($fond, $id_rubrique, $lang) {
 
 	// Affiner par lang
 	if ($lang) {
-		lang_select($lang);
+		$l = lang_select($lang);
 		$f = "$squelette.".$GLOBALS['spip_lang'];
-		lang_dselect();
+		if ($l) lang_select();
 		if (@file_exists("$f.$ext"))
 			$squelette = $f;
 	}
