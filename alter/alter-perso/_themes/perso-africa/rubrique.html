@@ -1,0 +1,94 @@
+#CACHE{7200}
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique} {lang_select}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+	<title>[[(#NOM_SITE_SPIP|textebrut)]] : [(#TITRE|supprimer_numero|textebrut|entites_html)]</title>
+	<INCLURE{fond=page}{fond=styles}{lang}{id_rubrique}>
+	<INCLURE{fond=inc/inc-meta}{lang}{id_rubrique}>
+</head>
+<body dir="#LANG_DIR" class="#LANG rubrique sect#ID_SECTEUR <BOUCLE_rubriques_body(HIERARCHIE) {id_secteur}{" "}>rub#ID_RUBRIQUE</BOUCLE_rubriques_body></B_rubriques_body> rub#ID_RUBRIQUE">
+<div id="page" class="rubrique rub#ID_RUBRIQUE">
+
+<!-- *****************************************************************
+	Bandeau, titre du site et menu langue
+	Header and main menu (top and right) 
+    ************************************************************* -->
+	
+<INCLURE{fond=inc/inc-bandeau}{lang}{id_rubrique}>
+
+<!-- *****************************************************************
+	Contenu principal (centre)
+	Main content (center) 
+    ************************************************************* -->
+	<div id="bloc-contenu">
+		<h5>
+    <B_rubriques_chemin>
+    <BOUCLE_rubriques_chemin(HIERARCHIE){id_secteur}{" <b class='separateur'>&gt;</b> "}>
+		<a href="#URL_SITE_SPIP/#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{60})]</a>
+	</BOUCLE_rubriques_chemin>
+	</B_rubriques_chemin>
+		[<b class='separateur'>&gt;</b> (#TITRE|supprimer_numero|couper{60})]
+		</h5>
+		<div class="ligne-debut"></div><!-- ligne-debut -->
+		<div class="cartouche">
+			[<span style="float:right;">(#LOGO_RUBRIQUE||reduire_image{160,0})</span>]
+			<h1 class="titre-article">[(#TITRE|supprimer_numero)]</h1>				
+		</div><!-- cartouche -->
+
+
+		[<div class="chapo">(#TEXTE|reduire_image{440,0})</div><br />]
+		[<div class="notes">(#NOTES)</div>]
+		<BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {mode=document} {doublons} {"<br />"}>
+			[<div class="texte">(#TITRE|supprimer_numero)][ - (#DESCRIPTIF)</div>][(#LOGO_DOCUMENT|#URL_DOCUMENT)]<br />
+		</BOUCLE_documents_joints>
+
+		<!-- Articles de la rubrique -->
+		<B_articles_rubrique>
+		<h2 class="structure"><:articles_rubrique:></h2>
+		<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par num titre} {!par date} {pagination}>
+				<hr />
+			[<div class="surtitre">(#SURTITRE)</div>]
+			<h3>
+			<a href="#URL_SITE_SPIP/#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
+			</h3>
+			[<div class="sous-titre">(#SOUSTITRE)</div>]
+			<div class="detail">
+			</div><!-- detail -->
+			<br />
+		</BOUCLE_articles_rubrique>
+
+		</B_articles_rubrique>
+	</div><!-- bloc-contenu -->
+	
+<!-- *****************************************************************
+	Menus contextuels (droite)
+	Contextual menus (right) 
+    ************************************************************* -->
+  <div id="encart">  
+
+<INCLURE{fond=inc/inc-annonces}{lang}>
+
+<INCLURE{fond=inc/inc-breves}{id_rubrique}{lang}>
+
+<INCLURE{fond=inc/inc-syndic}{id_rubrique}{lang}>
+	
+  </div><!-- encart -->
+
+<!-- *****************************************************************
+	Navigation principale et rubriques (haut et/ou gauche)
+	Main and Sections Navigation (top and/orleft) 
+    ************************************************************* -->
+<INCLURE{fond=inc/inc-menu}{lang}{id_rubrique}>
+<!-- *****************************************************************
+	Pied de page - Footer
+    ************************************************************* -->
+<INCLURE{fond=inc/inc-bas}{lang}{id_rubrique}{id_secteur}>
+
+</div><!-- page -->
+</body>
+</html>
+</BOUCLE_rubrique_principal>
+<INCLURE{fond=404}{lang}{id_rubrique}>
+<//B_rubrique_principal>
