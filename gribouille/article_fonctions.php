@@ -37,16 +37,18 @@ function affiche_auteur_diff($auteur) {
 
 
 // Creation d'un nouvel article du WIKI -- cf. inc-entete
-if (isset($_POST['ajouter_page_wiki'])
-AND isset($_POST['id_rubrique'])
-AND $_POST['id_rubrique'] == $GLOBALS['contexte']['id_rubrique']) {
+if (_request('ajouter_page_wiki')!==NULL
+AND (!preg_match(",http://,",_request('ajouter_page_wiki'))) // pas d'url en titre de page, non mais
+AND _request('id_rubrique')!==NULL
+AND (!_request('pas_de_robot_merci'))
+AND _request('id_rubrique') == $GLOBALS['contexte']['id_rubrique']) {
 	$id_rubrique = intval($_POST['id_rubrique']);
 	$id_article = null;
 
 	// on verifie d'abord qu'un article de ce titre n'existe pas deja
 	$s = spip_query("SELECT id_article FROM spip_articles WHERE titre="
-	._q($_POST['ajouter_page_wiki'])." OR url_propre="
-	._q($_POST['ajouter_page_wiki']));
+	._q(_request('ajouter_page_wiki'))." OR url_propre="
+	._q(_request('ajouter_page_wiki')));
 	if ($t = spip_fetch_array($s)) {
 		$id_article = $t['id_article'];
 	} else {
@@ -58,7 +60,7 @@ AND $_POST['id_rubrique'] == $GLOBALS['contexte']['id_rubrique']) {
 			$r = modifier_contenu('article', $id_article,
 				array('champs' => array('titre', 'statut')),
 				array(
-					'titre' => $_POST['ajouter_page_wiki'],
+					'titre' => _request('ajouter_page_wiki'),
 					'statut' => 'publie'
 				)
 			);
