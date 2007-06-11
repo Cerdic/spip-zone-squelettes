@@ -1,5 +1,5 @@
 #CACHE{30*24*3600}
-<BOUCLE_article_principal(ARTICLES) {id_article}><BOUCLE_EstNewsLetter(MOTS){id_rubrique}{titre=NewsLetter}><INCLURE{fond=articlenewsletter}{id_article}{lang}></BOUCLE_EstNewsLetter><?php $jp_rubrique = '[(#ID_RUBRIQUE|texte_script)]'; ?><BOUCLE_RacineMenuHaut(HIERARCHIE){id_rubrique}{tout}{titre_mot=MenuHaut}{inverse} {0,1}>[(#SET{secteurencours,#ID_RUBRIQUE})]</BOUCLE_RacineMenuHaut><?php
+<BOUCLE_article_principal(ARTICLES) {id_article}><BOUCLE_Gribouille(HIERARCHIE){id_article}{tout}{titre_mot=Gribouille}{inverse}{0,1}>[(#INCLURE{fond=gribouille/article}{env})]</BOUCLE_Gribouille><BOUCLE_EstNewsLetter(MOTS){id_rubrique}{titre=NewsLetter}><INCLURE{fond=articlenewsletter}{id_article}{lang}></BOUCLE_EstNewsLetter><?php $jp_rubrique = '[(#ID_RUBRIQUE|texte_script)]'; ?><BOUCLE_RacineMenuHaut(HIERARCHIE){id_rubrique}{tout}{titre_mot=MenuHaut}{inverse} {0,1}>[(#SET{secteurencours,#ID_RUBRIQUE})]</BOUCLE_RacineMenuHaut><?php
 $jp_article = '[(#ID_ARTICLE|texte_script)]';
 $titre = '[(#TITRE|textebrut|supprimer_numero|attribut_html|texte_script)]';
 $titretop = '[(#TITRE|textebrut|supprimer_numero|attribut_html|nettoyer_marqueur|texte_script)]';
@@ -214,8 +214,8 @@ $titretop = '[(#TITRE|textebrut|supprimer_numero|attribut_html|nettoyer_marqueur
 
 <INCLURE{fond=footer}{rubriqueencours=#ID_RUBRIQUE}{id_rubrique}{id_article}{secteurencours=#GET{secteurencours}}{lang}>
 	<//B_EstNewsLetter>
+<//B_Gribouille>
 </BOUCLE_article_principal>
-</B_article_principal>
 <?php $titre = '<:pyrat:erreur:>'; ?>
 <?php $titretop = '<:pyrat:erreur|nettoyer_marqueur:>'; ?>
 <INCLURE{fond=header}{connexion}{secteurencours=#GET{secteurencours}}{lang}>
