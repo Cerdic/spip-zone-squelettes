@@ -156,13 +156,15 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'tout' => 'Tout',
 'toutleplan' => 'Tout le site sur une page',
 'themes' => 'Th&egrave;mes',
+'sedna' => 'Sedna (Agr&eacute;gateur de flux RSS)',
 
 //V
 'voirarticlespar' => 'Voir les articles par',
-'voirdetailannee' => 'Voir le d&eacute;tail de l\\\'ann&eacute;e',
+'voirdetailannee' => 'Voir le d&eacute;tail de l\'ann&eacute;e',
 'voirdetailmois' => 'Voir le d&eacute;tail du mois de',
 'voirle' => 'Voir le',
-'voirimage' => 'Voir l\'image seule'
+'voirimage' => 'Voir l\'image seule',
+'voirsitespar' => 'Voir les sites avec'
 
 );
 

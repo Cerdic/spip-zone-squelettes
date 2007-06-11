@@ -151,6 +151,7 @@ $GLOBALS['i18n_pyrat_en'] = array(
 'savoirplus' => 'More...',
 'savoirpluscritere' => 'Learn more about the criterion',
 'sommaire' => 'Summary',
+'sedna' => 'Sedna (RSS agregator)',
 
 //T
 'tout' => 'All',
@@ -159,10 +160,11 @@ $GLOBALS['i18n_pyrat_en'] = array(
 
 //V
 'voirarticlespar' => 'See the articles by',
-'voirdetailannee' => 'See the year\\\'s details',
+'voirdetailannee' => 'See the year\'s details',
 'voirdetailmois' => 'See the details for the month of',
 'voirle' => 'See the',
-'voirimage' => 'See the image on its own'
+'voirimage' => 'See the image on its own',
+'voirsitespar' => 'See the sites with'
 
 );
 
