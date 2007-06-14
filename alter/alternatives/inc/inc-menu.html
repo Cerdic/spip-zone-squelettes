@@ -102,31 +102,7 @@ si on veut afficher uniquement le premier niveau (secteur) des autres langues, o
 
 <//B_rub_menu>
 
-[(#REM) boucle d'affichage d'un agenda ou calendrier d'evenements. 
-Pour s'afficher dans ce menu, une rubrique doit se voir attribuer le mot-cle "agenda". Pour s'afficher dans l'agenda, les articles doivent, en plus d'une date de publication, se voir attribuer une "Date de publication anterieure" qui constituera la date de l'evenement. ]
-[(#REM) boucle d'affichage d'un agenda ou calendrier d'evenements. 
-Pour s'afficher dans ce menu, un article doit se voir attribuer le mot-cle "Agenda". Pour s'afficher dans l'agenda, les articles doivent, en plus du mot-cle, se voir attribuer une "Date de publication anterieure" qui constituera la date de l'evenement. ]
-
-<B_art_agenda>
-<div class="menu" id="menu-agenda">
-	<h3 class="structure"><:icone_agenda:></h3>
-	<ul>
-		<li>
-			<a class="lien" href="#URL_PAGE{agenda}" title="<:icone_agenda:>"><:icone_agenda:></a>
-			<ul>
-		<BOUCLE_art_agenda(ARTICLES){titre_mot=Agenda}{par date_redac}{age_redac < 1}{0,5}{lang}>
-				<li>[<span>(#DATE_REDAC|affdate) [- (#DATE_REDAC|heures|!={0}|?{[(#DATE_REDAC|heures):][(#DATE_REDAC|minutes)],''})]</span>]
-					<a class="lien[(#EXPOSER)] article" href="#URL_ARTICLE" [title="(#INTRODUCTION|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
-
-				</li>
-		</BOUCLE_art_agenda>
-			</ul>
-		</li>
-    <!--[if lte IE 6]><style>#menu-agenda a{height:1em;}#menu-agenda li{height:1em;float:left;clear:both;width:100%}</style><![endif]-->
-    <!--[if IE 6]><style>#menu-agenda li{clear:none;}</style><![endif]-->
-	</ul>
-</div>
-</B_art_agenda>
+<INCLURE{fond=inc/inc-menu-agenda}{lang}>
 
 </div>[(#REM) fin menu ]
 
