@@ -1,0 +1,167 @@
+[(#REM) <!--
+Squelette Sarka-SPIP
+Copyright (C) 2005-2006 - Collectif Sarka-SPIP - http://sarka-spip.com
+
+Ce programme est libre, vous pouvez le redistribuer et/ou le modifier selon les termes
+de la Licence Publique Generale GNU publiee par la Free Software Foundation (version 2
+ou bien toute autre version ulterieure choisie par vous).
+
+Ce programme est distribue car potentiellement utile, mais SANS AUCUNE GARANTIE, ni
+explicite ni implicite, y compris les garanties de commercialisation ou d'adaptation
+dans un but specifique. Reportez-vous a la Licence Publique Generale GNU pour plus de details.
+
+Vous devez avoir recu une copie de la Licence Publique Generale GNU en meme temps que ce programme;
+si ce n'est pas le cas, ecrivez a la Free Software Foundation, Inc., 59 Temple Place, Suite 330,
+Boston, MA 02111-1307, Etats-Unis.
+-->
+
+<!--
+CREDITS
+
+Le squelette Sarka-SPIP est realise par un collectif dont les membres sont les suivants:
+
+- Toufik Stouky    alias  SarkAFeeK
+- Sylvain Bellego  alias  SarkALeoN
+- Xavier Le Ho     alias  SarkARchimeD
+- Eric Lupinacci   alias  SarkASmeL
+
+Nous tenons aussi a remercier tous les utilisateurs qui nous ont fait confiance depuis les 
+premiers pas du squelette et qui continuent aujourd'hui a nous apporter leur soutien et leurs idees.
+Un grand merci, donc, a celles et ceux qui ont contribue (et qui vont contribuer) a l'amelioration
+de ce squelette.
+-->]
+
+#CACHE{7200}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<BOUCLE_album_principal(ARTICLES) {id_article}>
+<html lang="#LANG">
+	<INCLURE{fond=noisettes/header}{id_article}>
+<body  dir="#LANG_DIR" onload="setHover(), setFooter()">
+<div id="conteneur">
+
+[(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
+	<INCLURE{fond=noisettes/bandeau}>
+
+[(#REM) <!-- =========================== ZONE CHEMIN DE NAVIGATION ============================= --> ]
+	<INCLURE{fond=noisettes/bande-chemin}{id_rubrique}>
+
+[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
+	<INCLURE{fond=noisettes/bloc-gauche}>
+
+[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
+	<div id="droite" class="droite">
+		<INCLURE{fond=noisettes/bloc-droite-secteur-news}{id_secteur}>
+	</div> <!-- Fin droite -->
+
+[(#REM) <!-- =================================== ZONE CORPS  ====================================== --> ]
+	<!-- Initialisation des variables -->
+	<BOUCLE_doc(DOCUMENTS){id_document}{mode=document}>
+	<?php $doc=[(#ID_DOCUMENT|texte_script)]; ?>
+	</BOUCLE_doc>
+	<BOUCLE_art(ARTICLES){id_article}>
+	<?php $art=[(#ID_ARTICLE|texte_script)]; ?>
+	</BOUCLE_art>
+
+	<div id="centre" class="centre">
+		<div class="contenu">
+			<div class="article">
+
+				<?php if ($debut_photos=='') {$debut_photos=0;} ?>
+				<B_tot>
+				<BOUCLE_tot(DOCUMENTS){id_article}{mode=document}>
+				</BOUCLE_tot>
+				[<div class="surtitre">(#SURTITRE)</div>]
+				[<div class="titre">(#TITRE)</div>]
+				[<div class="soustitre">(#SOUSTITRE)</div>]
+				<?php $tot=#TOTAL_BOUCLE; ?>
+				</B_tot>
+
+				<div class="contenu" style="text-align:center">
+
+					<div class="detail">
+							[(#DATE|nom_jour)]&nbsp;[(#DATE|affdate)]<br>
+							<B_auteurs-article>
+								<:sarkaspip:par_auteur:>
+							<BOUCLE_auteurs-article(AUTEURS) {id_article} {", "}>
+									<a href="#URL_AUTEUR">#NOM</a>
+							</BOUCLE_auteurs-article>
+							</B_auteurs-article>
+							[<br><:sarkaspip:popularite_article:>&nbsp;:&nbsp;(#POPULARITE)%]
+					</div> <!-- Fin detail -->
+			
+					<div class="texte" style="text-align:left">[(#TEXTE|typo_couleur)]
+						<!-- le bouton d'acces au forum de l'album est pour l'instant desactivé dans cette version (display:none) -->
+						[<br><a class="repondre" style="display:none;" href="(#PARAMETRES_FORUM|url_reponse_forum)"><:sarkaspip:album_repondre:></a><br>]
+					</div>
+
+					<!-- album : bloc de navigation -->
+					<div class="album_menu" id="album_menu">
+						<div class="album_boutons">
+							<?php if ($debut_photos>0) { ?>
+								<a class="fleche-rew" href="spip.php?page=album&id_article=<?php echo $art; ?>&debut_photos=0#album_menu" title="<:sarkaspip:album_nav_debut:>">&nbsp;</a>
+								<a class="fleche-previous" href="spip.php?page=album&id_article=<?php echo $art; ?>&debut_photos=<?php if($debut_photos-6<0){echo '0';}else{echo $debut_photos-6;} ?>#album_menu" title="<:sarkaspip:album_nav_precedent:>">&nbsp;</a>
+							<?php } else { ?>
+								 <div class="fleche-gauche-vide">&nbsp;</div>
+							<?php } ?>
+
+							<?php if ($debut_photos<($tot-6)) { ?>
+								<a class="fleche-fwd" href="spip.php?page=album&id_article=<?php echo $art; ?>&debut_photos=<?php echo $tot-6; ?>#album_menu" title="<:sarkaspip:album_nav_fin:>">&nbsp;</a>
+								<a class="fleche-next" href="spip.php?page=album&id_article=<?php echo $art; ?>&debut_photos=<?php if($debut_photos+6>$tot-6){echo $tot-6;}else{echo $debut_photos+6;} ?>#album_menu" title="<:sarkaspip:album_nav_suivant:>">&nbsp;</a>
+							<?php } else { ?>
+								<div class="fleche-droite-vide">&nbsp;</div>
+							<?php } ?>
+
+							<span class="entre-fleches">[<?php echo $debut_photos+1; ?>-<?php if ($tot>6){echo $debut_photos+6;}else{echo $tot;}?>] / <?php echo $tot; ?> </span>
+						</div>
+					</div>
+					
+					<!-- album : bloc de vignettes-->
+					<div class="album_vignette">
+						<B_vignettes>
+						<table>
+						<BOUCLE_vignettes(DOCUMENTS){debut_photos,6}{id_article}{mode=document}>
+							[(#COMPTEUR_BOUCLE|alterner{<tr>,'','',<tr>,'',''})] 
+							<td>
+							<a class="image-vignette" href="spip.php?page=album&id_article=<?php echo $art; ?>&id_document=#ID_DOCUMENT&debut_photos=<?php echo $debut_photos; ?>#album_menu" title="[(#TITRE)]">
+								[(#FICHIER|image_reduire{120}|inserer_attribut{title,#TITRE})]	
+							</a>
+							</td>					
+							[(#COMPTEUR_BOUCLE|alterner{'','',</tr>,'','',</tr>})]
+						</BOUCLE_vignettes>
+						</table>
+						</B_vignettes>
+					</div>
+
+					<!-- album : bloc principal, avec grande photo -->
+					<div class="album_photo">
+						<BOUCLE_zoom(DOCUMENTS){id_document}{mode=document}>
+								[<a href="#URL_DOCUMENT" target="_blank"> (#FICHIER||image_reduire{500})</a>]
+								[<div class="album_titre">(#TITRE)</div>]
+								[<div class="album_descriptif">(#DESCRIPTIF)</div>]
+						</BOUCLE_zoom>
+
+							<BOUCLE_first(DOCUMENTS){debut_photos,1}{id_article}{mode=document}>
+								[<a href="#URL_DOCUMENT" target="_blank">&nbsp;(#FICHIER||image_reduire{500})</a>]
+								[<div class="album_titre">(#TITRE)</div>]
+								[<div class="album_descriptif">(#DESCRIPTIF)</div>]
+							</BOUCLE_first>
+
+						<//B_zoom>
+					</div> <!--album_photo-->
+				</div>  <!--contenu-->
+			</div> <!--article-->
+		</div>   <!--contenu-->
+	</div>  <!--centre-->
+
+[(#REM) <!-- ================================== ZONE PIED DE PAGE  ================================== --> ]
+	<INCLURE{fond=noisettes/footer}>
+
+</div> <!-- Fin conteneur -->
+</body>
+</html>
+
+[(#REM) <!-- ================================== ERREUR BOUCLE VIDE  ================================== --> ]
+</BOUCLE_album_principal>
+	<INCLURE{fond=404}>
+<//B_album_principal>
