@@ -1,0 +1,64 @@
+#CACHE{30*24*3600}
+</div><!-- id="content" -->
+	</div><!-- id="wrapper" -->
+	<div id="navigation" class="equilibre">
+<B_Racines>
+<div class="espaceavant">
+<ul>
+<BOUCLE_Racines(ARTICLES){titre_mot==^(MENURACINE|MENURACINE_Systematique)$}{par num titre}>
+	<li><?php if ($jp_article==#ID_ARTICLE) { ?><strong><?php } ?><a href="[(#URL_ARTICLE)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img src="(#LOGO_ARTICLE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#TITRE|supprimer_numero)]</a><?php if ($jp_article==#ID_ARTICLE) { ?></strong><?php } ?></li>
+</BOUCLE_Racines>
+</ul>
+</div>
+</B_Racines>
+<B_RacinesBas>
+<div class="espaceavant">
+<ul>
+<BOUCLE_RacinesBas(ARTICLES){par num titre}{titre_mot==^MENURACINEBAS.*}>
+	<li><a href="[(#URL_ARTICLE)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img src="(#LOGO_ARTICLE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#TITRE|supprimer_numero)]</a></li>
+</BOUCLE_RacinesBas>
+</ul>
+</div>
+</B_RacinesBas>
+
+<INCLURE{fond=#CONFIG{soyezcreateurs/frmrecherche,'frmrecherche'}}>
+[(#CONFIG{soyezcreateurs/bandeau_contact_extra}|=={extra}|?{' ',''})
+	[<div id="bandeaucontact">(#CONFIG{soyezcreateurs/bandeau_contact}|propre)</div>]
+]
+<div class="espaceavant">
+<ul>
+<li><a accesskey="P" href="plan.html" title="<:pyrat:toutleplan:>"><:pyrat:plan_menu:></a></li>
+[(#CONFIG{soyezcreateurs/mode_statique,dynamique}|=={dynamique}|?{' ',''})[(#CONFIG{soyezcreateurs/resumesite,Oui}|=={Oui}|?{' ',''})
+<li><a accesskey="E" href="resume.html" title="<:public:en_resume:>"><:pyrat:enresume_menu:></a></li>
+]]
+</ul>
+</div>
+[(#CONFIG{soyezcreateurs/citationsheader,extra}|=={extra}|?{' ',''})<INCLURE{fond=citations}>]
+	</div><!-- id="navigation" -->
+
+
+	<div id="extra" class="navStuff equilibre">
+<div class="rightmenu">
+
+<B_Goodies>
+  <ul>
+<BOUCLE_Goodies(ARTICLES) {titre_mot=Goodies}{par num titre}>
+	<li><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|textebrut|entites_html|supprimer_tags|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">[<img class="menu_right_logo" src="(#LOGO_ARTICLE_NORMAL||reduire_image{120,50}|extraire_attribut{src})"[ width="(#LOGO_ARTICLE_NORMAL||reduire_image{120,50}|extraire_attribut{width})"][ height="(#LOGO_ARTICLE_NORMAL||reduire_image{120,50}|extraire_attribut{height})"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" /><br />][(#TITRE|supprimer_numero)]</a></li>
+</BOUCLE_Goodies>
+</ul>
+</B_Goodies>
+
+<INCLURE{fond=sommaire_cartouche}>
+
+</div>
+<BOUCLE_GeoURL(MOTS){titre=ICBM}{texte!=}><div class="centrer_div">
+<a href="http://geourl.org/near?p=#URL_SITE_SPIP" title="<:pyrat:geourl:>"><img src="/#CHEMIN{images/geo_url.png}" alt="GeoURL" width="80" height="15"  /></a>
+</div></BOUCLE_GeoURL>
+<div class="centrer_div">
+<a href="#URL_PAGE{backend}"><img src="/#CHEMIN{images/rss.gif}" alt="<:syndiquer_site:> [(#NOM_SITE_SPIP|textebrut|attribut_html)]" width="36" height="15" /></a>
+</div>
+[(#CONFIG{soyezcreateurs_google/xiti_id}|!={''}|?{' ',''})<INCLURE{fond=compteur}>]
+
+	</div><!-- id="extra" -->
+
+
