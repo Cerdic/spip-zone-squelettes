@@ -1,11 +1,11 @@
-#CACHE{864000}
+#CACHE{86400}
 <INCLURE{fond="header"}>
 
 
 <html><head>
 
 [(#REM)   les métas   ]
-<title>[Plan de (#NOM_SITE_SPIP)]</title> 
+<title>[News de (#NOM_SITE_SPIP)]</title> 
 <meta name="Description" content="[News de (#NOM_SITE_SPIP)]"/>
 <meta name="Keywords" content="[News de (#NOM_SITE_SPIP)]"/>
 <meta http-equiv="content-type"content="text/html; charset=#CHARSET"/>
@@ -70,7 +70,10 @@
 <B_derniers_articles><a name="article"></a>
 <h4 class="icone_article">Les derniers articles:</h4>
 <p>
-<BOUCLE_derniers_articles(ARTICLES){titre_mot!=agenda}{par date}{inverse}{0,5}>
+<BOUCLE_derniers_articles_doublons(ARTICLES){titre_mot=agenda}{doublons agenda}>
+[(#REM) les articles agenda en touche]
+</BOUCLE_derniers_articles_doublons>
+<BOUCLE_derniers_articles(ARTICLES){par date}{inverse}{doublons agenda}{0,5}>
 <a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|attribut_html|couper{60})"]>
 #TITRE</a>[ le (#DATE|nom_jour)] [(#DATE|affdate),] 
 <BOUCLE_rubriques_art(RUBRIQUES){id_rubrique}>
@@ -86,7 +89,10 @@
 <B_breves><a name="breve"></a>
 <h4 class="icone_article">Les dernières brèves:</h4>
 <p>
-<BOUCLE_breves(BREVES){titre_mot!=glossaire}{par date}{inverse}{0,5}>
+<BOUCLE_breves_doublons(BREVES){titre_mot=glossaire}{doublons glossaire}>
+[(#REM) les brèves du glossaire en touche]
+</BOUCLE_breves_doublons>
+<BOUCLE_breves(BREVES){doublons glossaire}{par date}{inverse}{0,5}>
 <a href="#URL_BREVE"[ title="(#INTRODUCTION|textebrut|attribut_html|couper{60})"]>
 #TITRE</a>[ le (#DATE|nom_jour)] [(#DATE|affdate),] 
 <BOUCLE_rubriques_brv(RUBRIQUES){id_rubrique}>
@@ -101,7 +107,7 @@
 <a name="modifs"></a>
 <h4 class="icone_article">Les articles modifi&eacute;s r&eacute;cemment:</h4>
 <p>
-<BOUCLE_articles_modif(ARTICLES){titre_mot!=agenda}{par date_modif}{inverse}{0,5}>
+<BOUCLE_articles_modif(ARTICLES){par date_modif}{inverse}{0,5}>
 <a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|attribut_html|couper{60})"]>#TITRE</a> [
 modifi&eacute; le (#DATE_MODIF|nom_jour)] [(#DATE_MODIF|affdate),]
 <BOUCLE_rubriques_art2(RUBRIQUES){id_rubrique}>
@@ -117,7 +123,7 @@ modifi&eacute; le (#DATE_MODIF|nom_jour)] [(#DATE_MODIF|affdate),]
 <B_derniers_sites>
 <a name="sites"></a>
 <h4 class="icone_site">Les derniers sites r&eacute;f&eacute;renc&eacute;s:</h4>
-<p><BOUCLE_derniers_sites(SITES){tout}{par date}{inverse}{0,5}>
+<p><BOUCLE_derniers_sites(SITES){tous}{par date}{inverse}{0,5}>
          <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#NOM_SITE)]</a> 
              [ référencé le (#DATE|nom_jour)][ (#DATE|affdate)] <br/>
                     </BOUCLE_derniers_sites></p>
@@ -128,7 +134,7 @@ modifi&eacute; le (#DATE_MODIF|nom_jour)] [(#DATE_MODIF|affdate),]
 <h4 class="icone_agenda">Les prochains événements.</h4>				
 <p>
 <BOUCLE_sous_rubragenda(RUBRIQUES){titre_mot=Agenda}{par titre}>
-<BOUCLE_articles_agenda(ARTICLES){id_rubrique}{par date}{inverse}{age<0}>
+<BOUCLE_articles_agenda(ARTICLES){id_article}{par date}{inverse}{age<0}>
 <a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|attribut_html|couper{60})"]>#TITRE</a> [
 Du (#DATE_REDAC|nom_jour)] [(#DATE_REDAC|affdate),]
 [au (#DATE|nom_jour)] [(#DATE|affdate)&nbsp;inclus.]

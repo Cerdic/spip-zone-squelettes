@@ -178,18 +178,35 @@ x #HAUTEUR})]
 [(#REM)   ajoute un lien et les coordonnées gis  ]
 
 
-<B_set_moi>
-<div class="grande_boite">
+
 <BOUCLE_set_moi(GIS){id_article}>
 #SET{latitude,#LAT}
 #SET{lonxitude,#LONX}
-[<h4 class="gis">Localisation:</h4>
-<p>Coordonnées GPS: Latitude: #LAT, Longitude: #LONX.<br/>
-<a href="(#URL_PAGE{localiser}|parametre_url{'id_article',#ID_ARTICLE}|parametre_url{'zoom',14}|parametre_url{'latit',#GET{latitude}}|parametre_url{'lonxit',#GET{lonxitude}})">Localiser l'événement sur une carte imprimable</a>.
-</p>]
 </BOUCLE_set_moi>
+
+
+<B_TEST_KML>
+<div class="grande_boite">
+
+<BOUCLE_TEST_KML(DOCUMENTS){id_article}{extension=kml}{0,1}>
+<h4 class="icone_gis">Itinéraire Kml</h4>
+<p>[<a href="(#URL_PAGE{localiser}|parametre_url{'id_article',#ID_ARTICLE}|parametre_url{'zoom',14}|parametre_url{'latit',#GET{latitude}}|parametre_url{'lonxit',#GET{lonxitude}})">Localiser
+    l'itin&eacute;raire de l'&eacute;v&eacute;nement sur une carte imprimable</a>.<br/>]
+Cet itinéraire est <a href="#URL_DOCUMENT">t&eacute;l&eacute;chargeable</a> au
+format kml.</p>
 </div>
-</B_set_moi>
+</BOUCLE_TEST_KML>
+<div class="grande_boite">
+<B_latlonx>
+<h4 class="icone_gis">Coordonnées GPS:</h4>
+<p><BOUCLE_latlonx(GIS){id_article}>
+[Latitude décimale:&nbsp;(#LAT)[, sexagésimale:&nbsp;(#LAT|coordonnee{NS})]<br/>]
+[Longitude décimale:&nbsp;(#LONX)[, sexagésimale:&nbsp;(#LONX|coordonnee{EO})]]
+</BOUCLE_latlonx></p>
+</B_latlonx>
+</div>
+<//B_TEST_KML>
+
 
 
 

@@ -1,5 +1,48 @@
 <?php
 
+
+ /*
+ *   +----------------------------------+
+ *    Nom du Filtre :    transformer en coordonnées °,m,s!
+ *   +----------------------------------+
+ *    Date : lundi 5 juin 2007
+ *    Auteur : adapté du net
+ *   +-------------------------------------+
+ *    Fonctions de ce filtre :
+ *   transformer les coordonnées décimales en sexagésimals
+ *   +-------------------------------------+ 
+ *  
+*/
+
+function coordonnee($texte, $dir) {
+	if($texte===null || $texte==='') return '';
+	if($texte{0}=='-') {
+		$signe=$dir{1};
+		$texte= -$texte;
+	} else {
+		$signe=$dir{0};
+	}
+	$d= floor($texte);
+	$s= ($texte - $d) * 3600;
+	$m= floor($s/60);
+	$s= $s-$m*60;
+	return sprintf("%d&deg;%02d'%02d%s", $d, $m, $s, $signe);
+}
+
+
+ /*
+ *   +----------------------------------+
+ *    Nom du Filtre :    histograme photo
+ *   +----------------------------------+
+ *    Date : lundi 5 juin 2007
+ *    Auteur : www.paris-beyrouth.org/SPIP
+ *   +-------------------------------------+
+ *    Fonctions de ce filtre :
+ *   ajoute un histogramme aux photos
+ *   +-------------------------------------+ 
+ *  
+*/
+
 function image_histo($im) {
 	
 	$image = valeurs_image_trans($im, "courbes", "gif");
@@ -108,10 +151,6 @@ for ($x = 0; $x < $x_i; $x++) {
 		}
 		$max = max( max($val_gris), max($val_r), max($val_g), max($val_b));
 		$rapport = (127/$max);
-
-
-
-
 
 
 
