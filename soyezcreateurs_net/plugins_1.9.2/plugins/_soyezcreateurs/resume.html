@@ -21,7 +21,7 @@
 	<ul>
 		<BOUCLE_forums_liens(FORUMS){plat}{par date}{inverse}{0,15}>
 			<li>[<i>(#DATE|affdate_court)</i>:]
-				<BOUCLE_ArticleForum(ARTICLES){id_article}><a href="#URL_ARTICLE#forum#ID_FORUM"></BOUCLE_ArticleForum>
+				<BOUCLE_ArticleForum(ARTICLES){id_article}><a href="#URL_ARTICLE#forum#ID_FORUM"[ hreflang="(#LANG)"]></BOUCLE_ArticleForum>
 				<BOUCLE_BreveForum(BREVES){id_breve}><a href="#URL_BREVE#forum#ID_FORUM"></BOUCLE_BreveForum>
 				<BOUCLE_RubriqueForum(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE#forum#ID_FORUM"></BOUCLE_RubriqueForum>
 				<//B_RubriqueForum><//B_BreveForum><//B_ArticleForum>#TITRE</a>
@@ -37,7 +37,7 @@
 		<BOUCLE_syndic(SYNDIC_ARTICLES){par date}{inverse}{0,15}>
 			<li class="menu-item">
 			[<i>(#DATE|affdate_court)</i>:]
-			<a href="#URL_ARTICLE">[(#TITRE*)]</a>
+			<a href="#URL_ARTICLE"[ hreflang="(#LANG)"]>[(#TITRE*)]</a>
 			</li>
 		</BOUCLE_syndic>
 	</ul>
@@ -52,7 +52,7 @@
 		<BOUCLE_syndic_sans_forums(SYNDIC_ARTICLES){par date}{inverse}{0,15}>
 			<li class="menu-item">
 			[<i>(#DATE|affdate_court)</i>:]
-			<a href="#URL_ARTICLE">[(#TITRE*)]</a>
+			<a href="#URL_ARTICLE"[ hreflang="(#LANG)"]>[(#TITRE*)]</a>
 			</li>
 		</BOUCLE_syndic_sans_forums>
 	</ul>
@@ -69,7 +69,7 @@
 	<div id="letexte">
 <BOUCLE_article_un(ARTICLES) {par popularite} {inverse} {0,2}{doublons}>
 	[<div class="surtitre">(#SURTITRE)</div>]
-	<h2>[<img class="logo_article" src="/(#LOGO_ARTICLE||reduire_image{64,64}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />]<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h2>
+	<h2>[<img class="logo_article" src="/(#LOGO_ARTICLE||reduire_image{64,64}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />]<a href="#URL_ARTICLE"[ hreflang="(#LANG)"]>[(#TITRE|supprimer_numero)]</a></h2>
 	[<div class="surtitre">(#SOUSTITRE)</div>]
 	<div class="detail">
 	<INCLURE{fond=aff_datepublication}{id_article}>
@@ -82,7 +82,7 @@
 <!-- Articles les plus populaires (suite) -->
 
 <BOUCLE_articles_populaires(ARTICLES) {par popularite} {inverse} {2,8}{doublons}>
-	<h2><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE|supprimer_numero)]</a></h2>
+	<h2><a href="#URL_ARTICLE"[ hreflang="(#LANG)"] [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE|supprimer_numero)]</a></h2>
 	<div class="detail">
 	<INCLURE{fond=aff_datepublication}{id_article}>
 	<INCLURE{fond=liste_auteurs}{id_article}><br />

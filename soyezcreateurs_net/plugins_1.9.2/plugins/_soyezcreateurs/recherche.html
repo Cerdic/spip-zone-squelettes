@@ -14,13 +14,13 @@
 <h1><:resultats_recherche:>[ : <em>(#RECHERCHE)</em>]</h1>
 </div>
 	<div id="letexte">
-<BOUCLE_ArticlesExclus(ARTICLES){titre_mot=PasDansRecherche}{doublons}></BOUCLE_ArticlesExclus>
+<BOUCLE_ArticlesExclus(ARTICLES){titre_mot=PasDansRecherche}{doublons}{lang_select=non}></BOUCLE_ArticlesExclus>
 [(#SET{nbelementstrouves,0})]
 <B_articles>
 	<h2>#ANCRE_PAGINATION<:articles:></h2>
 	<ul>
-		<BOUCLE_articles(ARTICLES) {recherche} {par points} {inverse} {pagination 25}{doublons}>
-			<li><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE|supprimer_numero)]</a> : [(#DATE|nom_jour)] [(#DATE|affdate)]</li>
+		<BOUCLE_articles(ARTICLES) {recherche} {par points} {inverse} {pagination 25}{doublons}{lang_select=non}>
+			<li><a href="#URL_ARTICLE"[ hreflang="(#LANG)"] [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE|supprimer_numero)]</a> : [(#DATE|nom_jour)] [(#DATE|affdate)]</li>
 		</BOUCLE_articles>
 	</ul>
 	[<p class="pagination">(#PAGINATION)</p>]
@@ -31,7 +31,7 @@
 <B_rubriques>
 	<h2>#ANCRE_PAGINATION<:rubriques:></h2>
 	<ul>
-		<BOUCLE_rubriques(RUBRIQUES) {recherche} {par points} {inverse} {pagination 25}>
+		<BOUCLE_rubriques(RUBRIQUES) {recherche} {par points} {inverse} {pagination 25}{lang_select=non}>
 			<li><a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE|supprimer_numero)]</a> : [(#DATE|nom_jour)] [(#DATE|affdate)]</li>
 		</BOUCLE_rubriques>
 	</ul>
@@ -43,7 +43,7 @@
 	<!-- Breves trouvees -->
 	<h2>#ANCRE_PAGINATION<:breves:></h2>
 	<ul>
-		<BOUCLE_breves(BREVES) {recherche} {par points} {inverse} {pagination 25}>
+		<BOUCLE_breves(BREVES) {recherche} {par points} {inverse} {pagination 25}{lang_select=non}>
 			<li><a href="#URL_BREVE">[(#TITRE|supprimer_numero)]</a> : [(#DATE|nom_jour)] [(#DATE|affdate)]</li>
 		</BOUCLE_breves>
 	</ul>
@@ -56,7 +56,7 @@
 <B_sites>
 	<h2>#ANCRE_PAGINATION<:sites_web:></h2>
 	<ul>
-		<BOUCLE_sites(SITES) {recherche} {par points} {inverse} {pagination 25}>
+		<BOUCLE_sites(SITES) {recherche} {par points} {inverse} {pagination 25}{lang_select=non}>
 			<li><a href="#URL_SITE" title="[(#DESCRIPTIF|attribut_html)]">[(#NOM_SITE|supprimer_numero)]</a> : [(#DATE|nom_jour)] [(#DATE|affdate)]</li>
 		</BOUCLE_sites>
 	</ul>
