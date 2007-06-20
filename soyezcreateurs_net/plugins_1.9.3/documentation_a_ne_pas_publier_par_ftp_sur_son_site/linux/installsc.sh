@@ -1,5 +1,6 @@
 #Installation de SPIP
 svn checkout svn://trac.rezo.net/spip/spip/ ./
+svn checkout svn://zone.spip.org/spip-zone/_squelettes_/gribouille
 
 #Installation des plugins
 mkdir plugins
@@ -20,7 +21,10 @@ svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/w3c_go_home
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/widget_calendar
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_test_/cfg
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/forms/forms_et_tables_1_9_1
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_test_/thickbox
+#svn checkout svn://zone.spip.org/spip-zone/_plugins_/_test_/thickbox
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/_test_/sedna
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/crayons
+
 
 cd ..
 
