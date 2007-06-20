@@ -2,13 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">
 <head><title><?php if ($titre=='') { ?><:pyrat:sommaire:><?php } else { echo $titre; } ?> - [(#NOM_SITE_SPIP|textebrut)]</title>
-[(#CONFIG{soyezcreateurs/mode_affichage}|match{portail}|?{' ',''})
-[(#ENV{template}|=={'Sommaire'}|?{'',' '})<INCLURE{fond=styleswitcher_classique}>]
+[(#ENV{template}|=={'Sommaire'}|?{'',' '})<INCLURE{fond=styleswitcher_mode#CONFIG{soyezcreateurs/mode_affichage,edito}}>]
 [(#ENV{template}|=={'Sommaire'}|?{' ',''})<INCLURE{fond=styleswitcher_mode#CONFIG{soyezcreateurs/mode_affichage,edito}}>]
-]
-[(#CONFIG{soyezcreateurs/mode_affichage}|match{portail}|?{'',' '})
-<INCLURE{fond=styleswitcher_classique}>
-]
 [(#REM) Attention : ne pas enlever les REMarques : elles servent aerer le source sans que celui ne renvois d'espaces identifie comme une reussite du test ]
 	<BOUCLE_ArtRubLayout(ARTICLES){id_article}>[(#REM) Dans le cas d'un article
 		]<BOUCLE_ArtLayout(MOTS){id_article}{type=_LayoutGala}>[(#REM) Est-ce qu'il a un Layout applique?
