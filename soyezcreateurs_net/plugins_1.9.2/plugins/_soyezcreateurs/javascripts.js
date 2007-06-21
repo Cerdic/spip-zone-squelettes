@@ -106,8 +106,6 @@ function inputKeyHandler(ev) {
 
 
 function adjustLayout() {
-	/* Remettre la taille à auto pour trouver l'eventuelle nouvelle hauteur !*/
-	$("div.equilibre").css({'height': 'auto'});
 	/*******************************************CAS N°1********************************************************************/
 	/*Nav, Contenu et Extra alignes top (Layout 1 a 22)*/
 	var tnotstackable =0;
@@ -155,14 +153,27 @@ function adjustLayout() {
 				largeurextra = parseInt($("div.laststackable")[0].offsetWidth);
 				largeurcontenu = parseInt($("div.notstackable")[0].offsetWidth);
 				if (largeurcontenu==largeurextra) {
-					hauteurcontenu = parseInt($("div.notstackable")[0].offsetHeight);
-					$("#navigation").css({'height': hauteurcontenu + parseInt($("div.laststackable")[0].offsetHeight)+'px'});
+					hstackable = (hauteurcontenu = parseInt($("div.notstackable")[0].offsetHeight)) + (hauteurext = parseInt($("div.laststackable")[0].offsetHeight));
+					hnavigation = parseInt($("div#navigation")[0].offsetHeight);
+					if(hstackable < hnavigation) {
+						$("div.notstackable").css({'height': (hnavigation - hauteurext)+'px'});
+					}
+					else {
+						$("div#navigation").css({'height': hstackable+'px'});
+					}
 					/*alert("Cas 4");*/
 				}
 				else	{
 /**********************************************CAS 5*******************************************************************/
 	/* Navigation et Contenu meme alignement Top (Layout 29 a 32 et 37 et 38)*/
-					$("#navigation").css({'height': parseInt($("div.notstackable")[0].offsetHeight)+'px'});
+					hstackable = (hauteurcontenu = parseInt($("div.notstackable")[0].offsetHeight));
+					hnavigation = parseInt($("div#navigation")[0].offsetHeight);
+					if(hstackable > hnavigation) {
+						$("div#navigation").css({'height': hstackable+'px'});
+					}
+					else {
+					$("div.notstackable").css({'height': hnavigation+'px'});
+					}
 					/*alert("Cas 5");*/
 				}
 			}
