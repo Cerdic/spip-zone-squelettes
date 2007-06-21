@@ -110,7 +110,7 @@
 <h4 class="icone_recherche"> Dans les documents :</h4></div>
 [(#ANCRE_PAGINATION)]
 <BOUCLE_marecherche_docs(INDEX){recherche}{!par points}{type_table IN documents} {pagination 12}>
-    <BOUCLE_documents(DOCUMENTS){id_document}>
+    <BOUCLE_documents(ARTICLES){id_document}>
     <li class="transparent" id="a#ID_DOCUMENT">
     [<a href="#URL_DOCUMENT" class="thickbox">(#LOGO_DOCUMENT||image_reduire{80}|image_aplatir{jpg,ffffff}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
     <p class="centre">[(#TITRE)<br/>][<a href="(#URL_ARTICLE)">Voir l'article</a>]</p></li>
@@ -120,7 +120,7 @@
 [<div class="grande_boite"><p class="centre gras">(#PAGINATION)<br/>Il y a au total #GRAND_TOTAL documents, cette page en affiche #TOTAL_BOUCLE</p></div>]
 </B_marecherche_docs>
 [<div class="grande_boite">
-<h4 class="icone_recherche"> Dans les Documents :</h4>
+<h4 class="icone_recherche"> Dans les documents :</h4>
 <p>"(#RECHERCHE)" n'a pas &eacute;t&eacute; trouv&eacute; dans les documents du site.</p></div>]
 <//B_marecherche_docs>
 
@@ -181,10 +181,12 @@
 <h4 class="icone_recherche">Dans les rubriques :</h4>
  [(#ANCRE_PAGINATION)]
 <BOUCLE_marecherche_rubriques(INDEX){recherche}{!par points}{type_table IN rubriques}{pagination 5}>
+    <BOUCLE_rubriques(RUBRIQUES){id_rubrique}>
        <p> <a href="#URL_RUBRIQUE" title="[(#TITRE)]" class="logogauche">
     <INCLURE{fond="logo"}{id_rubrique,#ID_RUBRIQUE}{taille=46}{date=#ENV{date}}></a>     
     [<h4><a href="#URL_RUBRIQUE" title="[(#TITRE)]">(#TITRE)</a></h4>]
-   [(#DESCRIPTIF|couper{60})]</p> 
+    [(#DESCRIPTIF|couper{60})]</p>
+    </BOUCLE_rubriques>   
     <hr class="spacer" />   
    </BOUCLE_marecherche_rubriques>
 		    [<p class="centre gras">(#PAGINATION{page_precedent_suivant})<br/>Il y a au total #GRAND_TOTAL rubriques, cette page en affiche #TOTAL_BOUCLE</p>]
