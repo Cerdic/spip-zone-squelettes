@@ -20,7 +20,7 @@
 <ul>
   <li>[(#ENV{template}|=={Sommaire}|?{'<strong>',''})]<a name="menusite" accesskey="A" href="/" title="<:accueil_site:>"><:pyrat:accueil_menu:></a>[(#ENV{template}|=={Sommaire}|?{'</strong>',''})]</li>
 
-<BOUCLE_EstMenuHaut(RUBRIQUES){titre_mot=MenuHaut}{id_rubrique=#ENV{secteurencours}}{lang_select=non}>
+<BOUCLE_EstMenuHaut(RUBRIQUES){titre_mot=MenuHaut}{id_rubrique=#ENV{secteurencours}}{!lang_select}>
 
 <B_Racines_Systematique>
 <BOUCLE_Racines_Systematique(ARTICLES){par num titre}{titre_mot=MENURACINE_Systematique}>
@@ -37,14 +37,14 @@
 <//B_EstMenuHaut>
 </ul>
 </div>
-<BOUCLE_Rubriques_Exclues_Mots(RUBRIQUES){titre_mot=PasDansMenu}{doublons}{lang_select=non}>
+<BOUCLE_Rubriques_Exclues_Mots(RUBRIQUES){titre_mot=PasDansMenu}{doublons}{!lang_select}>
 </BOUCLE_Rubriques_Exclues_Mots>
-<BOUCLE_MenuHaut(RUBRIQUES){titre_mot=MenuHaut}{id_rubrique=#ENV{secteurencours}}{doublons}{lang_select=non}>
+<BOUCLE_MenuHaut(RUBRIQUES){titre_mot=MenuHaut}{id_rubrique=#ENV{secteurencours}}{doublons}{!lang_select}>
 <div class="espaceavant">
 <INCLURE{fond=menuarticles}{id_rubrique}>
 <B_Rubriques_MenuHaut>
 <ul>
-  <BOUCLE_Rubriques_MenuHaut(RUBRIQUES){id_parent}{par num titre}{doublons}{lang_select=non}>
+  <BOUCLE_Rubriques_MenuHaut(RUBRIQUES){id_parent}{par num titre}{doublons}{!lang_select}>
   <li[(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{' class="encours"',''})]>[(#MODELE{rubrique_li}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]<BOUCLE_SsRubriques_MenuHaut(BOUCLE_Rubriques_MenuHaut)></BOUCLE_SsRubriques_MenuHaut></li>
   </BOUCLE_Rubriques_MenuHaut>
 </ul>
@@ -62,16 +62,16 @@
 </B_RacinesBas_Systematique>
 </BOUCLE_MenuHaut>
 
-<BOUCLE_ExclureMenuHaut(RUBRIQUES){titre_mot=MenuHaut}{doublons}{lang_select=non}> </BOUCLE_ExclureMenuHaut>
+<BOUCLE_ExclureMenuHaut(RUBRIQUES){titre_mot=MenuHaut}{doublons}{!lang_select}> </BOUCLE_ExclureMenuHaut>
 
 <div class="espaceavant">
 <B_Secteurs>
 <ul class="tv">
-  <BOUCLE_Secteurs(RUBRIQUES){racine}{par num titre}{doublons}{lang_select=non}>
+  <BOUCLE_Secteurs(RUBRIQUES){racine}{par num titre}{doublons}{!lang_select}>
   <li>[(#MODELE{rubrique_li}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]
 <B_Rubriques>
 <ul>
-  <BOUCLE_Rubriques(RUBRIQUES){id_parent}{par num titre}{doublons}{lang_select=non}>
+  <BOUCLE_Rubriques(RUBRIQUES){id_parent}{par num titre}{doublons}{!lang_select}>
   <li>[(#MODELE{rubrique_li}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]<BOUCLE_SsRubriques(BOUCLE_Rubriques)></BOUCLE_SsRubriques></li>
   </BOUCLE_Rubriques>
 </ul>
