@@ -106,6 +106,8 @@ function inputKeyHandler(ev) {
 
 
 function adjustLayout() {
+	/* Remettre la taille à auto pour trouver l'eventuelle nouvelle hauteur !*/
+	$("div.equilibre").css({'height': 'auto'});
 	/*******************************************CAS N°1********************************************************************/
 	/*Nav, Contenu et Extra alignes top (Layout 1 a 22)*/
 	var tnotstackable =0;
