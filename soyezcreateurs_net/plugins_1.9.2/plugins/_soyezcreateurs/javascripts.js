@@ -124,7 +124,9 @@ function adjustLayout() {
 	/* Navigation et Extra sont empiles (Layout 23 a 26 et 33 et 34)*/
 		leftlaststackable = parseInt($("div.laststackable")[0].offsetLeft);
 		leftnavigation = parseInt($("div#navigation")[0].offsetLeft);
-		if (leftlaststackable == leftnavigation) {
+		largeurextra = parseInt($("div.laststackable")[0].offsetWidth);
+		largeurcontenu = parseInt($("div.notstackable")[0].offsetWidth);
+		if ((leftlaststackable == leftnavigation) && (largeurextra == largeurcontenu)) {
 			var hstacked = 0;
 			$("div.stackable").each(function(){ hstacked+=parseInt(this.offsetHeight); });
 			var hnotstackable = 0;
@@ -152,8 +154,6 @@ function adjustLayout() {
 			else {
 /**********************************************CAS 4*******************************************************************/
 	/* Navigation et Contenu meme alignement Top (Layout 35 et 36)*/
-				largeurextra = parseInt($("div.laststackable")[0].offsetWidth);
-				largeurcontenu = parseInt($("div.notstackable")[0].offsetWidth);
 				if (largeurcontenu==largeurextra) {
 					hstackable = (hauteurcontenu = parseInt($("div.notstackable")[0].offsetHeight)) + (hauteurext = parseInt($("div.laststackable")[0].offsetHeight));
 					hnavigation = parseInt($("div#navigation")[0].offsetHeight);
