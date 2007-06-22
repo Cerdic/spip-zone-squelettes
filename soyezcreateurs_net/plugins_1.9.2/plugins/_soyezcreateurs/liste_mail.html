@@ -1,41 +1,23 @@
 #CACHE{10*24*3600}
+<B_messages>
+			[(#ENV{mode}|=={lettreseule}?{'',' '})
+				<INCLURE{fond=header_lettre}{pst_id}>
+			]
 
-<BOUCLE_messages(cm_posts){pst_id}>
-<?php
-$jp_rubrique = 'Liste_mail';
-$titre = '<:pyrat:newsletter:>';
-$titretop = '<:pyrat:newsletter|nettoyer_marqueur:>';
- ?>
- <INCLURE{fond=header}{connexion}>
-	<div id="miettesdepain">
-		<ul>
-			<li><a href="#URL_SITE_SPIP" title="Accueil"><:pyrat:accueil:></a></li>
-			<li><a href="#URL_PAGE{liste_mail}"><:pyrat:newsletter:></a></li>
-			<BOUCLE_Uneliste2(cm_lists){lst_id}>
-			<li><a href="[(#URL_PAGE{liste_mail}|parametre_url{'lst_id',#LST_ID})]">#LST_NAME</a></li>
-			</BOUCLE_Uneliste2>
-			<li>#PST_SUBJECT</li>
-		</ul>
-	</div>
-	
-<div class="texte">
-
-<div class="cartouche">
-<h1 class="#EDIT{lst_name} titre">#LST_NAME</h1>
-<div class="datepublication"><span><:pyrat:publiele:> [(#DATE|nom_jour)] [(#DATE|affdate)]</span></div>
-</div>
-
-	<div id="letexte">
-	
-	[(#REM) Affichage du détail du message du courrier ]
-		<BOUCLE_archives_mesages(cm_posts){pst_id}{pst_date_sent!=0}{!par pst_date_sent}>
-		#PST_HTML
-		</BOUCLE_archives_mesages>
-
-	</div><!-- Fin de .letexte -->
+		<BOUCLE_messages(cm_posts){pst_id}{pst_date_sent!=0}{!par pst_date_sent}>
+			[(#REM) Affichage du détail du message du courrier ]
+			[(#ENV{mode}|=={lettreseule}?{' ',''})
+				[(#PST_HTML)]
+			]
+			[(#ENV{mode}|=={lettreseule}?{'',' '})
+				[(#PST_HTML|garder_body|elever_p)]
+			]
+		</BOUCLE_messages>
+			[(#ENV{mode}|=={lettreseule}?{'',' '})
+		</div><!-- Fin de .letexte -->
 </div><!-- Fin de .texte -->
-
-</BOUCLE_messages>
+]
+</B_messages>
 
 <BOUCLE_list(cm_lists){lst_id}>
 <?php
@@ -65,13 +47,13 @@ $titretop = '<:pyrat:newsletter|nettoyer_marqueur:>';
 	[<div class="chapo">(#DESCRIPTIF)</div>]
 [(#REM) Affichage du détail de la liste ]
 	<B_archives>
-		<BOUCLE_archives(cm_posts) {lst_id}{pst_date_sent!=0}{pagination}{!par pst_date_sent}>
 	<ul>
+		<BOUCLE_archives(cm_posts) {lst_id}{pst_date_sent!=0}{pagination}{!par pst_date_sent}>
 		<li><a href="[(#URL_PAGE{liste_mail}|parametre_url{'pst_id',#PST_ID})]">[(#PST_SUBJECT|supprimer_numero)]</a>
-		<small>[(#DATE|affdate_court)]</small></li>
-	</ul>	
-		<div><br class="nettoyeur" /></div>
+		<small>[(#DATE|affdate_court)]</small>
+		<div><br class="nettoyeur" /></div></li>
 		</BOUCLE_archives>
+	</ul>
 		[<p class="pagination">(#PAGINATION)</p>]
 	</B_archives>
 
@@ -119,6 +101,9 @@ $titretop = '<:pyrat:newsletter|nettoyer_marqueur:>';
 <//B_list>
 
 <//B_messages>
+			[(#ENV{mode}|=={lettreseule}?{'',' '})
+
 [(#FORMULAIRE_ADMIN)]
 
 <INCLURE{fond=footer}>
+] 
