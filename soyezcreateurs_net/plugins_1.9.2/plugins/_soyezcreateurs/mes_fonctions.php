@@ -396,7 +396,7 @@ function garder_body($texte) {
 }
 
 function elever_p($texte) {
-	$body = ereg_replace('<p[^>]*>((.|\n|\r)*)<\/p>', '', $texte);
+	$body = ereg_replace('<p[^>]*>(.|\n|\r)*<\/p>', '', $texte);
 	return $body;
 }
 
