@@ -23,6 +23,20 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'accessibilite_menu' => 'Aller au menu',
 'accessibilite_recherche' => 'Aller &agrave; la recherche',
 'avertissement_ie' => '<!--[if lt IE 6]><div style="color:#fff; background-color:#000; border:2px solid red; padding:1em; font-family: \'Trebuchet MS\', verdana, arial, helvetica, sans-serif; font-size: 120%; position:relative;"><p><strong style="color:#f00;">Avertissement</strong>&nbsp;: vous utilisez une version p&eacute;rim&eacute;e d\'Internet Explorer&nbsp;! L\'int&eacute;gralit&eacute; du site vous est n&eacute;anmoins accessible.</p><p>Nous vous invitons&nbsp;:</p><ol style="color:#fff;position:relative;"><li>&agrave; <a href="http://update.microsoft.com/">mettre &agrave; jour</a> votre syst&egrave;me d\'exploitation et &agrave; installer la derni&egrave;re version d\'Internet Explorer (pour des raisons de <a href="http://www.pyrat.net/Utilisez-Windows-Update.html">s&eacute;curit&eacute;</a>)</li><li>et &agrave; utiliser un navigateur moderne : <a href="http://www.mozilla-europe.org/fr/">FireFox</a>.</li></ol></div><![endif]-->',
+'agenda_le' => 'Le ',
+'agenda_du' => 'Du ',
+'agenda_a' => ' &agrave; ',
+'agenda_au' => ' au ',
+'agenda_de' => ' de ',
+'agenda_en_ce_moment' => '<em>(en ce moment)</em>',
+'agenda_dans' => 'dans ',
+'agenda_an' => ' an, ',
+'agenda_ans' => ' ans, ',
+'agenda_mois' => ' mois, ',
+'agenda_mois_pluriel' => ' mois, ',
+'agenda_jour' => ' jour, ',
+'agenda_jours' => ' jours, ',
+'agenda_jours_seul' => ' jours',
 
 // B
 

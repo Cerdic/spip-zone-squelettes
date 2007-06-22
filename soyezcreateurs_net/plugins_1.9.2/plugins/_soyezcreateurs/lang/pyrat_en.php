@@ -23,6 +23,20 @@ $GLOBALS['i18n_pyrat_en'] = array(
 'accessibilite_menu' => 'Go to menu',
 'accessibilite_recherche' => 'Go to Search box',
 'avertissement_ie' => '<!--[if lt IE 6]><div style="color:#fff; background-color:#000; border:2px solid red; padding:1em; font-family: \'Trebuchet MS\', verdana, arial, helvetica, sans-serif; font-size: 120%; position:relative;"><p><strong style="color:#f00;">Caution</strong>: you are using an old version of Internet Explorer! You can visit this site with your existing browser.</p><p>However, we suggest that you </p><ol style="color:#fff;position:relative;"><li><a href="http://update.microsoft.com/">update</a> your operating systemand install the most recent version of Internet Explorer (for <a href="http://www.pyrat.net/Utilisez-Windows-Update.html">security</a> reasons)</li><li>and use a modern browser: <a href="http://www.mozilla-europe.org/fr/">FireFox</a>.</li></ol></div><![endif]-->',
+'agenda_le' => 'The ',
+'agenda_du' => 'From ',
+'agenda_a' => ' to ',
+'agenda_au' => ' to ',
+'agenda_de' => ' from ',
+'agenda_en_ce_moment' => '<em>(now)</em>',
+'agenda_dans' => 'in ',
+'agenda_an' => ' year, ',
+'agenda_ans' => ' years, ',
+'agenda_mois' => ' month, ',
+'agenda_mois_pluriel' => ' months, ',
+'agenda_jour' => ' day, ',
+'agenda_jours' => ' days, ',
+'agenda_jours_seul' => ' days',
 
 // B
 

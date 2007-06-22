@@ -262,25 +262,25 @@ function afficher_les_dates($dateDebut,$dateFin,$horaire, $distance=0, $en_cours
 		}
 	} else {
 		if ( $dateDebut == $dateFin ) {
-			$str .=  'Le ';
+			$str .=  _T('pyrat:agenda_le');
 		} else {
-			$str .= 'Du ';
+			$str .= _T('pyrat:agenda_du');
 		}
 		$str .= nom_jour($dateDebut).' '.affdate($dateDebut);
 		
 		if ( $dateDebut != $dateFin ) {
 			if ($horaire=='oui') {
-				$str .= ' &agrave; '.$heureDebut;
+				$str .= _T('pyrat:agenda_a').$heureDebut;
 			}
-			$str .= ' au '.nom_jour($dateFin).' '.affdate($dateFin);
+			$str .= _T('pyrat:agenda_au').nom_jour($dateFin).' '.affdate($dateFin);
 			if ($horaire=='oui') {
-				$str .= ' &agrave; '.$heureFin;
+				$str .= _T('pyrat:agenda_a').$heureFin;
 			}
 		} else {
 			if ($horaire=='oui' && $heureDebut != $heureFin) {
-				$str .= ' de '.$heureDebut.' &agrave; '.$heureFin;
+				$str .= _T('pyrat:agenda_de').$heureDebut._T('pyrat:agenda_a').$heureFin;
 			} elseif ($horaire=='oui') {
-				$str .= ' &agrave; '.$heureDebut;
+				$str .= _T('pyrat:agenda_a').$heureDebut;
 			}
 		} 
 		
@@ -297,32 +297,36 @@ function afficher_les_dates($dateDebut,$dateFin,$horaire, $distance=0, $en_cours
 		if (strtotime($dateDebut.' '.$heureDebut.':00') < time() && strtotime($dateFin.' '.$heureFin.':00') < time()) {
 			$msg = '';
 		} elseif (strtotime($dateDebut.' '.$heureDebut.':00') < time() && strtotime($dateFin.' '.$heureFin.':00') > time()) {
-				if ($en_cours==1) $msg .= _L('<em>(en ce moment)</em>');
+				if ($en_cours==1) $msg .= _T('pyrat:agenda_en_ce_moment');
 		} else {
 			if ($distance==1 && ($nb_an || $nb_mois || $nb_jour)){
-				$msg .= _L('(dans ');
+				$msg .= '('._T('pyrat:agenda_dans');
 				if ($nb_an) {
 					if ($nb_an==1) {
-						$msg .= $nb_an._L(' an, ');
+						$msg .= $nb_an._T('pyrat:agenda_an');
 					} else {
-						$msg .= $nb_an._L(' ans, ');
+						$msg .= $nb_an._T('pyrat:agenda_ans');
 					}
 				}
 				if ($nb_mois) {
-					$msg .= $nb_mois._L(' mois, ');
+					if ($nb_mois==1) {
+						$msg .= $nb_mois._T('pyrat:agenda_mois');
+					} else {
+						$msg .= $nb_mois._T('pyrat:agenda_mois_pluriel');
+					}
 				}
 				if ($nb_jour) {
 					if ($nb_jour==1) {
-						$msg .= $nb_jour._L(' jour, ');
+						$msg .= $nb_jour._T('pyrat:agenda_jour');
 					} else {
-						$msg .= $nb_jour._L(' jours, ');
+						$msg .= $nb_jour._T('pyrat:agenda_jours');
 					}
 				}
 			$msg = substr($msg,0,-2).')';
 			} 
 		}	 
 		if ($duree==1) {
-			$msg .= ' ('.intVal((strtotime($dateFin)-strtotime($dateDebut)) / (3600*24)).' jours)';
+			$msg .= ' ('.intVal((strtotime($dateFin)-strtotime($dateDebut)) / (3600*24))._T('pyrat:agenda_jours_seul').')';
 		}
 		
 	}
