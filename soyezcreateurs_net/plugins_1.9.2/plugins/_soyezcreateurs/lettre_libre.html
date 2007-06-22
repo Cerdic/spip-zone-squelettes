@@ -314,13 +314,13 @@ table
 				</td>
 			</tr>
 			<tr>
-				<td class="contenu">
+				<td class="contenu2">
 					<div id="lettre">
+					<BOUCLE_articles(ARTICLES){titre_mot=Courrier_libre}{!par date}{0,1}>
 						<div class="cartouche">
 							<h1>Courrier</h1>
-							<BOUCLE_articles(ARTICLES){titre_mot=Courrier_libre}{!par date}{0,1}>
 							[<div class="surtitre"><span>(#SURTITRE)</span></div>]
-								<div>
+							<div>
 								<h2 class="logo_article">
 								[(#LOGO_ARTICLE_NORMAL||url_absolue|logo_swf_or_img{
 								64,
@@ -336,17 +336,15 @@ table
 						[<div class="soustitre"><span>(#SOUSTITRE)</span></div>]
 						<div class="datepublication"><span>[(#DATE|affdate)], par  #LESAUTEURS</span></div>
 						<div class="chapo">
-							<?php if ('[(#CHAPO|texte_script)]'=='') { ?>
-							[<div class="chapo">(#DESCRIPTIF)</div>]
-							<?php } else { ?>
-							[<div class="chapo">(#CHAPO)</div>]
-							<?php } ?>
-								<div id="letexte_lettre">
-									[(#TEXTE|liens_absolus)]
-									[<div class="ps">(#PS)</div>]
-									[<div class="notes">(#NOTES)</div>]
-								</div><!-- FIn #letexte_lettre>-->
-						</div> <!-- Fin #chapo-->
+							[<div>(#DESCRIPTIF)</div>]		
+							[<div>(#CHAPO)</div>]
+						</div>	
+							<div id="letexte_lettre">
+								[(#TEXTE|liens_absolus)]
+								[<div class="ps">(#PS)</div>]
+								[<div class="notes">(#NOTES)</div>]
+							</div><!-- FIn #letexte_lettre>-->
+						</BOUCLE_articles>
 					</div><!-- Fin de #lettre -->
 				</td>
 				<td class="extra2" valign="top">
@@ -356,7 +354,6 @@ table
 					<BOUCLE_sommairearticles(ARTICLES){titre_mot=Courrier_libre}{!par date}{0,15}{exclus}>
 						<li><a href="#URL_ARTICLE">#TITRE</a></li>
 					</BOUCLE_sommairearticles>
-							</BOUCLE_articles>
 					</ul>
 				</td>
 			</tr>
@@ -368,6 +365,6 @@ table
 				</td>
 			</tr>
 		</table>
-	</div>
+	</div> <!--Fin #contenu2 -->
 	</body>
 </html>
