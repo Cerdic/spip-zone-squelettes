@@ -6,7 +6,6 @@
 // Fonction : affiche la version utilise du squelette variable globale $version_squelette
 // =======================================================================================================================================
 //
-$GLOBALS['version_squelette'] = '2.0.0';
 function balise_VERSION_SQUELETTE($p) {
 	$p->code = 'calcul_version_squelette()';
 	$p->statut = 'php';
@@ -15,7 +14,17 @@ function balise_VERSION_SQUELETTE($p) {
 
 function calcul_version_squelette() {
 
-	$version = $GLOBALS['version_squelette'];
+	$version = NULL;
+	
+	$fichier = _DIR_PLUGIN_SARKASPIP.'plugin.xml';
+	if (@is_readable($fichier)) {
+		if (lire_fichier($fichier, $contenu)) {
+			if (preg_match('/<version>([0-9.]+)<\/version>/', $contenu, $match)) {
+				$version .= $match[1];
+			}
+		}
+	}
+	
 	$fichier = _DIR_PLUGIN_SARKASPIP.'svn.revision';
 	if (@is_readable($fichier)) {
 		if (lire_fichier($fichier, $contenu)) {
