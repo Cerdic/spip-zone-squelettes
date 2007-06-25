@@ -6,7 +6,7 @@
 // Fonction : affiche la version utilise du squelette variable globale $version_squelette
 // =======================================================================================================================================
 //
-$GLOBALS['version_squelette'] = '1.9.2-plugin';
+$GLOBALS['version_squelette'] = '2.0.0';
 function balise_VERSION_SQUELETTE($p) {
 	$p->code = 'calcul_version_squelette()';
 	$p->statut = 'php';
