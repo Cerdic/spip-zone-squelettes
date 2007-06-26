@@ -1,1 +1,147 @@
-[(#SESSION{id_auteur}|?{' '})<INCLURE{fond=sommaire_modeedito_restreint}>][(#SESSION{id_auteur}|?{'',' '})<INCLURE{fond=sommaire_modeedito_public}>]
+<B_membres>
+<div id="membresommaire">
+	<h1>Info sur une paroisse</h1>
+	<form action="/@rubrique.html" method="get" id="formmembre" class="membre">
+	<div>
+		<select id="choisirmembre" name="id_rubrique" class="cherchermembre" onchange="return submit(this);">
+		<option value="0" selected="selected">Choisir</option>
+		<BOUCLE_membres(RUBRIQUES){titre_mot=membres}>
+		<optgroup label="[(#TITRE|supprimer_numero)]">
+		<BOUCLE_sousrub_membres(RUBRIQUES){id_parent}{par num titre, titre}>
+		
+			<option value="#ID_RUBRIQUE" title="[(#TITRE|supprimer_numero)]">[(#TITRE|supprimer_numero|couper{35})]</option>
+		
+		</BOUCLE_sousrub_membres>
+		</optgroup>
+		</BOUCLE_membres>
+		</select>
+	</div>
+	</form>
+	
+</div>
+<!-- fin membresommaire -->
+</B_membres>
+
+<B_agenda_general>
+<div id="agendasommaire">
+	<h1>Agenda principal</h1>
+	<form action="/@rubrique.html" method="get" id="formagenda" class="agenda">
+	<div>
+		<select id="infoagenda" name="id_rubrique" class="affagenda" onchange="return submit(this);">
+		<option value="0" selected="selected">Choisir un agenda</option>
+		<BOUCLE_agenda_general(RUBRIQUES){titre_mot=agenda}>
+		<optgroup label="[(#TITRE|supprimer_numero)]">
+		<BOUCLE_autre_agenda(RUBRIQUES){id_parent}{par num titre, titre}>
+			<option value="#ID_RUBRIQUE" title="[(#TITRE|supprimer_numero)]">[(#TITRE|supprimer_numero|couper{35})]</option>
+		</BOUCLE_autre_agenda>
+		</optgroup>
+		</BOUCLE_agenda_general>
+		</select>
+	</div>
+	</form>
+</div>
+<!-- fin agendasommaire -->
+</B_agenda_general>
+
+<B_contexte_evenement>
+<div id="evenementsommaire">
+	<BOUCLE_contexte_evenement(RUBRIQUES){titre_mot=agenda_principal}>
+	<dl>
+	<BOUCLE_evenements_principaux(EVENEMENTS){id_rubrique}{age<0}{par date}{statut=publie}{0,3}>
+	<dt>[#LOGO_EVENEMENTS(#TITRE|supprimer_numero)]</dt>
+	[<dd>(#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})</dd>]
+	[<dd>(#LIEU)</dd>]
+	[<dd>(#DESCRIPTIF|couper{200})</dd>]
+	</BOUCLE_evenements_principaux>
+	</dl>
+	</BOUCLE_contexte_evenement>
+</div>
+<!-- fin evenementsommaire -->
+</B_contexte_evenement>
+
+<B_info_pratique>
+<div id="infopratique">
+	<h1>Informations pratiques</h1>
+	<BOUCLE_info_pratique(RUBRIQUES){titre_mot=info_pratique}>
+	[<p>(#CHAPO|sinon{#DESCRIPTIF}|sinon{[(#TEXTE|couper{300})]})</p>]
+	</BOUCLE_info_pratique>
+</div>
+<!-- fin infopratique -->
+</B_info_pratique>
+
+<B_dossier_identite>
+<div id="dossieridentite">
+	<BOUCLE_dossier_identite(RUBRIQUES){titre_mot=dossier_identite}>
+	[<h1>(#TITRE|supprimer_numero)</h1>]
+	</BOUCLE_dossier_identite>
+</div>
+<!-- fin dossieridentite -->
+</B_dossier_identite>
+
+<B_contexte_dossier>
+<div id="dossiersommaire">
+	<h1>dossier</h1>
+	<form action="/@rubrique.html" method="get" id="formdossier" class="dossier">
+	<div>
+		<select id="infodossier" name="id_rubrique" class="affdossier" onchange="return submit(this);">
+		<option value="0" selected="selected">Choisir un dossier</option>
+		<BOUCLE_contexte_dossier(RUBRIQUES){titre_mot=dossier_thematique}>
+		<optgroup label="[(#TITRE|supprimer_numero)]">
+		<BOUCLE_autre_dossier(RUBRIQUES){id_parent}{par num titre, titre}>
+			<option value="#ID_RUBRIQUE" title="[(#TITRE|supprimer_numero)]">[(#TITRE|supprimer_numero|couper{35})]</option>
+		</BOUCLE_autre_dossier>
+		</optgroup>
+		</BOUCLE_contexte_dossier>
+		</select>
+	</div>
+	</form>
+</div>
+<!-- fin dossiersommaire -->
+</B_contexte_dossier>
+
+<B_dossier_en_avant>
+<div id="dossierenavant">
+	<BOUCLE_dossier_en_avant(RUBRIQUES){titre_mot=dossier_en_avant}>
+	<dl>
+	<BOUCLE_art_dossier_en_avant(ARTICLES){id_rubrique}{par num titre, date}{0,1}>
+	<dt>[#LOGO_EVENEMENTS(#TITRE|supprimer_numero)]</dt>
+	[<dd>(#CHAPO|sinon{#DESCRIPTIF}|sinon{[(#TEXTE|couper{300})]})</dd>]
+	</BOUCLE_art_dossier_en_avant>
+	</dl>
+	<B_autre_art>
+	<ul>
+	<BOUCLE_autre_art(ARTICLES){id_rubrique}{par num titre, date}{1,3}>
+	<li>[(#TITRE|supprimer_numero)]</li>
+	</BOUCLE_autre_art>
+	</ul>
+	</B_autre_art>
+	</BOUCLE_dossier_en_avant>
+</div>
+<!-- fin dossierenavant -->
+</B_dossier_en_avant>
+
+<B_gravez_nom>
+<div id="graveznom">
+	<BOUCLE_gravez_nom(ARTICLES){titre_mot=GraverSonNom}>
+	<p><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></p>
+	</BOUCLE_gravez_nom>
+</div>
+<!-- fin graveznom -->
+</B_gravez_nom>
+
+<B_alaune>
+<div id="alaune">
+	<dl>
+	<BOUCLE_alaune(ARTICLES){titre_mot=ALaUne}{0,1}{doublons}>
+	<dt>[#LOGO_ARTICLE(#TITRE|supprimer_numero)]</dt>
+	[<dd>(#CHAPO|sinon{#DESCRIPTIF}|sinon{[(#TEXTE|couper{300})]})</dd>]
+	</BOUCLE_alaune>
+	</dl>
+	<ul>
+	<BOUCLE_autre_alaune(ARTICLES){titre_mot=ALaUne}{0,3}{doublons}>
+	<li>[(#TITRE|supprimer_numero)]</li>
+	</BOUCLE_autre_alaune>
+	</ul>
+</div>
+<!-- fin alaune -->
+</B_alaune>

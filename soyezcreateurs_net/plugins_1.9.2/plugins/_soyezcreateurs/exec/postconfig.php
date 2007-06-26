@@ -258,7 +258,7 @@ function config_site() {
 		create_mot("_Specialisation_Rubrique_ou_Article", "Sommaire", "Pour dire que les articles de cette rubrique ont un sommaire ou que l\'article a un sommaire", "Un sommaire automatique sera placé en début d\'article.\n\nCe sommaire sera bati à partir des titres et sous-titres du texte de l\'article.");
 
 	create_groupe("_TypeRubrique", "Pour indiquer un type spécifique de rubrique", "Il faut choisir un mot clef dans cette liste pour obtenir un affichage spécifique de rubrique.\n\nNB : pour rajouter un mot clef \"mc1\", il faut aussi rajouter les squelettes correspondants :\n-* inc_typerubrique_mc1.html\n-* footer_typerubrique_mc1.html", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
-		create_mot("_TypeRubrique", "paroisse", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des paroisses.", "Affecter ce mot clef à chaque rubrique racine d\'une paroisse.");
+		create_mot("_TypeRubrique", "membre", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des paroisses.", "Affecter ce mot clef à chaque rubrique racine d\'une paroisse.");
 
 
 ## <--------------------------------------------
