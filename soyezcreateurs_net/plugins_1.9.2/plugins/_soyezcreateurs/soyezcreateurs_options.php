@@ -1,7 +1,4 @@
 <?php
-$p=explode(basename(_DIR_PLUGINS)."/",str_replace('\\','/',realpath(dirname(__FILE__))));
-define('_DIR_PLUGIN_SOYEZCREATEURS',(_DIR_PLUGINS.end($p)));
-
 $formats_logos =  array ('gif', 'jpg', 'png', 'swf');
 $type_urls = 'propres2';
 
