@@ -7,7 +7,7 @@ d'ou un nombre de resultats limite. Pourrait etre faite en combinant
 - les indications de pagination de OpenSearch 1.1 http://www.opensearch.org/Specifications/OpenSearch/1.1 startIndex et itemsPerPage
 ]#CACHE{7200}
 [(#HTTP_HEADER{Content-type: application/atom+xml[; charset=(#CHARSET)]})]<?xml version="1.0"[ encoding="(#CHARSET)"]?> 
-<feed xmlns="http://www.w3.org/2005/Atom"[ xml:lang="(#LANG)"]>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:spip="http://trac.rezo.net/trac/spip-zone/browser/_squelettes_/atom/"[ xml:lang="(#LANG)"]>
 	<title>[(#NOM_SITE_SPIP|texte_backend)] - 
 <BOUCLE_rubrique(RUBRIQUES){id_rubrique}>[<:rubrique|texte_backend:> (#TITRE|texte_backend) - ]</BOUCLE_rubrique>
 <:resultats_recherche|texte_backend:>[(#RECHERCHE|texte_backend)]</title>]
@@ -29,9 +29,9 @@ d'ou un nombre de resultats limite. Pourrait etre faite en combinant
 ][		<updated>(#DATE_MODIF|date_iso)</updated>
 ]	<BOUCLE_article_auteur(AUTEURS){id_article}>[	<author><name>(#NOM)</name>[<uri>(#URL_AUTEUR|url_absolue)</uri>]</author>
 ]	</BOUCLE_article_auteur>
-	<BOUCLE_article_rubrique(RUBRIQUES){id_rubrique}>[	<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
+	<BOUCLE_article_rubrique(RUBRIQUES){id_rubrique}>[	<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)" spip:uri="#URL_SITE_SPIP/rubrique#ID_RUBRIQUE"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
 ]	</BOUCLE_article_rubrique>
-	<BOUCLE_article_mots(MOTS){id_article}>[	<category scheme="#URL_SITE_SPIP/mot" term="(#ID_MOT)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
+	<BOUCLE_article_mots(MOTS){id_article}>[	<category scheme="#URL_SITE_SPIP/mot" term="(#ID_MOT)" spip:uri="#URL_SITE_SPIP/mot#ID_MOT"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
 ]	</BOUCLE_article_mots>
 [		<summary type="html">(#INTRODUCTION|texte_backend)</summary>
 ]	</entry>
@@ -43,7 +43,7 @@ d'ou un nombre de resultats limite. Pourrait etre faite en combinant
 ][		<id>#URL_SITE_SPIP/rubrique(#ID_RUBRIQUE)</id>
 ][		<link rel="alternate" type="text/html" href="(#URL_RUBRIQUE|url_absolue)"/>
 ][		<updated>(#DATE|date_iso)</updated>
-]	<BOUCLE_rubrique_rubrique(RUBRIQUES){id_rubrique}>[	<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
+]	<BOUCLE_rubrique_rubrique(RUBRIQUES){id_rubrique}>[	<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)" spip:uri="#URL_SITE_SPIP/rubrique#ID_RUBRIQUE"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
 ]	</BOUCLE_rubrique_rubrique>
 [		<summary type="html">(#INTRODUCTION|texte_backend)</summary>
 ]	</entry>
@@ -57,9 +57,9 @@ d'ou un nombre de resultats limite. Pourrait etre faite en combinant
 ][		<link rel="replies" type="application/atom+xml" href="(#PARAMETRES_FORUM|url_rss_forum|parametre_url{fmt,atom}|url_absolue)"/>
 ][		<published>(#DATE|date_iso)</published>
 ][		<updated>(#DATE|date_iso)</updated>
-]	<BOUCLE_breve_rubrique(RUBRIQUES){id_rubrique}>[	<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
+]	<BOUCLE_breve_rubrique(RUBRIQUES){id_rubrique}>[	<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)" spip:uri="#URL_SITE_SPIP/rubrique#ID_RUBRIQUE"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
 ]	</BOUCLE_breve_rubrique>
-	<BOUCLE_breve_mots(MOTS){id_article}>[	<category scheme="#URL_SITE_SPIP/mot" term="(#ID_MOT)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
+	<BOUCLE_breve_mots(MOTS){id_article}>[	<category scheme="#URL_SITE_SPIP/mot" term="(#ID_MOT)" spip:uri="#URL_SITE_SPIP/mot#ID_MOT"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
 ]	</BOUCLE_breve_mots>
 [		<summary type="html">(#INTRODUCTION|texte_backend)</summary>
 ]	</entry>

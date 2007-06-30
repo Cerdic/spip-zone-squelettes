@@ -4,7 +4,7 @@ Publication limitee aux vingt dernieres, mais une future pagination SPIP pourrai
 avec la pagination atom http://www.iana.org/assignments/link-relations.html afin de tout publier.
 ]#CACHE{7200}
 [(#HTTP_HEADER{Content-type: application/atom+xml[; charset=(#CHARSET)]})]<?xml version="1.0"[ encoding="(#CHARSET)"]?>
-<feed xmlns="http://www.w3.org/2005/Atom"[ xml:lang="(#LANG)"]>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:spip="http://trac.rezo.net/trac/spip-zone/browser/_squelettes_/atom/"[ xml:lang="(#LANG)"]>
 [	<title>(#NOM_SITE_SPIP|texte_backend)</title>
 ][	<subtitle type="html">(#DESCRIPTIF_SITE_SPIP|texte_backend)</subtitle>
 ]	<link href="#URL_SITE_SPIP/"/>
@@ -23,9 +23,9 @@ avec la pagination atom http://www.iana.org/assignments/link-relations.html afin
 ][		<link rel="replies" type="application/atom+xml" href="(#PARAMETRES_FORUM|url_rss_forum|parametre_url{fmt,atom}|url_absolue)"/>
 ][		<published>(#DATE|date_iso)</published>
 ][		<updated>(#DATE|date_iso)</updated>
-]	<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>[	<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
+]	<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>[	<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)" spip:uri="#URL_SITE_SPIP/rubrique#ID_RUBRIQUE"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
 ]	</BOUCLE_rubrique>
-	<BOUCLE_mots(MOTS){id_breve}>[	<category scheme="#URL_SITE_SPIP/mot" term="(#ID_MOT)"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
+	<BOUCLE_mots(MOTS){id_breve}>[	<category scheme="#URL_SITE_SPIP/mot" term="(#ID_MOT)" spip:uri="#URL_SITE_SPIP/mot#ID_MOT"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
 ]	</BOUCLE_mots>
 [		<summary type="html">(#INTRODUCTION|texte_backend)</summary>
 ][(#REM)
