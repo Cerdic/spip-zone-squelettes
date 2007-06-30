@@ -51,7 +51,7 @@ de ce squelette.
 
 [(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
 	<div id="droite" class="droite">
-		[(#REM) <!-- affichage des mots-clés associés à la rubrique--> ]
+		[(#REM) <!-- affichage des mots-cles associes a la rubrique--> ]
 		<B_mots>
 			<div id="mots-cles-rubrique" class="mots-cles">
 				<div id="mots_clefs"><a class="en-tete" href="#URL_PAGE{mot}"><:sarkaspip:mots_clefs:></a></div>
@@ -66,7 +66,7 @@ de ce squelette.
 			</div> <!-- Fin mots-cles -->
 		</B_mots>
 
-		[(#REM) <!-- affichage des dernières brèves et derniers sites publiés dans le "secteur" --> ]
+		[(#REM) <!-- affichage des dernieres breves et derniers sites publies dans le "secteur" --> ]
 		<INCLURE{fond=noisettes/bloc-droite-secteur-news}{id_secteur}>
 	</div> <!-- Fin droite -->
 
@@ -76,12 +76,12 @@ de ce squelette.
 			[(#REM) <!-- Contenu de la rubrique --> ]
 			<div class="rubrique" [style="[min-height: (#LOGO_RUBRIQUE||image_reduire{110}||hauteur_majoree)]px; _height: (#LOGO_RUBRIQUE||image_reduire{110}||hauteur)px;"]>
 				[<div class="image">(#LOGO_RUBRIQUE||image_reduire{110})</div>]
-				[<a class="titre">(#TITRE|supprimer_numero)</a>]
-				[<div class="descriptif">(#DESCRIPTIF)</div>]
-				<div class="texte">
+				[<a class="#EDIT{titre} titre">(#TITRE|supprimer_numero)</a>]
+				[<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
+				<div class="#EDIT{texte} texte">
 					 [(#TEXTE|typo_couleur|image_reduire{#CONFIG{taille_preview}})] <!-- Sarka 1.9.1 : redimensionnement configuré dans espace privé -->
 				</div> <!-- Fin texte -->
-				<div class="clearer">&nbsp;</div> <!-- Sarka 1.9.1 : éviter le débordement des images vers le bas -->
+				<div class="clearer">&nbsp;</div> <!-- Sarka 1.9.1 : eviter le debordement des images vers le bas -->
 
 				[(#REM) <!-- Liens vers les rubriques filles --> ]
 				<B_rubriques_filles>
@@ -92,7 +92,7 @@ de ce squelette.
 					</div> <!-- Fin filles -->
 				</B_rubriques_filles>
 
-				[(#REM) <!-- Liens vers les documents joints, à l'exclusion des images --> ]
+				[(#REM) <!-- Liens vers les documents joints, a l'exclusion des images --> ]
 				<B_documents_rubrique>
 					<div class="doc">
 						<div id="docu_rubrique" class="en-tete"><:sarkaspip:docu_rubrique:>&nbsp;:</div>
@@ -122,7 +122,7 @@ de ce squelette.
 				</B_images_rubrique>
 			</div> <!-- Fin rubrique -->
 
-			[(#REM) <!-- Articles de la rubrique, classés par numéro s'ils sont numérotés, ou par date inverse sinon --> ]
+			[(#REM) <!-- Articles de la rubrique, classes par numero s'ils sont numerotes, ou par date inverse sinon --> ]
 			<B_test_numero>
 			<BOUCLE_test_numero(ARTICLES){id_rubrique}{titre==^[0-9]+\.}{0,1}>
 				<B_article-numerotes>
@@ -180,14 +180,14 @@ de ce squelette.
 					</div> <!-- Fin derniers-articles -->
 				</B_article-dates>
 
-					[(#REM) <!-- si pas d'article, test de l'existence de rubriques filles (si test négatif, affichage des sites référencés --> ]
+					[(#REM) <!-- si pas d'article, test de l'existence de rubriques filles (si test negatif, affichage des sites references --> ]
 					<B_test-pas-de-rubrique-fille>
 					<BOUCLE_test-pas-de-rubrique-fille(RUBRIQUES){id_parent}{0,1}>
 					</BOUCLE_test-pas-de-rubrique-fille>
 					</B_test-pas-de-rubrique-fille>
 
 						<div class="plan">
-							[(#REM) <!-- si articles syndiqués dans la rubrique, affichage des plus récents, tout site confondu --> ]
+							[(#REM) <!-- si articles syndiques dans la rubrique, affichage des plus recents, tout site confondu --> ]
 							<BOUCLE_test-syndic(SYNDIC_ARTICLES){0,1}>
 								<B_syndic-nouveaux>
 									<div id="recents_syndic" class="intitule"><:sarkaspip:recents_syndic:>&nbsp;:</div>
@@ -205,7 +205,7 @@ de ce squelette.
 								<br>
 							</BOUCLE_test-syndic>
 
-							[(#REM) <!-- affichage des sites référencés de la rubrique --> ]
+							[(#REM) <!-- affichage des sites references de la rubrique --> ]
 							<B_site-secteur>
 								<div class="intitule"><:sarkaspip:icone_sites_references:>&nbsp;:</div>
 								<div class="indentation redimensionnement">
