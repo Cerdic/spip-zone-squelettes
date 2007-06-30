@@ -1,0 +1,74 @@
+[(#REM) Squelette pour SPIP 1.9.2, Copyright (c) 2001-2007, portions copyright Nicolas Krebs 2005-2007, distribue sous licence GPL version 2.  
+Publie au format ATOM 1.0 http://www.ietf.org/rfc/rfc4287.txt un articles (voir http://www.spip-contrib.net/article1338.html).
+Rend inutile hatom http://www.spip-contrib.net/MicroFormats . 
+A la fin, une fonction experimentale de reproduction du contenu de l'article, 
+pour app http://tools.ietf.org/wg/atompub/draft-ietf-atompub-protocol/ .  
+]<BOUCLE_article(ARTICLES){id_article}>
+#CACHE{7200}
+[(#HTTP_HEADER{Content-type: application/atom+xml; type=entry[; charset=(#CHARSET)]})]<?xml version="1.0"[ encoding="(#CHARSET)"]?>
+[(#REM) 
+[	<title>(#NOM_SITE_SPIP|texte_backend)</title>
+][	<subtitle type="html">(#DESCRIPTIF_SITE_SPIP|texte_backend)</subtitle>
+]	<link href="#URL_SITE_SPIP/"/>
+[	<link rel="self" type="application/atom+xml" href="#URL_SITE_SPIP/(#SELF)"/>
+]	<id>#URL_SITE_SPIP/</id>
+	<generator uri="http://www.spip.net/" [version="(#SPIP_VERSION)"]>SPIP</generator>
+[	<logo>(#LOGO_SITE_SPIP||extraire_attribut{src}|url_absolue|texte_backend)</logo>
+][	<updated>(#DATE|date_iso)</updated>
+][<author><name>(#NOM_SITE)</name>[<uri>(#URL_SITE_SPIP)/</uri>]</author>]
+
+]	<entry xmlns="http://www.w3.org/2005/Atom" xmlns:spip="http://trac.rezo.net/trac/spip-zone/browser/_squelettes_/atom/"[ xml:lang="(#LANG)"]>
+[		<title>(#TITRE|supprimer_numero|texte_backend)</title>
+][		<id>#URL_SITE_SPIP/article(#ID_ARTICLE)</id>
+][		<link rel="alternate" type="text/html" href="(#URL_ARTICLE|url_absolue)"/>
+][		<link rel="replies" type="application/atom+xml" href="(#PARAMETRES_FORUM|url_rss_forum|parametre_url{fmt,atom}|url_absolue)"/>
+][		<published>(#DATE|date_iso)</published>
+][		<updated>(#DATE_MODIF|date_iso)</updated>
+]	<BOUCLE_auteur(AUTEURS){id_article}>[	<author><name>(#NOM)</name>[<uri>(#URL_AUTEUR|url_absolue)</uri>]</author>
+]	</BOUCLE_auteur>
+	<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>[	<category scheme="#URL_SITE_SPIP/rubrique" term="(#ID_RUBRIQUE)" spip:uri="#URL_SITE_SPIP/rubrique#ID_RUBRIQUE"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
+]	</BOUCLE_rubrique>
+	<BOUCLE_mots(MOTS){id_article}>[	<category scheme="#URL_SITE_SPIP/mot" term="(#ID_MOT)" spip:uri="#URL_SITE_SPIP/mot#ID_MOT"[ label="(#TITRE|texte_backend)[ (#DESCRIPTIF|texte_backend)]"]/>
+]	</BOUCLE_mots>
+[		<summary type="html">(#INTRODUCTION|texte_backend)</summary>
+][(#REM)
+	Le bloc qui suit publie le texte integral de l'article,
+	ce qui permet une syndication plus riche (mais plus "lourde").
+	Fonction desactivable depuis les reglages du site.
+][
+(#CONFIG{syndication_integrale}|=={oui}|?{' ',''})<content type="html">[(#LOGO_ARTICLE|right||texte_backend)
+		][&lt;div class='rss_chapo'&gt;(#CHAPO|texte_backend)&lt;/div&gt;
+		][&lt;div class='rss_texte'&gt;(#TEXTE|texte_backend)&lt;/div&gt;
+		][&lt;hr /&gt;
+		&lt;div class='rss_notes'&gt;(#NOTES|texte_backend)&lt;/div&gt;
+		][&lt;div class='rss_ps'&gt;(#PS|texte_backend)&lt;/div&gt;]
+		</content>
+][(#REM)
+	Le bloc qui suit indique les documents associes aux articles ;
+	ajouter par exemple {extension=mp3} pour limiter a un certain type de document.
+]		<BOUCLE_documents(DOCUMENTS){id_article}{mode=document}{unique}>[	<link rel="enclosure" href="(#URL_DOCUMENT|url_absolue|unique)"[ length="(#TAILLE)"][ type="(#MIME_TYPE)"] />]
+		</BOUCLE_documents>
+[(#REM)		<spip:id_article>#ID_ARTICLE</spip:id_article>
+		<spip:surtitre>#SURTITRE*</spip:surtitre>
+		<spip:titre>#TITRE*</spip:titre>
+		<spip:soustitre>#SOUSTITRE*</spip:soustitre>
+		<spip:id_rubrique>#ID_RUBRIQUE</spip:id_rubrique>
+		<spip:descriptif>#DESCRIPTIF*</spip:descriptif>
+		<spip:chapo>#CHAPO*</spip:chapo>
+		<spip:texte>#TEXTE*</spip:texte>
+		<spip:ps>#PS*</spip:ps>
+		<spip:date>#DATE*</spip:date>
+		<spip:statut>#STATUT*</spip:statut>
+		<spip:id_secteur>#ID_SECTEUR</spip:id_secteur>
+		<spip:date_redac>#DATE_REDAC*</spip:date_redac>
+		<spip:accepter_forum>#ACCEPTER_FORUM*</spip:accepter_forum>
+		<spip:date_modif>#DATE_MODIF*</spip:date_modif>
+		<spip:lang>#LANG</spip:lang>
+		<spip:langue_choisie>#LANGUE_CHOISIE</spip:langue_choisie>
+		<spip:id_trad>#ID_TRAD</spip:id_trad>
+		<spip:nom_site>#NOM_SITE*</spip:nom_site>
+		<spip:url_site>#URL_SITE*</spip:url_site>
+		<spip:url_propre>#URL_PROPRE*</spip:url_propre>
+]	</entry>
+
+</BOUCLE_article>
