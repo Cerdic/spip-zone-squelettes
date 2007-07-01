@@ -35,6 +35,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'album_nav_suivant' => 'Page suivante',
 		'album_nav_fin' => 'Derni&egrave;re page',
 		'album_repondre'=> 'Commenter l\'album',
+		'album_une'=> 'Top Album',
 		'albums_galerie' => 'Galerie',
 		'aout' => 'Ao&ucirc;t',
 		'articles' => 'Articles', // redefinition item SPIP
