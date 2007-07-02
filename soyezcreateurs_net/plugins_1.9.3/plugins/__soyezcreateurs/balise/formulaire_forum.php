@@ -191,7 +191,7 @@ $ajouter_mot, $ajouter_groupe, $afficher_texte, $url_param_retour)
 		$ajouter_groupe = _request('ajouter_groupe');
 
 		if ($afficher_texte != 'non') 
-			$previsu = inclure_previsu($texte, $titre, $email_auteur, $auteur, $url_site, $nom_site_forum, $ajouter_mot, $id_article);
+			$previsu = inclure_previsu($texte, $titre, $email_auteur, $auteur, $url_site, $nom_site, $ajouter_mot, $id_article);
 
 		$arg = forum_fichier_tmp(join('', $ids));
 
