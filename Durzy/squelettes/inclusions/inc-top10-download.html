@@ -1,0 +1,52 @@
+<div class="cadre" style="background-color:#82ADE2">
+
+<B_toutcat>
+ <img src="#CHEMIN{images/telech.gif}" width="24" height="24" align="left" alt="" />
+ <div id="stat" style="padding-left:3em">
+  <strong>Top10 téléchargement</strong> 
+  <div id="espace"></div>
+  <img src="#CHEMIN{images/documents.gif}" align="absmiddle" 
+   title="Nombre total de documents en téléchargement"  alt="" />
+   [(#GRAND_TOTAL|>{0}|?{#GRAND_TOTAL ,''})[(#GRAND_TOTALE|=={1}|?{document,documents})]]
+   en téléchargement au total
+  <img src="#CHEMIN{images/compteur.gif}" align="absmiddle"  
+  title="Nombre total de téléchargement" alt="" /> 
+   #TOTAL_DOC_SITE téléchargements au total
+  <div id="espace"></div>
+  Cliquez sur la flèche <img src="#CHEMIN{images/deplierhaut.gif}" title="non, pas celle là, celle devant le nom du document"/> devant le document pour plus d'informations
+
+  <div id="espace"></div> &nbsp;
+ </div>
+ <table width="100%" border="0" cellpadding="0" cellspacing="0" style="text-align:left;">		
+<BOUCLE_toutcat(DW2_DOC){par #ENV{odb,total}}{inverse #ENV{sens}}{pagination 10}>
+ <tr bgcolor="[(#COMPTEUR_BOUCLE|alterner{'#FFFFEE','#E5EFF8'})]"  >
+  <td width="3%">
+    #BOUTON_BLOCK
+  </td>
+  <td  >
+    <a href="#URL_DOC_OUT" style="font-size:11px; text-align:left">[(#NOM_DOC)]</a><br /></td>
+	 <td width="30%" align="right">
+	 [(#TOTAL_DOC|>{0}|?{#TOTAL_DOC ,''})[(#TOTAL_DOC|=={1}|?{téléchargement&nbsp;,téléchargements})]]	
+	 </td>
+  </td>
+ <tr>
+  <td colspan="5" bgcolor="[(#COMPTEUR_BOUCLE|alterner{'#FFFFEE','#E5EFF8'})]"> 
+	#DEBUT_BLOCK
+	[(#LOGO_DOC|left|#URL_DOC_OUT)]
+	<div id="stat" style="padding-left:7em">
+	 <ul style="list-style:circle">
+	   <li><img src="#CHEMIN{images/size.gif}" align="absmiddle" title="Taille du fichier" alt="" /> [(#TAILLE_DOC|taille_en_octets)]</li>
+	   <li>Publié le [(#DATE_CREA|affdate{'d/m/y'})]</li>
+	   <li>Associé à l'article <a href="#URL_CONT_DOC" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
+	    <strong>#TITRE_CONT_DOC<strong></a></li>
+	  </ul>
+	</div>
+	#FIN_BLOCK
+   </td>
+ </tr>	
+</BOUCLE_toutcat>
+ </table>
+</B_toutcat>
+
+
+</div>
