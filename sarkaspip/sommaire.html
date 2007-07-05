@@ -67,61 +67,20 @@ de ce squelette.
 				[<div class="soustitre">(#SOUSTITRE)</div>]
 				[<div class="chapo"><:sarkaspip:sur_web:>&nbsp;<a href=#URL_SITE>(#NOM_SITE)</a></div>]
 				[<div class="chapo">(#CHAPO)</div>]
-				<div class="texte">
-					[(#TEXTE|typo_couleur|image_reduire{#CONFIG{taille_preview}})] <!-- Sarka 1.9.1 : redimensionnement configure dans espace prive -->
-				</div> <!-- Fin texte -->
-				<div class="clearer">&nbsp;</div> <!-- Sarka 1.9.1 : eviter le debordement des images vers le bas -->
+				[<div class="texte">(#TEXTE|typo_couleur|image_reduire{#CONFIG{taille_preview}})</div>]
+				<div class="clearer">&nbsp;</div>
 				[<div class="post-scriptum"><div class="annonce"><:sarkaspip:ps:>&nbsp;:</div>(#PS)</div>]
 				[<div class="notes">(#NOTES)</div>]
+				#SET{edito, #ID_ARTICLE}
 		</BOUCLE_edito>
 			</div> <!-- Fin edito -->
 		</B_edito>
 
 		[(#REM) <!-- Rubriques de niveau zero --> ]
-		<div class="sommaire">
-		<BOUCLE_rubriques_global_0(RUBRIQUES){racine}{id_rubrique!=#RUBRIQUE_AGENDA}{id_rubrique!=#RUBRIQUE_GALERIE}{par num titre}{par titre}>
-			<div class="rubrique" [style="[min-height: (#LOGO_RUBRIQUE||image_reduire{110}||hauteur_majoree)]px; _height: (#LOGO_RUBRIQUE||image_reduire{110}||hauteur)px;"]>
-				[<div class="image">(#LOGO_RUBRIQUE||image_reduire{110})</div>]
-				[<a class="titre" href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
-				<div class="texte">
-					[(#TEXTE|typo_couleur|image_reduire{#CONFIG{taille_preview}})] <!-- Sarka 1.9.1 : redimensionnement configure dans espace prive -->
-				</div>
-				<div class="clearer">&nbsp;</div> <!-- Sarka 1.9.1 : eviter le debordement des images vers le bas -->
-			</div> <!-- Fin rubrique -->
-		</BOUCLE_rubriques_global_0>
-		</div> <!-- Fin sommaire -->
+		[(#REM) <INCLURE{fond=noisettes/inc_secteurs}>]
 
 		[(#REM) <!-- Une : derniers articles publies --> ]
-		<div class="derniers-articles">
-			<div id="articles_recents" class="en-tete"><:sarkaspip:articles_recents:></div>
-			<BOUCLE_article(ARTICLES) {doublons} {id_rubrique!=#RUBRIQUE_AGENDA}{id_rubrique!=#RUBRIQUE_GALERIE}{par date} {inverse} {0,5}>
-				<div class="annonce">
-					[<div class="image">(#LOGO_ARTICLE||image_reduire{150})</div>]
-					<div class="detail">
-						[(#DATE|nom_jour)]&nbsp;[(#DATE|affdate)]<br>
-						<B_auteurs-article>
-							<:sarkaspip:par_auteur:>
-						<BOUCLE_auteurs-article(AUTEURS) {id_article} {", "}>
-							<a href="#URL_AUTEUR">#NOM</a>
-						</BOUCLE_auteurs-article>
-						</B_auteurs-article>
-					</div> <!-- Fin detail -->
-					<div class="chemin">
-						<BOUCLE_rubrique-mere(RUBRIQUES){id_rubrique}>
-							[<a HREF="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
-						</BOUCLE_rubrique-mere>
-					</div> <!-- Fin chemin -->
-					[<div class="surtitre">(#SURTITRE)</div>]
-					[<a class="titre" href="#URL_ARTICLE" title="<:sarkaspip:lire_suite_article:>">(#TITRE|supprimer_numero)</a>]
-					[<div class="soustitre">(#SOUSTITRE)</div>]
-					<div class="introduction">
-						[(#INTRODUCTION|typo_couleur)]
-						<br><br>
-						<a class="suite" href="#URL_ARTICLE"><:sarkaspip:lire_suite_article:></a>
-					</div> <!-- Fin introduction -->
-				</div>  <!-- Fin annonce -->
-			</BOUCLE_article>
-		</div> <!-- Fin derniers-articles -->
+		<INCLURE{fond=noisettes/inc_articles_recents}{edito=#GET{edito}}>
 	
 	</div> <!-- Fin centre -->
 
