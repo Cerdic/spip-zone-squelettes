@@ -78,7 +78,7 @@ function action_spip_image_ajouter_dist($arg) {
 	else {
 		$size = @getimagesize($f);
 		$type = !$size ? '': ($size[2] > 3 ? '' : $formats_logos[$size[2]-1]);
-
+# <sc>
 		if (!$type) {
 			include_spip('inc/swfheader');
 			$swf = new swfheader();
@@ -89,7 +89,7 @@ function action_spip_image_ajouter_dist($arg) {
 				$size[1] = $swf->height;
 			}
 		}
-        
+# </sc>
 		if ($type) {
 			$poids = filesize($f);
 

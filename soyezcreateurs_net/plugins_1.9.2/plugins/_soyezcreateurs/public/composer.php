@@ -118,6 +118,7 @@ function affiche_logos($logos, $lien, $align) {
 
 	if (!$arton) return $artoff;
 
+# <sc>
 	if (strpos($arton, 'swf')) {
 		include_spip('inc/swfheader');
 		$swf = new swfheader();
@@ -143,6 +144,7 @@ function affiche_logos($logos, $lien, $align) {
 			return $arton;
 		}
 	} else {
+# </sc>
 		if ($taille = @getimagesize($arton)) {
 			$taille = " ".$taille[3];
 		}
@@ -164,7 +166,9 @@ function affiche_logos($logos, $lien, $align) {
 			$milieu .
 			'</a>'));
 	}
+# <sc>
 }
+# </sc>
 
 //
 // Retrouver le logo d'un objet (et son survol)

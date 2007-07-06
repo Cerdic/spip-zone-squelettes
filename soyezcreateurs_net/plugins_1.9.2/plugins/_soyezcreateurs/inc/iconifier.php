@@ -136,8 +136,11 @@ function decrire_logo($id_objet, $mode, $id, $width, $height, $img, $titre="", $
 
 	list($fid, $dir, $nom, $format) = $img;
 	include_spip('inc/filtres_images');
+# <sc>
 	if ($format != 'swf') {
+# </sc>
 	$res = image_reduire("<img src='$fid' alt='' />", $width, $height);
+# <sc>
 	} else {
 		include_spip('inc/swfheader');
 		$swf = new swfheader();
@@ -162,6 +165,7 @@ function decrire_logo($id_objet, $mode, $id, $width, $height, $img, $titre="", $
   </object>";
 		}
 	}
+# </sc>
 
 	if ($res)
 	    $res = "<div><a href='" .	$fid . "'>$res</a></div>";
