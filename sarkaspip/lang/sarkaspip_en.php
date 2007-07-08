@@ -92,6 +92,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'faitavec' => 'Powered by', // Unused
 		'faitpar' => 'SarkAFeeK (Toufik), SarkALeoN (Sylvain), SarkARchimeD (Xavier), SarkASmeL (Eric)',
 		'fevrier' => 'February',
+		'fil_discussion' => 'Topic thread',
 		'filtrage_categorie' => 'Categories',
 		'filtre_tout' => 'Not filtered',
 		'filtre_vide' => 'Not categorised',

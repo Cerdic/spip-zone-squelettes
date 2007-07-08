@@ -92,6 +92,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'faitavec' => 'Ce site fonctionne gr&acirc;ce &agrave;', // Plus utilise 
 		'faitpar' => 'SarkAFeeK (Toufik), SarkALeoN (Sylvain), SarkARchimeD (Xavier), SarkASmeL (Eric)',
 		'fevrier' => 'F&eacute;vrier',
+		'fil_discussion' => 'Fil de discussion',
 		'filtrage_categorie' => 'Cat&eacute;gories',
 		'filtre_tout' => 'Aucun filtre',
 		'filtre_vide' => 'Sans cat&eacute;gorie',
