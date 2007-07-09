@@ -1,0 +1,187 @@
+#CACHE{864000}
+<INCLURE{fond="header"}>
+[(#REM)   ci-dessus l'include du fichier header avec un délai de 31 jours.   ]
+
+<BOUCLE_principale(ARTICLES){id_article}>
+<html><head>
+
+
+	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
+	
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/menu.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/logic.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/niftyCorners.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/print.css})]" media="print" />
+	[(#REM) 4 css qui changent l aspect du site suivant la saison.]
+<BOUCLE_mot_saison(MOTS){titre=saison}{0,1}>
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{[css/(#ENV{date}|saison|translitteration).css]})]" />
+</BOUCLE_mot_saison>
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/couleurs.css})]" />
+<//B_mot_saison>
+
+
+
+<BOUCLE_rub_gis(RUBRIQUES){titre_mot=agenda}{0,1}>
+<BOUCLE_art_gis(ARTICLES){id_article}>
+<INCLURE{fond=inc-gis_map}{id_rubrique}{id_mot}{id_auteur}{recherche}{id_article}{zoom}{latit}{lonxit}>
+</BOUCLE_art_gis>
+</BOUCLE_rub_gis>
+	[(#REM) icones xml des fils des rubriques sous firefox ]
+<BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}>
+<link rel="alternate" type="application/rss+xml" href="[(#URL_PAGE{backend}|parametre_url{'id_rubrique',#ID_RUBRIQUE})]title="[(#TITRE)]" />
+</BOUCLE_rub>
+
+#INSERT_HEAD
+
+
+<script type="text/javascript" src="[(#CHEMIN{nifty.js})]"></script>
+<script language="JavaScript" type="text/JavaScript">
+
+
+$(document).ready(function() {
+Nifty("div.boite,div.avatar,div.reponse,div.discussion,p.interne");
+Nifty("ul#minipics li,div.grande_boite,div#content,div#footer");
+Nifty("div#container,div.interforum,div.interforumgrand","big");
+Nifty("div#header","top,big");
+Nifty("ul#deco h4,ul#decobas h4,ul#nav li","top");
+Nifty("div#surcontent","bottom,big");
+Nifty("#cel p","bottom,same-height");
+Nifty("#celbas p","bottom");
+load();
+});
+
+</script>
+
+</head>
+<body onunload="GUnload()">
+
+
+<div id="container">   [(#REM)   cette div centre la page   ]
+<INCLURE{fond="entete"}>  [(#REM)   include du fichier entete avec le logo   ] 
+<div id="surcontent">  [(#REM)   ouverture entête   ]
+<INCLURE{fond="menuhoriz"}> [(#REM)   le menu horizontal avec les onglets   ] 
+<div id="content">  [(#REM)   ouverture contenu   ] 
+<div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
+
+
+
+ <div class="grande_boite">[(#REM)   ouverture d une grande boite    ]
+ 
+ <p>
+<span class="logogauche"><INCLURE{fond="logo"}{id_article}{taille=46}{date=#ENV{date}}></span>
+<a href="#URL_PAGE{sommaire}">Accueil</a> > <BOUCLE_plan(HIERARCHIE){id_article}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a>	
+ </BOUCLE_plan>[ &gt; <a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>(#TITRE)</a>]	
+ </p>                 
+
+ 
+ [<h1>(#TITRE)</h1>]
+ <h4 class="icone_gis">Localisation:</h4>
+   
+
+<BOUCLE_centrado(GIS){id_article}>
+#SET{latitude,#LAT}
+#SET{lonxitude,#LONX}
+</BOUCLE_centrado>
+
+<div id="map" style="width: 460px; height: 460px;"></div>
+
+
+
+<BOUCLE_TEST_KML(DOCUMENTS){id_article}{extension=kml}{0,1}>
+<h4 class="icone_gis">Itinéraire Kml</h4>
+<p>Cet itinéraire est <a href="#URL_DOCUMENT">t&eacute;l&eacute;chargeable</a> au format kml. 
+</BOUCLE_TEST_KML>
+<B_latlonx>
+ <h4 class="icone_gis">Coordonnées GPS</h4>
+<p><BOUCLE_latlonx(GIS){id_article}>
+[Latitude décimale:&nbsp;(#LAT)[, sexagésimale:&nbsp;(#LAT|coordonnee{NS})]<br/>]
+[Longitude décimale:&nbsp;(#LONX)[, sexagésimale:&nbsp;(#LONX|coordonnee{EO})]]
+</BOUCLE_latlonx></p>
+</B_latlonx>
+<//B_TEST_KML>
+
+[<p>(#TEXTE|lier_au_glossaire)</p>]
+   
+   
+
+
+
+</div>[(#REM)   fermeture grande_boite   ]
+
+
+
+
+       
+</div>[(#REM)   fermeture colone de gauche   ]
+		
+
+<div class="coldroit">[(#REM)   ouverture de la colone de droite   ] 
+
+
+    <div class="boite inutile">[(#REM)   ouverture boite menu   ] 
+        <h4 class="icone_menu">Navigation</h4>
+        <INCLURE{fond="inc_menu_rub"}>
+    
+    </div>[(#REM)   fermeture boite menu   ]
+
+
+
+  
+<div class="boite">
+<h4 class="icone_arbre">Si vous imprimez</h4>
+<p>Pour prot&eacute;ger l'environnement, participez au recyclage du papier.
+Ne pas jeter sur la voie publique. </p>
+<p class="inutile">Afin d'&eacute;conomiser votre encre, seul la carte et le descriptif
+   de l'&eacute;v&eacute;nement seront imprim&eacute;s. Ce texte, les fonds color&eacute;s  
+  et les logos de cette page disparaissent &agrave; l'impression.
+<p class="inutile">
+  </div>
+      
+
+
+ <B_evenements>
+ <div class="boite">
+<h4 class="icone_agenda">Dates:</h4>
+<ul>
+<BOUCLE_evenements(EVENEMENTS){id_article}{statut=publie}{par date_fin}{age_fin>0}>
+<li class="petite_liste">
+[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
+ Le [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+[(#HORAIRE|=={oui}|?{
+  [(#REM) memes heures ?]
+    [(#DATE_DEBUT|=={#DATE_FIN}|?{&agrave
+[(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)],''})]
+  [(#REM) pas memes heures ?]
+    [(#DATE_DEBUT|!={#DATE_FIN}|?{de
+[(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] &agrave;
+[(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)],''})]
+,''})]
+,
+ Du [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+[(#HORAIRE|=={oui}|?{&agrave; partir de
+ [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)],''})] au
+[(#DATE_FIN|nom_jour)]
+ [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{jusqu'&agrave;
+ [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})]  })]
+[-&nbsp;lieu&nbsp;: (#LIEU)]
+</li>
+</BOUCLE_evenements>
+</ul>
+</div>
+</B_evenements>    
+
+
+
+
+</div>   [(#REM)   fermeture colone de droite   ] 
+<hr class="spacer" /> [(#REM)   ajoute une barre hr invisible   ] 
+</div>[(#REM)   fermeture contenu   ] 
+<INCLURE{fond="pieddepage"}> [(#REM)   le pied de page inclu avec délai   ] 
+
+</div> [(#REM)   fermeture surcontenu   ]<br/>
+
+
+</div> [(#REM)   fermeture container   ] 
+</body>
+</html>
+</BOUCLE_principale>

@@ -1,0 +1,31 @@
+[(#REM) Signatures de la petition ]
+<B_signatures>
+
+
+        #ANCRE_PAGINATION
+
+        <table class="spip">
+        <caption><h2>Il y a #GRAND_TOTAL <:signatures_petition:></h2></caption>
+        <thead>
+                <tr class="<?php echo $couleurs == 0 ? 'row_even' : 'row_odd' ; ?>">
+                <td scope="col"><b><:date:></b></td>
+                <td scope="col"><b><:nom:></b></td>
+                </tr>
+        </thead>
+        <tbody>
+<BOUCLE_signatures(SIGNATURES) {id_article} {par date}{inverse} {pagination 15}>
+                <tr class="<?php echo $couleurs == 0 ? 'row_even' : 'row_odd' ; ?>" >
+                <td class="signature-date">[(#DATE|affdate_jourcourt)]</td>
+                <td class="signature-nom"><div class="#EDIT{qui}">#NOM</div>[
+                <div class="#EDIT{hyperlien}"><a href="(#URL_SITE)" class="spip_out" style="font-size:small;">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></div>]</td>
+                </tr>
+<?php if($couleurs == 0){$couleurs = 1;} else{$couleurs=0;}        ?>
+</BOUCLE_signatures>
+        </tbody>
+        </table>
+
+        [<p class="pagination">(#PAGINATION)</p>]
+
+
+</B_signatures>
+<hr class="spacer"/>
