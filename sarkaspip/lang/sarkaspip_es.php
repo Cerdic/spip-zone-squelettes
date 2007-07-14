@@ -113,6 +113,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 		'icone_sites_references' => 'Sitios referenciados', // redefinition item SPIP
 		'img_article' => 'Im&aacute;genes adjuntas a este art&iacute;culo',
+		'img_descriptif' => 'Descripci&oacute;n',
 		'img_format' => 'Formato',
 		'img_poids' => 'Peso',
 		'img_rubrique' =>'Im&aacute;genes adjuntas a esta secci&oacute;n',

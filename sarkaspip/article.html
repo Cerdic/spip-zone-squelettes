@@ -121,9 +121,12 @@ de ce squelette.
 					<div class="images">
 				<BOUCLE_images_article(DOCUMENTS){id_article}{extension == jpg|png|gif}{mode=document}{doublons}>
 						<div class="vignette">
-							<a href=#URL_DOCUMENT target="_blank" class="info">&nbsp;#LOGO_DOCUMENT [<span>(#DESCRIPTIF)</span>]</a>
+							[<a href="#URL_DOCUMENT" type="#MIME_TYPE"[ title="(#TITRE|couper{80})"]>
+								(#FICHIER|copie_locale|image_reduire{0,100}|inserer_attribut{alt,[(#TITRE|couper{80})]})
+							</a>]
 							<ul>
 								[<li><:sarkaspip:img_titre:>&nbsp;:&nbsp;(#TITRE)</li>]
+								[<li><:sarkaspip:img_descriptif:>&nbsp;:&nbsp;(#DESCRIPTIF)</li>]
 								<li><:sarkaspip:img_taille:>&nbsp;:&nbsp;#LARGEUR&nbsp;<:sarkaspip:lxh:>&nbsp;#HAUTEUR</li>
 								<li><:sarkaspip:img_poids:>&nbsp;:&nbsp;[(#TAILLE|taille_en_octets)]</li>
 								<li><:sarkaspip:img_format:>&nbsp;:&nbsp;#TYPE_DOCUMENT</li>
