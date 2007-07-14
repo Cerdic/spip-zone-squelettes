@@ -18,8 +18,8 @@ chaque affichage va être testé par ordre d'importance:
  *Si on est dans un article:
  	-affichage du logo article si l'article en possède un
  	-et sinon affichage de la vignette du document si l'article possède une image jpg
- 	-et sinon ... on affiche rien.
- *idem pour breve.
+ 	-et sinon ... rien.
+	 *idem pour breve.
  *Si on est dans une rubrique alors:
  	-affichage du logo rubrique si la rubrique en possède un
 	-sinon affichage du logo site? ou de logo rubrique par défaut ]
@@ -40,7 +40,9 @@ chaque affichage va être testé par ordre d'importance:
 [(#LOGO_RUBRIQUE||?{[(#LOGO_RUBRIQUE||reduire_image{#ENV{taille}}|image_sepia{#GET{colo}}|image_aplatir{gif,ffffff}|inserer_attribut{'alt',#TITRE})],[(#LOGO_SITE||reduire_image{#ENV{taille}}|image_sepia{#GET{colo}}|image_aplatir{jpg,ffffff}|inserer_attribut{'alt',#NOM_SITE_SPIP})]})]
 </BOUCLE_logo_rubrique>
 
-
+<BOUCLE_logo_mot(MOTS){id_mot=#ENV{mot}}{0,1}>
+[(#LOGO_MOT||?{[(#LOGO_MOT||reduire_image{#ENV{taille}}|image_sepia{#GET{colo}}|image_aplatir{gif,ffffff}|inserer_attribut{'alt',#TITRE})],[(#LOGO_SITE||reduire_image{#ENV{taille}}|image_sepia{#GET{colo}}|image_aplatir{jpg,ffffff}|inserer_attribut{'alt',#NOM_SITE_SPIP})]})]
+</BOUCLE_logo_mot>
 
 
 [(#REM) 	
@@ -78,6 +80,11 @@ chaque affichage va être testé par ordre d'importance:
 <BOUCLE_mono_rubrique(rubriques){id_rubrique}{0,1}>
 [(#LOGO_RUBRIQUE||?{[(#LOGO_RUBRIQUE||reduire_image{#ENV{taille}}|image_aplatir{gif,ffffff}|inserer_attribut{'alt',#TITRE})],[(#LOGO_SITE||reduire_image{#ENV{taille}}|image_aplatir{jpg,ffffff}|inserer_attribut{'alt',#NOM_SITE_SPIP})]})]
 </BOUCLE_mono_rubrique>
+
+<BOUCLE_mono_logo_mot(mots){id_mot=#ENV{mot}}{0,1}>
+[(#LOGO_MOT||?{[(#LOGO_MOT||reduire_image{#ENV{taille}}|image_aplatir{gif,ffffff}|inserer_attribut{'alt',#TITRE})],[(#LOGO_SITE||reduire_image{#ENV{taille}}|image_aplatir{jpg,ffffff}|inserer_attribut{'alt',#NOM_SITE_SPIP})]})]
+</BOUCLE_mono_logo_mot>
+
 
 
 <BOUCLE_mono_auteur_identifie(AUTEURS){id_auteur}{id_auteur=#SESSION{id_auteur}}>

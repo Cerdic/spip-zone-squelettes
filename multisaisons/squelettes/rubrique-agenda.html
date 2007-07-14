@@ -107,14 +107,11 @@
 
 <div class="grande_boite">
 
+[(#REM)   on affiche les événements par mot s'il y a un mot clé et sinon...  ]
 
-<B_evenements_mois>
-[<h3>&Eacute;v&eacute;nements en (#ENV{date}|affdate_mois_annee)</h3><br/>
-]
+[<h3>&Eacute;v&eacute;nements en (#ENV{date}|affdate_mois_annee)</h3>]
 
-
-
-<BOUCLE_evenements_mois(EVENEMENTS){id_rubrique}{agendafull date_debut, date_fin, mois,(#ENV{date}|annee), (#ENV{date}|mois)} {statut=publie}{par date_fin}>
+<BOUCLE_evenements_mois(EVENEMENTS){id_rubrique}{agendafull date_debut, date_fin, mois,(#ENV{date}|annee), (#ENV{date}|mois)} {statut=publie}{par date_fin}{doublons}>
 
 <p>
 
@@ -144,17 +141,28 @@
  </BOUCLE_jour_passe> <hr class="spacer"/>
  
 </p>
- </BOUCLE_evenements_mois>
+</BOUCLE_evenements_mois>
 
-</B_evenements_mois>
-<p>Pas d'événement ce mois. Cherchez dans la grille.</p>
-<//B_evenements_mois>
 
-[
-<h4 class="icone_article"><a href="(#URL_PAGE{ajouter})">Vous pouvez ajouter un événement.</a></h4>
+
+
+[<h4><a href="(#URL_PAGE{ajouter})">Vous pouvez ajouter un événement, un texte, une image...</a></h4>
 <hr class="spacer"/>]
 </div>
- 
+
+<div class="grande_boite">
+<h4 class="icone_filter">Filtrer les événements:</h4> 
+
+<p>
+<BOUCLE_art_rub(ARTICLES){id_rubrique}>
+<BOUCLE_mot_groupe(MOTS){type=statuts-agenda}{id_article}{doublons}>
+<a href="[(#URL_PAGE{filtrer}|parametre_url{filtre,#ID_MOT})]"><INCLURE{fond=logo}{mot=#ID_MOT}{taille=20}{date=#ENV{date}}>
+#TITRE</a>
+<br/>
+</BOUCLE_mot_groupe>
+</BOUCLE_art_rub>
+</p>
+ </div>
 
 
 
