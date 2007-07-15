@@ -55,30 +55,20 @@ de ce squelette.
 	</div> <!-- Fin droite -->
 
 [(#REM) <!-- =================================== ZONE CORPS  ====================================== --> ]
-	<!-- Initialisation des variables -->
-	<BOUCLE_doc(DOCUMENTS){id_document}{mode=document}>
-	<?php $doc=[(#ID_DOCUMENT|texte_script)]; ?>
-	</BOUCLE_doc>
-	<BOUCLE_art(ARTICLES){id_article}>
-	<?php $art=[(#ID_ARTICLE|texte_script)]; ?>
-	</BOUCLE_art>
-
 	<div id="centre" class="centre">
 		<div class="contenu">
 			<div class="article">
 
-				<?php if ($debut_photos=='') {$debut_photos=0;} ?>
-				<B_tot>
-				<BOUCLE_tot(DOCUMENTS){id_article}{mode=document}>
-				</BOUCLE_tot>
-				[<div class="#EDIT{surtitre} surtitre">(#SURTITRE)</div>]
-				[<div class="#EDIT{titre} titre">(#TITRE)</div>]
-				[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>]
-				<?php $tot=#TOTAL_BOUCLE; ?>
+				<B_count_doc>
+				<BOUCLE_count_doc(DOCUMENTS){id_article}{mode=document}{extension IN png,jpg,gif}>
+				</BOUCLE_count_doc>
+					[<div class="#EDIT{surtitre} surtitre">(#SURTITRE)</div>]
+					[<div class="#EDIT{titre} titre">(#TITRE)</div>]
+					[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>]
+					#SET{total_photos, #TOTAL_BOUCLE}
 				</B_tot>
 
 				<div class="contenu" style="text-align:center">
-
 					<div class="detail">
 							[(#DATE|nom_jour)]&nbsp;[(#DATE|affdate)]<br>
 							<B_auteurs-article>
@@ -91,64 +81,30 @@ de ce squelette.
 					</div> <!-- Fin detail -->
 			
 					<div class="#EDIT{texte} texte" style="text-align:left">[(#TEXTE|typo_couleur)]
-						<!-- le bouton d'acces au forum de l'album est pour l'instant desactivé dans cette version (display:none) -->
+						<!-- le bouton d'acces au forum de l'album est pour l'instant desactive dans cette version (display:none) -->
 						[<br><a class="repondre" style="display:none;" href="(#PARAMETRES_FORUM|url_reponse_forum)"><:sarkaspip:album_repondre:></a><br>]
 					</div>
 
-					<!-- album : bloc de navigation -->
-					<div class="album_menu" id="album_menu">
-						<div class="album_boutons">
-							<?php if ($debut_photos>0) { ?>
-								<a class="fleche-rew" href="spip.php?page=album&id_article=<?php echo $art; ?>&debut_photos=0#album_menu" title="<:sarkaspip:album_nav_debut:>">&nbsp;</a>
-								<a class="fleche-previous" href="spip.php?page=album&id_article=<?php echo $art; ?>&debut_photos=<?php if($debut_photos-6<0){echo '0';}else{echo $debut_photos-6;} ?>#album_menu" title="<:sarkaspip:album_nav_precedent:>">&nbsp;</a>
-							<?php } else { ?>
-								 <div class="fleche-gauche-vide">&nbsp;</div>
-							<?php } ?>
-
-							<?php if ($debut_photos<($tot-6)) { ?>
-								<a class="fleche-fwd" href="spip.php?page=album&id_article=<?php echo $art; ?>&debut_photos=<?php echo $tot-6; ?>#album_menu" title="<:sarkaspip:album_nav_fin:>">&nbsp;</a>
-								<a class="fleche-next" href="spip.php?page=album&id_article=<?php echo $art; ?>&debut_photos=<?php if($debut_photos+6>$tot-6){echo $tot-6;}else{echo $debut_photos+6;} ?>#album_menu" title="<:sarkaspip:album_nav_suivant:>">&nbsp;</a>
-							<?php } else { ?>
-								<div class="fleche-droite-vide">&nbsp;</div>
-							<?php } ?>
-
-							<span class="entre-fleches">[<?php echo $debut_photos+1; ?>-<?php if ($tot>6){echo $debut_photos+6;}else{echo $tot;}?>] / <?php echo $tot; ?> </span>
-						</div>
-					</div>
-					
 					<!-- album : bloc de vignettes-->
-					<div class="album_vignette">
-						<B_vignettes>
-						<table>
-						<BOUCLE_vignettes(DOCUMENTS){debut_photos,6}{id_article}{mode=document}>
-							[(#COMPTEUR_BOUCLE|alterner{<tr>,'','',<tr>,'',''})] 
-							<td>
-							<a class="image-vignette" href="spip.php?page=album&id_article=<?php echo $art; ?>&id_document=#ID_DOCUMENT&debut_photos=<?php echo $debut_photos; ?>#album_menu" title="[(#TITRE)]">
-								[(#FICHIER|image_reduire{120}|inserer_attribut{title,#TITRE})]	
-							</a>
-							</td>					
-							[(#COMPTEUR_BOUCLE|alterner{'','',</tr>,'','',</tr>})]
-						</BOUCLE_vignettes>
-						</table>
-						</B_vignettes>
-					</div>
+					<B_vignettes>
+						<div class="album_menu" id="album_menu"></div>
+						#ANCRE_PAGINATION
+						<div class="bande-pagination">#PAGINATION</div>
+						<div class="album_vignette">
+							<table>
+					<BOUCLE_vignettes(DOCUMENTS){pagination 10}{id_article}{mode=document}{extension IN png,jpg,gif}>
+								[(#COMPTEUR_BOUCLE|alterner{<tr>,'','','','',<tr>,'','','',''})] 
+								<td>
+									[<a href="#URL_DOCUMENT" type="#MIME_TYPE"[ title="(#TITRE|couper{80})"]>
+										(#FICHIER|copie_locale|image_reduire{120}|inserer_attribut{alt,[(#TITRE|couper{80})]})
+									</a>]
+								</td>					
+						[(#COMPTEUR_BOUCLE|alterner{'','','','',</tr>,'','','','',</tr>})]
+					</BOUCLE_vignettes>
+							</table>
+					</B_vignettes>
+						</div>  <!--album_vignette-->
 
-					<!-- album : bloc principal, avec grande photo -->
-					<div class="album_photo">
-						<BOUCLE_zoom(DOCUMENTS){id_document}{mode=document}>
-								[<a href="#URL_DOCUMENT" target="_blank"> (#FICHIER||image_reduire{500})</a>]
-								[<div class="album_titre">(#TITRE)</div>]
-								[<div class="album_descriptif">(#DESCRIPTIF)</div>]
-						</BOUCLE_zoom>
-
-							<BOUCLE_first(DOCUMENTS){debut_photos,1}{id_article}{mode=document}>
-								[<a href="#URL_DOCUMENT" target="_blank">&nbsp;(#FICHIER||image_reduire{500})</a>]
-								[<div class="album_titre">(#TITRE)</div>]
-								[<div class="album_descriptif">(#DESCRIPTIF)</div>]
-							</BOUCLE_first>
-
-						<//B_zoom>
-					</div> <!--album_photo-->
 				</div>  <!--contenu-->
 			</div> <!--article-->
 		</div>   <!--contenu-->
