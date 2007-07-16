@@ -1,0 +1,40 @@
+<br class="nettoyeur" />
+<div id="pied">
+[(#REM) Liens des forums ]
+<B_forums_liens>
+<div class="forums">
+	<h2 class="menu-titre"><:derniers_commentaires:></h2>
+	<ul>
+		<BOUCLE_forums_liens(FORUMS) {plat} {par date}{inverse} {0,8}>
+		<li><a href="#URL_FORUM"><h5>#TITRE</h5></a>[(#DATE|affdate_court)]</li>
+		</BOUCLE_forums_liens>
+	</ul>
+</div>
+</B_forums_liens>
+
+[(#REM) Sur le Web ]
+<B_syndic>
+<div class="syndic">
+	<h2 class="menu-titre"><:nouveautes_web:></h2>
+	<ul>
+	<BOUCLE_syndic(SYNDIC_ARTICLES) {age<180} {par date}{inverse} {0,6}>
+		<li><a href="#URL_ARTICLE"[ title="(#NOM_SITE|texte_backend)"] class="spip_out"><h5>#TITRE</h5></a>[(#DATE|affdate_court)]</li>
+	</BOUCLE_syndic>
+	</ul>
+</div>
+</B_syndic>
+<hr />
+<small>
+	<a href="#URL_PAGE{backend}" title="<:syndiquer_site:>"><img src="#CHEMIN{feed.png}" alt="<:icone_suivi_activite:>" width="16" height="16" class="format_png" />&nbsp;RSS&nbsp;2.0</a>
+	| <a href="#URL_PAGE{plan}"><:plan_site:></a>
+	| <a href="ecrire/"><:espace_prive:></a>
+	| <a href="http://www.spip.net/" title="<:site_realise_avec_spip:>"><img src="#CHEMIN{spip.png}" alt="SPIP" width="48" height="16" class="format_png" /></a>
+	| <a href="#ENV{skel}" title="<:voir_squelette:>" rel="nofollow"><:squelette:></a>
+</small>
+
+</div><!-- fin de pied -->
+
+[(#REM)
+	Cette balise permet de deporter les calculs lourds (indexation etc)
+	dans une image cachee, ce qui evite de ralentir l'affichage des pages.
+]#SPIP_CRON
