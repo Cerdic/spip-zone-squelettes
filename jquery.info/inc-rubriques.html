@@ -1,0 +1,32 @@
+[(#REM)
+	Barre de navigation, ouverte sur la hierarchie courante
+
+	On fait un plan, et, quand on avance vers une rubrique,
+	on l'affiche si son parent est expose ou est la racine du site. ]
+
+<B_rubriques>
+<div>
+	<h2 class="menu-titre"><:rubriques:></h2>
+	<ul>
+	<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
+		<li>
+			<a href="#URL_RUBRIQUE" class="hover[ (#EXPOSE)]">[(#TITRE|couper{80})]</a>
+					<B_art>
+					<div class="cache">
+						<BOUCLE_art(ARTICLES){id_rubrique}{0,10}{par date_modif}{inverse}>
+						<a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
+						</BOUCLE_art>
+					</div>
+					</B_art>
+					<div class="cache">
+						<BOUCLE_rub(RUBRIQUES){id_parent}>
+						<a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
+						</BOUCLE_rub>
+					</div>
+					<//B_art>
+		</li>
+	</BOUCLE_rubriques>
+
+	</ul>
+</div>
+</B_rubriques>
