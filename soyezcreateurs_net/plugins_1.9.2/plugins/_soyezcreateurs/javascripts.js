@@ -154,6 +154,7 @@ function adjustLayout() {
 			else {
 /**********************************************CAS 4*******************************************************************/
 	/* Navigation et Contenu meme alignement Top (Layout 35 et 36)*/
+				largeurcontenu = parseInt($("div.notstackable")[0].offsetWidth);
 				if (largeurcontenu==largeurextra) {
 					hstackable = (hauteurcontenu = parseInt($("div.notstackable")[0].offsetHeight)) + (hauteurext = parseInt($("div.laststackable")[0].offsetHeight));
 					hnavigation = parseInt($("div#navigation")[0].offsetHeight);
