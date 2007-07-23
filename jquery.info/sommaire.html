@@ -5,6 +5,16 @@
 <title>[(#NOM_SITE_SPIP|textebrut)]</title>
 [<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
 <INCLURE{fond=inc-head}>
+[<script type="text/javascript" src="(#CHEMIN{scripts/jquery.accordion.pack.js})"></script>]
+<script type="text/javascript">
+jQuery().ready(function(){
+	// simple Accordion
+	jQuery('.article').Accordion({
+		alwaysOpen: false,
+		active: false,
+	});
+});
+</script>
 </head>
 
 <body class="page_sommaire">
@@ -24,13 +34,27 @@
 			<h1 class="invisible">#NOM_SITE_SPIP</h1>
 
 			[(#REM) Les deux derniers articles ]
+			<div class="liste-articles">	<ul>
+					<BOUCLE_editos(ARTICLES) {par date}{inverse} {doublons} {0,2}>
+					<li>
+						[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{150,100})]
+						[<p class="surtitre">(#SURTITRE)</p>]
+						<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+						[<p class="soustitre">(#SOUSTITRE)</p>]
+						<small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</small>
+						[<div class="#EDIT{intro} texte introduction">(#INTRODUCTION)</div>]
+						<br class="nettoyeur" />
+					</li>
+					</BOUCLE_editos>
+				</ul>
+
 			<B_articles>
-			<div class="liste-articles">
+			
 				[(#ANCRE_PAGINATION)]
 				[(#ENV{debut_articles}|?{'',' '})<h2 class="invisible"><:articles_recents:></h2>]
-				<ul>
+				<ul id="accordeon">
 					<BOUCLE_articles(ARTICLES) {par date}{inverse} {doublons} {pagination}>
-					<li>
+					<li class="article">
 						[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{150,100})]
 						[<p class="surtitre">(#SURTITRE)</p>]
 						<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
