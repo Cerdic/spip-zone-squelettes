@@ -1,6 +1,6 @@
-#CACHE{864000}
+#CACHE0
 <INCLURE{fond="header"}>
-[(#REM)   ci-dessus l'include du fichier header avec un délai de 31 jours.   ]
+[(#REM)   ci-dessus l'include du fichier header   ]
 
 <BOUCLE_principale(ARTICLES){id_article}>
 <html><head>
@@ -19,9 +19,10 @@
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/couleurs.css})]" />
 <//B_mot_saison>
 
+#INSERT_HEAD
 
 
-<BOUCLE_rub_gis(RUBRIQUES){titre_mot=agenda}{0,1}>
+<BOUCLE_rub_gis(RUBRIQUES){titre_mot=agenda}>
 <BOUCLE_art_gis(ARTICLES){id_article}>
 <INCLURE{fond=inc-gis_map}{id_rubrique}{id_mot}{id_auteur}{recherche}{id_article}{zoom}{latit}{lonxit}>
 </BOUCLE_art_gis>
@@ -31,7 +32,6 @@
 <link rel="alternate" type="application/rss+xml" href="[(#URL_PAGE{backend}|parametre_url{'id_rubrique',#ID_RUBRIQUE})]title="[(#TITRE)]" />
 </BOUCLE_rub>
 
-#INSERT_HEAD
 
 
 <script type="text/javascript" src="[(#CHEMIN{nifty.js})]"></script>
@@ -47,7 +47,6 @@ Nifty("ul#deco h4,ul#decobas h4,ul#nav li","top");
 Nifty("div#surcontent","bottom,big");
 Nifty("#cel p","bottom,same-height");
 Nifty("#celbas p","bottom");
-load();
 });
 
 </script>

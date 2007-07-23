@@ -8,6 +8,9 @@
 
 <html><head>
 
+
+
+
 [(#REM)   les métas   ]
 <title>[(#TITRE)]</title>
 [<meta name="Description" content="(#DESCRIPTIF|supprimer_tags|texte_script)"/>]
@@ -27,17 +30,26 @@
 </BOUCLE_mot_saison>
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/couleurs.css})]" />
 <//B_mot_saison>
-<script type="text/javascript" src="[(#CHEMIN{nifty.js})]"></script>
-<script type="text/javascript" src="[(#CHEMIN{nifty-bloog.js})]"></script>
 
+<BOUCLE_rub_gis(RUBRIQUES){titre_mot=agenda}{0,1}>
+
+</BOUCLE_rub_gis>
 	[(#REM) icones xml des fils des rubriques sous firefox ]
-<BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}{0,10}>
+<BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}>
 <link rel="alternate" type="application/rss+xml" href="[(#URL_PAGE{backend}|parametre_url{'id_rubrique',#ID_RUBRIQUE})]title="[(#TITRE)]" />
 </BOUCLE_rub>
 
- #INSERT_HEAD
+#INSERT_HEAD
 
-</head><body> 
+
+<script type="text/javascript" src="[(#CHEMIN{nifty.js})]"></script>
+<script type="text/javascript" src="[(#CHEMIN{nifty-bloog.js})]"></script>
+
+
+
+</head>
+<body>
+
 
 <div id="container">   [(#REM)   centrage page   ]
 <INCLURE{fond="entete"}> 
@@ -52,8 +64,7 @@
 <a href="[(#URL_PAGE{sommaire})]">Accueil</a> > <BOUCLE_plan(HIERARCHIE){id_rubrique}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a>	
                   </BOUCLE_plan></p>
                  
-                  <h1>[(#TITRE)<br/> 
-      ]</h1> 
+                  [<h1>(#TITRE)</h1><br/>] 
     [(#SOUSTITRE)<br/> 
     ]   
    <p>[(#TEXTE|lier_au_glossaire)]</p>
@@ -111,14 +122,13 @@
 
 [<h3>&Eacute;v&eacute;nements en (#ENV{date}|affdate_mois_annee)</h3>]
 
-<BOUCLE_evenements_mois(EVENEMENTS){id_rubrique}{agendafull date_debut, date_fin, mois,(#ENV{date}|annee), (#ENV{date}|mois)} {statut=publie}{par date_fin}{doublons}>
+<BOUCLE_evenements_mois(EVENEMENTS){id_rubrique}{agendafull date_debut, date_fin, mois,(#ENV{date}|annee), (#ENV{date}|mois)} {statut=publie}{par date_debut}{doublons}>
 
 <p>
 
-<span class="logogauche"><INCLURE{fond="logo"}{id_article}{id_document}{taille=46}{date=#ENV{date}}></span> <a href="#URL_ARTICLE">[(#TITRE|couper{120})]</a>&nbsp;:[(#DESCRIPTIF)]
-
+<span class="date"><span class="gauche"><INCLURE{fond="logo"}{id_article}{id_document}{taille=46}{date=#ENV{date}}></span>
  [(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
- le [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+ Le [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
 [(#HORAIRE|=={oui}|?{
   [(#REM) memes heures ?]
     [(#DATE_DEBUT|=={#DATE_FIN}|?{&agrave
@@ -129,18 +139,38 @@
 [(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)],''})]
 ,''})]
 ,
- du [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+ Du [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
 [(#HORAIRE|=={oui}|?{&agrave; partir de
  [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)],''})] au
 [(#DATE_FIN|nom_jour)]
  [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{jusqu'&agrave;
  [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})]  })]
-[-&nbsp;lieu&nbsp;: (#LIEU)]
 <BOUCLE_jour_passe(EVENEMENTS){id_evenement}{age_fin>0}>
-<strong> &Eacute;v&eacute;nement pass&eacute;. </strong>
- </BOUCLE_jour_passe> <hr class="spacer"/>
+(&Eacute;v&eacute;nement pass&eacute;.)
+ </BOUCLE_jour_passe> 
+  <BOUCLE_eve_art1(GIS){id_article}>
+#SET{latitude,#LAT}
+#SET{lonxitude,#LONX}
+[(#LAT||?{' ',''}) <a href="[(#URL_PAGE{localiser}|parametre_url{'id_article',#ID_ARTICLE}|parametre_url{'zoom',13}|parametre_url{'latit',#GET{latitude}}|parametre_url{'lonxit',#GET{lonxitude}})]">
+ ][&nbsp;(#LIEU)&nbsp;][(#LAT||?{' ',''})(carte)</a>]
+ </BOUCLE_eve_art1>
+
+
+  </span> 
+  
+  
  
+<span class="txt"><strong><a href="#URL_ARTICLE">[(#TITRE|couper{120})]</a></strong>
+[&nbsp;(#DESCRIPTIF)&nbsp;<strong><a href="#URL_ARTICLE">Lire la suite...</a></strong>]
+</span>
 </p>
+
+
+
+
+
+<hr class="spacer"/>
+
 </BOUCLE_evenements_mois>
 
 
@@ -148,28 +178,9 @@
 
 [<h4><a href="(#URL_PAGE{ajouter})">Vous pouvez ajouter un événement, un texte, une image...</a></h4>
 <hr class="spacer"/>]
+
+
 </div>
-
-<div class="grande_boite">
-<h4 class="icone_filter">Filtrer les événements:</h4> 
-
-<p>
-<BOUCLE_art_rub(ARTICLES){id_rubrique}>
-<BOUCLE_mot_groupe(MOTS){type=statuts-agenda}{id_article}{doublons}>
-<a href="[(#URL_PAGE{filtrer}|parametre_url{filtre,#ID_MOT})]"><INCLURE{fond=logo}{mot=#ID_MOT}{taille=20}{date=#ENV{date}}>
-#TITRE</a>
-<br/>
-</BOUCLE_mot_groupe>
-</BOUCLE_art_rub>
-</p>
- </div>
-
-
-
-
-
-
-
 
 
 <B_syndic>
@@ -210,7 +221,19 @@
 </div>
 
 
+<div class="boite">
+<h4 class="icone_filter">Filtrer les événements:</h4> 
 
+<p>
+<BOUCLE_art_rub(ARTICLES){id_rubrique}>
+<BOUCLE_mot_groupe(MOTS){type=statuts-agenda}{id_article}{doublons}>
+<a href="[(#URL_PAGE{filtrer}|parametre_url{filtre,#ID_MOT})]"><INCLURE{fond=logo}{mot=#ID_MOT}{taille=20}{date=#ENV{date}}>
+#TITRE</a>
+<br/>
+</BOUCLE_mot_groupe>
+</BOUCLE_art_rub>
+</p>
+ </div>
 
 
  [(#REM)   La boite de recherche   ] 
