@@ -6,9 +6,19 @@
 <html><head>
 
 
+
+[(#REM)   les métas ]
+<title>[(#TITRE)]</title>
+[<meta name="Description" content='Carte: (#DESCRIPTIF|supprimer_tags|texte_script)'/>]
+<meta name="keywords" content="[(#CHAPO|supprimer_tags|texte_script)]<BOUCLE_metadocs(DOCUMENTS){id_article}{","}>[(#TITRE|supprimer_tags|texte_script)]</BOUCLE_metadocs>"/>
+<meta name="author" content="<BOUCLE_author(AUTEURS){id_article}{","}>#NOM</BOUCLE_author>"/>
+<meta name="revisit-after" content="15 days" />
+<meta http-equiv="content-type" content="text/html; charset=#CHARSET"/>
+
+
 	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
 	
-<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/menu.css})]" />
+
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/logic.css})]" />
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/niftyCorners.css})]" />
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/print.css})]" media="print" />
@@ -22,11 +32,11 @@
 #INSERT_HEAD
 
 
-<BOUCLE_rub_gis(RUBRIQUES){titre_mot=agenda}>
+
 <BOUCLE_art_gis(ARTICLES){id_article}>
 <INCLURE{fond=inc-gis_map}{id_rubrique}{id_mot}{id_auteur}{recherche}{id_article}{zoom}{latit}{lonxit}>
 </BOUCLE_art_gis>
-</BOUCLE_rub_gis>
+
 	[(#REM) icones xml des fils des rubriques sous firefox ]
 <BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}>
 <link rel="alternate" type="application/rss+xml" href="[(#URL_PAGE{backend}|parametre_url{'id_rubrique',#ID_RUBRIQUE})]title="[(#TITRE)]" />
@@ -93,8 +103,9 @@ Nifty("#celbas p","bottom");
 <B_latlonx>
  <h4 class="icone_gis">Coordonnées GPS</h4>
 <p><BOUCLE_latlonx(GIS){id_article}>
-[Latitude décimale:&nbsp;(#LAT)[, sexagésimale:&nbsp;(#LAT|coordonnee{NS})]<br/>]
-[Longitude décimale:&nbsp;(#LONX)[, sexagésimale:&nbsp;(#LONX|coordonnee{EO})]]
+[(#LAT||?{' ',''})Latitude décimale:&nbsp;#LAT[, sexagésimale:&nbsp;(#LAT|coordonnee{NS})]<br/>]
+[(#LONX||?{' ',''})Longitude décimale:&nbsp;#LONX[, sexagésimale:&nbsp;(#LONX|coordonnee{EO})]]
+[(#LAT||?{'',' '})Coordonn&eacute;es GPS non communiqu&eacute;es.]
 </BOUCLE_latlonx></p>
 </B_latlonx>
 <//B_TEST_KML>
