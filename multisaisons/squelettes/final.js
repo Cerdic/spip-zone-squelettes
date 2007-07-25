@@ -8,6 +8,7 @@ RoundedTop("ul#nav li","transparent","#FFC");
 Rounded("div.boite","#C0CDF2","#FFF");
 Rounded("div.grande_boite","#C0CDF2","#FFF");
 Rounded("div#minipics li","#C0CDF2","#FFF");
+Rounded("blockquote.spip","#C0CDF2","#FFF");
 RoundedTop("div.discussion","#C0CDF2","#ECECF2");
 RoundedBottom("div.discussion","#C0CDF2","#ECECF2");
 }

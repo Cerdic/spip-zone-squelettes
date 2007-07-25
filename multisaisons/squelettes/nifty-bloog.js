@@ -7,4 +7,5 @@ Nifty("ul#deco h4,ul#decobas h4,ul#nav li","top");
 Nifty("div#surcontent","bottom,big");
 Nifty("#cel p","bottom,same-height");
 Nifty("#celbas p","bottom");
+Nifty("blockquote.spip");
 }
