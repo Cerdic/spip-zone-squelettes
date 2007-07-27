@@ -84,7 +84,7 @@
                     <INCLURE{fond="inc_cadenas"}{id_article}> <br/>
                     </BOUCLE_art2>
 <B_sous_sous_rub>
-<BOUCLE_sous_sous_rub(RUBRIQUES){id_parent}{par titre}{tout_voir}>
+<BOUCLE_sous_sous_rub(RUBRIQUES){id_parent}{par num titre, date}{tout_voir}>
 [>&nbsp;<a href="#URL_RUBRIQUE">(#TITRE)</a><INCLURE{fond="inc_cadenas"}{id_rubrique}><br/>]
 </BOUCLE_sous_sous_rub>
 </B_sous_sous_rub>
@@ -140,8 +140,9 @@
     <INCLUDE{fond="inc_cadenas"}{id_article}>  
    
     <BOUCLE_forum(FORUMS){id_article}{plat}></BOUCLE_forum>
-    [(#TOTAL_BOUCLE|>={1}|?{[,&nbsp;<a href="#URL_ARTICLE#forum">(#TOTAL_BOUCLE)&nbsp;messages</a>&nbsp;,],''})]<//B_forum>
-    <a href="#URL_ARTICLE">Lire la suite...</a></p>[(#REM)   3   ]
+    [(#TOTAL_BOUCLE|>={1}|?{[&nbsp;<a href="#URL_ARTICLE#forum">(#TOTAL_BOUCLE)&nbsp;messages</a>&nbsp;,],''})]<//B_forum>
+    <a href="#URL_ARTICLE">Lire la suite...</a></p>
+    [(#REM)   3   ]
     </li>
 </ul>
 <hr class="spacer"/>
@@ -252,8 +253,8 @@
 </div> [(#REM)   fermeture container   ] 
 </body></html>
 </BOUCLE_principale>
-[(#ID_RUBRIQUE|AccesRestreint_article_restreint|?{' ',''})    
-<INCLURE{fond="authentification"}> ]
-[(#ID_RUBRIQUE|AccesRestreint_article_restreint|?{'',' '})
-<INCLURE{fond="erreur404"}> ]
+[(#ID_RUBRIQUE|AccesRestreint_rubrique_restreinte|?{' ',''})    
+<INCLURE{fond=authentification}>]
+[(#ID_RUBRIQUE|AccesRestreint_rubrique_restreinte|?{'',' '})
+<INCLURE{fond=erreur404}>]
 <//B_principale>
