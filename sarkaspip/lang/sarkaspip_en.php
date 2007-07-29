@@ -178,6 +178,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'mois_precedent' => 'Previous month',
 		'mois_suivant' => 'Next month',
 		'mots_clefs' => 'Keywords', // redefinition item SPIP
+		'msg_0_article_publie' => 'No article published, yet',
 		'msg_0_evt_agenda' => 'No event defined in the diary, yet',
 		'msg_0_evt_annee' => 'No event belonging to this category for the year',
 		'msg_0_evt_saison' => 'No event belonging to this category for the season',
@@ -185,7 +186,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'msg_0_album_filtre_annee' => 'No album belonging to this category for the year',
 		'msg_0_album_filtre_saison' => 'No album belonging to this category for the season',
 		'msg_0_album_filtre_planche' => 'No album belonging to this category',
-                'msg_evenement_virtuel' => 'Text of this event is not directly accessible on this site. Nevertheless, you can read the original description by clicking on the link below.',
+		'msg_evenement_virtuel' => 'Text of this event is not directly accessible on this site. Nevertheless, you can read the original description by clicking on the link below.',
 	  
 	
 //N

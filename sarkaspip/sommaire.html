@@ -56,32 +56,42 @@ de ce squelette.
 [(#REM) <!-- =================================== ZONE CORPS  ====================================== --> ]
 	<div id="centre" class="centre">
 
-		[(#REM) <!-- Editorial --> ]
-		<B_edito>
-			<div id="edito" class="edito">
-		<BOUCLE_edito(ARTICLES) {type_mot="squelette_habillage"} {titre_mot="edito"} {doublons} {par date} {inverse} {0,1}>
-				[<div class="detail">(#DATE|nom_jour)&nbsp;[(#DATE|affdate)]</div>]
-				[<div class="image">(#LOGO_ARTICLE||image_reduire{150})</div>]
-				[<div class="surtitre">(#SURTITRE)</div>]
-				[<div class="titre">(#TITRE|supprimer_numero)</div>]
-				[<div class="soustitre">(#SOUSTITRE)</div>]
-				[<div class="chapo"><:sarkaspip:sur_web:>&nbsp;<a href=#URL_SITE>(#NOM_SITE)</a></div>]
-				[<div class="chapo">(#CHAPO)</div>]
-				[<div class="texte">(#TEXTE|typo_couleur|image_reduire{#CONFIG{taille_preview}})</div>]
-				<div class="clearer">&nbsp;</div>
-				[<div class="post-scriptum"><div class="annonce"><:sarkaspip:ps:>&nbsp;:</div>(#PS)</div>]
-				[<div class="notes">(#NOTES)</div>]
-				#SET{edito, #ID_ARTICLE}
-		</BOUCLE_edito>
-			</div> <!-- Fin edito -->
-		</B_edito>
+		<BOUCLE_0_article(ARTICLES) {0,1}>
+			[(#REM) <!-- Editorial --> ]
+			<B_edito>
+				<div id="edito" class="edito">
+			<BOUCLE_edito(ARTICLES) {type_mot="squelette_habillage"} {titre_mot="edito"} {doublons} {par date} {inverse} {0,1}>
+					[<div class="detail">(#DATE|nom_jour)&nbsp;[(#DATE|affdate)]</div>]
+					[<div class="image">(#LOGO_ARTICLE||image_reduire{150})</div>]
+					[<div class="surtitre">(#SURTITRE)</div>]
+					[<div class="titre">(#TITRE|supprimer_numero)</div>]
+					[<div class="soustitre">(#SOUSTITRE)</div>]
+					[<div class="chapo"><:sarkaspip:sur_web:>&nbsp;<a href=#URL_SITE>(#NOM_SITE)</a></div>]
+					[<div class="chapo">(#CHAPO)</div>]
+					[<div class="texte">(#TEXTE|typo_couleur|image_reduire{#CONFIG{taille_preview}})</div>]
+					<div class="clearer">&nbsp;</div>
+					[<div class="post-scriptum"><div class="annonce"><:sarkaspip:ps:>&nbsp;:</div>(#PS)</div>]
+					[<div class="notes">(#NOTES)</div>]
+					#SET{edito, #ID_ARTICLE}
+			</BOUCLE_edito>
+				</div> <!-- Fin edito -->
+			</B_edito>
 
-		[(#REM) <!-- Rubriques de niveau zero --> ]
-		[(#REM) <INCLURE{fond=noisettes/inc_secteurs}>]
+			[(#REM) <!-- Rubriques de niveau zero --> ]
+			[(#REM) <INCLURE{fond=noisettes/inc_secteurs}>]
 
-		[(#REM) <!-- Une : derniers articles publies --> ]
-		<INCLURE{fond=noisettes/inc_articles_recents}{edito=#GET{edito}}>
-	
+			[(#REM) <!-- Une : derniers articles publies --> ]
+			<INCLURE{fond=noisettes/inc_articles_recents}{edito=#GET{edito}}>
+		
+		</BOUCLE_0_article>
+		</B_0_article>
+			<div class="intitule">
+				<:sarkaspip:accueil_site:>
+				<br /><br />
+				<div class="reponse_formulaire"><:sarkaspip:msg_0_article_publie:></div>
+			</div>  <!-- Fin intitule -->
+		<//B_0_article>
+
 	</div> <!-- Fin centre -->
 
 [(#REM) <!-- ================================== ZONE PIED DE PAGE  ================================== --> ]

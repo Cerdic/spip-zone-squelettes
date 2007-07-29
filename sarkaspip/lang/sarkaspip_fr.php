@@ -177,6 +177,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'mois_precedent' => 'Mois pr&eacute;c&eacute;dent',
 		'mois_suivant' => 'Mois suivant',
 		'mots_clefs' => 'Mots-cl&eacute;s', // redefinition item SPIP
+		'msg_0_article_publie' => 'Aucun article publi&eacute; pour l\'instant',
 		'msg_0_evt_agenda' => 'Aucun &eacute;v&eacute;nement d&eacute;fini dans l\'agenda',
 		'msg_0_evt_annee' => 'Aucun &eacute;v&eacute;nement de cette cat&eacute;gorie pour l\'ann&eacute;e',
 		'msg_0_evt_saison' => 'Aucun &eacute;v&eacute;nement de cette cat&eacute;gorie pour la saison',
@@ -184,7 +185,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'msg_0_album_filtre_annee' => 'Aucun album de cette cat&eacute;gorie pour l\'ann&eacute;e',
 		'msg_0_album_filtre_saison' => 'Aucun album de cette cat&eacute;gorie pour la saison',
 		'msg_0_album_filtre_planche' => 'Aucun album de cette cat&eacute;gorie disponible',
-                'msg_evenement_virtuel' => 'Le texte de cet &eacute;v&eacute;nement n\'est pas accessible directement sur ce site. Vous pouvez tout de m&ecirc;me consulter la description d\'origine en cliquant sur le lien ci-dessous',
+		'msg_evenement_virtuel' => 'Le texte de cet &eacute;v&eacute;nement n\'est pas accessible directement sur ce site. Vous pouvez tout de m&ecirc;me consulter la description d\'origine en cliquant sur le lien ci-dessous',
 	
 //N
 	  

@@ -178,6 +178,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'mois_precedent' => 'Mes anterior',
 		'mois_suivant' => 'Mes siguiente',
 		'mots_clefs' => 'Palabras clave', // redefinition item SPIP
+		'msg_0_article_publie' => 'Ninguno art&iacute;culo publicado hasta ahora',
 		'msg_0_evt_agenda' => 'Ninguno acontencimiento disponible actualmente en el agenda',
 		'msg_0_evt_annee' => 'Ninguno acontencimiento de esta categor&iacute;a en el a&ntilde;o',
 		'msg_0_evt_saison' => 'Ninguno acontencimiento de esta categor&iacute;a en la temporada',
@@ -185,7 +186,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'msg_0_album_filtre_annee' => 'Ninguno &aacute;lbum de esta categor&iacute;a en el a&ntilde;o',
 		'msg_0_album_filtre_saison' => 'Ninguno &aacute;lbum de esta categor&iacute;a en la temporada',
 		'msg_0_album_filtre_planche' => 'Ninguno &aacute;lbum de esta categor&iacute;a',
-                'msg_evenement_virtuel' => 'El texto de este acontecimiento no esta accesible directamente en el sitio. Pueden, a pesar de todo, consultar la descripci—n de este acontecimiento cliqueando en el enlace siguiente',
+		'msg_evenement_virtuel' => 'El texto de este acontecimiento no esta accesible directamente en el sitio. Pueden, a pesar de todo, consultar la descripci—n de este acontecimiento cliqueando en el enlace siguiente',
 	  
 	
 //N
