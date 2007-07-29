@@ -12,10 +12,12 @@ function hout(obj) {
 	}
 }
 function setHover(){
-	LI = document.getElementById('nav1').getElementsByTagName('li');
-	nLI = LI.length;
-	for(i=0; i < nLI; i++){
-		LI[i].onmouseover = function(){hover(this);}
-		LI[i].onmouseout = function(){hout(this);}
+	if (document.getElementById('nav1')) {
+		LI = document.getElementById('nav1').getElementsByTagName('li');
+		nLI = LI.length;
+		for(i=0; i < nLI; i++){
+			LI[i].onmouseover = function(){hover(this);}
+			LI[i].onmouseout = function(){hout(this);}
+		}
 	}
 }
