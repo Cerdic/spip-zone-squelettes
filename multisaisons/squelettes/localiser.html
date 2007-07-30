@@ -1,4 +1,5 @@
-#CACHE0
+#CACHE2678400
+
 <INCLURE{fond="header"}>
 [(#REM)   ci-dessus l'include du fichier header   ]
 
@@ -97,17 +98,16 @@ Nifty("#celbas p","bottom");
 
 
 <BOUCLE_TEST_KML(DOCUMENTS){id_article}{extension=kml}{0,1}>
-<h4 class="icone_gis">Itinéraire Kml</h4>
-<p>Cet itinéraire est <a href="#URL_DOCUMENT">t&eacute;l&eacute;chargeable</a> au format kml. 
+<h4 class="icone_gis"><a href="#URL_DOCUMENT">Télécharger l'itinéraire au format kml pour Google Earth&#8482;.</a></h4>
 </BOUCLE_TEST_KML>
-<B_latlonx>
- <h4 class="icone_gis">Coordonnées GPS</h4>
-<p><BOUCLE_latlonx(GIS){id_article}>
-[(#LAT||?{' ',''})Latitude décimale:&nbsp;#LAT[, sexagésimale:&nbsp;(#LAT|coordonnee{NS})]<br/>]
-[(#LONX||?{' ',''})Longitude décimale:&nbsp;#LONX[, sexagésimale:&nbsp;(#LONX|coordonnee{EO})]]
-[(#LAT||?{'',' '})Coordonn&eacute;es GPS non communiqu&eacute;es.]
-</BOUCLE_latlonx></p>
-</B_latlonx>
+
+<BOUCLE_latlonx(GIS){id_article}{0,1}>
+[(#LAT||?{' ',''})<h4 class="icone_gis">
+<a rel="alternate" href="#microgeo" title="Cette page est géo-marquée par un microformat"><span class="droite rss-button microgeo">G&eacute;o</span></a>Coordonnées GPS</h4>]
+[<p class="geo">(#LAT||?{' ',''})Latitude décimale:&nbsp;#LAT[, latitude sexagésimale:&nbsp;<abbr class="latitude">(#LAT|coordonnee{NS})</abbr>]<br/>]
+[(#LAT||?{' ',''})Longitude décimale:&nbsp;#LONX[, longitude sexagésimale:&nbsp;<abbr class="longitude">(#LONX|coordonnee{EO})</abbr>]</p>]
+</BOUCLE_latlonx>
+
 <//B_TEST_KML>
 
 [<p>(#TEXTE|lier_au_glossaire)</p>]
@@ -153,7 +153,7 @@ Ne pas jeter sur la voie publique. </p>
  <div class="boite">
 <h4 class="icone_agenda">Dates:</h4>
 <ul>
-<BOUCLE_evenements(EVENEMENTS){id_article}{statut=publie}{par date_fin}{age_fin>0}>
+<BOUCLE_evenements(EVENEMENTS){id_article}{statut=publie}{par date_fin}>
 <li class="petite_liste">
 [(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
  Le [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
@@ -174,6 +174,9 @@ Ne pas jeter sur la voie publique. </p>
  [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{jusqu'&agrave;
  [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})]  })]
 [-&nbsp;lieu&nbsp;: (#LIEU)]
+<BOUCLE_jour_passe(EVENEMENTS){id_evenement}{age_fin>0}>
+(&Eacute;v&eacute;nement pass&eacute;.)
+ </BOUCLE_jour_passe> 
 </li>
 </BOUCLE_evenements>
 </ul>
@@ -186,7 +189,7 @@ Ne pas jeter sur la voie publique. </p>
 </div>   [(#REM)   fermeture colone de droite   ] 
 <hr class="spacer" /> [(#REM)   ajoute une barre hr invisible   ] 
 </div>[(#REM)   fermeture contenu   ] 
-<INCLURE{fond="pieddepage"}> [(#REM)   le pied de page inclu avec délai   ] 
+<INCLURE{fond="pieddepage"}{id_article}> [(#REM)   le pied de page    ] 
 
 </div> [(#REM)   fermeture surcontenu   ]<br/>
 
