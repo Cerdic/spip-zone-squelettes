@@ -129,6 +129,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
                 'info_album_sans_filtre' => 'Tutti gli album',
 		'info_langues' => 'Lingue del sito', // redefinition item SPIP
 		'inscription' => 'Iscrizione',
+		'inscrire_a_newsletter' => 'Iscriversi alla newsletter',
 		'inscrire_au_site' => 'Iscriversi al sito',
 		'intitule_referencement' => 'Proponi un sito da referenziare in questa rubrica',
 		'item_choisir_langue' => 'Lingua del sito (spazio privato)',
@@ -189,6 +190,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //N
 	  
+		'newsletter' => 'Newsletter',
 		'nom' => 'Nome', // redefinition item SPIP
 		'novembre' => 'Novembre',
 	  

@@ -129,7 +129,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'info_sans_categorie' => 'Events not categorised',
 		'info_sans_filtre' => 'All events',
 		'inscription' => 'Registration',
-		'inscrire_au_site' => 'Regsiter to the website',
+		'inscrire_a_newsletter' => 'Subscribe to the newsletter',
+		'inscrire_au_site' => 'Register to the website',
 		'intitule_referencement' => 'Suggest a new website to be referenced in section',
 		'item_choisir_langue' => 'Site language (for private area)',
 	  
@@ -191,6 +192,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //N
 	  
+		'newsletter' => 'Newsletter',
 		'nom' => 'Name', // redefinition item SPIP
 		'novembre' => 'November',
 	  

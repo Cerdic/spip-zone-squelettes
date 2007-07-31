@@ -129,6 +129,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'info_sans_categorie' => 'Acontecimientos sin categor&iacute;a',
 		'info_sans_filtre' => 'Todos los acontecimientos',
 		'inscription' => 'Inscripci&oacute;n',
+		'inscrire_a_newsletter' => 'Inscribirse a las novedades',
 		'inscrire_au_site' => 'Inscribirse en este sitio',
 		'intitule_referencement' => 'Proponer la referenciaci&oacute;n de un sitio en el secci&oacute;n',
 		'item_choisir_langue' => 'Lenguaje del sitio (espacio privado)',
@@ -191,6 +192,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //N
 	  
+		'newsletter' => 'Novedades',
 		'nom' => 'Nombre', // redefinition item SPIP
 		'novembre' => 'Noviembre',
 	  
