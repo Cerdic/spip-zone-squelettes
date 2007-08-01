@@ -10,9 +10,15 @@ include_spip('inc/plugin');
 function balise_PLUGIN($p) {
 
 	$plugin = interprete_argument_balise(1,$p);
-	$type_info = interprete_argument_balise(2,$p);
-
-	$p->code = 'calcul_info_plugin('.$plugin.', '.$type_info.')';
+	if (!isset($plugin)) {
+		$p->code = "''";
+		$p->interdire_scripts = false;
+	}
+	else {
+		$type_info = interprete_argument_balise(2,$p);
+		if (!isset($type_info)) $type_info = 'est_actif';
+		$p->code = 'calcul_info_plugin('.$plugin.', '.$type_info.')';
+	}
 	$p->statut = 'php';
 	return $p;
 }
@@ -28,13 +34,10 @@ function calcul_info_plugin($plugin, $type_info) {
 	// Validite des parametres
 	// - plugin : doit etre un prefixe valide de plugin installe
 	// - info : si vide prend la valeur par defaut 'tout'
-	if (!$plugin)
-		return $valeur_info;
 	$dir_tous_plugins = liste_plugin_files();
 	$plugins_valides = liste_plugin_valides($dir_tous_plugins, $inf_tous_plugins);
 	if (!array_key_exists(strtoupper($plugin), $plugins_valides)) 
 		return $valeur_info;
-	if (!$type_info) $type_info = 'tout';
 
 	// Determination du plugin dans la liste des plugins valides. Si plusieurs plugins de meme prefixe on choisit dans l'ordre
 	// - 1. Le plugin actif (il y en a forcement qu'un seul actif)
