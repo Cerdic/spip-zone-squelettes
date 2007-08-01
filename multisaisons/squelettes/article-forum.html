@@ -107,7 +107,10 @@ S'inscrire</a></li>
 
 <?php $couleur="0" ; ?>	
 
-<BOUCLE_discussions(FORUMS){id_article}{par date}{inverse}{pagination 30}>
+
+
+<BOUCLE_derniers(FORUMS){plat}{id_article}{par date_thread}{inverse}{doublons}{pagination 30}>
+
 <?php $ze_titre = '[(#TITRE|texte_script)]' ;
 $ze_titre = ereg_replace( "> ", "", $ze_titre );
 ?>
@@ -125,8 +128,11 @@ $ze_titre = ereg_replace( "> ", "", $ze_titre );
 </BOUCLE_nom3>
 [(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
 <//B_nom3></td>
-<td>[(#DATE|affdate{'d/m/Y'})]<br/>
+<td>
+<BOUCLE_dernier_message(FORUMS){id_thread}{plat}{par date}{inverse}{0,1}>
+[(#DATE|affdate{'d/m/Y'})]<br/>
 	[(#DATE|affdate{'H:i:s'})]
+	</BOUCLE_dernier_message>
 </td>
 <td><B_nb_forumtotal>
 <BOUCLE_nb_forumtotal(FORUMS){id_thread}{plat}>
@@ -138,8 +144,8 @@ $ze_titre = ereg_replace( "> ", "", $ze_titre );
 	
 <?php if($couleur == 0) {$couleur = 1 ; } else {$couleur=0 ; }	?>
 
-</BOUCLE_discussions>
-<td colspan="4">#PAGINATION</B_discussions></td>
+</BOUCLE_derniers>
+<td colspan="4">#PAGINATION</B_derniers></td>
 
 </table>
 <hr class="spacer"/> 

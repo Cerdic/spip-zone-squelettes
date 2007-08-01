@@ -266,40 +266,12 @@ return $resultat;
                         [(#TEXTE|norm_liens{tag}|cibles_liens)]
 */
 
-function norm_liens($texte, $target='') {
+function norm_liens($texte) {
 
-    $target = '_'.$target;
-    if ( $target != "_" ) {
-        $texte = eregi_replace(' http://([^ <]*)', ' <a href="http://\\1" target="'.$target.'">LIEN HTTP</a>', $texte);
-        $texte = eregi_replace(' ftp://([^ <]*)', ' <a href="ftp://\\1" target="'.$target.'">LIEN FTP</a>', $texte);
-        $texte = eregi_replace(' www.([^ <]*)', ' <a href="http://www.\\1" target="'.$target.'">LIEN WWW</a>', $texte);
-        $texte = eregi_replace(' ftp.([^ <]*)', ' <a href="ftp://ftp.\\1" target="'.$target.'">LIEN FTP</a>', $texte);
-        $texte = eregi_replace('^http://([^ <]*)', '<a href="http://\\1" target="'.$target.'">LIEN HTTP</a>', $texte);
-        $texte = eregi_replace('^ftp://([^ <]*)', '<a href="ftp://\\1" target="'.$target.'">LIEN FTP</a>', $texte);
-        $texte = eregi_replace('^www.([^ <]*)', '<a href="http://www.\\1" target="'.$target.'">LIEN WWW</a>', $texte);
-        $texte = eregi_replace('^ftp.([^ <]*)', '<a href="ftp://ftp.\\1" target="'.$target.'">LIEN FTP</a>', $texte);
-        $texte = eregi_replace('<p class="spip">http://([^ <]*)', '<p class="spip"><a href="http://\\1" target="'.$target.'">LIEN HTTP</a>', $texte);
-        $texte = eregi_replace('<p class="spip">ftp://([^ <]*)', '<p class="spip"><a href="ftp://\\1" target="'.$target.'">LIEN FTP</a>', $texte);
-        $texte = eregi_replace('<p class="spip">www.([^ <]*)', '<p class="spip"><a href="http://www.\\1" target="'.$target.'">LIEN WWW</a>', $texte);
-        $texte = eregi_replace('<p class="spip">ftp.([^ <]*)', '<p class="spip"><a href="ftp://ftp.\\1" target="'.$target.'">LIEN FTP</a>', $texte);
-        }
-    else {
-        $texte = eregi_replace(' http://([^ <]*)', ' <a href="http://\\1">LIEN HTTP</a>', $texte);
-        $texte = eregi_replace(' ftp://([^ <]*)', ' <a href="ftp://\\1">LIEN FTP</a>', $texte);
-        $texte = eregi_replace(' www.([^ <]*)', ' <a href="http://www.\\1">LIEN WWW</a>', $texte);
-        $texte = eregi_replace(' ftp.([^ <]*)', ' <a href="ftp://ftp.\\1">LIEN FTP</a>', $texte);
-        $texte = eregi_replace('^http://([^ <]*)', '<a href="http://\\1">LIEN HTTP</a>', $texte);
-        $texte = eregi_replace('^ftp://([^ <]*)', '<a href="ftp://\\1">LIEN FTP</a>', $texte);
-        $texte = eregi_replace('^www.([^ <]*)', '<a href="http://www.\\1">LIEN WWW</a>', $texte);
-        $texte = eregi_replace('^ftp.([^ <]*)', '<a href="ftp://ftp.\\1">LIEN FTP</a>', $texte);
-        $texte = eregi_replace('<p class="spip">http://([^ <]*)', '<p class="spip"><a href="http://\\1">LIEN HTTP</a>', $texte);
-        $texte = eregi_replace('<p class="spip">ftp://([^ <]*)', '<p class="spip"><a href="ftp://\\1">LIEN FTP</a>', $texte);
-        $texte = eregi_replace('<p class="spip">www.([^ <]*)', '<p class="spip"><a href="http://www.\\1">LIEN WWW</a>', $texte);
-        $texte = eregi_replace('<p class="spip">ftp.([^ <]*)', '<a href="ftp://ftp.\\1">LIEN FTP</a>', $texte);
-        }
-    $texte = eregi_replace('([^ >]*)@([^ ,:!?&<]*)', ' <a href="mailto:\\1+AROBASE+\\2">\\1+AROBASE+\\2</a>', $texte);
+   $texte=str_replace("<a href","<a rel='nofollow' href",$texte);
+   
 
-    return $texte;
+   return $texte;
 }
 /*
  *   +----------------------------------+

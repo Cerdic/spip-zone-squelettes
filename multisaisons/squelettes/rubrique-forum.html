@@ -85,7 +85,7 @@
 </tr>
                   <?php $couleur="0" ; ?>
                   <B_discussions>
-                  <BOUCLE_discussions(FORUMS){id_article}{par date}{inverse}{0,4}>
+                  <BOUCLE_discussions(FORUMS){plat}{id_article}{par date_thread}{inverse}{doublons}{0,4}>
                   <?php
 $ze_titre = '[(#TITRE|texte_script|couper{30})]' ;
 $ze_titre = ereg_replace( "> ", "", $ze_titre );
@@ -104,8 +104,11 @@ $ze_titre = ereg_replace( "> ", "", $ze_titre );
 </BOUCLE_nom2>
 [(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
 <//B_nom2></td>
-<td>[(#DATE|affdate{'d/m/Y'})]<br/>
+<td>
+<BOUCLE_dernier_message(FORUMS){id_thread}{plat}{par date}{inverse}{0,1}>
+[(#DATE|affdate{'d/m/Y'})]<br/>
 	[(#DATE|affdate{'H:i:s'})]
+</BOUCLE_dernier_message>	
 </td>
 <td><B_nb_forumtotal>
 <BOUCLE_nb_forumtotal(FORUMS){id_thread}{plat}>
