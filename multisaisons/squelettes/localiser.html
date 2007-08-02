@@ -97,18 +97,7 @@ Nifty("#celbas p","bottom");
 
 
 
-<BOUCLE_TEST_KML(DOCUMENTS){id_article}{extension=kml}{0,1}>
-<h4 class="icone_gis"><a href="#URL_DOCUMENT">Télécharger l'itinéraire au format kml pour Google Earth&#8482;.</a></h4>
-</BOUCLE_TEST_KML>
 
-<BOUCLE_latlonx(GIS){id_article}{0,1}>
-[(#LAT||?{' ',''})<h4 class="icone_gis">
-<a rel="alternate" href="#microgeo" title="Cette page est géo-marquée par un microformat"><span class="droite rss-button microgeo">G&eacute;o</span></a>Coordonnées GPS</h4>]
-[<p class="geo">(#LAT||?{' ',''})Latitude décimale:&nbsp;#LAT[, latitude sexagésimale:&nbsp;<abbr class="latitude">(#LAT|coordonnee{NS})</abbr>]<br/>]
-[(#LAT||?{' ',''})Longitude décimale:&nbsp;#LONX[, longitude sexagésimale:&nbsp;<abbr class="longitude">(#LONX|coordonnee{EO})</abbr>]</p>]
-</BOUCLE_latlonx>
-
-<//B_TEST_KML>
 
 [<p>(#TEXTE|lier_au_glossaire)</p>]
    
@@ -136,17 +125,48 @@ Nifty("#celbas p","bottom");
 
 
 
-  
-<div class="boite">
-<h4 class="icone_arbre">Si vous imprimez</h4>
-<p>Pour prot&eacute;ger l'environnement, participez au recyclage du papier.
-Ne pas jeter sur la voie publique. </p>
-<p class="inutile">Afin d'&eacute;conomiser votre encre, seul la carte et le descriptif
-   de l'&eacute;v&eacute;nement seront imprim&eacute;s. Ce texte, les fonds color&eacute;s  
-  et les logos de cette page disparaissent &agrave; l'impression.
-<p class="inutile">
-  </div>
+
       
+
+
+<BOUCLE_retirer_doc(DOCUMENTS){id_article}{extension==jpg|gif|png|kml}{doublons doc}>
+    [(#REM)   Boucle pour ne pas afficher les images et mp3 ici   ]
+    </BOUCLE_retirer_doc>
+
+
+
+   
+    
+<div class="boite"> [(#REM)   ouverture boite zip   ]
+     <B_documents><h4 class="icone_zip"><:logic:telechargement:></h4>
+      
+  <BOUCLE_documents(DOCUMENTS){id_article}{par titre}{doublons doc}>
+        [<p class="inutile logogauche"><a href="#URL_DOCUMENT" title="[(#TYPE_DOCUMENT)] [(#TAILLE|taille_en_octets)]">(#LOGO_DOCUMENT)</a></p>]
+<p class="inutile">[<a href="#URL_DOCUMENT" title="[(#TYPE_DOCUMENT)] [(#TAILLE|taille_en_octets)]">(#TITRE)</a>]
+[, (#DESCRIPTIF)]</p>
+[(#REM)   séparation documents   ]     
+        <hr class="spacer" /> 
+      </BOUCLE_documents>
+	  
+	  <B_TEST_KML>
+
+<BOUCLE_TEST_KML(DOCUMENTS){id_article}{extension=kml}{0,1}>
+<h4 class="icone_gis inutile"><a href="#URL_DOCUMENT">Télécharger l'itinéraire au format kml pour Google Earth&#8482;.</a></h4>
+
+</BOUCLE_TEST_KML>
+
+<BOUCLE_latlonx(GIS){id_article}{0,1}>
+[(#LAT||?{' ',''})<h4 class="icone_gis">
+<a rel="alternate" href="#microgeo" title="Cette page est géo-marquée par un microformat"><span class="droite rss-button microgeo">G&eacute;o</span></a>Coordonnées GPS</h4>]
+[<p class="geo">(#LAT||?{' ',''})Latitude décimale:&nbsp;#LAT[, latitude sexagésimale:&nbsp;<abbr class="latitude">(#LAT|coordonnee{NS})</abbr>]<br/>]
+[(#LAT||?{' ',''})Longitude décimale:&nbsp;#LONX[, longitude sexagésimale:&nbsp;<abbr class="longitude">(#LONX|coordonnee{EO})</abbr>]</p>]
+</BOUCLE_latlonx>
+
+<//B_TEST_KML>
+	  
+    </div> [(#REM) fermeture boite zip ]
+
+
 
 
  <B_evenements>
@@ -184,7 +204,13 @@ Ne pas jeter sur la voie publique. </p>
 </B_evenements>    
 
 
-
+<INCLURE{fond=meteo}>
+  
+<div class="boite">
+<h4 class="icone_arbre">Si vous imprimez</h4>
+<p>Pour prot&eacute;ger l'environnement, participez au recyclage du papier.
+Ne pas jeter sur la voie publique. </p>
+  </div>
 
 </div>   [(#REM)   fermeture colone de droite   ] 
 <hr class="spacer" /> [(#REM)   ajoute une barre hr invisible   ] 
