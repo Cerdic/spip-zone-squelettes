@@ -52,7 +52,10 @@ de ce squelette.
 
 [(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
 	<div id="droite" class="droite">
-		<INCLURE{fond=noisettes/bloc-droite-secteur-news}{id_secteur}>
+		[(#REM) <!-- affichage du mini-agenda --> ]
+		<BOUCLE_acces_agenda(RUBRIQUES) {id_rubrique=#RUBRIQUE_AGENDA}>
+			[(#RUBRIQUE_AGENDA|=={0}|?{'', ' '})<INCLURE{fond=noisettes/mini-agenda}{self=#SELF}>]
+		</BOUCLE_acces_agenda>
 	</div> <!-- Fin droite -->
 
 [(#REM) <!-- =================================== ZONE CORPS  ====================================== --> ]
