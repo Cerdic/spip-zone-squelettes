@@ -5,101 +5,6 @@
   <title>[#NOM_SITE_SPIP]</title>
   <INCLURE{fond=include/inc-head}>
   
-  <script type="text/javascript">
-  <!--
-  window.onload=montre;
-  function montre(id) {
-    var d = document.getElementById(id);
-    	for (var i = 1; i<=10; i++) {
-    		if (document.getElementById('smenu'+i)) {document.getElementById('smenu'+i).style.display='none';}
-    	}
-    if (d) {d.style.display='block';}
-  }
-  //-->
-  </script>
-  
-<script type="text/javascript" src="#DOSSIER_SQUELETTE/functions.js">
-</script>
- </head>
- <body>
- <!-- LE CONTAINER -->
- <div id="container">
-    
-      <!-- LE HEADER 01 -->
-    [(#INCLURE{fond=include/header01})]
-    
-    <!-- LE HEADER 02 -->
-     [(#INCLURE{fond=include/header02})]
-  
-    <!-- LE MENU DEROULANT -->
-    [(#INCLURE{fond=include/menu})]
-    
-    <!-- LE CONTENU -->
-   <div id="content">
-    <div id="fond_article"><h5>
-    <BOUCLE_article_hierarchie(ARTICLES){id_article}{id_article !=10}>
-   		<BOUCLE_rubrique_hierarchie(RUBRIQUES){id_rubrique}>
-                <a href="#URL_SITE_SPIP">ACCUEIL</a>
-        	        <BOUCLE_chemin(HIERARCHIE){id_rubrique}>
-                        &gt;&gt; #TITRE
-            	    </BOUCLE_chemin>
-                			<BOUCLE_nom_article (ARTICLES) {id_article}>
-                         &gt;&gt; <b>[(#TITRE|couper{20})]</b>
-                	</BOUCLE_nom_article>
-        </BOUCLE_rubrique_hierarchie>
-	</BOUCLE_article_hierarchie>
-<BOUCLE_art(ARTICLES){id_article}>
-<BOUCLE_precedent(ARTICLES){age_relatif>=0}{par date}{inverse}{1,1}>
-&nbsp; &nbsp; || &nbsp;&nbsp; précédent : <a href='#URL_ARTICLE'>[(#TITRE|couper{20})]</a>
-</BOUCLE_precedent> - <BOUCLE_suivant(ARTICLES){age_relatif<0}{par date}{0,1}> 
-suivant : <a href='#URL_ARTICLE'>[(#TITRE|couper{20})]</a> 
-</BOUCLE_suivant>
-</BOUCLE_art>
-</h5>
- </div><BOUCLE_article (ARTICLES) {id_article}{id_article !=10}>
-		Crée le [(#DATE|nom_jour)] [(#DATE|affdate)] [(#DATE_MODIF|affdate|!=={[(#DATE|affdate)]}|?{[à [(#DATE|heures)]:[(#DATE|minutes)], mis à jour le (#DATE_MODIF|nom_jour)] [(#DATE_MODIF|affdate)],''})] à [(#DATE_MODIF|heures)]:[(#DATE_MODIF|minutes)], par #LESAUTEURS 
-		<br />
-			<a href="#URL_PAGE{article_print,id_article=#ID_ARTICLE}" title="afficher une version imprimable de cet article">
-			<img border="0" height="20" width="20" src='#DOSSIER_SQUELETTE/img/print.png' alt="impression" title="impression" /></a>&nbsp;
-			<a href="#URL_PAGE{article_pdf,id_article=#ID_ARTICLE}" title="créer un article en PDF">
-			<img border="0" height="20" width="20" src='#DOSSIER_SQUELETTE/img/pdf.png' alt="pdf" title="PDF" /></a>
-		<br />
-			<h3 class ="gras">#TITRE </h3>
-		<br />
-		<h5>#SOUSTITRE </h5><div>
-					
-			<br />
-</div>
-			<br />
-
-	#TEXTE
-		
-		</BOUCLE_article></div>
-     <!-- LE TABVIEW -->
-        
-
-
-	
-		
-	  <!-- LES INFOS -->
-   
-	
-	 <!-- LES SONDAGES ou LA PUB -->
-   
-	<!-- LE PIED -->
-    <div id="pied">[(#INCLURE{fond=include/footer})]</div>
-    
- </div><!-- fermer le container -->
- </body>
-</html>
-=======
-#CACHE{0}
-<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
-<html dir="#LANG_DIR" lang="#LANG">
- <head>
-  <title>[#NOM_SITE_SPIP]</title>
-  <INCLURE{fond=include/inc-head}>
-  
 
  </head>
  <body>
@@ -173,4 +78,4 @@ suivant : <a href='#URL_ARTICLE'>[(#TITRE|couper{25})]</a>
  </div><!-- fermer le container -->
  </body>
 </html>
->>>>>>> .r12349
+
