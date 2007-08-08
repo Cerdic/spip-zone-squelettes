@@ -304,43 +304,43 @@ return $row;
 }
 
 
+
 /*
  *   +----------------------------------+
- *    Nom des Filtres :  citation
+ *    Nom du Filtre :    citation                                            
  *   +----------------------------------+
- *    Date : samedi 28 février 2004
- *    Auteur :  Nikau (luchier@nerim.fr)
+ *    BASE : ... Date : vendredi 11 novembre 2006 - Auteur :  BoOz
+ *    
+ *    MODIF .. SCOTY .. 29/10/06 .. -> spip 1.9.1/2 
  *   +-------------------------------------+
  *    Fonctions de ce filtre :
- *    Permet d'afficher un formulaire de  
- *    forum avec la citation du message
- *    auquel on répond
- *    EXEMPLE :
- *    [(#ID_FORUM|citation)] ou
+ *     affiche le texte à citer    
  *   +-------------------------------------+ 
  *  
  * Pour toute suggestion, remarque, proposition d'ajout
  * reportez-vous au forum de l'article :
- * http://www.uzine.net/spip_contrib/article.php3?id_article=425
+ * http://www.spip-contrib.net/Pagination,663
 */
-function citation($id_citation) {
-//récupération des détails du forum
-if ($id_citation) {
-$query = "SELECT * FROM spip_forum WHERE id_forum=$id_citation";
+
+function barre_forum_citer($texte, $lan, $rows, $cols, $lang='') {
+	if (!$premiere_passe = rawurldecode(_request('retour_forum'))) {
+		if(_request('citer')=='oui'){
+			$id_citation = _request('id_forum') ;
+			$query = "SELECT auteur, texte FROM spip_forum WHERE id_forum=$id_citation";
+		    $result = spip_query($query);
+		    $row = spip_fetch_array($result);
+		    $aut_cite=$row['auteur'];
+		    $text_cite=$row['texte'];
+		    
+			//ajout de la citation
+			$texte="{{ $aut_cite $lan }}\n<quote>\n$text_cite</quote>\n";
+		}
+	}
+	return barre_textarea($texte, $rows, $cols, $lang);
 }
-$result = spip_query($query);
-if ($row = spip_fetch_array($result)) {
-}
-$ajout="<quote>\n\{\{$row[auteur] a écrit :}}<br />\n$row[texte]</quote>";
-//echo"id message = $GLOBALS[id_message]<br>";
-if ($GLOBALS[id_message]=intval($GLOBALS[id_message])) {
-$texte_retour=retour_forum($row[id_rubrique], $row[id_forum], $row[id_article], $row[id_breve], $row[id_syndic], $row[titre]);
-} else {
-$texte=explode("</textarea>",retour_forum($row[id_rubrique], $row[id_forum], $row[id_article], $row[id_breve], $row[id_syndic], $row[titre]));
-$texte_retour=$texte[0].$ajout."</textarea>".$texte[1];
-}
-return $texte_retour;
-}
+
+
+
 /*
  *   +---------------------------------------------+
  *    Nom du Filtre : Nombre de messages 
