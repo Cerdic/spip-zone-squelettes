@@ -10,6 +10,7 @@ $GLOBALS['i18n_logic_fr'] = array(
 // A
 'abonner' => 's\'abonner',
 'admin' => 'administration',
+'aecrit' => 'a &eacute;crit :',
 
 // B
 'form_forum_bonjour' => 'Bonjour,',
