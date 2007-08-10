@@ -11,6 +11,7 @@ $GLOBALS['i18n_logic_fr'] = array(
 'abonner' => 's\'abonner',
 'admin' => 'administration',
 'aecrit' => 'a &eacute;crit :',
+'alerte_moderation' => 'Bonjour, Je tenais &agrave; vous signaler un comportement abusif sur le message suivant&nbsp;:',
 
 // B
 'form_forum_bonjour' => 'Bonjour,',

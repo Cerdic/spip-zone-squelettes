@@ -1,5 +1,60 @@
 <?php
 
+/*
+ *   +----------------------------------+
+ *    Nom du Filtre :    alerter       EN CONSTRUCTION                                    
+ *   +----------------------------------+
+ *    BASE : ... Date : vendredi 10 Aout 2007 - Auteur :  mattheoh & Scoty
+ *    
+ *   +-------------------------------------+
+ *    Fonctions de ce filtre :
+ *     prérempli le formulaire de contact pour envoyer un lien d'un message abusif de forum à un modérateur    
+ *   +-------------------------------------+ 
+ 
+function barre_forum_alerter($texte, $lan, $url, $lang='') {
+        if(_request('alerter')=='oui') {
+            $url = $_SERVER["HTTP_HOST"].$_SERVER["PHP_SELF"].'?'.$_SERVER["QUERY_STRING"];
+			$texte="{{ $lan $url }}";
+            }        
+            
+        return barre_textarea($texte, $lang);            
+    }
+*/
+
+
+/*
+ *   +----------------------------------+
+ *    Nom du Filtre :    citation                                            
+ *   +----------------------------------+
+ *    BASE : ... Date : vendredi 11 novembre 2006 - Auteur :  BoOz
+ *    
+ *    MODIF .. SCOTY .. 29/10/06 .. -> spip 1.9.1/2 
+ *   +-------------------------------------+
+ *    Fonctions de ce filtre :
+ *     affiche le texte à citer    
+ *   +-------------------------------------+ 
+ *  
+ * Pour toute suggestion, remarque, proposition d'ajout
+ * reportez-vous au forum de l'article :
+ * http://www.spip-contrib.net/Pagination,663
+*/
+
+function barre_forum_citer($texte, $lan, $rows, $cols, $lang='') {
+	if (!$premiere_passe = rawurldecode(_request('retour_forum'))) {
+		if(_request('citer')=='oui'){
+			$id_citation = _request('id_forum') ;
+			$query = "SELECT auteur, texte FROM spip_forum WHERE id_forum=$id_citation";
+		    $result = spip_query($query);
+		    $row = spip_fetch_array($result);
+		    $aut_cite=$row['auteur'];
+		    $text_cite=$row['texte'];
+		    
+			//ajout de la citation
+			$texte="{{ $aut_cite $lan }}\n<quote>\n$text_cite</quote>\n";
+		}
+	}
+	return barre_textarea($texte, $rows, $cols, $lang);
+}
 
  /*
  *   +----------------------------------+
@@ -302,44 +357,6 @@ $row=serialize($row);
 }
 return $row;
 }
-
-
-
-/*
- *   +----------------------------------+
- *    Nom du Filtre :    citation                                            
- *   +----------------------------------+
- *    BASE : ... Date : vendredi 11 novembre 2006 - Auteur :  BoOz
- *    
- *    MODIF .. SCOTY .. 29/10/06 .. -> spip 1.9.1/2 
- *   +-------------------------------------+
- *    Fonctions de ce filtre :
- *     affiche le texte à citer    
- *   +-------------------------------------+ 
- *  
- * Pour toute suggestion, remarque, proposition d'ajout
- * reportez-vous au forum de l'article :
- * http://www.spip-contrib.net/Pagination,663
-*/
-
-function barre_forum_citer($texte, $lan, $rows, $cols, $lang='') {
-	if (!$premiere_passe = rawurldecode(_request('retour_forum'))) {
-		if(_request('citer')=='oui'){
-			$id_citation = _request('id_forum') ;
-			$query = "SELECT auteur, texte FROM spip_forum WHERE id_forum=$id_citation";
-		    $result = spip_query($query);
-		    $row = spip_fetch_array($result);
-		    $aut_cite=$row['auteur'];
-		    $text_cite=$row['texte'];
-		    
-			//ajout de la citation
-			$texte="{{ $aut_cite $lan }}\n<quote>\n$text_cite</quote>\n";
-		}
-	}
-	return barre_textarea($texte, $rows, $cols, $lang);
-}
-
-
 
 /*
  *   +---------------------------------------------+
