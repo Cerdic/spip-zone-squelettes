@@ -11,10 +11,10 @@ Pour configurer l'apparence du squelette<br />
 [(#REM) titre=Configuration du squelette Durzy]
 
 
-<fieldset><legend>Cadres colorés</legend>
+<fieldset><legend>Puces animées</legend>
 
     <label>Apparence des puces animées
-    <select name="puces_animees">
+    <select name="puces_animees" id="puces_animees">
 	<option value="puce-" [(#CONFIG{durzy/puces_animees}|=={puce-}|?{selected="selected",''})]>Par défaut</option>
 	<option value="puce-aix-"  [(#CONFIG{durzy/puces_animees}|=={puce-aix-}|?{selected="selected",''})]>Puces académie d'Aix Marseille</option>
 	<option value="puce-durzy-" [(#CONFIG{durzy/puces_animees}|=={puce-durzy-}|?{selected="selected",''})]>Puces lycée Durzy</option>
@@ -22,16 +22,119 @@ Pour configurer l'apparence du squelette<br />
 	<option value="">Personnalisées</option>
 	</select>
 	</label>  
+	
+</fieldset>
+
+<fieldset><legend>Apparence générale des cadres</legend>
+
+<fieldset><legend>Coins arrondis dans les cadres</legend>
+Uniquement valable dans Firefox et Safari
 
 <br/>
-    <label>Couleur des cadres derniers articles
-    <select name="couleur_last_articles">
-	<option value="blue">Par défaut</option>
-	<option value="black">Noir</option>
-	<option value="silver">Argenté</option>
-	<option value="green">Vert</option>
+
+    <select name="cadres_arrondis">
+	<option value="/*spécification css3 pour les bords arrondis*/
+	border-radius: 0.5em;
+	/*spécification css3 pour les bords arrondis adaptée pour Safari et tous les navigateurs basés sur webkit*/
+	-webkit-border-radius: 0.5em;
+	/*spécification css3 pour les bords arrondis adaptée pour Firefox et tous les navigateurs basés sur gecko*/
+	-moz-border-radius: 0.5em;" 
+	[(#CONFIG{durzy/cadres_arrondis}|=={	
+	/*spécification css3 pour les bords arrondis*/
+	border-radius: 0.5em;
+	/*spécification css3 pour les bords arrondis adaptée pour Safari et tous les navigateurs basés sur webkit*/
+	-webkit-border-radius: 0.5em;
+	/*spécification css3 pour les bords arrondis adaptée pour Firefox et tous les navigateurs basés sur gecko*/
+	-moz-border-radius: 0.5em;}|?{selected="selected",''})]>
+	Arrondis
+	</option>
+	<option value="black" [(#CONFIG{durzy/cadres_arrondis}|=={black}|?{selected="selected",''})]>Carrés</option>
 	</select>
-	</label>  
+</fieldset>
+
+<fieldset><legend>Epaisseur des bordures</legend>
+Attention, il faut aussi veiller à la couleur des bordures pour chacun des cadres dans la section suivante ! 
+
+<br/>
+
+<input type="text" name="epaisseur_bordures" class="epaisseur_bordures" value="#ENV{epaisseur_bordures}" size="5" /> pixels
+
+</fieldset>
+</fieldset>
+<fieldset><legend>Cadres colorés</legend>
+
+   <fieldset><legend>Couleur des cadres derniers articles</legend>	 
+    
+    <label>Couleur des titres
+    <select name="couleur_last_articles_titre">
+	<option value="#82ADE2" [(#CONFIG{durzy/couleur_last_articles_titre}|=={#82ADE2}|?{selected="selected",''})]>Par défaut</option>
+	<option value="black" [(#CONFIG{durzy/couleur_last_articles_titre}|=={black}|?{selected="selected",''})]>lp cortat</option>
+	<option value="silver" [(#CONFIG{durzy/couleur_last_articles_titre}|=={silver}|?{selected="selected",''})]>Argenté</option>
+	<option value="green" [(#CONFIG{durzy/couleur_last_articles_titre}|=={green}|?{selected="selected",''})]>Vert</option>
+	</select>
+	</label>
+    
+    	<br/>
+
+    <label>Couleur du fond
+    <select name="couleur_last_articles_fond">
+	<option value="#E5EFF8" [(#CONFIG{durzy/couleur_last_articles_fond}|=={#82ADE2}|?{selected="selected",''})]>Par défaut</option>
+	<option value="black" [(#CONFIG{durzy/couleur_last_articles_fond}|=={black}|?{selected="selected",''})]>lp cortat</option>
+	<option value="silver" [(#CONFIG{durzy/couleur_last_articles_fond}|=={silver}|?{selected="selected",''})]>Argenté</option>
+	<option value="green" [(#CONFIG{durzy/couleur_last_articles_fond}|=={green}|?{selected="selected",''})]>Vert</option>
+	</select>
+	</label>
+	
+		<br/>
+
+    <label>Couleur des bordures
+    <select name="couleur_last_articles_bordures">
+	<option value="#82ADE2" [(#CONFIG{durzy/couleur_last_articles_bordures}|=={#82ADE2}|?{selected="selected",''})]>Par défaut</option>
+	<option value="black" [(#CONFIG{durzy/couleur_last_articles_bordures}|=={black}|?{selected="selected",''})]>Noir</option>
+	<option value="silver" [(#CONFIG{durzy/couleur_last_articles_bordures}|=={silver}|?{selected="selected",''})]>Argenté</option>
+	<option value="green" [(#CONFIG{durzy/couleur_last_articles_bordures}|=={green}|?{selected="selected",''})]>Vert</option>
+	</select>
+	</label>
+
+   </fieldset>	
+<p> il faudrait changer ça pour avoir un nuancier pour les couleurs et des choix multiples pour les puces académiques (jquery? voir le plugin autorité pour un exemple)</p>
+
+ <fieldset><legend>Couleur du cadre Edito</legend>	 
+    
+    <label>Couleur des titres
+    <select name="couleur_edito_titre">
+	<option value="#82ADE2" [(#CONFIG{durzy/couleur_edito_titre}|=={#82ADE2}|?{selected="selected",''})]>Par défaut</option>
+	<option value="black" [(#CONFIG{durzy/couleur_edito_titre}|=={black}|?{selected="selected",''})]>Noir</option>
+	<option value="silver" [(#CONFIG{durzy/couleur_edito_titre}|=={silver}|?{selected="selected",''})]>Argenté</option>
+	<option value="green" [(#CONFIG{durzy/couleur_edito_titre}|=={green}|?{selected="selected",''})]>Vert</option>
+	</select>
+	</label>
+    
+    	<br/>
+
+    <label>Couleur du fond
+    <select name="couleur_edito_fond">
+	<option value="#82ADE2" [(#CONFIG{durzy/couleur_edito_fond}|=={#82ADE2}|?{selected="selected",''})]>Par défaut</option>
+	<option value="black" [(#CONFIG{durzy/couleur_edito_fond}|=={black}|?{selected="selected",''})]>Noir</option>
+	<option value="silver" [(#CONFIG{durzy/couleur_edito_fond}|=={silver}|?{selected="selected",''})]>Argenté</option>
+	<option value="green" [(#CONFIG{durzy/couleur_edito_fond}|=={green}|?{selected="selected",''})]>Vert</option>
+	</select>
+	</label>
+	
+		<br/>
+
+    <label>Couleur des bordures
+    <select name="couleur_edito_bordures">
+	<option value="#82ADE2" [(#CONFIG{durzy/couleur_edito_fond}|=={#82ADE2}|?{selected="selected",''})]>Par défaut</option>
+	<option value="black" [(#CONFIG{durzy/couleur_edito_fond}|=={black}|?{selected="selected",''})]>Noir</option>
+	<option value="silver" [(#CONFIG{durzy/couleur_edito_fond}|=={silver}|?{selected="selected",''})]>Argenté</option>
+	<option value="green" [(#CONFIG{durzy/couleur_edito_fond}|=={green}|?{selected="selected",''})]>Vert</option>
+	</select>
+	</label>
+
+   </fieldset>	
+
+
 
 </fieldset>
 
