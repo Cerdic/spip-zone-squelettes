@@ -14,7 +14,6 @@ if (!defined("_ECRIRE_INC_VERSION")) return;	#securite
 
 include_spip('inc/acces');
 include_spip('inc/texte');
-include_spip('inc/mail');
 include_spip('inc/forum');
 include_spip('base/abstract_sql');
 spip_connect();
@@ -71,7 +70,7 @@ function balise_FORMULAIRE_FORUM_stat($args, $filtres) {
 	$type = substr($GLOBALS['meta']["forums_publics"],0,3);
 
 	if ($ida) {
-		$titre = spip_abstract_fetsel('accepter_forum AS type, titre', 'spip_articles', "statut = 'publie' AND id_article = $ida");
+		$titre = sql_fetsel('accepter_forum AS type, titre', 'spip_articles', "statut = 'publie' AND id_article = $ida");
 		if ($titre) {
 			if ($titre['type']) $type = $titre['type'];
 			$table = "articles";
@@ -80,13 +79,13 @@ function balise_FORMULAIRE_FORUM_stat($args, $filtres) {
 	} else {
 		if ($type == 'non') return false;
 		if ($idb) {
-			$titre = spip_abstract_fetsel('titre', 'spip_breves', "statut = 'publie' AND id_breve = $idb");
+			$titre = sql_fetsel('titre', 'spip_breves', "statut = 'publie' AND id_breve = $idb");
 			$table = "breves";
 		} else if ($ids) {
-			$titre = spip_abstract_fetsel('nom_site AS titre', 'spip_syndic', "statut = 'publie' AND id_syndic = $ids");
+			$titre = sql_fetsel('nom_site AS titre', 'spip_syndic', "statut = 'publie' AND id_syndic = $ids");
 			$table = "syndic";
 		} else if ($idr) {
-			$titre = spip_abstract_fetsel('titre', 'spip_rubriques', "statut = 'publie' AND id_rubrique = $idr");
+			$titre = sql_fetsel('titre', 'spip_rubriques', "statut = 'publie' AND id_rubrique = $idr");
 			$table = "rubriques";
 		}
 	}
@@ -94,7 +93,7 @@ function balise_FORMULAIRE_FORUM_stat($args, $filtres) {
 	if (!$titre) return false; // inexistant ou non public
 
 	if ($idf) {
-		$titre_m = spip_abstract_fetsel('titre', 'spip_forum', "id_forum = $idf");
+		$titre_m = sql_fetsel('titre', 'spip_forum', "id_forum = $idf");
 		if (!$titre_m) return false; // URL fabriquee
 		$titre = $titre_m;
 	}
@@ -127,7 +126,7 @@ $ajouter_mot, $ajouter_groupe, $afficher_texte, $url_param_retour)
 	if ($type == "abo") {
 		if (!$GLOBALS["auteur_session"]) {
 			return array('formulaires/login_forum', 0,
-					array('inscription' => generer_url_public('', 'action=inscription'),
+					array('inscription' => generer_url_public('identifiants'),
 						'oubli' => generer_url_public('', 'action=pass')));
 		} else {
 		// forcer ces valeurs
@@ -304,7 +303,7 @@ function forum_fichier_tmp($arg)
 		while (($file = @readdir($dh)) !== false)
 			if (preg_match('/^forum_([0-9]+)\.lck$/', $file)
 			AND (time()-@filemtime(_DIR_TMP.$file) > 4*3600))
-				@unlink(_DIR_TMP.$file);
+				spip_unlink(_DIR_TMP.$file);
 	return $alea;
 }
 ?>

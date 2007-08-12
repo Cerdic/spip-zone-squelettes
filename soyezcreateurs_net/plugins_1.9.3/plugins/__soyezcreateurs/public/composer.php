@@ -12,7 +12,6 @@
 
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
-include_spip("inc/indexation");
 include_spip('inc/texte');
 include_spip('inc/documents');
 include_spip('inc/forum');
@@ -194,7 +193,7 @@ function calcule_logo($type, $onoff, $id, $id_rubrique, $flag_fichier) {
 			$id = $id_rubrique;
 			$id_rubrique = 0;
 		} else if ($id AND $type == 'id_rubrique')
-			$id = sql_parent($id);
+			$id = quete_parent($id);
 		else return array('','');
 	}
 }
@@ -309,7 +308,7 @@ function calculer_hierarchie($id_rubrique, $exclure_feuille = false) {
 	if (!$exclure_feuille)
 		$hierarchie[] = $id_rubrique;
 
-	while ($id_rubrique = sql_parent($id_rubrique))
+	while ($id_rubrique = quete_parent($id_rubrique))
 		array_unshift($hierarchie, $id_rubrique);
 
 	if (count($hierarchie))
@@ -339,7 +338,7 @@ function calcul_exposer ($id, $type, $reference) {
 				list($table,$hierarchie) = $x;
 				$exposer[$element][$id_element] = true;
 				if ($hierarchie) {
-					 $row = spip_abstract_fetsel(array('id_rubrique'), array($table), array("$element=$id_element"));
+					 $row = sql_fetsel(array('id_rubrique'), array($table), array("$element=$id_element"));
 					$hierarchie = calculer_hierarchie($row['id_rubrique']);
 				foreach (split(',',$hierarchie) as $id_rubrique)
 					$exposer['id_rubrique'][$id_rubrique] = true;
@@ -392,11 +391,11 @@ function calcule_logo_document($id_document, $doubdoc, &$doublons, $flag_fichier
 	if (!$id_document) return '';
 	if ($doubdoc) $doublons["documents"] .= ','.$id_document;
 
-	if (!($row = spip_abstract_select(array('extension', 'id_vignette', 'fichier', 'mode'), array('spip_documents'), array("id_document = $id_document"))))
+	if (!($row = sql_select(array('extension', 'id_vignette', 'fichier', 'mode'), array('spip_documents'), array("id_document = $id_document"))))
 		// pas de document. Ne devrait pas arriver
 		return ''; 
 
-	$row = spip_abstract_fetch($row);
+	$row = sql_fetch($row);
 	$extension = $row['extension'];
 	$id_vignette = $row['id_vignette'];
 	$fichier = get_spip_doc($row['fichier']);
@@ -404,10 +403,10 @@ function calcule_logo_document($id_document, $doubdoc, &$doublons, $flag_fichier
 
 	// Y a t il une vignette personnalisee ?
 	if ($id_vignette) {
-		if ($res = spip_abstract_select(array('fichier'),
+		if ($res = sql_select(array('fichier'),
 				array('spip_documents'),
 				array("id_document = $id_vignette"))) {
-			$vignette = spip_abstract_fetch($res);
+			$vignette = sql_fetch($res);
 			if (@file_exists(get_spip_doc($vignette['fichier'])))
 				$logo = generer_url_document($id_vignette);
 		}
@@ -425,7 +424,7 @@ function calcule_logo_document($id_document, $doubdoc, &$doublons, $flag_fichier
 	}
 
 	// Retrouver le type mime
-	$ex = spip_abstract_fetch(spip_abstract_select(
+	$ex = sql_fetch(sql_select(
 		array('mime_type'),
 		array('spip_types_documents'),
 		array("extension = " . _q($extension))));
@@ -521,7 +520,7 @@ function lang_parametres_forum($s) {
 	if (strstr($GLOBALS['meta']['langues_utilisees'], ',')
 	// chercher l'identifiant qui nous donnera la langue
 	AND preg_match(',(id_(article|breve|rubrique|syndic)=([0-9]+)),', $s, $r)){
-		$lang = spip_abstract_fetsel(array('lang'),
+		$lang = sql_fetsel(array('lang'),
 					   array("spip_" . $r[2] .'s'),
 					   array($r[1]));
 
@@ -577,7 +576,7 @@ function spip_optim_select ($select = array(), $from = array(),
 		else { unset($from[$cle]); unset($join[$k]);}
 	}
 
-	return spip_abstract_select($select, $from, $where,
+	return sql_select($select, $from, $where,
 		  $groupby, array_filter($orderby), $limit,
 		  $sousrequete, $having,
 		  $table, $id, $serveur);
