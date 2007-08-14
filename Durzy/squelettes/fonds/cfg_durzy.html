@@ -10,15 +10,27 @@ Pour configurer l'apparence du squelette<br />
 ]
 [(#REM) titre=Configuration du squelette Durzy]
 
+<fieldset><legend>Couleur de fond du site</legend>
+	<select name="couleur_fond">
+	<option value="white"[(#CONFIG{durzy/couleur_fond}|=={white}|?{selected="selected",''})]> Blanc (par défaut)</option>
+	<option value="black"[(#CONFIG{durzy/couleur_fond}|=={black}|?{selected="selected",''})]> Noir</option>
+	<option value="image"[(#CONFIG{durzy/couleur_fond}|=={image}|?{selected="selected",''})]> Dégradé gris</option>
+	</select>
+</fieldset>
+
+<fieldset><legend>Largeur du site</legend>
+
+</fieldset>
+
 
 <fieldset><legend>Puces animées</legend>
 
     <label>Apparence des puces animées
-    <select name="puces_animees" id="puces_animees">
+    <select name="puces_animees">
 	<option value="puce-" [(#CONFIG{durzy/puces_animees}|=={puce-}|?{selected="selected",''})]>Par défaut</option>
 	<option value="puce-aix-"  [(#CONFIG{durzy/puces_animees}|=={puce-aix-}|?{selected="selected",''})]>Puces académie d'Aix Marseille</option>
 	<option value="puce-durzy-" [(#CONFIG{durzy/puces_animees}|=={puce-durzy-}|?{selected="selected",''})]>Puces lycée Durzy</option>
-	<option value="">Puces carrées</option>
+	<option value="puce-cortat-">Puces lycée Cortat</option>
 	<option value="">Personnalisées</option>
 	</select>
 	</label>  
@@ -51,6 +63,43 @@ Uniquement valable dans Firefox et Safari
 	<option value="black" [(#CONFIG{durzy/cadres_arrondis}|=={black}|?{selected="selected",''})]>Carrés</option>
 	</select>
 </fieldset>
+
+
+<fieldset><legend>Coins arrondis pour les titres des cadres</legend>
+Uniquement valable dans Firefox et Safari
+
+<br/>
+
+    <select name="titre_cadres_arrondis">
+	<option value="/*texte ombré dans safari*/
+	text-shadow: 3px 3px 5px grey;
+	/*spécification css3 pour les bords arrondis*/
+	border-top-right-radius: 0.5em; 
+	border-top-left-radius: 0.5em;
+	/*spécification css3 pour les bords arrondis adaptée pour Safari et tous les navigateurs basés sur webkit*/
+	-webkit-border-top-right-radius: 0.5em;
+	-webkit-border-top-left-radius: 0.5em;
+	/*spécification css3 pour les bords arrondis adaptée pour Firefox et tous les navigateurs basés sur gecko*/
+	-moz-border-radius-topright: 0.5em;
+	-moz-border-radius-topleft: 0.5em;" 
+	[(#CONFIG{durzy/titre_cadres_arrondis}|=={	
+	/*texte ombré dans safari*/
+	text-shadow: 3px 3px 5px grey;
+	/*spécification css3 pour les bords arrondis*/
+	border-top-right-radius: 0.5em; 
+	border-top-left-radius: 0.5em;
+	/*spécification css3 pour les bords arrondis adaptée pour Safari et tous les navigateurs basés sur webkit*/
+	-webkit-border-top-right-radius: 0.5em;
+	-webkit-border-top-left-radius: 0.5em;
+	/*spécification css3 pour les bords arrondis adaptée pour Firefox et tous les navigateurs basés sur gecko*/
+	-moz-border-radius-topright: 0.5em;
+	-moz-border-radius-topleft: 0.5em;}|?{selected="selected",''})]>
+	Arrondis
+	</option>
+	<option value="black" [(#CONFIG{durzy/titre_cadres_arrondis}|=={black}|?{selected="selected",''})]>Carrés</option>
+	</select>
+</fieldset>
+
 
 <fieldset><legend>Epaisseur des bordures</legend>
 Attention, il faut aussi veiller à la couleur des bordures pour chacun des cadres dans la section suivante ! 
@@ -103,7 +152,7 @@ Attention, il faut aussi veiller à la couleur des bordures pour chacun des cadre
     
     <label>Couleur des titres
     <select name="couleur_edito_titre">
-	<option value="#82ADE2" [(#CONFIG{durzy/couleur_edito_titre}|=={#82ADE2}|?{selected="selected",''})]>Par défaut</option>
+	<option value="#FFED00" [(#CONFIG{durzy/couleur_edito_titre}|=={#82ADE2}|?{selected="selected",''})]>Par défaut</option>
 	<option value="black" [(#CONFIG{durzy/couleur_edito_titre}|=={black}|?{selected="selected",''})]>Noir</option>
 	<option value="silver" [(#CONFIG{durzy/couleur_edito_titre}|=={silver}|?{selected="selected",''})]>Argenté</option>
 	<option value="green" [(#CONFIG{durzy/couleur_edito_titre}|=={green}|?{selected="selected",''})]>Vert</option>
@@ -114,7 +163,7 @@ Attention, il faut aussi veiller à la couleur des bordures pour chacun des cadre
 
     <label>Couleur du fond
     <select name="couleur_edito_fond">
-	<option value="#82ADE2" [(#CONFIG{durzy/couleur_edito_fond}|=={#82ADE2}|?{selected="selected",''})]>Par défaut</option>
+	<option value="#FFF8AC" [(#CONFIG{durzy/couleur_edito_fond}|=={#82ADE2}|?{selected="selected",''})]>Par défaut</option>
 	<option value="black" [(#CONFIG{durzy/couleur_edito_fond}|=={black}|?{selected="selected",''})]>Noir</option>
 	<option value="silver" [(#CONFIG{durzy/couleur_edito_fond}|=={silver}|?{selected="selected",''})]>Argenté</option>
 	<option value="green" [(#CONFIG{durzy/couleur_edito_fond}|=={green}|?{selected="selected",''})]>Vert</option>
@@ -125,7 +174,7 @@ Attention, il faut aussi veiller à la couleur des bordures pour chacun des cadre
 
     <label>Couleur des bordures
     <select name="couleur_edito_bordures">
-	<option value="#82ADE2" [(#CONFIG{durzy/couleur_edito_fond}|=={#82ADE2}|?{selected="selected",''})]>Par défaut</option>
+	<option value="#FFED00" [(#CONFIG{durzy/couleur_edito_fond}|=={#82ADE2}|?{selected="selected",''})]>Par défaut</option>
 	<option value="black" [(#CONFIG{durzy/couleur_edito_fond}|=={black}|?{selected="selected",''})]>Noir</option>
 	<option value="silver" [(#CONFIG{durzy/couleur_edito_fond}|=={silver}|?{selected="selected",''})]>Argenté</option>
 	<option value="green" [(#CONFIG{durzy/couleur_edito_fond}|=={green}|?{selected="selected",''})]>Vert</option>
