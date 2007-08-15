@@ -168,6 +168,7 @@ $GLOBALS['i18n_pyrat_en'] = array(
 'sedna' => 'Sedna (RSS agregator)',
 
 //T
+'tousarticlesantichrono' => 'All articles by date',
 'tout' => 'All',
 'toutleplan' => 'The entire site on one page',
 'themes' => 'Themes',

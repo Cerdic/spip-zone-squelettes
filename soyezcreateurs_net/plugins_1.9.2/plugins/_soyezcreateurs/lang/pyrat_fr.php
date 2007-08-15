@@ -167,6 +167,7 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'sommaire' => 'Sommaire',
 
 //T
+'tousarticlesantichrono' => 'Tous les articles par ordre antichronologique',
 'tout' => 'Tout',
 'toutleplan' => 'Tout le site sur une page',
 'themes' => 'Th&egrave;mes',
