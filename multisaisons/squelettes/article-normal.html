@@ -61,7 +61,7 @@
 <span class="logogauche"><INCLURE{fond="logo"}{id_article}{taille=46}{date=#ENV{date}}></span>
 <a href="#URL_PAGE{sommaire}">Accueil</a> > <BOUCLE_plan(HIERARCHIE){id_article}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a>	
  </BOUCLE_plan>
-&gt;                 
+&gt; </p>                 
 [<h1>(#TITRE) 
       </h1><br/>]
    [(#TEXTE|lier_au_glossaire|paragrapher)]
@@ -151,6 +151,37 @@ x #HAUTEUR})]
 </div>[(#REM)   fermeture grande boite photo   ]
 </B_afficher_photo_seule>
 <?php } ?>
+
+
+<BOUCLE_carto_ou_non(MOTS){titre=carto}{0,1}>
+<BOUCLE_set_moi(GIS){id_article}>
+#SET{latitude,#LAT}
+#SET{lonxitude,#LONX}
+</BOUCLE_set_moi>
+
+<BOUCLE_TEST_KML(DOCUMENTS){id_article}{extension=kml}{0,1}>
+<div class="grande_boite">
+[<h4 class="icone_gis"><a href="(#URL_PAGE{localiser}|parametre_url{'id_article',#ID_ARTICLE}|parametre_url{'zoom',14}|parametre_url{'latit',#GET{latitude}}|parametre_url{'lonxit',#GET{lonxitude}})">Localiser l'itinéraire sur une carte imprimable.</a></h4>]
+</div>
+</BOUCLE_TEST_KML>
+
+
+
+<BOUCLE_latlonx(GIS){id_article}{0,1}>
+
+[<div class="grande_boite"><h4 class="icone_gis">(#LAT||?{' ',''})<a href="[(#URL_PAGE{localiser}|parametre_url{id_article,#ID_ARTICLE}|parametre_url{'zoom',14}|parametre_url{'latit',#GET{latitude}}|parametre_url{'lonxit',#GET{lonxitude}})]" title="géo-localiser [(#TITRE|textebrut)]">
+<span class="droite button microgeo">G&eacute;o</span></a><a href="[(#URL_PAGE{localiser}|parametre_url{'id_article',#ID_ARTICLE}|parametre_url{'zoom',14}|parametre_url{'latit',#GET{latitude}}|parametre_url{'lonxit',#GET{lonxitude}})]">
+Localiser le lieu sur une carte imprimable</a>.</h4>]	
+
+
+[<p class="geo none">(#LAT||?{' ',''})[<abbr class="latitude">(#LAT|coordonnee{NS})</abbr>]<br/>]
+[(#LAT||?{' ',''})[<abbr class="longitude">(#LONX|coordonnee{EO})</abbr>]</p>
+</div>]
+</BOUCLE_latlonx>
+
+<//B_TEST_KML>
+
+</BOUCLE_carto_ou_non>
 
 
 
@@ -259,14 +290,14 @@ x #HAUTEUR})]
 <p class="droite">
 
 
-<BOUCLE_compt_archive(FORUMS){id_article}{par date}{inverse}{1,20}>
+<BOUCLE_compt_archive(FORUMS){id_article}>
 </BOUCLE_compt_archive>
 <strong>[(#TOTAL_BOUCLE)] [(#TOTAL_BOUCLE|=={1}|?{<:discussion:>,<:discussions:>})&nbsp;en&nbsp;archive:]
 </strong><br/>
 </B_compt_archive>
 
 
-<BOUCLE_forum_archive(FORUMS){id_article}{par date_thread}{inverse}{1,10}>
+<BOUCLE_forum_archive(FORUMS){id_article}{par date_thread}{inverse}{1,20}>
 ::&nbsp;<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})#forum#ID_FORUM]">[(#TITRE|couper{40})]</a><br/>
 </BOUCLE_forum_archive></p></B_forum_archive>
 

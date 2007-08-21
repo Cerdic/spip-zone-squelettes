@@ -211,19 +211,27 @@
 
 
 
+[(#REM)   ajoute des filtres seulement s il y au minimum deux evenements:]
+
+<B_filtre_moismini2>
 <div class="boite">
-<h4 class="icone_filter">Filtrer les événements:</h4> 
+<h4 class="icone_filter">Affiner l'affichage:</h4> 
 <p>
-<BOUCLE_art_rub(ARTICLES){id_rubrique}>
-<BOUCLE_mot_groupe(MOTS){type=statuts-agenda}{id_article}{doublons}>
+<BOUCLE_filtre_moismini2(EVENEMENTS){id_rubrique}{agendafull date_debut, date_fin, mois,(#ENV{date}|annee), (#ENV{date}|mois)} {statut=publie}{par date_debut}{doublons mini2}{1,1}>
+<BOUCLE_filtre_mois(EVENEMENTS){id_rubrique}{agendafull date_debut, date_fin, mois,(#ENV{date}|annee), (#ENV{date}|mois)} {statut=publie}{par date_debut}{doublons even}>
+<BOUCLE_art_rub(ARTICLES){id_evenement}{doublons articleven}>
+<BOUCLE_mot_groupe(MOTS){type=statuts-agenda}{id_article}{doublons articlmots}>
 <a href="[(#URL_PAGE{filtrer}|parametre_url{filtre,#ID_MOT}|parametre_url{date,[(#ENV{date}|annee)]-[(#ENV{date}|mois)]})]"><INCLURE{fond=logo}{mot=#ID_MOT}{taille=20}{date=#ENV{date}}>
-#TITRE</a>
-<br/>
+#TITRE</a><br/>
 </BOUCLE_mot_groupe>
-</BOUCLE_art_rub><strong>
-<a href="[(#URL_RUBRIQUE|parametre_url{date,[(#ENV{date}|annee)]-[(#ENV{date}|mois)]})]">Afficher tous les événements[ en (#ENV{date}|nom_mois)]</a></strong>
+</BOUCLE_art_rub>
+</BOUCLE_filtre_mois>
+</BOUCLE_filtre_moismini2>
+<strong><a href="[(#URL_RUBRIQUE|parametre_url{date,[(#ENV{date}|annee)]-[(#ENV{date}|mois)]})]">Afficher tous les
+    &eacute;v&eacute;nements[ en (#ENV{date}|nom_mois)]</a></strong>
 </p>
- </div>
+</div>
+</B_filtre_moismini2>
 
 
 
