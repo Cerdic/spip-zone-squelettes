@@ -19,7 +19,7 @@
 	
 
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/logic.css})]" />
-<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/niftyCorners.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/niftycorners.css})]" />
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/print.css})]" media="print" />
 	[(#REM) 4 css qui changent l aspect du site suivant la saison.]
 <BOUCLE_mot_saison(MOTS){titre=saison}{0,1}>
@@ -56,7 +56,7 @@
       ]</h1> 
     [(#SOUSTITRE)<br/> 
     ]   
-   <p>[(#TEXTE|lier_au_glossaire)]</p>
+   [(#TEXTE|lier_au_glossaire|paragrapher)]
 <hr class="spacer"/></div> 
   [(#REM)   fermeture grande boite   ]
 
@@ -216,21 +216,26 @@
 
 
 
+[(#REM)   ajoute des filtres seulement s il y au minimum deux evenements:]
+
+<B_filtre_mois>
 <div class="boite">
 <h4 class="icone_filter">Filtrer les événements:</h4> 
+<ul class="petite_liste">
 
-<p>
-<BOUCLE_art_rub(ARTICLES){id_rubrique}>
-
-<BOUCLE_mot_groupe(MOTS){type=statuts-agenda}{id_article}{doublons}>
-<a href="[(#URL_PAGE{filtrer}|parametre_url{filtre,#ID_MOT}|parametre_url{date,[(#ENV{date}|annee)]-[(#ENV{date}|mois)]})]"><INCLURE{fond=logo}{mot=#ID_MOT}{taille=20}{date=#ENV{date}}>
-#TITRE</a>
-<br/>
+<BOUCLE_filtre_mois(EVENEMENTS){id_rubrique}{agendafull date_debut, date_fin, mois,(#ENV{date}|annee), (#ENV{date}|mois)} {statut=publie}{par date_debut}{doublons even}>
+<BOUCLE_art_rub(ARTICLES){id_evenement}{doublons articleven}>
+<BOUCLE_mot_groupe(MOTS){type=statuts-agenda}{id_article}{doublons articlmots}{id_mot!=#ENV{'filtre'}}>
+<li><a href="[(#URL_PAGE{filtrer}|parametre_url{filtre,#ID_MOT}|parametre_url{date,[(#ENV{date}|annee)]-[(#ENV{date}|mois)]})]"><INCLURE{fond=logo}{mot=#ID_MOT}{taille=20}{date=#ENV{date}}>
+#TITRE</a></li>
 </BOUCLE_mot_groupe>
-</BOUCLE_art_rub><strong>
-<a href="[(#URL_RUBRIQUE|parametre_url{date,[(#ENV{date}|annee)]-[(#ENV{date}|mois)]})]">Afficher tous les événements[ en (#ENV{date}|nom_mois)]</a></strong>
-</p>
- </div>
+</BOUCLE_art_rub>
+</BOUCLE_filtre_mois>
+<li class="gras"><a href="[(#URL_RUBRIQUE|parametre_url{date,[(#ENV{date}|annee)]-[(#ENV{date}|mois)]})]">Afficher tous les
+    &eacute;v&eacute;nements[ en (#ENV{date}|nom_mois)]</a></li>
+</ul>
+</div>
+</B_filtre_mois>
 
 
 

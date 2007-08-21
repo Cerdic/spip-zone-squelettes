@@ -21,7 +21,7 @@
 	
 
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/logic.css})]" />
-<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/niftyCorners.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/niftycorners.css})]" />
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/print.css})]" media="print" />
 
 	[(#REM) 4 css qui changent l aspect du site suivant la saison.]
@@ -61,10 +61,10 @@
 <span class="logogauche"><INCLURE{fond="logo"}{id_article}{taille=46}{date=#ENV{date}}></span>
 <a href="#URL_PAGE{sommaire}">Accueil</a> > <BOUCLE_plan(HIERARCHIE){id_article}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a>	
  </BOUCLE_plan>
-&gt; </p>                 
+&gt;                 
 [<h1>(#TITRE) 
       </h1><br/>]
-   [(#TEXTE|lier_au_glossaire)]
+   [(#TEXTE|lier_au_glossaire|paragrapher)]
    
    <INCLURE{fond=inc_petition}{id_article}>
    
@@ -266,7 +266,7 @@ x #HAUTEUR})]
 </B_compt_archive>
 
 
-<BOUCLE_forum_archive(FORUMS){id_article}{par date}{inverse}{1,20}>
+<BOUCLE_forum_archive(FORUMS){id_article}{par date_thread}{inverse}{1,10}>
 ::&nbsp;<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})#forum#ID_FORUM]">[(#TITRE|couper{40})]</a><br/>
 </BOUCLE_forum_archive></p></B_forum_archive>
 
@@ -289,7 +289,7 @@ x #HAUTEUR})]
 <hr class="spacer" />
 </div>[(#REM)   fermeture reponse en tete forum   ] 
 
-<BOUCLE_inc_messages(FORUMS){id_article}{par date}{inverse}{0,1}>
+<BOUCLE_inc_messages(FORUMS){id_article}{par date_thread}{inverse}{0,1}>
 
 <INCLURE{fond="inc_discussion"}{id_article}{id_breve}{id_forum}{id_thread}{id_auteur}{self=#SELF}>
 </BOUCLE_inc_messages>

@@ -21,7 +21,7 @@
 	
 
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/logic.css})]" />
-<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/niftyCorners.css})]" />
+<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/niftycorners.css})]" />
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/print.css})]" media="print" />
 	[(#REM) 4 css qui changent l aspect du site suivant la saison.]
 <BOUCLE_mot_saison(MOTS){titre=saison}{0,1}>
@@ -29,19 +29,13 @@
 </BOUCLE_mot_saison>
 <link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/couleurs.css})]" />
 <//B_mot_saison>
-
-#INSERT_HEAD
-
-
-
-<BOUCLE_art_gis(ARTICLES){id_article}>
-<INCLURE{fond=inc-gis_map}{id_rubrique}{id_mot}{id_auteur}{recherche}{id_article}{zoom}{latit}{lonxit}>
-</BOUCLE_art_gis>
-
 	[(#REM) icones xml des fils des rubriques sous firefox ]
 <BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}>
 <link rel="alternate" type="application/rss+xml" href="[(#URL_PAGE{backend}|parametre_url{'id_rubrique',#ID_RUBRIQUE})]title="[(#TITRE)]" />
 </BOUCLE_rub>
+
+
+#INSERT_HEAD
 
 
 
@@ -61,6 +55,11 @@ Nifty("#celbas p","bottom");
 });
 
 </script>
+
+<BOUCLE_art_gis(ARTICLES){id_article}>
+<INCLURE{fond=inc-gis_map}{id_rubrique}{id_mot}{id_auteur}{recherche}{id_article}{zoom}{latit}{lonxit}>
+</BOUCLE_art_gis>
+
 
 </head>
 <body onunload="GUnload()">
@@ -99,7 +98,7 @@ Nifty("#celbas p","bottom");
 
 
 
-[<p>(#TEXTE|lier_au_glossaire)</p>]
+[(#TEXTE|lier_au_glossaire|paragrapher)]
    
    
 

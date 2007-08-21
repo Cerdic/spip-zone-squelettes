@@ -299,26 +299,14 @@ return $resultat;
 	
 
 
-/* Filtre NORM_LIENS v2.0 - 29 juillet 2003 - Par Led
 
-   Permet de normaliser les liens lorsque ceux-ci sont orphelins (sans balise
-   HREF). Par exemple:
-   "http://www.url.com" deviendra "<a href="http://www.url.com">http://www.url.com</a>"
-
-   Le filtre s'utilise avec les balises #CHAPO, #TEXTE, #PS, #NOTES,
-   #INTRODUCTION, #DESCRIPTIF et #BIO.
-
-   SYNTAXE DANS LES SQUELETTES:
-   [(#TEXTE|norm_liens)]
-   [(#TEXTE|norm_liens{tag}]
-   Où tag doit avoir comme valeur blank, self, parent ou top.
-   Si aucun tag n'est spécifié la balise HREF n'aura pas de target.
-
-   ATTENTION: Si vous désirez utiliser ce filtre avec le filtre CIBLES_LIENS (du
-              21 juillet 2003 et écrit par moi-même) sur une même balise SPIP il
-              faut obligatoirement placer le filtre NORM_LIENS en premier.
-              Exemples: [(#TEXTE|norm_liens|cibles_liens)]
-                        [(#TEXTE|norm_liens{tag}|cibles_liens)]
+ /*  +----------------------------------+
+ *    Nom du Filtre :    Filtre NORM_LIENS v3.0 - 
+ *   +----------------------------------+
+ *    Fonctions de ce filtre :
+ *    Cette fonction calme les tentatives des spammeurs
+ *    en ajoutant une nofollow dans les urls des forums.
+ *   +-------------------------------------+ 
 */
 
 function norm_liens($texte) {
