@@ -16,7 +16,7 @@ include_spip('inc/actions');
 
 // http://doc.spip.org/@inc_iconifier_dist
 function inc_iconifier_dist($id_objet, $id,  $script, $visible=false) {
-
+	if ($GLOBALS['spip_display'] == 4) return "";
 	$texteon = $GLOBALS['logo_libelles'][($id OR $id_objet != 'id_rubrique') ? $id_objet : 'id_racine'];
 
 	$chercher_logo = charger_fonction('chercher_logo', 'inc');
@@ -55,14 +55,12 @@ function inc_iconifier_dist($id_objet, $id,  $script, $visible=false) {
 			$masque = debut_block_depliable($visible,'on') . $clic . fin_block() . $survol;
 		}
 
-		$res = "$img<div style='text-align: center'>$masque</div>";;
+		$res = "$img$masque";
 	}
 
 	if ($res) {
 		$res = debut_cadre('r', 'image-24.gif', '', $bouton, '', '', false)
-	. "<div class='verdana1' style='text-align: center;'>"
 	. $res
-	. "</div>"
 	. fin_cadre_relief(true);
 
   $js = "";
