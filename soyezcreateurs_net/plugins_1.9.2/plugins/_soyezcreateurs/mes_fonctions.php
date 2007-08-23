@@ -391,13 +391,9 @@ function logo_swf_or_img($src, $width, $height, $alt='', $link='', $classe='', $
 }
 
 function garder_body($texte) {
-	$body = eregi_replace('(^.*<html[^>]*>.*<body[^>]*>)|(</body[^>]*>.*</html[^>]*>.*$)', '', $texte);
-	return $body;
-}
-
-function elever_p($texte) {
-	$body = ereg_replace('<p[^>]*>(.|\n|\r)*<\/p>', '', $texte);
-	return $body;
+	$texte = eregi_replace('^.*<body[^>]*>', '', $texte);
+	$texte = eregi_replace('</body[^>]*>.*$', '', $texte);
+	return $texte;
 }
 
 ?>
