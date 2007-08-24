@@ -6,11 +6,13 @@
   <div id="menu"> 
     <B_onglets>  
 	<ul id="nav"> 
-      <BOUCLE_onglets(RUBRIQUES){titre_mot=barre_menu}{0,1}> 
-      <BOUCLE_liens(SITES){id_rubrique}{par nom_site}{0,8}> 
-      <li id="[site(#ID_SYNDIC)]"><a href="#URL_SITE">[(#NOM_SITE)]</a></li> 
-      </BOUCLE_liens> 
-      </BOUCLE_onglets> 
+	<li[ class="(#ENV{sommaire})"]><a href="[(#URL_PAGE{sommaire})]">Accueil</a></li>
+      <BOUCLE_onglets(RUBRIQUES){par num titre}{type=barre_menu}{0,5}> <li [class="(#EXPOSER|oui,non)"]>
+	  <BOUCLE_titre_onglets(MOTS){id_rubrique}{type=barre_menu}{0,1}>
+	  [(#REM) Pas plus de cinq onglets pour la mise en page.] 
+          [<a href="(#URL_RUBRIQUE)">][(#LOGO_MOT)][(#TITRE)]</a>
+           </BOUCLE_titre_onglets></li> 
+		   </BOUCLE_onglets> 
         </ul></B_onglets>
 		
 <p class="droite blanc img">

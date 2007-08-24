@@ -26,7 +26,7 @@
 				<BOUCLE_inscription(AUTEURS){tous} {id_article} {id_auteur=#ENV{id_auteur}}></BOUCLE_inscription>
 				[(#TOTAL_BOUCLE|!={1}|?{' ',''})
 				<li style="margin-bottom:3px">
-					<div style='float:right'><input type="checkbox" name="list&#91;&#93;" [(#_inscription:TOTAL_BOUCLE|?{' '',''})checked="checked"] value="#ID_ARTICLE" /></div>
+					<div style='float:right'><input type="checkbox" name="list&#91;&#93;" [(#_inscription:TOTAL_BOUCLE|?{' ''',''})checked="checked"] value="#ID_ARTICLE" /></div>
 					<a href='[(#SELF|parametre_url{liste,#ID_ARTICLE})]' title='<:spiplistes:infos_liste:>'>#TITRE</a>
 				</li>]
 </BOUCLE_listes>
@@ -48,8 +48,8 @@
 <fieldset> 
 	<legend><:spiplistes:abonnement_bouton:></legend>
 	<h4><:spiplistes:abonnement_change_format:></h4>
-	[(#ENV{erreur}|sinon{
-	<:spiplistes:abonnement_texte_mail:>
+	<p>[(#ENV{erreur}|sinon{
+	<:spiplistes:abonnement_texte_mail:></p>
 	<form action='#SELF' method='post'>
 		<div style='text-align:right'>
 			<input type='text' class='fondo' name='email_desabo' value='' />
