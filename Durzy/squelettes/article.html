@@ -44,15 +44,33 @@
 		<div class="cadre">
 
 		[(#REM) En tête de l'article ] 
+        <div class="cadre-titre-article">   
+			<BOUCLE_rubrique_parent(RUBRIQUES){id_rubrique}>
+				<a href="#URL_RUBRIQUE">[(#LOGO_ARTICLE_RUBRIQUE|right||image_reduire{120,0})]</a>
+			</BOUCLE_rubrique_parent>
+
 			[(#REM) titre de l'article ]
-			<h2 class="#EDIT{titre} titre">#TITRE</h2>
+			<div class="titre-article"> 
+			<h1 class="#EDIT{titre} titre">#TITRE</h1>
+			</div>
 
-			[(#REM) date de l'article ]
-
+			[(#REM) Descriptif de l'article ]
+			[<div id="descriptif-article"> 
+				<div class="#EDIT{descriptif}descriptif">(#DESCRIPTIF)</div> 
+			</div>]
 			<div align="right">
-				[Mémoire mise en ligne le (#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]
+				[Article mis en ligne le (#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]
 				&nbsp;
 			</div>
+		</div> <!-- fin du "cadre-titre-article" --> 
+
+		<div align="left">
+			<span style="font-size:10px;">
+				<a href="#URL_PAGE{imprimer-article,id_article=#ID_ARTICLE}">
+					Imprimer l'article <img src="#CHEMIN{images/imprimer.gif}" width="16" height="16" border="0" align="bottom" alt="imprimer" />
+				</a>
+			</span>
+		</div>
 
         
 		[(#REM) Contenu de l'article ]

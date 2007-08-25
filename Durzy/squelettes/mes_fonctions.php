@@ -6,7 +6,7 @@
 // Fonction : retourne une info donnee d'un plugin designe par son prefixe
 // =======================================================================================================================================
 //
-include_spip('public/plugin_balises');
+//include_spip('public/plugin_balises');
 
 // =======================================================================================================================================
 // Balise : #TOTAL_VISITES, #VISITES_JOUR, #JOUR_MAX_VISITES, #VAL_MAX_VISITES, #MOYENNE_VISITES
