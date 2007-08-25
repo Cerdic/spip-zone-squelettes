@@ -11,24 +11,45 @@ Pour configurer l'apparence du squelette<br />
 [(#REM) titre=Configuration du squelette Durzy]
 
 <fieldset><legend>Couleur de fond du site</legend>
+Ne mettre aucune image de fond pour pouvoir afficher une couleur de fond
 	<select name="couleur_fond">
 	<option value="white"[(#CONFIG{durzy/couleur_fond}|=={white}|?{selected="selected",''})]> Blanc (par défaut)</option>
 	<option value="#CCCCCC"[(#CONFIG{durzy/couleur_fond}|=={#CCCCCC}|?{selected="selected",''})]> Gris</option>
-	<option value="black"[(#CONFIG{durzy/couleur_fond}|=={black}|?{selected="selected",''})]> Noir</option>
+	<option value="black"[(#CONFIG{durzy/couleur_fond}|=={black}|?{selected="selected",''})]> Noir</option>   
+    </select>
+    <div style="background-color:#CONFIG{durzy/couleur_fond}; width:135px">&nbsp;</div>
+</fieldset>
+
+<fieldset><legend>Image de fond du site</legend>
+L'application d'une image est prioritaire sur une couleur de fond
+	<select name="image_fond">
+	<option value=" "[(#CONFIG{durzy/image_fond}|=={' '}|?{selected="selected",''})]> Aucune  (par défaut)</option>
+    <option value="images/fonds/fond1.jpg"[(#CONFIG{durzy/image_fond}|=={images/fonds/fond1.jpg}|?{selected="selected",''})]> Rayé bleu</option>
+    <option value="images/fonds/fond2.jpg"[(#CONFIG{durzy/image_fond}|=={images/fonds/fond2.jpg}|?{selected="selected",''})]> Rayé gris</option>
+    <option value="images/fonds/fond3.jpg"[(#CONFIG{durzy/image_fond}|=={images/fonds/fond3.jpg}|?{selected="selected",''})]> Degradé de gris</option>
+     <option value="images/fonds/fond4.jpg"[(#CONFIG{durzy/image_fond}|=={images/fonds/fond3.jpg}|?{selected="selected",''})]> Degradé de bleu</option>
 	</select>
+     <img src="../squelettes/#CONFIG{durzy/image_fond}"  width="20" height="20" border="1"  alt="image de fond">
 </fieldset>
 
 <fieldset><legend>Largeur du site</legend>
 	<select name="largeur_site">
-	<option value="1"[(#CONFIG{durzy/largeur_site}|=={1}|?{selected="selected",''})]> 800X600 (par défaut)</option>
-	<option value="1.125"[(#CONFIG{durzy/largeur_site}|=={1.125}|?{selected="selected",''})]> 1024X768</option>
+	<option value="1"[(#CONFIG{durzy/largeur_site}|=={1}|?{selected="selected",''})]> 800X600</option>
+	<option value="1.125"[(#CONFIG{durzy/largeur_site}|=={1.125}|?{selected="selected",''})]> 1024X768 (par défaut)</option>
     <option value="1.6"[(#CONFIG{durzy/largeur_site}|=={1.6}|?{selected="selected",''})]> 1280X768 </option>
 	</select>
 </fieldset>
 
+<fieldset><legend>Les cadres à afficher :</legend>
+<input type="checkbox" name="cfg_aff_agenda" [checked="(#ENV{cfg_aff_agenda})"] /><label>Le Mini Agenda</label><br /> 
+<input type="checkbox" name="cfg_aff_edito" [checked="(#ENV{cfg_aff_edito})"] /><label>Edito</label><br /> 
+<input type="checkbox" name="cfg_aff_identification" [checked="(#ENV{cfg_aff_identification})"] /><label>Identification</label><br /> 
+<input type="checkbox" name="cfg_aff_news" [checked="(#ENV{cfg_aff_news})"] /><label>Les derniers articles</label><br /> 
+<input type="checkbox" name="cfg_aff_direct" [checked="(#ENV{cfg_aff_direct})"] /><label>Accès direct</label><br /> 
+<input type="checkbox" name="cfg_aff_breve" [checked="(#ENV{cfg_aff_breve})"] /><label>Les Brèves</label>
+</fieldset>
 
-<fieldset><legend>Puces animées</legend>
-
+<fieldset><legend>Les puces animées :</legend>
     <label>Apparence des puces animées
     <select name="puces_animees">
 	<option value="puce-" [(#CONFIG{durzy/puces_animees}|=={puce-}|?{selected="selected",''})]>Par défaut</option>
@@ -37,8 +58,10 @@ Pour configurer l'apparence du squelette<br />
 	<option value="puce-cortat-" [(#CONFIG{durzy/puces_animees}|=={puce-cortat-}|?{selected="selected",''})]>Puces lycée Cortat</option>
 	<option value="">Personnalisées</option>
 	</select>
+    <img src="../squelettes/images/puces/#CONFIG{durzy/puces_animees}on.png"/ alt="puce">
+    &nbsp;
+    <img src="../squelettes/images/puces/#CONFIG{durzy/puces_animees}off.png"/ alt="puce">
 	</label>  
-	
 </fieldset>
 
 <fieldset><legend>Apparence générale des cadres</legend>
