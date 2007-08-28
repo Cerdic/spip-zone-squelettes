@@ -31,12 +31,13 @@ Un grand merci, donc, a celles et ceux qui ont contribue (et qui vont contribuer
 de ce squelette.
 -->]
 
+
 #CACHE{86400}
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <html lang="#LANG">
 	<INCLURE{fond=noisettes/header}>
 <body  dir="#LANG_DIR" onload="setHover(), setFooter()">
+
 <div id="conteneur">
 
 [(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
@@ -71,17 +72,18 @@ de ce squelette.
 	<div id="centre" class="centre">
 		[(#REM) <!-- Definition du contexte de la galerie --> ]
 		[(#REM) <!-- Pour simplifier le choix du type de galerie en attendant le paramŽtrage, decommentez l'une des lignes suivantes --> ]
-		[(#RUBRIQUE_GALERIE|galerie_definir_contexte{'planche_contact'}
+		[(#RUBRIQUE_SPECIALISEE{galerie}|galerie_definir_contexte{'planche_contact'}
 		)]
-[(#REM) <!--
-		[(#RUBRIQUE_GALERIE|galerie_definir_contexte{	'listing_annuel',
+
+		[(#REM) <!--
+		[(#RUBRIQUE_SPECIALISEE{galerie}|galerie_definir_contexte{	'listing_annuel',
 								1,
 								'annee'}
 		)]
--->]
+		-->]
 
 		[(#REM) <!-- Recensement des albums par ordre chronologique --> ]
-		<BOUCLE_galerie(ARTICLES){id_rubrique=#RUBRIQUE_GALERIE}{par date}>
+		<BOUCLE_galerie(ARTICLES){id_rubrique=#RUBRIQUE_SPECIALISEE{galerie}}{par date}>
 			<BOUCLE_vignette_album(DOCUMENTS){id_article}{extension == jpg|png|gif}{mode=document}{doublons}{0,1}>
         			[(#SET{$logo, [(#LOGO_DOCUMENT||image_reduire{150})]})]
                         </BOUCLE_vignette_album>
@@ -89,9 +91,9 @@ de ce squelette.
         			[(#SET{$logo, [(#LOGO_ARTICLE||image_reduire{150})]})]
 			<//B_vignette_album>
 
-			[(#RUBRIQUE_GALERIE|galerie_recenser_album{	[(#ID_ARTICLE)], 
-									[(#DATE)], 
-									[(#TITRE|supprimer_numero)],
+			[(#RUBRIQUE_SPECIALISEE{galerie}|galerie_recenser_album{	[(#ID_ARTICLE)], 
+																		[(#DATE)], 
+																		[(#TITRE|supprimer_numero)],
                                                                         [(#GET{$logo})],
                                                                         [(#INTRODUCTION|typo_couleur)]}
 			)]
@@ -108,36 +110,38 @@ de ce squelette.
 					[(#ENV{categorie,-1}|=={-1}|?{<:sarkaspip:info_album_sans_filtre:>,[(#ENV{categorie,-1}|=={0}|?{<:sarkaspip:info_album_sans_categorie:>})]})]
 				<//B_titre_categorie>
 			</div> <!-- Fin intitule -->
-	
+
 			[(#REM) <!-- Pagination de la page galerie --> ]
 			[(#REM) <!-- Pour simplifier le choix du type de galerie en attendant le paramŽtrage, decommentez l'une des lignes suivantes --> ]
 			<div class="bande-pagination">
-				[(#RUBRIQUE_GALERIE|galerie_paginer{	[(#ENV{annee, [(#ENV{planche})]})],
-									[(#ENV{categorie,-1})],
-									'&nbsp;|&nbsp;',
-									'album',
-									'normal',
-                                                                        5,
-                                                                        'page'}
+				[(#RUBRIQUE_SPECIALISEE{galerie}|galerie_paginer{	[(#ENV{annee, [(#ENV{planche})]})],
+																	[(#ENV{categorie,-1})],
+																	'&nbsp;|&nbsp;',
+																	'album',
+																	'normal',
+																	5,
+																	'page'}
 				)]
-[(#REM) <!--
-				[(#RUBRIQUE_GALERIE|galerie_paginer{	[(#ENV{annee, [(#ENV{planche})]})],
+
+			[(#REM) <!--
+				[(#RUBRIQUE_SPECIALISEE{galerie}|galerie_paginer{	[(#ENV{annee, [(#ENV{planche})]})],
 									[(#ENV{categorie,-1})],
 									'&nbsp;|&nbsp;',
 									'album',
 									'normal'}
 				)]
--->]
+			-->]
 			</div> <!-- Fin bande-pagination -->
-	
+
 			[(#REM) <!-- Affichage de la liste des albums --> ]
-			[(#RUBRIQUE_GALERIE|galerie_afficher{	[(#ENV{annee, [(#ENV{planche})]})],
+			[(#RUBRIQUE_SPECIALISEE{galerie}|galerie_afficher{	[(#ENV{annee, [(#ENV{planche})]})],
 								[(#ENV{categorie,-1})],
 								'inverse'}
 			)]
 			
+			[(#REM) <!-- Affichage des messages d'erreur --> ]
 			[<p class="reponse_formulaire">
-				(#RUBRIQUE_GALERIE|galerie_avertir{[(#ENV{annee, [(#ENV{planche})]})]})
+				(#RUBRIQUE_SPECIALISEE{galerie}|galerie_avertir{[(#ENV{annee, [(#ENV{planche})]})]})
 			</p>]
 		</div> <!-- Fin galerie -->
 	</div> <!-- Fin centre -->
@@ -146,6 +150,5 @@ de ce squelette.
 	<INCLURE{fond=noisettes/footer}>
 
 </div> <!-- Fin conteneur -->
-
 </body>
 </html>

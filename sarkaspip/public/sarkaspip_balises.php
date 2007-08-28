@@ -145,6 +145,43 @@ function balise_AUJOURDHUI($p) {
 }
 
 // =======================================================================================================================================
+// Balise : #RUBRIQUE_SPECIALISEE
+// =======================================================================================================================================
+// Auteur: Smellup
+// Fonction : retourne la valeur de l'ID de la rubrique demandee ou de toutes les rubriques specialisees
+// =======================================================================================================================================
+//
+function balise_RUBRIQUE_SPECIALISEE($p) {
+
+	$mot_rubrique = interprete_argument_balise(1,$p);
+	$mot_rubrique = isset($mot_rubrique) ? str_replace('\'', '"', $mot_rubrique) : '""';
+
+	$p->code = 'calcul_rubrique_specialisee('.$mot_rubrique.')';
+	$p->interdire_scripts = false;
+	return $p;
+}
+
+function calcul_rubrique_specialisee($mot) {
+
+	$ret = NULL;
+	switch(strtolower($mot)) {
+		case 'agenda':
+		    $ret = calcul_rubrique_agenda();
+		    break;
+		case 'galerie':
+		    $ret = calcul_rubrique_galerie();
+		    break;
+		default:
+			$ret .= '^(';
+			$ret .= calcul_rubrique_agenda();
+			$ret .= '|'.calcul_rubrique_galerie();
+			$ret .= ')$';
+			break;
+	}
+	return $ret;
+}
+
+// =======================================================================================================================================
 // Balise : #RUBRIQUE_AGENDA
 // =======================================================================================================================================
 // Auteur: Smellup

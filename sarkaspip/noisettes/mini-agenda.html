@@ -5,15 +5,15 @@
 
 	<div class="contenu">
 		[(#REM) <!-- Definition du contexte de l'agenda --> ]
-		[(#RUBRIQUE_AGENDA|agenda_definir_contexte{
+		[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_definir_contexte{
 							'mini_calendrier_mensuel',
 							1, 'annee',
 							#SELF}
 		)]
 
 		[(#REM) <!-- Recensement des evenements --> ]
-		<BOUCLE_agenda(ARTICLES){id_rubrique=#RUBRIQUE_AGENDA}{par date_redac}>
-			[(#RUBRIQUE_AGENDA|agenda_recenser_evenement{
+		<BOUCLE_agenda(ARTICLES){id_rubrique=#RUBRIQUE_SPECIALISEE{agenda}}{par date_redac}>
+			[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_recenser_evenement{
 								[(#ID_ARTICLE)], 
 								[(#DATE_REDAC)], 
 								[(#TITRE|supprimer_numero)]}
@@ -22,17 +22,17 @@
 
 		[(#REM) <!-- Bloc en-tete mois et pagination du mini-agenda -->] 
 		<div class="mois">
-			[(#RUBRIQUE_AGENDA|agenda_mini_paginer)]
+			[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_mini_paginer)]
 		</div>
 
 		[(#REM) <!-- Bloc tableau des jours du mois du mini-agenda -->] 
 		<div class="mois">
-			[(#RUBRIQUE_AGENDA|agenda_mini_afficher{1, 'oui'})]
+			[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_mini_afficher{1, 'oui'})]
 		</div>  
 
 		[(#REM) <!-- Bloc liste des n derniers evenements du mois -->] 
 	    <div class="mois"> 
-			[(#RUBRIQUE_AGENDA|agenda_mini_resumer{'mois_complet', 5})]
+			[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_mini_resumer{'mois_complet', 5})]
 	    </div>
 
 	</div> <!-- Fin contenu -->

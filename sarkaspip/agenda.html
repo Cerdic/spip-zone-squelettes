@@ -68,8 +68,8 @@ de ce squelette.
 		</B_liste_categories>
 
 		[(#REM) <!-- affichage du mini-agenda --> ]
-		<BOUCLE_acces_agenda(RUBRIQUES) {id_rubrique=#RUBRIQUE_AGENDA}>
-			[(#RUBRIQUE_AGENDA|=={0}|?{'', ' '})<INCLURE{fond=noisettes/mini-agenda}{self=#SELF}>]
+		<BOUCLE_acces_agenda(RUBRIQUES) {id_rubrique=#RUBRIQUE_SPECIALISEE{agenda}}>
+			[(#RUBRIQUE_SPECIALISEE{agenda}|=={0}|?{'', ' '})<INCLURE{fond=noisettes/mini-agenda}{self=#SELF}>]
 		</BOUCLE_acces_agenda>
 
 	</div> <!-- Fin droite -->
@@ -78,11 +78,11 @@ de ce squelette.
 	<div id="centre" class="centre">
 
 		[(#REM) <!-- Définition du contexte de l'agenda --> ]
-		[(#RUBRIQUE_AGENDA|agenda_definir_contexte{'listing_annuel', 1, 'annee'})]
+		[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_definir_contexte{'listing_annuel', 1, 'annee'})]
 
 		[(#REM) <!-- Recensement des évènements --> ]
-		<BOUCLE_agenda(ARTICLES){id_rubrique=#RUBRIQUE_AGENDA}{par date_redac}>
-			[(#RUBRIQUE_AGENDA|agenda_recenser_evenement{
+		<BOUCLE_agenda(ARTICLES){id_rubrique=#RUBRIQUE_SPECIALISEE{agenda}}{par date_redac}>
+			[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_recenser_evenement{
 								[(#ID_ARTICLE)], 
 								[(#DATE_REDAC)], 
 								[(#TITRE|supprimer_numero)]}
@@ -102,7 +102,7 @@ de ce squelette.
 			</div> <!-- Fin intitule -->
 
 			<div class="bande-pagination">
-				[(#RUBRIQUE_AGENDA|agenda_liste_paginer{
+				[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_liste_paginer{
 									[(#ENV{annee})],
 									[(#ENV{categorie,-1})],
 									'&nbsp;|&nbsp;',
@@ -111,14 +111,14 @@ de ce squelette.
 				)]
 			</div> <!-- Fin bande-pagination -->
 
-			[(#RUBRIQUE_AGENDA|agenda_liste_afficher{
+			[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_liste_afficher{
 								[(#ENV{annee})],
 								[(#ENV{categorie,-1})],
 								'inverse'}
 			)]
 
 			[<p class="reponse_formulaire">
-				(#RUBRIQUE_AGENDA|agenda_liste_avertir{[(#ENV{annee})]})
+				(#RUBRIQUE_SPECIALISEE{agenda}|agenda_liste_avertir{[(#ENV{annee})]})
 			</p>]
 		</div> <!-- Fin agenda_annuel -->
 	</div> <!-- Fin centre -->
