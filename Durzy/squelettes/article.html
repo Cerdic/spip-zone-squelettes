@@ -114,6 +114,39 @@
 	  </div>
 	  <div class="separateur"> </div>
 	</B_documents_portfolio>
+    
+   
+    [(#REM) Documents joints a l'article ]
+	<B_doc_joints>
+		<div class="espace"> </div>
+		<div id="cadre-telechargement">
+			<img src="#CHEMIN{images/download.gif}" border="0" align="middle" alt="télécharger" /> 
+			<strong>&nbsp;Fichier(s) à télécharger :</strong>
+			<div class="espace"> </div>
+			<BOUCLE_doc_joints(DOCUMENTS){id_article}{par titre}{mode=document}{doublons}>
+			  <div id="cadre-doc-telechargement" >
+				[(#REM) Tester la présence du plugin DW2 pour placer le lien vers le document ]  
+                [(#PLUGIN{DW2}|?{[(#LOGO_DOCUMENT |left|#URL_DOC_OUT)],
+                                 [(#LOGO_DOCUMENT|left|#URL_DOCUMENT)]})]
+	            <div id="stat" style="padding-left:7em">
+				 <ul style="list-style:circle">
+				   <li>
+                   [(#REM) Tester la présence du plugin DW2 pour placer le lien vers le document]  
+                   [(#PLUGIN{DW2}|?{<a href="#URL_DOC_OUT"  title="Télécharger #TITRE">,
+                                    <a href="#URL_DOCUMENT" title="Télécharger #TITRE">})]
+                                    
+				   [<strong>(#TITRE)</strong>]</a></li>
+				   [<li>(#DESCRIPTIF)</li>]
+	               <li><img src="#CHEMIN{images/size.gif}" align="absmiddle" title="Taille du fichier" alt="" /> [(#TAILLE|taille_en_octets)]</li>
+	             [(#REM) Tester la présence du plugin DW2 pour afficher les statistiques ou pas ]
+                 [(#PLUGIN{DW2}|?{' ',''})<INCLURE {fond=inclusions/inc-stats-dw2}>]              
+				 </ul>	
+	            </div>
+				<div class="espace"> </div>
+			  </div> <!-- Fin de "cadre-telechargement"-->
+			</BOUCLE_doc_joints>
+		</div>
+	</B_doc_joints><!-- Fin de "cadre-doc-telechargement"-->
 
 	[(#REM) Forum de l'article ]
 	<div class="espace"> </div>
