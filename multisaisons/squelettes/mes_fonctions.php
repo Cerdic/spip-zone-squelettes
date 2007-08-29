@@ -1,5 +1,126 @@
 <?php
 
+
+/*
+ *   +----------------------------------+
+ *    Nom du Filtre :    pour plus de stats                                        
+ *   +----------------------------------+
+ *  . SCOTY .. 
+ *   +-------------------------------------+
+ *    Fonctions de ce filtre :
+ *     affiche le texte à citer    
+ *   +-------------------------------------+ 
+ *  
+ * Pour toute suggestion, remarque, proposition d'ajout
+ * reportez-vous au forum de l'article :
+ * http://www.koakidi.com/spip.php?article279
+*/
+
+// balise #TOTAL_VISITES
+
+function aff_total_visites() {
+	$query = "SELECT SUM(visites) AS total_absolu FROM spip_visites";
+	$result = spip_query($query);
+	if ($row = spip_fetch_array($result))
+		{ return $row['total_absolu']; }
+	else { return "0";}
+}
+
+function balise_TOTAL_VISITES($p) {
+	$p->code = "aff_total_visites()";
+	$p->statut = 'php';
+	return $p;
+}
+
+function visites_du_jour() {
+	$q = spip_query("SELECT visites FROM spip_visites WHERE date=NOW()");
+	if ($r = @spip_fetch_array($q))
+		$g = $r['visites'];
+	else
+		$g = 0;
+			
+	return $g;
+}
+function balise_VISITES_JOUR($p) {
+	$p->code = "visites_du_jour()";
+	$p->interdire_scripts = false;
+	return $p;
+}
+
+function generer_jour_val_max_visites($arg) {
+	$qv = spip_query("SELECT MAX(visites) as maxvi FROM spip_visites");
+	$rv = spip_fetch_array($qv);
+	$valmaxi = $rv['maxvi'];
+
+	if($arg=="date") {
+		$qd = spip_query("SELECT date FROM spip_visites WHERE visites = $valmaxi");
+		$rd = spip_fetch_array($qd);
+		$jourmaxi = $rd['date'];
+	}
+	if($arg=="date") { $a = $jourmaxi; }
+	if($arg=="val") { $a = $valmaxi; }
+	return $a;
+}
+function balise_JOUR_MAX_VISITES($p) {
+	$arg="date";
+	$p->code = "generer_jour_val_max_visites($arg)";
+	$p->interdire_scripts = false;
+	return $p;
+}
+function balise_VAL_MAX_VISITES($p) {
+	$arg="val";
+	$p->code = "generer_jour_val_max_visites($arg)";
+	$p->interdire_scripts = false;
+	return $p;
+}
+
+function aff_moyenne_visites() {
+	$query="SELECT UNIX_TIMESTAMP(date) AS date_unix, visites FROM spip_visites ".
+			"WHERE 1 AND date > DATE_SUB(NOW(),INTERVAL 420 DAY) ORDER BY date";
+	$result=spip_query($query);
+
+	while ($row = spip_fetch_array($result)) {
+		$date = $row['date_unix'];
+		$visites = $row['visites'];
+ 		$log[$date] = $visites;
+	}
+
+    if (count($log)>0){
+		while (list($key, $value) = each($log)) {
+			$n++;
+			if ($decal == 30) $decal = 0;
+			$decal ++;
+			$tab_moyenne[$decal] = $value;
+	
+			$total_loc = $total_loc + $value;
+			reset($tab_moyenne);
+	
+			$moyenne = 0;
+			while (list(,$val_tab) = each($tab_moyenne))
+				$moyenne += $val_tab;
+				$moyenne = $moyenne / count($tab_moyenne);
+	    }
+    }
+    else {
+		$moyenne =0;
+	}
+    
+	return round($moyenne);
+}
+
+function balise_MOYENNE_VISITES($p) {
+	$p->code = "aff_moyenne_visites()";
+	$p->interdire_scripts = false;
+	return $p;
+}
+
+
+
+
+
+
+
+
 /*
  *   +----------------------------------+
  *    Nom du Filtre :    alerter       EN CONSTRUCTION                                    
@@ -176,7 +297,7 @@ function image_histo($im) {
 		imagedestroy($im);
 	}
 
-	return "<img src='$dest' style='width: 258px; height: 130px;'  />";
+	return "<img src='$dest'/>";
 }
 
 
@@ -208,6 +329,324 @@ for ($x = 0; $x < $x_i; $x++) {
 		$rapport = (127/$max);
 
 
+
+
+
+
+ /*
+ *   +----------------------------------+
+ *    Nom du Filtre :    niveaux contraste auto photo
+ *   +----------------------------------+
+ *    Date : lundi 27/08/2007
+ *    Auteur : www.paris-beyrouth.org/SPIP
+ *   +-------------------------------------+
+ *    Fonctions de ce filtre :
+ *   met à niveau les photos
+ *   +-------------------------------------+ 
+ *  
+*/
+
+
+function image_niveaux_gris_auto($im, $limite=1000) {
+
+	// $limite=1000: les nuances min et max representent 0,1% du total
+	
+	$image = valeurs_image_trans($im, "niveaux_gris_auto-$limite");
+	if (!$image) return("");
+
+	$x_i = $image["largeur"];
+	$y_i = $image["hauteur"];
+	$im = $image["fichier"];
+	$dest = $image["fichier_dest"];
+	$creer = $image["creer"];
+
+	if ($creer) {
+		$im = $image["fonction_imagecreatefrom"]($im);
+
+		// Calculer les poids des differentes nuances
+		for ($x = 0; $x < $x_i; $x++) {
+			for ($y=0; $y < $y_i; $y++) {
+
+				$rgb = ImageColorAt($im, $x, $y);
+				$a = ($rgb >> 24) & 0xFF;
+				$r = ($rgb >> 16) & 0xFF;
+				$g = ($rgb >> 8) & 0xFF;
+				$b = $rgb & 0xFF;
+
+				$a = (127-$a) / 127;
+				$a=1;
+				
+				$gris = round($a*($r+$g+$b) / 3);
+				$r = round($a*$r);
+				$g = round($a*$g);
+				$b = round($a*$b);
+								
+				$val_gris[$gris] ++;
+			} 
+		}
+
+		$total = $x_i * $y_i;
+
+		for ($bas = 0; $somme_bas < $total/$limite; $bas++) {
+			$somme_bas += $val_gris[$bas];
+		}	
+		
+		for ($haut = 255; $somme_haut < $total/$limite ; $haut--) {
+			$somme_haut += $val_gris[$haut];
+		}
+	
+		$courbe[0] = 0;
+		$courbe[255] = 255;
+		$courbe[$bas] = 0;
+		$courbe[$haut] = 255;
+	
+		// Calculer le tableau des correspondances
+		ksort($courbe);
+		while (list($key, $val) = each($courbe)) {
+			if ($key > 0) {
+				$key1 = $key_old;
+				$val1 = $val_old;
+				$prop = ($val - $val1) / ($key-$key1);
+				for ($i = $key1; $i < $key; $i++) {
+					$valeur = round($prop * ($i - $key1) + $val1);
+					$courbe[$i] = $valeur;
+				}
+				$key_old = $key;
+				$val_old = $val;
+			} else {
+				$key_old = $key;
+				$val_old = $val;
+			}
+		}
+
+		// Appliquer les correspondances
+		$im2 = imagecreatetruecolor($x_i, $y_i);
+		@imagealphablending($im2, false);
+		@imagesavealpha($im2,true);
+		$color_t = ImageColorAllocateAlpha( $im2, 255, 255, 255 , 0 );
+		imagefill ($im2, 0, 0, $color_t);
+
+		for ($x = 0; $x < $x_i; $x++) {
+			for ($y=0; $y < $y_i; $y++) {
+				$rgb = ImageColorAt($im, $x, $y);
+				$a = ($rgb >> 24) & 0xFF;
+				$r = ($rgb >> 16) & 0xFF;
+				$v = ($rgb >> 8) & 0xFF;
+				$b = $rgb & 0xFF;
+				
+				$r = $courbe[$r];
+				$v = $courbe[$v];
+				$b = $courbe[$b];
+				
+				$color = ImageColorAllocateAlpha( $im2, $r, $v, $b , $a );
+				imagesetpixel ($im2, $x, $y, $color);			
+			}
+		}
+
+		$image["fonction_image"]($im2, "$dest");
+		imagedestroy($im2);
+		imagedestroy($im);
+	}
+
+	$class = $image["class"];
+	if (strlen($class) > 1) $tags=" class='$class'";
+	$tags = "$tags alt='".$image["alt"]."'";
+	$style = $image["style"];
+	if (strlen($style) > 1) $tags="$tags style='$style'";
+	
+	return "<img src='$dest'$tags />";
+}
+
+
+ /*
+ *   +----------------------------------+
+ *    Nom du Filtre :    niveaux couleurs auto photo
+ *   +----------------------------------+
+ *    Auteur : www.paris-beyrouth.org/SPIP
+ *   +-------------------------------------+
+ *    Fonctions de ce filtre :
+ *   met à niveau les couleurs photos
+ *   +-------------------------------------+ 
+ *  
+*/
+
+
+function image_niveaux_auto($im, $limite=1000) {
+
+	// $limite=1000: les nuances min et max representent 0,1% du total
+	
+	$image = valeurs_image_trans($im, "niveaux_auto-$limite");
+	if (!$image) return("");
+
+	$x_i = $image["largeur"];
+	$y_i = $image["hauteur"];
+	$im = $image["fichier"];
+	$dest = $image["fichier_dest"];
+	$creer = $image["creer"];
+
+	if ($creer) {
+		$im = $image["fonction_imagecreatefrom"]($im);
+
+		// Calculer les poids des differentes nuances
+		for ($x = 0; $x < $x_i; $x++) {
+			for ($y=0; $y < $y_i; $y++) {
+
+				$rgb = ImageColorAt($im, $x, $y);
+				$a = ($rgb >> 24) & 0xFF;
+				$r = ($rgb >> 16) & 0xFF;
+				$g = ($rgb >> 8) & 0xFF;
+				$b = $rgb & 0xFF;
+
+				$a = (127-$a) / 127;
+				$a=1;
+				
+				$gris = round($a*($r+$g+$b) / 3);
+				$r = round($a*$r);
+				$g = round($a*$g);
+				$b = round($a*$b);
+								
+				$val_r[$r] ++;
+				$val_v[$g] ++;
+				$val_b[$b] ++;
+			} 
+		}
+
+		$total = $x_i * $y_i;
+
+		// Calculer le tableau des correspondances
+		// Rouge
+		for ($bas_r = 0; $somme_bas_r < $total/$limite; $bas_r++) {
+			$somme_bas_r += $val_r[$bas_r];
+		}	
+		
+		for ($haut_r = 255; $somme_haut_r < $total/$limite ; $haut_r--) {
+			$somme_haut_r += $val_r[$haut_r];
+		}
+	
+		$courbe_r[0] = 0;
+		$courbe_r[255] = 255;
+		$courbe_r[$bas_r] = 0;
+		$courbe_r[$haut_r] = 255;
+	
+		ksort($courbe_r);
+		while (list($key, $val) = each($courbe_r)) {
+			if ($key > 0) {
+				$key1 = $key_old;
+				$val1 = $val_old;
+				$prop = ($val - $val1) / ($key-$key1);
+				for ($i = $key1; $i < $key; $i++) {
+					$valeur = round($prop * ($i - $key1) + $val1);
+					$courbe_r[$i] = $valeur;
+				}
+				$key_old = $key;
+				$val_old = $val;
+			} else {
+				$key_old = $key;
+				$val_old = $val;
+			}
+		}
+
+		// Bleu
+		for ($bas_b = 0; $somme_bas_b < $total/$limite; $bas_b++) {
+			$somme_bas_b += $val_b[$bas_b];
+		}	
+		
+		for ($haut_b = 255; $somme_haut_b < $total/$limite ; $haut_b--) {
+			$somme_haut_b += $val_b[$haut_b];
+		}
+	
+		$courbe_b[0] = 0;
+		$courbe_b[255] = 255;
+		$courbe_b[$bas_b] = 0;
+		$courbe_b[$haut_b] = 255;
+	
+		ksort($courbe_b);
+		while (list($key, $val) = each($courbe_b)) {
+			if ($key > 0) {
+				$key1 = $key_old;
+				$val1 = $val_old;
+				$prop = ($val - $val1) / ($key-$key1);
+				for ($i = $key1; $i < $key; $i++) {
+					$valeur = round($prop * ($i - $key1) + $val1);
+					$courbe_b[$i] = $valeur;
+				}
+				$key_old = $key;
+				$val_old = $val;
+			} else {
+				$key_old = $key;
+				$val_old = $val;
+			}
+		}
+
+		// Vert
+		for ($bas_v = 0; $somme_bas_v < $total/$limite; $bas_v++) {
+			$somme_bas_v += $val_v[$bas_v];
+		}	
+		
+		for ($haut_v = 255; $somme_haut_v < $total/$limite ; $haut_v--) {
+			$somme_haut_v += $val_v[$haut_v];
+		}
+	
+		$courbe_v[0] = 0;
+		$courbe_v[255] = 255;
+		$courbe_v[$bas_v] = 0;
+		$courbe_v[$haut_v] = 255;
+	
+		ksort($courbe_v);
+		while (list($key, $val) = each($courbe_v)) {
+			if ($key > 0) {
+				$key1 = $key_old;
+				$val1 = $val_old;
+				$prop = ($val - $val1) / ($key-$key1);
+				for ($i = $key1; $i < $key; $i++) {
+					$valeur = round($prop * ($i - $key1) + $val1);
+					$courbe_v[$i] = $valeur;
+				}
+				$key_old = $key;
+				$val_old = $val;
+			} else {
+				$key_old = $key;
+				$val_old = $val;
+			}
+		}
+
+		// Appliquer les correspondances
+		$im2 = imagecreatetruecolor($x_i, $y_i);
+		@imagealphablending($im2, false);
+		@imagesavealpha($im2,true);
+		$color_t = ImageColorAllocateAlpha( $im2, 255, 255, 255 , 0 );
+		imagefill ($im2, 0, 0, $color_t);
+
+		for ($x = 0; $x < $x_i; $x++) {
+			for ($y=0; $y < $y_i; $y++) {
+				$rgb = ImageColorAt($im, $x, $y);
+				$a = ($rgb >> 24) & 0xFF;
+				$r = ($rgb >> 16) & 0xFF;
+				$v = ($rgb >> 8) & 0xFF;
+				$b = $rgb & 0xFF;
+				
+				$r = $courbe_r[$r];
+				$v = $courbe_v[$v];
+				$b = $courbe_b[$b];
+				
+				$color = ImageColorAllocateAlpha( $im2, $r, $v, $b , $a );
+				imagesetpixel ($im2, $x, $y, $color);			
+			}
+		}
+
+		$image["fonction_image"]($im2, "$dest");
+		imagedestroy($im2);
+		imagedestroy($im);
+	}
+
+	$class = $image["class"];
+	if (strlen($class) > 1) $tags=" class='$class'";
+	$tags = "$tags alt='".$image["alt"]."'";
+	$style = $image["style"];
+	if (strlen($style) > 1) $tags="$tags style='$style'";
+	
+	return "<img src='$dest'$tags />";
+}
 
 
 
