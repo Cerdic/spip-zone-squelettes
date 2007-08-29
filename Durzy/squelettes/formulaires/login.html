@@ -9,7 +9,7 @@
 </fieldset>]
 
 [(#ENV{echec_visiteur})
-<fieldset class="reponse_formulaire">
+<fieldset class="reponse_formulaire" style="border-width: 0px;">
 <legend><:avis_erreur_visiteur:></legend>
 <p><:texte_erreur_visiteur:></p>
 </fieldset>]
@@ -22,38 +22,43 @@
 			this.session_password_md5.value = calcMD5("[(#ENV{alea_actuel})]" + this.session_password.value);
 			this.next_session_password_md5.value = calcMD5("[(#ENV{alea_futur})]" + this.session_password.value);
 			this.session_password.value = "";
+			return true;
 			}']>
-	<fieldset>
-	<legend><:form_forum_identifiants:></legend>
-		[<p class="reponse_formulaire">(#ENV*{erreur})</p>]
-		[<p><label for="var_login"><:login_login2:></label>(#ENV{login}|?{'',' '})<br />
-		<input type="text" class="forml" id="var_login" name="var_login" value="" size="19" /></p>]
+	<fieldset style="border-width: 0px;">
+	
+		[(#REM) En cas d'erreur ex: mauvais identifiant]
+	[<img src="#CHEMIN{images/warning.png}" alt="#ENV*{erreur}" /> (#ENV*{erreur})]
+		[<label for="var_login"><:login_login2:></label>(#ENV{login}|?{'',' '})
+		<input type="text" class="forml" id="var_login" name="var_login" value="" size="20" />]
 		
 [
 [(#LOGO_AUTEUR||reduire_image{100,80}|inserer_attribut{alt,#ENV{login_alt}})]
 <input type="hidden" name="session_login_hidden" value="(#ENV{login})" />
 <script type="text/javascript"><!--
-document.write("<p><:login_login:>&nbsp;<strong>[(#ENV{login_alt})]<" + "/strong><br />&#91;<a href='[(#ENV{action2}
+document.write("<p><:login_login:>&nbsp;<strong>[(#ENV{login_alt})]<" + "/strong> >> &#91;<a href='[(#ENV{action2}
 	|parametre_url{cookie_admin,non}
 	|parametre_url{url,#ENV*{url}}
-	|parametre_url{retour,#ENV*{self}})]'><:login_autre_identifiant:><" + "/a>&#93;</p>")
+	|parametre_url{retour,#ENV*{self}})]'><:login_autre_identifiant:><" + "/a>&#93; |")
 //--></script>
 <noscript>
-	<p class="reponse_formulaire"><:login_non_securise:> <a href="[(#ENV{action})]"><:login_recharger:></a>.</p>
-	<p><label for="session_login"><:login_login2:></label><br />
-	<input type="text" class="forml" name="session_login" id="session_login"[ value="(#ENV{login})"] size="19" /></p>
+	<p class="reponse_formulaire" style="border:none"><:login_non_securise:> <a href="[(#ENV{action})]"><:login_recharger:></a>.</p>
+	<p><label for="session_login"><:login_login2:></label>
+	<input type="text" class="forml" name="session_login" id="session_login"[ value="(#ENV{login})"] size="20" /></p>
 </noscript>
 
-	<p><label[ for="var_login_(#ENV{login})"]><:login_pass2:></label><br />
-	<input type="password" class="forml" name="session_password"[ id="var_login_(#ENV{login})"] value="" size="20" /></p>
-	<p><input type="checkbox" name="session_remember" id="session[_(#ENV{login})]" value="oui"[(#ENV*{prefs}|filtre_rester_connecte)checked="checked"]/>
-	<label for="session[_(#ENV{login})]"><:login_rester_identifie:></label></p>
+	<label[ for="var_login_(#ENV{login})"]><:login_pass2:></label>
+	<input type="password" class="forml" name="session_password"[ id="var_login_(#ENV{login})"] value="" size="10" />
 
+[(#ENV{rester_connecte})
+	<input type="checkbox" name="session_remember" id="session[_(#ENV{login})]" value="oui"[(#ENV*{prefs}|filtre_rester_connecte)checked="checked"]/>
+	<!-- <label for="session[_(#ENV{login})]"><:login_rester_identifie:></label> -->
+]
 	<input type="hidden" name="session_password_md5" value="" />
 	<input type="hidden" name="next_session_password_md5" value="" />
 	<input type="hidden" name="essai_login" value="oui" />
 ]	<input type="hidden" name="url" value="[(#ENV{url})]" />
-	<p class="spip_bouton"><input type="submit" value="<:bouton_valider:>" /></p>
+	<input type="image" src="#CHEMIN{images/valider.png}" style="border:none" name="submit" />
+	
 	</fieldset>
 	</form>
 <script type="text/javascript"><!--
@@ -62,12 +67,12 @@ document.getElementById('var_login[_(#ENV{login})]').focus();
 	<form action="(#ENV{auth_http})" method="get">[
 	(#ENV{auth_http}|form_hidden)
 	]
-	<fieldset>
+	<fieldset style="border-width: 0px;">
 	<legend><:login_sans_cookiie:></legend>
 	<div><:login_preferez_refuser:>
 	<input type="hidden" name="essai_auth_http" value="oui"/>
 	[<input type="hidden" name="url" value="(#ENV{url})"/>]
-	<p class="spip_bouton"><input type="submit" value="<:login_sans_cookiie:>"/></p></div>
+	<div class="spip_bouton"><input type="submit" value="<:login_sans_cookiie:>"/></div></div>
 	</fieldset>
 	</form>
 ]
