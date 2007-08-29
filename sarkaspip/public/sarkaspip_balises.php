@@ -2,7 +2,7 @@
 // =======================================================================================================================================
 // Balise : #VERSION_SQUELETTE
 // =======================================================================================================================================
-// Auteur: Smellup
+// Auteur: SarkASmeL
 // Fonction : affiche la version utilise du squelette variable globale $version_squelette
 // =======================================================================================================================================
 //
@@ -32,7 +32,7 @@ function calcul_version_squelette() {
 // =======================================================================================================================================
 // Balise : #VISITES_SITE
 // =======================================================================================================================================
-// Auteur: Smellup
+// Auteur: SarkASmeL
 // Fonction : affiche le nombre de visites sur le site pour le jour courant, la veille ou depuis le debut
 // Parametre: aujourdhui, hier, depuis_debut (ou vide)
 // =======================================================================================================================================
@@ -94,7 +94,7 @@ function calcul_visites_site($j) {
 // =======================================================================================================================================
 // Balise : #INTRODUCTION (surcharge)
 // =======================================================================================================================================
-// Auteur: Smellup
+// Auteur: SarkASmeL
 // Fonction : Surcharge de la fonction standard de calcul de la balise #INTRODUCTION. Permet de definir la taille en nombre de caracteres
 // =======================================================================================================================================
 //
@@ -133,7 +133,7 @@ function introduction ($type, $texte, $chapo='', $descriptif='') {
 // =======================================================================================================================================
 // Balise : #AUJOURDHUI
 // =======================================================================================================================================
-// Auteur: Smellup
+// Auteur: SarkASmeL
 // Fonction : retourne la date du jour independamment du contexte d'appel
 // =======================================================================================================================================
 //
@@ -147,7 +147,7 @@ function balise_AUJOURDHUI($p) {
 // =======================================================================================================================================
 // Balise : #RUBRIQUE_SPECIALISEE
 // =======================================================================================================================================
-// Auteur: Smellup
+// Auteur: SarkASmeL
 // Fonction : retourne la valeur de l'ID de la rubrique demandee ou de toutes les rubriques specialisees
 // =======================================================================================================================================
 //
@@ -171,10 +171,14 @@ function calcul_rubrique_specialisee($mot) {
 		case 'galerie':
 		    $ret = calcul_rubrique_galerie();
 		    break;
+		case 'annonce':
+		    $ret = calcul_rubrique_annonce();
+		    break;
 		default:
 			$ret .= '^(';
 			$ret .= calcul_rubrique_agenda();
 			$ret .= '|'.calcul_rubrique_galerie();
+			$ret .= '|'.calcul_rubrique_annonce();
 			$ret .= ')$';
 			break;
 	}
@@ -184,7 +188,7 @@ function calcul_rubrique_specialisee($mot) {
 // =======================================================================================================================================
 // Balise : #RUBRIQUE_AGENDA
 // =======================================================================================================================================
-// Auteur: Smellup
+// Auteur: SarkASmeL
 // Fonction : retourne la valeur de l'ID de la rubrique faisant office d'agenda (associe au mot-cle agenda)
 // =======================================================================================================================================
 //
@@ -210,7 +214,7 @@ function calcul_rubrique_agenda() {
 // =======================================================================================================================================
 // Balise : #RUBRIQUE_GALERIE
 // =======================================================================================================================================
-// Auteur: Smellup
+// Auteur: SarkASmeL
 // Fonction : retourne la valeur de l'ID de la rubrique faisant office de galerie (associee au mot-cle galerie)
 // =======================================================================================================================================
 //
@@ -225,6 +229,32 @@ function calcul_rubrique_galerie() {
 
 	$query = "SELECT id_rubrique AS id_rubrique FROM spip_mots_rubriques, spip_mots, spip_groupes_mots 
 	WHERE spip_groupes_mots.titre='squelette_habillage' AND spip_groupes_mots.id_groupe=spip_mots.id_groupe AND spip_mots.titre='galerie' AND spip_mots.id_mot=spip_mots_rubriques.id_mot";
+	$result = spip_query($query);
+	$id_rubrique = 0;
+	if ($row = @spip_fetch_array($result)) {
+		$id_rubrique = $row['id_rubrique'];
+	}
+	return $id_rubrique;
+}
+
+// =======================================================================================================================================
+// Balise : #RUBRIQUE_ANNONCE
+// =======================================================================================================================================
+// Auteur: SarkASmeL
+// Fonction : retourne la valeur de l'ID de la rubrique faisant office de panneau annonceur (associee au mot-cle annonce)
+// =======================================================================================================================================
+//
+function balise_RUBRIQUE_ANNONCE($p) {
+
+	$p->code = 'calcul_rubrique_annonce()';
+	$p->statut = 'php';
+	return $p;
+}
+
+function calcul_rubrique_annonce() {
+
+	$query = "SELECT id_rubrique AS id_rubrique FROM spip_mots_rubriques, spip_mots, spip_groupes_mots 
+	WHERE spip_groupes_mots.titre='squelette_habillage' AND spip_groupes_mots.id_groupe=spip_mots.id_groupe AND spip_mots.titre='annonce' AND spip_mots.id_mot=spip_mots_rubriques.id_mot";
 	$result = spip_query($query);
 	$id_rubrique = 0;
 	if ($row = @spip_fetch_array($result)) {
