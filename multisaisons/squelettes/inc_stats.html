@@ -1,9 +1,10 @@
 #CACHE{864000} <p>
 
-[#NOM_SITE_SPIP accueille une moyenne de (#MOYENNE_VISITES)&nbsp;visiteurs uniques par jour. ]
-[Le site a déjà reçu (#VISITES_JOUR)&nbsp;visiteurs aujourd'hui. ]
-[[Le (#JOUR_MAX_VISITES|affdate), ](#VAL_MAX_VISITES)&nbsp;visiteurs ont pulvériser le score! ]
-La base d'articles est consultée environ #POPULARITE_SITE&nbsp;fois par jour. #NOM_SITE_SPIP contient:
+[#NOM_SITE_SPIP accueille une moyenne de (#MOYENNE_VISITES)&nbsp;visiteurs uniques
+par jour. ] [Le site a déjà reçu (#VISITES_JOUR)&nbsp;visiteurs aujourd'hui.
+] [[Le (#JOUR_MAX_VISITES|affdate), ](#VAL_MAX_VISITES)&nbsp;visiteurs ont pulvériser
+le score! ] La base d'articles est consultée environ #POPULARITE_SITE&nbsp;fois
+par jour. #NOM_SITE_SPIP contient:
              
     <BOUCLE_nb_breves(BREVES){tout}>
     </BOUCLE_nb_breves>
@@ -26,12 +27,8 @@ les forums,
     </BOUCLE_nb_article_proposes>
    [#TOTAL_BOUCLE&nbsp;(#TOTAL_BOUCLE|choixsiegal{1,'article proposé','articles
    proposés'})].
-   
-  <?php if(($auteur_session['statut']== '0minirezo') OR ($auteur_session['statut']== '1comite')){
-     echo $auteur_session['nom'];?>, <a href="#URL_SITE_SPIP/ecrire/">vous pouvez
-  commenter [(#TOTAL_BOUCLE|choixsiegal{1,'cet article','ces articles'})]</a>.
-<?php } ?> 
- </B_nb_article_proposes>
-    </p>
-
-
+   <BOUCLE_stats(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
+[(#SESSION{statut}|match{1comite|0minirezo}|?{[<strong>(#SESSION{nom})</strong>, <a href="#URL_SITE_SPIP/ecrire/">vous
+&ecirc;tes connect&eacute;, vous pouvez
+  commenter [(#_nb_article_proposes:TOTAL_BOUCLE|choixsiegal{1,cet article,ces
+[(#_nb_article_proposes:TOTAL_BOUCLE)] articles})]</a>.]})]</p>

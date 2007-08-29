@@ -5,6 +5,27 @@
 ?>  
 
 
+[(#REM)   Cette fonction vous averti d'une erreur 404. Collez là dans un rem ou virez là si vous êtes envahi de courriers   ]
+
+
+<BOUCLE_mail_a_l_auteur(AUTEURS){id_auteur=1}>
+<?php
+	/* On recupere le nom du site */
+	$site=$_SERVER["SERVER_NAME"];
+/* Preparation du mail pour le webmaster */
+		$to="#EMAIL";
+		$sujet="Erreur 404 sur votre site web.";	
+		/* Envoie du message avec les infos */
+		$message="\nUne erreur 404 s'est produite sur votre site $site.\n\nProvenance : ".$_SERVER["HTTP_REFERER"]."\nPage demandee : ".$_SERVER["REQUEST_URI"]."\nNavigateur : ".$_SERVER['HTTP_USER_AGENT']."\nAdresse IP : ".$_SERVER["REMOTE_ADDR"]."\nDate et heure : ".date("D M j Y g:i:s a T");
+		@mail($to,$sujet,$message,"FROM:Erreur404");
+?>
+</BOUCLE_mail_a_l_auteur>
+
+
+
+
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
@@ -39,7 +60,7 @@
 	
 <BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}>
 
-<link rel="alternate" type="application/rss+xml" href="[(#URL_PAGE{backend}|parametre_url{'id_rubrique',#ID_RUBRIQUE})]title="[(#TITRE)]" />
+<link rel="alternate" type="application/rss+xml" href="[(#URL_PAGE{backend}|parametre_url{'id_rubrique',#ID_RUBRIQUE})]" title="[(#TITRE)]" />
 </BOUCLE_rub>
 
 </head>
