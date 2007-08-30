@@ -1,6 +1,9 @@
 #CACHE{0}
 <form method="post">[(#ENV{_cfg_}|form_hidden)]
 
+<input type="submit" name="_cfg_ok" value="<:OK:>" />
+<input type="reset" value="<:Reset:>" />
+<input type="submit" name="_cfg_delete" value="<:Supprimer:>" />
 
 
 [(#REM) descriptif=
@@ -8,7 +11,7 @@
 Pour configurer l'apparence du squelette<br />
 <br /><a href="http://www.lyceedurzy.com/spip.php?article234" class="spip_out">Documentation provisoire</a>
 ]
-[(#REM) titre=Les squelettes Durzy]
+[(#REM) titre=Configurez le squelette Durzy]
 
 <fieldset><legend>Couleur de fond du site</legend>
 Ne mettre aucune image de fond pour pouvoir afficher une couleur de fond
@@ -68,8 +71,25 @@ L'application d'une image est prioritaire sur une couleur de fond
 <input type="radio" name="aff_cadre_gb" [(#CONFIG{durzy/aff_cadre_gb}|=={aucun}|?{checked})] value="aucun">Aucun
 </fieldset>
 
-<fieldset><legend>Afficher l'Edito au centre :</legend>
-<input type="radio" name="aff_edito_centre" [(#CONFIG{durzy/aff_edito_centre}|=={edito_centre}|?{checked})] value="edito_centre">L'édito 
+<fieldset><legend><:article:> <:sommaire:></legend>
+<label>Choisissez l'article &agrave; afficher sur la page sommaire:</label>
+<select name="article_sommaire">
+  <option value="">Aucun</option>
+  <BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
+     <option value="">&nbsp;&nbsp;<strong>rubrique : #TITRE</strong></option>
+     <BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
+       <option value="#ID_ARTICLE" [(#CONFIG{durzy/article_sommaire}|=={#ID_ARTICLE}|?{selected="selected",''})]>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;#ID_ARTICLE . #TITRE</option>
+     </BOUCLE_articles_racine>
+     <BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+        <option value="" style="font-weight: bold;">&nbsp;&nbsp;rubrique #ID_RUBRIQUE : #TITRE</option>
+           <BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
+             <option value="#ID_ARTICLE">&nbsp;&nbsp;&nbsp;&nbsp;#ID_ARTICLE . #TITRE</option>
+           </BOUCLE_articles>
+           <BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+     </BOUCLE_rubriques>
+   </BOUCLE_secteurs>
+</select>
 </fieldset>
 
 <fieldset><legend>Choix du cadre à afficher à droite en haut :</legend>
