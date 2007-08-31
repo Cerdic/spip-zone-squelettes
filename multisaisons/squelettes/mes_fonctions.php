@@ -1072,7 +1072,7 @@ function lier_au_glossaire($texte)
 {
 	# Config
 	# L'identifiant (id_rubrique) de la rubrique glossaire
-	$id_rubrique = 33;
+	$id_rubrique = 39;
 	# Limiter l'effet du filtre à la première occurence
 	$eviter_doublons = 0; // 0 : afficher toutes les occurences
 

@@ -17,8 +17,8 @@
 chaque affichage va être testé par ordre d'importance:
  *Si on est dans un article:
  	-affichage du logo article si l'article en possède un
- 	-et sinon affichage de la vignette du document si l'article possède une image jpg
- 	-et sinon ... rien.
+ 	-et sinon affichage de la vignette du document si l'article possède une image
+ 	jpg -et sinon ... rien.
 	 *idem pour breve.
  *Si on est dans une rubrique alors:
  	-affichage du logo rubrique si la rubrique en possède un
@@ -47,18 +47,20 @@ chaque affichage va être testé par ordre d'importance:
 
 [(#REM) 	
  *Si c'est un logo auteur, on fait passer l'ID auteur
- 	-s'il y a un logo auteur on affiche le logo redimentionné avec un lien dessus vers sa page de membre
-	-s'il n'y a pas de logo auteur:
-		- si l'auteur est connecté (voir SESSION), alors on affiche un logo "ajoutez votre logo".
-		- si l'auteur n'est pas connecté alors on affiche "Auteur non connecté".]
+ 	-s'il y a un logo auteur on affiche le logo redimentionné avec un lien dessus
+ 	vers sa page de membre -s'il n'y a pas de logo auteur:
+		- si l'auteur est connecté (voir SESSION), alors on affiche un logo "ajoutez
+		votre logo".
+		- si l'auteur n'est pas connecté alors on affiche "Sans logo".]
 		
 
 
 <BOUCLE_logo_auteur_identifie(AUTEURS){id_auteur}{id_auteur=#SESSION{id_auteur}}>
- [(#LOGO_AUTEUR||?{[(#LOGO_AUTEUR||reduire_image{#ENV{taille}}|image_sepia{#GET{colo}}|image_aplatir{gif,ffffff}|inserer_attribut{'alt',#NOM})],[<a href="(#URL_PAGE{mon-profil})" title="Ajoutez votre logo"><img src="./avatars/ajoutez-un-avatar.gif" alt="Ajoutez votre logo"/></a>]})]
+ [(#LOGO_AUTEUR||?{[(#LOGO_AUTEUR||reduire_image{#ENV{taille}}|image_sepia{#GET{colo}}|image_aplatir{gif,ffffff}|inserer_attribut{'alt',#NOM})],[<a href="(#URL_PAGE{mon-profil})" title="Votre profil"><strong>Ajouter un logo ou un avatar ici.</strong></a>]})]
 </BOUCLE_logo_auteur_identifie>
 <BOUCLE_logo_auteur_inconnu(AUTEURS){tout}{id_auteur}>
-[(#LOGO_AUTEUR||?{[(#LOGO_AUTEUR||reduire_image{#ENV{taille}}|image_sepia{#GET{colo}}|image_aplatir{gif,ffffff}|inserer_attribut{'alt',#NOM})],'Sans logo'})]
+[(#LOGO_AUTEUR||?{[(#LOGO_AUTEUR||reduire_image{#ENV{taille}}|image_sepia{#GET{colo}}|image_aplatir{gif,ffffff}|inserer_attribut{'alt',#NOM})],'Sans
+logo'})]
 </BOUCLE_logo_auteur_inconnu>
 <//B_logo_auteur_identifie>
 
@@ -88,10 +90,11 @@ chaque affichage va être testé par ordre d'importance:
 
 
 <BOUCLE_mono_auteur_identifie(AUTEURS){id_auteur}{id_auteur=#SESSION{id_auteur}}>
- [(#LOGO_AUTEUR||?{[(#LOGO_AUTEUR||reduire_image{#ENV{taille}} |image_aplatir{gif,ffffff}|inserer_attribut{'alt',#NOM})],[<a href="(#URL_PAGE{mon-profil})" title="Ajoutez votre logo"><img src="./avatars/ajoutez-un-avatar.gif" alt="Ajoutez votre logo"/></a>]})]
+ [(#LOGO_AUTEUR||?{[(#LOGO_AUTEUR||reduire_image{#ENV{taille}} |image_aplatir{gif,ffffff}|inserer_attribut{'alt',#NOM})] [<a href="(#URL_PAGE{mon-profil})" title="Votre profil"><strong>Ajouter un logo ou un avatar ici.</strong></a>]})]
 </BOUCLE_mono_auteur_identifie>
 <BOUCLE_mono_auteur_inconnu(AUTEURS){tout}{id_auteur}>
-[(#LOGO_AUTEUR||?{[(#LOGO_AUTEUR||reduire_image{#ENV{taille}} |image_aplatir{gif,ffffff}|inserer_attribut{'alt',#NOM})],'Sans logo'})]
+[(#LOGO_AUTEUR||?{[(#LOGO_AUTEUR||reduire_image{#ENV{taille}} |image_aplatir{gif,ffffff}|inserer_attribut{'alt',#NOM})],'Sans
+logo'})]
 </BOUCLE_mono_auteur_inconnu>
 <//B_mono_auteur_identifie>
  
