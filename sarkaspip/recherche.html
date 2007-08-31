@@ -163,15 +163,32 @@ de ce squelette.
 							<div class="visualisation">
 								<div class="titre">#TITRE</div>
 								<div class="detail">
-									[(#DATE|nom_jour)]&nbsp;[(#DATE|affdate)]<br>
-									[<:sarkaspip:par_auteur:>&nbsp;(#NOM)]
+									[(#DATE|nom_jour)] [(#DATE|affdate)]<br>
+									<BOUCLE_forum_edite(FORUMS){id_parent=#ID_FORUM}{statut=original}>
+										<BOUCLE_auteur-pere1(AUTEURS) {id_auteur=#_forum_edite:ID_AUTEUR}>
+											[<:sarkaspip:par_auteur:> (#NOM)]
+										</BOUCLE_auteur-pere1>
+											[<:sarkaspip:par_auteur:> (#_forum_edite:NOM)]
+										<//B_auteur-pere1>
+									</BOUCLE_forum_edite>
+									</B_forum_edite>
+										<BOUCLE_auteur-pere2(AUTEURS) {id_auteur=#_messages-recherche:ID_AUTEUR}>
+											[<:sarkaspip:par_auteur:> (#NOM)]
+										</BOUCLE_auteur-pere2>
+											[<:sarkaspip:par_auteur:> (#_messages-recherche:NOM)]
+										<//B_auteur-pere2>
+									<//B_forum_edite>
 								</div> <!-- Fin detail -->
 								<div class="texte">
 									#TEXTE
 									[<br><br><a href="[(#URL_SITE)]">(#NOM_SITE)</a>]
 								</div> <!-- Fin texte -->
 							</div> <!-- Fin visualisation -->
-							<br><a class="repondre" href="#URL_FORUM"><:sarkaspip:forum:></a><br><br>
+							[<br>
+							<a class="repondre" href="(#PARAMETRES_FORUM|url_reponse_forum)"><:sarkaspip:repondre_message:></a>]
+							[<a class="repondre" href="(#URL_PAGE{fil-forum,id_thread=#ID_THREAD})"><:sarkaspip:fil_discussion:></a>
+							<br>]
+							<br>
 				</BOUCLE_messages-recherche>
 						</div> <!-- Fin indentation -->
 					</div> <!-- Fin forum -->
