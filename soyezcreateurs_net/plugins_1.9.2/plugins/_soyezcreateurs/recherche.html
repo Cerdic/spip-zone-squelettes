@@ -57,12 +57,24 @@
 	<h2>#ANCRE_PAGINATION<:sites_web:></h2>
 	<ul>
 		<BOUCLE_sites(SITES) {recherche} {par points} {inverse} {pagination 25}{!lang_select}>
-			<li><a href="#URL_SITE" title="[(#DESCRIPTIF|attribut_html)]">[(#NOM_SITE|supprimer_numero)]</a> : [(#DATE|nom_jour)] [(#DATE|affdate)]</li>
+			<li><a href="[(#ID_SYNDIC|generer_url_site)]" title="[(#DESCRIPTIF|attribut_html)]">[(#NOM_SITE|supprimer_numero)]</a> : [(#DATE|nom_jour)] [(#DATE|affdate)]</li>
 		</BOUCLE_sites>
 	</ul>
 	[<p class="pagination">(#PAGINATION)</p>]
 	[(#SET{nbelementstrouves,#GET{nbelementstrouves}|plus{#GRAND_TOTAL}})]
 </B_sites>
+
+<B_Syndications>
+	<h2>#ANCRE_PAGINATION<:ecrire:titre_syndication:></h2>
+	<ul>
+		<BOUCLE_Syndications(SYNDIC_ARTICLES) {recherche} {par points} {inverse} {pagination 25}{!lang_select}>
+			<li><a href="[(#ID_SYNDIC|generer_url_site|parametre_url{'id_syndic_article',#ID_SYNDIC_ARTICLE})]" title="[(#DATE) - ][(#DESCRIPTIF|supprimer_tags|attribut_html)]">[(#TITRE|supprimer_numero|supprimer_tags)]</a> : [(#DATE|nom_jour)] [(#DATE|affdate)]</li>
+		</BOUCLE_Syndications>
+	</ul>
+	[<p class="pagination">(#PAGINATION)</p>]
+	[(#SET{nbelementstrouves,#GET{nbelementstrouves}|plus{#GRAND_TOTAL}})]
+</B_Syndications>
+
 [(#GET{nbelementstrouves}|=={0}|?{<:pyrat:recherche_infructueuse:>})]
 [(#GET{nbelementstrouves}|>{0}|?{<hr /><:pyrat:recherche_total:>&nbsp;: [<strong>(#GET{nbelementstrouves})</strong>]})]
 	</div>
