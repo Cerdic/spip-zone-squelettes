@@ -79,7 +79,7 @@
 							</div>
 						</BOUCLE_articles_rubs>
 						[<p class="pagination">Accèdez aux articles plus anciens 
-                                                           &nbsp;<img src="#CHEMIN{puce.gif}"  alt="" />
+                                                           &nbsp;#PUCE
                                                                (#PAGINATION) — #GRAND_TOTAL articles</p>]
                         
 						[(#REM) afficher ensuite les sous-rubriques (non masquées) si elles existent, paginés par 5 ]
@@ -106,7 +106,7 @@
 							</div>
 						</BOUCLE_SsRubriques1>
 						[<p class="pagination">Accèdez aux autres sous rubriques 
-                                   &nbsp;<img src="#CHEMIN{puce.gif}"  alt="" />
+                                   &nbsp;#PUCE
                                                              (#PAGINATION) - #GRAND_TOTAL sous rubriques</p>]						
 						</B_SsRubriques1>
 					
@@ -158,8 +158,8 @@
 							</div>
 						</BOUCLE_SsRubriques>
 						[<p class="pagination">Accèdez aux autres sous rubriques 
-                                                           &nbsp;<img src="#CHEMIN{puce.gif}"  alt="" />
-                                                               (#PAGINATION) - #GRAND_TOTAL sous rubriques</p>]					 
+                                                           &nbsp;#PUCE
+                                 (#PAGINATION) - #GRAND_TOTAL sous rubriques</p>]					 
 					    </B_SsRubriques>
                     <//B_articles_rubs>
  
@@ -193,23 +193,21 @@
 			       <div class="espace"> </div>
 			   <BOUCLE_doc_joints(DOCUMENTS){id_rubrique}{par titre}{mode=document}{doublons}>
 			    <div id="cadre-doc-telechargement" >
-				[(#LOGO_DOC|left|#URL_DOC_OUT)]
+				[(#LOGO_DOC|left|#URL_DOCUMENT)]
 	            <div id="stat" style="padding-left:7em">
 				 <ul style="list-style:circle">
-				   <li><a href="#URL_DOC_OUT" title="Télécharger #TITRE">
+				   <li><a href="#URL_DOCUMENT" title="Télécharger #TITRE">
 					 [<strong>(#TITRE)</strong>]</a></li>
 				   [<li>(#DESCRIPTIF)</li>]
 	               <li><img src="#CHEMIN{images/size.gif}" align="absmiddle" title="Taille du fichier" alt="" /> [(#TAILLE|taille_en_octets)]</li>
-	             <BOUCLE_compteur(DW2_DOC){id_document=#ID_DOCUMENT}>
-					<li><img src="#CHEMIN{images/counter.gif}" align="absmiddle" title="Nombre de téléchargement" alt="" /> 
-					Téléchargé #TOTAL_DOC fois</li>
-				</BOUCLE_compteur>
+	             [(#REM) Tester la présence du plugin DW2 pour afficher les statistiques ou pas ]
+                 [(#PLUGIN{DW2}|?{' ',''})<INCLURE {fond=inclusions/inc-stats-dw2} {id_document}>]
 				 </ul>	
 	            </div>
 				<div class="espace"> </div>
-			   </div> <!-- Fin de "cadre-telechargement"-->
+			   </div> <!-- Fin de "cadre-doc-telechargement"-->
 			  </BOUCLE_doc_joints>
-		       </div> <!-- Fin de "cadre-doc-telechargement"-->
+		       </div> <!-- Fin de "cadre-telechargement"-->
 	          </B_doc_joints>
 			
 			</div>
