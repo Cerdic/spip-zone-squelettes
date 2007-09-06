@@ -4,28 +4,38 @@
  <head>
   <title>[#NOM_SITE_SPIP]</title>
   <INCLURE{fond=include/inc-head}>
-
+  <script type="text/javascript">
+  <!--
+  window.onload=montre;
+  function montre(id) {
+    var d = document.getElementById(id);
+    	for (var i = 1; i<=10; i++) {
+    		if (document.getElementById('smenu'+i)) {document.getElementById('smenu'+i).style.display='none';}
+    	}
+    if (d) {d.style.display='block';}
+  }
+  //-->
+  </script>
   
- </head>
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/functions.js">
+</script>
+   </head>
  <body>
  <!-- LE CONTAINER -->
  <div id="container">
     
-
-
-    <!-- LE HEADER 01 -->
+      <!-- LE HEADER 01 -->
     [(#INCLURE{fond=include/header01})]
     
     <!-- LE HEADER 02 -->
      [(#INCLURE{fond=include/header02})]
   
     <!-- LE MENU DEROULANT -->
-   
-[(#INCLURE{fond=include/menu})]
-	   
+    [(#INCLURE{fond=include/menu})]
+    
     <!-- LE CONTENU -->
     <div id="Article">
-    <div id="fond_article"><h5 style="margin:0"><BOUCLE_articles(ARTICLES){id_article =105}>
+    <div id="fond_article"><h5 style="margin:0"><BOUCLE_articles(ARTICLES){par date_modif}{inverse}{0,1}{doublons} {id_article != 151}>
 <BOUCLE_article_hierarchie(ARTICLES){id_article}>
    		<BOUCLE_rubrique_hierarchie(RUBRIQUES){id_rubrique}>
                 <a href="#URL_SITE_SPIP">ACCUEIL</a>
@@ -59,64 +69,97 @@
 [<a href="(#URL_PAGE{article_pdf}|inserer_attribut{id_article,#ID_ARTICLE})" title="créer un article en PDF">] 
 <img height="20" width="20" src='#DOSSIER_SQUELETTE/img/pdf.png' alt="pdf" title="PDF" /></a> 
 	</div>
-	
 	</div>
-    </BOUCLE_articles>
-	     <!-- LE TABVIEW -->
-        
+</BOUCLE_articles>
+	
+	<!-- Les buttons de publicité-->
+    <div id="button_pub">
+	<BOUCLE_rub54 (RUBRIQUES){id_rubrique = 54}>
+	<a href='#URL_RUBRIQUE'><img src="#DOSSIER_SQUELETTE/img/jms2007.gif" alt="Journée Mondiale des Sourds"/></a>&nbsp;
+	<a href='#URL_RUBRIQUE'><img src="#DOSSIER_SQUELETTE/img/jms2007.gif" alt="Journée Mondiale des Sourds"/></a>&nbsp;
+	<a href='#URL_RUBRIQUE'><img src="#DOSSIER_SQUELETTE/img/jms2007.gif" alt="Journée Mondiale des Sourds"/></a>&nbsp;
+	<a href='#URL_RUBRIQUE'><img src="#DOSSIER_SQUELETTE/img/jms2007.gif" alt="Journée Mondiale des Sourds"/></a>&nbsp;
+	<br />
+	</BOUCLE_rub54>
+	</div>
+	
+	<!-- Les onglets type Yahoo -->
 	<div id="Tabview">
-	
-		<div id="Titre_tab">
-			    <div id="bouton_tab">
-					<a href="" onclick="affiche1(); return(false);"  class="lienTab" >Galerie de photos</a>
-				</div>
-			    
-				<div id="bouton_tab">
-					<a href="" onclick="affiche2(); return(false);" class="lienTab">Galerie de Vidéos </a>
-				</div>
-				
-			    <div id="bouton_tab">
-					<a href="" onclick="affiche3(); return(false);"  class="lienTab" >Informations RSS</a>
-				</div>
-		</div>
-		  
-		  
-		<div id="conteneur_tab">
-			  <div id="panneau_1">
-			  <BOUCLE_docuImg(DOCUMENTS){id_article IN 129,48,136}{doublons}{par hasard}{extension==jpg|png|gif}{0,7}>
-       <BOUCLE_chercheLienArticleImg(SPIP_DOCUMENTS_ARTICLES){id_document}>#SET{current_id_art, #ID_ARTICLE}</BOUCLE_chercheLienArticleImg>
-       <BOUCLE_vignetteArticleImg(ARTICLES){id_article=#GET{current_id_art}}{0,1}>[<a href="#URL_ARTICLE">(#FICHIER|reduire_image{100,100})</a>]</BOUCLE_vignetteArticleImg>
-</BOUCLE_docuImg>
-			  </div>
-			  <div id="panneau_2">
-<BOUCLE_docuVid(DOCUMENTS){doublons}{par hasard}{extension==flv|wmv|avi}{0,2}>    
-       <BOUCLE_chercheLienArticleVid(SPIP_DOCUMENTS_ARTICLES){id_document}>#SET{current_id_art, #ID_ARTICLE}</BOUCLE_chercheLienArticleVid>
-       <BOUCLE_vignetteArticleVid(ARTICLES){id_article=#GET{current_id_art}}{0,1}>[<a href="#URL_ARTICLE">#FICHIER</a>]</BOUCLE_vignetteArticleVid>
-</BOUCLE_docuVid></div>
-			  <div id="panneau_3">en cours de création<br />On mettra des infos RSS</div>
-		</div>
+  <div id="tabs">
+    <ul>  
+    <li id="tab_1" class="on"><a href="" onclick="affiche1(); return(false);"><em>Galerie de photos</em></a></li>
+    <li id="tab_2"><a href="" onclick="affiche2(); return(false);"><em>Galerie de Vidéos</em></a></li>
+    <li id="tab_3" class="last"><a href="" onclick="affiche3(); return(false);"><em>Informations RSS</em></a></li>
+    </ul>
   </div>
-
+  <div class="raz">
+  </div>
+  
+  <div id="panneau_1"><div class="margin"><BOUCLE_docuImg1(DOCUMENTS){id_article IN 129,48,136}{doublons}{par hasard}{extension==jpg|png|gif}{0,6}>
+       <BOUCLE_chercheLienArticleImg1(SPIP_DOCUMENTS_ARTICLES){id_document}>#SET{current_id_art, #ID_ARTICLE}</BOUCLE_chercheLienArticleImg1>
+       <BOUCLE_vignetteArticleImg1(ARTICLES){id_article=#GET{current_id_art}}{0,1}>[<a href="#URL_ARTICLE">(#FICHIER|reduire_image{100,100})</a>]</BOUCLE_vignetteArticleImg1>
+</BOUCLE_docuImg1></div></div>
+  <div id="panneau_2"><BOUCLE_docuVid2(DOCUMENTS){doublons}{par hasard}{extension==flv|wmv|avi}{0,5}>    
+       <BOUCLE_chercheLienArticleVid2(SPIP_DOCUMENTS_ARTICLES){id_document}>#SET{current_id_art, #ID_ARTICLE}</BOUCLE_chercheLienArticleVid2>
+       <BOUCLE_vignetteArticleVid2(ARTICLES){id_article=#GET{current_id_art}}{0,1}>[<a href="#URL_ARTICLE">#FICHIER</a>]
+	   
+	   </BOUCLE_vignetteArticleVid2>
+</BOUCLE_docuVid2></div>
+  <div id="panneau_3">
+  <BOUCLE_tres_recents(SYNDIC_ARTICLES){par date}{inverse}{0,10}{unique}>
+		<item> 
+		<div class="left"><h5 style="margin: 0px;">
+		<date><i>[(#DATE|affdate)]</i> :</date>
+		<BOUCLE_source2(SITES){id_syndic}>
+			<a href="#URL_SITE">[<source url="(#URL_SYNDIC)">([(#NOM_SITE|texte_backend)] ) </source>]</a>
+		</BOUCLE_source2>
+			<link><a href="#URL_ARTICLE">#TITRE</a></link>
+			<title>#TITRE</title>
+			<br />
+			</h5>
+		</div>
+		</item>
 	
+	</BOUCLE_tres_recents>
+<div>
+
+		[Lire les autres articles de <a href="http://www.websourd.org">Websourd</a>, <a href="http://www.sourdspoitiers.org">Sourds de Poitiers</a>, <a href="http://www.handicap.gouv.fr">Ministère de l'Handicap</a>, <a href="http://www.ctnerhi.com.fr">CTNERHI</a>]
+	
+	
+</div>	
+	</div>
+ 	
+</div>
 		
-	  <!-- LES INFOS -->
+	  <!-- Les infos -->
     <div id="infos">
 		<div id="fond_infos"><h3 style="margin:0;">LES INFOS</h3></div>
 		<div id="conteneur_infos">
 			<h5 style="margin: 0px;">
-				<BOUCLE_article_list (ARTICLES){par date_modif}{inverse}{0,5}{id_article !=10}{id_article !=11}{id_article !=13}{id_article !=30}>
+				<BOUCLE_article_list (ARTICLES){par date_modif}{inverse}{0,5}{id_article !=10}{id_article !=11}{id_article !=13}{id_article !=30}>{id_article != 151}>
 					<i> [(#DATE_MODIF|affdate)] </i> : <a href="#URL_ARTICLE">[(#TITRE|couper{35})]</a> 
 					<br />
 					</BOUCLE_article_list>
+			<a href="http://www.fnsf.org/spip.php?page=archives">[Lire les autres news...]</a>
 			</h5>
 		</div>
 	</div>
 	
-	 <!-- LES SONDAGES ou LA PUB -->
+	 <!-- Les Tags -->
     <div id="pub">
 		<div id="fond_pub"><h3 style="margin:0;">TAGS</h3></div>
 		<div id="conteneur_pub">
-				en cours de création
+<BOUCLE_GR_mots(GROUPES_MOTS){par titre}>
+	
+<BOUCLE_aff(MOTS){par titre}{id_groupe}>
+       <BOUCLE_aff_art(ARTICLES) {id_mot}> </BOUCLE_aff_art>
+       <span class="tag_epaisseur_[(#_aff:COMPTEUR_BOUCLE|alterner{'1','2','3','4'})]">
+       [<a href="#URL_MOT"  class="tag_taille_(#_aff_art:TOTAL_BOUCLE|filtre_max{total_#ID_GROUPE}|coef{#_aff_art:TOTAL_BOUCLE,5}|alterner{'1','2','3','4','5'})]" title='#_aff_art:TOTAL_BOUCLE article(s)'>#TITRE</a>
+       </span>
+       </B_aff_art>
+</BOUCLE_aff>
+</B_aff>
+</BOUCLE_GR_mots>
 		</div>
 	</div>
 	
