@@ -1,0 +1,58 @@
+[(#REM) descriptif=
+<h4>Configuration du squelette Durzy</h4>
+Pour configurer l'apparence du squelette<br />
+<br /><a href="http://www.lyceedurzy.com/spip.php?article234" class="spip_out">Documentation provisoire</a>
+]
+[(#REM) titre=Configurez le squelette Durzy]
+
+<fieldset><legend>Adresse de contact</legend>
+L'adresse mail pour être contacté via la barre d'outil
+    <input type="text" name="mail" value="#ENV{mail, votre.mail@spip.fr}" size="30">
+</fieldset>
+
+
+<fieldset><legend>Largeur du site</legend>
+	<select name="largeur_site">
+	<option value="1"     [(#CONFIG{durzy/largeur_site}|=={1}|?{selected="selected",''})]> 800</option>
+	<option value="1.125" [(#CONFIG{durzy/largeur_site}|=={1.125}|?{selected="selected",''})]> 1024(par défaut)</option>
+    <option value="1.5"   [(#CONFIG{durzy/largeur_site}|=={1.6}|?{selected="selected",''})]> 1280 </option>
+	</select>
+</fieldset>
+
+
+<fieldset><legend><:article:> <:sommaire:></legend>
+<label>Choisissez l'article &agrave; afficher sur la page sommaire:</label>
+<select name="article_sommaire">
+  <option value="">Aucun</option>
+  <BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
+     <option value="">&nbsp;&nbsp;<strong>rubrique : #TITRE</strong></option>
+     <BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
+       <option value="#ID_ARTICLE" [(#CONFIG{durzy/article_sommaire}|=={#ID_ARTICLE}|?{selected="selected",''})]>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;#ID_ARTICLE . #TITRE</option>
+     </BOUCLE_articles_racine>
+     <BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+        <option value="" style="font-weight: bold;">&nbsp;&nbsp;rubrique #ID_RUBRIQUE : #TITRE</option>
+           <BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
+             <option value="#ID_ARTICLE">&nbsp;&nbsp;&nbsp;&nbsp;#ID_ARTICLE . #TITRE</option>
+           </BOUCLE_articles>
+           <BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+     </BOUCLE_rubriques>
+   </BOUCLE_secteurs>
+</select>
+</fieldset>
+
+
+<fieldset><legend>Les puces animées :</legend>
+    <label>Apparence des puces animées
+    <select name="puces_animees">
+	<option value="puce-" [(#CONFIG{durzy/puces_animees}|=={puce-}|?{selected="selected",''})]>Par défaut</option>
+	<option value="puce-aix-"  [(# CONFIG{durzy/puces_animees}|=={puce-aix-}|?{selected="selected",''})]>Puces académie d'Aix Marseille</option>
+	<option value="puce-durzy-" [(#CONFIG{durzy/puces_animees}|=={puce-durzy-}|?{selected="selected",''})]>Puces lycée Durzy</option>
+	<option value="puce-cortat-" [(#CONFIG{durzy/puces_animees}|=={puce-cortat-}|?{selected="selected",''})]>Puces lycée Cortat</option>
+	<option value="">Personnalisées</option>
+	</select>
+    <img src="../squelettes/images/puces/#CONFIG{durzy/puces_animees}on.png"/ alt="puce">
+    &nbsp;
+    <img src="../squelettes/images/puces/#CONFIG{durzy/puces_animees}off.png"/ alt="puce">
+	</label>  
+</fieldset>
