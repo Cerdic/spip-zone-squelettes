@@ -28,7 +28,7 @@
 </head>
 <body> 
 <div id="container">   [(#REM)   centrage page   ]
-<INCLURE{fond="entete"}> 
+<INCLURE{fond="entete"}{date=#ENV{date}}> 
 <div id="surcontent">  [(#REM)   ouverture entête   ]
 <INCLURE{fond="menuhoriz"}>
 <div id="content">  [(#REM)   ouverture contenu   ] 
@@ -41,31 +41,30 @@
 
 <li>
 [(#REM)   formulaire recherche   ]
+ 
+<h4>Lancez votre recherche</h4><form action="[(#URL_PAGE{recherche})]" method="get">
 
-<h4 class="icone_recherche">Lancez votre recherche</h4>
-    
- <form action="[(#URL_PAGE{recherche})]" method="get">
-	<p class="centre">
-    <br/>
+   <p class="centre">  
+	
 	<input type="text" name="recherche" id="recherche" value="rechercher..." onfocus="this.value='';" />
     <input type="submit" value="ok" class="button" />
-    <input name="page" value="recherche" type="hidden" />
-    <br/><br/>
-    <label>Entrez votre recherche dans le formulaire ci-dessus puis validez.</label>
-    </p>
-</form>
-    
-</li>
+    <input name="page" value="recherche" type="hidden" /> <br/><br/>
+	 <label>Entrez votre recherche dans le formulaire puis validez.</label>
+  </p>
+      </form>
+</li> 
 
  
 [(#REM)   Indications recherche sinon liens externes Google   ]
 <li>
-<h4 class="icone_recherche">A savoir</h4>
+<h4>A savoir</h4>
     <p>
-    [(#RECHERCHE|?{Vous pouvez élargir votre recherche au moteur Google en parcourant les liens ci-dessous : <br/>
-    ::&nbsp;<a href="http://www.google.fr/search?hl=fr&q=#RECHERCHE&btnG=Recherche+Google&meta=">Google</a><br/>
-    ::&nbsp;<a href="http://images.google.fr/images?svnum=10&um=1&hl=fr&q=#RECHERCHE&btnG=Recherche+d%27images">Google Images</a>,
-    "Lancez une recherche sur le moteur interne du site : 
+    [(#RECHERCHE|?{Vous pouvez élargir votre recherche aux moteurs ci-dessous: <br/>
+    ::&nbsp;<a href="http://www.google.fr/search?hl=fr&q=#RECHERCHE&btnG=Recherche+Google&meta=">Google</a>
+    &amp;&nbsp;<a href="http://images.google.fr/images?svnum=10&um=1&hl=fr&q=#RECHERCHE&btnG=Recherche+d%27images">Google
+    Images</a><br/>
+	
+    ,"Lancez une recherche sur le moteur interne du site : 
     Les mots de moins de quatre lettres ne sont pas indexés
     par le moteur interne. Utilisez un seul mot pour cibler votre recherche."})]
     </p>

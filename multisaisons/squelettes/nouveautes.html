@@ -33,7 +33,7 @@
 </head>
 <body> 
 <div id="container"> [(#REM)   centrage page   ]
-<INCLURE{fond="entete"}> 
+<INCLURE{fond="entete"}{date=#ENV{date}}> 
 <div id="surcontent"> [(#REM)   ouverture entête   ]
 <INCLURE{fond="menuhoriz"}>
 <div id="content"> [(#REM)   ouverture contenu   ] 
@@ -134,11 +134,27 @@ modifi&eacute; le (#DATE_MODIF|nom_jour)] [(#DATE_MODIF|affdate),]
 <a name="agenda"></a>
 <h4 class="icone_agenda">Les prochains événements.</h4>				
 <p>
-<BOUCLE_sous_rubragenda(RUBRIQUES){titre_mot=Agenda}{par titre}>
-<BOUCLE_articles_agenda(ARTICLES){id_article}{par date}{inverse}{age<0}>
-<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|attribut_html|couper{60})"]>#TITRE</a> [
-Du (#DATE_REDAC|nom_jour)] [(#DATE_REDAC|affdate),]
-[au (#DATE|nom_jour)] [(#DATE|affdate)&nbsp;inclus.]
+<BOUCLE_sous_rubragenda(RUBRIQUES){titre_mot=Agenda}{0,1}>
+<BOUCLE_articles_agenda(EVENEMENTS){agendafull date_debut, date_fin, mois} {statut=publie}{par date_debut}{doublons}{0,5}>
+<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|attribut_html|couper{60})"]>#TITRE</a>
+[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
+ Le [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+[(#HORAIRE|=={oui}|?{
+  [(#REM) memes heures ?]
+    [(#DATE_DEBUT|=={#DATE_FIN}|?{&agrave
+[(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)],''})]
+  [(#REM) pas memes heures ?]
+    [(#DATE_DEBUT|!={#DATE_FIN}|?{de
+[(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] &agrave;
+[(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)],''})]
+,''})]
+,
+ Du [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+[(#HORAIRE|=={oui}|?{&agrave; partir de
+ [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)],''})] au
+[(#DATE_FIN|nom_jour)]
+ [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{jusqu'&agrave;
+ [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})]  })]
 <BOUCLE_rubriques_art3(RUBRIQUES){id_rubrique}>
 [ dans la rubrique: &quot;(#TITRE)&quot;.]
 </BOUCLE_rubriques_art3>

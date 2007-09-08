@@ -51,7 +51,7 @@
 
 
 <div id="container">   [(#REM)   centrage page   ]
-<INCLURE{fond="entete"}>  
+<INCLURE{fond="entete"}{date=#ENV{date}}>  
 <div id="surcontent">  
 <INCLURE{fond="menuhoriz"}>[(#REM)   ouverture entête   ]
 <div id="content">  [(#REM)   ouverture contenu   ] 
@@ -71,7 +71,7 @@
 <p>
 
 <BOUCLE_acces_perso(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
-[<a href="[(#URL_PAGE{contact})]">(#SESSION{statut}|=={6forum}?{:: Demander la conversion de mon compte et devenir r&eacute;dacteur})</a><br/>]
+[<a href="[(#URL_PAGE{auteur}|parametre_url{'id_auteur',1})]">(#SESSION{statut}|=={6forum}?{:: Demander la conversion de mon compte et devenir r&eacute;dacteur})</a><br/>]
 [<a href="ecrire/">(#SESSION{statut}|=={nouveau}?{:: Visitez votre interface de r&eacute;daction})</a><br/>]
 [<a href="ecrire/?exec=articles_edit&new=oui">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Commencer un nouvel article})</a><br/>]
 [<a href="ecrire/">(#SESSION{statut}|=={0minirezo}?{:: Agir sur les articles propos&eacute;s})</a><br/>]

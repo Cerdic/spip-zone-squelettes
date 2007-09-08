@@ -5,11 +5,18 @@
 
 
 
-
+  <BOUCLE_couleur_titre(MOTS){titre=saison}{0,1}>
+[(#ENV{date}|saison|=={printemps}|?{' ',''})#SET{'coltitre','c5e41c'}]
+[(#ENV{date}|saison|translitteration|=={ete}|?{' ',''})#SET{'coltitre','97d1e1'}]
+[(#ENV{date}|saison|=={automne}|?{' ',''})#SET{'coltitre','e6bfb0'}]
+[(#ENV{date}|saison|=={hiver}|?{' ',''})#SET{'coltitre','c9c9c9'}]
+</BOUCLE_couleur_titre>
+[(#SET{'colo','c9c9c9'})]
+<//B_couleur_titre>
 
 <div id="header">
 
-[(#LOGO_SITE_SPIP||?{'',' '}) [<h5><a href="[(#URL_PAGE{sommaire})]" [title="(#DESCRIPTIF_SITE_SPIP|couper{100}|textebrut)"]>(#NOM_SITE_SPIP)</a></h5>]
+[(#LOGO_SITE_SPIP||?{'',' '}) <a href="[(#URL_PAGE{sommaire})]" [title="(#DESCRIPTIF_SITE_SPIP|couper{100}|textebrut)"]>[<span id="nom_site">(#NOM_SITE_SPIP|texte_backend|image_typo{taille=46,police=police.ttf,couleur=ffffff}|image_aplatir{gif,#GET{coltitre}})</span>]</a>
 [<h3>(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)</h3>]]
 [<a href="[(#URL_PAGE{sommaire})]" [title="(#DESCRIPTIF_SITE_SPIP|couper{100}|textebrut)"]>(#LOGO_SITE_SPIP)</a>]
 

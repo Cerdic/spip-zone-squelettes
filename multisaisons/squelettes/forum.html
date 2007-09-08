@@ -52,9 +52,15 @@ txtarea.value += text; txtarea.focus(); } }
 <body> 
 
 <div id="container">   [(#REM)   centrage page   ]
-<INCLURE{fond="entete"}>  
+<INCLURE{fond="entete"}{date=#ENV{date}}>  
 <div id="surcontent">  
-<INCLURE{fond="menuhoriz"}>[(#REM)   ouverture entête   ]
+<BOUCLE_fondmenu(ARTICLES){id_article}>
+<INCLURE{fond="menuhoriz"}{id_rubrique}>[(#REM)   ouverture entête   ]
+</BOUCLE_fondmenu>
+<BOUCLE_fondmenubreve(BREVES){id_breve}>
+<INCLURE{fond="menuhoriz"}{id_rubrique}>[(#REM)   ouverture entête   ]
+</BOUCLE_fondmenubreve>
+
 <div id="content">  [(#REM)   ouverture contenu   ] 
 
 <div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
@@ -94,7 +100,7 @@ txtarea.value += text; txtarea.focus(); } }
 
 <h1>Réagissez à:[(#TITRE)]</h1>
 
-[(#TEXTE|paragrapher|norm_liens|liens_ouvrants|smileys|lignes_longues{45}|couper{550})]
+[(#TEXTE|paragrapher|norm_liens|liens_ouvrants|smileys|lignes_longues{45}|couper{1000})]
 <p>[Ecrit par (#NOM)] </p>
 </BOUCLE_forum_parent>
 		<BOUCLE_descri_article(ARTICLES){id_article}>

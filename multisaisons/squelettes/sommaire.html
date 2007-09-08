@@ -40,7 +40,7 @@
 <body> 
 
 <div id="container">   [(#REM) centrage page ]
-<INCLURE{fond="entete"}> 
+<INCLURE{fond="entete"}{date=#ENV{date}}> 
 <div id="surcontent">   [(#REM) ouverture entête ]
 <INCLURE{fond="menuhoriz"}{sommaire=oui}>
 
@@ -124,7 +124,7 @@
 [<h4><a href="#URL_RUBRIQUE" title="(#TITRE)">(#TITRE)</a></h4>]
 
 <p> #DESCRIPTIF <INCLURE{fond="inc_cadenas"}{id_rubrique}>
-             <BOUCLE_nouv_art(ARTICLES){id_rubrique}{age<14}{par date}{inverse}{0,20}{tout_voir}>
+             <BOUCLE_nouv_art(ARTICLES){id_rubrique}{age<14}{par num titre}{par date}{inverse}{0,5}{tout_voir}>
              [<br/><strong>Nouveau:</strong>&nbsp;<a href="#URL_ARTICLE">(#TITRE)</a>] 
               <INCLURE{fond="inc_cadenas"}{id_article}>
                           </BOUCLE_nouv_art> 
@@ -289,4 +289,7 @@
 
 </body>
 </html>
-
+[(#REM)
+	Cette balise permet de deporter les calculs lourds (indexation etc)
+	dans une image cachee, ce qui evite de ralentir l'affichage des pages.
+]#SPIP_CRON
