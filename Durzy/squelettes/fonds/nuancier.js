@@ -1,4 +1,5 @@
 //initialisation des variables
+
 //cadre derniers articles
 var init_couleur_last_articles_fond = "000000"; 
 var init_couleur_last_articles_titre = "FFFFFF"; 
@@ -6,26 +7,30 @@ var init_couleur_last_articles_bordures = "EEEEEE";
 
 //cadre edito
 var init_couleur_edito_fond = "000000";
-var init_couleur_edito_titre = "FFEEFF"
-var init_couleur_edito_bordures = "EEEEEE"
+var init_couleur_edito_titre = "FFEEFF";
+var init_couleur_edito_bordures = "EEEEEE";
 
 //cadre breves
 var init_couleur_breves_fond = "000000";
-var init_couleur_breves_titre = "FFAAFF"
-var init_couleur_breves_bordures = "EE00EE"
+var init_couleur_breves_titre = "FFAAFF";
+var init_couleur_breves_bordures = "EE00EE";
 
 //cadre acces_direct
 var init_couleur_acces_direct_fond = "000000";
-var init_couleur_acces_direct_titre = "FFDDFF"
-var init_couleur_acces_direct_bordures = "EEDDEE"
+var init_couleur_acces_direct_titre = "FFDDFF";
+var init_couleur_acces_direct_bordures = "EEDDEE";
 
 //cadre last_messages
 var init_couleur_last_messages_fond = "00DD00";
-var init_couleur_last_messages_titre = "FFDDFF"
-var init_couleur_last_messages_bordures = "EEDDEE"
+var init_couleur_last_messages_titre = "FFDDFF";
+var init_couleur_last_messages_bordures = "EEDDEE";
+
+//Fond du site
+var init_couleur_fond = "000000"; 
 
 
 //variables liées aux précédentes
+
 //cadre derniers articles
 var couleur_last_articles_fond_r = init_couleur_last_articles_fond.substring(0,2);
 var couleur_last_articles_fond_g = init_couleur_last_articles_fond.substring(2,4);
@@ -106,7 +111,11 @@ var couleur_last_messages_bordures_g = init_couleur_last_messages_bordures.subst
 var couleur_last_messages_bordures_b = init_couleur_last_messages_bordures.substring(4,6);
 var couleur_last_messages_bordures_rgb = "" + couleur_last_messages_bordures_r + couleur_last_messages_bordures_g + couleur_last_messages_bordures_b;
 
-
+//Fond du site
+var couleur_fond_r = init_couleur_fond.substring(0,2);
+var couleur_fond_g = init_couleur_fond.substring(2,4);
+var couleur_fond_b = init_couleur_fond.substring(4,6);
+var couleur_fond_rgb = "" + couleur_fond_r + couleur_fond_g + couleur_fond_b;
 
 
 //tableau des codes hexa
@@ -132,6 +141,7 @@ function chooserMode(MODE)
    else if(MODE == "couleur_last_messages_fond") { var RGB = couleur_last_messages_fond_rgb; }
    else if(MODE == "couleur_last_messages_titre") { var RGB = couleur_last_messages_titre_rgb; }
    else if(MODE == "couleur_last_messages_bordures") { var RGB = couleur_last_messages_bordures_rgb; }
+   else if(MODE == "couleur_fond") { var RGB = couleur_fond_rgb; }
 
    var RR = RGB.substring(0,2);
    var GG = RGB.substring(2,4);
@@ -316,6 +326,18 @@ function colorsOne(RGorB,XX)
       reColorAndGray(couleur_last_messages_bordures_r,couleur_last_messages_bordures_g,couleur_last_messages_bordures_b);
    }
 
+   //couleur_fond
+    else if(window.document.pickerform.chooser[15].checked == true)
+   {
+      if(RGorB == "R") { couleur_fond_r = XX; }
+      else if(RGorB == "G") { couleur_fond_g = XX; }
+      else if(RGorB == "B") { couleur_fond_b = XX; }
+      couleur_fond_rgb = "" + couleur_fond_r + couleur_fond_g + couleur_fond_b;
+      window.document.pickerform.couleur_fond.value = couleur_fond_rgb;
+      //#CONFIG{durzy/couleur_fond}=couleur_fond_rgb;
+      reColorAndGray(couleur_fond_r,couleur_fond_g,couleur_fond_b);
+
+	}
 
 }
 
@@ -326,6 +348,7 @@ function colorsAll(RGB)
    var GG = RGB.substring(2,4);
    var BB = RGB.substring(4,6);
 
+   
    //couleur_last_articles_fond
    if(window.document.pickerform.chooser[0].checked == true)
    {
@@ -491,6 +514,17 @@ function colorsAll(RGB)
       reColorAndGray(couleur_last_messages_bordures_r,couleur_last_messages_bordures_g,couleur_last_messages_bordures_b);
    }
 
+   //couleur_fond
+   else if(window.document.pickerform.chooser[15].checked == true)
+   {
+      couleur_fond_r = RR; 
+      couleur_fond_g = GG; 
+      couleur_fond_b = BB;
+      couleur_fond_rgb = "" + couleur_fond_r + couleur_fond_g + couleur_fond_b;
+      window.document.pickerform.couleur_fond.value = couleur_fond_rgb;
+      reColorAndGray(couleur_fond_r,couleur_fond_g,couleur_fond_b);
+   }
+
 
 
 }
@@ -529,4 +563,5 @@ function fillColorBoxes()
    window.document.pickerform.couleur_last_messages_fond.value = couleur_last_messages_fond_rgb;
    window.document.pickerform.couleur_last_messages_titre.value = couleur_last_messages_titre_rgb;
    window.document.pickerform.couleur_last_messages_bordures.value = couleur_last_messages_bordures_rgb;
+   window.document.pickerform.couleur_fond.value = couleur_fond_rgb;
 }
