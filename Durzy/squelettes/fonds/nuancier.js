@@ -153,8 +153,20 @@ function chooserMode(MODE)
 //Clic sur les lignes du haut
 function colorsOne(RGorB,XX)
 {
-   //couleur_last_articles_fond
+	//couleur_fond
    if(window.document.pickerform.chooser[0].checked == true)
+   {
+      if(RGorB == "R") { couleur_fond_r = XX; }
+      else if(RGorB == "G") { couleur_fond_g = XX; }
+      else if(RGorB == "B") { couleur_fond_b = XX; }
+      couleur_fond_rgb = "" + couleur_fond_r + couleur_fond_g + couleur_fond_b;
+      window.document.pickerform.couleur_fond.value = couleur_fond_rgb;
+      //#CONFIG{durzy/couleur_fond}=couleur_fond_rgb;
+      reColorAndGray(couleur_fond_r,couleur_fond_g,couleur_fond_b);
+
+	}
+   //couleur_last_articles_fond
+   else if(window.document.pickerform.chooser[1].checked == true)
    {
       if(RGorB == "R") { couleur_last_articles_fond_r = XX; }
       else if(RGorB == "G") { couleur_last_articles_fond_g = XX; }
@@ -167,7 +179,7 @@ function colorsOne(RGorB,XX)
    }
 
    //couleur_last_articles_titre
-   else if(window.document.pickerform.chooser[1].checked == true)
+   else if(window.document.pickerform.chooser[2].checked == true)
    {
       if(RGorB == "R") { couleur_last_articles_titre_r = XX; }
       else if(RGorB == "G") { couleur_last_articles_titre_g = XX; }
@@ -179,7 +191,7 @@ function colorsOne(RGorB,XX)
    }
 
    //couleur_last_articles_bordures
-   else if(window.document.pickerform.chooser[2].checked == true)
+   else if(window.document.pickerform.chooser[3].checked == true)
    {
       if(RGorB == "R") { couleur_last_articles_bordures_r = XX; }
       else if(RGorB == "G") { couleur_last_articles_bordures_g = XX; }
@@ -191,7 +203,7 @@ function colorsOne(RGorB,XX)
    }
 
    //couleur_edito_fond
-   else if(window.document.pickerform.chooser[3].checked == true)
+   else if(window.document.pickerform.chooser[4].checked == true)
    {
       if(RGorB == "R") { couleur_edito_fond_r = XX; }
       else if(RGorB == "G") { couleur_edito_fond_g = XX; }
@@ -203,7 +215,7 @@ function colorsOne(RGorB,XX)
    }
 
    //couleur_edito_titre
-   else if(window.document.pickerform.chooser[4].checked == true)
+   else if(window.document.pickerform.chooser[5].checked == true)
    {
       if(RGorB == "R") { couleur_edito_titre_r = XX; }
       else if(RGorB == "G") { couleur_edito_titre_g = XX; }
@@ -214,7 +226,7 @@ function colorsOne(RGorB,XX)
    }
 
    //couleur_edito_bordures
-   else if(window.document.pickerform.chooser[5].checked == true)
+   else if(window.document.pickerform.chooser[6].checked == true)
    {
       if(RGorB == "R") { couleur_edito_bordures_r = XX; }
       else if(RGorB == "G") { couleur_edito_bordures_g = XX; }
@@ -225,7 +237,7 @@ function colorsOne(RGorB,XX)
    }
 
    //couleur_breves_fond
-   else if(window.document.pickerform.chooser[6].checked == true)
+   else if(window.document.pickerform.chooser[7].checked == true)
    {
       if(RGorB == "R") { couleur_breves_fond_r = XX; }
       else if(RGorB == "G") { couleur_breves_fond_g = XX; }
@@ -237,7 +249,7 @@ function colorsOne(RGorB,XX)
    }
 
    //couleur_breves_titre
-   else if(window.document.pickerform.chooser[7].checked == true)
+   else if(window.document.pickerform.chooser[8].checked == true)
    {
       if(RGorB == "R") { couleur_breves_titre_r = XX; }
       else if(RGorB == "G") { couleur_breves_titre_g = XX; }
@@ -248,7 +260,7 @@ function colorsOne(RGorB,XX)
    }
 
    //couleur_breves_bordures
-   else if(window.document.pickerform.chooser[8].checked == true)
+   else if(window.document.pickerform.chooser[9].checked == true)
    {
       if(RGorB == "R") { couleur_breves_bordures_r = XX; }
       else if(RGorB == "G") { couleur_breves_bordures_g = XX; }
@@ -259,7 +271,7 @@ function colorsOne(RGorB,XX)
    }
 
    //couleur_acces_direct_fond
-   else if(window.document.pickerform.chooser[9].checked == true)
+   else if(window.document.pickerform.chooser[10].checked == true)
    {
       if(RGorB == "R") { couleur_acces_direct_fond_r = XX; }
       else if(RGorB == "G") { couleur_acces_direct_fond_g = XX; }
@@ -271,7 +283,7 @@ function colorsOne(RGorB,XX)
    }
 
    //couleur_acces_direct_titre
-   else if(window.document.pickerform.chooser[10].checked == true)
+   else if(window.document.pickerform.chooser[11].checked == true)
    {
       if(RGorB == "R") { couleur_acces_direct_titre_r = XX; }
       else if(RGorB == "G") { couleur_acces_direct_titre_g = XX; }
@@ -282,7 +294,7 @@ function colorsOne(RGorB,XX)
    }
 
    //couleur_acces_direct_bordures
-   else if(window.document.pickerform.chooser[11].checked == true)
+   else if(window.document.pickerform.chooser[12].checked == true)
    {
       if(RGorB == "R") { couleur_acces_direct_bordures_r = XX; }
       else if(RGorB == "G") { couleur_acces_direct_bordures_g = XX; }
@@ -293,7 +305,7 @@ function colorsOne(RGorB,XX)
    }
 
    //couleur_last_messages_fond
-   else if(window.document.pickerform.chooser[12].checked == true)
+   else if(window.document.pickerform.chooser[13].checked == true)
    {
       if(RGorB == "R") { couleur_last_messages_fond_r = XX; }
       else if(RGorB == "G") { couleur_last_messages_fond_g = XX; }
@@ -305,7 +317,7 @@ function colorsOne(RGorB,XX)
    }
 
    //couleur_last_messages_titre
-   else if(window.document.pickerform.chooser[13].checked == true)
+   else if(window.document.pickerform.chooser[14].checked == true)
    {
       if(RGorB == "R") { couleur_last_messages_titre_r = XX; }
       else if(RGorB == "G") { couleur_last_messages_titre_g = XX; }
@@ -316,7 +328,7 @@ function colorsOne(RGorB,XX)
    }
 
    //couleur_last_messages_bordures
-   else if(window.document.pickerform.chooser[14].checked == true)
+   else if(window.document.pickerform.chooser[15].checked == true)
    {
       if(RGorB == "R") { couleur_last_messages_bordures_r = XX; }
       else if(RGorB == "G") { couleur_last_messages_bordures_g = XX; }
@@ -326,18 +338,7 @@ function colorsOne(RGorB,XX)
       reColorAndGray(couleur_last_messages_bordures_r,couleur_last_messages_bordures_g,couleur_last_messages_bordures_b);
    }
 
-   //couleur_fond
-    else if(window.document.pickerform.chooser[15].checked == true)
-   {
-      if(RGorB == "R") { couleur_fond_r = XX; }
-      else if(RGorB == "G") { couleur_fond_g = XX; }
-      else if(RGorB == "B") { couleur_fond_b = XX; }
-      couleur_fond_rgb = "" + couleur_fond_r + couleur_fond_g + couleur_fond_b;
-      window.document.pickerform.couleur_fond.value = couleur_fond_rgb;
-      //#CONFIG{durzy/couleur_fond}=couleur_fond_rgb;
-      reColorAndGray(couleur_fond_r,couleur_fond_g,couleur_fond_b);
 
-	}
 
 }
 
@@ -348,9 +349,19 @@ function colorsAll(RGB)
    var GG = RGB.substring(2,4);
    var BB = RGB.substring(4,6);
 
+  //couleur_fond
+   if(window.document.pickerform.chooser[0].checked == true)
+   {
+      couleur_fond_r = RR; 
+      couleur_fond_g = GG; 
+      couleur_fond_b = BB;
+      couleur_fond_rgb = "" + couleur_fond_r + couleur_fond_g + couleur_fond_b;
+      window.document.pickerform.couleur_fond.value = couleur_fond_rgb;
+      reColorAndGray(couleur_fond_r,couleur_fond_g,couleur_fond_b);
+   }
    
    //couleur_last_articles_fond
-   if(window.document.pickerform.chooser[0].checked == true)
+   else if(window.document.pickerform.chooser[1].checked == true)
    {
       couleur_last_articles_fond_r = RR; 
       couleur_last_articles_fond_g = GG; 
@@ -361,7 +372,7 @@ function colorsAll(RGB)
    }
 
    //couleur_last_articles_titre
-   else if(window.document.pickerform.chooser[1].checked == true)
+   else if(window.document.pickerform.chooser[2].checked == true)
    {
       couleur_last_articles_titre_r = RR; 
       couleur_last_articles_titre_g = GG; 
@@ -372,7 +383,7 @@ function colorsAll(RGB)
    }
 
    //couleur_last_articles_bordures
-   else if(window.document.pickerform.chooser[2].checked == true)
+   else if(window.document.pickerform.chooser[3].checked == true)
    {
       couleur_last_articles_bordures_r = RR; 
       couleur_last_articles_bordures_g = GG; 
@@ -383,7 +394,7 @@ function colorsAll(RGB)
    }
 
    //couleur_edito_fond
-	else if(window.document.pickerform.chooser[3].checked == true)
+	else if(window.document.pickerform.chooser[4].checked == true)
    {
       couleur_edito_fond_r = RR; 
       couleur_edito_fond_g = GG; 
@@ -394,7 +405,7 @@ function colorsAll(RGB)
    }
 
    //couleur_edito_titre
-   else if(window.document.pickerform.chooser[4].checked == true)
+   else if(window.document.pickerform.chooser[5].checked == true)
    {
       couleur_edito_titre_r = RR; 
       couleur_edito_titre_g = GG; 
@@ -405,7 +416,7 @@ function colorsAll(RGB)
    }
 
    //couleur_edito_bordures
-   else if(window.document.pickerform.chooser[5].checked == true)
+   else if(window.document.pickerform.chooser[6].checked == true)
    {
       couleur_edito_bordures_r = RR; 
       couleur_edito_bordures_g = GG; 
@@ -416,7 +427,7 @@ function colorsAll(RGB)
    }
 
    //couleur_breves_fond
-	else if(window.document.pickerform.chooser[6].checked == true)
+	else if(window.document.pickerform.chooser[7].checked == true)
    {
       couleur_breves_fond_r = RR; 
       couleur_breves_fond_g = GG; 
@@ -427,7 +438,7 @@ function colorsAll(RGB)
    }
 
    //couleur_breves_titre
-   else if(window.document.pickerform.chooser[7].checked == true)
+   else if(window.document.pickerform.chooser[8].checked == true)
    {
       couleur_breves_titre_r = RR; 
       couleur_breves_titre_g = GG; 
@@ -438,7 +449,7 @@ function colorsAll(RGB)
    }
 
    //couleur_breves_bordures
-   else if(window.document.pickerform.chooser[8].checked == true)
+   else if(window.document.pickerform.chooser[9].checked == true)
    {
       couleur_breves_bordures_r = RR; 
       couleur_breves_bordures_g = GG; 
@@ -449,7 +460,7 @@ function colorsAll(RGB)
    }
 
    //couleur_acces_direct_fond
-	else if(window.document.pickerform.chooser[9].checked == true)
+	else if(window.document.pickerform.chooser[10].checked == true)
    {
       couleur_acces_direct_fond_r = RR; 
       couleur_acces_direct_fond_g = GG; 
@@ -460,7 +471,7 @@ function colorsAll(RGB)
    }
 
    //couleur_acces_direct_titre
-   else if(window.document.pickerform.chooser[10].checked == true)
+   else if(window.document.pickerform.chooser[11].checked == true)
    {
       couleur_acces_direct_titre_r = RR; 
       couleur_acces_direct_titre_g = GG; 
@@ -471,7 +482,7 @@ function colorsAll(RGB)
    }
 
    //couleur_acces_direct_bordures
-   else if(window.document.pickerform.chooser[11].checked == true)
+   else if(window.document.pickerform.chooser[12].checked == true)
    {
       couleur_acces_direct_bordures_r = RR; 
       couleur_acces_direct_bordures_g = GG; 
@@ -482,7 +493,7 @@ function colorsAll(RGB)
    }
 
    //couleur_last_messages_fond
-	else if(window.document.pickerform.chooser[12].checked == true)
+	else if(window.document.pickerform.chooser[13].checked == true)
    {
       couleur_last_messages_fond_r = RR; 
       couleur_last_messages_fond_g = GG; 
@@ -493,7 +504,7 @@ function colorsAll(RGB)
    }
 
    //couleur_last_messages_titre
-   else if(window.document.pickerform.chooser[13].checked == true)
+   else if(window.document.pickerform.chooser[14].checked == true)
    {
       couleur_last_messages_titre_r = RR; 
       couleur_last_messages_titre_g = GG; 
@@ -504,7 +515,7 @@ function colorsAll(RGB)
    }
 
    //couleur_last_messages_bordures
-   else if(window.document.pickerform.chooser[14].checked == true)
+   else if(window.document.pickerform.chooser[15].checked == true)
    {
       couleur_last_messages_bordures_r = RR; 
       couleur_last_messages_bordures_g = GG; 
@@ -514,16 +525,7 @@ function colorsAll(RGB)
       reColorAndGray(couleur_last_messages_bordures_r,couleur_last_messages_bordures_g,couleur_last_messages_bordures_b);
    }
 
-   //couleur_fond
-   else if(window.document.pickerform.chooser[15].checked == true)
-   {
-      couleur_fond_r = RR; 
-      couleur_fond_g = GG; 
-      couleur_fond_b = BB;
-      couleur_fond_rgb = "" + couleur_fond_r + couleur_fond_g + couleur_fond_b;
-      window.document.pickerform.couleur_fond.value = couleur_fond_rgb;
-      reColorAndGray(couleur_fond_r,couleur_fond_g,couleur_fond_b);
-   }
+
 
 
 
