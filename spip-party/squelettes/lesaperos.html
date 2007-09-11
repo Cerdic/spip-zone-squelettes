@@ -1,12 +1,13 @@
+#CACHE{0}
 Bonjour, voici la liste des prochains aperos 
 <BOUCLE_event_list(EVENEMENTS) {agendafull date_debut, date_fin} {statut=publie}{par date_fin}{age_fin>-30}{age_fin<0} >
 ** #URL_RUBRIQUE **
-  <a class="url" href="[(#URL_PAGE{evenement}|parametre_url{id_evenement,#ID_EVENEMENT})]">#TITRE</a>
+  #TITRE: [(#URL_PAGE{evenement}|textebrut|parametre_url{id_evenement,#ID_EVENEMENT}|textebrut)]
   [(#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})]
   [Lieu:(#LIEU|ucfirst)]
   <BOUCLE_liste(SITES){id_rubrique}{id_mot=26}>
-  [Pour etre au courant, inscrivez sur la Mailing List : <a href="(#URL_SITE)">#NOM_SITE</a>]
+  Pour etre au courant des pronchains evenements, une mailing liste est dispo, inscrivez vous :
+  #NOM_SITE - #URL_SITE
   </BOUCLE_liste>
-
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 </BOUCLE_event_list>
