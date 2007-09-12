@@ -18,6 +18,7 @@ include_spip('inc/forum');
 include_spip('inc/distant');
 include_spip('inc/rubriques'); # pour calcul_branche (cf critere branche)
 include_spip('public/debug'); # toujours prevoir le pire
+include_spip('public/interfaces');
 
 # Charge et retourne un composeur, i.e. la fonction principale d'un squelette
 # ou '' s'il est inconnu. Le compile au besoin
@@ -99,6 +100,7 @@ function invalideur_session(&$Cache) {
 	$Cache['session']=spip_session();
 	return '';
 }
+
 
 //
 // Des fonctions diverses utilisees lors du calcul d'une page ; ces fonctions
@@ -210,6 +212,7 @@ function calcule_logo($type, $onoff, $id, $id_rubrique, $flag_fichier) {
 // on peut la surcharger en definissant dans mes_fonctions :
 // function introduction($type,$texte,$chapo,$descriptif) {...}
 //
+// http://doc.spip.org/@filtre_introduction_dist
 function filtre_introduction_dist($type, $texte, $chapo='', $descriptif='') {
 	define('_INTRODUCTION_SUITE', '&nbsp;(...)');
 
@@ -332,22 +335,24 @@ function calcul_exposer ($id, $type, $reference) {
 	// en static.
 	if ($reference<>$ref_precedente) {
 		$ref_precedente = $reference;
-
 		$exposer = array();
-		foreach ($reference as $element=>$id_element) {
-			if ($element == 'id_secteur') $element = 'id_rubrique';
-			if (!$id_element) $id_element = "''";
-			if ($x = table_from_primary($element)) {
-				list($table,$hierarchie) = $x;
-				$exposer[$element][$id_element] = true;
-				if ($hierarchie) {
-					$row = sql_fetsel(array('id_rubrique'), array($table), array("$element=" . _q($id_element)));
+		foreach ($reference as $element=>$id) {
+			if ((strpos($element, "id_") === 0) AND $id) {
+				$x = substr($element, 3);
+				if ($x == 'secteur') $x = 'rubrique';
+				$desc = trouver_table(table_objet($x));
+				if ($desc) {
+					$table = $desc['table'];
+					$exposer[$element][$id] = true;
+					if (isset($desc['field']['id_rubrique'])) {
+						$row = sql_fetsel(array('id_rubrique'), array($table), array("$element=" . _q($id)));
 					$hierarchie = calculer_hierarchie($row['id_rubrique']);
 				foreach (split(',',$hierarchie) as $id_rubrique)
 					$exposer['id_rubrique'][$id_rubrique] = true;
 				}
 			}
 		}
+	}
 	}
 
 	// And the winner is...
@@ -373,17 +378,6 @@ function lister_objets_avec_logos ($type) {
 	}
 	@closedir($d);
 	return join(',',$logos);
-}
-
-// http://doc.spip.org/@table_from_primary
-function table_from_primary($id) {
-	global $tables_principales;
-	include_spip('base/serial');
-	foreach ($tables_principales as $k => $v) {
-		if ($v['key']['PRIMARY KEY'] == $id)
-			return array($k, array_key_exists('id_rubrique', $v['field']));
-	}
-	return '';
 }
 
 // fonction appelee par la balise #LOGO_DOCUMENT
