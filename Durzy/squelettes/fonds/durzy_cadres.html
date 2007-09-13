@@ -26,27 +26,6 @@
 <input type="radio" name="aff_cadre_gb" [(#CONFIG{durzy/aff_cadre_gb}|=={aucun}|?{checked})] value="aucun">Aucun
 </fieldset>
 
-<fieldset><legend><:article:> <:sommaire:></legend>
-<label>Choisissez l'article &agrave; afficher sur la page sommaire:</label>
-<select name="article_sommaire">
-  <option value="">Aucun</option>
-  <BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
-     <option value="">&nbsp;&nbsp;<strong>rubrique : #TITRE</strong></option>
-     <BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
-       <option value="#ID_ARTICLE" [(#CONFIG{durzy/article_sommaire}|=={#ID_ARTICLE}|?{selected="selected",''})]>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;#ID_ARTICLE . #TITRE</option>
-     </BOUCLE_articles_racine>
-     <BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
-        <option value="" style="font-weight: bold;">&nbsp;&nbsp;rubrique #ID_RUBRIQUE : #TITRE</option>
-           <BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
-             <option value="#ID_ARTICLE">&nbsp;&nbsp;&nbsp;&nbsp;#ID_ARTICLE . #TITRE</option>
-           </BOUCLE_articles>
-           <BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
-     </BOUCLE_rubriques>
-   </BOUCLE_secteurs>
-</select>
-</fieldset>
-
 <fieldset><legend>Choix du cadre à afficher à droite en haut :</legend>
 <input type="radio" name="aff_cadre_dh" [(#CONFIG{durzy/aff_cadre_dh}|=={agenda_dh}|?{checked})] value="agenda_dh">Le mini agenda 
 <input type="radio" name="aff_cadre_dh" [(#CONFIG{durzy/aff_cadre_dh}|=={edito_dh}|?{checked})] value="edito_dh">L'édito 

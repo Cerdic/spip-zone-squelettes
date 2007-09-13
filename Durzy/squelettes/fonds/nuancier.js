@@ -142,15 +142,15 @@ function chooserMode(MODE)
    else if(MODE == "couleur_last_messages_titre") { var RGB = couleur_last_messages_titre_rgb; }
    else if(MODE == "couleur_last_messages_bordures") { var RGB = couleur_last_messages_bordures_rgb; }
    else if(MODE == "couleur_fond") { var RGB = couleur_fond_rgb; }
-
+   // Extraction des valeurs R, G et B
    var RR = RGB.substring(0,2);
    var GG = RGB.substring(2,4);
    var BB = RGB.substring(4,6);
-
+   // Surlignage des valeurs choisies
    reColorAndGray(RR,GG,BB);
 }
 
-//Clic sur les lignes du haut
+// Choix des couleur par sélection d'une valeur hexadécimale
 function colorsOne(RGorB,XX)
 {
 	//couleur_fond
@@ -161,7 +161,7 @@ function colorsOne(RGorB,XX)
       else if(RGorB == "B") { couleur_fond_b = XX; }
       couleur_fond_rgb = "" + couleur_fond_r + couleur_fond_g + couleur_fond_b;
       window.document.pickerform.couleur_fond.value = couleur_fond_rgb;
-      //#CONFIG{durzy/couleur_fond}=couleur_fond_rgb;
+      window.document.pickerform.couleur_fond_view.style.backgroundColor = "#"+couleur_fond_rgb;
       reColorAndGray(couleur_fond_r,couleur_fond_g,couleur_fond_b);
 
 	}
@@ -173,7 +173,7 @@ function colorsOne(RGorB,XX)
       else if(RGorB == "B") { couleur_last_articles_fond_b = XX; }
       couleur_last_articles_fond_rgb = "" + couleur_last_articles_fond_r + couleur_last_articles_fond_g + couleur_last_articles_fond_b;
       window.document.pickerform.couleur_last_articles_fond.value = couleur_last_articles_fond_rgb;
-      //#CONFIG{durzy/couleur_last_aricle_fond}=couleur_last_articles_fond_rgb;
+      window.document.pickerform.couleur_last_articles_fond_view.style.backgroundColor = "#"+couleur_last_articles_fond_rgb;
       reColorAndGray(couleur_last_articles_fond_r,couleur_last_articles_fond_g,couleur_last_articles_fond_b);
 
    }
@@ -186,7 +186,7 @@ function colorsOne(RGorB,XX)
       else if(RGorB == "B") { couleur_last_articles_titre_b = XX; }
       couleur_last_articles_titre_rgb = "" + couleur_last_articles_titre_r + couleur_last_articles_titre_g + couleur_last_articles_titre_b;
       window.document.pickerform.couleur_last_articles_titre.value = couleur_last_articles_titre_rgb;
-      //#CONFIG{durzy/couleur_last_aricle_titre}=couleur_last_articles_titre_rgb;
+      window.document.pickerform.couleur_last_articles_titre_view.style.backgroundColor = "#"+couleur_last_articles_titre_rgb;
       reColorAndGray(couleur_last_articles_titre_r,couleur_last_articles_titre_g,couleur_last_articles_titre_b);
    }
 
@@ -198,7 +198,7 @@ function colorsOne(RGorB,XX)
       else if(RGorB == "B") { couleur_last_articles_bordures_b = XX; }
       couleur_last_articles_bordures_rgb = "" + couleur_last_articles_bordures_r + couleur_last_articles_bordures_g + couleur_last_articles_bordures_b;
       window.document.pickerform.couleur_last_articles_bordures.value = couleur_last_articles_bordures_rgb;
-      //#CONFIG{durzy/couleur_last_aricle_bordures}=couleur_last_articles_bordures_rgb;
+      window.document.pickerform.couleur_last_articles_bordures_view.style.backgroundColor = "#"+couleur_last_articles_bordures_rgb;
       reColorAndGray(couleur_last_articles_bordures_r,couleur_last_articles_bordures_g,couleur_last_articles_bordures_b);
    }
 
@@ -210,7 +210,8 @@ function colorsOne(RGorB,XX)
       else if(RGorB == "B") { couleur_edito_fond_b = XX; }
       couleur_edito_fond_rgb = "" + couleur_edito_fond_r + couleur_edito_fond_g + couleur_edito_fond_b;
       window.document.pickerform.couleur_edito_fond.value = couleur_edito_fond_rgb;
-      reColorAndGray(couleur_edito_fond_r,couleur_edito_fond_g,couleur_edito_fond_b);
+      window.document.pickerform.couleur_edito_fond_view.style.backgroundColor = "#"+couleur_edito_fond_rgb;
+	  reColorAndGray(couleur_edito_fond_r,couleur_edito_fond_g,couleur_edito_fond_b);
 
    }
 
@@ -222,7 +223,8 @@ function colorsOne(RGorB,XX)
       else if(RGorB == "B") { couleur_edito_titre_b = XX; }
       couleur_edito_titre_rgb = "" + couleur_edito_titre_r + couleur_edito_titre_g + couleur_edito_titre_b;
       window.document.pickerform.couleur_edito_titre.value = couleur_edito_titre_rgb;
-      reColorAndGray(couleur_edito_titre_r,couleur_edito_titre_g,couleur_edito_titre_b);
+      window.document.pickerform.couleur_edito_titre_view.style.backgroundColor = "#"+couleur_edito_titre_rgb;
+	  reColorAndGray(couleur_edito_titre_r,couleur_edito_titre_g,couleur_edito_titre_b);
    }
 
    //couleur_edito_bordures
@@ -233,7 +235,8 @@ function colorsOne(RGorB,XX)
       else if(RGorB == "B") { couleur_edito_bordures_b = XX; }
       couleur_edito_bordures_rgb = "" + couleur_edito_bordures_r + couleur_edito_bordures_g + couleur_edito_bordures_b;
       window.document.pickerform.couleur_edito_bordures.value = couleur_edito_bordures_rgb;
-      reColorAndGray(couleur_edito_bordures_r,couleur_edito_bordures_g,couleur_edito_bordures_b);
+      window.document.pickerform.couleur_edito_bordures_view.style.backgroundColor = "#"+couleur_edito_bordures_rgb;
+	  reColorAndGray(couleur_edito_bordures_r,couleur_edito_bordures_g,couleur_edito_bordures_b);
    }
 
    //couleur_breves_fond
@@ -244,7 +247,8 @@ function colorsOne(RGorB,XX)
       else if(RGorB == "B") { couleur_breves_fond_b = XX; }
       couleur_breves_fond_rgb = "" + couleur_breves_fond_r + couleur_breves_fond_g + couleur_breves_fond_b;
       window.document.pickerform.couleur_breves_fond.value = couleur_breves_fond_rgb;
-      reColorAndGray(couleur_breves_fond_r,couleur_breves_fond_g,couleur_breves_fond_b);
+      window.document.pickerform.couleur_breves_fond_view.style.backgroundColor = "#"+couleur_breves_fond_rgb;
+	  reColorAndGray(couleur_breves_fond_r,couleur_breves_fond_g,couleur_breves_fond_b);
 
    }
 
@@ -256,7 +260,8 @@ function colorsOne(RGorB,XX)
       else if(RGorB == "B") { couleur_breves_titre_b = XX; }
       couleur_breves_titre_rgb = "" + couleur_breves_titre_r + couleur_breves_titre_g + couleur_breves_titre_b;
       window.document.pickerform.couleur_breves_titre.value = couleur_breves_titre_rgb;
-      reColorAndGray(couleur_breves_titre_r,couleur_breves_titre_g,couleur_breves_titre_b);
+      window.document.pickerform.couleur_breves_titre_view.style.backgroundColor = "#"+couleur_breves_titre_rgb;
+	  reColorAndGray(couleur_breves_titre_r,couleur_breves_titre_g,couleur_breves_titre_b);
    }
 
    //couleur_breves_bordures
@@ -267,7 +272,8 @@ function colorsOne(RGorB,XX)
       else if(RGorB == "B") { couleur_breves_bordures_b = XX; }
       couleur_breves_bordures_rgb = "" + couleur_breves_bordures_r + couleur_breves_bordures_g + couleur_breves_bordures_b;
       window.document.pickerform.couleur_breves_bordures.value = couleur_breves_bordures_rgb;
-      reColorAndGray(couleur_breves_bordures_r,couleur_breves_bordures_g,couleur_breves_bordures_b);
+      window.document.pickerform.couleur_breves_bordures_view.style.backgroundColor = "#"+couleur_breves_bordures_rgb;
+	  reColorAndGray(couleur_breves_bordures_r,couleur_breves_bordures_g,couleur_breves_bordures_b);
    }
 
    //couleur_acces_direct_fond
@@ -278,7 +284,8 @@ function colorsOne(RGorB,XX)
       else if(RGorB == "B") { couleur_acces_direct_fond_b = XX; }
       couleur_acces_direct_fond_rgb = "" + couleur_acces_direct_fond_r + couleur_acces_direct_fond_g + couleur_acces_direct_fond_b;
       window.document.pickerform.couleur_acces_direct_fond.value = couleur_acces_direct_fond_rgb;
-      reColorAndGray(couleur_acces_direct_fond_r,couleur_acces_direct_fond_g,couleur_acces_direct_fond_b);
+      window.document.pickerform.couleur_acces_direct_fond_view.style.backgroundColor = "#"+couleur_acces_direct_fond_rgb;
+	  reColorAndGray(couleur_acces_direct_fond_r,couleur_acces_direct_fond_g,couleur_acces_direct_fond_b);
 
    }
 
@@ -290,7 +297,8 @@ function colorsOne(RGorB,XX)
       else if(RGorB == "B") { couleur_acces_direct_titre_b = XX; }
       couleur_acces_direct_titre_rgb = "" + couleur_acces_direct_titre_r + couleur_acces_direct_titre_g + couleur_acces_direct_titre_b;
       window.document.pickerform.couleur_acces_direct_titre.value = couleur_acces_direct_titre_rgb;
-      reColorAndGray(couleur_acces_direct_titre_r,couleur_acces_direct_titre_g,couleur_acces_direct_titre_b);
+      window.document.pickerform.couleur_acces_direct_titre_view.style.backgroundColor = "#"+couleur_acces_direct_titre_rgb;
+	  reColorAndGray(couleur_acces_direct_titre_r,couleur_acces_direct_titre_g,couleur_acces_direct_titre_b);
    }
 
    //couleur_acces_direct_bordures
@@ -301,7 +309,8 @@ function colorsOne(RGorB,XX)
       else if(RGorB == "B") { couleur_acces_direct_bordures_b = XX; }
       couleur_acces_direct_bordures_rgb = "" + couleur_acces_direct_bordures_r + couleur_acces_direct_bordures_g + couleur_acces_direct_bordures_b;
       window.document.pickerform.couleur_acces_direct_bordures.value = couleur_acces_direct_bordures_rgb;
-      reColorAndGray(couleur_acces_direct_bordures_r,couleur_acces_direct_bordures_g,couleur_acces_direct_bordures_b);
+      window.document.pickerform.couleur_acces_direct_bordures_view.style.backgroundColor = "#"+couleur_acces_direct_bordures_rgb;
+	  reColorAndGray(couleur_acces_direct_bordures_r,couleur_acces_direct_bordures_g,couleur_acces_direct_bordures_b);
    }
 
    //couleur_last_messages_fond
@@ -312,7 +321,8 @@ function colorsOne(RGorB,XX)
       else if(RGorB == "B") { couleur_last_messages_fond_b = XX; }
       couleur_last_messages_fond_rgb = "" + couleur_last_messages_fond_r + couleur_last_messages_fond_g + couleur_last_messages_fond_b;
       window.document.pickerform.couleur_last_messages_fond.value = couleur_last_messages_fond_rgb;
-      reColorAndGray(couleur_last_messages_fond_r,couleur_last_messages_fond_g,couleur_last_messages_fond_b);
+      window.document.pickerform.couleur_last_messages_fond_view.style.backgroundColor = "#"+couleur_last_messages_fond_rgb;
+	  reColorAndGray(couleur_last_messages_fond_r,couleur_last_messages_fond_g,couleur_last_messages_fond_b);
 
    }
 
@@ -324,7 +334,8 @@ function colorsOne(RGorB,XX)
       else if(RGorB == "B") { couleur_last_messages_titre_b = XX; }
       couleur_last_messages_titre_rgb = "" + couleur_last_messages_titre_r + couleur_last_messages_titre_g + couleur_last_messages_titre_b;
       window.document.pickerform.couleur_last_messages_titre.value = couleur_last_messages_titre_rgb;
-      reColorAndGray(couleur_last_messages_titre_r,couleur_last_messages_titre_g,couleur_last_messages_titre_b);
+      window.document.pickerform.couleur_last_messages_titre_view.style.backgroundColor = "#"+couleur_last_messages_titre_rgb;
+	  reColorAndGray(couleur_last_messages_titre_r,couleur_last_messages_titre_g,couleur_last_messages_titre_b);
    }
 
    //couleur_last_messages_bordures
@@ -335,14 +346,12 @@ function colorsOne(RGorB,XX)
       else if(RGorB == "B") { couleur_last_messages_bordures_b = XX; }
       couleur_last_messages_bordures_rgb = "" + couleur_last_messages_bordures_r + couleur_last_messages_bordures_g + couleur_last_messages_bordures_b;
       window.document.pickerform.couleur_last_messages_bordures.value = couleur_last_messages_bordures_rgb;
-      reColorAndGray(couleur_last_messages_bordures_r,couleur_last_messages_bordures_g,couleur_last_messages_bordures_b);
+      window.document.pickerform.couleur_last_messages_bordures_view.style.backgroundColor = "#"+couleur_last_messages_bordures_rgb;
+	  reColorAndGray(couleur_last_messages_bordures_r,couleur_last_messages_bordures_g,couleur_last_messages_bordures_b);
    }
-
-
-
 }
 
-//clic dans le tableau du nuancier
+// Sélection d'une couleurs par clic dans le tableau du nuancier
 function colorsAll(RGB)
 {
    var RR = RGB.substring(0,2);
@@ -357,7 +366,8 @@ function colorsAll(RGB)
       couleur_fond_b = BB;
       couleur_fond_rgb = "" + couleur_fond_r + couleur_fond_g + couleur_fond_b;
       window.document.pickerform.couleur_fond.value = couleur_fond_rgb;
-      reColorAndGray(couleur_fond_r,couleur_fond_g,couleur_fond_b);
+      window.document.pickerform.couleur_fond_view.style.backgroundColor = "#"+couleur_fond_rgb;
+	  reColorAndGray(couleur_fond_r,couleur_fond_g,couleur_fond_b);
    }
    
    //couleur_last_articles_fond
@@ -368,7 +378,8 @@ function colorsAll(RGB)
       couleur_last_articles_fond_b = BB;
       couleur_last_articles_fond_rgb = "" + couleur_last_articles_fond_r + couleur_last_articles_fond_g + couleur_last_articles_fond_b;
       window.document.pickerform.couleur_last_articles_fond.value = couleur_last_articles_fond_rgb;
-      reColorAndGray(couleur_last_articles_fond_r,couleur_last_articles_fond_g,couleur_last_articles_fond_b);
+      window.document.pickerform.couleur_last_articles_fond_view.style.backgroundColor = "#"+couleur_last_articles_fond_rgb;
+	  reColorAndGray(couleur_last_articles_fond_r,couleur_last_articles_fond_g,couleur_last_articles_fond_b);
    }
 
    //couleur_last_articles_titre
@@ -379,7 +390,8 @@ function colorsAll(RGB)
       couleur_last_articles_titre_b = BB;
       couleur_last_articles_titre_rgb = "" + couleur_last_articles_titre_r + couleur_last_articles_titre_g + couleur_last_articles_titre_b;
       window.document.pickerform.couleur_last_articles_titre.value = couleur_last_articles_titre_rgb;
-      reColorAndGray(couleur_last_articles_titre_r,couleur_last_articles_titre_g,couleur_last_articles_titre_b);
+      window.document.pickerform.couleur_last_articles_titre_view.style.backgroundColor = "#"+couleur_last_articles_titre_rgb;
+	  reColorAndGray(couleur_last_articles_titre_r,couleur_last_articles_titre_g,couleur_last_articles_titre_b);
    }
 
    //couleur_last_articles_bordures
@@ -390,7 +402,8 @@ function colorsAll(RGB)
       couleur_last_articles_bordures_b = BB;
       couleur_last_articles_bordures_rgb = "" + couleur_last_articles_bordures_r + couleur_last_articles_bordures_g + couleur_last_articles_bordures_b;
       window.document.pickerform.couleur_last_articles_bordures.value = couleur_last_articles_bordures_rgb;
-      reColorAndGray(couleur_last_articles_bordures_r,couleur_last_articles_bordures_g,couleur_last_articles_bordures_b);
+      window.document.pickerform.couleur_last_articles_bordures_view.style.backgroundColor = "#"+couleur_last_articles_bordures_rgb;
+	  reColorAndGray(couleur_last_articles_bordures_r,couleur_last_articles_bordures_g,couleur_last_articles_bordures_b);
    }
 
    //couleur_edito_fond
@@ -401,7 +414,8 @@ function colorsAll(RGB)
       couleur_edito_fond_b = BB;
       couleur_edito_fond_rgb = "" + couleur_edito_fond_r + couleur_edito_fond_g + couleur_edito_fond_b;
       window.document.pickerform.couleur_edito_fond.value = couleur_edito_fond_rgb;
-      reColorAndGray(couleur_edito_fond_r,couleur_edito_fond_g,couleur_edito_fond_b);
+      window.document.pickerform.couleur_edito_fond_view.style.backgroundColor = "#"+couleur_edito_fond_rgb;
+	  reColorAndGray(couleur_edito_fond_r,couleur_edito_fond_g,couleur_edito_fond_b);
    }
 
    //couleur_edito_titre
@@ -412,7 +426,8 @@ function colorsAll(RGB)
       couleur_edito_titre_b = BB;
       couleur_edito_titre_rgb = "" + couleur_edito_titre_r + couleur_edito_titre_g + couleur_edito_titre_b;
       window.document.pickerform.couleur_edito_titre.value = couleur_edito_titre_rgb;
-      reColorAndGray(couleur_edito_titre_r,couleur_edito_titre_g,couleur_edito_titre_b);
+      window.document.pickerform.couleur_edito_titre_view.style.backgroundColor = "#"+couleur_edito_titre_rgb;
+	  reColorAndGray(couleur_edito_titre_r,couleur_edito_titre_g,couleur_edito_titre_b);
    }
 
    //couleur_edito_bordures
@@ -423,7 +438,8 @@ function colorsAll(RGB)
       couleur_edito_bordures_b = BB;
       couleur_edito_bordures_rgb = "" + couleur_edito_bordures_r + couleur_edito_bordures_g + couleur_edito_bordures_b;
       window.document.pickerform.couleur_edito_bordures.value = couleur_edito_bordures_rgb;
-      reColorAndGray(couleur_edito_bordures_r,couleur_edito_bordures_g,couleur_edito_bordures_b);
+      window.document.pickerform.couleur_edito_bordures_view.style.backgroundColor = "#"+couleur_edito_bordures_rgb;
+	  reColorAndGray(couleur_edito_bordures_r,couleur_edito_bordures_g,couleur_edito_bordures_b);
    }
 
    //couleur_breves_fond
@@ -434,7 +450,8 @@ function colorsAll(RGB)
       couleur_breves_fond_b = BB;
       couleur_breves_fond_rgb = "" + couleur_breves_fond_r + couleur_breves_fond_g + couleur_breves_fond_b;
       window.document.pickerform.couleur_breves_fond.value = couleur_breves_fond_rgb;
-      reColorAndGray(couleur_breves_fond_r,couleur_breves_fond_g,couleur_breves_fond_b);
+      window.document.pickerform.couleur_breves_fond_view.style.backgroundColor = "#"+couleur_breves_fond_rgb;
+	  reColorAndGray(couleur_breves_fond_r,couleur_breves_fond_g,couleur_breves_fond_b);
    }
 
    //couleur_breves_titre
@@ -445,7 +462,8 @@ function colorsAll(RGB)
       couleur_breves_titre_b = BB;
       couleur_breves_titre_rgb = "" + couleur_breves_titre_r + couleur_breves_titre_g + couleur_breves_titre_b;
       window.document.pickerform.couleur_breves_titre.value = couleur_breves_titre_rgb;
-      reColorAndGray(couleur_breves_titre_r,couleur_breves_titre_g,couleur_breves_titre_b);
+      window.document.pickerform.couleur_breves_titre_view.style.backgroundColor = "#"+couleur_breves_titre_rgb;
+	  reColorAndGray(couleur_breves_titre_r,couleur_breves_titre_g,couleur_breves_titre_b);
    }
 
    //couleur_breves_bordures
@@ -456,7 +474,8 @@ function colorsAll(RGB)
       couleur_breves_bordures_b = BB;
       couleur_breves_bordures_rgb = "" + couleur_breves_bordures_r + couleur_breves_bordures_g + couleur_breves_bordures_b;
       window.document.pickerform.couleur_breves_bordures.value = couleur_breves_bordures_rgb;
-      reColorAndGray(couleur_breves_bordures_r,couleur_breves_bordures_g,couleur_breves_bordures_b);
+      window.document.pickerform.couleur_breves_bordures_view.style.backgroundColor = "#"+couleur_breves_bordures_rgb;
+	  reColorAndGray(couleur_breves_bordures_r,couleur_breves_bordures_g,couleur_breves_bordures_b);
    }
 
    //couleur_acces_direct_fond
@@ -467,7 +486,8 @@ function colorsAll(RGB)
       couleur_acces_direct_fond_b = BB;
       couleur_acces_direct_fond_rgb = "" + couleur_acces_direct_fond_r + couleur_acces_direct_fond_g + couleur_acces_direct_fond_b;
       window.document.pickerform.couleur_acces_direct_fond.value = couleur_acces_direct_fond_rgb;
-      reColorAndGray(couleur_acces_direct_fond_r,couleur_acces_direct_fond_g,couleur_acces_direct_fond_b);
+      window.document.pickerform.couleur_acces_direct_fond_view.style.backgroundColor = "#"+couleur_acces_direct_fond_rgb;
+	  reColorAndGray(couleur_acces_direct_fond_r,couleur_acces_direct_fond_g,couleur_acces_direct_fond_b);
    }
 
    //couleur_acces_direct_titre
@@ -478,7 +498,8 @@ function colorsAll(RGB)
       couleur_acces_direct_titre_b = BB;
       couleur_acces_direct_titre_rgb = "" + couleur_acces_direct_titre_r + couleur_acces_direct_titre_g + couleur_acces_direct_titre_b;
       window.document.pickerform.couleur_acces_direct_titre.value = couleur_acces_direct_titre_rgb;
-      reColorAndGray(couleur_acces_direct_titre_r,couleur_acces_direct_titre_g,couleur_acces_direct_titre_b);
+      window.document.pickerform.couleur_acces_direct_titre_view.style.backgroundColor = "#"+couleur_acces_direct_titre_rgb;
+	  reColorAndGray(couleur_acces_direct_titre_r,couleur_acces_direct_titre_g,couleur_acces_direct_titre_b);
    }
 
    //couleur_acces_direct_bordures
@@ -489,7 +510,8 @@ function colorsAll(RGB)
       couleur_acces_direct_bordures_b = BB;
       couleur_acces_direct_bordures_rgb = "" + couleur_acces_direct_bordures_r + couleur_acces_direct_bordures_g + couleur_acces_direct_bordures_b;
       window.document.pickerform.couleur_acces_direct_bordures.value = couleur_acces_direct_bordures_rgb;
-      reColorAndGray(couleur_acces_direct_bordures_r,couleur_acces_direct_bordures_g,couleur_acces_direct_bordures_b);
+      window.document.pickerform.couleur_acces_direct_bordures_view.style.backgroundColor = "#"+couleur_acces_direct_bordures_rgb;
+	  reColorAndGray(couleur_acces_direct_bordures_r,couleur_acces_direct_bordures_g,couleur_acces_direct_bordures_b);
    }
 
    //couleur_last_messages_fond
@@ -500,7 +522,8 @@ function colorsAll(RGB)
       couleur_last_messages_fond_b = BB;
       couleur_last_messages_fond_rgb = "" + couleur_last_messages_fond_r + couleur_last_messages_fond_g + couleur_last_messages_fond_b;
       window.document.pickerform.couleur_last_messages_fond.value = couleur_last_messages_fond_rgb;
-      reColorAndGray(couleur_last_messages_fond_r,couleur_last_messages_fond_g,couleur_last_messages_fond_b);
+      window.document.pickerform.couleur_last_messages_fond_view.style.backgroundColor = "#"+couleur_last_messages_fond_rgb;
+	  reColorAndGray(couleur_last_messages_fond_r,couleur_last_messages_fond_g,couleur_last_messages_fond_b);
    }
 
    //couleur_last_messages_titre
@@ -511,7 +534,8 @@ function colorsAll(RGB)
       couleur_last_messages_titre_b = BB;
       couleur_last_messages_titre_rgb = "" + couleur_last_messages_titre_r + couleur_last_messages_titre_g + couleur_last_messages_titre_b;
       window.document.pickerform.couleur_last_messages_titre.value = couleur_last_messages_titre_rgb;
-      reColorAndGray(couleur_last_messages_titre_r,couleur_last_messages_titre_g,couleur_last_messages_titre_b);
+      window.document.pickerform.couleur_last_messages_titre_view.style.backgroundColor = "#"+couleur_last_messages_titre_rgb;
+	  reColorAndGray(couleur_last_messages_titre_r,couleur_last_messages_titre_g,couleur_last_messages_titre_b);
    }
 
    //couleur_last_messages_bordures
@@ -522,18 +546,13 @@ function colorsAll(RGB)
       couleur_last_messages_bordures_b = BB;
       couleur_last_messages_bordures_rgb = "" + couleur_last_messages_bordures_r + couleur_last_messages_bordures_g + couleur_last_messages_bordures_b;
       window.document.pickerform.couleur_last_messages_bordures.value = couleur_last_messages_bordures_rgb;
-      reColorAndGray(couleur_last_messages_bordures_r,couleur_last_messages_bordures_g,couleur_last_messages_bordures_b);
+      window.document.pickerform.couleur_last_messages_bordures_view.style.backgroundColor = "#"+couleur_last_messages_bordures_rgb;
+	  reColorAndGray(couleur_last_messages_bordures_r,couleur_last_messages_bordures_g,couleur_last_messages_bordures_b);
    }
-
-
-
-
-
 }
 
 
-
-//surlignage de la couleur
+// Surlignage de la couleur
 function reColorAndGray(RR,GG,BB)
 {
    //recolor codes
