@@ -1,32 +1,28 @@
 //initialisation des variables
 
-//cadre derniers articles
-var init_couleur_last_articles_fond = "000000"; 
-var init_couleur_last_articles_titre = "FFFFFF"; 
-var init_couleur_last_articles_bordures = "EEEEEE"; 
+//cadre derniers articles, derniers messages et même rubrique
+var init_couleur_last_articles_fond = "E5EFF8"; 
+var init_couleur_last_articles_titre = "82ADE2"; 
+var init_couleur_last_articles_bordures = "999"; 
 
-//cadre edito
-var init_couleur_edito_fond = "000000";
-var init_couleur_edito_titre = "FFEEFF";
-var init_couleur_edito_bordures = "EEEEEE";
+//cadre Edito
+var init_couleur_edito_fond = "FFF8AC";
+var init_couleur_edito_titre = "FFED00";
+var init_couleur_edito_bordures = "999";
 
-//cadre breves
-var init_couleur_breves_fond = "000000";
-var init_couleur_breves_titre = "FFAAFF";
-var init_couleur_breves_bordures = "EE00EE";
+//cadre Brèves
+var init_couleur_breves_fond = "E5EFF8";
+var init_couleur_breves_titre = "82ADE2";
+var init_couleur_breves_bordures = "999";
 
-//cadre acces_direct
-var init_couleur_acces_direct_fond = "000000";
-var init_couleur_acces_direct_titre = "FFDDFF";
-var init_couleur_acces_direct_bordures = "EEDDEE";
+//cadre Acces Direct
+var init_couleur_acces_direct_fond = "D6EACA";
+var init_couleur_acces_direct_titre = "51B169";
+var init_couleur_acces_direct_bordures = "999";
 
-//cadre last_messages
-var init_couleur_last_messages_fond = "00DD00";
-var init_couleur_last_messages_titre = "FFDDFF";
-var init_couleur_last_messages_bordures = "EEDDEE";
 
 //Fond du site
-var init_couleur_fond = "000000"; 
+var init_couleur_fond = "FFFFFF"; 
 
 
 //variables liées aux précédentes
@@ -95,22 +91,6 @@ var couleur_acces_direct_bordures_g = init_couleur_acces_direct_bordures.substri
 var couleur_acces_direct_bordures_b = init_couleur_acces_direct_bordures.substring(4,6);
 var couleur_acces_direct_bordures_rgb = "" + couleur_acces_direct_bordures_r + couleur_acces_direct_bordures_g + couleur_acces_direct_bordures_b;
 
-//cadre last_messages
-var couleur_last_messages_fond_r = init_couleur_last_messages_fond.substring(0,2);
-var couleur_last_messages_fond_g = init_couleur_last_messages_fond.substring(2,4);
-var couleur_last_messages_fond_b = init_couleur_last_messages_fond.substring(4,6);
-var couleur_last_messages_fond_rgb = "" + couleur_last_messages_fond_r + couleur_last_messages_fond_g + couleur_last_messages_fond_b;
-
-var couleur_last_messages_titre_r = init_couleur_last_messages_titre.substring(0,2);
-var couleur_last_messages_titre_g = init_couleur_last_messages_titre.substring(2,4);
-var couleur_last_messages_titre_b = init_couleur_last_messages_titre.substring(4,6);
-var couleur_last_messages_titre_rgb = "" + couleur_last_messages_titre_r + couleur_last_messages_titre_g + couleur_last_messages_titre_b;
-
-var couleur_last_messages_bordures_r = init_couleur_last_messages_bordures.substring(0,2);
-var couleur_last_messages_bordures_g = init_couleur_last_messages_bordures.substring(2,4);
-var couleur_last_messages_bordures_b = init_couleur_last_messages_bordures.substring(4,6);
-var couleur_last_messages_bordures_rgb = "" + couleur_last_messages_bordures_r + couleur_last_messages_bordures_g + couleur_last_messages_bordures_b;
-
 //Fond du site
 var couleur_fond_r = init_couleur_fond.substring(0,2);
 var couleur_fond_g = init_couleur_fond.substring(2,4);
@@ -140,7 +120,6 @@ function chooserMode(MODE)
    else if(MODE == "couleur_acces_direct_bordures") { var RGB = couleur_acces_direct_bordures_rgb; }
    else if(MODE == "couleur_last_messages_fond") { var RGB = couleur_last_messages_fond_rgb; }
    else if(MODE == "couleur_last_messages_titre") { var RGB = couleur_last_messages_titre_rgb; }
-   else if(MODE == "couleur_last_messages_bordures") { var RGB = couleur_last_messages_bordures_rgb; }
    else if(MODE == "couleur_fond") { var RGB = couleur_fond_rgb; }
    // Extraction des valeurs R, G et B
    var RR = RGB.substring(0,2);
@@ -313,42 +292,7 @@ function colorsOne(RGorB,XX)
 	  reColorAndGray(couleur_acces_direct_bordures_r,couleur_acces_direct_bordures_g,couleur_acces_direct_bordures_b);
    }
 
-   //couleur_last_messages_fond
-   else if(window.document.pickerform.chooser[13].checked == true)
-   {
-      if(RGorB == "R") { couleur_last_messages_fond_r = XX; }
-      else if(RGorB == "G") { couleur_last_messages_fond_g = XX; }
-      else if(RGorB == "B") { couleur_last_messages_fond_b = XX; }
-      couleur_last_messages_fond_rgb = "" + couleur_last_messages_fond_r + couleur_last_messages_fond_g + couleur_last_messages_fond_b;
-      window.document.pickerform.couleur_last_messages_fond.value = couleur_last_messages_fond_rgb;
-      window.document.pickerform.couleur_last_messages_fond_view.style.backgroundColor = "#"+couleur_last_messages_fond_rgb;
-	  reColorAndGray(couleur_last_messages_fond_r,couleur_last_messages_fond_g,couleur_last_messages_fond_b);
-
-   }
-
-   //couleur_last_messages_titre
-   else if(window.document.pickerform.chooser[14].checked == true)
-   {
-      if(RGorB == "R") { couleur_last_messages_titre_r = XX; }
-      else if(RGorB == "G") { couleur_last_messages_titre_g = XX; }
-      else if(RGorB == "B") { couleur_last_messages_titre_b = XX; }
-      couleur_last_messages_titre_rgb = "" + couleur_last_messages_titre_r + couleur_last_messages_titre_g + couleur_last_messages_titre_b;
-      window.document.pickerform.couleur_last_messages_titre.value = couleur_last_messages_titre_rgb;
-      window.document.pickerform.couleur_last_messages_titre_view.style.backgroundColor = "#"+couleur_last_messages_titre_rgb;
-	  reColorAndGray(couleur_last_messages_titre_r,couleur_last_messages_titre_g,couleur_last_messages_titre_b);
-   }
-
-   //couleur_last_messages_bordures
-   else if(window.document.pickerform.chooser[15].checked == true)
-   {
-      if(RGorB == "R") { couleur_last_messages_bordures_r = XX; }
-      else if(RGorB == "G") { couleur_last_messages_bordures_g = XX; }
-      else if(RGorB == "B") { couleur_last_messages_bordures_b = XX; }
-      couleur_last_messages_bordures_rgb = "" + couleur_last_messages_bordures_r + couleur_last_messages_bordures_g + couleur_last_messages_bordures_b;
-      window.document.pickerform.couleur_last_messages_bordures.value = couleur_last_messages_bordures_rgb;
-      window.document.pickerform.couleur_last_messages_bordures_view.style.backgroundColor = "#"+couleur_last_messages_bordures_rgb;
-	  reColorAndGray(couleur_last_messages_bordures_r,couleur_last_messages_bordures_g,couleur_last_messages_bordures_b);
-   }
+   
 }
 
 // Sélection d'une couleurs par clic dans le tableau du nuancier
@@ -583,6 +527,5 @@ function fillColorBoxes()
    window.document.pickerform.couleur_acces_direct_bordures.value = couleur_acces_direct_bordures_rgb;
    window.document.pickerform.couleur_last_messages_fond.value = couleur_last_messages_fond_rgb;
    window.document.pickerform.couleur_last_messages_titre.value = couleur_last_messages_titre_rgb;
-   window.document.pickerform.couleur_last_messages_bordures.value = couleur_last_messages_bordures_rgb;
    window.document.pickerform.couleur_fond.value = couleur_fond_rgb;
 }
