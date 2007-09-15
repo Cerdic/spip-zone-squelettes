@@ -382,31 +382,31 @@ function lister_objets_avec_logos ($type) {
 
 // fonction appelee par la balise #LOGO_DOCUMENT
 // http://doc.spip.org/@calcule_logo_document
-function calcule_logo_document($id_document, $doubdoc, &$doublons, $flag_fichier, $lien, $align, $params) {
+function calcule_logo_document($id_document, $doubdoc, &$doublons, $flag_fichier, $lien, $align, $params, $connect='') {
 	include_spip('inc/documents');
 
 	if (!$id_document) return '';
 	if ($doubdoc) $doublons["documents"] .= ','.$id_document;
 
-	if (!($row = sql_select(array('extension', 'id_vignette', 'fichier', 'mode'), array('spip_documents'), array("id_document = $id_document"))))
+	if (!($row = sql_fetsel(array('extension', 'id_vignette', 'fichier', 'mode'), array('spip_documents'), array("id_document = $id_document"), '','','','','','','',$connect))) {
 		// pas de document. Ne devrait pas arriver
+		spip_log("Erreur du compilateur doc $id_document inconnu");
 		return ''; 
+	}
 
-	$row = sql_fetch($row);
 	$extension = $row['extension'];
 	$id_vignette = $row['id_vignette'];
 	$fichier = get_spip_doc($row['fichier']);
 	$mode = $row['mode'];
 
 	// Y a t il une vignette personnalisee ?
+	// Ca va echouer si c'est en mode distant. A revoir.
 	if ($id_vignette) {
-		if ($res = sql_select(array('fichier'),
+		$vignette = sql_fetsel(array('fichier'),
 				array('spip_documents'),
-				array("id_document = $id_vignette"))) {
-			$vignette = sql_fetch($res);
+			   array("id_document = $id_vignette"), '','','','','','','',$connect);
 			if (@file_exists(get_spip_doc($vignette['fichier'])))
 				$logo = generer_url_document($id_vignette);
-		}
 	} else if ($mode == 'vignette') {
 		$logo = generer_url_document($id_document);
 		if (!@file_exists($logo))
@@ -502,12 +502,6 @@ function calculer_notes() {
 	$GLOBALS["marqueur_notes"] ++;
 	}
 	return $r;
-}
-
-// Renvoie le titre du "lien hypertexte"
-// http://doc.spip.org/@construire_titre_lien
-function construire_titre_lien($nom,$url) {
-	return typo(supprimer_numero(calculer_url($url, $nom, 'titre')));
 }
 
 // Ajouter "&lang=..." si la langue de base n'est pas celle du site.
