@@ -23,12 +23,27 @@
 	</div>
  
 	<div id="centre">
-      [(#REM) insertion de l'article choisi par cfg]
-      [(#INCLURE{fond=inclusions/inc-article-sommaire}{id_article=[(#CONFIG{durzy/article_sommaire})]})]
-      <p>	background:##CONFIG{durzy/couleur_acces_direct_fond}; </p>
-	<p>border:  #CONFIG{durzy/epaisseur_bordures} solid ##CONFIG{durzy/couleur_acces_direct_bordures};</p>
-	<p>background:##CONFIG{durzy/couleur_acces_direct_titre}; </p>
-	</div>
+      [(#REM) Affichage en fonction de Cfg]
+      [(#REM) Affichage du dernier article publié]
+      <BOUCLE_exclure_rub(RUBRIQUES){titre_mot=rubrique-masquée}>
+		<BOUCLE_extract(articles) {id_rubrique} {doublons}>
+		<!-- extraire tous les articles des rubriques masquées -->
+		</BOUCLE_extract>
+	  </BOUCLE_exclure_rub>
+	  <BOUCLE_derniers(ARTICLES){par date}{inverse}{0,1} {doublons}>
+            [(#CONFIG{durzy/aff_sommaire}|=={sommaire_last}|?{' ',''})
+            <INCLURE{fond=inclusions/inc-article-sommaire}{id_article=#ID_ARTICLE}>]
+      </BOUCLE_derniers> 
+      
+      [(#REM) Affichage d'un article au choix]
+      [(#CONFIG{durzy/aff_sommaire}|=={sommaire_article}|?{' ',''})
+       <INCLURE{fond=inclusions/inc-article-sommaire}{id_article=#CONFIG{durzy/article_sommaire}}>]
+      
+      [(#REM) Affichage d'une image au choix]
+      [(#CONFIG{durzy/aff_sommaire}|=={sommaire_image}|?{' ',''})
+       <INCLURE{fond=inclusions/inc-image-sommaire}{id_document=#CONFIG{durzy/image_sommaire}}>]
+    
+    </div>
  
 	<div id="droite">
 		<div class="espace"></div>

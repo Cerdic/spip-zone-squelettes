@@ -15,12 +15,14 @@ L'adresse mail pour être contacté via la barre d'outil
 	<select name="largeur_site">
 	<option value="1"     [(#CONFIG{durzy/largeur_site}|=={1}|?{selected="selected",''})]> 800</option>
 	<option value="1.125" [(#CONFIG{durzy/largeur_site}|=={1.125}|?{selected="selected",''})]> 1024(par défaut)</option>
-    <option value="1.5"   [(#CONFIG{durzy/largeur_site}|=={1.6}|?{selected="selected",''})]> 1280 </option>
+    <option value="1.5"   [(#CONFIG{durzy/largeur_site}|=={1.5}|?{selected="selected",''})]> 1280 </option>
 	</select>
 </fieldset>
 
-<fieldset><legend><:article:> <:sommaire:></legend>
-<label>Choisissez l'article &agrave; afficher sur la page sommaire:</label>
+<fieldset><legend>Affichage sur la page sommaire</legend>
+ <input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_aucun}|?{checked})] value="sommaire_aucun">Rien<br />
+ <input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_last}|?{checked})] value="sommaire_last">Le dernier article publié<br />
+ <input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_article}|?{checked})] value="sommaire_article">Un article au choix:<br />
 <select name="article_sommaire">
   <option value="">Aucun</option>
   <BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
@@ -37,6 +39,14 @@ L'adresse mail pour être contacté via la barre d'outil
            <BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
      </BOUCLE_rubriques>
    </BOUCLE_secteurs>
+</select>
+<br /> 
+ <input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_image}|?{checked})] value="sommaire_image">Une image au choix<br />
+<select name="image_sommaire">
+ <BOUCLE_images_site(DOCUMENTS) {tout} {mode=image}>
+   <option value="#ID_DOCUMENT" [(#CONFIG{durzy/image_sommaire}|=={#ID_DOCUMENT}|?{selected="selected",''})]>
+                                  #ID_DOCUMENT . #TITRE</option>
+ </BOUCLE_images_site>
 </select>
 </fieldset>
 
@@ -58,8 +68,8 @@ L'adresse mail pour être contacté via la barre d'outil
 
 <fieldset><legend>Affichage du pied de page</legend>
     <label>Choisissez les pages où il sera affiché en bas de l'écran</label><br />
-    <input type="checkbox" name="aff_pdp_sommaire" [checked="(#ENV{aff_pdp_sommaire})"]>Sommaire 
-    <input type="checkbox" name="aff_pdp_article"  [checked="(#ENV{aff_pdp_article})"]>Article
-    <input type="checkbox" name="aff_pdp_rubrique" [checked="(#ENV{aff_pdp_rubrique})"]>Rubrique
+    <input type="checkbox" name="aff_pdp_sommaire" [(#CONFIG{durzy/aff_pdp_sommaire}|?{checked})]>Sommaire 
+    <input type="checkbox" name="aff_pdp_article"  [(#CONFIG{durzy/aff_pdp_article}|?{checked})]>Article
+    <input type="checkbox" name="aff_pdp_rubrique" [(#CONFIG{durzy/aff_pdp_rubrique}|?{checked})]>Rubrique
     &nbsp;<img src="../squelettes/images/pdp.jpg">
 </fieldset>
