@@ -528,4 +528,8 @@ function fillColorBoxes()
    window.document.pickerform.couleur_last_messages_fond.value = couleur_last_messages_fond_rgb;
    window.document.pickerform.couleur_last_messages_titre.value = couleur_last_messages_titre_rgb;
    window.document.pickerform.couleur_fond.value = couleur_fond_rgb;
+   window.document.pickerform.couleur_pied.value = couleur_pied_rgb;
+   window.document.pickerform.couleur_menu.value = couleur_menu_rgb;
+   window.document.pickerform.couleur_sousmenu.value = couleur_sousmenu_rgb;
+   window.document.pickerform.couleur_sousmenusurvole.value = couleur_sousmenusurvole_rgb;
 }
