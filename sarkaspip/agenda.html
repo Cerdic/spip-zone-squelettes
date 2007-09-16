@@ -58,12 +58,12 @@ de ce squelette.
 			<div class="mots-cles">
 				<div id="mots_clefs"><a class="en-tete"><:sarkaspip:filtrage_categorie:></a></div>
 				<div class="contenu">
-					[(#ENV{categorie,-1}|=={-1}|?{<span><:sarkaspip:filtre_tout:></span>,<a href="[(#URL_PAGE{agenda,annee=[(#ENV{annee})]})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]><:sarkaspip:filtre_tout:></a>})]
+					[(#ENV{categorie,-1}|=={-1}|?{<span><:sarkaspip:filtre_tout:></span>,<a href="[(#URL_PAGE{agenda,[annee=(#ENV{annee})][&mois=(#ENV{mois})]})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]><:sarkaspip:filtre_tout:></a>})]
 					<hr>
-					[(#ENV{categorie,-1}|=={0}|?{<span><:sarkaspip:filtre_vide:></span>,<a href="[(#URL_PAGE{agenda,annee=[(#ENV{annee})]&categorie=0})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]><:sarkaspip:filtre_vide:></a>})]
+					[(#ENV{categorie,-1}|=={0}|?{<span><:sarkaspip:filtre_vide:></span>,<a href="[(#URL_PAGE{agenda,[annee=(#ENV{annee})][&mois=(#ENV{mois})&]categorie=0})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]><:sarkaspip:filtre_vide:></a>})]
 		<BOUCLE_liste_categories(MOTS) {type=squelette_agenda} {par id_groupe}>
 						[(#COMPTEUR_BOUCLE|=={1}|?{<br>})]
-						[(#ID_MOT|=={[(#ENV{categorie,-1})]}|?{<span>#TITRE</span>,<a href="[(#URL_PAGE{agenda,annee=[(#ENV{annee})]&categorie=[(#ID_MOT)]})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>})]
+						[(#ID_MOT|=={[(#ENV{categorie,-1})]}|?{<span>#TITRE</span>,<a href="[(#URL_PAGE{agenda,[annee=(#ENV{annee})][&mois=(#ENV{mois})][&categorie=(#ID_MOT)]})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>})]
 		</BOUCLE_liste_categories>
 				</div> <!-- Fin contenu -->
 			</div> <!-- Fin mots-cles -->
@@ -79,10 +79,10 @@ de ce squelette.
 [(#REM) <!-- =================================== ZONE CORPS  ====================================== --> ]
 	<div id="centre" class="centre">
 
-		[(#REM) <!-- Définition du contexte de l'agenda --> ]
-		[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_definir_contexte{'listing_annuel', 1, 'annee'})]
+		[(#REM) <!-- Definition du contexte de l'agenda --> ]
+		[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_definir_contexte{'listing_annuel', 9, 'periode_abregee'})]
 
-		[(#REM) <!-- Recensement des évènements --> ]
+		[(#REM) <!-- Recensement des evenements --> ]
 		<BOUCLE_agenda(ARTICLES){id_rubrique=#RUBRIQUE_SPECIALISEE{agenda}}{par date_redac}>
 			[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_recenser_evenement{
 								[(#ID_ARTICLE)], 
@@ -91,7 +91,7 @@ de ce squelette.
 			)]
 		</BOUCLE_agenda>
 
-		[(#REM) <!-- Listing annuel des évènements --> ]
+		[(#REM) <!-- Listing annuel des evenements --> ]
 		<div class="agenda_annuel">
 			<div class="intitule">
 				<:sarkaspip:agenda:>&nbsp;-&nbsp;
@@ -106,6 +106,7 @@ de ce squelette.
 			<div class="bande-pagination">
 				[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_liste_paginer{
 									[(#ENV{annee})],
+									[(#ENV{mois})],
 									[(#ENV{categorie,-1})],
 									'&nbsp;|&nbsp;',
 									'evenement',
@@ -115,12 +116,15 @@ de ce squelette.
 
 			[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_liste_afficher{
 								[(#ENV{annee})],
+								[(#ENV{mois})],
 								[(#ENV{categorie,-1})],
 								'inverse'}
 			)]
 
 			[<p class="reponse_formulaire">
-				(#RUBRIQUE_SPECIALISEE{agenda}|agenda_liste_avertir{[(#ENV{annee})]})
+				(#RUBRIQUE_SPECIALISEE{agenda}|agenda_liste_avertir{
+								[(#ENV{annee})],
+								[(#ENV{mois})]})
 			</p>]
 		</div> <!-- Fin agenda_annuel -->
 	</div> <!-- Fin centre -->

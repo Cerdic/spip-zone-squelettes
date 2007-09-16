@@ -13,7 +13,7 @@ function agenda_definir_contexte($id_agenda=0, $type_agenda='listing_annuel', $d
 
 	if ($id_agenda == 0)
 		return $contexte;
-	
+
 	$contexte['type_agenda'] = $type_agenda;
 	$contexte['debut_saison'] = $debut_saison;
 	$contexte['type_saison'] = $type_saison;
@@ -30,7 +30,6 @@ function agenda_definir_contexte($id_agenda=0, $type_agenda='listing_annuel', $d
 		$contexte['annee_base'] = intval(affdate(date("Y-m-d H:i"), 'annee'));
 		$contexte['url_base'] = (strpos($url_page, '?') !== FALSE) ? $url_page.'&' : $url_page.'?';
 	}
-	
 	return;
 }
 
@@ -62,7 +61,7 @@ function agenda_recenser_evenement($id_agenda=0, $id=0, $date_redac=0, $titre=''
 		$mini_evt = array();
 		$type_agenda = $contexte_aff['type_agenda'];
 	}
-		
+
 	if ($date_redac != 0) {
 		$count_evt += 1;
 
@@ -100,19 +99,20 @@ function agenda_recenser_evenement($id_agenda=0, $id=0, $date_redac=0, $titre=''
 		$id_article = intval($id);
 		$query = "SELECT spip_mots.id_mot AS id_mot FROM spip_mots_articles, spip_mots 
 		WHERE spip_mots.type='squelette_agenda' AND spip_mots_articles.id_article=$id_article AND spip_mots.id_mot=spip_mots_articles.id_mot";
+
 		$result = spip_query($query);
 		$cat = NULL;
 		while ($row = spip_fetch_array($result))
 			$cat .= '|'.$row['id_mot'];
 		$liste_evt[$count_evt]['categorie'] = $cat;
-		
+
 		// Liste indexée par jour des événements
 		$jour_redac = affdate_base($date_redac, 'd-m-Y');
 		$mini_evt[$jour_redac][] = $count_evt;
 	}
-
 	return;
 }
+
 
 // ===================================================
 // Auteur: Smellup
@@ -143,7 +143,7 @@ function agenda_debug_evenement($id_agenda=0, $liste_choisie='liste_evt') {
 	}
 	else {
 		$evenements = agenda_recenser_evenement(-1);
-		
+
 		foreach ($evenements as $jour => $liste) {
 			echo '<br><b>JOUR: </b>'.$jour.' ('.count($liste).')<br>';
 			foreach ($liste as $num_evt)
@@ -168,7 +168,7 @@ function agenda_debug_contexte($id_agenda=0) {
 	echo '<b>Debut saison</b>: '.$contexte_aff['debut_saison'].'<br>';
 	echo '<b>Type affichage saison</b>: '.$contexte_aff['type_saison'].'<br>';
 	echo '<b>Mois en cours</b>: '.$contexte_aff['mois_base'].'<br>';
-	echo '<b>Année en cours</b>: '.$contexte_aff['annee_base'].'<br>';
+	echo '<b>AnnŽe en cours</b>: '.$contexte_aff['annee_base'].'<br>';
 	echo '<b>URL page de base</b>: '.$contexte_aff['url_base'].'<br>';
 }
 
@@ -182,7 +182,7 @@ function agenda_debug_contexte($id_agenda=0) {
 //                      filtre, tri, et format (via le contexte)
 // ===================================================
 //
-function agenda_liste_paginer($id_agenda=0, $annee_choisie=0, $filtre='-1', $separateur='&nbsp;|&nbsp;', $ancre=NULL, $tri='normal') {
+function agenda_liste_paginer($id_agenda=0, $annee_choisie=0, $mois_choisi=0, $filtre='-1', $separateur='&nbsp;|&nbsp;', $ancre=NULL, $tri='normal') {
 	static $count_page = 0;
 
 	if ($id_agenda == 0)
@@ -190,13 +190,21 @@ function agenda_liste_paginer($id_agenda=0, $annee_choisie=0, $filtre='-1', $sep
 
 	$evenements = agenda_recenser_evenement(0);
 	$count_evt = count($evenements);
-	
+
 	$pagination = NULL;
 	if ($count_evt == 0)
 		return $pagination;
-		
+
 	if ($ancre)
 		echo '<a style="display:none" name="pagination_'.$ancre.'" id="pagination_'.$ancre.'"></a>';
+		
+	// Determination de l'annee choisie si l'agenda est saisonnier	
+	$contexte_aff = agenda_definir_contexte(0);
+	$debut_saison = $contexte_aff['debut_saison'];
+	if (intval($debut_saison) != 1) {
+		$annee_choisie = (intval($mois_choisi) < intval($debut_saison)) ? $annee_choisie : strval(intval($annee_choisie)+1);
+	}
+
 
 	$annee_courante = 0;
 	$nouvelle_annee = FALSE;
@@ -209,6 +217,8 @@ function agenda_liste_paginer($id_agenda=0, $annee_choisie=0, $filtre='-1', $sep
 			(($filtre != '-1') && ($filtre != '0') && (strpos($evenements[$j]['categorie'],$filtre) !== FALSE))) {
 
 			$annee_redac = $evenements[$j]['saison'];
+			$annee_evt = $evenements[$j]['annee'];
+			$mois_evt = $evenements[$j]['mois'];
 			if ($annee_redac != $annee_courante)  {
 				$nouvelle_annee = TRUE;
 				$count_page += 1;
@@ -216,7 +226,7 @@ function agenda_liste_paginer($id_agenda=0, $annee_choisie=0, $filtre='-1', $sep
 			else {
 				$nouvelle_annee = FALSE;
 			}
-		
+
 			if ($nouvelle_annee) {
 				if ($annee_courante != 0) {
 					$pagination .= $separateur;
@@ -228,7 +238,8 @@ function agenda_liste_paginer($id_agenda=0, $annee_choisie=0, $filtre='-1', $sep
 					$arg_option = NULL;
 					if ($filtre != '-1') $arg_option = '&categorie='.$filtre;
 					if ($ancre) $arg_option .= '#pagination_'.$ancre;
-					$pagination .= '<a href="spip.php?page=agenda&annee='.$annee_redac.$arg_option.'">'.$evenements[$j]['lien_page'].'</a>';
+					if (intval($debut_saison) != 1) $annee_evt = (intval($mois_evt) < intval($debut_saison)) ? strval(intval($annee_evt)-1) : $annee_evt;
+					$pagination .= '<a href="spip.php?page=agenda&annee='.$annee_evt.'&mois='.$debut_saison.$arg_option.'">'.$evenements[$j]['lien_page'].'</a>';
 				}
 			$annee_courante = $annee_redac;
 			}
@@ -245,7 +256,7 @@ function agenda_liste_paginer($id_agenda=0, $annee_choisie=0, $filtre='-1', $sep
 //                      filtre et du tri
 // ===================================================
 //
-function agenda_liste_afficher($id_agenda=0, $annee_choisie=0, $filtre='-1', $tri='normal') {
+function agenda_liste_afficher($id_agenda=0, $annee_choisie=0, $mois_choisi=0, $filtre='-1', $tri='normal') {
 	static $count_evt_filtre = 0;
 
 	if ($id_agenda == 0)
@@ -254,15 +265,21 @@ function agenda_liste_afficher($id_agenda=0, $annee_choisie=0, $filtre='-1', $tr
 	$evenements = agenda_recenser_evenement(0);
 	$count_evt = count($evenements);
 	$count_page = agenda_liste_paginer(0);
-	
+
 	$liste = NULL;
 	if (($count_evt == 0) || ($count_page == 0))
 		return $liste;
+		
+	// Determination de l'annee choisie si l'agenda est saisonnier	
+	$contexte_aff = agenda_definir_contexte(0);
+	$debut_saison = $contexte_aff['debut_saison'];
+	if (intval($debut_saison) != 1) 
+		$annee_choisie = (intval($mois_choisi) < intval($debut_saison)) ? $annee_choisie : strval(intval($annee_choisie)+1);
 
 	$mois_courant = NULL;
 	$nouveau_mois = FALSE;
 	$count_evt_filtre = 0;
-		
+
 	for ($i=1;$i<=$count_evt;$i++) {
 		$j = ($tri == 'inverse') ? $count_evt - $i + 1 : $i;
 		if ($evenements[$j]['saison'] == $annee_choisie) {
@@ -271,7 +288,6 @@ function agenda_liste_afficher($id_agenda=0, $annee_choisie=0, $filtre='-1', $tr
 				(($filtre != '-1') && ($filtre != 0) && (strpos($evenements[$j]['categorie'],$filtre) !== FALSE))) {
 
 				$count_evt_filtre += 1;
-
 				$mois_redac = $evenements[$j]['nom_mois'];
 				if ($mois_redac != $mois_courant)  {
 					$nouveau_mois = TRUE;
@@ -279,7 +295,7 @@ function agenda_liste_afficher($id_agenda=0, $annee_choisie=0, $filtre='-1', $tr
 				else {
 					$nouveau_mois = FALSE;
 				}
-			
+
 				if ($nouveau_mois) {
 					if ($mois_courant) {
 						$liste .= '</ul></li></ul>';
@@ -292,6 +308,7 @@ function agenda_liste_afficher($id_agenda=0, $annee_choisie=0, $filtre='-1', $tr
 			}
 		}
 	}
+
 	if ($count_evt_filtre > 0)
 		$liste .= '</ul></li></ul>';
 
@@ -305,17 +322,20 @@ function agenda_liste_afficher($id_agenda=0, $annee_choisie=0, $filtre='-1', $tr
 //                      aucun événement. Critère filtre et saison
 // ===================================================
 //
-function agenda_liste_avertir($id_agenda, $annee_choisie) {
+function agenda_liste_avertir($id_agenda, $annee_choisie, $mois_choisi) {
 
 	$message = NULL;
-	
+
 	$contexte_aff = agenda_definir_contexte(0);
 	$debut_saison = $contexte_aff['debut_saison'];
 	$type_saison = $contexte_aff['type_saison'];		
 
+	if (intval($debut_saison) != 1) 
+		$annee_choisie = (intval($mois_choisi) < intval($debut_saison)) ? $annee_choisie : strval(intval($annee_choisie)+1);
+
 	$count_evt = count(agenda_recenser_evenement(0));
 	$count_evt_filtre = agenda_liste_afficher(0);
-	
+
 	if ($count_evt == 0)
 		$message = _T('sarkaspip:msg_0_evt_agenda');
 	else
@@ -329,11 +349,12 @@ function agenda_liste_avertir($id_agenda, $annee_choisie) {
 					$message = _T('sarkaspip:msg_0_evt_saison').'&nbsp;'.strval(intval($annee_choisie)-1).'-'.$annee_choisie;
 				else // $type_saison == 'periode_abregee'
 					$message = _T('sarkaspip:msg_0_evt_saison').'&nbsp;'.substr(strval(intval($annee_choisie)-1),2,2).'-'.substr($annee_choisie,2,2);
-	
+
 	return $message;
 }
 
 // ==================================================== AGENDA MINI ====================================================
+
 
 // ===================================================
 // Auteur: Smellup
@@ -344,6 +365,7 @@ function agenda_liste_avertir($id_agenda, $annee_choisie) {
 // ===================================================
 //
 function agenda_mini_paginer($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='&gt;&gt;') {
+
 	$nom_mois = array(1 => _T('sarkaspip:janvier'), 2 => _T('sarkaspip:fevrier'), 3 => _T('sarkaspip:mars'), 4 => _T('sarkaspip:avril'), 
 					5 => _T('sarkaspip:mai'), 6 => _T('sarkaspip:juin'), 7 => _T('sarkaspip:juillet'), 8 => _T('sarkaspip:aout'),
 					9 => _T('sarkaspip:septembre'), 10 => _T('sarkaspip:octobre'), 11 => _T('sarkaspip:novembre'), 12 => _T('sarkaspip:decembre'));
@@ -385,7 +407,6 @@ function agenda_mini_paginer($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='
 	return $pagination;
 }
 
-
 // ===================================================
 // Auteur: Smellup
 // Fonction : Insertion du mini-calendrier du mois choisi
@@ -395,6 +416,7 @@ function agenda_mini_paginer($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='
 // ===================================================
 //
 function agenda_mini_afficher($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui') {
+
 	$nom_jour = array(	0 => _T('sarkaspip:dimanche_abrege'), 1 => _T('sarkaspip:lundi_abrege'), 2 => _T('sarkaspip:mardi_abrege'), 3 => _T('sarkaspip:mercredi_abrege'), 
 						4 => _T('sarkaspip:jeudi_abrege'), 5 => _T('sarkaspip:vendredi_abrege'), 6 => _T('sarkaspip:samedi_abrege'));
 
@@ -438,6 +460,7 @@ function agenda_mini_afficher($id_agenda=0, $jour_debut=0, $affichage_hors_mois=
 		$cellule = '<td width="14%" valign="top" class="calendar_not_this_month">';
 		$cellule .= ($affichage_hors_mois == 'oui') ? strval(date('j', $date)) : '&nbsp;';
 		$cellule .= '</td>';
+
 		$cellules_mois_prec = $cellule.$cellules_mois_prec;
 	}
 	$tableau .= $cellules_mois_prec;
@@ -448,7 +471,7 @@ function agenda_mini_afficher($id_agenda=0, $jour_debut=0, $affichage_hors_mois=
 	while (date('m', $date) == $mois_choisi) {
 		if ((date('w', $date) == $jour_debut) && ($jour != 1))
 			$tableau .= '</tr><tr>';
-		
+
 		$cellule = '<td width="6%" valign="top" class="calendar_this_';
 		$cellule .= (date('d-m-Y', $date) == date('d-m-Y')) ? 'day">' : 'month">';
 		if (!isset($mini_evenements[date('d-m-Y', $date)])) {
@@ -466,22 +489,23 @@ function agenda_mini_afficher($id_agenda=0, $jour_debut=0, $affichage_hors_mois=
 		}
 		$cellule .= '</td>';
 		$tableau .= $cellule;
-		
+
 		$jour += 1;
 		$date = mktime(0,0,0,$mois_choisi, $jour, $annee_choisie);
 	}
+
 	// Cellules des jours visibles suivant le mois courant (toujours inclus strictement dans la dernière ligne)
 	while (date('w', $date) != $jour_debut) {
 		$cellule = '<td width="14%" valign="top" class="calendar_not_this_month">';
 		$cellule .= ($affichage_hors_mois == 'oui') ? strval(date('j', $date)) : '&nbsp;';
 		$cellule .= '</td>';
+
 		$tableau .= $cellule;
-		
 		$jour += 1;
 		$date = mktime(0,0,0,$mois_choisi, $jour, $annee_choisie);
 	}
 	$tableau .= '</tr>';
-	
+
 	// Fin du tableau
 	$tableau .= '</table>';
 
@@ -511,7 +535,7 @@ function agenda_mini_resumer($id_agenda=0, $critere='mois_complet', $taille=5) {
 
 	$evenements = agenda_recenser_evenement(0);
 	$count_evt = count($evenements);
-	
+
 	$tableau = NULL;
 
 	// Début du tableau
@@ -541,6 +565,7 @@ function agenda_mini_resumer($id_agenda=0, $critere='mois_complet', $taille=5) {
 		$liste_complete = ($annee > $annee_choisie) || (($annee == $annee_choisie) && ($mois > $mois_choisi)) || ($count_liste == $taille);
 		$i += 1;
 	}
+
 	if ($count_liste == 0)
 		if ($critere == 'mois_complet')
 			$cellule .= '<tr><td width="100%" align="center" valign="top">'._T('sarkaspip:agenda_mois_vide').'</td></tr>';
@@ -561,5 +586,4 @@ function agenda_mini_resumer($id_agenda=0, $critere='mois_complet', $taille=5) {
 
 	return $tableau;
 }
-
 ?>
