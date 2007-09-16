@@ -29,5 +29,7 @@
 // que l'on utilise (backend, formulaire, etc...).
 
 	$table_des_traitements['TITRE'][]= 'supprimer_numero(typo(%s))';
+	
+#	define('SWITCHER_DOSSIERS_SQUELETTES','dist');
 
 ?>
