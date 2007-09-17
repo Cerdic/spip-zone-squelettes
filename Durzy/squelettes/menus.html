@@ -1,0 +1,43 @@
+#CACHE{86400}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+
+<head>
+	<title>Menus de la semaine - [(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+	<INCLURE{fond=/inclusions/inc-head}{lang}> 
+</head>
+
+<!--affiche le document joint à l'article associé au mot clé "menus-restauration", 
+	quelque soit son extension 
+	Aucun texte n'est affiché, même s'il est saisi dans l'article.
+	Un seul document est affiché, le plus récent. 
+	Attention à ne pas attribuer ce mot clé à plusieurs articles-->
+
+<body onload="setHover()">
+<div id="page">
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=/inclusions/inc-entete}{lang}>
+
+	<div class="cadre" style=" ">
+		<div class="cadre-titre-article">  
+			<div class="titre-article">
+				Menu de la semaine <img src="#CHEMIN{images/menus.png}" width="30" height="20" align="middle" alt="" /> 
+			</div>  
+		</div> <!-- id="cadre-titre-article" --> 
+		<div class="espace"></div>	  
+
+		<BOUCLE_extract(ARTICLES) {titre_mot=menus-restauration}{par date}{inverse}{0,1}>
+			<BOUCLE_tableau(DOCUMENTS) {id_article=#ID_ARTICLE} {mode=document} {doublons}{par date}{inverse}{0,1}>
+				<?php require("#URL_DOCUMENT"); ?>
+			</BOUCLE_tableau>
+		</BOUCLE_extract>
+
+	</div>
+	<div class="espace"></div>
+	[(#REM) Pied de page ]
+	<INCLURE{fond=/inclusions/inc-footer}{lang}>
+</div>
+
+</body>
+</html>

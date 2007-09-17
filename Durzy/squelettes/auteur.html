@@ -1,0 +1,55 @@
+#CACHE{86400}
+<BOUCLE_auteur_principal(AUTEURS) {id_auteur}>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+
+<head>
+	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+	<INCLURE{fond=/inclusions/inc-head}{lang}> 
+</head>
+
+<body onload="setHover()">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=/inclusions/inc-entete}{lang}>
+ 
+
+	[(#REM) Affichage infos auteur ]
+	<div class="cadre-titre-article">  
+		<div class="titre-article"> 
+			[(#LOGO_AUTEUR||reduire_image{100,100})]
+			#NOM 
+		</div>
+		<div id="descriptif-article"> 
+			[(#BIO)] 
+		</div> 
+		<div align="right">
+			<small>
+				[<:voir_en_ligne:> : <a href="(#URL_SITE)">
+				[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a>]
+				&nbsp;
+			</small>
+		</div>
+	</div> <!-- fin du "cadre-titre-article" --> 
+
+	<div id="gauche">
+		<div class="espace"></div>
+		[(#REM) Articles de l'auteur ]
+		<INCLURE{fond=/inclusions/inc-articles-auteur}{id_auteur}{lang}>
+		<div class="espace"></div>
+	</div>
+
+	<div id="centre">
+		#FORMULAIRE_ECRIRE_AUTEUR
+	</div>
+ 
+	[(#REM) Pied de page ]
+	<INCLURE{fond=/inclusions/inc-footer}{lang}>
+
+</div><!-- fin page -->
+</body>
+</html>
+</BOUCLE_auteur_principal>

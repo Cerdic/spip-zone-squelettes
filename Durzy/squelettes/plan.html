@@ -1,0 +1,84 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+
+<head>
+	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+	<INCLURE{fond=/inclusions/inc-head}{lang}> 
+	
+</head>
+
+<body onload="setHover()">
+<div id="page">
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=/inclusions/inc-entete}{lang}>   
+
+	<!-- Plan du site -->
+	<div class="cadre">
+		<div class="cadre-titre-article">  
+			<div class="titre-article">
+				Le plan du site
+			</div>
+			<!-- Affichage du descriptif -->
+			<div id="descriptif-article">
+				Tout le site sur une page
+			</div>
+		</div> <!-- id="cadre-titre-article" --> 
+		<div class="espace"></div>
+
+		<div class="texte-article">
+			<div id="plan">
+
+				<BOUCLE_exclure_rub(RUBRIQUES){titre_mot=rubrique-masquée}{doublons rub}>
+				</BOUCLE_exclure_rub>
+
+				<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre} {doublons rub}>
+					<a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF)] ">
+						<img src="squelettes/images/puces/#CONFIG{durzy/puces_animees}on.png" border="0" alt="" />
+						&nbsp;<strong>#TITRE</strong>
+					</a>
+
+					<!-- Articles et sous-rubriques -->
+					<B_articles_racine>
+						<ul>
+							<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre} >
+								<li><a href="#URL_ARTICLE" title="[(#DESCRIPTIF)] ">#TITRE</a></li>
+							</BOUCLE_articles_racine>
+						</ul>
+					</B_articles_racine>
+
+					<div class="espace"></div>
+
+					<B_rubriques>
+						<ul>
+							<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre} {doublons rub}>
+								<li>
+									<a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF)] ">#TITRE</a>
+									<B_articles>
+										<ul>
+											<BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}{doublons}>
+												<li><a href="#URL_ARTICLE" title="[(#DESCRIPTIF)] ">#TITRE</a></li>
+											</BOUCLE_articles>
+										</ul>
+									</B_articles>
+
+									<BOUCLE_sous_rubriques(BOUCLE_rubriques)>
+									</BOUCLE_sous_rubriques>
+
+								</li>
+								<li style="list-style-type: none;">
+								<!--<div class="espace"></div>-->
+								</li>
+							</BOUCLE_rubriques>
+						</ul>
+					</B_rubriques>
+				</BOUCLE_secteurs>
+			</div>
+		</div>
+	</div>
+	[(#REM) Pied de page ]
+	<INCLURE{fond=/inclusions/inc-footer}{lang}>
+</div>
+</body>
+</html>

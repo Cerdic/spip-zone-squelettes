@@ -1,0 +1,93 @@
+#CACHE{86400}
+
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}{tout}>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+
+<head>
+	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+	<INCLURE{fond=/inclusions/inc-head}{lang}> 
+</head>
+
+<body onload="setHover()">
+<div id="page">
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=/inclusions/inc-entete}{lang}>   
+
+	<!-- Chemin de navigation -->
+	<div class="espace"></div>
+	<div class="cadre">
+		<div class="texte-cadre" style="margin-left:0px ">
+			<a href="#URL_SITE_SPIP/">
+				<img src="#CHEMIN{images/puce1.png}"  border="0" alt="" />Accueil
+			</a> 
+			<BOUCLE_chemin_rubriques(HIERARCHIE){id_rubrique}{tout}>
+				&nbsp;<img src="#CHEMIN{images/puce1.png}" width="10" height="10" alt="" />
+				<a href="#URL_RUBRIQUE">[(#TITRE)]</a> 
+			</BOUCLE_chemin_rubriques>
+		</div>
+	</div>
+
+	<!-- le contenu de la rubrique -->
+	<div class="espace"></div>
+	<div class="cadre" >
+		<div class="cadre-titre-article" style="width:100% ">
+			<div id="logotitrepage"> 
+				#LOGO_RUBRIQUE 
+			</div><!-- id="logotitrepage" -->
+			<div class="#EDIT{titre} titre-rubrique">
+				[(#TITRE)]
+			</div>
+				<!-- Le descriptif lié à la rubrique (s'il existe)  -->
+			<div id="#EDIT{descriptif} descriptif-rubrique">
+				[(#DESCRIPTIF)]
+			</div>
+		</div>
+		<span style="font-size:10px;">
+			<a href="#URL_PAGE{imprimer-rub,id_rubrique=#ID_RUBRIQUE}">Imprimer le plan <img src="#CHEMIN{images/imprimer.gif}" width="16" height="16" border="0" align="bottom" alt="" /></a>    
+		</span>
+		<!-- Le texte lié à la rubrique (s'il existe)  -->  
+		[<div id="#EDIT{texte} texte-rubrique">(#TEXTE)</div>]
+		<div class="espace"></div>
+	</div>
+
+               [(#REM) Documents joints a la rubrique plan d'accès ]
+	           <B_doc_joints>
+		         <div class="espace"> </div>
+		         <div id="cadre-telechargement">
+			       <img src="#CHEMIN{images/download.gif}" border="0" align="middle" alt="télécharger" /> 
+			       <strong>&nbsp;Fichier(s) à télécharger :</strong>
+			       <div class="espace"> </div>
+			   <BOUCLE_doc_joints(DOCUMENTS){id_rubrique}{par titre}{mode=document}{doublons}>
+			    <div id="cadre-doc-telechargement" >
+				[(#LOGO_DOCUMENT|left|#URL_DOCUMENT)]
+	            <div id="stat" style="padding-left:7em">
+				 <ul style="list-style:circle">
+				   <li><a href="#URL_DOCUMENT" title="Télécharger #TITRE">
+					 [<strong>(#TITRE)</strong>]</a></li>
+				   [<li>(#DESCRIPTIF)</li>]
+	               <li><img src="#CHEMIN{images/size.gif}" align="absmiddle" title="Taille du fichier" alt="" /> [(#TAILLE|taille_en_octets)]</li>
+                  [(#REM) Tester la présence du plugin DW2 pour afficher les statistiques ou pas ]
+                  [(#PLUGIN{DW2}|?{' ',''})<INCLURE {fond=inclusions/inc-stats-dw2} {id_document=#ID_DOCUMENT}>]
+				 </ul>	
+	            </div>
+				<div class="espace"> </div>
+			   </div> <!-- Fin de "cadre-telechargement"-->
+			  </BOUCLE_doc_joints>
+		       </div> <!-- Fin de "cadre-doc-telechargement"-->
+	          </B_doc_joints>
+	
+	
+	<div class="espace"> </div>
+	[(#REM) Pied de page ]
+	<INCLURE{fond=/inclusions/inc-footer}{lang}>
+</div>
+</body>
+</html>
+</BOUCLE_rubrique_principal>
+  [(#ID_RUBRIQUE|accesgroupes_rubrique_restreinte|?{' ',''})    
+    <INCLURE{fond=inclusions/inc_accesgroupes_login}>]
+
+<//B_rubrique_principal>
