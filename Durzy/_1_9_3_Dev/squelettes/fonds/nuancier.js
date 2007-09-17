@@ -20,6 +20,16 @@ var init_couleur_acces_direct_fond = "D6EACA";
 var init_couleur_acces_direct_titre = "51B169";
 var init_couleur_acces_direct_bordures = "999";
 
+//menu
+var init_couleur_menu = "82ADE2";
+var init_couleur_sousmenu = "90B5D3";
+var init_couleur_sousmenusurvole = "E5EFF8";
+
+//cadre inférieur
+var init_couleur_pied = "D6EACA";
+
+//cadre inférieur
+var init_couleur_footer = "000";
 
 //Fond du site
 var init_couleur_fond = "FFFFFF"; 
@@ -96,6 +106,38 @@ var couleur_fond_r = init_couleur_fond.substring(0,2);
 var couleur_fond_g = init_couleur_fond.substring(2,4);
 var couleur_fond_b = init_couleur_fond.substring(4,6);
 var couleur_fond_rgb = "" + couleur_fond_r + couleur_fond_g + couleur_fond_b;
+//pied de page
+var couleur_footer_r = init_couleur_footer.substring(0,2);
+var couleur_footer_g = init_couleur_footer.substring(2,4);
+var couleur_footer_b = init_couleur_footer.substring(4,6);
+var couleur_footer_rgb = "" + couleur_footer_r + couleur_footer_g + couleur_footer_b;
+
+//cadre inférieur
+var couleur_pied_r = init_couleur_pied.substring(0,2);
+var couleur_pied_g = init_couleur_pied.substring(2,4);
+var couleur_pied_b = init_couleur_pied.substring(4,6);
+var couleur_pied_rgb = "" + couleur_pied_r + couleur_pied_g + couleur_pied_b;
+
+//Menu
+var couleur_menu_r = init_couleur_menu.substring(0,2);
+var couleur_menu_g = init_couleur_menu.substring(2,4);
+var couleur_menu_b = init_couleur_menu.substring(4,6);
+var couleur_menu_rgb = "" + couleur_menu_r + couleur_menu_g + couleur_menu_b;
+
+//sousmenu
+var couleur_sousmenu_r = init_couleur_sousmenu.substring(0,2);
+var couleur_sousmenu_g = init_couleur_sousmenu.substring(2,4);
+var couleur_sousmenu_b = init_couleur_sousmenu.substring(4,6);
+var couleur_sousmenu_rgb = "" + couleur_sousmenu_r + couleur_sousmenu_g + couleur_sousmenu_b;
+
+//sous-menu-survolé
+var couleur_sousmenusurvole_r = init_couleur_sousmenusurvole.substring(0,2);
+var couleur_sousmenusurvole_g = init_couleur_sousmenusurvole.substring(2,4);
+var couleur_sousmenusurvole_b = init_couleur_sousmenusurvole.substring(4,6);
+var couleur_sousmenusurvole_rgb = "" + couleur_sousmenusurvole_r + couleur_sousmenusurvole_g + couleur_sousmenusurvole_b;
+
+
+
 
 
 //tableau des codes hexa
@@ -121,6 +163,10 @@ function chooserMode(MODE)
    else if(MODE == "couleur_last_messages_fond") { var RGB = couleur_last_messages_fond_rgb; }
    else if(MODE == "couleur_last_messages_titre") { var RGB = couleur_last_messages_titre_rgb; }
    else if(MODE == "couleur_fond") { var RGB = couleur_fond_rgb; }
+   else if(MODE == "couleur_pied") { var RGB = couleur_pied_rgb; }
+   else if(MODE == "couleur_menu") { var RGB = couleur_menu_rgb; }
+   else if(MODE == "couleur_sousmenu") { var RGB = couleur_sousmenu_rgb; }
+   else if(MODE == "couleur_sousmenusurvole") { var RGB = couleur_sousmenusurvole_rgb; }
    // Extraction des valeurs R, G et B
    var RR = RGB.substring(0,2);
    var GG = RGB.substring(2,4);
@@ -292,7 +338,65 @@ function colorsOne(RGorB,XX)
 	  reColorAndGray(couleur_acces_direct_bordures_r,couleur_acces_direct_bordures_g,couleur_acces_direct_bordures_b);
    }
 
+   //couleur_pied de page
+   else if(window.document.pickerform.chooser[13].checked == true)
+   {
+      if(RGorB == "R") { couleur_footer_r = XX; }
+      else if(RGorB == "G") { couleur_footer_g = XX; }
+      else if(RGorB == "B") { couleur_footer_b = XX; }
+      couleur_footer_rgb = "" + couleur_footer_r + couleur_footer_g + couleur_footer_b;
+      window.document.pickerform.couleur_footer.value = couleur_footer_rgb;
+      window.document.pickerform.couleur_footer_view.style.backgroundColor = "#"+couleur_footer_rgb;
+	  reColorAndGray(couleur_footer_r,couleur_footer_g,couleur_footer_b);
+   }
    
+   //couleur_cadre inférieur
+   else if(window.document.pickerform.chooser[14].checked == true)
+   {
+      if(RGorB == "R") { couleur_pied_r = XX; }
+      else if(RGorB == "G") { couleur_pied_g = XX; }
+      else if(RGorB == "B") { couleur_pied_b = XX; }
+      couleur_pied_rgb = "" + couleur_pied_r + couleur_pied_g + couleur_pied_b;
+      window.document.pickerform.couleur_pied.value = couleur_pied_rgb;
+      window.document.pickerform.couleur_pied_view.style.backgroundColor = "#"+couleur_pied_rgb;
+	  reColorAndGray(couleur_pied_r,couleur_pied_g,couleur_pied_b);
+   }   
+   
+   //couleur_menu
+   else if(window.document.pickerform.chooser[15].checked == true)
+   {
+      if(RGorB == "R") { couleur_menu_r = XX; }
+      else if(RGorB == "G") { couleur_menu_g = XX; }
+      else if(RGorB == "B") { couleur_menu_b = XX; }
+      couleur_menu_rgb = "" + couleur_menu_r + couleur_menu_g + couleur_menu_b;
+      window.document.pickerform.couleur_menu.value = couleur_menu_rgb;
+      window.document.pickerform.couleur_menu_view.style.backgroundColor = "#"+couleur_menu_rgb;
+	  reColorAndGray(couleur_menu_r,couleur_menu_g,couleur_menu_b);
+   }      
+   
+   //couleur_sousmenu
+   else if(window.document.pickerform.chooser[16].checked == true)
+   {
+      if(RGorB == "R") { couleur_sousmenu_r = XX; }
+      else if(RGorB == "G") { couleur_sousmenu_g = XX; }
+      else if(RGorB == "B") { couleur_sousmenu_b = XX; }
+      couleur_sousmenu_rgb = "" + couleur_sousmenu_r + couleur_sousmenu_g + couleur_sousmenu_b;
+      window.document.pickerform.couleur_sousmenu.value = couleur_sousmenu_rgb;
+      window.document.pickerform.couleur_sousmenu_view.style.backgroundColor = "#"+couleur_sousmenu_rgb;
+	  reColorAndGray(couleur_sousmenu_r,couleur_sousmenu_g,couleur_sousmenu_b);
+   }  
+   
+   //couleur_sousmenusurvole
+   else if(window.document.pickerform.chooser[15].checked == true)
+   {
+      if(RGorB == "R") { couleur_sousmenusurvole_r = XX; }
+      else if(RGorB == "G") { couleur_sousmenusurvole_g = XX; }
+      else if(RGorB == "B") { couleur_sousmenusurvole_b = XX; }
+      couleur_sousmenusurvole_rgb = "" + couleur_sousmenusurvole_r + couleur_sousmenusurvole_g + couleur_sousmenusurvole_b;
+      window.document.pickerform.couleur_sousmenusurvole.value = couleur_sousmenusurvole_rgb;
+      window.document.pickerform.couleur_sousmenusurvole_view.style.backgroundColor = "#"+couleur_sousmenusurvole_rgb;
+	  reColorAndGray(couleur_sousmenusurvole_r,couleur_sousmenusurvole_g,couleur_sousmenusurvole_b);
+   }     
 }
 
 // Sélection d'une couleurs par clic dans le tableau du nuancier
@@ -458,40 +562,65 @@ function colorsAll(RGB)
 	  reColorAndGray(couleur_acces_direct_bordures_r,couleur_acces_direct_bordures_g,couleur_acces_direct_bordures_b);
    }
 
-   //couleur_last_messages_fond
-	else if(window.document.pickerform.chooser[13].checked == true)
+   
+   //couleur_pied de page
+   else if(window.document.pickerform.chooser[13].checked == true)
    {
-      couleur_last_messages_fond_r = RR; 
-      couleur_last_messages_fond_g = GG; 
-      couleur_last_messages_fond_b = BB;
-      couleur_last_messages_fond_rgb = "" + couleur_last_messages_fond_r + couleur_last_messages_fond_g + couleur_last_messages_fond_b;
-      window.document.pickerform.couleur_last_messages_fond.value = couleur_last_messages_fond_rgb;
-      window.document.pickerform.couleur_last_messages_fond_view.style.backgroundColor = "#"+couleur_last_messages_fond_rgb;
-	  reColorAndGray(couleur_last_messages_fond_r,couleur_last_messages_fond_g,couleur_last_messages_fond_b);
+      couleur_footer_r = RR; 
+      couleur_footer_g = GG; 
+      couleur_footer_b = BB;
+      couleur_footer_rgb = "" + couleur_footer_r + couleur_footer_g + couleur_footer_b;
+      window.document.pickerform.couleur_footer.value = couleur_footer_rgb;
+      window.document.pickerform.couleur_footer_view.style.backgroundColor = "#"+couleur_footer_rgb;
+	  reColorAndGray(couleur_footer_r,couleur_footer_g,couleur_footer_b);
    }
 
-   //couleur_last_messages_titre
+   //couleur_cadre-inférieur
    else if(window.document.pickerform.chooser[14].checked == true)
    {
-      couleur_last_messages_titre_r = RR; 
-      couleur_last_messages_titre_g = GG; 
-      couleur_last_messages_titre_b = BB;
-      couleur_last_messages_titre_rgb = "" + couleur_last_messages_titre_r + couleur_last_messages_titre_g + couleur_last_messages_titre_b;
-      window.document.pickerform.couleur_last_messages_titre.value = couleur_last_messages_titre_rgb;
-      window.document.pickerform.couleur_last_messages_titre_view.style.backgroundColor = "#"+couleur_last_messages_titre_rgb;
-	  reColorAndGray(couleur_last_messages_titre_r,couleur_last_messages_titre_g,couleur_last_messages_titre_b);
+      couleur_pied_r = RR; 
+      couleur_pied_g = GG; 
+      couleur_pied_b = BB;
+      couleur_pied_rgb = "" + couleur_pied_r + couleur_pied_g + couleur_pied_b;
+      window.document.pickerform.couleur_pied.value = couleur_pied_rgb;
+      window.document.pickerform.couleur_pied_view.style.backgroundColor = "#"+couleur_pied_rgb;
+	  reColorAndGray(couleur_pied_r,couleur_pied_g,couleur_pied_b);
    }
-
-   //couleur_last_messages_bordures
+   
+ 	//menu
    else if(window.document.pickerform.chooser[15].checked == true)
    {
-      couleur_last_messages_bordures_r = RR; 
-      couleur_last_messages_bordures_g = GG; 
-      couleur_last_messages_bordures_b = BB;
-      couleur_last_messages_bordures_rgb = "" + couleur_last_messages_bordures_r + couleur_last_messages_bordures_g + couleur_last_messages_bordures_b;
-      window.document.pickerform.couleur_last_messages_bordures.value = couleur_last_messages_bordures_rgb;
-      window.document.pickerform.couleur_last_messages_bordures_view.style.backgroundColor = "#"+couleur_last_messages_bordures_rgb;
-	  reColorAndGray(couleur_last_messages_bordures_r,couleur_last_messages_bordures_g,couleur_last_messages_bordures_b);
+      couleur_menu_r = RR; 
+      couleur_menu_g = GG; 
+      couleur_menu_b = BB;
+      couleur_menu_rgb = "" + couleur_menu_r + couleur_menu_g + couleur_menu_b;
+      window.document.pickerform.couleur_menu.value = couleur_menu_rgb;
+      window.document.pickerform.couleur_menu_view.style.backgroundColor = "#"+couleur_menu_rgb;
+	  reColorAndGray(couleur_menu_r,couleur_menu_g,couleur_menu_b);
+   }
+
+ 	//Sous menu
+   else if(window.document.pickerform.chooser[16].checked == true)
+   {
+      couleur_sousmenu_r = RR; 
+      couleur_sousmenu_g = GG; 
+      couleur_sousmenu_b = BB;
+      couleur_sousmenu_rgb = "" + couleur_sousmenu_r + couleur_sousmenu_g + couleur_sousmenu_b;
+      window.document.pickerform.couleur_sousmenu.value = couleur_sousmenu_rgb;
+      window.document.pickerform.couleur_sousmenu_view.style.backgroundColor = "#"+couleur_sousmenu_rgb;
+	  reColorAndGray(couleur_sousmenu_r,couleur_sousmenu_g,couleur_sousmenu_b);
+   }
+
+ 	//Sous menu survolé
+   else if(window.document.pickerform.chooser[17].checked == true)
+   {
+      couleur_sousmenusurvole_r = RR; 
+      couleur_sousmenusurvole_g = GG; 
+      couleur_sousmenusurvole_b = BB;
+      couleur_sousmenusurvole_rgb = "" + couleur_sousmenusurvole_r + couleur_sousmenusurvole_g + couleur_sousmenusurvole_b;
+      window.document.pickerform.couleur_sousmenusurvole.value = couleur_sousmenusurvole_rgb;
+      window.document.pickerform.couleur_sousmenusurvole_view.style.backgroundColor = "#"+couleur_sousmenusurvole_rgb;
+	  reColorAndGray(couleur_sousmenusurvole_r,couleur_sousmenusurvole_g,couleur_sousmenusurvole_b);
    }
 }
 
