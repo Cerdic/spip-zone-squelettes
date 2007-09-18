@@ -1,10 +1,3 @@
-[(#REM) descriptif=
-<h4>Configuration du squelette Durzy</h4>
-Pour configurer l'apparence du squelette<br />
-<br /><a href="http://www.lyceedurzy.com/spip.php?article234" class="spip_out">Documentation provisoire</a>
-]
-[(#REM) titre=Configurez le squelette Durzy]
-
 <fieldset><legend>Adresse de contact</legend>
 L'adresse mail pour être contacté via la barre d'outil
     <input type="text" name="mail" value="#ENV{mail, votre.mail@spip.fr}" size="30">
@@ -22,25 +15,23 @@ L'adresse mail pour être contacté via la barre d'outil
 <fieldset><legend>Affichage sur la page sommaire</legend>
  <input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_aucun}|?{checked})] value="sommaire_aucun">Rien<br />
  <input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_last}|?{checked})] value="sommaire_last">Le dernier article publié<br />
- <input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_article}|?{checked})] value="sommaire_article">Un article au choix:<br />
-<select name="article_sommaire">
-  <option value="">Aucun</option>
-  <BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
-     <option value="">&nbsp;&nbsp;<strong>rubrique : #TITRE</strong></option>
-     <BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
-       <option value="#ID_ARTICLE" [(#CONFIG{durzy/article_sommaire}|=={#ID_ARTICLE}|?{selected="selected",''})]>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;#ID_ARTICLE . #TITRE</option>
-     </BOUCLE_articles_racine>
-     <BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
-        <option value="" style="font-weight: bold;">&nbsp;&nbsp;rubrique #ID_RUBRIQUE : #TITRE</option>
-           <BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
-             <option value="#ID_ARTICLE">&nbsp;&nbsp;&nbsp;&nbsp;#ID_ARTICLE . #TITRE</option>
-           </BOUCLE_articles>
-           <BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
-     </BOUCLE_rubriques>
-   </BOUCLE_secteurs>
-</select>
-<br /> 
+ <input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_article}|?{checked})] value="sommaire_article">Un article au choix (actuellement sélectionné, l'article n° #CONFIG{durzy/article_sommaire}) <br />
+
+<dl id="myAccordion">
+  <BOUCLE_secteurs(RUBRIQUES) {tout} {par titre}>
+   <dt><strong>rubrique : #TITRE</strong></dt>
+   <dd>
+     <BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
+        <li>
+         <input type="radio" name="article_sommaire" 
+         [(#CONFIG{durzy/article_sommaire}|=={#ID_ARTICLE}|?{checked})] value="#ID_ARTICLE">
+         #ID_ARTICLE . #TITRE
+         </li>
+     </BOUCLE_articles>
+   </dd>
+  </BOUCLE_secteurs>	
+</dl>
+
  <input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_image}|?{checked})] value="sommaire_image">Une image au choix<br />
 <select name="image_sommaire">
  <BOUCLE_images_site(DOCUMENTS) {tout} {mode=image}>
