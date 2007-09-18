@@ -1,0 +1,75 @@
+<div id="calendar">
+	<div class="last-articles">
+		<b class="top">
+			<b class="b1"></b>
+			<b class="b2"></b>
+			<b class="b3"></b>
+			<b class="b4"></b>
+		</b>
+		<div class="boxcontent">
+			<div class="liste-articles">
+				<div id="entete-calendar">
+					<div class="cadre-titre" >
+						<img src="#CHEMIN{dist/images/agenda-24.gif}" width="24" height="24" align="middle" alt="" />
+						<a href="#URL_PAGE{agenda}" title="Les événements de l'établissement" > Agenda</a>
+					</div>
+				</div>
+
+				<table width="100%" border="0" cellpadding="1" cellspacing="0" style="font-family:Verdana, Arial, Helvetica, sans-serif; font-size:.6em; text-align: center;">
+					<caption class="entete-cadre">[
+						<a
+							href="(#ENV{self}|parametre_url{#ENV{var_date},[(#ENV{date}|Agenda_dateplus{-27*24*3600,'Y-m'})]})"
+							title="[(#ENV{date}|Agenda_dateplus{-27*24*3600,'Y-m'}|affdate_mois_annee)]">&#171;
+						</a>]
+						[(#ENV{date}|affdate_mois_annee)]
+						[
+						<a
+							href="(#ENV{self}|parametre_url{#ENV{var_date},[(#ENV{date}|Agenda_dateplus{33*24*3600,'Y-m'})]})"
+							title="[(#ENV{date}|Agenda_dateplus{33*24*3600,'Y-m'}|affdate_mois_annee)]">&#187;
+						</a>]
+					</caption>
+
+					<thead>
+						<tr>
+							<th scope="col"><abbr title="lundi">lun</abbr></th>
+							<th scope="col"><abbr title="mardi">mar</abbr></th>
+							<th scope="col"><abbr title="mercredi">mer</abbr></th>
+							<th scope="col"><abbr title="jeudi">jeu</abbr></th>
+							<th scope="col"><abbr title="vendredi">ven</abbr></th>
+							<th scope="col"><abbr title="samedi">sam</abbr></th>
+							<th scope="col"><abbr title="dimanche">dim</abbr></th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<BOUCLE_calendrier(EVENEMENTS){agenda date_debut, mois, (#ENV{date}|annee), (#ENV{date}|mois)}>
+							[(#DATE_DEBUT|Agenda_memo_full{#DATE_FIN,[(#TITRE|addslashes)],#DESCRIPTIF,#LIEU,#URL_ARTICLE})]
+						</BOUCLE_calendrier>
+						[(#ENV{date}|agenda_mini)]
+					</tbody>
+				</table>
+				
+			</div>
+			<div class="espace"></div>
+			<div class="cadre">
+				<B_agenda>
+					<BOUCLE_agenda(EVENEMENTS){age<0}{0,1}{par date}{statut=publie}>
+						<table>
+							<tr>
+								<td>[(#DATE_DEBUT|jour)]/[(#DATE_DEBUT|mois)]</td>
+								<td><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></td>
+							</tr>
+						</table>
+					</BOUCLE_agenda>
+				</B_agenda>
+			</div>
+			<div class="espace"></div>
+		</div>
+		<b class="bottom">
+			<b class="b4b"></b>
+			<b class="b3b"></b>
+			<b class="b2b"></b>
+			<b class="b1b"></b>
+		</b>
+	</div>
+</div>

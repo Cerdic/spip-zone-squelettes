@@ -1,0 +1,60 @@
+<div class="cadre" style="background-color:#82ADE2">
+
+<BOUCLE_exclure_rub(RUBRIQUES){titre_mot=rubrique-masquée}>
+ <BOUCLE_extract(articles) {id_rubrique} {doublons}>
+  <!-- extraire tous les articles des rubriques masquées -->
+ </BOUCLE_extract>
+</BOUCLE_exclure_rub>
+
+<B_topten>
+ <img src="#CHEMIN{images/article-24.gif}" alt="" width="24" height="24" align="left" />
+ <div id="stat" style="padding-left:3em">
+  <strong>Top10 des articles </strong>
+  <div id="espace"></div>
+  Cliquez sur la flèche <img src="#CHEMIN{images/deplierhaut.gif}" title="non, pas celle là, celle devant le nom de l'article"/> devant l'article pour plus d'informations
+   <div id="espace"></div> &nbsp;
+ </div>
+					
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" style="text-align:left">
+<BOUCLE_topten(ARTICLES){tous}{!par visites}{pagination 10} {doublons}>
+    <tr bgcolor="[(#COMPTEUR_BOUCLE|alterner{'#FFFFEE','#E5EFF8'})]"  >
+      <td width="3%">
+       #BOUTON_BLOCK
+      </td>
+	  <td  >
+	   <a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
+        #TITRE
+	   </a>
+	  </td>
+	  <td width="20%" align="right">
+	   [(#VISITES|>{0}|?{#VISITES ,''})[(#VISITES|=={1}|?{visite&nbsp;,visites})]]  
+	  </td>
+	  </td>
+	</tr>
+	<td colspan="5" bgcolor="[(#COMPTEUR_BOUCLE|alterner{'#FFFFEE','#E5EFF8'})]"> 
+	#DEBUT_BLOCK
+	[(#LOGO_ARTICLE|left||image_reduire{120,0})]
+	<div id="stat">
+	 <ul style="list-style:circle">
+	 [<li>(#DESCRIPTIF)</li>]
+	 <li>Publié le  [(#DATE|affdate{'d/m/y'})]</li>
+	 <li>Popularité de
+	 [(#POPULARITE_ABSOLUE|>{0}|?{#POPULARITE_ABSOLUE ,''})]
+	 </li>
+	 <li>Dans la rubrique
+	<BOUCLE_rub(RUBRIQUES) {id_rubrique}>
+	 <a href="#URL_RUBRIQUE"><strong>#TITRE</strong></a></li>
+	</BOUCLE_rub>
+	</ul>
+	</div>
+	#FIN_BLOCK
+   </td>
+ </tr>	
+</BOUCLE_topten>
+  </table>
+</B_topten>
+
+
+</div>
+
+

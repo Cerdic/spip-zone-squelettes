@@ -1,0 +1,65 @@
+[(#PARAMETRES_FORUM|?{'',''}) Cette balise (invisible) provoque le recalcul du forum la premiere fois qu'un message est poste (cf. inc/invalideur). ]
+
+[(#REM) Nombre total de messages ]
+<span style="font-size:12px;">
+<BOUCLE_decompte(FORUMS) {id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?} {plat}></BOUCLE_decompte>
+ [((#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
+ [(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>})])]
+<//B_decompte>
+
+[(#REM) Messages du forum ]
+<B_forums>
+ <div class="espace"> </div>
+ </span>
+[(#REM) Afficher le message ]
+<BOUCLE_forums(FORUMS) {id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?} {par date} {inverse}>
+   <div class="espace"></div>
+	 <div class="cadre">
+		<div class="cadre-titre-article">
+		  <a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM">
+		  <strong class="#EDIT{titre} titre">#TITRE</strong></a>		  
+		  - Posté [ <:par_auteur:> (#NOM|couper{80})] 
+		  le [(#DATE|affdate)][&nbsp;à (#DATE|heures)][:(#DATE|minutes)]	
+		</div>
+	    #BOUTON_BLOCK
+        #DEBUT_BLOCK 
+		[<div class="#EDIT{texte} texte">(#TEXTE|lignes_longues)</div>]
+		[<p class="forum-lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">
+		[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+		<div style="text-align:right;">
+		 [<p class="forum-repondre-message">
+		 <a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_message:>&nbsp;</a></p>]
+	    </div>
+	</div>
+    
+	<B_forums_fils>
+     <div style= "margin-left:1.5em;">    
+	   <BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
+	     <div class="cadre">
+   	      <div class="cadre-titre-article">
+				<img src="#CHEMIN{images/reponse-forum.png}" border="0" align="middle" alt="" />
+          		<a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM">
+				[<strong class="#EDIT{titre} titre">(#TITRE)</strong>]</a>
+		  		- Posté [ <:par_auteur:> (#NOM|couper{80})]
+		  		le [(#DATE|affdate)][&nbsp;à (#DATE|heures)][:(#DATE|minutes)]
+	    	  </div>
+	    	  [<div class="#EDIT{texte} texte">(#TEXTE|lignes_longues)</div>]
+		      [<p class="forum-lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">
+		      [(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+		      <div style="text-align:right;">
+		       [<p class="forum-repondre-message">
+		       <a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_message:>&nbsp;</a></p>] 
+	          </div>   
+            </div>
+	        [(#REM) afficher toutes les réponses avec une boucle récurente ]
+			<BOUCLE_Forums_Boucle(boucle_forums_fils)>
+	        </BOUCLE_Forums_Boucle> 
+	</BOUCLE_forums_fils>		 
+	  </div>
+	</B_forums_fils>
+		#FIN_BLOCK  
+</BOUCLE_forums>
+
+</B_forums>
+
+

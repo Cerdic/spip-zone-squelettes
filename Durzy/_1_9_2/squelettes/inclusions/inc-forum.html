@@ -1,0 +1,144 @@
+<head> 
+<style>
+.forum-total ul, .forum-total li{
+margin: 0;
+padding: 0;
+list-style-type: none;
+}
+
+.forum-chapo .forum-titre, .forum-chapo .forum-titre a { display: block; margin: 0; padding: 0; font-weight: bold; text-decoration: none; color: #333; }
+
+.online{color:#000000; margin:0; padding:0; padding-top:10px; font-size:12px; font-weight:bold; }
+.formusite{float:left; color:#000000; margin:0 auto; padding:0; font-size:12px; width:100%}
+.forum-lien {padding-left:10px;}
+.forum-repondre-message { margin: 0; padding: 1px 0; text-align: right; }
+.ico{background-color:#82ADE2; display:block; cursor:pointer; float:left; font-size:2em;  width:20px; line-height:14px; padding-bottom:4px; margin:3px 5px 2px 2px; text-align:center; border:1px solid #e0e0e0;}
+.icomoins{background-color:#E5EFF8; display:block; cursor:pointer; float:left; font-size:2em;  width:20px; line-height:14px; padding-bottom:4px; margin:3px 5px 2px 2px; text-align:center; border:1px solid #e0e0e0;}
+
+.visible{display:block;}
+.invisible{display:none;}
+
+</style>
+
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function change(id, newClass, Normalclass) {
+if(document.getElementById){
+//alert("change"+id)
+var identity=document.getElementById(id);
+if (identity.className==newClass){
+identity.className=Normalclass;
+}
+else{identity.className=newClass;}
+}
+}
+function moinsplus(id, newClass, Normalclass) {
+if(document.getElementById){
+//alert("change"+id)
+var identity=document.getElementById(id);
+if (identity.className==newClass){
+identity.className=Normalclass;
+identity.innerHTML="+";
+}
+else{identity.className=newClass; identity.innerHTML="-";}
+}
+}
+
+/*MONTRE TOUS LES MESSAGES*/
+function montre(){
+if(document.getElementById){
+var ar = window.document.getElementById("forum-total").getElementsByTagName("div");	
+	for (var i=1; i<ar.length; i++){	
+change('invisible'+[i],'visible','invisible');    
+		}
+	}
+}
+ 
+//-->
+</script>
+<noscript><style>.invisible{display:block;}</style></noscript>
+</head>
+
+[(#PARAMETRES_FORUM|?{'',''}) Cette balise (invisible) provoque le recalcul du forum la premiere fois qu'un message est poste (cf. inc/invalideur). ]
+
+<!-- Forums -->
+<B_forums>
+  <div class="espace"> </div>
+  <span style="font-size:12px;">
+  <a href="##ID_FORUM" onclick="montre()">Voir ou cacher tous les messages</a>
+  </span>
+  <ul class="forum-total" id="forum-total">
+<BOUCLE_forums(FORUMS){id_article}{par date}{inverse}>
+ <div class="espace"> </div>
+ <li>
+ <div class="cadre">
+  <div class="cadre-titre-article">
+    <div class="forum-chapo"><a name="forum#ID_FORUM"></a>
+   <a href="##ID_FORUM" onclick="change('invisible#COMPTEUR_BOUCLE', 'visible', 'invisible'); moinsplus('ico#ID_FORUM', 'icomoins', 'ico');">
+    <span id="ico#ID_FORUM" class="ico"> 
+	 +
+	</span>
+    <strong class="#EDIT{titre} titre">#TITRE</strong></a> 
+   </a> 
+   <a href="#" style="float:right;">
+   <img src="#CHEMIN{images/up.gif}" border="0" align="middle" alt="Remonter"  title="Remonter">
+   </a>
+   <div style="clear:both;"></div>
+   
+    <span style="float:right">
+	  <BOUCLE_compte_reponses(FORUMS){id_thread}{plat}{id_parent!=0}></BOUCLE_compte_reponses>
+	  [(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})[(#TOTAL_BOUCLE|=={1}|?{&nbsp;réponse,&nbsp;réponses})]]
+	  <//B_compte_reponses>
+	</span>
+    <span style="margin-left:1em;">
+	  [(#DATE|nom_jour)] [(#DATE|affdate)][(#DATE|affdate{" à H"})H][(#DATE|affdate{"i"})][, <:par_auteur:> 
+	  <a href="mailto:[(#EMAIL|entites_html)]">(#NOM)</a>]
+    </span>
+   </div>
+  </div>
+  <div id="invisible#COMPTEUR_BOUCLE"  class="invisible forum-fil" style="width:100%; ">
+    [<div class="#EDIT{texte} texte" style="padding-left:10px; margin-top:5px">(#TEXTE|lignes_longues)</div>]
+    [<p class="forum-lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">
+    [(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+    <div style="text-align:right;">
+	 [<p class="forum-repondre-message">
+	 <a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_message:>&nbsp;</a></p>]
+    </div>
+	
+   <B_forums_fils>
+	<ul style="margin-left:5px">
+   <BOUCLE_forums_fils(FORUMS){id_parent}{par date}> 
+	<li>
+	  <div class="espace"> </div>
+	  <div class="cadre">
+   	   <div class="cadre-titre-article">
+		<img src="#CHEMIN{images/reponse-forum.png}" border="0" align="middle" alt="" />
+	    <a name="forum#ID_FORUM">
+		<strong class="#EDIT{titre} titre">#TITRE</strong></a>
+        <a href="#" style="float:right;">
+         <img src="#CHEMIN{images/up.gif}" border="0" align="middle" alt="Remonter"  title="Remonter">
+        </a>
+		<div style="clear:both;"></div>
+		[(#DATE|nom_jour)] [(#DATE|affdate)][(#DATE|affdate{" à H"})H][(#DATE|affdate{"i"})][, <:par_auteur:> 
+	    <a href="mailto:[(#EMAIL|entites_html)]">(#NOM)</a>] 
+	   </div>
+        [<div class="#EDIT{texte} texte" style="padding-left:10px; margin-top:5px">(#TEXTE|lignes_longues)</div>]
+		[<p class="forum-lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">
+        [(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+        <div style="text-align:right;">
+	     [<p class="forum-repondre-message">
+	     <a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_message:>&nbsp;</a></p>]
+        </div>
+	  </div>
+   <BOUCLE_Forums_Boucle(boucle_forums_fils)></BOUCLE_Forums_Boucle>
+	</li>
+   </BOUCLE_forums_fils>
+	 </ul>
+   </B_forums_fils>
+  </div>
+ </li>
+</BOUCLE_forums>
+ </ul>
+</B_forums>
+
+

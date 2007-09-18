@@ -1,0 +1,91 @@
+#CACHE{7200}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+
+<head>
+	<BOUCLE_article(ARTICLES) {id_article}>
+	<title>[(#NOM_SITE_SPIP|textebrut)] - [Version imprimable de l'article "(#TITRE|textebrut)"]</title>
+	</BOUCLE_article>
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+	<INCLURE{fond=/inclusions/inc-head}{lang}> 
+</head>
+
+<body style="background:#FFFFFF">
+<div align="center">
+	<table border="0" width="550" cellspacing="0" cellpadding="0">
+		<tr>
+			<td width="200">
+				<div align="left" style="font-size:10px ">
+					<a href="javascript:history.go(-1)" name="top"><img src="#CHEMIN{images/retour.gif}" width="17" height="11" border="0" alt="" align="bottom"/>&nbsp;Retour</a>   
+				</div>
+			</td>
+			<td width="200">
+				<div align="right" style="font-size:10px ">
+					<a href="javascript:window.print()">Imprimer la page 
+						<img src="#CHEMIN{images/imprimer.gif}" width="16" height="16" border="0" alt="" align="middle"/>
+					</a>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td width="400" height="491" align="center" valign="top" colspan="2">  
+				<div class="texte-article" >
+					<B_principale>
+						<BOUCLE_principale(ARTICLES) {id_article}>
+							<!--affichage du logo et titre du site -->
+							[(#LOGO_SITE||image_reduire{120,0})]
+							[<h5 align="center">(#NOM_SITE_SPIP)</h5>]
+							<!-- affichage du logo de l'article -->
+							[(#LOGO_ARTICLE_RUBRIQUE|right||image_reduire{120,0})]
+							<!--affichage du (sur et sous) titre de l'article -->
+							[ (#SURTITRE) ]
+							[<h3 align="center">(#TITRE)</h3>]
+							[<h5 align="center">(#SOUSTITRE)</h5><br/>]
+							[<h5 align="center">(#DESCRIPTIF)</h5><br/>]
+							<!-- Auteur(s), date, version imprimable -->
+							<div align="right">
+								<span style="font-size:10px;">
+									[Article mis en ligne le (#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]
+								</span>
+							</div>
+							<!-- début du contenu -->
+							<!-- chapeau, texte, post-scriptum de l'article -->
+							<div align="left">
+							 <span style="font-size:10px;">
+							 [ (#CHAPO)<br/> ]
+							 [ <br/>(#TEXTE*|propre) ]
+							 [ <hr size="1" noshade="noshade"/> <:voir_en_ligne:> : <a href="#URL_SITE">(#NOM_SITE)</a> <hr size="1" noshade="noshade"/> ]
+							 [ <h4>Post-scriptum</h4>(#PS)]
+							 <!-- Notes de bas de page -->
+							 [<h4>Notes de bas de page</h4>(#NOTES)]
+							 <!-- fin du contenu -->
+							 </span>
+							</div>
+						</BOUCLE_principale>
+					</B_principale>
+					<h4><center>Il n'y a pas d'article à cette adresse</center></h4>
+					<//B_principale>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td width="50%" >
+				<div align="left" style="font-size:10px ">
+					<a href="javascript:history.go(-1)">
+					<img src="#CHEMIN{images/retour.gif}" width="17" height="11" border="0" alt="retour" align="bottom"/>
+					&nbsp;Retour</a> 
+				</div>
+			</td>
+			<td width="50%">
+				<div align="right" style="font-size:10px ">
+					<a href="#top">haut de page 
+						<img src="#CHEMIN{images/remonter.gif}"  border="0" alt="haut de page" align="middle"/>
+					</a>
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+</body>
+</html>
