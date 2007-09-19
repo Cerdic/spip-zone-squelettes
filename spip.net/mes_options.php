@@ -12,10 +12,10 @@
 	$quota_cache = 40;
 
 	# moderation des petitions
-	define('_SPIP_MODERATEURS_PETITION', 'scalepa@gmail.com');
+	define('_SPIP_MODERATEURS_PETITION', 'scalepa@gmail.com,ben.spip@gmail.com');
 
 	# pour la page www.spip.fr/download
-	define('VERSION_STABLE', '1.9.2a');
+	define('VERSION_STABLE', '1.9.2c');
 	define('VERSION_STABLE_URL', 'spip-dev/DISTRIB/spip.zip');
 
 	$type_urls = 'trad';
