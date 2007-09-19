@@ -1,3 +1,8 @@
+//==============================================================
+// Cette fonction affiche le nuancier de choix de couleur 
+// Appelée depuis la page "cfg_durzy"
+//==============================================================
+
 //initialisation des variables
 
 //cadre derniers articles, derniers messages et même rubrique
@@ -106,7 +111,8 @@ var couleur_fond_r = init_couleur_fond.substring(0,2);
 var couleur_fond_g = init_couleur_fond.substring(2,4);
 var couleur_fond_b = init_couleur_fond.substring(4,6);
 var couleur_fond_rgb = "" + couleur_fond_r + couleur_fond_g + couleur_fond_b;
-//pied de page
+
+//pied de page
 var couleur_footer_r = init_couleur_footer.substring(0,2);
 var couleur_footer_g = init_couleur_footer.substring(2,4);
 var couleur_footer_b = init_couleur_footer.substring(4,6);

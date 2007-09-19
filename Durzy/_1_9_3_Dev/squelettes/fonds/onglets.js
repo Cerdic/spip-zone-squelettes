@@ -1,3 +1,8 @@
+//==============================================================
+// Cette fonction assure le fonctionnent onglets de configuration
+// Appelée depuis la page "cfg_durzy"
+//==============================================================
+
 $(function() {
 	$('#container-1').tabs();
 	$('#container-2').tabs(2);

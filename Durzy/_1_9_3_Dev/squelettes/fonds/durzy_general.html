@@ -13,15 +13,22 @@ L'adresse mail pour être contacté via la barre d'outil
 </fieldset>
 
 <fieldset><legend>Affichage sur la page sommaire</legend>
- <input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_aucun}|?{checked})] value="sommaire_aucun">Rien<br />
+ <input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_aucun}|?{checked})] value="sommaire_aucun">Rien (vous permet de placer le code de votre choix dans cette zone da la page)<br />
  <input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_last}|?{checked})] value="sommaire_last">Le dernier article publié<br />
- <input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_article}|?{checked})] value="sommaire_article">Un article au choix (actuellement sélectionné, l'article n° #CONFIG{durzy/article_sommaire}) <br />
-
+ <input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_article}|?{checked})] value="sommaire_article">Un article au choix. Est actuellement sélectionné : 
+ <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L'article <strong>
+ <BOUCLE_article_sommaire(ARTICLES) {id_article=#CONFIG{durzy/article_sommaire}}> 
+   n° #ID_ARTICLE - #TITRE</strong>
+   <BOUCLE_rubrique_article_sommaire(RUBRIQUES) {id_rubrique}>
+    <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dans la rubrique :<strong> #TITRE</strong>
+   </BOUCLE_rubrique_article_sommaire>
+ </BOUCLE_article_sommaire>
+[(#REM) Affichage du menu accordéon pour le choix de l'article de une]
 <dl id="myAccordion">
-  <BOUCLE_secteurs(RUBRIQUES) {tout} {par titre}>
+  <BOUCLE_secteurs(RUBRIQUES) {tout}{par num titre}>
    <dt><strong>rubrique : #TITRE</strong></dt>
    <dd>
-     <BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
+     <BOUCLE_articles(ARTICLES) {id_rubrique} {par num titre}>
         <li>
          <input type="radio" name="article_sommaire" 
          [(#CONFIG{durzy/article_sommaire}|=={#ID_ARTICLE}|?{checked})] value="#ID_ARTICLE">
