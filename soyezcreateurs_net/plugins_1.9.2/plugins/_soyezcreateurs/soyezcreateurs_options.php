@@ -3,6 +3,7 @@ $GLOBALS['formats_logos'] =  array ('gif', 'jpg', 'png', 'swf');
 $GLOBALS['type_urls'] = 'propres2';
 
 define('_DUREE_CACHE_DEFAUT', 30*24*3600); // pris en compte à partir de http://trac.rezo.net/trac/spip/changeset/10121
+define('_URLS_PROPRES_MAX', 60); // pris en compte à partire de http://trac.rezo.net/trac/spip/changeset/10346 
 
 global $couleurs_spip;
 $couleurs_spip[] = array(
