@@ -233,7 +233,7 @@ function filtre_introduction_dist($descriptif, $texte, $longueur, $connect) {
 			$zone = substr($zone, $deb + 7);
 		$intro .= $zone;
 	}
-	$texte = nettoyer_raccourcis_typo($intro ? $intro : $texte);
+	$texte = nettoyer_raccourcis_typo($intro ? $intro : $texte, $connect);
 
 	// On coupe
 	$texte = couper($texte, $longueur, _INTRODUCTION_SUITE);
@@ -344,7 +344,7 @@ function calcul_exposer ($id, $type, $reference) {
 					$table = $desc['table'];
 					$exposer[$element][$id] = true;
 					if (isset($desc['field']['id_rubrique'])) {
-						$row = sql_fetsel(array('id_rubrique'), array($table), array("$element=" . _q($id)));
+						$row = sql_fetsel('id_rubrique', $table, ("$element=" . _q($id)));
 					$hierarchie = calculer_hierarchie($row['id_rubrique']);
 				foreach (split(',',$hierarchie) as $id_rubrique)
 					$exposer['id_rubrique'][$id_rubrique] = true;
@@ -387,7 +387,7 @@ function calcule_logo_document($id_document, $doubdoc, &$doublons, $flag_fichier
 	if (!$id_document) return '';
 	if ($doubdoc) $doublons["documents"] .= ','.$id_document;
 
-	if (!($row = sql_fetsel(array('extension', 'id_vignette', 'fichier', 'mode'), array('spip_documents'), array("id_document = $id_document"), '','','','','','','',$connect))) {
+	if (!($row = sql_fetsel('extension, id_vignette, fichier, mode', 'spip_documents', ("id_document = $id_document"), '','','','','','','',$connect))) {
 		// pas de document. Ne devrait pas arriver
 		spip_log("Erreur du compilateur doc $id_document inconnu");
 		return ''; 
@@ -401,9 +401,7 @@ function calcule_logo_document($id_document, $doubdoc, &$doublons, $flag_fichier
 	// Y a t il une vignette personnalisee ?
 	// Ca va echouer si c'est en mode distant. A revoir.
 	if ($id_vignette) {
-		$vignette = sql_fetsel(array('fichier'),
-				array('spip_documents'),
-			   array("id_document = $id_vignette"), '','','','','','','',$connect);
+		$vignette = sql_fetsel('fichier','spip_documents',("id_document = $id_vignette"), '','','','','','','',$connect);
 			if (@file_exists(get_spip_doc($vignette['fichier'])))
 				$logo = generer_url_document($id_vignette);
 	} else if ($mode == 'vignette') {
