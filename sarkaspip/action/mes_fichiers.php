@@ -33,19 +33,19 @@ function action_mes_fichiers() {
 	if (@is_dir($IMG)) {
 		$liste[] = $IMG;
 	}
-/*
+
  	if (@is_dir('squelettes/')) {
 		$liste[] = 'squelettes/';
 	}
-*/
+
 	if (@is_dir(_DIR_PLUGIN_SARKASPIP)) {
 		$liste[] = _DIR_PLUGIN_SARKASPIP;
 	}
-/*
+
 	if (@is_readable($mes_options)) {
 		$liste[] = $mes_options;
 	}
-*/
+
 	$dump = preg_files($tmp_dump);
 	$fichier_dump = '';
 	$mtime = 0;
@@ -65,7 +65,7 @@ function action_mes_fichiers() {
 	if ($erreur == 0) {
 		die("Erreur : ".$mes_fichiers->errorInfo(true));
 	}
-	redirige_par_entete(generer_url_ecrire('admin_tech', 'mes_fichier=sauve_ok', true));
+	redirige_par_entete(generer_url_ecrire('admin_tech', 'mes_fichiers=sauve_ok', true));
 }
 
 ?>
