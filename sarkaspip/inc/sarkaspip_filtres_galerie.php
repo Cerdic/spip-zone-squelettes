@@ -143,20 +143,21 @@ function galerie_recenser_album($id_galerie=0, $id=0, $date=0, $titre='', $logo=
 //            - type : 'page' pour un affichage des numeros de page, 'numero' pour un affichage des numeros d'albums
 // =======================================================================================================================================
 //
-function galerie_paginer($id_galerie=0, $page_choisie=0, $filtre='-1', $separateur='&nbsp;|&nbsp;', $ancre=NULL, $tri='normal', $pas=5, $type='page') {
+function galerie_paginer($id_galerie=0, $page_choisie=0, $mois_choisi=0, $filtre='-1', $separateur='&nbsp;|&nbsp;', $ancre=NULL, $tri='normal', $pas=5, $type='page') {
 
 	$contexte_aff = galerie_definir_contexte(0);
 	if ($contexte_aff['type_galerie'] == 'listing_annuel') {
 		$annee_choisie = ($page_choisie == 0) ? affdate_base(date("Y-m-d H:i"), 'annee') : $page_choisie;
-		return galerie_listing_paginer($id_galerie, $annee_choisie, $filtre, $separateur, $ancre, $tri);
+		return galerie_listing_paginer($id_galerie, $annee_choisie, $mois_choisi, $filtre, $separateur, $ancre, $tri);
 	}
 	else {
-		$planche_choisie = ($page_choisie == 0) ? 1 : $page_choisie;
+		// Test > 1900 temporaire tant que le parametrage CFG n'est pas effectif 
+		$planche_choisie = (($page_choisie == 0) || ($page_choisie > 1900)) ? 1 : $page_choisie;
 		return galerie_planche_paginer($id_galerie, $planche_choisie, $filtre, $separateur, $ancre, $tri, $pas, $type);
 	}
 }
 
-function galerie_listing_paginer($id_galerie, $annee_choisie, $filtre, $separateur, $ancre, $tri) {
+function galerie_listing_paginer($id_galerie, $annee_choisie, $mois_choisi, $filtre, $separateur, $ancre, $tri) {
 	static $count_page = 0;
 	
 	if ($id_galerie == 0)
@@ -172,6 +173,13 @@ function galerie_listing_paginer($id_galerie, $annee_choisie, $filtre, $separate
 	if ($ancre)
 		echo '<a style="display:none" name="pagination_'.$ancre.'" id="pagination_'.$ancre.'"></a>';
 
+	// Determination de l'annee choisie si l'agenda est saisonnier	
+	$contexte_aff = galerie_definir_contexte(0);
+	$debut_saison = $contexte_aff['debut_saison'];
+	if (intval($debut_saison) != 1) {
+		$annee_choisie = (intval($mois_choisi) < intval($debut_saison)) ? $annee_choisie : strval(intval($annee_choisie)+1);
+	}
+
 	$annee_courante = 0;
 	$nouvelle_annee = FALSE;
 	$count_page = 0;
@@ -183,6 +191,8 @@ function galerie_listing_paginer($id_galerie, $annee_choisie, $filtre, $separate
 			(($filtre != '-1') && ($filtre != '0') && (strpos($albums[$j]['categorie'],$filtre) !== FALSE))) {
 
 			$annee_album = $albums[$j]['saison'];
+			$annee_alb = $albums[$j]['annee'];
+			$mois_alb = $albums[$j]['mois'];
 			if ($annee_album != $annee_courante)  {
 				$nouvelle_annee = TRUE;
 				$count_page += 1;
@@ -202,7 +212,8 @@ function galerie_listing_paginer($id_galerie, $annee_choisie, $filtre, $separate
 					$arg_option = NULL;
 					if ($filtre != '-1') $arg_option = '&categorie='.$filtre;
 					if ($ancre) $arg_option .= '#pagination_'.$ancre;
-					$pagination .= '<a href="spip.php?page=galerie&annee='.$annee_album.$arg_option.'">'.$albums[$j]['lien_page'].'</a>';
+					if (intval($debut_saison) != 1) $annee_alb = (intval($mois_alb) < intval($debut_saison)) ? strval(intval($annee_alb)-1) : $annee_alb;
+					$pagination .= '<a href="spip.php?page=galerie&annee='.$annee_alb.'&mois='.$debut_saison.$arg_option.'">'.$albums[$j]['lien_page'].'</a>';
 				}
 			$annee_courante = $annee_album;
 			}
@@ -279,20 +290,21 @@ function galerie_planche_paginer($id_galerie, $planche_choisie, $filtre, $separa
 //            - tri : 'normal' pour conserver le tri chronologique de la liste, 'inverse' pour un tri antichronologique
 // =======================================================================================================================================
 //
-function galerie_afficher($id_galerie=0, $page_choisie=0, $filtre='-1', $tri='normal') {
+function galerie_afficher($id_galerie=0, $page_choisie=0, $mois_choisi=0, $filtre='-1', $tri='normal') {
 
 	$contexte_aff = galerie_definir_contexte(0);
 	if ($contexte_aff['type_galerie'] == 'listing_annuel') {
 		$annee_choisie = ($page_choisie == 0) ? affdate_base(date("Y-m-d H:i"), 'annee') : $page_choisie;
-		return galerie_listing_afficher($id_galerie, $annee_choisie, $filtre, $tri);
+		return galerie_listing_afficher($id_galerie, $annee_choisie, $mois_choisi, $filtre, $tri);
 	}
 	else {
-		$planche_choisie = ($page_choisie == 0) ? 1 : $page_choisie;
+		// Test > 1900 temporaire tant que le parametrage CFG n'est pas effectif 
+		$planche_choisie = (($page_choisie == 0) || ($page_choisie > 1900)) ? 1 : $page_choisie;
 		return galerie_planche_afficher($id_galerie, $planche_choisie, $filtre, $tri);
 	}
 }
 
-function galerie_listing_afficher($id_galerie, $annee_choisie, $filtre, $tri) {
+function galerie_listing_afficher($id_galerie, $annee_choisie, $mois_choisi, $filtre, $tri) {
 	static $count_album_filtre = 0;
 	
 	if ($id_galerie == 0)
@@ -305,6 +317,13 @@ function galerie_listing_afficher($id_galerie, $annee_choisie, $filtre, $tri) {
 	$liste = NULL;
 	if (($count_album == 0) || ($count_page == 0))
 		return $liste;
+
+	// Determination de l'annee choisie si l'agenda est saisonnier	
+	$contexte_aff = galerie_definir_contexte(0);
+	$debut_saison = $contexte_aff['debut_saison'];
+	if (intval($debut_saison) != 1) {
+		$annee_choisie = (intval($mois_choisi) < intval($debut_saison)) ? $annee_choisie : strval(intval($annee_choisie)+1);
+	}
 
 	$mois_courant = NULL;
 	$nouveau_mois = FALSE;
@@ -392,7 +411,7 @@ function galerie_planche_afficher($id_galerie, $planche_choisie, $filtre, $tri) 
 //            - page_choisie : si type_galerie=listing_annuel correspond a une annee sinon correspond au numero de planche
 // =======================================================================================================================================
 //
-function galerie_avertir($id_galerie=0, $page_choisie=0) {
+function galerie_avertir($id_galerie=0, $page_choisie=0, $mois_choisi=0) {
 
 	$message = NULL;
 
@@ -403,8 +422,11 @@ function galerie_avertir($id_galerie=0, $page_choisie=0) {
 
 	if ($type_galerie == 'listing_annuel')
 		$annee_choisie = ($page_choisie == 0) ? affdate_base(date("Y-m-d H:i"), 'annee') : $page_choisie;
+		if (intval($debut_saison) != 1) 
+			$annee_choisie = (intval($mois_choisi) < intval($debut_saison)) ? $annee_choisie : strval(intval($annee_choisie)+1);
 	else 
-		$planche_choisie = ($page_choisie == 0) ? 1 : $page_choisie;
+		// Test > 1900 temporaire tant que le parametrage CFG n'est pas effectif 
+		$planche_choisie = (($page_choisie == 0) || ($page_choisie > 1900)) ? 1 : $page_choisie;
 	
 	$count_alb = count(galerie_recenser_album(0));
 	$count_alb_filtre = galerie_afficher(0);

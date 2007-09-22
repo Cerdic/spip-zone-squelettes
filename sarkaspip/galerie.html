@@ -57,12 +57,12 @@ de ce squelette.
 			<div class="mots-cles">
 				<div id="mots_clefs"><a class="en-tete"><:sarkaspip:filtrage_categorie:></a></div>
 				<div class="contenu">
-					[(#ENV{categorie,-1}|=={-1}|?{<span><:sarkaspip:filtre_tout:></span>,<a href="[(#URL_PAGE{galerie,[annee=(#ENV{annee})]})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]><:sarkaspip:filtre_tout:></a>})]
+					[(#ENV{categorie,-1}|=={-1}|?{<span><:sarkaspip:filtre_tout:></span>,<a href="[(#URL_PAGE{galerie,[annee=(#ENV{annee})][&mois=(#ENV{mois})]})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]><:sarkaspip:filtre_tout:></a>})]
 					<hr>
-					[(#ENV{categorie,-1}|=={0}|?{<span><:sarkaspip:filtre_vide:></span>,<a href="[(#URL_PAGE{galerie,[annee=(#ENV{annee})&]categorie=0})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]><:sarkaspip:filtre_vide:></a>})]
+					[(#ENV{categorie,-1}|=={0}|?{<span><:sarkaspip:filtre_vide:></span>,<a href="[(#URL_PAGE{galerie,[annee=(#ENV{annee})][&mois=(#ENV{mois})&]categorie=0})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]><:sarkaspip:filtre_vide:></a>})]
 		<BOUCLE_liste_categories(MOTS) {type=squelette_galerie} {par id_groupe}>
 					[(#COMPTEUR_BOUCLE|=={1}|?{<br>})]
-					[(#ID_MOT|=={[(#ENV{categorie,-1})]}|?{<span>#TITRE</span>,<a href="[(#URL_PAGE{galerie,[annee=(#ENV{annee})&]categorie=[(#ID_MOT)]})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>})]
+					[(#ID_MOT|=={[(#ENV{categorie,-1})]}|?{<span>#TITRE</span>,<a href="[(#URL_PAGE{galerie,[annee=(#ENV{annee})][&mois=(#ENV{mois})][&categorie=(#ID_MOT)]})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>})]
 		</BOUCLE_liste_categories>
 				</div> <!-- Fin contenu -->
 			</div> <!-- Fin mots-cles -->
@@ -78,8 +78,8 @@ de ce squelette.
 
 		[(#REM) <!--
 		[(#RUBRIQUE_SPECIALISEE{galerie}|galerie_definir_contexte{	'listing_annuel',
-								1,
-								'annee'}
+								6,
+								'periode'}
 		)]
 		-->]
 
@@ -116,6 +116,7 @@ de ce squelette.
 			[(#REM) <!-- Pour simplifier le choix du type de galerie en attendant le paramŽtrage, decommentez l'une des lignes suivantes --> ]
 			<div class="bande-pagination">
 				[(#RUBRIQUE_SPECIALISEE{galerie}|galerie_paginer{	[(#ENV{annee, [(#ENV{planche})]})],
+																	[(#ENV{mois})],
 																	[(#ENV{categorie,-1})],
 																	'&nbsp;|&nbsp;',
 																	'album',
@@ -126,23 +127,26 @@ de ce squelette.
 
 			[(#REM) <!--
 				[(#RUBRIQUE_SPECIALISEE{galerie}|galerie_paginer{	[(#ENV{annee, [(#ENV{planche})]})],
-									[(#ENV{categorie,-1})],
-									'&nbsp;|&nbsp;',
-									'album',
-									'normal'}
+																	[(#ENV{mois})],
+																	[(#ENV{categorie,-1})],
+																	'&nbsp;|&nbsp;',
+																	'album',
+																	'normal'}
 				)]
 			-->]
 			</div> <!-- Fin bande-pagination -->
 
 			[(#REM) <!-- Affichage de la liste des albums --> ]
 			[(#RUBRIQUE_SPECIALISEE{galerie}|galerie_afficher{	[(#ENV{annee, [(#ENV{planche})]})],
-								[(#ENV{categorie,-1})],
-								'inverse'}
+																[(#ENV{mois})],
+																[(#ENV{categorie,-1})],
+																'inverse'}
 			)]
 			
 			[(#REM) <!-- Affichage des messages d'erreur --> ]
 			[<p class="reponse_formulaire">
-				(#RUBRIQUE_SPECIALISEE{galerie}|galerie_avertir{[(#ENV{annee, [(#ENV{planche})]})]})
+				(#RUBRIQUE_SPECIALISEE{galerie}|galerie_avertir{	[(#ENV{annee, [(#ENV{planche})]})],
+																	[(#ENV{mois})]})
 			</p>]
 		</div> <!-- Fin galerie -->
 	</div> <!-- Fin centre -->
