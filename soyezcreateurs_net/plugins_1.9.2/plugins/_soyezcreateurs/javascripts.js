@@ -193,5 +193,5 @@ $(document).ready(function() {
 		adjustLayout();
 		}
 	);
-	//$.jqem.bind(function(a,b,c) { adjustLayout(); });
+	$(document).bind('emchange', function(e, cur, prev) { adjustLayout(); });
 });
