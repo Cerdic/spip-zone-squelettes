@@ -212,8 +212,6 @@ function calcule_logo($type, $onoff, $id, $id_rubrique, $flag_fichier) {
 // on peut la surcharger en definissant dans mes_fonctions :
 // function filtre_introduction()
 //
-@define('_INTRODUCTION_SUITE', '&nbsp;(...)');
-
 // http://doc.spip.org/@filtre_introduction_dist
 function filtre_introduction_dist($descriptif, $texte, $longueur, $connect) {
 	// Si un descriptif est envoye, on l'utilise directement
@@ -236,6 +234,7 @@ function filtre_introduction_dist($descriptif, $texte, $longueur, $connect) {
 	$texte = nettoyer_raccourcis_typo($intro ? $intro : $texte, $connect);
 
 	// On coupe
+	@define('_INTRODUCTION_SUITE', '&nbsp;(...)');
 	$texte = couper($texte, $longueur, _INTRODUCTION_SUITE);
 
 	// on nettoie un peu car ce sera traite par traiter_raccourcis()
@@ -335,16 +334,16 @@ function calcul_exposer ($id, $type, $reference) {
 	if ($reference<>$ref_precedente) {
 		$ref_precedente = $reference;
 		$exposer = array();
-		foreach ($reference as $element=>$id) {
-			if ((strpos($element, "id_") === 0) AND $id) {
+		foreach ($reference as $element=>$v) {
+			if ((strpos($element, "id_") === 0) AND $v) {
 				$x = substr($element, 3);
 				if ($x == 'secteur') $x = 'rubrique';
 				$desc = trouver_table(table_objet($x));
 				if ($desc) {
 					$table = $desc['table'];
-					$exposer[$element][$id] = true;
+					$exposer[$element][$v] = true;
 					if (isset($desc['field']['id_rubrique'])) {
-						$row = sql_fetsel('id_rubrique', $table, ("$element=" . _q($id)));
+						$row = sql_fetsel('id_rubrique', $table, ("$element=" . _q($v)));
 					$hierarchie = calculer_hierarchie($row['id_rubrique']);
 				foreach (split(',',$hierarchie) as $id_rubrique)
 					$exposer['id_rubrique'][$id_rubrique] = true;
@@ -506,10 +505,14 @@ function calculer_notes() {
 // determiner la table a la compil, on le fait maintenant.
 // Il faudrait encore completer: on ne connait pas la langue
 // pour une boucle forum sans id_article ou id_rubrique donné par le contexte
+// et c'est signale par un message d'erreur abscons: "table inconnue forum".
+// 
 // http://doc.spip.org/@lang_parametres_forum
 function lang_parametres_forum($qs, $lang) {
 	if ($lang == -1 AND preg_match(',id_(\w+)=([0-9]+),', $qs, $r)) {
-		$lang = quete_lang($r[2], $r[1]);
+		$desc = trouver_table(table_objet($r[1]));
+		if (!$desc OR !isset($desc['field']['lang'])) return '';
+		$lang = sql_getfetsel('lang', $desc['table'], ("id_$r[1]=" . intval($r[2])));
 	}
 	// Si ce n'est pas la meme que celle du site, l'ajouter aux parametres
 	if ($lang AND $lang <> $GLOBALS['meta']['langue_site'])
