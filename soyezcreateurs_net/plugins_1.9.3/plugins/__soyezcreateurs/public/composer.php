@@ -325,7 +325,7 @@ function calculer_hierarchie($id_rubrique, $exclure_feuille = false) {
 // http://doc.spip.org/@calcul_exposer
 function calcul_exposer ($id, $prim, $reference, $parent, $type) {
 	static $exposer;
-	static $ref_precedente;
+	static $ref_precedente =-1;
 
 	// Que faut-il exposer ? Tous les elements de $reference
 	// ainsi que leur hierarchie ; on ne fait donc ce calcul
@@ -339,6 +339,7 @@ function calcul_exposer ($id, $prim, $reference, $parent, $type) {
 			if ($type == 'id_mot')
 				$exposer['id_groupe'][$parent] = true;
 			if ($type != 'id_groupe') {
+			  if (!$parent) $parent = $principal;
 			  $a = split(',',calculer_hierarchie($parent));
 			  foreach($a as $n) $exposer['id_rubrique'][$n] = true;
 			}
