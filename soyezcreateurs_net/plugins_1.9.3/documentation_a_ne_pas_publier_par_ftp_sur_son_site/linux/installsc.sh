@@ -5,9 +5,10 @@ svn checkout svn://zone.spip.org/spip-zone/_squelettes_/gribouille
 #Installation des plugins
 mkdir plugins
 cd plugins
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/_dev_/compat193
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/acces_restreint
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/acronymes
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/agenda/1_9_2 ./agenda/
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/agenda/1_9_3 ./agenda/
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/balise_session
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/barre_typo_v2 
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/enluminures_typographiques_v2
