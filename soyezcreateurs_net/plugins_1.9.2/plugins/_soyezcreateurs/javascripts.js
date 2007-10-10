@@ -1,4 +1,4 @@
-#CACHE{30*24*3600,cache-client}
+#CACHE{0,30*24*3600,cache-client}
 #HTTP_HEADER{Content-Type: text/javascript; charset=iso-8859-1}
 // Menu accessible dynamique et CSS alternatives, V 2.0 (avec jquery)
 //
@@ -187,11 +187,13 @@ function adjustLayout() {
 
 $(document).ready(function() {
 	jp_expinit();
-	adjustLayout();
-	$("body").resize(
-		function () {
+	if (CanceladjustLayout != true) {
 		adjustLayout();
-		}
-	);
-	$(document).bind('emchange', function(e, cur, prev) { adjustLayout(); });
+		$("body").resize(
+			function () {
+			adjustLayout();
+			}
+		);
+		$(document).bind('emchange', function(e, cur, prev) { adjustLayout(); });
+	}
 });
