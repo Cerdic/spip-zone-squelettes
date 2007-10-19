@@ -19,23 +19,7 @@
 	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
 	
 
-<link rel="stylesheet" type="text/css" media="screen, projection, tv" href="[(#CHEMIN{css/logic.css})]" />
-<link rel="stylesheet" type="text/css" media="screen, projection, tv" href="[(#CHEMIN{css/niftycorners.css})]" />
-<link rel="stylesheet" type="text/css" href="[(#CHEMIN{css/print.css})]" media="print" />
-	[(#REM) 4 css qui changent l aspect du site suivant la saison.]
-<BOUCLE_mot_saison(MOTS){titre=saison}{0,1}>
-<link rel="stylesheet" type="text/css" media="screen, projection, tv" href="[(#CHEMIN{[css/(#ENV{date}|saison|translitteration).css]})]" />
-</BOUCLE_mot_saison>
-<link rel="stylesheet" type="text/css" media="screen, projection, tv" href="[(#CHEMIN{css/couleurs.css})]" />
-<//B_mot_saison>
-<script type="text/javascript" src="[(#CHEMIN{nifty.js})]"></script>
-<script type="text/javascript" src="[(#CHEMIN{nifty-bloog.js})]"></script>
-
-	[(#REM) icones xml des fils des rubriques sous firefox ]
-	
-<BOUCLE_rub(RUBRIQUES){tout}{titre_mot=syndic}>
-<link rel="alternate" type="application/rss+xml" href="[(#URL_PAGE{backend}|parametre_url{'id_rubrique',#ID_RUBRIQUE})]" title="[(#TITRE)]" />
-</BOUCLE_rub>
+<INCLURE{fond="header-css"}{date=#ENV{date}}> 	
 
 </head><body> 
 
@@ -77,6 +61,41 @@
 </ul>
 
 </div> [(#REM)   fermeture grande boite   ]
+
+
+
+[(#REM)   ajoute un lien et les coordonnées gis  ]
+
+
+
+<BOUCLE_set_moi(GIS){id_article}>
+#SET{latitude,#LAT}
+#SET{lonxitude,#LONX}
+</BOUCLE_set_moi>
+
+<BOUCLE_TEST_KML(DOCUMENTS){id_article}{extension=kml}{0,1}>
+<div class="grande_boite">
+[<h4 class="icone_gis"><a href="(#URL_PAGE{localiser}|parametre_url{'id_article',#ID_ARTICLE}|parametre_url{'zoom',13}|parametre_url{'latit',#GET{latitude}}|parametre_url{'lonxit',#GET{lonxitude}})">Localiser l'itinéraire sur une carte imprimable.</a></h4>]
+</div>
+</BOUCLE_TEST_KML>
+
+
+
+<BOUCLE_latlonx(GIS){id_article}{0,1}>
+
+[<div class="grande_boite"><h4 class="icone_gis">(#LAT||?{' ',''})<a href="[(#URL_PAGE{localiser}|parametre_url{id_article,#ID_ARTICLE}|parametre_url{'zoom',13}|parametre_url{'latit',#GET{latitude}}|parametre_url{'lonxit',#GET{lonxitude}})]" title="géo-localiser [(#TITRE|textebrut)]">
+<span class="droite button microgeo">G&eacute;o</span></a><a href="[(#URL_PAGE{localiser}|parametre_url{'id_article',#ID_ARTICLE}|parametre_url{'zoom',13}|parametre_url{'latit',#GET{latitude}}|parametre_url{'lonxit',#GET{lonxitude}})]">
+Localiser l'&eacute;v&eacute;nement sur une carte imprimable</a>.</h4>]	
+
+
+[<p class="geo none">(#LAT||?{' ',''})[<abbr class="latitude">(#LAT|coordonnee{NS})</abbr>]<br/>]
+[(#LAT||?{' ',''})[<abbr class="longitude">(#LONX|coordonnee{EO})</abbr>]</p>
+</div>]
+</BOUCLE_latlonx>
+
+<//B_TEST_KML>
+
+
 
 
 
