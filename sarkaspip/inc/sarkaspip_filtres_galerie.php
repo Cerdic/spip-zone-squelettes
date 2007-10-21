@@ -391,7 +391,7 @@ function galerie_planche_afficher($id_galerie, $planche_choisie, $filtre, $tri) 
 			$liste .= '<div class="vignette"><a href="spip.php?page=album&id_article='.$albums[$j]['id'].'" title="'._T('sarkaspip:info_afficher_album').'">'.$albums[$j]['logo'].'</a></div>';
 			$liste .= '<div class="detail">'.nom_jour($albums[$j]['date_article']).'&nbsp;'.$albums[$j]['date'].'<br>'._T('sarkaspip:par_auteur').$albums[$j]['auteurs'].'</div> <!-- Fin detail -->';
 			$liste .= '<a class="titre" href="spip.php?page=album&id_article='.$albums[$j]['id'].'" title="'._T('sarkaspip:info_afficher_album').'">'.$albums[$j]['titre'].'</a>';
-			$liste .= '<div class="introduction">'.$albums[$j]['introduction'].'</div><br><br>';
+			$liste .= '<div class="introduction">'.$albums[$j]['intro'].'</div><br><br>';
 			$liste .= '<a class="suite" href="spip.php?page=album&id_article='.$albums[$j]['id'].'">'._T('sarkaspip:info_afficher_album').'</a>';
 			$liste .= '</div> <!-- Fin album -->';
 		}
