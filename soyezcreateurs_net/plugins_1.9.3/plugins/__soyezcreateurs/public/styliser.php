@@ -15,12 +15,15 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 
 // Ce fichier doit imperativement definir la fonction ci-dessous:
 
+// Actuellement tous les squelettes se terminent par .html
+// pour des raisons historiques, ce qui est trompeur
+
 // http://doc.spip.org/@public_styliser_dist
-function public_styliser_dist($fond, $id_rubrique, $lang) {
+function public_styliser_dist($fond, $id_rubrique, $lang='', $connect='', $ext='html') {
 	
   // html est une extension permise pour gérer le cas fichier.css.html
   $extension_squelette_permises = array ('css', 'js', 'svg', 'xml', 'htc', 'html', 'spip'); 
-  $extension_spip = 'html';
+  $extension_spip = $ext;
 	// Si $fond a une extension parmi .css, .js .svg, .xml, .htc, .spip
 	// la prendre dans $ext et ramener $fond au nom prive de l'extension
 	// Sinon, considérer que l'extension est html
@@ -34,12 +37,25 @@ function public_styliser_dist($fond, $id_rubrique, $lang) {
 		$ext = $extension_spip;
 	}
 	
-	// Accrocher un squelette de base dans le chemin, sinon erreur
+	// Trouver un squelette de base dans le chemin
 	// Commencer par chercher avec l'extension SPIP (au cas où un squelette .js.html inclue un .js placé au même endroit)
 	if (!$base = find_in_path("$fond.$ext.$extension_spip")) {
 		if (!$base = find_in_path("$fond.$ext")) {
-			include_spip('public/debug');
-			erreur_squelette(_T('info_erreur_squelette2',
+		// Si pas de squelette regarder si c'est une table
+		$trouver_table = charger_fonction('trouver_table', 'base');
+		$table = $trouver_table($fond, $connect);
+		if ($table) {
+			$base = _DIR_TMP . $fond . ".$ext";
+			if (!file_exists($base)
+			OR  $GLOBALS['var_mode'] == 'recalcul') {
+				$vertebrer = charger_fonction('vertebrer', 'public');
+				$f = fopen($base, 'w');
+				fwrite($f, $vertebrer($table));
+				fclose($f);
+			}
+		} else { // on est gentil, mais la ...
+		include_spip('public/debug');
+		erreur_squelette(_T('info_erreur_squelette2',
 				array('fichier'=>"'$fond'")),
 				$GLOBALS['dossier_squelettes']);
 		$f = find_in_path(".$ext"); // on ne renvoie rien ici, c'est le resultat vide qui provoquere un 404 si necessaire
@@ -48,9 +64,11 @@ function public_styliser_dist($fond, $id_rubrique, $lang) {
 					 $extension_spip,
 					 $f);
 		}
+}
 	} else {
 		$ext = $extension_spip;
 	}
+
 
 	// supprimer l'extension pour pouvoir affiner par id_rubrique ou par langue
 	$squelette = substr($base, 0, - strlen(".$ext"));
