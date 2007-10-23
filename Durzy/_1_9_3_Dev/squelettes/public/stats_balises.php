@@ -16,7 +16,7 @@
 function aff_total_visites() {
 	$query = "SELECT SUM(visites) AS total_absolu FROM spip_visites";
 	$result = spip_query($query);
-	if ($row = spip_fetch_array($result))
+	if ($row = sql_fetch($result))
 		{ return $row['total_absolu']; }
 	else { return "0";}
 }
@@ -34,7 +34,7 @@ function balise_TOTAL_VISITES($p) {
 */
 function visites_du_jour() {
 	$q = spip_query("SELECT visites FROM spip_visites WHERE date=NOW()");
-	if ($r = @spip_fetch_array($q))
+	if ($r = @sql_fetch($q))
 		$g = $r['visites'];
 	else
 		$g = 0;
@@ -53,12 +53,12 @@ function balise_VISITES_JOUR($p) {
 */
 function generer_jour_val_max_visites($arg) {
 	$qv = spip_query("SELECT MAX(visites) as maxvi FROM spip_visites");
-	$rv = spip_fetch_array($qv);
+	$rv = sql_fetch($qv);
 	$valmaxi = $rv['maxvi'];
 
 	if($arg=="date") {
 		$qd = spip_query("SELECT date FROM spip_visites WHERE visites = $valmaxi");
-		$rd = spip_fetch_array($qd);
+		$rd = sql_fetch($qd);
 		$jourmaxi = $rd['date'];
 	}
 	if($arg=="date") { $a = $jourmaxi; }
@@ -87,7 +87,7 @@ function aff_moyenne_visites() {
 			"WHERE 1 AND date > DATE_SUB(NOW(),INTERVAL 420 DAY) ORDER BY date";
 	$result=spip_query($query);
 
-	while ($row = spip_fetch_array($result)) {
+	while ($row = sql_fetch($result)) {
 		$date = $row['date_unix'];
 		$visites = $row['visites'];
  		$log[$date] = $visites;
