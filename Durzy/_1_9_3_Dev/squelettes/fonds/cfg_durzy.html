@@ -3,70 +3,77 @@
 [<link rel="stylesheet" type="text/css" href="(#CHEMIN{styles/nuancier.css})" />]
 [<link rel="stylesheet" type="text/css" href="(#CHEMIN{styles/accordion.css})" />]
 [<script type="text/javascript" src="(#CHEMIN{javascript/nuancier.js})"></script>]
-[<script type="text/javascript" src="(#CHEMIN{javascript/onglets.js})"></script>]
+
 [<script type="text/javascript" src="(#CHEMIN{javascript/interface.js})"></script>]
 [<script type="text/javascript" src="(#CHEMIN{javascript/menu_accordeon.js})"></script>]
+
 <script language="JavaScript" type="text/javascript">
-      <!-- Script DHTML by SnowKhan -->
-      function show_hide(obj,bloc)
-      {
-            elt=document.getElementById(bloc);
-            if (elt.style.display == 'none') {
-                  elt.style.display='block';
-                  obj.style.backgroundImage='url(images/deplier.gif)';
-            }
+	<!-- Script DHTML by SnowKhan -->
+	function show_hide(obj,bloc)
+		{
+			elt=document.getElementById(bloc);
+			if (elt.style.display == 'none') {
+				elt.style.display='block';
+				obj.style.backgroundImage='url(images/deplier.gif)';
+			}
             else {
-                  elt.style.display='none';
-                  obj.style.backgroundImage='url(images/plier.gif)';
-            }
-      }
+				elt.style.display='none';
+				obj.style.backgroundImage='url(images/plier.gif)';
+			}
+		}
 </script>
 
+[(#EVAL{defined('_DIR_PLUGIN_JQUERYP')}|?{' ',''})
+	#JQUERY_PLUGIN{tabs}
+	#JQUERY_PLUGIN_THEME{jqueryp.tabs.css}
+	<script>
+		$(document).ready(function(){
+		  $("#mesonglets > ul").tabs({ event: 'mouseover' });
+		})
+	</script>
+]
+	
 <form name="pickerform" method="post">[(#ENV{_cfg_}|form_hidden)]
 
-    <input type="submit" name="_cfg_ok" value="<:OK:>" />
-    <input type="reset" value="<:Reset:>" />
-    <input type="submit" name="_cfg_delete" value="<:Supprimer:>" />
-    
-    [(#REM) descriptif=
-    <h4>Les squelettes Durzy</h4>
-    Pour configurer l'apparence des squelettes<br />
-    <br /><a href="http://www.durzy-spip.fr/spip.php?article1" class="spip_out">Documentation provisoire</a>
-    ]
-    [(#REM) titre=Les squelettes Durzy]
-    [(#REM) icone=images/config.png]
-    
-    
-    <div id="container-1">
-        
-        <ul>
-            <li><a href="#fragment-1"><span>General</span></a></li>
-            <li><a href="#fragment-2"><span><img src="../squelettes/images/cfg_cadres.png" align="baseline">&nbsp;Les cadres&nbsp;</span></a></li>
-            <li><a href="#fragment-3"><span><img src="../squelettes/images/cfg_couleurs.png" align="baseline">&nbsp;Les couleurs&nbsp;</span></a></li>
-            
-        </ul>
-    
-        [(#REM) ------------- Géneral --------------- ]
-    
-        [(#REM) <div id="fragment-1"> ]
-            <INCLURE{fond=fonds/durzy_general}>
-        [(#REM)</div> ]
-    
-        [(#REM) ------------------------ Les cadres ------------------------ ]
-    
-        [(#REM)<div id="fragment-2"> ]
-            <INCLURE{fond=fonds/durzy_cadres}>
-        [(#REM) </div> ]
-        
-        [(#REM) ------------------------ Les couleurs ------------------------ ]
-    
-        [(#REM) <div id="fragment-3"> ]
-            <INCLURE{fond=fonds/durzy_couleurs}>
-        [(#REM) </div> ]
-    
-    </div>
-    
-    <input type="submit" name="_cfg_ok" value="<:OK:>" />
-    <input type="reset" value="<:Reset:>" />
-    <input type="submit" name="_cfg_delete" value="<:Supprimer:>" />
+	[(#REM) titre=Les squelettes Durzy]
+	[(#REM) icone=images/config.png]
+	[(#REM) descriptif=
+	<h4>Les squelettes Durzy</h4>
+	<p>Pour configurer l'apparence des squelettes</p><br />
+	<br />
+	<a href="http://www.durzy-spip.fr/spip.php?article1" class="spip_out">Documentation provisoire</a>
+	]
+	<input type="submit" name="_cfg_ok" value="<:OK:>" />
+	<input type="reset" value="<:Reset:>" />
+	<input type="submit" name="_cfg_delete" value="<:Supprimer:>" />
+
+	
+	
+	<div id="mesonglets"><br />
+		<ul>
+			<li><a href="#fragment-1"><span>General</span></a></li>
+			<li><a href="#fragment-2"><span><img src="../squelettes/images/cfg_cadres.png" align="baseline">&nbsp;Les cadres&nbsp;</span></a></li>
+			<li><a href="#fragment-3"><span><img src="../squelettes/images/cfg_couleurs.png" align="baseline">&nbsp;Les couleurs&nbsp;</span></a></li>
+		</ul>
+		
+		[(#REM) ------------- Géneral --------------- ]
+		<div id="fragment-1">
+			<INCLURE{fond=fonds/durzy_general}>
+		</div> 
+		
+		[(#REM) ------------------------ Les cadres ------------------------ ]
+		<div id="fragment-2">
+			<INCLURE{fond=fonds/durzy_cadres}>
+		</div>
+		
+		[(#REM) ------------------------ Les couleurs ------------------------ ]
+		<div id="fragment-3">
+			<INCLURE{fond=fonds/durzy_couleurs}>
+		</div>
+		
+	</div>
+	
+	<input type="submit" name="_cfg_ok" value="<:OK:>" />
+	<input type="reset" value="<:Reset:>" />
+	<input type="submit" name="_cfg_delete" value="<:Supprimer:>" />
 </form>
