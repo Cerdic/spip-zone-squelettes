@@ -46,11 +46,11 @@
 
 	<script>
 		$(document).ready(function(){
-		  $("#mesonglets2 > ul").tabs();
+		  $("#mesonglets2 > ul").tabs({ unselected: true });
 		})
 	</script>
 
-<div id="mesonglets2"><br />
+<div id="mesonglets2" class="light"><br />
 	<ul>
 		<li><a href="#fragment-4"><span>Affichage</span></a></li>
 		<li><a href="#fragment-5"><span>Organisation</span></a></li>
@@ -60,17 +60,28 @@
 	
 	[(#REM) ------------- Affichage --------------- ]
 	<div id="fragment-4">
-		<input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_aucun}|?{checked})] value="sommaire_aucun">Rien (vous permet de placer le code de votre choix dans cette zone da la page)<br />
+		<input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_aucun}|?{checked})] value="sommaire_aucun">Rien (Permet de placer le code de votre choix dans cette zone de la page)<br />
+		<input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_image}|?{checked})] value="sommaire_image">Une image au choix&nbsp;:
+		<select name="image_sommaire">
+			<BOUCLE_images_site(DOCUMENTS) {tout} {mode=image}>
+				<option value="#ID_DOCUMENT" [(#CONFIG{durzy/image_sommaire}|=={#ID_DOCUMENT}|?{selected="selected",''})]>#ID_DOCUMENT . #TITRE</option>
+			</BOUCLE_images_site>
+		</select>
+		<br />
 		<input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_last}|?{checked})] value="sommaire_last">Le dernier article publié
 		<br />
-		<input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_article}|?{checked})] value="sommaire_article">Un article au choix. Est actuellement sélectionné : 
-		<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L'article
-		<BOUCLE_article_sommaire(ARTICLES) {id_article=#CONFIG{durzy/article_sommaire}}><strong> n° #ID_ARTICLE - #TITRE</strong>
-			<BOUCLE_rubrique_article_sommaire(RUBRIQUES) {id_rubrique}>
-				<br />
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dans la rubrique :<strong> #TITRE</strong>
-			</BOUCLE_rubrique_article_sommaire>
-		</BOUCLE_article_sommaire>
+		<input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_article}|?{checked})] value="sommaire_article">Un article au choix.
+		&nbsp;Est actuellement sélectionné&nbsp;:&nbsp;
+		<ul>
+			<li>L'article
+				<BOUCLE_article_sommaire(ARTICLES) {id_article=#CONFIG{durzy/article_sommaire}}><strong> n° #ID_ARTICLE - #TITRE</strong>
+					<BOUCLE_rubrique_article_sommaire(RUBRIQUES) {id_rubrique}>
+			</li>
+			<li>Dans la rubrique :<strong> #TITRE</strong>
+					</BOUCLE_rubrique_article_sommaire>
+				</BOUCLE_article_sommaire>
+			</li>
+		</ul>
 		
 		[(#REM) Affichage du menu accordéon pour le choix de l'article de une]
 		<dl id="myAccordion">
@@ -85,16 +96,9 @@
 				</dd>
 			</BOUCLE_secteurs>	
 		</dl>
-		
-		<input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_image}|?{checked})] value="sommaire_image">Une image au choix<br />
-		<select name="image_sommaire">
-			<BOUCLE_images_site(DOCUMENTS) {tout} {mode=image}>
-				<option value="#ID_DOCUMENT" [(#CONFIG{durzy/image_sommaire}|=={#ID_DOCUMENT}|?{selected="selected",''})]>#ID_DOCUMENT . #TITRE</option>
-			</BOUCLE_images_site>
-		</select>
-	</div> 
-
-
+	</div>
+	
+	[(#REM) ------------- Organisation --------------- ]
 	<div id="fragment-5">
 		<center>
 			<input type="radio" name="squelette_sommaire" [(#CONFIG{durzy/squelette_sommaire}|=={sommaire_left}|?{checked})] value="sommaire_left">Tous les cadres à gauche 
@@ -105,8 +109,8 @@
 			<img src="../squelettes/images/sommaire-right.png">
 		</center>
 	</div>
-
-
+	
+	[(#REM) ------------- Position des cadres --------------- ]
 	<div id="fragment-6">
 		<fieldset style="background-color:#FFFFCC">
 			<fieldset style="background-color:#CCFFFF"><legend>Choix du cadre à afficher à gauche en haut :</legend>
