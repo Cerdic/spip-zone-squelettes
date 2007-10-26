@@ -3,7 +3,6 @@
 $fond = "forumspip";
 $delais = 3600;
 
-include ("inc-public.php3");
-
+require 'spip.php';
 
 ?>

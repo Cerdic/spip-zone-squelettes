@@ -1,5 +1,7 @@
 <?php
 
+include_spip('inc/vieilles_defs');
+
 // executer une seule fois
 if (defined("_INC_URLS2")) return;
 define("_INC_URLS2", "1");
@@ -10,7 +12,7 @@ define("_INC_URLS2", "1");
 				$r = spip_query("SELECT lang, id_secteur
 					FROM spip_articles
 					WHERE id_article='$id'");
-				if ($a = spip_fetch_array($r)) {
+				if ($a = sql_fetch($r)) {
 					if ($a['id_secteur'] == 324) # aide en ligne
 						return "aide/".$a['lang'].'-aide.html';
 #					if ($a['id_secteur'] == 91)  # rubrique 'fr'
@@ -24,11 +26,11 @@ define("_INC_URLS2", "1");
 				$r = spip_query("SELECT lang, id_secteur
 					FROM spip_rubriques
 					WHERE id_rubrique='$id'");
-				if ($a = spip_fetch_array($r)) {
+				if ($a = sql_fetch($r)) {
 					return ereg_replace("_.*","",$a['lang']);
 				}
 			case 'forum':
-				include_ecrire('inc_forum.php3');
+				include_spip('inc/forum');
 				$racine = racine_forum($id);
 				return langue_choix($racine[1], $racine[0]);
 		}
@@ -46,7 +48,7 @@ function generer_url_article($id_article) {
 
 function generer_url_rubrique($id_rubrique) {
 	$s = spip_query("SELECT id_secteur FROM spip_rubriques WHERE id_rubrique='$id_rubrique' AND id_secteur=id_rubrique");
-	$t = spip_fetch_array($s);
+	$t = sql_fetch($s);
 #	if ($t AND $url=langue_choix ($t['id_secteur'], 'rubrique'))
 #		return $url;
 	if ($lang = langue_choix ($id_rubrique, 'rubrique'))
@@ -61,7 +63,7 @@ function generer_url_breve($id_breve) {
 function generer_url_forum($id_forum) {
 	$s = spip_query("SELECT id_thread, id_forum FROM spip_forum WHERE id_forum=$id_forum");
 	$lang = langue_choix($id_forum, 'forum');
-	if ($t=spip_fetch_array($s)) {
+	if ($t=sql_fetch($s)) {
 		$url = $lang."_".$t['id_thread'].'.html';
 		if ($t['id_forum'] <> $t['id_thread']) $url .= '#forum'.$t['id_forum'];
 	}
@@ -69,9 +71,9 @@ function generer_url_forum($id_forum) {
 }
 
 function generer_url_mot($id_mot) {
-	include_ecrire('inc_charsets.php3');
+	include_spip('inc/charsets');
 	$s = spip_query("SELECT titre FROM spip_mots WHERE id_mot=$id_mot");
-	if ($q = spip_fetch_array($s)) {
+	if ($q = sql_fetch($s)) {
 		$url = '@'.ereg_replace('[^a-z0-9_,-]', '',
 			strtolower(translitteration($q['titre'])));
 		$extra = addslashes(serialize(array('url'=>$url)));
@@ -89,7 +91,7 @@ function generer_url_document($id_document) {
 	if ($id_document > 0) {
 		$query = "SELECT fichier FROM spip_documents WHERE id_document = $id_document";
 		$result = spip_query($query);
-		if ($row = spip_fetch_array($result)) {
+		if ($row = sql_fetch($result)) {
 			$url = $row['fichier'];
 		}
 	}
@@ -116,7 +118,7 @@ function recuperer_parametres_url($fond, $url) {
 				$s = spip_query("SELECT id_secteur
 				FROM spip_rubriques WHERE id_parent=0 AND
 				lang = '".addslashes($lang)."' AND statut='publie'");
-			$t = spip_fetch_array($s);
+			$t = sql_fetch($s);
 			if ($id_secteur = $t['id_secteur'])
 				$contexte['id_rubrique'] = $id_secteur;
 			else {
@@ -153,7 +155,7 @@ function recuperer_parametres_url($fond, $url) {
 			FROM spip_rubriques WHERE id_parent=324 AND
 			lang ='$lang' AND statut='publie'
 			AND (titre LIKE '%-aide.html%')");
-		$t = spip_fetch_array($s);
+		$t = sql_fetch($s);
 		if ($id_rubrique = $t['id_rubrique'])
 			$contexte['id_rubrique'] = $id_rubrique;
 	}
@@ -164,7 +166,7 @@ function recuperer_parametres_url($fond, $url) {
 		$id_original = 2275;
 		$lang = $regs[1];
 		$s = spip_query("SELECT * FROM spip_articles WHERE id_trad=$id_original AND statut='publie' ORDER BY lang<>'$lang',lang<>'fr'");
-		if ($t = spip_fetch_array($s))
+		if ($t = sql_fetch($s))
 			$contexte['id_article'] = $t['id_article'];
 	}
 
@@ -172,7 +174,7 @@ function recuperer_parametres_url($fond, $url) {
 	else if (eregi("^/(@[a-z_0-9,-]+)$", $url, $regs)) {
 		$extra = addslashes(serialize(array('url'=>$regs[1])));
 		$s = spip_query("SELECT id_mot FROM spip_mots WHERE extra='$extra'");
-		if ($t = spip_fetch_array($s))
+		if ($t = sql_fetch($s))
 			$contexte['id_mot'] = $t['id_mot'];
 	}
 }

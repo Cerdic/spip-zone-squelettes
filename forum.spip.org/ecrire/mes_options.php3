@@ -4,6 +4,8 @@
 // cf. inc/notifications.php
 define('_SUIVI_FORUM_THREAD', true);
 
+include_spip('inc/vieilles_defs');
+
   // URLs de la forme /fr_article1.html (inspire de www.spip.net)
   $type_urls='trad';
 
