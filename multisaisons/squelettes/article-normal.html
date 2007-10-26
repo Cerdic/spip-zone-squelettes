@@ -17,10 +17,7 @@
 <meta http-equiv="Content-Language" content="fr-fr" />
 
 	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
-	
-	
-<INCLURE{fond="header-css"}{date=#ENV{date}}> 	
-
+	<INCLURE{fond="header-css"}{date=#ENV{date}}> 	
 #INSERT_HEAD
 </head><body> 
 
@@ -43,9 +40,9 @@
    <INCLURE{fond=inc_petition}{id_article}>
    
      <B_auteurs>
-	 <BOUCLE_auteurs(AUTEURS){id_article}>[                
- <p class="interne droite milieu"><a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR})]"><INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=20}{date=#ENV{date}}>(#NOM)</a>]
- </p></BOUCLE_auteurs></B_auteurs>
+	 <BOUCLE_auteurs(AUTEURS){id_article}>                
+ <p class="interne droite"><span class="gauche"><a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR})]"><INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=28}{date=#ENV{date}}></a></span>[(#NOM|couper{24})<br/>][<a href="(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR})">bio</a> ][<a href="(#URL_SITE)">www</a> ]
+</span></p></BOUCLE_auteurs></B_auteurs>
   <hr class="spacer"/>
 
 
@@ -65,9 +62,9 @@
 #ANCRE_PAGINATION
 <BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension IN png,jpg,gif}{par num titre, date}{pagination 40}>
 <li class="transparent" id="a#ID_DOCUMENT">
-<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;" 
-title="[(#TITRE|couper{80}|texte_backend) ][ (#DESCRIPTIF|couper{80}|texte_backend)]
-" class="thickbox">
+<a class="thickbox" href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;" 
+title="[(#TITRE|couper{80}|texte_backend) ][(#DESCRIPTIF|couper{120}|texte_backend)]
+">
 [(#FICHIER|image_masque{carre-80.png}|image_aplatir{jpg,ffffff}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend) ][ (#DESCRIPTIF|couper{80}|texte_backend)]})]</a>
 	
 </li>
