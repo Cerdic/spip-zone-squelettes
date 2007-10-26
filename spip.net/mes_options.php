@@ -70,4 +70,22 @@
 	if (_DIR_RESTREINT AND count(explode('/', $_SERVER['REQUEST_URI'])) -count(explode('/', $_SERVER['QUERY_STRING'])) > 2)
 		die(header('Location: /'));
 	
+
+// antispam de signature de forum (a integrer dans akismet ?)
+function inc_controler_signature($id_article, $nom_email, $adresse_email, $message, $nom_site, $url_site, $url_page) {
+	if ($a = @unserialize($GLOBALS['meta']['spampetitions'])  
+	AND strlen($a = $a['regexp'])
+	AND (
+		preg_match($a, $nom_email)
+		OR preg_match($a, $adresse_email)
+		OR preg_match($a, $message)
+	)) {
+		spip_log("spam detecte sur la petition $id_article", 'spam');
+		return false; // spam detecte
+	}
+
+
+	return inc_controler_signature_dist($id_article, $nom_email, $adresse_email, $message, $nom_site, $url_site, $url_page);
+}
+
 ?>
