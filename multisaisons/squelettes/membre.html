@@ -54,8 +54,14 @@
 
 
 <div class="grande_boite"> [(#REM)   ouverture grd boite texte   ]
-<span class="logodroite">
-<INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=46}{date=#ENV{date}}>
+<span class="logodroite"> 
+
+
+[(#REM)  Inclue logo auteur avec un max de 100 pixel  ]
+[(#SET{taille,[(#LOGO_AUTEUR||hauteur|min{100})]})] 
+<INCLURE{fond=logo}{id_auteur,#ID_AUTEUR}{taille=#GET{taille}}{date=#ENV{date}}>
+
+
 </span>
 [<h1>(#NOM)</h1>]
 [<p>(#BIO||?{#BIO,#NOM n'a pas encore &eacute;crit sa bio.})</p>]
