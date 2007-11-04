@@ -11,7 +11,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 		'0_article' => 'No article',
 		'0_auteur' => 'No auteur',
-		'0_breve' => 'No br&egrave;ve',
+		'0_breve' => 'No news item',
 		'0_site_web' => 'No site',
 		'1_article' => 'Article',
 		'1_auteur' => 'Author',
@@ -22,7 +22,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //A
 	  
 		'acceder_espace_membre' => 'Login as site member',
-		'acceder_espace_prive' => 'Access to the private area',
+		'acceder_espace_prive' => 'Login to the private area',
 		'accueil_site' => 'Home page', // redefinition item SPIP
 		'agenda' => 'Diary',
 		'agenda_annuel' => 'Yearly diary',
@@ -47,7 +47,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'articles_recents' => 'The most recent articles', // redefinition item SPIP
 		'articles_rubrique' => 'This section\'s articles', // redefinition item SPIP
 		'aucun_article' => 'There is no article at this address', // redefinition item SPIP
-		'aucun_message' => 'No message was still published in reaction to the articles of this site.',
+		'aucun_message' => 'No message has yet been published in reaction to the articles on this site.',
 		'aujourdhui' => 'today',
 		'auteur' => 'Author',
 		'auteurs' => 'Authors',
@@ -85,7 +85,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 		'erreur' => 'error',
 		'espace_prive' => 'Private area', // redefinition item SPIP
-		'evenements_du_jour' => 'Events of the day',
+		'evenements_du_jour' => 'Today\'s events',
 	  
 	
 //F
@@ -273,7 +273,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //U
 	  
-		'url_fausse' => 'The requisted url adress was not found. The site map can help you to find the requested information.',
+		'url_fausse' => 'The requested URL was not found. The site map can help you to find the requested information.',
 	  
 	
 //V
