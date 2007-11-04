@@ -1,0 +1,127 @@
+[(#REM) <!--
+Squelette Sarka-SPIP
+Copyright (C) 2005-2007 - Collectif Sarka-SPIP - http://sarka-spip.com
+
+Ce programme est libre, vous pouvez le redistribuer et/ou le modifier selon les termes
+de la Licence Publique Generale GNU publiee par la Free Software Foundation (version 2
+ou bien toute autre version ulterieure choisie par vous).
+
+Ce programme est distribue car potentiellement utile, mais SANS AUCUNE GARANTIE, ni
+explicite ni implicite, y compris les garanties de commercialisation ou d'adaptation
+dans un but specifique. Reportez-vous a la Licence Publique Generale GNU pour plus de details.
+
+Vous devez avoir recu une copie de la Licence Publique Generale GNU en meme temps que ce programme;
+si ce n'est pas le cas, ecrivez a la Free Software Foundation, Inc., 59 Temple Place, Suite 330,
+Boston, MA 02111-1307, Etats-Unis.
+-->
+
+<!--
+CREDITS
+
+Le squelette Sarka-SPIP est realise par un collectif dont les membres sont les suivants:
+
+- Toufik Stouky    alias  SarkAFeeK
+- Sylvain Bellego  alias  SarkALeoN
+- Xavier Le Ho     alias  SarkARchimeD
+- Eric Lupinacci   alias  SarkASmeL
+
+Nous tenons aussi a remercier tous les utilisateurs qui nous ont fait confiance depuis les 
+premiers pas du squelette et qui continuent aujourd'hui a nous apporter leur soutien et leurs idees.
+Un grand merci, donc, a celles et ceux qui ont contribue (et qui vont contribuer) a l'amelioration
+de ce squelette.
+-->]
+
+<!--Squelette Sarka-SPIP - Copyright (C) 2005-2007 - Collectif Sarka-SPIP - http://sarka-spip.com-->
+
+#CACHE{7200}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+<html lang="#LANG">
+
+	<INCLURE{fond=noisettes/header}>
+<body dir="#LANG_DIR" onload="setHover()">
+<div id="container">
+<div id="header">
+	[(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
+		<INCLURE{fond=noisettes/bandeau}>
+	
+	[(#REM) <!-- =========================== ZONE CHEMIN DE NAVIGATION ============================= --> ]
+		<INCLURE{fond=noisettes/bande-chemin}>
+</div> <!-- fin de header-->
+
+<div id="wrapper">
+	<div id="content">
+		<div class="plan">
+			[(#REM) <!-- affichage des derniers articles syndiqués, classés par secteur --> ]
+			<BOUCLE_test_syndic(SYNDIC_ARTICLES){0,1}>
+				<B_secteurs_syndic>
+					<div class="intitulePage"><:sarkaspip:recents_syndic:></div>
+			
+				<BOUCLE_secteurs_syndic(RUBRIQUES){racine}{id_rubrique!==#RUBRIQUE_SPECIALISEE}{par titre}>
+						<B_syndic_nouveaux>
+							<ul>
+								<li>
+									[<a class="titre_rub" href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a><br>]
+									<ul>
+						<BOUCLE_syndic_nouveaux(SYNDIC_ARTICLES) {id_secteur}{par date}{inverse}{0,5}>
+											<li><a class="article-syndic" href="#URL_ARTICLE"><span class="date-syndic">[[(#DATE|affdate{'d-m-Y'})]]</span>&nbsp;[(#TITRE|couper{75})]</a></li>
+											<div class="a-propos">
+												[<:sarkaspip:publie_sur_site:>&nbsp;<span class="site-pere">(#NOM_SITE)</span>]
+												[<:sarkaspip:par_auteur:>&nbsp;<span class="auteur-pere">(#LESAUTEURS)</span>.]<br>
+												[<span class="commentaire">(#DESCRIPTIF|supprimer_tags)</span>]
+											</div> <!-- Fin a-propos -->
+						</BOUCLE_syndic_nouveaux>
+		      						</ul>
+								</li>
+							</ul>
+						</B_syndic_nouveaux>
+				</BOUCLE_secteurs_syndic>
+						
+					<br>
+				</B_secteurs_syndic>
+			</BOUCLE_test_syndic>
+			
+			<div class="intitulePage"><:sarkaspip:icone_sites_references:></div>
+			<BOUCLE_secteurs(RUBRIQUES){racine}{id_rubrique!==#RUBRIQUE_SPECIALISEE}{par num titre}{par titre}>
+				<B_site_secteur>
+					<ul>
+						<li>
+							[<a class="titre_rub" href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
+							<div id="web" class="noisette">
+								<div class="indentation redimensionnement">
+				<BOUCLE_site_secteur(SITES){id_secteur}{par date}{inverse}>
+									[(#MODELE{site_syndic}{id_syndic}{taille=10})]
+									<br>
+				</BOUCLE_site_secteur>
+								</div> <!-- Fin indentation redimensionnement -->
+							</div> <!-- Fin noisette -->
+						</li>
+					</ul>
+				
+				</B_site_secteur>
+			</BOUCLE_secteurs>
+		
+		</div> <!-- Fin plan -->	
+	</div><!--content-->
+</div><!--wrapper-->
+
+<div id="navigation">
+	[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
+		<INCLURE{fond=noisettes/bloc-gauche}>
+</div>  <!--navigation-->
+
+<div id="extra">
+	[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]		
+		<INCLURE{fond=noisettes/bloc-droite-all-news}{self=#SELF}>
+</div>
+
+<div id="footer">
+	[(#REM) <!-- ================================== ZONE PIED DE PAGE  ================================== --> ]
+		<INCLURE{fond=noisettes/footer}>
+</div>  <!--footer-->
+
+</div>
+</body>
+</html>
+

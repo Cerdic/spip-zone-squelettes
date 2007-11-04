@@ -1,0 +1,23 @@
+[(#REM) <!-- affichage du mini-agenda --> ]
+<BOUCLE_acces_agenda(RUBRIQUES) {id_rubrique=#RUBRIQUE_SPECIALISEE{agenda}}>
+	[(#RUBRIQUE_SPECIALISEE{agenda}|=={0}|?{'', ' '})<INCLURE{fond=noisettes/inc_mini-agenda}{self=#SELF}>]
+</BOUCLE_acces_agenda>
+
+
+[(#REM) <!-- affichage du top album --> ]
+<BOUCLE_acces_splickrbox(RUBRIQUES) {id_rubrique=#RUBRIQUE_SPECIALISEE{galerie}}>
+	[(#PLUGIN{SPLICKR,EST_ACTIF}|=={1}|?{
+		[(#RUBRIQUE_SPECIALISEE{galerie}|=={0}|?{'', ' '})<INCLURE{fond=noisettes/inc_splickrbox}{id_rubrique=#RUBRIQUE_SPECIALISEE{galerie}}>]
+	})]
+</BOUCLE_acces_splickrbox>
+
+[(#REM) <!-- affichage du panneau d'annonce --> ]
+<BOUCLE_acces_annonce(RUBRIQUES) {id_rubrique=#RUBRIQUE_SPECIALISEE{annonce}}>
+	[(#RUBRIQUE_SPECIALISEE{annonce}|=={0}|?{'', ' '})<INCLURE{fond=noisettes/inc_annonce}{id_rubrique=#RUBRIQUE_SPECIALISEE{annonce}}>]
+</BOUCLE_acces_annonce>
+
+[(#REM) <!-- affichage des X dernières brèves --> ]
+<INCLURE{fond=noisettes/inc_breve}
+
+[(#REM) <!-- affichage des X derniers sites --> ]
+<INCLURE{fond=noisettes/inc_site_syndique}
