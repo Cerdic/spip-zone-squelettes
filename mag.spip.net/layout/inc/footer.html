@@ -1,0 +1,58 @@
+
+					</div>
+				</div>
+			</div>
+
+<div id="droite">
+<!-- <:spipmag_form_recherche:> -->
+<div id="droite-recherche" class="boite">
+	<form action="/recherche.php" method="get">
+	<div class="head-boite-verte"><span class="titre-boite"><:recherche:></span></div>
+	<div class="boite-cadre">
+	<input type="hidden" name="lang" value="#LANG" />
+	<input type="text" size="12" name="recherche"
+		value="<:votre_requete:>" class="recherche"
+		onfocus="if (this.value=='<:votre_requete:>') this.value=''"
+		onblur="if (this.value == '') this.value='<:votre_requete:>'" /></div></form>
+</div>
+<B_news><!-- Breves  -->
+<div id="breves" class="boite">
+	<div class="head-boite-rouge"><span class="titre-boite"><:kwadneuf:></span></div>
+	<BOUCLE_news(BREVES) {par date}{inverse}{0,4}{id_rubrique=1}>
+	<div class="listing-breve" dir="#LANG_DIR" style="text-align: #LANG_LEFT;">
+	<a href="#URL_BREVE" title="[(#INTRODUCTION|supprimer_tags|attribut_html)]">#TITRE</a>
+	<span class="date-breve"> | [(#DATE|affdate)]</span></div></BOUCLE_news>
+</div></B_news>
+<B_aproposde><!-- Liens jaunes -->
+<div id="droite-menu" class="boite">
+	<div class="head-boite-jaune"><div class="titre-boite"><:sur_spipmag:></div></div>
+	<ul class="liste-jaune">
+	<BOUCLE_aproposde(ARTICLES) {id_rubrique=1}{par num titre}>
+	<li dir="#LANG_DIR" style="text-align: #LANG_LEFT;"><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[(#TITRE|supprimer_numero)]</a></li>
+	</BOUCLE_aproposde></ul>
+</div></B_aproposde>
+<B_spip-contrib><!-- Syndication de Spip Contrib -->
+	<div id="droite-contrib" class="boite">
+	<div class="head-boite-anthracite"><div class="titre-boite">Spip-Contrib</div></div>
+	<ul class="liste-anthracite">
+	<BOUCLE_spip-contrib(SYNDIC_ARTICLES) {id_syndic=3} {par date} {inverse} {0,4}>
+	<li>[(#DATE|jour)/][(#DATE|mois) ]<a href="#URL_ARTICLE" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)] | [par (#LESAUTEURS|supprimer_tags|attribut_html)]">#TITRE</a></li>
+	</BOUCLE_spip-contrib></ul>
+</div></B_spip-contrib>
+</div>
+
+
+
+			<div id="pied">
+				[(#REM) cf. http://permalink.gmane.org/gmane.comp.web.spip.devel/29039 ]
+				<BOUCLE_derniere_modif(ARTICLES){!lang_select}{!par date_modif}{0,1}>
+				[<:lastmod:>&nbsp;: (#DATE_MODIF|affdate) | ]
+				</BOUCLE_derniere_modif>
+				<a href="/ecrire"><:espace_prive:></a> |
+				<a href="/#DOSSIER_SQUELETTE/"><:squelettes:></a>
+			</div>
+		</div>
+
+	</body>
+
+</html>
