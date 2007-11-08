@@ -405,6 +405,36 @@ function colorsOne(RGorB,XX)
    }     
 }
 
+function colorsAlltest(RGB)
+{
+   var RR = RGB.substring(0,2);
+   var GG = RGB.substring(2,4);
+   var BB = RGB.substring(4,6);
+   var couleur="";
+
+  //couleur_fond
+   if(window.document.pickerform.chooser[0].checked == true) {couleur="couleur_fond";}   
+   else if(window.document.pickerform.chooser[1].checked == true){couleur="couleur_last_articles_fond";}
+   else if(window.document.pickerform.chooser[2].checked == true){couleur="couleur_last_articles_titre";}
+   else if(window.document.pickerform.chooser[3].checked == true){couleur="couleur_last_articles_bordures";}
+   
+   color_r=couleur+'_r';
+   color_g=couleur+'_g';
+   color_b=couleur+'_b';
+   color_rgb=couleur+'_rgb'; 
+   color_view=couleur+'_view';
+      
+   color_r = RR; 
+   color_g = GG; 
+   color_b = BB;
+   color_rgb = "" + color_r + color_g + color_b;
+
+   document.getElementById(couleur).value = color_rgb;
+   document.getElementById(color_view).style.backgroundColor = "#"+color_rgb;
+   reColorAndGray(color_r,color_g,color_b);
+}
+
+
 // Sélection d'une couleurs par clic dans le tableau du nuancier
 function colorsAll(RGB)
 {
