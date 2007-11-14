@@ -156,11 +156,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'licence_squelette' => '<a href="http://www.gnu.org/copyleft/gpl.html" title="SARKA-SPIP template is distributed under GPL" target="_blank">GPL</a>',
                 'lire_evenement_virtuel' => 'Read the original event',
 		'lire_suite_article' => 'Read the whole article',
-		'login_membre' => 'Member login',
-                'login_motpasseoublie' => 'password forgotten?', // redefinition item SPIP
-                'login_retoursitepublic' => 'back to the public site', // redefinition item SPIP
-                'login_sinscrire' => 'register', // redefinition item SPIP
-		'logout_membre' => 'Member logout',
+		'login_membre' => 'Member\'s login',
+		'login_motpasseoublie' => 'password forgotten?', // redefinition item SPIP
+		'login_retoursitepublic' => 'back to the public site', // redefinition item SPIP
+		'login_sinscrire' => 'register', // redefinition item SPIP
+		'logout_membre' => 'Member\'s logout',
 		'lundi_abrege' => 'Mo',
 		'lxh' => 'by',
 	  
