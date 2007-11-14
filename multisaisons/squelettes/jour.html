@@ -31,11 +31,19 @@
  
  
 <div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
-  <div class="grande_boite"> [(#REM)   ouverture grd boite texte   ] 
-<p class="logogauche"><INCLURE{fond="logo"}{id_rubrique}{taille=46}{date=#ENV{date}}><p>
+<BOUCLE_couleur_titre(MOTS){titre=saison}{0,1}>
+[(#ENV{date}|saison|=={printemps}|?{' ',''})#SET{'colo','c5e41c'}]
+[(#ENV{date}|saison|translitteration|=={ete}|?{' ',''})#SET{'colo','97d1e1'}]
+[(#ENV{date}|saison|=={automne}|?{' ',''})#SET{'colo','e6bfb0'}]
+[(#ENV{date}|saison|=={hiver}|?{' ',''})#SET{'colo','c9c9c9'}]
+</BOUCLE_couleur_titre>
+[(#SET{'colo','c9c9c9'})]
+<//B_couleur_titre>
+
+  <div class="grande_boite"> <span class="droite png">[(#ENV{date}|nom_jour|texte_backend|image_typo{taille=36,police=police.ttf,couleur=#GET{colo}})]</span> [(#REM)   ouverture grd boite texte   ] 
+<span class="logogauche"><INCLURE{fond="logo"}{id_rubrique}{taille=46}{date=#ENV{date}}></span>
 <a href="[(#URL_PAGE{sommaire})]">Accueil</a> > <BOUCLE_plan(HIERARCHIE){id_rubrique}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a>	
-                  </BOUCLE_plan></p>
-                 
+                  </BOUCLE_plan></p>                 
                   <h1>[(#TITRE)<br/> 
       ]</h1> 
     [(#SOUSTITRE)<br/> 
@@ -91,11 +99,11 @@
 
 <div class="grande_boite">
 
+[ (#EVAL{' '}|concat{"Agenda du ",#ENV{date}|affdate|texte_backend}|image_typo{taille=18,police=police.ttf,couleur=#GET{colo}}|image_aplatir{gif,ffffff})]
 
 
 <B_evenements_jours>
-[<h3>&Eacute;v&eacute;nements le (#ENV{date}|affdate)</h3><hr class="spacer"/>
-]
+
 
 
 
