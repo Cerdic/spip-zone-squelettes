@@ -81,6 +81,9 @@ define('_ID_WEBMESTRES', '1');
 # Envoi de mail aux contributeurs d'un forum si reponse a leur message
 define('_SUIVI_FORUM_THREAD', true);
 
+// Se passer de |supprimer_numero partout
+$table_des_traitements['TITRE'][]= 'typo(trim(supprimer_numero(%s)))';
+
 function balise_SECTEUR_PDF_dist($p) {
 	if (!is_array($p->param))
 		$p->param=array();

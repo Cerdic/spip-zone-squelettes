@@ -1,8 +1,8 @@
 #CACHE{30*24*3600}
 <BOUCLE_Gribouille(RUBRIQUES){id_rubrique}{titre_mot=Gribouille}>[(#INCLURE{fond=gribouille/rubrique}{env})]</BOUCLE_Gribouille>
 <BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}{!lang_select}><?php $jp_rubrique = [(#ID_RUBRIQUE|texte_script)]; ?><BOUCLE_RacineMenuHaut(HIERARCHIE){tout}{id_rubrique}{titre_mot=MenuHaut}{inverse} {0,1}>[(#SET{secteurencours,#ID_RUBRIQUE})]</BOUCLE_RacineMenuHaut><?php
-$titre = '[(#TITRE|textebrut|supprimer_numero|attribut_html|texte_script)]';
-$titretop = '[(#TITRE|textebrut|supprimer_numero|attribut_html|nettoyer_marqueur|texte_script)]';
+$titre = '[(#TITRE|textebrut|attribut_html|texte_script)]';
+$titretop = '[(#TITRE|textebrut|attribut_html|nettoyer_marqueur|texte_script)]';
 ?><INCLURE{fond=header}{id_rubrique}{connexion}{secteurencours=#GET{secteurencours}}>
 <BOUCLE_EstAgenda(HIERARCHIE){id_rubrique}{tout}{titre_mot=Agenda}{inverse}{0,1}>
 [(#CONFIG{soyezcreateurs/agendathematique,Non}|=={#ENV{calendrier,Oui}}|?{' ',''})<INCLURE{fond=agendathematique}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}>]
@@ -22,9 +22,9 @@ $titretop = '[(#TITRE|textebrut|supprimer_numero|attribut_html|nettoyer_marqueur
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
 	<BOUCLE_plan(HIERARCHIE){id_rubrique}>
-	<li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|textebrut|attribut_html|supprimer_numero)"]>[(#TITRE|supprimer_numero)]</a></li>
+	<li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE)]</a></li>
 	</BOUCLE_plan>
-	<li>[(#TITRE|supprimer_numero)]</li>
+	<li>[(#TITRE)]</li>
 	</ul>
 <INCLURE{fond=inc_affrubcomplete}{id_rubrique}>
 
@@ -39,11 +39,11 @@ $titretop = '[(#TITRE|textebrut|supprimer_numero|attribut_html|nettoyer_marqueur
 <h1>[(#MODELE{rubrique_logo}{mode=normal}|logo_swf_or_img{
 	64,
 	64,
-	[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)],
+	[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)],
 	"",
 	"logo_rubrique",
 	[(#MODELE{rubrique_logo}{mode=survol}|image_reduire{64,64})]}
-	)][#DEBUT_SURLIGNE(#TITRE|supprimer_numero)#FIN_SURLIGNE]</h1>
+	)][#DEBUT_SURLIGNE(#TITRE)#FIN_SURLIGNE]</h1>
 </div>
 	<div id="letexte">
 [<div class="descriptif">#DEBUT_SURLIGNE(#DESCRIPTIF)#FIN_SURLIGNE</div>]

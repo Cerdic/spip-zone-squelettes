@@ -10,7 +10,7 @@
 <div class="espaceavant">
 <ul>
 <BOUCLE_Racines(ARTICLES){titre_mot==^(MENURACINE|MENURACINE_Systematique)$}{par num titre}{!lang_select}>
-	<li><?php if ($jp_article==#ID_ARTICLE) { ?><strong><?php } ?><a href="[(#URL_ARTICLE)]"[ hreflang="(#LANG)"] title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img src="(#LOGO_ARTICLE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#TITRE|supprimer_numero)]</a><?php if ($jp_article==#ID_ARTICLE) { ?></strong><?php } ?></li>
+	<li><?php if ($jp_article==#ID_ARTICLE) { ?><strong><?php } ?><a href="[(#URL_ARTICLE)]"[ hreflang="(#LANG)"] title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img src="(#LOGO_ARTICLE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" />][(#TITRE)]</a><?php if ($jp_article==#ID_ARTICLE) { ?></strong><?php } ?></li>
 </BOUCLE_Racines>
 </ul>
 </div>
@@ -19,7 +19,7 @@
 <div class="espaceavant">
 <ul>
 <BOUCLE_RacinesBas(ARTICLES){par num titre}{titre_mot==^MENURACINEBAS.*}{!lang_select}>
-	<li><a href="[(#URL_ARTICLE)]"[ hreflang="(#LANG)"] title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img src="(#LOGO_ARTICLE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />][(#TITRE|supprimer_numero)]</a></li>
+	<li><a href="[(#URL_ARTICLE)]"[ hreflang="(#LANG)"] title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img src="(#LOGO_ARTICLE||reduire_image{16,16}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" />][(#TITRE)]</a></li>
 </BOUCLE_RacinesBas>
 </ul>
 </div>
@@ -50,7 +50,7 @@
 <B_Goodies>
   <ul class="menu">
 <BOUCLE_Goodies(ARTICLES) {titre_mot=Goodies}{par num titre}{!lang_select}>
-	<li><a href="#URL_ARTICLE"[ hreflang="(#LANG)"] title="[(#DESCRIPTIF|textebrut|entites_html|supprimer_tags|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">[<img class="menu_right_logo" src="(#LOGO_ARTICLE_NORMAL||reduire_image{120,50}|extraire_attribut{src})"[ width="(#LOGO_ARTICLE_NORMAL||reduire_image{120,50}|extraire_attribut{width})"][ height="(#LOGO_ARTICLE_NORMAL||reduire_image{120,50}|extraire_attribut{height})"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" /><br />][(#TITRE|supprimer_numero)]</a></li>
+	<li><a href="#URL_ARTICLE"[ hreflang="(#LANG)"] title="[(#DESCRIPTIF|textebrut|entites_html|supprimer_tags|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">[<img class="menu_right_logo" src="(#LOGO_ARTICLE_NORMAL||reduire_image{120,50}|extraire_attribut{src})"[ width="(#LOGO_ARTICLE_NORMAL||reduire_image{120,50}|extraire_attribut{width})"][ height="(#LOGO_ARTICLE_NORMAL||reduire_image{120,50}|extraire_attribut{height})"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" /><br />][(#TITRE)]</a></li>
 </BOUCLE_Goodies>
 </ul>
 </B_Goodies>
@@ -73,7 +73,7 @@
 <ul class="alaune">
 <BOUCLE_articles_recentsAlaUne(ARTICLES) {par date_modif}{inverse}{0,(#CONFIG{soyezcreateurs/nombres_alanune,3})}{doublons}{titre_mot=AlaUne}{!lang_select}>
 	<li>[<a href="#URL_ARTICLE" title="[(#DESCRIPTIF|attribut_html) ([(#DATE|nom_jour)] [(#DATE|affdate)])]"><span class="date">(#DATE|affdate)</span></a><br />]
-	[<a href="#URL_ARTICLE"[ hreflang="(#LANG)"] title="[(#DESCRIPTIF|attribut_html) ([(#DATE|nom_jour)] [(#DATE|affdate)])]"><span class="titre">(#TITRE|supprimer_numero)</span></a>]
+	[<a href="#URL_ARTICLE"[ hreflang="(#LANG)"] title="[(#DESCRIPTIF|attribut_html) ([(#DATE|nom_jour)] [(#DATE|affdate)])]"><span class="titre">(#TITRE)</span></a>]
 	<a href="#URL_ARTICLE" title="[(#DESCRIPTIF|attribut_html) ([(#DATE|nom_jour)] [(#DATE|affdate)])]" class="readmore"><span class="readmore">Read More</span></a></li>
 </BOUCLE_articles_recentsAlaUne>
 </ul>
@@ -81,7 +81,7 @@
 	<ul>
 	<BOUCLE_articles_recentsSiUne(ARTICLES) {par date_modif}{inverse}{0,(#CONFIG{soyezcreateurs/nombres_quoideneuf,10})}{doublons}{!lang_select}>
 		<li[(#COMPTEUR_BOUCLE|alterner{' class="odd"',''})]>[<a href="#URL_ARTICLE" title="[(#DESCRIPTIF|attribut_html) ([(#DATE|nom_jour)] [(#DATE|affdate)])]"><span class="date">(#DATE|affdate)</span></a><br />]
-		[<a href="#URL_ARTICLE"[ hreflang="(#LANG)"] title="[(#DESCRIPTIF|attribut_html) ([(#DATE|nom_jour)] [(#DATE|affdate)])]"><span class="titre">(#TITRE|supprimer_numero)</span></a>]
+		[<a href="#URL_ARTICLE"[ hreflang="(#LANG)"] title="[(#DESCRIPTIF|attribut_html) ([(#DATE|nom_jour)] [(#DATE|affdate)])]"><span class="titre">(#TITRE)</span></a>]
 		<a href="#URL_ARTICLE" title="[(#DESCRIPTIF|attribut_html) ([(#DATE|nom_jour)] [(#DATE|affdate)])]" class="readmore"><span class="readmore">Read More</span></a></li>
 	</BOUCLE_articles_recentsSiUne>
 	</ul>
@@ -94,7 +94,7 @@
 <ul>
 <BOUCLE_articles_recents(ARTICLES) {par date_modif}{inverse}{0,(#CONFIG{soyezcreateurs/nombres_quoideneuf,10})}{doublons}{!lang_select}>
 	<li[(#COMPTEUR_BOUCLE|alterner{' class="odd"',''})]>[<a href="#URL_ARTICLE" title="[(#DESCRIPTIF|attribut_html) ([(#DATE|nom_jour)] [(#DATE|affdate)])]"><span class="date">(#DATE|affdate)</span></a><br />]
-	[<a href="#URL_ARTICLE"[ hreflang="(#LANG)"] title="[(#DESCRIPTIF|attribut_html) ([(#DATE|nom_jour)] [(#DATE|affdate)])]"><span class="titre">(#TITRE|supprimer_numero)</span></a>]
+	[<a href="#URL_ARTICLE"[ hreflang="(#LANG)"] title="[(#DESCRIPTIF|attribut_html) ([(#DATE|nom_jour)] [(#DATE|affdate)])]"><span class="titre">(#TITRE)</span></a>]
 	<a href="#URL_ARTICLE" title="[(#DESCRIPTIF|attribut_html) ([(#DATE|nom_jour)] [(#DATE|affdate)])]" class="readmore"><span class="readmore">Read More</span></a></li>
 </BOUCLE_articles_recents>
 </ul>

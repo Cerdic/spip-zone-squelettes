@@ -5,19 +5,19 @@ $jp_rubrique = [(#ID_RUBRIQUE|texte_script)];
 $jp_site = '[(#ID_SYNDIC|texte_script)]';
 $jp_syndication = '[(#ENV{id_syndic_article}|texte_script)]';
 <BOUCLE_ArticleSyndiqueTitre(SYNDIC_ARTICLES) {id_syndic_article} >
-$titre = '[(#TITRE|supprimer_numero|textebrut|texte_script)][ - (#NOM_SITE|textebrut|supprimer_numero|textebrut|texte_script) (<:sites_web:>)]';
+$titre = '[(#TITRE|textebrut|texte_script)][ - (#NOM_SITE|textebrut|textebrut|texte_script) (<:sites_web:>)]';
 </BOUCLE_ArticleSyndiqueTitre>
-$titre = '[(#NOM_SITE|textebrut|supprimer_numero|textebrut|texte_script) (<:sites_web:>)]';
+$titre = '[(#NOM_SITE|textebrut|textebrut|texte_script) (<:sites_web:>)]';
 <//B_ArticleSyndiqueTitre>
 $titretop = '<:sites_web|nettoyer_marqueur:>_[(#NOM_SITE|nettoyer_marqueur)]';
 ?><INCLURE{fond=header}{connexion}>
 	<div id="miettesdepain">
 	<ul>
 		<li><a href="#URL_SITE_SPIP" title="Accueil"><:pyrat:accueil:></a></li>
-		<BOUCLE_ariane(HIERARCHIE){id_syndic}><li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></li></BOUCLE_ariane><li><a href="#URL_PAGE{site}"><:sites_web:></a></li>
+		<BOUCLE_ariane(HIERARCHIE){id_syndic}><li><a href="#URL_RUBRIQUE">[(#TITRE)]</a></li></BOUCLE_ariane><li><a href="#URL_PAGE{site}"><:sites_web:></a></li>
 		<BOUCLE_UnArticleSyndique(SYNDIC_ARTICLES) {id_syndic_article}>
 		<li><a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a></li>
-		<li>[(#TITRE|supprimer_numero)]</li>
+		<li>[(#TITRE)]</li>
 		</BOUCLE_UnArticleSyndique>
 		<li>[(#NOM_SITE|couper{80})]</li>
 		<//B_UnArticleSyndique>
@@ -28,8 +28,8 @@ $titretop = '<:sites_web|nettoyer_marqueur:>_[(#NOM_SITE|nettoyer_marqueur)]';
 <!-- Contenu : corps du site syndiqué -->
 <div class="cartouche">
 				<h1 class="#EDIT{nom_site} titre">
-				[(#LOGO_SITE{site_logo}{mode=normal}|logo_swf_or_img{64,64,[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)],"","logo_site",
-				[(#LOGO_SITE{site_logo}{mode=survol}|image_reduire{64,64})]})][#DEBUT_SURLIGNE(#TITRE|supprimer_numero)#FIN_SURLIGNE]
+				[(#LOGO_SITE{site_logo}{mode=normal}|logo_swf_or_img{64,64,[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)],"","logo_site",
+				[(#LOGO_SITE{site_logo}{mode=survol}|image_reduire{64,64})]})][#DEBUT_SURLIGNE(#TITRE)#FIN_SURLIGNE]
 				<:sites_web:>&nbsp;: 
 				#NOM_SITE
 				</h1>
@@ -44,7 +44,7 @@ $titretop = '<:sites_web|nettoyer_marqueur:>_[(#NOM_SITE|nettoyer_marqueur)]';
 		<B_ArticleSyndique>
 		<div class="syndic">
 			<BOUCLE_ArticleSyndique(SYNDIC_ARTICLES) {id_syndic_article} >
-				<h2><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h2>
+				<h2><a href="#URL_ARTICLE">[(#TITRE)]</a></h2>
 				[<div class="enclosures">(#TAGS|afficher_enclosures)</div>]
 				<small>[(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)][ &mdash; <em>(#TAGS|afficher_tags)</em>]</small>
 				[<div>(#DESCRIPTIF|image_reduire{300})
@@ -60,7 +60,7 @@ $titretop = '<:sites_web|nettoyer_marqueur:>_[(#NOM_SITE|nettoyer_marqueur)]';
 			<h2><:ecrire:titre_articles_syndiques:></h2>
 			<dl>
 			<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {pagination}>
-				<dt><a href="[(#ID_SYNDIC|generer_url_site|parametre_url{'id_syndic_article',#ID_SYNDIC_ARTICLE})]">[(#TITRE|supprimer_numero)]</a></dt>
+				<dt><a href="[(#ID_SYNDIC|generer_url_site|parametre_url{'id_syndic_article',#ID_SYNDIC_ARTICLE})]">[(#TITRE)]</a></dt>
 				<dd>
 					<small>[(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)]</small>
 					[<div>(#DESCRIPTIF|couper{300}|image_reduire{300})
@@ -108,18 +108,18 @@ $titretop = '<:sites_web|nettoyer_marqueur:>';
 [(#CONFIG{plugin}|match{SEDNA}|?{' ',''})<p><:pyrat:voirsitespar:> <a href="@sedna.html"><:pyrat:sedna:></a>.</p>]
 			
 <BOUCLE_Autres(RUBRIQUES){id_parent=0}{par num titre}{doublons plan}>
-	<h2><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE|supprimer_numero)]</a></h2>
+	<h2><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></h2>
 
 	<B_sites>
 	<ul class="alaune">
-		<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}><li><a href="[(#ID_SYNDIC|generer_url_site)]">[<img class="menu_right_logo" src="/(#LOGO_SITE_NORMAL||reduire_image{120,50}|extraire_attribut{src})"[ width="(#LOGO_SITE_NORMAL||reduire_image{120,50}|extraire_attribut{width})"][ height="(#LOGO_SITE_NORMAL||reduire_image{120,50}|extraire_attribut{height})"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html|supprimer_numero) (logo)]" />]#NOM_SITE</a></li></BOUCLE_sites>
+		<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}><li><a href="[(#ID_SYNDIC|generer_url_site)]">[<img class="menu_right_logo" src="/(#LOGO_SITE_NORMAL||reduire_image{120,50}|extraire_attribut{src})"[ width="(#LOGO_SITE_NORMAL||reduire_image{120,50}|extraire_attribut{width})"][ height="(#LOGO_SITE_NORMAL||reduire_image{120,50}|extraire_attribut{height})"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" />]#NOM_SITE</a></li></BOUCLE_sites>
 	</ul>
 	</B_sites>
 
 	<B_Autres_Details>
 	<ul>
 	<BOUCLE_Autres_Details(RUBRIQUES){id_parent}{par num titre}{doublons plan}>
-		<li style="list-style-image: url(/#CHEMIN{images/menu_plus.gif});"><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE|supprimer_numero)]</a>
+		<li style="list-style-image: url(/#CHEMIN{images/menu_plus.gif});"><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a>
 		<BOUCLE_Recurssion(BOUCLE_Autres_Details)></BOUCLE_Recurssion>
 			<B_sites2>
 			<ul class="alaune">

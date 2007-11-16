@@ -29,7 +29,7 @@ $events = array();
 	}
 	</BOUCLE_evenements>
 	?>
-<h2[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE|supprimer_numero)]</h2>
+<h2[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</h2>
 <div class="fond">
 <table class="agenda" summary="[(#DESCRIPTIF|sinon{<:pyrat:agenda_summary:>}|texte_script)]">
 <caption>
@@ -54,7 +54,7 @@ $events = array();
 				  $case .= '<a'.$eventscolor[date('Ymd', $Time)][0].' href="'.$events[date('Ymd', $Time)][0].'" title="'.$eventstitle[date('Ymd', $Time)][0].'">'.date('j', $Time).'</a>';
 				} else {
 				  $case = '<td class="agendanotthismonth events">';
-				  $case .= '<a href="spip.php?page=agenda&amp;id_rubrique=#ID_RUBRIQUE" title="[(#TITRE|supprimer_numero|attribut_html)]">'.date('j', $Time).'</a>';
+				  $case .= '<a href="spip.php?page=agenda&amp;id_rubrique=#ID_RUBRIQUE" title="[(#TITRE|attribut_html)]">'.date('j', $Time).'</a>';
 				}
 			} else {
 				$case = '<td class="agendanotthismonth">';
@@ -76,7 +76,7 @@ $events = array();
 				  echo '<a'.$eventscolor[date('Ymd', $Time)][0].' href="'.$events[date('Ymd', $Time)][0].'" title="'.$eventstitle[date('Ymd', $Time)][0].'">'.date('j', $Time).'</a>';
 				} else {
 				  echo '<td class="agenda'.(date('m', $Time) != $M ? 'not' : '').'this'.(date('Ymd', $Time) == date('Ymd') ? 'day' : 'month').' events">';
-				  echo '<a href="spip.php?page=agenda&amp;id_rubrique=#ID_RUBRIQUE" title="[(#TITRE|supprimer_numero|attribut_html)]">'.date('j', $Time).'</a>';
+				  echo '<a href="spip.php?page=agenda&amp;id_rubrique=#ID_RUBRIQUE" title="[(#TITRE|attribut_html)]">'.date('j', $Time).'</a>';
 				}
 		} else  {
 			echo '<td class="agenda'.(date('m', $Time) != $M ? 'not' : '').'this'.(date('Ymd', $Time) == date('Ymd') ? 'day' : 'month').'">';
@@ -93,7 +93,7 @@ $events = array();
 	<B_AgendaDerniersAjouts>
 	<ul>
 	<BOUCLE_AgendaDerniersAjouts(EVENEMENTS){statut=publie}{branche}{par date_debut}{0,(#CONFIG{soyezcreateurs/nombres_agenda,5})}{date_debut>=(#ENV{date}|affdate{'Y-m-d'})}>
-	<li><BOUCLE_DernierEvenementArticle(ARTICLES){id_article}><a href="#URL_ARTICLE##ID_EVENEMENT"[ title="(#_DernierEvenementArticle:TITRE|!={#_AgendaDerniersAjouts:TITRE}|?{[(#TITRE|supprimer_numero|attribut_html)] - [(#_AgendaDerniersAjouts:DATE_DEBUT|afficher_les_dates{#_AgendaDerniersAjouts:DATE_FIN,#_AgendaDerniersAjouts:HORAIRE,0,0,0,0})],[(#DESCRIPTIF|supprimer_numero|attribut_html)] - [(#_AgendaDerniersAjouts:DATE_DEBUT|afficher_les_dates{#_AgendaDerniersAjouts:DATE_FIN,#_AgendaDerniersAjouts:HORAIRE,0,0,0,0})]})"]></BOUCLE_DernierEvenementArticle>#TITRE</a></li>
+	<li><BOUCLE_DernierEvenementArticle(ARTICLES){id_article}><a href="#URL_ARTICLE##ID_EVENEMENT"[ title="(#_DernierEvenementArticle:TITRE|!={#_AgendaDerniersAjouts:TITRE}|?{[(#TITRE|attribut_html)] - [(#_AgendaDerniersAjouts:DATE_DEBUT|afficher_les_dates{#_AgendaDerniersAjouts:DATE_FIN,#_AgendaDerniersAjouts:HORAIRE,0,0,0,0})],[(#DESCRIPTIF|attribut_html)] - [(#_AgendaDerniersAjouts:DATE_DEBUT|afficher_les_dates{#_AgendaDerniersAjouts:DATE_FIN,#_AgendaDerniersAjouts:HORAIRE,0,0,0,0})]})"]></BOUCLE_DernierEvenementArticle>#TITRE</a></li>
 	</BOUCLE_AgendaDerniersAjouts>
 	</ul>
 	</B_AgendaDerniersAjouts>
