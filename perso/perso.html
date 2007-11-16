@@ -1,0 +1,121 @@
+<BOUCLE_a(AUTEURS){id_auteur=#SESSION{id_auteur}}{tous}{lang_select}>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#NOM|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#BIO|couper{150}|attribut_html)" />]
+<INCLURE{fond=inc-head}>
+</head>
+
+<body class="page_auteur">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+
+	[(#REM) Contenu principal : affichage de l'auteur ]
+    <div id="conteneur">
+    <div id="contenu">
+    
+        [(#REM) Fil d'Ariane ]
+        <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; 
+        <a href="#URL_LOGOUT">logout</a>
+        </div>
+
+<div class="vcard">
+
+        <div class="cartouche">
+		<div class="#EDIT{logo}">
+		[(#LOGO_AUTEUR||image_reduire{200,200}|sinon{une photo})]
+		</div>
+	<h1 class="#EDIT{qui} fn">#NOM</h1>
+        </div>
+
+
+        [<div class="#EDIT{bio} texte note">(#BIO)</div>]
+        [<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="url org spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+</div>
+        [(#REM) Articles de l'auteur ]
+        <B_articles>
+        <div class="menu articles">
+            #ANCRE_PAGINATION
+            <h2>Articles publi&#233;s : #GRAND_TOTAL</h2>
+            <ul style='overflow: hidden;'>
+                <BOUCLE_articles(ARTICLES) {id_auteur} {par date}{inverse} {pagination 10}>
+                <li style='width:32000px; color:gray;'>
+                <div style='float:left;margin-right:5px;'>[(#STATUT|puce_statut|inserer_attribut{title,publi&#233; #DATE})]</div>
+                <a href="#URL_PAGE{perso_article,id_article=#ID_ARTICLE}">(editer)</a> <a href="#URL_ARTICLE">#TITRE</a>[<small>
+                	&mdash; (#INTRODUCTION|couper{70})</small>]</li>
+                </BOUCLE_articles>
+            </ul>
+            [<p class="pagination">(#PAGINATION)</p>]
+        </div>
+        </B_articles>
+
+        <B_articleso>
+        <div class="menu articles">
+            #ANCRE_PAGINATION
+            <h2>Articles propos&#233;s : #GRAND_TOTAL</h2>
+            <ul style='overflow: hidden;'>
+                <BOUCLE_articleso(ARTICLES)
+                {statut IN prepa, prop}
+                {id_auteur} {par date}{inverse} {pagination 10}>
+                <li style='width:32000px; color:gray;'>
+                <div style='float:left;margin-right:5px;'>[(#STATUT|puce_statut|inserer_attribut{title,date: #DATE})]</div>
+                <a href="#URL_PAGE{perso_article,id_article=#ID_ARTICLE}">(editer)</a> #TITRE[<small>
+                	&mdash; (#INTRODUCTION|couper{70})</small>]</li>
+                </BOUCLE_articleso>
+            </ul>
+            [<p class="pagination">(#PAGINATION)</p>]
+        </div>
+        </B_articleso>
+
+
+        <B_foros>
+        <div class="menu articles">
+            #ANCRE_PAGINATION
+            <h2>Vos messages sur les forums : #GRAND_TOTAL</h2>
+            <ul>
+                <BOUCLE_foros(FORUMS)
+                {id_auteur} {par date}{inverse} {pagination 10}>
+                <li><tt>[(#DATE|date_relative)]:</tt> <a href="#URL_FORUM">#INTRODUCTION</a></li>
+                </BOUCLE_foros>
+            </ul>
+            [<p class="pagination">(#PAGINATION)</p>]
+        </div>
+        </B_foros>
+
+
+        [<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+
+	</div><!--#contenu-->
+	</div><!--#conteneur-->
+
+    [(#REM) Menu de navigation laterale ]
+    <div id="navigation">
+
+        [(#REM) Menu de navigation par rubriques ]
+        <INCLURE{fond=inc-rubriques}>
+        <div class="menu">
+		#FORMULAIRE_UPLOAD
+        </div>
+    </div><!--#navigation-->
+
+
+    
+    [(#REM) Menu de navigation laterale ]
+    <div id="extra">
+
+	<INCLURE{fond=session/mailman}{email=#EMAIL**}{env}>
+
+    </div><!--#extra-->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+</div><!--#page-->
+</body>
+</html>
+</BOUCLE_a>
+	#LOGIN_PUBLIC
+<//B_a>
