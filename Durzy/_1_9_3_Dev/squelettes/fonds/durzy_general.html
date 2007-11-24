@@ -48,42 +48,41 @@
 </fieldset>
 
 <!-- Affichage de la une en page sommaire-->
-
-<br /><p>La Une de la <strong>page sommaire</strong></p>
-
-		<input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_aucun}|?{checked})] value="sommaire_aucun">Rien (Permet de placer le code de votre choix dans cette zone de la page)<br />
-		<input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_image}|?{checked})] value="sommaire_image">Une image au choix&nbsp;:
-		<select name="image_sommaire">
-			<BOUCLE_images_site(DOCUMENTS) {tout} {mode=image}>
-				<option value="#ID_DOCUMENT" [(#CONFIG{durzy/image_sommaire}|=={#ID_DOCUMENT}|?{selected="selected",''})]>#ID_DOCUMENT . #TITRE</option>
-			</BOUCLE_images_site>
-		</select>
-		<br />
-		<input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_last}|?{checked})] value="sommaire_last">Le dernier article publié
-		<br />
-		<input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_article}|?{checked})] value="sommaire_article">Un article au choix.
-		&nbsp;Est actuellement sélectionné&nbsp;:&nbsp;
-		<ul>
-			<li>L'article
-				<BOUCLE_article_sommaire(ARTICLES) {id_article=#CONFIG{durzy/article_sommaire}}><strong> n° #ID_ARTICLE - #TITRE</strong>
-					<BOUCLE_rubrique_article_sommaire(RUBRIQUES) {id_rubrique}>
-			</li>
-			<li>Dans la rubrique :<strong> #TITRE</strong>
-					</BOUCLE_rubrique_article_sommaire>
-				</BOUCLE_article_sommaire>
-			</li>
-		</ul>
-		
-		[(#REM) Affichage du menu accordéon pour le choix de l'article de une]
-		<dl id="myAccordion">
-			<BOUCLE_secteurs(RUBRIQUES) {tout}{par num titre}>
-				<dt><strong>rubrique : #TITRE</strong></dt>
-				<dd>
-					<BOUCLE_articles(ARTICLES) {id_rubrique} {par num titre}>
-						<li>
-							<input type="radio" name="article_sommaire" [(#CONFIG{durzy/article_sommaire}|=={#ID_ARTICLE}|?{checked})] value="#ID_ARTICLE">#ID_ARTICLE . #TITRE
-						</li>
-					</BOUCLE_articles>
-				</dd>
-			</BOUCLE_secteurs>	
-		</dl>
+<fieldset style="background-color:#FFFFCC"><legend>La Une de la <strong>page sommaire</strong></legend>
+<input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_aucun}|?{checked})] value="sommaire_aucun">Rien (Permet de placer le code de votre choix dans cette zone de la page)<br />
+<input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_image}|?{checked})] value="sommaire_image">Une image au choix&nbsp;:
+<select name="image_sommaire">
+ <BOUCLE_images_site(DOCUMENTS) {tout} {mode=image}>
+  <option value="#ID_DOCUMENT" [(#CONFIG{durzy/image_sommaire}|=={#ID_DOCUMENT}|?{selected="selected",''})]>#ID_DOCUMENT . #TITRE</option>
+  </BOUCLE_images_site>
+	</select>
+	<br />
+	<input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_last}|?{checked})] value="sommaire_last">Le dernier article publié
+	<br />
+	<input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_article}|?{checked})] value="sommaire_article">Un article au choix.
+	&nbsp;Est actuellement sélectionné&nbsp;:&nbsp;
+	<ul>
+ 	 <li>L'article
+ 	  <BOUCLE_article_sommaire(ARTICLES) {id_article=#CONFIG{durzy/article_sommaire}}><strong> n° #ID_ARTICLE - #TITRE</strong>
+		<BOUCLE_rubrique_article_sommaire(RUBRIQUES) {id_rubrique}>
+		 </li>
+		 <li>Dans la rubrique :<strong> #TITRE</strong>
+		</BOUCLE_rubrique_article_sommaire>
+	  </BOUCLE_article_sommaire>
+	 </li>
+	</ul>
+	
+    [(#REM) Affichage du menu accordéon pour le choix de l'article de une]
+	 <dl id="myAccordion">
+	 <BOUCLE_secteurs(RUBRIQUES) {tout}{par num titre}>
+	 <dt><strong>rubrique : #TITRE</strong></dt>
+	  <dd>
+	  <BOUCLE_articles(ARTICLES) {id_rubrique} {par num titre}>
+	   <li>
+		<input type="radio" name="article_sommaire" [(#CONFIG{durzy/article_sommaire}|=={#ID_ARTICLE}|?{checked})] value="#ID_ARTICLE">#ID_ARTICLE . #TITRE
+	   </li>
+	  </BOUCLE_articles>
+	  </dd>
+	  </BOUCLE_secteurs>	
+	  </dl>
+</fieldset>
