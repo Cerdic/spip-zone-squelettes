@@ -1,71 +1,99 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+#CACHE{864000}
+<INCLURE{fond="header"}><head>
+<B_titre_art>
+[(#REM)   les métas   ]  <BOUCLE_titre_art(COURRIERS){id_courrier}>
+    
+[
 
-<head>
-	<title>#NOM_SITE_SPIP</title>
-	<meta http-equiv='Content-Type' content='text/html; charset=#CHARSET' />
-	<style type="text/css">
-	[(#REM)  
-	
-	body {
-		color:#000000;
-		background-color:#F5F5F5;
-		font-family:sans-serif;
-	}
-	
-	
-	.cadre {
-		/*border: 1px #000000 solid;*/
-		background-color:#FFFFFF;
-	        text-align: justify;
-	        width:500px;
-	        padding: 10px;
-	        margin-left: auto;
-	        margin-right: auto;
-	        margin-bottom: 10px;
-		-moz-border-radius: 6px;
-		border-radius: 6px;
-	}
-	
-	h1 {
-	 font-size: 150%;
-	 text-decoration: underline ;
-	
-	}
-	
-	.bloc {
-	 margin-top: 10px;
-	 padding: 10px;
-	 text-align: center;
-	}
-	
-	.cdt{
-	  font-size:10px;
-	  text-align:center;
-	  margin-top:10px
-	}
-	
-	  ]
-	</style>
-</head>
-<body dir="#LANG_DIR">
-		
-	<div class='bloc'>
-		<h1>#NOM_SITE_SPIP</h1>
-		
+<title>(#TITRE)</title>]
+[<meta name="Description" content='(#TITRE)'/>]
+[<meta name="keywords" content="lettre information,newsletter,(#TITRE)"/>]
+ </BOUCLE_titre_art>
+</B_titre_art>
+<meta name="revisit-after" content="15 days" />
+<meta http-equiv="content-type" content="text/html; charset=#CHARSET"/>
+<meta http-equiv="Content-Language" content="fr-fr" />
 
-		
-		<div class='cadre'>
-			
-			[(#ENV{d}|?{'',' '})
-			#FORMULAIRE_ABONNEMENT
-			<br />
-			]
-			
-			#FORMULAIRE_MODIF_ABONNEMENT
-		</div>
-		<p style="text-align:center"><a href='#URL_SITE_SPIP'><:pass_retour_public:></a></p>
-		<div class='cdt'><:spiplistes:abonnement_cdt:></div>
-	</div>
+	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
+	
+
+<INCLURE{fond="header-css"}{date=#ENV{date}}> 	
+
+</head><body> 
+
+<div id="container">   [(#REM)   centrage page   ]
+<INCLURE{fond="entete"}{date=#ENV{date}}> 
+<div id="surcontent">  
+<INCLURE{fond="menuhoriz"}>[(#REM)   ouverture entête   ]
+<div id="content">  [(#REM)   ouverture contenu   ] 
+
+<div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
+ 
+ 
+
+  [<div class="grande_boite">
+   (#ENV{d}|?{'',' '})
+			#FORMULAIRE_ABONNEMENT			
+</div>]
+[<div class="grande_boite">
+			(#FORMULAIRE_MODIF_ABONNEMENT)
+   
+
+   
+	<hr class="spacer"/>
+
+</div>]
+
+
+</div>[(#REM)   fermeture colone de gauche   ]
+ <div class="coldroit">  [(#REM)   ouverture de la colone de droite   ] 
+
+
+    <div class="boite">[(#REM)   ouverture boite menu   ] 
+
+        <h4 class="icone_menu">navigation</h4>
+      <INCLURE{fond="inc_menu_rub"}> 
+    
+    </div>[(#REM)   fermeture boite menu   ]
+
+
+
+      [(#REM)   La boite de recherche   ] 
+    <div class="boite"> [(#REM)   ouverture boite recherche   ] 
+
+  <h4 class="icone_recherche">recherche</h4>
+<INCLURE{fond=inc-recherche}>
+ </div>   [(#REM)   fermeture boite recherche   ] 
+
+    
+ 
+	
+	
+<div class="boite">
+<h4 class="icone_article">Affichage incorrect?</h4>
+<p>Votre lettre #NOM_SITE_SPIP ne s'affiche pas correctement? Modifiez votre
+  abonnement et changez de format de r&eacute;ception. Ainsi votre prochain courrier
+   sera  lisible.
+   
+   <h4>Pourquoi ça bug?</h4>
+    <p>Une mauvaise
+  interpr&eacute;tation de l'encodage par un serveur, un logiciel courrier ou
+  un webmail est souvent &agrave; l'origine du probl&egrave;me.</p>
+	 <p>#FORMULAIRE_MODIF_ABONNEMENT</p>
+	 <hr class="spacer" />
+
+</div>[(#REM)   fermeture boite   ] 
+</div>   [(#REM)   fermeture colone de droite   ] 
+ <hr class="spacer" />
+
+
+</div>
+ [(#REM)   fermeture contenu   ] 
+<INCLURE{fond="pieddepage"}>
+
+</div> [(#REM)   fermeture surcontenu   ]<br/>
+
+</div> [(#REM)   fermeture container   ] 
 </body>
 </html>
+

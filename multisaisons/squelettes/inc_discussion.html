@@ -14,7 +14,8 @@
 <div class="gauche carte"><span class="avatar">
 <BOUCLE_Forums_crayon_parent(FORUMS){id_parent}{statut=original}>
 <BOUCLE_qui(AUTEURS){tout}{id_auteur}>
-<INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=46}{date=#ENV{date}}>
+<span class="#EDIT{logo}">
+<INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=46}{date=#ENV{date}}></span>
 </BOUCLE_qui>
 </span>
 <br/>
@@ -28,13 +29,17 @@
 
 
 <BOUCLE_nom(AUTEURS){id_auteur}>
+<span class="#EDIT{nom}">
 [<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de ce r&eacute;dacteur">]
 [<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de cet admin">]
 [<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de ce visiteur">]
 [<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Compte en attente">]
 [(#NOM|couper{18})</a><br/>]
+</span>
 </BOUCLE_nom>
+<span class="#EDIT{nom}">
 [(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
+</span>
 <//B_nom>
 
 <BOUCLE_profil_forum1(AUTEURS){id_auteur}>
@@ -50,7 +55,9 @@ Message  &eacute;dit&eacute;.
 
 
 <BOUCLE_qui_ori(AUTEURS){id_auteur}>
+<span class="#EDIT{logo}">
 <INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=46}{date=#ENV{date}}>
+</span>
 </BOUCLE_qui_ori>
 </span>
 <br/>
@@ -64,29 +71,30 @@ Message  &eacute;dit&eacute;.
 
 
 <BOUCLE_nom_ori(AUTEURS){id_auteur}>
+<span class="#EDIT{nom}">
 [<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de ce r&eacute;dacteur">]
 [<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de cet admin">]
 [<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de ce visiteur">]
 [<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Compte en attente">]
-[(#NOM|couper{18})</a><br/>]
+[(#NOM|couper{18})</a><br/>]</span>
 </BOUCLE_nom_ori>
+<span class="#EDIT{nom}">
 [(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
+</span>
 <//B_nom_ori>
 
 <BOUCLE_profil_forum2(AUTEURS){id_auteur}>
-[<a href="#URL_SITE">(#SESSION{statut}|match{1comite|6forum|nouveau|0minirezo}|?{#NOM_SITE})</a><br/>]
+[<span class="#EDIT{nom_site}"><a href="#URL_SITE">(#SESSION{statut}|match{1comite|6forum|nouveau|0minirezo}|?{#NOM_SITE})</a></span></span><br/>]
 </BOUCLE_profil_forum2>
 
-[<a href="mailto:#EMAIL">(#SESSION{statut}|=={0minirezo}?{#EMAIL})</a><br/>]
+[<span class="#EDIT{email}"><a href="mailto:#EMAIL">(#SESSION{statut}|=={0minirezo}?{#EMAIL})</a></span><br/>]
 [(#SESSION{statut}|=={0minirezo}?{#IP})<br/>]
 <//B_Forums_crayon_parent>
 
 
 
 
-[(#REM) tentative d'intégration d'une fonction alerter dans mes_fonctions.php
-<!--<a title="Signaler à un administrateur un comportement abusif" href="[(#URL_PAGE{membre}|parametre_url{id_auteur,1}|parametre_url{alerter,oui})][&amp;(#PARAMETRES_FORUM)]">
-<span class="centre button">ALERTER</span></a>-->]
+[(#REM) fonction alerter dans mes_fonctions.php]
 
 [<a title="Citer ce message" href="(#URL_PAGE{forum}|parametre_url{citer,oui})][&amp;(#PARAMETRES_FORUM)">
 Citer</a> ]
