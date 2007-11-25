@@ -53,7 +53,10 @@ $titretop = '[(#TITRE|textebrut|attribut_html|nettoyer_marqueur|texte_script)]';
 <?php $titre = '<:pyrat:erreur:>'; ?>
 <?php $titretop = '<:pyrat:erreur|nettoyer_marqueur:>'; ?>
 <INCLURE{fond=header}{id_rubrique}{connexion}>
-Erreur : cette rubrique n'existe pas !
+[(#ID_RUBRIQUE|AccesRestreint_rubrique_restreinte|?{' ',''})    
+<p>Attention : cette rubrique est r&eacute;serv&eacute;e aux personnes disposant d'un acc&egrave;s r&eacute;serv&eacute;. </p>]
+[(#ID_RUBRIQUE|AccesRestreint_rubrique_restreinte|?{'',' '})
+<p>Erreur : cette rubrique n'existe pas !</p>]
 <//B_rubrique_principal>
 <INCLURE{fond=footer}{rubriqueencours=#ID_RUBRIQUE}{id_rubrique}{secteurencours=#GET{secteurencours}}>
 <//B_Gribouille>
