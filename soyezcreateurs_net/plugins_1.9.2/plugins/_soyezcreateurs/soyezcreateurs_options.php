@@ -1,5 +1,4 @@
 <?php
-$GLOBALS['formats_logos'] =  array ('gif', 'jpg', 'png', 'swf');
 $GLOBALS['type_urls'] = 'propres2';
 
 define('_DUREE_CACHE_DEFAUT', 30*24*3600); // pris en compte à partir de http://trac.rezo.net/trac/spip/changeset/10121
