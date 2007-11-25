@@ -6,6 +6,8 @@ include_spip('inc/vieilles_defs');
 if (defined("_INC_URLS2")) return;
 define("_INC_URLS2", "1");
 
+// attention maintenant ces fichiers sont appeles depuis l'espace prive aussi...
+if (!function_exists('generer_url_article')) {
 	function langue_choix ($id, $type='article') {
 		switch ($type) {
 			case 'article':
@@ -179,5 +181,7 @@ function recuperer_parametres_url($fond, $url) {
 	}
 }
 
+
+} // function_exists
 
 ?>
