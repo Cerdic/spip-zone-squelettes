@@ -43,7 +43,7 @@
 <//B_nom>
 
 <BOUCLE_profil_forum1(AUTEURS){id_auteur}>
-[<a href="#URL_SITE">(#SESSION{statut}|match{1comite|6forum|nouveau|0minirezo}|?{#NOM_SITE})</a><br/>]
+[<span class="#EDIT{url_site}"><a href="#URL_SITE">(#SESSION{statut}|match{1comite|6forum|nouveau|0minirezo}|?{#NOM_SITE})</a></span><br/>]
 </BOUCLE_profil_forum1>[<a href="mailto:#EMAIL">(#SESSION{statut}|=={0minirezo}?{#EMAIL})</a><br/>]
 [(#SESSION{statut}|=={0minirezo}?{#IP})<br/>]
 
@@ -84,7 +84,7 @@ Message  &eacute;dit&eacute;.
 <//B_nom_ori>
 
 <BOUCLE_profil_forum2(AUTEURS){id_auteur}>
-[<span class="#EDIT{nom_site}"><a href="#URL_SITE">(#SESSION{statut}|match{1comite|6forum|nouveau|0minirezo}|?{#NOM_SITE})</a></span></span><br/>]
+[<span class="#EDIT{url_site}"><a href="#URL_SITE">(#SESSION{statut}|match{1comite|6forum|nouveau|0minirezo}|?{#NOM_SITE})</a></span><br/>]
 </BOUCLE_profil_forum2>
 
 [<span class="#EDIT{email}"><a href="mailto:#EMAIL">(#SESSION{statut}|=={0minirezo}?{#EMAIL})</a></span><br/>]
@@ -94,12 +94,17 @@ Message  &eacute;dit&eacute;.
 
 
 
-[(#REM) fonction alerter dans mes_fonctions.php]
+
 
 [<a title="Citer ce message" href="(#URL_PAGE{forum}|parametre_url{citer,oui})][&amp;(#PARAMETRES_FORUM)">
 Citer</a> ]
+
+[(#REM) fonction alerter dans mes_fonctions.php  ... bug: mis en quarantaine 
+
 [<a title="Signaler un message abusif" href="(#URL_PAGE{moderation}|parametre_url{id_auteur,1})][&amp;(#PARAMETRES_FORUM)">
 Alerter</a> ]
+
+ bug: mis en quarantaine  ]
 
 </div>[(#REM)   fermeture gauche   ]
 
@@ -117,7 +122,7 @@ Alerter</a> ]
  
 
 <p class="#EDIT{texte}">[(#TEXTE|norm_liens|liens_ouvrants|smileys|lignes_longues{50})]</p>  
-[<p><a rel="nofollow" href="(#URL_SITE)">[(#NOM_SITE|sinon{URL})]</a></p>] 
+[<p class="#EDIT{url_site}"><a rel="nofollow" href="(#URL_SITE)">[(#NOM_SITE|sinon{URL})]</a></p>] 
 
 </div>
 
