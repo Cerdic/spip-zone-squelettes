@@ -53,77 +53,60 @@
 <BOUCLE_nb_images(DOCUMENTS){id_article}{mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
 </BOUCLE_nb_images> $nb_images = "#TOTAL_BOUCLE";</B_nb_images> ?>
  <?php  if ($nb_images >1) {?>
+ 
+ 
+ 
+ 
 <B_documents_portfolio>
 <div id="minipics">
-<ul id="diapo">
-
-
-
+<ul>
 #ANCRE_PAGINATION
 <BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension IN png,jpg,gif}{par num titre, date}{pagination 40}>
 <li class="transparent" id="a#ID_DOCUMENT">
-<a class="thickbox" href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;" 
-[title="(#TITRE|couper{80}|texte_backend)"][longdesc="(#DESCRIPTIF|couper{120}|texte_backend)"]
-">
-[(#FICHIER|image_masque{carre-80.png}|image_aplatir{jpg,ffffff}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]}|inserer_attribut{longdesc,[(#DESCRIPTIF|couper{120}|texte_backend)]})]</a>
-	
+<a class="thickbox" href="#URL_DOCUMENT" type="#MIME_TYPE" [title="(#TITRE|couper{80}|texte_backend)"][longdesc="(#DESCRIPTIF|couper{120}|texte_backend)"]>
+
+[(#FICHIER|image_masque{carre-80.png}|image_aplatir{jpg,ffffff}|inserer_attribut{alt,#TITRE})]</a>
 </li>
 </BOUCLE_documents_portfolio>				
-
-
-
 </ul>
 </div>[(#REM)   fermeture minipics   ] 	
-
 [<div class="grande_boite"><p class="centre gras">(#PAGINATION)<br/>Il y a au total #GRAND_TOTAL photos, cette page en affiche #TOTAL_BOUCLE.</p></div>]		
 
-</B_documents_portfolio>		
+</B_documents_portfolio>
+
 
 
 	
- <?php  } if ($nb_images ==1) {?>
+<?php  } if ($nb_images ==1) {?>
 
 <B_afficher_photo_seule>
-
 <div class="grande_boite">
 [(#REM)   l image en grand   ]
-
-
 <div class="photo">
 <div id="exif">
 <BOUCLE_afficher_photo_seule(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date}{0,1}>
-				
-				<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;" title="[(#TITRE|couper{200}|texte_backend)]
-
-">
-[(#FICHIER|reduire_image{450,1000}|inserer_attribut{alt,#TITRE #TAILLE #LARGEUR
-x #HAUTEUR})]
+<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;" title="[(#TITRE|couper{200}|texte_backend)]">
+[(#FICHIER|reduire_image{450,1000}|inserer_attribut{alt,#TITRE #TAILLE #LARGEUR x #HAUTEUR})]
 <span>[(#TITRE)<br />]
 [(#DESCRIPTIF)<br />]
 [(#DATE|affdate), ]
 [(#TAILLE|taille_en_octets), ][(#LARGEUR)&nbsp;x&nbsp;[(#HAUTEUR)]]
 </span>
 </a>
-
-
 </BOUCLE_afficher_photo_seule>
-</div>
-[(#REM)   fermeture exif   ]
+</div>[(#REM)   fermeture exif   ]
 </div>[(#REM)   fermeture photo   ]
-
 </div>[(#REM)   fermeture grande boite photo   ]
 </B_afficher_photo_seule>
-<?php } ?>
 
+
+<?php } ?>
 
 
 [(#CHEMIN{plugins/gis/inc-gis_map.html}|?{' ',''})<INCLURE{fond="inc_lien_gis"}{id_rubrique}{id_article}>]
 
-
-
-
-  [<div class="grande_boite">(#NOTES)</div>]
-   [<div class="grande_boite"><p>(#PS)</p></div>] 
+[<div class="grande_boite"><p>(#NOTES)</p></div>]
+[<div class="grande_boite"><p>(#PS)</p></div>] 
 
 
   
@@ -268,7 +251,6 @@ x #HAUTEUR})]
 </div> [(#REM)   fermeture container   ] 
 </body>
 </html>
-
 </BOUCLE_principale>
 [(#ID_ARTICLE|AccesRestreint_article_restreint|?{' ',''})    
 <INCLURE{fond=authentification}>]
