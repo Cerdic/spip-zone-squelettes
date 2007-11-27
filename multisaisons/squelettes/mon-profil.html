@@ -7,13 +7,12 @@
 #CACHE{0}
 <INCLURE{fond="header"}><head>
 
-[(#REM)   les métas   ]<BOUCLE_author0(AUTEURS){id_auteur}>
+[(#REM)   les métas   ]<BOUCLE_author0(AUTEURS){id_auteur=#SESSION{id_auteur}}>
 
 
 
 <title>Votre profil [(#NOM)].</title>
 <meta name="Description" content="Votre profil [(#NOM)]"/>
-<meta name="keywords" content="[(#NOM)]"/>
 <meta name="author" content="[(#NOM) via #NOM_SITE_SPIP]"/>
 </BOUCLE_author0>
 
@@ -55,7 +54,6 @@
 <p>
 
 <BOUCLE_acces_perso(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
-[<a href="[(#URL_PAGE{auteur}|parametre_url{'id_auteur',1})]">(#SESSION{statut}|=={6forum}?{:: Demander la conversion de mon compte et devenir r&eacute;dacteur})</a><br/>]
 [<a href="ecrire/">(#SESSION{statut}|=={nouveau}?{:: Visitez votre interface de r&eacute;daction})</a><br/>]
 [<a href="ecrire/?exec=articles_edit&new=oui">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Commencer un nouvel article})</a><br/>]
 [<a href="ecrire/">(#SESSION{statut}|=={0minirezo}?{:: Agir sur les articles propos&eacute;s})</a><br/>]
@@ -123,7 +121,13 @@ href="#URL_ARTICLE">#TITRE</a><br/>
 
 </BOUCLE_TOTAL_ARTICLE>
 <p>
-<a href="ecrire/?exec=articles_edit&new=oui">Commencer un nouvel article.</a>
+<BOUCLE_acces_perso2(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
+[<a href="ecrire/?exec=articles_edit&new=oui">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Commencer un nouvel article})</a>]
+[(#SESSION{statut}|match{6forum|nouveau}|?{:: Vous ne pouvez pas écrire d'article. <a href="[(#URL_PAGE{auteur}|parametre_url{'id_auteur',1})]">Demandez la conversion de votre compte au webmaster et devenez r&eacute;dacteur sur #NOM_SITE_SPIP.</a>})]
+
+
+
+</BOUCLE_acces_perso2>
 </p>
 <//B_TOTAL_ARTICLE>
 
@@ -138,20 +142,24 @@ href="#URL_ARTICLE">#TITRE</a><br/>
 <BOUCLE_monprofil_saison(MOTS){titre=saison}{0,1}>
 
 <BOUCLE_AFFICHER_AVATAR1(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
-[::&nbsp;Mon logo d'origine:(#LOGO_AUTEUR||?{' ',''})<br/>]
-[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1" title="Changer mon logo">(#LOGO_AUTEUR||image_reduire{46}||sinon{::&nbsp;Ajouter mon logo})</a><br/>]
-[::&nbsp;Mon logo saisonnier:<br/>(#LOGO_AUTEUR||?{' ',''})<INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=46}{date=#ENV{date}}>]
-
-
+[(#SESSION{statut}|match{1comite|0minirezo}|?{  
+[::&nbsp;Mon logo d'origine:(#LOGO_AUTEUR||?{' ',''})<br/>]   
+[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1" title="Changer mon logo">(#LOGO_AUTEUR||image_reduire{46}||sinon{::&nbsp;Ajouter mon logo})</a><br/>]})]
+[::&nbsp;Mon logo saisonnier:<br/>(#LOGO_AUTEUR||?{' ',''})<INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=46}{date=#ENV{date}}>] 
 </BOUCLE_AFFICHER_AVATAR1>
 
 </BOUCLE_monprofil_saison>
 
 <BOUCLE_AFFICHER_AVATAR2(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}><br/><br/>
+[(#SESSION{statut}|match{1comite|0minirezo}|?{  
 [<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#LOGO_AUTEUR||image_reduire{80}||sinon{Aucun logo n'apparait ?<br/>Ajoutez en un en suivant ce lien !})</a>]
 </BOUCLE_AFFICHER_AVATAR2>
-
+})]
 <//B_monprofil_saison>
+
+
+
+
 
 </p>
 <BOUCLE_infos_perso(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>   
@@ -159,10 +167,12 @@ href="#URL_ARTICLE">#TITRE</a><br/>
 [(#SESSION{statut}|=={0minirezo}|?{' '})d'administrateur]
 [(#SESSION{statut}|=={1comite}|?{' '})de r&eacute;dacteur]
 [(#SESSION{statut}|=={6forum}|?{' '}) de visiteur]</h4>
-<p>
+<p>[(#SESSION{statut}|match{1comite|0minirezo}|?{ 
 [<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">::&nbsp;(#BIO|sinon{Renseigner ma biographie})</a><br/>]
 [<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">::&nbsp;(#NOM_SITE|sinon{Ajouter mon site web favori})</a><br/>]
 [<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">::&nbsp;(#PGP|sinon{Diffuser ma clé publique PGP})</a><br/>]
+})]
+[(#SESSION{statut}|match{6forum|nouveau}|?{Votre statut de visiteur ne vous permet pas d'ajouter un profil. Vous pouvez n&eacute;anmoins g&eacute;rer votre abonnement ci-dessous.})]
 </p>
 
 </BOUCLE_infos_perso>
