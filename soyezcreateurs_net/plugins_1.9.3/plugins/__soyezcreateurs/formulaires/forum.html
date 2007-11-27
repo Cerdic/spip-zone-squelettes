@@ -46,13 +46,7 @@
 	</fieldset>
 
 
-	<fieldset>
-	<legend><:forum_qui_etes_vous:></legend>
-	<p><label for="auteur"><:forum_votre_nom:></label>
-	<input type="text" class="forml" name="auteur" id="auteur" value="#ENV{auteur}" size="40"[ readonly="(#ENV{readonly})"] /></p>
-	<p><label for="email_auteur"><:forum_votre_email:></label>
-	<input type="text" class="forml" name="email_auteur" id="email_auteur" value="#ENV{email_auteur}" size="40"[ readonly="(#ENV{readonly})"] /></p>
-	</fieldset>
+	<INCLURE{fond=formulaires/login_forum}>
 
 	[(#REM) Piege a robots spammeurs ]
 	<p style='display:none;'><label for="nobot"><:antispam_champ_vide:></label>
@@ -75,21 +69,7 @@
 	<p><small><:info_creation_paragraphe:></small></p>
 	[(#ENV**{texte}|barre_textarea{12,40})]
 	</fieldset>
-		<fieldset>
-			<legend><:pyrat:forum_prenom:></legend>
-			<p><label><:pyrat:forum_votre_prenom:>
-				<input type="text" name="auteur" value="[(#ENV{auteur})]"
-					class="forml" size="40"[
-					readonly='(#ENV{readonly})'] />
-			</label></p>
-			<p><label><:forum_votre_email:>
-				<input type="text" name="email_auteur"
-				value="[(#ENV{email_auteur})]"
-				class="forml" size="40" [
-				readonly='(#ENV{readonly})'] />
-			</label></p>
-		</fieldset>
-
+		<INCLURE{fond=formulaires/login_forum}{lalegend=<:pyrat:forum_prenom:>}{lelabel=<:pyrat:forum_votre_prenom:>}>
 	[(#REM) Piege a robots spammeurs ]
 	<p style='display:none;'><label for="nobot"><:antispam_champ_vide:></label>
 	<input type="text" name="nobot" id="nobot" value="#ENV{nobot}" size="10" /></p>
@@ -128,13 +108,7 @@
 	</fieldset>
 })]
 
-	<fieldset>
-	<legend><:forum_qui_etes_vous:></legend>
-	<p><label for="auteur"><:forum_votre_nom:></label>
-	<input type="text" class="forml" name="auteur" id="auteur" value="#ENV{auteur}" size="40"[ readonly="(#ENV{readonly})"] /></p>
-	<p><label for="email_auteur"><:forum_votre_email:></label>
-	<input type="text" class="forml" name="email_auteur" id="email_auteur" value="#ENV{email_auteur}" size="40"[ readonly="(#ENV{readonly})"] /></p>
-	</fieldset>
+	<INCLURE{fond=formulaires/login_forum}>
 
 	[(#REM) Piege a robots spammeurs ]
 	<p style='display:none;'><label for="nobot"><:antispam_champ_vide:></label>
@@ -149,3 +123,33 @@
 </form>
 
 </div>
+
+[(#REM)
+	Sauver les donnees du formulaire dans un cookie, si on quitte la page,
+	et les remettre quand on revient (dans les limites de 4ko etc)
+]
+<script type="text/javascript"><!--
+if (window.jQuery)(function($){
+	$.getScript('[(#CHEMIN{javascript/jquery.cookie.js}|url_absolue)]',
+	function(){
+		var a = $.cookie('spip_contenu_formulaire');
+		var saveauto = true;
+		if (a) {
+			$('#formulaire_forum textarea[name=texte]')
+			.val(a);
+			$.cookie('spip_contenu_formulaire', null);
+		}
+		$('#formulaire_forum form')
+		.bind('submit', function() {
+			saveauto = false;
+		});
+		$(window)
+		.bind('unload', function(){
+			if (saveauto)
+			$.cookie('spip_contenu_formulaire',
+				$('#formulaire_forum textarea[name=texte]').val()
+			);
+		});
+	});
+}(jQuery));
+// --></script>
