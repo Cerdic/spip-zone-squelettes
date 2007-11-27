@@ -115,32 +115,38 @@ function balise_MOYENNE_VISITES($p) {
 }
 
 
-
-
-
-
-
-
 /*
- *   +----------------------------------+
- *    Nom du Filtre :    alerter       EN CONSTRUCTION                                    
- *   +----------------------------------+
- *    BASE : ... Date : vendredi 10 Aout 2007 - Auteur :  mattheoh & Scoty
- *    
- *   +-------------------------------------+
- *    Fonctions de ce filtre :
- *     prérempli le formulaire de contact pour envoyer un lien d'un message abusif de forum à un modérateur    
- *   +-------------------------------------+ 
- 
-function barre_forum_alerter($texte, $lan, $url, $lang='') {
-        if(_request('alerter')=='oui') {
-            $url = $_SERVER["HTTP_HOST"].$_SERVER["PHP_SELF"].'?'.$_SERVER["QUERY_STRING"];
-			$texte="{{ $lan $url }}";
-            }        
-            
-        return barre_textarea($texte, $lang);            
-    }
++----------------------------------+
+    Filtre : insere_texte_alerter
+    Scoty 11/08/07 - gaf 0.5
+    Insere texte alerte-abus dans corps message pour webmaster
++----------------------------------+
 */
+function insere_texte_alerter($texte,$insere) {
+    if (!$premiere_passe = _request('valide')) {
+        if(_request('alerter')=='oui') {
+            $origine=explode('-',_request('orig'));
+            $lien_forum = generer_url_public('discussion',"id_forum=".$origine[0]."#forum".$origine[1],true);
+            $texte = $insere."\n".$lien_forum."\n\n";
+        }
+    }
+    return $texte;
+}
+/*
++----------------------------------+
+    Filtre : insere_sujet_alerter
+    Scoty 11/08/07 - gaf 0.5
+    Insere texte alerte-abus dans sujet message pour webmaster
++----------------------------------+
+*/
+function insere_sujet_alerter($sujet,$insere) {
+    if (!$premiere_passe = _request('valide')) {
+        if(_request('alerter')=='oui') {
+            $sujet = $insere;
+        }
+    }
+    return $sujet;
+}
 
 
 /*
