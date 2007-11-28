@@ -187,6 +187,7 @@ et de recevoir les lettres d\'informations.',
 'reponse' => 'En r&eacute;ponse au message',
 
 //S
+'signaler_abus' => 'Signaler un abus',
 'sujet_nouveau' => 'Nouveau sujet',
 'sujet_auteur' => 'Auteur',
 'sujet_visites' => 'Visites',
