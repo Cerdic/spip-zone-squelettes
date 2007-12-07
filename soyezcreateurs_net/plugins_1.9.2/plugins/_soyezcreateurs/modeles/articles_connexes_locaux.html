@@ -1,14 +1,15 @@
-<BOUCLE_GpAdmin2(GROUPES_MOTS){titre==^_}>
-	<BOUCLE_MotsExclus2(MOTS){id_groupe}{doublons 2}> </BOUCLE_MotsExclus2>
-</BOUCLE_GpAdmin2>
-<B_MotsClefsArticleConnexes>
+<BOUCLE_ExclureArticleCourant(ARTICLES){id_article}{doublons}> </BOUCLE_ExclureArticleCourant>
+
+<BOUCLE_MotsClefsArticleConnexes(MOTS){type==^[^_]}{id_article}>
+<BOUCLE_ArticlesConnexesMem(ARTICLES){id_mot}{id_secteur}{doublons}{doublons listeconnexes}> </BOUCLE_ArticlesConnexesMem>
+</BOUCLE_MotsClefsArticleConnexes>
+
+<B_ArticlesConnexes>
 <hr />
 <h2><:pyrat:articlesconnexes:></h2>
 <ul>
-<BOUCLE_MotsClefsArticleConnexes(MOTS){id_article}{doublons 2}>
-<BOUCLE_ArticlesConnexes(ARTICLES){id_mot}{id_secteur}{doublons}>
+<BOUCLE_ArticlesConnexes(ARTICLES){!doublons listeconnexes}>
 	<li><?php if (#ENV{id_article}!=#ID_ARTICLE) {?><a href="#URL_ARTICLE"[ hreflang="(#LANG)"] title="<BOUCLE_GpMot(GROUPES_MOTS){id_groupe}>[(#TITRE|attribut_html)]</BOUCLE_GpMot>: [(#_MotsClefsArticleConnexes:TITRE|attribut_html)]"><?php } ?>[(#TITRE)]<?php if (#ENV{id_article}!=#ID_ARTICLE) {?></a><?php } ?></li>
 </BOUCLE_ArticlesConnexes>
-</BOUCLE_MotsClefsArticleConnexes>
 </ul>
-</B_MotsClefsArticleConnexes>
+</B_ArticlesConnexes>
