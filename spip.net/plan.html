@@ -11,13 +11,13 @@
 <body>
 <div id="page">
 <INCLURE{fond=inc-entete}>
-<div id="hierarchie"><a href="#URL_SITE_SPIP/#LANG"><:accueil_site:></a> &gt; <strong class="on"><:plan_site:></strong></div>
+<div id="hierarchie"><a href="#URL_SITE_SPIP/#LANG"><:accueil_site:></a><BOUCLE_secteur(RUBRIQUES){lang=#ENV{lang}}{racine}{id_rubrique!=4}{id_rubrique!=324}> &gt; <a href="#URL_PAGE{plan}"><:plan_site:></a> &gt; <strong class="on">#TITRE</strong></BOUCLE_secteur> &gt; <strong class="on"><:plan_site:></strong><//B_secteur></div>
 
 	<div id="conteneur">
 		<div id="contenu">
 
-			<div class="cartouche">
-				<h1 class="invisible"><:plan_site:></h1>
+			<div class="cartouche invisible">
+				<h1><:plan_site:></h1>
 			</div>
 			
 			[(#REM)
@@ -40,7 +40,7 @@
 			<ul>
 
 				[(#REM) D'abord le secteur de la langue ]
-				<BOUCLE_secteurs(RUBRIQUES) {lang ?} {racine}{id_rubrique!=4}{id_rubrique!=324} {par num titre} {doublons}>
+				<BOUCLE_secteurs(RUBRIQUES) {lang ?} {racine}{id_rubrique!=4}{id_rubrique!=324} {par lang} {doublons}>
 				<li lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR" style="text-align: #LANG_LEFT;">
 					<h2 class="menu-titre">#TITRE</h2>
 
@@ -98,6 +98,16 @@
 
 		[(#REM) Menu de navigation laterale ]
 		<div id="navigation">
+			<div class="menu" style="margin: 1.2em 1.2em 1.2em 0; font-size: .8em;">
+				<h2 class="menu-titre"><:plan_site:></h2>
+				<ul>
+					<BOUCLE_langues(RUBRIQUES){racine}{id_rubrique!=4}{id_rubrique!=324} {par lang}>
+					<BOUCLE_plan(RUBRIQUES){id_secteur}{2,1}>
+					[<li><a href="[(#URL_PAGE{plan}|parametre_url{lang,#LANG})]"[ (#LANG|=={#ENV{lang}}|?{class="on",''})]>&#91;(#LANG|unique)&#93; #_langues:TITRE</a></li>]
+					</BOUCLE_plan>
+					</BOUCLE_langues>
+				</ul>
+			</div>
 		</div><!--#navigation-->
 	
 	<br class="nettoyeur" />
