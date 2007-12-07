@@ -14,51 +14,38 @@
 [(#REM) Barre de navigation rapide : ]
 <div id="topnav"><ul>
 
-[(#REM) Lien vers l'article presentant SPIP ]
-<BOUCLE_about(ARTICLES){id_article=464}>
-<BOUCLE_about_trad(ARTICLES){traduction}{lang=#ENV{lang}}>
-<li><a href="#URL_ARTICLE"[ title="(#TITRE|couper{80}|texte_backend)"]>#TITRE</a></li>
-</BOUCLE_about_trad>
-</BOUCLE_about>
+<BOUCLE_secteur(RUBRIQUES){racine}{lang=#ENV{lang}}{id_rubrique!=4}{id_rubrique!=324}>
+<BOUCLE_onglets(RUBRIQUES) {id_parent} {titre==^[0-9]+\.} {par num titre}>
+<li[ id="onglet(#COMPTEUR_BOUCLE)"]><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>#TITRE</a></li>
+</BOUCLE_onglets>
+
+</B_onglets>
+
+	[(#REM) Lien vers l'article presentant SPIP ]
+	<BOUCLE_about(ARTICLES){id_article=464}>
+	<BOUCLE_about_trad(ARTICLES){traduction}{lang=#ENV{lang}}>
+	<li><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>#TITRE</a></li>
+	</BOUCLE_about_trad>
+	</BOUCLE_about>
+
+<//B_onglets>
+</BOUCLE_secteur>
 
 [(#REM) Lien vers le lexique de mots-clefs ]
-<li><a href="@?lang=#LANG"><:glossaire:></a></li>
-
-[(#REM) Lien vers la rub invitant a contribuer a SPIP ]
-<BOUCLE_contribuer(ARTICLES){id_article=825}{0,1}>
-<BOUCLE_contribuer_trad(ARTICLES){traduction}{lang=#ENV{lang}}>
-<BOUCLE_contribuer_rub(RUBRIQUES){id_rubrique}>
-<li><a href="#URL_RUBRIQUE"[ title="(#TITRE|couper{80}|texte_backend)"]><:contribuer:></a></li>
-</BOUCLE_contribuer_rub>
-</BOUCLE_contribuer_trad>
-</BOUCLE_contribuer>
-
-[(#REM) Aide : questions et reponses ]
-<BOUCLE_aide_rub(RUBRIQUES){id_rubrique=116}>
-<BOUCLE_aide_articles(ARTICLES){branche}{0,1}>
-<BOUCLE_aide_articles_trad(ARTICLES){traduction}{lang=#ENV{lang}}><BOUCLE_aide_rub_trad(HIERARCHIE){id_rubrique}{1,1}>
-[<li><a href="(#URL_RUBRIQUE|unique{aide_rub_trad})"[ title="(#TITRE|couper{80}|texte_backend)"]><:aide:></a></li>]
-</BOUCLE_aide_rub_trad></BOUCLE_aide_articles_trad>
-</BOUCLE_aide_articles>
-</BOUCLE_aide_rub>
-
-[(#REM) Lien direct vers les forums dans la langue ]
-<!-- <BOUCLE_forum_secteur(RUBRIQUES){lang}{racine}{id_rubrique!=4}{id_rubrique!=324}>
-<BOUCLE_forum(SITES){id_secteur}{id_mot=240}{0,1}>
-<li><a href="#URL_SITE"[ title="(#NOM_SITE|couper{80}|texte_backend)"]><:forum:></a></li>
-</BOUCLE_forum>
-</BOUCLE_forum_secteur> -->
+<li><a href="@?lang=#LANG"><:glossaire|ucfirst:></a></li>
 
 [(#REM) Liens utiles ]
 <BOUCLE_sites_secteur(RUBRIQUES){lang}{racine}{id_rubrique!=4}{id_rubrique!=324}>
-<li><BOUCLE_sites(SITES){branche}{0,1}><a[ href="(#URL_PAGE{site}|parametre_url{lang,#LANG})"]><:liens_utiles:></a></BOUCLE_sites></li>
+<li><BOUCLE_sites(SITES){branche}{0,1}><a href="[/(#LANG|replace{'_.*$',''})_site]"><:liens_utiles|ucfirst:></a></BOUCLE_sites></li>
 </BOUCLE_sites_secteur>
 
 </ul>
 
+<div class="recherche">
 #FORMULAIRE_RECHERCHE
+<BOUCLE_plan(RUBRIQUES){lang}{3,1}><a href="[/(#LANG|replace{'_.*$',''})_plan]"><:plan_site:></a></BOUCLE_plan>
+</div>
 
-<br class="nettoyeur" />
 <br class="nettoyeur" />
 </div>
 
