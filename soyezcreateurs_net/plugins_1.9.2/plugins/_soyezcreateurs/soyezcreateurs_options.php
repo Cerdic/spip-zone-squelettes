@@ -1,6 +1,9 @@
 <?php
 $GLOBALS['type_urls'] = 'propres2';
 
+// Recalculer le cache si la config du site change
+$GLOBALS['marqueur'] .= ":".md5($GLOBALS['meta']['soyezcreateurs_layout'].$GLOBALS['meta']['soyezcreateurs'].$GLOBALS['meta']['soyezcreateurs_google'].$GLOBALS['meta']['bte']); // Sur un conseil de Cedric : http://permalink.gmane.org/gmane.comp.web.spip.zone/6258
+
 define('_DUREE_CACHE_DEFAUT', 30*24*3600); // pris en compte à partir de http://trac.rezo.net/trac/spip/changeset/10121
 define('_URLS_PROPRES_MAX', 60); // pris en compte à partire de http://trac.rezo.net/trac/spip/changeset/10346 
 
