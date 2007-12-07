@@ -8,7 +8,7 @@
 <INCLURE{fond=inc-head}>
 </head>
 
-<body class="page_plan">
+<body>
 <div id="page">
 <INCLURE{fond=inc-entete}>
 <div id="hierarchie"><a href="#URL_SITE_SPIP/#LANG"><:accueil_site:></a> &gt; <strong class="on"><:plan_site:></strong></div>
@@ -31,26 +31,29 @@
 				sinon tous.
 			
 			]
+			
+			<BOUCLE_archives(ARTICLES) {id_mot=9} {doublons}> </BOUCLE_archives>
+			<BOUCLE_archives_rub(RUBRIQUES) {id_mot=9} {doublons}> </BOUCLE_archives_rub>
 
 			[(#REM) Debut du plan du site ]
+			<div id="plan_site">
 			<ul>
 
 				[(#REM) D'abord le secteur de la langue ]
-				<BOUCLE_secteurs(RUBRIQUES) {lang ?} {racine}{id_rubrique!=4}{id_rubrique!=324} {par num titre}>
+				<BOUCLE_secteurs(RUBRIQUES) {lang ?} {racine}{id_rubrique!=4}{id_rubrique!=324} {par num titre} {doublons}>
 				<li lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR" style="text-align: #LANG_LEFT;">
 					<h2 class="menu-titre">#TITRE</h2>
 
 					[(#REM) Articles par sous-rubriques ]
 					<B_rubriques>
 					<ul>
-						<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par num titre}>
+						<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par num titre} {doublons}>
 						<li>
-							[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|image_reduire{77})]
 							<strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
 
 							<B_articles>
 							<ul>
-								<BOUCLE_articles(ARTICLES) {lang} {id_rubrique} {par num titre}{!par date}>
+								<BOUCLE_articles(ARTICLES) {lang} {id_rubrique} {par num titre}{!par date} {doublons}>
 								<li><a href="#URL_ARTICLE">#TITRE</a></li>
 								</BOUCLE_articles>
 							</ul>
@@ -85,18 +88,16 @@
 								</BOUCLE_espace_trad_rub>
 							</li>
 						</ul>
-
 					</li>
 				</B_espace_trad_rub>
 
-			</ul>[(#REM) Fin du plan de site]
+			</ul>
+			</div><!--#plan_site-->
 
 		</div><!--#contenu-->
 
 		[(#REM) Menu de navigation laterale ]
 		<div id="navigation">
-			<INCLURE{fond=inc-download}>
-			<INCLURE{fond=inc-rubriques}>
 		</div><!--#navigation-->
 	
 	<br class="nettoyeur" />
