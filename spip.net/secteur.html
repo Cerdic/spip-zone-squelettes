@@ -1,5 +1,5 @@
 #CACHE{3600*24}
-<BOUCLE_principale(RUBRIQUES){lang}{racine}{id_rubrique!=4}{id_rubrique!=324}>
+<BOUCLE_principale(RUBRIQUES){lang}{racine}{id_rubrique !IN 4,324}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">
 <head>
@@ -49,8 +49,32 @@
 				</BOUCLE_articles>
 			</ul></div>
 			</B_articles>
-
+			
 			<br class="nettoyeur" />
+			
+			[(#REM) Sous-rubriques ]
+			<B_sousrub>
+			<div class="sous_rubriques">
+				<h2 class="menu-titre invisible"><:rubriques:></h2>
+				<ul>
+					<BOUCLE_sousrub(RUBRIQUES) {id_parent} {par num titre}{!par date} {doublons}>
+					<li class="demi[ (#COMPTEUR_BOUCLE|alterner{demileft,demiright})][ (#COMPTEUR_BOUCLE|<{3}|?{demi#COMPTEUR_BOUCLE})]">
+						[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|image_reduire{70})]
+						<h3 class="titre"><a href="#URL_RUBRIQUE">#TITRE</a></h3>
+						[<p>(#DESCRIPTIF|PtoBR|sinon{[(#INTRODUCTION|couper{100})]})<br /><a href="#URL_RUBRIQUE"><:suite:></a></p>]
+						<B_sous_sous_rubriques>
+						<ul>
+							<BOUCLE_sous_sous_rubriques(RUBRIQUES) {id_parent} {par num titre}{!par date} {doublons}>
+							<li>#TITRE</li>
+							</BOUCLE_sous_sous_rubriques>
+						</ul>
+						</B_sous_sous_rubriques>
+					</li>
+					</BOUCLE_sousrub>
+				</ul>
+			<br class="nettoyeur" />
+			</div>
+			</B_sousrub>
 
 			<div class="contre-encart">
 
@@ -78,13 +102,13 @@
 				<INCLURE{fond=inc-sites-spip}{lang}>
 
 				[(#REM) Sur le Web : articles issus de la syndication ]
-				<BOUCLE_syndic_rub(RUBRIQUES){lang}{racine}{id_rubrique!=4}{id_rubrique!=324}>
+				<BOUCLE_syndic_rub(RUBRIQUES){lang}{racine}{id_rubrique !IN 4,324}>
 					<B_syndic>
 					<div class="syndic">
 						<h2 class="menu-titre"><:nouveautes_web:></h2>
 						<ul class="box">
 						<BOUCLE_syndic(SYNDIC_ARTICLES){id_secteur} {!par date}{age<150} {0,5}>
-							[<li class="link">[(#DATE|affdate_court) &ndash; ]<a href="(#URL_ARTICLE|unique{syndic})"[ title="(#NOM_SITE|texte_backend)"] class="spip_out">#TITRE</a></li>]
+							[<li class="link">[(#DATE|affdate_court) &ndash; ]<a href="(#URL_ARTICLE|unique{syndic})"[ title="(#NOM_SITE|attribut_html)"] class="spip_out">#TITRE</a></li>]
 						</BOUCLE_syndic>
 						</ul>
 					</div>

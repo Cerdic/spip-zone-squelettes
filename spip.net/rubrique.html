@@ -36,10 +36,27 @@
 					<li><h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3></li>
 					</BOUCLE_articles>
 				</ul>
+			<br class="nettoyeur" />
 			</div>
 			</B_articles>
-
+			
+			[(#REM) Sous-rubriques ]
+			<B_sousrub>
+			<div class="sous_rubriques">
+				<h2 class="menu-titre"><:sous_rubriques:></h2>
+				<ul>
+					<BOUCLE_sousrub(RUBRIQUES) {id_parent} {par num titre}{!par date} {doublons}>
+					<li class="demi[ (#COMPTEUR_BOUCLE|alterner{demi#LANG_LEFT,demi#LANG_RIGHT})][ (#COMPTEUR_BOUCLE|<{3}|?{demi#COMPTEUR_BOUCLE})]">
+						[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|image_reduire{70})]
+						<h3 class="titre"><a href="#URL_RUBRIQUE">#TITRE</a></h3>
+						[<p>(#DESCRIPTIF|PtoBR|sinon{[(#INTRODUCTION|couper{100})]})
+						<span class="suite">&gt; <a href="#URL_RUBRIQUE"[ title="(#TITRE|couper{80}|attribut_html)"]><:suite:></a></span></p>]
+					</li>
+					</BOUCLE_sousrub>
+				</ul>
 			<br class="nettoyeur" />
+			</div>
+			</B_sousrub>
 
 			[(#REM) Sites de la rubrique ]
 			<B_sites>
