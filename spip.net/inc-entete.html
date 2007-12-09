@@ -11,43 +11,46 @@
 [<span[ (#LANG|=={#ENV{lang}}|?{class="on",''})]>&#91;<a href="#URL_RUBRIQUE" rel="alternate" hreflang="#LANG" title="[(#LANG|afficher_nom_langue)]">(#LANG|replace{'_.*$',''}|unique{langues})</a>&#93;</span>]</BOUCLE_langues>
 <BOUCLE_espace_trad(RUBRIQUES){id_rubrique=4}><a href="#URL_RUBRIQUE" title="<:trad_espace:>"><img src="#CHEMIN{espace_trad.gif}" alt="<:trad_espace:>" width="12" height="12" /></a></BOUCLE_espace_trad></p>
 
+[(#REM) Aide : questions et reponses ]
+<BOUCLE_aide_rub(RUBRIQUES){id_rubrique=116}>
+<BOUCLE_aide_articles(ARTICLES){branche}{0,1}>
+<BOUCLE_aide_articles_trad(ARTICLES){traduction}{lang=#ENV{lang}}><BOUCLE_aide_rub_trad(HIERARCHIE){id_rubrique}{1,1}{doublons aide}>
+#SET{aide,<a href="#URL_RUBRIQUE">#TITRE</a>} #SET{id_aide,#ID_RUBRIQUE}
+</BOUCLE_aide_rub_trad></BOUCLE_aide_articles_trad>
+</BOUCLE_aide_articles>
+</BOUCLE_aide_rub>
+
 [(#REM) Barre de navigation rapide : ]
-<div id="topnav"><ul>
-
 <BOUCLE_secteur(RUBRIQUES){racine}{lang=#ENV{lang}}{id_rubrique !IN 4,324}>
-<BOUCLE_onglets(RUBRIQUES) {id_parent} {titre==^[0-9]+\.} {par num titre}>
-<li[ id="onglet(#COMPTEUR_BOUCLE)"]><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>#TITRE</a></li>
-</BOUCLE_onglets>
-
+<B_onglets>
+<div id="topnav"><ul>
+	<BOUCLE_onglets(RUBRIQUES) {id_parent} {titre==^[0-9]+\.} {par num titre} {0,4} {id_rubrique !IN #GET{id_aide}}>
+	<li[ id="onglet(#COMPTEUR_BOUCLE)"]><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>#TITRE</a></li>
+	</BOUCLE_onglets>
+</ul>
+<br class="nettoyeur" />
+</div><!--#topnav-->
 </B_onglets>
-
-	[(#REM) Lien vers l'article presentant SPIP ]
-	<BOUCLE_about(ARTICLES){id_article=464}>
-	<BOUCLE_about_trad(ARTICLES){traduction}{lang=#ENV{lang}}>
-	<li><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>#TITRE</a></li>
-	</BOUCLE_about_trad>
-	</BOUCLE_about>
-
-<//B_onglets>
 </BOUCLE_secteur>
 
-[(#REM) Lien vers le lexique de mots-clefs ]
-<li><a href="@?lang=#LANG"><:glossaire|ucfirst:></a></li>
-
-[(#REM) Liens utiles ]
-<BOUCLE_sites_secteur(RUBRIQUES){lang}{racine}{id_rubrique !IN 4,324}>
-<li><BOUCLE_sites(SITES){branche}{0,1}><a href="[/(#LANG|replace{'_.*$',''})_site]"><:liens_utiles|ucfirst:></a></BOUCLE_sites></li>
-</BOUCLE_sites_secteur>
-
+<div id="outils"><ul>
+	[<li>(#GET{aide})</li>]
+	
+	[(#REM) Lien vers le lexique de mots-clefs ]
+	<li><a href="@?lang=#LANG"><:glossaire|ucfirst:></a></li>
+	
+	[(#REM) Liens utiles ]
+	<BOUCLE_sites_secteur(RUBRIQUES){lang}{racine}{id_rubrique !IN 4,324}>
+	<li><BOUCLE_sites(SITES){branche}{0,1}><a href="[/(#LANG|replace{'_.*$',''})_site]"><:liens_utiles|ucfirst:></a></BOUCLE_sites></li>
+	</BOUCLE_sites_secteur>
+	
+	[(#REM) Plan du site ]
+	<li>#MODELE{lien-plan_site}</li>
 </ul>
 
-<div class="recherche">
 #FORMULAIRE_RECHERCHE
-#MODELE{lien-plan_site}
-</div>
 
-<br class="nettoyeur" />
-</div>
+</div><!--#outils-->
 
 <br class="nettoyeur" />
 </div>
