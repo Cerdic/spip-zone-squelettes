@@ -205,8 +205,8 @@ if (!function_exists('balise_DOUBLON_ALEA')){
 	  return $p; 
 	}
 }
-if (!function_exists('balise_DOUBLON_ALEA')){
-	function balise_DOUBLON_ALEA(){
+if (!function_exists('calculer_balise_DOUBLON_ALEA')){
+	function calculer_balise_DOUBLON_ALEA(){
 	  return substr(rand().rand(),0,8);
 	}
 }
