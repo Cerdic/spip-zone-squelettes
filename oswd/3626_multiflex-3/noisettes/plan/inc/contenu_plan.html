@@ -1,0 +1,62 @@
+
+<BOUCLE_racine(RUBRIQUES){par num titre}{racine}>
+
+<h1><a href="#URL_RUBRIQUE">#TITRE</a></h1>
+
+<div class="column2-two-third-left">
+	<B_articles_racine>
+	<h2><:articles:></h2>
+	<ul>
+		<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
+		<li><a href="#URL_ARTICLE">#TITRE</a></li>
+		</BOUCLE_articles_racine>
+	</ul>
+	</B_articles_racine>
+
+	<B_rubriques>
+	<ul>
+		<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+		<li><strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
+
+			<B_articles>
+			<ul>
+				<BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
+				<li><a href="#URL_ARTICLE">#TITRE</a></li>
+				</BOUCLE_articles>
+			</ul>
+			</B_articles>
+
+			<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+
+		</li>
+		</BOUCLE_rubriques>
+
+	</ul>
+	</B_rubriques>
+</div>
+
+
+<div class="column2-one-third-right">
+	[(#REM) Breves ]
+	<B_breves>
+	<h2><:breves:></h2>
+	<ul>
+		<BOUCLE_breves(BREVES) {id_secteur} {par date}{inverse}>
+		<li><a href="#URL_BREVE">#TITRE</a></li>
+		</BOUCLE_breves>
+	</ul>
+	</B_breves>
+
+	[(#REM) Sur le Web ]
+	<B_sites>
+	<h2><:sites_web:></h2>
+	<ul>
+		<BOUCLE_sites(SITES) {id_secteur} {par nom_site}>
+		<li><a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a></li>
+		</BOUCLE_sites>
+	</ul>
+	</B_sites>
+</div>	
+
+<hr class="clear-contentunit" />
+</BOUCLE_racine>

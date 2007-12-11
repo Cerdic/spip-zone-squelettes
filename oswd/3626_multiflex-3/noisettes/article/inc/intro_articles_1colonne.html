@@ -1,0 +1,68 @@
+[(#REM)
+	Options:
+	- mfx_doublons : 				nom d'un doublon... (#inclure seulement)
+	- mfx_afficher_details : 		affiche ou non les détails : date, auteurs, rubrique et nombre commentaires {oui*|non}
+	- mfx_afficher_surtitre : 		affiche ou non le surtitre {oui*|non}
+	- mfx_afficher_soustitre : 		affiche ou non le soustitre {oui*|non}
+	- mfx_afficher_lire_suite : 	affiche ou non un "lire la suite"  {oui|non*}
+	- mfx_afficher_nombre_commentaires : 	affiche le nombre de commentaires  {oui|non*}
+	- mfx_lien_sur_titre : 			affiche ou non un lien sur le titre  {oui*|non}
+	- mfx_couper_texte : 			coupe le texte de l'intro à la taille donné {nombre|non*}
+	- mfx_pagination_nombre : 		nombre d'articles par page {nombre|3*}
+	- mfx_pagination_liens_pages : 	afficher les liens vers les autres pages {oui*|non}(1 | 2 | 3 | ...)
+]
+[(#SET{doublons, [(#ENV{mfx_doublons}|sinon{[(#REM|microtime|replace{' ',''}|replace{'0\.',''})]})]})]
+
+#LOAD_DOUBLONS
+
+<B_intro_articles>
+#ANCRE_PAGINATION
+<BOUCLE_intro_articles(ARTICLES){id_rubrique?}{par date}{inverse}{pagination #ENV{mfx_pagination_nombre}|sinon{3}}{doublons #GET{doublons}}>
+	<!-- Content unit - One column -->
+	<div class="column1-unit">
+	
+	  [(#ENV{mfx_afficher_surtitre}|=={'non'}|?{'',' '})
+	    [<h3[ class="(#EDIT{surtitre})"]>(#SURTITRE)</h3>]
+	  ]
+	  
+	  <h1[ class="(#EDIT{titre})"]>
+	    [(#ENV{mfx_lien_sur_titre}|=={'non'}|?{  
+          #TITRE
+          ,
+          <a href="#URL_ARTICLE">#TITRE</a>
+        })]
+	  </h1>
+	  
+	  [(#ENV{mfx_afficher_soustitre}|=={'non'}|?{'',' '})
+	    [<h3[ class="(#EDIT{soustitre})"]>(#SOUSTITRE)</h3>]
+	  ]
+	  
+	  
+	  [(#ENV{mfx_afficher_details}|=={'non'}|?{'',' '})
+	    <p class="details">[(#DATE|nom_jour|ucfirst) ][(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)][ <:multiflex:dans_rubrique:> (#INCLURE{fond=noisettes/rubrique/inc/titre_rubrique}{id_rubrique})]</p>
+	  ]
+	  
+	  <p>[(#ENV{mfx_couper_texte}|?{#INTRODUCTION|couper{#ENV{mfx_couper_texte}},#INTRODUCTION})]  
+	  
+	  [(#ENV{mfx_afficher_lire_suite}|=={oui}|?{' '})
+	    <a href="#URL_ARTICLE"><:multiflex:lire_suite:></a>
+	  ]
+	  </p>
+	  [(#ENV{mfx_afficher_details}|=={'non'}|?{'',' '})
+		  [<p class="details">
+		  (#CONFIG{multiflex/afficher_nombre_commentaires,oui}|=={oui}|?{' ',''})
+		   [<a href="#URL_ARTICLE#forum">(#INCLURE{fond=noisettes/forum/inc/nombre_commentaires_article}{id_article}|trim)</a>]
+		  </p>] 
+	  ] 
+	</div>
+	<hr class="clear-contentunit" />
+</BOUCLE_intro_articles>
+	[(#ENV{mfx_pagination_liens_pages}|=={non}|?{'',' '})
+	<div class="column1-unit">
+	  <p>#PAGINATION{page}</p>
+	</div>
+	]
+</B_intro_articles>
+
+#SAVE_DOUBLONS
+

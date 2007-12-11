@@ -1,0 +1,32 @@
+[(#REM)
+	Options:
+	- id_rubrique :		id rubrique dans lequel seront prises les sous rubriques
+]
+<BOUCLE_1(RUBRIQUES){id_rubrique}>[(#SET{id_rubrique, #ID_RUBRIQUE|sinon{0}})]</BOUCLE_1>
+<BOUCLE_2(ARTICLES){id_article}>[(#SET{id_rubrique, #ID_RUBRIQUE})]</BOUCLE_2>
+<BOUCLE_3(BREVES){id_breve}>[(#SET{id_rubrique, #ID_RUBRIQUE})]</BOUCLE_3>
+<//B_2>
+<//B_1>
+
+<B_rubrique>
+<dl class="nav3-#CONFIG{multiflex/navigation/apparence,grid}">
+<BOUCLE_rubrique(RUBRIQUES){id_rubrique=#GET{id_rubrique}}>
+	<BOUCLE_rubriques_soeur(RUBRIQUES){meme_parent}{par num titre}>
+	  <dt><a href="#URL_RUBRIQUE">#TITRE</a></dt>
+	  <BOUCLE_sous_rubriques_soeur(RUBRIQUES){id_parent}{id_parent=#GET{id_rubrique}}{par num titre}>
+		<dd><a href="#URL_RUBRIQUE">#TITRE</a></dd>
+	  </BOUCLE_sous_rubriques_soeur>
+	</BOUCLE_rubriques_soeur>
+</BOUCLE_rubrique>
+</dl>
+</B_rubrique>
+[(#REM) Boucler sur racine ]
+<dl class="nav3-#CONFIG{multiflex/navigation/apparence,grid}">
+<BOUCLE_rubrique_racine(RUBRIQUES){racine}>
+	<dt><a href="#URL_RUBRIQUE">#TITRE</a></dt>
+	<BOUCLE_sous_rubriques_racine(RUBRIQUES){id_parent}{par num titre}>
+		<dd><a href="#URL_RUBRIQUE">#TITRE</a></dd>
+	</BOUCLE_sous_rubriques_racine>	
+</BOUCLE_rubrique_racine>
+</dl>
+<//B_rubrique>

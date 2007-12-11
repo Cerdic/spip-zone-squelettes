@@ -1,0 +1,48 @@
+[(#REM)
+	Options:
+	- mfx_afficher_details : 		affiche ou non les détails : date, auteurs, rubrique et nombre commentaires {oui*|non}
+	- mfx_afficher_logo : 			affiche ou non le logo {oui*|non}
+	- mfx_logo_taille : 			affiche ou non le logo {nombre|100*}
+	- mfx_logo_align : 				affiche ou non le logo {left|center|right*}
+	- mfx_afficher_nombre_commentaires : 	affiche le nombre de commentaires  {oui|non*}
+	- mfx_balise_titre : 			balise pour afficher le titre {h1*|h2}
+]
+
+[(#SET{balise_titre,  [(#ENV{mfx_balise_titre}|sinon{h1})]})]
+[(#SET{logo_taille,  [(#ENV{mfx_logo_taille}|sinon{100})]})]
+[(#SET{logo_align,  [(#ENV{mfx_logo_align}|sinon{right})]})]
+
+
+<BOUCLE_contenu_auteur(AUTEURS){id_auteur}>
+	  
+	  <#GET{balise_titre}[ class="(#EDIT{qui})"]>
+          #NOM
+	  </#GET{balise_titre}>
+	  
+	[<p class="#EDIT{hyperlien}"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+
+	[<div class="#EDIT{bio}">(#BIO)</div><br />]
+
+	<h2><:articles_auteur:></h2>
+	
+	[(#INCLURE{fond=noisettes/article/inc/derniers_articles_liste}{env}
+		{mfx_pagination_nombre=[(#ENV{mfx_pagination_nombre}|sinon{20})]}
+		{mfx_pagination_liens_pages=[(#ENV{mfx_pagination_liens_pages}|sinon{oui})]}
+		{mfx_afficher_lire_suite=[(#ENV{mfx_afficher_lire_suite}|sinon{non})]}	
+		{mfx_afficher_texte=[(#ENV{mfx_afficher_texte}|sinon{non})]}	
+		{mfx_afficher_auteurs=[(#ENV{mfx_afficher_auteurs}|sinon{non})]}	
+		{mfx_lien_sur_titre=[(#ENV{mfx_lien_sur_titre}|sinon{oui})]}
+		{id_auteur}
+	)]
+	
+
+	[<div class="contactform">
+	(#FORMULAIRE_ECRIRE_AUTEUR)
+	</div>]
+
+
+
+	[<div><h2><:info_notes:></h2>(#NOTES)</div>]
+			
+	
+</BOUCLE_contenu_auteur>

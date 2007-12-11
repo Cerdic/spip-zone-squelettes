@@ -1,0 +1,53 @@
+[(#REM)
+	Options:
+	- mfx_doublons : 				nom d'un doublon... (#inclure seulement)
+	- mfx_afficher_details : 		affiche ou non les détails : date {oui|non}
+	- mfx_afficher_texte : 			affiche ou non le texte {oui|non}
+	- mfx_afficher_lire_suite : 	affiche ou non un "lire la suite"  {oui|non}
+	- mfx_lien_sur_titre : 			affiche ou non un lien sur le titre  {oui|non}
+	- mfx_couper_texte : 			coupe le texte de l'intro à la taille donné {nombre}
+	- mfx_pagination_nombre : 		nombre d'articles par page {nombre}
+	- mfx_pagination_liens_pages : 	afficher les liens vers les autres pages {oui|non}(1 | 2 | 3 | ...)
+]
+
+[(#SET{doublons, [(#ENV{mfx_doublons}|sinon{[(#REM|microtime|replace{' ',''}|replace{'0\.',''})]})]})]
+
+#LOAD_DOUBLONS
+
+<B_forums_liens>
+#ANCRE_PAGINATION
+<BOUCLE_forums_liens(FORUMS){id_secteur ?}{plat}{par date}{inverse}{pagination #ENV{mfx_pagination_nombre}|sinon{3}}{doublons #GET{doublons}}>
+	<h1[ class="(#EDIT{titre})"]>
+	  [(#ENV{mfx_lien_sur_titre}|=={'non'}|?{  
+		#TITRE
+		,
+		<a href="#URL_FORUM">#TITRE</a>
+	  })]
+	</h1>
+
+	[(#ENV{mfx_afficher_details}|=={'non'}|?{'',' '}) 
+      <p class="details">[(#DATE|nom_jour|ucfirst) ][(#DATE|affdate)][, <:par:> (#NOM)]
+      	[(#INCLURE{fond=noisettes/rubrique/inc/titre_rubrique}{id_rubrique}{id_article}{id_breve})]
+      </p>
+	]
+	
+	[(#ENV{mfx_afficher_texte}|=={'non'}|?{'',' '})
+	  <div[ class="(#EDIT{texte})"]>[(#ENV{mfx_couper_texte}|?{
+	  	<p>[(#TEXTE|couper{#ENV{mfx_couper_texte}})]
+			[(#ENV{mfx_afficher_lire_suite}|=={oui}|?{' '})
+			  <a href="#URL_FORUM"><:multiflex:lire_suite:></a>
+			]	  	
+	  	</p>
+	  	,
+	  	#TEXTE
+	  })] </div>
+	]
+	
+
+</BOUCLE_forums_liens>
+	[(#ENV{mfx_pagination_liens_pages}|=={non}|?{'',' '})
+	  <p>#PAGINATION{page}</p>
+	]
+</B_forums_liens>
+
+#SAVE_DOUBLONS

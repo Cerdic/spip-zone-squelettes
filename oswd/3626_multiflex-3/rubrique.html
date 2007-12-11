@@ -1,0 +1,32 @@
+#CACHE{7200}
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">
+
+[(#SET{titre,[(#TITRE|textebrut)]})]
+[(#SET{description,[(#INTRODUCTION|couper{150}|textebrut)]})]
+[(#SET{options,
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
+})]
+<INCLURE{fond=noisettes/_page/header}
+	{mfx_titre=#GET{titre}}
+	{mfx_description=#GET{description}}
+	{mfx_options=#GET{options}}
+>
+
+<body class="page_rubrique #CONFIG{multiflex/layouts/general_layout,layout4}">
+
+  <!-- Main Page Container -->
+  <div class="page-container">
+    <INCLURE{fond=layouts/#CONFIG{multiflex/layouts/general_header,header1}}{env}>
+    #DEBUT_SURLIGNE
+    <INCLURE{fond=layouts/#CONFIG{multiflex/layouts/general_layout,layout4}}{env}
+    	{mfx_fond=rubrique}
+    >
+    #FIN_SURLIGNE
+    <INCLURE{fond=noisettes/_page/footer}>
+  </div> 
+  
+</body>
+</html>
+</BOUCLE_rubrique_principal>

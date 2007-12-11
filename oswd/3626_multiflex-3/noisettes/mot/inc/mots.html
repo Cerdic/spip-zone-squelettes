@@ -1,0 +1,53 @@
+[(#REM)
+	Options:
+	- mfx_afficher_details : 		affiche ou non les détails : date {oui|non}
+	- mfx_afficher_texte : 			affiche ou non le texte {oui|non}
+	- mfx_afficher_logo : 			affiche ou non le logo {oui*|non}
+	- mfx_afficher_lire_suite : 	affiche ou non un "lire la suite"  {oui|non}
+	- mfx_lien_sur_titre : 			affiche ou non un lien sur le titre  {oui|non}
+	- mfx_couper_texte : 			coupe le texte de l'intro à la taille donné {nombre}
+	- mfx_pagination_nombre : 		nombre d'articles par page {nombre}
+	- mfx_pagination_liens_pages : 	afficher les liens vers les autres pages {oui|non}(1 | 2 | 3 | ...)
+	- mfx_balise_titre : 			balise pour afficher le titre {h1*|h2}
+]
+
+[(#SET{balise_titre,  [(#ENV{mfx_balise_titre}|sinon{h1})]})]
+
+<B_mots>
+#ANCRE_PAGINATION
+<BOUCLE_mots(MOTS){id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?}{id_groupe ?}{pagination #ENV{mfx_pagination_nombre}|sinon{3}}{par num titre}>
+	<#GET{balise_titre}[ class="(#EDIT{titre})"]>
+	  [(#ENV{mfx_lien_sur_titre}|=={'non'}|?{  
+	  	[(#ENV{mfx_afficher_logo}|!={non}|?{' '})
+	  	  [(#LOGO_DOCUMENT||image_reduire{20})]
+	  	]
+		#TITRE
+		,
+		<a href="#URL_MOT">
+		[(#ENV{mfx_afficher_logo}|!={non}|?{' '})
+	  	  [(#LOGO_DOCUMENT||image_reduire{20})]
+	  	]
+		#TITRE</a>
+	  })]
+	</#GET{balise_titre}>
+	
+	[(#ENV{mfx_afficher_details}|=={'non'}|?{'',' '}) 
+      <p class="details"> <:multiflex:dans_groupe:> #TYPE</p>
+	]
+	
+	[(#ENV{mfx_afficher_texte}|=={'non'}|?{'',' '})
+	  <div[ class="(#EDIT{texte})"]>[(#ENV{mfx_couper_texte}|?{
+	  	<p>[(#TEXTE|couper{#ENV{mfx_couper_texte}})]
+			[(#ENV{mfx_afficher_lire_suite}|=={oui}|?{' '})
+			  <a href="#URL_MOT"><:multiflex:lire_suite:></a>
+			]	  	
+	  	</p>
+	  	,
+	  	#TEXTE
+	  })] </div>
+	]
+</BOUCLE_mots>
+	[(#ENV{mfx_pagination_liens_pages}|=={non}|?{'',' '})
+	  <p>#PAGINATION{page}</p>
+	]
+</B_mots>

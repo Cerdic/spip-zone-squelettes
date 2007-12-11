@@ -1,0 +1,32 @@
+[(#REM)
+	Options:
+	- mfx_doublons : 				nom d'un doublon... (#inclure seulement)
+	- mfx_lien_sur_titre : 			affiche ou non un lien sur le titre  {oui*|non}
+	- mfx_pagination_nombre : 		nombre d'articles par page {nombre|3*}
+	- mfx_pagination_liens_pages : 	afficher les liens vers les autres pages {oui*|non}(1 | 2 | 3 | ...)
+]
+[(#SET{doublons, [(#ENV{mfx_doublons}|sinon{#DOUBLON_ALEA})]})]
+
+#LOAD_DOUBLONS
+
+
+<B_liste_rub>
+#ANCRE_PAGINATION
+<ul>
+<BOUCLE_liste_rub(RUBRIQUES){id_mot}{par titre}{pagination #ENV{mfx_pagination_nombre}|sinon{3}}{doublons #GET{doublons}}>
+	  <li[ class="(#EDIT{titre})"]>
+	    [(#ENV{mfx_lien_sur_titre}|=={'non'}|?{  
+          #TITRE
+          ,
+          <a href="#URL_RUBRIQUE">#TITRE</a>
+        })]
+	  </li>
+</BOUCLE_liste_rub>
+    </ul>
+	[(#ENV{mfx_pagination_liens_pages}|=={non}|?{'',' '})
+	  <p>#PAGINATION{page}</p>
+	]
+</B_liste_rub>
+
+#SAVE_DOUBLONS
+

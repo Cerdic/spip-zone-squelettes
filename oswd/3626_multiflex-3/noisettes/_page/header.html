@@ -1,0 +1,43 @@
+#CACHE{86400}
+
+[(#SET{description, [(#ENV{mfx_description}|sinon{#DESCRIPTIF_SITE_SPIP})]})]
+
+#SET{css_1, layout_setup}
+#SET{css_2, header}
+#SET{css_3, layout_text}
+#SET{css_4, multiflex}
+
+[(#REM)
+  Todo:
+  <meta name="publisher" content="Your publisher infos here ..." />
+  <meta name="copyright" content="Your copyright infos here ..." />	
+  <meta name="keywords" content="Your keywords, keywords, keywords, here ..." />
+]
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=#CHARSET" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="expires" content="3600" />
+  <meta name="revisit-after" content="2 days" />
+  <meta name="robots" content="index,follow" />
+  <meta name="author" content="Design: Wolfgang (www.1-2-3-4.info) / Modified: Matthieu Marcillaud pour CMS SPIP" />
+  <meta name="generator" content="SPIP[ (#SPIP_VERSION)]" />
+  <meta name="robots" content="index,follow" />
+  <meta name="distribution" content="global" />
+  <meta name="description" content="#GET{description}" />
+  [<link rel="stylesheet" type="text/css" media="screen,projection,print" href="(#URL_PAGE{theme.css, mfx_fichier=[(#GET{css_1})]})" />]
+  [<link rel="stylesheet" type="text/css" media="screen,projection,print" href="(#URL_PAGE{theme.css, mfx_fichier=[(#GET{css_2})]})" />]
+  [<link rel="stylesheet" type="text/css" media="screen,projection,print" href="(#URL_PAGE{theme.css, mfx_fichier=[(#GET{css_3})]})" />]
+  [<link rel="stylesheet" type="text/css" media="screen,projection,print" href="(#URL_PAGE{theme.css, mfx_fichier=[(#GET{css_4})]})" />]
+  [<link rel="icon" type="image/x-icon" href="(#CHEMIN{img/favicon.ico})" />]
+  [<link rel="shortcut icon" type="images/x-icon" href="(#CHEMIN{img/favicon.ico})" />]
+  [<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="(#URL_PAGE{backend})" />]
+  
+  #ENV*{mfx_options}
+  
+  <title>[(#ENV{mfx_titre}) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+  <!-- Global IE fix to avoid layout crash when single word size wider than column width -->
+  <!--[if IE]><style type="text/css"> body {word-wrap: break-word;}</style><![endif]-->
+  
+  [(#REM) Balise permettant aux plugins d'inserer des appels javascript ou css ]
+  #INSERT_HEAD
+</head>

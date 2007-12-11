@@ -1,0 +1,31 @@
+[(#REM)
+	Barre de navigation, ouverte sur la hierarchie courante
+
+	On fait un plan, et, quand on avance vers une rubrique,
+	on l'affiche si son parent est expose ou est la racine du site. ]
+
+<B_rubriques>
+	<dl class="nav3-#CONFIG{multiflex/navigation/apparence,grid}">
+	<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
+		<dt><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE)]</a></dt>
+		
+		<B_sous_rubriques_>
+		<dd>
+			<BOUCLE_sous_rubriques_(RUBRIQUES) {id_parent} {par num titre, titre}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}>#EXPOSE{' '}</BOUCLE_test_expose>
+				<a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE)]</a>
+					<B_sous_rubriques_2>
+					<dl>
+						<BOUCLE_sous_rubriques_2(RUBRIQUES) {id_parent} {par num titre, titre}><BOUCLE_test_expose_(RUBRIQUES) {id_enfant}>#EXPOSE{' '}</BOUCLE_test_expose_>
+							<dd><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE)]</a><BOUCLE_re(BOUCLE_sous_rubriques_2)></BOUCLE_re>	</dd>
+						</B_test_expose_></BOUCLE_sous_rubriques_2>
+					</dl>
+					</B_sous_rubriques_2>
+			</B_test_expose></BOUCLE_sous_rubriques_>
+		</dd>
+		</B_sous_rubriques_>
+		
+
+
+	</BOUCLE_rubriques>
+	</dl>
+</B_rubriques>

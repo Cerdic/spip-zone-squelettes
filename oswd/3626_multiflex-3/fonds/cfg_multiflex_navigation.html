@@ -1,0 +1,65 @@
+<!-- titre=<:multiflex:configuration_multiflex:> -->
+
+
+[(#REM) autoriser=webmestre ]
+
+[(#REM) refus=Seuls les webmestres du site sont autoris&#233;s &#224; 
+modifier ces param&#232;tres.]
+
+<!-- descriptif=
+<h4>Configuration du Squelette Multiflex</h4>
+-->
+[(#REM) onglet=non]
+
+[(#REM) liens*=multiflex_general]
+[(#REM) liens*=multiflex_couleurs]
+[(#REM) liens*=multiflex_layouts]
+
+
+[(#REM) nom=multiflex]
+[(#REM) casier=navigation]
+
+#CACHE{0}
+
+#CFG_ARBO{multiflex}
+<form method="post" action="#SELF">
+<div>
+<div>[(#ENV{_cfg_}|form_hidden)]</div>
+
+
+<fieldset class="cadre"><legend><:multiflex:navigation:></legend>
+	<label for="mfx_apparence"><:multiflex:apparence_navigation:></label>
+	<select name="apparence" id="mfx_apparence" class="forml">
+		<option value="grid"[ selected="(#ENV{apparence}|=={grid}|?{selected})"]><:multiflex:grille:></option>
+		<option value="bullet"[ selected="(#ENV{apparence}|=={bullet}|?{selected})"]><:multiflex:puces:></option>
+		<option value="nobullet"[ selected="(#ENV{apparence}|=={nobullet}|?{selected})"]><:multiflex:sans_puces:></option>
+	</select><br />
+	
+	<label for="mfx_article_a_propos"><:multiflex:a_propos:></label>
+	<select name="article_a_propos" id="mfx_article_a_propos" class="forml">
+		<option value=""[ selected="(#ENV{article_a_propos}|=={''}|?{selected})"]></option>
+		<BOUCLE_article_a_propos(ARTICLES)>
+		<option value="#ID_ARTICLE"[ selected="(#ENV{article_a_propos}|=={#ID_ARTICLE}|?{selected})"]>[(#TITRE|couper{40})]</option>
+		</BOUCLE_article_a_propos>
+	</select><br />
+	
+	<label for="mfx_article_contact"><:multiflex:contact:></label>
+	<select name="article_contact" id="mfx_article_contact" class="forml">
+		<option value=""[ selected="(#ENV{article_contact}|empty|?{selected})"]></option>
+		<BOUCLE_article_contact(ARTICLES)>
+		<option value="#ID_ARTICLE"[ selected="(#ENV{article_contact}|=={#ID_ARTICLE}|?{selected})"]>[(#TITRE|couper{40})]</option>
+		</BOUCLE_article_contact>
+	</select>	
+</fieldset>
+
+<br />
+
+<div>
+<input type="submit" name="_cfg_ok" value="<:oK:>" class="fondo" />
+<input type="reset" value="<:reset:>" class="fondo" />
+<input type="submit" name="_cfg_delete" value="<:supprimer:>" class="fondo" />
+</div>
+</div>
+</form>
+
+

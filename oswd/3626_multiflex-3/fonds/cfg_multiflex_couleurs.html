@@ -1,0 +1,330 @@
+<!-- titre=<:multiflex:configuration_multiflex:> -->
+
+[(#REM) autoriser=webmestre ]
+
+[(#REM) refus=Seuls les webmestres du site sont autoris&#233;s &#224; 
+modifier ces param&#232;tres. Pour en savoir plus, 
+voir <a href="http://www.spip-contrib.net/-Autorite-">la documentation</a>.]
+
+<!-- descriptif=
+<h4>Configuration du Squelette Multiflex</h4>
+-->
+[(#REM) onglet=non]
+
+[(#REM) liens*=multiflex_general]
+[(#REM) liens*=multiflex_layouts]
+[(#REM) liens*=multiflex_navigation]
+
+[(#REM) nom=multiflex]
+[(#REM) casier=couleurs]
+
+#CACHE{0}
+
+
+<script language="javascript" type="text/javascript"><!--
+
+function hexdec(h){
+	return parseInt(h, 16);
+}
+
+function dechex(d){
+	return Math.round(d).toString(16);
+}
+
+function couleur_rvb(hex){
+	hex = hex.replace("#","");
+	couleur = new Array();
+
+	if (hex.length==6){
+		couleur['r'] = hex.substr(0,2);
+		couleur['v'] = hex.substr(2,2);
+		couleur['b'] = hex.substr(4,2);
+	} else if (hex.length==3){
+		couleur['r'] = hex.substr(0,1).concat(hex.substr(0,1));
+		couleur['v'] = hex.substr(1,1).concat(hex.substr(1,1));
+		couleur['b'] = hex.substr(2,1).concat(hex.substr(2,1));		
+	} else {
+		/* blanc */
+		couleur['r'] = couleur['v'] = couleur['b'] = 'ff';
+	}
+	
+	/* en decimal */
+	couleur['r'] = hexdec(couleur['r']);
+	couleur['v'] = hexdec(couleur['v']);
+	couleur['b'] = hexdec(couleur['b']);
+	
+	return couleur;
+}
+
+function couleur_hex(dec){
+	var hex = new Array();
+	hex['r'] = dechex(dec['r']);
+	hex['v'] = dechex(dec['v']);
+	hex['b'] = dechex(dec['b']);	
+
+	if (hex['r'] == '0') { hex['r'] = '00';}
+	if (hex['v'] == '0') { hex['v'] = '00';}
+	if (hex['b'] == '0') { hex['b'] = '00';}
+	
+	return '#' + hex['r'] + hex['v'] + hex['b'];	
+}
+
+function calculer_couleur(base, kr, kv, kb){
+
+	rvb = couleur_rvb(base);
+	
+	/* calculs */
+	if ((rvb['r'] == 255) && (rvb['v'] == 255) && (rvb['b'] == 255)) 
+		{return '#ffffff';}
+	if ((rvb['r'] == 0) && (rvb['v'] == 0) && (rvb['b'] == 0)) 
+		{return '#000000';}
+	
+	
+	if (kr >  1) kr =  1;
+	if (kr < -1) kr = -1;
+	if (kv >  1) kv =  1;
+	if (kv < -1) kv = -1;
+	if (kb >  1) kb =  1;
+	if (kb < -1) kb = -1;
+	
+	if (kr>=0) 
+		{rvb['r'] = rvb['r'] + kr * (255-rvb['r']);}
+	else
+		{rvb['r'] = rvb['r'] + kr * rvb['r'];}
+	
+	if (kv>=0) 
+		{rvb['v'] = rvb['v'] + kv * (255-rvb['v']);}
+	else
+		{rvb['v'] = rvb['v'] + kv * rvb['v'];}
+	
+	if (kb>=0) 
+		{rvb['b'] = rvb['b'] + kb * (255-rvb['b']);}
+	else
+		{rvb['b'] = rvb['b'] + kb * rvb['b'];}	
+
+	if (rvb['r']>255) rvb['r']=255;
+	if (rvb['v']>255) rvb['v']=255;
+	if (rvb['b']>255) rvb['b']=255;
+	
+	if (rvb['r']<0) rvb['r']=0;
+	if (rvb['v']<0) rvb['v']=0;
+	if (rvb['b']<0) rvb['b']=0;
+	
+	return couleur_hex(rvb);	
+}
+
+function trouver_couleur(type, kr, kb, kv){
+	var base;
+	if (type=='dominante'){base = '#cccccc';}
+	if (type=='generale') {base = '#f6f6f6';}
+	
+	if (!kr && kr !== 0) {kr = parseFloat($("#mfx_coef_rouge").attr('value'));}
+	if (!kv && kv !== 0) {kv = parseFloat($("#mfx_coef_vert").attr('value'));}
+	if (!kb && kb !== 0) {kb = parseFloat($("#mfx_coef_bleu").attr('value'));}
+	
+	
+	/*kv = parseFloat($("#mfx_coef_vert").attr('value'));
+	kb = parseFloat($("#mfx_coef_bleu").attr('value'));*/
+	
+	return calculer_couleur(base, kr, kv, kb);
+}
+
+jQuery(document).ready(function() {
+	
+	/* ------- INIT -------- */
+	$("#mfx_dominante_ori").
+		css('background-color', trouver_couleur('dominante',0,0,0));
+	$("#mfx_generale_ori").
+		css('background-color', trouver_couleur('generale',0,0,0));
+	$("#mfx_dominante_now, #mfx_dominante_new").
+		css('background-color', trouver_couleur('dominante'));
+	$("#mfx_generale_now, #mfx_generale_new").
+		css('background-color', trouver_couleur('generale'));
+	
+	/* ------- SUR CHANGEMENTS -------- */
+	$(".def_couleurs input").keyup(function(){
+		$(this).parent().next().next().next().css('background-color', '#'+this.value);
+	});	
+	$(".def_couleurs input").change(function(){
+		$(this).parent().next().next().next().css('background-color', '#'+this.value);
+	});	
+	$(".def_teintes input").keyup(function(){
+		$("#mfx_dominante_new").
+			css('background-color', trouver_couleur('dominante'));
+		$("#mfx_generale_new").
+			css('background-color', trouver_couleur('generale'));	
+	});			
+	$(".def_teintes input").change(function(){
+		if(this.value>1)  {this.value=1};
+		if(this.value<-1) {this.value=-1};
+		$("#mfx_dominante_new").
+			css('background-color', trouver_couleur('dominante'));
+		$("#mfx_generale_new").
+			css('background-color', trouver_couleur('generale'));			
+	});
+	
+	
+});
+--></script>
+
+<style type="text/css"><!--
+table.def td{padding-left:1em; padding-right:1em;}
+--></style>
+
+<form method="post" action="#SELF">
+<div>
+<div>[(#ENV{_cfg_}|form_hidden)]</div>
+
+<br />
+
+<fieldset class="cadre"><legend><:multiflex:couleur_liens:></legend>
+	<table class="def def_couleurs">
+		<thead>
+	    	<tr>
+	    	    <th></th>
+	    	    <th><:multiflex:valeur:></th>
+	    	    <th><:multiflex:couleur_origine:></th>
+	    	    <th><:multiflex:couleur_actuelle:></th>
+	    	    <th><:multiflex:nouvelle_couleur:></th>
+	    	    
+	    	</tr>		
+		</thead>
+		<tbody>
+	    	<tr>
+	    	    <th><label for="mfx_couleur_liens"><:multiflex:couleur_liens:></label></th>
+	    	    <td><input type="text" name="liens" id="mfx_couleur_liens" value="#ENV{liens}" size="6" class="fondl"/></td>
+	    	    <td style="background-color:#467aa7;">467aa7</td>
+	    	    <td style="background-color:#[(#ENV{liens}|sinon{467AA7})]">[(#ENV{liens}|sinon{467AA7})]</td>
+	    	    <td id="case_couleur_liens" style="background-color:#[(#ENV{liens}|sinon{467AA7})]"></td>
+	    	</tr>
+	    	<tr>
+	    	    <th><label for="mfx_couleur_liens"><:multiflex:couleur_liens_survoles:></label></th>
+	    	    <td><input type="text" name="liens_survoles" id="mfx_couleur_liens_survoles" value="#ENV{liens_survoles}" size="6" class="fondl" /></td>
+	    	    <td style="background-color:#2a5a8a;">2a5a8a</td>
+	    	    <td style="background-color:#[(#ENV{liens_survoles}|sinon{2A5A8A})]">[(#ENV{liens_survoles}|sinon{2A5A8A})]</td>
+	    	    <td id="case_couleur_liens_survoles" style="background-color:#[(#ENV{liens_survoles}|sinon{2A5A8A})]"></td>
+	    	</tr>
+	    </tbody>
+	</table>
+</fieldset>
+
+</br>
+
+
+<fieldset class="cadre"><legend><:multiflex:blocs:></legend>
+	<table class="def def_couleurs">
+		<thead>
+	    	<tr>
+	    	    <th></th>
+	    	    <th><:multiflex:valeur:></th>
+	    	    <th><:multiflex:couleur_origine:></th>
+	    	    <th><:multiflex:couleur_actuelle:></th>
+	    	    <th><:multiflex:nouvelle_couleur:></th>
+	    	    
+	    	</tr>		
+		</thead>
+		<tbody>
+	    	<tr>
+	    	    <th><label for="mfx_couleur_bloc_vert_titre"><:multiflex:couleur_bloc_vert_titre:></label></th>
+	    	    <td><input type="text" name="bloc_vert_titre" id="mfx_couleur_bloc_vert_titre" value="#ENV{bloc_vert_titre}" size="6" class="fondl" /></td>
+	    	    <td style="background-color:#a0d651;">a0d651</td>
+	    	    <td style="background-color:#[(#ENV{bloc_vert_titre}|sinon{a0d651})]">[(#ENV{bloc_vert_titre}|sinon{a0d651})]</td>
+	    	    <td id="case_couleur_bloc_vert_titre" style="background-color:#[(#ENV{bloc_vert_titre}|sinon{a0d651})]"></td>
+	    	</tr>
+	    	<tr>
+	    	    <th><label for="mfx_couleur_bloc_vert_fond"><:multiflex:couleur_bloc_vert_fond:></label></th>
+	    	    <td><input type="text" name="bloc_vert_fond" id="mfx_couleur_bloc_vert_fond" value="#ENV{bloc_vert_fond}" size="6" class="fondl" /></td>
+	    	    <td style="background-color:#d9efb9;">d9efb9</td>
+	    	    <td style="background-color:#[(#ENV{bloc_vert_fond}|sinon{d9efb9})]">[(#ENV{bloc_vert_fond}|sinon{d9efb9})]</td>
+	    	    <td id="case_couleur_bloc_vert_fond" style="background-color:#[(#ENV{bloc_vert_fond}|sinon{d9efb9})]"></td>
+	    	</tr>
+	    	
+	    	<tr><td colspan="5">&nbsp;</td></tr>
+	    	<tr>
+	    	    <th><label for="mfx_couleur_bloc_bleu_titre"><:multiflex:couleur_bloc_bleu_titre:></label></th>
+	    	    <td><input type="text" name="bloc_bleu_titre" id="mfx_couleur_bloc_bleu_titre" value="#ENV{bloc_bleu_titre}" size="6" class="fondl" /></td>
+	    	    <td style="background-color:#89aad6;">89aad6</td>
+	    	    <td style="background-color:#[(#ENV{bloc_bleu_titre}|sinon{89aad6})]">[(#ENV{bloc_bleu_titre}|sinon{89aad6})]</td>
+	    	    <td id="case_couleur_bloc_bleu_titre" style="background-color:#[(#ENV{bloc_bleu_titre}|sinon{89aad6})]"></td>
+	    	</tr>
+	    	<tr>
+	    	    <th><label for="mfx_couleur_bloc_bleu_fond"><:multiflex:couleur_bloc_bleu_fond:></label></th>
+	    	    <td><input type="text" name="bloc_bleu_fond" id="mfx_couleur_bloc_bleu_fond" value="#ENV{bloc_bleu_fond}" size="6" class="fondl" /></td>
+	    	    <td style="background-color:#d5e1f0;">d5e1f0</td>
+	    	    <td style="background-color:#[(#ENV{bloc_bleu_fond}|sinon{d5e1f0})]">[(#ENV{bloc_bleu_fond}|sinon{d5e1f0})]</td>
+	    	    <td id="case_couleur_bloc_bleu_fond" style="background-color:#[(#ENV{bloc_bleu_fond}|sinon{d5e1f0})]"></td>
+	    	</tr>
+	    	
+	    	<tr><td colspan="5">&nbsp;</td></tr>
+	    	<tr>
+	    	    <th><label for="mfx_couleur_bloc_orange_titre"><:multiflex:couleur_bloc_orange_titre:></label></th>
+	    	    <td><input type="text" name="bloc_orange_titre" id="mfx_couleur_bloc_orange_titre" value="#ENV{bloc_orange_titre}" size="6" class="fondl" /></td>
+	    	    <td style="background-color:#e8b10d;">e8b10d</td>
+	    	    <td style="background-color:#[(#ENV{bloc_orange_titre}|sinon{e8b10d})]">[(#ENV{bloc_orange_titre}|sinon{e8b10d})]</td>
+	    	    <td id="case_couleur_bloc_orange_titre" style="background-color:#[(#ENV{bloc_orange_titre}|sinon{e8b10d})]"></td>
+	    	</tr>
+	    	<tr>
+	    	    <th><label for="mfx_couleur_bloc_orange_fond"><:multiflex:couleur_bloc_orange_fond:></label></th>
+	    	    <td><input type="text" name="bloc_orange_fond" id="mfx_couleur_bloc_orange_fond" value="#ENV{bloc_orange_fond}" size="6" class="fondl" /></td>
+	    	    <td style="background-color:#f8e096;">f8e096</td>
+	    	    <td style="background-color:#[(#ENV{bloc_orange_fond}|sinon{f8e096})]">[(#ENV{bloc_orange_fond}|sinon{f8e096})]</td>
+	    	    <td id="case_couleur_bloc_orange_fond" style="background-color:#[(#ENV{bloc_orange_fond}|sinon{f8e096})]"></td>
+	    	</tr>
+	    </tbody>
+	</table>
+</fieldset>
+
+</br>
+
+<fieldset class="cadre"><legend><:multiflex:teintes:></legend>
+	<table class="def def_teintes">
+		<thead>
+	    	<tr>
+	    	    <th></th>
+	    	    <th><label for="mfx_coef_rouge"><:multiflex:rouge:></label></th>
+	    	    <th><label for="mfx_coef_vert"><:multiflex:vert:></label></th>
+	    	    <th><label for="mfx_coef_bleu"><:multiflex:bleu:></label></th>    
+	    	</tr>		
+		</thead>
+		<tbody>
+	    	<tr>
+	    	    <th><:multiflex:coefficients_teinte:></label></th>
+	    	    <td><input type="text" name="coef_rouge" id="mfx_coef_rouge" value="#ENV{coef_rouge}" size="4" class="fondl"/></td>
+	    	    <td><input type="text" name="coef_vert" id="mfx_coef_vert" value="#ENV{coef_vert}" size="4" class="fondl"/></td>
+	    	    <td><input type="text" name="coef_bleu" id="mfx_coef_bleu" value="#ENV{coef_bleu}" size="4" class="fondl"/></td>
+
+	    	</tr>
+	    </tbody>
+	    <tfoot>
+	    	<tr>
+	    		<th></th>
+	    	    <th><:multiflex:couleur_origine:></th>
+	    	    <th><:multiflex:couleur_actuelle:></th>
+	    	    <th><:multiflex:nouvelle_couleur:></th>
+	    	</tr>
+	    	<tr>
+	    		<th><:multiflex:dominante:></th>
+	    	    <td id="mfx_dominante_ori"></td>
+	    	    <td id="mfx_dominante_now"></td>
+	    	    <td id="mfx_dominante_new"></td>	    	
+	    	</tr>	    	
+	    	<tr>
+	    		<th><:multiflex:generale:></th>
+	    	    <td id="mfx_generale_ori"></td>
+	    	    <td id="mfx_generale_now"></td>
+	    	    <td id="mfx_generale_new"></td>	    	
+	    	</tr>
+	    </tfoot>
+	</table>
+</fieldset>
+
+
+<div>
+<input type="submit" name="_cfg_ok" value="<:oK:>" class="fondo" />
+<input type="reset" value="<:reset:>" class="fondo" />
+<input type="submit" name="_cfg_delete" value="<:supprimer:>" class="fondo" />
+</div>
+</div>
+</form>
+
+

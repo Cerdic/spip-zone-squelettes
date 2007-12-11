@@ -1,0 +1,20 @@
+[(#REM)
+	Options:
+	- mxf_couper_titre : {nombre|non*}
+	- mfx_lien_sur_titre : {oui*|non}
+]
+<BOUCLE_art(ARTICLES){id_article}><BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
+    [(#ENV{mfx_lien_sur_titre}|!={non}|?{<a href="#URL_RUBRIQUE">})]
+	[(#ENV{mxf_couper_titre}|?{[(#TITRE|couper{[(#ENV{mxf_couper_titre})]})],#TITRE})]
+	[(#ENV{mfx_lien_sur_titre}|!={non}|?{</a>})]
+</BOUCLE_rubrique></BOUCLE_art>      
+<BOUCLE_rub(RUBRIQUES){id_rubrique}>
+    [(#ENV{mfx_lien_sur_titre}|!={non}|?{<a href="#URL_RUBRIQUE">})]
+	[(#ENV{mxf_couper_titre}|?{[(#TITRE|couper{[(#ENV{mxf_couper_titre})]})],#TITRE})]
+	[(#ENV{mfx_lien_sur_titre}|!={non}|?{</a>})]
+</BOUCLE_rub>      
+<BOUCLE_bre(BREVES){id_breve}><BOUCLE_rubrique_2(RUBRIQUES){id_rubrique}>
+    [(#ENV{mfx_lien_sur_titre}|!={non}|?{<a href="#URL_RUBRIQUE">})]
+	[(#ENV{mxf_couper_titre}|?{[(#TITRE|couper{[(#ENV{mxf_couper_titre})]})],#TITRE})]
+	[(#ENV{mfx_lien_sur_titre}|!={non}|?{</a>})]
+</BOUCLE_rubrique_2></BOUCLE_bre>      

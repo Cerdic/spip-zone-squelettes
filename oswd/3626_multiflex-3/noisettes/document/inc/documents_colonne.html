@@ -1,0 +1,45 @@
+[(#REM)
+	Options:
+	- mfx_afficher_details : 		affiche ou non les détails : {oui*|non}
+	- mfx_afficher_texte : 			affiche ou non le texte {oui*|non}
+	- mfx_afficher_logo : 			affiche ou non le logo {oui*|non}
+	- mfx_afficher_lire_suite : 	affiche ou non un "lire la suite"  {oui|non*}
+	- mfx_lien_sur_titre : 			affiche ou non un lien sur le titre  {oui*|non}
+	- mfx_couper_texte : 			coupe le texte de l'intro à la taille donné {nombre}
+]
+
+<B_documents>
+<BOUCLE_documents(DOCUMENTS){id_rubrique ?}{id_article ?}{id_breve ?}{par num titre}{mode=document}{extension !IN png,jpg,gif}>
+	<h3[ class="(#EDIT{titre})"]>
+	  [(#ENV{mfx_lien_sur_titre}|=={non}|?{ 
+	  	[(#ENV{mfx_afficher_logo}|!={non}|?{' '})
+	  	  [(#LOGO_DOCUMENT||image_reduire{20})]
+	  	]
+		#TITRE
+		,
+		<a href="#URL_DOCUMENT">
+	  	[(#ENV{mfx_afficher_logo}|!={non}|?{' '})
+	  	  [(#LOGO_DOCUMENT||image_reduire{20})]
+	  	]		
+		#TITRE</a>
+	  })]
+	  [(#ENV{mfx_afficher_details}|!={non}|?{' '}) 
+        <br />[(#TYPE_DOCUMENT)][, (#TAILLE|taille_en_octets)][, (#LARGEUR|!={0}|?{#LARGEUR x [(#HAUTEUR)]px})]
+	  ]
+	</h3>
+
+
+
+	[(#ENV{mfx_afficher_texte}|!={non}|?{' '})
+	  <span[ class="(#EDIT{descriptif})"]>[(#ENV{mfx_couper_texte}|?{
+	  	<p>[(#DESCRIPTIF|couper{#ENV{mfx_couper_texte}})]
+			[(#ENV{mfx_afficher_lire_suite}|=={oui}|?{' '})
+			  <a href="#URL_DOCUMENT"><:multiflex:lire_suite:></a>
+			]	  	
+	  	</p>
+	  	,
+	  	#DESCRIPTIF
+	  })] </span>
+	]
+</BOUCLE_documents>
+</B_documents>

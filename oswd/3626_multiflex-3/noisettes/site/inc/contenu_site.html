@@ -1,0 +1,48 @@
+[(#REM)
+	Options:
+	- mfx_afficher_details : 		affiche ou non les détails : date, auteurs, rubrique et nombre commentaires {oui*|non}
+	- mfx_afficher_logo : 			affiche ou non le logo {oui*|non}
+	- mfx_logo_taille : 			affiche ou non le logo {nombre|100*}
+	- mfx_logo_align : 				affiche ou non le logo {left|center|right*}
+	- mfx_balise_titre : 			balise pour afficher le titre {h1*|h2}
+]
+
+[(#SET{balise_titre,  [(#ENV{mfx_balise_titre}|sinon{h1})]})]
+[(#SET{logo_taille,  [(#ENV{mfx_logo_taille}|sinon{100})]})]
+[(#SET{logo_align,  [(#ENV{mfx_logo_align}|sinon{right})]})]
+
+
+<BOUCLE_contenu_site(SITES){id_syndic}>
+
+	  <#GET{balise_titre}[ class="(#EDIT{titre})"]>
+          #NOM_SITE
+	  </#GET{balise_titre}>
+	  
+	  <BOUCLE_rubt(RUBRIQUES){id_rubrique}>#SET{titre_rub,#TITRE}</BOUCLE_rubt>
+	  [(#ENV{mfx_afficher_details}|=={'non'}|?{'',' '})
+	    <p class="details">[(#DATE|nom_jour|ucfirst) ][(#DATE|affdate)][ <:multiflex:dans_rubrique:> <a href="#URL_RUBRIQUE{#ID_RUBRIQUE}">(#GET{titre_rub})</a>]</p>
+	  ]
+	  
+	  [(#ENV{mfx_afficher_logo}|!={non}|?{' '})
+	    [(#LOGO_SITE||inserer_attribut{class,[(#GET{logo_align})]}|image_reduire{[(#GET{logo_taille})]}|image_renforcement{0.2})]
+	  ]	  
+	  
+		[<p class="#EDIT{url_site}"><a href="#URL_SITE">(#URL_SITE|couper{80})</a></p>]
+
+	  [<div[ class="(#EDIT{descriptif})"]>
+	    (#DESCRIPTIF|image_reduire{300,300})
+	  </div>]
+
+	[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+
+	<h1><:derniers_articles:></h2>
+      <INCLURE{fond=noisettes/site/inc/dernieres_syndications}{env}
+      	{mfx_afficher_details=oui}
+      	{mfx_afficher_texte=oui}
+      	{mfx_afficher_lire_suite=non}
+      	{mfx_lien_sur_titre=oui}
+      	{mfx_pagination_nombre=5}
+      	{mfx_pagination_liens_page=oui}
+      	{mfx_balise_titre=h2}
+      >
+</BOUCLE_contenu_site>

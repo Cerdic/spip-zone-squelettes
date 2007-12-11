@@ -1,0 +1,50 @@
+[(#REM)
+	Options:
+	- mfx_doublons : 				nom d'un doublon... (#inclure seulement)
+	- mfx_afficher_details :		affiche ou non les détails : date {oui|non}
+	- mfx_afficher_texte : 			affiche ou non le texte {oui|non}
+	- mfx_afficher_lire_suite : 	affiche ou non un "lire la suite"  {oui|non}
+	- mfx_lien_sur_titre : 			affiche ou non un lien sur le titre  {oui|non}
+	- mfx_couper_texte : 			coupe le texte de l'intro à la taille donné {nombre|non}
+	- mfx_pagination_nombre : 		nombre d'articles par page {nombre}
+	- mfx_pagination_liens_pages : 	afficher les liens vers les autres pages {oui|non}(1 | 2 | 3 | ...)
+]
+
+[(#SET{doublons, [(#ENV{mfx_doublons}|sinon{[(#REM|microtime|replace{' ',''}|replace{'0\.',''})]})]})]
+
+#LOAD_DOUBLONS
+
+<B_derniers_sites>
+#ANCRE_PAGINATION
+<BOUCLE_derniers_sites(SITES){id_rubrique ?}{par date}{inverse}{pagination #ENV{mfx_pagination_nombre}|sinon{3}}{doublons #GET{doublons}}>
+	<h3[ class="(#EDIT{nom_site})"]>
+	  [(#ENV{mfx_afficher_details}|=={'non'}|?{'',' '}) [(#DATE|jour)/][(#DATE|mois) &mdash; ]]
+	  [(#ENV{mfx_lien_sur_titre}|=={'non'}|?{  
+		#NOM_SITE
+		,
+		<a href="#URL_SITE"[ title="(#NOM_SITE|texte_backend)"]>#NOM_SITE</a>
+	  })]
+	</h3>	
+	
+
+	[(#ENV{mfx_afficher_texte}|=={'non'}|?{'',' '})
+	  [(#ENV{mfx_couper_texte}|?{[(#ENV{mfx_couper_texte}!={non}|?{
+	  	[(#DESCRIPTIF|couper{#ENV{mfx_couper_texte}})]
+			[(#ENV{mfx_afficher_lire_suite}|=={oui}|?{' '})
+			   <p><a href="#URL_SITE"><:multiflex:voir_site:></a></p>
+			]	  	
+	  	,
+	  	#DESCRIPTIF
+	  		[(#ENV{mfx_afficher_lire_suite}|=={oui}|?{' '})
+			  <p><a href="#URL_SITE"><:multiflex:voir_site:></a></p>
+			]	
+	  })]})]
+	]
+
+</BOUCLE_derniers_sites>
+	[(#ENV{mfx_pagination_liens_pages}|=={non}|?{'',' '})
+	  <p>#PAGINATION{page}</p>
+	]
+</B_derniers_sites>
+
+#SAVE_DOUBLONS

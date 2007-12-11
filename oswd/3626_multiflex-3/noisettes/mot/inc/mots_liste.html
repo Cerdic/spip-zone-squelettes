@@ -1,0 +1,27 @@
+[(#REM)
+	Options:
+	- mfx_lien_sur_titre : 			affiche ou non un lien sur le titre  {oui|non}
+	- mfx_afficher_logo : 			affiche ou non le logo {oui*|non}
+]
+
+<B_mots>
+<ul>
+<BOUCLE_mots(MOTS){id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?}{id_groupe ?}{par num titre}>
+	<li[ class="(#EDIT{titre})"]>
+	  [(#ENV{mfx_lien_sur_titre}|=={'non'}|?{
+	  	[(#ENV{mfx_afficher_logo}|!={non}|?{' '})
+	  	  [(#LOGO_DOCUMENT||image_reduire{20})]
+	  	]
+		#TITRE
+		,
+		<a href="#URL_MOT">
+		[(#ENV{mfx_afficher_logo}|!={non}|?{' '})
+	  	  [(#LOGO_DOCUMENT||image_reduire{20})]
+	  	]
+		#TITRE</a>
+	  })]
+	</li>
+
+</BOUCLE_mots>
+</ul>
+</B_mots>

@@ -1,0 +1,54 @@
+[(#REM)
+	Options:
+	- mfx_doublons : 				nom d'un doublon... (#inclure seulement)
+	- mfx_afficher_details : 		affiche ou non les détails : date {oui|non}
+	- mfx_afficher_texte : 			affiche ou non le texte {oui|non}
+	- mfx_afficher_lire_suite : 	affiche ou non un "lire la suite"  {oui|non}
+	- mfx_lien_sur_titre : 			affiche ou non un lien sur le titre  {oui|non}
+	- mfx_couper_texte : 			coupe le texte de l'intro à la taille donné {nombre}
+	- mfx_pagination_nombre : 		nombre d'articles par page {nombre}
+	- mfx_pagination_liens_pages : 	afficher les liens vers les autres pages {oui|non}(1 | 2 | 3 | ...)
+	- mfx_balise_titre : 			balise pour afficher le titre {h1*|h2}
+]
+
+[(#SET{doublons, [(#ENV{mfx_doublons}|sinon{#DOUBLON_ALEA})]})]
+[(#SET{balise_titre,  [(#ENV{mfx_balise_titre}|sinon{h1})]})]
+
+#LOAD_DOUBLONS
+
+<B_breves>
+#ANCRE_PAGINATION
+<BOUCLE_breves(BREVES){id_secteur ?}{par date}{inverse}{pagination #ENV{mfx_pagination_nombre}|sinon{3}}{doublons #GET{doublons}}>
+	<#GET{balise_titre}[ class="(#EDIT{titre})"]>
+	  [(#ENV{mfx_lien_sur_titre}|=={'non'}|?{  
+		#TITRE
+		,
+		<a href="#URL_BREVE">#TITRE</a>
+	  })]
+	</#GET{balise_titre}>
+	
+	[(#ENV{mfx_afficher_details}|=={'non'}|?{'',' '}) 
+      <p class="details">[(#DATE|nom_jour|ucfirst) ][(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)][ <:multiflex:dans_rubrique:> (#INCLURE{fond=noisettes/rubrique/inc/titre_rubrique}{id_rubrique})]</p>
+	]
+	
+	[(#ENV{mfx_afficher_texte}|=={'non'}|?{'',' '})
+	  <div[ class="(#EDIT{texte})"]>[(#ENV{mfx_couper_texte}|?{
+	  	<p>[(#TEXTE|couper{#ENV{mfx_couper_texte}})]
+			[(#ENV{mfx_afficher_lire_suite}|=={oui}|?{' '})
+			  <a href="#URL_BREVE"><:multiflex:lire_suite:></a>
+			]	  	
+	  	</p>
+	  	,
+	  	#TEXTE
+	  })] </div>
+	]
+</BOUCLE_breves>
+	[(#ENV{mfx_pagination_liens_pages}|=={non}|?{'',' '})
+	  <p>#PAGINATION{page}</p>
+	]
+</B_breves>
+
+#SAVE_DOUBLONS
+
+
+

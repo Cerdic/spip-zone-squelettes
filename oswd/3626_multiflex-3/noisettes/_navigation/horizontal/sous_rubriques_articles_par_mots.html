@@ -1,0 +1,35 @@
+[(#REM)
+	Options:
+	- id_rubrique :										id parent rubriques affichees
+	- mfx_exclure_rubrique_titre_mot :					exclure les rubriques contenant ce mot cle {titre_mot}
+	- mfx_afficher_articles_si_rubrique_titre_mot :		affiche les articles si les rubriques contenent ce mot cle {titre_mot}
+]
+[(#SET{id_rubrique, [(#ENV{id_rubrique}|sinon{0})]})]
+
+<BOUCLE_exclus(RUBRIQUES){titre_mot!==(#ENV{mfx_exclure_rubrique_titre_mot})}{doublons exclus}></BOUCLE_exclus>
+<ul>
+<BOUCLE_rubriques(RUBRIQUES)
+	{id_parent=#GET{id_rubrique}}
+	{par num titre}
+	{doublons exclus}
+>
+  <li><a href="#URL_RUBRIQUE">#TITRE</a>
+  <BOUCLE_rubriques_art(RUBRIQUES)
+	{id_rubrique}
+	{titre_mot=#ENV{mfx_afficher_articles_si_rubrique_titre_mot}}
+  >
+	  <B_articles>
+		  <!--[if IE 7]><!--></a><!--<![endif]-->
+		  <!--[if lte IE 6]><table><tr><td><![endif]-->
+		  <ul>
+		  <BOUCLE_articles(ARTICLES){id_rubrique}{par num titre}>
+			<li><a href="#URL_ARTICLE">#TITRE</a></li>
+		  </BOUCLE_articles>
+		  </ul>
+		  <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+		 </B_articles>
+
+  </BOUCLE_rubriques_art>
+  </li>
+</BOUCLE_rubriques>
+</ul> 

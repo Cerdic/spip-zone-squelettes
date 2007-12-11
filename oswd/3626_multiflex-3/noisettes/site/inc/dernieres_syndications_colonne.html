@@ -1,0 +1,54 @@
+[(#REM)
+	Options:
+	- mfx_doublons : 				nom d'un doublon... (#inclure seulement)
+	- mfx_afficher_details : 		affiche ou non les détails : date {oui|non}
+	- mfx_afficher_texte : 			affiche ou non le texte {oui|non}
+	- mfx_afficher_lire_suite : 	affiche ou non un "lire la suite"  {oui|non}
+	- mfx_lien_sur_titre : 			affiche ou non un lien sur le titre  {oui|non}
+	- mfx_couper_texte : 			coupe le texte de l'intro à la taille donné {nombre|non}
+	- mfx_pagination_nombre : 		nombre d'articles par page {nombre}
+	- mfx_pagination_liens_pages : 	afficher les liens vers les autres pages {oui|non}(1 | 2 | 3 | ...)
+]
+
+[(#SET{doublons, [(#ENV{mfx_doublons}|sinon{[(#REM|microtime|replace{' ',''}|replace{'0\.',''})]})]})]
+[(#SET{couper_texte,  [(#ENV{mfx_couper_texte}|sinon{non})]})]
+
+#LOAD_DOUBLONS
+
+<B_syndic>
+#ANCRE_PAGINATION
+<BOUCLE_syndic(SYNDIC_ARTICLES){id_rubrique ?}{par date}{inverse}{pagination #ENV{mfx_pagination_nombre}|sinon{3}}{doublons #GET{doublons}}>
+	<h3>
+	  [(#ENV{mfx_afficher_details}|=={non}|?{'',' '}) [(#DATE|jour)/][(#DATE|mois) &mdash; ]]
+	  [(#ENV{mfx_lien_sur_titre}|=={non}|?{  
+		#TITRE
+		,
+		<a href="#URL_ARTICLE"[ title="(#NOM_SITE|texte_backend)"]>#TITRE</a>
+	  })]
+	  [(#ENV{mfx_afficher_details}|=={non}|?{'',' '}) [<:par_auteur:> (#LESAUTEURS)][ <:multiflex:sur:> (#NOM_SITE|texte_backend)] ]
+	</h3>
+    
+	[(#ENV{mfx_afficher_texte}|=={non}|?{'',' '})
+	  <p>
+	  [(#GET{couper_texte}|!={non}|?{
+	  	[(#DESCRIPTIF|couper{#GET{couper_texte}})]
+			[(#ENV{mfx_afficher_lire_suite}|=={oui}|?{' '})
+			  <a href="#URL_ARTICLE"><:multiflex:lire_suite:></a>
+			]	  	
+	  	,
+	  	#DESCRIPTIF
+	  		[(#ENV{mfx_afficher_lire_suite}|=={oui}|?{' '})
+			  <a href="#URL_ARTICLE"><:multiflex:lire_suite:></a>
+			]	
+	  })]
+	  </p>
+	]
+	
+
+</BOUCLE_syndic>
+	[(#ENV{mfx_pagination_liens_pages}|=={non}|?{'',' '})
+	  <p>#PAGINATION{page}</p>
+	]
+</B_syndic>
+
+#SAVE_DOUBLONS

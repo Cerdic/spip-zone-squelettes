@@ -1,0 +1,69 @@
+[(#REM) 
+	A completer pour gerer tout !
+	- groupes_mots, mots
+	- auteurs
+]
+
+[(#ID_RORUM|?{[(#SET{dernier_lien, oui})]})]
+		
+<ul>
+<li><a href="#URL_SITE_SPIP/"><:accueil_site:></a></li>
+
+		<BOUCLE_contexte_article(ARTICLES) {id_article}>
+		<BOUCLE_ariane_article(HIERARCHIE) {id_article}>
+		<li><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></li>
+		</BOUCLE_ariane_article>
+		<li>[(#GET{dernier_lien}|=={oui}|?{<a href="#URL_ARTICLE">})][(#TITRE|couper{80})][(#GET{dernier_lien}|=={oui}|?{</a>})]</li>
+		</BOUCLE_contexte_article>
+
+
+		<BOUCLE_contexte_breve(BREVES) {id_breve}>
+		<BOUCLE_ariane_breve(RUBRIQUES) {id_rubrique}>
+		<li><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></li>
+		</BOUCLE_ariane_breve>
+		<li>[(#GET{dernier_lien}|=={oui}|?{<a href="#URL_BREVE">})][(#TITRE|couper{80})]</a>[(#GET{dernier_lien}|=={oui}|?{</a>})]</li>
+		</BOUCLE_contexte_breve>
+
+		<BOUCLE_contexte_rubrique(RUBRIQUES) {id_rubrique}>
+		<BOUCLE_ariane_rubrique(HIERARCHIE) {id_rubrique}>
+		<li><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></li>
+		</BOUCLE_ariane_rubrique>
+		<li>[(#GET{dernier_lien}|=={oui}|?{<a href="#URL_RUBRIQUE">})][(#TITRE|couper{80})]</a>[(#GET{dernier_lien}|=={oui}|?{</a>})]</li>
+		</BOUCLE_contexte_rubrique>
+
+		<BOUCLE_contexte_site(SITES) {id_syndic}>
+		<BOUCLE_ariane_site(HIERARCHIE) {id_rubrique}>
+		<li><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></li>
+		</BOUCLE_ariane_site>
+		<li>[(#GET{dernier_lien}|=={oui}|?{<a href="[(#ID_SYNDIC|generer_url_site)]">})][(#TITRE|couper{80})][(#GET{dernier_lien}|=={oui}|?{</a>})]</a></li>
+		</BOUCLE_contexte_site>
+
+		<//B_contexte_site>
+		<//B_contexte_rubrique>
+		<//B_contexte_breve>
+		<//B_contexte_article>
+
+		<BOUCLE_contexte_forum(FORUMS) {id_forum}>
+		<li><a href="#URL_FORUM">[(#TITRE|couper{80})]</a></li>
+		</BOUCLE_contexte_forum>
+		
+		<BOUCLE_contexte_mot(MOTS) {id_mot}>
+		<li><:mots_clefs:></li><li>#TYPE</li><li>[(#TITRE|couper{80})]</li>
+		</BOUCLE_contexte_mot>		
+		
+		<BOUCLE_contexte_auteur(MOTS) {id_mot}>
+		<li><:info_auteurs:></li><li>[(#NOM|couper{80})]</li>
+		</BOUCLE_contexte_auteur>	
+			
+		[(#ENV{mfx_plan}|=={oui}|?{' ',''})
+			<li><:plan_site:></li>
+		]		
+		[(#ENV{mfx_404}|=={oui}|?{' ',''})
+			<li><:pass_erreur:> 404</li>
+		]
+		[(#ENV{mfx_recherche}|=={oui}|?{' ',''})
+			<li><:info_rechercher:></li>[<li>(#RECHERCHE)</li>]
+		]
+</ul>
+
+

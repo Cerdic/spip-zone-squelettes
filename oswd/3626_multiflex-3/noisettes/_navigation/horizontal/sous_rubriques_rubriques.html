@@ -1,0 +1,25 @@
+[(#REM)
+	Options:
+	- id_rubrique :		id rubrique dans lequel seront prises les sous rubriques
+]
+[(#SET{id_rubrique, [(#ENV{id_rubrique}|sinon{0})]})]
+
+<ul>
+<BOUCLE_rubriques(RUBRIQUES){id_parent=#GET{id_rubrique}}{par num titre}>
+  <li><a href="#URL_RUBRIQUE">#TITRE
+  <B_sous_rubriques>
+      <!--[if IE 7]><!--></a><!--<![endif]-->
+      <!--[if lte IE 6]><table><tr><td><![endif]-->
+	  <ul>
+	  <BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par num titre}>
+		<li><a href="#URL_RUBRIQUE">#TITRE</a></li>
+	  </BOUCLE_sous_rubriques>
+	  </ul>
+	  <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+	  </B_sous_rubriques>
+  </a>
+  <//B_sous_rubriques>
+  </li>
+</BOUCLE_rubriques>
+</ul> 
+

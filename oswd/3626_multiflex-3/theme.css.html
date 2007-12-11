@@ -1,0 +1,14 @@
+#CACHE{3600*24*7*2}
+#HTTP_HEADER{Content-Type: text/css; charset=utf-8}
+#HTTP_HEADER{Vary: Accept-Encoding}
+
+[(#REM) 
+	Options :
+	- mfx_fichier = {nom du fichier sans .css}
+
+]
+
+[(#SET{fichier_css,css/[(#ENV{mfx_fichier}|concat{.css}|trim)]})]
+
+
+[(#INCLURE{fond=css/def_couleurs}{mfx_suite=#GET{fichier_css}}|trim)]
