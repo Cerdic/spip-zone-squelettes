@@ -1,16 +1,8 @@
 [(#REM)
 		Derniers sites sous SPIP references :
-
-		1. On part de l'article de reference en francais, le 884, pour chercher ses traductions
+		On part de l'article de reference en francais, le 884, pour chercher ses traductions
 		et afficher les derniers sites references dans la langue du contexte.
-
-		2. S'il n'y en a pas de recents, on affiche
-		les derniers sites references dans toutes les langues,
-		mais avec lien vers la petition dans la langue du contexte.
-
-		3. Hors contexte de langue (sur la page d'accueil),
-		on affiche les derniers sites references dans toutes les langues,
-		et c'est tout.
+		Sinon, on affiche les derniers sites references dans toutes les langues.
 ]
 <BOUCLE_petition(ARTICLES){id_article=884}>
 <BOUCLE_petition_trad(ARTICLES){traduction}{lang=#ENV{lang}}>
@@ -24,26 +16,12 @@
 			<li><a href="#URL_ARTICLE#signatures"[ title="(#NOM_SITE|couper{80}|attribut_html)"]><img src="#GET{img}"[ alt="(#NOM_SITE|couper{60}|attribut_html)"] class="spip_logos" /></a></li>
 			</BOUCLE_signatures_trad>
 		</ul>
-		<p><BOUCLE_signatures_trad_total(SIGNATURES)> </BOUCLE_signatures_trad_total>
-		<small>#GRAND_TOTAL <:sites_web:><br /><span class="suite"><a href="#URL_ARTICLE"><:suite:></a></span></small></B_signatures_trad_total></p>
+		<p>
+			<span class="suite"><a href="#URL_ARTICLE"><:lien_tout_afficher:></a></span><br />
+			<BOUCLE_signatures_trad_total(SIGNATURES)> </BOUCLE_signatures_trad_total>#GRAND_TOTAL <:sites_web:></B_signatures_trad_total>
+		</p>
 	</div>
 	</B_signatures_trad>
-
-		<B_signatures>
-		<div id="sites_sous_spip">
-			<h2 class="menu-titre"><:derniers_sites_realises_avec_spip:></h2>
-			<ul>
-				<BOUCLE_signatures(SIGNATURES) {!par date} {0,20}>
-				#SET{img,http://open.thumbshots.org/image.pxf?url=#URL_SITE}
-				<li><a href="#URL_ARTICLE#signatures"[ title="(#NOM_SITE|couper{80}|attribut_html)"]><img src="#GET{img}"[ alt="(#NOM_SITE|couper{60}|attribut_html)"] class="spip_logos" /></a></li>
-				</BOUCLE_signatures>
-			</ul>
-			<p><BOUCLE_signatures_total(SIGNATURES)> </BOUCLE_signatures_total>
-			<small>#GRAND_TOTAL <:sites_web:><br /><span class="suite"><a href="#URL_ARTICLE"><:suite:></a></span></small></B_signatures_total></p>
-		</div>
-		</B_signatures>
-
-	<//B_signatures_trad>
 
 </BOUCLE_petition_trad>
 
@@ -53,11 +31,10 @@
 		<ul>
 			<BOUCLE_signatures_toutes(SIGNATURES) {!par date} {0,20}>
 			#SET{img,http://open.thumbshots.org/image.pxf?url=#URL_SITE}
-			<li><a href="#URL_ARTICLE#signatures"[ title="(#NOM_SITE|couper{80}|attribut_html)"]><img src="#GET{img}"[ alt="(#NOM_SITE|couper{60}|attribut_html)"] class="spip_logos" /></a></li>
+			<li><img src="#GET{img}"[ alt="(#NOM_SITE|couper{60}|attribut_html)"] class="spip_logos" /></li>
 			</BOUCLE_signatures_toutes>
 		</ul>
-		<p><BOUCLE_signatures_toutes_total(SIGNATURES)> </BOUCLE_signatures_toutes_total>
-		<small>#GRAND_TOTAL <:sites_web:></small></B_signatures_toutes_total></p>
+		<p><BOUCLE_signatures_toutes_total(SIGNATURES)> </BOUCLE_signatures_toutes_total>#GRAND_TOTAL <:sites_web:></B_signatures_toutes_total></p>
 	</div>
 	</B_signatures_toutes>
 
