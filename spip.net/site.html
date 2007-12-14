@@ -16,47 +16,29 @@
 		<div id="contenu">
 			<div id="hierarchie"><a href="#URL_SITE_SPIP/#LANG"><:accueil_site:></a><BOUCLE_secteur(RUBRIQUES){lang=#ENV{lang}}{racine}{id_rubrique !IN 4,324}> &gt; <a href="#URL_PAGE{site}"><:liens_utiles|ucfirst:></a> &gt; <strong class="on">[(#LANG|afficher_nom_langue)]</strong></BOUCLE_secteur> &gt; <strong class="on"><:liens_utiles|ucfirst:></strong><//B_secteur></div>
 			
-			<div class="cartouche invisible">
+			<div class="cartouche">
 				<h1><:liens_utiles|ucfirst:></h1>
 			</div>
 			
 			[(#REM)
-			
 				Hors contexte de langue,
 				ce squelette affiche tous les sites references sur spip.net
 				Sinon, il affiche seulement ceux references dans le secteur de la langue.
-			
 			]
 
 			<BOUCLE_secteurs(RUBRIQUES) {lang ?} {racine}{id_rubrique !IN 4,324} {par lang}>
 
-				[(#REM) Sous-rubriques ]
-				<B_rubriques>
+			[(#REM) Sites de la rubrique ]
+			<B_sites>
+			<div class="syndic" lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR" style="text-align: #LANG_LEFT;">
+				<h2 class="menu-titre">#_rubriques:TITRE</h2>
 				<ul>
-					<BOUCLE_rubriques(RUBRIQUES) {lang ?} {id_parent} {par num titre}>
-					<li>
-
-						[(#REM) Sites de la rubrique ]
-						<B_sites>
-						<div class="syndic" lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR" style="text-align: #LANG_LEFT;">
-							<h2 class="menu-titre">#_rubriques:TITRE</h2>
-							<ul>
-								<BOUCLE_sites(SITES) {id_rubrique} {par num nom_site, nom_site} {doublons}>
-								[<li class="box">(#INCLURE{fond=inc/item-site}{id_syndic})</li>]
-								</BOUCLE_sites>
-							</ul>
-						</div>
-						</B_sites>
-
-						<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
-
-					</li>
-					</BOUCLE_rubriques>
-						<BOUCLE_site_racine(BOUCLE_sites)> </BOUCLE_site_racine>
-					<//B_rubriques>
-
+					<BOUCLE_sites(SITES) {id_secteur} {par nom_site} {doublons}>
+					[<li class="box">(#INCLURE{fond=inc/item-site}{id_syndic})</li>]
+					</BOUCLE_sites>
 				</ul>
-				</B_rubriques>
+			</div>
+			</B_sites>
 
 			</BOUCLE_secteurs>
 			
@@ -65,13 +47,14 @@
 		[(#REM) Menu de navigation laterale ]
 		<div id="extra">
 			<div class="menu">
-				<h2 class="menu-titre"><:liens_utiles|ucfirst:></h2>
+				<h2 class="menu-titre"><:onglet_repartition_lang:></h2>
 				<ul>
 					<BOUCLE_langues(RUBRIQUES){racine}{id_rubrique !IN 4,324} {par lang}>
 					<BOUCLE_sites_test(SITES){id_secteur}{0,1}>
 					<li lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR"><BOUCLE_compteur(SITES){id_secteur}> </BOUCLE_compteur><a href="[(#URL_PAGE{site}|parametre_url{lang,#LANG})]"[ (#LANG|=={#ENV{lang}}|?{class="on",''})][(#TOTAL_BOUCLE|>{1}|?{[ title="(#TOTAL_BOUCLE) <:sites_web:>"]})]>[(#LANG|afficher_nom_langue)][ <small>(<strong>(#TOTAL_BOUCLE)</strong>)</small>]</a></B_compteur></li>
 					</BOUCLE_sites_test>
 					</BOUCLE_langues>
+					<li class="tout_afficher"><BOUCLE_compteur_tous(SITES)> </BOUCLE_compteur_tous>&gt; <a href="#URL_PAGE{site}"[ (#LANG|=={#ENV{lang}}|?{'',class="on"})]><:lien_tout_afficher:></a>[<br /><small>((#TOTAL_BOUCLE) <:sites_web:>)</small>]</B_compteur_tous></li>
 				</ul>
 			</div>
 			[(#INCLURE{fond=inc/gazette}{id_secteur})]

@@ -20,8 +20,9 @@
 </BOUCLE_aide_articles>
 </BOUCLE_aide_rub>
 
-[(#REM) Barre de navigation rapide : ]
 <BOUCLE_secteur(RUBRIQUES){racine}{lang=#ENV{lang}}{id_rubrique !IN 4,324}>
+
+[(#REM) Barre de navigation rapide : ]
 <B_onglets>
 <div id="navigation"><ul>
 	<BOUCLE_onglets(RUBRIQUES) {id_parent} {titre==^[0-9]+\.} {par num titre} {0,4} {id_rubrique !IN #GET{id_aide}}>
@@ -31,10 +32,9 @@
 <br class="nettoyeur" />
 </div><!--#navigation-->
 </B_onglets>
-</BOUCLE_secteur>
 
 <div id="outils">
-	#FORMULAIRE_RECHERCHE
+	<BOUCLE_recherche_test(ARTICLES){branche}{11,1}>#FORMULAIRE_RECHERCHE</BOUCLE_recherche_test>
 	<ul>
 		[(#REM) Lien vers le lexique de mots-clefs ]
 		<li><a href="@?lang=#LANG"><:glossaire|ucfirst:></a></li>
@@ -42,16 +42,16 @@
 		[(#REM) Plan du site ]
 		<li>#MODELE{lien-plan_site}</li>
 		
-		<li></li>
-		
 		[(#REM) Liens utiles ]
 		<BOUCLE_sites_secteur(RUBRIQUES){lang}{racine}{id_rubrique !IN 4,324}>
-		<li><BOUCLE_sites(SITES){branche}{0,1}><a href="[/(#LANG|replace{'_.*$',''})_site]"><:liens_utiles|ucfirst:></a></BOUCLE_sites></li>
+		<li><BOUCLE_sites(SITES){branche}{0,1}><a href="[(#URL_PAGE{site}|parametre_url{lang,#LANG})]"><:liens_utiles|ucfirst:></a></BOUCLE_sites></li>
 		</BOUCLE_sites_secteur>
 		
 		[<li>(#GET{aide})</li>]
 	</ul>
 </div><!--#outils-->
+
+</BOUCLE_secteur>
 </div>
 
 [(#REM) La derniere version de SPIP ]
