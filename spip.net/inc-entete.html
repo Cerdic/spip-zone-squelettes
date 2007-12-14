@@ -9,7 +9,7 @@
 <p dir="ltr" class="langues"><span class="invisible"><:info_langues:> : </span>
 <BOUCLE_langues(RUBRIQUES){racine}{id_rubrique !IN 4,324} {par lang}>
 [<span[ (#LANG|=={#ENV{lang}}|?{class="on",''})]>&#91;<a href="#URL_RUBRIQUE" rel="alternate" hreflang="#LANG" title="[(#LANG|afficher_nom_langue)]">(#LANG|replace{'_.*$',''}|unique{langues})</a>&#93;</span>]</BOUCLE_langues>
-<BOUCLE_espace_trad(RUBRIQUES){id_rubrique=4}><a href="#URL_RUBRIQUE" title="<:trad_espace:>"><img src="#CHEMIN{espace_trad.gif}" alt="<:trad_espace:>" width="12" height="12" /></a></BOUCLE_espace_trad></p>
+<BOUCLE_espace_trad(RUBRIQUES){id_rubrique=4}><a href="#URL_RUBRIQUE" title="<:trad_espace:>"><img src="#CHEMIN{img/espace_trad.gif}" alt="<:trad_espace:>" width="12" height="12" /></a></BOUCLE_espace_trad></p>
 
 [(#REM) Aide : questions et reponses ]
 <BOUCLE_aide_rub(RUBRIQUES){id_rubrique=116}>
@@ -33,26 +33,25 @@
 </B_onglets>
 </BOUCLE_secteur>
 
-<div id="outils"><ul>
-	[<li>(#GET{aide})</li>]
-	
-	[(#REM) Lien vers le lexique de mots-clefs ]
-	<li><a href="@?lang=#LANG"><:glossaire|ucfirst:></a></li>
-	
-	[(#REM) Liens utiles ]
-	<BOUCLE_sites_secteur(RUBRIQUES){lang}{racine}{id_rubrique !IN 4,324}>
-	<li><BOUCLE_sites(SITES){branche}{0,1}><a href="[/(#LANG|replace{'_.*$',''})_site]"><:liens_utiles|ucfirst:></a></BOUCLE_sites></li>
-	</BOUCLE_sites_secteur>
-	
-	[(#REM) Plan du site ]
-	<li>#MODELE{lien-plan_site}</li>
-</ul>
-
-#FORMULAIRE_RECHERCHE
-
+<div id="outils">
+	#FORMULAIRE_RECHERCHE
+	<ul>
+		[(#REM) Lien vers le lexique de mots-clefs ]
+		<li><a href="@?lang=#LANG"><:glossaire|ucfirst:></a></li>
+		
+		[(#REM) Plan du site ]
+		<li>#MODELE{lien-plan_site}</li>
+		
+		<li></li>
+		
+		[(#REM) Liens utiles ]
+		<BOUCLE_sites_secteur(RUBRIQUES){lang}{racine}{id_rubrique !IN 4,324}>
+		<li><BOUCLE_sites(SITES){branche}{0,1}><a href="[/(#LANG|replace{'_.*$',''})_site]"><:liens_utiles|ucfirst:></a></BOUCLE_sites></li>
+		</BOUCLE_sites_secteur>
+		
+		[<li>(#GET{aide})</li>]
+	</ul>
 </div><!--#outils-->
-
-<br class="nettoyeur" />
 </div>
 
 [(#REM) La derniere version de SPIP ]
