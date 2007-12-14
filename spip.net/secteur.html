@@ -33,10 +33,9 @@
 			
 			<br class="nettoyeur" />
 
-			<div class="contre-encart">
-
-			[(#REM) Derniers articles mis en ligne ]
-			<B_articles_maj>
+			<div class="tiers">
+				[(#REM) Derniers articles mis en ligne ]
+				<B_articles_maj>
 				<div class="liste-articles">
 					<h2 class="menu-titre"><:derniers_articles:></h2>
 					<ul>
@@ -48,13 +47,10 @@
 					<small style="color: #babdb6; font-size: 0.71em;"><br /><:maj:> : [(#DATE_MODIF|affdate)]</small>
 					</BOUCLE_maj>
 				</div>
-			</B_articles_maj>
+				</B_articles_maj>
+			</div><!--.tiers-->
 
-			</div><!-- fin contre-encart -->
-
-
-			<div class="encart">
-
+			<div class="tiers">
 				[(#REM) Sur le Web : articles issus de la syndication ]
 				<BOUCLE_syndic_rub(RUBRIQUES){lang}{racine}{id_rubrique !IN 4,324}>
 					<B_syndic>
@@ -68,8 +64,23 @@
 					</div>
 					</B_syndic>
 				</BOUCLE_syndic_rub>
-
-			</div><!-- fin encart -->
+			</div><!--.tiers-->
+			
+			<div class="tiers tiers3"> #SET{lang,#LANG}
+				<div class="liste-articles">
+					<h2 class="menu-titre"><:trad_espace:></h2>
+					<ul>
+						<BOUCLE_trad_espace(ARTICLES){id_article IN 1,2}>
+							<BOUCLE_trad_espace_trad(ARTICLES){traduction}{lang=#GET{lang}}>
+							<li lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR"><h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3></li>
+							</BOUCLE_trad_espace_trad>
+							<li lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR"><h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3></li>
+							<//B_trad_espace_trad>
+						</BOUCLE_trad_espace>
+						<li><h3 class="titre"><a href="rubrique4.html"><:trad_espace:></a></h3></li>
+					</ul>
+				</div>
+			</div><!--.tiers-->
 
 		</div><!--#contenu-->
 
