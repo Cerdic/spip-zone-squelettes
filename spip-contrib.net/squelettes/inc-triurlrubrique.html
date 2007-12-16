@@ -1,11 +1,13 @@
-[(#REM) inclusion pour tri url rubrique
-pour faciliter la navigation, Spip-contrib ayant beaucoup de rubrique-dossier avec un seul article
-si seul article de premier niveau 
+[(#REM) inclusion pour tri url rubrique version SPIP-Contrib 2007
+Explications : pour faciliter la navigation, SPIP-Contrib ayant beaucoup de rubrique-dossier avec un seul article
+si un et seul seul article de premier niveau 
 et pas de sous-rubrique autre qu'archives
-et pas d'article issue de la syndication
 alors url rubrique = url article
 sinon (tout autre cas, par exemple rubrique vide) alors url rubrique = url rubrique
-INCLURE toujours places dans une boucle rubrique ]
+nota syndication dans la rubrique : cas des articles issus de la syndication non pris en compte car deja inclus en cartouche dans l'article
+nota de contexte : INCLURE qui appelle cette noisette doit toujours etre place dans une boucle rubrique 
+nota balises : l'usage des balises nommees evite toute ambiguite sur l'url appellee
+]
 
 <BOUCLE_contexte_rubrique(RUBRIQUES){id_rubrique}>
 	[(#REM) test sur nombre d'articles]
@@ -17,14 +19,7 @@ INCLURE toujours places dans une boucle rubrique ]
 			</BOUCLE_test_sousrubrique>
 				[(#_contexte_rubrique:URL_RUBRIQUE)]
 			</B_test_sousrubrique>
-				[(#REM) test sur existence d'articles issus de la syndication ]
-				<BOUCLE_sites_rubriques(SITES){id_rubrique}>
-					<BOUCLE_articles_syndiques(SYNDIC_ARTICLES){id_syndic}></BOUCLE_articles_syndiques>
-				</BOUCLE_sites_rubriques>
-					[(#_contexte_rubrique:URL_RUBRIQUE)]
-				</B_sites_rubriques>
-					[(#_articles_unseul:URL_ARTICLE)]
-				<//B_sites_rubriques>
+				[(#_articles_unseul:URL_ARTICLE)]
 			<//B_test_sousrubrique>
 		</BOUCLE_articles_unseul></B_articles_unseul>		  	[(#_contexte_rubrique:URL_RUBRIQUE)]
 		<//B_articles_unseul>	<//B_articles_plusdun>

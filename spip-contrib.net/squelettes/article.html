@@ -1,6 +1,11 @@
-#CACHE{86400}
-<BOUCLE_article_principal(ARTICLES){id_article}><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html dir="#LANG_DIR" lang="#LANG">
+#CACHE{3600}
+[(#REM) balise plugin Fastcache ]
+#FASTCACHE
+[(#REM) article version SPIP-Contrib 2007]
+
+<BOUCLE_article_principal(ARTICLES){id_article}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
 	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
 	[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
@@ -21,7 +26,7 @@
 
 			<div class="cartouche">
 				#DEBUT_SURLIGNE
-				[(#LOGO_ARTICLE||image_reduire{200,200})]
+				[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{200,200})]
 				[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
 				<h1 class="#EDIT{titre} titre">#TITRE</h1>
 				[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
@@ -53,12 +58,21 @@
 			
 			<div class="encart">
 		
+				[(#REM) mise en remarque tdm pour test
+				[(#REM) Menu du plugin table des matieres ]
+				#TABLE_MATIERES
+				]
+
 				[(#REM) Menu de navigation mots-cles ]
+				[(#REM) stockage mots article et rubrique mere via usage du critere doublons ]
+				<BOUCLE_motsrubrique(MOTS){id_rubrique}{id_groupe!==^(3|5|6|22|25)$}{doublons mots}></BOUCLE_motsrubrique>
+				<BOUCLE_motsarticle(MOTS){id_article}{id_groupe!==^(5|22|25)$}{doublons mots}></BOUCLE_motsarticle>
+				[(#REM) le menu proprement dit - recuperation mots clefs via critere antidoublons ]
 				<B_mots>
 				<div class="divers">
 					<h2 class="menu-titre"><:mots_clefs:></h2>
 					<ul>
-						<BOUCLE_mots(MOTS) {id_article} {par titre}>
+						<BOUCLE_mots(MOTS){!doublons mots}{par titre}>
 							<li><a href="#URL_MOT" rel="tag">#TITRE</a></li>
 						</BOUCLE_mots>
 					</ul>
@@ -75,7 +89,7 @@
 							<B_syndic_rubrique>
 								<ul>
 									<BOUCLE_syndic_rubrique(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{0,3}>
-										<li><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></li>
+										<li><a href="#URL_ARTICLE" [ title="(#DATE|affdate) [ - (#DESCRIPTIF|couper{80})]"] class="spip_out">[(#TITRE|texte_backend|couper{100})]</a></li>
 									</BOUCLE_syndic_rubrique>
 								</ul>
 							</B_syndic_rubrique>
@@ -86,15 +100,15 @@
 				</B_sites_rubrique>
 			
 			</div><!-- fin encart -->
-			[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{520,0})</div>]
+			[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{600,0})</div>]
 			#FIN_SURLIGNE
 
 			[(#REM) Portfolio : album d'images ]
 			<B_documents_portfolio>
 			<div id="documents_portfolio">
 				<h2><:info_portfolio:></h2>
-				<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document}{extension==(png|jpg|gif)$} {doublons}>
-				[<a href="[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio"[ title="(#TITRE|couper{80}|texte_backend)"]>(#LOGO_DOCUMENT||image_reduire{0,60}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
+				<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
+				[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|couper{80}|texte_backend)"]>(#FICHIER|copie_locale|image_reduire{0,60}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
 				</BOUCLE_documents_portfolio>
 			</div>
 			</B_documents_portfolio>
@@ -114,12 +128,12 @@
 				<h2><:titre_documents_joints:></h2>
 				<ul>
 					<BOUCLE_documents_joints(DOCUMENTS){id_article}{mode=document}{par date}{doublons}>
-					<li>
-					<div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>">[(#TITRE|sinon{<:info_document:>})] 
-					[(#LOGO_DOCUMENT||inserer_attribut{'alt',#TITRE})]</a>
-					<small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
-					[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]</li>
-					<br class="nettoyeur" />
+						<li>
+							<div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>">[(#TITRE|sinon{<:info_document:>})]</a> 
+							<a href="[(#URL_DOCUMENT)]">[(#LOGO_DOCUMENT||inserer_attribut{'alt',#TITRE})]</a>
+							<small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
+							[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
+						</li>
 					</BOUCLE_documents_joints>
 				</ul>
 			</div>
@@ -134,22 +148,23 @@
 
 		</div><!-- fin contenu article -->
 
-		[(#REM) Menu de navigation laterale ]
+		[(#REM) Menu de navigation lateral ]
 		<div id="navigation">
 			<h1 class="invisible"><:navigation:></h1>
 			
-			[(#REM) Menu de navigation par rubriques - modif spip-contrib = place sous articles dans meme rubrique ]
+			[(#REM) Menu de navigation par rubriques]
 			<INCLURE{fond=inc-rubriques}{lang}{id_rubrique}{id_article}>
 
 		</div><!-- fin navigation -->		
 	</div><!-- fin conteneur corps article -->
 		
-	[(#REM) suite article : forums dans une div conteneur independante pour etre de toute largeur ]
+	[(#REM) suite article : forums dans une div conteneur independante pour etre de toute largeur 
+	Le forum ayant une PAGINATION il faut absolument lui passer SELF en argument. ]
 	<br class="nettoyeur" />	
 	<div id="conteneur-forum">
 		[(#REM) ancre debut forum]<a name="debut_forums"></a>
 		[<h2 class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a></h2>]
-		<INCLURE{fond=inc-forum}{id_article}>
+		<INCLURE{fond=inc-forum}{id_article}{self=#SELF}>
 		<br class="nettoyeur-forum" /><!-- pour tout purger de l'inclure -->
 	</div><!-- fin conteneur forums -->
 

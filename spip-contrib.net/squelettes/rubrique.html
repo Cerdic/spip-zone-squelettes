@@ -1,7 +1,11 @@
-#CACHE{7200}
-<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+[(#REM) rubrique version SPIP-Contrib 2007]
+
+#CACHE{3600}
+[(#REM) balise plugin Fastcache ]
+#FASTCACHE
+<BOUCLE_rubrique_principal(RUBRIQUES){id_rubrique}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html dir="#LANG_DIR" lang="#LANG">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
 	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
 	[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
@@ -47,14 +51,14 @@
 							[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|image_reduire{100,100})]
 							<h3 class="titre"><a href="<INCLURE{fond=inc-triurlrubrique}{id_rubrique}>">#TITRE</a></h3>
 							<small>
-								 <BOUCLE_motsrubrique(MOTS){id_rubrique}{par titre}{id_groupe!==^(3|5|6|13|18|21|22|25)$}{0,n-1}>
+								 <BOUCLE_motsrubrique(MOTS){id_rubrique}{par titre}{id_groupe!==^(3|5|6|22|25)$}{0,n-1}>
 									[<em><a href="#URL_MOT">(#TITRE)</a>, </em>]
 								</BOUCLE_motsrubrique>
-								<BOUCLE_motsrubrique2(MOTS){id_rubrique}{par titre}{id_groupe!==^(3|5|6|13|18|21|22|25)$}{n-1,n}>
+								<BOUCLE_motsrubrique2(MOTS){id_rubrique}{par titre}{id_groupe!==^(3|5|6|22|25)$}{n-1,n}>
 									[<em><a href="#URL_MOT">(#TITRE)</a></em>]
 								</BOUCLE_motsrubrique2>
 							</small>
-							[<div class="#EDIT{intro} texte">(#INTRODUCTION|couper{180})</div>]
+							[<div class="texte">(#INTRODUCTION|couper{180})</div>]
 						</li>
 						</BOUCLE_sousrubriques_rubrique>
 					</ul>
@@ -69,53 +73,28 @@
 					<ul>
 						<BOUCLE_articles_rubrique(ARTICLES){id_rubrique}{par titre}{pagination 20}>
 						<li>
-							[(#LOGO_ARTICLE|#URL_ARTICLE|image_reduire{100,100})]
+							[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{100,100})]
 							[<p class="surtitre">(#SURTITRE)</p>]
 							<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
 							[<p class="soustitre">(#SOUSTITRE)</p>]
 							<small>
-								 <BOUCLE_motsarticle1(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|13|18|21|22|25)$}{0,n-1}>
+								[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS) - ]
+								<B_motsarticle1>
+									&mdash;
+								<BOUCLE_motsarticle1(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|22|25)$}{0,n-1}>
 									[<em>(#TITRE), </em>]
 								</BOUCLE_motsarticle1>
-								<BOUCLE_motsarticle2(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|13|18|21|22|25)$}{n-1,n}>
+								<BOUCLE_motsarticle2(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|22|25)$}{n-1,n}>
 									[<em>(#TITRE)</em>]
 								</BOUCLE_motsarticle2>
 							</small>
-							[<div class="#EDIT{intro} texte">(#INTRODUCTION|couper{180})</div>]
+							[<div class="texte">(#INTRODUCTION|couper{180})</div>]
 						</li>
 						</BOUCLE_articles_rubrique>
 					</ul>
 					[<p class="pagination">(#PAGINATION)</p>]
 				</div>
 				</B_articles_rubrique>
-				
-				[(#REM) affichage articles syndiques, si on est dans dossier-rubrique d'une contrib  = ne contient pas d'autres rubriques que archives]
-				[(#REM) boucle d'exclusion rubriques sur mot clef "Archives, id=154"]
-				<BOUCLE_exclu_rubriques2(RUBRIQUES){id_mot=154}{doublons archives2}></BOUCLE_exclu_rubriques2>
-				[(#REM) test sur sousrubriques ]
-				<BOUCLE_test_sousrubriques(RUBRIQUES){id_parent}{doublons archives2}>
-				</BOUCLE_test_sousrubriques>
-				</B_test_sousrubriques>
-					<B_sites_rubriques>
-					<h2 class="menu-titre"><:sur_web:></h2>
-					<BOUCLE_sites_rubriques(SITES){id_rubrique}{syndication=oui}>
-						<B_articles>
-						<div class="liste-articles">
-							<ul>
-								[(#REM) Articles issus de la syndication ]
-								<BOUCLE_articles(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{0,2}>
-								<li>
-									[(#LOGO_SITE|#URL_SYNDIC|image_reduire{100,100})]
-									<h3 class="titre"><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></h3>
-									<small>[(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)][ &mdash; <em>(#TAGS|afficher_tags)</em>]</small>
-									[<div class="texte">(#DESCRIPTIF|couper{400}|image_reduire{300})<br class="nettoyeur" /></div>]
-								</li>
-								</BOUCLE_articles>
-							</ul>
-						</div>
-						</B_articles>
-					</BOUCLE_sites_rubriques>					
-				<//B_test_sousrubriques>
  	
 				[(#REM) Documents joints a la rubrique ]
 				<B_documents_joints>
@@ -125,8 +104,8 @@
 						<BOUCLE_documents_joints(DOCUMENTS) {id_rubrique}
 						{mode=document} {par date} {doublons}>
 						<li>
-						<div class="#EDIT{titre} spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>">[(#TITRE|sinon{<:info_document:>})]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
-						[<div class="#EDIT{descriptif} spip_doc_descriptif">(#DESCRIPTIF)</div>]
+						<div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>">[(#TITRE|sinon{<:info_document:>})]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
+						[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
 						</li>
 						</BOUCLE_documents_joints>
 					</ul>
@@ -152,14 +131,15 @@
 				
 				[(#REM) Menu de navigation mots-cles ]
 				[(#REM) stockage mots clefs branche, sauf archives et certains groupes, via critere doublons]
+				<BOUCLE_mots_rubrique(MOTS){id_rubrique}{id_groupe!==^(3|5|6|22|25)$}{doublons motsclefs}></BOUCLE_mots_rubrique>
 				<BOUCLE_mots_rubriquesbranche(RUBRIQUES){branche}{doublons archives}>
-					<BOUCLE_mots_sousrubriques(MOTS){id_rubrique}{id_groupe!==^(3|5|6|13|18|21|22|25)$}{doublons motsclefs}></BOUCLE_mots_sousrubriques>
+					<BOUCLE_mots_sousrubriques(MOTS){id_rubrique}{id_groupe!==^(3|5|6|22|25)$}{doublons motsclefs}></BOUCLE_mots_sousrubriques>
 					<BOUCLE_sites_sousrubriques(SITES){id_rubrique}>
-						<BOUCLE_mots_sites(MOTS){id_syndic}{id_groupe!==^(3|5|6|13|18|21|22|25)$}{doublons motsclefs}></BOUCLE_mots_sites>
+						<BOUCLE_mots_sites(MOTS){id_syndic}{id_groupe!==^(3|5|6|22|25)$}{doublons motsclefs}></BOUCLE_mots_sites>
 					</BOUCLE_sites_sousrubriques>
 				</BOUCLE_mots_rubriquesbranche>
 				<BOUCLE_mots_articlesbranche(ARTICLES){branche}{doublons archives}>
-					<BOUCLE_mots_articles(MOTS){id_article}{id_groupe!==^(3|5|6|13|18|21|22|25)$}{doublons motsclefs}></BOUCLE_mots_articles>
+					<BOUCLE_mots_articles(MOTS){id_article}{id_groupe!==^(3|5|6|22|25)$}{doublons motsclefs}></BOUCLE_mots_articles>
 				</BOUCLE_mots_articlesbranche>
 				[(#REM) recuperation et tri mots clefs de la branche (inclus sites), via critere antidoublons ]
 				<B_mots>

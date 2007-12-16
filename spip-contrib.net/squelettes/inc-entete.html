@@ -1,3 +1,7 @@
+[(#REM) 
+INCLURE version SPIP-Contrib 2007
+bandeau de tete communs a toutes les pages 
+]
 <div id="entete">
 
 	<div id="entetelogos">
@@ -5,7 +9,7 @@
 		<a rel="start" href="#URL_SITE_SPIP/">
 		[(#LOGO_SITE_SPIP||?{
 			[(#LOGO_SITE_SPIP
-				||image_reduire{350,200}
+				||image_reduire{330,200}
 				|inserer_attribut{alt,[(#NOM_SITE_SPIP|textebrut)]}
 				|inserer_attribut{title,[(#NOM_SITE_SPIP|textebrut)]}
 				)]
@@ -32,10 +36,15 @@
 			<li><a href="http://www.spip.net/@" title="glossaire spip.net"><:glossaire:></a></li>
 			[(#REM) Lien vers liens de telechargement ]
 			<BOUCLE_rubrique_telechargement(RUBRIQUES){id_rubrique=123}><li><a href="#URL_RUBRIQUE">#TITRE</a></li></BOUCLE_rubrique_telechargement>
+			[(#REM) Lien vers la page du flux rss des plugins et themes de la Zone ;  id_syndic=248]
+			<li><BOUCLE_pluginszone(SITES){id_syndic=248}>
+				<a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a>
+			</BOUCLE_pluginszone></li>
+			[(#REM) Lien vers le Gribouille de Contrib - url en dur car les boucles de gribouille ne sont pas affichees dans le reste du site par conception]
+			<li><a href="http://www.spip-contrib.net/-Carnet-SPIP-">Carnet wiki</a></li>
 			[(#REM) boutons fixes pour le plugin "boutontexte" pour eviter les repetitions ]
 			<li><img src="#CHEMIN{images/fontsizeup.png}" alt="fontsizeup" class="textsizeup" /></li>
 			<li><img src="#CHEMIN{images/fontsizedown.png}" alt="fontsizedown" class="textsizedown" /></li>
-			
 		</ul>
 		#FORMULAIRE_RECHERCHE
 	</div><!--  fin barre nav rapide -->

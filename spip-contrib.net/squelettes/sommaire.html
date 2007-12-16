@@ -1,10 +1,13 @@
-#CACHE{7200}
+#CACHE{3600}
+[(#REM) balise plugin Fastcache ]
+#FASTCACHE
+[(#REM) sommaire version SPIP-Contrib 2007 ]
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html dir="#LANG_DIR" lang="#LANG">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
 	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
 	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
-
 	<INCLURE{fond=inc-head}{lang}>
 </head>
 
@@ -23,97 +26,180 @@
 			<hr class="separateur" />
 			
 			<div class="contre-encart">
-			[(#REM) Articles]
-			<B_articles>
-				<div class="liste-articles">
-					[(#ANCRE_PAGINATION)]
-					[(#ENV{debut_articles}|?{'',' '})<h2 class="invisible"><:articles_recents:></h2>]
-					<ul>
-						<BOUCLE_articles(ARTICLES){par date}{inverse}{doublons}{lang?}{pagination 10}>
-						<li>[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{100,100})]
-							[<p class="surtitre">(#SURTITRE)</p>]
-							<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
-							[<p class="soustitre">(#SOUSTITRE)</p>]
-							<small>
-								[<:par_auteur:> (#LESAUTEURS)]
-								[(#REM) Les mots clefs de l'article]
-								<B_motsarticle>
-								 &mdash; 
-								 <BOUCLE_motsarticle(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|13|18|21|22|25)$}{0,n-1}>
-									[<em><a href="#URL_MOT">(#TITRE)</a>, </em>]
-								</BOUCLE_motsarticle>
-								<BOUCLE_motsarticle2(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|13|18|21|22|25)$}{n-1,n}>
-									[<em><a href="#URL_MOT">(#TITRE)</a></em>]
-								</BOUCLE_motsarticle2>
-							</small>
-							[(#INTRODUCTION|?{[<div class="#EDIT{intro} texte">(#INTRODUCTION|couper{180})</div>],<hr />}) ]
-							<br class="nettoyeur" />
-						</li>
-						</BOUCLE_articles>
-					</ul>
-					[<p class="pagination">(#PAGINATION)</p>]
-				</div>
+				[(#REM) Articles publies par ordre antechronologiques]
+				[(#REM) boucle d'exclusion articles sur mots clefs "Hors sommaire" (id_mot=239) et "En tete sommaire" (id_mot=246)]
+				<BOUCLE_exclusionsommaire_articles(ARTICLES){tout}{id_mot==^(239)$}{doublons horssommaire}></BOUCLE_exclusionsommaire_articles>
+				<BOUCLE_exclusionentetesommaire_articles(ARTICLES){tout}{id_mot==^(246)$}{doublons entetesommaire}></BOUCLE_exclusionentetesommaire_articles>
 
-			</div><!-- fin contre-encart -->
-			</B_articles>
+				[(#REM) boucle d'exclusion articles sur mot clef "Archives, id=154"]
+				<BOUCLE_exclu_articles(ARTICLES){id_mot=154}{doublons articlesarchives1}></BOUCLE_exclu_articles>
+				[(#REM) boucle d'exclusion articles dans rubriques sur mot clef "Archives, id=154", compris toutes sous-rubriques incluses]
+				<BOUCLE_exclu_rubriques(RUBRIQUES){id_mot=154}>
+					<BOUCLE_exclu_articles2(ARTICLES){id_rubrique}{doublons articlesarchives1}></BOUCLE_exclu_articles2>
+					<BOUCLE_exclu_sousrubriques(RUBRIQUES){id_parent}>
+						<BOUCLE_exclu_articles3(ARTICLES){id_rubrique}{doublons articlesarchives1}></BOUCLE_exclu_articles3>
+						<BOUCLE_recursive1(BOUCLE_exclu_sousrubriques)></BOUCLE_recursive1>
+					</BOUCLE_exclu_sousrubriques>
+				</BOUCLE_exclu_rubriques>
+				
+				[(#REM) Articles en tete]
+				<B_articlesentete>
+					<div class="liste-articles">
+						[(#ENV{debut_articles}|?{'',' '})<h2 class="invisible"><:articles_recents:></h2>]
+						<ul>
+							<BOUCLE_articlesentete(ARTICLES){par date}{inverse}{id_mot=246}{doublons horssommaire}{doublons articlesarchives1}{lang?}>
+								<li>
+									[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{100,100})]
+									[<p class="surtitre">(#SURTITRE)</p>]
+									<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+									[<p class="soustitre">(#SOUSTITRE)</p>]
+									<small>
+										[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS) - ]
+										[(#REM) Les mots clefs de l'article]
+										<B_motsarticleentete>
+										 &mdash; 
+										 <BOUCLE_motsarticleentete(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|22|25|26)$}{0,n-1}>
+											[<em><a href="#URL_MOT">(#TITRE)</a>, </em>]
+										</BOUCLE_motsarticleentete>
+										<BOUCLE_motsarticleentete2(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|22|25|26)$}{n-1,n}>
+											[<em><a href="#URL_MOT">(#TITRE)</a></em>]
+										</BOUCLE_motsarticleentete2>
+									</small>
+									[(#INTRODUCTION|?{[<div class="#EDIT{intro} texte">(#INTRODUCTION|couper{180})</div>],<hr />}) ]
+								</li>
+							</BOUCLE_articlesentete>
+						</ul>
+					</div>
+				</B_articlesentete>
+				
+				[(#REM) Tous les autres articles publies]
+				<B_articles>
+					<div class="liste-articles">
+						[(#ANCRE_PAGINATION)]
+						[(#ENV{debut_articles}|?{'',' '})<h2 class="invisible"><:articles_recents:></h2>]
+						<ul>
+							<BOUCLE_articles(ARTICLES){par date}{inverse}{doublons entetesommaire}{doublons horssommaire}{doublons articlesarchives1}{lang?}{pagination 12}>
+								<li>
+									[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{100,100})]
+									[<p class="surtitre">(#SURTITRE)</p>]
+									<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+									[<p class="soustitre">(#SOUSTITRE)</p>]
+									<small>
+										[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]
+										[(#REM) Les mots clefs de l'article]
+										<B_motsarticle>
+										 &mdash; 
+										 <BOUCLE_motsarticle(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|22|25|26)$}{0,n-1}>
+											[<em><a href="#URL_MOT">(#TITRE)</a>, </em>]
+										</BOUCLE_motsarticle>
+										<BOUCLE_motsarticle2(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|22|25|26)$}{n-1,n}>
+											[<em><a href="#URL_MOT">(#TITRE)</a></em>]
+										</BOUCLE_motsarticle2>
+									</small>
+									[(#INTRODUCTION|?{[<div class="#EDIT{intro} texte">(#INTRODUCTION|couper{180})</div>],<hr />}) ]
+								</li>
+							</BOUCLE_articles>
+						</ul>
+						[<p class="pagination">(#PAGINATION)</p>]
+					</div>
+				</B_articles>
 			
-				<div class="encart"><!--  debut encart -->
+			</div><!-- fin contre-encart -->
+
+			<div class="encart"><!--  debut encart -->
 
 				[(#REM) Liens des forums ]
 				<B_forums_liens>
 				<div class="divers">
 					#ANCRE_PAGINATION
 					<h2 class="menu-titre"><:derniers_commentaires:></h2>
-					<p><:messages_recents:></p>
 					<ul>
-						<BOUCLE_forums_liens(FORUMS){plat}{!par date}{0,80}{pagination 20}>
+						<BOUCLE_forums_liens(FORUMS){plat}{!par date}{0,80}{pagination 25}>
 						<li>[<br />&ndash; (#DATE|affdate_court|unique) &ndash;<br />]<a href="#URL_FORUM">[(#TITRE|couper{48})]</a></li>
 						</BOUCLE_forums_liens>
 					</ul>
 					[<p class="pagination">(#PAGINATION)</p>]
 				</div>
 				</B_forums_liens>
-
-				[(#REM) Sur le Web ]
-				<B_syndic>
-				<div class="divers">
-					#ANCRE_PAGINATION
-					<h2 class="menu-titre"><:nouveautes_web:></h2>
-					<ul>
-					<BOUCLE_syndic(SYNDIC_ARTICLES){id_syndic!=129}{age<180}{!par date}{0,20}{pagination 5}>
-						<li>[(#DATE|affdate_court) &ndash; ]<a href="#URL_ARTICLE"[ title="(#NOM_SITE|texte_backend)"] class="spip_out">#TITRE</a></li>
-					</BOUCLE_syndic>
-					</ul>
-					[<p class="pagination">(#PAGINATION)</p>]
-				</div>
-				</B_syndic>
 				
-				[(#REM) Rendez-vous de Spip-party ]
+				[(#REM) Le fil du Blog]
+				<B_syndic4>
+				<div class="divers">
+					<h2 class="menu-titre">SPIP-Blog</h2>
+					<ul>
+					<BOUCLE_syndic4(SYNDIC_ARTICLES){id_syndic=157}{age<180}{!par date}{0,3}>
+						<li>[(#DATE|affdate_court) &ndash; ]<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|couper{120})"] class="spip_out">[(#TITRE|texte_backend|couper{80})]</a></li>
+					</BOUCLE_syndic4>
+					</ul>
+				</div>
+				</B_syndic4>
+
+				[(#REM) Rendez-vous de SPIP-Party ]
 				<B_syndic2>
 				<div class="divers">
-					<h2 class="menu-titre">Spip-party</h2>
+					<h2 class="menu-titre">SPIP-Party</h2>
 					<ul>
-					<BOUCLE_syndic2(SYNDIC_ARTICLES){id_syndic=129}{age<180}{!par date}{0,5}>
-						<li>[(#DATE|affdate_court) &ndash; ]<a href="#URL_ARTICLE"[ title="(#NOM_SITE|texte_backend)"] class="spip_out">#TITRE</a></li>
+					<BOUCLE_syndic2(SYNDIC_ARTICLES){id_syndic=129}{age<180}{!par date}{0,3}>
+						<li>[(#DATE|affdate_court) &ndash; ]<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|couper{120})"] class="spip_out">[(#TITRE|texte_backend|couper{80})]</a></li>
 					</BOUCLE_syndic2>
 					</ul>
 				</div>
 				</B_syndic2>
 				
-				[(#REM) Breves ]
-				<B_breves>
+				[(#REM) Suivi des seuls commits de la Zone syndiques sur Contrib - via usage du critere antidoublons ]
+				<BOUCLE_motsiteszone(MOTS){id_mot=233}>
+					<BOUCLE_siteszone(SITES){id_mot}><BOUCLE_syndiczone(SYNDIC_ARTICLES){id_syndic}{doublons zone}></BOUCLE_syndiczone></BOUCLE_siteszone>
+				</BOUCLE_motsiteszone>
+				<B_syndic5>
 				<div class="divers">
-					#ANCRE_PAGINATION
-					<h2 class="menu-titre"><:dernieres_breves:></h2>
+					<h2 class="menu-titre">SPIP-Zone</h2>
 					<ul>
-						<BOUCLE_breves(BREVES) {par date}{inverse}{lang?}{0,12}{pagination 3}>
-						<li>[(#DATE|affdate_court) &ndash; ]<a href="#URL_BREVE">#TITRE</a></li>
-						</BOUCLE_breves>
+					[(#REM) recuperation des commits via critere antidoublons ]
+					<BOUCLE_syndic5(SYNDIC_ARTICLES){!doublons zone}{!par date}{0,35}{pagination 7}>
+						<li>[<br />&ndash; (#DATE|affdate_court|unique) &ndash;<br />]<a href="#URL_ARTICLE"[ title="(#NOM_SITE|texte_backend) [- (#DATE|affdate)]"] class="spip_out">[(#TITRE|texte_backend|couper{80})]</a></li>
+					</BOUCLE_syndic5>
 					</ul>
 					[<p class="pagination">(#PAGINATION)</p>]
 				</div>
-				</B_breves>
-
+				</B_syndic5>
+				
+				[(#REM) commits SPIP SVN]
+				<B_syndic6>
+				<div class="divers">
+					<h2 class="menu-titre">SPIP-SVN</h2>
+					<ul>
+					<BOUCLE_syndic6(SYNDIC_ARTICLES){id_syndic=247}{age<180}{!par date}{0,3}>
+						<li>[(#DATE|affdate_court) &ndash; ]<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|couper{120}) [- (#DATE|affdate)]"] class="spip_out">[(#TITRE|texte_backend|couper{80})]</a></li>
+					</BOUCLE_syndic6>
+					</ul>
+				</div>
+				</B_syndic6>
+				
+				[(#REM) commits SPIP Forums]
+				<B_syndic7>
+				<div class="divers">
+					<h2 class="menu-titre">SPIP-Forums</h2>
+					<ul>
+					<BOUCLE_syndic7(SYNDIC_ARTICLES){id_syndic=57}{age<180}{!par date}{0,3}>
+						<li>[(#DATE|affdate_court) &ndash; ]<a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|couper{120}) [- (#DATE|affdate)]"] class="spip_out">[(#TITRE|texte_backend|couper{80})]</a></li>
+					</BOUCLE_syndic7>
+					</ul>
+				</div>
+				</B_syndic7>
+			
+				[(#REM) Sur le Web SPIP - sauf le Zine et Party et le Blog  et SVN et la Zone et Forums (Zone deja traité avant via critere doublons ) ]
+				<B_syndic>
+				<div class="divers">
+					#ANCRE_PAGINATION
+					<h2 class="menu-titre"><:nouveautes_web:></h2>
+					<ul>
+					<BOUCLE_syndic(SYNDIC_ARTICLES){id_syndic!=128}{id_syndic!=129}{id_syndic!=157}{id_syndic!=247}{id_syndic!=57}{doublons zone}{!par date}{0,25}{pagination 5}>
+						<li>[(#DATE|affdate_court) &ndash; ]<a href="#URL_ARTICLE"[ title="(#NOM_SITE|texte_backend) [- (#DATE|affdate)]"] class="spip_out">[(#TITRE|texte_backend|couper{60})]</a></li>
+					</BOUCLE_syndic>
+					</ul>
+					[<p class="pagination">(#PAGINATION)</p>]
+				</div>
+				</B_syndic>
 
 			</div><!-- fin encart -->
 
@@ -137,13 +223,33 @@
 				[(#MODELE{nuage}{id=20})]
 			</div>
 			
+			[(#REM) nombre de rubriques avec tag plugin (id_mot=112) ]
+			<h2 class="menu-titre">
+				<BOUCLE_motplugin(MOTS){id_mot=112}>
+					<BOUCLE_compteurrubriquesplugin(RUBRIQUES){id_mot}>
+					</BOUCLE_compteurrubriquesplugin>
+						<a href="#URL_MOT"><small>#TOTAL_BOUCLE #TITREs</small></a>
+					</B_compteurrubriquesplugin>
+				</BOUCLE_motplugin>
+			</h2>
+			
+			[(#REM) nombre de rubriques avec tagg Sur la Zone (id_mot=233) ]
+			<h2 class="menu-titre">
+				<BOUCLE_motzone(MOTS){id_mot=233}>
+					<BOUCLE_compteurrubriqueszone(RUBRIQUES){id_mot}>
+					</BOUCLE_compteurrubriqueszone>
+						<a href="#URL_MOT"><small>#TOTAL_BOUCLE #TITRE</small></a>
+					</B_compteurrubriqueszone>
+				</BOUCLE_motzone>
+			</h2>
+			
 			[(#REM) Lien "manifeste du web independant" sur uzine ]
 			<INCLURE{fond=inc-uzine}>
-			
+						
 			[(#REM) Une image de site au hasard dans l'Herbier ]
 			<INCLURE{fond=inc-herbier}>
-			<br /><br />
-			
+			<br />
+
 			[(#REM) Inscription au site ]
 			#FORMULAIRE_INSCRIPTION
 
@@ -155,6 +261,5 @@
 	<INCLURE{fond=inc-pied}{lang}>
 
 </div><!-- fin page -->
-#SPIP_CRON
 </body>
 </html>

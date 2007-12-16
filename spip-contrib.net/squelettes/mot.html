@@ -1,7 +1,11 @@
+[(#REM) mot version SPIP-Contrib 2007]
+
 #CACHE{86400}
+[(#REM) balise plugin Fastcache ]
+#FASTCACHE
 <BOUCLE_mot_principal(MOTS) {id_mot} {doublons}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html dir="#LANG_DIR" lang="#LANG">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
 	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
 	[<meta name="description" content="(#DESCRIPTIF|couper{150}|textebrut)" />]
@@ -22,45 +26,59 @@
 
 		[(#REM) Contenu principal : contenu du mot-cle ]
 		<div id="contenu">
-
-			<div class="cartouche">
-				[(#LOGO_MOT||image_reduire{200,200})]
-				<h1 class="titre">#TITRE</h1>
-			</div>
-
-			[<div class="chapo">(#TEXTE)</div>]
-			<br class="nettoyeur" />
-			<hr class="separateur">
 			
-			[(#REM) Articles lies au mot-cle, stockage avec critere doublons ]
-			<BOUCLE_articlesmot(ARTICLES){id_mot}{doublons articlesmot}></BOUCLE_articlesmot>
+			[(#REM) boucle d'exclusion articles sur mot clef "Archives, id=154"]
+			<BOUCLE_exclu_articles(ARTICLES){id_mot=154}{doublons articlesarchives1}{doublons articlesarchives2}></BOUCLE_exclu_articles>
+			[(#REM) boucle d'exclusion articles dans rubriques sur mot clef "Archives, id=154", compris toutes sous-rubriques incluses]
+			<BOUCLE_exclu_rubriques(RUBRIQUES){id_mot=154}>
+				<BOUCLE_exclu_articles2(ARTICLES){id_rubrique}{doublons articlesarchives1}{doublons articlesarchives2}></BOUCLE_exclu_articles2>
+				<BOUCLE_exclu_sousrubriques(RUBRIQUES){id_parent}>
+					<BOUCLE_exclu_articles3(ARTICLES){id_rubrique}{doublons articlesarchives1}{doublons articlesarchives2}></BOUCLE_exclu_articles3>
+					<BOUCLE_recursive1(BOUCLE_exclu_sousrubriques)></BOUCLE_recursive1>
+				</BOUCLE_exclu_sousrubriques>
+			</BOUCLE_exclu_rubriques>
+			
+			[(#REM) Articles lies au mot-cle, sauf archives, stockage avec critere doublons ]
+			<BOUCLE_articlesmot(ARTICLES){id_mot}{doublons articlesmot}{doublons articlesarchives1}></BOUCLE_articlesmot>
 			[(#REM) Articles dans rubriques liees au mot-cle, stockage avec critere doublons ]
 			<BOUCLE_rubriquesmot(RUBRIQUES){id_mot}>
-				<BOUCLE_articlesrubriquesmot(ARTICLES){id_rubrique}{doublons articlesmot}></BOUCLE_articlesrubriquesmot>
+				<BOUCLE_articlesrubriquesmot(ARTICLES){id_rubrique}{doublons articlesmot}{doublons articlesarchives2}></BOUCLE_articlesrubriquesmot>
 			</BOUCLE_rubriquesmot>
-			[(#REM) affichage de l'ensemble avec critere anti-doublons ]
+
+			[(#REM) titre et infos mot clef]
+			<div class="cartouche">
+				[(#LOGO_MOT||image_reduire{200,200})]
+				<h1 class="titre">#TITRE
+					<BOUCLE_compteurarticles(ARTICLES){!doublons articlesmot}>
+					</BOUCLE_compteurarticles>
+						<small>  (#TOTAL_BOUCLE <:articles:>)</small>
+					</B_compteurarticles>
+				</h1>
+			</div>
+			[<div class="chapo">(#TEXTE)</div>]
+			<br class="nettoyeur" />
+			<hr class="separateur" />
+			
+			[(#REM) affichage de l'ensemble des articles lies au mot clef avec critere anti-doublons ]
 			<B_articles>
 				<div class="liste-articles">
 					#ANCRE_PAGINATION
 					<h2 class="invisible"><:articles:></h2>
 					<ul>
-						<BOUCLE_articles(ARTICLES){!doublons articlesmot}{lang?}{!par popularite}{pagination 20}>
+						<BOUCLE_articles(ARTICLES){!doublons articlesmot}{lang?}{!par popularite}{pagination 50}>
 						<li>
-							[(#LOGO_ARTICLE|#URL_ARTICLE|image_reduire{50,50})]
-							[<p class="surtitre">(#SURTITRE)</p>]
-							<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
-							[<p class="soustitre">(#SOUSTITRE)</p>]
+							[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{50,50})]
+								<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+							[<div class="texte">[(#SOUSTITRE) - ](#INTRODUCTION|couper{100})</div>]
 							<small>
-								 [(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS) - ]
 								 [(#REM) les mots clefs de l'article et de sa rubrique ]
-								<BOUCLE_motsarticle1(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|13|18|21|22|25)$}{0,n-1}>
+								<BOUCLE_motsarticle1(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|22|25|26)$}{0,n-1}>
 									[<em><a href="#URL_MOT">(#TITRE)</a>, </em>]
 								</BOUCLE_motsarticle1>
-								<BOUCLE_motsarticle2(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|13|18|21|22|25)$}{n-1,n}{exclus}>
+								<BOUCLE_motsarticle2(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|22|25|26)$}{n-1,n}>
 									[<em><a href="#URL_MOT">(#TITRE)</a></em>]
 								</BOUCLE_motsarticle2>
 							</small>
-							[<div class="texte">(#INTRODUCTION|couper{100})</div>]
 						</li>
 						</BOUCLE_articles>
 					</ul>
@@ -74,42 +92,30 @@
 		<div id="navigation">
 			<h1 class="invisible"><:navigation:></h1>
 
-			[(#REM) Menu de navigation mots-cles : les autres mots cles du meme groupe ]
-			<B_mots_freres>
-			<div class="divers">
-				#ANCRE_PAGINATION
-				<h2 class="menu-titre"><:mots_clefs_meme_groupe:></h2>
-				[<p class="pagination">(#PAGINATION)</p>]
-				<ul>
-					<BOUCLE_mots_freres(MOTS) {type}{par titre}{pagination 30}>
-					<li><a href="#URL_MOT"[ class="(#EXPOSE)"]>#TITRE</a></li>
-					</BOUCLE_mots_freres>
-				</ul>
-				</div>
-			</B_mots_freres>
-
-			[(#REM) Menu de navigation mots-cles : les autres groupes avec un lien sur le premier mot du groupe ]
-			<B_groupes_freres>
-			<div class="divers">
-				<h2 class="menu-titre"><:autres_groupes_mots_clefs:></h2>
-				<ul>
-					<BOUCLE_groupes_freres(GROUPES_MOTS){par titre}{id_groupe!==^(3|5|6|13|18|21|22|25)$}{doublons}>
-					<BOUCLE_mot_cousin(MOTS){id_groupe}{par titre}{0,1}>
-					<li><a href="#URL_MOT">#TYPE</a></li>
-					</BOUCLE_mot_cousin>
-					</BOUCLE_groupes_freres>
-				</ul>
+			[(#REM) Menu de navigation par mots-cles, sauf certains, avec un lien sur le premier mot du groupe ]
+			[(#REM) Nuage de mot clef avec le plugin "Nuage", pour groupes "Fonctionnalites" (id=24), "Thematique" (id=23), notation specifique a ce plugin]
+			<div class="rubriques">
+				<h2 class="invisible"><:mots_clefs:></h2>
+				[(#MODELE{nuage}{id=24|23})]
 			</div>
-			</B_groupes_freres>
+			[(#REM) suite ... mots clefs volontairement distincts : groupe "Type contribution" (id=20) ]
+			<div class="rubriques">
+				[(#MODELE{nuage}{id=20})]
+			</div>
 			
 			[(#REM) Rubriques liees au mot-cle ]
 			<B_rubriques>
 			<div class="rubriques">
 				#ANCRE_PAGINATION
-				<h2 class="menu-titre"><:rubriques:></h2>
+				<h2 class="menu-titre"><:rubriques:>
+					<BOUCLE_compteurrubriques(RUBRIQUES){id_mot}>
+					</BOUCLE_compteurrubriques>
+						     (#TOTAL_BOUCLE)
+					</B_compteurrubriques>
+				</h2>
 				[<p class="pagination">(#PAGINATION)</p>]
 				<ul>
-					<BOUCLE_rubriques(RUBRIQUES){id_mot}{lang?}{par titre}{pagination 20}>
+					<BOUCLE_rubriques(RUBRIQUES){id_mot}{lang?}{par titre}{pagination 40}>
 						<li><a href="<INCLURE{fond=inc-triurlrubrique}{id_rubrique}>"[title="(#INTRODUCTION|supprimer_tags|texte_script|couper{100})"]>#TITRE</a></li>
 					</BOUCLE_rubriques>
 				</ul>
@@ -120,7 +126,12 @@
 			<B_forums_liens>
 			<div class="forums">
 				#ANCRE_PAGINATION
-				<h2 class="menu-titre"><:messages_forum:></h2>
+				<h2 class="menu-titre"><:messages_forum:>
+					<BOUCLE_compteurforums(FORUMS){id_mot}>
+					</BOUCLE_compteurforums>
+						     (#TOTAL_BOUCLE)
+					</B_compteurforums>
+				</h2>
 				[<p class="pagination">(#PAGINATION)</p>]
 				<ul>
 					<BOUCLE_forums_liens(FORUMS) {id_mot}{plat}{!par date}{pagination 20}>
@@ -134,7 +145,12 @@
 			<B_sites>
 			#ANCRE_PAGINATION
 			<div class="divers">
-				<h2 class="menu-titre"><:sites_web:></h2>
+				<h2 class="menu-titre"><:sites_web:>
+					<BOUCLE_compteursites(SITES){id_mot}>
+					</BOUCLE_compteursites>
+						     (#TOTAL_BOUCLE)
+					</B_compteursites>
+				</h2>
 				[<p class="pagination">(#PAGINATION)</p>]
 				<ul>
 					<BOUCLE_sites(SITES){id_mot}{par nom_site}{pagination 10}>
@@ -143,20 +159,6 @@
 				</ul>
 			</div>
 			</B_sites>
-
-			[(#REM) Breves liees au mot-cle ]
-			<B_breves>
-			<div class="breves">
-				#ANCRE_PAGINATION
-				<h2 class="menu-titre"><:breves:></h2>
-				[<p class="pagination">(#PAGINATION)</p>]
-				<ul>
-					<BOUCLE_breves(BREVES) {id_mot}{lang?}{par titre}{pagination 5}>
-					<li><a href="#URL_BREVE">#TITRE</a></li>
-					</BOUCLE_breves>
-				</ul>
-			</div>
-			</B_breves>
 
 		</div><!-- fin navigation -->
 
