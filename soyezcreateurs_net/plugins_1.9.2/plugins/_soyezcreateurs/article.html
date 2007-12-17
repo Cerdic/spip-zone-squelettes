@@ -21,10 +21,10 @@ $titretop = '[(#TITRE|textebrut|attribut_html|nettoyer_marqueur|texte_script)]';
 
 <div class="texte">
 <div class="cartouche">
-[<div class="surtitre"><span>#DEBUT_SURLIGNE(#SURTITRE)#FIN_SURLIGNE</span></div>]
+[<div class="#EDIT{surtitre} surtitre"><span>#DEBUT_SURLIGNE(#SURTITRE)#FIN_SURLIGNE</span></div>]
 <INCLURE{fond=aff_datepublication}{id_article}{lang}>
-<div><h1>[<img src="(#LOGO_ARTICLE_NORMAL||image_reduire{64,64}|extraire_attribut{src})" class="logo_article" alt="[(#TITRE|texte_script|supprimer_tags|attribut_html) (logo)]" width="[(#LOGO_ARTICLE_NORMAL||image_reduire{64,64}|extraire_attribut{width})]" height="[(#LOGO_ARTICLE_NORMAL||image_reduire{64,64}|extraire_attribut{height})]" />][#DEBUT_SURLIGNE(#TITRE)#FIN_SURLIGNE][(#CONFIG{plugin}|match{ARTICLE_PDF}|?{' '})#ARTICLE_PDF]</h1></div>
-[<div class="soustitre"><span>(#SOUSTITRE)</span></div>]<INCLURE{fond=liste_auteurs}{id_article}{lang}>
+<div><h1 class="#EDIT{titre} entry-title">[<img src="(#LOGO_ARTICLE_NORMAL||image_reduire{64,64}|extraire_attribut{src})" class="logo_article" alt="[(#TITRE|texte_script|supprimer_tags|attribut_html) (logo)]" width="[(#LOGO_ARTICLE_NORMAL||image_reduire{64,64}|extraire_attribut{width})]" height="[(#LOGO_ARTICLE_NORMAL||image_reduire{64,64}|extraire_attribut{height})]" />][#DEBUT_SURLIGNE(#TITRE)#FIN_SURLIGNE][(#CONFIG{plugin}|match{ARTICLE_PDF}|?{' '})#ARTICLE_PDF]</h1></div>
+[<div class="#EDIT{soustitre} soustitre"><span>(#SOUSTITRE)</span></div>]<INCLURE{fond=liste_auteurs}{id_article}{lang}>
 [<div class="notation">(#NOTATION)</div>]
 </div>
 
@@ -42,32 +42,33 @@ $titretop = '[(#TITRE|textebrut|attribut_html|nettoyer_marqueur|texte_script)]';
 <//B_Sommaire>
 
 	<div id="letexte">
-[<div class="chapo">#DEBUT_SURLIGNE(#CHAPO|sinon{#DESCRIPTIF})#FIN_SURLIGNE</div>]
+[<div class="[(#CHAPO|?{#EDIT{chapo},#EDIT{descriptif}}) ]chapo">#DEBUT_SURLIGNE(#CHAPO|reduire_image{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0}|sinon{#DESCRIPTIF})#FIN_SURLIGNE</div>]
 
 [(#CONFIG{soyezcreateurs/agendafuturseul,Non}|=={Oui}|?{' ',''})[(#MODELE{agenda_detail_futur_seul}{id_article}{lang})]]
 [(#CONFIG{soyezcreateurs/agendafuturseul,Non}|=={Non}|?{' ',''})[(#MODELE{agenda_detail}{id_article}{lang})]]
 
 <BOUCLE_SommaireAncre(MOTS){id_rubrique}{titre = Sommaire}>
 </BOUCLE_SommaireAncre>
-[#DEBUT_SURLIGNE(#TEXTE|sommaire_ancre|reduire_image{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})#FIN_SURLIGNE]
+[#DEBUT_SURLIGNE<div class="#EDIT{texte} entry-content">(#TEXTE|sommaire_ancre|reduire_image{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>#FIN_SURLIGNE]
 </B_SommaireAncre>
 <BOUCLE_SommaireArticleAncre(MOTS){id_article}{titre = Sommaire}>
 </BOUCLE_SommaireArticleAncre>
-[#DEBUT_SURLIGNE(#TEXTE|sommaire_ancre|reduire_image{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})#FIN_SURLIGNE]
+[#DEBUT_SURLIGNE<div class="#EDIT{texte} entry-content">(#TEXTE|sommaire_ancre|reduire_image{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>#FIN_SURLIGNE]
 </B_SommaireArticleAncre>
-[#DEBUT_SURLIGNE(#TEXTE|reduire_image{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})#FIN_SURLIGNE]
+[#DEBUT_SURLIGNE<div class="#EDIT{texte} entry-content">(#TEXTE|reduire_image{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>#FIN_SURLIGNE]
 <//B_SommaireArticleAncre>
 <//B_SommaireAncre>
-[<div class="ps">#DEBUT_SURLIGNE(#PS)#FIN_SURLIGNE</div>]
+[<div class="#EDIT{ps} ps">#DEBUT_SURLIGNE(#PS|reduire_image{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})#FIN_SURLIGNE</div>]
 [<div class="notes">#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
+[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
 
 <B_imgs>
 <BOUCLE_afficher_document(DOCUMENTS) {id_document}>
 <div id="document_actif"[ style="background-color: #(#LOGO_DOCUMENT||couleur_extraire); color: #[(#LOGO_DOCUMENT||couleur_extraire|couleur_inverser|couleur_extreme)];"]>
-	[<h2[ style="background-color: #(#LOGO_DOCUMENT||couleur_extraire|couleur_eclaircir); color: #[(#LOGO_DOCUMENT||couleur_extraire|couleur_eclaircir|couleur_inverser|couleur_extreme)];"]>#DEBUT_SURLIGNE(#TITRE)#FIN_SURLIGNE</h2>]
+	[<h2[ style="background-color: #(#LOGO_DOCUMENT||couleur_extraire|couleur_eclaircir); color: #[(#LOGO_DOCUMENT||couleur_extraire|couleur_eclaircir|couleur_inverser|couleur_extreme)];"] class="#EDIT{titre}">#DEBUT_SURLIGNE(#TITRE)#FIN_SURLIGNE</h2>]
 <dl>
 	<dt class="photo_articles"><a href="#URL_DOCUMENT" title="<:pyrat:voirimage:> : [(#TITRE|textebrut|attribut_html|sinon{<:info_document:>})] (#LARGEUR &times; #HAUTEUR, [(#TAILLE|taille_en_octets)])"><img class="galleriebig" src="[(#FICHIER|reduire_image{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0}||extraire_attribut{src})]" width='[(#FICHIER|reduire_image{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0}||extraire_attribut{width})]' height='[(#FICHIER|reduire_image{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0}||extraire_attribut{height})]' alt="[(#TITRE|textebrut|attribut_html)]" /></a></dt>
-	[<dd>#DEBUT_SURLIGNE(#DESCRIPTIF)#FIN_SURLIGNE</dd>]
+	[<dd class="#EDIT{descriptif}">#DEBUT_SURLIGNE(#DESCRIPTIF)#FIN_SURLIGNE</dd>]
 </dl>
 </div>
 </BOUCLE_afficher_document>
@@ -98,7 +99,7 @@ $titretop = '[(#TITRE|textebrut|attribut_html|nettoyer_marqueur|texte_script)]';
 <BOUCLE_signatures(SIGNATURES) {id_article} {par date} {inverse} {0,30}>
 <tr[(#COMPTEUR_BOUCLE|alterner{' class="alt"',''})]>
 	<td class="signature-date">[(#DATE|affdate_court)]</td>
-	<td class="signature-nom">#NOM[, <a href="(#URL_SITE)">#NOM_SITE</a>]</td>
+	<td class="#EDIT{qui} signature-nom">#NOM[, <a href="(#URL_SITE)">#NOM_SITE</a>]</td>
 </tr>
 </BOUCLE_signatures>
 </tbody>
@@ -135,14 +136,14 @@ $titretop = '[(#TITRE|textebrut|attribut_html|nettoyer_marqueur|texte_script)]';
 <div class="forum">
 <a name="forum#ID_FORUM"></a>
 <div class="forum-chapo">
-<span class="forum-titre">[#DEBUT_SURLIGNE(#TITRE)#FIN_SURLIGNE]</span>
-<span class="forum-auteur">[(#DATE|affdate)][, <:pyrat:par:> (#NOM)]</span>
+<span class="#EDIT{titre} forum-titre">[#DEBUT_SURLIGNE(#TITRE)#FIN_SURLIGNE]</span>
+<span class="#EDIT{qui} forum-auteur">[(#DATE|affdate)][, <:pyrat:par:> (#NOM)]</span>
 </div>
-<div class="forum-item">
+<div class="#EDIT{texte} forum-item">
 
 <BOUCLE_PasdeSiteDansForums(ARTICLES){id_article}{titre_mot=PasdeSiteDansForums}>[#DEBUT_SURLIGNE(#_forums:TEXTE|anti_glouton)#FIN_SURLIGNE]</BOUCLE_PasdeSiteDansForums>
 [#DEBUT_SURLIGNE(#_forums:TEXTE)#FIN_SURLIGNE]
-[<div class='forum-titre'><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
+[<div class='#EDIT{hyperlien} forum-titre'><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
 <//B_PasdeSiteDansForums>
 [<div class="notes">#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
 <B_LivredOr>
@@ -163,13 +164,13 @@ $titretop = '[(#TITRE|textebrut|attribut_html|nettoyer_marqueur|texte_script)]';
 	<div class="forum">
 	<a name="forum#ID_FORUM"></a>
 	<div class="forum-chapo">
-	<span class="forum-titre">[#DEBUT_SURLIGNE(#TITRE)#FIN_SURLIGNE]</span>
-	<span class="forum-auteur">[(#DATE|affdate)][, <:pyrat:par:> (#NOM)]</span>
+	<span class="#EDIT{titre} forum-titre">[#DEBUT_SURLIGNE(#TITRE)#FIN_SURLIGNE]</span>
+	<span class="#EDIT{qui} forum-auteur">[(#DATE|affdate)][, <:pyrat:par:> (#NOM)]</span>
 	</div>
-	<div class="forum-item">
+	<div class="#EDIT{texte} forum-item">
 	<BOUCLE_PasdeSiteDansSsForums(ARTICLES){id_article}{titre_mot=PasdeSiteDansForums}>[#DEBUT_SURLIGNE(#_forums_fils:TEXTE|anti_glouton)#FIN_SURLIGNE]</BOUCLE_PasdeSiteDansSsForums>
 	[#DEBUT_SURLIGNE(#_forums_fils:TEXTE)#FIN_SURLIGNE]
-	[<div class='forum-titre'><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
+	[<div class='#EDIT{hyperlien} forum-titre'><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
 	<//B_PasdeSiteDansSsForums>
 	[<div class="notes">#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
 	[<div class='forum-repondre-message'><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_message:></a></div>]
