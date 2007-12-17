@@ -20,7 +20,7 @@ svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/typo_exposants
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/typo_guillemets
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/w3c_go_home
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/widget_calendar
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_test_/cfg
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/cfg
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/forms/forms_et_tables_1_9_1
 #svn checkout svn://zone.spip.org/spip-zone/_plugins_/_test_/thickbox
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_test_/sedna
