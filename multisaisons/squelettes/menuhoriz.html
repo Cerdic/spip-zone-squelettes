@@ -1,4 +1,4 @@
-#CACHE{864000}
+#CACHE{0}
 
 
 
@@ -16,6 +16,7 @@
         </ul></B_onglets>
 		
 <p class="droite blanc img">
+
 <?php if ($auteur_session) {
 $connect_id_auteur_bis = $auteur_session['id_auteur'];
 $result_messages = spip_query("SELECT * FROM spip_messages AS messages,spip_auteurs_messages AS lien WHERE lien.id_auteur='$connect_id_auteur_bis'AND vu='non' AND statut='publie' AND type='normal' AND lien.id_message=messages.id_message");
@@ -31,11 +32,14 @@ $result_messages = spip_query("SELECT * FROM spip_messages AS messages,spip_aute
 if ($total_messages ==0)
 
 { ?>
+
+
+
       <a href="[(#URL_PAGE{mon-profil})]">Mon profil</a> / <a href="[(#URL_LOGOUT)]" >Quitter</a>
 
       <?php }} else { ?>
          
-      <a href="[(#URL_PAGE{mon-profil})]">Connexion</a>
+[(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})">]][(#CONFIG{accepter_inscriptions}|=={oui}|?{'',' '})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,visit})">]]Connexion</a>
  
 <?php }?>
 

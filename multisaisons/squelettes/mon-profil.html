@@ -1,5 +1,5 @@
 <?php if (!$auteur_session){?>
-<INCLURE{fond="authentification"}>
+[(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})<INCLURE{fond=abonnement}{type=#ENV{type}}>]
 <?php exit;}  ?>
 
 
@@ -211,13 +211,13 @@ href="#URL_ARTICLE">#TITRE</a><br/>
 
 
 
-<?php if ($auteur_session['statut']=='0minirezo') { ?>
-<div class="boite"> [(#REM)   ouverture qui est venu   ] 
+[(#SESSION{statut}|=={0minirezo}|?{' '})
+<div class="boite">
 <h4 class="icone_recherche">Qui est venu?</h4>
 <p>[(#URL_SITE|nb_connect)]</p>
 </div>
-<?php } ?>
-[(#REM)   fermeture boite menu   ]
+]
+
 </div>
 [(#REM)   fermeture colone de droite   ] 
 <hr class="spacer" />

@@ -63,7 +63,7 @@
     [(#SOUSTITRE)<br/> 
     ]   
    [#DEBUT_SURLIGNE(#TEXTE|image_reduire{450,0}|lier_au_glossaire|paragrapher)#FIN_SURLIGNE]
-<hr class="spacer"/></div> 
+<hr class="spacer"/></div>
   [(#REM)   fermeture grande boite   ]
 
 
@@ -289,7 +289,10 @@
 </body></html>
 </BOUCLE_principale>
 [(#ID_RUBRIQUE|AccesRestreint_rubrique_restreinte|?{' ',''})    
-<INCLURE{fond=authentification}>]
+ [(#ENV{type}|=={redac}|?{' ',''}) <INCLURE{fond=abonnement}{type=redac}>]
+  [(#ENV{type}|=={visit}|?{' ',''}) <INCLURE{fond=abonnement}{type=visit}>]
+[(#ENV{type}|match{redac|visit}|?{'',' '})<INCLURE{fond=abonnement}{type=question}>]
+  ]
 [(#ID_RUBRIQUE|AccesRestreint_rubrique_restreinte|?{'',' '})
 <INCLURE{fond=404}>]
 <//B_principale>

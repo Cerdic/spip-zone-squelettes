@@ -22,7 +22,7 @@
 </head><body> 
 
 <div id="container">   [(#REM)   centrage page   ]
-<INCLURE{fond="entete"}{date=#ENV{date}}> 
+<INCLURE{fond="entete"}{date=#ENV{date}}{id_article}{id_rubrique}> 
 <div id="surcontent">  
 <INCLURE{fond="menuhoriz"}{id_rubrique}>[(#REM)   ouverture entête   ]
 <div id="content">  [(#REM)   ouverture contenu   ] 
@@ -125,11 +125,7 @@
 [<div class="boite"> <h4 class="icone_membre">Inscription</h4>(#FORMULAIRE_SIGNATURE)<hr class="spacer"/></div>]
 
 
-[(#REM)   La boite de recherche   ] 
-<div class="boite"> [(#REM)   ouverture boite recherche   ] 
-  <h4 class="icone_recherche">Recherche</h4>
-  <INCLURE{fond="inc-recherche"}>
-</div>   [(#REM)   fermeture boite recherche   ] 
+
 	
 	
  <B_meme_rubrique>
@@ -253,7 +249,10 @@
 </html>
 </BOUCLE_principale>
 [(#ID_ARTICLE|AccesRestreint_article_restreint|?{' ',''})    
-<INCLURE{fond=authentification}>]
+ [(#ENV{type}|=={redac}|?{' ',''}) <INCLURE{fond=abonnement}{type=redac}>]
+  [(#ENV{type}|=={visit}|?{' ',''}) <INCLURE{fond=abonnement}{type=visit}>]
+[(#ENV{type}|match{redac|visit}|?{'',' '})<INCLURE{fond=abonnement}{type=question}>]
+  ]
 [(#ID_ARTICLE|AccesRestreint_article_restreint|?{'',' '})
 <INCLURE{fond=404}>]
 <//B_principale>

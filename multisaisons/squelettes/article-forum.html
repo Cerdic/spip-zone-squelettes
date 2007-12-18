@@ -250,7 +250,10 @@ x #HAUTEUR})]
 </html>
 </BOUCLE_principale>
 [(#ID_ARTICLE|AccesRestreint_article_restreint|?{' ',''})    
-<INCLURE{fond="authentification"}> ]
+ [(#ENV{type}|=={redac}|?{' ',''}) <INCLURE{fond=abonnement}{type=redac}>]
+  [(#ENV{type}|=={visit}|?{' ',''}) <INCLURE{fond=abonnement}{type=visit}>]
+[(#ENV{type}|match{redac|visit}|?{'',' '})<INCLURE{fond=abonnement}{type=question}>]
+  ]
 [(#ID_ARTICLE|AccesRestreint_article_restreint|?{'',' '})
 <INCLURE{fond="erreur-forum"}> ]
 <//B_principale>

@@ -1,5 +1,5 @@
 window.onload=function(){
-Nifty("div.boite,div.avatar,div.reponse,div.discussion,p.interne");
+Nifty("div.boite,div.avatar,div.reponse,div.discussion,p.interne,div.interne,span.pixlogo");
 Nifty("ul#minipics li,div.grande_boite,div#content,div#footer");
 Nifty("div#container,div.interforum,div.interforumgrand","big");
 Nifty("div#header","top,big");
