@@ -66,4 +66,6 @@ function ancre_url_propre($url, $ancre) {
 	return $url .'#'. $ancre;
 }
 
+include _DIR_RACINE.'squelettes/inc-urls-trad.php3';
+
 ?>
