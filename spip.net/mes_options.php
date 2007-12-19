@@ -23,8 +23,7 @@
 	$table_des_traitements['TITRE'][]= 'typo(supprimer_numero(%s))';
 
 	# raccourcis [->spip19] etc
-	function calculer_url_spip($id, $texte='', $ancre='') {
-	$spip = array( 
+	$GLOBALS['liens_spip'] = array(
 		1 => 1309,
 		10 => 1309,
 		103 => 1309,
@@ -48,22 +47,22 @@
 		192 => 3567
 	);
 
-	if (isset($spip[$id])) {
-		$calculer_url_article = function_exists('calculer_url_article') ? 'calculer_url_article' : 'calculer_url_article_dist';
-		$p = $calculer_url_article($spip[$id], $texte, $ancre);
-		$p[1] = 'spip'; # class
-		return $p;
-	} else {
-		return array('/', 'spip', 'version inconnue');
-	}
-	}
-	# indispensable ? ou pas ?
-	function generer_url_spip($id) {
-		$p= calculer_url_spip($id);
-		return $p[0];
+	function generer_url_spip($id, $args, $ancre) {
+		global $liens_spip;
+		if (isset($liens_spip[$id]))
+			return generer_url_article($liens_spip[$id], $args, $ancre);
+
+		spip_log("raccourci spip $id inconnue");
 	}
 
-	# mise à jour des squelettes par http://www.spip.net/ecrire/?exec=svn_update
+	function calculer_url_spip($id, $texte='', $lien='', $connect='') {
+		global $liens_spip;
+		$calculer_url_article = function_exists('calculer_url_article')
+			? 'calculer_url_article' : 'calculer_url_article_dist';
+		return $calculer_url_article($liens_spip[$id], $texte, $lien, $connect);
+	}
+
+	# mise a jour des squelettes par http://www.spip.net/ecrire/?exec=svn_update
 	define('_SVN_UPDATE_AUTEURS', '1:180:9:3021');
 
 	# des urls pourries gatent le systeme
