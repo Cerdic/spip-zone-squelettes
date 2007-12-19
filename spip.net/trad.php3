@@ -1,6 +1,7 @@
 <?php
 
 include ("ecrire/inc_version.php");
+include_spip('inc/vieilles_defs');
 include_ecrire("inc_presentation");
 include_ecrire("inc_minipres");
 include_ecrire("inc_filtres");
