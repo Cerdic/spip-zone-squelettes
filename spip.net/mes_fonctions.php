@@ -37,9 +37,10 @@ function insecable ($texte) {
 }
 
 // hack pour ne jamais afficher les secteurs d'aide en ligne
-// sauf evidemment dans le cas de l'aide en ligne
+// sauf evidemment dans le cas de l'aide en ligne, ou dans l'espace prive
 define('secteurs_aide', '324');
-if (!defined('aide_en_ligne')) {
+if (!defined('aide_en_ligne')
+AND !_DIR_RACINE) {
 	function boucle_ARTICLES($id_boucle, &$boucles) {
 		$boucles[$id_boucle]->where[] = array("'NOT IN'", "'id_secteur'", '"('.secteurs_aide.')"');
 		return boucle_ARTICLES_dist($id_boucle, $boucles);
