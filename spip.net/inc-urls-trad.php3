@@ -17,18 +17,19 @@ if (!function_exists('generer_url_article')) {
 				if ($a = sql_fetch($r)) {
 					if ($a['id_secteur'] == 324) # aide en ligne
 						return "aide/".$a['lang'].'-aide.html';
-#					if ($a['id_secteur'] == 91)  # rubrique 'fr'
-#						return 'fr';
-#					if ($a['lang'] <> 'fr')      # rubrique 'traducteurs'
-						return ereg_replace("_.*","",$a['lang']);
-#					else
-#						return '';
+					if ($a['lang'] == 'cpf_hat')
+						return 'cpf_hat';
+					return ereg_replace("_.*","",$a['lang']);
 				}
 			case 'rubrique':
 				$r = spip_query("SELECT lang, id_secteur
 					FROM spip_rubriques
 					WHERE id_rubrique='$id'");
 				if ($a = sql_fetch($r)) {
+					if ($a['id_secteur'] == 324) # aide en ligne
+						return "aide/".$a['lang'].'-aide.html';
+					if ($a['lang'] == 'cpf_hat')
+						return 'cpf_hat';
 					return ereg_replace("_.*","",$a['lang']);
 				}
 			case 'forum':
@@ -164,9 +165,14 @@ function recuperer_parametres_url($fond, $url) {
 
 	// recuperer l'article correspondant a "www.spip.net/xx_suivi"
 	// si possible dans la langue, sinon en francais
-	else if (eregi("^/([a-z_]+)_suivi$", $url, $regs)) {
-		$id_original = 2275;
-		$lang = $regs[1];
+	else if (eregi("^/(([a-z_]+)_)?(suivi|download)$", $url, $regs)) {
+		switch($regs[3]) {
+			case 'suivi':
+				$id_original = 2275;
+			case 'download':
+				$id_original = 2670;
+		}
+		$lang = $regs[2];
 		$s = spip_query("SELECT * FROM spip_articles WHERE id_trad=$id_original AND statut='publie' ORDER BY lang<>'$lang',lang<>'fr'");
 		if ($t = sql_fetch($s))
 			$contexte['id_article'] = $t['id_article'];
