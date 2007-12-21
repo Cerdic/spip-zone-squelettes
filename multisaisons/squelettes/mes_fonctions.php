@@ -307,38 +307,6 @@ function image_histo($im) {
 }
 
 
-
-for ($x = 0; $x < $x_i; $x++) {
-			for ($y=0; $y < $y_i; $y++) {
-
-				$rgb = ImageColorAt($im, $x, $y);
-				$a = ($rgb >> 24) & 0xFF;
-				$r = ($rgb >> 16) & 0xFF;
-				$g = ($rgb >> 8) & 0xFF;
-				$b = $rgb & 0xFF;
-
-				$a = (127-$a) / 127;
-				$a=1;
-				
-				$gris = round($a*($r+$g+$b) / 3);
-				$r = round($a*$r);
-				$g = round($a*$g);
-				$b = round($a*$b);
-				
-				$val_gris[$gris] ++;
-				$val_r[$r] ++;
-				$val_g[$g] ++;
-				$val_b[$b] ++;
-			} 
-		}
-		$max = max( max($val_gris), max($val_r), max($val_g), max($val_b));
-		$rapport = (127/$max);
-
-
-
-
-
-
  /*
  *   +----------------------------------+
  *    Nom du Filtre :    niveaux contraste auto photo
