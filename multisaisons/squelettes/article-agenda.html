@@ -87,10 +87,20 @@
 
 </div> [(#REM)   fermeture grande boite   ]
 
+
+
+
+
+
+
+
+
 <?php
 <BOUCLE_nb_images(DOCUMENTS){id_article}{mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
 </BOUCLE_nb_images> $nb_images = "#TOTAL_BOUCLE";</B_nb_images> ?>
  <?php if ($nb_images >1) {?>
+
+
 
 <B_documents_portfolio>
 <div id="minipics">
@@ -109,14 +119,6 @@
 
 </B_documents_portfolio>	
 
-
-
-</ul>
-</div>[(#REM)   fermeture minipics   ] 	
-
-[<div class="grande_boite"><p class="centre gras">(#PAGINATION)<br/>Il y a au total #GRAND_TOTAL photos, cette page en affiche #TOTAL_BOUCLE.</p></div>]		
-
-</B_documents_portfolio>		
 
 
 
@@ -261,54 +263,71 @@ Localiser l'&eacute;v&eacute;nement sur une carte imprimable</a>.</h4>]
 </div>
 </B_COMMUNAUTE>
    
-   
-   
-</div>   [(#REM)   fermeture colone de droite   ] 
+   </div>   [(#REM)   fermeture colone de droite   ] 
 
 <hr class="spacer" />
 
-<div class="discussion">
-[<h4 class="icone_forum"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" onclick="return !dspForm();">R&eacute;agissez</a></h4>
-]
 
+
+
+<BOUCLE_test_forum(ARTICLES){id_article}{accepter_forum!=non}{0,1}>
+ [(#REM) on vérifie que l on a accepte les forums sur l article ]
+<div class="discussion">
+<h4 class="icone_forum"><a href="[(#PARAMETRES_FORUM|url_reponse_forum)]" onclick="return !dspForm();">Réagissez</a></h4>
+
+
+[(#REM) on compte les réponses sur le forums sur l article ]
 <B_forum_archive>
 <p class="droite">
-
-
-<BOUCLE_compt_archive(FORUMS){id_article}{par num titre}{par date}{inverse}{1,20}>
-</BOUCLE_compt_archive>
+<BOUCLE_compt_archive(FORUMS){id_article}{1,9999}> </BOUCLE_compt_archive>
 <strong>[(#TOTAL_BOUCLE)] [(#TOTAL_BOUCLE|=={1}|?{<:discussion:>,<:discussions:>})&nbsp;en&nbsp;archive:]
 </strong><br/>
 </B_compt_archive>
 
-
-<BOUCLE_forum_archive(FORUMS){id_article}{par date}{inverse}{1,20}>
+ [(#REM) on affiche les forums de l article ]
+<BOUCLE_forum_archive(FORUMS){id_article}{par date_thread}{inverse}{1,20}>
 ::&nbsp;<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})#forum#ID_FORUM]">[(#TITRE|couper{40})]</a><br/>
-</BOUCLE_forum_archive></p></B_forum_archive>
+</BOUCLE_forum_archive>
+</p></B_forum_archive>
 
 <hr class="spacer" />
+</div>[(#REM)   fermeture reponse en tete forum   ] 
+</BOUCLE_test_forum>
 
-<B_messages>
+ [(#REM) si les forums sont fermé et qu'il y a des forums archivés on les liste sans possibilités de réponses. ]
+
+<B_forum_archive2>
+<div class="discussion">
 <p class="droite">
-<BOUCLE_messages(FORUMS){id_article}{par date}{inverse}{0,1}>
-<BOUCLE_compte_messages(FORUMS){id_thread}{plat}>
-</BOUCLE_compte_messages>
-<?php $duree = #TOTAL_BOUCLE -1; ?>
-</B_compte_messages>
-<a name="forum#ID_FORUM" id="forum#ID_FORUM"></a>
-</BOUCLE_messages></p>
-</B_messages>
-
-
-
+<BOUCLE_compt_archive2(FORUMS){id_article}{1,9999}> </BOUCLE_compt_archive2>
+<strong>[(#TOTAL_BOUCLE)] [(#TOTAL_BOUCLE|=={1}|?{<:discussion:>,<:discussions:>})&nbsp;en&nbsp;archive:]
+</strong><br/></B_compt_archive2>
+<BOUCLE_forum_archive2(FORUMS){id_article}{par date_thread}{inverse}{1,20}>
+::&nbsp;<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})#forum#ID_FORUM]">[(#TITRE|couper{40})]</a><br/>
+</BOUCLE_forum_archive2>Les forums de cet article sont maintenant ferm&eacute;s.</p>
 
 <hr class="spacer" />
 </div>[(#REM)   fermeture reponse en tete forum   ] 
 
-<BOUCLE_inc_messages(FORUMS){id_article}{par date}{inverse}{0,1}>
+</B_forum_archive2>
+<//B_test_forum>
 
+
+
+<BOUCLE_inc_messages(FORUMS){id_article}{par date_thread}{inverse}{0,1}>
 <INCLURE{fond="inc_discussion"}{id_article}{id_breve}{id_forum}{id_thread}{id_auteur}{self=#SELF}>
 </BOUCLE_inc_messages>
+
+
+
+
+
+
+
+
+
+
+
 
 </div> [(#REM)   fermeture contenu   ] 
 <INCLURE{fond="pieddepage"}{id_rubrique}{id_article}{id_forum}{id_thread}>
