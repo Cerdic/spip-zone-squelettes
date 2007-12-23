@@ -147,15 +147,16 @@
 				</B_syndic2>
 				
 				[(#REM) Suivi des seuls commits de la Zone syndiques sur Contrib ]
-				#SET{sites,#ARRAY{0,0}}
-        <BOUCLE_siteszone(SITES){id_mot=233}>#SET{sites,#GET{sites}|push{#ID_SYNDIC}}</BOUCLE_siteszone>
+				<BOUCLE_syndiczone(SYNDIC_ARTICLES){id_mot=233}{doublons zone}>
+				</BOUCLE_syndiczone>
+
 				
         <B_syndic5>
 				<div class="divers">
 					<h2 class="menu-titre">SPIP-Zone</h2>
 					<ul>
 					[(#REM) recuperation des commits via critere antidoublons ]
-					<BOUCLE_syndic5(SYNDIC_ARTICLES){id_syndic IN #GET{sites}}{!par date}{0,35}{pagination 7}>
+					<BOUCLE_syndic5(SYNDIC_ARTICLES){!doublons zone}{!par date}{0,35}{pagination 7}>
 						<li>[<br />&ndash; (#DATE|affdate_court|unique) &ndash;<br />]<a href="#URL_ARTICLE"[ title="(#NOM_SITE|texte_backend) [- (#DATE|affdate)]"] class="spip_out">[(#TITRE|texte_backend|couper{80})]</a></li>
 					</BOUCLE_syndic5>
 					</ul>
@@ -193,7 +194,7 @@
 					#ANCRE_PAGINATION
 					<h2 class="menu-titre"><:nouveautes_web:></h2>
 					<ul>
-					<BOUCLE_syndic(SYNDIC_ARTICLES){id_syndic!=128}{id_syndic!=129}{id_syndic!=157}{id_syndic!=247}{id_syndic!=57}{id_syndic !IN #GET{sites}}{!par date}{0,25}{pagination 5}>
+					<BOUCLE_syndic(SYNDIC_ARTICLES){id_syndic!=128}{id_syndic!=129}{id_syndic!=157}{id_syndic!=247}{id_syndic!=57}{doublons zone}{!par date}{0,25}{pagination 5}>
 						<li>[(#DATE|affdate_court) &ndash; ]<a href="#URL_ARTICLE"[ title="(#NOM_SITE|texte_backend) [- (#DATE|affdate)]"] class="spip_out">[(#TITRE|texte_backend|couper{60})]</a></li>
 					</BOUCLE_syndic>
 					</ul>
