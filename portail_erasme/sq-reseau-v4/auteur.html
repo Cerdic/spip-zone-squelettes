@@ -1,0 +1,109 @@
+<BOUCLE_principale(AUTEURS){id_auteur}{doublons}>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml2/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+	[(#INCLURE {fond=inc-head})]
+</head>
+<body>
+
+<div id="container">
+
+	[(#INCLURE {fond=entete})]
+	[(#INCLURE {fond=menu}{id_rubrique}{id_auteur})]
+
+[(#REM) ------------------------------------- COLONE GAUCHE ----------------------------------------- ]
+	<div id="supportingText">
+
+	[(#REM) ---------------------- Chemin ---------------------- ]
+
+		<div id="filariane">
+	    <BOUCLE_rubrique_hierarchie(RUBRIQUES){id_rubrique}{tout}>
+			<a href="[(#URL_SITE_SPIP)]">ACCUEIL</a>
+			  <BOUCLE_chemin(HIERARCHIE){id_rubrique}{tout}>
+				&gt;&gt;&nbsp;
+				<a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a> 
+				</BOUCLE_chemin>
+			<hr />
+	   	</BOUCLE_rubrique_hierarchie>
+		</div>
+	
+		<div id="articles_breves">  
+
+			<div id="p_article_breve">  
+			
+	[(#REM) ---------------------- Titre ---------------------- ]
+
+				[(#LOGO_AUTEUR|right||image_reduire{200,100})]
+				[<h1><span>(#NOM|supprimer_numero)</span></h1>]
+				[<div id="web"><div id="web_texte" class="#EDIT{BIO}">(#BIO)</div></div>]
+
+				<div >
+				<BOUCLE_tot_auteur2(ARTICLES) {id_auteur}></BOUCLE_tot_auteur2><br /><em>[&nbsp;(#TOTAL_BOUCLE) articles]</em></B_tot_auteur2><//B_tot_auteur2>	
+				</div>
+				
+			</div>
+	[(#REM) ---------------------- Texte ---------------------- ]
+
+	[(#REM) ---------------------- Derniers articles ---------------------- ]
+
+				<BOUCLE_article_1(ARTICLES) {id_auteur} {par date} {inverse} {0,1} {doublons}>
+						<div id="article_breve_1">
+							<div id="article_texte">
+								<BOUCLE_hierarchie(HIERARCHIE){id_article}{0,1}>[(#LOGO_RUBRIQUE||image_reduire{30,30})]</BOUCLE_hierarchie>
+								<B_diaporama0><BOUCLE_diaporama0(DOCUMENTS) {id_article} {par hasard} {0,1}>[(#LOGO_DOCUMENT|right||image_reduire{100,30}|inserer_attribut{style,'float:right;'})]</BOUCLE_diaporama0></B_diaporama0>
+								<h5><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h5>
+								<em>[Le (#DATE|nom_jour)] [(#DATE|affdate)]<B_auteurs_1> par <BOUCLE_auteurs_1(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_1></em>
+								[<p>(#TEXTE|textebrut|couper{340})</p>]
+								<span><strong><a href="#URL_ARTICLE">Lire la suite</a> &gt;</strong></span>
+							</div>
+						</div>
+				</BOUCLE_article_1>
+
+				<B_article_2>
+					<div id="article_breve_all">
+						<BOUCLE_article_2(ARTICLES) {id_auteur} {par date} {inverse} {0,7} {doublons}>
+								<div id="article_texte">
+									<BOUCLE_hierarchie2(HIERARCHIE){id_article}{0,1}>[(#LOGO_RUBRIQUE||image_reduire{30,30})]</BOUCLE_hierarchie2>
+									<B_diaporama><BOUCLE_diaporama(DOCUMENTS) {id_article} {par hasard} {0,1}>[(#LOGO_DOCUMENT|right||image_reduire{100,30}|inserer_attribut{style,'float:right;'})]</BOUCLE_diaporama></B_diaporama>
+									<h5><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h5>
+									<em>[Le (#DATE|nom_jour)] [(#DATE|affdate)]<B_auteurs_2> par <BOUCLE_auteurs_2(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_2></em>
+									<span>
+
+									</span>
+								</div>
+						</BOUCLE_article_2>
+					</div>
+				</B_article_2>
+
+
+
+	</div>
+	
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+	
+	</div>
+	
+[(#REM) ------------------------------------- COLONE DROITE ----------------------------------------- ]
+	
+	<div id="linkList">
+	
+		[(#REM) ---------------------- Recherche ---------------------- ]
+		
+				[(#INCLURE{fond=bloc-recherche})] 
+
+		[(#REM) ---------------------- Ecrire auteur ---------------------- ]
+		
+				[<div id="article_breve_titre"><h6><span>ECRIRE A L'AUTEUR</span></h6></div>
+				<div id="web"><div id="web_texte">(#FORMULAIRE_ECRIRE_AUTEUR)</div></div>]
+
+	</div>
+
+	[(#INCLURE {fond=bas_page})]
+	
+</div>
+
+</body></html>
+
+</BOUCLE_principale>

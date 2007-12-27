@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<title>[#NOM_SITE_SPIP]</title>
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/agenda_mini.css" type="text/css" />
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/style.css" type="text/css" />
+<meta name="author" content="Erasme - info@erasme.org" />
+<link rel="alternate" type="application/rss+xml" href="/spip.php?page=backend" title="[#NOM_SITE_SPIP]" />
+</head>
+
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+[(#INCLURE{fond=entete})] 
+
+<div id="Principale_reseau"> <!-- Debut Main reseau -->
+
+  	<BR />
+  	<BR />
+  	
+	<div id="Colonne_1_reseau"> <!-- Debut 1ere colonne -->
+		
+		<P>&nbsp;</P>
+	
+			<div id="Articles_reseau_normal">
+			
+				<div id="Article_normal_img_reseau"> <!-- Debut Image Article -->
+					<img src="#DOSSIER_SQUELETTE/IMG_v2/txt_breves.gif"  />
+				</div> <!-- Fin Image Article -->
+
+			<div id="Article_normal_reseau">
+
+				<!----------------------------------------CHEMIN---------------------------->
+
+				<BOUCLE_rubrique_hierarchie(RUBRIQUES){id_rubrique}{tout}>
+				        <b><a href="#URL_SITE_SPIP" class="liens0">ACCUEIL</a></b>
+					        <BOUCLE_chemin(HIERARCHIE){id_rubrique}{tout}>
+					        <b> &gt;&gt;&nbsp; </b>
+					        <a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"] class="liens0">
+					        <b>#TITRE</b></a> 
+					        </BOUCLE_chemin>
+				        <br />
+		   			<hr />	
+	   			</BOUCLE_rubrique_hierarchie>
+					
+				       <div id="Bordure">&nbsp;</div>
+						 
+			        <!----------------------------TITRE------------------------------------->
+			        
+			        <br />
+
+			                <div id="cadre1_transp">
+			                 [<div id='titre6'>(#TITRE)</div>]
+						</div> 
+			                <div id="spip">Le [(#DATE|nom_jour)] [(#DATE|affdate)]</div>
+
+			    
+			              
+			        <!----------------------------TEXTE------------------------------->
+			          	
+				   [<div id="spip">(#TEXTE|justifier)</div>] 
+			                			                  
+			                [<hr /><div id="spip">(#NOTES)</div>] 
+			                
+			                [<div class="chapo"><:voir_en_ligne:>: <a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a>.</div>]
+			               		                
+			                <!----------------------------SIGNATURES----------------------------->
+			                 
+			                [<font id="ttpetit"><br /></font><P></P>
+			                <div id="spip"><b><a href="spip.php?page=forum&(#PARAMETRES_FORUM)" class="liens0">
+			                R&eacute;pondre &agrave; cette br&egrave;ve</a></b></div><br />]
+							  
+			                  	
+		</div>
+		</div>
+	
+		[(#INCLURE{fond=article-forum}{id_breve})] 
+
+	</div><!-- Fin 1ere colonne -->
+	
+	<div id="Colonne_2_reseau"> <!-- Debut 2eme colonne -->
+	
+		<BR />
+		<BR />
+
+			<!------------------------------ Recherche ----------------------------------->
+	
+			[(#INCLURE{fond=bloc-recherche})] 
+			
+			<!------------------------------ Sous Rubriques ----------------------------------->
+	
+			[(#INCLURE{fond=bloc-ss-rubriques}{id_rubrique})] 
+			
+			<!------------------------------ Autres Articles ----------------------------------->
+	
+			[(#INCLURE{fond=bloc-autres-articles}{id_breve})] 
+			
+			<!--------------------------------------- SUR LE WEB ---------------------------------->
+			
+			[(#INCLURE{fond=bloc-web}{id_breve})] 
+
+	
+	</div> <!-- Fin 2eme colonne -->
+		
+	<div class="spacer"> <!-- Debut Bas Page -->
+		[(#INCLURE{fond=bas_page})]
+	</div> <!-- Fin Bas Page -->
+
+</div> <!-- Fin Main reseau -->		
+
+</BOUCLE_principale>
+
+</body>
+</html>

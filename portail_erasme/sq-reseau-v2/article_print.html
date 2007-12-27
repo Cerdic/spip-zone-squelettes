@@ -1,0 +1,296 @@
+[(#INCLURE{fond=controle_acces_article}{id_article})]
+<HTML>
+<HEAD>
+<title> [ #TITRE - #NOM_SITE_SPIP ] </title>
+<meta name="robots" content="noindex, follow" />
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/style.css" type="text/css" />
+</HEAD>
+<BODY>
+<div align="center"> 
+  <h3 class="spip" align=center>#NOM_SITE_SPIP</h3>
+  
+  	   <BOUCLE_principale(ARTICLES){id_article}{doublons}>
+
+  <!----------------------------------------CHEMIN---------------------------->
+				
+			        <table cellpadding=0 cellspacing=0 border=0 width="100%">
+			        <tr>
+			        <td>
+				<BOUCLE_rubrique_hierarchie(RUBRIQUES){id_rubrique}>
+			        <b><a href="#URL_SITE_SPIP" class="liens0">ACCUEIL</a></b> 
+			        <BOUCLE_chemin(HIERARCHIE){id_rubrique}>
+			        <b> &gt;&gt;&nbsp; </b>
+			        <a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"] class="liens0"><b>#TITRE</b></a> 
+			        </BOUCLE_chemin>
+			        <b> &gt;&gt;&nbsp; </b>
+			        <a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"] class="liens0"><b>#TITRE</b></a> 
+				        
+			        </BOUCLE_rubrique_hierarchie>
+				       
+				        <table cellpadding=0 cellspacing=1 border=0 width=100%>
+				        <tr>
+				        <td BACKGROUND="#DOSSIER_SQUELETTE/IMG_v2/transp.gif" width="600" align="left">
+				        <hr />
+				        
+				        </td>	    
+				        </tr>
+				        </table>	
+			        
+			        </td>
+			        </tr>
+			        </table>	        
+			        
+			        <!----------------------------TITRE------------------------------->   
+			        <br />
+			            <table cellpadding=0 cellspacing=0 border=0 width="100%">
+			              <tr> 
+			                
+			              <td valign="top">
+			                [(#SURTITRE|majuscules)] [
+			                <table width=100%><tr><td bgcolor="#EFF0EE" BACKGROUND="#DOSSIER_SQUELETTE/IMG_v2/transp.gif" ><div class='titre6'>(#TITRE)</div></td></tr></table>
+			                ] [
+			                <h4>(#SOUSTITRE|majuscules)</h4>
+			                ] 
+			                <div class="spip">[Premi&egrave;re publication : (#DATE_REDAC|affdate), 
+			                  mise en ligne: ] [(#DATE|nom_jour)] [(#DATE|affdate)][, <b>par 
+			                  (#LESAUTEURS)</b>]</div> 
+			              </td>
+			               
+			           
+			              </tr>
+			              
+			              		              
+			            </table>
+			            
+			          <!----------------------------TEXTE------------------------------->
+			          			            
+			          <table  width="100%" border="0" cellspacing="0" cellpadding="0">
+			            <tr> 
+			            
+			              <td  valign="top" > <br />
+					
+					[
+			                <div style='padding: 5px; background-color: #e0e0e0; text-align: left; color: black;'>
+					<div id="cadre3">
+					<table ><tr>
+					<td>
+			                (#DESCRIPTIF)
+					</td></tr></table>
+					</div>
+					</div>
+			                ] 			                   
+			                
+			                [<div class="spip">(#TEXTE)</div>]
+			                   
+			                   
+			                  <table cellpadding="10">
+			                    <BR /><BR />
+			                    <tr> 
+			                      <BOUCLE_documents_joints(DOCUMENTS) {id_article}{par date}{mode=document}{doublons} {0,2}>
+			                      <td width="50%" align="center" valign="top"> 
+			                        <table cellpadding="0" cellspacing="0" border="0">
+			                          <tr> 
+			                            <td bgcolor="#FFFFFF" align="center" valign="middle"> 
+			                              <table bgcolor="#000000">
+			                                <tr> 
+			                                  <td bgcolor="#FFFFFF" align="center"><a href="#URL_DOCUMENT" target="_blank">[(#LOGO_DOCUMENT)]</a></td>
+			                                </tr>
+			                              </table>
+			                            </td>
+			                            <td bgcolor="#FFFFFF" width="5" background="#DOSSIER_SQUELETTE/IMG_v2/corps/ombres/ombre_2.gif" valign="top"><img src="#DOSSIER_SQUELETTE/IMG_v2/corps/ombres/ombre_1.gif" width="6" height="8" /></td>
+			                          </tr>
+			                          <tr> 
+			                            <td bgcolor="#FFFFFF" background="#DOSSIER_SQUELETTE/IMG_v2/corps/ombres/ombre_4.gif"><img src="#DOSSIER_SQUELETTE/IMG_v2/corps/ombres/ombre_3.gif" width="7" height="8" /></td>
+			                            <td bgcolor="#FFFFFF" width="5" background="#DOSSIER_SQUELETTE/IMG_v2/corps/ombres/ombre_2.gif"><img src="#DOSSIER_SQUELETTE/IMG_v2/corps/ombres/ombre_5.gif" width="5" height="8" /></td>
+			                          </tr>
+			                        </table>
+			                        [ 
+			                        <div align="center"><b>(#TITRE)</b></div>
+			                        ] 
+			                        [<div align="center">(#DESCRIPTIF)</div>]
+						[(#TAILLE|taille_en_octets)][, 
+			                      (#LARGEUR) x #HAUTEUR pixels</span>]
+			                        
+			                        </td>
+			                      </BOUCLE_documents_joints>
+			                    </tr>
+			                    <BOUCLE_ligne_suite (BOUCLE_documents_joints)>
+			                    </BOUCLE_ligne_suite>
+			                    <tr> 
+			                      <BOUCLE_ligne_suite2 (BOUCLE_documents_joints)>
+			                      </BOUCLE_ligne_suite2>
+			                    </tr>
+			                  </table>
+			                  
+			                  
+			                [ 
+			                <div class="spip">(#PS|justifier)</div>
+			                ] [ 
+			                <hr />
+			                <div class="spip">(#NOTES)</div>
+			                ] 
+			                
+			                <!----------------------------FORUMS------------------------------->
+			<B_Forums>
+			<br />
+			<br />
+			<br />
+
+          		 <table width="100%">
+          		 
+		          <tr>
+		          
+		           <td valign="top" >
+		            <img src="#DOSSIER_SQUELETTE/IMG_v2/txt_forum.jpg" width="77" height="22" /> 
+		           </td>
+		           
+		           <td>&nbsp; &nbsp; &nbsp;</td>
+		           
+		           <td>			            
+			          
+			        <table cellpadding=0 cellspacing=0 border=0 width="100%">
+			        <tr>
+			        <td BACKGROUND="#DOSSIER_SQUELETTE/IMG_v2/transp.gif" width="600" align="left">
+			        <hr />
+			        </td>	    
+			        </tr>
+			        </table>
+			          
+			          <table cellpadding=0 cellspacing=0 border=0 width="100%">
+			            <tr> 
+			              <td align="left" valign="top" bgcolor="#FFFFFF"> 
+			              
+			              
+			                <BOUCLE_Forums(FORUMS){id_article}{par date}{inverse}>
+			                <a name="forum#ID_FORUM" class="liens0"></a> 
+			                
+			                
+					<div id="cadre3">
+			                <table>
+			                  
+			                  <tr> 
+			                    <td bgcolor="#EFF0EE" width="600">
+			                    <div class="spip"> <b>[(#TITRE)]</b> </div>
+			                    </td>
+			                  </tr>
+			                  
+			                  <tr> 
+			                    <td > 
+			                      <div class="spip">[(#DATE|affdate)][, par <a href="mailto:#EMAIL" class="liens0">(#NOM)</a>] 
+			                        [<br />
+			                        <a href="#URL_SITE" class="liens0">(#NOM_SITE)</a>] </div>
+					     </td>
+			                  </tr>
+			                  
+			                  <tr> 
+			                    <td > 
+			                      <div class="spip">#TEXTE</div>
+			                      <BOUCLE_mots_forum(MOTS){id_forum}{par type, titre}>
+			                      <li><span >#LOGO_MOT <b>#TYPE :</b> #TITRE</span> 
+			                        </BOUCLE_mots_forum>
+			                        [ 
+			                        <div class="spip" align='right'>			                        
+			                        	<font id="tpetit"><br /></font>
+							<a href="spip.php?page=forum&(#PARAMETRES_FORUM)" class="liens0">R&eacute;pondre 
+			                          &agrave; ce message</a></div>
+			                        ] 
+			                    </td>
+			                  </tr>
+			                </table>
+			                </div>
+			                			
+						                <B_fils>
+						                <BOUCLE_fils(FORUMS){id_parent}{par date}>
+						                <p> <a name="forum#ID_FORUM" class="liens0"></a>
+						                
+     						          	<table width="100%" >
+     						            	<tr><td>&nbsp;&nbsp;</td>
+     						            	<td>
+		                  
+						                <table width="100%" >
+						                
+						                
+						                  <tr bgcolor="#EFF0EE"> 
+						                    <td > 
+						                      <div class="spip"><b>[(#TITRE)]</b></div>
+						                    </td>
+						                  </tr>
+						                
+						                <tr> 
+			                    			<td width=100% > 
+						                  <div class="spip">[(#DATE|affdate)][, par <a href="mailto:#EMAIL" class="liens0">(#NOM)</a>] 
+						                     [<br />
+						                    <a href="#URL_SITE" class="liens0">(#NOM_SITE)</a>]</div>
+						                 </td>
+						                 </tr>
+						                 
+						                <tr> 
+			                    			<td width=100% >
+						                  <div class="spip" align="left"><div class="spip" align="justify">#TEXTE</div></div>
+						                  [ 
+						                  <div class="spip" align="right"><font id="tpetit"><br /></font><a href="spip.php?page=forum&(#PARAMETRES_FORUM)" class="liens0">R&eacute;pondre &agrave; ce message</a></div>
+						                  ] 
+						                  <BOUCLE_mots_fils(MOTS){id_forum}{par type, titre}>
+						                <li><span >#LOGO_MOT <b>#TYPE :</b> #TITRE</span> 
+						                  </BOUCLE_mots_fils>
+						                  <BOUCLE_Forums_Boucle(boucle_fils)>
+						                  </BOUCLE_Forums_Boucle>
+						                 </td></tr>
+						                  
+						                  </table>
+						                  </td>
+						                  </tr>
+						                  </table>
+						                  
+						                  
+						                  </BOUCLE_fils>
+						                  </B_fils>
+			                  <br /><br /><br />
+			                  </BOUCLE_Forums>
+			                  
+			              </td>
+			                
+			                			              
+			              </tr>
+			            </table>
+			            
+			            
+			          </td>
+			         </tr>
+			       </table>
+
+			        </B_Forums>
+			        
+			        
+			        <table width="100%">
+			          <tr>
+			          <td valign="top" >
+			            <img src="#DOSSIER_SQUELETTE/IMG_v2/transp.gif" width="77" height="22" /> 
+			           </td>
+			           <td>&nbsp; </td>
+			           			           
+			           <td>			            
+				       
+				        <table cellpadding=0 cellspacing=1 border=0 width=100%>
+				        <tr>
+				        <td BACKGROUND="#DOSSIER_SQUELETTE/IMG_v2/transp.gif" width="600" align="left">
+				        
+				        &nbsp;
+				        </td>	    
+				        </tr>
+				        </table>  
+				    </td>
+				    </tr>
+				   </table>    
+				          
+			       <//B_Forums>
+			       
+			       
+	  </BOUCLE_principale>
+ 
+  [(#INCLURE{fond=bas_page})]
+
+</BODY>
+</HTML>
+
+

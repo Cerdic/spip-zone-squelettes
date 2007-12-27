@@ -1,0 +1,353 @@
+<BOUCLE_principale(ARTICLES){id_article}{doublons}>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<title>[#NOM_SITE_SPIP]</title>
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/style<?php if (isset ($HTTP_COOKIE_VARS['choix_couleur'])) if (file_exists("#DOSSIER_SQUELETTE/style_".$HTTP_COOKIE_VARS['choix_couleur'].".css")) echo "_".$HTTP_COOKIE_VARS['choix_couleur']; ?>.css" type="text/css" />
+<meta name="author" content="Erasme - info@erasme.org" />
+<link rel="alternate" type="application/rss+xml" href="/spip.php?page=backend" title="[#NOM_SITE_SPIP]" />
+</head>
+
+<body bgcolor="#FFFFFF" leftmargin="0" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+[(#INCLURE{fond=entete})] 
+
+<div id="Principale_reseau"> <!-- Debut Main reseau -->
+
+  	<BR />
+  	<BR />
+  	
+	<div id="Colonne_1_reseau"> <!-- Debut 1ere colonne -->
+		
+		<P>&nbsp;</P>
+					 <a name="photo">
+
+			<div id="Articles_reseau_normal">
+			
+				<div id="Article_normal_img_reseau"> <!-- Debut Image Article -->
+					<img src="#DOSSIER_SQUELETTE/IMG_v2/txt_articles.gif"  />
+				</div> <!-- Fin Image Article -->
+
+			<div id="Article_normal_reseau">
+
+				<!----------------------------------------CHEMIN---------------------------->
+
+           			<BOUCLE_rubrique_hierarchie(RUBRIQUES){id_rubrique}{tout}>
+			        <b><a href="#URL_SITE_SPIP" class="liens0">ACCUEIL</a></b>
+			         
+				        <BOUCLE_chemin(HIERARCHIE){id_rubrique}{tout}>
+				        <b> &gt;&gt;&nbsp; </b>
+				        <a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"] class="liens0">
+				        <b>[(#TITRE|supprimer_numero)]</b></a> 
+				        </BOUCLE_chemin>
+			        <br />
+	   			<hr />	
+	   			</BOUCLE_rubrique_hierarchie>
+					
+				       <div id="Bordure">&nbsp;</div>
+						 
+			        <!----------------------------TITRE------------------------------------->
+
+			                [(#SURTITRE|majuscules)] 
+			                [(#LOGO_ARTICLE|right||reduire_image{200,200})]
+							[<span id='titre_edito'>(#TITRE|supprimer_numero)</span>]
+			                [<h4>(#SOUSTITRE|majuscules)</h4>]
+
+			                <span id="spip" style="float: right;">
+			                
+				                [(#DATE|nom_jour)]
+				                [(#DATE|affdate)]
+						
+														<B_auteurs_1> 
+															, <b>par
+															<BOUCLE_auteurs_1(AUTEURS) {id_article} {", "}>
+																<a href="#URL_AUTEUR">
+																[(#NOM)]
+																</a>
+															</BOUCLE_auteurs_1>
+															</b>
+														</B_auteurs1>	
+
+							<br />
+							</span>
+											
+				[<br /><br /><div id="cadre_gris"><div id="cadre3">(#DESCRIPTIF)</div></div><br />]
+
+			<!--------------------------ALBUM------------------------>
+	
+				<B_album>
+	
+					<?php
+					
+					$vignettes='oui';
+					
+					if ((isset($HTTP_GET_VARS['vignettes'])) )
+						{ 
+						 $vignettes=$HTTP_GET_VARS['vignettes'];
+						}
+						
+					?>
+				
+				 <br />
+				 <br />
+				
+				<BOUCLE_album(ARTICLES){id_article}{titre_mot = album}>
+			              
+				              <BOUCLE_diaporama(DOCUMENTS){id_article}{mode=document}{debut_image,1}{extension!=zip}>
+	
+				            		<BOUCLE_nb_images(DOCUMENTS){id_article}{mode=document}{extension!=zip}>
+							</BOUCLE_nb_images>
+							<?php
+							$nb_images = "#TOTAL_BOUCLE"; 
+							?>
+							</B_nb_images>
+						            
+							 <?php
+							 if ($debut_image == $nb_images-1){
+							 	$im_suiv = 0;
+							 }else{
+							 	$im_suiv = $debut_image + 1;
+							 }
+							 if ($debut_image == 0){
+							 	$im_prec = $nb_images-1;
+							 }else{
+							 	$im_prec = $debut_image - 1;
+							 }
+							 
+							 ?>
+					            		    <!--images-->
+	
+							            <BOUCLE_diaporama2(DOCUMENTS){id_document}{extension==jpg|png|gif}{mode=document}{doublons}>
+
+								            <!-- affichage de la première image de la liste, avec lien vers la suivante dessus -->
+								
+								            <div align="center"> <a href="spip.php?page=article&id_article=<?php echo $id_article; ?>&debut_image=<?php echo $im_suiv ?>&vignettes=<?php echo $vignettes ?>#photo" title="Image suivante">
+									    <img class="galleriebig" 
+										src="[(#FICHIER|reduire_image{550,0}||extraire_attribut{src})]" 
+										width='[(#FICHIER|reduire_image{550,0}||extraire_attribut{width})]' 
+										height='[(#FICHIER|reduire_image{550,0}||extraire_attribut{height})]' [ 
+										alt="(#TITRE|textebrut|attribut_html|supprimer_numero)"] style="border: 3px solid #000000;"/>
+								[<br /><b>(#TITRE)</b>]
+								[<br /><em>(#DESCRIPTIF)</em>]
+								    </a> 
+								            </div>
+							            
+							            </BOUCLE_diaporama2>
+
+							            <!--autres documents-->
+	
+							            <BOUCLE_diaporama3(DOCUMENTS){id_document}{mode=document}{doublons}>
+							            
+							            <!-- affichage de la première image de la liste, avec lien vers la suivante dessus -->
+							            <div align="center" > 
+									[(#EMBED_DOCUMENT|autostart=true)]	
+															    
+								     <!-- affichage du titre et descriptif de l'image jointe -->
+					            			<div align="center">[<strong>(#TITRE|supprimer_numero)</strong>][<br />
+					              			(#DESCRIPTIF|smileys) ] </div>
+					            
+								    <br /><a href="#URL_DOCUMENT" class="liens0">[(#LOGO_DOCUMENT)]							    	
+							            <br />Télécharger le document</a>
+							            <br /><a href="spip.php?page=article&id_article=<?php echo $id_article; ?>&debut_image=<?php echo $im_suiv ?>&vignettes=<?php echo $vignettes ?>#photo" title="Image suivante" class="liens0">
+								    suivant</a>
+								    
+							            </div>
+							            
+							            </BOUCLE_diaporama3>
+	
+								<br /><br />
+												            
+					</BOUCLE_diaporama>
+					
+					<BOUCLE_doublons(DOCUMENTS){id_article}{mode=document}{extension!=zip}{doublons}>
+					</BOUCLE_doublons>
+										
+				</BOUCLE_album>
+				
+				</B_album>
+				
+				<br />
+                                
+                    <//B_album>      
+			              
+			        <!----------------------------TEXTE------------------------------->
+			          	
+			             
+			        [<br /><div id="spip">(#TEXTE)</div>]
+			               
+			                  <table cellpadding="10">
+			                    <BR /><BR />
+			                    <tr> 
+			                      <BOUCLE_documents_joints(DOCUMENTS) {id_article}{par date}{mode=document}{doublons} {0,2}>
+			                      <td width="50%" align="center" valign="top"> 
+								  
+			                        <table cellpadding="0" cellspacing="0" border="0">
+			                          <tr> 
+			                            <td bgcolor="#FFFFFF" align="center" valign="middle"> 
+										
+			                              <table bgcolor="#000000">
+			                                <tr> 
+			                                  <td bgcolor="#FFFFFF" align="center"><a href="#URL_DOCUMENT" target="_blank">[(#LOGO_DOCUMENT)]</a></td>
+			                                </tr>
+			                              </table>
+										  
+			                            </td>
+			                            <td bgcolor="#FFFFFF" width="5" background="#DOSSIER_SQUELETTE/IMG_v2/corps/ombres/ombre_2.gif" valign="top"><img src="#DOSSIER_SQUELETTE/IMG_v2/corps/ombres/ombre_1.gif" width="6" height="8" /></td>
+			                          </tr>
+			                          <tr> 
+			                            <td bgcolor="#FFFFFF" background="#DOSSIER_SQUELETTE/IMG_v2/corps/ombres/ombre_4.gif"><img src="#DOSSIER_SQUELETTE/IMG_v2/corps/ombres/ombre_3.gif" width="7" height="8" /></td>
+			                            <td bgcolor="#FFFFFF" width="5" background="#DOSSIER_SQUELETTE/IMG_v2/corps/ombres/ombre_2.gif"><img src="#DOSSIER_SQUELETTE/IMG_v2/corps/ombres/ombre_5.gif" width="5" height="8" /></td>
+			                          </tr>
+			                        </table>
+			                        [ 
+			                        <div align="center"><b>(#TITRE)</b></div>
+			                        ] 
+			                        [<div align="center">(#DESCRIPTIF)</div>]
+														[(#TAILLE|taille_en_octets)][, 
+			                      (#LARGEUR) x #HAUTEUR pixels</span>]
+			                        
+			                        </td>
+			                      </BOUCLE_documents_joints>
+			                    </tr>
+			                    <BOUCLE_ligne_suite (BOUCLE_documents_joints)>
+			                    </BOUCLE_ligne_suite>
+			                    <tr> 
+			                      <BOUCLE_ligne_suite2 (BOUCLE_documents_joints)>
+			                      </BOUCLE_ligne_suite2>
+			                    </tr>
+			                  </table>
+			                  
+			                  
+			                [ 
+			                <div id="spip">(#PS|justifier)</div>
+			                ] [ 
+			                <hr />
+			                <div id="spip">(#NOTES)</div>
+			                ] 
+
+	 				<!----------------------------DOCUMENTS----------------------------->
+			            
+			                
+			                <B_documents>
+			                <hr />
+			                <BOUCLE_documents(DOCUMENTS){id_article}{par titre}{mode=document}{doublons}>
+			                <table cellpadding=0 cellspacing=0 border=0>
+			                  <tr> 
+			                    <td align='center' bgcolor="#FFFFFF" colspan="2"> 
+			                      <table cellpadding="0" cellspacing="0" border="0">
+			                        <tr> 
+			                          <td bgcolor="#FFFFFF" width="5"><img src="#DOSSIER_SQUELETTE/IMG_v2/transp.gif" width="5" height="5" /></td>
+			                          <td bgcolor="#FFFFFF"><img src="#DOSSIER_SQUELETTE/IMG_v2/transp.gif" width="5" height="5" /></td>
+			                          <td bgcolor="#FFFFFF" width="5" background="#DOSSIER_SQUELETTE/IMG_v2/corps/ombres/ombre_2.gif" valign="top"><img src="#DOSSIER_SQUELETTE/IMG_v2/corps/ombres/ombre_1.gif" width="6" height="8" /></td>
+			                        </tr>
+			                        <tr> 
+			                          <td bgcolor="#FFFFFF" width="5"><img src="#DOSSIER_SQUELETTE/IMG_v2/transp.gif" width="5" height="5" /></td>
+			                          <td bgcolor="#FFFFFF" align="center" valign="middle">[(#LOGO_DOCUMENT|#URL_DOCUMENT)]</td>
+			                          <td bgcolor="#FFFFFF" width="5" background="#DOSSIER_SQUELETTE/IMG_v2/corps/ombres/ombre_2.gif"><img src="#DOSSIER_SQUELETTE/IMG_v2/corps/ombres/ombre_2.gif" width="6" height="1" /></td>
+			                        </tr>
+			                        <tr> 
+			                          <td bgcolor="#FFFFFF" width="5" background="#DOSSIER_SQUELETTE/IMG_v2/corps/ombres/ombre_4.gif"><img src="#DOSSIER_SQUELETTE/IMG_v2/corps/ombres/ombre_3.gif" width="7" height="8" /></td>
+			                          <td bgcolor="#FFFFFF" background="#DOSSIER_SQUELETTE/IMG_v2/corps/ombres/ombre_4.gif"><img src="#DOSSIER_SQUELETTE/IMG_v2/corps/ombres/ombre_4.gif" width="1" height="8" /></td>
+			                          <td bgcolor="#FFFFFF" width="5" background="#DOSSIER_SQUELETTE/IMG_v2/corps/ombres/ombre_2.gif"><img src="#DOSSIER_SQUELETTE/IMG_v2/corps/ombres/ombre_5.gif" width="5" height="8" /></td>
+			                        </tr>
+			                      </table>
+			                    </td>
+			                  </tr>
+			                  <tr> 
+			                    <td align='center' bgcolor="#FFFFFF">&nbsp; </td>
+			                    <td bgcolor="#FFFFFF"> <a href="#URL_DOCUMENT">[(#TITRE|majuscules)]</a> 
+			                      [
+			                      <div id="spip">(#DESCRIPTIF)</div>
+			                      ] [(#TAILLE|taille_en_octets)][, 
+			                      (#LARGEUR) x #HAUTEUR pixels</span>] </td>
+			                  </tr>
+			                </table>
+					</BOUCLE_documents>
+			                </B_documents>
+			                
+                    <br />
+			                
+										<div class="div_right" align=right>
+											<a href="spip.php?page=article_pdf&id_article=#ID_ARTICLE" class="liens0">Format PDF</a>
+									              <img src="#DOSSIER_SQUELETTE/IMG_v2/pdf-dist.png" />
+									              <br />
+									              <a href="spip.php?page=article_print&id_article=#ID_ARTICLE" class="liens0">Format Imprimable</a>
+									              <img src="#DOSSIER_SQUELETTE/IMG_v2/print-16.png" />&nbsp;
+									  </div>
+						  
+                    <br />
+			                
+			                
+			                [<p align="left"><b><a href="spip.php?page=forum&(#PARAMETRES_FORUM)" class="liens0">
+			                <BR /><BR />R&eacute;pondre 
+			                  &agrave; cet article</a></b>
+			                  <br />]
+			                  
+			               [<hr /><small>(#FORMULAIRE_SIGNATURE)</small>]
+
+		<!------------------------FORUMS------------------->
+	
+		</div>
+		</div>
+	
+		[(#INCLURE{fond=article-forum}{id_article})] 
+
+	</div><!-- Fin 1ere colonne -->
+	
+	<div id="Colonne_2_reseau"> <!-- Debut 2eme colonne -->
+	
+		<BR />
+		<BR />
+
+		<BOUCLE_album2(ARTICLES){id_article}{titre_mot = album}>
+		
+			<!------------------------------ Recherche ----------------------------------->
+	
+			[(#INCLURE{fond=bloc-album}{id_article})] 
+			
+		</BOUCLE_album2>
+
+		</B_album2>
+		
+			<!------------------------------ Liste déroulante ----------------------------------->
+
+		<B_trombino2>
+			<BOUCLE_trombino2(RUBRIQUES){tout}{id_rubrique}{titre_mot=trombinoscope}>
+			[(#INCLURE{fond=bloc-menu-rubrique}{id_rubrique})]
+			</BOUCLE_trombino2>
+		</B_trombino2>
+
+
+			<!------------------------------ Recherche ----------------------------------->
+	
+			[(#INCLURE{fond=bloc-recherche})] 
+			
+			<!------------------------------ Autres Articles ----------------------------------->
+	
+			[(#INCLURE{fond=bloc-autres-articles}{id_article})] 
+	
+		<//B_trombino2>
+		
+			<!------------------------------ Sous Rubriques ----------------------------------->
+	
+			[(#INCLURE{fond=bloc-ss-rubriques}{id_rubrique})] 
+				
+			<!--------------------------------------- SUR LE WEB ---------------------------------->
+			
+			[(#INCLURE{fond=bloc-web}{id_article})] 
+		
+		<//B_album2>
+	
+	</div> <!-- Fin 2eme colonne -->
+		
+	<div class="spacer"> <!-- Debut Bas Page -->
+		[(#INCLURE{fond=bas_page})]
+	</div> <!-- Fin Bas Page -->
+
+</div> <!-- Fin Main reseau -->		
+
+</BOUCLE_principale>
+
+</body>
+</html>

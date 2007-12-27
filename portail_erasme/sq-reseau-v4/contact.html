@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml2/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+	[(#INCLURE {fond=inc-head})]
+</head>
+<body>
+
+<div id="container">
+
+	[(#INCLURE {fond=entete})]
+	[(#INCLURE {fond=menu}{id_rubrique}{id_breve})]
+
+[(#REM) ------------------------------------- COLONE GAUCHE ----------------------------------------- ]
+	<div id="supportingText">
+
+	[(#REM) ---------------------- Chemin ---------------------- ]
+
+		<div id="filariane">
+	    <BOUCLE_rubrique_hierarchie(RUBRIQUES){id_rubrique}{tout}>
+			<a href="[(#URL_SITE_SPIP)]">ACCUEIL</a>
+				&gt;&gt;&nbsp;
+				<a href="spip.php?page=plan" >Plan</a> 
+			<hr />
+	   	</BOUCLE_rubrique_hierarchie>
+		</div>
+	
+		<div id="articles_breves">  
+
+			<div id="p_article_breve">  
+			
+	[(#REM) ---------------------- Titre ---------------------- ]
+			<h1><span>Nous contacter</span></h1>
+			
+	[(#REM) ---------------------- Texte ---------------------- ]
+			<p style="margin-left:10%;">
+							<p>&nbsp;</p>
+			          	
+								<?php
+								if (isset($_POST[envoyer])){
+									$charset = lire_meta('charset');
+									$headers = "From: $_POST[email]\n";
+									$headers.=	"MIME-Version: 1.0\n";
+									$headers.=	"Content-Type: text/plain; charset=$charset\n";
+									$headers.=	"Content-Transfer-Encoding: 8bit\n$headers";
+									$message= utf8_decode("#NOM_SITE_SPIP")."\n  Une personne a laissé un message.\n\n";
+									$message.= "$_POST[prenom] $_POST[nom]\n";
+									if (isset($_POST[societe])){
+										$message.="Société : $_POST[societe]\n";
+									}
+									if (isset($_POST[telephone])){
+										$message.="Téléphone : $_POST[telephone]\n";
+									}
+									if (isset($_POST[email])){
+										$message.="Email : $_POST[email]\n";
+									}
+									if (isset($_POST[adresse])){
+										$message.="Adresse : \n$_POST[adresse]\n$_POST[cp] - $_POST[ville]\n\n";
+									}
+									$message.="Message :\n$_POST[msg]\n\n\n";
+									$message.= "[(#URL_SITE_SPIP|addslashes)]";
+									$objet = "MESSAGE AUTOMATIQUE DU SITE SPIP";
+									mail("[(#EMAIL_WEBMASTER)]",$objet,$message,$_POST[email]);
+								?>
+								Message envoy&eacute;
+								<?php
+								}
+								else 
+								{
+								?>
+									<SCRIPT LANGUAGE="JavaScript">
+									function VerifForm_contact(){
+										adresse = document.contact.email.value;
+										var place = adresse.indexOf("@",1);
+										var point = adresse.indexOf(".",place+1);
+										var erreurMsg='Erreur de contact\n';
+										var listErreur='';
+										if (document.contact.nom.value=="")
+											listErreur = listErreur + '	- nom\n';
+										if (document.contact.prenom.value=="")
+											listErreur = listErreur + '	- pr&eacute;nom\n';
+										if (document.contact.societe.value=="")
+											listErreur = listErreur + '	- soci&eacute;t&eacute;\n';
+										if (document.contact.telephone.value=="")
+											listErreur = listErreur + '	- t&eacute;l&eacute;phone\n';
+										if (!((place > -1)&&(adresse.length >2)&&(point > 1)))
+											listErreur = listErreur + '	- email\n';
+										if (document.contact.msg.value=="")
+											listErreur = listErreur + '	- message\n';
+										if (listErreur==''){
+											return true;
+										}
+										else {
+											erreurMsg = erreurMsg + listErreur;
+											alert(erreurMsg);
+											return false;
+										}
+									}
+									</script>
+									<form action="spip.php?page=contact" method="post" name="contact" onSubmit="return VerifForm_contact()" >
+										<table border="0" align="center">
+											<tr>
+												<td width="50%" style="text-align:left;"><li>&nbsp;<label for="nom">nom</label>&nbsp;:</td><td width="50%"><input type="text" name="nom" /></td>
+											</tr>
+											<tr>
+												<td width="50%" style="text-align:left;"><li>&nbsp;<label for="prenom">pr&eacute;nom</label>&nbsp;:</td><td width="50%"><input type="text" name="prenom" /></td>
+											</tr>
+											<tr>
+												<td width="50%" style="text-align:left;"><li>&nbsp;<label for="societe">soci&eacute;t&eacute;</label>&nbsp;:</td><td width="50%"><input type="text" name="societe"  /></td>
+											</tr>
+											<tr>
+												<td width="50%" style="text-align:left;"><li>&nbsp;<label for="telephone">t&eacute;l&eacute;phone</label>&nbsp;:</td><td width="50%"><input type="text" name="telephone" /></td>
+											</tr>
+											<tr>
+												<td width="50%" style="text-align:left;"><li>&nbsp;<label for="email">email</label>&nbsp;:</td><td width="50%"><input type="text" name="email" /></td>
+											</tr>
+											<tr>
+												<td width="50%" style="text-align:left;"><li>&nbsp;<label for="adresse">adresse</label>&nbsp;:</td><td width="50%"><textarea name="adresse" cols="15" rows="3"></textarea></td>
+											</tr>
+											<tr>
+												<td width="50%" style="text-align:left;"><li>&nbsp;<label for="cp">code postal</label>&nbsp;:</td><td width="50%"><input type="text" name="cp" /></td>
+											</tr>
+											<tr>
+												<td width="50%" style="text-align:left;"><li>&nbsp;<label for="ville">ville</label>&nbsp;:</td><td width="50%"><input type="text" name="ville" /></td>
+											</tr>
+											<tr>
+												<td width="50%" style="text-align:left;"><li>&nbsp;<label for="msg">message</label>&nbsp;:</td><td width="50%"><textarea name="msg" cols="15" rows="5"></textarea></td>
+											</tr>
+											<tr>
+												<td width="100%" colspan="2" align="center">
+													<br /><br /><input type="hidden" name="envoyer" value="oui" />
+													<input type="submit" value="envoyer" name="envoyer" class="spip_bouton" />
+												</td>
+											</tr>
+										</table>
+									</form>
+								<?php 
+								}
+								?>
+			</p>
+	</div>
+	</div>
+	
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+	
+	</div>
+	
+[(#REM) ------------------------------------- COLONE DROITE ----------------------------------------- ]
+	
+	<div id="linkList">
+	
+	[(#REM) ---------------------- Recherche ---------------------- ]
+	
+			[(#INCLURE{fond=bloc-recherche})] 
+	
+	</div>
+
+	[(#INCLURE {fond=bas_page})]
+	
+</div>
+
+</body></html>				  
+	

@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>[#NOM_SITE_SPIP]</title>
+<meta name="author" content="Erasme - info@erasme.org" />
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/style<?php if (isset ($HTTP_COOKIE_VARS['choix_couleur'])) if (file_exists("#DOSSIER_SQUELETTE/style_".$HTTP_COOKIE_VARS['choix_couleur'].".css")) echo "_".$HTTP_COOKIE_VARS['choix_couleur']; ?>.css" type="text/css" />
+<link rel="alternate" type="application/rss+xml" href="/spip.php?page=backend" title="[#NOM_SITE_SPIP]" />
+</head>
+
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
+
+[(#INCLURE{fond=entete})]
+
+<div id="Principale_reseau">
+
+	  <BR />
+	  <BR />
+	  <BR />
+	  <BR />
+	  <BR />
+ 
+        <!----------------------------------------ARTICLES----------------------------------->
+        
+	<!--pour empecher l'affichage d'articles avec ce mot clef-->
+	<BOUCLE_article_mot_clef1(ARTICLES) {titre_mot=pas_sommaire} {doublons}>
+	</BOUCLE_article_mot_clef1>
+	<!-->
+	
+	<!--pour empecher l'affichage d'articles avec ce mot clef-->
+	<BOUCLE_article_mot_clef2(ARTICLES) {titre_mot=sommaire_droite} {doublons}>
+	</BOUCLE_article_mot_clef2>
+	<!-->
+	        
+       	<!-- Début 1 ere colonne -->
+        
+	<div id="Colonne_1_reseau"> 
+	
+	<!--------------------------------------EDITO----------------------------------------->
+	
+	<B_article_0>
+		<div id="Edito_reseau"> 
+			<BOUCLE_article_0(ARTICLES) {par date} {titre_mot=sommaire_edito} {0,3} {doublons}>
+				<div id="cadre_edito"> 
+					<div id="cadre3_solid">
+						[<a href="#URL_ARTICLE">(#LOGO_ARTICLE|right)</a>]
+						[<span id='titre_edito'>(#TITRE)</span>]
+						[<br /><br />(#TEXTE)]
+					</div>
+				</div><br />
+			</BOUCLE_article_0>
+		</div>
+	<br />
+	</B_article_0>
+
+	<!--------------------------------------ARTICLES A LA UNE----------------------------------------->
+
+		<B_edito2>
+
+			<div id="Edito_reseau"> 
+			<table width="100%" cellpadding=10><tr>
+				<BOUCLE_edito2(ARTICLES) {par date} {inverse} {titre_mot=sommaire_centre} {0,4} {doublons}>
+				<td align=center valign=top width="50%">		
+					<div id="cadre_edito">
+						<div id="cadre1_transp2"> 
+							[<a href="#URL_ARTICLE">(#LOGO_ARTICLE_RUBRIQUE|right||reduire_image{50,50})</a>]
+							[<a href="#URL_ARTICLE"><span id='titre6'>(#TITRE)</span></a>]
+							[<br /><br />(#TEXTE|textebrut|couper{125})<br /><br />]
+							<div align="right"><strong><a href="#URL_ARTICLE" class="liens2">Lire la suite</a> &gt;</strong></div>
+						</div>
+					</div>
+				</td>
+					<?php
+					if (fmod(#COMPTEUR_BOUCLE,2)==0) echo "</tr><tr>";
+				        ?>
+				</BOUCLE_edito2>
+			</tr></table>
+			</div>
+			
+		<br /><br /><br />
+
+		</B_edito2>
+		
+
+	<!--------------------------------------DERNIERS ARTICLES----------------------------------------->
+
+     <div id="Articles_reseau_normal"> 
+  
+          	<div id="Articles_img_reseau"> 
+						<img src="#DOSSIER_SQUELETTE/IMG_v2/txt_articles.gif" width="77" height="22" />
+						</div>
+			
+			<div id="Articles1_reseau">
+				<BOUCLE_article_1(ARTICLES) {par date} {inverse} {0,1} {doublons} >
+					<div id="cadre1">				
+							[(#LOGO_RUBRIQUE_ARTICLE|left||reduire_image{50,50})]
+							<a href="#URL_ARTICLE" class="liens2"><span id="titre">#TITRE</span></a>
+							<a href="#URL_ARTICLE" >
+							<br /> 
+							<em>
+								[Le (#DATE|nom_jour)] [(#DATE|affdate)]
+								<B_auteurs_1> par <BOUCLE_auteurs_1(AUTEURS) {id_article} {", "}>#NOM
+								</BOUCLE_auteurs_1>  
+							</em>
+							<font id="ttpetit"><br /><br />
+							</font> [(#TEXTE|textebrut|couper{340})] </a>
+						<div align="right"><strong><a href="#URL_ARTICLE" class="liens2">Lire la suite</a> &gt;</strong></div>
+					</div>
+				</BOUCLE_article_1>
+			</div>
+		</div> 
+		
+	<!-- Fin Articles-->
+		
+		<br />
+		
+		<div id="Articles2_reseau"> 
+		
+	<!--ARTICLES SUIVANTS--->
+	
+			<BOUCLE_article_3(ARTICLES) {par date} {inverse} {0,7} {doublons} >
+				[(#LOGO_RUBRIQUE|left||reduire_image{50,50})] <font id="titre"><a href="#URL_ARTICLE" class="liens0" >[(#TITRE)]</a></font><br /> 
+					<a href="#URL_ARTICLE" >
+						<em>
+							[Le (#DATE|nom_jour)] [(#DATE|affdate)]
+							<B_auteurs_3> par <BOUCLE_auteurs_3(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_3>  
+						</em>
+					</a>
+					<P></P>
+			</BOUCLE_article_3>
+		</div> 
+		
+	<!-- Fin Articles-->
+	
+		<P>&nbsp;</P>
+		<div id="Articles_reseau_normal"> 
+		
+	<!----------------------------------------BREVES----------------------------------->
+	
+	 <!--pour empecher l'affichage d'articles avec ce mot clef-->
+			           			
+			     <BOUCLE_breve_mot_clef1(BREVES) {titre_mot=pas_sommaire} {doublons}>
+			     </BOUCLE_breve_mot_clef1>
+				   
+			    <!-->
+		     
+	     <!--BREVE1--->
+			<B_breve1>
+			<div id="Articles_img_reseau"> 
+				<img src="#DOSSIER_SQUELETTE/IMG_v2/txt_breves.gif" alt="Br&egrave;ves" width="77" height="22" />
+			</div>
+			<div id="Articles1_reseau">
+				<BOUCLE_breve1(BREVES) {par date} {inverse} {0,1} {doublons}>
+					<div id="cadre1">
+						[(#LOGO_RUBRIQUE|left||reduire_image{50,50})]
+							<font id="titre"><a href="#URL_BREVE" class="liens2">#TITRE</a></font> 
+							: <a href="#URL_BREVE" >[(#TEXTE|textebrut|couper{130})] - <em>[Le (#DATE|nom_jour)] 
+							[(#DATE|affdate)] -</em> </a>
+					</div>
+				</BOUCLE_breve1>
+			</div>
+			</B_breve1>
+			
+		</div> 
+		
+		<!-- Fin Brèves-->
+		
+		<br />
+		<div id="Articles2_reseau"> 
+		
+	     <!--BREVE2--->
+		
+			<B_breve2>
+				<BOUCLE_breve2(BREVES) {par date} {inverse} {0,10} {doublons}>
+				[(#LOGO_RUBRIQUE|left||reduire_image{50,50})]
+ <font id="titre"><a href="#URL_BREVE" class="liens0">#TITRE<br />
+					</a></font><a href="#URL_BREVE" > <em> [> (#DATE|nom_jour)] [(#DATE|affdate)]</em></a><P> 
+				</BOUCLE_breve2>
+			</B_breve2>
+		</div> 
+	
+	    <!-- Fin Brèves 2-->
+		
+	</div> 
+	
+	<!-- Fin 1ere colonne -->	
+	
+	<div id="Colonne_2_reseau"> 
+
+
+	<!-- Début 2eme colonne -->
+	
+		<div id="Recherche_img_reseau"> 
+
+		<!-- Début Recherche -->
+			<img src="#DOSSIER_SQUELETTE/IMG_v2/txt_recherche_pt2.gif" alt="Recherche par mots cl&eacute;s"  />
+			</div>
+			<div id="Recherche_reseau">
+		    	<form action='spip.php?page=recherche' method='get' name='form_rech'><input name="page" value="recherche" type="hidden" /><input type='text' id='formulaire_recherche' name='recherche' value="" size='20' class='formrecherche' /></form>
+			</div> 
+		<!-- Fin Recherche -->
+
+	<!-- Début 2eme colonne -->
+
+
+		<br /><br />
+
+		<!-- Début Agenda -->
+
+		<span>
+			[(#INCLURE{fond=agenda_mini})]
+		</span>
+	
+<span align=center style="display : table; margin : 0px auto;">
+			<br />			
+			<br />			
+			[(#INCLURE{fond=choix_couleur})]			
+</span>
+		
+		<!-- Fin Agenda -->
+
+	<!--------------------------------------BLOCS DROITE----------------------------------------->
+
+		<P>&nbsp;</P>
+
+
+
+		<B_edito3>	
+			<P>&nbsp;</P>
+			<BOUCLE_edito3(ARTICLES) {par date} {inverse} {titre_mot=sommaire_droite} {0,4} >
+				<div id="Web_reseau">
+				[<span id="titre5">(#TITRE)</span>]<br /><br />
+				[(#TEXTE)]
+				</div><br /><br />
+			</BOUCLE_edito3>
+		</B_edito3>
+
+		<!-- Début Debat -->
+		<B_sites>
+			<P>&nbsp;</P>
+			<img src="#DOSSIER_SQUELETTE/IMG_v2/txt_web.gif" alt="En d&eacute;bat" width="100" height="14" />
+			<P></P>
+			<div id="Web_reseau">
+				<BOUCLE_sites(SITES) {syndication=oui} {moderation!=oui} {par hasard} {0,2}>
+					<strong>[(#NOM_SITE)]</strong><br /><font id="ttpetit"><br /></font>
+	
+						<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {par date} {inverse} {0,3}>
+							-<a href="#URL_ARTICLE" class="liens2">[(#TITRE*)]</a>
+							&nbsp;>&nbsp;<em><a href="#URL_ARTICLE" >[(#DATE|affdate_court)]</a></em>
+							<br /><font id="ttpetit"><br /></font> 
+						</BOUCLE_syndic><br />
+						
+				</BOUCLE_sites>
+			</div>
+		</B_sites>
+		<!-- Fin Débat -->
+
+		
+		<B_forum>
+		
+		<P>&nbsp;</P>
+		
+		<!-- Début Forum -->
+					<img src="#DOSSIER_SQUELETTE/IMG_v2/txt_debat.gif" alt="Sur le web" />
+			<P></P>
+			<div id="Web_reseau">
+				<BOUCLE_forum(FORUMS) {par date} {inverse} {id_article!=0} {0,3}>
+						
+						<strong><a href="#URL_ARTICLE" class="liens2">[(#TITRE)]</a></strong>
+						<a href="#URL_ARTICLE" >
+						<br /> 
+						<i>[Le (#DATE|nom_jour)] [(#DATE|affdate)][ par (#NOM)<br />]</i>
+						[<font id="ttpetit"><br /></font><font id="petit">(#TEXTE|textebrut|couper{150})</font>]
+						</a>
+					  <br /> 
+					  <br />
+					
+				</BOUCLE_forum>
+			</div>
+		<!-- Fin Forum -->
+
+
+		
+	</div> <!-- Fin 2 ème colonne -->
+	
+	<P>&nbsp;</P>
+	<P>&nbsp;</P>
+	<P>&nbsp;</P>
+	
+	<div class="spacer">
+		[(#INCLURE{fond=bas_page})]
+	</div>
+	
+</div><!--end "Principale_reseau"-->
+
+<P>&nbsp;</P>
+
+</body>
+</html>

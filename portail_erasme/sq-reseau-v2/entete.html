@@ -1,0 +1,156 @@
+#CACHE{24*3600}
+<script language="javascript" src="#DOSSIER_SQUELETTE/sniffer.js">
+
+//Top Navigational Bar III v3.4.1.1b (By BrotherCake @ cake@brothercake.net)
+//Permission granted/modified by Dynamicdrive.com to include script in archive
+//For this and 100's more DHTML scripts, visit http://www.dynamicdrive.com/
+//This notice MUST stay intact for legal use
+
+</script>
+
+<script language="javascript">
+
+//**DO NOT EDIT THIS *****
+if (!exclude) { //********
+//************************
+
+///////////////////////////////////////////////////////////////////////////
+//
+//  ULTIMATE DROPDOWN MENU VERSION 3.4.1b by Brothercake
+//  http://www.brothercake.com/dropdown/ 
+//
+//  Link-wrapping routine by Brendan Armstrong
+//  KDE modifications by David Joham
+//  Opera reload/resize routine by Michael Wallner
+//  http://www.wallner-software.com/
+//
+//  This script featured on Dynamic Drive (http://www.dynamicdrive.com)
+//
+///////////////////////////////////////////////////////////////////////////
+
+// *** POSITIONING AND STYLES *********************************************
+
+var menuALIGN = "left";		// alignment
+var absLEFT = 	12;		// absolute left or right position (if menu is left or right aligned)
+var absTOP = 	145; 		// absolute top position
+
+var staticMENU = false;		// static positioning mode (ie5,ie6 and ns4 only)
+
+var stretchMENU = false;	// show empty cells
+var showBORDERS = false;	// show empty cell borders
+
+var baseHREF = "#DOSSIER_SQUELETTE/";		// base path to .js files for the script (ie: resources/)
+var zORDER = 	0;		// base z-order of nav structure (not ns4)
+
+var mCOLOR = 	"#FFFFFF";	// main nav cell color
+var rCOLOR = 	"#EFF0EE";	// main nav cell rollover color
+var bSIZE = 	1;		// main nav border size
+var bCOLOR = 	"#cccccc"	// main nav border color
+var aLINK = 	"#484747";	// main nav link color
+var aHOVER = 	"#484747";	// main nav link hover-color (dual purpose)
+var aDEC = 	"none";		// main nav link decoration
+var fFONT = 	"verdana";	// main nav font face
+var fSIZE = 	10;		// main nav font size (pixels)
+var fWEIGHT = 	"bold";		// main nav font weight
+var tINDENT = 	7;		// main nav text indent (if text is left or right aligned)
+var vPADDING = 	10;		// main nav vertical cell padding
+var vtOFFSET = 	1;		// main nav vertical text offset (+/- pixels from middle)
+
+var keepLIT =	true;		// keep rollover color when browsing menu
+var vOFFSET = 	7;		// shift the submenus vertically
+var hOFFSET = 	6;		// shift the submenus horizontally
+
+var smCOLOR = 	"#FFFFFF";	// submenu cell color
+
+var srCOLOR = 	"#EFF0EE";	// submenu cell rollover color
+var sbSIZE = 	1;		// submenu border size
+var sbCOLOR = 	"#484747";	// submenu border color
+var saLINK = 	"#484747";	// submenu link color
+var saHOVER = 	"#484747";		// submenu link hover-color (dual purpose)
+var saDEC = 	"none";		// submenu link decoration
+var sfFONT = 	"verdana";// submenu font face
+var sfSIZE = 	10;		// submenu font size (pixels)
+var sfWEIGHT = 	"normal"	// submenu font weight
+var stINDENT = 	5;		// submenu text indent (if text is left or right aligned)
+var svPADDING = 1;		// submenu vertical cell padding
+var svtOFFSET = 0;		// submenu vertical text offset (+/- pixels from middle)
+
+var shSIZE =	2;		// submenu drop shadow size
+var shCOLOR =	"cccccc";	// submenu drop shadow color
+var shOPACITY = 90;		// submenu drop shadow opacity (not ie4,ns4 or opera)
+
+var keepSubLIT = true;		// keep submenu rollover color when browsing child menu
+var chvOFFSET = -12;		// shift the child menus vertically
+var chhOFFSET = 7;		// shift the child menus horizontally
+
+var closeTIMER = 330;		// menu closing delay time
+
+var cellCLICK = true;		// links activate on TD click
+var aCURSOR = "hand";		// cursor for active links (not ns4 or opera)
+
+var altDISPLAY = "";		// where to display alt text
+var allowRESIZE = true;		// allow resize/reload
+
+var redGRID = false;		// show a red grid
+var gridWIDTH = 0;		// override grid width
+var gridHEIGHT = 0;		// override grid height
+var documentWIDTH = 0;		// override document width
+
+var hideSELECT = true;		// auto-hide select boxes when menus open (ie only)
+var allowForSCALING = true;	// allow for text scaling in mozilla 5
+
+
+//** LINKS ***********************************************************
+
+			<BOUCLE_rubriques_ex(RUBRIQUES) {tout} {titre_mot=pas_menu} {doublons}>
+			</BOUCLE_rubriques_ex>
+			
+			<BOUCLE_rubriques0(RUBRIQUES) {racine} {tout} {par num titre} {doublons}>
+			addMainItem("#URL_RUBRIQUE",'[(#LOGO_RUBRIQUE||texte_script)][&nbsp;&nbsp;(#TITRE|supprimer_numero)]',140,"left","","",0,0,"e");
+			  /*
+			  <B_sous_articles>
+					defineSubmenuProperties(220,"left","left",-4,0,"");
+					<BOUCLE_sous_articles(ARTICLES) {id_rubrique} {tout} {par titre} {doublons}>
+						addSubmenuItem("#URL_ARTICLE","[(#TITRE|supprimer_numero)]","","");
+					</BOUCLE_sous_articles>
+			  </B_sous_articles>
+				*/
+						  <B_sous_rubriques0>
+							defineSubmenuProperties(220,"left","left",-4,0,"");
+							<BOUCLE_sous_rubriques0(RUBRIQUES) {id_parent} {tout} {par titre} {doublons}>
+							addSubmenuItem("#URL_RUBRIQUE","[(#TITRE|supprimer_numero)]","","");
+											<B_sous_rubriques2>
+											defineChildmenuProperties(220,"left","left",0,-5,"");
+											<BOUCLE_sous_rubriques2(RUBRIQUES) {id_parent} {tout} {par titre} {doublons}>
+											addChildmenuItem("#URL_RUBRIQUE","[(#TITRE|supprimer_numero)]","","");
+											</BOUCLE_sous_rubriques2>
+										  </B_sous_rubriques2>
+							</BOUCLE_sous_rubriques0>
+						  </B_sous_rubriques0>
+			</BOUCLE_rubriques0>
+			 
+//**DO NOT EDIT THIS *****
+}//***********************
+//************************
+</script>
+<script language="javascript1.2" src="#DOSSIER_SQUELETTE/style.js"></script>
+<script language="javascript1.2" src="#DOSSIER_SQUELETTE/menu.js"></script>
+<br />
+	<img src="#DOSSIER_SQUELETTE/IMG_v2/bando4.gif" border="0" usemap="#map" /> 
+		<map name="map">
+			<area shape="rect" coords="13,4,290,32" href="spip.php?page=index">
+			<area shape="rect" coords="904,27,988,45" href="spip.php?page=plan">
+			<area shape="rect" coords="904,53,988,73" href="spip.php?page=contact">
+			<area shape="rect" coords="904,80,988,97" href="ecrire/">
+			<!--<area shape="rect" coords="900,8,981,29" href="spip.php?page=inscription">-->
+		</map>
+
+	      <?php
+		      <BOUCLE_logo(RUBRIQUES) {id_rubrique=1} {tout}>
+			$logo_som='[(#LOGO_RUBRIQUE||texte_script)]';
+		      </BOUCLE_logo>
+		      echo "<a href=\"#URL_SITE_SPIP\" class=\"entete\">";
+		      if ($logo_som!='') echo "<div id=\"entete1\"><a href=\"#URL_SITE_SPIP\" class=\"titre1\">$logo_som</a></div>";
+		      else echo"<div id=\"entete\">#NOM_SITE_SPIP</div>";
+		      echo "</a>";
+	      ?>

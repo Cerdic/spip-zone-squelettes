@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml2/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+	[(#INCLURE {fond=inc-head})]
+</head>
+<body>
+
+<div id="container">
+
+	[(#INCLURE {fond=entete})]
+	[(#INCLURE {fond=menu}{id_rubrique}{id_breve})]
+
+[(#REM) ------------------------------------- COLONE GAUCHE ----------------------------------------- ]
+	<div id="supportingText">
+
+	[(#REM) ---------------------- Chemin ---------------------- ]
+
+		<div id="filariane">
+	    <BOUCLE_rubrique_hierarchie(RUBRIQUES){id_rubrique}{tout}>
+			<a href="[(#URL_SITE_SPIP)]">ACCUEIL</a>
+				&gt;&gt;&nbsp;
+				<a href="spip.php?page=plan" >Plan</a> 
+			<hr />
+	   	</BOUCLE_rubrique_hierarchie>
+		</div>
+	
+		<div id="articles_breves">  
+
+			<div id="p_article_breve">  
+			
+	[(#REM) ---------------------- Titre ---------------------- ]
+			<h1><span>Résultats de la recherche pour [(#RECHERCHE)]</span></h1>
+			
+	[(#REM) ---------------------- Texte ---------------------- ]
+			<p style="margin-left:10%;">
+				
+				<div class="contre-encart">
+
+				[(#REM) Articles trouves ]
+				<B_articles>
+				<div class="liste-articles">
+					#ANCRE_PAGINATION
+					<h2 class="invisible"><:articles:></h2>
+					<ul>
+						<BOUCLE_articles(ARTICLES) {recherche} {par points} {inverse} {pagination}>
+						<li>
+						<h5 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h5>
+						<small>[(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small>
+						</li>
+						</BOUCLE_articles>
+					</ul>
+					[<p class="pagination">(#PAGINATION)</p>]
+				</div>
+				<br />
+				</B_articles>
+
+			</div>
+
+			<div class="encart">
+
+				[(#REM) Rubriques trouvees ]
+				<B_rubriques>
+				<div class="rubriques">
+					#ANCRE_PAGINATION
+					<h2 class="menu-titre"><:rubriques:></h2>
+					[<p class="pagination">(#PAGINATION)</p>]
+					<ul>
+						<BOUCLE_rubriques(RUBRIQUES) {recherche} {par points}{inverse} {pagination 5}>
+						<li><a href="#URL_RUBRIQUE">#TITRE</a></li>
+						</BOUCLE_rubriques>
+					</ul>
+				</div>
+				<br />
+				</B_rubriques>
+
+				[(#REM) Mots-cles trouves ]
+				<B_mots>
+				<div class="divers">
+					#ANCRE_PAGINATION
+					<h2 class="menu-titre"><:mots_clefs:></h2>
+					[<p class="pagination">(#PAGINATION)</p>]
+					<ul>
+						<BOUCLE_mots(MOTS) {recherche} {par points}{inverse} {pagination 5}>
+						<li><a href="#URL_MOT">#TITRE</a></li>
+						</BOUCLE_mots>
+					</ul>
+				</div>
+				<br />
+				</B_mots>
+
+				[(#REM) Breves trouvees ]
+				<B_breves>
+				<div class="breves">
+					#ANCRE_PAGINATION
+					<h2 class="menu-titre"><:breves:></h2>
+					[<p class="pagination">(#PAGINATION)</p>]
+					<ul>
+						<BOUCLE_breves(BREVES) {recherche} {par points}{inverse} {pagination 5}>
+						<li>[(#DATE|affdate_court) : ]<a href="#URL_BREVE">#TITRE</a></li>
+						</BOUCLE_breves>
+					</ul>
+				</div>
+				<br />
+				</B_breves>
+
+				[(#REM) Messages trouves ]
+				<B_messages>
+				<div class="forums">
+					#ANCRE_PAGINATION
+					<h2 class="menu-titre"><:messages_forum:></h2>
+					[<p class="pagination">(#PAGINATION)</p>]
+					<ul>
+						<BOUCLE_messages(FORUMS) {recherche} {par points}{inverse} {pagination 5}>
+						<li>[(#DATE|affdate_court) : ]<a href="#URL_FORUM">#TITRE</a></li>
+						</BOUCLE_messages>
+					</ul>
+				</div>
+				<br />
+				</B_messages>
+
+				[(#REM) Sites web trouves ]
+				<B_sites>
+				<div class="syndic">
+					#ANCRE_PAGINATION
+					<h2 class="menu-titre"><:sites_web:></h2>
+					[<p class="pagination">(#PAGINATION)</p>]
+					<ul>
+						<BOUCLE_sites(SITES) {recherche} {par points}{inverse} {pagination 5}>
+						<li><a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a></li>
+						</BOUCLE_sites>
+					</ul>
+				</div>
+				<br />				
+				</B_sites>
+
+			</div>
+				
+			</p>
+	</div>
+	</div>
+	
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+	
+	</div>
+	
+[(#REM) ------------------------------------- COLONE DROITE ----------------------------------------- ]
+	
+	<div id="linkList">
+	
+	[(#REM) ---------------------- Recherche ---------------------- ]
+	
+			[(#INCLURE{fond=bloc-recherche})] 
+	
+	</div>
+
+	[(#INCLURE {fond=bas_page})]
+	
+</div>
+
+</body></html>				  
+	

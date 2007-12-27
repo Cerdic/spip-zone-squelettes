@@ -1,0 +1,100 @@
+<?PHP
+//merci au beatnick
+function get_extra ($id, $objet) {
+	if(!$id) return false;
+	// On construit qqch qui ressemble ? "SELECT extra FROM spip_articles WHERE id_article=$id_article"
+	$query = "SELECT statut, extra FROM spip_".$objet."s";
+	$query .= " WHERE id_".$objet."=".$id;
+	$res = spip_query($query);
+	$cells = spip_fetch_array($res);
+	if(!$cells["extra"]) return false ;
+	$extra = unserialize ($cells["extra"]);
+	return $extra;
+}
+function a_le_droit($auteur_session,$rubrique_de_restreinte){
+	//on deserialise l'extra de l'auteur 
+	if(!$extra_auteur=get_extra($auteur_session['id_auteur'],"auteur")){
+               return false;
+    } 
+    /*
+    echo "auteur :::: ".$auteur_session['login']."<br />";
+    echo "Rubrique de restreinte $rubrique_de_restreinte :::  liste_rubrique_autorisee ".$extra_auteur['liste_rubrique']." <br />";  
+    */
+	$liste_rubrique_autorisee=explode(",",$extra_auteur['liste_rubrique']);	
+	if($liste_rubrique_autorisee==explode(",","")) {return false;}
+        $liste_rubrique_restreinte=explode("_",$rubrique_de_restreinte);
+        if($liste_rubrique_restreinte==explode("_","")) {return false;}
+	foreach ($liste_rubrique_autorisee as $autorisee){ 
+		//echo "rubrique autorisee pour ce visiteur $autorisee <br />";
+                foreach ($liste_rubrique_restreinte as $restreinte){
+		      if($restreinte==$autorisee) {return true;}
+                }
+	}
+	return false;
+}
+//a priori on suppose que notre rubrique n'est pa restreinte
+$restriction=false;
+$rubrique_de_restreinte="";
+//on verifie que l'article n'est pas contenu dans une rubrique en acces restreint
+<BOUCLE_controle_rub_simple(RUBRIQUES){id_rubrique}{tout}>
+$acces="[(#EXTRA|extra{acces})]";
+if($acces=="restreint"){
+	$rubrique_de_restreinte.="#ID_RUBRIQUE"."_";
+	$restriction=true;
+}else{
+        $rubrique_de_restreinte.="#ID_RUBRIQUE"."_";
+}
+//echo "acces = $acces pour #ID_RUBRIQUE<br />";
+</BOUCLE_controle_rub_simple>
+//si non cherche alors dans la hierachie
+if($acces!="restreint"){
+	//echo "aucune restriction trouvee dans cette rubrique recherche dans la hierarchie.....<br />";
+	<BOUCLE_contexte_rubrique(RUBRIQUES){id_rubrique}{tout}>
+	<BOUCLE_hierarchie_acces(HIERARCHIE){id_rubrique}{tout}>
+	<BOUCLE_controle_rub(RUBRIQUES){id_rubrique}{tout}>
+		$acces="[(#EXTRA|extra{acces})]";
+		if($acces=="restreint"){
+			$rubrique_de_restreinte.="#ID_RUBRIQUE"."_";
+			$restriction=true;
+		}else{
+                        $rubrique_de_restreinte.="#ID_RUBRIQUE"."_";
+                }
+		//echo "acces = $acces pour #ID_RUBRIQUE<br />";
+	</BOUCLE_controle_rub>
+	</BOUCLE_hierarchie_acces>
+	</BOUCLE_contexte_rubrique>
+	</B_contexte_rubrique>
+	<//B_contexte_rubrique>
+}
+if (($auteur_session['statut']=='1comite')||($auteur_session['statut']=='0minirezo'))
+{
+	//echo "l'auteur est admin <br />";
+	$restriction=false;
+}
+//si l'acces est restreint alors on doit proposer l'identification
+if ($restriction){
+	if(!$auteur_session){
+?>
+		<link rel="stylesheet" href="spip_style.css" type="text/css" />
+		<div style=" position: absolute; top:100px; left: 150px; width: 500px ">
+		Cette partie du site est en acces restreint
+		#LOGIN_PUBLIC
+		</div>
+<?php 
+		die;
+	}else{//apres identification on v?rifie que le visiteur a le droit de visiter cette rubrique 		
+		if (a_le_droit($auteur_session,$rubrique_de_restreinte)){
+			//on ne fait rien la rubrique peut se derouler 
+		}else{ ?>		
+			<link rel="stylesheet" href="spip_style.css" type="text/css" />
+			<div style=" position: absolute; top:100px; left: 150px; width: 500px ">
+			Vous n'avez pas les droits suffisants pour acceder &agrave cette partie du site
+			<a href="spip.php?page=sommaire"> Retour au site public </a>
+			#LOGIN_PUBLIC
+			</div>			
+			<?php
+			die;
+		}
+	}
+}
+?>

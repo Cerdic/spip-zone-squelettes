@@ -1,0 +1,100 @@
+				<!-----------------------------------ARTICLE UNE---------------------------->
+
+				<BOUCLE_ex(ARTICLES) {id_rubrique} {titre_mot=rubrique_edito} {0,1} {doublons}>
+				</BOUCLE_ex>
+
+				<BOUCLE_article_1(ARTICLES) {branche} {par date} {inverse} {0,1} {doublons}>
+					
+					<div id="cadre1">
+						
+							[(#LOGO_RUBRIQUE|left)]
+							<a href="#URL_ARTICLE" class="liens2"><font id="titre">#TITRE</font></a>
+							<br /> <em>
+							[Le (#DATE|nom_jour)] [(#DATE|affdate)]
+							<B_auteurs_1>
+							par <BOUCLE_auteurs_1(AUTEURS) {id_article} {", "}>#NOM
+							</BOUCLE_auteurs_1>  
+							</em>
+							<font id="ttpetit"><br /><br /></font>
+							[(#TEXTE|textebrut|couper{340})]
+							 
+							<div align="right"><strong><a href="#URL_ARTICLE" class="liens2">
+							Lire la suite</a> &gt;</strong>
+							</div>
+						  
+					</div>
+					
+				</BOUCLE_article_1>
+					
+		</div><!-- Fin 1ere Article -->
+				
+		</div> <!-- Fin Article general-->
+		
+		<P></P>			
+
+				<div id="Articles2_reseau"> <!-- Début Autres Articles-->
+					
+					<BOUCLE_article_3(ARTICLES) {branche} {par date} {inverse}  {0,7} {doublons}>
+					
+						[(#LOGO_RUBRIQUE|left)]
+							
+							
+							<font id="titre"><a href="#URL_ARTICLE" class="liens0">#TITRE</a></font>
+							<br /> 
+							<a href="#URL_ARTICLE">
+							<em>
+							[Le (#DATE|nom_jour)] [(#DATE|affdate)]
+							<B_auteurs_3>
+							par <BOUCLE_auteurs_3(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_3>
+							</em>
+							</a>
+							<P></P>
+							
+					
+					</BOUCLE_article_3>
+				
+				</div><!-- Fin Autres Articles -->
+				
+				<P>&nbsp;</P>
+				
+				<div id="Articles_reseau"> <!-- Début 1ère Brèves-->
+					
+					<B_breve1>
+
+					<div id="Articles_img_reseau"> 
+						<img src="#DOSSIER_SQUELETTE/IMG_v2/txt_breves.gif" alt="Br&egrave;ves" width="77" height="22" />
+					</div>
+					
+					<div id="Articles1_reseau">
+						
+						<BOUCLE_breve1(BREVES) {branche} {par date} {inverse} {0,1}>
+							
+								<div id="cadre1">
+								<font id="titre"><a href="#URL_BREVE" class="liens2">#TITRE</a></font> 
+							                  : <a href="#URL_BREVE">[(#TEXTE|textebrut|couper{130})] - <em>[Le (#DATE|nom_jour)] 
+							                  [(#DATE|affdate)] -</em></a>
+							                
+								</div>
+								
+						</BOUCLE_breve1>	
+
+					</div>
+					
+					</B_breve1>
+
+				</div> <!-- Fin 1ère Brèves-->
+				<P></P>
+				
+				
+				<div id="Articles2_reseau"> <!-- Début Autres Breves-->
+					
+					<BOUCLE_breve2(BREVES) {branche} {par date} {inverse} {1,10}>
+						
+						<font id="titre">-&nbsp;<a href="#URL_BREVE" class="liens0">#TITRE</a></font> 
+					    <em><a href="#URL_BREVE">[> (#DATE|nom_jour)] 
+					    [(#DATE|affdate)]</em></a>
+						<P></P>
+					                
+					</BOUCLE_breve2>			        
+	
+				</div>	

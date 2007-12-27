@@ -1,0 +1,80 @@
+<BOUCLE_principale(BREVES){id_breve}{doublons}>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml2/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+	[(#INCLURE {fond=inc-head})]
+</head>
+<body>
+
+<div id="container">
+
+	[(#INCLURE {fond=entete})]
+	[(#INCLURE {fond=menu}{id_rubrique}{id_breve})]
+
+[(#REM) ------------------------------------- COLONE GAUCHE ----------------------------------------- ]
+	<div id="supportingText">
+
+	[(#REM) ---------------------- Chemin ---------------------- ]
+
+		<div id="filariane">
+	    <BOUCLE_rubrique_hierarchie(RUBRIQUES){id_rubrique}{tout}>
+			<a href="[(#URL_SITE_SPIP)]">ACCUEIL</a>
+			  <BOUCLE_chemin(HIERARCHIE){id_rubrique}{tout}>
+				&gt;&gt;&nbsp;
+				<a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a> 
+				</BOUCLE_chemin>
+			<hr />
+	   	</BOUCLE_rubrique_hierarchie>
+		</div>
+	
+		<div id="articles_breves">  
+
+			<div id="p_article_breve">  
+			
+	[(#REM) ---------------------- Titre ---------------------- ]
+
+				[(#SURTITRE|majuscules)] 
+				[(#LOGO_BREVE|right||image_reduire{200,200})]
+				[<h1><span>(#TITRE|supprimer_numero)</span></h1>]
+				[<h4>(#SOUSTITRE|majuscules)</h4>]
+				[<div id="web"><div id="web_texte" class="#EDIT{DESCRIPTIF}">(#DESCRIPTIF)</div></div>]
+
+				<div >
+						<em>[(#DATE|nom_jour)] [(#DATE|affdate)]</em>
+				</div>
+				
+	[(#REM) ---------------------- Texte ---------------------- ]
+			[<br /><div id="spip" class="#EDIT{texte}">(#TEXTE|image_reduire{520,0})</div>]
+			[<p><strong>Voir en ligne : </strong><a href="#URL_SITE">(#NOM_SITE)</a></p>]
+			                
+	[(#REM) ---------------------- Forum ---------------------- ]
+			[<br /><p><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_breve:></a></p>]
+			<INCLURE{fond=article-forum}{id_breve}>
+
+
+	</div>
+	</div>
+	
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+	
+	</div>
+	
+[(#REM) ------------------------------------- COLONE DROITE ----------------------------------------- ]
+	
+	<div id="linkList">
+	
+	[(#REM) ---------------------- Recherche ---------------------- ]
+	
+			[(#INCLURE{fond=bloc-recherche})] 
+	
+	</div>
+
+	[(#INCLURE {fond=bas_page})]
+	
+</div>
+
+</body></html>
+
+</BOUCLE_principale>

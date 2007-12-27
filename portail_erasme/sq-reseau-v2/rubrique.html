@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<title>[#NOM_SITE_SPIP]</title>
+	<link rel="stylesheet" href="#DOSSIER_SQUELETTE/style<?php if (isset ($HTTP_COOKIE_VARS['choix_couleur'])) if (file_exists("#DOSSIER_SQUELETTE/style_".$HTTP_COOKIE_VARS['choix_couleur'].".css")) echo "_".$HTTP_COOKIE_VARS['choix_couleur']; ?>.css" type="text/css" />
+	<meta name="author" content="Erasme - info@erasme.org" />
+	<link rel="alternate" type="application/rss+xml" href="/spip.php?page=backend" title="[#NOM_SITE_SPIP]" />
+</head>
+
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+
+			<BOUCLE_rubriques_ex(RUBRIQUES) {tout} {titre_mot=pas_menu} {doublons}>
+			</BOUCLE_rubriques_ex>
+
+[(#INCLURE{fond=entete})] 
+
+<div id="Principale_reseau"> <!-- Debut Main reseau -->
+
+  	<BR />
+  	<BR />
+  	
+	<div id="Colonne_1_reseau"> <!-- Debut 1ere colonne -->
+
+		<div id="Edito_reseau"> <!-- Début "Edito rubrique" -->
+
+				<!--------------------------EDITO------------------------->
+
+				<B_article_0>
+
+				<br /><br />
+
+				<BOUCLE_article_0(ARTICLES) {id_rubrique} {titre_mot=rubrique_edito} {0,1} {doublons}>
+
+					<div id="cadre_edito"> 
+						<div id="cadre3_solid">
+							[<a href="#URL_ARTICLE">(#LOGO_RUBRIQUE|right||reduire_image{200,200})</a>]
+							[<span id='titre_edito'>(#TITRE|supprimer_numero)</span>]
+							[<br /><br />(#TEXTE)]
+						</div>
+					</div>
+
+				</BOUCLE_article_0>
+
+		</div><!-- Fin "Edito" -->
+
+		<P>&nbsp;</P>
+
+		<div id="Articles_reseau"> <!-- Début Article general-->
+
+			<div id="Articles_img_reseau"> <!-- Debut Image Article -->
+				<img src="#DOSSIER_SQUELETTE/IMG_v2/txt_articles.gif" width="77" height="22" />
+			</div> <!-- Fin Image Article -->
+
+			<div id="Articles1_reseau"> <!-- Debut 1ere Article -->
+
+				<!----------------------------------------CHEMIN---------------------------->
+
+          <BOUCLE_rubrique_hierarchie(RUBRIQUES){id_rubrique}{tout}>
+			        <b><a href="#URL_SITE_SPIP" class="liens0">ACCUEIL</a></b>
+				        <BOUCLE_chemin(HIERARCHIE){id_rubrique}{tout}>
+					        <b> &gt;&gt;&nbsp; </b>
+					        <a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"] class="liens0">
+					        <b>[(#TITRE|supprimer_numero)]</b></a> 
+				        </BOUCLE_chemin>
+			        <br />
+	   					<hr />	
+	   			</BOUCLE_rubrique_hierarchie>
+
+				<br />
+
+				<!----------------------------------TESTS---------------------------->
+
+				<BOUCLE_principale(RUBRIQUES){id_rubrique}{tout}>
+
+					<B_serv>
+						<BOUCLE_serv(RUBRIQUES){id_rubrique}{tout}{titre_mot=service-public.fr}>
+							[(#INCLURE{fond=rubrique-serv}{id_rubrique})]
+						</BOUCLE_serv>
+					</B_serv>
+
+						<B_serv0>
+
+							<BOUCLE_serv0(RUBRIQUES){id_parent}{tout}{titre_mot=service-public.fr}>
+							</BOUCLE_serv0>
+								[(#INCLURE{fond=rubrique-serv}{id_rubrique})]
+							<//B_serv0>	
+
+						</B_serv0>
+
+							<B_trombino>
+								<BOUCLE_trombino(RUBRIQUES){tout}{id_rubrique}{titre_mot=trombinoscope}>
+									[(#INCLURE{fond=rubrique-trombino}{id_rubrique})]
+								</BOUCLE_trombino>
+							</div></div>
+							</B_trombino>
+
+							<B_plan>
+								<BOUCLE_plan(RUBRIQUES){tout}{id_rubrique}{titre_mot=chrono}>
+									[(#INCLURE{fond=rubrique-chrono}{id_rubrique})]
+								</BOUCLE_plan>
+							</B_plan>
+
+							[(#INCLURE{fond=rubrique-plan}{id_rubrique})]
+
+							</div></div>	
+
+	<!-------------------------------------------FIN TESTS----------------------------------------------->
+
+			<//B_plan>
+
+			<//B_trombino>
+
+			<//B_serv0>
+
+			<//B_serv>
+
+			</BOUCLE_principale>
+
+	</div><!-- Fin 1ere colonne -->
+
+	<div id="Colonne_2_reseau"> <!-- Debut 2eme colonne -->
+
+	<B_serv2>
+
+	<BOUCLE_serv2(RUBRIQUES){id_rubrique}{tout}{titre_mot=service-public.fr}>
+
+	</BOUCLE_serv2>
+
+		[(#INCLURE{fond=rubrique-serv-droite}{id_rubrique})]
+
+	</B_serv2>
+
+	<BR />
+	<BR />
+
+		<!------------------------------ Liste déroulante ----------------------------------->
+
+		<B_trombino2>
+			<BOUCLE_trombino2(RUBRIQUES){tout}{id_rubrique}{titre_mot=trombinoscope}>
+			<br /><br /><br /><br /><br />[(#INCLURE{fond=bloc-menu-rubrique}{id_rubrique})]
+			</BOUCLE_trombino2>
+		</B_trombino2>
+
+		<!------------------------------ Recherche ----------------------------------->
+
+		[(#INCLURE{fond=bloc-recherche})]
+
+		<//B_trombino2>
+
+		<!------------------------------ Sous Rubriques ----------------------------------->
+
+		[(#INCLURE{fond=bloc-ss-rubriques}{id_rubrique})]
+
+		<!--------------------------------------- SUR LE WEB ---------------------------------->
+
+		[(#INCLURE{fond=bloc-web}{id_rubrique})]
+
+		<!----------------------------------------FORUM----------------------------------->
+
+  [(#INCLURE{fond=bloc-forum}{id_rubrique})]
+
+	<//B_serv2>
+
+	</div> <!-- Fin 2eme colonne -->
+
+	<div class="spacer"> <!-- Debut Bas Page -->
+		[(#INCLURE{fond=bas_page})]
+	</div> <!-- Fin Bas Page -->
+
+</div> <!-- Fin Main reseau -->		
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<title>[#NOM_SITE_SPIP]</title>
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/style<?php if (isset ($HTTP_COOKIE_VARS['choix_couleur'])) if (file_exists("#DOSSIER_SQUELETTE/style_".$HTTP_COOKIE_VARS['choix_couleur'].".css")) echo "_".$HTTP_COOKIE_VARS['choix_couleur']; ?>.css" type="text/css" />
+<meta name="author" content="Erasme - info@erasme.org" />
+<link rel="alternate" type="application/rss+xml" href="/spip.php?page=backend" title="[#NOM_SITE_SPIP]" />
+</head>
+
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+[(#INCLURE{fond=entete})] 
+
+<div id="Principale_reseau"> <!-- Debut Main reseau -->
+
+  	<BR />
+  	<BR />
+  	
+	<div id="Colonne_1_reseau"> <!-- Debut 1ere colonne -->
+		
+		<P>&nbsp;</P>
+	
+			<div id="Articles_reseau_normal">
+			
+				<div id="Article_normal_img_reseau"> <!-- Debut Image Article -->
+					<img src="#DOSSIER_SQUELETTE/IMG_v2/transp.gif" width=86 />
+				</div> <!-- Fin Image Article -->
+
+			<div id="Article_normal_reseau">
+
+				<!----------------------------------------CHEMIN---------------------------->
+
+          <BOUCLE_rubrique_hierarchie(RUBRIQUES){id_rubrique}{tout}>
+			        <b><a href="#URL_SITE_SPIP" class="liens0">ACCUEIL</a></b>
+				        <BOUCLE_chemin(HIERARCHIE){id_rubrique}{tout}>
+				        <b> &gt;&gt;&nbsp; </b>
+				        <a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"] class="liens0">
+				        <b>#TITRE</b></a> 
+				        </BOUCLE_chemin>
+			        <br />
+	   			<hr />	
+	   			</BOUCLE_rubrique_hierarchie>
+					
+				       <div id="Bordure">&nbsp;</div>
+						 
+			        <!----------------------------TITRE------------------------------------->
+			        
+
+			      <div id="cadre1_transp">
+			       <div id='titre6'>Nous contacter</div>
+						</div> 
+
+			        <!----------------------------TEXTE------------------------------->
+
+							<p>&nbsp;</p>
+			          	
+								<?php
+								if (isset($_POST[envoyer])){
+									$charset = lire_meta('charset');
+									$headers = "From: $_POST[email]\n";
+									$headers.=	"MIME-Version: 1.0\n";
+									$headers.=	"Content-Type: text/plain; charset=$charset\n";
+									$headers.=	"Content-Transfer-Encoding: 8bit\n$headers";
+									$message= utf8_decode("#NOM_SITE_SPIP")."\n  Une personne a laissé un message.\n\n";
+									$message.= "$_POST[prenom] $_POST[nom]\n";
+									if (isset($_POST[societe])){
+										$message.="Société : $_POST[societe]\n";
+									}
+									if (isset($_POST[telephone])){
+										$message.="Téléphone : $_POST[telephone]\n";
+									}
+									if (isset($_POST[email])){
+										$message.="Email : $_POST[email]\n";
+									}
+									if (isset($_POST[adresse])){
+										$message.="Adresse : \n$_POST[adresse]\n$_POST[cp] - $_POST[ville]\n\n";
+									}
+									$message.="Message :\n$_POST[msg]\n\n\n";
+									$message.= "[(#URL_SITE_SPIP|addslashes)]";
+									$objet = "MESSAGE AUTOMATIQUE DU SITE SPIP";
+									mail("[(#EMAIL_WEBMASTER)]",$objet,$message,$_POST[email]);
+								?>
+								Message envoy&eacute;
+								<?php
+								}
+								else 
+								{
+								?>
+									<SCRIPT LANGUAGE="JavaScript">
+									function VerifForm_contact(){
+										adresse = document.contact.email.value;
+										var place = adresse.indexOf("@",1);
+										var point = adresse.indexOf(".",place+1);
+										var erreurMsg='Erreur de contact\n';
+										var listErreur='';
+										if (document.contact.nom.value=="")
+											listErreur = listErreur + '	- nom\n';
+										if (document.contact.prenom.value=="")
+											listErreur = listErreur + '	- pr&eacute;nom\n';
+										if (document.contact.societe.value=="")
+											listErreur = listErreur + '	- soci&eacute;t&eacute;\n';
+										if (document.contact.telephone.value=="")
+											listErreur = listErreur + '	- t&eacute;l&eacute;phone\n';
+										if (!((place > -1)&&(adresse.length >2)&&(point > 1)))
+											listErreur = listErreur + '	- email\n';
+										if (document.contact.msg.value=="")
+											listErreur = listErreur + '	- message\n';
+										if (listErreur==''){
+											return true;
+										}
+										else {
+											erreurMsg = erreurMsg + listErreur;
+											alert(erreurMsg);
+											return false;
+										}
+									}
+									</script>
+									<form action="spip.php?page=contact" method="post" name="contact" onSubmit="return VerifForm_contact()" >
+										<table border="0" align="center">
+											<tr>
+												<td width="50%" style="text-align:left;"><li>&nbsp;<label for="nom">nom</label>&nbsp;:</td><td width="50%"><input type="text" name="nom" /></td>
+											</tr>
+											<tr>
+												<td width="50%" style="text-align:left;"><li>&nbsp;<label for="prenom">pr&eacute;nom</label>&nbsp;:</td><td width="50%"><input type="text" name="prenom" /></td>
+											</tr>
+											<tr>
+												<td width="50%" style="text-align:left;"><li>&nbsp;<label for="societe">soci&eacute;t&eacute;</label>&nbsp;:</td><td width="50%"><input type="text" name="societe"  /></td>
+											</tr>
+											<tr>
+												<td width="50%" style="text-align:left;"><li>&nbsp;<label for="telephone">t&eacute;l&eacute;phone</label>&nbsp;:</td><td width="50%"><input type="text" name="telephone" /></td>
+											</tr>
+											<tr>
+												<td width="50%" style="text-align:left;"><li>&nbsp;<label for="email">email</label>&nbsp;:</td><td width="50%"><input type="text" name="email" /></td>
+											</tr>
+											<tr>
+												<td width="50%" style="text-align:left;"><li>&nbsp;<label for="adresse">adresse</label>&nbsp;:</td><td width="50%"><textarea name="adresse" cols="15" rows="3"></textarea></td>
+											</tr>
+											<tr>
+												<td width="50%" style="text-align:left;"><li>&nbsp;<label for="cp">code postal</label>&nbsp;:</td><td width="50%"><input type="text" name="cp" /></td>
+											</tr>
+											<tr>
+												<td width="50%" style="text-align:left;"><li>&nbsp;<label for="ville">ville</label>&nbsp;:</td><td width="50%"><input type="text" name="ville" /></td>
+											</tr>
+											<tr>
+												<td width="50%" style="text-align:left;"><li>&nbsp;<label for="msg">message</label>&nbsp;:</td><td width="50%"><textarea name="msg" cols="15" rows="5"></textarea></td>
+											</tr>
+											<tr>
+												<td width="100%" colspan="2" align="center">
+													<br /><br /><input type="hidden" name="envoyer" value="oui" />
+													<input type="submit" value="envoyer" name="envoyer" class="spip_bouton" />
+												</td>
+											</tr>
+										</table>
+									</form>
+								<?php 
+								}
+								?>
+							  
+			                  	
+		</div>
+		</div>
+	
+	</div><!-- Fin 1ere colonne -->
+	
+	<div id="Colonne_2_reseau"> <!-- Debut 2eme colonne -->
+	
+		<BR />
+		<BR />
+
+			<!------------------------------ Recherche ----------------------------------->
+	
+			[(#INCLURE{fond=bloc-recherche})] 
+			
+	
+	</div> <!-- Fin 2eme colonne -->
+		
+	<div class="spacer"> <!-- Debut Bas Page -->
+		[(#INCLURE{fond=bas_page})]
+	</div> <!-- Fin Bas Page -->
+
+</div> <!-- Fin Main reseau -->		
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<BOUCLE_rubriques_ex(RUBRIQUES) {tout} {titre_mot=pas_menu} {doublons}>
+</BOUCLE_rubriques_ex>
+
+<BOUCLE_ex(ARTICLES) {id_rubrique} {titre_mot=rubrique_edito} {0,1} {doublons}>
+</BOUCLE_ex>
+
+				<BOUCLE_secteurs(RUBRIQUES) {id_rubrique} {tout} {par titre} {inverse} {doublons}>
+
+					<div id="plan">
+					[<span id='titre_edito'>(#TITRE|supprimer_numero)</span>]
+					<!-- Articles et sous-rubriques -->
+
+						<B_articles_racine>
+							<ul>
+							<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre} >
+								[<li><a href="#URL_ARTICLE" class="liens0">(#TITRE|supprimer_numero)</a></li>]
+							</BOUCLE_articles_racine>
+							</ul>
+						</B_articles_racine>
+						
+						<B_rubriques>
+							<ul>
+						<BOUCLE_rubriques(RUBRIQUES) {id_parent} {tout} {par titre} {doublons}>
+							<li>
+							[<a href="#URL_RUBRIQUE" class="liens0"><b>(#TITRE|supprimer_numero)</b></a>]
+
+								<B_articles>
+									<ul>
+								<BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
+									[<li><a href="#URL_ARTICLE" class="liens0">(#TITRE|supprimer_numero)</a></li>]
+								</BOUCLE_articles>
+									</ul>
+								</B_articles>
+
+							<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+							<br />
+							</li>
+						</BOUCLE_rubriques>
+							</ul>
+						</B_rubriques>
+						
+						<!-- Breves -->
+						<B_breves>
+						
+						<b>Br&egrave;ves</b><br />
+
+						<ul>
+						<BOUCLE_breves(BREVES) {id_rubrique} {par titre} >
+							<li class="menu-item">
+							<i>[(#DATE|affdate_court)]</i>:
+							[<a href="#URL_BREVE">(#TITRE|supprimer_numero)</a>]
+							</li>
+						</BOUCLE_breves>
+							</ul>
+						</B_breves>
+
+						<!-- Sur le Web -->
+
+						<B_sites>
+
+						<b>Sites</b><br />
+	
+						<ul>
+						<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}>
+							<li>
+							<a href="#URL_SITE">#NOM_SITE</a>
+							</li>
+						</BOUCLE_sites>
+							</ul>
+						</B_sites>
+						
+					</div>
+					<br />
+				</BOUCLE_secteurs>
+			

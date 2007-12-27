@@ -1,0 +1,176 @@
+<script language="JavaScript">
+	
+function SetCookie (name, value) {
+	var argv=SetCookie.arguments;
+	var argc=SetCookie.arguments.length;
+	var expires=(argc > 2) ? argv[2] : null;
+	var path=(argc > 3) ? argv[3] : null;
+	var domain=(argc > 4) ? argv[4] : null;
+	var secure=(argc > 5) ? argv[5] : false;
+	document.cookie=name+"="+escape(value)+
+		((expires==null) ? "" : ("; expires="+expires.toGMTString()))+
+		((path==null) ? "" : ("; path="+path))+
+		((domain==null) ? "" : ("; domain="+domain))+
+		((secure==true) ? "; secure" : "");
+}
+	
+function goto(couleur)
+	{	
+		var pathname=location.pathname;
+		var myDomain=pathname.substring(0,pathname.lastIndexOf('/')) +'/';
+		var date_exp = new Date();
+		date_exp.setTime(date_exp.getTime()+(365*24*3600*1000));
+		// Ici on définit une durée de vie de 365 jours
+		SetCookie ('choix_couleur', couleur,date_exp,myDomain);
+		
+		<?php
+		$updateGoTo = "#SELF";
+    $updateGoTo .= (strpos($updateGoTo, '?')) ? "&" : "?";
+		?>
+		
+		top.location.href="<?php echo $updateGoTo; ?>";
+	}
+
+</script>
+
+<?php
+//////////////////////////////////////////////////////////////////////
+// Definition des fonctions
+//////////////////////////////////////////////////////////////////////
+
+//
+// Renvoi la liste des répertoires contenant un squelette de présentation
+//
+function list_look() {
+  $files = array();
+  if ($dh = opendir("#DOSSIER_SQUELETTE/")) {
+    while (($file = readdir($dh)) !== false) {
+      array_push($files, $file);
+    }
+    closedir($dh);
+  }
+  //$files = scandir("#DOSSIER_SQUELETTE/");
+  $sq = array();
+  foreach ($files as $file) {
+    if ((preg_match("/^style_/", $file)) && is_file("#DOSSIER_SQUELETTE/".$file)) {
+      array_push($sq, $file);
+    }
+  }
+  return $sq;
+}
+
+
+function display_look() {
+  $sq = list_look();
+  foreach ($sq as $dir) 
+  {
+					$couleur=substr($dir,strpos($dir,'_')+1,strpos($dir,'.')-strpos($dir,'_')-1);
+					echo ('<a href="#" OnClick="goto(\''.$couleur.'\')">');
+					echo ('<IMG src="#DOSSIER_SQUELETTE/IMG_v2/Carre_bleu.jpg" width=20 height=20 class="spip_logos" />');
+					echo ('</a>&nbsp;');
+	}
+}
+
+
+function load_file_content($filename) {
+  $content = "";
+  $dataFile = fopen($filename, "r");
+
+  if ($dataFile) {
+   while (!feof($dataFile)) {
+     $buffer = fgets($dataFile, 4096);
+     $content .= $buffer;
+    }
+    fclose($dataFile);
+  }
+  else {
+   die ("fopen failed for $filename");
+  }
+  return $content;
+}
+
+function current_theme() {
+  $mes_fonctions = load_file_content("../spip.php?page=mes_fonctions");
+  //$mes_fonctions = file_get_contents("../spip.php?page=mes_fonctions");
+
+  // s'il y a déjà la variable définie pour le thème on la change
+  if (preg_match("/\\\$GLOBALS\['dossier_squelettes'\] = '([^']+)';/s", $mes_fonctions, $matches)) {
+    return $matches[1];
+  }
+  return null;
+}
+
+function save_theme($name) {
+  $mes_fonctions = load_file_content("../spip.php?page=mes_fonctions");
+  //$mes_fonctions = file_get_contents("../spip.php?page=mes_fonctions");
+
+  // s'il y a déjà la variable définie pour le thème on la change
+  if (preg_match("/^(.*)\\\$GLOBALS\['dossier_squelettes'\] = '[^']+';(.*)$/s", $mes_fonctions, $matches)) {
+    $new = $matches[1].'$GLOBALS[\'dossier_squelettes\'] = \''.$name.'\';'.$matches[2];
+    $file = fopen("../spip.php?page=mes_fonctions", "w");
+    if (!$file) {
+      debut_boite_alerte();
+      echo "Impossible d'ouvrir le fichier spip.php?page=mes_fonctions en &eacute;criture. ".
+           "Vous devez avoir un probl&egrave;me de droit. Merci de la corriger ".
+           "afin de pouvoir enregistrer le th&egrave;me de votre choix.";
+      fin_boite_alerte();
+      return false;
+    }
+    fwrite($file, $new);
+    fclose($file);
+  }
+  // sinon, on la rajoute dans le fichier spip.php?page=mes_fonctions
+  else {
+    $new = <<<TEXTE
+<?php
+\$GLOBALS['dossier_squelettes'] = '$name';
+?>
+TEXTE;
+    $file = fopen("../spip.php?page=mes_fonctions", "a");
+    if (!$file) {
+      debut_boite_alerte();
+      echo "Impossible d'ouvrir le fichier spip.php?page=mes_fonctions en &eacute;criture. ".
+           "Vous devez avoir un probl&egrave;me de droit. Merci de la corriger ".
+           "afin de pouvoir enregistrer le th&egrave;me de votre choix.";
+      fin_boite_alerte();
+      return false;
+    }
+    fwrite($file, $new);
+    fclose($file);
+  }
+  // vider les squelettes du cache
+  purger_cache();
+  return true;
+}
+
+function ajouter_banniere() {
+  global $_REQUEST;
+  global $_FILES;
+  global $spip_mysql_link;
+
+  if (!isset($_FILES['pcom_rubon']['name']) ||
+      ($_FILES['pcom_rubon']['name'] == '')) {
+    debut_boite_alerte();
+    echo "Vous devez choisir la photo.";
+    fin_boite_alerte();
+    return;
+  }
+  
+  // deplace l'image dans le dossier des images
+  if (!move_uploaded_file($_FILES['pcom_rubon']['tmp_name'], "../IMG/rubon1.jpg")) {
+    debut_boite_alerte();
+    echo "Erreur lors du transfert de l'image\n";
+    fin_boite_alerte();
+  }
+  chmod("../IMG/rubon1.jpg", 0660);
+}
+?>
+
+
+			<span>
+
+				<?php
+				display_look();
+				?>
+				
+			</span>

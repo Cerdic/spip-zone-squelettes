@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml2/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+	[(#INCLURE {fond=inc-head})]
+</head>
+<body>
+
+<div id="container">
+
+	[(#INCLURE {fond=entete})]
+	[(#INCLURE {fond=menu}{id_rubrique}{id_breve})]
+
+[(#REM) ------------------------------------- COLONE GAUCHE ----------------------------------------- ]
+	<div id="supportingText">
+
+	[(#REM) ---------------------- Chemin ---------------------- ]
+
+		<div id="filariane">
+	    <BOUCLE_rubrique_hierarchie(RUBRIQUES){id_rubrique}{tout}>
+			<a href="[(#URL_SITE_SPIP)]">ACCUEIL</a>
+				&gt;&gt;&nbsp;
+				<a href="spip.php?page=plan" >Plan</a> 
+			<hr />
+	   	</BOUCLE_rubrique_hierarchie>
+		</div>
+	
+		<div id="articles_breves">  
+
+			<div id="p_article_breve">  
+			
+	[(#REM) ---------------------- Titre ---------------------- ]
+			<h1><span>Plan du site</span></h1>
+				
+	[(#REM) ---------------------- Texte ---------------------- ]
+			<p style="margin-left:10%;">
+			<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
+
+				<h2><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h2>
+
+				[(#REM) Articles et sous-rubriques ]
+
+				<div class="contre-encart">
+
+					<B_articles_racine>
+					<!--<h5 class="invisible"><:articles:></h5>-->
+					<ul>
+						<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
+						<li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></li>
+						</BOUCLE_articles_racine>
+					</ul>
+					</B_articles_racine>
+
+					<B_rubriques>
+					<ul>
+						<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+						<li><strong><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></strong>
+
+							<B_articles>
+							<ul>
+								<BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
+								<li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></li>
+								</BOUCLE_articles>
+							</ul>
+							</B_articles>
+
+							<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+
+						</li>
+						</BOUCLE_rubriques>
+
+					</ul>
+					</B_rubriques>
+
+				</div><!-- fin contre-encart -->
+
+				<div class="encart">
+				<!--
+				[(#REM) Breves ]
+				<B_breves>
+				<br /><div class="breves">
+					<h5 class="menu-titre"><:breves:></h5>
+					<ul>
+						<BOUCLE_breves(BREVES) {id_secteur} {par date}{inverse}>
+						<li><a href="#URL_BREVE">#TITRE</a></li>
+						</BOUCLE_breves>
+					</ul>
+				</div>
+				</B_breves>
+
+				[(#REM) Sur le Web ]
+				<B_sites>
+				<br /><div class="syndic">
+					<h5 class="menu-titre"><:sites_web:></h5>
+					<ul>
+						<BOUCLE_sites(SITES) {id_secteur} {par nom_site}>
+						<li><a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a></li>
+						</BOUCLE_sites>
+					</ul>
+				</div>
+				</B_sites>
+				-->
+				</div><!-- fin encart -->
+			<p>&nbsp;</p>
+			</BOUCLE_secteurs>
+			</p>                
+	
+	</div>
+	</div>
+	
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+	
+	</div>
+	
+[(#REM) ------------------------------------- COLONE DROITE ----------------------------------------- ]
+	
+	<div id="linkList">
+	
+	[(#REM) ---------------------- Recherche ---------------------- ]
+	
+			[(#INCLURE{fond=bloc-recherche})] 
+	
+	</div>
+
+	[(#INCLURE {fond=bas_page})]
+	
+</div>
+
+</body></html>

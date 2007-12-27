@@ -1,0 +1,28 @@
+	<BOUCLE_rubrique_temp(RUBRIQUES) {id_rubrique} {tout}>
+		
+		<?php
+		
+		$extra='[(#EXTRA|extra{"pivot"})]';
+		if ($extra=='') $extra=0;
+
+		include ('ecrire/spip.php?page=inc_pcom');
+		pcom_open();
+		$query="SELECT * FROM pcom_serv_pub WHERE pcom_serv_pub.id=$extra";
+		$result = pcom_query($query);   
+	
+			while ( $list = pcom_fetch_array( $result ) ) 
+			{  
+				$titre=$list['titre'];
+				$url=$list['url'];
+				$decription=$list['description'];
+			}
+		?>
+	
+	</BOUCLE_rubrique_temp>	
+		
+			<!--PAGE IFRAME IMPORTEE SERV-PUB.FR--->
+            		
+            			<br />
+            			<iframe src='<?php echo $url; ?>' width=500 height=650 scrolling=auto align=left>
+				</iframe>
+			</div></div>

@@ -1,0 +1,67 @@
+#CACHE{48*3600}
+<BOUCLE_ex(ARTICLES) {id_rubrique} {titre_mot=rubrique_edito} {0,1} {doublons}></BOUCLE_ex>
+
+	[(#REM) ---------------------- Derniers articles ---------------------- ]
+
+		<B_article_1>
+		<div id="articles_breves">  
+			<h6>ARTICLES</h6>
+
+				<BOUCLE_article_1(ARTICLES) {branche} {par date} {inverse} {0,1} {doublons}>
+						<div id="article_breve_1">
+							<div id="article_texte">
+								<BOUCLE_hierarchie(HIERARCHIE){id_article}{0,1}>[(#LOGO_RUBRIQUE||image_reduire{30,30})]</BOUCLE_hierarchie>
+								<h5><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h5>
+								<em>[Le (#DATE|nom_jour)] [(#DATE|affdate)]<B_auteurs_1> par <BOUCLE_auteurs_1(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_1></em>
+								[<p>(#TEXTE|textebrut|couper{340})</p>]
+								<span><strong><a href="#URL_ARTICLE">Lire la suite</a> &gt;</strong></span>
+							</div>
+						</div>
+				</BOUCLE_article_1>
+
+				<B_article_2>
+					<div id="article_breve_all">
+						<BOUCLE_article_2(ARTICLES) {branche} {par date} {inverse} {0,7} {doublons}>
+								<div id="article_texte">
+									<BOUCLE_hierarchie2(HIERARCHIE){id_article}{0,1}>[(#LOGO_RUBRIQUE||image_reduire{30,30})]</BOUCLE_hierarchie2>
+									<h5><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h5>
+									<em>[Le (#DATE|nom_jour)] [(#DATE|affdate)]<B_auteurs_2> par <BOUCLE_auteurs_2(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_2></em>
+								</div>
+						</BOUCLE_article_2>
+					</div>
+				</B_article_2>
+
+	</div>		
+	</B_article_1>
+		
+		
+	[(#REM) ---------------------- Dernieres brèves ---------------------- ]
+
+		<B_breve_1>
+		<div id="articles_breves">  
+			<h6>BREVES</h6>
+				<BOUCLE_breve_1(BREVES) {branche} {par date} {inverse} {0,1} {doublons}>
+						<div id="article_breve_1">
+							<div id="article_texte">
+								[(#LOGO_RUBRIQUE_BREVE||reduire_image{20,20})]
+								<h5><a href="#URL_BREVE">[(#TITRE|supprimer_numero)]</a></h5>
+								<em>[Le (#DATE|nom_jour)] [(#DATE|affdate)]</em>
+								[<p>(#TEXTE|textebrut|couper{340})</p>]
+								<span><strong><a href="#URL_BREVE">Lire la suite</a> &gt;</strong></span>
+							</div>
+						</div>
+				</BOUCLE_breve_1>
+
+				<B_breve_2>
+					<div id="article_breve_all">
+						<BOUCLE_breve_2(BREVES) {branche} {par date} {inverse} {0,7} {doublons}>
+									<div id="article_texte">
+										[(#LOGO_RUBRIQUE_BREVE||reduire_image{20,20})]
+										<h5><a href="#URL_BREVE">[(#TITRE|supprimer_numero)]</a></h5>
+										<em>[Le (#DATE|nom_jour)] [(#DATE|affdate)]</em>
+								</div>
+						</BOUCLE_breve_2>
+				</div>
+			</B_breve_2>
+	</div>		
+	</B_breve_1>

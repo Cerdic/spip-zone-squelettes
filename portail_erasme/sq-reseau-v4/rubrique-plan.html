@@ -1,0 +1,82 @@
+#CACHE{48*3600}
+<BOUCLE_rubriques_ex(RUBRIQUES) {tout} {titre_mot=pas_menu} {doublons}>
+</BOUCLE_rubriques_ex>
+<BOUCLE_ex(ARTICLES) {id_rubrique} {titre_mot=rubrique_edito} {0,3} {doublons}>
+</BOUCLE_ex>
+
+		<BOUCLE_secteurs(RUBRIQUES) {id_rubrique} {tout} {par num titre} {doublons}>
+
+					<div id="plan">
+	
+					[(#REM) ---------------------- Articles et sous-rubriques ---------------------- ]
+
+						<B_articles_racine>
+							<ul>
+							<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par num titre} >
+								<li><a href="#URL_ARTICLE" >[(#TITRE|supprimer_numero)]</a></li>
+							</BOUCLE_articles_racine>
+							</ul>
+						</B_articles_racine>
+						
+						<B_rubriques>
+							<ul>
+						<BOUCLE_rubriques(RUBRIQUES) {id_parent} {tout} {par num titre} {doublons}>
+							<li>
+							<a href="#URL_RUBRIQUE" ><strong>[(#TITRE|supprimer_numero)]</strong></a>
+
+
+								<B_ssrubriques>
+									<ul>
+								<BOUCLE_ssrubriques(RUBRIQUES) {id_parent} {par num titre}>
+									<li><a href="#URL_RUBRIQUE" >[(#TITRE|supprimer_numero)]</a></li>
+								</BOUCLE_ssrubriques>
+									</ul>
+								</B_ssrubriques>
+
+								
+								<B_articles>
+									<ul>
+								<BOUCLE_articles(ARTICLES) {id_rubrique} {par num titre}>
+									<li><a href="#URL_ARTICLE" >[(#TITRE|supprimer_numero)]</a></li>
+								</BOUCLE_articles>
+									</ul>
+								</B_articles>
+								
+								
+							<br />
+							</li>
+						</BOUCLE_rubriques>
+							</ul>
+						</B_rubriques>
+							
+						[(#REM) ---------------------- Breves ---------------------- ]
+							<B_breves>
+								<br /><b>Br&egrave;ves</b><br /><ul>
+								<BOUCLE_breves(BREVES) {id_rubrique} {par date} {inverse} {0,5} >
+									<li class="menu-item">
+									<i>[(#DATE|affdate_court)]</i>:
+									<a href="#URL_BREVE">[(#TITRE|supprimer_numero)]</a>
+									</li>
+								</BOUCLE_breves>
+								</ul>
+							</B_breves>
+
+						[(#REM) ---------------------- Sur le Web ---------------------- ]
+
+						<B_sites>
+
+						<b>Sites</b><br />
+	
+						<ul>
+						<BOUCLE_sites(SITES) {id_rubrique} {par nom_site} {0,5}>
+							<li>
+							<a href="#URL_SITE">#NOM_SITE</a>
+							</li>
+						</BOUCLE_sites>
+							</ul>
+						</B_sites>
+
+					</div>
+					<br />
+				</BOUCLE_secteurs>
+			

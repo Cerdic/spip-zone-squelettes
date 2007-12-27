@@ -1,0 +1,63 @@
+<script language="JavaScript">
+	
+function SetCookie (name, value) {
+	var argv=SetCookie.arguments;
+	var argc=SetCookie.arguments.length;
+	var expires=(argc > 2) ? argv[2] : null;
+	var path=(argc > 3) ? argv[3] : null;
+	var domain=(argc > 4) ? argv[4] : null;
+	var secure=(argc > 5) ? argv[5] : false;
+	document.cookie=name+"="+escape(value)+
+		((expires==null) ? "" : ("; expires="+expires.toGMTString()))+
+		((path==null) ? "" : ("; path="+path))+
+		((domain==null) ? "" : ("; domain="+domain))+
+		((secure==true) ? "; secure" : "");
+}
+	
+function goto(couleur)
+	{	
+		var pathname=location.pathname;
+		var myDomain=pathname.substring(0,pathname.lastIndexOf('/')) +'/';
+		var date_exp = new Date();
+		date_exp.setTime(date_exp.getTime()+(365*24*3600*1000));
+		// Ici on définit une durée de vie de 365 jours
+		SetCookie ('choix_couleur', couleur,date_exp,myDomain);
+		
+		<?php
+			//$updateGoTo = "#URL_SITE_SPIP/ecrire/?exec=admin_vider";		
+			$updateGoTo = "#SELF";
+			$updateGoTo .= (strpos($updateGoTo, '?')) ? "&" : "?";
+		?>
+		
+		top.location.href="<?php echo $updateGoTo; ?>";
+	}
+
+</script>
+
+<br/>
+<table align=center><tr align=center><td align=center>
+		<a href="#" OnClick="goto('css_bleu')">
+			<IMG src="#DOSSIER_SQUELETTE/images/Carre_bleu.jpg" width=20 height=20 class="spip_logos">
+		</a>
+		&nbsp; 
+		<a href="#" OnClick="goto('css_gris')">					
+			<IMG src="#DOSSIER_SQUELETTE/images/Carre_jaune.jpg" width=20 height=20 class="spip_logos">
+		</a>
+		&nbsp; 
+		<a href="#" OnClick="goto('css_vert1')">
+			<IMG src="#DOSSIER_SQUELETTE/images/Carre_vert.jpg" width=20 height=20 class="spip_logos">
+		</a>
+		&nbsp; 
+		<a href="#" OnClick="goto('css_vert2')">
+			<IMG src="#DOSSIER_SQUELETTE/images/Carre_vert.jpg" width=20 height=20 class="spip_logos">
+		</a>					
+		&nbsp; 
+		<a href="#" OnClick="goto('css_beige')">
+			<IMG src="#DOSSIER_SQUELETTE/images/Carre_rouge.jpg" width=20 height=20 class="spip_logos">
+		</a>
+		&nbsp; 
+		<a href="#" OnClick="goto('css_marron')">
+			<IMG src="#DOSSIER_SQUELETTE/images/Carre_bleu_clair.jpg" width=20 height=20 class="spip_logos">
+		</a>
+</td></tr></table>
+<br/>

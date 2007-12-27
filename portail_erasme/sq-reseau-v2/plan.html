@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<title>[#NOM_SITE_SPIP]</title>
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/style<?php if (isset ($HTTP_COOKIE_VARS['choix_couleur'])) if (file_exists("#DOSSIER_SQUELETTE/style_".$HTTP_COOKIE_VARS['choix_couleur'].".css")) echo "_".$HTTP_COOKIE_VARS['choix_couleur']; ?>.css" type="text/css" />
+<meta name="author" content="Erasme - info@erasme.org" />
+<link rel="alternate" type="application/rss+xml" href="/spip.php?page=backend" title="[#NOM_SITE_SPIP]" />
+</head>
+
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+[(#INCLURE{fond=entete})] 
+
+<div id="Principale_reseau"> <!-- Debut Main reseau -->
+
+  	<BR />
+  	<BR />
+  	
+	<div id="Colonne_1_reseau"> <!-- Debut 1ere colonne -->
+		
+		<P>&nbsp;</P>
+	
+			<div id="Articles_reseau_normal">
+			
+				<div id="Article_normal_img_reseau"> <!-- Debut Image Article -->
+					<img src="#DOSSIER_SQUELETTE/IMG_v2/txt_plan_gd.gif"  />
+				</div> <!-- Fin Image Article -->
+
+			<div id="Article_normal_reseau">
+
+				 <!----------------------------------------PLAN----------------------------------->
+				 
+		        <BOUCLE_rubriques_ex(RUBRIQUES) {tout} {titre_mot=pas_menu} {doublons}>
+			</BOUCLE_rubriques_ex>
+	
+				<div id="plan" >
+				
+				<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre} {tout} {doublons}>
+				
+				<div>
+					<div id="cadre1_transp">
+						[(#LOGO_RUBRIQUE|left)]<h2><a href="#URL_RUBRIQUE" class="liens0" style="font-weight:bold;">[(#TITRE|supprimer_numero)]</a></h2>
+					</div>
+				
+				<div >
+				
+				
+				<!-------------------------------- Articles et sous-rubriques ------------------------>
+				
+				
+				<B_articles_racine>
+				<div id="titre">ARTICLES</div>
+				
+				<ul >
+				
+				<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
+				<li ><a href="#URL_ARTICLE" class="liens0">[(#TITRE|supprimer_numero)]</a></li>
+				</BOUCLE_articles_racine>
+				
+				</ul>
+				</B_articles_racine>
+				
+				<B_rubriques>
+				
+				<ul >
+				
+				<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre} {doublons} {tout}>
+				<li>
+				<div id="cadre_transp" style="font-weight:bold;"><a href="#URL_RUBRIQUE" class="cadre2_transp" class="liens0">[(#TITRE|supprimer_numero)]</a></div>
+				
+					<B_articles>
+					<ul >
+					<BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
+					<li ><a href="#URL_ARTICLE" class="liens0">[(#TITRE|supprimer_numero)]</a></li>
+					</BOUCLE_articles>
+					</ul>
+					</B_articles>
+				
+					<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+				
+				</li>
+				</BOUCLE_rubriques>
+				
+				</ul>
+				</B_rubriques>
+				
+								
+				<!------------------------------------- Breves --------------------------------->
+				
+					
+					<B_breves>
+					<div id="titre">BREVES</div>
+				
+					<div >
+					<div >
+						
+						<ul>
+					<BOUCLE_breves(BREVES) {id_secteur} {par date} {inverse} {0,15}>
+						<li >
+						<i>[(#DATE|affdate_court)]</i>:
+						<a href="#URL_BREVE" class="liens0">[(#TITRE|supprimer_numero)]</a>
+						</li>
+					</BOUCLE_breves>
+						</ul>
+					</div>
+					</div>
+					</B_breves>
+					
+				
+				<!----------------------------------- Sur le Web ---------------------------->
+				
+					
+					<B_sites>
+					
+					<div id="titre">SITES WEB</div>
+					<div >
+					<div >
+						
+						<ul>
+					<BOUCLE_sites(SITES) {id_secteur} {par nom_site}>
+						<li >
+						<a href="#URL_SITE" class="liens0">#NOM_SITE</a>
+						</li>
+					</BOUCLE_sites>
+						</ul>
+					</div>
+					</div>
+					</B_sites>
+					<p>&nbsp;</p>
+					
+				
+				</div>
+				</div>
+				
+				</BOUCLE_secteurs>
+				           	
+		</div>		           	
+		</div>
+		</div>
+	
+	</div><!-- Fin 1ere colonne -->
+	
+	<div id="Colonne_2_reseau"> <!-- Debut 2eme colonne -->
+	
+		<BR />
+		<BR />
+
+			<!------------------------------ Recherche ----------------------------------->
+	
+			[(#INCLURE{fond=bloc-recherche})] 
+				
+	</div> <!-- Fin 2eme colonne -->
+		
+	<div class="spacer"> <!-- Debut Bas Page -->
+		[(#INCLURE{fond=bas_page})]
+	</div> <!-- Fin Bas Page -->
+
+</div> <!-- Fin Main reseau -->		
+
+</body>
+</html>

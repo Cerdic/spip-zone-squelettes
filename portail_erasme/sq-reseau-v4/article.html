@@ -1,0 +1,129 @@
+<BOUCLE_principale(ARTICLES){id_article}{doublons}>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml2/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+	[(#INCLURE {fond=inc-head})]
+</head>
+<body>
+
+<div id="container">
+
+	[(#INCLURE {fond=entete})]
+	[(#INCLURE {fond=menu}{id_rubrique}{id_article})]
+
+[(#REM) ------------------------------------- COLONE GAUCHE ----------------------------------------- ]
+	<div id="supportingText">
+<BOUCLE_aut(AUTEURS){0,1}>#SET{#NOM}</BOUCLE_aut>
+[(#LOGO_ARTICLE||sinon{#GET{aut}})]
+#GET{aut}
+	[(#REM) ---------------------- Chemin ---------------------- ]
+
+		<div id="filariane">
+	    <BOUCLE_rubrique_hierarchie(RUBRIQUES){id_rubrique}{tout}>
+			<a href="[(#URL_SITE_SPIP)]">ACCUEIL</a>
+			  <BOUCLE_chemin(HIERARCHIE){id_rubrique}{tout}>
+				&gt;&gt;&nbsp;
+				<a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a> 
+				</BOUCLE_chemin>
+			<hr />
+	   	</BOUCLE_rubrique_hierarchie>
+		</div>
+	
+		<div id="articles_breves">  
+
+			<div id="p_article_breve">  
+			
+	[(#REM) ---------------------- Titre ---------------------- ]
+				[(#LOGO_ARTICLE|right||image_reduire{200,100})]
+				[(#SURTITRE|majuscules)] 
+				[<h1><span>(#TITRE|supprimer_numero)</span></h1>]
+				[<h4>(#SOUSTITRE|majuscules)</h4>]
+				[<div id="web"><div id="web_texte" class="#EDIT{DESCRIPTIF}">(#DESCRIPTIF)</div></div>]
+
+				<div >
+						<em>[(#DATE|nom_jour)] [(#DATE|affdate)]</em>
+						<B_auteurs_1> , <b>par <BOUCLE_auteurs_1(AUTEURS) {id_article} {", "}><a href="#URL_AUTEUR">[(#NOM)]</a></BOUCLE_auteurs_1></b></B_auteurs1>
+				</div>
+				
+	[(#REM) ---------------------- Texte ---------------------- ]
+			[<br /><div id="spip" class="#EDIT{texte}">(#TEXTE|image_reduire{520,0})</div>]
+
+	[(#REM) ---------------------- Portfolio ---------------------- ]
+			<B_documents_portfolio>
+			<div id="documents_portfolio">
+				<p>&nbsp;</p>
+				<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
+				<div style="float: left; text-align: center; width: 150px;">
+					[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|couper{80}|texte_backend)"]>(#FICHIER|copie_locale|image_reduire{0,60}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
+					[<span class="#EDIT{titre} spip_doc_titre"><br /><strong>(#TITRE)</strong></span>]
+					[<span class="#EDIT{descriptif} spip_doc_descriptif"><br />(#DESCRIPTIF)</span>]
+				</div>
+				</BOUCLE_documents_portfolio>
+			</div>
+			<div style="clear: both;"></div>
+			</B_documents_portfolio>
+			<BOUCLE_afficher_document(DOCUMENTS) {id_document} {id_article} {mode=document}{extension IN png,jpg,gif}>
+			<div class="thickbox" id="document_actif">
+				[(#EMBED_DOCUMENT||inserer_attribut{'border','0'})]
+				[<span class="#EDIT{titre} spip_doc_titre">(#TITRE)</span>]
+				[<span class="#EDIT{descriptif} spip_doc_descriptif">(#DESCRIPTIF)</span>]
+			</div>
+			</BOUCLE_afficher_document>
+
+	[(#REM) ---------------------- Documents joints ---------------------- ]
+		<B_documents_portfolio2>
+			<div id="documents_portfolio">
+				<p>&nbsp;</p>
+				<BOUCLE_documents_portfolio2(DOCUMENTS) {id_article} {mode=document} {par num titre, date} {doublons}>
+				<div style="float: left; text-align: center; width: 150px;">
+					[<a href="#URL_DOCUMENT" type="#MIME_TYPE">(#LOGO_DOCUMENT||image_reduire{0,60}||inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]}||inserer_attribut{style,'border:0px solid #000000;'})</a>]
+					[<span class="#EDIT{titre} spip_doc_titre"><br /><strong>(#TITRE)</strong></span>]
+					[<span class="#EDIT{descriptif} spip_doc_descriptif"><br />(#DESCRIPTIF)</span>]
+				</div>
+				</BOUCLE_documents_portfolio2>
+			</div>
+			<div style="clear: both;"></div>
+		</B_documents_portfolio2>
+							            
+			            
+		[<div class="ps"><h2><:info_ps:></h2>#DEBUT_SURLIGNE<div class="#EDIT{ps}">(#PS)</div>#FIN_SURLIGNE</div>]
+			                
+	[(#REM) ---------------------- Forum ---------------------- ]
+			[<p><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a></p>]
+			<INCLURE{fond=article-forum}{id_article}>
+			[<hr /><small>(#FORMULAIRE_SIGNATURE)</small>]
+
+	</div>
+	</div>
+	</div>
+	
+[(#REM) ------------------------------------- COLONE DROITE ----------------------------------------- ]
+	
+	<div id="linkList">
+	
+	[(#REM) ---------------------- Recherche ---------------------- ]
+	
+			[(#INCLURE{fond=bloc-recherche})] 
+			
+	[(#REM) ---------------------- Autres articles ---------------------- ]
+	
+			[(#INCLURE{fond=bloc-autres-articles}{id_article})] 
+		
+	[(#REM) ---------------------- Sous Rubriques ---------------------- ]
+	
+			[(#INCLURE{fond=bloc-ss-rubriques}{id_rubrique})] 
+				
+	[(#REM) ---------------------- Sur le Web ---------------------- ]
+			
+			[(#INCLURE{fond=bloc-web}{id_article})] 	
+	
+	</div>
+	
+	[(#INCLURE {fond=bas_page})]
+	
+</div>
+
+</body></html>
+
+</BOUCLE_principale>

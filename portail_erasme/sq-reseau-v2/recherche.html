@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<title>[#NOM_SITE_SPIP]</title>
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/style<?php if (isset ($HTTP_COOKIE_VARS['choix_couleur'])) if (file_exists("#DOSSIER_SQUELETTE/style_".$HTTP_COOKIE_VARS['choix_couleur'].".css")) echo "_".$HTTP_COOKIE_VARS['choix_couleur']; ?>.css" type="text/css" />
+<meta name="author" content="Erasme - info@erasme.org" />
+<link rel="alternate" type="application/rss+xml" href="/spip.php?page=backend" title="[#NOM_SITE_SPIP]" />
+</head>
+
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+[(#INCLURE{fond=entete})] 
+
+<div id="Principale_reseau"> <!-- Debut Main reseau -->
+
+  	<BR />
+  	<BR />
+  	
+	<div id="Colonne_1_reseau"> <!-- Debut 1ere colonne -->
+		
+	
+		<div id="Articles_reseau_normal">
+			
+
+		<!----------------------------------------RECHERCHE----------------------------------->
+			<div  id="principal">
+			
+			<div >
+			<h3>&nbsp;&nbsp;&nbsp;<:resultats_recherche:>&nbsp;:&nbsp;[(#RECHERCHE)]</h3>
+			</div>
+			
+			<table width="100%">
+			<tr>
+			<td><img src="#DOSSIER_SQUELETTE/IMG_v2/pix_trans.gif" width="20" height="31" /></td>
+			<td>
+			
+			<!-- Mots-cles trouves et articles associes
+			
+			<B_mots>
+			<div >
+			<ul  title="<:mots_clefs:>">
+			<BOUCLE_mots(MOTS) {recherche} {par points} {inverse} {0,5}>
+			<li>
+			<div ><a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></div>
+			<B_articles_mots>
+				<ul >
+			<BOUCLE_articles_mots(ARTICLES) {id_mot} {par hasard} {0,8}>
+				<li ><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|textebrut|entites_html)]">#TITRE</a></li>
+			</BOUCLE_articles_mots>
+				</ul>
+			</B_articles_mots>
+			</li>
+			</BOUCLE_mots>
+			</ul>
+			</div>
+			</B_mots>
+
+			-->
+			
+			<!-- Articles trouves -->
+			
+				<div >
+				<div  title="Articles trouv&eacute;s">
+				<img src="#DOSSIER_SQUELETTE/IMG_v2/txt_articles.gif"  />
+				</div>
+			
+				<BOUCLE_articles(ARTICLES) {recherche} {par points} {inverse} {0,10}>
+				<table border="0" cellspacing="7" cellpadding="0">
+					  
+					  <tr> 
+						<td>
+						[(#LOGO_RUBRIQUE|left)]
+						<font id="titre"><a href="#URL_ARTICLE" class="liens0" >#TITRE</a></font>
+						<br /> 
+						<em>
+						[Le (#DATE|nom_jour)] [(#DATE|affdate)]
+						<B_auteurs_3>par <BOUCLE_auteurs_3(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_3>  
+						</em>
+						</td>
+					  </tr>
+					  
+			  	</table>
+				</BOUCLE_articles>
+				<p>&nbsp;</p>
+			
+				</div>
+				
+			<div class="encart">
+			
+			<!-- Breves trouvees -->
+			
+				<B_breves>
+			
+				<div >
+				<div title="Br&egrave;ves trouv&eacute;es">
+					<div >
+					<img src="#DOSSIER_SQUELETTE/IMG_v2/txt_breves.gif"  />
+					</div>
+					
+				<BOUCLE_breves(BREVES) {recherche} {par points} {inverse} {0,8}>
+					<table width="450" border="0" cellspacing="7" cellpadding="0">
+								 <tr> 
+									<td> 
+									[(#LOGO_RUBRIQUE|left)]
+									<font id="titre"><a href="#URL_BREVE" class="liens0">#TITRE</a></font> 
+							                  : [(#TEXTE|textebrut|couper{130})] - <em>[Le (#DATE|nom_jour)] 
+							                  [(#DATE|affdate)] -</em>
+							                </td>
+								  </tr> 
+					</table>
+				</BOUCLE_breves>
+					
+				</div>
+				</div>
+				<p>&nbsp;</p>
+				</B_breves>
+			
+			<!-- Sites Web trouves -->
+			
+				<B_sites>
+				<div >
+					<div  title="Sites Web trouv&eacute;s">
+					<img src="#DOSSIER_SQUELETTE/IMG_v2/txt_web.gif"  />
+					</div>
+					
+				<BOUCLE_sites(SITES) {recherche} {par points} {inverse} {0,8}>
+					<table width="450" border="0" cellspacing="7" cellpadding="0">
+								 <tr> 
+									<td> 
+									[(#LOGO_RUBRIQUE|left)]
+									<a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut|entites_html)]" class="liens0">#NOM_SITE</a>
+							                </td>
+								  </tr> 
+					</table>
+					
+					
+				</BOUCLE_sites>
+					
+				</div>
+				</div>
+				<p>&nbsp;</p>
+				</B_sites>
+			
+				</div>
+			
+			</td>
+			</tr>
+			</table>
+
+		</div>
+
+		</div>
+	
+
+</div><!-- Fin 1ere colonne -->
+	
+	<div id="Colonne_2_reseau"> <!-- Debut 2eme colonne -->
+	
+		<BR />
+		<BR />
+
+			<!------------------------------ Recherche ----------------------------------->
+	
+			[(#INCLURE{fond=bloc-recherche})] 
+			
+	
+	</div> <!-- Fin 2eme colonne -->
+		
+	<div class="spacer"> <!-- Debut Bas Page -->
+		[(#INCLURE{fond=bas_page})]
+	</div> <!-- Fin Bas Page -->
+
+</div> <!-- Fin Main reseau -->		
+
+
+</body>
+</html>

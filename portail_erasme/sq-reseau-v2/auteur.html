@@ -1,0 +1,158 @@
+<BOUCLE_principale(AUTEURS){id_auteur}>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<title>[#NOM_SITE_SPIP]</title>
+	<link rel="stylesheet" href="#DOSSIER_SQUELETTE/style<?php if (isset ($HTTP_COOKIE_VARS['choix_couleur'])) if (file_exists("#DOSSIER_SQUELETTE/style_".$HTTP_COOKIE_VARS['choix_couleur'].".css")) echo "_".$HTTP_COOKIE_VARS['choix_couleur']; ?>.css" type="text/css" />
+	<meta name="author" content="Erasme - info@erasme.org" />
+	<link rel="alternate" type="application/rss+xml" href="/spip.php?page=backend" title="[#NOM_SITE_SPIP]" />
+</head>
+
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+[(#INCLURE{fond=entete})] 
+
+<div id="Principale_reseau"> <!-- Debut Main reseau -->
+
+  	<BR />
+  	<BR />
+  	
+	<div id="Colonne_1_reseau"> <!-- Debut 1ere colonne -->
+	
+		<div id="Edito_reseau"> <!-- Début "Edito rubrique" -->
+
+
+		<!--------------------------------------IDENTITE AUTEUR----------------------------------------->
+		
+				<br /><br />
+				
+					<div id="cadre_edito"> 
+						<div id="cadre3_solid">
+							[(#LOGO_AUTEUR_NORMAL|right||reduire_image{200,200})]
+							[<span id='titre_edito'>(#NOM)</span>]
+							[<div id="tpetit">(#BIO)</div>]
+							<div>&nbsp;</div>
+								<BOUCLE_tot_auteur2(ARTICLES) {id_auteur}>
+								</BOUCLE_tot_auteur2>
+		 		 					<br />
+		 		 					<em>[&nbsp;(#TOTAL_BOUCLE) articles]</em>
+		 		 				</B_tot_auteur2>
+								<//B_tot_auteur2>	
+						</div>
+					</div>
+
+				
+		</div><!-- Fin "Edito" -->
+
+		<P>&nbsp;</P>
+	
+		<div id="Articles_reseau"> <!-- Début Article general-->
+			
+			<div id="Articles_img_reseau"> <!-- Debut Image Article -->
+				<img src="#DOSSIER_SQUELETTE/IMG_v2/txt_articles.gif" width="77" height="22" />
+			</div> <!-- Fin Image Article -->
+
+			<div id="Articles1_reseau"> <!-- Debut 1ere Article -->
+
+			<!-----------------------------------ARTICLE UN---------------------------->
+
+            			<BOUCLE_article_1(ARTICLES) {id_auteur} {par date} {inverse} {0,1} {doublons}>
+
+					<div id="cadre1">
+								[(#LOGO_RUBRIQUE|left||reduire_image{50,50})]
+								<a href="#URL_ARTICLE" class="liens2"><font id="titre">#TITRE</font></a>
+								<a href="#URL_ARTICLE">
+								<br /> <em>
+								[Le (#DATE|nom_jour)] [(#DATE|affdate)]
+								par <BOUCLE_auteurs_1(AUTEURS) {id_article} {", "}>#NOM
+								</BOUCLE_auteurs_1>
+								</em>
+
+								<B_diaporama0>
+								<BOUCLE_diaporama0(DOCUMENTS) {id_article} {par hasard} {0,1}>
+									[(#LOGO_DOCUMENT|right||reduire_image{100,100})]
+								</BOUCLE_diaporama0>
+								</B_diaporama0>
+									<!--<img src='IMG/icones/txt-dist.png' />-->
+								<//B_diaporama0>
+							
+								<font id="ttpetit"><br /><br /></font>
+								[(#TEXTE|textebrut|couper{340})]
+								</a>
+
+							<div align="right"><strong><a href="#URL_ARTICLE" class="liens2">
+							Lire la suite</a> &gt;</strong>
+							</div>
+					</div>
+					
+				</BOUCLE_article_1>
+					
+			</div><!-- Fin 1ere Article -->
+				
+		</div> <!-- Fin Article general-->
+		
+		<P></P>			
+
+				<div id="Articles2_reseau"> <!-- Début Autres Articles-->
+
+					<BOUCLE_article_3(ARTICLES) {id_auteur} {par date} {inverse}  {doublons}>
+
+							<div width=100%>
+												
+							[(#LOGO_RUBRIQUE|left||reduire_image{50,50})]
+														
+							<font id="titre"><a href="#URL_ARTICLE" class="liens0">#TITRE</a></font>
+							<br /> 
+							<a href="#URL_ARTICLE">
+							<em>
+							[Le (#DATE|nom_jour)] [(#DATE|affdate)]
+							par <BOUCLE_auteurs_3(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_3>  
+							</em>
+							</a>
+							<P></P>
+							
+								<B_diaporama1>
+								<BOUCLE_diaporama1(DOCUMENTS) {id_article} {par hasard} {0,1}>
+								[(#LOGO_DOCUMENT|right||reduire_image{100,100})]
+								</BOUCLE_diaporama1>
+								</B_diaporama1>
+								<!--<img src='IMG/icones/txt-dist.png' />-->
+								<//B_diaporama1>
+							
+							</div>
+							
+					</BOUCLE_article_3>
+				
+				</div><!-- Fin Autres Articles -->
+				
+				<P>&nbsp;</P>
+	
+
+	</div><!-- Fin 1ere colonne -->
+	
+	
+	<div id="Colonne_2_reseau"> <!-- Debut 2eme colonne -->
+	
+		<BR />
+		<BR />
+
+		<!------------------------------ Recherche ----------------------------------->
+
+		[(#INCLURE{fond=bloc-recherche})] 
+		
+		<!------------------------------ Sous Rubriques ----------------------------------->
+
+		[(#INCLURE{fond=bloc-auteurs})] 
+		
+	</div> <!-- Fin 2eme colonne -->
+		
+	<div class="spacer"> <!-- Debut Bas Page -->
+		[(#INCLURE{fond=bas_page})]
+	</div> <!-- Fin Bas Page -->
+
+</div> <!-- Fin Main reseau -->		
+
+</body>
+</html>
+
+</BOUCLE_principale>

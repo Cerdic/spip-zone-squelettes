@@ -1,0 +1,57 @@
+<script language="JavaScript">
+	
+function SetCookie (name, value) {
+	var argv=SetCookie.arguments;
+	var argc=SetCookie.arguments.length;
+	var expires=(argc > 2) ? argv[2] : null;
+	var path=(argc > 3) ? argv[3] : null;
+	var domain=(argc > 4) ? argv[4] : null;
+	var secure=(argc > 5) ? argv[5] : false;
+	document.cookie=name+"="+escape(value)+
+		((expires==null) ? "" : ("; expires="+expires.toGMTString()))+
+		((path==null) ? "" : ("; path="+path))+
+		((domain==null) ? "" : ("; domain="+domain))+
+		((secure==true) ? "; secure" : "");
+}
+	
+function goto(couleur)
+	{	
+		var pathname=location.pathname;
+		var myDomain=pathname.substring(0,pathname.lastIndexOf('/')) +'/';
+		var date_exp = new Date();
+		date_exp.setTime(date_exp.getTime()+(365*24*3600*1000));
+		// Ici on définit une durée de vie de 365 jours
+		SetCookie ('choix_couleur', couleur,date_exp,myDomain);
+		
+		<?php
+		$updateGoTo = "#SELF";
+    $updateGoTo .= (strpos($updateGoTo, '?')) ? "&" : "?";
+		?>
+		
+		top.location.href="<?php echo $updateGoTo; ?>";
+	}
+
+</script>
+
+
+			<table align=center><tr align=center><td align=center>
+					<a href="#" OnClick="goto('bleu')">
+						<IMG src="#DOSSIER_SQUELETTE/IMG_v2/Carre_bleu.jpg" width=20 height=20 class="spip_logos" />
+					</a>
+					&nbsp; 
+					<a href="#" OnClick="goto('jaune')">					
+						<IMG src="#DOSSIER_SQUELETTE/IMG_v2/Carre_jaune.jpg" width=20 height=20 class="spip_logos" />
+					</a>
+					&nbsp; 
+					<a href="#" OnClick="goto('vert')">
+						<IMG src="#DOSSIER_SQUELETTE/IMG_v2/Carre_vert.jpg" width=20 height=20 class="spip_logos" />
+					</a>
+					&nbsp; 
+					<a href="#" OnClick="goto('rouge')">
+						<IMG src="#DOSSIER_SQUELETTE/IMG_v2/Carre_rouge.jpg" width=20 height=20 class="spip_logos" />
+					</a>
+					&nbsp; 
+					<a href="#" OnClick="goto('reseau')">
+						<IMG src="#DOSSIER_SQUELETTE/IMG_v2/Carre_bleu_clair.jpg" width=20 height=20 class="spip_logos" />
+					</a>
+			</td></tr></table>

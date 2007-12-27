@@ -1,0 +1,74 @@
+<!-----------------------------------DIAPORAMA----------------------------------->
+            
+      <br />
+
+			<div id="cadre_album">
+			<table border="0" align=center>
+			        <tr align=center> 
+			          <td width="1" valign="bottom" align=center> 
+			            <a href="spip.php?page=article&id_article=<?php echo $id_article; ?>&debut_image=<?php echo $im_prec ?>&vignettes=<?php echo $vignettes ?>#photo" title="Image precedente"><img src='#DOSSIER_SQUELETTE/IMG_v2/prec.gif' border='0' /></a> 
+			           </td>
+			          
+			          <td align="center"> 
+					<BOUCLE_diaporama4(DOCUMENTS){id_article}{mode=document}{debut_image,1}>
+			            <?php
+			            echo substr("#URL_DOCUMENT",4,strlen("#URL_DOCUMENT")-8);
+			            ?>
+			            </BOUCLE_diaporama4>
+			            </td>
+			          
+			          <td width="1" valign="bottom"> 
+			           <a href="spip.php?page=article&id_article=<?php echo $id_article; ?>&debut_image=<?php echo $im_suiv ?>&vignettes=<?php echo $vignettes ?>#photo" title="Image suivante"><img src='#DOSSIER_SQUELETTE/IMG_v2/suiv.gif' border='0' /></a> 
+			          </td>
+			        </tr>
+					  
+			  </table>
+			 </div>	
+			<p> &nbsp; </p>
+
+	  <!----------------------------------------VIGNETTES----------------------------------->
+		
+		<?php if ($vignettes=='oui') {?>	
+		
+		<div id="cadre_album">
+		<table border="0"  valign="top" align=center cellpadding=10>
+
+		<tr align=center> 
+    <td valign="top" align=center> 
+
+			<?php 
+			$url_image = 0;
+			?>
+                  <BOUCLE_documents_joints(DOCUMENTS){id_article}{mode=document}{1/2}>
+                  [<a href="spip.php?page=article&id_article=<?php echo $id_article ?>&debut_image=<?php echo $url_image ?>&vignettes=<?php echo $vignettes ?>#photo" title="[(#TITRE|supprimer_numero)]">(#LOGO_DOCUMENT)</a><br /><br />]
+                  [<div id="petit">(#TITRE|supprimer_numero)</div><br />]
+			<?php 
+			$url_image ++;
+			?>
+                  </BOUCLE_documents_joints>
+                 </div>
+                 </td>
+                 
+      <td valign="top" align=center> 
+                 
+                 <div align="center">
+                  <BOUCLE_documents_joints_suite(DOCUMENTS){id_article}{mode=document}{2/2}>
+                  [<a href="spip.php?page=article&id_article=<?php echo $id_article ?>&debut_image=<?php echo $url_image ?>&vignettes=<?php echo $vignettes ?>#photo" title="[(#TITRE|supprimer_numero)]">(#LOGO_DOCUMENT)</a><br /><br />] 
+                  [<div id="petit">(#TITRE|supprimer_numero)</div><br />]
+                  	<?php 
+			$url_image ++;
+			?>
+			
+                  </BOUCLE_documents_joints_suite>
+		</tr>
+      		</table>
+      		</div>
+
+              <?php } ?>
+
+		<!--------------------------------------VIGNETTES------------------------------------->
+		
+		<?php if ($vignettes=='non') echo "<a href=\"".$PHP_SELF."?".$QUERY_STRING."&vignettes=oui\" class=\"liens0\"><strong>&nbsp;&nbsp;&nbsp;>&nbsp;avec/sans vignettes</strong></a>"; ?>
+		<?php if ($vignettes=='oui') echo "<a href=\"".$PHP_SELF."?".$QUERY_STRING."&vignettes=non\" class=\"liens0\"><strong>&nbsp;&nbsp;&nbsp;>&nbsp;avec/sans vignettes</strong></a>"; ?>
+		
+		<!------------------------------------------------------>
