@@ -54,7 +54,7 @@
 <p>
 
 <BOUCLE_acces_perso(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
-[<a href="ecrire/">(#SESSION{statut}|=={nouveau}?{:: Visitez votre interface de r&eacute;daction})</a><br/>]
+[<a href="ecrire/">(#SESSION{statut}|=={6forum}?{:: Visitez votre interface de r&eacute;daction})</a><br/>]
 [<a href="ecrire/?exec=articles_edit&new=oui">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Commencer un nouvel article})</a><br/>]
 [<a href="ecrire/">(#SESSION{statut}|=={0minirezo}?{:: Agir sur les articles propos&eacute;s})</a><br/>]
 [<a href="ecrire/?exec=auteurs">(#SESSION{statut}|=={0minirezo}?{:: Ejecter un membre pénible})</a><br/>]
@@ -123,7 +123,7 @@ href="#URL_ARTICLE">#TITRE</a><br/>
 <p>
 <BOUCLE_acces_perso2(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
 [<a href="ecrire/?exec=articles_edit&new=oui">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Commencer un nouvel article})</a>]
-[(#SESSION{statut}|match{6forum|nouveau}|?{:: Vous ne pouvez pas écrire d'article. <a href="[(#URL_PAGE{auteur}|parametre_url{'id_auteur',1})]">Demandez la conversion de votre compte au webmaster et devenez r&eacute;dacteur sur #NOM_SITE_SPIP.</a>})]
+[(#SESSION{statut}|=={6forum}?{:: Vous ne pouvez pas écrire d'article. <a href="[(#URL_PAGE{auteur}|parametre_url{'id_auteur',1})]">Demandez la conversion de votre compte au webmaster et devenez r&eacute;dacteur sur #NOM_SITE_SPIP.</a>})]
 
 
 
@@ -173,7 +173,28 @@ href="#URL_ARTICLE">#TITRE</a><br/>
 [<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">::&nbsp;(#PGP|sinon{Diffuser ma clé publique PGP})</a><br/>]
 })]
 [(#SESSION{statut}|match{6forum|nouveau}|?{Votre statut de visiteur ne vous permet pas d'ajouter un profil. Vous pouvez n&eacute;anmoins g&eacute;rer votre abonnement ci-dessous.})]
+[<a href="#URL_RUBRIQUE">(#SESSION{statut}|=={6forum}|?{' '}):: Poster dans un forum})</a><br/>]
+
+
+<?php 
+$connect_id_auteur_bis = $auteur_session['id_auteur'];
+$result_messages = spip_query("SELECT * FROM spip_messages AS messages,spip_auteurs_messages AS lien WHERE lien.id_auteur='$connect_id_auteur_bis'AND vu='non' AND statut='publie' AND type='normal' AND lien.id_message=messages.id_message");
+           $total_messages = @spip_num_rows($result_messages);
+           if ($total_messages == 1) {
+               while($row = @spip_fetch_array($result_messages)) {
+                   $ze_message=$row['id_message'];
+                   echo "::&nbsp;<a href='ecrire/?exec=message&id_message=$ze_message'>"._T('info_nouveau_message')."</a><br/>";
+               }
+           }
+           if ($total_messages > 1) echo "::&nbsp;<a href='ecrire/?exec=messagerie'>"._T('info_nouveaux_messages', array('total_messages' => $total_messages))."</a><br/>";
+ ?>
 </p>
+
+
+[(#SESSION{statut}|=={0minirezo}|?{' '})
+<h4 class="icone_recherche">Qui est venu?</h4>
+<p>[(#URL_SITE|nb_connect)]</p>
+]
 
 </BOUCLE_infos_perso>
 
@@ -211,12 +232,6 @@ href="#URL_ARTICLE">#TITRE</a><br/>
 
 
 
-[(#SESSION{statut}|=={0minirezo}|?{' '})
-<div class="boite">
-<h4 class="icone_recherche">Qui est venu?</h4>
-<p>[(#URL_SITE|nb_connect)]</p>
-</div>
-]
 
 </div>
 [(#REM)   fermeture colone de droite   ] 
