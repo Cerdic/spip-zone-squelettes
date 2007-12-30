@@ -11,7 +11,7 @@
 // -> http://www.spip-contrib.net/balise-session
 // =======================================================================================================================================
 //
-include_spip('public/session_balises');
+//include_spip('public/session_balises');
 
 // =======================================================================================================================================
 // Balise : #PLUGIN
@@ -20,7 +20,7 @@ include_spip('public/session_balises');
 // Fonction : retourne une info donnee d'un plugin designe par son prefixe
 // =======================================================================================================================================
 //
-include_spip('public/plugin_balises');
+//include_spip('public/plugin_balises');
 
 // =======================================================================================================================================
 // Balises : AGENDA, RUBRIQUE, AUJOURDHUI...
