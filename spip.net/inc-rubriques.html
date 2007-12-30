@@ -1,54 +1,31 @@
-<BOUCLE_archives(ARTICLES) {id_mot=9} {doublons}> </BOUCLE_archives>
-<BOUCLE_archives_rub(RUBRIQUES) {id_mot=9} {doublons}> </BOUCLE_archives_rub>
+<BOUCLE_archives(ARTICLES){id_mot=9}{doublons}> </BOUCLE_archives>
+<BOUCLE_archives_rub(RUBRIQUES){id_mot=9}{doublons}> </BOUCLE_archives_rub>
 
 <div class="rubriques">
-<BOUCLE_rubriques(RUBRIQUES){lang}{racine}{id_rubrique !IN 4,324} {doublons}>
+<BOUCLE_onglet(HIERARCHIE){id_rubrique}{1,1}{doublons}>
 
-<h2 class="menu-titre"><:navigation:></h2>
-
+<h2 class="menu-titre">#TITRE</h2>
 <B_sousrub><ul>
-<BOUCLE_sousrub(RUBRIQUES){id_parent}{par num titre} {doublons}>
-<li><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>#TITRE</a>
-
-<B_articles><ul class="memrub">
-<BOUCLE_articles(ARTICLES){id_rubrique}{id_rubrique=#ENV{id_rubrique}} {par num titre}{!par date} {doublons}>
-<li><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>#TITRE</a></li>
-</BOUCLE_articles>
-</ul></B_articles>
-
-<BOUCLE_re(BOUCLE_sousrub)></BOUCLE_re>
-
-</li>
-</BOUCLE_sousrub>
+	<BOUCLE_sousrub(RUBRIQUES) {id_parent} {par num titre} {doublons}>
+	<li>
+		<a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>#TITRE</a>
+		<B_articles><ul class="memrub">
+			<BOUCLE_articles(ARTICLES) {id_rubrique}{id_rubrique=#ENV{id_rubrique}} {par num titre}{!par date} {doublons}>
+			<li><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>#TITRE</a></li>
+			</BOUCLE_articles>
+		</ul></B_articles>
+		<BOUCLE_sous_sousrub(BOUCLE_sousrub)></BOUCLE_sous_sousrub>
+	</li>
+	</BOUCLE_sousrub>
 </ul></B_sousrub>
 
-</BOUCLE_rubriques>
-</div>
+</BOUCLE_onglet>
 
-<script type="text/javascript">
-var shown=undefined;
-function menu_show(node){
-$(node).find('>ul').show('slow');
-if (shown)
-$(shown).find('>ul').hide('slow');
-shown=node;
-}
-$(document).ready(function(){
-if ((a=$("div.rubriques a.on").eq(0)).length){
-a.parents('li').eq(0).siblings('li').show().find('>ul').hide();
-shown = a.parents('li').get(0);
-}
-else
-$("div.rubriques >ul>li>ul").hide();
-t=null;
-$("div.rubriques>ul>li").hover(function(){$(this).addClass('hover');
-if (t) {clearTimeout(t);t=null;}
-me = this;
-if (me!=shown)
-t=setTimeout(function(){menu_show(me);},300);
-},function(){
-if (t) {clearTimeout(t);t=null;}
-$(me).removeClass('hover');}
-);
-});
-</script>
+<BOUCLE_rub(RUBRIQUES){id_rubrique}{0,1}{doublons}>
+<h2 class="menu-titre">#TITRE</h2>
+<BOUCLE_re(BOUCLE_sousrub)></BOUCLE_re>
+</BOUCLE_rub>
+
+<//B_onglet>
+
+</div><!--.rubriques-->
