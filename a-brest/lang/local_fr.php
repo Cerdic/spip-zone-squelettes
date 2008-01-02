@@ -4,10 +4,10 @@
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // 404
-'404_1' => 'D&eacute;sol&eacute; aucun article, brève ou rubrique disponible sur cette page',
+'404_1' => 'D&eacute;sol&eacute; aucun article, br&egrave;ve ou rubrique disponible sur cette page',
 '404_2' => 'Où vous voulez aller ?',
 '404_home' => 'Page d\'accueil',
-'404_lastpage' => 'Dernière page consult&eacute;e',
+'404_lastpage' => 'Derni&egrave;re page consult&eacute;e',
 
 // inc/inc_banner
 'homepage' => 'Actualit&eacute;s', 
@@ -46,7 +46,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // rubrique syndication (rubrique-89)
 'csite' => 'site',
 'csites' => 'sites',
-'news_syndic_site' => 'Lire toutes les nouveaut&eacute; de ce site ....',
+'news_syndic_site' => 'Lire toutes les nouveaut&eacute;s de ce site ....',
 
 // sommaire
 'actu' => 'Actualit&eacute;s',

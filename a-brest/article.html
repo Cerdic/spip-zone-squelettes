@@ -40,8 +40,14 @@
          [<div class="#EDIT{hyperlien} hypertxt"><strong>Lien hypertexte:</strong> <a href="#URL_SITE" class="spip_out">(#NOM_SITE|lignes_longues{40})</a></div>]
          [<div class="#EDIT{ps} ps">(#PS|lignes_longues{40})</div>][
          <div class="note">(#NOTES|lignes_longues{40})</div>]
-
-              <!-- article doc / portfolio ? -->
+         
+              <B_doc><!-- portfolio (img)--><div class="portfolio_img"> 
+              <BOUCLE_doc(DOCUMENTS){id_article}{extension IN png,jpg,gif}{mode=document}{doublons}>
+              [<a href="[(#URL_DOCUMENT)]" type="#MIME_TYPE"[ title="(#TITRE|texte_backend)"]>(#FICHIER|copie_locale|image_reduire{0,150}|image_recadre{100,100,center}|image_aplatir{jpg,ffffff})</a>] </BOUCLE_doc>  
+              <BOUCLE_doc_exclure_img(DOCUMENTS){id_article}{extension IN png,jpg,gif}{mode=document}{doublons}> </BOUCLE_doc_exclure_img>
+              </div></B_doc>
+              
+              <B_docjoint><!-- portfolio (doc) -->
               <BOUCLE_docjoint(DOCUMENTS){id_article}{mode=document}{doublons}>
                 <div class="portfolio">
                    <a href="#URL_DOCUMENT">#LOGO_DOCUMENT</a><br />
