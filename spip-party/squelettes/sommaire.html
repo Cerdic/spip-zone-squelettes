@@ -27,8 +27,9 @@
 		
 			<B_event_list>
 			<ul style="list-style: none; margin: 0; padding: 0;">
-				<BOUCLE_event_list(EVENEMENTS) {agendafull date_debut, date_fin} {statut=publie}{par date_fin}{age_fin<0} {0,3}>
-				<li style="margin: 0; padding: 0;"><INCLURE{fond=inc_hcal}{id_evenement}></li>
+				<BOUCLE_event_list(EVENEMENTS) {agendafull date_debut, date_fin} {statut=publie}{par date_fin}{age_fin<0} {0,3}>[
+				(#REM) On limite cet affichage a un evenement par rubrique, donc par ville.
+				][(#ID_RUBRIQUE|unique|?{' '})<li style="margin: 0; padding: 0;"><INCLURE{fond=inc_hcal}{id_evenement}></li>]
 				</BOUCLE_event_list>
 			</ul><br /><br />
 			</B_event_list>
