@@ -61,29 +61,31 @@ function calcul_visites_site($j) {
 
 	if ( $j == 'aujourdhui' ) {
 		$auj = date('Y-m-d',strtotime(date('Y-m-d')));
-		$query = "SELECT visites AS visites FROM spip_visites WHERE date='$auj'";
-		$result = spip_query($query);
-		$visites_auj = 0;
-		if ($row = @spip_fetch_array($result)) {
+		$requete['SELECT'] = array('visites');
+		$requete['FROM'] = array('spip_visites');
+		$requete['WHERE'] = array("date='$auj'");
+		$result = sql_select($requete['SELECT'], $requete['FROM'], $requete['WHERE']);
+		if ($row = sql_fetch($result)) {
 			$visites_auj = $row['visites'];
 		}
 		$r = $visites_auj;
 	}
 	else if ( $j == 'hier' ) {
 		$hier = date('Y-m-d',strtotime(date('Y-m-d')) - 3600*24);
-		$query = "SELECT visites AS visites FROM spip_visites WHERE date='$hier'";
-		$result = spip_query($query);
-		$visites_hier = 0;
-		if ($row = @spip_fetch_array($result)) {
+		$requete['SELECT'] = array('visites');
+		$requete['FROM'] = array('spip_visites');
+		$requete['WHERE'] = array("date='$hier'");
+		$result = sql_select($requete['SELECT'], $requete['FROM'], $requete['WHERE']);
+		if ($row = sql_fetch($result)) {
 			$visites_hier = $row['visites'];
 		}
 		$r = $visites_hier;
 	}
 	else {
-		$query = "SELECT SUM(visites) AS total_absolu FROM spip_visites";
-		$result = spip_query($query);
-		$visites_debut = 0;
-		if ($row = @spip_fetch_array($result)) {
+		$requete['SELECT'] = array('SUM(visites) AS total_absolu');
+		$requete['FROM'] = array('spip_visites');
+		$result = sql_select($requete['SELECT'], $requete['FROM']);
+		if ($row = sql_fetch($result)) {
 			$visites_debut = $row['total_absolu'];
 		}
 		$r = $visites_debut;
