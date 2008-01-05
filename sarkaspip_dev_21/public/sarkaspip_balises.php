@@ -65,7 +65,7 @@ function calcul_visites_site($j) {
 		$auj = date('Y-m-d',strtotime(date('Y-m-d')));
 		$requete['SELECT'] = array('visites');
 		$requete['FROM'] = array('spip_visites');
-		$requete['WHERE'] = array("date='$auj'");
+		$requete['WHERE'] = array("date=".sql_quote($auj));
 		$result = sql_select($requete['SELECT'], $requete['FROM'], $requete['WHERE']);
 		if ($row = sql_fetch($result)) {
 			$visites = $row['visites'];
@@ -75,7 +75,7 @@ function calcul_visites_site($j) {
 		$hier = date('Y-m-d',strtotime(date('Y-m-d')) - 3600*24);
 		$requete['SELECT'] = array('visites');
 		$requete['FROM'] = array('spip_visites');
-		$requete['WHERE'] = array("date='$hier'");
+		$requete['WHERE'] = array("date=".sql_quote($hier));
 		$result = sql_select($requete['SELECT'], $requete['FROM'], $requete['WHERE']);
 		if ($row = sql_fetch($result)) {
 			$visites = $row['visites'];
@@ -212,7 +212,6 @@ function calcul_rubrique_agenda() {
 		$id_rubrique = $row['id_rubrique'];
 	}
 
-echo "<$id_rubrique>";
 	return $id_rubrique;
 }
 
@@ -242,7 +241,6 @@ function calcul_rubrique_galerie() {
 		$id_rubrique = $row['id_rubrique'];
 	}
 
-echo "<$id_rubrique>";
 	return $id_rubrique;
 }
 
@@ -272,7 +270,6 @@ function calcul_rubrique_annonce() {
 		$id_rubrique = $row['id_rubrique'];
 	}
 
-echo "<$id_rubrique>";
 	return $id_rubrique;
 }
 ?>
