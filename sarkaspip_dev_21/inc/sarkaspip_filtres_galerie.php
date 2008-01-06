@@ -99,24 +99,29 @@ function galerie_recenser_album($id_galerie=0, $id=0, $date=0, $titre='', $logo=
 	}
 	
 	$id_article = intval($id);
-	$query = "SELECT spip_mots.id_mot AS id_mot FROM spip_mots_articles, spip_mots 
-	WHERE spip_mots.type='squelette_galerie' AND spip_mots_articles.id_article=$id_article AND spip_mots.id_mot=spip_mots_articles.id_mot";
-	$result = spip_query($query);
+	$requete['SELECT'] = array('spip_mots.id_mot AS id_mot');
+	$requete['FROM'] = array('spip_mots_articles', 'spip_mots');
+	$requete['WHERE'] = array('spip_mots.type='.sql_quote('squelette_galerie'),
+							  'spip_mots_articles.id_article='.sql_quote($id_article),
+							  'spip_mots.id_mot=spip_mots_articles.id_mot');
+	$result = sql_select($requete['SELECT'], $requete['FROM'], $requete['WHERE']);
 	$cat = NULL;
-	while ($row = spip_fetch_array($result))
+	while ($row = sql_fetch($result))
 		$cat .= '|'.$row['id_mot'];
 	$liste_album[$count_album]['categorie'] = $cat;
-        
+
 	$liste_album[$count_album]['logo'] = $logo;
 	$liste_album[$count_album]['auteurs'] = $auteurs;
 	$liste_album[$count_album]['intro'] = $introduction;
         
 	$id_article = intval($id);
-	$query = "SELECT spip_auteurs.nom AS nom, spip_auteurs.id_auteur AS id_auteur FROM spip_auteurs, spip_auteurs_articles 
-	WHERE spip_auteurs.id_auteur=spip_auteurs_articles.id_auteur AND spip_auteurs_articles.id_article=$id_article";
-	$result = spip_query($query);
+	$requete['SELECT'] = array('spip_auteurs.nom AS nom', 'spip_auteurs.id_auteur AS id_auteur');
+	$requete['FROM'] = array('spip_auteurs', 'spip_auteurs_articles');
+	$requete['WHERE'] = array('spip_auteurs.id_auteur=spip_auteurs_articles.id_auteur',
+							  'spip_auteurs_articles.id_article='.sql_quote($id_article));
+	$result = sql_select($requete['SELECT'], $requete['FROM'], $requete['WHERE']);
 	$auteurs = NULL;
-	while ($row = spip_fetch_array($result)) {
+	while ($row = sql_fetch($result)) {
 		if ($auteurs) $auteurs .= ', ';
                 $auteurs .= '<a href="spip.php?page=auteur&id_auteur='.$row['id_auteur'].'">'.$row['nom'].'</a>';
         }

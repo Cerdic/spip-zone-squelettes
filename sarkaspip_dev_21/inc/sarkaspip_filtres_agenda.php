@@ -3,8 +3,8 @@
 
 // ===================================================
 // Auteur: Smellup
-// Fonction : définition du contexte d'affichage de l'agenda
-// Utilisation : tous les agendas. Doit être appelée au début
+// Fonction : definition du contexte d'affichage de l'agenda
+// Utilisation : tous les agendas. Doit etre appelee au debut
 //                      de l'affichage, avant le recensement
 // ===================================================
 //
@@ -35,11 +35,11 @@ function agenda_definir_contexte($id_agenda=0, $type_agenda='listing_annuel', $d
 
 // ===================================================
 // Auteur: Smellup
-// Fonction : recensement de tous les événements
-// Utilisation : tous les agendas. Doit être appelée au début
-//                      de l'affichage, après établissement du contexte
-//                      La liste doit être triée en ordre chrono par la 
-//                      boucle via le critère {par date_redac}
+// Fonction : recensement de tous les evenements
+// Utilisation : tous les agendas. Doit etre appelee au debut
+//                      de l'affichage, apres etablissement du contexte
+//                      La liste doit etre triee en ordre chrono par la 
+//                      boucle via le critere {par date_redac}
 // ===================================================
 //
 function agenda_recenser_evenement($id_agenda=0, $id=0, $date_redac=0, $titre='') {
@@ -65,7 +65,7 @@ function agenda_recenser_evenement($id_agenda=0, $id=0, $date_redac=0, $titre=''
 	if ($date_redac != 0) {
 		$count_evt += 1;
 
-		// Liste ordonnées des événements (tableau[1..n] d'événements)
+		// Liste ordonnees des evenements (tableau[1..n] d'evenements)
 		$jour = affdate_base($date_redac, 'jour');
 		$mois = affdate_base($date_redac, 'mois');
 		$annee = affdate_base($date_redac, 'annee');
@@ -97,16 +97,18 @@ function agenda_recenser_evenement($id_agenda=0, $id=0, $date_redac=0, $titre=''
 		}
 
 		$id_article = intval($id);
-		$query = "SELECT spip_mots.id_mot AS id_mot FROM spip_mots_articles, spip_mots 
-		WHERE spip_mots.type='squelette_agenda' AND spip_mots_articles.id_article=$id_article AND spip_mots.id_mot=spip_mots_articles.id_mot";
-
-		$result = spip_query($query);
+		$requete['SELECT'] = array('spip_mots.id_mot AS id_mot');
+		$requete['FROM'] = array('spip_mots_articles', 'spip_mots');
+		$requete['WHERE'] = array('spip_mots.type='.sql_quote('squelette_agenda'),
+								  'spip_mots_articles.id_article='.sql_quote($id_article),
+								  'spip_mots.id_mot=spip_mots_articles.id_mot');
+		$result = sql_select($requete['SELECT'], $requete['FROM'], $requete['WHERE']);
 		$cat = NULL;
-		while ($row = spip_fetch_array($result))
+		while ($row = sql_fetch($result))
 			$cat .= '|'.$row['id_mot'];
 		$liste_evt[$count_evt]['categorie'] = $cat;
 
-		// Liste indexée par jour des événements
+		// Liste indexee par jour des evenements
 		$jour_redac = affdate_base($date_redac, 'd-m-Y');
 		$mini_evt[$jour_redac][] = $count_evt;
 	}
@@ -116,7 +118,7 @@ function agenda_recenser_evenement($id_agenda=0, $id=0, $date_redac=0, $titre=''
 
 // ===================================================
 // Auteur: Smellup
-// Fonction : affichage debug du tableau des événements
+// Fonction : affichage debug du tableau des evenements
 // Utilisation : tous les agendas.
 // ===================================================
 //
@@ -177,7 +179,7 @@ function agenda_debug_contexte($id_agenda=0) {
 // ===================================================
 // Auteur: Smellup
 // Fonction : Insertion d'une bande de pagination annuelle ou
-//                   saisonnière 
+//                   saisonniere 
 // Utilisation : uniquement agenda annuel. Choix possible du
 //                      filtre, tri, et format (via le contexte)
 // ===================================================
@@ -251,7 +253,7 @@ function agenda_liste_paginer($id_agenda=0, $annee_choisie=0, $mois_choisi=0, $f
 // ===================================================
 // Auteur: Smellup
 // Fonction : Affichage de l'agenda sous forme de listing des
-//                   événements de l'année choisie
+//                   evenements de l'annee choisie
 // Utilisation : uniquement agenda annuel. Choix possible du
 //                      filtre et du tri
 // ===================================================
@@ -319,7 +321,7 @@ function agenda_liste_afficher($id_agenda=0, $annee_choisie=0, $mois_choisi=0, $
 // Auteur: Smellup
 // Fonction : Affichage des messages d'avertissement
 // Utilisation : uniquement agenda annuel. Cas aucune page ou
-//                      aucun événement. Critère filtre et saison
+//                      aucun evenement. Critere filtre et saison
 // ===================================================
 //
 function agenda_liste_avertir($id_agenda, $annee_choisie, $mois_choisi) {
@@ -423,22 +425,22 @@ function agenda_mini_afficher($id_agenda=0, $jour_debut=0, $affichage_hors_mois=
 	if ($id_agenda == 0)
 		return;
 
-	// Récupération du contexte
+	// Recuperation du contexte
 	$contexte_aff = agenda_definir_contexte(0);
 	$mois_choisi = $contexte_aff['mois_base'];
 	$annee_choisie = $contexte_aff['annee_base'];
 	$url_base = $contexte_aff['url_base'];
 
-	// Récupération des listes d'événements
+	// Recuperation des listes d'evenements
 	$evenements = agenda_recenser_evenement(0);
 	$mini_evenements = agenda_recenser_evenement(-1);
 
 	$tableau = NULL;
 
-	// Début du tableau
+	// Debut du tableau
 	$tableau .= '<table width="100%" border="0" cellpadding="1" cellspacing="0" align="center"  class="tableau">';
 
-	// 1ere ligne : nom abrégé des jours de dimanche à samedi
+	// 1ere ligne : nom abrege des jours de dimanche a samedi
 	$tableau .= '<tr>';
 	for($i = 0; $i <= 6; $i++) {
 		$j = ($jour_debut+$i)%7;
@@ -446,10 +448,10 @@ function agenda_mini_afficher($id_agenda=0, $jour_debut=0, $affichage_hors_mois=
 	}
 	$tableau .= '</tr>';
 
-	// Cellules des jours : de 4 à 5 lignes de 7 jours. Début de la 2ème ligne
+	// Cellules des jours : de 4 a 5 lignes de 7 jours. Debut de la 2eme ligne
 	$tableau .= '<tr>';
 
-	// Cellules des jours visibles précédant le mois courant (toujours inclus strictement dans la 2eme ligne)
+	// Cellules des jours visibles precedant le mois courant (toujours inclus strictement dans la 2eme ligne)
 	$cellules_mois_prec = NULL;
 	$jour = 1;
 	$date = mktime(0,0,0,$mois_choisi, $jour, $annee_choisie);
@@ -475,11 +477,11 @@ function agenda_mini_afficher($id_agenda=0, $jour_debut=0, $affichage_hors_mois=
 		$cellule = '<td width="6%" valign="top" class="calendar_this_';
 		$cellule .= (date('d-m-Y', $date) == date('d-m-Y')) ? 'day">' : 'month">';
 		if (!isset($mini_evenements[date('d-m-Y', $date)])) {
-			// Il n'y pas d'événement pour ce jour, on affiche la date
+			// Il n'y pas d'evenement pour ce jour, on affiche la date
 			$cellule .= strval(date('j', $date));
 		}
 		else {
-			// Il y a un ou plusieurs événements, on construit le lien et la bulle d'info
+			// Il y a un ou plusieurs evenements, on construit le lien et la bulle d'info
 			$index_evt1 = $mini_evenements[date('d-m-Y', $date)][0];
 			$lien = 'spip.php?page=evenement&id_article='.$evenements[$index_evt1]['id'];
 			$bulle = $evenements[$index_evt1]['heure'].'&nbsp;-&nbsp;'.$evenements[$index_evt1]['titre'];
@@ -494,7 +496,7 @@ function agenda_mini_afficher($id_agenda=0, $jour_debut=0, $affichage_hors_mois=
 		$date = mktime(0,0,0,$mois_choisi, $jour, $annee_choisie);
 	}
 
-	// Cellules des jours visibles suivant le mois courant (toujours inclus strictement dans la dernière ligne)
+	// Cellules des jours visibles suivant le mois courant (toujours inclus strictement dans la derniere ligne)
 	while (date('w', $date) != $jour_debut) {
 		$cellule = '<td width="14%" valign="top" class="calendar_not_this_month">';
 		$cellule .= ($affichage_hors_mois == 'oui') ? strval(date('j', $date)) : '&nbsp;';
@@ -514,9 +516,9 @@ function agenda_mini_afficher($id_agenda=0, $jour_debut=0, $affichage_hors_mois=
 
 // ===================================================
 // Auteur: Smellup
-// Fonction : Insertion du résumé des événements du mois
+// Fonction : Insertion du resume des evenements du mois
 // Utilisation : Choix possible de la taille masx de la
-//               liste et du critère de sélection des 
+//               liste et du critere de selection des 
 //               evenements (tous le mois ou juste la  
 //               fin du mois % date du jour)
 // ===================================================
@@ -538,10 +540,10 @@ function agenda_mini_resumer($id_agenda=0, $critere='mois_complet', $taille=5) {
 
 	$tableau = NULL;
 
-	// Début du tableau
+	// Debut du tableau
 	$tableau .= '<table width="100%" border="0" cellpadding="0" cellspacing="0" style=" font-size:9px; color:#AAAAAA;">';
 
-	// Extraction des événements du mois en cours
+	// Extraction des evenements du mois en cours
 	$i = 1;
 	$liste_complete = FALSE;
 	$cellule = NULL;

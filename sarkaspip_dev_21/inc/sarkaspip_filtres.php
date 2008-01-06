@@ -179,8 +179,8 @@ function mot_associations($mot) {
 	
 	$nb = 0;
 	
-	$rub_agenda = calcul_rubrique_agenda();
-	$rub_galerie = calcul_rubrique_galerie();
+	$rub_agenda = calcul_rubrique('agenda');
+	$rub_galerie = calcul_rubrique('galerie');
 
 	// Decompte des associations avec des articles
 	$query = "SELECT COUNT(DISTINCT id_mot) AS assocations FROM spip_mots_articles, spip_articles
@@ -233,6 +233,7 @@ function mot_associations($mot) {
 	}
 
 	$nb = $nb_articles + $nb_breves + $nb_rubriques + $nb_forums + $nb_syndics;
+//	echo 'idmot='.$mot.' art='.$nb_articles.' brv='.$nb_breves.' rub='.$nb_rubriques.' frm='.$nb_forums.' sit='.$nb_syndics.'<br />';
 	
 	return $nb;
 }
