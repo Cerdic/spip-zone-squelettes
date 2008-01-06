@@ -39,18 +39,8 @@ function calcul_version_squelette() {
 //
 function balise_VISITES_SITE($p) {
 
-	if ($a = $p->param) {
-		$sinon = array_shift($a);
-		if  (!array_shift($sinon)) {
-			$p->fonctions = $a;
-			array_shift( $p->param );
-			$jour = array_shift($sinon);
-			$jour = ($jour[0]->type=='texte') ? $jour[0]->texte : '';
-		}
-	}
-	else {
-		$jour = 'depuis_debut';
-	}
+	$jour = interprete_argument_balise(1,$p);
+	$jour = isset($jour) ? str_replace('\'', '"', $jour) : '"depuis_debut"';
 
 	$p->code = 'calcul_visites_site('.$jour.')';
 	$p->statut = 'php';
@@ -149,7 +139,8 @@ function balise_AUJOURDHUI($p) {
 // Balise : #RUBRIQUE_SPECIALISEE
 // =======================================================================================================================================
 // Auteur: SarkASmeL
-// Fonction : retourne la valeur de l'ID de la rubrique demandee ou de toutes les rubriques specialisees
+// Fonction : retourne la valeur de l'ID de la rubrique demandee ou de toutes les rubriques specialisees sous forme de regex
+//            Pour creer une nouvelle rubrique specialisee il suffit de rajouter un mot dans le tableau des mots reserves ($mots_reserves)
 // =======================================================================================================================================
 //
 function balise_RUBRIQUE_SPECIALISEE($p) {
@@ -164,112 +155,41 @@ function balise_RUBRIQUE_SPECIALISEE($p) {
 
 function calcul_rubrique_specialisee($mot) {
 
-	$ret = NULL;
-	switch(strtolower($mot)) {
-		case 'agenda':
-		    $ret = calcul_rubrique_agenda();
-		    break;
-		case 'galerie':
-		    $ret = calcul_rubrique_galerie();
-		    break;
-		case 'annonce':
-		    $ret = calcul_rubrique_annonce();
-		    break;
-		default:
-			$ret .= '^(';
-			$ret .= calcul_rubrique_agenda();
-			$ret .= '|'.calcul_rubrique_galerie();
-			$ret .= '|'.calcul_rubrique_annonce();
-			$ret .= ')$';
-			break;
+	static $mots_reserves = array('agenda', 'galerie', 'annonce');
+	$id = NULL;
+
+	if (in_array($mot, $mots_reserves)) {
+	    $id = calcul_rubrique($mot);
 	}
-	return $ret;
+	else {
+		$id .= '^(';
+		reset($mots_reserves);
+		while (list($cle, $valeur) = each($mots_reserves)) {
+			$id .= (($cle != 0) ? '|' : '').calcul_rubrique($valeur); 
+		}
+		$id .= ')$';
+	}
+
+	return $id;
 }
 
-// =======================================================================================================================================
-// Balise : #RUBRIQUE_AGENDA
-// =======================================================================================================================================
-// Auteur: SarkASmeL
-// Fonction : retourne la valeur de l'ID de la rubrique faisant office d'agenda (associe au mot-cle agenda)
-// =======================================================================================================================================
-//
-function balise_RUBRIQUE_AGENDA($p) {
-
-	$p->code = 'calcul_rubrique_agenda()';
-	$p->statut = 'php';
-	return $p;
-}
-
-function calcul_rubrique_agenda() {
+function calcul_rubrique($mot) {
 
 	$id_rubrique = 0;
+	if (!$mot)
+		return $id_rubrique;
 
 	$requete['SELECT'] = array('id_rubrique');
 	$requete['FROM'] = array('spip_mots_rubriques', 'spip_mots', 'spip_groupes_mots');
-	$requete['WHERE'] = array("spip_groupes_mots.titre='squelette_habillage' AND spip_groupes_mots.id_groupe=spip_mots.id_groupe AND spip_mots.titre='agenda' AND spip_mots.id_mot=spip_mots_rubriques.id_mot");
+	$requete['WHERE'] = array('spip_groupes_mots.titre='.sql_quote('squelette_habillage'),
+							  'spip_groupes_mots.id_groupe=spip_mots.id_groupe',
+							  'spip_mots.titre='.sql_quote($mot),
+							  'spip_mots.id_mot=spip_mots_rubriques.id_mot');
 	$result = sql_select($requete['SELECT'], $requete['FROM'], $requete['WHERE']);
 	if ($row = sql_fetch($result)) {
 		$id_rubrique = $row['id_rubrique'];
 	}
-
 	return $id_rubrique;
 }
 
-// =======================================================================================================================================
-// Balise : #RUBRIQUE_GALERIE
-// =======================================================================================================================================
-// Auteur: SarkASmeL
-// Fonction : retourne la valeur de l'ID de la rubrique faisant office de galerie (associee au mot-cle galerie)
-// =======================================================================================================================================
-//
-function balise_RUBRIQUE_GALERIE($p) {
-
-	$p->code = 'calcul_rubrique_galerie()';
-	$p->statut = 'php';
-	return $p;
-}
-
-function calcul_rubrique_galerie() {
-
-	$id_rubrique = 0;
-
-	$requete['SELECT'] = array('id_rubrique');
-	$requete['FROM'] = array('spip_mots_rubriques', 'spip_mots', 'spip_groupes_mots');
-	$requete['WHERE'] = array("spip_groupes_mots.titre='squelette_habillage' AND spip_groupes_mots.id_groupe=spip_mots.id_groupe AND spip_mots.titre='galerie' AND spip_mots.id_mot=spip_mots_rubriques.id_mot");
-	$result = sql_select($requete['SELECT'], $requete['FROM'], $requete['WHERE']);
-	if ($row = sql_fetch($result)) {
-		$id_rubrique = $row['id_rubrique'];
-	}
-
-	return $id_rubrique;
-}
-
-// =======================================================================================================================================
-// Balise : #RUBRIQUE_ANNONCE
-// =======================================================================================================================================
-// Auteur: SarkASmeL
-// Fonction : retourne la valeur de l'ID de la rubrique faisant office de panneau annonceur (associee au mot-cle annonce)
-// =======================================================================================================================================
-//
-function balise_RUBRIQUE_ANNONCE($p) {
-
-	$p->code = 'calcul_rubrique_annonce()';
-	$p->statut = 'php';
-	return $p;
-}
-
-function calcul_rubrique_annonce() {
-
-	$id_rubrique = 0;
-
-	$requete['SELECT'] = array('id_rubrique');
-	$requete['FROM'] = array('spip_mots_rubriques', 'spip_mots', 'spip_groupes_mots');
-	$requete['WHERE'] = array("spip_groupes_mots.titre='squelette_habillage' AND spip_groupes_mots.id_groupe=spip_mots.id_groupe AND spip_mots.titre='annonce' AND spip_mots.id_mot=spip_mots_rubriques.id_mot");
-	$result = sql_select($requete['SELECT'], $requete['FROM'], $requete['WHERE']);
-	if ($row = sql_fetch($result)) {
-		$id_rubrique = $row['id_rubrique'];
-	}
-
-	return $id_rubrique;
-}
 ?>
