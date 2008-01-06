@@ -541,7 +541,7 @@ function agenda_mini_resumer($id_agenda=0, $critere='mois_complet', $taille=5) {
 	$tableau = NULL;
 
 	// Debut du tableau
-	$tableau .= '<table width="100%" border="0" cellpadding="0" cellspacing="0" style=" font-size:9px; color:#AAAAAA;">';
+	$tableau .= '<table class="liste_evenement" width="100%" border="0" cellpadding="0" cellspacing="0">';
 
 	// Extraction des evenements du mois en cours
 	$i = 1;
