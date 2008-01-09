@@ -62,7 +62,7 @@ function agenda_recenser_evenement($id_agenda=0, $id=0, $date_redac=0, $titre=''
 		$type_agenda = $contexte_aff['type_agenda'];
 	}
 
-	if ($date_redac != 0) {
+	if (intval($date_redac) > 1) {
 		$count_evt += 1;
 
 		// Liste ordonnees des evenements (tableau[1..n] d'evenements)
