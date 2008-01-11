@@ -181,72 +181,52 @@ Parcourir</a></li>
 
 
 [(#REM)   les articles de la rubrique   ]
-   
+<B_articles>   
+<div class="grande_boite">
 
-
-
-
-
-<div id="minipics">
-<B_articles>
 #ANCRE_PAGINATION
-<?php $i=0; ?>
-<BOUCLE_articles(ARTICLES){id_rubrique}{par num titre}{par date}{inverse}{doublons}{tout_voir}{pagination}>
-<ul>
-<BOUCLE_logo_documents(DOCUMENTS){id_article}{mode=document}{par date}{inverse}{extension IN jpg,png,gif}{0,1}>
-<li style=" <?php
-echo ($i==0) ? 'float:left' : 'float:right' ; 
-if($i==0) {$i=1;}
-else {$i=0;} ?>
- "><a href="#URL_ARTICLE#diapo"><INCLURE{fond="logo"}{id_article}{id_document}{taille=46}{date=#ENV{date}}></a>
-</BOUCLE_logo_documents>
-
-<BOUCLE_photocmpt(DOCUMENTS){id_article}{mode=document}{extension IN jpg,png,gif}>
-</BOUCLE_photocmpt>
-<p class="centre">
-<a href="#URL_ARTICLE#diapo">
-<?php $total_photos = "#TOTAL_BOUCLE"; 
-echo $total_photos == 1? "1&nbsp;photo" : "$total_photos&nbsp;photos" ; ?></a>
-</p></li>
-</B_photocmpt>
-
+  
+<BOUCLE_articles(ARTICLES){id_rubrique}{par num titre, date}{inverse}{doublons}{tout_voir}{pagination}>
+ <div class="interne"> 
+    <BOUCLE_logo_documents(DOCUMENTS){id_article}{mode=document}{par date}{inverse}{extension IN jpg,png,gif}{0,1}>
+<span [class="(#EVAL{[(#_articles:COMPTEUR_BOUCLE)]}|alterner{'gauche','droite'}) pixlogo"]>
+ <BOUCLE_photocmpt(DOCUMENTS){id_article}{mode=document}{extension IN jpg,png,gif}> </BOUCLE_photocmpt>
+	[(#EVAL{' '}|concat{#TOTAL_BOUCLE,[&nbsp;(#TOTAL_BOUCLE|>{1}|?{'photos','photo'})]}|image_typo{taille=10,hauteur_ligne=0,police=police.ttf,couleur=#GET{colo}}|image_rotation{-90})]
+ </B_photocmpt>
+    <a href="#URL_ARTICLE#diapo"><INCLURE{fond="logo"}{id_article}{id_document}{taille=48}{date=#ENV{date}}></a>
+   
+</span>
+   </BOUCLE_logo_documents> 
 
 [(#REM)   s'il n'y a pas de jpg gif ou png alors on demande le logo de l'article et on ne compte rien  ]
-</B_logo_documents>
 
+    <BOUCLE_logo_articles(ARTICLES){id_article}{0,1}>
+<span [class="(#EVAL{[(#_articles:COMPTEUR_BOUCLE)]}|alterner{'gauche','droite'}) pixlogo"]>
+    <a href="#URL_ARTICLE#diapo">
+     	[(#LOGO_ARTICLE||?{' ',''})<INCLURE{fond="logo"}{id_article}{taille=48}{date=#ENV{date}}>]
+		[<span class="plusbas">Pas de<br/>logo<br/></span><span class="transpa">(#LOGO_ARTICLE||?{'',' '})<INCLURE{fond="logo"}{id_rubrique}{taille=48}{date=#ENV{date}}></span>]
+			</a>
+</span>
+		</BOUCLE_logo_articles>    
+    <//B_logo_documents>
+<p>
+[<a href="#URL_ARTICLE">(#TITRE)</a>]&nbsp;[((#VISITES)&nbsp;[(#VISITES|>{1}|?{'lectures','lecture'}))]]&nbsp;[(#DESCRIPTIF|couper{200})]
 
-<BOUCLE_logo_articles(ARTICLES){id_article}{0,1}>
-<li style=" <?php
-echo ($i==0) ? 'float:left' : 'float:right' ; 
-if($i==0) {$i=1;}
-else {$i=0;} ?>
- "><a href="#URL_ARTICLE"><INCLURE{fond="logo"}{id_article}{taille=46}{date=#ENV{date}}></a></li>
-</BOUCLE_logo_articles>
-
-
-<//B_logo_documents>
-
-
- 
-<li class="textepics">
-  <p>[<a href="#URL_ARTICLE">(#TITRE) </a>](<?php $total_visites = "#VISITES"; 
-    echo $total_visites == 1? "1&nbsp;lecture." : "$total_visites&nbsp;lectures." ; ?>)&nbsp;[(#DESCRIPTIF|couper{200})]
     <INCLUDE{fond="inc_cadenas"}{id_article}>  
-   <BOUCLE_forum(FORUMS){id_article}{plat}>
-    </BOUCLE_forum> <a href="#URL_ARTICLE#forum">
-    <?php $total_commentaires = "#TOTAL_BOUCLE"; 
-     echo $total_commentaires == 1? "1&nbsp;message" : "$total_commentaires&nbsp;messages"; ?></a>,&nbsp;
-    </B_forum> 
-    <a href="#URL_ARTICLE">Lire
-   la suite...</a></p>[(#REM)   3   ]
-</li></ul>
+   
+    <BOUCLE_forum(FORUMS){id_article}{plat}></BOUCLE_forum>
+    [(#TOTAL_BOUCLE|>={1}|?{[&nbsp;<a href="#URL_ARTICLE#forum">(#TOTAL_BOUCLE)&nbsp;messages</a>&nbsp;,],''})]<//B_forum>
+    <a href="#URL_ARTICLE">Lire la suite...</a>
+</p>
 <hr class="spacer"/>
-</BOUCLE_articles>
-<div class="centre">
-[<p>(#PAGINATION{page_precedent_suivant})</p>]
 </div>
-</B_articles>
+
+</BOUCLE_articles>
+
+
+[<div class="centre"><p>(#PAGINATION{page_precedent_suivant})</p></div>]
 </div>[(#REM) fermeture minipics   ]
+</B_articles>
 
                      
 </div>
