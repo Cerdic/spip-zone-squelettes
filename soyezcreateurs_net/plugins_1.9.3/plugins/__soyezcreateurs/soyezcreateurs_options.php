@@ -70,6 +70,10 @@ $GLOBALS['fin_intertitre_4'] = '</h5>';
 $GLOBALS['debut_intertitre_5'] = '<h6 class="spip">';
 $GLOBALS['fin_intertitre_5'] = '</h6>';
 
+// Pour suivre les recommandations du RGAA :
+$GLOBALS['debut_italique'] = "<em$class_spip>";
+$GLOBALS['fin_italique'] = '</em>';
+
 // Pour pouvoir styler en appliquant : http://www.sovavsiti.cz/css/hr.html
 $GLOBALS['ligne_horizontale'] = "\n<div class='hrspip'><hr class='spip' /></div>\n";
 
