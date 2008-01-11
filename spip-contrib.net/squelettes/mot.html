@@ -1,4 +1,7 @@
-[(#REM) mot version SPIP-Contrib 2007]
+[(#REM) mot version SPIP-Contrib 2008
+modifs :
+- 080601 : plus d'exclusion sur mots "archives" pour alleger le calcul en doublons (test)
+]
 
 #CACHE{86400}
 [(#REM) balise plugin Fastcache ]
@@ -27,22 +30,11 @@
 		[(#REM) Contenu principal : contenu du mot-cle ]
 		<div id="contenu">
 			
-			[(#REM) boucle d'exclusion articles sur mot clef "Archives, id=154"]
-			<BOUCLE_exclu_articles(ARTICLES){id_mot=154}{doublons articlesarchives1}{doublons articlesarchives2}></BOUCLE_exclu_articles>
-			[(#REM) boucle d'exclusion articles dans rubriques sur mot clef "Archives, id=154", compris toutes sous-rubriques incluses]
-			<BOUCLE_exclu_rubriques(RUBRIQUES){id_mot=154}>
-				<BOUCLE_exclu_articles2(ARTICLES){id_rubrique}{doublons articlesarchives1}{doublons articlesarchives2}></BOUCLE_exclu_articles2>
-				<BOUCLE_exclu_sousrubriques(RUBRIQUES){id_parent}>
-					<BOUCLE_exclu_articles3(ARTICLES){id_rubrique}{doublons articlesarchives1}{doublons articlesarchives2}></BOUCLE_exclu_articles3>
-					<BOUCLE_recursive1(BOUCLE_exclu_sousrubriques)></BOUCLE_recursive1>
-				</BOUCLE_exclu_sousrubriques>
-			</BOUCLE_exclu_rubriques>
-			
 			[(#REM) Articles lies au mot-cle, sauf archives, stockage avec critere doublons ]
-			<BOUCLE_articlesmot(ARTICLES){id_mot}{doublons articlesmot}{doublons articlesarchives1}></BOUCLE_articlesmot>
+			<BOUCLE_articlesmot(ARTICLES){id_mot}{doublons articlesmot}></BOUCLE_articlesmot>
 			[(#REM) Articles dans rubriques liees au mot-cle, stockage avec critere doublons ]
 			<BOUCLE_rubriquesmot(RUBRIQUES){id_mot}>
-				<BOUCLE_articlesrubriquesmot(ARTICLES){id_rubrique}{doublons articlesmot}{doublons articlesarchives2}></BOUCLE_articlesrubriquesmot>
+				<BOUCLE_articlesrubriquesmot(ARTICLES){id_rubrique}{doublons articlesmot}></BOUCLE_articlesrubriquesmot>
 			</BOUCLE_rubriquesmot>
 
 			[(#REM) titre et infos mot clef]
@@ -116,7 +108,7 @@
 				[<p class="pagination">(#PAGINATION)</p>]
 				<ul>
 					<BOUCLE_rubriques(RUBRIQUES){id_mot}{lang?}{par titre}{pagination 40}>
-						<li><a href="<INCLURE{fond=inc-triurlrubrique}{id_rubrique}>"[title="(#INTRODUCTION|supprimer_tags|texte_script|couper{100})"]>#TITRE</a></li>
+						<li><a href="<INCLURE{fond=inc-triurlrubrique}{id_rubrique}>"[ title="s(#INTRODUCTION|texte_backend|supprimer_tags|texte_script|couper{100})"]>#TITRE</a></li>
 					</BOUCLE_rubriques>
 				</ul>
 			</div>

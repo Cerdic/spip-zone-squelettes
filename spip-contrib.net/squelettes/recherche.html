@@ -1,8 +1,8 @@
-[(#REM) recherche version SPIP-Contrib 2007]
+[(#REM) recherche version SPIP-Contrib 2008
+modifs :
+- 080601 : plus d'exclusion sur mots "archives" pour alleger le calcul en doublons (test)
+]
 
-#CACHE{86400}
-[(#REM) balise plugin Fastcache ]
-#FASTCACHE
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
@@ -24,23 +24,12 @@
 
 		[(#REM) Contenu principal : Resultats de la recherche ]
 		<div id="contenu">
-			
-			[(#REM) boucle d'exclusion articles sur mot clef "Archives, id=154"]
-			<BOUCLE_exclu_articles(ARTICLES){id_mot=154}{doublons articlesarchives1}{doublons articlesarchives2}></BOUCLE_exclu_articles>
-			[(#REM) boucle d'exclusion articles dans rubriques sur mot clef "Archives, id=154", compris toutes sous-rubriques incluses]
-			<BOUCLE_exclu_rubriques(RUBRIQUES){id_mot=154}>
-				<BOUCLE_exclu_articles2(ARTICLES){id_rubrique}{doublons articlesarchives1}{doublons articlesarchives2}></BOUCLE_exclu_articles2>
-				<BOUCLE_exclu_sousrubriques(RUBRIQUES){id_parent}>
-					<BOUCLE_exclu_articles3(ARTICLES){id_rubrique}{doublons articlesarchives1}{doublons articlesarchives2}></BOUCLE_exclu_articles3>
-					<BOUCLE_recursive1(BOUCLE_exclu_sousrubriques)></BOUCLE_recursive1>
-				</BOUCLE_exclu_sousrubriques>
-			</BOUCLE_exclu_rubriques>
 
 			[(#REM) objet recherche ]
 			<div class="cartouche">
 				<h1 class="surtitre"><:resultats_recherche:></h1>
 				<p class="titre">&#171;&nbsp;#RECHERCHE&nbsp;&#187;
-					<BOUCLE_compteurarticles(ARTICLES){recherche}{lang?}{doublons articlesarchives1}>
+					<BOUCLE_compteurarticles(ARTICLES){recherche}{lang?}>
 					</BOUCLE_compteurarticles>
 						<small>  (#TOTAL_BOUCLE <:articles:>)</small>
 					</B_compteurarticles>
@@ -49,13 +38,13 @@
 			<br class="nettoyeur" />
 			<hr class="separateur" />
 
-			[(#REM) Articles trouves - sauf archives ]
+			[(#REM) Articles trouves]
 			<B_articles>
 			<div class="liste-articles">
 				<h2 class="invisible"><:articles:></h2>
 				[(#ANCRE_PAGINATION)]
 				<ul>
-					<BOUCLE_articles(ARTICLES){recherche}{lang?}{doublons articlesarchives2}{!par points}{pagination 50}>
+					<BOUCLE_articles(ARTICLES){recherche}{lang?}{!par points}{pagination 50}>
 					<li>
 						[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{50,50})]
 						[<p class="surtitre">(#SURTITRE)</p>]
@@ -83,23 +72,19 @@
 		[(#REM) bandeau laterale (utilisation de la colonne de navigation latérale des autres pages) ]
 		<div id="navigation">
 
-			[(#REM) Rubriques trouvees - sauf archives ]
-			[(#REM) boucle d'exclusion rubriques sur mot clef "Archives, id=154"]
-			<BOUCLE_exclu_rubriquesarchives(RUBRIQUES){id_mot=154}{doublons rubriquesarchives}>
-				<BOUCLE_exclu_sousrubriquesarchives(RUBRIQUES){branche}{doublons rubriquesarchives}></BOUCLE_exclu_sousrubriquesarchives>
-			</BOUCLE_exclu_rubriquesarchives>
+			[(#REM) Rubriques trouvees]
 			<B_rubriques>
 			<div class="rubriques">
 				#ANCRE_PAGINATION
 				<h2 class="menu-titre"><:rubriques:>
-					<BOUCLE_compteurrubriques(RUBRIQUES){recherche}{lang?}{doublons rubriquesarchives}>
+					<BOUCLE_compteurrubriques(RUBRIQUES){recherche}{lang?}>
 					</BOUCLE_compteurrubriques>
 						  (#TOTAL_BOUCLE)
 					</B_compteurrubriques>
 				</h2>
 				[<p class="pagination">(#PAGINATION)</p>]
 				<ul>
-					<BOUCLE_rubriques(RUBRIQUES){recherche}{lang?}{doublons rubriquesarchives}{!par points}{pagination 30}>
+					<BOUCLE_rubriques(RUBRIQUES){recherche}{lang?}{!par points}{pagination 30}>
 					<li><a href="#URL_RUBRIQUE">#TITRE</a></li>
 					</BOUCLE_rubriques>
 				</ul>
@@ -120,34 +105,19 @@
 			</div>
 			</B_mots>
 
-			<!-- test 18-11-2007 = desactivation de la recherche sur les nombreux messages de forums pour voir si cela accelere un peu la chose
-			
 			[(#REM) Messages trouves ]
-			[(#REM) boucle d'exclusion forums dans articles sur mot clef "Archives, id=154"]
-			<BOUCLE_exclu_forumsarticles(ARTICLES){tout}{id_mot=154}>
-				<BOUCLE_exclu_forums(FORUMS){id_article}{doublons forumsarchives}></BOUCLE_exclu_forums>
-			</BOUCLE_exclu_forumsarticles>
-			[(#REM) boucle d'exclusion forums dans articles dans rubriques sur mot clef "Archives, id=154"]
-			<BOUCLE_exclu_forumsrubriques(RUBRIQUES){tout}{id_mot=154}>
-				<BOUCLE_exclu_forumsarticles2(ARTICLES){id_rubrique}>
-						<BOUCLE_exclu_forums2(FORUMS){id_article}{doublons forumsarchives}></BOUCLE_exclu_forums2>
-				</BOUCLE_exclu_forumsarticles2>
-			</BOUCLE_exclu_forumsrubriques>
-
 			<B_messages>
 			<div class="forums">
 				#ANCRE_PAGINATION
 				<h2 class="menu-titre"><:messages_forum:></h2>
 				[<p class="pagination">(#PAGINATION)</p>]
 				<ul>
-					<BOUCLE_messages(FORUMS){recherche}{doublons forumsarchives}{!par date}{pagination 30}>
+					<BOUCLE_messages(FORUMS){recherche}{!par date}{pagination 30}>
 					<li>[(#DATE|affdate_court) : ]<a href="#URL_FORUM">#TITRE</a></li>
 					</BOUCLE_messages>
 				</ul>
 			</div>
 			</B_messages>
-			
-			-->
 
 			[(#REM) Sites web trouves ]
 			<B_sites>
