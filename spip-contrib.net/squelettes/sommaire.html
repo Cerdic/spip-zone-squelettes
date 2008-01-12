@@ -32,8 +32,8 @@ modifs :
 			<div class="contre-encart">
 				[(#REM) Articles publies par ordre antechronologiques]
 				[(#REM) boucle d'exclusion articles sur mots clefs "Hors sommaire" (id_mot=239) et "En tete sommaire" (id_mot=246)]
-				<BOUCLE_exclusionsommaire_articles(ARTICLES){tout}{id_mot IN 239}{doublons horssommaire}></BOUCLE_exclusionsommaire_articles>
-				<BOUCLE_exclusionentetesommaire_articles(ARTICLES){tout}{id_mot IN 246}{doublons entetesommaire}></BOUCLE_exclusionentetesommaire_articles>
+				<BOUCLE_exclusionsommaire_articles(ARTICLES){tout}{id_mot IN 239}{doublons horssommaire}/>
+				<BOUCLE_exclusionentetesommaire_articles(ARTICLES){tout}{id_mot IN 246}{doublons entetesommaire}/>
 				
 				[(#REM) Articles en tete - pas besoin exclusions "hors sommaire" puisque parametrage volontaire]
 				<B_articlesentete>
@@ -51,12 +51,12 @@ modifs :
 										[(#REM) Les mots clefs de l'article]
 										<B_motsarticleentete>
 										 &mdash; 
-										 <BOUCLE_motsarticleentete(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|22|25|26)$}{0,n-1}>
-											[<em><a href="#URL_MOT">(#TITRE)</a>, </em>]
-										</BOUCLE_motsarticleentete>
-										<BOUCLE_motsarticleentete2(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|22|25|26)$}{n-1,n}>
-											[<em><a href="#URL_MOT">(#TITRE)</a></em>]
-										</BOUCLE_motsarticleentete2>
+										 <BOUCLE_motsarticleentete(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|22|25|26)$}{0,n-1}>[
+											<em><a href="#URL_MOT">(#TITRE)</a>, </em>
+										]</BOUCLE_motsarticleentete>
+										<BOUCLE_motsarticleentete2(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|22|25|26)$}{n-1,n}>[
+											<em><a href="#URL_MOT">(#TITRE)</a></em>
+										]</BOUCLE_motsarticleentete2>
 									</small>
 									[(#INTRODUCTION|?{[<div class="#EDIT{intro} texte">(#INTRODUCTION|couper{180})</div>],<hr />}) ]
 								</li>
@@ -82,12 +82,12 @@ modifs :
 										[(#REM) Les mots clefs de l'article]
 										<B_motsarticle>
 										 &mdash; 
-										 <BOUCLE_motsarticle(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|22|25|26)$}{0,n-1}>
-											[<em><a href="#URL_MOT">(#TITRE)</a>, </em>]
-										</BOUCLE_motsarticle>
-										<BOUCLE_motsarticle2(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|22|25|26)$}{n-1,n}>
-											[<em><a href="#URL_MOT">(#TITRE)</a></em>]
-										</BOUCLE_motsarticle2>
+										 <BOUCLE_motsarticle(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|22|25|26)$}{0,n-1}>[
+											<em><a href="#URL_MOT">(#TITRE)</a>, </em>
+										]</BOUCLE_motsarticle>
+										<BOUCLE_motsarticle2(MOTS){id_article}{par titre}{id_groupe!==^(3|5|6|22|25|26)$}{n-1,n}>[
+											<em><a href="#URL_MOT">(#TITRE)</a></em>
+										]</BOUCLE_motsarticle2>
 									</small>
 									[(#INTRODUCTION|?{[<div class="#EDIT{intro} texte">(#INTRODUCTION|couper{180})</div>],<hr />}) ]
 								</li>
@@ -143,13 +143,13 @@ modifs :
 				</div>
 				</B_syndic2>
 				
-				[(#REM) Suivi des seuls commits de la Zone syndiques sur Contrib - via usage du critere antidoublons ]
-				<BOUCLE_siteszone(SITES){id_mot=233}><BOUCLE_syndiczone(SYNDIC_ARTICLES){id_syndic}{doublons zone}></BOUCLE_syndiczone></BOUCLE_siteszone>
+				[(#REM) Suivi des seuls depots de la Zone syndiques sur Contrib - via usage du critere antidoublons ]
+				<BOUCLE_syndiczone(SYNDIC_ARTICLES){id_mot_syndic=233}{doublons zone}/>
 				<B_syndic5>
 				<div class="divers">
 					<h2 class="menu-titre">SPIP-Zone</h2>
 					<ul>
-					[(#REM) recuperation des commits via critere antidoublons ]
+					[(#REM) recuperation des depots via critere antidoublons ]
 					<BOUCLE_syndic5(SYNDIC_ARTICLES){!doublons zone}{!par date}{0,35}{pagination 5}>
 						<li>[<br />&ndash; (#DATE|affdate_court|unique) &ndash;<br />]<a href="#URL_ARTICLE"[ title="(#NOM_SITE|texte_backend) [- (#DATE|affdate)]"] class="spip_out">[(#TITRE|texte_backend|couper{40})]</a></li>
 					</BOUCLE_syndic5>
@@ -158,7 +158,7 @@ modifs :
 				</div>
 				</B_syndic5>
 				
-				[(#REM) commits SPIP SVN]
+				[(#REM) depots SPIP SVN]
 				<B_syndic6>
 				<div class="divers">
 					<BOUCLE_titresvn(SITES){id_syndic=247}>
@@ -172,7 +172,7 @@ modifs :
 				</div>
 				</B_syndic6>
 				
-				[(#REM) commits SPIP Forums]
+				[(#REM) depots SPIP Forums]
 				<B_syndic7>
 				<div class="divers">
 					<BOUCLE_titreforums(SITES){id_syndic=57}>
@@ -186,7 +186,7 @@ modifs :
 				</div>
 				</B_syndic7>
 			
-				[(#REM) Sur le Web SPIP - sauf le Zine et Party et le Blog  et SVN et la Zone et Forums (Zone deja traité avant via critere doublons ) ]
+				[(#REM) Sur le Web SPIP - sauf le Zine et Party et le Blog  et SVN et la Zone et Forums (Zone deja traitee avant via critere doublons ) ]
 				<B_syndic>
 				<div class="divers">
 					#ANCRE_PAGINATION
@@ -225,20 +225,16 @@ modifs :
 			[(#REM) nombre de rubriques avec tag plugin (id_mot=112) ]
 			<h2 class="menu-titre">
 				<BOUCLE_motplugin(MOTS){id_mot=112}>
-					<BOUCLE_compteurrubriquesplugin(RUBRIQUES){id_mot}>
-					</BOUCLE_compteurrubriquesplugin>
-						<a href="#URL_MOT"><small>#TOTAL_BOUCLE #TITREs</small></a>
-					</B_compteurrubriquesplugin>
+					<a href="#URL_MOT"><small><BOUCLE_compteurrubriquesplugin(RUBRIQUES){id_mot}/>#TOTAL_BOUCLE<//B_compteurrubriquesplugin>
+					 #TITREs</small></a>
 				</BOUCLE_motplugin>
 			</h2>
 			
-			[(#REM) nombre de rubriques avec tagg Sur la Zone (id_mot=233) ]
+			[(#REM) nombre de rubriques avec tag Sur la Zone (id_mot=233) ]
 			<h2 class="menu-titre">
 				<BOUCLE_motzone(MOTS){id_mot=233}>
-					<BOUCLE_compteurrubriqueszone(RUBRIQUES){id_mot}>
-					</BOUCLE_compteurrubriqueszone>
-						<a href="#URL_MOT"><small>#TOTAL_BOUCLE contribs #TITRE</small></a>
-					</B_compteurrubriqueszone>
+					<a href="#URL_MOT"><small><BOUCLE_compteurrubriqueszone(RUBRIQUES){id_mot}/>#TOTAL_BOUCLE<//B_compteurrubriqueszone>
+				 	contribs #TITRE</small></a>
 				</BOUCLE_motzone>
 			</h2>
 			
