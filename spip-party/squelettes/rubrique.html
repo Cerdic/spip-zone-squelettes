@@ -16,12 +16,40 @@
 		</ul>
 	</div>
 	<div class="primary">
-		<div class="itemhead">
+
+	[(#REM) Fil d'Ariane ]
+		<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; (#TITRE|couper{80})]</div>
+		
+<div class="itemhead">
 			[(#LOGO_RUBRIQUE|right||image_reduire{100})]
 			<h1>#TITRE</h1>
 			[<div>(#TEXTE)</div>]
 		</div><!-- itemhead -->
-		<div class="itemtext">
+
+
+
+<B_event_list>
+<h2>Les prochaines Dates </h2><ul style="list-style: none; margin: 0; padding: 0;">
+<BOUCLE_event_list(EVENEMENTS){agendafull date_debut,date_fin}{id_rubrique}{statut=publie}{par date_fin}{age_fin<0}>
+<li style="margin: 0; padding: 0;">
+
+[(#DATE_DEBUT|affdate)] [(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)]
+ &agrave; [(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)]
+( [(#LIEU|ucfirst)] ) 
+	
+
+
+</li>
+</BOUCLE_event_list>
+
+
+
+
+
+
+
+
+<div class="itemtext">
 			<B_articles>
 			#ANCRE_PAGINATION
 			<ul>
