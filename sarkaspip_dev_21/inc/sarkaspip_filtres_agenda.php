@@ -97,12 +97,12 @@ function agenda_recenser_evenement($id_agenda=0, $id=0, $date_redac=0, $titre=''
 		}
 
 		$id_article = intval($id);
-		$requete['SELECT'] = array('spip_mots.id_mot AS id_mot');
-		$requete['FROM'] = array('spip_mots_articles', 'spip_mots');
-		$requete['WHERE'] = array('spip_mots.type='.sql_quote('squelette_agenda'),
-								  'spip_mots_articles.id_article='.sql_quote($id_article),
-								  'spip_mots.id_mot=spip_mots_articles.id_mot');
-		$result = sql_select($requete['SELECT'], $requete['FROM'], $requete['WHERE']);
+		$select = array('t2.id_mot AS id_mot');
+		$from = array('spip_mots_articles AS t1', 'spip_mots AS t2');
+		$where = array('t2.type='.sql_quote('squelette_agenda'),
+					   't1.id_article='.sql_quote($id_article),
+					   't2.id_mot=t1.id_mot');
+		$result = sql_select($select, $from, $where);
 		$cat = NULL;
 		while ($row = sql_fetch($result))
 			$cat .= '|'.$row['id_mot'];

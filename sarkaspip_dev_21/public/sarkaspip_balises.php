@@ -53,28 +53,28 @@ function calcul_visites_site($j) {
 	
 	if ( $j == 'aujourdhui' ) {
 		$auj = date('Y-m-d',strtotime(date('Y-m-d')));
-		$requete['SELECT'] = array('visites');
-		$requete['FROM'] = array('spip_visites');
-		$requete['WHERE'] = array("date=".sql_quote($auj));
-		$result = sql_select($requete['SELECT'], $requete['FROM'], $requete['WHERE']);
+		$select = array('visites');
+		$from = array('spip_visites');
+		$where = array("date=".sql_quote($auj));
+		$result = sql_select($select, $from, $where);
 		if ($row = sql_fetch($result)) {
 			$visites = $row['visites'];
 		}
 	}
 	else if ( $j == 'hier' ) {
 		$hier = date('Y-m-d',strtotime(date('Y-m-d')) - 3600*24);
-		$requete['SELECT'] = array('visites');
-		$requete['FROM'] = array('spip_visites');
-		$requete['WHERE'] = array("date=".sql_quote($hier));
-		$result = sql_select($requete['SELECT'], $requete['FROM'], $requete['WHERE']);
+		$select = array('visites');
+		$from = array('spip_visites');
+		$where = array("date=".sql_quote($hier));
+		$result = sql_select($select, $from, $where);
 		if ($row = sql_fetch($result)) {
 			$visites = $row['visites'];
 		}
 	}
 	else {
-		$requete['SELECT'] = array('SUM(visites) AS total_absolu');
-		$requete['FROM'] = array('spip_visites');
-		$result = sql_select($requete['SELECT'], $requete['FROM']);
+		$select = array('SUM(visites) AS total_absolu');
+		$from = array('spip_visites');
+		$result = sql_select($select, $from);
 		if ($row = sql_fetch($result)) {
 			$visites = $row['total_absolu'];
 		}
@@ -179,13 +179,13 @@ function calcul_rubrique($mot) {
 	if (!$mot)
 		return $id_rubrique;
 
-	$requete['SELECT'] = array('id_rubrique');
-	$requete['FROM'] = array('spip_mots_rubriques', 'spip_mots', 'spip_groupes_mots');
-	$requete['WHERE'] = array('spip_groupes_mots.titre='.sql_quote('squelette_habillage'),
-							  'spip_groupes_mots.id_groupe=spip_mots.id_groupe',
-							  'spip_mots.titre='.sql_quote($mot),
-							  'spip_mots.id_mot=spip_mots_rubriques.id_mot');
-	$result = sql_select($requete['SELECT'], $requete['FROM'], $requete['WHERE']);
+	$select = array('id_rubrique');
+	$from = array('spip_mots_rubriques AS t1', 'spip_mots AS t2', 'spip_groupes_mots AS t3');
+	$where = array('t3.titre='.sql_quote('squelette_habillage'),
+				   't3.id_groupe=t2.id_groupe',
+				   't2.titre='.sql_quote($mot),
+ 				   't2.id_mot=t1.id_mot');
+	$result = sql_select($select, $from, $where);
 	if ($row = sql_fetch($result)) {
 		$id_rubrique = $row['id_rubrique'];
 	}

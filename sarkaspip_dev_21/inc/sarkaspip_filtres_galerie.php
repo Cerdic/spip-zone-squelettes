@@ -99,12 +99,12 @@ function galerie_recenser_album($id_galerie=0, $id=0, $date=0, $titre='', $logo=
 	}
 	
 	$id_article = intval($id);
-	$requete['SELECT'] = array('spip_mots.id_mot AS id_mot');
-	$requete['FROM'] = array('spip_mots_articles', 'spip_mots');
-	$requete['WHERE'] = array('spip_mots.type='.sql_quote('squelette_galerie'),
-							  'spip_mots_articles.id_article='.sql_quote($id_article),
-							  'spip_mots.id_mot=spip_mots_articles.id_mot');
-	$result = sql_select($requete['SELECT'], $requete['FROM'], $requete['WHERE']);
+	$select = array('t2.id_mot AS id_mot');
+	$from = array('spip_mots_articles AS t1', 'spip_mots AS t2');
+	$where = array('t2.type='.sql_quote('squelette_galerie'),
+				   't1.id_article='.sql_quote($id_article),
+				   't2.id_mot=t1.id_mot');
+	$result = sql_select($select, $from, $where);
 	$cat = NULL;
 	while ($row = sql_fetch($result))
 		$cat .= '|'.$row['id_mot'];
@@ -115,11 +115,11 @@ function galerie_recenser_album($id_galerie=0, $id=0, $date=0, $titre='', $logo=
 	$liste_album[$count_album]['intro'] = $introduction;
         
 	$id_article = intval($id);
-	$requete['SELECT'] = array('spip_auteurs.nom AS nom', 'spip_auteurs.id_auteur AS id_auteur');
-	$requete['FROM'] = array('spip_auteurs', 'spip_auteurs_articles');
-	$requete['WHERE'] = array('spip_auteurs.id_auteur=spip_auteurs_articles.id_auteur',
-							  'spip_auteurs_articles.id_article='.sql_quote($id_article));
-	$result = sql_select($requete['SELECT'], $requete['FROM'], $requete['WHERE']);
+	$select = array('t1.nom AS nom', 't1.id_auteur AS id_auteur');
+	$from = array('spip_auteurs AS t1', 'spip_auteurs_articles AS t2');
+	$where = array('t1.id_auteur=t2.id_auteur',
+				   't2.id_article='.sql_quote($id_article));
+	$result = sql_select($select, $from, $where);
 	$auteurs = NULL;
 	while ($row = sql_fetch($result)) {
 		if ($auteurs) $auteurs .= ', ';

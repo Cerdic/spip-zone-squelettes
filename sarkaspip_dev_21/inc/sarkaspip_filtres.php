@@ -177,63 +177,53 @@ function fin_journee($date) {
 function mot_associations($mot) {
 	if (!$mot) return;
 	
+	static $mots_reserves = array('agenda', 'galerie', 'annonce');
+	$rub_specialisee = array();
+	reset($mots_reserves);
+	while (list($cle, $valeur) = each($mots_reserves)) {
+		$rub_specialisee[] = intval(calcul_rubrique($valeur)); 
+	}
+
+	$mot = intval($mot);
 	$nb = 0;
 	
-	$rub_agenda = calcul_rubrique('agenda');
-	$rub_galerie = calcul_rubrique('galerie');
-
 	// Decompte des associations avec des articles
-	$query = "SELECT COUNT(DISTINCT id_mot) AS assocations FROM spip_mots_articles, spip_articles
-			  WHERE spip_mots_articles.id_mot=$mot AND spip_mots_articles.id_article=spip_articles.id_article
-			  AND spip_articles.id_rubrique!=$rub_agenda AND spip_articles.id_rubrique!=$rub_galerie";
-	$result = spip_query($query);
-	$nb_articles = 0;
-	if ($row = @spip_fetch_array($result)) {
-		$nb_articles = $row['assocations'];
-	}
+	$from = array('spip_mots_articles AS t1 JOIN spip_articles AS t2 USING (id_article)');
+	$where = array('t1.id_mot='.sql_quote($mot),
+				   't2.id_rubrique NOT IN ('.sql_quote($rub_specialisee).')');
+	$groupby = array('t1.id_mot');
+	$nb_articles = sql_countsel($from[0], $where, $groupby);
 
 	// Decompte des associations avec des breves
-	$query = "SELECT COUNT(DISTINCT id_mot) AS assocations FROM spip_mots_breves, spip_breves
-			  WHERE spip_mots_breves.id_mot=$mot AND spip_mots_breves.id_breve=spip_breves.id_breve
-			  AND spip_breves.id_rubrique!=$rub_agenda AND spip_breves.id_rubrique!=$rub_galerie";
-	$result = spip_query($query);
-	$nb_breves = 0;
-	if ($row = @spip_fetch_array($result)) {
-		$nb_breves = $row['assocations'];
-	}
+	$from = array('spip_mots_breves AS t1 JOIN spip_breves AS t2 USING (id_breve)');
+	$where = array('t1.id_mot='.sql_quote($mot),
+				   't2.id_rubrique NOT IN ('.sql_quote($rub_specialisee).')');
+	$groupby = array('id_mot');
+	$nb_breves = sql_countsel($from[0], $where, $groupby);
 
 	// Decompte des associations avec des rubriques
-	$query = "SELECT COUNT(DISTINCT id_mot) AS assocations FROM spip_mots_rubriques
-			  WHERE spip_mots_rubriques.id_mot=$mot
-			  AND spip_mots_rubriques.id_rubrique!=$rub_agenda AND spip_mots_rubriques.id_rubrique!=$rub_galerie";
-	$result = spip_query($query);
-	$nb_rubriques = 0;
-	if ($row = @spip_fetch_array($result)) {
-		$nb_rubriques = $row['assocations'];
-	}
+	$from = array('spip_mots_rubriques AS t1');
+	$where = array('t1.id_mot='.sql_quote($mot),
+				   't1.id_rubrique NOT IN ('.sql_quote($rub_specialisee).')');
+	$groupby = array('id_mot');
+	$nb_rubriques = sql_countsel($from[0], $where, $groupby);
 
 	// Decompte des associations avec des messages de forums
-	$query = "SELECT COUNT(DISTINCT id_mot) AS assocations FROM spip_mots_forum, spip_forum
-			  WHERE spip_mots_forum.id_mot=$mot AND spip_mots_forum.id_forum=spip_forum.id_forum
-			  AND spip_forum.id_rubrique!=$rub_agenda AND spip_forum.id_rubrique!=$rub_galerie";
-	$result = spip_query($query);
-	$nb_forums = 0;
-	if ($row = @spip_fetch_array($result)) {
-		$nb_forums = $row['assocations'];
-	}
+	$from = array('spip_mots_forum AS t1 JOIN spip_forum AS t2 USING (id_forum)');
+	$where = array('t1.id_mot='.sql_quote($mot),
+				   't2.id_rubrique NOT IN ('.sql_quote($rub_specialisee).')');
+	$groupby = array('id_mot');
+	$nb_forums = sql_countsel($from[0], $where, $groupby);
 
 	// Decompte des associations avec des sites
-	$query = "SELECT COUNT(DISTINCT id_mot) AS assocations FROM spip_mots_syndic, spip_syndic
-			  WHERE spip_mots_syndic.id_mot=$mot AND spip_mots_syndic.id_syndic=spip_syndic.id_syndic
-			  AND spip_syndic.id_rubrique!=$rub_agenda AND spip_syndic.id_rubrique!=$rub_galerie";
-	$result = spip_query($query);
-	$nb_syndics = 0;
-	if ($row = @spip_fetch_array($result)) {
-		$nb_syndics = $row['assocations'];
-	}
+	$from = array('spip_mots_syndic AS t1 JOIN spip_syndic AS t2 USING (id_syndic)');
+	$where = array('t1.id_mot='.sql_quote($mot),
+				   't2.id_rubrique NOT IN ('.sql_quote($rub_specialisee).')');
+	$groupby = array('id_mot');
+	$nb_syndics = sql_countsel($from[0], $where, $groupby);
 
 	$nb = $nb_articles + $nb_breves + $nb_rubriques + $nb_forums + $nb_syndics;
-//	echo 'idmot='.$mot.' art='.$nb_articles.' brv='.$nb_breves.' rub='.$nb_rubriques.' frm='.$nb_forums.' sit='.$nb_syndics.'<br />';
+	echo 'idmot='.$mot.' art='.$nb_articles.' brv='.$nb_breves.' rub='.$nb_rubriques.' frm='.$nb_forums.' sit='.$nb_syndics.'<br />';
 	
 	return $nb;
 }
