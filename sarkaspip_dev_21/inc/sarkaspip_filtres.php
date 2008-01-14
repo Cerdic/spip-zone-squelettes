@@ -223,7 +223,7 @@ function mot_associations($mot) {
 	$nb_syndics = sql_countsel($from[0], $where, $groupby);
 
 	$nb = $nb_articles + $nb_breves + $nb_rubriques + $nb_forums + $nb_syndics;
-	echo 'idmot='.$mot.' art='.$nb_articles.' brv='.$nb_breves.' rub='.$nb_rubriques.' frm='.$nb_forums.' sit='.$nb_syndics.'<br />';
+//	echo 'idmot='.$mot.' art='.$nb_articles.' brv='.$nb_breves.' rub='.$nb_rubriques.' frm='.$nb_forums.' sit='.$nb_syndics.'<br />';
 	
 	return $nb;
 }
