@@ -115,20 +115,7 @@ de ce squelette.
 
 
 	[(#REM) <!-- affichage du bloc des categories --> ]
-	<B_liste_categories>
-		<div id="mots-cles" class="noisette">
-			<div><a class="intitule"><:sarkaspip:filtrage_categorie:></a></div>
-			<div class="contenu">
-				[(#ENV{categorie,-1}|=={-1}|?{<span><:sarkaspip:filtre_tout:></span>,<a href="[(#URL_PAGE{agenda,[annee=(#ENV{annee})][&mois=(#ENV{mois})]})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]><:sarkaspip:filtre_tout:></a>})]
-				<hr>
-				[(#ENV{categorie,-1}|=={0}|?{<span><:sarkaspip:filtre_vide:></span>,<a href="[(#URL_PAGE{agenda,[annee=(#ENV{annee})][&mois=(#ENV{mois})&]categorie=0})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]><:sarkaspip:filtre_vide:></a>})]
-				<BOUCLE_liste_categories(MOTS) {type=squelette_agenda} {par id_groupe}>
-					[(#COMPTEUR_BOUCLE|=={1}|?{<br>})]
-					[(#ID_MOT|=={[(#ENV{categorie,-1})]}|?{<span>#TITRE</span>,<a href="[(#URL_PAGE{agenda,[annee=(#ENV{annee})][&mois=(#ENV{mois})][&categorie=(#ID_MOT)]})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>})]
-				</BOUCLE_liste_categories>
-			</div> <!-- Fin contenu -->
-		</div> <!-- Fin mots-cles -->
-	</B_liste_categories>
+	[(#MODELE{modele_mots_cle}{type=agenda}{groupemot=squelette_agenda}) ]
 
 	[(#REM) <!-- affichage du mini-agenda --> ]
 	<BOUCLE_acces_agenda(RUBRIQUES) {id_rubrique=#RUBRIQUE_SPECIALISEE{agenda}}>
