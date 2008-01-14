@@ -38,7 +38,7 @@ $dossier_squelettes = "squelettes";
 
 // faut-il autoriser SPIP a compresser les pages a la volee quand le
 // navigateur l'accepte (valable pour apache >= 1.3 seulement) ?
-$auto_compress = false; // reprise ancien reglage au pif
+$auto_compress = false; // c'est plus rapide sans comprimer via gz ...
 
 // Type d'URLs
 // 'page': spip.php?article123 [c'est la valeur par defaut pour SPIP 1.9]
@@ -46,7 +46,7 @@ $auto_compress = false; // reprise ancien reglage au pif
 // 'propres': Titre-de-l-article <http://lab.spip.net/spikini/UrlsPropres>
 // 'propres2' : Titre-de-l-article.html (base sur 'propres')
 // 'standard': article.php3?id_article=123 [urls SPIP < 1.9]
-$type_urls = 'propres';
+// $type_urls = 'propres';
 
 // creation des vignettes avec image magick en ligne de commande : mettre
 // le chemin complet '/bin/convert' (Linux) ou '/sw/bin/convert' (fink/Mac OS X)
@@ -94,7 +94,7 @@ $invalider_caches = '';
 // ce quota n'est pas "dur", il ne s'applique qu'une fois par heure et
 // fait redescendre le cache a la taille voulue ; valeur en Mo
 // Si la variable vaut 0 aucun quota ne s'applique
-$quota_cache = 50;
+$quota_cache = 150;
 
 $table_des_traitements['TITRE'][]= 'typo(supprimer_numero(%s))';
 
@@ -112,14 +112,15 @@ $GLOBALS['EXPORT_tables_noexport']= array(
 'spip_meta',
 'spip_index',
 'spip_index_dico',
+'spip_recherches',
 'spip_referers',
 'spip_referers_articles',
-'spip_visites',
-'spip_visites_articles',
 'spip_ortho_cache',
 'spip_ortho_dico',
-'spip_mnogosearch',
-'spip_mnogosearch_summary'
+#'spip_versions',
+#'spip_versions_fragments',
+#'spip_visites',
+#'spip_visites_articles',
 );
 
 
@@ -147,52 +148,22 @@ function critere_doublons_trad_dist($idb, &$boucles, $crit) {
 ###################
 # Gestion du wiki #
 ###################
+# avertit qu'on va retirer les articles de ce secteur des boucles standard
 define('SECTEURS_WIKI', '607');
+# la suite est geree par le plugin "Autorite"
 
-function autoriser_article_modifier($faire, $type, $id, $qui, $opt) {
-	// Si on est deja autorise en standard, dire 'OK'
-	if (autoriser_article_modifier_dist($faire, $type, $id, $qui, $opt))
-		return true;
 
-	// Sinon, verifier si l'article est dans un secteur wiki
-	$s = spip_query("SELECT id_secteur FROM spip_articles WHERE id_article="._q($id));
-	if ($t = spip_fetch_array($s)
-	AND in_array($t['id_secteur'], explode(',', SECTEURS_WIKI))
-#	AND in_array($qui['statut'], array('0minirezo', '1comite'))
-	)
-		return true;
+###################
+# parametrages pour "Autorité" #
+###################
+# defini les "webmestres" au sens de Autorite
+define('_ID_WEBMESTRES', '1:4:198:589:5384');
 
-	// par defaut, NIET
-	return false;
-}
-
-function autoriser_rubrique_publierdans($faire, $type, $id, $qui, $opt) {
-	// Si on est deja autorise en standard, dire 'OK'
-	if (autoriser_rubrique_publierdans_dist($faire, $type, $id, $qui, $opt))
-		return true;
-
-	// Sinon, verifier si la rubrique est dans un secteur gribouille
-	// et si on est bien redacteur
-	if (
-	in_array($qui['statut'], array('0minirezo', '1comite'))
-
-	AND
-	(in_array($id, array(201,202))
-	OR (
-		$s = spip_query("SELECT id_secteur FROM spip_rubriques WHERE id_rubrique="._q($id))
-		AND $t = spip_fetch_array($s)
-		AND in_array($t['id_secteur'], explode(',', SECTEURS_WIKI))
-	))
-	)
-		return true;
-
-	// par defaut, NIET
-	return false;
-}
-
-function analyse_droits_rapide() {
-	return true;
-}
-
+###################
+# parametrage pour "urls_libres" #
+###################
+# en association avec le htaccess adequat (cf les notes du plugin xml)
+# choix de l'oprion sans le "?"
+define ('_debut_urls_propres', '') ;
 
 ?>
