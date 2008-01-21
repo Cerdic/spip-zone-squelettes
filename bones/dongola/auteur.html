@@ -1,0 +1,64 @@
+<BOUCLE_auteur_principal(AUTEURS) {id_auteur}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#NOM|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#BIO|couper{150}|attribut_html)" />]
+<link rel="alternate" type="application/rss+xml" title="<:icone_auteurs:>" href="[(#URL_PAGE{backend})]<BOUCLE_URLAUTEURS(AUTEURS){id_article}>&amp;id_auteur[]=#ID_AUTEUR</BOUCLE_URLAUTEURS>" />
+ <INCLURE{fond=nuts/inc-head}>
+  </head>
+<body class="content">
+<div id="container">
+	<div id="navigation">
+[(#REM) Entete de la page + titre du site ]
+<INCLURE{fond=nuts/inc-header}>
+
+[(#REM) Fil d'Ariane ]
+        <p><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:info_auteurs:>[ &gt; <strong class="on">(#NOM|couper{80})</strong>]</p>
+</div>
+<div id="primaryContent">
+
+		[(#REM) microformat vcard]
+        <div class="vcard">
+        [(#LOGO_AUTEUR||image_reduire{200,200})]
+        <h2 class="#EDIT{qui} fn">#NOM</h2>
+
+        [<div class="#EDIT{bio} note">(#BIO)</div>]
+        [<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="url org spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+		</div>
+		[(#REM) / vcard]
+
+  [(#REM) Articles de l'auteur ]
+        <B_articles>
+            #ANCRE_PAGINATION
+            <h4><:articles_auteur:> (#GRAND_TOTAL)</h4>
+            <ul>
+                <BOUCLE_articles(ARTICLES) {id_auteur} {par popularite}{inverse} {pagination 10}>
+                <li><a href="#URL_ARTICLE">#TITRE</a></li>
+                </BOUCLE_articles>
+            </ul>
+            [<p>(#PAGINATION)</p>]
+        </B_articles>
+
+        #FORMULAIRE_ECRIRE_AUTEUR
+
+        [<h4><:info_notes:></h4>(#NOTES)]
+</div>
+
+<div id="secondaryContent">
+
+#FORMULAIRE_RECHERCHE
+
+[(#REM) Menu de navigation par rubriques ]
+<INCLURE{fond=nuts/inc-rubriques}>
+		
+[(#REM) Autres auteurs ]
+<INCLURE{fond=nuts/inc-autresauteurs}>
+
+
+<INCLURE{fond=nuts/inc-footer}>
+
+</div>
+</body>
+</html>
+</BOUCLE_auteur_principal>

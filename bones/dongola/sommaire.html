@@ -1,0 +1,66 @@
+[(#REM)
+	Un cache plus court, pour la boucle syndic_articles
+]#CACHE{3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+  <title>[(#NOM_SITE_SPIP|textebrut)]</title>
+  [<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+  <INCLURE{fond=nuts/inc-head}>
+  </head>
+<body class="content">
+<div id="container">
+	<div id="navigation">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=nuts/inc-header}>
+</div>
+<div id="primaryContent">
+
+	[(#REM) Derniers articles ]
+		<B_articles_recents>
+			[(#ANCRE_PAGINATION)]
+			<h3><:derniers_articles:></h3>
+			
+				<BOUCLE_articles_recents(ARTICLES) {par date}{inverse} {pagination 5}>
+			
+					[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{150,100})]
+					<h4><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h4>
+					<small><abbr class="published"[ title="(#DATE|date_iso)"]>[(#DATE|affdate_jourcourt)]</abbr>[, <:par_auteur:> (#LESAUTEURS)]</small>
+					[<p class="#EDIT{intro}">(#INTRODUCTION)</p>]
+				
+				</BOUCLE_articles_recents>
+			
+			[<p>(#PAGINATION)</p>]
+		</B_articles_recents>
+		
+</div>
+
+
+<div id="secondaryContent">
+
+#FORMULAIRE_RECHERCHE
+
+[(#REM) Menu de navigation par rubriques ]
+<INCLURE{fond=nuts/inc-rubriques}>
+		
+[(#REM) Breves ]
+<INCLURE{fond=nuts/inc-breves}>
+
+[(#REM) Liens des forums ]
+<INCLURE{fond=nuts/inc-forums}>
+
+[(#REM) Sur le Web ]
+<INCLURE{fond=nuts/inc-web}>
+		
+[(#REM) Inscription au site ]
+#FORMULAIRE_INSCRIPTION
+</div>
+
+<INCLURE{fond=nuts/inc-footer}>
+
+</div>
+
+
+</body>
+</html>

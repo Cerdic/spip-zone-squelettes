@@ -1,0 +1,62 @@
+<BOUCLE_breve_principal(BREVES) {id_breve}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION|couper{150}|attribut_html)" />]
+[(#REM) Lien vers le flux RSS des breves ]
+<link rel="alternate" type="application/rss+xml" title="<:dernieres_breves:>" href="#URL_PAGE{backend-breves}" />
+ <INCLURE{fond=nuts/inc-head}>
+  </head>
+<body class="content">
+<div id="container">
+	<div id="navigation">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=nuts/inc-header}>
+
+[(#REM) Fil d'Ariane ]
+        <p><a href="#URL_SITE_SPIP/"><a href="#URL_SITE_SPIP/" ><:accueil_site:></a><BOUCLE_ariane(RUBRIQUES){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]</p>
+</div>
+<div id="primaryContent">
+
+            <div class="surlignable">
+	[(#LOGO_BREVE||image_reduire{200,200})]
+				<h2 class="#EDIT{titre}">#TITRE</h2>
+            <p><small>[(#DATE|nom_jour) ][(#DATE|affdate)]</small></p>
+            </div>
+
+        
+	[<div class="#EDIT{texte} texte">(#TEXTE)</div>]
+	[<p><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+	[<h3><:info_notes:></h3>(#NOTES)]
+        
+        [(#REM) Forum de la breve
+        NB : pour desactiver les forums de breve, supprimez simplement les lignes ci-dessous ]
+        <a href="#forum" name="forum" id="forum"></a>
+        <INCLURE{fond=inc-forum}{id_breve}>
+        [<p><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_breve:></a></p>]
+
+</div>
+
+<div id="secondaryContent">
+
+#FORMULAIRE_RECHERCHE
+
+[(#REM) Menu de navigation par rubriques ]
+<INCLURE{fond=nuts/inc-rubriques}>
+		
+[(#REM) Breves dans la meme rubrique ]
+<INCLURE{fond=nuts/inc-autresbreves}{id_rubrique}>
+
+[(#REM) Menu de navigation mots-cles ]
+<INCLURE{fond=nuts/inc-mots}>		
+
+</div>
+
+<INCLURE{fond=nuts/inc-footer}>
+
+</div>
+</body>
+</html>
+</BOUCLE_breve_principal>
