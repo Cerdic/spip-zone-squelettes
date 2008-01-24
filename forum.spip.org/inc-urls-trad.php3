@@ -94,7 +94,8 @@ function generer_url_document($id_document) {
 		$query = "SELECT fichier FROM spip_documents WHERE id_document = $id_document";
 		$result = spip_query($query);
 		if ($row = sql_fetch($result)) {
-			$url = $row['fichier'];
+			include_spip('inc/documents');
+			$url = get_spip_doc($row['fichier']);
 		}
 	}
 	return $url;
