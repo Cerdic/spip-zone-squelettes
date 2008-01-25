@@ -1,4 +1,4 @@
-<BOUCLE_principale(AUTEURS){id_auteur}{doublons}>
+<BOUCLE_principale(AUTEURS){id_auteur}{doublons}{tout}>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml2/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
@@ -34,20 +34,26 @@
 			
 	[(#REM) ---------------------- Titre ---------------------- ]
 
-				[(#LOGO_AUTEUR|right||image_reduire{200,100})]
-				[<h1><span>(#NOM|supprimer_numero)</span></h1>]
-				[<div id="web"><div id="web_texte" class="#EDIT{BIO}">(#BIO)</div></div>]
+			[<h1><span>(#NOM|supprimer_numero)</span></h1>]
+				
+	[(#REM) ---------------------- Bloc auteur ---------------------- ]
+		
+			[(#LOGO_AUTEUR|right||image_reduire{200,100})]
 
-				<div >
-				<BOUCLE_tot_auteur2(ARTICLES) {id_auteur}></BOUCLE_tot_auteur2><br /><em>[&nbsp;(#TOTAL_BOUCLE) articles]</em></B_tot_auteur2><//B_tot_auteur2>	
-				</div>
+			[<div id="web" class="#EDIT{BIO}"><div id="web_texte" >(#BIO)</div></div>]
+
+			<div >
+			<BOUCLE_tot_auteur2(ARTICLES) {tout} {id_auteur}></BOUCLE_tot_auteur2><br /><em>[&nbsp;(#TOTAL_BOUCLE) articles]</em></B_tot_auteur2><//B_tot_auteur2>	
+			</div>
+	
 				
 			</div>
 	[(#REM) ---------------------- Texte ---------------------- ]
 
 	[(#REM) ---------------------- Derniers articles ---------------------- ]
 
-				<BOUCLE_article_1(ARTICLES) {id_auteur} {par date} {inverse} {0,1} {doublons}>
+				<!--
+				<BOUCLE_article_1(ARTICLES) {id_auteur} {par date} {inverse} {0,0} {doublons} {tout}>
 						<div id="article_breve_1">
 							<div id="article_texte">
 								<BOUCLE_hierarchie(HIERARCHIE){id_article}{0,1}>[(#LOGO_RUBRIQUE||image_reduire{30,30})]</BOUCLE_hierarchie>
@@ -59,10 +65,11 @@
 							</div>
 						</div>
 				</BOUCLE_article_1>
+				-->
 
 				<B_article_2>
 					<div id="article_breve_all">
-						<BOUCLE_article_2(ARTICLES) {id_auteur} {par date} {inverse} {0,7} {doublons}>
+						<BOUCLE_article_2(ARTICLES) {id_auteur} {par date} {inverse} {doublons} {tout}>
 								<div id="article_texte">
 									<BOUCLE_hierarchie2(HIERARCHIE){id_article}{0,1}>[(#LOGO_RUBRIQUE||image_reduire{30,30})]</BOUCLE_hierarchie2>
 									<B_diaporama><BOUCLE_diaporama(DOCUMENTS) {id_article} {par hasard} {0,1}>[(#LOGO_DOCUMENT|right||image_reduire{100,30}|inserer_attribut{style,'float:right;'})]</BOUCLE_diaporama></B_diaporama>
@@ -88,15 +95,16 @@
 [(#REM) ------------------------------------- COLONE DROITE ----------------------------------------- ]
 	
 	<div id="linkList">
-	
-		[(#REM) ---------------------- Recherche ---------------------- ]
+
 		
-				[(#INCLURE{fond=bloc-recherche})] 
+		[(#REM) ---------------------- Recherche ---------------------- ]
+
+			<!--[(#INCLURE{fond=bloc-recherche})]-->
 
 		[(#REM) ---------------------- Ecrire auteur ---------------------- ]
 		
-				[<div id="article_breve_titre"><h6><span>ECRIRE A L'AUTEUR</span></h6></div>
-				<div id="web"><div id="web_texte">(#FORMULAIRE_ECRIRE_AUTEUR)</div></div>]
+			[<div id="article_breve_titre"><h6><span>ECRIRE A L'AUTEUR</span></h6></div>
+			<div id="web"><div id="web_texte">(#FORMULAIRE_ECRIRE_AUTEUR)</div></div>]
 
 	</div>
 
