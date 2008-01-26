@@ -15,8 +15,12 @@
 	[(#RUBRIQUE_SPECIALISEE{annonce}|=={0}|?{'', ' '})<INCLURE{fond=noisettes/inc_annonce}{id_rubrique=#RUBRIQUE_SPECIALISEE{annonce}}>]
 </BOUCLE_acces_annonce>
 
-[(#REM) <!-- affichage des X dernieres breves --> ]
-<INCLURE{fond=noisettes/inc_breves}>
-
-[(#REM) <!-- affichage des X derniers sites --> ]
-<INCLURE{fond=noisettes/inc_site_syndique}>
+[(#REM) <!-- affichage des X dernieres breves et sites en fonction du contexte --> ]
+[(#ENV{id_secteur}|?{' '})
+	<INCLURE{fond=noisettes/inc_breves}{id_secteur}>
+	<INCLURE{fond=noisettes/inc_sites}{id_secteur}>
+]
+[(#ENV{id_secteur}|?{'',' '})
+	<INCLURE{fond=noisettes/inc_breves}>
+	<INCLURE{fond=noisettes/inc_sites}>
+]
