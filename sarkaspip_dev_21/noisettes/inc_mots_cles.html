@@ -1,0 +1,28 @@
+[(#REM) <!-- Noisette mots-cles associes a la rubrique etaux rubriques et articles de la branche
+Recoit en argument:
+- id_rubrique de la rubrique concernee
+-->]
+<BOUCLE_mots_branche(MOTS){branche}{type!==^squelette\_}{doublons}>
+</BOUCLE_mots_branche>
+<BOUCLE_articles(ARTICLES){branche}>
+	<BOUCLE_mots_articles(MOTS){id_article}{type!==^squelette\_}{doublons}>
+	</BOUCLE_mots_articles>
+</BOUCLE_articles>
+<BOUCLE_article_unique(ARTICLES){id_article}>
+	<BOUCLE_mots_article_unique(MOTS){id_article}{type!==^squelette\_}{doublons}>
+	</BOUCLE_mots_article_unique>
+</BOUCLE_article_unique>
+
+<B_mots>
+<div id="mots-cles" class="noisette">
+	<div><a class="intitule" href="#URL_PAGE{mot}"><:sarkaspip:mots_clefs:></a></div>
+	<div class="contenu">
+<BOUCLE_mots(MOTS){!doublons}{par titre}>
+	<BOUCLE_groupe(GROUPES_MOTS){id_groupe}{unique}>				
+		[<a class="nom-groupe">(#TITRE)</a>] 
+	</BOUCLE_groupe>
+		<a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
+</BOUCLE_mots>
+	</div> <!-- Fin contenu -->
+</div> <!-- Fin noisette -->
+</B_mots>
