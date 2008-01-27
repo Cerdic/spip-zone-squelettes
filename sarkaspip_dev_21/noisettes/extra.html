@@ -6,6 +6,14 @@
 	<INCLURE{fond=noisettes/inc_categories}{page}{categorie}{annee}{mois}>
 ]
 
+[(#REM) <!-- affichage du bloc des mots-clŽs d'une branche ou d'un article --> ]
+[(#ENV{page}|=={article}|?{' '})
+	<INCLURE{fond=noisettes/inc_mots_cles}{id_article}>
+]
+[(#ENV{page}|=={rubrique}|?{' '})
+	<INCLURE{fond=noisettes/inc_mots_cles}{id_rubrique}>
+]
+
 [(#REM) <!-- affichage du mini-agenda --> ]
 <BOUCLE_acces_agenda(RUBRIQUES) {id_rubrique=#RUBRIQUE_SPECIALISEE{agenda}}>
 	[(#RUBRIQUE_SPECIALISEE{agenda}|=={0}|?{'', ' '})<INCLURE{fond=noisettes/inc_mini-agenda}{self=#SELF}>]
