@@ -1,6 +1,10 @@
 <!-- Bloc de navigation des rubriques  -->
-<INCLURE{fond=noisettes/inc_nav_rubriques_1}{id_rubrique=#ENV{id_rubrique,0}}>
-[(#REM) <INCLURE{fond=noisettes/inc_nav_rubriques_2}{id_rubrique=#ENV{id_rubrique,0}}>]
+[(#CONFIG{sarkaspip_noisettes/menu_rubriques}|=={1}|?{' '})
+	<INCLURE{fond=noisettes/inc_nav_rubriques_1}{id_rubrique=#ENV{id_rubrique,0}}>
+]
+[(#CONFIG{sarkaspip_noisettes/menu_rubriques}|=={2}|?{' '})
+	<INCLURE{fond=noisettes/inc_nav_rubriques_2}{id_rubrique=#ENV{id_rubrique,0}}>
+]
 
 <!-- Bloc de navigation des raccourcis -->
 <INCLURE{fond=noisettes/inc_nav_raccourcis}>
@@ -9,7 +13,9 @@
 <INCLURE{fond=noisettes/inc_nav_visiteurs}{id_rubrique=#ENV{id_rubrique,0}}>
 
 <!-- Bloc de recherche -->
-<INCLURE{fond=noisettes/inc_recherche}>
+[(#CONFIG{sarkaspip_noisettes/position_recherche}|=={1}|?{' '})
+	<INCLURE{fond=noisettes/inc_recherche}>
+]
 
 <!-- Blocs de statistiques -->
 <INCLURE{fond=noisettes/inc_stats_site}>
