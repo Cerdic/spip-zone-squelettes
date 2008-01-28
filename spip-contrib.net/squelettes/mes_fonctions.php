@@ -52,6 +52,12 @@ function date_rfc822($date_heure) {
 }
 
 
+
+function dec2hex($v) {
+return substr('00'.dechex($v), -2);
+}
+
+
 function age_style($date) {
  	
 // $decal en secondes
