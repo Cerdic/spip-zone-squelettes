@@ -41,6 +41,7 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 // B
 
 //C
+'carte_monde' => 'Carte du monde',
 'chercheravecgoogle' => 'Avec <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> cherchez sur le Web!',
 'copyright_realisation' => 'R&eacute;alisation : ',
 'copyright_spip' => 'Ce site utilise le squelette&nbsp;: <a href=\'http://www.pyrat.net/\' title=\'Visiter le site du cr&eacute;ateur de ce squelette\'>Pyrat.net</a> propuls&eacute; par <a href=\'http://www.spip.net/\' title=\'Visiter le site de SPIP, logiciel de gestion de contenu web en licence libre GPL\'>SPIP</a>',
@@ -100,7 +101,6 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'forum_enreponse_message' => 'En r&eacute;ponse au message&nbsp;:',
 
 //G
-'geourl' => 'Voisinage GeoURL',
 'gpm_fontion' => 'Caract&eacute;ristiques',
 'gpm_ouinon' => 'Valeurs',
 
@@ -135,6 +135,7 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 
 //O
 'ordreantichronologique' => 'ordre antichronologique',
+'ou_sommes_nous' => 'Localisez-nous sur la carte !',
 
 //P
 'par' => 'par',
