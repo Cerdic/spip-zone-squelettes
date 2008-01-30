@@ -1,21 +1,14 @@
 #CACHE{30*24*3600}
 <BOUCLE_article_principal(ARTICLES) {id_article}>
 <div id="artrecents">
-<BOUCLE_MemeRubriques(RUBRIQUES){id_rubrique}>
-
+		<B_articles_rubrique>
 		<h2><:pyrat:memerubrique:></h2>
 		<ul>
-<BOUCLE_test_numero(ARTICLES){id_rubrique}{titre==^[0-9]+\.}{0,1}>
-		<BOUCLE_articles_rubrique_parnum(ARTICLES) {id_rubrique} {par num titre}>
+		<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par num titre}{!par date} >
 			<li[(#COMPTEUR_BOUCLE|alterner{' class="odd"',''})]><?php if ($jp_article!=#ID_ARTICLE) { ?><a href="#URL_ARTICLE"[ hreflang="(#LANG)"][ title="(#DESCRIPTIF|attribut_html)"]><?php } ?>[(#TITRE)]<?php if ($jp_article!=#ID_ARTICLE) { ?></a><?php } ?></li>
-		</BOUCLE_articles_rubrique_parnum>
-</BOUCLE_test_numero>
-		<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par date}{inverse}>
-		<li[(#COMPTEUR_BOUCLE|alterner{' class="odd"',''})]><?php if ($jp_article!=#ID_ARTICLE) { ?><a href="#URL_ARTICLE"[ hreflang="(#LANG)"][ title="(#DESCRIPTIF|attribut_html)"]><?php } ?>[(#TITRE)]<?php if ($jp_article!=#ID_ARTICLE) { ?></a><?php } ?></li>
-	</BOUCLE_articles_rubrique>
-<//B_test_numero>
+		</BOUCLE_articles_rubrique>
 		</ul>
-</BOUCLE_MemeRubriques>
+		</B_articles_rubrique>
 <BOUCLE_mots(MOTS){id_article}{titre=Gallerie}> </BOUCLE_mots>
 </B_mots>
 [(#MODELE{documentsjoints}{id_article})]
