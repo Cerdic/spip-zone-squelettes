@@ -8,19 +8,28 @@
 #SET{LargeurContaineur,(#CONFIG{soyezcreateurs_layout/largeurconteneur,900})}
 #SET{LargeurMenuGauche,(#CONFIG{soyezcreateurs_layout/largeurmenugauche,160})}
 #SET{LargeurMenuDroit,(#CONFIG{soyezcreateurs_layout/largeurmenudroit,140})}
-#SET{c_body,(#CONFIG{soyezcreateurs_couleurs/body,113})}
-#SET{c_header,(#CONFIG{soyezcreateurs_couleurs/header,fff})}
-	#SET{c_header_bk,(#CONFIG{soyezcreateurs_couleurs/header_bk,0070b6})}
-#SET{c_footer,(#CONFIG{soyezcreateurs_couleurs/footer,fff})}
-	#SET{c_footer_bk,(#CONFIG{soyezcreateurs_couleurs/footer_bk,113})}
-#SET{c_navigation,(#CONFIG{soyezcreateurs_couleurs/navigation,fff})}
-	#SET{c_navigation_bk,(#CONFIG{soyezcreateurs_couleurs/navigation_bk,0070b6})}
-#SET{c_extra,(#CONFIG{soyezcreateurs_couleurs/extra,fff})}
-	#SET{c_extra_bk,(#CONFIG{soyezcreateurs_couleurs/extra_bk,0070b6})}
-#SET{c_container,(#CONFIG{soyezcreateurs_couleurs/container,222})}
-	#SET{c_container_bk,(#CONFIG{soyezcreateurs_couleurs/container_bk,fff})}
-#SET{c_datemajsite,(#CONFIG{soyezcreateurs_couleurs/datemajsite,000})}
-	#SET{c_datemajsite_bk,(#CONFIG{soyezcreateurs_couleurs/datemajsite_bk,fff})}
+#SET{c_body_bk,(#CONFIG{soyezcreateurs_couleurs/body_bk,#113})}
+#SET{c_logo_bk,(#CONFIG{soyezcreateurs_couleurs/logo_bk,transparent})}
+#SET{c_header,(#CONFIG{soyezcreateurs_couleurs/header,#fff})}
+	#SET{c_header_bk,(#CONFIG{soyezcreateurs_couleurs/header_bk,#0070b6})}
+#SET{c_footer,(#CONFIG{soyezcreateurs_couleurs/footer,#fff})}
+	#SET{c_footer_bk,(#CONFIG{soyezcreateurs_couleurs/footer_bk,#113})}
+#SET{c_navigation,(#CONFIG{soyezcreateurs_couleurs/navigation,#fff})}
+	#SET{c_navigation_bk,(#CONFIG{soyezcreateurs_couleurs/navigation_bk,#0070b6})}
+#SET{c_extra,(#CONFIG{soyezcreateurs_couleurs/extra,#fff})}
+	#SET{c_extra_bk,(#CONFIG{soyezcreateurs_couleurs/extra_bk,#0070b6})}
+#SET{c_container,(#CONFIG{soyezcreateurs_couleurs/container,#222})}
+	#SET{c_container_bk,(#CONFIG{soyezcreateurs_couleurs/container_bk,#fff})}
+#SET{c_datemajsite,(#CONFIG{soyezcreateurs_couleurs/datemajsite,#000})}
+	#SET{c_datemajsite_bk,(#CONFIG{soyezcreateurs_couleurs/datemajsite_bk,#fff})}
+#SET{c_menu_a,(#CONFIG{soyezcreateurs_couleurs/menu_a,#fff})}
+	#SET{c_menu_a_bk,(#CONFIG{soyezcreateurs_couleurs/menu_a_bk,#0097E7})}
+#SET{c_menu_a_hover,(#CONFIG{soyezcreateurs_couleurs/menu_a_hover,#fff})}
+	#SET{c_menu_a_hover_bk,(#CONFIG{soyezcreateurs_couleurs/menu_a_hover_bk,#00a22a})}
+#SET{c_menu_a_active,(#CONFIG{soyezcreateurs_couleurs/menu_a_active,#f67501})}
+	#SET{c_menu_a_active_bk,(#CONFIG{soyezcreateurs_couleurs/menu_a_active_bk,#fff})}
+#SET{c_menu_a_strong,(#CONFIG{soyezcreateurs_couleurs/menu_a_strong,#DA0E0F})}
+	#SET{c_menu_a_strong_bk,(#CONFIG{soyezcreateurs_couleurs/menu_a_strong_bk,#fff})}
 
 html, body {
 	margin: 0;
@@ -38,21 +47,22 @@ div {
 }
 
 #navigation {
-	color: ##GET{c_navigation};
-	background-color: ##GET{c_navigation_bk};
+	color: #GET{c_navigation};
+	background-color: #GET{c_navigation_bk};
 }
 
 /* presentation */
 html {
 	color: #666;
-	background-color: ##GET{c_body};
+	background-color: #GET{c_body_bk};
 }
 
 input, textarea, select { 
-	border-top:0.06em solid #4F4F4F;
-	border-left:0.06em solid #4F4F4F;
-	border-bottom:0.06em solid #CFBEB5;
-	border-right:0.06em solid #CFBEB5;
+	border-top:0.06em solid[ #(#GET{c_menu_a_bk}|couleur_foncer)];
+	border-left:0.06em solid[ #(#GET{c_menu_a_bk}|couleur_foncer)];
+	border-bottom:0.06em solid[ #(#GET{c_menu_a_bk}|couleur_saturation{.5})];
+	border-right:0.06em[ #(#GET{c_menu_a_bk}|couleur_saturation{.5})];
+	padding: 0.06em;
 }
 
 a#logo {
@@ -62,7 +72,7 @@ a#logo {
 }
 #logo {
 	text-align: center;
-	background-color: #fff;
+	background-color: #GET{c_logo_bk};
 	height: auto;
 }
 
@@ -74,8 +84,8 @@ body {
 }
 
 #container {
-	color: ##GET{c_container};
-	background-color: ##GET{c_container_bk};
+	color: #GET{c_container};
+	background-color: #GET{c_container_bk};
 }
 
 .ahem {
@@ -91,10 +101,13 @@ body {
 }
 
 #footer {
-	color: ##GET{c_footer};
-	background-color: ##GET{c_footer_bk};
+	color: #GET{c_footer};
+	background-color: #GET{c_footer_bk};
 	font-size: 1em;
 	width: auto !important;
+}
+
+#footerbas {
 	padding: 4px 10px;
 }
 
@@ -117,8 +130,8 @@ body {
 
 .cadreinfo {
 	font-size: 1em;
-	background-color: #CCFFFF;
-	color: #cdecfa;
+	[color: #(#GET{c_menu_a_bk}|couleur_fonce);]
+	[background: #(#GET{c_menu_a_bk}|couleur_saturation{.5});]
 	margin-left: 10px;
 	margin-right: 10px;
 	padding: 5px;
@@ -127,24 +140,24 @@ body {
 	text-decoration: none;
 }
 
-#footer a,.cadreinfo a {
+#footer a, .cadreinfo a {
 	color: #eef;
 	font-weight: bold;
 	text-decoration: none;
 	font-variant: small-caps;
 }
 
-#footer a:visited,.cadreinfo a:visited {
+#footer a:visited, .cadreinfo a:visited {
 	color: #eef;
 	text-decoration: none;
 }
 
-#footer a:hover,.cadreinfo a:hover {
+#footer a:hover, .cadreinfo a:hover {
 	color: #ff8c00;
 	text-decoration: underline;
 }
 
-#footer a:active,.cadreinfo a:active {
+#footer a:active, .cadreinfo a:active {
 	color: #f00;
 }
 
@@ -192,7 +205,7 @@ body {
 	background: url(/#CHEMIN{images/menu_minus.gif}) no-repeat;
 }
 
-#menu ul, #apparenceswitcher ul {
+#menu ul {
 	margin: 0; 
 	padding: 0;
 }
@@ -204,11 +217,6 @@ body {
 	background: transparent;
 }
 
-#apparenceswitcher ul li {
-	list-style: none;
-	list-style-image: none;
-	padding: 1px 0;
-}
 #menu ul ul {
 	margin: 0 0 0 10px;
 	padding: 0;
@@ -218,28 +226,20 @@ body {
 	display: block;
 	font-size: 1em;
 	font-weight: bold;
-	color: #fff;
-	background-color: #0097E7;
+	color: #GET{c_menu_a};
+	background-color: #GET{c_menu_a_bk};
 	border-left: 0px none;
 	text-align: left;
 	padding: 5px 0 5px 20px;
 	margin: 4px 0;
-	filter:alpha(opacity=70);
-	-moz-opacity:0.7;
-	opacity: 0.7;
+	text-decoration: none;
 }
 
 #menu ul ul li a {
-	background: #1b9dd9;
+	[background: #(#GET{c_menu_a_bk}|couleur_saturation{.9});]
 	font-size: 1em;
 	padding: 2px 0 2px 20px;
 	text-decoration: none;
-	filter:alpha(opacity=70);
-	-moz-opacity:0.7;
-	opacity: 0.7;
-}
-
-#menu strong li {
 }
 
 #menu strong li a, #menuhaut strong li a {
@@ -247,37 +247,19 @@ body {
 }
 
 #menu li strong a:visited,#menu li strong a:link, #menuhaut li strong a:visited,#menuhaut li strong a:link {
-	color: #DA0E0F;
-	background-color: #fff;
+	color: #GET{c_menu_a_strong};
+	background-color: #GET{c_menu_a_strong_bk};
 	margin-left: 2px;
-	filter:alpha(opacity=100);
-	-moz-opacity:1;
-	opacity: 1;
-}
-
-#menu li a:link, #menuhaut li a:link {
-	color: #fff;
-	text-decoration: none;
-}
-
-#menu li a:visited, #menuhaut li a:visited {
-	color: #fff;
-	text-decoration: none;
 }
 
 #menu li a:hover, #menuhaut li a:hover {
-	background: #00A22A;
-	color: #fff;
-	text-decoration: none;
-	filter:alpha(opacity=90);
-	-moz-opacity:0.9;
-	opacity: 0.9;
+	color: #GET{c_menu_a_hover};
+	background: #GET{c_menu_a_hover_bk};
 }
 
 #menu li a:active, #menuhaut li a:active {
-	background: #fff;
-	color: #f67501;
-	text-decoration: none;
+	color: #GET{c_menu_a_active};
+	background: #GET{c_menu_a_active_bk};
 }
 
 #menu form {
@@ -285,16 +267,13 @@ body {
 	padding: 0;
 }
 
-#menu input {
-	border: 1px solid #0097E7;
-}
-
 .espaceavant {
 	margin-top: 10px;
 }
 
 .rightmenu li a {
-	background: #0097E7;
+	color: #GET{c_menu_a};
+	background: #GET{c_menu_a_bk};
 	display: block;
 	font-weight: bold;
 	margin-bottom: 3px;
@@ -317,25 +296,19 @@ html>body #menu li a, html>body .rightmenu li a {
 }
 
 .rightmenu li a:link {
-	color: #fff;
-	text-decoration: none;
 }
 
 .rightmenu li a:visited {
-	color: #fff;
-	text-decoration: none;
 }
 
 .rightmenu li a:hover {
-	background: #1b9dd9;
-	color: #fff;
-	text-decoration: none;
+	color: #GET{c_menu_a_hover};
+	background: #GET{c_menu_a_hover_bk};
 }
 
 .rightmenu li a:active {
 	background: #fff;
 	color: #ff9900;
-	text-decoration: none;
 }
 
 .rightmenu li {
@@ -381,7 +354,6 @@ html>body #menu li a, html>body .rightmenu li a {
 }
 
 .rightmenu li strong a:hover {
-	color: #FFF;
 }
 
 #menu h2 {
@@ -424,33 +396,22 @@ html>body #menu li a, html>body .rightmenu li a {
 }
 
 #extra {
-	color: ##GET{c_extra};
-	background-color: ##GET{c_extra_bk};
+	color: #GET{c_extra};
+	background-color: #GET{c_extra_bk};
 }
 
 .rightmenu h2 {
-	color: #13007D;
-	background-color: #aaa;
+	color: #GET{c_menu_a};
+	[background: #(#GET{c_menu_a_bk}|couleur_saturation{.8});]
 	font-size: 1.4em;
 	margin: .7em 0 .7em 0;
 	padding: .2em 0 .2em 0;
 	text-align: center;
-	filter:Alpha(opacity=70);
-	-moz-opacity:.7;
-	opacity: .7;
-}
-
-#apparenceswitcher {
-	background: transparent;
-	left: 0;
-	margin: 0;
-	padding: 0 0 10px 0;
-	width: 100%;
 }
 
 #header {
-	background-color: ##GET{c_header_bk};
-	color: ##GET{c_header};
+	background-color: #GET{c_header_bk};
+	color: #GET{c_header};
 	/*margin-left: #GET{LargeurMenuGauche}px;*/
 	position: relative;
 	[height: [(#LOGO_SITE_SPIP_SURVOL||extraire_attribut{height})]px;
@@ -1124,8 +1085,8 @@ table.agenda, table.agenda tr, table.agenda th, table.agenda td, table.agenda ca
 }
 
 table.agenda caption {
-	background-color: #cdecfa;
-	color: #013249;
+	background-color: [ #(#GET{c_menu_a_bk}|couleur_saturation{.3})];
+	color: [ #(#GET{c_menu_a_bk}|couleur_foncer)];
 	margin: auto;
 	width: 136px;
 	border: none;
@@ -1141,13 +1102,13 @@ table.agenda th {
 table.agenda tr, table.agenda th {
 	border-width: 0px;
 	border-collapse: collapse;
-	border-color: #fff;
+	border-color: [ #(#GET{c_menu_a_bk}|couleur_saturation{.1})];
 	border-width: 1px;
 	border-style: solid;
 }
 
 table.agenda td {
-	border-color: #fff;
+	border-color: [ #(#GET{c_menu_a_bk}|couleur_saturation{.1})];
 	border-width: 1px;
 	border-style: solid;
 	border-collapse: collapse;
@@ -1156,15 +1117,13 @@ table.agenda td {
 }
 
 table.agenda {
-	border: 2px #899bc8 solid;
-	border-top: 2px #000 solid;
+	border: 2px [ #(#GET{c_menu_a_bk}|couleur_foncer)] solid;
 	background: transparent;
 	border-collapse: collapse;
 }
 
 table.agenda em {
-	background-color: #fff;
-	-moz-opacity: .3;
+	background-color:[ #(#GET{c_menu_a_bk}|couleur_saturation{.1})];
 }
 
 .miniagenda table.agenda {
@@ -1173,21 +1132,21 @@ table.agenda em {
 }
 
 table.agenda td a, table.agenda td a:link, table.agenda td a:visited, table.agenda td a:active {
-	color: #000000;
-	background-color: transparent;
-	font-weight: normal;
+	color: [ #(#GET{c_menu_a_bk}|couleur_foncer)];
+	background:[ #(#GET{c_menu_a_bk}|couleur_saturation{.1})] url(/#CHEMIN{images/coinagenda.gif}) top right no-repeat;
+	font-weight: bold;
 	text-decoration: none;
+	display: block;
 }
 
 table.agenda td a:hover {
-	color: #ff3300;
-	background-color: #ffffff;
-	font-weight: normal;
-	text-decoration: underline;
+	color:[ #(#GET{c_menu_a_bk}|couleur_saturation{.1})];
+	background-color:[ #(#GET{c_menu_a_bk}|couleur_foncer)];
+	font-weight: bold;
 }
 
 th.agendanav {
-	background-color: #1b9dd9;
+	background-color:[ #(#GET{c_menu_a_bk}|couleur_saturation{.5})];
 	font-size: 1.4em;
 	padding: .5em 0;
 }
@@ -1199,42 +1158,41 @@ th.agendanav form {
 
 th.agendanav a, th.agendanav a:link, th.agendanav a:visited, th.agendanav a:active
 {
-	color: #000;
+	color:[ #(#GET{c_menu_a_bk}|couleur_foncer)];
 	background-color: transparent;
 	font-weight: bold;
 	text-decoration: none;
 }
 
 th.agendanav a:hover {
-	color: #000;
+	color:[ #(#GET{c_menu_a_bk}|couleur_foncer)];
 	background-color: transparent;
-	text-decoration: underline;
 }
 
 .agendahead {
-	color: #013249;
-	background-color: #53add6;
+	color:[ #(#GET{c_menu_a_bk}|couleur_foncer)];
+	background-color:[ #(#GET{c_menu_a_bk}|couleur_saturation{.7})];
 	padding: 1px 1em;
-	border: 1px solid #fff;
+	border: 1px solid[ #(#GET{c_menu_a_bk}|couleur_foncer)];
 	font-size: 1.1em;
 	width:14% !important;
 }
 
 .agendathisday {
-	background-color: #E4F5FD;
-	border: 2px solid #fff;
+	background-color:[ #(#GET{c_menu_a_bk}|couleur_saturation{.1})];
+	border: 2px solid[ #(#GET{c_menu_a_bk}|couleur_saturation{.1})];
 	width:14% !important;
 }
 
 .agendathismonth {
-	background-color: #9bdcfa;
-	border: 1px solid #fff;
+	background-color:[ #(#GET{c_menu_a_bk}|couleur_saturation{.5})];
+	border: 1px solid[ #(#GET{c_menu_a_bk}|couleur_saturation{.1})];
 	width:14% !important;
 }
 
 .agendanotthismonth {
-	background		: #c9dae2;
-	border: 1px solid #fff;
+	background: [ #(#GET{c_menu_a_bk}|couleur_foncer|couleur_saturation{.2})];
+	border: 1px solid [ #(#GET{c_menu_a_bk}|couleur_saturation{.1})];
 	width:14% !important;
 }
 
@@ -1298,9 +1256,8 @@ acronym, abbr {
 	padding: 10px 0 10px 5px;
 	margin-left: 5px;
 	margin-bottom: 0px;
-	color: #000;
-	background-color: #FFFFFF;
-	border: solid 1px #fff;
+	[color: #(#GET{c_menu_a_bk}|couleur_foncee);]
+	[background: #(#GET{c_menu_a_bk}|couleur_saturation{.7});]
 }
 
 #menu .cadreinfo form {
@@ -1316,56 +1273,15 @@ acronym, abbr {
 }
 
 .okfield {
-	width:20%;	
+	width:20%;
+	color: #GET{c_menu_a};
+	background-color: #GET{c_menu_a_bk};
+	border: none;
 }
 
 #googleadsense {
 	text-align:center;
 	padding-top: 1em;
-}
-
-#apparenceswitcher {
-	font-size: .8em;
-	padding-bottom: 2px;
-	margin-bottom: 10px;
-	background: transparent;
-	display: none;
-}
-
-#apparenceswitcher h2 {
-	background: #0097E7;
-	font-size: 1.2em;
-	margin: 0;
-	padding: 1px 5px;
-	text-align: right;
-	color: #fff;
-	-moz-opacity: .9;
-}
-
-#apparenceswitcher ul li {
-	padding: 0;
-}
-#apparenceswitcher ul li a {
-	display: block;
-	background: transparent;
-	padding: 0 5px;
-	margin: 0;
-	height: 1.5em;
-	color: #fff;
-	border-right: solid 5px #9bdcfa;
-}
-
-#apparenceswitcher ul li a:hover {
-	color: #0097E7;
-	background: #fff;
-	border-right: solid 5px #0097E7;
-	text-decoration: none;
-}
-
-#apparenceswitcher ul li a:active {
-	color: #f93;
-	border-right: solid 5px #fff;
-	text-decoration: none;
 }
 
 #documents_portfolio {
@@ -1401,8 +1317,8 @@ dl.event {
 
 #datemajsite {
 	float: right;
-	color: ##GET{c_datemajsite};
-	background-color: ##GET{c_datemajsite_bk};
+	color: #GET{c_datemajsite};
+	background-color: #GET{c_datemajsite_bk};
 	font-family: verdana, arial, helvetica, sans-serif;
 	font-size:.9em;
 	padding: 2px 10px;
@@ -1535,26 +1451,25 @@ sub.dateevenement {
 
 #citations dt {
 	margin: 0;
-	background-color: #0F7FB3;
-	color: #eef;
+	background-color: #GET{c_menu_a_bk};
+	color:[ #(#GET{c_menu_a_bk}|couleur_saturation{.2})];
 	padding: .25em .5em;
 	font-family: "trebuchet ms", verdana, arial, helvetica, sans-serif;
 	font-weight: bold;
 	font-size: 1.1em;
-	border-bottom: solid 1px #114;
+	border-bottom: solid 1px[ #(#GET{c_menu_a_bk}|couleur_foncer)];
 	-moz-border-radius-topright: .5em;
 	-moz-border-radius-topleft: .5em;
 }
 
 #citations dd {
-	background-color: #eef;
-	color: #000;
+	background-color:[ #(#GET{c_menu_a_bk}|couleur_saturation{.2})];
+	color:[ #(#GET{c_menu_a_bk}|couleur_foncer)];
 	margin:0;
 	padding: .5em .6em;
 	font-size: 1em;
-	font-family: "comic sans ms", cursive;
-	border-bottom: solid 1px #bbf;
-	border-right: solid 1px #bbf;
+	border-bottom: solid 1px[ #(#GET{c_menu_a_bk}|couleur_saturation{.5})];
+	border-right: solid 1px[ #(#GET{c_menu_a_bk}||couleur_saturation{.5})];
 	-moz-border-radius-bottomright: .5em;
 	-moz-border-radius-bottomleft: .5em;
 }
@@ -1608,25 +1523,9 @@ textarea.spip_cadre {
 	margin: 0;
 }
 
-table.agenda td a, table.agenda td a:link, table.agenda td a:visited, table.agenda td a:active {
-	color: #0000cc;
-	background: #fff url(/#CHEMIN{images/coinagenda.gif}) top right no-repeat;
-	font-weight: bold;
-	text-decoration: none;
-	display: block;
-}
-
-
-table.agenda td a:hover {
-	color: #fff;
-	background-color: #0000cc;
-	font-weight: bold;
-	text-decoration: underline;
-}
-
 #menuhaut {
 	padding-bottom: 1.7em;
-	background-color: #0070B6;
+	background-color: #GET{c_navigation_bk};
 	font-size: 130%;
 	padding-top: 8px;
 	padding-left: 8px;
@@ -1647,16 +1546,17 @@ table.agenda td a:hover {
 #menuhaut ul li a {
 	font-size: 1em;
 	font-weight: bold;
-	color: #fff;
-	background-color: #0097E7;
+	color: #GET{c_menu_a};
+	background-color: #GET{c_menu_a_bk};
 	text-align: left;
 	padding: 0.2em .5em;
 	margin: 0;
 	float: left;
-	border-top: 1px solid #0097E7;
-	border-right: 1px solid #0097E7;
-	border-left: 1px solid #0097E7;
+	border-top: 1px solid #GET{c_menu_a_bk};
+	border-right: 1px solid #GET{c_menu_a_bk};
+	border-left: 1px solid #GET{c_menu_a_bk};
 	margin-right: 2px;
+	text-decoration: none;
 }
 
 #menuhaut ul li strong a {
@@ -1667,9 +1567,9 @@ table.agenda td a:hover {
 
 #footer #bandeaucontact {
 	text-align: right;
-	border-bottom: 1px solid #eef;
-	padding: 1px .5em;
-	background: #0070B6;
+	padding: 1px 10px;
+	[color: #(#GET{c_footer}||couleur_saturation{.5});]
+	[background: #(#GET{c_footer_bk}|couleur_saturation{.9});]
 }
 
 .menuarticles {
@@ -1694,7 +1594,7 @@ table.agenda td a:hover {
 }
 /* */
 
-input:focus, textarea:focus {background-color: #E0F3FC;}
+input:focus, textarea:focus {background-color:[ #(#GET{c_navigation_bk}|couleur_saturation{.5})];}
 
 /* hack pour que le contenu du milieu ne disparaisse pas dans IE */
 * html #letexte, * html #content {
