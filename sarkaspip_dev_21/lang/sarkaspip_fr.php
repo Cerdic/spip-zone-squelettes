@@ -125,9 +125,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'info_categorie' => 'Cat&eacute;gorie',
  		'info_sans_categorie' => 'Ev&eacute;nements sans cat&eacute;gorie',
 		'info_sans_filtre' => 'Tout &eacute;v&eacute;nement',
-                'info_album_categorie' => 'Cat&eacute;gorie',
-                'info_album_sans_categorie' => 'Albums sans cat&eacute;gorie',
-                'info_album_sans_filtre' => 'Tout album',
+        'info_album_categorie' => 'Cat&eacute;gorie',
+        'info_album_sans_categorie' => 'Albums sans cat&eacute;gorie',
+        'info_album_sans_filtre' => 'Tout album',
 		'info_langues' => 'Langues du site', // redefinition item SPIP
 		'inscription' => 'Inscription',
 		'inscrire_a_newsletter' => 'S\'inscrire &agrave; la lettre d\'information',
@@ -154,7 +154,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'licence_site' => 'Licence &agrave; d&eacute;finir',
 		'licence_squelette' => '<a href="http://www.gnu.org/copyleft/gpl.html" title="Le squelette SARKA-SPIP est distribu&eacute; sous licence GPL" target="_blank">GPL</a>',
 		'lire_suite_article' => 'lire la suite de l\'article',
-                'lire_evenement_virtuel' => 'Consulter l\'&eacute;v&eacute;nement d\'origine',
+		'lire_evenement_virtuel' => 'Consulter l\'&eacute;v&eacute;nement d\'origine',
 		'lundi_abrege' => 'Lu',
 		'login_membre' => 'Connexion',
 		'login_sinscrire' => 's\'inscrire', // redefinition item SPIP
@@ -297,7 +297,58 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //Z
 	
-        
+	
+
+// CFG : items de langue de la configuration du squelette (espace privŽ)        
+
+// Titre des pages
+		'cfg_titre_layout' => 'Choix du layout',
+		'cfg_titre_noisettes' => 'Choix et agencement des noisettes',
+		
+// Descriptif des pages
+		'cfg_descr_layout' => 'Le squelette Sarka-SPIP est bas&eacute; sur les layouts Gala #13 &agrave; #18 d\'Alessandro Fulciniti (<a href="http://blog.html.it/layoutgala/">Layout Gala</a>) qui permettent de jouer sur la position des colonnes navigation, centre et extra. 
+		Cette page vous permet de choisir le layout qui vous convient.',
+		'cfg_descr_noisettes' => 'Les noisettes sont des blocs d\'informations qui composent les colonnes navigation et extra. Cette page vous permet de choisir, suivant la noisette, son affichage,
+		son mod&egrave;le voire sa position.',
+
+// Titre des boites
+		'cfg_boite_layout' => 'Layouts',
+		'cfg_boite_noisettes' => 'Noisettes',
+
+// Legendes des blocs contenus dans chaque boite
+		'cfg_lgd_layout' => 'Layout',
+		'cfg_lgd_inc_rubriques' => 'Menu des rubriques',
+		'cfg_lgd_inc_recherche' => 'Formulaires de recherche',
+		'cfg_lgd_inc_statsite' => 'Statistiques du site',
+		'cfg_lgd_inc_stathit' => 'Hit-parade des articles',
+		'cfg_lgd_inc_stathasard' => 'Articles al&eacute;atoires',
+
+// Informations de configuration de chaque bloc
+		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
+		'cfg_inf_inc_rubriques' => 'Choisissez le mod&egrave;le de menu des rubriques qui vous convient parmi ceux propos&eacute;s ci-dessous.',
+		'cfg_inf_inc_recherche_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les formulaires de recherche.',
+		'cfg_inf_inc_recherche_ext' => 'Choisissez le moteur de recherche externe que vous souhaitez ajouter en compl&eacute;ment du formulaire SPIP.',
+		'cfg_inf_inc_statsite_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les statistiques du site.',
+		'cfg_inf_inc_stathit_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer le hit-parade des articles les plus visit&eacute;s du site.',
+		'cfg_inf_inc_stathasard_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer la noisette des articles choisis au hasard.',
+
+// Labels des items de choix
+		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
+		'cfg_lbl_layout_14' => 'Layout #14 (extra, centre, navigation)',
+		'cfg_lbl_layout_15' => 'Layout #15 (centre, navigation, extra)',
+		'cfg_lbl_layout_16' => 'Layout #16 (centre, extra, navigation)',
+		'cfg_lbl_layout_17' => 'Layout #17 (extra, navigation, centre)',
+		'cfg_lbl_layout_18' => 'Layout #18 (navigation, extra, centre)',
+		'cfg_lbl_inc_rubriques_1' => 'Menu des rubriques d&eacute;roulant',
+		'cfg_lbl_inc_rubriques_2' => 'Menu des rubriques d&eacute;pli&eacute;',
+		'cfg_lbl_inc_recherche_pos_1' => 'Colonne navigation',
+		'cfg_lbl_inc_recherche_pos_2' => 'Colonne extra',
+		'cfg_lbl_inc_recherche_ext_0' => 'Aucun moteur de recherche suppl&eacute;mentaire',
+		'cfg_lbl_inc_recherche_ext_1' => 'Exalead',
+		'cfg_lbl_inc_recherche_ext_2' => 'Google',
+		'cfg_lbl_inc_recherche_ext_3' => 'Yahoo',
+		'cfg_lbl_inc_recherche_ext_4' => 'MSN Search',
+		'cfg_lbl_inc_recherche_ext_5' => 'Voila',
 
 	
 );
