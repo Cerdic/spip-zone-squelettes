@@ -322,6 +322,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_inc_statsite' => 'Statistiques du site',
 		'cfg_lgd_inc_stathit' => 'Hit-parade des articles',
 		'cfg_lgd_inc_stathasard' => 'Articles al&eacute;atoires',
+		'cfg_lgd_inc_badges' => 'Badges',
+		'cfg_lgd_inc_annonce' => 'Annonces',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -331,6 +333,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_inc_statsite_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les statistiques du site.',
 		'cfg_inf_inc_stathit_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer le hit-parade des articles les plus visit&eacute;s du site.',
 		'cfg_inf_inc_stathasard_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer la noisette des articles choisis au hasard.',
+		'cfg_inf_inc_badges_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les badges.',
+		'cfg_inf_inc_badges_liste' => 'Cochez les badges que vous souhaitez afficher.',
+		'cfg_inf_inc_annonce_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les annonces.',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
@@ -341,8 +346,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_layout_18' => 'Layout #18 (navigation, extra, centre)',
 		'cfg_lbl_inc_rubriques_1' => 'Menu des rubriques d&eacute;roulant',
 		'cfg_lbl_inc_rubriques_2' => 'Menu des rubriques d&eacute;pli&eacute;',
-		'cfg_lbl_inc_recherche_pos_1' => 'Colonne navigation',
-		'cfg_lbl_inc_recherche_pos_2' => 'Colonne extra',
+		'cfg_lbl_inc_position_0' => 'Aucune',
+		'cfg_lbl_inc_position_1' => 'Colonne navigation',
+		'cfg_lbl_inc_position_2' => 'Colonne extra',
 		'cfg_lbl_inc_recherche_ext_0' => 'Aucun moteur de recherche suppl&eacute;mentaire',
 		'cfg_lbl_inc_recherche_ext_1' => 'Exalead',
 		'cfg_lbl_inc_recherche_ext_2' => 'Google',

@@ -8,42 +8,71 @@
 <!-- liens*=sarkaspip_agenda -->
 
 #CACHE{0}
-<form method="post">[(#ENV{_cfg_}|form_hidden)]
 
+<script type="text/javascript">
+//<![CDATA[
+	jQuery(document).ready(function() {
+		jQuery("input[@name='id_layout']").change(function() {
+			if (jQuery("input[@name='id_layout']:checked").val() == 18)
+				jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout18.gif})]"});
+			else if (jQuery("input[@name='id_layout']:checked").val() == 17)
+				jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout17.gif})]"});
+			else if (jQuery("input[@name='id_layout']:checked").val() == 16)
+				jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout16.gif})]"});
+			else if (jQuery("input[@name='id_layout']:checked").val() == 15)
+				jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout15.gif})]"});
+			else if (jQuery("input[@name='id_layout']:checked").val() == 14)
+				jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout14.gif})]"});
+			else
+				jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout13.gif})]"});
+		});	
+	});
+//]]>
+</script>
+
+<form method="post">[(#ENV{_cfg_}|form_hidden)]
 <fieldset>
     <legend><:sarkaspip:cfg_lgd_layout:></legend>
-    <p><:sarkaspip:cfg_inf_layout:></p>
-    <label>
-		<input type="radio" name="id_layout" value=13 [(#ENV{id_layout, 13}|=={13}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_layout_13:>
-    </label>
-    <br />
-    <label>
-		<input type="radio" name="id_layout" value=14 [(#ENV{id_layout, 13}|=={14}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_layout_14:>
-    </label>
-    <br />
-    <label>
-		<input type="radio" name="id_layout" value=15 [(#ENV{id_layout, 13}|=={15}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_layout_15:>
-    </label>
-    <br />
-    <label>
-		<input type="radio" name="id_layout" value=16 [(#ENV{id_layout, 13}|=={16}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_layout_16:>
-    </label>
-    <br />
-    <label>
-		<input type="radio" name="id_layout" value=17 [(#ENV{id_layout, 13}|=={17}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_layout_17:>
-    </label>
-    <br />
-    <label>
-		<input type="radio" name="id_layout" value=18 [(#ENV{id_layout, 13}|=={18}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_layout_18:>
-    </label>
+		<p><:sarkaspip:cfg_inf_layout:></p>
+    <table border=0 width=100%><tr>
+    <td>
+		<label>
+			<input type="radio" name="id_layout" value=13 [(#ENV{id_layout, 13}|=={13}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_layout_13:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="id_layout" value=14 [(#ENV{id_layout, 13}|=={14}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_layout_14:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="id_layout" value=15 [(#ENV{id_layout, 13}|=={15}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_layout_15:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="id_layout" value=16 [(#ENV{id_layout, 13}|=={16}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_layout_16:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="id_layout" value=17 [(#ENV{id_layout, 13}|=={17}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_layout_17:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="id_layout" value=18 [(#ENV{id_layout, 13}|=={18}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_layout_18:>
+		</label>
+    </td>
+    <td>
+		<img id="bloc_layout_image" src="[(#CHEMIN{[images/layout(#ENV{id_layout, 13}).gif]})]" />
+    </td>
+    </tr></table>
 </fieldset>
 
+<br />
 <input type="submit" name="_cfg_ok" class="fondo" value="<:sarkaspip:valider:>" />
 <input type="submit" name="_cfg_delete" class="fondo" value="<:sarkaspip:effacer:>" />
 </form>

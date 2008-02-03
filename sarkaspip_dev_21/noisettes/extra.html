@@ -33,7 +33,9 @@
 
 [(#REM) <!-- affichage du panneau d'annonce --> ]
 <BOUCLE_acces_annonce(RUBRIQUES) {id_rubrique=#RUBRIQUE_SPECIALISEE{annonce}}>
-	[(#RUBRIQUE_SPECIALISEE{annonce}|=={0}|?{'', ' '})<INCLURE{fond=noisettes/inc_annonce}{id_rubrique=#RUBRIQUE_SPECIALISEE{annonce}}>]
+	[(#CONFIG{sarkaspip_noisettes/position_annonce}|=={2}|?{' '})
+		[(#RUBRIQUE_SPECIALISEE{annonce}|=={0}|?{'', ' '})<INCLURE{fond=noisettes/inc_annonce}{id_rubrique=#RUBRIQUE_SPECIALISEE{annonce}}>]
+	]
 </BOUCLE_acces_annonce>
 
 [(#REM) <!-- affichage des X dernieres breves et sites en fonction du contexte --> ]
@@ -55,4 +57,9 @@
 ]
 [(#CONFIG{sarkaspip_noisettes/position_stats_3}|=={2}|?{' '})
 	<INCLURE{fond=noisettes/inc_stats_hasard}>
+]
+
+<!-- Bloc des badges -->
+[(#CONFIG{sarkaspip_noisettes/position_badges}|=={2}|?{' '})
+	<INCLURE{fond=noisettes/inc_badges}>
 ]

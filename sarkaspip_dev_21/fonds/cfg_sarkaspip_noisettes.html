@@ -8,6 +8,22 @@
 <!-- liens*=sarkaspip_agenda -->
 
 #CACHE{0}
+
+<script type="text/javascript">
+//<![CDATA[
+	jQuery(document).ready(function() {
+		[(#ENV{position_badges}|=={0}|?{jQuery("#bloc_badges_liste").hide();})]
+		jQuery("input[@name='position_badges']").change(function() {
+			if (jQuery("input[@name='position_badges']:checked").val() != 0)
+				jQuery("#bloc_badges_liste").show();
+			else
+				jQuery("#bloc_badges_liste").hide();
+			jQuery(this).blur();
+		});	
+	});
+//]]>
+</script>
+
 <form method="post">[(#ENV{_cfg_}|form_hidden)]
 <fieldset>
     <legend><:sarkaspip:cfg_lgd_inc_rubriques:></legend>
@@ -29,12 +45,12 @@
     <p><:sarkaspip:cfg_inf_inc_recherche_pos:></p>
 	<label>
 		<input type="radio" name="position_recherche" value=1 [(#ENV{position_recherche, 1}|=={1}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_inc_recherche_pos_1:>
+		<:sarkaspip:cfg_lbl_inc_position_1:>
 	</label>
 	<br />
 	<label>
 		<input type="radio" name="position_recherche" value=2 [(#ENV{position_recherche, 1}|=={2}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_inc_recherche_pos_2:>
+		<:sarkaspip:cfg_lbl_inc_position_2:>
 	</label>
 	<br />
 	<br />
@@ -76,17 +92,17 @@
     <p><:sarkaspip:cfg_inf_inc_statsite_pos:></p>
 	<label>
 		<input type="radio" name="position_stats_1" value=0 [(#ENV{position_stats_1, 1}|=={0}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_inc_statsite_pos_0:>
+		<:sarkaspip:cfg_lbl_inc_position_0:>
 	</label>
 	<br />
 	<label>
 		<input type="radio" name="position_stats_1" value=1 [(#ENV{position_stats_1, 1}|=={1}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_inc_statsite_pos_1:>
+		<:sarkaspip:cfg_lbl_inc_position_1:>
 	</label>
 	<br />
 	<label>
 		<input type="radio" name="position_stats_1" value=2 [(#ENV{position_stats_1, 1}|=={2}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_inc_statsite_pos_2:>
+		<:sarkaspip:cfg_lbl_inc_position_2:>
 	</label>
 	<br />
 </fieldset>
@@ -96,17 +112,17 @@
     <p><:sarkaspip:cfg_inf_inc_stathit_pos:></p>
 	<label>
 		<input type="radio" name="position_stats_2" value=0 [(#ENV{position_stats_2, 1}|=={0}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_inc_stathit_pos_0:>
+		<:sarkaspip:cfg_lbl_inc_position_0:>
 	</label>
 	<br />
 	<label>
 		<input type="radio" name="position_stats_2" value=1 [(#ENV{position_stats_2, 1}|=={1}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_inc_stathit_pos_1:>
+		<:sarkaspip:cfg_lbl_inc_position_1:>
 	</label>
 	<br />
 	<label>
 		<input type="radio" name="position_stats_2" value=2 [(#ENV{position_stats_2, 1}|=={2}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_inc_stathit_pos_2:>
+		<:sarkaspip:cfg_lbl_inc_position_2:>
 	</label>
 	<br />
 </fieldset>
@@ -116,42 +132,81 @@
     <p><:sarkaspip:cfg_inf_inc_stathasard_pos:></p>
 	<label>
 		<input type="radio" name="position_stats_3" value=0 [(#ENV{position_stats_3, 1}|=={0}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_inc_stathasard_pos_0:>
+		<:sarkaspip:cfg_lbl_inc_position_0:>
 	</label>
 	<br />
 	<label>
 		<input type="radio" name="position_stats_3" value=1 [(#ENV{position_stats_3, 1}|=={1}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_inc_stathasard_pos_1:>
+		<:sarkaspip:cfg_lbl_inc_position_1:>
 	</label>
 	<br />
 	<label>
 		<input type="radio" name="position_stats_3" value=2 [(#ENV{position_stats_3, 1}|=={2}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_inc_stathasard_pos_2:>
+		<:sarkaspip:cfg_lbl_inc_position_2:>
 	</label>
 	<br />
 </fieldset>
-
 
 <fieldset>
     <legend><:sarkaspip:cfg_lgd_inc_badges:></legend>
-    <p><:sarkaspip:cfg_inf_inc_badges:></p>
+    <p><:sarkaspip:cfg_inf_inc_badges_pos:></p>
 	<label>
-		<input type="checkbox" name="badge_rss" [checked="(#ENV{badge_rss})"] />
-		<:sarkaspip:cfg_lbl_inc_badges_rss:>
+		<input type="radio" name="position_badges" value=0 [(#ENV{position_badges, 1}|=={0}|?{checked="checked"})] />
+		<:sarkaspip:cfg_lbl_inc_position_0:>
 	</label>
 	<br />
 	<label>
-		<input type="checkbox" name="badge_sarka" [checked="(#ENV{badge_sarka})"] />
-		<:sarkaspip:cfg_lbl_inc_badges_sarka:>
+		<input type="radio" name="position_badges" value=1 [(#ENV{position_badges, 1}|=={1}|?{checked="checked"})] />
+		<:sarkaspip:cfg_lbl_inc_position_1:>
 	</label>
 	<br />
 	<label>
-		<input type="checkbox" name="badge_spip" [checked="(#ENV{badge_spip})"] />
-		<:sarkaspip:cfg_lbl_inc_badges_spip:>
+		<input type="radio" name="position_badges" value=2 [(#ENV{position_badges, 1}|=={2}|?{checked="checked"})] />
+		<:sarkaspip:cfg_lbl_inc_position_2:>
+	</label>
+	<br />
+	<br />
+    <div id="bloc_badges_liste">
+    	<p><:sarkaspip:cfg_inf_inc_badges_liste:></p>
+		<label>
+			<input type="checkbox" name="badge_rss" [checked="(#ENV{badge_rss})"] />
+			<:sarkaspip:cfg_lbl_inc_badges_rss:>
+		</label>
+		<br />
+		<label>
+			<input type="checkbox" name="badge_sarka" [checked="(#ENV{badge_sarka})"] />
+			<:sarkaspip:cfg_lbl_inc_badges_sarka:>
+		</label>
+		<br />
+		<label>
+			<input type="checkbox" name="badge_spip" [checked="(#ENV{badge_spip})"] />
+			<:sarkaspip:cfg_lbl_inc_badges_spip:>
+		</label>
+		<br />
+	</div>
+</fieldset>
+
+<fieldset>
+    <legend><:sarkaspip:cfg_lgd_inc_annonce:></legend>
+    <p><:sarkaspip:cfg_inf_inc_annonce_pos:></p>
+	<label>
+		<input type="radio" name="position_annonce" value=0 [(#ENV{position_annonce, 1}|=={0}|?{checked="checked"})] />
+		<:sarkaspip:cfg_lbl_inc_position_0:>
+	</label>
+	<br />
+	<label>
+		<input type="radio" name="position_annonce" value=1 [(#ENV{position_annonce, 1}|=={1}|?{checked="checked"})] />
+		<:sarkaspip:cfg_lbl_inc_position_1:>
+	</label>
+	<br />
+	<label>
+		<input type="radio" name="position_annonce" value=2 [(#ENV{position_annonce, 1}|=={2}|?{checked="checked"})] />
+		<:sarkaspip:cfg_lbl_inc_position_2:>
 	</label>
 	<br />
 </fieldset>
 
+<br />
 <input type="submit" name="_cfg_ok" class="fondo" value="<:sarkaspip:valider:>" />
 <input type="submit" name="_cfg_delete" class="fondo" value="<:sarkaspip:effacer:>" />
 </form>
