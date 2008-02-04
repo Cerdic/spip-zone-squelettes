@@ -47,13 +47,13 @@
    [#DEBUT_SURLIGNE(#TEXTE|image_reduire{450,0}|lier_au_glossaire|paragrapher)#FIN_SURLIGNE][<br/>
     (#PS|paragrapher)]
 
-<ul class="membres"><li class="modo"><a href="ecrire/?exec=articles_forum&id_article=#ID_ARTICLE" title="Acc&egrave;s priv&eacute; pour mod&eacute;rateurs">Modo:</a></li>
+<ul class="membres"><li class="modo"><a href="ecrire/?exec=articles_forum&amp;id_article=#ID_ARTICLE" title="Acc&egrave;s priv&eacute; pour mod&eacute;rateurs">Modo:</a></li>
 <BOUCLE_admin(AUTEURS){statut=0minirezo}{par id_auteur}{doublons modo}>
-[<li class="modo"><a href="(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})title="Contact/Profil">#NOM</a></li>]
+[<li class="modo"><a href="(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})" title="Contact et profil">#NOM</a></li>]
 </BOUCLE_admin>
 
 <BOUCLE_auteurs(AUTEURS){id_article}{doublons modo}>                
- [<li class="modo"><a href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]"title="Contact/Profil">(#NOM)</a></li>]
+ [<li class="modo"><a href="(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})"title="Contact et Profil">(#NOM)</a></li>]
  </BOUCLE_auteurs>
  
 </ul>
@@ -101,6 +101,8 @@
 
 
 
+
+
 <BOUCLE_derniers(FORUMS){plat}{id_article}{par date_thread}{inverse}{doublons}{pagination 30}>
 
 <tr [class="(#EVAL{[(#_derniers:COMPTEUR_BOUCLE)]}|alterner{'row_even','row_odd'})"] >
@@ -139,12 +141,9 @@
 <hr class="spacer"/> 
 
 </div>
-<?php 
-<BOUCLE_nb_images(DOCUMENTS){id_article}{mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
-</BOUCLE_nb_images> $nb_images = "#TOTAL_BOUCLE";</B_nb_images> ?>
- <?php  if ($nb_images >1) {?>
- 
- 
+
+<BOUCLE_combien_d_images(DOCUMENTS){id_article}{mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}{1,1}>
+ [(#REM) Affiche des minipics si plus d'une image... ] 
  
 <B_documents_portfolio>
 <div id="minipics">
@@ -163,42 +162,33 @@
 
 </B_documents_portfolio>
 
+</BOUCLE_combien_d_images>
 
 	
- <?php  } if ($nb_images ==1) {?>
+ [(#REM) ... et sinon affiche une seule image ] 
 
 <B_afficher_photo_seule>
-
 <div class="grande_boite">
 [(#REM)   l image en grand   ]
-
-
 <div class="photo">
 <div id="exif">
 <BOUCLE_afficher_photo_seule(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date}{0,1}>
-				
-				<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;" title="[(#TITRE|couper{200}|texte_backend)]
-
-">
-[(#FICHIER|reduire_image{450,1000}|inserer_attribut{alt,#TITRE #TAILLE #LARGEUR
-x #HAUTEUR})]
+<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;" title="[(#TITRE|couper{200}|texte_backend)]">
+[(#FICHIER|reduire_image{450,1000}|inserer_attribut{alt,#TITRE #TAILLE #LARGEUR x #HAUTEUR})]
 <span>[(#TITRE)<br />]
 [(#DESCRIPTIF)<br />]
 [(#DATE|affdate), ]
 [(#TAILLE|taille_en_octets), ][(#LARGEUR)&nbsp;x&nbsp;[(#HAUTEUR)]]
 </span>
 </a>
-
-
 </BOUCLE_afficher_photo_seule>
-</div>
-[(#REM)   fermeture exif   ]
+</div>[(#REM)   fermeture exif   ]
 </div>[(#REM)   fermeture photo   ]
-
 </div>[(#REM)   fermeture grande boite photo   ]
 </B_afficher_photo_seule>
-<?php } ?>
 
+
+<//B_combien_d_images>
 
 
 [(#CHEMIN{plugins/gis/inc-gis_map.html}|?{' ',''})<INCLURE{fond="inc_lien_gis"}{id_rubrique}{id_article}>]

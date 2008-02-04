@@ -42,20 +42,16 @@
      <B_auteurs>
 	 <BOUCLE_auteurs(AUTEURS){id_article}>                
  <p class="interne droite"><span class="gauche"><a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR})]"><INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=28}{date=#ENV{date}}></a></span>[(#NOM|couper{24})<br/>][<a href="(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR})">bio</a> ][<a href="(#URL_SITE)">www</a> ]
-</span></p></BOUCLE_auteurs></B_auteurs>
+</p></BOUCLE_auteurs></B_auteurs>
   <hr class="spacer"/>
 
 
    
 </div> [(#REM)   fermeture grande boite   ]
 
-<?php 
-<BOUCLE_nb_images(DOCUMENTS){id_article}{mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
-</BOUCLE_nb_images> $nb_images = "#TOTAL_BOUCLE";</B_nb_images> ?>
- <?php  if ($nb_images >1) {?>
- 
- 
- 
+
+<BOUCLE_combien_d_images(DOCUMENTS){id_article}{mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}{1,1}>
+ [(#REM) Affiche des minipics si plus d'une image... ] 
  
 <B_documents_portfolio>
 <div id="minipics">
@@ -74,10 +70,10 @@
 
 </B_documents_portfolio>
 
-
+</BOUCLE_combien_d_images>
 
 	
-<?php  } if ($nb_images ==1) {?>
+ [(#REM) ... et sinon affiche une seule image ] 
 
 <B_afficher_photo_seule>
 <div class="grande_boite">
@@ -100,7 +96,7 @@
 </B_afficher_photo_seule>
 
 
-<?php } ?>
+<//B_combien_d_images>
 
 
 [(#CHEMIN{plugins/gis/inc-gis_map.html}|?{' ',''})<INCLURE{fond="inc_lien_gis"}{id_rubrique}{id_article}>]

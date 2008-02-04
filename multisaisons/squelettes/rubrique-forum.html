@@ -48,14 +48,9 @@
 </ul></div> 
   [(#REM)   fermeture grande boite   ]
 
-
-
 [<div class="grande_boite">(#NOTES)</div>]
 
-
-
 <div class="grande_boite">
-
 
 <BOUCLE_themes(ARTICLES){titre_mot = forum}{id_rubrique=#ID_RUBRIQUE}{doublons}>
             <span class="logogauche"><a href="#URL_ARTICLE" title="Voir tous les messages"><INCLURE{fond="logo"}{id_article}{taille=46}{date=#ENV{date}}></a></span><h4><a href="#URL_ARTICLE" title="Voir tous les messages">[(#TITRE)]</a></h4>
@@ -70,41 +65,35 @@
                  
                   <B_discussions>
                   <BOUCLE_discussions(FORUMS){plat}{id_article}{par date_thread}{inverse}{doublons}{0,4}>
-                  <?php
-$ze_titre = '[(#TITRE|texte_script|couper{30})]' ;
-$ze_titre = ereg_replace( "> ", "", $ze_titre );
-?>
-          
+                          
 <tr [class="(#EVAL{[(#_discussions:COMPTEUR_BOUCLE)]}|alterner{'row_even','row_odd'})"] >
 <td>
-<a href="[(#URL_PAGE{discussion}|parametre_url{id_forum,#ID_FORUM})]"	title=""><?php echo $ze_titre?></a>
+[<a href="[(#URL_PAGE{discussion}|parametre_url{id_forum,#ID_FORUM})]" [title="(#TITRE|couper{60})"]>(#TITRE|couper{40})</a>]
 </td>
 <td><BOUCLE_nom2(AUTEURS){tout}{id_auteur}{statut=original}>
 [<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de ce r&eacute;dacteur">]
 [<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de cet admin">]
 [<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de ce visiteur">]
 [<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Compte en attente">]
-[(#NOM|couper{18})</a><br/>]
+[(#NOM|couper{18})</a>]
 </BOUCLE_nom2>
-[(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
+[(#NOM||?{#NOM|couper{18},'Anonyme'})]
 <//B_nom2></td>
 <td>
 <BOUCLE_dernier_message(FORUMS){id_thread}{plat}{par date}{inverse}{0,1}>
-[(#DATE|affdate{'d/m/Y'})]<br/>
+[(#DATE|affdate{'d/m/Y'})<br/>]
 	[(#DATE|affdate{'H:i:s'})]
 </BOUCLE_dernier_message>	
 </td>
 <td><B_nb_forumtotal>
-<BOUCLE_nb_forumtotal(FORUMS){id_thread}{plat}>
+<BOUCLE_nb_forumtotal(FORUMS){id_thread}{plat}{1,9999}>
 </BOUCLE_nb_forumtotal>
-<?php echo #TOTAL_BOUCLE -1 ?>
+#TOTAL_BOUCLE
 </B_nb_forumtotal>
 </td>
 </tr>
-<tr [class="(#EVAL{[(#_discussions:COMPTEUR_BOUCLE)]}|alterner{'row_even','row_odd'})"] >
-  
-  </tr>
-                 
+
+                
                   </BOUCLE_discussions>
                   </B_discussions>
 				  <tr class="row_first gras blanc">

@@ -31,42 +31,34 @@
 <div id="cel">
 <ul id="deco">
 <li>
-
-[(#REM) une breve en haut à gauche.]
-
+[(#REM) une breve en haut à gauche avec un mot clé.]
 <BOUCLE_blogbox_haut(BREVES){titre_mot=homebox_haut}{par num titre}{par date}{inverse}{0,1}> 
 <h4>[(#TITRE)]</h4>
 <p><span class="logogauche"><a href="#URL_BREVE"><INCLURE{fond=logo}{id_breve}{taille=46}{date=#ENV{date}}></a></span>
 [(#TEXTE|PtoBR|lier_au_glossaire)]</p>
-
-
 </BOUCLE_blogbox_haut>
 <h4>Bienvenue</h4>
 <p>Bienvenue sur #NOM_SITE_SPIP.</p>
-
 <//B_blogbox_haut>
 </li>
 
 
- [(#REM)  Une breve de news sur la une en haut à droite. Se remplace illico par une brève plus récente.]
+[(#REM)  Une breve de news sur la une en haut à droite. Se remplace illico par une brève plus récente.]
 
 <li>
 <BOUCLE_blogue(BREVES){titre_mot=blogue}{doublons}{par num titre}{par date}{inverse}{0,1}>
-
-  <div>[(#REM)  Le logo de la breve bloguee  ]
-
+[(#REM)  Le logo de la breve bloguee  ]
 <h4><a href="#URL_BREVE" title="lire tout">[(#TITRE)]</a></h4>
 <p><span class="logogauche"><a href="#URL_BREVE"><INCLURE{fond=logo}{id_breve}{taille=46}{date=#ENV{date}}></a></span>
 [(#TEXTE|PtoBR|lier_au_glossaire)]</p>
 </BOUCLE_blogue>
 <h4>Plus de news</h4>
 <p>
- Vous pouvez surveiller les nouveaut&eacute;s du site par ses différents
-  fils de <a href="[(#URL_PAGE{syndication})]">syndication RSS</a>,  sa <a href="[(#URL_PAGE{inscription})]">lettre
+Vous pouvez surveiller les nouveaut&eacute;s du site par ses différents 
+fils de <a href="[(#URL_PAGE{syndication})]">syndication RSS</a>,  sa <a href="[(#URL_PAGE{inscription})]">lettre
   d'information</a>, ou sa <a href="[(#URL_PAGE{nouveautes})]">page
   de nouveaut&eacute;s</a>.
-  </p>
-
+</p>
 <//B_blogue>
 </li>
 </ul>
@@ -74,12 +66,10 @@
 
 
  <div class="grande_boite">
-
  [(#REM)La description d'un article important sur l'accueil]
  
 <BOUCLE_blogue_article(ARTICLES){titre_mot=blogue}{doublons}{par num titre}{par date}{inverse}{pagination}>
-	
-	<span class="logogauche"><a href="#URL_ARTICLE#diapo"><INCLURE{fond=logo}{id_article}{taille=46}{date=#ENV{date}}></a></span>
+<span class="logogauche"><a href="#URL_ARTICLE#diapo"><INCLURE{fond=logo}{id_article}{taille=46}{date=#ENV{date}}></a></span>
 	
 [<h4><a href="#URL_ARTICLE">(#TITRE)</a></h4>]
 [<p>(#DESCRIPTIF) <a href="#URL_ARTICLE">Lire la suite...</a></p>]
@@ -95,8 +85,8 @@
 </B_blogue_article>
   [(#REM)Les rubriques importante sur l'accueil]
 
-              <BOUCLE_appel(RUBRIQUES){titre_mot = menu_rub}{par titre}{tout_voir}> <a href="#URL_RUBRIQUE" title="[(#TITRE)]" class="logogauche"><INCLURE{fond="logo"}{id_rubrique}{taille=46}{date=#ENV{date}}></a>   
-[<h4><a href="#URL_RUBRIQUE" title="(#TITRE)">(#TITRE)</a></h4>]
+              <BOUCLE_appel(RUBRIQUES){titre_mot = menu_rub}{par titre}{tout_voir}> <a href="#URL_RUBRIQUE" [title="(#TITRE)"] class="logogauche"><INCLURE{fond="logo"}{id_rubrique}{taille=46}{date=#ENV{date}}></a>   
+[<h4><a href="#URL_RUBRIQUE" title="#TITRE">(#TITRE)</a></h4>]
 
 <p> #DESCRIPTIF <INCLURE{fond="inc_cadenas"}{id_rubrique}>
              <BOUCLE_nouv_art(ARTICLES){id_rubrique}{age<14}{par num titre}{par date}{inverse}{0,5}{tout_voir}>
@@ -119,9 +109,22 @@
 <h4>A la une</h4>
 <p>
 <BOUCLE_une(ARTICLES){tout}{doublons}{titre_mot=une}{par date}{inverse}{0,2}{tout_voir}>
-<span class="logogauche"><a href="#URL_ARTICLE"><INCLURE{fond="logo"}{id_article}{taille=30}{date=#ENV{date}}></a></span><strong><a href="#URL_ARTICLE">[(#TITRE)]</a></strong>
-<INCLURE{fond="inc_cadenas"}{id_article}><br/>
-[(#INTRODUCTION|couper{300})]<br/>
+<BOUCLE_logo_documents(DOCUMENTS){id_article}{mode=document}{par date}{inverse}{extension IN jpg,png,gif}{0,1}>
+<span class="logogauche"><a href="#URL_ARTICLE#diapo"><INCLURE{fond="logo"}{id_article}{id_document}{taille=30}{date=#ENV{date}}></a></span>
+</BOUCLE_logo_documents> 
+[(#REM)   s'il n'y a pas de jpg gif ou png alors on demande le logo de l'article / rubrique  ]
+<BOUCLE_logo_articles(ARTICLES){id_article}{0,1}> 
+<span class="logogauche"><a href="#URL_ARTICLE#diapo">
+[(#LOGO_ARTICLE||?{' ',''})<INCLURE{fond="logo"}{id_article}{taille=30}{date=#ENV{date}}>]
+[(#LOGO_ARTICLE||?{'',' '})<INCLURE{fond="logo"}{id_rubrique}{taille=30}{date=#ENV{date}}>]
+</a></span>
+</BOUCLE_logo_articles>    
+<//B_logo_documents>
+
+
+
+<strong><a href="#URL_ARTICLE">[(#TITRE)]</a></strong><INCLURE{fond="inc_cadenas"}{id_article}>
+[(#INTRODUCTION|couper{300})]
 </BOUCLE_une></p>
 </li>
 </B_une>
@@ -129,12 +132,25 @@
 [(#REM)  Les article populaires  ]
 <B_popu>
 <li>
-<h4>Les articles en vogue</h4> <p>
+<h4>Les articles en vogue</h4>
+<p>
 <BOUCLE_popu(ARTICLES){tout}{doublons}{par popularite}{inverse}{0,2}{tout_voir}>
-<span class="logogauche"><a href="#URL_ARTICLE"><INCLURE{fond="logo"}{id_article}{taille=30}{date=#ENV{date}}></a></span><strong><a href="#URL_ARTICLE">[(#TITRE)]</a></strong>
-<INCLURE{fond="inc_cadenas"}{id_article}><br/>
-[(#INTRODUCTION|couper{300})]<br/>
-</BOUCLE_popu></p>
+<BOUCLE_logo_documents2(DOCUMENTS){id_article}{mode=document}{par date}{inverse}{extension IN jpg,png,gif}{0,1}>
+<span class="logogauche"><a href="#URL_ARTICLE#diapo"><INCLURE{fond="logo"}{id_article}{id_document}{taille=30}{date=#ENV{date}}></a></span>
+</BOUCLE_logo_documents2> 
+[(#REM)   s'il n'y a pas de jpg gif ou png alors on demande le logo de l'article / rubrique  ]
+<BOUCLE_logo_articles2(ARTICLES){id_article}{0,1}> 
+<span class="logogauche"><a href="#URL_ARTICLE#diapo">
+[(#LOGO_ARTICLE||?{' ',''})<INCLURE{fond="logo"}{id_article}{taille=30}{date=#ENV{date}}>]
+[(#LOGO_ARTICLE||?{'',' '})<INCLURE{fond="logo"}{id_rubrique}{taille=30}{date=#ENV{date}}>]
+</a></span>
+</BOUCLE_logo_articles2>    
+<//B_logo_documents2>
+<strong><a href="#URL_ARTICLE">[(#TITRE)]</a></strong>
+<INCLURE{fond="inc_cadenas"}{id_article}>
+[(#INTRODUCTION|couper{300})<br/>]
+</BOUCLE_popu>
+</p>
 </li>
 </B_popu>
 
@@ -241,10 +257,10 @@
 
 
 </div>  [(#REM)  fermeture container  ]
-
-</body>
-</html>
 [(#REM)
 	Cette balise permet de deporter les calculs lourds (indexation etc)
 	dans une image cachee, ce qui evite de ralentir l'affichage des pages.
 ]#SPIP_CRON
+</body>
+</html>
+
