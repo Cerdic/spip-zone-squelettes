@@ -52,7 +52,10 @@ de ce squelette.
 <div id="wrapper">
 	<div id="content">
 		[(#REM) <!-- Definition du contexte de l'agenda --> ]
-		[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_definir_contexte{'listing_annuel', 1, 'annee'})]
+		[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_definir_contexte{'listing_annuel',
+																[(#CONFIG{sarkaspip_agenda/mois1})],
+																[(#CONFIG{sarkaspip_agenda/format_pagination})]}
+		)]
 
 		[(#REM) <!-- Recensement des evenements --> ]
 		<BOUCLE_agenda(ARTICLES){id_rubrique=#RUBRIQUE_SPECIALISEE{agenda}}{par date_redac}>
@@ -80,8 +83,8 @@ de ce squelette.
 									[(#ENV{annee})],
 									[(#ENV{mois})],
 									[(#ENV{categorie,-1})],
-									'&nbsp;|&nbsp;',
-									'evenement',
+									[(#CONFIG{sarkaspip_agenda/separateur_pagination})],
+									[(#CONFIG{sarkaspip_agenda/ancre_pagination})],
 									'normal'}
 				)]
 			</div> <!-- Fin bande-pagination -->
@@ -90,7 +93,7 @@ de ce squelette.
 								[(#ENV{annee})],
 								[(#ENV{mois})],
 								[(#ENV{categorie,-1})],
-								'inverse'}
+								[(#CONFIG{sarkaspip_agenda/sens_tri})]}
 			)]
 
 			[<p class="reponse_formulaire">

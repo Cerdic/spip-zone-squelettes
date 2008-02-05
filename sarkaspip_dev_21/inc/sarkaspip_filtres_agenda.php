@@ -170,7 +170,7 @@ function agenda_debug_contexte($id_agenda=0) {
 	echo '<b>Debut saison</b>: '.$contexte_aff['debut_saison'].'<br>';
 	echo '<b>Type affichage saison</b>: '.$contexte_aff['type_saison'].'<br>';
 	echo '<b>Mois en cours</b>: '.$contexte_aff['mois_base'].'<br>';
-	echo '<b>Année en cours</b>: '.$contexte_aff['annee_base'].'<br>';
+	echo '<b>Ann&eacute;e en cours</b>: '.$contexte_aff['annee_base'].'<br>';
 	echo '<b>URL page de base</b>: '.$contexte_aff['url_base'].'<br>';
 }
 
