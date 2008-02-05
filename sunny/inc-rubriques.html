@@ -1,0 +1,111 @@
+
+[(#REM) formulaire de recherche ]
+#FORMULAIRE_RECHERCHE
+
+
+[(#REM) Menu de navigation par rubriques ]
+<B_rubriques>
+<div class="rubriques">
+	<h2 class="menu-titre"><:sunny:navigation_par_rubriques:></h2>
+	<ul>
+	<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
+		<li>
+			<a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
+			<B_sous_rubriques>
+			<ul>
+				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
+					<li><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re></li>
+				</BOUCLE_sous_rubriques>			
+			</ul>
+			</B_sous_rubriques>
+		</li>
+	</BOUCLE_rubriques>
+	</ul>
+</div>
+</B_rubriques>
+[(#REM) ne pas oublier le script (pied de page - sinon plantage css) pour menu dépliant]
+
+
+
+[(#REM) Menu de navigation mots-cles ]
+<B_groupe_mots>
+<div class="divers">
+	<h2 class="menu-titre"><:sunny:navigation_par_mots_clefs:></h2>
+	<ul>
+		<BOUCLE_groupe_mots(GROUPES_MOTS){titre!=Affichage}{titre!=Agenda}{par titre}>
+		<li>
+			<a href="#"[ class="(#EXPOSE)"]>#TITRE</a>
+			<B_mots>
+			<ul>
+				<BOUCLE_mots(MOTS){id_groupe}{par titre}>
+				<li>
+				<a href="#URL_MOT" rel="tag"[ class="(#EXPOSE)"]>[(#TITRE)]</a>
+				</li>
+				</BOUCLE_mots>
+			</ul>	
+			</B_mots>	
+		</li>
+		</BOUCLE_groupe_mots>
+	</ul>	
+</div>
+</B_groupe_mots>
+
+
+[(#REM) Menu de navigation sites ]
+<B_sites>
+<div class="syndic">
+	<h2 class="menu-titre"><:sunny:sur_la_toile:></h2>
+	<ul>
+		<BOUCLE_sites(SITES){syndication=oui}{par nom_site}>
+		<li><a href="[(#ID_SYNDIC|generer_url_site)]"[ class="(#EXPOSE)"]>#NOM_SITE</a>
+		<B_articles_sites>
+		<ul>
+			<BOUCLE_articles_sites(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{0,5}>
+			<li><a href="#URL_ARTICLE" class="spip_out">#TITRE</a>
+			<small>[(#DATE|affdate_court)]</small>
+			</li>
+			</BOUCLE_articles_sites>
+		</ul>
+		</B_articles_sites>
+		</li>
+		</BOUCLE_sites>
+	</ul>	
+</div>
+</B_sites>
+
+
+[(#REM) Coordonnées 
+Recherchées dans une rubrique du secteur contenant le mot clé "Coordonnees_secteur"
+ou de "Coordonnees_site" si l'on est sur le sommaire
+]
+
+			
+<B_id_secteur>
+<div class="divers">
+	<h2 class="menu-titre"><:sunny:coordonnees:></h2>
+	<BOUCLE_id_secteur(RUBRIQUES){id_rubrique}>
+	<BOUCLE_coordonnees_secteur(MOTS){titre==Coordonnees_secteur}>
+	<BOUCLE_coordonnees_rubrique(RUBRIQUES){id_mot}{id_secteur}{tout}>
+	<ul><li class="#EDIT{texte}">#TEXTE</li></ul>
+	</BOUCLE_coordonnees_rubrique>
+	</BOUCLE_coordonnees_secteur>
+	</BOUCLE_id_secteur>
+</div>
+</B_id_secteur>
+<div class="divers">
+	<h2 class="menu-titre"><:sunny:coordonnees:></h2>
+	<BOUCLE_coordonnees_site(MOTS){titre==Coordonnees_site}>
+	<BOUCLE_coordonnees_rubrique_site(RUBRIQUES){id_mot}{tout}>
+	<ul><li class="#EDIT{texte}">#TEXTE</li></ul>
+	</BOUCLE_coordonnees_rubrique_site>
+	</BOUCLE_coordonnees_site>
+</div>
+<//B_id_secteur>
+
+<div class="grand_evenement">
+	<BOUCLE_grand_evenement(MOTS){titre==Grand_evenement}>
+	<BOUCLE_grand_evenement_rubrique(RUBRIQUES){id_mot}{tout}>
+	<div class="#EDIT{texte}">[(#TEXTE|image_reduire{190,300})]</div>
+	</BOUCLE_grand_evenement_rubrique>
+	</BOUCLE_grand_evenement>
+</div>

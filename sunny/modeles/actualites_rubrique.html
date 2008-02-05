@@ -1,0 +1,58 @@
+<BOUCLE_rubrique(RUBRIQUES){id_rubrique=#ID_RUBRIQUE}>
+
+<div class="actualites" id="actualites_#ID_RUBRIQUE">
+
+<div class="cartouche">
+	<h1 class="#EDIT{titre} titre"><:sunny:actualites_en:> #TITRE</h1>
+	<small><:dernier_ajout:> &ndash; [(#DATE|nom_jour) ][(#DATE|affdate).]</small>
+</div>
+
+
+<B_dernier_edito>
+<div class="colonne_edito colonne">
+	<h2 class='titre'><:sunny:en_vedette:></h2>
+	
+	<div class="liste-articles">
+	<BOUCLE_dernier_edito(ARTICLES){branche}{par date}{inverse} {0,1} {doublons}{titre_mot=Edito}>
+		<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+		<small>[(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small>
+		[(#LOGO_ARTICLE||image_reduire{100,100})]
+		[<div class="#EDIT{intro} texte">(#INTRODUCTION|couper{600})
+		<br /><a href="#URL_ARTICLE"><:lire_la_suite:></a></div>]
+	</BOUCLE_dernier_edito>
+	</div>
+</div>
+</B_dernier_edito>
+	
+<div class="colonne_articles colonne">
+
+	<B_articles_recents>
+	<h2 class='titre'><:derniers_articles:></h2>
+	
+	<div class="liste-articles">
+	<BOUCLE_articles_recents(ARTICLES){branche}{par date}{inverse} {pagination 5} {doublons}>
+		<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+		<small>[(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small>
+		[(#LOGO_ARTICLE||image_reduire{80,80})]
+		[<div class="#EDIT{intro} texte">(#INTRODUCTION|couper{300})
+		<br /><a href="#URL_ARTICLE"><:lire_la_suite:></a></div>]
+	</BOUCLE_articles_recents>
+	</div>
+	</B_articles_recents>
+</div>
+
+<div class="colonne_breves colonne">
+
+	[(#ID_RUBRIQUE|=={#CONFIG{sunny/id_rubrique_region}}|?{' ',''})
+		[(#MODELE{agenda_region}){env}]
+	]
+	[(#ID_RUBRIQUE|!={#CONFIG{sunny/id_rubrique_region}}|?{' ',''})
+		[(#MODELE{agenda_departement}{env})]
+	]
+	
+</div>
+
+<br class="nettoyeur" />	
+</div>
+
+</BOUCLE_rubrique>
