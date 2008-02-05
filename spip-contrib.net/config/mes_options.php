@@ -38,7 +38,7 @@ $dossier_squelettes = "squelettes";
 
 // faut-il autoriser SPIP a compresser les pages a la volee quand le
 // navigateur l'accepte (valable pour apache >= 1.3 seulement) ?
-$auto_compress = false; // c'est plus rapide sans comprimer via gz ...
+$auto_compress = true; // http://developer.yahoo.com/performance/rules.html#gzip
 
 // Type d'URLs
 // 'page': spip.php?article123 [c'est la valeur par defaut pour SPIP 1.9]
