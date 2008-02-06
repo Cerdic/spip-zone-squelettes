@@ -7,7 +7,8 @@
 		[(#REM) <!-- Definition du contexte de l'agenda --> ]
 		[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_definir_contexte{
 							'mini_calendrier_mensuel',
-							1, 'annee',
+							[(#CONFIG{sarkaspip_agenda/mois1})],
+							[(#CONFIG{sarkaspip_agenda/format_pagination})],
 							#SELF}
 		)]
 
@@ -22,12 +23,18 @@
 
 		[(#REM) <!-- Bloc en-tete mois et pagination du mini-agenda -->] 
 		<div class="mois">
-			[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_mini_paginer)]
+			[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_mini_paginer{
+								[(#CONFIG{sarkaspip_agenda/icone_precedent})],
+								[(#CONFIG{sarkaspip_agenda/icone_suivant})]}
+			)]
 		</div>
 
 		[(#REM) <!-- Bloc tableau des jours du mois du mini-agenda -->] 
 		<div class="mois">
-			[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_mini_afficher{1, 'oui'})]
+			[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_mini_afficher{
+								[(#CONFIG{sarkaspip_agenda/jour1})],
+								[(#CONFIG{sarkaspip_agenda/affichage_hors_mois})]}
+			)]
 		</div>  
 
 		[(#REM) <!-- Bloc liste des n derniers evenements du mois -->] 
