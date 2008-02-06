@@ -528,6 +528,9 @@ function agenda_mini_resumer($id_agenda=0, $critere='mois_complet', $taille=5) {
 	if ($id_agenda == 0)
 		return;
 
+	if ($taille == 0)
+		return;
+
 	$contexte_aff = agenda_definir_contexte(0);
 	$mois_choisi = $contexte_aff['mois_base'];
 	$annee_choisie = $contexte_aff['annee_base'];
