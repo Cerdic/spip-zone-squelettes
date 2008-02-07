@@ -28,6 +28,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'sur_la_toile' => 'Sur la toile',
 	
 	//CFG
+	'configuration_sunny' => 'Configuration du squelette Sunny',
 	'rubrique_region' => 'Rubrique r&eacute;gionale',
 	'mot_agenda_region' => 'Mot cl&eacute; d\'un &eacute;v&egrave;nement r&eacute;gional',
 	'mot_agenda_departement' => 'Mot cl&eacute; d\'un &eacute;v&egrave;nement d&eacute;partemental',
