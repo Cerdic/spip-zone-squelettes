@@ -87,34 +87,6 @@ if (!isset($table_des_traitements['TITRE_PARENT'])) {
 
 
 
-// balise ID_RUBRIQUE_PARENT new !
-// Le filtre [(#ID_RUBRIQUE|titre_parent)]
-/*
-if (!function_exists('calcul_id_rubrique_parent')){
-	function calcul_id_rubrique_parent($id_rubrique) {
-		$fetch = function_exists('sql_fetch') ? 'sql_fetch' : 'spip_fetch_array';
-		if(!($id_rubrique = intval($id_rubrique))) return '';
-		$q = 'SELECT titre FROM spip_rubriques WHERE id_rubrique='.$id_rubrique;
-		if($r = spip_query($q))
-			if($row = $fetch($r))
-				return $row['titre'];
-		return '';
-	}
-}*/
-
-// La balise
-if (!function_exists('balise_ID_RUBRIQUE_OBJET_dist')){
-	function balise_ID_RUBRIQUE_OBJET_dist($p) {
-		$id_rubrique = champ_sql('id_rubrique', $p);
-		$p->code = "$id_rubrique";
-		//$p->code = "'coucou'";
-		return $p;
-	}
-}
-
-
-
-
 /* balises pour doublons entre #inclure (idee _renato_) */
 
 /*
