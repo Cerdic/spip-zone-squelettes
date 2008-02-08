@@ -89,25 +89,31 @@
 
 
 <B_marecherche_docs>
-[(#REM)   Résultats recherche docs ]
-<div id="minipics">
-<ul id="diapo">
-<div class="grande_boite">
-<h4 class="icone_recherche"> Dans les documents :</h4></div>
-[(#ANCRE_PAGINATION)]
+    [(#REM)   Résultats recherche docs ]
+    <div id="minipics">
+    <ul id="diapo">
+    <div class="grande_boite">
+    <h4 class="icone_recherche"> Dans les documents :</h4></div>
+    [(#ANCRE_PAGINATION)]
 <BOUCLE_marecherche_docs(INDEX){recherche}{!par points}{type_table IN documents} {pagination 12}>
-    <BOUCLE_documents(DOCUMENTS){id_document}>
-    <li class="transparent" id="a#ID_DOCUMENT">
-    [<a href="#URL_DOCUMENT" class="thickbox">(#LOGO_DOCUMENT||image_reduire{80}|image_aplatir{jpg,ffffff}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
-    <p class="centre"><BOUCLE_liens_articles(ARTICLES){id_document}>[(#TITRE)<br/>][<a href="(#URL_ARTICLE)">Voir l'article</a>]</BOUCLE_liens_articles></p></li>
-    </BOUCLE_documents>
+    <B_documents>
+        <BOUCLE_documents(DOCUMENTS){id_document}{extension==jpg|png|gif}>
+        <li class="transparent" id="a#ID_DOCUMENT">
+        [<a href="#URL_DOCUMENT" class="thickbox">(#LOGO_DOCUMENT||image_reduire{80}|image_aplatir{jpg,ffffff}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
+        <p class="centre"><BOUCLE_liens_articles(ARTICLES){id_document}>[(#TITRE)<br/>][<a href="(#URL_ARTICLE)">Voir l'article</a>]</BOUCLE_liens_articles></p></li>
+        </BOUCLE_documents>
+    </B_documents>
+        <li class="transparent" id="a#ID_DOCUMENT">
+        [<a href="#URL_DOCUMENT">(#LOGO_DOCUMENT||image_reduire{80}|image_aplatir{jpg,ffffff}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
+        <p class="centre"><BOUCLE_liens_articles(ARTICLES){id_document}>[(#TITRE)<br/>][<a href="(#URL_ARTICLE)">Voir l'article</a>]</BOUCLE_liens_articles></p></li>
+    <//B_documents>
 </BOUCLE_marecherche_docs>
-</ul></div>[(#REM)   fermeture minipics   ]
-[<div class="grande_boite"><p class="centre gras">(#PAGINATION)<br/>Il y a au total #GRAND_TOTAL documents, cette page en affiche #TOTAL_BOUCLE</p></div>]
-</B_marecherche_docs>
-[<div class="grande_boite">
-<h4 class="icone_recherche">Dans les documents :</h4>
-<p>"(#RECHERCHE)" n'a pas &eacute;t&eacute; trouv&eacute; dans les documents du site.</p></div>]
+    </ul></div>[(#REM)   fermeture minipics   ]
+    [<div class="grande_boite"><p class="centre gras">(#PAGINATION)<br/>Il y a au total #GRAND_TOTAL documents, cette page en affiche #TOTAL_BOUCLE</p></div>]
+    </B_marecherche_docs>
+    [<div class="grande_boite">
+    <h4 class="icone_recherche">Dans les documents :</h4>
+    <p>"(#RECHERCHE)" n'a pas &eacute;t&eacute; trouv&eacute; dans les documents du site.</p></div>]
 <//B_marecherche_docs>
 
 
