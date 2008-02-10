@@ -304,16 +304,24 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // Titre des pages
 		'cfg_titre_layout' => 'Choix du layout',
 		'cfg_titre_noisettes' => 'Choix et agencement des noisettes',
+		'cfg_titre_agenda' => 'Configuration de l\'agenda',
+
+// Titre des liens des pages
+		'cfg_lien_layout' => 'Layout',
+		'cfg_lien_noisettes' => 'Noisettes',
+		'cfg_lien_agenda' => 'Agenda',
 		
 // Descriptif des pages
 		'cfg_descr_layout' => 'Le squelette Sarka-SPIP est bas&eacute; sur les layouts Gala #13 &agrave; #18 d\'Alessandro Fulciniti (<a href="http://blog.html.it/layoutgala/">Layout Gala</a>) qui permettent de jouer sur la position des colonnes navigation, centre et extra. 
 		Cette page vous permet de choisir le layout qui vous convient.',
 		'cfg_descr_noisettes' => 'Les noisettes sont des blocs d\'informations qui composent les colonnes navigation et extra. Cette page vous permet de choisir, suivant la noisette, son affichage,
 		son mod&egrave;le voire sa position.',
+		'cfg_descr_agenda' => 'L\'agenda inclus dans Sarka-SPIP permet d\'afficher un listing annuel ainsi qu\'un mini calendrier mensuel. Les caract&eacute;ristiques de ces deux affichages sont configurables dans cette page.',
 
 // Titre des boites
 		'cfg_boite_layout' => 'Layouts',
 		'cfg_boite_noisettes' => 'Noisettes',
+		'cfg_boite_agenda' => 'Agenda',
 
 // Legendes des blocs contenus dans chaque boite
 		'cfg_lgd_layout' => 'Layout',
@@ -324,6 +332,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_inc_stathasard' => 'Articles al&eacute;atoires',
 		'cfg_lgd_inc_badges' => 'Badges',
 		'cfg_lgd_inc_annonce' => 'Annonces',
+		'cfg_lgd_agenda_type' => 'Agenda annuel - Type',
+		'cfg_lgd_agenda_pagination' => 'Agenda annuel - Pagination',
+		'cfg_lgd_agenda_tri' => 'Agenda annuel - Tri',
+		'cfg_lgd_mini_agenda' => 'Mini calendrier mensuel',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -336,6 +348,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_inc_badges_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les badges.',
 		'cfg_inf_inc_badges_liste' => 'Cochez les badges que vous souhaitez afficher.',
 		'cfg_inf_inc_annonce_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les annonces.',
+		'cfg_inf_agenda_type' => 'Choisissez le type d\'agenda cal&eacute; sur ue ann&eacute;e calendaire ou une saison. Si vous choisissez un agenda saisonnal, vous aurez la possibilit&eacute; de configurer le 
+		premier mois de la saison et le format de pagination.',
+		'cfg_inf_agenda_pagination_1' => '.',
+		'cfg_inf_agenda_pagination_2' => '.',
+		'cfg_inf_agenda_sens_tri' => '.',
+		'cfg_inf_mini_agenda_pagination' => '.',
+		'cfg_lbl_mini_agenda_jour1' => '.',
+		'cfg_inf_mini_agenda_resume' => '.',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
@@ -355,7 +375,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_inc_recherche_ext_3' => 'Yahoo',
 		'cfg_lbl_inc_recherche_ext_4' => 'MSN Search',
 		'cfg_lbl_inc_recherche_ext_5' => 'Voila',
-
+		'cfg_lbl_inc_badges_rss' => 'Fil RSS du site',
+		'cfg_lbl_inc_badges_sarka' => 'Squelette Sarka-SPIP',
+		'cfg_lbl_inc_badges_spip' => 'Motoris&eacute; par SPIP',
 	
 );
 

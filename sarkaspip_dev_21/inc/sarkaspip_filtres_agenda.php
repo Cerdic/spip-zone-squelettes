@@ -402,9 +402,21 @@ function agenda_mini_paginer($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='
 		$annee_suiv = strval($annee_choisie);
 	}	
 
+	$annee_choisie_prec = strval($annee_choisie-1);
+	$annee_choisie_suiv = strval($annee_choisie+1);
+
+	$mois_aujourdhui = date("m");
+	$annee_aujourdhui = date("Y");
+
 	$pagination .= '<a href="'.$url_base.'calendrier_mois='.$mois_prec.'&calendrier_annee='.$annee_prec.'" title="'._T('sarkaspip:mois_precedent').'">'.$icone_prec.'</a>';
-	$pagination .= '&nbsp;&nbsp;'.$nom_mois[$mois_choisi].'&nbsp;'.$annee_choisie.'&nbsp;&nbsp;';   
+	$pagination .= '&nbsp;&nbsp;'.$nom_mois[$mois_choisi].'&nbsp;&nbsp;';   
 	$pagination .= '<a href="'.$url_base.'calendrier_mois='.$mois_suiv.'&calendrier_annee='.$annee_suiv.'" title="'._T('sarkaspip:mois_suivant').'">'.$icone_suiv.'</a>';
+	$pagination .= '<br />';
+	$pagination .= '<a href="'.$url_base.'calendrier_mois='.$mois_choisi.'&calendrier_annee='.$annee_choisie_prec.'" title="'._T('sarkaspip:annee_precedente').'">'.$icone_prec.'</a>';
+	$pagination .= '&nbsp;&nbsp;'.$annee_choisie.'&nbsp;&nbsp;';   
+	$pagination .= '<a href="'.$url_base.'calendrier_mois='.$mois_choisi.'&calendrier_annee='.$annee_choisie_suiv.'" title="'._T('sarkaspip:annee_suivante').'">'.$icone_suiv.'</a>';
+	$pagination .= '<br />';
+	$pagination .= '<a href="'.$url_base.'calendrier_mois='.$mois_aujourdhui.'&calendrier_annee='.$annee_aujourdhui.'" title="'._T('sarkaspip:retour_aujourdhui').'">'._T('sarkaspip:aujourdhui').'</a>';
 
 	return $pagination;
 }
