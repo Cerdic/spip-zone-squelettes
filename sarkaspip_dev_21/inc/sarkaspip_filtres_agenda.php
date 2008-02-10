@@ -416,7 +416,7 @@ function agenda_mini_paginer($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='
 	$pagination .= '&nbsp;&nbsp;'.$annee_choisie.'&nbsp;&nbsp;';   
 	$pagination .= '<a href="'.$url_base.'calendrier_mois='.$mois_choisi.'&calendrier_annee='.$annee_choisie_suiv.'" title="'._T('sarkaspip:annee_suivante').'">'.$icone_suiv.'</a>';
 	$pagination .= '<br />';
-	$pagination .= '<a href="'.$url_base.'calendrier_mois='.$mois_aujourdhui.'&calendrier_annee='.$annee_aujourdhui.'" title="'._T('sarkaspip:retour_aujourdhui').'">'._T('sarkaspip:aujourdhui').'</a>';
+	$pagination .= '<a href="'.$url_base.'calendrier_mois='.$mois_aujourdhui.'&calendrier_annee='.$annee_aujourdhui.'" title="'._T('sarkaspip:retour_aujourdhui').'">'.ucfirst(_T('sarkaspip:aujourdhui')).'</a>';
 
 	return $pagination;
 }

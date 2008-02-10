@@ -37,6 +37,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'album_repondre'=> 'Commenter l\'album',
 		'album_une'=> 'Top Album',
 		'albums_galerie' => 'Galerie',
+		'annee_precedente' => 'Ann&eacute;e pr&eacute;c&eacute;dente',
+		'annee_suivante' => 'Ann&eacute;e  suivant',
 		'annonces' => 'Annonces',
 		'aout' => 'Ao&ucirc;t',
 		'articles' => 'Articles', // redefinition item SPIP
@@ -236,6 +238,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'requete' => 'Saisir le(s) mot(s)',
 		'resultats_recherche' => 'R&eacute;sultats de la recherche', // redefinition item SPIP
 		'retour_article' => 'Retourner &agrave; l\'article',
+		'retour_aujourdhui' => 'Revenir &agrave; la date d\'aujourd\'hui',
 		'rubriques_mot' => 'Rubriques associ&eacute;es',
 
 	
@@ -348,14 +351,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_inc_badges_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les badges.',
 		'cfg_inf_inc_badges_liste' => 'Cochez les badges que vous souhaitez afficher.',
 		'cfg_inf_inc_annonce_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les annonces.',
-		'cfg_inf_agenda_type' => 'Choisissez le type d\'agenda cal&eacute; sur ue ann&eacute;e calendaire ou une saison. Si vous choisissez un agenda saisonnal, vous aurez la possibilit&eacute; de configurer le 
+		'cfg_inf_agenda_type' => 'Choisissez le type d\'agenda cal&eacute;, soit sur une ann&eacute;e calendaire, soit sur une saison. Si vous choisissez un agenda saisonnal, vous aurez la possibilit&eacute; de configurer le 
 		premier mois de la saison et le format de pagination.',
-		'cfg_inf_agenda_pagination_1' => '.',
-		'cfg_inf_agenda_pagination_2' => '.',
-		'cfg_inf_agenda_sens_tri' => '.',
-		'cfg_inf_mini_agenda_pagination' => '.',
-		'cfg_lbl_mini_agenda_jour1' => '.',
-		'cfg_inf_mini_agenda_resume' => '.',
+		'cfg_inf_agenda_mois1' => 'Pour un agenda saisonnal il vous faut choisir &agrave; quel mois d&eacute;bute la saison.',
+		'cfg_inf_agenda_pagination_1' => 'Pour un agenda saisonnal il vous faut aussi choisir le format de la pagination (2008, 2008-2009 ou 08-09).',
+		'cfg_inf_agenda_pagination_2' => 'Vous pouvez changer le s&eacute;parateur des items de la pagination et le nom de l\'ancre de pagination. Toutefois, il est recommand&eacute; de conserver ces valeurs par d&eacute;faut.',
+		'cfg_inf_agenda_sens_tri' => 'Vous pouvez pr&eacute;senter les &eacute;v&eacute;nements de l\'agenda annuel soit dans un ordre chronologique, soit dans un ordre anti-chronologique.',
+		'cfg_inf_mini_agenda' => 'Le mini calendrier est compos&eacute; d\'un bandeau de navigation, d\'un tableau des jours et d\'un r&eacute;sum&eacute; des &eacute;v&eacute;nements du mois.',
+		'cfg_inf_mini_agenda_navigation' => 'Bandeau de navigation: vous pouvez changer les symboles suivant et pr&eacute;c&eacute;dent utilis&eacute;s pour naviguer dans les mois et les ann&eacute;es.',
+		'cfg_inf_mini_agenda_mois' => 'Tableau des jours: vous pouvez choisir le premier jour de la semaine ainsi que l\'affichage des jours en dehors du mois courant.',
+		'cfg_inf_mini_agenda_resume' => 'R&eacute;sum&eacute; des &eacute;v&eacute;nements: vous pouvez d&eacute;finir sa taille et .',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
@@ -378,6 +383,25 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_inc_badges_rss' => 'Fil RSS du site',
 		'cfg_lbl_inc_badges_sarka' => 'Squelette Sarka-SPIP',
 		'cfg_lbl_inc_badges_spip' => 'Motoris&eacute; par SPIP',
+		'cfg_lbl_agenda_type_1' => 'Par ann&eacute;e calendaire',
+		'cfg_lbl_agenda_type_2' => 'Par saison',
+		'cfg_lbl_agenda_mois1' => 'Premier mois de la saison',
+		'cfg_lbl_pagination_format' => 'Format des items de pagination',
+		'cfg_lbl_pagination_separateur' => 'S&eacute;parateur',
+		'cfg_lbl_pagination_ancre' => 'Nom de l\'ancre',
+		'cfg_lbl_tri_chrono' => 'Tri chronologique',
+		'cfg_lbl_tri_antichrono' => 'Tri anti-chronologique',
+		'cfg_lbl_tri_antichrono' => 'Tri anti-chronologique',
+		'cfg_lbl_mini_agenda_suiv' => 'Symbole pour suivant',
+		'cfg_lbl_mini_agenda_prec' => 'Symbole pour pr&eacute;c&eacute;dent',
+		'cfg_lbl_mini_agenda_jour1' => 'Premier jour de la semaine',
+		'cfg_lbl_horsmois_oui' => 'Afficher les jours en dehors du mois courant',
+		'cfg_lbl_horsmois_non' => 'Cacher les jours en dehors du mois courant',
+
+// Items des select
+		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',
+		'cfg_itm_pagination_format_2' => 'P&eacute;riode (2008-2009)',
+		'cfg_itm_pagination_format_3' => 'P&eacute;riode abr&eacute;g&eacute;e (08-09)',
 	
 );
 

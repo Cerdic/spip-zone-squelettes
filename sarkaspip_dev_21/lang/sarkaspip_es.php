@@ -37,6 +37,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'album_repondre'=> 'Commentar el album',
 		'album_une'=> 'Top Album ',
 		'albums_galerie' => 'Galer&iacute;a',
+		'annee_precedente' => 'A&ntilde;o anterior',
+		'annee_suivante' => 'A&ntilde;o siguiente',
 		'annonces' => 'Anuncios',
 		'aout' => 'Agosto',
 		'article_rubrique' => 'Art&iacute;culos publicados en esta secci&oacute;n',
@@ -238,6 +240,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'requete' => 'Escoger la(s) palabra(s)',
 		'resultats_recherche' => 'Resultados de la b&uacute;squeda', // redefinition item SPIP
 		'retour_article' => 'Volver al art&iacute;culo',
+		'retour_aujourdhui' => 'Regresar a la fecha de hoy',
 		'rubriques_mot' => 'Secciones relacionadas',
 
 	

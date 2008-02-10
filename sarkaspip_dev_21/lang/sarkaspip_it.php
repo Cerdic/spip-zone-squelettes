@@ -37,6 +37,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'album_repondre'=> 'Commenta l\'album',
 		'album_une'=> 'Top Album',
 		'albums_galerie' => 'Galleria',
+		'annee_precedente' => 'Anno precedente',
+		'annee_suivante' => 'Anno successivo',
 		'annonces' => 'Annunci',
 		'aout' => 'Agosto',
 		'articles' => 'Articoli', // redefinition item SPIP
@@ -177,7 +179,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'messages_forum' => 'Messaggi del forum', // redefinition item SPIP
 		'messages_recents' => 'Messaggi dei forum pi&ugrave; recenti', // redefinition item SPIP
 		'mois_precedent' => 'Mese precedente',
-		'mois_suivant' => 'Mois successivo',
+		'mois_suivant' => 'Mese successivo',
 		'mots_clefs' => 'Parole chiave', // redefinition item SPIP
 		'msg_0_article_publie' => 'Nessuna articolo pubblicato fino a ora',
 		'msg_0_evt_agenda' => 'Nessun evento definito in agenda',
@@ -236,6 +238,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'requete' => 'Inserisci la/e parola/e',
 		'resultats_recherche' => 'Risultati della ricerca', // redefinition item SPIP
 		'retour_article' => 'Ritorna all\'articolo',
+		'retour_aujourdhui' => 'Ritornare alla data di oggi',
 		'rubriques_mot' => 'Rubriche associate',
 
 	
@@ -257,7 +260,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'statut_1comite' => 'redattore(trice)',
 		'statut_6forum' => 'visitatore(trice)',
 		'sur_web' => 'Sul Web', // redefinition item SPIP
-		'syndiquer_rubrique' => 'Metti in in syndication questa rubrica', // redefinition item SPIP
+		'syndiquer_rubrique' => 'Metti in syndication questa rubrica', // redefinition item SPIP
 		'syndiquer_site' => 'Metti in syndication tutto il sito', // redefinition item SPIP
 
 	
