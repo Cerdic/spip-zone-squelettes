@@ -360,7 +360,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_mini_agenda' => 'Le mini calendrier est compos&eacute; d\'un bandeau de navigation, d\'un tableau des jours et d\'un r&eacute;sum&eacute; des &eacute;v&eacute;nements du mois.',
 		'cfg_inf_mini_agenda_navigation' => 'Bandeau de navigation: vous pouvez changer les symboles suivant et pr&eacute;c&eacute;dent utilis&eacute;s pour naviguer dans les mois et les ann&eacute;es.',
 		'cfg_inf_mini_agenda_mois' => 'Tableau des jours: vous pouvez choisir le premier jour de la semaine ainsi que l\'affichage des jours en dehors du mois courant.',
-		'cfg_inf_mini_agenda_resume' => 'R&eacute;sum&eacute; des &eacute;v&eacute;nements: vous pouvez d&eacute;finir sa taille et .',
+		'cfg_inf_mini_agenda_resume' => 'R&eacute;sum&eacute; des &eacute;v&eacute;nements: vous pouvez d&eacute;finir, d\'une part, le nombre maximal d\'&eacute;v&eacute;nements affich&eacute;s, et d\'autre part, 
+		si seuls les &eacute;v&eacute;nements post&eacute;rieurs &agrave; la date courante doivent &ecirc;tre pris en compte.',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
@@ -397,6 +398,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_mini_agenda_jour1' => 'Premier jour de la semaine',
 		'cfg_lbl_horsmois_oui' => 'Afficher les jours en dehors du mois courant',
 		'cfg_lbl_horsmois_non' => 'Cacher les jours en dehors du mois courant',
+		'cfg_lbl_resume_finmois' => 'Afficher uniquement les n derniers &eacute;v&eacute;nements post&eacute;rieurs &agrave la date courante',
+		'cfg_lbl_resume_complet' => 'Afficher les n derniers &eacute;v&eacute;nements du mois',
+		'cfg_lbl_taille_resume' => 'Nombre maximal d\'&eacute;v&eacute;nements',
 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',
