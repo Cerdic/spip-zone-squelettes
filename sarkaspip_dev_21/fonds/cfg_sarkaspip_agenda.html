@@ -13,8 +13,8 @@
 //<![CDATA[
 	jQuery(document).ready(function() {
 		[(#ENV{type, 1}|!={2}|?{' '})
-			jQuery("#bloc_mois1 option:first").prepend('<option value=1 [(#ENV{mois1, 1}|=={1}|?{selected="selected"})]><:sarkaspip:janvier:></option>');
-			jQuery("#bloc_mois1 option:first").attr({selected: "selected"});
+			jQuery("#select_mois1").prepend('<option value=1><:sarkaspip:janvier:></option>');
+			jQuery("#select_mois1 option:first").attr({selected: "selected"});
 			jQuery("#bloc_mois1").hide();
 			jQuery("#bloc_format_pagination option:first").attr({selected: "selected"});
 			jQuery("#bloc_format_pagination").hide();
@@ -22,12 +22,13 @@
 		jQuery("input[@name='type']").change(function() {
 			if (jQuery("input[@name='type']:checked").val() == 2) {
 				jQuery("#bloc_mois1").show();
-				jQuery("#bloc_mois1 option:first").remove();
+				jQuery("#select_mois1 option:first").remove();
+				jQuery("#select_mois1 option:first").attr({selected: "selected"});
 				jQuery("#bloc_format_pagination").show();
 			}
 			else {
-				jQuery("#bloc_mois1 option:first").prepend('<option value=1 [(#ENV{mois1, 1}|=={1}|?{selected="selected"})]><:sarkaspip:janvier:></option>');
-				jQuery("#bloc_mois1 option:first").attr({selected: "selected"});
+				jQuery("#select_mois1").prepend('<option value=1><:sarkaspip:janvier:></option>');
+				jQuery("#select_mois1 option:first").attr({selected: "selected"});
 				jQuery("#bloc_mois1").hide();
 				jQuery("#bloc_format_pagination option:first").attr({selected: "selected"});
 				jQuery("#bloc_format_pagination").hide();
@@ -55,7 +56,6 @@
 		<p><:sarkaspip:cfg_inf_agenda_mois1:></p>
 		<label><:sarkaspip:cfg_lbl_agenda_mois1:></label>
 		<select name="mois1" id="select_mois1">
-			<option value=1 [(#ENV{mois1, 1}|=={1}|?{selected="selected"})]><:sarkaspip:janvier:></option>
 			<option value=2 [(#ENV{mois1, 1}|=={2}|?{selected="selected"})]><:sarkaspip:fevrier:></option>
 			<option value=3 [(#ENV{mois1, 1}|=={3}|?{selected="selected"})]><:sarkaspip:mars:></option>
 			<option value=4 [(#ENV{mois1, 1}|=={4}|?{selected="selected"})]><:sarkaspip:avril:></option>
