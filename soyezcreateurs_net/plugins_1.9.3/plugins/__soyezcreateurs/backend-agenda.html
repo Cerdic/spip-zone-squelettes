@@ -27,13 +27,15 @@ version="1.0"[ encoding="(#CHARSET)"]?>
 <BOUCLE_AgendaDerniersAjouts(EVENEMENTS){statut=publie}{branche}{par date_debut}{0,10}{date_debut>=(#ENV{date}|affdate{'Y-m-d'})}>
 	<BOUCLE_DernierEvenementArticle(ARTICLES){id_article}>
 	<item[ xml:lang="(#LANG)"]>
-		<title>[(#_DernierEvenementArticle:TITRE|!={#_AgendaDerniersAjouts:TITRE}|?{[(#TITRE|texte_backend)][: (#_AgendaDerniersAjouts:TITRE|texte_backend) - ][(#_AgendaDerniersAjouts:DATE_DEBUT|afficher_les_dates{#_AgendaDerniersAjouts:DATE_FIN,#_AgendaDerniersAjouts:HORAIRE,0,0,0,0}|texte_backend)],[(#TITRE|texte_backend) - ][(#_AgendaDerniersAjouts:DATE_DEBUT|afficher_les_dates{#_AgendaDerniersAjouts:DATE_FIN,#_AgendaDerniersAjouts:HORAIRE,0,0,0,0}|texte_backend)]})]</title>
+		<title>[(#_DernierEvenementArticle:TITRE|!={#_AgendaDerniersAjouts:TITRE}|?{[(#TITRE|texte_backend)][ : (#_AgendaDerniersAjouts:TITRE|texte_backend) - ][(#_AgendaDerniersAjouts:DATE_DEBUT|afficher_les_dates{#_AgendaDerniersAjouts:DATE_FIN,#_AgendaDerniersAjouts:HORAIRE,0,0,0,0}|texte_backend)],[(#TITRE|texte_backend) - ][(#_AgendaDerniersAjouts:DATE_DEBUT|afficher_les_dates{#_AgendaDerniersAjouts:DATE_FIN,#_AgendaDerniersAjouts:HORAIRE,0,0,0,0}|texte_backend)]})]</title>
 		<link>[(#URL_ARTICLE|url_absolue)##ID_EVENEMENT]</link>
 		[<guid isPermaLink="true">(#URL_ARTICLE|url_absolue)##ID_EVENEMENT</guid>]
-		[<dc:date>(#DATE|date_iso)</dc:date>]
+		[<dc:date>(#_AgendaDerniersAjouts:DATE_DEBUT|date_iso)</dc:date>]
 		<dc:format>text/html</dc:format>
 		[<dc:language>(#LANG)</dc:language>]
 		[<dc:creator>(#LESAUTEURS|supprimer_tags|texte_backend)</dc:creator>]
+		[<dc:location>(#_AgendaDerniersAjouts:LIEU|texte_backend)</dc:location>]
+		[<dc:subject>(#_AgendaDerniersAjouts:DESCRIPTIF|texte_backend)</dc:subject>]
 
 [(#REM)
 	Le bloc qui suit diffuse la rubrique et les mots-cles a la mode RSS
@@ -42,7 +44,9 @@ version="1.0"[ encoding="(#CHARSET)"]?>
 <BOUCLE_mots_rss(MOTS){id_article}>
 		[<dc:subject>(#TITRE|texte_backend)</dc:subject>]</BOUCLE_mots_rss>
 
-		<description>[(#INTRODUCTION|texte_backend)]
+		<description>[<:agenda:evenement_lieu:> : (#_AgendaDerniersAjouts:LIEU|texte_backend)]
+		[&lt;br /&gt;(#_AgendaDerniersAjouts:DESCRIPTIF|texte_backend)]
+		[&lt;br /&gt;(#INTRODUCTION|texte_backend)]
 
 [(#REM)
 	Le bloc qui suit diffuse la rubrique et les mots-cles
@@ -62,12 +66,12 @@ version="1.0"[ encoding="(#CHARSET)"]?>
 	Fonction desactivable depuis les reglages du site.
 ][
 (#CONFIG{syndication_integrale}|=={oui}|?{' ',''})<content:encoded>[(#LOGO_ARTICLE|right||texte_backend)
-		][&lt;div class='rss_chapo'&gt;(#CHAPO|texte_backend)&lt;/div&gt;
-		][&lt;div class='rss_texte'&gt;(#TEXTE|
+		][&lt;div class='rss_chapo'&gt;(#_AgendaDerniersAjouts:LIEU|texte_backend)&lt;/div&gt;
+		][&lt;div class='rss_texte'&gt;(#_AgendaDerniersAjouts:DESCRIPTIF|
 			image_reduire{500,0}|texte_backend)&lt;/div&gt;
 		][&lt;hr /&gt;
-		&lt;div class='rss_notes'&gt;(#NOTES|texte_backend)&lt;/div&gt;
-		][&lt;div class='rss_ps'&gt;(#PS|texte_backend)&lt;/div&gt;]
+		&lt;div class='rss_notes'&gt;(#_AgendaDerniersAjouts:NOTES|texte_backend)&lt;/div&gt;
+		]
 		</content:encoded>
 ]
 
