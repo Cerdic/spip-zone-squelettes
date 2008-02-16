@@ -7,26 +7,29 @@
 [<script type="text/javascript" src="(#CHEMIN{javascript/interface.js})"></script>]
 [<script type="text/javascript" src="(#CHEMIN{javascript/menu_accordeon.js})"></script>]
 
-[(#EVAL{defined('_DIR_PLUGIN_JQUERYP')}|?{' ',''})
-	#JQUERY_PLUGIN{ui.tabs}
-	#JQUERY_PLUGIN_THEME{flora, tabs}
-	<script>
-		$(document).ready(function(){
-		  $("#mesonglets > ul").tabs();
-		})
-	</script>
-]
+#JQUERY_PLUGIN{ui.tabs}
+[(#REM) JQUERY_PLUGIN_THEME ne semble plus fonctionner, alors codage en dur du chemin css 
+#JQUERY_PLUGIN_THEME{flora,tabs} ]
+<link rel="stylesheet" href="[(#CHEMIN{../lib/jquery.ui-1.0/themes/flora/flora.all.css}|direction_css)]" type="text/css" media
+="screen" title="Flora (Default)">
+  <script>
+  $(document).ready(function(){
+    $("#mesonglets > ul").tabs();
+  });
+  </script>
 
 <form name="pickerform" method="post">[(#ENV{_cfg_}|form_hidden)]
 
-	[(#REM) titre=Les squelettes Durzy]
-	[(#REM) icone=images/config.png]
-	[(#REM) descriptif=
-	<h4>Les squelettes Durzy</h4>
-	<p>Pour configurer l'apparence des squelettes</p><br />
+    <!-- titre=Param&egrave;trage du squelette -->
+    <!-- descriptif=
+    <h4>Squelette Durzy</h4>
+	<p>Utilisez cette page pour configurer l'apparence du squelette.<br />
+    Assurez-vous d'avoir activ&eacute; le plugin jQuery avec la biblioth&egrave;que "jquery.ui-1.0" afin d'obtenir un affichage correct des onglets<br />
 	<br />
 	<a href="http://www.durzy-spip.fr/spip.php?article1" class="spip_out">Documentation provisoire</a>
-	]
+    </p>
+     -->
+    <!-- nom=durzy -->
 	<div style="float:right">
 		<input type="submit" name="_cfg_ok" value="<:oK:>" class="fondo" />
 		<input type="reset" value="<:reset:>" class="fondo" />
@@ -41,17 +44,17 @@
 			<li><a href="#fragment-3"><span><img src="../squelettes/images/cfg_couleurs.png" align="baseline">&nbsp;Les couleurs&nbsp;</span></a></li>
 		</ul>
 		
-		[(#REM) ------------- Géneral --------------- ]
+		[(#REM) ------------------------- Géneral --------------------------- ]
 		<div id="fragment-1">
 			<INCLURE{fond=fonds/durzy_general}>
 		</div> 
 		
-		[(#REM) ------------------------ Les cadres ------------------------ ]
+		[(#REM) ------------------------ Les cadres ------------------------- ]
 		<div id="fragment-2">
 			<INCLURE{fond=fonds/durzy_cadres}>
 		</div>
 		
-		[(#REM) ------------------------ Les couleurs ------------------------ ]
+		[(#REM) ----------------------- Les couleurs ------------------------ ]
 		<div id="fragment-3">
 			<INCLURE{fond=fonds/durzy_couleurs}>
 		</div>

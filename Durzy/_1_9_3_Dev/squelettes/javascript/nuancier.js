@@ -39,6 +39,9 @@ var init_couleur_footer = "000";
 //Fond du site
 var init_couleur_fond = "FFFFFF"; 
 
+//Titre des cadres
+var init_couleur_toto = "DDDDDD"; 
+
 
 //variables liées aux précédentes
 
@@ -142,8 +145,11 @@ var couleur_sousmenusurvole_g = init_couleur_sousmenusurvole.substring(2,4);
 var couleur_sousmenusurvole_b = init_couleur_sousmenusurvole.substring(4,6);
 var couleur_sousmenusurvole_rgb = "" + couleur_sousmenusurvole_r + couleur_sousmenusurvole_g + couleur_sousmenusurvole_b;
 
-
-
+//Titre cadres
+var couleur_toto_r = init_couleur_toto.substring(0,2);
+var couleur_toto_g = init_couleur_toto.substring(2,4);
+var couleur_toto_b = init_couleur_toto.substring(4,6);
+var couleur_toto_rgb = "" + couleur_toto_r + couleur_toto_g + couleur_toto_b;
 
 
 //tableau des codes hexa
@@ -173,6 +179,7 @@ function chooserMode(MODE)
    else if(MODE == "couleur_menu") { var RGB = couleur_menu_rgb; }
    else if(MODE == "couleur_sousmenu") { var RGB = couleur_sousmenu_rgb; }
    else if(MODE == "couleur_sousmenusurvole") { var RGB = couleur_sousmenusurvole_rgb; }
+   else if(MODE == "couleur_toto") { var RGB = couleur_toto_rgb; }
    // Extraction des valeurs R, G et B
    var RR = RGB.substring(0,2);
    var GG = RGB.substring(2,4);
@@ -393,7 +400,18 @@ function colorsOne(RGorB,XX)
    }  
    
    //couleur_sousmenusurvole
-   else if(window.document.pickerform.chooser[15].checked == true)
+   else if(window.document.pickerform.chooser[17].checked == true)
+   {
+      if(RGorB == "R") { couleur_sousmenusurvole_r = XX; }
+      else if(RGorB == "G") { couleur_sousmenusurvole_g = XX; }
+      else if(RGorB == "B") { couleur_sousmenusurvole_b = XX; }
+      couleur_sousmenusurvole_rgb = "" + couleur_sousmenusurvole_r + couleur_sousmenusurvole_g + couleur_sousmenusurvole_b;
+      window.document.pickerform.couleur_sousmenusurvole.value = couleur_sousmenusurvole_rgb;
+      window.document.pickerform.couleur_sousmenusurvole_view.style.backgroundColor = "#"+couleur_sousmenusurvole_rgb;
+	  reColorAndGray(couleur_sousmenusurvole_r,couleur_sousmenusurvole_g,couleur_sousmenusurvole_b);
+   }     
+   //Texte des cadres
+   else if(window.document.pickerform.chooser[18].checked == true)
    {
       if(RGorB == "R") { couleur_sousmenusurvole_r = XX; }
       else if(RGorB == "G") { couleur_sousmenusurvole_g = XX; }
@@ -404,7 +422,7 @@ function colorsOne(RGorB,XX)
 	  reColorAndGray(couleur_sousmenusurvole_r,couleur_sousmenusurvole_g,couleur_sousmenusurvole_b);
    }     
 }
-
+// en test...
 function colorsAlltest(RGB)
 {
    var RR = RGB.substring(0,2);
@@ -647,7 +665,7 @@ function colorsAll(RGB)
 	  reColorAndGray(couleur_sousmenu_r,couleur_sousmenu_g,couleur_sousmenu_b);
    }
 
- 	//Sous menu survolé
+   //Sous menu survolé
    else if(window.document.pickerform.chooser[17].checked == true)
    {
       couleur_sousmenusurvole_r = RR; 
@@ -657,6 +675,18 @@ function colorsAll(RGB)
       window.document.pickerform.couleur_sousmenusurvole.value = couleur_sousmenusurvole_rgb;
       window.document.pickerform.couleur_sousmenusurvole_view.style.backgroundColor = "#"+couleur_sousmenusurvole_rgb;
 	  reColorAndGray(couleur_sousmenusurvole_r,couleur_sousmenusurvole_g,couleur_sousmenusurvole_b);
+   }
+
+ 	//Texte des cadres
+   else if(window.document.pickerform.chooser[18].checked == true)
+   {
+      couleur_toto_r = RR; 
+      couleur_toto_g = GG; 
+      couleur_toto_b = BB;
+      couleur_toto_rgb = "" + couleur_toto_r + couleur_toto_g + couleur_toto_b;
+      window.document.pickerform.couleur_toto.value = couleur_toto_rgb;
+      window.document.pickerform.couleur_toto_view.style.backgroundColor = "#"+couleur_toto_rgb;
+	  reColorAndGray(couleur_toto_r,couleur_toto_g,couleur_toto_b);
    }
 }
 
@@ -697,4 +727,5 @@ function fillColorBoxes()
    window.document.pickerform.couleur_menu.value = couleur_menu_rgb;
    window.document.pickerform.couleur_sousmenu.value = couleur_sousmenu_rgb;
    window.document.pickerform.couleur_sousmenusurvole.value = couleur_sousmenusurvole_rgb;
+   window.document.pickerform.couleur_toto.value = couleur_toto_rgb;
 }
