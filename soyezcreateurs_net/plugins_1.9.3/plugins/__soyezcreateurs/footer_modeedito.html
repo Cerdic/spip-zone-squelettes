@@ -28,14 +28,13 @@
 <//B_EstMenuHaut>
 </ul>
 </div>
-<BOUCLE_Rubriques_Exclues_Mots(RUBRIQUES){titre_mot=PasDansMenu}{doublons}{!lang_select}>
-</BOUCLE_Rubriques_Exclues_Mots>
-<BOUCLE_MenuHaut(RUBRIQUES){titre_mot=MenuHaut}{id_rubrique=#ENV{secteurencours}}{doublons}{!lang_select}>
+
+<BOUCLE_MenuHaut(RUBRIQUES){titre_mot=MenuHaut}{id_rubrique=#ENV{secteurencours}}{!titre_mot=PasDansMenu}{!lang_select}>
 <div class="espaceavant">
 <INCLURE{fond=menuarticles}{id_rubrique}>
 <B_Rubriques_MenuHaut>
 <ul>
-  <BOUCLE_Rubriques_MenuHaut(RUBRIQUES){id_parent}{par num titre}{doublons}{!lang_select}><BOUCLE_test_expose_MenuHaut(RUBRIQUES) {id_enfant}{0,1}>#EXPOSE{' ',(#CONFIG{soyezcreateurs/sousmenulocaux,'systematique'}|=={systematique}|?{' ',''})}</BOUCLE_test_expose_MenuHaut>
+  <BOUCLE_Rubriques_MenuHaut(RUBRIQUES){id_parent}{par num titre}{!titre_mot=PasDansMenu}{!lang_select}><BOUCLE_test_expose_MenuHaut(RUBRIQUES) {id_enfant}{0,1}>#EXPOSE{' ',(#CONFIG{soyezcreateurs/sousmenulocaux,'systematique'}|=={systematique}|?{' ',''})}</BOUCLE_test_expose_MenuHaut>
   <li<BOUCLE_ClasseRubriqueMenuHaut(MOTS){id_rubrique}{type=_ClasseRubriqueMenu}{0,1}>[ class=(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{'"encours ','"'})#TITRE"]</BOUCLE_ClasseRubriqueMenuHaut>[(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{' class="encours"',''})]<//B_ClasseRubriqueMenuHaut>>[(#MODELE{rubrique_li}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]<BOUCLE_SsRubriques_MenuHaut(BOUCLE_Rubriques_MenuHaut)></BOUCLE_SsRubriques_MenuHaut></li>
   </B_test_expose_MenuHaut></BOUCLE_Rubriques_MenuHaut>
 </ul>
@@ -53,16 +52,14 @@
 </B_RacinesBas_Systematique>
 </BOUCLE_MenuHaut>
 
-<BOUCLE_ExclureMenuHaut(RUBRIQUES){titre_mot=MenuHaut}{doublons}{!lang_select}> </BOUCLE_ExclureMenuHaut>
-
 <div class="espaceavant">
 <B_Secteurs>
 <ul class="tv">
-  <BOUCLE_Secteurs(RUBRIQUES){racine}{par num titre}{doublons}{!lang_select}>
+  <BOUCLE_Secteurs(RUBRIQUES){racine}{par num titre}{!titre_mot=MenuHaut}{!titre_mot=PasDansMenu}{!lang_select}>
   <li<BOUCLE_ClasseRubriqueMenu(MOTS){id_rubrique}{type=_ClasseRubriqueMenu}{0,1}>[ class=(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{'"encours ','"'})#TITRE"]</BOUCLE_ClasseRubriqueMenu>[(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{' class="encours"',''})]<//B_ClasseRubriqueMenu>>[(#MODELE{rubrique_li}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]
 <B_Rubriques>
 <ul>
-  <BOUCLE_Rubriques(RUBRIQUES){id_parent}{par num titre}{doublons}{!lang_select}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}{0,1}>#EXPOSE{' ',(#CONFIG{soyezcreateurs/sousmenulocaux,'systematique'}|=={systematique}|?{' ',''})}</BOUCLE_test_expose>
+  <BOUCLE_Rubriques(RUBRIQUES){id_parent}{par num titre}{!titre_mot=PasDansMenu}{!lang_select}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}{0,1}>#EXPOSE{' ',(#CONFIG{soyezcreateurs/sousmenulocaux,'systematique'}|=={systematique}|?{' ',''})}</BOUCLE_test_expose>
   <li>[(#MODELE{rubrique_li}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]<BOUCLE_SsRubriques(BOUCLE_Rubriques)></BOUCLE_SsRubriques></li>
   </B_test_expose></BOUCLE_Rubriques>
 </ul>
@@ -85,7 +82,7 @@
 
 <//B_MenuHaut>
 
-[(#CONFIG{plugin}|match{ACCESRESTREINT}|?{' ',''})<INCLURE{fond=login-logout}{connexion}>]
+[(#PLUGIN{ACCESRESTREINT}|=={1}|?{' '})<INCLURE{fond=login-logout}{connexion}>]
 <div class="espaceavant">
 <ul>
 <li><?php if ($jp_rubrique=='Plan') { ?><strong><?php } ?><a accesskey="P" href="plan.html" title="<:pyrat:toutleplan:>"><:pyrat:plan_menu:></a><?php if ($jp_rubrique=='Plan') { ?></strong><?php } ?></li>
@@ -93,20 +90,20 @@
 [(#CONFIG{soyezcreateurs/mode_statique,dynamique}|=={dynamique}|?{' ',''})[(#CONFIG{soyezcreateurs/resumesite,Oui}|=={Oui}|?{' ',''})
 <li><?php if ($jp_rubrique=='Resume') { ?><strong><?php } ?><a accesskey="E" href="resume.html" title="<:public:en_resume:>"><:pyrat:enresume_menu:></a><?php if ($jp_rubrique=='Resume') { ?></strong><?php } ?></li>
 ]]
-[(#CONFIG{plugin}|match{spiplistes}|?{' ',''})
+[(#PLUGIN{SPIPLISTES}|=={1}|?{' '})
 <li><?php if ($jp_rubrique=='Liste') { ?><strong><?php } ?><a accesskey="N" href="@liste.html" title="<:pyrat:newsletter:>"><:pyrat:newsletter:></a><?php if ($jp_rubrique=='Liste') { ?></strong><?php } ?></li>]
-[(#CONFIG{plugin}|match{clevermail}|?{' ',''})
+[(#PLUGIN{CLEVERMAIL}|=={1}|?{' '})
 <li><?php if ($jp_rubrique=='Liste_mail') { ?><strong><?php } ?><a href="@liste_mail.html" title="<:pyrat:newsletter:>"><:pyrat:newsletter:></a><?php if ($jp_rubrique=='Liste_mail') { ?></strong><?php } ?></li>]
-[(#CONFIG{plugin}|match{acronymes}|?{' ',''})#INCLURE{fond=inc_sigles_menu}]
+[(#PLUGIN{ACRONYMES}|=={1}|?{' '})#INCLURE{fond=inc_sigles_menu}]
 
 </ul>
 </div>
 <INCLURE{fond=#CONFIG{soyezcreateurs/frmrecherche,'frmrecherche'}}>
 [(#CONFIG{soyezcreateurs_google/google_search}|!={''}|?{' ',''})<INCLURE{fond=inc_ads_search}>]
 
-[<div class="cadreinfo">(#FORMULAIRE_ABONNEMENT)</div>]
+[(#PLUGIN{SPIPLISTES}|=={1}|?{' '})[<div class="cadreinfo">(#FORMULAIRE_ABONNEMENT)</div>]]
 
-[<div class="cadreinfo">(#FORMULAIRE_CLEVERMAIL)</div>]
+[(#PLUGIN{CLEVERMAIL}|=={1}|?{' '})[<div class="cadreinfo">(#FORMULAIRE_CLEVERMAIL)</div>]]
 
 </div>
 	</div><!-- id="navigation" -->
