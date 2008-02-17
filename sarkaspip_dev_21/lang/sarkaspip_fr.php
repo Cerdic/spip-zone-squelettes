@@ -372,6 +372,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_layout_18' => 'Layout #18 (navigation, extra, centre)',
 		'cfg_lbl_inc_rubriques_1' => 'Menu des rubriques d&eacute;roulant',
 		'cfg_lbl_inc_rubriques_2' => 'Menu des rubriques d&eacute;pli&eacute;',
+		'cfg_lbl_inc_rubriques_3' => 'Menu des rubriques &agrave; ouverture automatique',
 		'cfg_lbl_inc_position_0' => 'Aucune',
 		'cfg_lbl_inc_position_1' => 'Colonne navigation',
 		'cfg_lbl_inc_position_2' => 'Colonne extra',
