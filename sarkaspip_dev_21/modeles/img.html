@@ -1,27 +1,61 @@
-<BOUCLE_document (DOCUMENTS) {id_document}>
 [(#REM)
-
+<!-- 
 	Modele pour <img>
 
-	Si on est en mode "vignette" ou appele avec embed=oui,
-	on affiche l'image complete ; sinon le logo
+	Si on est en mode "image" (utilisation de ajouter image dans l'espace prive)
+	- si embed=oui, on affiche l'image complete
+	- sinon, si taille est precisee, on affiche l'image avec la taille demandee,
+	- sinon, si la taille n'est pas precisee ou les vignettes pas activees, on affiche l'image avec la taille des vignettes configuree dans l'espace prive
+	  ou 150 par defaut
+	  
+	Si on est en mode "document" (utilisation de ajouter document dans l'espace prive)
+	- sinon, si embed=oui, on affiche l'image complete
+	- si l'image a une vignette personnalisee, on affiche cette vignette
+	- sinon, on affiche l'image avec la taille des vignettes configuree dans l'espace prive
+	  ou 150 par defaut
+	 
+	Si on est en mode "vignette" (correspond a une vignette personnalisee d'un autre document)
+	on affiche l'image complete
 
-	Si un lien est passe #ENV{lien} on ajoute le a href
-	ou on truque le #URL_DOCUMENT
-
+	Si un lien est passe #ENV{lien} on ajoute la balise <a> avec href=lien
+	sinon on met le href a #URL_DOCUMENT, ce qui permet a toutes les images d'etre cliquables
+	En outre, les images sont compatibles Thickbox
+ -->
 ]
-<span class='spip_document_#ID_DOCUMENT spip_documents[ spip_documents_(#ENV{align})][ (#ENV{class})] spip_lien_ok'[ style='float:(#ENV{align}|match{left|right});']>[(#SET{
-	image,
-		#MODE|=={vignette}
-		|sinon{#ENV{embed}}
-		|?{' '}
-})][
-	(#REM) image complete ?
-][(#GET{image})
-[<a href="(#ENV{lien})"[ class="(#ENV{lien_class})"]>
-]<img src='#URL_DOCUMENT'[ width="(#LARGEUR)"][ height="(#HAUTEUR)"][ alt="(#TITRE|texte_backend)"][ title="(#TITRE|texte_backend)"] />[(#ENV{lien}|?{</a>})]
-][
-	(#REM) sinon logo document + lien + alt + title etc
-][(#GET{image}|?{'',' '})
-<a href="[(#ENV{lien}|sinon{#URL_DOCUMENT})]" type="#MIME_TYPE"[ title="(#TITRE|texte_backend)"]>[(#LOGO_DOCUMENT||inserer_attribut{alt,#TITRE|strlen|?{#TITRE {#TYPE_DOCUMENT},#TYPE_DOCUMENT}})]</a>
-]</span></BOUCLE_document>
+<BOUCLE_document (DOCUMENTS) {id_document} {mode?}>
+	[(#ENV{embed}|?{' '})
+		#SET{affichage, image}
+	]
+	[(#ENV{embed}|?{'',' '})
+		[(#MODE|=={image}|?{' '})
+			#SET{affichage, image}
+			#SET{taille_vignette, #CONFIG{taille_preview,150}}
+			#SET{taille_reduire, #ENV{taille,#GET{taille_vignette}}}
+			#SET{fichier, #FICHIER|image_reduire{#GET{taille_reduire}}}
+			#SET{width, #FICHIER|image_reduire{#GET{taille_reduire}}|largeur}
+			#SET{height, #FICHIER|image_reduire{#GET{taille_reduire}}|hauteur}
+		]
+		[(#MODE|=={vignette}|?{' '})
+			#SET{affichage, image}
+		]
+		[(#MODE|=={document}|?{' '})
+			#SET{affichage, logo}
+		]
+	]
+
+	<span class='spip_document_#ID_DOCUMENT spip_documents[ spip_documents_(#ENV{align})][ (#ENV{class})] spip_lien_ok'[ style='float:(#ENV{align}|match{left|right});']>
+		[(#REM) <!-- image complete ou retaillee --> ]
+		[(#GET{affichage}|=={image}|?{' '})
+			[<a href="(#ENV{lien}|sinon{#URL_DOCUMENT})" type="#MIME_TYPE"[ class="(#ENV{lien_class})"]>]
+				<img src="#URL_DOCUMENT"[ width="(#GET{width})"][ height="(#GET{height})"][ alt="(#TITRE|texte_backend)"][ title="(#TITRE|texte_backend)"] />
+			[(#ENV{lien}|sinon{#URL_DOCUMENT}|?{</a>})]
+		]
+	
+		[(#REM) <!-- sinon logo document --> ]
+		[(#GET{affichage}|=={logo}|?{' '})
+			<a href="[(#ENV{lien}|sinon{#URL_DOCUMENT})]" type="#MIME_TYPE"[ title="(#TITRE|texte_backend)"]>
+				[(#LOGO_DOCUMENT||inserer_attribut{alt,#TITRE|strlen|?{#TITRE {#TYPE_DOCUMENT},#TYPE_DOCUMENT}})]
+			</a>
+		]
+	</span>
+</BOUCLE_document>
