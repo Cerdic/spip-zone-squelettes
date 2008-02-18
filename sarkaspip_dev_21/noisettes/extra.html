@@ -40,11 +40,21 @@
 
 [(#REM) <!-- affichage des X dernieres breves et sites en fonction du contexte --> ]
 [(#ENV{id_secteur}|?{' '})
-	<INCLURE{fond=noisettes/inc_breves}{id_secteur}>
+	[(#CONFIG{sarkaspip_noisettes/liste_breves}|=={1}|?{' '})
+		<INCLURE{fond=noisettes/inc_breves_1}{id_secteur}>
+	]
+	[(#CONFIG{sarkaspip_noisettes/liste_breves}|=={2}|?{' '})
+		<INCLURE{fond=noisettes/inc_breves_2}{id_secteur}>
+	]
 	<INCLURE{fond=noisettes/inc_sites}{id_secteur}>
 ]
 [(#ENV{id_secteur}|?{'',' '})
-	<INCLURE{fond=noisettes/inc_breves}>
+	[(#CONFIG{sarkaspip_noisettes/liste_breves}|=={1}|?{' '})
+		<INCLURE{fond=noisettes/inc_breves_1}>
+	]
+	[(#CONFIG{sarkaspip_noisettes/liste_breves}|=={2}|?{' '})
+		<INCLURE{fond=noisettes/inc_breves_2}>
+	]
 	<INCLURE{fond=noisettes/inc_sites}>
 ]
 

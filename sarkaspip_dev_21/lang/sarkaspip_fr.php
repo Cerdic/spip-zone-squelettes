@@ -329,6 +329,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // Legendes des blocs contenus dans chaque boite
 		'cfg_lgd_layout' => 'Layout',
 		'cfg_lgd_inc_rubriques' => 'Menu des rubriques',
+		'cfg_lgd_inc_breves' => 'Liste des br&egrave;ves',
 		'cfg_lgd_inc_recherche' => 'Formulaires de recherche',
 		'cfg_lgd_inc_statsite' => 'Statistiques du site',
 		'cfg_lgd_inc_stathit' => 'Hit-parade des articles',
@@ -343,6 +344,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
 		'cfg_inf_inc_rubriques' => 'Choisissez le mod&egrave;le de menu des rubriques qui vous convient parmi ceux propos&eacute;s ci-dessous.',
+		'cfg_inf_inc_breves' => 'Choisissez le mod&egrave;le de liste des br&egrave;ves qui vous convient parmi ceux propos&eacute;s ci-dessous.',
 		'cfg_inf_inc_recherche_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les formulaires de recherche.',
 		'cfg_inf_inc_recherche_ext' => 'Choisissez le moteur de recherche externe que vous souhaitez ajouter en compl&eacute;ment du formulaire SPIP.',
 		'cfg_inf_inc_statsite_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les statistiques du site.',
@@ -373,6 +375,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_inc_rubriques_1' => 'Menu des rubriques d&eacute;roulant',
 		'cfg_lbl_inc_rubriques_2' => 'Menu des rubriques d&eacute;pli&eacute;',
 		'cfg_lbl_inc_rubriques_3' => 'Menu des rubriques &agrave; ouverture automatique',
+		'cfg_lbl_inc_breves_1' => 'Un bloc par br&egrave;ve',
+		'cfg_lbl_inc_breves_2' => 'Un bloc pour toutes les br&egrave;ves',
+		'cfg_lbl_max_breves' => 'Nombre maximal de br&egrave;ves dans la liste',
 		'cfg_lbl_inc_position_0' => 'Aucune',
 		'cfg_lbl_inc_position_1' => 'Colonne navigation',
 		'cfg_lbl_inc_position_2' => 'Colonne extra',
