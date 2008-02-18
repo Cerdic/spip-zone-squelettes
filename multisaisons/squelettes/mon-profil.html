@@ -176,25 +176,10 @@ href="#URL_ARTICLE">#TITRE</a><br/>
 [<a href="#URL_RUBRIQUE">(#SESSION{statut}|=={6forum}|?{' '}):: Poster dans un forum})</a><br/>]
 
 
-<?php 
-$connect_id_auteur_bis = $auteur_session['id_auteur'];
-$result_messages = spip_query("SELECT * FROM spip_messages AS messages,spip_auteurs_messages AS lien WHERE lien.id_auteur='$connect_id_auteur_bis'AND vu='non' AND statut='publie' AND type='normal' AND lien.id_message=messages.id_message");
-           $total_messages = @spip_num_rows($result_messages);
-           if ($total_messages == 1) {
-               while($row = @spip_fetch_array($result_messages)) {
-                   $ze_message=$row['id_message'];
-                   echo "::&nbsp;<a href='ecrire/?exec=message&id_message=$ze_message'>"._T('info_nouveau_message')."</a><br/>";
-               }
-           }
-           if ($total_messages > 1) echo "::&nbsp;<a href='ecrire/?exec=messagerie'>"._T('info_nouveaux_messages', array('total_messages' => $total_messages))."</a><br/>";
- ?>
 </p>
 
 
-[(#SESSION{statut}|=={0minirezo}|?{' '})
-<h4 class="icone_recherche">Qui est venu?</h4>
-<p>[(#URL_SITE|nb_connect)]</p>
-]
+
 
 </BOUCLE_infos_perso>
 
