@@ -1,0 +1,110 @@
+#CACHE{3600*4}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" dir="#LANG_DIR" lang="#LANG">
+<head>
+<INCLURE{fond=inc-head}>
+</head>
+
+<body class="page_accueil">
+<INCLURE{fond=inc-entete}>
+<div id="conteneur">
+<div id="contenu">
+	
+	<h1 class="invisible">#NOM_SITE_SPIP</h1>
+	
+	[<div class="deuxtiers">
+		<div class="chapo">(#DESCRIPTIF_SITE_SPIP)</div>
+	</div><!--.deuxtiers-->
+	<br class="nettoyeur" />]
+	
+	<div class="tiers">
+	<BOUCLE_nous(ARTICLES) {titre_mot=page_nous} {0,1} {doublons}>
+	<div class="menu" id="nous">
+		<BOUCLE_nous_doc(DOCUMENTS){id_article} {extension IN jpg,gif,png} {par date} {0,1}>
+			<h2 class="invisible">#TITRE</h2>
+			<a href="#URL_ARTICLE"[ title="(#_nous:TITRE|couper{80}|texte_backend)"]>[(#FICHIER|copie_locale|image_passe_partout{220,*}|image_recadre{220,*,center}|inserer_attribut{class,spip_logos})]</a>
+		</BOUCLE_nous_doc>
+			<h2>#TITRE</h2>
+			[<p>(#INTRODUCTION|PtoBR)</p>]
+		<//B_nous_doc>
+		<ul>
+			<li class="plus"><a href="#URL_ARTICLE" title="<:nous_qui:>">#TITRE</a></li>
+			<li class="plus"><BOUCLE_contact(ARTICLES){titre_mot=page_contact}{0,1}><a href="#URL_ARTICLE">#TITRE</a></BOUCLE_contact><a href="#URL_PAGE{page_contact}"><:contact:></a><//B_contact></li>
+		</ul>
+	</div>
+	</BOUCLE_nous>
+	
+	<BOUCLE_visite(RUBRIQUES) {titre_mot=page_visite} {0,1} {doublons}>
+	<div class="menu" id="visite">
+		<h2>[(#LOGO_RUBRIQUE||sinon{[(#TITRE)]})]</h2>
+		[<p>(#TEXTE|PtoBR|image_reduire{220,*})</p>]
+		<p class="plus">
+			<BOUCLE_venir(ARTICLES){titre_mot=page_venir}{0,1}><a href="#URL_ARTICLE"[ title="(#TITRE|couper{80}|texte_backend)"]><:venir:></a></BOUCLE_venir>
+			<a href="#URL_RUBRIQUE"[ title="(#TITRE|couper{80}|texte_backend)"]><:visite:></a>
+		</p>
+	</div>
+	</BOUCLE_visite>
+
+	<INCLURE{fond=inc-sousrub}>
+	<INCLURE{fond=inc-tagcloud}>
+	
+	<br /><img src="#CHEMIN{img/commentaires.jpg}" alt="<:form_pet_message_commentaire:>" width="150" height="150" />
+	<br /><br /><br /><br />
+	
+	</div><!--.tiers-->
+	
+	<div class="deuxtiers">
+		<BOUCLE_pages_speciales(ARTICLES){type=pages_speciales}{doublons}> </BOUCLE_pages_speciales>
+		<B_articles>
+		<div class="liste">
+			<h2 class="gentil_message"><:derniers_articles:><BOUCLE_dernier_article(ARTICLES) {!par date} {0,1}>[ &mdash; (#DATE|affdate_mois_annee|ucfirst)]</BOUCLE_dernier_article></h2>
+			<ul>
+				<BOUCLE_articles(ARTICLES) {age<300}{!par date} {0,3} {doublons}>
+				<li>
+					<h3><a href="#URL_ARTICLE">#TITRE</a></h3>
+					[<a href="#URL_ARTICLE">(#MODELE{logo_article}{id_rubrique})</a>]
+					<small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</small>
+					[<p>(#INTRODUCTION|couper{100}|PtoBR|sinon{[(#SOUSTITRE)]})</p>]
+				</li>
+				</BOUCLE_articles>
+			</ul>
+			<p class="plus"><a href="#URL_PAGE{page_blog}" rel="nofollow"><:articles_tout:></a></p>
+		</div>
+		</B_articles>
+	</div><!--.deuxtiers-->
+	
+	<div class="deuxtiers" style="float: right;">
+		<BOUCLE_articles_futurs(ARTICLES){statut=publie}{age<0}><BOUCLE_articles_futurs_doc(DOCUMENTS) {id_article} {doublons doc_tous}{doublons doc}> </BOUCLE_articles_futurs_doc></BOUCLE_articles_futurs>
+		<BOUCLE_articles_brouillons(ARTICLES){statut != publie}><BOUCLE_articles_brouillons_doc(DOCUMENTS) {id_article} {doublons doc_tous}{doublons doc}> </BOUCLE_articles_brouillons_doc></BOUCLE_articles_brouillons>
+		<B_doc>
+		<div id="portfolio">
+			<h2>Nos derni&egrave;res images</h2>
+			<p class="gentil_message"><:cliquer_pour_agrandir:></p>
+			<BOUCLE_doc(DOCUMENTS) {doublons doc}{id_article>0}{distant=non} {extension IN jpg,gif,png}{largeur>300}{hauteur>200}{hauteur<=900} {!par date} {0,4}>
+			[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onClick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#portfolio';return false;"[ title="(#TITRE|texte_backend)"]>(#FICHIER|copie_locale|image_passe_partout{102,102}|image_recadre{102,102,center}|image_aplatir{jpg,ffffff}|inserer_attribut{class,spip_logos[ modulo(#COMPTEUR_BOUCLE|alterner{1,2,3,4})]})</a>]
+			</BOUCLE_doc>
+			<p class="plus"><a href="#URL_PAGE{page_photos}"><:photos_tout:></a></p>
+		</div><!--#portfolio-->
+		</B_doc>
+	</div><!--.deuxtiers-->
+	
+	<div class="tiers">
+    	<INCLURE{fond=inc-liensforum}>
+		<INCLURE{fond=inc-feed}>
+	</div><!--.tiers-->
+	<div class="tiers modulo3">
+    	<INCLURE{fond=inc-ailleurs}>
+		<INCLURE{fond=inc-download}>
+	</div><!--.tiers-->
+    
+</div><!--#contenu-->
+
+<div id="extra">
+&nbsp;
+</div><!--#extra-->
+
+<br class="nettoyeur" />
+<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+</div><!--#conteneur-->
+</body>
+</html>

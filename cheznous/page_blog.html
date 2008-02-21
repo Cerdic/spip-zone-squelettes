@@ -1,0 +1,61 @@
+#CACHE{3600*4}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" dir="#LANG_DIR" lang="#LANG">
+<head>
+<INCLURE{fond=inc-head}>
+</head>
+
+<body class="page_blog">
+<INCLURE{fond=inc-entete}>
+<div id="conteneur">
+<div id="contenu">
+	
+	<BOUCLE_titre_rubrique(RUBRIQUES) {id_rubrique}>
+		<h1 class="#EDIT{titre} big">#TITRE</h1>
+		[<p class="#EDIT{texte} chapo">(#TEXTE|PtoBR)</p>]
+	</BOUCLE_titre_rubrique>
+	<BOUCLE_titre_mot(MOTS) {id_mot}>
+		<h1 class="#EDIT{titre} big">#TITRE</h1>
+		[<p class="#EDIT{texte} chapo">(#TEXTE|PtoBR)</p>]
+	</BOUCLE_titre_mot>
+	<BOUCLE_titre_auteur(AUTEURS) {id_auteur}>
+		<h1 class="#EDIT{nom} big">#NOM</h1>
+		[<p class="#EDIT{bio} chapo">(#BIO|PtoBR)</p>]
+	</BOUCLE_titre_auteur>
+		<BOUCLE_dernier_article(ARTICLES) {!par date} {0,1}>[<h1 class="big">(#DATE|affdate)</h1>]</BOUCLE_dernier_article>
+	<//B_titre_auteur>
+	<//B_titre_mot>
+	<//B_titre_rubrique>
+    
+    <B_news>
+	<div class="liste">
+    [(#ANCRE_PAGINATION|vide)]
+    <ul>
+        <BOUCLE_news(ARTICLES) {branche ?}{id_mot ?}{id_auteur ?} {!par date} {pagination 10}>
+		<li>
+			<h2><a href="#URL_ARTICLE">#TITRE</a></h2>
+			[<a href="#URL_ARTICLE">(#MODELE{logo_article}{id_rubrique})</a>]
+			<small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)][ &mdash; (#MODELE{categorie})][ &mdash; (#MODELE{commentaires})]</small>
+			[<p>(#INTRODUCTION|couper{160}|PtoBR|sinon{[(#SOUSTITRE)]})</p>]
+		</li>
+        </BOUCLE_news>
+    </ul>
+    [<p class="pagination"><:pages:> (#PAGINATION{page})</p>]
+	</div><!--.liste-->
+    </B_news>
+    
+</div><!--#contenu-->
+
+<div id="extra">
+	<INCLURE{fond=inc-derniers}>
+	<INCLURE{fond=inc-sousrub}{id_rubrique}>
+	<INCLURE{fond=inc-tagcloud}{id_rubrique}{id_mot}>
+	<INCLURE{fond=inc-liensforum}>
+	<INCLURE{fond=inc-feed}>
+	<br /><img src="#CHEMIN{img/commentaires.jpg}" alt="<:form_pet_message_commentaire:>" width="150" height="150" />
+</div><!--#extra-->
+<br class="nettoyeur" />
+<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+</div><!--#conteneur-->
+</body>
+</html>

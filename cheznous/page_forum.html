@@ -1,0 +1,53 @@
+#CACHE{3600*24}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" dir="#LANG_DIR" lang="#LANG">
+<head>
+<INCLURE{fond=inc-head}>
+</head>
+
+<body class="page_forum">
+<INCLURE{fond=inc-entete}>
+<div id="conteneur">
+<div id="contenu">
+	
+	<BOUCLE_article(ARTICLES){id_article}>[<h1 class="#EDIT{titre} big">(#TITRE)</h1>]</BOUCLE_article><h1 class="big"><:forum:></h1><//B_article>
+	
+	<div id="forum">
+		[(#REM) Messages du forum ]
+		<B_forum>
+		[(#ANCRE_PAGINATION|vide)]
+		<ol>
+			<BOUCLE_forum(FORUMS) {id_article ?}{id_auteur ?} {plat} {!par date} {pagination}>
+			<li>
+				<a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM"> </a>
+				<div class="forum-chapo">
+					[(#LOGO_AUTEUR||?{
+						[(#LOGO_AUTEUR||image_passe_partout{42}|image_recadre{32,32,center,FFFFFF}|inserer_attribut{class,'spip_logos gravatar'})]
+						,
+						<img src="[(#EMAIL|gravatar_url)]" width="32" height="32" class="spip_logos gravatar" />
+					})]
+					<p>Le [(#DATE|affdate_jourcourt)][ &agrave;&nbsp;(#DATE|heures)][:(#DATE|minutes)][, <:par_auteur:> <strong class="#EDIT{qui}">[<a href="(#URL_SITE)"[ title="Voir le site de (#NOM|attribut_html)"] class="spip_out">](#NOM)[(#URL_SITE|?{</a>,''})]</strong>]</p>
+				</div>
+				[<div class="#EDIT{texte} forum-texte">(#TEXTE|lignes_longues)</div>]
+		
+			</li>
+			</BOUCLE_forum>
+		</ol>
+		[<p class="pagination"><:pages:> (#PAGINATION{page})</p>]
+		</B_forum>
+	</div><!--#forum-->
+	
+</div><!--#contenu-->
+
+<div id="extra">
+	<BOUCLE_formulaire_forum(ARTICLES){titre_mot=page_forum}>
+	[<h2><:form_pet_message_commentaire:></h2>
+	(#FORMULAIRE_FORUM)]
+	</BOUCLE_formulaire_forum>
+</div><!--#extra-->
+
+<br class="nettoyeur" />
+<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+</div><!--#conteneur-->
+</body>
+</html>

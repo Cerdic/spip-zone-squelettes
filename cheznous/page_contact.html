@@ -1,0 +1,37 @@
+#CACHE{3600*24*7}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" dir="#LANG_DIR" lang="#LANG">
+<head>
+<INCLURE{fond=inc-head}>
+<script type="text/javascript" src="#CHEMIN{formValidation.js}"></script>
+</head>
+
+<body class="page_contact">
+<INCLURE{fond=inc-entete}>
+<div id="conteneur">
+
+<BOUCLE_article(ARTICLES){titre_mot=page_contact}{0,1}>
+	<div id="contenu">
+		<h1 class="big">#TITRE</h1>
+		#FORMULAIRE_ECRIRE_AUTEUR
+	</div><!--#contenu-->
+	
+	<div id="extra">
+		[<div class="#EDIT{texte} menu">(#TEXTE|image_reduire{200,*})</div>]
+		<BOUCLE_venir(ARTICLES){titre_mot=page_venir}{0,1}><p class="plus"><a href="#URL_ARTICLE"[ title="(#TITRE|couper{80}|texte_backend)"]><:venir:></a></p></BOUCLE_venir>
+	</div><!--#extra-->
+</BOUCLE_article>
+	<BOUCLE_auteur(AUTEURS){par id_auteur}{0,1}>
+	<div id="contenu">
+		<h1 class="big"><:contact:></h1>
+		#FORMULAIRE_ECRIRE_AUTEUR
+	</div><!--#contenu-->
+	</BOUCLE_auteur>
+<//B_article>
+
+<br class="nettoyeur" />
+<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+<//B_contact>
+</div><!--#conteneur-->
+</body>
+</html>

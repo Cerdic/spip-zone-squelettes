@@ -1,0 +1,55 @@
+#CACHE{0}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" dir="#LANG_DIR" lang="#LANG">
+<head>
+<INCLURE{fond=inc-head}>
+</head>
+
+<body class="page_recherche">
+<INCLURE{fond=inc-entete}>
+<div id="conteneur">
+<div id="contenu">
+    
+    <h1 class="big"><:resultats_recherche:></h1>
+    
+    <B_articles>
+	<div class="liste">
+    [(#ANCRE_PAGINATION|vide)]
+    <p class="chapo">[(#GRAND_TOTAL) r&eacute;sultats][ pour &laquo;&nbsp;(#RECHERCHE)&nbsp;&raquo;]</p>
+    <ul>
+        <BOUCLE_articles(ARTICLES) {recherche} {!par points}{!par date} {pagination}>
+        <li>
+            <h2><a href="#URL_ARTICLE">#TITRE</a></h2>
+            [<a href="#URL_ARTICLE">(#MODELE{logo_article}{id_rubrique})</a>]
+            <small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)][ &mdash; (#MODELE{categorie})]</small>
+            [<p>(#INTRODUCTION|couper{90}|PtoBR)</p>]
+        </li>
+    	</BOUCLE_articles>
+    </ul>
+    [<p class="pagination"><:pages:> (#PAGINATION{page})</p>]
+	</div><!--.liste-->
+    </B_articles>
+    
+    [<p class="reponse_formulaire">Aucun r&eacute;sultat trouv&eacute; pour &laquo;&nbsp;(#RECHERCHE)&nbsp;&raquo;&nbsp;!</p>]
+    
+    <//B_articles>
+
+</div><!--#contenu-->
+
+<div id="extra">
+    <div class="menu">
+        <h2>Statistiques</h2>
+        <p>Ce site compte actuellement 
+        <BOUCLE_articles_tous(ARTICLES)> </BOUCLE_articles_tous>[(#TOTAL_BOUCLE)&nbsp;articles]</B_articles_tous>
+        <BOUCLE_doc(DOCUMENTS){extension IN jpg,gif,png}> </BOUCLE_doc>[ et (#TOTAL_BOUCLE)&nbsp;images]</B_doc> 
+        [et re&ccedil;oit environ (#POPULARITE_MAX)&nbsp;visites par jour].</p>
+		<br />
+		<p class="plus"><a href="#URL_PAGE{page_tagcloud}"><:mots_tout:></a></p>
+		<p class="plus none"><a href="#URL_PAGE{page_archives}"><:archives:></a></p>
+    </div>
+</div><!--#extra-->
+<br class="nettoyeur" />
+<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+</div><!--#conteneur-->
+</body>
+</html>

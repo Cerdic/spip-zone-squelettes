@@ -1,0 +1,48 @@
+#CACHE{3600*4}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" dir="#LANG_DIR" lang="#LANG">
+<head>
+<INCLURE{fond=inc-head}>
+</head>
+
+<body class="page_ailleurs">
+<INCLURE{fond=inc-entete}>
+<div id="conteneur">
+<div id="contenu">
+    <h1 class="big"><:sur_le_web:></h1>
+	<div class="liste" id="ailleurs">
+	<B_ailleurs>
+    [(#ANCRE_PAGINATION|vide)]
+	<ul>
+		<BOUCLE_ailleurs(SYNDIC_ARTICLES) {id_syndic ?} {!par date}{age<150} {0,150} {pagination 10}> 
+		[<li>
+			[(#LOGO_SITE|image_passe_partout{54,54}|image_recadre{50,50,left top}|image_aplatir{jpg,6C6C6C}|inserer_attribut{class,spip_logos}|sinon{[<img src="(#CHEMIN{img/spip_logos.png})" alt="" width="50" height="50" class="spip_logos" />]})]
+			<h2><a href="(#URL_ARTICLE|unique)" class="spip_out">[(#TITRE|supprimer_tags|typo)]</a></h2>
+			<small>[(#DATE|affdate{'d|m H:i'})][, <:par_auteur:> (#LESAUTEURS)][&nbsp;&mdash; <a href="#URL_SITE" class="spip_out">(#NOM_SITE)</a>]</small>
+			[<p>(#DESCRIPTIF|PtoBR|couper{180})</p>]
+		</li>]
+		</BOUCLE_ailleurs>
+	</ul>
+	[<p class="pagination"><:ailleurs_pagination|ucfirst:> (#PAGINATION)</p>]
+	</B_ailleurs>
+	</div><!--.liste-->
+</div><!--#contenu-->
+
+<div id="extra">
+	<script type="text/javascript"><!--
+	google_ad_client = "pub-4921970217444366";
+	google_ad_width = 125;
+	google_ad_height = 125;
+	google_ad_format = "125x125_as_rimg";
+	google_cpa_choice = "CAEQ3bGUlwIaCG2ol-vrNnHQKNm493M";
+	//-->
+	</script>
+	<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+	</script>
+</div><!--#extra-->
+
+<br class="nettoyeur" />
+<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+</div><!--#conteneur-->
+</body>
+</html>

@@ -1,0 +1,59 @@
+#CACHE{3600*24*7}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" dir="#LANG_DIR" lang="#LANG">
+<head>
+<INCLURE{fond=inc-head}>
+</head>
+
+<body class="page_liens">
+<INCLURE{fond=inc-entete}>
+<div id="conteneur">
+<div id="contenu">
+    <h1 class="#EDIT{titre} big"><:liens_tout:></h1>
+	<div class="menu" id="site">
+		<ul>
+			
+			<BOUCLE_sites(SITES) {branche ?}{id_rubrique ?} {par id_secteur}{par id_rubrique}{par nom_site}{!par date}>
+			[<li>
+				<a href="(#URL_SITE)" class="spip_out">
+				[(#LOGO_SITE||?{
+					[(#LOGO_SITE||image_recadre{170,107,center})]
+					,
+					<img src="http://shots.snap.com/preview/?url=#URL_SITE%2F&amp;key=e729e8566cbea32f2aa7cc48ba92db7e&amp;src=romy.tetue.net&amp;sb=0&amp;v=2.6.4&amp;size=small&amp;lang=fr-fr&amp;search_type=snap&amp;act=only_link&amp;po=0&amp;rp=null&amp;has_img=0&amp;referrer=http%3A%2F%2Fromy.tetue.net%2Fspip.php%3Frubrique4&amp;svc=&amp;view_id=e394c80660d927f83879ec7ccd98b7b1&amp;direct=1&amp;cp=shot_view%21preview%21romy.tetue.net&amp;sc=1&amp;goto=Aller%20%C3%A0%20%25URL"[ alt="(#NOM_SITE|textebrut)"] class="spip_logos snap" />
+				})]
+				</a>
+				<p><strong class="#EDIT{nom_site}">#NOM_SITE</strong>[ &mdash; <span class="#EDIT{descriptif}">(#DESCRIPTIF|PtoBR|couper{110})</span>]</p>
+			</li>]
+			</BOUCLE_sites>
+			
+			<li>
+				<script type="text/javascript"><!--
+				google_ad_client = "pub-4921970217444366";
+				google_ad_width = 125;
+				google_ad_height = 125;
+				google_ad_format = "125x125_as_rimg";
+				google_cpa_choice = "CAEQ3bGUlwIaCG2ol-vrNnHQKNm493M";
+				//-->
+				</script>
+				<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+				</script>
+			</li>
+	
+		</ul>
+	</div><!--#site-->
+</div><!--#contenu-->
+
+<div id="extra">
+	<BOUCLE_formulaire_site(RUBRIQUES){id_rubrique ?}{par id_rubrique}{0,1}>
+    [<div class="menu">
+        <h2>Ajoutez votre site ici</h2>
+        (#FORMULAIRE_SITE)
+    </div>]
+	</BOUCLE_formulaire_site>
+</div><!--#extra-->
+
+<br class="nettoyeur" />
+<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+</div><!--#conteneur-->
+</body>
+</html>

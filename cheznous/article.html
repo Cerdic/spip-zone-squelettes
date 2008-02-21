@@ -1,0 +1,80 @@
+<BOUCLE_contact(ARTICLES){id_article}{titre_mot=page_contact}{0,1}><INCLURE{fond=page_contact}{id_article}></BOUCLE_contact>
+<BOUCLE_venir(ARTICLES){id_article}{titre_mot=page_venir}{0,1}><INCLURE{fond=page_venir}{id_article}></BOUCLE_venir>
+<BOUCLE_nous(ARTICLES){id_article}{titre_mot=page_nous}{0,1}><INCLURE{fond=page_nous}{id_article}></BOUCLE_nous>
+<BOUCLE_forum(ARTICLES){id_article}{titre_mot=page_forum}{0,1}><INCLURE{fond=page_forum}{id_article}></BOUCLE_forum>
+
+#CACHE{3600*24*7}
+<BOUCLE_principale(ARTICLES){id_article}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" dir="#LANG_DIR" lang="#LANG">
+<head>
+<INCLURE{fond=inc-head}>
+</head>
+
+<body class="page_article">
+<INCLURE{fond=inc-entete}{id_rubrique}>
+<div id="conteneur">
+
+<div id="contenu">
+    <div class="cartouche">
+        <h1 class="#EDIT{titre} big">#TITRE</h1>
+        <small class="signature">[(#DATE|nom_jour|ucfirst) ][(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)][ &mdash; (#MODELE{categorie})][ &mdash; (#MODELE{commentaires})]</small>
+    	<BOUCLE_pages_speciales(ARTICLES){type=pages_speciales}{doublons}> </BOUCLE_pages_speciales>
+		<div class="prevnext">
+            <BOUCLE_precedent(ARTICLES) {age_relatif>=0}{!par date}{0,1} {exclus} {doublons}><span class="prev"><a rel="prev" href="#URL_ARTICLE"><img src="#CHEMIN{img/bt-prev.gif}" alt="avant" />&nbsp;[(#TITRE|couper{40})]</a></span></BOUCLE_precedent>
+			<span class="invisible"> | </span>
+            <BOUCLE_suivant(ARTICLES) {age_relatif<0}{par date}{0,1} {exclus} {doublons}><span class="next"><a rel="next" href="#URL_ARTICLE">[(#TITRE|couper{40})]&nbsp;<img src="#CHEMIN{img/bt-next.gif}" alt="apr&egrave;s" /></a></span></BOUCLE_suivant>
+            <div class="nettoyeur">&nbsp;</div>
+        </div>
+    </div>
+    
+    <br class="nettoyeur" />
+    [<div class="#EDIT{chapo} chapo">(#CHAPO|image_reduire{520,*})</div>]
+    [<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{520,*})</div>]
+	
+	[(#TEXTE|vide)][(#PS|vide)][(#NOTES|vide)]
+    [(#REM) Portfolio : album d'images ]
+    <B_documents_portfolio>
+    <div id="portfolio">
+        <h2 class="invisible"><:info_portfolio:></h2>
+        <BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {extension IN jpg,gif,png}{largeur>=200}{hauteur>120} {par num titre, date} {doublons}>
+        [<a href="#URL_DOCUMENT" type="#MIME_TYPE" onClick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#portfolio';return false;"[ title="(#TITRE|texte_backend|sinon{[(#_principale:TITRE|texte_backend)]})"]>(#FICHIER|copie_locale|image_passe_partout{120,120}|image_recadre{120,120,center}|image_aplatir{jpg,ffffff}|inserer_attribut{class,spip_logos[ modulo(#COMPTEUR_BOUCLE|modulo{3})]})</a>]
+        </BOUCLE_documents_portfolio>
+    </div>
+    </B_documents_portfolio>
+    <BOUCLE_afficher_document(DOCUMENTS) {id_document} {id_article} {extension IN jpg,gif,png}>
+    <div class="spip_documents spip_documents_center" id="document_actif">
+        #EMBED_DOCUMENT
+        [<div class="#EDIT{titre} spip_doc_titre">(#TITRE)</div>]
+        [<div class="#EDIT{descriptif} spip_doc_descriptif">(#DESCRIPTIF)</div>]
+    </div>
+    </BOUCLE_afficher_document>
+	
+    [<div class="#EDIT{ps} ps">(#PS|image_reduire{520,*})</div>]
+    [<div class="notes">(#NOTES)</div>]
+    
+    <br class="nettoyeur" />
+    <INCLURE{fond=inc-forum}{id_article}>
+
+</div><!--#contenu-->
+
+<div id="extra">
+    <INCLURE{fond=inc-derniers}{id_article}>
+    <INCLURE{fond=inc-sousrub}{id_rubrique}>
+	<INCLURE{fond=inc-tagcloud}{id_rubrique}{id_article}>
+    <INCLURE{fond=inc-liensforum}>
+    <INCLURE{fond=inc-feed}>
+	<br /><img src="#CHEMIN{img/commentaires.jpg}" alt="<:form_pet_message_commentaire:>" width="150" height="150" />
+</div><!--#extra-->
+
+<br class="nettoyeur" />
+<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+</div><!--#conteneur-->
+</body>
+</html>
+</BOUCLE_principale>
+
+<//B_forum>
+<//B_nous>
+<//B_venir>
+<//B_contact>

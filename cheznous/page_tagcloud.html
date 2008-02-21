@@ -1,0 +1,53 @@
+#CACHE{3600*24}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" dir="#LANG_DIR" lang="#LANG">
+<head>
+<INCLURE{fond=inc-head}>
+</head>
+
+<body class="page_tagcloud">
+<INCLURE{fond=inc-entete}>
+<div id="conteneur">
+<div id="contenu">
+    
+    <h1 class="big"><:mots_tout:></h1>
+	<div class="menu" id="tagcloud">
+	<?php
+	
+	<BOUCLE_mot(MOTS) {type==tagcloud} {par titre}>
+	$titre[#ID_MOT]='[(#TITRE|texte_script)]';
+	$url[#ID_MOT]='#URL_MOT';
+	$desc[#ID_MOT]='[(#DESCRIPTIF|attribut_html|texte_script)]';
+	<BOUCLE_art(ARTICLES){id_mot}> </BOUCLE_art>
+	$pop[#ID_MOT]=#TOTAL_BOUCLE; # Nombre d'articles pour ce mot
+	</B_art>
+	</BOUCLE_mot>
+	
+	$maxpop = max($pop); # Plus grand nombre d'article pour un mot
+	echo "<ul>";
+	foreach (array_keys($pop) as $id) {
+			$t = $titre[$id];
+			$score = $pop[$id]/$maxpop; # entre 0 et 1
+	//        $score = pow($score,1.5); # lissage
+			if($score > 0.1){
+			$s = ceil(25*$score);
+			$s = 9 + $s;
+			$t = str_replace(' ', '&nbsp;', $t);
+			$l = "<span style='font-size: ".$s."px;'>$t</span>";
+			$l = "<li><a rel='tag' href='".$url[$id]."' title='".$desc[$id]."'".">$l</a></li>";
+			echo "$l\n";
+			}
+	}
+	echo "</ul>";
+	?>
+	</div><!--#tagcloud-->
+	
+</div><!--#contenu-->
+
+<div id="extra">
+</div><!--#extra-->
+<br class="nettoyeur" />
+<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+</div><!--#conteneur-->
+</body>
+</html>

@@ -1,0 +1,92 @@
+#CACHE{3600*24*7}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" dir="#LANG_DIR" lang="#LANG">
+<head>
+<INCLURE{fond=inc-head}>
+</head>
+<body class="page_visite">
+<INCLURE{fond=inc-entete}{id_rubrique}>
+<div id="conteneur">
+
+<div id="contenu">
+
+<BOUCLE_mot(MOTS){id_mot}>
+	<h1 class="#EDIT{titre} big">#TITRE</h1>
+    
+	<BOUCLE_piece_articles(ARTICLES) {id_mot} {par date}>
+    <BOUCLE_piece_doc(DOCUMENTS) {id_article} {extension IN jpg,gif,png}{largeur>300}{hauteur>200}{hauteur<=900} {par date} {doublons}>
+	[<a href="#URL_DOCUMENT" type="#MIME_TYPE"[ title="(#TITRE|texte_backend|sinon{[(#_articles:TITRE|texte_backend)]})"]>(#FICHIER|?{' ',''})</a>]
+    </BOUCLE_piece_doc>
+    </BOUCLE_piece_articles>
+
+	<div id="portfolio">
+	<BOUCLE_doc_afficher(DOCUMENTS) {!doublons}{doublons doc} {!par date} {0,6}>
+	[<a href="#URL_DOCUMENT" type="#MIME_TYPE"[ title="(#TITRE|texte_backend|sinon{#_piece_articles:TITRE})"] class="thickbox">(#FICHIER|copie_locale|image_passe_partout{120,120}|image_recadre{120,120,center}|image_aplatir{jpg,ffffff}|inserer_attribut{class,spip_logos[ modulo(#COMPTEUR_BOUCLE|modulo{3})]})</a>]
+	</BOUCLE_doc_afficher>
+	<p class="gentil_message">Nous n'avons pas encore de photos.</p>
+	<//B_doc_afficher>
+	<br class="nettoyeur" />
+	</div><!--#portfolio-->
+	
+	[<div class="#EDIT{texte} texte">(#TEXTE)</div>]
+
+	<BOUCLE_doc_debut(DOCUMENTS) {!doublons}{doublons doc} {par date} {0,1}>
+	<strong class="menu" id="voir_debut">&gt; <a href="#URL_DOCUMENT" type="#MIME_TYPE"[ title="(#TITRE|texte_backend|sinon{#_piece_articles:TITRE})"] class="thickbox">Voir depuis le début</a></strong>
+	</BOUCLE_doc_debut>
+	
+	<B_articles_mot>
+	<div class="menu">
+		<h2>Lire aussi&nbsp;:</h2>
+		<ul>
+			<BOUCLE_articles_mot(ARTICLES) {id_mot} {par date}>
+			<li>[<strong>(#DATE|affdate{d})</strong>[(#DATE|affdate{|m})] ]<a href="#URL_ARTICLE"}>#TITRE</a></li>
+			</BOUCLE_articles_mot>
+		</ul>
+	</div>
+	</B_articles_mot>
+	
+</BOUCLE_mot>
+	
+	<BOUCLE_principale(RUBRIQUES){id_rubrique ?}{titre_mot=page_visite}{0,1}>
+	<h1 class="#EDIT{titre} big">#TITRE</h1>
+	[<div class="#EDIT{texte} texte">(#TEXTE)</div>]
+	
+	<BOUCLE_articles_mot_bis(ARTICLES) {type==visite} {doublons}> </BOUCLE_articles_mot_bis>
+	<B_articles>
+	<div class="menu">
+		<h2>Lire aussi&nbsp;:</h2>
+		<ul>
+			<BOUCLE_articles(ARTICLES) {id_rubrique} {par date} {doublons}>
+			<li>[<strong>(#DATE|affdate{d})</strong>[(#DATE|affdate{|m})] ]<a href="#URL_ARTICLE"}>#TITRE</a></li>
+			</BOUCLE_articles>
+		</ul>
+	</div>
+	</B_articles>
+	</BOUCLE_principale>
+	
+<//B_mot>
+
+</div><!--#contenu-->
+
+<B_groupe>
+<div id="extra">
+	<BOUCLE_groupe(GROUPES_MOTS) {titre==visite}>
+	<div class="menu" id="sousrub">
+		<h2>#TITRE</h2>
+		[<div class="#EDIT{texte}">(#TEXTE|sinon{<p>Choisissez une pi&egrave;ce&nbsp;:</p>})</div>]
+		<ul>
+			<BOUCLE_pieces(MOTS) {type==visite} {par num titre, titre}>
+			<li><a href="#URL_MOT">#TITRE</a></li>
+			</BOUCLE_pieces>
+		</ul>
+	</div>
+	</BOUCLE_groupe>
+</div><!--#extra-->
+</B_groupe>
+
+
+<br class="nettoyeur" />
+<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+</div><!--#conteneur-->
+</body>
+</html>
