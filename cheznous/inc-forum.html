@@ -1,0 +1,31 @@
+<div id="forum">
+[(#PARAMETRES_FORUM|?) Cette balise (invisible) provoque le recalcul du forum la premiere fois qu'un message est poste (cf. inc/invalideur). ]
+
+[(#REM) Nombre total de messages ]
+<BOUCLE_decompte(FORUMS) {id_article} {plat}></BOUCLE_decompte>[(#TOTAL_BOUCLE|?{' ',''})<h2 class="gentil_message">Vos <:messages_forum:>&nbsp;:</h2>]<//B_decompte>
+
+[(#REM) Messages du forum ]
+<B_forums>
+<ol>
+	<BOUCLE_forums(FORUMS) {id_article} {plat} {par date}>
+	<li>
+		<a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM"> </a>
+    	<div class="forum-chapo">
+            [(#LOGO_AUTEUR||?{
+                [(#LOGO_AUTEUR||image_passe_partout{42}|image_recadre{32,32,center,FFFFFF}|inserer_attribut{class,'spip_logos gravatar'})]
+                ,
+                <img src="[(#EMAIL|gravatar_url)]" width="32" height="32" class="spip_logos gravatar" />
+            })]
+        	<p>Le [(#DATE|affdate_jourcourt)][ &agrave;&nbsp;(#DATE|heures)][:(#DATE|minutes)][, <:par_auteur:> <strong class="#EDIT{qui}">[<a href="(#URL_SITE)"[ title="Voir le site de (#NOM|attribut_html)"] class="spip_out">](#NOM)[(#URL_SITE|?{</a>,''})]</strong>]</p>
+        </div>
+        [<div class="#EDIT{texte} forum-texte">(#TEXTE|lignes_longues)</div>]
+
+	</li>
+	</BOUCLE_forums>
+</ol>
+</B_forums>
+
+[<h2><:form_pet_message_commentaire:></h2>
+(#FORMULAIRE_FORUM)]
+
+</div><!--#forum-->

@@ -9,7 +9,17 @@
 <INCLURE{fond=inc-entete}>
 <div id="conteneur">
 <div id="contenu">
-    <h1 class="big"><:sur_le_web:></h1>
+	
+	<BOUCLE_titre_site(SITES){id_syndic}>
+		<div class="cartouche">
+            <h1 class="#EDIT{nom_site}">#NOM_SITE</h1>
+        	[<p class="#EDIT{url_site}"><a href="#URL_SITE" class="spip_out">(#URL_SITE|couper{80})</a></p>]
+        </div>
+		[<div class="#EDIT{descriptif} chapo">(#DESCRIPTIF)</div>]
+	</BOUCLE_titre_site>
+    	<h1 class="big"><:sur_le_web:></h1>
+	<//B_titre_site>
+	
 	<div class="liste" id="ailleurs">
 	<B_ailleurs>
     [(#ANCRE_PAGINATION|vide)]
@@ -37,8 +47,12 @@
 	google_cpa_choice = "CAEQ3bGUlwIaCG2ol-vrNnHQKNm493M";
 	//-->
 	</script>
-	<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-	</script>
+	<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"> </script>
+	[(#ID_SYNDIC|?{' ',''})<br /><br /><br /><br /><br /><br />
+	<div class="menu">
+		<p class="plus"><a href="#URL_PAGE{page_liens}" rel="nofollow"><:liens_tout:></a></p>
+		<p class="plus"><a href="#URL_PAGE{page_ailleurs}" rel="nofollow"><:ailleurs_tout:></a></p>
+	</div>]
 </div><!--#extra-->
 
 <br class="nettoyeur" />
