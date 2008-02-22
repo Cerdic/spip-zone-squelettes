@@ -4,7 +4,7 @@
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-// Page blog
+// Blog
 'nouveautes' => 'Quoi de neuf&nbsp;?',
 'a_retenir' => '&Agrave;&nbsp;retenir',
 'articles_tout' => 'Tous nos articles',
@@ -18,6 +18,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // Page visite
 'visite' => 'Visitez&nbsp;!',
 'venir' => 'Pour venir',
+'pas_de_photos' => 'Nous n\'avons pas encore de photos.',
 
 // Page nous
 'nous' => 'Nous',
