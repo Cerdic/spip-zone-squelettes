@@ -1,4 +1,4 @@
-#CACHE{3600,cache-client}
+#CACHE{0*3600,cache-client}
 #HTTP_HEADER{Content-Type: text/css; charset=iso-8859-15}
 #HTTP_HEADER{Vary: Accept-Encoding}
 /* Recuperation des CSS par defaut de SPIP */
@@ -39,14 +39,24 @@
 #SET{c_hover,(#CONFIG{soyezcreateurs_couleurs/hover,#ff8c00})}
 #SET{c_active,(#CONFIG{soyezcreateurs_couleurs/active,#f00})}
 
+#SET{f_navigation,(#CONFIG{soyezcreateurs_couleurs/fontsnavigation,'Verdana, Arial, Geneva, sans-serif'})}
+#SET{f_content,(#CONFIG{soyezcreateurs_couleurs/fontscontent,'Verdana, Arial, Geneva, sans-serif'})}
 
 html, body {
 	margin: 0;
 	padding: 0;
 }
+
 html {
 	font-size: 62.7%;
-	font-family: verdana, arial, helvetica, sans-serif;
+}
+
+html, body, #content {
+	font-family: #GET{f_content};
+}
+
+#header, #navigation, #extra, #footer, #artrecents, #artrecents h2, #sommaire, .retoursommaire, .retourtop, #menuhaut {
+	font-family: #GET{f_navigation};
 }
 
 div {
@@ -135,7 +145,7 @@ a#logo {
 
 .cadreinfo {
 	font-size: 1em;
-	[color: #(#GET{c_menu_a_bk}|couleur_fonce);]
+	[color: #(#GET{c_menu_a_bk}|couleur_foncer);]
 	[background: #(#GET{c_menu_a_bk}|couleur_eclaircirluminosite);]
 	margin-left: 10px;
 	margin-right: 10px;
@@ -511,6 +521,7 @@ b {
 #content h1 {
 	color: #GET{c_titraille};
 	background-color: #GET{c_titraille_bk};
+	font-family: #GET{f_content};
 	font-size: 2em;
 	font-weight: bold;
 	letter-spacing: 1px;
@@ -537,6 +548,7 @@ b {
 #content h2 {
 	color: #GET{c_titraille};
 	background-color: [#(#GET{c_titraille_bk}|couleur_inverserluminosite)];
+	font-family: #GET{f_content};
 	font-size: 1.8em;
 	font-weight: bold;
 	line-height: 1.5em;
@@ -551,6 +563,7 @@ b {
 #content h3 {
 	color: #GET{c_titraille};
 	background-color: [#(#GET{c_titraille_bk}|couleur_inverserluminosite)];
+	font-family: #GET{f_content};
 	font-size: 1.7em;
 	font-weight: bold;
 	line-height: 1.5em;
@@ -565,6 +578,7 @@ b {
 #content h4 {
 	color: #GET{c_titraille};
 	background-color: [#(#GET{c_titraille_bk}|couleur_inverserluminosite)];
+	font-family: #GET{f_content};
 	font-size: 1.6em;
 	font-weight: bold;
 	line-height: 1.5em;
@@ -579,6 +593,7 @@ b {
 #content h5 {
 	color: #GET{c_titraille};
 	background-color: [#(#GET{c_titraille_bk}|couleur_inverserluminosite)];
+	font-family: #GET{f_content};
 	font-size: 1.4em;
 	font-weight: bold;
 	line-height: 1.5em;
@@ -593,6 +608,7 @@ b {
 #content h6 {
 	color: #GET{c_titraille};
 	background-color: [#(#GET{c_titraille_bk}|couleur_inverserluminosite)];
+	font-family: #GET{f_content};
 	font-size: 1.2em;
 	font-weight: bold;
 	line-height: 1.5em;
@@ -1255,7 +1271,7 @@ acronym, abbr {
 	padding: 10px 0 10px 5px;
 	margin-left: 5px;
 	margin-bottom: 0px;
-	[color: #(#GET{c_menu_a_bk}|couleur_foncee);]
+	[color: #(#GET{c_menu_a_bk}|couleur_foncer);]
 	[background: #(#GET{c_menu_a_bk}|couleur_eclaircirluminosite{30});]
 }
 
@@ -1296,7 +1312,6 @@ acronym, abbr {
 dl.event {
 	margin: 2em 0;
 	padding: 0;
-	font-family: verdana, arial, helvetica, sans-serif;
 }
 
 .event dt {
@@ -1317,7 +1332,6 @@ dl.event {
 	float: right;
 	color: #GET{c_datemajsite};
 	background-color: #GET{c_datemajsite_bk};
-	font-family: verdana, arial, helvetica, sans-serif;
 	font-size:.9em;
 	padding: 2px 10px;
 }
@@ -1452,7 +1466,7 @@ sub.dateevenement {
 	background-color: #GET{c_menu_a_bk};
 	color: #GET{c_menu_a};
 	padding: .25em .5em;
-	font-family: "trebuchet ms", verdana, arial, helvetica, sans-serif;
+	font-family: #GET{f_content};
 	font-weight: bold;
 	font-size: 1.1em;
 	border-bottom: solid 1px[ #(#GET{c_menu_a_bk}|couleur_foncerluminosite)];
@@ -1641,7 +1655,7 @@ et http://nanobox.chipx86.com/blog/2006/04/easy-css-hacks-for-ie7.php */
 
 table.tableau_config_gp_mot {
 	font-size:80% !important;
-	font-family: 'trebuchet ms', verdana, arial, helvetica, sans-serif !important;
+	font-family: #GET{f_navigation} !important;
 	float:right !important;
 	z-index:250 !important;
 	padding:0 !important;
@@ -1790,7 +1804,6 @@ img {
 
 #content .contenu_chapitres h2, #content .contenu_chapitres h3, #content .contenu_chapitres h4, #content .contenu_chapitres h5, #content .contenu_chapitres h6 {
 	color: #39f;
-	font-family: Georgia, "Times New Roman", Times, serif;
 	font-size: 80%;
 	text-align: left;
 }
