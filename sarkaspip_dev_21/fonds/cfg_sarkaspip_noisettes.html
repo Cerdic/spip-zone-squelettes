@@ -13,7 +13,8 @@
 //<![CDATA[
 	jQuery(document).ready(function() {
 		[(#ENV{position_badges}|=={0}|?{jQuery("#bloc_badges_liste").hide();})]
-		[(#ENV{liste_sites}|=={2}|?{jQuery("#bloc_max_syndic").hide();})]
+		[(#ENV{liste_breves}|!={2}|?{jQuery("#bloc_intro_breve").hide();})]
+		[(#ENV{liste_sites}|!={1}|?{jQuery("#bloc_max_syndic").hide();})]
 		jQuery("input[@name='position_badges']").change(function() {
 			if (jQuery("input[@name='position_badges']:checked").val() != 0)
 				jQuery("#bloc_badges_liste").show();
@@ -26,6 +27,13 @@
 				jQuery("#bloc_max_syndic").show();
 			else
 				jQuery("#bloc_max_syndic").hide();
+			jQuery(this).blur();
+		});	
+		jQuery("input[@name='liste_breves']").change(function() {
+			if (jQuery("input[@name='liste_breves']:checked").val() == 2)
+				jQuery("#bloc_intro_breve").show();
+			else
+				jQuery("#bloc_intro_breve").hide();
 			jQuery(this).blur();
 		});	
 	});
@@ -68,9 +76,10 @@
 	<br /><br />
     <label><:sarkaspip:cfg_lbl_max_breves:></label>
     <input type="text" name="max_breves" value="#ENV{max_breves, 5}" size="2" class="fondl" />
-	<br />
-    <label><:sarkaspip:cfg_lbl_intro_breves:></label>
-    <input type="text" name="intro_breve" value="#ENV{intro_breve, 100}" size="3" class="fondl" />
+    <div id="bloc_intro_breve">
+		<label><:sarkaspip:cfg_lbl_intro_breves:></label>
+		<input type="text" name="intro_breve" value="#ENV{intro_breve, 100}" size="3" class="fondl" />
+	</div>
 	<br />
 </fieldset>
 
