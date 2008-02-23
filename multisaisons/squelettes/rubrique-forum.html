@@ -52,7 +52,7 @@
 
 <div class="grande_boite">
 
-<BOUCLE_themes(ARTICLES){titre_mot = forum}{id_rubrique=#ID_RUBRIQUE}{doublons}>
+<BOUCLE_themes(ARTICLES){titre_mot = forum}{id_rubrique=#ID_RUBRIQUE}{doublons}{par num titre, date}>
             <span class="logogauche"><a href="#URL_ARTICLE" title="Voir tous les messages"><INCLURE{fond="logo"}{id_article}{taille=46}{date=#ENV{date}}></a></span><h4><a href="#URL_ARTICLE" title="Voir tous les messages">[(#TITRE)]</a></h4>
 <p>[(#DESCRIPTIF)]</p>
               <table class="spip">
@@ -274,12 +274,3 @@ Parcourir</a></li>
 </div> [(#REM)   fermeture container   ] 
 </body></html>
 </BOUCLE_principale>
-[(#ID_RUBRIQUE|AccesRestreint_rubrique_restreinte|?{' ',''})    
- [(#ENV{type}|=={redac}|?{' ',''}) <INCLURE{fond=abonnement}{type=redac}>]
-  [(#ENV{type}|=={visit}|?{' ',''}) <INCLURE{fond=abonnement}{type=visit}>]
-[(#ENV{type}|match{redac|visit}|?{'',' '})<INCLURE{fond=abonnement}{type=question}>]
-  ]
-[(#ID_RUBRIQUE|AccesRestreint_rubrique_restreinte|?{'',' '})
-<INCLURE{fond=erreur-forum}>]
-<//B_principale>
-
