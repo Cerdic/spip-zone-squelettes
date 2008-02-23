@@ -83,45 +83,6 @@ function calcul_visites_site($j) {
 }
 
 // =======================================================================================================================================
-// Balise : #INTRODUCTION (surcharge)
-// =======================================================================================================================================
-// Auteur: SarkASmeL
-// Fonction : Surcharge de la fonction standard de calcul de la balise #INTRODUCTION. Permet de definir la taille en nombre de caracteres
-// =======================================================================================================================================
-//
-function introduction ($type, $texte, $chapo='', $descriptif='') {
-
-	// Personnalisable par l'utilisateur
-	$taille_intro_article = 600;
-	$taille_intro_breve = 300;
-	$taille_intro_message = 600;
-	$taille_intro_rubrique = 600;
-	
-    switch ($type) {
-		case 'articles':
-			if ($descriptif)
-				return propre($descriptif);
-			else if (substr($chapo, 0, 1) == '=')	// article virtuel
-				return '';
-			else
-				return PtoBR(propre(supprimer_tags(couper_intro($chapo."\n\n\n".$texte, $taille_intro_article))));
-			break;
-		case 'breves':
-			return PtoBR(propre(supprimer_tags(couper_intro($texte, $taille_intro_breve))));
-			break;
-		case 'forums':
-			return PtoBR(propre(supprimer_tags(couper_intro($texte, $taille_intro_message))));
-			break;
-		case 'rubriques':
-			if ($descriptif)
-				return propre($descriptif);
-			else
-				return PtoBR(propre(supprimer_tags(couper_intro($texte, $taille_intro_rubrique))));
-			break;
-	}
-}
-
-// =======================================================================================================================================
 // Balise : #AUJOURDHUI
 // =======================================================================================================================================
 // Auteur: SarkASmeL
