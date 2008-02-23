@@ -302,7 +302,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 	
 
-// CFG : items de langue de la configuration du squelette (espace privŽ)        
+// CFG : items de langue de la configuration du squelette (espace prive)        
 
 // Titre des pages
 		'cfg_titre_layout' => 'Choix du layout',
@@ -331,6 +331,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_inc_rubriques' => 'Menu des rubriques',
 		'cfg_lgd_inc_breves' => 'Liste des br&egrave;ves',
 		'cfg_lgd_inc_recherche' => 'Formulaires de recherche',
+		'cfg_lgd_inc_sites' => 'Liste des sites',
 		'cfg_lgd_inc_statsite' => 'Statistiques du site',
 		'cfg_lgd_inc_stathit' => 'Hit-parade des articles',
 		'cfg_lgd_inc_stathasard' => 'Articles al&eacute;atoires',
@@ -347,6 +348,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_inc_breves' => 'Choisissez le mod&egrave;le de liste des br&egrave;ves qui vous convient parmi ceux propos&eacute;s ci-dessous.',
 		'cfg_inf_inc_recherche_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les formulaires de recherche.',
 		'cfg_inf_inc_recherche_ext' => 'Choisissez le moteur de recherche externe que vous souhaitez ajouter en compl&eacute;ment du formulaire SPIP.',
+		'cfg_inf_inc_sites' => 'Choisissez le mod&egrave;le de liste des sites qui vous convient parmi ceux propos&eacute;s ci-dessous.',
 		'cfg_inf_inc_statsite_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les statistiques du site.',
 		'cfg_inf_inc_stathit_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer le hit-parade des articles les plus visit&eacute;s du site.',
 		'cfg_inf_inc_stathasard_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer la noisette des articles choisis au hasard.',
@@ -387,6 +389,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_inc_recherche_ext_3' => 'Yahoo',
 		'cfg_lbl_inc_recherche_ext_4' => 'MSN Search',
 		'cfg_lbl_inc_recherche_ext_5' => 'Voila',
+		'cfg_lbl_inc_sites_1' => 'Un bloc par site (et affichage des articles syndiqu&eacute;s)',
+		'cfg_lbl_max_art_synd' => 'Nombre maximal d\'articles affich&eacute;s dans la liste des articles syndiqu&eacute;s',
+		'cfg_lbl_inc_sites_2' => 'Un bloc pour toutes les sites',
+		'cfg_lbl_max_sites' => 'Nombre maximal de sites dans la liste',
 		'cfg_lbl_inc_badges_rss' => 'Fil RSS du site',
 		'cfg_lbl_inc_badges_sarka' => 'Squelette Sarka-SPIP',
 		'cfg_lbl_inc_badges_spip' => 'Motoris&eacute; par SPIP',
