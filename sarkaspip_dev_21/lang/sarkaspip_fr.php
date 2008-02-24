@@ -1,12 +1,12 @@
 <?php
-
 // Ceci est un fichier langue de SPIP pour le squelette Sarka-SPIP (http://sarka-spip.com/)
-// Les chaînes de caractères sont regroupées suivant le fichier qui les utilise le plus
+// Les chaines de caracteres sont regroupees par espace (public et prive) et classes par 
+// ordre alphabetique pour l'espace public
 
-	
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-	
+
+// Chaines de l'espace public	
 //#
 	  
 		'0_article' => 'Aucun article',
@@ -303,18 +303,20 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 
 // CFG : items de langue de la configuration du squelette (espace prive)        
-
 // Titre des pages
-		'cfg_titre_layout' => 'Choix du layout',
-		'cfg_titre_noisettes' => 'Choix et agencement des noisettes',
-		'cfg_titre_agenda' => 'Configuration de l\'agenda',
+		'cfg_titre_accueil' => 'Sarka-SPIP - Accueil',
+		'cfg_titre_layout' => 'Sarka-SPIP - Choix du layout',
+		'cfg_titre_noisettes' => 'Sarka-SPIP - Choix et agencement des noisettes',
+		'cfg_titre_agenda' => 'Sarka-SPIP - Configuration de l\'agenda',
 
 // Titre des liens des pages
-		'cfg_lien_layout' => 'Layout',
-		'cfg_lien_noisettes' => 'Noisettes',
-		'cfg_lien_agenda' => 'Agenda',
+		'sarkaspip_accueil' => 'Accueil',
+		'sarkaspip_layout' => 'Layout',
+		'sarkaspip_noisettes' => 'Noisettes',
+		'sarkaspip_agenda' => 'Agenda',
 		
 // Descriptif des pages
+		'cfg_descr_accueil' => 'Vous &ecirc;tes sur la page d\'accueil de la configuration du squelette Sarka-SPIP.',
 		'cfg_descr_layout' => 'Le squelette Sarka-SPIP est bas&eacute; sur les layouts Gala #13 &agrave; #18 d\'Alessandro Fulciniti (<a href="http://blog.html.it/layoutgala/">Layout Gala</a>) qui permettent de jouer sur la position des colonnes navigation, centre et extra. 
 		Cette page vous permet de choisir le layout qui vous convient.',
 		'cfg_descr_noisettes' => 'Les noisettes sont des blocs d\'informations qui composent les colonnes navigation et extra. Cette page vous permet de choisir, suivant la noisette, son affichage,
@@ -322,6 +324,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_descr_agenda' => 'L\'agenda inclus dans Sarka-SPIP permet d\'afficher un listing annuel ainsi qu\'un mini calendrier mensuel. Les caract&eacute;ristiques de ces deux affichages sont configurables dans cette page.',
 
 // Titre des boites
+		'cfg_boite_accueil' => 'Accueil',
 		'cfg_boite_layout' => 'Layouts',
 		'cfg_boite_noisettes' => 'Noisettes',
 		'cfg_boite_agenda' => 'Agenda',
@@ -376,7 +379,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_layout_18' => 'Layout #18 (navigation, extra, centre)',
 		'cfg_lbl_inc_rubriques_1' => 'Menu des rubriques d&eacute;roulant',
 		'cfg_lbl_inc_rubriques_2' => 'Menu des rubriques d&eacute;pli&eacute;',
-		'cfg_lbl_inc_rubriques_3' => 'Menu des rubriques &agrave; ouverture automatique',
+		'cfg_lbl_inc_rubriques_3' => 'Menu des rubriques accord&eacute;on &agrave; ouverture automatique',
 		'cfg_lbl_inc_breves_1' => 'Un bloc par br&egrave;ve',
 		'cfg_lbl_inc_breves_2' => 'Un bloc pour toutes les br&egrave;ves (affichage de l\'introduction uniquement)',
 		'cfg_lbl_max_breves' => 'Nombre maximal de br&egrave;ves dans la liste',
