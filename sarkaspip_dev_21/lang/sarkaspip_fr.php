@@ -308,12 +308,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_titre_layout' => 'Sarka-SPIP - Choix du layout',
 		'cfg_titre_noisettes' => 'Sarka-SPIP - Choix et agencement des noisettes',
 		'cfg_titre_agenda' => 'Sarka-SPIP - Configuration de l\'agenda',
+		'cfg_titre_sommaire' => 'Sarka-SPIP - Configuration de la page sommaire',
 
 // Titre des liens des pages
 		'sarkaspip_accueil' => 'Accueil',
 		'sarkaspip_layout' => 'Layout',
 		'sarkaspip_noisettes' => 'Noisettes',
 		'sarkaspip_agenda' => 'Agenda',
+		'sarkaspip_sommaire' => 'Sommaire',
 		
 // Descriptif des pages
 		'cfg_descr_accueil' => 'Vous &ecirc;tes sur la page d\'accueil de la configuration du squelette Sarka-SPIP.',
@@ -322,12 +324,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_descr_noisettes' => 'Les noisettes sont des blocs d\'informations qui composent les colonnes navigation et extra. Cette page vous permet de choisir, suivant la noisette, son affichage,
 		son mod&egrave;le voire sa position.',
 		'cfg_descr_agenda' => 'L\'agenda inclus dans Sarka-SPIP permet d\'afficher un listing annuel ainsi qu\'un mini calendrier mensuel. Les caract&eacute;ristiques de ces deux affichages sont configurables dans cette page.',
+		'cfg_descr_sommaire' => 'Le corps de la page sommaire permet d\'afficher plusieurs blocs d\'information : l\'&eacute;dito, la liste des secteurs et les articles r&eacute;cemment publi&eacute;s. Cette page permet de configurer l\'affichage des deux derniers blocs.',
 
 // Titre des boites
 		'cfg_boite_accueil' => 'Accueil',
 		'cfg_boite_layout' => 'Layouts',
 		'cfg_boite_noisettes' => 'Noisettes',
 		'cfg_boite_agenda' => 'Agenda',
+		'cfg_boite_sommaire' => 'Sommaire',
 
 // Legendes des blocs contenus dans chaque boite
 		'cfg_lgd_layout' => 'Layout',
@@ -344,6 +348,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_agenda_pagination' => 'Agenda annuel - Pagination',
 		'cfg_lgd_agenda_tri' => 'Agenda annuel - Tri',
 		'cfg_lgd_mini_agenda' => 'Mini calendrier mensuel',
+		'cfg_lgd_sommaire_secteurs' => 'Liste des secteurs',
+		'cfg_lgd_sommaire_articles' => 'Liste des articles r&eacute;cents',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -369,6 +375,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_mini_agenda_mois' => 'Tableau des jours: vous pouvez choisir le premier jour de la semaine ainsi que l\'affichage des jours en dehors du mois courant.',
 		'cfg_inf_mini_agenda_resume' => 'R&eacute;sum&eacute; des &eacute;v&eacute;nements: vous pouvez d&eacute;finir, d\'une part, le nombre maximal d\'&eacute;v&eacute;nements affich&eacute;s, et d\'autre part, 
 		si seuls les &eacute;v&eacute;nements post&eacute;rieurs &agrave; la date courante doivent &ecirc;tre pris en compte.',
+		'cfg_inf_sommaire_secteurs' => 'Voulez-vous afficher la liste des secteurs dans la page sommaire ?',
+		'cfg_inf_sommaire_articles' => 'Voulez-vous afficher la liste des articles r&eacute;cents dans la page sommaire ? Vous pourrez ensuite choisir le nombre maximal d\'articles affich&eacute;s',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
@@ -417,6 +425,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_resume_finmois' => 'Afficher uniquement les n derniers &eacute;v&eacute;nements post&eacute;rieurs &agrave la date courante',
 		'cfg_lbl_resume_complet' => 'Afficher les n derniers &eacute;v&eacute;nements du mois',
 		'cfg_lbl_taille_resume' => 'Nombre maximal d\'&eacute;v&eacute;nements',
+		'cfg_lbl_oui' => 'Oui',
+		'cfg_lbl_non' => 'Non',
+		'cfg_lbl_max_articles_recents' => 'Nombre maximal d\'articles r&eacute;cents',
 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',

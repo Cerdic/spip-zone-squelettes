@@ -72,10 +72,14 @@ de ce squelette.
 			</B_edito>
 
 			[(#REM) <!-- Rubriques de niveau zero --> ]
-			<INCLURE{fond=noisettes/inc_secteurs}>
+			[(#CONFIG{sarkaspip_sommaire/position_secteurs, 0}|=={1}|?{' '})
+				<INCLURE{fond=noisettes/inc_secteurs}>
+			]
 
 			[(#REM) <!-- Une : derniers articles publies --> ]
-			<INCLURE{fond=noisettes/inc_articles_recents}{edito=#GET{edito}}>
+			[(#CONFIG{sarkaspip_sommaire/position_articles_recents, 1}|=={1}|?{' '})
+				<INCLURE{fond=noisettes/inc_articles_recents}{edito=#GET{edito}}>
+			]
 		
 		</BOUCLE_0_article>
 		</B_0_article>
