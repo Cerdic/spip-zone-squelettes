@@ -36,6 +36,13 @@ $GLOBALS['i18n_multiflex_fr'] = array(
 'propulse_par' => 'Propuls&eacute; par',
 'site_internet_spip' => 'Site internet de SPIP',
 
+// pour liens CFG
+'multiflex' => 'Multiflex',
+'multiflex_general' => 'Multiflex G&eacute;n&eacute;ral',
+'multiflex_couleurs' => 'Multiflex Couleurs',
+'multiflex_navigation' => 'Multiflex Navigation',
+'multiflex_layouts' => 'Multiflex Layouts',
+
 // pour cfg_multiflex
 'afficher_nombre_commentaires' => 'Afficher le nombre de commentaires',
 'apparence_layout' => 'Choix du corps&nbsp;:',
