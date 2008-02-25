@@ -1,9 +1,11 @@
 #CACHE{43200}
-<B_meteo>
 <div class="boite">
 <h4 class="icone_meteo">Météo</h4>
 
-<BOUCLE_meteo(METEO) {id_meteo?}>
+
+<BOUCLE_combien_de_meteo(METEO){1,1}>
+[(#REM)  Plions les météos s'il y en a mini deux   ]
+<BOUCLE_meteo(METEO) {tous}>
 <ul class="open">
 <li id="li_99#ID_METEO">
 <a href="javascript:void(0)" onclick="toggle('99#ID_METEO');"><img src="squelettes/images/menu/closed.gif" id="img_99#ID_METEO" alt="Météo à #VILLE" />
@@ -19,9 +21,28 @@ Météo à <span class="capitale">#VILLE</span></a>
 </li>
 </ul>
 </BOUCLE_meteo>
+</BOUCLE_combien_de_meteo>
+
+
+[(#REM)  déplions la météo s'il n'y en a qu'une   ]
+
+<BOUCLE_meteo2(METEO) {id_meteo?}{0,1}>
+<p>Météo à <span class="capitale">#VILLE</span></p>
+<ul class="petite_liste">
+<BOUCLE_previsions2(PREVISIONS) {id_meteo} {par date} {0,7} >
+<li>
+[(#TEMPS|icone_meteo{#CHEMIN{images/meteo/,png}}) ][(#DATE|affdate): ][(#TEMPS|traduire_meteo).]
+[ Mini:(#MINIMA)&deg;C][ maxi: (#MAXIMA)&deg;C.]<br/>
+</li>
+</BOUCLE_previsions2>
+</ul>
+</BOUCLE_meteo2>
+<//B_combien_de_meteo>
+
+
 <BOUCLE_maj(METEO) {0,1}>
 [<p>Prévisions du (#MAJ|affdate)</p>]
 </BOUCLE_maj>
 
 </div>
-</B_meteo>   
+ 
