@@ -20,13 +20,13 @@
 	<div class="tiers">
 	<BOUCLE_nous(ARTICLES) {titre_mot=page_nous} {0,1} {doublons}>
 	<div class="menu" id="nous">
-		<BOUCLE_nous_doc(DOCUMENTS){id_article} {extension IN jpg,gif,png} {par date} {0,1}>
+		[(#LOGO_ARTICLE||?{
 			<h2 class="invisible">#TITRE</h2>
-			<a href="#URL_ARTICLE"[ title="(#_nous:TITRE|couper{80}|texte_backend)"]>[(#FICHIER|copie_locale|image_passe_partout{220,*}|image_recadre{220,*,center}|inserer_attribut{class,spip_logos})]</a>
-		</BOUCLE_nous_doc>
+			<a href="#URL_ARTICLE"[ title="(#_nous:TITRE|couper{80}|texte_backend)"]>[(#LOGO_ARTICLE||image_passe_partout{220,*}|image_reduire{220}|image_recadre{220,*,center}|inserer_attribut{class,spip_logos})]</a>
+		,
 			<h2>#TITRE</h2>
 			[<p>(#INTRODUCTION|PtoBR)</p>]
-		<//B_nous_doc>
+		})]
 		<ul>
 			<li class="plus"><a href="#URL_ARTICLE" title="<:nous_qui:>">#TITRE</a></li>
 			<li class="plus"><BOUCLE_contact(ARTICLES){titre_mot=page_contact}{0,1}><a href="#URL_ARTICLE">#TITRE</a></BOUCLE_contact><a href="#URL_PAGE{page_contact}"><:contact:></a><//B_contact></li>
