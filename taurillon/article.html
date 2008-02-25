@@ -1,0 +1,136 @@
+#CACHE{86400}
+<BOUCLE_article_principal(ARTICLES) {id_article}>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#TITRE|supprimer_numero|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+<INCLURE{fond=inc/inc-head}>
+</head>
+
+<body class="page_article">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc/inc-entete}{id_article}>
+
+	<div id="conteneur">
+
+		<div class="cartouche">
+
+		[(#REM) Fil d'Ariane ]
+
+		<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}{id_parent!==0}> > <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane>[ > (#TITRE|supprimer_numero|couper{80})]</div>
+
+			#DEBUT_SURLIGNE
+			<h1 class="#EDIT{titre} titre">[(#TITRE|supprimer_numero|image_typo{police=LiberationSerif-Regular.ttf,couleur=ff3300,largeur=960,taille=33,hauteur_ligne=45})]</h1>
+
+
+			[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
+			[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
+
+			#FIN_SURLIGNE
+
+			<small>[(#DATE_REDAC|?{[<span style="text-transform:capitalize;">(#DATE_REDAC|nom_jour)</span> ][(#DATE_REDAC|affdate)],[<span style="text-transform:capitalize;">(#DATE|nom_jour)</span> ][(#DATE|affdate)]})]<B_auteurs> <:par_auteur:>&nbsp;<BOUCLE_auteurs(AUTEURS){id_article}{", "}><a href="[(#URL_AUTEUR|parametre_url{lang,#LANG})]">#NOM</a></BOUCLE_auteurs></small> #NOTATION
+
+			[(#REM) Inclure le modele des liens de traductions ]
+			#MODELE{article_traductions}
+
+		</div>
+
+		[(#REM) Contenu principal : contenu de l'article ]
+		<div id="contenu">
+			#DEBUT_SURLIGNE
+			[<div class="#EDIT{texte} texte">[(#LOGO_ARTICLE||image_reduire{200,200})](#TEXTE|image_reduire{520,0})</div>]
+			[<p class="#EDIT{hyperlien} lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+			#FIN_SURLIGNE
+			<br class="nettoyeur" />
+
+			<ul class="widgets">
+					[(#REM) Voter sur Wikio]
+						[(#LANG|=={fr}|?{<li><a href="http://www.wikio.fr/vote[?url=(#SELF|url_absolue)]" target="_tab" title="Voter sur Wikio" ><img src="http://www.wikio.fr/shared/img/vote/wikio4.gif" /></a></li>,""})]
+						[(#LANG|=={de}|?{<li><a href="http://www.wikio.de/vote[?url=(#SELF|url_absolue)]" target="_tab" title="Vote on Wikio"><img src="http://www.wikio.fr/shared/img/vote/wikio4.gif" /></a></li>,""})]
+						[(#LANG|=={it}|?{<li><a href="http://www.wikio.it/vote[?url=(#SELF|url_absolue)]" target="_tab" title="Vote on Wikio"><img src="http://www.wikio.fr/shared/img/vote/wikio4.gif" /></a></li>,""})]
+						[(#LANG|=={en}|?{<li><a href="http://www.wikio.com/vote[?url=(#SELF|url_absolue)]" target="_tab" title="Vote on Wikio"><img src="http://www.wikio.fr/shared/img/vote/wikio4.gif" /></a></li>,""})]
+				</ul>
+
+			[(#REM) Portfolio : album d'images ]
+			<B_documents_portfolio>
+			<div id="documents_portfolio">
+				<h2><:info_portfolio:></h2>
+				<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
+				[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|supprimer_numero|couper{80}|texte_backend)"]>(#FICHIER|copie_locale|image_reduire{0,60}|inserer_attribut{alt,[(#TITRE|supprimer_numero|couper{80}|texte_backend)]})</a>]
+				</BOUCLE_documents_portfolio>
+			</div>
+			</B_documents_portfolio>
+			<BOUCLE_afficher_document(DOCUMENTS) {id_document} {id_article} {mode=document}{extension IN png,jpg,gif}>
+			<div class="spip_documents spip_documents_center" id="document_actif">
+				#EMBED_DOCUMENT
+				[<div class="#EDIT{titre} spip_doc_titre">(#TITRE|supprimer_numero)</div>]
+				[<div class="#EDIT{descriptif} spip_doc_descriptif">(#DESCRIPTIF)</div>]
+			</div>
+			</BOUCLE_afficher_document>
+
+			[<div class="ps">#DEBUT_SURLIGNE<div class="#EDIT{ps}">(#PS)</div>#FIN_SURLIGNE</div>]
+
+			[(#REM) Autres documents joints a l'article ]
+			<B_documents_joints>
+			<div id="documents_joints">
+				<h2><:titre_documents_joints:></h2>
+				<ul>
+					<BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {par num titre, date} {doublons}>
+					<li>
+						<div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|supprimer_numero|sinon{<:info_document:>})]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
+						[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
+					</li>
+					</BOUCLE_documents_joints>
+				</ul>
+			</div>
+			</B_documents_joints>
+			
+			[(#REM) Petition :
+			La petition ayant une PAGINATION il faut absolument lui passer SELF]
+			[(#PETITION|?{' '})
+				<INCLURE{fond=inc/inc-petition}{id_article}{self=#SELF}>
+			]
+			[<div class="notes"><h2><:info_notes:></h2>#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
+
+			[(#REM) Forum de l'article ]
+			<a href="#forum" name="forum" id="forum"></a>
+			[<h2 class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a></h2>]
+			<INCLURE{fond=inc/inc-forum}{id_article}>
+
+		</div><!-- fin contenu -->
+
+
+		[(#REM) Menu de navigation laterale ]
+		<div id="navigation">
+
+			<INCLURE {fond=inc/inc-auteur}{id_article}{lang}>
+
+			[(#REM) Articles dans la meme rubrique ]
+			<B_articles_rubrique>
+			<div class="breves">
+				<h2 class="menu-titre"><a href="#URL_RUBRIQUE"><:meme_rubrique:></a></h2>
+				<ul>
+					<BOUCLE_articles_rubrique(ARTICLES){exclus}{id_rubrique} {par date}{inverse}{0,10}>
+					[<li><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>(#TITRE|supprimer_numero)</a></li>]
+					</BOUCLE_articles_rubrique>
+				</ul>
+			</div>
+			</B_articles_rubrique>
+
+			[(#REM) Menu de navigation mots-cles ]
+			<INCLURE {fond=inc/inc-meme-theme}{id_article}{lang}>
+
+		</div><!-- fin navigation -->
+
+	</div><!-- fin conteneur -->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc/inc-pied}{id_article}{skel=#SQUELETTE}>
+
+</div><!-- fin page -->
+</body>
+</html>
+</BOUCLE_article_principal>

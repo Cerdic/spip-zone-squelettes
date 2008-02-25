@@ -1,0 +1,48 @@
+<div id="header">
+#FORMULAIRE_RECHERCHE
+
+[(#REM) Afficher le logo OU le titre du site ]
+<a rel="start" href="[(#URL_SITE_SPIP|parametre_url{lang,#LANG})]/">
+[(#LOGO_SITE_SPIP||?{
+
+	[(#LOGO_SITE_SPIP
+		||image_reduire{500,100}
+		|inserer_attribut{alt,[(#NOM_SITE_SPIP|attribut_html)]}
+		|inserer_attribut{title,[(#NOM_SITE_SPIP|attribut_html)]}
+		)]
+	<h1 class="invisible">#NOM_SITE_SPIP</h1>
+	,
+	<a  rel="start" href="[(#URL_SITE_SPIP|parametre_url{lang,#LANG})]/"><span id="nom_site_spip"><h1>#NOM_SITE_SPIP</h1></span></a>
+})]
+</a>
+
+
+<br class="nettoyeur" />
+</div>
+
+<div id="tools">
+
+<INCLURE{fond=inc/inc-menu-lang}>
+
+		<a href="#content" title="<:contenu:>"><span class="invisible"><:contenu:></span></a>
+		<a href="#URL_PAGE{plan,lang=#LANG}"><:plan_site:></a> —  
+		<BOUCLE_toolsrub(RUBRIQUES){id_mot=121}{lang}>
+			<BOUCLE_tools(ARTICLES){id_rubrique}{" — "}{par titre}>
+			[<a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a>] 
+			</BOUCLE_tools> — 
+		</BOUCLE_toolsrub>
+		[(#REM)<a href="#URL_PAGE{auteurs,lang=#LANG}"><span style="text-transform:capitalize;"><:auteurs:></span></a> —  ]
+		<a href="#URL_PAGE{forums,lang=#LANG}"><span style="text-transform:capitalize;"><:Forum:></span></a> —  
+		<a href="#URL_PAGE{backend}" title="RSS"><img src="#CHEMIN{i/feed.png}" border="0" align="absmiddle" alt="RSS"></a>
+
+</div>
+
+<B_rubriques>
+<ul id="menu2">
+	<BOUCLE_rubriques(RUBRIQUES){racine}{lang?}>
+		<BOUCLE_hierarchie(RUBRIQUES){id_parent}{titre!==^[0.]}{" | "}>
+			[<li><a href="#URL_RUBRIQUE" [class="(#EXPOSE)"]>(#TITRE|supprimer_numero)</a></li>]
+		</BOUCLE_hierarchie>
+	</BOUCLE_rubriques>
+</ul>
+</B_rubriques>

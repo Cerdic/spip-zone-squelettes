@@ -1,0 +1,16 @@
+[(#REM) Nouveautés par langue ]
+<BOUCLE_secteurs(RUBRIQUES){racine}{par num titre}{!lang}>
+<B_art_langues>
+<div class="breves">
+	[<h2 class="menu-titre"><a href="[(#SELF|parametre_url{lang,#LANG})]">(#_secteurs:TITRE|supprimer_numero|image_typo{police=LiberationSerif-Bold.ttf,couleur=008000,largeur=300,taille=22,hauteur_ligne=22})</a></h2>]
+	<dl>
+	<BOUCLE_art_langues(ARTICLES){branche}{par date}{inverse} {0,2}{doublons}>
+		<dt>[<a href="#URL_ARTICLE" class="spip_in">(#TITRE|supprimer_numero)</a>]
+		<br /><em>[[<span style="text-transform:capitalize;">(#DATE|nom_jour)</span>] (#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</em></dt>
+		<dd>[(#LOGO_ARTICLE|left|#URL_ARTICLE|image_reduire{54,54})][<a href="#URL_ARTICLE">(#INTRODUCTION|couper{170})</a>]
+		<br class="nettoyeur" /></dd>
+	</BOUCLE_art_langues>
+	</dl>
+</div>
+</B_art_langues>
+</BOUCLE_secteurs>

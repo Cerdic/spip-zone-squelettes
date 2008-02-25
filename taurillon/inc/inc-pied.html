@@ -1,0 +1,99 @@
+<br class="nettoyeur" />
+<B_rubriques>
+<ul id="menu3">
+	<BOUCLE_rubriques(RUBRIQUES){racine}{lang?}>
+		<BOUCLE_hierarchie(RUBRIQUES){id_parent}{titre!==^[0.]}{" | "}>
+			[<li><a href="#URL_RUBRIQUE" [class="(#EXPOSE)"]>(#TITRE|supprimer_numero)</a></li>]
+		</BOUCLE_hierarchie>
+	</BOUCLE_rubriques>
+</ul>
+</B_rubriques>
+
+<div id="listes-pied">
+
+	[(#REM) PREMIERE COLONNE]
+	<div class="bloc">
+		<h3><:derniers_commentaires:></h3>
+
+	   [(#REM) Liens des forums ]
+	   <B_forums_liens>
+		<ul>
+		   <BOUCLE_forums_liens(FORUMS){plat} {par date}{inverse} {0,5}>
+			[<li>#NOM : <a href=#URL_ARTICLE>(#TITRE|supprimer_numero|couper{90})</a></li>]
+		   </BOUCLE_forums_liens>
+		 </ul>
+	   </B_forums_liens>
+	</div>
+
+	[(#REM) DEUXIEME COLONNE]
+
+	<div class="bloc">
+		<!-- Articles populaires-->
+		<B_pop>
+		<h3><:articles_populaires:></h3>
+			<ul>
+					<BOUCLE_pop(ARTICLES){!par popularite}{0,5}{lang}>
+					<li>[<a href=#URL_ARTICLE>(#TITRE|supprimer_numero|couper{90})</a>]
+						<BOUCLE_article_decompte_popularite(ARTICLES){id_article}>
+											<?php
+												$nombre = "#POPULARITE_ABSOLUE";
+												if ( $nombre >= 3 ) 
+												{ 
+													$texte = $nombre."&nbsp;"."<multi>[en]visits a day[fr]visiteurs par jour[it]visite al giorno</multi>";
+													echo $texte;
+												}
+												else {}
+											?>
+						</BOUCLE_article_decompte_popularite></li>
+					</BOUCLE_pop>
+			</ul>
+		</B_pop>
+		<!-- Fin Articles populaires-->
+	</div>
+	[(#REM) TROISIEME COLONNE]
+	
+	<div class="bloc">
+
+		<h3><:notes:></h3>
+
+	   [(#REM) Articles les mieux notés ]
+	   <B_not>
+		<ul>
+		   <BOUCLE_not(NOTATIONS_ARTICLES){par note_ponderee}{inverse}{0,5}>
+		   <BOUCLE_art_not(ARTICLES){id_article}{lang}>
+		   <li>[<a href="#URL_ARTICLE">(#TITRE|supprimer_numero|couper{80})</a>]&nbsp;(#NOTE_PONDEREE/5)</li>
+		   </BOUCLE_art_not>
+		   </BOUCLE_not>
+		 </ul>
+	   </B_not>
+
+	</div>
+	<br class="nettoyeur" />
+</div>
+<div id="footer">
+	<small>
+		<a href="#URL_PAGE{backend}" title="<:syndiquer_site:>"><img src="#CHEMIN{feed.png}" alt="<:icone_suivi_activite:>" width="16" height="16" class="format_png" />&nbsp;RSS&nbsp;2.0</a>
+		| <a href="#URL_PAGE{opml}" title="OPML"><img src="#CHEMIN{i/opml.png}" alt="" width="16" height="16" class="format_png" />&nbsp;OPML&nbsp;1.1</a>
+		| <a href="#URL_PAGE{plan}"><:plan_site:></a>
+		| <a href="ecrire/"><:espace_prive:></a>
+		| <a href="http://www.spip.net/" title="<:site_realise_avec_spip:>"><img src="#CHEMIN{spip.png}" alt="SPIP" width="48" height="16" class="format_png" /></a>
+		| <a href="#ENV{skel}" title="<:voir_squelette:>" rel="nofollow"><:squelette:></a>
+	</small>
+</div>
+
+</div>
+
+[(#REM)
+	Cette balise permet de deporter les calculs lourds (indexation etc)
+	dans une image cachee, ce qui evite de ralentir l'affichage des pages.
+]#SPIP_CRON
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-2199395-5");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>

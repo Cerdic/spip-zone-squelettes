@@ -1,0 +1,31 @@
+[(#REM)
+	Barre de navigation, ouverte sur la hierarchie courante
+
+	On fait un plan, et, quand on avance vers une rubrique,
+	on l'affiche si son parent est expose ou est la racine du site. ]
+
+<B_rubriques>
+<div class="rubriques">
+<map  title="Menu">
+	<a href="#content" title="<:skipmenu:>"><span class="invisible"><:skipmenu:></span></a>
+	<h2 class="invisible"><:rubriques:></h2>
+	<ul>
+	<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
+		<li>
+			<a href="[(#URL_SITE_SPIP|parametre_url{lang,#LANG})]"[ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero|couper{80}|image_typo{police=LiberationSerif-Regular.ttf,couleur=3366CC,largeur=300,taille=14,hauteur_ligne=14,align=center})]</a>
+
+			<B_sous_rubriques>
+			<ul>
+				<BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par num titre, titre}{titre!==^[0.]}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}>#EXPOSE{' '}</BOUCLE_test_expose>
+					<li><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|supprimer_numero|couper{80})]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
+				</B_test_expose></BOUCLE_sous_rubriques>
+			</ul>
+			</B_sous_rubriques>
+
+		</li>
+	</BOUCLE_rubriques>
+
+	</ul>
+</map>
+</div>
+</B_rubriques>

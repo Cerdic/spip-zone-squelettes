@@ -1,0 +1,114 @@
+#CACHE{86400}
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title><:derniers_commentaires:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+<INCLURE{fond=inc/inc-head}>
+</head>
+
+<body class="page_article">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc/inc-entete}{id_article}>
+
+	<div id="conteneur">
+
+		<div class="cartouche">
+
+		[(#REM) Fil d'Ariane ]
+
+
+		<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> > <:derniers_commentaires:></div>
+
+			#DEBUT_SURLIGNE
+			<h1 class="#EDIT{titre} titre"><:derniers_commentaires|image_typo{police=LiberationSerif-Regular.ttf,couleur=ff3300,largeur=960,taille=33,hauteur_ligne=45}:></h1>
+
+		</div>
+
+		[(#REM) Contenu principal : derniers commentaires ]
+		<div id="contenu">
+		
+		<B_article_derniers_commentaires>
+		<div class="liste-articles">
+		<ul>
+		<BOUCLE_article_derniers_commentaires(FORUMS){doublons}{plat}{par date}{inverse}{pagination}>
+					<li>
+				[<h3 class="spip"><a href="#URL_SITE_SPIP/article.php3?id_article=#ID_ARTICLE#forum#ID_FORUM"> (#TITRE|supprimer_numero)</a></h3>]
+				<p>[<span style="text-transform:capitalize;">(#DATE|nom_jour)</span> ][(#DATE|affdate)][, <:par_auteur:> (#NOM)]</p>
+					<div class="texte">									<BOUCLE_logo_trad(ARTICLES){id_article}>
+						<BOUCLE_logo_origine(ARTICLES){traduction}{origine_traduction}{doublons}>
+								[(#LOGO_ARTICLE||reduire_image{100,75})]
+						</BOUCLE_logo_origine>
+						</B_logo_origine>
+								[(#LOGO_ARTICLE||reduire_image{100,75})]
+						<//B_logo_origine>
+					</BOUCLE_logo_trad>#TEXTE</div><br class="nettoyeur">
+				</li>
+		</BOUCLE_article_derniers_commentaires>
+		</ul>
+		[<p class="pagination">(#PAGINATION{page_precedent_suivant})&nbsp;|&nbsp;<a href="#URL_PAGE{backend-forum}">RSS <:forum:></a></p>]
+		</div>
+		</B_article_derniers_commentaires>
+		
+		<div align="center"><img src=#CHEMIN{google-maquette2.png}></div>
+
+[(#REM)<script type="text/javascript"><!--
+google_ad_client = "pub-4261716448531144";
+//468x60, date de création 11/12/07
+google_ad_slot = "2721415778";
+google_ad_width = 468;
+google_ad_height = 60;
+//--></script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>]
+
+
+		</div><!-- fin contenu -->
+
+
+		[(#REM) Menu de navigation laterale ]
+		<div id="navigation">
+		<INCLURE{fond=inc/inc-nouveautes}>
+			<img src=#CHEMIN{google-maquette.png}>
+			
+			[(#REM)
+			<script type="text/javascript"><!--
+			google_ad_client = "pub-4261716448531144";
+			//336x280, date de création 11/12/07
+			google_ad_slot = "2866180415";
+			google_ad_width = 336;
+			google_ad_height = 280;
+			//--></script>
+			<script type="text/javascript"
+			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+			</script> ]
+
+			[(#REM) Articles dans la meme rubrique ]
+			<B_articles_rubrique>
+			<div class="breves">
+				<h2 class="menu-titre"><a href="#URL_RUBRIQUE"><:meme_rubrique:></a></h2>
+				<ul>
+					<BOUCLE_articles_rubrique(ARTICLES){exclus}{id_rubrique} {par date}{inverse}{0,10}>
+					[<li><a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>(#TITRE|supprimer_numero)</a></li>]
+					</BOUCLE_articles_rubrique>
+				</ul>
+			</div>
+			</B_articles_rubrique>
+
+			[(#REM) Menu de navigation mots-cles ]
+			<INCLURE {fond=inc/inc-meme-theme}{id_article}{lang}>
+
+
+		</div><!-- fin navigation -->
+
+	</div><!-- fin conteneur -->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc/inc-pied}{id_article}{skel=#SQUELETTE}>
+
+</div><!-- fin page -->
+</body>
+</html>

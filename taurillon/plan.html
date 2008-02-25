@@ -1,0 +1,135 @@
+#CACHE{7200}
+<BOUCLE_secteur(RUBRIQUES){racine}{lang}>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title><:plan_site:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+<INCLURE{fond=inc/inc-head}>
+<meta name="robots" content="none" />
+</head>
+
+<body class="page_plan">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc/inc-entete}>
+
+	<div id="conteneur">
+			<div class="cartouche">
+
+			[(#REM) Fil d'Ariane ]
+			<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> > <:plan_site:></div>
+
+				<h1 class="titre"><:plan_site|image_typo{police=LiberationSerif-Regular.ttf,couleur=ff3300,largeur=960,taille=33,hauteur_ligne=45}:></h1>
+			</div>
+
+
+		[(#REM) Le plan de site ci-dessous est a adapter selon les besoins. En particulier, on n'aura pas necessairement besoin de tous les elements (sous-rubriques, articles, breves et sites) ]
+
+		<div id="contenu">
+
+				<BOUCLE_secteurs(RUBRIQUES){lang}{racine}{par titre}{titre!==^[0.]}>
+
+				[<h2><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a></h2>]
+
+				[(#REM) Articles et sous-rubriques ]
+
+				<div class="contre-encart">
+
+					<B_articles_racine>
+					<h3 class="invisible"><:articles:></h3>
+					<ul>
+						<BOUCLE_articles_racine(ARTICLES){lang}{id_rubrique} {par titre}{titre!==^[0.]}>
+						[<li><a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a></li>]
+						</BOUCLE_articles_racine>
+					</ul>
+					</B_articles_racine>
+
+					<B_rubriques>
+					<ul>
+						<BOUCLE_rubriques(RUBRIQUES){lang}{id_parent} {par titre}{titre!==^[0.]}>
+						[<li><strong><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a></strong>]
+
+							<B_articles>
+							<ul>
+								<BOUCLE_articles(ARTICLES){lang}{id_rubrique} {par titre}{titre!==^[0.]}>
+								[<li><a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a></li>]
+								</BOUCLE_articles>
+							</ul>
+							</B_articles>
+
+							<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+
+						</li>
+						</BOUCLE_rubriques>
+
+					</ul>
+					</B_rubriques>
+
+				</div><!-- fin contre-encart -->
+
+				<div class="encart">
+
+				[(#REM) Breves ]
+				<B_breves>
+				<div class="breves">
+					<h3 class="menu-titre"><:breves|image_typo{police=LiberationSerif-Bold.ttf,couleur=444444,largeur=200,taille=20,hauteur_ligne=25,align=center}:></h3>
+					<ul>
+						<BOUCLE_breves(BREVES){lang}{id_secteur} {par date}{inverse}>
+						[<li><a href="#URL_BREVE">(#TITRE|supprimer_numero)</a></li>]
+						</BOUCLE_breves>
+					</ul>
+				</div>
+				</B_breves>
+
+				[(#REM) Sur le Web ]
+				<B_sites>
+				<div class="syndic">
+					<h3 class="menu-titre"><:sites_web|image_typo{police=LiberationSerif-Bold.ttf,couleur=444444,largeur=200,taille=20,hauteur_ligne=25,align=center}:></h3>
+					<ul>
+						<BOUCLE_sites(SITES) {id_secteur} {par nom_site}>
+						<li><a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a></li>
+						</BOUCLE_sites>
+					</ul>
+				</div>
+				</B_sites>
+
+				</div><!-- fin encart -->
+
+				</BOUCLE_secteurs>
+
+		</div><!-- fin contenu -->
+
+		[(#REM) Menu de navigation laterale ]
+		<div id="navigation">
+
+		<INCLURE{fond=inc/inc-nouveautes}>
+
+				[(#REM) Mots-clés thèmes ]
+				<div class="divers">
+					#MODELE{mots-theme}
+				</div>
+				[(#REM) Mots clés pays ]
+				<div class="divers">
+					#MODELE{mots-pays}
+				</div>
+
+				<BOUCLE_friends(SITES){branche}{id_mot=116}>
+				[<a href="#URL_SITE" class="spip_out">(#LOGO_SITE||image_reduire{250,100})<a><br />]
+				</BOUCLE_friends>
+
+			[(#REM) Inscription au site ]
+			#FORMULAIRE_INSCRIPTION
+
+		</div><!-- fin navigation -->
+
+	</div><!-- fin conteneur -->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc/inc-pied}{skel=#SQUELETTE}>
+
+</div><!-- fin page -->
+</body>
+</html>
+</BOUCLE_secteur>

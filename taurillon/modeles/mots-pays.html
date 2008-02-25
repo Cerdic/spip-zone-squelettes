@@ -1,0 +1,24 @@
+[(#REM) Liste des mots clés pays ]
+
+	<BOUCLE_GR_mots_pays(GROUPES_MOTS){id_groupe=13}{par titre}{'<br />'}>
+	<BOUCLE_max_pays(MOTS){tout}{id_groupe}>
+		   <BOUCLE_max_art_pays(ARTICLES){id_mot}> 
+		   </BOUCLE_max_art_pays> 
+		   [(#_max_art_pays:TOTAL_BOUCLE|filtre_max{total_#ID_GROUPE}|noop)] 
+		   </B_max_art_pays>
+	</BOUCLE_max_pays>
+
+	<h2 class="menu-titre"><:pays|image_typo{police=LiberationSerif-Bold.ttf,couleur=008000,largeur=300,taille=22,hauteur_ligne=22,align=center}:></h2>
+	<B_aff_pays>
+	<p class="tags">
+	<BOUCLE_aff_pays(MOTS){par titre}{id_groupe}>
+		   <BOUCLE_aff_art_pays(ARTICLES){id_mot}>
+		   </BOUCLE_aff_art_pays>
+		   <span class="tag_epaisseur_[(#_aff_pays:COMPTEUR_BOUCLE|alterner{'1','2','3'})]">
+		   [<a href="[(#URL_MOT|parametre_url{lang,#LANG})]"  class="tag_taille_(#_aff_art_pays:TOTAL_BOUCLE|filtre_max{total_#ID_GROUPE}|coef{#_aff_art_pays:TOTAL_BOUCLE,4}|alterner{'1','2','3','4'})]" title="#_aff_art_pays:TOTAL_BOUCLE  [(#_aff_art_pays:TOTAL_BOUCLE|>{1}|?{' articles',' article'})]">#TITRE</a>
+		   </span>
+		   </B_aff_art_pays>
+	</BOUCLE_aff_pays>
+	</p>
+	</B_aff_pays>
+	</BOUCLE_GR_mots_pays>

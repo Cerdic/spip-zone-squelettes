@@ -1,0 +1,79 @@
+#CACHE{86400}
+<BOUCLE_mot_principal(MOTS) {id_mot} {doublons}>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#TITRE|supprimer_numero|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF|couper{150}|textebrut)" />]
+<INCLURE{fond=inc/inc-head}>
+[(#REM) Lien vers le flux RSS du mot cle ]
+<link rel="alternate" type="application/rss+xml" title="[(#TITRE|supprimer_numero|textebrut|texte_backend)]" href="[(#URL_PAGE{backend}|parametre_url{id_mot,#ID_MOT})]" />
+</head>
+
+<body class="page_mot">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc/inc-entete}>
+
+	<div id="conteneur">
+
+			<div class="cartouche">
+
+			[(#REM) Fil d'Ariane ]
+			<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> > <:mots_clefs:><BOUCLE_ariane(GROUPES_MOTS){id_groupe}> > [(#TITRE|supprimer_numero|couper{80})]</BOUCLE_ariane>[ > (#TITRE|supprimer_numero|couper{80})]</div>
+
+				[(#LOGO_MOT||image_reduire{200,200})]
+				<h1 class="#EDIT{titre} titre">[(#TITRE|supprimer_numero|image_typo{police=LiberationSerif-Regular.ttf,couleur=ff3300,largeur=960,taille=33,hauteur_ligne=45})]</h1>
+			</div>
+
+		[(#REM) Contenu principal : contenu du mot-cle ]
+		<div id="contenu">
+
+			[<div class="#EDIT{texte} chapo">(#TEXTE)</div>]
+
+			<br class="nettoyeur" />
+
+			[(#REM) Articles lies au mot-cle ]
+			<B_articles>
+
+				<div class="liste-articles">
+					#ANCRE_PAGINATION
+					<h2 class="invisible"><:articles:></h2>
+					<ul>
+						<BOUCLE_articles(ARTICLES) {id_mot} {par popularite}{inverse} {pagination 10}>
+						<li>
+						[<h3 class="titre"><a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a></h3>]
+						<small>[(#DATE|affdate_jourcourt)]<B_auteurs> <:par_auteur:>&nbsp;<BOUCLE_auteurs(AUTEURS){id_article}{", "}><a href="[(#URL_AUTEUR|parametre_url{lang,#LANG})]">#NOM</a></BOUCLE_auteurs></small></li>
+						</BOUCLE_articles>
+					</ul>
+					[<p class="pagination">(#PAGINATION)</p>]
+				</div>
+
+			</B_articles>
+
+		</div><!-- fin contenu -->
+
+		[(#REM) Menu de navigation laterale ]
+		<div id="navigation">
+
+				[(#REM) Mots-clés thèmes ]
+				<div class="divers">
+					#MODELE{mots-theme}
+				</div>
+				[(#REM) Mots clés pays ]
+				<div class="divers">
+					#MODELE{mots-pays}
+				</div>
+
+		</div><!-- fin navigation -->
+
+	</div><!-- fin conteneur -->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc/inc-pied}{skel=#SQUELETTE}>
+
+</div><!-- fin page -->
+</body>
+</html>
+</BOUCLE_mot_principal>
