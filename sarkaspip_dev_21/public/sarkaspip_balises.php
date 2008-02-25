@@ -116,7 +116,7 @@ function balise_RUBRIQUE_SPECIALISEE($p) {
 
 function calcul_rubrique_specialisee($mot) {
 
-	static $mots_reserves = array('agenda', 'galerie', 'annonce');
+	static $mots_reserves = array('agenda', 'galerie', 'annonce', 'herbier');
 	$id = NULL;
 
 	if (in_array($mot, $mots_reserves)) {

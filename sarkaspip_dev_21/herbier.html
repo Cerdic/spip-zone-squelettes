@@ -1,0 +1,105 @@
+[(#REM) <!--
+Squelette Sarka-SPIP
+Copyright (C) 2005-2007 - Collectif Sarka-SPIP - http://sarka-spip.com
+
+Ce programme est libre, vous pouvez le redistribuer et/ou le modifier selon les termes
+de la Licence Publique Generale GNU publiee par la Free Software Foundation (version 2
+ou bien toute autre version ulterieure choisie par vous).
+
+Ce programme est distribue car potentiellement utile, mais SANS AUCUNE GARANTIE, ni
+explicite ni implicite, y compris les garanties de commercialisation ou d'adaptation
+dans un but specifique. Reportez-vous a la Licence Publique Generale GNU pour plus de details.
+
+Vous devez avoir recu une copie de la Licence Publique Generale GNU en meme temps que ce programme;
+si ce n'est pas le cas, ecrivez a la Free Software Foundation, Inc., 59 Temple Place, Suite 330,
+Boston, MA 02111-1307, Etats-Unis.
+-->
+
+<!--
+CREDITS
+
+Le squelette Sarka-SPIP est realise par un collectif dont les membres sont les suivants:
+
+- Toufik Stouky    alias  SarkAFeeK
+- Sylvain Bellego  alias  SarkALeoN
+- Xavier Le Ho     alias  SarkARchimeD
+- Eric Lupinacci   alias  SarkASmeL
+
+Nous tenons aussi a remercier tous les utilisateurs qui nous ont fait confiance depuis les 
+premiers pas du squelette et qui continuent aujourd'hui a nous apporter leur soutien et leurs idees.
+Un grand merci, donc, a celles et ceux qui ont contribue (et qui vont contribuer) a l'amelioration
+de ce squelette.
+-->]
+
+<!--Squelette Sarka-SPIP - Copyright (C) 2005-2007 - Collectif Sarka-SPIP - http://sarka-spip.com-->
+
+#CACHE{86400}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="#LANG">
+	<INCLURE{fond=noisettes/header}>
+<body dir="#LANG_DIR" onload="setHover()">
+<div id="container">
+<div id="header">
+	[(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
+		<INCLURE{fond=noisettes/bandeau}>
+	
+	[(#REM) <!-- =========================== ZONE CHEMIN DE NAVIGATION ============================= --> ]
+		<INCLURE{fond=noisettes/chemin}>
+</div> <!-- fin de header-->
+
+<div id="wrapper">
+	<div id="content">
+        <div class="intitulePage"><:sarkaspip:herbier_sites:></div>	
+
+		<div id="herbier" class="plan">
+			<B_herbier>
+				#ANCRE_PAGINATION
+				<div class="bande-pagination">#PAGINATION</div>
+				<hr />
+			<BOUCLE_herbier(SITES) {id_rubrique=#RUBRIQUE_SPECIALISEE{herbier}}{pagination 5}{par date}{inverse}{" <hr /> "}>
+				<p>
+					<a href="#URL_SITE"[ title="(#NOM_SITE|texte_backend)"]><img src="http://open.thumbshots.org/image.pxf?url=#URL_SITE"[ alt="(#NOM_SITE|texte_backend)"] /></a>
+					<a class="titre_art" href="#URL_SITE" title="[(#NOM_SITE)]"><span class="date">[[(#DATE|affdate{'d-m-Y'})]]</span>&nbsp;-&nbsp;[(#NOM_SITE)]</a>	
+					<div class="info-herbier">[(#DESCRIPTIF|textebrut|sinon{<:sarkaspip:msg_site_sans_descriptif:>})<br /><br />]
+						<B_categories>
+							&raquo;&nbsp;<:sarkaspip:categories:>&nbsp;:&nbsp;
+							<em>
+						<BOUCLE_categories(MOTS){id_syndic}{par titre}{", "}>
+								[<a href="#URL_PAGE{mot}&amp;id_mot=#ID_MOT" title="[(#TITRE)]">(#TITRE)</a>]
+						</BOUCLE_categories>
+							</em>
+							<br />
+						</B_categories>
+							&raquo;&nbsp;<:sarkaspip:url:>&nbsp;:&nbsp;<a href="#URL_SITE" title="[(#NOM_SITE)]"><em>[(#URL_SITE)]</em></a>
+					</div>
+					<div style="clear: both;"></div>
+				</p>
+			</BOUCLE_herbier>
+				<hr />
+				<div class="bande-pagination">#PAGINATION</div>
+			</B_herbier>
+		</div><!--herbier-->
+		
+	</div><!--content-->
+</div><!--wrapper-->
+
+<div id="navigation">
+	[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
+		<INCLURE{fond=noisettes/navigation}>
+</div>  <!--navigation-->
+
+<div id="extra">
+	[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
+	<INCLURE{fond=noisettes/extra}{id_secteur=#RUBRIQUE_SPECIALISEE{herbier}}>
+</div>
+
+<div id="footer">
+	[(#REM) <!-- ================================== ZONE PIED DE PAGE  ================================== --> ]
+		<INCLURE{fond=noisettes/footer}>
+</div>  <!--footer-->
+
+</div>
+</body>
+
+</html>
