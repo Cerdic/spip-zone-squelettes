@@ -3,7 +3,7 @@
 /***************************************************************************\
  *  SPIP, Systeme de publication pour l'internet                           *
  *                                                                         *
- *  Copyright (c) 2001-2006                                                *
+ *  Copyright (c) 2001-2008                                                *
  *  Arnaud Martin, Antoine Pitrou, Philippe Riviere, Emmanuel Saint-James  *
  *                                                                         *
  *  Ce programme est un logiciel libre distribue sous licence GNU/GPL.     *
@@ -23,22 +23,22 @@ function bouton_barre_racc($action, $img, $help, $champhelp) {
 		."\" tabindex='1000'\ntitle=\""
 		. $a
 		."\"" 
-		.(!_DIR_RESTREINT ? '' :  "\nonmouseover=\"helpline('"
-		  .addslashes($a)
+		.(test_espace_prive() ? '' :  "\nonmouseover=\"helpline('"
+		  .addslashes(str_replace('&#39;',"'",$a))
 		  ."',$champhelp)\"\nonmouseout=\"helpline('"
 		  .attribut_html(_T('barre_aide'))
 		  ."', $champhelp)\"")
 		."><img\nsrc='"
 		._DIR_IMG_ICONES_BARRE
 		.$img
-		."' height='16' width='16' align='middle' alt=' '/></a>";
+		."' style=\"height: 16px; width: 16px; background-position: center center;\" alt=\"$a\"/></a>";
 }
 
 // construit un tableau de raccourcis pour un noeud de DOM 
 
 // http://doc.spip.org/@afficher_barre
 function afficher_barre($champ, $forum=false, $lang='') {
-	global $spip_lang, $spip_lang_right, $spip_lang_left, $spip_lang;
+	global $spip_lang, $spip_lang_right, $spip_lang_left;
 	static $num_barre = 0;
 	include_spip('inc/layer');
 	if (!$GLOBALS['browser_barre']) return '';
@@ -47,7 +47,7 @@ function afficher_barre($champ, $forum=false, $lang='') {
 	$champhelp = "document.getElementById('barre_$num_barre')";
 
 	$ret = ($num_barre > 1)  ? '' :
-	  '<script type="text/javascript" src="' . _DIR_JAVASCRIPT . 'spip_barre.js"></script>';
+	  http_script('',  'spip_barre.js');
 	$ret .= "<table class='spip_barre' cellpadding='0' cellspacing='0' border='0'>";
 	$ret .= "\n<tr>";
 	$ret .= "\n<td style='text-align: $spip_lang_left;' valign='middle'>";
@@ -104,11 +104,11 @@ function afficher_barre($champ, $forum=false, $lang='') {
 			$ret .= bouton_barre_racc ("barre_inserer('&OElig;',$champ)", "oelig-maj.png", _T('barre_eo_maj'), $champhelp);
 		}
 	}
+	$ret .= bouton_barre_racc ("barre_inserer('&euro;',$champ)", "euro.png", _T('barre_euro'), $champhelp);
 
 	$ret .= "</td>";
-	$col++;
 
-	if (!_DIR_RESTREINT) {
+	if (test_espace_prive()) {
 		$ret .= "\n<td style='text-align:$spip_lang_right;' valign='middle'>";
 		$col++;
 	//	$ret .= "&nbsp;&nbsp;&nbsp;";
@@ -119,12 +119,34 @@ function afficher_barre($champ, $forum=false, $lang='') {
 	$ret .= "</tr>";
 
 	// Sur les forums publics, petite barre d'aide en survol des icones
-	if (_DIR_RESTREINT)
+	if (!test_espace_prive())
 		$ret .= "\n<tr>\n<td colspan='$col'><input disabled='disabled' type='text' class='barre' id='barre_$num_barre' size='45' maxlength='100'\nvalue=\"".attribut_html(_T('barre_aide'))."\" /></td></tr>";
 
 	$ret .= "</table>";
 
 	return $ret;
+}
+
+// expliciter les 3 arguments pour avoir xhtml strict
+
+// http://doc.spip.org/@afficher_textarea_barre
+function afficher_textarea_barre($texte, $forum=false, $form='')
+{
+	global $spip_display, $spip_ecran;
+
+	// par defaut champ avec classe .barre_inserer
+	if (!$form) $form = "$('.barre_inserer')[0]";
+	// sinon id parent passe, il faut selectionner le champ 'texte'
+	else $form .= ".texte";
+	
+	$rows = ($spip_ecran == "large") ? 28 : 15;
+
+	return (($spip_display == 4) ? '' : afficher_barre($form, $forum))
+	. "<textarea name='texte' id='texte' "
+	. $GLOBALS['browser_caret']
+	. " rows='$rows' class='formo barre_inserer' cols='40'>"
+	. entites_html($texte)
+	. "</textarea>\n";
 }
 
 ?>
