@@ -19,6 +19,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'visite' => 'Visitez&nbsp;!',
 'venir' => 'Pour venir',
 'pas_de_photos' => 'Nous n\'avons pas encore de photos.',
+'voir_debut' => 'Voir depuis le d&eacute;but',
+'lire_aussi' => 'Lire aussi&nbsp;:',
 
 // Page nous
 'nous' => 'Nous',
