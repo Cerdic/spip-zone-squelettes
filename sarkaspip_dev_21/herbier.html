@@ -50,20 +50,24 @@ de ce squelette.
 
 <div id="wrapper">
 	<div id="content">
-        <div class="intitulePage"><:sarkaspip:herbier_sites:></div>	
+		<div class="intitulePage">
+			<BOUCLE_nom_herbier(RUBRIQUES) {id_rubrique=#RUBRIQUE_SPECIALISEE{herbier}}>
+				[(#TITRE|supprimer_numero)]
+			</BOUCLE_nom_herbier>
+		</div>	
 
 		<div id="herbier" class="plan">
 			<B_herbier>
 				#ANCRE_PAGINATION
-				<div class="bande-pagination">#PAGINATION</div>
+				<div class="bande-pagination">#PAGINATION{#CONFIG{sarkaspip_herbier/modele_pagination}}</div>
 				<hr />
-			<BOUCLE_herbier(SITES) {id_rubrique=#RUBRIQUE_SPECIALISEE{herbier}}{pagination 5}{par date}{inverse}{" <hr /> "}>
+			<BOUCLE_herbier(SITES) {id_rubrique=#RUBRIQUE_SPECIALISEE{herbier}}{pagination #CONFIG{sarkaspip_herbier/pas_pagination, 5}}{par date}{inverse}{" <hr /> "}>
 				<p>
 					<a href="#URL_SITE"[ title="(#NOM_SITE|texte_backend)"]><img src="http://open.thumbshots.org/image.pxf?url=#URL_SITE"[ alt="(#NOM_SITE|texte_backend)"] /></a>
-					<a class="titre_art" href="#URL_SITE" title="[(#NOM_SITE)]"><span class="date">[[(#DATE|affdate{'d-m-Y'})]]</span>&nbsp;-&nbsp;[(#NOM_SITE)]</a>	
-					<div class="info-herbier">[(#DESCRIPTIF|textebrut|sinon{<:sarkaspip:msg_site_sans_descriptif:>})<br /><br />]
+					<a class="titre_art" href="#URL_SITE"[ title="(#NOM_SITE|texte_backend)"]"><span class="date">[[(#DATE|affdate{'d-m-Y'})]]</span>&nbsp;-&nbsp;[(#NOM_SITE)]</a>	
+					<div class="description">[(#DESCRIPTIF|textebrut|sinon{<:sarkaspip:msg_site_sans_descriptif:>})<br /><br />]
 						<B_categories>
-							&raquo;&nbsp;<:sarkaspip:categories:>&nbsp;:&nbsp;
+							&raquo;&nbsp;<:sarkaspip:herbier_tag|ucfirst:>&nbsp;:&nbsp;
 							<em>
 						<BOUCLE_categories(MOTS){id_syndic}{par titre}{", "}>
 								[<a href="#URL_PAGE{mot}&amp;id_mot=#ID_MOT" title="[(#TITRE)]">(#TITRE)</a>]
@@ -71,13 +75,13 @@ de ce squelette.
 							</em>
 							<br />
 						</B_categories>
-							&raquo;&nbsp;<:sarkaspip:url:>&nbsp;:&nbsp;<a href="#URL_SITE" title="[(#NOM_SITE)]"><em>[(#URL_SITE)]</em></a>
+							&raquo;&nbsp;<:sarkaspip:herbier_url|ucfirst:>&nbsp;:&nbsp;<a href="#URL_SITE" title="[(#NOM_SITE)]"><em>[(#URL_SITE)]</em></a>
 					</div>
 					<div style="clear: both;"></div>
 				</p>
 			</BOUCLE_herbier>
 				<hr />
-				<div class="bande-pagination">#PAGINATION</div>
+				<div class="bande-pagination">#PAGINATION{#CONFIG{sarkaspip_herbier/modele_pagination}}</div>
 			</B_herbier>
 		</div><!--herbier-->
 		

@@ -110,6 +110,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //H
 	  
 		'hier' => 'hier',
+		'herbier_sites' => 'herbier',
+		'herbier_tag' => 'cat&eacute;gories',
+		'herbier_url' => 'adresse',
 	  
 	
 //I
@@ -190,7 +193,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'msg_0_album_filtre_saison' => 'Aucun album de cette cat&eacute;gorie pour la saison',
 		'msg_0_album_filtre_planche' => 'Aucun album de cette cat&eacute;gorie disponible',
 		'msg_evenement_virtuel' => 'Le texte de cet &eacute;v&eacute;nement n\'est pas accessible directement sur ce site. Vous pouvez tout de m&ecirc;me consulter la description d\'origine en cliquant sur le lien ci-dessous',
-	
+		'msg_site_sans_descriptif' => 'Ce site ne comporte pas de descriptif...',
+		
 //N
 	  
 		'newsletter' => 'Lettre d\'information',
@@ -309,6 +313,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_titre_noisettes' => 'Sarka-SPIP - Choix et agencement des noisettes',
 		'cfg_titre_agenda' => 'Sarka-SPIP - Configuration de l\'agenda',
 		'cfg_titre_sommaire' => 'Sarka-SPIP - Configuration de la page sommaire',
+		'cfg_titre_herbier' => 'Sarka-SPIP - Configuration de la page herbier',
 
 // Titre des liens des pages
 		'sarkaspip_accueil' => 'Accueil',
@@ -316,6 +321,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'sarkaspip_noisettes' => 'Noisettes',
 		'sarkaspip_agenda' => 'Agenda',
 		'sarkaspip_sommaire' => 'Sommaire',
+		'sarkaspip_herbier' => 'Herbier',
 		
 // Descriptif des pages
 		'cfg_descr_accueil' => 'Vous &ecirc;tes sur la page d\'accueil de la configuration du squelette Sarka-SPIP.',
@@ -325,6 +331,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		son mod&egrave;le voire sa position.',
 		'cfg_descr_agenda' => 'L\'agenda inclus dans Sarka-SPIP permet d\'afficher un listing annuel ainsi qu\'un mini calendrier mensuel. Les caract&eacute;ristiques de ces deux affichages sont configurables dans cette page.',
 		'cfg_descr_sommaire' => 'Le corps de la page sommaire permet d\'afficher plusieurs blocs d\'information : l\'&eacute;dito, la liste des secteurs et les articles r&eacute;cemment publi&eacute;s. Cette page permet de configurer l\'affichage des deux derniers blocs.',
+		'cfg_descr_herbier' => 'Le corps de la page herbier propose une liste pagin&eacute;e de sites et agr&eacute;ment&eacute;e de vignettes. Cette page de configuration vous permet de choisir les caract&eacute;ristiques de votre herbier.',
 
 // Titre des boites
 		'cfg_boite_accueil' => 'Accueil',
@@ -332,6 +339,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_boite_noisettes' => 'Noisettes',
 		'cfg_boite_agenda' => 'Agenda',
 		'cfg_boite_sommaire' => 'Sommaire',
+		'cfg_boite_herbier' => 'Herbier',
 
 // Legendes des blocs contenus dans chaque boite
 		'cfg_lgd_layout' => 'Layout',
@@ -350,6 +358,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_mini_agenda' => 'Mini calendrier mensuel',
 		'cfg_lgd_sommaire_secteurs' => 'Liste des secteurs',
 		'cfg_lgd_sommaire_articles' => 'Liste des articles r&eacute;cents',
+		'cfg_lgd_herbier_pagination' => 'Pagination',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -377,6 +386,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		si seuls les &eacute;v&eacute;nements post&eacute;rieurs &agrave; la date courante doivent &ecirc;tre pris en compte.',
 		'cfg_inf_sommaire_secteurs' => 'Voulez-vous afficher la liste des secteurs dans la page sommaire ?',
 		'cfg_inf_sommaire_articles' => 'Voulez-vous afficher la liste des articles r&eacute;cents dans la page sommaire ? Vous pourrez ensuite choisir le nombre maximal d\'articles affich&eacute;s',
+		'cfg_inf_herbier_pagination' => 'Choisissez le mod&egrave;le de pagination de votre herbier ainsi que le nombre d\'&eacute;l&eacute;ments affich&eacute;s dans chaque page.',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
@@ -428,6 +438,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_oui' => 'Oui',
 		'cfg_lbl_non' => 'Non',
 		'cfg_lbl_max_articles_recents' => 'Nombre maximal d\'articles r&eacute;cents',
+		'cfg_lbl_pagination_1' => 'Num&eacute;ros d\'ordre du premier &eacute;l&eacute;ment de chaque page (0|5|10)',
+		'cfg_lbl_pagination_2' => 'Num&eacute;ros des pages (1|2|3)',
+		'cfg_lbl_pagination_3' => 'Items pr&eacute;c&eacute;dent et suivant uniquement (page pr&eacute;c&eacute;dente | page suivante)',
+		'cfg_lbl_pagination_4' => 'Num&eacute;ros des pages et items pr&eacute;c&eacute;dent et suivant (<1|2|3|>)',
+		'cfg_lbl_pas_pagination' => 'Nombre d\'&eacute;l&eacute;ments par page',
 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',
