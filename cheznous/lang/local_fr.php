@@ -17,10 +17,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // Page visite
 'visite' => 'Visitez&nbsp;!',
-'venir' => 'Pour venir',
+'choisir_piece' => 'Choisissez une pi&egrave;ce&nbsp;:',
 'pas_de_photos' => 'Nous n\'avons pas encore de photos.',
 'voir_debut' => 'Voir depuis le d&eacute;but',
 'lire_aussi' => 'Lire aussi&nbsp;:',
+'venir' => 'Pour venir',
 
 // Page nous
 'nous' => 'Nous',

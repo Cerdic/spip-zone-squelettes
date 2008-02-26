@@ -39,7 +39,7 @@
 		<h2><:lire_aussi:></h2>
 		<ul>
 			<BOUCLE_articles_mot(ARTICLES) {id_mot} {par date}>
-			<li>[<strong>(#DATE|affdate{d})</strong>[(#DATE|affdate{|m})] ]<a href="#URL_ARTICLE"}>#TITRE</a></li>
+			<li><a href="#URL_ARTICLE"}>#TITRE</a></li>
 			</BOUCLE_articles_mot>
 		</ul>
 	</div>
@@ -57,12 +57,16 @@
 		<h2><:lire_aussi:></h2>
 		<ul>
 			<BOUCLE_articles(ARTICLES) {id_rubrique} {par date} {doublons}>
-			<li>[<strong>(#DATE|affdate{d})</strong>[(#DATE|affdate{|m})] ]<a href="#URL_ARTICLE"}>#TITRE</a></li>
+			<li><a href="#URL_ARTICLE"}>#TITRE</a></li>
 			</BOUCLE_articles>
 		</ul>
 	</div>
 	</B_articles>
 	</BOUCLE_principale>
+	
+	<h1 class="big"><:visite:></h1>
+	
+	<//B_principale>
 	
 <//B_mot>
 
@@ -70,13 +74,13 @@
 
 <B_groupe>
 <div id="extra">
-	<BOUCLE_groupe(GROUPES_MOTS) {titre==visite}>
+	<BOUCLE_groupe(GROUPES_MOTS) {titre==visite}{0,1}>
 	<div class="menu" id="sousrub">
 		<h2>#TITRE</h2>
-		[<div class="#EDIT{texte}">(#TEXTE|sinon{<p>Choisissez une pi&egrave;ce&nbsp;:</p>})</div>]
+		[<div class="#EDIT{texte}">(#TEXTE|sinon{<p><:choisir_piece:></p>})</div>]
 		<ul>
 			<BOUCLE_pieces(MOTS) {type==visite} {par num titre, titre}>
-			<li><a href="#URL_MOT">#TITRE</a></li>
+			<li><a href="#URL_MOT"[ class="(#EXPOSE)"]>#TITRE</a></li>
 			</BOUCLE_pieces>
 		</ul>
 	</div>
