@@ -22,11 +22,11 @@
 <B_doc>
 [(#ANCRE_PAGINATION|vide)]
 <div id="portfolio">
-	[<p class="pagination">Voici les [(#GRAND_TOTAL)&nbsp;]images du site, class&eacute;es de la plus r&eacute;cente &agrave; la plus ancienne&nbsp;: (#PAGINATION)</p>]
+	[(#TOTAL_BOUCLE|>{10}|?{' ',''})<p class="gentil_message"><:cliquer_pour_agrandir:></p>]
 	<BOUCLE_doc(DOCUMENTS) {doublons doc}{id_article>0}{distant=non} {extension IN jpg,gif,png}{largeur>300}{hauteur>200}{hauteur<=900} {!par date}{pagination 20}>
 	[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onClick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#portfolio';return false;"[ title="(#TITRE|texte_backend)"]>(#FICHIER|copie_locale|image_passe_partout{120,120}|image_recadre{120,120,center}|image_aplatir{jpg,ffffff}|inserer_attribut{class,spip_logos[ modulo(#COMPTEUR_BOUCLE|alterner{1,2,3,4,5})]})</a>]
 	</BOUCLE_doc>
-	[(#PAGINATION|?{' ',''})<p class="gentil_message"><:cliquer_pour_agrandir:></p>]
+	[<p class="pagination"><:photos_pagination:> (#PAGINATION)[ ((#GRAND_TOTAL)&nbsp;photos)]</p>]
 	<br class="nettoyeur" />
 </div><!--#portfolio-->
 [<p class="#EDIT{texte}">(#TEXTE|PtoBR)</p>]

@@ -14,6 +14,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'photos' => 'Photos',
 'photos_tout' => 'Toutes nos photos',
 'cliquer_pour_agrandir' => 'Cliquez sur les vignettes carr&eacute;es pour obtenir un agrandissement.',
+'photos_pagination' => ' ',
 
 // Page visite
 'visite' => 'Visitez&nbsp;!',
