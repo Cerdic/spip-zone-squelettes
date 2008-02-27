@@ -32,6 +32,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'site_perso' => 'Site perso',
 'site_perso_voir' => 'Voir son site perso',
 
+// Page forum
+'laisser_message' => 'Laissez-nous un message',
+'merci_messages' => 'Merci pour vos messages&nbsp;!',
+'premier_message' => 'Soyez le premier &agrave; nous laisser un message&nbsp;!',
+'messages_pagination' => 'Pages&nbsp;:',
+'messages_tout' => 'Tous vos messages',
+
 // Page liens
 'liens' => 'Liens',
 'site_web' => 'site web',

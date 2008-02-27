@@ -17,21 +17,21 @@
 		[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{460,*})</div>]
 		[<div class="#EDIT{ps} ps">(#PS|image_reduire{460,*})</div>]
 		[<div class="notes">(#NOTES)</div>]
-			<p class="plus"><BOUCLE_contact(ARTICLES){titre_mot=page_contact}{0,1}><a href="#URL_ARTICLE">#TITRE</a></BOUCLE_contact><a href="#URL_PAGE{page_contact}"><:contact:></a><//B_contact></p>
+		<p class="plus"><BOUCLE_forum(ARTICLES){titre_mot=page_forum}{0,1}><p class="plus"><a href="#URL_ARTICLE"[ title="(#TITRE|couper{80}|texte_backend)"]><:laisser_message:></a></p></BOUCLE_forum>
+		<BOUCLE_contact(ARTICLES){titre_mot=page_contact}{0,1}><a href="#URL_ARTICLE">#TITRE</a></BOUCLE_contact><a href="#URL_PAGE{page_contact}"><:contact:></a><//B_contact><//B_forum></p>
 	</div><!--#contenu-->
 	<div id="nous">
 		<B_nous>
 		<ul>
-			<BOUCLE_nous(AUTEURS) {id_article}{par id_auteur}>
+			<BOUCLE_nous(AUTEURS) {id_article} {par num nom, id_auteur}>
 			<li class="tiers">
 				[(#LOGO_AUTEUR||?{
 					[(#LOGO_AUTEUR||image_passe_partout{42}|image_recadre{42,42,center,FFFFFF}|inserer_attribut{class,'spip_logos gravatar'})]
 					,
 					<img src="[(#EMAIL|gravatar_url)]" width="42" height="42" class="spip_logos gravatar" />
 				})]
-				<h2 class="#EDIT{nom}">#NOM</h2>
+				[<h2 class="#EDIT{nom}">(#NOM|supprimer_numero)</h2>]
 				[<div class="#EDIT{bio}">(#BIO)</div>]
-				<BOUCLE_nous_articles(ARTICLES){id_auteur}> </BOUCLE_nous_articles>[(#TOTAL_BOUCLE|>{3}|?{' ',''})<p class="plus"><a href="[(#URL_PAGE{page_blog}|parametre_url{id_auteur,#ID_AUTEUR})]">Lire ses articles</a></p>]</B_nous_articles>
 			</li>
 			</BOUCLE_nous>
 		</ul>
@@ -43,14 +43,14 @@
 	<div id="contenu">
 		<B_auteurs>
 		<ul>
-			<BOUCLE_auteurs(AUTEURS) {par nom}{par id_auteur}>
+			<BOUCLE_auteurs(AUTEURS) {par nom, id_auteur}>
 			<li class="tiers[ modulo(#COMPTEUR_BOUCLE|alterner{1,2,3})]">
 				[(#LOGO_AUTEUR||?{
 					[(#LOGO_AUTEUR||image_passe_partout{42}|image_recadre{42,42,center,FFFFFF}|inserer_attribut{class,'spip_logos gravatar'})]
 					,
 					<img src="[(#EMAIL|gravatar_url)]" width="42" height="42" class="spip_logos gravatar" />
 				})]
-				<h2 class="#EDIT{nom} big">#NOM</h2>
+				[<h2 class="#EDIT{nom} big">(#NOM|supprimer_numero)</h2>]
 				[<div class="#EDIT{bio}">(#BIO)</div>]
 				[<p class="plus"><a href="(#URL_SITE)" class="spip_out"><:site_perso_voir:></a></p>]
 				<BOUCLE_auteurs_articles(ARTICLES){id_auteur}> </BOUCLE_auteurs_articles>[(#TOTAL_BOUCLE|>{3}|?{' ',''})<p class="plus"><a href="[(#URL_PAGE{page_blog}|parametre_url{id_auteur,#ID_AUTEUR})]">Lire ses articles</a></p>]</B_auteurs_articles>
