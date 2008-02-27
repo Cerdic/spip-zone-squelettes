@@ -57,17 +57,18 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // Page mentions legales
 'mentions_legales' => 'Mentions l&eacute;gales',
 'site_realise_avec_spip' => 'Site r&eacute;alis&eacute; avec SPIP',
-'meme_site' => 'Pour avoir le m&ecirc;me site&nbsp;:',
+'voir_squelette' => 'Voir le squelette de cette page',
+'avoir_meme_site' => 'Pour avoir le m&ecirc;me site',
 'site_edite_par' => 'Ce site est &eacute;dit&eacute; par',
 'mentions_legales_texte' => '<h3 class="spip">Site r&eacute;alis&eacute; avec SPIP + &laquo;&nbsp;Chez&nbsp;nous&nbsp;&raquo;</h3>
-			<p>Ce site fonctionne avec le logiciel libre <acronym title="Syst&egrave;me de Publication pour Internet">SPIP</acronym> et le jeu de squelettes &laquo;&nbsp;Chez&nbsp;nous&nbsp;&raquo;, tous deux distribu&eacute;s sous <a href="http://www.april.org/gnu/gpl_french.html" class="spip_out">licence <acronym title="GNU\'s Not UNIX" lang="en">GNU</acronym> / <abbr title="General Public License" lang="en">GPL</abbr></a>. Vous pouvez les utiliser librement pour r&eacute;aliser votre propre site.</p>
-			<ul class="spip">
-				<li><a href="http://www.spip.net" class="spip_out">Documentation et t&eacute;l&eacute;chargement de SPIP</a></li>
-				<li><a href="http://www.spip-contrib.net/ecrire/?exec=articles&id_article=2624" class="spip_out">Explications et t&eacute;l&eacute;chargement des squelettes &laquo;&nbsp;Chez&nbsp;nous&nbsp;&raquo;</a></li>
-			</ul>',
+<p>Ce site fonctionne avec le logiciel libre <acronym title="Syst&egrave;me de Publication pour Internet">SPIP</acronym> et le jeu de squelettes &laquo;&nbsp;Chez&nbsp;nous&nbsp;&raquo;, tous deux distribu&eacute;s sous <a href="http://www.april.org/gnu/gpl_french.html" class="spip_out">licence <acronym title="GNU\'s Not UNIX" lang="en">GNU</acronym> / <abbr title="General Public License" lang="en">GPL</abbr></a>. Vous pouvez les utiliser librement pour r&eacute;aliser votre propre site.</p>
+<ul class="spip">
+	<li><a href="http://www.spip.net" class="spip_out">Documentation et t&eacute;l&eacute;chargement de SPIP</a></li>
+	<li><a href="http://www.spip-contrib.net/ecrire/?exec=articles&id_article=2624" class="spip_out">Explications et t&eacute;l&eacute;chargement des squelettes &laquo;&nbsp;Chez&nbsp;nous&nbsp;&raquo;</a></li>
+</ul>',
 'mentions_legales_contenus' => '<h3 class="spip">Droits de reproduction</h3>
-			<p>En application de la loi du 11 mars 1957 (art. 41) et du code de la propri&eacute;t&eacute; intellectuelle du 1er juillet 1992 : l\'ensemble des textes, illustrations, photographies, plans, dessins, animations, vid&eacute;os, sons, etc. contenus sur ce site ne peuvent &ecirc;tre utilis&eacute;s ou reproduits sans l\'autorisation de l\'&eacute;diteur.</p>
-			<p>Pour toute demande de reproduction ou d\'utilisation d\'&eacute;l&eacute;ments contenus sur ce&nbsp;site, contactez-nous.</p>',
+<p>En application de la loi du 11 mars 1957 (art. 41) et du code de la propri&eacute;t&eacute; intellectuelle du 1er juillet 1992 : l\'ensemble des textes, illustrations, photographies, plans, dessins, animations, vid&eacute;os, sons, etc. contenus sur ce site ne peuvent &ecirc;tre utilis&eacute;s ou reproduits sans l\'autorisation de l\'&eacute;diteur.</p>
+<p>Pour toute demande de reproduction ou d\'utilisation d\'&eacute;l&eacute;ments contenus sur ce&nbsp;site, contactez-nous.</p>',
 
 
 // Formulaire de forum
@@ -102,8 +103,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // Surcharges
 'message' => 'commentaire',
 'messages_forum' => 'commentaires',
-'squelettes_troistiers' => 'Squelettes Trois Tiers',
-'voir_squelette' => 'Voir le squelette de cette page',
 
 // Divers
 'suite' => 'Lire la suite',
