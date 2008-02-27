@@ -1,16 +1,27 @@
-<div id="entete">
-    <a name="top"></a>
-    <div id="panorama">
-        <a rel="start" href="#URL_SITE_SPIP/" title="<:accueil_site:>" id="logo">[(#LOGO_SITE_SPIP||image_reduire{200,50}|vider_attribut{class}) ]#NOM_SITE_SPIP</a>
+<div id="panorama">
+	<a href="#top" name="top" id="top"></a>
+	<div id="entete">
+		<div id="logo">
+			<a rel="start" href="#URL_SITE_SPIP/" title="<:accueil_site:>">[(#LOGO_SITE_SPIP||image_reduire{200,50}|vider_attribut{class})]
+			[(#NOM_SITE_SPIP
+        		|image_typo{police=dustismo.ttf,couleur=ffffff,taille=30,padding=6}
+        		|image_flou{1}
+				|image_masque{[(#NOM_SITE_SPIP
+					|image_typo{police=dustismo.ttf,couleur=000000,taille=30,padding=6}
+					|extraire_attribut{src})],
+					top=-1,left=-1,mode=normal}
+				|image_recadre{*,50,left top}
+			)]</a>
+		</div>
 		<div id="barnav">
-            <ul>
-				<li><a href="#URL_PAGE{page_blog}" title="<:articles_tout:>"><:articles:></a></li>
+			<ul>
+				<li><a href="#URL_PAGE{page_blog}" title="<:articles_tout:>"><:blog|ucfirst:></a></li>
 				<li><a href="#URL_PAGE{page_photos}" title="<:photos_tout:>"><:photos|ucfirst:></a></li>
 				<BOUCLE_visite_rub(RUBRIQUES){titre_mot=page_visite}{0,1}><li><a href="#URL_RUBRIQUE" title="<:visite:>">#TITRE</a></li></BOUCLE_visite_rub><BOUCLE_groupe(GROUPES_MOTS) {titre==visite}{0,1}><li><a href="#URL_PAGE{page_visite}"><:visite|ucfirst:></a></li></BOUCLE_groupe><//B_visite_rub>
 				<li><BOUCLE_nous(ARTICLES){titre_mot=page_nous}{0,1}><a href="#URL_ARTICLE" title="<:nous_qui:>">#TITRE</a></BOUCLE_nous><a href="#URL_PAGE{page_nous}" title="<:nous_qui:>"><:nous|ucfirst:></a><//B_nous></li>
 				<BOUCLE_forum(ARTICLES){titre_mot=page_forum}{0,1}><li><a href="#URL_ARTICLE" title="<:laisser_message:>">#TITRE</a></li></BOUCLE_forum>
-            </ul>
-            #FORMULAIRE_RECHERCHE
-        </div>
-    </div>
-</div>
+			</ul>
+			#FORMULAIRE_RECHERCHE
+		</div>
+	</div>
+</div><!--#panorama-->
