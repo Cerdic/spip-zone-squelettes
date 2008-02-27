@@ -34,21 +34,21 @@
 	
 	[(#TEXTE|vide)][(#PS|vide)][(#NOTES|vide)]
     [(#REM) Portfolio : album d'images ]
-    <B_documents_portfolio>
-    <div id="portfolio">
-        <h2 class="invisible"><:info_portfolio:></h2>
-        <BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {extension IN jpg,gif,png}{largeur>=200}{hauteur>120} {par num titre, date} {doublons}>
-        [<a href="#URL_DOCUMENT" type="#MIME_TYPE" onClick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#portfolio';return false;"[ title="(#TITRE|texte_backend|sinon{[(#_principale:TITRE|texte_backend)]})"]>(#FICHIER|copie_locale|image_passe_partout{120,120}|image_recadre{120,120,center}|image_aplatir{jpg,ffffff}|inserer_attribut{class,spip_logos[ modulo(#COMPTEUR_BOUCLE|modulo{3})]})</a>]
-        </BOUCLE_documents_portfolio>
-    </div>
-    </B_documents_portfolio>
     <BOUCLE_afficher_document(DOCUMENTS) {id_document} {id_article} {extension IN jpg,gif,png}>
     <div class="spip_documents spip_documents_center" id="document_actif">
-        #EMBED_DOCUMENT
+        [(#EMBED_DOCUMENT|image_reduire{520,*})]
         [<div class="#EDIT{titre} spip_doc_titre">(#TITRE)</div>]
         [<div class="#EDIT{descriptif} spip_doc_descriptif">(#DESCRIPTIF)</div>]
     </div>
     </BOUCLE_afficher_document>
+    <B_documents_portfolio>
+    <div id="portfolio">
+        <h2 class="invisible"><:info_portfolio:></h2>
+        <BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {extension IN jpg,gif,png}{largeur>=200}{hauteur>120} {par num titre, date} {doublons}>
+        [<a href="#URL_DOCUMENT" type="#MIME_TYPE" onClick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#document_actif';return false;"[ title="(#TITRE|texte_backend|sinon{[(#_principale:TITRE|texte_backend)]})"]>(#FICHIER|copie_locale|image_passe_partout{120,120}|image_recadre{120,120,center}|image_aplatir{jpg,ffffff}|inserer_attribut{class,spip_logos[ modulo(#COMPTEUR_BOUCLE|modulo{3})]})</a>]
+        </BOUCLE_documents_portfolio>
+    </div>
+    </B_documents_portfolio>
 	
     [<div class="#EDIT{ps} ps">(#PS|image_reduire{520,*})</div>]
     [<div class="notes">(#NOTES)</div>]
