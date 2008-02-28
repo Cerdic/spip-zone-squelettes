@@ -10,6 +10,79 @@
 <div id="conteneur">
 <div id="contenu">
 	
+	<BOUCLE_article(ARTICLES){id_article}>
+	
+	<div class="cartouche">
+		<h1 class="#EDIT{titre} big">#TITRE</h1>
+		<small class="signature">[(#DATE|nom_jour|ucfirst) ][(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)][ &mdash; (#MODELE{categorie})][ &mdash; (#MODELE{commentaires})]</small>
+		<BOUCLE_pages_speciales(ARTICLES){type=pages_speciales}{doublons}> </BOUCLE_pages_speciales>
+		<div class="prevnext">
+			<BOUCLE_precedent(ARTICLES) {age_relatif>=0}{!par date}{0,1} {exclus} {doublons}><span class="prev"><a rel="prev" href="#URL_ARTICLE"><img src="#CHEMIN{img/bt-prev.gif}" alt="avant" />&nbsp;[(#TITRE|couper{40})]</a></span></BOUCLE_precedent>
+			<span class="invisible"> | </span>
+			<BOUCLE_suivant(ARTICLES) {age_relatif<0}{par date}{0,1} {exclus} {doublons}><span class="next"><a rel="next" href="#URL_ARTICLE">[(#TITRE|couper{40})]&nbsp;<img src="#CHEMIN{img/bt-next.gif}" alt="apr&egrave;s" /></a></span></BOUCLE_suivant>
+			<div class="nettoyeur">&nbsp;</div>
+		</div>
+	</div>
+	
+	<br class="nettoyeur" />
+	[<div class="#EDIT{chapo} chapo">(#CHAPO|image_reduire{520,*})</div>]
+	[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{520,*})</div>]
+	
+	[(#TEXTE|vide)][(#PS|vide)][(#NOTES|vide)]
+	[(#REM) Portfolio : album d'images ]
+	<BOUCLE_afficher_document(DOCUMENTS) {id_document} {id_article} {extension IN jpg,gif,png}>
+	<div class="spip_documents spip_documents_center" id="document_actif">
+		[(#EMBED_DOCUMENT|image_reduire{520,*})]
+		[<div class="#EDIT{titre} spip_doc_titre">(#TITRE)</div>]
+		[<div class="#EDIT{descriptif} spip_doc_descriptif">(#DESCRIPTIF)</div>]
+	</div>
+	</BOUCLE_afficher_document>
+	<B_documents_portfolio>
+	<div id="portfolio">
+		<h2 class="invisible"><:info_portfolio:></h2>
+		<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {extension IN jpg,gif,png}{largeur>=200}{hauteur>120} {par num titre, date} {doublons}>
+		[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onClick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#document_actif';return false;"[ title="(#TITRE|texte_backend|sinon{[(#_principale:TITRE|texte_backend)]})"]>(#FICHIER|copie_locale|image_passe_partout{120,120}|image_recadre{120,120,center}|image_aplatir{jpg,ffffff}|inserer_attribut{class,spip_logos[ modulo(#COMPTEUR_BOUCLE|modulo{3})]})</a>]
+		</BOUCLE_documents_portfolio>
+	</div>
+	</B_documents_portfolio>
+	
+	[<div class="#EDIT{ps} ps">(#PS|image_reduire{520,*})</div>]
+	[<div class="notes">(#NOTES)</div>]
+	
+	<br class="nettoyeur" />
+	
+	<div id="forum">
+	[(#REM) Nombre total de messages ]
+	<BOUCLE_decompte(FORUMS) {id_article} {plat}></BOUCLE_decompte>[(#TOTAL_BOUCLE|?{' ',''})<h2 class="gentil_message">Vos <:messages_forum:>&nbsp;:</h2>]<//B_decompte>
+	
+	[(#REM) Messages du forum ]
+	<B_forums>
+	<ol>
+		<BOUCLE_forums(FORUMS) {id_article} {plat} {par date}>
+		<li>
+			<a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM"> </a>
+			<div class="forum-chapo">
+				[(#LOGO_AUTEUR||?{
+					[(#LOGO_AUTEUR||image_passe_partout{42}|image_recadre{32,32,center,FFFFFF}|inserer_attribut{class,'spip_logos gravatar'})]
+					,
+					<img src="[(#EMAIL|gravatar_url)]" width="32" height="32" class="spip_logos gravatar" />
+				})]
+				<p>Le [(#DATE|affdate_jourcourt)][ &agrave;&nbsp;(#DATE|heures)][:(#DATE|minutes)][, <:par_auteur:> <strong class="#EDIT{qui}">[<a href="(#URL_SITE)"[ title="Voir le site de (#NOM|attribut_html)"] class="spip_out">](#NOM)[(#URL_SITE|?{</a>,''})]</strong>]</p>
+			</div>
+			[<div class="#EDIT{texte} forum-texte">(#TEXTE|lignes_longues)</div>]
+	
+		</li>
+		</BOUCLE_forums>
+	</ol>
+	</B_forums>
+	
+	[<h2><:form_pet_message_commentaire:></h2>
+	(#FORMULAIRE_FORUM)]
+	
+	</div><!--#forum-->
+	
+	</BOUCLE_article>
+	
 	<BOUCLE_titre_rubrique(RUBRIQUES) {id_rubrique}>
 		<h1 class="#EDIT{titre} big">#TITRE</h1>
 		[<p class="#EDIT{texte} chapo">(#TEXTE|PtoBR)</p>]
@@ -43,13 +116,15 @@
     [<p class="pagination"><:pages:> (#PAGINATION{page})</p>]
 	</div><!--.liste-->
     </B_news>
+	
+	<//B_article>
     
 </div><!--#contenu-->
 
 <div id="extra">
-	<INCLURE{fond=inc-derniers}>
+	<INCLURE{fond=inc-derniers}{id_article}>
 	<INCLURE{fond=inc-sousrub}{id_rubrique}>
-	<INCLURE{fond=inc-tagcloud}{id_rubrique}{id_mot}>
+	<INCLURE{fond=inc-tagcloud}{id_rubrique}{id_mot}{id_article}>
 	<INCLURE{fond=inc-liensforum}>
 	<INCLURE{fond=inc-feed}>
 	<img src="#CHEMIN{img/commentaires.gif}" alt="<:laisser_message:>" width="200" height="200" />

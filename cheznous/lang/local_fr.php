@@ -5,15 +5,17 @@
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // Blog
-'nouveautes' => 'Quoi de neuf&nbsp;?',
 'blog' => 'Blog',
-'a_retenir' => '&Agrave;&nbsp;retenir',
+'nouveautes' => 'Quoi de neuf&nbsp;?',
 'articles_tout' => 'Tous nos articles',
+'derniers_articles' => 'Nos derniers articles',
+'a_retenir' => '&Agrave;&nbsp;retenir',
 'pages' => 'Pages&nbsp;:',
 
 // Page photos
 'photos' => 'Photos',
 'photos_tout' => 'Toutes nos photos',
+'dernieres_images' => 'Nos derni&egrave;res images',
 'cliquer_pour_agrandir' => 'Cliquez sur les vignettes carr&eacute;es pour obtenir un agrandissement.',
 'photos_pagination' => ' ',
 
@@ -34,6 +36,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'site_perso_voir' => 'Voir son site perso',
 
 // Page forum
+'message' => 'commentaire',
+'messages_forum' => 'commentaires',
+'derniers_commentaires' => 'Vos derniers commentaires',
 'laisser_message' => 'Laissez-nous un message',
 'merci_messages' => 'Merci pour vos messages&nbsp;!',
 'premier_message' => 'Soyez le premier &agrave; nous laisser un message&nbsp;!',
@@ -57,7 +62,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // Page mentions legales
 'mentions_legales' => 'Mentions l&eacute;gales',
 'site_realise_avec_spip' => 'Site r&eacute;alis&eacute; avec SPIP',
-'voir_squelette' => 'Voir le squelette de cette page',
+'voir_squelette' => 'Voir le code de cette page',
 'avoir_meme_site' => 'Pour avoir le m&ecirc;me site',
 'site_edite_par' => 'Ce site est &eacute;dit&eacute; par',
 'mentions_legales_texte' => '<h3 class="spip">Site r&eacute;alis&eacute; avec SPIP + &laquo;&nbsp;Chez&nbsp;nous&nbsp;&raquo;</h3>
@@ -92,17 +97,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 'form_prop_envoyer' => 'Pr&eacute;visualiser',
 'form_prop_confirmer_envoi' => 'Confirmer l\'envoi',
-
-
-// Sidebar
-'derniers_articles' => 'Nos derniers articles',
-'dernieres_images' => 'Nos derni&egrave;res images',
-'derniers_commentaires' => 'Vos derniers commentaires',
-
-
-// Surcharges
-'message' => 'commentaire',
-'messages_forum' => 'commentaires',
 
 // Divers
 'suite' => 'Lire la suite',
