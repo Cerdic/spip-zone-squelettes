@@ -92,15 +92,9 @@
 
 
 
-
-
-<?php
-<BOUCLE_nb_images(DOCUMENTS){id_article}{mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
-</BOUCLE_nb_images> $nb_images = "#TOTAL_BOUCLE";</B_nb_images> ?>
- <?php if ($nb_images >1) {?>
-
-
-
+<BOUCLE_combien_d_images(DOCUMENTS){id_article}{mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}{1,1}>
+ [(#REM) Affiche des minipics si plus d'une image... ] 
+ 
 <B_documents_portfolio>
 <div id="minipics">
 <ul>
@@ -116,44 +110,35 @@
 </div>[(#REM)   fermeture minipics   ] 	
 [<div class="grande_boite"><p class="centre gras">(#PAGINATION)<br/>Il y a au total #GRAND_TOTAL photos, cette page en affiche #TOTAL_BOUCLE.</p></div>]		
 
-</B_documents_portfolio>	
+</B_documents_portfolio>
 
+</BOUCLE_combien_d_images>
 
-
-
-
- <?php } if ($nb_images ==1) {?>
+	
+ [(#REM) ... et sinon affiche une seule image ] 
 
 <B_afficher_photo_seule>
-
 <div class="grande_boite">
 [(#REM)   l image en grand   ]
-
-
 <div class="photo">
 <div id="exif">
-<BOUCLE_afficher_photo_seule(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date}{0,1}>
-				
-				<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;" title="[(#TITRE|couper{200}|texte_backend)]
-
-">
-[(#FICHIER|reduire_image{450,1000}|inserer_attribut{alt,#TITRE #TAILLE #LARGEUR
-x #HAUTEUR})]<span>[(#TITRE)<br />]
+<BOUCLE_afficher_photo_seule(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date}{0,1}{doublons}>
+<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;" title="[(#TITRE|couper{200}|texte_backend)]">
+[(#FICHIER|reduire_image{450,1000}|inserer_attribut{alt,#TITRE #TAILLE #LARGEUR x #HAUTEUR})]
+<span>[(#TITRE)<br />]
 [(#DESCRIPTIF)<br />]
 [(#DATE|affdate), ]
 [(#TAILLE|taille_en_octets), ][(#LARGEUR)&nbsp;x&nbsp;[(#HAUTEUR)]]
 </span>
 </a>
-
-
 </BOUCLE_afficher_photo_seule>
-</div>
-[(#REM)   fermeture exif   ]
+</div>[(#REM)   fermeture exif   ]
 </div>[(#REM)   fermeture photo   ]
-
 </div>[(#REM)   fermeture grande boite photo   ]
 </B_afficher_photo_seule>
-<?php } ?>
+
+
+<//B_combien_d_images>
 
 
 

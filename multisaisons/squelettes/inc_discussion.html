@@ -6,7 +6,7 @@
 
 <B_Forums_fil>
 
-#ANCRE_PAGINATION
+[#ANCRE_PAGINATION<p>Page: (#PAGINATION{page_precedent_suivant})</p>]
 
 <BOUCLE_Forums_fil(FORUMS){id_thread}{plat}{par date}{pagination}>	<a name="forum#ID_FORUM"></a>
 
@@ -28,7 +28,7 @@
 ]
 
 
-<BOUCLE_nom(AUTEURS){id_auteur}>
+<BOUCLE_nom(AUTEURS){id_auteur}{tous}>
 <span class="#EDIT{nom}">
 [<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de ce r&eacute;dacteur">]
 [<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de cet admin">]
@@ -42,7 +42,7 @@
 </span>
 <//B_nom>
 
-<BOUCLE_profil_forum1(AUTEURS){id_auteur}>
+<BOUCLE_profil_forum1(AUTEURS){id_auteur}{tous}>
 [<span class="#EDIT{url_site}"><a href="#URL_SITE">(#SESSION{statut}|match{1comite|6forum|nouveau|0minirezo}|?{#NOM_SITE})</a></span><br/>]
 </BOUCLE_profil_forum1>[<a href="mailto:#EMAIL">(#SESSION{statut}|=={0minirezo}?{#EMAIL})</a><br/>]
 [(#SESSION{statut}|=={0minirezo}?{#IP})<br/>]
@@ -54,7 +54,7 @@ Message  &eacute;dit&eacute;.
 
 
 
-<BOUCLE_qui_ori(AUTEURS){id_auteur}>
+<BOUCLE_qui_ori(AUTEURS){id_auteur}{tous}>
 <span class="#EDIT{logo}">
 <INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=46}{date=#ENV{date}}>
 </span>
@@ -70,7 +70,7 @@ Message  &eacute;dit&eacute;.
 ]
 
 
-<BOUCLE_nom_ori(AUTEURS){id_auteur}>
+<BOUCLE_nom_ori(AUTEURS){id_auteur}{tous}>
 <span class="#EDIT{nom}">
 [<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de ce r&eacute;dacteur">]
 [<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de cet admin">]
@@ -83,7 +83,7 @@ Message  &eacute;dit&eacute;.
 </span>
 <//B_nom_ori>
 
-<BOUCLE_profil_forum2(AUTEURS){id_auteur}>
+<BOUCLE_profil_forum2(AUTEURS){id_auteur}{tous}>
 [<span class="#EDIT{url_site}"><a href="#URL_SITE">(#SESSION{statut}|match{1comite|6forum|nouveau|0minirezo}|?{#NOM_SITE})</a></span><br/>]
 </BOUCLE_profil_forum2>
 
@@ -124,9 +124,7 @@ title="Signaler un message abusif">Alerter</a>]
 
 
 </BOUCLE_Forums_fil>
-<div class="centre">
-#PAGINATION{page_precedent_suivant}
-</div>
+[<p class="centre">Page: (#PAGINATION{page_precedent_suivant})</p>]
 </B_Forums_fil>
 
 
