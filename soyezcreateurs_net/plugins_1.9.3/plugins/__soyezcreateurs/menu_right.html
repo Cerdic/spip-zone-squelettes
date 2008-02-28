@@ -38,27 +38,21 @@
 
 <?php } ?>
 
-<BOUCLE_Rubriques_sites(RUBRIQUES)>
-<?php if (($jp_rubrique==[(#ID_RUBRIQUE|texte_script)]) || (($jp_rubrique=='sommaire') && ('[(#TITRE*|texte_script)]'=='000. Racine'))) { ?>
-<B_sites>
+<BOUCLE_RubriqueSites(RUBRIQUES){id_rubrique}>
+[<h2 title="<:pyrat:plus_loin_title:>"><:pyrat:plus_loin:></h2>
+<ul>
+(#INCLURE{fond=menu_right_sites}{id_rubrique})
+</ul>]
+</BOUCLE_RubriqueSites>
+<B_RubriquesPasDansMenu>
 <h2 title="<:pyrat:plus_loin_title:>"><:pyrat:plus_loin:></h2>
 <ul>
-<BOUCLE_sites(SITES){id_rubrique}{par num nom_site}{par nom_site}>
-	<li>
-		<?php if ($jp_site==#ID_SYNDIC) { ?><strong><?php } ?><a href="[(#ID_SYNDIC|generer_url_site)]" [title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>[<img class="menu_right_logo" src="/(#LOGO_SITE_NORMAL||reduire_image{120,50}|extraire_attribut{src})"[ width="(#LOGO_SITE_NORMAL||reduire_image{120,50}|extraire_attribut{width})"][ height="(#LOGO_SITE_NORMAL||reduire_image{120,50}|extraire_attribut{height})"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" /><br />][(#NOM_SITE|supprimer_tags)]</a><?php if ($jp_site==#ID_SYNDIC) { ?></strong><?php } ?>
-		<B_ArticlesSyndiques>
-<ul>
-<BOUCLE_ArticlesSyndiques(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{0,10}>
-<li><?php if ($jp_syndication==#ID_SYNDIC_ARTICLE) { ?><strong><?php } ?><a href="[(#ID_SYNDIC|generer_url_site|parametre_url{'id_syndic_article',#ID_SYNDIC_ARTICLE})]" title="[(#DATE) - ][(#DESCRIPTIF|supprimer_tags|couper{120}|attribut_html)]">[(#TITRE|supprimer_tags)]</a><?php if ($jp_syndication==#ID_SYNDIC_ARTICLE) { ?></strong><?php } ?></li>
-</BOUCLE_ArticlesSyndiques>
+<BOUCLE_RubriquesPasDansMenu(RUBRIQUES){titre_mot=PasDansMenu}>
+[(#INCLURE{fond=menu_right_sites}{id_rubrique})]
+</BOUCLE_RubriquesPasDansMenu>
 </ul>
-</B_ArticlesSyndiques>
-	</li>
-</BOUCLE_sites>
-</ul>
-</B_sites>
-<?php } ?>
-</BOUCLE_Rubriques_sites>
+</B_RubriquesPasDansMenu>
+<//B_RubriqueSites>
 </div><!-- class="rightmenu"-->
 <INCLURE{fond=inc_ads_column}>
 [(#CONFIG{soyezcreateurs/geolocalisation,Non}|=={Non}|?{' ',''})#INCLURE{fond=inc_ousommesnous}]

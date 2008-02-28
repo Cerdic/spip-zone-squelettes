@@ -135,7 +135,7 @@ function config_site() {
 	// Création rubriques
 	
 	echo "<h2>Cr&eacute;ation des rubriques sp&eacute;ciales</h2><ul>";
-	create_rubrique('000. Racine', '0', "Vous trouverez dans cette rubrique:\n\n-* Les Éditos\n-* Des articles concernant le site lui-même\n");
+	create_rubrique('000. Fourre-tout', '0', "Vous trouverez dans cette rubrique:\n\n-* Les Éditos\n-* Des articles concernant le site lui-même\n");
 	create_rubrique('900. Agenda', '0');
 	create_rubrique('999. Citations', '0', "Mettre dans cette rubrique une citation par article");
 	echo '</ul>';
@@ -273,8 +273,9 @@ function config_site() {
 
 	// Liaison entre rubrique et mot clé
 	echo "<ul>\n";
-	create_rubrique_mot('000. Racine', 'SecteurPasDansQuoiDeNeuf');
-	create_rubrique_mot('000. Racine', 'PasDansMenu');
+	create_rubrique_mot('000. Fourre-tout', 'SecteurPasDansQuoiDeNeuf');
+	create_rubrique_mot('000. Fourre-tout', 'PasDansMenu');
+	create_rubrique_mot('000. Fourre-tout', 'PasDansPlan');
 	create_rubrique_mot('900. Agenda', 'Agenda');
 	create_rubrique_mot('900. Agenda', 'SecteurPasDansQuoiDeNeuf');
 	create_rubrique_mot('900. Agenda', 'PasDansMenu');
