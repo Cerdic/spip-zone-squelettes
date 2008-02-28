@@ -1,11 +1,10 @@
-#CACHE{30*24*3600}
 <BOUCLE_article_principal(ARTICLES) {id_article}>
 <div id="artrecents">
 		<B_articles_rubrique>
 		<h2><:pyrat:memerubrique:></h2>
 		<ul>
 		<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par num titre}{!par date} >
-			<li[(#COMPTEUR_BOUCLE|alterner{' class="odd"',''})]><?php if ($jp_article!=#ID_ARTICLE) { ?><a href="#URL_ARTICLE"[ hreflang="(#LANG)"][ title="(#DESCRIPTIF|attribut_html)"]><?php } ?>[(#TITRE)]<?php if ($jp_article!=#ID_ARTICLE) { ?></a><?php } ?></li>
+			<li[(#COMPTEUR_BOUCLE|alterner{' class="odd"',''})]>[(#ID_ARTICLE|!={#ENV{id_article}}|?{' '})<a href="#URL_ARTICLE"[ hreflang="(#LANG)"][ title="(#DESCRIPTIF|attribut_html)"]>][(#TITRE)][(#ID_ARTICLE|!={#ENV{id_article}}|?{'</a>'})]</li>
 		</BOUCLE_articles_rubrique>
 		</ul>
 		</B_articles_rubrique>
