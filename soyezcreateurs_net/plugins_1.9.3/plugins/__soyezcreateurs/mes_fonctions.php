@@ -50,32 +50,36 @@ function sommaire_article($texte,$istxt=0)
 	$nb=1;
 	$lastniveau=0;
 	if ($istxt==0) {
-		$texte="<a name='SommaireAutomatique'></a>";
-	for($j=0;$j<count($regs[2]);$j++)
-	{
-		$niveau=substr($regs[1][$j], 1, 1);
-		if ($niveau=='{') {$niveau=1;}
-		if ($niveau==$lastniveau) {
-			$texte.="</li>\n";
-		}
-		if ($niveau>$lastniveau) {
-			$texte.="<ul>";
-			$lastniveau=$niveau;
-		}
-		if ($niveau<$lastniveau) {
-			$texte.="</li>\n";
-			for($ulli=$niveau;$ulli<$lastniveau;$ulli++) {
-				$texte.="</ul></li>\n";
+		$texte='';
+		for($j=0;$j<count($regs[2]);$j++) {
+			$niveau=substr($regs[1][$j], 1, 1);
+			if ($niveau=='{') {$niveau=1;}
+			if ($niveau==$lastniveau) {
+				$texte.="</li>\n";
 			}
-			$lastniveau=$niveau;
-		}
+			if ($niveau>$lastniveau) {
+				$texte.="<ul>";
+				$lastniveau=$niveau;
+			}
+			if ($niveau<$lastniveau) {
+				$texte.="</li>\n";
+				for($ulli=$niveau;$ulli<$lastniveau;$ulli++) {
+					$texte.="</ul></li>\n";
+				}
+				$lastniveau=$niveau;
+			}
 
-    		$texte.="<li><a href=\"#sommaire_".$nb."\">".$regs[2][$j]."</a>";
-		$nb++;
-    }
-	for($j=0;$j<$niveau;$j++) {
-		$texte.="</li></ul>\n";
-	}
+			$texte.="<li><a href=\"#sommaire_".$nb."\">".$regs[2][$j]."</a>";
+			$nb++;
+		}
+		for($j=0;$j<$niveau;$j++) {
+			$texte.="</li></ul>\n";
+		}
+		
+		if ($nb>1) {
+			$texte="<a name='SommaireAutomatique'></a>".$texte;
+		}
+		
 	} else {
 		$texte="";
 		for($j=0;$j<count($regs[2]);$j++)
@@ -106,7 +110,9 @@ function sommaire_ancre($texte)
 		$texte.=$i.$array[$i];
 		$i++;
 	}
-	$texte.="<p class='retoursommaire'><a href='#SommaireAutomatique'>Retour Sommaire</a></p>";
+	if ($i>1) {
+		$texte.="<p class='retoursommaire'><a href='#SommaireAutomatique'>Retour Sommaire</a></p>";
+	}
 	return $texte;
 }
 //Fin filtre sommaire de l'article
