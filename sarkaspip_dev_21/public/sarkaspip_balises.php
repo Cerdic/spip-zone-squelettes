@@ -8,7 +8,7 @@
 //
 function balise_VERSION_SQUELETTE($p) {
 	$p->code = 'calcul_version_squelette()';
-	$p->statut = 'php';
+	$p->interdire_scripts = false;
 	return $p;
 }
 
@@ -16,10 +16,10 @@ function calcul_version_squelette() {
 
 	$version = NULL;
 	
-	$plugins_actifs = liste_plugin_actifs();
-	$infos_plug = plugin_get_infos($plugins_actifs['SARKASPIP']['dir']);
-	$version .= $infos_plug['version'];
-	
+	$contenu = spip_file_get_contents(_DIR_PLUGIN_SARKASPIP.'/plugin.xml');
+	if (preg_match('/<version>([0-9.]+)<\/version>/', $contenu, $match))
+		$version .= trim($match[1]);
+
 	$revision = version_svn_courante(_DIR_PLUGIN_SARKASPIP);
 	if ($revision > 0)
 		$version .= ' ['.strval($revision).']';
