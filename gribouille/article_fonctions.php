@@ -1,5 +1,10 @@
 <?php
 
+// Compatibilite 1.9.2
+if (version_compare($GLOBALS['spip_version_code'],'1.9300','<'))
+	include_spip('gribouille/compat_gribouille');
+
+
 // utiliser par exemple, pour afficher une ligne de diff :
 //  [<small> (#ID_ARTICLE|affiche_diff{#ID_VERSION,'diff'}|supprimer_tags|couper{50})</small>]
 function affiche_diff($id_article, $id_version, $format='complet') {
@@ -27,8 +32,8 @@ function affiche_auteur_diff($auteur) {
 
 	// Si c'est un nombre, c'est un auteur de la table spip_auteurs
 	if ($auteur == intval($auteur)
-	AND $s = spip_query("SELECT * FROM spip_auteurs WHERE id_auteur="._q($auteur))
-	AND $t = spip_fetch_array($s)) {
+	AND $s = sql_query("SELECT * FROM spip_auteurs WHERE id_auteur="._q($auteur))
+	AND $t = sql_fetch($s)) {
 		return typo($t['nom']);
 	} else {
 		return $auteur;
@@ -46,10 +51,10 @@ AND _request('id_rubrique') == $GLOBALS['contexte']['id_rubrique']) {
 	$id_article = null;
 
 	// on verifie d'abord qu'un article de ce titre n'existe pas deja
-	$s = spip_query("SELECT id_article FROM spip_articles WHERE titre="
+	$s = sql_query("SELECT id_article FROM spip_articles WHERE titre="
 	._q(_request('ajouter_page_wiki'))." OR url_propre="
 	._q(_request('ajouter_page_wiki')));
-	if ($t = spip_fetch_array($s)) {
+	if ($t = sql_fetch($s)) {
 		$id_article = $t['id_article'];
 	} else {
 		include_spip('inc/autoriser');
