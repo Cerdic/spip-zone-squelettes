@@ -1,22 +1,37 @@
+[(#REM) <!-- Header inclus dans chaque page du squelette
+	Propose par defaut une serie de metatags, les feuilles de style et la syndication.
+
+	Cette noisette supporte 3 arguments:
+		- meta_titre : le titre de la page affiche par la balise title
+		- meta_description : la description de la page inseree dans le metatag description
+		- meta_options : lignes d'options permettant en particulier d'inclure la syndication d'une rubrique
+
+	et quelques variables de config:
+		- recurrence_robot : nombre de jours entre deux visite (metatag revisit-after)
+		- auteur_site : nom de l'auteur du site (metatag author)
+		- licence_site : le type de copyright choisi pour le site, idem que le footer (metatag copyright)
+		- keywords_site : la liste des mots-cles caracterisant le site (metatag keywords)
+		- id_layout : id du layout Gala utilise pour l'inclusion de la feuille de style adequate
+--> ]
+
 [(#SET{meta_description, [(#ENV{meta_description}|sinon{#DESCRIPTIF_SITE_SPIP})]})]
+
 <head>
 	[(#REM) <!-- Metatags proposes en standard par le squelette --> ]
 	<meta http-equiv="content-type" content="text/html; charset=#CHARSET" />
 	<meta name="revisit-after" content="[(#CONFIG{sarkaspip_header/recurrence_robot, 30}) days]" />
 	<meta name="robots" content="index,follow" />
 	<meta name="generator" content="SPIP[ (#SPIP_VERSION)] - Sarka-SPIP[ (#VERSION_SQUELETTE|textebrut)]" />
-	<meta name="author" content="#CONFIG{sarkaspip_header/auteur, <:sarkaspip:realisation_squelette:>}" />
+	<meta name="author" content="#CONFIG{sarkaspip_header/auteur_site, <:sarkaspip:realisation_squelette:>}" />
 	<meta name="copyright" content="Copyright [(#NOM_SITE_SPIP|textebrut)][ - (#CONFIG{sarkaspip_header/licence_site}|textebrut)]" />
 	<meta name="distribution" content="global" />
 	<meta name="description" content="[(#GET{meta_description}|textebrut)]" />
-	<meta name="keywords" content="<BOUCLE_keywords_site(MOTS){type=squelette_header}{par titre}{", "}>#TITRE</BOUCLE_keywords_site>" />
+	[<meta name="keywords" content="(#CONFIG{sarkaspip_header/keywords_site})" />]
 
 	[(#REM) <!-- Feuilles de styles du squelettte --> ]
 	<link rel="stylesheet" href="[(#CHEMIN{[styles/layout(#CONFIG{sarkaspip_layout/id_layout,13}).css]})]" type="text/css" />
 	<link rel="stylesheet" href="#CHEMIN{styles/style.css}" type="text/css" />
-	<link rel="stylesheet" href="#CHEMIN{styles/style-menu-deroulant.css}" type="text/css" />
-	<link rel="stylesheet" href="#CHEMIN{styles/style-menu-deplie.css}" type="text/css" />
-	<link rel="stylesheet" href="#CHEMIN{styles/style_perso.css}" type="text/css" />
+	[<link rel="stylesheet" href="(#CHEMIN{styles/style_perso.css})" type="text/css" />]
 	[(#REM) <!-- Favicon du site --> ]
 	<link rel="shortcut icon" href="#CHEMIN{images/favicon.ico}" />
 	[(#REM) <!-- Syndication du contenu du site. En option la syndication des rubriques --> ]
