@@ -27,26 +27,27 @@ $titretop = '<:sites_web|nettoyer_marqueur:>_[(#NOM_SITE|nettoyer_marqueur)]';
 <div class="texte">
 <!-- Contenu : corps du site syndiqué -->
 <div class="cartouche">
-				<h1 class="#EDIT{nom_site} titre">[<img src="(#LOGO_SITE_NORMAL||image_reduire{64,64}|extraire_attribut{src})" class="logo_site" alt="[(#TITRE|texte_script|supprimer_tags|attribut_html) (logo)]" width="[(#LOGO_SITE_NORMAL||image_reduire{64,64}|extraire_attribut{width})]" height="[(#LOGO_SITE_NORMAL||image_reduire{64,64}|extraire_attribut{height})]" />][#DEBUT_SURLIGNE(#TITRE)#FIN_SURLIGNE]
+				[<p class="surtitre"><a href="#URL_SITE" class="spip_out">(#URL_SITE|couper{80})</a></p>]
+				<h1 class="titre">[<img src="(#LOGO_SITE_NORMAL||image_reduire{64,64}|extraire_attribut{src})" class="logo_site" alt="[(#TITRE|texte_script|supprimer_tags|attribut_html) (logo)]" width="[(#LOGO_SITE_NORMAL||image_reduire{64,64}|extraire_attribut{width})]" height="[(#LOGO_SITE_NORMAL||image_reduire{64,64}|extraire_attribut{height})]" />]
 				<:sites_web:>&nbsp;: 
-				#NOM_SITE
+				<span class="#EDIT{nom_site}">#NOM_SITE</span>
 				</h1>
 				
-				[<p class="#EDIT{url_site} soustitre"><a href="#URL_SITE" class="spip_out">(#URL_SITE|couper{80})</a></p>]
 <div class="datepublication"><span><:pyrat:publiele:> [(#DATE|nom_jour)] [(#DATE|affdate)]</span></div>
 </div>
 
 	<div id="letexte">
-	[<div class="chapo">(#DESCRIPTIF)</div>]
+	[<div class="#EDIT{descriptif} chapo">(#DESCRIPTIF)</div>]
 	[(#REM) Affichage du détail de la syndication si applicable ]
 		<B_ArticleSyndique>
 		<div class="syndic">
 			<BOUCLE_ArticleSyndique(SYNDIC_ARTICLES) {id_syndic_article} >
-				<h2><a href="#URL_ARTICLE">[(#TITRE)]</a></h2>
+				<h2 class="#EDIT{titre}">[(#TITRE)]</h2>
 				[<div class="enclosures">(#TAGS|afficher_enclosures)</div>]
 				<small>[(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)][ &mdash; <em>(#TAGS|afficher_tags)</em>]</small>
-				[<div>(#DESCRIPTIF|image_reduire{300})
-				<br class="nettoyeur" /></div>]
+				[<div class="#EDIT{descriptif}">(#DESCRIPTIF|image_reduire{300})</div>]
+				[<p class="hyperlien"><a href="#URL_ARTICLE" class="spip_out">(#URL_ARTICLE|couper{80})</a></p><br class="nettoyeur" />]
+				
 			</BOUCLE_ArticleSyndique>
 		</div>
 		</B_ArticleSyndique>
@@ -58,10 +59,10 @@ $titretop = '<:sites_web|nettoyer_marqueur:>_[(#NOM_SITE|nettoyer_marqueur)]';
 			<h2><:ecrire:titre_articles_syndiques:></h2>
 			<dl>
 			<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {pagination}>
-				<dt><a href="[(#ID_SYNDIC|generer_url_site|parametre_url{'id_syndic_article',#ID_SYNDIC_ARTICLE})]">[(#TITRE)]</a></dt>
+				<dt class="#EDIT{titre}"><a href="[(#ID_SYNDIC|generer_url_site|parametre_url{'id_syndic_article',#ID_SYNDIC_ARTICLE})]">[(#TITRE)]</a></dt>
 				<dd>
 					<small>[(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)]</small>
-					[<div>(#DESCRIPTIF|couper{300}|image_reduire{300})
+					[<div class="#EDIT{descriptif}">(#DESCRIPTIF|couper{300}|image_reduire{300})
 					<br class="nettoyeur" /></div>]
 				</dd>
 			</BOUCLE_articles>
