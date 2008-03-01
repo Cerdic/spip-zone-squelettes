@@ -28,7 +28,7 @@ function agenda_definir_contexte($id_agenda=0, $type_agenda='listing_annuel', $d
 	else {
 		$contexte['mois_base'] = intval(affdate(date("Y-m-d H:i"), 'mois'));
 		$contexte['annee_base'] = intval(affdate(date("Y-m-d H:i"), 'annee'));
-		$contexte['url_base'] = (strpos($url_page, '?') !== FALSE) ? $url_page.'&' : $url_page.'?';
+		$contexte['url_base'] = (strpos($url_page, '?') !== FALSE) ? $url_page.'&amp;' : $url_page.'?';
 	}
 	return;
 }
@@ -129,28 +129,28 @@ function agenda_debug_evenement($id_agenda=0, $liste_choisie='liste_evt') {
 		$count_evt = count($evenements);
 
 		for ($i=1;$i<=$count_evt;$i++) {
-			echo '<br><b>EVT N°'.$i.'</b><br>';
-			echo '<b>Titre</b>: '.$evenements[$i]['titre'].'<br>';
-			echo '<b>Id</b>: '.$evenements[$i]['id'].'<br>';
-			echo '<b>Date Redac</b>: '.$evenements[$i]['date_redac'].'<br>';
-			echo '<b>Date</b>: '.$evenements[$i]['date'].'<br>';
-			echo '<b>Heure</b>: '.$evenements[$i]['heure'].'<br>';
-			echo '<b>Jour</b>: '.$evenements[$i]['jour'].'<br>';
-			echo '<b>Mois</b>: '.$evenements[$i]['mois'].' | '.$evenements[$i]['nom_mois'].'<br>';
-			echo '<b>Annee</b>: '.$evenements[$i]['annee'].'<br>';
-			echo '<b>Saison</b>: '.$evenements[$i]['saison'].'<br>';
-			echo '<b>Lien page</b>: '.$evenements[$i]['lien_page'].'<br>';
-			echo '<b>Categorie</b>: '.$evenements[$i]['categorie'].'<br>';
+			echo '<br /><b>EVT N°'.$i.'</b><br />';
+			echo '<b>Titre</b>: '.$evenements[$i]['titre'].'<br />';
+			echo '<b>Id</b>: '.$evenements[$i]['id'].'<br />';
+			echo '<b>Date Redac</b>: '.$evenements[$i]['date_redac'].'<br />';
+			echo '<b>Date</b>: '.$evenements[$i]['date'].'<br />';
+			echo '<b>Heure</b>: '.$evenements[$i]['heure'].'<br />';
+			echo '<b>Jour</b>: '.$evenements[$i]['jour'].'<br />';
+			echo '<b>Mois</b>: '.$evenements[$i]['mois'].' | '.$evenements[$i]['nom_mois'].'<br />';
+			echo '<b>Annee</b>: '.$evenements[$i]['annee'].'<br />';
+			echo '<b>Saison</b>: '.$evenements[$i]['saison'].'<br />';
+			echo '<b>Lien page</b>: '.$evenements[$i]['lien_page'].'<br />';
+			echo '<b>Categorie</b>: '.$evenements[$i]['categorie'].'<br />';
 		}
 	}
 	else {
 		$evenements = agenda_recenser_evenement(-1);
 
 		foreach ($evenements as $jour => $liste) {
-			echo '<br><b>JOUR: </b>'.$jour.' ('.count($liste).')<br>';
+			echo '<br /><b>JOUR: </b>'.$jour.' ('.count($liste).')<br />';
 			foreach ($liste as $num_evt)
 				echo $num_evt.', ';
-			echo '<br>';
+			echo '<br />';
 		}
 	}
 }
@@ -165,13 +165,13 @@ function agenda_debug_contexte($id_agenda=0) {
 
 	$contexte_aff = agenda_definir_contexte(0);
 
-	echo '<br><b>CONTEXTE AGENDA</b><br>';
-	echo '<b>Type</b>: '.$contexte_aff['type_agenda'].'<br>';
-	echo '<b>Debut saison</b>: '.$contexte_aff['debut_saison'].'<br>';
-	echo '<b>Type affichage saison</b>: '.$contexte_aff['type_saison'].'<br>';
-	echo '<b>Mois en cours</b>: '.$contexte_aff['mois_base'].'<br>';
-	echo '<b>Ann&eacute;e en cours</b>: '.$contexte_aff['annee_base'].'<br>';
-	echo '<b>URL page de base</b>: '.$contexte_aff['url_base'].'<br>';
+	echo '<br /><b>CONTEXTE AGENDA</b><br />';
+	echo '<b>Type</b>: '.$contexte_aff['type_agenda'].'<br />';
+	echo '<b>Debut saison</b>: '.$contexte_aff['debut_saison'].'<br />';
+	echo '<b>Type affichage saison</b>: '.$contexte_aff['type_saison'].'<br />';
+	echo '<b>Mois en cours</b>: '.$contexte_aff['mois_base'].'<br />';
+	echo '<b>Ann&eacute;e en cours</b>: '.$contexte_aff['annee_base'].'<br />';
+	echo '<b>URL page de base</b>: '.$contexte_aff['url_base'].'<br />';
 }
 
 // ==================================================== AGENDA LISTING ANNUEL OU SAISONNIER ====================================================
@@ -197,8 +197,8 @@ function agenda_liste_paginer($id_agenda=0, $annee_choisie=0, $mois_choisi=0, $f
 	if ($count_evt == 0)
 		return $pagination;
 
-	if ($ancre)
-		echo '<a style="display:none" name="pagination_'.$ancre.'" id="pagination_'.$ancre.'"></a>';
+// 	if ($ancre)
+// 		echo '<a style="display:none" name="pagination_'.$ancre.'" id="pagination_'.$ancre.'"></a>';
 		
 	// Determination de l'annee choisie si l'agenda est saisonnier	
 	$contexte_aff = agenda_definir_contexte(0);
@@ -238,10 +238,10 @@ function agenda_liste_paginer($id_agenda=0, $annee_choisie=0, $mois_choisi=0, $f
 				}
 				else {
 					$arg_option = NULL;
-					if ($filtre != '-1') $arg_option = '&categorie='.$filtre;
+					if ($filtre != '-1') $arg_option = '&amp;categorie='.$filtre;
 					if ($ancre) $arg_option .= '#pagination_'.$ancre;
 					if (intval($debut_saison) != 1) $annee_evt = (intval($mois_evt) < intval($debut_saison)) ? strval(intval($annee_evt)-1) : $annee_evt;
-					$pagination .= '<a href="spip.php?page=agenda&annee='.$annee_evt.'&mois='.$debut_saison.$arg_option.'">'.$evenements[$j]['lien_page'].'</a>';
+					$pagination .= '<a href="spip.php?page=agenda&amp;annee='.$annee_evt.'&amp;mois='.$debut_saison.$arg_option.'">'.$evenements[$j]['lien_page'].'</a>';
 				}
 			$annee_courante = $annee_redac;
 			}
@@ -305,7 +305,7 @@ function agenda_liste_afficher($id_agenda=0, $annee_choisie=0, $mois_choisi=0, $
 					$liste .= '<ul><li><a class="titre_rub">'.$evenements[$j]['nom_mois'].'&nbsp;'.$evenements[$j]['annee'].'</a><ul>';
 				}
 				$mois_courant = $mois_redac;
-				$liste .= '<li><a class="titre_art" href="spip.php?page=evenement&id_article='.$evenements[$j]['id'].'">
+				$liste .= '<li><a class="titre_art" href="spip.php?page=evenement&amp;id_article='.$evenements[$j]['id'].'">
 				<span class="date">['.$evenements[$j]['date'].']&nbsp;</span>&nbsp;'.$evenements[$j]['titre'].'</a></li>';
 			}
 		}
@@ -408,15 +408,15 @@ function agenda_mini_paginer($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='
 	$mois_aujourdhui = date("m");
 	$annee_aujourdhui = date("Y");
 
-	$pagination .= '<a href="'.$url_base.'calendrier_mois='.$mois_prec.'&calendrier_annee='.$annee_prec.'" title="'._T('sarkaspip:mois_precedent').'">'.$icone_prec.'</a>';
+	$pagination .= '<a href="'.$url_base.'calendrier_mois='.$mois_prec.'&amp;calendrier_annee='.$annee_prec.'" title="'._T('sarkaspip:mois_precedent').'">'.$icone_prec.'</a>';
 	$pagination .= '&nbsp;&nbsp;'.$nom_mois[$mois_choisi].'&nbsp;&nbsp;';   
-	$pagination .= '<a href="'.$url_base.'calendrier_mois='.$mois_suiv.'&calendrier_annee='.$annee_suiv.'" title="'._T('sarkaspip:mois_suivant').'">'.$icone_suiv.'</a>';
+	$pagination .= '<a href="'.$url_base.'calendrier_mois='.$mois_suiv.'&amp;calendrier_annee='.$annee_suiv.'" title="'._T('sarkaspip:mois_suivant').'">'.$icone_suiv.'</a>';
 	$pagination .= '<br />';
-	$pagination .= '<a href="'.$url_base.'calendrier_mois='.$mois_choisi.'&calendrier_annee='.$annee_choisie_prec.'" title="'._T('sarkaspip:annee_precedente').'">'.$icone_prec.'</a>';
+	$pagination .= '<a href="'.$url_base.'calendrier_mois='.$mois_choisi.'&amp;calendrier_annee='.$annee_choisie_prec.'" title="'._T('sarkaspip:annee_precedente').'">'.$icone_prec.'</a>';
 	$pagination .= '&nbsp;&nbsp;'.$annee_choisie.'&nbsp;&nbsp;';   
-	$pagination .= '<a href="'.$url_base.'calendrier_mois='.$mois_choisi.'&calendrier_annee='.$annee_choisie_suiv.'" title="'._T('sarkaspip:annee_suivante').'">'.$icone_suiv.'</a>';
+	$pagination .= '<a href="'.$url_base.'calendrier_mois='.$mois_choisi.'&amp;calendrier_annee='.$annee_choisie_suiv.'" title="'._T('sarkaspip:annee_suivante').'">'.$icone_suiv.'</a>';
 	$pagination .= '<br />';
-	$pagination .= '<a href="'.$url_base.'calendrier_mois='.$mois_aujourdhui.'&calendrier_annee='.$annee_aujourdhui.'" title="'._T('sarkaspip:retour_aujourdhui').'">'.ucfirst(_T('sarkaspip:aujourdhui')).'</a>';
+	$pagination .= '<a href="'.$url_base.'calendrier_mois='.$mois_aujourdhui.'&amp;calendrier_annee='.$annee_aujourdhui.'" title="'._T('sarkaspip:retour_aujourdhui').'">'.ucfirst(_T('sarkaspip:aujourdhui')).'</a>';
 
 	return $pagination;
 }
@@ -495,7 +495,7 @@ function agenda_mini_afficher($id_agenda=0, $jour_debut=0, $affichage_hors_mois=
 		else {
 			// Il y a un ou plusieurs evenements, on construit le lien et la bulle d'info
 			$index_evt1 = $mini_evenements[date('d-m-Y', $date)][0];
-			$lien = 'spip.php?page=evenement&id_article='.$evenements[$index_evt1]['id'];
+			$lien = 'spip.php?page=evenement&amp;id_article='.$evenements[$index_evt1]['id'];
 			$bulle = $evenements[$index_evt1]['heure'].'&nbsp;-&nbsp;'.$evenements[$index_evt1]['titre'];
 			if (count($mini_evenements[date('d-m-Y', $date)]) > 1)
 				$bulle .= '...('.strval(count($mini_evenements[date('d-m-Y', $date)])).'&nbsp;'._T('sarkaspip:plusieurs_evenements_jour').')';
@@ -574,8 +574,8 @@ function agenda_mini_resumer($id_agenda=0, $critere='mois_complet', $taille=5) {
 		$critere_ok = (($critere == 'mois_complet') || (($critere == 'fin_mois') && (date('Y-m-d',$date) >= date('Y-m-d'))));
 		if (($annee == $annee_choisie) && ($mois == $mois_choisi) && ($count_liste < $taille) && ($critere_ok)) {
 			$cellule .= '<tr>';
-			$cellule .= '<td align="left" valign="top" nowrap>'.affdate_base($evenements[$i]['date_redac'], 'd-m H:i').':&nbsp;</td>';
-			$cellule .= '<td width="100%" align="left" valign="top"><a href="spip.php?page=evenement&id_article='.$evenements[$i]['id'].'">'.$evenements[$i]['titre'].'</a></td>';
+			$cellule .= '<td align="left" valign="top" nowrap="nowrap">'.affdate_base($evenements[$i]['date_redac'], 'd-m H:i').':&nbsp;</td>';
+			$cellule .= '<td width="100%" align="left" valign="top"><a href="spip.php?page=evenement&amp;id_article='.$evenements[$i]['id'].'">'.$evenements[$i]['titre'].'</a></td>';
 			$cellule .= '</tr>';
 			$count_liste += 1;
 		}
