@@ -155,7 +155,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 		'licence' => 'SARKA-SPIP template is distributed under GPL', // utilisé
 		'licence_site' => 'Licence to be defined',
-		'licence_squelette' => '<a href="http://www.gnu.org/copyleft/gpl.html" title="SARKA-SPIP template is distributed under GPL" target="_blank">GPL</a>',
+		'licence_squelette' => '<a href="http://www.gnu.org/copyleft/gpl.html" title="SARKA-SPIP template is distributed under GPL">GPL</a>',
                 'lire_evenement_virtuel' => 'Read the original event',
 		'lire_suite_article' => 'Read the whole article',
 		'login_membre' => 'Member\'s login',

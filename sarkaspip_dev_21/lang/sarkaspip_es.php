@@ -155,7 +155,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 		'licence' => 'El esqueleto SARKA-SPIP esta distribuido bajo la licencia GPL',
 		'licence_site' => 'Licencia a definir',
-		'licence_squelette' => '<a href="http://www.gnu.org/copyleft/gpl.html" title="El esqueleto SARKA-SPIP esta distribuido bajo la licencia GPL" target="_blank">GPL</a>',
+		'licence_squelette' => '<a href="http://www.gnu.org/copyleft/gpl.html" title="El esqueleto SARKA-SPIP esta distribuido bajo la licencia GPL">GPL</a>',
                 'lire_evenement_virtuel' => 'Leer el acontecimiento original',
 		'lire_suite_article'=> 'leer el resto del art&iacute;culo',
 		'login_membre' => 'Conexi&oacute;n',
