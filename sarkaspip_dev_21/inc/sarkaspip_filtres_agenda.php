@@ -300,13 +300,14 @@ function agenda_liste_afficher($id_agenda=0, $annee_choisie=0, $mois_choisi=0, $
 
 				if ($nouveau_mois) {
 					if ($mois_courant) {
-						$liste .= '</ul></li></ul>';
+						$liste .= '</ul><br />';
 					}
-					$liste .= '<ul><li><a class="titre_rub">'.$evenements[$j]['nom_mois'].'&nbsp;'.$evenements[$j]['annee'].'</a><ul>';
+					$liste .= '<h2><a>'.$evenements[$j]['nom_mois'].'&nbsp;'.$evenements[$j]['annee'].'</a></h2>';
+					$liste .= '<ul>';
 				}
 				$mois_courant = $mois_redac;
-				$liste .= '<li><a class="titre_art" href="spip.php?page=evenement&amp;id_article='.$evenements[$j]['id'].'">
-				<span class="date">['.$evenements[$j]['date'].']&nbsp;</span>&nbsp;'.$evenements[$j]['titre'].'</a></li>';
+				$liste .= '<li><a class="objet_titre" href="spip.php?page=evenement&amp;id_article='.$evenements[$j]['id'].'">
+				<span class="objet_date">['.$evenements[$j]['date'].']&nbsp;</span>&nbsp;'.$evenements[$j]['titre'].'</a></li>';
 			}
 		}
 	}

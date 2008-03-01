@@ -355,13 +355,14 @@ function galerie_listing_afficher($id_galerie, $annee_choisie, $mois_choisi, $fi
 			
 				if ($nouveau_mois) {
 					if ($mois_courant) {
-						$liste .= '</ul></li></ul>';
+						$liste .= '</ul><br />';
 					}
-					$liste .= '<ul><li><a class="titre_rub">'.$albums[$j]['nom_mois'].'&nbsp;'.$albums[$j]['annee'].'</a><ul>';
+					$liste .= '<h2><a>'.$albums[$j]['nom_mois'].'&nbsp;'.$albums[$j]['annee'].'</a></h2>';
+					$liste .= '<ul>';
 				}
 				$mois_courant = $mois_album;
-				$liste .= '<li><a class="titre_art" href="spip.php?page=album&id_article='.$albums[$j]['id'].'">
-				<span class="date">['.$albums[$j]['date'].']&nbsp;</span>&nbsp;'.$albums[$j]['titre'].'</a></li>';
+				$liste .= '<li><a class="objet_titre" href="spip.php?page=album&id_article='.$albums[$j]['id'].'">
+				<span class="objet_date">['.$albums[$j]['date'].']&nbsp;</span>&nbsp;'.$albums[$j]['titre'].'</a></li>';
 			}
 		}
 	}
