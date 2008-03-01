@@ -197,8 +197,8 @@ function agenda_liste_paginer($id_agenda=0, $annee_choisie=0, $mois_choisi=0, $f
 	if ($count_evt == 0)
 		return $pagination;
 
-// 	if ($ancre)
-// 		echo '<a style="display:none" name="pagination_'.$ancre.'" id="pagination_'.$ancre.'"></a>';
+	if ($ancre)
+		$pagination .= '<a style="display:none" name="pagination_'.$ancre.'" id="pagination_'.$ancre.'"></a>';
 		
 	// Determination de l'annee choisie si l'agenda est saisonnier	
 	$contexte_aff = agenda_definir_contexte(0);

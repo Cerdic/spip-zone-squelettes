@@ -176,7 +176,7 @@ function galerie_listing_paginer($id_galerie, $annee_choisie, $mois_choisi, $fil
 		return $pagination;
 		
 	if ($ancre)
-		echo '<a style="display:none" name="pagination_'.$ancre.'" id="pagination_'.$ancre.'"></a>';
+		$pagination .= '<a style="display:none" name="pagination_'.$ancre.'" id="pagination_'.$ancre.'"></a>';
 
 	// Determination de l'annee choisie si l'agenda est saisonnier	
 	$contexte_aff = galerie_definir_contexte(0);
@@ -241,7 +241,7 @@ function galerie_planche_paginer($id_galerie, $planche_choisie, $filtre, $separa
 		return $pagination;
 		
 	if ($ancre)
-		echo '<a style="display:none" name="pagination_'.$ancre.'" id="pagination_'.$ancre.'"></a>';
+		$pagination .= '<a style="display:none" name="pagination_'.$ancre.'" id="pagination_'.$ancre.'"></a>';
 
 	$count_alb_filtre = 0;
 	$nouvelle_page = FALSE;
