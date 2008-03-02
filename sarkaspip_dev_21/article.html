@@ -1,279 +1,240 @@
-[(#REM) <!--
-Squelette Sarka-SPIP
-Copyright (C) 2005-2007 - Collectif Sarka-SPIP - http://sarka-spip.com
-
-Ce programme est libre, vous pouvez le redistribuer et/ou le modifier selon les termes
-de la Licence Publique Generale GNU publiee par la Free Software Foundation (version 2
-ou bien toute autre version ulterieure choisie par vous).
-
-Ce programme est distribue car potentiellement utile, mais SANS AUCUNE GARANTIE, ni
-explicite ni implicite, y compris les garanties de commercialisation ou d'adaptation
-dans un but specifique. Reportez-vous a la Licence Publique Generale GNU pour plus de details.
-
-Vous devez avoir recu une copie de la Licence Publique Generale GNU en meme temps que ce programme;
-si ce n'est pas le cas, ecrivez a la Free Software Foundation, Inc., 59 Temple Place, Suite 330,
-Boston, MA 02111-1307, Etats-Unis.
--->
-
-<!--
-CREDITS
-
-Le squelette Sarka-SPIP est realise par un collectif dont les membres sont les suivants:
-
-- Toufik Stouky    alias  SarkAFeeK
-- Sylvain Bellego  alias  SarkALeoN
-- Xavier Le Ho     alias  SarkARchimeD
-- Eric Lupinacci   alias  SarkASmeL
-
-Nous tenons aussi a remercier tous les utilisateurs qui nous ont fait confiance depuis les 
-premiers pas du squelette et qui continuent aujourd'hui a nous apporter leur soutien et leurs idees.
-Un grand merci, donc, a celles et ceux qui ont contribue (et qui vont contribuer) a l'amelioration
-de ce squelette.
--->]
-
-<!--Squelette Sarka-SPIP - Copyright (C) 2005-2007 - Collectif Sarka-SPIP - http://sarka-spip.com-->
-
+<!--Squelette Sarka-SPIP - Copyright (C) 2005-2008 - Collectif Sarka-SPIP - http://sarka-spip.com-->
 #CACHE{7200}
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <BOUCLE_article_principal(ARTICLES) {id_article}>
-<html lang="#LANG">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+	<INCLURE{fond=noisettes/header}
+		{meta_titre=#TITRE}
+		{meta_description=(#INTRODUCTION|couper{150})}>
 
-	<INCLURE{fond=noisettes/header}{id_article}>
 <body dir="#LANG_DIR" onload="setHover()">
 <div id="container">
-<div id="header">
-	[(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
+	<div id="header">
+		[(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
 		<INCLURE{fond=noisettes/bandeau}>
-	
-	[(#REM) <!-- =========================== ZONE CHEMIN DE NAVIGATION ============================= --> ]
+		
+		[(#REM) <!-- =========================== ZONE CHEMIN DE NAVIGATION ============================= --> ]
 		<INCLURE{fond=noisettes/chemin}{id_rubrique}>
-</div> <!-- fin de header-->
-
-<div id="wrapper">
-	<div id="content">
-		[(#REM) <!-- Contenu de l'article --> ]
-		<div class="article">
-			<a class="fonction" id="imprimer" href="#URL_PAGE{imprimer,id_article=#ID_ARTICLE}" title="<:sarkaspip:imprimer_article:>" alt="<:sarkaspip:imprimer_article:>" target="_blank"></a>
-
-			[(#PLUGIN{ARTICLE_PDF}|?{' '})
-					[(#MODELE{bouton_pdf}{id_article})]
-			]
-			
-			[<div class="#EDIT{surtitre} surtitre">(#SURTITRE)</div>]
-			[<div class="#EDIT{titre} titre">(#TITRE|supprimer_numero)</div>]
-			[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>]	
-			
-			<div class="contenu">
-				[<div class="image">(#LOGO_ARTICLE||image_reduire{150})</div>]
-				
-				<div class="detail">
-						[(#DATE|nom_jour)] [(#DATE|affdate)]<br>
-						<B_auteurs_article>
-							<:sarkaspip:par_auteur:>
-						<BOUCLE_auteurs_article(AUTEURS) {id_article} {", "}>
-							<a href="#URL_AUTEUR">#NOM</a>
-						</BOUCLE_auteurs_article>
-						</B_auteurs_article>
-						[<br><:sarkaspip:popularite_article:>&nbsp;:&nbsp;(#POPULARITE)%]
-				</div> <!-- Fin detail -->
-				<div class="clearer-right"></div>
-				
-				[<div class="chapo"><:sarkaspip:sur_web:>&nbsp;<a href="#URL_SITE">(#NOM_SITE)</a></div>]
-				[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
-				
-				<div class="#EDIT{texte} texte">
-					[(#TEXTE|typo_couleur)]
-					<div class="clearer">&nbsp;</div> <!-- Sarka 1.9.1 : éviter le débordement des images vers le bas -->
-					
-					[<div class="#EDIT{ps} post-scriptum"><div class="annonce"><:sarkaspip:ps:>&nbsp;:</div>(#PS)</div>]
-					[<div class="#EDIT{notes} notes">(#NOTES)</div>]
-					[<br><a class="repondre" href="(#PARAMETRES_FORUM|url_reponse_forum)"><:sarkaspip:repondre_article:></a><br>]
-				</div> <!-- Fin texte -->
-				
-			</div><!-- contenu-->
-			
-			
-			
-			[(#REM) <!-- Liens vers les documents joints, à l'exclusion des images --> ]
-			<B_documents_article>
-				<div class="en-tete"><:sarkaspip:docu_article:>&nbsp;:</div>
-				<div class="doc">
-					<BOUCLE_documents_article(DOCUMENTS){id_article}{extension !== jpg|png|gif}{mode=document}{doublons}>
-						<a href="#URL_DOCUMENT">&nbsp;#LOGO_DOCUMENT&nbsp;&nbsp;#TITRE </a>
-					</BOUCLE_documents_article>
-				</div> <!-- Fin doc -->
-				<div class="clear"><span></span></div>
-			</B_documents_article>
-			
-
-			[(#REM) <!-- Liens vers les images jointes --> ]
-			<B_images_article>
-				<div class="en-tete"><:sarkaspip:img_article:>&nbsp;:</div>
-				<div class="doc">
-					<BOUCLE_images_article(DOCUMENTS){id_article}{extension == jpg|png|gif}{mode=document}{doublons}>
-						<div class="vignette">
-							[<a href="#FICHIER" type="#MIME_TYPE"[ title="(#TITRE|couper{80})"]>
-								(#FICHIER|copie_locale|image_reduire{0,100}|inserer_attribut{alt,[(#TITRE|couper{80})]})
-							</a>]
-							<ul>
-								[<li><:sarkaspip:img_titre:>&nbsp;:&nbsp;(#TITRE)</li>]
-								[<li><:sarkaspip:img_descriptif:>&nbsp;:&nbsp;(#DESCRIPTIF)</li>]
-								<li><:sarkaspip:img_taille:>&nbsp;:&nbsp;#LARGEUR&nbsp;<:sarkaspip:lxh:>&nbsp;#HAUTEUR</li>
-								<li><:sarkaspip:img_poids:>&nbsp;:&nbsp;[(#TAILLE|taille_en_octets)]</li>
-								<li><:sarkaspip:img_format:>&nbsp;:&nbsp;#TYPE_DOCUMENT</li>
-							</ul>
-						</div> <!-- Fin vignette -->
-					</BOUCLE_images_article>
-					</div> <!-- Fin images -->
-					<div class="clear"><span></span></div>
-			</B_images_article>
-
-		</div><!-- article-->
-		
-		[(#REM) <!-- Formulaire pour signer la petition --> ]
-		[<div id="signer_petition" class="petition">
-			<div class="en-tete"><:sarkaspip:signer_petition:></div>
-			(#FORMULAIRE_SIGNATURE)
-		</div>]
-		
-		[(#REM) <!-- Signatures petition --> ]
-		<B_signatures>
-			<BOUCLE_signatures_decompte(SIGNATURES) {id_article}></BOUCLE_signatures_decompte>
-				[<div id="signatures" class="petition">
-					<div class="en-tete"><:sarkaspip:signatures_petition:>:&nbsp;(#TOTAL_BOUCLE)</div>
+	</div>
+	
+	<div id="wrapper">
+		<div id="content">
+			[(#REM) <!-- Contenu de l'article --> ]
+			<div class="article">
+				<a class="fonction" id="imprimer" href="#URL_PAGE{imprimer,id_article=#ID_ARTICLE}" title="<:sarkaspip:imprimer_article:>" alt="<:sarkaspip:imprimer_article:>" target="_blank"></a>
+	
+				[(#PLUGIN{ARTICLE_PDF}|?{' '})
+						[(#MODELE{bouton_pdf}{id_article})]
 				]
-			<//B_signatures_decompte>
-				[(#ANCRE_PAGINATION)]
-					[<div class="bande-pagination">(#PAGINATION)</div>]
-					<table>
-						<thead>
-							<tr>
-								<td><:sarkaspip:date:></td>
-								<td><:sarkaspip:nom:></td>
-								<td><:sarkaspip:sites_web:></td>
-								<td><:sarkaspip:message:></td>
-							</tr>
-						</thead>
-						<tbody>
-			<BOUCLE_signatures(SIGNATURES) {id_article} {par date} {inverse} {pagination 3}>
-							<tr>
-								<td>[(#DATE|affdate_court)]</td>
-								<td>#NOM</td>
-								<td><a href="#URL_SITE">[(#NOM_SITE)]</a></td>
-								[<td class="#EDIT{message}">(#MESSAGE)</td>]
-							</tr>
-			</BOUCLE_signatures>
-						</tbody>
-					</table>
-					[<div class="bande-pagination">(#PAGINATION)</div>]
-				</div> <!-- Fin signatures -->
-		</B_signatures>
-		
-		[(#REM) <!-- Forums --> ]
-			<B_forums>
-				<div class="forum">
-					<div id="forum" class="en-tete"><:sarkaspip:messages_forum:> :</div>
-			<BOUCLE_forums(FORUMS){id_article}{par date}{inverse}>
-					<div id="visualisation" class="visualisation">
-						<div class="titre">#TITRE</div>
-						<div class="detail">
-							[(#DATE|nom_jour)]&nbsp;[(#DATE|affdate)]<br>
-							[<:sarkaspip:par_auteur:>&nbsp;(#NOM)]
-						</div> <!-- Fin detail -->
-						<div class="texte">
-							#TEXTE
-							<br><br>
-							[<a href="[(#URL_SITE)]">(#NOM_SITE)</a>]
-						</div> <!-- Fin texte -->
-					</div> <!-- Fin visualisation -->
+				
+				[<div class="#EDIT{surtitre} surtitre">(#SURTITRE)</div>]
+				[<div class="#EDIT{titre} titre">(#TITRE|supprimer_numero)</div>]
+				[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>]	
+				
+				<div class="contenu">
+					[<div class="image">(#LOGO_ARTICLE||image_reduire{150})</div>]
 					
-					[ <br>
-					<a class="repondre" href="(#PARAMETRES_FORUM|url_reponse_forum)"><:sarkaspip:repondre_message:></a>]
-					[<a class="repondre" href="(#URL_PAGE{forum-fil,id_thread=#ID_THREAD})"><:sarkaspip:fil_discussion:></a>
-					 <br><br>]
-					 
-					<B_forums_fils>
-						<div class="forum_fils">
-					<BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
-							<div id="visualisation" class="visualisation">
-								<div class="titre">#TITRE</div>
-								<div class="detail">
-									[(#DATE|nom_jour)]&nbsp;[(#DATE|affdate)]<br>
-									[<:sarkaspip:par_auteur:>&nbsp;(#NOM)]
-								</div> <!-- Fin detail -->
-								<div class="texte">
-									#TEXTE
-									[<br><br>
-									<a href="[(#URL_SITE)]">(#NOM_SITE)</a>]
-								</div> <!-- Fin texte -->
-							</div> <!-- Fin visualisation -->
-							
-					[ <br>
-					<a class="repondre" href="(#PARAMETRES_FORUM|url_reponse_forum)"><:sarkaspip:repondre_message:></a>]
-					[<a class="repondre" href="(#URL_PAGE{forum-fil,id_thread=#ID_THREAD})"><:sarkaspip:fil_discussion:></a>
-					 <br><br>]
-					 
-						<BOUCLE_Forums_Boucle(boucle_forums_fils)></BOUCLE_Forums_Boucle>
-					</BOUCLE_forums_fils>
-						</div> <!-- Fin forum_fils -->
-					</B_forums_fils>
-			</BOUCLE_forums>
-				</div> <!-- Fin forum -->
-			</B_forums>
+					<div class="detail">
+							[(#DATE|nom_jour)] [(#DATE|affdate)]<br>
+							<B_auteurs_article>
+								<:sarkaspip:par_auteur:>
+							<BOUCLE_auteurs_article(AUTEURS) {id_article} {", "}>
+								<a href="#URL_AUTEUR">#NOM</a>
+							</BOUCLE_auteurs_article>
+							</B_auteurs_article>
+							[<br><:sarkaspip:popularite_article:>&nbsp;:&nbsp;(#POPULARITE)%]
+					</div>
+					<div class="clearer-right"></div>
+					
+					[<div class="chapo"><:sarkaspip:sur_web:>&nbsp;<a href="#URL_SITE">(#NOM_SITE)</a></div>]
+					[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
+					
+					<div class="#EDIT{texte} texte">
+						[(#TEXTE|typo_couleur)]
+						<div class="clearer">&nbsp;</div>
+						
+						[<div class="#EDIT{ps} post-scriptum"><div class="annonce"><:sarkaspip:ps:>&nbsp;:</div>(#PS)</div>]
+						[<div class="#EDIT{notes} notes">(#NOTES)</div>]
+						[<br><a class="repondre" href="(#PARAMETRES_FORUM|url_reponse_forum)"><:sarkaspip:repondre_article:></a><br>]
+					</div>
+				</div>
+				
+				[(#REM) <!-- Liens vers les documents joints, a l'exclusion des images --> ]
+				<B_documents_article>
+					<div class="en-tete"><:sarkaspip:docu_article:>&nbsp;:</div>
+					<div class="doc">
+						<BOUCLE_documents_article(DOCUMENTS){id_article}{extension !== jpg|png|gif}{mode=document}{doublons}>
+							<a href="#URL_DOCUMENT">&nbsp;#LOGO_DOCUMENT&nbsp;&nbsp;#TITRE </a>
+						</BOUCLE_documents_article>
+					</div>
+					<div class="clear"><span></span></div>
+				</B_documents_article>
+				
+	
+				[(#REM) <!-- Liens vers les images jointes --> ]
+				<B_images_article>
+					<div class="en-tete"><:sarkaspip:img_article:>&nbsp;:</div>
+					<div class="doc">
+						<BOUCLE_images_article(DOCUMENTS){id_article}{extension == jpg|png|gif}{mode=document}{doublons}>
+							<div class="vignette">
+								[<a href="#FICHIER" type="#MIME_TYPE"[ title="(#TITRE|couper{80})"]>
+									(#FICHIER|copie_locale|image_reduire{0,100}|inserer_attribut{alt,[(#TITRE|couper{80})]})
+								</a>]
+								<ul>
+									[<li><:sarkaspip:img_titre:>&nbsp;:&nbsp;(#TITRE)</li>]
+									[<li><:sarkaspip:img_descriptif:>&nbsp;:&nbsp;(#DESCRIPTIF)</li>]
+									<li><:sarkaspip:img_taille:>&nbsp;:&nbsp;#LARGEUR&nbsp;<:sarkaspip:lxh:>&nbsp;#HAUTEUR</li>
+									<li><:sarkaspip:img_poids:>&nbsp;:&nbsp;[(#TAILLE|taille_en_octets)]</li>
+									<li><:sarkaspip:img_format:>&nbsp;:&nbsp;#TYPE_DOCUMENT</li>
+								</ul>
+							</div>
+						</BOUCLE_images_article>
+						</div>
+						<div class="clear"><span></span></div>
+				</B_images_article>
+			</div>
 			
-		[(#REM) <!-- affichage des articles freres --> ]
-			<B_test_numero>
-			<BOUCLE_test_numero(ARTICLES){id_rubrique}{titre==^[0-9]+\.}{0,1}>
-				<B_article_rubrique_numerotes>
-					<div id="articles-freres" class="petition">  <!--le terme "petition" est mal choisi mais c'est pour économiser une classe dans le css -->
-						<div class="en-tete"><:sarkaspip:articles_rubrique:></div>
-						<ol>
-				<BOUCLE_article_rubrique_numerotes(ARTICLES){id_rubrique}{par num titre}>
-							<li class="[(#EXPOSER|en-cours,frere)]">
-								<a [(#EXPOSER|id,href)]="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a><br>
-								[<div class="date">(#DATE|affdate)</div>]<br>
-							</li>
-				</BOUCLE_article_rubrique_numerotes>
-						</ol>
-					</div> <!-- Fin articles-freres -->
-				</B_article_rubrique_numerotes>
-			</BOUCLE_test_numero>
-			</B_test_numero>
+			[(#REM) <!-- Formulaire pour signer la petition --> ]
+			[<div id="signer_petition" class="petition">
+				<div class="en-tete"><:sarkaspip:signer_petition:></div>
+				(#FORMULAIRE_SIGNATURE)
+			</div>]
 			
-				<B_article_rubrique_date>
-					<div id="articles-freres" class="petition"> <!--le terme "petition" est mal choisi mais c'est pour économiser une classe dans le css -->
-						<div class="en-tete"><:sarkaspip:articles_rubrique:></div>
-						<ol>
-				<BOUCLE_article_rubrique_date(ARTICLES){id_rubrique}{par date}>
-							<li class="[(#EXPOSER|en-cours,frere)]">
-								<a [(#EXPOSER|id,href)]="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a><br>
-								[<div class="date">(#DATE|affdate)</div>]<br>
-							</li>
-				</BOUCLE_article_rubrique_date>
-						</ol>
-					</div> <!-- Fin articles-freres -->
-				</B_article_rubrique_date>
-			<//B_test_numero>		
-		
-		
-	</div><!--content-->
-</div><!--wrapper-->
-
-<div id="navigation">
-	[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
+			[(#REM) <!-- Signatures petition --> ]
+			<B_signatures>
+				<BOUCLE_signatures_decompte(SIGNATURES) {id_article}></BOUCLE_signatures_decompte>
+					[<div id="signatures" class="petition">
+						<div class="en-tete"><:sarkaspip:signatures_petition:>:&nbsp;(#TOTAL_BOUCLE)</div>
+					]
+				<//B_signatures_decompte>
+					[(#ANCRE_PAGINATION)]
+						[<div class="bande-pagination">(#PAGINATION)</div>]
+						<table>
+							<thead>
+								<tr>
+									<td><:sarkaspip:date:></td>
+									<td><:sarkaspip:nom:></td>
+									<td><:sarkaspip:sites_web:></td>
+									<td><:sarkaspip:message:></td>
+								</tr>
+							</thead>
+							<tbody>
+				<BOUCLE_signatures(SIGNATURES) {id_article} {par date} {inverse} {pagination 3}>
+								<tr>
+									<td>[(#DATE|affdate_court)]</td>
+									<td>#NOM</td>
+									<td><a href="#URL_SITE">[(#NOM_SITE)]</a></td>
+									[<td class="#EDIT{message}">(#MESSAGE)</td>]
+								</tr>
+				</BOUCLE_signatures>
+							</tbody>
+						</table>
+						[<div class="bande-pagination">(#PAGINATION)</div>]
+					</div>
+			</B_signatures>
+			
+			[(#REM) <!-- Forums --> ]
+				<B_forums>
+					<div class="forum">
+						<div id="forum" class="en-tete"><:sarkaspip:messages_forum:> :</div>
+				<BOUCLE_forums(FORUMS){id_article}{par date}{inverse}>
+						<div id="visualisation" class="visualisation">
+							<div class="titre">#TITRE</div>
+							<div class="detail">
+								[(#DATE|nom_jour)]&nbsp;[(#DATE|affdate)]<br>
+								[<:sarkaspip:par_auteur:>&nbsp;(#NOM)]
+							</div>
+							<div class="texte">
+								#TEXTE
+								<br><br>
+								[<a href="[(#URL_SITE)]">(#NOM_SITE)</a>]
+							</div>
+						</div>
+						
+						[ <br>
+						<a class="repondre" href="(#PARAMETRES_FORUM|url_reponse_forum)"><:sarkaspip:repondre_message:></a>]
+						[<a class="repondre" href="(#URL_PAGE{forum-fil,id_thread=#ID_THREAD})"><:sarkaspip:fil_discussion:></a>
+						 <br><br>]
+						 
+						<B_forums_fils>
+							<div class="forum_fils">
+						<BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
+								<div id="visualisation" class="visualisation">
+									<div class="titre">#TITRE</div>
+									<div class="detail">
+										[(#DATE|nom_jour)]&nbsp;[(#DATE|affdate)]<br>
+										[<:sarkaspip:par_auteur:>&nbsp;(#NOM)]
+									</div>
+									<div class="texte">
+										#TEXTE
+										[<br><br>
+										<a href="[(#URL_SITE)]">(#NOM_SITE)</a>]
+									</div>
+								</div>
+								
+						[ <br>
+						<a class="repondre" href="(#PARAMETRES_FORUM|url_reponse_forum)"><:sarkaspip:repondre_message:></a>]
+						[<a class="repondre" href="(#URL_PAGE{forum-fil,id_thread=#ID_THREAD})"><:sarkaspip:fil_discussion:></a>
+						 <br><br>]
+						 
+							<BOUCLE_Forums_Boucle(boucle_forums_fils)></BOUCLE_Forums_Boucle>
+						</BOUCLE_forums_fils>
+							</div>
+						</B_forums_fils>
+				</BOUCLE_forums>
+					</div>
+				</B_forums>
+				
+			[(#REM) <!-- affichage des articles freres --> ]
+				<B_test_numero>
+				<BOUCLE_test_numero(ARTICLES){id_rubrique}{titre==^[0-9]+\.}{0,1}>
+					<B_article_rubrique_numerotes>
+						<div id="articles-freres" class="petition">
+							<div class="en-tete"><:sarkaspip:articles_rubrique:></div>
+							<ol>
+					<BOUCLE_article_rubrique_numerotes(ARTICLES){id_rubrique}{par num titre}>
+								<li class="[(#EXPOSER|en-cours,frere)]">
+									<a [(#EXPOSER|id,href)]="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a><br>
+									[<div class="date">(#DATE|affdate)</div>]<br>
+								</li>
+					</BOUCLE_article_rubrique_numerotes>
+							</ol>
+						</div>
+					</B_article_rubrique_numerotes>
+				</BOUCLE_test_numero>
+				</B_test_numero>
+				
+					<B_article_rubrique_date>
+						<div id="articles-freres" class="petition">
+							<div class="en-tete"><:sarkaspip:articles_rubrique:></div>
+							<ol>
+					<BOUCLE_article_rubrique_date(ARTICLES){id_rubrique}{par date}>
+								<li class="[(#EXPOSER|en-cours,frere)]">
+									<a [(#EXPOSER|id,href)]="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a><br>
+									[<div class="date">(#DATE|affdate)</div>]<br>
+								</li>
+					</BOUCLE_article_rubrique_date>
+							</ol>
+						</div> <!-- Fin articles-freres -->
+					</B_article_rubrique_date>
+				<//B_test_numero>		
+		</div>
+	</div>
+	
+	<div id="navigation">
+		[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
 		<INCLURE{fond=noisettes/navigation}{id_rubrique}>
-</div>  <!--navigation-->
-
-<div id="extra">
-	[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
+	</div>
+	
+	<div id="extra">
+		[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
 		<INCLURE{fond=noisettes/extra}{self=#SELF}{page=article}{id_secteur}{id_article}>
-</div>
-
-<div id="footer">
-	[(#REM) <!-- ================================== ZONE PIED DE PAGE  ================================== --> ]
+	</div>
+	
+	<div id="footer">
+		[(#REM) <!-- ================================== ZONE PIED DE PAGE  ================================== --> ]
 		<INCLURE{fond=noisettes/footer}>
-</div>  <!--footer-->
+	</div>
 
 </div>
 </body>
