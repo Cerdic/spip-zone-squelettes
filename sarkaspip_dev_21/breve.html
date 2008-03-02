@@ -1,123 +1,86 @@
-[(#REM) <!--
-Squelette Sarka-SPIP
-Copyright (C) 2005-2007 - Collectif Sarka-SPIP - http://sarka-spip.com
-
-Ce programme est libre, vous pouvez le redistribuer et/ou le modifier selon les termes
-de la Licence Publique Generale GNU publiee par la Free Software Foundation (version 2
-ou bien toute autre version ulterieure choisie par vous).
-
-Ce programme est distribue car potentiellement utile, mais SANS AUCUNE GARANTIE, ni
-explicite ni implicite, y compris les garanties de commercialisation ou d'adaptation
-dans un but specifique. Reportez-vous a la Licence Publique Generale GNU pour plus de details.
-
-Vous devez avoir recu une copie de la Licence Publique Generale GNU en meme temps que ce programme;
-si ce n'est pas le cas, ecrivez a la Free Software Foundation, Inc., 59 Temple Place, Suite 330,
-Boston, MA 02111-1307, Etats-Unis.
--->
-
-<!--
-CREDITS
-
-Le squelette Sarka-SPIP est realise par un collectif dont les membres sont les suivants:
-
-- Toufik Stouky    alias  SarkAFeeK
-- Sylvain Bellego  alias  SarkALeoN
-- Xavier Le Ho     alias  SarkARchimeD
-- Eric Lupinacci   alias  SarkASmeL
-
-Nous tenons aussi a remercier tous les utilisateurs qui nous ont fait confiance depuis les 
-premiers pas du squelette et qui continuent aujourd'hui a nous apporter leur soutien et leurs idees.
-Un grand merci, donc, a celles et ceux qui ont contribue (et qui vont contribuer) a l'amelioration
-de ce squelette.
--->]
-
+<!--Squelette Sarka-SPIP - Copyright (C) 2005-2008 - Collectif Sarka-SPIP - http://sarka-spip.com-->
 #CACHE{43200}
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+	<BOUCLE_meta(BREVES){id_breve}>
+		<INCLURE{fond=noisettes/header}
+			{meta_titre=#TITRE}
+			{meta_description=#INTRODUCTION{150}}>
+	</BOUCLE_meta>
+		<INCLURE{fond=noisettes/header}
+			{meta_titre=<:sarkaspip:breves:>}>
+	<//B_meta>
 
-<html lang="#LANG">
-	<INCLURE{fond=noisettes/header}{id_breve}>
 <body  dir="#LANG_DIR" onload="setHover()">
-
 <div id="container">
-<div id="header">
-	[(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
+
+	<div id="header">
+		[(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
 		<INCLURE{fond=noisettes/bandeau}>
-	
-	[(#REM) <!-- =========================== ZONE CHEMIN DE NAVIGATION ============================= --> ]
+		
+		[(#REM) <!-- =========================== ZONE CHEMIN DE NAVIGATION ============================= --> ]
 		<INCLURE{fond=noisettes/chemin}>
-</div> <!-- fin de header-->
-
-<div id="wrapper">
-	<div id="content">
+	</div>
 	
+	<div id="wrapper">
+		<div id="content">
+		   [(#REM) <!-- affichage de la breve courante --> ]
+			[(#ENV{id_breve}|?{' '})
+				<div id="breve" class="noisette">
+					[(#MODELE{mod_breve_1}{id_breve})]
+					<br />
+				</div>
+			]
+			
+			[(#REM) <!-- affichage du plan des breves classees par secteurs --> ]
+			<div class="plan">
+				<h1 class="intitulePage"><:sarkaspip:toutes_les_breves:></h1>
+				<B_rubrique_racine>
+				<BOUCLE_rubrique_racine(RUBRIQUES){racine}{id_rubrique!==RUBRIQUE_SPECIALISEE}{par num titre}>
+					<B_breves_dans_rubrique>
+						[<h2><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a></h2>]
+						<ul>
+					<BOUCLE_breves_dans_rubrique(BREVES) {id_rubrique} {par date}{inverse}>
+							<li><a class="objet_titre" href="#URL_BREVE"><span class="objet_date">[[(#DATE|affdate{'d-m-Y'})]]&nbsp;</span>&nbsp;#TITRE</a></li>
+					</BOUCLE_breves_dans_rubrique>
+						</ul>
+					</B_breves_dans_rubrique>
+				</BOUCLE_rubrique_racine>
+				</B_rubrique_racine>
+			</div>
+		</div>
+	</div>
 	
-	   [(#REM) <!-- affichage de la breve courante --> ]
-	   <div id="breves" class="noisette">
-            <B_breve_principale>
-			<BOUCLE_breve_principale(BREVES) {id_breve}>
-                [(#MODELE{mod_breve_1}{id_rubrique})]
-            <br>
-            </BOUCLE_breve_principale>
-            </B_breve_principale>
-		</div><!-- Fin noisette -->
-		
-		
-		[(#REM) <!-- affichage du plan des breves classees par secteurs --> ]
-		<div class="plan">
-			<div class="intitulePage"><:sarkaspip:toutes_les_breves:></div>
-			<B_rubrique_racine>
-			<BOUCLE_rubrique_racine(RUBRIQUES){racine}{id_rubrique!==RUBRIQUE_SPECIALISEE}{par num titre}>
-				<B_breves_dans_rubrique>
-					<ul>
-						<li>
-							[<a class="titre_rub" href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
-							<ul>
-				<BOUCLE_breves_dans_rubrique(BREVES) {id_rubrique} {par date}{inverse}>
-								<li><a class="titre_art" id="breve" href="#URL_BREVE"><span class="date">[[(#DATE|affdate{'d-m-Y'})]]&nbsp;</span>&nbsp;#TITRE</a></li>
-				</BOUCLE_breves_dans_rubrique>
-							</ul>
-						</li>
-					</ul>
-				</B_breves_dans_rubrique>
-			</BOUCLE_rubrique_racine>
-			</B_rubrique_racine>
-		</div> <!-- Fin plan -->
-		
-		
-	</div><!--content-->
-</div><!--wrapper-->
-
-<div id="navigation">
-	[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
+	<div id="navigation">
+		[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
 		<INCLURE{fond=noisettes/navigation}>
-</div>  <!--navigation-->
-
-<div id="extra">
-	[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
-		
-        [(#REM) <!-- Affichage des mots-cles associes a la breve --> ]
+	</div>
+	
+	<div id="extra">
+		[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
+			
+		[(#REM) <!-- Affichage des mots-cles associes a la breve --> ]
 		<B_mots>
 			<div id="mots-cles" class="noisette">
 				<div><a class="intitule" href="#URL_PAGE{mot}"><:sarkaspip:mots_clefs:></a></div>
 				<div class="contenu">
 		<BOUCLE_mots(MOTS) {id_breve} {type!==^squelette\_} {par titre}>
-            <BOUCLE_groupe(GROUPES_MOTS){id_groupe} {unique}>
+			<BOUCLE_groupe(GROUPES_MOTS){id_groupe} {unique}>
 				[(#REM)[<div class="nom-groupe">(#TITRE)&nbsp;:</div>]]
 				[<a class="type">(#TITRE)</a>]
-            </BOUCLE_groupe>
+			</BOUCLE_groupe>
 			<a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
 		</BOUCLE_mots>
-				</div> <!-- Fin contenu -->
-			</div> <!-- Fin mots-cles -->
+				</div>
+			</div>
 		</B_mots>
-		
 		<INCLURE{fond=noisettes/extra}{self=#SELF}>
-</div>
-
-<div id="footer">
-	[(#REM) <!-- ================================== ZONE PIED DE PAGE  ================================== --> ]
+	</div>
+	
+	<div id="footer">
+		[(#REM) <!-- ================================== ZONE PIED DE PAGE  ================================== --> ]
 		<INCLURE{fond=noisettes/footer}>
-</div>  <!--footer-->
+	</div>
 
 </div>
 </body>
