@@ -1,8 +1,11 @@
 <!--Squelette Sarka-SPIP - Copyright (C) 2005-2008 - Collectif Sarka-SPIP - http://sarka-spip.com-->
 #CACHE{7200}
+<BOUCLE_rubrique_agenda(RUBRIQUES) {id_rubrique}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
-	<INCLURE{fond=noisettes/header}{meta_titre=<:sarkaspip:agenda:>}>
+	<INCLURE{fond=noisettes/header}
+		{meta_titre=<:sarkaspip:agenda:>}
+		{meta_description=(#INTRODUCTION|couper{150})}>
 
 <body dir="#LANG_DIR" onload="setHover()">
 <div id="container">
@@ -18,14 +21,15 @@
 <div id="wrapper">
 	<div id="content">
 		[(#REM) <!-- Definition du contexte de l'agenda --> ]
-		[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_definir_contexte{'listing_annuel',
-																[(#CONFIG{sarkaspip_agenda/mois1, 1})],
-																[(#CONFIG{sarkaspip_agenda/format_pagination, annee})]}
+		[(#ID_RUBRIQUE|agenda_definir_contexte{
+								'listing_annuel',
+								[(#CONFIG{sarkaspip_agenda/mois1, 1})],
+								[(#CONFIG{sarkaspip_agenda/format_pagination, annee})]}
 		)]
 
 		[(#REM) <!-- Recensement des evenements --> ]
-		<BOUCLE_agenda(ARTICLES){id_rubrique=#RUBRIQUE_SPECIALISEE{agenda}}{par date_redac}>
-			[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_recenser_evenement{
+		<BOUCLE_agenda(ARTICLES){id_rubrique}{par date_redac}>
+			[(#ID_RUBRIQUE|agenda_recenser_evenement{
 								[(#ID_ARTICLE)], 
 								[(#DATE_REDAC)], 
 								[(#TITRE|supprimer_numero)]}
@@ -45,17 +49,17 @@
 			</h1>
 
 			<div class="bande-pagination">
-				[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_liste_paginer{
-									[(#ENV{annee})],
-									[(#ENV{mois})],
-									[(#ENV{categorie,-1})],
-									[(#CONFIG{sarkaspip_agenda/separateur_pagination, &nbsp;|&nbsp;})],
-									[(#CONFIG{sarkaspip_agenda/ancre_pagination, evenement})],
-									'normal'}
+				[(#ID_RUBRIQUE{agenda}|agenda_liste_paginer{
+								[(#ENV{annee})],
+								[(#ENV{mois})],
+								[(#ENV{categorie,-1})],
+								[(#CONFIG{sarkaspip_agenda/separateur_pagination, &nbsp;|&nbsp;})],
+								[(#CONFIG{sarkaspip_agenda/ancre_pagination, evenement})],
+								'normal'}
 				)]
 			</div>
 
-			[(#RUBRIQUE_SPECIALISEE{agenda}|agenda_liste_afficher{
+			[(#ID_RUBRIQUE{agenda}|agenda_liste_afficher{
 								[(#ENV{annee})],
 								[(#ENV{mois})],
 								[(#ENV{categorie,-1})],
@@ -63,7 +67,7 @@
 			)]
 
 			[<p class="reponse_formulaire">
-				(#RUBRIQUE_SPECIALISEE{agenda}|agenda_liste_avertir{
+				(#ID_RUBRIQUE{agenda}|agenda_liste_avertir{
 								[(#ENV{annee})],
 								[(#ENV{mois})]})
 			</p>]
@@ -78,7 +82,7 @@
 
 <div id="extra">
 	[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
-	<INCLURE{fond=noisettes/extra}{self=#SELF}{id_secteur=#RUBRIQUE_SPECIALISEE{agenda}}{categorie}{annee}{mois}>
+	<INCLURE{fond=noisettes/extra}{self=#SELF}{id_secteur}{categorie}{annee}{mois}>
 </div>
 
 <div id="footer">
@@ -89,3 +93,6 @@
 </div>
 </body>
 </html>
+</BOUCLE_rubrique_agenda>
+	<INCLURE{fond=404}>
+<//B_rubrique_agenda>

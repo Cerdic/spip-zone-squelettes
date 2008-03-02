@@ -1,19 +1,20 @@
 [(#REM) <!-- Modele pour l'affichage des mots cles dans les pages type agenda et galerie
 Recoit en argument :
-- page  : qui peut prendre 2 valeurs, agenda ou galerie et permet de calculer le groupe -->
-]
+- page  : qui peut prendre 2 valeurs, agenda ou galerie et permet de calculer le groupe
+- id_rubrique : l'id de la rubrique specialisee 
+--> ]
 <B_liste_categories>
 	<div id="mots-cles" class="noisette">
 		<div><a class="intitule"><:sarkaspip:filtrage_categorie:></a></div>
 		<div class="contenu">
-			[(#ENV{categorie,-1}|=={-1}|?{<span><:sarkaspip:filtre_tout:></span>,<a href="[(#URL_PAGE{ [(#ENV{page})],[annee=(#ENV{annee})][&amp;mois=(#ENV{mois})]})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]><:sarkaspip:filtre_tout:></a>})]
+			[(#ENV{categorie,-1}|=={-1}|?{<span><:sarkaspip:filtre_tout:></span>,<a href="[(#URL_PAGE{[(#ENV{page})],[id_rubrique=(#ENV{id_rubrique})][&amp;annee=(#ENV{annee})][&amp;mois=(#ENV{mois})]})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]><:sarkaspip:filtre_tout:></a>})]
 			<hr />
-			[(#ENV{categorie,-1}|=={0}|?{<span><:sarkaspip:filtre_vide:></span>,<a href="[(#URL_PAGE{ [(#ENV{page})],[annee=(#ENV{annee})][&amp;mois=(#ENV{mois})&amp;]categorie=0})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]><:sarkaspip:filtre_vide:></a>})]
+			[(#ENV{categorie,-1}|=={0}|?{<span><:sarkaspip:filtre_vide:></span>,<a href="[(#URL_PAGE{[(#ENV{page})],[id_rubrique=(#ENV{id_rubrique})][&amp;annee=(#ENV{annee})][&amp;mois=(#ENV{mois})&amp;]categorie=0})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]><:sarkaspip:filtre_vide:></a>})]
 
-<BOUCLE_liste_categories(MOTS){type=squelette_#ENV{page} }{par id_groupe}>
+<BOUCLE_liste_categories(MOTS){type=squelette_#ENV{page}}{par id_groupe}>
 			[(#COMPTEUR_BOUCLE|=={1}|?{<br />})]
-			[(#ID_MOT|=={[(#ENV{categorie,-1})]}|?{<span>#TITRE</span>,<a href="[(#URL_PAGE{[(#ENV{page})],[annee=(#ENV{annee})][&amp;mois=(#ENV{mois})][&amp;categorie=(#ID_MOT)]})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>})]
+			[(#ID_MOT|=={[(#ENV{categorie,-1})]}|?{<span>#TITRE</span>,<a href="[(#URL_PAGE{[(#ENV{page})],[id_rubrique=(#ENV{id_rubrique})][&amp;annee=(#ENV{annee})][&amp;mois=(#ENV{mois})][&amp;categorie=(#ID_MOT)]})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>})]
 </BOUCLE_liste_categories>
-		</div> <!-- Fin contenu -->
-	</div> <!-- Fin mots-cles -->
+		</div>
+	</div>
 </B_liste_categories>
