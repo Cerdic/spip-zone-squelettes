@@ -123,7 +123,7 @@ function galerie_recenser_album($id_galerie=0, $id=0, $date=0, $titre='', $logo=
 	$auteurs = NULL;
 	while ($row = sql_fetch($result)) {
 		if ($auteurs) $auteurs .= ', ';
-                $auteurs .= '<a href="spip.php?page=auteur&id_auteur='.$row['id_auteur'].'">'.$row['nom'].'</a>';
+                $auteurs .= '<a href="spip.php?page=auteur&amp;id_auteur='.$row['id_auteur'].'">'.$row['nom'].'</a>';
         }
 	$liste_album[$count_album]['auteurs'] = $auteurs;
 	
@@ -176,7 +176,7 @@ function galerie_listing_paginer($id_galerie, $annee_choisie, $mois_choisi, $fil
 		return $pagination;
 		
 	if ($ancre)
-		$pagination .= '<a style="display:none" name="pagination_'.$ancre.'" id="pagination_'.$ancre.'"></a>';
+		echo '<a class="ancre" name="pagination_'.$ancre.'" id="pagination_'.$ancre.'"></a>';
 
 	// Determination de l'annee choisie si l'agenda est saisonnier	
 	$contexte_aff = galerie_definir_contexte(0);
@@ -215,10 +215,10 @@ function galerie_listing_paginer($id_galerie, $annee_choisie, $mois_choisi, $fil
 				}
 				else {
 					$arg_option = NULL;
-					if ($filtre != '-1') $arg_option = '&categorie='.$filtre;
+					if ($filtre != '-1') $arg_option = '&amp;categorie='.$filtre;
 					if ($ancre) $arg_option .= '#pagination_'.$ancre;
 					if (intval($debut_saison) != 1) $annee_alb = (intval($mois_alb) < intval($debut_saison)) ? strval(intval($annee_alb)-1) : $annee_alb;
-					$pagination .= '<a href="spip.php?page=galerie&annee='.$annee_alb.'&mois='.$debut_saison.$arg_option.'">'.$albums[$j]['lien_page'].'</a>';
+					$pagination .= '<a href="spip.php?page=galerie&amp;annee='.$annee_alb.'&amp;mois='.$debut_saison.$arg_option.'">'.$albums[$j]['lien_page'].'</a>';
 				}
 			$annee_courante = $annee_album;
 			}
@@ -241,7 +241,7 @@ function galerie_planche_paginer($id_galerie, $planche_choisie, $filtre, $separa
 		return $pagination;
 		
 	if ($ancre)
-		$pagination .= '<a style="display:none" name="pagination_'.$ancre.'" id="pagination_'.$ancre.'"></a>';
+		echo '<a class="ancre" name="pagination_'.$ancre.'" id="pagination_'.$ancre.'"></a>';
 
 	$count_alb_filtre = 0;
 	$nouvelle_page = FALSE;
@@ -272,9 +272,9 @@ function galerie_planche_paginer($id_galerie, $planche_choisie, $filtre, $separa
 				}
 				else {
 					$arg_option = NULL;
-					if ($filtre != '-1') $arg_option = '&categorie='.$filtre;
+					if ($filtre != '-1') $arg_option = '&amp;categorie='.$filtre;
 					if ($ancre) $arg_option .= '#pagination_'.$ancre;
-					$pagination .= '<a href="spip.php?page=galerie&planche='.$page_album.$arg_option.'">'.$item_pagination.'</a>';
+					$pagination .= '<a href="spip.php?page=galerie&amp;planche='.$page_album.$arg_option.'">'.$item_pagination.'</a>';
 				}
 			$count_page = $page_album;
 			}
@@ -361,15 +361,15 @@ function galerie_listing_afficher($id_galerie, $annee_choisie, $mois_choisi, $fi
 					$liste .= '<ul>';
 				}
 				$mois_courant = $mois_album;
-				$liste .= '<li><a class="objet_titre" href="spip.php?page=album&id_article='.$albums[$j]['id'].'">
+				$liste .= '<li><a class="objet_titre" href="spip.php?page=album&amp;id_article='.$albums[$j]['id'].'">
 				<span class="objet_date">['.$albums[$j]['date'].']&nbsp;</span>&nbsp;'.$albums[$j]['titre'].'</a></li>';
 			}
 		}
 	}
 	if ($count_album_filtre > 0)
-		$liste .= '</ul></li></ul>';
+		$liste .= '</ul><br />';
 
-	$liste .= '</div> <!-- Fin plan -->';
+	$liste .= '</div>';
 
 	return $liste;
 }
@@ -393,13 +393,13 @@ function galerie_planche_afficher($id_galerie, $planche_choisie, $filtre, $tri) 
 		if ($albums[$j]['planche'] == $planche_choisie) {
 			$count_album_filtre += 1;
 
-			$liste .= '<div class="galerie-album" style="min-height: 220px; _height: 220px;">';
-			$liste .= '<div class="vignette"><a href="spip.php?page=album&id_article='.$albums[$j]['id'].'" title="'._T('sarkaspip:info_afficher_album').'">'.$albums[$j]['logo'].'</a></div>';
-			$liste .= '<div class="detail">'.nom_jour($albums[$j]['date_article']).'&nbsp;'.$albums[$j]['date'].'<br>'._T('sarkaspip:par_auteur').$albums[$j]['auteurs'].'</div> <!-- Fin detail -->';
-			$liste .= '<a class="titre" href="spip.php?page=album&id_article='.$albums[$j]['id'].'" title="'._T('sarkaspip:info_afficher_album').'">'.$albums[$j]['titre'].'</a>';
-			$liste .= '<div class="introduction">'.$albums[$j]['introduction'].'</div><br><br>';
-			$liste .= '<a class="suite" href="spip.php?page=album&id_article='.$albums[$j]['id'].'">'._T('sarkaspip:info_afficher_album').'</a>';
-			$liste .= '</div> <!-- Fin galerie-album -->';
+			$liste .= '<div class="galerie-album" id="planche">';
+			$liste .= '<div class="vignette"><a href="spip.php?page=album&amp;id_article='.$albums[$j]['id'].'" title="'._T('sarkaspip:info_afficher_album').'">'.$albums[$j]['logo'].'</a></div>';
+			$liste .= '<div class="detail">'.nom_jour($albums[$j]['date_article']).'&nbsp;'.$albums[$j]['date'].'<br />'._T('sarkaspip:par_auteur').$albums[$j]['auteurs'].'</div>';
+			$liste .= '<a class="titre" href="spip.php?page=album&amp;id_article='.$albums[$j]['id'].'" title="'._T('sarkaspip:info_afficher_album').'">'.$albums[$j]['titre'].'</a>';
+			$liste .= '<div class="introduction">'.$albums[$j]['introduction'].'</div><br /><br />';
+			$liste .= '<a class="suite" href="spip.php?page=album&amp;id_article='.$albums[$j]['id'].'">'._T('sarkaspip:info_afficher_album').'</a>';
+			$liste .= '</div>';
 		}
 	}
 
@@ -479,21 +479,21 @@ function galerie_debug_album($id_galerie=0) {
 	$count_album = count($albums);
 
 	for ($i=1;$i<=$count_album;$i++) {
-		echo '<br><b>ALBUM N°'.$i.'</b><br>';
-		echo '<b>Titre</b>: '.$albums[$i]['titre'].'<br>';
-		echo '<b>Id</b>: '.$albums[$i]['id'].'<br>';
-		echo '<b>Date Article</b>: '.$albums[$i]['date_article'].'<br>';
-		echo '<b>Jour</b>: '.$albums[$i]['jour'].'<br>';
-		echo '<b>Mois</b>: '.$albums[$i]['mois'].'<br>';
-		echo '<b>Annee</b>: '.$albums[$i]['annee'].'<br>';
-		echo '<b>Nom du mois</b>: '.$albums[$i]['nom_mois'].'<br>';
-		echo '<b>Saison</b>: '.$albums[$i]['saison'].'<br>';
-		echo '<b>Lien page</b>: '.$albums[$i]['lien_page'].'<br>';
-		echo '<b>Planche</b>: '.$albums[$i]['planche'].'<br>';
-		echo '<b>Categorie</b>: '.$albums[$i]['categorie'].'<br>';
-		echo '<b>Logo</b>: '.$albums[$i]['logo'].'<br>';
-		echo '<b>Auteurs</b>: '.$albums[$i]['auteurs'].'<br>';
-		echo '<b>Introduction</b>: '.$albums[$i]['intro'].'<br>';
+		echo '<br /><strong>ALBUM N°'.$i.'</strong><br />';
+		echo '<strong>Titre</strong>: '.$albums[$i]['titre'].'<br />';
+		echo '<strong>Id</strong>: '.$albums[$i]['id'].'<br />';
+		echo '<strong>Date Article</strong>: '.$albums[$i]['date_article'].'<br />';
+		echo '<strong>Jour</strong>: '.$albums[$i]['jour'].'<br />';
+		echo '<strong>Mois</strong>: '.$albums[$i]['mois'].'<br />';
+		echo '<strong>Annee</strong>: '.$albums[$i]['annee'].'<br />';
+		echo '<strong>Nom du mois</strong>: '.$albums[$i]['nom_mois'].'<br />';
+		echo '<strong>Saison</strong>: '.$albums[$i]['saison'].'<br />';
+		echo '<strong>Lien page</strong>: '.$albums[$i]['lien_page'].'<br />';
+		echo '<strong>Planche</strong>: '.$albums[$i]['planche'].'<br />';
+		echo '<strong>Categorie</strong>: '.$albums[$i]['categorie'].'<br />';
+		echo '<strong>Logo</strong>: '.$albums[$i]['logo'].'<br />';
+		echo '<strong>Auteurs</strong>: '.$albums[$i]['auteurs'].'<br />';
+		echo '<strong>Introduction</strong>: '.$albums[$i]['intro'].'<br />';
 	}
 		
 	return;
