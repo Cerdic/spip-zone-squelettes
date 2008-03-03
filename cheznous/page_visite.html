@@ -11,13 +11,16 @@
 <div id="contenu">
 
 <BOUCLE_mot(MOTS){id_mot}>
-	<h1 class="#EDIT{titre} big">#TITRE #ENV{voir_debut}</h1>
+	<h1 class="#EDIT{titre} big">#TITRE</h1>
     
 	<BOUCLE_piece_articles(ARTICLES) {id_mot} {par date}>
     <BOUCLE_piece_doc(DOCUMENTS) {id_article} {extension IN jpg,gif,png}{largeur>300}{hauteur>200}{hauteur<=900} {par date} {doublons}>
 	[<a href="#URL_DOCUMENT" type="#MIME_TYPE"[ title="(#TITRE|texte_backend|sinon{[(#_articles:TITRE|texte_backend)]})"]>(#FICHIER|?{' ',''})</a>]
     </BOUCLE_piece_doc>
     </BOUCLE_piece_articles>
+	
+	[(#REM) Test fonctionnel : [(#SET{voir_debut,[(#ENV{voir_debut}|?{'{par date}','{!par date}{0,6}'})]})]
+	#GET{voir_debut} ]
 
 	<div id="portfolio">
 	<BOUCLE_doc_afficher(DOCUMENTS) {!doublons}{doublons doc} {!par date} {0,6}>
@@ -31,8 +34,8 @@
 	[<div class="#EDIT{texte} texte">(#TEXTE)</div>]
 
 	<BOUCLE_doc_debut(DOCUMENTS) {!doublons}{doublons doc} {par date} {0,1}>
-	<p class="plus"><a href="#URL_DOCUMENT" type="#MIME_TYPE"[ title="(#TITRE|texte_backend|sinon{#_piece_articles:TITRE})"] class="thickbox"><:voir_debut:></a></p>
-	<p class="plus"><a href="[(#URL_MOT|parametre_url{voir_debut,oui})]"><:voir_debut:></a></p>
+	[(#REM)<p class="plus"><a href="#URL_DOCUMENT" type="#MIME_TYPE"[ title="(#TITRE|texte_backend|sinon{#_piece_articles:TITRE})"] class="thickbox"><:voir_debut:></a></p>
+	<p class="plus"><a href="[(#URL_MOT|parametre_url{voir_debut,oui})]"><:voir_debut:></a></p>]
 	</BOUCLE_doc_debut>
 	
 	<B_articles_mot>
