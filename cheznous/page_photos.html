@@ -15,7 +15,7 @@
 <BOUCLE_articles_futurs(ARTICLES){statut=publie}{age<0}><BOUCLE_articles_futurs_doc(DOCUMENTS) {id_article} {doublons doc_tous}{doublons doc}> </BOUCLE_articles_futurs_doc></BOUCLE_articles_futurs>
 <BOUCLE_articles_brouillons(ARTICLES){statut != publie}><BOUCLE_articles_brouillons_doc(DOCUMENTS) {id_article} {doublons doc_tous}{doublons doc}> </BOUCLE_articles_brouillons_doc></BOUCLE_articles_brouillons>
 
-<BOUCLE_doc_tous(DOCUMENTS) {doublons doc_tous}{id_article>0}{distant=non} {extension IN jpg,gif,png}{largeur>300}{hauteur>200}{hauteur<=900} {!par date}>
+<BOUCLE_doc_tous(DOCUMENTS) {doublons doc_tous}{id_article>0}{distant=non} {extension IN jpg,gif,png}{largeur>300}{hauteur>200} {!par date}>
 [<a href="#URL_DOCUMENT" type="#MIME_TYPE"[ title="(#TITRE|sinon{[(#INCLURE{fond=titre_article}{id_article})]}|texte_backend)"]>(#FICHIER|?{' ',''})</a>]
 </BOUCLE_doc_tous>
 
@@ -23,7 +23,7 @@
 [(#ANCRE_PAGINATION|vide)]
 <div id="portfolio">
 	[(#TOTAL_BOUCLE|>{10}|?{' ',''})<p class="gentil_message"><:cliquer_pour_agrandir:></p>]
-	<BOUCLE_doc(DOCUMENTS documents_articles) {doublons doc}{id_article>0}{distant=non} {extension IN jpg,gif,png}{largeur>300}{hauteur>200}{hauteur<=900} {!par date}{pagination 20}>
+	<BOUCLE_doc(DOCUMENTS documents_articles) {doublons doc}{id_article>0}{distant=non} {extension IN jpg,gif,png}{largeur>300}{hauteur>200} {!par date}{pagination 20}>
 	[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onClick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#document_actif';return false;"[ title="(#TITRE|texte_backend)"]>(#FICHIER|copie_locale|image_passe_partout{120,120}|image_recadre{120,120,center}|image_aplatir{jpg,ffffff}|inserer_attribut{class,spip_logos[ modulo(#COMPTEUR_BOUCLE|alterner{1,2,3,4,5})]})</a>]
 	</BOUCLE_doc>
 	[<p class="pagination"><:photos_pagination:> (#PAGINATION)[ ((#GRAND_TOTAL)&nbsp;photos)]</p>]
