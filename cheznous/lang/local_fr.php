@@ -72,8 +72,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	<li><a href="http://www.spip-contrib.net/ecrire/?exec=articles&id_article=2624" class="spip_out">Explications et t&eacute;l&eacute;chargement des squelettes &laquo;&nbsp;Chez&nbsp;nous&nbsp;&raquo;</a></li>
 </ul>',
 'mentions_legales_contenus' => '<h3 class="spip">Droits de reproduction</h3>
-<p>En application de la loi du 11 mars 1957 (art. 41) et du code de la propri&eacute;t&eacute; intellectuelle du 1er juillet 1992 : l\'ensemble des textes, illustrations, photographies, plans, dessins, animations, vid&eacute;os, sons, etc. contenus sur ce site ne peuvent &ecirc;tre utilis&eacute;s ou reproduits sans l\'autorisation de l\'&eacute;diteur.</p>
-<p>Pour toute demande de reproduction ou d\'utilisation d\'&eacute;l&eacute;ments contenus sur ce&nbsp;site, contactez-nous.</p>',
+<p>L\'ensemble des textes, illustrations, photographies, plans, dessins, animations, vid&eacute;os, sons, etc. contenus sur ce site ne peuvent &ecirc;tre utilis&eacute;s ou reproduits sans l\'autorisation de l\'&eacute;diteur. Contactez-nous pour toute demande de reproduction ou d\'utilisation d\'&eacute;l&eacute;ments contenus sur ce&nbsp;site.</p>',
 
 
 // Formulaire de forum
