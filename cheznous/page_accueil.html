@@ -74,15 +74,21 @@
 	</div><!--.deuxtiers-->
 	
 	<div class="deuxtiers" style="float: right;">
-		<BOUCLE_articles_futurs(ARTICLES){statut=publie}{age<0}><BOUCLE_articles_futurs_doc(DOCUMENTS) {id_article} {doublons doc_tous}{doublons doc}> </BOUCLE_articles_futurs_doc></BOUCLE_articles_futurs>
-		<BOUCLE_articles_brouillons(ARTICLES){statut != publie}><BOUCLE_articles_brouillons_doc(DOCUMENTS) {id_article} {doublons doc_tous}{doublons doc}> </BOUCLE_articles_brouillons_doc></BOUCLE_articles_brouillons>
 		<B_doc>
 		<div id="portfolio">
 			<h2><:dernieres_images:></h2>
 			<p class="gentil_message"><:cliquer_pour_agrandir:></p>
-			<BOUCLE_doc(DOCUMENTS documents_articles) {doublons doc}{id_article>0} {extension IN jpg,gif,png}{largeur>300}{hauteur>200} {!par date} {0,4}>
-			[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onClick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#document_actif';return false;"[ title="(#TITRE|sinon{[(#INCLURE{fond=titre_article}{id_article})]}|texte_backend)"]>(#FICHIER|copie_locale|image_passe_partout{102,102}|image_recadre{102,102,center}|image_aplatir{jpg,ffffff}|inserer_attribut{class,spip_logos[ modulo(#COMPTEUR_BOUCLE|alterner{1,2,3,4})]})</a>]
-			</BOUCLE_doc>
+		<BOUCLE_doc(DOCUMENTS) {extension IN jpg,gif,png}
+		{largeur>=200}{hauteur>120} {!par date}{0,4}>
+		[(#SET{visible,[(#FICHIER
+			|image_passe_partout{102,102}
+			|image_recadre{102,102,center}
+			|image_aplatir{jpg,ffffff}
+			|inserer_attribut{class,spip_logos modulo#COMPTEUR_BOUCLE}
+		)]})]
+		<a href="[(#FICHIER|image_reduire{800}|extraire_attribut{src})]" type="#MIME_TYPE"[
+		title="(#TITRE|texte_backend)"]>#GET{visible}</a>
+		</BOUCLE_doc>
 			<p class="plus"><a href="#URL_PAGE{page_photos}"><:photos_tout:></a></p>
 		</div><!--#portfolio-->
 		</B_doc>
