@@ -1,35 +1,28 @@
 <!-- Plan du site par date -->
-<?php 
-	$annee_courante = NULL;
-	$nouvelle_annee = FALSE;
-?>
-<div class="plan">
-	<BOUCLE_plan_annee(ARTICLES){tout}{id_rubrique!==#RUBRIQUE_SPECIALISEE}{par date}{inverse}>
-		<?php
-			$annee_pub = [(#DATE|annee)];
-			if ($annee_pub != $annee_courante)  {
-				$nouvelle_annee = TRUE;
-			}
-			else {
-				$nouvelle_annee = FALSE;
-			}
-			
-			if ($nouvelle_annee) {
-		?>
-				<B_artsecteur>
-					[<h2><a>(#DATE|annee|unique)</a></h2>
-						<ul>]
-				<BOUCLE_artsecteur(ARTICLES){id_rubrique!==#RUBRIQUE_SPECIALISEE}{date >= (#DATE|premier_jour_annee)}{date <= (#DATE|dernier_jour_annee)}{par date}{inverse}{par num titre}>
-						<li><a class="objet_titre" href="#URL_ARTICLE"><span class="objet_date">[[(#DATE|affdate{'d-m-Y'})]]&nbsp;</span>&nbsp;[(#TITRE|supprimer_numero)]</a></li>
-				</BOUCLE_artsecteur>
-						</ul>
-					<br />
-				</B_artsecteur>
-		<?php
-			}
-			$annee_courante = $annee_pub;
-		?>
-	
-	</BOUCLE_plan_annee>
-</div> <!-- Fin plan -->
 
+<div class="plan">
+<B_annee>
+
+<BOUCLE_annee(ARTICLES){par date}{inverse}{fusion YEAR(date)}>
+	[<h2><a>(#DATE|annee)</a></h2>]
+	<B_annee_relative>
+	<ul>
+	<BOUCLE_annee_relative(ARTICLES){annee_relatif}{par date}{inverse}{par num titre}{lang_select=non}{fusion MONTH(date)}>
+		<li><h2><a>[(#DATE|nom_mois|ucfirst)]</a></h2>
+			<B_mois>
+			<ul>
+			<BOUCLE_mois(ARTICLES){mois_relatif}{id_rubrique!==#RUBRIQUE_SPECIALISEE}{par date}{inverse}>
+				<li><a class="objet_titre" href="#URL_ARTICLE"><span class="objet_date">[[(#DATE|affdate{'d-m-Y'})]]&nbsp;</span>&nbsp;[(#TITRE|supprimer_numero)]</a></li>
+			</BOUCLE_mois>
+			</ul><br /> <!--Saut de ligne apres chaque mois-->
+			</B_mois>
+		</li>
+	</BOUCLE_annee_relative>
+	</ul>
+	</B_annee_relative>
+	<br /><!--Saut de ligne apres chaque annee-->
+</BOUCLE_annee>
+
+</B_annee>
+
+</div> <!-- Fin plan -->
