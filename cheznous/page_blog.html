@@ -41,7 +41,9 @@
 	<div id="portfolio">
 		<h2 class="invisible"><:info_portfolio:></h2>
 		<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {extension IN jpg,gif,png}{largeur>=200}{hauteur>120} {par num titre, date} {doublons}>
-		[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onClick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#document_actif';return false;"[ title="(#TITRE|texte_backend|sinon{[(#_principale:TITRE|texte_backend)]})"]>(#FICHIER|copie_locale|image_passe_partout{120,120}|image_recadre{120,120,center}|image_aplatir{jpg,ffffff}|inserer_attribut{class,spip_logos[ modulo(#COMPTEUR_BOUCLE|modulo{3})]})</a>]
+	[(#SET{visible,[(#FICHIER|image_passe_partout{120,120}|image_recadre{120,120,center}|image_aplatir{jpg,ffffff}|inserer_attribut{class,spip_logos[ modulo(#COMPTEUR_BOUCLE|modulo{3})]})]})]
+	<a href="[(#FICHIER|image_reduire{800}|extraire_attribut{src})]" type="#MIME_TYPE"[
+	title="(#TITRE|texte_backend)"]>#GET{visible}</a>
 		</BOUCLE_documents_portfolio>
 	</div>
 	</B_documents_portfolio>
