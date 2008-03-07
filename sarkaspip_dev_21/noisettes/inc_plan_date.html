@@ -1,28 +1,22 @@
-<!-- Plan du site par date -->
-
+[(#REM) <!-- Plan du site par date --> ]
 <div class="plan">
-<B_annee>
-
-<BOUCLE_annee(ARTICLES){par date}{inverse}{fusion YEAR(date)}>
-	[<h2><a>(#DATE|annee)</a></h2>]
-	<B_annee_relative>
-	<ul>
-	<BOUCLE_annee_relative(ARTICLES){annee_relatif}{par date}{inverse}{par num titre}{lang_select=non}{fusion MONTH(date)}>
-		<li><h2><a>[(#DATE|nom_mois|ucfirst)]</a></h2>
+	<BOUCLE_annee(ARTICLES){par date}{inverse}{fusion YEAR(date)}>
+		[<h2><a>(#DATE|annee)</a></h2>]
+		<B_annee_relative>
+		<ul>
+		<BOUCLE_annee_relative(ARTICLES){annee_relatif}{par date}{inverse}{par num titre}{lang_select=non}{fusion MONTH(date)}>
 			<B_mois>
-			<ul>
+			<li><h2><a>[(#DATE|nom_mois|ucfirst)]</a></h2>
+				<ul>
 			<BOUCLE_mois(ARTICLES){mois_relatif}{id_rubrique!==#RUBRIQUE_SPECIALISEE}{par date}{inverse}>
-				<li><a class="objet_titre" href="#URL_ARTICLE"><span class="objet_date">[[(#DATE|affdate{'d-m-Y'})]]&nbsp;</span>&nbsp;[(#TITRE|supprimer_numero)]</a></li>
+					<li><a class="objet_titre" href="#URL_ARTICLE"><span class="objet_date">[[(#DATE|affdate{'d-m-Y'})]]&nbsp;</span>&nbsp;[(#TITRE|supprimer_numero)]</a></li>
 			</BOUCLE_mois>
-			</ul><br /> <!--Saut de ligne apres chaque mois-->
+				</ul><br />
+			</li>
 			</B_mois>
-		</li>
-	</BOUCLE_annee_relative>
-	</ul>
-	</B_annee_relative>
-	<br /><!--Saut de ligne apres chaque annee-->
-</BOUCLE_annee>
-
-</B_annee>
-
-</div> <!-- Fin plan -->
+		</BOUCLE_annee_relative>
+		</ul>
+		</B_annee_relative>
+		<br />
+	</BOUCLE_annee>
+</div>
