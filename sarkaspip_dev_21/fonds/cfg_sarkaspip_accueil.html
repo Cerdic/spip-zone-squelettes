@@ -12,15 +12,54 @@
 <!-- liens*=sarkaspip:sarkaspip_herbier -->
 
 #CACHE{0}
-<form method="post">[(#ENV{_cfg_}|form_hidden)]
 
-<fieldset>
-    <legend><:sarkaspip:lgd_accueil_1:></legend>
-	<p><:sarkaspip:cfg_inf_accueil_1:></p>
-</fieldset>
+<script type="text/javascript">
+//<![CDATA[
+	jQuery(document).ready(function() {
+		[(#ENV{mode_debug, non}|!={oui}|?{jQuery("#bloc_debug").hide();})]
+		jQuery("input[@name='mode_debug']").change(function() {
+			if (jQuery("input[@name='mode_debug']:checked").val() == "oui")
+				jQuery("#bloc_debug").show();
+			else
+				jQuery("#bloc_debug").hide();
+			jQuery(this).blur();
+		});	
+	});
+//]]>
+</script>
 
-</form>
+<form method="post"><div>
+	[(#ENV{_cfg_}|form_hidden)]
+	<fieldset>
+		<legend><:sarkaspip:lgd_accueil_1:></legend>
+		<p><:sarkaspip:cfg_inf_accueil_1:></p>
+	</fieldset>
+	
+	<fieldset>
+		<legend><:sarkaspip:lgd_accueil_debug:></legend>
+		<p><:sarkaspip:cfg_inf_accueil_debug:></p>
+		<label>
+			<input type="radio" name="mode_debug" value="oui" [(#ENV{mode_debug, non}|=={oui}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_accueil_debug_1:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="mode_debug" value="non" [(#ENV{mode_debug, non}|=={non}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_accueil_debug_2:>
+		</label>
+		<br />
+	</fieldset>
+	
+	<br />
+	<input type="submit" name="_cfg_ok" class="fondo" value="<:sarkaspip:valider:>" />
+	<input type="submit" name="_cfg_delete" class="fondo" value="<:sarkaspip:effacer:>" />
+</div></form>
 
-<br />
->> Debug - Etat des param&egrave;tres du fond:<br />
-#CFG_ARBO{sarkaspip_accueil}
+<div id="bloc_debug">
+	<br />
+	>> Debug - Etat des param&egrave;tres du fond accueil:<br />
+	#CFG_ARBO{sarkaspip_accueil}
+	<br />
+	>> Debug - Etat des param&egrave;tres du fond noisettes:<br />
+	#CFG_ARBO{sarkaspip_noisettes}
+</div>
