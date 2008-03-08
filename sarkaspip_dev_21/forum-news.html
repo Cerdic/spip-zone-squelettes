@@ -1,133 +1,97 @@
-[(#REM) <!--
-Squelette Sarka-SPIP
-Copyright (C) 2005-2007 - Collectif Sarka-SPIP - http://sarka-spip.com
-
-Ce programme est libre, vous pouvez le redistribuer et/ou le modifier selon les termes
-de la Licence Publique Generale GNU publiee par la Free Software Foundation (version 2
-ou bien toute autre version ulterieure choisie par vous).
-
-Ce programme est distribue car potentiellement utile, mais SANS AUCUNE GARANTIE, ni
-explicite ni implicite, y compris les garanties de commercialisation ou d'adaptation
-dans un but specifique. Reportez-vous a la Licence Publique Generale GNU pour plus de details.
-
-Vous devez avoir recu une copie de la Licence Publique Generale GNU en meme temps que ce programme;
-si ce n'est pas le cas, ecrivez a la Free Software Foundation, Inc., 59 Temple Place, Suite 330,
-Boston, MA 02111-1307, Etats-Unis.
--->
-
-<!--
-CREDITS
-
-Le squelette Sarka-SPIP est realise par un collectif dont les membres sont les suivants:
-
-- Toufik Stouky    alias  SarkAFeeK
-- Sylvain Bellego  alias  SarkALeoN
-- Xavier Le Ho     alias  SarkARchimeD
-- Eric Lupinacci   alias  SarkASmeL
-
-Nous tenons aussi a remercier tous les utilisateurs qui nous ont fait confiance depuis les 
-premiers pas du squelette et qui continuent aujourd'hui a nous apporter leur soutien et leurs idees.
-Un grand merci, donc, a celles et ceux qui ont contribue (et qui vont contribuer) a l'amelioration
-de ce squelette.
--->]
-
-<!--Squelette Sarka-SPIP - Copyright (C) 2005-2007 - Collectif Sarka-SPIP - http://sarka-spip.com-->
-
+<!--Squelette Sarka-SPIP - Copyright (C) 2005-2008 - Collectif Sarka-SPIP - http://sarka-spip.com-->
 #CACHE{3600}
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+	<INCLURE{fond=noisettes/header}
+		{meta_titre=<:sarkaspip:messages_recents:>}>
 
-<html lang="#LANG">
-
-	<INCLURE{fond=noisettes/header}>
 <body dir="#LANG_DIR" onload="setHover()">
 <div id="container">
-<div id="header">
-	[(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
+
+	<div id="header">
+		[(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
 		<INCLURE{fond=noisettes/bandeau}>
-	
-	[(#REM) <!-- =========================== ZONE CHEMIN DE NAVIGATION ============================= --> ]
-		<INCLURE{fond=noisettes/chemin}>
-</div> <!-- fin de header-->
-
-<div id="wrapper">
-	<div id="content">
-        [(#REM) <!-- affichage paginé des messages postés en réponse à des articles --> ]
-        <div class="intitulePage"><:sarkaspip:messages_recents:></div>	
 		
-		<B_forum_new>
-			#ANCRE_PAGINATION
-			<div class="bande-pagination">#PAGINATION</div>
+		[(#REM) <!-- =========================== ZONE CHEMIN DE NAVIGATION ============================= --> ]
+		<INCLURE{fond=noisettes/chemin}>
+	</div>
+	
+	<div id="wrapper">
+		<div id="content">
+			[(#REM) <!-- affichage paginé des messages postés en réponse à des articles --> ]
+			<div class="intitulePage"><:sarkaspip:messages_recents:></div>	
 			
-			<div class="forum">
-			<BOUCLE_forum_new(FORUMS) {tous} {par date} {inverse} {pagination 10}>
-				<BOUCLE_article_pere(ARTICLES) {id_article=#ID_ARTICLE}>
-					[<a class="article-forum" href="#URL_ARTICLE" title="<:sarkaspip:lire_suite_article:>">(#TITRE|supprimer_numero)</a>]
-				</BOUCLE_article_pere>
-				<ul>
-					<div class="visualisation">
-						<div class="#EDIT{titre} titre">
-							#TITRE
+			<B_forum_new>
+				#ANCRE_PAGINATION
+				<div class="bande-pagination">#PAGINATION</div>
+				
+				<div class="forum">
+				<BOUCLE_forum_new(FORUMS) {tous} {par date} {inverse} {pagination 10}>
+					<BOUCLE_article_pere(ARTICLES) {id_article=#ID_ARTICLE}>
+						[<a class="article-forum" href="#URL_ARTICLE" title="<:sarkaspip:lire_suite_article:>">(#TITRE|supprimer_numero)</a>]
+					</BOUCLE_article_pere>
+						<div class="visualisation">
+							<div class="#EDIT{titre} titre">
+								#TITRE
+							</div>
+				
+							<div class="detail">
+								[(#DATE|nom_jour)] [(#DATE|affdate)]<br />
+								<BOUCLE_forum_edite(FORUMS){id_parent=#ID_FORUM}{statut=original}>
+									<BOUCLE_auteur_pere1(AUTEURS) {id_auteur=#_forum_edite:ID_AUTEUR}>
+										[<:sarkaspip:par_auteur:> (#NOM)]
+									</BOUCLE_auteur_pere1>
+										[<:sarkaspip:par_auteur:> (#_forum_edite:NOM)]
+									<//B_auteur_pere1>
+								</BOUCLE_forum_edite>
+								</B_forum_edite>
+									<BOUCLE_auteur_pere2(AUTEURS) {id_auteur=#_forum_new:ID_AUTEUR}>
+										[<:sarkaspip:par_auteur:> (#NOM)]
+									</BOUCLE_auteur_pere2>
+										[<:sarkaspip:par_auteur:> (#_forum_new:NOM)]
+									<//B_auteur_pere2>
+								<//B_forum_edite>
+							</div>
+				
+							<div class="#EDIT{texte} texte">
+								[(#TEXTE)]
+								[<br /><br /><a href="[(#URL_SITE)]">(#NOM_SITE)</a>]
+							</div>
+						</div> <!-- Fin visualisation -->
+						
+						[ <br />
+						<a class="repondre" href="(#PARAMETRES_FORUM|url_reponse_forum)"><:sarkaspip:repondre_message:></a>]
+						[<a class="repondre" href="(#URL_PAGE{forum-fil,id_thread=#ID_THREAD})"><:sarkaspip:fil_discussion:></a>
+						 <br />]
+					<br />
+				</BOUCLE_forum_new>
+					<div class="bande-pagination">#PAGINATION</div>
+					</div>  <!-- Fin Forum -->
+				</B_forum_new>
+					<div class="forum">
+						<div class="reponse_formulaire">
+							<:sarkaspip:aucun_message:>
 						</div>
-			
-						<div class="detail">
-							[(#DATE|nom_jour)] [(#DATE|affdate)]<br>
-							<BOUCLE_forum_edite(FORUMS){id_parent=#ID_FORUM}{statut=original}>
-								<BOUCLE_auteur_pere1(AUTEURS) {id_auteur=#_forum_edite:ID_AUTEUR}>
-									[<:sarkaspip:par_auteur:> (#NOM)]
-								</BOUCLE_auteur_pere1>
-									[<:sarkaspip:par_auteur:> (#_forum_edite:NOM)]
-								<//B_auteur_pere1>
-							</BOUCLE_forum_edite>
-							</B_forum_edite>
-								<BOUCLE_auteur_pere2(AUTEURS) {id_auteur=#_forum_new:ID_AUTEUR}>
-									[<:sarkaspip:par_auteur:> (#NOM)]
-								</BOUCLE_auteur_pere2>
-									[<:sarkaspip:par_auteur:> (#_forum_new:NOM)]
-								<//B_auteur_pere2>
-							<//B_forum_edite>
-						</div>
-			
-						<div class="#EDIT{texte} texte">
-							[(#TEXTE)]
-							[<br><br><a href="[(#URL_SITE)]">(#NOM_SITE)</a>]
-						</div>
-					</div> <!-- Fin visualisation -->
-                    
-                    [ <br>
-					<a class="repondre" href="(#PARAMETRES_FORUM|url_reponse_forum)"><:sarkaspip:repondre_message:></a>]
-					[<a class="repondre" href="(#URL_PAGE{forum-fil,id_thread=#ID_THREAD})"><:sarkaspip:fil_discussion:></a>
-					 <br>]
-				</ul><br>
-			</BOUCLE_forum_new>
-                <div class="bande-pagination">#PAGINATION</div>
-				</div>  <!-- Fin Forum -->
-			</B_forum_new>
-                <div class="forum">
-					<div class="reponse_formulaire">
-						<:sarkaspip:aucun_message:>
 					</div>
-                </div>
-			<//B_forum_new>
-			
-	</div><!--content-->
-</div><!--wrapper-->
-
-<div id="navigation">
-	[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
+				<//B_forum_new>
+		</div><!--content-->
+	</div><!--wrapper-->
+	
+	<div id="navigation">
+		[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
 		<INCLURE{fond=noisettes/navigation}>
-</div>  <!--navigation-->
-
-<div id="extra">
-	[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]		
+	</div>  <!--navigation-->
+	
+	<div id="extra">
+		[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]		
 		<INCLURE{fond=noisettes/extra}{self=#SELF}>
-</div>
-
-<div id="footer">
-	[(#REM) <!-- ================================== ZONE PIED DE PAGE  ================================== --> ]
+	</div>
+	
+	<div id="footer">
+		[(#REM) <!-- ================================== ZONE PIED DE PAGE  ================================== --> ]
 		<INCLURE{fond=noisettes/footer}>
-</div>  <!--footer-->
+	</div>  <!--footer-->
 
 </div>
 </body>
 </html>
-
