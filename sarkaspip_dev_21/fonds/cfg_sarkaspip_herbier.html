@@ -12,38 +12,45 @@
 
 #CACHE{0}
 
-<form method="post">[(#ENV{_cfg_}|form_hidden)]
-<fieldset>
-    <legend><:sarkaspip:cfg_lgd_herbier_pagination:></legend>
-    <p><:sarkaspip:cfg_inf_herbier_pagination:></p>
-	<label>
-		<input type="radio" name="modele_pagination" value="" [(#ENV{modele_pagination}|?{'',' '})checked="checked"] />
-		<:sarkaspip:cfg_lbl_pagination_1:>
+<form method="post" action="#SELF"><div>
+	[(#ENV{_cfg_}|form_hidden)]
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_herbier_pagination:></legend>
+		<p><:sarkaspip:cfg_inf_herbier_pagination:></p>
+		<label>
+			<input type="radio" name="modele_pagination" value="" [(#ENV{modele_pagination}|?{'',' '})checked="checked"] />
+			<:sarkaspip:cfg_lbl_pagination_1:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="modele_pagination" value="page" [(#ENV{modele_pagination}|=={page}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_pagination_2:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="modele_pagination" value="precedent_suivant" [(#ENV{modele_pagination}|=={precedent_suivant}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_pagination_3:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="modele_pagination" value="page_precedent_suivant" [(#ENV{modele_pagination}|=={page_precedent_suivant}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_pagination_4:>
+		</label>
+		<br /><br />
+		<label><:sarkaspip:cfg_lbl_pas_pagination:></label>
+		<input type="text" name="pas_pagination" value="#ENV{pas_pagination, 5}" size="3" class="fondl" />
+		<br />
+	</fieldset>
+	
 	<br />
-	<label>
-		<input type="radio" name="modele_pagination" value="page" [(#ENV{modele_pagination}|=={page}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_pagination_2:>
-	<br />
-	<label>
-		<input type="radio" name="modele_pagination" value="precedent_suivant" [(#ENV{modele_pagination}|=={precedent_suivant}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_pagination_3:>
-	</label>
-	<br />
-	<label>
-		<input type="radio" name="modele_pagination" value="page_precedent_suivant" [(#ENV{modele_pagination}|=={page_precedent_suivant}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_pagination_4:>
-	</label>
-	<br /><br />
-    <label><:sarkaspip:cfg_lbl_pas_pagination:></label>
-    <input type="text" name="pas_pagination" value="#ENV{pas_pagination, 5}" size="3" class="fondl" />
-	<br />
-</fieldset>
+	<input type="submit" name="_cfg_ok" class="fondo" value="<:sarkaspip:valider:>" />
+	<input type="submit" name="_cfg_delete" class="fondo" value="<:sarkaspip:effacer:>" />
+</div></form>
 
-<br />
-<input type="submit" name="_cfg_ok" class="fondo" value="<:sarkaspip:valider:>" />
-<input type="submit" name="_cfg_delete" class="fondo" value="<:sarkaspip:effacer:>" />
-</form>
-
-<br />
->> Debug - Etat des param&egrave;tres du fond:<br />
-#CFG_ARBO{sarkaspip_herbier}
+[(#CONFIG{sarkaspip_accueil/mode_debug, non}|=={oui}|?{' '})
+	<div id="bloc_debug">
+		<br />
+		>> Debug - Etat des variables du fond Herbier:<br />
+		#CFG_ARBO{sarkaspip_herbier}
+	</div>
+]

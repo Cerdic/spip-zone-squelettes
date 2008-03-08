@@ -12,43 +12,48 @@
 
 #CACHE{0}
 
-<form method="post">[(#ENV{_cfg_}|form_hidden)]
-<fieldset>
-    <legend><:sarkaspip:cfg_lgd_sommaire_secteurs:></legend>
-    <p><:sarkaspip:cfg_inf_sommaire_secteurs:></p>
-	<label>
-		<input type="radio" name="position_secteurs" value=1 [(#ENV{position_secteurs, 0}|=={1}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_oui:>
-	</label>
+<form method="post" action="#SELF"><div>
+	[(#ENV{_cfg_}|form_hidden)]
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_sommaire_secteurs:></legend>
+		<p><:sarkaspip:cfg_inf_sommaire_secteurs:></p>
+		<label>
+			<input type="radio" name="position_secteurs" value="1" [(#ENV{position_secteurs, 0}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_oui:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="position_secteurs" value="0" [(#ENV{position_secteurs, 0}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_non:>
+		</label>
+	</fieldset>
+	
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_sommaire_articles:></legend>
+		<p><:sarkaspip:cfg_inf_sommaire_articles:></p>
+		<label>
+			<input type="radio" name="position_articles_recents" value="1" [(#ENV{position_articles_recents, 1}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_oui:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="position_articles_recents" value="0" [(#ENV{position_articles_recents, 1}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_non:>
+		</label>
+		<br /><br />
+		<label><:sarkaspip:cfg_lbl_max_articles_recents:></label>
+		<input type="text" name="max_articles_recents" value="#ENV{max_articles_recents, 5}" size="3" class="fondl" />
+	</fieldset>
+	
 	<br />
-	<label>
-		<input type="radio" name="position_secteurs" value=0 [(#ENV{position_secteurs, 0}|=={0}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_non:>
-	</label>
-</fieldset>
+	<input type="submit" name="_cfg_ok" class="fondo" value="<:sarkaspip:valider:>" />
+	<input type="submit" name="_cfg_delete" class="fondo" value="<:sarkaspip:effacer:>" />
+</div></form>
 
-<fieldset>
-    <legend><:sarkaspip:cfg_lgd_sommaire_articles:></legend>
-    <p><:sarkaspip:cfg_inf_sommaire_articles:></p>
-	<label>
-		<input type="radio" name="position_articles_recents" value=1 [(#ENV{position_articles_recents, 1}|=={1}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_oui:>
-	</label>
-	<br />
-	<label>
-		<input type="radio" name="position_articles_recents" value=0 [(#ENV{position_articles_recents, 1}|=={0}|?{checked="checked"})] />
-		<:sarkaspip:cfg_lbl_non:>
-	</label>
-	<br /><br />
-    <label><:sarkaspip:cfg_lbl_max_articles_recents:></label>
-    <input type="text" name="max_articles_recents" value="#ENV{max_articles_recents, 5}" size="3" class="fondl" />
-</fieldset>
-
-<br />
-<input type="submit" name="_cfg_ok" class="fondo" value="<:sarkaspip:valider:>" />
-<input type="submit" name="_cfg_delete" class="fondo" value="<:sarkaspip:effacer:>" />
-</form>
-
-<br />
->> Debug - Etat des param&egrave;tres du fond:<br />
-#CFG_ARBO{sarkaspip_sommaire}
+[(#CONFIG{sarkaspip_accueil/mode_debug, non}|=={oui}|?{' '})
+	<div id="bloc_debug">
+		<br />
+		>> Debug - Etat des variables du fond Sommaire:<br />
+		#CFG_ARBO{sarkaspip_sommaire}
+	</div>
+]
