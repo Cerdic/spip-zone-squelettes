@@ -79,15 +79,17 @@
 			<h2><:dernieres_images:></h2>
 			<p class="gentil_message"><:cliquer_pour_agrandir:></p>
 		<BOUCLE_doc(DOCUMENTS) {extension IN jpg,gif,png}
-		{largeur>=200}{hauteur>120} {!par date}{0,4}>
+		{largeur>=200}{hauteur>120} {par hasard}{0,4}>
 		[(#SET{visible,[(#FICHIER
 			|image_passe_partout{102,102}
 			|image_recadre{102,102,center}
 			|image_aplatir{jpg,ffffff}
 			|inserer_attribut{class,spip_logos modulo#COMPTEUR_BOUCLE}
 		)]})]
+		<BOUCLE_artdoc(ARTICLES){id_document}>
+		#SET{titart,#TITRE}</BOUCLE_artdoc>
 		<a href="[(#FICHIER|image_reduire{800}|extraire_attribut{src})]" type="#MIME_TYPE"[
-		title="(#TITRE|texte_backend)"]>#GET{visible}</a>
+		title="(#TITRE|sinon{#GET{titart}}|texte_backend)"]>#GET{visible}</a>
 		</BOUCLE_doc>
 			<p class="plus"><a href="#URL_PAGE{page_photos}"><:photos_tout:></a></p>
 		</div><!--#portfolio-->
