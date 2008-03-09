@@ -1,53 +1,25 @@
-[(#REM) <!--
-Squelette Sarka-SPIP
-Copyright (C) 2005-2007 - Collectif Sarka-SPIP - http://sarka-spip.com
-
-Ce programme est libre, vous pouvez le redistribuer et/ou le modifier selon les termes
-de la Licence Publique Generale GNU publiee par la Free Software Foundation (version 2
-ou bien toute autre version ulterieure choisie par vous).
-
-Ce programme est distribue car potentiellement utile, mais SANS AUCUNE GARANTIE, ni
-explicite ni implicite, y compris les garanties de commercialisation ou d'adaptation
-dans un but specifique. Reportez-vous a la Licence Publique Generale GNU pour plus de details.
-
-Vous devez avoir recu une copie de la Licence Publique Generale GNU en meme temps que ce programme;
-si ce n'est pas le cas, ecrivez a la Free Software Foundation, Inc., 59 Temple Place, Suite 330,
-Boston, MA 02111-1307, Etats-Unis.
--->
-
-<!--
-CREDITS
-
-Le squelette Sarka-SPIP est realise par un collectif dont les membres sont les suivants:
-
-- Toufik Stouky    alias  SarkAFeeK
-- Sylvain Bellego  alias  SarkALeoN
-- Xavier Le Ho     alias  SarkARchimeD
-- Eric Lupinacci   alias  SarkASmeL
-
-Nous tenons aussi a remercier tous les utilisateurs qui nous ont fait confiance depuis les 
-premiers pas du squelette et qui continuent aujourd'hui a nous apporter leur soutien et leurs idees.
-Un grand merci, donc, a celles et ceux qui ont contribue (et qui vont contribuer) a l'amelioration
-de ce squelette.
--->]
-
-<!--Squelette Sarka-SPIP - Copyright (C) 2005-2007 - Collectif Sarka-SPIP - http://sarka-spip.com-->
-
+<!--Squelette Sarka-SPIP - Copyright (C) 2005-2008 - Collectif Sarka-SPIP - http://sarka-spip.com-->
 #CACHE{7200}
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
-<html lang="#LANG">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+	[(#SET{options,
+	<link rel="alternate" type="application/rss+xml" title="<:sarkaspip:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
+	})]
+	<INCLURE{fond=noisettes/header}
+		{meta_titre=#TITRE}
+		{meta_description=#INTRODUCTION{150}}
+		{meta_options=#GET{options}}>
 
-	<INCLURE{fond=noisettes/header} {id_rubrique} >
 <body dir="#LANG_DIR" onload="setHover()">
 <div id="container">
+
 <div id="header">
 	[(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
-		<INCLURE{fond=noisettes/bandeau}>
+	<INCLURE{fond=noisettes/bandeau}>
 	
 	[(#REM) <!-- =========================== ZONE CHEMIN DE NAVIGATION ============================= --> ]
-		<INCLURE{fond=noisettes/chemin} {id_rubrique}>
+	<INCLURE{fond=noisettes/chemin} {id_rubrique}>
 </div> <!-- fin de header-->
 
 <div id="wrapper">
@@ -56,55 +28,49 @@ de ce squelette.
 		[(#MODELE{description_rubrique}{id_rubrique})]
 		
 		<div class="rubrique">
-		
-		[(#REM) <!-- Liens vers les rubriques filles --> ]
-		<B_rubriques_filles>			
-			<div class="filles">
-				<BOUCLE_rubriques_filles(RUBRIQUES){id_parent}{par num titre}{par titre}>
-						[<a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
-				</BOUCLE_rubriques_filles>
-			</div> <!-- Fin filles -->				
-		</B_rubriques_filles>
-		
-		[(#REM) <!-- Liens vers les documents joints, a l'exclusion des images --> ]
-		<B_documents_rubrique>
-			<div class="doc">
-				<div id="docu_rubrique" class="en-tete"><:sarkaspip:docu_rubrique:>&nbsp;:</div>
-				<BOUCLE_documents_rubrique(DOCUMENTS){id_rubrique}{extension !== jpg|png|gif}{mode=document}{doublons}>
-						<a href=#URL_DOCUMENT>#LOGO_DOCUMENT  #TITRE </a>
-				</BOUCLE_documents_rubrique>
-			</div> <!-- Fin doc -->
-		</B_documents_rubrique>
-		
-		[(#REM) <!-- Liens vers les images jointes --> ]
-		<B_images_rubrique>
-			<div class="doc">
-				<div id="img_rubrique" class="en-tete"><:sarkaspip:img_rubrique:>&nbsp;:</div>
-				<BOUCLE_images_rubrique(DOCUMENTS){id_rubrique}{extension == jpg|png|gif}{mode=document}{doublons}>
-					<div class="vignette">
-						<a href=#URL_DOCUMENT class="info"> #LOGO_DOCUMENT [<span>(#DESCRIPTIF)</span>]</a>
-						<ul>
-							[<li><:sarkaspip:img_titre:>&nbsp;:&nbsp;(#TITRE)</li>]
-							<li><:sarkaspip:img_taille:>&nbsp;:&nbsp;#LARGEUR&nbsp;<:sarkaspip:lxh:>&nbsp;#HAUTEUR</li>
-							<li><:sarkaspip:img_poids:>&nbsp;:&nbsp;[(#TAILLE|taille_en_octets)]</li>
-							<li><:sarkaspip:img_format:>&nbsp;:&nbsp;#TYPE_DOCUMENT</li>
-						</ul>
-					</div> <!-- Fin vignette -->
-					<div class="clear"><span></span></div>
-				</BOUCLE_images_rubrique>
-			</div> <!-- Fin doc -->
-		</B_images_rubrique>
-		
+			[(#REM) <!-- Liens vers les rubriques filles --> ]
+			<B_rubriques_filles>			
+				<div class="filles">
+			<BOUCLE_rubriques_filles(RUBRIQUES){id_parent}{par num titre}{par titre}>
+							[<a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
+			</BOUCLE_rubriques_filles>
+				</div> <!-- Fin filles -->				
+			</B_rubriques_filles>
+			
+			[(#REM) <!-- Liens vers les documents joints, a l'exclusion des images --> ]
+			<B_documents_rubrique>
+				<div class="doc">
+					<div id="docu_rubrique" class="en-tete"><:sarkaspip:docu_rubrique:>&nbsp;:</div>
+			<BOUCLE_documents_rubrique(DOCUMENTS){id_rubrique}{extension !== jpg|png|gif}{mode=document}{doublons}>
+							<a href="#URL_DOCUMENT">#LOGO_DOCUMENT  #TITRE </a>
+			</BOUCLE_documents_rubrique>
+				</div> <!-- Fin doc -->
+			</B_documents_rubrique>
+			
+			[(#REM) <!-- Liens vers les images jointes --> ]
+			<B_images_rubrique>
+				<div class="doc">
+					<div id="img_rubrique" class="en-tete"><:sarkaspip:img_rubrique:>&nbsp;:</div>
+			<BOUCLE_images_rubrique(DOCUMENTS){id_rubrique}{extension == jpg|png|gif}{mode=document}{doublons}>
+						<div class="vignette">
+							<a href="#URL_DOCUMENT" class="info">#LOGO_DOCUMENT[&nbsp;(#DESCRIPTIF)]</a>
+							<ul>
+								[<li><:sarkaspip:img_titre:>&nbsp;:&nbsp;(#TITRE)</li>]
+								<li><:sarkaspip:img_taille:>&nbsp;:&nbsp;#LARGEUR&nbsp;<:sarkaspip:lxh:>&nbsp;#HAUTEUR</li>
+								<li><:sarkaspip:img_poids:>&nbsp;:&nbsp;[(#TAILLE|taille_en_octets)]</li>
+								<li><:sarkaspip:img_format:>&nbsp;:&nbsp;#TYPE_DOCUMENT</li>
+							</ul>
+						</div> <!-- Fin vignette -->
+						<div class="clear"><span></span></div>
+			</BOUCLE_images_rubrique>
+				</div> <!-- Fin doc -->
+			</B_images_rubrique>
 		</div> <!-- Fin rubrique -->
-		
-
-
 
 		[(#REM) <!-- Articles de la rubrique, classes par numero s'ils sont numerotes, ou par date inverse sinon --> ]
 		<B_test_numero>
 		<BOUCLE_test_numero(ARTICLES){id_rubrique}{titre==^[0-9]+[.)]}{0,1}>
-			
-			<!-- Affichage si les articles sont numérotés -->
+			[(#REM) <!-- Affichage si les articles sont numérotés --> ]
 			<B_article_numerotes> 
 				<div class="derniers-articles">
 					<div id="articles_rubrique" class="en-tete"><:sarkaspip:article_rubrique:></div>
@@ -115,7 +81,7 @@ de ce squelette.
 					<BOUCLE_article_numerotes(ARTICLES) {id_rubrique}{par num titre}{pagination 10}>
 						<div class="annonce">
 							[<div class="image">(#LOGO_ARTICLE||image_reduire{150})</div>]
-							<div class="detail">[(#DATE|nom_jour)]&nbsp;[(#DATE|affdate)]<br>
+							<div class="detail">[(#DATE|nom_jour)]&nbsp;[(#DATE|affdate)]<br />
 							<B_auteurs_article_numerotes>
 								<:sarkaspip:par_auteur:>
 							<BOUCLE_auteurs_article_numerotes(AUTEURS) {id_article} {", "}>
@@ -128,7 +94,7 @@ de ce squelette.
 							[<div class="soustitre">(#SOUSTITRE)</div>]
 							<div class="introduction">
 								[(#INTRODUCTION|typo_couleur)]
-								<br><br>
+								<br /><br />
 								<a class="suite" href="#URL_ARTICLE"><:sarkaspip:lire_suite_article:></a>
 							</div> <!-- Fin introduction -->
 						</div> <!-- Fin annonce -->
@@ -137,10 +103,8 @@ de ce squelette.
 					<div class="bande-pagination">#PAGINATION</div>
 					</div> <!-- Fin derniers-articles -->
 				</B_article_numerotes>
-		
 		</BOUCLE_test_numero>
 		</B_test_numero>
-		
 			<!-- Affichage si les articles ne sont pas numérotés -->
 			<B_article_dates>
 				<div class="derniers-articles">
@@ -152,7 +116,7 @@ de ce squelette.
 					<BOUCLE_article_dates(ARTICLES) {id_rubrique}{par date}{inverse}{pagination 10}>
 						<div class="annonce">
 							[<div class="image">(#LOGO_ARTICLE||image_reduire{150})</div>]
-							<div class="detail">[(#DATE|nom_jour)] [(#DATE|affdate)]<br>
+							<div class="detail">[(#DATE|nom_jour)] [(#DATE|affdate)]<br />
 								<B_auteurs_article_date>
 									<:sarkaspip:par_auteur:>
 								<BOUCLE_auteurs_article_date(AUTEURS) {id_article} {", "}>
@@ -165,17 +129,15 @@ de ce squelette.
 							[<div class="soustitre">(#SOUSTITRE)</div>]
 							<div class="introduction">
 								[(#INTRODUCTION|typo_couleur)]
-								<br><br>
+								<br /><br />
 								<a class="suite" href="#URL_ARTICLE"><:sarkaspip:lire_suite_article:></a>
 							</div> <!-- Fin introduction -->
 						</div> <!-- Fin annonce -->
 					</BOUCLE_article_dates>
-					
 					<div class="bande-pagination">#PAGINATION</div>
-					
 				</div> <!-- Fin derniers-articles -->
 			</B_article_dates>
-		[(#REM) <!-- si pas d'article, test de l'existence de rubriques filles (si test negatif, affichage des sites references --> ]
+					[(#REM) <!-- si pas d'article, test de l'existence de rubriques filles (si test negatif, affichage des sites references --> ]
 					<B_test_pas_de_rubrique_fille>
 					<BOUCLE_test_pas_de_rubrique_fille(RUBRIQUES){id_parent}{0,1}>
 					</BOUCLE_test_pas_de_rubrique_fille>
@@ -191,17 +153,14 @@ de ce squelette.
 										<li><a class="article-syndic" href="#URL_ARTICLE"><span class="date-syndic">[[(#DATE|affdate{'d-m-Y'})]]</span>&nbsp;[(#TITRE|couper{75})]</a></li>
 										<div class="a-propos">
 											[<:sarkaspip:publie_sur_site:>&nbsp;<span class="site-pere">(#NOM_SITE)</span>]
-											[<:sarkaspip:par_auteur:>&nbsp;<span class="auteur-pere">(#LESAUTEURS)</span>.]<br>
+											[<:sarkaspip:par_auteur:>&nbsp;<span class="auteur-pere">(#LESAUTEURS)</span>.]<br />
 											[<span>(#DESCRIPTIF|supprimer_tags)</span>]
 										</div> <!-- Fin a-propos -->
 								</BOUCLE_syndic_nouveaux>
 									</ul>
 								</B_syndic_nouveaux>
-								<br>
+								<br />
 							</BOUCLE_test_syndic>
-
-
-							
 							[(#REM) <!-- affichage des sites references de la rubrique --> ]
 							<B_site_secteur>
 								<div class="intitulePage"><:sarkaspip:icone_sites_references:>&nbsp;:</div>
@@ -219,16 +178,12 @@ de ce squelette.
 												</B_syndic_recherche1>
 										</div>  Fin contenu -->
 										[(#MODELE{site_syndic}{id_syndic}{taille=10})]
-										
-										<br>
+										<br />
 									</BOUCLE_site_secteur>		
 									</div> <!-- Fin noisette -->
 								</div> <!-- Fin indentation redimensionnement -->		
 							</B_site_secteur>
 						</div> <!-- Fin plan -->
-						
-						
-						
 					<//B_test_pas_de_rubrique_fille>
 				<//B_article_dates> 		
 		<//B_test_numero>
@@ -238,22 +193,23 @@ de ce squelette.
 
 <div id="navigation">
 	[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
-		<INCLURE{fond=noisettes/navigation}{id_rubrique}>
+	<INCLURE{fond=noisettes/navigation}{id_rubrique}>
 </div>  <!--navigation-->
 
 <div id="extra">
 	[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
-		<INCLURE{fond=noisettes/extra}{self=#SELF}{page=rubrique}{id_secteur}{id_rubrique}>
+	<INCLURE{fond=noisettes/extra}{self=#SELF}{page=rubrique}{id_secteur}{id_rubrique}>
 </div>
 
 <div id="footer">
 	[(#REM) <!-- ================================== ZONE PIED DE PAGE  ================================== --> ]
-		<INCLURE{fond=noisettes/footer}>
+	<INCLURE{fond=noisettes/footer}>
 </div>  <!--footer-->
 
 </div>
 </body>
 </html>
+[(#REM) <!-- ================================== ERREUR BOUCLE VIDE  ================================== --> ]
 </BOUCLE_rubrique_principal>
 	<INCLURE{fond=404}>
 <//B_rubrique_principal>
