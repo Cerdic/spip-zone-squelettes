@@ -27,7 +27,9 @@
 [(#REM) <!-- affichage du top album --> ]
 <BOUCLE_acces_splickrbox(RUBRIQUES) {id_rubrique=#RUBRIQUE_SPECIALISEE{galerie}}>
 	[(#PLUGIN{SPLICKR}|?{' '})
-		[(#RUBRIQUE_SPECIALISEE{galerie}|=={0}|?{'', ' '})<INCLURE{fond=noisettes/inc_splickrbox}{id_rubrique=#RUBRIQUE_SPECIALISEE{galerie}}>]
+		[(#ENV{page}|=={sommaire}|?{' '})
+			[(#RUBRIQUE_SPECIALISEE{galerie}|=={0}|?{'', ' '})<INCLURE{fond=noisettes/inc_splickrbox}{id_rubrique=#RUBRIQUE_SPECIALISEE{galerie}}>]
+		]
 	]
 </BOUCLE_acces_splickrbox>
 
@@ -38,14 +40,14 @@
 	]
 </BOUCLE_acces_annonce>
 
-[(#REM) <!-- affichage des X dernieres breves et sites en fonction du contexte --> ]
-<INCLURE{fond=noisettes/inc_breves}{id_secteur}>
-<INCLURE{fond=noisettes/inc_sites}{id_secteur}>
-
 [(#REM) <!-- affichage du panneau derniers commentaires--> ]
 [(#CONFIG{sarkaspip_noisettes/position_commentaires, 2}|=={2}|?{' '})
 <INCLURE{fond=noisettes/inc_commentaires} {id_secteur}>
 ]
+
+[(#REM) <!-- affichage des X dernieres breves et sites en fonction du contexte --> ]
+<INCLURE{fond=noisettes/inc_breves}{id_secteur}>
+<INCLURE{fond=noisettes/inc_sites}{id_secteur}>
 
 [(#REM) <!-- Blocs de statistiques --> ]
 [(#CONFIG{sarkaspip_noisettes/position_stats_1, 1}|=={2}|?{' '})

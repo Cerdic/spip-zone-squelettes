@@ -65,7 +65,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //C
 	  
-		'commentaire' => 'Commentaire',
+		'commentaires' => 'Commentaires',
 		'contact' => 'Contact',
 		'contacter_site' => 'Contacter le webmestre',
 		'coordonnees' => 'Coordonn&eacute;es',
