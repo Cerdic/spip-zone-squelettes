@@ -87,6 +87,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 		'erreur' => 'error',
 		'espace_prive' => 'Private area', // redefinition item SPIP
+		'espace_membre' => 'Member area',
 		'evenements_du_jour' => 'Today\'s events',
 	  
 	
