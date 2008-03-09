@@ -16,6 +16,7 @@
 //<![CDATA[
 	jQuery(document).ready(function() {
 		[(#ENV{liste_breves, 2}|!={2}|?{jQuery("#bloc_intro_breve").hide();})]
+		[(#ENV{position_commentaires, 2}|!={2}|?{jQuery("#bloc_intro_commentaires").hide();})]
 		[(#ENV{liste_sites, 2}|!={1}|?{jQuery("#bloc_max_syndic").hide();})]
 		[(#ENV{position_badges, 1}|=={0}|?{jQuery("#bloc_badges_liste").hide();})]
 		jQuery("input[@name='position_badges']").change(function() {
@@ -37,6 +38,13 @@
 				jQuery("#bloc_intro_breve").show();
 			else
 				jQuery("#bloc_intro_breve").hide();
+			jQuery(this).blur();
+		});	
+		jQuery("input[@name='position_commentaires']").change(function() {
+			if (jQuery("input[@name='position_commentaires']:checked").val() == 2)
+				jQuery("#bloc_intro_commentaires").show();
+			else
+				jQuery("#bloc_intro_commentaires").hide();
 			jQuery(this).blur();
 		});	
 	});
@@ -83,6 +91,29 @@
 		<div id="bloc_intro_breve">
 			<label><:sarkaspip:cfg_lbl_intro_breve:></label>
 			<input type="text" name="intro_breve" value="#ENV{intro_breve, 100}" size="3" class="fondl" />
+		</div>
+		<br />
+	</fieldset>
+
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_inc_commentaires:></legend>
+		<p><:sarkaspip:cfg_inf_inc_commentaires:></p>
+		<label>
+			<input type="radio" name="position_commentaires" value="0" [(#ENV{position_commentaires, 2}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_position_0:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="position_commentaires" value="2" [(#ENV{position_commentaires, 2}|=={2}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_position_2:>
+		</label>
+		<br /><br />
+		<div id="bloc_intro_commentaires">
+		<label><:sarkaspip:cfg_lbl_max_commentaires:></label>
+			<input type="text" name="max_commentaires" value="#ENV{max_commentaires, 5}" size="2" class="fondl" />
+		<br />
+		<label><:sarkaspip:cfg_lbl_intro_commentaires:></label>
+			<input type="text" name="intro_commentaires" value="#ENV{intro_commentaires, 100}" size="3" class="fondl" />
 		</div>
 		<br />
 	</fieldset>
