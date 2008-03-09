@@ -1,182 +1,145 @@
-[(#REM) <!--
-Squelette Sarka-SPIP
-Copyright (C) 2005-2007 - Collectif Sarka-SPIP - http://sarka-spip.com
-
-Ce programme est libre, vous pouvez le redistribuer et/ou le modifier selon les termes
-de la Licence Publique Generale GNU publiee par la Free Software Foundation (version 2
-ou bien toute autre version ulterieure choisie par vous).
-
-Ce programme est distribue car potentiellement utile, mais SANS AUCUNE GARANTIE, ni
-explicite ni implicite, y compris les garanties de commercialisation ou d'adaptation
-dans un but specifique. Reportez-vous a la Licence Publique Generale GNU pour plus de details.
-
-Vous devez avoir recu une copie de la Licence Publique Generale GNU en meme temps que ce programme;
-si ce n'est pas le cas, ecrivez a la Free Software Foundation, Inc., 59 Temple Place, Suite 330,
-Boston, MA 02111-1307, Etats-Unis.
--->
-
-<!--
-CREDITS
-
-Le squelette Sarka-SPIP est realise par un collectif dont les membres sont les suivants:
-
-- Toufik Stouky    alias  SarkAFeeK
-- Sylvain Bellego  alias  SarkALeoN
-- Xavier Le Ho     alias  SarkARchimeD
-- Eric Lupinacci   alias  SarkASmeL
-
-Nous tenons aussi a remercier tous les utilisateurs qui nous ont fait confiance depuis les 
-premiers pas du squelette et qui continuent aujourd'hui a nous apporter leur soutien et leurs idees.
-Un grand merci, donc, a celles et ceux qui ont contribue (et qui vont contribuer) a l'amelioration
-de ce squelette.
--->]
-
-<!--Squelette Sarka-SPIP - Copyright (C) 2005-2007 - Collectif Sarka-SPIP - http://sarka-spip.com-->
-
-[(#REM)  <!--
-Le fichier est en cache dans SPIP, mais les navigateurs ne doivent pas
-conserver cette page en memoire
--->]
-
+<!--Squelette Sarka-SPIP - Copyright (C) 2005-2008 - Collectif Sarka-SPIP - http://sarka-spip.com-->
 #CACHE{86400}
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+	<INCLURE{fond=noisettes/header}
+		{meta_titre=<:sarkaspip:mots_clefs:>}>
 
-<html lang="#LANG">
-	<INCLURE{fond=noisettes/header}{id_mot}>
 <body dir="#LANG_DIR" onload="setHover()">
 <div id="container">
-<div id="header">
-	[(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
+
+	<div id="header">
+		[(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
 		<INCLURE{fond=noisettes/bandeau}>
-	
-	[(#REM) <!-- =========================== ZONE CHEMIN DE NAVIGATION ============================= --> ]
+		
+		[(#REM) <!-- =========================== ZONE CHEMIN DE NAVIGATION ============================= --> ]
 		<INCLURE{fond=noisettes/chemin}>
-</div> <!-- fin de header-->
-
-<div id="wrapper">
-	<div id="content">
-<B_mot_principal>
-<BOUCLE_mot_principal(MOTS) {id_mot}>
-		<div class="sommaire">
-			[(#REM) <!-- Une : contenu du mot-cle --> ]
-			<div class="intitulePage"><:sarkaspip:objets_mot:>&nbsp;:&nbsp;#TITRE</div>
-		
-			[(#REM) <!-- Rubriques trouvees --> ]
-			<B_rubriques>
-				<div class="elements-trouves"><:sarkaspip:rubriques_mot:></div>
-				<div class="indentation">
-					<BOUCLE_rubriques(RUBRIQUES){id_mot}{id_rubrique!==#RUBRIQUE_SPECIALISEE} {par titre}>
-						[(#MODELE{description_rubrique}{id_rubrique})]
-					</BOUCLE_rubriques>
-				</div> <!-- Fin indentation -->
-			</B_rubriques>
+	</div> <!-- fin de header-->
+	
+	<div id="wrapper">
+		<div id="content">
+		<B_mot_principal>
+		<BOUCLE_mot_principal(MOTS) {id_mot}>
+			<div class="sommaire">
+				[(#REM) <!-- Une : contenu du mot-cle --> ]
+				<div class="intitulePage"><:sarkaspip:objets_mot:>&nbsp;:&nbsp;#TITRE</div>
 			
-			
-			[(#REM) <!-- Articles trouves --> ]
-			<B_articles_recherche>
-				<div class="elements-trouves"><:sarkaspip:articles_mot:></div>
-				<div class="indentation">
-					<div class="derniers-articles">
-					    #ANCRE_PAGINATION
-						[<div class="bande-pagination">(#PAGINATION)</div>]
-						<BOUCLE_articles_recherche(ARTICLES) {id_mot}{id_rubrique!==#RUBRIQUE_SPECIALISEE} {par date} {inverse}{pagination 10}>
-							[(#MODELE{mod_intro_article}{id_article})]		
-						</BOUCLE_articles_recherche>
-						[<div class="bande-pagination">(#PAGINATION)</div>]
-					</div> <!-- Fin derniers-articles -->
-				</div> <!-- Fin indentation -->
-			</B_articles_recherche>
-			
-			
-			
-			[(#REM) <!-- Breves trouvees --> ]
-			<B_breves_recherche>
-				<div class="elements-trouves"><:sarkaspip:breves_mot:></div>
-				<div class="indentation redimensionnement">
-					<div id="breves" class="noisette">
-						<BOUCLE_breves_recherche(BREVES) {id_mot}{id_rubrique!==#RUBRIQUE_SPECIALISEE} {par date} {inverse}>
-							[(#MODELE{mod_breve_1}{id_breve})]
-							<br>
-						</BOUCLE_breves_recherche>
-					</div> <!-- Fin noisette -->
-				</div> <!-- Fin indentation redimensionnement -->
-			</B_breves_recherche>
-		
-			
-			
-			[(#REM) <!-- Sites Web trouves --> ]
-			<B_sites_recherche>
-				<div class="elements-trouves"><:sarkaspip:sites_mot:></div>
-				<div id="web" class="noisette">
-					<div class="indentation redimensionnement">
-						<BOUCLE_sites_recherche(SITES) {id_mot}{id_rubrique!==#RUBRIQUE_SPECIALISEE} {par date} {inverse}>
-							[(#MODELE{site_syndic}{id_syndic}{taille=10})]
-							<br>
-						</BOUCLE_sites_recherche>
-					</div> <!-- Fin indentation redimensionnement -->
-				</div> <!-- Fin web -->
-			</B_sites_recherche>
-			
-					
-			[(#REM) <!-- Messages trouves --> ]
-			<B_messages_recherche>
-				<div class="elements-trouves"><:sarkaspip:messages_mot:></div>
-				<div class="forum">
+				[(#REM) <!-- Rubriques trouvees --> ]
+				<B_rubriques>
+					<div class="elements-trouves"><:sarkaspip:rubriques_mot:></div>
 					<div class="indentation">
-						<BOUCLE_messages_recherche(FORUMS) {id_mot}{id_rubrique!==#RUBRIQUE_SPECIALISEE} {par date} {inverse}>
-							<div class="visualisation">
-								<div class="titre">#TITRE</div>
-								<div class="detail">
-									[(#DATE|nom_jour)]&nbsp;[(#DATE|affdate)]<br>
-									[<:sarkaspip:par_auteur:>&nbsp;(#NOM)]
-								</div> <!-- Fin detail -->
-								<div class="texte">
-									#TEXTE
-									[<br><br><a href="[(#URL_SITE)]">(#NOM_SITE)</a>]
-								</div> <!-- Fin texte -->
-							</div> <!-- Fin visualisation -->
-							<br><a class="repondre" href="#URL_FORUM"><:sarkaspip:forum:></a><br><br>
-						</BOUCLE_messages_recherche>
+				<BOUCLE_rubriques(RUBRIQUES){id_mot}{id_rubrique!==#RUBRIQUE_SPECIALISEE} {par titre}>
+							[(#MODELE{description_rubrique}{id_rubrique})]
+				</BOUCLE_rubriques>
 					</div> <!-- Fin indentation -->
-				</div> <!-- Fin forum -->
-			</B_messages_recherche>
-		
-		
-		</div><!--sommaire-->			
-</BOUCLE_mot_principal>	 
-</B_mot_principal>
-		<div class="intitulePage"><:sarkaspip:objets_mot:> : </div>
-<//B_mot_principal>			
-	</div><!--content-->
-</div><!--wrapper-->
-
-<div id="navigation">
-	[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
+				</B_rubriques>
+				
+				
+				[(#REM) <!-- Articles trouves --> ]
+				<B_articles_recherche>
+					<div class="elements-trouves"><:sarkaspip:articles_mot:></div>
+					<div class="indentation">
+						<div class="derniers-articles">
+							#ANCRE_PAGINATION
+							[<div class="bande-pagination">(#PAGINATION)</div>]
+				<BOUCLE_articles_recherche(ARTICLES) {id_mot}{id_rubrique!==#RUBRIQUE_SPECIALISEE} {par date} {inverse}{pagination 10}>
+								[(#MODELE{mod_intro_article}{id_article})]		
+				</BOUCLE_articles_recherche>
+							[<div class="bande-pagination">(#PAGINATION)</div>]
+						</div> <!-- Fin derniers-articles -->
+					</div> <!-- Fin indentation -->
+				</B_articles_recherche>
+				
+				
+				
+				[(#REM) <!-- Breves trouvees --> ]
+				<B_breves_recherche>
+					<div class="elements-trouves"><:sarkaspip:breves_mot:></div>
+					<div class="indentation redimensionnement">
+						<div id="breves" class="noisette">
+				<BOUCLE_breves_recherche(BREVES) {id_mot}{id_rubrique!==#RUBRIQUE_SPECIALISEE} {par date} {inverse}>
+								[(#MODELE{mod_breve_1}{id_breve})]
+								<br />
+				</BOUCLE_breves_recherche>
+						</div> <!-- Fin noisette -->
+					</div> <!-- Fin indentation redimensionnement -->
+				</B_breves_recherche>
+			
+				
+				
+				[(#REM) <!-- Sites Web trouves --> ]
+				<B_sites_recherche>
+					<div class="elements-trouves"><:sarkaspip:sites_mot:></div>
+					<div id="web" class="noisette">
+						<div class="indentation redimensionnement">
+				<BOUCLE_sites_recherche(SITES) {id_mot}{id_rubrique!==#RUBRIQUE_SPECIALISEE} {par date} {inverse}>
+								[(#MODELE{site_syndic}{id_syndic}{taille=10})]
+								<br />
+				</BOUCLE_sites_recherche>
+						</div> <!-- Fin indentation redimensionnement -->
+					</div> <!-- Fin web -->
+				</B_sites_recherche>
+				
+						
+				[(#REM) <!-- Messages trouves --> ]
+				<B_messages_recherche>
+					<div class="elements-trouves"><:sarkaspip:messages_mot:></div>
+					<div class="forum">
+						<div class="indentation">
+				<BOUCLE_messages_recherche(FORUMS) {id_mot}{id_rubrique!==#RUBRIQUE_SPECIALISEE} {par date} {inverse}>
+								<div class="visualisation">
+									<div class="titre">#TITRE</div>
+									<div class="detail">
+										[(#DATE|nom_jour)]&nbsp;[(#DATE|affdate)]<br />
+										[<:sarkaspip:par_auteur:>&nbsp;(#NOM)]
+									</div> <!-- Fin detail -->
+									<div class="texte">
+										#TEXTE
+										[<br /><br /><a href="[(#URL_SITE)]">(#NOM_SITE)</a>]
+									</div> <!-- Fin texte -->
+								</div> <!-- Fin visualisation -->
+								<br /><a class="repondre" href="#URL_FORUM"><:sarkaspip:forum:></a><br /><br />
+				</BOUCLE_messages_recherche>
+						</div> <!-- Fin indentation -->
+					</div> <!-- Fin forum -->
+				</B_messages_recherche>
+			
+			
+			</div><!--sommaire-->			
+		</BOUCLE_mot_principal>	 
+		</B_mot_principal>
+			<div class="intitulePage"><:sarkaspip:objets_mot:> : </div>
+		<//B_mot_principal>			
+		</div><!--content-->
+	</div><!--wrapper-->
+	
+	<div id="navigation">
+		[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
 		<INCLURE{fond=noisettes/navigation}>
-</div>  <!--navigation-->
-
-<div id="extra">
-	[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
-	[(#REM) <!-- affichage des groupes de mots et des mots associés --> ]
-	<B_nav_groupes>
-		<div id="mots-cles" class="noisette">
-			<div><a class="intitule"><:sarkaspip:mots_clefs:></a></div>
-				<BOUCLE_nav_groupes(GROUPES_MOTS) {titre!==^squelette\_} {par titre}>
-					<div class="contenu">
-						<a class="nom-groupe">#TITRE</a>
-						<BOUCLE_nav_mots_groupe(MOTS) {id_groupe} {par titre} {doublons}>
-							[(#ID_MOT|mot_associations|>{0}|?{[(#ID_MOT|=={[(#ENV{id_mot})]}|?{<span>#TITRE</span>,<a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"] >#TITRE</a>})]})]
-						</BOUCLE_nav_mots_groupe>
-					</div> <!-- Fin contenu -->
-				</BOUCLE_nav_groupes>
-			</div> <!-- Fin mots-cles -->
+	</div>  <!--navigation-->
+	
+	<div id="extra">
+		[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
+		[(#REM) <!-- affichage des groupes de mots et des mots associes --> ]
+		<B_nav_groupes>
+			<div id="mots-cles" class="noisette">
+				<div><a class="intitule"><:sarkaspip:mots_clefs:></a></div>
+		<BOUCLE_nav_groupes(GROUPES_MOTS) {titre!==^squelette\_} {par titre}>
+						<div class="contenu">
+							<a class="nom-groupe">#TITRE</a>
+							<BOUCLE_nav_mots_groupe(MOTS) {id_groupe} {par titre} {doublons}>
+								[(#ID_MOT|mot_associations|>{0}|?{[(#ID_MOT|=={[(#ENV{id_mot})]}|?{<span>#TITRE</span>,<a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"] >#TITRE</a>})]})]
+							</BOUCLE_nav_mots_groupe>
+						</div> <!-- Fin contenu -->
+		</BOUCLE_nav_groupes>
+				</div> <!-- Fin mots-cles -->
 		</B_nav_groupes>
-</div>
-
-<div id="footer">
-	[(#REM) <!-- ================================== ZONE PIED DE PAGE  ================================== --> ]
+	</div>
+	
+	<div id="footer">
+		[(#REM) <!-- ================================== ZONE PIED DE PAGE  ================================== --> ]
 		<INCLURE{fond=noisettes/footer}>
-</div>  <!--footer-->
+	</div>  <!--footer-->
 
 </div>
 </body>
