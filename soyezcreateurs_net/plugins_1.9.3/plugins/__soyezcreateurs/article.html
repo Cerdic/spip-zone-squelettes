@@ -60,22 +60,7 @@ $titretop = '[(#TITRE|textebrut|attribut_html|nettoyer_marqueur|texte_script)]';
 [<div class="notes">#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
 [<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
 
-<B_imgs>
-<BOUCLE_afficher_document(DOCUMENTS) {id_document}>
-<div id="document_actif"[ style="background-color: #(#LOGO_DOCUMENT||couleur_extraire); color: #[(#LOGO_DOCUMENT||couleur_extraire|couleur_inverser|couleur_extreme)];"]>
-	[<h2[ style="background-color: #(#LOGO_DOCUMENT||couleur_extraire|couleur_eclaircir); color: #[(#LOGO_DOCUMENT||couleur_extraire|couleur_eclaircir|couleur_inverser|couleur_extreme)];"] class="#EDIT{titre}">#DEBUT_SURLIGNE(#TITRE)#FIN_SURLIGNE</h2>]
-<dl>
-	<dt class="photo_articles"><a href="#URL_DOCUMENT" title="<:pyrat:voirimage:> : [(#TITRE|textebrut|attribut_html|sinon{<:info_document:>})] (#LARGEUR &times; #HAUTEUR, [(#TAILLE|taille_en_octets)])"><img class="galleriebig" src="[(#FICHIER|reduire_image{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0}||extraire_attribut{src})]" width='[(#FICHIER|reduire_image{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0}||extraire_attribut{width})]' height='[(#FICHIER|reduire_image{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0}||extraire_attribut{height})]' alt="[(#TITRE|textebrut|attribut_html)]" /></a></dt>
-	[<dd class="#EDIT{descriptif}">#DEBUT_SURLIGNE(#DESCRIPTIF)#FIN_SURLIGNE</dd>]
-</dl>
-</div>
-</BOUCLE_afficher_document>
-<div id="documents_portfolio">
-<BOUCLE_imgs(DOCUMENTS){id_article}{mode=document}{extension IN png,jpg,gif}{par num titre, date}>
-[(#ENV{id_document}|=={#ID_DOCUMENT}|?{'',<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#document_actif';return false;">})]<img src="[(#FICHIER|copie_locale|image_reduire{0,60}|extraire_attribut{src})]"  width="[(#FICHIER|copie_locale|image_reduire{0,60}|extraire_attribut{width})]" height="[(#FICHIER|copie_locale|image_reduire{0,60}|extraire_attribut{height})]" alt="[(#TITRE|textebrut|attribut_html|sinon{<:info_document:>})]" title="[(#TITRE|textebrut|attribut_html|sinon{<:info_document:>})][ - (#DESCRIPTIF|textebrut|attribut_html)]"[(#ENV{id_document}|=={#ID_DOCUMENT}|?{[ style="border-color: #(#LOGO_DOCUMENT||couleur_extraire|couleur_inverser);"],[ style="border-color: #(#LOGO_DOCUMENT||couleur_extraire);"]})] />[(#ENV{id_document}|=={#ID_DOCUMENT}|?{'',</a>})]
-</BOUCLE_imgs>
-</div>
-</B_imgs>
+[(#INCLURE{fond=inc_galerie}{id_article}{env})]
 
 	</div><!-- Fin de #LeTexte -->
 </div><!-- Fin de .texte -->
