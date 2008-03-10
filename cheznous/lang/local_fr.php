@@ -7,6 +7,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // Blog
 'blog' => 'Blog',
 'nouveautes' => 'Quoi de neuf&nbsp;?',
+'articles' => 'articles',
 'articles_tout' => 'Tous nos articles',
 'derniers_articles' => 'Nos derniers articles',
 'a_retenir' => '&Agrave;&nbsp;retenir',
@@ -14,6 +15,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // Page photos
 'photos' => 'Photos',
+'images' => 'images',
 'photos_tout' => 'Toutes nos photos',
 'dernieres_images' => 'Nos derni&egrave;res images',
 'cliquer_pour_agrandir' => 'Cliquez sur les vignettes carr&eacute;es pour obtenir un agrandissement.',
