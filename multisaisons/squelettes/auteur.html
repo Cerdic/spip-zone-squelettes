@@ -68,22 +68,27 @@
 [<h4 class="icone_site">Site web préféré:</h4>
 <p><a href="#URL_SITE">(#NOM_SITE)</a></p>]
 
-[<h4 class="cadenas">Sécurité, clé PGP, protection:</h4><p>(#PGP)</p>]
+
 	  
 <?php if ($auteur_session['id_auteur']==#ID_AUTEUR) { ?>
 
-<h4 class="icone_membre">#NOM, modifiez votre profil:</h4>
-<p>Cette page affiche votre profil tel qu'il apparaît auprès des autres membres de #NOM_SITE_SPIP. 
-<br/><br/>
-[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">::&nbsp;(#BIO|sinon{Renseigner ma biographie})</a><br/>]
-[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">::&nbsp;(#NOM_SITE|sinon{Ajouter mon site web favori})</a><br/>]
-[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">::&nbsp;(#PGP|sinon{Diffuser ma clé publique PGP})</a><br/>]
-</p>
+<h4 class="icone_membre"> [(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})"title="Modifier mon profil.">Modifier mon profil.</a>]]
+   [(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,visit})"title="Modifier mon profil.">Modifier mon profil.</a>]]</h4>
+<p>Cette page affiche votre profil tel qu'il apparait aux autres membres de #NOM_SITE_SPIP.
+
+  #NOM, vous pouvez [(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})"title="Modifier mon profil.">modifier
+  votre profil.</a>]]
+   [(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,visit})"title="Modifier mon profil.">Modifier
+   votre profil.</a>]]</p>
+
+
 
  <?php } ?>
   
 <hr class="spacer"/>  
     </div>
+	
+	
   
   
 <?php if ($auteur_session||#ID_AUTEUR== '1') { ?>
@@ -108,7 +113,7 @@
 <div class="grande_boite">
 <h4 class="icone_membre">Connectez-vous!</h4>
 <p>Vous ne pouvez contacter #NOM sans &ecirc;tre connect&eacute; &agrave; #NOM_SITE_SPIP.<br/>
-[<a href="(#URL_PAGE{membre}|parametre_url{'id_auteur',#ID_AUTEUR}|parametre_url{'connect',yes})"><strong>Se&nbsp;connecter pour contacter
+[<a href="(#URL_PAGE{auteur}|parametre_url{'id_auteur',#ID_AUTEUR}|parametre_url{'connect',yes})"><strong>Se&nbsp;connecter pour contacter
 #NOM.]</strong></a></p>
 <hr class="spacer"/>
 </div>
@@ -117,38 +122,13 @@
 <?php } ?>
 
 
-<div id="cel">
-<ul id="deco">
 
 
-<li>
-  <h4>Ses  articles populaires:</h4>
-<p>
-<BOUCLE_ARTICLE_AUTEUR(ARTICLES){id_auteur}{par popularite}{inverse}{0,10}>
-[::&nbsp;<a href="#URL_ARTICLE">(#TITRE)</a>&nbsp;(<?php $total_visites = "#VISITES"; 
-    echo $total_visites == 1? "1&nbsp;lecture." : "$total_visites&nbsp;lectures." ; ?>)<br/>
-]
-</BOUCLE_ARTICLE_AUTEUR>
-#NOM n'a pas encore &eacute;crit d'article.
-<//B_ARTICLE_AUTEUR>              </p>
-			</li>
-					
-					
-
-<li>
-<h4>Ses derniers messages:</h4>
-<p>
-<BOUCLE_forum(FORUMS){id_auteur}{plat}{par date}{inverse}{0,10}>
-                    [::&nbsp;<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})]" title="#TITRE">(#TITRE)</a><br/>]
-                    </BOUCLE_forum>
-					#NOM n'a pas encore &eacute;crit de message.
-					<//B_forum>
-			</p>
-</li>
-</ul>
-</div>
 
 </BOUCLE_AUTEURS>
+
+
+
 
 
 
@@ -169,7 +149,81 @@
 [(#REM)   fermeture boite menu   ]
 </div>
 [(#REM)   fermeture colone de droite   ] 
+
+
+
+<div id="cel">
+<ul id="deco">
+
+
+<li>
+  <h4>Son profil:</h4>
+<p>
+          </p>
+			</li>
+
+
+<li>
+  <h4>Ses  articles populaires:</h4>
+<p>
+<BOUCLE_ARTICLE_AUTEUR(ARTICLES){id_auteur}{par popularite}{inverse}{0,6}>
+[::&nbsp;<a href="#URL_ARTICLE">(#TITRE)</a>&nbsp;(<?php $total_visites = "#VISITES"; 
+    echo $total_visites == 1? "1&nbsp;lecture." : "$total_visites&nbsp;lectures." ; ?>)<br/>
+]
+</BOUCLE_ARTICLE_AUTEUR>
+#NOM n'a pas encore &eacute;crit d'article.
+<//B_ARTICLE_AUTEUR>              </p>
+			</li>
+					
+					
+
+<li>
+<h4>Ses derniers messages:</h4>
+<p>
+<BOUCLE_forum(FORUMS){id_auteur}{plat}{par date}{inverse}{0,6}>
+                    [::&nbsp;<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})]" title="#TITRE">(#TITRE)</a><br/>]
+                    </BOUCLE_forum>
+					#NOM n'a pas encore &eacute;crit de message.
+					<//B_forum>
+			</p>
+</li>
+</ul>
+</div>
+
+
+<div id="minipics">
+<ul>
+
+
+<BOUCLE_PORTFOLIO_AUTEUR(ARTICLES){titre_mot=portfolio}{id_auteur}>
+<BOUCLE_EST_IL_SEUL_AUTEUR(AUTEURS){id_article}{1,1}> </BOUCLE_EST_IL_SEUL_AUTEUR>
+
+<BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension IN png,jpg}{par num titre, date}>
+<li class="transparent" id="a#ID_DOCUMENT">
+<a class="thickbox" href="#URL_DOCUMENT" type="#MIME_TYPE" [title="(#TITRE|couper{40}|texte_backend)"][longdesc="(#DESCRIPTIF|couper{40}|texte_backend)"]>
+[(#FICHIER|image_masque{carre-80.png}|image_aplatir{jpg,ffffff}|inserer_attribut{alt,#TITRE})]</a>
+  <p class="centre"><BOUCLE_liens_articles(ARTICLES){id_document}>[<a href="(#URL_ARTICLE)">Voir l'article</a>]</BOUCLE_liens_articles></p>
+</li>
+</BOUCLE_documents_portfolio>				
+
+
+<//B_EST_IL_SEUL_AUTEUR>
+</BOUCLE_PORTFOLIO_AUTEUR>
+
+
+
+</ul>
+</div>[(#REM)   fermeture minipics   ] 	
+
+
 <hr class="spacer" />
+
+
+
+
+
+
+
 </div>[(#REM)   fermeture contenu   ] 
 <INCLURE{fond="pieddepage"}>
 
