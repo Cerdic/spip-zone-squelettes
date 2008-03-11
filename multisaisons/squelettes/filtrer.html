@@ -4,7 +4,7 @@
 
 <BOUCLE_principale(RUBRIQUES){titre_mot=agenda}><head>
 
-[(#REM)   les métas   ]
+[(#REM)   les m&eacute;tas   ]
 
 
 
@@ -22,11 +22,11 @@
 
 
 
-</head><body> 
+</head><body dir="#LANG_DIR"> 
 
 <div id="container">   [(#REM)   centrage page   ]
 <INCLURE{fond="entete"}{date=#ENV{date}}> 
-<div id="surcontent">  [(#REM)   ouverture entête   ]
+<div id="surcontent">  [(#REM)   ouverture ent&ecirc;te   ]
 <INCLURE{fond="menuhoriz"}{id_rubrique}>
 <div id="content">  [(#REM)   ouverture contenu   ] 
  
@@ -48,7 +48,7 @@
 
   <div class="grande_boite"> [(#REM)   ouverture grd boite texte   ] 
 <p class="logogauche"><INCLURE{fond="logo"}{id_rubrique}{taille=48}{date=#ENV{date}}><p>
-<a href="[(#URL_PAGE{sommaire})]">Accueil</a> > <BOUCLE_plan(HIERARCHIE){id_rubrique}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a>	
+<a href="[(#URL_PAGE{sommaire})]"><:accueil_site:></a> > <BOUCLE_plan(HIERARCHIE){id_rubrique}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a>	
                   </BOUCLE_plan></p>
                  
                   [<h1>(#TITRE)</h1>] 
@@ -75,11 +75,11 @@
 
                     <BOUCLE_sites2(SITES){id_rubrique}{tout_voir}>
                   </BOUCLE_sites2><a href="#URL_RUBRIQUE">#TOTAL_BOUCLE
- sites r&eacute;f&eacute;renc&eacute;s.</a><br/><br/></B_sites2>
+ <:site_reference:></a><br/><br/></B_sites2>
 <BOUCLE_art2(ARTICLES){id_rubrique}{par num titre}{par date}{inverse}{0,25}{tout_voir}>
 ::
                     <BOUCLE_nouv_art23(ARTICLES){id_article}{age<7}>
-                    <span class="gras">Nouveau:</span>&nbsp;</BOUCLE_nouv_art23><a href="#URL_ARTICLE">#TITRE</a> 
+                    <span class="gras"><:nouveau:></span>&nbsp;</BOUCLE_nouv_art23><a href="#URL_ARTICLE">#TITRE</a> 
                     <INCLURE{fond="inc_cadenas"}{id_article}> <br/>
                     </BOUCLE_art2>
 <B_sous_sous_rub>
@@ -104,7 +104,7 @@
 
 <div class="grande_boite">
 
-[(#REM)   on affiche les événements par mot s'il y a un mot clé et sinon...  ]
+[(#REM)   on affiche les &eacute;v&eacute;nements par mot s'il y a un mot cl&eacute; et sinon...  ]
 
 
 
@@ -140,7 +140,7 @@
 <span class="gauche logorond">
     <a href="[(#URL_ARTICLE|parametre_url{'date', [(#ENV{date}|affdate{'Y-m'})]})]">
      	[(#LOGO_ARTICLE||?{' ',''})<INCLURE{fond="logo"}{id_article}{taille=48}{date=#ENV{date}}>]
-		[<span class="plusbas">Sans<br/>images<br/></span><span class="transpa">(#LOGO_ARTICLE||?{'',' '})<INCLURE{fond="logo"}{id_rubrique}{taille=48}{date=#ENV{date}}></span>]
+		[<span class="plusbas"><:sans_image:></span><span class="transpa">(#LOGO_ARTICLE||?{'',' '})<INCLURE{fond="logo"}{id_rubrique}{taille=48}{date=#ENV{date}}></span>]
 			</a>
 </span>
 		</BOUCLE_logo_articles>    
@@ -171,13 +171,13 @@
  [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{jusqu'&agrave;
  [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})]  })]
 <BOUCLE_jour_passe(EVENEMENTS){id_evenement}{age_fin>0}>
-(&Eacute;v&eacute;nement pass&eacute;.)
+(<:evene_passe:>)
  </BOUCLE_jour_passe> 
   <BOUCLE_eve_art1(GIS){id_article}>
 #SET{latitude,#LAT}
 #SET{lonxitude,#LONX}
 [(#LAT||?{' ',''}) <a href="[(#URL_PAGE{localiser}|parametre_url{'id_article',#ID_ARTICLE}|parametre_url{'zoom',13}|parametre_url{'latit',#GET{latitude}}|parametre_url{'lonxit',#GET{lonxitude}})]">
- ][&nbsp;(#LIEU)&nbsp;][(#LAT||?{' ',''})(carte)</a>][ <strong><a href="(#URL_ARTICLE|parametre_url{'date', [(#ENV{date}|affdate{'Y-m'})]})">Lire&nbsp;la&nbsp;suite...</a></strong>]
+ ][&nbsp;(#LIEU)&nbsp;][(#LAT||?{' ',''})(carte)</a>][ <strong><a href="(#URL_ARTICLE|parametre_url{'date', [(#ENV{date}|affdate{'Y-m'})]})"><:lire_suite:></a></strong>]
 </BOUCLE_eve_art1>
 [&nbsp;(#LIEU)]
 <//B_eve_art1>
@@ -191,7 +191,7 @@
 
 
 
-[(#CHEMIN{ajouter.html}|?{' ',''})[<h4 class="important"><a href="(#URL_PAGE{ajouter})">Vous pouvez ajouter un événement, un texte, une image...</a></h4><br/><br/>]]
+[(#CHEMIN{ajouter.html}|?{' ',''})[<h4 class="important"><a href="(#URL_PAGE{ajouter})"><:evene_ajout:></a></h4><br/><br/>]]
 
 
 </div>
@@ -199,7 +199,7 @@
 <B_syndic>
 <div class="grande_boite">
 
-<h4 class="icone_site">Vu sur le web</h4><br/>
+<h4 class="icone_site"><:vu_web:></h4><br/>
                       <BOUCLE_syndic(SYNDICATION){id_rubrique}{par nom_site}{syndication=oui}>                      
                     
 					  <h4>[<a href="[(#URL_PAGE{#SELF}|parametre_url{'id_syndic',#ID_SYNDIC})]" title="Toutes les news de #NOM_SITE">(#NOM_SITE)</a>]</h4>
@@ -219,7 +219,7 @@
 
 
     <div class="boite"><!-- ouverture boite menu --> 
-        <h4 class="icone_menu">Navigation</h4>
+        <h4 class="icone_menu"><:navigation:></h4>
         <INCLURE{fond="inc_menu_rub"}>
     
     </div><!-- fermeture boite menu -->
@@ -237,7 +237,7 @@
 
 <B_filtre_mois>
 <div class="boite">
-<h4 class="icone_filter">Affiner l'affichage:</h4> 
+<h4 class="icone_filter"><:affichage_fin:></h4> 
 <p>
 <BOUCLE_filtre_mois(EVENEMENTS){id_rubrique}{agendafull date_debut, date_fin, mois,(#ENV{date}|annee), (#ENV{date}|mois)} {statut=publie}{par date_debut}{doublons even}>
 <BOUCLE_art_rub(ARTICLES){id_evenement}{doublons articleven}>
@@ -247,13 +247,12 @@
 </BOUCLE_mot_groupe>
 </BOUCLE_art_rub>
 </BOUCLE_filtre_mois>
-<strong><a href="[(#URL_RUBRIQUE|parametre_url{date,[(#ENV{date}|annee)]-[(#ENV{date}|mois)]})]">Afficher tous les
-    &eacute;v&eacute;nements[ en (#ENV{date}|nom_mois)]</a></strong>
+<strong><a href="[(#URL_RUBRIQUE|parametre_url{date,[(#ENV{date}|annee)]-[(#ENV{date}|mois)]})]"><:evene_tous:>[ en (#ENV{date}|nom_mois)]</a></strong>
 </p>
 </div>
 </B_filtre_mois><B_STATS>
 <div class="boite">
-  <h4 class="icone_stats">Stats</h4>
+  <h4 class="icone_stats"><:stats:></h4>
 <BOUCLE_STATS(RUBRIQUES){id_rubrique}{titre_mot==^(annuaire_home|partenaire|liens)$}{0,1}>
 <INCLURE{fond=inc_stats}>
 </BOUCLE_STATS>

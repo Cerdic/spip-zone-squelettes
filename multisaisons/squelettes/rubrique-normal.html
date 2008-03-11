@@ -4,7 +4,7 @@
 
 <BOUCLE_principale(RUBRIQUES){id_rubrique}><head>
 
-[(#REM)   les métas   ]
+[(#REM)   les m&eacute;tas   ]
 
 
 
@@ -21,14 +21,14 @@
 
 
 
-</head><body> 
+</head><body dir="#LANG_DIR"> 
 
 
 
 
 <div id="container">   [(#REM)   centrage page   ]
 <INCLURE{fond="entete"}{date=#ENV{date}}{id_rubrique}> 
-<div id="surcontent">  [(#REM)   ouverture entête   ]
+<div id="surcontent">  [(#REM)   ouverture ent&ecirc;te   ]
 <INCLURE{fond="menuhoriz"}{id_rubrique}>
 <div id="content">  [(#REM)   ouverture contenu   ] 
  
@@ -47,7 +47,7 @@
 <//B_couleur_titre>
   <div class="grande_boite"> [(#REM)   ouverture grd boite texte   ] 
 <p><span class="logogauche"><INCLURE{fond="logo"}{id_rubrique}{taille=48}{date=#ENV{date}}></span>
-[<a href="(#URL_PAGE{sommaire})">Accueil</a> > ]<BOUCLE_plan(HIERARCHIE){id_rubrique}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a>	
+[<a href="(#URL_PAGE{sommaire})"><:accueil_site:></a> > ]<BOUCLE_plan(HIERARCHIE){id_rubrique}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a>	
                   </BOUCLE_plan></p>
                  
    [<h1>(#TITRE)</h1><br/>]
@@ -74,11 +74,11 @@
 
                     <BOUCLE_sites2(SITES){id_rubrique}{tout_voir}>
                   </BOUCLE_sites2><a href="#URL_RUBRIQUE">#TOTAL_BOUCLE
- sites r&eacute;f&eacute;renc&eacute;s.</a><br/><br/></B_sites2>
+ <:site_reference:></a><br/><br/></B_sites2>
 <BOUCLE_art2(ARTICLES){id_rubrique}{par num titre}{par date}{inverse}{0,25}{tout_voir}>
 ::
                     <BOUCLE_nouv_art23(ARTICLES){id_article}{age<7}>
-                    <span class="gras">Nouveau:</span>&nbsp;</BOUCLE_nouv_art23><a href="#URL_ARTICLE">#TITRE</a> 
+                    <span class="gras"><:nouveau:></span>&nbsp;</BOUCLE_nouv_art23><a href="#URL_ARTICLE">#TITRE</a> 
                     <INCLURE{fond="inc_cadenas"}{id_article}> <br/>
                     </BOUCLE_art2>
 <B_sous_sous_rub>
@@ -128,8 +128,8 @@
     <INCLUDE{fond="inc_cadenas"}{id_article}>  
    
     <BOUCLE_forum(FORUMS){id_article}{plat}></BOUCLE_forum>
-    [(#TOTAL_BOUCLE|>={1}|?{[&nbsp;<a href="#URL_ARTICLE#forum">(#TOTAL_BOUCLE)&nbsp;messages</a>&nbsp;,],''})]<//B_forum>
-    <a href="#URL_ARTICLE">Lire la suite...</a>
+    [(#TOTAL_BOUCLE|>={1}|?{[&nbsp;<a href="#URL_ARTICLE#forum">(#TOTAL_BOUCLE)&nbsp;<:messages:></a>&nbsp;,],''})]<//B_forum>
+    <a href="#URL_ARTICLE"><:lire_suite:></a>
 </p>
 <hr class="spacer"/>
 </div>
@@ -153,32 +153,32 @@
 
 
 
-[(#REM) les sites syndiqués ou non  ]
+[(#REM) les sites syndiqu&eacute;s ou non  ]
 
 <B_syndic>
 <div class="grande_boite">
 #ANCRE_PAGINATION
-[(#REM) les sites syndiqués ]
+[(#REM) les sites syndiqu&eacute;s ]
  <BOUCLE_syndic(SYNDICATION){id_rubrique}{par hasard}{pagination}>  
   <BOUCLE_items(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{0,1}>
   <div class="interne"><span [class="(#EVAL{[(#_syndic:COMPTEUR_BOUCLE)]}|alterner{'gauche','droite'}) logorond"]>
 [(#SET{img,http://open.thumbshots.org/image.pxf?url=#URL_SITE&ext=.jpg})]  
 [(#SET{img,[(#GET{img}|copie_locale)]})]
 [(#GET{img}|largeur|<{10}|?{'',' '})<img src="#GET{img}" width="48" height="48" alt="[(#TITRE|couper{30})]" />]
-[<span class="plusbas">Pas de<br/>capture</span><span class="transpa">(#GET{img}|largeur|<{10}|?{' ',''})<INCLURE{fond="logo"}{id_rubrique}{taille=48}{date=#ENV{date}}></span>]
+[<span class="plusbas"><:capture_non:></span><span class="transpa">(#GET{img}|largeur|<{10}|?{' ',''})<INCLURE{fond="logo"}{id_rubrique}{taille=48}{date=#ENV{date}}></span>]
 </span><p>
    [<strong><a href="[(#URL_PAGE{kiosque}|parametre_url{'id_syndic',#ID_SYNDIC})]" title="Toutes les news de #NOM_SITE">(#NOM_SITE)</a></strong>]
-    [<a href="#URL_ARTICLE">(#TITRE)</a> ][(#DESCRIPTIF|couper{400})][<br/>Source: <a href="#URL_SOURCE">(#SOURCE)</a>]
+    [<a href="#URL_ARTICLE">(#TITRE)</a> ][(#DESCRIPTIF|couper{400})][<br/><:source:>: <a href="#URL_SOURCE">(#SOURCE)</a>]
 </p><hr class="spacer"/>
 </div>
 </BOUCLE_items>
 
-[(#REM) les sites non syndiqués ]
+[(#REM) les sites non syndiqu&eacute;s ]
 <div class="interne"><span [class="(#EVAL{[(#_syndic:COMPTEUR_BOUCLE)]}|alterner{'gauche','droite'}) logorond"]>
 [(#SET{img,http://open.thumbshots.org/image.pxf?url=#URL_SITE&ext=.jpg})]  
 [(#SET{img,[(#GET{img}|copie_locale)]})]
 [(#GET{img}|largeur|<{10}|?{'',' '})<img src="#GET{img}" width="48" height="48" alt="[(#TITRE|couper{30})]" />]
-[<span class="plusbas">Pas de<br/>capture<br/></span><span class="transpa">(#GET{img}|largeur|<{10}|?{' ',''})<INCLURE{fond="logo"}{id_rubrique}{taille=48}{date=#ENV{date}}></span>]
+[<span class="plusbas"><:capture_non:><br/></span><span class="transpa">(#GET{img}|largeur|<{10}|?{' ',''})<INCLURE{fond="logo"}{id_rubrique}{taille=48}{date=#ENV{date}}></span>]
 </span><p>
     [<strong><a href="[(#URL_SITE)]">(#NOM_SITE)</a></strong>]
     [(#DESCRIPTIF|couper{400})]
@@ -208,7 +208,7 @@
 [(#REM)   un formulaire proposer un site web   ]
 <B_formsite>
 <div class="grande_boite">
-<h4 class="icone_ajouter">Proposer un site</h4>
+<h4 class="icone_ajouter"><:site_propose:></h4>
 <BOUCLE_formsite(MOTS){id_rubrique}{titre=liens}>
 #FORMULAIRE_SITE
 <br/>
@@ -225,7 +225,7 @@
 
 
 <div class="boite">[(#REM)   ouverture boite menu   ] 
-    <h4 class="icone_menu">Navigation</h4>    
+    <h4 class="icone_menu"><:navigation:></h4>    
     <INCLURE{fond="inc_menu_rub"}{id_rubrique}>     
 </div>[(#REM)   fermeture boite menu   ]
 
@@ -235,7 +235,7 @@
     
 <B_archives>
     <div class="boite">
-      <h4 class="icone_article">A voir également</h4>
+      <h4 class="icone_article"><:voir_egal:></h4>
       <ul class="petite_liste">
       <BOUCLE_archives(ARTICLES){id_rubrique}{doublons}{par num titre}{par date}{inverse}{0,20}>
       <li>
@@ -249,7 +249,7 @@
 
 <B_STATS>
 <div class="boite">
-  <h4 class="icone_stats">Stats</h4>
+  <h4 class="icone_stats"><:stats:></h4>
 <BOUCLE_STATS(RUBRIQUES){id_rubrique}{titre_mot==^(annuaire_home|partenaire|liens)$}{0,1}>
 <INCLURE{fond=inc_stats}>
 </BOUCLE_STATS>

@@ -1,11 +1,11 @@
 #CACHE{864000}
 <INCLURE{fond="header"}>
-[(#REM)   ci-dessus l'include du fichier header avec un délai de 31 jours.   ]
+[(#REM)   ci-dessus l'include du fichier header avec un d&eacute;lai de 31 jours.   ]
 
 <head>
 
-[(#REM)   les métas avec dans l'ordre le titre de la page, la description pour les moteurs de recherches, les mots clés.   ]
-<title>[Profitez du contenu de (#NOM_SITE_SPIP)]</title> 
+[(#REM)   les m&eacute;tas avec dans l'ordre le titre de la page, la description pour les moteurs de recherches, les mots cl&eacute;s.   ]
+<title>[<:rss_profi:> (#NOM_SITE_SPIP)]</title> 
 <meta name="Description" content="[Profitez du contenu de (#NOM_SITE_SPIP)]"/>
 <meta name="Keywords" content="syndication,afficher contenu rss,fil rss,[Profitez du contenu de (#NOM_SITE_SPIP)]"/>
 <meta http-equiv="content-type"content="text/html; charset=#CHARSET"/>
@@ -19,11 +19,11 @@
 </head>
 
 
-<body> 
+<body dir="#LANG_DIR"> 
 
 <div id="container">   [(#REM)   cette div centre la page   ]
 <INCLURE{fond="entete"}{date=#ENV{date}}>  [(#REM)   include du fichier entete avec le logo   ] 
-<div id="surcontent">  [(#REM)   ouverture entête   ]
+<div id="surcontent">  [(#REM)   ouverture ent&ecirc;te   ]
 <INCLURE{fond="menuhoriz"}> [(#REM)   le menu horizontal avec les onglets   ] 
 <div id="content">  [(#REM)   ouverture contenu   ] 
 <div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
@@ -35,12 +35,7 @@
 <ul id="deco"> 
 <li> [(#REM)   ouverture de la premiere cellule   ]
 
-<h4>L'info du monde entier</h4>
-
-<p> Visualisez les news du monde entier: En installant un lecteur de nouvelles
- sur votre ordinateur ou dans votre site web, vous synth&eacute;tiserez l'actualit&eacute;
- publi&eacute;e
- sur les sites web que vous aurez s&eacute;lectionn&eacute;.</p>
+<:rss_monde:>
 
 		
 </li>
@@ -48,12 +43,7 @@
 
  
 <li>  [(#REM)   ouverture de la premiere cellule   ]
-<h4>Votre lecteur est install&eacute;</h4>
-
-<p>Vous poss&eacute;dez d&eacute;j&agrave; un
-  lecteur de nouvelles RSS: Internet Explorer v7, Firefox v1,
-  Thunderbird, Safari, Mozilla, ainsi que d'autres navigateurs poss&egrave;dent
-  des lecteurs de nouvelles ou de flux RSS.</p>
+<:rss_lecteur:>
 
 </li>[(#REM)   fermeture des cellules   ]
 </ul>
@@ -64,23 +54,21 @@
 
  <div class="grande_boite">[(#REM)   ouverture d une grande boite    ]
  
- <h4 class="icone_site">Profitez du contenu de #NOM_SITE_SPIP</h4>
+ <h4 class="icone_site"><:rss_profi:> #NOM_SITE_SPIP</h4>
 <p>
 
 
 
 <BOUCLE_rub_rss(RUBRIQUES){id_rubrique}{0,1}>
-Dans votre lecteur RSS, votre logiciel courrier RSS, votre agrégateur RSS,
-ajoutez l'adresse de news de la rubrique <span class="vert">[ "(#TITRE)"]&nbsp;</span>:<br/>
+<:rss_ajout_rub:><span class="vert">[ "(#TITRE)"]&nbsp;</span>:<br/>
 <span class="vert">[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]</span><br/>
-Ou s&eacute;lectionnez une autre rubrique dans cette liste&nbsp;:
+<:rss_ajout_liste:>
 
 </BOUCLE_rub_rss>
 
-Dans votre lecteur RSS,  votre logiciel courrier RSS, votre agrégateur RSS,
-ajoutez cette adresse  pour afficher les news du site entier&nbsp;:<br/>
+<:rss_ajout_site:><br/>
 <span class="vert">[(#URL_PAGE{backend})]</span><br/>
-Ou s&eacute;lectionnez une rubrique dans cette liste&nbsp;:
+<:rss_ajout_liste:>
 
 <//B_rub_rss>
 
@@ -89,7 +77,7 @@ Ou s&eacute;lectionnez une rubrique dans cette liste&nbsp;:
      <B_rubriquesracine> 
                         <select name="id_rubrique" class="list370">
                         
-                                <option selected="">--> Profiter du site entier</option>
+                                <option selected="">--> <:rss_site_entier:></option>
 						        <BOUCLE_rubriquesracine(RUBRIQUES) {titre_mot=menu_rub} {par num titre}> 
                                 <option value="#ID_RUBRIQUE">[(#TITRE)]</option> 
                                 <B_sous_categories1>
@@ -119,30 +107,24 @@ Ou s&eacute;lectionnez une rubrique dans cette liste&nbsp;:
 <hr class="spacer"/>
 
  
-  <h4 class="icone_post">Des javascript pour sites web</h4>
+  <h4 class="icone_post"><:rss_java:></h4>
   
   <BOUCLE_rub_java(RUBRIQUES){id_rubrique}{0,1}>
 
-  <p>Un site web non &eacute;quip&eacute; d'agr&eacute;gateur en ligne peut aussi
-    profiter du contenu de #NOM_SITE_SPIP. Affichez les news de la rubrique[ "(#TITRE)"].
-    Insérez
-    ce Javascript entre les balises body de votre page html: 
+  <p><:rss_blabla_java:> #NOM_SITE_SPIP. <:rss_blabla_java3:>[ "(#TITRE)"].
+    <:rss_blabla_java2:>
 <form><textarea name="textfield" class="form450"><!-- A ajouter entre les balises <body> -->
 <script type="text/javascript" src="[(#URL_PAGE{distrib}|parametre_url{id_rubrique,#ID_RUBRIQUE})]">
 </script></textarea></form>
-<p>Le contenu de la rubrique apparaitra comme dans la d&eacute;monstration ci-contre.
-  Vous pouvez en modifier le style css.</p>
+<p><:rss_css:></p>
 
  </BOUCLE_rub_java>
-   <p>Un site web non équipé d'agrégateur en ligne peut aussi profiter du contenu
-    de #NOM_SITE_SPIP. Insérez ce Javascript entre les balises body de votre
-    page html:
+   <p><:rss_ss_css:> #NOM_SITE_SPIP. <:rss_ss_css2:>
 <form><textarea name="textfield" class="form450"><!-- A ajouter entre les balises <body> -->
 <script type="text/javascript" src="[(#URL_PAGE{distrib}|parametre_url{id_rubrique,#ID_RUBRIQUE})]">
 </script></textarea></form>
 
-<p>Le contenu texte apparaitra comme dans la d&eacute;monstration ci-contre. Vous pouvez
-  en modifier le style css.</p>
+<p><:rss_bla_java:></p>
  <//B_rub_java>
   </p>
 </div>[(#REM)   fermeture grande_boite   ]
@@ -151,21 +133,14 @@ Ou s&eacute;lectionnez une rubrique dans cette liste&nbsp;:
 <div id="celbas">
 <ul id="decobas">
 <li>
-  <h4>Contenu pour webmasters</h4>
-  <p>
- Les titres et descriptifs des articles  peuvent &ecirc;tre
- affich&eacute;s sur votre site.  Nous gagnons
- quelques liens, vous gagnez du contenu dynamique agr&eacute;able aux
- internautes et aux moteurs de recherches. </p>
+<:rss_webmaster:>
 
 </li>
 
 
   <li>
-    <h4>Des fils RSS dans le site</h4>
-              <p>Surfez les rubriques du site et retrouvez les<a href="[(#URL_PAGE{backend})]"><span class="button rss">boutons</span></a>des
-                fils RSS au pied des pages. Sur le bouton, r&eacute;cup&eacute;rez l'adresse
-                du fil d'information de la rubrique, du forum ou du site entier.</p>
+    <h4><:rss_fils:></h4>
+              <p><:rss_fils2:><a href="[(#URL_PAGE{backend})]"><span class="button rss"><:rss_bou:></span></a><:rss_fils3:></p>
   </li> 
 
 </ul>
@@ -180,7 +155,7 @@ Ou s&eacute;lectionnez une rubrique dans cette liste&nbsp;:
 
 
     <div class="boite">[(#REM)   ouverture boite menu   ] 
-        <h4 class="icone_menu">Navigation</h4>
+        <h4 class="icone_menu"><:navigation:></h4>
         <INCLURE{fond="inc_menu_rub"}>
     
     </div>[(#REM)   fermeture boite menu   ]
@@ -188,7 +163,7 @@ Ou s&eacute;lectionnez une rubrique dans cette liste&nbsp;:
 
  
 <div class="boite">
-  <h4 class="icone_stats">Démonstration:</h4>
+  <h4 class="icone_stats"><:demons:>:</h4>
 
 
 <BOUCLE_rub_demo(RUBRIQUES){id_rubrique}{0,1}>
@@ -217,7 +192,7 @@ Ou s&eacute;lectionnez une rubrique dans cette liste&nbsp;:
 
 <hr class="spacer" /> [(#REM)   ajoute une barre hr invisible   ] 
 </div>[(#REM)   fermeture contenu   ] 
-<INCLURE{fond="pieddepage"}> [(#REM)   le pied de page inclu avec délai   ] 
+<INCLURE{fond="pieddepage"}> [(#REM)   le pied de page inclu avec d&eacute;lai   ] 
 
 </div> [(#REM)   fermeture surcontenu   ]<br/>
 

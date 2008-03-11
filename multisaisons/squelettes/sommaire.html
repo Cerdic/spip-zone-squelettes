@@ -1,7 +1,7 @@
 #CACHE{864000}
 <INCLURE{fond="header"}><head>
 
-	[(#REM) Les métatags ]
+	[(#REM) Les m&eacute;tatags ]
 
 
 
@@ -17,11 +17,11 @@
 	<INCLURE{fond="header-css"}{date=#ENV{date}}> 	
 
 </head>
-<body> 
+<body dir="#LANG_DIR"> 
 
 <div id="container">   [(#REM) centrage page ]
 <INCLURE{fond="entete"}{date=#ENV{date}}> 
-<div id="surcontent">   [(#REM) ouverture entête ]
+<div id="surcontent">   [(#REM) ouverture ent&ecirc;te ]
 <INCLURE{fond="menuhoriz"}{sommaire=oui}>
 
 <div id="content">  [(#REM)   ouverture contenu   ]
@@ -31,19 +31,19 @@
 <div id="cel">
 <ul id="deco">
 <li>
-[(#REM) une breve en haut à gauche avec un mot clé.]
+[(#REM) une breve en haut &agrave; gauche avec un mot cl&eacute;.]
 <BOUCLE_blogbox_haut(BREVES){titre_mot=homebox_haut}{par num titre}{par date}{inverse}{0,1}> 
 <h4>[(#TITRE)]</h4>
 <p><span class="logogauche"><a href="#URL_BREVE"><INCLURE{fond=logo}{id_breve}{taille=46}{date=#ENV{date}}></a></span>
 [(#TEXTE|PtoBR|lier_au_glossaire)]</p>
 </BOUCLE_blogbox_haut>
-<h4>Bienvenue</h4>
-<p>Bienvenue sur #NOM_SITE_SPIP.</p>
+<h4><:bienvenue:></h4>
+<p><:bienvenue_sur:>#NOM_SITE_SPIP.</p>
 <//B_blogbox_haut>
 </li>
 
 
-[(#REM)  Une breve de news sur la une en haut à droite. Se remplace illico par une brève plus récente.]
+[(#REM)  Une breve de news sur la une en haut &agrave; droite. Se remplace illico par une brÃ¨ve plus r&eacute;cente.]
 
 <li>
 <BOUCLE_blogue(BREVES){titre_mot=blogue}{doublons}{par num titre}{par date}{inverse}{0,1}>
@@ -52,12 +52,10 @@
 <p><span class="logogauche"><a href="#URL_BREVE"><INCLURE{fond=logo}{id_breve}{taille=46}{date=#ENV{date}}></a></span>
 [(#TEXTE|PtoBR|lier_au_glossaire)]</p>
 </BOUCLE_blogue>
-<h4>Plus de news</h4>
+<h4><:news_plus:></h4>
 <p>
-Vous pouvez surveiller les nouveaut&eacute;s du site par ses différents 
-fils de <a href="[(#URL_PAGE{syndication})]">syndication RSS</a>,  sa <a href="[(#URL_PAGE{inscription})]">lettre
-  d'information</a>, ou sa <a href="[(#URL_PAGE{nouveautes})]">page
-  de nouveaut&eacute;s</a>.
+<:fil_diff:> <a href="[(#URL_PAGE{syndication})]"><:rss:></a>,  sa <a href="[(#URL_PAGE{inscription})]"><:lettre_d_information:>
+</a>, <:ou_sa:> <a href="[(#URL_PAGE{nouveautes})]"><:news_page:></a>.
 </p>
 <//B_blogue>
 </li>
@@ -72,7 +70,7 @@ fils de <a href="[(#URL_PAGE{syndication})]">syndication RSS</a>,  sa <a href="[
 <span class="logogauche"><a href="#URL_ARTICLE#diapo"><INCLURE{fond=logo}{id_article}{taille=46}{date=#ENV{date}}></a></span>
 	
 [<h4><a href="#URL_ARTICLE">(#TITRE)</a></h4>]
-[<p>(#DESCRIPTIF) <a href="#URL_ARTICLE">Lire la suite...</a></p>]
+[<p>(#DESCRIPTIF) <a href="#URL_ARTICLE"><:lire_suite:></a></p>]
 
 <BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{par num titre, date}{0,1}>
 [<p><a href="(#URL_ARTICLE)" title="[(#TITRE|couper{100})]">[(#FICHIER|reduire_image{450,10000}|inserer_attribut{alt,#TITRE})]</a></p>]
@@ -90,7 +88,7 @@ fils de <a href="[(#URL_PAGE{syndication})]">syndication RSS</a>,  sa <a href="[
 
 <p> #DESCRIPTIF <INCLURE{fond="inc_cadenas"}{id_rubrique}>
              <BOUCLE_nouv_art(ARTICLES){id_rubrique}{age<14}{par num titre}{par date}{inverse}{0,5}{tout_voir}>
-             [<br/><strong>Nouveau:</strong>&nbsp;<a href="#URL_ARTICLE">(#TITRE)</a>] 
+             [<br/><strong><:nouveau:></strong>&nbsp;<a href="#URL_ARTICLE">(#TITRE)</a>] 
               <INCLURE{fond="inc_cadenas"}{id_article}>
                           </BOUCLE_nouv_art> 
  </p> <hr class="spacer" />      
@@ -106,7 +104,7 @@ fils de <a href="[(#URL_PAGE{syndication})]">syndication RSS</a>,  sa <a href="[
 [(#REM)  Les article en une  ]
 <B_une>
 <li>
-<h4>A la une</h4>
+<h4><:une:></h4>
 <p>
 <BOUCLE_une(ARTICLES){tout}{doublons}{titre_mot=une}{par date}{inverse}{0,2}{tout_voir}>
 <BOUCLE_logo_documents(DOCUMENTS){id_article}{mode=document}{par date}{inverse}{extension IN jpg,png,gif}{0,1}>
@@ -132,7 +130,7 @@ fils de <a href="[(#URL_PAGE{syndication})]">syndication RSS</a>,  sa <a href="[
 [(#REM)  Les article populaires  ]
 <B_popu>
 <li>
-<h4>Les articles en vogue</h4>
+<h4><:article_vogue:></h4>
 <p>
 <BOUCLE_popu(ARTICLES){tout}{doublons}{par popularite}{inverse}{0,2}>
 <BOUCLE_logo_documents2(DOCUMENTS){id_article}{mode=document}{par date}{inverse}{extension IN jpg,png,gif}{0,1}>
@@ -167,7 +165,7 @@ fils de <a href="[(#URL_PAGE{syndication})]">syndication RSS</a>,  sa <a href="[
 
 
     <div class="boite"> [(#REM)  ouverture boite menu  ]
-        <h4 class="icone_menu">Navigation</h4>
+        <h4 class="icone_menu"><:navigation:></h4>
         <INCLURE{fond="inc_menu_rub"}>
     
     </div>[(#REM)   fermeture boite menu  ]
@@ -178,7 +176,7 @@ fils de <a href="[(#URL_PAGE{syndication})]">syndication RSS</a>,  sa <a href="[
 
 <BOUCLE_huit_saison(MOTS){titre=saison}{0,1}>
 
-[(#REM) On donne des couleurs hexadécimales aux saisons. Vous pouvez les modifier "#eef"  devient  "eeeeff"]
+[(#REM) On donne des couleurs hexad&eacute;cimales aux saisons. Vous pouvez les modifier "#eef"  devient  "eeeeff"]
 
 [(#ENV{date}|saison|=={printemps}|?{' ',''})#SET{'colo','e3ae9b'}]
 [(#ENV{date}|saison|translitteration|=={ete}|?{' ',''})#SET{'colo','D58B9B'}]
@@ -188,7 +186,7 @@ fils de <a href="[(#URL_PAGE{syndication})]">syndication RSS</a>,  sa <a href="[
 
 <div class="boite">
 [(#REM) ouverture boite photos flickr ]
-<h4 class="icone_photo">Sélection photos</h4>
+<h4 class="icone_photo"><:photo_selection:></h4>
 <B_flickr>
 <div style="position:relative;[float(#ENV{align}|match{left|right});]" class="splickrbox [splickrbox_(#ENV{align})]">
 			<table cellpadding="0" cellspacing="0"><tr>
@@ -210,7 +208,7 @@ fils de <a href="[(#URL_PAGE{syndication})]">syndication RSS</a>,  sa <a href="[
 
 <div class="boite">
 [(#REM) ouverture boite photos flickr 2]
-<h4 class="icone_photo">Sélection photos</h4>
+<h4 class="icone_photo"><:photo_selection:></h4>
 
 <B_flickr2>
 <div style="position:relative;[float(#ENV{align}|match{left|right});]" class="splickrbox [splickrbox_(#ENV{align})]">
@@ -235,18 +233,16 @@ fils de <a href="[(#URL_PAGE{syndication})]">syndication RSS</a>,  sa <a href="[
 
 </div>
 </BOUCLE_huit_images_une>
+<BOUCLE_test_forum(ARTICLES){accepter_forum!=non}{0,1}> 
 
-
-<BOUCLE_test_forum(ARTICLES){accepter_forum!=non}{0,1}>
- [(#REM) on vérifie que l on a au moins une autorisation de forum sur un article]
+  [(#REM) on v&eacute;rifie que l on a au moins une autorisation de forum sur un article] 
 <div class="boite">
-  <h4 class="icone_membre">Derniers messages</h4>
+  <h4 class="icone_membre"><:messages_derniers:></h4>
 
 <INCLURE{fond="inc_derniers_messages"}{self=#SELF}>
 
 </div>
-</BOUCLE_test_forum>   
- 
+</BOUCLE_test_forum>
 
 </div>   [(#REM)  fermeture colone de droite  ]
 
