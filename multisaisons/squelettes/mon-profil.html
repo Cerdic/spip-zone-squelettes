@@ -143,16 +143,16 @@ href="#URL_ARTICLE">#TITRE</a><br/>
 
 <BOUCLE_AFFICHER_AVATAR1(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
 [(#SESSION{statut}|match{1comite|0minirezo}|?{  
-[::&nbsp;Mon logo d'origine:(#LOGO_AUTEUR||?{' ',''})<br/>]   
-[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1" title="Changer mon logo">(#LOGO_AUTEUR||image_reduire{46}||sinon{::&nbsp;Ajouter mon logo})</a><br/>]})]
-[::&nbsp;Mon logo saisonnier:<br/>(#LOGO_AUTEUR||?{' ',''})<INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=46}{date=#ENV{date}}>] 
+[::&nbsp;<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1" title="Changer mon logo">Mon logo d'origine:(#LOGO_AUTEUR_NORMAL||?{' ',''})</a><br/>]   
+[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1" title="Changer mon logo">(#LOGO_AUTEUR_NORMAL||image_reduire{46}||sinon{::&nbsp;Ajouter mon logo})</a><br/>]})]
+[::&nbsp;Mon logo saisonnier:<br/>(#LOGO_AUTEUR_NORMAL||?{' ',''})<INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=46}{date=#ENV{date}}>] 
 </BOUCLE_AFFICHER_AVATAR1>
 
 </BOUCLE_monprofil_saison>
 
 <BOUCLE_AFFICHER_AVATAR2(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}><br/><br/>
 [(#SESSION{statut}|match{1comite|0minirezo}|?{  
-[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#LOGO_AUTEUR||image_reduire{80}||sinon{::&nbsp;Ajouter un logo ou un avatar})</a>]})]
+[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#LOGO_AUTEUR_NORMAL||image_reduire{80}||sinon{::&nbsp;Ajouter un logo ou un avatar})</a>]})]
 </BOUCLE_AFFICHER_AVATAR2>
 
 <//B_monprofil_saison>
@@ -174,7 +174,7 @@ href="#URL_ARTICLE">#TITRE</a><br/>
 })]<hr class="spacer"/>
 
 
-<h4 class="icone_membre">Informations complémentaires optionnelles</h4>
+<h4 class="icone_membre">Compléter mon profil personnel :</h4>
 <p>Un double clic sur les trois points (...) modifie le profil.</p>
 <div class="interne">
 <INCLURE(inc/profil_adherent.php){id_auteur=#SESSION{id_auteur}}>
