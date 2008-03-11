@@ -383,9 +383,12 @@ l\'actualit&eacute; pour <a href="#icone_site">un seul site web</a>.})]
 'orga_en' => 'Le site est organis&eacute; en',
 
 //Q
-'que_faire' => '<h4>Que faire? </h4>
-              <p>Utilisez le moteur de <a href="[(#URL_PAGE{recherche})]">recherche interne</a>, retrouvez
-              un article dans le <a href="[(#URL_PAGE{plan})]">plan du site</a>, ou surfez les rubriques. </p>',
+'que_faire' => 'Que faire?',
+'que_faire1' => 'Utilisez le moteur de',
+'que_faire2' => 'recherche interne',
+'que_faire3' => 'retrouvez
+              un article dans le',
+'que_faire4' => 'ou surfez les rubriques.',
 'quitter' => 'Quitter',
 
 //P

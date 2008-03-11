@@ -403,9 +403,12 @@ the actuality for <a href="#icone_site">only one Web site</a>.})]
 'pouvoir' => 'you can',
 
 //Q
-'que_faire' => '<h4>what to make? </h4>
-              <p>Use <a href="[(#URL_PAGE{recherche})]">the internal search engine</a>, find 
-		an article in <a href="[(#URL_PAGE{plan})]">plan of the web site</a>, or sail the headings. </p>',
+'que_faire' => 'what to make?',
+'que_faire1' => 'Use',
+'que_faire2' => 'the internal search engine',
+'que_faire3' => 'find 
+		an article in',
+'que_faire4' => 'or sail the headings.',
 'quitter' => 'Leave',
 
 //R
