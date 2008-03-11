@@ -1,5 +1,6 @@
 <?php
 $GLOBALS['type_urls'] = 'propres2';
+$GLOBALS['toujours_paragrapher'] = true;
 
 // Recalculer le cache si la config du site change
 $GLOBALS['marqueur'] .= ":".md5($GLOBALS['meta']['soyezcreateurs_layout'].$GLOBALS['meta']['soyezcreateurs'].$GLOBALS['meta']['soyezcreateurs_google'].$GLOBALS['meta']['bte']); // Sur un conseil de Cedric : http://permalink.gmane.org/gmane.comp.web.spip.zone/6258
