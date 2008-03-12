@@ -301,20 +301,22 @@ Ne pas jeter sur la voie publique. </p>',
 //K
 'kiosque_web' => 'Kiosque web',
 'kiosque_de' => 'Le kiosque web de',
-'kiosque_pas_article' => '<h4>Pas d\'articles r&eacute;f&eacute;renc&eacute;s[ en (#ENV{date}|affdate_mois_annee) :]</h4>
-				<p>S&eacute;lectionnez un autre mois ou choisissez de naviguer par site web. Aucun
+'kiosque_pas_article' => 'Pas d\'articles r&eacute;f&eacute;renc&eacute;s en',
+'kiosque_pas_article1' => 'S&eacute;lectionnez un autre mois ou choisissez de naviguer par site web. Aucun
 				  article n\'a &eacute;t&eacute; r&eacute;fenc&eacute; &agrave; cette date dans la
-				  diffusion des sites partenaires de #NOM_SITE_SPIP.</p>',
-'kiosque_de' => 'Ce kiosque web pr&eacute;sente les articles diffus&eacute;s par #NOM_SITE via un fil de syndication RSS.',
-'kiosque_a' => '<h4>Kiosque &agrave; sites web</h4>
-<p>Ce kiosque pr&eacute;sente les articles diffus&eacute;s dans les sites web partenaire de #NOM_SITE_SPIP .</p>',
-'kiosque_tri' => ' <h4>Par date ou par site web?</h4>
-<p>
-[(#ID_SYNDIC|?{Vous affichez l\'actualit&eacute; d\'un site web. Vous pouvez aussi
-afficher <a href="#icone_agenda">l\'actualit&eacute;
-par date</a>.,Vous affichez l\'actualit&eacute;  par mois. Vous pouvez aussi afficher
-l\'actualit&eacute; pour <a href="#icone_site">un seul site web</a>.})]
-</p>',
+				  diffusion des sites partenaires de',
+'kiosque_de' => 'Ce kiosque web pr&eacute;sente les articles diffus&eacute;s par',
+'kiosque_de1' => 'un fil de syndication RSS.',
+'kiosque_a' => 'Kiosque &agrave; sites web',
+'kiosque_a1' => 'Ce kiosque pr&eacute;sente les articles diffus&eacute;s dans les sites web partenaire de',
+'kiosque_tri' => 'Par date ou par site web?',
+'kiosque_tri1' => 'Vous affichez l\'actualit&eacute; d\'un site web. Vous pouvez aussi
+afficher',
+'kiosque_tri2' =>'l\'actualit&eacute;
+par date',
+'kiosque_tri3' => 'Vous affichez l\'actualit&eacute;  par mois. Vous pouvez aussi afficher
+l\'actualit&eacute; pour',
+'kiosque_tri4' => 'un seul site web',
 'kiosque_inf' => 'Kiosque d\'information',
 
 //L

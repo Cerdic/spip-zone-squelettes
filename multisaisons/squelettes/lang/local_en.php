@@ -286,18 +286,19 @@ Not to throw on the public highway. </p>',
 //K
 'kiosque_web' => 'Kiosk Web',
 'kiosque_de' => 'The kiosk web of',
-'kiosque_pas_article' => '<h4>No referred articles[ en (#ENV{date}|affdate_mois_annee) :]</h4>
-				Les articles en vogue<p>Select another month or choose to sail by Web site. No article was referred 
-				on this date in the diffusion of the sites partners of #NOM_SITE_SPIP.</p>',
-'kiosque_de' => 'This kiosk Web presents the articles diffused by #NOM_SITE via a wire of syndication RSS.',
-'kiosque_a' => '<h4>Kiosk with Web sites</h4>
-<p>This kiosk presents the articles diffused in the Web sites partner of #NOM_SITE_SPIP.</p>',
-'kiosque_tri' => '<h4>By date or Web site?</h4>
-<p>
-[(#ID_SYNDIC|?{You post the actuality of a Web site. You can also post
- <a href="#icone_agenda"> Actuality by date</a>.,You post the actuality per month. You can also post 
-the actuality for <a href="#icone_site">only one Web site</a>.})]
-</p>',
+'kiosque_pas_article' => 'No referred articles in',
+'kiosque_pas_article1' => 'Select another month or choose to sail by Web site. No article was referred 
+				on this date in the diffusion of the sites partners of',
+'kiosque_de' => 'This kiosk Web presents the articles diffused by',
+'kiosque_de1' => 'via a wire of syndication RSS.',
+'kiosque_a' => 'Kiosk with Web sites',
+'kiosque_a1' => 'This kiosk presents the articles diffused in the Web sites partner of',
+'kiosque_tri' => 'By date or Web site?',
+'kiosque_tri1' => 'You post the actuality of a Web site. You can also post',
+'kiosque_tri2' => 'Actuality by date',
+'kiosque_tri3' => 'You post the actuality per month. You can also post 
+the actuality for',
+'kiosque_tri4' => 'only one Web site',
 'kiosque_inf' => 'Kiosk of information',
 
 
