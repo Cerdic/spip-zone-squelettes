@@ -7,7 +7,7 @@
 #CACHE{0}
 <INCLURE{fond="header"}><head>
 
-[(#REM)   les métas   ]<BOUCLE_author0(AUTEURS){id_auteur=#SESSION{id_auteur}}>
+[(#REM)   les m&eacute;tas   ]<BOUCLE_author0(AUTEURS){id_auteur=#SESSION{id_auteur}}>
 
 
 
@@ -29,20 +29,20 @@
 </head>
 
 
-<body> 
+<body dir="#LANG_DIR"> 
 
 
 
 <div id="container">   [(#REM)   centrage page   ]
 <INCLURE{fond="entete"}{date=#ENV{date}}>  
 <div id="surcontent">  
-<INCLURE{fond="menuhoriz"}>[(#REM)   ouverture entête   ]
+<INCLURE{fond="menuhoriz"}>[(#REM)   ouverture ent&ecirc;te   ]
 <div id="content">  [(#REM)   ouverture contenu   ] 
 <div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
 <div class="grande_boite">
-<h4>Bonjour #SESSION{nom}</h4>
-<p> Vous &ecirc;tes connect&eacute;, vous pouvez interagir avec #NOM_SITE_SPIP.<br/>
-  Que souhaitez-vous faire ? Choisissez dans ces options : </p>
+<h4><:form_forum_bonjour:> #SESSION{nom}</h4>
+<p> <:vs_connectez1:> #NOM_SITE_SPIP.<br/>
+  <:vs_connectez2:> </p>
 
 </div>
 
@@ -50,19 +50,19 @@
 <ul id="deco">
 
 <li>
-<h4>Participer, contribuer</h4>
+<h4><:part_cont:></h4>
 <p>
 
 <BOUCLE_acces_perso(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
-[<a href="ecrire/">(#SESSION{statut}|=={6forum}?{:: Visitez votre interface de r&eacute;daction})</a><br/>]
-[<a href="ecrire/?exec=articles_edit&new=oui">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Commencer un nouvel article})</a><br/>]
-[<a href="ecrire/">(#SESSION{statut}|=={0minirezo}?{:: Agir sur les articles propos&eacute;s})</a><br/>]
-[<a href="ecrire/?exec=auteurs">(#SESSION{statut}|=={0minirezo}?{:: Ejecter un membre pénible})</a><br/>]
-[<a href="ecrire/">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Acc&eacute;der &agrave; l'interface de r&eacute;daction})</a><br/>]
-[<a href="ecrire/?exec=controle_forum">(#SESSION{statut}|=={0minirezo}?{:: Effacer un message abusif})</a><br/>]
+[<a href="ecrire/">(#SESSION{statut}|=={6forum}?{:: <:redaction_visite:>})</a><br/>]
+[<a href="ecrire/?exec=articles_edit&new=oui">(#SESSION{statut}|match{1comite|0minirezo}|?{:: <:article_one:>})</a><br/>]
+[<a href="ecrire/">(#SESSION{statut}|=={0minirezo}?{:: <:article_agir:>})</a><br/>]
+[<a href="ecrire/?exec=auteurs">(#SESSION{statut}|=={0minirezo}?{:: <:membres_eject:>})</a><br/>]
+[<a href="ecrire/">(#SESSION{statut}|match{1comite|0minirezo}|?{:: <:redaction_visite:>})</a><br/>]
+[<a href="ecrire/?exec=controle_forum">(#SESSION{statut}|=={0minirezo}?{:: <:messages_abu:>})</a><br/>]
 <BOUCLE_RUB_FORUM(RUBRIQUES){titre_mot=forum}{0,1}>
-[<a href="#URL_RUBRIQUE">(#SESSION{statut}|=={0minirezo}?{:: Corriger ou poster un message dans un forum})</a><br/>]
-[<a href="#URL_RUBRIQUE">(#SESSION{statut}|match{1comite|6forum|nouveau}|?{:: Poster dans un forum})</a><br/>]
+[<a href="#URL_RUBRIQUE">(#SESSION{statut}|=={0minirezo}?{:: <:forum_corr:>})</a><br/>]
+[<a href="#URL_RUBRIQUE">(#SESSION{statut}|match{1comite|6forum|nouveau}|?{:: <:forum_post:>})</a><br/>]
 </BOUCLE_RUB_FORUM>
 </BOUCLE_acces_perso>
 
@@ -71,46 +71,46 @@
 
 <li>
 
-<h4>Mes articles</h4>
+<h4><:article_mes:></h4>
 
 <BOUCLE_TOTAL_ARTICLE(ARTICLES){statut IN prepa, prop, refuse, poubelle, publie}{id_auteur=#SESSION{id_auteur}}{0,1}>
 <p>
 
 <B_ARTICLE_PREP>
-::&nbsp;Mes derniers articles en rédaction :<br/>
+::&nbsp;<:article_last_redac:> :<br/>
 <BOUCLE_ARTICLE_PREP(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=prepa}{par date}{inverse}{0,4}>
-<img src="dist/images/puce-blanche.gif" alt="article en rédaction"><a href="ecrire/?exec=articles&id_article=#ID_ARTICLE" alt="article en cours de rédaction">#TITRE</a><br/>
+<img src="dist/images/puce-blanche.gif" alt="article en r&eacute;daction"><a href="ecrire/?exec=articles&id_article=#ID_ARTICLE" alt="article en cours de r&eacute;daction">#TITRE</a><br/>
 </BOUCLE_ARTICLE_PREP>
 </B_ARTICLE_PREP>
 
 
 <B_ARTICLE_PROP>
-::&nbsp;Mes derniers articles proposés :<br/>
+::&nbsp;<:article_last_propo:> :<br/>
 <BOUCLE_ARTICLE_PROP(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=prop}{par date}{inverse}{0,4}>
-<img src="dist/images/puce-orange.gif" alt="article proposé"><a href="ecrire/?exec=articles&id_article=#ID_ARTICLE" alt="article proposé à l'évaluation">#TITRE</a><br/>
+<img src="dist/images/puce-orange.gif" alt="article propos&eacute;"><a href="ecrire/?exec=articles&id_article=#ID_ARTICLE" alt="article propos&eacute; &#224; l'&eacute;valuation">#TITRE</a><br/>
 </BOUCLE_ARTICLE_PROP>
 </B_ARTICLE_PROP>
 
 
 <B_ARTICLE_REF>
-::&nbsp;Mes derniers articles refusés :<br/>
+::&nbsp;<:article_last_ref:> :<br/>
 <BOUCLE_ARTICLE_REF(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=refuse}{par date}{inverse}{0,4}>
-<img src="dist/images/puce-rouge.gif" alt="article en rédaction"><a href="ecrire/?exec=articles&id_article=#ID_ARTICLE" alt="article refusé">#TITRE</a><br/>
+<img src="dist/images/puce-rouge.gif" alt="article en r&eacute;daction"><a href="ecrire/?exec=articles&id_article=#ID_ARTICLE" alt="article refus&eacute;">#TITRE</a><br/>
 </BOUCLE_ARTICLE_REF>
 </B_ARTICLE_REF>
 
 
 <B_ARTICLE_POUB>
-::&nbsp;Mes derniers articles jetés :<br/>
+::&nbsp;<:article_last_poub:> :<br/>
 <BOUCLE_ARTICLE_POUB(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=poubelle}{par date}{inverse}{0,4}>
-<img src="dist/images/puce-poubelle.gif" alt="article en rédaction"><a href="ecrire/?exec=articles&id_article=#ID_ARTICLE" alt="article refusé">#TITRE</a><br/>
+<img src="dist/images/puce-poubelle.gif" alt="article en r&eacute;daction"><a href="ecrire/?exec=articles&id_article=#ID_ARTICLE" alt="article refus&eacute;">#TITRE</a><br/>
 </BOUCLE_ARTICLE_POUB>
 </B_ARTICLE_POUB>
 
 
 
 <B_ARTICLE_PUB>
-::&nbsp;Mes derniers articles publiés :<br/>
+::&nbsp;<:article_last_pub:> :<br/>
 <BOUCLE_ARTICLE_PUB(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=publie}{par date}{inverse}{0,4}>
 <img src="dist/images/puce-verte.gif" alt="article en ligne"><a
 href="#URL_ARTICLE">#TITRE</a><br/>
@@ -122,8 +122,8 @@ href="#URL_ARTICLE">#TITRE</a><br/>
 </BOUCLE_TOTAL_ARTICLE>
 <p>
 <BOUCLE_acces_perso2(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
-[<a href="ecrire/?exec=articles_edit&new=oui">(#SESSION{statut}|match{1comite|0minirezo}|?{:: Commencer un nouvel article})</a>]
-[(#SESSION{statut}|=={6forum}?{:: Vous ne pouvez pas écrire d'article. <a href="[(#URL_PAGE{auteur}|parametre_url{'id_auteur',1})]">Demandez la conversion de votre compte au webmaster et devenez r&eacute;dacteur sur #NOM_SITE_SPIP.</a>})]
+[<a href="ecrire/?exec=articles_edit&new=oui">(#SESSION{statut}|match{1comite|0minirezo}|?{:: <:article_one:>})</a>]
+[(#SESSION{statut}|=={6forum}?{:: <:article_redac_no:> <a href="[(#URL_PAGE{auteur}|parametre_url{'id_auteur',1})]"><:abonnement_redac:></a>})]
 
 
 
@@ -143,16 +143,16 @@ href="#URL_ARTICLE">#TITRE</a><br/>
 
 <BOUCLE_AFFICHER_AVATAR1(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
 [(#SESSION{statut}|match{1comite|0minirezo}|?{  
-[::&nbsp;<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1" title="Changer mon logo">Mon logo d'origine:(#LOGO_AUTEUR_NORMAL||?{' ',''})</a><br/>]   
-[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1" title="Changer mon logo">(#LOGO_AUTEUR_NORMAL||image_reduire{46}||sinon{::&nbsp;Ajouter mon logo})</a><br/>]})]
-[::&nbsp;Mon logo saisonnier:<br/>(#LOGO_AUTEUR_NORMAL||?{' ',''})<INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=46}{date=#ENV{date}}>] 
+[::&nbsp;<:logo_origine:>:(#LOGO_AUTEUR||?{' ',''})<br/>]   
+[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1" title="Changer mon logo">(#LOGO_AUTEUR||image_reduire{46}||sinon{::&nbsp;<:logo_ajout:>})</a><br/>]})]
+[::&nbsp;<:logo_saison:>:<br/>(#LOGO_AUTEUR||?{' ',''})<INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=46}{date=#ENV{date}}>] 
 </BOUCLE_AFFICHER_AVATAR1>
 
 </BOUCLE_monprofil_saison>
 
 <BOUCLE_AFFICHER_AVATAR2(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}><br/><br/>
 [(#SESSION{statut}|match{1comite|0minirezo}|?{  
-[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#LOGO_AUTEUR_NORMAL||image_reduire{80}||sinon{::&nbsp;Ajouter un logo ou un avatar})</a>]})]
+[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#LOGO_AUTEUR||image_reduire{80}||sinon{::&nbsp;<:ajout_avatar:>})</a>]})]
 </BOUCLE_AFFICHER_AVATAR2>
 
 <//B_monprofil_saison>
@@ -163,40 +163,34 @@ href="#URL_ARTICLE">#TITRE</a><br/>
 
 </p>
 <BOUCLE_infos_perso(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>   
-<h4 class="icone_membre">Mon Profil 
-[(#SESSION{statut}|=={0minirezo}|?{' '})d'administrateur]
-[(#SESSION{statut}|=={1comite}|?{' '})de r&eacute;dacteur]
-[(#SESSION{statut}|=={6forum}|?{' '}) de visiteur]</h4>
+<h4 class="icone_membre"><:profil:> 
+[(#SESSION{statut}|=={0minirezo}|?{' '}) <:administrateur:>]
+[(#SESSION{statut}|=={1comite}|?{' '}) <:redacteur:>]
+[(#SESSION{statut}|=={6forum}|?{' '}) <:visiteur:>]</h4>
 <p>[(#SESSION{statut}|match{1comite|0minirezo}|?{ 
-[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">::&nbsp;(#BIO|sinon{Renseigner ma biographie})</a><br/>]
-[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">::&nbsp;(#NOM_SITE|sinon{Ajouter mon site web favori})</a><br/>]
+[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">::&nbsp;(#BIO|sinon{<:rens_biographie:>})</a><br/>]
+[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">::&nbsp;(#NOM_SITE|sinon{<:ajout_site_favori:>})</a><br/>]
+})]<hr class="spacer"/> 
 
-})]<hr class="spacer"/>
-
-
-<h4 class="icone_membre">Compléter mon profil personnel :</h4>
-<p>Un double clic sur les trois points (...) modifie le profil.</p>
-<div class="interne">
-<INCLURE(inc/profil_adherent.php){id_auteur=#SESSION{id_auteur}}>
+ 
+<h4 class="icone_membre"><:profil_deff:>
+<div class="interne"> 
+	<INCLURE(inc/profil_adherent.php){id_auteur=#SESSION{id_auteur}}> 
 </div>
-
-[(#SESSION{statut}|=={6forum}|?{Votre statut de visiteur ne vous permet pas d'ajouter un profil. Vous pouvez n&eacute;anmoins g&eacute;rer votre abonnement ci-dessous.})]
-[<a href="#URL_RUBRIQUE">(#SESSION{statut}|=={6forum}|?{' '}):: Poster dans un forum})</a><br/>]
+[(#SESSION{statut}|=={6forum}|?{<:visiteur_statut_no:>})]
+[<a href="#URL_RUBRIQUE">(#SESSION{statut}|=={6forum}|?{' '}):: <:forum_post:>})</a><br/>]
 </p>
+
+
 
 
 </BOUCLE_infos_perso>
 
 
 
-
 </div> [(#REM) fermeture cellule ]
-
-
-
-
 <div class="grande_boite abonnement"><a name="abonnement" id="abonnement"></a>
-  <h4 class="icone_article"> Gérer mon abonnement</h4>
+  <h4 class="icone_article"> <:abonnement_gerer:></h4>
   <p>
 
 #FORMULAIRE_MODIF_ABONNEMENT
@@ -205,9 +199,6 @@ href="#URL_ARTICLE">#TITRE</a><br/>
  <hr class="spacer"/>
 
 </div> [(#REM)   fermeture grande boite ]
-
-
-
 </div> [(#REM)   fermeture colone de gauche   ]
 
 
@@ -216,7 +207,7 @@ href="#URL_ARTICLE">#TITRE</a><br/>
 
     <div class="boite">[(#REM)   ouverture boite menu   ] 
 
-        <h4 class="icone_menu">Navigation</h4>
+        <h4 class="icone_menu"><:navigation:></h4>
         <INCLURE{fond="inc_menu_rub"}> 
     
     </div>[(#REM)   fermeture boite menu   ]<div class="boite"> [(#REM)   ouverture boite les membres   ] 
