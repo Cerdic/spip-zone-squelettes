@@ -14,29 +14,28 @@
 	<h1 class="#EDIT{titre} big">#TITRE</h1>
     
 	<BOUCLE_piece_articles(ARTICLES) {id_mot} {par date}>
-    <BOUCLE_piece_doc(DOCUMENTS) {id_article} {extension IN jpg,gif,png}{largeur>300}{hauteur>200} {par date} {doublons}>
+    <BOUCLE_piece_tof(DOCUMENTS) {id_article} {extension IN jpg,gif,png}{largeur>300}{hauteur>200} {par date} {doublons}>
 	[<a href="#URL_DOCUMENT" type="#MIME_TYPE"[ title="(#TITRE|texte_backend|sinon{[(#_articles:TITRE|texte_backend)]})"]>(#FICHIER|?{' ',''})</a>]
-    </BOUCLE_piece_doc>
+    </BOUCLE_piece_tof>
     </BOUCLE_piece_articles>
 	
-	[(#REM) Test fonctionnel : [(#SET{voir_debut,[(#ENV{voir_debut}|?{'{par date}','{!par date}{0,6}'})]})]
-	#GET{voir_debut} ]
+	[(#SET{inverse,[(#ENV{voir}|?{0,1})]})]
+	[(#SET{tranche,[(#ENV{voir}|?{99999999999,6})]})]
 
 	<div id="portfolio">
-	<BOUCLE_doc_afficher(DOCUMENTS) {!doublons}{doublons doc} {!par date} {0,6}>
+	<BOUCLE_tof_afficher(DOCUMENTS) {!doublons}{doublons tof} {par date}{inverse #GET{inverse}} {0,#GET{tranche}}>
 	[<a href="#URL_DOCUMENT" type="#MIME_TYPE"[ title="(#TITRE|texte_backend|sinon{#_piece_articles:TITRE})"] class="thickbox">(#FICHIER|copie_locale|image_passe_partout{120,120}|image_recadre{120,120,center}|image_aplatir{jpg,ffffff}|inserer_attribut{class,spip_logos[ modulo(#COMPTEUR_BOUCLE|modulo{3})]})</a>]
-	</BOUCLE_doc_afficher>
+	</BOUCLE_tof_afficher>
 	<p class="gentil_message"><:pas_de_photos:></p>
-	<//B_doc_afficher>
+	<//B_tof_afficher>
 	<br class="nettoyeur" />
 	</div><!--#portfolio-->
 	
 	[<div class="#EDIT{texte} texte">(#TEXTE)</div>]
 
-	<BOUCLE_doc_debut(DOCUMENTS) {!doublons}{doublons doc} {par date} {0,1}>
-	[(#REM)<p class="plus"><a href="#URL_DOCUMENT" type="#MIME_TYPE"[ title="(#TITRE|texte_backend|sinon{#_piece_articles:TITRE})"] class="thickbox"><:voir_debut:></a></p>
-	<p class="plus"><a href="[(#URL_MOT|parametre_url{voir_debut,oui})]"><:voir_debut:></a></p>]
-	</BOUCLE_doc_debut>
+	<BOUCLE_tof_debut(DOCUMENTS) {!doublons}{doublons tof} {par date} {0,1}>
+	[(#ENV{voir}|?{'',' '})<p class="plus"><a href="[(#URL_MOT|parametre_url{voir,tout})]"><:voir_debut:></a></p>]
+	</BOUCLE_tof_debut>
 	
 	<B_articles_mot>
 	<div class="menu">
