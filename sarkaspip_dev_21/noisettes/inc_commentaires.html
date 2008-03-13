@@ -1,12 +1,17 @@
 [(#REM) <!-- affichage des X messages de forum les plus recents du site ou du secteur concerne --> ]
 
+<BOUCLE_secteur(ARTICLES){id_secteur ?}>
+	<BOUCLE_article(FORUMS){doublons}{plat}{!par date}{id_article}{0,#CONFIG{sarkaspip_noisettes/max_commentaires, 5}}>
+	</BOUCLE_article>
+</BOUCLE_secteur>
+
 <B_commentaires>
 	<div id="commentaires" class="noisette">
 		<div><a class="intitule" href="#URL_PAGE{forum-news}"><:sarkaspip:commentaires:></a></div>
 		<div class="contenu">
-<BOUCLE_commentaires(FORUMS){plat}{!par date}{0,#CONFIG{sarkaspip_noisettes/max_commentaires, 5}}>
-			[<div class="date">(#DATE|affdate_court|unique)</div>]
-			<INCLURE{fond=modeles/mod_commentaire}{id_forum}>
+<BOUCLE_commentaires(FORUMS){plat}{!doublons}{!par date}>
+		[<div class="date">(#DATE|affdate_court|unique)</div>]
+		<INCLURE{fond=modeles/mod_commentaire}{id_forum}>
 </BOUCLE_commentaires>
 		</div>
 	</div>
