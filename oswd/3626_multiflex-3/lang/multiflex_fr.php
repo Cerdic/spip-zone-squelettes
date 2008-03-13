@@ -39,6 +39,7 @@ $GLOBALS['i18n_multiflex_fr'] = array(
 'modifieur_page' => 'Site internet du modifieur',
 'propulse_par' => 'Propuls&eacute; par',
 'site_internet_spip' => 'Site internet de SPIP',
+'tous_droits_reserves' => 'Tous droits r&eacute;serv&eacute;s',
 
 // pour liens CFG
 'multiflex' => 'Multiflex',
