@@ -31,7 +31,7 @@ $GLOBALS['i18n_multiflex_fr'] = array(
 'voir_site' => 'Voir le site&nbsp;&raquo;',
 
 // pied
-'adapte_par' => 'Adapté par ',
+'adapte_par' => 'Adapt&eacute; par ',
 'designer_page' => 'Site internet du designer',
 'documentation_multiflex' => 'Documentation de Multiflex',
 'habillage_de' => 'Habillage de ',
