@@ -1,82 +1,28 @@
 
 <div class="column2-two-third-left">
 	[(#REM) Articles trouves ]
-	<B_articles>
-		#ANCRE_PAGINATION
-		<h2><:articles:></h2>
-		<ul>
-			<BOUCLE_articles(ARTICLES) {recherche} {par points} {inverse} {pagination}>
-			<li>
-			<h3><a href="#URL_ARTICLE">#TITRE</a></h3>
-			<small>[(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small>
-			</li>
-			</BOUCLE_articles>
-		</ul>
-		[<p class="pagination">(#PAGINATION)</p>]
-	</B_articles>
+	[(#INCLURE{fond=noisettes/recherche/inc/articles}{ajax}{env}{recherche})]
 </div>
 
 <div class="column2-one-third-right">
 
 	[(#REM) Rubriques trouvees ]
-	<B_rubriques>
-	#ANCRE_PAGINATION
-	<h2><:rubriques:></h2>
-	[<p class="pagination">(#PAGINATION)</p>]
-	<ul>
-		<BOUCLE_rubriques(RUBRIQUES) {recherche} {par points}{inverse} {pagination 5}>
-		<li><a href="#URL_RUBRIQUE">#TITRE</a></li>
-		</BOUCLE_rubriques>
-	</ul>
-	</B_rubriques>
+	[(#INCLURE{fond=noisettes/recherche/inc/rubriques}{ajax}{env}{recherche})]
 	
 	[(#REM) Mots-cles trouves ]
-	<B_mots>
-	#ANCRE_PAGINATION
-	<h2><:mots_clefs:></h2>
-	[<p>(#PAGINATION)</p>]
-	<ul>
-		<BOUCLE_mots(MOTS) {recherche} {par points}{inverse} {pagination 5}>
-		<li><a href="#URL_MOT">#TITRE</a></li>
-		</BOUCLE_mots>
-	</ul>
-	</B_mots>	
+	[(#INCLURE{fond=noisettes/recherche/inc/mots}{ajax}{env}{recherche})]
 	
 	[(#REM) Breves trouvees ]
-	<B_breves>
-	#ANCRE_PAGINATION
-	<h2><:breves:></h2>
-	[<p>(#PAGINATION)</p>]
-	<ul>
-		<BOUCLE_breves(BREVES) {recherche} {par points}{inverse} {pagination 5}>
-		<li>[(#DATE|affdate_court) : ]<a href="#URL_BREVE">#TITRE</a></li>
-		</BOUCLE_breves>
-	</ul>
-	</B_breves>
+	[(#INCLURE{fond=noisettes/recherche/inc/breves}{ajax}{env}{recherche})]
+
 
 	[(#REM) Messages trouves ]
-	<B_messages>
-	#ANCRE_PAGINATION
-	<h2><:messages_forum:></h2>
-	[<p>(#PAGINATION)</p>]
-	<ul>
-		<BOUCLE_messages(FORUMS) {recherche} {par points}{inverse} {pagination 5}>
-		<li>[(#DATE|affdate_court) : ]<a href="#URL_FORUM">#TITRE</a></li>
-		</BOUCLE_messages>
-	</ul>
-	</B_messages>
+	[(#INCLURE{fond=noisettes/recherche/inc/messages}{ajax}{env}{recherche})]
+
 
 	[(#REM) Sites web trouves ]
-	<B_sites>
-	#ANCRE_PAGINATION
-	<h2><:sites_web:></h2>
-	[<p>(#PAGINATION)</p>]
-	<ul>
-		<BOUCLE_sites(SITES) {recherche} {par points}{inverse} {pagination 5}>
-		<li><a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a></li>
-		</BOUCLE_sites>
-	</ul>
-	</B_sites>	
+	[(#INCLURE{fond=noisettes/recherche/inc/sites}{ajax}{env}{recherche})]
+
 </div>
 
 

@@ -24,12 +24,16 @@ $GLOBALS['i18n_multiflex_fr'] = array(
 'dans_groupe' => '//',
 'derniers_sites' => 'Derniers sites',
 'lire_suite' => 'Lire la suite&nbsp;&raquo;',
+'liens' => 'Liens',
 'mots_cles' => 'Mots cl&eacute;s',
+'proposer_site_dans_rubrique' => 'Proposer un site dans cette rubrique',
 'sur' => '//',
 'voir_site' => 'Voir le site&nbsp;&raquo;',
 
 // pied
+'adapte_par' => 'Adapté par ',
 'designer_page' => 'Site internet du designer',
+'documentation_multiflex' => 'Documentation de Multiflex',
 'habillage_de' => 'Habillage de ',
 'modifie_par' => 'Modifi&eacute; par ',
 'modifieur_page' => 'Site internet du modifieur',

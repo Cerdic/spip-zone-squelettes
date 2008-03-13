@@ -1,0 +1,65 @@
+<B_racine>
+
+<script type="text/javascript">
+/*<![CDATA[*/
+  $(document).ready(function() {
+    $('div.column1-unit> div.formsite').hide(); 
+    $('div.column1-unit> a.toggle').click(function() {
+      $(this).next('div').slideToggle('fast')
+      .siblings('div.formsite:visible').slideUp('fast');
+    });
+  });
+/*]]>*/
+</script>
+
+<div class="column1-unit">
+<BOUCLE_racine(RUBRIQUES){racine}{par num titre}>
+  <B_sites_racine>
+    <h1><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>#TITRE</a></h1>
+
+    <ul>
+    <BOUCLE_sites_racine(SITES){id_rubrique}{par nom_site}>
+    	<li>
+    	<strong>[<a href="#URL_SITE"[ title="(#DESCRIPTIF|attribut_html)"]>(#NOM_SITE|majuscules) </a>]</strong>
+      	[<br>(#DESCRIPTIF)]
+        </li>
+    </BOUCLE_sites_racine>
+    </ul>
+
+	#REM{proposer d'ajouter un site}
+    [
+		<a class="toggle"><:multiflex:proposer_site_dans_rubrique:> : #TITRE</a>
+		<div class="formsite">
+			(#FORMULAIRE_SITE)
+		</div>
+    ]
+    
+    </B_sites_racine>
+
+    <BOUCLE_rubriques(RUBRIQUES){id_parent}{par num titre}>
+        <B_sites_web>
+        <h1><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>#TITRE</a></h1>
+
+        <ul>
+        <BOUCLE_sites_web(SITES){id_rubrique}{par nom_site}>
+            <li>
+            <strong>[<a href="#URL_SITE"[ title="(#DESCRIPTIF|attribut_html)"]>(#NOM_SITE|majuscules) </a>]</strong>
+            [<br>(#DESCRIPTIF)]
+            </li>
+        </BOUCLE_sites_web>
+        </ul>
+
+		#REM{proposer d'ajouter un site}
+		[
+			<a class="toggle"><:multiflex:proposer_site_dans_rubrique:> : #TITRE</a>
+			<div class="formsite">
+				(#FORMULAIRE_SITE)
+			</div>
+		]
+        </B_sites_web>
+        <BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+        
+    </BOUCLE_rubriques>
+</BOUCLE_racine>
+</div>
+</B_racine>
