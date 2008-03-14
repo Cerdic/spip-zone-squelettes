@@ -183,25 +183,22 @@
 
 <div id="minipics"> 
 <ul> 
-
-
-<BOUCLE_PORTFOLIO_AUTEUR(ARTICLES){titre_mot=portfolio}{id_auteur}> 
-<BOUCLE_EST_IL_SEUL_AUTEUR(AUTEURS){id_article}{1,1}> </BOUCLE_EST_IL_SEUL_AUTEUR> 
-
-<BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension IN png,jpg}{par num titre, date}{0,3}> 
+	 <BOUCLE_aut(AUTEURS){id_auteur}>
+	 <BOUCLE_EST_IL_SEUL_AUTEUR(AUTEURS){id_article}{1,1}> </BOUCLE_EST_IL_SEUL_AUTEUR> 
+    <BOUCLE_art(ARTICLES){id_auteur}{titre_mot=portfolio}>
+        <BOUCLE_doc(DOCUMENTS){id_article}{mode=document}{extension IN png,jpg}{doublons docs #_aut:NOM}>
+        [(#REM) stockage des documents dans le doublon "docs nom_auteur"]
+        </BOUCLE_doc>
+    </BOUCLE_art>
+    <BOUCLE_affichage(DOCUMENTS){mode=document}{extension IN png,jpg}{par num titre, date}{!doublons docs #NOM}{0,30}>
 <li class="transparent" id="a#ID_DOCUMENT"> 
 	<a class="thickbox" href="#URL_DOCUMENT" type="#MIME_TYPE" [title="(#TITRE|couper{40}|texte_backend)"][longdesc="(#DESCRIPTIF|couper{40}|texte_backend)"]> 
 	[(#FICHIER|image_masque{carre-80.png}|image_aplatir{jpg,ffffff}|inserer_attribut{alt,#TITRE})]</a> 
 	  <p class="centre"><BOUCLE_liens_articles(ARTICLES){id_document}>[<a href="(#URL_ARTICLE)">Voir l'article</a>]</BOUCLE_liens_articles></p> 
 </li> 
-</BOUCLE_documents_portfolio>                            
-
- 
-<//B_EST_IL_SEUL_AUTEUR> 
-</BOUCLE_PORTFOLIO_AUTEUR> 
-	 
- 
-	 
+    </BOUCLE_affichage>
+	<//B_EST_IL_SEUL_AUTEUR> 
+</BOUCLE_aut>
 </ul> 
 </div>[(#REM)   fermeture minipics   ] 
 
