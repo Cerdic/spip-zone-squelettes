@@ -31,18 +31,7 @@
 		</div>[(#REM) / vcard]
 
         [(#REM) Articles de l'auteur ]
-        <B_articles>
-        <div class="colonne">
-            #ANCRE_PAGINATION
-            <h2 class="titre"><:articles_auteur:> (#GRAND_TOTAL)</h2>
-            <div class="liste-articles">
-                <BOUCLE_articles(ARTICLES) {id_auteur} {par popularite}{inverse} {pagination 10}>
-                <h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
-                </BOUCLE_articles>
-            </div>
-            [<p class="pagination">(#PAGINATION)</p>]
-        </div>
-        </B_articles>
+        <INCLURE{fond=noisettes/articles_auteur}{ajax}{env}{id_auteur} />
 
         #FORMULAIRE_ECRIRE_AUTEUR
 
@@ -58,18 +47,7 @@
 
 
         [(#REM) Autres auteurs ]
-        <B_auteurs>
-        <div class="divers">
-            #ANCRE_PAGINATION
-            <h2 class="menu-titre"><:info_auteurs:></h2>
-            <ul>
-                <BOUCLE_auteurs(AUTEURS) {par nom} {pagination 20}>
-                <li><a href="#URL_AUTEUR"[ class="(#EXPOSE)"]>[(#NOM|couper{80})]</a></li>
-                </BOUCLE_auteurs>
-            </ul>
-            [<p class="pagination">(#PAGINATION)</p>]
-        </div>
-        </B_auteurs>
+        <INCLURE{fond=noisettes/auteurs}{ajax}{env} />
 
     </div><!--#navigation-->
  

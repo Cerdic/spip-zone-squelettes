@@ -17,24 +17,7 @@ Information sur la rubrique
 			<br class="nettoyeur" />
 
 			[(#REM) Articles suivants ]
-			<B_articles>
-			<div class="colonne">
-			<h2 class='titre'><:articles_rubrique:></h2>
-			
-			<div class="liste-articles">
-			#ANCRE_PAGINATION
-			<BOUCLE_articles(ARTICLES){branche}{par date}{inverse}{pagination 5}>
-			<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
-			<small>[(#DATE|affdate)]</small>
-			[(#LOGO_ARTICLE||image_reduire{100,100})]
-			[<div class="#EDIT{intro} texte">(#INTRODUCTION)
-			<a href="#URL_ARTICLE"><:lire_la_suite:></a>
-			</div>]
-			</BOUCLE_articles>
-			[<p class="pagination">(#PAGINATION)</p>]
-			</div>
-			</div>
-			</B_articles>
+			<INCLURE{fond=noisettes/articles_rubrique}{ajax}{env}{id_rubrique} />
 	
 	
 			<div class="contre-encart">
@@ -60,18 +43,7 @@ Information sur la rubrique
 			<div class="encart">
 
 				[(#REM) Breves du secteur ]
-				<B_breves>
-				<div class="breves">
-					#ANCRE_PAGINATION
-					<h2 class="menu-titre"><:breves:></h2>
-					[<p class="pagination">(#PAGINATION)</p>]
-					<ul>
-						<BOUCLE_breves(BREVES) {id_secteur} {par date}{inverse} {pagination 5}>
-						<li>[(#DATE|affdate_court) &ndash; ]<a href="#URL_BREVE">#TITRE</a></li>
-						</BOUCLE_breves>
-					</ul>
-				</div>
-				</B_breves>
+				<INCLURE{fond=noisettes/breves}{ajax}{env}{id_secteur} />
 
 				[(#REM) Sites de la rubrique ]
 				<B_sites>
