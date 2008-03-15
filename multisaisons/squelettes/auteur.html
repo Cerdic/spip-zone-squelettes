@@ -179,8 +179,10 @@
 			</p>
 </li>
 </ul>
+
 </div>
 
+<hr class="spacer"/>
 
 
 
@@ -189,11 +191,34 @@
 
 	 <BOUCLE_aut(AUTEURS){id_auteur}>
 	 <BOUCLE_EST_IL_SEUL_AUTEUR(AUTEURS){id_article}{1,1}> </BOUCLE_EST_IL_SEUL_AUTEUR> 
-  <div id="minipics"><ul><BOUCLE_art(ARTICLES){id_auteur}{titre_mot=portfolio}>
-        <BOUCLE_doc(DOCUMENTS){id_article}{mode=document}{extension IN png,jpg}{doublons docs #_aut:NOM}>
-        [(#REM) stockage des documents dans le doublon "docs nom_auteur"]
-        </BOUCLE_doc>
-    </BOUCLE_art>
+	  	  [(#REM) stockage des documents dans le doublon "docs nom_auteur"]
+<BOUCLE_art(ARTICLES){id_article}{id_auteur}{titre_mot=portfolio}>
+<BOUCLE_doc(DOCUMENTS){id_article}{mode=document}{extension IN png,jpg}{doublons docs #_aut:NOM}>
+</BOUCLE_doc>
+</BOUCLE_art>
+	        
+			<B_combien_de_doc_affiche>
+			
+	 	[(#REM) combien de photographies en tout]
+	 <div class="discussion">
+<p>
+	 <BOUCLE_combien_doc(DOCUMENTS){id_article}{mode=document}{extension IN png,jpg}>
+	 </BOUCLE_combien_doc>
+	 [#NOM a posté #TOTAL_BOUCLE (#TOTAL_BOUCLE|>{1}|?{'photographies','photographie'})sur #NOM_SITE_SPIP. ] 
+	 </B_combien_doc>
+
+	 
+	 [(#REM) combien de photographies stockées dans le doublons]
+<BOUCLE_combien_de_doc_affiche(DOCUMENTS){mode=document}{extension IN png,jpg}{par num titre, date}{!doublons docs #NOM}{0,30}> </BOUCLE_combien_de_doc_affiche>
+	 [(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE de ses photographies sont affichées,'Sa photographie est affichée'}) dans le portfolio ci-dessous. ] 
+
+</p>
+</div></B_combien_de_doc_affiche>
+	 
+	 
+		 [(#REM) affichage des x photographies stockées dans le doublons]
+	
+  <div id="minipics"><ul>
     <BOUCLE_affichage(DOCUMENTS){mode=document}{extension IN png,jpg}{par num titre, date}{!doublons docs #NOM}{0,30}>
 <li class="transparent" id="a#ID_DOCUMENT"> 
 	<a class="thickbox" href="#URL_DOCUMENT" type="#MIME_TYPE" [title="(#TITRE|couper{40}|texte_backend)"][longdesc="(#DESCRIPTIF|couper{40}|texte_backend)"]> 
