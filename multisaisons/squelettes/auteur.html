@@ -148,7 +148,7 @@
 <p> 
 [(#REM)  Inclue logo auteur au survol avec un max de 100 pixel  ] 
 [(#SET{taillesurvol,[(#LOGO_AUTEUR_SURVOL||hauteur|min{150})]})]  
-[(#LOGO_AUTEUR_SURVOL||?{[(#LOGO_AUTEUR_SURVOL||reduire_image{#GET{taillesurvol}}|image_aplatir{gif,ffffff}|inserer_attribut{'alt',#NOM})],'Pas de photographie'})]
+[(#LOGO_AUTEUR_SURVOL||?{[(#LOGO_AUTEUR_SURVOL||reduire_image{#GET{taillesurvol}}|image_aplatir{gif,ffffff}|inserer_attribut{'alt',#NOM})],'<:pas_photographie:>'})]
 </p>
 </li> 
 
@@ -158,7 +158,7 @@
 <p>
 <BOUCLE_ARTICLE_AUTEUR(ARTICLES){id_auteur}{par popularite}{inverse}{0,6}>
 [::&nbsp;<a href="#URL_ARTICLE">(#TITRE)</a>&nbsp;(<?php $total_visites = "#VISITES"; 
-    echo $total_visites == 1? "1&nbsp;lecture." : "$total_visites&nbsp;lectures." ; ?>)<br/>
+    echo $total_visites == 1? "<:lecture:>." : "$total_visites&nbsp;<:lectures:>." ; ?>)<br/>
 ]
 </BOUCLE_ARTICLE_AUTEUR>
 #NOM <:pas_article:>
@@ -204,26 +204,26 @@
 <p>
 	 <BOUCLE_combien_doc(DOCUMENTS){id_article}{mode=document}{extension IN png,jpg}>
 	 </BOUCLE_combien_doc>
-	 [#NOM a posté #TOTAL_BOUCLE (#TOTAL_BOUCLE|>{1}|?{'photographies','photographie'})sur #NOM_SITE_SPIP. ] 
+	 [#NOM <:poste_a:> #TOTAL_BOUCLE (#TOTAL_BOUCLE|>{1}|?{'<:photographies:>','<:photographie:>'})<:sur:> #NOM_SITE_SPIP. ] 
 	 </B_combien_doc>
 
 	 
-	 [(#REM) combien de photographies stockées dans le doublons]
+	 [(#REM) combien de photographies stock&eacute;es dans le doublons]
 <BOUCLE_combien_de_doc_affiche(DOCUMENTS){mode=document}{extension IN png,jpg}{par num titre, date}{!doublons docs #NOM}{0,30}> </BOUCLE_combien_de_doc_affiche>
-	 [(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE de ses photographies sont affichées,'Sa photographie est affichée'}) dans le portfolio ci-dessous. ] 
+	 [(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE <:photo_total1:>,'<:photo_total2:>'}) <:photo_total2:>. ] 
 
 </p>
 </div></B_combien_de_doc_affiche>
 	 
 	 
-		 [(#REM) affichage des x photographies stockées dans le doublons]
+		 [(#REM) affichage des x photographies stock&eacute;es dans le doublons]
 	
   <div id="minipics"><ul>
     <BOUCLE_affichage(DOCUMENTS){mode=document}{extension IN png,jpg}{par num titre, date}{!doublons docs #NOM}{0,30}>
 <li class="transparent" id="a#ID_DOCUMENT"> 
 	<a class="thickbox" href="#URL_DOCUMENT" type="#MIME_TYPE" [title="(#TITRE|couper{40}|texte_backend)"][longdesc="(#DESCRIPTIF|couper{40}|texte_backend)"]> 
 	[(#FICHIER|image_masque{carre-80.png}|image_aplatir{jpg,ffffff}|inserer_attribut{alt,#TITRE})]</a> 
-	  <p class="centre"><BOUCLE_liens_articles(ARTICLES){id_document}>[<a href="(#URL_ARTICLE)">Voir l'article</a>]</BOUCLE_liens_articles></p> 
+	  <p class="centre"><BOUCLE_liens_articles(ARTICLES){id_document}>[<a href="(#URL_ARTICLE)"><:article_voir:></a>]</BOUCLE_liens_articles></p> 
 </li> 
 </BOUCLE_affichage></ul> 
 </div>[(#REM)   fermeture minipics ]

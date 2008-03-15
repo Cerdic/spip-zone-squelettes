@@ -315,6 +315,8 @@ the actuality for',
 'lire_suite' => 'See the continuation...',
 'localisation' => 'Localization',
 'localisation_google' => 'Download the route with the format kml for Google Earth.',
+'lecture' => 'reading',
+'lectures' => 'readings',
 
 
 //M
@@ -402,6 +404,13 @@ the actuality for',
 'plan_de' => 'Plan of:',
 'partenaires' => 'partners',
 'pouvoir' => 'you can',
+'photographie' => 'photograph',
+'photographies' => 'photographs',
+'pas_photographie' => 'No photograph',
+'poste_a' => 'posted',
+'photo_total1' => 'of its photographs are posted',
+'photo_total2' => 'Its photography is posted',
+'photo_total3' => 'in the portfolio below',
 
 //Q
 'que_faire' => 'what to make?',
@@ -518,6 +527,7 @@ by day.',
 'rss_aff' => 'Post dynamic contents RSS of',
 'source' => 'Source',
 'site_propose' => 'propose a Web site',
+'sur' => 'on',
  
  //T
 'texte_lettre_information' => 'Here the newsletter of the website',

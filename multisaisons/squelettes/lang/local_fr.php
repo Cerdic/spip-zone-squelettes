@@ -332,6 +332,8 @@ l\'actualit&eacute; pour',
 'lire_suite' => 'Lire la suite...',
 'localisation' => 'Localisation',
 'localisation_google' => 'T&eacute;l&eacute;charger l\'itin&eacute;raire au format kml pour Google Earth.',
+'lecture' => 'lecture',
+'lectures' => 'lectures',
 
 //M
 
@@ -428,6 +430,13 @@ l\'actualit&eacute; pour',
 'plan_de' => 'Plan de:',
 'partenaires' => 'partenaires',
 'pouvoir' => 'vous pouvez',
+'photographie' => 'photographie',
+'photographies' => 'photographies',
+'pas_photographie' => 'Pas de photographie',
+'poste_a' => 'a post&eacute;',
+'photo_total1' => 'de ses photographies sont affich&eacute;es',
+'photo_total2' => 'Sa photographie est affich&eacute;e',
+'photo_total3' => 'dans le portfolio ci-dessous',
 
 
 
@@ -512,7 +521,7 @@ ajoutez cette adresse  pour afficher les news du site entier :',
 'sujets' => 'Sujets',
 'sujets_aucun' => 'Pas de sujet dans ce forum pour l\'instant',
 'site' => 'Site web',
-'site_prefere' => 'Site web pr&eacute;f&eacuter&eacute;:',
+'site_prefere' => 'Site web pr&eacute;f&eacute;r&eacute;:',
 'sujet_clos_titre' => 'Sujet Clos',
 'sujet_clos_texte' => 'Ce sujet est clos, vous ne pouvez pas y poster.',
 'si_acces_continuer' => 'Si vous poss&eacute;dez un acc&egrave;s, merci de vous connecter &agrave; #NOM_SITE_SPIP pour continuer. ',
@@ -542,6 +551,7 @@ par jour.',
 'rss_aff' => 'Afficher le contenu dynamique RSS de',
 'source' => 'Source', 
 'site_propose' => 'Proposer un site',
+'sur' => 'sur',
 
  //T
 'texte_lettre_information' => 'Voici la lettre d\'information du site',
