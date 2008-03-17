@@ -138,7 +138,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
  the problem with your webmaster',
 'bloogletter_aff_incorect_envoi_mail3' => 'and to choose one
  reception with the format text.',
-'bloogletter_ch_format' => 'Your letter #NOM_SITE_SPIP is not posted correctly? Modify your
+'bloogletter_ch_format1' => 'Your letter',
+'bloogletter_ch_format2' => 'is not posted correctly? Modify your
   subscription and change format of reception. Thus your next mail
    will be readable.',
 'bloogletter_bug' => 'Why that bug?',
@@ -158,7 +159,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'confidentialite' => ' Ensured of the data confidentiality concerning you.<br/>
 This Website is protected from the robots spammor and is registered with the CNIL.</p> ',
 'connecter' => 'connect you!',
-'pas_contact_pas_connect' => 'You cannot contact #NOM without being connected to #NOM_SITE_SPIP.',
+'pas_contact_pas_connect1' => 'You cannot contact',
+'pas_contact_pas_connect2' => 'without being connected to',
 'connect_pour_contact' => 'Connect to contact',
 'rub_recherche' => 'Choose a heading or launch a research.',
 'aller_contenu' => 'Go to the contents',
@@ -174,7 +176,8 @@ are connected, you can comment',
 'form_forum_identifiant_confirm'=>'Your subscription is recorded, you will receive an email of confirmation.',
 'devenir_redac'=>'become writer for this site',
 'devenir_abonne'=>'You register on this site',
-'devenir_membre' => 'Become member of #NOM_SITE_SPIP it is: ',
+'devenir_membre1' => 'Become member of',
+'devenir_membre2' => 'it is: ',
 'abonnement_bouton'=>'Modify your subscription',
 'abonnement_titre_mail'=>'Modify your subscription',
 'abonnement_mail'=>'Modify your subscription, please go to the following address',
@@ -187,7 +190,7 @@ To modify your subscription with the newsletter of this site :
 
 Please go to the following address :
 
-    @adresse_site@/abonnement.php3?d=@cookie@
+    @adresse_site@/spip.php?page=abonnement&d=@cookie@
 
 You will be able to then confirm the modification of your subscription.',
 
@@ -201,7 +204,7 @@ You will be able to then confirm the modification of your subscription.',
 'dialoguer' => 'Dialogue',
 'derniere_discussion' => 'Last comment',
 'dans_discussion' => ' in this forum.',
-'abonnement_redac' => 'Ask for the conversion of your account the webmaster and become writer on #NOM_SITE_SPIP.',
+'abonnement_redac' => 'Ask for the conversion of your account the webmaster and become writer on',
 'docu_dans' => 'In the documents',
 'docu_total1' => 'There is on the whole',
 'docu_total2' => 'documents, this page posts',
@@ -215,7 +218,7 @@ You will be able to then confirm the modification of your subscription.',
 'erreur_menu' => 'Error in the menu, add the keyword menu_rub on sites. In the address of the sites, target your headings.',
 'entree_nouveau_passe' => 'New password',
 'entree_login_passe' => 'Enter your login of user and your password to connect you.',
-'404_sur' => 'Error 404[ on (#NOM_SITE_SPIP)]',
+'404_sur' => 'Error 404',
 'evene_carte' => 'locate the event on a printable chart',
 'evene_passe' => 'Event is out-date.',
 'evene_ajout' => 'You can add an event, a text, an image...',
@@ -269,8 +272,7 @@ or launch a research in the forums:<br/>',
 //I
 'inscription' => 'Inscription',
 'inscription_visiteurs' => 'The subscription gives access to you the parts of the site in restricted access, to intervene on the forums reserved to the recorded visitors and to receive the newsletters.' ,
-'info_profil' => 'This page posts your profile such as it appears near the other members of #NOM_SITE_SPIP.',
-
+'info_profil' => 'This page posts your profile such as it appears near the other members of',
 'inscription_redacteurs' =>'The space of drafting of this site is opened to the visitors after inscription. Once recorded, you will be able to consult the articles in the course of drafting, to propose articles and to take part in all the forums.  The inscription also makes it possible to reach the parts of the site in restricted access and to receive the newsletters.',
 'inscrit_ou_pas' => 'Already registered??',
 'imprimez_article' => 'print this article',
@@ -408,8 +410,8 @@ the actuality for',
 'photographies' => 'photographs',
 'pas_photographie' => 'No photograph',
 'poste_a' => 'posted',
-'photo_total1' => 'of its photographs are posted',
-'photo_total2' => 'Its photography is posted',
+'photo_total1' => 'photographs of',
+'photo_total2' => 'are posted',
 'photo_total3' => 'in the portfolio below',
 
 //Q
@@ -427,10 +429,11 @@ the actuality for',
 'revenir_haut' => 'Return in top of the page',
 'reponse' => 'Answer to the message',
 'reagissez' => 'React',
-'restreint_contact_admin' => 'An access restricted to some users protects the contents from this page.
-Contact an administrator of #NOM_SITE_SPIP to obtain your access.
+'restreint_contact_admin1' => 'An access restricted to some users protects the contents from this page.
+Contact an administrator of',
+'restreint_contact_admin2' => 'to obtain your access.
 Only an administrator can authorize you to reach this page.
-A management of your profile and your inscription will be then accessible for you',
+A management of your profile and your inscription will be then accessible for you.',
 'repondre' => 'Answer :',
 'redacteur' => 'writers',
 'redaction_visite' => 'Visit your interface of drafting',
@@ -502,7 +505,8 @@ The titles and descriptions of the articles can be
 'site' => 'Website',
 'sujet_clos_titre' => 'Closed subject',
 'sujet_clos_texte' => 'This subject is closed, you cannot there poster.',
-'si_acces_continuer' => 'If you have an access, thank you to connect you to #NOM_SITE_SPIP to continue.',
+'si_acces_continuer1' => 'If you have an access, thank you to connect you to',
+'si_acces_continuer2' => 'to continue',
 'site_prefere' => 'preferred site:',
 'ses_articles' => 'Its popular articles :',
 'stats' => 'Statistics',
@@ -517,7 +521,8 @@ by day.',
 'souhait_faire' => 'What do you wish to make?',
 'section_restreint' => 'This section is restricted with some members of',
 'acces_section' => 'and to ask the webmaster an access to this section?',
-'qq_section' => 'Only some members of #NOM_SITE_SPIP have access to this section.',
+'qq_section1' => 'Only some members of',
+'qq_section2' => 'have access to this section',
 'site_reference' => 'referred sites.',
 'site_dernier_ref' => 'The last referred Web sites',
 'site_dans' => 'In the Web sites',

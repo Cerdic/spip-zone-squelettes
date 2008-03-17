@@ -144,7 +144,8 @@ un webmail est souvent &agrave; l\'origine du probl&egrave;me. Merci de ',
  le probl&egrave;me &agrave; votre webmaster',
 'bloogletter_aff_incorect_envoi_mail3' => 'et de choisir une
  r&eacute;ception au format texte.',
-'bloogletter_ch_format' => 'Votre lettre #NOM_SITE_SPIP ne s\'affiche pas correctement? Modifiez votre
+'bloogletter_ch_format1' => 'Votre lettre',
+'bloogletter_ch_format2' => 'ne s\'affiche pas correctement? Modifiez votre
   abonnement et changez de format de r&eacute;ception. Ainsi votre prochain courrier
    sera  lisible.',
 'bloogletter_bug' => 'Pourquoi ça bug?',
@@ -163,7 +164,8 @@ un webmail est souvent &agrave; l\'origine du probl&egrave;me. Merci de ',
 'confidentialite' => ' Soyez assur&eacute; de la confidentialit&eacute; des donn&eacute;es vous concernant.<br/>
 Ce site est prot&eacute;g&eacute; contre les robots spammeur et est inscrit &agrave; la CNIL.</p> ',
 'connecter' => 'Connectez vous!',
-'pas_contact_pas_connect' => 'Vous ne pouvez contacter #NOM sans &ecirc;tre connect&eacute; &agrave; #NOM_SITE_SPIP.',
+'pas_contact_pas_connect1' => 'Vous ne pouvez contacter',
+'pas_contact_pas_connect2' => 'sans &ecirc;tre connect&eacute; &agrave;',
 'connect_pour_contact' => 'Se&nbsp;connecter pour contacter',
 'rub_recherche' => 'Choisissez une rubrique ou lancez une recherche.',
 'aller_contenu' => 'Aller au contenu',
@@ -181,7 +183,8 @@ Ce site est prot&eacute;g&eacute; contre les robots spammeur et est inscrit &agr
 'form_forum_identifiant_confirm'=>'Votre abonnement est enregistr&eacute;, vous allez recevoir un mail de confirmation.',
 'devenir_redac'=>'devenir r&eacute;dacteur pour ce site',
 'devenir_abonne'=>'Vous inscrire sur ce site',
-'devenir_membre' => 'Devenir membre de #NOM_SITE_SPIP c\'est: ',
+'devenir_membre1' => 'Devenir membre de',
+'devenir_membre2' => 'c\'est: ',
 'abonnement_bouton'=>'modifier votre abonnement',
 'abonnement_titre_mail'=>'Modifier votre abonnement',
 'abonnement_mail'=>'Pour modifier votre abonnement, veuillez vous rendre &agrave; l\'adresse suivante',
@@ -194,7 +197,7 @@ Pour modifier votre abonnement &agrave; la lettre d\'information de ce site :
 
 Veuillez vous rendre &agrave; l\'adresse suivante :
 
-    @adresse_site@/abonnement.php3?d=@cookie@
+    @adresse_site@/spip.php?page=abonnement&d=@cookie@
 
 Vous pourrez alors confirmer la modification de votre abonnement.',
 
@@ -208,7 +211,7 @@ Vous pourrez alors confirmer la modification de votre abonnement.',
 'dialoguer' => 'Dialoguer',
 'derniere_discussion' => 'Derni&egrave;res discussions',
 'dans_discussion' => '&nbsp;dans&nbsp;cette&nbsp;discussion.',
-'abonnement_redac' => 'Demandez la conversion de votre compte au webmaster et devenez r&eacute;dacteur sur #NOM_SITE_SPIP.',
+'abonnement_redac' => 'Demandez la conversion de votre compte au webmaster et devenez r&eacute;dacteur sur',
 'docu_dans' => 'Dans les documents',
 'docu_total1' => 'Il y a au total',
 'docu_total2' => 'documents, cette page en affiche',
@@ -224,7 +227,7 @@ Vous pourrez alors confirmer la modification de votre abonnement.',
 'erreur_menu' => 'Erreur dans le menu, ajoutez le mot cle menu_rub sur des sites. Dans l\'adresse des sites, ciblez vos rubriques.',
 'entree_nouveau_passe' => 'Nouveau mot de passe',
 'entree_login_passe' => 'Entrez votre login d\'utilisateur et votre mot de passe pour vous connecter.',
-'404_sur' => 'Erreur 404[ sur (#NOM_SITE_SPIP)]',
+'404_sur' => 'Erreur 404',
 'evene_carte' => 'Localiser l\'&eacute;v&eacute;nement sur une carte imprimable',
 'evene_passe' => '&Eacute;v&eacute;nement pass&eacute;.',
 'evene_ajout' => 'Vous pouvez ajouter un &eacute;v&eacute;nement, un texte, une image...',
@@ -281,8 +284,7 @@ fils de',
 'inscription' => 'Inscription',
 'inscription_visiteurs' => 'L\'abonnement vous permet d\'acc&eacute;der aux parties du site en acc&egrave;s restreint,
 d\'intervenir sur les forums r&eacute;serv&eacute;s aux visiteurs enregistr&eacute;s et de recevoir les lettres d\'informations.' ,
-'info_profil' => 'Cette page affiche votre profil tel qu\'il apparait aupr&eacute;s des autres membres de #NOM_SITE_SPIP.',
-
+'info_profil' => 'Cette page affiche votre profil tel qu\'il apparait aupr&eacute;s des autres membres de',
 'inscription_redacteurs' =>'L\'espace de r&eacute;daction de ce site est ouvert aux visiteurs apr&egrave;s inscription.
 Une fois enregistr&eacute;, vous pourrez consulter les articles en cours de r&eacute;daction, proposer des articles
 et participer &agrave; tous les forums.  L\'inscription permet &eacute;galement d\'acc&eacute;der aux parties du site en acc&egrave;s restreint
@@ -417,7 +419,7 @@ l\'actualit&eacute; pour',
                 L\'acc&egrave;s &agrave; la racine d\'un r&eacute;pertoire est
                 interdit par le serveur. Le serveur est peut-&ecirc;tre surcharg&eacute;. </p>',
 'retrouver_chang_passe' => 'Retrouver ou changer mon mot de passe.',
-'total_photo1' => 'Il y a au',
+'total_photo1' => 'Il y a au total',
 'total_photo2' => 'photos, cette page en affiche',
 'profil_modif' => 'Modifier mon profil',
 'profil' => 'Mon profil',
@@ -434,8 +436,8 @@ l\'actualit&eacute; pour',
 'photographies' => 'photographies',
 'pas_photographie' => 'Pas de photographie',
 'poste_a' => 'a post&eacute;',
-'photo_total1' => 'de ses photographies sont affich&eacute;es',
-'photo_total2' => 'Sa photographie est affich&eacute;e',
+'photo_total1' => 'photographies de',
+'photo_total2' => 'sont affich&eacute;es',
 'photo_total3' => 'dans le portfolio ci-dessous',
 
 
@@ -446,10 +448,11 @@ l\'actualit&eacute; pour',
 'revenir_haut' => 'Revenir en haut de la page',
 'reponse' => 'En r&eacute;ponse au message',
 'reagissez' => 'R&egrave;agissez',
-'restreint_contact_admin' => 'Un acc&egrave;s restreint &agrave; quelques utilisateurs prot&egrave;ge le contenu de cette page.
-Contactez un administrateur de #NOM_SITE_SPIP pour obtenir votre acc&egrave;s.
+'restreint_contact_admin1' => 'Un acc&egrave;s restreint &agrave; quelques utilisateurs prot&egrave;ge le contenu de cette page.
+Contactez un administrateur de',
+'restreint_contact_admin2' => 'pour obtenir votre acc&egrave;s.
 Seul un administrateur peut vous autoriser &agrave; acc&eacute;der &agrave; cette page.
-Une gestion de votre profil et de votre inscription vous sera alors accessible',
+Une gestion de votre profil et de votre inscription vous sera alors accessible.',
 'repondre' => 'R&eacute;pondre :',
 'redacteur' => 'r&eacute;dacteurs',
 'redaction_visite' => 'Visitez votre interface de r&eacute;daction',
@@ -524,7 +527,8 @@ ajoutez cette adresse  pour afficher les news du site entier :',
 'site_prefere' => 'Site web pr&eacute;f&eacute;r&eacute;:',
 'sujet_clos_titre' => 'Sujet Clos',
 'sujet_clos_texte' => 'Ce sujet est clos, vous ne pouvez pas y poster.',
-'si_acces_continuer' => 'Si vous poss&eacute;dez un acc&egrave;s, merci de vous connecter &agrave; #NOM_SITE_SPIP pour continuer. ',
+'si_acces_continuer1' => 'Si vous poss&eacute;dez un acc&egrave;s, merci de vous connecter &agrave;',
+'si_acces_continuer2' => 'pour continuer.',
 'ses_articles' => 'Ses articles populaires:',
 'stats' => 'Statistiques',
 'stats_acc' => 'accueille une moyenne de',
@@ -540,7 +544,8 @@ par jour.',
 'souhait_faire' => 'Que souhaitez-vous faire?',
 'section_restreint' => 'Cette section est restreinte &agrave; quelques membres de',
 'acces_section' => 'et demander au webmaster un acc&eacute;s &agrave; cette section?',
-'qq_section' => 'Seuls quelques membres de #NOM_SITE_SPIP ont acc&egrave;s &agrave; cette section.',
+'qq_section1' => 'Seuls quelques membres de',
+'qq_section2' => 'ont acc&egrave;s &agrave; cette section',
 'site_reference' => 'sites r&eacute;f&eacute;renc&eacute;s.',
 'site_dernier_ref' => 'les derniers sites web r&eacute;f&eacute;renc&eacute;s',
 'site_dans' => 'Dans les sites web',
