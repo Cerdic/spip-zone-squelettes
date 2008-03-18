@@ -241,17 +241,17 @@ Vous pourrez alors confirmer la modification de votre abonnement.',
 'faq' => 'FAQ',
 'forum' => 'Forum',
 'ferme' => 'Cette discussion est clotur&eacute;e',
+'forum_dep_mod' => 'Message d&eacute;plac&eacute; ou mod&eacute;r&eacute;',
 'ajout_site_favori' => 'Ajouter mon site web favori',
 'autre_forum' => 'Autres forums',
 'erreur_forum' => 'Le message a &eacute;t&eacute; d&eacute;plac&eacute; ou mod&eacute;r&eacute;.<br/>
 Utilisez le bouton RETOUR de votre navigateur<br/> 
 ou lancez une recherche dans les forums:<br/>',
-'forum_deplace' => '<h4>D&eacute;plac&eacute;? </h4>
-<p>
-		Le message peut avoir &eacute;t&eacute; d&eacute;plac&eacute; d\'un
-                forum &agrave; l\'autre. Utilisez le moteur [de <a href="(#URL_PAGE{recherche})">recherche
-                interne</a> ]ou surfez
-              les forums.</p>',
+'forum_deplace1' => 'D&eacute;plac&eacute;?',
+'forum_deplace2' => 'Le message peut avoir &eacute;t&eacute; d&eacute;plac&eacute; d\'un
+                forum &agrave; l\'autre. Utilisez le moteur de', 
+'forum_deplace3' => 'ou surfez
+              les forums.',
 'forum_modere' => '<h4>Mod&eacute;r&eacute;?</h4>
 <p>
                 Les messages futiles
@@ -274,6 +274,8 @@ fils de',
 'forum_cookies2' => 'au moins pendant la dur&eacute;e de votre consultation.  
  	  Astuce: vous pouvez demander &agrave; ce que le site se souvienne de vous pendant 
  	  plusieurs jours.',
+'forum_affine' => 'Affiner l\'affichage',
+'forum_parcourir' => 'Parcourir',
 
 //G
 'glossaire' => 'Glossaire',
@@ -562,6 +564,7 @@ par jour.',
 'texte_lettre_information' => 'Voici la lettre d\'information du site',
 'telechargement' => 't&eacute;l&eacute;chargement',
 'traduction' => 'Traduction',
+'no_traduction' => 'Pas de traduction disponible',
 
 //U
 'une' => 'A la une',

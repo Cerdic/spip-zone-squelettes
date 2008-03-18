@@ -232,16 +232,17 @@ You will be able to then confirm the modification of your subscription.',
 'faq' => 'FAQ',
 'forum' => 'Forum',
 'ferme' => 'This discussion is enclosed',
+'forum_dep_mod' => 'Moved or moderated message',
 'ajout_site_favori' => 'Add my favorite Web site',
 'autre_forum' => 'Other forums',
 'erreur_forum' => 'The message was moved or moderated.<br/>
 Use the button RETURN of your navigator <br/> 
 or launch a research in the forums:<br/>',
-'forum_deplace' => '<h4>Moved?</h4>
-              <p>The message can be moved from one forum to another. 
-		Use the engine [of <a href="(#URL_PAGE{recherche})">seek 
-		intern</a> ]or sail 
-		the forums.</p>',
+'forum_deplace1' => 'Moved?',
+'forum_deplace2' => 'The message can be moved from one forum to another. 
+		Use the engine of',
+'forum_deplace3' => 'or sail 
+		the forums.',
 'forum_modere' => '<h4>Moderated?</h4>
 <p>
                 The futile messages are moderate: 
@@ -262,6 +263,8 @@ or launch a research in the forums:<br/>',
 'forum_cookies2' => 'at least throughout your consultation.  
  	  Easy way: you can ask so that the site remember you during 
  	  several days.',
+'forum_affine' => 'refine posting',
+'forum_parcourir' => 'Traverse',
 
 //G
 'glossaire' => 'Glossary',
@@ -538,6 +541,7 @@ by day.',
 'texte_lettre_information' => 'Here the newsletter of the website',
 'telechargement' => 'download',
 'traduction' => 'Translation',
+'no_traduction' => 'No translation available',
 
 //U
 
