@@ -69,20 +69,22 @@
 [<h4 class="icone_site"><:site_prefere:></h4>
 <p><a href="#URL_SITE">(#NOM_SITE)</a></p>]
 
+
 [(#REM)  Inclue une hcard  ]
+
 <div class="vcard none"> <img src="#URL_SITE_SPIP/IMG/[(#LOGO_AUTEUR|fichier)]" alt="photo" class="photo"/>
 <a class="url fn " href="#URL_SITE">[(#NOM_SITE)]</a>
   <div class="org">Inscrit sur #NOM_SITE_SPIP - #DESCRIPTIF_SITE_SPIP</div>
   <a class="email" href="#URL_SITE_SPIP/spip.php?page=auteur&id_auteur=#ID_AUTEUR"></a>
   <div class="adr">#BIO</div> 
   </div>
-<span class="droite button hcal"><a href="#" title="Cette page possède un microformat hcal">hcal</a></span>
+<span class="droite hcal button"><a href="#" title="Cette page possède un microformat hcal">hcal</a></span>
 [(#REM)  Inclue un lien vers une vcard téléchargeable  ]
 
-[<span class="droite button vcard"><a href="(#URL_PAGE{vcard}|parametre_url{'id_auteur',#ID_AUTEUR})"  title="Télécharger sa carte de visite électronique">vcard</a></span>]
+[<span class="droite vcard button"><a href="(#URL_PAGE{vcard}|parametre_url{'id_auteur',#ID_AUTEUR})"  title="Télécharger sa carte de visite électronique">vcard</a></span>]
 
-
-
+<hr class="spacer"/>  
+	  
 <?php if ($auteur_session['id_auteur']==#ID_AUTEUR) { ?>
 
 	<h4 class="icone_membre"> [(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})"title="Modifier mon profil."><:modif_profil:>.</a>]] 
@@ -94,7 +96,7 @@
 </p> 
  <?php } ?>
   
-<hr class="spacer"/>  
+
     </div>
   
   
@@ -204,9 +206,9 @@
 
 
 
-<BOUCLE_aut(AUTEURS){id_auteur}>
+<BOUCLE_aut(AUTEURS){id_auteur}{tous}>
 <BOUCLE_art(ARTICLES){id_auteur}{titre_mot=portfolio}>
-<BOUCLE_aut_seul(AUTEURS){id_article}{1,1}>
+<BOUCLE_aut_seul(AUTEURS){id_article}{tous}{1,1}>
 	 	[(#REM) si la boucle retourne un deuxieme auteurs alors on ne prend pas en compte l'article]
 </BOUCLE_aut_seul>
 
@@ -219,15 +221,15 @@
 	
 	
 	
-	<BOUCLE_aut2(AUTEURS){id_auteur}>
+	<BOUCLE_aut2(AUTEURS){tous}{id_auteur}>
 <B_combien_de_doc_affiche>
 	 	[(#REM) combien de photographies en tout]
 	 <div class="discussion"><h4 class="icone_photo">
 
-[(#REM) combien de photographies stock&eacute;es dans le doublons]
+[(#REM) combien de photographies stockées dans le doublons]
 
 <BOUCLE_combien_de_doc_affiche(DOCUMENTS){mode=document}{extension IN png,jpg}{par num titre, date}{!doublons docs #NOM}{0,30}> </BOUCLE_combien_de_doc_affiche>
- [(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE <:photo_total1:> #NOM '<:photo_total2:>'}) <:photo_total3:> : ] 
+ [(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE <:photo_total1:>,'<:photo_total2:>'}) <:photo_total3:> : ] 
 </h4>
 </div>
 </B_combien_de_doc_affiche>
@@ -235,7 +237,7 @@
 
 
 
-		 [(#REM) affichage des x photographies stock&eacute;es dans le doublons]
+		 [(#REM) affichage des x photographies stockées dans le doublons]
 	
   <div id="minipics"><ul>
     <BOUCLE_affichage(DOCUMENTS){mode=document}{extension IN png,jpg}{par num titre, date}{!doublons docs #NOM}{0,30}>
