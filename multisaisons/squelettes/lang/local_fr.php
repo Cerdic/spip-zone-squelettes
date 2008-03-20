@@ -370,6 +370,7 @@ l\'actualit&eacute; pour',
   sont li&eacute;s aux
   articles.',
 'merci' => 'Merci',
+'modif_profil' => 'modifier votre profil',
 
 
 //n
@@ -439,9 +440,9 @@ l\'actualit&eacute; pour',
 'photographies' => 'photographies',
 'pas_photographie' => 'Pas de photographie',
 'poste_a' => 'a post&eacute;',
-'photo_total1' => 'photographies de',
-'photo_total2' => 'sont affich&eacute;es',
-'photo_total3' => 'dans le portfolio ci-dessous',
+'photo_total1' => 'de ses photographies sont affich&eacute;es',
+'photo_total2' => 'Sa photographie est affich&eacute;e',
+'photo_total3' => 'dans ce portfolio',
 
 
 
