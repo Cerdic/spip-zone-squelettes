@@ -10,9 +10,9 @@ Veillez à n'indiquer que le nom de la Page de destination pour les liens 3,4 et 
  <script type="text/javascript" src="../plugins/spaceline/js/farbtastic.js"></script>
   <script type="text/javascript" charset="utf-8">
   $(document).ready(function() {
-    $('#essai').hide();
+    $('#demo').hide();
     var f = $.farbtastic('#picker');
-    var p = $('#picker').css('opacity', 0.25);
+    
     var selected;
     $('.colorwell')
       .each(function () { f.linkTo(this); $(this).css('opacity', 0.75); })
@@ -21,7 +21,7 @@ Veillez à n'indiquer que le nom de la Page de destination pour les liens 3,4 et 
           $(selected).css('opacity', 0.75).removeClass('colorwell-selected');
         }
         f.linkTo(this);
-        p.css('opacity', 1);
+       
         $(selected = this).css('opacity', 1).addClass('colorwell-selected');
       });
   });
@@ -40,18 +40,18 @@ border-color:black;
 width:auto;
 }</style>
 <link rel="stylesheet" href="../plugins/spaceline/js/farbtastic.css" type="text/css" /></SCRIPT>-->
-
+<form method="post" name="form">[(#ENV{_cfg_}|form_hidden)]
 <fieldset>
 		<legend>Palette des couleurs</legend>
 	<div>Validez d'abord vos couleurs puis ensuite cfg.</div><br />	
 
-  <div id="picker" style="float: left; padding-right: 10px;"></div><form method="post" name= "col" action=""  ><table id="table1" >
+  <div id="picker" style="float: left; padding-right: 10px;"></div><table id="table1" >
   <tr>
     <td class="td1">
           Fond :
       
   </td>
-    <td class="td1"><input type="text" id="color1" name="color1" class="colorwell" value="[(#CONFIG{Squelettes Spaceline/hexval})]" size="6" /></td>
+    <td class="td1"><input type="text" name="coulfond" value="#ENV{coulfond, #123456}" size="6" class="colorwell"  /></td>
   </tr>
   <tr>
     <td class="td1">
@@ -59,37 +59,38 @@ width:auto;
           Contenu :
        
   </td>
-    <td class="td1"><input type="text" id="color2" name="color2" class="colorwell" value1="#ENV{color2}" value="[(#CONFIG{Squelettes Spaceline/hexvalcont})]" size="6"  /></td>
+    <td class="td1"><input type="text" name="contenu" value="#ENV{contenu, #123456}" size="6" class="colorwell"  /></td>
   </tr>
   <tr>
     <td class="td1">
           Bannière :
   </td>
-    <td class="td1"><input type="text" id="color3" name="color3" class="colorwell"  value="[(#CONFIG{Squelettes Spaceline/hexvalhead})]" size="6" /></td>
+    <td class="td1"><input type="text" name="coulban" value="#ENV{coulban, #123456}" size="6" class="colorwell"  /></td>
   </tr>
   <tr>
       <td class="td1">Blocs :</td>
-    <td class="td1"><input type="text" id="color4" name="color4" class="colorwell"  value="[(#CONFIG{Squelettes Spaceline/hexvalboite})]" size="6" /></td>
+    <td class="td1"><input type="text" name="coulbloc" value="#ENV{coulbloc, #123456}" size="6" class="colorwell"  /></td>
   </tr>
   <tr>
     <td class="td1">
          Police de caractères :
    </td>
-    <td class="td1"><input type="text" id="color5" name="color5" class="colorwell"  value="[(#CONFIG{Squelettes Spaceline/hexvalpol})]" size="6" /></td>
+    <td class="td1"><input type="text" name="coulcar" value="#ENV{coulcar, #123456}" size="6" class="colorwell"  /></td>
   </tr>
   <tr>
       <td class="td1">Police de caractères du bandeau :</td>
-    <td class="td1"><input type="text" id="color6" name="color6" class="colorwell"  value="[(#CONFIG{police_spaceline/color6})]" size="6" /></td>
+    <td class="td1"><input type="text" name="coulcarband" value="#ENV{coulcarband, #123456}" size="6" class="colorwell"  /></td>
   </tr>
 </table>
-  <input type="submit" name="submit" value="Envoyer">
-</form>
+  
+<? $coulfond=$_POST[coulfond]; echo $coulfond,"<br />"; 
+$contenu=$_POST[contenu]; echo $contenu,"<br />";
+$banniere=$_POST[banniere]; echo $banniere,"<br />";
+$colbloc=$_POST[colbloc]; echo $colbloc,"<br />";
+$color5=$_POST[color5]; echo $color5,"<br />";$color6=$_POST[color6]; echo $color6,"<br />";?>
+</fieldset>
 
-</fieldset>
-<form method="post" name="form">[(#ENV{_cfg_}|form_hidden)]
-<fieldset><legend>Ce champ devrait être en hidden</legend>
-<input type="text" name="color6" value="#ENV{color6}" size="50" class="fondl"  />
-</fieldset>
+
  
 		<input type="submit" name="_cfg_ok" value="<:OK:>" />
 		<input type="reset" value="<:Reset:>" />
