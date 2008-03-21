@@ -49,6 +49,12 @@ function generer_url_article($id_article) {
 		return "article$id_article.html";
 }
 
+// incomprehensible : sans cette fonction les liens [->site67] donnent "site67',
+// avec cette fonction, ils donnent bien l'url du site num 67
+function generer_url_site($id_syndic) {
+	return true;
+}
+
 function generer_url_rubrique($id_rubrique) {
 	$s = spip_query("SELECT id_secteur FROM spip_rubriques WHERE id_rubrique='$id_rubrique' AND id_secteur=id_rubrique");
 	$t = sql_fetch($s);
