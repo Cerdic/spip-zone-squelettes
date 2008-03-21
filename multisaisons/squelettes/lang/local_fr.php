@@ -18,7 +18,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'aller_accueil' => 'Aller &agrave; l\'accueil',
 'alerte_moderation' => 'Bonjour, Je tenais &agrave; vous signaler un comportement abusif sur le message suivant&nbsp;:',
 'autres_breves' => 'Autres br&egrave;ves',
-'pas_article' => 'n a pas encore &eacute;crit d\'article.',
+'pas_article' => 'n a pas encore crit d article.',
 'pas_accessible' => 'Le document que vous demandez n\'est pas accessible.',
 'authentification_demande' => 'Authentification requise',
 'authentification_souci' => 'Souci d\'authentification ?',
@@ -30,7 +30,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'affichage_date' => 'Affichage par date',
 'affichage_site' => 'Affichage par site web',
 'attendu' => 'attendus',
-'article_voir_ajout' => 'Voir les articles ajout&eacute;s en ',
+'article_voir_ajout' => 'Voir les articles ajoutés en ',
 'ajout_avatar' => 'Ajouter un logo ou un avatar ici.',
 'article_one' => 'Commencer un nouvel article',
 'article_agir' => 'Agir sur les articles propos&eacute;s',
@@ -159,7 +159,7 @@ un webmail est souvent &agrave; l\'origine du probl&egrave;me. Merci de ',
  
 //C
 
-'contact' => 'Contacter',
+'contact' => 'Contact',
 'contact_webmaster' => 'Contactez votre webmaster.',
 'confidentialite' => ' Soyez assur&eacute; de la confidentialit&eacute; des donn&eacute;es vous concernant.<br/>
 Ce site est prot&eacute;g&eacute; contre les robots spammeur et est inscrit &agrave; la CNIL.</p> ',
@@ -370,7 +370,6 @@ l\'actualit&eacute; pour',
   sont li&eacute;s aux
   articles.',
 'merci' => 'Merci',
-'modif_profil' => 'modifier votre profil',
 
 
 //n
@@ -405,7 +404,6 @@ l\'actualit&eacute; pour',
 'page_restreint' => 'L\'acc&egrave;s &agrave; cette page est restreint aux membres de',
 'passe_perdu' => 'Mot de passe oubli&eacute;?',
 'pas_bio' => 'n\'a pas encore &eacute;crit sa bio.',
-'pas_photographie' => 'n\'a pas encore r&eacute;lis&eacute; de photographies.',
 'par' => 'par',
 'photos' => 'photos',
 'photo_selection' => 'S&eacute;lection photos',
@@ -440,9 +438,9 @@ l\'actualit&eacute; pour',
 'photographies' => 'photographies',
 'pas_photographie' => 'Pas de photographie',
 'poste_a' => 'a post&eacute;',
-'photo_total1' => 'de ses photographies sont affich&eacute;es',
-'photo_total2' => 'Sa photographie est affich&eacute;e',
-'photo_total3' => 'dans ce portfolio',
+'photo_total1' => 'photographies de',
+'photo_total2' => 'sont affich&eacute;es',
+'photo_total3' => 'dans le portfolio ci-dessous',
 
 
 
