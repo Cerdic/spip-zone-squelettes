@@ -20,6 +20,25 @@
 <INCLURE{fond="header-css"}{date=#ENV{date}}> 	
 
 </head><body dir="#LANG_DIR"> 
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function() {
+var q = (window.location.href.match(RegExp('#forum.*$')));
+if (!q) { $("div.cache").hide();}
+else {   $(document).ready(function(){
+           $("div.cache").fadeIn(3000);
+   });}
+$("p.parag").hide();
+$("span.titre").css("cursor","pointer").click(function(){
+$('p.parag').toggle('slow');	
+});
+if (location.hash){
+	$(location.hash).show();
+}
+
+});
+//]]>/*
+</script>
 
 <div id="container">   [(#REM)   centrage page   ]
 <INCLURE{fond="entete"}{date=#ENV{date}}> 
@@ -41,8 +60,31 @@
 &gt; </p>                 
 [<h1>(#TITRE) 
       </h1><br/>] 
+
     [(#SOUSTITRE)<br/> 
     ]   
+
+
+  
+<div class="interne cache"> <h4 class="titre">Suivre les réponses de vos messages.</h4> 
+  <p>Un fil Rss vous permet de suivre les r&eacute;ponses de vos messages.
+    Aucune alerte ne vous sera envoy&eacute;e par courrier électronique. R&eacute;cup&eacute;rez <a href="[(#URL_PAGE{backend}|parametre_url{id_article,#ID_ARTICLE})]">
+l'adresse&nbsp;du&nbsp;fil&nbsp;rss</a> pour suivre les discussions de ce forum. <span class="titre droite button">Plus d'info</span><span class="droite button rss"><a href="[(#URL_PAGE{backend}|parametre_url{id_article,#ID_ARTICLE})]">
+RSS forum</a></span></p>
+  <p class="parag">Internet Explorer7, Firefox, Thunderbird, Mozilla, Op&eacute;ra,
+    Safari peuvent suivre les forums de #NOM_SITE_SPIP au format de news RSS.
+     Si le fil RSS n'est pas d&eacute;tect&eacute; automatiquement par votre navigateur, 
+    ajoutez (copiez collez) l'adresse suivante &agrave; votre lecteur de news
+    RSS: [(#URL_PAGE{backend}|parametre_url{id_article,#ID_ARTICLE})]. Le titre,
+    l'introduction, l'auteur et l'URL des derniers messages publi&eacute;s
+    dans le forum seront ainsi affich&eacute;s dans votre navigateur, votre agr&eacute;gateur
+    ou votre lecteur de news.</p>
+
+
+<hr class="spacer"/>
+</div>
+
+
   
    [#DEBUT_SURLIGNE(#TEXTE|image_reduire{450,0}|lier_au_glossaire|paragrapher)#FIN_SURLIGNE][<br/>
     (#PS|paragrapher)]
