@@ -311,6 +311,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // Titre des pages
 		'cfg_titre_accueil' => 'Sarka-SPIP - Accueil',
 		'cfg_titre_layout' => 'Sarka-SPIP - Choix du layout',
+		'cfg_titre_bandeau_pied' => 'Sarka-SPIP - Bandeau et Pied',
 		'cfg_titre_noisettes' => 'Sarka-SPIP - Choix et agencement des noisettes',
 		'cfg_titre_agenda' => 'Sarka-SPIP - Configuration de l\'agenda',
 		'cfg_titre_sommaire' => 'Sarka-SPIP - Configuration de la page sommaire',
@@ -319,6 +320,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // Titre des liens des pages
 		'sarkaspip_accueil' => 'Accueil',
 		'sarkaspip_layout' => 'Layout',
+		'sarkaspip_bandeau_pied' => 'Bandeau et Pied',
 		'sarkaspip_noisettes' => 'Noisettes',
 		'sarkaspip_agenda' => 'Agenda',
 		'sarkaspip_sommaire' => 'Sommaire',
@@ -328,6 +330,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_descr_accueil' => 'Vous &ecirc;tes sur la page d\'accueil de la configuration du squelette Sarka-SPIP.',
 		'cfg_descr_layout' => 'Le squelette Sarka-SPIP est bas&eacute; sur les layouts Gala #13 &agrave; #18 d\'Alessandro Fulciniti (<a href="http://blog.html.it/layoutgala/">Layout Gala</a>) qui permettent de jouer sur la position des colonnes navigation, centre et extra. 
 		Cette page vous permet de choisir le layout qui vous convient.',
+		'cfg_descr_bandeau_pied' => 'Le bandeau de chaque page est constitu&eacute; de plusieurs blocs configurables. Cette page de configuration vous permet de choisir les caract&eacute;ristiques de votre bandeau et du pied de vos pages.',
 		'cfg_descr_noisettes' => 'Les noisettes sont des blocs d\'informations qui composent les colonnes navigation et extra. Cette page vous permet de choisir, suivant la noisette, son affichage,
 		son mod&egrave;le voire sa position.',
 		'cfg_descr_agenda' => 'L\'agenda inclus dans Sarka-SPIP permet d\'afficher un listing annuel ainsi qu\'un mini calendrier mensuel. Les caract&eacute;ristiques de ces deux affichages sont configurables dans cette page.',
@@ -337,6 +340,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // Titre des boites
 		'cfg_boite_accueil' => 'Accueil',
 		'cfg_boite_layout' => 'Layouts',
+		'cfg_boite_bandeau_pied' => 'Bandeau et Pied',
 		'cfg_boite_noisettes' => 'Noisettes',
 		'cfg_boite_agenda' => 'Agenda',
 		'cfg_boite_sommaire' => 'Sommaire',
@@ -344,6 +348,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // Legendes des blocs contenus dans chaque boite
 		'cfg_lgd_layout' => 'Layout',
+		'cfg_lgd_bandeau' => 'Bandeau',
+		'cfg_lgd_pied' => 'Pied de page',
 		'cfg_lgd_inc_rubriques' => 'Menu des rubriques',
 		'cfg_lgd_inc_breves' => 'Liste des br&egrave;ves',
 		'cfg_lgd_inc_commentaires' => 'Liste des commentaires',
@@ -364,6 +370,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
+		'cfg_inf_bandeau_haut' => 'D&eacute;sirez vous afficher la partie du bandeau contenant le logo, le nom et le slogan du site, ainsi que la bande de navigation horizontale ?',
+		'cfg_inf_bandeau_bas' => 'D&eacute;sirez vous afficher la partie du bandeau contenant la banni&egrave;re ?',
+		'cfg_inf_bandeau_chemin' => 'D&eacute;sirez vous afficher la partie du bandeau contenant la bande indiquant le chemin des articles et rubriques ?',
 		'cfg_inf_inc_rubriques' => 'Choisissez le mod&egrave;le de menu des rubriques qui vous convient parmi ceux propos&eacute;s ci-dessous.',
 		'cfg_inf_inc_breves' => 'Choisissez le mod&egrave;le de liste des br&egrave;ves qui vous convient parmi ceux propos&eacute;s ci-dessous.',
 		'cfg_inf_inc_commentaires' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les derniers commentaires des forums.',
@@ -398,6 +407,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_layout_16' => 'Layout #16 (centre, extra, navigation)',
 		'cfg_lbl_layout_17' => 'Layout #17 (extra, navigation, centre)',
 		'cfg_lbl_layout_18' => 'Layout #18 (navigation, extra, centre)',
+		'cfg_lbl_slogan' => 'Slogan du site : ',
 		'cfg_lbl_inc_rubriques_1' => 'Menu des rubriques d&eacute;roulant',
 		'cfg_lbl_inc_rubriques_2' => 'Menu des rubriques d&eacute;pli&eacute;',
 		'cfg_lbl_inc_rubriques_3' => 'Menu des rubriques accord&eacute;on &agrave; ouverture automatique',
