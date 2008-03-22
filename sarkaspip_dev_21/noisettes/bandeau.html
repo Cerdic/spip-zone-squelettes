@@ -1,14 +1,9 @@
 [(#REM) <!-- Bandeau Haut --> ]
 [(#CONFIG{sarkaspip_noisettes/bandeau_haut, 1}|=={1}|?{' '})
-<div class="header_top">
-		<a class="sitelogo" href="#URL_SITE_SPIP" title="<:sarkaspip:accueil_site:>">[(#LOGO_SITE_SPIP||image_reduire{80})]</a>
-        <div class="sitename">
-           <h1><a href="#URL_SITE_SPIP" title="<:sarkaspip:accueil_site:>">[(#NOM_SITE_SPIP)]</a></h1>
-           <h2>[(#CONFIG{sarkaspip_noisettes/slogan, Slogan par default})]</h2>
-        </div>
-        
+<div class="bandeau_haut">	
+      <div class="navigation">  
     	<!-- Navigation Level 0 -->
-        <div class="nav0">
+        <div class="nav_langue">
           <ul>
             <li><a href="#" title="Pagina home in Italiano">Italien</a></li>
             <li><a href="#" title="Homepage auf Deutsch">Allemand</a></li>
@@ -17,32 +12,49 @@
         </div>
         
         <!-- Navigation Level 1 -->
-        <div class="navh">
+        <div class="nav_raccourci">
           <ul>
-            <li><a href="#" title="Go to Start page">Accueil</a></li>
-            <li><a href="#" title="Get to know who we are">Plan</a></li>
-            <li><a href="#" title="Get in touch with us">Contact</a></li>																		
-            <li><a href="#" title="Get an overview of website">Connexion</a></li>
+            <li><a href="#URL_PAGE{plan,tri=par_rubrique}" title="<:sarkaspip:plan_site:>"><:sarkaspip:plan_site:></a></li>
+            <li><a href="#URL_PAGE{contact}" title="<:sarkaspip:contact:>"><:sarkaspip:contact:></a></li>																		
+            <li>
+				[(#SESSION{id_auteur}|?{' '})
+				[(#REM) <!-- Auteur connecte -->]
+					<a href="[(#URL_LOGOUT{[(#URL_PAGE{sommaire})]})]"><:sarkaspip:logout_membre:></a>
+				]
+				[(#SESSION{id_auteur}|?{'',' '})
+				[(#REM) <!-- Auteur non connecte -->]
+					<a href="[(#URL_PAGE{login-public})]"><:sarkaspip:login_membre:></a>	
+				]			
+				
+			</li>
+			<li><a href="./ecrire/"><:sarkaspip:espace_prive:></a></li>
           </ul>
-        </div>              
-        
+        </div> 
+	</div>
+	
+	
+	<div>	             
+        <a class="site_logo" href="#URL_SITE_SPIP" title="<:sarkaspip:accueil_site:>">[(#LOGO_SITE_SPIP||image_reduire{80})]</a>
+        <div class="site_nom">
+           <h1><a href="#URL_SITE_SPIP" title="<:sarkaspip:accueil_site:>">[(#NOM_SITE_SPIP)]</a></h1>
+           <h2>[(#CONFIG{sarkaspip_noisettes/slogan, Slogan par default Slogan par default Slogan par default Slogan par default Slogan par default})]</h2>
+        </div>
+    </div>   
 	<div class="clearer">&nbsp;</div>
 </div>
 ]
 
-[(#REM) <!-- Bandeau Milieu --> ]
-[(#CONFIG{sarkaspip_noisettes/bandeau_milieu, 1}|=={1}|?{' '})
-<div class="header_middle">
+[(#REM) <!-- Bandeau bas --> ]
+[(#CONFIG{sarkaspip_noisettes/bandeau_bas, 1}|=={1}|?{' '})
+<div class="bandeau_bas">
 	<a href="#URL_SITE_SPIP" title="<:sarkaspip:accueil_site:>">
 		<img src="#CHEMIN{images/banniere.jpg}" alt='La banniere du site' title='<:sarkaspip:accueil_site:>' />
 	</a>
 </div>
 ]
 
-[(#REM) <!-- Bandeau bas --> ]
-[(#CONFIG{sarkaspip_noisettes/bandeau_bas, 1}|=={1}|?{' '})
-<div class="header_bottom">
+[(#REM) <!-- Bandeau chemin --> ]
+[(#CONFIG{sarkaspip_noisettes/bandeau_chemin, 1}|=={1}|?{' '})
 	[(#REM) <!-- =========================== ZONE CHEMIN DE NAVIGATION ============================= --> ]
 	<INCLURE{fond=noisettes/chemin}{id_rubrique}>
-</div>
 ]
