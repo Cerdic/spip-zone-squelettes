@@ -86,7 +86,7 @@ text-decoration : none;
 color : #ff0000;
 }
 #content {
-background: [(#CONFIG{couleur_general_spaceline/contenu})];
+[(#CONFIG{site_spaceline/img_fond_cont}|=={N}|?{'',' '})background: [(#CONFIG{couleur_general_spaceline/contenu})];]
 
 width : [(#CONFIG{site_spaceline/large_site}|moins{20})]px;
 height: 100%;
@@ -100,14 +100,14 @@ width : [(#CONFIG{site_spaceline/large_site}|moins{256})]px;
 color:[(#CONFIG{couleur_general_spaceline/coulcar})]; 
 width : [(#CONFIG{site_spaceline/large_site}|moins{256})]px;
 }
-#left H1 {
-color : #ffffff;
+#left h1 {
+color : [(#CONFIG{couleur_general_spaceline/coulcar})];
 margin : 0;
 padding : 0;
 font-size : 24px;
 }
-#left H2 {
-color : #ffffff;
+#left h2 {
+color : [(#CONFIG{couleur_general_spaceline/coulcar})];
 margin : 0;
 padding : 0;
 font-size : 18px;
@@ -351,7 +351,7 @@ ul.choix_mots label { display: inline; }
 	margin-top: 2.5em;
 	padding-top: 2px;
 	border-top: 1px solid #CCC;
-	font-size: 8px;
+	font-size: 12px;
 	font-weight: bold; }
 
 /* * Habillage des forums */
@@ -359,7 +359,7 @@ ul.forum { display: block; /*clear: both;*/ margin: 0; padding: 0; }
 ul.forum, ul.forum ul { list-style: none;  }
 .forum-fil { margin-top: 1.5em; }
 .forum-fil ul { display: block; margin: 0; padding: 0; margin-left: 1em; }
-.forum-chapo .forum-titre, .forum-chapo .forum-titre a { display: block; margin: 0; padding: 0; font-weight: bold; text-decoration: none; color: #333; }
+.forum-chapo .forum-titre, .forum-chapo .forum-titre a { display: block; margin: 0; padding: 0; font-weight: bold; text-decoration: none; color: [(#CONFIG{couleur_general_spaceline/coulcar})]; }
 .forum-chapo small {}
 .forum-texte { margin: 0; padding: 0.5em 1em 0 1em; color: #fff; font-size: 0.82em; }
 .forum-texte .forum-lien {}
@@ -384,30 +384,31 @@ ul ul ul ul ul .forum-chapo { background: [(#CONFIG{couleur_general_spaceline/bt
 /*  Habillage des petitions
 /*  ------------------------------------------ */
 
-#signatures { clear: both; font-size: 0.77em; }
+#signatures {  font-size: 0.77em; }
 
 #signatures h2 {
 	padding: 0.5em;
 	text-align: center;
 	font-size: 1.2em;
+	font-color: [(#CONFIG{couleur_general_spaceline/coulcar})];
 	font-weight: bold; }
 
 #signatures table { width: 100%; margin: 1em 0; }
 #signatures thead { display: none; } /* On n'affiche pas les titres du tableau */
 
 #signatures td.signature-date {
-	background: #E4F0F0;
+	background: [(#CONFIG{couleur_general_spaceline/coulcar})];
 	padding: 0.5em;
 	white-space: nowrap; }
 
 #signatures td.signature-nom {
-	background: #ECF4F4;
+	background: [(#CONFIG{couleur_general_spaceline/coulcar})];
 	padding: 0.2em;
 	text-align: center;
 	font-weight: bold; }
 
 #signatures td.signature-message {
-	background: #F4F8F8;
+	background: [(#CONFIG{couleur_general_spaceline/coulcar})];
 	padding: 0.4em;
 	font-size: 0.96em; }
 /*  Cartouche et titraille
@@ -431,3 +432,67 @@ ul ul ul ul ul .forum-chapo { background: [(#CONFIG{couleur_general_spaceline/bt
 .cartouche .traductions { font-size: 0.71em; }
 .cartouche .traductions * { display: inline; }
 .cartouche .traductions li { padding-left: 1em; }
+/*  Mise en forme des textes du contenu
+---------------------------------------------- */
+.chapo {
+	margin-bottom: 1.5em;
+	font-weight: bold;
+	line-height: 1.4em; }
+
+.lien {
+	background: #EEE;
+	margin: 1em;
+	margin-bottom: 1.5em;
+	padding: 0.82em;
+	border: 1px solid #CCC;
+	font-size: 0.82em;
+	font-weight: bold; }
+
+.texte { color: [(#CONFIG{couleur_general_spaceline/coulcar})]; font-size: 0.96em;  }
+
+.ps, .notes {
+	margin-top: 1.4em;
+	padding-top: 2px;
+	border-top: 2px solid #CCC; }
+.ps { font-size: 0.82em;  color: [(#CONFIG{couleur_general_spaceline/coulcar})]; }
+.notes { clear: both; font-size: 0.77em; }
+.ps h2, .notes h2 { font-size: 1.19em; font-weight: bold; }
+/* Paragraphes, citations, code et poesie */
+p.spip {margin-bottom: 1em;}
+p.spip_note {}
+
+blockquote.spip, .spip_serif { font-family: Georgia, Times, serif; }
+
+blockquote.spip { 
+	margin: 1em; 
+	padding-left: 1em;
+	padding-right: 1em;
+	border: 1px dotted; }
+
+div.spip_poesie { 
+	margin: 1em; 
+	padding-left: 1em; 
+	border-left: 1px solid;
+	font-family: Garamond, Georgia, Times, serif; }
+div.spip_poesie div { text-indent: -60px; margin-left: 60px; }
+
+.spip_code, .spip_cadre { font-family: monospace; font-style: normal; font-size: 1.2em; }
+.spip_cadre { width: 99%; border: 1px inset; }
+
+.spip_surligne { background: #FF6; }
+/* Tableaux */
+table.spip {
+	margin: auto;
+	margin-bottom: 1em;
+	border: 1px solid;
+	border-collapse: collapse; }
+table.spip caption {
+	caption-side: top; /* bottom pas pris en compte par IE */
+	text-align: center;
+	margin: auto;
+	padding: 3px;
+	font-weight: bold; }
+table.spip tr.row_first { background: #FFC; }
+table.spip tr.row_odd { background: #DDD; }
+table.spip tr.row_even { background: #EEE; }
+table.spip th, table.spip td { padding: 3px; text-align: left; vertical-align: middle; }
