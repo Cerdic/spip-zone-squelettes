@@ -1,0 +1,43 @@
+[(#REM) <!-- Bandeau Haut --> ]
+[(#CONFIG{sarkaspip_bandeau_pied/bandeau_haut, 1}|=={1}|?{' '})
+<div class="bandeau_haut">	
+      <div class="navigation">  
+    	<!-- Navigation dans les langues -->
+        <div class="nav_langue">
+          <ul>
+            <li><a href="#" title="Pagina home in Italiano">Italien</a></li>
+            <li><a href="#" title="Homepage auf Deutsch">Allemand</a></li>
+            <li><a href="#" title="Hemsidan p&aring; svenska">Anglais</a></li>
+          </ul>
+        </div>
+        
+        <!-- Navigation dans les raccourcis de base -->
+        <div class="nav_raccourci">
+          <ul>
+            <li><a href="#URL_PAGE{plan,tri=par_rubrique}" title="<:sarkaspip:plan_site:>"><:sarkaspip:plan_site:></a></li>
+            <li><a href="#URL_PAGE{contact}" title="<:sarkaspip:contact:>"><:sarkaspip:contact:></a></li>																		
+            <li>
+				[(#SESSION{id_auteur}|?{' '})
+				[(#REM) <!-- Auteur connecte -->]
+					<a href="[(#URL_LOGOUT{[(#URL_PAGE{sommaire})]})]"><:sarkaspip:logout_membre:></a>
+				]
+				[(#SESSION{id_auteur}|?{'',' '})
+				[(#REM) <!-- Auteur non connecte -->]
+					<a href="[(#URL_PAGE{login-public})]"><:sarkaspip:login_membre:></a>	
+				]			
+			</li>
+			<li><a href="./ecrire/"><:sarkaspip:espace_prive:></a></li>
+          </ul>
+        </div> 
+	</div>
+	
+	<div>	             
+        <a class="site_logo" href="#URL_SITE_SPIP" title="<:sarkaspip:accueil_site:>">[(#LOGO_SITE_SPIP||image_reduire{80})]</a>
+        <div class="site_nom">
+           <h1><a href="#URL_SITE_SPIP" title="<:sarkaspip:accueil_site:>">[(#NOM_SITE_SPIP)]</a></h1>
+           [<h2>(#CONFIG{sarkaspip_bandeau_pied/slogan})</h2>]
+        </div>
+    </div>   
+	<div class="clearer">&nbsp;</div>
+</div>
+]
