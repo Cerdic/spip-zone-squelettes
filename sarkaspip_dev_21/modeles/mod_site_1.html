@@ -3,17 +3,18 @@
 	Modele pour l'affichage des sites references
     Recoit en argument :
 		- id_syndic
+		- editable: indique si on doit activer ou pas les crayons
  -->
 ]
 <BOUCLE_site(SITES) {id_syndic}>		
-<div class="contenu">
-	<a class="titre" href="#URL_SITE">#NOM_SITE</a>
-	[<div class="descriptif">(#DESCRIPTIF)</div>]
+	<div class="contenu">
+		[<h2><a class="[(#ENV{editable}|=={oui}|?{#EDIT{titre}}) ]titre_bloc" href="#URL_BREVE">(#NOM_SITE)</a></h2>]
+		[<div class="[(#ENV{editable}|=={oui}|?{#EDIT{descriptif}}) ]texte">(#DESCRIPTIF|typo_couleur)</div>]
 	<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic}{par date}{inverse}{0,#CONFIG{sarkaspip_noisettes/max_syndic, 5}}>
 		[<a class="article-synd info" href="#URL_ARTICLE">
 			(#TITRE*|supprimer_numero)
 			<span>[(#DATE|nom_jour)]&nbsp;[(#DATE|jour)]&nbsp;[(#DATE|nom_mois)]</span>
 		</a>]
 	</BOUCLE_syndic>
-</div>
+	</div>
 </BOUCLE_site>
