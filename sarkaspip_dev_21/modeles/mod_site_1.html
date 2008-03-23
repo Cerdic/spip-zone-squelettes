@@ -9,12 +9,18 @@
 <BOUCLE_site(SITES) {id_syndic}>		
 	<div class="contenu">
 		[<h2><a class="[(#ENV{editable}|=={oui}|?{#EDIT{titre}}) ]titre_bloc" href="#URL_BREVE">(#NOM_SITE)</a></h2>]
-		[<div class="[(#ENV{editable}|=={oui}|?{#EDIT{descriptif}}) ]texte">(#DESCRIPTIF|typo_couleur)</div>]
+		<div class="[(#ENV{editable}|=={oui}|?{#EDIT{descriptif}}) ]texte">
+			[(#DESCRIPTIF|typo_couleur)]
+	<B_syndic>
+			<ul>
 	<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic}{par date}{inverse}{0,#CONFIG{sarkaspip_noisettes/max_syndic, 5}}>
-		[<a class="article-synd info" href="#URL_ARTICLE">
-			(#TITRE*|supprimer_numero)
-			<span>[(#DATE|nom_jour)]&nbsp;[(#DATE|jour)]&nbsp;[(#DATE|nom_mois)]</span>
-		</a>]
+				[<li><a class="titre info" href="#URL_ARTICLE">
+					(#TITRE*|supprimer_numero)
+					<span>[(#DATE|nom_jour)]&nbsp;[(#DATE|jour)]&nbsp;[(#DATE|nom_mois)]</span>
+				</a></li>]
 	</BOUCLE_syndic>
+			</ul>
+	</B_syndic>
+		</div>
 	</div>
 </BOUCLE_site>
