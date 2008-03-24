@@ -42,7 +42,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'annonces' => 'Annonces',
 		'aout' => 'Ao&ucirc;t',
 		'articles' => 'Articles', // redefinition item SPIP
-		'articles_aleatoires' => 'Articles au hasard',
+		'articles_aleatoires' => 'Au hasard',
 		'articles_auteur' => 'Articles de cet auteur', // redefinition item SPIP
 		'articles_mot' => 'Articles associ&eacute;s',
 		'articles_recents' => 'Articles les plus r&eacute;cents', // redefinition item SPIP
@@ -114,6 +114,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'herbier_sites' => 'herbier',
 		'herbier_tag' => 'cat&eacute;gories',
 		'herbier_url' => 'adresse',
+		'hit_parade' => 'Top Articles',
 	  
 	
 //I
@@ -259,8 +260,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'site_web' => 'Site web',
 		'sites_web' => 'Sites Web', // redefinition item SPIP
 		'squelette' => 'Ce site utilise le squelette SARKA-SPIP',
-		'statistiques_edition' => 'Statistiques &eacute;ditoriales',
-		'statistiques_visites' => 'Statistiques des visites',
+		'statistiques' => 'Statistiques',
+		'statistiques_edition' => 'Publication',
+		'statistiques_visites' => 'Visites',
 		'statut_0minirezo' => 'administrateur(trice)',
 		'statut_1comite' => 'r&eacute;dacteur(trice)',
 		'statut_6forum' => 'visiteur(euse)',
@@ -271,7 +273,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //T
 	  
-		'top_articles' => 'Articles populaires',
+		'top_articles' => 'Les plus populaires',
 		'toutes_les_breves' => 'Toutes les br&egrave;ves du site',
 		'tri_par_auteur' => 'Par auteur',
 		'tri_par_date' => 'Par date',
@@ -286,6 +288,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //V
 	  
 		'vendredi_abrege' => 'Ve',
+		'verifier_xhtml' => 'V&eacute;rifier la validit&eacute; XHTML de cette page',
 		'votre_reponse' => 'Votre r&eacute;ponse',
 	  
 	
@@ -357,7 +360,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_inc_sites' => 'Liste des sites',
 		'cfg_lgd_inc_statsite' => 'Statistiques du site',
 		'cfg_lgd_inc_stathit' => 'Hit-parade des articles',
-		'cfg_lgd_inc_stathasard' => 'Articles al&eacute;atoires',
 		'cfg_lgd_inc_badges' => 'Badges',
 		'cfg_lgd_inc_annonce' => 'Annonces',
 		'cfg_lgd_agenda_type' => 'Agenda annuel - Type',
@@ -380,8 +382,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_inc_recherche_ext' => 'Choisissez le moteur de recherche externe que vous souhaitez ajouter en compl&eacute;ment du formulaire SPIP.',
 		'cfg_inf_inc_sites' => 'Choisissez le mod&egrave;le de liste des sites qui vous convient parmi ceux propos&eacute;s ci-dessous.',
 		'cfg_inf_inc_statsite_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les statistiques du site.',
-		'cfg_inf_inc_stathit_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer le hit-parade des articles les plus visit&eacute;s du site.',
-		'cfg_inf_inc_stathasard_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer la noisette des articles choisis au hasard.',
+		'cfg_inf_inc_stathit_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer le hit-parade des articles les plus visit&eacute;s du site et/ou la liste des articles choisis au hasard.',
+		'cfg_inf_inc_stathit_compo' => 'Choisissez la composition de la noisette:',
 		'cfg_inf_inc_badges_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les badges.',
 		'cfg_inf_inc_badges_liste' => 'Cochez les badges que vous souhaitez afficher.',
 		'cfg_inf_inc_annonce_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les annonces.',
@@ -411,6 +413,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_inc_rubriques_1' => 'Menu des rubriques d&eacute;roulant',
 		'cfg_lbl_inc_rubriques_2' => 'Menu des rubriques d&eacute;pli&eacute;',
 		'cfg_lbl_inc_rubriques_3' => 'Menu des rubriques accord&eacute;on &agrave; ouverture automatique',
+		'cfg_lbl_inc_rubriques_4' => 'Menu des rubriques accord&eacute;on &agrave; ouverture manuelle',
 		'cfg_lbl_inc_breves_1' => 'Un bloc par br&egrave;ve',
 		'cfg_lbl_inc_breves_2' => 'Un bloc pour toutes les br&egrave;ves (affichage de l\'introduction uniquement)',
 		'cfg_lbl_max_breves' => 'Nombre maximal de br&egrave;ves dans la liste',
@@ -430,6 +433,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_inc_sites_2' => 'Un bloc pour tous les sites',
 		'cfg_lbl_max_syndic' => 'Nombre maximal d\'articles syndiqu&eacute;s affich&eacute;s par site',
 		'cfg_lbl_max_sites' => 'Nombre maximal de sites dans la liste',
+		'cfg_lbl_inc_badges_xhtml' => 'Validit&eacute; XHTML 1.0 strict',
 		'cfg_lbl_inc_badges_rss' => 'Fil RSS du site',
 		'cfg_lbl_inc_badges_sarka' => 'Squelette Sarka-SPIP',
 		'cfg_lbl_inc_badges_spip' => 'Motoris&eacute; par SPIP',
@@ -458,6 +462,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_pagination_3' => 'Items pr&eacute;c&eacute;dent et suivant uniquement (page pr&eacute;c&eacute;dente | page suivante)',
 		'cfg_lbl_pagination_4' => 'Num&eacute;ros des pages et items pr&eacute;c&eacute;dent et suivant (<1|2|3|>)',
 		'cfg_lbl_pas_pagination' => 'Nombre d\'&eacute;l&eacute;ments par page',
+		'cfg_lbl_inc_stathit_compo_1' => 'Uniquement le hit-parade des articles les plus visit&eacute;s du site',
+		'cfg_lbl_inc_stathit_compo_2' => 'Uniquement la liste des articles choisis au hasard',
+		'cfg_lbl_inc_stathit_compo_3' => 'Les deux',
+		'cfg_lbl_stathit_max_top' => 'Nombre maximal d\'articles populaires',
+		'cfg_lbl_stathit_max_hasard' => 'Nombre maximal d\'articles choisis au hasard',
 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',

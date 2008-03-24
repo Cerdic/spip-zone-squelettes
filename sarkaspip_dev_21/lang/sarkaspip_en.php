@@ -43,7 +43,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'aout' => 'August',
 		'article_rubrique' => 'Documents published in this section',
 		'articles' => 'Articles', // redefinition item SPIP
-		'articles_aleatoires' => 'Random articles',
+		'articles_aleatoires' => 'Random',
 		'articles_auteur' => 'This author\'s articles', // redefinition item SPIP
 		'articles_mot' => 'Articles associated',
 		'articles_recents' => 'The most recent articles', // redefinition item SPIP
@@ -111,6 +111,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //H
 	  
 		'hier' => 'yesterday',
+		'herbier_sites' => 'herbier',
+		'herbier_tag' => 'cat&eacute;gories',
+		'herbier_url' => 'adresse',
+		'hit_parade' => 'Top Articles',
 	  
 	
 //I
@@ -256,8 +260,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'sites_mot' => 'Sites associated',
 		'sites_web' => 'Web sites', // redefinition item SPIP
 		'squelette' => 'Website using SARKA-SPIP template',
-		'statistiques_edition' => 'Publication statistics',
-		'statistiques_visites' => 'Visits statistics',
+		'statistiques' => 'Statistics',
+		'statistiques_edition' => 'Publishing',
+		'statistiques_visites' => 'Visits',
 		'statut_0minirezo' => 'administrator',
 		'statut_1comite' => 'editor',
 		'statut_6forum' => 'visitor',
@@ -268,7 +273,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //T
 	  
-		'top_articles' => 'Popular articles',
+		'top_articles' => 'Most Popular',
 		'toutes_les_breves' => 'All the news',
 		'tri_par_auteur' => 'By author',
 		'tri_par_date' => 'By date',
@@ -283,6 +288,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //V
 	  
 		'vendredi_abrege' => 'Fr',
+		'verifier_xhtml' => 'Check XHTML validity of this page',
 		'votre_reponse' => 'Your response',
 	  
 	

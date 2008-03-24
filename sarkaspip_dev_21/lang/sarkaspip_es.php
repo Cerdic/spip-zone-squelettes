@@ -43,7 +43,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'aout' => 'Agosto',
 		'article_rubrique' => 'Art&iacute;culos publicados en esta secci&oacute;n',
 		'articles' => 'Art&iacute;culos', // redefinition item SPIP
-		'articles_aleatoires' => 'Art&iacute;culos al azar',
+		'articles_aleatoires' => 'Al azar',
 		'articles_auteur' => 'Art&iacute;culos de esta autora o autor', // redefinition item SPIP
 		'articles_mot' => 'Art&iacute;culos relacionados',
 		'articles_recents' => 'Los art&iacute;culos m&aacute;s recientes', // redefinition item SPIP
@@ -111,6 +111,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //H
 	  
 		'hier' => 'ayer',
+		'herbier_sites' => 'herbier',
+		'herbier_tag' => 'cat&eacute;gories',
+		'herbier_url' => 'adresse',
+		'hit_parade' => 'Top Art&iacute;culos',
 	  
 	
 //I
@@ -257,8 +261,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'sites_mot' => 'Sitios Web relacionados',
 		'sites_web' => 'Sitios Web', // redefinition item SPIP
 		'squelette' => 'Este sitio utiliza el esqueleto SARKA-SPIP',
-		'statistiques_edition' => 'Estad&iacute;sticas de publicati&oacute;n',
-		'statistiques_visites' => 'Estad&iacute;sticas de las visitas',
+		'statistiques' => 'Estad’sticas',
+		'statistiques_edition' => 'Publicati&oacute;n',
+		'statistiques_visites' => 'Visitas',
 		'statut_0minirezo' => 'administrador(a)',
 		'statut_1comite' => 'redactor(a)',
 		'statut_6forum' => 'visitante',
@@ -269,7 +274,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //T
 	  
-		'top_articles' => 'Art&iacute;culos populares',
+		'top_articles' => 'M&aacute;s populares',
 		'toutes_les_breves' => 'Todas las breves del sitio',
 		'tri_par_auteur' => 'Por autor',
 		'tri_par_date' => 'Por fecha',
@@ -284,6 +289,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //V
 	  
 		'vendredi_abrege' => 'Vi',
+		'verifier_xhtml' => 'Comprobar la validez XHTML de esta p&aacute;gina',
 		'votre_reponse' => 'Su respuesta',
 	  
 	

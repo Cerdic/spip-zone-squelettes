@@ -20,6 +20,11 @@
 		[(#ENV{position_commentaires, 2}|!={2}|?{jQuery("#bloc_intro_commentaires").hide();})]
 		[(#ENV{liste_sites, 2}|!={1}|?{jQuery("#bloc_max_syndic").hide();})]
 		[(#ENV{position_badges, 1}|=={0}|?{jQuery("#bloc_badges_liste").hide();})]
+		[(#ENV{position_stats_2, 1}|=={0}|?{jQuery("#bloc_stats_2_compo,#bloc_stats_2_max_hasard,#bloc_stats_2_max_top").hide();})]
+		[(#ENV{position_stats_2, 1}|!={0}|?{
+			[(#ENV{composition_stats_2, 3}|=={1}|?{jQuery("#bloc_stats_2_max_hasard").hide();})]
+			[(#ENV{composition_stats_2, 3}|=={2}|?{jQuery("#bloc_stats_2_max_top").hide();})]}
+		)]
 		jQuery("input[@name='position_badges']").change(function() {
 			if (jQuery("input[@name='position_badges']:checked").val() != 0)
 				jQuery("#bloc_badges_liste").show();
@@ -46,6 +51,41 @@
 				jQuery("#bloc_intro_commentaires").show();
 			else
 				jQuery("#bloc_intro_commentaires").hide();
+			jQuery(this).blur();
+		});	
+		jQuery("input[@name='position_stats_2']").change(function() {
+			if (jQuery("input[@name='position_stats_2']:checked").val() != 0) {
+				jQuery("#bloc_stats_2_compo").show();
+				if (jQuery("input[@name='composition_stats_2']:checked").val() == 1) {
+					jQuery("#bloc_stats_2_max_top").show();
+					jQuery("#bloc_stats_2_max_hasard").hide();
+				}
+				else if (jQuery("input[@name='composition_stats_2']:checked").val() == 2) {
+					jQuery("#bloc_stats_2_max_top").hide();
+					jQuery("#bloc_stats_2_max_hasard").show();
+				}
+				else {
+					jQuery("#bloc_stats_2_max_top").show();
+					jQuery("#bloc_stats_2_max_hasard").show();
+				}
+			}	
+			else
+				jQuery("#bloc_stats_2_compo,#bloc_stats_2_max_hasard,#bloc_stats_2_max_top").hide();
+			jQuery(this).blur();
+		});	
+		jQuery("input[@name='composition_stats_2']").change(function() {
+			if (jQuery("input[@name='composition_stats_2']:checked").val() == 1) {
+				jQuery("#bloc_stats_2_max_top").show();
+				jQuery("#bloc_stats_2_max_hasard").hide();
+			}
+			else if (jQuery("input[@name='composition_stats_2']:checked").val() == 2) {
+				jQuery("#bloc_stats_2_max_top").hide();
+				jQuery("#bloc_stats_2_max_hasard").show();
+			}
+			else {
+				jQuery("#bloc_stats_2_max_top").show();
+				jQuery("#bloc_stats_2_max_hasard").show();
+			}
 			jQuery(this).blur();
 		});	
 	});
@@ -232,26 +272,38 @@
 			<:sarkaspip:cfg_lbl_inc_position_2:>
 		</label>
 		<br />
-	</fieldset>
-	
-	<fieldset>
-		<legend><:sarkaspip:cfg_lgd_inc_stathasard:></legend>
-		<p><:sarkaspip:cfg_inf_inc_stathasard_pos:></p>
-		<label>
-			<input type="radio" name="position_stats_3" value="0" [(#ENV{position_stats_3, 1}|=={0}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_inc_position_0:>
-		</label>
-		<br />
-		<label>
-			<input type="radio" name="position_stats_3" value="1" [(#ENV{position_stats_3, 1}|=={1}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_inc_position_1:>
-		</label>
-		<br />
-		<label>
-			<input type="radio" name="position_stats_3" value="2" [(#ENV{position_stats_3, 1}|=={2}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_inc_position_2:>
-		</label>
-		<br />
+
+		<div id="bloc_stats_2_compo">
+			<br />
+			<p><:sarkaspip:cfg_inf_inc_stathit_compo:></p>
+			<label>
+				<input type="radio" name="composition_stats_2" value="1" [(#ENV{composition_stats_2, 3}|=={1}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_inc_stathit_compo_1:>
+			</label>
+			<br />
+			<label>
+				<input type="radio" name="composition_stats_2" value="2" [(#ENV{composition_stats_2, 3}|=={2}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_inc_stathit_compo_2:>
+			</label>
+			<br />
+			<label>
+				<input type="radio" name="composition_stats_2" value="3" [(#ENV{composition_stats_2, 3}|=={3}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_inc_stathit_compo_3:>
+			</label>
+			<br />
+			<br />
+		</div>
+
+		<div id="bloc_stats_2_max_top">
+			<label><:sarkaspip:cfg_lbl_stathit_max_top:></label>
+			<input type="text" name="max_articles_top" value="#ENV{max_articles_top, 5}" size="2" class="fondl" />
+			<br />
+		</div>
+		<div id="bloc_stats_2_max_hasard">
+			<label><:sarkaspip:cfg_lbl_stathit_max_hasard:></label>
+			<input type="text" name="max_articles_hasard" value="#ENV{max_articles_hasard, 5}" size="2" class="fondl" />
+			<br />
+		</div>
 	</fieldset>
 	
 	<fieldset>
@@ -275,6 +327,11 @@
 		<br />
 		<div id="bloc_badges_liste">
 			<p><:sarkaspip:cfg_inf_inc_badges_liste:></p>
+			<label>
+				<input type="checkbox" name="badge_xhtml" [checked="(#ENV{badge_xhtml}|!={''}|?{checked})"] />
+				<:sarkaspip:cfg_lbl_inc_badges_xhtml:>
+			</label>
+			<br />
 			<label>
 				<input type="checkbox" name="badge_rss" [checked="(#ENV{badge_rss}|!={''}|?{checked})"] />
 				<:sarkaspip:cfg_lbl_inc_badges_rss:>
