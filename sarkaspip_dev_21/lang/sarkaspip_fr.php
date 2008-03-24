@@ -369,6 +369,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_sommaire_secteurs' => 'Liste des secteurs',
 		'cfg_lgd_sommaire_articles' => 'Liste des articles r&eacute;cents',
 		'cfg_lgd_herbier_pagination' => 'Pagination',
+		'cfg_lgd_pied_copyright' => 'Copyright et licence',
+		'cfg_lgd_pied_version' => 'Versions',
+		'cfg_lgd_pied_liens' => 'Liens',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -401,6 +404,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_sommaire_secteurs' => 'Voulez-vous afficher la liste des secteurs dans la page sommaire ?',
 		'cfg_inf_sommaire_articles' => 'Voulez-vous afficher la liste des articles r&eacute;cents dans la page sommaire ? Vous pourrez ensuite choisir le nombre maximal d\'articles affich&eacute;s',
 		'cfg_inf_herbier_pagination' => 'Choisissez le mod&egrave;le de pagination de votre herbier ainsi que le nombre d\'&eacute;l&eacute;ments affich&eacute;s dans chaque page.',
+		'cfg_inf_copyright_site' => 'D&eacute;sirez vous afficher le copyright de votre site?<br />(&copy;, ann&eacute;e de publication du 1<sup>er</sup> article et ann&eacute;e en cours) ',
+		'cfg_inf_licence_site' => 'Licence du site. Elle s\'affichera &agrave; droite de votre copyright.<br />(laissez vide pour ne rien afficher)',
+		'cfg_inf_version_spip' => 'D&eacute;sirez vous afficher la version de SPIP install&eacute;e ?',
+		'cfg_inf_version_sarka' => 'D&eacute;sirez vous afficher la version de SarkASPIP install&eacute;e ?',
+		'cfg_inf_collectif_sarka' => 'D&eacute;sirez vous ins&eacute;rer un lien vers le site du collectif SarkA ?',
+		'cfg_inf_licence_squelette' => 'D&eacute;sirez vous ins&eacute;rer un lien vers la licence GPL des squelettes ?',
+
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',

@@ -16,11 +16,19 @@
 <script type="text/javascript">
 //<![CDATA[
 	jQuery(document).ready(function() {
+	[(#ENV{copyright_site, 1}|=={0}|?{jQuery("#bloc_licence_site").hide();})]
 		jQuery("input[@name='bandeau_haut']").change(function() {
 			if (jQuery("input[@name='bandeau_haut']:checked").val() == 1)
 				jQuery("#slogan").show();
 			else
 				jQuery("#slogan").hide();
+			jQuery(this).blur();
+		});	
+		jQuery("input[@name='copyright_site']").change(function() {
+			if (jQuery("input[@name='copyright_site']:checked").val() == 1)
+				jQuery("#bloc_licence_site").show();
+			else
+				jQuery("#bloc_licence_site").hide();
 			jQuery(this).blur();
 		});	
 	});
@@ -72,7 +80,77 @@
 	
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_pied:></legend>
+		<fieldset>
+			<legend><:sarkaspip:cfg_lgd_pied_copyright:></legend>
+			<p><:sarkaspip:cfg_inf_copyright_site:></p>
+			<label>
+				<input type="radio" name="copyright_site" value="1" [(#ENV{copyright_site, 1}|=={1}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_oui:>
+			</label>
+			<label>
+				<input type="radio" name="copyright_site" value="0" [(#ENV{copyright_site, 1}|=={0}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_non:>
+			</label>
+			<br />
+			<div id="bloc_licence_site">
+				<p><:sarkaspip:cfg_inf_licence_site:></p>
+				<label>
+					<textarea name="licence_site" rows="4" cols="40" style="width:100%;">[(#ENV{licence_site})]</textarea>
+				</label>
+				<br />
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend><:sarkaspip:cfg_lgd_pied_version:></legend>
+			<p><:sarkaspip:cfg_inf_version_spip:></p>
+			<label>
+				<input type="radio" name="version_spip" value="1" [(#ENV{version_spip, 1}|=={1}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_oui:>
+			</label>
+			<label>
+				<input type="radio" name="version_spip" value="0" [(#ENV{version_spip, 1}|=={0}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_non:>
+			</label>
+			<br />
+			<p><:sarkaspip:cfg_inf_version_sarka:></p>
+			<label>
+				<input type="radio" name="version_sarka" value="1" [(#ENV{version_sarka, 1}|=={1}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_oui:>
+			</label>
+			<label>
+				<input type="radio" name="version_sarka" value="0" [(#ENV{version_sarka, 1}|=={0}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_non:>
+			</label>
+			<br />
+		</fieldset>	
+		<fieldset>
+			<legend><:sarkaspip:cfg_lgd_pied_liens:></legend>
+			<p><:sarkaspip:cfg_inf_collectif_sarka:></p>
+			<label>
+				<input type="radio" name="collectif_sarka" value="1" [(#ENV{collectif_sarka, 1}|=={1}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_oui:>
+			</label>
+			<label>
+				<input type="radio" name="collectif_sarka" value="0" [(#ENV{collectif_sarka, 1}|=={0}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_non:>
+			</label>
+			<br />
 
+			<p><:sarkaspip:cfg_inf_licence_squelette:></p>
+			<label>
+				<input type="radio" name="licence_squelette" value="1" [(#ENV{licence_squelette, 1}|=={1}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_oui:>
+			</label>
+			<label>
+				<input type="radio" name="licence_squelette" value="0" [(#ENV{licence_squelette, 1}|=={0}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_non:>
+			</label>
+		</fieldset>
+		
+		
+		
+		
+		
 	</fieldset>
 	<br />
 	<input type="submit" name="_cfg_ok" class="fondo" value="<:sarkaspip:valider:>" />
