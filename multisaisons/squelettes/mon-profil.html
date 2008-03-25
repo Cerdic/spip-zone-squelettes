@@ -137,56 +137,42 @@ href="#URL_ARTICLE">#TITRE</a><br/>
 </div>
 	
 <div class="grande_boite">
-<p class="logodroite centre">
 
-<BOUCLE_monprofil_saison(MOTS){titre=saison}{0,1}>
 
-<BOUCLE_AFFICHER_AVATAR1(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
-[(#SESSION{statut}|match{1comite|0minirezo}|?{  
-[::&nbsp;<:logo_origine:>:(#LOGO_AUTEUR||?{' ',''})<br/>]   
-[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1" title="Changer mon logo">(#LOGO_AUTEUR||image_reduire{46}||sinon{::&nbsp;<:logo_ajout:>})</a><br/>]})]
-[::&nbsp;<:logo_saison:>:<br/>(#LOGO_AUTEUR||?{' ',''})<INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=46}{date=#ENV{date}}>] 
-</BOUCLE_AFFICHER_AVATAR1>
-
-</BOUCLE_monprofil_saison>
-
-<BOUCLE_AFFICHER_AVATAR2(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}><br/><br/>
-[(#SESSION{statut}|match{1comite|0minirezo}|?{  
-[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">(#LOGO_AUTEUR||image_reduire{80}||sinon{::&nbsp;<:ajout_avatar:>})</a>]})]
-</BOUCLE_AFFICHER_AVATAR2>
-
-<//B_monprofil_saison>
+<BOUCLE_auteur(AUTEURS){id_auteur=#SESSION{id_auteur}}{tout}>
+<BOUCLE_auteur_elargi(AUTEURS_ELARGIS auteurs){id_auteur=#SESSION{id_auteur}}{tout}>
+<script type="text/javascript" src="#CHEMIN{javascript/jquery.validate.pack.js}"></script>
 
 
 
+<h4 class="icone_membre"><:profil:></h4>
+[(#SESSION{statut}|match{1comite|0minirezo}|?{ 
 
+[<div class="gauche carte"><span class="Boddy #_auteur:EDIT{logo}">(#LOGO_AUTEUR_NORMAL||?{" ","::&nbsp;Ajouter mon logo en double cliquant ici."})[(#LOGO_AUTEUR_NORMAL||image_reduire{46})]</span></div>]
 
+[<p class="#_auteur:EDIT{nom}">::&nbsp;(#NOM|sinon{Renseigner votre nom en double cliquant ici.})</p>]
+
+[<p class="#_auteur:EDIT{bio}">::&nbsp;(#BIO|PtoBR|sinon{Ajouter une bio en double cliquant ici.})</p>]
+
+<p>
+[<span class="gauche #_auteur:EDIT{hyperlien}">::&nbsp;(#URL_SITE|sinon{Indiquer mon site web favori.})</span>]
 </p>
-<BOUCLE_infos_perso(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>   
-<h4 class="icone_membre"><:profil:> 
-[(#SESSION{statut}|=={0minirezo}|?{' '}) <:administrateur:>]
-[(#SESSION{statut}|=={1comite}|?{' '}) <:redacteur:>]
-[(#SESSION{statut}|=={6forum}|?{' '}) <:visiteur:>]</h4>
-<p>[(#SESSION{statut}|match{1comite|0minirezo}|?{ 
-[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">::&nbsp;(#BIO|sinon{<:rens_biographie:>})</a><br/>]
-[<a href="ecrire/?exec=auteur_infos&id_auteur=#SESSION{id_auteur}&initial=-1">::&nbsp;(#NOM_SITE|sinon{<:ajout_site_favori:>})</a><br/>]
-})]<hr class="spacer"/> 
 
- 
-<h4 class="icone_membre"><:profil_deff:></h4> 
-<p><:profil_deff1:></p>',
-<div class="interne"> 
-	<INCLURE(inc/profil_adherent.php){id_auteur=#SESSION{id_auteur}}> 
-</div>
+
+})]
+
+
 [(#SESSION{statut}|=={6forum}|?{<:visiteur_statut_no:>})]
 [<a href="#URL_RUBRIQUE">(#SESSION{statut}|=={6forum}|?{' '}):: <:forum_post:>})</a><br/>]
 </p>
 
 
+<hr class="spacer"/> 
 
 
-</BOUCLE_infos_perso>
 
+</BOUCLE_auteur_elargi>
+</BOUCLE_auteur>
 
 
 </div> [(#REM) fermeture cellule ]
