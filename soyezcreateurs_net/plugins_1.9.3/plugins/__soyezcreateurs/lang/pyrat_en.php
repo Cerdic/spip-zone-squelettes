@@ -174,7 +174,6 @@ $GLOBALS['i18n_pyrat_en'] = array(
 'tout' => 'All',
 'toutleplan' => 'The entire site on one page',
 'themes' => 'Themes',
-'sedna' => 'Sedna (RSS agregator)',
 
 //V
 'voirarticlespar' => 'See the articles by',
