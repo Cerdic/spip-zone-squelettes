@@ -64,7 +64,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // Page mentions legales
 'mentions_legales' => 'Mentions l&eacute;gales',
 'site_realise_avec_spip' => 'Site r&eacute;alis&eacute; avec SPIP',
-'voir_squelette' => 'Voir le code de cette page',
+'voir_squelette' => 'Voir le squelette de cette page',
 'avoir_meme_site' => 'Pour avoir le m&ecirc;me site',
 'site_edite_par' => 'Ce site est &eacute;dit&eacute; par',
 'mentions_legales_texte' => '<h3 class="spip">Site r&eacute;alis&eacute; avec SPIP + &laquo;&nbsp;Chez&nbsp;nous&nbsp;&raquo;</h3>
