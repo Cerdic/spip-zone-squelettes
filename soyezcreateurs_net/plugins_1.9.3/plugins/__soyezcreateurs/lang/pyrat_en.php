@@ -167,13 +167,14 @@ $GLOBALS['i18n_pyrat_en'] = array(
 'savoirplus' => 'More...',
 'savoirpluscritere' => 'Learn more about the criterion',
 'sommaire' => 'Summary',
-'sedna' => 'Sedna (RSS agregator)',
+'sedna' => 'Sedna (RSS aggregator)',
 
 //T
 'tousarticlesantichrono' => 'All articles by date',
 'tout' => 'All',
 'toutleplan' => 'The entire site on one page',
 'themes' => 'Themes',
+'sedna' => 'Sedna (RSS agregator)',
 
 //V
 'voirarticlespar' => 'See the articles by',
