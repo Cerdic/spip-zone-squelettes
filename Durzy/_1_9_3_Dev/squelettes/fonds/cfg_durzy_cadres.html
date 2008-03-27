@@ -1,6 +1,26 @@
+#CACHE{0}
+<!-- titre=Squelettes Durzy - Configuration des cadres -->
+<!-- icone=images/cfg_cadres.png -->
+[(#SET{logo, <img src='#DOSSIER_SQUELETTE/../images/cfg_cadres.png' width='20' height='19' alt='cadres' style="float:#LANG_RIGHT;" /> })]
+<!-- descriptif= [(#GET{logo})] <:durzy:description_cadres:> -->
+
+<!-- nom=durzy -->
+<!-- onglet=durzy -->
+
+<!-- liens*=durzy -->
+<!-- liens*=durzy_general -->
+<!-- liens*=durzy_couleurs -->
+
+<form method="post" action="#SELF">[(#ENV{_cfg_}|form_hidden)]
+
 <fieldset style="border:0">
-<p>Configuration des <strong>cadres sur toutes les pages</strong></p>
-<p><i>fonctionnel sur la page sommaire uniquement pour l'instant</i></p>
+
+	<div style="float:right">
+		<input type="submit" name="_cfg_ok" value="<:oK:>" class="fondo" />
+		<input type="reset" value="<:reset:>" class="fondo" />
+		<input type="submit" name="_cfg_delete" value="<:supprimer:>" class="fondo" />
+	</div>
+	<br /> <br/>
 
 <fieldset style="background-color:#FFFFCC"><legend>Nombre d'éléments affichés dans les cadres</legend>
 	<label>
@@ -33,6 +53,15 @@
 </fieldset>
 
 
+<fieldset style="background-color:#FFFFCC"><legend><strong>Taille </strong> du texte des cadres</legend>
+ <select name="taille_texte_cadres">
+  <option value="10"  [(#CONFIG{durzy/taille_texte_cadres}|=={10}|?{selected="selected",''})]>10</option>
+  <option value="11" [(#CONFIG{durzy/taille_texte_cadres}|=={11}|?{selected="selected",''})]> 11</option>
+  <option value="12" [(#CONFIG{durzy/taille_texte_cadres}|=={12}|?{selected="selected",''})]> 12</option>
+ </select>
+</fieldset>
+
+[(#EVAL{defined('_DIR_PLUGIN_JQUERYP')}|?{' ',''}) 
 	#JQUERY_PLUGIN{ui.tabs}
 	#JQUERY_PLUGIN_THEME{flora, tabs}
 
@@ -41,7 +70,7 @@
 		  $("#mesonglets3 > ul").tabs({ unselected: true });
 		})
 	</script>
-
+]
 <div id="mesonglets3" class="flora"><br />
 	<ul>
 		<li><a href="#fragment-4"><span>Organisation</span></a></li>
@@ -191,4 +220,13 @@
 	
 </fieldset>
 </div>
+
+	<div style="float:right">
+		<input type="submit" name="_cfg_ok" value="<:oK:>" class="fondo" />
+		<input type="reset" value="<:reset:>" class="fondo" />
+		<input type="submit" name="_cfg_delete" value="<:supprimer:>" class="fondo" />
+	</div>
+	<div class="nettoyeur" />
+
 </fieldset>
+</form>
