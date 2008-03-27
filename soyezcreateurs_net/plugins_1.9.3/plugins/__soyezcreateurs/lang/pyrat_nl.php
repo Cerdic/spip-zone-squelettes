@@ -2,11 +2,11 @@
 
 // This is a SPIP-forum module file  --  Ceci est un fichier module de SPIP-forum
 
-$GLOBALS['i18n_pyrat_fr'] = array(
+$GLOBALS['i18n_pyrat_nl'] = array(
 
 // A
 'accueil' => 'Welkom',
-'accueil_menu' => 'Welkom menu', //le <em> indique la lettre AccessKey
+'accueil_menu' => 'Welkom menu',
 'agenda' => 'Agenda',
 'agenda_summary' => 'Agenda overzicht',
 'agendamoisde' => 'Agenda van de maand ... ',
@@ -28,7 +28,7 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'agenda_a' => ' aan ',
 'agenda_au' => ' aan ',
 'agenda_de' => ' van ',
-'agenda_en_ce_moment' => ' momenteel',
+'agenda_en_ce_moment' => ' <em>(momenteel)</em>',
 'agenda_dans' => 'in ',
 'agenda_an' => ' jaar, ',
 'agenda_ans' => ' jaren, ',
