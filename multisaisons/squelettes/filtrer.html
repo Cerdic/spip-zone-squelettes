@@ -46,7 +46,18 @@
 
 
 
-  <div class="grande_boite"> [(#REM)   ouverture grd boite texte   ] 
+ <div class="grande_boite"><div class="droite centre">[(#ENV{date}|nom_mois|texte_backend|image_typo{taille=36,police=police.ttf,couleur=#GET{colo}})]
+<BOUCLE_dispo(RUBRIQUES){id_rubrique}>
+<br/>
+	[<strong><a	href="(#URL_PAGE{filtrer}|parametre_url{date,[(#ENV{date}|Agenda_moisdecal{-1,'Y-m'})]}|parametre_url{filtre,#ENV{filtre}})"
+				title="[(#ENV{date}|Agenda_moisdecal{-1,'Y-m'}|affdate_mois_annee)]">[(#ENV{date}|Agenda_moisdecal{-1,'Y-m'}|nom_mois)]&nbsp;&#8249;</a></strong>][
+			(#ENV{date}|affdate_mois_annee)][<strong>
+			<a href="(#URL_PAGE{filtrer}|parametre_url{date,[(#ENV{date}|Agenda_moisdecal{1,'Y-m'})]}|parametre_url{filtre,#ENV{filtre}})"
+				title="[(#ENV{date}|Agenda_moisdecal{1,'Y-m'}|affdate_mois_annee)]">&#8250;&nbsp;[(#ENV{date}|Agenda_moisdecal{1,'Y-m'}|nom_mois)]</a></strong>]
+</BOUCLE_dispo><br/></div>
+
+
+
 <p class="logogauche"><INCLURE{fond="logo"}{id_rubrique}{taille=48}{date=#ENV{date}}><p>
 <a href="[(#URL_PAGE{sommaire})]"><:accueil_site:></a> > <BOUCLE_plan(HIERARCHIE){id_rubrique}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a>	
                   </BOUCLE_plan></p>
