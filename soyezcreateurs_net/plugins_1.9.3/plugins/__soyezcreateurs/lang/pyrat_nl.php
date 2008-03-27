@@ -172,7 +172,7 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'tousarticlesantichrono' => 'Alle artikelen in anti-chronologische volgorde',
 'tout' => 'Alles',
 'toutleplan' => 'De hele website op een bladzijde',
-'themes' => 'Thema's',
+'themes' => 'Thema\'s',
 
 //V
 'voirarticlespar' => 'Zie de artikelen door',
