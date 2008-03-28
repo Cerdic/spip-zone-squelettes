@@ -5,12 +5,9 @@
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // Blog
-'blog' => 'Blog',
-'nouveautes' => 'Quoi de neuf&nbsp;?',
 'articles' => 'articles',
 'articles_tout' => 'Tous nos articles',
 'derniers_articles' => 'Nos derniers articles',
-'a_retenir' => '&Agrave;&nbsp;retenir',
 'pages' => 'Pages&nbsp;:',
 
 // Page photos
@@ -43,7 +40,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'derniers_commentaires' => 'Vos derniers commentaires',
 'laisser_message' => 'Laissez-nous un message',
 'merci_messages' => 'Merci pour vos messages&nbsp;!',
-'premier_message' => 'Soyez le premier &agrave; nous laisser un message&nbsp;!',
+'premier_message' => 'Soyez la premi&egrave;re personne &agrave; nous laisser un message&nbsp;!',
 'messages_pagination' => 'Pages&nbsp;:',
 'messages_tout' => 'Tous vos messages',
 
