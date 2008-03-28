@@ -1,6 +1,6 @@
 window.onload=function(){
 Nifty("div.boite,div.avatar,div.reponse,div.discussion,div.interne,p.interne,span.logorond","transparent");
-Nifty("ul#minipics li,div.grande_boite,div#content,div#footer");
+Nifty("ul#minipics li,div.grande_boite,div#content,div#footer","transparent");
 Nifty("div.interforum,div.interforumgrand","big,transparent");
 Nifty("div#header","top,big,transparent");
 Nifty("ul#deco h4,ul#decobas h4,ul#nav li","top");
