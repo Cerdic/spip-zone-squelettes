@@ -40,8 +40,8 @@
 	<div id="portfolio">
 		<h2 class="invisible"><:info_portfolio:></h2>
 		<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {extension IN jpg,gif,png}{largeur>=200}{hauteur>120} {par num titre, date} {doublons}>
-		[(#SET{visible,[(#FICHIER|image_passe_partout{120,120}|image_recadre{120,120,center}|image_aplatir{jpg,ffffff}|inserer_attribut{class,spip_logos[ modulo(#COMPTEUR_BOUCLE|modulo{3})]})]})]
-		<a href="[(#FICHIER|image_reduire{800}|extraire_attribut{src})]" type="#MIME_TYPE"[ title="(#TITRE|texte_backend)"]>#GET{visible}</a>
+		[(#SET{vignette,[(#FICHIER|image_passe_partout{120,120}|image_recadre{120,120,center}|image_aplatir{jpg,ffffff}|inserer_attribut{class,spip_logos[ modulo(#COMPTEUR_BOUCLE|modulo{3})]})]})]
+		<a href="[(#FICHIER|image_reduire{800}|extraire_attribut{src})]" type="#MIME_TYPE"[ title="(#TITRE|texte_backend)"]>#GET{vignette}</a>
 		</BOUCLE_documents_portfolio>
 	</div><!--#portfolio-->
 	</B_documents_portfolio>
@@ -100,22 +100,22 @@
 	<//B_titre_mot>
 	<//B_titre_rubrique>
 	
-	<B_news>
+	<B_articles>
 	<div class="liste">
 		[(#ANCRE_PAGINATION|vide)]
 		<ul>
-			<BOUCLE_news(ARTICLES) {branche ?}{id_mot ?}{id_auteur ?} {!par date} {pagination 10}>
+			<BOUCLE_articles(ARTICLES) {branche ?}{id_mot ?}{id_auteur ?} {!par date} {pagination 10}>
 			<li>
 				<h2><a href="#URL_ARTICLE">#TITRE</a></h2>
 				[<a href="#URL_ARTICLE">(#MODELE{logo_article}{id_rubrique})</a>]
 				<small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)][ &mdash; (#MODELE{categorie})][ &mdash; (#MODELE{commentaires})]</small>
 				[<p>(#INTRODUCTION|couper{160}|PtoBR|sinon{[(#SOUSTITRE)]})</p>]
 			</li>
-			</BOUCLE_news>
+			</BOUCLE_articles>
 		</ul>
 		[<p class="pagination"><:pages:> (#PAGINATION{page})</p>]
 	</div><!--.liste-->
-	</B_news>
+	</B_articles>
 	
 <//B_article>
     
@@ -127,7 +127,7 @@
 	<INCLURE{fond=inc-tagcloud}{id_rubrique}{id_mot}{id_article}>
 	<INCLURE{fond=inc-liensforum}>
 	<INCLURE{fond=inc-feed}>
-	<img src="#CHEMIN{img/commentaires.gif}" alt="<:laisser_message:>" width="200" height="200" />
+	[<img src="(#CHEMIN{img/commentaires.gif})" alt="<:laisser_message:>" width="200" height="200" />]
 </div><!--#extra-->
 <br class="nettoyeur" />
 <INCLURE{fond=inc-pied}{skel=#SQUELETTE}>

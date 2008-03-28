@@ -11,7 +11,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'pages' => 'Pages&nbsp;:',
 
 // Page photos
-'photos' => 'Photos',
+'photos' => 'photos',
 'images' => 'images',
 'photos_tout' => 'Toutes nos photos',
 'dernieres_images' => 'Nos derni&egrave;res images',

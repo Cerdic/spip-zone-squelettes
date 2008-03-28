@@ -18,7 +18,7 @@
 	<br class="nettoyeur" />]
 	
 	<div class="tiers">
-	<BOUCLE_nous(ARTICLES) {titre_mot=page_nous} {0,1} {doublons}>
+	<BOUCLE_nous(ARTICLES) {titre_mot=page_nous}{!par date} {0,1} {doublons}>
 	<div class="menu" id="nous">
 		[(#LOGO_ARTICLE||?{
 			<h2 class="invisible">#TITRE</h2>
@@ -34,10 +34,15 @@
 	</div>
 	</BOUCLE_nous>
 	
-	<BOUCLE_visite(RUBRIQUES) {titre_mot=page_visite} {0,1} {doublons}>
+	<BOUCLE_visite(RUBRIQUES) {titre_mot=page_visite}{!par date} {0,1} {doublons}>
 	<div class="menu" id="visite">
-		<h2>[(#LOGO_RUBRIQUE||sinon{[(#TITRE)]})]</h2>
-		[<p>(#TEXTE|PtoBR|image_reduire{220,*})</p>]
+		[(#LOGO_RUBRIQUE||?{
+			<h2 class="invisible">#TITRE</h2>
+			[(#LOGO_RUBRIQUE||image_reduire{220,*}|image_recadre{220,*,center}|inserer_attribut{class,''})]
+		,
+			<h2>#TITRE</h2>
+			[<p>(#INTRODUCTION|PtoBR)</p>]
+		})]
 		<p class="plus">
 			<BOUCLE_venir(ARTICLES){titre_mot=page_venir}{0,1}><a href="#URL_ARTICLE"[ title="(#TITRE|couper{80}|texte_backend)"]><:venir:></a></BOUCLE_venir>
 			<a href="#URL_RUBRIQUE"[ title="(#TITRE|couper{80}|texte_backend)"]><:visite:></a>
@@ -47,9 +52,6 @@
 
 	<INCLURE{fond=inc-sousrub}>
 	<INCLURE{fond=inc-tagcloud}>
-	
-	<img src="#CHEMIN{img/commentaires.gif}" alt="<:laisser_message:>" width="200" height="200" />
-	<br /><br /><br /><br />
 	
 	</div><!--.tiers-->
 	
@@ -74,33 +76,27 @@
 	</div><!--.deuxtiers-->
 	
 	<div class="deuxtiers" style="float: right;">
-		<B_doc>
+		<B_tof>
 		<div id="portfolio">
 			<h2><:dernieres_images:></h2>
 			<p class="gentil_message"><:cliquer_pour_agrandir:></p>
-		<BOUCLE_doc(DOCUMENTS) {extension IN jpg,gif,png}{largeur>300}{hauteur>200} {!par date} {0,4}>
-		[(#SET{visible,[(#FICHIER
-			|image_passe_partout{102,102}
-			|image_recadre{102,102,center}
-			|image_aplatir{jpg,ffffff}
-			|inserer_attribut{class,spip_logos modulo#COMPTEUR_BOUCLE}
-		)]})]
-		<BOUCLE_artdoc(ARTICLES){id_document}>
-		#SET{titart,#TITRE}</BOUCLE_artdoc>
-		<a href="[(#FICHIER|image_reduire{800}|extraire_attribut{src})]" type="#MIME_TYPE"[
-		title="(#TITRE|sinon{#GET{titart}}|texte_backend)"]>#GET{visible}</a>
-		</BOUCLE_doc>
+			<BOUCLE_tof(DOCUMENTS) {extension IN jpg,gif,png}{largeur>300}{hauteur>200} {age<300}{!par date} {0,4}>
+			[(#SET{vignette,[(#FICHIER|image_passe_partout{102,102}|image_recadre{102,102,center}|image_aplatir{jpg,ffffff}|inserer_attribut{class,spip_logos modulo#COMPTEUR_BOUCLE})]})]
+			<BOUCLE_tof_titre(ARTICLES){id_document}>#SET{tof_titre,#TITRE}</BOUCLE_tof_titre>
+			<a href="[(#FICHIER|image_reduire{800}|extraire_attribut{src})]" type="#MIME_TYPE"[ title="(#TITRE|sinon{#GET{tof_titre}}|texte_backend)"]>#GET{vignette}</a>
+			</BOUCLE_tof>
 			<p class="plus"><a href="#URL_PAGE{page_photos}"><:photos_tout:></a></p>
 		</div><!--#portfolio-->
-		</B_doc>
+		</B_tof>
 	</div><!--.deuxtiers-->
 	
 	<div class="tiers">
-    	<INCLURE{fond=inc-liensforum}>
+		<INCLURE{fond=inc-liensforum}>
 		<INCLURE{fond=inc-feed}>
 	</div><!--.tiers-->
+	
 	<div class="tiers modulo3">
-    	<INCLURE{fond=inc-ailleurs}>
+		<INCLURE{fond=inc-ailleurs}>
 	</div><!--.tiers-->
     
 </div><!--#contenu-->
