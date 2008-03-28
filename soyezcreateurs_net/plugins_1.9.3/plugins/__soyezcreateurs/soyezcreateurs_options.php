@@ -78,9 +78,6 @@ $GLOBALS['fin_italique'] = '</em>';
 // Pour pouvoir styler en appliquant : http://www.sovavsiti.cz/css/hr.html
 $GLOBALS['ligne_horizontale'] = "\n<div class='hrspip'><hr class='spip' /></div>\n";
 
-// Ne pas permettre de passer en interface simplifiee
-$_GET["set_options"] = $GLOBALS["set_options"] = 'avancees';
-
 # La liste des webmestres n'ayant pas besoin d'autentification FTP pour les actions avancées de SPIP
 # Séparer les id_auteurs par ':'
 define('_ID_WEBMESTRES', '1');
@@ -90,6 +87,21 @@ define('_SUIVI_FORUM_THREAD', true);
 
 // Se passer de |supprimer_numero partout
 $table_des_traitements['TITRE'][]= 'typo(trim(supprimer_numero(%s)))';
+
+
+######## PACK ACTUEL DE CONFIGURATION DU COUTEAU SUISSE #########
+// Attention, les surcharges sur les define() ou les globales ne sont pas specifiees ici
+$GLOBALS['cs_installer']['SoyezCreateurs'] = array(
+
+	// Installation des outils par defaut
+	'outils' =>
+		'typo_exposants|guillemets|smileys|mailcrypt',
+
+	// Installation des variables par defaut
+	'variables' => array(
+	
+	)
+);
 
 function balise_SECTEUR_PDF_dist($p) {
 	if (!is_array($p->param))
