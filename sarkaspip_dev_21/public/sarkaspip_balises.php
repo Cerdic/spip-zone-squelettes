@@ -109,7 +109,7 @@ function balise_RUBRIQUE_SPECIALISEE($p) {
 	$mot_rubrique = interprete_argument_balise(1,$p);
 	$mot_rubrique = isset($mot_rubrique) ? str_replace('\'', '"', $mot_rubrique) : '""';
 
-	$p->code = 'calcul_rubrique_specialisee('.$mot_rubrique.')';
+	$p->code = 'calcul_rubrique_specialisee('.strtolower($mot_rubrique).')';
 	$p->interdire_scripts = false;
 	return $p;
 }
