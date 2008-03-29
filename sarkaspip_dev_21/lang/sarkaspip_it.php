@@ -37,6 +37,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'album_repondre'=> 'Commenta l\'album',
 		'album_une'=> 'Top Album',
 		'albums_galerie' => 'Galleria',
+		'ancre_haut_page' => 'Top &uarr;',
 		'annee_precedente' => 'Anno precedente',
 		'annee_suivante' => 'Anno successivo',
 		'annonces' => 'Annunci',
@@ -93,8 +94,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //F
 	  
-		'faitavec' => 'Questo sito funziona grazie a', // Plus utilise 
-		'faitpar' => 'SarkAFeeK (Toufik), SarkALeoN (Sylvain), SarkARchimeD (Xavier), SarkASmeL (Eric)',
 		'fevrier' => 'Febbraio',
 		'fil_discussion' => 'Thread di discussione',
 		'filtrage_categorie' => 'Categorie',
@@ -112,8 +111,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 		'hier' => 'ieri',
 		'herbier_sites' => 'herbier',
-		'herbier_tag' => 'cat&eacute;gories',
-		'herbier_url' => 'adresse',
+		'herbier_tag' => 'categorie',
+		'herbier_url' => 'url',
 		'hit_parade' => 'Top Articoli',
 	  
 	
@@ -132,9 +131,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'info_categorie' => 'Categoria',
 		'info_sans_categorie' => 'Eventi senza categoria',
 		'info_sans_filtre' => 'Tutti gli eventi',
-                'info_album_categorie' => 'Categoria',
-                'info_album_sans_categorie' => 'Albums senza categoria',
-                'info_album_sans_filtre' => 'Tutti gli album',
+		'info_album_categorie' => 'Categoria',
+		'info_album_sans_categorie' => 'Albums senza categoria',
+		'info_album_sans_filtre' => 'Tutti gli album',
 		'info_langues' => 'Lingue del sito', // redefinition item SPIP
 		'inscription' => 'Iscrizione',
 		'inscrire_a_newsletter' => 'Iscriversi alla newsletter',
@@ -152,16 +151,20 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //K
 	  
-		'kezakospip' => 'Sito realizzato con SPIP, un CMS gratuito sotto licenza GPL',
+		'kezako_collectif' => 'Sylvain, Toufik, Xavier, Eric, Pascal',
+		'kezako_gpl' => 'Lo squelette SARKA-SPIP &egrave; distribuito sotto licenza GPL',
+		'kezako_sarkaspip' => 'Questo sito utilizza lo squelette SARKA-SPIP',
+		'kezako_spip' => 'Sito realizzato con SPIP, un CMS gratuito sotto licenza GPL',
+		'kezako_squelette' => 'Visualizza il modello della pagina',
+		'kezako_haut_page' => 'Ritorno alla parte superiore della pagina',
 	  
 	
 //L
 	  
-		'licence' => 'Lo squelette SARKA-SPIP &egrave; distribuito sotto licenza GPL', //  plus utilise 
+		'licence_gpl' => 'GPL',
 		'licence_site' => 'Licenza da definire',
-		'licence_squelette' => '<a href="http://www.gnu.org/copyleft/gpl.html" title="Lo squelette SARKA-SPIP &egrave; distribuito sotto licenza GPL">GPL</a>',
 		'lire_suite_article' => 'leggi il seguito dell\'articolo',
-                'lire_evenement_virtuel' => 'Consulta l\'evento originale',
+		'lire_evenement_virtuel' => 'Consulta l\'evento originale',
 		'lundi_abrege' => 'Lu',
 		'login_membre' => 'Connessione',
 		'login_sinscrire' => 'iscriviti', // redefinition item SPIP
@@ -258,7 +261,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'sites_mot' => 'Siti web associati',
 		'site_web' => 'Sito web',
 		'sites_web' => 'Siti Web', // redefinition item SPIP
-		'squelette' => 'Questo sito utilizza lo squelette SARKA-SPIP',
+		'squelette' => 'squelette',
 		'statistiques' => 'Statistiche',
 		'statistiques_edition' => 'Pubblicazione',
 		'statistiques_visites' => 'Visite',

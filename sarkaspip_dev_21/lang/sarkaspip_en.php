@@ -37,6 +37,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'album_repondre'=> 'Comment on this album',
 		'album_une'=> 'Top Album',
 		'albums_galerie' => 'Gallery',
+		'ancre_haut_page' => 'Top &uarr;',
 		'annee_precedente' => 'Previous year',
 		'annee_suivante' => 'Next year',
 		'annonces' => 'Ads',
@@ -93,8 +94,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //F
 	  
-		'faitavec' => 'Powered by', // Unused
-		'faitpar' => 'SarkAFeeK (Toufik), SarkALeoN (Sylvain), SarkARchimeD (Xavier), SarkASmeL (Eric)',
 		'fevrier' => 'February',
 		'fil_discussion' => 'Topic thread',
 		'filtrage_categorie' => 'Categories',
@@ -112,8 +111,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 		'hier' => 'yesterday',
 		'herbier_sites' => 'herbier',
-		'herbier_tag' => 'cat&eacute;gories',
-		'herbier_url' => 'adresse',
+		'herbier_tag' => 'categories',
+		'herbier_url' => 'url',
 		'hit_parade' => 'Top Articles',
 	  
 	
@@ -129,11 +128,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'img_titre' => 'Title',
 		'imprimer_article' => 'Print the article',
 		'info_afficher_album' => 'Visualise this album',
-                'info_album_categorie' => 'Category',
-                'info_album_sans_categorie' => 'Albums not categorised',
-                'info_album_sans_filtre' => 'All albums',
+		'info_album_categorie' => 'Category',
+		'info_album_sans_categorie' => 'Albums not categorised',
+		'info_album_sans_filtre' => 'All albums',
 		'info_categorie' => 'Category',
-                'info_langues' => 'Site\'s languages', // redefinition item SPIP
+		'info_langues' => 'Site\'s languages', // redefinition item SPIP
 		'info_sans_categorie' => 'Events not categorised',
 		'info_sans_filtre' => 'All events',
 		'inscription' => 'Registration',
@@ -153,15 +152,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //K
 	  
-		'kezakospip' => 'Site powered by SPIP, a free CMS under GPL',
+		'kezako_collectif' => 'Sylvain, Toufik, Xavier, Eric, Pascal',
+		'kezako_gpl' => 'SARKA-SPIP template is distributed under GPL',
+		'kezako_sarkaspip' => 'Website using SARKA-SPIP template',
+		'kezako_spip' => 'Site powered by SPIP, a free CMS under GPL',
+		'kezako_squelette' => 'Have a glance at the template of page',
+		'kezako_haut_page' => 'Go back to top',
 	  
 	
 //L
 	  
-		'licence' => 'SARKA-SPIP template is distributed under GPL', // utilisé
+		'licence_gpl' => 'GPL',
 		'licence_site' => 'Licence to be defined',
-		'licence_squelette' => '<a href="http://www.gnu.org/copyleft/gpl.html" title="SARKA-SPIP template is distributed under GPL">GPL</a>',
-                'lire_evenement_virtuel' => 'Read the original event',
+		'lire_evenement_virtuel' => 'Read the original event',
 		'lire_suite_article' => 'Read the whole article',
 		'login_membre' => 'Member\'s login',
 		'login_motpasseoublie' => 'password forgotten?', // redefinition item SPIP
@@ -259,7 +262,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'site_web' => 'Website',
 		'sites_mot' => 'Sites associated',
 		'sites_web' => 'Web sites', // redefinition item SPIP
-		'squelette' => 'Website using SARKA-SPIP template',
+		'squelette' => '',
 		'statistiques' => 'Statistics',
 		'statistiques_edition' => 'Publishing',
 		'statistiques_visites' => 'Visits',

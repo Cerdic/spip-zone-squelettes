@@ -1,27 +1,14 @@
-<!-- Bloc droits d'auteur et licences du site -->
+[(#REM) <!-- Affichage du copyright et outils du site --> ]
 [(#CONFIG{sarkaspip_bandeau_pied/copyright_site, 1}|=={1}|?{' '})
-	<INCLURE{fond=noisettes/inc_copyright_site}>
+	<div>
+		<INCLURE{fond=noisettes/inc_pied_copyright}>
+		[&nbsp;|&nbsp;(#CONFIG{sarkaspip_bandeau_pied/licence_site})]
+	</div>
 ]
-
-<!-- Bloc outils utilises -->
-[(#CONFIG{sarkaspip_bandeau_pied/version_spip, 1}|=={1}|?{' '})
-<a href="http://www.spip.net" title="<:sarkaspip:kezakospip:>">SPIP&nbsp;#SPIP_VERSION</a>[(#CONFIG{sarkaspip_bandeau_pied/version_sarka, 1}|=={1}|?{'&nbsp;|&nbsp;',''})]
+[(#CONFIG{sarkaspip_bandeau_pied/copyright_site, 1}|=={0}|?{' '})
+		[<div>(#CONFIG{sarkaspip_bandeau_pied/licence_site})</div>]
 ]
+<INCLURE{fond=noisettes/inc_pied_outils}{squelette=#ENV{squelette}}>
 
-[(#CONFIG{sarkaspip_bandeau_pied/version_sarka, 1}|=={1}|?{' '})
-<a href="http://sarka-spip.com" title="<:sarkaspip:squelette:>">Sarka-SPIP&nbsp;#VERSION_SQUELETTE</a>&nbsp;::&nbsp;
-]
-
-[(#CONFIG{sarkaspip_bandeau_pied/collectif_sarka, 1}|=={1}|?{' '})
-<a href="http://sarka-spip.com" title="<:sarkaspip:faitpar:>"><:sarkaspip:realisation_squelette:></a>&nbsp;::&nbsp;
-]
-
-[(#CONFIG{sarkaspip_bandeau_pied/licence_squelette, 1}|=={1}|?{' '})
-<:sarkaspip:licence_squelette:>
-]
-
-
-<!-- Appel systematique de la balise cron qand spiplistes est actif	 -->
-[(#PLUGIN{SPIPLISTES}|?{' '})
-	#SPIP_CRON
-]
+[(#REM) <!-- Appel systematique de la balise cron pour deporter les traitements lourds en fin de page --> ]
+#SPIP_CRON

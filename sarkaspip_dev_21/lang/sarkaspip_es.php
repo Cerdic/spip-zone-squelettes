@@ -37,6 +37,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'album_repondre'=> 'Commentar el album',
 		'album_une'=> 'Top Album ',
 		'albums_galerie' => 'Galer&iacute;a',
+		'ancre_haut_page' => 'Arriba &uarr;',
 		'annee_precedente' => 'A&ntilde;o anterior',
 		'annee_suivante' => 'A&ntilde;o siguiente',
 		'annonces' => 'Anuncios',
@@ -93,8 +94,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //F
 	  
-		'faitavec' => 'Este sitio funciona gracias a', // No mas utilizado
-		'faitpar' => 'SarkAFeeK (Toufik), SarkALeoN (Sylvain), SarkARchimeD (Xavier), SarkASmeL (Eric)',
 		'fevrier' => 'Febrero',
 		'fil_discussion' => 'Hilo de t&oacute;pico',
 		'filtrage_categorie' => 'Categor&iacute;as',
@@ -112,8 +111,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 		'hier' => 'ayer',
 		'herbier_sites' => 'herbier',
-		'herbier_tag' => 'cat&eacute;gories',
-		'herbier_url' => 'adresse',
+		'herbier_tag' => 'categor&iacute;as',
+		'herbier_url' => 'url',
 		'hit_parade' => 'Top Art&iacute;culos',
 	  
 	
@@ -129,11 +128,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'img_titre' => 'T&iacute;tulo',
 		'imprimer_article' => 'imprimir el art&iacute;culo',
 		'info_afficher_album' => 'Ver el &aacute;lbum',
-                'info_album_categorie' => 'Categor&iacute;a',
-                'info_album_sans_categorie' => 'Albums  sin categor&iacute;a',
-                'info_album_sans_filtre' => 'Todos los &aacute;lbums',
+		'info_album_categorie' => 'Categor&iacute;a',
+		'info_album_sans_categorie' => 'Albums  sin categor&iacute;a',
+		'info_album_sans_filtre' => 'Todos los &aacute;lbums',
 		'info_categorie' => 'Acontecimientos de la categor&iacute;a',
-                'info_langues' => 'Idiomas del sitio', // redefinition item SPIP
+		'info_langues' => 'Idiomas del sitio', // redefinition item SPIP
 		'info_sans_categorie' => 'Acontecimientos sin categor&iacute;a',
 		'info_sans_filtre' => 'Todos los acontecimientos',
 		'inscription' => 'Inscripci&oacute;n',
@@ -153,20 +152,25 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //K
 	  
-		'kezakospip' => 'Sitio realizado con SPIP, un CMS gratuito bajo licencia GPL',
+	  
+		'kezako_collectif' => 'Sylvain, Toufik, Xavier, Eric, Pascal',
+		'kezako_gpl' => 'El esqueleto SARKA-SPIP esta distribuido bajo la licencia GPL',
+		'kezako_sarkaspip' => 'Este sitio utiliza el esqueleto SARKA-SPIP',
+		'kezako_spip' => 'Sitio realizado con SPIP, un CMS gratuito bajo licencia GPL',
+		'kezako_squelette' => 'Ver el esqueletode la p&aacute;gina',
+		'kezako_haut_page' => 'Vuelta en la parte superior de la p&aacute;gina',
 	  
 	
 //L
 	  
-		'licence' => 'El esqueleto SARKA-SPIP esta distribuido bajo la licencia GPL',
+		'licence_gpl' => 'GPL',
 		'licence_site' => 'Licencia a definir',
-		'licence_squelette' => '<a href="http://www.gnu.org/copyleft/gpl.html" title="El esqueleto SARKA-SPIP esta distribuido bajo la licencia GPL">GPL</a>',
-                'lire_evenement_virtuel' => 'Leer el acontecimiento original',
+		'lire_evenement_virtuel' => 'Leer el acontecimiento original',
 		'lire_suite_article'=> 'leer el resto del art&iacute;culo',
 		'login_membre' => 'Conexi&oacute;n',
-                'login_motpasseoublie' => '&iquest;contrase&ntilde;a&nbsp;olvidada?', // redefinition item SPIP
-                'login_retoursitepublic' => 'volver&nbsp;al&nbsp;sitio&nbsp;p&uacute;blico', // redefinition item SPIP
-                'login_sinscrire' => 'inscribirse', // redefinition item SPIP
+		'login_motpasseoublie' => '&iquest;contrase&ntilde;a&nbsp;olvidada?', // redefinition item SPIP
+		'login_retoursitepublic' => 'volver&nbsp;al&nbsp;sitio&nbsp;p&uacute;blico', // redefinition item SPIP
+		'login_sinscrire' => 'inscribirse', // redefinition item SPIP
 		'logout_membre' => 'Desconexi&oacute;n',
 		'lundi_abrege' => 'Lu',
 		'lxh' => 'por',
@@ -260,7 +264,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'site_web' => 'Sitio web',
 		'sites_mot' => 'Sitios Web relacionados',
 		'sites_web' => 'Sitios Web', // redefinition item SPIP
-		'squelette' => 'Este sitio utiliza el esqueleto SARKA-SPIP',
+		'squelette' => 'esqueleto',
 		'statistiques' => 'Estad’sticas',
 		'statistiques_edition' => 'Publicati&oacute;n',
 		'statistiques_visites' => 'Visitas',

@@ -37,6 +37,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'album_repondre'=> 'Commenter l\'album',
 		'album_une'=> 'Top Album',
 		'albums_galerie' => 'Galerie',
+		'ancre_haut_page' => 'Haut &uarr;',
 		'annee_precedente' => 'Ann&eacute;e pr&eacute;c&eacute;dente',
 		'annee_suivante' => 'Ann&eacute;e  suivant',
 		'annonces' => 'Annonces',
@@ -93,8 +94,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //F
 	  
-		'faitavec' => 'Ce site fonctionne gr&acirc;ce &agrave;', // Plus utilise 
-		'faitpar' => 'SarkAFeeK (Toufik), SarkALeoN (Sylvain), SarkARchimeD (Xavier), SarkASmeL (Eric)',
 		'fevrier' => 'F&eacute;vrier',
 		'fil_discussion' => 'Fil de discussion',
 		'filtrage_categorie' => 'Cat&eacute;gories',
@@ -152,14 +151,18 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //K
 	  
-		'kezakospip' => 'Site r&eacute;alis&eacute; avec SPIP, un CMS gratuit sous licence GPL',
+		'kezako_collectif' => 'Sylvain, Toufik, Xavier, Eric, Pascal',
+		'kezako_gpl' => 'Le squelette SARKA-SPIP est distribu&eacute; sous licence GPL',
+		'kezako_sarkaspip' => 'Ce site utilise le squelette SARKA-SPIP',
+		'kezako_spip' => 'Site r&eacute;alis&eacute; avec SPIP, un CMS gratuit sous licence GPL',
+		'kezako_squelette' => 'Voir le squelette de la page',
+		'kezako_haut_page' => 'Retour en haut de la page',
 	  
 	
 //L
 	  
-		'licence' => 'Le squelette SARKA-SPIP est distribu&eacute; sous licence GPL', //  plus utilise 
+		'licence_gpl' => 'GPL',
 		'licence_site' => 'Licence &agrave; d&eacute;finir',
-		'licence_squelette' => '<a href="http://www.gnu.org/copyleft/gpl.html" title="Le squelette SARKA-SPIP est distribu&eacute; sous licence GPL">GPL</a>',
 		'lire_suite_article' => 'lire la suite de l\'article',
 		'lire_evenement_virtuel' => 'Consulter l\'&eacute;v&eacute;nement d\'origine',
 		'lundi_abrege' => 'Lu',
@@ -259,7 +262,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'sites_mot' => 'Sites web associ&eacute;s',
 		'site_web' => 'Site web',
 		'sites_web' => 'Sites Web', // redefinition item SPIP
-		'squelette' => 'Ce site utilise le squelette SARKA-SPIP',
+		'squelette' => 'squelette',
 		'statistiques' => 'Statistiques',
 		'statistiques_edition' => 'Publication',
 		'statistiques_visites' => 'Visites',
@@ -352,7 +355,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // Legendes des blocs contenus dans chaque boite
 		'cfg_lgd_layout' => 'Layout',
 		'cfg_lgd_bandeau' => 'Bandeau',
-		'cfg_lgd_pied' => 'Pied de page',
+		'cfg_lgd_pied_copyright' => 'Pied de page - Copyright et licence',
+		'cfg_lgd_pied_version' => 'Pied de page - Versions',
+		'cfg_lgd_pied_liens' => 'Pied de page - Liens',
 		'cfg_lgd_inc_rubriques' => 'Menu des rubriques',
 		'cfg_lgd_inc_breves' => 'Liste des br&egrave;ves',
 		'cfg_lgd_inc_commentaires' => 'Liste des commentaires',
@@ -369,9 +374,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_sommaire_secteurs' => 'Liste des secteurs',
 		'cfg_lgd_sommaire_articles' => 'Liste des articles r&eacute;cents',
 		'cfg_lgd_herbier_pagination' => 'Pagination',
-		'cfg_lgd_pied_copyright' => 'Copyright et licence',
-		'cfg_lgd_pied_version' => 'Versions',
-		'cfg_lgd_pied_liens' => 'Liens',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -407,9 +409,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_copyright_site' => 'D&eacute;sirez vous afficher le copyright de votre site?<br />(&copy;, ann&eacute;e de publication du 1<sup>er</sup> article et ann&eacute;e en cours) ',
 		'cfg_inf_licence_site' => 'Licence du site. Elle s\'affichera &agrave; droite de votre copyright.<br />(laissez vide pour ne rien afficher)',
 		'cfg_inf_version_spip' => 'D&eacute;sirez vous afficher la version de SPIP install&eacute;e ?',
-		'cfg_inf_version_sarka' => 'D&eacute;sirez vous afficher la version de SarkASPIP install&eacute;e ?',
-		'cfg_inf_collectif_sarka' => 'D&eacute;sirez vous ins&eacute;rer un lien vers le site du collectif SarkA ?',
-		'cfg_inf_licence_squelette' => 'D&eacute;sirez vous ins&eacute;rer un lien vers la licence GPL des squelettes ?',
+		'cfg_inf_version_sarka' => 'D&eacute;sirez vous afficher la version de Sarka-SPIP install&eacute;e ?',
+		'cfg_inf_collectif_sarka' => 'D&eacute;sirez vous ins&eacute;rer un lien vers le site du collectif Sarka-SPIP ?',
+		'cfg_inf_licence_squelette' => 'D&eacute;sirez vous ins&eacute;rer un lien vers la description de la licence GPL adopt&eqcute;e par le squelette Sarka-SPIP ?',
+		'cfg_inf_lien_squelette' => 'D&eacute;sirez vous ins&eacute;rer un lien permettant de visualiser ou de t&eacute;l&eacute;charger le squelette de la page en cours ?',
+		'cfg_inf_ancre_hautpage' => 'D&eacute;sirez vous ins&eacute;rer un lien permettant de remonter vers le haut de la page ?',
 
 
 // Labels des items de choix
