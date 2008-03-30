@@ -380,6 +380,7 @@ function agenda_mini_afficher($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv=
 
 	// Creation du header compose des items de navigation annee et mois
 	$agenda .= agenda_mini_header($id_agenda, $icone_prec, $icone_suiv);
+	$agenda .= '<div class="clearer"></div>';
 	
 	// Creation du body compose du calendrier mensuel
 	$agenda .= agenda_mini_body($id_agenda, $jour_debut, $affichage_hors_mois);
@@ -436,21 +437,15 @@ function agenda_mini_header($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='&
 	// Init de la chaine
 	$thead = NULL;
 	// Debut de l'en-tete
-	$thead .= '<table class="miniagenda_head">';
 	// Ligne 1 : pagination par annee
-	$thead .= '<tr>';
-	$thead .= '<td><a href="'.$url_base.'calendrier_mois='.$mois_choisi.'&amp;calendrier_annee='.$annee_choisie_prec.'" title="'._T('sarkaspip:annee_precedente').'">'.$icone_prec.'</a></td>';
-	$thead .= '<td>'.$annee_choisie.'</td>';   
-	$thead .= '<td><a href="'.$url_base.'calendrier_mois='.$mois_choisi.'&amp;calendrier_annee='.$annee_choisie_suiv.'" title="'._T('sarkaspip:annee_suivante').'">'.$icone_suiv.'</a></td>';
-	$thead .= '</tr>';
+	$thead .= '<h2><a class="titre_bloc" href="'.$url_base.'calendrier_mois='.$mois_choisi.'&amp;calendrier_annee='.$annee_choisie_prec.'" title="'._T('sarkaspip:annee_precedente').'">'.$icone_prec.'</a></h2>';
+	$thead .= '<h2 class="titre_bloc">'.$annee_choisie.'</h2>';   
+	$thead .= '<h2><a class="titre_bloc" href="'.$url_base.'calendrier_mois='.$mois_choisi.'&amp;calendrier_annee='.$annee_choisie_suiv.'" title="'._T('sarkaspip:annee_suivante').'">'.$icone_suiv.'</a></h2>';
 	// Ligne 2 : pagination par mois
-	$thead .= '<tr>';
-	$thead .= '<td><a href="'.$url_base.'calendrier_mois='.$mois_prec.'&amp;calendrier_annee='.$annee_prec.'" title="'._T('sarkaspip:mois_precedent').'">'.$icone_prec.'</a></td>';
-	$thead .= '<td>'.$nom_mois[$mois_choisi].'</td>';   
-	$thead .= '<td><a href="'.$url_base.'calendrier_mois='.$mois_suiv.'&amp;calendrier_annee='.$annee_suiv.'" title="'._T('sarkaspip:mois_suivant').'">'.$icone_suiv.'</a></td>';
-	$thead .= '</tr>';
+	$thead .= '<h2><a class="titre_bloc" href="'.$url_base.'calendrier_mois='.$mois_prec.'&amp;calendrier_annee='.$annee_prec.'" title="'._T('sarkaspip:mois_precedent').'">'.$icone_prec.'</a></h2>';
+	$thead .= '<h2 class="titre_bloc">'.$nom_mois[$mois_choisi].'</h2>';   
+	$thead .= '<h2><a class="titre_bloc" href="'.$url_base.'calendrier_mois='.$mois_suiv.'&amp;calendrier_annee='.$annee_suiv.'" title="'._T('sarkaspip:mois_suivant').'">'.$icone_suiv.'</a></h2>';
 	// Fin de l'en-tete
-	$thead .= '</table>';
 
 	return $thead;
 }
@@ -484,14 +479,14 @@ function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui
 
 	$tableau = NULL;
 	// DŽbut du tableau
-	$tableau .= '<table class="miniagenda_body" summary="'._T('sarkaspip:resume_mini_agenda').'">';
+	$tableau .= '<table summary="'._T('sarkaspip:resume_mini_agenda').'">';
 	
 	// 1ere ligne : nom abrege des jours de dimanche a samedi
 	$tableau .= '<thead>'; 
 	$tableau .= '<tr>';
 	for($i = 0; $i <= 6; $i++) {
 		$j = ($jour_debut+$i)%7;
-		$tableau .= '<th class="calendar_head_mini" title="'.$nom_jour[$j].'">'.$nom_jour_abrege[$j].'</th>';
+		$tableau .= '<th title="'.$nom_jour[$j].'">'.$nom_jour_abrege[$j].'</th>';
 	}
 	$tableau .= '</tr>';
 	$tableau .= '</thead>';
@@ -596,10 +591,11 @@ function agenda_mini_footer($id_agenda=0, $critere='mois_complet', $taille=5) {
 	$tfoot = NULL;
 
 	// Ligne 1 : retour au mois du jour courant
-	$tfoot .= '<div class=miniagenda_foot><a href="'.$url_base.'calendrier_mois='.$mois_aujourdhui.'&amp;calendrier_annee='.$annee_aujourdhui.'" title="'._T('sarkaspip:retour_aujourdhui').'">'.ucfirst(_T('sarkaspip:aujourdhui')).'</a></div>';
+	$tfoot .= '<h2><a id="aujourdhui" class="titre_bloc" href="'.$url_base.'calendrier_mois='.$mois_aujourdhui.'&amp;calendrier_annee='.$annee_aujourdhui.'" title="'._T('sarkaspip:retour_aujourdhui').'">'.ucfirst(_T('sarkaspip:aujourdhui')).'</a></h2>';
+	$tfoot .= '<div class="clearer"></div>';
 
 	// Debut du tableau
-	$tfoot .= '<table class="miniagenda_foot">';
+	$tfoot .= '<table>';
 	// Extraction des evenements du mois en cours
 	$i = 1;
 	$liste_complete = FALSE;
