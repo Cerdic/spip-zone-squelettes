@@ -369,7 +369,29 @@ function agenda_liste_avertir($id_agenda, $annee_choisie, $mois_choisi) {
 //               precedent
 // ===================================================
 //
-function agenda_mini_paginer($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='&gt;&gt;') {
+function agenda_mini_afficher($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='&gt;&gt;', 
+											$jour_debut=0, $affichage_hors_mois='oui',
+											$critere='mois_complet', $taille=5) {
+
+	if ($id_agenda == 0)
+		return;
+		
+	$agenda = NULL;
+
+	// Creation du header compose des items de navigation annee et mois
+	$agenda .= agenda_mini_header($id_agenda, $icone_prec, $icone_suiv);
+	
+	// Creation du body compose du calendrier mensuel
+	$agenda .= agenda_mini_body($id_agenda, $jour_debut, $affichage_hors_mois);
+	
+	// Creation du footer compose des items de navigation aujourd'hui et du resume des evenements du mois
+	$agenda .= agenda_mini_footer($id_agenda, $critere, $taille);
+
+	return $agenda;
+}
+
+
+function agenda_mini_header($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='&gt;&gt;') {
 
 	$nom_mois = array(1 => _T('sarkaspip:janvier'), 2 => _T('sarkaspip:fevrier'), 3 => _T('sarkaspip:mars'), 4 => _T('sarkaspip:avril'), 
 					5 => _T('sarkaspip:mai'), 6 => _T('sarkaspip:juin'), 7 => _T('sarkaspip:juillet'), 8 => _T('sarkaspip:aout'),
@@ -378,13 +400,13 @@ function agenda_mini_paginer($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='
 	if ($id_agenda == 0)
 		return;
 
+	// Init du contexte
 	$contexte_aff = agenda_definir_contexte(0);
 	$mois_choisi = $contexte_aff['mois_base'];
 	$annee_choisie = $contexte_aff['annee_base'];
 	$url_base = $contexte_aff['url_base'];
 
-	$pagination = NULL;
-
+	// Calcul des mois precedent et suivant
 	$mois = $mois_choisi-1;
 	if ($mois < 1) {
 		$mois_prec = '12';
@@ -404,24 +426,33 @@ function agenda_mini_paginer($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='
 		$mois_suiv = strval($mois);
 		$annee_suiv = strval($annee_choisie);
 	}	
-
+	// Calcul des annees precedente et suivante
 	$annee_choisie_prec = strval($annee_choisie-1);
 	$annee_choisie_suiv = strval($annee_choisie+1);
-
+	// Calcul des mois et annees courants
 	$mois_aujourdhui = date("m");
 	$annee_aujourdhui = date("Y");
 
-	$pagination .= '<a href="'.$url_base.'calendrier_mois='.$mois_choisi.'&amp;calendrier_annee='.$annee_choisie_prec.'" title="'._T('sarkaspip:annee_precedente').'">'.$icone_prec.'</a>';
-	$pagination .= '&nbsp;&nbsp;'.$annee_choisie.'&nbsp;&nbsp;';   
-	$pagination .= '<a href="'.$url_base.'calendrier_mois='.$mois_choisi.'&amp;calendrier_annee='.$annee_choisie_suiv.'" title="'._T('sarkaspip:annee_suivante').'">'.$icone_suiv.'</a>';
-	$pagination .= '<br />';
-	$pagination .= '<a href="'.$url_base.'calendrier_mois='.$mois_prec.'&amp;calendrier_annee='.$annee_prec.'" title="'._T('sarkaspip:mois_precedent').'">'.$icone_prec.'</a>';
-	$pagination .= '&nbsp;&nbsp;'.$nom_mois[$mois_choisi].'&nbsp;&nbsp;';   
-	$pagination .= '<a href="'.$url_base.'calendrier_mois='.$mois_suiv.'&amp;calendrier_annee='.$annee_suiv.'" title="'._T('sarkaspip:mois_suivant').'">'.$icone_suiv.'</a>';
-	$pagination .= '<br />';
-	$pagination .= '<a href="'.$url_base.'calendrier_mois='.$mois_aujourdhui.'&amp;calendrier_annee='.$annee_aujourdhui.'" title="'._T('sarkaspip:retour_aujourdhui').'">'.ucfirst(_T('sarkaspip:aujourdhui')).'</a>';
+	// Init de la chaine
+	$thead = NULL;
+	// Debut de l'en-tete
+	$thead .= '<table class="miniagenda_head">';
+	// Ligne 1 : pagination par annee
+	$thead .= '<tr>';
+	$thead .= '<td><a href="'.$url_base.'calendrier_mois='.$mois_choisi.'&amp;calendrier_annee='.$annee_choisie_prec.'" title="'._T('sarkaspip:annee_precedente').'">'.$icone_prec.'</a></td>';
+	$thead .= '<td>'.$annee_choisie.'</td>';   
+	$thead .= '<td><a href="'.$url_base.'calendrier_mois='.$mois_choisi.'&amp;calendrier_annee='.$annee_choisie_suiv.'" title="'._T('sarkaspip:annee_suivante').'">'.$icone_suiv.'</a></td>';
+	$thead .= '</tr>';
+	// Ligne 2 : pagination par mois
+	$thead .= '<tr>';
+	$thead .= '<td><a href="'.$url_base.'calendrier_mois='.$mois_prec.'&amp;calendrier_annee='.$annee_prec.'" title="'._T('sarkaspip:mois_precedent').'">'.$icone_prec.'</a></td>';
+	$thead .= '<td>'.$nom_mois[$mois_choisi].'</td>';   
+	$thead .= '<td><a href="'.$url_base.'calendrier_mois='.$mois_suiv.'&amp;calendrier_annee='.$annee_suiv.'" title="'._T('sarkaspip:mois_suivant').'">'.$icone_suiv.'</a></td>';
+	$thead .= '</tr>';
+	// Fin de l'en-tete
+	$thead .= '</table>';
 
-	return $pagination;
+	return $thead;
 }
 
 // ===================================================
@@ -432,38 +463,41 @@ function agenda_mini_paginer($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='
 //               contigus hors mois choisi
 // ===================================================
 //
-function agenda_mini_afficher($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui') {
+function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui') {
 
-	$nom_jour = array(	0 => _T('sarkaspip:dimanche_abrege'), 1 => _T('sarkaspip:lundi_abrege'), 2 => _T('sarkaspip:mardi_abrege'), 3 => _T('sarkaspip:mercredi_abrege'), 
+	$nom_jour_abrege = array(	0 => _T('sarkaspip:dimanche_abrege'), 1 => _T('sarkaspip:lundi_abrege'), 2 => _T('sarkaspip:mardi_abrege'), 3 => _T('sarkaspip:mercredi_abrege'), 
 						4 => _T('sarkaspip:jeudi_abrege'), 5 => _T('sarkaspip:vendredi_abrege'), 6 => _T('sarkaspip:samedi_abrege'));
+	$nom_jour = array(	0 => _T('sarkaspip:dimanche'), 1 => _T('sarkaspip:lundi'), 2 => _T('sarkaspip:mardi'), 3 => _T('sarkaspip:mercredi'), 
+						4 => _T('sarkaspip:jeudi'), 5 => _T('sarkaspip:vendredi'), 6 => _T('sarkaspip:samedi'));
 
 	if ($id_agenda == 0)
 		return;
 
-	// Recuperation du contexte
+	// Init du contexte
 	$contexte_aff = agenda_definir_contexte(0);
 	$mois_choisi = $contexte_aff['mois_base'];
 	$annee_choisie = $contexte_aff['annee_base'];
 	$url_base = $contexte_aff['url_base'];
-
-	// Recuperation des listes d'evenements
+	// Init des listes d'evenements
 	$evenements = agenda_recenser_evenement(0);
 	$mini_evenements = agenda_recenser_evenement(-1);
 
 	$tableau = NULL;
-
-	// Debut du tableau
-	$tableau .= '<table class="tableau">'; 
-
+	// DŽbut du tableau
+	$tableau .= '<table class="miniagenda_body" summary="'._T('sarkaspip:resume_mini_agenda').'">';
+	
 	// 1ere ligne : nom abrege des jours de dimanche a samedi
+	$tableau .= '<thead>'; 
 	$tableau .= '<tr>';
 	for($i = 0; $i <= 6; $i++) {
 		$j = ($jour_debut+$i)%7;
-		$tableau .= '<th class="calendar_head_mini">'.$nom_jour[$j].'</th>';
+		$tableau .= '<th class="calendar_head_mini" title="'.$nom_jour[$j].'">'.$nom_jour_abrege[$j].'</th>';
 	}
 	$tableau .= '</tr>';
+	$tableau .= '</thead>';
 
 	// Cellules des jours : de 4 a 5 lignes de 7 jours. Debut de la 2eme ligne
+	$tableau .= '<tbody>'; 
 	$tableau .= '<tr>';
 
 	// Cellules des jours visibles precedant le mois courant (toujours inclus strictement dans la 2eme ligne)
@@ -524,6 +558,7 @@ function agenda_mini_afficher($id_agenda=0, $jour_debut=0, $affichage_hors_mois=
 	$tableau .= '</tr>';
 
 	// Fin du tableau
+	$tableau .= '</tbody>';
 	$tableau .= '</table>';
 
 	return $tableau;
@@ -538,7 +573,7 @@ function agenda_mini_afficher($id_agenda=0, $jour_debut=0, $affichage_hors_mois=
 //               fin du mois % date du jour)
 // ===================================================
 //
-function agenda_mini_resumer($id_agenda=0, $critere='mois_complet', $taille=5) {
+function agenda_mini_footer($id_agenda=0, $critere='mois_complet', $taille=5) {
 
 	if ($id_agenda == 0)
 		return;
@@ -546,21 +581,25 @@ function agenda_mini_resumer($id_agenda=0, $critere='mois_complet', $taille=5) {
 	if ($taille == 0)
 		return;
 
+	// Init du contexte
 	$contexte_aff = agenda_definir_contexte(0);
 	$mois_choisi = $contexte_aff['mois_base'];
 	$annee_choisie = $contexte_aff['annee_base'];
-
+	// Init de l'annee et du mois courant
 	$mois_courant = affdate_base(date('Y-m-d'), 'mois');
 	$annee_courante = affdate_base(date('Y-m-d'), 'annee');
-
+	// Init des listes d'evenements
 	$evenements = agenda_recenser_evenement(0);
 	$count_evt = count($evenements);
 
-	$tableau = NULL;
+	// Init de la chaine
+	$tfoot = NULL;
+
+	// Ligne 1 : retour au mois du jour courant
+	$tfoot .= '<div class=miniagenda_foot><a href="'.$url_base.'calendrier_mois='.$mois_aujourdhui.'&amp;calendrier_annee='.$annee_aujourdhui.'" title="'._T('sarkaspip:retour_aujourdhui').'">'.ucfirst(_T('sarkaspip:aujourdhui')).'</a></div>';
 
 	// Debut du tableau
-	$tableau .= '<table class="liste_evenement">';
-
+	$tfoot .= '<table class="miniagenda_foot">';
 	// Extraction des evenements du mois en cours
 	$i = 1;
 	$liste_complete = FALSE;
@@ -576,7 +615,7 @@ function agenda_mini_resumer($id_agenda=0, $critere='mois_complet', $taille=5) {
 			$count_mois += 1;
 		$critere_ok = (($critere == 'mois_complet') || (($critere == 'fin_mois') && (date('Y-m-d',$date) >= date('Y-m-d'))));
 		if (($annee == $annee_choisie) && ($mois == $mois_choisi) && ($count_liste < $taille) && ($critere_ok)) {
-			$cellule .= '<tr>';
+			$cellule .= '<tr class="liste_evenement">';
 			$cellule .= '<td class="date_even">'.affdate_base($evenements[$i]['date_redac'], 'd-m H:i').':&nbsp;</td>';
 			$cellule .= '<td class="titre_even"><a href="spip.php?page=evenement&amp;id_article='.$evenements[$i]['id'].'">'.$evenements[$i]['titre'].'</a></td>';
 			$cellule .= '</tr>';
@@ -588,22 +627,22 @@ function agenda_mini_resumer($id_agenda=0, $critere='mois_complet', $taille=5) {
 
 	if ($count_liste == 0)
 		if ($critere == 'mois_complet')
-			$cellule .= '<tr><td class="titre_even" id="vide">'._T('sarkaspip:agenda_mois_vide').'</td></tr>';
+			$cellule .= '<tr class="liste_evenement"><td class="titre_even" id="vide">'._T('sarkaspip:agenda_mois_vide').'</td></tr>';
 		else
 			if ($count_mois == 0)
 				if (($annee_courante < $annee_choisie) || (($annee_courante == $annee_choisie) && ($mois_courant < $mois_choisi)))
-					$cellule .= '<tr><td class="titre_even" id="vide">'._T('sarkaspip:agenda_mois_vide').'</td></tr>';
+					$cellule .= '<tr class="liste_evenement"><td class="titre_even" id="vide">'._T('sarkaspip:agenda_mois_vide').'</td></tr>';
 				else if (($annee_courante == $annee_choisie) && ($mois_courant == $mois_choisi))
-					$cellule .= '<tr><td class="titre_even" id="vide">'._T('sarkaspip:agenda_fin_mois_vide').'</td></tr>';
+					$cellule .= '<tr class="liste_evenement"><td class="titre_even" id="vide">'._T('sarkaspip:agenda_fin_mois_vide').'</td></tr>';
 				else
-					$cellule .= '<tr><td class="titre_even" id="vide">'._T('sarkaspip:agenda_fin_mois_depasse').'</td></tr>';
+					$cellule .= '<tr class="liste_evenement"><td class="titre_even" id="vide">'._T('sarkaspip:agenda_fin_mois_depasse').'</td></tr>';
 			else
-				$cellule .= '<tr><td class="titre_even" id="vide">'._T('sarkaspip:agenda_fin_mois_depasse').'</td></tr>';
-	$tableau .= $cellule;
+				$cellule .= '<tr class="liste_evenement"><td class="titre_even" id="vide">'._T('sarkaspip:agenda_fin_mois_depasse').'</td></tr>';
+	$tfoot .= $cellule;
 
 	// Fin du tableau
-	$tableau .= '</table>';
+	$tfoot .= '</table>';
 
-	return $tableau;
+	return $tfoot;
 }
 ?>

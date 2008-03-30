@@ -1,5 +1,7 @@
 <div id="noisette_mini_agenda" class="noisette">
-	<h1><a class="intitule" href="[(#URL_PAGE{agenda,[id_rubrique=(#ENV{id_rubrique})][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:agenda:></a></h1>
+	<h1><a class="intitule" href="[(#URL_PAGE{agenda,[id_rubrique=(#ENV{id_rubrique})][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]">
+			<:sarkaspip:agenda:>
+	</a></h1>
 
 	<div class="contenu">
 		[(#REM) <!-- Definition du contexte de l'agenda --> ]
@@ -20,28 +22,13 @@
 		</BOUCLE_agenda>
 
 		[(#REM) <!-- Bloc en-tete mois et pagination du mini-agenda -->] 
-		<div class="mois">
-			[(#ENV{id_rubrique}|agenda_mini_paginer{
-								[(#CONFIG{sarkaspip_agenda/icone_precedent, <<})],
-								[(#CONFIG{sarkaspip_agenda/icone_suivant, >>})]}
-			)]
-		</div>
-
-		[(#REM) <!-- Bloc tableau des jours du mois du mini-agenda -->] 
-		<div class="mois">
-			[(#ENV{id_rubrique}|agenda_mini_afficher{
+		[(#ENV{id_rubrique}|agenda_mini_afficher{
+								[(#CONFIG{sarkaspip_agenda/icone_precedent, &lt;&lt;})],
+								[(#CONFIG{sarkaspip_agenda/icone_suivant, &gt;&gt;})],
 								[(#CONFIG{sarkaspip_agenda/jour1, 1})],
-								[(#CONFIG{sarkaspip_agenda/affichage_hors_mois, oui})]}
-			)]
-		</div>  
-
-		[(#REM) <!-- Bloc liste des n derniers evenements du mois -->] 
-	    [<div class="mois"> 
-			(#ENV{id_rubrique}|agenda_mini_resumer{
+								[(#CONFIG{sarkaspip_agenda/affichage_hors_mois, oui})],
 								[(#CONFIG{sarkaspip_agenda/type_resume, fin_mois})],
 								[(#CONFIG{sarkaspip_agenda/taille_resume, 5})]}
-			)
-	    </div>]
-
+			)]
 	</div>
 </div>
