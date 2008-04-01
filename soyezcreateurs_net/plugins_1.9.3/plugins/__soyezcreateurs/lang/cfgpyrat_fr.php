@@ -21,7 +21,17 @@ $GLOBALS['i18n_cfgpyrat_fr'] = array(
 'parametres_xiti' => 'Param&egrave;tres pour Xiti',
 
 // pour cfg_soyezcreateurs
-'textesiplanvide' => 'Texte si le plan est vide'
+'textesiplanvide' => 'Texte si le plan est vide',
+
+// pour la navigation avec lien*=
+'bte' => 'Enluminures Typo',
+'btv2' => 'Barre typographique',
+'barre_typo_generalisee' => 'Barre Typographique G&eacute;n&eacute;ralis&eacute;e',
+'boutonstexte' => 'Boutons texte',
+'soyezcreateurs' => 'Soyez Cr&eacute;ateurs',
+'soyezcreateurs_layout' => 'Positionnement',
+'soyezcreateurs_couleurs' => 'Couleurs',
+'soyezcreateurs_google' => 'R&eacute;f&eacute;rencement'
 
 );
 
