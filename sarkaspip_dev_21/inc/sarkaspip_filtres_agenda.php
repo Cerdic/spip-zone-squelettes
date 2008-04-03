@@ -568,6 +568,10 @@ function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui
 //
 function agenda_mini_footer($id_agenda=0, $critere='mois_complet', $taille=5) {
 
+	$nom_mois = array(1 => _T('sarkaspip:janvier'), 2 => _T('sarkaspip:fevrier'), 3 => _T('sarkaspip:mars'), 4 => _T('sarkaspip:avril'), 
+					5 => _T('sarkaspip:mai'), 6 => _T('sarkaspip:juin'), 7 => _T('sarkaspip:juillet'), 8 => _T('sarkaspip:aout'),
+					9 => _T('sarkaspip:septembre'), 10 => _T('sarkaspip:octobre'), 11 => _T('sarkaspip:novembre'), 12 => _T('sarkaspip:decembre'));
+
 	if ($id_agenda == 0)
 		return;
 
@@ -590,7 +594,7 @@ function agenda_mini_footer($id_agenda=0, $critere='mois_complet', $taille=5) {
 	$footer = NULL;
 
 	// Ligne 1 : retour au mois du jour courant
-	$footer .= '<h2><a id="aujourdhui" class="titre_bloc" href="'.$url_base.'calendrier_mois='.$mois_courant.'&amp;calendrier_annee='.$annee_courante.'" title="'._T('sarkaspip:retour_aujourdhui').'">'.ucfirst(_T('sarkaspip:aujourdhui')).'</a></h2>';
+	$footer .= '<h2><a id="aujourdhui" class="titre_bloc" href="'.$url_base.'calendrier_mois='.$mois_courant.'&amp;calendrier_annee='.$annee_courante.'" title="'.$nom_mois[intval($mois_courant)].'&nbsp;'.$annee_courante.'">'.ucfirst(_T('sarkaspip:aujourdhui')).'</a></h2>';
 	$footer .= '<div class="clearer"></div>';
 
 	// Debut du tableau
