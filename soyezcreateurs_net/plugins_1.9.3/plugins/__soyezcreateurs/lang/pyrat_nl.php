@@ -110,7 +110,7 @@ $GLOBALS['i18n_pyrat_nl'] = array(
 'derniersarticlespublies' => 'De laatste gepubliceerde artikelen',
 
 //M
-'memerubrique' => 'In dezelfde rubriek...',
+'memerubrique' => 'In deze rubriek...',
 'mentionslegales' => 'Wettelijke vermeldingen &amp; voorwaarden voor gebruik',
 'menu_deplier' => 'ontvouwen: ',
 'menu_picalt' => 'klikken voor ',
@@ -140,7 +140,7 @@ $GLOBALS['i18n_pyrat_nl'] = array(
 //P
 'par' => 'door',
 'participez' => 'Neemt aan het leven van de website deel&nbsp;!',
-'plan_menu' => 'Plan van de website',
+'plan_menu' => 'Website orverzicht',
 'plus_loin' => 'om eveneens te zien',
 'plus_loin_title' => 'Website van verwijzing',
 'precisezrecherche' => 'Uw onderzoek aangeven',
