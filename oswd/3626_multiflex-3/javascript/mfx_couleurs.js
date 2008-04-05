@@ -118,12 +118,6 @@ jQuery(document).ready(function() {
 		css('background-color', trouver_couleur('generale'));
 	
 	/* ------- SUR CHANGEMENTS -------- */
-	$(".def_couleurs input").keyup(function(){
-		$(this).parent().next().next().next().css('background-color', '#'+this.value);
-	});	
-	$(".def_couleurs input").change(function(){
-		$(this).parent().next().next().next().css('background-color', '#'+this.value);
-	});	
 	$(".def_teintes input").keyup(function(){
 		$("#mfx_dominante_new").
 			css('background-color', trouver_couleur('dominante'));
