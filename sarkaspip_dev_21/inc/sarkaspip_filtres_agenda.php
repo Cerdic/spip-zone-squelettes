@@ -435,13 +435,13 @@ function agenda_mini_header($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='&
 	$header = NULL;
 	// Debut de l'en-tete
 	// Ligne 1 : pagination par annee
-	$header .= '<h2><a class="titre_bloc" href="'.$url_base.'calendrier_mois='.$mois_choisi.'&amp;calendrier_annee='.$annee_choisie_prec.'" title="'.$nom_mois[$mois_choisi].'&nbsp;'.$annee_choisie_prec.'">'.$icone_prec.'</a></h2>';
-	$header .= '<h2 class="titre_bloc">'.$annee_choisie.'</h2>';   
-	$header .= '<h2><a class="titre_bloc" href="'.$url_base.'calendrier_mois='.$mois_choisi.'&amp;calendrier_annee='.$annee_choisie_suiv.'" title="'.$nom_mois[$mois_choisi].'&nbsp;'.$annee_choisie_suiv.'">'.$icone_suiv.'</a></h2>';
+	$header .= '<h2><a class="titre_bloc un_tiers" href="'.$url_base.'calendrier_mois='.$mois_choisi.'&amp;calendrier_annee='.$annee_choisie_prec.'" title="'.$nom_mois[$mois_choisi].'&nbsp;'.$annee_choisie_prec.'">'.$icone_prec.'</a></h2>';
+	$header .= '<h2 class="titre_bloc un_tiers">'.$annee_choisie.'</h2>';   
+	$header .= '<h2><a class="titre_bloc un_tiers" href="'.$url_base.'calendrier_mois='.$mois_choisi.'&amp;calendrier_annee='.$annee_choisie_suiv.'" title="'.$nom_mois[$mois_choisi].'&nbsp;'.$annee_choisie_suiv.'">'.$icone_suiv.'</a></h2>';
 	// Ligne 2 : pagination par mois
-	$header .= '<h2><a class="titre_bloc" href="'.$url_base.'calendrier_mois='.$mois_prec.'&amp;calendrier_annee='.$annee_prec.'" title="'.$nom_mois[$mois_prec].'&nbsp;'.$annee_prec.'">'.$icone_prec.'</a></h2>';
-	$header .= '<h2 class="titre_bloc">'.$nom_mois[$mois_choisi].'</h2>';   
-	$header .= '<h2><a class="titre_bloc" href="'.$url_base.'calendrier_mois='.$mois_suiv.'&amp;calendrier_annee='.$annee_suiv.'" title="'.$nom_mois[$mois_suiv].'&nbsp;'.$annee_suiv.'">'.$icone_suiv.'</a></h2>';
+	$header .= '<h2><a class="titre_bloc un_tiers" href="'.$url_base.'calendrier_mois='.$mois_prec.'&amp;calendrier_annee='.$annee_prec.'" title="'.$nom_mois[$mois_prec].'&nbsp;'.$annee_prec.'">'.$icone_prec.'</a></h2>';
+	$header .= '<h2 class="titre_bloc un_tiers">'.$nom_mois[$mois_choisi].'</h2>';   
+	$header .= '<h2><a class="titre_bloc un_tiers" href="'.$url_base.'calendrier_mois='.$mois_suiv.'&amp;calendrier_annee='.$annee_suiv.'" title="'.$nom_mois[$mois_suiv].'&nbsp;'.$annee_suiv.'">'.$icone_suiv.'</a></h2>';
 	// Fin de l'en-tete
 	$header .= '<div class="clearer"></div>';
 
@@ -501,7 +501,7 @@ function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui
 		$jour = $jour - 1;
 		$date = mktime(0,0,0,$mois_choisi, $jour, $annee_choisie);
 
-		$cellule = '<td class="calendar_not_this_month">';
+		$cellule = '<td class="hors_mois">';
 		$cellule .= ($affichage_hors_mois == 'oui') ? strval(date('j', $date)) : '&nbsp;';
 		$cellule .= '</td>';
 
@@ -516,8 +516,8 @@ function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui
 		if ((date('w', $date) == $jour_debut) && ($jour != 1))
 			$body .= '</tr><tr>';
 
-		$cellule = '<td class="calendar_this_';   //width="6%" valign="top"
-		$cellule .= (date('d-m-Y', $date) == date('d-m-Y')) ? 'day">' : 'month">';
+		$cellule = '<td class="';
+		$cellule .= (date('d-m-Y', $date) == date('d-m-Y')) ? 'jour_courant">' : 'dans_mois">';
 		if (!isset($mini_evenements[date('d-m-Y', $date)])) {
 			// Il n'y pas d'evenement pour ce jour, on affiche la date
 			$cellule .= strval(date('j', $date));
@@ -540,7 +540,7 @@ function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui
 
 	// Cellules des jours visibles suivant le mois courant (toujours inclus strictement dans la derniere ligne)
 	while (date('w', $date) != $jour_debut) {
-		$cellule = '<td class="calendar_not_this_month">';   //width="14%" valign="top"
+		$cellule = '<td class="hors_mois">';   //width="14%" valign="top"
 		$cellule .= ($affichage_hors_mois == 'oui') ? strval(date('j', $date)) : '&nbsp;';
 		$cellule .= '</td>';
 
@@ -594,11 +594,8 @@ function agenda_mini_footer($id_agenda=0, $critere='mois_complet', $taille=5) {
 	$footer = NULL;
 
 	// Ligne 1 : retour au mois du jour courant
-	$footer .= '<h2><a id="aujourdhui" class="titre_bloc" href="'.$url_base.'calendrier_mois='.$mois_courant.'&amp;calendrier_annee='.$annee_courante.'" title="'.$nom_mois[intval($mois_courant)].'&nbsp;'.$annee_courante.'">'.ucfirst(_T('sarkaspip:aujourdhui')).'</a></h2>';
-	$footer .= '<div class="clearer"></div>';
+	$footer .= '<h2><a class="titre_bloc" href="'.$url_base.'calendrier_mois='.$mois_courant.'&amp;calendrier_annee='.$annee_courante.'" title="'.$nom_mois[intval($mois_courant)].'&nbsp;'.$annee_courante.'">'.ucfirst(_T('sarkaspip:aujourdhui')).'</a></h2>';
 
-	// Debut du tableau
-	$footer .= '<table>';
 	// Extraction des evenements du mois en cours
 	$i = 1;
 	$liste_complete = FALSE;
@@ -614,33 +611,32 @@ function agenda_mini_footer($id_agenda=0, $critere='mois_complet', $taille=5) {
 			$count_mois += 1;
 		$critere_ok = (($critere == 'mois_complet') || (($critere == 'fin_mois') && (date('Y-m-d',$date) >= date('Y-m-d'))));
 		if (($annee == $annee_choisie) && ($mois == $mois_choisi) && ($count_liste < $taille) && ($critere_ok)) {
-			$cellule .= '<tr class="liste_evenement">';
-			$cellule .= '<td class="date_even">'.affdate_base($evenements[$i]['date_redac'], 'd-m H:i').':&nbsp;</td>';
-			$cellule .= '<td class="titre_even"><a href="spip.php?page=evenement&amp;id_article='.$evenements[$i]['id'].'">'.$evenements[$i]['titre'].'</a></td>';
-			$cellule .= '</tr>';
+			if ($count_liste == 0) $cellule .= '<dl class="definition">';
+			$cellule .= '<dt>'.affdate_base($evenements[$i]['date_redac'], 'd-m H:i').':&nbsp;</dt>';
+			$cellule .= '<dd><a href="spip.php?page=evenement&amp;id_article='.$evenements[$i]['id'].'">'.$evenements[$i]['titre'].'</a></dd>';
 			$count_liste += 1;
 		}
 		$liste_complete = ($annee > $annee_choisie) || (($annee == $annee_choisie) && ($mois > $mois_choisi)) || ($count_liste == $taille);
 		$i += 1;
 	}
 
-	if ($count_liste == 0)
+	if ($count_liste == 0) {
 		if ($critere == 'mois_complet')
-			$cellule .= '<tr class="liste_evenement"><td class="titre_even" id="vide">'._T('sarkaspip:agenda_mois_vide').'</td></tr>';
+			$cellule .= '<div class="texte">'._T('sarkaspip:agenda_mois_vide').'</div>';
 		else
 			if ($count_mois == 0)
 				if (($annee_courante < $annee_choisie) || (($annee_courante == $annee_choisie) && ($mois_courant < $mois_choisi)))
-					$cellule .= '<tr class="liste_evenement"><td class="titre_even" id="vide">'._T('sarkaspip:agenda_mois_vide').'</td></tr>';
+					$cellule .= '<div class="texte">'._T('sarkaspip:agenda_mois_vide').'</div>';
 				else if (($annee_courante == $annee_choisie) && ($mois_courant == $mois_choisi))
-					$cellule .= '<tr class="liste_evenement"><td class="titre_even" id="vide">'._T('sarkaspip:agenda_fin_mois_vide').'</td></tr>';
+					$cellule .= '<div class="texte">'._T('sarkaspip:agenda_fin_mois_vide').'</div>';
 				else
-					$cellule .= '<tr class="liste_evenement"><td class="titre_even" id="vide">'._T('sarkaspip:agenda_fin_mois_depasse').'</td></tr>';
+					$cellule .= '<div class="texte">'._T('sarkaspip:agenda_fin_mois_depasse').'</div>';
 			else
-				$cellule .= '<tr class="liste_evenement"><td class="titre_even" id="vide">'._T('sarkaspip:agenda_fin_mois_depasse').'</td></tr>';
+				$cellule .= '<div class="texte">'._T('sarkaspip:agenda_fin_mois_depasse').'</div>';
+	}
+	else
+		$cellule .= '</dl>';
 	$footer .= $cellule;
-
-	// Fin du tableau
-	$footer .= '</table>';
 
 	return $footer;
 }

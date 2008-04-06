@@ -118,19 +118,8 @@
 	<div id="extra">
 		[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
 		[(#REM) <!-- affichage des groupes de mots et des mots associes --> ]
-		<B_nav_groupes>
-			<div id="mots-cles" class="noisette">
-				<div><a class="intitule"><:sarkaspip:mots_clefs:></a></div>
-		<BOUCLE_nav_groupes(GROUPES_MOTS) {titre!==^squelette\_} {par titre}>
-						<div class="contenu">
-							<a class="nom-groupe">#TITRE</a>
-							<BOUCLE_nav_mots_groupe(MOTS) {id_groupe} {par titre} {doublons}>
-								[(#ID_MOT|mot_associations|>{0}|?{[(#ID_MOT|=={[(#ENV{id_mot})]}|?{<span>#TITRE</span>,<a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"] >#TITRE</a>})]})]
-							</BOUCLE_nav_mots_groupe>
-						</div> <!-- Fin contenu -->
-		</BOUCLE_nav_groupes>
-				</div> <!-- Fin mots-cles -->
-		</B_nav_groupes>
+		<INCLURE{fond=noisettes/inc_mots_cles_tout}>
+		
 	</div>
 	
 	<div id="footer">
