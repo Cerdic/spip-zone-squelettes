@@ -36,24 +36,24 @@
     <div class="toolbar">
         <h1 id="pageTitle">#NOM_SITE_SPIP</h1>
         <a id="backButton" class="button" href="#"></a>
-        <!-- <a class="button" href="#searchForm">Search</a> -->
+        <!-- <a class="button" href="#searchForm"><:spip:info_rechercher:></a> -->
     </div>
 
 
   [(#REM) MENU PRINCIPAL ]
   <ul id="home" title="#NOM_SITE_SPIP" selected="true">
   		[<li>(#LOGO_SITE_SPIP||image_reduire{0,50})</li>]
-  		<li class="group">Sommaire</li>
-  		<BOUCLE_menu_princ(RUBRIQUES) {racine}{par num titre}>
+  		<li class="group"><:ispip:sommaire:></li>
+  		<BOUCLE_menu_princ(RUBRIQUES) {racine} {par num titre}>
 			[<li><a href="#rub[(#ID_RUBRIQUE)]">(#TITRE|supprimer_numero)</a></li>]
 		</BOUCLE_menu_princ>
-		<li><a href="#auteurs">Auteurs</a></li>
-		<li><a href="#mots_list">Mots-clés</a></li>
-		<li class="group">Infos</li>
+		<li><a href="#auteurs"><:spip:icone_auteurs:></a></li>
+		<li><a href="#mots_list"><:mots_clefs:></a></li>
+		<li class="group"><:ispip:infos:></li>
 			<form class="panel">
 				<ul>
-					<li><a href="#URL_SITE_SPIP" target = "_blank">Site classique</a></li>
-					<li><a href="http://www.spip-contrib.net/plugin-iSPIP" title="iSPIP" target = "_blank">Squelette iSPIP</a></li>
+					<li><a href="#URL_SITE_SPIP" target = "_blank"><:ispip:versionclassique:></a></li>
+					<li><a href="http://www.spip-contrib.net/plugin-iSPIP" title="iSPIP" target = "_blank"><:ispip:ispip:></a></li>
 				</ul>
 			</form>
     </ul>
@@ -76,14 +76,14 @@
 
 	
 		[(#REM) MENU AUTEURS ]
-		<ul id="auteurs" title="Auteurs">
+		<ul id="auteurs" title="<:spip:icone_auteurs:>">
 		<BOUCLE_auteur_site(AUTEURS) {par nom}>
 			<li><a href="#URL_PAGE{ispip-auteur,id_auteur=#ID_AUTEUR}">#NOM</a></li>
 		</BOUCLE_auteur_site>
 		</ul>
 		
 		[(#REM) MENU MOTS CLES ]
-		<ul id="mots_list" title="Mots-clés">
+		<ul id="mots_list" title="<:mots_clefs:>">
 		<BOUCLE_mots_list(MOTS)>
 			<li><a href="#mots[(#ID_MOT)]">#TITRE</a></li>
 		</BOUCLE_mots_list>
@@ -98,38 +98,20 @@
 				</BOUCLE_art_mot_list>
 			</ul>	
 		</BOUCLE_mots_list2>
-	
-	
+
     [(#REM) FORMULAIRE DE RECHERCHE ]
     <form id="searchForm" class="dialog" action="[(#ENV{lien})]" method="get" target = "_self">
         <fieldset>
-            <h1><:info_rechercher:></h1>
+            <h1><:spip:info_rechercher:></h1>
             [(#ENV{lien}|form_hidden)]
 			[<input type="hidden" name="lang" value="(#ENV{lang})" />]
-            <a class="button leftButton" type="cancel">Cancel</a>
-            <a class="button blueButton" type="submit" id="recherche" name="recherche"><:info_rechercher:></a>
+            <a class="button leftButton" type="cancel"><:ecrire:bouton_annuler:></a>
+            <a class="button blueButton" type="submit" id="recherche" name="recherche"><:spip:info_rechercher:></a>
             
-            <label><:info_rechercher:> :</label>
+            <label><:spip:info_rechercher_02:></label>
             <input type="text" class="forml" name="recherche" id="recherche"  />
         </fieldset>
     </form>
-
-
-<!--<form id="searchForm" class="dialog">
-<a name="formulaire_recherche" id="formulaire_recherche"></a>
-<form action="[(#ENV{lien})]" method="get" ><div>
-<fieldset>
-    <h1><:info_rechercher:></h1>
-	[(#ENV{lien}|form_hidden)]
-	[<input type="hidden" name="lang" value="(#ENV{lang})" />]
-	<label for="recherche"><:info_rechercher:></label>
-	<input type="text" class="forml" name="recherche" id="recherche" value="[(#ENV{recherche}|sinon{<:info_rechercher:>" onfocus="this.value='';})]" />
-</div>
-</form>
-</div>-->
-
-
-
 
 
 </body>
