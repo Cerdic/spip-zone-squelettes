@@ -44,7 +44,7 @@
 	</image>
 	
 	<BOUCLE_isforum(ARTICLES){id_article}{titre_mot=forum}>
-	<BOUCLE_10recents(FORUMS){id_article}{id_article>0}{plat}{par date}{inverse}{0,15}>
+	<BOUCLE_10recents(FORUMS){tous}{id_article}{id_article>0}{plat}{par date}{inverse}{0,15}>
 		<item>
 		<title>[(#TITRE|texte_backend)]</title>
 		<link>#URL_SITE_SPIP/spip.php?page=discussion&amp;id_forum=#ID_FORUM</link>
@@ -54,7 +54,7 @@
 		<dc:date>[(#DATE|date_iso)]</dc:date>
 		<dc:format>text/html</dc:format>
 		<dc:language>#LANG</dc:language>
-		<dc:creator><BOUCLE_auteursb(AUTEURS){id_article}{", "}>[(#NOM|texte_backend)]</BOUCLE_auteursb></dc:creator>
+		<dc:creator><BOUCLE_auteursb(AUTEURS){tous}{id_article}{", "}>[(#NOM|texte_backend)]</BOUCLE_auteursb></dc:creator>
 		</item>
 	</BOUCLE_10recents>
 	</BOUCLE_isforum>
@@ -63,17 +63,17 @@
 	<BOUCLE_contexte(RUBRIQUES){id_rubrique}>
 	<BOUCLE_secteurs(RUBRIQUES){exclus}>
 	<BOUCLE_supp(RUBRIQUES){id_rubrique}>
-       <BOUCLE_supp2(FORUMS){id_rubrique}{plat}{doublons}>
+       <BOUCLE_supp2(FORUMS){tous}{id_rubrique}{plat}{doublons}>
        </BOUCLE_supp2>
 	</BOUCLE_supp>
 	<BOUCLE_supp3(ARTICLES){id_rubrique}>
-       <BOUCLE_supp4(FORUMS){id_article}{plat}{doublons}>
+       <BOUCLE_supp4(FORUMS){tous}{id_article}{plat}{doublons}>
        </BOUCLE_supp4>
 	</BOUCLE_supp3>
 	</BOUCLE_secteurs>
 	</BOUCLE_contexte>
 
-	<BOUCLE_enfin(FORUMS){id_article>0}{doublons}{par date}{inverse}{0,10}>
+	<BOUCLE_enfin(FORUMS){tous}{id_article>0}{doublons}{par date}{inverse}{0,10}>
 	<item>
 		<title>[(#_enfin:TITRE|texte_backend)]</title>
 		<link>#URL_SITE_SPIP/spip.php?page=discussion&amp;id_forum=#ID_FORUM</link>
@@ -83,7 +83,7 @@
 		<dc:date>[(#_enfin:DATE|date_iso)]</dc:date>
 		<dc:format>text/html</dc:format>
 		<dc:language>#LANG</dc:language>
-		<dc:creator><BOUCLE_auteursb(AUTEURS){id_article}{", "}>[(#NOM|texte_backend)]</BOUCLE_auteursb></dc:creator>
+		<dc:creator><BOUCLE_auteursb(AUTEURS){tous}{id_article}{", "}>[(#NOM|texte_backend)]</BOUCLE_auteursb></dc:creator>
 		</item>
 	</BOUCLE_enfin>
 	</BOUCLE_is_rub_forum>
@@ -95,11 +95,11 @@
 		<link>#URL_SITE_SPIP/#URL_ARTICLE</link>
 		<date>#DATE</date>
 		<description>[&lt;img src="#URL_SITE_SPIP/(#LOGO_ARTICLE||extraire_attribut{src})" align="left" hspace="4" vspace="4"&gt; ][(#INTRODUCTION|texte_backend)]</description>
-		<author><BOUCLE_auteurs(AUTEURS){id_article}{", "}>[(#NOM|texte_backend)]</BOUCLE_auteurs></author>
+		<author><BOUCLE_auteurs(AUTEURS){tous}{id_article}{", "}>[(#NOM|texte_backend)]</BOUCLE_auteurs></author>
 		<dc:date>[(#DATE|date_iso)]</dc:date>
 		<dc:format>text/html</dc:format>
 		<dc:language>#LANG</dc:language>
-		<dc:creator><BOUCLE_auteursb(AUTEURS){id_article}{", "}>[(#NOM|texte_backend)]</BOUCLE_auteursb></dc:creator>
+		<dc:creator><BOUCLE_auteursb(AUTEURS){tous}{id_article}{", "}>[(#NOM|texte_backend)]</BOUCLE_auteursb></dc:creator>
 		</item>
 	</BOUCLE_10recents2>
 	<BOUCLE_tres_recents(ARTICLES){lang ?}{branche ?}{par date}{inverse}{age<3}{unique}>
@@ -108,11 +108,11 @@
 		<link>#URL_SITE_SPIP/#URL_ARTICLE</link>
 		<date>#DATE</date>
 		<description>[&lt;img src="#URL_SITE_SPIP/(#LOGO_ARTICLE||extraire_attribut{src})" align="left" hspace="4" vspace="4"&gt; ][(#INTRODUCTION|texte_backend)]</description>
-		<author><BOUCLE_auteurs_t(AUTEURS){id_article}{","}>[(#NOM|texte_backend)]</BOUCLE_auteurs_t></author>
+		<author><BOUCLE_auteurs_t(AUTEURS){tous}{id_article}{","}>[(#NOM|texte_backend)]</BOUCLE_auteurs_t></author>
 		<dc:date>[(#DATE|date_iso)]</dc:date>
 		<dc:format>text/html</dc:format>
 		<dc:language>#LANG</dc:language>
-		<dc:creator><BOUCLE_auteurs_tb(AUTEURS){id_article}{", "}>[(#NOM|texte_backend)]</BOUCLE_auteurs_tb></dc:creator>
+		<dc:creator><BOUCLE_auteurs_tb(AUTEURS){tous}{id_article}{", "}>[(#NOM|texte_backend)]</BOUCLE_auteurs_tb></dc:creator>
 		</item>
 	</BOUCLE_tres_recents>
 	
