@@ -25,6 +25,17 @@
 			[(#ENV{composition_stats_2, 3}|=={1}|?{jQuery("#bloc_stats_2_max_hasard").hide();})]
 			[(#ENV{composition_stats_2, 3}|=={2}|?{jQuery("#bloc_stats_2_max_top").hide();})]}
 		)]
+		
+		[(#ENV{image_rechercher, 0}|=={0}|?{jQuery("#parcourir_image_rechercher").hide();})]
+		jQuery("input[@name='image_rechercher']").change(function() {
+			if (jQuery("input[@name='image_rechercher']:checked").val() == 1)
+				jQuery("#parcourir_image_rechercher").show();
+			else
+				jQuery("#parcourir_image_rechercher").hide();
+			jQuery(this).blur();
+		});	
+		
+		
 		jQuery("input[@name='position_badges']").change(function() {
 			if (jQuery("input[@name='position_badges']:checked").val() != 0)
 				jQuery("#bloc_badges_liste").show();
@@ -245,12 +256,22 @@
 		</label>
 		<br />
 		<br />
-		<label><:sarkaspip:cfg_lbl_image_recherche:>
-			<br /><:sarkaspip:cfg_lbl_image_recherche_actuelle:>
-			<img src="#CFG_CHEMIN{sarkaspip_noisettes/bouton_rechercher}">			
-		    <br /><:sarkaspip:cfg_lbl_image_recherche_changer:> 
-			<input type="file" name="bouton_rechercher" value="#ENV{bouton_rechercher}" size="40" />
+		
+		
+		
+		<p><:sarkaspip:cfg_lbl_image_recherche:></p>
+		<label>
+			<input type="radio" name="image_rechercher" value="0" [(#ENV{image_rechercher, 0}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_image_default_recherche:><img src="#CHEMIN{rechercher.png}">
 		</label>
+		<br />
+		<label>
+			<input type="radio" name="image_rechercher" value="1" [(#ENV{image_rechercher, 0}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_image_autre_recherche:> 
+		</label>
+		<div id="parcourir_image_rechercher">
+			<input type="file" name="bouton_rechercher" value="#ENV{bouton_rechercher}" size="40" class="fondl"/>
+		</div>
 	</fieldset>
 	
 	<fieldset>
