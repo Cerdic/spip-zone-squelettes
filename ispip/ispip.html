@@ -31,21 +31,19 @@
 
 <body onclick="console.log('Hello', event.target);">
 
+	[(#REM) BARRE D'OUTILS ]
+	<div class="toolbar">
+		<h1 id="pageTitle">#NOM_SITE_SPIP</h1>
+		<a id="backButton" class="button" href="#"></a>
+		<a class="button" href="#searchForm"><:spip:info_rechercher:></a>
+	</div>
 
-    [(#REM) BARRE D'OUTILS ]
-    <div class="toolbar">
-        <h1 id="pageTitle">#NOM_SITE_SPIP</h1>
-        <a id="backButton" class="button" href="#"></a>
-        <!-- <a class="button" href="#searchForm"><:spip:info_rechercher:></a> -->
-    </div>
-
-
-  [(#REM) MENU PRINCIPAL ]
-  <ul id="home" title="#NOM_SITE_SPIP" selected="true">
-  		[<li>(#LOGO_SITE_SPIP||image_reduire{0,50})</li>]
-  		<li class="group"><:ispip:sommaire:></li>
-  		<BOUCLE_menu_princ(RUBRIQUES) {racine} {par num titre}>
-			[<li><a href="#rub[(#ID_RUBRIQUE)]">(#TITRE|supprimer_numero)</a></li>]
+	[(#REM) MENU PRINCIPAL ]
+	<ul id="home" title="#NOM_SITE_SPIP" selected="true">
+		[<li>(#LOGO_SITE_SPIP||image_reduire{0,50})</li>]
+		<li class="group"><:ispip:sommaire:></li>
+		<BOUCLE_menu_princ(RUBRIQUES) {racine} {par num titre}>
+			[<li><a href="#URL_PAGE{ispip-rubrique,id_rubrique=#ID_RUBRIQUE}">(#TITRE|supprimer_numero)</a></li>]
 		</BOUCLE_menu_princ>
 		<li><a href="#auteurs"><:spip:icone_auteurs:></a></li>
 		<li><a href="#mots_list"><:mots_clefs:></a></li>
@@ -56,62 +54,35 @@
 					<li><a href="http://www.spip-contrib.net/plugin-iSPIP" title="iSPIP" target = "_blank"><:ispip:ispip:></a></li>
 				</ul>
 			</form>
-    </ul>
+	</ul>
 
-
-
-	[(#REM) MENU SOUS RUBRIQUES ET ARTICLES ]
-	<BOUCLE_menu_rub(RUBRIQUES)>
-		<ul id="rub[(#ID_RUBRIQUE)]" title="[(#TITRE|supprimer_numero)]">
-			<BOUCLE_art_list(ARTICLES){id_rubrique}{!par date}>
-				[<li><a href="#URL_PAGE{ispip-article,id_article=#ID_ARTICLE}">(#TITRE|supprimer_numero)</a></li>]
-			</BOUCLE_art_list>
-			<BOUCLE_sous_rub(RUBRIQUES) {id_parent}{par num titre}>
-				[<li><a href="#rub[(#ID_RUBRIQUE)]">(#TITRE|supprimer_numero)</a></li>]
-			</BOUCLE_sous_rub>
-		</ul>  
-	</BOUCLE_menu_rub>
-	
-
-
-	
 		[(#REM) MENU AUTEURS ]
 		<ul id="auteurs" title="<:spip:icone_auteurs:>">
 		<BOUCLE_auteur_site(AUTEURS) {par nom}>
 			<li><a href="#URL_PAGE{ispip-auteur,id_auteur=#ID_AUTEUR}">#NOM</a></li>
 		</BOUCLE_auteur_site>
 		</ul>
-		
+
 		[(#REM) MENU MOTS CLES ]
 		<ul id="mots_list" title="<:mots_clefs:>">
 		<BOUCLE_mots_list(MOTS)>
-			<li><a href="#mots[(#ID_MOT)]">#TITRE</a></li>
+			<li><a href="#URL_PAGE{ispip-mot,id_mot=#ID_mot}">#TITRE</a></li>
 		</BOUCLE_mots_list>
 		</ul>
 
-		
-		[(#REM) MENU MOTS CLES ARTICLES ]		
-		<BOUCLE_mots_list2(MOTS)>
-			<ul id="mots[(#ID_MOT)]" title="#TITRE">
-				<BOUCLE_art_mot_list(ARTICLES) {id_mot}{!par date}>
-					[<li><a href="#URL_PAGE{ispip-article,id_article=#ID_ARTICLE}">(#TITRE|supprimer_numero)</a></li>]
-				</BOUCLE_art_mot_list>
-			</ul>	
-		</BOUCLE_mots_list2>
-
-    [(#REM) FORMULAIRE DE RECHERCHE ]
-    <form id="searchForm" class="dialog" action="[(#ENV{lien})]" method="get" target = "_self">
-        <fieldset>
-            <h1><:spip:info_rechercher:></h1>
-            [(#ENV{lien}|form_hidden)]
+	[(#REM) FORMULAIRE DE RECHERCHE ]
+	<form id="searchForm" class="dialog" action="spip.php" method="get" target = "_self">
+		<fieldset>
+			<h1><:spip:info_rechercher:></h1>
 			[<input type="hidden" name="lang" value="(#ENV{lang})" />]
-            <a class="button leftButton" type="cancel"><:ecrire:bouton_annuler:></a>
-            <a class="button blueButton" type="submit" id="recherche" name="recherche"><:spip:info_rechercher:></a>
-            
-            <label><:spip:info_rechercher_02:></label>
-            <input type="text" class="forml" name="recherche" id="recherche"  />
-        </fieldset>
-    </form>
+			<input type="hidden" name="page" value="ispip-recherche" />
+			<!-- <a class="button leftButton" type="cancel"><:ispip:annuler:></a>
+			<a class="button blueButton" type="submit" id="recherche" name="recherche"><:spip:info_rechercher:></a> -->
+			<input type="text" class="forml" name="recherche" id="recherche"  />
+			<input type="submit" value="<:spip:info_rechercher:>" />
+			<input type="button" value="<:ispip:annuler:>" onClick='forms.searchForm.removeAttribute("selected");' />
+		</fieldset>
+	</form>
 
 
 </body>

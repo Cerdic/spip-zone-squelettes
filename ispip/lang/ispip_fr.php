@@ -7,6 +7,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'infos'=> 'Infos',
 'versionclassique' => 'Version classique du site',
 'ispip' => 'Squelette iSPIP',
+'aucunarticlemot' => 'Aucun article n\'est associ&eacute; &agrave; ce mot-cl&eacute;.',
+'annuler' => 'Annuler',
 
 
 );
