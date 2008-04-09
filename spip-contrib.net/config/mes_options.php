@@ -131,7 +131,7 @@ function critere_doublons_trad_dist($idb, &$boucles, $crit) {
 	$boucle = &$boucles[$idb];
 	$nom = !isset($crit->param[0]) ? "''" : calculer_liste($crit->param[0], array(), $boucles, $boucles[$idb]->id_parent);
 	// mettre un tableau pour que ce ne soit pas vu comme une constante
-	$boucle->where[]= array("calcul_mysql_in('".$boucle->id_table . '.id_trad' .
+	$boucle->where[]= array("sql_in('".$boucle->id_table . '.id_trad' .
 	  "', " .
 	  '"-1".$doublons[' .
 	  "('" .
