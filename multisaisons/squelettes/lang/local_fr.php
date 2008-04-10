@@ -449,13 +449,13 @@ l\'actualit&eacute; pour',
 'reponses' => 'R&eacute;ponses',
 'revenir_haut' => 'Revenir en haut de la page',
 'reponse' => 'En r&eacute;ponse au message',
-'reagissez' => 'R&egrave;agissez',
+'reagissez' => 'R&eacute;agissez',
 'restreint_contact_admin1' => 'Un acc&egrave;s restreint &agrave; quelques utilisateurs prot&egrave;ge le contenu de cette page.
 Contactez un administrateur de',
 'restreint_contact_admin2' => 'pour obtenir votre acc&egrave;s.
 Seul un administrateur peut vous autoriser &agrave; acc&eacute;der &agrave; cette page.
 Une gestion de votre profil et de votre inscription vous sera alors accessible.',
-'repondre' => 'R&eacute;pondre :',
+'repondre' => 'R&eacute;pondre',
 'redacteur' => 'r&eacute;dacteurs',
 'redaction_visite' => 'Visitez votre interface de r&eacute;daction',
 'rubriques' => 'rubriques',

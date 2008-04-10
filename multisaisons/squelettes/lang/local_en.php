@@ -156,8 +156,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 'contact' => 'Contact',
 'contact_webmaster' => 'Contact your webmaster.',
-'confidentialite' => ' Ensured of the data confidentiality concerning you.<br/>
-This Website is protected from the robots spammor and is registered with the CNIL.</p> ',
+'confidentialite' => ' Ensured of the data confidentiality concerning you',
+'cnil' => 'This Website is protected from the robots spammor and is registered with the CNIL',
 'connecter' => 'connect you!',
 'pas_contact_pas_connect1' => 'You cannot contact',
 'pas_contact_pas_connect2' => 'without being connected to',
@@ -169,7 +169,8 @@ are connected, you can comment',
 'clic_recopier' => 'Click or recopy',
 'vs_connectez1' => 'You are connected, you can interact with',
 'vs_connectez2' => 'What do you wish to make? Choose in these options:',
-'capture_non' => 'No the<br/> capture',
+'capture' => 'capture',
+'pas_de' => 'No the',
 
 //D
 'date' => 'Date',
@@ -235,19 +236,18 @@ You will be able to then confirm the modification of your subscription.',
 'forum_dep_mod' => 'Moved or moderated message',
 'ajout_site_favori' => 'Add my favorite Web site',
 'autre_forum' => 'Other forums',
-'erreur_forum' => 'The message was moved or moderated.<br/>
-Use the button RETURN of your navigator <br/> 
-or launch a research in the forums:<br/>',
+'erreur_forum' => 'The message was moved or moderated',
+'erreur_forum1' => 'Use the button RETURN of your navigator',
+'erreur_forum2' => 'or launch a research in the forums',
 'forum_deplace1' => 'Moved?',
 'forum_deplace2' => 'The message can be moved from one forum to another. 
 		Use the engine of',
 'forum_deplace3' => 'or sail 
 		the forums.',
-'forum_modere' => '<h4>Moderated?</h4>
-<p>
-                The futile messages are moderate: 
-		Publicities, contests, research the credulous ones 
-		and other abuses pollute the forums.</p>',
+'forum_modere' => 'Moderated?',
+'forum_modere1' => 'The futile messages are moderate: 
+Publicities, contests, research the credulous ones 
+and other abuses pollute the forums.',
 'forum_corr' => 'Correct or post a message in a forum',
 'forum_post' => 'Post in a forum',
 'fil_diff' => 'You can supervise the innovations of the site by its various flows of',
@@ -280,11 +280,12 @@ or launch a research in the forums:<br/>',
 'inscrit_ou_pas' => 'Already registered??',
 'imprimez_article' => 'print this article',
 'vous_inscrire' => 'Wish you to be registered',
-'sans_image' => 'without<br/>logo<br/>',
+'sans' => 'without',
+'image' => 'logo',
 'invit_abo' => 'subscribed/guests',
-'impri_enviro' => '<h4 class="icone_arbre">If you print</h4>
-<p>To protect the environment, take part in the recycling of paper.
-Not to throw on the public highway. </p>',
+'impri_enviro' => 'If you print',
+'impri_enviro1' => 'To protect the environment, take part in the recycling of paper.
+Not to throw on the public highway.',
 'info_plus' => 'Plus d\'infos',
 'inscrire' => 'registered',
 
@@ -356,6 +357,7 @@ the actuality for',
   are related to
   articles.',
 'merci' => 'Thank you',
+'modif_profil' => 'Modify your profile',
 
 //n
 'navigation' => 'Navigation',
@@ -387,14 +389,13 @@ the actuality for',
 'poster' => 'Post Message',
 'premiere_publi' => 'First publication',
 'plan_du_site' => 'plan of the website',
-'possibilite_de' => ' <li>The possibility of adding to it its texts, documents, photographs and bonds.</li>      
-<li>The possibility of subscribing with newsletters which concerns you.</li
-<li>The possibility of adding your bio, Web site, and misadventure.</li> ',
+'possibilite_de' => 'The possibility of adding to it its texts, documents, photographs and bonds.',
+'possibilite_de1' => 'The possibility of subscribing with newsletters which concerns you.',
+'possibilite_de2' => 'The possibility of adding your bio, Web site, and misadventure.',
 'pgp_securite' => 'Key security PGP, protection:',
-'pourquoi' => '<h4>Why?</h4>
-<p>
-                The document perhaps was removed or moved.
-                The access to the root of a repertory is prohibited by the server. The server is perhaps overloaded. </p>',
+'pourquoi' => 'Why?',
+'pourquoi1' => 'The document perhaps was removed or moved.
+                The access to the root of a repertory is prohibited by the server. The server is perhaps overloaded.',
 'retrouver_chang_passe' => 'Find or change my password.',
 'total_photo1' => 'There are on the whole',
 'total_photo2' => 'photographs, this page posts',
@@ -402,8 +403,8 @@ the actuality for',
 'profil' => 'My profile',
 'profil_son' => 'Its profile',
 'profil_aff' => 'This page posts your profile such as it appears to the other members of',
-'profil_deff' => 'Optional additional details</h4> 
-<p>A double click on the three items (...) modifies the profile.</p>',
+'profil_deff' => 'Optional additional details',
+'profil_deff1' => 'A double click on the three items (...) modifies the profile.',
 'prevision' => 'Forecasts of',
 'part_cont' => 'Take part, contribute',
 'plan_de' => 'Plan of:',
@@ -413,9 +414,9 @@ the actuality for',
 'photographies' => 'photographs',
 'pas_photographie' => 'No photograph',
 'poste_a' => 'posted',
-'photo_total1' => 'photographs of',
-'photo_total2' => 'are posted',
-'photo_total3' => 'in the portfolio below',
+'photo_total1' => 'of its photographs are posted',
+'photo_total2' => 'Its photography is posted',
+'photo_total3' => 'in this portfolio',
 
 //Q
 'que_faire' => 'what to make?',
@@ -437,7 +438,7 @@ Contact an administrator of',
 'restreint_contact_admin2' => 'to obtain your access.
 Only an administrator can authorize you to reach this page.
 A management of your profile and your inscription will be then accessible for you.',
-'repondre' => 'Answer :',
+'repondre' => 'Answer',
 'redacteur' => 'writers',
 'redaction_visite' => 'Visit your interface of drafting',
 'rubriques' => 'headings',
@@ -455,17 +456,15 @@ A management of your profile and your inscription will be then accessible for yo
 'rub_trouver' => 'was not found in
     descriptions and titles of the headings.',
 'rss_profi' => 'Benefit from the contents from',
-'rss_monde' => '<h4>The information of the whole world</h4>
-
-<p> Visualize the news whole world: By installing a reader of news on your 
+'rss_monde' => 'The information of the whole world',
+'rss_monde1' => 'Visualize the news whole world: By installing a reader of news on your 
 computer or in your Web site, you will synthesize the topicality published
- on the Web sites which you will have selected.</p>',
-'rss_lecteur' => '<h4>Your reader is installed</h4>
-
-<p>You have already one
+ on the Web sites which you will have selected.',
+'rss_lecteur' => 'Your reader is installed',
+'rss_lecteur1' => 'You have already one
   reader of new RSS: Internet Explorer v7, Firefox v1, v2, v3,
   Thunderbird, Safari, Mozilla, as of other navigators have
-  readers of news or flow RSS.</p>',
+  readers of news or flow RSS.',
 'rss_ajout_rub' => 'In your reader RSS, your software mail RSS, 
 your agregator RSS, add the address of news of the heading ',
 'rss_ajout_liste' => 'Or select another heading in this list :',
@@ -487,11 +486,10 @@ your agregator RSS, add this address to post the news whole site:',
     page HTML:',
 'rss_bla_java' => 'The contents text will seem in the demonstration opposite. You can
   in modifying the style Css.',
-'rss_webmaster' => '  <h4>Contents for webmasters</h4>
-  <p>
-The titles and descriptions of the articles can be
+'rss_webmaster' => 'Contents for webmasters',
+'rss_webmaster1' => 'The titles and descriptions of the articles can be
  posted on your site.  We gain
- some bonds, you gain pleasant dynamic contents with the Net surfers and the search engines.</p>',
+ some bonds, you gain pleasant dynamic contents with the Net surfers and the search engines.',
 'rss_fils' => 'Flows RSS in the site',
 'rss_fils2' => 'Surfing the headings of the site and find them',
 'rss_bou' => 'buttons',
@@ -529,7 +527,8 @@ by day.',
 'site_reference' => 'referred sites.',
 'site_dernier_ref' => 'The last referred Web sites',
 'site_dans' => 'In the Web sites',
-'site_total' => 'There is on the whole #GRAND_TOTAL sites, this page posts #TOTAL_BOUCLE of it',
+'site_total1' => 'There is on the whole',
+'site_total2' => 'sites, this page posts #TOTAL_BOUCLE of it',
 'site_trouver' => 'was not found in the descriptions of the Web sites partners.',
 'rss' => 'syndication RSS',
 'rss_aff' => 'Post dynamic contents RSS of',
