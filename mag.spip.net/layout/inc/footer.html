@@ -2,56 +2,24 @@
 					</div>
 				</div>
 			</div>
-
-<div id="droite">
-<!-- <:spipmag_form_recherche:> -->
-<div id="droite-recherche" class="boite">
-	<form action="/recherche.php" method="get">
-	<div class="head-boite-verte"><span class="titre-boite"><:recherche:></span></div>
-	<div class="boite-cadre">
-	<input type="hidden" name="lang" value="#LANG" />
-	<input type="text" size="12" name="recherche"
-		value="<:votre_requete:>" class="recherche"
-		onfocus="if (this.value=='<:votre_requete:>') this.value=''"
-		onblur="if (this.value == '') this.value='<:votre_requete:>'" /></div></form>
-</div>
-<B_news><!-- Breves  -->
-<div id="breves" class="boite">
-	<div class="head-boite-rouge"><span class="titre-boite"><:kwadneuf:></span></div>
-	<BOUCLE_news(BREVES) {par date}{inverse}{0,4}{id_rubrique=1}>
-	<div class="listing-breve" dir="#LANG_DIR" style="text-align: #LANG_LEFT;">
-	<a href="#URL_BREVE" title="[(#INTRODUCTION|supprimer_tags|attribut_html)]">#TITRE</a>
-	<span class="date-breve"> | [(#DATE|affdate)]</span></div></BOUCLE_news>
-</div></B_news>
-<B_aproposde><!-- Liens jaunes -->
-<div id="droite-menu" class="boite">
-	<div class="head-boite-jaune"><div class="titre-boite"><:sur_spipmag:></div></div>
-	<ul class="liste-jaune">
-	<BOUCLE_aproposde(ARTICLES) {id_rubrique=1}{par num titre}>
-	<li dir="#LANG_DIR" style="text-align: #LANG_LEFT;"><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[(#TITRE|supprimer_numero)]</a></li>
-	</BOUCLE_aproposde></ul>
-</div></B_aproposde>
-<B_spip-contrib><!-- Syndication de Spip Contrib -->
-	<div id="droite-contrib" class="boite">
-	<div class="head-boite-anthracite"><div class="titre-boite">Spip-Contrib</div></div>
-	<ul class="liste-anthracite">
-	<BOUCLE_spip-contrib(SYNDIC_ARTICLES) {id_syndic=3} {par date} {inverse} {0,4}>
-	<li>[(#DATE|jour)/][(#DATE|mois) ]<a href="#URL_ARTICLE" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)] | [par (#LESAUTEURS|supprimer_tags|attribut_html)]">#TITRE</a></li>
-	</BOUCLE_spip-contrib></ul>
-</div></B_spip-contrib>
-</div>
-
-
-
-			<div id="pied">
-				[(#REM) cf. http://permalink.gmane.org/gmane.comp.web.spip.devel/29039 ]
-				<BOUCLE_derniere_modif(ARTICLES){!lang_select}{!par date_modif}{0,1}>
-				[<:lastmod:>&nbsp;: (#DATE_MODIF|affdate) | ]
-				</BOUCLE_derniere_modif>
-				<a href="/ecrire"><:espace_prive:></a> |
-				<a href="/#DOSSIER_SQUELETTE/"><:squelettes:></a>
-			</div>
 		</div>
+		</div>
+</div>
+
+
+			
+			
+			
+			<br class="nettoyeur" /><div id="pied"><div id="pied_contenu">	[(#REM) Liens des forums ]	<B_forums_liens>	<div class="forums">		<h2><:derniers_commentaires:></h2>		<ul>			<BOUCLE_forums_liens(FORUMS) {plat} {par date}{inverse} {0,6}>			<li><h5><a href="#URL_FORUM">#TITRE</a>[ &ndash;&nbsp;(#NOM)]</h5>			[(#DATE|affdate_court)]			</li>			</BOUCLE_forums_liens>		</ul>	</div>	</B_forums_liens>
+
+[(#REM) La derniere Gazette SPIP]<BOUCLE_gazette(SYNDIC_ARTICLES){id_syndic=20}{par date}{inverse}{0,1}>[(#SET{infos,#TITRE[ - PDF/(#TAGS|afficher_tags{enclosure}|extraire_attribut{title}|taille_en_octets) - ][(#DATE|nom_mois) ][(#DATE|annee)]})]<div class="syndic" id="gazettep">	<h2>#TITRE</h2>	<ul>		<li>			<a href="[(#TAGS				|afficher_tags{enclosure}				|extraire_attribut{href})]"[			   title="(#GET{infos}|textebrut|entites_html)"]			   type="application/pdf">			<img src="[(#DESCRIPTIF				|extraire_balise{img}				|extraire_attribut{src}				|copie_locale)]" [			   alt="(#GET{infos}|textebrut|entites_html)" />]			</a>		</li>		[<li>(#GET{infos})</li>]	</ul>	<p><a href="#URL_SITE"><:form_pet_message_commentaire:></a></p></div></BOUCLE_gazette>
+	<ul id="utils">		<li><a href="#URL_PAGE{backend}" title="<:syndiquer_site:>"><img src="#CHEMIN{feed.png}" alt="<:icone_suivi_activite:>" width="16" height="16" class="format_png" />&nbsp;RSS&nbsp;2.0</a></li>		<li><a href="#URL_PAGE{plan}"><:plan_site:></a></li>		<li><a href="ecrire/"><:espace_prive:></a></li>		<li><a href="http://www.spip.net/" title="<:site_realise_avec_spip:>"><img src="#CHEMIN{spip.png}" alt="SPIP" width="48" height="16" class="format_png" /></a></li>		<li><a href="/#DOSSIER_SQUELETTE/"><:squelettes:></a>			
+</li>	</ul>	<hr /></div><!-- fin de pied -->
+			
+			
+			
+			
+						</div>
 
 	</body>
 

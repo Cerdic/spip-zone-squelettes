@@ -1,8 +1,3 @@
-<?php
-	require("layout/design/fonctions_post.inc");
-	if(!$spipmag_style) $spipmag_style = 'large';
-?>[(#CHARSET|doctype)]
-
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG">
 
 	<head>
@@ -16,92 +11,85 @@
 	</head>
 
 	<body dir="#LANG_DIR">
+			
+
+		
+		<div id="entetep"><div id="entetep_contenu">[(#REM) Afficher le logo ou le titre du site ]<a rel="start" href="#URL_SITE_SPIP/">#LOGO_SITE_SPIP</a><div id="nom_site_spip">#NOM_SITE_SPIP[<div id="slogan">(#DESCRIPTIF_SITE_SPIP|PtoBR|couper{60})</div>]</div>#FORMULAIRE_RECHERCHE<div id="liens"><a href="./">accueil</a>|<a href="#URL_PAGE{visionneuse}"> lire la gazette</a></div></div><br class="nettoyeur" /></div>
+		
+		
+		
 		<div id="conteneur">
-		<div id="navigation">
-			<a href="#menu"><:aller_menu:></a>
-			| <a href="#contenu"><:aller_contenu:></a>
-			<BOUCLE_test_forum(FORUMS){id_article}{0,1}>
-			| <a href="#forum"><:aller_forum:></a>
-			</BOUCLE_test_forum>
-		</div>
-			<div id="titre-spip"><?php
-				if($REQUEST_URI!= "/") { ?><a href="/"><? } ?><:spip:><?php
-				if($REQUEST_URI!= "/") { ?></a><? } ?></div>
-			<div id="titre-mag"><?php
-				if($REQUEST_URI!= "/") { ?><a href="/"><? } ?><:mag:><?php
-				if($REQUEST_URI!= "/") { ?></a><? } ?></div>
-			<div id="titre-url" dir="ltr"><?php
-				if($REQUEST_URI!= "/") { ?><a href="/"><? } ?>mag.spip.net/<?php
-				if($REQUEST_URI!= "/") { ?></a><? } ?></div>
-			<div id="entete">&nbsp;</div>
+		
+			
 			<div id="corps">
-				<div id="gauche">
+				
+			
 
-					<!-- <:form_recherche:> -->
-					<div id="gauche-recherche" class="boite">
-						<form action="/spip.php?page=recherche" method="get">
-							<div class="head-boite-jaune"><span class="titre-boite"><:recherche:></span></div>
-							<div class="boite-cadre">
-							<input type="hidden" name="lang" value="#LANG" />
-							<input type="text" size="12" name="recherche"
-								value="<:votre_requete:>"
-								onfocus="if  (this.value=='<:votre_requete:>') this.value=''"
-								onblur="if (this.value == '') this.value='<:votre_requete:>'"
-								class="recherche" />
-							</div>
-						</form>
-					</div>
-
-					<B_rubriques>
-					<!-- <:sous_rubriques:> -->
-					<div id="gauche-rubriques" class="boite">
-						<div class="head-boite-jaune"><span class="titre-boite"><:dans_rubrique:>&nbsp;:</span></div>
-						<ul class="liste-jaune">
-						<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par num titre}>
-							<li class="liste-jaune">
-								<a href="#URL_RUBRIQUE" class="lien-jaune">[(#TITRE|supprimer_numero)]</a>
-							</li>
-						</BOUCLE_rubriques>
-						</ul>
-					</div>
-					</B_rubriques>
-
-					<!-- <:liens_privilegies:> -->
-					<div id="gauche-liens" class="boite">
-						<div class="head-boite-verte"><span class="titre-boite"><:sur_web:></span></div>
-						<ul class="liste-verte">
-						<BOUCLE_sites(SITES){id_mot=1}>
-							<li class="liste-verte"><a href="#URL_SITE" class="lien-vert">#NOM_SITE</a></li></BOUCLE_sites>
-						</ul>
-					</div>
-
-					<!-- <:mailing_list:> http://listes.rezo.net/mailman/listinfo/spip-mag -->
-					<div id="gauche-liste" class="boite">
-						<div class="head-boite-rouge"><span class="titre-boite"><:mailing_list:></span></div>
-						<ul class="liste-rouge">
-							<li>
-								<a href="http://listes.rezo.net/popup/liste.php?liste=spip-mag&lang=fr"
-									target="liste"
-									onClick="javascript:window.open(this.href,'Inscription','resizable=yes,width=280,height=200'); return false;"><:abo_liste:></a>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-	<div id="contenu">
-
-		<div id="menu">
+	<div id="contenup">
+<div id="menu">
 		<ul>
-			<li><a href="/" title="<:spipmag_retour_accueil:>"><?php
+			<li class="menuli"><a href="/" title="<:spipmag_retour_accueil:>"><?php
 			if($REQUEST_URI== "/") { ?><strong><? } ?><:accueil_site:><?php
 			if($REQUEST_URI== "/") { ?></strong><? } ?></a></li>
-			<BOUCLE_menu(RUBRIQUES) {par num titre}{id_parent=2}>
-			<li><a href="#URL_RUBRIQUE" [(#EXPOSE{'class="on"',''})
+			<BOUCLE_menu(RUBRIQUES) {par num titre}{racine}{id_secteur !IN 9,18}>
+			<li class="menuli"><a href="#URL_RUBRIQUE" [(#EXPOSE{'class="on"',''})
 			]title="#DESCRIPTIF">[(#EXPOSE{'<strong>',''})][(#TITRE|supprimer_numero)][(#EXPOSE{'</strong>',''})]</a></li>
 			</BOUCLE_menu>
+			<li class="menuli" style="text-align:right">
+				<a href="./?page=plan">[ plan ]</a>
+			</li>
 		</ul>
+	
+		
+		[(#REM) La derniere Gazette SPIP
+
+]
+
+<style>
+#gazette {
+	padding-top: 100px;
+	padding-bottom: 5px;
+	text-align: center;
+	font: 12px Verdana, sans-serif; 
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+#gazette ul{
+list-style-type:none;	
+}
+
+#gazette img {
+	border: none;
+	margin: auto;
+	padding-top: 2px;
+}
+#gazette dl{margin:0px;padding:10px;	background:#B84B4B;
+}
+
+#gazette dd, #gazette dt {
+	text-transform: none;
+	letter-spacing: none;
+	font: 9px Verdana, sans-serif; 
+	color:#fff;
+	}
+	
+	
+	 #gazette a:hover {color:#940012;} #gazette a {
+	color:white;font-size:small;} #gazette a {text-decoration:none;}
+	
+	
+</style>
+
+[(#REM) La derniere Gazette SPIP]<BOUCLE_gazette(SYNDIC_ARTICLES){id_syndic=20}{par date}{inverse}{0,1}>[(#SET{infos,#TITRE[ - PDF/(#TAGS|afficher_tags{enclosure}|extraire_attribut{title}|taille_en_octets) - ][(#DATE|nom_mois) ][(#DATE|annee)]})]<div  id="gazette">	<h2>#TITRE</h2>	<ul>		<li>			<a href="[(#TAGS				|afficher_tags{enclosure}				|extraire_attribut{href})]"[			   title="(#GET{infos}|textebrut|entites_html)"]			   type="application/pdf">			<img src="[(#DESCRIPTIF				|extraire_balise{img}				|extraire_attribut{src}				|copie_locale)]" [			   alt="(#GET{infos}|textebrut|entites_html)" />]			</a>		</li>		[<li>(#GET{infos})</li>]	</ul>	<p><a href="#URL_SITE"><:form_pet_message_commentaire:></a></p></div></BOUCLE_gazette>
+
+		
+		
+<div style="color:#fff;font-stayle:italic;font-size:13px;padding:10px;font-family:times, serif">
+#DESCRIPTIF_SITE_SPIP
+</div>		
 		</div>
 
 		<div id="texte">
 
-
+		
