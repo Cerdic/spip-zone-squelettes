@@ -473,18 +473,15 @@ Une gestion de votre profil et de votre inscription vous sera alors accessible.'
 'rub_trouver' => 'n\'a pas &eacute;t&eacute; trouv&eacute; dans les
     descriptifs et les titres des rubriques.',
 'rss_profi' => 'Profitez du contenu de',
-'rss_monde' => '<h4>L\'info du monde entier</h4>
-
-<p> Visualisez les news du monde entier: En installant un lecteur de nouvelles
+'rss_monde' => 'L\'info du monde entier',
+'rss_monde1' => 'Visualisez les news du monde entier: En installant un lecteur de nouvelles
  sur votre ordinateur ou dans votre site web, vous synth&eacute;tiserez l\'actualit&eacute;
- publi&eacute;e
- sur les sites web que vous aurez s&eacute;lectionn&eacute;.</p>',
-'rss_lecteur' => '<h4>Votre lecteur est install&eacute;</h4>
-
-<p>Vous poss&eacute;dez d&eacute;j&agrave; un
+ publi&eacute;e sur les sites web que vous aurez s&eacute;lectionn&eacute;.',
+'rss_lecteur' => 'Votre lecteur est install&eacute;',
+'rss_lecteur1' => 'Vous poss&eacute;dez d&eacute;j&agrave; un
   lecteur de nouvelles RSS: Internet Explorer v7, Firefox v1,v2,v3,
   Thunderbird, Safari, Mozilla, ainsi que d\'autres navigateurs poss&egrave;dent
-  des lecteurs de nouvelles ou de flux RSS.</p>',
+  des lecteurs de nouvelles ou de flux RSS.',
 'rss_ajout_rub' => 'Dans votre lecteur RSS, votre logiciel courrier RSS, votre agr&eacute;gateur RSS,
 ajoutez l\'adresse de news de la rubrique ',
 'rss_ajout_liste' => 'Ou s&eacute;lectionnez une autre rubrique dans cette liste&nbsp;:',
@@ -505,12 +502,11 @@ ajoutez cette adresse  pour afficher les news du site entier :',
     page html:',
 'rss_bla_java' => 'Le contenu texte apparaitra comme dans la d&eacute;monstration ci-contre. Vous pouvez
   en modifier le style css.',
-'rss_webmaster' => '  <h4>Contenu pour webmasters</h4>
-  <p>
- Les titres et descriptifs des articles  peuvent &ecirc;tre
+'rss_webmaster' => 'Contenu pour webmasters',
+'rss_webmaster1' => 'Les titres et descriptifs des articles  peuvent &ecirc;tre
  affich&eacute;s sur votre site.  Nous gagnons
  quelques liens, vous gagnez du contenu dynamique agr&eacute;able aux
- internautes et aux moteurs de recherches. </p>',
+ internautes et aux moteurs de recherches.',
 'rss_fils' => 'Des fils RSS dans le site',
 'rss_fils2' => 'Surfez les rubriques du site et retrouvez les',
 'rss_bou' => 'boutons',
