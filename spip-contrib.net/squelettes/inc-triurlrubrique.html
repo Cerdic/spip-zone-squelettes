@@ -1,26 +1,0 @@
-[(#REM) inclusion pour tri url rubrique version SPIP-Contrib 2007
-Explications : pour faciliter la navigation, SPIP-Contrib ayant beaucoup de rubrique-dossier avec un seul article
-si un et seul seul article de premier niveau 
-et pas de sous-rubrique autre qu'archives
-alors url rubrique = url article
-sinon (tout autre cas, par exemple rubrique vide) alors url rubrique = url rubrique
-nota syndication dans la rubrique : cas des articles issus de la syndication non pris en compte car deja inclus en cartouche dans l'article
-nota de contexte : INCLURE qui appelle cette noisette doit toujours etre place dans une boucle rubrique 
-nota balises : l'usage des balises nommees evite toute ambiguite sur l'url appellee
-]
-
-<BOUCLE_contexte_rubrique(RUBRIQUES){id_rubrique}>
-	[(#REM) test sur nombre d'articles]
-	<BOUCLE_articles_plusdun(ARTICLES){id_rubrique}{1,1}>	 	 [(#_contexte_rubrique:URL_RUBRIQUE)]	</BOUCLE_articles_plusdun></B_articles_plusdun>		<BOUCLE_articles_unseul(ARTICLES){id_rubrique}{0,1}>
-			[(#REM) test sur presence sous-rubriques autres qu'archives]
-			[(#REM) boucle d'exclusion rubriques sur mot clef "Archives, id=154"]
-			<BOUCLE_exclu_rubriques(RUBRIQUES){id_mot=154}{id_parent}{doublons archives}></BOUCLE_exclu_rubriques>
-			<BOUCLE_test_sousrubrique(RUBRIQUES){id_parent}{doublons archives}>
-			</BOUCLE_test_sousrubrique>
-				[(#_contexte_rubrique:URL_RUBRIQUE)]
-			</B_test_sousrubrique>
-				[(#_articles_unseul:URL_ARTICLE)]
-			<//B_test_sousrubrique>
-		</BOUCLE_articles_unseul></B_articles_unseul>		  	[(#_contexte_rubrique:URL_RUBRIQUE)]
-		<//B_articles_unseul>	<//B_articles_plusdun>
-</BOUCLE_contexte_rubrique>
