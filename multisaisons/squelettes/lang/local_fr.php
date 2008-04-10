@@ -161,8 +161,8 @@ un webmail est souvent &agrave; l\'origine du probl&egrave;me. Merci de ',
 
 'contact' => 'Contact',
 'contact_webmaster' => 'Contactez votre webmaster.',
-'confidentialite' => ' Soyez assur&eacute; de la confidentialit&eacute; des donn&eacute;es vous concernant.<br/>
-Ce site est prot&eacute;g&eacute; contre les robots spammeur et est inscrit &agrave; la CNIL.</p> ',
+'confidentialite' => ' Soyez assur&eacute; de la confidentialit&eacute; des donn&eacute;es vous concernant.',
+'cnil' => 'Ce site est prot&eacute;g&eacute; contre les robots spammeur et est inscrit &agrave; la CNIL.',
 'connecter' => 'Connectez vous!',
 'pas_contact_pas_connect1' => 'Vous ne pouvez contacter',
 'pas_contact_pas_connect2' => 'sans &ecirc;tre connect&eacute; &agrave;',
