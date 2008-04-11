@@ -1,95 +1,0 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG">
-
-	<head>
-		<meta http-equiv="Content-Type" content="text/HTML; charset=#CHARSET" />
-		<title>#NOM_SITE_SPIP<?php if($titre_page) print(" | $titre_page"); ?></title>
-		<link rel="stylesheet" href="/layout/design/style[(#LANG_DIR|=={rtl}|?{'_rtl',''})].css" type="text/css" media="all" />
-		<link rel="stylesheet" href="/layout/design/<?php echo $spipmag_style; ?>[(#LANG_DIR|=={rtl}|?{'_rtl',''})].css" type="text/css" />
-		<link rel="stylesheet" href="/layout/design/impression.css" type="text/css" media="print" />
-		<link rel="shortcut icon" href="/layout/favicon.ico" />
-		<link rel="alternate" type="application/rss+xml" title="#NOM_SITE_SPIP" href="/backend.rss" />
-	</head>
-
-	<body dir="#LANG_DIR">
-			
-
-		
-		<div id="entetep"><div id="entetep_contenu">[(#REM) Afficher le logo ou le titre du site ]<a rel="start" href="#URL_SITE_SPIP/">#LOGO_SITE_SPIP</a><div id="nom_site_spip">#NOM_SITE_SPIP[<div id="slogan">(#DESCRIPTIF_SITE_SPIP|PtoBR|couper{60})</div>]</div>#FORMULAIRE_RECHERCHE<div id="liens"><a href="./">accueil</a>|<a href="#URL_PAGE{visionneuse}"> lire la gazette</a></div></div><br class="nettoyeur" /></div>
-		
-		
-		
-		<div id="conteneur">
-		
-			
-			<div id="corps">
-				
-			
-
-	<div id="contenup">
-<div id="menu">
-		<ul>
-			<li class="menuli"><a href="/" title="<:spipmag_retour_accueil:>"><?php
-			if($REQUEST_URI== "/") { ?><strong><? } ?><:accueil_site:><?php
-			if($REQUEST_URI== "/") { ?></strong><? } ?></a></li>
-			<BOUCLE_menu(RUBRIQUES) {par num titre}{racine}{id_secteur !IN 9,18}>
-			<li class="menuli"><a href="#URL_RUBRIQUE" [(#EXPOSE{'class="on"',''})
-			]title="#DESCRIPTIF">[(#EXPOSE{'<strong>',''})][(#TITRE|supprimer_numero)][(#EXPOSE{'</strong>',''})]</a></li>
-			</BOUCLE_menu>
-			<li class="menuli" style="text-align:right">
-				<a href="./?page=plan">[ plan ]</a>
-			</li>
-		</ul>
-	
-		
-		[(#REM) La derniere Gazette SPIP
-
-]
-
-<style>
-#gazette {
-	padding-top: 100px;
-	padding-bottom: 5px;
-	text-align: center;
-	font: 12px Verdana, sans-serif; 
-	text-transform: uppercase;
-	letter-spacing: 2px;
-}
-
-#gazette ul{
-list-style-type:none;	
-}
-
-#gazette img {
-	border: none;
-	margin: auto;
-	padding-top: 2px;
-}
-#gazette dl{margin:0px;padding:10px;	background:#B84B4B;
-}
-
-#gazette dd, #gazette dt {
-	text-transform: none;
-	letter-spacing: none;
-	font: 9px Verdana, sans-serif; 
-	color:#fff;
-	}
-	
-	
-	 #gazette a:hover {color:#940012;} #gazette a {
-	color:white;font-size:small;} #gazette a {text-decoration:none;}
-	
-	
-</style>
-
-[(#REM) La derniere Gazette SPIP]<BOUCLE_gazette(SYNDIC_ARTICLES){id_syndic=20}{par date}{inverse}{0,1}>[(#SET{infos,#TITRE[ - PDF/(#TAGS|afficher_tags{enclosure}|extraire_attribut{title}|taille_en_octets) - ][(#DATE|nom_mois) ][(#DATE|annee)]})]<div  id="gazette">	<h2>#TITRE</h2>	<ul>		<li>			<a href="[(#TAGS				|afficher_tags{enclosure}				|extraire_attribut{href})]"[			   title="(#GET{infos}|textebrut|entites_html)"]			   type="application/pdf">			<img src="[(#DESCRIPTIF				|extraire_balise{img}				|extraire_attribut{src}				|copie_locale)]" [			   alt="(#GET{infos}|textebrut|entites_html)" />]			</a>		</li>		[<li>(#GET{infos})</li>]	</ul>	<p><a href="#URL_SITE"><:form_pet_message_commentaire:></a></p></div></BOUCLE_gazette>
-
-		
-		
-<div style="color:#fff;font-stayle:italic;font-size:13px;padding:10px;font-family:times, serif">
-#DESCRIPTIF_SITE_SPIP
-</div>		
-		</div>
-
-		<div id="texte">
-
-		
