@@ -353,7 +353,8 @@ the actuality for',
 'musique' => 'Music',
 'messages_edit' => 'Published message.',
 'messages_ecri_non' => 'did not write a message yet.',
-'moteur_rech' => 'Search engine</a>, et glossary of the definitions
+'moteur_rech' => 'Search engine',
+'moteur_rech1' => ', et glossary of the definitions
   are related to
   articles.',
 'merci' => 'Thank you',

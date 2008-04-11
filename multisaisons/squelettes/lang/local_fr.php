@@ -125,7 +125,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 'bloogletter_adresse' => 'Indiquez ici l\'adresse &agrave; utiliser pour les retours de mails (&agrave; d&eacute;faut, l\'adresse du webmestre sera utilis&eacute;e comme adresse de retour) :',
 'bloogletter_definir_squel_texte' => 'Vous pouvez ajouter des squelettes HTML par FTP dans le repertoire /squelettes_bloogletter (&agrave; la racine de votre site Spip).',
-'bloogletter_definir_squel_choix' => 'A la r&eacute;daction d\'un nouveau courrier, la bloogletter vous permet de charger un patron. En appuyant sur un bouton, vous chargez dans le corps du message le contenu d\'un des squelettes du repertoire <b>/squelettes_bloogletter</b> (situ&eacute; &agrave; la racine de votre site Spip). <p><b>Vous pouvez &eacute;diter et modifier ces squelettes selon vos go�ts.</b></p> <UL><li>Ces squelettes peuvent contenir du code HTML classique</li>
+'bloogletter_definir_squel_choix' => 'A la r&eacute;daction d\'un nouveau courrier, la bloogletter vous permet de charger un patron. En appuyant sur un bouton, vous chargez dans le corps du message le contenu d\'un des squelettes du repertoire <b>/squelettes_bloogletter</b> (situ&eacute; &agrave; la racine de votre site Spip). <p><b>Vous pouvez &eacute;diter et modifier ces squelettes selon vos go&uacute;ts.</b></p> <UL><li>Ces squelettes peuvent contenir du code HTML classique</li>
 <li>Ce squelette peut contenir des boucles Spip</li>
 <li>Apr&egrave;s le chargement du patron, vous pourrez re-&eacute;diter le message avant envoi (pour ajouter du texte)</li>
 </ul><p>La fonction "charger un patron" permet donc d\'utiliser des gabarits HTML personnalis&eacute;s pour vos courriers ou de cr&eacute;er des lettres d\'information th&eacute;matiques dont le contenu est d&eacute;fini gr&acirc;ce aux boucles Spip.</p><p>Attention : ce squelette ne doit pas contenir de balises body, head ou html mais juste du code HTML ou des boucles Spip.</p>',
@@ -175,7 +175,8 @@ un webmail est souvent &agrave; l\'origine du probl&egrave;me. Merci de ',
 'clic_recopier' => 'Cliquez ou recopiez',
 'vs_connectez1' => 'Vous &ecirc;tes connect&eacute;, vous pouvez interagir avec',
 'vs_connectez2' => 'Que souhaitez-vous faire ? Choisissez dans ces options :',
-'capture_non' => 'Pas de<br/>capture',
+'capture' => 'capture',
+'pas_de' => 'Pas de',
 
 
 //D
@@ -244,20 +245,19 @@ Vous pourrez alors confirmer la modification de votre abonnement.',
 'forum_dep_mod' => 'Message d&eacute;plac&eacute; ou mod&eacute;r&eacute;',
 'ajout_site_favori' => 'Ajouter mon site web favori',
 'autre_forum' => 'Autres forums',
-'erreur_forum' => 'Le message a &eacute;t&eacute; d&eacute;plac&eacute; ou mod&eacute;r&eacute;.<br/>
-Utilisez le bouton RETOUR de votre navigateur<br/> 
-ou lancez une recherche dans les forums:<br/>',
+'erreur_forum' => 'Le message a &eacute;t&eacute; d&eacute;plac&eacute; ou mod&eacute;r&eacute;.',
+'erreur_forum1' => 'Utilisez le bouton RETOUR de votre navigateur',
+'erreur_forum2' => 'ou lancez une recherche dans les forums:',
 'forum_deplace1' => 'D&eacute;plac&eacute;?',
 'forum_deplace2' => 'Le message peut avoir &eacute;t&eacute; d&eacute;plac&eacute; d\'un
                 forum &agrave; l\'autre. Utilisez le moteur de', 
 'forum_deplace3' => 'ou surfez
               les forums.',
-'forum_modere' => '<h4>Mod&eacute;r&eacute;?</h4>
-<p>
-                Les messages futiles
+'forum_modere' => 'Mod&eacute;r&eacute;?',
+'forum_modere1' => 'Les messages futiles
                 sont mod&eacute;r&eacute;s: Publicit&eacute;s, concours, recherches
                 de cr&eacute;dules et
-                autres abus polluent les forums.</p>',
+                autres abus polluent les forums.',
 'forum_corr' => 'Corriger ou poster un message dans un forum',
 'forum_post' => 'Poster dans un forum',
 'fil_diff' => 'Vous pouvez surveiller les nouveaut&eacute;s du site par ses diff&eacute;rents 
@@ -294,11 +294,12 @@ et de recevoir les lettres d\'informations.',
 'inscrit_ou_pas' => 'D&eacute;j&agrave; inscrit?',
 'imprimez_article' => 'imprimez cet article',
 'vous_inscrire' => 'Souhaitez-vous vous inscrire',
-'sans_image' => 'Sans<br/>images<br/>',
+'sans' => 'Sans',
+'image' => 'images',
 'invit_abo' => 'invit&eacute;s/abonn&eacute;s',
-'impri_enviro' => '<h4 class="icone_arbre">Si vous imprimez</h4>
-<p>Pour prot&eacute;ger l\'environnement, participez au recyclage du papier.
-Ne pas jeter sur la voie publique. </p>',
+'impri_enviro' => 'Si vous imprimez',
+'impri_enviro1' => 'Pour prot&eacute;ger l\'environnement, participez au recyclage du papier.
+Ne pas jeter sur la voie publique.',
 'info_plus' => 'Plus d\'infos',
 'inscrire' => 'S\'inscrire',
 
@@ -366,7 +367,8 @@ l\'actualit&eacute; pour',
 'musique' => 'Musique',
 'messages_edit' => 'Message  &eacute;dit&eacute;.',
 'messages_ecri_non' => 'n\'a pas encore &eacute;crit de message.',
-'moteur_rech' => 'Moteur de recherche</a>, et glossaire des d&eacute;finitions
+'moteur_rech' => 'Moteur de recherche',
+'moteur_rech1' => ', et glossaire des d&eacute;finitions
   sont li&eacute;s aux
   articles.',
 'merci' => 'Merci',
@@ -410,16 +412,15 @@ l\'actualit&eacute; pour',
 'poster' => 'Poster un Message',
 'premiere_publi' => 'Premi&egrave;re publication',
 'plan_du_site' => 'plan du site',
-'possibilite_de' => ' <li>La possibilit&eacute; d\'y ajouter ses textes, documents, photos et liens.</li>      
-<li>La possibilit&eacute; de s\'abonner &agrave; des lettres d\'informations qui vous concerne.</li>
-<li>La possibilit&eacute; d\'ajouter votre bio, site web, et avatar.</li> ',
+'possibilite_de' => 'La possibilit&eacute; d\'y ajouter ses textes, documents, photos et liens.',
+'possibilite_de1' => 'La possibilit&eacute; de s\'abonner &agrave; des lettres d\'informations qui vous concerne.',
+'possibilite_de2' => 'La possibilit&eacute; d\'ajouter votre bio, site web, et avatar.',
 'pgp_securite' => 'S&eacute;curit&eacute;, cl&eacute; PGP, protection:',
-'pourquoi' => '<h4>Pourquoi?</h4>
-<p>
-                Le document a peut-&ecirc;tre &eacute;t&eacute; supprim&eacute; ou
+'pourquoi' => 'Pourquoi?',
+'pourquoi1' => 'Le document a peut-&ecirc;tre &eacute;t&eacute; supprim&eacute; ou
                 d&eacute;plac&eacute;.
                 L\'acc&egrave;s &agrave; la racine d\'un r&eacute;pertoire est
-                interdit par le serveur. Le serveur est peut-&ecirc;tre surcharg&eacute;. </p>',
+                interdit par le serveur. Le serveur est peut-&ecirc;tre surcharg&eacute;.',
 'retrouver_chang_passe' => 'Retrouver ou changer mon mot de passe.',
 'total_photo1' => 'Il y a au total',
 'total_photo2' => 'photos, cette page en affiche',
@@ -427,8 +428,8 @@ l\'actualit&eacute; pour',
 'profil' => 'Mon profil',
 'profil_son' => 'Son profil',
 'profil_aff' => 'Cette page affiche votre profil tel qu\'il apparait aux autres membres de',
-'profil_deff' => 'Informations complémentaires optionnelles</h4> 
-<p>Un double clic sur les trois points (...) modifie le profil.</p>',
+'profil_deff' => 'Informations complémentaires optionnelles',
+'profil_deff1' => 'Un double clic sur les trois points (...) modifie le profil.',
 'prevision' => 'Pr&eacute;visions du',
 'part_cont' => 'Participer, contribuer',
 'plan_de' => 'Plan de:',
