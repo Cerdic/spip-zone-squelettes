@@ -1,125 +1,59 @@
-#CACHE{18000}
-<?php
-	@header('Content-type: text/xml[; charset=(#CHARSET)]');
-	echo '<'.'?xml version="1.0" encoding="#CHARSET"?'.">\n";
-?>
-<rss version="0.91" xmlns:dc="http://purl.org/dc/elements/1.1/">
+#CACHE{0}
+[(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})]<?xml 
+version="1.0"[ encoding="(#CHARSET)"]?>
+<rss version="2.0" [(#REM) rss 2.0.9)]
+	xmlns:xml="http://www.w3.org/XML/1998/namespace"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+>
 
-	<BOUCLE_menu_rub(RUBRIQUES){tout}{titre_mot=menu_rub}>
-	<BOUCLE_article_aff(ARTICLES){branche}{doublons menurub}>
-	</BOUCLE_article_aff>
-	</BOUCLE_menu_rub>
-	
-	<BOUCLE_photos(RUBRIQUES){tout}{titre_mot=photo}>
-	<BOUCLE_article_photo(ARTICLES){branche}{doublons photo}>
-	</BOUCLE_article_photo>
-	</BOUCLE_photos>
-	
-	<BOUCLE_rub(RUBRIQUES){tout}>
-	<BOUCLE_articles(ARTICLES){branche}{doublons photo}{doublons menurub}{doublons total}>
-	</BOUCLE_articles>
-	</BOUCLE_rub>
-
-<channel>
-	<BOUCLE_titre(ARTICLES){id_article}>
-	<title>[(#NOM_SITE_SPIP|texte_backend)] / [(#TITRE)] </title>
-	<link>#URL_SITE_SPIP/#URL_ARTICLE</link>
-	</BOUCLE_titre>
-	<BOUCLE_titre2(RUBRIQUES){id_rubrique}>
-	<title>[(#NOM_SITE_SPIP|texte_backend)] / [(#TITRE)] </title>
-	<link>#URL_SITE_SPIP/#URL_RUBRIQUE</link>
-	</BOUCLE_titre2>
-	<title>[(#NOM_SITE_SPIP|texte_backend)] </title>
+<channel[ xml:lang="(#LANG)"]>
+	<title>[(#NOM_SITE_SPIP|texte_backend)]</title>
 	<link>#URL_SITE_SPIP/</link>
-	<//B_titre2>
-	<//B_titre>
-		
-	<description></description>
+	[<description>(#DESCRIPTIF_SITE_SPIP|supprimer_tags|texte_backend)</description>]
 	<language>#LANG</language>
+	<generator>SPIP - www.spip.net</generator>
 
-	<image>
+[	<image>
 		<title>[(#NOM_SITE_SPIP|texte_backend)]</title>
-		<url>#URL_SITE_SPIP[/(#LOGO_SITE_SPIP||extraire_attribut{src})]</url>
+		<url>(#LOGO_SITE_SPIP||extraire_attribut{src}|url_absolue|texte_backend)</url>
 		<link>#URL_SITE_SPIP/</link>
-		<description></description>
+		[<height>(#LOGO_SITE_SPIP||extraire_attribut{height})</height>]
+		[<width>(#LOGO_SITE_SPIP||extraire_attribut{width})</width>]
 	</image>
-	
-	<BOUCLE_isforum(ARTICLES){id_article}{titre_mot=forum}>
-	<BOUCLE_10recents(FORUMS){tous}{id_article}{id_article>0}{plat}{par date}{inverse}{0,15}>
-		<item>
-		<title>[(#TITRE|texte_backend)]</title>
-		<link>#URL_SITE_SPIP/spip.php?page=discussion&amp;id_forum=#ID_FORUM</link>
-		<date>#DATE</date>
-		<description>[(#TEXTE|texte_backend|couper)]</description>
-		<author>[(#NOM|texte_backend)]</author>
-		<dc:date>[(#DATE|date_iso)]</dc:date>
-		<dc:format>text/html</dc:format>
-		<dc:language>#LANG</dc:language>
-		<dc:creator><BOUCLE_auteursb(AUTEURS){tous}{id_article}{", "}>[(#NOM|texte_backend)]</BOUCLE_auteursb></dc:creator>
-		</item>
-	</BOUCLE_10recents>
-	</BOUCLE_isforum>
-	
-	<BOUCLE_is_rub_forum(RUBRIQUES){id_rubrique}{titre_mot=forum}>
-	<BOUCLE_contexte(RUBRIQUES){id_rubrique}>
-	<BOUCLE_secteurs(RUBRIQUES){exclus}>
-	<BOUCLE_supp(RUBRIQUES){id_rubrique}>
-       <BOUCLE_supp2(FORUMS){tous}{id_rubrique}{plat}{doublons}>
-       </BOUCLE_supp2>
-	</BOUCLE_supp>
-	<BOUCLE_supp3(ARTICLES){id_rubrique}>
-       <BOUCLE_supp4(FORUMS){tous}{id_article}{plat}{doublons}>
-       </BOUCLE_supp4>
-	</BOUCLE_supp3>
-	</BOUCLE_secteurs>
-	</BOUCLE_contexte>
+]
 
-	<BOUCLE_enfin(FORUMS){tous}{id_article>0}{doublons}{par date}{inverse}{0,10}>
+
+<BOUCLE_art_forum(ARTICLES){id_article}{titre_mot=forum}{0,1}>
+	<BOUCLE_enfin(FORUMS){id_article}{plat}{doublons}{par date}{inverse}{0,20}>
 	<item>
-		<title>[(#_enfin:TITRE|texte_backend)]</title>
+		<title>[(#_enfin:TITRE|texte_backend) ][(#_enfin:DATE|affdate{"Ce j/n "})][ - (#_enfin:DATE|heures)][:(#_enfin:DATE|minutes)]</title>
 		<link>#URL_SITE_SPIP/spip.php?page=discussion&amp;id_forum=#ID_FORUM</link>
-		<date>#_enfin:DATE</date>
-		<description>[(#_enfin:INTRODUCTION|texte_backend)]</description>
-		<author>[(#_enfin:NOM|texte_backend)]</author>
-		<dc:date>[(#_enfin:DATE|date_iso)]</dc:date>
+		<guid isPermaLink="true">#URL_SITE_SPIP/spip.php?page=discussion&amp;id_forum=#ID_FORUM</guid>
+		[<description>(#_enfin:TEXTE|couper{200}|texte_backend)</description>]
+		[<dc:date>(#_enfin:DATE|date_iso)</dc:date>]
 		<dc:format>text/html</dc:format>
 		<dc:language>#LANG</dc:language>
-		<dc:creator><BOUCLE_auteursb(AUTEURS){tous}{id_article}{", "}>[(#NOM|texte_backend)]</BOUCLE_auteursb></dc:creator>
-		</item>
-	</BOUCLE_enfin>
-	</BOUCLE_is_rub_forum>
-	
-	<BOUCLE_10recents2(ARTICLES){doublons total}{lang ?}{branche ?}{par date}{inverse}{0,10}>
-		
-		<item>
-		<title>[(#TITRE|texte_backend)]</title>
-		<link>#URL_SITE_SPIP/#URL_ARTICLE</link>
-		<date>#DATE</date>
-		<description>[&lt;img src="#URL_SITE_SPIP/(#LOGO_ARTICLE||extraire_attribut{src})" align="left" hspace="4" vspace="4"&gt; ][(#INTRODUCTION|texte_backend)]</description>
-		<author><BOUCLE_auteurs(AUTEURS){tous}{id_article}{", "}>[(#NOM|texte_backend)]</BOUCLE_auteurs></author>
-		<dc:date>[(#DATE|date_iso)]</dc:date>
-		<dc:format>text/html</dc:format>
-		<dc:language>#LANG</dc:language>
-		<dc:creator><BOUCLE_auteursb(AUTEURS){tous}{id_article}{", "}>[(#NOM|texte_backend)]</BOUCLE_auteursb></dc:creator>
-		</item>
-	</BOUCLE_10recents2>
-	<BOUCLE_tres_recents(ARTICLES){lang ?}{branche ?}{par date}{inverse}{age<3}{unique}>
-		<item>
-		<title>[(#TITRE|texte_backend)]</title>
-		<link>#URL_SITE_SPIP/#URL_ARTICLE</link>
-		<date>#DATE</date>
-		<description>[&lt;img src="#URL_SITE_SPIP/(#LOGO_ARTICLE||extraire_attribut{src})" align="left" hspace="4" vspace="4"&gt; ][(#INTRODUCTION|texte_backend)]</description>
-		<author><BOUCLE_auteurs_t(AUTEURS){tous}{id_article}{","}>[(#NOM|texte_backend)]</BOUCLE_auteurs_t></author>
-		<dc:date>[(#DATE|date_iso)]</dc:date>
-		<dc:format>text/html</dc:format>
-		<dc:language>#LANG</dc:language>
-		<dc:creator><BOUCLE_auteurs_tb(AUTEURS){tous}{id_article}{", "}>[(#NOM|texte_backend)]</BOUCLE_auteurs_tb></dc:creator>
-		</item>
-	</BOUCLE_tres_recents>
-	
-	<//B_is_rub_forum>
-	<//B_isforum>
-	
+		<B_auteursc>
+<dc:creator><BOUCLE_auteursc(AUTEURS){id_auteur}{tous}{", "}><a href="[(#URL_AUTEUR|url_absolue)]">[(#NOM|texte_backend)]</a></BOUCLE_auteursc></dc:creator>
+</B_auteursc>		
+</item>
+</BOUCLE_enfin>
+</BOUCLE_art_forum>
+
+
+
+<BOUCLE_10recents(ARTICLES){rubrique ?}{lang ?}{branche ?}
+	{par date}{inverse}{0,10}{unique}>
+<INCLURE{fond=inc-rss-item}{id_article}>
+</BOUCLE_10recents>
+
+
+	<//B_art_forum>
+
+
+
+
 </channel>
 
 </rss>
