@@ -611,9 +611,9 @@ function agenda_mini_footer($id_agenda=0, $critere='mois_complet', $taille=5) {
 			$count_mois += 1;
 		$critere_ok = (($critere == 'mois_complet') || (($critere == 'fin_mois') && (date('Y-m-d',$date) >= date('Y-m-d'))));
 		if (($annee == $annee_choisie) && ($mois == $mois_choisi) && ($count_liste < $taille) && ($critere_ok)) {
-			if ($count_liste == 0) $cellule .= '<dl class="definition">';
-			$cellule .= '<dt>'.affdate_base($evenements[$i]['date_redac'], 'd-m H:i').':&nbsp;</dt>';
-			$cellule .= '<dd><a href="spip.php?page=evenement&amp;id_article='.$evenements[$i]['id'].'">'.$evenements[$i]['titre'].'</a></dd>';
+			if ($count_liste == 0) $cellule .= '<table id="footer_evenements">';
+			$cellule .= '<tr><td class="footer_colg">'.affdate_base($evenements[$i]['date_redac'], 'd-m H:i').':&nbsp;</td>';
+			$cellule .= '<td class="footer_cold"><a href="spip.php?page=evenement&amp;id_article='.$evenements[$i]['id'].'">'.$evenements[$i]['titre'].'</a></td></tr>';
 			$count_liste += 1;
 		}
 		$liste_complete = ($annee > $annee_choisie) || (($annee == $annee_choisie) && ($mois > $mois_choisi)) || ($count_liste == $taille);
@@ -635,7 +635,7 @@ function agenda_mini_footer($id_agenda=0, $critere='mois_complet', $taille=5) {
 				$cellule .= '<div class="texte">'._T('sarkaspip:agenda_fin_mois_depasse').'</div>';
 	}
 	else
-		$cellule .= '</dl>';
+		$cellule .= '</table>';
 	$footer .= $cellule;
 
 	return $footer;
