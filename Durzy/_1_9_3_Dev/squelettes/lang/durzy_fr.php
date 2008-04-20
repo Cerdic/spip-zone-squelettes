@@ -80,22 +80,22 @@ En attendant la documentation sur <a href="http://www.spip-contrib.net">Spip-Con
 'fond_site' => 'Le site',
 'desc_fond_site' => 'Ne mettez aucune image de fond pour pouvoir afficher une couleur de fond',
 
-'cadre_derniers_articles' => 'Le cadre -Derniers articles-',
+'cadre_derniers_articles' => 'Cadre Derniers articles',
 'desc_cadre_derniers_articles' => 'Habille aussi les cadres -Derniers messages- et -Dans la m&ecirc;me rubrique-',
 
-'cadre_edito' => 'Le cadre -Edito-',
+'cadre_edito' => 'Cadre Edito',
 'desc_cadre_edito' => 'Affichera un article lorsqu&rsquo;il est associ&eacute; au mot cl&eacute; edito',
 
-'cadre_breves' => 'Le cadre -Derni&egrave;res br&egrave;ves-',
+'cadre_breves' => 'Cadre Derni&egrave;res br&egrave;ves',
 'desc_cadre_breves' => 'Affiche toutes les br&egrave;ves du site en page -Accueil- et celles de la rubrique dans chaque rubrique.',
 
-'cadre_acces_direct' => 'Le cadre -Acc&egrave;s direct-',
+'cadre_acces_direct' => 'Cadre Acc&egrave;s direct',
 'desc_cadre_acces_direct' => 'Affichera un article lorsqu&rsquo;il est associ&eacute; au mot cl&eacute; acces-direct. A utiliser de pr&eacute;f&eacute;rence pour y placer des liens vers un article ou une rubrique.',
 
-'pied_de_page' => 'Le pied de page',
+'pied_de_page' => 'Pied de page',
 'desc_pied_de_page' => 'Int&eacute;gre les statistiques et les mentions l&eacute;gales du site ; Ainsi que l&rsquo;acc&egrave;s &agrave l&rsquo;interface priv&eacute;e du site.',
 
-'bandeau_inf' => 'Le bandeau inf&eacute;rieur',
+'bandeau_inf' => 'Bandeau inf&eacute;rieur',
 'desc_bandeau_inf' => 'Int&eacute;grant le champ de recherche, l&rsquo;acc&egrave;s en &eacute;dition, l&rsquo;identification et la configuration du site.',
 
 'titre_cadre' => 'Le titre des cadres',
