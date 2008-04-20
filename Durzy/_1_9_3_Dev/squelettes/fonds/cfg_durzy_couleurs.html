@@ -1,8 +1,28 @@
 #CACHE{0}
 
-[<link rel="stylesheet" type="text/css" href="(#CHEMIN{styles/nuancier.css})" />]
-[<script type="text/javascript" src="(#CHEMIN{javascript/nuancier.js})"></script>]
+<!-- head= 
+[<script type="text/javascript"  src="(#CHEMIN{javascript/jquery.bgiframe.js})" type="text/javascript"></script>]
+[<script type="text/javascript"  src="(#CHEMIN{javascript/jquery.dimensions.js})" type="text/javascript"></script>]
+[<script type="text/javascript"  src="(#CHEMIN{javascript/jquery.tooltip.js})" type="text/javascript"></script>]
+[<link rel="stylesheet" href="(#CHEMIN{javascript/jquery.tooltip.css})" />]
 
+<script type="text/javascript">
+jQuery(function() {
+
+jQuery('a').tooltip({
+	track: true,
+	delay: 0,
+	showURL: false,
+	showBody: " - "
+});
+});
+</script>
+
+<style type="text/css">
+	table.def td{padding-left:1em; padding-right:1em;}
+	tr.def2 {text-align:center}
+</style>
+-->
 <!-- titre=Squelettes Durzy - Configuration des couleurs -->
 <!-- icone=images/cfg_couleurs.png -->
 [(#SET{logo, <img src='#DOSSIER_SQUELETTE/../images/cfg_couleurs.png' width='20' height='19' alt='cadres' style="float:#LANG_RIGHT;" /> })]
@@ -16,15 +36,8 @@
 <!-- liens*=durzy_cadres -->
 
 
-<!-- Codage des couleurs -->
-
-<noscript>
-	<div style="background-color:#ee0000;color:#ffffff;">
-		<p><b>Houston, on a un problème... Il semblerait que javascript soit désactivé dans votre navigateur. Sans javascript, la configuration des couleurs par le nuancier ne sera pas possible.</b></p>
-	</div>
-</noscript>
-
-<form name="pickerform" method="post">[(#ENV{_cfg_}|form_hidden)]
+<form method="post" action="#SELF">
+	<div>[(#ENV{_cfg_}|form_hidden)]</div>
 
 	<div style="float:right">
 		<input type="submit" name="_cfg_ok" value="<:oK:>" class="fondo" />
@@ -33,123 +46,117 @@
 	</div>
 	<br /> <br/>
 
-
-	<fieldset><legend>Image de fond du site</legend>
-		<p>L'application d'une image est prioritaire sur une couleur de fond</p>
-		<select name="image_fond">
-			<option value=" "[(#CONFIG{durzy/image_fond}|=={' '}|?{selected="selected",''})]> Aucune  (par défaut)</option>
-			<option value="images/fonds/fond1.jpg"[(#CONFIG{durzy/image_fond}|=={images/fonds/fond1.jpg}|?{selected="selected",''})]> Rayé bleu</option>
-			<option value="images/fonds/fond2.jpg"[(#CONFIG{durzy/image_fond}|=={images/fonds/fond2.jpg}|?{selected="selected",''})]> Rayé gris</option>
-			<option value="images/fonds/fond3.jpg"[(#CONFIG{durzy/image_fond}|=={images/fonds/fond3.jpg}|?{selected="selected",''})]> Degradé de gris</option>
-			<option value="images/fonds/fond4.jpg"[(#CONFIG{durzy/image_fond}|=={images/fonds/fond4.jpg}|?{selected="selected",''})]> Degradé de bleu</option>
-		</select>
-		<img src="../squelettes/#CONFIG{durzy/image_fond}"  width="20" height="20" border="1"  alt="image de fond">
-	</fieldset>
+	<fieldset><legend><:durzy:couleurs_site:></legend>
 	
-<fieldset><legend>Toutes les couleurs du site</legend>
-	<center>
-		<h4>Nuancier</h4>
-		<INCLURE{fond=fonds/nuancier}>
-	</center>
-
-<fieldset><legend><strong>Fond du site</strong></legend>
-		<label>Ne mettre aucune image de fond pour pouvoir afficher une couleur de fond</label><br />
-		<input type="radio" name="chooser" onClick="chooserMode('couleur_fond')" checked="" >Fond :
-		<input type="text" name="couleur_fond" size="6"  maxlength="6" value="[(#CONFIG{durzy/couleur_fond})]">
-		<input type="text" name="couleur_fond_view" size="1" style="background-color:#[(#CONFIG{durzy/couleur_fond})]">
-</fieldset>
-
-<fieldset><p><legend>Cadres <strong>Derniers articles</strong>, <strong>Derniers messages</strong>, <strong>Même rubrique</strong></legend></p>
-<span style="font-size:10px">
-<input type="radio" name="chooser" onClick="chooserMode('couleur_last_articles_fond')" checked="" >Fond :
-<input type="text" name="couleur_last_articles_fond" size="6"  maxlength="6" value="[(#CONFIG{durzy/couleur_last_articles_fond}|sinon{E5EFF8})]">
-		<input type="text" name="couleur_last_articles_fond_view" size="1" style="background-color:#[(#CONFIG{durzy/couleur_last_articles_fond})]">
-		<input type="radio" name="chooser" onClick="chooserMode('couleur_last_articles_titre')" checked="">Titre :<input type="text" name="couleur_last_articles_titre" size="6"  maxlength="6" value="[(#CONFIG{durzy/couleur_last_articles_titre}|sinon{82ADE2})]">
-		<input type="text" name="couleur_last_articles_titre_view" size="1" style="background-color:#[(#CONFIG{durzy/couleur_last_articles_titre})]">
-		<input type="radio" name="chooser" onClick="chooserMode('couleur_last_articles_bordures')" checked="">Bordure :<input type="text" name="couleur_last_articles_bordures" size="6"  maxlength="6" value="[(#CONFIG{durzy/couleur_last_articles_bordures}|sinon{999})]">
-		<input type="text" name="couleur_last_articles_bordures_view" size="1"  style="background-color:#[(#CONFIG{durzy/couleur_last_articles_bordures})]">
-</span>
-</fieldset>
-	
-<fieldset><legend>Cadre <strong>Edito</strong></legend>
-<span style="font-size:10px">
-<input type="radio" name="chooser" onClick="chooserMode('couleur_edito_fond')" checked="" >Fond :<input type="text" name="couleur_edito_fond" size="6"  maxlength="6" value="[(#CONFIG{durzy/couleur_edito_fond}|sinon{FFF8AC})]" >
-		<input type="text" name="couleur_edito_fond_view" size="1" style="background-color:#[(#CONFIG{durzy/couleur_edito_fond})]">
-		<input type="radio" name="chooser" onClick="chooserMode('couleur_edito_titre')" checked="" >Titre :<input type="text" name="couleur_edito_titre" size="6"  maxlength="6" value="[(#CONFIG{durzy/couleur_edito_titre}|sinon{FFED00})]">
-		<input type="text" name="couleur_edito_titre_view" size="1" style="background-color:#[(#CONFIG{durzy/couleur_edito_titre})]">
-		<input type="radio" name="chooser" onClick="chooserMode('couleur_edito_bordures')" checked="" >Bordure :<input type="text" name="couleur_edito_bordures" size="6"  maxlength="6" value="[(#CONFIG{durzy/couleur_edito_bordures}|sinon{999})]">
-		<input type="text" name="couleur_edito_bordures_view" size="1" style="background-color:#[(#CONFIG{durzy/couleur_edito_bordures})]">
-</span>
-</fieldset>
-	
-<fieldset><legend>Cadre <strong>Brèves</strong></legend>
-<span style="font-size:10px">
-<input type="radio" name="chooser" onClick="chooserMode('couleur_breves_fond')" checked="" >Fond :<input type="text" name="couleur_breves_fond" size="6"  maxlength="6" value="[(#CONFIG{durzy/couleur_breves_fond}|sinon{E5EFF8})]">
-		<input type="text" name="couleur_breves_fond_view" size="1" style="background-color:#[(#CONFIG{durzy/couleur_breves_fond})]">
-		<input type="radio" name="chooser" onClick="chooserMode('couleur_breves_titre')" checked="" >Titre :<input type="text" name="couleur_breves_titre" size="6"  maxlength="6" value="[(#CONFIG{durzy/couleur_breves_titre}|sinon{82ADE2})]">
-		<input type="text" name="couleur_breves_titre_view" size="1" style="background-color:#[(#CONFIG{durzy/couleur_breves_titre})]">
-		<input type="radio" name="chooser" onClick="chooserMode('couleur_breves_bordures')" checked="" >Bordure :<input type="text" name="couleur_breves_bordures" size="6"  maxlength="6" value="[(#CONFIG{durzy/couleur_breves_bordures}|sinon{999})]">
-		<input type="text" name="couleur_breves_bordures_view" size="1" style="background-color:#[(#CONFIG{durzy/couleur_breves_bordures})]">
-</span>
-</fieldset>
-	
-<fieldset><legend>Cadre <strong>Accès direct</strong></legend>
-<span style="font-size:10px">
-<input type="radio" name="chooser" onClick="chooserMode('couleur_acces_direct_fond')" checked="" >Fond :<input type="text" name="couleur_acces_direct_fond" size="6"  maxlength="6" value="[(#CONFIG{durzy/couleur_acces_direct_fond}|sinon{D6EACA})]">
-		<input type="text" name="couleur_acces_direct_fond_view" size="1" style="background-color:#[(#CONFIG{durzy/couleur_acces_direct_fond})]">
-		<input type="radio" name="chooser" onClick="chooserMode('couleur_acces_direct_titre')" checked="" >Titre :<input type="text" name="couleur_acces_direct_titre" size="6"  maxlength="6" value="[(#CONFIG{durzy/couleur_acces_direct_titre}|sinon{51B169})]">
-		<input type="text" name="couleur_acces_direct_titre_view" size="1" style="background-color:#[(#CONFIG{durzy/couleur_acces_direct_titre})]">
-		<input type="radio" name="chooser" onClick="chooserMode('couleur_acces_direct_bordures')" checked="" >Bordure :<input type="text" name="couleur_acces_direct_bordures" size="6"  maxlength="6" value="[(#CONFIG{durzy/couleur_acces_direct_bordures}|sinon{999})]">
-		<input type="text" name="couleur_acces_direct_bordures_view" size="1" style="background-color:#[(#CONFIG{durzy/couleur_acces_direct_bordures})]">
-</span>
-</fieldset>
-	
-<fieldset><legend>Couleurs du <strong>pied de page</strong> et du <strong>bandeau inférieur</strong></legend>
-<span style="font-size:10px">
-<input type="radio" name="chooser" onClick="chooserMode('couleur_footer')" checked="" >Bandeau inférieur :
-<input type="text" name="couleur_footer" size="6"  maxlength="6" value="[(#CONFIG{durzy/couleur_footer}|sinon{333})]">
-<input type="text" name="couleur_footer_view" size="1" style="background-color:#[(#CONFIG{durzy/couleur_footer})]">
+	<table class="def">
+		<thead>
+			<tr class="def2">
+				<th></th>
+				<th><:durzy:fond:></th>
+				<th><:durzy:titre:></th>
+				<th><:durzy:bordure:></th>
+				<th><:durzy:texte:></th>
+			</tr>
+		</thead>
 		
-<input type="radio" name="chooser" onClick="chooserMode('couleur_pied')" checked="" >Pied de page :
-<input type="text" name="couleur_pied" size="6"  maxlength="6" value="[(#CONFIG{durzy/couleur_pied}|sinon{E5EFF8})]">
-<input type="text" name="couleur_pied_view" size="1" style="background-color:#[(#CONFIG{durzy/couleur_pied})]">
-</span>
-</fieldset>
-	
-<fieldset><legend>Couleurs du <strong>menu horizontal</strong></legend>
-<span style="font-size:9px">		
-<input type="radio" name="chooser" onClick="chooserMode('couleur_menu')" checked="" >Menu :
-<input type="text"  name="couleur_menu" size="6"  maxlength="6" value="[(#CONFIG{durzy/couleur_menu}|sinon{82ADE2})]">
-<input type="text"  name="couleur_menu_view" size="1" style="background-color:#[(#CONFIG{durzy/couleur_menu})]">
+		<tbody>
+			<tr>
+				<th><label for="fond_site"><a href="#" title="<:durzy:fond_site:> - <:durzy:desc_fond_site:>"><:durzy:fond_site:></a></label></th>
+				<td><input type="text" name="couleur_fond" class=" fondl cfg_couleur" value="[(#ENV{couleur_fond}|sinon{#9facbc})]" size="7">
+			</tr>
 			
-<input type="radio" name="chooser" onClick="chooserMode('couleur_sousmenu')" checked="" >Sous-menu :
-<input type="text" name="couleur_sousmenu" size="6"  maxlength="6" value="[(#CONFIG{durzy/couleur_sousmenu}|sinon{90B5D3})]">
-<input type="text" name="couleur_sousmenu_view" size="1" style="background-color:#[(#CONFIG{durzy/couleur_sousmenu})]">
+			<tr>
+				<th><label for="article"><a href="#" title="<:durzy:article:> - <:durzy:desc_article:>"><:durzy:article:></a></label></th>
+				<td><input type="text" name="couleur_article_fond" class=" fondl cfg_couleur" value="[(#ENV{couleur_article_fond}|sinon{#fff})]" size="7"></td>
+				<td><input type="text" name="couleur_article_titre_fond" class=" fondl cfg_couleur" value="[(#ENV{couleur_article_titre_fond}|sinon{#e5eff8})]" size="7"></td>
+				<td><input type="text" name="couleur_article_bordures" class=" fondl cfg_couleur" value="[(#ENV{couleur_article_bordures}|sinon{#c4ccd4})]" size="7"></td>
+				<td><input type="text" name="couleur_article_texte" class=" fondl cfg_couleur" value="[(#ENV{couleur_article_texte}|sinon{#999})]" size="7"></td>
+			</tr>
 			
-<input type="radio" name="chooser" onClick="chooserMode('couleur_sousmenusurvole')" checked="" >Survol :
-<input type="text" name="couleur_sousmenusurvole" size="6"  maxlength="6" value="#ENV{durzy/couleur_sousmenusurvole,E5EFF8}">
-<input type="text" name="couleur_sousmenusurvole_view" size="1" style="background-color:#[(#CONFIG{durzy/couleur_sousmenusurvole})]">
-</span>
-</fieldset>
-<fieldset><legend>Couleurs du <strong>texte</strong></legend>
-<span style="font-size:10px">
-<input type="radio" name="chooser" onClick="chooserMode('couleur_toto')" checked="" >Titre des cadres :
-<input type="text"  name="couleur_toto" size="6"  maxlength="6" value="#ENV{durzy/couleur_toto,82ADE2}">
-<input type="text"  name="couleur_toto_view" size="1" style="background-color:#[(#CONFIG{durzy/couleur_toto})]">  
-</span>
-</fieldset>    
-    
-</fieldset>
+			<tr>
+				<th><label for="cadre_derniers_articles"><a href="#" title="<:durzy:cadre_derniers_articles:> - <:durzy:desc_cadre_derniers_articles:>"><:durzy:cadre_derniers_articles:></a></label></th>
+				<td><input type="text" name="couleur_last_articles_fond" class=" fondl cfg_couleur" value="[(#ENV{couleur_last_articles_fond}|sinon{#e5eff8})]" size="7"></td>
+				<td><input type="text" name="couleur_last_articles_titre" class=" fondl cfg_couleur" value="[(#ENV{couleur_last_articles_titre}|sinon{#82ade2})]" size="7"></td>
+				<td><input type="text" name="couleur_last_articles_bordures" class=" fondl cfg_couleur" value="[(#ENV{couleur_last_articles_bordures}|sinon{#999})]" size="7"></td>
+				<td><input type="text" name="couleur_last_articles_texte" class=" fondl cfg_couleur" value="[(#ENV{couleur_last_articles_texte}|sinon{#999})]" size="7"></td>
+			</tr>
+			
+			<tr>
+				<th><label for="cadre_edito"><a href="#" title="<:durzy:cadre_edito:> - <:durzy:desc_cadre_edito:>"><:durzy:cadre_edito:></a></label></th>
+				<td><input type="text" name="couleur_edito_fond" class=" fondl cfg_couleur" value="[(#ENV{couleur_edito_fond}|sinon{#fff8ac})]" size="7"></td>
+				<td><input type="text" name="couleur_edito_titre" class=" fondl cfg_couleur" value="[(#ENV{couleur_edito_titre}|sinon{#ffed00})]" size="7"></td>
+				<td><input type="text" name="couleur_edito_bordures" class=" fondl cfg_couleur" value="[(#ENV{couleur_edito_bordures}|sinon{#999})]" size="7"></td>
+				<td><input type="text" name="couleur_edito_texte" class=" fondl cfg_couleur" value="[(#ENV{couleur_edito_texte}|sinon{#999})]" size="7"></td>
+			</tr>
+			
+			<tr>
+				<th><label for="cadre_breves"><a href="#" title="<:durzy:cadre_breves:> - <:durzy:desc_cadre_breves:>"><:durzy:cadre_breves:></a></label></th>
+				<td><input type="text" name="couleur_breves_fond" class=" fondl cfg_couleur" value="[(#ENV{couleur_breves_fond}|sinon{#e5eff8})]" size="7"></td>
+				<td><input type="text" name="couleur_breves_titre" class=" fondl cfg_couleur" value="[(#ENV{couleur_breves_titre}|sinon{#82ade2})]" size="7"></td>
+				<td><input type="text" name="couleur_breves_bordures" class=" fondl cfg_couleur" value="[(#ENV{couleur_breves_bordures}|sinon{#999})]" size="7"></td>
+			</tr>
+			
+			<tr>
+				<th><label for="cadre_acces_direct"><a href="#" title="<:durzy:cadre_acces_direct:> - <:durzy:desc_cadre_acces_direct:>"><:durzy:cadre_acces_direct:></a></label></th>
+				<td><input type="text" name="couleur_acces_direct_fond" class=" fondl cfg_couleur" value="[(#ENV{couleur_acces_direct_fond}|sinon{#d6eaca})]" size="7"></td>
+				<td><input type="text" name="couleur_acces_direct_titre" class=" fondl cfg_couleur" value="[(#ENV{couleur_acces_direct_titre}|sinon{#51b169})]" size="7"></td>
+				<td><input type="text" name="couleur_acces_direct_bordures" class=" fondl cfg_couleur" value="[(#ENV{couleur_acces_direct_bordures}|sinon{#999})]" size="7"></td>
+			</tr>
+			
+			<tr>
+				<th><label for="titre_cadre"><a href="#" title="<:durzy:titre_cadre:> - <:durzy:desc_titre_cadre:>"><:durzy:titre_cadre:></a></label></th>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><input type="text" name="couleur_texte_titre_cadre" class=" fondl cfg_couleur" value="[(#ENV{couleur_texte_titre_cadre}|sinon{#000})]" size="7"></td>
+			</tr>
+			
+			<tr>
+				<th><label for="pied_de_page"><a href="#" title="<:durzy:pied_de_page:> - <:durzy:desc_pied_de_page:>"><:durzy:pied_de_page:></a></label></th>
+				<td><input type="text" name="couleur_pied" class=" fondl cfg_couleur" value="[(#ENV{couleur_pied}|sinon{#e5eff8})]" size="7"></td>
+				<td></td>
+				<td><input type="text" name="couleur_pied_bordures" class=" fondl cfg_couleur" value="[(#ENV{couleur_pied_bordures}|sinon{#c4ccd4})]" size="7"></td>
+				<td><input type="text" name="couleur_pied_texte" class=" fondl cfg_couleur" value="[(#ENV{couleur_pied_texte}|sinon{#000})]" size="7"></td>
+				
+			</tr>
+			
+			<tr>
+				<th><label for="bandeau_inf"><a href="#" title="<:durzy:bandeau_inf:> - <:durzy:desc_bandeau_inf:>"><:durzy:bandeau_inf:></a></label></th>
+				<td><input type="text" name="couleur_footer" class=" fondl cfg_couleur" value="[(#ENV{couleur_footer}|sinon{#333})]" size="7"></td>
+			</tr>
+			
+			<tr class="def2">
+				<th></th>
+				<th><:durzy:menu:></th>
+				<th><:durzy:sous_menu:></th>
+				<th><:durzy:survol:></th>
+			</tr>
+			
+			<tr>
+				<th><label for="menu_hor"><a href="#" title="<:durzy:menu_hor:> - <:durzy:desc_menu_hor:>"><:durzy:menu_hor:></a></label></th>
+				<td><input type="text" name="couleur_menu" class=" fondl cfg_couleur" value="[(#ENV{couleur_menu}|sinon{#82ade2})]" size="7"></td>
+				<td><input type="text" name="couleur_sousmenu" class=" fondl cfg_couleur" value="[(#ENV{couleur_sousmenu}|sinon{#90b5d3})]" size="7"></td>
+				<td><input type="text" name="couleur_sousmenusurvole" class=" fondl cfg_couleur" value="[(#ENV{couleur_sousmenusurvole}|sinon{#e5eff8})]" size="7"></td>
+			</tr>
+			
+			<tr class="def2">
+				<th></th>
+				<th><:durzy:liens:></th>
+				<th><:durzy:liens_visites:></th>
+			</tr>
+			
+			<tr>
+				<th><label for="links"><a href="#" title="<:durzy:links:> - <:durzy:desc_links:>"><:durzy:links:></a></label></th>
+				<td><input type="text" name="couleur_liens" class=" fondl cfg_couleur" value="[(#ENV{couleur_liens}|sinon{#333399})]" size="7"></td>
+				<td><input type="text" name="couleur_liens_visites" class=" fondl cfg_couleur" value="[(#ENV{couleur_liens_visites}|sinon{#003366})]" size="7"></td>
+				<td><input type="text" name="couleur_liens_survoles" class=" fondl cfg_couleur" value="[(#ENV{couleur_liens_survoles}|sinon{#6666FF})]" size="7"></td>
+			</tr>
+			
+		</tbody>
+	</table>
 
+	</fieldset>
 
-
-<fieldset style="background-color:#FFFFCC"><legend><strong>Couleur </strong> des titres des cadres</legend>
- <select name="couleur_texte_titre_cadre">
-  <option value="#FFFFFF" [(#CONFIG{durzy/couleur_texte_titre_cadre}|=={#FFFFFF}|?{selected="selected",''})]>Blanc</option>
-  <option value="#DDDDDD" [(#CONFIG{durzy/couleur_texte_titre_cadre}|=={#DDDDDD}|?{selected="selected",''})]>Gris</option>
-  <option value="#000000" [(#CONFIG{durzy/couleur_texte_titre_cadre}|=={#000000}|?{selected="selected",''})]>Noir</option>
- </select>
-</fieldset>
 
 	<div style="float:right">
 		<input type="submit" name="_cfg_ok" value="<:oK:>" class="fondo" />

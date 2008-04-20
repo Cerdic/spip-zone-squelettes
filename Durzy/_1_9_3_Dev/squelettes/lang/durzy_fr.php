@@ -70,6 +70,53 @@ En attendant la documentation sur <a href="http://www.spip-contrib.net">Spip-Con
 'taille_texte_cadres' => 'Tous les les cadres',
 'desc_taille_texte_cadres' => 'Choisissez la taille en pixels du texte dans les cadres (derniers articles, derni&egrave;res br&egrave;ves, acc&egrave;s direct, et edito).',
 
+'couleurs_site' => '<strong>Repeindre le site</strong>',
+
+'fond' => 'fond',
+'titre' => 'titre (fond)',
+'bordure' => 'bordure',
+'texte' => 'texte',
+
+'fond_site' => 'Le site',
+'desc_fond_site' => 'Ne mettez aucune image de fond pour pouvoir afficher une couleur de fond',
+
+'cadre_derniers_articles' => 'Le cadre -Derniers articles-',
+'desc_cadre_derniers_articles' => 'Habille aussi les cadres -Derniers messages- et -Dans la m&ecirc;me rubrique-',
+
+'cadre_edito' => 'Le cadre -Edito-',
+'desc_cadre_edito' => 'Affichera un article lorsqu&rsquo;il est associ&eacute; au mot cl&eacute; edito',
+
+'cadre_breves' => 'Le cadre -Derni&egrave;res br&egrave;ves-',
+'desc_cadre_breves' => 'Affiche toutes les br&egrave;ves du site en page -Accueil- et celles de la rubrique dans chaque rubrique.',
+
+'cadre_acces_direct' => 'Le cadre -Acc&egrave;s direct-',
+'desc_cadre_acces_direct' => 'Affichera un article lorsqu&rsquo;il est associ&eacute; au mot cl&eacute; acces-direct. A utiliser de pr&eacute;f&eacute;rence pour y placer des liens vers un article ou une rubrique.',
+
+'pied_de_page' => 'Le pied de page',
+'desc_pied_de_page' => 'Int&eacute;gre les statistiques et les mentions l&eacute;gales du site ; Ainsi que l&rsquo;acc&egrave;s &agrave l&rsquo;interface priv&eacute;e du site.',
+
+'bandeau_inf' => 'Le bandeau inf&eacute;rieur',
+'desc_bandeau_inf' => 'Int&eacute;grant le champ de recherche, l&rsquo;acc&egrave;s en &eacute;dition, l&rsquo;identification et la configuration du site.',
+
+'titre_cadre' => 'Le titre des cadres',
+'desc_titre_cadre' => 'Cadres -Derniers articles-, -Edito-, -Acc&egrave;s direct-. <strong>Par d&eacute;faut, la couleur noire est s&eacute;lectionn&eacute;e.</strong>',
+
+'menu' => 'menu',
+'sous_menu' => 'sous-menu',
+'survol' => 'survol',
+
+'menu_hor' => 'Le menu horizontal',
+'desc_menu_hor' => 'C&rsquo;est le menu g&eacute;n&eacute;ral du site. Il contient toutes les rubriques sauf celles masqu&eacute;es.',
+
+'liens' => 'liens',
+'liens_visites' => 'liens visit&eacute;s',
+
+'links' => 'Les liens',
+'desc_links' => 'Choisissez la couleur des liens, au repos, visit&eacute;s et au survol.',
+
+'article' => 'Un article',
+'desc_article' => 'Vous pouvez personnaliser ici l&rsquo;affichage des couleurs de la page article',
+
 
 
 );
