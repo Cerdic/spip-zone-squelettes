@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">
 <head><title><?php if ($titre=='') { ?><:pyrat:sommaire:><?php } else { echo $titre; } ?> - [(#NOM_SITE_SPIP|textebrut)]</title>
 <link rel="stylesheet" type="text/css" href="/stylessoyezcreateurs.css" media="screen, print" />
-[(#ENV{template}|=={'Sommaire'}|?{' ',''})[(#CONFIG{soyezcreateurs/mode_affichage,edito}|match{^portail.*}|?{' ',''})<link rel="stylesheet" type="text/css" href="/stylesportail.css" media="screen, print" />]]
 [(#REM) Attention : ne pas enlever les REMarques : elles servent aerer le source sans que celui ne renvois d'espaces identifie comme une reussite du test ]
 	<BOUCLE_ArtRubLayout(ARTICLES){id_article}>[(#REM) Dans le cas d'un article
 		]<BOUCLE_ArtLayout(MOTS){id_article}{type=_LayoutGala}>[(#REM) Est-ce qu'il a un Layout applique?
@@ -19,6 +18,7 @@
 		]</BOUCLE_RubLayout>[(#REM) Sinon
 		][(#ENV{template}|=={'Sommaire'}|?{' ',''})<INCLURE{fond=layout}{layoutgala=#CONFIG{soyezcreateurs_layout/sommaire_layout,13}}>][(#ENV{template}|=={''}|?{' ',''})<INCLURE{fond=layout}{layoutgala=#CONFIG{soyezcreateurs_layout/default_layout,13}}>][(#ENV{template}|=={''}|?{'',' '})[(#ENV{template}|=={'Sommaire'}|?{'',' '})<INCLURE{fond=layout}{layoutgala=#CONFIG{soyezcreateurs_layout/autrespages_layout,13}}>]]<//B_RubLayout>[(#REM) Fin de la recherche d'une rubrique
 	]<//B_ArtRubLayout>
+[(#ENV{template}|=={'Sommaire'}|?{' ',''})[(#CONFIG{soyezcreateurs/mode_affichage,edito}|match{^portail.*}|?{' ',''})<link rel="stylesheet" type="text/css" href="/stylesportail.css" media="screen, print" />]]
 <INCLURE{fond=couleurrubrique}{id_article}{id_rubrique}>
 <INCLURE{fond=inc_logoextra}{id_rubrique}>
 <link rel="stylesheet" href="[/(#CHEMIN{images/printer.css})]" type="text/css" media="print" />
