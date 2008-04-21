@@ -98,19 +98,31 @@ a:hover {
 }
 /*  conteneur du bandeau d'en-tête */
 #entete{
-    background-image:url(#CHEMIN{images/entete.jpg});
+    /* background-image:url(#CHEMIN{images/entete.jpg}); */
     height: 148px;
     width:100%;
-	background-color:#82ADE2; /* couleur de fond pour IE */
+	background-color:#CONFIG{durzy/couleur_entete}; /* couleur de fond pour IE */
 }
 
 /* Nom du site qui s'affichera sur le bandeau d'entête */
+
+#logo_site {padding:1em; position:absolute}
+
 #nom-site{
 	position:relative;
-    top:60px;
+    padding-top:0.6em;
+	padding-left:4em;
     color: #CONFIG{durzy/couleur_titre};
-	text-align: center;
-    font-size:24px;
+	text-align: left;
+    font-size:2em;
+}
+
+#desc_site{
+	position:relative;
+    padding: 2em;
+    color: #CONFIG{durzy/couleur_descriptif_site};
+	text-align: left;
+    font-size:0.88em;
 }
 
     
@@ -193,8 +205,8 @@ background-color: #CONFIG{durzy/couleur_pied};
 /* Titre du cadre */
 .last-articles .boxcontent .cadre-titre{
 	display:block;
-	color:#CONFIG{durzy/couleur_texte_titre_cadre};
-	background:#CONFIG{durzy/couleur_last_articles_titre} ; 
+	color:#CONFIG{durzy/couleur_last_articles_titre};
+	background:#CONFIG{durzy/couleur_last_articles_fondtitre} ; 
 	text-align:center;
 	font-size: 10px;
 	font-weight:bold;
@@ -230,7 +242,7 @@ background-color: #CONFIG{durzy/couleur_pied};
 /*  ------------------------------------------
 /*               Les brèves
 /*  ------------------------------------------ */
-.breve {color:#CONFIG{durzy/couleur_breves_texte}; background: transparent; width:99%; margin:0 auto;}
+.breve {background: transparent; width:99%; margin:0 auto;}
 .breve p {margin:0 0.65em;}
 .breve p {padding:2em;}
 .breve .boxcontent {
@@ -243,15 +255,17 @@ background-color: #CONFIG{durzy/couleur_pied};
 }
 .breve .boxcontent .cadre-titre {
 	display:block;  
-	color:#CONFIG{durzy/couleur_texte_titre_cadre};
-	background:#CONFIG{durzy/couleur_breves_titre}; 
+	color:#CONFIG{durzy/couleur_breves_titre};
+	background:#CONFIG{durzy/couleur_breves_fondtitre}; 
 	padding-bottom: 0.2em;
 	text-align:center;
 	font-size: 10px;
 	font-weight:bold;
 	#CONFIG{durzy/titre_cadres_arrondis} /*boite de titre aux coins arrondis*/
-    
 }
+
+.breve .boxcontent .texte-cadre{color:#CONFIG{durzy/couleur_breves_texte};}
+
 /* liste dans le cadre */
 .breve ul {
  list-style-type: none; /* pas de puce pour gagner de la place */
@@ -266,7 +280,7 @@ background-color: #CONFIG{durzy/couleur_pied};
 /*               Edito
 /*  ------------------------------------------ */
 
-.edito {color:#CONFIG{durzy/couleur_edito_texte}; background: transparent; width:99%; margin:0 auto;}
+.edito {background: transparent; width:99%; margin:0 auto;}
 .edito p {margin:0 0.65em; padding-bottom:0.5em;}
 .edito .boxcontent {
 	display:block;  
@@ -277,8 +291,8 @@ background-color: #CONFIG{durzy/couleur_pied};
 }
 .edito .boxcontent .cadre-titre{
 	display:block;  
-	color:#CONFIG{durzy/couleur_texte_titre_cadre};
-	background:#CONFIG{durzy/couleur_edito_titre}; 
+	color:#CONFIG{durzy/couleur_edito_titre};
+	background:#CONFIG{durzy/couleur_edito_fondtitre}; 
 	padding-bottom: 0.2em;
 	text-align:center;
 	font-size: 10px;
@@ -286,12 +300,12 @@ background-color: #CONFIG{durzy/couleur_pied};
 	#CONFIG{durzy/titre_cadres_arrondis} /*boite de titre aux coins arrondis*/
 }
 
-
+.edito .boxcontent .texte-cadre{color:#CONFIG{durzy/couleur_edito_texte};}
 
 /*  ------------------------------------------
 /*               Accès direct
 /*  ------------------------------------------ */
-.acces-direct {color:#CONFIG{durzy/couleur_acces_direct_texte}; background: transparent; width:99%; margin:0 auto;}
+.acces-direct {background: transparent; width:99%; margin:0 auto;}
 .acces-direct p {margin:0 0.65em;}
 .acces-direct p {padding-bottom:0.5em;}
 .acces-direct .boxcontent {
@@ -303,15 +317,17 @@ background-color: #CONFIG{durzy/couleur_pied};
 }
 .acces-direct .boxcontent .cadre-titre{
 	display:block;  
-	color:#CONFIG{durzy/couleur_texte_titre_cadre};
-	background:#CONFIG{durzy/couleur_acces_direct_titre}; 
+	color:#CONFIG{durzy/couleur_acces_direct_titre};
+	background:#CONFIG{durzy/couleur_acces_direct_fondtitre}; 
 	padding-bottom: 0.2em;
 	text-align:center;
 	font-size: 10px;
 	font-weight:bold;
 	#CONFIG{durzy/titre_cadres_arrondis} /*boite de titre aux coins arrondis*/
-    
 }
+
+.acces-direct .boxcontent .texte-cadre{color:#CONFIG{durzy/couleur_acces_direct_texte};}
+
 .acces-direct .boxcontent ul  {list-style-type: diamond;text-align: left;padding-left:1.5em;}
 
 /*  ------------------------------------------
@@ -320,7 +336,7 @@ background-color: #CONFIG{durzy/couleur_pied};
 
 /* l'encadrement du texte */
 .cadre {
-	border:1px solid #CONFIG{durzy/couleur_article_bordures};
+	border:1px solid #CONFIG{durzy/couleur_article_bordurescorps};
 	text-align:left;
 	font-size: 11px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -347,16 +363,17 @@ background-color: #CONFIG{durzy/couleur_pied};
    width: #EVAL{36.5*#CONFIG{durzy/largeur_site}}em;
    /*width:36.5em;*/
 }
+
 /* Titre de l'article */
 .cadre-titre-article {
-	border: #CONFIG{durzy/couleur_article_bordures};
-    background-color: #CONFIG{durzy/couleur_article_titre_fond};
-   	#CONFIG{durzy/cadres_arrondis} /*coins arrondis*/
-
+	background-color: #CONFIG{durzy/couleur_article_fondtitre};
+	border: 1px solid #CONFIG{durzy/couleur_article_bordures};
+    #CONFIG{durzy/cadres_arrondis} /*coins arrondis*/
 }
+
 .titre-article {
     text-align:left;
-	color:#006898;
+	color:#CONFIG{durzy/couleur_article_titre};
 	font-size: 18px;
 	font-family: Tahoma;
 	margin:0px 5px;
@@ -364,7 +381,7 @@ background-color: #CONFIG{durzy/couleur_pied};
 /* Description de l'article */
 #descriptif-article {
 	font-size:14px; 
-	color: #336699;
+	color: #CONFIG{durzy/couleur_article_descriptif};
 	margin:0px 5px;
 }
 #introduction-article {
@@ -373,6 +390,8 @@ background-color: #CONFIG{durzy/couleur_pied};
 }
 /*  Texte de l'article  */
 #texte-article {
+	color:#CONFIG{durzy/couleur_article_texte};
+	background-color:#CONFIG{durzy/couleur_article_fond};
 	padding-left:5px; /* petite marge à gauche */
 }
 
@@ -384,8 +403,8 @@ background-color: #CONFIG{durzy/couleur_pied};
 /*  Portfolio  */
 .documents_portfolio {
     float:left;
-	border:1px solid #CONFIG{durzy/couleur_article_bordures};
-    background-color:#FFFFFF;
+	border:1px solid #fff;
+    background-color:#fff;
 	color:#000000;
 	width:125px; 
 	_width:120px; 
@@ -405,8 +424,8 @@ background-color: #CONFIG{durzy/couleur_pied};
 	margin:0px 2px;
     float:left;
 	width:99%;
-	border:1px solid #CONFIG{durzy/couleur_article_bordures};
-    background-color: #E6E6E6;
+	border:1px solid #e6e6e6;
+    background-color: #E6e6e6;
 	text-align:left;
 	font-size: 10px;
 	#CONFIG{durzy/cadres_arrondis} /*coins arrondis*/
@@ -456,7 +475,7 @@ blockquote.spip {
 }
 .titre-rubrique {
 	text-align:left;
-	color:#006898;
+	color:#CONFIG{durzy/couleur_article_titre};
 	font-size: 18px;
 	font-family: Tahoma;
 	margin:0px 5px;
@@ -511,7 +530,7 @@ table.spip th, table.spip td {padding: 3px;text-align: left;vertical-align: midd
 	text-shadow: 3px 3px 5px grey;
 }
 .calcell.today {border:1px solid #ffff00 ; background-color :#ffff00 ;}
-#calendar th {background-color: #CONFIG{durzy/couleur_last_articles_titre};}
+#calendar th {background-color: #CONFIG{durzy/couleur_last_articles_fondtitre};}
 td.occupe {font-weight:bold;border:1px solid #666 ; background-color :#FFFFCC ;} /* quand il y a un article */
 td.horsperiode {color:#878787;} /* les jours qui ne sont pas dans le mois */
 td.today{border: 1px dashed #CONFIG{durzy/couleur_last_articles_bordures}; font-weight:bold;}    /* comme son nom l'indique */

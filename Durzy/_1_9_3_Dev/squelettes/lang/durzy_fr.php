@@ -73,23 +73,25 @@ En attendant la documentation sur <a href="http://www.spip-contrib.net">Spip-Con
 'couleurs_site' => '<strong>Repeindre le site</strong>',
 
 'fond' => 'fond',
-'titre' => 'titre (fond)',
+'fond_titre' => 'fond (titre)',
+'titre' => 'titre',
 'bordure' => 'bordure',
 'texte' => 'texte',
+'cadres' => '<strong>Les cadres</strong>',
 
 'fond_site' => 'Le site',
 'desc_fond_site' => 'Ne mettez aucune image de fond pour pouvoir afficher une couleur de fond',
 
-'cadre_derniers_articles' => 'Cadre Derniers articles',
+'cadre_derniers_articles' => 'Derniers articles',
 'desc_cadre_derniers_articles' => 'Habille aussi les cadres -Derniers messages- et -Dans la m&ecirc;me rubrique-',
 
-'cadre_edito' => 'Cadre Edito',
+'cadre_edito' => 'Edito',
 'desc_cadre_edito' => 'Affichera un article lorsqu&rsquo;il est associ&eacute; au mot cl&eacute; edito',
 
-'cadre_breves' => 'Cadre Derni&egrave;res br&egrave;ves',
+'cadre_breves' => 'Derni&egrave;res br&egrave;ves',
 'desc_cadre_breves' => 'Affiche toutes les br&egrave;ves du site en page -Accueil- et celles de la rubrique dans chaque rubrique.',
 
-'cadre_acces_direct' => 'Cadre Acc&egrave;s direct',
+'cadre_acces_direct' => 'Acc&egrave;s direct',
 'desc_cadre_acces_direct' => 'Affichera un article lorsqu&rsquo;il est associ&eacute; au mot cl&eacute; acces-direct. A utiliser de pr&eacute;f&eacute;rence pour y placer des liens vers un article ou une rubrique.',
 
 'pied_de_page' => 'Pied de page',
@@ -97,9 +99,6 @@ En attendant la documentation sur <a href="http://www.spip-contrib.net">Spip-Con
 
 'bandeau_inf' => 'Bandeau inf&eacute;rieur',
 'desc_bandeau_inf' => 'Int&eacute;grant le champ de recherche, l&rsquo;acc&egrave;s en &eacute;dition, l&rsquo;identification et la configuration du site.',
-
-'titre_cadre' => 'Le titre des cadres',
-'desc_titre_cadre' => 'Cadres -Derniers articles-, -Edito-, -Acc&egrave;s direct-. <strong>Par d&eacute;faut, la couleur noire est s&eacute;lectionn&eacute;e.</strong>',
 
 'menu' => 'menu',
 'sous_menu' => 'sous-menu',
@@ -114,10 +113,12 @@ En attendant la documentation sur <a href="http://www.spip-contrib.net">Spip-Con
 'links' => 'Les liens',
 'desc_links' => 'Choisissez la couleur des liens, au repos, visit&eacute;s et au survol.',
 
-'article' => 'Un article',
-'desc_article' => 'Vous pouvez personnaliser ici l&rsquo;affichage des couleurs de la page article',
-
-
+'un_article' => 'Un article',
+'article_tete' => 'En-t&ecirc;te',
+'desc_article_tete' => 'Vous pouvez personnaliser ici l&rsquo;affichage des couleurs de la page article',
+'article_corps' => 'Corps',
+'desc_article_corps' => 'Vous pouvez personnaliser ici l&rsquo;affichage des couleurs de la page article',
+'descriptif' => 'descriptif',
 
 );
 ?>
