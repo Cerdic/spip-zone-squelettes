@@ -36,7 +36,7 @@ jQuery('a').tooltip({
 <!-- liens*=durzy_cadres -->
 
 
-<form method="post" action="#SELF">
+<form method="post" action="#SELF" enctype="multipart/form-data">
 	<div>[(#ENV{_cfg_}|form_hidden)]</div>
 
 	<div style="float:right">
@@ -45,7 +45,14 @@ jQuery('a').tooltip({
 		<input type="submit" name="_cfg_delete" value="<:supprimer:>" class="fondo" />
 	</div>
 	<br /> <br/>
-
+	
+	<fieldset><legend><:durzy:images_site:></legend>
+		<label for="bandeau_entete"><a href="#" title="<:durzy:bandeau_entete:> - <:durzy:desc_bandeau_entete:>"><:durzy:bandeau_entete:></a></label>
+		<input type="file" name="bandeau" value="" size="30" /> [(#CFG_CHEMIN{durzy/bandeau}|image_reduire{100})]
+		[<span class='erreur'>(#ENV**{erreurs}|table_valeur{bandeau})</span>]
+		<br />
+	</fieldset>
+	
 	<fieldset><legend><:durzy:couleurs_site:></legend>
 	
 	<table class="def">
