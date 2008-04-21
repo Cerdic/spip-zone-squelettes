@@ -36,22 +36,30 @@ jQuery('a').tooltip({
 <!-- liens*=durzy_cadres -->
 
 
-<form method="post" action="#SELF" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data">
 	<div>[(#ENV{_cfg_}|form_hidden)]</div>
+
+	<fieldset><legend><:durzy:images_site:></legend>
+			<label for="bandeau_entete"><a href="#" title="<:durzy:bandeau_entete:> - <:durzy:desc_bandeau_entete:>"><:durzy:bandeau_entete:></a></label>
+			<input type="file" name="bandeau" value="" size="30" /> [(#CFG_CHEMIN{durzy/bandeau}|image_reduire{100})]
+			[<span class='erreur'>(#ENV**{erreurs}|table_valeur{bandeau})</span>]
+			<br /> <br />
+			
+			<label for="image_fond"><a href="#" title="<:durzy:image_fond:> - <:durzy:desc_image_fond:>"><:durzy:image_fond:></a></label>
+			<input type="file" name="image_fond_site" value="" size="30" /> [(#CFG_CHEMIN{durzy/image_fond_site}|image_reduire{100})]
+			[<span class='erreur'>(#ENV**{erreurs}|table_valeur{image_fond_site})</span>]
+	</fieldset>
 
 	<div style="float:right">
 		<input type="submit" name="_cfg_ok" value="<:oK:>" class="fondo" />
 		<input type="reset" value="<:reset:>" class="fondo" />
 		<input type="submit" name="_cfg_delete" value="<:supprimer:>" class="fondo" />
 	</div>
-	<br /> <br/>
+	<br /> <br />
+</form>
 	
-	<fieldset><legend><:durzy:images_site:></legend>
-		<label for="bandeau_entete"><a href="#" title="<:durzy:bandeau_entete:> - <:durzy:desc_bandeau_entete:>"><:durzy:bandeau_entete:></a></label>
-		<input type="file" name="bandeau" value="" size="30" /> [(#CFG_CHEMIN{durzy/bandeau}|image_reduire{100})]
-		[<span class='erreur'>(#ENV**{erreurs}|table_valeur{bandeau})</span>]
-		<br />
-	</fieldset>
+<form method="post" action="#SELF" enctype="multipart/form-data">
+	<div>[(#ENV{_cfg_}|form_hidden)]</div>
 	
 	<fieldset><legend><:durzy:couleurs_site:></legend>
 	
@@ -112,7 +120,7 @@ jQuery('a').tooltip({
 				<td><input type="text" name="couleur_menu" class=" fondl cfg_couleur" value="[(#ENV{couleur_menu}|sinon{#82ade2})]" size="7"></td>
 				<td><input type="text" name="couleur_sousmenu" class=" fondl cfg_couleur" value="[(#ENV{couleur_sousmenu}|sinon{#90b5d3})]" size="7"></td>
 				<td><input type="text" name="couleur_sousmenusurvole" class=" fondl cfg_couleur" value="[(#ENV{couleur_sousmenusurvole}|sinon{#e5eff8})]" size="7"></td>
-				<td><input type="text" name="couleur_menu_texte" class=" fondl cfg_couleur" value="[(#ENV{couleur_menu_texte}|sinon{#999})]" size="7"></td>
+				<td><input type="text" name="couleur_menu_texte" class=" fondl cfg_couleur" value="[(#ENV{couleur_menu_texte}|sinon{#666})]" size="7"></td>
 			</tr>
 			
 			<tr class="def2">
@@ -147,7 +155,7 @@ jQuery('a').tooltip({
 				<td><input type="text" name="couleur_last_articles_fondtitre" class=" fondl cfg_couleur" value="[(#ENV{couleur_last_articles_fondtitre}|sinon{#82ade2})]" size="7"></td>
 				<td><input type="text" name="couleur_last_articles_bordures" class=" fondl cfg_couleur" value="[(#ENV{couleur_last_articles_bordures}|sinon{#999})]" size="7"></td>
 				<td><input type="text" name="couleur_last_articles_texte" class=" fondl cfg_couleur" value="[(#ENV{couleur_last_articles_texte}|sinon{#999})]" size="7"></td>
-				<td><input type="text" name="couleur_last_articles_titre" class=" fondl cfg_couleur" value="[(#ENV{couleur_last_articles_titre}|sinon{#999})]" size="7"></td>
+				<td><input type="text" name="couleur_last_articles_titre" class=" fondl cfg_couleur" value="[(#ENV{couleur_last_articles_titre}|sinon{#666})]" size="7"></td>
 			</tr>
 			
 			<tr>
@@ -156,7 +164,7 @@ jQuery('a').tooltip({
 				<td><input type="text" name="couleur_edito_fondtitre" class=" fondl cfg_couleur" value="[(#ENV{couleur_edito_fondtitre}|sinon{#ffed00})]" size="7"></td>
 				<td><input type="text" name="couleur_edito_bordures" class=" fondl cfg_couleur" value="[(#ENV{couleur_edito_bordures}|sinon{#999})]" size="7"></td>
 				<td><input type="text" name="couleur_edito_texte" class=" fondl cfg_couleur" value="[(#ENV{couleur_edito_texte}|sinon{#999})]" size="7"></td>
-				<td><input type="text" name="couleur_edito_titre" class=" fondl cfg_couleur" value="[(#ENV{couleur_edito_titre}|sinon{#999})]" size="7"></td>
+				<td><input type="text" name="couleur_edito_titre" class=" fondl cfg_couleur" value="[(#ENV{couleur_edito_titre}|sinon{#666})]" size="7"></td>
 			</tr>
 			
 			<tr>
@@ -165,7 +173,7 @@ jQuery('a').tooltip({
 				<td><input type="text" name="couleur_breves_fondtitre" class=" fondl cfg_couleur" value="[(#ENV{couleur_breves_fondtitre}|sinon{#82ade2})]" size="7"></td>
 				<td><input type="text" name="couleur_breves_bordures" class=" fondl cfg_couleur" value="[(#ENV{couleur_breves_bordures}|sinon{#999})]" size="7"></td>
 				<td><input type="text" name="couleur_breves_texte" class=" fondl cfg_couleur" value="[(#ENV{couleur_breves_texte}|sinon{#999})]" size="7"></td>
-				<td><input type="text" name="couleur_breves_titre" class=" fondl cfg_couleur" value="[(#ENV{couleur_breves_titre}|sinon{#999})]" size="7"></td>
+				<td><input type="text" name="couleur_breves_titre" class=" fondl cfg_couleur" value="[(#ENV{couleur_breves_titre}|sinon{#666})]" size="7"></td>
 			</tr>
 			
 			<tr>

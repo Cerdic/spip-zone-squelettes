@@ -70,6 +70,13 @@ En attendant la documentation sur <a href="http://www.spip-contrib.net">Spip-Con
 'taille_texte_cadres' => 'Tous les les cadres',
 'desc_taille_texte_cadres' => 'Choisissez la taille en pixels du texte dans les cadres (derniers articles, derni&egrave;res br&egrave;ves, acc&egrave;s direct, et edito).',
 
+'images_site' => '<strong>Vos images pour le site</strong>',
+'bandeau_entete' => 'Bandeau du site',
+'desc_bandeau_entete' => 'Dimensionnez votre image en fonction du choix que vous avez fait concernant la largeur du site.',
+
+'image_fond' => 'Fond du site',
+'desc_image_fond' => 'L&rsquo;application d&rsquo;une image de fond est prioritaire sur la couleur de fond.',
+
 'couleurs_site' => '<strong>Repeindre le site</strong>',
 
 'fond' => 'fond',
