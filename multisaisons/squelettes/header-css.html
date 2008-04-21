@@ -4,7 +4,7 @@
 [<link rel="stylesheet" type="text/css" href="(#CHEMIN{css/print.css})" media="print" />]
 	
 	[(#REM) 4 css qui changent l aspect du site suivant la saison ou 1 css seulement]
-	<BOUCLE_lang_forcee_fr(RUBRIQUES){lang=fr}{0,1}>
+	
 <BOUCLE_mot_saison(MOTS){titre=saison}{0,1}>
 [<link rel="stylesheet" type="text/css" media="screen, projection, tv" href="(#CHEMIN{[css/(#ENV{date}|saison|translitteration).css]}|compacte)" />]
 [<link rel="stylesheet" type="text/css" media="screen, projection, tv" href="(#CHEMIN{[css/surcharge-(#ENV{date}|saison|translitteration).css]}|compacte)" />]
@@ -12,11 +12,19 @@
 [<link rel="stylesheet" type="text/css" media="screen, projection, tv" href="(#CHEMIN{css/couleurs.css}|compacte)" />]
 [<link rel="stylesheet" type="text/css" media="screen, projection, tv" href="(#CHEMIN{css/surcharge-couleurs.css}|compacte)" />]
 <//B_mot_saison>
-</BOUCLE_lang_forcee_fr>
+
 <script type="text/javascript" src="[(#CHEMIN{nifty.js})]"></script>
 <script type="text/javascript" src="[(#CHEMIN{nifty-bloog.js})]"></script>
 
-	[(#REM) icones xml des fils des rubriques sous firefox ]
+	[(#REM) fil xml des documents images pour lecteurs et moteurs d'images ]
+
+
+<link rel="alternate" href="[(#URL_PAGE{diapo-rss}|parametre_url{'id_article',#ID_ARTICLE}|parametre_url{'id_rubrique',#ID_RUBRIQUE})]" type="application/rss+xml" title="Fil RSS medias photos." id="gallery" />
+
+
+
+
+[(#REM) icones xml des fils des rubriques sous firefox ]
 
 <BOUCLE_rub_css(RUBRIQUES){tout}{titre_mot=syndic}>
 <link rel="alternate" type="application/rss+xml" href="[(#URL_PAGE{backend}|parametre_url{'id_rubrique',#ID_RUBRIQUE})]" title="[(#TITRE)]" />
