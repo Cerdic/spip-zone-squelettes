@@ -89,6 +89,9 @@ En attendant la documentation sur <a href="http://www.spip-contrib.net">Spip-Con
 'fond_site' => 'Le site',
 'desc_fond_site' => 'Ne mettez aucune image de fond pour pouvoir afficher une couleur de fond',
 
+'entete' => 'Ent&ecirc;te',
+'desc_entete' => 'Couleur de fond de l&rsquo;ent&ecirc;te lorqu&rsquo;il il n&rsquo;y a pas de bandeau',
+
 'cadre_derniers_articles' => 'Derniers articles',
 'desc_cadre_derniers_articles' => 'Habille aussi les cadres -Derniers messages- et -Dans la m&ecirc;me rubrique-',
 
