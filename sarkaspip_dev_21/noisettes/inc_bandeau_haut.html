@@ -1,16 +1,16 @@
 [(#REM) <!-- Bandeau Haut --> ]
-[(#CONFIG{sarkaspip_bandeau_pied/bandeau_haut, 1}|=={1}|?{' '})
-<div>
+<!--<div> -->
 <div class="bandeau_haut">	
       <div class="navigation">  
     	<!-- Navigation dans les langues -->
-        <div class="nav_langue">
-          <ul>
-            <li><a href="#" title="Pagina home in Italiano">Italien</a></li>
-            <li><a href="#" title="Homepage auf Deutsch">Allemand</a></li>
-            <li><a href="#" title="Hemsidan p&aring; svenska">Anglais</a></li>
-          </ul>
-        </div>
+    	
+    	<div class="nav_langue">
+			<BOUCLE_langues(ARTICLES){!par lang}{fusion lang}>
+				<span[ (#LANG|=={#ENV{lang}}|?{class="on",''})]>
+					[<a rel="start" href="[(#SELF|parametre_url{lang,#LANG})]" title="[(#LANG|traduire_nom_langue)]"><img src="#CHEMIN{images/lang_#LANG.png}" alt="(#LANG|traduire_nom_langue)" /></a>]
+				</span>
+			</BOUCLE_langues>
+		</div>
         
         <!-- Navigation dans les raccourcis de base -->
         <div class="nav_raccourci">
@@ -41,5 +41,5 @@
     </div>   
 	<div class="clearer">&nbsp;</div>
 </div>
-</div>
-]
+<!--</div>-->
+
