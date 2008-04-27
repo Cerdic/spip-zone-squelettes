@@ -374,6 +374,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_sommaire_secteurs' => 'Liste des secteurs',
 		'cfg_lgd_sommaire_articles' => 'Liste des articles r&eacute;cents',
 		'cfg_lgd_herbier_pagination' => 'Pagination',
+		'cfg_lgd_accueil_intro' => 'Pr&eacute;sentation',
+		'lgd_accueil_debug' => 'Debug',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -416,6 +418,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_licence_squelette' => 'D&eacute;sirez vous ins&eacute;rer un lien vers la description de la licence GPL adopt&eqcute;e par le squelette Sarka-SPIP ?',
 		'cfg_inf_lien_squelette' => 'D&eacute;sirez vous ins&eacute;rer un lien permettant de visualiser ou de t&eacute;l&eacute;charger le squelette de la page en cours ?',
 		'cfg_inf_ancre_hautpage' => 'D&eacute;sirez vous ins&eacute;rer un lien permettant de remonter vers le haut de la page ?',
+		'cfg_inf_accueil_intro_0' => 'Bienvenue sur l\'espace de param&eacute;trage du squelette Sarka-SPIP. Vous pouvez acc&eacute;der aux diverses pages de configuration via les liens inclus dans le bloc de droite. 
+		Les pages de configuration sont:',
+		'cfg_inf_accueil_intro_1' => '<strong>Accueil</strong> : activation ou d&eacute;sactivatyion du mode debug',
+		'cfg_inf_accueil_intro_2' => '<strong>Layout</strong> : choix du layout Gala (position des blocs)',
+		'cfg_inf_accueil_intro_3' => '<strong>Bandeau & Pied</strong> : configuration du bandeau et du pied de page', 
+		'cfg_inf_accueil_intro_4' => '<strong>Noisettes</strong> : affichage, positionnement et contenu des noisettes',
+		'cfg_inf_accueil_intro_5' => '<strong>Sommaire</strong> : choix des composants du corps de page sommaire', 
+		'cfg_inf_accueil_intro_6' => '<strong>Agenda</strong> : configuration des divers affichages de l\'agenda', 
+		'cfg_inf_accueil_intro_7' => '<strong>Herbier</strong> : choix de la pagination pour la page herbier', 
+		'cfg_inf_accueil_debug' => 'Si vous avez un souci ou voulez rapporter un bug il peut &ecirc;tre utile d\'activer le mode debug pour la configuration des pages. Celui-ci vous permez de lire les variables de chaque fond.',
 
 
 // Labels des items de choix
@@ -488,6 +500,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_inc_stathit_compo_3' => 'Les deux',
 		'cfg_lbl_stathit_max_top' => 'Nombre maximal d\'articles populaires',
 		'cfg_lbl_stathit_max_hasard' => 'Nombre maximal d\'articles choisis au hasard',
+		'cfg_lbl_accueil_debug_1' => 'Mode debug actif',
+		'cfg_lbl_accueil_debug_2' => 'Mode debug inactif',
 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',
