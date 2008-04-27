@@ -1,11 +1,12 @@
-<!-- titre=<:sarkaspip:cfg_titre_bandeau_pied:> -->
-<!-- descriptif=<:sarkaspip:cfg_descr_bandeau_pied:> -->
-<!-- boite=<:sarkaspip:cfg_boite_bandeau_pied:> -->
+<!-- titre=<:sarkaspip:cfg_titre_pied:> -->
+<!-- descriptif=<:sarkaspip:cfg_descr_pied:> -->
+<!-- boite=<:sarkaspip:cfg_boite_pied:> -->
 <!-- autoriser=webmestre -->
 <!-- onglet=sarkaspip_accueil -->
 <!-- liens*=sarkaspip:sarkaspip_accueil -->
 <!-- liens*=sarkaspip:sarkaspip_layout -->
-<!-- liens*=sarkaspip:sarkaspip_bandeau_pied -->
+<!-- liens*=sarkaspip:sarkaspip_bandeau -->
+<!-- liens*=sarkaspip:sarkaspip_pied -->
 <!-- liens*=sarkaspip:sarkaspip_noisettes -->
 <!-- liens*=sarkaspip:sarkaspip_sommaire -->
 <!-- liens*=sarkaspip:sarkaspip_agenda -->
@@ -13,63 +14,8 @@
 
 #CACHE{0}
 
-<script type="text/javascript">
-//<![CDATA[
-	jQuery(document).ready(function() {
-	[(#ENV{bandeau_haut, 1}|=={0}|?{jQuery("#bloc_slogan").hide();})]
-		jQuery("input[@name='bandeau_haut']").change(function() {
-			if (jQuery("input[@name='bandeau_haut']:checked").val() == 1)
-				jQuery("#bloc_slogan").show();
-			else
-				jQuery("#bloc_slogan").hide();
-			jQuery(this).blur();
-		});	
-	});
-//]]>
-</script>
 <form method="post" action="#SELF"><div>
 	[(#ENV{_cfg_}|form_hidden)]
-	<fieldset>
-		<legend><:sarkaspip:cfg_lgd_bandeau:></legend>
-		<p><:sarkaspip:cfg_inf_bandeau_haut:></p>
-		<label>
-			<input type="radio" name="bandeau_haut" value="1" [(#ENV{bandeau_haut, 1}|=={1}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_oui:>
-		</label>
-		<label>
-			<input type="radio" name="bandeau_haut" value="0" [(#ENV{bandeau_haut, 1}|=={0}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_non:>
-		</label>
-		
-		<div id="bloc_slogan">
-		<br />
-		<label><:sarkaspip:cfg_lbl_slogan:></label>
-		<input type="text" name="slogan" value="#ENV{slogan}" size="40" class="fondl" />
-		<br /> 
-		</div>
-
-		<p><:sarkaspip:cfg_inf_bandeau_bas:></p>
-		<label>
-			<input type="radio" name="bandeau_bas" value="1" [(#ENV{bandeau_bas, 1}|=={1}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_oui:>
-		</label>
-		<label>		
-			<input type="radio" name="bandeau_bas" value="0" [(#ENV{bandeau_bas, 1}|=={0}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_non:>
-		</label>
-
-		<p><:sarkaspip:cfg_inf_bandeau_chemin:></p>
-		<label>
-			<input type="radio" name="bandeau_chemin" value="1" [(#ENV{bandeau_chemin, 1}|=={1}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_oui:>
-		</label>
-		<label>
-			<input type="radio" name="bandeau_chemin" value="0" [(#ENV{bandeau_chemin, 1}|=={0}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_non:>
-		</label>	
-		<br />
-	</fieldset>
-	
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_pied_copyright:></legend>
 		<p><:sarkaspip:cfg_inf_copyright_site:></p>
@@ -85,7 +31,7 @@
 		<div id="bloc_licence_site">
 			<p><:sarkaspip:cfg_inf_licence_site:></p>
 			<label>
-				<textarea name="licence_site" rows="4" cols="40" style="width:100%;">[(#ENV{licence_site})]</textarea>
+				<textarea name="licence_site" rows="4" cols="40" style="width:100%;">[(#ENV{licence_site}|entites_html)]</textarea>
 			</label>
 			<br />
 		</div>
@@ -173,6 +119,6 @@
 	<div id="bloc_debug">
 		<br />
 		>> Debug - Etat des variables du fond Bandeau et Pied:<br />
-		#CFG_ARBO{sarkaspip_bandeau_pied}
+		#CFG_ARBO{sarkaspip_pied}
 	</div>
 ]

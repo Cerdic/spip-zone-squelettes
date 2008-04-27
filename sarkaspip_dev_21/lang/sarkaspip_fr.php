@@ -28,7 +28,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'agenda_annuel' => 'Agenda annuel',
 		'agenda_mois_vide' => 'Aucun &eacute;v&egrave;nement pr&eacute;vu ce mois-ci',
 		'agenda_fin_mois_vide' => 'Aucun &eacute;v&egrave;nement &agrave; venir d\'ici la fin du mois',
-		'agenda_fin_mois_depasse' => 'Mois ant&eacute;rieur &agrave; la date courante. Aucun &eacute;v&egrave;nement ne peut &ecirc; affich&eacute;',
+		'agenda_fin_mois_depasse' => 'Mois ant&eacute;rieur &agrave; la date courante. Aucun &eacute;v&egrave;nement ne peut &ecirc;tre affich&eacute;',
 		'agenda_saisonnier' => 'Agenda saisonnier',
 		'album_nav_debut' => 'Premi&egrave;re page',
 		'album_nav_precedent' => 'Page pr&eacute;c&eacute;dente',
@@ -317,7 +317,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // Titre des pages
 		'cfg_titre_accueil' => 'Sarka-SPIP - Accueil',
 		'cfg_titre_layout' => 'Sarka-SPIP - Choix du layout',
-		'cfg_titre_bandeau_pied' => 'Sarka-SPIP - Bandeau et Pied',
+		'cfg_titre_bandeau' => 'Sarka-SPIP - Bandeau',
+		'cfg_titre_pied' => 'Sarka-SPIP - Pied de page',
 		'cfg_titre_noisettes' => 'Sarka-SPIP - Choix et agencement des noisettes',
 		'cfg_titre_agenda' => 'Sarka-SPIP - Configuration de l\'agenda',
 		'cfg_titre_sommaire' => 'Sarka-SPIP - Configuration de la page sommaire',
@@ -326,7 +327,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // Titre des liens des pages
 		'sarkaspip_accueil' => 'Accueil',
 		'sarkaspip_layout' => 'Layout',
-		'sarkaspip_bandeau_pied' => 'Bandeau et Pied',
+		'sarkaspip_bandeau' => 'Bandeau',
+		'sarkaspip_pied' => 'Pied de page',
 		'sarkaspip_noisettes' => 'Noisettes',
 		'sarkaspip_agenda' => 'Agenda',
 		'sarkaspip_sommaire' => 'Sommaire',
@@ -336,7 +338,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_descr_accueil' => 'Vous &ecirc;tes sur la page d\'accueil de la configuration du squelette Sarka-SPIP.',
 		'cfg_descr_layout' => 'Le squelette Sarka-SPIP est bas&eacute; sur les layouts Gala #13 &agrave; #18 d\'Alessandro Fulciniti (<a href="http://blog.html.it/layoutgala/">Layout Gala</a>) qui permettent de jouer sur la position des colonnes navigation, centre et extra. 
 		Cette page vous permet de choisir le layout qui vous convient.',
-		'cfg_descr_bandeau_pied' => 'Le bandeau de chaque page est constitu&eacute; de plusieurs blocs configurables. Cette page de configuration vous permet de choisir les caract&eacute;ristiques de votre bandeau et du pied de vos pages.',
+		'cfg_descr_bandeau' => 'Le bandeau de chaque page est constitu&eacute; de plusieurs blocs configurables. Cette page de configuration vous permet d\'en choisir les caract&eacute;ristiques.',
+		'cfg_descr_pied' => 'Le pied de page est constitu&eacute; de plusieurs items configurables. Cette page de configuration vous permet de choisir les items &agrave; afficher.',
 		'cfg_descr_noisettes' => 'Les noisettes sont des blocs d\'informations qui composent les colonnes navigation et extra. Cette page vous permet de choisir, suivant la noisette, son affichage,
 		son mod&egrave;le voire sa position.',
 		'cfg_descr_agenda' => 'L\'agenda inclus dans Sarka-SPIP permet d\'afficher un listing annuel ainsi qu\'un mini calendrier mensuel. Les caract&eacute;ristiques de ces deux affichages sont configurables dans cette page.',
@@ -346,7 +349,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // Titre des boites
 		'cfg_boite_accueil' => 'Accueil',
 		'cfg_boite_layout' => 'Layouts',
-		'cfg_boite_bandeau_pied' => 'Bandeau et Pied',
+		'cfg_boite_bandeau' => 'Bandeau',
+		'cfg_boite_pied' => 'Pied de page',
 		'cfg_boite_noisettes' => 'Noisettes',
 		'cfg_boite_agenda' => 'Agenda',
 		'cfg_boite_sommaire' => 'Sommaire',
@@ -354,10 +358,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // Legendes des blocs contenus dans chaque boite
 		'cfg_lgd_layout' => 'Layout',
-		'cfg_lgd_bandeau' => 'Bandeau',
-		'cfg_lgd_pied_copyright' => 'Pied de page - Copyright et licence',
-		'cfg_lgd_pied_version' => 'Pied de page - Versions',
-		'cfg_lgd_pied_liens' => 'Pied de page - Liens',
+		'cfg_lgd_bandeau_haut' => 'Partie haute',
+		'cfg_lgd_bandeau_bas' => 'Partie basse',
+		'cfg_lgd_bandeau_chemin' => 'Chemin',
+		'cfg_lgd_pied_copyright' => 'Copyright et licence',
+		'cfg_lgd_pied_version' => 'Versions',
+		'cfg_lgd_pied_liens' => 'Liens',
 		'cfg_lgd_inc_rubriques' => 'Menu des rubriques',
 		'cfg_lgd_inc_breves' => 'Liste des br&egrave;ves',
 		'cfg_lgd_inc_commentaires' => 'Liste des commentaires',
@@ -375,7 +381,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_sommaire_articles' => 'Liste des articles r&eacute;cents',
 		'cfg_lgd_herbier_pagination' => 'Pagination',
 		'cfg_lgd_accueil_intro' => 'Pr&eacute;sentation',
-		'lgd_accueil_debug' => 'Debug',
+		'cfg_lgd_accueil_debug' => 'Debug',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -422,11 +428,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		Les pages de configuration sont:',
 		'cfg_inf_accueil_intro_1' => '<strong>Accueil</strong> : activation ou d&eacute;sactivatyion du mode debug',
 		'cfg_inf_accueil_intro_2' => '<strong>Layout</strong> : choix du layout Gala (position des blocs)',
-		'cfg_inf_accueil_intro_3' => '<strong>Bandeau & Pied</strong> : configuration du bandeau et du pied de page', 
-		'cfg_inf_accueil_intro_4' => '<strong>Noisettes</strong> : affichage, positionnement et contenu des noisettes',
-		'cfg_inf_accueil_intro_5' => '<strong>Sommaire</strong> : choix des composants du corps de page sommaire', 
-		'cfg_inf_accueil_intro_6' => '<strong>Agenda</strong> : configuration des divers affichages de l\'agenda', 
-		'cfg_inf_accueil_intro_7' => '<strong>Herbier</strong> : choix de la pagination pour la page herbier', 
+		'cfg_inf_accueil_intro_3' => '<strong>Bandeau</strong> : configuration du bandeau', 
+		'cfg_inf_accueil_intro_4' => '<strong>Pied de page</strong> : configuration du pied de page', 
+		'cfg_inf_accueil_intro_5' => '<strong>Noisettes</strong> : affichage, positionnement et contenu des noisettes',
+		'cfg_inf_accueil_intro_6' => '<strong>Sommaire</strong> : choix des composants du corps de page sommaire', 
+		'cfg_inf_accueil_intro_7' => '<strong>Agenda</strong> : configuration des divers affichages de l\'agenda', 
+		'cfg_inf_accueil_intro_8' => '<strong>Herbier</strong> : choix de la pagination pour la page herbier', 
 		'cfg_inf_accueil_debug' => 'Si vous avez un souci ou voulez rapporter un bug il peut &ecirc;tre utile d\'activer le mode debug pour la configuration des pages. Celui-ci vous permez de lire les variables de chaque fond.',
 
 
