@@ -501,7 +501,7 @@ function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui
 		$jour = $jour - 1;
 		$date = mktime(0,0,0,$mois_choisi, $jour, $annee_choisie);
 
-		$cellule = '<td class="hors_mois">';
+		$cellule = '<td class="horsperiode">';
 		$cellule .= ($affichage_hors_mois == 'oui') ? strval(date('j', $date)) : '&nbsp;';
 		$cellule .= '</td>';
 
@@ -517,7 +517,7 @@ function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui
 			$body .= '</tr><tr>';
 
 		$cellule = '<td class="';
-		$cellule .= (date('d-m-Y', $date) == date('d-m-Y')) ? 'jour_courant">' : 'dans_mois">';
+		$cellule .= (date('d-m-Y', $date) == date('d-m-Y')) ? 'today">' : 'libre">';
 		if (!isset($mini_evenements[date('d-m-Y', $date)])) {
 			// Il n'y pas d'evenement pour ce jour, on affiche la date
 			$cellule .= strval(date('j', $date));
@@ -540,7 +540,7 @@ function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui
 
 	// Cellules des jours visibles suivant le mois courant (toujours inclus strictement dans la derniere ligne)
 	while (date('w', $date) != $jour_debut) {
-		$cellule = '<td class="hors_mois">';   //width="14%" valign="top"
+		$cellule = '<td class="horsperiode">';   //width="14%" valign="top"
 		$cellule .= ($affichage_hors_mois == 'oui') ? strval(date('j', $date)) : '&nbsp;';
 		$cellule .= '</td>';
 
