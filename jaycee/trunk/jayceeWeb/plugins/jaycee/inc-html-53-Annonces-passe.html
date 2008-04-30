@@ -1,0 +1,28 @@
+#CACHE{24*3600}
+	<!-- Annonces -->
+	<BOUCLE_rub_annonces(RUBRIQUES){id_secteur}{titre_mot=_RUB_ANNONCES}>
+		<BOUCLE_sections(RUBRIQUES){id_parent}{par titre}>
+
+		<B_annonces>
+			<div class='breves'>
+				<div class='breves-<?php echo ++$giBrevesColor; ?>'>
+					<div class='breves-titre'>
+						<a href='[(#URL_RUBRIQUE|rub2anns)]' title="[(#TITRE|supprimer_numero)] pour #NOM_SITE_SPIP">[(#TITRE|supprimer_numero)]</a>
+					</div>
+					<ul>
+		<BOUCLE_annonces(ARTICLES){id_rubrique}{par date}{inverse}{age>1}{0,2}>
+						<li>
+							<i>[(#DATE|affdate_court)]</i>:
+							<a href='[(#URL_RUBRIQUE|rub2anns)]#ann[(#ID_ARTICLE)]' title="[(#TEXTE|attribut_html|couper{120})]">
+								[(#TITRE|texte_script|textebrut)]
+							</a>
+						</li>
+		</BOUCLE_annonces>
+					</ul>
+				</div> <!-- breves-<?php echo $giBrevesColor; ?> -->
+			</div>
+		</B_annonces>
+			
+		</BOUCLE_sections>		
+	</BOUCLE_rub_annonces>
+	<!-- Fin : Annonces -->

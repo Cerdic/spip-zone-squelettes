@@ -1,0 +1,30 @@
+#CACHE{24*3600}
+	<!-- Agenda --><?php $giBrevesColor = 0; ?>
+	<a id="Agenda" />
+	<BOUCLE_rub_annonces(RUBRIQUES){id_secteur}{titre_mot=_RUB_ANNONCES}>
+			<div class='breves'>
+				<div class='breves-<?php echo ++$giBrevesColor; ?>'>
+					<div class='breves-titre'>
+						<a href='rss-Agenda-sec#ID_SECTEUR.xml'>
+							<img src='#CHEMIN{styles/logos/rss-2.0-13px.gif}' class='floatRight' alt='Flux RSS 2.0' title="Recevez automatiquement les événements de l'agenda en vous abonnant à ce Flux RSS 2.0" />
+						</a>
+						<a href='agenda-local-sec#ID_SECTEUR.html' title="Agenda de #NOM_SITE_SPIP">AGENDA Local</a>
+					</div>
+					<ul>
+		<BOUCLE_agenda(ARTICLES){branche}{par date}{age<2}>
+						<li>
+							<i>[(#DATE|affdate_court)]</i>:
+							<a href='[(#URL_ARTICLE|art2ann)]' title="[(#TEXTE|attribut_html|couper{120})]">
+							[(#TITRE|texte_script|textebrut)]
+							</a>
+						</li>
+		</BOUCLE_agenda>
+		</B_agenda>
+						<li>Evénements publics annoncés très bientôt</li>
+		<//B_agenda>
+					</ul>
+				</div> <!-- breves-<?php echo $giBrevesColor; ?> -->
+			</div>
+	</BOUCLE_rub_annonces>
+	<!-- Fin : Agenda -->
+

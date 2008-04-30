@@ -1,0 +1,125 @@
+#CACHE{24*3600}
+<BOUCLE_article_principal(ARTICLES){id_article}
+>[(#REM) Les fermetures de balises sont à la ligne pour ne pas insérer d'espace avant l'entête HTML
+ ]<INCLURE{fond=inc-html-01-Vars-Site}
+ ><INCLURE{fond=inc-html-03-Vars-Rubrique}{id_secteur}{id_rubrique}
+ ><INCLURE{fond=inc-html-04-Vars-Article}{id_rubrique}{id_article}
+ ><INCLURE{fond=inc-html-11-Head}>
+</head>
+<body onload="setHover('menuList1')">
+  [(#FORMULAIRE_ADMIN)]
+  
+	[(#INCLURE{fond=inc-html-21-Entete-Bandeau1}{id_article})]
+	[(#INCLURE{fond=inc-html-22-Menu-deroulant} {id_rubrique})]
+	[(#INCLURE{fond=inc-html-24-Entete-Bandeau2}{id_secteur}{id_rubrique})]
+	[(#REM)id_article permet de fournir le contexte, pour menu bandeau par exemple]
+	
+  <div id='zPrincipal'><a id="Contenu" />
+  
+		<div class='zLeft25'> 	
+  	  [(#INCLURE{fond=inc-html-31-Editos}{id_article})]
+  	  [(#INCLURE{fond=inc-html-34-Menu-rubrique}{id_rubrique}{id_article})]
+			[(#FORMULAIRE_RECHERCHE)]
+  	  [(#INCLURE{fond=inc-html-38-Partenaires}{id_article})]
+
+					<BOUCLE_afficher_actualite_externe_syndication(ARTICLES){id_article}{titre_mot=_AFFICHER_ACTUALITES_SYNDICATION}>
+					<div class='zActualiteExterne'>
+						<INCLURE{fond=inc-html-57-Annonces-Actualite-externe-syndication}{id_secteur}>
+					</div>
+					</BOUCLE_afficher_actualite_externe_syndication>
+  	  
+  	  <INCLURE{fond=inc-html-45-Modifs-recentes}{id_rubrique}>
+		</div><!-- zLeft -->
+
+		[(#INCLURE{fond=inc-html-35-Menu-chemin}{id_rubrique}{id_article})]
+		<INCLURE{fond=inc-html-25-Entete-contexte}{id_secteur}{id_rubrique}{id_article}>
+		<?php if (@$_GET['FormMail']!='') echo "<div id='Affiche'>Le message a été envoyé. Résultat : ",$_GET['FormMail'],"<br>Merci</div>"; ?>
+
+		<div class="zContenu">
+
+			<div class='encart'>
+	  	  <INCLURE{fond=inc-html-43-Date-Heure}>
+				[(#INCLURE{fond=inc-html-50-Traductions}{id_article})]
+				<INCLURE{fond=inc-html-51-Actualites}{id_article}>
+				
+				<div class='zBreves'>
+					
+					<BOUCLE_afficher_agenda_local(ARTICLES){id_article}{titre_mot=_AFFICHER_AGENDA_LOCAL}>
+						<INCLURE{fond=inc-html-52-Annonces-Agenda}{id_secteur}{id_rubrique}{id_article}>
+					</BOUCLE_afficher_agenda_local>
+					
+					<BOUCLE_afficher_agenda_syndication(ARTICLES){id_article}{titre_mot=_AFFICHER_AGENDA_SYNDICATION}>
+						<INCLURE{fond=inc-html-52-Annonces-Agendas-syndication}{id_secteur}>
+					</BOUCLE_afficher_agenda_syndication>
+					
+					<BOUCLE_afficher_mini_calendrier(ARTICLES){id_article}{titre_mot=_AFFICHER_MINI_CALENDRIER}>
+			  	  #CALENDRIER_MINI{#ENV{date},'date',#SELF}
+					</BOUCLE_afficher_mini_calendrier>
+					
+					<BOUCLE_afficher_annonces_passe(ARTICLES){id_article}{titre_mot=_AFFICHER_ANNONCES_PASSE}>
+						<INCLURE{fond=inc-html-53-Annonces-passe}{id_secteur}{id_rubrique}{id_article}>
+					</BOUCLE_afficher_annonces_passe>
+				</div>
+			</div>
+
+		<BOUCLE_titre_article(ARTICLES){id_article}{titre_mot=_MASQUER_MENU_RUBRIQUE}>
+		</BOUCLE_titre_article>
+		</B_titre_article>
+			[(#REM) Si ne trouve pas l'article à masquer, alors affiche les titres.]
+			[<h1>(#TITRE|supprimer_numero)</h1>]
+			[<h2>(#SOUSTITRE)</h2>]
+		<//B_titre_article>
+			 
+			[(#LOGO_ARTICLE||reduire_image{100,})]
+			[<div class="#EDIT{texte} texte">(#TEXTE|winGUI|spip_jaycee)</div>]
+			
+		<BOUCLE_ecrire_auteurs(ARTICLES){id_article}{titre_mot=_AFFICHER_ECRIRE_AUTEURS}>
+			#FORMULAIRE_ECRIRE_AUTEUR
+		</BOUCLE_ecrire_auteurs>
+			
+		<hr class='clearBothHidden' />
+			
+			[(#REM) Portfolio : album d'images ]
+			<B_documents_portfolio>
+			<div id="documents_portfolio">
+				<h2><:info_portfolio:></h2>
+				<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
+				[<a href="#URL_DOCUMENT" class="thickbox" rel="portfolio" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|couper{80}|supprimer_numero|texte_backend)"]>(#FICHIER|copie_locale|image_reduire{0,90}|inserer_attribut{alt,[(#TITRE|supprimer_numero|couper{80}|texte_backend)]})</a>]
+				</BOUCLE_documents_portfolio>
+			</div>
+			</B_documents_portfolio>
+			<BOUCLE_afficher_document(DOCUMENTS) {id_document} {id_article} {mode=document}{extension IN png,jpg,gif}>
+			<div class="spip_documents spip_documents_center" id="document_actif">
+				#EMBED_DOCUMENT
+				[<div class="#EDIT{titre} spip_doc_titre">(#TITRE)</div>]
+				[<div class="#EDIT{descriptif} spip_doc_descriptif">(#DESCRIPTIF)</div>]
+			</div>
+			</BOUCLE_afficher_document>
+
+			[(#REM) Autres documents joints a l'article ]
+			<B_documents_joints>
+			<div id="documents_joints">
+				<h2><:titre_documents_joints:></h2>
+					<BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {par num titre, date} {doublons}>
+				[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
+				[<p class='DocumJoint_Titre'><b>(#TITRE|supprimer_numero)</b></p>]
+				[<p class='DocumJoint_Descrip'>(#DESCRIPTIF)</p>]
+					</BOUCLE_documents_joints>
+			</div>
+			</B_documents_joints>
+			
+		</div>
+
+		<hr class='clearBothHidden' />
+		
+		<div class='zFooter'>	
+			<INCLURE{fond=inc-html-36-Menu-secteur}{id_rubrique}>
+		</div>
+	</div>
+
+ 	 	<INCLURE{fond=inc-html-47-Acces-prive}{id_article}{id_rubrique}>
+</body>
+</html>
+</BOUCLE_article_principal>
+<:aucun_article:>
+<//B_article_principal>

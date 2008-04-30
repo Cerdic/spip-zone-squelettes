@@ -1,0 +1,80 @@
+#CACHE{0}
+[(#HTTP_HEADER{Content-type: text/xml; charset=#CHARSET})]
+[(#REM|affiche_xml{#CHARSET})]
+<BOUCLE_masquer_secteurs(RUBRIQUES){titre_mot=_MASQUER_RUBRIQUE}{doublons rubriques}></BOUCLE_masquer_secteurs>
+[(#REM) Masque les articles de meta-donnees dans le secteur ]
+<BOUCLE_masquer_articles(ARTICLES){titre_mot=_MASQUER_ARTICLE}{doublons articles}></BOUCLE_masquer_articles>
+
+<urlset xmlns="http://www.google.com/schemas/sitemap/0.84">
+	[(#REM|reduit_priorite)]
+	<BOUCLE_secteurs(RUBRIQUES){racine}{doublons rubriques}{titre=fr}>
+		[(#REM|descend_niveau)][(#REM|reduit_priorite)][(#REM|descend_niveau)]
+		<?php if ('#CHEMIN{article.html}'){?>
+			<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {doublons articles}{!par date}>
+			
+				<url>
+				  <loc>[(#URL_ARTICLE|entites_html|url_absolue)]</loc>
+				  [<lastmod>(#DATE_MODIF|affdate{"Y-m-d"})</lastmod>]
+				  <priority>[(#REM|priorite)]</priority>
+				  [(#DATE_MODIF|affdate{"Y-m-d"}|update{[(#DATE|affdate{"Y-m-d"})]})]
+				  <changefreq><? 
+	<BOUCLE_freq_rub1(HIERARCHIE){id_article}{titre_mot==^_MaJ-([0-9])_(.*)$}{tout}>
+		if ( ($lsMot = "<BOUCLE_freq(MOTS){id_rubrique}{titre==^_MaJ-([0-9])_(.*)$}{0,1}>[(#TITRE|sitemap_changefreq)]</BOUCLE_freq>") != '') $lsMaJ = $lsMot;
+	</BOUCLE_freq_rub1>
+	echo $lsMaJ; ?></changefreq>		
+				</url>
+			</BOUCLE_articles_racine>
+		<?php } ?>
+		[(#REM|remonte_niveau)]
+		[(#REM|update{"2005-01-01",2})]
+		<BOUCLE_rubriques(RUBRIQUES) {id_parent}{doublons rubriques}>
+			[(#REM|descend_niveau)]
+			[(#REM|reduit_priorite)]
+			[(#REM|descend_niveau)]
+			<?php if ('#CHEMIN{article.html}'){?>
+				<BOUCLE_articles(ARTICLES) {id_rubrique} {doublons articles}{!par date}>
+					<url>
+					  <loc>[(#URL_ARTICLE|entites_html|url_absolue)]</loc>
+					  [<lastmod>(#DATE_MODIF|affdate{"Y-m-d"})</lastmod>]
+					  <priority>[(#REM|priorite)]</priority>
+					  [(#DATE_MODIF|affdate{"Y-m-d"}|update{[(#DATE|affdate{"Y-m-d"})]})]
+				  <changefreq><?
+	<BOUCLE_freq_rub2(HIERARCHIE){id_article}{titre_mot==^_MaJ-([0-9])_(.*)$}{tout}>
+		if ( ($lsMot = "<BOUCLE_freq(MOTS){id_rubrique}{titre==^_MaJ-([0-9])_(.*)$}{0,1}>[(#TITRE|sitemap_changefreq)]</BOUCLE_freq>") != '') $lsMaJ = $lsMot;
+	</BOUCLE_freq_rub2>
+	echo $lsMaJ; ?></changefreq>		
+					</url>
+				 </BOUCLE_articles>
+			<?php } ?>
+			[(#REM|remonte_niveau)]
+			[(#REM|update{"2005-01-01",2})]
+			<BOUCLE_sous_rubriques(BOUCLE_rubriques)>	</BOUCLE_sous_rubriques>
+			[(#REM|augmente_priorite)]
+			
+			[(#CHEMIN{rubrique.html}|?{' ',''})
+				  [(#REM|remonte_date_modif)]
+			]
+			[(#REM|remonte_niveau)]
+			[(#REM|update{"2005-01-01",2})]
+		</BOUCLE_rubriques>
+
+		[(#REM|augmente_priorite)]
+		[(#CHEMIN{rubrique.html}|?{' ',''})
+			  [(#REM|remonte_date_modif)]
+		]
+		[(#REM|remonte_niveau)]
+		[(#REM|update{"2005-01-01",2})]
+
+	</BOUCLE_secteurs>
+	[(#REM|augmente_priorite)]
+
+	[(#URL_SITE_SPIP|?{' ',''})
+		<url>
+		  <loc>[(#URL_SITE_SPIP)]</loc>
+		  <priority>1.0</priority>
+		  [(#REM|remonte_date_modif)]
+			<lastmod>[(#REM|date_modif{1})]</lastmod>
+			<changefreq>daily</changefreq>
+		</url>
+	]
+</urlset>

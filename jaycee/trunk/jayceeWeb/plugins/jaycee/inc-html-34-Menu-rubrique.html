@@ -1,0 +1,41 @@
+#CACHE{7*24*3600}
+[(#REM) Recupere le numero de l'article actuel]
+<BOUCLE_article(ARTICLES){id_article}>
+  <?php $giThisArt = '#ID_ARTICLE'; ?>
+</BOUCLE_article>
+
+	<BOUCLE_masquer_secteurs(RUBRIQUES){titre_mot=_MASQUER_RUBRIQUE}{doublons secteur}>
+	</BOUCLE_masquer_secteurs>
+	[(#REM) Masque les articles de meta-donnees dans le secteur ]
+	<BOUCLE_masquer_articles(ARTICLES){titre_mot=_MASQUER_ARTICLE}{doublons articles}>
+	</BOUCLE_masquer_articles>
+
+<BOUCLE_masquer_menu_rubrique(ARTICLES){id_article}{titre_mot=_MASQUER_MENU_RUBRIQUE}>
+	[(#REM)Si l'article est marqué sans menu de rubrique, 
+	alors lance la boucle rubrique pour ne pas l appeler lors du menu (plus loin)]
+	<BOUCLE_masquer_rubrique_menu(RUBRIQUES){id_rubrique}{doublons rubriques}>
+	</BOUCLE_masquer_rubrique_menu>
+</BOUCLE_masquer_menu_rubrique>
+
+<B_local>
+	<ul class='menuRub'>
+<BOUCLE_local(RUBRIQUES){id_rubrique}{doublons rubriques}>
+  [(#REM) Recupere le numero de la rubrique actuelle ]
+  <?php $liThisRub = #ID_RUBRIQUE; ?>
+
+  	<li class='title'><a href='#URL_RUBRIQUE'>[(#TITRE|supprimer_numero)]</a></li>
+  
+  <BOUCLE_articles(ARTICLES){id_rubrique}{doublons articles}{par titre}>
+		<li class='<?php echo ($giThisArt == #ID_ARTICLE) ? 'liArtCible' : ''; ?>'><a href='#URL_ARTICLE'>[(#TITRE|supprimer_numero|textebrut)]</a></li>
+	</BOUCLE_articles>
+
+	<BOUCLE_masquer_rubrique(RUBRIQUES){id_parent}{titre_mot=_MASQUER_RUBRIQUE}{doublons rubriques}>
+	</BOUCLE_masquer_rubrique>
+	
+	<BOUCLE_rubriques(RUBRIQUES){id_parent}{par titre}{doublons rubriques}>
+		<li class='liRub'><a href='#URL_RUBRIQUE'><span>►</span>[(#TITRE|supprimer_numero|textebrut)]</a></li>
+	</BOUCLE_rubriques>
+	
+</BOUCLE_local>
+	</ul>
+</B_local>

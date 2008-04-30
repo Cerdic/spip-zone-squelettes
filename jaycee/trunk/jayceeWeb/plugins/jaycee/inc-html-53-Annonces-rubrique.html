@@ -1,0 +1,53 @@
+#CACHE{24*3600}
+	<!-- Annonces de la rubrique en cours pour squelette ANNonce -->
+	<BOUCLE_rub_annonces(RUBRIQUES){id_rubrique}{doublons rubriques}>
+		<B_annonces>
+			<div class='breves'>
+				<div class='breves-rubrique'>
+					<div class='breves-titre'>
+						<a href='[(#URL_RUBRIQUE|rub2anns)]'>[(#TITRE|supprimer_numero)]</a>
+					</div>
+					<ul>
+		<BOUCLE_annonces(ARTICLES){id_rubrique}{par date}{inverse}{age<365}>
+						<li>
+							<i>[(#DATE|affdate_court)]</i>:
+							<a href='[(#URL_ARTICLE|art2ann)]' title="[(#TEXTE|attribut_html|couper{120})]">
+								[(#TITRE|texte_script|textebrut)]
+							</a>
+						</li>
+		</BOUCLE_annonces>
+					</ul>
+				</div> <!-- breves-rubrique -->
+			</div>
+		</B_annonces>
+	</BOUCLE_rub_annonces>
+	
+	<hr />
+	
+	<BOUCLE_rub_annonces_autres(RUBRIQUES){id_secteur}{titre_mot=_RUB_ANNONCES}>
+		<BOUCLE_sections_autres(RUBRIQUES){id_parent}{par titre}{doublons rubriques}>
+
+		<B_annonces_autres>
+			<div class='breves'>
+				<div class='breves-<?php echo ++$giBrevesColor; ?>'>
+					<div class='breves-titre'>
+						<a href='[(#URL_RUBRIQUE|rub2anns)]'>[(#TITRE|supprimer_numero)]</a>
+					</div>
+					<ul>
+		<BOUCLE_annonces_autres(ARTICLES){id_rubrique}{par date}{inverse}{age<365}{0,2}>
+						<li>
+							<i>[(#DATE|affdate_court)]</i>:
+							<a href='[(#URL_ARTICLE|art2ann)]' title="[(#TEXTE|attribut_html|couper{120})]">
+								[(#TITRE|texte_script|textebrut)]
+							</a>
+						</li>
+		</BOUCLE_annonces_autres>
+					</ul>
+				</div> <!-- breves-<?php echo $giBrevesColor; ?> -->
+			</div>
+		</B_annonces_autres>
+			
+		</BOUCLE_sections_autres>		
+	</BOUCLE_rub_annonces_autres>
+	
+	<!-- Fin : Annonces -->

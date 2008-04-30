@@ -1,0 +1,38 @@
+#CACHE{2*24*3600}
+<BOUCLE_la_rubrique(RUBRIQUES){id_rubrique}>
+	<item>
+		<title>INDEX</title>
+		<link>[(#URL_RUBRIQUE|url_absolue)]</link>
+		[<guid isPermaLink="true">(#URL_RUBRIQUE|url_absolue)</guid>]
+		[<dc:date>(#DATE|date_iso)</dc:date>]
+		<dc:format>text/html</dc:format>
+		[<dc:language>(#LANG)</dc:language>]
+		[<dc:creator>(#LESAUTEURS|supprimer_tags|texte_backend)</dc:creator>]
+		<BOUCLE_rubrique_rss(RUBRIQUES){id_rubrique}>[<category[ domain="(#URL_RUBRIQUE|url_absolue)"]>(#TITRE|supprimer_numero|texte_backend)</category>]</BOUCLE_rubrique_rss>
+		<content:encoded>
+			<BOUCLE_masquer_secteurs(RUBRIQUES){titre_mot=_MASQUER_RUBRIQUE}{doublons secteur}></BOUCLE_masquer_secteurs>
+			<BOUCLE_masquer_articles(ARTICLES){titre_mot=_MASQUER_ARTICLE}{doublons articles}></BOUCLE_masquer_articles>
+
+	  	<BOUCLE_rubriques(RUBRIQUES){id_parent}{doublons secteur}{par titre}>
+			<li class='liRub'>
+				<a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|textebrut) <span>►</span>]</a>
+
+				<BOUCLE_masquer_rubriques(RUBRIQUES){titre_mot=_MASQUER_RUBRIQUE}{doublons rubrique}>
+				</BOUCLE_masquer_rubriques>
+
+				<BOUCLE_afficher(RUBRIQUES){id_rubrique}>
+					<ul>
+            <BOUCLE_articles(ARTICLES){id_rubrique}{doublons articles}{par titre}>
+            	<li>
+								<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero|textebrut)]</a>
+							</li>
+            </BOUCLE_articles>
+            <BOUCLE_sous_rubriques(BOUCLE_rubriques)>
+            </BOUCLE_sous_rubriques>
+					</ul>
+				</BOUCLE_afficher>
+			</li>
+			</BOUCLE_rubriques>
+		</content:encoded>
+	</item>
+</BOUCLE_la_rubrique>

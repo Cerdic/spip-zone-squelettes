@@ -1,0 +1,21 @@
+#CACHE{7*24*3600}
+<BOUCLE_afficher_Editos(ARTICLES){id_article}{titre_mot=_AFFICHER_EDITOS}>
+	<B_Editos><div class='zEditos'> <!-- Editos -->
+	<BOUCLE_Editos(ARTICLES){titre_mot=_source_Edito}{par titre}>
+		<p class='Edito'>
+			[(#SURTITRE) ]<strong>[(#TITRE|supprimer_numero|texte_script|textebrut)]</strong><br />
+			[<em>(#SOUSTITRE|textebrut)</em>]
+		</p>
+		[(#LOGO_ARTICLE
+			||reduire_image{80,}
+			|inserer_attribut{class,logo}
+			)]
+		[<p class='chapo'>(#CHAPO)</p>]
+		[<em>(#DATE|affdate_jourcourt)</em><br />]
+		[(#TEXTE|couper{150})]
+		<a href='#URL_ARTICLE'>Lire la suite ...</a>
+		<hr />
+	</BOUCLE_Editos>
+	</div>	<!-- Fin : Editos -->
+	</B_Editos>
+</BOUCLE_afficher_Editos>
