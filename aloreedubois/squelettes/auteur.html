@@ -1,0 +1,48 @@
+#CACHE{86400}
+<BOUCLE_auteur_principal(AUTEURS) {id_auteur}>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#NOM|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#BIO|couper{150}|textebrut)" />]
+<INCLURE{fond=inc-head}>
+</head>
+
+<body class="page_auteur">
+<div id="page">
+	[(#REM) Menu de navigation par rubriques ]
+	<INCLURE{fond=inc-rubriques}>
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+
+
+	<div id="content">
+			
+			<div id="fiche">
+			<div class="cartouche">
+				[(#LOGO_AUTEUR||image_reduire{200,200})]
+				<h1 class="#EDIT{qui} titre">#NOM</h1>
+				[<p class="#EDIT{hyperlien} soustitre"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+			</div>
+
+			[<div class="#EDIT{bio} texte">(#BIO)</div><br />]
+
+			<br class="nettoyeur" />
+
+			[<div class="encart">
+			(#FORMULAIRE_ECRIRE_AUTEUR)
+			</div><!-- fin encart -->]
+
+
+			</div>
+
+	</div><!-- fin conteneur -->
+
+</div><!-- fin page -->
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+</body>
+</html>
+</BOUCLE_auteur_principal>

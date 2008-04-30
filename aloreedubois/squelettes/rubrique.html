@@ -1,0 +1,85 @@
+#CACHE{7200}
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+<INCLURE{fond=inc-head}>
+[(#REM) Lien vers le flux RSS de la rubrique ]
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
+</head>
+
+<body class="page_rubrique">
+<div id="page">
+	
+	[(#REM) Menu de navigation par rubriques ]
+	<INCLURE{fond=inc-rubriques}{id_rubrique}>
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+
+	
+
+	<div id="content">
+
+			<div class="cartouche">
+				<h1 class="#EDIT{titre} titre">#TITRE</h1>
+				[<p><small><:dernier_ajout:> : (#DATE|affdate_jourcourt).</small></p>]
+			</div>
+
+			[<div class="#EDIT{texte} chapo">(#TEXTE)</div>]
+
+			
+			
+			
+			
+				[(#REM) Sous-rubriques ]
+				<B_sousrub>
+				<div id="rubriques">
+					<!-- <h2 class="menu-titre invisible"><:sous_rubriques:></h2> -->
+					
+						<BOUCLE_sousrub(RUBRIQUES) {id_parent} {par num titre}{!par date} {doublons}>
+						<div class="rubrique">
+							<h3 class="titre"><a href="#URL_RUBRIQUE">[(#TITRE|image_typo{police=dustismo_bold.ttf})]</a></h3>						
+							
+							[<p>(#DESCRIPTIF|PtoBR|sinon{[(#INTRODUCTION|couper{100})]})</p>]
+							[(#LOGO_RUBRIQUE|#URL_RUBRIQUE|image_reduire{180,140})]
+						</div>
+						</BOUCLE_sousrub>
+					
+				
+				</div></B_sousrub>
+				<br class="nettoyeur" />
+				
+				[(#REM) Portfolio : album d'images ]
+			<B_documents_portfolio>
+			<div id="documents_portfolio">
+				<!-- <h2><:info_portfolio:></h2> -->
+				<BOUCLE_documents_portfolio(DOCUMENTS) {id_rubrique} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
+				<div class="doc">[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onClick="location.href='[(#URL_RUBRIQUE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|couper{80}|texte_backend)"]>(#FICHIER|copie_locale|image_reduire{180,140}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]</div>
+				</BOUCLE_documents_portfolio>
+			</div>
+			</B_documents_portfolio>
+
+			[(#REM) Les mots clés ]
+			<B_fabs>
+			
+			<p><strong>Nos fabricants :</strong>
+			<BOUCLE_fabs(MOTS){id_rubrique}{', '}>
+				<BOUCLE_sit(SITES){id_mot}><a href="#URL_SITE">#_fabs:TITRE</a></BOUCLE_sit>
+			</BOUCLE_fabs>
+			</p>
+			</B_fabs>
+
+
+
+	</div><!-- fin conteneur -->
+</div><!-- fin page -->
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+
+</body>
+</html>
+</BOUCLE_rubrique_principal>

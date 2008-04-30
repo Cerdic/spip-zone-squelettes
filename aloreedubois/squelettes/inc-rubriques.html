@@ -1,0 +1,24 @@
+[(#REM)
+	Barre de navigation, ouverte sur la hierarchie courante
+
+	On fait un plan, et, quand on avance vers une rubrique,
+	on l'affiche si son parent est expose ou est la racine du site. ]
+
+<div id="menu">
+	
+	<ul>
+	
+		<li><a href="#URL_SITE_SPIP/">Accueil</a></li>
+		
+		<BOUCLE_rub(RUBRIQUES){id_parent=0}{id_rubrique!=1}{par num titre, titre}>
+					<li #EXPOSE{class="active"}><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>	</li>
+				
+		</BOUCLE_rub>
+		
+		<BOUCLE_art(ARTICLES){id_rubrique=1}{par titre}{inverse}>
+					<li #EXPOSE{class="active"}><a href="#URL_ARTICLE">[(#TITRE|couper{80})]</a>	</li>
+				
+		</BOUCLE_art>
+		
+	</ul>
+</div>
