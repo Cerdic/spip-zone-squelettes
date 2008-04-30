@@ -194,6 +194,10 @@ $(document).ready(function() {
 			adjustLayout();
 			}
 		);
-		$(document).bind('emchange', function(e, cur, prev) { adjustLayout(); });
+		$.em.element = $('<div />').css({ left:     '-100em',
+                                    position: 'absolute',
+                                    width:    '100em' })
+                             .prependTo('div.texte')[0];
+		$('div.texte').bind('emchange', function(e, cur, prev) { adjustLayout(); });
 	}
 });
