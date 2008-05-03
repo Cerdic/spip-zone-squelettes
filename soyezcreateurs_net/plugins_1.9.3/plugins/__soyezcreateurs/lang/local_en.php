@@ -24,6 +24,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'admin_modifier_breve' => 'Manage this news item',
 'admin_modifier_mot' => 'Manage this keyword',
 'admin_modifier_rubrique' => 'Manage this section',
+'texte_descriptif_rapide' => 'Tooltip',
+
 	
 // Aide des boutons supplementaires de la barre typo
 'barre_intertitre2' => 'Convert to {2{level 2 subtitle}2}',

@@ -24,6 +24,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'admin_modifier_breve' => 'G&eacute;rer cette br&egrave;ve',
 'admin_modifier_mot' => 'G&eacute;rer ce mot-cl&eacute;',
 'admin_modifier_rubrique' => 'G&eacute;rer cette rubrique',
+'texte_descriptif_rapide' => 'Bulle d\'aide <i>(et chapeau si le chapeau vide)</i>',
+
 	
 // Aide des boutons supplementaires de la barre typo
 'barre_intertitre2' => 'Transformer en {2{intertitre niveau deux}2}',
