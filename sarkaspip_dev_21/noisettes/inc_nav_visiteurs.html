@@ -1,30 +1,40 @@
-<div id="nav_visiteur" class=" noisette nav2">
-	<div class="logo-menu-rond" id="logo_contact">&nbsp;</div><a class="bouton" href="#URL_PAGE{contact}"><:sarkaspip:contact:></a>
-	
-	[(#CONFIG{activer_sites}|=={oui}|?{
-		[(#REM) <!-- Autorisation niveau visiteur : tout visiteur connecte ou pas peut proposer un site (seul cas possible) -->]
-		[(#CONFIG{proposer_sites}|=={2}|?{
-			[<div class="logo-menu-rond" id="logo_referencement">&nbsp;</div>(#ENV{id_rubrique}|?{<a class="bouton" href="[(#URL_PAGE{referencement,id_rubrique=[(#ENV{id_rubrique})]})]"><:sarkaspip:bouton_referencement:></a>})]
+[(#CONFIG{sarkaspip_bandeau/menu_raccourcis, 0}|!={2}|?{' '})
+	#SET{classe_div, noisette nav2}
+	#SET{classe_li, raccourci_nav1}
+]
+[(#CONFIG{sarkaspip_bandeau/menu_raccourcis, 0}|=={2}|?{' '})
+	#SET{classe_div, nav_raccourci}
+	#SET{classe_li, raccourci_bandeau}
+]
+<div id="nav_visiteur" class="#GET{classe_div}">
+	<ul>
+		<li class="[(#GET{classe_li})]"><a href="#URL_PAGE{contact}"><:sarkaspip:contact:></a></li>
+		
+		[(#CONFIG{activer_sites}|=={oui}|?{
+			[(#REM) <!-- Autorisation niveau visiteur : tout visiteur connecte ou pas peut proposer un site (seul cas possible) -->]
+			[(#CONFIG{proposer_sites}|=={2}|?{
+				[<li class="[(#GET{classe_li})]">(#ENV{id_rubrique}|?{<a href="[(#URL_PAGE{referencement,id_rubrique=[(#ENV{id_rubrique})]})]"><:sarkaspip:bouton_referencement:></a>})</li>]
+			})]
 		})]
-	})]
-	
-	[(#CONFIG{accepter_inscriptions}|=={oui}|?{<div class="logo-menu-rond" id="logo_inscription">&nbsp;</div><a class="bouton" href="[(#URL_PAGE{inscription})]"><:sarkaspip:inscription:></a>})]
-	[(#PLUGIN{SPIPLISTES}|?{' '})
-		<div class="logo-menu-rond" id="logo_newsletter">&nbsp;</div><a class="bouton" href="[(#URL_PAGE{abonnement-newsletter})]"><:sarkaspip:newsletter:></a>
-	]
-	
-	[(#SESSION{id_auteur}|?{' '})
-		[(#REM) <!-- Auteur connecte -->]
-		<div class="logo-menu-rond" id="logo_logout">&nbsp;</div><a class="bouton" href="[(#URL_LOGOUT{[(#URL_PAGE{sommaire})]})]"><:sarkaspip:logout_membre:></a>
-		[(#SESSION{statut}|=={0minirezo}|?{	<div class="logo-menu-rond" id="logo_prive">&nbsp;</div><a class="bouton" href="./ecrire/"><:sarkaspip:espace_prive:></a>
-											[<div class="auteur" title="<:sarkaspip:message_bonjour:>&nbsp;<:sarkaspip:statut_0minirezo:>"><a href="[(#URL_PAGE{auteur,id_auteur=[(#SESSION{id_auteur})]})]">(#SESSION{nom})</a>&nbsp;&nbsp;<img src="[(#EVAL{_DIR_IMG_PACK})admin-12.gif]" alt="<:sarkaspip:message_bonjour:>&nbsp;<:sarkaspip:statut_0minirezo:>" /></div>]})]
-		[(#SESSION{statut}|=={1comite}|?{	<div class="logo-menu-rond" id="logo_prive">&nbsp;</div><a class="bouton" href="./ecrire/"><:sarkaspip:espace_prive:></a>
-											[<div class="auteur" title="<:sarkaspip:message_bonjour:>&nbsp;<:sarkaspip:statut_1comite:>"><a href="[(#URL_PAGE{auteur,id_auteur=[(#SESSION{id_auteur})]})]">(#SESSION{nom})</a>&nbsp;<img src="[(#EVAL{_DIR_IMG_PACK})redac-12.gif]" alt="<:sarkaspip:message_bonjour:>&nbsp;<:sarkaspip:statut_1comite:>" /></div>]})]
-		[(#SESSION{statut}|=={6forum}|?{[	<div class="auteur" title="<:sarkaspip:message_bonjour:>&nbsp;<:sarkaspip:statut_6forum:>"><span >(#SESSION{nom})</span>&nbsp;<img src="[(#EVAL{_DIR_IMG_PACK})visit-12.gif]" alt="<:sarkaspip:message_bonjour:>&nbsp;<:sarkaspip:statut_6forum:>" /></div>]})]
-	]
-	[(#SESSION{id_auteur}|?{'',' '})
-		[(#REM) <!-- Auteur non connecte -->]
-		<div class="logo-menu-rond" id="logo_login">&nbsp;</div><a class="bouton" href="[(#URL_PAGE{login-public})]"><:sarkaspip:login_membre:></a>
-		<div class="logo-menu-rond" id="logo_prive">&nbsp;</div><a class="bouton" href="./ecrire/"><:sarkaspip:espace_prive:></a>
-	]
+		
+		[(#CONFIG{accepter_inscriptions}|=={oui}|?{<li class="[(#GET{classe_li})]"><a href="[(#URL_PAGE{inscription})]"><:sarkaspip:inscription:></a></li>})]
+		[(#PLUGIN{SPIPLISTES}|?{' '})
+			<li class="[(#GET{classe_li})]"><a href="[(#URL_PAGE{abonnement-newsletter})]"><:sarkaspip:newsletter:></a></li>
+		]
+		
+		[(#SESSION{id_auteur}|?{' '})
+			[(#REM) <!-- Auteur connecte -->]
+			<li class="[(#GET{classe_li})]"><a href="[(#URL_LOGOUT{[(#URL_PAGE{sommaire})]})]"><:sarkaspip:logout_membre:></a></li>
+			[(#SESSION{statut}|=={0minirezo}|?{	<li class="[(#GET{classe_li})]"><a href="./ecrire/"><:sarkaspip:espace_prive:></a></li>
+												[<li class="auteur" title="<:sarkaspip:message_bonjour:>&nbsp;<:sarkaspip:statut_0minirezo:>"><a href="[(#URL_PAGE{auteur,id_auteur=[(#SESSION{id_auteur})]})]">(#SESSION{nom})</a>&nbsp;&nbsp;<img src="[(#EVAL{_DIR_IMG_PACK})admin-12.gif]" alt="<:sarkaspip:message_bonjour:>&nbsp;<:sarkaspip:statut_0minirezo:>" /></li>]})]
+			[(#SESSION{statut}|=={1comite}|?{	<li class="[(#GET{classe_li})]"><a href="./ecrire/"><:sarkaspip:espace_prive:></a></li>
+												[<li class="auteur" title="<:sarkaspip:message_bonjour:>&nbsp;<:sarkaspip:statut_1comite:>"><a href="[(#URL_PAGE{auteur,id_auteur=[(#SESSION{id_auteur})]})]">(#SESSION{nom})</a>&nbsp;<img src="[(#EVAL{_DIR_IMG_PACK})redac-12.gif]" alt="<:sarkaspip:message_bonjour:>&nbsp;<:sarkaspip:statut_1comite:>" /></li>]})]
+			[(#SESSION{statut}|=={6forum}|?{[	<li class="auteur" title="<:sarkaspip:message_bonjour:>&nbsp;<:sarkaspip:statut_6forum:>"><span >(#SESSION{nom})</span>&nbsp;<img src="[(#EVAL{_DIR_IMG_PACK})visit-12.gif]" alt="<:sarkaspip:message_bonjour:>&nbsp;<:sarkaspip:statut_6forum:>" /></li>]})]
+		]
+		[(#SESSION{id_auteur}|?{'',' '})
+			[(#REM) <!-- Auteur non connecte -->]
+			<li class="[(#GET{classe_li})]"><a href="[(#URL_PAGE{login-public})]"><:sarkaspip:login_membre:></a></li>
+			<li class="[(#GET{classe_li})]"><a href="./ecrire/"><:sarkaspip:espace_prive:></a></li>
+		]
+	</ul>
 </div>

@@ -1,35 +1,19 @@
 [(#REM) <!-- Bandeau Haut --> ]
 <!--<div> -->
 <div class="bandeau_haut">	
-      <div class="navigation">  
+	<div class="nav_bandeau">  
     	<!-- Navigation dans les langues -->
-    	
-    	<div class="nav_langue">
-			<BOUCLE_langues(ARTICLES){!par lang}{fusion lang}>
-				<span[ (#LANG|=={#ENV{lang}}|?{class="on",''})]>
-					[<a rel="start" href="[(#SELF|parametre_url{lang,#LANG})]" title="[(#LANG|traduire_nom_langue)]">#LANG</a>]
-				</span>
-			</BOUCLE_langues>
-		</div>
+		[(#CONFIG{sarkaspip_bandeau/menu_langues, 1}|=={1}|?{' '})
+			<INCLURE{fond=noisettes/inc_bandeau_langues}>
+		]
         
         <!-- Navigation dans les raccourcis de base -->
-        <div class="nav_raccourci">
-          <ul>
-            <li><a href="#URL_PAGE{plan,tri=par_rubrique}" title="<:sarkaspip:plan_site:>"><:sarkaspip:plan_site:></a></li>
-            <li><a href="#URL_PAGE{contact}" title="<:sarkaspip:contact:>"><:sarkaspip:contact:></a></li>																		
-            <li>
-				[(#SESSION{id_auteur}|?{' '})
-				[(#REM) <!-- Auteur connecte -->]
-					<a href="[(#URL_LOGOUT{[(#URL_PAGE{sommaire})]})]"><:sarkaspip:logout_membre:></a>
-				]
-				[(#SESSION{id_auteur}|?{'',' '})
-				[(#REM) <!-- Auteur non connecte -->]
-					<a href="[(#URL_PAGE{login-public})]"><:sarkaspip:login_membre:></a>	
-				]			
-			</li>
-			<li><a href="./ecrire/"><:sarkaspip:espace_prive:></a></li>
-          </ul>
-        </div> 
+		[(#CONFIG{sarkaspip_bandeau/menu_raccourcis, 0}|=={1}|?{' '})
+			<INCLURE{fond=noisettes/inc_nav_raccourcis}>
+		]
+		[(#CONFIG{sarkaspip_bandeau/menu_raccourcis, 0}|=={2}|?{' '})
+			<INCLURE{fond=noisettes/inc_nav_visiteurs}{id_rubrique=#ENV{id_rubrique,0}}>
+		]
 	</div>
 	
 	<div class="identite_site">	             
@@ -41,5 +25,3 @@
     </div>   
 	<div class="clearer">&nbsp;</div>
 </div>
-<!--</div>-->
-

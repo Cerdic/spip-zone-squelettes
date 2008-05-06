@@ -9,10 +9,12 @@
 <INCLURE{fond=noisettes/inc_nav_rubriques_#CONFIG{sarkaspip_noisettes/menu_rubriques, 1}}{id_rubrique=#ENV{id_rubrique,0}}>
 
 [(#REM) <!-- Bloc de navigation des raccourcis --> ]
-<INCLURE{fond=noisettes/inc_nav_raccourcis}>
-
-[(#REM) <!-- Bloc de navigation des actions visiteurs --> ]
-<INCLURE{fond=noisettes/inc_nav_visiteurs}{id_rubrique=#ENV{id_rubrique,0}}>
+[(#CONFIG{sarkaspip_bandeau/menu_raccourcis, 0}|!={1}|?{' '})
+	<INCLURE{fond=noisettes/inc_nav_raccourcis}>
+]
+[(#CONFIG{sarkaspip_bandeau/menu_raccourcis, 0}|!={2}|?{' '})
+	<INCLURE{fond=noisettes/inc_nav_visiteurs}{id_rubrique=#ENV{id_rubrique,0}}>
+]
 
 [(#REM) <!-- Bloc de recherche --> ]
 [(#CONFIG{sarkaspip_noisettes/position_recherche, 1}|=={1}|?{' '})
