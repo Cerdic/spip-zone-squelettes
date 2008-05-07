@@ -224,6 +224,7 @@ Vous pourrez alors confirmer la modification de votre abonnement.',
 
 
 //E
+'en' => 'en',
 'email' => 'E-mail',
 'erreur_menu' => 'Erreur dans le menu, ajoutez le mot cle menu_rub sur des sites. Dans l\'adresse des sites, ciblez vos rubriques.',
 'entree_nouveau_passe' => 'Nouveau mot de passe',

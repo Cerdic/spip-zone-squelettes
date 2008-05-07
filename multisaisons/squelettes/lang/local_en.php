@@ -273,6 +273,7 @@ and other abuses pollute the forums.',
 
 
 //I
+'en' =>'in',
 'inscription' => 'Inscription',
 'inscription_visiteurs' => 'The subscription gives access to you the parts of the site in restricted access, to intervene on the forums reserved to the recorded visitors and to receive the newsletters.' ,
 'info_profil' => 'This page posts your profile such as it appears near the other members of',

@@ -4,7 +4,7 @@
 
 <BOUCLE_article(ARTICLES){id_article}><head>
 
-[(#REM)   les métas ]
+[(#REM)   les mï¿½tas ]
 
 
 
@@ -27,7 +27,7 @@
 <div id="container">   [(#REM)   centrage page   ]
 <INCLURE{fond="entete"}{date=#ENV{date}}{id_article}{id_rubrique}> 
 <div id="surcontent">  
-<INCLURE{fond="menuhoriz"}{id_rubrique}>[(#REM)   ouverture entête   ]
+<INCLURE{fond="menuhoriz"}{id_rubrique}>[(#REM)   ouverture entï¿½te   ]
 <div id="content">  [(#REM)   ouverture contenu   ] 
 <div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
   <div class="grande_boite"> [(#REM)   ouverture grd boite texte   ]
@@ -69,7 +69,7 @@
 </BOUCLE_documents_portfolio>				
 </ul>
 </div>[(#REM)   fermeture minipics   ] 	
-[<div class="grande_boite"><p class="centre gras">(#PAGINATION)<br/>Il y a au total #GRAND_TOTAL photos, cette page en affiche #TOTAL_BOUCLE.</p></div>]		
+[<div class="grande_boite"><p class="centre gras">(#PAGINATION)<br/><:total_photo1:> #GRAND_TOTAL <:total_photo2:> #TOTAL_BOUCLE.</p></div>]		
 
 </B_documents_portfolio>
 
@@ -113,13 +113,13 @@
  <div class="coldroit">  [(#REM)   ouverture de la colone de droite   ] 
     <div class="boite">[(#REM)   ouverture boite menu   ] 
 
-        <h4 class="icone_menu">Navigation</h4>
+        <h4 class="icone_menu"><:navigation:></h4>
         <INCLURE{fond="inc_menu_rub"}{id_rubrique}{id_article}> 
    
     </div>[(#REM)   fermeture boite menu   ]
     
 
-[<div class="boite"> <h4 class="icone_membre">Inscription</h4>(#FORMULAIRE_SIGNATURE)<hr class="spacer"/></div>]
+[<div class="boite"> <h4 class="icone_membre"><:inscription:></h4>(#FORMULAIRE_SIGNATURE)<hr class="spacer"/></div>]
 
 
 
@@ -129,7 +129,7 @@
     <div class="boite">
       [(#REM)   ouverture autre articles   ]
    
-    <h4 class="icone_article">Autres articles</h4>
+    <h4 class="icone_article"><:autre_article:></h4>
     <ul class="petite_liste">
         <BOUCLE_meme_rubrique(ARTICLES){id_rubrique}{exclus}{par num titre}{par date}{inverse}{0,20}>
         <li>
@@ -145,11 +145,11 @@
     <B_musique>
     <div class="boite">
       [(#REM)   ouverture boite musique   ]
-      <h4 class="icone_juk">Musique</h4>
+      <h4 class="icone_juk"><:musique:></h4>
       <BOUCLE_musique(DOCUMENTS){id_article}{par titre}{extension==MP3|m3u|wav|WMA|Ogg|FLAC|au|VQF|M4A|AIF|RM|RAM|MID}{doublons doc}>
         [<p class="logogauche"><a href="#URL_DOCUMENT" title="[(#TYPE_DOCUMENT)] [(#TAILLE|taille_en_octets)]">(#LOGO_DOCUMENT)</a></p>]
 [<a href="#URL_DOCUMENT" title="[(#TYPE_DOCUMENT)] [(#TAILLE|taille_en_octets)]">(#TITRE|majuscules)</a>]
- [<br />(#ID_DOCUMENT)][(#DESCRIPTIF)][(#REM)   séparation documents   ]      
+ [<br />(#ID_DOCUMENT)][(#DESCRIPTIF)][(#REM)   sï¿½paration documents   ]      
         <hr class="spacer" /> 
       </BOUCLE_musique>
     </div> [(#REM)   fermeture boite musique   ]
@@ -167,14 +167,14 @@
         [<p class="logogauche"><a href="#URL_DOCUMENT" title="[(#TYPE_DOCUMENT)] [(#TAILLE|taille_en_octets)]">(#LOGO_DOCUMENT)</a></p>]
 <p>[<a href="#URL_DOCUMENT" title="[(#TYPE_DOCUMENT)] [(#TAILLE|taille_en_octets)]">(#TITRE)</a>]
 [, (#DESCRIPTIF)]</p>
-[(#REM)   séparation documents   ]     
+[(#REM)   sï¿½paration documents   ]     
         <hr class="spacer" /> 
       </BOUCLE_documents>
     </div> [(#REM) fermeture boite zip ]
    </B_documents>
 <B_STATS>
 <div class="boite">
-  <h4 class="icone_stats">Stats</h4>
+  <h4 class="icone_stats"><:stats:></h4>
 <BOUCLE_STATS(RUBRIQUES){id_rubrique}{titre_mot==^(partenaire|liens|agenda)$}{0,1}>
 <INCLURE{fond="inc_stats"}{delais=24*3600}>
 </BOUCLE_STATS>
@@ -200,16 +200,16 @@
 
 
 <BOUCLE_test_forum(ARTICLES){id_article}{accepter_forum!=non}{0,1}>
- [(#REM) on vérifie que l on a accepte les forums sur l article ]
+ [(#REM) on vï¿½rifie que l on a accepte les forums sur l article ]
 <div class="discussion">
-<h4 class="icone_forum"><a href="[(#PARAMETRES_FORUM|url_reponse_forum)]" onclick="return !dspForm();">Réagissez</a></h4>
+<h4 class="icone_forum"><a href="[(#PARAMETRES_FORUM|url_reponse_forum)]" onclick="return !dspForm();"><:reagissez:></a></h4>
 
 
-[(#REM) on compte les réponses sur le forums sur l article ]
+[(#REM) on compte les rï¿½ponses sur le forums sur l article ]
 <B_forum_archive>
 <p class="droite">
 <BOUCLE_compt_archive(FORUMS){id_article}{1,9999}> </BOUCLE_compt_archive>
-<strong>[(#TOTAL_BOUCLE)] [(#TOTAL_BOUCLE|=={1}|?{<:discussion:>,<:discussions:>})&nbsp;en&nbsp;archive:]
+<strong>[(#TOTAL_BOUCLE)] [(#TOTAL_BOUCLE|=={1}|?{<:discussion:>,<:discussions:>})&nbsp;<:en:>&nbsp;<:archive:>]
 </strong><br/>
 </B_compt_archive>
 
@@ -223,17 +223,17 @@
 </div>[(#REM)   fermeture reponse en tete forum   ] 
 </BOUCLE_test_forum>
 
- [(#REM) si les forums sont fermé et qu'il y a des forums archivés on les liste sans possibilités de réponses. ]
+ [(#REM) si les forums sont fermï¿½ et qu'il y a des forums archivï¿½s on les liste sans possibilitï¿½s de rï¿½ponses. ]
 
 <B_forum_archive2>
 <div class="discussion">
 <p class="droite">
 <BOUCLE_compt_archive2(FORUMS){id_article}{1,9999}> </BOUCLE_compt_archive2>
-<strong>[(#TOTAL_BOUCLE)] [(#TOTAL_BOUCLE|=={1}|?{<:discussion:>,<:discussions:>})&nbsp;en&nbsp;archive:]
+<strong>[(#TOTAL_BOUCLE)] [(#TOTAL_BOUCLE|=={1}|?{<:discussion:>,<:discussions:>})&nbsp;<:en:>&nbsp;<:archive:>]
 </strong><br/></B_compt_archive2>
 <BOUCLE_forum_archive2(FORUMS){id_article}{par date_thread}{inverse}{1,20}>
 ::&nbsp;<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})#forum#ID_FORUM]">[(#TITRE|couper{40})]</a><br/>
-</BOUCLE_forum_archive2>Les forums de cet article sont maintenant ferm&eacute;s.</p>
+</BOUCLE_forum_archive2><:messages_forum_clos:></p>
 
 <hr class="spacer" />
 </div>[(#REM)   fermeture reponse en tete forum   ] 
