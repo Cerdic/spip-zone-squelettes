@@ -2,6 +2,7 @@
 <!-- descriptif=<:sarkaspip:cfg_descr_bandeau:> -->
 <!-- boite=<:sarkaspip:cfg_boite_bandeau:> -->
 <!-- autoriser=webmestre -->
+<!-- refus=Seuls les webmestres du site sont autoris&#233;s &#224; modifier ces param&#232;tres. -->
 <!-- onglet=sarkaspip_accueil -->
 <!-- liens*=sarkaspip:sarkaspip_accueil -->
 <!-- liens*=sarkaspip:sarkaspip_layout -->
@@ -17,12 +18,17 @@
 <script type="text/javascript">
 //<![CDATA[
 	jQuery(document).ready(function() {
-	[(#ENV{haut, 1}|=={0}|?{jQuery("#bloc_haut2").hide();})]
+		[(#ENV{haut, 1}|=={0}|?{' '})
+			jQuery("#menu_raccourci_defaut").attr({checked: "checked"});
+			jQuery("#bloc_haut2").hide();
+		]
 		jQuery("input[@name='haut']").change(function() {
 			if (jQuery("input[@name='haut']:checked").val() == 1)
 				jQuery("#bloc_haut2").show();
-			else
+			else {
+				jQuery("#menu_raccourci_defaut").attr({checked: "checked"});
 				jQuery("#bloc_haut2").hide();
+			}
 			jQuery(this).blur();
 		});	
 	});
@@ -60,7 +66,7 @@
 			<br />
 			<p><:sarkaspip:cfg_inf_menu_raccourcis:></p>
 			<label>
-				<input type="radio" name="menu_raccourcis" value="0" [(#ENV{menu_raccourcis, 0}|=={0}|?{checked="checked"})] />
+				<input id="menu_raccourci_defaut" type="radio" name="menu_raccourcis" value="0" [(#ENV{menu_raccourcis, 0}|=={0}|?{checked="checked"})] />
 				<:sarkaspip:cfg_lbl_menu_raccourcis_0:>
 			</label>
 			<br />
