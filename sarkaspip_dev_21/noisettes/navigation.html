@@ -1,19 +1,19 @@
 [(#REM) <!-- affichage du panneau d'annonce --> ]
 <BOUCLE_acces_annonce(RUBRIQUES) {id_rubrique=#RUBRIQUE_SPECIALISEE{annonce}}>
 	[(#CONFIG{sarkaspip_noisettes/position_annonce, 1}|=={1}|?{' '})
-		[(#RUBRIQUE_SPECIALISEE{annonce}|=={0}|?{'', ' '})<INCLURE{fond=noisettes/inc_annonce}{id_rubrique=#RUBRIQUE_SPECIALISEE{annonce}}>]
+		[(#RUBRIQUE_SPECIALISEE{annonce}|=={0}|?{'', ' '})<INCLURE{fond=noisettes/inc_annonce}{id_rubrique=#ID_RUBRIQUE}>]
 	]
 </BOUCLE_acces_annonce>
 
 [(#REM) <!-- Bloc de navigation des rubriques  --> ]
-<INCLURE{fond=noisettes/inc_nav_rubriques_#CONFIG{sarkaspip_noisettes/menu_rubriques, 1}}{id_rubrique=#ENV{id_rubrique,0}}>
+<INCLURE{fond=noisettes/inc_nav_rubriques_#CONFIG{sarkaspip_noisettes/menu_rubriques, 1}}{id_rubrique}>
 
 [(#REM) <!-- Bloc de navigation des raccourcis --> ]
 [(#CONFIG{sarkaspip_bandeau/menu_raccourcis, 0}|!={1}|?{' '})
 	<INCLURE{fond=noisettes/inc_nav_raccourcis}>
 ]
 [(#CONFIG{sarkaspip_bandeau/menu_raccourcis, 0}|!={2}|?{' '})
-	<INCLURE{fond=noisettes/inc_nav_visiteurs}{id_rubrique=#ENV{id_rubrique,0}}>
+	<INCLURE{fond=noisettes/inc_nav_visiteurs}{id_rubrique}>
 ]
 
 [(#REM) <!-- Bloc de recherche --> ]
