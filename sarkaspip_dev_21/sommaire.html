@@ -18,7 +18,7 @@
 				[(#REM) <!-- Editorial --> ]
 				<B_edito>
 					<div id="edito" class="article">
-				<BOUCLE_edito(ARTICLES) {type_mot="squelette_habillage"} {titre_mot="edito"} {doublons} {par date} {inverse} {0,1}>
+				<BOUCLE_edito(ARTICLES) {type_mot="squelette_habillage"}{titre_mot="edito"}{doublons}{par date}{inverse}{0,1}>
 						[<div class="detail">(#DATE|nom_jour)&nbsp;[(#DATE|affdate)]</div><div class="clearer"></div>]
 						[<div class="image">(#LOGO_ARTICLE||image_reduire{150})</div>]
 						[<div class="surtitre">(#SURTITRE)</div>]
@@ -30,19 +30,18 @@
 						<div class="clearer">&nbsp;</div>
 						[<div class="post-scriptum"><div class="annonce"><:sarkaspip:ps:>&nbsp;:</div>(#PS)</div>]
 						[<div class="notes">(#NOTES)</div>]
-						#SET{edito, #ID_ARTICLE}
 				</BOUCLE_edito>
 					</div>
 				</B_edito>
 	
-				[(#REM) <!-- Rubriques de niveau zero --> ]
+				[(#REM) <!-- Rubriques de niveau zero (secteurs) --> ]
 				[(#CONFIG{sarkaspip_sommaire/position_secteurs, 0}|=={1}|?{' '})
-					<INCLURE{fond=noisettes/inc_secteurs}>
+					<INCLURE{fond=noisettes/inc_secteurs}{lang}>
 				]
 	
 				[(#REM) <!-- Une : derniers articles publies --> ]
 				[(#CONFIG{sarkaspip_sommaire/position_articles_recents, 1}|=={1}|?{' '})
-					<INCLURE{fond=noisettes/inc_articles_recents}{edito=#GET{edito}}{lang}>
+					<INCLURE{fond=noisettes/inc_articles_recents}{doublons}{lang}>
 				]
 			</BOUCLE_0_article>
 			</B_0_article>
@@ -62,7 +61,7 @@
 	
 	<div id="extra">
 		[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
-		<INCLURE{fond=noisettes/extra}{self=#SELF}{page=sommaire}>
+		<INCLURE{fond=noisettes/extra}{lang}{self}>
 	</div>
 	
 	<div id="footer">
