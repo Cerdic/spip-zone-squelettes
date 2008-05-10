@@ -1,0 +1,77 @@
+[(#REM) 
+<!-- Articles de la rubrique, classes par numero s'ils sont numerotes, ou par date inverse sinon
+	Recoit en argument :
+		- id_rubrique: id de la rubrique concernee
+-->
+]
+<B_test_numero>
+<BOUCLE_test_numero(ARTICLES){id_rubrique}{titre==^[0-9]+[.)]}{0,1}>
+	[(#REM) <!-- Affichage si les articles sont numérotés --> ]
+	<B_article_numerotes> 
+		<div class="derniers-articles">
+			<h1 id="articles_rubrique" class="en-tete"><:sarkaspip:article_rubrique:></h1>
+			
+			#ANCRE_PAGINATION
+			<div class="bande-pagination">#PAGINATION</div>
+			
+			<BOUCLE_article_numerotes(ARTICLES) {id_rubrique}{par num titre}{pagination 3}>
+				<div class="annonce">
+					[<div class="image">(#LOGO_ARTICLE||image_reduire{150})</div>]
+					<div class="detail">[(#DATE|nom_jour)]&nbsp;[(#DATE|affdate)]<br />
+					<B_auteurs_article_numerotes>
+						<:sarkaspip:par_auteur:>
+					<BOUCLE_auteurs_article_numerotes(AUTEURS) {id_article} {", "}>
+						<a href="#URL_AUTEUR">#NOM</a>
+					</BOUCLE_auteurs_article_numerotes>
+					</B_auteurs_article_numerotes>
+					</div> <!-- Fin detail -->
+					[<div class="surtitre">(#SURTITRE)</div>]
+					[<a class="titre" href="#URL_ARTICLE" title="<:sarkaspip:lire_suite_article:>">(#TITRE|supprimer_numero)</a>]
+					[<div class="soustitre">(#SOUSTITRE)</div>]
+					<div class="introduction">
+						[(#INTRODUCTION|typo_couleur)]
+						<br /><br />
+						<a class="suite" href="#URL_ARTICLE"><:sarkaspip:lire_suite_article:></a>
+					</div> <!-- Fin introduction -->
+				</div> <!-- Fin annonce -->
+			</BOUCLE_article_numerotes>
+			
+			<div class="bande-pagination">#PAGINATION</div>
+			</div> <!-- Fin derniers-articles -->
+		</B_article_numerotes>
+</BOUCLE_test_numero>
+</B_test_numero>
+	<!-- Affichage si les articles ne sont pas numérotés -->
+	<B_article_dates>
+		<div class="derniers-articles">
+			<div id="article_rubrique" class="en-tete"><:sarkaspip:article_rubrique:></div>
+			
+			#ANCRE_PAGINATION
+			<div class="bande-pagination">#PAGINATION</div>
+			
+			<BOUCLE_article_dates(ARTICLES) {id_rubrique}{par date}{inverse}{pagination 3}>
+				<div class="annonce">
+					[<div class="image">(#LOGO_ARTICLE||image_reduire{150})</div>]
+					<div class="detail">[(#DATE|nom_jour)] [(#DATE|affdate)]<br />
+						<B_auteurs_article_date>
+							<:sarkaspip:par_auteur:>
+						<BOUCLE_auteurs_article_date(AUTEURS) {id_article} {", "}>
+							<a href="#URL_AUTEUR">#NOM</a>
+						</BOUCLE_auteurs_article_date>
+						</B_auteurs_article_date>
+					</div> <!-- Fin detail -->
+					[<div class="surtitre">(#SURTITRE)</div>]
+					[<a class="titre" href="#URL_ARTICLE" title="<:sarkaspip:lire_suite_article:>">(#TITRE|supprimer_numero)</a>]
+					[<div class="soustitre">(#SOUSTITRE)</div>]
+					<div class="introduction">
+						[(#INTRODUCTION|typo_couleur)]
+						<br /><br />
+						<a class="suite" href="#URL_ARTICLE"><:sarkaspip:lire_suite_article:></a>
+					</div> <!-- Fin introduction -->
+				</div> <!-- Fin annonce -->
+			</BOUCLE_article_dates>
+			<div class="bande-pagination">#PAGINATION</div>
+		</div> <!-- Fin derniers-articles -->
+	</B_article_dates>
+	<//B_article_dates> 		
+<//B_test_numero>
