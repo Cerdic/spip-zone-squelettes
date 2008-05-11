@@ -25,6 +25,9 @@
 			jQuery("#bloc_format_pagination option:first").attr({selected: "selected"});
 			jQuery("#bloc_format_pagination").hide();
 		]
+		[(#ENV{type_resume, 1}|!={oui}|?{' '})
+			jQuery("#bloc_taille_resume").hide();
+		]
 		jQuery("input[@name='type']").change(function() {
 			if (jQuery("input[@name='type']:checked").val() == 2) {
 				jQuery("#bloc_mois1").show();
@@ -38,6 +41,15 @@
 				jQuery("#bloc_mois1").hide();
 				jQuery("#bloc_format_pagination option:first").attr({selected: "selected"});
 				jQuery("#bloc_format_pagination").hide();
+			}
+			jQuery(this).blur();
+		});	
+		jQuery("input[@name='type_resume']").change(function() {
+			if (jQuery("input[@name='type_resume']:checked").val() == 'oui') {
+				jQuery("#bloc_taille_resume").show();
+			}
+			else {
+				jQuery("#bloc_taille_resume").hide();
 			}
 			jQuery(this).blur();
 		});	
@@ -145,19 +157,24 @@
 			<:sarkaspip:cfg_lbl_horsmois_non:>
 		</label>
 		<br /> 
-		<p><:sarkaspip:cfg_inf_mini_agenda_resume:></p>
+		<p><:sarkaspip:cfg_inf_mini_agenda_resume_1:></p>
+		<p><:sarkaspip:cfg_inf_mini_agenda_resume_2:></p>
 		<label>
-			<input type="radio" name="type_resume" value="mois_complet" [(#ENV{type_resume, fin_mois}|=={mois_complet}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_resume_complet:>
+			<input type="radio" name="type_resume" value="oui" [(#ENV{type_resume, oui}|=={oui}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_oui:>
 		</label>
-		<br />
 		<label>
-			<input type="radio" name="type_resume" value="fin_mois" [(#ENV{type_resume, fin_mois}|=={fin_mois}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_resume_finmois:>
+			<input type="radio" name="type_resume" value="non" [(#ENV{type_resume, oui}|=={non}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_non:>
 		</label>
-		<br /><br />
-		<label><:sarkaspip:cfg_lbl_taille_resume:></label>
-		<input type="text" name="taille_resume" value="#ENV{taille_resume, 5}" size="4" class="fondl" />
+		<div id="bloc_taille_resume">
+			<br />
+			<label><:sarkaspip:cfg_lbl_maxmois_resume:></label>
+			<input type="text" name="max_mois_resume" value="#ENV{max_mois_resume, 6}" size="2" class="fondl" />
+			<br />
+			<label><:sarkaspip:cfg_lbl_taille_resume:></label>
+			<input type="text" name="taille_resume" value="#ENV{taille_resume, 5}" size="4" class="fondl" />
+		</div>
 	</fieldset>
 	
 	<br />

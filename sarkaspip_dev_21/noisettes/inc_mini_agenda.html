@@ -1,6 +1,12 @@
 #SET{annee_choisie, #ENV{calendrier_annee, #AUJOURDHUI|annee}}
 #SET{mois_choisie, #ENV{calendrier_mois, #AUJOURDHUI|mois}}
-#SET{date_fin, #GET{annee_choisie}|concat{'-',#GET{mois_choisie},'-','15'}|strtotime|plus{5184000}|timestamp_to_date{'Y-m-d'}}
+
+#SET{periode_secondes, #EVAL{3600*24*30}}
+[(#CONFIG{sarkaspip_agenda/type_resume, oui}|=={oui}|?{' '})
+	#SET{periode_secondes, #GET{periode_secondes}|mult{#CONFIG{sarkaspip_agenda/max_mois_resume, 6}}}
+]
+#SET{date_fin, #GET{annee_choisie}|concat{'-',#GET{mois_choisie},'-','15'}|strtotime|plus{#GET{periode_secondes}}|timestamp_to_date{'Y-m-d'}}
+
 <div id="noisette_miniagenda" class="noisette">
 	<h1><a class="intitule" href="[(#URL_PAGE{agenda,[id_rubrique=(#ENV{id_rubrique})][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]">
 			<:sarkaspip:agenda:>
@@ -15,7 +21,7 @@
 								#SELF}
 		)]
 
-		[(#REM) <!-- Recensement des evenements --> ]
+		[(#REM) <!-- Recensement des evenements du mois choisi et du mois suivant --> ]
 		<BOUCLE_agenda(ARTICLES)
 			{id_rubrique=#RUBRIQUE_SPECIALISEE{agenda}}
 			{agenda date_redac, periode, #GET{annee_choisie}, #GET{mois_choisie}, 1, (#GET{date_fin}|annee), (#GET{date_fin}|mois), 1}
@@ -33,7 +39,7 @@
 								[(#CONFIG{sarkaspip_agenda/icone_suivant, &gt;&gt;})],
 								[(#CONFIG{sarkaspip_agenda/jour1, 1})],
 								[(#CONFIG{sarkaspip_agenda/affichage_hors_mois, oui})],
-								[(#CONFIG{sarkaspip_agenda/type_resume, fin_mois})],
+								[(#CONFIG{sarkaspip_agenda/type_resume, oui})],
 								[(#CONFIG{sarkaspip_agenda/taille_resume, 5})]}
 			)]
 	</div>

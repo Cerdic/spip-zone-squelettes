@@ -371,7 +371,7 @@ function agenda_liste_avertir($id_agenda, $annee_choisie, $mois_choisi) {
 //
 function agenda_mini_afficher($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='&gt;&gt;', 
 											$jour_debut=0, $affichage_hors_mois='oui',
-											$critere='mois_complet', $taille=5) {
+											$critere='oui', $taille=5) {
 
 	if ($id_agenda == 0)
 		return;
@@ -566,7 +566,7 @@ function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui
 //               fin du mois % date du jour)
 // ===================================================
 //
-function agenda_mini_footer($id_agenda=0, $critere='mois_complet', $taille=5) {
+function agenda_mini_footer($id_agenda=0, $critere='oui', $taille=5) {
 
 	$nom_mois = array(1 => _T('sarkaspip:janvier'), 2 => _T('sarkaspip:fevrier'), 3 => _T('sarkaspip:mars'), 4 => _T('sarkaspip:avril'), 
 					5 => _T('sarkaspip:mai'), 6 => _T('sarkaspip:juin'), 7 => _T('sarkaspip:juillet'), 8 => _T('sarkaspip:aout'),
@@ -590,53 +590,47 @@ function agenda_mini_footer($id_agenda=0, $critere='mois_complet', $taille=5) {
 	$evenements = agenda_recenser_evenement(0);
 	$count_evt = count($evenements);
 
+	// Init de la date de base pour calculer le nombre d'evenements du resume a afficher
+	// - si le mois choisi est le mois courant, la date de base est la date courante, on affichera donc les evenements posterieurs
+	// - si le mois choisi est antérieur ou posterieur au mois courant, la date de base est le 1er jour du mois
+	if (($annee_choisie==$annee_courante) && ($mois_choisi=$mois_courant)) 
+		$date_base = date('Y-m-d');
+	else
+		$date_base = date('Y-m-d', mktime(0,0,0,$mois_choisi,1,$annee_choisie));
+
 	// Init de la chaine
 	$footer = NULL;
 
 	// Ligne 1 : retour au mois du jour courant
 	$footer .= '<h2><a class="titre_bloc ajax" href="'.$url_base.'calendrier_mois='.$mois_courant.'&amp;calendrier_annee='.$annee_courante.'" title="'.$nom_mois[intval($mois_courant)].'&nbsp;'.$annee_courante.'">'.ucfirst(_T('sarkaspip:aujourdhui')).'</a></h2>';
-
-	// Extraction des evenements du mois en cours
-	$i = 1;
-	$liste_complete = FALSE;
-	$cellule = NULL;
-	$count_liste = 0;
-	$count_mois = 0;
-	while ((!$liste_complete) && ($i <= $count_evt)) {
-		$annee = $evenements[$i]['annee'];
-		$mois = $evenements[$i]['mois'];
-		$jour = $evenements[$i]['jour'];
-		$date = mktime(0,0,0,$mois, $jour, $annee);
-		if (($annee == $annee_choisie) && ($mois == $mois_choisi))
-			$count_mois += 1;
-		$critere_ok = (($critere == 'mois_complet') || (($critere == 'fin_mois') && (date('Y-m-d',$date) >= date('Y-m-d'))));
-		if (($annee == $annee_choisie) && ($mois == $mois_choisi) && ($count_liste < $taille) && ($critere_ok)) {
-			if ($count_liste == 0) $cellule .= '<table id="footer_evenements">';
-			$cellule .= '<tr><td class="footer_colg">'.affdate_base($evenements[$i]['date_redac'], 'd-m H:i').':&nbsp;</td>';
-			$cellule .= '<td class="footer_cold"><a href="spip.php?page=evenement&amp;id_article='.$evenements[$i]['id'].'">'.$evenements[$i]['titre'].'</a></td></tr>';
-			$count_liste += 1;
+	
+	// Extraction des evenements du résumé si demande
+	if ($critere == 'oui') {
+		$i = 1;
+		$liste_complete = FALSE;
+		$cellule = NULL;
+		$count_liste = 0;
+		while ((!$liste_complete) && ($i <= $count_evt)) {
+			$annee = $evenements[$i]['annee'];
+			$mois = $evenements[$i]['mois'];
+			$jour = $evenements[$i]['jour'];
+			$date = mktime(0,0,0,$mois, $jour, $annee);
+			if ((date('Y-m-d',$date) >= $date_base) && ($count_liste < $taille)) {
+				if ($count_liste == 0) $cellule .= '<table id="footer_evenements">';
+				$cellule .= '<tr><td class="footer_colg">'.affdate_base($evenements[$i]['date_redac'], 'd-m H:i').':&nbsp;</td>';
+				$cellule .= '<td class="footer_cold"><a href="spip.php?page=evenement&amp;id_article='.$evenements[$i]['id'].'">'.$evenements[$i]['titre'].'</a></td></tr>';
+				$count_liste += 1;
+			}
+			$liste_complete = ($count_liste == $taille);
+			$i += 1;
 		}
-		$liste_complete = ($annee > $annee_choisie) || (($annee == $annee_choisie) && ($mois > $mois_choisi)) || ($count_liste == $taille);
-		$i += 1;
-	}
-
-	if ($count_liste == 0) {
-		if ($critere == 'mois_complet')
-			$cellule .= '<div class="texte">'._T('sarkaspip:agenda_mois_vide').'</div>';
+		if ($count_liste == 0)
+			$cellule .= '<div class="texte">'._T('sarkaspip:agenda_fin_mois_vide').'</div>';
 		else
-			if ($count_mois == 0)
-				if (($annee_courante < $annee_choisie) || (($annee_courante == $annee_choisie) && ($mois_courant < $mois_choisi)))
-					$cellule .= '<div class="texte">'._T('sarkaspip:agenda_mois_vide').'</div>';
-				else if (($annee_courante == $annee_choisie) && ($mois_courant == $mois_choisi))
-					$cellule .= '<div class="texte">'._T('sarkaspip:agenda_fin_mois_vide').'</div>';
-				else
-					$cellule .= '<div class="texte">'._T('sarkaspip:agenda_fin_mois_depasse').'</div>';
-			else
-				$cellule .= '<div class="texte">'._T('sarkaspip:agenda_fin_mois_depasse').'</div>';
+			$cellule .= '</table>';
+
+		$footer .= $cellule;
 	}
-	else
-		$cellule .= '</table>';
-	$footer .= $cellule;
 
 	return $footer;
 }
