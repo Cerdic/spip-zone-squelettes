@@ -322,6 +322,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_titre_noisettes' => 'Sarka-SPIP - Choix et agencement des noisettes',
 		'cfg_titre_agenda' => 'Sarka-SPIP - Configuration de l\'agenda',
 		'cfg_titre_sommaire' => 'Sarka-SPIP - Configuration de la page sommaire',
+		'cfg_titre_rubrique' => 'Sarka-SPIP - Configuration de la page rubrique',
 		'cfg_titre_herbier' => 'Sarka-SPIP - Configuration de la page herbier',
 
 // Titre des liens des pages
@@ -332,6 +333,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'sarkaspip_noisettes' => 'Noisettes',
 		'sarkaspip_agenda' => 'Agenda',
 		'sarkaspip_sommaire' => 'Sommaire',
+		'sarkaspip_rubrique' => 'Rubrique',
 		'sarkaspip_herbier' => 'Herbier',
 		
 // Descriptif des pages
@@ -344,6 +346,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		son mod&egrave;le voire sa position.',
 		'cfg_descr_agenda' => 'L\'agenda inclus dans Sarka-SPIP permet d\'afficher un listing annuel ainsi qu\'un mini calendrier mensuel. Les caract&eacute;ristiques de ces deux affichages sont configurables dans cette page.',
 		'cfg_descr_sommaire' => 'Le corps de la page sommaire permet d\'afficher plusieurs blocs d\'information : l\'&eacute;dito, la liste des secteurs et les articles r&eacute;cemment publi&eacute;s. Cette page permet de configurer l\'affichage des deux derniers blocs.',
+		'cfg_descr_rubrique' => 'Le corps de la page rubrique permet d\'afficher plusieurs blocs d\'information : la description, les rubriques filles, les documents et images joints et les articles publi&eacute;s dans la rubrique. Cette page permet de configurer l\'affichage tous ces blocs.',
 		'cfg_descr_herbier' => 'Le corps de la page herbier propose une liste pagin&eacute;e de sites et agr&eacute;ment&eacute;e de vignettes. Cette page de configuration vous permet de choisir les caract&eacute;ristiques de votre herbier.',
 
 // Titre des boites
@@ -354,6 +357,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_boite_noisettes' => 'Noisettes',
 		'cfg_boite_agenda' => 'Agenda',
 		'cfg_boite_sommaire' => 'Sommaire',
+		'cfg_boite_rubrique' => 'Rubrique',
 		'cfg_boite_herbier' => 'Herbier',
 
 // Legendes des blocs contenus dans chaque boite
@@ -437,6 +441,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_accueil_intro_6' => '<strong>Sommaire</strong> : choix des composants du corps de page sommaire', 
 		'cfg_inf_accueil_intro_7' => '<strong>Agenda</strong> : configuration des divers affichages de l\'agenda', 
 		'cfg_inf_accueil_intro_8' => '<strong>Herbier</strong> : choix de la pagination pour la page herbier', 
+		'cfg_inf_accueil_intro_9' => '<strong>Rubrique</strong> : choix des composants du corps de page rubrique', 
 		'cfg_inf_accueil_debug' => 'Si vous avez un souci ou voulez rapporter un bug il peut &ecirc;tre utile d\'activer le mode debug pour la configuration des pages. Celui-ci vous permez de lire les variables de chaque fond.',
 
 

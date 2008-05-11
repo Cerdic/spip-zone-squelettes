@@ -10,10 +10,29 @@
 <!-- liens*=sarkaspip:sarkaspip_pied -->
 <!-- liens*=sarkaspip:sarkaspip_noisettes -->
 <!-- liens*=sarkaspip:sarkaspip_sommaire -->
+<!-- liens*=sarkaspip:sarkaspip_rubrique -->
 <!-- liens*=sarkaspip:sarkaspip_agenda -->
 <!-- liens*=sarkaspip:sarkaspip_herbier -->
 
 #CACHE{0}
+<script type="text/javascript">
+//<![CDATA[
+	jQuery(document).ready(function() {
+		[(#ENV{position_articles_recents, 1}|!={1}|?{' '})
+			jQuery("#bloc_max_articles").hide();
+		]
+		jQuery("input[@name='position_articles_recents']").change(function() {
+			if (jQuery("input[@name='position_articles_recents']:checked").val() == 1) {
+				jQuery("#bloc_max_articles").show();
+			}
+			else {
+				jQuery("#bloc_max_articles").hide();
+			}
+			jQuery(this).blur();
+		});	
+	});
+//]]>
+</script>
 
 <form method="post" action="#SELF"><div>
 	[(#ENV{_cfg_}|form_hidden)]
@@ -41,9 +60,11 @@
 			<input type="radio" name="position_articles_recents" value="0" [(#ENV{position_articles_recents, 1}|=={0}|?{checked="checked"})] />
 			<:sarkaspip:cfg_lbl_non:>
 		</label>
-		<br /><br />
-		<label><:sarkaspip:cfg_lbl_max_articles_recents:></label>
-		<input type="text" name="max_articles_recents" value="#ENV{max_articles_recents, 5}" size="3" class="fondl" />
+		<div id="bloc_max_articles">
+			<br />
+			<label><:sarkaspip:cfg_lbl_max_articles_recents:></label>
+			<input type="text" name="max_articles_recents" value="#ENV{max_articles_recents, 5}" size="3" class="fondl" />
+		</div>
 	</fieldset>
 	
 	<br />

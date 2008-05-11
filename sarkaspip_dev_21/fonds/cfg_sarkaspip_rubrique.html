@@ -1,0 +1,107 @@
+<!-- titre=<:sarkaspip:cfg_titre_rubrique:> -->
+<!-- descriptif=<:sarkaspip:cfg_descr_rubrique:> -->
+<!-- boite=<:sarkaspip:cfg_boite_rubrique:> -->
+<!-- autoriser=webmestre -->
+<!-- refus=Seuls les webmestres du site sont autoris&#233;s &#224; modifier ces param&#232;tres. -->
+<!-- onglet=sarkaspip_accueil -->
+<!-- liens*=sarkaspip:sarkaspip_accueil -->
+<!-- liens*=sarkaspip:sarkaspip_layout -->
+<!-- liens*=sarkaspip:sarkaspip_bandeau -->
+<!-- liens*=sarkaspip:sarkaspip_pied -->
+<!-- liens*=sarkaspip:sarkaspip_noisettes -->
+<!-- liens*=sarkaspip:sarkaspip_sommaire -->
+<!-- liens*=sarkaspip:sarkaspip_rubrique -->
+<!-- liens*=sarkaspip:sarkaspip_agenda -->
+<!-- liens*=sarkaspip:sarkaspip_herbier -->
+
+#CACHE{0}
+<script type="text/javascript">
+//<![CDATA[
+	jQuery(document).ready(function() {
+		[(#ENV{position_articles, 1}|!={1}|?{' '})
+			jQuery("#bloc_pas_articles").hide();
+		]
+		jQuery("input[@name='position_articles']").change(function() {
+			if (jQuery("input[@name='position_articles']:checked").val() == 1) {
+				jQuery("#bloc_pas_articles").show();
+			}
+			else {
+				jQuery("#bloc_pas_articles").hide();
+			}
+			jQuery(this).blur();
+		});	
+	});
+//]]>
+</script>
+
+<form method="post" action="#SELF"><div>
+	[(#ENV{_cfg_}|form_hidden)]
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_rubrique_filles:></legend>
+		<p><:sarkaspip:cfg_inf_rubrique_filles:></p>
+		<label>
+			<input type="radio" name="position_filles" value="1" [(#ENV{position_filles, 1}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_oui:>
+		</label>
+		<label>
+			<input type="radio" name="position_filles" value="0" [(#ENV{position_filles, 1}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_non:>
+		</label>
+	</fieldset>
+	
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_rubrique_docs:></legend>
+		<p><:sarkaspip:cfg_inf_rubrique_docs:></p>
+		<label>
+			<input type="radio" name="position_documents" value="1" [(#ENV{position_documents, 1}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_oui:>
+		</label>
+		<label>
+			<input type="radio" name="position_documents" value="0" [(#ENV{position_documents, 1}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_non:>
+		</label>
+	</fieldset>
+	
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_rubrique_images:></legend>
+		<p><:sarkaspip:cfg_inf_rubrique_images:></p>
+		<label>
+			<input type="radio" name="position_images" value="1" [(#ENV{position_images, 1}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_oui:>
+		</label>
+		<label>
+			<input type="radio" name="position_images" value="0" [(#ENV{position_images, 1}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_non:>
+		</label>
+	</fieldset>
+	
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_rubrique_articles:></legend>
+		<p><:sarkaspip:cfg_inf_rubrique_articles:></p>
+		<label>
+			<input type="radio" name="position_articles" value="1" [(#ENV{position_articles, 1}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_oui:>
+		</label>
+		<label>
+			<input type="radio" name="position_articles" value="0" [(#ENV{position_articles, 1}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_non:>
+		</label>
+		<div id="bloc_pas_articles">
+			<br />
+			<label><:sarkaspip:cfg_lbl_rubrique_pas:></label>
+			<input type="text" name="pas_pagination" value="#ENV{pas_pagination, 5}" size="3" class="fondl" />
+		</div>
+	</fieldset>
+	
+	<br />
+	<input type="submit" name="_cfg_ok" class="fondo" value="<:sarkaspip:valider:>" />
+	<input type="submit" name="_cfg_delete" class="fondo" value="<:sarkaspip:effacer:>" />
+</div></form>
+
+[(#CONFIG{sarkaspip_accueil/mode_debug, non}|=={oui}|?{' '})
+	<div id="bloc_debug">
+		<br />
+		>> Debug - Etat des variables du fond Rubrique:<br />
+		#CFG_ARBO{sarkaspip_rubrique}
+	</div>
+]
