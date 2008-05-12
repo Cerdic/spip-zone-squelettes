@@ -150,16 +150,17 @@ function debut_journee($date) {
 // FIN du Filtre : debut_journee
 
 // =======================================================================================================================================
-// Filtre : timestamp_to_date
+// Filtre : fin_mois_precedent
 // =======================================================================================================================================
 // Auteur: Smellup
-// Fonction : Clone de la fonction PHP date() mais avec les arguments inverses
+// Fonction : Calcul la date au format demande correspondant au dernier jour du mois precedent celui du timestamp en argument
 // =======================================================================================================================================
 //
-function timestamp_to_date($timestamp, $format) {
+function fin_mois_precedent($timestamp, $format) {
 	if (!$timestamp) return;
-	
-	return date($format, $timestamp);
+
+	$date = mktime(0, 0, 0, date('m', $timestamp), 0, date('Y', $timestamp));
+	return date($format, $date);
 }
 // FIN du Filtre : premier_jour_mois
 
