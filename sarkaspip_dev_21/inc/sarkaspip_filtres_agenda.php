@@ -371,7 +371,7 @@ function agenda_liste_avertir($id_agenda, $annee_choisie, $mois_choisi) {
 //
 function agenda_mini_afficher($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='&gt;&gt;', 
 											$jour_debut=0, $affichage_hors_mois='oui',
-											$critere='oui', $taille=5) {
+											$critere='oui', $max_mois=6, $taille=5) {
 
 	if ($id_agenda == 0)
 		return;
@@ -385,7 +385,7 @@ function agenda_mini_afficher($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv=
 	$agenda .= agenda_mini_body($id_agenda, $jour_debut, $affichage_hors_mois);
 	
 	// Creation du footer compose des items de navigation aujourd'hui et du resume des evenements du mois
-	$agenda .= agenda_mini_footer($id_agenda, $critere, $taille);
+	$agenda .= agenda_mini_footer($id_agenda, $critere, $max_mois, $taille);
 
 	return $agenda;
 }
@@ -566,7 +566,7 @@ function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui
 //               fin du mois % date du jour)
 // ===================================================
 //
-function agenda_mini_footer($id_agenda=0, $critere='oui', $taille=5) {
+function agenda_mini_footer($id_agenda=0, $critere='oui', $max_mois=6, $taille=5) {
 
 	$nom_mois = array(1 => _T('sarkaspip:janvier'), 2 => _T('sarkaspip:fevrier'), 3 => _T('sarkaspip:mars'), 4 => _T('sarkaspip:avril'), 
 					5 => _T('sarkaspip:mai'), 6 => _T('sarkaspip:juin'), 7 => _T('sarkaspip:juillet'), 8 => _T('sarkaspip:aout'),
@@ -624,8 +624,14 @@ function agenda_mini_footer($id_agenda=0, $critere='oui', $taille=5) {
 			$liste_complete = ($count_liste == $taille);
 			$i += 1;
 		}
-		if ($count_liste == 0)
-			$cellule .= '<div class="texte">'._T('sarkaspip:agenda_fin_mois_vide').'</div>';
+		if ($count_liste == 0) {
+			if ($max_mois == 1)
+				$msg_erreur = _T('sarkaspip:agenda_1_mois_vide');
+			else {
+				$msg_erreur = _T('sarkaspip:agenda_n_mois_vides', array('mois'=>$max_mois));
+			}
+			$cellule .= '<div class="texte">'.$msg_erreur.'</div>';
+		}
 		else
 			$cellule .= '</table>';
 
