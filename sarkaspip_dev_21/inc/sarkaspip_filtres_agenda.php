@@ -593,7 +593,7 @@ function agenda_mini_footer($id_agenda=0, $critere='oui', $max_mois=6, $taille=5
 	// Init de la date de base pour calculer le nombre d'evenements du resume a afficher
 	// - si le mois choisi est le mois courant, la date de base est la date courante, on affichera donc les evenements posterieurs
 	// - si le mois choisi est antérieur ou posterieur au mois courant, la date de base est le 1er jour du mois
-	if (($annee_choisie==$annee_courante) && ($mois_choisi=$mois_courant)) 
+	if (($annee_choisie==$annee_courante) && ($mois_choisi==$mois_courant)) 
 		$date_base = date('Y-m-d');
 	else
 		$date_base = date('Y-m-d', mktime(0,0,0,$mois_choisi,1,$annee_choisie));
