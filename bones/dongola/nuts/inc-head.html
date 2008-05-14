@@ -14,22 +14,20 @@
 [(#REM) Lien vers le flux RSS du site ]
 [<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="(#URL_PAGE{backend})" />]
 
-[(#REM) Layout arbitraire dans le repertoire plugs ]
-<!--  layout CSS -->
-<style type="text/css" media="all"> @import url([(#CHEMIN{css/plugs/layout.css}|direction_css)]);</style>
+[(#REM) Feuille de style CSS pour les formulaires ]
+[<link rel="stylesheet" href="(#CHEMIN{formfx.css}|direction_css)" type="text/css" media="all" />]
 
 <!--  tripoli Framework CSS -->
-<style type="text/css" media="all">@import url([(#CHEMIN{css/tripoli.css}|direction_css)]); </style>
-<style type="text/css" media="print"> @import url([(#CHEMIN{css/tripoli_print.css}|direction_css)]) print; </style>
+<link href="[(#CHEMIN{tripoli/tripoli.simple.css}|direction_css)]" type="text/css" rel="stylesheet"> 
+<!--[if IE]><link rel="stylesheet" type="text/css" href="[(#CHEMIN{tripoli/tripoli.simple.ie.css}|direction_css)]"><![endif]-->
 
 [(#REM) selection via CFG à faire ]
-<!--  plugin tripoli Framework CSS -->
-<!-- <style type="text/css" media="screen,projection"> @import url([(#CHEMIN{css/plugs/negative.css}|direction_css)]);</style> -->
-<!-- <style type="text/css" media="screen,projection"> @import url([(#CHEMIN{css/plugs/warm.css}|direction_css)]); </style> -->
+<link type="text/css" rel="stylesheet" href="[(#CHEMIN{tripoli/plugins/tripoli.layout.css}|direction_css)]">
+<link type="text/css" rel="stylesheet" href="[(#CHEMIN{tripoli/plugins/tripoli.visual.css}|direction_css)]">
+<link type="text/css" rel="stylesheet" href="[(#CHEMIN{tripoli/plugins/tripoli.type.css}|direction_css)]">
 
-<!--[if IE]>
-  <style type="text/css" media="all"> @import url([(#CHEMIN{css/tripoli_ie.css}|direction_css)]); </style>
-<![endif]-->
   
 [(#REM) Balise permettant aux plugins d'inserer des appels javascript ou css ; C'est ici que SPIP va inserer l'appel de la librairie jQuery]
 #INSERT_HEAD
+
+#FILTRE{compacte_head}

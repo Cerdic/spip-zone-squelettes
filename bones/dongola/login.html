@@ -8,17 +8,19 @@
 <title><:poster_message:> - [(#NOM_SITE_SPIP|textebrut)]</title>
 <meta name="robots" content="none" />
 <INCLURE{fond=nuts/inc-head}>
-  </head>
-<body class="content">
+</head>
+  
+<body class="l1 wide equal">
 <div id="container">
-	<div id="navigation">
-
-	[(#REM) Entete de la page + titre du site ]
+	<div id="header">
+		<div class="content"><!-- header content -->
+		[(#REM) Entete de la page + titre du site ]
 	<INCLURE{fond=nuts/inc-header}>
 </div>
-<div id="primaryContent">
-
-<h3>
+	</div>
+	<div id="primary">
+		<div class="content"><!-- primary content -->
+		<h3>
 	
 	[(#REM)
 		Est-ce qu'on se connecte a l'espace prive ou pas ?
@@ -26,31 +28,34 @@
 	[(#ENV{url}|=={''}|?{#SET{prive,' '}})]
 	[(#ENV{url}|match{'^ecrire/'}|?{#SET{prive,' '}})]
 	[(#GET{prive}) <small><:login_acces_prive:></small>]
-	[(#GET{prive}|?{'',' '}) <!-- ?? -->]
 	
 	</h3>
 	
 	#MENU_LANG_ECRIRE
 	
-		#LOGIN_PRIVE
-		
+		[(#FORMULAIRE_LOGIN{#ENV{url}|sinon{#URL_ECRIRE{accueil}}})]
 		<p class="retour">
 		[&#91;<a href="#URL_PAGE{identifiants,focus=nom_inscription}&amp;mode=(#URL_SITE_SPIP|tester_config{1comite})" target="spip_pass" onclick="javascript:window.open(this.href, 'spip_pass', 'scrollbars=yes, resizable=yes, width=480, height=400'); return false;"><:login_sinscrire:></a>&#93;]
-		&#91;<a href="#URL_PAGE{spip_pass}" target="spip_pass" onclick="javascript:window.open(this.href, 'spip_pass', 'scrollbars=yes, resizable=yes, width=480, height=330'); return false;"><:login_motpasseoublie:></a>&#93;
 		&#91;<a href="#URL_SITE_SPIP/"><:login_retoursitepublic:></a>&#93;
 		</p>
+	
+
+		</div>
+	</div>
+	<div id="secondary">
+		<div class="content"><!-- secondary content -->
+		#FORMULAIRE_RECHERCHE
+		</div>
+	</div>
+	<div id="tertiary">
+		<div class="content"><!-- tertiary content --></div>
+	</div>
+	<div id="footer">
+		<div class="content"><!-- footer content -->
+		<INCLURE{fond=nuts/inc-footer}>
 
 </div>
-
-<div id="secondaryContent">
-
-#FORMULAIRE_RECHERCHE
-
+	</div>
 </div>
-
-<INCLURE{fond=nuts/inc-footer}>
-
-</div>
-
 </body>
 </html>

@@ -8,24 +8,28 @@
 <link rel="alternate" type="application/rss+xml" title="<:titre_page_mots_tous:>" href="[(#URL_PAGE{backend})]<BOUCLE_URLMOT(MOTS){id_article}>&amp;id_mot[]=#ID_MOT</BOUCLE_URLMOT>" />
 <link rel="alternate" type="application/rss+xml" title="<:icone_auteurs:>" href="[(#URL_PAGE{backend})]<BOUCLE_URLAUTEURS(AUTEURS){id_article}>&amp;id_auteur[]=#ID_AUTEUR</BOUCLE_URLAUTEURS>" />
  <INCLURE{fond=nuts/inc-head}>
-  </head>
-<body class="content">
+</head>
+
+
+<body class="l1 wide equal">
 <div id="container">
-	<div id="navigation">
-[(#REM) Entete de la page + titre du site ]
+	<div id="header">
+		<div class="content"><!-- header content -->
+		[(#REM) Entete de la page + titre du site ]
 	<INCLURE{fond=nuts/inc-header}>
 
 [(#REM) Fil d'Ariane ]
         <p><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]</p>
-</div>
-<div id="primaryContent">
-
-            <div class="surlignable">
+	</div>
+	</div>
+	<div id="primary">
+		<div class="content">
+		<!-- primary content -->
+		
 				[(#LOGO_ARTICLE||image_reduire{200,200})]
 				[<p class="#EDIT{surtitre}">(#SURTITRE)</p>]
 				<h2 class="#EDIT{titre}">#TITRE</h2>
 				[<p class="#EDIT{soustitre}">(#SOUSTITRE)</p>]
-            </div>
 
             <p><small><abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>[, <:par_auteur:> (#LESAUTEURS)]</small></p>
 
@@ -90,10 +94,13 @@
         <INCLURE{fond=inc-forum}{id_article}>
         [<p><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a></p>]
 
-</div>
 
-<div id="secondaryContent">
-
+		</div>
+	</div>
+	<div id="secondary">
+		<div class="content">
+		<!-- secondary content -->
+	
 #FORMULAIRE_RECHERCHE
 
 [(#REM) Menu de navigation par rubriques ]
@@ -104,11 +111,17 @@
 
 [(#REM) Menu de navigation mots-cles ]
 #MODELE{article_mots}
-		
+			
+		</div>
+	</div>
+	<div id="tertiary">
+		<div class="content"><!-- tertiary content --></div>
+	</div>
+	<div id="footer">
+		<div class="content"><!-- footer content -->
+		<INCLURE{fond=nuts/inc-footer}>
 </div>
-
-<INCLURE{fond=nuts/inc-footer}>
-
+	</div>
 </div>
 </body>
 </html>
