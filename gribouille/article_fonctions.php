@@ -66,9 +66,12 @@ AND _request('id_rubrique') == $GLOBALS['contexte']['id_rubrique']) {
 				array('champs' => array('titre', 'statut')),
 				array(
 					'titre' => _request('ajouter_page_wiki'),
-					'statut' => 'publie'
+					'statut' => 'publie' # spip 1.9.2
 				)
 			);
+			# pour SPIP 1.9.3
+			if (function_exists('instituer_article'))
+				instituer_article($id_article,array('statut' => 'publie'));
 		}
 	}
 
