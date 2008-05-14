@@ -10,8 +10,8 @@ $GLOBALS['i18n_logic_fr'] = array(
 // A
 'abonner' => 's\'abonner',
 'admin' => 'administration',
-'aecrit' => 'a &eacute;crit :',
-'alerte_moderation' => 'Bonjour, Je tenais &agrave; vous signaler un comportement abusif sur le message suivant&nbsp;:',
+'aecrit' => 'a &eacute;crit ',
+'alerte_moderation' => 'Bonjour, Je tenais &agrave; vous signaler un comportement abusif sur le message suivant&nbsp;',
 
 // B
 'form_forum_bonjour' => 'Bonjour,',
@@ -32,7 +32,7 @@ $GLOBALS['i18n_logic_fr'] = array(
 'item_login' => 'Login',
 'info_non_modifiable' => 'ne peut pas &ecirc;tre modifi&eacute;',
 'info_plus_cinq_car' => 'plus de 5 caract&egrave;res',
-'info_confirmer_passe' => 'Confirmer ce nouveau mot de passe :',
+'info_confirmer_passe' => 'Confirmer ce nouveau mot de passe',
 
 
 
@@ -55,7 +55,7 @@ $GLOBALS['i18n_logic_fr'] = array(
 'bloogletter_info_nouv_texte' => 'Prochain envoi des nouveaut&eacute;s dans @proch@ jours',
 'bloogletter_aide' => 'La bloOgletter permet (aux administrateurs) d\'envoyer un courrier &eacute;lectronique aux personnes inscrites. Ce message peut &ecirc;tre un squelette Spip ou un simple texte<br><br>Les abonn&eacute;s d&eacute;finissent en ligne leur statut d\'abonnement, les listes auxquelles ils s\'abonnent et le format dans lequel il souhaient recevoir les courriers (Html / texte).
 <br><br> Vous pouvez utiliser le Html aussi bien dans les courriers que dans les squelettes que vous d&eacute;finissez.<br><br>Tout message sera traduit automatiquement en format texte pour les abonn&eacute;s qui en ont fait la demande.<br><br><b>Note :</b><br>L\'envoi des mails peut prendre quelques minutes, les lots partent &agrave; mesure que les utilisateurs parcourent le site public, vous pouvez aussi activer manuellement l\'envoi des lots.',
-'bloogletter_alerte_edit' => 'Attention : ce message peut &ecirc;tre modifi&eacute; par tous les administrateurs du site et est reçu par tous les abonn&eacute;s. N\'utilisez la lettre d\'information que pour exposer par mail des &eacute;v&eacute;nements importants de la vie du site.',
+'bloogletter_alerte_edit' => 'Attention : ce message peut &ecirc;tre modifi&eacute; par tous les administrateurs du site et est reï¿½u par tous les abonn&eacute;s. N\'utilisez la lettre d\'information que pour exposer par mail des &eacute;v&eacute;nements importants de la vie du site.',
 'bloogletter_message_type' => 'Courrier &eacute;lectronique',
 'bloogletter_message_redac' => 'En cours de r&eacute;daction et pr&ecirc;t &agrave; l\'envoi',
 'bloogletter_envoi_program' => 'Envoi programm&eacute;',
@@ -74,7 +74,7 @@ $GLOBALS['i18n_logic_fr'] = array(
 
 'bloogletter_adresse' => 'Indiquez ici l\'adresse &agrave; utiliser pour les retours de mails (&agrave; d&eacute;faut, l\'adresse du webmestre sera utilis&eacute;e comme adresse de retour) :',
 'bloogletter_definir_squel_texte' => 'Vous pouvez ajouter des squelettes HTML par FTP dans le repertoire /squelettes_bloogletter (&agrave; la racine de votre site Spip).',
-'bloogletter_definir_squel_choix' => 'A la r&eacute;daction d\'un nouveau courrier, la bloogletter vous permet de charger un patron. En appuyant sur un bouton, vous chargez dans le corps du message le contenu d\'un des squelettes du repertoire <b>/squelettes_bloogletter</b> (situ&eacute; &agrave; la racine de votre site Spip). <p><b>Vous pouvez &eacute;diter et modifier ces squelettes selon vos goûts.</b></p> <UL><li>Ces squelettes peuvent contenir du code HTML classique</li>
+'bloogletter_definir_squel_choix' => 'A la r&eacute;daction d\'un nouveau courrier, la bloogletter vous permet de charger un patron. En appuyant sur un bouton, vous chargez dans le corps du message le contenu d\'un des squelettes du repertoire <b>/squelettes_bloogletter</b> (situ&eacute; &agrave; la racine de votre site Spip). <p><b>Vous pouvez &eacute;diter et modifier ces squelettes selon vos goï¿½ts.</b></p> <UL><li>Ces squelettes peuvent contenir du code HTML classique</li>
 <li>Ce squelette peut contenir des boucles Spip</li>
 <li>Apr&egrave;s le chargement du patron, vous pourrez re-&eacute;diter le message avant envoi (pour ajouter du texte)</li>
 </ul><p>La fonction "charger un patron" permet donc d\'utiliser des gabarits HTML personnalis&eacute;s pour vos courriers ou de cr&eacute;er des lettres d\'information th&eacute;matiques dont le contenu est d&eacute;fini gr&acirc;ce aux boucles Spip.</p><p>Attention : ce squelette ne doit pas contenir de balises body, head ou html mais juste du code HTML ou des boucles Spip.</p>',
@@ -103,7 +103,7 @@ $GLOBALS['i18n_logic_fr'] = array(
 'abonnement_texte_mail'=>'Indiquez ci-dessous l\'adresse email sous laquelle vous vous &ecirc;tes pr&eacute;c&eacute;demment enregistr&eacute;s. 
 Vous recevrez un email permettant d\'acc&eacute;der &agrave; page de modification de votre abonnement.',
 'abonnement_mail_passcookie'=>'(ceci est un message automatique)
-Pour modifier votre abonnement &agrave; la lettre d\'information de ce site :
+Pour modifier votre abonnement &agrave; la lettre d\'information de ce site 
 @nom_site_spip@ (@adresse_site@)
 
 Veuillez vous rendre &agrave; l\'adresse suivante :
@@ -127,7 +127,7 @@ Vous pourrez alors confirmer la modification de votre abonnement.',
 //F
 'faq' => 'FAQ',
 'forum' => 'Forum',
-'ferme' => 'Cette discussion est clôtur&eacute;e',
+'ferme' => 'Cette discussion est clï¿½tur&eacute;e',
 
 //I
 'inscription_visiteurs' => 'L\'abonnement vous permet d\'acc&eacute;der aux parties du site en acc&egrave;s restreint,

@@ -64,12 +64,31 @@
 </div>
 
 [(#REM)   R&eacute;sultats recherche textes  ]
-<B_marecherche_textes>
+<B_articles>
 <div class="grande_boite">
 <h4 class="icone_recherche"><:article_dans:> :</h4>
+ [<div class="cartouche">
+      <form id="tri" action="#SELF" method="get" name="tri">
+         <h1 class="surtitre"><:resultats_recherche:> <b>«(#RECHERCHE)»</b>, <:tries_par:>
+            <input type="hidden" name="page" value="recherche" />
+            <input type="hidden" name="recherche" value="#RECHERCHE" />
+            <select class="" name="tri" onchange="submit(); " class="spip_bouton">
+               <option value="points"[(#TRI|=={points}|?{' selected="selected" class="selected"'})] /><:pertinence:></option>
+               <option value="popularite"[(#TRI|=={popularite}|?{' selected="selected" class="selected"'})] /><:popularite:></option>
+                <option value="visites"[(#TRI|=={visites}|?{' selected="selected" class="selected"'})] /><:nb_de_visites:></option>
+                <option value="date_redac"[(#TRI|=={date_redac}|?{' selected="selected" class="selected"'})] /><:date_de_redaction:></option>
+                <option value="date"[(#TRI|=={date}|?{' selected="selected" class="selected"'})] /><:date_de_publication:></option>
+            </select>
+            <input type="checkbox" name="ordre" [(#ORDRE|=={on}|?{'checked '})]onchange="submit();">[(#ORDRE|?{&uarr;,&darr;})] </input>
+            <noscript>
+               <input type="submit" value="<:trier:>" class="spip_bouton" />
+            </noscript>
+         </h1>
+      </form>
+   </div>]
+<B_marecherche_textes>
 [(#ANCRE_PAGINATION)]
-<BOUCLE_marecherche_textes(INDEX){recherche}{!par points}{type_table IN articles} {pagination 5}>
-    <BOUCLE_articles(ARTICLES) {id_article}>
+    <BOUCLE_articles(ARTICLES) {recherche} {par (#TRI|?{#TRI,points})} {inverse (#ORDRE|?{0,1})} {pagination 5}>
     <p>
     [<a href="#URL_ARTICLE"><strong>(#TITRE)</strong></a><br/>] [(#INTRODUCTION)<br/>]
     [(#DATE|nom_jour)] [(#DATE|jour)] [(#DATE|nom_mois)] [(#DATE|annee)] 
@@ -81,9 +100,11 @@
 </BOUCLE_marecherche_textes>
 [<p class="centre gras">(#PAGINATION{page_precedent_suivant})<br/><:article_total1:> #GRAND_TOTAL <:article_total2:> #TOTAL_BOUCLE</p>]
 </div>
+</B_articles>
 </B_marecherche_textes>
 [<div class="grande_boite"><h4 class="icone_recherche"><:article_dans:> :</h4>
 <p>"(#RECHERCHE)" <:article_trouver:></p></div>]
+<//B_articles>
 <//B_marecherche_textes>
 
 

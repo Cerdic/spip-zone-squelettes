@@ -6,7 +6,7 @@ $GLOBALS['i18n_logic_en'] = array(
 
 
 // A
-'alerte_moderation' => 'Hi, I would like to report an excessive behaviour in the following message&nbsp;:',
+'alerte_moderation' => 'Hi, I would like to report an excessive behaviour in the following message&nbsp;',
 
 
 //S
