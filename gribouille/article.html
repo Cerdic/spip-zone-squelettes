@@ -15,6 +15,9 @@
 <h1 class="wiki_name">#TITRE</h1>
 </BOUCLE_r>
 
+
+[<div style='float:left;[width:(#LOGO_ARTICLE||extraire_attribut{width})px;]margin:0 9px 5px 0;'>(#LOGO_ARTICLE)</div>]
+
 [(#ENV{id_version}|?{
 	<h1 class="page_name">[(#TITRE|safehtml)]
 	&mdash; version [(#ENV{id_version})]
@@ -30,40 +33,25 @@
 
 <div class="texte page">
 
-<?php if (!_request('id_version')) { ?>
+[(#ENV{id_version}|?{
 
-	[<div style='float:left;[width:(#LOGO_ARTICLE||extraire_attribut{width})px;]margin:0 9px 5px 0;'>(#LOGO_ARTICLE)</div>]
+	[(#INCLURE{fond=gribouille/afficher_revisions}{id_version=#ENV{id_version}}{id_article})]
 
-	<div class="#EDIT{texte}">[(#TEXTE|safehtml|sinon{Double-cliquez pour ajouter du texte dans cet article})]</div>
+,
 
-	[<div class="notes">(#NOTES|safehtml)</div>]
+	[<div class="#EDIT{surtitre} surtitre">(#SURTITRE|safehtml)</div>]
+	[<h2 class="#EDIT{titre} titre">(#TITRE|sinon{<:info_sans_titre:>}|safehtml)</h2>]
+	[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE|safehtml)</div>]
+	[<div class="#EDIT{chapo} chapo">(#CHAPO|safehtml)</div>]
+	[<div class="#EDIT{texte}">(#TEXTE**|strlen|>{1500}
+		|?{[(#TEXTE|couper{1000})], #TEXTE}
+		|sinon{<i>double-cliquez pour ajouter du texte</i>}
+		|safehtml)
+		[<div class="notes">(#NOTES|safehtml)</div>]
+	</div>]
+	[<div class="#EDIT{ps}">(#PS|safehtml)</div>]
 
-<?php } else /* affichage des revisions */ { ?>
-
-<BOUCLE_revision(VERSIONS){id_version=#ENV{id_version}}{id_article}>
-<h2>Version #ID_VERSION <span style="color:gray;">&mdash;
-[(#DATE|date_relative),]
-[(#ID_AUTEUR|affiche_auteur_diff)] [-- (#TITRE_VERSION)]</span>
-</h2>
-
-
-[<blockquote>(#ID_ARTICLE|affiche_diff{#ID_VERSION}|safehtml)</blockquote>]
-
-
-</BOUCLE_revision>
-
-<hr />
-<ul>
-<BOUCLE_rev(VERSIONS){id_article}{par date}{inverse}{pagination 40}>
-[(#SET{a,[(#ENV{id_version}|=={#ID_VERSION}|?{span,a})]})]
-<li><[(#GET{a})]
-	href="[(#SELF|parametre_url{id_version,#ID_VERSION})]">#DATE</#GET{a}>
-	<span style="color:gray;">&mdash; [(#ID_AUTEUR|affiche_auteur_diff)] [-- (#TITRE_VERSION)]</span>
-	</li>
-</BOUCLE_rev>
-</ul>
-
-<?php } ?>
+})]
 
 
 <hr class="hr_clear" />
