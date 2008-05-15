@@ -443,8 +443,10 @@ function agenda_mini_header($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='&
 	$header .= '<h2 class="titre_bloc centre">'.$nom_mois[$mois_choisi].'</h2>';   
 	$header .= '<h2><a class="titre_bloc bord ajax" href="'.$url_base.'calendrier_mois='.$mois_suiv.'&amp;calendrier_annee='.$annee_suiv.'" title="'.$nom_mois[$mois_suiv].'&nbsp;'.$annee_suiv.'">'.$icone_suiv.'</a></h2>';
 	// Fin de l'en-tete
-	$header .= '<div class="clearer"></div>';
-
+	$header .= '<div class="clearer"';
+	if (eregi('msie', $_SERVER['HTTP_USER_AGENT']))
+		{$header .= 'style="display:none"';}
+	$header .= '></div>';
 	return $header;
 }
 
