@@ -452,6 +452,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_rubrique_docs' => 'Voulez-vous afficher les documents joints qui ne sont pas inclus dans la description de la rubrique ?',
 		'cfg_inf_rubrique_images' => 'Voulez-vous afficher le portfolio des images qui ne sont pas incluses dans la description de la rubrique ?',
 		'cfg_inf_rubrique_articles' => 'Voulez-vous afficher la liste des articles publi&eacute;s dans la rubrique ? Si oui, vous pourrez d&eacute;finir le pas de pagination associ&eacute;.',
+		'cfg_inf_pagination_bande' => 'Choisissez la position de la bande de pagination.',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
@@ -529,6 +530,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_menu_raccourcis_0' => 'Ne pas afficher de menu de raccourcis',
 		'cfg_lbl_menu_raccourcis_1' => 'Afficher les raccourcis des pages sp&eacute;ciales',
 		'cfg_lbl_menu_raccourcis_2' => 'Afficher les raccourcis des formulaires',
+		'cfg_lbl_bande_pos_1' => 'En haut de la page',
+		'cfg_lbl_bande_pos_2' => 'En bas de la page',
+		'cfg_lbl_bande_pos_3' => 'En haut et en bas de la page',
 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',
