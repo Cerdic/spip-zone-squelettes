@@ -387,6 +387,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_herbier_pagination' => 'Pagination',
 		'cfg_lgd_accueil_intro' => 'Pr&eacute;sentation',
 		'cfg_lgd_accueil_debug' => 'Debug',
+		'cfg_lgd_rubrique_filles' => 'Rubriques filles',
+		'cfg_lgd_rubrique_docs' => 'Documents joints',
+		'cfg_lgd_rubrique_images' => 'Portfolio',
+		'cfg_lgd_rubrique_articles' => 'Articles publi&eacute;s',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -444,7 +448,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_accueil_intro_8' => '<strong>Herbier</strong> : choix de la pagination pour la page herbier', 
 		'cfg_inf_accueil_intro_9' => '<strong>Rubrique</strong> : choix des composants du corps de page rubrique', 
 		'cfg_inf_accueil_debug' => 'Si vous avez un souci ou voulez rapporter un bug il peut &ecirc;tre utile d\'activer le mode debug pour la configuration des pages. Celui-ci vous permez de lire les variables de chaque fond.',
-
+		'cfg_inf_rubrique_filles' => 'Voulez-vous afficher la liste des rubriques filles suite &agrave; la description de la rubrique ?',
+		'cfg_inf_rubrique_docs' => 'Voulez-vous afficher les documents joints qui ne sont pas inclus dans la description de la rubrique ?',
+		'cfg_inf_rubrique_images' => 'Voulez-vous afficher le portfolio des images qui ne sont pas incluses dans la description de la rubrique ?',
+		'cfg_inf_rubrique_articles' => 'Voulez-vous afficher la liste des articles publi&eacute;s dans la rubrique ? Si oui, vous pourrez d&eacute;finir le pas de pagination associ&eacute;.',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
