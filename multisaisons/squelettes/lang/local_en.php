@@ -14,18 +14,18 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'administrateur' => 'administrators',
 'autre_article' => 'Other articles',
 'aller_accueil' => 'Go to home page',
-'aecrit' => 'with writing&nbsp;:',
-'alerte_moderation' => 'Hi, I would like to report an intrusion in the following message&nbsp;:',
+'aecrit' => 'with writing&nbsp;',
+'alerte_moderation' => 'Hi, I would like to report an intrusion in the following message&nbsp;',
 'autres_breves' => 'Other news',
 'pas_article' => 'article not yet available.',
 'pas_accessible' => 'access declined.',
 'authentification_demande' => 'identification necessary',
-'authentification_souci' => 'identification problem?',
+'authentification_souci' => 'identification problem',
 'abo_gestion' => 'Subscription and management of your account',
 'inscrit_acces' => 'after inscription to have access there',
-'archive' => 'files:',
+'archive' => 'files',
 'aide_clavier' => 'Helps on the short cuts keyboard',
-'affichage_fin' => 'Refine posting:',
+'affichage_fin' => 'Refine posting',
 'affichage_date' => 'Posting by date',
 'affichage_site' => 'Posting by Web site',
 'attendu' => 'wait listed',
@@ -65,7 +65,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'titre_cadre_signature_obligatoire' => '<B>Signature</B> [Obliged]<BR>',
 'entree_adresse_email' => 'Enter your email address',
 'info_reserve_admin' => 'Modification by administrators only.',
-'entree_infos_perso' => 'Who are you ?',
+'entree_infos_perso' => 'Who are you ',
 'entree_biographie' => 'Short biography or self description in a few words.',
 'entree_nom_site' => 'The name of your website',
 'entree_url' => 'Address (URL) of your website',
@@ -76,7 +76,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'texte_plus_trois_car' => 'more than 3 characters',
 'info_non_modifiable' => 'cannot be modified',
 'info_plus_cinq_car' => 'more than 5 characters',
-'info_confirmer_passe' => 'Confirm new password :',
+'info_confirmer_passe' => 'Confirm new password ',
 'rens_biographie'=> 'Check my biography',
 'breve_new' => 'New briefings',
 'breve_dans' => 'In the briefings',
@@ -105,7 +105,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'bloogletter_message_redac' => 'In progress of drafting and ready with the sending',
 'bloogletter_envoi_program' => 'Programmed sending',
 'bloogletter_message_arch' => 'Filed message',
-'bloogletter_envoi' => 'Send :',
+'bloogletter_envoi' => 'Send ',
 'bloogletter_envoi_texte' => 'If this message is appropriate to you, you can send it',
 'bloogletter_abonnement' => 'Newsletter subscription',
 
@@ -116,7 +116,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'info_bloogletter_auto' => 'The bloOgletter for spip can send regularly to the registered voters, the advertisement of the last innovations of the site (articles and short recently published)',
 'info_bloogletter_heberg' => 'In this case, the following functionalities of the bloogletter for SPIP will not function',
 
-'bloogletter_adresse' => 'Indicate the address here to be used for the returns of emails (failing this, the address of the Webmaster will be used as addresses return) :',
+'bloogletter_adresse' => 'Indicate the address here to be used for the returns of emails (failing this, the address of the Webmaster will be used as addresses return) ',
 'bloogletter_definir_squel_texte' => 'You can add skeletons HTML by ftp in the repertory /squelettes_bloogletter (with the root of your Spip website).',
 'bloogletter_definir_squel_choix' => 'With the drafting of a new mail, the bloogletter enables you to charge an style. While pressing on a button, you charge in the body with the message the contents with one with the skeletons with the repertory <b>/squelettes_bloogletter</b> (located at the root of your Spip website). <p><b>You can publish and modify these skeletons according to your tastes.</b></p> <UL><li>These skeletons can contain traditional code HTML</li>
 <li>This skeleton can contain Spip loops</li>
@@ -129,8 +129,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'bloogletter_alerte_modif' => '<b>After the loading of the model you can modify the source code of the message</b>',
 'bloogletter_charger_le_patron' => 'charged model',
 'bloogletter_patron_disponibles' => 'Model available for the mails',
-'bloogletter_aff_incorrect' => 'Mail with incorrect posting?',
-'bloogletter_aff_incorect_envoi_mail1' => 'Isn\'t your news-letter posted correctly? A bad interpretation of the encoding by a waiter, a software mail or a webmail is often at the origin of the problem. Thank you for ',
+'bloogletter_aff_incorrect' => 'Mail with incorrect posting',
+'bloogletter_aff_incorect_envoi_mail1' => 'Isn\'t your news-letter posted correctly A bad interpretation of the encoding by a waiter, a software mail or a webmail is often at the origin of the problem. Thank you for ',
 'bloogletter_aff_incorect_envoi_mail2' => 'describe
  the problem with your webmaster',
 'bloogletter_aff_incorect_envoi_mail3' => 'and to choose one
@@ -139,14 +139,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'bloogletter_ch_format2' => 'is not posted correctly? Modify your
   subscription and change format of reception. Thus your next mail
    will be readable.',
-'bloogletter_bug' => 'Why that bug?',
+'bloogletter_bug' => 'Why that bug',
 'bloogletter_interpre' => 'Bad
   interpretation of the encoding by a waiter, a software mail or
   a webmail is often at the origin of the problem.',
 'breve_dernier' => 'The short last',
 'bloogletter_derniere' => 'The last newsletter',
 'bloogletter_ameliorer' => 'Improve your
-  letter:',
+  letter',
 
 
 //C
@@ -164,7 +164,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'conect_coment' => 'you are connected, you can comment',
 'clic_recopier' => 'Click or recopy',
 'vs_connectez1' => 'You are connected, you can interact with',
-'vs_connectez2' => 'What do you wish to do? Choose these following options:',
+'vs_connectez2' => 'What do you wish to do? Choose these following options',
 'capture' => 'capture',
 'pas_de' => 'No the',
 
@@ -174,7 +174,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'devenir_redac'=>'become writer for this site',
 'devenir_abonne'=>'Register on this site',
 'devenir_membre1' => 'Become member of',
-'devenir_membre2' => 'it is: ',
+'devenir_membre2' => 'it is ',
 'abonnement_bouton'=>'Modify your subscription',
 'abonnement_titre_mail'=>'Modify your subscription',
 'abonnement_mail'=>'Modify your subscription, please go to the following address',
@@ -182,10 +182,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'abonnement_texte_mail'=>'Indicate your previous email adresse which you were previously registered. 
 You will receive an email giving access page of modification of your subscription.',
 'abonnement_mail_passcookie'=>'(this is an automatic message)
-To modify your subscription with the newsletter of this site :
+To modify your subscription with the newsletter of this site 
 @nom_site_spip@ (@adresse_site@)
 
-Please go to the following address :
+Please go to the following address 
 
     @adresse_site@/spip.php?page=abonnement&d=@cookie@
 
@@ -195,8 +195,8 @@ You will be able to then confirm the modification of your subscription.',
 'pass_recevoir_mail'=>'You will receive an email indicating how to modify your subscription. ',
 'desabonnement_confirm'=>'You are about to cancel your subscription with this newsletter',
 'abonnement_modifie'=>'Your modifications are taken into account',
-'abonnement_nouveau_format'=>'Your format of reception is from now : ',
-'abonnement_change_format'=>'You can change format of reception or stop subscribing : ',
+'abonnement_nouveau_format'=>'Your format of reception is from now  ',
+'abonnement_change_format'=>'You can change format of reception or stop subscribing  ',
 'diff_pgp' => 'Diffuse my public PGP key',
 'dialoguer' => 'Dialogue',
 'derniere_discussion' => 'Last comment',
@@ -235,13 +235,13 @@ You will be able to then confirm the modification of your subscription.',
 'erreur_forum' => 'The message was moved or moderated',
 'erreur_forum1' => 'Use the button RETURN of your navigator',
 'erreur_forum2' => 'or launch a research in the forums',
-'forum_deplace1' => 'Moved?',
+'forum_deplace1' => 'Moved',
 'forum_deplace2' => 'The message can be moved from one forum to another. 
 		Use the engine of',
 'forum_deplace3' => 'or sail 
 		the forums.',
-'forum_modere' => 'Moderated?',
-'forum_modere1' => 'The futile messages are moderate: 
+'forum_modere' => 'Moderated',
+'forum_modere1' => 'The futile messages are moderate 
 Publicities, contests, research the credulous ones 
 and other abuses pollute the forums.',
 'forum_corr' => 'Correct or post a message in a forum',
@@ -273,7 +273,7 @@ and other abuses pollute the forums.',
 'inscription_visiteurs' => 'The subscription gives access to you the parts of the site in restricted access, to intervene on the forums reserved to the recorded visitors and to receive the newsletters.' ,
 'info_profil' => 'This page posts your profile such as it appears near the other members of',
 'inscription_redacteurs' =>'The space of drafting of this site is opened to the visitors after inscription. Once recorded, you will be able to consult the articles in the course of drafting, to propose articles and to take part in all the forums.  The inscription also makes it possible to reach the parts of the site in restricted access and to receive the newsletters.',
-'inscrit_ou_pas' => 'Already registered??',
+'inscrit_ou_pas' => 'Already registered',
 'imprimez_article' => 'print this article',
 'vous_inscrire' => 'Wish you to be registered',
 'sans' => 'without',
@@ -295,7 +295,7 @@ Not to throw on the public highway.',
 'kiosque_de1' => 'via a wire of syndication RSS.',
 'kiosque_a' => 'Kiosk with Web sites',
 'kiosque_a1' => 'This kiosk presents the articles diffused in the Web sites partner of',
-'kiosque_tri' => 'By date or Web site?',
+'kiosque_tri' => 'By date or Web site',
 'kiosque_tri1' => 'You post the actuality of a Web site. You can also post',
 'kiosque_tri2' => 'Actuality by date',
 'kiosque_tri3' => 'You post the actuality per month. You can also post 
@@ -345,7 +345,7 @@ the actuality for',
 'messages_abu' => 'Erase an abusive message',
 'moderateurs' => 'Regulator(s)',
 'mise_en_ligne' => 'Update',
-'modif_profil' => 'modify your profile:',
+'modif_profil' => 'modify your profile',
 'musique' => 'Music',
 'messages_edit' => 'Published message.',
 'messages_ecri_non' => 'did not write a message yet.',
@@ -378,7 +378,7 @@ the actuality for',
 //P
 'page_accessible' => 'This page is accessible to the members from ',
 'page_restreint' => 'The access to this page is restricted to the members of ',
-'passe_perdu' => 'lost password?',
+'passe_perdu' => 'lost password',
 'pas_bio' => 'have not write is biography.',
 'par' => 'by',
 'photos' => 'Photos',
@@ -389,8 +389,8 @@ the actuality for',
 'possibilite_de' => 'The possibility of adding to it its texts, documents, photographs and bonds.',
 'possibilite_de1' => 'The possibility of subscribing with newsletters which concerns you.',
 'possibilite_de2' => 'The possibility of adding your bio, Web site, and misadventure.',
-'pgp_securite' => 'Key security PGP, protection:',
-'pourquoi' => 'Why?',
+'pgp_securite' => 'Key security PGP, protection',
+'pourquoi' => 'Why',
 'pourquoi1' => 'The document perhaps was removed or moved.
                 The access to the root of a repertory is prohibited by the server. The server is perhaps overloaded.',
 'retrouver_chang_passe' => 'Find or change my password.',
@@ -404,7 +404,7 @@ the actuality for',
 'profil_deff1' => 'A double click on the three items (...) modifies the profile.',
 'prevision' => 'Forecasts of',
 'part_cont' => 'Take part, contribute',
-'plan_de' => 'Plan of:',
+'plan_de' => 'Plan of',
 'partenaires' => 'partners',
 'pouvoir' => 'you can',
 'photographie' => 'photograph',
@@ -416,7 +416,7 @@ the actuality for',
 'photo_total3' => 'in this portfolio',
 
 //Q
-'que_faire' => 'what to make?',
+'que_faire' => 'what to make',
 'que_faire1' => 'Use',
 'que_faire2' => 'the internal search engine',
 'que_faire3' => 'find 
@@ -442,9 +442,9 @@ A management of your profile and your inscription will be then accessible for yo
 'rubrique' => 'heading',
 'recherche_go' => 'Launch your research',
 'recherche_form' => 'Enter your research the form then validate.',
-'recherche_actu' => 'Find news nr :',
+'recherche_actu' => 'Find news nr ',
 'recherche_google' => 'You can widen your research with the engines below',
-'recherche_blabla' => 'Launch a research on the internal engine of the site: 
+'recherche_blabla' => 'Launch a research on the internal engine of the site 
     The words of less than four letters are not indexed
     by the internal engine. Use only one word to target your research',
 'recherche_savoir' => 'To know',
@@ -465,23 +465,23 @@ computer or in your Web site, you will synthesize the topicality published
   readers of news or flow RSS.',
 'rss_ajout_rub' => 'In your reader RSS, your software mail RSS, 
 your agregator RSS, add the address of news of the heading ',
-'rss_ajout_liste' => 'Or select another heading in this list :',
+'rss_ajout_liste' => 'Or select another heading in this list ',
 'rss_ajout_site' => 'In your reader RSS, your software mail RSS, 
-your agregator RSS, add this address to post the news whole site:',
+your agregator RSS, add this address to post the news whole site',
 'rss_site_entier' => 'Benefit from the whole Web site',
 'rss_java' => 'Javascript for Web sites',
 'rss_blabla_java' => 'A Web site not equipped with agregator on line can too
     to benefit from the contents of ',
 'rss_blabla_java3' => 'Post the news heading ',
 'rss_blabla_java2' => '    Insert
-    this Javascript enters the beacons body of your page HTML :',
+    this Javascript enters the beacons body of your page HTML ',
 'rss_css' => 'The contents of the heading will seem in the demonstration opposite.
   You can modify the style css of it.',
 'rss_ss_css' => 'A Web site not equipped with agregator on line can also benefit from the contents
     of','rss_ss_css2' => 'Ins&eacute;rez ce Javascript entre les balises body de votre
-    page html:',
+    page html',
 'rss_ss_css2' => 'Insert this Javascript between the beacons body of your
-    page HTML:',
+    page HTML',
 'rss_bla_java' => 'The contents text will seem in the demonstration opposite. You can
   in modifying the style Css.',
 'rss_webmaster' => 'Contents for webmasters',
@@ -506,9 +506,9 @@ your agregator RSS, add this address to post the news whole site:',
 'sujet_clos_texte' => 'This subject is closed, you cannot there poster.',
 'si_acces_continuer1' => 'If you have an access, thank you to connect you to',
 'si_acces_continuer2' => 'to continue',
-'site_prefere' => 'Web site:',
-'ses_articles' => 'Its articles :',
-'ses_publications' => 'Its publications :',
+'site_prefere' => 'Web site',
+'ses_articles' => 'Its articles ',
+'ses_publications' => 'Its publications ',
 'stats' => 'Statistics',
 'stats_acc' => 'accomodate an average of',
 'stats_acc2' => 'unique visitors per day.',
@@ -518,9 +518,9 @@ pulverized the score!',
 'stats_acc5' => 'time
 by day.',
 'stats_acc6' => 'contains',
-'souhait_faire' => 'What do you wish to make?',
+'souhait_faire' => 'What do you wish to make',
 'section_restreint' => 'This section is restricted with some members of',
-'acces_section' => 'and to ask the webmaster an access to this section?',
+'acces_section' => 'and to ask the webmaster an access to this section',
 'qq_section1' => 'Only some members of',
 'qq_section2' => 'have access to this section',
 'site_reference' => 'referred sites.',
