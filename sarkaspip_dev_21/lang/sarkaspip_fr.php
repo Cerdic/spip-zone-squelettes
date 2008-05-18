@@ -427,7 +427,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_mini_agenda_resume_2' => 'Voulez-vous afficher le r&eacute;sum&eacute; ?',
 		'cfg_inf_sommaire_secteurs' => 'Voulez-vous afficher la liste des secteurs dans la page sommaire ?',
 		'cfg_inf_sommaire_articles' => 'Voulez-vous afficher la liste des articles r&eacute;cents dans la page sommaire ? Vous pourrez ensuite choisir le nombre maximal d\'articles affich&eacute;s et ajuster la taille de leur introduction.',
-		'cfg_inf_herbier_pagination' => 'Choisissez le mod&egrave;le de pagination de votre herbier ainsi que le nombre d\'&eacute;l&eacute;ments affich&eacute;s dans chaque page.',
 		'cfg_inf_copyright_site' => 'D&eacute;sirez vous afficher le copyright de votre site?<br />(&copy;, ann&eacute;e de publication du 1<sup>er</sup> article et ann&eacute;e en cours) ',
 		'cfg_inf_licence_site' => 'Licence du site. Elle s\'affichera &agrave; droite de votre copyright.<br />(laissez vide pour ne rien afficher)',
 		'cfg_inf_version_spip' => 'D&eacute;sirez vous afficher la version de SPIP install&eacute;e ?',
@@ -453,6 +452,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_rubrique_images' => 'Voulez-vous afficher le portfolio des images qui ne sont pas incluses dans la description de la rubrique ?',
 		'cfg_inf_rubrique_articles' => 'Voulez-vous afficher la liste des articles publi&eacute;s dans la rubrique ? Si oui, vous pourrez ajuster la taille de l\'introduction des articles et les param&egrave;tres de la pagination.',
 		'cfg_inf_pagination_bande' => 'Choisissez la position de la bande de pagination.',
+		'cfg_inf_pagination' => 'Choisissez le mod&egrave;le de pagination, le nombre d\'&eacute;l&eacute;ments affich&eacute;s dans chaque page et la position de la bande de pagination.',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
