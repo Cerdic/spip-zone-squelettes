@@ -426,7 +426,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		Si vous choisissez d\'afficher ce r&eacute;sum&eacute;, vous pouvez d&eacute;finir, d\'une part, le nombre maximal d\'&eacute;v&eacute;nements affich&eacute;s, et d\'autre part, la p&eacute;riode &agrave; prendre en compte.',
 		'cfg_inf_mini_agenda_resume_2' => 'Voulez-vous afficher le r&eacute;sum&eacute; ?',
 		'cfg_inf_sommaire_secteurs' => 'Voulez-vous afficher la liste des secteurs dans la page sommaire ?',
-		'cfg_inf_sommaire_articles' => 'Voulez-vous afficher la liste des articles r&eacute;cents dans la page sommaire ? Vous pourrez ensuite choisir le nombre maximal d\'articles affich&eacute;s',
+		'cfg_inf_sommaire_articles' => 'Voulez-vous afficher la liste des articles r&eacute;cents dans la page sommaire ? Vous pourrez ensuite choisir le nombre maximal d\'articles affich&eacute;s et ajuster la taille de leur introduction.',
 		'cfg_inf_herbier_pagination' => 'Choisissez le mod&egrave;le de pagination de votre herbier ainsi que le nombre d\'&eacute;l&eacute;ments affich&eacute;s dans chaque page.',
 		'cfg_inf_copyright_site' => 'D&eacute;sirez vous afficher le copyright de votre site?<br />(&copy;, ann&eacute;e de publication du 1<sup>er</sup> article et ann&eacute;e en cours) ',
 		'cfg_inf_licence_site' => 'Licence du site. Elle s\'affichera &agrave; droite de votre copyright.<br />(laissez vide pour ne rien afficher)',
@@ -451,7 +451,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_rubrique_filles' => 'Voulez-vous afficher la liste des rubriques filles suite &agrave; la description de la rubrique ?',
 		'cfg_inf_rubrique_docs' => 'Voulez-vous afficher les documents joints qui ne sont pas inclus dans la description de la rubrique ?',
 		'cfg_inf_rubrique_images' => 'Voulez-vous afficher le portfolio des images qui ne sont pas incluses dans la description de la rubrique ?',
-		'cfg_inf_rubrique_articles' => 'Voulez-vous afficher la liste des articles publi&eacute;s dans la rubrique ? Si oui, vous pourrez d&eacute;finir le pas de pagination associ&eacute;.',
+		'cfg_inf_rubrique_articles' => 'Voulez-vous afficher la liste des articles publi&eacute;s dans la rubrique ? Si oui, vous pourrez ajuster la taille de l\'introduction des articles et les param&egrave;tres de la pagination.',
 		'cfg_inf_pagination_bande' => 'Choisissez la position de la bande de pagination.',
 
 // Labels des items de choix
@@ -533,6 +533,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_bande_pos_1' => 'En haut de la page',
 		'cfg_lbl_bande_pos_2' => 'En bas de la page',
 		'cfg_lbl_bande_pos_3' => 'En haut et en bas de la page',
+		'cfg_lbl_intro_article' => 'Taille maximale de l\'introduction d\'un article',
 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',

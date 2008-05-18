@@ -2,6 +2,8 @@
 <!-- Introduction d'un article affiche dans la liste des articles recents, des articles publies dans une rubrique...
 	Recoit en argument :
 		- id_article: id de l'article concerne
+		- afficher_mere: indicateur d'affichage ou pas de la rubrique mere de l'article concerne
+		- taille_introduction: taille maximum affichee par la balise #INTRODUCTION de l'article
 -->
 ]
 <BOUCLE_article_intro(ARTICLES) {id_article}>
@@ -16,11 +18,14 @@
 			</BOUCLE_auteurs_article>
 			</B_auteurs_article>
 		</div> <!-- Fin detail -->
+		[(#ENV{afficher_mere}|=={oui}|?{' '})
+			[(#INCLURE{fond=noisettes/inc_rubrique_mere}{id_rubrique})]
+		]
 		[<div class="surtitre">(#SURTITRE)</div>]
 		[<a class="titre" href="#URL_ARTICLE" title="<:sarkaspip:lire_suite_article:>">(#TITRE|supprimer_numero)</a>]
 		[<div class="soustitre">(#SOUSTITRE)</div>]
 		<div class="introduction">
-			[(#INTRODUCTION|typo_couleur)]
+			[(#INTRODUCTION{#ENV{taille_introduction}}|typo_couleur)]
 			<br /><br />
 			<a class="suite" href="#URL_ARTICLE"><:sarkaspip:lire_suite_article:></a>
 		</div> <!-- Fin introduction -->
