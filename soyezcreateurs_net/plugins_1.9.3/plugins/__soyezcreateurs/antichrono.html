@@ -26,7 +26,7 @@
 	<B_breves>
 		<h2><:breves:>[ ((#TITRE))]</h2>
 		<ul>
-		<BOUCLE_breves(BREVES) {id_secteur} {par date} {inverse} {0,15}>
+		<BOUCLE_breves(BREVES) {id_secteur} {!par date} {0,15}>
 			<li class="menu-item"><a href="#URL_BREVE"[ title="(#DATE|affdate|attribut_html)"]>[(#TITRE)]</a></li>
 		</BOUCLE_breves>
 		</ul>
@@ -39,18 +39,18 @@
 <p><:pyrat:voirle:> <a href="plan.html"><:plan_site:></a>.</p>
 <BOUCLE_ExclureRubriquesDuPlan(RUBRIQUES){titre_mot=PasDansPlan}><BOUCLE_ExclureArticlesDuPlan(ARTICLES){branche}{doublons articles}></BOUCLE_ExclureArticlesDuPlan></BOUCLE_ExclureRubriquesDuPlan>
 
-				<BOUCLE_plus_vieux(ARTICLES) {lang}{par date}{inverse} {0,1} {doublons articles}>
+				<BOUCLE_plus_vieux(ARTICLES) {lang}{!par date} {0,1} {doublons articles}>
 				<h2>[(#DATE|annee)]</h2>
 				<h3>[(#DATE|nom_mois)]</h3>
 				<ul>
 				<li>[<span class="date">(#DATE|affdate)</span>]&nbsp;: <a href="#URL_ARTICLE"[ hreflang="(#LANG)"][ title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE)]</a></li>
 
-				<BOUCLE_meme_mois(ARTICLES) {par date} {inverse}{mois_relatif=0} {doublons articles}>
+				<BOUCLE_meme_mois(ARTICLES) {!par date}{mois_relatif=0} {doublons articles}>
 				<li>[<span class="date">(#DATE|affdate)</span>]&nbsp;: <a href="#URL_ARTICLE"[ hreflang="(#LANG)"][ title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE)]</a></li>
 				</BOUCLE_meme_mois>
 				</ul>
 
-					<BOUCLE_suivant_meme_annee(ARTICLES) {par date}{inverse} {annee_relatif=0} {doublons articles} {0,1}>
+					<BOUCLE_suivant_meme_annee(ARTICLES) {!par date} {annee_relatif=0} {doublons articles} {0,1}>
 					<h3>[(#DATE|nom_mois)]</h3>
 					<ul>
 					<li>[<span class="date">(#DATE|affdate)</span>]&nbsp;: <a href="#URL_ARTICLE"[ hreflang="(#LANG)"][ title="(#DESCRIPTIF|textebrut|attribut_html)"]>[(#TITRE)]</a></li>
