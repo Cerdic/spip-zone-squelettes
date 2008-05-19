@@ -4,11 +4,17 @@
 <BOUCLE_smenuspipr(RUBRIQUES){racine}{id_rubrique!==#RUBRIQUE_SPECIALISEE}{par num titre}>
 			<li<BOUCLE_smenr(RUBRIQUES){id_parent}{0,1}> class="smenu"</BOUCLE_smenr>>
 				<a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+				[(#CONFIG{sarkaspip_noisettes/menu_articles, 0}|=={1}|?{' '})
+					<INCLURE{fond=noisettes/inc_nav_articles_1}{id_rubrique}>
+				]
 				<B_smenuspip>
 					<ul>
 				<BOUCLE_smenuspip(RUBRIQUES){id_parent}{par num titre}>
 					<li<BOUCLE_smen(RUBRIQUES){id_parent}{0,1}> class="smenu"</BOUCLE_smen>>
 						<a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+						[(#CONFIG{sarkaspip_noisettes/menu_articles, 0}|=={1}|?{' '})
+							<INCLURE{fond=noisettes/inc_nav_articles_1}{id_rubrique}>
+						]
 						<BOUCLE_ssmenu(boucle_smenuspip)></BOUCLE_ssmenu>
 					</li>
 				</BOUCLE_smenuspip>
