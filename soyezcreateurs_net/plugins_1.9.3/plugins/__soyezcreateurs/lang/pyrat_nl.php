@@ -167,6 +167,7 @@ $GLOBALS['i18n_pyrat_nl'] = array(
 'savoirpluscritere' => 'Meer op het criterium weten',
 'sommaire' => 'Overzicht',
 'sedna' => 'Sedna (RSS reader)',
+'syndiquer_agenda' => 'Syndiquer l\'agenda',
 
 //T
 'tousarticlesantichrono' => 'Alle artikelen in anti-chronologische volgorde',
