@@ -7,7 +7,7 @@ version="1.0"[ encoding="(#CHARSET)"]?>
 >
 
 <channel[ xml:lang="(#LANG)"]>
-	<title><:pyrat:agenda:>[(#NOM_SITE_SPIP|texte_backend)]</title>
+	<title><:pyrat:agenda:>[ (#NOM_SITE_SPIP|supprimer_tags|texte_backend)]</title>
 	<link>#URL_SITE_SPIP/</link>
 	[<description>(#DESCRIPTIF_SITE_SPIP|supprimer_tags|texte_backend)</description>]
 	<language>#LANG</language>
@@ -22,7 +22,7 @@ version="1.0"[ encoding="(#CHARSET)"]?>
 	</image>
 ]
 
-<BOUCLE_agenda(RUBRIQUES){titre_mot=Agenda}{id_parent=0}>
+<BOUCLE_agenda(RUBRIQUES){titre_mot=Agenda}{id_parent=0}{branche ?}>
 
 <BOUCLE_AgendaDerniersAjouts(EVENEMENTS){statut=publie}{branche}{par date_debut}{0,10}{date_debut>=(#ENV{date}|affdate{'Y-m-d'})}>
 	<BOUCLE_DernierEvenementArticle(ARTICLES){id_article}>
