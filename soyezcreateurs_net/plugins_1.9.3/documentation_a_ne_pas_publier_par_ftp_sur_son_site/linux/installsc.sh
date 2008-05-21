@@ -20,7 +20,7 @@ svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/couteau_suisse
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/crayons
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/enluminures_typographiques_v2
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/fonctions_images
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/forms/forms_et_tables_1_9_1
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/forms/forms_et_tables_1_9_3
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_test_/Lecteur_multimedia
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_test_/sedna
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/sitemap
