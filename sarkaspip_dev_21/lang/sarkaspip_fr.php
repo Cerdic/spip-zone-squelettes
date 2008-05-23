@@ -453,6 +453,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_rubrique_articles' => 'Voulez-vous afficher la liste des articles publi&eacute;s dans la rubrique ? Si oui, vous pourrez ajuster la taille de l\'introduction des articles et les param&egrave;tres de la pagination.',
 		'cfg_inf_pagination_bande' => 'Choisissez la position de la bande de pagination.',
 		'cfg_inf_pagination' => 'Choisissez le mod&egrave;le de pagination, le nombre d\'&eacute;l&eacute;ments affich&eacute;s dans chaque page et la position de la bande de pagination.',
+		'cfg_inf_menu_option1' => 'Pour le menu s&eacute;lectionn&eacute;, vous avez la possibilit&eacute; de choisir une des options propos&eacute;e ci-dessous.',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
@@ -534,6 +535,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_bande_pos_2' => 'En bas de la page',
 		'cfg_lbl_bande_pos_3' => 'En haut et en bas de la page',
 		'cfg_lbl_intro_article' => 'Taille maximale de l\'introduction d\'un article',
+		'cfg_lbl_menu_option1_1' => 'N\'afficher aucune option suppl&eacute;mentaire',
+		'cfg_lbl_menu_option1_2' => 'Afficher la liste des articles de chaque rubrique',
+		'cfg_lbl_menu_option1_3' => 'Si la rubrique ne contient qu\'un seul article, faire pointer le titre de cette rubrique vers la page de l\'article',
 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',
