@@ -391,6 +391,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_rubrique_docs' => 'Documents joints',
 		'cfg_lgd_rubrique_images' => 'Portfolio',
 		'cfg_lgd_rubrique_articles' => 'Articles publi&eacute;s',
+		'cfg_lgd_agenda_id' => 'Secteur',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -454,6 +455,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_pagination_bande' => 'Choisissez la position de la bande de pagination.',
 		'cfg_inf_pagination' => 'Choisissez le mod&egrave;le de pagination, le nombre d\'&eacute;l&eacute;ments affich&eacute;s dans chaque page et la position de la bande de pagination.',
 		'cfg_inf_menu_option1' => 'Pour le menu s&eacute;lectionn&eacute;, vous avez la possibilit&eacute; de choisir une des options propos&eacute;e ci-dessous.',
+		'cfg_inf_agenda_id' => 'L\'agenda est mat&eacute;rialis&eacute; par un secteur (rubrique de plus haut niveau); les articles de cette rubrique sont alors consid&eacute;r&eacute;s comme des &eacute;v&eacute;nements. 
+		Choisissez donc le secteur qui deviendra votre agenda.',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
@@ -538,6 +541,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_menu_option1_1' => 'N\'afficher aucune option suppl&eacute;mentaire',
 		'cfg_lbl_menu_option1_2' => 'Afficher la liste des articles de chaque rubrique',
 		'cfg_lbl_menu_option1_3' => 'Si la rubrique ne contient qu\'un seul article, faire pointer le titre de cette rubrique vers la page de l\'article',
+		'cfg_lbl_agenda_secteurs' => 'Liste des secteurs possibles',
 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',

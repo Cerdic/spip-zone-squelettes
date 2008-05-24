@@ -165,8 +165,10 @@ function calcul_rubrique($mot, $type, $fond) {
 		}
 	}
 	else if ($type == 'cfg') {
-		if (function_exists('lire_config'))
-			$id_rubrique = lire_config($fond.'/id_'.$mot);
+		if (function_exists('lire_config')) {
+			$valeur = lire_config($fond.'/rubrique_'.$mot);
+			if ($valeur != NULL) $id_rubrique = $valeur;
+		}
 	}
 	
 	return $id_rubrique;
