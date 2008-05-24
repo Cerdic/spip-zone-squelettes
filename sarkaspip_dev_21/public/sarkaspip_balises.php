@@ -116,17 +116,29 @@ function balise_RUBRIQUE_SPECIALISEE($p) {
 
 function calcul_rubrique_specialisee($mot) {
 
-	static $mots_reserves = array('agenda', 'galerie', 'annonce', 'herbier');
+	$mots_reserves = explode(':', _SARKASPIP_MOT_RUBRIQUES_SPE);
+    if (defined(_PERSO_MOT_RUBRIQUES_SPE))
+    	if (_PERSO_MOT_RUBRIQUES_SPE != '')
+	    	$mots_reserves = array_merge($mots_reserves, explode(':', _PERSO_MOT_RUBRIQUES_SPE));
+	$types_reserves = explode(':', _SARKASPIP_TYPE_RUBRIQUES_SPE);
+    if (defined(_PERSO_TYPE_RUBRIQUES_SPE))
+    	if (_PERSO_TYPE_RUBRIQUES_SPE != '')
+	    	$types_reserves = array_merge($types_reserves, explode(':', _PERSO_TYPE_RUBRIQUES_SPE));
+	$fonds_reserves = explode(':', _SARKASPIP_FOND_RUBRIQUES_SPE);
+    if (defined(_PERSO_FOND_RUBRIQUES_SPE))
+    	if (_PERSO_FOND_RUBRIQUES_SPE != '')
+	    	$fonds_reserves = array_merge($fonds_reserves, explode(':', _PERSO_FOND_RUBRIQUES_SPE));
+	
 	$id = NULL;
-
 	if (in_array($mot, $mots_reserves)) {
-	    $id = calcul_rubrique($mot);
+		$cle = array_search($mot, $mots_reserves);
+	    $id = calcul_rubrique($mot, $types_reserves[$cle], $fonds_reserves[$cle]);
 	}
 	else {
 		$id .= '^(';
 		reset($mots_reserves);
 		while (list($cle, $valeur) = each($mots_reserves)) {
-			$id .= (($cle != 0) ? '|' : '').calcul_rubrique($valeur); 
+			$id .= (($cle != 0) ? '|' : '').calcul_rubrique($valeur, $types_reserves[$cle], $fonds_reserves[$cle]); 
 		}
 		$id .= ')$';
 	}
@@ -134,22 +146,29 @@ function calcul_rubrique_specialisee($mot) {
 	return $id;
 }
 
-function calcul_rubrique($mot) {
+function calcul_rubrique($mot, $type, $fond) {
 
 	$id_rubrique = 0;
 	if (!$mot)
 		return $id_rubrique;
 
-	$select = array('id_rubrique');
-	$from = array('spip_mots_rubriques AS t1', 'spip_mots AS t2', 'spip_groupes_mots AS t3');
-	$where = array('t3.titre='.sql_quote('squelette_habillage'),
-				   't3.id_groupe=t2.id_groupe',
-				   't2.titre='.sql_quote($mot),
- 				   't2.id_mot=t1.id_mot');
-	$result = sql_select($select, $from, $where);
-	if ($row = sql_fetch($result)) {
-		$id_rubrique = $row['id_rubrique'];
+	if ($type == 'mot') {
+		$select = array('id_rubrique');
+		$from = array('spip_mots_rubriques AS t1', 'spip_mots AS t2', 'spip_groupes_mots AS t3');
+		$where = array('t3.titre='.sql_quote('squelette_habillage'),
+					   't3.id_groupe=t2.id_groupe',
+					   't2.titre='.sql_quote($mot),
+					   't2.id_mot=t1.id_mot');
+		$result = sql_select($select, $from, $where);
+		if ($row = sql_fetch($result)) {
+			$id_rubrique = $row['id_rubrique'];
+		}
 	}
+	else if ($type == 'cfg') {
+		if (function_exists('lire_config'))
+			$id_rubrique = lire_config($fond.'/id_'.$mot);
+	}
+	
 	return $id_rubrique;
 }
 

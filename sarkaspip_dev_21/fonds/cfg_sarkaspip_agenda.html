@@ -61,6 +61,17 @@
 <form method="post" action="#SELF"><div>
 	[(#ENV{_cfg_}|form_hidden)]
 	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_agenda_id:></legend>
+		<p><:sarkaspip:cfg_inf_agenda_id:></p>
+		<label><:sarkaspip:cfg_lbl_agenda_secteurs:></label>
+		<select name="id_agenda">
+			<BOUCLE_secteurs(RUBRIQUES){racine}{id_rubrique!==#RUBRIQUE_SPECIALISEE}{par num titre}{par titre}>
+				[<option value="#ID_RUBRIQUE" [(#ENV{id_agenda}|=={#ID_RUBRIQUE}|?{selected="selected"})]>(#TITRE|supprimer_numero|attribut_html)</option>]
+			</BOUCLE_secteurs>
+		</select>
+	</fieldset>
+
+	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_agenda_type:></legend>
 		<p><:sarkaspip:cfg_inf_agenda_type:></p>
 		<label>
