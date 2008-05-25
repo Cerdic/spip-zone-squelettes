@@ -325,6 +325,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_titre_sommaire' => 'Sarka-SPIP - Configuration de la page sommaire',
 		'cfg_titre_rubrique' => 'Sarka-SPIP - Configuration de la page rubrique',
 		'cfg_titre_herbier' => 'Sarka-SPIP - Configuration de la page herbier',
+		'cfg_titre_plan' => 'Sarka-SPIP - Configuration de la page plan du site',
 
 // Titre des liens des pages
 		'sarkaspip_accueil' => 'Accueil',
@@ -336,6 +337,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'sarkaspip_sommaire' => 'Sommaire',
 		'sarkaspip_rubrique' => 'Rubrique',
 		'sarkaspip_herbier' => 'Herbier',
+		'sarkaspip_plan' => 'Plan du site',
 		
 // Descriptif des pages
 		'cfg_descr_accueil' => 'Vous &ecirc;tes sur la page d\'accueil de la configuration du squelette Sarka-SPIP.',
@@ -349,6 +351,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_descr_sommaire' => 'Le corps de la page sommaire permet d\'afficher plusieurs blocs d\'information : l\'&eacute;dito, la liste des secteurs et les articles r&eacute;cemment publi&eacute;s. Cette page permet de configurer l\'affichage des deux derniers blocs.',
 		'cfg_descr_rubrique' => 'Le corps de la page rubrique permet d\'afficher plusieurs blocs d\'information : la description, les rubriques filles, les documents et images joints et les articles publi&eacute;s dans la rubrique. Cette page permet de configurer l\'affichage tous ces blocs.',
 		'cfg_descr_herbier' => 'Le corps de la page herbier propose une liste pagin&eacute;e de sites et agr&eacute;ment&eacute;e de vignettes. Cette page de configuration vous permet de choisir les caract&eacute;ristiques de votre herbier.',
+		'cfg_descr_plan' => 'Le corps de la page plan du site pr&eacute;sente la liste des articles publi&eacute;s dans le site. Cette liste peut &ecirc;tre tri&eacute;e par rubrique, par auteur ou par date. Cette page de configuration vous permet d\'en choisir les caract&eacute;ristiques de tri.',
 
 // Titre des boites
 		'cfg_boite_accueil' => 'Accueil',
@@ -360,6 +363,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_boite_sommaire' => 'Sommaire',
 		'cfg_boite_rubrique' => 'Rubrique',
 		'cfg_boite_herbier' => 'Herbier',
+		'cfg_boite_plan' => 'Plan du site',
 
 // Legendes des blocs contenus dans chaque boite
 		'cfg_lgd_layout' => 'Layout',
@@ -392,6 +396,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_rubrique_images' => 'Portfolio',
 		'cfg_lgd_rubrique_articles' => 'Articles publi&eacute;s',
 		'cfg_lgd_secteur_id' => 'Secteur',
+		'cfg_lgd_plan_pagination' => 'Pagination',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -458,6 +463,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_agenda_id' => 'L\'agenda est mat&eacute;rialis&eacute; par un secteur (rubrique de plus haut niveau); les articles de cette rubrique sont alors consid&eacute;r&eacute;s comme des &eacute;v&eacute;nements. 
 		Choisissez donc le secteur qui deviendra votre agenda.',
 		'cfg_inf_herbier_id' => 'L\'herbier est mat&eacute;rialis&eacute; par les sites r&eacute;f&eacute;renc&eacute;s d\'un secteur (rubrique de plus haut niveau). Choisissez donc le secteur qui deviendra votre herbier.',
+		'cfg_inf_plan_pagination' => 'La page Plan du site est compos&eacute;e de trois onglets assimilables &agrave; une bande de pagination. Les onglets permettent de pr&eacute;senter la liste des articles soit par date, soit par rubrique, soit par auteur.
+		Les articles sont donc tri&eacute;s alphab&eacute;tiquemet ou/et chronologiquement. Le tri alphab&eacute;tique est toujours croissant, par contre, le sens du tri chronologique peut &ecirc;tre choisi. La position de la bande d\'onglets est aussi param&eacute;trable.',
+		'cfg_inf_plan_sens_tri' => 'Choisissez l\'ordre de tri des dates.',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',

@@ -1,0 +1,64 @@
+<!-- titre=<:sarkaspip:cfg_titre_plan:> -->
+<!-- descriptif=<:sarkaspip:cfg_descr_plan:> -->
+<!-- boite=<:sarkaspip:cfg_boite_plan:> -->
+<!-- autoriser=webmestre -->
+<!-- refus=Seuls les webmestres du site sont autoris&#233;s &#224; modifier ces param&#232;tres. -->
+<!-- onglet=sarkaspip_accueil -->
+<!-- liens*=sarkaspip:sarkaspip_accueil -->
+<!-- liens*=sarkaspip:sarkaspip_layout -->
+<!-- liens*=sarkaspip:sarkaspip_bandeau -->
+<!-- liens*=sarkaspip:sarkaspip_pied -->
+<!-- liens*=sarkaspip:sarkaspip_noisettes -->
+<!-- liens*=sarkaspip:sarkaspip_sommaire -->
+<!-- liens*=sarkaspip:sarkaspip_rubrique -->
+<!-- liens*=sarkaspip:sarkaspip_plan -->
+<!-- liens*=sarkaspip:sarkaspip_agenda -->
+<!-- liens*=sarkaspip:sarkaspip_herbier -->
+
+#CACHE{0}
+
+<form method="post" action="#SELF"><div>
+	[(#ENV{_cfg_}|form_hidden)]
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_plan_pagination:></legend>
+		<p><:sarkaspip:cfg_inf_plan_pagination:></p>
+		<p><:sarkaspip:cfg_inf_plan_sens_tri:></p>
+		<label>
+			<input type="radio" name="senstri_date" value="0" [(#ENV{senstri_date, 1}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_tri_chrono:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="senstri_date" value="1" [(#ENV{senstri_date, 1}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_tri_antichrono:>
+		</label>
+		<p><:sarkaspip:cfg_inf_pagination_bande:></p>
+		<label>
+			<input type="radio" name="position_pagination" value="1" [(#ENV{position_pagination, 1}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_bande_pos_1:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="position_pagination" value="2" [(#ENV{position_pagination, 1}|=={2}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_bande_pos_2:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="position_pagination" value="3" [(#ENV{position_pagination, 1}|=={3}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_bande_pos_3:>
+		</label>
+		<br />
+	</fieldset>
+	
+	<br />
+	<input type="submit" name="_cfg_ok" class="fondo" value="<:sarkaspip:valider:>" />
+	<input type="submit" name="_cfg_delete" class="fondo" value="<:sarkaspip:effacer:>" />
+</div></form>
+
+[(#CONFIG{sarkaspip_accueil/mode_debug, non}|=={oui}|?{' '})
+	<div id="bloc_debug">
+		<br />
+		>> Debug - Etat des variables du fond Plan:<br />
+		#CFG_ARBO{sarkaspip_plan}
+	</div>
+]
