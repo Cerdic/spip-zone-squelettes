@@ -7,6 +7,7 @@ $GLOBALS['marqueur'] .= ":".md5($GLOBALS['meta']['boutonstexte'].$GLOBALS['meta'
 
 define('_DUREE_CACHE_DEFAUT', 30*24*3600); // pris en compte à partir de http://trac.rezo.net/trac/spip/changeset/10121
 define('_URLS_PROPRES_MAX', 60); // pris en compte à partire de http://trac.rezo.net/trac/spip/changeset/10346 
+define('_TRI_ARTICLES_RUBRIQUE', 'date DESC'); // cf http://trac.rezo.net/trac/spip/changeset/11492
 
 global $couleurs_spip;
 $couleurs_spip[] = array(
