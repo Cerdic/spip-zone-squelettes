@@ -4,24 +4,25 @@
 		- sinon (tout autre cas, par exemple rubrique vide) alors url rubrique = url rubrique
 	 Arguments:
 		- id_rubrique: id de la rubrique concernee
+		- classe: permet d'exposer la rubrique si besoin (menu 3)
 -->]
 <BOUCLE_contexte_rubrique(RUBRIQUES){id_rubrique}>
 	[(#REM) <!-- test sur nombre d'articles -->]
 	<BOUCLE_articles_plusdun(ARTICLES){id_rubrique}{1,1}>
-		[(#_contexte_rubrique:URL_RUBRIQUE)]
+		<a[ href="(#_contexte_rubrique:URL_RUBRIQUE)]"[ class="(#ENV{classe})"]>
 	</BOUCLE_articles_plusdun>
 	</B_articles_plusdun>
 		<BOUCLE_articles_unseul(ARTICLES){id_rubrique}{0,1}>
 			[(#REM) <!-- test sur presence sous-rubriques -->]
 			<BOUCLE_test_sousrubrique(RUBRIQUES){id_parent}>
 			</BOUCLE_test_sousrubrique>
-					[(#_contexte_rubrique:URL_RUBRIQUE)]
+				<a[ href="(#_contexte_rubrique:URL_RUBRIQUE)]"[ class="(#ENV{classe})"]>
 			</B_test_sousrubrique>
-					[(#_articles_unseul:URL_ARTICLE)]
+				<a[ href="(#_articles_unseul:URL_ARTICLE)]"[ class="(#ENV{classe})"]>
 			<//B_test_sousrubrique>
 		</BOUCLE_articles_unseul>
 		</B_articles_unseul>
-				[(#_contexte_rubrique:URL_RUBRIQUE)]
+			<a[ href="(#_contexte_rubrique:URL_RUBRIQUE)]"[ class="(#ENV{classe})"]>
 		<//B_articles_unseul>
 	<//B_articles_plusdun>
 </BOUCLE_contexte_rubrique>
