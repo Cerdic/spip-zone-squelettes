@@ -391,7 +391,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_rubrique_docs' => 'Documents joints',
 		'cfg_lgd_rubrique_images' => 'Portfolio',
 		'cfg_lgd_rubrique_articles' => 'Articles publi&eacute;s',
-		'cfg_lgd_agenda_id' => 'Secteur',
+		'cfg_lgd_secteur_id' => 'Secteur',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -457,6 +457,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_menu_option1' => 'Pour le menu s&eacute;lectionn&eacute;, vous avez la possibilit&eacute; de choisir une des options propos&eacute;e ci-dessous.',
 		'cfg_inf_agenda_id' => 'L\'agenda est mat&eacute;rialis&eacute; par un secteur (rubrique de plus haut niveau); les articles de cette rubrique sont alors consid&eacute;r&eacute;s comme des &eacute;v&eacute;nements. 
 		Choisissez donc le secteur qui deviendra votre agenda.',
+		'cfg_inf_herbier_id' => 'L\'herbier est mat&eacute;rialis&eacute; par les sites r&eacute;f&eacute;renc&eacute;s d\'un secteur (rubrique de plus haut niveau). Choisissez donc le secteur qui deviendra votre herbier.',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
