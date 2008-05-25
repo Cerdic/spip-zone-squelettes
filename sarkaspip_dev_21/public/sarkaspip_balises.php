@@ -152,7 +152,7 @@ function calcul_rubrique($mot, $type, $fond) {
 	if (!$mot)
 		return $id_rubrique;
 
-	if ($type == 'mot') {
+	if ($type == 'motcle') {
 		$select = array('id_rubrique');
 		$from = array('spip_mots_rubriques AS t1', 'spip_mots AS t2', 'spip_groupes_mots AS t3');
 		$where = array('t3.titre='.sql_quote('squelette_habillage'),
@@ -164,7 +164,7 @@ function calcul_rubrique($mot, $type, $fond) {
 			$id_rubrique = $row['id_rubrique'];
 		}
 	}
-	else if ($type == 'cfg') {
+	else if ($type == 'config') {
 		if (function_exists('lire_config')) {
 			$valeur = lire_config($fond.'/rubrique_'.$mot);
 			if ($valeur != NULL) $id_rubrique = $valeur;

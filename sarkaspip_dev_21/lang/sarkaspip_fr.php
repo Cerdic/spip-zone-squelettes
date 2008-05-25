@@ -541,7 +541,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_menu_option1_1' => 'N\'afficher aucune option suppl&eacute;mentaire',
 		'cfg_lbl_menu_option1_2' => 'Afficher la liste des articles de chaque rubrique',
 		'cfg_lbl_menu_option1_3' => 'Si la rubrique ne contient qu\'un seul article, faire pointer le titre de cette rubrique vers la page de l\'article',
-		'cfg_lbl_agenda_secteurs' => 'Liste des secteurs possibles',
+		'cfg_lbl_liste_secteurs' => 'Liste des secteurs possibles',
 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',

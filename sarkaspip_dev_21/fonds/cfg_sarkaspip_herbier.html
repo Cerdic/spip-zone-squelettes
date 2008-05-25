@@ -19,6 +19,22 @@
 <form method="post" action="#SELF"><div>
 	[(#ENV{_cfg_}|form_hidden)]
 	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_herbier_id:></legend>
+		<p><:sarkaspip:cfg_inf_herbier_id:></p>
+		<B_secteurs>
+			<label><:sarkaspip:cfg_lbl_liste_secteurs:></label>
+			<select name="rubrique_herbier">
+				<BOUCLE_agenda(RUBRIQUES){id_rubrique=#ENV{rubrique_herbier, 0}}>
+					[<option value="#ID_RUBRIQUE" selected="selected">(#TITRE|supprimer_numero|attribut_html)</option>]
+				</BOUCLE_agenda>
+		<BOUCLE_secteurs(RUBRIQUES){racine}{id_rubrique!==#RUBRIQUE_SPECIALISEE}{par num titre}{par titre}>
+				[<option value="#ID_RUBRIQUE">(#TITRE|supprimer_numero|attribut_html)</option>]
+		</BOUCLE_secteurs>
+			</select>
+		</B_secteurs>
+	</fieldset>
+
+	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_herbier_pagination:></legend>
 		<p><:sarkaspip:cfg_inf_pagination:></p>
 		<label>
