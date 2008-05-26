@@ -350,7 +350,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_descr_agenda' => 'L\'agenda inclus dans Sarka-SPIP permet d\'afficher un listing annuel ainsi qu\'un mini calendrier mensuel. Les caract&eacute;ristiques de ces deux affichages sont configurables dans cette page.',
 		'cfg_descr_sommaire' => 'Le corps de la page sommaire permet d\'afficher plusieurs blocs d\'information : l\'&eacute;dito, la liste des secteurs et les articles r&eacute;cemment publi&eacute;s. Cette page permet de configurer l\'affichage des deux derniers blocs.',
 		'cfg_descr_rubrique' => 'Le corps de la page rubrique permet d\'afficher plusieurs blocs d\'information : la description, les rubriques filles, les documents et images joints et les articles publi&eacute;s dans la rubrique. Cette page permet de configurer l\'affichage tous ces blocs.',
-		'cfg_descr_herbier' => 'Le corps de la page herbier propose une liste pagin&eacute;e de sites et agr&eacute;ment&eacute;e de vignettes. Cette page de configuration vous permet de choisir les caract&eacute;ristiques de votre herbier.',
+		'cfg_descr_herbier' => 'Le corps de la page herbier propose une liste pagin&eacute;e de sites, agr&eacute;ment&eacute;e de vignettes. Cette page est affich&eacute;e selon deux mod&egrave;les: une liste (description et vignette) et un panorama de vignettes uniquement. 
+		Cette page de configuration vous permet de choisir les caract&eacute;ristiques de chaque mod&egrave;le de votre herbier.',
 		'cfg_descr_plan' => 'Le corps de la page plan du site pr&eacute;sente la liste des articles publi&eacute;s dans le site. Cette liste peut &ecirc;tre tri&eacute;e par rubrique, par auteur ou par date. Cette page de configuration vous permet d\'en choisir les caract&eacute;ristiques de tri.',
 
 // Titre des boites
@@ -388,7 +389,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_mini_agenda' => 'Mini calendrier mensuel',
 		'cfg_lgd_sommaire_secteurs' => 'Liste des secteurs',
 		'cfg_lgd_sommaire_articles' => 'Liste des articles r&eacute;cents',
-		'cfg_lgd_herbier_pagination' => 'Pagination',
+		'cfg_lgd_herbier_pagination_1' => 'Liste - Pagination',
+		'cfg_lgd_herbier_pagination_2' => 'Panorama - Pagination',
 		'cfg_lgd_accueil_intro' => 'Pr&eacute;sentation',
 		'cfg_lgd_accueil_debug' => 'Debug',
 		'cfg_lgd_rubrique_filles' => 'Rubriques filles',

@@ -17,6 +17,14 @@
 	
 	<div id="wrapper">
 		<div id="content">
+			<div class="bouton_herbier">
+				[(#ENV{type}|=={1}|?{' '})
+					<a id="panorama" href="[(#URL_PAGE{herbier,type=2[&id_rubrique=(#ID_RUBRIQUE)]})]" title="<:sarkaspip:lien_herbier_panorama:>">&nbsp;</a>
+				]
+				[(#ENV{type}|=={2}|?{' '})
+					<a id="liste" href="[(#URL_PAGE{herbier,type=1[&id_rubrique=(#ID_RUBRIQUE)]})]" title="<:sarkaspip:lien_herbier_liste:>">&nbsp;</a>
+				]
+			</div>
 			<h1 class="intitule_page">[(#TITRE|supprimer_numero)]</h1>	
 			<div id="herbier_#ENV{type}" class="plan">
 				<INCLURE{fond=noisettes/inc_herbier_#ENV{type}}{ajax}{id_rubrique}>
