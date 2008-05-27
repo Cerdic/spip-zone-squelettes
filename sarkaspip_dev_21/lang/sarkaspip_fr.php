@@ -164,6 +164,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 		'licence_gpl' => 'GPL',
 		'licence_site' => 'Licence &agrave; d&eacute;finir',
+		'lien_herbier_liste' => 'Herbier liste',
+		'lien_herbier_panorama' => 'Herbier panorama',
 		'lire_suite_article' => 'lire la suite de l\'article',
 		'lire_evenement_virtuel' => 'Consulter l\'&eacute;v&eacute;nement d\'origine',
 		'lundi_abrege' => 'Lu',
