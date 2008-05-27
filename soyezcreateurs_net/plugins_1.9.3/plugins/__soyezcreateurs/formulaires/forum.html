@@ -37,17 +37,11 @@
 ]
 <BOUCLE_GraverSonNom(ARTICLES){id_article=#EVAL{_request(id_article)}}{titre_mot=GraverSonNom}>
 [(#ENV{editable})
-[(#ENV**{afficher_texte}|choixsiegal{'non', ' ',''})
-[<input type="hidden" name="titre" value="(#ENV{titre})" />]
-<p class="spip_bouton"><input type="submit" value="<:forum_valider:>" /></p>]
-
-[(#ENV**{afficher_texte}|choixsiegal{'non', '',' '})
-
+	[<input type="hidden" name="titre" value="(#ENV{titre})" />]
 	<fieldset>
 	<legend><:form_pet_message_commentaire:></legend><ol>
 	[<li>(#INCLURE{fond=formulaires/forum_bloc_choix_mots}{table=#ENV*{table}}{ajouter_mot})</li>]
 
-[(#CONFIG{forums_texte}|=={oui}|?{
 	<li class='textarea'>
 	<label for='texte' style='width:100%'><:forum_texte|typo:></label>
 	<small><:info_creation_paragraphe:></small>
@@ -56,14 +50,15 @@
 	<textarea name='texte' id='texte' rows='12' cols='48'>[(#ENV{texte})]</textarea>
 	[<div class='erreur'>(#ENV**{erreurs}|table_valeur{texte})</div>]
 	</li>
-})]
 	</ol></fieldset>
+
+	<INCLURE{fond=formulaires/login_forum}{lalegend=<:pyrat:forum_prenom:>}{lelabel=<:pyrat:forum_votre_prenom:>} />
+
 	[(#REM) Piege a robots spammeurs ]
 	<p style="display: none;"><label for="nobot"><:antispam_champ_vide:></label>
 	<input type="text" name="nobot" id="nobot" value="#ENV{nobot}" size="10" /></p>
 
 	<p class="spip_bouton"><input type="submit" value="<:forum_voir_avant:>" /></p>
-]
 ]
 </BOUCLE_GraverSonNom>
 [(#ENV{editable})
@@ -79,7 +74,7 @@
 
 [(#CONFIG{forums_titre}|=={oui}|?{
 	<li class='text'><label for="titre"><:forum_titre:></label>
-	<input class='text' type="text" name="titre" id="titre"[ value="(#ENV{titre})"] size="48" />
+	<input class='text' type="text" name="titre" id="titre"[ value="(#ENV{titre})"] size="40" />
 	[<div class='erreur'>(#ENV**{erreurs}|table_valeur{titre})</div>]
 	</li>
 ,
@@ -92,7 +87,7 @@
 	<small><:info_creation_paragraphe:></small>
 	[(#ENV**{config}|table_valeur{afficher_barre}|
 		?{#VAL{texte}|barre_typo{#LANG}})]
-	<textarea name='texte' id='texte' rows='12' cols='40'>[(#ENV{texte})]</textarea>
+	<textarea name='texte' id='texte' rows='12' cols='48'>[(#ENV{texte})]</textarea>
 	[<div class='erreur'>(#ENV**{erreurs}|table_valeur{texte})</div>]
 	</li>
 })]
