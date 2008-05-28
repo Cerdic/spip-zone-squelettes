@@ -25,41 +25,8 @@
 				[<:sarkaspip:sur_web:>&nbsp;:&nbsp;<a href="#URL_SITE">(#NOM_SITE)</a>]
 				[(#FORMULAIRE_ECRIRE_AUTEUR)]
 			</div>
-			
 			[(#REM) <!-- articles publies par l'auteur --> ]
-			<B_article>
-				<div class="derniers-articles">
-					<h1 id="articles_auteur" class="en-tete"><:sarkaspip:articles_auteur:></h1>
-					
-					[(#ANCRE_PAGINATION)]
-					[<div class="pagination">(#PAGINATION)</div>]
-					
-			<BOUCLE_article(ARTICLES){id_rubrique!==#RUBRIQUE_SPECIALISEE}{id_auteur}{par date}{inverse} {pagination 10}>
-					<div class="annonce">
-						[<div class="image">(#LOGO_ARTICLE||image_reduire{150})</div>]
-						<div class="detail">[(#DATE|nom_jour)]&nbsp;[(#DATE|affdate)]<br /></div>
-						<div class="chemin">
-							<BOUCLE_rubrique_mere(RUBRIQUES){id_rubrique}>
-								[<a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
-							</BOUCLE_rubrique_mere>
-						</div> <!-- Fin chemin -->
-						[<div class="surtitre">(#SURTITRE)</div>]
-						[<a class="titre" href="#URL_ARTICLE" title="<:sarkaspip:lire_suite_article:>">(#TITRE|supprimer_numero)</a>]
-						[<div class="soustitre">(#SOUSTITRE)</div>]
-						<div class="introduction">
-							[(#INTRODUCTION|typo_couleur)]
-							<br /><br />
-							<a class="suite" href="#URL_ARTICLE"><:sarkaspip:lire_suite_article:></a>
-						</div>
-					</div>
-			</BOUCLE_article>
-			
-					[(#ANCRE_PAGINATION)]
-					[<div class="pagination">(#PAGINATION)</div>]
-					
-				</div>
-			</B_article>
-			<//B_article>
+			<INCLURE{fond=noisettes/inc_auteur_articles}{ajax}{id_auteur}>
 		</div>
 	</div>
 	
