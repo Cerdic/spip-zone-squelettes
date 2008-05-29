@@ -25,7 +25,14 @@
 			)]
 	
 			[(#REM) <!-- Recensement des evenements --> ]
-			<BOUCLE_agenda(ARTICLES){id_rubrique}{par date_redac}>
+			#SET{annee_choisie, #ENV{annee, #AUJOURDHUI|annee}}
+			[(#CONFIG{sarkaspip_agenda/mois1, 1}|=={1}|?{' '})
+			#SET{annee_choisie, #ENV{annee, #AUJOURDHUI|annee}}
+			]
+			<BOUCLE_agenda(ARTICLES)
+				{id_rubrique=#RUBRIQUE_SPECIALISEE{agenda}}
+				{agenda date_redac, periode, #GET{annee_choisie}, 1, 1, #GET{annee_choisie}, 12, 31}
+				{par date_redac}>
 				[(#ID_RUBRIQUE|agenda_recenser_evenement{
 									[(#ID_ARTICLE)], 
 									[(#DATE_REDAC)], 
