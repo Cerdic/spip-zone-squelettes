@@ -81,8 +81,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'decembre' => 'Decembre',
 		'depuis_debut' => 'depuis le d&eacute;but',
 		'dimanche_abrege' => 'Di',
-		'docu_article' => 'Documents joints &agrave; cet article',
-		'docu_rubrique' => 'Documents joints &agrave; cette rubrique',
+		'docu_article' => 'Documents joints',
+		'docu_rubrique' => 'Documents joints',
 	  
 	
 //E
@@ -223,6 +223,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'plan_site' => 'Plan du site', // redefinition item SPIP
 		'plusieurs_evenements_jour' => '&eacute;v&eacute;nements dans cette journ&eacute;e',
 		'popularite_article' => 'popularit&eacute;',
+		'portfolio' => 'portfolio',
 		'poster_message' => 'Poster un message', // redefinition item SPIP
 		'ps' => 'Post Scriptum',
 		'publie_sur_site' => 'Publi&eacute; sur le site',

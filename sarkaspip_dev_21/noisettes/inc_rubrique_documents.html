@@ -5,10 +5,14 @@
 -->
 ]
 <B_documents_rubrique>
-	<div class="doc">
-		<div id="docu_rubrique" class="en-tete"><:sarkaspip:docu_rubrique:>&nbsp;:</div>
+	<div id="documents_joints" class="portfolio">
+		<h2><:sarkaspip:docu_rubrique|ucfirst:></h2>
 <BOUCLE_documents_rubrique(DOCUMENTS documents_rubriques){id_rubrique}{extension !IN gif,jpg,png}{mode=document}{vu=non}>
-		<a href="#URL_DOCUMENT">#LOGO_DOCUMENT  #TITRE </a>
+		[(#SET{titre, [(#TITRE|texte_backend|sinon{[(#TYPE_DOCUMENT) - ][(#TAILLE|taille_en_octets)]})]})]
+		<dl>
+			<dt><a href="#URL_DOCUMENT" title="[(#TYPE_DOCUMENT) - ][(#TAILLE|taille_en_octets)]">#LOGO_DOCUMENT</a></dt>
+			[<dt>(#GET{titre})</dt>]
+		</dl>
 </BOUCLE_documents_rubrique>
-	</div> <!-- Fin doc -->
+	</div> <!-- Fin portfolio -->
 </B_documents_rubrique>
