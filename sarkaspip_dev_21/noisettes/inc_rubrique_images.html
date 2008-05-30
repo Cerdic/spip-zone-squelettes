@@ -11,7 +11,7 @@
         #SET{ratio_x,#LARGEUR|div{115}}
         #SET{ratio_y,#HAUTEUR|div{115}}
         #SET{ratio,#GET{ratio_x}|<={#GET{ratio_y}}|?{#GET{ratio_x},#GET{ratio_y}}}
-		#SET{titre, #TITRE|texte_backend|sinon{#TYPE_DOCUMENT}}
+		[(#SET{titre, [(#TITRE|texte_backend|sinon{[(#TYPE_DOCUMENT) - ][(#TAILLE|taille_en_octets)]})]})]
         [<a href="#FICHIER" class="thickbox"[ title="(#GET{titre})"]>(#FICHIER|image_reduire_par{#GET{ratio}}|image_recadre{115,115,center}|inserer_attribut{alt, #GET{titre}})</a>]
 </BOUCLE_images_rubrique>
 	</div> <!-- Fin portfolio -->
