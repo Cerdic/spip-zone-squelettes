@@ -18,74 +18,18 @@
 		<div id="content">
 			[(#REM) <!-- Contenu de l'article --> ]
 			<div class="article">
-				<a class="fonction" id="imprimer" href="#URL_PAGE{imprimer,id_article=#ID_ARTICLE}" title="<:sarkaspip:imprimer_article:>"></a>
-	
-				[(#PLUGIN{ARTICLE_PDF}|?{' '})
-						[(#MODELE{mod_bouton_pdf}{id_article})]
+				[(#REM) <!-- Titre, logo, texte de la rubrique --> ]
+				[(#INCLURE{fond=noisettes/inc_article_description}{id_article})]
+				
+				[(#REM) <!-- Documents (sauf images) du portfolio de la rubrique --> ]
+				[(#CONFIG{sarkaspip_article/position_documents, 1}|=={1}|?{' '})
+					[(#INCLURE{fond=noisettes/inc_article_documents}{id_article})]
 				]
-				
-				[<div class="#EDIT{surtitre} surtitre">(#SURTITRE)</div>]
-				[<div class="#EDIT{titre} titre">(#TITRE|supprimer_numero)</div>]
-				[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>]	
-				
-				<div class="contenu">
-					[<div class="image">(#LOGO_ARTICLE||image_reduire{150})</div>]
-					
-					<div class="detail">
-							[(#DATE|nom_jour)] [(#DATE|affdate)]<br />
-							<B_auteurs_article>
-								<:sarkaspip:par_auteur:>
-							<BOUCLE_auteurs_article(AUTEURS) {id_article} {", "}>
-								<a href="#URL_AUTEUR">#NOM</a>
-							</BOUCLE_auteurs_article>
-							</B_auteurs_article>
-							[<br /><:sarkaspip:popularite_article:>&nbsp;:&nbsp;(#POPULARITE)%]
-					</div>
-					<div class="clearer-right"></div>
-					
-					[<div class="chapo"><:sarkaspip:sur_web:>&nbsp;<a href="#URL_SITE">(#NOM_SITE)</a></div>]
-					[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
-					
-					<div class="#EDIT{texte} texte">
-						[(#TEXTE|typo_couleur)]
-						<div class="clearer">&nbsp;</div>
-						
-						[<div class="#EDIT{ps} post-scriptum"><div class="annonce"><:sarkaspip:ps:>&nbsp;:</div>(#PS)</div>]
-						[<div class="#EDIT{notes} notes">(#NOTES)</div>]
-						[<br /><a class="repondre" href="(#PARAMETRES_FORUM|url_reponse_forum)"><:sarkaspip:repondre_article:></a><br />]
-					</div>
-				</div>
-				
-				[(#REM) <!-- Liens vers les documents joints, a l'exclusion des images --> ]
-				<B_documents_article>
-					<div class="en-tete"><:sarkaspip:docu_article:>&nbsp;:</div>
-					<div class="doc">
-						<BOUCLE_documents_article(DOCUMENTS){id_article}{extension !== jpg|png|gif}{mode=document}{doublons}>
-							<a href="#URL_DOCUMENT">&nbsp;#LOGO_DOCUMENT&nbsp;&nbsp;#TITRE </a>
-						</BOUCLE_documents_article>
-					</div>
-				</B_documents_article>
 	
-				[(#REM) <!-- Liens vers les images jointes --> ]
-				<B_images_article>
-					<div class="en-tete"><:sarkaspip:img_article:>&nbsp;:</div>
-					<div class="doc">
-						<BOUCLE_images_article(DOCUMENTS){id_article}{extension == jpg|png|gif}{mode=document}{doublons}>
-							<div class="vignette">
-								[<a href="#FICHIER" type="#MIME_TYPE"[ title="(#TITRE|couper{80})"]>
-									(#FICHIER|copie_locale|image_reduire{0,100}|inserer_attribut{alt,[(#TITRE|couper{80})]})
-								</a>]
-								<ul>
-									[<li><:sarkaspip:img_titre:>&nbsp;:&nbsp;(#TITRE)</li>]
-									[<li><:sarkaspip:img_descriptif:>&nbsp;:&nbsp;(#DESCRIPTIF)</li>]
-									<li><:sarkaspip:img_taille:>&nbsp;:&nbsp;#LARGEUR&nbsp;<:sarkaspip:lxh:>&nbsp;#HAUTEUR</li>
-									<li><:sarkaspip:img_poids:>&nbsp;:&nbsp;[(#TAILLE|taille_en_octets)]</li>
-									<li><:sarkaspip:img_format:>&nbsp;:&nbsp;#TYPE_DOCUMENT</li>
-								</ul>
-							</div>
-						</BOUCLE_images_article>
-						</div>
-				</B_images_article>
+				[(#REM) <!-- Images du portfolio de la rubrique --> ]
+				[(#CONFIG{sarkaspip_article/position_images, 1}|=={1}|?{' '})
+					[(#INCLURE{fond=noisettes/inc_article_images}{id_article})]
+				]
 			</div>
 			
 			[(#REM) <!-- Formulaire pour signer la petition --> ]
