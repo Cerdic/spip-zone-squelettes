@@ -1,0 +1,158 @@
+#CACHE{2*3600}
+<BOUCLE_rub_agenda(RUBRIQUES){id_rubrique}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2002/REC-xhtml1-20020801/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
+<head>
+<title>[(#TITRE|textebrut|supprimer_numero) - #NOM_SITE_SPIP]</title>
+[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+<INCLURE{fond=inc-head}>
+[(#REM) Lien vers le flux RSS de la rubrique ]
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
+<meta name="robots" content="index, follow" />
+</head>
+
+
+
+<body dir="#LANG_DIR">
+<INCLURE(entete.php)>
+
+<!-- menu -->
+
+<INCLURE{fond=menu}{id_secteur}>
+
+<!-- colonne -->
+
+<div id="navigation">
+  <div id="col-hautdroit"></div>
+  <div id="col-hautgauchelarge">
+   <BOUCLE_majs(RUBRIQUES){age>=0}{par date}{inverse}{0,1}>
+   <div class="maj">Site mis à jour le [(#DATE|jour)/][(#DATE|mois)/][(#DATE|annee)]</div>
+   </BOUCLE_majs>
+  </div>
+
+<div class="extrait">
+
+<INCLURE{fond=pave_membre}>
+
+
+	<!-- Breves -->
+
+	<B_breves>
+	<h2>En bref</h2>
+	<div class="menu">
+	<div class="breves">
+	<ul>
+	<BOUCLE_breves(BREVES) {par date} {inverse} {0,3} {titre !=citation}{age<21}>
+		<li class="menu-item">
+		<i>[(#DATE|affdate_court)]</i>:
+		<a href="#URL_BREVE">#TITRE</a>
+		</li>
+	</BOUCLE_breves>
+	</ul>
+	</div>
+	</div>
+	</B_breves>
+
+
+<h2>Rechercher</h2>
+<div class="menu">
+#FORMULAIRE_RECHERCHE
+</div>
+
+
+<!-- Sur le Web -->
+
+<B_syndicss>
+<h2><:sur_web:></h2>
+<div class="menu">
+	<ul>
+	<BOUCLE_syndicss(SYNDIC_ARTICLES) {par date} {age<15}{inverse} {0,8}{id_rubrique}{doublons interdit}>
+		<li class="menu-item">
+		<a href="#URL_ARTICLE">[(#TITRE*)]</a>
+  		</li>
+	</BOUCLE_syndicss>
+	</ul>
+	</div>
+	</B_syndicss>
+
+</div>
+
+
+
+  <div id="col-basdroit"></div><div id="col-basgauche"></div>
+</div>
+
+
+<!-- Une : contenu de la rubrique -->
+<div id="principal">
+
+<div class="contenu">
+  <div id="rub-hautdroit"></div><div id="rub-hautgauchelarge">
+     Vous êtes ici:  <a href="/">Accueil</a> > 
+     <BOUCLE_vous_etes_icis(HIERARCHIE){id_article} {" > "}>
+     <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+     </BOUCLE_vous_etes_icis>
+  </div>
+
+  <div class="liste-articles">
+     [<div class="logo_left">(#LOGO_RUBRIQUE||reduire_image{60})</div>]
+     <h2>[(#TITRE|supprimer_numero)]</h2>
+     [<div class="surtitre"> (#TEXTE)</div>]
+     [<br /><div class="notes"> (#NOTES)</div>]
+  </div>
+
+
+<div id="rub-basdroit"></div><div id="rub-basgauche"></div>
+
+</div>
+
+<div class="contenu">
+     <div id="une-hautdroit"></div><div id="une-hautgauchelarge"><h2>Prochains rendez-vous</h2></div>
+
+
+<!-- Articles de la rubrique -->
+<B_articles_recents>
+<div class="liste-articles">
+
+   <BOUCLE_articles_recents(EVENEMENTS) {par date_debut} {age_fin<=0}{age_fin>-183}>
+	<div class="extrait">
+
+	        <div class="citation">
+[<div class="logo_right">(#LOGO_ARTICLE||reduire_image{100})</div>]
+<h3>#PUCE [(#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})]</h3>
+<h2>#TITRE</h2>
+[<h3>(#LIEU)</h3>]
+<p>#DESCRIPTIF</p>
+<BOUCLE_article_associe(ARTICLES){id_article}>
+[<a href="#URL_ARTICLE">(#INTRODUCTION|?{"Plus d'infos...",""})</a>]</BOUCLE_article_associe>
+</div>
+	</div>
+   </BOUCLE_articles_recents>
+</div>
+</B_articles_recents>
+<h3> Repos ;-)</h3>
+<//B_articles_recents>
+
+<div id="une-basdroit"></div><div id="une-basgauche"></div>
+
+
+
+</div>
+</div>
+
+<!-- ARCHIVES -->
+<B_articles_archives>
+<a name="lien_archives" title="Coming soon">Voir les archives de cette section (pas en service actuellement)</a>
+<BOUCLE_articles_archives(ARTICLES) {id_rubrique} {age>=365} {doublons interdit}>
+</BOUCLE_articles_archives>
+
+
+<INCLURE(pied.php){id_rubrique}>
+
+
+
+</body>
+</html>
+</BOUCLE_rub_agenda>
+
+

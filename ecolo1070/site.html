@@ -1,0 +1,140 @@
+#CACHE{7200}
+<BOUCLE_site(SITES){id_syndic}>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+[(#REM) Les sites n'ont pas de "lang" a proprement parler ; on se base donc sur la langue de la rubrique qui les contient. Les articles syndiques, eux, ont une "lang". ]
+<BOUCLE_lang(RUBRIQUES){id_rubrique}><html dir="#LANG_DIR" lang="#LANG"></BOUCLE_lang>
+<head>
+<title>[(#NOM_SITE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF|couper{150}|textebrut)" />]
+<INCLURE{fond=inc-head}>
+<meta name="robots" content="none" />
+</head>
+
+<body class="page_site">
+
+<INCLURE{fond=entete}>
+
+<!-- menu -->
+
+<INCLURE{fond=menu}{id_secteur}>
+
+<!-- colonne -->
+<div id="navigation">
+  <div id="col-hautdroit"></div>
+  <div id="col-hautgauchelarge">
+   <BOUCLE_majs(RUBRIQUES){age>=0}{par date}{inverse}{0,1}>
+   <div class="maj">Site mis &agrave; jour le [(#DATE|jour)/][(#DATE|mois)/][(#DATE|annee)]</div>
+   </BOUCLE_majs>
+  </div>
+
+<div class="extrait">
+
+<INCLURE(session.php){fond=pave_membre}>
+
+
+	<!-- Breves -->
+
+	<B_breves>
+	<h2>En bref</h2>
+	<div class="menu">
+	<div class="breves">
+		<div class="menu-titre">
+
+		</div>
+		<ul>
+	<BOUCLE_breves(BREVES) {par date} {inverse} {0,3} {titre !=citation}{age<21}{id_secteur !=45}>
+		<li class="menu-item">
+		<i>[(#DATE|affdate_court)]</i>:
+		<a href="#URL_BREVE">#TITRE</a>
+		</li>
+	</BOUCLE_breves>
+		</ul>
+	</div>
+	</div>
+	</B_breves>
+
+
+<h2>Rechercher</h2>
+<div class="menu">
+#FORMULAIRE_RECHERCHE
+</div>
+
+<h2><:proposer_site:></h2>
+#FORMULAIRE_SITE
+
+
+</div>
+  <div id="col-basdroit"></div><div id="col-basgauche"></div>
+</div>
+
+<div id="principal">
+
+<div class="contenu">
+  <div id="rub-hautdroit"></div><div id="rub-hautgauchelarge">
+     Vous &ecirc;tes ici: &nbsp;<a href="/">Accueil</a>&nbsp;>&nbsp;
+     <BOUCLE_vous_etes_icis(HIERARCHIE){id_article} {" > "}>
+     <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+     </BOUCLE_vous_etes_icis>
+  </div>
+
+
+
+  <div class="liste-articles">
+
+				[<div class="logo_left">(#LOGO_SITE||image_reduire{140})</div>]
+				<h2>#NOM_SITE</h2>
+				[<p class="soustitre"><a href="#URL_SITE" class="spip_out">(#URL_SITE|couper{100})</a></p>]
+
+			<div class="surtitre">&nbsp;#DESCRIPTIF</div>
+
+</div>
+
+<div id="rub-basdroit"></div><div id="rub-basgauche"></div>
+
+</div>
+
+<!-- Articles dUS SITE -->
+
+<B_articles>
+<div class="contenu" >
+  <div id="fil-hautdroit"></div><div id="fil-hautgauchelarge">
+	<h2 class="invisible">Articles publi&eacute;s sur ce site</h2></div>
+	<div class="liste-articles">
+	#ANCRE_PAGINATION
+	<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {pagination 10}>
+
+	<div class="extrait">
+
+	        <div class="citation">
+                    <span class="maj">[(#DATE|nom_jour)] [(#DATE|affdate), ][<:par_auteur:> (#LESAUTEURS)][ &mdash; <em>(#TAGS|afficher_tags)</em>]</span>
+                </div>
+                [<div class="logo_left">(#LOGO_ARTICLE||reduire_image{60})</div>]
+       	       	<h2><a href="#URL_ARTICLE">#TITRE</a></h2>
+	[<div class="surtitre">(#SOUSTITRE)</div>]
+		[<div class="texte">(#DESCRIPTIF|image_reduire{150}|couper{500})</div>]
+                <a href="#URL_ARTICLE">Lire la suite...</a>
+	</div>
+	</BOUCLE_articles>
+	[<p class="pagination">(#PAGINATION)</p>]
+	</div>
+<div id="fil-basdroit"></div><div id="fil-basgauche"></div>
+</B_articles>
+
+[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+
+</div><!-- fin contenu -->
+
+<!-- ARCHIVES -->
+<B_articles_archives>
+<a name="lien_archives" title="Coming soon">Voir les archives de cette section (pas en service actuellement)</a>
+<BOUCLE_articles_archives(ARTICLES) {id_rubrique} {age>=365} {doublons interdit}>
+</BOUCLE_articles_archives>
+
+
+
+</div><!-- fin page -->
+<INCLURE{fond=pied}{id_syndic}>
+
+
+</body>
+</html></BOUCLE_site>

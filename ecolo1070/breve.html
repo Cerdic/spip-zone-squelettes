@@ -1,0 +1,128 @@
+#CACHE{4*3600}
+<BOUCLE_breve_principal(BREVES) {id_breve}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2002/REC-xhtml1-20020801/DTD/xhtml1-transitional.dtd">
+<html lang="#LANG">
+<head>
+<title>[(#TITRE|textebrut|supprimer_numero) - #NOM_SITE_SPIP]</title>
+[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+<INCLURE{fond=inc-head}>
+[(#REM) Lien vers le flux RSS des breves ]
+<link rel="alternate" type="application/rss+xml" title="<:dernieres_breves:>" href="#URL_PAGE{backend-breves}" />
+<meta name="robots" content="index, follow" />
+</head>
+
+<body dir="#LANG_DIR">
+<INCLURE{fond=entete}>
+
+<!-- menu -->
+
+<INCLURE{fond=menu}{id_rubrique?}>
+
+<!-- colonne -->
+<div id="navigation">
+  <div id="col-hautdroit"></div>
+  <div id="col-hautgauchelarge">
+   <BOUCLE_maj(RUBRIQUES){par date}{inverse}{0,1}>
+   <div class="maj">Site mis &agrave; jour le [(#DATE|jour)/][(#DATE|mois)/][(#DATE|annee)]</div>
+   </BOUCLE_maj>
+  </div>
+
+<div class="extrait">
+
+<h2>Rechercher</h2>
+<div class="menu">
+#FORMULAIRE_RECHERCHE
+</div>
+
+<INCLURE{fond=pave_membre}>
+
+	<!-- Breves -->
+
+	<B_breves>
+	<h2>En bref</h2>
+	<div class="menu">
+	<div class="breves">
+		<div class="menu-titre">
+
+		</div>
+		<ul>
+	<BOUCLE_breves(BREVES) {par date} {inverse} {0,3} {titre !=citation}{age<21}{id_secteur !=45}>
+		<li class="menu-item">
+		<i>[(#DATE|affdate_court)]</i>:
+		<a href="#URL_BREVE">#TITRE</a>
+		</li>
+	</BOUCLE_breves>
+		</ul>
+	</div>
+	</div>
+	</B_breves>
+
+	<!-- Sur le Web -->
+
+	<B_syndicss>
+	<div class="menu">
+	<div class="divers">
+		<div class="menu-titre">
+		<:sur_web:>
+		</div>
+		<ul>
+	<BOUCLE_syndicss(SYNDIC_ARTICLES) {id_secteur} {par date} {inverse} {0,25}>
+		<li class="menu-item">
+		<a href="#URL_ARTICLE">[(#TITRE*)]</a>
+  		</li>
+	</BOUCLE_syndicss>
+		</ul>
+	</div>
+	</div>
+	</B_syndicss>
+
+</div>
+  <div id="col-basdroit"></div><div id="col-basgauche"></div>
+</div>
+
+<!-- Contenu : breve -->
+
+<div class="contenu" id="principal">
+
+<div id="une-hautdroit"></div><div id="une-hautgauchelarge">
+Vous &ecirc;tes ici: &nbsp;<a href="/">Accueil</a>&nbsp;>&nbsp;
+<BOUCLE_vous_etes_icis(RUBRIQUES){id_rubrique} {" > "}>
+<a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+</BOUCLE_vous_etes_icis>
+</div>
+
+
+
+<div class="liste-articles">
+<div class="cartouche">
+[<div class="logo_left">(#LOGO_BREVE||reduire_image{120})</div>]
+[<div class="surtitre">(#SURTITRE)</div>]
+<h1 class="titre-texte">#TITRE</h1>
+[<div class="surtitre">(#SOUSTITRE)</div>]
+[(#DATE|nom_jour)] [(#DATE|affdate)]
+</div>
+
+[<div class="chapo">(#CHAPO)</div>]
+[<div class="texte">(#TEXTE)</div>]
+[<div class="ps">(#PS)</div>]
+[<div class="notes">(#NOTES)</div>]
+[<p class="lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+
+<B_documents_jointss>
+<h2>Pi&egrave;ces jointes</h2>
+<BOUCLE_documents_jointss(DOCUMENTS) {id_breve} {mode=document} {doublons membres}>
+<div class="docs">
+[<div class="logo_left">(#LOGO_DOCUMENT|#URL_DOCUMENT|reduire_image{75})</div>][&nbsp;(#TITRE)][ - (#DESCRIPTIF)]
+</div>
+</BOUCLE_documents_jointss>
+
+</div>
+  <div id="une-basdroit"></div><div id="une-basgauche"></div>
+
+
+</div>
+<INCLURE{fond=pied}{id_breve}>
+
+</body>
+</html>
+</BOUCLE_breve_principal>

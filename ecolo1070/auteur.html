@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2002/REC-xhtml1-20020801/DTD/xhtml1-transitional.dtd">
+#CACHE{6*3600}
+<BOUCLE_auteur(AUTEURS){id_auteur}>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
+<head>
+<title>[(#NOM|textebrut) - #NOM_SITE_SPIP]</title>
+[<meta name="description" content="(#BIO|couper{150}|textebrut)" />]
+
+<INCLURE{fond=inc-head}>
+<meta name="robots" content="index, follow" />
+
+</head>
+
+
+<body dir="#LANG_DIR">
+<INCLURE{fond=entete}>
+
+<!-- menu -->
+
+<INCLURE{fond=menu}>
+
+<!-- colonne -->
+<div id="navigation">
+  <div id="col-hautdroit"></div>
+  <div id="col-hautgauchelarge">
+   <BOUCLE_majs(RUBRIQUES){age>=0}{par date}{inverse}{0,1}{doublons interdit}>
+   <div class="maj">Site mis à jour le [(#DATE|jour)/][(#DATE|mois)/][(#DATE|annee)]</div>
+   </BOUCLE_majs>
+  </div>
+
+<div class="extrait">
+
+<h2>Rechercher</h2>
+<div class="menu">
+#FORMULAIRE_RECHERCHE
+</div>
+
+
+<INCLURE(session.php){fond=pave_membre}>
+
+
+</div>
+  <div id="col-basdroit"></div><div id="col-basgauche"></div>
+</div>
+
+<!-- Infos sur l'auteur -->
+
+<div class="contenu" id="principal">
+
+<div class="une">
+
+          <div id="une-hautdroit"></div><div id="une-hautgauchelarge">
+          [(#LOGO_AUTEUR|right||reduire_image{80,80})]
+          <h1 class="titre-texte">#NOM</h1>
+          </div>
+
+     <div class="extrait">
+
+          [<div class="chapo">(#BIO)</div>]
+          [<div class="notes">(#NOTES)</div>]
+          [<h2>Site web</h2>#NOM_SITE : <a href="(#URL_SITE)">#URL_SITE</a><br />]
+ 
+
+
+<!-- Articles de l'auteur -->
+
+          <h2><:articles_auteur:></h2>
+
+          <div class="liste-articles">
+          <BOUCLE_articless(ARTICLES) {id_auteur} {par date}{inverse} {0,10}{id_secteur!=45}>
+          <h2><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h2>
+          	<div class="detail">
+          	[(#DATE|nom_jour)] [(#DATE|affdate)]
+          	<B_auteurss><:par_auteur:> <BOUCLE_auteurss(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurss>
+          	</div>
+          	<br />
+          </BOUCLE_articless>
+          </div>
+     </div>
+  <div id="une-basdroit"></div><div id="une-basgauche"></div>
+</div>
+
+
+<div class="une">
+
+<div id="rub-hautdroit"></div><div id="rub-hautgauchelarge">
+[<p><b><:envoyer_message:></b></p>
+<div class='spip_encadrer'>(#FORMULAIRE_ECRIRE_AUTEUR)</div>]
+</div>
+  <div id="rub-basdroit"></div><div id="rub-basgauche"></div>
+</div>
+
+
+</div>
+
+<INCLURE(pied.php){id_auteur}>
+
+
+
+
+</body>
+</html>
+</BOUCLE_auteur>
+
+<INCLURE(index.php3)>
+
+<//B_auteur>

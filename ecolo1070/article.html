@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2002/REC-xhtml1-20020801/DTD/xhtml1-transitional.dtd">
+#CACHE{48*3600}
+<BOUCLE_article_principals(ARTICLES) {id_article}{doublons interdit}>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
+<head>
+<title>[(#TITRE|textebrut|supprimer_numero) - #NOM_SITE_SPIP]</title>
+[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+<INCLURE{fond=inc-head}>
+<meta name="robots" content="index, follow" />
+</head>
+
+
+
+<body dir="#LANG_DIR">
+<INCLURE{fond=entete}>
+
+<!-- menu -->
+
+<INCLURE{fond=menu}{id_secteur}>
+
+<!-- colonne -->
+<div id="navigation">
+  <div id="col-hautdroit"></div>
+  <div id="col-hautgauchelarge">
+   <BOUCLE_majs(RUBRIQUES){age>=0}{par date}{inverse}{0,1}{doublons interdit}>
+   <div class="maj">Site mis à jour le [(#DATE|jour)/][(#DATE|mois)/][(#DATE|annee)]</div>
+   </BOUCLE_majs>
+  </div>
+
+
+<div class="extrait">
+
+<INCLURE(session.php){fond=pave_membre}>
+
+
+<h2>Rechercher</h2>
+<div class="menu">
+#FORMULAIRE_RECHERCHE
+</div>
+
+
+
+	<!-- Breves -->
+
+	<B_breves>
+	<h2>En bref</h2>
+	<div class="menu">
+	<div class="breves">
+		<div class="menu-titre">
+
+		</div>
+		<ul>
+	<BOUCLE_breves(BREVES) {par date} {inverse} {0,3} {titre !=citation}{age<21}{id_secteur !=45}>
+		<li class="menu-item">
+		<i>[(#DATE|affdate_court)]</i>:
+		<a href="#URL_BREVE">#TITRE</a>
+		</li>
+	</BOUCLE_breves>
+		</ul>
+	</div>
+	</div>
+	</B_breves>
+
+
+
+	<!-- Sur le Web -->
+
+
+<BOUCLE_rub_en_cours(RUBRIQUES){id_rubrique}>
+<INCLURE{fond=inc-sites_syndiques_rub}{id_rubrique}>
+</BOUCLE_rub_en_cours>
+
+
+</div>
+    <div id="col-basdroit"></div><div id="col-basgauche"></div>
+</div>
+
+<!-- Contenu : article -->
+
+<div class="contenu" id="principal">
+
+<div id="une-hautdroit"></div><div id="une-hautgauchelarge">
+Vous êtes ici:  <a href="/">Accueil</a> > 
+<BOUCLE_vous_etes_icis(HIERARCHIE){id_article} {" > "}>
+<a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+</BOUCLE_vous_etes_icis>
+</div>
+
+
+
+<div class="liste-articles">
+<div class="cartouche">
+[<div class="logo_left">(#LOGO_ARTICLE||reduire_image{120})</div>]
+[<div class="surtitre">(#SURTITRE)</div>]
+<h1 class="titre-texte">[(#TITRE|supprimer_numero)]</h1>
+[<div class="surtitre">(#SOUSTITRE)</div>]
+
+</div>
+
+[<div class="chapo">(#CHAPO)</div>]
+[<div class="texte">(#TEXTE|reduire_image{600})</div>]
+
+
+[<p class="lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+
+			[(#REM) Portfolio : album d'images ]
+			<B_documents_portfolio>
+			<div id="documents_portfolio">
+				<h2><:info_portfolio:></h2>
+				<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
+				[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|couper{80}|texte_backend)"]>(#FICHIER|copie_locale|image_reduire{0,60}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
+				</BOUCLE_documents_portfolio>
+			</div>
+			</B_documents_portfolio>
+			<BOUCLE_afficher_document(DOCUMENTS) {id_document} {id_article} {mode=document}{extension IN png,jpg,gif}>
+			<div class="spip_documents spip_documents_center" id="document_actif">
+				#EMBED_DOCUMENT
+				[<div class="#EDIT{titre} spip_doc_titre">(#TITRE)</div>]
+				[<div class="#EDIT{descriptif} spip_doc_descriptif">(#DESCRIPTIF)</div>]
+			</div>
+			</BOUCLE_afficher_document>
+
+			[<div class="ps"><h2><:info_ps:></h2>#DEBUT_SURLIGNE<div class="#EDIT{ps}">(#PS)</div>#FIN_SURLIGNE</div>]
+
+			[(#REM) Autres documents joints a l'article ]
+			<B_documents_joints>
+			<div id="documents_joints">
+				<h2><:titre_documents_joints:></h2>
+				<ul>
+					<BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {par num titre, date} {doublons}>
+					<li>
+						[<div class="logo_left">(#LOGO_DOCUMENT||image_reduire{50})</div><br class="nettoyeur" />]
+                                                <div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
+						[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
+                                                <br class="nettoyeur" />
+					</li>
+					</BOUCLE_documents_joints>
+				</ul>
+			</div>
+			</B_documents_joints>
+
+[<div class="notes"><h2><:info_notes:></h2>#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
+
+<p class="maj">
+[Mis en ligne le (#DATE|nom_jour)] [(#DATE|affdate)]
+<B_auteurs_recentss><:par_auteur:> <BOUCLE_auteurs_recentss(AUTEURS) {id_article} {", "}><a href="#URL_AUTEUR">#NOM</a></BOUCLE_auteurs_recentss>
+</p>
+<hr />
+
+
+
+[(#REM) Forum de la page ]
+
+[<h2 class="forum-repondre">#PUCE <a href="(#PARAMETRES_FORUM|url_reponse_forum)">Laisser un commentaire</a></h2>
+			<INCLURE{fond=inc-forum}{id_article}>]
+
+</div>
+    <div id="une-basdroit"></div><div id="une-basgauche"></div>
+</div>
+<INCLURE{fond=pied}{id_article}>
+
+</body>
+</html>
+
+</BOUCLE_article_principals>
+<:aucun_article:>
+<//B_article_principals>

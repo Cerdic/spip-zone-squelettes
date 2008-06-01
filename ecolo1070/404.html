@@ -1,0 +1,94 @@
+#CACHE{24 * 3600}
+#HTTP_HEADER{"Cache-Control: no-store, no-cache, must-revalidate"}
+#HTTP_HEADER{Pragma: no-cache}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
+<head>
+<title>Page inexistante - Erreur 404</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<meta name="robots" content="index, follow" />
+<link rel="shortcut icon" href="http://www.anderlecht.ecolo.be/favicon.ico" />
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/ecolo_gen.css" type="text/css" />
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/coins.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/ultraliens/ultraliens.css" media="screen" />
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/ultraliens/ultraliens.js"></script>
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/impression.css" type="text/css" media="print" />
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+</head>
+
+
+
+<body dir="#LANG_DIR">
+<INCLURE{fond=entete}>
+
+<!-- menu -->
+
+<INCLURE{fond=menu}>
+
+<!-- colonne -->
+<div id="navigation">
+  <div id="col-hautdroit"></div>
+  <div id="col-hautgauchelarge">
+   <BOUCLE_majs(RUBRIQUES){age>=0}{par date}{inverse}{0,1}>
+   <div class="maj">Site mis à jour le [(#DATE|jour)/][(#DATE|mois)/][(#DATE|annee)]</div>
+   </BOUCLE_majs>
+  </div>
+
+<div class="extrait">
+
+<INCLURE(session.php){fond=pave_membre}>
+
+
+	<!-- Breves -->
+
+	<B_breves>
+	<h2>En bref</h2>
+	<div class="menu">
+	<div class="breves">
+		<div class="menu-titre">
+
+		</div>
+		<ul>
+	<BOUCLE_breves(BREVES) {par date} {inverse} {0,3} {titre !=citation}{age<21}>
+		<li class="menu-item">
+		<i>[(#DATE|affdate_court)]</i>:
+		<a href="#URL_BREVE">#TITRE</a>
+		</li>
+	</BOUCLE_breves>
+		</ul>
+	</div>
+	</div>
+	</B_breves>
+
+
+<h2>Rechercher</h2>
+<div class="menu">
+#FORMULAIRE_RECHERCHE
+</div>
+
+</div>
+
+ <div id="col-basdroit"></div><div id="col-basgauche"></div>
+</div>
+
+<!-- 404 -->
+<div id="principal">
+
+<div class="contenu">
+  <div id="rub-hautdroit"></div><div id="rub-hautgauchelarge">
+			<h1 class="titre"><:pass_erreur:> 404</h1>
+			
+			[<div class="chapo">(#ENV*{erreur}|propre)</div>]
+
+		</div>
+
+
+<div id="fil-basdroit"></div><div id="fil-basgauche"></div>
+</div>
+</div>
+<INCLURE(pied.php){id_rubrique}>
+
+#SPIP_CRON
+</body>
+</html>

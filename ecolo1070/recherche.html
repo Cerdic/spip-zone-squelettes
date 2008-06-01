@@ -1,0 +1,215 @@
+#CACHE{2*3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2002/REC-xhtml1-20020801/DTD/xhtml1-transitional.dtd">
+<html lang="#LANG">
+<head>
+[<title>(#NOM_SITE_SPIP|attribut_html)</title>]
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<meta name="robots" content="index, follow" />
+<link rel="shortcut icon" href="http://www.anderlecht.ecolo.be/favicon.ico" />
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/ecolo_gen.css" type="text/css" />
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/coins.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/ultraliens/ultraliens.css" media="screen" />
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/ultraliens/ultraliens.js"></script>
+	<script type="text/javascript">
+	<!--//--><![CDATA[//><!--
+	window.onload = function(){
+		//n?essaire pour les ultraliens
+		if(!ie){document.captureEvents(Event.MOUSEMOVE);}
+		document.onmousemove = get_mouse;
+	}
+	//--><!]]>
+	</script>
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/impression.css" type="text/css" media="print" />
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="backend.php3" />
+</head>
+<body dir="#LANG_DIR">
+
+<INCLURE{fond=entete}>
+
+<!-- menu -->
+
+<INCLURE{fond=menu}>
+
+<!-- colonne -->
+<div id="navigation">
+  <div id="col-hautdroit"></div>
+  <div id="col-hautgauchelarge">
+   <BOUCLE_majs(RUBRIQUES){age>=0}{par date}{inverse}{0,1}>
+   <div class="maj">Site mis &agrave; jour le [(#DATE|jour)/][(#DATE|mois)/][(#DATE|annee)]</div>
+   </BOUCLE_majs>
+  </div>
+
+<div class="extrait">
+
+<INCLURE(session.php){fond=pave_membre}>
+
+<!-- tags dans la fct -->
+[(#URL_SITE|nb_connect)]
+
+
+	<!-- Breves -->
+
+	<B_breves>
+	<h2>En bref</h2>
+	<div class="menu">
+	<div class="breves">
+		<div class="menu-titre">
+
+		</div>
+		<ul>
+	<BOUCLE_breves(BREVES) {par date} {inverse} {0,3} {titre !=citation}{age<21}{id_secteur !=45}>
+		<li class="menu-item">
+		<i>[(#DATE|affdate_court)]</i>:
+		<a href="#URL_BREVE">#TITRE</a>
+		</li>
+	</BOUCLE_breves>
+		</ul>
+	</div>
+	</div>
+	</B_breves>
+
+
+<h2>Rechercher</h2>
+<div class="menu">
+#FORMULAIRE_RECHERCHE
+</div>
+
+
+<!-- Sur le Web -->
+
+<B_syndicss>
+<h2><:sur_web:></h2>
+<div class="menu">
+	<ul>
+	<BOUCLE_syndicss(SYNDIC_ARTICLES) {par date} {inverse} {0,10}{age<93}{id_rubrique}{doublons interdit}>
+		<li class="menu-item">[(#DATE|affdate_court):&nbsp;] 
+		<a href="#URL_ARTICLE">[(#TITRE*)]</a>
+  		</li>
+	</BOUCLE_syndicss>
+	</ul>
+	</div>
+	</B_syndicss>
+
+
+</div>
+  <div id="col-basdroit"></div><div id="col-basgauche"></div>
+</div>
+
+<!-- Resultats de la recherche -->
+<div class="contenu" id="principal">
+
+  <div id="une-hautdroit"></div><div id="une-hautgauchelarge">
+<h1>Recherche sur "#RECHERCHE"</h1></div>
+
+<!-- Une : articles trouves -->
+
+<B_articless>
+<h2><:articles:></h2>
+<ul>
+<BOUCLE_articless(ARTICLES){recherche} {par points} {inverse} {0,10}>
+	<li class="menu-item">[<a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>(#TITRE|supprimer_numero)</a>]</li>
+	<div class="detail">
+	[(#DATE|affdate)]
+	<B_auteurs_articless><:par_auteur:> <BOUCLE_auteurs_articless(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_articless>
+	</div>
+</BOUCLE_articless>
+</ul>
+</B_articless>
+
+
+<!-- Rubriques trouvees -->
+
+<B_rubriquess>
+<h2><:rubriques:></h2>
+<ul>
+<BOUCLE_rubriquess(RUBRIQUES){id_secteur !=45} {recherche} {par points} {inverse} {0,8}>
+<li class="menu-item"><a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a></li>
+</BOUCLE_rubriquess>
+</ul>
+</B_rubriquess>
+
+
+<!-- Mots-cles trouves et articles associes
+
+<B_motss>
+<h2><:mots_clefs:>"</h2>
+<ul>
+<BOUCLE_motss(MOTS) {recherche} {par points} {inverse} {0,5}>
+<li>
+<div class="menu-titre"><a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></div>
+<B_articles_motss>
+	<ul class="menu-liste">
+<BOUCLE_articles_motss(ARTICLES) {id_mot} {par hasard} {0,8}>
+	<li class="menu-item"><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|textebrut|entites_html)]">#TITRE</a></li>
+</BOUCLE_articles_motss>
+	</ul>
+</B_articles_motss>
+</li>
+</BOUCLE_motss>
+</ul>
+</B_motss>
+-->
+
+<!-- Breves trouvees -->
+
+<B_brevess>
+
+ 	<h2><:breves:></h2>
+	<ul>
+	<BOUCLE_brevess(BREVES) {id_secteur !=45}{recherche} {par points} {inverse} {0,8}>
+		<li class="menu-item">
+		<i>[(#DATE|affdate_court)]</i>:
+		<a href="#URL_BREVE">#TITRE</a>
+		</li>
+	</BOUCLE_brevess>
+	</ul>
+	</B_brevess>
+
+<!-- Sites Web trouves -->
+
+<B_sitess>
+
+	<h2><:sites_web:></h2>
+	<ul>
+	<BOUCLE_sitess(SITES){id_secteur !=45} {recherche} {par points} {inverse} {0,8}>
+		<li class="menu-item">
+		<a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut|entites_html)]">#NOM_SITE</a>
+		</li>
+	</BOUCLE_sitess>
+	</ul>
+	</B_sitess>
+
+<!-- auteurs trouvees -->
+
+<B_auteurs>
+
+ 	<h2><:auteurs:></h2>
+	<ul>
+	<BOUCLE_auteurs(AUTEURS) {recherche} {par points} {inverse} {0,8}>
+		<li class="menu-item">
+		<a href="#URL_AUTEUR">#NOM</a>
+		</li>
+	</BOUCLE_auteurs>
+	</ul>
+	</B_auteurs>
+
+	<B_messagess>
+	<h2><:messages_forum:></h2>
+	<ul>
+	<BOUCLE_messagess(FORUMS){id_secteur !=45} {recherche} {par points} {inverse} {0,8}{unique}>
+		<li class="menu-item">
+		<a href="#URL_FORUM">#TITRE</a>
+		</li>
+	</BOUCLE_messagess>
+	</ul>
+	</B_messagess>
+<div id="une-basdroit"></div><div id="une-basgauche"></div>
+</div>
+
+
+<INCLURE(pied.php3)>
+
+</div>
+
+</body>
+</html>

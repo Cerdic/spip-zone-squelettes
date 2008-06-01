@@ -1,0 +1,210 @@
+#CACHE{2*3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2002/REC-xhtml1-20020801/DTD/xhtml1-transitional.dtd">
+<html lang="#LANG">
+<head>
+<title>[(#TITRE|textebrut|supprimer_numero) - #NOM_SITE_SPIP]</title>
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+[(#REM) Preciser le charset ]
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+
+[(#REM) Fierement fabrique avec SPIP ]
+<meta name="generator" content="SPIP[ (#SPIP_VERSION)]" />
+
+[(#REM) Lien vers l'icone destinee a la barre de bookmarks ]
+[<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
+
+[(#REM) Lien vers le flux RSS du site ]
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+
+[(#REM) Feuille de style par defaut pour le code genere par SPIP ]
+<link rel="stylesheet" href="[(#CHEMIN{spip_style.css}|direction_css)]" type="text/css" media="all" />
+
+[(#REM) Feuille de style CSS pour l'impression 
+<link rel="stylesheet" href="[(#CHEMIN{impression.css}|direction_css)]" type="text/css" media="print" />]
+
+[(#REM) Balise permettant aux plugins d'inserer des appels javascript ou css ]
+#INSERT_HEAD
+
+<link rel="stylesheet" href="#CHEMIN{ecolo_gen.css}" type="text/css" />
+<link rel="stylesheet" href="#CHEMIN{coins.css}" type="text/css" />
+<link rel="stylesheet" type="text/css" href="#CHEMIN{ultraliens.css}" media="screen" />
+<script type="text/javascript" src="#CHEMIN{ultraliens.js}"></script>
+	<script type="text/javascript">
+	<!--//--><![CDATA[//><!--
+	window.onload = function(){
+		//n?essaire pour les ultraliens
+		if(!ie){document.captureEvents(Event.MOUSEMOVE);}
+		document.onmousemove = get_mouse;
+	}
+	//--><!]]>
+	</script>
+<meta name="robots" content="none" />
+</head>
+
+<body dir="#LANG_DIR">
+<INCLURE(entete.php)>
+<div class="contenu" style="margin: 10px;">
+  <div id="rub-hautdroit"></div><div id="rub-hautgauchelarge" style="text-align: center;">
+Echos du site #NOM_SITE_SPIP (#URL_SITE_SPIP)</div>
+<h1 style="text-align: center;">Echos-Logiques - [(#DATE|saison)] [(#DATE|annee)]</h1>
+<div style="text-align: center;">#DESCRIPTIF_SITE_SPIP</div>
+<div id="rub-basdroit"></div><div id="rub-basgauche"></div>
+</div>
+
+<!-- Une : articles favoris? -->
+
+
+
+<BOUCLE_favorisers(MOTS){titre="A la une du site"}>
+
+  <div id="une-hautdroit"></div><div id="une-hautgauchelarge"><h1>A la une</h1></div>
+                <BOUCLE_article_unes(ARTICLES) {id_mot}{par date} {inverse}  {age<92} {doublons unes}>
+                <div class="extrait">
+  		[<div class="logo_left">(#LOGO_ARTICLE||reduire_image{250})</div>]
+              <span class="maj">Publié le [(#DATE|jour)]/[(#DATE|mois)]/[(#DATE|annee)] (rubrique "<BOUCLE_hierarchie(HIERARCHIE){id_article}{" > "}>
+[(#TITRE|supprimer_numero)]
+</BOUCLE_hierarchie>") </span>
+
+		[<div class="surtitre">(#SURTITRE)</div>]
+                <h2><a href="#URL_ARTICLE">#TITRE</a></h2>
+		[<div class="surtitre">(#SOUSTITRE)</div>]
+		[<div class="chapo">(#CHAPO)</div>]
+		[(#TEXTE|couper{400}) ]<span class="maj">&nbsp; =>&nbsp;<a href="#URL_SITE_SPIP/#URL_ARTICLE">#URL_SITE_SPIP/#URL_ARTICLE</a></span>
+                </div>
+	        </BOUCLE_article_unes>
+
+
+<hr />
+</BOUCLE_favorisers>
+
+
+<!-- colonne -->
+
+<div id="navig-----ation" style="width : 300px; font-family: Verdana, Arial, Helvetica, sans-serif; 	margin: 0 10px 0 0 ; float:right; background-color: #FFF; ">
+  <div id="col-hautdroit"></div>
+  <div id="col-hautgauchelarge"><h2>Prochains rendez-vous</h2>
+  </div>
+
+<div class="extrait">
+<B_articles_recents>
+   <BOUCLE_articles_recents(EVENEMENTS) {age_fin<-5}{par date_debut} {age_fin>-180}>
+	<div class="extrait">
+
+	        <div class="citation">
+
+<h3>#PUCE&nbsp;[(#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})]</h3>
+<h2>#TITRE</h2>
+[<p>(#LIEU)</p>]
+[<p>(#DESCRIPTIF)</p>]
+                </div>
+	</div>
+   </BOUCLE_articles_recents>
+</div>
+
+  <div id="col-hautdroit"></div>
+  <div id="col-hautgauchelarge"><h2>En Bref</h2>
+  </div>
+
+<B_breves>
+<div class="extrait">
+<div style="border: 2px dotted; padding: 0.5em;">
+<BOUCLE_breves(BREVES){age<(#ENV{periode})}{titre!="Citation"}{par date}{inverse}{0,4}{doublons}>
+<h3>#TITRE</h3>
+<small>Publié le [(#DATE|jour)]/[(#DATE|mois)]/[(#DATE|annee)]</small>
+#TEXTE
+<hr>
+</BOUCLE_breves>
+</div>
+</div>
+</B_breves>
+
+<div id="une-basdroit"></div><div id="une-basgauche"></div>
+<div id="navig-----ation" style="width : 300px; font-family: Verdana, Arial, Helvetica, sans-serif; 	margin: 0 10px 0 0 ; float:left; background-color: #FFF; ">
+  <div id="col-hautdroit"></div>
+  <div id="col-hautgauchelarge"><h2>Citations du mois</h2>
+  </div>
+<div class="extrait"><B_citations>
+
+<BOUCLE_citations(BREVES){titre="Citation"}{par hasard}{0,3}>
+<p>#TEXTE</p>
+</BOUCLE_citations>
+</div>
+
+
+</div>
+
+
+
+<div id="navig-----ation" style="width : 300px; font-family: Verdana, Arial, Helvetica, sans-serif; 	margin: 0 10px 0 0 ; float:right; background-color: #FFF; ">
+  <div id="col-hautdroit"></div>
+  <div id="col-hautgauchelarge"><h2>En Bref</h2>
+  </div>
+
+<B_breves2>
+<div class="extrait">
+ici ici ici ici ici ici ici ici ici 
+<div style="border: 2px dotted; padding: 0.5em;">
+<BOUCLE_breves2(BREVES){age<(#ENV{periode})}{titre!="Citation"}{par date}{inverse}{doublons}>
+<h3>#TITRE</h3>
+<small>Publié le [(#DATE|jour)]/[(#DATE|mois)]/[(#DATE|annee)]</small>
+#TEXTE
+<hr>
+</BOUCLE_breves2>
+</div>
+</div>
+</B_breves2>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+     <div id="une-hautdroit"></div><div id="une-hautgauchelarge">
+     <h1>A lire...</h1></div>
+
+<div class="liste-articles">
+<BOUCLE_secteurs(RUBRIQUES){id_parent=0}>
+<div style="float: right; padding: 0.5em; width: 200px; border: dashed;">
+#TITRE
+</div>
+
+
+
+
+
+
+<B_intro_article>
+
+<BOUCLE_intro_article(ARTICLES){id_secteur}{age<(#ENV{periode})}{par date}{inverse}{doublons unes}>
+
+[<i>(#SURTITRE)</i><br />]
+[<div class="logo_right">(#LOGO_ARTICLE||reduire_image{140})</div>]
+<h3 style="margin-top: 0em; margin-bottom: 0em;">#TITRE</h3>
+[<i>(#SOUSTITRE)</i>]
+<p>#CHAPO</p>
+<p><small>
+
+
+</small></p>
+[(#TEXTE|couper{300}) ]
+<hr>
+</BOUCLE_intro_article>
+
+</B_intro_article>
+</BOUCLE_secteurs>
+
+
+
+
+<INCLURE(pied.php){id_rubrique}>
+
+</body>
+</html>

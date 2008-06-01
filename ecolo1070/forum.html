@@ -1,0 +1,197 @@
+#CACHE{3600}
+#HTTP_HEADER{"Cache-Control: max-age=3600, must-revalidate"}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+	<title><:poster_message:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<meta name="robots" content="index, follow" />
+<link rel="shortcut icon" href="http://www.anderlecht.ecolo.be/favicon.ico" />
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/ecolo_gen.css" type="text/css" />
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/spip_admin.css" type="text/css" />
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/coins.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/ultraliens/ultraliens.css" media="screen" />
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/ultraliens/ultraliens.js"></script>
+	<script type="text/javascript">
+	<!--//--><![CDATA[//><!--
+	window.onload = function(){
+		//n?essaire pour les ultraliens
+		if(!ie){document.captureEvents(Event.MOUSEMOVE);}
+		document.onmousemove = get_mouse;
+	}
+	//--><!]]>
+	</script>
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/impression.css" type="text/css" media="print" />
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+</head>
+
+
+
+<body dir="#LANG_DIR">
+
+<INCLURE{fond=entete}>
+
+<!-- menu -->
+
+<INCLURE{fond=menu}{id_article}>
+
+<!-- colonne -->
+<div id="navigation">
+  <div id="col-hautdroit"></div>
+  <div id="col-hautgauchelarge">
+   <BOUCLE_majs(RUBRIQUES){age>=0}{par date}{inverse}{0,1}{doublons interdit}>
+   <div class="maj">Site mis &agrave; jour le [(#DATE|jour)/][(#DATE|mois)/][(#DATE|annee)]</div>
+   </BOUCLE_majs>
+  </div>
+
+
+<div class="extrait">
+
+<INCLURE(session.php){fond=pave_membre}>
+
+
+<h2>Rechercher</h2>
+<div class="menu">
+#FORMULAIRE_RECHERCHE
+</div>
+
+
+
+	<!-- Breves -->
+
+	<B_breves>
+	<h2>En bref</h2>
+	<div class="menu">
+	<div class="breves">
+		<div class="menu-titre">
+
+		</div>
+		<ul>
+	<BOUCLE_breves(BREVES) {par date} {inverse} {0,3} {titre !=citation}{age<21}>
+		<li class="menu-item">
+		<i>[(#DATE|affdate_court)]</i>:
+		<a href="#URL_BREVE">#TITRE</a>
+		</li>
+	</BOUCLE_breves>
+		</ul>
+	</div>
+	</div>
+	</B_breves>
+
+</div>
+    <div id="col-basdroit"></div><div id="col-basgauche"></div>
+</div>
+
+
+<!-- Contenu : article -->
+
+<div class="contenu" id="principal">
+
+<div id="une-hautdroit"></div><div id="une-hautgauchelarge">
+Vous &ecirc;tes ici: &nbsp;<a href="/">Accueil</a>
+		<BOUCLE_contexte_article(ARTICLES) {id_article}>
+		<BOUCLE_ariane_article(HIERARCHIE) {id_article}>
+		&gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80}|supprimer_numero)]</a>
+		</BOUCLE_ariane_article>
+		&gt; <a href="#URL_ARTICLE">[(#TITRE|couper{80}|supprimer_numero)]</a>
+		</BOUCLE_contexte_article>
+		</B_contexte_article>
+
+		<BOUCLE_contexte_breve(BREVES) {id_breve}>
+		<BOUCLE_ariane_breve(RUBRIQUES) {id_rubrique}>
+		&gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80}|supprimer_numero)]</a>
+		</BOUCLE_ariane_breve>
+		&gt; <a href="#URL_BREVE">[(#TITRE|couper{80}|supprimer_numero)]</a>
+		</BOUCLE_contexte_breve>
+
+		<BOUCLE_contexte_rubrique(RUBRIQUES) {id_rubrique}>
+		<BOUCLE_ariane_rubrique(HIERARCHIE) {id_rubrique}>
+		&gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80}|supprimer_numero)]</a>
+		</BOUCLE_ariane_rubrique>
+		&gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80}|supprimer_numero)]</a>
+		</BOUCLE_contexte_rubrique>
+
+		<BOUCLE_contexte_site(SITES) {id_syndic}>
+		<BOUCLE_ariane_site(HIERARCHIE) {id_rubrique}>
+		&gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80}|supprimer_numero)]</a>
+		</BOUCLE_ariane_site>
+		&gt; <a href="[(#ID_SYNDIC|generer_url_site)]">[(#TITRE|couper{80}|supprimer_numero)</a>
+		</BOUCLE_contexte_site>
+
+		<//B_contexte_site>
+		<//B_contexte_rubrique>
+		<//B_contexte_breve>
+		<//B_contexte_article>
+
+		<BOUCLE_contexte_forum(FORUMS) {id_forum}>
+		&gt; <a href="#URL_FORUM">[(#TITRE|couper{80})]</a>
+		</BOUCLE_contexte_forum>
+		
+	</div>
+
+
+
+	[(#REM) Contenu : poster un message dans le forum ]
+
+
+			<div class="liste-articles">
+
+				<div class="cartouche">
+				<h1 class="titre"><:poster_message:></h1>
+				<p class="surtitre"><:en_reponse:></p>
+               			</div>
+
+			<ul><li class="forum">
+					<BOUCLE_forum_parent(FORUMS) {id_forum}>
+					<h2 class="titre"><a href="#URL_FORUM">#TITRE</a></h2>
+					<small>[(#DATE|affdate_jourcourt)][&nbsp;(#DATE|heures)][:(#DATE|minutes)][, <:par_auteur:> (#NOM)]</small>
+					[<div class="texte">(#INTRODUCTION|lignes_longues)</div>]
+					</BOUCLE_forum_parent>
+
+
+					<BOUCLE_article(ARTICLES) {id_article}>
+					[<div class="logo_left">(#LOGO_ARTICLE||reduire_image{120})</div>]
+					[<div class="surtitre">(#SURTITRE)</div>]
+                                        <h1 class="titre-texte"><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h1>
+                                        [<div class="surtitre">(#SOUSTITRE)</div>]
+					<small>[Publi&eacute; le (#DATE|affdate)] par #LESAUTEURS</small>
+					[<div class="texte">(#INTRODUCTION)</div>]
+					</BOUCLE_article>
+
+					<BOUCLE_breve(BREVES) {id_breve}>
+					[(#LOGO_BREVE||image_reduire{150,100})]
+					<h2 class="titre"><a href="#URL_BREVE">#TITRE</a></h2>
+					<small>[(#DATE|affdate_jourcourt)]</small>
+					[<div class="texte">(#INTRODUCTION)</div>]
+					</BOUCLE_breve>
+
+					<BOUCLE_rubrique(RUBRIQUES) {id_rubrique}>
+					<h2 class="titre"><a href="#URL_RUBRIQUE">#TITRE</a></h2>
+					[<div class="texte">(#TEXTE)</div>]
+					</BOUCLE_rubrique>
+
+					<BOUCLE_syndic(SITES) {id_syndic}>
+					<h2 class="titre"><a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a></h2>
+					[<div class="texte">(#DESCRIPTIF)</div>]
+					</BOUCLE_syndic>
+
+					<//B_forum_parent>
+
+				</li></ul>
+
+			</div>
+
+			#FORMULAIRE_FORUM
+
+		<!-- fin contenu -->
+
+    <div id="une-basdroit"></div><div id="une-basgauche"></div>
+
+
+
+</div>
+<INCLURE(pied.php){id_article}>
+
+</body>
+</html>
+

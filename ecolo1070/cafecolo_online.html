@@ -1,0 +1,240 @@
+<?
+    // Inclus specifiques au chat
+    require_once( "chat/inc/chat.php");
+    require_once( "chat/inc/session.php");
+    require_once( "chat/inc/langue.php");
+
+    if (isset($_GET['erreur'])) $erreur = $_GET['erreur'];
+
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2002/REC-xhtml1-20020801/DTD/xhtml1-transitional.dtd">
+#CACHE{3600}
+<html lang="#LANG">
+<head>
+<title>[(#TITRE|textebrut|supprimer_numero) - #NOM_SITE_SPIP]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<meta name="robots" content="index, follow" />
+<link rel="shortcut icon" href="http://www.anderlecht.ecolo.be/favicon.ico" />
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/ecolo_gen.css" type="text/css" />
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/coins.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/ultraliens/ultraliens.css" media="screen" />
+<script type="text/javascript" src="#DOSSIER_SQUELETTE/ultraliens/ultraliens.js"></script>
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/impression.css" type="text/css" media="print" />
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="backend.php3" />
+</head>
+
+
+<body dir="#LANG_DIR">
+<INCLURE{fond=entete}>
+
+
+<!-- menu -->
+
+<INCLURE{fond=menu}>
+
+
+<!-- colonne -->
+
+<div id="navigation">
+  <div id="col-hautdroit"></div>
+  <div id="col-hautgauchelarge">
+   <BOUCLE_majs(ARTICLES){age>=0}{par date}{inverse}{0,1}>
+   <div class="maj">Site mis &agrave; jour le [(#DATE|jour)/][(#DATE|mois)/][(#DATE|annee)]</div>
+   </BOUCLE_majs>
+  </div>
+
+<div class="extrait">
+
+<INCLURE(session.php){fond=pave_membre}>
+
+
+	<!-- Breves -->
+
+	<B_breves>
+	<h2>En bref</h2>
+	<div class="menu">
+	<div class="breves">
+		<div class="menu-titre">
+
+		</div>
+		<ul>
+	<BOUCLE_breves(BREVES) {par date} {inverse} {0,3} {titre !=citation}{age<21}{id_secteur !=45}>
+		<li class="menu-item">
+		<i>[(#DATE|affdate_court)]</i>:
+		<a href="#URL_BREVE">#TITRE</a>
+		</li>
+	</BOUCLE_breves>
+		</ul>
+	</div>
+	</div>
+	</B_breves>
+
+
+<h2>Rechercher</h2>
+<div class="menu">
+#FORMULAIRE_RECHERCHE
+</div>
+
+
+	<!-- Sur le Web -->
+
+	<B_syndicss>
+	<h2><:sur_web:></h2>
+        <div class="menu">
+	<div class="divers">
+	
+		<ul>
+	<BOUCLE_syndicss(SYNDIC_ARTICLES) {par date} {inverse} {0,8}{id_rubrique}{doublons interdit}>
+		<li class="menu-item">
+		<a href="#URL_ARTICLE">[(#TITRE*)]</a>
+  		</li>
+	</BOUCLE_syndicss>
+		</ul>
+	</div>
+	</div>
+	</B_syndicss>
+
+
+</div>
+<div id="col-basdroit"></div><div id="col-basgauche"></div>
+
+</div>
+
+<!-- Contenu : article -->
+
+<div class="contenu" id="principal">
+
+<div id="une-hautdroit"></div><div id="une-hautgauchelarge">
+Vous &ecirc;tes ici: &nbsp;<a href="/">Accueil</a>&nbsp;>&nbsp;
+<BOUCLE_vous_etes_icis(HIERARCHIE){id_article} {" > "}>
+<a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+</BOUCLE_vous_etes_icis>
+</div>
+
+
+<script language="JavaScript">
+//<!--
+
+function AffichePresents( salon) {
+    window.open('qui.php?salon=' + salon,'qui','toolbar=no,scrollbars=yes,height=450,width=400');
+    return( false);
+}
+
+function VerifForm() {
+    <? if (defined("ENREGISTREMENT_OBLIGATOIRE") and (ENREGISTREMENT_OBLIGATOIRE == true)) { ?>
+    if (document.identification.newlogin.value == '' || document.identification.newmdp.value == '') {
+        alert( 'Veuillez renseigner votre pseudo et votre mot de passe !');
+        return( false);
+    } else {
+        return( true);
+    }
+    <? } else { ?>
+    if (document.identification.newlogin.value == '') {
+        alert( 'Veuillez renseigner votre pseudo !');
+        return( false);
+    } else {
+        return( true);
+    }
+    <? } ?>
+}
+
+//-->
+</script> 
+<form name="identification" method="post" action="chat/entree.php" onSubmit="envoyer.disabled=true;">
+        <input type="hidden" name="lang" value="<? echo( $lang); ?>">
+        
+<table border="0" align="center" cellpadding="2" cellspacing="2">
+          <tr> 
+            <td colspan="3">&nbsp;</td>
+          </tr>
+          <? if (isset($auteur_session) and ($auteur_session['id_auteur'] > 0) and ($auteur_session['login'] != '') and ($auteur_session['hash_env'] == hash_env())) { ?>
+          <tr> 
+            <td align="right"> Pseudo : </td>
+            <td colspan="2"> <b><? echo( $auteur_session['nom']); ?></b> <input type="hidden" name="newlogin" value="<? echo( $auteur_session['login']); ?>"> 
+              <input type="hidden" name="spip_id_auteur" value="<? echo( $auteur_session['id_auteur']); ?>"> 
+              <input type="hidden" name="newmdp" value="<? echo( $_COOKIE['spip_session']); ?>"> 
+            </td>
+          </tr>
+          <? } else { ?>
+          <tr> 
+            <td align="right"> Pseudo : </td>
+            <td colspan="2"> <input type="text" name="newlogin" size="20" maxlength="30"> 
+            </td>
+          </tr>
+          <tr> 
+            <td align="right"> Mot de passe : </td>
+            <td colspan="2"> <input type="password" name="newmdp" size="20" maxlength="30"> 
+            </td>
+          </tr>
+          <? } ?>
+          <tr> 
+            <td colspan="3">&nbsp;</td>
+          </tr>
+          <tr> 
+            <td align="right" valign="top"> Salons publics : </td>
+            <td> 
+              <?
+                // Affichage des salons publics
+                foreach( $salon_public as $nom_interne => $nom_salle) {
+                    // Bouton de choix du salon
+                    echo( "<input type=\"radio\" name=\"newsalon\" value=\"$nom_interne\"");
+                    // Salon par defaut = premier salon
+                    if (!$salon_par_defaut) {
+                        $salon_par_defaut = true;
+                        echo( " checked");
+                    }
+                    // Affichage du nom du salon
+                    echo( ">$nom_salle<br>\n");
+                }
+              ?>
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="3">&nbsp;</td>
+          </tr>
+          <? if (defined( "AUTORISER_SALONS_PRIVES") and (AUTORISER_SALONS_PRIVES == true)) { ?>
+          <tr> 
+            <td align="right"> Salons priv&eacute;s : </td>
+            <td colspan="2"> <input type="radio" name="newsalon" value="">
+              Cr&eacute;er un nouveau salon<br> </td>
+          </tr>
+          <tr> 
+            <td align="right"> Cr&eacute;er un salon priv&eacute; : </td>
+            <td colspan="2"> <input type="text" name="creersalon" size="20" maxlength="50"> 
+            </td>
+          </tr>
+          <tr> 
+            <td align="right"> Mot de passe : </td>
+            <td colspan="2"> <input type="text" name="mdpsalon" size="20" maxlength="50">
+              (<i>optionnel</i>) </td>
+          </tr>
+          <tr> 
+            <td colspan="3">&nbsp;</td>
+          </tr>
+          <? } ?>
+          <tr align="center"> 
+            <td colspan="3"> <input type="submit" name="envoyer" value="Entrer dans le chat !" onClick="javascript:return( VerifForm());"> 
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="3" align="right" class="etat"><font size="1"> <? echo( "$chat_copy Version $chat_version"); ?> 
+              </font></td>
+          </tr>
+        </table>
+      </form>
+      <?
+    if (isset( $erreur)) {
+?>
+      <script language="javascript">
+  window.alert("<? echo( $erreur); ?>");
+</script> 
+      <?
+    }
+?>
+<div id="une-basdroit"></div><div id="une-basgauche"></div>
+
+</div>
+<INCLURE(pied.php)>
+
+</body>
+</html>
