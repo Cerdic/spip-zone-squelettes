@@ -26,12 +26,23 @@
 
 <fieldset>
 <legend><:envoyer_message:></legend>
+
+[(#REM)   Des fois que l_Internaute contacte l_auteur n_1 alors on entre une e-mail dans le form   ]
+[(#SESSION{id_auteur}|?{'',' '}) 
 <p><label for="email_message_auteur#ENV{id}"><:form_pet_votre_email:></label>
-<input type="text" class="forml" name="email_message_auteur#ENV{id}" id="email_message_auteur#ENV{id}" value="#ENV{mail}" size="30" /></p>
+<input type="text" class="forml" name="email_message_auteur#ENV{id}" id="email_message_auteur#ENV{id}" value="#ENV{mail}" size="30" /></p>]
+
+
+[(#REM)   l_auteur est obligatoirement connecte et on masque le champ avec un hidden   ]
+[(#SESSION{id_auteur}|?{' ',''})
+<p><input class="forml" type="hidden" name="email_message_auteur#ENV{id}" id="email_message_auteur#ENV{id}" value="[(#SESSION{email})]" /></p>]
+
+
 <p><label for="sujet_message_auteur#ENV{id}"><:form_prop_sujet:></label>
-<input type="text" class="forml" name="sujet_message_auteur#ENV{id}" id="sujet_message_auteur#ENV{id}" value="[(#ENV{sujet}|insere_sujet_alerter{<:signaler_abus:>})]" size="30" /></p>
+<input type="text" class="forml" name="sujet_message_auteur#ENV{id}" id="sujet_message_auteur#ENV{id}" value="[(#ENV{sujet}|insere_sujet_alerter{Signaler un abus})]" size="30" /></p>
 <p><label for="texte_message_auteur#ENV{id}"><:info_texte_message:></label>
-<textarea class="forml" name="texte_message_auteur#ENV{id}" id="texte_message_auteur#ENV{id}" rows="10" cols="40">[(#ENV{texte}|insere_texte_alerter{<:alerte_moderation:> :})]</textarea></p>
+<textarea class="forml" name="texte_message_auteur#ENV{id}" id="texte_message_auteur#ENV{id}" rows="10" cols="40">[(#ENV{texte}|insere_texte_alerter{Bonjour; Je tenais à vous signaler 
+un comportement abusif sur le message suivant : })]</textarea></p>
 
 [<p class="spip_bouton"><input type="submit" name="valide" value="(#ENV{bouton})" /></p>]
 </fieldset>
