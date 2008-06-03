@@ -1,0 +1,84 @@
+<div id="noisette_miniagenda" class="noisette">
+	<h1><a class="intitule" href="[(#URL_PAGE{inc_agenda_annuel_2,[id_rubrique=(#ENV{id_rubrique})][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:agenda:>_2</a></h1>
+	
+	<div class="contenu">
+		[(#REM) <!-- On affiche les liens vers les annees precedentes et suivantes -->]
+		[<h2><a class="titre_bloc bord ajax" href="(#ENV{self}|parametre_url{'annee',[(#ENV{date}|annee|moins{1})]}|parametre_url{#ENV{var_date},[(#ENV{date}|annee|moins{1})]-[(#ENV{date}|mois)]})" title="[(#ENV{date}|nom_mois|ucfirst)]&nbsp;[(#ENV{date}|annee|moins{1})]">[(#CONFIG{sarkaspip_agenda/icone_precedent, &lt;&lt;})]</a></h2>]
+		[<h2 class="titre_bloc centre">(#ENV{date}|annee)</h2>]
+		[<h2><a class="titre_bloc bord ajax" href="(#ENV{self}|parametre_url{'annee',[(#ENV{date}|annee|plus{1})]}|parametre_url{#ENV{var_date},[(#ENV{date}|annee|plus{1})]-[(#ENV{date}|mois)]})" title="[(#ENV{date}|nom_mois|ucfirst)]&nbsp;[(#ENV{date}|annee|plus{1})]">[(#CONFIG{sarkaspip_agenda/icone_suivant, &lt;&lt;})]</a></h2>]
+		[(#REM) <!-- On affiche les liens vers les mois precedents et suivants -->]
+		[<h2><a class="titre_bloc bord ajax" href="(#ENV{self}|parametre_url{#ENV{var_date},[(#ENV{date}|Agenda_moisdecal{-1,'Y-m'})]})" title="[(#ENV{date}|Agenda_moisdecal{-1,'Y-m'}|affdate_mois_annee|ucfirst)]">[(#CONFIG{sarkaspip_agenda/icone_precedent, &lt;&lt;})]</a></h2>]
+		[<h2 class="titre_bloc centre">(#ENV{date}|nom_mois|ucfirst)</h2>]
+		[<h2><a class="titre_bloc bord ajax" href="(#ENV{self}|parametre_url{#ENV{var_date},[(#ENV{date}|Agenda_moisdecal{1,'Y-m'})]})" title="[(#ENV{date}|Agenda_moisdecal{1,'Y-m'}|affdate_mois_annee|ucfirst)]">[(#CONFIG{sarkaspip_agenda/icone_suivant, &lt;&lt;})]</a></h2>]
+		<div class="clearer"></div>
+		<table summary="<:sarkaspip:resume_mini_agenda:>">
+			<thead>
+				<tr>
+					<th title="<:sarkaspip:lundi|ucfirst:>"><:sarkaspip:lundi_abrege:></th>
+					<th title="<:sarkaspip:mardi|ucfirst:>"><:sarkaspip:mardi_abrege:></th>
+					<th title="<:sarkaspip:mercredi|ucfirst:>"><:sarkaspip:mercredi_abrege:></th>
+					<th title="<:sarkaspip:jeudi|ucfirst:>"><:sarkaspip:jeudi_abrege:></th>
+					<th title="<:sarkaspip:vendredi|ucfirst:>"><:sarkaspip:vendredi_abrege:></th>
+					<th title="<:sarkaspip:samedi|ucfirst:>"><:sarkaspip:samedi_abrege:></th>
+					<th title="<:sarkaspip:dimanche|ucfirst:>"><:sarkaspip:dimanche_abrege:></th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<BOUCLE_calendrier(EVENEMENTS) {id_mot?} {agendafull date_debut,date_fin, mois, (#ENV{date}|annee), (#ENV{date}|mois)}>
+					<BOUCLE_article(ARTICLES){id_evenement}>
+						#SET{titre_article,#TITRE}
+					</BOUCLE_article>
+					
+					 [(#DATE_DEBUT|Agenda_memo_full{#DATE_FIN,#TITRE,#DESCRIPTIF,#LIEU,#URL_ARTICLE, '#000000'})] 
+				</BOUCLE_calendrier>
+				
+				[(#ENV{date}|agenda_mini)]
+			</tbody>
+			
+		</table>
+		[(#REM) <!-- On affiche le lien vers aujourd hui-->]
+		[<h2><a id="aujourdhui" class="titre_bloc" href="(#ENV{self}|parametre_url{'annee',[(#AUJOURDHUI|annee)]}|parametre_url{#ENV{var_date},[(#AUJOURDHUI|annee)]-[(#AUJOURDHUI|mois)]})"title="[(#AUJOURDHUI|nom_mois|ucfirst)]&nbsp;[(#AUJOURDHUI|annee)]"><:sarkaspip:aujourdhui|ucfirst:></a></h2>]
+
+		<div class="clearer"></div>
+		[(#REM) <!-- On affiche les evenements en cours et ceux des sept prochains jours-->]
+			<B_mois>
+			<table id="footer_evenements">
+			<tbody>
+			<BOUCLE_mois(EVENEMENTS){agendafull date_debut,date_fin}{par date_debut}{lang_select=non}{age_fin<=0}{age_debut>-(#CONFIG{sarkaspip_agenda/max_mois_resume, 6}|mult{30})}{0,(#CONFIG{sarkaspip_agenda/taille_resume, 5})}{id_mot ?}>					
+				<BOUCLE_article_a_venir(ARTICLES){id_evenement}>#SET{titre_article2,#TITRE}#SET{id_article,#ID_ARTICLE}</BOUCLE_article_a_venir>
+			<tr>	<td class="footer_colg">
+				[(#DATE_DEBUT|affdate{'d-m'})][&nbsp;&nbsp;(#DATE_FIN|affdate{'d-m'}):]
+				</td>
+				<td class="footer_cold">
+				<a href="[(#URL_PAGE{inc_evenement_2,id_article=[(#GET{id_article})]}|parametre_url{id_evenement,#ID_EVENEMENT})]"
+				title=" [(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
+	  le [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)] 
+[(#HORAIRE|=={oui}|?{
+	   [(#REM) memes heures ?]
+	     [(#DATE_DEBUT|=={#DATE_FIN}|?{&agrave 
+[(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)],''})]
+	   [(#REM) pas memes heures ?]
+	     [(#DATE_DEBUT|!={#DATE_FIN}|?{de 
+[(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] &agrave; 
+[(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)],''})]
+,''})]
+,
+	  du [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)] 
+[(#HORAIRE|=={oui}|?{&agrave; partir de
+	  [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)],''})] au 
+[(#DATE_FIN|nom_jour)]
+	  [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{jusqu'&agrave;
+	  [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})]  })][-&nbsp;lieu&nbsp;:(#LIEU)]"
+	  >[(#GET{titre_article2}|supprimer_numero|couper{50})]</a>
+				</td>
+			</tr>	
+			</BOUCLE_mois>
+			</tbody>
+			</table>
+			</B_mois>
+			<:sarkaspip:msg_0_evt_agenda:>
+			<//B_mois>
+	
+	</div> <!-- div contenu -->
+</div> <!-- class noisette-->

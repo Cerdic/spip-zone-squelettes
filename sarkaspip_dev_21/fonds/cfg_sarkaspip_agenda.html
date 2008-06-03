@@ -48,8 +48,9 @@
 
 <form method="post" action="#SELF"><div>
 	[(#ENV{_cfg_}|form_hidden)]
+	
 	<fieldset>
-		<legend><:sarkaspip:cfg_lgd_secteur_id:></legend>
+		<legend><:sarkaspip:cfg_lgd_agenda_type:></legend>
 		<p><:sarkaspip:cfg_inf_agenda_id:></p>
 		<B_secteurs>
 			<label><:sarkaspip:cfg_lbl_liste_secteurs:></label>
@@ -62,19 +63,35 @@
 		</BOUCLE_secteurs>
 			</select>
 		</B_secteurs>
+		
+		
+		
+		[(#PLUGIN{AGENDA}|?{' '})
+		<p><:sarkaspip:cfg_inf_choix_agenda:></p>
+		<label>
+			<input type="radio" name="inc_choix_agenda" value="1" [(#ENV{inc_choix_agenda, 1}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_choix_agenda_1:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="inc_choix_agenda" value="2" [(#ENV{inc_choix_agenda, 1}|=={2}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_choix_agenda_2:>
+		</label>
+		]
+		
 	</fieldset>
 
 	<fieldset>
-		<legend><:sarkaspip:cfg_lgd_agenda_type:></legend>
-		<p><:sarkaspip:cfg_inf_agenda_type:></p>
+		<legend><:sarkaspip:cfg_lgd_agenda_modele:></legend>
+		<p><:sarkaspip:cfg_inf_agenda_modele:></p>
 		<label>
 			<input type="radio" name="type" value="1" [(#ENV{type, 1}|=={1}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_agenda_type_1:>
+			<:sarkaspip:cfg_lbl_agenda_modele_1:>
 		</label>
 		<br />
 		<label>
 			<input type="radio" name="type" value="2" [(#ENV{type, 1}|=={2}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_agenda_type_2:>
+			<:sarkaspip:cfg_lbl_agenda_modele_2:>
 		</label>
 		<div id="bloc_mois1">
 			<p><:sarkaspip:cfg_inf_agenda_mois1:></p>
