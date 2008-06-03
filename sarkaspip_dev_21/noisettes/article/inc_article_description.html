@@ -1,0 +1,33 @@
+[(#REM) 
+<!-- Affichage de l'article: logo, titre, chapo, texte, ps...
+	Recoit en argument :
+		- id_article: id de l'article concerne
+-->
+]
+<BOUCLE_description (ARTICLES) {id_article}>
+	<a class="fonction" id="imprimer" href="#URL_PAGE{imprimer,id_article=#ID_ARTICLE}" title="<:sarkaspip:imprimer_article:>"></a>
+	[(#PLUGIN{ARTICLE_PDF}|?{' '})
+		[(#MODELE{mod_bouton_pdf}{id_article})]
+	]
+	
+	[<div class="#EDIT{surtitre} surtitre">(#SURTITRE)</div>]
+	[<div class="#EDIT{titre} titre">(#TITRE|supprimer_numero)</div>]
+	[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>]
+	[(#INCLURE{fond=noisettes/article/inc_article_cartouche}{id_article}{avec_popularite=oui})]
+	<div class="clearer-right"></div>
+
+	[<div class="image">(#LOGO_ARTICLE||image_reduire{150})</div>]
+	<div class="clearer-right"></div>
+	
+	<div class="#EDIT{texte} description">
+		[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
+		
+		[(#TEXTE|typo_couleur)]
+		<div class="clearer">&nbsp;</div>
+		
+		[<div class="#EDIT{nom_site} lien_site"><a href="#URL_SITE">(#NOM_SITE)</a></div>]
+		[<div class="#EDIT{ps} ps">(#PS)</div>]
+		[<div class="#EDIT{notes} notes">(#NOTES)</div>]
+		[<br /><a class="repondre" href="(#PARAMETRES_FORUM|url_reponse_forum)"><:sarkaspip:repondre_article:></a><br />]
+	</div>
+</BOUCLE_description>

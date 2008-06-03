@@ -1,0 +1,38 @@
+[(#REM) <!-- affichage des statistiques generales site --> ]
+<div id="noisette_statistiques" class="noisette">
+	<h1 class="intitule"><:sarkaspip:statistiques:></h1>
+	<div class="contenu">
+		<B_maj>
+			<h2 class="titre_bloc"><:sarkaspip:maj:></h2>
+		<BOUCLE_maj(RUBRIQUES){age>=0}{par date}{inverse}{0,1}>
+			<div class="texte">[(#DATE|nom_jour)]&nbsp;[(#DATE|affdate)]</div>
+		</BOUCLE_maj>
+		</B_maj>
+			<h2 class="titre_bloc"><:sarkaspip:maj:></h2>
+			<div class="texte"><:sarkaspip:date_aujourdhui:></div>
+		<//B_maj>
+	</div>
+	
+	<div class="contenu">
+		<h2 class="titre_bloc"><:sarkaspip:statistiques_edition:></h2>
+		<div class="texte">
+			<B_tous_articles> <BOUCLE_tous_articles(ARTICLES){tout}{id_rubrique!==#RUBRIQUE_SPECIALISEE}> </BOUCLE_tous_articles>
+				[#TOTAL_BOUCLE (#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_article:>,<:sarkaspip:articles:>})]</B_tous_articles><:sarkaspip:0_article:><//B_tous_articles><br />
+			<B_tous_breves> <BOUCLE_tous_breves(BREVES){tout}> </BOUCLE_tous_breves>
+				[#TOTAL_BOUCLE (#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_breve:>,<:sarkaspip:breves:>})]</B_tous_breves><:sarkaspip:0_breve:><//B_tous_breves><br />
+			<B_tous_sites> <BOUCLE_tous_sites(SITES){tout}> </BOUCLE_tous_sites>
+				[#TOTAL_BOUCLE (#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_site_web:>,<:sarkaspip:sites_web:>})]</B_tous_sites><:sarkaspip:0_site_web:><//B_tous_sites><br />
+			<B_tous_auteurs> <BOUCLE_tous_auteurs(AUTEURS){tout}> </BOUCLE_tous_auteurs>
+				[#TOTAL_BOUCLE (#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_auteur:>,<:sarkaspip:auteurs:>})]</B_tous_auteurs><:sarkaspip:0_auteur:><//B_tous_auteurs><br />
+		</div>
+	</div>
+	
+	<div class="contenu">
+		<h2 class="titre_bloc"><:sarkaspip:statistiques_visites:></h2>
+		<div class="texte">
+			[(#VISITES_SITE{aujourdhui})]&nbsp;<:sarkaspip:aujourdhui:><br />
+			[(#VISITES_SITE{hier})]&nbsp;<:sarkaspip:hier:><br />
+			[(#VISITES_SITE)]&nbsp;<:sarkaspip:depuis_debut:>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,30 @@
+<B_herbier>
+	#ANCRE_PAGINATION
+	[(#CONFIG{sarkaspip_herbier/position_pagination_1, 3}|match{^(1|3)$}|?{' '})
+		<div class="pagination">#PAGINATION{#CONFIG{sarkaspip_herbier/modele_pagination_1}}</div>
+	]
+	<hr />
+<BOUCLE_herbier(SITES) {id_rubrique}{pagination #CONFIG{sarkaspip_herbier/pas_pagination_1, 5}}{par date}{inverse}{" <hr /> "}>
+	<div>
+		<a href="#URL_SITE"[ title="(#NOM_SITE|texte_backend)"]><img src="http://open.thumbshots.org/image.pxf?url=#URL_SITE"[ alt="(#NOM_SITE|texte_backend)"] /></a>
+		<a class="objet_titre" href="#URL_SITE"[ title="(#NOM_SITE|texte_backend)"]><span class="objet_date">[[(#DATE|affdate{'d-m-Y'})]]</span>&nbsp;-&nbsp;[(#NOM_SITE)]</a>	
+		<div class="description">[(#DESCRIPTIF|textebrut|sinon{<:sarkaspip:msg_site_sans_descriptif:>})<br /><br />]
+			<B_categories>
+				&raquo;&nbsp;<:sarkaspip:herbier_tag|ucfirst:>&nbsp;:&nbsp;
+				<em>
+			<BOUCLE_categories(MOTS){id_syndic}{par titre}{", "}>
+					[<a href="#URL_PAGE{mot}&amp;id_mot=#ID_MOT" title="[(#TITRE)]">(#TITRE)</a>]
+			</BOUCLE_categories>
+				</em>
+				<br />
+			</B_categories>
+				&raquo;&nbsp;<:sarkaspip:herbier_url|ucfirst:>&nbsp;:&nbsp;<a href="#URL_SITE" title="[(#NOM_SITE)]"><em>[(#URL_SITE)]</em></a>
+		</div>
+		<div style="clear: both;">&nbsp;</div>
+	</div>
+</BOUCLE_herbier>
+	<hr />
+	[(#CONFIG{sarkaspip_herbier/position_pagination_1, 3}|match{^(2|3)$}|?{' '})
+		<div class="pagination">#PAGINATION{#CONFIG{sarkaspip_herbier/modele_pagination_1}}</div>
+	]
+</B_herbier>

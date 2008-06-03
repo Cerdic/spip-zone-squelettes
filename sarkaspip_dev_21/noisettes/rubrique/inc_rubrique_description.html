@@ -1,0 +1,18 @@
+[(#REM) 
+<!-- Affichage de la rubrique: logo, titre, texte ou descriptif
+	Recoit en argument :
+		- id_rubrique: id de la rubrique concernee
+-->
+]
+<BOUCLE_description (RUBRIQUES) {id_rubrique}>
+	[<div class="image">(#LOGO_RUBRIQUE||image_reduire{110})</div>]
+	[<a class="#EDIT{titre} titre" href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
+	[<div class="#EDIT{texte} description">
+		(#TEXTE|typo_couleur)
+		[<div class="#EDIT{notes} notes">(#NOTES)</div>]
+	</div>]
+	[(#TEXTE|?{'', ' '})
+		[<div class="#EDIT{descriptif} description">(#DESCRIPTIF|typo_couleur)</div>]
+	]
+	<div class="clearer">&nbsp;</div>
+</BOUCLE_description>

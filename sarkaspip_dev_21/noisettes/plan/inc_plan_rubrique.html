@@ -1,0 +1,36 @@
+[(#REM) <!-- Plan du site par rubrique --> ]
+[(#CONFIG{sarkaspip_plan/position_pagination, 1}|match{^(1|3)$}|?{' '})
+	<INCLURE{fond=noisettes/plan/inc_plan_pagination}{tri=par_rubrique}>
+]
+<BOUCLE_secteurs(RUBRIQUES){racine}{id_rubrique!==#RUBRIQUE_SPECIALISEE}{par num titre}{par titre}>
+	[<h2><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a></h2>]
+	<B_articles_secteur>
+		<ul>
+	<BOUCLE_articles_secteur(ARTICLES){id_rubrique}{par num titre}{par date}{inverse #CONFIG{sarkaspip_plan/senstri_date, 1}}>
+			<li><a class="objet_titre" href="#URL_ARTICLE"><span class="objet_date">[[(#DATE|affdate{'d-m-Y'})]] </span> [(#TITRE|supprimer_numero)]</a></li>
+	</BOUCLE_articles_secteur>
+		</ul>
+	</B_articles_secteur>
+
+	<B_hierarchie>
+		<ul>
+	<BOUCLE_hierarchie(RUBRIQUES){id_parent}{par num titre}{par titre}>
+			<li>
+				[<h2><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a></h2>]
+			<B_articles_hierarchie>
+				<ul>
+			<BOUCLE_articles_hierarchie(ARTICLES){id_rubrique}{par num titre}{par date}{inverse #CONFIG{sarkaspip_plan/senstri_date, 1}}>
+					<li><a class="objet_titre" href="#URL_ARTICLE"><span class="objet_date">[[(#DATE|affdate{'d-m-Y'})]] </span> [(#TITRE|supprimer_numero)]</a></li>
+			</BOUCLE_articles_hierarchie>
+				</ul>
+			</B_articles_hierarchie>
+			<BOUCLE_sous_hierarchie(boucle_hierarchie)></BOUCLE_sous_hierarchie>
+			</li>
+	</BOUCLE_hierarchie>
+		</ul>
+	</B_hierarchie>
+	<br />
+</BOUCLE_secteurs>
+[(#CONFIG{sarkaspip_plan/position_pagination, 1}|match{^(2|3)$}|?{' '})
+	<INCLURE{fond=noisettes/plan/inc_plan_pagination}{tri=par_rubrique}>
+]
