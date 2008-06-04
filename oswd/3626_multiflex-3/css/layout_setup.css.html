@@ -1,11 +1,19 @@
 /* NON-HEADER */
 
-
-[(#SET{url_bg_foot,[(#CHEMIN{img/bg_foot.jpg}|en_image|image_sepia{[(#ENV{mfx_c150})]}|extraire_attribut{src})]})]
-[(#SET{url_bg_main_withoutnav,[(#CHEMIN{img/bg_main_withoutnav.jpg}|en_image|image_sepia{[(#ENV{mfx_c150})]}|extraire_attribut{src})]})]
-[(#SET{url_bg_main_withnav,[(#CHEMIN{img/bg_main_withnav.jpg}|en_image|image_sepia{[(#ENV{mfx_c150})]}|extraire_attribut{src})]})]
-[(#SET{url_bg_main_withnav_reverse,[(#CHEMIN{img/bg_main_withnav_reverse.jpg}|en_image|image_sepia{[(#ENV{mfx_c150})]}|extraire_attribut{src})]})]
-
+[(#CONFIG{multiflex/couleurs/relief}|=={oui}|?{' '})
+	[(#SET{url_bg_foot,[(#CHEMIN{img/bg_foot.jpg}
+		|image_sepia{[(#ENV{mfx_c150})]}
+		|extraire_attribut{src})]})]
+	[(#SET{url_bg_main_withoutnav,[(#CHEMIN{img/bg_main_withoutnav.jpg}
+		|image_sepia{[(#ENV{mfx_c150})]}
+		|extraire_attribut{src})]})]
+	[(#SET{url_bg_main_withnav,[(#CHEMIN{img/bg_main_withnav.jpg}
+		|image_sepia{[(#ENV{mfx_c150})]}
+		|extraire_attribut{src})]})]
+	[(#SET{url_bg_main_withnav_reverse,[(#CHEMIN{img/bg_main_withnav_reverse.jpg}
+		|image_sepia{[(#ENV{mfx_c150})]}
+		|extraire_attribut{src})]})]
+]
 
 *{padding:0; margin:0;}
  body {font-size:62.5%; background-color:[(#ENV{mfx_c255})]; font-family:verdana,arial,sans-serif;} /*Font-size: 1.0em = 10px when browser default size is 16px*/
@@ -14,11 +22,11 @@
 .main-navigation {display:inline /*Fix IE floating margin bug*/; width:200px; overflow:visible !important /*Firefox*/; overflow:hidden /*IE6*/;}
 .main-content {display:inline; /*Fix IE floating margin bug*/; float:left;  margin:0 0 0 30px; overflow:visible !important /*Firefox*/; overflow:hidden /*IE6*/;}
 .main-subcontent {display:inline /*Fix IE floating margin bug*/; width:185px;  overflow:visible !important /*Firefox*/; overflow:hidden /*IE6*/;}
-.footer {clear:both; width:900px; padding:1.0em 0 1.0em 0; background:[(#ENV{mfx_c225})] url(#GET{url_bg_foot}) no-repeat; font-size:1.0em; overflow:visible !important /*Firefox*/; overflow:hidden /*IE6*/;}
+.footer {clear:both; width:900px; padding:1.0em 0 1.0em 0; background:[(#ENV{mfx_c225})] [url((#GET{url_bg_foot})) no-repeat]; font-size:1.0em; overflow:visible !important /*Firefox*/; overflow:hidden /*IE6*/;}
 
-.layout1 .main {background:transparent url(#GET{url_bg_main_withoutnav}) repeat-y;}
-.layout2 .main, .layout4 .main {background:transparent url(#GET{url_bg_main_withnav}) top left repeat-y;}
-.layout3 .main, .layout5 .main {background:transparent url(#GET{url_bg_main_withnav_reverse}) top left repeat-y;}
+.layout1 .main {background:transparent [url((#GET{url_bg_main_withoutnav})) repeat-y];}
+.layout2 .main, .layout4 .main {background:transparent [url((#GET{url_bg_main_withnav})) top left repeat-y];}
+.layout3 .main, .layout5 .main {background:transparent [url((#GET{url_bg_main_withnav_reverse})) top left repeat-y];}
 
 .layout2 .main-navigation, .layout4 .main-navigation {float:left;}
 .layout3 .main-navigation, .layout5 .main-navigation {float:right;}
@@ -37,8 +45,8 @@
 
 /* MAIN NAVIGATION */
 .main-navigation .round-border-topright {width:10px; height:10px; position:absolute; z-index:100; }
-.layout2 .main-navigation .round-border-topright, .layout4 .main-navigation  .round-border-topright{margin:0 0 0 190px; background:url(#CHEMIN{img/bg_corner_topright.gif}) no-repeat;}
-.layout3 .main-navigation .round-border-topright, .layout5 .main-navigation  .round-border-topright{margin:0; background:url(#CHEMIN{img/bg_corner_topleft.gif}) no-repeat;}
+.layout2 .main-navigation .round-border-topright, .layout4 .main-navigation  .round-border-topright{margin:0 0 0 190px; [background:url((#CHEMIN{img/bg_corner_topright.gif})) no-repeat;]}
+.layout3 .main-navigation .round-border-topright, .layout5 .main-navigation  .round-border-topright{margin:0; [background:url((#CHEMIN{img/bg_corner_topleft.gif})) no-repeat;]}
 
 /* MAIN CONTENT */
 .column1-unit { margin-bottom:10px !important /*Non-IE6*/; margin-bottom:5px /*IE6*/;}

@@ -11,10 +11,18 @@
 /*             Wolfgang (www.1-2-3-4.info). Thank you!       */
 /*************************************************************/
 
-[(#SET{url_bg_head_top,[(#CHEMIN{img/bg_head_top.jpg}|en_image|image_sepia{[(#ENV{mfx_c150})]}|extraire_attribut{src})]})]
+[(#CONFIG{multiflex/couleurs/relief}|=={oui}|?{' '})
+	[(#SET{url_bg_head_top,[(#CHEMIN{img/bg_head_top.jpg}
+		|image_sepia{[(#ENV{mfx_c150})]}
+		|extraire_attribut{src})]})]
+	[(#SET{url_bg_head_breadcrumbs,[(#CHEMIN{img/bg_head_breadcrumbs.jpg}
+		|image_sepia{[(#ENV{mfx_c150})]}
+		|extraire_attribut{src})]})]
+	[(#SET{url_bg_head_bottom_nav,[(#CHEMIN{img/bg_head_bottom_nav.jpg}
+		|image_sepia{[(#ENV{mfx_c150})]}
+		|extraire_attribut{src})]})]
+]
 [(#SET{url_bg_head_middle,[(#CHEMIN{img/bg_head_middle.jpg})]})]
-[(#SET{url_bg_head_breadcrumbs,[(#CHEMIN{img/bg_head_breadcrumbs.jpg}|en_image|image_sepia{[(#ENV{mfx_c150})]}|extraire_attribut{src})]})]
-[(#SET{url_bg_head_bottom_nav,[(#CHEMIN{img/bg_head_bottom_nav.jpg}|en_image|image_sepia{[(#ENV{mfx_c150})]}|extraire_attribut{src})]})]
 
 /***************/
 /*  1. GLOBAL  */
@@ -31,10 +39,10 @@
 
 /* HEADER */
 .header {width:900px; font-family:"trebuchet ms",arial,sans-serif;}
-.header-top {width:900px; height:80px; background:[(#ENV{mfx_c240})] url(#GET{url_bg_head_top}); overflow:visible !important /*Firefox*/; overflow:hidden /*IE6*/;}
-.header-middle {width:900px; height:150px; background:[(#ENV{mfx_c230})] url(#GET{url_bg_head_middle}); overflow:visible !important /*Firefox*/; overflow:hidden /*IE6*/;}
+.header-top {width:900px; height:80px; background:[(#ENV{mfx_c240})] [url((#GET{url_bg_head_top}))]; overflow:visible !important /*Firefox*/; overflow:hidden /*IE6*/;}
+.header-middle {width:900px; height:150px; background:[(#ENV{mfx_c230})] [url((#GET{url_bg_head_middle}))]; overflow:visible !important /*Firefox*/; overflow:hidden /*IE6*/;}
 .header-bottom {width:900px;}
-.header-breadcrumbs {clear:both; width:900px; padding:1.0em 0 1.5em 0; background:[(#ENV{mfx_c255})] url(#GET{url_bg_head_breadcrumbs}) repeat-y;}
+.header-breadcrumbs {clear:both; width:900px; padding:1.0em 0 1.5em 0; background:[(#ENV{mfx_c255})] [url((#GET{url_bg_head_breadcrumbs}))] repeat-y;}
 
 
 /*************/
@@ -78,7 +86,7 @@
 
 
 /*Drop-down menu*/
-.nav2 {white-space:nowrap /*IE hack*/; float:left; width:900px; border:none; background:[(#ENV{mfx_c225})] url(#GET{url_bg_head_bottom_nav}) no-repeat; color:[(#ENV{mfx_c75})]; font-size:130%;} /*Color navigation bar normal mode*/
+.nav2 {white-space:nowrap /*IE hack*/; float:left; width:900px; border:none; background:[(#ENV{mfx_c225})] [url((#GET{url_bg_head_bottom_nav}))] no-repeat; color:[(#ENV{mfx_c75})]; font-size:130%;} /*Color navigation bar normal mode*/
 .nav2 ul {list-style-type:none;}
 .nav2 ul li {float:left; z-index:auto !important /*Non-IE6*/; z-index:1000 /*IE6*/; border-right:solid 1px [(#ENV{mfx_c175})];}
 .nav2 ul li a {float:none !important /*Non-IE6*/; float:left /*IE-6*/; display:block; height:3.1em; line-height:3.1em; padding:0 16px 0 16px; text-decoration:none; font-weight:bold; color: [(#ENV{mfx_c100})];}

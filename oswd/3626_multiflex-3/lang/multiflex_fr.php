@@ -107,6 +107,9 @@ $GLOBALS['i18n_multiflex_fr'] = array(
 'positionnements_generaux' => 'Positionnements g&eacute;n&eacute;raux',
 'puces' => 'Puces',
 
+'relief' => 'Relief',
+'relief_fonds' => 'Relief du th&egrave;me :',
+
 'sans_puces' => 'Sans puces',
 'sous_titre_nom_site' => 'Sous-titre au nom du site',
 
