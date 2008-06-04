@@ -18,68 +18,19 @@
 	<div id="wrapper">
 		<div id="content">
 			[(#REM) <!-- Contenu de l'evenement --> ]
-			<div class="article">
-				<a class="fonction" id="imprimer" href="#URL_PAGE{imprimer,id_article=#ID_ARTICLE}" title="<:sarkaspip:imprimer_article:>"></a>
+			<div id="evenement" class="article">
+				[(#REM) <!-- Titre, logo, texte de la rubrique --> ]
+				[(#INCLURE{fond=noisettes/article/inc_article_description}{id_article}{avec_popularite=non}{avec_commentaire=non})]
 				
-				[(#PLUGIN{ARTICLE_PDF}|?{' '})
-						[(#MODELE{mod_bouton_pdf}{id_article})]
+				[(#REM) <!-- Documents (sauf images) du portfolio de la rubrique --> ]
+				[(#CONFIG{sarkaspip_article/position_documents, 1}|=={1}|?{' '})
+					[(#INCLURE{fond=noisettes/article/inc_article_documents}{id_article})]
 				]
-				
-				[<div class="#EDIT{titre} titre">[(#DATE_REDAC|affdate{'d-m-Y H:i'})]&nbsp;:&nbsp;(#TITRE|supprimer_numero)</div>]
-				
-				<div class="contenu">
-					[<div class="image">(#LOGO_ARTICLE||image_reduire{150})</div>]
-					<div class="detail">[(#DATE|nom_jour)]&nbsp;[(#DATE|affdate)]<br />
-						<B_auteurs_article>
-							<:sarkaspip:par_auteur:>
-							<BOUCLE_auteurs_article(AUTEURS) {id_article} {", "}>
-								<a href="#URL_AUTEUR">#NOM</a>
-							</BOUCLE_auteurs_article>
-							</B_auteurs_article>
-					</div>
-					<div class="clearer-right"></div>
-				
-					[<div class="chapo"><:sarkaspip:sur_web:> <a href=#URL_SITE>(#NOM_SITE)</a></div>]
-					[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
-					
-					<div class="#EDIT{texte} texte">
-						<BOUCLE_article_virtuel(ARTICLES) {id_article} {chapo == ^=}>
-							<span class=reponse_formulaire><:sarkaspip:msg_evenement_virtuel:></span>
-							<br /><br />
-							<a class="repondre" href="#URL_ARTICLE" title="<:sarkaspip:lire_evenement_virtuel:>"><:sarkaspip:lire_evenement_virtuel:></a>
-						</BOUCLE_article_virtuel>
-							[(#TEXTE|typo_couleur)]
-						<//B_article_virtuel>
-						<div class="clearer">&nbsp;</div>
-						[<div class="#EDIT{ps} post-scriptum"><div class="annonce"><:sarkaspip:ps:>&nbsp;:</div>(#PS)</div>]
-						[<div class="#EDIT{notes} notes">(#NOTES)</div>]
-					</div>
-				</div>
-			
-				[(#REM) <!-- Liens vers les documents joints, a l'exclusion des images --> ]
-				<B_documents_article>
-					<div class="en-tete"><:sarkaspip:docu_article:> :</div>
-					<div class="doc">
-						<BOUCLE_documents_article(DOCUMENTS){id_article}{extension !== jpg|png|gif}{mode=document}{doublons}>
-								<a href=#URL_DOCUMENT>&nbsp;#LOGO_DOCUMENT&nbsp;&nbsp;#TITRE&nbsp;</a>
-						</BOUCLE_documents_article>
-					</div>
-				</B_documents_article>
-				
-				[(#REM) <!-- Liens vers les images jointes --> ]
-				<B_images_article>
-					<div class="en-tete"><:sarkaspip:img_article:> :</div>
-					<div class="doc">
-						<BOUCLE_images_article(DOCUMENTS){id_article}{extension == jpg|png|gif}{mode=document}{doublons}>
-							<div class="vignette">
-								<a href=#URL_DOCUMENT class="info">&nbsp;#LOGO_DOCUMENT&nbsp;[<span>(#DESCRIPTIF)</span>]</a>
-								<ul>
-									[<li><:sarkaspip:img_titre:>&nbsp;:&nbsp;(#TITRE)</li>]
-								</ul>
-							</div>
-						</BOUCLE_images_article>
-					</div>
-				</B_images_article>
+	
+				[(#REM) <!-- Images du portfolio de la rubrique --> ]
+				[(#CONFIG{sarkaspip_article/position_images, 1}|=={1}|?{' '})
+					[(#INCLURE{fond=noisettes/article/inc_article_images}{id_article})]
+				]
 			</div>
 			
 			[(#REM) <!-- Affichage des evenements du meme jour --> ]
