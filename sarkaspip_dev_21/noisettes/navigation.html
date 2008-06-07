@@ -1,9 +1,7 @@
-[(#REM) <!-- affichage du panneau d'annonce --> ]
-<BOUCLE_acces_annonce(RUBRIQUES) {id_rubrique=#RUBRIQUE_SPECIALISEE{annonce}}>
-	[(#CONFIG{sarkaspip_noisettes/position_annonce, 1}|=={1}|?{' '})
-		<INCLURE{fond=noisettes/inc_annonce}{id_rubrique=#ID_RUBRIQUE}>
-	]
-</BOUCLE_acces_annonce>
+[(#REM) <!-- Bloc de recherche --> ]
+[(#CONFIG{sarkaspip_noisettes/position_recherche, 1}|=={1}|?{' '})
+	<INCLURE{fond=noisettes/recherche/inc_recherche}>
+]
 
 [(#REM) <!-- Bloc de navigation des rubriques  --> ]
 <INCLURE{fond=noisettes/navigation/inc_nav_rubriques_#CONFIG{sarkaspip_noisettes/menu_rubriques, 1}}{id_rubrique}>
@@ -16,10 +14,12 @@
 	<INCLURE{fond=noisettes/navigation/inc_nav_visiteurs}{id_rubrique}>
 ]
 
-[(#REM) <!-- Bloc de recherche --> ]
-[(#CONFIG{sarkaspip_noisettes/position_recherche, 1}|=={1}|?{' '})
-	<INCLURE{fond=noisettes/recherche/inc_recherche}>
-]
+[(#REM) <!-- affichage du panneau d'annonce --> ]
+<BOUCLE_acces_annonce(RUBRIQUES) {id_rubrique=#RUBRIQUE_SPECIALISEE{annonce}}>
+	[(#CONFIG{sarkaspip_noisettes/position_annonce, 1}|=={1}|?{' '})
+		<INCLURE{fond=noisettes/inc_annonce}{id_rubrique=#ID_RUBRIQUE}>
+	]
+</BOUCLE_acces_annonce>
 
 [(#REM) <!-- Blocs de statistiques --> ]
 [(#CONFIG{sarkaspip_noisettes/position_stats_1, 1}|=={1}|?{' '})

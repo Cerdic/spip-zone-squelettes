@@ -19,32 +19,19 @@
 		<div id="content">
 			[(#REM) <!-- Contenu de l'article --> ]
 			<div class="article">
-				<B_count_doc>
-					<BOUCLE_count_doc(DOCUMENTS){id_article}{mode=document}{extension IN png,jpg,gif}>
-					</BOUCLE_count_doc>
-						[<div class="#EDIT{surtitre} surtitre">(#SURTITRE)</div>]
-						[<div class="#EDIT{titre} titre">(#TITRE|supprimer_numero)</div>]
-						[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>]
-						#SET{total_photos, #TOTAL_BOUCLE}
-				</B_count_doc>
-			
-				<div class="contenu">		
-					<div class="detail">
-						[(#DATE|nom_jour)]&nbsp;[(#DATE|affdate)]<br />
-						<B_auteurs_article>
-							<:sarkaspip:par_auteur:>
-						<BOUCLE_auteurs_article(AUTEURS) {id_article} {", "}>
-						<a href="#URL_AUTEUR">#NOM</a>
-						</BOUCLE_auteurs_article>
-						</B_auteurs_article>
-						[<br /><:sarkaspip:popularite_article:>&nbsp;:&nbsp;(#POPULARITE)%]
-					</div>
-					<div class="clearer-right"></div>
-					
-					<div class="#EDIT{texte} texte" style="text-align:left">[(#TEXTE|typo_couleur)]
-						[(#REM) <!-- le bouton d'acces au forum de l'album est pour l'instant desactive dans cette version (display:none) --> ]
-						[<br /><a class="repondre" style="display:none;" href="(#PARAMETRES_FORUM|url_reponse_forum)"><:sarkaspip:album_repondre:></a><br />]
-					</div>
+				[(#REM) <!-- Titre, logo, texte de la rubrique --> ]
+				[(#INCLURE{fond=noisettes/article/inc_article_description}{id_article}{avec_popularite=oui}{avec_commentaire=non})]
+				
+				[(#REM) <!-- Documents (sauf images) du portfolio de la rubrique --> ]
+				[(#CONFIG{sarkaspip_article/position_documents, 1}|=={1}|?{' '})
+					[(#INCLURE{fond=noisettes/article/inc_article_documents}{id_article})]
+				]
+	
+				[(#REM) <!-- Images du portfolio de la rubrique --> ]
+				[(#CONFIG{sarkaspip_article/position_images, 1}|=={1}|?{' '})
+					[(#INCLURE{fond=noisettes/article/inc_article_images}{id_article})]
+				]
+			</div>
 					
 					[(#REM) <!-- album : bloc de vignettes--> ]
 					<B_vignettes>
@@ -66,8 +53,6 @@
 						</table>
 					</B_vignettes>
 						</div>
-				</div>
-			</div>
 		</div>
 	</div>
 	
