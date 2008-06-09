@@ -4,13 +4,21 @@
 $jp_rubrique = [(#ID_RUBRIQUE|texte_script)];
 $jp_site = '[(#ID_SYNDIC|texte_script)]';
 $jp_syndication = '[(#ENV{id_syndic_article}|texte_script)]';
+?>
 <BOUCLE_ArticleSyndiqueTitre(SYNDIC_ARTICLES) {id_syndic_article} >
+<?php
 $titre = '[(#TITRE|textebrut|texte_script)][ - (#NOM_SITE|textebrut|texte_script) (<:sites_web:>)]';
+?>
+<INCLURE{fond=header}{connexion}{metadescription=(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)}>
 </BOUCLE_ArticleSyndiqueTitre>
+<?php
 $titre = '[(#NOM_SITE|textebrut|texte_script) (<:sites_web:>)]';
+?>
+<INCLURE{fond=header}{connexion}{metadescription=(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)}>
 <//B_ArticleSyndiqueTitre>
+<?php
 $titretop = '<:sites_web|nettoyer_marqueur:>_[(#NOM_SITE|nettoyer_marqueur)]';
-?><INCLURE{fond=header}{connexion}>
+?>
 	<div id="miettesdepain">
 	<ul>
 		<li><a href="#URL_SITE_SPIP" title="Accueil"><:pyrat:accueil:></a></li>

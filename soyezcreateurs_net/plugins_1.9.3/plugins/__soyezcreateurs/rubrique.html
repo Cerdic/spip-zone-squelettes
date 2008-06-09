@@ -3,7 +3,7 @@
 <BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}{!lang_select}><?php $jp_rubrique = [(#ID_RUBRIQUE|texte_script)]; ?><BOUCLE_RacineMenuHaut(HIERARCHIE){tout}{id_rubrique}{titre_mot=MenuHaut}{inverse} {0,1}>[(#SET{secteurencours,#ID_RUBRIQUE})]</BOUCLE_RacineMenuHaut><?php
 $titre = '[(#TITRE|attribut_html|texte_script)]';
 $titretop = '[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]';
-?><INCLURE{fond=header}{id_rubrique}{connexion}{secteurencours=#GET{secteurencours}}>
+?><INCLURE{fond=header}{id_rubrique}{connexion}{secteurencours=#GET{secteurencours}}{metadescription=(#INTRODUCTION{150}|supprimer_tags|attribut_html)}>
 <BOUCLE_EstAgenda(HIERARCHIE){id_rubrique}{tout}{titre_mot=Agenda}{inverse}{0,1}>
 [(#CONFIG{soyezcreateurs/agendathematique,Non}|=={#ENV{calendrier,Oui}}|?{' ',''})<INCLURE{fond=agendathematique}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}>]
 [(#CONFIG{soyezcreateurs/agendathematique,Non}|!={#ENV{calendrier,Oui}}|?{' ',''})
