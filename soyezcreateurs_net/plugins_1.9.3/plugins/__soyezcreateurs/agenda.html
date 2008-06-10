@@ -32,7 +32,7 @@ $events = array();
 		$res="";
 		ereg("($genre)", '<BOUCLE_genre(MOTS){id_evenement}>[(#TITRE|texte_script)]</BOUCLE_genre>', $res);
 		if (($genre=='<:pyrat:tout:>') || ($genre==$res[1])) {
-			<BOUCLE_EvenementArticle(ARTICLES){id_article}>$events[$dateEvt][] = array('rub' => #ID_RUBRIQUE, 'link' => '#URL_ARTICLE', 'title' => '[(#TITRE|texte_script)][&nbsp;: (#_evts_com:TITRE|=={#TITRE}|?{'',[(#_evts_com:TITRE|texte_script)]})]', 'logo' => '<BOUCLE_TitreRubrique(RUBRIQUES){id_rubrique}>[<img src="/(#LOGO_ARTICLE_RUBRIQUE||reduire_image{32,32}|extraire_attribut{src})" class="logo_agenda" alt="[(#TITRE|attribut_html|texte_script)]" title="[(#TITRE|attribut_html|texte_script)]" />]</BOUCLE_TitreRubrique>', 'genres' => '<B_Genres><em>(<BOUCLE_Genres(MOTS){id_evenement}{", "}><a href="#URL_MOT" rel="tag" title="<:pyrat:savoirpluscritere:>: [(#TITRE|attribut_html|texte_script)]">[(#TITRE|texte_script)]</a></BOUCLE_Genres>)</em></B_Genres>', 'titre_rub' => '<B_TitreRub><strong<BOUCLE_CouleurRub(MOTS){id_rubrique}{type=_CouleurRubrique}> style="background-color:#[(#TEXTE|couleur_eclaircir)];"</BOUCLE_CouleurRub>><BOUCLE_TitreRub(RUBRIQUES){id_rubrique}>[(#TITRE|attribut_html|texte_script)</strong>&nbsp;: ]</BOUCLE_TitreRub>');</BOUCLE_EvenementArticle>
+			<BOUCLE_EvenementArticle(ARTICLES){id_article}>$events[$dateEvt][] = array('rub' => #ID_RUBRIQUE, 'link' => '#URL_ARTICLE', 'title' => '[(#TITRE|texte_script)][&nbsp;: (#_evts_com:TITRE|=={#TITRE}|?{'',[(#_evts_com:TITRE|texte_script)]})]', 'logo' => '<BOUCLE_TitreRubrique(RUBRIQUES){id_rubrique}>[<img src="/(#LOGO_ARTICLE_RUBRIQUE||image_reduire{32,32}|extraire_attribut{src})" class="logo_agenda" alt="[(#TITRE|attribut_html|texte_script)]" title="[(#TITRE|attribut_html|texte_script)]" />]</BOUCLE_TitreRubrique>', 'genres' => '<B_Genres><em>(<BOUCLE_Genres(MOTS){id_evenement}{", "}><a href="#URL_MOT" rel="tag" title="<:pyrat:savoirpluscritere:>: [(#TITRE|attribut_html|texte_script)]">[(#TITRE|texte_script)]</a></BOUCLE_Genres>)</em></B_Genres>', 'titre_rub' => '<B_TitreRub><strong<BOUCLE_CouleurRub(MOTS){id_rubrique}{type=_CouleurRubrique}> style="background-color:#[(#TEXTE|couleur_eclaircir)];"</BOUCLE_CouleurRub>><BOUCLE_TitreRub(RUBRIQUES){id_rubrique}>[(#TITRE|attribut_html|texte_script)</strong>&nbsp;: ]</BOUCLE_TitreRub>');</BOUCLE_EvenementArticle>
 		}
 	}
 </B_EvenementArticle></BOUCLE_evts_com>
@@ -55,7 +55,7 @@ $events = array();
 <div class="texte">
 <!-- Une : contenu de la rubrique -->
 <div class="cartouche">
-<h1>[(#SET{lelogo,[(#MODELE{rubrique_logo}{mode=normal}|reduire_image{64,64})]})][<img class="logo_rubrique" src="/(#GET{lelogo}|extraire_attribut{src})" width="[(#GET{lelogo}|extraire_attribut{width})]" height="[(#GET{lelogo}|extraire_attribut{height})]" alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" />]
+<h1>[(#SET{lelogo,[(#MODELE{rubrique_logo}{mode=normal}|image_reduire{64,64})]})][<img class="logo_rubrique" src="/(#GET{lelogo}|extraire_attribut{src})" width="[(#GET{lelogo}|extraire_attribut{width})]" height="[(#GET{lelogo}|extraire_attribut{height})]" alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" />]
 [(#TITRE)]<?php echo ' - '.$months[intval($M)].' '.$Y; ?></h1>
 </div>
 
@@ -66,7 +66,7 @@ $events = array();
 <!-- Les themes avec recursivite -->
 	<ul>
 		<BOUCLE_sous_rubriques1(RUBRIQUES){id_parent}{par titre}>
-			<li[ style="list-style-image: url(/(#MODELE{rubrique_logo}{mode=normal}|reduire_image{9,9}|extraire_attribut{src}));"]>
+			<li[ style="list-style-image: url(/(#MODELE{rubrique_logo}{mode=normal}|image_reduire{9,9}|extraire_attribut{src}));"]>
 			<?php if ($jp_rubrique != [(#ID_RUBRIQUE|texte_script)]) { ?>
 			<a href="#URL_RUBRIQUE?date_ev=[(#ENV{date_ev,[(#ENV{date})]}|annee)]-01-01[&amp;genre=(#ENV{genre,''}|urlencode)]" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])"><?php } ?>[(#TITRE)]<?php if ($jp_rubrique != [(#ID_RUBRIQUE|texte_script)]) { ?></a><?php } ?>
 			<BOUCLE_RecursionRubriques(BOUCLE_sous_rubriques1)></BOUCLE_RecursionRubriques>
