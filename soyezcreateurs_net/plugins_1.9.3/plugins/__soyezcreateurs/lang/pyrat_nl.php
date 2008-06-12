@@ -73,7 +73,6 @@ $GLOBALS['i18n_pyrat_nl'] = array(
 //E
 'edito' => 'Hoofdartikel',
 'editos' => 'Hoofdartikels',
-'enresume_menu' => 'Kort samenvatten',
 'entravaux' => 'In werkzaamheden',
 'entravaux_int_serv' => 'Onderbreking van dienst',
 'entravaux_rev_plus_tard' => 'Bedankt om iets meer laat terug te komen...',

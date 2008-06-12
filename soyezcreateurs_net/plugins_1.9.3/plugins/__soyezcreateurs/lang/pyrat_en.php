@@ -73,7 +73,6 @@ $GLOBALS['i18n_pyrat_en'] = array(
 //E
 'edito' => 'Editorial',
 'editos' => 'Editorials',
-'enresume_menu' => 'Summary',
 'entravaux' => 'Under construction',
 'entravaux_int_serv' => 'Service interrupted',
 'entravaux_rev_plus_tard' => 'Please come back later...',
