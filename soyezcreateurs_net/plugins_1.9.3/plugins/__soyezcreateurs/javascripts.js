@@ -199,5 +199,6 @@ $(document).ready(function() {
                                     width:    '100em' })
                              .prependTo('div.texte')[0];
 		$('div.texte').bind('emchange', function(e, cur, prev) { adjustLayout(); });
+		onAjaxLoad(adjustLayout); // Merci Marcimat sur IRC !
 	}
 });
