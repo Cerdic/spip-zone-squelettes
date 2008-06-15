@@ -31,9 +31,9 @@ $titretop = '[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]';
 	</div>
 
 [(#REM) Ne pas afficher le cartouche si le texte est vide : on affiche déjà la liste des articles avec un extrait à la place du texte
-][(#TEXTE|=={''}|?{'',' '})[(#INCLURE{fond=rubrique_cartouche}{id_rubrique})]]
+][(#TEXTE*|=={''}|?{'',' '})[(#INCLURE{fond=rubrique_cartouche}{id_rubrique})]]
 [(#REM) Par contre, afficher les nouveautes si la config du site en décide
-][(#TEXTE|=={''}|?{' ',''})[(#CONFIG{soyezcreateurs/nouveauteparbranche,Non}|=={Oui}|?{' '})[<div id="artrecents" class="flottant">(#INCLURE{fond=inc_cartouche_nouveaute_branche.html}{id_rubrique}|trim)</div>]]]
+][(#TEXTE*|=={''}|?{' ',''})[(#CONFIG{soyezcreateurs/nouveauteparbranche,Non}|=={Oui}|?{' '})[<div id="artrecents" class="flottant">(#INCLURE{fond=inc_cartouche_nouveaute_branche.html}{id_rubrique}|trim)</div>]]]
 
 <div class="texte">
 <!-- Une : contenu de la rubrique -->
@@ -42,7 +42,7 @@ $titretop = '[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]';
 </div>
 	<div id="letexte" class="surlignable">
 [<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
-[<div class="#EDIT{texte}">(#TEXTE)</div>][(#TEXTE|=={''}|?{' ',''})[(#INCLURE{fond=rubrique_automatique}{id_rubrique})]]
+[<div class="#EDIT{texte}">(#TEXTE)</div>][(#TEXTE*|=={''}|?{' ',''})[(#INCLURE{fond=rubrique_automatique}{id_rubrique})]]
 [<div class="notes">(#NOTES)</div>]
 	</div><!-- Fin de #LeTexte -->
 </div><!-- Fin de .texte -->
