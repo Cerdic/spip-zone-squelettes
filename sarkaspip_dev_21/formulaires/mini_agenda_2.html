@@ -1,6 +1,6 @@
 <div id="noisette_miniagenda" class="noisette">
-	<h1><a class="intitule" href="[(#URL_PAGE{inc_agenda_annuel_2,[id_rubrique=(#ENV{id_rubrique})][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:agenda:></a></h1>
-	
+	<h1><a class="intitule" href="[(#URL_PAGE{agenda_2_annuel,[id_rubrique=(#RUBRIQUE_SPECIALISEE{agenda})][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:agenda:></a></h1>
+<!-- href="[(#URL_PAGE{agenda_2,[id_rubrique=(#RUBRIQUE_SPECIALISEE{agenda})]&amp;type=mois[&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)][&amp;jour=(#AUJOURDHUI|jour)]&amp;echelle=120})]"	-->
 	<div class="contenu">
 		[(#REM) <!-- On affiche les liens vers les annees precedentes et suivantes -->]
 		[<h2><a class="titre_bloc bord ajax" href="(#ENV{self}|parametre_url{'annee',[(#ENV{date}|annee|moins{1})]}|parametre_url{#ENV{var_date},[(#ENV{date}|annee|moins{1})]-[(#ENV{date}|mois)]})" title="[(#ENV{date}|nom_mois|ucfirst)]&nbsp;[(#ENV{date}|annee|moins{1})]">[(#CONFIG{sarkaspip_agenda/icone_precedent, &lt;&lt;})]</a></h2>]
@@ -41,7 +41,7 @@
 		[<h2><a id="aujourdhui" class="titre_bloc" href="(#ENV{self}|parametre_url{'annee',[(#AUJOURDHUI|annee)]}|parametre_url{#ENV{var_date},[(#AUJOURDHUI|annee)]-[(#AUJOURDHUI|mois)]})"title="[(#AUJOURDHUI|nom_mois|ucfirst)]&nbsp;[(#AUJOURDHUI|annee)]"><:sarkaspip:aujourdhui|ucfirst:></a></h2>]
 
 		<div class="clearer"></div>
-		[(#REM) <!-- On affiche les evenements en cours et ceux des sept prochains jours-->]
+		[(#REM) <!-- On affiche les evenements en cours et ceux des X prochains jours-->]
 			<B_mois>
 			<table id="footer_evenements">
 			<tbody>
@@ -52,24 +52,30 @@
 				</td>
 				<td class="footer_cold">
 				<a href="[(#URL_PAGE{inc_evenement_2,id_article=[(#GET{id_article})]}|parametre_url{id_evenement,#ID_EVENEMENT})]"
-				title=" [(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
-	  le [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)] 
-[(#HORAIRE|=={oui}|?{
-	   [(#REM) memes heures ?]
-	     [(#DATE_DEBUT|=={#DATE_FIN}|?{&agrave 
-[(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)],''})]
-	   [(#REM) pas memes heures ?]
-	     [(#DATE_DEBUT|!={#DATE_FIN}|?{de 
-[(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] &agrave; 
-[(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)],''})]
-,''})]
+				title=" 
+[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
+	<:sarkaspip:le:> [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)] 
+	[(#HORAIRE|=={oui}|?{
+		[(#REM) memes heures ?]
+	    	[(#DATE_DEBUT|=={#DATE_FIN}|?{
+				<:sarkaspip:agrave:> [(#DATE_DEBUT|heures)] H [(#DATE_DEBUT|minutes)],''})]
+	   	[(#REM) pas memes heures ?]
+	     	[(#DATE_DEBUT|!={#DATE_FIN}|?{
+			 	<:sarkaspip:de:> [(#DATE_DEBUT|heures)] H [(#DATE_DEBUT|minutes)] <:sarkaspip:agrave:> [(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)]
+				,''})]
+	,''})]
 ,
-	  du [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)] 
-[(#HORAIRE|=={oui}|?{&agrave; partir de
-	  [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)],''})] au 
-[(#DATE_FIN|nom_jour)]
-	  [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{jusqu'&agrave;
-	  [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})]  })][-&nbsp;lieu&nbsp;:(#LIEU)]"
+	<:sarkaspip:du:> [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)] 
+		[(#HORAIRE|=={oui}|?{
+			<:sarkaspip:a_partir_de:> [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)]
+			,''})] 
+	<:sarkaspip:au:> [(#DATE_FIN|nom_jour)]
+	  [(#DATE_FIN|affdate)] 
+	  	[(#HORAIRE|=={oui}|?{
+	  		<:sarkaspip:jusqu_a:> [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)]
+			,''})]  
+})]
+[-&nbsp;lieu&nbsp;:(#LIEU)]"
 	  >[(#GET{titre_article2}|supprimer_numero|couper{50})]</a>
 				</td>
 			</tr>	

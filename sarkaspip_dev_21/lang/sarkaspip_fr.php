@@ -20,7 +20,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 	
 //A
-
+		
+		'agrave' => '&agrave;',
+		'a_partir_de' => '&agrave; partir de',
 		'acceder_espace_membre' => 'Se connecter comme membre du site',
 		'acceder_espace_prive' => 'Acc&eacute;der &agrave l\'espace priv&eacute;',
 		'accueil_site' => 'Accueil du site', // redefinition item SPIP
@@ -50,6 +52,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'articles_recents' => 'Articles les plus r&eacute;cents', // redefinition item SPIP
 		'article_rubrique' => 'Articles publi&eacute;s dans cette rubrique',
 		'articles_rubrique' => 'Articles de cette rubrique', // redefinition item SPIP
+		'au' => 'au',
 		'aucun_message' => 'Aucun message n\'a encore &eacute;t&eacute; publi&eacute; en r&eacute;action aux articles de ce site.',
 		'aucun_article' => 'Il n\'y a pas d\'article &agrave; cette adresse', // redefinition item SPIP
 		'aujourdhui' => 'aujourd\'hui',
@@ -78,11 +81,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 		'date' => 'Date', // redefinition item SPIP
 		'date_aujourdhui' => 'aujourd\'hui', // redefinition item SPIP
+		'de' => 'de',
 		'decembre' => 'Decembre',
 		'depuis_debut' => 'depuis le d&eacute;but',
 		'dimanche_abrege' => 'Di',
 		'docu_article' => 'Documents joints',
 		'docu_rubrique' => 'Documents joints',
+		'du' => 'du',
 	  
 	
 //E
@@ -148,6 +153,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'jeudi_abrege' => 'Je',
 		'juin' => 'Juin',
 		'juillet' => 'Juillet',
+		'jusqu_a' => 'jusqu\'&agrave;',
 
 	
 //K
@@ -162,10 +168,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //L
 	  
+	  	'le' => 'le',
 		'licence_gpl' => 'GPL',
 		'licence_site' => 'Licence &agrave; d&eacute;finir',
 		'lien_herbier_liste' => 'Herbier liste',
 		'lien_herbier_panorama' => 'Herbier panorama',
+		'lieu' => 'lieu',
 		'lire_suite_article' => 'lire la suite de l\'article',
 		'lire_evenement_virtuel' => 'Consulter l\'&eacute;v&eacute;nement d\'origine',
 		'lundi_abrege' => 'Lu',
