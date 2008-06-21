@@ -76,19 +76,19 @@ function public_styliser_dist($fond, $id_rubrique, $lang='', $connect='', $ext='
 
 	// On selectionne, dans l'ordre :
 	// fond=10
-	$f = "$fond=$id_rubrique";
-	if (($id_rubrique > 0) AND ($squel=find_in_path("$f.$ext")))
-		$squelette = substr($squel, 0, - strlen(".$ext"));
+	if ($id_rubrique) {
+		$f = "$squelette=$id_rubrique";
+		if (@file_exists("$f.$ext"))
+			$squelette = $f;
 	else {
 		// fond-10 fond-<rubriques parentes>
-		while ($id_rubrique > 0) {
-			$f = "$fond-$id_rubrique";
-			if ($squel=find_in_path("$f.$ext")) {
-				$squelette = substr($squel, 0, - strlen(".$ext"));
+			do {
+				$f = "$squelette-$id_rubrique";
+				if (@file_exists("$f.$ext")) {
+					$squelette = $f;
 				break;
 			}
-			else
-				$id_rubrique = quete_parent($id_rubrique);
+			} while ($id_rubrique = quete_parent($id_rubrique));
 		}
 	}
 
