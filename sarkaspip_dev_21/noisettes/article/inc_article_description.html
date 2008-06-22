@@ -4,6 +4,7 @@
 		- id_article: id de l'article concerne
 		- avec_popularite: indique si on doit afficher ou pas la popularite
 		- avec_commentaire: indique si on doit afficher le bouton permettant de laisser des commentaires
+		- id_evenement: id de l'evenement associe a l'article (optionel))
 -->
 ]
 <BOUCLE_description (ARTICLES) {id_article}>
@@ -20,6 +21,12 @@
 
 	[<div class="image">(#LOGO_ARTICLE||image_reduire{150})</div>]
 	<div class="clearer-right"></div>
+	
+	<!-- si id_evenement est defini, on est dans une boucle evenement et 
+	on affiche la date de l'evenement (utilisation du plugin agenda) -->
+	[(#ENV{id_evenement, 0}|!={0}|?{' '})
+		[(#INCLURE{fond=noisettes/article/inc_date_evenement}{id_evenement})]
+	]
 	
 	<div class="description">
 		[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]

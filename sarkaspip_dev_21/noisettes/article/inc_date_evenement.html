@@ -1,0 +1,25 @@
+[(#REM) 
+<!-- Affichage des dates de l'evenement:
+	Recoit en argument :
+		- id_evenement: id de l'evenement concerne
+-->
+]
+<h3>
+	<BOUCLE_date(EVENEMENTS){id_evenement}>
+	[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
+		<:sarkaspip:le:> [(#DATE_DEBUT|jour)] [(#DATE_DEBUT|nom_mois)] [(#DATE_DEBUT|annee)]
+		,	
+		[(#DATE_DEBUT|mois|=={[(#DATE_FIN|mois)]}|?{
+			<:sarkaspip:du:> [(#DATE_DEBUT|jour)] <:sarkaspip:au:> [(#DATE_FIN|jour)] [(#DATE_FIN|nom_mois)] [(#DATE_FIN|annee)]
+			,
+			[(#DATE_DEBUT|annee|=={[(#DATE_FIN|annee)]}|?{
+				<:sarkaspip:du:> [(#DATE_DEBUT|jour)] [(#DATE_DEBUT|nom_mois)] <:sarkaspip:au:> [(#DATE_FIN|jour)] [(#DATE_FIN|nom_mois)] [(#DATE_FIN|annee)]
+				, 
+				<:sarkaspip:du:> [(#DATE_DEBUT|jour)] [(#DATE_DEBUT|nom_mois)] [(#DATE_DEBUT|annee)] <:sarkaspip:au:> [(#DATE_FIN|jour)] [(#DATE_FIN|nom_mois)] [(#DATE_FIN|annee)]
+		
+			})]
+  		})]
+	})]		
+	</BOUCLE_date>					
+<h3>
+	
