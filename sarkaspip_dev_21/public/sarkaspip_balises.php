@@ -77,6 +77,7 @@ function calcul_visites_site($j) {
 		$result = sql_select($select, $from);
 		if ($row = sql_fetch($result)) {
 			$visites = $row['total_absolu'];
+			if ($visites == NULL) $visites=0;
 		}
 	}
 	return $visites;
