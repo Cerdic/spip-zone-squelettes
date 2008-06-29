@@ -99,40 +99,54 @@ function currentSlide() {
 function go(step) {
 	if (document.getElementById('slideProj').disabled || step == 0) return;
 	var jl = document.getElementById('jumplist');
-	var cid = 'slide' + snum;
-	var ce = document.getElementById(cid);
-	if (incrementals[snum].length > 0) {
-		for (var i = 0; i < incrementals[snum].length; i++) {
-			removeClass(incrementals[snum][i], 'current');
-			removeClass(incrementals[snum][i], 'incremental');
-		}
-	}
+
 	if (step != 'j') {
 		snum += step;
 		lmax = smax - 1;
 		if (snum > lmax) snum = lmax;
 		if (snum < 0) snum = 0;
-	} else
+	} else	{
 		snum = parseInt(jl.value);
-	var nid = 'slide' + snum;
-	var ne = document.getElementById(nid);
-	if (!ne) {
-		ne = document.getElementById('slide0');
-		snum = 0;
 	}
-	if (step < 0) {incpos = incrementals[snum].length} else {incpos = 0;}
-	if (incrementals[snum].length > 0 && incpos == 0) {
-		for (var i = 0; i < incrementals[snum].length; i++) {
-			if (hasClass(incrementals[snum][i], 'current'))
-				incpos = i + 1;
-			else
-				addClass(incrementals[snum][i], 'incremental');
-		}
-	}
-	if (incrementals[snum].length > 0 && incpos > 0)
-		addClass(incrementals[snum][incpos - 1], 'current');
-	ce.style.visibility = 'hidden';
-	ne.style.visibility = 'visible';
+
+	$('.slide:not(#slide'+snum+')').css('visibility','hidden');
+	$('#slide'+snum).css('visibility','visible');
+
+/*	var cid = 'slide' + snum;*/
+/*	var ce = document.getElementById(cid);*/
+/*	if (incrementals[snum].length > 0) {*/
+/*		for (var i = 0; i < incrementals[snum].length; i++) {*/
+/*			removeClass(incrementals[snum][i], 'current');*/
+/*			removeClass(incrementals[snum][i], 'incremental');*/
+/*		}*/
+/*	}*/
+/*	if (step != 'j') {*/
+/*		snum += step;*/
+/*		lmax = smax - 1;*/
+/*		if (snum > lmax) snum = lmax;*/
+/*		if (snum < 0) snum = 0;*/
+/*	} else*/
+/*		snum = parseInt(jl.value);*/
+/*	var nid = 'slide' + snum;*/
+/*	var ne = document.getElementById(nid);*/
+/*	if (!ne) {*/
+/*		ne = document.getElementById('slide0');*/
+/*		snum = 0;*/
+/*	}*/
+/*	if (step < 0) {incpos = incrementals[snum].length} else {incpos = 0;}*/
+/*	if (incrementals[snum].length > 0 && incpos == 0) {*/
+/*		for (var i = 0; i < incrementals[snum].length; i++) {*/
+/*			if (hasClass(incrementals[snum][i], 'current'))*/
+/*				incpos = i + 1;*/
+/*			else*/
+/*				addClass(incrementals[snum][i], 'incremental');*/
+/*		}*/
+/*	}*/
+/*	if (incrementals[snum].length > 0 && incpos > 0)*/
+/*		addClass(incrementals[snum][incpos - 1], 'current');*/
+/*	ce.style.visibility = 'hidden';*/
+/*	ne.style.visibility = 'visible';*/
+
 	jl.selectedIndex = snum;
 	currentSlide();
 	number = 0;
