@@ -13,9 +13,9 @@ var s5mode = true;
 var defaultView = 'slideshow';
 var controlVis = 'visible';
 
-var isIE = navigator.appName == 'Microsoft Internet Explorer' ? 1 : 0;
-var isOp = navigator.userAgent.indexOf('Opera') > -1 ? 1 : 0;
-var isGe = navigator.userAgent.indexOf('Gecko') > -1 && navigator.userAgent.indexOf('Safari') < 1 ? 1 : 0;
+var isIE = $.browser.msie;
+var isOp = $.browser.opera;
+var isGe = $.browser.mozilla || $.browser.safari;
 
 function hasClass(object, className) {
 	if (!object.className) return false;
@@ -411,16 +411,16 @@ function fontSize(value) {
 	}
 }
 
-function notOperaFix() {
-	slideCSS = document.getElementById('slideProj').href;
-	var slides = document.getElementById('slideProj');
-	var outline = document.getElementById('outlineStyle');
-	slides.setAttribute('media','screen');
-	outline.disabled = true;
+function BrowserFix() {
+    
+    $('#outlineStyle').attr('disabled',true);
+    
+	/*
 	if (isGe) {
 		slides.setAttribute('href','null');   // Gecko fix
 		slides.setAttribute('href',slideCSS); // Gecko fix
 	}
+	*/
 	if (isIE && document.styleSheets && document.styleSheets[0]) {
 		document.styleSheets[0].addRule('img', 'behavior: url(ui/default/iepngfix.htc)');
 		document.styleSheets[0].addRule('div', 'behavior: url(ui/default/iepngfix.htc)');
@@ -504,8 +504,8 @@ function startup() {
 	externalLinks();
 	//reajuste la taille du texte
 	fontScale();
-	if (!isOp) {
-		notOperaFix();
+
+		BrowserFix();
 		incrementals = createIncrementals();
 		slideJump();
 		if (defaultView == 'outline') {
@@ -514,7 +514,6 @@ function startup() {
 		document.onkeyup = keys;
 		document.onkeypress = trap;
 		document.onclick = clicker;
-	}
 }
 
 $('document').ready( function() {
