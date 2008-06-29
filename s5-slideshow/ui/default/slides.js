@@ -508,15 +508,8 @@ function createIncrementals() {
 }
 
 function defaultCheck() {
-	var allMetas = document.getElementsByTagName('meta');
-	for (var i = 0; i< allMetas.length; i++) {
-		if (allMetas[i].name == 'defaultView') {
-			defaultView = allMetas[i].content;
-		}
-		if (allMetas[i].name == 'controlVis') {
-			controlVis = allMetas[i].content;
-		}
-	}
+    defaultView = $('meta[@name=defaultView]').attr('content');
+    controlVis = $('meta[@name=controlVis]').attr('content');
 }
 
 // Key trap fix, new function body for trap()
@@ -559,6 +552,6 @@ $('document').ready( function() {
 });
 
 
-$('document').resize( function() {
+$('window').resize( function() {
     setTimeout('fontScale()', 50);
 });
