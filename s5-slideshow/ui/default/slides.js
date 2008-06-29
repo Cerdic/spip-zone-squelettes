@@ -323,7 +323,7 @@ function fixLinks() {
             $(this).click( function(e) {
                 if (document.getElementById('slideProj').disabled) return;
                 go(res[1] - snum);
-                if (e.preventDefault) e.preventDefault();
+                return false;
             });
         }    
     });
