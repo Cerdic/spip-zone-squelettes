@@ -85,20 +85,15 @@ function slideLabel() {
 }
 
 function currentSlide() {
-	var cs;
-	if (document.getElementById) {
-		cs = document.getElementById('currentSlide');
-	} else {
-		cs = document.currentSlide;
-	}
-	cs.innerHTML = '<span id="csHere">' + snum + '<\/span> ' + 
-		'<span id="csSep">\/<\/span> ' + 
-		'<span id="csTotal">' + (smax-1) + '<\/span>';
-	if (snum == 0) {
-		cs.style.visibility = 'hidden';
-	} else {
-		cs.style.visibility = 'visible';
-	}
+    if (snum == 0) {
+        $('#currentSlide').html('');
+    } else {
+	    $('#currentSlide').html(
+            '<span id="csHere">' + snum + '<\/span> ' + 
+		    '<span id="csSep">\/<\/span> ' + 
+		    '<span id="csTotal">' + (smax-1) + '<\/span>'	
+	    );        
+    }
 }
 
 function go(step) {
@@ -303,7 +298,7 @@ function findSlide(hash) {
 	}
 	return null;
 }
-
+//si dans l'url nous avons #slidexx, charger la slide correspondante
 function slideJump() {
 	if (window.location.hash == null) return;
 	var sregex = /^#slide(\d+)$/;
@@ -507,6 +502,7 @@ function startup() {
 	fixLinks();
 	//corrige les liens extérieurs
 	externalLinks();
+	//reajuste la taille du texte
 	fontScale();
 	if (!isOp) {
 		notOperaFix();
