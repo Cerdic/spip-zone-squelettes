@@ -318,42 +318,26 @@ function slideJump() {
 		go(dest - snum);
 }
 
+//si url locale #slidexx alors on redirection sur la bonne slide 
 function fixLinks() {
-	var thisUri = window.location.href;
-	thisUri = thisUri.slice(0, thisUri.length - window.location.hash.length);
-	var aelements = document.getElementsByTagName('A');
-	for (var i = 0; i < aelements.length; i++) {
-		var a = aelements[i].href;
-		var slideID = a.match('\#slide[0-9]{1,2}');
-		if ((slideID) && (slideID[0].slice(0,1) == '#')) {
-			var dest = findSlide(slideID[0].slice(1));
-			if (dest != null) {
-				if (aelements[i].addEventListener) {
-					aelements[i].addEventListener("click", new Function("e",
-						"if (document.getElementById('slideProj').disabled) return;" +
-						"go("+dest+" - snum); " +
-						"if (e.preventDefault) e.preventDefault();"), true);
-				} else if (aelements[i].attachEvent) {
-					aelements[i].attachEvent("onclick", new Function("",
-						"if (document.getElementById('slideProj').disabled) return;" +
-						"go("+dest+" - snum); " +
-						"event.returnValue = false;"));
-				}
-			}
-		}
-	}
+
+    $('a').each(function() {
+        var res;
+        //extrait l'url slide
+        if (res = $(this).attr('href').match(/^#slide([0-9]*)$/i)) {
+            $(this).click( function(e) {
+                if (document.getElementById('slideProj').disabled) return;
+                go(res[1] - snum);
+                if (e.preventDefault) e.preventDefault();
+            });
+        }    
+    });
 }
 
+//si l'url posséde rel=external, on fait un renvoit extérieur
 function externalLinks() {
-	if (!document.getElementsByTagName) return;
-	var anchors = document.getElementsByTagName('a');
-	for (var i=0; i<anchors.length; i++) {
-		var anchor = anchors[i];
-		if (anchor.getAttribute('href') && hasValue(anchor.rel, 'external')) {
-			anchor.target = '_blank';
-			addClass(anchor,'external');
-		}
-	}
+
+    $('a[@rel=external]').addClass('external').attr('target','_blank');
 }
 
 function createControls() {
@@ -519,7 +503,9 @@ function startup() {
 	createControls();
 	//initialise la liste des slides
 	slideLabel();
+	//corrige les liens locaux #slidexx
 	fixLinks();
+	//corrige les liens extérieurs
 	externalLinks();
 	fontScale();
 	if (!isOp) {
