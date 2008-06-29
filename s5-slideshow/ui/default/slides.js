@@ -372,28 +372,34 @@ function externalLinks() {
 }
 
 function createControls() {
-	var controlsDiv = document.getElementById("controls");
-	if (!controlsDiv) return;
-	var hider = ' onmouseover="showHide(\'s\');" onmouseout="showHide(\'h\');"';
-	var hideDiv, hideList = '';
+	
+    $('#controls').html(
+         '<form action="#" id="controlForm">' +
+	    '<div id="navLinks">' +
+	    '<a accesskey="t" id="toggle" href="javascript:toggle();">&#216;<\/a>' +
+	    '<a accesskey="z" id="prev" href="javascript:go(-1);">&laquo;<\/a>' +
+	    '<a accesskey="x" id="next" href="javascript:go(1);">&raquo;<\/a>' +
+	    '<div id="navList"><select id="jumplist" onchange="go(\'j\');"><\/select><\/div>' +
+	    '<\/div><\/form>'
+    );
+
+
 	if (controlVis == 'hidden') {
-		hideDiv = hider;
+	    objet = '#controlForm';
+	    $('#navLinks').addClass('hideme');
 	} else {
-		hideList = hider;
+	    objet = '#navList';	
+	   	$('#jumplist').addClass('hideme');
 	}
-	controlsDiv.innerHTML = '<form action="#" id="controlForm"' + hideDiv + '>' +
-	'<div id="navLinks">' +
-	'<a accesskey="t" id="toggle" href="javascript:toggle();">&#216;<\/a>' +
-	'<a accesskey="z" id="prev" href="javascript:go(-1);">&laquo;<\/a>' +
-	'<a accesskey="x" id="next" href="javascript:go(1);">&raquo;<\/a>' +
-	'<div id="navList"' + hideList + '><select id="jumplist" onchange="go(\'j\');"><\/select><\/div>' +
-	'<\/div><\/form>';
-	if (controlVis == 'hidden') {
-		var hidden = document.getElementById('navLinks');
-	} else {
-		var hidden = document.getElementById('jumplist');
-	}
-	addClass(hidden,'hideme');
+    
+    $(objet).mouseover(function() {
+        showHide('s');    
+    });
+
+    $(objet).mouseout(function() {
+        showHide('h');    
+    });
+
 }
 
 function fontScale() {  // causes layout problems in FireFox that get fixed if browser's Reload is used; same may be true of other Gecko-based browsers
@@ -548,5 +554,11 @@ function startup() {
 	}
 }
 
-window.onload = startup;
-window.onresize = function(){setTimeout('fontScale()', 50);}
+$('document').ready( function() {
+    startup();
+});
+
+
+$('document').resize( function() {
+    setTimeout('fontScale()', 50);
+});
