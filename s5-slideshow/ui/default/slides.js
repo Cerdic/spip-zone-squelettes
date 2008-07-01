@@ -17,61 +17,6 @@ var isIE = $.browser.msie;
 var isOp = $.browser.opera;
 var isGe = $.browser.mozilla || $.browser.safari;
 
-function hasClass(object, className) {
-	if (!object.className) return false;
-	return (object.className.search('(^|\\s)' + className + '(\\s|$)') != -1);
-}
-
-function hasValue(object, value) {
-	if (!object) return false;
-	return (object.search('(^|\\s)' + value + '(\\s|$)') != -1);
-}
-
-function removeClass(object,className) {
-	if (!object) return;
-	object.className = object.className.replace(new RegExp('(^|\\s)'+className+'(\\s|$)'), RegExp.$1+RegExp.$2);
-}
-
-function addClass(object,className) {
-	if (!object || hasClass(object, className)) return;
-	if (object.className) {
-		object.className += ' '+className;
-	} else {
-		object.className = className;
-	}
-}
-
-function GetElementsWithClassName(elementName,className) {
-	var allElements = document.getElementsByTagName(elementName);
-	var elemColl = new Array();
-	for (var i = 0; i< allElements.length; i++) {
-		if (hasClass(allElements[i], className)) {
-			elemColl[elemColl.length] = allElements[i];
-		}
-	}
-	return elemColl;
-}
-
-function isParentOrSelf(element, id) {
-	if (element == null || element.nodeName=='BODY') return false;
-	else if (element.id == id) return true;
-	else return isParentOrSelf(element.parentNode, id);
-}
-
-function nodeValue(node) {
-	var result = "";
-	if (node.nodeType == 1) {
-		var children = node.childNodes;
-		for (var i = 0; i < children.length; ++i) {
-			result += nodeValue(children[i]);
-		}		
-	}
-	else if (node.nodeType == 3) {
-		result = node.nodeValue;
-	}
-	return(result);
-}
-
 function slideLabel() {
 	$('.slide').each(function(i) {
 	    $(this).attr('id','slide'+i);
@@ -128,14 +73,11 @@ function go(step) {
 	$('.slide, .slide *').css('visibility','hidden');
 	$('#slide'+snum+',#slide'+snum+' *').css('visibility','visible');
 
+    window.location.hash = '#slide'+snum;
+
 	jl.selectedIndex = snum;
 	currentSlide();
 	number = 0;
-}
-
-function goTo(target) {
-	if (target >= smax || target == snum) return;
-	go(target - snum);
 }
 
 function toggle() {
@@ -165,15 +107,15 @@ function toggle() {
 }
 
 function showHide(action) {
-	var obj = GetElementsWithClassName('*','hideme')[0];
+	var obj = $('.hideme:eq(0)');
 	switch (action) {
-	case 's': obj.style.visibility = 'visible'; break;
-	case 'h': obj.style.visibility = 'hidden'; break;
+	case 's': obj.css('visibility','visible'); break;
+	case 'h': obj.css('visibility','hidden'); break;
 	case 'k':
-		if (obj.style.visibility != 'visible') {
-			obj.style.visibility = 'visible';
+		if (obj.css('visibility') != 'visible') {
+			obj.css('visibility','visible');
 		} else {
-			obj.style.visibility = 'hidden';
+			obj.css('visibility','hidden');
 		}
 	break;
 	}
