@@ -273,18 +273,27 @@ function findSlide(hash) {
 }
 //si dans l'url nous avons #slidexx, charger la slide correspondante
 function slideJump() {
-    go(0);
-	if (window.location.hash == null) return;
+
+	var jl = document.getElementById('jumplist');
+
 	var sregex = /^#slide(\d+)$/;
 	var matches = sregex.exec(window.location.hash);
-	var dest = null;
+	var dest = 0;
 	if (matches != null) {
 		dest = parseInt(matches[1]);
-	} else {
-		dest = findSlide(window.location.hash.slice(1));
 	}
-	if (dest != null)
-		go(dest - snum);
+	
+	if (dest > smax) {
+	    dest = smax -1;
+	}
+	
+	if (dest < 0) {
+	    dest = 0;
+	}
+
+	jl.selectedIndex = dest;
+
+	go('j');
 }
 
 //si url locale #slidexx alors on redirection sur la bonne slide 
