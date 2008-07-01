@@ -466,6 +466,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_accueil_intro_7' => '<strong>Agenda</strong> : configuration des divers affichages de l\'agenda', 
 		'cfg_inf_accueil_intro_8' => '<strong>Herbier</strong> : choix de la pagination pour la page herbier', 
 		'cfg_inf_accueil_intro_9' => '<strong>Rubrique</strong> : choix des composants du corps de page rubrique', 
+		'cfg_inf_accueil_intro_10' => '<strong>Plan du site</strong> : choix des param&egrave;tres de la pagination', 
 		'cfg_inf_accueil_debug' => 'Si vous avez un souci ou voulez rapporter un bug il peut &ecirc;tre utile d\'activer le mode debug pour la configuration des pages. Celui-ci vous permez de lire les variables de chaque fond.',
 		'cfg_inf_rubrique_filles' => 'Voulez-vous afficher la liste des rubriques filles suite &agrave; la description de la rubrique ?',
 		'cfg_inf_rubrique_docs' => 'Voulez-vous afficher les documents joints qui ne sont pas inclus dans la description de la rubrique ?',
