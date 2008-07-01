@@ -97,10 +97,28 @@ function currentSlide() {
 }
 
 function go(step) {
-	if (document.getElementById('slideProj').disabled || step == 0) return;
+	//if (document.getElementById('slideProj').disabled || step == 0) return;
 	var jl = document.getElementById('jumplist');
 
 	if (step != 'j') {
+	    // incréments de liste	    
+	    if (step == 1) {
+            $('#slide'+snum+' .current').removeClass('current').addClass('view');
+	        if ($('#slide'+snum+' .incremental:eq(0)').removeClass('incremental').addClass('current').text()) {
+	            step = 0;
+	        }
+	    }
+	    
+	    if (step == -1) {
+            $('#slide'+snum+' .current').removeClass('current').addClass('incremental');
+            $('#slide'+snum+' .view:last').removeClass('view').addClass('current');	    
+	    }
+	    
+	    if ($('#slide'+snum+' .current').text()) {
+	        step = 0;
+	    }
+	    	    
+	    //diapo suivante
 		snum += step;
 		lmax = smax - 1;
 		if (snum > lmax) snum = lmax;
@@ -109,43 +127,8 @@ function go(step) {
 		snum = parseInt(jl.value);
 	}
 
-	$('.slide:not(#slide'+snum+')').css('visibility','hidden');
-	$('#slide'+snum).css('visibility','visible');
-
-/*	var cid = 'slide' + snum;*/
-/*	var ce = document.getElementById(cid);*/
-/*	if (incrementals[snum].length > 0) {*/
-/*		for (var i = 0; i < incrementals[snum].length; i++) {*/
-/*			removeClass(incrementals[snum][i], 'current');*/
-/*			removeClass(incrementals[snum][i], 'incremental');*/
-/*		}*/
-/*	}*/
-/*	if (step != 'j') {*/
-/*		snum += step;*/
-/*		lmax = smax - 1;*/
-/*		if (snum > lmax) snum = lmax;*/
-/*		if (snum < 0) snum = 0;*/
-/*	} else*/
-/*		snum = parseInt(jl.value);*/
-/*	var nid = 'slide' + snum;*/
-/*	var ne = document.getElementById(nid);*/
-/*	if (!ne) {*/
-/*		ne = document.getElementById('slide0');*/
-/*		snum = 0;*/
-/*	}*/
-/*	if (step < 0) {incpos = incrementals[snum].length} else {incpos = 0;}*/
-/*	if (incrementals[snum].length > 0 && incpos == 0) {*/
-/*		for (var i = 0; i < incrementals[snum].length; i++) {*/
-/*			if (hasClass(incrementals[snum][i], 'current'))*/
-/*				incpos = i + 1;*/
-/*			else*/
-/*				addClass(incrementals[snum][i], 'incremental');*/
-/*		}*/
-/*	}*/
-/*	if (incrementals[snum].length > 0 && incpos > 0)*/
-/*		addClass(incrementals[snum][incpos - 1], 'current');*/
-/*	ce.style.visibility = 'hidden';*/
-/*	ne.style.visibility = 'visible';*/
+	$('.slide, .slide *').css('visibility','hidden');
+	$('#slide'+snum+',#slide'+snum+' *').css('visibility','visible');
 
 	jl.selectedIndex = snum;
 	currentSlide();
@@ -155,20 +138,6 @@ function go(step) {
 function goTo(target) {
 	if (target >= smax || target == snum) return;
 	go(target - snum);
-}
-
-function subgo(step) {
-	if (step > 0) {
-		removeClass(incrementals[snum][incpos - 1],'current');
-		removeClass(incrementals[snum][incpos], 'incremental');
-		addClass(incrementals[snum][incpos],'current');
-		incpos++;
-	} else {
-		incpos--;
-		removeClass(incrementals[snum][incpos],'current');
-		addClass(incrementals[snum][incpos], 'incremental');
-		addClass(incrementals[snum][incpos - 1],'current');
-	}
 }
 
 function toggle() {
@@ -238,10 +207,8 @@ function keys(key) {
 			case 40: // downkey
 				if(number != undef) {
 					go(number);
-				} else if (!incrementals[snum] || incpos >= incrementals[snum].length) {
-					go(1);
 				} else {
-					subgo(1);
+					go(1);
 				}
 				break;
 			case 33: // page up
@@ -249,10 +216,8 @@ function keys(key) {
 			case 38: // upkey
 				if(number != undef) {
 					go(-1 * number);
-				} else if (!incrementals[snum] || incpos <= 0) {
-					go(-1);
 				} else {
-					subgo(-1);
+					go(-1);
 				}
 				break;
 			case 36: // home
@@ -285,11 +250,7 @@ function clicker(e) {
 	} else target = e.target;
 	if (target.getAttribute('href') != null || hasValue(target.rel, 'external') || isParentOrSelf(target, 'controls') || isParentOrSelf(target,'embed') || isParentOrSelf(target,'object')) return true;
 	if (!e.which || e.which == 1) {
-		if (!incrementals[snum] || incpos >= incrementals[snum].length) {
-			go(1);
-		} else {
-			subgo(1);
-		}
+	    go(1);
 	}
 }
 
@@ -442,49 +403,6 @@ function BrowserFix() {
 	}
 }
 
-function getIncrementals(obj) {
-	var incrementals = new Array();
-	if (!obj) 
-		return incrementals;
-	var children = obj.childNodes;
-	for (var i = 0; i < children.length; i++) {
-		var child = children[i];
-		if (hasClass(child, 'incremental')) {
-			if (child.nodeName == 'OL' || child.nodeName == 'UL') {
-				removeClass(child, 'incremental');
-				for (var j = 0; j < child.childNodes.length; j++) {
-					if (child.childNodes[j].nodeType == 1) {
-						addClass(child.childNodes[j], 'incremental');
-					}
-				}
-			} else {
-				incrementals[incrementals.length] = child;
-				removeClass(child,'incremental');
-			}
-		}
-		if (hasClass(child, 'show-first')) {
-			if (child.nodeName == 'OL' || child.nodeName == 'UL') {
-				removeClass(child, 'show-first');
-				if (child.childNodes[isGe].nodeType == 1) {
-					removeClass(child.childNodes[isGe], 'incremental');
-				}
-			} else {
-				incrementals[incrementals.length] = child;
-			}
-		}
-		incrementals = incrementals.concat(getIncrementals(child));
-	}
-	return incrementals;
-}
-
-function createIncrementals() {
-	var incrementals = new Array();
-	for (var i = 0; i < smax; i++) {
-		incrementals[i] = getIncrementals(document.getElementById('slide'+i));
-	}
-	return incrementals;
-}
-
 function defaultCheck() {
     defaultView = $('meta[@name=defaultView]').attr('content');
     controlVis = $('meta[@name=controlVis]').attr('content');
@@ -520,7 +438,6 @@ function startup() {
 	fontScale();
 
 		BrowserFix();
-		incrementals = createIncrementals();
 		slideJump();
 		if (defaultView == 'outline') {
 			toggle();
