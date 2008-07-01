@@ -101,12 +101,10 @@ function go(step) {
 	var jl = document.getElementById('jumplist');
 
 	if (step != 'j') {
-	    // incréments de liste	    
+	    // incréments de liste
 	    if (step == 1) {
             $('#slide'+snum+' .current').removeClass('current').addClass('view');
-	        if ($('#slide'+snum+' .incremental:eq(0)').removeClass('incremental').addClass('current').text()) {
-	            step = 0;
-	        }
+            $('#slide'+snum+' .incremental:eq(0)').removeClass('incremental').addClass('current');
 	    }
 	    
 	    if (step == -1) {
