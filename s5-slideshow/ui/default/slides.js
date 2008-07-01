@@ -273,6 +273,7 @@ function findSlide(hash) {
 }
 //si dans l'url nous avons #slidexx, charger la slide correspondante
 function slideJump() {
+    go(0);
 	if (window.location.hash == null) return;
 	var sregex = /^#slide(\d+)$/;
 	var matches = sregex.exec(window.location.hash);
@@ -422,6 +423,9 @@ function trap(e) {
 }
 
 function startup() {
+	//cache tout par défaut
+	$('.slide, .slide *').css('visibility','hidden');
+
     //charge les configuration meta
 	defaultCheck();
 	//initialise la barre de navigation
