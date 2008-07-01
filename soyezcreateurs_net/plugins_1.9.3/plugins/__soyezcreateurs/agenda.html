@@ -1,8 +1,9 @@
-#CACHE{30*24*3600}
+#CACHE{24*3600}
 <?php
 $months = array('', '<:date_mois_1:>', '<:date_mois_2:>', '<:date_mois_3:>', '<:date_mois_4:>', '<:date_mois_5:>', '<:date_mois_6:>', '<:date_mois_7:>', '<:date_mois_8:>', '<:date_mois_9:>', '<:date_mois_10:>', '<:date_mois_11:>', '<:date_mois_12:>');
 $days = array('<:date_jour_1:>', '<:date_jour_2:>', '<:date_jour_3:>', '<:date_jour_4:>', '<:date_jour_5:>', '<:date_jour_6:>', '<:date_jour_7:>');
-$date_ev = _request('date_ev');
+
+[$date_ev = '(#ENV{date_ev}|texte_script)';]
 if (!isset($date_ev) || $date_ev == '') $date_ev = date('Y-m-d');
 
 ereg("^([0-9]{4})-([0-9]{2})-([0-9]{2}).*$", $date_ev, $regs);
@@ -12,6 +13,7 @@ $D = date('d', $cal_day);
 $M = date('m', $cal_day);
 $Y = date('Y', $cal_day);
 
+[$genre = '(#ENV{genre}|texte_script)';]
 if (!isset($genre)) $genre = "<:pyrat:tout:>";
 
 $titrePage = '<:pyrat:agenda|texte_script:> - '.$months[intval($M)].' '.$Y;
@@ -47,7 +49,7 @@ $events = array();
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
-	<BOUCLE_plan(HIERARCHIE){id_rubrique}><li><a href="#URL_SITE_SPIP/spip.php?page=agenda&amp;id_rubrique=#_rubrique_principal:ID_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+	<BOUCLE_plan(HIERARCHIE){id_rubrique}><li><a href="#URL_PAGE{agenda}&amp;id_rubrique=#ID_RUBRIQUE&amp;date_ev=[(#ENV{date_ev,[(#ENV{date})]}|annee)]-[(#ENV{date_ev,[(#ENV{date})]}|mois)]-01[&amp;genre=(#ENV{genre,''}|urlencode)]"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
 	</BOUCLE_plan>
 	<li>[(#TITRE)]</li>
 	</ul>
@@ -69,7 +71,7 @@ $events = array();
 		<BOUCLE_sous_rubriques1(RUBRIQUES){id_parent}{par titre}>
 			<li[ style="list-style-image: url(/(#MODELE{rubrique_logo}{mode=normal}|image_reduire{9,9}|extraire_attribut{src}));"]>
 			<?php if ($jp_rubrique != [(#ID_RUBRIQUE|texte_script)]) { ?>
-			<a href="#URL_RUBRIQUE?date_ev=[(#ENV{date_ev,[(#ENV{date})]}|annee)]-01-01[&amp;genre=(#ENV{genre,''}|urlencode)]" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])"><?php } ?>[(#TITRE)]<?php if ($jp_rubrique != [(#ID_RUBRIQUE|texte_script)]) { ?></a><?php } ?>
+			<a href="#URL_PAGE{agenda}&amp;id_rubrique=#ID_RUBRIQUE&amp;date_ev=[(#ENV{date_ev,[(#ENV{date})]}|annee)]-[(#ENV{date_ev,[(#ENV{date})]}|mois)]-01[&amp;genre=(#ENV{genre,''}|urlencode)]" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])"><?php } ?>[(#TITRE)]<?php if ($jp_rubrique != [(#ID_RUBRIQUE|texte_script)]) { ?></a><?php } ?>
 			<BOUCLE_RecursionRubriques(BOUCLE_sous_rubriques1)></BOUCLE_RecursionRubriques>
 			</li>
 		</BOUCLE_sous_rubriques1>
@@ -103,16 +105,18 @@ $events = array();
 		</select>
 
 		<!-- Construction Menu selection -->
-		<B_ListMotsClefs>[(#REM) Objectif : n'afficher que les mots clefs effectivement utilise' dans le secteur]
+		<BOUCLE_ListMotsClefs(EVENEMENTS){statut=publie}{id_secteur}>
+		<BOUCLE_MotClefAssocie(MOTS){id_evenement}{unique}{doublons listemots} />
+		</BOUCLE_ListMotsClefs>
+
+		<B_ListeMotsClefs>[(#REM) Objectif : n'afficher que les mots clefs effectivement utilise' dans le secteur]
 		<select id="var_nav_cle">
 		<option value=""[(#ENV{genre,''}|=={''}|?{' selected="selected"',''})]><:pyrat:tout:></option>
-		<BOUCLE_ListMotsClefs(EVENEMENTS){statut=publie}{id_secteur}{par titre}>
-		<BOUCLE_MotClefAssocie(MOTS){id_evenement}{unique}>
-		<option value="[(#TITRE|attribut_html)]"[(#ENV{genre}|=={[(#TITRE|attribut_html)]}|?{' selected="selected"',''})]>[(#TITRE)]</option>
-		</BOUCLE_MotClefAssocie>
-		</BOUCLE_ListMotsClefs>
+		<BOUCLE_ListeMotsClefs(MOTS){!doublons listemots}{par titre}>
+		<option value="[(#TITRE|attribut_html)]"[(#ENV{genre}|=={[(#TITRE)]}|?{' selected="selected"',''})]>[(#TITRE)]</option>
+		</BOUCLE_ListeMotsClefs>
 		</select>
-		</B_ListMotsClefs>
+		</B_ListeMotsClefs>
 
 		<input type="button" value="<:pass_ok:>" class="form_submit" onclick="document.location.href='#URL_SITE_SPIP/spip.php?page=agenda&amp;id_rubrique=#_rubrique_principal:ID_RUBRIQUE&amp;date_ev=' + document.getElementById('var_nav_year').value + '-' + document.getElementById('var_nav_month').value + '-01&amp;genre=' + document.getElementById('var_nav_cle').value ; return false;" />
 		<BOUCLE_DerniereAnnee(EVENEMENTS){statut=publie}{branche}{!par date_debut}{0,1}>
@@ -196,5 +200,3 @@ $events = array();
 <//B_rubrique_principal>
 [(#FORMULAIRE_ADMIN)]
 <INCLURE{fond=footer}>
-
-
