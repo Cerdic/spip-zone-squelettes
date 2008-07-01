@@ -129,9 +129,6 @@ function config_site() {
 	include_spip('inc/minipres');
 	
 	echo install_debut_html("Configurateur des mots clefs");
-	// Autorisations dates antérieures et gestion avancée des mots clé
-	spip_query("REPLACE spip_meta (nom, valeur) VALUES ('config_precise_groupes', 'oui')");
-	spip_query("REPLACE spip_meta (nom, valeur) VALUES ('articles_redac', 'non')");
 	// Création rubriques
 	
 	echo "<h2>Cr&eacute;ation des rubriques sp&eacute;ciales</h2><ul>";
@@ -160,7 +157,7 @@ function config_site() {
 	create_groupe("_InformationsLegales", "Mention légales obligatoire ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] et [LcEN|Loi sur la confiance en l\'Économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L])", "[Décryptage des obligations légales->http://maitre.eolas.free.fr/journal/index.php?2005/05/27/135-responsabilite-du-blogueur].", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_InformationsLegales", "10. Propriétaire du site", "Mettre les coordonnées du propriétaire du site ci-dessous", "");
 		create_mot("_InformationsLegales", "20. Hébergeur", "Mettre les coordonnées de l\'hébergeur ci-dessous", "");
-		create_mot("_InformationsLegales", "30. Liens vers ce site", "Mettre ci-dessous les conditions d\'utilisation du contenu", "Le site autorise tout site Internet ou tout autre support à le citer ou à mettre en place un lien hypertexte pointant vers son contenu.\n\nL’autorisation de mise en place d’un lien est valable pour tout support, à l’exception de ceux diffusant des informations à caractère polémique, pornographique, xénophobe ou pouvant, dans une plus large mesure porter atteinte à la sensibilité du plus grand nombre.\n\nLa reprise intégrale du contenu d\'une page est aussi autorisée, sous réserve d\'établir un lien clair vers sa source.");
+		create_mot("_InformationsLegales", "30. Liens vers ce site", "Mettre ci-dessous les conditions d\'utilisation du contenu", "Le site autorise tout site Internet ou tout autre support à le citer ou à mettre en place un lien hypertexte pointant vers son contenu.\n\nL\'autorisation de mise en place d\'un lien est valable pour tout support, à l\'exception de ceux diffusant des informations à caractère polémique, pornographique, xénophobe ou pouvant, dans une plus large mesure porter atteinte à la sensibilité du plus grand nombre.\n\nLa reprise intégrale du contenu d\'une page est aussi autorisée, sous réserve d\'établir un lien clair vers sa source.");
 		create_mot("_InformationsLegales", "35. Traitement automatisé d\'informations nominatives", "", "Ce site ne collecte sur les visiteurs du site aucune autre information nominative ou personnelle que celles qui lui sont ouvertement et volontairement fournies en particulier par l\'intermédiaire des adresses électroniques de ses correspondants.\n\nNous vous rappelons que vous disposez d\'un droit d\'accès, de modification, de rectification et de suppression des données vous concernant (article 34 de la loi \"Informatique et Libertés\" du 6 janvier 1978). \nPour exercer ce droit, contactez-nous.\n");
 		create_mot("_InformationsLegales", "40. Réalisation", "Mettre ci-dessous les informations concernant la réalisation de ce site.", "Ce site a été réalisé par [PYRAT.net|Création de sites web->http://www.pyrat.net/] en utilisant l\'outil [SPIP->http://www.spip.net/].\n\n[PYRAT.net|Création de sites web->http://www.pyrat.net/] a réalisé ce site dans les respect des [normes pour l\'accessibilité->http://www.pyrat.net/Accessibilite-d-un-site-web,193.html] des sites web à tous.");
 
@@ -220,7 +217,7 @@ function config_site() {
 		create_mot("_ModePortail", "Goodies", "Affecter ce mot clef aux objets SPIP devant apparaitre dans la zone des Goodies.", "Ne pas oublier de mettre un logo (120×30) aux objet concernés.");
 		create_mot("_ModePortail", "ZoomSur", "Affecter ce mot clef à l\'objet que vous voulez placer dans le cadre « Zoom sur » (facultatif).\n\nLe site prendra les 3 derniers articles ayant ce mot clef", "S\'applique aux :\n-* articles\n-* rubriques");
 
-	create_groupe("_Specialisation", "Spécialisation d’un article ", "Un mot clef pris dans ce groupe permettra de modifier\n\n-* le comportement d’un article particulier\n", 'non', 'non', 'oui', 'non', 'non', 'non', 'non', 'oui', 'oui', 'non');
+	create_groupe("_Specialisation", "Spécialisation d\'un article ", "Un mot clef pris dans ce groupe permettra de modifier\n\n-* le comportement d\'un article particulier\n", 'non', 'non', 'oui', 'non', 'non', 'non', 'non', 'oui', 'oui', 'non');
 		create_mot("_Specialisation", "AccesibiliteLien", "Affecter ce mot clef à l\'article traitant de la politique d\'accessibilité du site.", "Un fois l\'article écrit, lui affecter ce mot clef pour qu\'il soit disponible en lien en haut de la page (caché pour les voyants, sauf sur la page d\'accueil).");
 		create_mot("_Specialisation", "ALaUne", "Article qui doit rester à la une du site (soit dans quoi de neuf, soit dans la liste des articles en ModeNews, Soit dans le cartouche À la une en ModePortail)", "");
 		create_mot("_Specialisation", "Courrier_libre", "Affecter ce mot clef à l\'article utilisé comme courrier libre.", "Concerne les articles qui servent à l\'envoi de courriers libres");
@@ -238,7 +235,7 @@ function config_site() {
 		create_mot("_Specialisation", "PasDansRecherche", "Permet de masquer un article des résultats de la recherche", "À affecter aux articles qui ne doivent pas être affichées dans les résultats de la recherche");
 		create_mot("_Specialisation", "PasdeSiteDansForums", "Pour que les sites référencés n\'apparaissent pas dans un forum (mesure anti SPAM)", "Pour décourager ceux qui utiliseraient vos forums pour faire de la pub pour leurs site (généralement, des sonneries de téléphone)");
 
-	create_groupe("_Specialisation_Rubrique", "Spécialisation d’une rubrique", "Un mot clef pris dans ce groupe permettra de modifier\n\n-* le comportement d’une rubrique et de ses articles\n", 'non', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'oui', 'non');
+	create_groupe("_Specialisation_Rubrique", "Spécialisation d\'une rubrique", "Un mot clef pris dans ce groupe permettra de modifier\n\n-* le comportement d\'une rubrique et de ses articles\n", 'non', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'oui', 'non');
 		create_mot("_Specialisation_Rubrique", "AfficherArticlesMenu", "Affichage des articles de la rubrique dans le menu de gauche", "Affecter ce mot clef aux rubriques dont la liste des articles doit être affichée dans le menu de gauche.");
 		create_mot("_Specialisation_Rubrique", "Agenda", "Pour dire qu\'une rubrique est dans l\'Agenda", "Il est impératif de mettre ce mot clef pour la rubrique à la racine ayant cette caractéristique (inutile pour les sous rubriques de cette rubrique).");
 		create_mot("_Specialisation_Rubrique", "agenda_principal", "", "");
