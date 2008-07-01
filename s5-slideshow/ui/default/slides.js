@@ -324,8 +324,8 @@ function createControls() {
          '<form action="#" id="controlForm">' +
 	    '<div id="navLinks">' +
 	    '<a accesskey="t" id="toggle" href="javascript:toggle();">&#216;<\/a>' +
-	    '<a accesskey="z" id="prev" href="javascript:go(-1);">&laquo;<\/a>' +
-	    '<a accesskey="x" id="next" href="javascript:go(1);">&raquo;<\/a>' +
+	    '<a accesskey="z" id="prev" href="javascript: document.getElementById(\'jumplist\').selectedIndex--;go(\'j\');">&laquo;<\/a>' +
+	    '<a accesskey="x" id="next" href="javascript:document.getElementById(\'jumplist\').selectedIndex++;go(\'j\');">&raquo;<\/a>' +
 	    '<div id="navList"><select id="jumplist" onchange="go(\'j\');"><\/select><\/div>' +
 	    '<\/div><\/form>'
     );
