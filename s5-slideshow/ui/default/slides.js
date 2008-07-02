@@ -109,13 +109,13 @@ function toggle() {
 function showHide(action) {
 	var obj = $('.hideme:eq(0)');
 	switch (action) {
-	case 's': obj.css('display','block'); break;
-	case 'h': obj.css('display','none'); break;
+	case 's': obj.css('visibility','visible'); break;
+	case 'h': obj.css('visibility','hidden'); break;
 	case 'k':
-		if (obj.css('display') != 'block') {
-			obj.css('display','block');
+		if (obj.css('visibility') != 'visible') {
+			obj.css('visibility','visible');
 		} else {
-			obj.css('display','none');
+			obj.css('visibility','hidden');
 		}
 	break;
 	}
