@@ -131,12 +131,13 @@ function keys(key) {
 		toggle();
 		return;
 	}
+	
 	if (s5mode) {
 		switch (key.which) {
 			case 10: // return
 			case 13: // enter
-				if (window.event && isParentOrSelf(window.event.srcElement, 'controls')) return;
-				if (key.target && isParentOrSelf(key.target, 'controls')) return;
+				//if (window.event && isParentOrSelf(window.event.srcElement, 'controls')) return;
+				//if (key.target && isParentOrSelf(key.target, 'controls')) return;
 				if(number != undef) {
 					goTo(number);
 					break;
@@ -173,8 +174,8 @@ function keys(key) {
 		if (key.which < 48 || key.which > 57) {
 			number = undef;
 		} else {
-			if (window.event && isParentOrSelf(window.event.srcElement, 'controls')) return;
-			if (key.target && isParentOrSelf(key.target, 'controls')) return;
+			//if (window.event && isParentOrSelf(window.event.srcElement, 'controls')) return;
+			//if (key.target && isParentOrSelf(key.target, 'controls')) return;
 			number = (((number != undef) ? number : 0) * 10) + (key.which - 48);
 		}
 	}
@@ -256,7 +257,7 @@ function fixLinks() {
 
 //si l'url posséde rel=external, on fait un renvoit extérieur
 function externalLinks() {
-
+    $('a[@href^=http]').addClass('external').attr('target','_blank');
     $('a[@rel=external]').addClass('external').attr('target','_blank');
 }
 
