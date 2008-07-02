@@ -42,7 +42,8 @@ function currentSlide() {
 }
 
 function go(step) {
-	//if (document.getElementById('slideProj').disabled || step == 0) return;
+	if (document.getElementById('slideProj').disabled || step == 0) return;
+    $('.slide').css('display','none');
 	var jl = document.getElementById('jumplist');
 
 	if (step != 'j') {
@@ -70,8 +71,7 @@ function go(step) {
 		snum = parseInt(jl.value);
 	}
 
-	$('.slide, .slide *').css('visibility','hidden');
-	$('#slide'+snum+',#slide'+snum+' *').css('visibility','visible');
+	$('#slide'+snum).css('display','block');
 
     window.location.hash = '#slide'+snum;
 
@@ -91,7 +91,7 @@ function toggle() {
 		fontSize('1em');
 		for (var n = 0; n < smax; n++) {
 			var slide = slideColl[n];
-			slide.style.visibility = 'visible';
+			slide.style.display = 'block';
 		}
 	} else {
 		slides.disabled = false;
@@ -100,22 +100,22 @@ function toggle() {
 		fontScale();
 		for (var n = 0; n < smax; n++) {
 			var slide = slideColl[n];
-			slide.style.visibility = 'hidden';
+			slide.style.display = 'none';
 		}
-		slideColl[snum].style.visibility = 'visible';
+		slideColl[snum].style.display = 'block';
 	}
 }
 
 function showHide(action) {
 	var obj = $('.hideme:eq(0)');
 	switch (action) {
-	case 's': obj.css('visibility','visible'); break;
-	case 'h': obj.css('visibility','hidden'); break;
+	case 's': obj.css('display','block'); break;
+	case 'h': obj.css('display','none'); break;
 	case 'k':
-		if (obj.css('visibility') != 'visible') {
-			obj.css('visibility','visible');
+		if (obj.css('display') != 'block') {
+			obj.css('display','block');
 		} else {
-			obj.css('visibility','hidden');
+			obj.css('display','none');
 		}
 	break;
 	}
@@ -340,7 +340,8 @@ function fontSize(value) {
 
 function BrowserFix() {
     
-    $('#outlineStyle').attr('disabled',true);
+    $('#outlineStyle').get(0).disabled = true;
+    $('.slide').css('visibility','visible');
     
 	/*
 	if (isGe) {
@@ -376,9 +377,6 @@ function trap(e) {
 }
 
 function startup() {
-	//cache tout par défaut
-	$('.slide, .slide *').css('visibility','hidden');
-
     //charge les configuration meta
 	defaultCheck();
 	//initialise la barre de navigation
