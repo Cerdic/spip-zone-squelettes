@@ -123,6 +123,7 @@ function showHide(action) {
 
 // 'keys' code adapted from MozPoint (http://mozpoint.mozdev.org/)
 function keys(key) {
+
 	if (!key) {
 		key = event;
 		key.which = key.keyCode;
@@ -396,9 +397,9 @@ function startup() {
 		if (defaultView == 'outline') {
 			toggle();
 		}
-		document.onkeyup = keys;
-		document.onkeypress = trap;
-		document.onclick = clicker;
+		$(document).bind("keyup",keys);
+		$(document).bind("keypress",trap);
+		$(document).bind("click",clicker);
 }
 
 $('document').ready( function() {
