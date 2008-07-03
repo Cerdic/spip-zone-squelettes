@@ -44,17 +44,25 @@ function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $oblig
 	$id_groupe=id_groupe($groupe);
 	$texte = importer_charset($texte, 'iso-8859-1');
 	$descriptif = importer_charset($descriptif, 'iso-8859-1');
+	
+	$lestables = '';
+	if ($articles=='oui') $lestables.='articles,';
+	if ($breves=='oui') $lestables.='breves,';
+	if ($rubriques=='oui') $lestables.='rubriques,';
+	if ($syndic=='oui') $lestables.='syndic,';
+	if ($evenements=='oui') $lestables.='evenements,';
+	
 	if ($id_groupe == 0) {
 		//Création groupe + mots clé
 		$query = "INSERT INTO spip_groupes_mots SET titre='$groupe', descriptif='$descriptif', texte='$texte', unseul='$unseul', obligatoire='$obligatoire',
-			articles='$articles', breves='$breves', rubriques='$rubriques', syndic='$syndic', evenements='$evenements',
+			tables='$lestables',
 			minirezo='$minirezo', comite='$comite', forum='$forum'";
 		spip_query($query);
 		$id_groupe = spip_insert_id();
 	} else {
 		// Mise à jour
 		spip_query("UPDATE spip_groupes_mots SET descriptif='$descriptif', texte='$texte', unseul='$unseul', obligatoire='$obligatoire',
-			articles='$articles', breves='$breves', rubriques='$rubriques', syndic='$syndic', evenements='$evenements',
+			tables='$lestables',
 			minirezo='$minirezo', comite='$comite', forum='$forum' WHERE id_groupe=$id_groupe");
 	}
 	$groupe = stripslashes($groupe);
