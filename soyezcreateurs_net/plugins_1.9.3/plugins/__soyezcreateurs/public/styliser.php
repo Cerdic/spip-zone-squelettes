@@ -40,6 +40,7 @@ function public_styliser_dist($fond, $id_rubrique, $lang='', $connect='', $ext='
 	// Trouver un squelette de base dans le chemin
 	// Commencer par chercher avec l'extension SPIP (au cas où un squelette .js.html inclue un .js placé au même endroit)
 	if (!$base = find_in_path("$fond.$ext.$extension_spip")) {
+	    if (!$base = find_in_path("$fond.$ext")) {
 		// Si pas de squelette regarder si c'est une table
 		$trouver_table = charger_fonction('trouver_table', 'base');
 		if (preg_match('/^table:(.*)$/', $fond, $r)
@@ -65,6 +66,7 @@ function public_styliser_dist($fond, $id_rubrique, $lang='', $connect='', $ext='
 					 $extension_spip,
 					 $f);
 		}
+	    }
 	} else {
 		$ext = $extension_spip;
 	}
