@@ -1,10 +1,10 @@
 <fieldset class="previsu">
-<legend><:previsualisation:></legend><ol>
+<legend><:previsualisation:></legend><ul>
 <li>
 <BOUCLE_GraverSonNom(ARTICLES){id_article=#EVAL{_request(id_article)}}{titre_mot=GraverSonNom}>
 <div id="graversonnom">
 <BOUCLE_LogoGraverSonNom(MOTS){titre=GraverSonNom}>
-		<img src='[(#LOGO_MOT_NORMAL||extraire_attribut{src})]' title='[(#SESSION*{nom}|typo|sinon{[(#SESSION*{session_nom}|safehtml)]})]' />
+		<img src='[(#LOGO_MOT_NORMAL||extraire_attribut{src})]' title='[(#SESSION{session_nom}|safehtml|sinon{[(#SESSION{nom}|typo)]})]' />
 </BOUCLE_LogoGraverSonNom>
 </div>
 </BOUCLE_GraverSonNom>
@@ -12,11 +12,13 @@
 		<div class="forum-message">
 			<div class="forum-chapo">
 				[<strong class="forum-titre"><a href="#">(#ENV*{titre})</a></strong>]
-				[<small><:par_auteur:> <span>(#SESSION*{nom}|typo|sinon{[(#SESSION*{session_nom}|safehtml)]})</span></small>]
+				[<small><:par_auteur:> <span>(#SESSION{session_nom}|safehtml|sinon{[(#SESSION{nom}|typo)]})</span></small>]
 			</div>
-<div class="#EDIT{texte} forum-texte">
+			<div class="forum-texte">
 [(#ENV*{texte}|lignes_longues)]
 [<p class=""><:voir_en_ligne:> : <a href="(#ENV{url_site}|attribut_html)" class="spip_out">[(#ENV*{nom_site}|sinon{[(#ENV{url_site}|couper{80})]})]</a></p>]
+
+			[<div class="forum-document"><:info_document:> : (#ENV{ajouter_document}|table_valeur{name})</div>]
 </div>
 <B_mots>
 <p class="reponse_formulaire"><:forum_avez_selectionne:>
@@ -27,8 +29,8 @@
 <//B_GraverSonNom>
 [<li class="reponse_formulaire">(#ENV*{erreur})</li>]
 </li>
-</ol>
-[<p class="spip_bouton previsu"><input type="submit" name="confirmer_previsu_forum" value="(#ENV*{bouton})" /></p>]
+</ul>
+[<p class="boutons previsu"><input type="submit" name="confirmer_previsu_forum" value="(#ENV*{bouton})" /></p>]
 </fieldset>
 
 <div style='clear:both;'></div>
