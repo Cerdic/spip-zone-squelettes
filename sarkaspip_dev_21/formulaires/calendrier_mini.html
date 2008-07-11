@@ -1,6 +1,5 @@
 <div id="noisette_miniagenda" class="noisette">
 	<h1><a class="intitule" href="[(#URL_PAGE{agenda_2_annuel,[id_rubrique=(#RUBRIQUE_SPECIALISEE{agenda})][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:agenda:></a></h1>
-<!-- href="[(#URL_PAGE{agenda_2,[id_rubrique=(#RUBRIQUE_SPECIALISEE{agenda})]&amp;type=mois[&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)][&amp;jour=(#AUJOURDHUI|jour)]&amp;echelle=120})]"	-->
 	<div class="contenu">
 		[(#REM) <!-- On affiche les liens vers les annees precedentes et suivantes -->]
 		[<h2><a class="titre_bloc bord ajax" href="(#ENV{self}|parametre_url{'annee',[(#ENV{date}|annee|moins{1})]}|parametre_url{#ENV{var_date},[(#ENV{date}|annee|moins{1})]-[(#ENV{date}|mois)]})" title="[(#ENV{date}|nom_mois|ucfirst)]&nbsp;[(#ENV{date}|annee|moins{1})]">[(#CONFIG{sarkaspip_agenda/icone_precedent, &lt;&lt;})]</a></h2>]
@@ -25,18 +24,13 @@
 			</thead>
 			
 			<tbody>
-				<BOUCLE_calendrier(EVENEMENTS) {id_mot?} {agendafull date_debut,date_fin, mois, (#ENV{date}|annee), (#ENV{date}|mois)}>
-					<BOUCLE_article(ARTICLES){id_evenement}>
-						#SET{titre_article,#TITRE}
-					</BOUCLE_article>
-					
+				<BOUCLE_calendrier(EVENEMENTS) {id_mot?} {agendafull date_debut, date_fin, mois, (#ENV{date}|annee), (#ENV{date}|mois)}>
 					 [(#DATE_DEBUT|Agenda_memo_full{#DATE_FIN,#TITRE,#DESCRIPTIF,#LIEU,#URL_ARTICLE, '#000000'})] 
 				</BOUCLE_calendrier>
-				
 				[(#ENV{date}|agenda_mini)]
 			</tbody>
-			
 		</table>
+
 		[(#REM) <!-- On affiche le lien vers aujourd hui-->]
 		[<h2><a id="aujourdhui" class="titre_bloc" href="(#ENV{self}|parametre_url{'annee',[(#AUJOURDHUI|annee)]}|parametre_url{#ENV{var_date},[(#AUJOURDHUI|annee)]-[(#AUJOURDHUI|mois)]})"title="[(#AUJOURDHUI|nom_mois|ucfirst)]&nbsp;[(#AUJOURDHUI|annee)]"><:sarkaspip:aujourdhui|ucfirst:></a></h2>]
 
@@ -51,7 +45,7 @@
 				[(#DATE_DEBUT|affdate{'d-m'})][&nbsp;&nbsp;(#DATE_FIN|affdate{'d-m'}):]
 				</td>
 				<td class="footer_cold">
-				<a href="[(#URL_PAGE{inc_evenement_2,id_article=[(#GET{id_article})]}|parametre_url{id_evenement,#ID_EVENEMENT})]"
+				<a href="[(#URL_PAGE{evenement,id_article=[(#GET{id_article})]}|parametre_url{id_evenement,#ID_EVENEMENT})]"
 				title=" 
 [(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
 	<:sarkaspip:le:> [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)] 
@@ -88,3 +82,11 @@
 	
 	</div> <!-- div contenu -->
 </div> <!-- class noisette-->
+<!-- 
+
+					<BOUCLE_article(ARTICLES){id_evenement}>
+						#SET{titre_article,#TITRE}
+					</BOUCLE_article>
+ -->
+					
+
