@@ -17,11 +17,8 @@
 	
 	<div id="wrapper">
 		<div id="content">
-			[(#REM) <!-- ============================== ZONE AFFICHAGE DES EVENEMENTS  ============================= --> ]	
-
-			[(#ENV{type, mois}|agenda_connu)<INCLURE {fond=noisettes\agenda\inc_agenda_2_#ENV{type,mois}} {type} {delais=900} {annee} {mois} {jour} {echelle} {partie_cal} {theme}>]
-
-[(#REM) <!-- ============================== FIN ZONE AFFICHAGE DES EVENEMENTS  ============================= --> ]		
+			[(#SET{format_agenda, [(#ENV{type,mois})_2]})]
+			[(#ENV{type, mois}|agenda_connu)<INCLURE{fond=noisettes/agenda/inc_agenda_#GET{format_agenda}}{type}{delais=900}{annee}{mois}{jour}{echelle}{partie_cal}{theme}>]
 		</div>
 	</div>
 	

@@ -243,7 +243,7 @@ function agenda_liste_paginer($id_agenda=0, $annee_choisie=0, $mois_choisi=0, $f
 					if ($filtre != '-1') $arg_option = '&amp;categorie='.$filtre;
 					if ($ancre) $arg_option .= '#pagination_'.$ancre;
 					if (intval($debut_saison) != 1) $annee_evt = (intval($mois_evt) < intval($debut_saison)) ? strval(intval($annee_evt)-1) : $annee_evt;
-					$pagination .= '<a href="spip.php?page=agenda&amp;id_rubrique='.$contexte_aff['id_rubrique'].'&amp;annee='.$annee_evt.'&amp;mois='.$debut_saison.$arg_option.'">'.$evenements[$j]['lien_page'].'</a>';
+					$pagination .= '<a class="ajax" href="spip.php?page=agenda&amp;id_rubrique='.$contexte_aff['id_rubrique'].'&amp;annee='.$annee_evt.'&amp;mois='.$debut_saison.$arg_option.'">'.$evenements[$j]['lien_page'].'</a>';
 				}
 			$annee_courante = $annee_redac;
 			}

@@ -36,13 +36,13 @@
 			</B_pagination>
 
 			<div id="agenda_annuel" class="plan">
-				<BOUCLE_agenda_mois(EVENEMENTS){par date_debut}{inverse}{lang_select=non}{fusion MONTH(date_debut)}{statut=publie}{annee_debut=#ENV{annee}}>
+				<BOUCLE_agenda_mois(EVENEMENTS){par date_debut}{inverse}{lang_select=non}{fusion MONTH(date_debut)}{annee_debut=#ENV{annee}}>
 					<B_agenda_mois_relatif>
 						<h2><a href="[(#URL_PAGE{agenda_2,[id_rubrique=(#RUBRIQUE_SPECIALISEE{agenda})]&amp;type=mois[&amp;annee=(#DATE_DEBUT|annee)][&amp;mois=(#DATE_DEBUT|mois)]&amp;jour=1&amp;echelle=120})]">[(#DATE_DEBUT|nom_mois|ucfirst)]</a></h2>
 						<!-- [(#URL_PAGE{agenda_2_mensuel,[id_rubrique=(#ENV{id_rubrique})][&amp;annee=(#DATE_DEBUT|annee)][&amp;mois=(#DATE_DEBUT|mois)]&amp;jour=01&amp;type=mois  })]
 						-->
 						<ul>	
-					<BOUCLE_agenda_mois_relatif(EVENEMENTS){mois_relatif_debut}{par date_debut}{inverse}{statut=publie}{lang_select=non}{unique}>
+					<BOUCLE_agenda_mois_relatif(EVENEMENTS){mois_relatif_debut}{par date_debut}{inverse}{lang_select=non}{unique}>
 						<BOUCLE_article(ARTICLES){id_evenement}>#SET{titre_article,#TITRE}#SET{id_article,#ID_ARTICLE}</BOUCLE_article>
 						<li>
 							<a class="objet_titre" href="[(#URL_PAGE{evenement,id_article=[(#GET{id_article})]}|parametre_url{id_evenement,#ID_EVENEMENT})]" 
