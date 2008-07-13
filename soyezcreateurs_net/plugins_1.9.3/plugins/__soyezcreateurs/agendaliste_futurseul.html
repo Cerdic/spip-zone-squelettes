@@ -35,13 +35,13 @@
 
 
 		<form id="timenavigation" method="get" action="#URL_RUBRIQUE"><fieldset><legend><:pyrat:precisezrecherche:></legend>
-		<BOUCLE_PremiereAnnee(EVENEMENTS){statut=publie}{id_secteur}{date_debut>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}{par date_debut}{0,1}>
+		<BOUCLE_PremiereAnnee(EVENEMENTS){id_secteur}{date_debut>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}{par date_debut}{0,1}>
 		<?php if ([(#DATE_DEBUT|annee)]<[(#ENV{date_ev,[(#ENV{date})]}|annee)]) { ?>
 		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee)] - 1); ?>-01-01[&amp;genre=(#ENV{genre,''}|urlencode)]&amp;calendrier=1"><img src="/#CHEMIN{images/prev.gif}" title="<:precedent:>" alt="<:precedent:>" /></a>
 		<?php } ?>
 		</BOUCLE_PremiereAnnee>
 		<select id="date_ev" name="date_ev">
-		<BOUCLE_Annees(EVENEMENTS){statut=publie}{id_secteur}{date_debut>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}{par date_debut}>[
+		<BOUCLE_Annees(EVENEMENTS){id_secteur}{date_debut>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}{par date_debut}>[
 		<option value="[(#DATE_DEBUT|affdate{'Y-m-d'})]"[(#ENV{date_ev,[(#ENV{date})]}|annee|=={[(#DATE_DEBUT|annee)]}|?{' selected="selected"',''})]>(#DATE_DEBUT|annee|unique)</option>
 		]</BOUCLE_Annees>
 		</select>
@@ -49,14 +49,14 @@
 		<B_LstMotsClefs>[(#REM) Objectif : n'afficher que les mots clefs effectivement utilisé dans le secteur]
 		<select id="genre" name="genre">
 		<option value=""[(#ENV{genre,''}|=={''}|?{' selected="selected"',''})]><:pyrat:tout:></option>
-		<BOUCLE_LstMotsClefs(EVENEMENTS){statut=publie}{id_secteur}{par titre}{date_debut>=(#ENV{date}|affdate{'Y-m-d'})}><BOUCLE_MotClefAssocie(MOTS){id_evenement}{unique}{doublons statut}>
+		<BOUCLE_LstMotsClefs(EVENEMENTS){id_secteur}{par titre}{date_debut>=(#ENV{date}|affdate{'Y-m-d'})}><BOUCLE_MotClefAssocie(MOTS){id_evenement}{unique}{doublons statut}>
 		<option value="[(#TITRE|attribut_html)]"[(#ENV{genre}|=={[(#TITRE|attribut_html)]}|?{' selected="selected"',''})]>[(#TITRE)]</option>
 		</BOUCLE_MotClefAssocie></BOUCLE_LstMotsClefs>
 		</select>
 		</B_LstMotsClefs>
 
 		<input type="submit" class="form_submit" value="<:pass_ok:>" />
-		<BOUCLE_DerniereAnnee(EVENEMENTS){statut=publie}{id_secteur}{!par date_debut}{0,1}>
+		<BOUCLE_DerniereAnnee(EVENEMENTS){id_secteur}{!par date_debut}{0,1}>
 		<?php if ([(#DATE_DEBUT|annee)]>[(#ENV{date_ev,[(#ENV{date})]}|annee)]) { ?>
 		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee)] + 1); ?>-01-01[&amp;genre=(#ENV{genre,''}|urlencode)]&amp;calendrier=1"><img src="/#CHEMIN{images/next.gif}" title="<:suivant:>" alt="<:suivant:>" /></a>
 		<?php } ?>
@@ -67,7 +67,7 @@
 		</fieldset>
 		</form>
 
-<BOUCLE_LiensMois(EVENEMENTS){statut=publie}{branche}{date_debut>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}{par date_debut}{"&nbsp;| "}>[
+<BOUCLE_LiensMois(EVENEMENTS){branche}{date_debut>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}{par date_debut}{"&nbsp;| "}>[
 <a href="#m(#DATE_DEBUT|affdate{'Ym'}|unique)">[(#DATE_DEBUT|nom_mois|ucfirst)]&nbsp;[(#DATE_DEBUT|annee)]</a>
 ]</BOUCLE_LiensMois>
 

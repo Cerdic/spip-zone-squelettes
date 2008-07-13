@@ -15,7 +15,7 @@ $events = array();
 	$events = array();
 	$eventstitle = array();
 	$eventscolor = array();
-	<BOUCLE_evenements(EVENEMENTS){statut=publie}{branche}{date_debut>(#ENV{date}|affdate{'Y-m-01'}|DateAdd{-6})}{date_debut<(#ENV{date}|affdate{'Y-m-01'}|DateAdd{35})}{par date_debut}>
+	<BOUCLE_evenements(EVENEMENTS){branche}{date_debut>(#ENV{date}|affdate{'Y-m-01'}|DateAdd{-6})}{date_debut<(#ENV{date}|affdate{'Y-m-01'}|DateAdd{35})}{par date_debut}>
 	$date = ereg_replace("^([0-9]{4})-([0-9]{2})-([0-9]{2}).*$", "\\1\\2\\3", '#DATE_DEBUT');
 	if ($date > date("Ymd", mktime(0, 0, 0, $M, -7, $Y)) && $date < date("Ymd", mktime(0, 0, 0, $M + 1, 7, $Y))) {
 		<BOUCLE_EvenementArticle(ARTICLES){id_article}>
@@ -92,7 +92,7 @@ $events = array();
 <div class="agendaderniersajouts">
 	<B_AgendaDerniersAjouts>
 	<ul>
-	<BOUCLE_AgendaDerniersAjouts(EVENEMENTS){statut=publie}{branche}{par date_debut}{0,(#CONFIG{soyezcreateurs/nombres_agenda,5})}{date_debut>=(#ENV{date}|affdate{'Y-m-d'})}>
+	<BOUCLE_AgendaDerniersAjouts(EVENEMENTS){branche}{par date_debut}{0,(#CONFIG{soyezcreateurs/nombres_agenda,5})}{date_debut>=(#ENV{date}|affdate{'Y-m-d'})}>
 	<li><BOUCLE_DernierEvenementArticle(ARTICLES){id_article}><a href="#URL_ARTICLE##ID_EVENEMENT"[ title="(#_DernierEvenementArticle:TITRE|!={#_AgendaDerniersAjouts:TITRE}|?{[(#TITRE|attribut_html)] - [(#_AgendaDerniersAjouts:DATE_DEBUT|afficher_les_dates{#_AgendaDerniersAjouts:DATE_FIN,#_AgendaDerniersAjouts:HORAIRE,0,0,0,0})],[(#DESCRIPTIF|attribut_html)] - [(#_AgendaDerniersAjouts:DATE_DEBUT|afficher_les_dates{#_AgendaDerniersAjouts:DATE_FIN,#_AgendaDerniersAjouts:HORAIRE,0,0,0,0})]})"]></BOUCLE_DernierEvenementArticle>#TITRE</a></li>
 	</BOUCLE_AgendaDerniersAjouts>
 	</ul>

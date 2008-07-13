@@ -1,13 +1,13 @@
 #CACHE{30*24*3600}
 <BOUCLE_rubrique_principal(RUBRIQUES){id_rubrique}>
-<BOUCLE_article(EVENEMENTS){statut=publie}{titre_mot==^(#ENV{genre,''})}{branche}{date_debut==^(#ENV{date_ev,(#ENV{date})}|annee)}{date_debut>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}{par date_debut}>
-<BOUCLE_premierdumois(EVENEMENTS){statut=publie}{id_evenement}{doublons}>
+<BOUCLE_article(EVENEMENTS){titre_mot==^(#ENV{genre,''})}{branche}{date_debut==^(#ENV{date_ev,(#ENV{date})}|annee)}{date_debut>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}{par date_debut}>
+<BOUCLE_premierdumois(EVENEMENTS){id_evenement}{doublons}>
 <h2>[<a name="m(#DATE_DEBUT|affdate{'Ym'})"></a>][(#DATE_DEBUT|nom_mois|ucfirst)] [(#DATE_DEBUT|annee)]</h2>
 <ul>
  <INCLURE{fond=agendaliste_evenement_court}{id_evenement}>
 </BOUCLE_premierdumois>
 <BOUCLE_rappel_rubrique_principal(RUBRIQUES){id_rubrique=#_rubrique_principal:ID_RUBRIQUE}>
-<BOUCLE_MOIS(EVENEMENTS){statut=publie}{branche}{titre_mot==^(#ENV{genre,''})}{date_debut==^(#_article:DATE_DEBUT|affdate{'Y-m'})}{date_debut>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}{doublons}{par date_debut}>
+<BOUCLE_MOIS(EVENEMENTS){branche}{titre_mot==^(#ENV{genre,''})}{date_debut==^(#_article:DATE_DEBUT|affdate{'Y-m'})}{date_debut>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}{doublons}{par date_debut}>
  <INCLURE{fond=agendaliste_evenement_court}{id_evenement}>
 </BOUCLE_MOIS>
 </BOUCLE_rappel_rubrique_principal>
