@@ -363,6 +363,28 @@ function agenda_liste_avertir($id_agenda, $annee_choisie, $mois_choisi) {
 
 // ===================================================
 // Auteur: Smellup
+// Fonction : Retourne le nom du jour en fonction de
+//            son index. Le nom des jours est un item
+//            de langue SPIP
+// Utilisation : 
+// ===================================================
+//
+function agenda_nom_jour($id_jour=0) {
+	$nom_jour = array();
+	
+	array_push($nom_jour, _T('date_jour_1'), _T('date_jour_2'), _T('date_jour_3'), _T('date_jour_4'), 
+						  _T('date_jour_5'), _T('date_jour_6'), _T('date_jour_7'));
+
+	$jour = NULL;
+	if (($id_jour >= 0) && ($id_jour < 7))
+		$jour = $nom_jour[$id_jour];
+	
+	return $jour;
+}
+
+
+// ===================================================
+// Auteur: Smellup
 // Fonction : Insertion d'une bande de navigation dans
 //            les mois precedents et suivants 
 // Utilisation : Choix possible des icones suivant et 
