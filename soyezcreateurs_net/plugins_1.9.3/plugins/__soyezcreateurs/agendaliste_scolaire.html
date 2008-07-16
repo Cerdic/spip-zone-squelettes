@@ -1,5 +1,9 @@
 #CACHE{30*24*3600}
 <BOUCLE_rubrique_principal(RUBRIQUES){id_rubrique}>
+[(#REM) Mémoriser les articles de la branche ]
+#SET{articlesbranche,#ARRAY}
+<BOUCLE_lesarticles(ARTICLES){branche}>[(#SET{articlesbranche,
+	[(#GET{articlesbranche}|push{#ID_ARTICLE})]})]</BOUCLE_lesarticles>
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
@@ -36,13 +40,13 @@
 
 		<form id="timenavigation" method="get" action="#URL_RUBRIQUE"><fieldset><legend><:pyrat:precisezrecherche:></legend>
 		<input type="hidden" id="calendrier" name="calendrier" value="1" />
-		<BOUCLE_PremiereAnnee(EVENEMENTS){id_secteur}{par date_debut}{0,1}>
+		<BOUCLE_PremiereAnnee(EVENEMENTS){id_article IN #GET{articlesbranche}}{par date_debut}{0,1}>
 		<?php if ('[(#DATE_DEBUT|affdate{Y-m-d}))]'<'[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)-09-01]') { ?>
 		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)] - 1); ?>-09-01[&amp;genre=(#ENV{genre,''}|urlencode)]&amp;calendrier=1"><img src="/#CHEMIN{images/prev.gif}" title="<:precedent:>" alt="<:precedent:>" /></a>
 		<?php } ?>
 		</BOUCLE_PremiereAnnee>
 		<select id="date_ev" name="date_ev">
-		<BOUCLE_Annees(EVENEMENTS){id_secteur}{par date_debut}>[
+		<BOUCLE_Annees(EVENEMENTS){id_article IN #GET{articlesbranche}}{par date_debut}>[
 		<option value="[(#DATE_DEBUT|annee_scolaire)-09-01]"[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire|=={[(#DATE_DEBUT|annee_scolaire)]}|?{' selected="selected"',''})]>(#DATE_DEBUT|annee_scolaire|unique)[-(#DATE_DEBUT|annee_scolaire|plus{1})]</option>
 		]</BOUCLE_Annees>
 		</select>
@@ -50,14 +54,14 @@
 		<B_LstMotsClefs>[(#REM) Objectif : n'afficher que les mots clefs effectivement utilisé dans le secteur]
 		<select id="genre" name="genre">
 		<option value=""[(#ENV{genre,''}|=={''}|?{' selected="selected"',''})]><:pyrat:tout:></option>
-		<BOUCLE_LstMotsClefs(EVENEMENTS){id_secteur}{par titre}><BOUCLE_MotClefAssocie(MOTS){id_evenement}{unique}{doublons statut}>
+		<BOUCLE_LstMotsClefs(EVENEMENTS){id_article IN #GET{articlesbranche}}{par titre}><BOUCLE_MotClefAssocie(MOTS){id_evenement}{unique}{doublons statut}>
 		<option value="[(#TITRE|attribut_html)]"[(#ENV{genre}|=={[(#TITRE|attribut_html)]}|?{' selected="selected"',''})]>[(#TITRE)]</option>
 		</BOUCLE_MotClefAssocie></BOUCLE_LstMotsClefs>
 		</select>
 		</B_LstMotsClefs>
 
 		<input type="submit" class="form_submit" value="<:pass_ok:>" />
-		<BOUCLE_DerniereAnnee(EVENEMENTS){id_secteur}{!par date_debut}{0,1}>
+		<BOUCLE_DerniereAnnee(EVENEMENTS){id_article IN #GET{articlesbranche}}{!par date_debut}{0,1}>
 		<?php if ('[(#DATE_DEBUT|affdate{Y-m-d})]'>='[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire|plus{1})-09-01]') { ?>
 		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)] + 1); ?>-09-01[&amp;genre=(#ENV{genre,''}|urlencode)]&amp;calendrier=1"><img src="/#CHEMIN{images/next.gif}" title="<:suivant:>" alt="<:suivant:>" /></a>
 		<?php } ?>
