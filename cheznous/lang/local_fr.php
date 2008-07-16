@@ -80,7 +80,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'forum_page_url' => 'Si vous avez un site web, vous pouvez l\'indiquer ci-dessous :',
 'forum_info_gravatar' => 'Pour afficher votre trombine avec votre message, enregistrez-la d\'abord sur <a href="http://www.gravatar.com" class="spip_out">gravatar.com</a> (gratuit et indolore). Postez ensuite votre message ici, sans oublier d\'indiquer votre adresse e-mail (non publi&eacute;e).',
 
-'forum_texte' => '<span class="reponse_formulaire">*</span> Votre message&nbsp;:',
+'forum_texte' => '<span class="obligatoire">*</span> Votre message&nbsp;:',
 'forum_votre_nom' => 'Votre nom&nbsp;:',
 'forum_votre_email' => 'Votre courriel (non publi&eacute;)&nbsp;:',
 'forum_url' => 'Votre page web :',
@@ -89,9 +89,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'forum_message_definitif' => 'Confirmer l\'envoi',
 
 // Formulaire de contact
-'form_pet_votre_email' => '<span class="reponse_formulaire">*</span> Courriel&nbsp;:',
-'form_prop_sujet' => '<span class="reponse_formulaire">*</span> Sujet&nbsp;:',
-'info_texte_message' => '<span class="reponse_formulaire">*</span> Votre message&nbsp;:',
+'form_pet_votre_email' => '<span class="obligatoire">*</span> Courriel&nbsp;:',
+'form_prop_sujet' => '<span class="obligatoire">*</span> Sujet&nbsp;:',
+'info_texte_message' => '<span class="obligatoire">*</span> Votre message&nbsp;:',
 
 'form_prop_envoyer' => 'Pr&eacute;visualiser',
 'form_prop_confirmer_envoi' => 'Confirmer l\'envoi',
