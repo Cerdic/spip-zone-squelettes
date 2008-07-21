@@ -307,9 +307,13 @@ function calculer_boucle_nonrec($id_boucle, &$boucles) {
 		   (!$boucle->numrows ? '' :
 		    ( "\n	\$Numrows['" .
 			$id_boucle .
-			"']['total'] = @sql_count(\$result,'" .
+			"']['total'] = " .
+			(!$boucle->select ? 
+			 ('array_shift(sql_fetch($result,\'' . $boucle->sql_serveur . "'))") :
+			 ("@sql_count(\$result,'") .
 			$boucle->sql_serveur .
-		      "');"))) .
+			 "')").
+		      ";"))) .
 		(!$flag_cpt  ? "" :
 			"\n	\$Numrows['$id_boucle']['compteur_boucle'] = 0;")
 		. '
@@ -356,6 +360,10 @@ function calculer_requete_sql(&$boucle)
 		'".$boucle->sql_serveur."'); # serveur";
 }
 
+function calculer_dec($nom, $val)
+{
+  return "\n\t" .(strpos($val, '$') ? '' : 'static ') . $nom . ' = ' . $val . ';';
+}
 
 // http://doc.spip.org/@calculer_dump_array
 function calculer_dump_array($a)
@@ -852,7 +860,7 @@ function public_compiler_dist($squelette, $nom, $gram, $sourcefile, $connect='')
 		$boucles[$id]->return = 
 			"function BOUCLE" . strtr($id,"-","_") . $nom .
 			'(&$Cache, &$Pile, &$doublons, &$Numrows, $SP) {' .
-			"\n\n\t\$connect = " .
+			"\n\n\tstatic \$connect = " .
 			_q($boucles[$id]->sql_serveur) .
 			";" .
 			$req .
