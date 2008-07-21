@@ -330,39 +330,31 @@ function calculer_requete_sql(&$boucle)
 {
 	return   ($boucle->hierarchie ? "\n\t$boucle->hierarchie" : '')
 		. $boucle->in 
-		. $boucle->hash . 
-		"\n\n	// REQUETE
-	\$result = calculer_select(\n\t\tarray(\"" . 
+		. $boucle->hash 
+	  . calculer_dec('$table',  "'" . $boucle->id_table ."'")
+	  . calculer_dec('$id', "'" . $boucle->id_boucle ."'")
 		# En absence de champ c'est un decompte : 
-	  	# prendre une constante pour avoir qqch
-		(!$boucle->select ? 1 :
-		 join("\",\n\t\t\"", $boucle->select)) .
-		'"), # SELECT
-		' . calculer_from($boucle) .
-		', # FROM
-		' . calculer_from_type($boucle) .
-		', # FROM	type jointure	
-		' . calculer_dump_array($boucle->where) .
-		', # WHERE
-		' . calculer_dump_join($boucle->join)
-		. ', # WHERE pour jointure
-		' . ('array(' . join(',',array_map('_q', $boucle->group)) . ')') .
-		', # GROUP
-		array(' .
-			calculer_order($boucle) .
-		"), # ORDER
-		" . (strpos($boucle->limit, 'intval') === false ?
+	  . calculer_dec('$from',  calculer_from($boucle))
+	  . calculer_dec('$type', calculer_from_type($boucle))
+	  . calculer_dec('$groupby', "array(" . join(',',array_map('_q', $boucle->group)) . ")")
+	  . calculer_dec('$select', 'array("'
+	. (!$boucle->select ? 1 : join("\",\n\t\t\"", $boucle->select))
+			 .  "\")")
+	  . calculer_dec('$orderby', 'array(' . calculer_order($boucle) .	")")
+	  . calculer_dec('$where', calculer_dump_array($boucle->where))
+	  . calculer_dec('$join', calculer_dump_join($boucle->join))
+	  . calculer_dec('$limit', (strpos($boucle->limit, 'intval') === false ?
 			"'".$boucle->limit."'" :
-			$boucle->limit). ", # LIMIT
-		" . calculer_dump_array($boucle->having) . ", # HAVING
-		'".$boucle->id_table."', # table
-		'".$boucle->id_boucle."', # boucle
-		'".$boucle->sql_serveur."'); # serveur";
+				    $boucle->limit))
+	  . calculer_dec('$having', calculer_dump_array($boucle->having))
+	  . "\n\t// REQUETE\n\t"
+	  . '$result = calculer_select($select, $from, $type, $where, $join, $groupby, $orderby, $limit, $having, $table, $id, $connect);';
 }
 
 function calculer_dec($nom, $val)
 {
-  return "\n\t" .(strpos($val, '$') ? '' : 'static ') . $nom . ' = ' . $val . ';';
+  $dyn = (strpos($val, '$') !== false OR strpos($val, 'sql_') !== false OR strpos($val, 'AccesRestreint_') !== false);
+  return "\n\t" . ($dyn ? '' : 'static ') . $nom . ' = ' . $val . ';';
 }
 
 // http://doc.spip.org/@calculer_dump_array
