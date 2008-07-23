@@ -354,8 +354,8 @@ function calculer_requete_sql(&$boucle)
 // http://doc.spip.org/@calculer_dec
 function calculer_dec($nom, $val)
 {
-  $dyn = (strpos($val, '$') !== false OR strpos($val, 'sql_') !== false OR strpos($val, 'AccesRestreint_') !== false);
-  return "\n\t" . ($dyn ? '' : 'static ') . $nom . ' = ' . $val . ';';
+  $dyn = (strpos($val, '$') !== false OR strpos($val, 'sql_') !== false);
+  return "\n\t" . ($dyn ? '' : 'static ') . $nom . ' = null;if (!' . $nom .')' . $nom . ' = ' . $val . ';';
 }
 
 // http://doc.spip.org/@calculer_dump_array
