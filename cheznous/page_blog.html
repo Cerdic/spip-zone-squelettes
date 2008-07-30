@@ -36,16 +36,9 @@
 		[<div class="#EDIT{descriptif} spip_doc_descriptif">(#DESCRIPTIF)</div>]
 	</div>
 	</BOUCLE_afficher_document>
-	<B_documents_portfolio>
-	<div id="portfolio">
-		<h2 class="invisible"><:info_portfolio:></h2>
-		<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {extension IN jpg,gif,png}{largeur>=200}{hauteur>120} {par num titre, date} {doublons}>
-		[(#SET{vignette,[(#FICHIER|image_passe_partout{120,120}|image_recadre{120,120,center}|image_aplatir{jpg,ffffff}|inserer_attribut{class,spip_logos[ modulo(#COMPTEUR_BOUCLE|modulo{3})]})]})]
-		<a href="[(#FICHIER|image_reduire{800}|extraire_attribut{src})]" type="#MIME_TYPE"[ title="(#TITRE|texte_backend)"]>#GET{vignette}</a>
-		</BOUCLE_documents_portfolio>
-	</div><!--#portfolio-->
-	</B_documents_portfolio>
-	
+
+	<INCLURE{fond=inc-portfolio}{id_article}{vu=non}{pas=50}{ajax} />
+
 	[<div class="#EDIT{ps} ps">(#PS|image_reduire{520,*})</div>]
 	[<div class="notes">(#NOTES)</div>]
 	

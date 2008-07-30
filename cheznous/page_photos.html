@@ -12,30 +12,7 @@
 <div id="contenu">
 <h1 class="#EDIT{titre} invisible"><:photos_tout:></h1>
 
-[(#REM) reglages de la pagination (a faire en cfg) ]
-#SET{pas,20}
-
-<B_tof>
-<div id="portfolio">
-	[(#TOTAL_BOUCLE|>{10}|?{' ',''})<p class="gentil_message"><:cliquer_pour_agrandir:></p>]
-	<BOUCLE_tof(DOCUMENTS) {extension IN jpg,gif,png}{largeur>300}{hauteur>200} {doublons tof} {!par date}>
-
-	<BOUCLE_tof_titre(ARTICLES){id_document}{0,1}>#SET{tof_titre,#TITRE}</BOUCLE_tof_titre>
-	[(#COMPTEUR_BOUCLE|moins{#GET{pas}}|<={#ENV{debut_photos,0}}|?{#COMPTEUR_BOUCLE}|>{#ENV{debut_photos,0}}|?{
-		[(#SET{vignette,[(#FICHIER|image_passe_partout{120,120}|image_recadre{120,120,center}|image_aplatir{jpg,ffffff}|inserer_attribut{class,spip_logos[ modulo(#COMPTEUR_BOUCLE|alterner{1,2,3,4,5})]})]})]
-	,
-		[(#SET{vignette,''})]
-	})]
-	<a href="[(#FICHIER|image_reduire{800}|extraire_attribut{src})]" type="#MIME_TYPE"[ title="(#TITRE|sinon{#GET{tof_titre}}|texte_backend)"]>#GET{vignette}</a>
-	</BOUCLE_tof>
-
-	<BOUCLE_photos(DOCUMENTS){!doublons tof}{pagination #GET{pas}}></BOUCLE_photos>
-	[<p class="pagination">(#PAGINATION)[ ((#_tof:TOTAL_BOUCLE)&nbsp;<:images:>)]</p>]
-	<//B_photos>
-
-	<br class="nettoyeur" />
-</div><!--#portfolio-->
-</B_tof>
+<INCLURE{fond=inc-portfolio}{debut_photos}{ajax} />
 
 </div><!--#contenu-->
 

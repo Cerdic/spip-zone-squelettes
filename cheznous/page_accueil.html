@@ -92,18 +92,7 @@
 	</div><!--.deuxtiers-->
 	
 	<div class="deuxtiers">
-		<B_tof>
-		<div id="portfolio">
-			<h2><:dernieres_images:></h2>
-			<p class="gentil_message"><:cliquer_pour_agrandir:></p>
-			<BOUCLE_tof(DOCUMENTS) {extension IN jpg,gif,png}{largeur>300}{hauteur>200} {age<300}{!par date} {0,4}>
-			[(#SET{vignette,[(#FICHIER|image_passe_partout{102,102}|image_recadre{102,102,center}|image_aplatir{jpg,ffffff}|inserer_attribut{class,spip_logos modulo#COMPTEUR_BOUCLE})]})]
-			<BOUCLE_tof_titre(ARTICLES){id_document}>#SET{tof_titre,#TITRE}</BOUCLE_tof_titre>
-			<a href="[(#FICHIER|image_reduire{800}|extraire_attribut{src})]" type="#MIME_TYPE"[ title="(#TITRE|sinon{#GET{tof_titre}}|texte_backend)"]>#GET{vignette}</a>
-			</BOUCLE_tof>
-			<p class="plus"><a href="#URL_PAGE{page_photos}"><:photos_tout:></a></p>
-		</div><!--#portfolio-->
-		</B_tof>
+	<INCLURE{fond=inc-portfolio}{pagination=non}{pas=4}{taille=102} />
 	</div><!--.deuxtiers-->
 	
 	<div class="tiers">
