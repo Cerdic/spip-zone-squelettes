@@ -214,6 +214,6 @@ function tampons($valeur, $nom, $type, $action){
 return '';
 }
 
-include _DIR_RACINE.'forum.spip.org/inc-urls-trad.php3';
+include _DIR_RACINE. 'urls/trad.php'
 
 ?>
