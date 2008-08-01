@@ -1,7 +1,5 @@
 <?php
 
-include_spip('inc/vieilles_defs');
-
 // executer une seule fois
 if (defined("_INC_URLS2")) return;
 define("_INC_URLS2", "1");
