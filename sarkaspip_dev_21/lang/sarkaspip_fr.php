@@ -159,17 +159,17 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //K
 	  
 		'kezako_collectif' => 'Sylvain, Toufik, Xavier, Eric, Pascal',
-		'kezako_gpl' => 'Le squelette SARKA-SPIP est distribu&eacute; sous licence GPL',
+		'kezako_gpl' => 'Le squelette SARKA-SPIP est distribu&eacute; sous licence GPLv3',
 		'kezako_sarkaspip' => 'Ce site utilise le squelette SARKA-SPIP',
-		'kezako_spip' => 'Site r&eacute;alis&eacute; avec SPIP, un CMS gratuit sous licence GPL',
+		'kezako_spip' => 'Site r&eacute;alis&eacute; avec SPIP, un CMS gratuit sous licence GPLv3',
 		'kezako_squelette' => 'Voir le squelette de la page',
 		'kezako_haut_page' => 'Retour en haut de la page',
 	  
 	
 //L
 	  
-	  	'le' => 'le',
-		'licence_gpl' => 'GPL',
+	  'le' => 'le',
+		'licence_gpl' => 'GPLv3',
 		'licence_site' => 'Licence &agrave; d&eacute;finir',
 		'lien_herbier_liste' => 'Herbier liste',
 		'lien_herbier_panorama' => 'Herbier panorama',
