@@ -13,7 +13,7 @@ Les veinards sous Linux peuvent consulter le dossier linux qui contient 2 fichie
 - updatesc.sh qui fait automatiquement la mise à jour par SVN de SPIP et de *tous* les plugins installés (sous réserve qu'ils ne soient pas dans un sous sous dossier de plugins/)
 
 En l'état, ce squelette nécessite :
-- SPIP 1.9.3
+- SPIP 2.0
 - des plugins, voir installsc.sh (liste à vérifier par rapport à www.pyrat.net en affichant les header)
 - d'être installé à la racine d'un serveur (sous dossier impossible, à moins de refaire le .htaccess). Donc, voir le virtual host d'apache pour disposer de plusieurs serveurs sur une seule IP
 - les rewrite rules doivent être disponibles sous apache (M$ IIS impossible) 
