@@ -1,6 +1,8 @@
 #Installation de SPIP
-svn checkout svn://trac.rezo.net/spip/spip/ ./
+svn checkout svn://trac.rezo.net/spip/branches/spip-2.0.0 ./
 svn checkout svn://zone.spip.org/spip-zone/_squelettes_/gribouille
+#Si besoin de la mutualisation, decomenter la ligne suivante
+#svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/mutualisation
 
 #Installation des plugins
 mkdir plugins
