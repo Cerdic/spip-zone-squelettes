@@ -20,4 +20,7 @@ if (is_readable($z))  include_once($z);
   // Ajouter la barre typo speciale (<code> et <cadre>)
 $barre_typo = 'forumspiporg';
 
+// augmenter le cache
+$quota_cache = 30;
+
 ?>
