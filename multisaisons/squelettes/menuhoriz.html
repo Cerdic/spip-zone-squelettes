@@ -6,10 +6,12 @@
   <div id="menu"> 
     <B_onglets>  
 	<ul id="nav"> 
-	[(#REM)<li[ class="(#ENV{sommaire})"]><a href="[(#URL_PAGE{sommaire})]"><:accueil_site:></a></li>]
-      <BOUCLE_onglets(RUBRIQUES){par num titre}{type=barre_menu}{0,10}> <li [class="(#EXPOSER|oui,non)onglet#ID_RUBRIQUE"]>
+	[(#REM) le bouton accueil]
+	<li[ class="(#ENV{sommaire})"]><a href="[(#URL_PAGE{sommaire})]"><:accueil_site:></a></li>
+    	[(#REM) les autres onglets]
+	<BOUCLE_onglets(RUBRIQUES){par num titre}{type=barre_menu}{0,10}> <li [class="(#EXPOSER|oui,non)onglet#ID_RUBRIQUE[ (#EXPOSER|oui,non)]"]>
 	  <BOUCLE_titre_onglets(MOTS){id_rubrique}{type=barre_menu}{0,1}>
-	  [(#REM) Pas plus de cinq onglets pour la mise en page.] 
+	
           [<a href="(#URL_RUBRIQUE)">][(#LOGO_MOT)][(#TITRE)]</a>
            </BOUCLE_titre_onglets></li>
 		   </BOUCLE_onglets>
