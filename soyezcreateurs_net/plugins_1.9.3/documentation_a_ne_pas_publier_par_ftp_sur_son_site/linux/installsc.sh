@@ -17,7 +17,6 @@ svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/barre_typo_v2
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/boutonstexte
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/cfg
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/clevermail/1_9_3 ./clevermail/
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_dev_/compat193
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/couteau_suisse
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/crayons
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/enluminures_typographiques_v2
