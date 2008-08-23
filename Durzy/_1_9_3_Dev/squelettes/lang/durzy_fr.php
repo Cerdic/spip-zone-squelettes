@@ -4,9 +4,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // description du plugin
 'description_durzy' => '
 	<h4>Configuration des squelettes Durzy</h4>
-	<p>Utilisez cette page pour configurer l&rsquo;apparence des squelettes.<br />
-		Assurez-vous d&rsquo;avoir activ&eacute; le plugin jQuery avec la biblioth&egrave;que "jquery.ui-1.0" afin d&rsquo;obtenir un affichage correct des onglets
-	</p>
+	<p>Utilisez cette page pour configurer l&rsquo;apparence des squelettes et leurs éléments clefs (Edito,...).</p>
 	<br />
 	<a href="http://www.durzy-spip.fr/spip.php?article1" class="spip_out">Documentation provisoire</a>',
 
@@ -25,7 +23,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	<p> D&rsquo;autres plugins (optionnels) pourront enrichir les fonctionnalit&eacute;s du site avec bonheur : </p>
 	<ul>
 		<li>Couteau suisse offre de multiples petits r&eacute;glages fort utiles.</li>
-		<li>Acc&egrave;s restreint par groupe pour d&eacute;finir des zones rserv&eacute;es (aux professeurs par exemple).</li>
+		<li>Acc&egrave;s restreint par groupe pour d&eacute;finir des zones r&eacute;serv&eacute;es (aux professeurs par exemple).</li>
 		<li>Autorit&eacute; pour modifier certains droits par d&eacute;faut des utilisateurs.</li>
 		<li>Thickbox pour l&rsquo;affichage des images du portfolio.</li>
 	</ul>',
