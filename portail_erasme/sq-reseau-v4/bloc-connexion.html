@@ -1,21 +1,14 @@
 #CACHE{0}
 
-<div id="bloc-connexion" >
-
-	[(#REM)Test auteur connecté]
-	#SET{login,#EVAL{$GLOBALS['auteur_session']['login']}}
-	#SET{nom,#EVAL{$GLOBALS['auteur_session']['nom']}}
-	#SET{id_auteur,#EVAL{$GLOBALS['auteur_session']['id_auteur']}}
-
+<div id="bloc-connexion" style="display: inline;">
 	
-	[(#GET{login}|?{
-	<strong><a href="spip.php?page=auteur&id_auteur=[(#GET{id_auteur})]" title="voir mes articles" alt="voir mes articles">[(#GET{nom})]</a></strong>
-	<a href="spip.php?action=logout&logout=[(#GET{login})]&url=spip.php%3Fpage=sommaire" title="se déconnecter" alt="se déconnecter">X</a>
+	[(#SESSION{login}|?{
+	<strong><a href="spip.php?page=auteur&id_auteur=[(#SESSION{id_auteur})]" title="voir mes articles" >[(#SESSION{nom})]</a></strong>
+	<a href="spip.php?action=logout&logout=[(#SESSION{login})]&url=spip.php%3Fpage=sommaire" title="se déconnecter" > X </a>
 	,
-	<strong><a href="spip.php?page=login&url=spip.php%3Fpage=sommaire" title="se connecter" alt="se connecter">Se connecter</a></strong>
+	<strong><a href="spip.php?page=login&url=spip.php%3Fpage=sommaire" title="se connecter" >Se connecter</a></strong>
 	<!--<strong><a href="spip.php?action=inscription&focus=nom_inscription">S'inscrire</a></strong><br>
 	<em><a href="spip.php?action=pass">Mot de passe perdu</a></em>-->
 	})]	
 
 </div>
-

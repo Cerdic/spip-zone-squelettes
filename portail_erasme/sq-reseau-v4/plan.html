@@ -10,6 +10,10 @@
 	[(#INCLURE {fond=entete})]
 	[(#INCLURE {fond=menu}{id_rubrique}{id_breve})]
 
+[(#REM) ---------------------- A exclure---------------------- ]
+
+	<BOUCLE_rubriques_ex(RUBRIQUES) {tout} {titre_mot=pas_menu} {doublons}></BOUCLE_rubriques_ex>
+
 [(#REM) ------------------------------------- COLONE GAUCHE ----------------------------------------- ]
 	<div id="supportingText">
 
@@ -33,7 +37,7 @@
 				
 	[(#REM) ---------------------- Texte ---------------------- ]
 			<p style="margin-left:10%;">
-			<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
+			<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}{doublons}>
 
 				<h2><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h2>
 
@@ -52,7 +56,7 @@
 
 					<B_rubriques>
 					<ul>
-						<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+						<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}{doublons}>
 						<li><strong><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></strong>
 
 							<B_articles>
