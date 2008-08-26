@@ -4,6 +4,7 @@
 		- id_article: id de l'article concerne
 		- afficher_mere: indicateur d'affichage ou pas de la rubrique mere de l'article concerne
 		- taille_introduction: taille maximum affichee par la balise #INTRODUCTION de l'article
+		- bouton_lien : bouton situe en bas de la noisette, indiquant s'il faut "lire la suite" ou "retourner a l'article"
 -->
 ]
 <BOUCLE_article_intro(ARTICLES) {id_article}>
@@ -18,8 +19,13 @@
 		[<div class="soustitre">(#SOUSTITRE)</div>]
 		<div class="introduction">
 			[(#INTRODUCTION{#ENV{taille_introduction}}|typo_couleur)]
-			<br /><br />
-			<a class="suite" href="#URL_ARTICLE"><:sarkaspip:lire_suite_article:></a>
+			<br /><br />		
+      <a class="suite" href="#URL_ARTICLE">
+        [(#ENV{bouton_lien,suite}|=={retour}|?{
+          <:sarkaspip:retour_article:>,
+          <:sarkaspip:lire_suite_article:>})]
+      </a>
+			
 		</div> <!-- Fin introduction -->
 	</div> <!-- Fin annonce -->
 </BOUCLE_article_intro>
