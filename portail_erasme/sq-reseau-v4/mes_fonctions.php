@@ -2,7 +2,7 @@
 
 //Variables Globales
 
-$GLOBALS['debut_annee_scolaire']='2007-09-01';
+$GLOBALS['debut_annee_scolaire']='2008-09-01';
 
 //Fonctions
 
