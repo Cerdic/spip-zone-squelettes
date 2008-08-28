@@ -10,7 +10,16 @@
 	<ul>
 		<li class="[(#GET{classe_li})]"><a href="#URL_PAGE{plan,tri=par_rubrique}"><:sarkaspip:plan_site:></a></li>
 		<BOUCLE_acces_agenda(RUBRIQUES) {id_rubrique=#RUBRIQUE_SPECIALISEE{agenda}}>
-			[(#RUBRIQUE_SPECIALISEE{agenda}|!={0}|?{<li class="[(#GET{classe_li})]"><a href="[(#URL_PAGE{agenda,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:agenda:></a></li>})]
+			[(#RUBRIQUE_SPECIALISEE{agenda}|!={0}|?{' '})
+				[(#CONFIG{sarkaspip_agenda/plugin, 1}|=={1}|?{' '})
+					<li class="[(#GET{classe_li})]"><a href="[(#URL_PAGE{agenda,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:agenda:></a></li>
+				]
+				[(#CONFIG{sarkaspip_agenda/plugin, 1}|=={2}|?{' '})
+					[(#PLUGIN{AGENDA}|?{' '})
+						<li class="[(#GET{classe_li})]"><a href="[(#URL_PAGE{agenda,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:agenda:></a></li>
+					]
+				]
+			]
 		</BOUCLE_acces_agenda>
 		<BOUCLE_acces_galerie(RUBRIQUES) {id_rubrique=#RUBRIQUE_SPECIALISEE{galerie}}>
 			[(#RUBRIQUE_SPECIALISEE{galerie}|>{0}|?{<li class="[(#GET{classe_li})]"><a href="[(#URL_PAGE{galerie,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:galerie:></a></li>})]
