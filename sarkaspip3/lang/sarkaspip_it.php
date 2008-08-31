@@ -45,6 +45,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'articles' => 'Articoli', // redefinition item SPIP
 		'articles_aleatoires' => 'A caso',
 		'articles_auteur' => 'Articoli di questo autore', // redefinition item SPIP
+		'articles_meme_rubrique' => 'dans la rubrique...',
 		'articles_mot' => 'Articoli associati',
 		'articles_recents' => 'Articoli recenti', // redefinition item SPIP
 		'article_rubrique' => 'Articoli pubblicati in questa rubrica',
@@ -201,6 +202,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //N
 	  
+		'navigation_article' => 'Navigation',
 		'newsletter' => 'Newsletter',
 		'nom' => 'Nome', // redefinition item SPIP
 		'novembre' => 'Novembre',
