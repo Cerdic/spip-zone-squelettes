@@ -41,9 +41,11 @@
 	]
 </BOUCLE_acces_annonce>
 
-[(#REM) <!-- affichage du panneau derniers commentaires--> ]
+[(#REM) <!-- affichage du panneau derniers commentaires sauf sur la page articles --> ]
 [(#CONFIG{sarkaspip_noisettes/position_commentaires, 2}|=={2}|?{' '})
-<INCLURE{fond=noisettes/inc_commentaires} {id_secteur}>
+	[(#ENV{page}|!={article}|?{' '})
+		<INCLURE{fond=noisettes/inc_commentaires}{id_secteur}>
+	]
 ]
 
 [(#REM) <!-- affichage des X dernieres breves et sites en fonction du contexte --> ]
