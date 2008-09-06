@@ -48,6 +48,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'articles' => 'Articles', // redefinition item SPIP
 		'articles_aleatoires' => 'Au hasard',
 		'articles_auteur' => 'Articles de cet auteur', // redefinition item SPIP
+		'articles_commentaires' => 'Commentaire(s)',
 		'articles_meme_rubrique' => 'dans la rubrique...',
 		'articles_mot' => 'Articles associ&eacute;s',
 		'articles_recents' => 'Articles les plus r&eacute;cents', // redefinition item SPIP
@@ -72,6 +73,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //C
 	  
 		'commentaires' => 'Commentaires',
+		'commentaires_articles' => 'Ajouter un commentaire',
 		'contact' => 'Contact',
 		'contacter_site' => 'Contacter le webmestre',
 		'coordonnees' => 'Coordonn&eacute;es',
@@ -254,7 +256,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'recherche_breves_resultat' => 'Br&egrave;ves trouv&eacute;es',
 		'recherche_sites_resultat' => 'Sites web trouv&eacute;s',
 		'rechercher' => 'Rechercher',
-		'repondre_article' => 'R&eacute;pondre &agrave; cet article', // redefinition item SPIP
 		'repondre_message' => 'R&eacute;pondre &agrave; ce message', // redefinition item SPIP
 		'reponse_suite_article' => 'Votre r&eacute;ponse fait suite &agrave; l\'article',
 		'reponse_suite_message' => 'En r&eacute;ponse au message',
