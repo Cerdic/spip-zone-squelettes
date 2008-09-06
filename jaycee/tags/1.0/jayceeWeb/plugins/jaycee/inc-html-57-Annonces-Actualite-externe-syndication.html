@@ -1,0 +1,43 @@
+#CACHE{24*3600}
+	<!-- Actualités externes importées par syndication --><?php $giBrevesColor = 0; ?>
+	<a id="Actualite_externe" />
+	<!-- Les articles les plus récents parmi tous les sites externes confondus -->	
+	<BOUCLE_sites_source(SITES){id_secteur}{titre_mot=_source_Actualite_externe}>[(#REM) Rassemble tous les articles syndiqués des sites à mot-clé (par une clausse IN)]<BOUCLE_actus_source(SYNDIC_ARTICLES){id_syndic}{!par date}{doublons actus_source}></BOUCLE_actus_source></BOUCLE_sites_source>
+	
+		<B_actus_recentes>
+			<div class='breves'>
+				<div class='breves-<?php echo ++$giBrevesColor; ?>'>
+					<div class='breves-titre'><a href="#URL_SITE" title="JCE annonce pour la communauté...">Dernières actus régionales</a></div>
+					<ul><BOUCLE_actus_recentes(SYNDIC_ARTICLES){!par date}{!doublons actus_source}{doublons actus}{0,4}>
+						<li>
+							<i>[(#DATE|affdate_court)]</i>:
+							<a href='[(#URL_ARTICLE|art2ann)]' title="Importé du site #URL_SITE">
+								[(#TITRE|supprimer_numero)]
+							</a>
+						</li>
+					</BOUCLE_actus_recentes></ul>
+				</div> <!-- breves-<?php echo $giBrevesColor; ?> -->
+			</div>
+		</B_actus_recentes>
+
+	<!-- Les articles les plus récents parmi chacun des sites imposés -->	
+	<BOUCLE_sites_actus(SITES){id_secteur}{titre_mot=_source_Actualite_externe}>
+		<B_actus>
+			<div class='breves'>
+				<div class='breves-<?php echo ++$giBrevesColor; ?>'>
+					<div class='breves-titre'><a href="#URL_SITE" title="Importé du site #URL_SITE">#NOM_SITE</a></div>
+					<ul><BOUCLE_actus(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{doublons actus}{0,2}{age<30}>
+						<li>
+							<i>[(#DATE|affdate_court)]</i>:
+							<a href='[(#ID_SYNDIC|generer_url_site|changeURL{sit,actus})]#actu[(#ID_SYNDIC_ARTICLE)]' title="[(#TEXTE|attribut_html|couper{120})]">
+								[(#TITRE|supprimer_numero)]
+							</a>
+						</li>
+					</BOUCLE_actus></ul>
+				</div> <!-- breves-<?php echo $giBrevesColor; ?> -->
+			</div>
+		</B_actus>
+	</BOUCLE_sites_actus>
+
+	<!-- Fin : Actualites -->
+

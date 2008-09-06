@@ -1,0 +1,117 @@
+<BOUCLE_article_principal(RUBRIQUES){id_secteur=1}{0,1}
+ >[(#REM) Les fermetures de balises sont à la ligne pour ne pas insérer d'espace avant l'entête HTML
+ ]<INCLURE{fond=inc-html-01-Vars-Site}
+ ><INCLURE{fond=inc-html-03-Vars-Rubrique}{id_secteur}{id_rubrique}
+><?php	$gsTITRE = "(#RECHERCHE)"; 
+?><INCLURE{fond=inc-html-11-Head}>
+</head>
+<body onload="setHover('menuList1')">
+  [(#FORMULAIRE_ADMIN)]
+  
+	[(#INCLURE{fond=inc-html-21-Entete-Bandeau1}{id_article})]
+	[(#INCLURE{fond=inc-html-22-Menu-deroulant}{id_rubrique})]
+	<INCLURE{fond=inc-html-24-Entete-Bandeau2}>
+	[(#REM)id_article permet de fournir le contexte, pour menu bandeau par exemple]
+  
+  <div id='zPrincipal'>
+		<div class='zLeft25'> 	
+				[(#FORMULAIRE_RECHERCHE)]
+		</div><!-- zLeft -->
+		
+		<div class="zContenu"> 		  
+			<h1>Résultats de la recherche : « #RECHERCHE »</h1>
+
+		<BOUCLE_rubrique_annonces(RUBRIQUES){titre_mot=_RUB_ANNONCES}{0,1}>			
+				[(#REM) Annonces trouvees ]
+				<B_annonces>
+				<div class="liste-articles">
+					#ANCRE_PAGINATION
+					<h2 class="invisible">Annonces</h2>
+					<ul>
+						<BOUCLE_annonces(ARTICLES){branche} {recherche}{par points}{inverse} {pagination}>
+						<li>
+							<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a> <small>[ - (#DATE|affdate)]</small>
+						</li>
+						</BOUCLE_annonces>
+					</ul>
+					[<p class="pagination">(#PAGINATION)</p>]
+				</div>
+				</B_annonces>
+		</BOUCLE_rubrique_annonces>
+			
+			
+	<BOUCLE_masquer_rubriques(RUBRIQUES){titre_mot=_MASQUER_RUBRIQUE}{doublons rubriques}>
+		<BOUCLE_masquer_rub_articles(ARTICLES){branche}{doublons articles}>
+		</BOUCLE_masquer_rub_articles>
+	</BOUCLE_masquer_rubriques>
+
+	[(#REM) Masque les articles de meta-donnees dans le secteur ]
+	<BOUCLE_masquer_articles(ARTICLES){titre_mot=_MASQUER_ARTICLE}{doublons articles}>
+	</BOUCLE_masquer_articles>
+			
+				[(#REM) Articles trouves ]
+				<B_articles>
+				<div class="liste-articles">
+					#ANCRE_PAGINATION
+					<h2 class="invisible"><:articles:></h2>
+					<ul>
+						<BOUCLE_articles(ARTICLES) {recherche}{doublons articles}{par points}{inverse} {pagination}>
+						<li>
+							<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a> <small>[ - (#DATE|affdate)]</small>
+						</li>
+						</BOUCLE_articles>
+					</ul>
+					[<p class="pagination">(#PAGINATION)</p>]
+				</div>
+				</B_articles>
+
+				[(#REM) Rubriques trouvees ]
+				<B_rubriques>
+				<div class="rubriques">
+					#ANCRE_PAGINATION
+					<h2 class="menu-titre"><:rubriques:></h2>
+					[<p class="pagination">(#PAGINATION)</p>]
+					<ul>
+						<BOUCLE_rubriques(RUBRIQUES) {recherche}{doublons rubriques} {par points}{inverse} {pagination 5}>
+						<li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></li>
+						</BOUCLE_rubriques>
+					</ul>
+				</div>
+				</B_rubriques>
+
+				[(#REM) Messages trouves ]
+				<B_messages>
+				<div class="forums">
+					#ANCRE_PAGINATION
+					<h2 class="menu-titre"><:messages_forum:></h2>
+					[<p class="pagination">(#PAGINATION)</p>]
+					<ul>
+						<BOUCLE_messages(FORUMS) {recherche} {par points}{inverse} {pagination 5}>
+						<li>[(#DATE|affdate_court) : ]<a href="#URL_FORUM">#TITRE</a></li>
+						</BOUCLE_messages>
+					</ul>
+				</div>
+				</B_messages>
+
+				[(#REM) Sites web trouves ]
+				<B_sites>
+				<div class="syndic">
+					#ANCRE_PAGINATION
+					<h2 class="menu-titre"><:sites_web:></h2>
+					[<p class="pagination">(#PAGINATION)</p>]
+					<ul>
+						<BOUCLE_sites(SITES) {recherche} {par points}{inverse} {pagination 5}>
+						<li><a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a></li>
+						</BOUCLE_sites>
+					</ul>
+				</div>
+				</B_sites>
+
+			<hr class='cbh' />			
+		</div><!-- zContenu -->
+	</div><!-- zPrincipal -->
+</body>
+</html>
+</BOUCLE_article_principal>
+<:aucun_article:>
+<//B_article_principal>

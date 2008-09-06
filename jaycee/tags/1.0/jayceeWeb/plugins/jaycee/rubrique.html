@@ -1,0 +1,88 @@
+#CACHE{24*3600}
+<BOUCLE_rubrique_principal(RUBRIQUES){id_rubrique}><INCLURE{fond=inc-html-01-Vars-Site}
+>[(#REM) Les fermetures de balises sont à la ligne pour ne pas insérer d'espace avant l'entête HTML
+ ]<INCLURE{fond=inc-html-01-Vars-Site}
+ ><INCLURE{fond=inc-html-03-Vars-Rubrique}{id_secteur}{id_rubrique}
+ ><INCLURE{fond=inc-html-11-Head}>
+</head>
+<body onload="setHover('menuList1')">
+  [(#FORMULAIRE_ADMIN)]
+  
+	[(#INCLURE{fond=inc-html-21-Entete-Bandeau1}{id_article})]
+	[(#INCLURE{fond=inc-html-22-Menu-deroulant}{id_rubrique})]
+	[(#INCLURE{fond=inc-html-24-Entete-Bandeau2}{id_secteur}{id_rubrique})]
+	[(#REM)id_article permet de fournir le contexte, pour menu bandeau par exemple]
+	
+	<div id='zPrincipal'> 
+	
+		<div class='zLeft25'>
+			[(#REM)Pas d'edito sur une rubrique]		
+  	  <INCLURE{fond=inc-html-34-Menu-rubrique}{id_rubrique}{id_article}>
+			[(#FORMULAIRE_RECHERCHE)<hr />]
+		</div><!-- zLeft -->
+
+		<INCLURE{fond=inc-html-35-Menu-chemin}{id_rubrique}{id_article}>
+		<INCLURE{fond=inc-html-25-Entete-contexte}{id_secteur}{id_rubrique}{id_article}>
+		<p class='rubInfo'>[<:dernier_ajout:> : (#DATE|nom_jour)] [(#DATE|affdate).]</p>
+
+		<div class="zContenu"> 
+
+			<div class='encart'>
+	  	  <INCLURE{fond=inc-html-43-Date-Heure}>
+	  	  
+	  	  
+ 				<div class='zBreves'>
+					<INCLURE{fond=inc-html-52-Annonces-Agenda}{id_secteur}{id_rubrique}>
+
+				</div>
+			</div>
+
+			<!-- Une : contenu de la rubrique -->
+			[<p class="chapo">(#TEXTE|winGUI)</p>]
+			[<p class="notes">(#NOTES|winGUI)</p>]
+
+			<!-- rubResume -->
+			<ul class='rubResume'>
+				<B_articles>
+				<!-- Articles de la rubrique -->
+				<li class='titResume'>Les articles de cette rubrique :
+					<ul>
+				<BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
+						<li><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a></li>
+				</BOUCLE_articles>
+					</ul>
+				</li>
+				</B_articles>
+				
+				<BOUCLE_masquer(RUBRIQUES){titre_mot=_MASQUER_RUBRIQUE}{doublons}>
+				</BOUCLE_masquer>
+				
+				<B_sousrubriques>
+				<!-- Sous-rubriques de la rubrique -->	
+      	<li class='titResume'>Les sous-rubriques :
+      		<ul>  
+				<BOUCLE_sousrubriques(RUBRIQUES){id_parent}{doublons}{par titre}>
+						<li><a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a></li>
+				</BOUCLE_sousrubriques>
+					</ul>
+				</li>
+				</B_sousrubriques>
+			</ul>
+			<!-- Fin : rubResume -->
+			
+			<hr class='clearBothHidden' />
+			<div class='zFooter'>	
+			 <INCLURE{fond=inc-html-36-Menu-secteur}{id_rubrique}>
+			</div> <!-- div : zFooter -->
+					
+		</div><!-- zContenu -->		
+	</div><!-- zPrincipal -->
+	
+  	<INCLURE{fond=inc-html-47-Acces-prive}{id_article}{id_rubrique}>
+	
+</body>
+</html>
+</BOUCLE_rubrique_principal>
+<:aucune_rubrique:>
+<//B_rubrique_principal>
+

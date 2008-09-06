@@ -1,0 +1,56 @@
+#CACHE{24*3600}
+[(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})]<?xml version="1.0"[ encoding="(#CHARSET)"]?>
+<rss version="2.0"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+>
+
+<channel>
+	<title>[(#NOM_SITE_SPIP|texte_backend)]</title>
+	<link>#URL_SITE_SPIP/</link>
+	<description>[(#DESCRIPTIF_SITE_SPIP|texte_backend)]</description>
+	<language>#LANG</language>
+	<generator>SPIP - www.spip.net</generator>
+
+[	<image>
+		<title>[(#NOM_SITE_SPIP|texte_backend)]</title>
+		<url>(#LOGO_SITE_SPIP||extraire_attribut{src}|url_absolue|texte_backend)</url>
+		<link>#URL_SITE_SPIP/</link>
+		[<height>(#LOGO_SITE_SPIP||extraire_attribut{height})</height>]
+		[<width>(#LOGO_SITE_SPIP||extraire_attribut{width})</width>]
+	</image>
+]
+
+<BOUCLE_masquer_secteurs(RUBRIQUES){titre_mot=_MASQUER_RUBRIQUE}{doublons secteur}></BOUCLE_masquer_secteurs>
+<BOUCLE_masquer_articles(ARTICLES){titre_mot=_MASQUER_ARTICLE}{doublons articles}></BOUCLE_masquer_articles>
+
+<INCLURE{fond=inc-rss-item-Menu-syndication}{id_rubrique=1}>
+
+<BOUCLE_secteur(RUBRIQUES){id_secteur ?}>
+
+		<BOUCLE_articles_secteur(ARTICLES){id_rubrique}{doublons articles}{par titre}>
+			<INCLURE{fond=inc-rss-item}{id_article}>
+		</BOUCLE_articles_secteur>
+
+	  <BOUCLE_rubriques(RUBRIQUES){id_parent}{doublons secteur}{par titre}>
+
+			<BOUCLE_masquer_rubriques(RUBRIQUES){titre_mot=_MASQUER_RUBRIQUE}{doublons rubrique}>
+			</BOUCLE_masquer_rubriques>
+
+				<BOUCLE_afficher(RUBRIQUES){id_rubrique}>
+
+            <BOUCLE_articles(ARTICLES){id_rubrique}{doublons articles}{par titre}>
+							<INCLURE{fond=inc-rss-item}{id_article}>
+            </BOUCLE_articles>
+
+            <BOUCLE_sous_rubriques(BOUCLE_rubriques)>
+            </BOUCLE_sous_rubriques>
+
+				</BOUCLE_afficher>
+
+		</BOUCLE_rubriques>
+		
+</BOUCLE_secteur>
+</channel>
+
+</rss>
