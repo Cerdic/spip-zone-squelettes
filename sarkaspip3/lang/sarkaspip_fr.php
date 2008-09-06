@@ -46,6 +46,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'annonces' => 'Annonces',
 		'aout' => 'Ao&ucirc;t',
 		'articles' => 'Articles', // redefinition item SPIP
+		'articles_ajouter_commentaires' => 'Ajouter un commentaire',
 		'articles_aleatoires' => 'Au hasard',
 		'articles_auteur' => 'Articles de cet auteur', // redefinition item SPIP
 		'articles_commentaires' => 'Commentaire(s)',
