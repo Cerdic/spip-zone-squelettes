@@ -1,0 +1,21 @@
+#CACHE{24*3600*7}
+
+		<BOUCLE_articles_presse(ARTICLES){titre_mot=_source_Revue-de-presse}{age<365}>
+			<BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document}{extension IN png,jpg,gif,pdf}{doublons docsPresse}>
+			</BOUCLE_documents_joints>
+		</BOUCLE_articles_presse>
+
+			<B_afficher_documents_joints>
+			<div id="documents_joints">
+			<BOUCLE_afficher_documents_joints(DOCUMENTS) {mode=document}{!doublons docsPresse}{par date}{inverse} {0,7}>
+				<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;" onmouseover="TagToTip('TagDocParDate#ID_DOCUMENT')">
+					[(#LOGO_DOCUMENT||image_reduire{0,150}|inserer_attribut{title,[(#DESCRIPTIF)]})]
+				</a>
+				<span id='TagDocParDate#ID_DOCUMENT'>
+					[<b>(#TITRE)</b><br />]
+					[(#DESCRIPTIF)<br />]
+					[<a href="article(#ID_ARTICLE)" style='font-weight: normal;'>Toute la presse de cette action</a>]	
+				</span>
+			</BOUCLE_afficher_documents_joints>
+			</div>
+			</B_afficher_documents_joints>

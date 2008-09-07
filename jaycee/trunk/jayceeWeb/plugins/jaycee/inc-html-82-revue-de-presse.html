@@ -1,0 +1,23 @@
+#CACHE{24*3600*7}
+
+<script type="text/javascript" src="#CHEMIN{styles/js/wz_tooltip.js}"></script>
+<script type="text/javascript" src="#CHEMIN{styles/js/wz_tooltip_config_jaycee.js}"></script>
+
+[**** (#ENV{pressePar,vide}) **** ]
+
+<div id='zPresseRevue'>
+	<div class='zPresseOnglet[(#ENV{pressePar,date}|=={date}|?{'Actif',''})]'><a href="?pressePar=date"  class="load" >Par date</a></div>
+	<div class='zPresseOnglet[(#ENV{pressePar,date}|=={action}|?{'Actif',''})]'><a href="?pressePar=action"  class="load" >Par action</a></div>
+
+	<div class='zPresse'>
+
+[(#REM) Par DATE ]
+
+[(#ENV{pressePar,date}|=={'date'}|?{' ',''})	<INCLURE{fond=inc-html-82-revue-de-presse-par-date}{pressePar=#ENV{pressePar}}> ]
+
+[(#REM) Par ACTION ]
+	
+[(#ENV{pressePar,date}|=={'action'}|?{' ',''})	<INCLURE{fond=inc-html-82-revue-de-presse-par-action}{pressePar=#ENV{pressePar}}> ]
+	
+	</div>
+	

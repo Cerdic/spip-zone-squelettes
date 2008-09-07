@@ -1,0 +1,29 @@
+#CACHE{24*3600*7}
+
+<script type="text/javascript" src="#CHEMIN{styles/js/wz_tooltip.js}"></script>
+<script type="text/javascript" src="#CHEMIN{styles/js/wz_tooltip_config_jaycee.js}"></script>
+
+[(#REM) d'après http://www.jquery.info/Un-lien-vers-une-page-qui ]
+
+<script type="text/javascript"><!--
+$(document).ready( function () {  
+
+  $("a.load")
+  .click(function() {
+  	$(this).attr("href", function(){
+			mylink=this.href.replace("[(#SELF)]?presse-par=date", "spip.php?page=inc-html-81-revue-de-presse-par-date"); 
+			mylink=this.href.replace("[(#SELF)]?presse-par=action", "spip.php?page=inc-html-81-revue-de-presse-par-action"); 
+			$(this).attr("href", mylink );
+		});
+  
+  $("#zPresseRevue").load(this.href);
+    return false;
+  });
+
+});
+// --></script>
+
+<div id='zPresseRevue'>
+	#INCLURE{fond=inc-html-81-revue-de-presse-par-#ENV{presse-par,date}}
+</div>
+	
