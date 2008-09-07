@@ -4,35 +4,41 @@
 		- id_article: id de l'article concernee
 -->
 ]
+[(#REM) <!-- Formulaire pour signer la petition --> ]
+[<div id="signer_petition" class="petition">
+	<h2><:sarkaspip:signer_petition:></h1>
+	(#FORMULAIRE_SIGNATURE)
+</div>]
+      		
 
 <B_signatures>
-				<BOUCLE_signatures_decompte(SIGNATURES) {id_article}></BOUCLE_signatures_decompte>
-					[<div id="signatures" class="petition">
-						<h1><:sarkaspip:signatures_petition:>:&nbsp;(#TOTAL_BOUCLE)</h1>
-					]
-				<//B_signatures_decompte>
-					[(#ANCRE_PAGINATION)]
-						[<div class="pagination">(#PAGINATION)</div>]
-						<table>
-							<thead>
-								<tr>
-									<td><:sarkaspip:date:></td>
-									<td><:sarkaspip:nom:></td>
-									<td><:sarkaspip:sites_web:></td>
-									<td><:sarkaspip:message:></td>
-								</tr>
-							</thead>
-							<tbody>
-				<BOUCLE_signatures(SIGNATURES) {id_article} {par date} {inverse} {pagination 3}>
-								<tr>
-									<td>[(#DATE|affdate_court)]</td>
-									<td>#NOM</td>
-									<td><a href="#URL_SITE">[(#NOM_SITE)]</a></td>
-									[<td class="#EDIT{message}">(#MESSAGE)</td>]
-								</tr>
-				</BOUCLE_signatures>
-							</tbody>
-						</table>
-						[<div class="pagination">(#PAGINATION)</div>]
-					</div>
-			</B_signatures>
+<BOUCLE_signatures_decompte(SIGNATURES) {id_article}></BOUCLE_signatures_decompte>
+	[<div id="signatures" class="petition">
+		<h1><:sarkaspip:signatures_petition:>:&nbsp;(#TOTAL_BOUCLE)</h1>
+	]
+<//B_signatures_decompte>
+	[(#ANCRE_PAGINATION)]
+	[<div class="pagination">(#PAGINATION)</div>]
+	<table>
+		<thead>
+			<tr>
+				<td><:sarkaspip:date:></td>
+				<td><:sarkaspip:nom:></td>
+				<td><:sarkaspip:sites_web:></td>
+				<td><:sarkaspip:message:></td>
+			</tr>
+		</thead>
+		<tbody>
+		<BOUCLE_signatures(SIGNATURES) {id_article} {par date} {inverse} {pagination 3}>
+			<tr>
+				<td>[(#DATE|affdate_court)]</td>
+				<td>#NOM</td>
+				<td><a href="#URL_SITE">[(#NOM_SITE)]</a></td>
+				[<td class="#EDIT{message}">(#MESSAGE)</td>]
+			</tr>
+		</BOUCLE_signatures>
+		</tbody>
+	</table>
+	[<div class="pagination">(#PAGINATION)</div>]
+	</div>
+	</B_signatures>
