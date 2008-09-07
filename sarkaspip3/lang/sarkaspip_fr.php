@@ -48,10 +48,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'annonces' => 'Annonces',
 		'aout' => 'Ao&ucirc;t',
 		'articles' => 'Articles', // redefinition item SPIP
-		'articles_ajouter_commentaires' => 'Ajouter un commentaire',
 		'articles_aleatoires' => 'Au hasard',
 		'articles_auteur' => 'Articles de cet auteur', // redefinition item SPIP
-		'articles_commentaires' => 'Commentaire(s)',
 		'articles_meme_rubrique' => 'dans la rubrique...',
 		'articles_mot' => 'Articles associ&eacute;s',
 		'articles_recents' => 'Articles les plus r&eacute;cents', // redefinition item SPIP
@@ -76,7 +74,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //C
 	  
 		'commentaires' => 'commentaires',
-		'commentaires_articles' => 'Ajouter un commentaire',
+		'commentaires_article' => 'Commentaires',
+		'commenter_article' => 'Ajouter un commentaire',
 		'contact' => 'Contact',
 		'contacter_site' => 'Contacter le webmestre',
 		'coordonnees' => 'Coordonn&eacute;es',
