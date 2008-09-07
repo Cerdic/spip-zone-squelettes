@@ -4,24 +4,22 @@
 		- id_article: id de l'article concernee
 -->
 ]
-<div id="commentaires" class="petition">
-	 <h1><:sarkaspip:articles_commentaires:> :</h1>
-	 <BOUCLE_commentaires(FORUMS){id_article}{par date}{inverse}>
-	   <div class="message">
-	     <a id="forum[(#ID_FORUM)]" name="forum[(#ID_FORUM)]" href="#forum[(#ID_FORUM)]"></a>
-	     <div class="gravatar">[(#LOGO_AUTEUR||image_reduire{45})]</div>
-		   <div class="detail">
-          <:sarkaspip:le:>&nbsp;[(#DATE|affdate_jourcourt)] 
-          <:sarkaspip:agrave:>&nbsp;[(#DATE|affdate{'H:i'})],
-          [<:sarkaspip:par_auteur:>&nbsp;(#NOM)]
-       </div>
-			 <div class="texte">
-            #TEXTE
-						[<br /><br /><a href="[(#URL_SITE)]">(#NOM_SITE)</a>]
-			 </div>
-			</div>
-			
-    </BOUCLE_commentaires>
-
-[<br /><a class="repondre" href="(#PARAMETRES_FORUM|url_reponse_forum)"><:sarkaspip:commentaires_articles:></a><br />]
+<div id="commentaires_article" class="petition">
+	<h1><:sarkaspip:articles_commentaires:> :</h1>
+<BOUCLE_commentaires(FORUMS){plat}{id_article}{par date}{inverse}>
+	<div class="message">
+		<a id="forum[(#ID_FORUM)]" name="forum[(#ID_FORUM)]" href="#forum[(#ID_FORUM)]"></a>
+		<div class="gravatar">[(#LOGO_AUTEUR||image_reduire{45})]</div>
+		<div class="detail">
+			<:sarkaspip:le:>&nbsp;[(#DATE|affdate_jourcourt)] 
+			<:sarkaspip:agrave:>&nbsp;[(#DATE|affdate{'H:i'})],
+			[<:sarkaspip:par_auteur:>&nbsp;(#NOM)]
+		</div>
+		<div class="texte">
+			#TEXTE
+			[<br /><br /><a href="[(#URL_SITE)]">(#NOM_SITE)</a>]
+		</div>
+	</div>
+</BOUCLE_commentaires>
+	[<br /><a class="repondre" href="(#PARAMETRES_FORUM|url_reponse_forum)"><:sarkaspip:commentaires_articles:></a><br />]
 </div>
