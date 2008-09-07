@@ -11,6 +11,15 @@
 	[(#PLUGIN{ARTICLE_PDF}|?{' '})
 		[(#MODELE{mod_bouton_pdf}{id_article})]
 	]
+	<BOUCLE_combien(FORUMS) {id_article}{plat}></BOUCLE_combien>
+		[(#TOTAL_BOUCLE|=={0}|?{' '})
+			[(#SET{bulle, <:sarkaspip:0_commentaire:>})]
+		]
+		[(#TOTAL_BOUCLE|!={0}|?{' '})
+			[(#SET{bulle, [(#TOTAL_BOUCLE)&nbsp;[(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_commentaire:>,<:sarkaspip:commentaires:>})]]})]
+		]
+	<//B_combien>
+	<a class="fonction" id="voir_commentaires" href="#commentaires" title="#GET{bulle}"></a>
 	
 	<!--dans l'edito, le cartouche et l'image sont avant le titre-->
 	[(#ENV{edito, non}|=={oui}|?{' '})

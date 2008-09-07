@@ -13,10 +13,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'0_auteur' => 'Aucun auteur',
 		'0_breve' => 'Aucune br&egrave;ve',
 		'0_site_web' => 'Aucun site',
+		'0_commentaire' => 'Aucun commentaire',
 		'1_article' => 'Article',
 		'1_auteur' => 'Auteur',
 		'1_breve' => 'Br&egrave;ve',
 		'1_site_web' => 'Site Web',
+		'1_commentaire' => 'commentaire',
 	  
 	
 //A
@@ -73,7 +75,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //C
 	  
-		'commentaires' => 'Commentaires',
+		'commentaires' => 'commentaires',
 		'commentaires_articles' => 'Ajouter un commentaire',
 		'contact' => 'Contact',
 		'contacter_site' => 'Contacter le webmestre',
