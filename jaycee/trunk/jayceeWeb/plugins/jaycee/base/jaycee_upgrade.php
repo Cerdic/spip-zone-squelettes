@@ -175,6 +175,9 @@ function create_rubrique_mot($rubrique, $mot) {
 				$texte="", $unseul='non', $obligatoire='non', 
 				$articles='oui', $breves='non', $rubriques='non', $syndic='non', $minirezo='oui', $comite='oui', $forum='non'
 				);
+				create_mot( $groupe='_SYSTEME_ARTICLES',	$mot='_AFFICHER_ABONNEMENT', 
+					$descriptif="Affiche un bulletin d’abonnement à SPIP-Listes", 
+					$texte="");							
 				create_mot( $groupe='_SYSTEME_ARTICLES',	$mot='_AFFICHER_ACTUALITES', 
 					$descriptif="Affiche ’à la une’ les Chapos des articles _source_Actualite", 
 					$texte="");							
@@ -266,7 +269,7 @@ function create_rubrique_mot($rubrique, $mot) {
 				$descriptif="Articles francophones"); 
 				create_rubrique_mot( 'fr', '_MaJ-6_Quinzaine'); 
 
-				$liRubFrAnn = create_rubrique( $titre='.ANNONCES', $id_parent=$liRubFr, 
+				$liRubFrAnn = create_rubrique( $titre='_ANNONCES', $id_parent=$liRubFr, 
 					$descriptif="Annonces pour agenda");
 					create_rubrique_mot( '_ANNONCES', '_RUB_ANNONCES'); 
 					create_rubrique( $titre='Commissions', $id_parent=$liRubFrAnn, 

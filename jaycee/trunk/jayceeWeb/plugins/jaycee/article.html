@@ -33,7 +33,6 @@
 
 		[(#INCLURE{fond=inc-html-35-Menu-chemin}{id_rubrique}{id_article})]
 		<INCLURE{fond=inc-html-25-Entete-contexte}{id_secteur}{id_rubrique}{id_article}>
-		<?php if (@$_GET['FormMail']!='') echo "<div id='Affiche'>Le message a été envoyé. Résultat : ",$_GET['FormMail'],"<br>Merci</div>"; ?>
 
 		<div class="zContenu">
 
@@ -43,7 +42,7 @@
 				<INCLURE{fond=inc-html-51-Actualites}{id_article}>
 				
 				<div class='zBreves'>
-					
+
 					<BOUCLE_afficher_agenda_local(ARTICLES){id_article}{titre_mot=_AFFICHER_AGENDA_LOCAL}>
 						<INCLURE{fond=inc-html-52-Annonces-Agenda}{id_secteur}{id_rubrique}{id_article}>
 					</BOUCLE_afficher_agenda_local>
@@ -51,15 +50,17 @@
 					<BOUCLE_afficher_agenda_syndication(ARTICLES){id_article}{titre_mot=_AFFICHER_AGENDA_SYNDICATION}>
 						<INCLURE{fond=inc-html-52-Annonces-Agendas-syndication}{id_secteur}>
 					</BOUCLE_afficher_agenda_syndication>
-					
+
 					<BOUCLE_afficher_mini_calendrier(ARTICLES){id_article}{titre_mot=_AFFICHER_MINI_CALENDRIER}>
+			  	  <div id="agendax"></div>
 			  	  #CALENDRIER_MINI{#ENV{date},'date',#SELF}
 					</BOUCLE_afficher_mini_calendrier>
-					
+										
 					<BOUCLE_afficher_annonces_passe(ARTICLES){id_article}{titre_mot=_AFFICHER_ANNONCES_PASSE}>
 						<INCLURE{fond=inc-html-53-Annonces-passe}{id_secteur}{id_rubrique}{id_article}>
 					</BOUCLE_afficher_annonces_passe>
 				</div>
+				#FORMULAIRE_ABONNEMENT
 			</div>
 
 		<BOUCLE_titre_article(ARTICLES){id_article}{titre_mot=_MASQUER_MENU_RUBRIQUE}>

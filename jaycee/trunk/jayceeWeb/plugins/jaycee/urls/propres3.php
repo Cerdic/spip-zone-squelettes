@@ -137,6 +137,8 @@ function _generer_url_propre($type, $id_objet) {
 }
 
 function generer_url_article($id_article) {
+	if ($id_article == 1) return '/';
+
 	$url = _generer_url_propre('article', $id_article);
 	if ($url)
 		return $url .'-art'.$id_article._terminaison_urls_propres;
