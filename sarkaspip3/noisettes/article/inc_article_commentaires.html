@@ -11,8 +11,14 @@
 <BOUCLE_commentaires(FORUMS){plat}{id_article}{par date}{inverse}>
 	<div class="message">
 		<a id="forum[(#ID_FORUM)]" name="forum[(#ID_FORUM)]" href="#forum[(#ID_FORUM)]"></a>
-		<div class="gravatar">[(#LOGO_AUTEUR||image_reduire{45})]</div>
-		<div class="detail">
+		<div class="gravatar">
+      [(#LOGO_AUTEUR||?{
+					[(#LOGO_AUTEUR||image_passe_partout{42}|image_recadre{32,32,center,FFFFFF}|inserer_attribut{class,'spip_logos gravatar'})]
+					,
+					<img src="[(#EMAIL|gravatar_url)]" width="32" height="32" class="spip_logos gravatar" />
+			})] 
+    </div>
+		<div class="cartouche2">
 			<:sarkaspip:le:>&nbsp;[(#DATE|affdate_jourcourt)] 
 			<:sarkaspip:agrave:>&nbsp;[(#DATE|affdate{'H:i'})],
 			[<:sarkaspip:par_auteur:>&nbsp;(#NOM)]
@@ -21,6 +27,7 @@
 			#TEXTE
 			[<br /><br /><a href="[(#URL_SITE)]">(#NOM_SITE)</a>]
 		</div>
+		<div class="clearer">&nbsp;</div>
 	</div>
 </BOUCLE_commentaires>
 </div>
