@@ -255,7 +255,7 @@ function mot_associations($mot) {
 function gravatar_url($email = '')
 {
    if ($email != '') {
-       return 'http://www.gravatar.com/avatar.php?gravatar_id='.md5($email).'&amp;size=45&amp;rating=PG';
+       return 'http://www.gravatar.com/avatar.php?gravatar_id='.md5($email).'&amp;size=32&amp;rating=PG';
    } else {
        return '';
    }

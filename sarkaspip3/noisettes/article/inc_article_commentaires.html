@@ -9,21 +9,37 @@
 	<a class="fonction" id="commenter"[ href="(#PARAMETRES_FORUM|url_reponse_forum)"] title="<:sarkaspip:commenter_article:>"></a>
 	<h2><:sarkaspip:commentaires_article:></h2>
 <BOUCLE_commentaires(FORUMS){plat}{id_article}{par date}{inverse}>
-	<div class="message">
+	<!-- Determination du nom de l'auteur -->
+	<BOUCLE_forum_edite(FORUMS){id_parent=#ID_FORUM}{statut=original}>
+		<BOUCLE_auteur_pere1(AUTEURS) {id_auteur=#_forum_edite:ID_AUTEUR}>
+			#SET{nom_auteur, #NOM}
+		</BOUCLE_auteur_pere1>
+			#SET{nom_auteur, #_forum_edite:AUTEUR}
+		<//B_auteur_pere1>
+	</BOUCLE_forum_edite>
+	</B_forum_edite>
+		<BOUCLE_auteur_pere2(AUTEURS) {id_auteur=#_commentaires:ID_AUTEUR}>
+			#SET{nom_auteur, #NOM}
+		</BOUCLE_auteur_pere2>
+			#SET{nom_auteur, #_commentaires:AUTEUR}
+		<//B_auteur_pere2>
+	<//B_forum_edite>
+
+	<div class="message"[ id="n(#COMPTEUR_BOUCLE)"]>
 		<a id="forum[(#ID_FORUM)]" name="forum[(#ID_FORUM)]" href="#forum[(#ID_FORUM)]"></a>
 		<div class="gravatar">
       [(#LOGO_AUTEUR||?{
 					[(#LOGO_AUTEUR||image_passe_partout{32}|image_recadre{32,32,center,FFFFFF}|inserer_attribut{class,'spip_logos gravatar'})]
 					,
-					<img src="[(#EMAIL|gravatar_url)]" width="32" height="32" class="spip_logos gravatar" />
+					<img src="[(#EMAIL|gravatar_url)]" width="32" height="32" class="spip_logos gravatar" alt="[(#GET{nom_auteur})]" />
 			})] 
     </div>
-		<div class="cartouche2">
+		<div class="cartouche_simple">
 			<:sarkaspip:le:>&nbsp;[(#DATE|affdate_jourcourt)] 
 			<:sarkaspip:agrave:>&nbsp;[(#DATE|affdate{'H:i'})],
-			[<:sarkaspip:par_auteur:>&nbsp;(#NOM)]
+			[<:sarkaspip:par_auteur:>&nbsp;(#GET{nom_auteur})]
 		</div>
-		<div class="texte">
+		<div class="#EDIT{texte} texte">
 			#TEXTE
 			[<br /><br /><a href="[(#URL_SITE)]">(#NOM_SITE)</a>]
 		</div>
