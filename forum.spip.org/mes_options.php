@@ -4,6 +4,7 @@
 // cf. inc/notifications.php
 define('_SUIVI_FORUM_THREAD', true);
 
+include _DIR_RACINE . 'forum.spip.org/urls/trad.php';
 include( _DIR_RESTREINT . 'inc/vieilles_defs.php');
 
   // URLs de la forme /fr_article1.html (inspire de www.spip.net)
