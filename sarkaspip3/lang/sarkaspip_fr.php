@@ -42,6 +42,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'album_repondre'=> 'Commenter l\'album',
 		'album_une'=> 'Top Album',
 		'albums_galerie' => 'Galerie',
+		'go_article' => 'Voir dans la page article',
 		'ancre_haut_page' => 'Haut &uarr;',
 		'annee_precedente' => 'Ann&eacute;e pr&eacute;c&eacute;dente',
 		'annee_suivante' => 'Ann&eacute;e  suivant',
