@@ -10,7 +10,7 @@ cd plugins
 svn checkout svn://zone.spip.org/spip-zone/_squelettes_/soyezcreateurs_net/plugins_1.9.3/plugins/__soyezcreateurs
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/acces_restreint
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/acronymes
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/agenda/1_9_3 ./agenda/
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/agenda/2_0_0 ./agenda/
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_dev_/autorite
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/barre_typo_generalisee
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/barre_typo_v2 
@@ -25,10 +25,11 @@ svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/forms/forms_et_tab
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_test_/Lecteur_multimedia
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_test_/sedna
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/sitemap
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_dev_/thickbox2
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/widget_calendar
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/woopra
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_dev_/notation
+#svn checkout svn://zone.spip.org/spip-zone/_plugins_/_dev_/thickbox2
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/_dev_/nyroceros
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/_test_/spip_2_reloaded
+#svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/woopra
+#svn checkout svn://zone.spip.org/spip-zone/_plugins_/_dev_/notation
 
 cd ..
 
