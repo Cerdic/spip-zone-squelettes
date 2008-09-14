@@ -129,13 +129,10 @@ function calcul_rubrique_specialisee($mot) {
     if (defined(_PERSO_FOND_RUBRIQUES_SPE))
     	if (_PERSO_FOND_RUBRIQUES_SPE != '')
 	    	$fonds_reserves = array_merge($fonds_reserves, explode(':', _PERSO_FOND_RUBRIQUES_SPE));
-	
+
 	$id = NULL;
-	if (in_array($mot, $mots_reserves)) {
-		$cle = array_search($mot, $mots_reserves);
-	    $id = calcul_rubrique($mot, $types_reserves[$cle], $fonds_reserves[$cle]);
-	}
-	else {
+	$mot_rubrique = explode(':', $mot);
+	if (!$mot_rubrique[0]) {
 		$id .= '^(';
 		reset($mots_reserves);
 		while (list($cle, $valeur) = each($mots_reserves)) {
@@ -143,7 +140,19 @@ function calcul_rubrique_specialisee($mot) {
 		}
 		$id .= ')$';
 	}
-
+	else if ($mot_rubrique[0] == $mot) {
+		$cle = array_search($mot, $mots_reserves);
+	    $id = calcul_rubrique($mot, $types_reserves[$cle], $fonds_reserves[$cle]);
+	}
+	else {
+		$id .= '^(';
+		reset($mots_reserves);
+		while (list($cle, $valeur) = each($mots_reserves)) {
+			if ( in_array($valeur, $mot_rubrique))
+				$id .= (($id != '^(') ? '|' : '').calcul_rubrique($valeur, $types_reserves[$cle], $fonds_reserves[$cle]); 
+		}
+		$id .= ')$';
+	}
 	return $id;
 }
 
