@@ -2,18 +2,35 @@
 <!-- Affichage du cartouche d'un article
 	Recoit en argument :
 		- id_article: id de l'article concerne
+		- page: indique le type de page affichee (article - par defaut -, evenement, album, edito)
 		- avec_popularite: indique si on doit afficher ou pas la popularite
+		- id_evenement: id de l'evenement associe a l'article (page evenement avec plugin agenda)
 -->
 ]
 <BOUCLE_cartouche(ARTICLES) {id_article}>
 	<div class="cartouche">
-		[(#DATE|nom_jour)] [(#DATE|affdate)]
-			<B_auteurs_article>
-				<:sarkaspip:par_auteur:>
-			<BOUCLE_auteurs_article(AUTEURS) {id_article} {", "}>
-				<a href="#URL_AUTEUR">#NOM</a>
-			</BOUCLE_auteurs_article>
-			</B_auteurs_article>
+		[(#REM) <!-- Date de l'article ou de l'evenement --> ]
+		[(#ENV{page}|!={evenement}|?{' '})
+			[(#DATE|nom_jour)][&nbsp;(#DATE|affdate)]
+		]
+		[(#ENV{page}|=={evenement}|?{' '})
+			[(#CONFIG{sarkaspip_agenda/plugin, 1}|=={1}|?{' '})
+				[(#DATE_REDAC|nom_jour)][&nbsp;(#DATE_REDAC|affdate)][&nbsp;:&nbsp;(#DATE_REDAC|affdate{'H\hi'})]
+			]
+			[(#CONFIG{sarkaspip_agenda/plugin, 1}|=={2}|?{' '})
+				[(#INCLURE{fond=noisettes/agenda/inc_evenement_date_2}{id_evenement})]
+			]
+		]
+
+		[(#REM) <!-- Auteur de l'article --> ]
+		<B_auteurs_article>
+			[(#ENV{page}|match{^(article|album)$}|?{' '})<:sarkaspip:par_auteur:>]
+		<BOUCLE_auteurs_article(AUTEURS) {id_article} {", "}>
+			[(#ENV{page}|match{^(article|album)$}|?{' '})<a href="#URL_AUTEUR">#NOM</a>]
+		</BOUCLE_auteurs_article>
+		</B_auteurs_article>
+
+		[(#REM) <!-- Popularite de l'article --> ]
 		[(#ENV{avec_popularite, non}|=={oui}|?{' '})
 			[<br /><:sarkaspip:popularite_article:>&nbsp;:&nbsp;(#POPULARITE)%]
 		]

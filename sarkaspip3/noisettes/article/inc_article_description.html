@@ -2,14 +2,19 @@
 <!-- Affichage de l'article: logo, titre, chapo, texte, ps...
 	Recoit en argument :
 		- id_article: id de l'article concerne
+		- page: indique le type de page affichee (article - par defaut -, evenement, album, edito)
 		- avec_popularite: indique si on doit afficher ou pas la popularite
-		- id_evenement: id de l'evenement associe a l'article (optionel))
+		- id_evenement: id de l'evenement associe a l'article (page evenement avec plugin agenda)
 -->
 ]
 <BOUCLE_description (ARTICLES) {id_article}>
-	<a class="fonction" id="imprimer" href="#URL_PAGE{imprimer,id_article=#ID_ARTICLE}" title="<:sarkaspip:imprimer_article:>"></a>
+	[(#ENV{page}|!={edito}|?{' '})
+		<a class="fonction" id="imprimer" href="#URL_PAGE{imprimer,id_article=#ID_ARTICLE}" title="<:sarkaspip:imprimer_article:>"></a>
+	]
 	[(#PLUGIN{ARTICLE_PDF}|?{' '})
-		[(#MODELE{mod_bouton_pdf}{id_article})]
+		[(#ENV{page}|match{^(article|evenement)$}|?{' '})
+			[(#MODELE{mod_bouton_pdf}{id_article})]
+		]
 	]
 	<BOUCLE_combien(FORUMS) {id_article}{plat}></BOUCLE_combien>
 		[(#TOTAL_BOUCLE|=={0}|?{' '})
@@ -19,33 +24,25 @@
 			[(#SET{bulle, [(#TOTAL_BOUCLE)&nbsp;[(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_commentaire:>,<:sarkaspip:commentaires:>})]]})]
 		]
 	<//B_combien>
-	<a class="fonction" id="voir_commentaires" href="#commentaires" title="#GET{bulle}"></a>
-	
-	<!--dans l'edito, le cartouche et l'image sont avant le titre-->
-	[(#ENV{edito, non}|=={oui}|?{' '})
-		[(#INCLURE{fond=noisettes/article/inc_article_cartouche}{id_article}{avec_popularite}{edito})]
-		<div class="clearer"></div>
-	  [<div class="image">(#LOGO_ARTICLE||image_reduire{150})</div>]
+	[(#ENV{page}|match{^(article|album)$}|?{' '})
+		<a class="fonction" id="voir_commentaires" href="#commentaires" title="#GET{bulle}"></a>
 	]
 	
-	[<div class="#EDIT{surtitre} surtitre">(#SURTITRE)</div>]
+	[(#REM) <!--dans l'edito, le cartouche et l'image sont avant le titre--> ]
+	[(#ENV{page}|=={edito}|?{' '})
+		[(#INCLURE{fond=noisettes/article/inc_article_cartouche}{id_article}{id_evenement}{avec_popularite=non}{page})]
+		<div class="clearer"></div>
+		[<div class="image">(#LOGO_ARTICLE||image_reduire{150})</div>]
+	]
+	
 	[<div class="#EDIT{titre} titre"><h1>(#TITRE|supprimer_numero)</h1></div>]
 	[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>]
 	
-	
-	[(#ENV{edito, non}|=={non}|?{' '})
-	   [(#INCLURE{fond=noisettes/article/inc_article_cartouche}{id_article}{avec_popularite}{edito})]
-	   <div class="clearer-right"></div>
-
-	   [<div class="image">(#LOGO_ARTICLE||image_reduire{150})</div>]
-	   <div class="clearer-right"></div>
-	]
-
-	
-	<!-- si id_evenement est defini, on est dans une boucle evenement et 
-	on affiche la date de l'evenement (utilisation du plugin agenda) -->
-	[(#ENV{id_evenement, 0}|!={0}|?{' '})
-		[(#INCLURE{fond=noisettes/article/inc_date_evenement}{id_evenement})]
+	[(#ENV{page}|!={edito}|?{' '})
+		[(#INCLURE{fond=noisettes/article/inc_article_cartouche}{id_article}{avec_popularite}{page})]
+		<div class="clearer"></div>
+		[<div class="image">(#LOGO_ARTICLE||image_reduire{150})</div>]
+		<div class="clearer-right"></div>
 	]
 	
 	<div class="description">

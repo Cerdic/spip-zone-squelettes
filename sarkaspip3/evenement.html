@@ -24,37 +24,18 @@
 				sinon, n'a pas de valeur
 				--> ]
 				
-				[(#INCLURE{fond=noisettes/article/inc_article_description}{id_article}{id_evenement}{avec_popularite=non}{avec_commentaire=non})]
+				[(#INCLURE{fond=noisettes/article/inc_article_description}{id_article}{id_evenement}{avec_popularite=non}{page=evenement})]
 				
 				[(#REM) <!-- Documents (sauf images) du portfolio de la rubrique --> ]
-				[(#CONFIG{sarkaspip_article/position_documents, 1}|=={1}|?{' '})
+				[(#CONFIG{sarkaspip_evenement/position_documents, 1}|=={1}|?{' '})
 					[(#INCLURE{fond=noisettes/article/inc_article_documents}{id_article})]
 				]
 	
 				[(#REM) <!-- Images du portfolio de la rubrique --> ]
-				[(#CONFIG{sarkaspip_article/position_images, 1}|=={1}|?{' '})
+				[(#CONFIG{sarkaspip_evenement/position_images, 1}|=={1}|?{' '})
 					[(#INCLURE{fond=noisettes/article/inc_article_images}{id_article})]
 				]
 			</div>
-			
-			[(#REM) <!-- Affichage des evenements du meme jour --> ]
-			<B_evenement_jour>
-				<div id="articles-freres" class="petition">
-					<div class="en-tete"><:sarkaspip:evenements_du_jour:>&nbsp;:&nbsp;[(#DATE_REDAC|affdate)]</div>
-					<ol>
-			<BOUCLE_evenement_jour(ARTICLES){id_rubrique}{date_redac >= (#DATE_REDAC|debut_journee)}{date_redac <= (#DATE_REDAC|fin_journee)}{par date_redac}>
-						<li[ class="(#EXPOSE{en-cours,frere})"]>
-							<div class="date">[(#DATE_REDAC|affdate{'H:i'})]&nbsp;:&nbsp;
-								<[(#EXPOSE{span,a[ href="(#URL_PAGE{evenement,id_article=#ID_ARTICLE})"]})]>
-									[(#TITRE|supprimer_numero)]
-								</#EXPOSE{span,a}><br />
-							</div>
-							<br />
-						</li>
-			</BOUCLE_evenement_jour>
-					</ol>
-				</div> 
-			</B_evenement_jour>
 		</div>
 	</div>
 	
@@ -65,7 +46,7 @@
 	
 	<div id="extra">
 		[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
-		<INCLURE{fond=noisettes/extra}{self=#SELF}{id_secteur}{id_article}>
+		<INCLURE{fond=noisettes/extra}{self=#SELF}{id_secteur}{id_article}{id_evenement}>
 	</div>
 	
 	<div id="footer">

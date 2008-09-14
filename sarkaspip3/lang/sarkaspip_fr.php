@@ -101,7 +101,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'erreur' => 'erreur',
 		'espace_prive' => 'Espace priv&eacute;', // redefinition item SPIP
 		'espace_membre' => 'Espace membre',
-		'evenements_du_jour' => 'Ev&eacute;nements de la journ&eacute;e',
+// 		'evenements_du_jour' => 'Ev&eacute;nements de la journ&eacute;e',
+		'evenements_meme_journee' => 'dans la journ&eacute;e...',
 	  
 	
 //F
@@ -220,6 +221,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //N
 	  
 		'navigation_article' => 'Navigation',
+		'navigation_evenement' => 'Navigation',
 		'newsletter' => 'Lettre d\'information',
 		'nom' => 'Nom', // redefinition item SPIP
 		'novembre' => 'Novembre',
