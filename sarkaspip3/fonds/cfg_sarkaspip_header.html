@@ -1,0 +1,38 @@
+<!-- titre=<:sarkaspip:cfg_titre_header:> -->
+<!-- descriptif=<:sarkaspip:cfg_descr_header:> -->
+<!-- boite=<:sarkaspip:cfg_boite_header:> -->
+<INCLURE{fond=noisettes/cfg/inc_cfg_header}>
+#CACHE{0}
+
+<form method="post" action="#SELF"><div>
+	[(#ENV{_cfg_}|form_hidden)]
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_header:></legend>
+		<p><:sarkaspip:cfg_inf_header:></p>
+		<label><:sarkaspip:cfg_lbl_meta_auteur:></label>
+		<input type="text" name="auteur_site" value="[(#ENV{auteur_site, <:sarkaspip:realisation_squelette:>})]" size="40" class="fondl" />
+		<br />
+		<br />
+		<label><:sarkaspip:cfg_lbl_meta_robot:></label>
+		<input type="text" name="recurrence_robot" value="#ENV{recurrence_robot, 30}" size="3" class="fondl" />
+		<br />
+		<p><:sarkaspip:cfg_inf_meta_keywords:></p>
+		<label>
+			<textarea name="keywords_site" rows="4" cols="40" style="width:100%;">[(#ENV{keywords_site}|entites_html)]</textarea>
+		</label>
+		<br />
+	</fieldset>
+
+	<br />
+	<input type="submit" name="_cfg_ok" class="fondo" value="<:sarkaspip:valider:>" />
+	<input type="submit" name="_cfg_delete" class="fondo" value="<:sarkaspip:effacer:>" />
+</div></form>
+
+
+[(#CONFIG{sarkaspip_accueil/mode_debug, non}|=={oui}|?{' '})
+	<div id="bloc_debug">
+		<br />
+		>> Debug - Etat des variables du fond Balises meta:<br />
+		#CFG_ARBO{sarkaspip_header}
+	</div>
+]

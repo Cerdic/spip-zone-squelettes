@@ -345,6 +345,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_titre_rubrique' => 'Sarka-SPIP - Configuration de la page rubrique',
 		'cfg_titre_herbier' => 'Sarka-SPIP - Configuration de la page herbier',
 		'cfg_titre_plan' => 'Sarka-SPIP - Configuration de la page plan du site',
+		'cfg_titre_header' => 'Sarka-SPIP - Configuration des balises META',
 
 // Titre des liens des pages
 		'sarkaspip_accueil' => 'Accueil',
@@ -357,6 +358,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'sarkaspip_rubrique' => 'Rubrique',
 		'sarkaspip_herbier' => 'Herbier',
 		'sarkaspip_plan' => 'Plan du site',
+		'sarkaspip_header' => 'Balises META',
 		
 // Descriptif des pages
 		'cfg_descr_accueil' => 'Vous &ecirc;tes sur la page d\'accueil de la configuration du squelette Sarka-SPIP.',
@@ -372,6 +374,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_descr_herbier' => 'Le corps de la page herbier propose une liste pagin&eacute;e de sites, agr&eacute;ment&eacute;e de vignettes. Cette page est affich&eacute;e selon deux mod&egrave;les: une liste (description et vignette) et un panorama de vignettes uniquement. 
 		Cette page de configuration vous permet de choisir les caract&eacute;ristiques de chaque mod&egrave;le de votre herbier.',
 		'cfg_descr_plan' => 'Le corps de la page plan du site pr&eacute;sente la liste des articles publi&eacute;s dans le site. Cette liste peut &ecirc;tre tri&eacute;e par rubrique, par auteur ou par date. Cette page de configuration vous permet d\'en choisir les caract&eacute;ristiques de tri.',
+		'cfg_descr_header' => 'bla bla.',
 
 // Titre des boites
 		'cfg_boite_accueil' => 'Accueil',
@@ -384,6 +387,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_boite_rubrique' => 'Rubrique',
 		'cfg_boite_herbier' => 'Herbier',
 		'cfg_boite_plan' => 'Plan du site',
+		'cfg_boite_header' => 'Balises META',
 
 // Legendes des blocs contenus dans chaque boite
 		'cfg_lgd_layout' => 'Layout',
@@ -418,6 +422,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_rubrique_images' => 'Portfolio',
 		'cfg_lgd_rubrique_articles' => 'Articles publi&eacute;s',
 		'cfg_lgd_plan_pagination' => 'Pagination',
+		'cfg_lgd_header' => 'Tags',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -460,7 +465,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_version_spip' => 'D&eacute;sirez vous afficher la version de SPIP install&eacute;e ?',
 		'cfg_inf_version_sarka' => 'D&eacute;sirez vous afficher la version de Sarka-SPIP install&eacute;e ?',
 		'cfg_inf_collectif_sarka' => 'D&eacute;sirez vous ins&eacute;rer un lien vers le site du collectif Sarka-SPIP ?',
-		'cfg_inf_licence_squelette' => 'D&eacute;sirez vous ins&eacute;rer un lien vers la description de la licence GPL adopt&eqcute;e par le squelette Sarka-SPIP ?',
+		'cfg_inf_licence_squelette' => 'D&eacute;sirez vous ins&eacute;rer un lien vers la description de la licence GPL adopt&eacute;e par le squelette Sarka-SPIP ?',
 		'cfg_inf_lien_squelette' => 'D&eacute;sirez vous ins&eacute;rer un lien permettant de visualiser ou de t&eacute;l&eacute;charger le squelette de la page en cours ?',
 		'cfg_inf_ancre_hautpage' => 'D&eacute;sirez vous ins&eacute;rer un lien permettant de remonter vers le haut de la page ?',
 		'cfg_inf_accueil_intro_0' => 'Bienvenue sur l\'espace de param&eacute;trage du squelette Sarka-SPIP. Vous pouvez acc&eacute;der aux diverses pages de configuration via les liens inclus dans le bloc de droite. 
@@ -489,6 +494,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_plan_pagination' => 'La page Plan du site est compos&eacute;e de trois onglets assimilables &agrave; une bande de pagination. Les onglets permettent de pr&eacute;senter la liste des articles soit par date, soit par rubrique, soit par auteur.
 		Les articles sont donc tri&eacute;s alphab&eacute;tiquemet ou/et chronologiquement. Le tri alphab&eacute;tique est toujours croissant, par contre, le sens du tri chronologique peut &ecirc;tre choisi. La position de la bande d\'onglets est aussi param&eacute;trable.',
 		'cfg_inf_plan_sens_tri' => 'Choisissez l\'ordre de tri des dates.',
+		'cfg_inf_header' => 'Configurer les balises META keywords, author et revisit-after.',
+		'cfg_inf_meta_keywords' => 'Liste des mots-cles caract&eacute;risant le site (meta keywords)',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
@@ -576,6 +583,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_menu_option1_2' => 'Afficher la liste des articles de chaque rubrique',
 		'cfg_lbl_menu_option1_3' => 'Si la rubrique ne contient qu\'un seul article, faire pointer le titre de cette rubrique vers la page de l\'article',
 		'cfg_lbl_liste_secteurs' => 'Liste des secteurs possibles',
+		'cfg_lbl_meta_auteur' => 'Nom de l\'auteur du site (meta author)',
+		'cfg_lbl_meta_robot' => 'Nombre de jours entre deux visites des robots (meta revisit-after)',
 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',
