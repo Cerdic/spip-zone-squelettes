@@ -359,7 +359,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'sarkaspip_rubrique' => 'Rubrique',
 		'sarkaspip_herbier' => 'Herbier',
 		'sarkaspip_plan' => 'Plan du site',
-		'sarkaspip_header' => 'Balises META',
+		'sarkaspip_header' => 'Balises meta',
 		
 // Descriptif des pages
 		'cfg_descr_accueil' => 'Vous &ecirc;tes sur la page d\'accueil de la configuration du squelette Sarka-SPIP.',
@@ -375,7 +375,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_descr_herbier' => 'Le corps de la page herbier propose une liste pagin&eacute;e de sites, agr&eacute;ment&eacute;e de vignettes. Cette page est affich&eacute;e selon deux mod&egrave;les: une liste (description et vignette) et un panorama de vignettes uniquement. 
 		Cette page de configuration vous permet de choisir les caract&eacute;ristiques de chaque mod&egrave;le de votre herbier.',
 		'cfg_descr_plan' => 'Le corps de la page plan du site pr&eacute;sente la liste des articles publi&eacute;s dans le site. Cette liste peut &ecirc;tre tri&eacute;e par rubrique, par auteur ou par date. Cette page de configuration vous permet d\'en choisir les caract&eacute;ristiques de tri.',
-		'cfg_descr_header' => 'bla bla.',
+		'cfg_descr_header' => 'La plupart des balises meta du site sont calcul&eacute;es automatiquement &agrave; partir des informations de configuration du site et de la page affich&eacute;e. Cette page permet n&eacute;anmoins de pr&eacute;ciser le nom de l\'auteur, les mots-cl&eacute;s et la p&eacute;riode entre deux visites des robots.',
 
 // Titre des boites
 		'cfg_boite_accueil' => 'Accueil',
@@ -388,7 +388,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_boite_rubrique' => 'Rubrique',
 		'cfg_boite_herbier' => 'Herbier',
 		'cfg_boite_plan' => 'Plan du site',
-		'cfg_boite_header' => 'Balises META',
+		'cfg_boite_header' => 'Balises meta',
 
 // Legendes des blocs contenus dans chaque boite
 		'cfg_lgd_layout' => 'Layout',
@@ -407,13 +407,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_inc_stathit' => 'Hit-parade des articles',
 		'cfg_lgd_inc_badges' => 'Badges',
 		'cfg_lgd_inc_annonce' => 'Annonces',
-		'cfg_lgd_agenda_type' => 'Type',		
+		'cfg_lgd_agenda_type' => 'Typage',		
 		'cfg_lgd_agenda_modele' => 'Agenda annuel - Mod&egrave;le',
 		'cfg_lgd_agenda_pagination' => 'Agenda annuel - Pagination',
 		'cfg_lgd_agenda_tri' => 'Agenda annuel - Tri',
 		'cfg_lgd_mini_agenda' => 'Mini calendrier mensuel',
 		'cfg_lgd_sommaire_secteurs' => 'Liste des secteurs',
 		'cfg_lgd_sommaire_articles' => 'Liste des articles r&eacute;cents',
+		'cfg_lgd_herbier_type' => 'Typage',		
 		'cfg_lgd_herbier_pagination_1' => 'Liste - Pagination',
 		'cfg_lgd_herbier_pagination_2' => 'Panorama - Pagination',
 		'cfg_lgd_accueil_intro' => 'Pr&eacute;sentation',
@@ -423,7 +424,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_rubrique_images' => 'Portfolio',
 		'cfg_lgd_rubrique_articles' => 'Articles publi&eacute;s',
 		'cfg_lgd_plan_pagination' => 'Pagination',
-		'cfg_lgd_header' => 'Tags',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -481,6 +481,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_accueil_intro_8' => '<strong>Herbier</strong> : choix de la pagination pour la page herbier', 
 		'cfg_inf_accueil_intro_9' => '<strong>Rubrique</strong> : choix des composants du corps de page rubrique', 
 		'cfg_inf_accueil_intro_10' => '<strong>Plan du site</strong> : choix des param&egrave;tres de la pagination', 
+		'cfg_inf_accueil_intro_11' => '<strong>Balises meta</strong> : saisie de certaines balises meta', 
 		'cfg_inf_accueil_debug' => 'Si vous avez un souci ou voulez rapporter un bug il peut &ecirc;tre utile d\'activer le mode debug pour la configuration des pages. Celui-ci vous permez de lire les variables de chaque fond.',
 		'cfg_inf_rubrique_filles' => 'Voulez-vous afficher la liste des rubriques filles suite &agrave; la description de la rubrique ?',
 		'cfg_inf_rubrique_docs' => 'Voulez-vous afficher les documents joints qui ne sont pas inclus dans la description de la rubrique ?',
@@ -495,8 +496,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_plan_pagination' => 'La page Plan du site est compos&eacute;e de trois onglets assimilables &agrave; une bande de pagination. Les onglets permettent de pr&eacute;senter la liste des articles soit par date, soit par rubrique, soit par auteur.
 		Les articles sont donc tri&eacute;s alphab&eacute;tiquemet ou/et chronologiquement. Le tri alphab&eacute;tique est toujours croissant, par contre, le sens du tri chronologique peut &ecirc;tre choisi. La position de la bande d\'onglets est aussi param&eacute;trable.',
 		'cfg_inf_plan_sens_tri' => 'Choisissez l\'ordre de tri des dates.',
-		'cfg_inf_header' => 'Configurer les balises META keywords, author et revisit-after.',
-		'cfg_inf_meta_keywords' => 'Liste des mots-cles caract&eacute;risant le site (meta keywords)',
+		'cfg_inf_meta_keywords' => 'Liste des mots-cles caract&eacute;risant le site s&eacute;par&eacute;s par des virgules (balise keywords)',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
@@ -584,8 +584,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_menu_option1_2' => 'Afficher la liste des articles de chaque rubrique',
 		'cfg_lbl_menu_option1_3' => 'Si la rubrique ne contient qu\'un seul article, faire pointer le titre de cette rubrique vers la page de l\'article',
 		'cfg_lbl_liste_secteurs' => 'Liste des secteurs possibles',
-		'cfg_lbl_meta_auteur' => 'Nom de l\'auteur du site (meta author)',
-		'cfg_lbl_meta_robot' => 'Nombre de jours entre deux visites des robots (meta revisit-after)',
+		'cfg_lbl_meta_auteur' => 'Nom de l\'auteur du site (balise author)',
+		'cfg_lbl_meta_robot' => 'Nombre de jours entre deux visites des robots (balise revisit-after)',
 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',
