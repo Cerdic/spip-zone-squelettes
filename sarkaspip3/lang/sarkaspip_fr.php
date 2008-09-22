@@ -75,6 +75,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //C
 	  
 		'commentaires' => 'commentaires',
+		'derniers_commentaires' => 'Commentaires',
 		'commentaires_article' => 'Commentaires',
 		'commenter_article' => 'Ajouter un commentaire',
 		'contact' => 'Contact',
