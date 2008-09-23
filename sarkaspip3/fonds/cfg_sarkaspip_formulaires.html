@@ -1,0 +1,39 @@
+<!-- titre=<:sarkaspip:cfg_titre_formulaires:> -->
+<!-- descriptif=<:sarkaspip:cfg_descr_formulaires:> -->
+<!-- boite=<:sarkaspip:cfg_boite_formulaires:> -->
+<INCLURE{fond=noisettes/cfg/inc_cfg_header}>
+#CACHE{0}
+
+<form method="post" action="#SELF"><div>
+	[(#ENV{_cfg_}|form_hidden)]
+	
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_form_contact:></legend>
+		<p><:sarkaspip:cfg_inf_form_contact:></p>
+		<B_auteurs>
+			<label><:sarkaspip:cfg_lbl_liste_auteurs:></label>
+			<select name="contact_auteur">
+				<BOUCLE_contact(AUTEURS){tout}{id_auteur=#ENV{contact_auteur, 0}}>
+					[<option value="#ID_AUTEUR" selected="selected">(#NOM)</option>]
+				</BOUCLE_contact>
+		<BOUCLE_auteurs(AUTEURS){tout}{id_auteur!=#ENV{contact_auteur, 0}}{statut=0minirezo}{par nom}>
+			[(#EMAIL|?{' '})
+				[<option value="#ID_AUTEUR">(#NOM)</option>]
+			]
+		</BOUCLE_auteurs>
+			</select>
+		</B_auteurs>
+	</fieldset>
+	
+	<br />
+	<input type="submit" name="_cfg_ok" class="fondo" value="<:sarkaspip:valider:>" />
+	<input type="submit" name="_cfg_delete" class="fondo" value="<:sarkaspip:effacer:>" />
+</div></form>
+
+[(#CONFIG{sarkaspip_accueil/mode_debug, non}|=={oui}|?{' '})
+	<div id="bloc_debug">
+		<br />
+		>> Debug - Etat des variables du fond Formulaires:<br />
+		#CFG_ARBO{sarkaspip_formulaires}
+	</div>
+]
