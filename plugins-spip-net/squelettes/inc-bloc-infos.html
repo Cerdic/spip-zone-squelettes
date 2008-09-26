@@ -1,0 +1,75 @@
+<BOUCLE_principale(ARTICLES){id_article}>
+			<div class="bloc_infos">
+			
+				<div class="bloc bloc1">
+					<B_version_spip>
+					<strong><multi>Version de SPIP[en]SPIP version</multi></strong>
+					<ul>
+					<BOUCLE_version_spip(MOTS){id_article}{id_groupe=1}{par num titre}>
+					<li>[(#TITRE|supprimer_numero)]</li>
+					</BOUCLE_version_spip>
+					</ul>
+					</B_version_spip>
+	
+					[<div class="element">État : <strong>(#EXTRA|extra{plugin_xml}|plugin_extraire{etat}|typo)</strong></div>]
+					[<div class="element">Licence : <strong>(#EXTRA|extra{plugin_xml}|plugin_extraire{licence}|typo)</strong></div>]
+	
+	
+				</div>
+				
+				<div class="bloc bloc2">
+					<B_version_bdd>
+					<strong><multi>Base de données[en]Database</multi></strong>
+					<ul>
+					<BOUCLE_version_bdd(MOTS){id_article}{id_groupe=2}{par num titre, titre}>
+					<li>[(#DESCRIPTIF|?{" ",""})
+							<a style="float: right;" href="#" onclick="$('#explication_mot#ID_ARTICLE-#ID_MOT').slideToggle(); return false;"><img src="[(#CHEMIN{imgs/aide.gif})]" alt="?" /></a>
+						]
+						[(#TITRE|supprimer_numero)]
+						[<div class="explication" id="explication_mot#ID_ARTICLE-#ID_MOT" style="display: none;">(#DESCRIPTIF|cesure{#LANG})</div>]
+					</li>
+					</BOUCLE_version_bdd>
+					</ul>
+					</B_version_bdd>
+
+					<B_dernier_auteur>
+					<div class="element auteurs">
+					
+						<B_auteurs>
+							<multi>Auteurs&nbsp;:[en]Authors:</multi>
+						<BOUCLE_auteurs(AUTEURS){id_article}{par nom}{doublons [auteurs(#ID_ARTICLE)]}{", "}>
+						<strong>#NOM</strong></BOUCLE_auteurs>
+							<multi>et[en]and</multi>
+						</B_auteurs>
+							<multi>Auteur&nbsp;:[en]Author:</multi>
+						<//B_auteurs>
+					
+					<BOUCLE_dernier_auteur(AUTEURS){id_article}{par nom}{inverse}{0,1}{doublons [auteurs(#ID_ARTICLE)]}>
+						<strong>#NOM</strong>
+					</BOUCLE_dernier_auteur>
+					</div>
+					</B_dernier_auteur>
+
+					[<div class="homepage"><a href="(#URL_SITE|sinon{#EXTRA|extra{plugin_xml}|plugin_extraire{lien}|extraire_lien})">Site officiel</a></div>]
+					
+				</div>
+
+				<div class="bloc bloc3">
+					<B_version_lang>
+					<strong><multi>Langues[en]Langages</multi></strong>
+					<ul>
+					<BOUCLE_version_lang(MOTS){id_article}{id_groupe=3}{par num titre, titre}>
+					<li>[(#DESCRIPTIF|?{" ",""})
+							<a style="float: right;" href="#" onclick="$('#explication_mot#ID_ARTICLE-#ID_MOT').slideToggle(); return false;"><img src="[(#CHEMIN{imgs/aide.gif})]" alt="?" /></a>
+						]
+						[(#TITRE|supprimer_numero)]
+						[<div class="explication" id="explication_mot#ID_ARTICLE-#ID_MOT" style="display: none;">(#DESCRIPTIF|cesure{#LANG})</div>]
+					</li>
+					</BOUCLE_version_lang>
+					</ul>
+					</B_version_lang>
+					
+				</div>		
+				<div class="clear-left"></div>
+			</div>
+</BOUCLE_principale>

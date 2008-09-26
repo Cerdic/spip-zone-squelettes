@@ -1,0 +1,33 @@
+<BOUCLE_principale(ARTICLES){id_article}>
+			[
+			<div id="signature_site">
+				<div class="intitule_signature"><a href="#" onclick="$('#formulaire_signature_site').slideToggle(); return false;"><strong>Mon site utilise ce plugin</strong></a></div>
+			
+				<div id="formulaire_signature_site" [(#ENV{signature_nom_site}|?{"", " "}) style="display: none;"]>(#FORMULAIRE_SIGNATURE)</div>
+			</div>]
+
+			
+			<div id="liste_sites">
+			<BOUCLE_signatures(SIGNATURES){id_article}>
+			[(#ID_SIGNATURE|stocker_signature{[(#URL_SITE|afficher_pagerank)]})]
+			</BOUCLE_signatures>
+			
+				<B_sites>
+				<strong>
+					<multi>
+						Les sites suivants utilisent ce plugin&nbsp;:
+					[en]
+						These websites use this plugin:
+					</multi>
+				</strong>
+				
+				<ul >
+				<BOUCLE_sites(SIGNATURES){id_signature IN #ID_ARTICLE|liste_signatures}>
+				<li class="liste[(#EVAL{ [(#COMPTEUR_BOUCLE)] - 2*floor([(#COMPTEUR_BOUCLE)]/2) })]"><a href="#URL_SITE">#NOM_SITE</a></li>
+				</BOUCLE_sites>
+				</ul>
+				</B_sites>
+			
+			</B_signatures>
+			</div>
+</BOUCLE_principale>

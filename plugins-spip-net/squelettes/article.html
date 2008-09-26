@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<BOUCLE_principale(ARTICLES){id_article}>
+<head>
+	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	#INSERT_HEAD
+	<link rel='stylesheet' href="[(#CHEMIN{spip_style.css})]" type="text/css" />
+	<link rel='stylesheet' href="[(#URL_PAGE{css, id_rubrique=#ID_RUBRIQUE})]" type="text/css" />
+	<script src="squelettes/javascript/jquery.scrollTo.js" type="text/javascript"></script>
+	<script src="squelettes/javascript/jquery.localscroll.js" type="text/javascript"></script>
+
+	<script type="text/javascript"><!--
+	jQuery.fn.slideFadeToggle = function(speed, easing, callback) {
+		return this.animate({opacity: 'toggle', height: 'toggle'}, speed, easing, callback);
+	};	
+	
+	$(document).ready(function() {
+		$(document).localScroll();
+	});
+	
+	-->
+	</script>
+
+</head>
+<body>
+
+	[(#SET{couleur, [(#ID_RUBRIQUE|pb_couleur_rubrique|sinon{[(#ID_SECTEUR|pb_couleur_rubrique)]})] })]
+
+	<BOUCLE_fixer_secteur(RUBRIQUES){id_secteur}{id_parent=0}>
+		[(#SET{secteur,#ID_RUBRIQUE})]
+		[(#SET{url_secteur,#URL_RUBRIQUE})]
+	</BOUCLE_fixer_secteur>
+
+
+<INCLURE{fond=inc-haut}{id_rubrique}{url_secteur=#GET{url_secteur}}>
+
+
+<div id="principal">
+	<div class="conteneur_page">
+
+		<div class="prise-electrique">
+			<a href="#GET{url_secteur}"><img src="[(#CHEMIN{imgs/logo-ecureuil.png})]" alt="Prise électrique" /></a>
+		</div>
+	
+		
+		
+		
+		<div id="colonne_centrale">
+			[<div id="logo-article">(#LOGO_ARTICLE||image_reduire{64})</div>]
+
+
+			<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
+				<h2><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|supprimer_numero|image_typo{police=HelveNeuThiCon.ttf, taille=96px, largeur=1300, couleur=#GET{couleur}}|image_reduire_par{5}|image_aplatir{gif,ffffff})]</a></h2>
+			</BOUCLE_rubrique>
+		
+		
+			<h1 id="titre_article">[(#TITRE|supprimer_numero|supprimer_numero|image_titre_article{#GET{couleur}})]</h1>
+			<div class="clear-left"></div>
+			
+			
+			<BOUCLE_test_petition(PETITIONS){id_article} />
+				[(#ID_ARTICLE|creer_petition)]
+			<//B_test_petition>
+			
+			
+			
+			<INCLURE{fond=inc-bloc-infos}{id_article}>
+
+
+			<div id="selection_spip">
+				<BOUCLE_selection(MOTS){id_article}{id_groupe=4}>
+				<a href="rss-#URL_MOT">[(#CHEMIN{squelettes/imgs/selection-spip.png}|image_reduire_par{1.5}|inserer_attribut{alt, Selection SPIP})]</a>
+				
+				
+				
+				
+				
+				</BOUCLE_selection>
+			
+			
+			</div>
+
+			
+			[<div class="text_description">(#DESCRIPTIF|sinon{#EXTRA|plugin_xml|plugin_extraire{description}|propre}|cesure{#LANG})</div>]
+			
+			
+			
+			<B_documents>
+			<ul>
+			<BOUCLE_documents(DOCUMENTS){id_article}{extension=zip}>
+			<li>#TITRE <a href="#FICHIER">#FICHIER</a></li>
+			</BOUCLE_documents>
+			</ul>
+			</B_documents>
+						
+			[<div class="texte_article">(#TEXTE|cesure{#LANG})</div>]
+			[<div class="notes_article">(#NOTES)</div>]
+			
+			
+			
+			<INCLURE{fond=inc-formulaire-signature}{id_article}{env}>
+
+			<B_revues>	
+			<div id="reviews">
+			<BOUCLE_revues(FORUMS){id_article}{titre=xxxreviewxxx}{doublons forums}>
+			<div class="review" id="forum#ID_FORUM">
+				<div class="auteur">
+				
+				<BOUCLE_auteur_revue(AUTEURS){id_auteur}{tous}>
+				[<div class="logo">(#LOGO_AUTEUR||image_masque{masques/masque-40x40.png}|image_aplatir{gif,ffffff})</div>]
+				
+				[<div class="element [(#LOGO_AUTEUR||?{"","element_sans"})]"><strong>(#AUTEUR)</strong></div>] 
+				</BOUCLE_auteur_revue>
+				
+				[<div class="element">(#DATE|affdate)</div>]
+				</div>
+			
+				[<div class="texte">(#TEXTE|cesure{#LANG})</div>]
+				
+				
+
+			</div>
+			</BOUCLE_revues>
+			</div>
+			</B_revues>
+			
+			
+			<BOUCLE_auteur(AUTEURS){id_auteur=#SESSION{id_auteur}}{tous}><!-- #ID_AUTEUR --></BOUCLE_auteur>
+
+			<div id="form_review">
+			<div id="click_review" onclick="$('#formulaire_review a[href*=\'logout\']').parent().parent().hide(); $('#formulaire_review').slideToggle(); $('#formulaire_review [@name=titre]').attr('value','xxxreviewxxx');">Écrire une critique du plugin</div>
+			<div id="formulaire_review" style="display: none;">
+			[(#FORMULAIRE_FORUM)]
+			</div>
+			</div>
+			
+			</B_auteur>
+			
+				<div id="form_review">
+				<div id="click_review_off">Pour écrire une critique de ce plugin, vous devez être un rédacteur de ce site.</div>
+				</div>
+			
+			<//B_auteur>
+		</div>
+
+
+		<INCLURE{fond=inc-navigation}{id_rubrique}{secteur=#GET{secteur}}{url_secteur=#GET{url_secteur}}>
+
+
+		<div class="clear-both"></div>
+	</div>
+</div>
+
+
+<div id="cadre-forum">
+	
+	
+	<div class="conteneur_page">
+		<div id="bouton_ecrire_forum" onclick="$('#formulaire-du-forum').slideToggle();">Écrire un message</div>
+
+		<div id="formulaire-du-forum">
+			#FORMULAIRE_FORUM
+		</div>
+		
+
+		<BOUCLE_messages(FORUMS){id_article}{doublons forums}{par date}{inverse}>
+		<div class="messages_forum">
+			<div class="message-forum" id="forum#ID_FORUM">
+				<div class="auteur">
+				
+				<BOUCLE_auteur_revue2(AUTEURS){id_auteur}{tous}>
+				[<div class="logo">(#LOGO_AUTEUR||image_masque{masques/masque-40x40.png}|image_aplatir{gif,ffffff})</div>]
+				
+				[<div class="element"><strong>(#AUTEUR)</strong></div>] 
+
+						<BOUCLE_test_auteur2(ARTICLES){id_auteur}{id_article=#_principale:ID_ARTICLE}>
+						<div class="element auteur_plugin">auteur du plugin</div>
+						</BOUCLE_test_auteur2>
+
+
+				</BOUCLE_auteur_revue2>
+					[<div class="element"><strong>(#NOM)</strong></div>]
+				<//B_auteur_revue2>
+				
+				[<div class="element">(#DATE|date_relative)</div>]
+				</div>
+			
+				[<div class="texte">(#TEXTE|cesure{#LANG})</div>]
+				<div style="clear: right;"></div>
+			</div>
+
+			<BOUCLE_reponses(FORUMS){id_parent}{par date}>
+			<div class="message-forum reponse_forum" id="forum#ID_FORUM">
+				<div class="auteur">
+				<BOUCLE_auteur_revue3(AUTEURS){id_auteur}{tous}>
+				[<div class="logo">(#LOGO_AUTEUR||image_masque{masques/masque-40x40.png}|image_aplatir{gif,ffffff})</div>]
+				
+				[<div class="element"><strong>(#AUTEUR)</strong></div>] 
+						
+						<BOUCLE_test_auteur3(ARTICLES){id_auteur}{id_article=#_principale:ID_ARTICLE}>
+						<div class="element auteur_plugin">auteur du plugin</div>
+						</BOUCLE_test_auteur3>
+	
+				
+				</BOUCLE_auteur_revue3>
+					[<div class="element"><strong>(#NOM)</strong></div>]
+				<//B_auteur_revue3>
+				
+				[<div class="element">(#DATE|date_relative)</div>]
+				</div>
+			
+				[<div class="texte">(#TEXTE|cesure{#LANG})</div>]
+				<div style="clear: right;"></div>
+			</div>
+			</BOUCLE_reponses>
+
+
+			<div class="repondre_forum">				
+				<div class="bouton_repondre_forum"><a onclick="$('#formulaire_#ID_FORUM').slideToggle(); return false;" href="#">Répondre à ce message</a></div>
+				<div id="formulaire_#ID_FORUM" class="formulaire_reponse_forum">#FORMULAIRE_FORUM</div>
+				<div style="clear: right;"></div>
+			</div>
+		</div>
+		</BOUCLE_messages>
+	
+	</div>
+	<div style="clear: right;"></div>
+</div>
+
+<INCLURE{fond=inc-bas}{id_rubrique}{secteur=#GET{secteur}}{url_secteur=#GET{url_secteur}}>
+
+
+</body>
+</BOUCLE_principale>
+</html>

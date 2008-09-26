@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<BOUCLE_principale(RUBRIQUES){id_rubrique}{tout}>
+<head>
+	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+	#INSERT_HEAD
+	<link rel='stylesheet' href="[(#CHEMIN{spip_style.css})]" type="text/css" />
+	<link rel='stylesheet' href="[(#URL_PAGE{css, id_rubrique=#ID_RUBRIQUE})]" type="text/css" />
+</head>
+<body>
+
+	[(#SET{couleur, [(#ID_RUBRIQUE|pb_couleur_rubrique|sinon{[(#ID_SECTEUR|pb_couleur_rubrique)]})] })]
+
+	<BOUCLE_fixer_secteur(RUBRIQUES){id_secteur}{id_parent=0}>
+		[(#SET{secteur,#ID_RUBRIQUE})]
+		[(#SET{url_secteur,#URL_RUBRIQUE})]
+	</BOUCLE_fixer_secteur>
+
+
+<INCLURE{fond=inc-haut}{id_rubrique}{url_secteur=#GET{url_secteur}}>
+
+
+<div id="principal">
+	<div class="conteneur_page">
+
+		<div class="prise-electrique">
+			<a href="#GET{url_secteur}"><img src="[(#CHEMIN{imgs/logo-ecureuil.png})]" alt="Prise électrique" /></a>
+		</div>
+	
+
+
+
+		<div id="colonne_centrale">
+			<h1>[(#TITRE|supprimer_numero|supprimer_numero|image_typo{police=HelveNeuThiCon.ttf, taille=96px, largeur=1300, couleur=#GET{couleur}}|image_reduire_par{2}|image_aplatir{gif,ffffff})]</h1>
+						
+			<div class="colonne_etroite">
+				[<div class="texte">(#TEXTE|cesure{#LANG})</div>]
+
+
+
+				[(#SET{mot1,non})]
+				[(#SET{mot2,non})]
+				<BOUCLE_compter(ARTICLES){branche}><BOUCLE_test_mots(MOTS){id_article}{id_groupe=1}{doublons test_mots}>
+				[(#GET{mot1}|=={oui}|?{" ",""})
+					[(#SET{mot2,oui})]
+				]
+				[(#SET{mot1,oui})]
+				</BOUCLE_test_mots>				
+				</BOUCLE_compter>
+				[(#GET{mot2}|=={oui}|?{" ",""})
+					[(#SET{afficher_choix,style='display: block;'})]
+				]
+				[(#GET{mot2}|=={non}|?{" ",""})
+					[(#SET{afficher_choix,style='display: none;'})]
+				]
+				
+				<ul id="choix_version" [(#GET{afficher_choix})]>
+					<li id='choix_version_tout' class='sel_choix_version sel_choix_version_actif'><a onclick="$('.sel_choix_version').removeClass('sel_choix_version_actif'); $('#choix_version_tout').addClass('sel_choix_version_actif'); $('.pave-liste-article').removeClass('masquer').addClass('afficher');  $('.afficher').slideDown(); return false;" href="#">Tout afficher</a></li>
+					<BOUCLE_versions(MOTS){id_groupe=1}><BOUCLE_test_version(ARTICLES){branche}{id_mot}{0,1}>
+					<li id='choix_version_#ID_MOT' class='sel_choix_version'><a onclick="$('.sel_choix_version').removeClass('sel_choix_version_actif'); $('#choix_version_#ID_MOT').addClass('sel_choix_version_actif');$('.pave-liste-article').removeClass('afficher').addClass('masquer'); $('.version#ID_MOT').addClass('afficher').removeClass('masquer'); $('.afficher').slideDown(); $('.masquer').slideUp(); return false;" href="#"><multi>Compatibles avec [en]Compatible with</multi>#_versions:TITRE</a></li>
+					</BOUCLE_test_version></BOUCLE_versions>
+				</ul>
+				
+				<div class="liste_articles">
+				<BOUCLE_articles(ARTICLES){id_rubrique}{par popularite}{inverse}{doublons}>
+					<BOUCLE_traductions(ARTICLES){traduction}{doublons}></BOUCLE_traductions>
+				
+					<div class="pave-liste-article<BOUCLE_version(MOTS){id_article}{id_groupe=1}> version#ID_MOT</BOUCLE_version>">
+						<div class="petit-titre-article" onclick="document.location='#URL_ARTICLE';"><a href="#URL_ARTICLE" class="petit-titre#ID_RUBRIQUE"><span>[(#TITRE|supprimer_numero|image_petit_titre_article{[(#ID_RUBRIQUE|pb_couleur_rubrique|sinon{[(#ID_SECTEUR|pb_couleur_rubrique)]})]})]</span></a>
+							<div class="clear-left"></div>
+						</div>
+						<div class="bloc-info-liste"><INCLURE{fond=inc-bloc-infos}{id_article}></div>
+
+						[<div class="logo"><a href="#URL_ARTICLE">(#LOGO_ARTICLE||image_reduire{64})</a></div>]
+						[<div class="description-liste-article">
+							(#DESCRIPTIF|sinon{#EXTRA|plugin_xml|plugin_extraire{description}|propre}|cesure{#LANG})</div>]
+						<div class="bloc-info-lire"><a href="#URL_ARTICLE"><multi>En savoir plus...[en]Read more</multi></a></div>
+
+
+					</div>
+				</BOUCLE_articles>
+				
+				
+				<BOUCLE_rubriques_traduction(RUBRIQUES){titre==^(#TITRE|extraire_numero|trim)\.}><!-- #ID_RUBRIQUE -->
+					<BOUCLE_articles2(ARTICLES){id_rubrique}{par popularite}{inverse}{doublons}>
+						<div class="pave-liste-article<BOUCLE_version2(MOTS){id_article}{id_groupe=1}> version#ID_MOT</BOUCLE_version2>">
+							<div class="petit-titre-article" onclick="document.location='#URL_ARTICLE';"><a href="#URL_ARTICLE" class="petit-titre#ID_RUBRIQUE"><span>[(#TITRE|supprimer_numero|image_petit_titre_article{[(#ID_RUBRIQUE|pb_couleur_rubrique|sinon{[(#ID_SECTEUR|pb_couleur_rubrique)]})]})]</span></a>
+							</div>
+
+							<BOUCLE_traductions2(ARTICLES){traduction}> <span class="lien_traduction"><a href="#URL_ARTICLE">[(#LANG|traduire_nom_langue)]</a></span></BOUCLE_traductions2>
+							<div class="clear-left"></div>
+
+						</div>
+					</BOUCLE_articles2>
+				</BOUCLE_rubriques_traduction>
+				
+				
+				
+				
+				</div>
+			
+			</div>
+		</div>
+
+		<INCLURE{fond=inc-navigation}{id_rubrique}{secteur=#GET{secteur}}{url_secteur=#GET{url_secteur}}>
+
+		<div class="clear-both"></div>
+	</div>
+</div>
+
+<INCLURE{fond=inc-bas}{id_rubrique}{secteur=#GET{secteur}}{url_secteur=#GET{url_secteur}}>
+
+
+</body>
+</BOUCLE_principale>
+</html>
