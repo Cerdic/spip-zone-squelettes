@@ -26,7 +26,12 @@
 <link rel="alternate" type="application/rss+xml" title="<:dernieres_breves:> [(#NOM_SITE_SPIP|attribut_html)]" href="#URL_PAGE{backend-breves}" />
 [(#PLUGIN{AGENDA}|=={1}|?{' '})<link rel="alternate" type="application/rss+xml" title="<:pyrat:syndiquer_agenda:> [(#NOM_SITE_SPIP|attribut_html)]" href="#URL_PAGE{backendagenda}" />]
 <link rel="alternate" href="@piclens.rss.html[?id_article=(#ID_ARTICLE)]" type="application/rss+xml" title="" id="gallery" />
-<link rel="shortcut icon" type="images/x-icon" href="/#CHEMIN{images/favicon.ico}" />
+[<link rel="shortcut icon" href="(#CHEMIN{images/favicon.ico}
+	|sinon{#LOGO_SITE_SPIP_NORMAL}
+		|image_passe_partout{32,32}
+		|image_recadre{32,32,center}
+		|image_format{ico}|extraire_attribut{src}
+	|sinon{#CHEMIN{images/soyezcreateurs.ico}})" type="image/x-icon" />]
 #INSERT_HEAD
 [(#REM) Attention : ne pas enlever les REMarques : elles servent aerer le source sans que celui ne renvois d'espaces identifie comme une reussite du test ]
 	<BOUCLE_ArtRubLayout(ARTICLES){id_article}>[(#REM) Dans le cas d'un article
