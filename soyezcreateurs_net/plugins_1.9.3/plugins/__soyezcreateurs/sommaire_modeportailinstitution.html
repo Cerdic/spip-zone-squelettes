@@ -49,12 +49,8 @@
 <B_contexte_evenement>
 <div id="evenementsommaire">
 	<BOUCLE_contexte_evenement(RUBRIQUES){titre_mot=agenda_principal}>
-	[(#REM) Mémoriser les articles de la branche ]
-#SET{articlesbranche,#ARRAY}
-<BOUCLE_lesarticles(ARTICLES){branche}>[(#SET{articlesbranche,
-	[(#GET{articlesbranche}|push{#ID_ARTICLE})]})]</BOUCLE_lesarticles>
 	<dl>
-	<BOUCLE_evenements_principaux(EVENEMENTS){id_article IN #GET{articlesbranche}}{age<0}{par date}{0,(#CONFIG{soyezcreateurs/nombres_agenda,5})}>
+	<BOUCLE_evenements_principaux(EVENEMENTS){branche}{age<0}{par date}{0,(#CONFIG{soyezcreateurs/nombres_agenda,5})}>
 	<dt>[#LOGO_EVENEMENTS(#TITRE)]</dt>
 	[<dd>(#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})</dd>]
 	[<dd>(#LIEU)</dd>]
