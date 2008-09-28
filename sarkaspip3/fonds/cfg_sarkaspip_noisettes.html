@@ -19,6 +19,7 @@
 		[(#ENV{image_rechercher, 0}|=={0}|?{jQuery("#parcourir_image_rechercher").hide();})]
 		[(#ENV{menu_rubriques, 1}|!={1}|?{jQuery("#bloc_menu_option1_2").hide();})]
 		[(#ENV{menu_rubriques, 1}|match{^(4)$}|?{jQuery("#bloc_menu_option1").hide();})]
+		[(#ENV{position_annonce, 0}|=={0}|?{jQuery("#bloc_annonce_id").hide();})]
 
 		jQuery("input[@name='image_rechercher']").change(function() {
 			if (jQuery("input[@name='image_rechercher']:checked").val() == 1)
@@ -112,6 +113,14 @@
 				jQuery("#bloc_menu_option1_2").hide();
 				jQuery("#menu_option1_1").attr({checked: "checked"});
 			}
+			jQuery(this).blur();
+		});	
+		
+		jQuery("input[@name='position_annonce']").change(function() {
+			if (jQuery("input[@name='position_annonce']:checked").val() != 0)
+				jQuery("#bloc_annonce_id").show();
+			else
+				jQuery("#bloc_annonce_id").hide();
 			jQuery(this).blur();
 		});	
 	});
@@ -287,22 +296,6 @@
 			<input type="radio" name="moteur_externe" value="5" [(#ENV{moteur_externe, 1}|=={5}|?{checked="checked"})] />
 			<:sarkaspip:cfg_lbl_inc_recherche_ext_5:>
 		</label>
-<!--		<br />
-		<br />
-		<p><:sarkaspip:cfg_lbl_image_recherche:></p>
-		<label>
-			<input type="radio" name="image_rechercher" value="0" [(#ENV{image_rechercher, 0}|=={0}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_image_default_recherche:><img src="#CHEMIN{rechercher.png}" alt="rechercher.png" />
-		</label>
-		<br />
-		<label>
-			<input type="radio" name="image_rechercher" value="1" [(#ENV{image_rechercher, 0}|=={1}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_image_autre_recherche:> 
-		</label>
-		<div id="parcourir_image_rechercher">
-			<input type="file" name="bouton_rechercher" value="#ENV{bouton_rechercher}" size="40" class="fondl"/>
-		</div>
--->
 	</fieldset>
 	
 	<fieldset>
@@ -437,6 +430,20 @@
 			<:sarkaspip:cfg_lbl_inc_position_2:>
 		</label>
 		<br />
+		<div id="bloc_annonce_id">
+			<p><:sarkaspip:cfg_inf_annonce_id:></p>
+			<B_secteurs>
+				<label><:sarkaspip:cfg_lbl_liste_secteurs:></label>
+				<select name="rubrique_annonce">
+					<BOUCLE_agenda(RUBRIQUES){id_rubrique=#ENV{rubrique_annonce, 0}}>
+						[<option value="#ID_RUBRIQUE" selected="selected">(#TITRE|supprimer_numero|attribut_html)</option>]
+					</BOUCLE_agenda>
+			<BOUCLE_secteurs(RUBRIQUES){racine}{id_rubrique!==#SECTEUR_SPECIALISE}{par num titre}{par titre}>
+					[<option value="#ID_RUBRIQUE">(#TITRE|supprimer_numero|attribut_html)</option>]
+			</BOUCLE_secteurs>
+				</select>
+			</B_secteurs>
+		</div>
 	</fieldset>
 	
 	<br />

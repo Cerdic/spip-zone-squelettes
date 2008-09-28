@@ -105,30 +105,87 @@ function balise_AUJOURDHUI($p) {
 //            Pour creer une nouvelle rubrique specialisee il suffit de rajouter un mot dans le tableau des mots reserves ($mots_reserves)
 // =======================================================================================================================================
 //
+function balise_SECTEUR_SPECIALISE($p) {
+
+	$mot_rubrique = interprete_argument_balise(1,$p);
+	$mot_rubrique = isset($mot_rubrique) ? str_replace('\'', '"', $mot_rubrique) : '""';
+	$mode = "secteur";
+
+	$p->code = 'calcul_rubrique_specialisee('.strtolower($mot_rubrique).','.$mode.')';
+	$p->interdire_scripts = false;
+	return $p;
+}
+
+function balise_BRANCHE_SPECIALISEE($p) {
+
+	$mot_rubrique = interprete_argument_balise(1,$p);
+	$mot_rubrique = isset($mot_rubrique) ? str_replace('\'', '"', $mot_rubrique) : '""';
+	$mode = "branche";
+
+	$p->code = 'calcul_rubrique_specialisee('.strtolower($mot_rubrique).','.$mode.')';
+	$p->interdire_scripts = false;
+	return $p;
+}
+
+function calcul_rubrique_specialisee($mot_rubrique, $mode) {
+
+	// On calcule le liste des mots reserves SarkaSPIP + definis par l'utilisateur
+	$mots_reserves = explode(':', _SARKASPIP_MOT_SECTEURS_SPECIALISES);
+    if (defined(_PERSO_MOT_SECTEURS_SPECIALISES))
+    	if (_PERSO_MOT_SECTEURS_SPECIALISES != '')
+	    	$mots_reserves = array_merge($mots_reserves, explode(':', _PERSO_MOT_SECTEURS_SPECIALISES));
+	$types_reserves = explode(':', _SARKASPIP_TYPE_SECTEURS_SPECIALISES);
+    if (defined(_PERSO_TYPE_SECTEURS_SPECIALISES))
+    	if (_PERSO_TYPE_SECTEURS_SPECIALISES != '')
+	    	$types_reserves = array_merge($types_reserves, explode(':', _PERSO_TYPE_SECTEURS_SPECIALISES));
+	$fonds_reserves = explode(':', _SARKASPIP_FOND_SECTEURS_SPECIALISES);
+    if (defined(_PERSO_FOND_SECTEURS_SPECIALISES))
+    	if (_PERSO_FOND_SECTEURS_SPECIALISES != '')
+	    	$fonds_reserves = array_merge($fonds_reserves, explode(':', _PERSO_FOND_SECTEURS_SPECIALISES));
+
+	// Determination de la liste des mots cles associes aux secteurs specialises demandes par la balise
+	$id = NULL;
+	$mots = explode(':', $mot_rubrique);
+ 	if (!$mots[0]) $mots = $mots_reserves;
+ 	// Si on est en en mode secteur (ie. balise #SECTEUR_SPECIALISE) et qu'on demande un seul secteur specialise
+ 	// on renvoie une valeur; sinon on renvoie toujours une regexp
+	$comparaison_valeur = (($mode == 'secteur') && ($mots[0] == $mot_rubrique)) ? true : false;
+	// Calcul de la balise
+	reset($mots_reserves);
+	while (list($cle, $valeur) = each($mots_reserves)) {
+		if ( in_array($valeur, $mots))
+			$id .= ($id ? '|' : '').calcul_rubrique($valeur, $types_reserves[$cle], $fonds_reserves[$cle], $mode); 
+	}
+	if (!$comparaison_valeur) $id = '^('.$id.')$';
+	
+	return $id;
+}
+
+
 function balise_RUBRIQUE_SPECIALISEE($p) {
 
 	$mot_rubrique = interprete_argument_balise(1,$p);
 	$mot_rubrique = isset($mot_rubrique) ? str_replace('\'', '"', $mot_rubrique) : '""';
 
-	$p->code = 'calcul_rubrique_specialisee('.strtolower($mot_rubrique).')';
+	$p->code = 'calcul_rubrique_specialisee_old('.strtolower($mot_rubrique).')';
 	$p->interdire_scripts = false;
 	return $p;
 }
+function calcul_rubrique_specialisee_old($mot) {
 
-function calcul_rubrique_specialisee($mot) {
-
-	$mots_reserves = explode(':', _SARKASPIP_MOT_RUBRIQUES_SPE);
-    if (defined(_PERSO_MOT_RUBRIQUES_SPE))
-    	if (_PERSO_MOT_RUBRIQUES_SPE != '')
-	    	$mots_reserves = array_merge($mots_reserves, explode(':', _PERSO_MOT_RUBRIQUES_SPE));
-	$types_reserves = explode(':', _SARKASPIP_TYPE_RUBRIQUES_SPE);
-    if (defined(_PERSO_TYPE_RUBRIQUES_SPE))
-    	if (_PERSO_TYPE_RUBRIQUES_SPE != '')
-	    	$types_reserves = array_merge($types_reserves, explode(':', _PERSO_TYPE_RUBRIQUES_SPE));
-	$fonds_reserves = explode(':', _SARKASPIP_FOND_RUBRIQUES_SPE);
-    if (defined(_PERSO_FOND_RUBRIQUES_SPE))
-    	if (_PERSO_FOND_RUBRIQUES_SPE != '')
-	    	$fonds_reserves = array_merge($fonds_reserves, explode(':', _PERSO_FOND_RUBRIQUES_SPE));
+	// On calcule le liste des mots reserves SarkaSPIP + definis par l'utilisateur
+	$mots_reserves = explode(':', _SARKASPIP_MOT_SECTEURS_SPECIALISES);
+    if (defined(_PERSO_MOT_SECTEURS_SPECIALISES))
+    	if (_PERSO_MOT_SECTEURS_SPECIALISES != '')
+	    	$mots_reserves = array_merge($mots_reserves, explode(':', _PERSO_MOT_SECTEURS_SPECIALISES));
+	$types_reserves = explode(':', _SARKASPIP_TYPE_SECTEURS_SPECIALISES);
+    if (defined(_PERSO_TYPE_SECTEURS_SPECIALISES))
+    	if (_PERSO_TYPE_SECTEURS_SPECIALISES != '')
+	    	$types_reserves = array_merge($types_reserves, explode(':', _PERSO_TYPE_SECTEURS_SPECIALISES));
+	$fonds_reserves = explode(':', _SARKASPIP_FOND_SECTEURS_SPECIALISES);
+    if (defined(_PERSO_FOND_SECTEURS_SPECIALISES))
+    	if (_PERSO_FOND_SECTEURS_SPECIALISES != '')
+	    	$fonds_reserves = array_merge($fonds_reserves, explode(':', _PERSO_FOND_SECTEURS_SPECIALISES));
 
 	$id = NULL;
 	$mot_rubrique = explode(':', $mot);
@@ -156,12 +213,14 @@ function calcul_rubrique_specialisee($mot) {
 	return $id;
 }
 
-function calcul_rubrique($mot, $type, $fond) {
+
+function calcul_rubrique($mot, $type, $fond, $mode='rubrique') {
 
 	$id_rubrique = 0;
 	if (!$mot)
 		return $id_rubrique;
 
+	// On recupere le secteur de base soit via la methode du mot-cle, soit par la config
 	if ($type == 'motcle') {
 		$select = array('id_rubrique');
 		$from = array('spip_mots_rubriques AS t1', 'spip_mots AS t2', 'spip_groupes_mots AS t3');
@@ -178,6 +237,18 @@ function calcul_rubrique($mot, $type, $fond) {
 		if (function_exists('lire_config')) {
 			$valeur = lire_config($fond.'/rubrique_'.$mot);
 			if ($valeur != NULL) $id_rubrique = $valeur;
+		}
+	}
+	
+	// Si on est en mode branche on retourne les rubriques de la branche, sinon uniquement le secteur recupere precedemment
+	if (( $id_rubrique != 0) && ($mode == 'branche')) {
+		$select = array('id_rubrique');
+		$from = array('spip_rubriques AS t1');
+		$where = array('t1.id_secteur='.sql_quote($id_rubrique));
+		$result = sql_select($select, $from, $where);
+		$secteur = $id_rubrique;
+		while ($row = sql_fetch($result)) {
+			if ($row['id_rubrique'] != $secteur) $id_rubrique .= '|'.$row['id_rubrique'];
 		}
 	}
 	
