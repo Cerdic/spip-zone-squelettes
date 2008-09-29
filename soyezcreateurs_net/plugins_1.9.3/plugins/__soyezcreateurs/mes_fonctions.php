@@ -353,4 +353,8 @@ function garder_body($texte) {
 	return $texte;
 }
 
+function generer_url_refsite($id, $args, $ancre) {
+	return array('site', $id);
+}
+
 ?>
