@@ -1,11 +1,11 @@
 [(#REM) <!-- Noisette d'affichage de l'agenda natif en format listing annuel
-	- id_rubrique: la rubrique specialisee choisie pour agenda
+	- id_rubrique: la racine specialisee choisie pour agenda
 	- annee: l'annee choisie pour etre affichee
 	- mois: mois choisi
 	- categorie: filtre a appliquer aux evenements
  --> ]
 [(#REM) <!-- Definition du contexte de l'agenda --> ]
-[(#ID_RUBRIQUE|agenda_definir_contexte{
+[(#ENV{id_rubrique}|agenda_definir_contexte{
 						'listing_annuel',
 						[(#CONFIG{sarkaspip_agenda/mois1, 1})],
 						[(#CONFIG{sarkaspip_agenda/format_pagination, annee})]}
@@ -17,9 +17,9 @@
 #SET{annee_choisie, #ENV{annee, #AUJOURDHUI|annee}}
 ]
 <BOUCLE_agenda(ARTICLES)
-	{id_secteur=#SECTEUR_SPECIALISE{agenda}}
+	{id_secteur=#ENV{id_rubrique}}
 	{par date_redac}>
-	[(#ID_RUBRIQUE|agenda_recenser_evenement{
+	[(#ENV{id_rubrique}|agenda_recenser_evenement{
 						[(#ID_ARTICLE)], 
 						[(#DATE_REDAC)], 
 						[(#TITRE|supprimer_numero)]}
@@ -39,7 +39,7 @@
 
 <div id="agenda_annuel" class="plan">
 	<div class="pagination">
-		[(#ID_RUBRIQUE|agenda_liste_paginer{
+		[(#ENV{id_rubrique}|agenda_liste_paginer{
 						[(#ENV{annee})],
 						[(#ENV{mois})],
 						[(#ENV{categorie,-1})],
@@ -49,7 +49,7 @@
 		)]
 	</div>
 
-	[(#ID_RUBRIQUE|agenda_liste_afficher{
+	[(#ENV{id_rubrique}|agenda_liste_afficher{
 						[(#ENV{annee})],
 						[(#ENV{mois})],
 						[(#ENV{categorie,-1})],
@@ -57,7 +57,7 @@
 	)]
 
 	[<p class="erreur">
-		(#ID_RUBRIQUE|agenda_liste_avertir{
+		(#ENV{id_rubrique}|agenda_liste_avertir{
 						[(#ENV{annee})],
 						[(#ENV{mois})]})
 	</p>]

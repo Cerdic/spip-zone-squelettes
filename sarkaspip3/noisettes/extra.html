@@ -13,7 +13,7 @@
 
 [(#REM) <!-- affichage de la navigation dans les evenements de la journee --> ]
 [(#ENV{page}|=={evenement}|?{' '})
-	<INCLURE{fond=noisettes/agenda/inc_evenement_navigation}{id_rubrique=#RUBRIQUE_SPECIALISEE{agenda}}{id_article}{id_evenement}>
+	<INCLURE{fond=noisettes/agenda/inc_evenement_navigation}{id_secteur=#RACINE_SPECIALISEE{agenda}}{id_article}{id_evenement}>
 ]
 
 [(#REM) <!-- affichage du bloc des mots-cles d'une branche ou d'un article et de la navigation propre a la page --> ]
@@ -27,23 +27,23 @@
 ]
 
 [(#REM) <!-- affichage du mini-agenda -->]
-<BOUCLE_acces_agenda(RUBRIQUES) {id_rubrique=#RUBRIQUE_SPECIALISEE{agenda}}>
+<BOUCLE_acces_agenda(RUBRIQUES) {id_rubrique=#RACINE_SPECIALISEE{agenda}}>
 	<INCLURE{fond=noisettes/agenda/inc_mini_agenda_#CONFIG{sarkaspip_agenda/plugin, 1}}{id_rubrique=#ID_RUBRIQUE}{self=#SELF}>
 </BOUCLE_acces_agenda>
 
 [(#REM) <!-- affichage du top album --> ]
-<BOUCLE_acces_splickrbox(RUBRIQUES) {id_rubrique=#RUBRIQUE_SPECIALISEE{galerie}}>
+<BOUCLE_acces_splickrbox(RUBRIQUES) {id_rubrique=#RACINE_SPECIALISEE{galerie}}>
 	[(#PLUGIN{SPLICKR}|?{' '})
 		[(#ENV{page}|=={sommaire}|?{' '})
-			<INCLURE{fond=noisettes/inc_splickrbox}{id_rubrique=#ID_RUBRIQUE}>
+			<INCLURE{fond=noisettes/inc_splickrbox}{id_secteur=#ID_RUBRIQUE}>
 		]
 	]
 </BOUCLE_acces_splickrbox>
 
 [(#REM) <!-- affichage du panneau d'annonce --> ]
-<BOUCLE_acces_annonce(RUBRIQUES) {id_rubrique=#RUBRIQUE_SPECIALISEE{annonce}}>
+<BOUCLE_acces_annonce(RUBRIQUES) {id_rubrique=#RACINE_SPECIALISEE{annonce}}>
 	[(#CONFIG{sarkaspip_noisettes/position_annonce, 1}|=={2}|?{' '})
-		<INCLURE{fond=noisettes/inc_annonce}{id_rubrique=#ID_RUBRIQUE}>
+		<INCLURE{fond=noisettes/inc_annonce}{id_secteur=#ID_RUBRIQUE}>
 	]
 </BOUCLE_acces_annonce>
 

@@ -105,7 +105,7 @@ function balise_AUJOURDHUI($p) {
 //            Pour creer une nouvelle rubrique specialisee il suffit de rajouter un mot dans le tableau des mots reserves ($mots_reserves)
 // =======================================================================================================================================
 //
-function balise_SECTEUR_SPECIALISE($p) {
+function balise_RACINE_SPECIALISEE($p) {
 
 	$mot_rubrique = interprete_argument_balise(1,$p);
 	$mot_rubrique = isset($mot_rubrique) ? str_replace('\'', '"', $mot_rubrique) : '""';
@@ -147,7 +147,7 @@ function calcul_rubrique_specialisee($mot_rubrique, $mode) {
 	$id = NULL;
 	$mots = explode(':', $mot_rubrique);
  	if (!$mots[0]) $mots = $mots_reserves;
- 	// Si on est en en mode secteur (ie. balise #SECTEUR_SPECIALISE) et qu'on demande un seul secteur specialise
+ 	// Si on est en en mode secteur (ie. balise #RACINE_SPECIALISEE) et qu'on demande un seul secteur specialise
  	// on renvoie une valeur; sinon on renvoie toujours une regexp
 	$comparaison_valeur = (($mode == 'secteur') && ($mots[0] == $mot_rubrique)) ? true : false;
 	// Calcul de la balise

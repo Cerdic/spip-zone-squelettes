@@ -10,14 +10,14 @@
 	<a href="#URL_SITE_SPIP"><:sarkaspip:accueil_site:></a>
 	<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
 		<BOUCLE_hierarchie(HIERARCHIE)>
-			[(#ID_RUBRIQUE|=={#SECTEUR_SPECIALISE{agenda}}|?{' '})
+			[(#ID_RUBRIQUE|=={#RACINE_SPECIALISEE{agenda}}|?{' '})
 				|&nbsp;<a href="[(#URL_PAGE{agenda,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:agenda:></a>
 			]
-			[(#ID_RUBRIQUE|=={#SECTEUR_SPECIALISE{galerie}}|?{' '})
+			[(#ID_RUBRIQUE|=={#RACINE_SPECIALISEE{galerie}}|?{' '})
 				|&nbsp;<a href="[(#URL_PAGE{galerie,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:galerie:></a>
 			]
-			[(#ID_RUBRIQUE|match{#SECTEUR_SPECIALISE{agenda:galerie}}|?{'', ' '})
-				[(#ID_SECTEUR|match{#SECTEUR_SPECIALISE{agenda:galerie}}|?{'', ' '})
+			[(#ID_RUBRIQUE|match{#RACINE_SPECIALISEE{agenda:galerie}}|?{'', ' '})
+				[(#ID_SECTEUR|match{#RACINE_SPECIALISEE{agenda:galerie}}|?{'', ' '})
 					|&nbsp;
 					[(#CONFIG{sarkaspip_noisettes/menu_option_1, 0}|!={2}|?{<a href="#URL_RUBRIQUE">})]
 					[(#CONFIG{sarkaspip_noisettes/menu_option_1, 0}|=={2}|?{' '})<INCLURE{fond=noisettes/navigation/inc_nav_rubriques_url}{id_rubrique=#ID_RUBRIQUE}>]
@@ -26,14 +26,14 @@
 				]
 			]
 		</BOUCLE_hierarchie>
-		[(#ENV{id_rubrique}|=={#SECTEUR_SPECIALISE{agenda}}|?{' '})
+		[(#ENV{id_rubrique}|=={#RACINE_SPECIALISEE{agenda}}|?{' '})
 			|&nbsp;<a href="[(#URL_PAGE{agenda,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:agenda:></a>
 		]
-		[(#ENV{id_rubrique}|=={#SECTEUR_SPECIALISE{galerie}}|?{' '})
+		[(#ENV{id_rubrique}|=={#RACINE_SPECIALISEE{galerie}}|?{' '})
 			|&nbsp;<a href="[(#URL_PAGE{galerie,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:galerie:></a>
 		]
-		[(#ENV{id_rubrique}|match{#SECTEUR_SPECIALISE{agenda:galerie}}|?{'', ' '})
-			[(#ID_SECTEUR|match{#SECTEUR_SPECIALISE{agenda:galerie}}|?{'', ' '})
+		[(#ENV{id_rubrique}|match{#RACINE_SPECIALISEE{agenda:galerie}}|?{'', ' '})
+			[(#ID_SECTEUR|match{#RACINE_SPECIALISEE{agenda:galerie}}|?{'', ' '})
 				|&nbsp;
 				[(#CONFIG{sarkaspip_noisettes/menu_option_1, 0}|!={2}|?{<a href="#URL_RUBRIQUE">})]
 				[(#CONFIG{sarkaspip_noisettes/menu_option_1, 0}|=={2}|?{' '})<INCLURE{fond=noisettes/navigation/inc_nav_rubriques_url}{id_rubrique}>]
