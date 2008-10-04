@@ -21,11 +21,27 @@
 	<fieldset>
 		<legend><:envoyer_message:></legend>
 		<ul>
+		
+		[(#REM)   Des fois que l_Internaute contacte l_auteur n_1 alors on entre une e-mail dans le form   ]
+[(#SESSION{id_auteur}|?{'',' '}) 
 			<li class='saisie_email_message_auteur obligatoire[ (#ENV*{erreurs}|table_valeur{email_message_auteur}|oui)erreur]'>
 				<label for="email_message_auteur#ENV{id}"><:form_pet_votre_email:></label>
 				[<span class="erreur_message">(#ENV*{erreurs}|table_valeur{email_message_auteur})</span>]
 				<input type="text" class="text" name="email_message_auteur" id="email_message_auteur#ENV{id}" value="#ENV{email_message_auteur}" size="30" />
-			</li>
+			</li>]
+			
+			[(#REM)   l_auteur est obligatoirement connecte et on masque le champ avec un hidden   ]
+[(#SESSION{id_auteur}|?{' ',''})
+			
+				<li class='saisie_email_message_auteur obligatoire[ (#ENV*{erreurs}|table_valeur{email_message_auteur}|oui)erreur] none'>
+				<label class="none" for="email_message_auteur#ENV{id}"><:form_pet_votre_email:></label>
+				[<span class="erreur_message">(#ENV*{erreurs}|table_valeur{email_message_auteur})</span>]
+				<input type="hidden" name="email_message_auteur" id="email_message_auteur#ENV{id}" value="#ENV{email_message_auteur}" size="30" />
+			</li>]
+			
+			
+			
+			
 			<li class='saisie_sujet_message_auteur obligatoire[ (#ENV*{erreurs}|table_valeur{sujet_message_auteur}|oui)erreur]'>
 				<label for="sujet_message_auteur#ENV{id}"><:form_prop_sujet:></label>
 				[<span class="erreur_message">(#ENV*{erreurs}|table_valeur{sujet_message_auteur})</span>]
