@@ -1,0 +1,231 @@
+<!-- titre=<:sarkaspip:cfg_titre_galerie:> -->
+<!-- descriptif=<:sarkaspip:cfg_descr_galerie:> -->
+<!-- boite=<:sarkaspip:cfg_boite_galerie:> -->
+<INCLURE{fond=noisettes/cfg/inc_cfg_header}>
+#CACHE{0}
+<script type="text/javascript">
+//<![CDATA[
+	jQuery(document).ready(function() {
+		[(#ENV{type, 1}|!={2}|?{' '})
+			jQuery("#select_mois1").prepend('<option value=1><:sarkaspip:janvier:></option>');
+			jQuery("#select_mois1 option:first").attr({selected: "selected"});
+			jQuery("#bloc_mois1").hide();
+			jQuery("#bloc_format_pagination option:first").attr({selected: "selected"});
+			jQuery("#bloc_format_pagination").hide();
+		]
+		[(#ENV{type_resume, 1}|!={oui}|?{' '})
+			jQuery("#bloc_taille_resume").hide();
+		]
+		jQuery("input[@name='type']").change(function() {
+			if (jQuery("input[@name='type']:checked").val() == 2) {
+				jQuery("#bloc_mois1").show();
+				jQuery("#select_mois1 option:first").remove();
+				jQuery("#select_mois1 option:first").attr({selected: "selected"});
+				jQuery("#bloc_format_pagination").show();
+			}
+			else {
+				jQuery("#select_mois1").prepend('<option value=1><:sarkaspip:janvier:></option>');
+				jQuery("#select_mois1 option:first").attr({selected: "selected"});
+				jQuery("#bloc_mois1").hide();
+				jQuery("#bloc_format_pagination option:first").attr({selected: "selected"});
+				jQuery("#bloc_format_pagination").hide();
+			}
+			jQuery(this).blur();
+		});	
+		jQuery("input[@name='type_resume']").change(function() {
+			if (jQuery("input[@name='type_resume']:checked").val() == 'oui') {
+				jQuery("#bloc_taille_resume").show();
+			}
+			else {
+				jQuery("#bloc_taille_resume").hide();
+			}
+			jQuery(this).blur();
+		});	
+	});
+//]]>
+</script>
+<form method="post" action="#SELF"><div>
+	[(#ENV{_cfg_}|form_hidden)]
+	
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_galerie_type_1:></legend>
+		<p><:sarkaspip:cfg_inf_galerie_id:></p>
+		<B_secteurs>
+			<label><:sarkaspip:cfg_lbl_liste_secteurs:></label>
+			<select name="rubrique_galerie">
+				<BOUCLE_agenda(RUBRIQUES){id_rubrique=#ENV{rubrique_galerie, 0}}>
+					[<option value="#ID_RUBRIQUE" selected="selected">(#TITRE|supprimer_numero|attribut_html)</option>]
+				</BOUCLE_agenda>
+		<BOUCLE_secteurs(RUBRIQUES){racine}{id_rubrique!==#RUBRIQUE_SPECIALISEE}{par num titre}{par titre}>
+				[<option value="#ID_RUBRIQUE">(#TITRE|supprimer_numero|attribut_html)</option>]
+		</BOUCLE_secteurs>
+			</select>
+		</B_secteurs>
+		
+	</fieldset>
+	
+	
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_galerie_type_2:></legend>
+		<p><:sarkaspip:cfg_inf_galerie_type_2:></p>
+		<label>
+			<input type="radio" name="type2" value="planche_contact" [(#ENV{type2, planche_contact}|=={planche_contact}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_galerie_type_1:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="type2" value="listing_annuel" [(#ENV{type2, planche_contact}|=={listing_annuel}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_galerie_type_2:>
+		</label>
+	</fieldset>
+ 
+ 
+ 
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_galerie_modele:></legend>
+		<p><:sarkaspip:cfg_inf_galerie_modele:></p>
+		<label>
+			<input type="radio" name="type" value="1" [(#ENV{type, 1}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_galerie_modele_1:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="type" value="2" [(#ENV{type, 1}|=={2}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_galerie_modele_2:>
+		</label>
+		<div id="bloc_mois1">
+			<p><:sarkaspip:cfg_inf_galerie_mois1:></p>
+			<label><:sarkaspip:cfg_lbl_galerie_mois1:></label>
+			<select name="mois1" id="select_mois1">
+				<option value="2"[ (#ENV{mois1, 1}|=={2}|?{selected="selected"})]><:sarkaspip:fevrier:></option>
+				<option value="3"[ (#ENV{mois1, 1}|=={3}|?{selected="selected"})]><:sarkaspip:mars:></option>
+				<option value="4"[ (#ENV{mois1, 1}|=={4}|?{selected="selected"})]><:sarkaspip:avril:></option>
+				<option value="5"[ (#ENV{mois1, 1}|=={5}|?{selected="selected"})]><:sarkaspip:mai:></option>
+				<option value="6"[ (#ENV{mois1, 1}|=={6}|?{selected="selected"})]><:sarkaspip:juin:></option>
+				<option value="7"[ (#ENV{mois1, 1}|=={7}|?{selected="selected"})]><:sarkaspip:juillet:></option>
+				<option value="8"[ (#ENV{mois1, 1}|=={8}|?{selected="selected"})]><:sarkaspip:aout:></option>
+				<option value="9"[ (#ENV{mois1, 1}|=={9}|?{selected="selected"})]><:sarkaspip:septembre:></option>
+				<option value="10"[ (#ENV{mois1, 1}|=={10}|?{selected="selected"})]><:sarkaspip:octobre:></option>
+				<option value="11"[ (#ENV{mois1, 1}|=={11}|?{selected="selected"})]><:sarkaspip:novembre:></option>
+				<option value="12"[ (#ENV{mois1, 1}|=={12}|?{selected="selected"})]><:sarkaspip:decembre:></option>
+			</select>
+		</div>
+	</fieldset>
+<!-- -->
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_galerie_pagination:></legend>
+		<div id="bloc_format_pagination">
+			<p><:sarkaspip:cfg_inf_galerie_pagination_1:></p>
+			<label><:sarkaspip:cfg_lbl_pagination_format:></label>
+			<select name="format_pagination">
+				<option value="annee" [(#ENV{format_pagination, annee}|=={annee}|?{selected="selected"})]><:sarkaspip:cfg_itm_pagination_format_1:></option>
+				<option value="periode" [(#ENV{format_pagination, annee}|=={periode}|?{selected="selected"})]><:sarkaspip:cfg_itm_pagination_format_2:></option>
+				<option value="periode_abregee" [(#ENV{format_pagination, annee}|=={periode_abregee}|?{selected="selected"})]><:sarkaspip:cfg_itm_pagination_format_3:></option>
+			</select>
+			<br /> 
+		</div>
+		<p><:sarkaspip:cfg_inf_galerie_pagination_2:></p>
+		<label><:sarkaspip:cfg_lbl_pagination_separateur:></label>
+		<input type="text" name="separateur_pagination" value="#ENV{separateur_pagination,'&nbsp;|&nbsp;'}" size="11" class="fondl" />
+		<br /> 
+		<label><:sarkaspip:cfg_lbl_pagination_ancre:></label>
+		<input type="text" name="ancre_pagination" value="#ENV{ancre_pagination,'album'}" size="15" class="fondl" />
+		<br /> 
+		
+		<p><:sarkaspip:cfg_inf_galerie_pagination_pas:></p>
+		<label><:sarkaspip:cfg_lbl_galerie_pagination_pas:></label>
+		<input type="text" name="pas_pagination" value="#ENV{pas_pagination,5}" size="11" class="fondl" />
+		<br /> 
+		<p><:sarkaspip:cfg_inf_galerie_pagination_type:></p>
+		<label>
+			<input type="radio" name="type_pagination" value="page" [(#ENV{type_pagination, page}|=={page}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_galerie_pagination_type_page:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="type_pagination" value="numero" [(#ENV{type_pagination, page}|=={numero}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_galerie_pagination_type_numero:>
+		</label>
+		
+	</fieldset>
+		
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_galerie_tri:></legend>
+		<p><:sarkaspip:cfg_inf_galerie_sens_tri:></p>
+		<label>
+			<input type="radio" name="sens_tri" value="normal" [(#ENV{sens_tri, normal}|=={normal}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_tri_chrono:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="sens_tri" value="inverse" [(#ENV{sens_tri, normal}|=={inverse}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_tri_antichrono:>
+		</label>
+	</fieldset>
+	
+	
+<!--	
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_mini_agenda:></legend>
+		<p><:sarkaspip:cfg_inf_mini_agenda:></p>
+		<p><:sarkaspip:cfg_inf_mini_agenda_navigation:></p>
+		<label><:sarkaspip:cfg_lbl_mini_agenda_suiv:></label>
+		<input type="text" name="icone_suivant" value="[(#ENV{icone_suivant,'&gt;&gt;'}|entites_html)]" size="10" class="fondl" />
+		<br /> 
+		<label><:sarkaspip:cfg_lbl_mini_agenda_prec:></label>
+		<input type="text" name="icone_precedent" value="[(#ENV{icone_precedent,'&lt;&lt;'}|entites_html)]" size="10" class="fondl" />
+		<br /> 
+		<p><:sarkaspip:cfg_inf_mini_agenda_mois:></p>
+		<label><:sarkaspip:cfg_lbl_mini_agenda_jour1:></label>
+		<select name="jour1">
+			<option value="0" [(#ENV{jour1, 1}|=={0}|?{selected="selected"})]><:sarkaspip:dimanche:></option>
+			<option value="1" [(#ENV{jour1, 1}|=={1}|?{selected="selected"})]><:sarkaspip:lundi:></option>
+			<option value="2" [(#ENV{jour1, 1}|=={2}|?{selected="selected"})]><:sarkaspip:mardi:></option>
+			<option value="3" [(#ENV{jour1, 1}|=={3}|?{selected="selected"})]><:sarkaspip:mercredi:></option>
+			<option value="4" [(#ENV{jour1, 1}|=={4}|?{selected="selected"})]><:sarkaspip:jeudi:></option>
+			<option value="5" [(#ENV{jour1, 1}|=={5}|?{selected="selected"})]><:sarkaspip:vendredi:></option>
+			<option value="6" [(#ENV{jour1, 1}|=={6}|?{selected="selected"})]><:sarkaspip:samedi:></option>
+		</select>
+		<br /> 
+		<label>
+			<input type="radio" name="affichage_hors_mois" value="oui" [(#ENV{affichage_hors_mois, oui}|=={oui}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_horsmois_oui:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="affichage_hors_mois" value="non" [(#ENV{affichage_hors_mois, oui}|=={non}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_horsmois_non:>
+		</label>
+		<br /> 
+		<p><:sarkaspip:cfg_inf_mini_agenda_resume_1:></p>
+		<p><:sarkaspip:cfg_inf_mini_agenda_resume_2:></p>
+		<label>
+			<input type="radio" name="type_resume" value="oui" [(#ENV{type_resume, oui}|=={oui}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_oui:>
+		</label>
+		<label>
+			<input type="radio" name="type_resume" value="non" [(#ENV{type_resume, oui}|=={non}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_non:>
+		</label>
+		<div id="bloc_taille_resume">
+			<br />
+			<label><:sarkaspip:cfg_lbl_maxmois_resume:></label>
+			<input type="text" name="max_mois_resume" value="#ENV{max_mois_resume, 6}" size="2" class="fondl" />
+			<br />
+			<label><:sarkaspip:cfg_lbl_taille_resume:></label>
+			<input type="text" name="taille_resume" value="#ENV{taille_resume, 5}" size="4" class="fondl" />
+		</div>
+	</fieldset>
+-->	
+	<br />
+	<input type="submit" name="_cfg_ok" class="fondo" value="<:sarkaspip:valider:>" />
+	<input type="submit" name="_cfg_delete" class="fondo" value="<:sarkaspip:effacer:>" />
+</div></form>
+
+[(#CONFIG{sarkaspip_accueil/mode_debug, non}|=={oui}|?{' '})
+	<div id="bloc_debug">
+		<br />
+		>> Debug - Etat des variables du fond Galerie:<br />
+		#CFG_ARBO{sarkaspip_galerie}
+	</div>
+]

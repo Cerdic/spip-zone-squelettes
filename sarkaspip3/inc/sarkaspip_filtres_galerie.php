@@ -25,6 +25,7 @@ function galerie_definir_contexte($id_galerie=0, $type_galerie='listing_annuel',
 	$contexte['debut_saison'] = $debut_saison;
 	$contexte['type_saison'] = $type_saison;
 
+  //echo 'type_galerie = '.$type_galerie;
 	return;
 }
 
@@ -284,7 +285,7 @@ function galerie_planche_paginer($id_galerie, $planche_choisie, $filtre, $separa
 }
 
 // =======================================================================================================================================
-// Filtre : galerie_paginer (balise #RUBRIQUE_GALERIE)
+// Filtre : galerie_afficher (balise #RUBRIQUE_GALERIE)
 // =======================================================================================================================================
 // Auteur: Smellup
 // Fonction : Affichage des albums de la galerie sous forme de listing chronologique ou de planche contact
@@ -387,22 +388,29 @@ function galerie_planche_afficher($id_galerie, $planche_choisie, $filtre, $tri) 
 	$liste = NULL;
 	if (($count_album == 0) || ($count_page == 0))
 		return $liste;
-
+  
+  $liste .= '<ul class="galerie">';
 	for ($i=1;$i<=$count_album;$i++) {
 		$j = ($tri == 'inverse') ? $count_album - $i + 1 : $i;
 		if ($albums[$j]['planche'] == $planche_choisie) {
 			$count_album_filtre += 1;
 
-			$liste .= '<div class="galerie-album" id="planche">';
-			$liste .= '<div class="vignette"><a href="spip.php?page=album&amp;id_article='.$albums[$j]['id'].'" title="'._T('sarkaspip:info_afficher_album').'">'.$albums[$j]['logo'].'</a></div>';
-			$liste .= '<div class="detail">'.nom_jour($albums[$j]['date_article']).'&nbsp;'.$albums[$j]['date'].'<br />'._T('sarkaspip:par_auteur').$albums[$j]['auteurs'].'</div>';
-			$liste .= '<a class="titre" href="spip.php?page=album&amp;id_article='.$albums[$j]['id'].'" title="'._T('sarkaspip:info_afficher_album').'">'.$albums[$j]['titre'].'</a>';
+			//$liste .= '<div class="galerie-album" id="planche">';
+			//$liste .= '<div class="vignette"><a href="spip.php?page=album&amp;id_article='.$albums[$j]['id'].'" title="'._T('sarkaspip:info_afficher_album').'">'.$albums[$j]['logo'].'</a></div>';
+			//$liste .= '<div class="detail">'.nom_jour($albums[$j]['date_article']).'&nbsp;'.$albums[$j]['date'].'<br />'._T('sarkaspip:par_auteur').$albums[$j]['auteurs'].'</div>';
+			//$liste .= '<a class="titre" href="spip.php?page=album&amp;id_article='.$albums[$j]['id'].'" title="'._T('sarkaspip:info_afficher_album').'">'.$albums[$j]['titre'].'</a>';
+			//$liste .= '<div class="introduction">'.$albums[$j]['introduction'].'</div><br /><br />';
+			//$liste .= '<a class="suite" href="spip.php?page=album&amp;id_article='.$albums[$j]['id'].'">'._T('sarkaspip:info_afficher_album').'</a>';
+			//$liste .= '</div>';
+			
+			$liste .= '<li>';
+			$liste .= '<h3>'.$albums[$j]['titre'].'</h3>';
+			$liste .= '<a href="spip.php?page=album&amp;id_article='.$albums[$j]['id'].'" title="'._T('sarkaspip:info_afficher_album').'">'.$albums[$j]['logo'].'</a>';
 			$liste .= '<div class="introduction">'.$albums[$j]['introduction'].'</div><br /><br />';
-			$liste .= '<a class="suite" href="spip.php?page=album&amp;id_article='.$albums[$j]['id'].'">'._T('sarkaspip:info_afficher_album').'</a>';
-			$liste .= '</div>';
+			$liste .= '</li>';
 		}
 	}
-
+  $liste .= '</ul>';
 	return $liste;
 }
 

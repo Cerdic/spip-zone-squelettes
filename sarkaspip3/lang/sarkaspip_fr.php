@@ -345,6 +345,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_titre_sommaire' => 'Sarka-SPIP - Configuration de la page sommaire',
 		'cfg_titre_rubrique' => 'Sarka-SPIP - Configuration de la page rubrique',
 		'cfg_titre_herbier' => 'Sarka-SPIP - Configuration de la page herbier',
+		'cfg_titre_galerie' => 'Sarka-SPIP - Configuration de la page galerie',
 		'cfg_titre_plan' => 'Sarka-SPIP - Configuration de la page plan du site',
 		'cfg_titre_header' => 'Sarka-SPIP - Configuration des balises META',
 
@@ -358,6 +359,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'sarkaspip_sommaire' => 'Sommaire',
 		'sarkaspip_rubrique' => 'Rubrique',
 		'sarkaspip_herbier' => 'Herbier',
+		'sarkaspip_galerie' => 'Galerie',
 		'sarkaspip_plan' => 'Plan du site',
 		'sarkaspip_header' => 'Balises meta',
 		
@@ -374,6 +376,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_descr_rubrique' => 'Le corps de la page rubrique permet d\'afficher plusieurs blocs d\'information : la description, les rubriques filles, les documents et images joints et les articles publi&eacute;s dans la rubrique. Cette page permet de configurer l\'affichage tous ces blocs.',
 		'cfg_descr_herbier' => 'Le corps de la page herbier propose une liste pagin&eacute;e de sites, agr&eacute;ment&eacute;e de vignettes. Cette page est affich&eacute;e selon deux mod&egrave;les: une liste (description et vignette) et un panorama de vignettes uniquement. 
 		Cette page de configuration vous permet de choisir les caract&eacute;ristiques de chaque mod&egrave;le de votre herbier.',
+		'cfg_descr_galerie' => 'bla bla bla',
 		'cfg_descr_plan' => 'Le corps de la page plan du site pr&eacute;sente la liste des articles publi&eacute;s dans le site. Cette liste peut &ecirc;tre tri&eacute;e par rubrique, par auteur ou par date. Cette page de configuration vous permet d\'en choisir les caract&eacute;ristiques de tri.',
 		'cfg_descr_header' => 'La plupart des balises meta du site sont calcul&eacute;es automatiquement &agrave; partir des informations de configuration du site et de la page affich&eacute;e. Cette page permet n&eacute;anmoins de pr&eacute;ciser le nom de l\'auteur, les mots-cl&eacute;s et la p&eacute;riode entre deux visites des robots.',
 
@@ -387,6 +390,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_boite_sommaire' => 'Sommaire',
 		'cfg_boite_rubrique' => 'Rubrique',
 		'cfg_boite_herbier' => 'Herbier',
+		'cfg_boite_galerie' => 'Galerie',
 		'cfg_boite_plan' => 'Plan du site',
 		'cfg_boite_header' => 'Balises meta',
 
@@ -417,6 +421,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_herbier_type' => 'Typage',		
 		'cfg_lgd_herbier_pagination_1' => 'Liste - Pagination',
 		'cfg_lgd_herbier_pagination_2' => 'Panorama - Pagination',
+		'cfg_lgd_galerie_type_1' => 'Typage',
+		'cfg_lgd_galerie_type_2' => 'Galerie - Type',
+    'cfg_lgd_galerie_modele' => 'Galerie - Mod&egrave;le',
+    'cfg_lgd_galerie_pagination' => 'Galerie - Pagination',	
+    'cfg_lgd_galerie_tri' => 'Galerie - Tri',	
 		'cfg_lgd_accueil_intro' => 'Pr&eacute;sentation',
 		'cfg_lgd_accueil_debug' => 'Debug',
 		'cfg_lgd_rubrique_filles' => 'Rubriques filles',
@@ -482,6 +491,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_accueil_intro_9' => '<strong>Rubrique</strong> : choix des composants du corps de page rubrique', 
 		'cfg_inf_accueil_intro_10' => '<strong>Plan du site</strong> : choix des param&egrave;tres de la pagination', 
 		'cfg_inf_accueil_intro_11' => '<strong>Balises meta</strong> : saisie de certaines balises meta', 
+		'cfg_inf_accueil_intro_12' => '<strong>Galerie</strong> : ',
 		'cfg_inf_accueil_debug' => 'Si vous avez un souci ou voulez rapporter un bug il peut &ecirc;tre utile d\'activer le mode debug pour la configuration des pages. Celui-ci vous permez de lire les variables de chaque fond.',
 		'cfg_inf_rubrique_filles' => 'Voulez-vous afficher la liste des rubriques filles suite &agrave; la description de la rubrique ?',
 		'cfg_inf_rubrique_docs' => 'Voulez-vous afficher les documents joints qui ne sont pas inclus dans la description de la rubrique ?',
@@ -492,6 +502,17 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_menu_option1' => 'Pour le menu s&eacute;lectionn&eacute;, vous avez la possibilit&eacute; de choisir une des options propos&eacute;e ci-dessous.',
 		'cfg_inf_agenda_id' => 'L\'agenda est mat&eacute;rialis&eacute; par un secteur (rubrique de plus haut niveau); les articles de cette rubrique sont alors consid&eacute;r&eacute;s comme des &eacute;v&eacute;nements. 
 		Choisissez donc le secteur qui deviendra votre agenda.',
+		'cfg_inf_galerie_id' => 'La galerie est mat&eacute;rialis&eacute; par un secteur (rubrique de plus haut niveau); les articles de cette rubrique sont alors consid&eacute;r&eacute;s comme des albums. 
+		Choisissez donc le secteur qui deviendra votre galerie.',
+		'cfg_inf_galerie_modele' => 'Choisissez le type de galerie cal&eacute;, soit sur une ann&eacute;e calendaire, soit sur une saison. Si vous choisissez une galerie saisonnale, vous aurez la possibilit&eacute; de configurer le 
+		premier mois de la saison et le format de pagination.',
+		'cfg_inf_galerie_type_2' => 'Choisissez le type de galerie, soit de type planche, soit de type plan.',
+    'cfg_inf_galerie_mois1' => 'Pour une galerie saisonnale il vous faut choisir &agrave; quel mois d&eacute;bute la saison.',
+    'cfg_inf_galerie_pagination_1' => 'Pour une galerie au format saison, il vous faut aussi choisir le format de la pagination (2008, 2008-2009 ou 08-09).',
+		'cfg_inf_galerie_pagination_2' => 'Vous pouvez changer le s&eacute;parateur des items de la pagination et le nom de l\'ancre de pagination. Toutefois, il est recommand&eacute; de conserver ces valeurs par d&eacute;faut.',
+    'cfg_inf_galerie_sens_tri' => 'Vous pouvez pr&eacute;senter les albums de la galerie soit dans un ordre chronologique, soit dans un ordre anti-chronologique.',
+    'cfg_inf_galerie_pagination_pas' => 'Dans le cas d\'une galerie de type planche, vous avez la possibilit&eacute; d\'indiquer le pas de la pagination',
+    'cfg_inf_galerie_pagination_type' => 'Vous avez aussi la possibilit&eacute; de choisir le type d\'affichage de cette pagination.',	
 		'cfg_inf_herbier_id' => 'L\'herbier est mat&eacute;rialis&eacute; par les sites r&eacute;f&eacute;renc&eacute;s d\'un secteur (rubrique de plus haut niveau). Choisissez donc le secteur qui deviendra votre herbier.',
 		'cfg_inf_plan_pagination' => 'La page Plan du site est compos&eacute;e de trois onglets assimilables &agrave; une bande de pagination. Les onglets permettent de pr&eacute;senter la liste des articles soit par date, soit par rubrique, soit par auteur.
 		Les articles sont donc tri&eacute;s alphab&eacute;tiquemet ou/et chronologiquement. Le tri alphab&eacute;tique est toujours croissant, par contre, le sens du tri chronologique peut &ecirc;tre choisi. La position de la bande d\'onglets est aussi param&eacute;trable.',
@@ -586,6 +607,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_liste_secteurs' => 'Liste des secteurs possibles',
 		'cfg_lbl_meta_auteur' => 'Nom de l\'auteur du site (balise author)',
 		'cfg_lbl_meta_robot' => 'Nombre de jours entre deux visites des robots (balise revisit-after)',
+		'cfg_lbl_galerie_type_1' => 'Type planche',
+		'cfg_lbl_galerie_type_2' => 'Type plan',
+		'cfg_lbl_galerie_modele_1' => 'Par ann&eacute;e calendaire',
+		'cfg_lbl_galerie_modele_2' => 'Par saison',
+		'cfg_lbl_galerie_mois1' => 'Premier mois de la saison',
+		'cfg_lbl_galerie_pagination_pas' => 'Nombre d\'albums par page',
+		'cfg_lbl_galerie_pagination_type_page' => 'Affichage des num&eacute;ros de page',
+		'cfg_lbl_galerie_pagination_type_numero' => 'Affichage des num&eacute;ros d\'albums',
 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',
