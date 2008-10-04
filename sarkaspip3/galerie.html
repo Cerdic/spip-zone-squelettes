@@ -1,10 +1,12 @@
-<!--Squelette Sarka-SPIP - Copyright (C) 2005-2007 - Collectif Sarka-SPIP - http://sarka-spip.com-->
-
+<!--Squelette Sarka-SPIP - Copyright (C) 2005-2008 - Collectif Sarka-SPIP - http://sarka-spip.com-->
 #CACHE{86400}
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<BOUCLE_rubrique_galerie(RUBRIQUES) {id_rubrique==#RACINE_SPECIALISEE{galerie}}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+	<INCLURE{fond=noisettes/inc_header}
+		{meta_titre=<:sarkaspip:galerie:>}
+		{meta_description=#INTRODUCTION{150}}>
 
-<html lang="#LANG">
-	<INCLURE{fond=noisettes/inc_header}>
 <body dir="#LANG_DIR"[ (#CONFIG{sarkaspip_noisettes/menu_rubriques, 1}|=={1}|?{onload="setHover()"})]>
 <div id="container">
 <div id="header">
@@ -24,7 +26,7 @@
 		
 
 		[(#REM) <!-- Recensement des albums par ordre chronologique --> ]
-		<BOUCLE_galerie(ARTICLES){id_rubrique=#RUBRIQUE_SPECIALISEE{galerie}}{par date}>
+		<BOUCLE_galerie(ARTICLES){id_rubrique==#BRANCHE_SPECIALISEE{galerie}}{par date}>
 			<BOUCLE_vignette_album(DOCUMENTS){id_article}{extension == jpg|png|gif}{mode=document}{doublons}{0,1}>
         			[(#SET{$logo, [(#LOGO_DOCUMENT||image_reduire{150})]})]
       </BOUCLE_vignette_album>
@@ -99,5 +101,8 @@
 
 </div>
 </body>
-
 </html>
+[(#REM) <!-- ================================== ERREUR BOUCLE VIDE  ================================== --> ]
+</BOUCLE_rubrique_galerie>
+	<INCLURE{fond=404}>
+<//B_rubrique_galerie>
