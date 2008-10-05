@@ -21,7 +21,20 @@
 
 
 <BOUCLE_art_forum(ARTICLES){id_article}{titre_mot=forum}{0,1}>
-	<BOUCLE_enfin(FORUMS){id_article}{plat}{doublons}{par date}{inverse}{0,20}>
+	<BOUCLE_enfin(FORUMS){id_article}{plat}{doublons}{statut=original}{par date}{inverse}{0,20}>
+	<item>
+		<title>[(#_enfin:TITRE|texte_backend) ][- Publication (#_enfin:DATE|affdate{"ce j/n "})][-(#_enfin:DATE|heures)][:(#_enfin:DATE|minutes)]</title>
+		<link>#URL_SITE_SPIP/spip.php?page=discussion&amp;id_forum=#ID_FORUM</link>
+		<guid isPermaLink="true">#URL_SITE_SPIP/spip.php?page=discussion&amp;id_forum=#ID_FORUM</guid>
+		[<description>(#_enfin:TEXTE|couper{200}|texte_backend) Attention: correction du message.</description>]
+		[<dc:date>(#_enfin:DATE|date_iso)</dc:date>]
+		<dc:format>text/html</dc:format>
+		<dc:language>#LANG</dc:language>
+		<B_auteursc>
+<dc:creator><BOUCLE_auteursc(AUTEURS){id_auteur}{tous}{", "}><a href="[(#URL_AUTEUR|url_absolue)]">[(#NOM|texte_backend)]</a></BOUCLE_auteursc></dc:creator>
+</B_auteursc>		
+</item>
+</BOUCLE_enfin>
 	<item>
 		<title>[(#_enfin:TITRE|texte_backend) ][- Publication (#_enfin:DATE|affdate{"ce j/n "})][-(#_enfin:DATE|heures)][:(#_enfin:DATE|minutes)]</title>
 		<link>#URL_SITE_SPIP/spip.php?page=discussion&amp;id_forum=#ID_FORUM</link>
@@ -34,7 +47,12 @@
 <dc:creator><BOUCLE_auteursc(AUTEURS){id_auteur}{tous}{", "}><a href="[(#URL_AUTEUR|url_absolue)]">[(#NOM|texte_backend)]</a></BOUCLE_auteursc></dc:creator>
 </B_auteursc>		
 </item>
-</BOUCLE_enfin>
+
+<//B_enfin>
+
+
+
+
 </BOUCLE_art_forum>
 
 
