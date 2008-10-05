@@ -18,7 +18,7 @@
 	<div id="content">
 		[(#REM) <!-- Definition du contexte de la galerie --> ]
     	
-		[(#RUBRIQUE_SPECIALISEE{galerie}|galerie_definir_contexte{	     
+		[(#ID_RUBRIQUE|galerie_definir_contexte{	     
                 [(#CONFIG{sarkaspip_galerie/type2, planche_contact})],
 								[(#CONFIG{sarkaspip_galerie/mois1, 1})],
 								[(#CONFIG{sarkaspip_galerie/format_pagination, periode})]}
@@ -34,7 +34,7 @@
         			[(#SET{$logo, [(#LOGO_ARTICLE||image_reduire{150})]})]
 			<//B_vignette_album>
 
-			[(#RUBRIQUE_SPECIALISEE{galerie}|galerie_recenser_album{	[(#ID_ARTICLE)], 
+			[(#ID_RUBRIQUE|galerie_recenser_album{	[(#ID_ARTICLE)], 
 																		[(#DATE)], 
 																		[(#TITRE|supprimer_numero)],
                                     [(#GET{$logo})],
@@ -56,7 +56,7 @@
 		[(#REM) <!-- Pagination de la page galerie --> ]
 		<div class="pagination">
 		
-			[(#RUBRIQUE_SPECIALISEE{galerie}|galerie_paginer{	[(#ENV{annee, [(#ENV{planche})]})],
+			[(#ID_RUBRIQUE|galerie_paginer{	[(#ENV{annee, [(#ENV{planche})]})],
 																[(#ENV{mois})],
 																[(#ENV{categorie,-1})],
 																[(#CONFIG{sarkaspip_galerie/separateur_pagination,'&nbsp;|&nbsp;'})],
@@ -69,7 +69,7 @@
 		</div> <!-- Fin pagination -->
 		
 		[(#REM) <!-- Affichage de la liste des albums --> ]
-		[(#RUBRIQUE_SPECIALISEE{galerie}|galerie_afficher{	[(#ENV{annee, [(#ENV{planche})]})],
+		[(#ID_RUBRIQUE|galerie_afficher{	[(#ENV{annee, [(#ENV{planche})]})],
 															[(#ENV{mois})],
 															[(#ENV{categorie,-1})],
 															[(#CONFIG{sarkaspip_galerie/sens_tri,'normal'})]}
@@ -77,7 +77,7 @@
 			
 		[(#REM) <!-- Affichage des messages d'erreur --> ]
 		[<p class="erreur">
-			(#RUBRIQUE_SPECIALISEE{galerie}|galerie_avertir{	[(#ENV{annee, [(#ENV{planche})]})],
+			(#ID_RUBRIQUE|galerie_avertir{	[(#ENV{annee, [(#ENV{planche})]})],
 																[(#ENV{mois})]})
 		</p>]	
 		
@@ -91,7 +91,7 @@
 
 <div id="extra">
 	[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
-	<INCLURE{fond=noisettes/extra}{self=#SELF}{id_secteur=#RUBRIQUE_SPECIALISEE{galerie}}{categorie}{annee}{mois}>
+	<INCLURE{fond=noisettes/extra}{self=#SELF}{id_secteur=#RACINE_SPECIALISEE{galerie}}{categorie}{annee}{mois}>
 </div>
 
 <div id="footer">
