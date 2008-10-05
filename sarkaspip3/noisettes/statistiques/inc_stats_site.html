@@ -12,17 +12,18 @@
 			<div class="texte"><:sarkaspip:date_aujourdhui:></div>
 		<//B_maj>
 	</div>
-	
+
+	[(#PLUGIN{ACCESRESTREINT}|?{' '}) [(#SET{critere_tout, tout_voir})]]
 	<div class="contenu">
 		<h2 class="titre_bloc"><:sarkaspip:statistiques_edition:></h2>
 		<div class="texte">
-			<B_tous_articles> <BOUCLE_tous_articles(ARTICLES){tout}{id_rubrique!==#RUBRIQUE_SPECIALISEE}> </BOUCLE_tous_articles>
+			<B_tous_articles> <BOUCLE_tous_articles(ARTICLES) {id_secteur!==#RACINE_SPECIALISEE}> </BOUCLE_tous_articles>
 				[#TOTAL_BOUCLE (#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_article:>,<:sarkaspip:articles:>})]</B_tous_articles><:sarkaspip:0_article:><//B_tous_articles><br />
-			<B_tous_breves> <BOUCLE_tous_breves(BREVES){tout}> </BOUCLE_tous_breves>
+			<B_tous_breves> <BOUCLE_tous_breves(BREVES) {id_rubrique!==#BRANCHE_SPECIALISEE}> </BOUCLE_tous_breves>
 				[#TOTAL_BOUCLE (#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_breve:>,<:sarkaspip:breves:>})]</B_tous_breves><:sarkaspip:0_breve:><//B_tous_breves><br />
-			<B_tous_sites> <BOUCLE_tous_sites(SITES){tout}> </BOUCLE_tous_sites>
+			<B_tous_sites> <BOUCLE_tous_sites(SITES) {id_secteur!==#RACINE_SPECIALISEE{annonce:galerie:agenda}}> </BOUCLE_tous_sites>
 				[#TOTAL_BOUCLE (#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_site_web:>,<:sarkaspip:sites_web:>})]</B_tous_sites><:sarkaspip:0_site_web:><//B_tous_sites><br />
-			<B_tous_auteurs> <BOUCLE_tous_auteurs(AUTEURS){tout}> </BOUCLE_tous_auteurs>
+			<B_tous_auteurs> <BOUCLE_tous_auteurs(AUTEURS) {tout}> </BOUCLE_tous_auteurs>
 				[#TOTAL_BOUCLE (#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_auteur:>,<:sarkaspip:auteurs:>})]</B_tous_auteurs><:sarkaspip:0_auteur:><//B_tous_auteurs><br />
 		</div>
 	</div>

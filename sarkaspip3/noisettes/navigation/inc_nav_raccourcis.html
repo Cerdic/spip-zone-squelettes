@@ -1,5 +1,5 @@
 [(#REM) <!-- Menu dans colonne Navigation --> ]
-[(#CONFIG{sarkaspip_bandeau/menu_raccourcis, 0}|!={1}|?{' '}) <!-- Menu dans colonne Navigation -->
+[(#CONFIG{sarkaspip_bandeau/menu_raccourcis, 0}|!={1}|?{' '})
 	#SET{classe_div, noisette nav2}
 	#SET{classe_li, raccourci_nav1}
 ]
@@ -11,8 +11,7 @@
 <div id="menu_raccourcis" class="#GET{classe_div}">
 	<ul>
 		<li class="[(#GET{classe_li})]"><a href="#URL_PAGE{plan,tri=par_rubrique}"><:sarkaspip:plan_site:></a></li>
-		<BOUCLE_acces_agenda(RUBRIQUES) {id_rubrique=#RUBRIQUE_SPECIALISEE{agenda}}>
-			[(#RUBRIQUE_SPECIALISEE{agenda}|!={0}|?{' '})
+		<BOUCLE_acces_agenda(RUBRIQUES) {id_rubrique=#RACINE_SPECIALISEE{agenda}}>
 				[(#CONFIG{sarkaspip_agenda/plugin, 1}|=={1}|?{' '})
 					<li class="[(#GET{classe_li})]"><a href="[(#URL_PAGE{agenda,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:agenda:></a></li>
 				]
@@ -21,15 +20,14 @@
 						<li class="[(#GET{classe_li})]"><a href="[(#URL_PAGE{agenda,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:agenda:></a></li>
 					]
 				]
-			]
 		</BOUCLE_acces_agenda>
-		<BOUCLE_acces_galerie(RUBRIQUES) {id_rubrique=#RUBRIQUE_SPECIALISEE{galerie}}>
-			[(#RUBRIQUE_SPECIALISEE{galerie}|>{0}|?{<li class="[(#GET{classe_li})]"><a href="[(#URL_PAGE{galerie,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:galerie:></a></li>})]
+		<BOUCLE_acces_galerie(RUBRIQUES) {id_rubrique=#RACINE_SPECIALISEE{galerie}}>
+			<li class="[(#GET{classe_li})]"><a href="[(#URL_PAGE{galerie,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:galerie:></a></li>
 		</BOUCLE_acces_galerie>
-		<BOUCLE_acces_herbier(RUBRIQUES) {id_rubrique=#RUBRIQUE_SPECIALISEE{herbier}}>
-			[(#RUBRIQUE_SPECIALISEE{herbier}|>{0}|?{<li class="[(#GET{classe_li})]"><a href="[(#URL_PAGE{herbier,type=liste[&id_rubrique=(#ID_RUBRIQUE)]})]"><:sarkaspip:herbier_sites|ucfirst:></a></li>})]
+		<BOUCLE_acces_herbier(RUBRIQUES) {id_rubrique=#RACINE_SPECIALISEE{herbier}}>
+			<li class="[(#GET{classe_li})]"><a href="[(#URL_PAGE{herbier,type=liste[&id_rubrique=(#ID_RUBRIQUE)]})]"><:sarkaspip:herbier_sites|ucfirst:></a></li>
 		</BOUCLE_acces_herbier>
-		<BOUCLE_test_mots(MOTS) {type!==^squelette_} {0,1}>
+		<BOUCLE_test_mots(MOTS) {type!==^squelette_}{0,1}>
 			<li class="[(#GET{classe_li})]"><a href="#URL_PAGE{mot}"><:sarkaspip:mots_clefs:></a></li>
 		</BOUCLE_test_mots>
 		<BOUCLE_forum(FORUMS) {0,1}>

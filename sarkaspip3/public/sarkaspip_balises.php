@@ -98,7 +98,7 @@ function balise_AUJOURDHUI($p) {
 }
 
 // =======================================================================================================================================
-// Balise : #RUBRIQUE_SPECIALISEE
+// Balise : #RACINE_SPECIALISEE et BRANCHE_SPECIALISEE
 // =======================================================================================================================================
 // Auteur: SarkASmeL
 // Fonction : retourne la valeur de l'ID de la rubrique demandee ou de toutes les rubriques specialisees sous forme de regex
@@ -160,59 +160,6 @@ function calcul_rubrique_specialisee($mot_rubrique, $mode) {
 	
 	return $id;
 }
-
-
-function balise_RUBRIQUE_SPECIALISEE($p) {
-
-	$mot_rubrique = interprete_argument_balise(1,$p);
-	$mot_rubrique = isset($mot_rubrique) ? str_replace('\'', '"', $mot_rubrique) : '""';
-
-	$p->code = 'calcul_rubrique_specialisee_old('.strtolower($mot_rubrique).')';
-	$p->interdire_scripts = false;
-	return $p;
-}
-function calcul_rubrique_specialisee_old($mot) {
-
-	// On calcule le liste des mots reserves SarkaSPIP + definis par l'utilisateur
-	$mots_reserves = explode(':', _SARKASPIP_MOT_SECTEURS_SPECIALISES);
-    if (defined(_PERSO_MOT_SECTEURS_SPECIALISES))
-    	if (_PERSO_MOT_SECTEURS_SPECIALISES != '')
-	    	$mots_reserves = array_merge($mots_reserves, explode(':', _PERSO_MOT_SECTEURS_SPECIALISES));
-	$types_reserves = explode(':', _SARKASPIP_TYPE_SECTEURS_SPECIALISES);
-    if (defined(_PERSO_TYPE_SECTEURS_SPECIALISES))
-    	if (_PERSO_TYPE_SECTEURS_SPECIALISES != '')
-	    	$types_reserves = array_merge($types_reserves, explode(':', _PERSO_TYPE_SECTEURS_SPECIALISES));
-	$fonds_reserves = explode(':', _SARKASPIP_FOND_SECTEURS_SPECIALISES);
-    if (defined(_PERSO_FOND_SECTEURS_SPECIALISES))
-    	if (_PERSO_FOND_SECTEURS_SPECIALISES != '')
-	    	$fonds_reserves = array_merge($fonds_reserves, explode(':', _PERSO_FOND_SECTEURS_SPECIALISES));
-
-	$id = NULL;
-	$mot_rubrique = explode(':', $mot);
-	if (!$mot_rubrique[0]) {
-		$id .= '^(';
-		reset($mots_reserves);
-		while (list($cle, $valeur) = each($mots_reserves)) {
-			$id .= (($cle != 0) ? '|' : '').calcul_rubrique($valeur, $types_reserves[$cle], $fonds_reserves[$cle]); 
-		}
-		$id .= ')$';
-	}
-	else if ($mot_rubrique[0] == $mot) {
-		$cle = array_search($mot, $mots_reserves);
-	    $id = calcul_rubrique($mot, $types_reserves[$cle], $fonds_reserves[$cle]);
-	}
-	else {
-		$id .= '^(';
-		reset($mots_reserves);
-		while (list($cle, $valeur) = each($mots_reserves)) {
-			if ( in_array($valeur, $mot_rubrique))
-				$id .= (($id != '^(') ? '|' : '').calcul_rubrique($valeur, $types_reserves[$cle], $fonds_reserves[$cle]); 
-		}
-		$id .= ')$';
-	}
-	return $id;
-}
-
 
 function calcul_rubrique($mot, $type, $fond, $mode='rubrique') {
 
