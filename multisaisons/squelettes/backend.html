@@ -19,28 +19,27 @@
 	</image>
 ]
 
-
-<BOUCLE_art_forum(ARTICLES){id_article}{titre_mot=forum}{0,1}>
-	<BOUCLE_enfin(FORUMS){id_article}{plat}{doublons}{statut=original}{par date}{inverse}{0,20}>
+<BOUCLE_Forums(FORUMS){id_article}{par date}{inverse}{plat}{0,20}>	
+<BOUCLE_original_ou_pas(FORUMS){id_parent}{statut=original}{0,1}>
 	<item>
-		<title>[(#_enfin:TITRE|texte_backend) ][- Publication (#_enfin:DATE|affdate{"ce j/n "})][-(#_enfin:DATE|heures)][:(#_enfin:DATE|minutes)]</title>
+		<title>[(#TITRE|texte_backend) ][- Publication (#DATE|affdate{"ce j/n "})][-(#DATE|heures)][:(#DATE|minutes)]</title>
 		<link>#URL_SITE_SPIP/spip.php?page=discussion&amp;id_forum=#ID_FORUM</link>
 		<guid isPermaLink="true">#URL_SITE_SPIP/spip.php?page=discussion&amp;id_forum=#ID_FORUM</guid>
-		[<description>(#_enfin:TEXTE|couper{200}|texte_backend) Attention: correction du message.</description>]
-		[<dc:date>(#_enfin:DATE|date_iso)</dc:date>]
+		[<description>Correction du message: (#TEXTE|couper{200}|texte_backend)</description>]
+		[<dc:date>(#DATE|date_iso)</dc:date>]
 		<dc:format>text/html</dc:format>
 		<dc:language>#LANG</dc:language>
 		<B_auteursc>
 <dc:creator><BOUCLE_auteursc(AUTEURS){id_auteur}{tous}{", "}><a href="[(#URL_AUTEUR|url_absolue)]">[(#NOM|texte_backend)]</a></BOUCLE_auteursc></dc:creator>
 </B_auteursc>		
 </item>
-</BOUCLE_enfin>
+</BOUCLE_original_ou_pas>
 	<item>
-		<title>[(#_enfin:TITRE|texte_backend) ][- Publication (#_enfin:DATE|affdate{"ce j/n "})][-(#_enfin:DATE|heures)][:(#_enfin:DATE|minutes)]</title>
+		<title>[(#TITRE|texte_backend) ][- Publication (#DATE|affdate{"ce j/n "})][-(#DATE|heures)][:(#DATE|minutes)]</title>
 		<link>#URL_SITE_SPIP/spip.php?page=discussion&amp;id_forum=#ID_FORUM</link>
 		<guid isPermaLink="true">#URL_SITE_SPIP/spip.php?page=discussion&amp;id_forum=#ID_FORUM</guid>
-		[<description>(#_enfin:TEXTE|couper{200}|texte_backend)</description>]
-		[<dc:date>(#_enfin:DATE|date_iso)</dc:date>]
+		[<description>(#TEXTE|couper{200}|texte_backend)</description>]
+		[<dc:date>(#DATE|date_iso)</dc:date>]
 		<dc:format>text/html</dc:format>
 		<dc:language>#LANG</dc:language>
 		<B_auteursc>
@@ -48,14 +47,8 @@
 </B_auteursc>		
 </item>
 
-<//B_enfin>
-
-
-
-
-</BOUCLE_art_forum>
-
-
+<//B_original_ou_pas>
+</BOUCLE_Forums>
 
 <BOUCLE_10recents(ARTICLES){rubrique ?}{lang ?}{branche ?}{par date}{inverse}{0,10}{unique}>
 <INCLURE{fond=inc-rss-item}{id_article}>
@@ -63,7 +56,7 @@
 
 
 
-	<//B_art_forum>
+<//B_Forums>
 
 
 
