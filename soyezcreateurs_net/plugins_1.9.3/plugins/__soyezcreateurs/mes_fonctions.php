@@ -357,10 +357,4 @@ function generer_url_refsite($id, $args, $ancre) {
 	return array('site', $id);
 }
 
-if (!defined(_DIR_PLUGIN_ACCESRESTREINT)) {
-	function AccesRestreint_rubrique_restreinte($id_rubrique){
-		return false;
-	}
-}
-
 ?>
