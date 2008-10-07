@@ -348,6 +348,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_titre_galerie' => 'Sarka-SPIP - Configuration de la page galerie',
 		'cfg_titre_plan' => 'Sarka-SPIP - Configuration de la page plan du site',
 		'cfg_titre_header' => 'Sarka-SPIP - Configuration des balises META',
+		'cfg_titre_formulaires' => 'Sarka-SPIP - Configuration des pages de formulaires',
 
 // Titre des liens des pages
 		'sarkaspip_accueil' => 'Accueil',
@@ -362,6 +363,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'sarkaspip_galerie' => 'Galerie',
 		'sarkaspip_plan' => 'Plan du site',
 		'sarkaspip_header' => 'Balises meta',
+		'sarkaspip_formulaires' => 'Formulaires',
 		
 // Descriptif des pages
 		'cfg_descr_accueil' => 'Vous &ecirc;tes sur la page d\'accueil de la configuration du squelette Sarka-SPIP.',
@@ -379,6 +381,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_descr_galerie' => 'bla bla bla',
 		'cfg_descr_plan' => 'Le corps de la page plan du site pr&eacute;sente la liste des articles publi&eacute;s dans le site. Cette liste peut &ecirc;tre tri&eacute;e par rubrique, par auteur ou par date. Cette page de configuration vous permet d\'en choisir les caract&eacute;ristiques de tri.',
 		'cfg_descr_header' => 'La plupart des balises meta du site sont calcul&eacute;es automatiquement &agrave; partir des informations de configuration du site et de la page affich&eacute;e. Cette page permet n&eacute;anmoins de pr&eacute;ciser le nom de l\'auteur, les mots-cl&eacute;s et la p&eacute;riode entre deux visites des robots.',
+		'cfg_descr_formulaires' => 'Le corps de certaines pages du squelette permet d\'afficher un formulaire comme le formulaire de contact. Cette page de configuration vous permet d\'en choisir les caract&eacute;ristiques.',
 
 // Titre des boites
 		'cfg_boite_accueil' => 'Accueil',
@@ -393,6 +396,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_boite_galerie' => 'Galerie',
 		'cfg_boite_plan' => 'Plan du site',
 		'cfg_boite_header' => 'Balises meta',
+		'cfg_boite_formulaires' => 'Formulaires',
 
 // Legendes des blocs contenus dans chaque boite
 		'cfg_lgd_layout' => 'Layout',
@@ -423,9 +427,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_herbier_pagination_2' => 'Panorama - Pagination',
 		'cfg_lgd_galerie_type_1' => 'Typage',
 		'cfg_lgd_galerie_type_2' => 'Galerie - Type',
-    'cfg_lgd_galerie_modele' => 'Galerie - Mod&egrave;le',
-    'cfg_lgd_galerie_pagination' => 'Galerie - Pagination',	
-    'cfg_lgd_galerie_tri' => 'Galerie - Tri',	
+	    'cfg_lgd_galerie_modele' => 'Galerie - Mod&egrave;le',
+    	'cfg_lgd_galerie_pagination' => 'Galerie - Pagination',	
+    	'cfg_lgd_galerie_tri' => 'Galerie - Tri',	
 		'cfg_lgd_accueil_intro' => 'Pr&eacute;sentation',
 		'cfg_lgd_accueil_debug' => 'Debug',
 		'cfg_lgd_rubrique_filles' => 'Rubriques filles',
@@ -433,6 +437,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_rubrique_images' => 'Portfolio',
 		'cfg_lgd_rubrique_articles' => 'Articles publi&eacute;s',
 		'cfg_lgd_plan_pagination' => 'Pagination',
+		'cfg_lgd_form_contact' => 'Contact',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -491,7 +496,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_accueil_intro_9' => '<strong>Rubrique</strong> : choix des composants du corps de page rubrique', 
 		'cfg_inf_accueil_intro_10' => '<strong>Plan du site</strong> : choix des param&egrave;tres de la pagination', 
 		'cfg_inf_accueil_intro_11' => '<strong>Balises meta</strong> : saisie de certaines balises meta', 
-		'cfg_inf_accueil_intro_12' => '<strong>Galerie</strong> : ',
+		'cfg_inf_accueil_intro_12' => '<strong>Galerie</strong> : configuration des divers affichages de la galerie',
 		'cfg_inf_accueil_debug' => 'Si vous avez un souci ou voulez rapporter un bug il peut &ecirc;tre utile d\'activer le mode debug pour la configuration des pages. Celui-ci vous permez de lire les variables de chaque fond.',
 		'cfg_inf_rubrique_filles' => 'Voulez-vous afficher la liste des rubriques filles suite &agrave; la description de la rubrique ?',
 		'cfg_inf_rubrique_docs' => 'Voulez-vous afficher les documents joints qui ne sont pas inclus dans la description de la rubrique ?',
@@ -507,17 +512,18 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_galerie_modele' => 'Choisissez le type de galerie cal&eacute;, soit sur une ann&eacute;e calendaire, soit sur une saison. Si vous choisissez une galerie saisonnale, vous aurez la possibilit&eacute; de configurer le 
 		premier mois de la saison et le format de pagination.',
 		'cfg_inf_galerie_type_2' => 'Choisissez le type de galerie, soit de type planche, soit de type plan.',
-    'cfg_inf_galerie_mois1' => 'Pour une galerie saisonnale il vous faut choisir &agrave; quel mois d&eacute;bute la saison.',
-    'cfg_inf_galerie_pagination_1' => 'Pour une galerie au format saison, il vous faut aussi choisir le format de la pagination (2008, 2008-2009 ou 08-09).',
+		'cfg_inf_galerie_mois1' => 'Pour une galerie saisonnale il vous faut choisir &agrave; quel mois d&eacute;bute la saison.',
+		'cfg_inf_galerie_pagination_1' => 'Pour une galerie au format saison, il vous faut aussi choisir le format de la pagination (2008, 2008-2009 ou 08-09).',
 		'cfg_inf_galerie_pagination_2' => 'Vous pouvez changer le s&eacute;parateur des items de la pagination et le nom de l\'ancre de pagination. Toutefois, il est recommand&eacute; de conserver ces valeurs par d&eacute;faut.',
-    'cfg_inf_galerie_sens_tri' => 'Vous pouvez pr&eacute;senter les albums de la galerie soit dans un ordre chronologique, soit dans un ordre anti-chronologique.',
-    'cfg_inf_galerie_pagination_pas' => 'Dans le cas d\'une galerie de type planche, vous avez la possibilit&eacute; d\'indiquer le pas de la pagination',
-    'cfg_inf_galerie_pagination_type' => 'Vous avez aussi la possibilit&eacute; de choisir le type d\'affichage de cette pagination.',	
+		'cfg_inf_galerie_sens_tri' => 'Vous pouvez pr&eacute;senter les albums de la galerie soit dans un ordre chronologique, soit dans un ordre anti-chronologique.',
+		'cfg_inf_galerie_pagination_pas' => 'Dans le cas d\'une galerie de type planche, vous avez la possibilit&eacute; d\'indiquer le pas de la pagination',
+		'cfg_inf_galerie_pagination_type' => 'Vous avez aussi la possibilit&eacute; de choisir le type d\'affichage de cette pagination.',	
 		'cfg_inf_herbier_id' => 'L\'herbier est mat&eacute;rialis&eacute; par les sites r&eacute;f&eacute;renc&eacute;s d\'un secteur (rubrique de plus haut niveau). Choisissez donc le secteur qui deviendra votre herbier.',
 		'cfg_inf_plan_pagination' => 'La page Plan du site est compos&eacute;e de trois onglets assimilables &agrave; une bande de pagination. Les onglets permettent de pr&eacute;senter la liste des articles soit par date, soit par rubrique, soit par auteur.
 		Les articles sont donc tri&eacute;s alphab&eacute;tiquemet ou/et chronologiquement. Le tri alphab&eacute;tique est toujours croissant, par contre, le sens du tri chronologique peut &ecirc;tre choisi. La position de la bande d\'onglets est aussi param&eacute;trable.',
 		'cfg_inf_plan_sens_tri' => 'Choisissez l\'ordre de tri des dates.',
 		'cfg_inf_meta_keywords' => 'Liste des mots-cles caract&eacute;risant le site s&eacute;par&eacute;s par des virgules (balise keywords)',
+		'cfg_inf_form_contact' => 'Le formulaire de contact permet aux visiteurs d\'envoyer un message au webmestre du site. Vous pouvez choisir ci-apr&egrave;s l\'administrateur qui fera office de webmestre de contact.',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
@@ -615,6 +621,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_galerie_pagination_pas' => 'Nombre d\'albums par page',
 		'cfg_lbl_galerie_pagination_type_page' => 'Affichage des num&eacute;ros de page',
 		'cfg_lbl_galerie_pagination_type_numero' => 'Affichage des num&eacute;ros d\'albums',
+		'cfg_lbl_liste_admins' => 'Liste des administrateurs',
 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',
