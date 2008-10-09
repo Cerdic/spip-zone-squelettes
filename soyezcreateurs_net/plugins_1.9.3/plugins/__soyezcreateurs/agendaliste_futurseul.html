@@ -11,7 +11,7 @@
 
 <div class="texte">
 <div class="cartouche">
-<h1>[(#SET{lelogo,[(#MODELE{rubrique_logo}{mode=normal}|image_reduire{64,64})]})][<img class="logo_rubrique" src="/(#GET{lelogo}|extraire_attribut{src})"[ width="(#GET{lelogo}|extraire_attribut{width})"][ height="(#GET{lelogo}|extraire_attribut{height})"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" />][(#TITRE)] : [(#ENV{date_ev,[(#ENV{date})]}|annee)]...</h1>
+<h1>[(#SET{lelogo,[(#MODELE{rubrique_logo}{mode=normal}|image_reduire{64,64})]})][<img class="logo_rubrique" src="(#GET{lelogo}|extraire_attribut{src})"[ width="(#GET{lelogo}|extraire_attribut{width})"][ height="(#GET{lelogo}|extraire_attribut{height})"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" />][(#TITRE)] : [(#ENV{date_ev,[(#ENV{date})]}|annee)]...</h1>
 </div>
 <B_themes>
 <div id="artrecents" class="flottant">
@@ -37,7 +37,7 @@
 		<form id="timenavigation" method="get" action="#URL_RUBRIQUE"><fieldset><legend><:pyrat:precisezrecherche:></legend>
 		<BOUCLE_PremiereAnnee(EVENEMENTS){branche}{date_debut>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}{par date_debut}{0,1}>
 		<?php if ([(#DATE_DEBUT|annee)]<[(#ENV{date_ev,[(#ENV{date})]}|annee)]) { ?>
-		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee)] - 1); ?>-01-01[&amp;genre=(#ENV{genre,''}|urlencode)]&amp;calendrier=1"><img src="/#CHEMIN{images/prev.gif}" title="<:precedent:>" alt="<:precedent:>" /></a>
+		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee)] - 1); ?>-01-01[&amp;genre=(#ENV{genre,''}|urlencode)]&amp;calendrier=1"><img src="#CHEMIN{images/prev.gif}" title="<:precedent:>" alt="<:precedent:>" /></a>
 		<?php } ?>
 		</BOUCLE_PremiereAnnee>
 		<select id="date_ev" name="date_ev">
@@ -58,7 +58,7 @@
 		<input type="submit" class="form_submit" value="<:pass_ok:>" />
 		<BOUCLE_DerniereAnnee(EVENEMENTS){branche}{!par date_debut}{0,1}>
 		<?php if ([(#DATE_DEBUT|annee)]>[(#ENV{date_ev,[(#ENV{date})]}|annee)]) { ?>
-		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee)] + 1); ?>-01-01[&amp;genre=(#ENV{genre,''}|urlencode)]&amp;calendrier=1"><img src="/#CHEMIN{images/next.gif}" title="<:suivant:>" alt="<:suivant:>" /></a>
+		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee)] + 1); ?>-01-01[&amp;genre=(#ENV{genre,''}|urlencode)]&amp;calendrier=1"><img src="#CHEMIN{images/next.gif}" title="<:suivant:>" alt="<:suivant:>" /></a>
 		<?php } ?>
 		</BOUCLE_DerniereAnnee>
 		<?php if ( [(#ENV{date}|annee)] != [(#ENV{date_ev,[(#ENV{date})]}|annee)] ) { ?>
