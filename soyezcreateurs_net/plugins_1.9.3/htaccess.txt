@@ -1,5 +1,5 @@
 ##############################################################
-# Fichier .htaccess                                SPIP v1.9 #
+# Fichier .htaccess                               SPIP v 2.0 #
 #                                                            #
 # Permet de controler les URLs et la version de php utilisee #
 # Compatible avec les URLs 'html', 'propres' et 'propres2'   #
@@ -19,13 +19,10 @@ RewriteEngine On
 ################ CONFIGURATION ######################
 
 ### Configuration sous-repertoire
-# Si votre site est dans un sous-repertoire, preciser ci-dessous
-# le nom du sous-repertoire, et supprimer le '#'
-# Chez certains hebergeurs il faut indiquer "RewriteBase /"
+# Chez la plupart des hebergeurs il faut indiquer "RewriteBase /"
+# sinon modifiez cette ligne
 
-#RewriteBase /sous/repertoire/
 RewriteBase /
-ErrorDocument 404 /@404.html
 
 
 # SPIP version 'php' - si vous avez d'anciennes adresses en '.php[3]',
@@ -42,34 +39,19 @@ ErrorDocument 404 /@404.html
 ################ REGLAGES PERSONNALISES ######################
 # Inscrivez ci-dessous vos reglages supplementaires
 
-# rediriger les .css qui n'existent pas vers à la racine .php
-RewriteRule ^(styles.+)\.css spip.php?page=$1.css [QSA,L]
+RewriteRule ^@(.*)([^@])\.html$ spip.php?page=$1$2 [QSA,L] # Permet des url du type @monsquelette.html
 
-RewriteRule ^(javascripts)\.js$	spip.php?page=$1.js [QSA,L]
-
-RewriteRule ^(affiche_image|backend.*|spip_background)\.php3$	spip.php?page=$1.php3 [QSA,L]
-RewriteRule ^(.*)/(affiche_image|backend.*|spip_background)\.php3$	/$2.php3 [QSA,R=301,L]
-
-RewriteRule ^@(.*)-([0-9]*)\.html$ spip.php?page=$1 [QSA,L]
-RewriteRule ^(.*)/?@(.*)-([0-9]*)\.html$ /@$2-$3.html [QSA,R=301,L]
-RewriteRule ^@(.*)([^@])\.html$ spip.php?page=$1$2 [QSA,L]
-RewriteRule ^(.*)/?@(.*)([^@])\.html$ /@$2$3.html [QSA,R=301,L]
-
-RewriteRule ^(plan|resume)\.html$ spip.php?page=$1 [QSA,L]				# d'abord l'écriture masquée
-RewriteRule ^(.*)/(plan|resume)\.html$ /$2.html [QSA,R=301,L]		# ensuite la redirection
-
-# Attention : ca ne marche pas si les sites sont mutualises (parce que les chemins sont du type : sites/lesite/IMG/) !
-#RewriteCond %{REQUEST_URI} !^/(ecrire|img|IMG|squelettes)/
-#RewriteRule ^(.*)/(ecrire|img|IMG|squelettes)/(.*) /$2/$3 [QSA,R=301,L]
-
-RewriteCond %{REQUEST_URI} !^/spip\.php
-RewriteRule ^(.*)/(spip\.php).* /$2 [QSA,L]
-
-# Permettre a IE de reconnaitre le win_png.htc de retraitement des png transparents
-AddType text/x-component .htc
+RewriteRule ^(plan)\.html$ spip.php?page=$1 [QSA,L]
 
 
 ################ GESTIONS DES URLS SPIP #######################
+
+# Deux pseudo-actions a present evacuees
+# N'y at-il pas moyen de REMPLACER un nom dans la QueryString ?
+RewriteCond %{QUERY_STRING} action=rss
+RewriteRule spip.php	spip.php?page=rss [QSA,L]
+RewriteCond %{QUERY_STRING} action=ical
+RewriteRule spip.php	spip.php?page=ical_prive [QSA,L]
 
 ###
 # Si le fichier ou repertoire demande existe
@@ -85,27 +67,27 @@ RewriteRule "." - [skip=100]
 ###
 # Compatibilite avec les URLS "html" (pour transition sympa)
 # voir fichier ecrire/urls/html.php3
-RewriteRule rubrique([0-9]+)\.html$	spip.php?page=rubrique&id_rubrique=$1 [QSA,L]
-RewriteRule article([0-9]+)\.html$	spip.php?page=article&id_article=$1 [QSA,L]
-RewriteRule breve([0-9]+)\.html$	spip.php?page=breve&id_breve=$1 [QSA,L]
-RewriteRule mot([0-9]+)\.html$		spip.php?page=mot&id_mot=$1 [QSA,L]
-RewriteRule auteur([0-9]+)\.html$	spip.php?page=auteur&id_auteur=$1 [QSA,L]
-RewriteRule site([0-9]+)\.html$	spip.php?page=site&id_syndic=$1 [QSA,L]
+RewriteRule ^rubrique([0-9]+)(\.html)?$	spip.php?page=rubrique&id_rubrique=$1 [QSA,L]
+RewriteRule ^article([0-9]+)(\.html)?$	spip.php?page=article&id_article=$1 [QSA,L]
+RewriteRule ^breve([0-9]+)(\.html)?$	spip.php?page=breve&id_breve=$1 [QSA,L]
+RewriteRule ^mot([0-9]+)(\.html)?$		spip.php?page=mot&id_mot=$1 [QSA,L]
+RewriteRule ^auteur([0-9]+)(\.html)?$	spip.php?page=auteur&id_auteur=$1 [QSA,L]
+RewriteRule ^site([0-9]+)(\.html)?$	spip.php?page=site&id_syndic=$1 [QSA,L]
 # Compatibilite avec les anciennes URLS appelant directement des fichiers php
-RewriteRule ^(rubrique|article|breve|mot|auteur|site|agenda|backend|backend-breves|distrib|forum|ical|plan|recherche|resume|sommaire|sommaire_texte)\.php3?$	spip.php?page=$1 [QSA,L]
+RewriteRule ^(rubrique|article|breve|mot|auteur|site|agenda|backend|backend-breves|distrib|forum|ical|plan|recherche|sommaire|sommaire_texte)\.php3?$	spip.php?page=$1 [QSA,L]
+RewriteRule ^resume.php[3]?	spip.php?page=sommaire [QSA,L]
 RewriteRule ^page.php[3]?	spip.php [QSA,L]
-RewriteRule ^spip_cal\.php3?$	spip.php?action=ical [QSA,L]
-RewriteRule ^spip_rss\.php3?$	spip.php?action=rss [QSA,L]
+RewriteRule ^spip_cal\.php3?$	spip.php?page=ical_prive [QSA,L]
+RewriteRule ^spip_rss\.php3?$	spip.php?page=rss [QSA,L]
+
+
 # Fin compatibilite
 ###
 
 ###
-# URLs "propres" et "propres2"
-# pensez a regler $type_urls='propres' ou 'propres2'
-# dans ecrire/mes_options.php
-# (fichier associe : ecrire/urls/propres.php)
+# URLs "propres", "propres2", "libres", "arbo"
 
-RewriteRule ^[^/\.]+(\.html)?$		spip.php?page=type_urls [QSA,E=url_propre:$0,L]
+RewriteRule ^[^\.]+(\.html)?$		spip.php?page=type_urls [QSA,E=url_propre:$0,L]
 
 # Fin URLs "propres" et "propres2"
 ###
@@ -116,42 +98,21 @@ RewriteRule ^[^/\.]+(\.html)?$		spip.php?page=type_urls [QSA,E=url_propre:$0,L]
 # bloquer les acces aux repertoires .svn/ (SPIP, plugins, squelettes...)
 RewriteRule ^(.*/)?\.svn/ - [F]
 
+# expirer les images (pour contourner gros bug MSIE sur le cache)
+# note : a decommenter si vous voulez tester
+#<IfModule mod_expires.c>
+# ExpiresActive on
+# ExpiresByType image/gif A3600
+# ExpiresByType image/jpeg A3600
+# ExpiresByType image/png A3600
+#</IfModule>
+
+#################################
+# gestion des erreurs 404
+# voir http://www.spip.net/fr_article3226.html
+# Pour que le serveur http renvoie les erreurs 404 vers SPIP, supprimer le '#'
+
+ErrorDocument 404 /spip.php?page=404
+
 #
-# URLs hierachiques
-# Pas de réécriture pour les répertoires qui suivent
-#RewriteRule ^(annuaire|apm|courrier|ecrire|lamy|NAVPICS|oo|telecharger)/ - [NC,L]
-
-# Si le fichier ou repertoire demande existe
-# ignorer les 100 règles qui suivent (skip=saute à la nème instruction)
-RewriteCond %{REQUEST_FILENAME} -f
-RewriteRule "." - [NC,L]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule "." - [NC,L]
-
-
-# Les mots-cles
-RewriteRule ^\+-[^/\.]+(-\+)?(\.html)?$ spip.php?page=mot [QSA,E=url_propre:$0,L]
-
-# Les breves
-RewriteRule (\+[^/]+\+\.html)$ spip.php?page=breve [QSA,E=url_propre:$0,L]
-
-# Les rubriques
-RewriteRule ([^/]+/index.html)$ spip.php?page=rubrique [QSA,E=url_propre:$1,L]
-
-# les auteurs
-RewriteRule ^auteurs/_[^/\.]+_?(\.html)?$ spip.php?page=auteur [QSA,E=url_propre:$0,L]
-
-# les sites
-RewriteRule ^sites/_[^/\.]+_?(\.html)?$ spip.php?page=site [QSA,E=url_propre:$0,L]
-
-# Les articles (en dernier car expression plus "large")
-RewriteRule ([^/]+\.html)$ spip.php?page=article [QSA,E=url_propre:$1,L]
-# Fin URLs hierachiques
 ###
-
-# rediriger les .php3 errones vers .php
-RewriteCond %{REQUEST_FILENAME} (.*\.php)3$
-RewriteCond $1 -f
-RewriteRule . $1 [QSA,L]
-
-################ FIN HTACCESS SPIP ########################
