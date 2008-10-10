@@ -524,6 +524,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_plan_sens_tri' => 'Choisissez l\'ordre de tri des dates.',
 		'cfg_inf_meta_keywords' => 'Liste des mots-cles caract&eacute;risant le site s&eacute;par&eacute;s par des virgules (balise keywords)',
 		'cfg_inf_form_contact' => 'Le formulaire de contact permet aux visiteurs d\'envoyer un message au webmestre du site. Vous pouvez choisir ci-apr&egrave;s l\'administrateur qui fera office de webmestre de contact.',
+		'cfg_inf_annonce_id' => 'Une annonce est mat&eacute;rialis&eacute;e par un article appartenant &agrave; un secteur (rubrique de plus haut niveau). Choisissez donc le secteur qui contiendra vos annonces.',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
