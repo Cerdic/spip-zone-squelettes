@@ -1,9 +1,9 @@
 #CACHE{3600}
-<BOUCLE_article_principal(ARTICLES) {id_article}><BOUCLE_Gribouille(HIERARCHIE){id_article}{tout}{titre_mot=Gribouille}{inverse}{0,1}>[(#INCLURE{fond=gribouille/article}{env})]</BOUCLE_Gribouille><BOUCLE_EstNewsLetter(MOTS){id_rubrique}{titre=NewsLetter}><INCLURE{fond=articlenewsletter}{id_article}{lang}></BOUCLE_EstNewsLetter><?php $jp_rubrique = '[(#ID_RUBRIQUE|texte_script)]'; ?><BOUCLE_RacineMenuHaut(HIERARCHIE){id_rubrique}{tout}{titre_mot=MenuHaut}{inverse} {0,1}>[(#SET{secteurencours,#ID_RUBRIQUE})]</BOUCLE_RacineMenuHaut><?php
+<BOUCLE_article_principal(ARTICLES) {id_article}><BOUCLE_Gribouille(HIERARCHIE){id_article}{tout}{titre_mot=Gribouille}{inverse}{0,1}>[(#INCLURE{fond=gribouille/article}{env})]</BOUCLE_Gribouille><BOUCLE_EstNewsLetter(MOTS){id_rubrique}{titre=NewsLetter}>[(#INCLURE{fond=articlenewsletter}{id_article}{lang})]</BOUCLE_EstNewsLetter><?php $jp_rubrique = '[(#ID_RUBRIQUE|texte_script)]'; ?><BOUCLE_RacineMenuHaut(HIERARCHIE){id_rubrique}{tout}{titre_mot=MenuHaut}{inverse} {0,1}>[(#SET{secteurencours,#ID_RUBRIQUE})]</BOUCLE_RacineMenuHaut><?php
 $jp_article = '[(#ID_ARTICLE|texte_script)]';
 $titre = '[(#TITRE|attribut_html|texte_script)]';
 $titretop = '[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]';
-?><INCLURE{fond=header}{id_article}{id_rubrique}{rubriqueencours=#ID_RUBRIQUE}{connexion}{secteurencours=#GET{secteurencours}}{lang}{metadescription=(#INTRODUCTION{150}|supprimer_tags|attribut_html)}>
+?>[(#INCLURE{fond=header}{id_article}{id_rubrique}{rubriqueencours=#ID_RUBRIQUE}{connexion}{secteurencours=#GET{secteurencours}}{lang}{metadescription=[(#INTRODUCTION{150}|supprimer_tags|attribut_html)]})]
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
@@ -12,7 +12,7 @@ $titretop = '[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]';
 	</BOUCLE_plan>
 	<li>[(#TITRE)]</li>
 	</ul>
-<INCLURE{fond=inc_affrubcomplete}{id_rubrique}{lang}>
+[(#INCLURE{fond=inc_affrubcomplete}{id_rubrique}{lang})]
 	</div>
 
 [(#INCLURE{fond=article_cartouche}{id_article}{lang})]
@@ -20,9 +20,9 @@ $titretop = '[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]';
 <div class="texte">
 <div class="cartouche surlignable">
 [<div class="#EDIT{surtitre} surtitre"><span>(#SURTITRE)</span></div>]
-<INCLURE{fond=aff_datepublication}{id_article}{lang}>
+[(#INCLURE{fond=aff_datepublication}{id_article}{lang})]
 <div><h1 class="#EDIT{titre} entry-title">[<img src="(#LOGO_ARTICLE_NORMAL||image_reduire{64,64}|extraire_attribut{src})" class="logo_article" alt="[(#TITRE|texte_script|supprimer_tags|attribut_html) (logo)]" width="[(#LOGO_ARTICLE_NORMAL||image_reduire{64,64}|extraire_attribut{width})]" height="[(#LOGO_ARTICLE_NORMAL||image_reduire{64,64}|extraire_attribut{height})]" />][(#TITRE)][(#PLUGIN{ARTICLE_PDF}|=={1}|?{' '})#ARTICLE_PDF]</h1></div>
-[<div class="#EDIT{soustitre} soustitre"><span>(#SOUSTITRE)</span></div>]<INCLURE{fond=liste_auteurs}{id_article}{lang}>
+[<div class="#EDIT{soustitre} soustitre"><span>(#SOUSTITRE)</span></div>][(#INCLURE{fond=liste_auteurs}{id_article}{lang})]
 [<div class="notation pas_surlignable">(#NOTATION)</div>]
 </div>
 
@@ -181,14 +181,14 @@ $titretop = '[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]';
 
 [(#FORMULAIRE_ADMIN)]
 [<script src="(#CONFIG{soyezcreateurs_google/feedflare})?i=[(#URL_ARTICLE|url_absolue)]" type="text/javascript" charset="utf-8"></script>]
-<INCLURE{fond=footer}{rubriqueencours=#ID_RUBRIQUE}{id_rubrique}{id_article}{secteurencours=#GET{secteurencours}}{lang}>
+[(#INCLURE{fond=footer}{rubriqueencours=#ID_RUBRIQUE}{id_rubrique}{id_article}{secteurencours=#GET{secteurencours}}{lang})]
 	<//B_EstNewsLetter>
 <//B_Gribouille>
 </BOUCLE_article_principal>
-[(#CONFIG{soyezcreateurs_google/redirection_ancien_site})<INCLURE{fond=inc_redirect}>]
+[(#CONFIG{soyezcreateurs_google/redirection_ancien_site})[(#INCLURE{fond=inc_redirect})]]
 <?php $titre = '<:pyrat:erreur|texte_script:>'; ?>
 <?php $titretop = '<:pyrat:erreur|nettoyer_marqueur|texte_script:>'; ?>
-<INCLURE{fond=header}{connexion}{secteurencours=#GET{secteurencours}}{lang}>
+[(#INCLURE{fond=header}{connexion}{secteurencours=#GET{secteurencours}}{lang})]
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
@@ -203,11 +203,11 @@ $titretop = '[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]';
 <h1><:pyrat:erreur_articleexistepas:></h1>
 </div>
 
-<INCLURE{fond=inc_plan}{lang}>
+[(#INCLURE{fond=inc_plan}{lang})]
 ]
 </div><!-- Fin de .texte -->
 
 [(#FORMULAIRE_ADMIN)]
 
-<INCLURE{fond=footer}{rubriqueencours=#ID_RUBRIQUE}{id_rubrique}{secteurencours=#GET{secteurencours}}{lang}>
+[(#INCLURE{fond=footer}{rubriqueencours=#ID_RUBRIQUE}{id_rubrique}{secteurencours=#GET{secteurencours}}{lang})]
 <//B_article_principal>

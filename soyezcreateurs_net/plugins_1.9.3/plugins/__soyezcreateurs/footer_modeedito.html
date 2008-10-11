@@ -32,7 +32,7 @@
 
 <BOUCLE_MenuHaut(RUBRIQUES){titre_mot=MenuHaut}{id_rubrique=#ENV{secteurencours}}{!titre_mot=PasDansMenu}{!lang_select}>
 <div class="espaceavant">
-<INCLURE{fond=menuarticles}{id_rubrique}>
+[(#INCLURE{fond=menuarticles}{id_rubrique})]
 <B_Rubriques_MenuHaut>
 <ul>
   <BOUCLE_Rubriques_MenuHaut(RUBRIQUES){id_parent}{par num titre}{!titre_mot=PasDansMenu}{!lang_select}><BOUCLE_test_expose_MenuHaut(RUBRIQUES) {id_enfant}{0,1}>#EXPOSE{' ',(#CONFIG{soyezcreateurs/sousmenulocaux,'systematique'}|=={systematique}|?{' ',''})}</BOUCLE_test_expose_MenuHaut>
@@ -83,7 +83,7 @@
 
 <//B_MenuHaut>
 
-[(#PLUGIN{ACCESRESTREINT}|=={1}|?{' '})<INCLURE{fond=login-logout}{env}>]
+[(#PLUGIN{ACCESRESTREINT}|=={1}|?{' '})[(#INCLURE{fond=login-logout}{env})]]
 <div class="espaceavant">
 <ul>
 <li><?php if ($GLOBALS['jp_rubrique']=='Plan') { ?><strong><?php } ?><a accesskey="P" href="@plan.html" title="<:pyrat:toutleplan:>"><:pyrat:plan_menu:></a><?php if ($GLOBALS['jp_rubrique']=='Plan') { ?></strong><?php } ?></li>
@@ -96,8 +96,8 @@
 
 </ul>
 </div>
-<INCLURE{fond=#CONFIG{soyezcreateurs/frmrecherche,'frmrecherche'}}>
-[(#CONFIG{soyezcreateurs_google/google_search}|!={''}|?{' ',''})<INCLURE{fond=inc_ads_search}>]
+[(#INCLURE{fond=#CONFIG{soyezcreateurs/frmrecherche,'frmrecherche'}})]
+[(#CONFIG{soyezcreateurs_google/google_search}|!={''}|?{' ',''})[(#INCLURE{fond=inc_ads_search})]]
 
 [(#PLUGIN{SPIPLISTES}|=={1}|?{' '})[<div class="cadreinfo">(#FORMULAIRE_ABONNEMENT)</div>]]
 
@@ -105,4 +105,4 @@
 
 </div>
 	</div><!-- id="navigation" -->
-<INCLURE{fond=menu_right}{id_rubrique}{id_article}{template}>
+[(#INCLURE{fond=menu_right}{id_rubrique}{id_article}{template})]

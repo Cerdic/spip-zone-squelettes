@@ -3,20 +3,20 @@
 <BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}{!lang_select}><?php $jp_rubrique = [(#ID_RUBRIQUE|texte_script)]; ?><BOUCLE_RacineMenuHaut(HIERARCHIE){tout}{id_rubrique}{titre_mot=MenuHaut}{inverse} {0,1}>[(#SET{secteurencours,#ID_RUBRIQUE})]</BOUCLE_RacineMenuHaut><?php
 $titre = '[(#TITRE|attribut_html|texte_script)]';
 $titretop = '[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]';
-?><INCLURE{fond=header}{id_rubrique}{connexion}{secteurencours=#GET{secteurencours}}{metadescription=(#INTRODUCTION{150}|supprimer_tags|attribut_html)}>
+?>[(#INCLURE{fond=header}{id_rubrique}{connexion}{secteurencours=#GET{secteurencours}}{metadescription=[(#INTRODUCTION{150}|supprimer_tags|attribut_html)]})]
 <BOUCLE_EstAgenda(HIERARCHIE){id_rubrique}{tout}{titre_mot=Agenda}{inverse}{0,1}>
-[(#CONFIG{soyezcreateurs/agendathematique,Non}|=={#ENV{calendrier,Oui}}|?{' ',''})<INCLURE{fond=agendathematique}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}>]
+[(#CONFIG{soyezcreateurs/agendathematique,Non}|=={#ENV{calendrier,Oui}}|?{' ',''})[(#INCLURE{fond=agendathematique}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE})]]
 [(#CONFIG{soyezcreateurs/agendathematique,Non}|!={#ENV{calendrier,Oui}}|?{' ',''})
-	[(#CONFIG{soyezcreateurs/agendascolaire,annuel}|=={scolaire}|?{' ',''})<INCLURE{fond=agendaliste_scolaire}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{genre}>]
+	[(#CONFIG{soyezcreateurs/agendascolaire,annuel}|=={scolaire}|?{' ',''})[(#INCLURE{fond=agendaliste_scolaire}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{genre})]]
 	[(#CONFIG{soyezcreateurs/agendascolaire,annuel}|=={annuel}|?{' ',''})
-		[(#CONFIG{soyezcreateurs/agendafuturseul,Non}|=={Oui}|?{' ',''})<INCLURE{fond=agendaliste_futurseul}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{genre}>]
-		[(#CONFIG{soyezcreateurs/agendafuturseul,Non}|=={Non}|?{' ',''})<INCLURE{fond=agendaliste}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{genre}>]
+		[(#CONFIG{soyezcreateurs/agendafuturseul,Non}|=={Oui}|?{' ',''})[(#INCLURE{fond=agendaliste_futurseul}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{genre})]]
+		[(#CONFIG{soyezcreateurs/agendafuturseul,Non}|=={Non}|?{' ',''})[(#INCLURE{fond=agendaliste}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{genre})]]
 	]
 ]
 </BOUCLE_EstAgenda>
 
 <BOUCLE_TypeRubrique(HIERARCHIE){id_rubrique}{tout}{type=_TypeRubrique}{inverse} {0,1}><BOUCLE_Mot_TypeRubrique(MOTS){type=_TypeRubrique}>
-<INCLURE{fond=inc_typerubrique_#TITRE}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{id_article}{rubriqueencours}{template}{secteurencours}{racinetype=#_TypeRubrique:ID_RUBRIQUE}>
+[(#INCLURE{fond=inc_typerubrique_#TITRE}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{id_article}{rubriqueencours}{template}{secteurencours}{racinetype=#_TypeRubrique:ID_RUBRIQUE})]
 </BOUCLE_Mot_TypeRubrique></BOUCLE_TypeRubrique>
 	<div id="miettesdepain">
 	<ul>
@@ -26,7 +26,7 @@ $titretop = '[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]';
 	</BOUCLE_plan>
 	<li>[(#TITRE)]</li>
 	</ul>
-<INCLURE{fond=inc_affrubcomplete}{id_rubrique}>
+[(#INCLURE{fond=inc_affrubcomplete}{id_rubrique})]
 
 	</div>
 
@@ -54,11 +54,11 @@ $titretop = '[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]';
 </B_rubrique_principal>
 <?php $titre = '<:pyrat:erreur:>'; ?>
 <?php $titretop = '<:pyrat:erreur|nettoyer_marqueur:>'; ?>
-<INCLURE{fond=header}{id_rubrique}{connexion}>
+[(#INCLURE{fond=header}{id_rubrique}{connexion})]
 [(#ID_RUBRIQUE|AccesRestreint_rubrique_restreinte|?{' ',''})    
 <p>Attention : cette rubrique est r&eacute;serv&eacute;e aux personnes disposant d'un acc&egrave;s r&eacute;serv&eacute;. </p>]
 [(#ID_RUBRIQUE|AccesRestreint_rubrique_restreinte|?{'',' '})
 <p>Erreur : cette rubrique n'existe pas !</p>]
 <//B_rubrique_principal>
-<INCLURE{fond=footer}{rubriqueencours=#ID_RUBRIQUE}{id_rubrique}{secteurencours=#GET{secteurencours}}>
+[(#INCLURE{fond=footer}{rubriqueencours=#ID_RUBRIQUE}{id_rubrique}{secteurencours=#GET{secteurencours}})]
 <//B_Gribouille>
