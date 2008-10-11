@@ -1,0 +1,67 @@
+[(#RACINE_SPECIALISEE{galerie}|galerie_definir_contexte{	
+    [(#CONFIG{sarkaspip_galerie/type2, planche_contact})],
+		[(#CONFIG{sarkaspip_galerie/mois1, 1})],
+		[(#CONFIG{sarkaspip_galerie/format_pagination, periode})]
+    }
+)]
+		
+
+[(#REM) <!-- Recensement des albums par ordre chronologique --> ]
+<BOUCLE_galerie(ARTICLES){id_rubrique=#RACINE_SPECIALISEE{galerie}}{par date}>
+    <BOUCLE_vignette_album(DOCUMENTS){id_article}{extension == jpg|png|gif}{mode=document}{doublons}{0,1}>
+      [(#SET{$logo, [(#LOGO_DOCUMENT||image_reduire{150})]})]
+    </BOUCLE_vignette_album>
+    </B_vignette_album>
+      [(#SET{$logo, [(#LOGO_ARTICLE||image_reduire{150})]})]
+		<//B_vignette_album>
+
+    [(#RACINE_SPECIALISEE{galerie}|galerie_recenser_album{	
+        [(#ID_ARTICLE)], 
+				[(#DATE)], 
+				[(#TITRE|supprimer_numero)],
+        [(#GET{$logo})],
+        [(#INTRODUCTION|typo_couleur)]}
+		)]
+</BOUCLE_galerie>
+		
+[(#REM) <!-- Titre de la page galerie --> ]
+<h1 class="intitule_page">
+    <:sarkaspip:albums_galerie:>&nbsp;-&nbsp;
+    <BOUCLE_titre_categorie(MOTS) {type=squelette_galerie}{id_mot=(#ENV{categorie,-1})}>
+				[<:sarkaspip:info_album_categorie:>&nbsp;:&nbsp;(#TITRE)]
+		</BOUCLE_titre_categorie>
+		</B_titre_categorie>
+		[(#ENV{categorie,-1}|=={-1}|?{<:sarkaspip:info_album_sans_filtre:>,[(#ENV{categorie,-1}|=={0}|?{<:sarkaspip:info_album_sans_categorie:>})]})]
+		<//B_titre_categorie>
+</h1> <!-- Fin intitule -->
+		
+[(#REM) <!-- Pagination de la page galerie --> ]
+<div class="pagination">		
+		[(#RACINE_SPECIALISEE{galerie}|galerie_paginer{	
+        [(#ENV{annee, [(#ENV{planche})]})],
+				[(#ENV{mois})],
+				[(#ENV{categorie,-1})],
+				[(#CONFIG{sarkaspip_galerie/separateur_pagination,'&nbsp;|&nbsp;'})],
+				[(#CONFIG{sarkaspip_galerie/ancre_pagination,'album'})],
+				[(#CONFIG{sarkaspip_galerie/sens_tri,'normal'})],
+				[(#CONFIG{sarkaspip_galerie/pas_pagination,5})],
+				[(#CONFIG{sarkaspip_galerie/type_pagination,'page'})]}
+		)]		
+</div> <!-- Fin pagination -->
+		
+[(#REM) <!-- Affichage de la liste des albums --> ]
+		[(#RACINE_SPECIALISEE{galerie}|galerie_afficher{	
+        [(#ENV{annee, [(#ENV{planche})]})],
+				[(#ENV{mois})],
+				[(#ENV{categorie,-1})],
+				[(#CONFIG{sarkaspip_galerie/sens_tri,'normal'})]
+        }
+)]
+
+[(#REM) <!-- Affichage des messages d'erreur --> ]
+[<p class="erreur">
+	(#ID_RUBRIQUE|galerie_avertir{	
+      [(#ENV{annee, [(#ENV{planche})]})],
+      [(#ENV{mois})]
+  })
+</p>]	
