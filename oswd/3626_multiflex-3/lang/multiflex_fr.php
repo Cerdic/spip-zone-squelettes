@@ -31,14 +31,14 @@ $GLOBALS['i18n_multiflex_fr'] = array(
 'voir_site' => 'Voir le site&nbsp;&raquo;',
 
 // pied
-'adapte_par' => 'Adapt&eacute; par ',
 'designer_page' => 'Site internet du designer',
 'documentation_multiflex' => 'Documentation de Multiflex',
 'habillage_de' => 'Habillage de ',
 'modifie_par' => 'Modifi&eacute; par ',
 'modifieur_page' => 'Site internet du modifieur',
-'propulse_par' => 'Propuls&eacute; par',
+'pour' => 'pour',
 'site_internet_spip' => 'Site internet de SPIP',
+'squelette_multiflex' => 'Squelette Multiflex',
 'tous_droits_reserves' => 'Tous droits r&eacute;serv&eacute;s',
 
 // pour liens CFG
