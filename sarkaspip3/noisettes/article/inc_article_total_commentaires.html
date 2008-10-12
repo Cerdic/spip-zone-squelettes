@@ -1,0 +1,21 @@
+[(#REM) 
+<!-- Affichage de l'article: logo, titre, chapo, texte, ps...
+	Recoit en argument :
+		- id_article: id de l'article concerne
+		- ancre_meme_page: introduction/description, permet d'afficher ou pas les l'icone et de renvoyer vers l'ancre de la page sinon l'ancre de la page article
+-->
+]
+<BOUCLE_combien(FORUMS) {id_article}{plat}></BOUCLE_combien>
+	[(#TOTAL_BOUCLE|=={0}|?{' '})
+		[(#SET{libelle, <:sarkaspip:0_commentaire:>})]
+	]
+	[(#TOTAL_BOUCLE|!={0}|?{' '})
+		[(#SET{libelle, [(#TOTAL_BOUCLE)&nbsp;[(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_commentaire:>,<:sarkaspip:commentaires:>})]]})]
+	]
+<//B_combien>
+[(#ENV{ancre_meme_page}|=={oui}|?{' '})
+	<a class="fonction" id="voir_commentaires" href="#commentaires"[ title="(#GET{libelle})"]></a>
+]
+[(#ENV{ancre_meme_page}|=={non}|?{' '})
+	[<a[ href="(#URL_ARTICLE|ancre_url{commentaires})"]>(#GET{libelle})</a>]
+]

@@ -3,28 +3,37 @@
 	Recoit en argument :
 		- id_article: id de l'article concerne
 		- afficher_mere: indicateur d'affichage ou pas de la rubrique mere de l'article concerne
+		- afficher_commentaires: indicateur d'affichage ou pas du nombre de commentaires de l'article concerne
 		- taille_introduction: taille maximum affichee par la balise #INTRODUCTION de l'article
 		- bouton_lien : bouton situe en bas de la noisette, indiquant s'il faut "lire la suite" ou "retourner a l'article"
 -->
 ]
 <BOUCLE_article_intro(ARTICLES) {id_article}>
 	<div class="extrait" [style="[min-height: (#LOGO_ARTICLE||image_reduire{150}||hauteur_majoree)]px; _height: (#LOGO_ARTICLE||image_reduire{150}||hauteur_majoree)px;"]>
-		[<div class="image">(#LOGO_ARTICLE||image_reduire{150})</div>]
-		[(#INCLURE{fond=noisettes/article/inc_article_cartouche}{id_article}{avec_popularite=non})]
+		[<div class="image">(#LOGO_ARTICLE||image_reduire{80})</div>]
+		<INCLURE{fond=noisettes/article/inc_article_cartouche}{id_article}{page=article}{avec_popularite=non}>
+		[<h3><a class="titre" href="#URL_ARTICLE" title="<:sarkaspip:lire_suite_article:>">(#TITRE|supprimer_numero)</a></h3>]
+		<div class="complements">
 		[(#ENV{afficher_mere}|=={oui}|?{' '})
-			[(#INCLURE{fond=noisettes/rubrique/inc_rubrique_mere}{id_rubrique})]
+			<INCLURE{fond=noisettes/rubrique/inc_rubrique_mere}{id_rubrique}>
 		]
-		[<div class="surtitre">(#SURTITRE)</div>]
-		[<a class="titre" href="#URL_ARTICLE" title="<:sarkaspip:lire_suite_article:>">(#TITRE|supprimer_numero)</a>]
-		[<div class="soustitre">(#SOUSTITRE)</div>]
+		[(#PARAMETRES_FORUM|?{' '})
+			[(#ENV{afficher_commentaires}|=={oui}|?{' '})
+				[(#ENV{afficher_mere}|=={oui}|?{' '})&nbsp;-&nbsp;]
+				<INCLURE{fond=noisettes/article/inc_article_total_commentaires}{id_article}{ancre_meme_page=non}>
+			]
+		]
+		</div> <!-- Fin complements -->
 		<div class="introduction">
 			[(#INTRODUCTION{#ENV{taille_introduction}}|typo_couleur)]
 			<br /><br />		
+<!-- 
       <a class="suite" href="#URL_ARTICLE">
         [(#ENV{bouton_lien,suite}|=={retour}|?{
           <:sarkaspip:retour_article:>,
           <:sarkaspip:lire_suite_article:>})]
       </a>
+ -->
 			
 		</div> <!-- Fin introduction -->
 	</div> <!-- Fin extrait -->

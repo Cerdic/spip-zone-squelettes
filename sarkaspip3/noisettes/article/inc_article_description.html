@@ -3,6 +3,7 @@
 	Recoit en argument :
 		- id_article: id de l'article concerne
 		- page: indique le type de page affichee (article - par defaut -, evenement, album, edito)
+		- afficher_commentaires: indicateur d'affichage ou pas du nombre de commentaires de l'article concerne
 		- avec_popularite: indique si on doit afficher ou pas la popularite
 		- id_evenement: id de l'evenement associe a l'article (page evenement avec plugin agenda)
 -->
@@ -16,17 +17,9 @@
 			[(#MODELE{mod_bouton_pdf}{id_article})]
 		]
 	]
-	<BOUCLE_combien(FORUMS) {id_article}{plat}></BOUCLE_combien>
-		[(#TOTAL_BOUCLE|=={0}|?{' '})
-			[(#SET{bulle, <:sarkaspip:0_commentaire:>})]
-		]
-		[(#TOTAL_BOUCLE|!={0}|?{' '})
-			[(#SET{bulle, [(#TOTAL_BOUCLE)&nbsp;[(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_commentaire:>,<:sarkaspip:commentaires:>})]]})]
-		]
-	<//B_combien>
 	[(#PARAMETRES_FORUM|?{' '})
-		[(#ENV{page}|match{^(article|album)$}|?{' '})
-		<a class="fonction" id="voir_commentaires" href="#commentaires" title="#GET{bulle}"></a>
+		[(#ENV{afficher_commentaires}|=={oui}|?{' '})
+			<INCLURE{fond=noisettes/article/inc_article_total_commentaires}{id_article}{ancre_meme_page=oui}>
 		]
 	]
 	
