@@ -9,12 +9,12 @@
 <BOUCLE_local(RUBRIQUES){id_rubrique}>
   <BOUCLE_secteur(HIERARCHIE){tout}{0,1}><?php  $liLevel = 0; ?>
     <ul class='menuList' id='menuList1'>
+
 		<BOUCLE_articles_secteur(ARTICLES){id_rubrique}{doublons articles}{par titre}>
 			<li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero|textebrut)]</a></li>
 		</BOUCLE_articles_secteur>
 		
 	  <BOUCLE_rubriques(RUBRIQUES){id_parent}{doublons secteur}{par titre}>
-	  
 			<li class='liRub#GET{stylezone}'><?php $lbLayer = (++$liLevel > 1); ?>
 				<a href='#URL_RUBRIQUE'>[(#TITRE|supprimer_numero|textebrut)] 
 				<?php	if ($lbLayer) echo ' <span>►</span>'; ?></a>
@@ -33,7 +33,18 @@
 				</BOUCLE_afficher>
 			</li><?php $liLevel--; ?>
 		</BOUCLE_rubriques>
+		
+	  <BOUCLE_restreint(RUBRIQUES){id_parent}{tout_voir}{doublons secteur}{par titre}>
+			<li class='liRub'>
+				<a href="/spip.php?page=login&url=#URL_RUBRIQUE" title="Espace membre, accès restreint">[(#TITRE|supprimer_numero|textebrut|accesgroupes_visualise{#ID_RUBRIQUE,#CHEMIN{styles/images/cadenas-12.gif}})]</a>
+			</li>
+	  </BOUCLE_restreint>
+		
 		<INCLURE{fond=inc-html-23-Menu-deroulant-syndication}>
+		
+		<BOUCLE_contact(ARTICLES){titre_mot=_source_Contact}>
+			<li><a href="#URL_ARTICLE"[ title="(#TITRE|supprimer_numero)"]><img src="#CHEMIN{styles/images/message-16x12px.png}" alt='' title='Contact'/> Contact</a></li>
+		</BOUCLE_contact>
 		</ul>
 	</BOUCLE_secteur>
 </BOUCLE_local>
