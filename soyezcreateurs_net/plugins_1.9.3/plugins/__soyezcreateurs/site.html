@@ -7,9 +7,9 @@ $jp_syndication = '[(#ENV{id_syndic_article}|texte_script)]';
 ?>
 [(#SET{titretop,<:sites_web|nettoyer_marqueur:>_[(#NOM_SITE|nettoyer_marqueur)]})]
 <BOUCLE_ArticleSyndiqueTitre(SYNDIC_ARTICLES) {id_syndic_article} >
-[(#INCLURE{fond=header}{connexion}{metadescription=[(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)]}{title=[(#TITRE|textebrut|texte_script)][ - (#NOM_SITE|textebrut|texte_script) (<:sites_web:>)]}{env})]
+[(#INCLURE{fond=header}{connexion}{metadescription=[(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)]}{title=[(#TITRE|textebrut|texte_script)][ - (#NOM_SITE|textebrut|texte_script) (<:sites_web:>)]}{titretop=#GET{titretop}})]
 </BOUCLE_ArticleSyndiqueTitre>
-[(#INCLURE{fond=header}{connexion}{metadescription=[(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)]}{title=[(#NOM_SITE|textebrut|texte_script) (<:sites_web:>)]}{env})]
+[(#INCLURE{fond=header}{connexion}{metadescription=[(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)]}{title=[(#NOM_SITE|textebrut|texte_script) (<:sites_web:>)]}{titretop=#GET{titretop}})]
 <//B_ArticleSyndiqueTitre>
 	<div id="miettesdepain">
 	<ul>
@@ -79,7 +79,7 @@ $jp_syndication = '[(#ENV{id_syndic_article}|texte_script)]';
 	
 [(#FORMULAIRE_ADMIN)]
 
-[(#INCLURE{fond=footer}{rubriqueencours=#ID_RUBRIQUE}{id_rubrique}{secteurencours=#GET{secteurencours}})]
+[(#INCLURE{fond=footer}{rubriqueencours=#ID_RUBRIQUE}{id_rubrique}{secteurencours=#GET{secteurencours}}{titretop=#GET{titretop}})]
 
 </BOUCLE_site>
 
@@ -88,7 +88,7 @@ $jp_rubrique = 'Sites';
 ?>
 [(#SET{titretop,<:sites_web|nettoyer_marqueur:>})]
 
-[(#INCLURE{fond=header}{connexion}{title=<:sites_web:>}{env})]
+[(#INCLURE{fond=header}{connexion}{title=<:sites_web:>}{titretop=#GET{titretop}})]
 
 <div id="miettesdepain">
 	<ul>
