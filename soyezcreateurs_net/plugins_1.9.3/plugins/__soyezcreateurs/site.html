@@ -6,15 +6,11 @@ $jp_site = '[(#ID_SYNDIC|texte_script)]';
 $jp_syndication = '[(#ENV{id_syndic_article}|texte_script)]';
 ?>
 <BOUCLE_ArticleSyndiqueTitre(SYNDIC_ARTICLES) {id_syndic_article} >
-<?php
-$titre = '[(#TITRE|textebrut|texte_script)][ - (#NOM_SITE|textebrut|texte_script) (<:sites_web:>)]';
-?>
-[(#INCLURE{fond=header}{connexion}{metadescription=(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)})]
+
+[(#INCLURE{fond=header}{connexion}{metadescription=(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)}{title=[(#TITRE|textebrut|texte_script)][ - (#NOM_SITE|textebrut|texte_script) (<:sites_web:>)]})]
 </BOUCLE_ArticleSyndiqueTitre>
-<?php
-$titre = '[(#NOM_SITE|textebrut|texte_script) (<:sites_web:>)]';
-?>
-[(#INCLURE{fond=header}{connexion}{metadescription=(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)})]
+
+[(#INCLURE{fond=header}{connexion}{metadescription=(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)}{title=[(#NOM_SITE|textebrut|texte_script) (<:sites_web:>)]})]
 <//B_ArticleSyndiqueTitre>
 <?php
 $titretop = '<:sites_web|nettoyer_marqueur:>_[(#NOM_SITE|nettoyer_marqueur)]';
@@ -93,10 +89,10 @@ $titretop = '<:sites_web|nettoyer_marqueur:>_[(#NOM_SITE|nettoyer_marqueur)]';
 
 <?php
 $jp_rubrique = 'Sites';
-$titre = '<:sites_web:>';
+
 $titretop = '<:sites_web|nettoyer_marqueur:>';
 ?>
-[(#INCLURE{fond=header}{connexion})]
+[(#INCLURE{fond=header}{connexion}{title=<:sites_web:>})]
 
 <div id="miettesdepain">
 	<ul>

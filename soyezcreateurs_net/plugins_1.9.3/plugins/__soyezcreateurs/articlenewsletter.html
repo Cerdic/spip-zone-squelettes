@@ -2,9 +2,9 @@
 <BOUCLE_article_principal(ARTICLES) {id_article}>
 <?php $jp_rubrique = '[(#ID_RUBRIQUE|texte_script)]'; ?>
 <?php $jp_article = '[(#ID_ARTICLE|texte_script)]'; ?>
-<?php $titre = '[(#TITRE|supprimer_tags|texte_script)]'; ?>
+
 <?php $titretop = '[(#TITRE|supprimer_tags|attribut_html|nettoyer_marqueur|texte_script)]'; ?>
-[(#INCLURE{fond=headernewsletter}{id_article})]
+[(#INCLURE{fond=headernewsletter}{id_article}{title=[(#TITRE|supprimer_tags|texte_script)]})]
 	<div id="miettesdepain">[(#DATE|nom_jour)] [(#DATE|affdate)]</div>
 
 <div class="cartouche">
@@ -28,9 +28,9 @@
 [(#FORMULAIRE_ADMIN)]
 
 </BOUCLE_article_principal>
-<?php $titre = '<:pyrat:erreur|texte_script:>'; ?>
+
 <?php $titretop = '<:pyrat:erreur|nettoyer_marqueur|texte_script:>'; ?>
-[(#INCLURE{fond=header}{connexion})]
+[(#INCLURE{fond=header}{connexion}{title=<:pyrat:erreur|texte_script:>})]
 <:pyrat:erreur_articleexistepas:>
 <//B_article_principal>
 [(#INCLURE{fond=footernewsletter})]
