@@ -16,8 +16,6 @@ $Y = date('Y', $cal_day);
 [$genre = '(#ENV{genre}|texte_script)';]
 if (!isset($genre)) $genre = "<:pyrat:tout:>";
 
-$titrePage = '<:pyrat:agenda|texte_script:> - '.$months[intval($M)].' '.$Y;
-
 // Liste des rubriques de l agenda
 $branche = array();
 // Construction liste des evenements (1 liste par jour => liste des jours)
@@ -35,9 +33,8 @@ $events = array();
 ?>
 <BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
 <?php $jp_rubrique = [(#ID_RUBRIQUE|texte_script)]; ?>
-<?php $titre = '[(#TITRE|attribut_html|texte_script)] - '.$months[intval($M)].' '.$Y; ?>
-<?php $titretop = '[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]'; ?>
-[(#INCLURE{fond=header}{connexion})]
+[(#SET{titretop,[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]})]
+[(#INCLURE{fond=header}{connexion}{title=[(#TITRE|attribut_html|texte_script)] - [(#ENV{date_ev}|sinon{#ENV{date}}|affdate_mois_annee)]}{titretop=#GET{titretop}})]
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
@@ -51,7 +48,7 @@ $events = array();
 <!-- Une : contenu de la rubrique -->
 <div class="cartouche">
 <h1>[(#SET{lelogo,[(#MODELE{rubrique_logo}{mode=normal}|image_reduire{64,64})]})][<img class="logo_rubrique" src="(#GET{lelogo}|extraire_attribut{src})" width="[(#GET{lelogo}|extraire_attribut{width})]" height="[(#GET{lelogo}|extraire_attribut{height})]" alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" />]
-[(#TITRE)]<?php echo ' - '.$months[intval($M)].' '.$Y; ?></h1>
+[(#TITRE)] - [(#ENV{date_ev}|sinon{#ENV{date}}|affdate_mois_annee)]</h1>
 </div>
 
 <B_themes>
@@ -185,10 +182,10 @@ $events = array();
 
 </BOUCLE_rubrique_principal>
 </B_rubrique_principal>
-<?php $titre = '<:pyrat:erreur|texte_script:>'; ?>
-<?php $titretop = '<:pyrat:erreur|nettoyer_marqueur|texte_script:>'; ?>
-[(#INCLURE{fond=header}{connexion})]
+
+[(#SET{titretop,<:pyrat:erreur|nettoyer_marqueur|texte_script:>})]
+[(#INCLURE{fond=header}{connexion}{title=<:pyrat:erreur|texte_script:>}{titretop=#GET{titretop}})]
 <:pyrat:erreur_rubriqueexistepas:>
 <//B_rubrique_principal>
 [(#FORMULAIRE_ADMIN)]
-[(#INCLURE{fond=footer})]
+[(#INCLURE{fond=footer}{titretop=#GET{titretop}})]

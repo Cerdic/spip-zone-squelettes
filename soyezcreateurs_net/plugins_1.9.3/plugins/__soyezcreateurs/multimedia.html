@@ -3,8 +3,8 @@
 <?php $jp_article = '[(#ID_ARTICLE|texte_script)]'; ?>
 <BOUCLE_FichierMultimedia(DOCUMENTS){id_document}>
 
-<?php $titretop = '[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]'; ?>
-[(#INCLURE{fond=header}{connexion}{title=[(#TITRE|attribut_html|texte_script)]})]
+[(#SET{titretop,[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]})]
+[(#INCLURE{fond=header}{connexion}{title=[(#TITRE|attribut_html|texte_script)]}{titretop=#GET{titretop}})]
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
@@ -49,8 +49,8 @@
 </BOUCLE_ArticleMultimedia>
 </B_ArticleMultimedia>
 
-<?php $titretop = '<:pyrat:erreur|nettoyer_marqueur|texte_script:>'; ?>
-[(#INCLURE{fond=header}{connexion}{title=<:pyrat:erreur|texte_script:>})]
+[(#SET{titretop,<:pyrat:erreur|nettoyer_marqueur|texte_script:>})]
+[(#INCLURE{fond=header}{connexion}{title=<:pyrat:erreur|texte_script:>}{titretop=#GET{titretop}})]
 <:pyrat:erreur_documentexistepas:>
 <//B_ArticleMultimedia>
-[(#INCLURE{fond=footer})]
+[(#INCLURE{fond=footer}{titretop=#GET{titretop}})]

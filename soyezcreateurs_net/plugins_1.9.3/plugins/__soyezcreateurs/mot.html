@@ -1,8 +1,8 @@
 <BOUCLE_mot_principal(MOTS){id_mot}>
 <?php $jp_mot = '[(#ID_MOT|texte_script)]'; ?>
 
-<?php $titretop = '[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]'; ?>
-[(#INCLURE{fond=header}{connexion}{title=<:pyrat:mot|texte_script:>: [(#TITRE|attribut_html|texte_script)]})]
+[(#SET{titretop,[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]})]
+[(#INCLURE{fond=header}{connexion}{title=<:pyrat:mot|texte_script:>: [(#TITRE|attribut_html|texte_script)]}{titretop=#GET{titretop}})]
 	<div id="miettesdepain">
 	<ul>
 		<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
@@ -79,16 +79,7 @@
 	</ul>
 </B_sites>
 
-<!-- Evenements Web lies au mot-cle -->
-<B_Evenements>
-<h2><:pyrat:agenda:></h2>
-	<ul>
-<BOUCLE_Evenements(EVENEMENTS) {id_mot} {par date_debut}>
-	[(#INCLURE{fond=agendaliste_evenement_court}{id_evenement})]
-</BOUCLE_Evenements>
-	</ul>
-</B_Evenements>
-
+[(#PLUGIN{AGENDA}|?{[(#INCLURE{fond=noisettes/agenda/evenements_mot}{id_mot})]})]
 
 
 
@@ -101,8 +92,8 @@
 <BOUCLE_Groupe_principal(GROUPES_MOTS){id_groupe}>
 <?php $jp_mot = 'Groupe'; ?>
 
-<?php $titretop = '[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]'; ?>
-[(#INCLURE{fond=header}{connexion}{title=<:pyrat:motsgroupe|texte_script:>: [(#TITRE|attribut_html|texte_script)]})]
+[(#SET{titretop,[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]})]
+[(#INCLURE{fond=header}{connexion}{title=<:pyrat:motsgroupe|texte_script:>: [(#TITRE|attribut_html|texte_script)]}{titretop=#GET{titretop}})]
 	<div id="miettesdepain">
 	<ul>
 		<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
@@ -183,8 +174,8 @@
 </BOUCLE_Groupe_principal>
 <?php $jp_mot = 'Tous'; ?>
 
-<?php $titretop = '<:pyrat:mots_title|nettoyer_marqueur|texte_script:>'; ?>
-[(#INCLURE{fond=header}{connexion}{title=<:pyrat:mots_title|texte_script:>})]
+[(#SET{titretop,<:pyrat:mots_title|nettoyer_marqueur|texte_script:>})]
+[(#INCLURE{fond=header}{connexion}{title=<:pyrat:mots_title|texte_script:>}{titretop=#GET{titretop}})]
 	<div id="miettesdepain">
 
 	<ul>
@@ -275,4 +266,4 @@
 [(#FORMULAIRE_ADMIN)]
 
 
-[(#INCLURE{fond=footer})]
+[(#INCLURE{fond=footer}{titretop=#GET{titretop}})]

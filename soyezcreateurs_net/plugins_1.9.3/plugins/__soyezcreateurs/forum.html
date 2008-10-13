@@ -1,8 +1,8 @@
 <BOUCLE_article_titre(ARTICLES) {id_article}>
 <?php $jp_rubrique = '[(#ID_RUBRIQUE|texte_script)]'; ?>
 
-<?php $titretop = '[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]'; ?>
-[(#INCLURE{fond=header}{connexion}{noindex=1}{title=[(#TITRE|attribut_html|texte_script)]'.': <:pyrat:forum_postermessage|texte_script:>})]
+[(#SET{titretop,[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]})]
+[(#INCLURE{fond=header}{connexion}{noindex=1}{title=[(#TITRE|attribut_html|texte_script)]: <:pyrat:forum_postermessage|texte_script:>}{titretop=#GET{titretop}})]
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
@@ -59,4 +59,4 @@
 </div><!-- Fin de .texte -->
 [(#FORMULAIRE_ADMIN)]
 
-[(#INCLURE{fond=footer}{id_article})]
+[(#INCLURE{fond=footer}{id_article}{titretop=#GET{titretop}})]

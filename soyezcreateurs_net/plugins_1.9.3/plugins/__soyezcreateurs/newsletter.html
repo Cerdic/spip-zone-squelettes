@@ -1,7 +1,7 @@
 <?php $jp_rubrique = 'newsletter'; ?>
 
-<?php $titretop = '<:pyrat:newsletter|nettoyer_marqueur|texte_script:>'; ?>
-[(#INCLURE{fond=header}{connexion}{title=<:pyrat:newsletter|texte_script:>})]
+[(#SET{titretop,<:pyrat:newsletter|nettoyer_marqueur|texte_script:>})]
+[(#INCLURE{fond=header}{connexion}{title=<:pyrat:newsletter|texte_script:>}{titretop=#GET{titretop}})]
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
@@ -20,4 +20,4 @@ include($waroot . 'newsletter.php');
 ?>
 	</div><!-- Fin de #LeTexte -->
 [(#FORMULAIRE_ADMIN)]
-[(#INCLURE{fond=footer})]
+[(#INCLURE{fond=footer}{titretop=#GET{titretop}}{titretop=#GET{titretop}})]

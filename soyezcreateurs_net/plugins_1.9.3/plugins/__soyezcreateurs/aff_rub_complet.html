@@ -5,8 +5,8 @@
 [(#SET{secteurencours,#ID_RUBRIQUE})]
 </BOUCLE_RacineMenuHaut>
 
-<?php $titretop = '[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]'; ?>
-[(#INCLURE{fond=header}{connexion}{secteurencours=#GET{secteurencours}}{title=[(#TITRE|attribut_html|texte_script)] (<:pyrat:chapitre_complet|texte_script:>)})]
+[(#SET{titretop,[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]})]
+[(#INCLURE{fond=header}{connexion}{secteurencours=#GET{secteurencours}}{title=[(#TITRE|attribut_html|texte_script)] (<:pyrat:chapitre_complet|texte_script:>)}{titretop=#GET{titretop}})]
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
@@ -24,5 +24,5 @@
 </div><!-- Fin de .texte -->
 [(#FORMULAIRE_ADMIN)]
 
-[(#INCLURE{fond=footer}{id_rubrique}{connexion}{secteurencours=#GET{secteurencours}})]
+[(#INCLURE{fond=footer}{id_rubrique}{connexion}{secteurencours=#GET{secteurencours}}{titretop=#GET{titretop}})]
 </BOUCLE_secteurs>

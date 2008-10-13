@@ -1,7 +1,7 @@
 #CACHE{3600}
 <B_messages>
 			[(#ENV{mode}|=={lettreseule}?{'',' '})
-				[(#INCLURE{fond=header_lettre}{pst_id})]
+				[(#INCLURE{fond=header_lettre}{pst_id}{titretop=#GET{titretop}})]
 			]
 
 		<BOUCLE_messages(cm_posts){pst_id}{pst_date_sent!=0}{!par pst_date_sent}>
@@ -22,10 +22,9 @@
 <BOUCLE_list(cm_lists){lst_id}>
 <?php
 $jp_rubrique = 'Liste_mail';
-
-$titretop = '<:pyrat:newsletter|nettoyer_marqueur|texte_script:>';
- ?>
- [(#INCLURE{fond=header}{connexion}{title=<:pyrat:newsletter|texte_script:>})]
+?>
+[(#SET{titretop,<:pyrat:newsletter|nettoyer_marqueur|texte_script:>})]
+ [(#INCLURE{fond=header}{connexion}{title=<:pyrat:newsletter|texte_script:>}{titretop=#GET{titretop}})]
 	<div id="miettesdepain">
 		<ul>
 			<li><a href="#URL_SITE_SPIP" title="Accueil"><:pyrat:accueil:></a></li>
@@ -64,10 +63,9 @@ $titretop = '<:pyrat:newsletter|nettoyer_marqueur|texte_script:>';
 </BOUCLE_list>
 <?php
 $jp_rubrique = 'Liste_mail';
-
-$titretop = '<:pyrat:newsletter|nettoyer_marqueur|texte_script:>';
- ?>
- [(#INCLURE{fond=header}{connexion}{title=<:pyrat:newsletter|texte_script:>})]
+?>
+[(#SET{titretop,<:pyrat:newsletter|nettoyer_marqueur|texte_script:>})]
+ [(#INCLURE{fond=header}{connexion}{title=<:pyrat:newsletter|texte_script:>}{titretop=#GET{titretop}})]
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
@@ -101,8 +99,6 @@ $titretop = '<:pyrat:newsletter|nettoyer_marqueur|texte_script:>';
 
 <//B_messages>
 			[(#ENV{mode}|=={lettreseule}?{'',' '})
-
 [(#FORMULAIRE_ADMIN)]
-
-[(#INCLURE{fond=footer})]
-] 
+[(#INCLURE{fond=footer}{titretop=#GET{titretop}})]
+]

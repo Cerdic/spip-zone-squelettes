@@ -5,16 +5,12 @@ $jp_rubrique = [(#ID_RUBRIQUE|texte_script)];
 $jp_site = '[(#ID_SYNDIC|texte_script)]';
 $jp_syndication = '[(#ENV{id_syndic_article}|texte_script)]';
 ?>
+[(#SET{titretop,<:sites_web|nettoyer_marqueur:>_[(#NOM_SITE|nettoyer_marqueur)]})]
 <BOUCLE_ArticleSyndiqueTitre(SYNDIC_ARTICLES) {id_syndic_article} >
-
-[(#INCLURE{fond=header}{connexion}{metadescription=[(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)]}{title=[(#TITRE|textebrut|texte_script)][ - (#NOM_SITE|textebrut|texte_script) (<:sites_web:>)]})]
+[(#INCLURE{fond=header}{connexion}{metadescription=[(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)]}{title=[(#TITRE|textebrut|texte_script)][ - (#NOM_SITE|textebrut|texte_script) (<:sites_web:>)]}{env})]
 </BOUCLE_ArticleSyndiqueTitre>
-
-[(#INCLURE{fond=header}{connexion}{metadescription=[(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)]}{title=[(#NOM_SITE|textebrut|texte_script) (<:sites_web:>)]})]
+[(#INCLURE{fond=header}{connexion}{metadescription=[(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)]}{title=[(#NOM_SITE|textebrut|texte_script) (<:sites_web:>)]}{env})]
 <//B_ArticleSyndiqueTitre>
-<?php
-$titretop = '<:sites_web|nettoyer_marqueur:>_[(#NOM_SITE|nettoyer_marqueur)]';
-?>
 	<div id="miettesdepain">
 	<ul>
 		<li><a href="#URL_SITE_SPIP" title="Accueil"><:pyrat:accueil:></a></li>
@@ -89,10 +85,10 @@ $titretop = '<:sites_web|nettoyer_marqueur:>_[(#NOM_SITE|nettoyer_marqueur)]';
 
 <?php
 $jp_rubrique = 'Sites';
-
-$titretop = '<:sites_web|nettoyer_marqueur:>';
 ?>
-[(#INCLURE{fond=header}{connexion}{title=<:sites_web:>})]
+[(#SET{titretop,<:sites_web|nettoyer_marqueur:>})]
+
+[(#INCLURE{fond=header}{connexion}{title=<:sites_web:>}{env})]
 
 <div id="miettesdepain">
 	<ul>
@@ -115,6 +111,6 @@ $titretop = '<:sites_web|nettoyer_marqueur:>';
 					
 [(#FORMULAIRE_ADMIN)]
 
-[(#INCLURE{fond=footer}{secteurencours=#GET{secteurencours}})]
+[(#INCLURE{fond=footer}{secteurencours=#GET{secteurencours}}{titretop=#GET{titretop}})]
 
 <//B_site>
