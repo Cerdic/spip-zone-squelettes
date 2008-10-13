@@ -1,0 +1,27 @@
+<BOUCLE_principale(RUBRIQUES){id_rubrique}>
+<BOUCLE_article_mentions(ARTICLES){id_rubrique}{titre_mot=mentions}{doublons}>
+</BOUCLE_article_mentions>
+
+<BOUCLE_articles1(ARTICLES){id_rubrique}{titre_mot=article1}{doublons}{!par date}>				
+	<div class="bloc2">
+	<a href="#URL_ARTICLE"><h3 class="#EDIT{titre} titre">[(#TITRE|supprimer_numero)]</h3></a>
+	[(#REM) chapeau, texte, post-scriptum de l'article ]
+	[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>][<a href="#URL_ARTICLE">(#LOGO_ARTICLE_RUBRIQUE||reduire_image{120,70})</a>]
+	[<div class="#EDIT{texte} texte">(#TEXTE)</div>]
+	</div>
+</BOUCLE_articles1>
+
+<B_articles>
+<div class="bloc">
+<h3 class="titre"><:articles:></h3>
+<ul>
+<BOUCLE_articles(ARTICLES){id_rubrique}{par num titre}{par date}{inverse}{doublons}>
+	<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero)</a>][<em> - (#DATE|affdate_court)</em>]</h2>
+	[(#INTRODUCTION)]
+	<div class="suite"> <a href="#URL_ARTICLE"><:lire_suite:></a></div>
+	</li>
+</BOUCLE_articles>
+</ul>
+</div>
+</B_articles>
+</BOUCLE_principale>

@@ -1,0 +1,24 @@
+#CACHE{12*3600}
+[(#REM) Breves de cette rubrique]
+
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{nbre_breve_pag_rub,#EVANBREBREVEPAGRUB}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{nbre_breve_pag_rub,5}]
+
+<?php if (#GET{nbre_breve_pag_rub}!=0) { ?>
+
+<B_breves>
+	<div class="bloc">
+	<h3 class="titre"><:breves_rubrique:></h3>
+	
+	<ul>
+		[<li class="pagination">(#PAGINATION{page_precedent_suivant})</li>]
+		<BOUCLE_breves(BREVES){id_rubrique}{pagination #GET{nbre_breve_pag_rub}}>
+		    <li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+		        [<a href="#URL_BREVE" [ class="(#EXPOSE)"]>[(#LOGO_BREVE_RUBRIQUE||reduire_image{30})](#TITRE|supprimer_numero)</a>]
+		    </li>
+		</BOUCLE_breves>
+	</ul>
+	<div class="MenuPaginationBas"><em><:il_y_a2:> #GRAND_TOTAL <:il_y_a5:> #TOTAL_BOUCLE</em></div>
+	</div>
+</B_breves>
+ <?php } ?>

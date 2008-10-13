@@ -1,0 +1,18 @@
+#CACHE{4*3600}
+[(#REM) Affichage des podcasts]
+<B_podcast>
+<div class="bloc">
+<h3 class="titre"><:derniers_podcasts:></h3>
+<ul>
+<BOUCLE_podcast(SITES){titre_mot=podcast}{par date}{inverse}{0,5}>
+	<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+	[<a href="[(#ID_SYNDIC|generer_url_entite{site})]">[(#LOGO_SITE_RUBRIQUE||reduire_image{50,60})](#NOM_SITE|supprimer_numero|textebrut)</a>][
+	<em> - (#DATE|affdate_jourcourt)</em>]
+	<div class="nettoyeur"></div>
+	[(#DESCRIPTIF|textebrut|couper{80})]
+	<div class="nettoyeur"></div>
+	</li>
+</BOUCLE_podcast>
+</ul>	
+</div>
+</B_podcast>

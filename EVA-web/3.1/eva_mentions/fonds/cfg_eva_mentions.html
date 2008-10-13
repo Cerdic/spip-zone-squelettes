@@ -1,0 +1,47 @@
+#CACHE{0}
+<form method="post">[(#ENV{_cfg_}|form_hidden)]
+
+[(#REM) descriptif=
+<h4>Gestion des mentions l&eacute;gales</h4>
+Ici vous pouvez saisir le contenu des mentions l&eacute;gales qui sera affich&eacute; en page mentions.<br />
+<br /><a href="http://eva-web.edres74.net/spip.php?rubrique4" class="spip_out">Documentation officielle</a>
+]
+
+[(#REM) titre= Gestion des mentions l&eacute;gales]
+
+<fieldset><legend>Structure responsable du site web</legend>
+<label>Nom de l'établissement, école, association, etc. : </label><input type="text" name="structure" value="#ENV{structure, Nom à préciser}" /><br />
+</fieldset>
+<fieldset><legend>Personnes en charge du contenu</legend>
+<label>Directeur de publication : </label><input type="text" name="directeur" value="#ENV{directeur, Nom et prénom à préciser}" /><br /><br />
+<label>Responsable d'édition : </label><input type="text" name="responsable" value="#ENV{responsable, Nom et prénom à préciser}" /><br />
+</fieldset>
+<fieldset><legend>Hébergeur</legend>
+<label>Nom de l'hébergeur : </label><input type="text" name="hebergeur" value="#ENV{hebergeur, Nom à préciser}" /><br /><br />
+<label>Adresse de l'hébergeur : </label><input type="text" name="adresse" value="#ENV{adresse, adresse à préciser}" /><br />
+</fieldset>
+<fieldset><legend>Webmaster</legend>
+<label>Webmaster (Nom et Prénom) : </label><input type="text" name="webmaster" value="#ENV{webmaster, Nom et prénom à préciser}" /><br /><br />
+<label>Fonction professionnelle du webmaster : </label><input type="text" name="fonction" value="#ENV{fonction, fonction à préciser}" /><br /><br />
+<label>Numéro de compte SPIP du webmaster : </label>
+<select name="idwebmaster">
+    <BOUCLE_webmaster-auteur(AUTEURS){tout}>
+        <option value="#ENV{idwebmaster, #ID_AUTEUR}">#NOM (compte n°#ID_AUTEUR)</option>
+    </BOUCLE_webmaster-auteur>
+</select>
+</fieldset>
+
+<input type="submit" name="_cfg_ok" value="<:valider:>" />
+
+<br /><br />
+</form>
+
+<form method="post" action="#URL_SITE_SPIP/spip.php?page=mentions">
+<input type="submit" value="<:page_publique:>" />
+</form>
+<br />
+<form method="post" action="?exec=eva_mentions_admin">
+<input type="submit" value="Retour à la page du plugin" />
+</form>
+
+#CFG_ARBO{eva_mentions}
