@@ -1,0 +1,31 @@
+		[(#REM) Affichage des podcasts]
+		<B_podcast>
+				<div class="bloc">
+					<h3 class="titre">Derniers podcasts</h3>
+					<ul>
+					
+						<BOUCLE_podcast(SITES){titre_mot=podcast}{par date}{inverse}{0,1}>
+						<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+							[<a href="spip.php?site#ID_SYNDIC">[(#LOGO_SITE_RUBRIQUE||reduire_image{50,60})](#NOM_SITE|supprimer_numero)</a>][
+							<em> - (#DATE|affdate_jourcourt)</em>]
+							
+						<div class="nettoyeur"></div>
+						
+							[(#DESCRIPTIF|couper{80})]
+							<div class="nettoyeur"></div>
+						</li>
+						</BOUCLE_podcast>
+					
+						<BOUCLE_podcast_suite(SITES){titre_mot=podcast}{par date}{inverse}{0,4}>
+						<li[ class="(#COMPTEUR_BOUCLE|alterner{'deux','un'})"]>
+							[<a href="spip.php?site#ID_SYNDIC">[(#LOGO_SITE_RUBRIQUE||reduire_image{50,60})](#NOM_SITE|supprimer_numero)</a>][
+							<em> - (#DATE|affdate_jourcourt)</em>]
+							
+						<div class="nettoyeur"></div>
+
+						</li>
+						</BOUCLE_podcast_suite>
+					
+					</ul>	
+				</div>
+		</B_podcast>

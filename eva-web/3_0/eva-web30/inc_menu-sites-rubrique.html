@@ -1,0 +1,27 @@
+#CACHE{0}
+[(#REM) Liste des sites référencés]
+<BOUCLE_exclure1(SITES){titre_mot=logo-pied}{doublons}>
+</BOUCLE_exclure1>
+<BOUCLE_exclure2(SITES){titre_mot=podcast}{doublons}>
+</BOUCLE_exclure2>
+<BOUCLE_exclure3(SITES){titre_mot=logo-bloc}{doublons}>
+</BOUCLE_exclure3>
+<BOUCLE_exclure4(SITES){titre_mot=lien-haut}{doublons}>
+</BOUCLE_exclure4>
+
+<B_sitesrub>
+	<div class="bloc">
+	<h3 class="titre">Sites de la rubrique</h3>
+	<ul>
+		<BOUCLE_sitesrub(SITES){id_rubrique}{syndication=non}>
+		    <li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+		    		[<a href="#URL_SITE" target="_blank" [ class="(#EXPOSE)"]>[(#LOGO_SITE_RUBRIQUE||reduire_image{30})](#NOM_SITE|supprimer_numero)</a>][
+			<em> - (#DATE|affdate_jourcourt)</em>]
+			<div class="nettoyeur"></div>
+			[(#DESCRIPTIF|couper{160})]
+			<div class="nettoyeur"></div>
+		    </li>
+		</BOUCLE_sitesrub>
+	</ul>
+	</div>
+</B_sitesrub>

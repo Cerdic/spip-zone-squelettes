@@ -1,0 +1,72 @@
+[(#PARAMETRES_FORUM|?{'',''}) Cette balise (invisible) provoque le recalcul du forum la premiere fois qu'un message est poste (cf. inc/invalideur). ]
+
+<div id="Forum">
+	
+	<BOUCLE_principale_article(ARTICLES){id_article}>
+	[<p class="bouton"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a></p>]
+	</BOUCLE_principale_article>
+	
+	<BOUCLE_principale_breve(BREVES){id_breve}>
+	[<p class="bouton"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_breve:></a></p>]
+	</BOUCLE_principale_breve>
+	
+	[(#REM) Nombre total de messages ]
+	<BOUCLE_decompte(FORUMS) {id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?} {plat}></BOUCLE_decompte>[<h3 class="forum-decompte">(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
+	[(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>})]</h3>]<//B_decompte>
+	
+	[(#REM) Messages du forum ]
+	<B_forums>
+	<ul class="forum">
+	
+		<BOUCLE_forums(FORUMS) {id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?} {par date}>
+	
+		<li class="message">
+				
+			<div class="titre">
+				<h4><a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM">#TITRE</a></h4>
+				<div class="auteur">[(#DATE|date_relative)][, <:par_auteur:> (#EMAIL|?{
+						<a href="[mailto:(#EMAIL)]">[(#NOM|couper{80})]</a>
+						,[(#NOM|couper{80})]
+					})</div>]
+			</div>
+			<div class="contenu">
+				[<div class="texte">(#TEXTE|lignes_longues)</div>]
+				[<p class="lien"><strong><:voir_en_ligne:></strong> <a href="(#URL_SITE)">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+				[<p class="bouton"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_message:></a></p>]
+			</div>
+	
+			<B_forums_fils>
+			<ul>
+				<BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
+	
+				<li class="reponse">
+				
+					<div class="titre">
+						<h4><a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM">#TITRE</a></h4>
+						<div class="auteur">[(#DATE|date_relative)][, <:par_auteur:> (#EMAIL|?{
+								<a href="[mailto:(#EMAIL)]">[(#NOM|couper{80})]</a>
+								,[(#NOM|couper{80})]
+							})</div>]
+					</div>
+					<div class="contenu">
+						[<div class="texte">(#TEXTE|lignes_longues)</div>]
+						[<p class="lien"><strong><:voir_en_ligne:></strong> <a href="(#URL_SITE)">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+						[<p class="bouton"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_message:></a></p>]
+					</div>
+	
+					<BOUCLE_Forums_Boucle(boucle_forums_fils)></BOUCLE_Forums_Boucle>
+	
+				</li>
+	
+				</BOUCLE_forums_fils>
+			</ul>
+			</B_forums_fils>
+	
+		</li>
+		</BOUCLE_forums>
+	
+	</ul>
+	</B_forums>
+	
+<div class="nettoyeur"></div>
+</div>

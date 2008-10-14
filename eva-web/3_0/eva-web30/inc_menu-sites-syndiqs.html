@@ -1,0 +1,52 @@
+#CACHE{0}
+[(#REM) Liste des sites référencés]
+
+<BOUCLE_exclu(SITES){titre_mot=podcast}{doublons}>
+</BOUCLE_exclu>
+
+[(#REM) Breves de cette rubrique]
+<B_sitesrubsynd>
+	<div class="bloc">
+	<h3 class="titre">Sites syndiqu&eacute;s de la rubrique</h3>
+	<ul>
+		<li class="MenuPaginationHaut">[&nbsp;(#PAGINATION)]</li>
+		<BOUCLE_sitesrubsynd(SITES){id_rubrique}{syndication=oui}{pagination 5}>
+		    <li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+		    		[<a href="spip.php?site#ID_SYNDIC" target="_blank" [ class="(#EXPOSE)"]>[(#LOGO_SITE_RUBRIQUE||reduire_image{30})](#NOM_SITE|supprimer_numero)</a>][
+			<em> - (#DATE|affdate_jourcourt)</em>]
+		    </li>
+		</BOUCLE_sitesrubsynd>
+		<div class="MenuPaginationBas"><em>Il y a au total #GRAND_TOTAL site(s), ce bloc en affiche #TOTAL_BOUCLE</em></div>
+	</ul>
+	</div>
+</B_sitesrubsynd>
+
+<B_sitessynd>
+
+<div class="bloc">
+	<h3 class="titre"><:derniers_sites:> syndiqu&eacute;s</h3>
+<ul>
+	<BOUCLE_sitessynd(SITES){syndication=oui}{par date}{inverse}{doublons}{0,1}>
+		<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+			[<a href="spip.php?site#ID_SYNDIC" target="_blank">[(#LOGO_SITE_RUBRIQUE||reduire_image{50,60})](#NOM_SITE|supprimer_numero)</a>][
+			<em> - (#DATE|affdate_jourcourt)</em>]
+		
+			[(#DESCRIPTIF|couper{300})]
+			<div class="nettoyeur"></div>
+		</li>
+		</BOUCLE_sitessynd>
+	
+	<B_sitessynd_suite>
+	
+		<BOUCLE_sitessynd_suite(SITES){syndication=oui}{par date}{inverse}{doublons}{0,4}>
+		<li[ class="(#COMPTEUR_BOUCLE|alterner{'deux','un'})"]>
+			[<a href="spip.php?site#ID_SYNDIC" target="_blank">[(#LOGO_SITE_RUBRIQUE||reduire_image{30})](#NOM_SITE|supprimer_numero)</a>][
+			<em> - (#DATE|affdate_jourcourt)</em>]
+			</li>
+		</BOUCLE_sitessynd_suite>
+	</ul>
+	</B_sitessynd_suite>
+</div>
+</B_sitessynd>
+
+<//B_sitesrubsynd>

@@ -1,0 +1,50 @@
+#CACHE{0}
+[(#REM) Liste des articles]
+	
+	<form action="#SELF" method="get">
+		
+		[(#URL_RUBRIQUE|form_hidden)]
+		
+		<select name="mois" onChange="submit()">
+			<BOUCLE_date_mois(ARTICLES){branche}{par date_redac}>
+			[<option value="[(#DATE_REDAC|affdate{'Y-m'}|mois)]">(#DATE_REDAC|affdate{'Y-m'}|unique|nom_mois)</option>]
+			</BOUCLE_date_mois>
+		</select>
+		</B_date_mois>
+		
+		<B_date_annee>
+		<select name="annee" onChange="submit()">
+			<BOUCLE_date_annee(ARTICLES){branche}{par date_redac}>
+			[<option value="[(#DATE_REDAC|annee)]">(#DATE_REDAC|annee|unique)</option>]
+			</BOUCLE_date_annee>
+		</select>
+		
+		<noscript>
+		</noscript>
+			<input type="submit" value="Go" />
+		
+		
+	</form>
+
+<B_articles>
+	<h3 class="titre"><:evenements_a_venir:>
+		<BOUCLE_date(ARTICLES){branche}{agenda date_redac, mois, #ENV{annee}, #ENV{mois}}{par date_redac}{0,1}>
+		[<em class="date">(#DATE_REDAC|affdate_mois_annee)</em>]</BOUCLE_date></h3>
+	<dl class="bloc">
+		<BOUCLE_articles(ARTICLES){branche}{agenda date_redac, mois, #ENV{annee}, #ENV{mois}}{par date_redac}{pagination 3}>
+		<dt[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+			<B_hierarchie><em class="hierarchie"><BOUCLE_hierarchie(HIERARCHIE){id_article}{"&gt;"}>
+				[<a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>]
+				</BOUCLE_hierarchie></em></B_hierarchie>
+			[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero)</a>][,
+				<em>(#DATE_REDAC|affdate_court)</em>]
+		</dt>
+		<dd[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+			[(#INTRODUCTION)]
+			<div class="nettoyeur"></div>
+		</dd>
+		</BOUCLE_articles>
+	</dl>
+	[(#REM) Affichage du menu de pagination ]
+	[<p class="MenuPagination"><strong>Pages :</strong> (#PAGINATION)</p>]
+</B_articles>

@@ -1,0 +1,115 @@
+<BOUCLE_principale(MOTS){id_mot}>
+<INCLURE{fond=inc_entete-meta}>
+	</head>
+	<body>
+	<div id="Page">
+	
+		[(#REM) Entête de la page]
+		<INCLURE{fond=inc_entete-page}{id_auteur}>
+			
+		[(#REM) Conteneur]
+		<div id="Conteneur">
+
+		[(#REM) Menu et lments de navigation]
+			<div id="Menu">
+				<INCLURE{fond=inc_menu}>
+				
+				<BOUCLE_mot_mentions(MOTS){titre=mentions}{doublons}>
+				</BOUCLE_mot_mentions>
+				
+				<B_groupes_mots_cle>
+				<div class="bloc">
+					<h3 class="titre"><:mot_cle:></h3>
+					<ul>
+						<BOUCLE_groupes_mots_cle(GROUPES_MOTS) {par titre}>
+						<li>
+							[(#TITRE|supprimer_numero)]
+							<B_mots_cle>
+							<ul>
+								<BOUCLE_mots_cle(MOTS){id_groupe}{par titre}{doublons}>
+								<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"][ class="(#EXPOSE{on,off})"]><a href="#URL_MOT">[(#TITRE|supprimer_numero)]</a></li>
+								</BOUCLE_mots_cle>
+							</ul>
+							</B_mots_cle>
+						</li>
+						</BOUCLE_groupes_mots_cle>
+					</ul>
+				</div>
+				</B_groupes_mots_cle>
+			</div>
+		
+			[(#REM) Contenu de la page]
+			<div id="Contenu">
+				[<div class="texte">[(#LOGO_MOT||reduire_image{100})](#TEXTE)</div>]
+				
+				[(#REM) Liste des rubriques]
+				<B_sous_rubriques>
+				<div class="bloc">
+					<h3 class="titre"><:sous_rubriques:></h3>
+					<ul>
+					<BOUCLE_sous_rubriques(RUBRIQUES){id_mot}>
+						[<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2><a href="#URL_RUBRIQUE">[(#LOGO_RUBRIQUE||reduire_image{30})](#TITRE|supprimer_numero)</a></h2></li>]
+						[(#INTRODUCTION)]
+					</BOUCLE_sous_rubriques>
+					</ul>
+				</div>
+				</B_sous_rubriques>
+				
+				[(#REM) Liste des articles]
+				<BOUCLE_article_mentions(ARTICLES){titre_mot=mentions}{doublons}>
+				</BOUCLE_article_mentions>
+				
+				<B_articles>
+				<div class="bloc">
+					<h3 class="titre"><:articles:></h3>
+					<ul>
+						<BOUCLE_articles(ARTICLES){id_mot}{doublons}>
+						<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero)</a>][<em> - (#DATE|affdate_court)</em>]</h2>
+						[(#INTRODUCTION)]
+						<div class="suite"> <a href="#URL_ARTICLE"><:lire_suite:></a></div>
+						</BOUCLE_articles>
+					</ul>
+				</div>
+				</B_articles>
+				
+				[(#REM) Liste des breves]
+				<B_breves>
+				<div class="bloc">
+					<h3 class="titre"><:breves:></h3>
+					<ul>
+						<BOUCLE_breves(BREVES){id_mot}>
+						<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="#URL_BREVE">[(#LOGO_BREVE_RUBRIQUE||reduire_image{30})](#TITRE|supprimer_numero)</a>][, <em>(#DATE|affdate_jourcourt)</em>]<h2></li>
+						[(#INTRODUCTION)]
+						</BOUCLE_breves>
+					</ul>
+				</div>
+				</B_breves>
+				
+				[(#REM) Liste des sites référencés]
+				<B_sites>
+				<div class="bloc">
+					<h3 class="titre"><:sites_references:></h3>
+					<ul>
+						<BOUCLE_sites(SITES){id_mot}>
+						<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="#URL_SITE">[(#LOGO_SITE_RUBRIQUE||reduire_image{30})](#NOM_SITE|supprimer_numero)</a>][, <em>(#DATE|affdate_jourcourt)</em>]<h2></li>
+						[(#DESCRIPTIF)]
+						</BOUCLE_sites>
+					</ul>
+				</div>
+				</B_sites>
+				
+				[(#REM)  Notes de bas de page ][
+				<div class="divers">
+					<h4>Notes</h4>
+					<div>(#NOTES)</div>
+				</div>]
+				
+			</div>
+
+			<div class="nettoyeur"></div>
+		</div>
+		<INCLURE{fond=inc_pied}{lang}>
+	</div>
+</body>
+</html>
+</BOUCLE_principale>

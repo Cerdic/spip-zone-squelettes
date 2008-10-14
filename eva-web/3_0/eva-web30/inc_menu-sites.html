@@ -1,0 +1,58 @@
+#CACHE{0}
+[(#REM) Liste des sites référencés]
+<BOUCLE_exclure1(SITES){titre_mot=logo-pied}{doublons}>
+</BOUCLE_exclure1>
+<BOUCLE_exclure2(SITES){titre_mot=podcast}{doublons}>
+</BOUCLE_exclure2>
+<BOUCLE_exclure3(SITES){titre_mot=logo-bloc}{doublons}>
+</BOUCLE_exclure3>
+<BOUCLE_exclure4(SITES){titre_mot=lien-haut}{doublons}>
+</BOUCLE_exclure4>
+
+[(#REM) Breves de cette rubrique]
+<B_sitesrub>
+	<div class="bloc">
+	<h3 class="titre">Sites de la rubrique</h3>
+	
+	<ul>
+		<li class="MenuPaginationHaut">[&nbsp;(#PAGINATION)]</li>
+		<BOUCLE_sitesrub(SITES){id_rubrique}{syndication=non}{pagination 5}>
+		    <li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+		    		[<a href="#URL_SITE" target="_blank" [ class="(#EXPOSE)"]>[(#LOGO_SITE_RUBRIQUE||reduire_image{30})](#NOM_SITE|supprimer_numero)</a>][
+			<em> - (#DATE|affdate_jourcourt)</em>]
+		    </li>
+		</BOUCLE_sitesrub>
+		<div class="MenuPaginationBas"><em>Il y a au total #GRAND_TOTAL site(s), ce bloc en affiche #TOTAL_BOUCLE</em></div>
+	</ul>
+	</div>
+</B_sitesrub>
+
+<B_sites>
+
+<div class="bloc">
+	<h3 class="titre"><:derniers_sites:></h3>
+<ul>
+	<BOUCLE_sites(SITES){syndication=non}{par date}{inverse}{doublons}{0,1}>
+		<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+			[<a href="#URL_SITE" target="_blank">[(#LOGO_SITE_RUBRIQUE||reduire_image{50,60})](#NOM_SITE|supprimer_numero)</a>][
+			<em> - (#DATE|affdate_jourcourt)</em>]
+		
+			[(#DESCRIPTIF|couper{300})]
+			<div class="nettoyeur"></div>
+		</li>
+		</BOUCLE_sites>
+	
+	<B_sites_suite>
+	
+		<BOUCLE_sites_suite(SITES){syndication=non}{par date}{inverse}{doublons}{0,4}>
+		<li[ class="(#COMPTEUR_BOUCLE|alterner{'deux','un'})"]>
+			[<a href="#URL_SITE" target="_blank">[(#LOGO_SITE_RUBRIQUE||reduire_image{30})](#NOM_SITE|supprimer_numero)</a>][
+			<em> - (#DATE|affdate_jourcourt)</em>]
+			</li>
+		</BOUCLE_sites_suite>
+	</ul>
+	</B_sites_suite>
+</div>
+</B_sites>
+
+<//B_sitesrub>

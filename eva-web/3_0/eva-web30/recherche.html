@@ -1,0 +1,84 @@
+#CACHE{0}
+<?php
+	$TitrePage='rechercher';
+?>
+<INCLURE{fond=inc_entete-meta}>
+	</head>
+	<body>
+	<div id="Page">
+	
+		[(#REM) Entête de la page]
+		<INCLURE{fond=inc_entete-page}{id_article}{id_rubrique}>
+		
+		[(#REM) Arborescence ]
+		<div id="Arborescence">
+			<strong><:vous_etes_ici:></strong>
+			<a href="#URL_SITE_SPIP">Accueil</a> <span>&gt;</span>
+			<a href="#URL_PAGE{recherche}"><:rechercher:></a>
+			[: <em>"(#RECHERCHE)"</em>]
+		</div>
+			
+		[(#REM) Conteneur]
+		<div id="ConteneurSeul">
+		
+			[(#REM) Contenu de la page]
+			<div id="Contenu">
+				
+				[(#REM) Bloc formulaire + texte résultats ]
+				<div id="FormRecherche">
+					<form action="[(#ENV{lien})]" method="get" class="formrecherche">
+						<input type="hidden" name="page" value="recherche" />
+						[<input type="hidden" name="lang" value="(#ENV{lang})" />]
+						<input type="text"
+							class="formrecherche"
+							name="recherche"
+							size="15"
+							[value="(#RECHERCHE)"] />
+						
+						<input type="submit" value="<:rechercher:>" class="spip_bouton" />
+					</form>
+				
+					
+[(#REM) articles début ]<B_articles>
+				#ANCRE_PAGINATION
+					<p><:resultats:> <strong>[(#EVAL{#DEBUT_ARTICLES+1})] - #EVAL{#DEBUT_ARTICLES+#TOTAL_BOUCLE}</strong>[, <:sur_un_total_de:> <strong>(#GRAND_TOTAL)</strong>][, <:pour:> <strong>"(#RECHERCHE)"</strong>].</p>
+				</div>
+				
+				[(#REM) Affichage des résultats pour les articles (par 10) ]
+				<div class="bloc2">
+				<ul>
+					<BOUCLE_articles (ARTICLES) {recherche} {par points} {inverse} {pagination}>
+
+					<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+						<h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero)</a>]</h2>
+					
+						[(#INTRODUCTION|couper{300})]
+						<div class="nettoyeur"></div>
+					</li>
+				</BOUCLE_articles>
+				</div>
+				
+				[(#REM) Affichage du menu de pagination ]
+				[<p class="MenuPagination"><strong>Pages :</strong> (#PAGINATION)</p>]
+				
+[(#REM) articles fin ]</B_articles>
+				
+				
+				
+				
+					[(#REM) Message d'erreur si pas de résultats ]
+					[<p class="erreur"><:aucun_resultat_pour:> "(#RECHERCHE)".</p>]
+
+
+[(#REM) articles pas ]<//B_articles>
+				
+			</div>
+			<div class="nettoyeur"></div>
+			
+		</div></div>
+
+		<INCLURE{fond=inc_logos-pied}{lang}>
+		<INCLURE{fond=inc_pied}{lang}>
+	</div>
+</body>
+</html>

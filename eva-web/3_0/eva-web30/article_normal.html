@@ -1,0 +1,117 @@
+﻿<BOUCLE_principale(ARTICLES){id_article}>
+	<INCLURE{fond=inc_entete-meta}{id_article}{lang}>
+	</head>
+	<body>
+	<div id="Page">
+	
+		[(#REM) Entte de la page]
+		<INCLURE{fond=inc_entete-page}{id_article}{id_rubrique}>
+			
+		[(#REM) Conteneur]
+		<div id="Conteneur">
+		
+					[(#REM) Inclusion du menu ]
+			<div id="Menu">
+            <?php $t0= '[(#EVAARTICLENAVIGATION|texte_script)]';
+            if (($t0=='gauche') OR (($t0!='gauche') AND ($t0!='centre') AND ($t0!='droite') AND ($t0!='non'))) { ?>
+            <INCLURE{fond=inc_menu}{id_rubrique}{id_article}{date}> <?php } ?>
+            
+            <?php $t1= '[(#EVAARTICLEPETITION|texte_script)]';
+            if (($t1=='gauche') OR (($t1!='gauche') AND ($t1!='centre') AND ($t1!='droite') AND ($t1!='non'))) { ?>
+            [<!--formulaire de la pétition -->
+			<div class="bloc">
+				<h3 class="titre"><:petition:></h3>
+				<div class="formulaire">(#FORMULAIRE_SIGNATURE)</div>
+			</div>] <?php } ?>
+			
+            <?php $t2= '[(#EVAARTICLEMEMERUBRIQUE|texte_script)]';
+            if (($t2=='gauche') OR (($t2!='gauche') AND ($t2!='centre') AND ($t2!='droite') AND ($t2!='non'))) { ?>
+            <INCLURE{fond=inc_article-meme-rubrique}{id_rubrique}{id_article}{date}> <?php } ?>
+            
+            <?php $t3= '[(#EVAARTICLEMOT|texte_script)]';
+            if (($t3=='gauche') OR (($t3!='gauche') AND ($t3!='centre') AND ($t3!='droite') AND ($t3!='non'))) { ?>
+            <INCLURE{fond=inc_article-rubrique-mot}{id_rubrique}{id_article}{date}> <?php } ?>
+            
+            <?php $t4= '[(#EVAARTICLECOMPTEUR|texte_script)]';
+            if (($t4=='gauche') OR (($t4!='gauche') AND ($t4!='centre') AND ($t4!='droite') AND ($t4!='non'))) { ?>
+            [(#REM) Inclusion du compteur graphique si le plugin est activé ]
+			[(#CONFIG{plugin}|match{COMPTEURGRAPHIQUE}|?{' '})<INCLURE{fond=inc_compteurgraphique-article-normal}{id_article}>] <?php } ?>
+			  
+            </div>
+			
+            <div id="MenuDroit">
+            
+            <?php if ($t0=='droite') { ?>
+            <INCLURE{fond=inc_menu}{id_rubrique}{id_article}{date}> <?php } ?>
+            
+            <?php if ($t1=='droite') { ?>
+            [<!--formulaire de la pétition -->
+			<div class="bloc">
+				<h3 class="titre"><:petition:></h3>
+				<div class="formulaire">(#FORMULAIRE_SIGNATURE)</div>
+			</div>] <?php } ?>
+			
+            <?php if ($t2=='droite') { ?>
+            <INCLURE{fond=inc_article-meme-rubrique}{id_rubrique}{id_article}{date}> <?php } ?>
+            
+            <?php if ($t3=='droite') { ?>
+            <INCLURE{fond=inc_article-rubrique-mot}{id_rubrique}{id_article}{date}> <?php } ?>
+            
+            <?php if ($t4=='droite') { ?>
+            [(#REM) Inclusion du compteur graphique si le plugin est activé ]
+			[(#CONFIG{plugin}|match{COMPTEURGRAPHIQUE}|?{' '})<INCLURE{fond=inc_compteurgraphique-article-normal}{id_article}>] <?php } ?>
+            
+            </div>
+            
+			[(#REM) Contenu de la page]
+			<div id="Contenu">
+				
+				[(#REM) Inclure le contenu ]
+				<INCLURE{fond=inc_article_contenu}{id_article}>
+				
+				[(#REM) pétition de l'article sous forme de signatures ]
+				<div id="bloc">
+					<BOUCLE_signatures_decompte(SIGNATURES) {id_article} >
+					</BOUCLE_signatures_decompte>
+					<h3>[il y a (#TOTAL_BOUCLE) signature(s) &agrave; cette p&eacute;tition.]</h3>
+					<dl>
+					<BOUCLE_signatures(SIGNATURES) {id_article} {par date} {inverse} >
+						<dt>Par <strong>#NOM</strong>[ (site : <a href="#URL_SITE">(#NOM_SITE)</a>)]<em>[, (#DATE|jour)][ (#DATE|nom_mois)][ (#DATE|annee)]</em></dt>
+						[<dd>(#MESSAGE)</dd>]
+					</BOUCLE_signatures>
+					</dl>
+					</B_signatures_decompte>
+				</div>
+								
+				
+				[(#REM) Inclure le forum ]
+				<INCLURE{fond=inc_forum}{id_article}{lang}>
+             
+            <?php if ($t1=='centre') { ?>
+            [<!--formulaire de la pétition -->
+			<div class="bloc">
+				<h3 class="titre"><:petition:></h3>
+				<div class="formulaire">(#FORMULAIRE_SIGNATURE)</div>
+			</div>] <?php } ?>
+			
+            <?php if ($t2=='centre') { ?>
+            <INCLURE{fond=inc_article-meme-rubrique}{id_rubrique}{id_article}{date}> <?php } ?>
+            
+            <?php if ($t3=='centre') { ?>
+            <INCLURE{fond=inc_article-rubrique-mot}{id_rubrique}{id_article}{date}> <?php } ?>
+            
+            <?php if ($t4=='centre') { ?>
+            [(#REM) Inclusion du compteur graphique si le plugin est activé ]
+			[(#CONFIG{plugin}|match{COMPTEURGRAPHIQUE}|?{' '})<INCLURE{fond=inc_compteurgraphique-article-normal}{id_article}>] <?php } ?>
+
+			</div>
+			
+
+			
+			<div class="nettoyeur"></div>
+		</div>
+		<INCLURE{fond=inc_pied}{lang}>
+	</div>
+</body>
+</html>
+</BOUCLE_principale>

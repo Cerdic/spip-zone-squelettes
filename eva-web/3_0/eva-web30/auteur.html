@@ -1,0 +1,175 @@
+#CACHE{48 * 3600}
+
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{nbre_auteur_pag_auteur,#EVANBREAUTEURPAGAUTEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{nbre_auteur_pag_auteur,5}]
+
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{nbre_art_pag_auteur,#EVANBREARTPAGAUTEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{nbre_art_pag_auteur,5}]
+
+<BOUCLE_principale(AUTEURS){id_auteur}>
+<INCLURE{fond=inc_entete-meta}{id_auteur}>
+</head>
+<body>
+<div id="Page">
+	
+		[(#REM) Entête de la page]
+		<?php $TitrePage="auteur"; ?>
+		<INCLURE{fond=inc_entete-page}{id_auteur}>
+			
+		[(#REM) Conteneur]
+		<div id="Conteneur">
+		
+            [(#REM) Menu et éléments de navigation]
+		<div id="Menu">
+        
+            <?php $t0= '[(#EVAAUTEURNAVIGATION|texte_script)]';
+            if (($t0=='gauche') OR (($t0!='gauche') AND ($t0!='centre') AND ($t0!='droite') AND ($t0!='non'))) { ?>
+            <INCLURE{fond=inc_menu}> <?php } ?>
+            
+            <?php $t1= '[(#EVAAUTEURAUTEURS|texte_script)]';
+            if (($t1=='gauche') OR (($t1!='gauche') AND ($t1!='centre') AND ($t1!='droite') AND ($t1!='non'))) { ?>
+            [(#REM) Affichage de tous les auteurs]
+	<?php if (#GET{nbre_auteur_pag_auteur}!=0) { ?>
+			<B_auteurs>
+				<div class="bloc">
+				<h3 class="titre">Tous les auteurs</h3>
+				<ul>
+				<div class="MenuPaginationHaut"><em>[&nbsp;(#PAGINATION)]</em></div>
+					<BOUCLE_auteurs(AUTEURS){pagination #GET{nbre_auteur_pag_auteur}}>
+					<li [ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><a href="spip.php?auteur&id_auteur=#ID_AUTEUR">[<strong>(#NOM)</strong>]</a></li>
+					</BOUCLE_auteurs>
+				<div class="MenuPaginationBas"><em>Il y a au total #GRAND_TOTAL auteur(s).<br /> Ce bloc en affiche #TOTAL_BOUCLE</em></div>
+				</ul>
+				</div>
+			</B_auteurs> <?php } ?> <?php } ?>
+			
+
+            <?php $t2= '[(#EVAAUTEURARTICLES|texte_script)]';
+            if (($t2=='gauche') OR (($t2!='gauche') AND ($t2!='centre') AND ($t2!='droite') AND ($t2!='non'))) { ?>
+            [(#REM) Liste des articles]
+	<?php if (#GET{nbre_art_pag_auteur}!=0) { ?>
+			<B_articles>
+				<div class="bloc">
+				<h3 class="titre"><:derniers_articles:> de cet auteur</h3>
+				<ul>
+				<div class="MenuPaginationHaut"><em>[&nbsp;(#PAGINATION)]</em></div>
+					<BOUCLE_articles(ARTICLES){id_auteur}{pagination #GET{nbre_art_pag_auteur}}{par date}{inverse}>
+					<li [ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{30})](#TITRE|supprimer_numero)</a>][, <em>(#DATE|affdate_jourcourt)</em>]</li>
+					</BOUCLE_articles>
+				<div class="MenuPaginationBas"><em>Il y a au total #GRAND_TOTAL article(s).<br /> Ce bloc en affiche #TOTAL_BOUCLE</em></div>
+				</ul>
+				</div>
+			</B_articles> <?php } ?> <?php } ?>
+			
+		</div>
+        
+        <div id="MenuDroit">
+        
+            <?php if ($t0=='droite') { ?>
+            <INCLURE{fond=inc_menu}> <?php } ?>
+            
+            <?php if ($t1=='droite') { ?>
+            [(#REM) Affichage de tous les auteurs]
+	<?php if (#GET{nbre_auteur_pag_auteur}!=0) { ?>
+			<B_auteurs1>
+				<div class="bloc">
+				<h3 class="titre">Tous les auteurs</h3>
+				<ul>
+				<div class="MenuPaginationHaut"><em>[&nbsp;(#PAGINATION)]</em></div>
+					<BOUCLE_auteurs1(AUTEURS){pagination #GET{nbre_auteur_pag_auteur}}>
+					<li [ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><a href="spip.php?auteur&id_auteur=#ID_AUTEUR">[<strong>(#NOM)</strong>]</a></li>
+					</BOUCLE_auteurs1>
+				<div class="MenuPaginationBas"><em>Il y a au total #GRAND_TOTAL auteur(s).<br /> Ce bloc en affiche #TOTAL_BOUCLE</em></div>
+				</ul>
+				</div>
+			</B_auteurs1> <?php } ?> <?php } ?>
+			
+
+            <?php if ($t2=='droite') { ?>
+            [(#REM) Liste des articles]
+	<?php if (#GET{nbre_art_pag_auteur}!=0) { ?>
+			<B_articles1>
+				<div class="bloc">
+				<h3 class="titre"><:derniers_articles:> de cet auteur</h3>
+				<ul>
+				<div class="MenuPaginationHaut"><em>[&nbsp;(#PAGINATION)]</em></div>
+					<BOUCLE_articles1(ARTICLES){id_auteur}{pagination #GET{nbre_art_pag_auteur}}{par date}{inverse}>
+					<li [ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{30})](#TITRE|supprimer_numero)</a>][, <em>(#DATE|affdate_jourcourt)</em>]</li>
+					</BOUCLE_articles1>
+				<div class="MenuPaginationBas"><em>Il y a au total #GRAND_TOTAL article(s).<br /> Ce bloc en affiche #TOTAL_BOUCLE</em></div>
+				</ul>
+				</div>
+			</B_articles1> <?php } ?> <?php } ?>
+        
+        </div>
+        
+			[(#REM) Contenu de la page]
+			<div id="Contenu">
+				
+				[(#REM) chapeau, texte, post-scriptum de l'article ]
+								
+				<div class="bloc">
+				<h3 class="titre">[(#NOM)]</h3>
+					<p>[(#LOGO_AUTEUR)]</p>
+					<p>[(#BIO)]</p>
+				</div>
+				
+				[<div class="lien">
+					<strong><:voir_en_ligne:></strong>
+					<a href="#URL_SITE">(#NOM_SITE)</a>
+				</div>]
+				
+				<div class="formulaire_spip formulaire_login">
+					#FORMULAIRE_ECRIRE_AUTEUR
+				</div>			
+
+				[(#REM)  Notes de bas de page ]
+				[<div class="notes">
+					<h4>Notes</h4>
+					<div>(#NOTES)</div>
+				</div>]
+
+                <?php if ($t1=='centre') { ?>
+                [(#REM) Affichage de tous les auteurs]
+		<?php if (#GET{nbre_auteur_pag_auteur}!=0) { ?>
+			    <B_auteurs2>
+				    <div class="bloc">
+				    <h3 class="titre">Tous les auteurs</h3>
+				    <ul>
+				    <div class="MenuPaginationHaut"><em>[&nbsp;(#PAGINATION)]</em></div>
+    					<BOUCLE_auteurs2(AUTEURS){pagination #GET{nbre_auteur_pag_auteur}}>
+					    <li [ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><a href="spip.php?auteur&id_auteur=#ID_AUTEUR">[<strong>(#NOM)</strong>]</a></li>
+					    </BOUCLE_auteurs2>
+				    <div class="MenuPaginationBas"><em>Il y a au total #GRAND_TOTAL auteur(s).<br /> Ce bloc en affiche #TOTAL_BOUCLE</em></div>
+				    </ul>
+				    </div>
+			    </B_auteurs2> <?php } ?> <?php } ?>
+
+
+                <?php if ($t2=='centre') { ?>
+                [(#REM) Liste des articles]
+		<?php if (#GET{nbre_art_pag_auteur}!=0) { ?>
+			    <B_articles2>
+    				<div class="bloc">
+				    <h3 class="titre"><:derniers_articles:> de cet auteur</h3>
+				    <ul>
+				    <div class="MenuPaginationHaut"><em>[&nbsp;(#PAGINATION)]</em></div>
+    					<BOUCLE_articles2(ARTICLES){id_auteur}{pagination #GET{nbre_art_pag_auteur}}{par date}{inverse}>
+					    <li [ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{30})](#TITRE|supprimer_numero)</a>][, <em>(#DATE|affdate_jourcourt)</em>]</li>
+					    </BOUCLE_articles2>
+				    <div class="MenuPaginationBas"><em>Il y a au total #GRAND_TOTAL article(s).<br /> Ce bloc en affiche #TOTAL_BOUCLE</em></div>
+				    </ul>
+				    </div>
+			    </B_articles2> <?php } ?> <?php } ?>
+				
+			</div>
+			
+		<div class="nettoyeur"></div>
+
+			
+	<INCLURE{fond=inc_logos-pied}{lang}>
+	<INCLURE{fond=inc_pied}>
+</div>
+</body>
+</html>
+</BOUCLE_principale>

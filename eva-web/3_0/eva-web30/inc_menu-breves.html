@@ -1,0 +1,52 @@
+#CACHE{0}
+[(#REM) Breves de cette rubrique]
+<B_breves>
+	<div class="bloc">
+	<h3 class="titre">Brêves de la rubrique</h3>
+	
+	<ul>
+		[<div class="MenuPaginationHaut">&nbsp;(#PAGINATION)</div>]
+		<BOUCLE_breves(BREVES){id_rubrique}{pagination 5}>
+		    <li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+		        [<a href="#URL_BREVE" [ class="(#EXPOSE)"]>[(#LOGO_BREVE_RUBRIQUE||reduire_image{30})](#TITRE|supprimer_numero)</a>]
+		    </li>
+		</BOUCLE_breves>
+		<div class="MenuPaginationBas"><em>Il y a au total #GRAND_TOTAL brève(s), ce bloc en affiche #TOTAL_BOUCLE</em></div>
+	</ul>
+	</div>
+</B_breves>
+			
+	<B_breve_courante>
+		[(#REM) Liste des brêves]
+
+				<div class="bloc">
+					<h3 class="titre"><:dernieres_breves:></h3>
+					
+					<ul>
+						<BOUCLE_breve_courante(BREVES){par date}{inverse}{0,1}{doublons}>
+						<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+							[<a href="#URL_BREVE">[(#LOGO_BREVE_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero)</a>]
+							[ - <em>(#DATE|affdate_jourcourt)</em>]
+						<div class="nettoyeur"></div>
+							[(#INTRODUCTION|couper{80})]
+							<div class="nettoyeur"></div>
+						</li>
+						</BOUCLE_breve_courante>
+					
+					<B_breves_suite>
+					
+						<BOUCLE_breves_suite(BREVES){doublons}{par date}{inverse}{0,4}>
+						<li[ class="(#COMPTEUR_BOUCLE|alterner{'deux','un'})"]>
+							[<a href="#URL_BREVE">[(#LOGO_BREVE_RUBRIQUE||reduire_image{30})](#TITRE|supprimer_numero)</a>][ - 
+							<em>(#DATE|affdate_jourcourt)</em>]
+						</li>
+						</BOUCLE_breves_suite>
+					</ul>
+					</B_breves_suite>
+					
+					</div>
+
+	</B_breve_courante>
+
+
+<//B_breves>

@@ -1,0 +1,37 @@
+<BOUCLE_principale (DOCUMENTS) {id_document} {id_article}{doublons}>
+
+<?php
+// récupération des dimentions de l'image pour dimentionner la popup
+
+$largeur=#LARGEUR+10;
+if ( (!empty($largeur)) && ($largeur>1024) ) {
+	$largeur=1024;
+}
+$hauteur=#HAUTEUR+10;
+if ( (!empty($hauteur)) && ($hauteur>768) ) {
+	$hauteur=768;
+}
+?>
+
+<div id="Photo">
+	<a    
+		[(#CONFIG{plugin}|match{THICKBOX}|?{' ',''}) 
+		class="thickbox" href="[(#URL_DOCUMENT)]" [title="(#TITRE|supprimer_numero)"]>]
+		[(#CONFIG{plugin}|match{THICKBOX}|?{'',' '})
+		href="[(#URL_PAGE{photo}|parametre_url{'id_document',#ID_DOCUMENT})]"
+		onclick="window.open(this.href,'photo','toolbar=no,menubar=no,location=no,scrollbars=1,resizable=yes,height=<?php echo $hauteur; ?>,width=<?php echo $largeur; ?>'); return false;"
+		title="<:voir_image:>[ - (#TITRE|supprimer_numero)]">]
+		[(#FICHIER|reduire_image{455}|inserer_attribut{alt,[(#TITRE|supprimer_numero)]})]
+	</a>
+	
+	<dl>
+		<dt>[<strong>(#TITRE|supprimer_numero)</strong>]</dt>
+		[<dd>(#DESCRIPTIF)</dd>]
+	</dl>
+</div>
+
+</BOUCLE_principale>
+<BOUCLE_pour_thickbox (DOCUMENTS){id_article}{extension==jpg|png|gif}{doublons}>
+[(#CONFIG{plugin}|match{THICKBOX}|?{' ',''})
+<a class="thickbox" href="[(#URL_DOCUMENT)]" [title="(#TITRE|supprimer_numero)"]></a>]
+</BOUCLE_pour_thickbox>

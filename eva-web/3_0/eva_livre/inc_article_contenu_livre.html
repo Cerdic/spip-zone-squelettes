@@ -1,0 +1,51 @@
+<BOUCLE_principale(ARTICLES){id_article}{titre!=="couverture-livre"}>
+#DEBUT_SURLIGNE
+
+<div class="bloc2">
+
+	[(#REM) chapeau, texte, post-scriptum de l'article ]
+	[<div class="chapo">(#CHAPO)</div>]
+	
+	[<div class="texte">(#TEXTE)
+<div class="nettoyeur"></div>
+	</div>]
+
+</div>			
+	[<div class="lien"><strong><:voir_en_ligne:></strong> <a href="#URL_SITE">(#NOM_SITE)</a></div>]
+	
+	[(#REM) Liste des Documents joints exclure les doublons des images tant dans l'album photo ]
+	<BOUCLE_exclure_doublons_album(MOTS){id_article}{titre=livre}>
+		<BOUCLE_exclure_doublons(DOCUMENTS){id_article}{mode=document}{extension==jpg|png|gif}{doublons documents}>
+		</BOUCLE_exclure_doublons>
+	</BOUCLE_exclure_doublons_album>
+	
+	<B_documents>
+	
+	<div class="divers">
+<h4><:documents_joints:></h4>
+<ul>
+		<BOUCLE_documents(DOCUMENTS){id_article}{mode=document}{par num titre}{doublons documents}>
+		<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>[<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero|sinon{<:document:>})</a>][, <em>(#TYPE_DOCUMENT)</em>][, <em>(#TAILLE|taille_en_octets)</em>]
+		[(#DESCRIPTIF)]
+		</li>
+		<div class="nettoyeur"></div>
+		</BOUCLE_documents>
+</ul>
+	</div>
+	</B_documents>
+	
+	[<div class="divers">
+		<h4><:post_scriptum:></h4>
+		<div class="contenu">(#PS)</div>
+	</div>]
+	
+	[(#REM)  Notes de bas de page ]
+	[<div class="divers">
+		<h4><:notes:></h4>
+		<div class="contenu">(#NOTES)</div>
+	</div>]
+
+
+
+#FIN_SURLIGNE
+</BOUCLE_principale>

@@ -1,0 +1,21 @@
+#CACHE{0}
+
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{nbre_art_syndic_rubrique,#EVANBREARTICLESYNDICRUBRIQUE}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{nbre_art_syndic_rubrique,5}]
+
+<B_liens-syndic>
+	<div class="bloc">
+	<h3 class="titre">Sur le Web</h3>
+	<ul>
+	[<li class="pagination">(#PAGINATION{page_precedent_suivant})</li>]
+		<BOUCLE_liens-syndic(SYNDIC_ARTICLES){id_rubrique}{!par date}{pagination #GET{nbre_art_syndic_rubrique}}>
+			<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+			<a href="#URL_ARTICLE" target="_blank">[(#TITRE|supprimer_numero)]</a>[<em> sur <a href="spip.php?site#ID_SYNDIC">(#NOM_SITE|supprimer_numero)</a></em>][,
+			<em>(#DATE|affdate_jourcourt)</em>]
+			<div class="nettoyeur"></div>
+			[(#DESCRIPTIF|couper{80})]
+			<div class="nettoyeur"></div>
+			</li>
+		</BOUCLE_liens-syndic>
+	</div>
+</B_liens-syndic>

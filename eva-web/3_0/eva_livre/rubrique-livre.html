@@ -1,0 +1,111 @@
+<BOUCLE_principale(RUBRIQUES){id_rubrique}>
+	<INCLURE{fond=inc_entete-meta}{id_rubrique}{lang}>
+	</head>
+	<body>
+	<div id="Page">
+	
+		[(#REM) Entte de la page]
+		<INCLURE{fond=inc_entete-page}{id_rubrique}>
+			
+		[(#REM) Conteneur]
+		<div id="ConteneurSeul">
+		
+			[(#REM) Contenu de la page ]
+			<div id="Contenu">
+				
+				
+				[(#REM) bouton diaporama ]
+				<BOUCLE_bouton_diaporama(MOTS){id_rubrique}{titre=livre}>
+					<BOUCLE_bouton_diaporama_articles(ARTICLES){id_rubrique}{par num titre}{0,1}>
+					<h4 class="titre"><a href="#URL_ARTICLE">
+					<img src="#DOSSIER_SQUELETTE/img_pack/lire.gif" width="50" height="50" alt="Lire" />
+					<:feuilleter_livre:>
+					<B_compte>
+					   <BOUCLE_compte(ARTICLES) {id_rubrique}> </BOUCLE_compte>
+					   [((#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|>{1}|?{'pages','page'})])]
+					</B_compte>					
+					</a></h4>
+					</BOUCLE_bouton_diaporama_articles>
+				</BOUCLE_bouton_diaporama>
+				
+				
+				
+				[(#REM) Liste des rubriques]
+				<B_sous_rubriques>
+					
+					<div class="bloc">
+				<h3 class="titre"><:sous_rubriques:></h3>
+				<ul>
+					<BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par num titre}>
+						[<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2><a href="#URL_RUBRIQUE">[(#LOGO_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero)</a>]</h2>
+						[(#INTRODUCTION)]
+						<div class="suite"> <a href="#URL_RUBRIQUE"><:lire_suite:></a> </div>
+						<div class="nettoyeur"></div>
+						</li>
+					</BOUCLE_sous_rubriques>
+				</ul>
+					</div>
+				</B_sous_rubriques>
+				
+				[(#REM) Affiche la couverture]
+				
+				<BOUCLE_couverture(ARTICLES){id_rubrique}{titre_mot=couverture-livre}{doublons}{!par date}>				
+				<div class="bloc2">
+						<a href="#URL_ARTICLE"><h3 class="titre">[(#TITRE|supprimer_numero)]</h3></a>
+						[(#REM) chapeau, texte, post-scriptum de l'article ]
+						[<div class="chapo">(#CHAPO)</div>]
+						
+						[<div class="texte">(#TEXTE)</div>]
+						<div class="nettoyeur"></div>
+						<p></p>
+					</div>
+				</BOUCLE_couverture>
+				
+				
+				[(#REM) Liste des articles épisodes]
+				<B_articles>
+					
+					<div class="bloc">
+					<h3 class="titre">Les épisodes</h3>
+					<ul>
+						<BOUCLE_articles(ARTICLES){id_rubrique}{par num titre}{doublons}>
+						<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero)</a>]</h2>
+						<div class="nettoyeur"></div>
+						</li>
+						</BOUCLE_articles>
+					</ul>
+					</div>
+				</B_articles>
+				
+				[(#REM) Liste des Documents joints]
+				<B_documents>
+					
+					<div class="bloc">
+					<h3 class="titre"><:documents_joints:></h3>
+					<ul>
+						<BOUCLE_documents(DOCUMENTS){id_rubrique}{par num titre}>
+						<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero)</a>]</h2>[, <em>(#TYPE_DOCUMENT)</em>][, <em>(#TAILLE|taille_en_octets)</em>]
+						[(#DESCRIPTIF)]
+							<div class="nettoyeur"></div>
+						</li>
+						</BOUCLE_documents>
+					</ul>
+					</div>
+				</B_documents>
+				
+				[(#REM)  Notes de bas de page ]
+				[<div class="bloc">
+					<h3 class="titre"><:notes:> :</h3>
+					<ul><li>(#NOTES)</li></ul>
+				</div>]
+				
+			</div>
+
+			
+			<div class="nettoyeur"></div>
+		</div>
+		<INCLURE{fond=inc_pied}{lang}>
+	</div>
+</body>
+</html>
+</BOUCLE_principale>

@@ -1,0 +1,52 @@
+[(#REM)------ ARBORESCENCE----------]
+
+[(#REM) Si c'est un article ]
+<BOUCLE_principale_article(ARTICLES){id_article}>
+
+<div id="Arborescence">
+	<strong><:vous_etes_ici:></strong>
+	<a href="#URL_SITE_SPIP"><:accueil_site:></a>
+	
+	<BOUCLE_ariane(HIERARCHIE){id_article}>
+	 [&gt; <a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero|couper{80})</a>]
+	</BOUCLE_ariane>
+	
+	[ &gt; <em>(#TITRE|supprimer_numero|couper{80})</em>]
+</div>
+
+</BOUCLE_principale_article>
+
+[(#REM) Si c'est une rubrique ]
+<BOUCLE_que_rubrique(RUBRIQUES){id_rubrique}>
+<div id="Arborescence">
+<strong><:vous_etes_ici:></strong>
+<a href="#URL_SITE_SPIP"><:accueil_site:></a>
+
+<BOUCLE_ariane2(HIERARCHIE){id_rubrique}>
+[&gt; <a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero|couper{80})</a>]
+</BOUCLE_ariane2>
+[ &gt; <em>(#TITRE|supprimer_numero|couper{80})</em>]
+</div>
+
+</BOUCLE_que_rubrique>
+
+[(#REM) Si c'est une breve ]
+<BOUCLE_principale_breve(BREVES){id_breve}>
+<div id="Arborescence">
+	<strong><:vous_etes_ici:></strong>
+	<a href="#URL_SITE_SPIP"><:accueil_site:></a>
+
+	<BOUCLE_ariane3(HIERARCHIE){id_rubrique}>	
+	 &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a>
+	</BOUCLE_ariane3>
+	
+	[ &gt; <em>(#TITRE|supprimer_numero|couper{80})</em>]
+</div>
+
+</BOUCLE_principale_breve>
+
+
+
+<//B_principale_article>
+<//B_que_rubrique>
+<//B_principale_breve>

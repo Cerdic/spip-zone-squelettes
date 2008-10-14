@@ -1,0 +1,82 @@
+#CACHE{48 * 3600}
+<BOUCLE_principale(BREVES){id_breve}>
+<INCLURE{fond=inc_entete-meta}{id_breve}>
+</head>
+<body>
+	<div id="Page">
+	
+		[(#REM) Entete de la page]
+		<INCLURE{fond=inc_entete-page}{id_breve}>
+			
+		[(#REM) Conteneur]
+		<div id="Conteneur">
+		
+			[(#REM) Menu et elements de navigation]
+			<div id="Menu">
+            <?php $t0= '[(#EVAAUTEURNAVIGATION|texte_script)]';
+            if (($t0=='gauche') OR (($t0!='gauche') AND ($t0!='centre') AND ($t0!='droite') AND ($t0!='non'))) { ?>
+            <INCLURE{fond=inc_menu}{id_rubrique}{id_breve}> <?php } ?>
+            
+            <?php $t1= '[(#EVABREVEBREVES|texte_script)]';
+            if (($t1=='gauche') OR (($t1!='gauche') AND ($t1!='centre') AND ($t1!='droite') AND ($t1!='non'))) { ?>
+            <INCLURE{fond=inc_menu-breves-breve}{id_rubrique}{id_breve}> <?php } ?>
+			</div>
+
+            <div id="MenuDroit">
+			<?php if ($t0=='droite') { ?>
+            <INCLURE{fond=inc_menu}{id_rubrique}{id_breve}> <?php } ?>
+            
+            <?php if ($t1=='droite') { ?>
+            <INCLURE{fond=inc_menu-breves-breve}{id_rubrique}{id_breve}> <?php } ?>
+			</div>
+
+			[(#REM) Contenu de la page]
+			<div id="Contenu">
+
+				<div class="bloc2">
+				<div class="Titre">
+
+				[(#REM) Auteurs et dates]
+				<div id="AuteursDates">
+					<B_auteurs>
+				
+					<div><strong><:par:></strong> <BOUCLE_auteurs(AUTEURS){id_article}{par nom}{", "}>
+							<a href="#URL_AUTEUR">#NOM</a></BOUCLE_auteurs></div>
+					</B_auteurs>
+					
+					[<div><strong><:publie:></strong>
+						(#DATE|affdate_jourcourt)</div>]
+						
+					[(#REM)
+					[<div><strong><:mis_a_jour:></div>
+						(#DATE_MODIF|affdate_jourcourt)</div>]]
+				</div>
+				
+				[(#LOGO_BREVE_RUBRIQUE||reduire_image{140,70})]
+				[<h4 class="surtitre">(#SURTITRE)</h4>]
+				[<h2>(#TITRE|supprimer_numero)</h2>]
+				[<h4 class="soustitre">(#SOUSTITRE)</h4>]
+				<div class="nettoyeur"></div>
+				</div>
+				
+				[(#REM) chapeau, texte, post-scriptum de l'article ]
+				[<div class="texte">(#TEXTE)</div>]			
+				[<div class="lien"><strong><:voir_en_ligne:> </strong><a href="#URL_SITE">(#NOM_SITE)</a></div>]
+				
+				[(#REM)  Notes de bas de page ]
+				[<div class="notes">
+					<h4>Notes</h4>
+					<div>(#NOTES)</div>
+				</div>]
+			</div>
+            <?php if ($t1=='centre') { ?>
+            <INCLURE{fond=inc_menu-breves-breve}{id_rubrique}{id_breve}> <?php } ?>
+			</div>
+			
+			<div class="nettoyeur"></div>
+		</div>
+		<INCLURE{fond=inc_pied}{lang}>
+	</div>
+</body>
+</html>
+</BOUCLE_principale>

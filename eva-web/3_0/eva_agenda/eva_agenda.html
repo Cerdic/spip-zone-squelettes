@@ -1,0 +1,158 @@
+<BOUCLE_principale(RUBRIQUES){id_rubrique}>
+	<INCLURE{fond=inc_entete-meta}{id_rubrique}{lang}>
+	</head>
+	<body>
+	<div id="Page">
+	
+		[(#REM) Entte de la page]
+		<INCLURE{fond=inc_entete-page}{id_rubrique}>
+			
+		[(#REM) Conteneur]
+		<div id="Conteneur">
+
+			[(#REM) Menu et lments de navigation]
+			<div id="Menu">
+            
+            <?php $t0= '[(#EVARUBRIQUENAVIGATION|texte_script)]';
+            if (($t0=='gauche') OR (($t0!='gauche') AND ($t0!='centre') AND ($t0!='droite') AND ($t0!='non'))) { ?>
+            <INCLURE{fond=inc_menu}{id_secteur}{id_rubrique}{date}> <?php } ?>
+            
+            <?php $t1= '[(#EVARUBRIQUEBREVE|texte_script)]';
+            if (($t1=='gauche') OR (($t1!='gauche') AND ($t1!='centre') AND ($t1!='droite') AND ($t1!='non'))) { ?>
+            <INCLURE{fond=inc_menu-breves-rubrique}{id_rubrique}> <?php } ?>
+			
+            <?php $t2= '[(#EVARUBRIQUESITE|texte_script)]';
+            if (($t2=='gauche') OR (($t2!='gauche') AND ($t2!='centre') AND ($t2!='droite') AND ($t2!='non'))) { ?>
+            <INCLURE{fond=inc_menu-sites-rubrique}{id_rubrique}> <?php } ?>
+            
+            <?php $t2bis= '[(#EVARUBRIQUESITESYNDIC|texte_script)]';
+            if (($t2bis=='gauche') OR (($t2bis!='gauche') AND ($t2bis!='centre') AND ($t2bis!='droite') AND ($t2bis!='non'))) { ?>
+            <INCLURE{fond=inc_menu-sites-syndiqs-rubrique}{id_rubrique}> <?php } ?>
+            
+            <?php $t3= '[(#EVARUBRIQUEMOT|texte_script)]';
+            if (($t3=='gauche') OR (($t3!='gauche') AND ($t3!='centre') AND ($t3!='droite') AND ($t3!='non'))) { ?>
+            <INCLURE{fond=inc_article-rubrique-mot}{id_rubrique}> <?php } ?>
+	    
+	    <?php $t4= '[(#EVARUBRIQUEARTICLESYNDIC|texte_script)]';
+            if (($t4=='gauche') OR (($t4!='gauche') AND ($t4!='centre') AND ($t4!='droite') AND ($t4!='non'))) { ?>
+	<INCLURE{fond=inc_fils-syndic-rubrique}{id_rubrique}> <?php } ?>
+
+	</div>
+            
+            <div id="MenuDroit">
+            
+            <?php if ($t0=='droite') { ?>
+            <INCLURE{fond=inc_menu}{id_secteur}{id_rubrique}{date}> <?php } ?>
+            
+            <?php if ($t1=='droite') { ?>
+            <INCLURE{fond=inc_menu-breves-rubrique}{id_rubrique}> <?php } ?>
+			
+            <?php if ($t2=='droite') { ?>
+            <INCLURE{fond=inc_menu-sites-rubrique}{id_rubrique}> <?php } ?>
+            
+            <?php if ($t2bis=='droite') { ?>
+            <INCLURE{fond=inc_menu-sites-syndiqs-rubrique}{id_rubrique}> <?php } ?>
+			
+            <?php if ($t3=='droite') { ?>
+            <INCLURE{fond=inc_article-rubrique-mot}{id_rubrique}> <?php } ?>
+
+	<?php if ($t4=='droite') { ?>
+	<INCLURE{fond=inc_fils-syndic-rubrique}{id_rubrique}> <?php } ?>
+
+	</div>
+            
+            
+	[(#REM) Contenu de la page ]
+	<div id="Contenu">
+
+
+[(#REM) Evenements a venir ]
+<B_articles_a_venir>
+					
+<div class="bloc">
+	<h3 class="titre">Ev&egrave;nements à venir</h3>
+	<ul>
+	<BOUCLE_articles_a_venir(ARTICLES){id_rubrique}{annee_redac!=0000}{age_redac<=0}{par date_redac}>
+		<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero)</a>][<em> - (#DATE_REDAC|affdate)</em>]</h2>
+		[(#INTRODUCTION)]
+		<div class="suite"> <a href="#URL_ARTICLE"><:lire_suite:></a></div>
+		</li>
+	</BOUCLE_articles_a_venir>
+	</ul>
+</div>
+
+</B_articles_a_venir>
+	<h4 class="titre">Il n'y a aucun &eacute;v&egrave;nement &agrave; venir dans cet agenda.</h4>
+<//B_articles_a_venir>
+
+[(#REM) Evenements passes ]
+<B_articles_passes>
+					
+<div class="bloc">
+	<h3 class="titre">Ev&egrave;nements pass&eacute;s</h3>
+	<ul>
+	<BOUCLE_articles_passes(ARTICLES){id_rubrique}{annee_redac!=0000}{age_redac>0}{!par date_redac}>
+		<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero)</a>][<em> - (#DATE_REDAC|affdate)</em>]</h2>
+		[(#INTRODUCTION)]
+		<div class="suite"> <a href="#URL_ARTICLE"><:lire_suite:></a></div>
+		</li>
+	</BOUCLE_articles_passes>
+	</ul>
+</div>
+
+</B_articles_passes>
+	<h4 class="titre">Il n'y a aucun &eacute;v&egrave;nement pass&eacute; dans cet agenda.</h4>
+<//B_articles_passes>
+
+[(#REM) texte de la rubrique ]
+[<div class="bloc2">
+<div class="texte">(#TEXTE)</div>
+</div>]
+
+[(#REM) Liste des Documents joints]
+<B_documents>
+					
+<div class="bloc">
+<h3 class="titre"><:documents_joints:></h3>
+<ul>
+	<BOUCLE_documents(DOCUMENTS){id_rubrique}{par num titre}>
+		<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero)</a>]</h2>[ - <em>(#TYPE_DOCUMENT)</em>][ - <em>(#TAILLE|taille_en_octets)</em>]
+		[(#DESCRIPTIF)]
+		</li>
+	</BOUCLE_documents>
+</ul>
+</div>
+</B_documents>
+            
+            <?php if ($t1=='centre') { ?>
+            <INCLURE{fond=inc_menu-breves-rubrique}{id_rubrique}> <?php } ?>
+			
+            <?php if ($t2=='centre') { ?>
+            <INCLURE{fond=inc_menu-sites-rubrique}{id_rubrique}> <?php } ?>
+            
+            <?php if ($t2bis=='centre') { ?>
+            <INCLURE{fond=inc_menu-sites-syndiqs-rubrique}{id_rubrique}> <?php } ?>
+			
+            <?php if ($t3=='centre') { ?>
+            <INCLURE{fond=inc_article-rubrique-mot}{id_rubrique}> <?php } ?>
+	
+	<?php if ($t4=='centre') { ?>
+            <INCLURE{fond=inc_fils-syndic-rubrique}{id_rubrique}> <?php } ?>    
+    
+				[(#REM)  Notes de bas de page ]
+				[<div class="bloc">
+					<h3 class="titre"><:notes:> :</h3>
+					<ul><li>(#NOTES)</li></ul>
+				</div>]
+				
+			</div>
+			
+
+			
+			<div class="nettoyeur"></div>
+		</div>
+		<INCLURE{fond=inc_pied}{lang}>
+	</div>
+</body>
+</html>
+</BOUCLE_principale>

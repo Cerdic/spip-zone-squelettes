@@ -1,0 +1,30 @@
+#CACHE{0}
+[(#REM) Breves de cette rubrique]
+
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{nbre_prem_breve_rub,#EVANBREPREMBREVERUB}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{nbre_prem_breve_rub,1}]
+
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{nbre_breve_rub,#EVANBREBREVERUB}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{nbre_breve_rub,4}]
+
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{nbre_breve_pag_rub,#EVANBREBREVEPAGRUB}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{nbre_breve_pag_rub,5}]
+
+<?php if (#GET{nbre_breve_pag_rub}!=0) { ?>
+
+<B_breves>
+	<div class="bloc">
+	<h3 class="titre">Br&egrave;ves de la rubrique</h3>
+	
+	<ul>
+		[<div class="MenuPaginationHaut">&nbsp;(#PAGINATION)</div>]
+		<BOUCLE_breves(BREVES){id_rubrique}{pagination #GET{nbre_breve_pag_rub}}>
+		    <li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+		        [<a href="#URL_BREVE" [ class="(#EXPOSE)"]>[(#LOGO_BREVE_RUBRIQUE||reduire_image{30})](#TITRE|supprimer_numero)</a>]
+		    </li>
+		</BOUCLE_breves>
+		<div class="MenuPaginationBas"><em>Il y a au total #GRAND_TOTAL br&egrave;ve(s), ce bloc en affiche #TOTAL_BOUCLE</em></div>
+	</ul>
+	</div>
+</B_breves>
+ <?php } ?>

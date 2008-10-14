@@ -1,0 +1,102 @@
+﻿<BOUCLE_principale(ARTICLES){id_article}>
+<INCLURE{fond=inc_entete-meta}{id_article}{lang}>
+	</head>
+	<body>
+	<div id="Page">
+	<INCLURE{fond=inc_entete-page}{id_article}{id_rubrique}{lang}>
+		[(#REM) Entête de la page]
+		<div id="EnteteDiaporama">
+			
+			[(#REM) Boutons précédent/suivant ]
+		    <div id="BoutonDiaporama">
+			    
+			    <div class="precedent">
+			    	<B_articles_precedent>
+					    <BOUCLE_articles_precedent_premier(ARTICLES){id_rubrique}{par titre}{0,1}>
+						<a href="#URL_ARTICLE" class="precedentpremier">
+							<img src="#DOSSIER_SQUELETTE/img_pack/precedent_premier.gif" width="20" height="20" alt="" />
+							[<span>[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{60,25})]
+							<em><:article_precedent_premier:></em> 
+							(#TITRE|supprimer_numero)</span>]</a>
+					    </BOUCLE_articles_precedent_premier>
+				    <BOUCLE_articles_precedent(ARTICLES){id_rubrique}{par titre}{titre<#_principale:TITRE}{exclus}{n-1,1}>
+					<a href="#URL_ARTICLE" class="precedent">
+						<img src="#DOSSIER_SQUELETTE/img_pack/precedent.gif" width="20" height="20" alt="" />
+						[<span>[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{60,25})]
+						<em><:article_precedent:></em> 
+						(#TITRE|supprimer_numero)</span>]</a>
+				    </BOUCLE_articles_precedent>
+			    </div>
+			    
+			    <div class="suivant">
+				    <BOUCLE_articles_suivant(ARTICLES){id_rubrique}{par titre}{titre>=#_principale:TITRE}{exclus}{0,1}>
+					<a href="#URL_ARTICLE" class="suivant">
+						<img src="#DOSSIER_SQUELETTE/img_pack/suivant.gif" width="20" height="20" alt="" />
+						[<span>[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{60,25})]
+						<em><:article_suivant:></em> 
+						(#TITRE|supprimer_numero)</span>]</a>
+				    </BOUCLE_articles_suivant>
+					    <BOUCLE_articles_suivant_dernier(ARTICLES){id_rubrique}{par titre}{inverse}{exclus}{0,1}>
+						<a href="#URL_ARTICLE" class="suivantdernier">
+						<img src="#DOSSIER_SQUELETTE/img_pack/suivant_dernier.gif" width="20" height="20" alt="" />
+							[<span>[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{60,25})]
+							<em><:article_suivant_dernier:></em> 
+							(#TITRE|supprimer_numero)</span>]</a>
+					    </BOUCLE_articles_suivant_dernier>
+				    </B_articles_suivant>
+			    </div>
+			    
+		    </div>
+			
+			[<h1><a href="#URL_SITE_SPIP"><span>(#NOM_SITE_SPIP)</span></a></h1>]
+			[<h2>[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{80,40})]<span>(#TITRE|supprimer_numero)</span></h2>]
+			
+			<div class="nettoyeur"></div>
+		</div>
+
+
+
+		[(#REM) Conteneur]
+		<div id="ConteneurSeul">
+		
+			[(#REM) Contenu de la page]
+			<div id="Contenu">
+				
+				[(#REM) Inclure le contenu ]
+				<INCLURE{fond=inc_article_contenu_livre}{id_article}>
+				
+			</div>
+            
+            [(#REM) Inclusion du compteur graphique si le plugin est activé ]
+			[(#CONFIG{plugin}|match{COMPTEURGRAPHIQUE}|?{' ',''})<INCLURE{fond=inc_compteurgraphique-diaporama}{id_article}>]
+			
+			<div class="nettoyeur"></div>
+		</div>
+		
+		<ul id="Pied">
+		
+		[(#REM) Auteurs et dates]
+		<p>		
+		<B_auteurs>
+		<strong><:par:></strong> <BOUCLE_auteurs(AUTEURS){id_article}{par nom}{", "}>
+				<a href="#URL_AUTEUR">#NOM</a></BOUCLE_auteurs>
+		</B_auteurs>
+		
+		[<strong><:publie:></strong>
+			(#DATE|affdate_jourcourt)]
+			
+		[(#REM)
+		[<strong><:mis_a_jour:></strong>
+			(#DATE_MODIF|affdate_jourcourt)]]
+		</p>
+		<BOUCLE_copy(ARTICLES) {par date} {0,1}>
+		<p>
+		[(#DATE|annee)][-(#ENV{date}|>{#DATE}|?{#ENV{date},''}|annee)] © #NOM_SITE_SPIP - Tous droits réservés
+		</p>		
+		</BOUCLE_copy>
+		</ul>
+
+	</div>
+</body>
+</html>
+</BOUCLE_principale>

@@ -1,0 +1,23 @@
+#CACHE{0}
+[(#REM) Liste des sites référencés]
+
+<BOUCLE_exclu(SITES){titre_mot=podcast}{doublons}>
+</BOUCLE_exclu>
+
+[(#REM) Sites syndiques de cette rubrique]
+<B_sitesrubsynd>
+	<div class="bloc">
+	<h3 class="titre">Sites syndiqu&eacute;s de la rubrique</h3>
+	<ul>
+		<BOUCLE_sitesrubsynd(SITES){id_rubrique}{syndication=oui}>
+		    <li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+		    		[<a href="spip.php?site#ID_SYNDIC" target="_blank" [ class="(#EXPOSE)"]>[(#LOGO_SITE_RUBRIQUE||reduire_image{30})](#NOM_SITE|supprimer_numero)</a>][
+			<em> - (#DATE|affdate_jourcourt)</em>]
+			<div class="nettoyeur"></div>
+			[(#DESCRIPTIF|couper{160})]
+			<div class="nettoyeur"></div>
+		    </li>
+		</BOUCLE_sitesrubsynd>
+	</ul>
+	</div>
+</B_sitesrubsynd>

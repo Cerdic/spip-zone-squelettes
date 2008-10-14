@@ -1,0 +1,225 @@
+#CACHE{12*3600}
+[(#REM) Page accueil]
+<?php
+	$TitrePage='accueil';
+?>
+<INCLURE {fond=inc_entete-meta} >
+</head>
+<body>
+	<div id="Page">
+	
+		[(#REM) Entête de la page]
+		<INCLURE {fond=inc_entete-page} {id_rubrique} >
+		
+		[(#REM) Arborescence]
+		<div id="Arborescence">
+		<strong><:vous_etes_ici:></strong>
+		<em><:accueil_site:></em>
+		</div>	
+
+		[(#REM) Conteneur]
+		<div id="Conteneur">
+
+[(#REM) Début du menu gauche]
+
+		[(#REM) Menu et éléments de navigation]
+		<div id="Menu">
+        
+        <?php $t0= '[(#EVASOMMAIRENAVIGATION|texte_script)]';
+        if (($t0=='gauche') OR (($t0!='gauche') AND ($t0!='centre') AND ($t0!='droite') AND ($t0!='non'))) { ?>
+        <INCLURE{fond=inc_menu}> <?php } ?>
+	
+	<?php $t6= '[(#EVAMINICALENDRIER|texte_script)]';
+        if (($t6=='gauche') OR (($t6!='gauche') AND ($t6!='centre') AND ($t6!='droite') AND ($t6!='non'))) { ?>
+		[(#CONFIG{plugin}|match{MINI_CALENDRIER}|?{' ',''})
+		<INCLURE{fond=mini_calendrier}{lang}>] <?php } ?>
+
+		[(#REM) tests de formulaires]
+        <?php $t1= '[(#EVASOMMAIRECONNEXION|texte_script)]';
+        if (($t1=='gauche') OR (($t1!='gauche') AND ($t1!='centre') AND ($t1!='droite') AND ($t1!='non'))) { ?>
+		[(#CONFIG{plugin}|match{ACCES_RESTREINT}|?{' ',''})
+		<INCLURE{fond=inc_identification_sedeconnecter}{lang}>
+		<INCLURE{fond=inc_identification_visiteurs}{lang}>] <?php } ?>
+        
+        <?php $t2= '[(#EVASOMMAIREBREVE|texte_script)]';
+        if (($t2=='gauche') OR (($t2!='gauche') AND ($t2!='centre') AND ($t2!='droite') AND ($t2!='non'))) { ?>
+		<INCLURE{fond=inc_menu-breves-sommaire}{lang}> <?php } ?>
+        
+        <?php $t3= '[(#EVASOMMAIRESITE|texte_script)]';
+        if (($t3=='gauche') OR (($t3!='gauche') AND ($t3!='centre') AND ($t3!='droite') AND ($t3!='non'))) { ?>
+		<INCLURE{fond=inc_menu-sites-sommaire}{lang}> <?php } ?>
+        
+        <?php $t4= '[(#EVASOMMAIREPODCAST|texte_script)]';
+        if (($t4=='gauche') OR (($t4!='gauche') AND ($t4!='centre') AND ($t4!='droite') AND ($t4!='non'))) { ?>
+		<INCLURE{fond=inc_menu-podcast}{lang}> <?php } ?>
+        
+        <?php $t5= '[(#EVASOMMAIRELOGO|texte_script)]';
+        if (($t5=='gauche') OR (($t5!='gauche') AND ($t5!='centre') AND ($t5!='droite') AND ($t5!='non'))) { ?>
+		<INCLURE{fond=inc_logos}{lang}> <?php } ?>
+
+	<?php $t7= '[(#EVASOMMAIREARTICLESYNDIC|texte_script)]';
+        if (($t7=='gauche') OR (($t7!='gauche') AND ($t7!='centre') AND ($t7!='droite') AND ($t7!='non'))) { ?>
+	<INCLURE{fond=inc_fils-syndic-sommaire}{lang}> <?php } ?>
+
+	<?php $t8= '[(#EVASOMMAIRECOMPTEUR|texte_script)]';
+        if (($t8=='gauche') OR (($t8!='gauche') AND ($t8!='centre') AND ($t8!='droite') AND ($t8!='non'))) { ?>
+	[(#CONFIG{plugin}|match{COMPTEURGRAPHIQUE}|?{' ',''})
+	<INCLURE{fond=inc-compteurgraphique-total}{lang}>]  <?php } ?>
+	
+	</div>
+
+[(#REM) Début du menu droite]
+		[(#REM) Liste des sites référencés]
+		<div id="MenuDroit">
+
+       <?php if ($t0=='droite') { ?>
+        <INCLURE{fond=inc_menu}> <?php } ?>
+	
+	<?php if ($t6=='droite') { ?>
+		[(#CONFIG{plugin}|match{MINI_CALENDRIER}|?{' ',''})
+		<INCLURE{fond=mini_calendrier}{lang}>] <?php } ?>
+			
+		[(#REM) tests de formulaires]
+        <?php if ($t1=='droite') { ?>
+		[(#CONFIG{plugin}|match{ACCES_RESTREINT}|?{' ',''})
+		<INCLURE{fond=inc_identification_sedeconnecter}{lang}>
+		<INCLURE{fond=inc_identification_visiteurs}{lang}>] <?php } ?>
+        
+        <?php if ($t2=='droite') { ?>
+		<INCLURE{fond=inc_menu-breves-sommaire}{lang}> <?php } ?>
+        
+        <?php if ($t3=='droite') { ?>
+		<INCLURE{fond=inc_menu-sites-sommaire}{lang}> <?php } ?>
+        
+        <?php if ($t4=='droite') { ?>
+		<INCLURE{fond=inc_menu-podcast}{lang}> <?php } ?>
+        
+        <?php if ($t5=='droite') { ?>
+		<INCLURE{fond=inc_logos}{lang}> <?php } ?>
+	
+	<?php if ($t7=='droite') { ?>
+		<INCLURE{fond=inc_fils-syndic-sommaire}{lang}> <?php } ?>
+
+	<?php if ($t8=='droite') { ?>
+	[(#CONFIG{plugin}|match{COMPTEURGRAPHIQUE}|?{' ',''})
+	<INCLURE{fond=inc-compteurgraphique-total}{lang}>] <?php } ?>
+		
+	</div>
+
+<BOUCLE_article_mentions(ARTICLES){titre_mot=mentions}{doublons}>
+</BOUCLE_article_mentions>
+
+[(#REM) Début du bloc contenu]
+			<div id="Contenu">
+
+				[(#REM) Liste des articles : Affichage de l'éditorial]
+				<B_edito>
+				
+					<BOUCLE_edito (ARTICLES) {titre_mot=editorial} {doublons} >
+					<div class="edito">
+					<div class="Titre">
+						
+					[<a href="#URL_ARTICLE">(#LOGO_ARTICLE_RUBRIQUE||reduire_image{140,70})</a>]
+[<h4 class="surtitre">(#SURTITRE)</h4>]
+[<a href="#URL_ARTICLE"><h2>(#TITRE|supprimer_numero)</h2></a>]
+[<h4 class="soustitre">(#SOUSTITRE)</h4>]
+<div class="nettoyeur"></div>
+					</div>
+						
+						[(#REM) chapeau, texte, post-scriptum de l'article ]
+						[<div class="chapo">(#CHAPO)</div>]
+						
+						[<div class="texte">(#TEXTE)</div>]
+					</div>
+					</BOUCLE_edito>
+				
+				</B_edito>
+				
+		<BOUCLE_articles_exclus (ARTICLES) {titre_mot=excluredusommaire} {doublons} >
+		</BOUCLE_articles_exclus>
+		
+		<BOUCLE_rubriques_exclues (RUBRIQUES) {titre_mot=excluredusommaire}>
+			<BOUCLE_articles_exclus2 (ARTICLES) {id_rubrique} {doublons} >
+			</BOUCLE_articles_exclus2>
+		</BOUCLE_rubriques_exclues>
+				
+				[(#REM) Liste des articles]
+                [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{nbre_prem_art_somm,#EVANBREPREMARTSOMM}] 
+                [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{nbre_prem_art_somm,1}]
+                
+                [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{nbre_art_somm,#EVANBREARTSOMM}] 
+                [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{nbre_art_somm,4}]
+				<B_articles>
+					
+					<div class="bloc">
+					<h3 class="titre"><:derniers_articles:></h3>
+					<ul>
+						<BOUCLE_articles (ARTICLES) {par date} {inverse} {doublons} {0,#GET{nbre_prem_art_somm}} >
+						<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+							<h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero)</a>][
+							<em> - (#DATE|affdate_jourcourt)</em>]</h2>
+
+							[(#INTRODUCTION|couper{200})<br/>]
+							<div class="suite">
+							<a href="#URL_ARTICLE"><:lire_suite:></a>
+							</div>
+								
+						</li>
+						</BOUCLE_articles>
+						
+						<BOUCLE_articles_suite (ARTICLES) {par date} {inverse} {doublons} {0,#GET{nbre_art_somm}} >
+						<li[ class="(#COMPTEUR_BOUCLE|alterner{'deux','un'})"]>
+							<h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero)</a>][
+							<em> - (#DATE|affdate_jourcourt)</em>]</h2>
+							[(#INTRODUCTION|couper{200})]
+							<div class="suite"> 
+							<a href="#URL_ARTICLE"><:lire_suite:></a>
+							</div>
+							
+						</li>
+						</BOUCLE_articles_suite>
+					</ul>
+					</div>
+				</B_articles>
+		
+		<?php if ($t6=='centre') { ?>
+		[(#CONFIG{plugin}|match{MINI_CALENDRIER}|?{' ',''})
+		<INCLURE{fond=mini_calendrier}{lang}>] <?php } ?>
+		
+        		[(#REM) tests de formulaires]
+                <?php if ($t1=='centre') { ?>
+		        [(#CONFIG{plugin}|match{ACCES_RESTREINT}|?{' ',''})
+		        <INCLURE{fond=inc_identification_sedeconnecter}{lang}>
+		        <INCLURE{fond=inc_identification_visiteurs}{lang}>] <?php } ?>
+        
+                <?php if ($t2=='centre') { ?>
+		        <INCLURE{fond=inc_menu-breves-sommaire}{lang}> <?php } ?>
+        
+                <?php if ($t3=='centre') { ?>
+		        <INCLURE{fond=inc_menu-sites-sommaire}{lang}> <?php } ?>
+        
+                <?php if ($t4=='centre') { ?>
+		        <INCLURE{fond=inc_menu-podcast}{lang}> <?php } ?>
+        
+                <?php if ($t5=='centre') { ?>
+		        <INCLURE{fond=inc_logos}{lang}> <?php } ?>
+
+		<?php if ($t7=='centre') { ?>
+		        <INCLURE{fond=inc_fils-syndic-sommaire}{lang}> <?php } ?>
+			
+		<?php if ($t8=='centre') { ?>
+		[(#CONFIG{plugin}|match{COMPTEURGRAPHIQUE}|?{' ',''})
+		<INCLURE{fond=inc-compteurgraphique-total}{lang}>] <?php } ?>
+
+	</div>
+
+[(#REM) Début du pied de la page]			
+	
+			<div class="nettoyeur"></div>
+		
+		<INCLURE{fond=inc_logos-pied}{lang}>
+		<INCLURE{fond=inc_pied}{lang}>
+
+	</div>
+</body>
+</html>

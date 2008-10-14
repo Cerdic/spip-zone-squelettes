@@ -1,0 +1,53 @@
+#CACHE{0}
+[(#REM) Liste des sites référencés]
+<BOUCLE_exclure1(SITES){titre_mot=logo-pied}{doublons}>
+</BOUCLE_exclure1>
+<BOUCLE_exclure2(SITES){titre_mot=podcast}{doublons}>
+</BOUCLE_exclure2>
+<BOUCLE_exclure3(SITES){titre_mot=logo-bloc}{doublons}>
+</BOUCLE_exclure3>
+<BOUCLE_exclure4(SITES){titre_mot=lien-haut}{doublons}>
+</BOUCLE_exclure4>
+
+<BOUCLE_sites_exclus (SITES) {titre_mot=excluredusommaire} {doublons} >
+</BOUCLE_sites_exclus>
+		
+<BOUCLE_rubriques_exclues (RUBRIQUES) {titre_mot=excluredusommaire}>
+	<BOUCLE_sites_exclus2 (SITES) {id_rubrique} {doublons} >
+	</BOUCLE_sites_exclus2>
+</BOUCLE_rubriques_exclues>
+
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{nbre_prem_site_somm,#EVANBREPREMSITESOMM}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{nbre_prem_site_somm,1}]
+
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{nbre_site_somm,#EVANBRESITESOMM}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{nbre_site_somm,4}]
+
+
+<B_sites>
+
+<div class="bloc">
+	<h3 class="titre"><:derniers_sites:></h3>
+<ul>
+	<BOUCLE_sites(SITES){syndication=non}{par date}{inverse}{doublons}{0,#GET{nbre_prem_site_somm}}>
+		<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+			[<a href="#URL_SITE" target="_blank">[(#LOGO_SITE_RUBRIQUE||reduire_image{50,60})](#NOM_SITE|supprimer_numero)</a>][
+			<em> - (#DATE|affdate_jourcourt)</em>]
+		
+			[(#DESCRIPTIF|couper{300})]
+			<div class="nettoyeur"></div>
+		</li>
+		</BOUCLE_sites>
+	
+	<B_sites_suite>
+	
+		<BOUCLE_sites_suite(SITES){syndication=non}{par date}{inverse}{doublons}{0,#GET{nbre_site_somm}}>
+		<li[ class="(#COMPTEUR_BOUCLE|alterner{'deux','un'})"]>
+			[<a href="#URL_SITE" target="_blank">[(#LOGO_SITE_RUBRIQUE||reduire_image{30})](#NOM_SITE|supprimer_numero)</a>][
+			<em> - (#DATE|affdate_jourcourt)</em>]
+			</li>
+		</BOUCLE_sites_suite>
+	</ul>
+	</B_sites_suite>
+</div>
+</B_sites>
