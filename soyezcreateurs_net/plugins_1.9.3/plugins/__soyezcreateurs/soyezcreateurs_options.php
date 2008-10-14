@@ -97,7 +97,7 @@ $GLOBALS['cs_installer']['SoyezCreateurs'] = array(
 
 	// Installation des outils par defaut
 	'outils' =>
-		'typo_exposants|guillemets|smileys|mailcrypt',
+		'typo_exposants|guillemets|smileys|mailcrypt|soft_scroller',
 
 	// Installation des variables par defaut
 	'variables' => array(
