@@ -13,7 +13,7 @@ define('_DIR_PLUGIN_EVAHABILLAGE',(_DIR_PLUGINS.end($p)));
 		if ($GLOBALS['connect_statut'] == "0minirezo" && $GLOBALS["connect_toutes_rubriques"]) {
 		  // on voit le bouton dans la barre "naviguer"
 			$boutons_admin['configuration']->sousmenu['eva_habillage']= new Bouton(
-			"../"._DIR_PLUGIN_EVAHABILLAGE."/img_pack/eva3.gif",  // icone
+			"../"._DIR_PLUGIN_EVAHABILLAGE."img_pack/eva3.gif",  // icone
 			_T('evahabillage:EVA_nom_court')	// titre
 			);
 		}
