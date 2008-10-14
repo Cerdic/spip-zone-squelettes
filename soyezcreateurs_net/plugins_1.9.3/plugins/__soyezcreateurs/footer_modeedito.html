@@ -32,7 +32,7 @@
 
 <BOUCLE_MenuHaut(RUBRIQUES){titre_mot=MenuHaut}{id_rubrique=#ENV{secteurencours}}{!titre_mot=PasDansMenu}{!lang_select}>
 <div class="espaceavant">
-[(#INCLURE{fond=menuarticles}{id_rubrique})]
+[(#INCLURE{fond=menuarticles}{id_rubrique}{id_article})]
 <B_Rubriques_MenuHaut>
 <ul>
   <BOUCLE_Rubriques_MenuHaut(RUBRIQUES){id_parent}{par num titre}{!titre_mot=PasDansMenu}{!lang_select}><BOUCLE_test_expose_MenuHaut(RUBRIQUES) {id_enfant}{0,1}>#EXPOSE{' ',(#CONFIG{soyezcreateurs/sousmenulocaux,'systematique'}|=={systematique}|?{' ',''})}</BOUCLE_test_expose_MenuHaut>
@@ -87,7 +87,7 @@
 <div class="espaceavant">
 <ul>
 <li><?php if ($GLOBALS['jp_rubrique']=='Plan') { ?><strong><?php } ?><a accesskey="P" href="@plan.html" title="<:pyrat:toutleplan:>"><:pyrat:plan_menu:></a><?php if ($GLOBALS['jp_rubrique']=='Plan') { ?></strong><?php } ?></li>
-<BOUCLE_AuMoinsUnSite(SITES){0,1}><li><?php if ($GLOBALS['jp_rubrique']=='Sites') { ?><strong><?php } ?><a href="@site.html"><:sites_web:></a><?php if ($GLOBALS['jp_rubrique']=='Sites') { ?></strong><?php } ?></li></BOUCLE_AuMoinsUnSite>
+<BOUCLE_AuMoinsUnSite(SITES){0,1}><li>[(#ENV{jp_rubrique}|=={Sites})<strong>]<a href="@site.html"><:sites_web:></a>[(#ENV{jp_rubrique}|=={Sites})</strong>]</li></BOUCLE_AuMoinsUnSite>
 [(#PLUGIN{SPIPLISTES}|=={1}|?{' '})
 <li><?php global $jp_rubrique; if ($jp_rubrique=='Liste') { ?><strong><?php } ?><a accesskey="N" href="@liste.html" title="<:pyrat:newsletter:>"><:pyrat:newsletter:></a><?php if ($jp_rubrique=='Liste') { ?></strong><?php } ?></li>]
 [(#PLUGIN{CLEVERMAIL}|=={1}|?{' '})
@@ -105,4 +105,4 @@
 
 </div>
 	</div><!-- id="navigation" -->
-[(#INCLURE{fond=menu_right}{id_rubrique}{id_article}{template})]
+[(#INCLURE{fond=menu_right}{id_rubrique}{id_article}{template}{env})]

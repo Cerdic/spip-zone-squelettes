@@ -1,15 +1,22 @@
 #CACHE{3600}
 <BOUCLE_site(SITES){id_syndic}>
-<?php
-$jp_rubrique = [(#ID_RUBRIQUE|texte_script)];
-$jp_site = '[(#ID_SYNDIC|texte_script)]';
-$jp_syndication = '[(#ENV{id_syndic_article}|texte_script)]';
-?>
 [(#SET{titretop,<:sites_web|nettoyer_marqueur:>_[(#NOM_SITE|nettoyer_marqueur)]})]
 <BOUCLE_ArticleSyndiqueTitre(SYNDIC_ARTICLES) {id_syndic_article} >
-[(#INCLURE{fond=header}{connexion}{metadescription=[(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)]}{title=[(#TITRE|textebrut|texte_script)][ - (#NOM_SITE|textebrut|texte_script) (<:sites_web:>)]}{titretop=#GET{titretop}})]
+[(#INCLURE{fond=header}
+	{connexion}
+	{metadescription=[(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)]}
+	{title=[(#TITRE|textebrut|texte_script)][ - (#NOM_SITE|textebrut|texte_script) (<:sites_web:>)]}
+	{titretop=#GET{titretop}}
+	{secteurencours=#ID_SECTEUR}
+)]
 </BOUCLE_ArticleSyndiqueTitre>
-[(#INCLURE{fond=header}{connexion}{metadescription=[(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)]}{title=[(#NOM_SITE|textebrut|texte_script) (<:sites_web:>)]}{titretop=#GET{titretop}})]
+[(#INCLURE{fond=header}
+	{connexion}
+	{metadescription=[(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)]}
+	{title=[(#NOM_SITE|textebrut|texte_script) (<:sites_web:>)]}
+	{titretop=#GET{titretop}}
+	{secteurencours=#ID_SECTEUR}
+)]
 <//B_ArticleSyndiqueTitre>
 	<div id="miettesdepain">
 	<ul>
@@ -79,13 +86,18 @@ $jp_syndication = '[(#ENV{id_syndic_article}|texte_script)]';
 	
 [(#FORMULAIRE_ADMIN)]
 
-[(#INCLURE{fond=footer}{rubriqueencours=#ID_RUBRIQUE}{id_rubrique}{secteurencours=#GET{secteurencours}}{titretop=#GET{titretop}})]
+[(#INCLURE{fond=footer}
+	{rubriqueencours=#ID_RUBRIQUE}
+	{id_rubrique=#ID_RUBRIQUE}
+	{secteurencours=#ID_SECTEUR}
+	{titretop=#GET{titretop}}
+	{jp_rubrique=Sites}
+	{jp_site=#ID_SYNDIC}
+	{jp_syndication=#ENV{id_syndic_article}}
+)]
 
 </BOUCLE_site>
 
-<?php
-$jp_rubrique = 'Sites';
-?>
 [(#SET{titretop,<:sites_web|nettoyer_marqueur:>})]
 
 [(#INCLURE{fond=header}{connexion}{title=<:sites_web:>}{titretop=#GET{titretop}})]
@@ -111,6 +123,9 @@ $jp_rubrique = 'Sites';
 					
 [(#FORMULAIRE_ADMIN)]
 
-[(#INCLURE{fond=footer}{secteurencours=#GET{secteurencours}}{titretop=#GET{titretop}})]
-
+[(#INCLURE{fond=footer}
+	{secteurencours=#GET{secteurencours}}
+	{titretop=#GET{titretop}}
+	{jp_rubrique=Sites}
+)]
 <//B_site>
