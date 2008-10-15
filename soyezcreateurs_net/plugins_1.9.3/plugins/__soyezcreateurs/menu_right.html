@@ -7,33 +7,29 @@
 <div class="rightmenu">
 	[(#PLUGIN{AGENDA}|=={1}|?{' '})[(#CONFIG{soyezcreateurs/miniagenda,Oui}|=={Oui}|?{' ',''})#INCLURE{fond=miniagenda}]]
 [(#ENV{template}|=={'Sommaire'}|?{[(#INCLURE{fond=menu_right_sommaire}{env})]})]
-<BOUCLE_Rubriques_Breves(RUBRIQUES){racine}>
-<?php if ($GLOBALS['jp_rubrique']==[(#ID_RUBRIQUE|texte_script)]) { ?>
+
+[(#REM) Si pas sommaire]
 	<B_Breves>
 	<h2><:breves:></h2>
 	<ul>
-	  <BOUCLE_Breves(BREVES){id_secteur}{!par date}{age<120}><li><?php if ($GLOBALS['jp_breve']==#ID_BREVE) { ?><strong><?php } ?><a href="[(#URL_BREVE)]" title="[(#DATE|nom_jour)] [(#DATE|affdate)]">[<img class="menu_right_logo" src="(#LOGO_BREVE_NORMAL||image_reduire{120,50}|extraire_attribut{src})"[ width="(#LOGO_BREVE_NORMAL||image_reduire{120,50}|extraire_attribut{width})"][ height="(#LOGO_BREVE_NORMAL||image_reduire{120,50}|extraire_attribut{height})"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" /><br />][(#TITRE)]</a><?php if ($GLOBALS['jp_breve']==#ID_BREVE) { ?></strong><?php } ?></li></BOUCLE_Breves>
+	  <BOUCLE_Breves(BREVES){id_rubrique}{!par date}{age<120}><li>[(#ENV{id_breve}|=={#ID_BREVE}|?{<strong>})]<a href="[(#URL_BREVE)]" title="[(#DATE|nom_jour)] [(#DATE|affdate)]">[<img class="menu_right_logo" src="(#LOGO_BREVE_NORMAL||image_reduire{120,50}|extraire_attribut{src})"[ width="(#LOGO_BREVE_NORMAL||image_reduire{120,50}|extraire_attribut{width})"][ height="(#LOGO_BREVE_NORMAL||image_reduire{120,50}|extraire_attribut{height})"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" /><br />][(#TITRE)]</a>[(#ENV{id_breve}|=={#ID_BREVE}|?{</strong>})]</li></BOUCLE_Breves>
 	</ul>
 	</B_Breves>
-<?php } ?>
-</BOUCLE_Rubriques_Breves>
 
 [(#REM) afficher les rub & art qui ont le mot clef : DessousBreves si c est un tel article qui est affiche ]
 
-<BOUCLE_ArticlesDessousBreves(RUBRIQUES){titre_mot = DessousBreves }>
-<?php if ($GLOBALS['jp_rubrique']==[(#ID_RUBRIQUE|texte_script)]) { ?>
+<BOUCLE_ArticlesDessousBreves(RUBRIQUES){id_rubrique}{titre_mot = DessousBreves }>
  <h2 [title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>[(#SET{lelogo,[(#MODELE{rubrique_logo}{mode=normal}|image_reduire{120,50})]})][<img class="menu_right_logo" src="(#GET{lelogo}|extraire_attribut{src})"[ width="(#GET{lelogo}|extraire_attribut{width})"][ height="(#GET{lelogo}|extraire_attribut{height})"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" /><br />][(#TITRE)]</h2>
   <ul>
 <BOUCLE_art_recents(ARTICLES) {id_rubrique}{!par date}>
 	<li><?php if ($GLOBALS['jp_article']==#ID_ARTICLE) { ?><strong><?php } ?><a href="#URL_ARTICLE"[ hreflang="(#LANG)"] title="[(#DESCRIPTIF|supprimer_tags|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">[(#TITRE)]</a><?php if ($GLOBALS['jp_article']==#ID_ARTICLE) { ?></strong><?php } ?></li>
 </BOUCLE_art_recents>
 </ul>
-<?php } ?>
 </BOUCLE_ArticlesDessousBreves>
 [(#REM) finde afficher les rub & art qui ont le mot clef : DessousBreves ]
 
 
-<?php } ?>
+
 
 <BOUCLE_RubriqueSites(RUBRIQUES){id_rubrique}>
 [<h2 title="<:pyrat:plus_loin_title:>"><:pyrat:plus_loin:></h2>
