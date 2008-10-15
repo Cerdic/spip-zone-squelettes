@@ -1,10 +1,15 @@
 <BOUCLE_ArticleMultimedia(ARTICLES){id_document}>
-<?php $jp_rubrique = '[(#ID_RUBRIQUE|texte_script)]'; ?>
-<?php $jp_article = '[(#ID_ARTICLE|texte_script)]'; ?>
 <BOUCLE_FichierMultimedia(DOCUMENTS){id_document}>
-
+[(#SET{id_article,#ID_ARTICLE})]
+[(#SET{id_rubrique,#ID_RUBRIQUE})]
 [(#SET{titretop,[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]})]
-[(#INCLURE{fond=header}{connexion}{title=[(#TITRE|attribut_html|texte_script)]}{titretop=#GET{titretop}})]
+[(#INCLURE{fond=header}
+	{connexion}
+	{title=[(#TITRE|attribut_html|texte_script)]}
+	{titretop=#GET{titretop}}
+	{id_article}
+	{id_rubrique}
+)]
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
@@ -50,7 +55,15 @@
 </B_ArticleMultimedia>
 
 [(#SET{titretop,<:pyrat:erreur|nettoyer_marqueur|texte_script:>})]
-[(#INCLURE{fond=header}{connexion}{title=<:pyrat:erreur|texte_script:>}{titretop=#GET{titretop}})]
+[(#INCLURE{fond=header}
+	{connexion}
+	{title=<:pyrat:erreur|texte_script:>}
+	{titretop=#GET{titretop}}
+)]
 <:pyrat:erreur_documentexistepas:>
 <//B_ArticleMultimedia>
-[(#INCLURE{fond=footer}{titretop=#GET{titretop}})]
+[(#INCLURE{fond=footer}
+	{titretop=#GET{titretop}}
+	{id_article=#GET{id_article}}
+	{id_rubrique=#GET{id_rubrique}}
+)]
