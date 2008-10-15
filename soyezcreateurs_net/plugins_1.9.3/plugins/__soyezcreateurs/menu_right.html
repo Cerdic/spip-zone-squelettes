@@ -22,7 +22,7 @@
  <h2 [title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>[(#SET{lelogo,[(#MODELE{rubrique_logo}{mode=normal}|image_reduire{120,50})]})][<img class="menu_right_logo" src="(#GET{lelogo}|extraire_attribut{src})"[ width="(#GET{lelogo}|extraire_attribut{width})"][ height="(#GET{lelogo}|extraire_attribut{height})"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" /><br />][(#TITRE)]</h2>
   <ul>
 <BOUCLE_art_recents(ARTICLES) {id_rubrique}{!par date}>
-	<li><?php if ($GLOBALS['jp_article']==#ID_ARTICLE) { ?><strong><?php } ?><a href="#URL_ARTICLE"[ hreflang="(#LANG)"] title="[(#DESCRIPTIF|supprimer_tags|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">[(#TITRE)]</a><?php if ($GLOBALS['jp_article']==#ID_ARTICLE) { ?></strong><?php } ?></li>
+	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="#URL_ARTICLE"[ hreflang="(#LANG)"] title="[(#DESCRIPTIF|supprimer_tags|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">[(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
 </BOUCLE_art_recents>
 </ul>
 </BOUCLE_ArticlesDessousBreves>

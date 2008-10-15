@@ -20,11 +20,13 @@
 </B_messages>
 
 <BOUCLE_list(cm_lists){lst_id}>
-<?php
-$jp_rubrique = 'Liste_mail';
-?>
 [(#SET{titretop,<:pyrat:newsletter|nettoyer_marqueur|texte_script:>})]
- [(#INCLURE{fond=header}{connexion}{title=<:pyrat:newsletter|texte_script:>}{titretop=#GET{titretop}})]
+[(#INCLURE{fond=header}
+	{connexion}
+	{title=<:pyrat:newsletter|texte_script:>}
+	{titretop=#GET{titretop}}
+	{template=Liste_mail}
+)]
 	<div id="miettesdepain">
 		<ul>
 			<li><a href="#URL_SITE_SPIP" title="Accueil"><:pyrat:accueil:></a></li>
@@ -61,11 +63,14 @@ $jp_rubrique = 'Liste_mail';
 </div><!-- Fin de .texte -->
 
 </BOUCLE_list>
-<?php
-$jp_rubrique = 'Liste_mail';
-?>
+
 [(#SET{titretop,<:pyrat:newsletter|nettoyer_marqueur|texte_script:>})]
- [(#INCLURE{fond=header}{connexion}{title=<:pyrat:newsletter|texte_script:>}{titretop=#GET{titretop}})]
+[(#INCLURE{fond=header}
+	{connexion}
+	{title=<:pyrat:newsletter|texte_script:>}
+	{titretop=#GET{titretop}}
+	{template=Liste_mail}
+)]
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
@@ -100,5 +105,8 @@ $jp_rubrique = 'Liste_mail';
 <//B_messages>
 			[(#ENV{mode}|=={lettreseule}?{'',' '})
 [(#FORMULAIRE_ADMIN)]
-[(#INCLURE{fond=footer}{titretop=#GET{titretop}})]
+[(#INCLURE{fond=footer}
+	{titretop=#GET{titretop}}
+	{template=Liste_mail}
+)]
 ]
