@@ -1,8 +1,10 @@
 <BOUCLE_mot_principal(MOTS){id_mot}>
-<?php $jp_mot = '[(#ID_MOT|texte_script)]'; ?>
-
 [(#SET{titretop,[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]})]
-[(#INCLURE{fond=header}{connexion}{title=<:pyrat:mot|texte_script:>: [(#TITRE|attribut_html|texte_script)]}{titretop=#GET{titretop}})]
+[(#INCLURE{fond=header}
+	{connexion}
+	{title=<:pyrat:mot|texte_script:>: [(#TITRE|attribut_html|texte_script)]}
+	{titretop=#GET{titretop}}
+)]
 	<div id="miettesdepain">
 	<ul>
 		<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
@@ -19,7 +21,7 @@
 <B_MotsduGroupe>
 <ul>
 <BOUCLE_MotsduGroupe(MOTS) {id_groupe}{par num titre}>
-	<li><?php if (#ID_MOT!=#_mot_principal:ID_MOT) { ?><a href="#URL_MOT" rel="tag" title="[(#DESCRIPTIF|attribut_html)]"><?php } ?>[(#TITRE)]<?php if (#ID_MOT!=#_mot_principal:ID_MOT) { ?></a><?php } ?></li>
+	<li>[(#ID_MOT|!={#_mot_principal:ID_MOT}|?{<a href="#URL_MOT" rel="tag" title="[(#DESCRIPTIF|attribut_html)]">})][(#TITRE)][(#ID_MOT|!={#_mot_principal:ID_MOT}|?{</a>})]</li>
 </BOUCLE_MotsduGroupe>
 </ul>
 </B_MotsduGroupe>
@@ -90,10 +92,12 @@
 
 </BOUCLE_mot_principal>
 <BOUCLE_Groupe_principal(GROUPES_MOTS){id_groupe}>
-<?php $jp_mot = 'Groupe'; ?>
-
 [(#SET{titretop,[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]})]
-[(#INCLURE{fond=header}{connexion}{title=<:pyrat:motsgroupe|texte_script:>: [(#TITRE|attribut_html|texte_script)]}{titretop=#GET{titretop}})]
+[(#INCLURE{fond=header}
+	{connexion}
+	{title=<:pyrat:motsgroupe|texte_script:>: [(#TITRE|attribut_html|texte_script)]}
+	{titretop=#GET{titretop}}
+)]
 	<div id="miettesdepain">
 	<ul>
 		<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
@@ -172,10 +176,12 @@
 	</div><!-- Fin de #LeTexte -->
 </div><!-- Fin de .texte -->
 </BOUCLE_Groupe_principal>
-<?php $jp_mot = 'Tous'; ?>
-
 [(#SET{titretop,<:pyrat:mots_title|nettoyer_marqueur|texte_script:>})]
-[(#INCLURE{fond=header}{connexion}{title=<:pyrat:mots_title|texte_script:>}{titretop=#GET{titretop}})]
+[(#INCLURE{fond=header}
+	{connexion}
+	{title=<:pyrat:mots_title|texte_script:>}
+	{titretop=#GET{titretop}}
+)]
 	<div id="miettesdepain">
 
 	<ul>

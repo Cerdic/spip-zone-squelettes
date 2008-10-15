@@ -1,12 +1,17 @@
 #CACHE{3600}
 <BOUCLE_secteurs(RUBRIQUES) {id_rubrique}>
-<?php $jp_rubrique = [(#ID_RUBRIQUE|texte_script)]; ?>
 <BOUCLE_RacineMenuHaut(HIERARCHIE){id_rubrique}{tout}{titre_mot=MenuHaut}{inverse} {0,1}>
 [(#SET{secteurencours,#ID_RUBRIQUE})]
 </BOUCLE_RacineMenuHaut>
 
 [(#SET{titretop,[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]})]
-[(#INCLURE{fond=header}{connexion}{secteurencours=#GET{secteurencours}}{title=[(#TITRE|attribut_html|texte_script)] (<:pyrat:chapitre_complet|texte_script:>)}{titretop=#GET{titretop}})]
+[(#INCLURE{fond=header}
+	{connexion}
+	{secteurencours=#GET{secteurencours}}
+	{title=[(#TITRE|attribut_html|texte_script)] (<:pyrat:chapitre_complet|texte_script:>)}
+	{titretop=#GET{titretop}}
+	{id_rubrique}
+)]
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
@@ -24,5 +29,10 @@
 </div><!-- Fin de .texte -->
 [(#FORMULAIRE_ADMIN)]
 
-[(#INCLURE{fond=footer}{id_rubrique}{connexion}{secteurencours=#GET{secteurencours}}{titretop=#GET{titretop}})]
+[(#INCLURE{fond=footer}
+	{id_rubrique}
+	{connexion}
+	{secteurencours=#GET{secteurencours}}
+	{titretop=#GET{titretop}}
+)]
 </BOUCLE_secteurs>
