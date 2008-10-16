@@ -17,17 +17,20 @@
 <div class="galerie_planche">
 <table>
 <BOUCLE_galerie(ARTICLES){id_rubrique=#RACINE_SPECIALISEE{galerie}} {par date}>
-    
-    <BOUCLE_vignette_album(DOCUMENTS){id_article}{extension == jpg|png|gif}{mode=document}{doublons}{0,1}>
-      [(#SET{$logo, [(#LOGO_DOCUMENT||image_reduire{150})]})]
-    </BOUCLE_vignette_album>
-    </B_vignette_album>
-      [(#SET{$logo, [(#LOGO_ARTICLE||image_reduire{150})]})]
-		<//B_vignette_album>
-	
 		[(#COMPTEUR_BOUCLE|modulo{2}|=={1}|?{' '})<tr>] 
 		<td>
-        <div class="logo"><a href="spip.php?page=album&amp;id_article=#ID_ARTICLE" title="<:sarkaspip:info_afficher_album:>">#GET{$logo}</div></a>		  
+        <div class="logo">
+          <a href="spip.php?page=album&amp;id_article=#ID_ARTICLE" title="<:sarkaspip:info_afficher_album:>">
+              <BOUCLE_vignette_album(DOCUMENTS){id_article}{extension == jpg|png|gif}{mode=document}{doublons}{0,1}>
+                  <img src='[(#LOGO_DOCUMENT||extraire_attribut{src})]' width='[(#LOGO_DOCUMENT||image_reduire{150}||largeur)]' height='[(#LOGO_DOCUMENT||image_reduire{150}||hauteur)]' alt="truc" />
+              </BOUCLE_vignette_album>
+              </B_vignette_album>
+                [(#LOGO_ARTICLE||image_reduire{150})]
+		          <//B_vignette_album>
+              <span class="loupe">En voir plus</span>
+          </a>
+          		  
+        </div>
         #TITRE
         <div class="introduction">[(#INTRODUCTION{100}|typo_couleur)] </div>
 
