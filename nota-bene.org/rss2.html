@@ -1,0 +1,91 @@
+<?php
+	@header('Content-type: text/xml[; charset=(#CHARSET)]');
+	echo '<'.'?xml version="1.0" encoding="#CHARSET"?'.">\n";
+?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+
+<channel>
+	<title><?
+	$titre = '[(#NOM_SITE_SPIP|texte_backend|texte_script)]';
+	if(isset($_GET['lang'])) {
+		switch($_GET['lang']) {
+			case "fr": $titre .= ' en français'; break;
+			case "en": $titre .= ' in english'; break;
+		}
+	}
+	echo $titre;
+	?></title>
+	<link>#URL_SITE_SPIP/</link>
+	<description><?
+	$description_rss = 'nota-bene.org, personal web site of Stephane Deschamps';
+	if(isset($_GET['lang']) && ($_GET['lang'] == 'fr')) {
+		$description_rss = 'nota-bene.org, site personnel de St�phane Deschamps';
+	}
+	echo $description_rss;
+	?></description>
+	<language>#LANG</language>
+
+	[<image>
+		<title>[(#NOM_SITE_SPIP|texte_backend)]</title>
+		<url>(#LOGO_SITE_SPIP||extraire_attribut{src}|url_absolue|texte_backend)</url>
+		<link>#URL_SITE_SPIP/</link>
+		<description></description>
+	</image>]
+
+<?
+// recup donn�es articles
+<BOUCLE_articles(ARTICLES){lang ?}{par date}{inverse}{0,10}>
+	$title[] = '[(#TITRE|supprimer_numero|strip_tags|texte_backend|texte_script)]';
+	$link[] = '#URL_SITE_SPIP/#URL_ARTICLE';
+	$description[] = '[(#LOGO_ARTICLE|right||liens_absolus|texte_backend|texte_script)][(#TEXTE|nb_texte|liens_absolus|texte_backend|texte_script)]';
+	<BOUCLE_articles_cat(RUBRIQUES){id_rubrique}>
+	$category_domain[] = '#URL_SITE_SPIP/#URL_RUBRIQUE';
+	$category_titre[] = '[(#TITRE|supprimer_numero|texte_backend|texte_script)]';
+	</BOUCLE_articles_cat>
+	$dc_date[] = '[(#DATE|date_iso|texte_script)]';
+	$dc_language[] = '#LANG';
+	$dc_creator[] = '<BOUCLE_auteursb(AUTEURS){id_article}{", "}>[(#NOM|texte_backend|texte_script)]</BOUCLE_auteursb>';
+</BOUCLE_articles>
+
+<BOUCLE_breves(BREVES){lang ?}{par date}{inverse}{0,10}>
+	$title[] = '[(#TITRE|supprimer_numero|strip_tags|texte_backend|texte_script)]';
+	$link[] = '#URL_SITE_SPIP/#URL_BREVE';
+	$description[] = '[(#TEXTE|nb_texte|liens_absolus|texte_backend|texte_script)]';
+	<BOUCLE_breves_cat(RUBRIQUES){id_rubrique}>
+	$category_domain[] = '#URL_SITE_SPIP/#URL_RUBRIQUE';
+	$category_titre[] = '[(#TITRE|supprimer_numero|texte_backend|texte_script)]';
+	</BOUCLE_breves_cat>
+	$dc_date[] = '[(#DATE|date_iso|texte_script)]';
+	$dc_language[] = '#LANG';
+	$dc_creator[] = 'Stéphane';
+</BOUCLE_breves>
+
+// tri par date, descendant
+array_multisort($dc_date, SORT_DESC,
+				$title,
+				$link,
+				$description,
+				$category_domain,
+				$category_titre,
+				$dc_language,
+				$dc_creator);
+
+// affichage donnees
+for($i=0;$i<10;$i++) {
+	echo '<item>' . "\n";
+	echo '<title>' . $title[$i] . '</title>'. "\n";
+	echo '<link>' . $link[$i] . '</link>'. "\n";
+	echo '<description>' . $description[$i] . '</description>'. "\n";
+	if($category_domain[$i] != '')
+		echo '<category domain="' . $category_domain[$i] . '">' . $category_titre[$i] . '</category>'. "\n";
+	echo '<dc:date>' . $dc_date[$i] . '</dc:date>'. "\n";
+	echo '<dc:format>text/html</dc:format>'. "\n";
+	echo '<dc:language>' . $dc_language[$i] . '</dc:language>'. "\n";
+	echo '<dc:creator>' . $dc_creator[$i] . '</dc:creator>'. "\n";
+	echo '</item>'. "\n";
+}
+?>
+
+</channel>
+
+</rss>

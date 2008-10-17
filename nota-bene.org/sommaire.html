@@ -1,0 +1,266 @@
+#CACHE{3*3600}
+<?php
+echo "<?xml version=\"1.0\" encoding=\"#CHARSET\" ?>";
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr"  lang="fr">
+<head>
+<?
+// liste des expressions à la con qu'on va utiliser sur la home
+// ça conditionne aussi le bandeau
+include('v4/decoration/inc.php');
+
+$GLOBALS['decoration_id'] = rand(0,count($decoration)-1);
+if(isset($_GET['deco'])) { $GLOBALS['decoration_id'] = $_GET['deco']; }
+?>
+<title>[#NOM_SITE_SPIP] <? echo $decoration[$GLOBALS['decoration_id']]['titre'];  ?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<? $GLOBALS['isSommaire'] = TRUE; ?>
+
+
+<style type="text/css" media="screen">
+<!--
+
+    @import url("/v4/screen.css.php<? echo '?deco=' . $GLOBALS['decoration_id']; ?>");
+
+-->
+</style>
+<style type="text/css" media="print">
+<!--
+    @import url("/v4/print.css");
+-->
+</style>
+
+
+<script type="text/javascript" src="/v4/scripts.js"></script>
+
+<link rel="alternate" type="application/rss+xml" title="RSS 2" href="/rss2.php" />
+<link rel="alternate" type="application/rss+xml" title="RSS 2 in english only" href="/rss2.php?lang=en" />
+<link rel="alternate" type="application/rss+xml" title="RSS 2 en français seulement" href="/rss2.php?lang=fr" />
+<link rel="alternate" type="application/rss+xml" title="RSS 2 : blogroll" href="/rss2_blogroll.php" />
+<link rel="alternate" type="application/rss+xml" title="RSS 2 : blogroll in english only" href="/rss2_blogroll.php?lang=en" />
+<link rel="alternate" type="application/rss+xml" title="RSS 2 : blogroll en français seulement" href="/rss2_blogroll.php?lang=fr" />
+
+
+</head>
+
+<body class="sommaire" id="www-nota-bene-org">
+<INCLURE{fond=inc_before}{lang}>
+
+<div id="container">
+
+<div id="navbar">
+
+<INCLURE{fond=inc_nav}{lang}>
+</div><!-- fin navbar -->
+
+
+<div id="content">
+<a name="a_content"></a>
+
+<h1><span xml:lang="en" lang="en">What's new</span> / <span xml:lang="fr" lang="fr">quoi de neuf</span></h1>
+<BOUCLE_exclusion(BREVES){type_mot=blogroll}{doublons}></BOUCLE_exclusion>
+
+<?php
+
+<BOUCLE_breves(BREVES) {tout}{0,10}{par date}{inverse}{doublons}>
+    $titres[] = '[(#TITRE|nb_titre|texte_script)]';
+    $title_titres[] = '[(#TITRE|attribut_html|texte_script)]';
+    $dates[] = '#DATE';
+    $dates_court[] = '[(#DATE|affdate_jourcourt)]';
+    $urls[] = '#URL_BREVE';
+    $langues[] = '#LANG';
+    $textes[] = '[(#TEXTE|nb_texte_sommaire|texte_script)]';
+    $introductions[] = '[(#INTRODUCTION*|couper{100}|supprimer_tags|nb_introduction|texte_script)]';
+    <BOUCLE_rub_breves(RUBRIQUES){id_rubrique}>
+    $rubriques[] = '[(#TITRE|nb_titre|texte_script)]';
+    $url_rubriques[] = '#URL_RUBRIQUE';
+    </BOUCLE_rub_breves>
+    <BOUCLE_nbre_reponsesb(FORUMS){plat}{id_breve}>
+    </BOUCLE_nbre_reponsesb>
+    $comments[] = #TOTAL_BOUCLE;
+    </B_nbre_reponsesb>
+    $comments[] = 0;
+    <//B_nbre_reponsesb>
+
+</BOUCLE_breves>
+<BOUCLE_articles(ARTICLES) {tout}{0,10}{par date}{inverse}>
+    $titres[] = '[(#TITRE|nb_titre|texte_script)]';
+    $title_titres[] = '[(#TITRE|attribut_html|texte_script)]';
+    $dates[] = '#DATE';
+    $dates_court[] = '[(#DATE|affdate_jourcourt)]';
+    $urls[] = '#URL_ARTICLE';
+    $langues[] = '#LANG';
+    $textes[] = '[(#INTRODUCTION|supprimer_tags|nb_introduction|texte_script)]';
+    $introductions[] = '[(#INTRODUCTION|supprimer_tags|nb_introduction|texte_script)]';
+    <BOUCLE_rub_articles(RUBRIQUES){id_rubrique}>
+    $rubriques[] = '[(#TITRE|nb_titre|texte_script)]';
+    $url_rubriques[] = '#URL_RUBRIQUE';
+    </BOUCLE_rub_articles>
+    <BOUCLE_nbre_reponsesa(FORUMS){plat}{id_article}>
+    </BOUCLE_nbre_reponsesa>
+    $comments[] = #TOTAL_BOUCLE;
+    </B_nbre_reponsesa>
+    $comments[] = 0;
+    <//B_nbre_reponsesa>
+</BOUCLE_articles>
+
+array_multisort($dates , SORT_DESC , $dates_court, $titres, $title_titres, $urls, $langues, $textes, $introductions, $rubriques, $url_rubriques, $comments);
+
+for($i=0 ; $i<10 ; $i++) {
+
+    $tmpstr = '<div xml:lang="' . $langues[$i] . '" lang="' . $langues[$i] . '"';
+        $tmpclass = (($i==0) ? 'premiere' : 'autres_news');
+        $tmpclass .= ' ' . $langues[$i];
+    $tmpstr .= ' class="' . $tmpclass . '">';
+    $tmpstr .= "\n" . '<h2>';
+    $tmpstr .= '<a href="' . $urls[$i] . '">' . $titres[$i] . '</a></h2>' . "\n";
+    $tmpstr .= (($i==0) ? $textes[$i] . "\n" : $introductions[$i] . "\n");
+
+    // meta-information
+    $tmpstr .= '<ul class="metainfo">';
+    // date - permalien
+    switch($langues[$i]) {
+        case 'fr': $title = 'lien permanent vers \'' . strip_tags($titres[$i]) . '\'' ; break;
+        case 'en': $title = 'permanent link to \'' . strip_tags($titres[$i]) . '\''; break;
+    }
+    $tmpstr .= '<li class="metainfo_permalien"><a href="' . $urls[$i] . '" title="' . $title .'">' . $dates_court[$i] . '</a></li>';
+    // rubrique
+    $tmpstr .= '<li class="metainfo_rubrique"><a href="' . $url_rubriques[$i] . '">' . $rubriques[$i] . '</a></li>';
+    // commentaires
+    switch($langues[$i]) {
+        case 'fr':
+            $comments[$i] .= ($comments[$i]<2) ? ' commentaire' : ' commentaires';
+            $title_titres[$i] = $comments[$i] . ' pour \'' . $title_titres[$i] . '\'';
+        break;
+        case 'en':
+            $comments[$i] .= ($comments[$i]<2) ? ' comment' : ' comments';
+            $title_titres[$i] = $comments[$i] . ' for \'' . $title_titres[$i] . '\'';
+        break;
+    }
+    $tmpstr .= '<li class="metainfo_comments"><a href="' . $urls[$i] . '#comments" title="' . $title_titres[$i] . '">' . $comments[$i] . '</a></li>';
+    $tmpstr .= '</ul>';
+    $tmpstr .= '</div>' . "\n";
+
+    // echo de la chaine
+    echo $tmpstr;
+}
+?>
+
+</div><!-- fin content -->
+
+</div><!-- fin container -->
+
+
+
+<div id="sidebar">
+<h1><span xml:lang="en" lang="en">Links</span> / Liens</h1>
+
+<div id="links-fr" class="links" xml:lang="fr" lang="fr">
+<div id="blinks-fr">
+<h2>Liens récents</h2>
+<BOUCLE_blinks-fr(BREVES) {0,4}{par date}{inverse}{lang=fr}{type_mot=blogroll}>
+<h3><a href="[(#URL_SITE|nb_url_site)]">[(#TITRE|nb_titre)]</a></h3>
+<ul class="blinks-details">
+    <li class="date">[(#DATE|affdate_jourcourt)]</li>
+    <li>
+    [(#TEXTE|nb_texte)]
+    </li>
+    <?
+    <BOUCLE_nbre_reponses_blinksfr(FORUMS){plat}{id_breve}>
+    </BOUCLE_nbre_reponses_blinksfr>
+    $c = #TOTAL_BOUCLE;
+    </B_nbre_reponses_blinksfr>
+    $c = 0;
+    <//B_nbre_reponses_blinksfr>
+    $c .= ($c<2) ? ' <:nb_commentaire:>' : ' <:nb_commentaires:>';
+    ?>
+    <li class="blink-comments"><a href="#URL_BREVE" title="<? echo $c; ?> <:nb_sur|strtolower:> '[(#TITRE|attribut_html)]'"><? echo $c; ?></a></li>
+</ul>
+</BOUCLE_blinks-fr>
+</div><!-- fin blinks-fr -->
+
+<div id="sites-fr">
+<h2>Quelques sites au hasard</h2>
+<B_sites-fr>
+<ul>
+<BOUCLE_sites-fr(SITES){titre_mot=fr}{par hasard}{0,5}{id_syndic!=58}{id_syndic!=78}>
+<li><a href="#URL_SITE"[ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]
+<B_xfn-fr>rel="<BOUCLE_xfn-fr(MOTS){id_syndic}{id_groupe=5}{" "}>[(#DESCRIPTIF|attribut_html)]</BOUCLE_xfn-fr>"</B_xfn-fr>
+>#NOM_SITE</a></li>
+</BOUCLE_sites-fr>
+</ul>
+</B_sites-fr>
+</div><!-- fin sites-fr -->
+
+<B_pompage>
+<div id="syndic-pompage">
+<h2>Tandis que chez <a href="http://www.pompage.net/" title="Pompage.net, traductions intéressantes">pompage.net</a>...</h2>
+<ul>
+<BOUCLE_pompage(SYNDIC_ARTICLES){id_syndic=106}{par date}{inverse}{0,5}>
+<li><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[(#TITRE|nb_titre|htmlspecialchars)]</a></li>
+</BOUCLE_pompage>
+</ul>
+</div><!-- fin syndic-pompage -->
+</B_pompage>
+
+</div><!-- fin links-fr -->
+
+<div id="links-en" class="links" xml:lang="en"  lang="en">
+<div id="blinks-en">
+<h2>Recent links</h2>
+<BOUCLE_blinks-en(BREVES) {0,4}{par date}{inverse}{lang=en}{type_mot=blogroll}>
+<h3><a href="[(#URL_SITE|nb_url_site)]">[(#TITRE|nb_titre)]</a></h3>
+<ul class="blinks-details">
+    <li class="date">[(#DATE|affdate_jourcourt)]</li>
+    <li>
+    [(#TEXTE|nb_texte)]
+    </li>
+    <?
+    <BOUCLE_nbre_reponses_blinksen(FORUMS){plat}{id_breve}>
+    </BOUCLE_nbre_reponses_blinksen>
+    $c = #TOTAL_BOUCLE;
+    </B_nbre_reponses_blinksen>
+    $c = 0;
+    <//B_nbre_reponses_blinksen>
+    $c .= ($c<2) ? ' <:nb_commentaire:>' : ' <:nb_commentaires:>';
+    ?>
+    <li class="blink-comments"><a href="#URL_BREVE" title="<? echo $c; ?> <:nb_sur|strtolower:> '[(#TITRE|attribut_html)]'"><? echo $c; ?></a></li>
+</ul>
+</BOUCLE_blinks-en>
+</div><!-- fin blinks-en -->
+
+<div id="sites-en">
+<h2>A few random sites</h2>
+<B_sites-en>
+<ul>
+<BOUCLE_sites-en(SITES){titre_mot=en}{par hasard}{0,5}>
+<li><a href="#URL_SITE"[ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]
+<B_xfn-en>rel="<BOUCLE_xfn-en(MOTS){id_syndic}{id_groupe=5}{" "}>[(#DESCRIPTIF|attribut_html)]</BOUCLE_xfn-en>"</B_xfn-en>
+>#NOM_SITE</a></li>
+</BOUCLE_sites-en>
+</ul>
+</B_sites-en>
+</div><!-- fin sites-en -->
+
+<B_evolt>
+<div id="syndic-evolt">
+<h2>Over at <a href="http://evolt.org/" title="Web design and development community">evolt.org</a></h2>
+<ul>
+<BOUCLE_evolt(SYNDIC_ARTICLES){id_syndic=65}{par date}{inverse}{0,5}>
+<li><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[(#TITRE|nb_titre)]</a></li>
+</BOUCLE_evolt>
+</ul>
+</div><!-- fin syndic-evolt -->
+</B_evolt>
+
+
+
+</div><!-- fin links-en -->
+
+</div><!-- fin sidebar -->
+
+<INCLURE{fond=inc_after}{lang}>
+
+</body>
+</html>

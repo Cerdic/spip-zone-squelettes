@@ -1,0 +1,78 @@
+#CACHE{1}
+<?php
+echo "<?xml version=\"1.0\" encoding=\"#CHARSET\" ?>";
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG">
+<head>
+<title><:nb_recherche:> [#NOM_SITE_SPIP]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<INCLURE{fond=inc_head}{lang}>
+</head>
+
+<body class="#LANG" id="www-nota-bene-org">
+
+<INCLURE{fond=inc_before}{lang}>
+
+<div id="container">
+
+<div id="navbar">
+<INCLURE{fond=inc_nav}{lang}>
+</div><!-- fin navbar -->
+
+
+<div id="content">
+<a name="a_content"></a>
+
+<h1><:nb_recherche:></h1>
+
+<!-- ***************************************************************** -->
+<!-- Formulaire de recherche -->
+
+<form action='recherche.html' method='get'>
+<input type="hidden" name="lang" value="<?php echo $_GET['lang']; ?>" />
+<p>
+<label for='formulaire_recherche'><multi>[fr]Rechercher dans le site&nbsp;:[en]Search on this site:</multi></label>
+<input type='text' id='formulaire_recherche' name='recherche' value='<? if(isset($HTTP_GET_VARS["recherche"])) { echo $HTTP_GET_VARS["recherche"]; } ?>' size='20' class='formrecherche' />
+<input type="submit" id="chercher" name="chercher" value="<multi>[fr]Lancer la recherche[en]Launch search</multi>" />
+</p>
+</form>
+
+
+	<!-- Articles trouvees -->
+
+	<B_articles>
+	<h2><:nb_articles:></h2>
+	<ul>
+	<BOUCLE_articles(ARTICLES) {recherche} {par points} {inverse} {0,10}>
+		<li lang="#LANG"><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|attribut_html)"]>#TITRE</a> ([(#DATE|affdate)])</li>
+	</BOUCLE_articles>
+	</ul>
+	</B_articles>
+
+	<!-- Breves trouvees -->
+
+	<B_breves>
+	<h2><:nb_breves:></h2>
+	<ul>
+	<BOUCLE_breves(BREVES) {recherche} {par points} {inverse} {0,8}>
+		<li lang="#LANG"><a href="#URL_BREVE" [title="(#DESCRIPTIF|attribut_html)"]>#TITRE</a> ([(#DATE|affdate)])</li>
+	</BOUCLE_breves>
+	</ul>
+	</B_breves>
+
+
+<!-- ***************************************************************** -->
+</div><!-- fin content -->
+
+</div><!-- fin container -->
+
+
+
+<div id="sidebar">
+</div><!-- fin sidebar -->
+
+<INCLURE{fond=inc_after}{lang}>
+
+</body>
+</html>

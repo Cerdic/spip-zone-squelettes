@@ -1,0 +1,79 @@
+#CACHE{1}
+<?php
+echo "<?xml version=\"1.0\" encoding=\"#CHARSET\" ?>";
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG">
+<head>
+<title><:poster_message:> [#NOM_SITE_SPIP]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<INCLURE{fond=inc_head}{lang}>
+
+<style type="text/css">
+.spip_barre img { border:0; }
+</style>
+</head>
+
+<body class="forum #LANG" id="www-nota-bene-org">
+
+<INCLURE{fond=inc_before}{lang}>
+
+<div id="container">
+
+<div id="navbar">
+<INCLURE{fond=inc_nav}{lang}>
+</div><!-- fin navbar -->
+
+
+<div id="content">
+<a name="a_content"></a>
+
+<!-- Contenu : poster un message dans le forum -->
+
+<h1><:poster_message:></h1>
+
+<BOUCLE_article(ARTICLES) {id_article}>
+	<h2 class="forum-extrait"><em><:en_reponse:></em>
+	<a href="#URL_ARTICLE">[(#TITRE|nb_titre)]</a></h2>
+		<p class="forum-extrait">
+		[(#DATE|nom_jour)] [(#DATE|affdate)],
+		<B_auteurs_un><:par_auteur:> <BOUCLE_auteurs_un(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_un>
+		</p>
+
+	[<div class="forum-extrait">(#INTRODUCTION|nb_introduction)</div>]
+</BOUCLE_article>
+
+<BOUCLE_breve(BREVES) {id_breve}>
+	<h2 class="forum-extrait"><em><:en_reponse:></em>
+	<a href="#URL_BREVE">[(#TITRE|nb_titre)]</a></h2>
+	<p class="forum-extrait">
+	[(#DATE|nom_jour)] [(#DATE|affdate)]
+	</p>
+	[<div class="forum-extrait">(#INTRODUCTION|nb_introduction)</div>]
+</BOUCLE_breve>
+
+<BOUCLE_forum_parent(FORUMS) {id_forum}>
+	<h2 class="forum-extrait"><em><:en_reponse:></em>
+	[(#TITRE|nb_titre)]</h2>
+	<p class="forum-extrait">
+	[(#DATE|nom_jour)] [(#DATE|affdate)]
+	</p>
+	[<div class="forum-extrait">(#TEXTE|nb_texte)</div>]
+</BOUCLE_forum_parent>
+
+#FORMULAIRE_FORUM
+
+</div><!-- fin content -->
+</div><!-- fin container -->
+
+
+
+<div id="sidebar">
+
+
+</div><!-- fin sidebar -->
+
+<INCLURE{fond=inc_after}{lang}>
+
+</body>
+</html>

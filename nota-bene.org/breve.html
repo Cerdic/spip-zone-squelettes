@@ -1,0 +1,132 @@
+#CACHE{15*24*3600}
+<?php
+echo "<?xml version=\"1.0\" encoding=\"#CHARSET\" ?>";
+?>
+<BOUCLE_principale(BREVES){id_breve}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG">
+<head>
+<title>[(#TITRE|strip_tags)] [#NOM_SITE_SPIP]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<INCLURE{fond=inc_head}{lang}>
+<link rel="alternate" type="application/rss+xml" title="<:nb_rss_commentaires_breve:>" href="/spip.php?page=rss2_comments&amp;id_breve=#ID_BREVE" />
+<BOUCLE_section(RUBRIQUES){id_rubrique}>
+<link rel="up" title="[(#TITRE|attribut_html)]" href="#URL_RUBRIQUE" />
+<link rel="section" title="[(#TITRE|attribut_html)]" href="#URL_RUBRIQUE" />
+</BOUCLE_section>
+</head>
+
+<body class="breve #LANG" id="www-nota-bene-org">
+
+<INCLURE{fond=inc_before}{lang}>
+
+<div id="container">
+
+<div id="navbar">
+<?
+$GLOBALS['id_rubrique'] = #ID_RUBRIQUE;
+?>
+<INCLURE{fond=inc_nav}{lang}>
+</div><!-- fin navbar -->
+
+
+<div id="content">
+<a name="a_content"></a>
+
+<h1>[(#TITRE|nb_titre)]</h1>
+
+<div id="texte">
+[(#TEXTE|nb_texte)]
+
+[<p class="lien"><a href="(#URL_SITE|nb_url_site)" class="spip_out">#NOM_SITE</a></p>]
+</div><!-- fin texte -->
+
+<div id="forums">
+<!-- *************** forums ************************* -->
+<h2><a name="comments"></a><:nb_commentaires_maj:>
+<?
+$nb_isCommentable = '[(#PARAMETRES_FORUM|texte_script)]';
+if($nb_isCommentable != '') { // si l'article est commentable
+?>
+<a href="forum.html?lang=#LANG&amp;#PARAMETRES_FORUM"><:nb_commentaire_ajouter:></a>
+<a href="/spip.php?page=rss2_comments&amp;id_breve=#ID_BREVE" title="<:nb_rss_commentaires_breve:>" class="rss">RSS</a>
+<?
+} else { // si l'article n'est pas commentable
+?>
+<:nb_commentaire_desactive:>
+<?
+}
+?>
+</h2>
+<B_forums>
+<ul class="forum-total">
+<BOUCLE_forums(FORUMS){plat}{id_breve}{par date}>
+
+<li class="forum#ID_AUTEUR">
+
+<h3><a name="forum#ID_FORUM" title="<:nb_permalien_commentaire:>" href="#forum#ID_FORUM" class="forum">[(#TITRE|nb_titre)]</a> ([(#DATE|affdate)][<:nb_by:>(#NOM)]<?
+$id_parent = #ID_PARENT;
+if($id_parent!=0) {
+    echo "<:nb_en_reponse_a:>";
+    <BOUCLE_forumparent(FORUMS){id_enfant}>
+    echo '<a href="#forum#ID_FORUM">';
+    if('[(#NOM|texte_script)]' != '') {
+        echo '[(#NOM|texte_script)]';
+    } else {
+        echo '<:nb_anonyme:>';
+    }
+    echo '</a>';
+    </BOUCLE_forumparent>
+}
+
+?>)</h3>
+
+<div class="texte_forum" [style="(#EMAIL|nb_gravatar)"]>
+[(#TEXTE|nb_texte)]
+</div>
+[<p><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></p>]
+[<p class="repondre"><a href="forum.html?lang=#LANG&amp;(#PARAMETRES_FORUM)"><:repondre_message:></a></p>]
+
+</li>
+</BOUCLE_forums>
+</ul>
+</B_forums>
+[<!-- fin forum (#PARAMETRES_FORUM) -->]
+</div><!-- fin forums-breve -->
+
+</div><!-- fin content -->
+</div><!-- fin container -->
+
+
+<div id="sidebar">
+
+[<h2><:nb_post_scriptum:></h2>
+(#PS|nb_ps)]
+
+<h2><:nb_plus_d_infos:></h2>
+
+<ul>
+<li><:nb_date_publication:> [(#DATE|affdate)] <:nb_dans_rubrique:> <BOUCLE_rub(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">[(#TITRE|nb_titre)]</a></BOUCLE_rub></li>
+<li><:nb_auteur:> <a href="_Stephane_?lang=#0:LANG">St�phane</a></li>
+<li><a href="#comments"><BOUCLE_forums_compter(FORUMS){plat}{id_breve}></BOUCLE_forums_compter>[(#TOTAL_BOUCLE|sinon{"0"})]<//B_forums_compter> <:nb_commentaires:></a></li>
+</ul>
+
+
+<BOUCLE_mot(MOTS){id_breve}{par titre}{id_mot!=2}>
+<h3><:nb_sur:> <em>#TITRE</em>, <:nb_lire_aussi:></h3>
+    <B_mot2>
+    <ul>
+    <BOUCLE_mot2(BREVES){id_mot}{par date}{par titre}{exclus}>
+    <li><a href="#URL_BREVE">[(#TITRE|nb_titre)]</a> ([(#DATE|affdate)])</li>
+    </BOUCLE_mot2>
+    </ul>
+    </B_mot2>
+</BOUCLE_mot>
+
+</div><!-- fin sidebar -->
+
+<INCLURE{fond=inc_after}{lang}>
+
+</body>
+</html>
+</BOUCLE_principale>

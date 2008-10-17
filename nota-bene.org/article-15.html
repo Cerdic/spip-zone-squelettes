@@ -1,0 +1,140 @@
+#CACHE{15*24*3600}
+<?php
+/*
+	squelette article "photos"
+*/
+echo "<?xml version=\"1.0\" encoding=\"#CHARSET\" ?>";
+
+?>
+<BOUCLE_principale(ARTICLES){id_article}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG">
+<head>
+<title>Photo : [(#TITRE|strip_tags)] [#NOM_SITE_SPIP]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="alternate" type="application/rss+xml" title="<:nb_rss_commentaires_article:>" href="/spip.php?page=rss2_comments&amp;id_article=#ID_ARTICLE" />
+<BOUCLE_section(RUBRIQUES){id_rubrique}>
+<link rel="up" title="[(#TITRE|attribut_html)]" href="#URL_RUBRIQUE" />
+<link rel="section" title="[(#TITRE|attribut_html)]" href="#URL_RUBRIQUE" />
+</BOUCLE_section>
+
+<script type="text/javascript" src="/v4/scripts.js"></script>
+
+<style type="text/css" media="print">
+<!--
+	@import url("/v4/print.css");
+-->
+</style>
+
+<style type="text/css" media="screen,projection">
+<!--
+	@import url("/v4/photos/photos.css");
+-->
+</style>
+
+<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+
+
+</head>
+
+<body class="photo #LANG" id="www-nota-bene-org">
+
+<div id="header">
+<a href="./" title="Retour &agrave; l'accueil">#NOM_SITE_SPIP</a> &gt;
+<BOUCLE_rub(RUBRIQUES){id_rubrique}>
+<a href="#URL_RUBRIQUE">#TITRE</a>
+</BOUCLE_rub>
+</div>
+
+<div id="container">
+
+<h1>[(#TITRE|nb_titre)]
+[<span class="soustitre">(#SOUSTITRE)</span>]
+</h1>
+
+<div id="photos">
+<BOUCLE_photos(DOCUMENTS){id_article}{extension==(png|jpg|gif)}>
+<div><img src="#URL_DOCUMENT" width="#LARGEUR" height="#HAUTEUR" alt="[(#TITRE|attribut_html)]"
+<?php
+$descr = '[(#DESCRIPTIF|texte_script)]';
+if($descr!='') { echo " longdesc=\"/longdesc.php?id_document=#ID_DOCUMENT\""; }
+?> /></div>
+</BOUCLE_photos>
+</div>
+
+<div id="content">
+<a name="a_content"></a>
+
+<div id="texte">
+
+[(#TEXTE|nb_texte)]
+</div><!-- fin texte -->
+
+
+<div id="forums">
+<!-- *************** forums ************************* -->
+<h2><a name="comments"></a><:nb_commentaires_maj:>
+<?
+$nb_isCommentable = '[(#PARAMETRES_FORUM|texte_script)]';
+if($nb_isCommentable != '') { // si l'article est commentable
+?>
+<a href="forum.html?lang=#LANG&amp;#PARAMETRES_FORUM"><:nb_commentaire_ajouter:></a>
+<a href="/spip.php?page=rss2_comments&amp;id_article=#ID_ARTICLE" title="<:nb_rss_commentaires_article:>" class="rss">RSS</a>
+<?
+} else { // si l'article n'est pas commentable
+?>
+<:nb_commentaire_desactive:>
+<?
+}
+?>
+</h2>
+
+<B_forums>
+<ul class="forum-total">
+<BOUCLE_forums(FORUMS){plat}{id_article}{par date}>
+
+<li class="forum#ID_AUTEUR">
+
+<h3><a name="forum#ID_FORUM" title="<:nb_permalien_commentaire:>" href="#forum#ID_FORUM" class="forum">[(#TITRE|nb_titre)]</a> ([(#DATE|affdate)][<:nb_by:>(#NOM)]<?
+$id_parent = #ID_PARENT;
+if($id_parent!=0) {
+    echo "<:nb_en_reponse_a:>";
+    <BOUCLE_forumparent(FORUMS){id_enfant}>
+    echo '<a href="#forum#ID_FORUM">';
+    if('[(#NOM|texte_script)]' != '') {
+        echo '[(#NOM|texte_script)]';
+    } else {
+        echo '<:nb_anonyme:>';
+    }
+    echo '</a>';
+    </BOUCLE_forumparent>
+}
+
+?>)</h3>
+
+<div class="texte_forum" [style="(#EMAIL|nb_gravatar{24})"]>
+[(#TEXTE|nb_texte)]
+</div>
+[<p><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></p>]
+[<p class="repondre"><a href="forum.html?lang=#LANG&amp;(#PARAMETRES_FORUM)"><:repondre_message:></a></p>]
+
+</li>
+</BOUCLE_forums>
+</ul>
+</B_forums>
+[<!-- fin forum (#PARAMETRES_FORUM) -->]
+
+</div><!-- fin forums -->
+</div><!-- fin content -->
+
+<INCLURE{fond=inc_after}{lang}>
+
+</div><!-- fin container -->
+
+
+</body>
+</html>
+</BOUCLE_principale>

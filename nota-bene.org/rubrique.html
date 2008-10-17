@@ -1,0 +1,83 @@
+#CACHE{24*3600}
+<?php
+echo "<?xml version=\"1.0\" encoding=\"#CHARSET\" ?>";
+?>
+<BOUCLE_principale(RUBRIQUES){id_rubrique}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG" xml:lang="#LANG">
+<head>
+<title>[(#TITRE|strip_tags)] [#NOM_SITE_SPIP]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<INCLURE{fond=inc_head}{lang}>
+</head>
+
+<body class="rubrique #LANG" id="www-nota-bene-org">
+
+<INCLURE{fond=inc_before}{lang}>
+
+<div id="container">
+
+<div id="navbar">
+<?
+$GLOBALS['id_rubrique'] = #ID_RUBRIQUE;
+$GLOBALS['isRubrique'] = TRUE;
+?>
+<INCLURE{fond=inc_nav}{lang}>
+</div><!-- fin navbar -->
+
+
+<div id="content">
+<a name="a_content"></a>
+
+<h1>[(#TITRE|nb_titre)]</h1>
+
+[<p class="intro">(#DESCRIPTIF)</p>]
+
+<B_articles>
+<h2><:nb_articles:></h2>
+<ul>
+<BOUCLE_articles(ARTICLES){id_rubrique}{par date}{inverse}>
+	<li>
+		<h3><a href="#URL_ARTICLE">[(#TITRE|nb_titre)]</a> ([(#DATE|affdate)])</h3>
+		[(#INTRODUCTION|nb_introduction)]
+	</li>
+</BOUCLE_articles>
+</ul>
+</B_articles>
+
+<B_breves>
+<h2><:nb_breves:></h2>
+<ul>
+<BOUCLE_breves(BREVES){id_rubrique}{par date}{inverse}>
+	<li>
+		<h3><a href="#URL_BREVE">[(#TITRE|nb_titre)]</a> ([(#DATE|affdate)])</h3>
+		[(#INTRODUCTION*|couper{100}|nb_introduction)]
+	</li>
+</BOUCLE_breves>
+</ul>
+</B_breves>
+
+</div><!-- fin content -->
+
+</div><!-- fin container -->
+
+
+
+<div id="sidebar">
+
+<B_sites>
+<h2><:nb_sites_dans_cette_categorie:></h2>
+<ul>
+<BOUCLE_sites(SITES) {id_rubrique} {par hasard}{id_syndic!=58}{id_syndic!=78}>
+	<li><a href="#URL_SITE"[ title="(#DESCRIPTIF|attribut_html)"]
+	<B_xfn1>rel="<BOUCLE_xfn1(MOTS){id_syndic}{id_groupe=5}{" "}>[(#DESCRIPTIF|attribut_html)]</BOUCLE_xfn1>"</B_xfn1>>#NOM_SITE</a></li>
+</BOUCLE_sites>
+</ul>
+</B_sites>
+</div><!-- fin sidebar -->
+
+<INCLURE{fond=inc_after}{lang}>
+
+</body>
+</html>
+</BOUCLE_principale>

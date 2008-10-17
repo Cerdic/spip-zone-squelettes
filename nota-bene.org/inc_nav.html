@@ -1,0 +1,73 @@
+#CACHE{15*24*3600}
+<?
+
+// gestion des affichages : test si on est dans la rubrique, etc
+/*
+    @param int $id_rub : id rubrique en cours
+    @param GLOBAL boolean $isRubrique : est-ce une rubrique ou pas ?
+    @param GLOBAL int $id_rubrique : id rubrique calculee dans le squelette appelant
+    @param string $titre : titre de la rubrique
+    @param string $url : url de la rubrique
+    @returns string str_rubrique()
+
+*/
+function str_rubrique($id_rub=0,$titre="",$url="",$title="") {
+    $str = $titre;
+    if($GLOBALS['id_rubrique'] == $id_rub) { // alors on est dans cette rubrique
+        if(!$GLOBALS['isRubrique']) { // alors ceci est un article
+            $str = "<strong><a href=\"/$url\" title=\"" . $str . " - " . $title . "\">" . $str . "</a></strong>";
+        } else { // ceci est la rubrique
+        $str = "<strong><span>" . $str . "</span></strong>";
+        }
+    } else { // cas generique : on n'est pas dans cette rubrique
+        $str = "<a href=\"/$url\" title=\"" . $str . " - " . $title . "\">" . $str . "</a>";
+    }
+    return $str;
+}
+?>
+
+<h2>Navigation</h2>
+
+<h3 xml:lang="fr" lang="fr" class="fr">Fran�ais</h3>
+
+<B_nav-fr>
+<ul xml:lang="fr" lang="fr" class="nav1 fr">
+<? if($GLOBALS['isSommaire']) { ?>
+    <li><strong><span>Accueil</span></strong></li>
+<? } else { ?>
+    <li><a href="/">Accueil</a></li>
+<? } ?>
+<BOUCLE_nav-fr(RUBRIQUES){racine}{lang=fr}{par titre}>
+    <li><? echo str_rubrique("[(#ID_RUBRIQUE|texte_script)]","[(#TITRE|texte_script)]","[(#URL_RUBRIQUE)]",'[(#INTRODUCTION|attribut_html|texte_script)]'); ?>    </li>
+</BOUCLE_nav-fr>
+</ul>
+</B_nav-fr>
+
+<ul xml:lang="fr" lang="fr" class="nav2 fr">
+<li><a href="recherche.html">Recherche</a></li>
+<li><a href="apropos.html">À propos de ce site</a></li>
+<li><a href="contact_fr.html">Me contacter</a></li>
+</ul>
+
+<h3 xml:lang="en" lang="en" class="en">English</h3>
+
+<B_nav-en>
+<ul xml:lang="en" lang="en" class="nav1 en">
+<? if($GLOBALS['isSommaire']) { ?>
+    <li><strong><span>Home</span></strong></li>
+<? } else { ?>
+    <li><a href="/">Home</a></li>
+<? } ?>
+<BOUCLE_nav-en(RUBRIQUES){racine}{lang=en}{par titre}>
+    <li><? echo str_rubrique("[(#ID_RUBRIQUE|texte_script)]","[(#TITRE|texte_script)]","[(#URL_RUBRIQUE)]",'[(#INTRODUCTION|attribut_html|texte_script)]'); ?>    </li>
+</BOUCLE_nav-en>
+</ul>
+</B_nav-en>
+
+<ul xml:lang="en" lang="en" class="nav2 en">
+<li><a href="search.html">Search</a></li>
+<li><a href="about.html" rel="license">About this site</a></li>
+<li><a href="contact_en.html">Contact me</a></li>
+</ul>
+
+<div id="close"></div>

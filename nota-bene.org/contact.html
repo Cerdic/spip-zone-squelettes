@@ -1,0 +1,214 @@
+#CACHE{1}
+<?php
+echo "<?xml version=\"1.0\" encoding=\"#CHARSET\" ?>";
+?><BOUCLE_principale(AUTEURS){id_auteur}><?
+
+// debug
+$stef_debug = FALSE;
+
+if(isset($_POST['formMsg'])) {
+
+// message de retour au client
+$msg = "";
+
+// ----------------------------------------------------------------
+// d�but du traitement du form lui-m�me
+// ----------------------------------------------------------------
+
+if(isset($_POST['formMsg']) && $_POST['formMsg']!="") {
+
+	// r�cup�rer des variables du form en POST pour simplifier l'�criture
+
+	$form_name = (isset($_POST['formName']) && $_POST['formName'] != "") ? $_POST['formName'] : "anonyme";
+	$form_mail = (isset($_POST['formMail']) && $_POST['formMail'] != "") ? $_POST['formMail'] : "site@nota-bene.org";
+	$form_msg = $_POST['formMsg'];
+
+	// -------------------------------------------------------------------
+	// envoyer mail
+
+	$sep = "\n";
+    $msgMail = "Message de : " . $form_name . $sep;
+    $msgMail .= "Adresse mail : " . $form_mail . $sep;
+    $msgMail .= "Texte :\n" . $form_msg . $sep;
+
+	$sujet_mail = "[nota-bene.org] CONTACT (" . date("d/m/Y") . ")";
+	$isSent = mail( '#EMAIL' ,$sujet_mail,stripslashes($msgMail),"From:". $form_mail ."\r\n");
+
+	if($stef_debug) {
+		echo '<pre>' . $sujet_mail . "\n" . $msgMail . '</pre>';
+		echo '<pre>' . '#EMAIL' . '</pre>';
+	}
+
+	// -------------------------------------------------------------------
+	// 3. return propre
+	$msg = ($isSent) ? "ok" : "errmail";
+
+} else {
+
+    // si on a soumis le form � vide
+    if(isset($_POST['formMsg']) && $_POST['formMsg']=="") {
+		$msg = 'errform';
+    }
+}
+
+} // fin gestion form en POST
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<? echo $_GET['lang']; ?>" lang="<? echo $_GET['lang']; ?>">
+<head>
+<title><:nb_contacter:> #NOM [#NOM_SITE_SPIP]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<INCLURE{fond=inc_head}{lang}>
+</head>
+
+<body class="contact <? echo $_GET['lang']; ?>" id="www-nota-bene-org">
+
+<INCLURE{fond=inc_before}{lang}>
+
+<div id="container">
+
+<div id="navbar">
+<INCLURE{fond=inc_nav}{lang}>
+</div><!-- fin navbar -->
+
+
+<div id="content">
+<a name="a_content"></a>
+
+<h1><:nb_contacter:> #NOM</h1>
+
+<div id="texte">
+
+<?
+
+$afficher_form = TRUE;
+if($msg) {
+
+switch($msg) {
+	case "ok":
+	$afficher_form = FALSE;
+	?>
+	<multi>
+	[fr]
+	<p>Merci, votre message a bien été envoyé.</p>
+	<p>Il ne vous reste plus qu'à patienter... <a href="/">Retourner à l'accueil</a></p>
+	[en]
+	<p>Thank you, your message was sent.</p>
+	<p>You'll have to wait for a while now... <a href="/">Back to the home page</a></p>
+	</multi>
+	<?
+	break;
+
+	case "errmail":
+	?>
+	<multi>
+	[fr]
+	<p><span class="error">Oups !</span>
+	Il semble que votre message n'ait pas pu partir. Merci de réessayer ultérieurement.</p>
+	[en]
+	<p><span class="error">Oops !</span>
+	It seems your message could not be sent. Please try again later.</p>
+	</multi>
+	<?
+	break;
+
+	case "errform":
+	?>
+	<multi>
+	[fr]
+	<p><span class="error">Oups !</span>
+	Vous avez envoyé votre message un peu vite, vous n'avez encore rien tapé&nbsp;!</p>
+	[en]
+	<p><span class="error">Oops !</span>
+	You sent your message a bit too fast, you haven't typed a word yet!</p>
+	</multi>
+	<?
+	break;
+
+}
+
+}
+
+if($afficher_form) {
+?>
+
+<form method="post" action="/contact_<? echo $_GET['lang']; ?>.html?id_auteur=#ID_AUTEUR">
+
+<multi>
+[fr]
+<p>Pour me contacter, merci d'utiliser le formulaire ci-dessous.
+Je lis tout ce que je reçois (sauf quand mon antispam fait du zèle), et je réponds habituellement sous une semaine.
+Merci d'indiquer une <strong>adresse mail valide</strong> si vous souhaitez une réponse.</p>
+[en]
+<p>To get in touch with me, please use the form below.
+I read everything I receive, except when my anti-spam works too well, and usually answer within a week.
+Please provide a <strong>valid email address</strong> if you wish a reply.</p>
+</multi>
+
+<input type="hidden" name="id_auteur" value="#ID_AUTEUR" />
+<input type="hidden" name="lang" value="<? echo $_GET['lang']; ?>" />
+
+<fieldset>
+<legend><:nb_form_vos_coordonnees:></legend>
+<div><label for="formName"><:nb_form_nom:></label>
+<input class="champ" id="formName" type="text" name="formName" size="40" value="<? if(isset($_POST['formName'])) { echo $_POST['formName']; } ?>" /></div>
+
+<div><label for="formMail"><:nb_form_email:></label>
+<input class="champ" id="formMail" type="text" name="formMail" size="40" value="<? if(isset($_POST['formMail'])) { echo $_POST['formMail']; } ?>" /></div>
+</fieldset>
+
+<fieldset>
+<legend><:nb_form_message:></legend>
+<div><label for="formMsg"><:nb_form_tapez_message:></label>
+<textarea id="formMsg" name="formMsg" rows="10" cols="40"><? if(isset($_POST['formMsg'])) { echo $_POST['formMsg']; } ?></textarea></div>
+
+<p><input type="submit" name="go" value="<:nb_form_envoyer:>" /></p>
+</fieldset>
+
+</form>
+
+<?
+} // fin de if($afficher_form)
+?>
+</div><!-- fin texte -->
+
+</div><!-- fin content -->
+</div><!-- fin container -->
+
+
+
+<div id="sidebar">
+
+<?
+// variables temporaires, les vars en dièse cassent les blocs multi
+$tmp_url = '#URL_AUTEUR?id_auteur=#ID_AUTEUR';
+$tmp_id = #ID_AUTEUR;
+?>
+<multi>
+
+[en]<!-- ************************************** -->
+
+
+<h2>More</h2>
+<ul>
+<li xml:lang="fr" lang="fr"><a href="contact_fr.html?id_auteur=<? echo $tmp_id; ?>">La même chose en français</a></li>
+</ul>
+
+[fr]<!-- ************************************** -->
+
+<h2>Plus d'informations</h2>
+<ul>
+<li xml:lang="en" lang="en"><a href="contact_en.html?id_auteur=<? echo $tmp_id; ?>">The same in English</a></li>
+</ul>
+
+<!-- ************************************** -->
+</multi>
+
+
+</div><!-- fin sidebar -->
+
+<INCLURE{fond=inc_after}{lang}>
+
+</body>
+</html>
+</BOUCLE_principale>
