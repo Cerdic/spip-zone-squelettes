@@ -1,12 +1,11 @@
-<!-- Edito : C'est le dernier article en date ayant pour mot-clef "EDITO" -->
-<BOUCLE_article_principal(ARTICLES) {titre_mot=EDITO_Restreint}{!par date}{0,1}>
+[(#REM) Edito : C'est le dernier article en date ayant pour mot-clef "EDITO" )]
+<BOUCLE_article_principal(ARTICLES) {titre_mot=EDITO#ENV{typeedito}}{!par date}{0,1}>
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="./"><:pyrat:accueil:></a></li>
 	<li>[(#TITRE)]</li>
 	</ul>
 	</div>
-
 [(#INCLURE{fond=sommaire_cartouche})]
 
 <div class="texte">
@@ -29,5 +28,5 @@
 	</div><!-- Fin de LeTexte -->
 </div><!-- Fin de .texte -->
 </BOUCLE_article_principal>
-[(#INCLURE{fond=sommaire_modeedito_public})]
+[(#ENV{typeedito}|=={''}|?{#INCLURE{fond=inc_mode_emploi},#INCLURE{fond=sommaire_modeedito_type}})]
 <//B_article_principal>
