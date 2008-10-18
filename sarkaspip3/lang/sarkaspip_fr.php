@@ -443,6 +443,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
 		'cfg_inf_bandeau_haut' => 'D&eacute;sirez vous afficher la partie du bandeau contenant le logo, le nom et le slogan du site, ainsi que la bande de navigation horizontale ?',
 		'cfg_inf_menu_langues' => 'D&eacute;sirez vous afficher, dans le coin haut droit, le menu des langues utilis&eacute;es sur le site (ce menu vous permet de choisir la langue courante d\'affichage du site) ?',
+		'cfg_inf_titre_site' => 'Souhaitez vous afficher le nom de votre site dans le bandeau ?',
+		'cfg_inf_logo_reduit' => 'Souhaitez vous que le squelette r&eacute;duise automatiquement la taille du logo du site ?',
 		'cfg_inf_menu_raccourcis' => 'Vous avez la possibilit&eacute; d\'afficher l\'un des deux menus de raccourcis dans le coin haut droit du bandeau. Dans ce cas, le menu choisi ne sera plus visible dans la colonne navigation.',
 		'cfg_inf_bandeau_bas' => 'D&eacute;sirez vous afficher la partie du bandeau contenant la banni&egrave;re ?',
 		'cfg_inf_bandeau_chemin' => 'D&eacute;sirez vous afficher la partie du bandeau contenant la bande indiquant le chemin des articles et rubriques ?',
@@ -623,6 +625,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_galerie_pagination_type_page' => 'Affichage des num&eacute;ros de page',
 		'cfg_lbl_galerie_pagination_type_numero' => 'Affichage des num&eacute;ros d\'albums',
 		'cfg_lbl_liste_admins' => 'Liste des administrateurs',
+		'cfg_lbl_taille_logo' => 'Taille maximale du logo en hauteur ou en largeur',
 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',

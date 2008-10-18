@@ -16,12 +16,16 @@
 		]
 	</div>
 	
-	<!--<div class="identite_site">	-->             
-        <a class="site_logo" href="#URL_SITE_SPIP" title="<:sarkaspip:accueil_site:>">[(#LOGO_SITE_SPIP||image_reduire{150})]</a>
-        <div class="site_nom">
-           <h1><a href="#URL_SITE_SPIP" title="<:sarkaspip:accueil_site:>">[(#NOM_SITE_SPIP)]</a></h1>
-           [<h2>(#CONFIG{sarkaspip_bandeau/slogan})</h2>]
-        </div>
-    <!--</div>-->   
+	#SET{logo, #LOGO_SITE_SPIP}
+	[(#CONFIG{sarkaspip_bandeau/logo_reduit, 1}|=={1}|?{' '})
+		[(#SET{logo, [(#LOGO_SITE_SPIP||image_reduire{#CONFIG{sarkaspip_bandeau/taille_logo, 150}})]})]
+	]
+	<a class="site_logo" href="#URL_SITE_SPIP" title="<:sarkaspip:accueil_site:>">[(#GET{logo})]</a>
+	<div class="site_nom">
+		[(#CONFIG{sarkaspip_bandeau/titre_site, 1}|=={1}|?{' '})
+		   [<h1><a href="#URL_SITE_SPIP" title="<:sarkaspip:accueil_site:>">(#NOM_SITE_SPIP)</a></h1>]
+		]
+	   [<h2>(#CONFIG{sarkaspip_bandeau/slogan})</h2>]
+	</div>
 	<div class="clearer">&nbsp;</div>
 </div>

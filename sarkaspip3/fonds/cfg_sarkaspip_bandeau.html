@@ -11,12 +11,23 @@
 			jQuery("#menu_raccourci_defaut").attr({checked: "checked"});
 			jQuery("#bloc_haut2").hide();
 		]
+		[(#ENV{logo_reduit, 1}|=={0}|?{' '})
+			jQuery("#bloc_logo").hide();
+		]
 		jQuery("input[@name='haut']").change(function() {
 			if (jQuery("input[@name='haut']:checked").val() == 1)
 				jQuery("#bloc_haut2").show();
 			else {
 				jQuery("#menu_raccourci_defaut").attr({checked: "checked"});
 				jQuery("#bloc_haut2").hide();
+			}
+			jQuery(this).blur();
+		});	
+		jQuery("input[@name='logo_reduit']").change(function() {
+			if (jQuery("input[@name='logo_reduit']:checked").val() == 1)
+				jQuery("#bloc_logo").show();
+			else {
+				jQuery("#bloc_logo").hide();
 			}
 			jQuery(this).blur();
 		});	
@@ -40,6 +51,30 @@
 		
 		<div id="bloc_haut2">
 			<br />
+			<p><:sarkaspip:cfg_inf_logo_reduit:></p>
+			<label>
+				<input type="radio" name="logo_reduit" value="1" [(#ENV{logo_reduit, 1}|=={1}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_oui:>
+			</label>
+			<label>
+				<input type="radio" name="logo_reduit" value="0" [(#ENV{logo_reduit, 1}|=={0}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_non:>
+			</label>
+			<div id="bloc_logo">
+				<label><:sarkaspip:cfg_lbl_taille_logo:></label>
+				<input type="text" name="taille_logo" value="#ENV{taille_logo, 150}" size="3" class="fondl" />
+			</div>
+			<br />
+			<p><:sarkaspip:cfg_inf_titre_site:></p>
+			<label>
+				<input type="radio" name="titre_site" value="1" [(#ENV{titre_site, 1}|=={1}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_oui:>
+			</label>
+			<label>
+				<input type="radio" name="titre_site" value="0" [(#ENV{titre_site, 1}|=={0}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_non:>
+			</label>
+			<br /><br />
 			<label><:sarkaspip:cfg_lbl_slogan:></label>
 			<input type="text" name="slogan" value="#ENV{slogan}" size="40" class="fondl" />
 			<br />
