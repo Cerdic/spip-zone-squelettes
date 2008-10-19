@@ -1,62 +1,23 @@
-<!-- titre=<:sarkaspip:cfg_titre_sommaire:> -->
-<!-- descriptif=<:sarkaspip:cfg_descr_sommaire:> -->
-<!-- boite=<:sarkaspip:cfg_boite_sommaire:> -->
+<!-- titre=<:sarkaspip:cfg_titre_styles:> -->
+<!-- descriptif=<:sarkaspip:cfg_descr_styles:> -->
+<!-- boite=<:sarkaspip:cfg_boite_styles:> -->
 <INCLURE{fond=noisettes/cfg/inc_cfg_header}>
 #CACHE{0}
-
-<script type="text/javascript">
-//<![CDATA[
-	jQuery(document).ready(function() {
-		[(#ENV{position_articles_recents, 1}|!={1}|?{' '})
-			jQuery("#bloc_max_articles").hide();
-		]
-		jQuery("input[@name='position_articles_recents']").change(function() {
-			if (jQuery("input[@name='position_articles_recents']:checked").val() == 1) {
-				jQuery("#bloc_max_articles").show();
-			}
-			else {
-				jQuery("#bloc_max_articles").hide();
-			}
-			jQuery(this).blur();
-		});	
-	});
-//]]>
-</script>
 
 <form method="post" action="#SELF"><div>
 	[(#ENV{_cfg_}|form_hidden)]
 	<fieldset>
-		<legend><:sarkaspip:cfg_lgd_sommaire_secteurs:></legend>
-		<p><:sarkaspip:cfg_inf_sommaire_secteurs:></p>
-		<label>
-			<input type="radio" name="position_secteurs" value="1" [(#ENV{position_secteurs, 0}|=={1}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_oui:>
-		</label>
-		<label>
-			<input type="radio" name="position_secteurs" value="0" [(#ENV{position_secteurs, 0}|=={0}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_non:>
-		</label>
-	</fieldset>
-	
-	<fieldset>
-		<legend><:sarkaspip:cfg_lgd_sommaire_articles:></legend>
-		<p><:sarkaspip:cfg_inf_sommaire_articles:></p>
-		<label>
-			<input type="radio" name="position_articles_recents" value="1" [(#ENV{position_articles_recents, 1}|=={1}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_oui:>
-		</label>
-		<label>
-			<input type="radio" name="position_articles_recents" value="0" [(#ENV{position_articles_recents, 1}|=={0}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_non:>
-		</label>
-		<div id="bloc_max_articles">
-			<br />
-			<label><:sarkaspip:cfg_lbl_intro_article:></label>
-			<input type="text" name="intro_article" value="#ENV{intro_article, 300}" size="3" class="fondl" />
-			<br />
-			<label><:sarkaspip:cfg_lbl_max_articles_recents:></label>
-			<input type="text" name="max_articles_recents" value="#ENV{max_articles_recents, 5}" size="3" class="fondl" />
-		</div>
+		<legend><:sarkaspip:cfg_lgd_css_bandeau:></legend>
+		<p><:sarkaspip:cfg_inf_css_bandeau_haut:></p>
+		<label><:sarkaspip:cfg_lbl_bg_bandeau_haut:></label>
+		<input type="text" name="bg_bandeau_haut" value="#ENV{bg_bandeau_haut, #6262a4}" size="50" class="fondl" />
+		<br /><br />
+		<label><:sarkaspip:cfg_lbl_fg_bandeau_haut:></label>
+		<input type="text" name="fg_bandeau_haut" value="#ENV{fg_bandeau_haut, #eeeeee}" size="50" class="fondl" />
+		<br /><br />
+		<label><:sarkaspip:cfg_lbl_ho_bandeau_haut:></label>
+		<input type="text" name="ho_bandeau_haut" value="#ENV{ho_bandeau_haut, #aaaaaa}" size="50" class="fondl" />
+		<br />
 	</fieldset>
 	
 	<br />
@@ -67,7 +28,7 @@
 [(#CONFIG{sarkaspip_accueil/mode_debug, non}|=={oui}|?{' '})
 	<div id="bloc_debug">
 		<br />
-		>> Debug - Etat des variables du fond Sommaire:<br />
-		#CFG_ARBO{sarkaspip_sommaire}
+		>> Debug - Etat des variables du fond Styles:<br />
+		#CFG_ARBO{sarkaspip_styles}
 	</div>
 ]

@@ -349,6 +349,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_titre_plan' => 'Sarka-SPIP - Configuration de la page plan du site',
 		'cfg_titre_header' => 'Sarka-SPIP - Configuration des balises META',
 		'cfg_titre_formulaires' => 'Sarka-SPIP - Configuration des pages de formulaires',
+		'cfg_titre_styles' => 'Sarka-SPIP - Configuration des styles',
 
 // Titre des liens des pages
 		'sarkaspip_accueil' => 'Accueil',
@@ -364,6 +365,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'sarkaspip_plan' => 'Plan du site',
 		'sarkaspip_header' => 'Balises meta',
 		'sarkaspip_formulaires' => 'Formulaires',
+		'sarkaspip_styles' => 'Styles',
 		
 // Descriptif des pages
 		'cfg_descr_accueil' => 'Vous &ecirc;tes sur la page d\'accueil de la configuration du squelette Sarka-SPIP.',
@@ -382,6 +384,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_descr_plan' => 'Le corps de la page plan du site pr&eacute;sente la liste des articles publi&eacute;s dans le site. Cette liste peut &ecirc;tre tri&eacute;e par rubrique, par auteur ou par date. Cette page de configuration vous permet d\'en choisir les caract&eacute;ristiques de tri.',
 		'cfg_descr_header' => 'La plupart des balises meta du site sont calcul&eacute;es automatiquement &agrave; partir des informations de configuration du site et de la page affich&eacute;e. Cette page permet n&eacute;anmoins de pr&eacute;ciser le nom de l\'auteur, les mots-cl&eacute;s et la p&eacute;riode entre deux visites des robots.',
 		'cfg_descr_formulaires' => 'Le corps de certaines pages du squelette permet d\'afficher un formulaire comme le formulaire de contact. Cette page de configuration vous permet d\'en choisir les caract&eacute;ristiques.',
+		'cfg_descr_styles' => 'Cette page permet de configurer certains styles communs aux pages du squelette comme les couleurs d\'avant et d\'arri&egrave;re plan, les survols de liens, les cadres...',
 
 // Titre des boites
 		'cfg_boite_accueil' => 'Accueil',
@@ -397,6 +400,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_boite_plan' => 'Plan du site',
 		'cfg_boite_header' => 'Balises meta',
 		'cfg_boite_formulaires' => 'Formulaires',
+		'cfg_boite_styles' => 'Styles',
 
 // Legendes des blocs contenus dans chaque boite
 		'cfg_lgd_layout' => 'Layout',
@@ -438,6 +442,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_rubrique_articles' => 'Articles publi&eacute;s',
 		'cfg_lgd_plan_pagination' => 'Pagination',
 		'cfg_lgd_form_contact' => 'Contact',
+		'cfg_lgd_css_bandeau' => 'Bandeau',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
