@@ -15,10 +15,15 @@
 
 <B_galerie>
 <div class="galerie_planche">
-<table>
+<ul>
 <BOUCLE_galerie(ARTICLES){id_rubrique=#RACINE_SPECIALISEE{galerie}} {par date}>
-		[(#COMPTEUR_BOUCLE|modulo{2}|=={1}|?{' '})<tr>] 
-		<td>
+		 
+		<li
+      [(#COMPTEUR_BOUCLE|modulo{2}|=={1}|?{' '})class="modulo1"]
+      [(#COMPTEUR_BOUCLE|modulo{2}|=={0}|?{' '})class="modulo0"]
+    >
+    
+    
         <div class="logo">
           <a href="spip.php?page=album&amp;id_article=#ID_ARTICLE" title="<:sarkaspip:info_afficher_album:>">
               <BOUCLE_vignette_album(DOCUMENTS){id_article}{extension == jpg|png|gif}{mode=document}{doublons}{0,1}>
@@ -31,15 +36,15 @@
           </a>
           		  
         </div>
-        #TITRE
-        <div class="introduction">[(#INTRODUCTION{100}|typo_couleur)] </div>
+        <h2>#TITRE</h2>
+        <div class="introduction">[(#INTRODUCTION{200}|typo_couleur)] </div>
 
-        <div style="clear: both;">&nbsp;</div>
-    </td>
-		[(#COMPTEUR_BOUCLE|modulo{2}|=={0}|?{' '})</tr>]
+        <br class="nettoyeur" style="margin-top:0px"/>
+        
+        
+    </li>
 </BOUCLE_galerie>
-[(#COMPTEUR_BOUCLE|modulo{2}|=={0}|?{' '})</tr>]
-</table>
+</ul>
 </div> <!-- Fin galerie -->
 </B_galerie>
 
