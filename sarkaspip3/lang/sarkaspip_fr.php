@@ -443,6 +443,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_plan_pagination' => 'Pagination',
 		'cfg_lgd_form_contact' => 'Contact',
 		'cfg_lgd_css_bandeau' => 'Bandeau',
+		'cfg_lgd_css_pied' => 'Pied',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
