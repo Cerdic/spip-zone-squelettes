@@ -12,9 +12,10 @@
 		<B_secteurs>
 			<label><:sarkaspip:cfg_lbl_liste_secteurs:></label>
 			<select name="rubrique_herbier">
-				<BOUCLE_agenda(RUBRIQUES){id_rubrique=#ENV{rubrique_herbier, 0}}>
+				<option value="0"[ (#ENV{rubrique_herbier, 0}|=={0}|?{selected="selected"})]>--</option>
+				<BOUCLE_herbier(RUBRIQUES){id_rubrique=#ENV{rubrique_herbier, 0}}>
 					[<option value="#ID_RUBRIQUE" selected="selected">(#TITRE|supprimer_numero|attribut_html)</option>]
-				</BOUCLE_agenda>
+				</BOUCLE_herbier>
 		<BOUCLE_secteurs(RUBRIQUES){racine}{id_rubrique!==#RACINE_SPECIALISEE}{par num titre}{par titre}>
 				[<option value="#ID_RUBRIQUE">(#TITRE|supprimer_numero|attribut_html)</option>]
 		</BOUCLE_secteurs>
