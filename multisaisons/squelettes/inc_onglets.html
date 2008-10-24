@@ -1,13 +1,25 @@
-
 	<ul class="ui-tabs-nav">
-		[(#REM) on v&eacute;rifie que l on a au moins une autorisation de forum sur un article pour affichage de l'onglet] 
-		<BOUCLE_test_forum(ARTICLES){accepter_forum!=non}{0,1}> 
+	
+
+
+	[(#REM) on v&eacute;rifie que l on a au moins une autorisation de forum sur un article pour affichage de l'onglet] 
+		<BOUCLE_test_forum(ARTICLES){accepter_forum!=non}{0,1}> 		
 		<li class="ui-tabs-selected"><a href="#fragment-1"><span>Forums</span></a></li>
 		</BOUCLE_test_forum>
-		[(#PLUGIN{rainette}|oui)
-		<li class=""><a href="#fragment-2"><span>Meteo</span></a></li>]
+
+		
+		
+		[(#PLUGIN{rainette}|?{' ',''})<li class=""><a href="#fragment-2"><span>Meteo</span></a></li>]
+		
+		
+		
+		
 		<li class=""><a href="#fragment-3"><span>Membres</span></a></li>
 	</ul>
+	
+	
+	
+	
 	
 	[(#REM) on v&eacute;rifie que l on a au moins une autorisation de forum sur un article pour affichage de la boite] 
 	<BOUCLE_test2_forum(ARTICLES){accepter_forum!=non}{0,1}> 
@@ -16,12 +28,20 @@
 	</div>
 	</BOUCLE_test2_forum>
 	
-	[(#PLUGIN{rainette}|oui)
+	
+	
+	
+	
+	[(#PLUGIN{rainette}|?{' ',''})
 	<div id="fragment-2" class="ui-tabs-panel ui-tabs-hide">
 	<h4>[(#RAINETTE_INFOS{FRXX0076, ville})]</h4>
 	[(#MODELE{rainette_previsions, code=FRXX0023, type=x_jours, jour=2, sous_modele=previsions_24h})]
 	<hr class="spacer" />
 	</div>]	
+	
+	
+	
+	
 		
 	<div id="fragment-3" class="ui-tabs-panel ui-tabs-hide">
 		<INCLURE{fond=inc_liste_membres}{lettre=#ENV{lettre}}>
