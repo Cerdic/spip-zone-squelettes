@@ -23,7 +23,7 @@
 		<li><a href="#URL_SITE_SPIP" title="Accueil"><:pyrat:accueil:></a></li>
 		<BOUCLE_ariane(HIERARCHIE){id_syndic}><li><a href="#URL_RUBRIQUE">[(#TITRE)]</a></li></BOUCLE_ariane><li><a href="#URL_PAGE{site}"><:sites_web:></a></li>
 		<BOUCLE_UnArticleSyndique(SYNDIC_ARTICLES) {id_syndic_article}>
-		<li><a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a></li>
+		<li><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]">#NOM_SITE</a></li>
 		<li>[(#TITRE)]</li>
 		</BOUCLE_UnArticleSyndique>
 		<li>[(#NOM_SITE|couper{80})]</li>
@@ -66,7 +66,7 @@
 			<h2><:ecrire:titre_articles_syndiques:></h2>
 			<dl>
 			<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {!par date} {pagination}>
-				<dt class="#EDIT{titre}"><a href="[(#ID_SYNDIC|generer_url_site|parametre_url{'id_syndic_article',#ID_SYNDIC_ARTICLE})]">[(#TITRE)]</a></dt>
+				<dt class="#EDIT{titre}"><a href="[(#ID_SYNDIC|generer_url_entite{'site'}|parametre_url{'id_syndic_article',#ID_SYNDIC_ARTICLE})]">[(#TITRE)]</a></dt>
 				<dd>
 					<small>[(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)]</small>
 					[<div class="#EDIT{descriptif}">(#DESCRIPTIF|couper{300}|image_reduire{300})
