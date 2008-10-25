@@ -165,7 +165,7 @@ $test_presence=0;
 	$anneeE = (int) '[(#DATE_REDAC|annee)]';
 	$jourE = (int) '[(#DATE_REDAC|jour)]';
         IF (($M==$moisE) AND ($Y==$anneeE) AND ($jourE!=0)) {
-		$evenements_dates [$jourE][#ID_ARTICLE]=array('[(#TITRE|supprimer_numero|texte_script)]','#URL_ARTICLE');
+		$evenements_dates [$jourE][#ID_ARTICLE]=array('[(#TITRE|supprimer_numero|texte_script)]','#URL_ARTICLE','[(#INTRODUCTION|texte_script|couper{80})]');
 		$test_jour[$jourE]=1;
 	$test_presence=1;
 	}
@@ -179,7 +179,7 @@ $test_presence=0;
 	$anneeE = (int) '[(#DATE_REDAC|annee)]';
 	$jourE = (int) '[(#DATE_REDAC|jour)]';
         IF (($M==$moisE) AND ($Y==$anneeE) AND ($jourE!=0)) {
-		$evenements_dates [$jourE][#ID_ARTICLE]=array('[(#TITRE|supprimer_numero|texte_script)]','#URL_ARTICLE');
+		$evenements_dates [$jourE][#ID_ARTICLE]=array('[(#TITRE|supprimer_numero|texte_script)]','#URL_ARTICLE','[(#INTRODUCTION|texte_script|couper{80})]');
 	$test_presence=1;
 	$test_jour[$jourE]=1;
 	}
@@ -189,23 +189,99 @@ $test_presence=0;
 
 <?php
 if ($test_presence==1) {
-	echo '<table width="100%"  border="0" cellspacing="0" cellpadding="2"><tr>
-        <td><table width="90%" border="0" cellpadding="0" cellspacing="0" style="font-size:80%;">';
-	
+	?><table width="100%"  border="0" cellspacing="0" cellpadding="2"><tr>
+        <td>
+	<script type="text/javascript">
+<!--
+
+/*
+ *
+ * Copyright (c) 2006 Sam Collett (http://www.texotela.co.uk)
+ * Licensed under the MIT License:
+ * http://www.opensource.org/licenses/mit-license.php
+ * 
+ */
+ 
+/*
+ * A basic news ticker
+ *
+ * @name     newsticker (or newsTicker)
+ * @param    delay      Delay (in milliseconds) between iterations. Default 4 seconds (4000ms)
+ * @author   Sam Collett (http://www.texotela.co.uk)
+ * @example  $("#news").newsticker(); // or jQuery("#news").newsticker(5000);
+ *
+ */
+jQuery.fn.newsTicker = jQuery.fn.newsticker = function(delay)
+{
+	return this.each(
+		function()
+		{
+			if(this.nodeName.toLowerCase()!= "ul") return;
+			delay = delay || 5000;
+			var self = this;
+			self.items = jQuery("li", self);
+			// hide all items (except first one)
+			self.items.not(":eq(0)").hide().end();
+			// current item
+			self.currentitem = 0;
+			var doTick = function()
+			{
+				jQuery.newsticker(self);
+			}
+			setInterval(doTick,delay);
+		}
+	)
+	.addClass("newsticker")
+	.hover(
+		function()
+		{
+			// pause if hovered over
+			this.pause = true;
+		},
+		function()
+		{
+			// unpause when not hovered over
+			this.pause = false;
+		}
+	);
+}
+jQuery.newsticker = function(el)
+{
+	// return if hovered over
+	if(el.pause) return;
+	// hide current item
+	jQuery(el.items[el.currentitem]).fadeOut("slow",
+		function()
+		{
+			jQuery(this).hide();
+			// move to next item and show
+			el.currentitem = ++el.currentitem % (el.items.size());
+			jQuery(el.items[el.currentitem]).fadeIn("slow");
+		}
+	);
+}
+
+$(document).ready(
+	function()
+	{
+		$("#news").newsTicker();
+	}
+);
+// -->
+	</script>
+	<ul id="news">
+	<?php
 	for ($i=1;$i<=31;$i++) {
 		if ($test_jour[$i]==1) {
 			foreach ($evenements_dates[$i] as $cle2=>$tab2) {
-			echo '<tr>
-			<td align="left" valign="top" nowrap> '.$i;
+			echo '<li>'.$i;
 			if ($i=='1') {echo 'er';}
-			echo ' - '.$M.' : </td>
-			<td width="100%" align="left" valign="top"><a href="'.$evenements_dates[$i][$cle2][1].'">'.$evenements_dates[$i][$cle2][0].'</a><br />
-			</td>
-			</tr>';
+			echo ' - '.$M.' : <a href="'.$evenements_dates[$i][$cle2][1].'">'.$evenements_dates[$i][$cle2][0].'</a>
+			- '.$evenements_dates[$i][$cle2][2].'</li>';
 			}
 		}
 	}
-	echo "</table></td></tr></table></li></ul></div>";
+	echo "</ul></td></tr></table></li></ul></div>";
 }
 else {
 	echo '<table width="100%"  border="0" cellspacing="0" cellpadding="1"><tr>

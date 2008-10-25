@@ -8,39 +8,43 @@
 	$calendrier_jour_mini=intval($_GET['calend_jour_mini']);
 	$months = array('', '<:m1:>', '<:m2:>', '<:m3:>', '<:m4:>', '<:m5:>', '<:m6:>', '<:m7:>', '<:m8:>', '<:m9:>', '<:m10:>', '<:m11:>', '<:m12:>');
 ?>
-<INCLURE {fond=noisettes/communs/inc_entete-meta} >
-</head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
+	<head>
+	<INCLURE{fond=noisettes/headers/entete-meta}{env}>
+	</head>
+
 <body>
-	<div id="Page">
+<div id="Page">
 	
-		[(#REM) Entête de la page]
-		<INCLURE {fond=noisettes/communs/inc_entete-page} {id_rubrique} >
-		
-		[(#REM) Arborescence]
-		<div id="Arborescence">
-		<strong><:vous_etes_ici:></strong>
-		<em><a href="#URL_SITE_SPIP"><:accueil_site:></a> > <:evenements_du:>
-		<?php 
-			echo $calendrier_jour_mini.' '.$months[$calendrier_mois_mini].' '.$calendrier_annee_mini; ?>
-		</em>
-		</div>	
+[(#REM) Entete de la page]
+	<INCLURE {fond=noisettes/entete/inc_entete-page}{id_rubrique}>
 
-	<div id="Conteneur">
+[(#REM) Conteneur]
+<div id="Conteneur">
 
+[(#REM) Menu de gauche]
 	<div id="Menu">
-	[ (#PLUGIN{eva_habillage}|?{[(#INCLURE{fond=noisettes/sommaire/sommaire_gauche_avec_habillage}{lang})],[(#INCLURE{fond=noisettes/sommaire/sommaire_gauche_sans_habillage}{lang})]})]
+	[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})<INCLURE{fond=noisettes/sommaire/sommaire_gauche_avec_habillage}{lang}>]
+	[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})<INCLURE{fond=noisettes/sommaire/sommaire_gauche_sans_habillage}{lang}>]
 	</div>
 
+[(#REM) Menu de droite]
 	<div id="MenuDroit">
-	[ (#PLUGIN{eva_habillage}|?{[(#INCLURE{fond=noisettes/sommaire/sommaire_droite_avec_habillage}{lang})],[(#INCLURE{fond=noisettes/sommaire/sommaire_droite_sans_habillage}{lang})]})]
+	[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})<INCLURE{fond=noisettes/sommaire/sommaire_droite_avec_habillage}{lang}>]
+	[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})<INCLURE{fond=noisettes/sommaire/sommaire_droite_sans_habillage}{lang}>]
 	</div>
+
+
+[(#REM) Menu du centre]
+<div id="Contenu">
 
 <BOUCLE_article_mentions(ARTICLES){titre_mot=mentions}{doublons}>
 </BOUCLE_article_mentions>
 
 [(#REM) Début du bloc contenu]
 <?php $test_un_deux=1; ?>
-<div id="Contenu">
 	<div class="bloc">
 		<h3 class="titre"><:evenements_du:> <?php echo $calendrier_jour_mini.' '.$months[$calendrier_mois_mini].' '.$calendrier_annee_mini; ?></h3>
 		<ul>
@@ -77,17 +81,15 @@
 			</BOUCLE_rubriques>
 		</ul>
 	</div>
-
-	[ (#PLUGIN{eva_habillage}|?{[(#INCLURE{fond=noisettes/sommaire/sommaire_centre_avec_habillage}{lang})],[(#INCLURE{fond=noisettes/sommaire/sommaire_centre_sans_habillage}{lang})]})]
+	[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})<INCLURE{fond=noisettes/sommaire/sommaire_centre_avec_habillage}{lang}>]
+	[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})<INCLURE{fond=noisettes/sommaire/sommaire_centre_sans_habillage}{lang}>]
 </div>
 
-[(#REM) Début du pied de la page]			
-	
-			<div class="nettoyeur"></div>
-		
-		<INCLURE{fond=noisettes/communs/inc_logos-pied}{lang}>
-		<INCLURE{fond=noisettes/communs/inc_pied}{lang}>
-
+[(#REM) Pied de la page]			
+	<div class="nettoyeur"></div>
+	<INCLURE{fond=noisettes/pied/inc_pied}{lang}>
 	</div>
+
+</div>
 </body>
 </html>
