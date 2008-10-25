@@ -1,10 +1,4 @@
 <?php
-/******************************************************************
-***  Ce plugin EVA_habillage, créé par Olivier Gautier, est mis ***
-***      à disposition sous un contrat Creative Commons BY      *** 
-***                 consultable à l'adresse                     ***
-***      http://www.creativecommons.org/licenses/by/2.0/fr/     ***
-******************************************************************/
 function balise_EVAFLASHLOGOBLOCCODE($p) {
 	$titre=sql_select('nom_image , pos_x , pos_y , repetition','spip_eva_habillage_images',"nom_habillage = 'Defaut' AND type = 'flash' AND nom_div = 'flash_secteur_sites_partenaires'");
 	$envoi='';

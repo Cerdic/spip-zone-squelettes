@@ -1,10 +1,4 @@
 <?php
-/******************************************************************
-***  Ce plugin EVA_habillage, créé par Olivier Gautier, est mis ***
-***      à disposition sous un contrat Creative Commons BY      *** 
-***                 consultable à l'adresse                     ***
-***      http://www.creativecommons.org/licenses/by/2.0/fr/     ***
-******************************************************************/
 function eva_habillage_definition_themes () {
 
 //Définition des sélecteurs de personnalisation d'EVA (on regroupe les sélecteurs en fonction du thème et de la propriété concernée)

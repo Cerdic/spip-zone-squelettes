@@ -1,10 +1,4 @@
 <?php
-/******************************************************************
-***  Ce plugin EVA_habillage, créé par Olivier Gautier, est mis ***
-***      à disposition sous un contrat Creative Commons BY      *** 
-***                 consultable à l'adresse                     ***
-***      http://www.creativecommons.org/licenses/by/2.0/fr/     ***
-******************************************************************/
 $p=explode(basename(_DIR_PLUGINS)."/",str_replace('\\','/',realpath(dirname(__FILE__))));
 define('_DIR_PLUGIN_EVAHABILLAGE',(_DIR_PLUGINS.end($p)));
 

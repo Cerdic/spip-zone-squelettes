@@ -1,10 +1,4 @@
 <?php
-/******************************************************************
-***  Ce plugin EVA_habillage, créé par Olivier Gautier, est mis ***
-***      à disposition sous un contrat Creative Commons BY      *** 
-***                 consultable à l'adresse                     ***
-***      http://www.creativecommons.org/licenses/by/2.0/fr/     ***
-******************************************************************/
 $EvaHabillageTable = array( 
     "id_habillage" => "INTEGER NOT NULL AUTO_INCREMENT", 
     "habillage" => "TEXT NOT NULL",

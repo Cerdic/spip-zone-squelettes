@@ -1,9 +1,3 @@
 <?php
-/******************************************************************
-***  Ce plugin EVA_habillage, créé par Olivier Gautier, est mis ***
-***      à disposition sous un contrat Creative Commons BY      *** 
-***                 consultable à l'adresse                     ***
-***      http://www.creativecommons.org/licenses/by/2.0/fr/     ***
-******************************************************************/
 include_spip('base/eva_habillage_base');
 ?>

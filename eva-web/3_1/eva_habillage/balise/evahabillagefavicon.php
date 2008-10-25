@@ -1,10 +1,4 @@
 <?php
-/******************************************************************
-***  Ce plugin EVA_habillage, créé par Olivier Gautier, est mis ***
-***      à disposition sous un contrat Creative Commons BY      *** 
-***                 consultable à l'adresse                     ***
-***      http://www.creativecommons.org/licenses/by/2.0/fr/     ***
-******************************************************************/
 function balise_EVAHABILLAGEFAVICON($p) {
 	$favicon=sql_select('nom_image','spip_eva_habillage_images',"nom_habillage = 'Defaut' AND type = 'favicon'");
 	$favicon_result=sql_fetch($favicon);

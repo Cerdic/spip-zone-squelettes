@@ -1,10 +1,4 @@
 <?php
-/******************************************************************
-***  Ce plugin EVA_habillage, créé par Olivier Gautier, est mis ***
-***      à disposition sous un contrat Creative Commons BY      *** 
-***                 consultable à l'adresse                     ***
-***      http://www.creativecommons.org/licenses/by/2.0/fr/     ***
-******************************************************************/
 function balise_EVAHABILLAGE($p) {
 $test = _DIR_PLUGIN_EVASQUELETTES;
 if (defined("_DIR_PLUGIN_EVASQUELETTES")) {$chemin_squelettes =$test;} else {$chemin_squelettes = 'squelettes/';}

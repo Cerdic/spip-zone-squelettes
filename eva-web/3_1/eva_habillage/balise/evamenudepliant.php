@@ -1,10 +1,4 @@
 <?php
-/******************************************************************
-***  Ce plugin EVA_habillage, créé par Olivier Gautier, est mis ***
-***      à disposition sous un contrat Creative Commons BY      *** 
-***                 consultable à l'adresse                     ***
-***      http://www.creativecommons.org/licenses/by/2.0/fr/     ***
-******************************************************************/
 function balise_EVAMENUDEPLIANT($p) {
 	$flux = '<script type="text/javascript" src="'._DIR_PLUGIN_EVA_HABILLAGE.'javascript/menu_depliant.js"></script>
 <style type="text/css">
