@@ -179,7 +179,7 @@ echo fin_page();
 ##################################################################################
 #############################
 function crea_groupe($groupe,$descriptif){
-	$resultatgrp = sql_insertq('spip_groupes_mots',array('titre'=>$groupe,'descriptif'=>$descriptif,'unseul'=>'non','obligatoire'=>'non','articles'=>'oui','breves'=>'oui','rubriques'=>'oui','syndic'=>'oui','minirezo'=>'oui','comite'=>'oui','forum'=>'non'));
+	$resultatgrp = sql_insertq('spip_groupes_mots',array('titre'=>$groupe,'descriptif'=>$descriptif,'unseul'=>'non','obligatoire'=>'non','minirezo'=>'oui','comite'=>'oui','forum'=>'non'));
 	echo '<br>Le groupe '.$groupe.' vient d\'etre cr&eacute;&eacute;<br>';
 }
 ####################
