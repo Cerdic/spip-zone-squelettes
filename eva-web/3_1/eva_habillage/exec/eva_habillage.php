@@ -39,6 +39,12 @@ function exec_eva_habillage(){
 
      if (isset($_POST['changement_habillage'])) {
 	sql_updateq('spip_eva_habillage',array('habillage' => $_POST['changement_habillage']),"sauvegarde = 'Defaut'");
+	if ($_POST['changement_habillage']!='eva_style_3_colonnes.css') {
+		$test_quitte_3colonnes=sql_select('id','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND nom_image='droite'");
+		while ($tab_quitte_3colonnes=sql_fetch($test_quitte_3colonnes)) {
+			sql_updateq('spip_eva_habillage_images',array('nom_image'=>'gauche'),"id='".$tab_quitte_3colonnes['id']."'");
+		}
+	}
     }
 
     include_spip("inc/eva_habillage_definition_themes");
@@ -611,7 +617,7 @@ window.onerror = null;
     echo debut_cadre_trait_couleur(_DIR_PLUGIN_EVA_HABILLAGE."img_pack/nbre.png", true, '', _T('evahabillage:EVA_choix_nbre'));
 
     $nbre = EVA_mes_nbres();
-    foreach ($nbre as $cle_nbre => $val_nbre) {
+    foreach($nbre as $cle_nbre => $val_nbre) {
         foreach($val_nbre as $val) {
             if (isset($_POST[$val])) {
 		sql_delete('spip_eva_habillage_images',"nom_habillage='Defaut' AND nom_div='".$val."'");
