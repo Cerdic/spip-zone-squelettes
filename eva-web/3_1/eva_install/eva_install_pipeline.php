@@ -8,7 +8,7 @@ define('_DIR_PLUGIN_EVAINSTALL',(_DIR_PLUGINS.end($p)));
 		) {
 		  // on voit le bouton dans la barre "naviguer"
 			$boutons_admin['configuration']->sousmenu['eva_install']= new Bouton(
-			"../"._DIR_PLUGIN_EVAINSTALL."img_pack/install.png",  // icone
+			"../"._DIR_PLUGIN_EVAINSTALL."/img_pack/install.png",  // icone
 			_T('evainstall:EVA_install')	// titre
 			);
 		}
