@@ -1,8 +1,13 @@
 #CACHE{864000}
 <?php 
-	header("HTTP/1.1 404 Not found");
-	header("Status: 404 Not found");
-?>  
+if ($_SERVER['REQUEST_URI']!='/spip.php?page=404') {
+	spip_log('404 REQUEST_URI:'.$_SERVER['REQUEST_URI']);
+	header('Location: #URL_SITE_SPIP/spip.php?page=404');
+	exit;
+}
+header("HTTP/1.1 404 Not Found", true);
+?>#HTTP_HEADER{"Cache-Control: no-store, no-cache, must-revalidate"}
+#HTTP_HEADER{"Pragma: no-cache"}
 
 
 
@@ -24,7 +29,9 @@
 
 
 
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="#LANG_DIR" lang="#LANG">
 
 		
 <head>
@@ -78,7 +85,7 @@
 <ul id="decobas">
 <li class="petite_boite">
 <h4><:pourquoi:> ?</h4>
-<p><:pourquoi1:></p>',
+<p><:pourquoi1:></p>
 </li>
 
 
