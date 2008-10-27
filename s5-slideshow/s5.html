@@ -8,10 +8,18 @@
         <link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
 
 #SET{s5,#CHEMIN{ui}}
-#SET{ui,#ENV{theme,yatil}}
 
 <BOUCLE_s5(RUBRIQUES){id_rubrique}>
 
+        <BOUCLE_s5_theme(MOTS) {type=s5_theme} {id_rubrique}>        
+            #SET{ui,#TITRE}
+        </BOUCLE_s5_theme>
+            #SET{ui,yatil}
+        <//B_s5_theme>
+
+        [(#ENV{theme})
+            #SET{ui,#ENV{theme}}
+        ]               
 
         <!-- configuration parameters -->
         <meta name="defaultView" content="slideshow" />
