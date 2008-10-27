@@ -18,7 +18,15 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 	$current_version = 0.0;
 	if (   (!isset($GLOBALS['meta'][$nom_meta_base_version]) )
 			|| (($current_version = $GLOBALS['meta'][$nom_meta_base_version])!=$version_cible)){
-		if (version_compare($current_version,'0.0','<=')){
+		if (
+			(version_compare($current_version,'2.1','<'))
+			&& // Verification que le plugin n'a pas ete deja installe par l'ancienne methode
+			(sql_countsel('spip_groupes_mots', "(titre = '_LayoutGala')") != 0)
+		) {
+			echo "SoyezCreateurs d&eacute;j&agrave; install&eacute; <br />";
+			ecrire_meta($nom_meta_base_version,$current_version=$version_cible,'non');
+		}
+		if (version_compare($current_version,'2.1','<')) {
 			include_spip('base/soyezcreateurs');
 			soyezcreateurs_config_site();
 			soyezcreateurs_config_motsclefs();
