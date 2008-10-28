@@ -10,54 +10,84 @@ define('_DUREE_CACHE_DEFAUT', 30*24*3600); // pris en compte à partir de http://
 define('_URLS_PROPRES_MAX', 60); // pris en compte à partire de http://trac.rezo.net/trac/spip/changeset/10346 
 define('_TRI_ARTICLES_RUBRIQUE', 'date DESC'); // cf http://trac.rezo.net/trac/spip/changeset/11492
 
-global $couleurs_spip;
-$couleurs_spip[] = array(
-// Bleu Pyrat.net
-		"couleur_foncee" => "#0F7FB3",
+$couleurs = charger_fonction('couleurs', 'inc');
+$couleurs( array(
+// Vert
+1 => array (
+		"couleur_foncee" => "#9DBA00",
+		"couleur_claire" => "#C5E41C",
+		"couleur_lien" => "#657701",
+		"couleur_lien_off" => "#A6C113"
+		),
+// Violet clair
+2 => array (
+		"couleur_foncee" => "#eb68b3",
+		"couleur_claire" => "#ffa9e6",
+		"couleur_lien" => "#8F004D",
+		"couleur_lien_off" => "#BE6B97"
+		),
+// Orange
+3 => array (
+		"couleur_foncee" => "#fa9a00",
+		"couleur_claire" => "#ffc000",
+		"couleur_lien" => "#FF5B00",
+		"couleur_lien_off" => "#B49280"
+		),
+// Saumon
+4 => array (
+		"couleur_foncee" => "#CDA261",
+		"couleur_claire" => "#FFDDAA",
+		"couleur_lien" => "#AA6A09",
+		"couleur_lien_off" => "#B79562"
+		),
+//  Bleu pastel
+5 => array (
+		"couleur_foncee" => "#5da7c5",
+		"couleur_claire" => "#97d2e1",
+		"couleur_lien" => "#116587",
+		"couleur_lien_off" => "#81B7CD"
+		),
+//  Gris
+6 => array (
+		"couleur_foncee" => "#85909A",
+		"couleur_claire" => "#C0CAD4",
+		"couleur_lien" => "#3B5063",
+		"couleur_lien_off" => "#6D8499"
+		),
+7 => array ("couleur_foncee" => "#0F7FB3",
 		"couleur_claire" => "#0094d3",
-		"couleur_lien" => "#fe7801",
-		"couleur_lien_off" => "#0d6f99"
-);
-
-// Compatibilite 1.9.3
-if ($GLOBALS['spip_version_code']>='1.9250') {
-	$couleurs = charger_fonction('couleurs', 'inc');
-	$couleurs( array(
-		// Vert
-		1 => array (
-				"couleur_foncee" => "#9DBA00",
-				"couleur_claire" => "#C5E41C",
-				),
-		// Violet clair
-		2 => array (
-				"couleur_foncee" => "#eb68b3",
-				"couleur_claire" => "#ffa9e6",
-				),
-		// Orange
-		3 => array (
-				"couleur_foncee" => "#fa9a00",
-				"couleur_claire" => "#ffc000",
-				),
-		// Saumon
-		4 => array (
-				"couleur_foncee" => "#CDA261",
-				"couleur_claire" => "#FFDDAA",
-				),
-		//  Bleu pastel
-		5 => array (
-				"couleur_foncee" => "#5da7c5",
-				"couleur_claire" => "#97d2e1",
-				),
-		//  Gris
-		6 => array (
-				"couleur_foncee" => "#85909A",
-				"couleur_claire" => "#C0CAD4",
-				),
-		7 => array ("couleur_foncee" => "#0F7FB3",
-			"couleur_claire" => "#0094d3",
-				),
-	));
-}
+		"couleur_lien" => "#116587",
+		"couleur_lien_off" => "#81B7CD"
+		),
+// Vert de gris
+8 => array (
+		"couleur_foncee" => "#999966",
+		"couleur_claire" => "#CCCC99",
+		"couleur_lien" => "#666633",
+		"couleur_lien_off" => "#999966"
+		),
+// Rose vieux
+9 => array (
+		"couleur_foncee" => "#EB68B3",
+		"couleur_claire" => "#E4A7C5",
+		"couleur_lien" => "#8F004D",
+		"couleur_lien_off" => "#BE6B97"
+		),
+// Violet
+10 => array (
+		"couleur_foncee" => "#8F8FBD",
+		"couleur_claire" => "#C4C4DD",
+		"couleur_lien" => "#6071A5",
+		"couleur_lien_off" => "#5C5C8C"
+		),
+//  Gris
+11 => array (
+		"couleur_foncee" => "#909090",
+		"couleur_claire" => "#D3D3D3",
+		"couleur_lien" => "#808080",
+		"couleur_lien_off" => "#909090"
+		),
+));
 
 // Tous ces parametres sont inutiles et non pris en compte si le plugin cfg est installe
 $GLOBALS['barre_typo_pas_de_fausses_puces'] = true;
