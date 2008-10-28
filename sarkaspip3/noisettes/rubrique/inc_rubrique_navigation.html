@@ -1,9 +1,45 @@
-[(#REM) <!-- affichage de la noisette de navigation des rubriques  --> ]
-<div id="noisette_navigation" class="noisette">
+[(#REM) <!-- affichage de la noisette de navigation des rubriques
+Recoit en argument:
+- id_rubriquee de la rubrique concernee
+-->]
+[(#REM) <!-- Liste des mots-cles de la rubrique --> ]
+#SET{titre_positionne, non}
+<BOUCLE_mots_branche(MOTS){branche}{type!==^squelette_}{doublons}>
+</BOUCLE_mots_branche>
+<BOUCLE_articles(ARTICLES){branche}>
+	<BOUCLE_mots_articles(MOTS){id_article}{type!==^squelette_}{doublons}>
+	</BOUCLE_mots_articles>
+</BOUCLE_articles>
+	
+<B_mots>
+	<div id="noisette_navigation" class="noisette">
+		<h1 class="intitule"><:sarkaspip:navigation_article:></h1>
+		#SET{titre_positionne, oui}
+		<div class="contenu">
+			<h2 class="titre_bloc"><:sarkaspip:mots_clefs_rubrique:></h2>
+			<div class="liste"><ul>
+<BOUCLE_mots(MOTS){!doublons}{par titre}>
+				<li><a class="titre" href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></li>
+</BOUCLE_mots>
+			</ul></div>
+		</div>
+</B_mots>
+
+[(#REM) <!-- Liste des rubriques filles de la rubrique --> ]
+<B_rubriques_filles>
+[(#GET{titre_positionne}|=={non}|?{' '})
+	<div id="noisette_navigation" class="noisette">
 	<h1 class="intitule"><:sarkaspip:navigation_article:></h1>
-		[(#REM) <!-- Liste des rubriques filles de la rubrique --> ]
-		<INCLURE{fond=noisettes/rubrique/inc_rubrique_filles}{id_rubrique}>
-		
-		[(#REM) <!-- Liste des mots-cles de la rubrique --> ]
-		<INCLURE{fond=noisettes/rubrique/inc_rubrique_mots_cles}{id_rubrique}>
-</div>
+	#SET{titre_positionne, oui}]
+		<div class="contenu">
+			<h2 class="titre_bloc"><:sarkaspip:sous_rubriques|ucfirst:></h2>
+			<div class="liste"><ul>
+<BOUCLE_rubriques_filles(RUBRIQUES){id_parent}{par num titre}{par titre}>		
+			[<li><#EXPOSE{span class="titre",a class="titre" href="#URL_RUBRIQUE"}>
+					(#TITRE|supprimer_numero)
+				</#EXPOSE{span,a}></li>]
+</BOUCLE_rubriques_filles>
+		</ul></div>
+		</div>				
+</B_rubriques_filles>
+[(#GET{titre_positionne}|=={oui}|?{' '})</div>]
