@@ -1,0 +1,36 @@
+<!-- titre=<:sarkaspip:cfg_titre_article:> -->
+<!-- descriptif=<:sarkaspip:cfg_descr_article:> -->
+<!-- boite=<:sarkaspip:cfg_boite_article:> -->
+<INCLURE{fond=noisettes/cfg/inc_cfg_header}>
+#CACHE{0}
+
+<form method="post" action="#SELF"><div>
+	[(#ENV{_cfg_}|form_hidden)]
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_article_description:></legend>
+		<p><:sarkaspip:cfg_inf_article_sans_logo:></p>
+		<label>
+			<input type="radio" name="logo_rubrique" value="oui" [(#ENV{logo_rubrique, oui}|=={oui}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_oui:>
+		</label>
+		<label>
+			<input type="radio" name="logo_rubrique" value="non" [(#ENV{logo_rubrique, oui}|=={non}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_non:>
+		</label>
+		<br /><br />
+		<label><:sarkaspip:cfg_lbl_taille_logo:></label>
+		<input type="text" name="taille_logo" value="#ENV{taille_logo, 150}" size="3" class="fondl" />
+	</fieldset>
+	
+	<br />
+	<input type="submit" name="_cfg_ok" class="fondo" value="<:sarkaspip:valider:>" />
+	<input type="submit" name="_cfg_delete" class="fondo" value="<:sarkaspip:effacer:>" />
+</div></form>
+
+[(#CONFIG{sarkaspip_accueil/mode_debug, non}|=={oui}|?{' '})
+	<div id="bloc_debug">
+		<br />
+		>> Debug - Etat des variables du fond Rubrique:<br />
+		#CFG_ARBO{sarkaspip_article}
+	</div>
+]

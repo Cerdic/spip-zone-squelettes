@@ -5,10 +5,19 @@
 		- page: indique le type de page affichee (article - par defaut -, evenement, album, edito)
 		- afficher_commentaires: indicateur d'affichage ou pas du nombre de commentaires de l'article concerne
 		- avec_popularite: indique si on doit afficher ou pas la popularite
+		- logo_rubrique: indique si on utilise le logo de la rubrique dans le cas ou le logo de l'article est absent
+		- taille_logo: taille max du logo si affiche
 		- id_evenement: id de l'evenement associe a l'article (page evenement avec plugin agenda)
 -->
 ]
 <BOUCLE_description (ARTICLES) {id_article}>
+	[(#REM) <!-- Initialisation des parametres de config --> ]
+	#SET{logo, #LOGO_ARTICLE}
+	[(#ENV{logo_rubrique}|=={oui}|?{' '})
+		[(#SET{logo, #LOGO_ARTICLE_RUBRIQUE})]
+	]
+	
+	[(#REM) <!-- Icones d'action si l'article n'est pas l'edito --> ]
 	[(#ENV{page}|!={edito}|?{' '})
 		<a class="fonction" id="imprimer" href="#URL_PAGE{imprimer,id_article=#ID_ARTICLE}" title="<:sarkaspip:imprimer_article:>"></a>
 	]
@@ -27,7 +36,7 @@
 	[(#ENV{page}|=={edito}|?{' '})
 		[(#INCLURE{fond=noisettes/article/inc_article_cartouche}{id_article}{id_evenement}{avec_popularite=non}{page})]
 		<div class="clearer"></div>
-		[<div class="image">(#LOGO_ARTICLE_RUBRIQUE||image_reduire{150})</div>]
+		[<div class="image">(#GET{logo}||image_reduire{#ENV{taille_logo}})</div>]
 	]
 	
 	[<div class="#EDIT{titre} titre"><h1>(#TITRE|supprimer_numero)</h1></div>]
@@ -36,7 +45,7 @@
 	[(#ENV{page}|!={edito}|?{' '})
 		[(#INCLURE{fond=noisettes/article/inc_article_cartouche}{id_article}{avec_popularite}{page})]
 		<div class="clearer"></div>
-		[<div class="image">(#LOGO_ARTICLE_RUBRIQUE||image_reduire{150})</div>]
+		[<div class="image">(#GET{logo}||image_reduire{#ENV{taille_logo}})</div>]
 		<div class="clearer-right"></div>
 	]
 	
