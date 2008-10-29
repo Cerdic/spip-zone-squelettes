@@ -849,7 +849,7 @@ $eva_themes = array(
     "('', 'image', 'Defaut', 'image_entete_page', 'foret/foret_haut.jpg', 'left', 'top', 'no-repeat', 'scroll')",
     "('', 'perso', 'Defaut', 'ul#Logo-Pied, ul#Pied {line-height:30%;border-top:2px solid #FFF;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'div#Contenu{padding-right:30px;}', '', '', '', '', '')",
-    "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'foret_bas.jpg', 'left', 'top', 'no-repeat', 'scroll')",
+    "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'foret/foret_bas.jpg', 'left', 'top', 'no-repeat', 'scroll')",
     "('', 'image', 'Defaut', 'image_titres', 'foret/foret_pied.jpg', 'left', 'center', 'repeat', 'scroll')",
     "('', 'perso', 'Defaut', 'h4 a,h4.titre a{color:#FFF;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'div#Entete ul.liens {text-align:left;}', '', '', '', '', '')",
