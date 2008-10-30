@@ -21,20 +21,20 @@
 	
 	[(#REM) on v&eacute;rifie que l on a au moins une autorisation de forum sur un article pour affichage de la boite] 
 	<BOUCLE_test2_forum(ARTICLES){accepter_forum!=non}{0,1}> 
-	<div id="fragment-1" class="ui-tabs-panel [(#ENV{foro}|=={1}|?{' ','ui-tabs-hide'})]">
+	<div id="fragment-1" class="ui-tabs-panel [(#ENV{foro}|=={1}|?{' ','ui-tabs-hide'})]" [style="(#ENV{membro}|=={1}|?{' ','display: block;'})"]>
 		<INCLURE{fond="inc_derniers_messages"}{self=#SELF}>
 	</div>
 	</BOUCLE_test2_forum>
 	
 	
 			
-	<div id="fragment-2" class="ui-tabs-panel [(#ENV{membro}|=={1}|?{' ','ui-tabs-hide'})]">
+	<div id="fragment-2" class="ui-tabs-panel [(#ENV{membro}|=={1}|?{' ','ui-tabs-hide'})]"  [style="(#ENV{membro}|=={1}|?{' ','display: block;'})"]>
 		<INCLURE{fond=inc_liste_membres}{lettre=#ENV{lettre}}{self=#SELF}>
 	</div>	
 	
 	
 	[(#PLUGIN{rainette}|?{' ',''})
-	<div id="fragment-3" class="ui-tabs-panel [(#ENV{meteoro}|=={1}|?{' ','ui-tabs-hide'})]">
+	<div id="fragment-3" class="ui-tabs-panel [(#ENV{meteoro}|=={1}|?{' ','ui-tabs-hide'})]" [style="(#ENV{membro}|=={1}|?{' ','display: block;'})"]>
 	<h4>[(#RAINETTE_INFOS{FRXX0360, ville})]</h4>
 	[(#MODELE{rainette_previsions, code=FRXX0360, type=x_jours, jour=2, sous_modele=previsions_24h})]
 	<hr class="spacer" />

@@ -1,4 +1,15 @@
-#CACHE{0}
+#CACHE{3600}
+
+
+
+
+
+[(#REM)   ici une superbe idée pour afficher les posteurs d'un article particulier,
+manque de bol, j'ai plus envie de la coder. ]
+
+
+
+
 
 
 <h4 class="icone_membre">
@@ -31,18 +42,18 @@
 
 <p class="interne">Annuaire:
 <BOUCLE_initial_nom(AUTEURS){tous}{par nom}>[ <a  rel="nofollow" href="[(#SELF|parametre_url{'debut_auteurs',''}|parametre_url{lettre,#NOM|translitteration|couper{1}|lettre1|unique{lien}})]">(#NOM|translitteration|couper{1}|lettre1|unique{titrelien})</a>]</BOUCLE_initial_nom>
+
 </p>
 
-
 <B_auteurs>
-#ANCRE_PAGINATION
+
 <ul class="membres">
-<BOUCLE_auteurs(AUTEURS){tous}{par nom}{nom==^#ENV{lettre}}{pagination 30}>
+<BOUCLE_auteurs(AUTEURS){tous}{par nom}{nom==^#ENV{lettre}}>
 [<li class="auteur"><a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="R&eacute;dacteur d'article">]
 [<li class="modo"><a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Webmaster/modo">]
 [<li class="visiteur"><a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Invit&eacute; ou visiteur">]
 [<li class="attente"><a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Compte en attente">]
 #NOM</a></li>
 </BOUCLE_auteurs>
-</ul>[<p class="centre">(#PAGINATION)</p>]
+</ul>
 </B_auteurs>
