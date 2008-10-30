@@ -121,7 +121,7 @@ window.onerror = null;
     
 	$test_3cols=sql_select('habillage','spip_eva_habillage',"sauvegarde='Defaut'");
 	$tab_3cols=sql_fetch($test_3cols);
-	if ($tab_3cols['habillage']=='eva_style_3_colonnes.css') {
+	if (($tab_3cols['habillage']=='eva_style_3_colonnes.css') OR ($tab_3cols['habillage']=='eva_style_3_colonnes_v2.css')) {
 		$test_3_colonnes=true;
 		$eva_gauche=120;
 		$eva_centre=249;
@@ -339,7 +339,7 @@ window.onerror = null;
 			if (!$eva_gauche) {$texte_eva.='droite';} else  {$texte_eva.='gauche';}
 			$texte_eva.="</option>";
 			$texte_eva.= "<option value='centre'>centre</option>";
-			if ($tab_3cols['habillage']=='eva_style_3_colonnes.css') {
+			if (($tab_3cols['habillage']=='eva_style_3_colonnes.css') OR ($tab_3cols['habillage']=='eva_style_3_colonnes_v2.css')){
 				$texte_eva.= "<option value='droite'>droite</option>";
 			}
 			$texte_eva.= '</select></th><th>';
