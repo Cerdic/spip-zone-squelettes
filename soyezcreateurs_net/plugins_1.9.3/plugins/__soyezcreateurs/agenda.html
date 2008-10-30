@@ -24,7 +24,7 @@ $events = array();
 	$dateEvt = ereg_replace("^([0-9]{4})-([0-9]{2})-([0-9]{2}).*$", "\\1\\2\\3", '#DATE_DEBUT');
 	if (!isset($events[$dateEvt])) { $events[$dateEvt] = array(); }
 	$res="";
-	ereg("($genre)", '<BOUCLE_genre(MOTS){id_evenement}>[(#TITRE|texte_script)]</BOUCLE_genre>', $res);
+	ereg("($genre)", '<BOUCLE_genre(MOTS){id_evenement}>[(#ID_MOT)]</BOUCLE_genre>', $res);
 	if (($genre=='<:pyrat:tout:>') || ($genre==$res[1])) {
 		<BOUCLE_EvenementArticle(ARTICLES){id_article}>$events[$dateEvt][] = array('rub' => #ID_RUBRIQUE, 'link' => '#URL_ARTICLE', 'title' => '[(#TITRE|texte_script)][&nbsp;: (#_evts_com:TITRE|=={#TITRE}|?{'',[(#_evts_com:TITRE|texte_script)]})]', 'logo' => '<BOUCLE_TitreRubrique(RUBRIQUES){id_rubrique}>[<img src="(#LOGO_ARTICLE_RUBRIQUE||image_reduire{32,32}|extraire_attribut{src})" class="logo_agenda" alt="[(#TITRE|attribut_html|texte_script)]" title="[(#TITRE|attribut_html|texte_script)]" />]</BOUCLE_TitreRubrique>', 'genres' => '<B_Genres><em>(<BOUCLE_Genres(MOTS){id_evenement}{", "}><a href="#URL_MOT" rel="tag" title="<:pyrat:savoirpluscritere:>: [(#TITRE|attribut_html|texte_script)]">[(#TITRE|texte_script)]</a></BOUCLE_Genres>)</em></B_Genres>', 'titre_rub' => '<B_TitreRub><strong<BOUCLE_CouleurRub(MOTS){id_rubrique}{type=_CouleurRubrique}> style="background-color:#[(#TEXTE|couleur_eclaircir)];"</BOUCLE_CouleurRub>><BOUCLE_TitreRub(RUBRIQUES){id_rubrique}>[(#TITRE|attribut_html|texte_script)</strong>&nbsp;: ]</BOUCLE_TitreRub>');</BOUCLE_EvenementArticle>
 	}
@@ -102,7 +102,7 @@ $events = array();
 		<select id="var_nav_cle">
 		<option value=""[(#ENV{genre,''}|=={''}|?{' selected="selected"',''})]><:pyrat:tout:></option>
 		<BOUCLE_ListeMotsClefs(MOTS){!doublons listemots}{par titre}>
-		<option value="[(#TITRE|attribut_html)]"[(#ENV{genre}|=={[(#TITRE)]}|?{' selected="selected"',''})]>[(#TITRE)]</option>
+		<option value="[(#ID_MOT)]"[(#ENV{genre}|=={[(#TITRE)]}|?{' selected="selected"',''})]>[(#TITRE)]</option>
 		</BOUCLE_ListeMotsClefs>
 		</select>
 		</B_ListeMotsClefs>

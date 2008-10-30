@@ -1,7 +1,7 @@
 #CACHE{3600}
 <BOUCLE_rubrique_principal(RUBRIQUES){id_rubrique}>
 <BOUCLE_article(EVENEMENTS)
-	{titre_mot==^(#ENV{genre,''})}
+	{id_mot=#ENV{genre}}
 	{branche}
 	{date_debut>=(#ENV{date_ev,(#ENV{date})}|annee_scolaire)-09-01}
 	{date_debut<=(#ENV{date_ev,(#ENV{date})}|annee_scolaire|plus{1})-12-31}
@@ -21,7 +21,7 @@
 >
 <BOUCLE_MOIS(EVENEMENTS)
 	{branche}
-	{titre_mot==^(#ENV{genre,''})}
+	{id_mot=#ENV{genre}}
 	{date_debut>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}
 	{date_debut==^(#_article:DATE_DEBUT|affdate{'Y-m'})}
 	{doublons}
