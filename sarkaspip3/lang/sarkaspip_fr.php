@@ -554,6 +554,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		Voulez-vous activer cette option dans la page article ?',
 		'cfg_inf_article_popularite' => 'Voulez-vous afficher la popularit&eacute; de l\'article dans le cartouche avec la date et l\'auteur de l\'article ?',
 		'cfg_inf_article_descriptif_doc' => 'Voulez-vous afficher le descriptif en dessous du titre de chaque document ?',
+		'cfg_inf_article_effet_image' => 'Par d&eacute;faut, le portfolio est la suite des vignettes de chaque image jointe &agrave; l\'article. Cliquer sur une vignette affiche l\'image dans son format d\'origine. 
+		Cependant, il est aussi possible d\'ajouter des effets de type galerie au portfolio par d&eacute;faut. Ces effets n&eacute;cessitent pour la plupart l\'activation du plugin idoine. 
+		Choissisez l\'effet d&eacute;sir&eacute; parmi ceux propos&eacute;s ci-dessous :',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
@@ -653,6 +656,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_galerie_pagination_type_numero' => 'Affichage des num&eacute;ros d\'albums',
 		'cfg_lbl_liste_admins' => 'Liste des administrateurs',
 		'cfg_lbl_taille_logo' => 'Taille maximale du logo en hauteur ou en largeur',
+		'cfg_lbl_effet_aucun' => 'Aucun effet',
+		'cfg_lbl_effet_nyroceros' => 'Effet Nyromodal image par image (n&eacute;cessite le plugin Nyroceros)',
+		'cfg_lbl_effet_nyroceros_diapo' => 'Effet Nyromodal en diaporama (n&eacute;cessite le plugin Nyroceros)',
+		'cfg_lbl_effet_thickbox' => 'Effet Thickbox (n&eacute;cessite le plugin Thickbox V2)',
+		'cfg_lbl_effet_smoothgallery' => 'Effet Smoothgallery (indisponible)',
 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',
