@@ -20,6 +20,49 @@
 		<br /><br />
 		<label><:sarkaspip:cfg_lbl_taille_logo:></label>
 		<input type="text" name="taille_logo" value="#ENV{taille_logo, 150}" size="3" class="fondl" />
+		<p><:sarkaspip:cfg_inf_article_popularite:></p>
+		<label>
+			<input type="radio" name="avec_popularite" value="oui" [(#ENV{avec_popularite, oui}|=={oui}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_oui:>
+		</label>
+		<label>
+			<input type="radio" name="avec_popularite" value="non" [(#ENV{avec_popularite, oui}|=={non}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_non:>
+		</label>
+	</fieldset>
+	
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_article_documents:></legend>
+		<p><:sarkaspip:cfg_inf_article_descriptif_doc:></p>
+		<label>
+			<input type="radio" name="avec_descriptif" value="oui" [(#ENV{avec_descriptif, non}|=={oui}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_oui:>
+		</label>
+		<label>
+			<input type="radio" name="avec_descriptif" value="non" [(#ENV{avec_descriptif, non}|=={non}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_non:>
+		</label>
+	</fieldset>
+	
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_article_images:></legend>
+		<p><:sarkaspip:cfg_inf_article_diaporama:></p>
+		<label>
+			<input type="radio" name="mode_galerie" value="1" [(#ENV{mode_galerie, 1}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_nyroceros:>
+		</label><br />
+		<label>
+			<input type="radio" name="mode_galerie" value="2" [(#ENV{mode_galerie, 1}|=={2}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_nyroceros_diapo:>
+		</label><br />
+		<label>
+			<input type="radio" name="mode_galerie" value="3" [(#ENV{mode_galerie, 1}|=={3}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_thickbox:>
+		</label><br />
+		<label>
+			<input type="radio" name="mode_galerie" value="0" [(#ENV{mode_galerie, 1}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_aucun_diaporama:>
+		</label>
 	</fieldset>
 	
 	<br />
@@ -30,7 +73,7 @@
 [(#CONFIG{sarkaspip_accueil/mode_debug, non}|=={oui}|?{' '})
 	<div id="bloc_debug">
 		<br />
-		>> Debug - Etat des variables du fond Rubrique:<br />
+		>> Debug - Etat des variables du fond Article:<br />
 		#CFG_ARBO{sarkaspip_article}
 	</div>
 ]

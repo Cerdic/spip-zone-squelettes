@@ -447,7 +447,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_rubrique_docs' => 'Documents joints',
 		'cfg_lgd_rubrique_images' => 'Portfolio',
 		'cfg_lgd_rubrique_articles' => 'Articles publi&eacute;s',
-		'cfg_lgd_article_description' => 'Bloc de texte',
+		'cfg_lgd_article_description' => 'El&eacute;ments descriptifs',
+		'cfg_lgd_article_documents' => 'Documents joints',
+		'cfg_lgd_article_images' => 'Portfolio',
 		'cfg_lgd_plan_pagination' => 'Pagination',
 		'cfg_lgd_form_contact' => 'Contact',
 		'cfg_lgd_css_bandeau' => 'Bandeau',
@@ -550,6 +552,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_accueil_bloc_style' => '<strong>Configuration des &eacute;l&eacute;ments graphiques</strong>',
 		'cfg_inf_article_sans_logo' => 'Vous avez la possibilit&eacute; de d&eacute;finir un logo pour chaque article (cf. la page d\'&eacute;dition d\'un article). Mais si ce logo n\'est pas renseign&eacute;, le squelette a la possibilit&eacute; d\'afficher le logo de la rubrique. 
 		Voulez-vous activer cette option dans la page article ?',
+		'cfg_inf_article_popularite' => 'Voulez-vous afficher la popularit&eacute; de l\'article dans le cartouche avec la date et l\'auteur de l\'article ?',
+		'cfg_inf_article_descriptif_doc' => 'Voulez-vous afficher le descriptif en dessous du titre de chaque document ?',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',

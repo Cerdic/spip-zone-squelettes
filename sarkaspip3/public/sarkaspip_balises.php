@@ -202,4 +202,38 @@ function calcul_rubrique($mot, $type, $fond, $mode='rubrique') {
 	return $id_rubrique;
 }
 
+// =======================================================================================================================================
+// Balise : #CONFIG_SARKASPIP
+// =======================================================================================================================================
+// Auteur: SarkASmeL
+// Fonction : retourne la valeur du define defini dans options
+// =======================================================================================================================================
+//
+function balise_CONFIG_SARKASPIP($p) {
+
+	$variable = interprete_argument_balise(1,$p);
+	$variable = isset($variable) ? str_replace('\'', '"', $variable) : '""';
+
+	$p->code = 'calcul_config_sarkaspip('.strtolower($variable).')';
+	$p->interdire_scripts = false;
+	return $p;
+}
+
+function calcul_config_sarkaspip($variable) {
+
+	switch ($variable) {
+		case 'taille_titre_document':
+			$valeur = _SARKASPIP_CONFIG_TAILLE_TITRE_DOCUMENT;
+			break;
+		case 'taille_descr_document':
+			$valeur = _SARKASPIP_CONFIG_TAILLE_DESCR_DOCUMENT;
+			break;
+		default:
+			$valeur = NULL;
+			break;
+	}
+	
+	return $valeur;
+}
+
 ?>
