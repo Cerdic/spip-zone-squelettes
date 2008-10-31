@@ -37,7 +37,7 @@
 		<form id="timenavigation" method="get" action="#URL_RUBRIQUE"><fieldset><legend><:pyrat:precisezrecherche:></legend>
 		<BOUCLE_PremiereAnnee(EVENEMENTS){branche}{date_debut>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}{par date_debut}{0,1}>
 		<?php if ([(#DATE_DEBUT|annee)]<[(#ENV{date_ev,[(#ENV{date})]}|annee)]) { ?>
-		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee)] - 1); ?>-01-01[&amp;genre=(#ENV{genre,''}|urlencode)]&amp;calendrier=1"><img src="#CHEMIN{images/prev.gif}" title="<:precedent:>" alt="<:precedent:>" /></a>
+		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee)] - 1); ?>-01-01[&amp;id_mot=(#ENV{id_mot,''}|urlencode)]&amp;calendrier=1"><img src="#CHEMIN{images/prev.gif}" title="<:precedent:>" alt="<:precedent:>" /></a>
 		<?php } ?>
 		</BOUCLE_PremiereAnnee>
 		<select id="date_ev" name="date_ev">
@@ -47,10 +47,10 @@
 		</select>
 		<BOUCLE_ExclureStatut(MOTS){type=_AgendaStatut}{doublons statut}></BOUCLE_ExclureStatut>
 		<B_LstMotsClefs>[(#REM) Objectif : n'afficher que les mots clefs effectivement utilisé dans le secteur]
-		<select id="genre" name="genre">
-		<option value=""[(#ENV{genre,''}|=={''}|?{' selected="selected"',''})]><:pyrat:tout:></option>
+		<select id="id_mot" name="id_mot">
+		<option value=""[(#ENV{id_mot,''}|=={''}|?{' selected="selected"',''})]><:pyrat:tout:></option>
 		<BOUCLE_LstMotsClefs(EVENEMENTS){branche}{par titre}{date_debut>=(#ENV{date}|affdate{'Y-m-d'})}><BOUCLE_MotClefAssocie(MOTS){id_evenement}{unique}{doublons statut}>
-		<option value="[(#ID_MOT)]"[(#ENV{genre}|=={[(#TITRE|attribut_html)]}|?{' selected="selected"',''})]>[(#TITRE)]</option>
+		<option value="[(#ID_MOT)]"[(#ENV{id_mot}|=={[(#ID_MOT)]}|?{' selected="selected"',''})]>[(#TITRE)]</option>
 		</BOUCLE_MotClefAssocie></BOUCLE_LstMotsClefs>
 		</select>
 		</B_LstMotsClefs>
@@ -58,11 +58,11 @@
 		<input type="submit" class="form_submit" value="<:pass_ok:>" />
 		<BOUCLE_DerniereAnnee(EVENEMENTS){branche}{!par date_debut}{0,1}>
 		<?php if ([(#DATE_DEBUT|annee)]>[(#ENV{date_ev,[(#ENV{date})]}|annee)]) { ?>
-		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee)] + 1); ?>-01-01[&amp;genre=(#ENV{genre,''}|urlencode)]&amp;calendrier=1"><img src="#CHEMIN{images/next.gif}" title="<:suivant:>" alt="<:suivant:>" /></a>
+		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee)] + 1); ?>-01-01[&amp;id_mot=(#ENV{id_mot,''}|urlencode)]&amp;calendrier=1"><img src="#CHEMIN{images/next.gif}" title="<:suivant:>" alt="<:suivant:>" /></a>
 		<?php } ?>
 		</BOUCLE_DerniereAnnee>
 		<?php if ( [(#ENV{date}|annee)] != [(#ENV{date_ev,[(#ENV{date})]}|annee)] ) { ?>
-		<input type="button" value="<:pyrat:aujourdhui:>" onclick="document.location.href='#_rubrique_principal:URL_RUBRIQUE[?genre=(#ENV{genre,''}|urlencode)]'; return false;" />
+		<input type="button" value="<:pyrat:aujourdhui:>" onclick="document.location.href='#_rubrique_principal:URL_RUBRIQUE[?id_mot=(#ENV{id_mot,''}|urlencode)]'; return false;" />
 		<?php } ?>
 		</fieldset>
 		</form>
@@ -71,8 +71,8 @@
 <a href="#m(#DATE_DEBUT|affdate{'Ym'}|unique)">[(#DATE_DEBUT|nom_mois|ucfirst)]&nbsp;[(#DATE_DEBUT|annee)]</a>
 ]</BOUCLE_LiensMois>
 
-[(#REM) Si genre est dans les paramètres, alors on filtre selon le genre, sinon, on peut afficher tous les articles, même ceux sans mot clef]
-[(#ENV{genre,''}|=={''}|?{' ',''})[(#INCLURE{fond=agendaliste_sansfiltre}{id_rubrique}{date_ev})]][(#ENV{genre,''}|=={''}|?{'',' '})[(#INCLURE{fond=agendaliste_filtre}{id_rubrique}{date_ev}{genre})]]
+[(#REM) Si id_mot est dans les paramètres, alors on filtre selon le id_mot, sinon, on peut afficher tous les articles, même ceux sans mot clef]
+[(#ENV{id_mot,''}|=={''}|?{' ',''})[(#INCLURE{fond=agendaliste_sansfiltre}{id_rubrique}{date_ev})]][(#ENV{id_mot,''}|=={''}|?{'',' '})[(#INCLURE{fond=agendaliste_filtre}{id_rubrique}{date_ev}{id_mot})]]
 
 [<div class="notes">(#NOTES)</div>]
 

@@ -13,8 +13,8 @@ $D = date('d', $cal_day);
 $M = date('m', $cal_day);
 $Y = date('Y', $cal_day);
 
-[$genre = '(#ENV{genre}|texte_script)';]
-if (!isset($genre)) $genre = "<:pyrat:tout:>";
+[$id_mot = '(#ENV{id_mot}|texte_script)';]
+if (!isset($id_mot)) $id_mot = "<:pyrat:tout:>";
 
 // Liste des rubriques de l agenda
 $branche = array();
@@ -24,8 +24,8 @@ $events = array();
 	$dateEvt = ereg_replace("^([0-9]{4})-([0-9]{2})-([0-9]{2}).*$", "\\1\\2\\3", '#DATE_DEBUT');
 	if (!isset($events[$dateEvt])) { $events[$dateEvt] = array(); }
 	$res="";
-	ereg("($genre)", '<BOUCLE_genre(MOTS){id_evenement}>[(#ID_MOT)]</BOUCLE_genre>', $res);
-	if (($genre=='<:pyrat:tout:>') || ($genre==$res[1])) {
+	ereg("($id_mot)", '<BOUCLE_genre(MOTS){id_evenement}>[(#ID_MOT)]</BOUCLE_genre>', $res);
+	if (($id_mot=='<:pyrat:tout:>') || ($id_mot==$res[1])) {
 		<BOUCLE_EvenementArticle(ARTICLES){id_article}>$events[$dateEvt][] = array('rub' => #ID_RUBRIQUE, 'link' => '#URL_ARTICLE', 'title' => '[(#TITRE|texte_script)][&nbsp;: (#_evts_com:TITRE|=={#TITRE}|?{'',[(#_evts_com:TITRE|texte_script)]})]', 'logo' => '<BOUCLE_TitreRubrique(RUBRIQUES){id_rubrique}>[<img src="(#LOGO_ARTICLE_RUBRIQUE||image_reduire{32,32}|extraire_attribut{src})" class="logo_agenda" alt="[(#TITRE|attribut_html|texte_script)]" title="[(#TITRE|attribut_html|texte_script)]" />]</BOUCLE_TitreRubrique>', 'genres' => '<B_Genres><em>(<BOUCLE_Genres(MOTS){id_evenement}{", "}><a href="#URL_MOT" rel="tag" title="<:pyrat:savoirpluscritere:>: [(#TITRE|attribut_html|texte_script)]">[(#TITRE|texte_script)]</a></BOUCLE_Genres>)</em></B_Genres>', 'titre_rub' => '<B_TitreRub><strong<BOUCLE_CouleurRub(MOTS){id_rubrique}{type=_CouleurRubrique}> style="background-color:#[(#TEXTE|couleur_eclaircir)];"</BOUCLE_CouleurRub>><BOUCLE_TitreRub(RUBRIQUES){id_rubrique}>[(#TITRE|attribut_html|texte_script)</strong>&nbsp;: ]</BOUCLE_TitreRub>');</BOUCLE_EvenementArticle>
 	}
 </B_EvenementArticle></BOUCLE_evts_com>
@@ -38,7 +38,7 @@ $events = array();
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
-	<BOUCLE_plan(HIERARCHIE){id_rubrique}><li><a href="#URL_PAGE{agenda}&amp;id_rubrique=#ID_RUBRIQUE&amp;date_ev=[(#ENV{date_ev,[(#ENV{date})]}|annee)]-[(#ENV{date_ev,[(#ENV{date})]}|mois)]-01[&amp;genre=(#ENV{genre,''}|urlencode)]"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+	<BOUCLE_plan(HIERARCHIE){id_rubrique}><li><a href="#URL_PAGE{agenda}&amp;id_rubrique=#ID_RUBRIQUE&amp;date_ev=[(#ENV{date_ev,[(#ENV{date})]}|annee)]-[(#ENV{date_ev,[(#ENV{date})]}|mois)]-01[&amp;id_mot=(#ENV{id_mot,''}|urlencode)]"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
 	</BOUCLE_plan>
 	<li>[(#TITRE)]</li>
 	</ul>
@@ -60,7 +60,7 @@ $events = array();
 		<BOUCLE_sous_rubriques1(RUBRIQUES){id_parent}{par titre}>
 			<li[ style="list-style-image: url(/(#MODELE{rubrique_logo}{mode=normal}|image_reduire{9,9}|extraire_attribut{src}));"]>
 			<?php if ($GLOBALS['jp_rubrique'] != [(#ID_RUBRIQUE|texte_script)]) { ?>
-			<a href="#URL_PAGE{agenda}&amp;id_rubrique=#ID_RUBRIQUE&amp;date_ev=[(#ENV{date_ev,[(#ENV{date})]}|annee)]-[(#ENV{date_ev,[(#ENV{date})]}|mois)]-01[&amp;genre=(#ENV{genre,''}|urlencode)]" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])"><?php } ?>[(#TITRE)]<?php if ($GLOBALS['jp_rubrique'] != [(#ID_RUBRIQUE|texte_script)]) { ?></a><?php } ?>
+			<a href="#URL_PAGE{agenda}&amp;id_rubrique=#ID_RUBRIQUE&amp;date_ev=[(#ENV{date_ev,[(#ENV{date})]}|annee)]-[(#ENV{date_ev,[(#ENV{date})]}|mois)]-01[&amp;id_mot=(#ENV{id_mot,''}|urlencode)]" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])"><?php } ?>[(#TITRE)]<?php if ($GLOBALS['jp_rubrique'] != [(#ID_RUBRIQUE|texte_script)]) { ?></a><?php } ?>
 			<BOUCLE_RecursionRubriques(BOUCLE_sous_rubriques1)></BOUCLE_RecursionRubriques>
 			</li>
 		</BOUCLE_sous_rubriques1>
@@ -77,7 +77,7 @@ $events = array();
 		<form id="frmnavigation" method="get" action="#SELF"><fieldset><legend><:pyrat:precisezrecherche:></legend>
 		<BOUCLE_PremiereAnnee(EVENEMENTS){branche}{par date_debut}{0,1}>
 		<?php if (!([(#DATE_DEBUT|annee)]==[(#ENV{date_ev,[(#ENV{date})]}|annee)] && [(#ENV{date_ev,[(#ENV{date})]}|mois)]==01)) { ?>
-		<a href="#URL_SITE_SPIP/spip.php?page=agenda&amp;id_rubrique=#_rubrique_principal:ID_RUBRIQUE&amp;date_ev=<?php echo (($M - 1 > 0) ? $Y : ($Y - 1)); ?>-<?php printf('%02d', ($M - 1) > 0 ? ($M - 1) : 12); ?>-01[&amp;genre=(#ENV{genre,''}|urlencode)]"><img src="#CHEMIN{images/prev.gif}" title="<:precedent:>" alt="<:precedent:>" /></a>
+		<a href="#URL_SITE_SPIP/spip.php?page=agenda&amp;id_rubrique=#_rubrique_principal:ID_RUBRIQUE&amp;date_ev=<?php echo (($M - 1 > 0) ? $Y : ($Y - 1)); ?>-<?php printf('%02d', ($M - 1) > 0 ? ($M - 1) : 12); ?>-01[&amp;id_mot=(#ENV{id_mot,''}|urlencode)]"><img src="#CHEMIN{images/prev.gif}" title="<:precedent:>" alt="<:precedent:>" /></a>
 		<?php } ?>
 		</BOUCLE_PremiereAnnee>
 		<select id="var_nav_month">
@@ -100,21 +100,21 @@ $events = array();
 
 		<B_ListeMotsClefs>[(#REM) Objectif : n'afficher que les mots clefs effectivement utilise' dans le secteur]
 		<select id="var_nav_cle">
-		<option value=""[(#ENV{genre,''}|=={''}|?{' selected="selected"',''})]><:pyrat:tout:></option>
+		<option value=""[(#ENV{id_mot,''}|=={''}|?{' selected="selected"',''})]><:pyrat:tout:></option>
 		<BOUCLE_ListeMotsClefs(MOTS){!doublons listemots}{par titre}>
-		<option value="[(#ID_MOT)]"[(#ENV{genre}|=={[(#TITRE)]}|?{' selected="selected"',''})]>[(#TITRE)]</option>
+		<option value="[(#ID_MOT)]"[(#ENV{id_mot}|=={[(#ID_MOT)]}|?{' selected="selected"',''})]>[(#TITRE)]</option>
 		</BOUCLE_ListeMotsClefs>
 		</select>
 		</B_ListeMotsClefs>
 
-		<input type="button" value="<:pass_ok:>" class="form_submit" onclick="document.location.href='#URL_SITE_SPIP/spip.php?page=agenda&amp;id_rubrique=#_rubrique_principal:ID_RUBRIQUE&amp;date_ev=' + document.getElementById('var_nav_year').value + '-' + document.getElementById('var_nav_month').value + '-01&amp;genre=' + document.getElementById('var_nav_cle').value ; return false;" />
+		<input type="button" value="<:pass_ok:>" class="form_submit" onclick="document.location.href='#URL_SITE_SPIP/spip.php?page=agenda&amp;id_rubrique=#_rubrique_principal:ID_RUBRIQUE&amp;date_ev=' + document.getElementById('var_nav_year').value + '-' + document.getElementById('var_nav_month').value + '-01&amp;id_mot=' + document.getElementById('var_nav_cle').value ; return false;" />
 		<BOUCLE_DerniereAnnee(EVENEMENTS){branche}{!par date_debut}{0,1}>
 		<?php if (!([(#DATE_DEBUT|annee)]==[(#ENV{date_ev,[(#ENV{date})]}|annee)] && [(#ENV{date_ev,[(#ENV{date})]}|mois)]==12)) { ?>
-		<a href="#URL_SITE_SPIP/spip.php?page=agenda&amp;id_rubrique=#_rubrique_principal:ID_RUBRIQUE&amp;date_ev=<?php echo (($M + 1 < 13) ? $Y : ($Y + 1)); ?>-<?php printf('%02d', ($M + 1) < 13 ? ($M + 1) : 1); ?>-01[&amp;genre=(#ENV{genre,''}|urlencode)]"><img src="#CHEMIN{images/next.gif}" title="<:suivant:>" alt="<:suivant:>" /></a>
+		<a href="#URL_SITE_SPIP/spip.php?page=agenda&amp;id_rubrique=#_rubrique_principal:ID_RUBRIQUE&amp;date_ev=<?php echo (($M + 1 < 13) ? $Y : ($Y + 1)); ?>-<?php printf('%02d', ($M + 1) < 13 ? ($M + 1) : 1); ?>-01[&amp;id_mot=(#ENV{id_mot,''}|urlencode)]"><img src="#CHEMIN{images/next.gif}" title="<:suivant:>" alt="<:suivant:>" /></a>
 		<?php } ?>
 		</BOUCLE_DerniereAnnee>
 		<?php if ( ([(#ENV{date}|annee)] != [(#ENV{date_ev,[(#ENV{date})]}|annee)]) || ([(#ENV{date}|mois)] != [(#ENV{date_ev,[(#ENV{date})]}|mois)]) ) { ?>
-		<input type="button" value="Aujourd'hui" onclick="document.location.href='#URL_SITE_SPIP/spip.php?page=agenda&amp;id_rubrique=#_rubrique_principal:ID_RUBRIQUE&amp;date_ev=<?php echo (date('Y-m-d')); ?>&amp;genre=<?php echo $genre ?>'; return false;" />
+		<input type="button" value="Aujourd'hui" onclick="document.location.href='#URL_SITE_SPIP/spip.php?page=agenda&amp;id_rubrique=#_rubrique_principal:ID_RUBRIQUE&amp;date_ev=<?php echo (date('Y-m-d')); ?>&amp;id_mot=<?php echo $id_mot ?>'; return false;" />
 		<?php } ?>
 		</fieldset>
 		</form>
@@ -125,7 +125,7 @@ $events = array();
 		<?php
 				echo $months[intval($M)].'&nbsp;';
 		?>
-		<a href="#URL_RUBRIQUE?date_ev=[(#ENV{date}|annee)]-01-01&amp;genre=<?php echo urlencode((($genre=='<:pyrat:tout:>')?'':$genre)); ?>&amp;calendrier=1" title="<:pyrat:voirdetailannee:> [(#ENV{date}|annee)]">[(#ENV{date}|annee)]</a>
+		<a href="#URL_RUBRIQUE?date_ev=[(#ENV{date}|annee)]-01-01&amp;id_mot=<?php echo urlencode((($id_mot=='<:pyrat:tout:>')?'':$id_mot)); ?>&amp;calendrier=1" title="<:pyrat:voirdetailannee:> [(#ENV{date}|annee)]">[(#ENV{date}|annee)]</a>
 </caption>
 <!-- Fabrication du tableau : les donnees -->
 <tr>
