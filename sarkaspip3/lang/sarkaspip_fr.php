@@ -444,7 +444,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_accueil_intro' => 'Pr&eacute;sentation',
 		'cfg_lgd_accueil_debug' => 'Debug',
 		'cfg_lgd_rubrique_articles' => 'Articles publi&eacute;s',
-		'cfg_lgd_article_description' => 'El&eacute;ments descriptifs',
+		'cfg_lgd_description' => 'El&eacute;ments descriptifs',
 		'cfg_lgd_documents_joints' => 'Documents joints',
 		'cfg_lgd_images_jointes' => 'Portfolio',
 		'cfg_lgd_plan_pagination' => 'Pagination',
@@ -489,7 +489,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		Si vous choisissez d\'afficher ce r&eacute;sum&eacute;, vous pouvez d&eacute;finir, d\'une part, le nombre maximal d\'&eacute;v&eacute;nements affich&eacute;s, et d\'autre part, la p&eacute;riode &agrave; prendre en compte.',
 		'cfg_inf_mini_agenda_resume_2' => 'Voulez-vous afficher le r&eacute;sum&eacute; ?',
 		'cfg_inf_sommaire_secteurs' => 'Voulez-vous afficher la liste des secteurs dans la page sommaire ?',
-		'cfg_inf_sommaire_articles' => 'Voulez-vous afficher la liste des articles r&eacute;cents dans la page sommaire ? Vous pourrez ensuite choisir le nombre maximal d\'articles affich&eacute;s et ajuster la taille de leur introduction.',
+		'cfg_inf_sommaire_articles' => 'Voulez-vous afficher la liste des articles r&eacute;cents dans la page sommaire ? Si oui, vous pourrez ensuite ajuster quelques param&egrave;tres de cet affichage.',
 		'cfg_inf_copyright_site' => 'D&eacute;sirez vous afficher le copyright de votre site?<br />(&copy;, ann&eacute;e de publication du 1<sup>er</sup> article et ann&eacute;e en cours) ',
 		'cfg_inf_licence_site' => 'Licence du site. Elle s\'affichera &agrave; droite de votre copyright.<br />(laissez vide pour ne rien afficher)',
 		'cfg_inf_version_spip' => 'D&eacute;sirez vous afficher la version de SPIP install&eacute;e ?',
@@ -516,10 +516,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_accueil_intro_14' => '<em>Styles</em> : configuration des styles d&eacute;finissant l\'identit&eacute; visuelle du site (couleurs, polices...)',
 		'cfg_inf_accueil_intro_15' => '<em>Article</em> : configuration des divers affichages de la page article',
 		'cfg_inf_accueil_debug' => 'Si vous avez un souci ou voulez rapporter un bug il peut &ecirc;tre utile d\'activer le mode debug pour la configuration des pages. Celui-ci vous permez de lire les variables de chaque fond.',
-		'cfg_inf_rubrique_filles' => 'Voulez-vous afficher la liste des rubriques filles suite &agrave; la description de la rubrique ?',
-		'cfg_inf_rubrique_docs' => 'Voulez-vous afficher les documents joints qui ne sont pas inclus dans la description de la rubrique ?',
-		'cfg_inf_rubrique_images' => 'Voulez-vous afficher le portfolio des images qui ne sont pas incluses dans la description de la rubrique ?',
-		'cfg_inf_rubrique_articles' => 'Voulez-vous afficher la liste des articles publi&eacute;s dans la rubrique ? Si oui, vous pourrez ajuster la taille de l\'introduction des articles et les param&egrave;tres de la pagination.',
+		'cfg_inf_rubrique_articles' => 'Voulez-vous afficher la liste des articles publi&eacute;s dans la rubrique ? Si oui, vous pourrez ensuite ajuster quelques param&egrave;tres de cet affichage.',
 		'cfg_inf_pagination_bande' => 'Choisissez la position de la bande de pagination.',
 		'cfg_inf_pagination' => 'Choisissez le mod&egrave;le de pagination, le nombre d\'&eacute;l&eacute;ments affich&eacute;s dans chaque page et la position de la bande de pagination.',
 		'cfg_inf_menu_option1' => 'Pour le menu s&eacute;lectionn&eacute;, vous avez la possibilit&eacute; de choisir une des options propos&eacute;e ci-dessous.',
@@ -549,11 +546,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_accueil_bloc_style' => '<strong>Configuration des &eacute;l&eacute;ments graphiques</strong>',
 		'cfg_inf_article_sans_logo' => 'Vous avez la possibilit&eacute; de d&eacute;finir un logo pour chaque article (cf. la page d\'&eacute;dition d\'un article). Mais si ce logo n\'est pas renseign&eacute;, le squelette a la possibilit&eacute; d\'afficher le logo de la rubrique. 
 		Voulez-vous activer cette option dans la page article ?',
+		'cfg_inf_sommaire_sans_logo' => 'Vous avez la possibilit&eacute; de d&eacute;finir un logo pour chaque article (cf. la page d\'&eacute;dition d\'un article). Mais si ce logo n\'est pas renseign&eacute;, le squelette a la possibilit&eacute; d\'afficher le logo de la rubrique. 
+		Voulez-vous activer cette option dans les articles r&eacute;cents de la page sommaire ?',
 		'cfg_inf_article_popularite' => 'Voulez-vous afficher la popularit&eacute; de l\'article dans le cartouche avec la date et l\'auteur de l\'article ?',
 		'cfg_inf_descriptif_doc' => 'Voulez-vous afficher le descriptif en dessous du titre de chaque document ?',
 		'cfg_inf_effet_image' => 'Par d&eacute;faut, le portfolio est la suite des vignettes de chaque image jointe &agrave; l\'article ou &agrave; la rubrique. Cliquer sur une vignette affiche l\'image dans son format d\'origine. 
 		Cependant, il est aussi possible d\'ajouter des effets de type galerie au portfolio par d&eacute;faut. Ces effets n&eacute;cessitent pour la plupart l\'activation du plugin idoine. 
 		Choissisez l\'effet d&eacute;sir&eacute; parmi ceux propos&eacute;s ci-dessous :',
+		'cfg_inf_rubrique_logo' => 'Vous avez la possibilit&eacute; de d&eacute;finir la taille du logo affich&eacute; dans le bloc textuel de la rubrique.',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',

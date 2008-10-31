@@ -5,12 +5,18 @@
 		- afficher_mere: indicateur d'affichage ou pas de la rubrique mere de l'article concerne
 		- afficher_commentaires: indicateur d'affichage ou pas du nombre de commentaires de l'article concerne
 		- taille_introduction: taille maximum affichee par la balise #INTRODUCTION de l'article
+		- logo_rubrique: indique si on utilise le logo de la rubrique dans le cas ou le logo de l'article est absent
+		- taille_logo: taille max du logo si affiche
 		- bouton_lien : bouton situe en bas de la noisette, indiquant s'il faut "lire la suite" ou "retourner a l'article"
 -->
 ]
 <BOUCLE_article_intro(ARTICLES) {id_article}>
+	#SET{logo, #LOGO_ARTICLE}
+	[(#ENV{logo_rubrique}|=={oui}|?{' '})
+		[(#SET{logo, #LOGO_ARTICLE_RUBRIQUE})]
+	]
 	<div class="extrait">
-		[<div class="image">(#LOGO_ARTICLE||image_reduire{80})</div>]
+		[<div class="image">(#GET{logo}||image_reduire{#ENV{taille_logo}})</div>]
 		<INCLURE{fond=noisettes/article/inc_article_cartouche}{id_article}{page=article}{avec_popularite=non}>
 		[<h3><a class="titre" href="#URL_ARTICLE" title="<:sarkaspip:lire_suite_article:>">(#TITRE|supprimer_numero)</a></h3>]
 		<div class="complements">
@@ -26,8 +32,8 @@
 		</div> <!-- Fin complements -->
 		<div class="introduction">
 			[(#INTRODUCTION{#ENV{taille_introduction}}|typo_couleur)]
-			<br /><br />		
 <!-- 
+			<br /><br />		
       <a class="suite" href="#URL_ARTICLE">
         [(#ENV{bouton_lien,suite}|=={retour}|?{
           <:sarkaspip:retour_article:>,
