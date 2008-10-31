@@ -17,5 +17,9 @@ define('_SARKASPIP_CONFIG_TAILLE_DESCR_IMAGE', 100);
 
 // Pour les variables cfg des plugins utilises par le squelette
 define('_SARKASPIP_CONFIG_BOUTONSTEXTE_SELECTEUR', '#wrapper');
+define('_SARKASPIP_CONFIG_NYROCEROS_TOUT', 'non');
+define('_SARKASPIP_CONFIG_NYROCEROS_IMAGE', '.nyroceros');
 define('_SARKASPIP_CONFIG_NYROCEROS_GALERIE', '.galerie .nyroceros');
+define('_SARKASPIP_CONFIG_NYROCEROS_PRELOAD', 'oui');
+define('_SARKASPIP_CONFIG_NYROCEROS_BGFOND', '#000000');
 ?>
