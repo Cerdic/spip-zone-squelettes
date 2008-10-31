@@ -18,14 +18,9 @@
 
 [(#REM) Appels des scripts pour onglets en jQuery UI : http://docs.jquery.com/UI/Tabs ]	
 
-<script type="text/javascript" src="[(#CHEMIN{js/core.js})]"></script>
-<script type="text/javascript" src="[(#CHEMIN{js/tabs.js})]"></script>
 
-<script>
-  $(document).ready(function(){
-    $("#onglets > ul").tabs();
-  });
-</script>
+
+
 
 </head>
 <body dir="#LANG_DIR"> 
@@ -245,9 +240,16 @@
 </div>
 </BOUCLE_huit_images_une>
 
-<div id="onglets">
-	<INCLURE{fond="inc_onglets"}{self=#SELF}{meteoro=1}>
-</div>	[(#REM)  fermeture div de la boite onglets ]
+<BOUCLE_test_forum(ARTICLES){accepter_forum!=non}{0,1}>  
+	 
+ 	  [(#REM) on v&eacute;rifie que l on a au moins une autorisation de forum sur un article]  
+ 	<div class="boite"> 
+	  <h4 class="icone_membre"><:messages_derniers:></h4> 
+	 
+	<INCLURE{fond="inc_derniers_messages"}{self=#SELF}> 
+	 
+	</div> 
+	</BOUCLE_test_forum> 
 
 </div>   [(#REM)  fermeture colone de droite  ]
 
