@@ -443,13 +443,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     	'cfg_lgd_galerie_tri' => 'Galerie - Tri',	
 		'cfg_lgd_accueil_intro' => 'Pr&eacute;sentation',
 		'cfg_lgd_accueil_debug' => 'Debug',
-		'cfg_lgd_rubrique_filles' => 'Rubriques filles',
-		'cfg_lgd_rubrique_docs' => 'Documents joints',
-		'cfg_lgd_rubrique_images' => 'Portfolio',
 		'cfg_lgd_rubrique_articles' => 'Articles publi&eacute;s',
 		'cfg_lgd_article_description' => 'El&eacute;ments descriptifs',
-		'cfg_lgd_article_documents' => 'Documents joints',
-		'cfg_lgd_article_images' => 'Portfolio',
+		'cfg_lgd_documents_joints' => 'Documents joints',
+		'cfg_lgd_images_jointes' => 'Portfolio',
 		'cfg_lgd_plan_pagination' => 'Pagination',
 		'cfg_lgd_form_contact' => 'Contact',
 		'cfg_lgd_css_bandeau' => 'Bandeau',
@@ -553,8 +550,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_article_sans_logo' => 'Vous avez la possibilit&eacute; de d&eacute;finir un logo pour chaque article (cf. la page d\'&eacute;dition d\'un article). Mais si ce logo n\'est pas renseign&eacute;, le squelette a la possibilit&eacute; d\'afficher le logo de la rubrique. 
 		Voulez-vous activer cette option dans la page article ?',
 		'cfg_inf_article_popularite' => 'Voulez-vous afficher la popularit&eacute; de l\'article dans le cartouche avec la date et l\'auteur de l\'article ?',
-		'cfg_inf_article_descriptif_doc' => 'Voulez-vous afficher le descriptif en dessous du titre de chaque document ?',
-		'cfg_inf_article_effet_image' => 'Par d&eacute;faut, le portfolio est la suite des vignettes de chaque image jointe &agrave; l\'article. Cliquer sur une vignette affiche l\'image dans son format d\'origine. 
+		'cfg_inf_descriptif_doc' => 'Voulez-vous afficher le descriptif en dessous du titre de chaque document ?',
+		'cfg_inf_effet_image' => 'Par d&eacute;faut, le portfolio est la suite des vignettes de chaque image jointe &agrave; l\'article ou &agrave; la rubrique. Cliquer sur une vignette affiche l\'image dans son format d\'origine. 
 		Cependant, il est aussi possible d\'ajouter des effets de type galerie au portfolio par d&eacute;faut. Ces effets n&eacute;cessitent pour la plupart l\'activation du plugin idoine. 
 		Choissisez l\'effet d&eacute;sir&eacute; parmi ceux propos&eacute;s ci-dessous :',
 

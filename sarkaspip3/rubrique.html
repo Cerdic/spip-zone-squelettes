@@ -26,13 +26,29 @@
 				[(#INCLURE{fond=noisettes/rubrique/inc_rubrique_description}{id_rubrique})]
 
 				[(#REM) <!-- Documents (sauf images) du portfolio de la rubrique --> ]
-				[(#CONFIG{sarkaspip_rubrique/position_documents, 1}|=={1}|?{' '})
-					[(#INCLURE{fond=noisettes/rubrique/inc_rubrique_documents}{id_rubrique})]
-				]
+				[(#INCLURE{fond=noisettes/inc_documents_joints}
+					{id_rubrique}
+					{avec_descriptif=#CONFIG{sarkaspip_rubrique/avec_descriptif, non}})]
+
 				[(#REM) <!-- Images du portfolio de la rubrique --> ]
-				[(#CONFIG{sarkaspip_rubrique/position_images, 1}|=={1}|?{' '})
-					[(#INCLURE{fond=noisettes/rubrique/inc_rubrique_images}{id_rubrique})]
+				#SET{plugin, aucun}
+				#SET{diaporama, non}
+				[(#CONFIG{sarkaspip_rubrique/mode_galerie, 1}|match{^(1|2)$}|?{' '})
+					[(#SET{plugin, nyroceros})]
 				]
+				[(#CONFIG{sarkaspip_rubrique/mode_galerie, 1}|=={2}|?{' '})
+					[(#SET{diaporama, oui})]
+				]
+				[(#CONFIG{sarkaspip_rubrique/mode_galerie, 1}|=={3}|?{' '})
+					[(#SET{plugin, thickbox})]
+				]
+				[(#CONFIG{sarkaspip_rubrique/mode_galerie, 1}|=={4}|?{' '})
+					[(#SET{plugin, smoothgallery})]
+				]
+				[(#INCLURE{fond=noisettes/inc_images_jointes}
+					{id_rubrique}
+					{effet_galerie=#GET{plugin}}
+					{avec_diaporama=#GET{diaporama}})]
 			</div> <!-- Fin rubrique -->
 	
 			[(#REM) <!-- Articles de la rubrique --> ]

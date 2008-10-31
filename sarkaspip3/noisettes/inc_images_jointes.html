@@ -1,7 +1,9 @@
 [(#REM) 
-<!-- Affichage du portfolio de l'article (images jointes non deja incluses dans le texte). Utilise Thickbox si installe.
+<!-- Affichage du portfolio de l'article ou de la rubrique (images jointes non deja incluses dans le texte). 
+Utilise Nyroceros, Thickbox ou Smoothgallery.
 	Recoit en argument :
 		- id_article: id de l'article concerne
+		- id_rubrique: id de la rubrique concernee 
 		- effet_galerie: precise le type de plugin utilise pour l'effet galerie: nyroceros, thickbox, aucun
 		- avec_diaporama: indique si le portfolio des image doit etre affiche sous forme de diaporama nyroceros ou image par image
 -->
@@ -10,7 +12,7 @@
 	<div id="images_jointes" class="portfolio[ (#ENV{avec_diaporama}|=={oui}|?{galerie})]">
 		<h2><:sarkaspip:portfolio|ucfirst:></h2>
 		[(#ENV{effet_galerie}|=={smoothgallery}|?{' '})<div id="myGallery">]
-<BOUCLE_images_article(DOCUMENTS documents_liens){id_article}{extension IN gif,jpg,png}{mode=document}{vu=non}{par num titre, date}>
+<BOUCLE_images_article(DOCUMENTS documents_liens){id_article ?}{id_rubrique ?}{extension IN gif,jpg,png}{mode=document}{vu=non}{par num titre, date}>
 		[(#ENV{effet_galerie}|=={smoothgallery}|?{' '})
 			<div class="imageElement">
 			[<h3>Image (#COMPTEUR_BOUCLE) sur #TOTAL_BOUCLE[ - (#TITRE)]</h3>]
