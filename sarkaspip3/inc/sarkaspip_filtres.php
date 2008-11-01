@@ -252,13 +252,26 @@ function mot_associations($mot) {
 // Fonction : Retourne l'url du gravatar si l'email de l'auteur est enregistre sur gravatar.com
 // =======================================================================================================================================
 //
-function gravatar_url($email = '')
-{
-   if ($email != '') {
-       return 'http://www.gravatar.com/avatar.php?gravatar_id='.md5($email).'&amp;size=32&amp;rating=PG';
-   } else {
-       return '';
-   }
+function gravatar_url($email = '') {
+	if ($email != '') {
+		return 'http://www.gravatar.com/avatar.php?gravatar_id='.md5($email).'&amp;size=32&amp;rating=PG';
+	}
+	else {
+		return '';
+	}
+}
+// FIN du Filtre : gravatar_url
+
+
+// =======================================================================================================================================
+// Filtre : libelle_statut
+// =======================================================================================================================================
+// Auteur: Smellup
+// Fonction : Retourne le libelle multilangue du statut d'un auteur
+// =======================================================================================================================================
+//
+function libelle_statut($statut) {
+	return _T('sarkaspip:statut_'.$statut);
 }
 // FIN du Filtre : gravatar_url
 

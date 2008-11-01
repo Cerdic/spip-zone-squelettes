@@ -10,17 +10,35 @@
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_form_contact:></legend>
 		<p><:sarkaspip:cfg_inf_form_contact:></p>
+
+		[(#EVAL{_SARKASPIP_CONFIG_AUTORISATION_CONTACT}|=={0minirezo}|?{' '})
+			#SET{critere_statut, #ARRAY{0,0minirezo}}
+		]
+		[(#EVAL{_SARKASPIP_CONFIG_AUTORISATION_CONTACT}|=={1comite}|?{' '})
+			#SET{critere_statut, #ARRAY{0,0minirezo,1,1comite}}
+		]
+		[(#EVAL{_SARKASPIP_CONFIG_AUTORISATION_CONTACT}|=={6forum}|?{' '})
+			#SET{critere_statut, #ARRAY{0,0minirezo,1,1comite,2,6forum}}
+		]
 		<B_auteurs>
-			<label><:sarkaspip:cfg_lbl_liste_admins:></label>
+			<label><:sarkaspip:cfg_lbl_liste_contacts:></label>
 			<select name="contact_auteur">
-				<BOUCLE_contact(AUTEURS){tout}{id_auteur=#ENV{contact_auteur, 0}}>
-					[<option value="#ID_AUTEUR" selected="selected">(#NOM)</option>]
-				</BOUCLE_contact>
-		<BOUCLE_auteurs(AUTEURS){tout}{id_auteur!=#ENV{contact_auteur, 0}}{statut=0minirezo}{par nom}>
+				<option value="0"[ (#ENV{contact_auteur, 0}|=={0}|?{selected="selected"})]>--</option>
+				<//B_contact>
+			#SET{groupe_statut, aucun}
+			#SET{groupe_en_cours, 0}
+		<BOUCLE_auteurs(AUTEURS){tout}{statut IN #GET{critere_statut}}{par statut}{par nom}>
+			[(#GET{groupe_statut}|!={#STATUT}|?{' '})
+				[(#GET{groupe_en_cours}|?{' '})</optgroup>]
+				<optgroup style="font-weight: strong;"[ label="(#STATUT|libelle_statut|ucfirst)"]>
+				[(#SET{groupe_statut, #STATUT})]
+				[(#SET{groupe_en_cours, 1})]
+			]
 			[(#EMAIL|?{' '})
-				[<option value="#ID_AUTEUR">(#NOM)</option>]
+				[<option style="background: #FFFFF; font-weight: normal;" value="#ID_AUTEUR"[ (#ENV{contact_auteur, 0}|=={#ID_AUTEUR}|?{selected="selected"})]>(#NOM)</option>]
 			]
 		</BOUCLE_auteurs>
+				</optgroup>
 			</select>
 		</B_auteurs>
 	</fieldset>
