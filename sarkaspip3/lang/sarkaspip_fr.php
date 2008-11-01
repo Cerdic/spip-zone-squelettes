@@ -354,6 +354,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_titre_header' => 'Sarka-SPIP - Configuration des balises META',
 		'cfg_titre_formulaires' => 'Sarka-SPIP - Configuration des pages de formulaires',
 		'cfg_titre_styles' => 'Sarka-SPIP - Configuration des styles',
+		'cfg_titre_plugins' => 'Sarka-SPIP - Configuration des plugins int&eacute;gr&eacute;s',
 
 // Titre des liens des pages
 		'sarkaspip_accueil' => 'Accueil',
@@ -371,6 +372,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'sarkaspip_header' => 'Balises meta',
 		'sarkaspip_formulaires' => 'Formulaires',
 		'sarkaspip_styles' => 'Styles',
+		'sarkaspip_plugins' => 'Plugins',
 		
 // Descriptif des pages
 		'cfg_descr_accueil' => 'Vous &ecirc;tes sur la page d\'accueil de la configuration du squelette Sarka-SPIP.',
@@ -390,7 +392,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_descr_plan' => 'Le corps de la page plan du site pr&eacute;sente la liste des articles publi&eacute;s dans le site. Cette liste peut &ecirc;tre tri&eacute;e par rubrique, par auteur ou par date. Cette page de configuration vous permet d\'en choisir les caract&eacute;ristiques de tri.',
 		'cfg_descr_header' => 'La plupart des balises meta du site sont calcul&eacute;es automatiquement &agrave; partir des informations de configuration du site et de la page affich&eacute;e. Cette page permet n&eacute;anmoins de pr&eacute;ciser le nom de l\'auteur, les mots-cl&eacute;s et la p&eacute;riode entre deux visites des robots.',
 		'cfg_descr_formulaires' => 'Le corps de certaines pages du squelette permet d\'afficher un formulaire comme le formulaire de contact. Cette page de configuration vous permet d\'en choisir les caract&eacute;ristiques.',
-		'cfg_descr_styles' => 'Cette page permet de configurer certains styles communs aux pages du squelette comme les couleurs d\'avant et d\'arri&egrave;re plan, les survols de liens, les cadres...',
+		'cfg_descr_styles' => 'Cette page permet de configurer certains &eacute;l&eacute;ments communs aux pages du squelette comme les couleurs d\'avant et d\'arri&egrave;re plan, les survols de liens, les cadres...',
+		'cfg_descr_plugins' => 'Cette page permet de fixer la configuration de certains plugins SPIP int&eacute;gr&eacute;s au squelette comme Boutons Texte, Nyroceros... Il est indispensable d\'appliquer ce param&eacute;trage Sarka-SPIP pour obtenir les effets voulus dans le squelette. N&eacute;anmoins, il est possible de revenir &agrave; la 
+		configuration par d&eacute;faut du plugin si vous n\'utilisez plus le squelette.',
 
 // Titre des boites
 		'cfg_boite_accueil' => 'Accueil',
@@ -408,6 +412,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_boite_header' => 'Balises meta',
 		'cfg_boite_formulaires' => 'Formulaires',
 		'cfg_boite_styles' => 'Styles',
+		'cfg_boite_plugins' => 'Plugins',
 
 // Legendes des blocs contenus dans chaque boite
 		'cfg_lgd_layout' => 'Layout',
@@ -451,6 +456,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_form_contact' => 'Contact',
 		'cfg_lgd_css_bandeau' => 'Bandeau',
 		'cfg_lgd_css_pied' => 'Pied',
+		'cfg_lgd_plugins_info' => 'Information',
+		'cfg_lgd_plugin' => 'Plugin',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -499,7 +506,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_lien_squelette' => 'D&eacute;sirez vous ins&eacute;rer un lien permettant de visualiser ou de t&eacute;l&eacute;charger le squelette de la page en cours ?',
 		'cfg_inf_ancre_hautpage' => 'D&eacute;sirez vous ins&eacute;rer un lien permettant de remonter vers le haut de la page ?',
 		'cfg_inf_accueil_intro_0' => 'Bienvenue sur l\'espace de param&eacute;trage du squelette Sarka-SPIP. Vous pouvez acc&eacute;der aux diverses pages de configuration via les liens inclus dans le bloc de droite. 
-		Les pages de configuration sont:',
+		Les pages de configuration actuellement disponibles sont:',
 		'cfg_inf_accueil_intro_1' => '<em>Accueil</em> : activation ou d&eacute;sactivatyion du mode debug',
 		'cfg_inf_accueil_intro_2' => '<em>Layout</em> : choix du layout Gala (position des blocs)',
 		'cfg_inf_accueil_intro_3' => '<em>Bandeau</em> : configuration du bandeau', 
@@ -515,6 +522,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_accueil_intro_13' => '<em>Formulaires</em> : configuration des diverses pages affichant un formulaire',
 		'cfg_inf_accueil_intro_14' => '<em>Styles</em> : configuration des styles d&eacute;finissant l\'identit&eacute; visuelle du site (couleurs, polices...)',
 		'cfg_inf_accueil_intro_15' => '<em>Article</em> : configuration des divers affichages de la page article',
+		'cfg_inf_accueil_intro_16' => '<em>Plugins</em> : configuration des plugins utilis&eacute;s par le squelette',
 		'cfg_inf_accueil_debug' => 'Si vous avez un souci ou voulez rapporter un bug il peut &ecirc;tre utile d\'activer le mode debug pour la configuration des pages. Celui-ci vous permez de lire les variables de chaque fond.',
 		'cfg_inf_rubrique_articles' => 'Voulez-vous afficher la liste des articles publi&eacute;s dans la rubrique ? Si oui, vous pourrez ensuite ajuster quelques param&egrave;tres de cet affichage.',
 		'cfg_inf_pagination_bande' => 'Choisissez la position de la bande de pagination.',
@@ -554,6 +562,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		Cependant, il est aussi possible d\'ajouter des effets de type galerie au portfolio par d&eacute;faut. Ces effets n&eacute;cessitent pour la plupart l\'activation du plugin idoine. 
 		Choissisez l\'effet d&eacute;sir&eacute; parmi ceux propos&eacute;s ci-dessous :',
 		'cfg_inf_rubrique_logo' => 'Vous avez la possibilit&eacute; de d&eacute;finir la taille du logo affich&eacute; dans le bloc textuel de la rubrique.',
+		'cfg_inf_plugins_0' => 'Vous n\'utilisez aucun plugin SPIP pour le moment. Vous n\'avez aucune configuration &agrave; valider sur cette page',
+		'cfg_inf_plugins_1' => 'Vous utilisez un plugin SPIP. Veuillez valider la configuration Sarka-SPIP de ce plugin (les valeurs Sarka-SPIP de configuration des plugins sont d&eacute;finies dans sarkaspip_options.php)',
+		'cfg_inf_plugins_n' => 'Vous utilisez plusieurs plugins SPIP. Veuillez valider la configuration Sarka-SPIP de ces plugins (les valeurs Sarka-SPIP de configuration des plugins sont d&eacute;finies dans sarkaspip_options.php)',
+		'cfg_inf_plugins_config' => 'Choissisez le mode de configuration du plugin',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
@@ -658,6 +670,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_effet_nyroceros_diapo' => 'Effet Nyromodal en diaporama (n&eacute;cessite le plugin Nyroceros)',
 		'cfg_lbl_effet_thickbox' => 'Effet Thickbox (n&eacute;cessite le plugin Thickbox V2)',
 		'cfg_lbl_effet_smoothgallery' => 'Effet Smoothgallery (indisponible)',
+		'cfg_lbl_config_sarkaspip' => 'Configurer le plugin avec les valeurs n&eacute;cessaires &agrave; Sarka-SPIP',
+		'cfg_lbl_config_defaut' => 'Revenir aux valeurs par d&eacute;faut du plugin',
 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',
