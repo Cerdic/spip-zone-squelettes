@@ -566,6 +566,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_plugins_1' => 'Vous utilisez un plugin SPIP. Veuillez valider la configuration Sarka-SPIP de ce plugin (les valeurs Sarka-SPIP de configuration des plugins sont d&eacute;finies dans sarkaspip_options.php)',
 		'cfg_inf_plugins_n' => 'Vous utilisez plusieurs plugins SPIP. Veuillez valider la configuration Sarka-SPIP de ces plugins (les valeurs Sarka-SPIP de configuration des plugins sont d&eacute;finies dans sarkaspip_options.php)',
 		'cfg_inf_plugins_config' => 'Choissisez le mode de configuration du plugin',
+		'cfg_inf_lire_suite' => 'Voulez-vous afficher un lien du type &#171 Lire la suite &#187 &agrave; la fin de l\'introduction de l\'article ?',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
