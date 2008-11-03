@@ -1,3 +1,8 @@
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogo,#EVALOGOPETITLARGEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,50}]
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOPETITHAUTEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,60}]
+
 <BOUCLE_principale(ARTICLES){id_article}{titre!=="couverture-livre"}>
 #DEBUT_SURLIGNE
 
@@ -25,7 +30,7 @@
 <h4><:documents_joints:></h4>
 <ul>
 		<BOUCLE_documents(DOCUMENTS){id_article}{mode=document}{par num titre}{doublons documents}>
-		<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>[<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero|sinon{<:document:>})</a>][, <em>(#TYPE_DOCUMENT)</em>][, <em>(#TAILLE|taille_en_octets)</em>]
+		<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>[<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#TITRE|supprimer_numero|sinon{<:document:>})</a>][, <em>(#TYPE_DOCUMENT)</em>][, <em>(#TAILLE|taille_en_octets)</em>]
 		[(#DESCRIPTIF)]
 		</li>
 		<div class="nettoyeur"></div>
