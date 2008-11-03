@@ -19,22 +19,38 @@
 		<div id="content">
 			[(#REM) <!-- Contenu de l'evenement --> ]
 			<div id="evenement" class="article">
-				[(#REM) <!-- Titre, logo, texte de la rubrique 
+				[(#REM) <!-- Titre, logo, texte de l'article 
 				id_evenement n'est necessaire que si on utilise le plugin agenda et est passe dans l'url
 				sinon, n'a pas de valeur
 				--> ]
 				
 				[(#INCLURE{fond=noisettes/article/inc_article_description}{id_article}{id_evenement}{avec_popularite=non}{page=evenement})]
 				
-				[(#REM) <!-- Documents (sauf images) du portfolio de la rubrique --> ]
-				[(#CONFIG{sarkaspip_evenement/position_documents, 1}|=={1}|?{' '})
-					[(#INCLURE{fond=noisettes/article/inc_article_documents}{id_article})]
-				]
+				
+				[(#REM) <!-- Documents (sauf images) du portfolio de l'article --> ]
+				[(#INCLURE{fond=noisettes/inc_documents_joints}
+					{id_article}
+					{avec_descriptif=#CONFIG{sarkaspip_article/avec_descriptif, non}})]
 	
-				[(#REM) <!-- Images du portfolio de la rubrique --> ]
-				[(#CONFIG{sarkaspip_evenement/position_images, 1}|=={1}|?{' '})
-					[(#INCLURE{fond=noisettes/article/inc_article_images}{id_article})]
+				[(#REM) <!-- Images du portfolio de l'article --> ]
+				#SET{plugin, aucun}
+				#SET{diaporama, non}
+				[(#CONFIG{sarkaspip_article/mode_galerie, 1}|match{^(1|2)$}|?{' '})
+					[(#SET{plugin, nyroceros})]
 				]
+				[(#CONFIG{sarkaspip_article/mode_galerie, 1}|=={2}|?{' '})
+					[(#SET{diaporama, oui})]
+				]
+				[(#CONFIG{sarkaspip_article/mode_galerie, 1}|=={3}|?{' '})
+					[(#SET{plugin, thickbox})]
+				]
+				[(#CONFIG{sarkaspip_article/mode_galerie, 1}|=={4}|?{' '})
+					[(#SET{plugin, smoothgallery})]
+				]
+				[(#INCLURE{fond=noisettes/inc_images_jointes}
+					{id_article}
+					{effet_galerie=#GET{plugin}}
+					{avec_diaporama=#GET{diaporama}})]
 			</div>
 		</div>
 	</div>
