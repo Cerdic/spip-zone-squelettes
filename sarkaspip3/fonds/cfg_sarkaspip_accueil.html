@@ -8,12 +8,19 @@
 <script type="text/javascript">
 //<![CDATA[
 	jQuery(document).ready(function() {
-		[(#ENV{mode_debug, non}|!={oui}|?{jQuery("#bloc_debug").hide();})]
+		[(#ENV{mode_debug, non}|!={oui}|?{' '})
+			jQuery("#bloc_debug").hide();
+			jQuery("#bouton_effacer").hide();
+		]
 		jQuery("input[@name='mode_debug']").change(function() {
-			if (jQuery("input[@name='mode_debug']:checked").val() == "oui")
+			if (jQuery("input[@name='mode_debug']:checked").val() == "oui") {
 				jQuery("#bloc_debug").show();
-			else
+				jQuery("#bouton_effacer").show();
+			}
+			else {
 				jQuery("#bloc_debug").hide();
+				jQuery("#bouton_effacer").hide();
+			}
 			jQuery(this).blur();
 		});	
 	});
@@ -70,9 +77,10 @@
 		<br />
 	</fieldset>
 	
-	<br />
-	<input type="submit" name="_cfg_ok" class="fondo" value="<:sarkaspip:valider:>" />
-	<input type="submit" name="_cfg_delete" class="fondo" value="<:sarkaspip:effacer:>" />
+	<div style="text-align: right; margin-right:3px;">
+		<input type="submit" name="_cfg_delete" id="bouton_effacer" class="fondo" value="<:sarkaspip:effacer:>" />
+		<input type="submit" name="_cfg_ok" class="fondo" value="<:sarkaspip:valider:>" />
+	</div>
 </div></form>
 
 <div id="bloc_debug">
