@@ -1,10 +1,16 @@
+
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogo,#EVALOGOPETITLARGEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,50}]
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOPETITHAUTEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,60}]
+
 <BOUCLE_principale(RUBRIQUES){id_rubrique}>
 <B_articles_a_venir>
 <div class="bloc">
 <h3 class="titre"><:evenements_a_venir:></h3>
 <ul>
 <BOUCLE_articles_a_venir(ARTICLES){id_rubrique}{annee_redac!=0000}{age_redac<=0}{par date_redac}>
-	<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero)</a>][<em> - (#DATE_REDAC|affdate)</em>]</h2>
+	<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#TITRE|supprimer_numero)</a>][<em> - (#DATE_REDAC|affdate)</em>]</h2>
 	[(#INTRODUCTION)]
 	<div class="suite"> <a href="#URL_ARTICLE"><:lire_suite:></a></div>
 	</li>
@@ -21,7 +27,7 @@
 <h3 class="titre"><:evenements_passes:></h3>
 <ul>
 <BOUCLE_articles_passes(ARTICLES){id_rubrique}{annee_redac!=0000}{age_redac>0}{!par date_redac}>
-	<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero)</a>][<em> - (#DATE_REDAC|affdate)</em>]</h2>
+	<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#TITRE|supprimer_numero)</a>][<em> - (#DATE_REDAC|affdate)</em>]</h2>
 	[(#INTRODUCTION)]
 	<div class="suite"> <a href="#URL_ARTICLE"><:lire_suite:></a></div>
 	</li>
