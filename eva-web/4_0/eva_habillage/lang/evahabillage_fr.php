@@ -97,6 +97,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'EVA_choix' => "Choisissez votre habillage :",
 'EVA_actif' => "L'habillage actif est : ",
 'EVA_valider' => "Valider",
+'EVA_reintialiser' => "R&eacute;initialiser",
 'EVA_creer' => "Cr&eacute;er",
 'EVA_annuler' => "Annuler",
 'EVA_sauvegarder' => "Sauvegarder",
@@ -338,5 +339,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'EVA_bloc_pied_classique' => 'Pied classique : raccourcis et mentions',
 'EVA_bloc_headers_classiques' => 'Headers classiques d\'EVA-web',
 'EVA_bloc_headers_menu_dynamique' => 'Headers du menu d&eacute;pliable',
+'logos_taille_def' => "<div style='text-align:center;'>Red&eacute;finir la taille des logos</div>",
+'logos_taille_detail' => "<p>Les squelettes de la distribution EVA-web contiennent des filtres qui r&eacute;duisent les tailles des logos utilis&eacute;s dans votre site.
+Vous pouvez red&eacute;finir ces tailles si vous le souhaitez.</p>Par d&eacute;faut, les tailles utilis&eacute;es sont les suivantes :
+<ul><li> mini logos : 30 pixels en largeur et hauteur au maximum</li>
+<li> petits logos : 50 pixels en largeur et 60 pixels en hauteur au maximum</li>
+<li> logos moyens : 140 pixels en largeur et 70 pixels en hauteur au maximum</li></ul>
+<p><strong>Entrez une taille en pixels en &eacute;crivant uniquement un nombre (ne pas &eacute;crire \"px\").</strong></p>
+Pour ignorer un crit&egrave;re de r&eacute;duction, &eacute;crire 0.",
 );
 ?>

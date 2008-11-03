@@ -247,6 +247,55 @@ echo fin_cadre_trait_couleur(true);
     eva_habillage_choix_couleur();
     echo '<hr /><p><a href="'._DIR_PLUGIN_EVA_HABILLAGE.'colorschemes2" target="_blank" title="Cliquez ici pour utiliser ColorSchemes2 !" alt="Cliquez ici pour utiliser ColorSchemes2 !">'._T('evahabillage:colorschemes2').'</a></p><br />';
     echo fin_cadre_trait_couleur(true);
+
+    //Taille des logos
+    if ($_POST['test_logo']==2) {
+    if (is_numeric($_POST['largeur_mini_logo'])) {$logo1l=$_POST['largeur_mini_logo'];} else {$logo1l='';}
+    if (is_numeric($_POST['hauteur_mini_logo'])) {$logo1h=$_POST['hauteur_mini_logo'];} else {$logo1h='';}
+    if (is_numeric($_POST['largeur_petit_logo'])) {$logo2l=$_POST['largeur_petit_logo'];} else {$logo2l='';};
+    if (is_numeric($_POST['hauteur_petit_logo'])) {$logo2h=$_POST['hauteur_petit_logo'];} else {$logo2h='';}
+    if (is_numeric($_POST['largeur_logo_moyen'])) {$logo3l=$_POST['largeur_logo_moyen'];} else {$logo3l='';}
+    if (is_numeric($_POST['hauteur_logo_moyen'])) {$logo3h=$_POST['hauteur_logo_moyen'];} else {$logo3h='';}
+	sql_delete('spip_eva_habillage_images',"type='logos' AND nom_habillage='Defaut'");
+	sql_insertq('spip_eva_habillage_images',array('type'=>'logos','nom_habillage'=>'Defaut','nom_div'=>'largeur_mini_logo','nom_image'=>$logo1l));
+	sql_insertq('spip_eva_habillage_images',array('type'=>'logos','nom_habillage'=>'Defaut','nom_div'=>'hauteur_mini_logo','nom_image'=>$logo1h));
+	sql_insertq('spip_eva_habillage_images',array('type'=>'logos','nom_habillage'=>'Defaut','nom_div'=>'largeur_petit_logo','nom_image'=>$logo2l));
+	sql_insertq('spip_eva_habillage_images',array('type'=>'logos','nom_habillage'=>'Defaut','nom_div'=>'hauteur_petit_logo','nom_image'=>$logo2h));
+	sql_insertq('spip_eva_habillage_images',array('type'=>'logos','nom_habillage'=>'Defaut','nom_div'=>'largeur_logo_moyen','nom_image'=>$logo3l));
+	sql_insertq('spip_eva_habillage_images',array('type'=>'logos','nom_habillage'=>'Defaut','nom_div'=>'hauteur_logo_moyen','nom_image'=>$logo3h));
+    }
+    $test_logo1l=sql_select('nom_image','spip_eva_habillage_images',"type='logos' AND nom_habillage='Defaut' AND nom_div='largeur_mini_logo'");
+    $tab_logo1l=sql_fetch($test_logo1l);
+    $logo1l=$tab_logo1l['nom_image'];
+    $test_logo1h=sql_select('nom_image','spip_eva_habillage_images',"type='logos' AND nom_habillage='Defaut' AND nom_div='hauteur_mini_logo'");
+    $tab_logo1h=sql_fetch($test_logo1h);
+    $logo1h=$tab_logo1h['nom_image'];
+    $test_logo2l=sql_select('nom_image','spip_eva_habillage_images',"type='logos' AND nom_habillage='Defaut' AND nom_div='largeur_petit_logo'");
+    $tab_logo2l=sql_fetch($test_logo2l);
+    $logo2l=$tab_logo2l['nom_image'];
+    $test_logo2h=sql_select('nom_image','spip_eva_habillage_images',"type='logos' AND nom_habillage='Defaut' AND nom_div='hauteur_petit_logo'");
+    $tab_logo2h=sql_fetch($test_logo2h);
+    $logo2h=$tab_logo2h['nom_image'];
+     $test_logo3l=sql_select('nom_image','spip_eva_habillage_images',"type='logos' AND nom_habillage='Defaut' AND nom_div='largeur_logo_moyen'");
+    $tab_logo3l=sql_fetch($test_logo3l);
+    $logo3l=$tab_logo3l['nom_image'];
+    $test_logo3h=sql_select('nom_image','spip_eva_habillage_images',"type='logos' AND nom_habillage='Defaut' AND nom_div='hauteur_logo_moyen'");
+    $tab_logo3h=sql_fetch($test_logo3h);
+    $logo3h=$tab_logo3h['nom_image'];
+    echo debut_cadre_trait_couleur(_DIR_PLUGIN_EVA_HABILLAGE."img_pack/eva.gif", true, '', _T('evahabillage:logos_taille_def'));
+    echo _T('evahabillage:logos_taille_detail');
+    echo '<center><form method="POST" action="'.generer_url_ecrire("eva_habillage_graphisme").'">';
+    echo '<br /><table align="center" class="spip">';
+    echo '<tr align="center" class="row_even">';
+    echo '<td  align="center">Type de logo</td><td  align="center">Largeur maximale</td><td  align="center">Hauteur maximale</td></tr>';
+    echo '<tr align="center" class="row_odd">';
+    echo '<td  align="center">Mini logos</td><td  align="center"><center><input type="text" name="largeur_mini_logo" value="'.$logo1l.'" size="4"></center></td><td  align="center"><center><input type="text" name="hauteur_mini_logo" value="'.$logo1h.'" size="4"></center></td></tr>';
+    echo '<tr align="center" class="row_even">';
+    echo '<td  align="center">Petits logos</td><td  align="center"><center><input type="text" name="largeur_petit_logo" value="'.$logo2l.'" size="4"></center></td><td  align="center"><center><input type="text" name="hauteur_petit_logo" value="'.$logo2h.'" size="4"></center></td></tr>';
+    echo '<tr align="center" class="row_odd">';
+    echo '<td  align="center">Logos moyens</td><td  align="center"><center><input type="text" name="largeur_logo_moyen" value="'.$logo3l.'" size="4"></center></td><td  align="center"><center><input type="text" name="hauteur_logo_moyen" value="'.$logo3h.'" size="4"></center></td></tr>'; 
+    echo '</table><br /><input type="hidden" name="test_logo" value="2"><input type="submit" value="'._T('evahabillage:EVA_valider').'" /></form>';
+    echo fin_cadre_trait_couleur(true);
     
    //Insertion de banières Flash (format swf)
    
