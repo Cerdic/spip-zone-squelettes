@@ -1,4 +1,10 @@
 #CACHE{12*3600}
+
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogo,#EVALOGOMOYENLARGEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,140}]
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOMOYENHAUTEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,70}]
+
 <B_logos1>
 <BOUCLE_logos1(SITES){titre_mot=logo-bloc}{par date}>
 </BOUCLE_logos1>
@@ -13,7 +19,7 @@ if ($test_boucle) {echo '<div class="bloc"><h3 class="titre"><:partenaires:></h3
 #EVAFLASHLOGOBLOCCODE
 	<BOUCLE_logos(SITES){titre_mot=logo-bloc}{par date}>
 				<li style="text-align:center;">
-				<a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut)]">[(#LOGO_SITE||image_reduire{200,0})] </a>
+				<a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut)]">[(#LOGO_SITE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})] </a>
 				</li>
 	</BOUCLE_logos>
 <?php

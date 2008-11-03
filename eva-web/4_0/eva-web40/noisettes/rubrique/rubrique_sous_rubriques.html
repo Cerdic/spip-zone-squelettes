@@ -1,10 +1,15 @@
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogo,#EVALOGOPETITLARGEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,50}]
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOPETITHAUTEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,60}]
+
 <BOUCLE_principale(RUBRIQUES){id_rubrique}>
 <B_sous_rubriques>
 <div class="bloc">
 <h3 class="titre [(#EXPOSE{on,off})]"><:sous_rubriques:></h3>
 <ul>
 <BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par num titre}>
-	[<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2><a href="#URL_RUBRIQUE">[(#LOGO_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero)</a>]</h2>
+	[<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2><a href="#URL_RUBRIQUE">[(#LOGO_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#TITRE|supprimer_numero)</a>]</h2>
 	[(#INTRODUCTION)]
 	<div class="suite"> <a href="#URL_RUBRIQUE"><:lire_suite:></a> </div>
 	</li>

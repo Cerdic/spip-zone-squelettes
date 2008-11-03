@@ -1,3 +1,8 @@
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogo,#EVALOGOMOYENLARGEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,140}]
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOMOYENHAUTEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,70}]
+
 <BOUCLE_principale(BREVES){id_breve}>
 <div class="bloc2">
 <div class="Titre">
@@ -13,7 +18,7 @@
 (#DATE|affdate_jourcourt)</div>]
 </div>
 
-[(#LOGO_BREVE_RUBRIQUE||reduire_image{140,70})]
+[(#LOGO_BREVE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})]
 [<h4 class="#EDIT{surtitre} surtitre">(#SURTITRE)</h4>]
 [<h2 class="#EDIT{titre}">(#TITRE|supprimer_numero)</h2>]
 [<h4 class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</h4>]

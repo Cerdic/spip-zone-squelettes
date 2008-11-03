@@ -4,6 +4,11 @@
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{nbre_breve_pag_breve,#EVANBREBREVEPAGBREVE}] 
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{nbre_breve_pag_breve,5}]
 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogo,#EVALOGOMINILARGEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,30}]
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOMINIHAUTEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,30}]
+
 <?php if (#GET{nbre_breve_pag_breve}!=0) { ?>
 
 <B_breves>
@@ -14,7 +19,7 @@
 		[<li class="pagination">(#PAGINATION{page_precedent_suivant})</li>]
 		<BOUCLE_breves(BREVES){id_rubrique}{par date}{inverse}{pagination #GET{nbre_breve_pag_breve}}>
 		    <li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
-		        [<a href="#URL_BREVE" [ class="(#EXPOSE)"]>[(#LOGO_BREVE_RUBRIQUE||reduire_image{30})](#TITRE|supprimer_numero)</a>]
+		        [<a href="#URL_BREVE" [ class="(#EXPOSE)"]>[(#LOGO_BREVE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#TITRE|supprimer_numero)</a>]
 		    </li>
 		</BOUCLE_breves>
 		<div class="MenuPaginationBas"><em><:il_y_a2:> #GRAND_TOTAL <:il_y_a5:> #TOTAL_BOUCLE</em></div>

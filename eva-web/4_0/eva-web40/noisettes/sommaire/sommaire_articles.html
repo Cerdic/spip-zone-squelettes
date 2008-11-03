@@ -12,7 +12,12 @@
 	</BOUCLE_articles_exclus2>
 </BOUCLE_rubriques_exclues>
 
-[ (#PLUGIN{eva_habillage}|?{#SET{nbre_art_somm,#EVANBREARTSOMM},#SET{nbre_art_somm,5}})]
+[(#PLUGIN{eva_habillage}|?{#SET{nbre_art_somm,#EVANBREARTSOMM},#SET{nbre_art_somm,5}})]
+
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogo,#EVALOGOPETITLARGEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,50}]
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOPETITHAUTEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,60}]
 
 <B_articles>
 	<div class="bloc">
@@ -21,7 +26,7 @@
 	<ul>
 	<BOUCLE_articles(ARTICLES) {par date} {inverse} {doublons} {pagination #GET{nbre_art_somm}} >
 		<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
-		<h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero)</a>]
+		<h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#TITRE|supprimer_numero)</a>]
 		[<em> - (#DATE|affdate_jourcourt)</em>]</h2>
 		[(#INTRODUCTION|couper{200})]
 		<div class="suite"> 

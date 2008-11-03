@@ -1,4 +1,10 @@
 #CACHE{3600}
+
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogo,#EVALOGOPETITLARGEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,50}]
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOPETITHAUTEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,60}]
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
@@ -43,7 +49,7 @@
 					<BOUCLE_articles (ARTICLES) {recherche} {par points} {inverse} {pagination}>
 
 					<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
-						<h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero)</a>]</h2>
+						<h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#TITRE|supprimer_numero)</a>]</h2>
 					
 						[(#INTRODUCTION|couper{300})]
 						<div class="nettoyeur"></div>

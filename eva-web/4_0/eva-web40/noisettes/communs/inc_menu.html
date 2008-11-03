@@ -1,4 +1,10 @@
 ﻿#CACHE{4*3600}
+
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogo,#EVALOGOMINILARGEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,30}]
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOMINIHAUTEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,30}]
+
 [(#REM) Menu : déroule le niveau (fil d'ariane)]
 
 	<?php
@@ -22,12 +28,12 @@
 		?>>
 		<a href="#URL_SITE_SPIP"<?php	
 			if ($TitrePage=='accueil') { echo ' class="on"'; }
-		?>>[(#LOGO_SITE||image_reduire{30,30})] <:accueil:></a>
+		?>>[(#LOGO_SITE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})] <:accueil:></a>
 		</li>
 
 		<BOUCLE_rubriques(RUBRIQUES){racine}{par num titre}>
 		<li[ class="(#EXPOSE{on,off})"]>
-			<a href="#URL_RUBRIQUE"[ class="(#EXPOSE{on,off})"]>[(#LOGO_RUBRIQUE||image_reduire{30,30})] [(#TITRE|supprimer_numero)]</a>
+			<a href="#URL_RUBRIQUE"[ class="(#EXPOSE{on,off})"]>[(#LOGO_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})] [(#TITRE|supprimer_numero)]</a>
 		<?php	
 			if (in_array(#ID_RUBRIQUE, $hierarchie)) {
 		?>

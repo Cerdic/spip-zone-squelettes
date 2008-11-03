@@ -1,4 +1,10 @@
 #CACHE{48 * 3600}
+
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogo,#EVALOGOMOYENLARGEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,140}]
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOMOYENHAUTEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,70}]
+
 <BOUCLE_principale(SITES){id_syndic}>
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -17,7 +23,7 @@
 		[(#REM) Contenu principal : affichage du site ]
 		<div id="Contenu">
 
-				<a href="#URL_SITE">[(#LOGO_SITE||image_reduire{150,100})]</a>
+				<a href="#URL_SITE">[(#LOGO_SITE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})]</a>
 				<h2 class="titre">#NOM_SITE</h2>
 
 					[(#REM) Auteurs et dates]

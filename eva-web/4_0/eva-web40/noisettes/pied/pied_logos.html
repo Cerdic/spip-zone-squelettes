@@ -1,4 +1,10 @@
 #CACHE{12*3600}
+
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogo,#EVALOGOPETITLARGEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,50}]
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOPETITHAUTEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,60}]
+
 <B_logos1>
 <BOUCLE_logos1(SITES){titre_mot=logo-pied}{par date}>
 </BOUCLE_logos1>
@@ -13,7 +19,7 @@ if ($test_boucle) {echo '<ul id="Logo-Pied">';}
 #EVAFLASHLOGOBASCODE
 	<BOUCLE_logos(SITES){titre_mot=logo-pied}{par date}>
 		<li>
-		<a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut)]">[(#LOGO_SITE||image_reduire{0,50})] </a>
+		<a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut)]">[(#LOGO_SITE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})] </a>
 		</li>
 	</BOUCLE_logos>
 <?php

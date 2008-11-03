@@ -15,7 +15,12 @@
 	</BOUCLE_sites_exclus2>
 </BOUCLE_rubriques_exclues>
 
-[ (#PLUGIN{eva_habillage}|?{#SET{nbre_site_somm,#EVANBRESITESOMM},#SET{nbre_site_somm,5}})]
+[(#PLUGIN{eva_habillage}|?{#SET{nbre_site_somm,#EVANBRESITESOMM},#SET{nbre_site_somm,5}})]
+
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogo,#EVALOGOPETITLARGEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,50}]
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOPETITHAUTEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,60}]
 
 <B_sites>
 <div class="bloc">
@@ -24,7 +29,7 @@
 <ul>
 <BOUCLE_sites(SITES){syndication=non}{par date}{inverse}{doublons}{pagination #GET{nbre_site_somm}}>
 	<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
-	[<a href="[(#ID_SYNDIC|generer_url_entite{site})]">[(#LOGO_SITE_RUBRIQUE||reduire_image{50,60})](#NOM_SITE|supprimer_numero|textebrut)</a>][
+	[<a href="[(#ID_SYNDIC|generer_url_entite{site})]">[(#LOGO_SITE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#NOM_SITE|supprimer_numero|textebrut)</a>][
 	<em> - (#DATE|affdate_jourcourt)</em>]
 	[(#DESCRIPTIF|textebrut|couper{300})]
 	<div class="nettoyeur"></div>

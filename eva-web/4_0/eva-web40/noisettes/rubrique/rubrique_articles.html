@@ -1,3 +1,13 @@
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogo,#EVALOGOMOYENLARGEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,140}]
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOMOYENHAUTEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,70}]
+
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogopetit,#EVALOGOPETITLARGEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogopetit,50}]
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogopetit,#EVALOGOPETITHAUTEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogopetit,60}]
+
 <BOUCLE_principale(RUBRIQUES){id_rubrique}>
 <BOUCLE_article_mentions(ARTICLES){id_rubrique}{titre_mot=mentions}{doublons}>
 </BOUCLE_article_mentions>
@@ -6,7 +16,7 @@
 	<div class="bloc2">
 	<a href="#URL_ARTICLE"><h3 class="#EDIT{titre} titre">[(#TITRE|supprimer_numero)]</h3></a>
 	[(#REM) chapeau, texte, post-scriptum de l'article ]
-	[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>][<a href="#URL_ARTICLE">(#LOGO_ARTICLE_RUBRIQUE||reduire_image{120,70})</a>]
+	[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>][<a href="#URL_ARTICLE">(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})</a>]
 	[<div class="#EDIT{texte} texte">(#TEXTE)</div>]
 	</div>
 </BOUCLE_articles1>
@@ -16,7 +26,7 @@
 <h3 class="titre [(#EXPOSE{on,off})]"><:articles:></h3>
 <ul>
 <BOUCLE_articles(ARTICLES){id_rubrique}{par num titre}{par date}{inverse}{doublons}>
-	<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero)</a>][<em> - (#DATE|affdate_court)</em>]</h2>
+	<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{largeurlogopetit},#GET{hauteurlogopetit}})](#TITRE|supprimer_numero)</a>][<em> - (#DATE|affdate_court)</em>]</h2>
 	[(#INTRODUCTION)]
 	<div class="suite"> <a href="#URL_ARTICLE"><:lire_suite:></a></div>
 	</li>

@@ -1,6 +1,11 @@
 #CACHE{4*3600}
 
-[ (#PLUGIN{eva_habillage}|?{#SET{nbre_breve_somm,#EVANBREBREVESOMM},#SET{nbre_breve_somm,5}})]
+[(#PLUGIN{eva_habillage}|?{#SET{nbre_breve_somm,#EVANBREBREVESOMM},#SET{nbre_breve_somm,5}})]
+
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogo,#EVALOGOPETITLARGEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,50}]
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOPETITHAUTEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,60}]
 
 <BOUCLE_breves_exclues (BREVES) {titre_mot=excluredusommaire} {doublons} >
 </BOUCLE_breves_exclues>
@@ -18,7 +23,7 @@
 	<ul>
 	<BOUCLE_breve_courante(BREVES){par date}{inverse}{pagination #GET{nbre_breve_somm}}{doublons}>
 		<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
-		[<a href="#URL_BREVE">[(#LOGO_BREVE_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero)</a>]
+		[<a href="#URL_BREVE">[(#LOGO_BREVE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#TITRE|supprimer_numero)</a>]
 		[ - <em>(#DATE|affdate_jourcourt)</em>]
 		<div class="nettoyeur"></div>
 		[(#INTRODUCTION|couper{80})]

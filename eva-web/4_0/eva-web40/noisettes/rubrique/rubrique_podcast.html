@@ -1,3 +1,8 @@
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogo,#EVALOGOPETITLARGEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,50}]
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOPETITHAUTEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,60}]
+
 <BOUCLE_principale(RUBRIQUES){id_rubrique}>
 <B_podcast>
 <div class="bloc">
@@ -5,7 +10,7 @@
 <ul>
 <BOUCLE_podcast(SITES){id_rubrique}{titre_mot=podcast}{par date}{inverse}{0,4}>
 	<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
-	<h2>[<a href="[(#ID_SYNDIC|generer_url_entite{site})]">[(#LOGO_SITE_RUBRIQUE||reduire_image{50,60})](#NOM_SITE|supprimer_numero|textebrut)</a>][
+	<h2>[<a href="[(#ID_SYNDIC|generer_url_entite{site})]">[(#LOGO_SITE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})](#NOM_SITE|supprimer_numero|textebrut)</a>][
 	<em> - (#DATE|affdate_jourcourt)</em>]</h2>
 	<div class="nettoyeur"></div>
 	[(#DESCRIPTIF|textebrut|couper{80})]

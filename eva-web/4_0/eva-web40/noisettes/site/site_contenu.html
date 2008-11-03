@@ -1,3 +1,8 @@
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogo,#EVALOGOMOYENLARGEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,140}]
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOMOYENHAUTEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,70}]
+
 <BOUCLE_principale(SITES){id_syndic}>
 <div class="bloc2">
 <div class="Titre">
@@ -8,7 +13,7 @@
 	(#DATE|affdate_jourcourt)</div>]
 	</div>
 
-	<a href="#URL_SITE">[(#LOGO_SITE||image_reduire{150,100})]</a>
+	<a href="#URL_SITE">[(#LOGO_SITE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})]</a>
 	[<h2 class="#EDIT{nom_site}">(#NOM_SITE|supprimer_numero)</h2>]
 	<div class="nettoyeur"></div>
 </div>

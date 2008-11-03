@@ -1,7 +1,12 @@
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogo,#EVALOGOMOYENLARGEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,140}]
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOMOYENHAUTEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,70}]
+
 <BOUCLE_edito (ARTICLES) {titre_mot=editorial} {lang}>
 	<div class="edito">
 	<div class="Titre">
-	[<a href="#URL_ARTICLE">(#LOGO_ARTICLE_RUBRIQUE||reduire_image{140,70})</a>]
+	[<a href="#URL_ARTICLE">(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})</a>]
 	[<h4 class="#EDIT{surtitre} surtitre">(#SURTITRE)</h4>]
 	[<h2><a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a></h2>]
 	[<h4 class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</h4>]
