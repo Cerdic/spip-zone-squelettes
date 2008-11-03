@@ -131,7 +131,7 @@ $GLOBALS['cs_installer']['SoyezCreateurs'] = array(
 
 	// Installation des variables par defaut
 	'variables' => array(
-	
+		'expo_bofbof' => 1
 	)
 );
 
