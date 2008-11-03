@@ -16,19 +16,15 @@
 		
 			[(#REM) Contenu de la page ]
 			<div id="Contenu">
-				
-				<BOUCLE_mesdoublons(ARTICLES){id_rubrique}{titre_mot=couverture-livre}{doublons a}>
-				</BOUCLE_mesdoublons>
+
 				[(#REM) bouton diaporama ]
 				<BOUCLE_bouton_diaporama(MOTS){id_rubrique}{titre=livre}>
-					<BOUCLE_bouton_diaporama_articles(ARTICLES){id_rubrique}{doublons a}{par num titre}{0,1}>
+					<BOUCLE_bouton_diaporama_articles(ARTICLES){id_rubrique}{par num titre}{0,1}>
 					<h4 class="titre"><a href="#URL_ARTICLE">
-					<img src="#DOSSIER_SQUELETTE/img_pack/lire.gif" width="50" height="50" alt="Lire" />
+					<img src="#EVAL{_DIR_PLUGIN_RUBRIQUE_EN_DIAPORAMA}img_pack/lire.gif" width="50" height="50" alt="Lire" />
 					<:feuilleter_livre:>
-					<BOUCLE_compteexclus(ARTICLES){id_rubrique}{titre_mot=couverture-livre}{doublons b}>
-					</BOUCLE_compteexclus>
 					<B_compte>
-					   <BOUCLE_compte(ARTICLES) {id_rubrique}{doublons b}> </BOUCLE_compte>
+					   <BOUCLE_compte(ARTICLES) {id_rubrique}{!titre_mot=couverture-livre}> </BOUCLE_compte>
 					   [((#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|>{1}|?{'pages','page'})])]
 					</B_compte>					
 					</a></h4>
@@ -56,7 +52,7 @@
 				
 				[(#REM) Affiche la couverture]
 				
-				<BOUCLE_couverture(ARTICLES){id_rubrique}{titre_mot=couverture-livre}{doublons}{!par date}>				
+				<BOUCLE_couverture(ARTICLES){id_rubrique}{titre_mot=couverture-livre}{!par date}>				
 				<div class="bloc2">
 						<a href="#URL_ARTICLE"><h3 class="titre">[(#TITRE|supprimer_numero)]</h3></a>
 						[(#REM) chapeau, texte, post-scriptum de l'article ]
@@ -75,7 +71,7 @@
 					<div class="bloc">
 					<h3 class="titre">Les épisodes</h3>
 					<ul>
-						<BOUCLE_articles(ARTICLES){id_rubrique}{par num titre}{doublons}>
+						<BOUCLE_articles(ARTICLES){id_rubrique}{!titre_mot=couverture-livre}{par num titre}>
 						<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2>[<a href="#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero)</a>]</h2>
 						<div class="nettoyeur"></div>
 						</li>
