@@ -33,6 +33,20 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			echo "SoyezCreateurs Install $version_cible <br />";
 			ecrire_meta($nom_meta_base_version,$current_version=$version_cible,'non');
 		}
+		if (version_compare($current_version,'2.1.1','<')) {
+			include_spip('base/soyezcreateurs');
+			// Suppresion de "_Specialisation", "Gallerie"
+			$id_mot = id_mot("Gallerie");
+			if ($id_mot>0) {
+				sql_delete("spip_mots", "id_mot=$id_mot");
+				sql_delete("spip_mots_articles", "id_mot=$id_mot");
+				sql_delete("spip_mots_rubriques", "id_mot=$id_mot");
+				sql_delete("spip_mots_syndic", "id_mot=$id_mot");
+				sql_delete("spip_mots_forum", "id_mot=$id_mot");
+			}
+			echo "SoyezCreateurs Install $version_cible <br />";
+			ecrire_meta($nom_meta_base_version,$current_version=$version_cible,'non');
+		}
 	}
 }
 
