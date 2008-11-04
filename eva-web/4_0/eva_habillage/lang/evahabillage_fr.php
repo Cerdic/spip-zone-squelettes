@@ -159,7 +159,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'EVA_choix_palette' => "La palette ci-dessous vous servira &agrave; choisir vos couleurs. Cliquez sur une couleur pour voir sa valeur, puis  copiez/collez cette valeurs dans l'un des champ ci-dessus.",
 'EVA_etape3_liste_images_definies' => "Vos images de fond d&eacute;j&agrave; d&eacute;finies :",
 'EVA_etape3_liste_puces_definies' => "Vos puces de liste d&eacute;j&agrave; d&eacute;finies :",
-'EVA_etape5_detail' => "Vous pouvez ins&eacute;rer vos propres propri&eacute;t&eacute;s et attribus CSS pour votre site en les &eacute;crivant ci-dessous sans modifier les feuilles de style.<br />Exemple : <strong>#Page {padding:20px;}</strong>",
+'EVA_etape5_detail' => "Vous pouvez ins&eacute;rer vos propres propri&eacute;t&eacute;s et attribus CSS pour votre site en les &eacute;crivant ci-dessous sans modifier les feuilles de style.<br />Exemple : <strong>#page {padding:20px;}</strong>",
 'EVA_etape5_defini' => "<div style='text-align:center;'>Vos r&egrave;gles CSS d&eacute;j&agrave; d&eacute;finies</div>",
 'EVA_etape5_rien_defini' => "Vous n'avez d&eacute;fini aucune r&egrave;gle CSS personnelle dans ce module.",
 'EVA_etape1' => "<div style='text-align:center;'>Choisissez un des huit mod&egrave;les d'habillage de base d'EVA</div>",

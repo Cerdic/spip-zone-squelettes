@@ -37,18 +37,18 @@ function exec_eva_habillage_css(){
 	echo eva_habillage_boutons('css');
 
 $css_defs =array(
-	'css_supprime_titre' => "#Entete h1 {display:none;}",
-	'css_supprime_pied' => "ul#Logo-Pied, ul#Pied {display:none;}",
-	'css_supprime_mentions_pied' => "ul#Pied .supprimer_le_pied {display:none;}",
+	'css_supprime_titre' => "#entete h1 {display:none;}",
+	'css_supprime_pied' => "ul#logo-pied, ul#pied {display:none;}",
+	'css_supprime_mentions_pied' => "ul#pied .supprimer_le_pied {display:none;}",
 	'css_supprime_bordure_tableau' => "table.spip tr.row_odd , table.spip tr.row_even , table.spip tr.row_odd td , table.spip tr.row_even td {border-width:0;}",
 	'css_augmente_police_10' => "body {font-size: 110%;}",
 	'css_augmente_police_20' => "body {font-size: 120%;}",
 	'css_diminue_police_10' => "body {font-size: 90%;}",
 	'css_diminue_police_20' => "body {font-size: 80%;}",
-	'css_doubler_taille_titre_50' => "div#Entete h1 {font-size:200%;}",
-	'css_deplace_titre_50px_bas' => "div#Entete h1 {top:50px;}",
-	'css_deplace_titre_50px_gauche' => "div#Entete h1 {left:50px;}",
-	'css_augmente_titres_blocs_20' => "h3 , div#Contenu h3 , legend , #Forum .bouton a , .bloc2 .Titre , .divers h4 , table.spip tr.row_first th , div#Contenu div.ps h4 , div#Menu h3.titre , div#MenuDroit h3.titre , table.spip tr.row_first , div#Contenu div.lien , .contenu .lien , div#Contenu div.notes h4 , div#Contenu h4.titre , div#Contenu h3.titre , #Forum ul.forum div.titre h4{font-size: 120%;}",
+	'css_doubler_taille_titre_50' => "div#entete h1 {font-size:200%;}",
+	'css_deplace_titre_50px_bas' => "div#entete h1 {top:50px;}",
+	'css_deplace_titre_50px_gauche' => "div#entete h1 {left:50px;}",
+	'css_augmente_titres_blocs_20' => "h3 , div#contenu h3 , legend , #forum .bouton a , .bloc .titre , .divers h4 , table.spip tr.row_first th , div#contenu div.ps h4 , div#menu h3.titre , div#menudroit h3.titre , table.spip tr.row_first , div#contenu div.lien , .contenu .lien , div#contenu div.notes h4 , div#contenu h4.titre , div#contenu h3.titre , #forum ul.forum div.titre h4{font-size: 120%;}",
 	);
 
 if (isset($_POST['injection_css'])) {sql_insertq('spip_eva_habillage_images',array("type" => "perso", "nom_habillage" => "Defaut", "nom_div" => $css_defs[$_POST['injection_css']]));}

@@ -5,128 +5,128 @@ function eva_habillage_definition_themes () {
     //Fond d'écran
     $eva_fond_ecran_background = array('body');
     //Fond des pages
-    $eva_fond_page_background = array('div#Page');
+    $eva_fond_page_background = array('div#page');
     //Fond des blocs
-    $eva_fond_bloc_background = array('hr','.spip_cadre','textarea.spip_cadre','fieldset','#FormRecherche','#Forum ul.forum div.titre .auteur','.divers div.contenu','div#Contenu ul','div.bloc ul','div.bloc','div.bloc2','ul#Sommaire','div#Menu .bloc ul','div#MenuDroit .bloc ul');
+    $eva_fond_bloc_background = array('hr','.spip_cadre','textarea.spip_cadre','fieldset','#formrecherche','#forum ul.forum div.titre .auteur','.divers div.contenu','div#contenu ul','div.bloc ul','div.bloc','ul#sommaire','div#menu .bloc ul','div#menuDroit .bloc ul');
     //Fond de l'éditorial et des chapeaux
-    $eva_fond_edito_background = array('.edito .Titre','div#Photo img','div#Contenu div.chapo','div.edito','div#EnteteDiaporama','div#BoutonDiaporama a span');
+    $eva_fond_edito_background = array('.edito .titre','div#photo img','div#contenu div.chapo','div.edito','div#entetediaporama','div#boutondiaporama a span');
     //Entêtes des pages
-    $eva_entete_page_background = array('div#Entete');
+    $eva_entete_page_background = array('div#entete');
     //Barres des liens et de l'arborescence situées au-dessus de l'entête de la page, bloc affichant l'auteur et la date de publication
-    $eva_barres_entete_background = array('div#Entete ul.liens');
+    $eva_barres_entete_background = array('div#entete ul.liens');
     //Barres d'arborescence situé sous l'entête de la page
-    $eva_barres_entete_arborescence_background = array('div#Arborescence');
+    $eva_barres_entete_arborescence_background = array('div#arborescence');
     //Secteur présentant les auteurs et la date
-    $eva_barres_entete_auteur_background = array('#AuteursDates','.bloc2 #AuteursDates');
+    $eva_barres_entete_auteur_background = array('#auteursdates','.bloc #auteursdates');
    //Fond des titres de l'entête
-    $eva_barres_entete_texte_background = array('div#Entete h1 span','div#Entete h2 span');
+    $eva_barres_entete_texte_background = array('div#entete h1 span','div#entete h2 span');
     //Fond du secteur de sur-titre, titre et sous-titre
-    $eva_fond_titre_article_background = array ('div .Titre');
+    $eva_fond_titre_article_background = array ('div .titre');
      //Pied de page
-    $eva_pied_page_background = array('ul#Pied');
+    $eva_pied_page_background = array('ul#pied');
     //Pied de page : barre des logos
-    $eva_pied_logo_background = array('#Logo-Pied');
+    $eva_pied_logo_background = array('#logo-pied');
     //Fond des titre des blocs,du menu, des premiers éléments des tableaux générés par SPIP
-    $eva_fond_titres_background = array('.bloc2 .Titre','.divers','.divers h4','table.spip tr.row_first th','div#Contenu div.ps h4','div#Menu h3.titre','div#MenuDroit h3.titre','table.spip tr.row_first','div#Contenu div.lien','div#Contenu div.notes h4','div#Contenu h4.titre','div#Contenu h3.titre','#Forum ul.forum div.titre h4');
-    $eva_fond_titres_background_color = array('#Forum .bouton a','#Forum .bouton a:hover');
+    $eva_fond_titres_background = array('.bloc .titre','.divers','.divers h4','table.spip tr.row_first th','div#contenu div.ps h4','div#menu h3.titre','div#menudroit h3.titre','table.spip tr.row_first','div#contenu div.lien','div#contenu div.notes h4','div#contenu h4.titre','div#contenu h3.titre','#forum ul.forum div.titre h4');
+    $eva_fond_titres_background_color = array('#forum .bouton a','#forum .bouton a:hover');
     //Fonds du menu de navigation
-    $eva_menu_fond_background_color = array('ul#Sommaire', 'ul#Sommaire li');
+    $eva_menu_fond_background_color = array('ul#sommaire', 'ul#sommaire li');
     //Fonds des secteurs inactifs du menu
-    $eva_menu_off_background = array('ul#AlbumVignettes li.on a:hover img','ul#AlbumVignettes li a img','div#Menu ul#Sommaire .off','div#Menu ul#Sommaire li','div#MenuDroit ul#Sommaire .off','div#MenuDroit ul#Sommaire li');
+    $eva_menu_off_background = array('ul#albumvignettes li.on a:hover img','ul#albumvignettes li a img','div#menu ul#sommaire .off','div#menu ul#sommaire li','div#menudroit ul#sommaire .off','div#menudroit ul#sommaire li');
     //Fond du secteur actif du menu
-    $eva_menu_on_background = array('ul#AlbumVignettes li a:hover img','ul#AlbumVignettes li.on a img','div#Menu ul#Sommaire .on','div#MenuDroit ul#Sommaire .on');
+    $eva_menu_on_background = array('ul#albumvignettes li a:hover img','ul#albumvignettes li.on a img','div#menu ul#sommaire .on','div#menudroit ul#sommaire .on');
     //Fonds des listes d'éléments impairs
-    $eva_liste_impair_background = array('.spip tr.row_even td','div#Menu .bloc ul li.un','div#MenuDroit .bloc ul li.un','div#Contenu ul li.un');
+    $eva_liste_impair_background = array('.spip tr.row_even td','div#menu .bloc ul li.un','div#menudroit .bloc ul li.un','div#contenu ul li.un');
     //Fonds des listes d'éléments pairs
-    $eva_liste_pair_background = array('.spip tr.row_odd td','div#Menu .bloc ul li.deux','div#MenuDroit .bloc ul li.deux','div#Contenu ul li.deux');
+    $eva_liste_pair_background = array('.spip tr.row_odd td','div#menu .bloc ul li.deux','div#menudroit .bloc ul li.deux','div#contenu ul li.deux');
     //Type de police de caractères, hors formulaire, <code>...</code>, ...
     $eva_police_type_font_family = array('body');
     //Couleur du texte du site
-    $eva_texte_principal_color = array('div#Contenu ul li','div .contenu','h3.titre','h3.titre a','.divers','.erreur','hr','.spip_cadre','textarea.spip_cadre','fieldset','div#Contenu','div#Contenu .bloc2','.bloc','ul#Sommaire','div#Menu .bloc ul','div#MenuDroit .bloc ul','div#Contenu .bloc ul li','.auteur');
+    $eva_texte_principal_color = array('div#contenu ul li','div .contenu','h3.titre','h3.titre a','.divers','.erreur','hr','.spip_cadre','textarea.spip_cadre','fieldset','div#contenu','div#contenu .bloc','.bloc','ul#sommaire','div#menu .bloc ul','div#menudroit .bloc ul','div#contenu .bloc ul li','.auteur');
     //Couleur du texte des listes paires
-    $texte_liste_paire_color = array('div#Menu .bloc ul li.deux','div#MenuDroit .bloc ul li.deux','div#Contenu ul li.deux','div#Contenu ul li.deux h2','table.spip tr.row_odd','div#Contenu ul.bloc li.deux');
+    $texte_liste_paire_color = array('div#menu .bloc ul li.deux','div#menudroit .bloc ul li.deux','div#contenu ul li.deux','div#contenu ul li.deux h2','table.spip tr.row_odd','div#contenu ul.bloc li.deux');
     //Couleur du texte des listes impaire
-    $texte_liste_impaire_color = array('div#Menu .bloc ul li.un','div#Contenu ul li.un','div#Contenu ul li.un h2','div#MenuDroit .bloc ul li.un','table.spip tr.row_odd','div#Contenu ul.bloc li.un');
+    $texte_liste_impaire_color = array('div#menu .bloc ul li.un','div#contenu ul li.un','div#contenu ul li.un h2','div#menudroit .bloc ul li.un','table.spip tr.row_odd','div#contenu ul.bloc li.un');
     //Couleur du texte des secteurs d'entete
-    $texte_entetes_color = array('div#Entete h1 a','div#Entete h2');
+    $texte_entetes_color = array('div#entete h1 a','div#entete h2');
     //Couleur du texte des sur-titres
-    $texte_surtitre_color = array('.Titre h4.surtitre');
+    $texte_surtitre_color = array('.titre h4.surtitre');
     //Couleur du texte des titres
-    $texte_titre_color = array('.Titre h2','div#Contenu h2');
+    $texte_titre_color = array('.titre h2','div#contenu h2');
     //Couleur du texte des sous-titres
-    $texte_soustitre_color = array('.Titre h4.soustitre');
+    $texte_soustitre_color = array('.titre h4.soustitre');
     //Couleur des textes du menu de navigation
-    $couleur_liens_menu_color = array('ul#Sommaire a');
+    $couleur_liens_menu_color = array('ul#sommaire a');
     //Couleur du texte du secteur courant dans le menu de navigation
-    $couleur_liens_menu_actif_color = array('ul#Sommaire a.on','ul#Sommaire ul a.on');
+    $couleur_liens_menu_actif_color = array('ul#sommaire a.on','ul#sommaire ul a.on');
     //Couleur des textes du menu de navigation lors du survol
-    $couleur_liens_menu_survol_color = array('ul#Sommaire a:hover','ul#Sommaire ul a:hover');
+    $couleur_liens_menu_survol_color = array('ul#sommaire a:hover','ul#sommaire ul a:hover');
     //Couleur des textes des titres des blocs
-    $texte_barres_entete_color = array('h3','div#Contenu h3','legend','#Forum .bouton a','.bloc2 .Titre','.divers h4','table.spip tr.row_first th','div#Contenu div.ps h4','div#Menu h3.titre','div#MenuDroit h3.titre','table.spip tr.row_first','div#Contenu div.lien','.contenu .lien','div#Contenu div.notes h4','div#Contenu h4.titre','div#Contenu h3.titre','#Forum ul.forum div.titre h4');
+    $texte_barres_entete_color = array('h3','div#contenu h3','legend','#forum .bouton a','.bloc .titre','.divers h4','table.spip tr.row_first th','div#contenu div.ps h4','div#menu h3.titre','div#menudroit h3.titre','table.spip tr.row_first','div#contenu div.lien','.contenu .lien','div#contenu div.notes h4','div#contenu h4.titre','div#contenu h3.titre','#forum ul.forum div.titre h4');
     //Couleur de le première lettre des titres des blocs
-    $texte_premiere_lettre_entete_color = array('.Titre h2:first-letter','#Forum .bouton a:first-letter','.bloc2 .Titre:first-letter','.divers h4:first-letter','div#Contenu div.lien:first-letter','div#Contenu div.ps h4:first-letter','div#Contenu div.notes h4:first-letter','div#Contenu div.lien:first-letter','.contenu .lien:first-letter','div#Contenu h4.titre:first-letter','div#Contenu h3:first-letter','div#Contenu .bloc2 h3:first-letter','div#Contenu .bloc2 h3.titre:first-letter','div#Menu h3:first-letter','div#MenuDroit h3:first-letter','.divers h4:first-letter','h3:first-letter');
+    $texte_premiere_lettre_entete_color = array('.titre h2:first-letter','#forum .bouton a:first-letter','.bloc .titre:first-letter','.divers h4:first-letter','div#contenu div.lien:first-letter','div#contenu div.ps h4:first-letter','div#contenu div.notes h4:first-letter','div#contenu div.lien:first-letter','.contenu .lien:first-letter','div#contenu h4.titre:first-letter','div#contenu h3:first-letter','div#contenu .bloc h3:first-letter','div#contenu .bloc h3.titre:first-letter','div#menu h3:first-letter','div#menuDroit h3:first-letter','.divers h4:first-letter','h3:first-letter');
     //Couleur du texte de l'Editorial et des chapeaux
-    $texte_edito_color = array('div#Contenu .edito','div#Contenu div.chapo','div#EnteteDiaporama h2','div#BoutonDiaporama a span');
+    $texte_edito_color = array('div#contenu .edito','div#contenu div.chapo','div#entetediaporama h2','div#boutondiaporama a span');
     //Couleur du texte du titre de l'éditorial
-    $texte_edito_titre_color = array('div#Contenu .edito h3.titre','.edito .Titre','div#Contenu .edito .Titre a','.edito h2 a');
+    $texte_edito_titre_color = array('div#contenu .edito h3.titre','.edito .titre','div#contenu .edito .titre a','.edito h2 a');
     //Couleur de la première lettre du texte du titre de l'éditorial
-    $texte_edito_titre_premier_color = array('div#Contenu .edito h3.titre:first-letter','.edito .Titre:first-letter');
+    $texte_edito_titre_premier_color = array('div#contenu .edito h3.titre:first-letter','.edito .titre:first-letter');
     //Couleur du texte dans les barres des liens et d'arborescence
-    $texte_entete_arborescence_color = array('div#Arborescence','div#Arborescence a','div#Arborescence strong','div#Arborescence em','div#Entete ul.liens','div#Entete ul.liens a','div#Entete ul.liens li.on a');
+    $texte_entete_arborescence_color = array('div#arborescence','div#arborescence a','div#arborescence strong','div#arborescence em','div#entete ul.liens','div#entete ul.liens a','div#entete ul.liens li.on a');
     //Couleur du texte du secteur d'auteur
-    $texte_auteur_color = array('#AuteursDates','#AuteursDates a','.bloc2 #AuteursDates li','.bloc2 #AuteursDates li a');
+    $texte_auteur_color = array('#auteursDates','#auteursDates a','.bloc #auteursDates li','.bloc #auteursDates li a');
     //Couleur des textes du pied de page
-    $texte_pied_color = array('ul#Pied','ul#Pied a','ul#Pied li.on a','ul#Pied a:hover','ul#Pied p a:hover');
+    $texte_pied_color = array('ul#pied','ul#pied a','ul#pied li.on a','ul#pied a:hover','ul#pied p a:hover');
     //Couleur des liens
-    $couleur_lien_color = array('h4.titre a','div#BoutonDiaporama a','a','.texte a','div#Menu .bloc ul li a.on','div#Menu .bloc ul li.on strong','div#MenuDroit .bloc ul li a.on','div#MenuDroit .bloc ul li.on strong');
+    $couleur_lien_color = array('h4.titre a','div#boutondiaporama a','a','.texte a','div#menu .bloc ul li a.on','div#menu .bloc ul li.on strong','div#menudroit .bloc ul li a.on','div#menudroit .bloc ul li.on strong');
     //Couleur des liens survolés
-    $couleur_lien_survol_color = array('div#BoutonDiaporama a:hover','#Forum .bouton a:hover','.texte a:hover','a:hover','div#Contenu a:hover','div#Menu .bloc ul a:hover','div#MenuDroit .bloc ul a:hover','div#Arborescence a:hover','div#Entete ul.liens a:hover');
+    $couleur_lien_survol_color = array('div#boutondiaporama a:hover','#forum .bouton a:hover','.texte a:hover','a:hover','div#contenu a:hover','div#menu .bloc ul a:hover','div#menudroit .bloc ul a:hover','div#arborescence a:hover','div#entete ul.liens a:hover');
     //Couleur des liens des listes impaires
-    $couleur_lien_impair_color = array('div#MenuDroit .bloc ul li.un a','div#Menu .bloc ul li.un a','div#Contenu .bloc li.un a','.bloc li .un a');
+    $couleur_lien_impair_color = array('div#menudroit .bloc ul li.un a','div#menu .bloc ul li.un a','div#contenu .bloc li.un a','.bloc li .un a');
     //Couleur des liens des listes impaires lors du survol
-    $couleur_lien_impair_survol_color = array ('div#MenuDroit .bloc ul li.un a:hover','div#Menu .bloc ul li.un a:hover','div#Contenu .bloc li.un a:hover','div#Contenu .un a:hover');
+    $couleur_lien_impair_survol_color = array ('div#menudroit .bloc ul li.un a:hover','div#menu .bloc ul li.un a:hover','div#contenu .bloc li.un a:hover','div#contenu .un a:hover');
     //Couleur des liens des listes paires
-    $couleur_lien_pair_color = array('div#MenuDroit .bloc ul li.deux a','div#Menu .bloc ul li.deux a','div#Contenu .bloc li.deux a','.bloc li .deux a');
+    $couleur_lien_pair_color = array('div#menudroit .bloc ul li.deux a','div#menu .bloc ul li.deux a','div#contenu .bloc li.deux a','.bloc li .deux a');
     //Couleur des liens des listes paires lors du survol
-    $couleur_lien_pair_survol_color = array('div#MenuDroit .bloc ul li.deux a:hover','div#Menu .bloc ul li.deux a:hover','div#Contenu .bloc li.deux a:hover','div#Contenu .deux a:hover');
+    $couleur_lien_pair_survol_color = array('div#menudroit .bloc ul li.deux a:hover','div#menu .bloc ul li.deux a:hover','div#contenu .bloc li.deux a:hover','div#contenu .deux a:hover');
     //Couleur des bordures de la page, largeur et styles
-    $bordure_page_border_color = array('div#Page');
+    $bordure_page_border_color = array('div#page');
     //Couleur principale des bordures
     $couleur_bordure_color =array('.divers','hr');
-    $couleur_bordure_border_color = array('.divers','hr','div#BoutonDiaporama a span','div #EnteteDiaporama','div #EnteteDiaporama h2 span','.lien','.divers','.bloc','.bloc2','#Forum .bouton a','#FormRecherche','input.formrecherche','fieldset','.forml','textarea.spip_cadre','table.spip th','table.spip td','table.spip tr.row_odd','table.spip tr.row_even','hr','.spip_encadrer','a.spip_barre img','a.spip_barre:hover img');
-    $couleur_bordure_border_top_color = array('h3','#Forum ul.forum div.titre h4','.MenuPaginationBas');
-    $couleur_bordure_right_color = array('#Forum ul.forum div.titre h4','#Forum ul.forum div.titre .auteur','#Forum ul.forum div.contenu');
-    $couleur_bordure_bottom_color = array('h3','#Forum ul.forum div.contenu','.MenuPaginationHaut');
-    $couleur_bordure_left_color = array('#Forum ul.forum div.titre h4','#Forum ul.forum div.titre .auteur','#Forum ul.forum div.contenu','div.spip_poesie');
+    $couleur_bordure_border_color = array('.divers','hr','div#boutondiaporama a span','div #entetediaporama','div #entetediaporama h2 span','.lien','.divers','.bloc','#forum .bouton a','#formRecherche','input.formrecherche','fieldset','.forml','textarea.spip_cadre','table.spip th','table.spip td','table.spip tr.row_odd','table.spip tr.row_even','hr','.spip_encadrer','a.spip_barre img','a.spip_barre:hover img');
+    $couleur_bordure_border_top_color = array('h3','#forum ul.forum div.titre h4','.menupaginationbas');
+    $couleur_bordure_right_color = array('#forum ul.forum div.titre h4','#forum ul.forum div.titre .auteur','#forum ul.forum div.contenu');
+    $couleur_bordure_bottom_color = array('h3','#forum ul.forum div.contenu','.menupaginationhaut');
+    $couleur_bordure_left_color = array('#forum ul.forum div.titre h4','#forum ul.forum div.titre .auteur','#forum ul.forum div.contenu','div.spip_poesie');
     //Couleur des bordures des secteurs d'entête
-    $couleur_bordure_entete_border_color = array('div#Entete h2 span','div#Entete h1 span');
-    $couleur_bordure_entete_border_top_color = array('div#Entete ul.liens a:hover');
-    $couleur_bordure_entete_bottom_color = array('div#Arborescence','div#Entete ul.liens','div#EnteteDiaporama','div#Entete');
-    $couleur_bordure_entete_left_color = array('div#Entete ul.liens li');
+    $couleur_bordure_entete_border_color = array('div#entete h2 span','div#entete h1 span');
+    $couleur_bordure_entete_border_top_color = array('div#entete ul.liens a:hover');
+    $couleur_bordure_entete_bottom_color = array('div#arborescence','div#entete ul.liens','div#entetediaporama','div#entete');
+    $couleur_bordure_entete_left_color = array('div#entete ul.liens li');
     //Couleur, taille, style des bordures du secteur de sous-titre, de titre et de sur-titre
-    $bordure_couleur_titre_border = array('.Titre');
+    $bordure_couleur_titre_border = array('.titre');
     //Couleur des bordures du secteur d'auteur
-    $couleur_bordure_auteur_color = array('#AuteursDates');
+    $couleur_bordure_auteur_color = array('#auteursdates');
     //Couleur de la bordure de l'éditorial
-    $couleur_bordure_edito_border_color = array('div#Contenu .edito','div#EnteteDiaporama','div#BoutonDiaporama a span');
+    $couleur_bordure_edito_border_color = array('div#contenu .edito','div#entetediaporama','div#boutondiaporama a span');
     //Couleur des bordures des secteurs de pied de page
-    $couleur_bordure_pied_border_top_color = array('ul#Pied a:hover','#Logo-Pied','ul#Pied');
-    $couleur_bordure_pied_bottom_color = array('ul#Pied a:hover');
-    $couleur_bordure_pied_left_color = array('ul#Pied li');
+    $couleur_bordure_pied_border_top_color = array('ul#pied a:hover','#logo-pied','ul#pied');
+    $couleur_bordure_pied_bottom_color = array('ul#pied a:hover');
+    $couleur_bordure_pied_left_color = array('ul#pied li');
     //Couleur de la bordure encadrant le menu de navigation
-    $couleur_bordure_menu_border_color = array('ul#Sommaire');
+    $couleur_bordure_menu_border_color = array('ul#sommaire');
     //Couleur des bordures des secteurs du menu de navigation
-    $couleur_bordure_menu_secteurs_border_color = array('ul#Sommaire li');
+    $couleur_bordure_menu_secteurs_border_color = array('ul#sommaire li');
     //Largeur de la page
-    $largeur_page_width = array('div#Page','div#Entete ul.liens');
+    $largeur_page_width = array('div#page','div#entete ul.liens');
     //Largeur du menu de gauche
-    $largeur_menu_width = array('div#Menu');
+    $largeur_menu_width = array('div#menu');
     //Largeur du menu de droite
-    $largeur_menudroite_width = array('div#MenuDroit');
+    $largeur_menudroite_width = array('div#menudroit');
     //Largeur du contenu
-    $largeur_contenu_width = array('div#Contenu');
+    $largeur_contenu_width = array('div#contenu');
     //Hauteur du secteur d'entête
-    $hauteur_entete_height = array('div#Entete');
+    $hauteur_entete_height = array('div#entete');
     //Déplacement horizontal des boutons d administration
     $deplacement_horizontal_bouton_admin_right = array('div .spip-admin-float','html body .spip-admin-float');
     //Déplacement vertical des boutons d administration
@@ -579,29 +579,29 @@ function EVA_div_images() {
     global $eva_habillage_images;
     $eva_habillage_images = array(
     'image_ecran' => array('body'),
-    'image_page' => array('div#Page'),
-    'image_bloc' => array('#FormRecherche','#Forum ul.forum div.titre .auteur','.divers div.contenu','div#Contenu ul','div.bloc ul','div.bloc','div.bloc2','ul#Sommaire','div#Menu .bloc ul','div#MenuDroit .bloc ul'),
-    'image_edito' => array('div#Contenu div.chapo','div.edito'),
-    'image_edito_titre' => array('#Contenu div.edito h3.titre','.edito .Titre'),
-    'image_entete_page' => array('div#Entete'),
-    'image_barre_entete' => array('div#Entete ul.liens'),
-    'image_barre_entete_arborescence' => array('div#Arborescence'),
-    'image_barre_auteur' => array('#AuteursDates','.bloc2 #AuteursDates'),
-    'image_titre_entete' => array('div#Entete h1 span','div#Entete h2 span'),
-    'image_pied' => array('ul#Pied'),
-    'image_pied-logo' => array('#Logo-Pied'),
-    'image_titres' => array('.bloc2 .Titre','.divers h4','table.spip tr.row_first th','div#Contenu div.ps h4','div#MenuDroit h3.titre','div#Menu h3.titre','table.spip tr.row_first','div#Contenu div.lien','div#Contenu div.notes h4','div#Contenu h4.titre','div#Contenu h3.titre','#Forum ul.forum div.titre h4','#Forum .bouton a'),
-    'image_menu' => array('ul#Sommaire', 'ul#Sommaire li'),
-    'image_menu_off' => array('div#Menu ul#Sommaire li','div#Menu ul#Sommaire .off','div#MenuDroit ul#Sommaire .off'),
-    'image_menu_on' => array('div#Menu ul#Sommaire .on','div#MenuDroit ul#Sommaire .on'),
-    'image_impairs' => array('.spip tr.row_even td','div#MenuDroit .bloc ul li.un','div#Menu .bloc ul li.un','div#Contenu ul li.un'),
-    'image_pairs' => array('.spip tr.row_odd td','div#Menu .bloc ul li.deux','div#MenuDroit .bloc ul li.deux','div#Contenu ul li.deux'),
-    'liste_menu_off' => array('div#Menu ul .off','div#MenuDroit ul .off'),
-    'liste_menu_on' => array('div#Menu ul .on','div#MenuDroit ul .on'),
-    'liste_impairs_menu' => array('div#Menu .bloc ul li.un','div#MenuDroit .bloc ul li.un'),
-    'liste_pairs_menu' => array('div#Menu .bloc ul li.deux','div#MenuDroit .bloc ul li.deux'),
-    'liste_impairs_contenu' => array('div#Contenu ul li.un'),
-    'liste_pairs_contenu' => array('div#Contenu ul li.deux')
+    'image_page' => array('div#page'),
+    'image_bloc' => array('#formrecherche','#forum ul.forum div.titre .auteur','.divers div.contenu','div#contenu ul','div.bloc ul','div.bloc','ul#sommaire','div#menu .bloc ul','div#menudroit .bloc ul'),
+    'image_edito' => array('div#contenu div.chapo','div.edito'),
+    'image_edito_titre' => array('#contenu div.edito h3.titre','.edito .titre'),
+    'image_entete_page' => array('div#entete'),
+    'image_barre_entete' => array('div#entete ul.liens'),
+    'image_barre_entete_arborescence' => array('div#arborescence'),
+    'image_barre_auteur' => array('#auteursdates','.bloc #auteursdates'),
+    'image_titre_entete' => array('div#entete h1 span','div#entete h2 span'),
+    'image_pied' => array('ul#pied'),
+    'image_pied-logo' => array('#logo-pied'),
+    'image_titres' => array('.bloc .titre','.divers h4','table.spip tr.row_first th','div#contenu div.ps h4','div#menudroit h3.titre','div#contenu h3.titre','div#menu h3.titre','div#menuDroit h2.titre','div#contenu h2.titre','div#menu h2.titre','table.spip tr.row_first','div#contenu div.lien','div#contenu div.notes h4','div#contenu h4.titre','#forum ul.forum div.titre h4','#forum .bouton a'),
+    'image_menu' => array('ul#sommaire', 'ul#sommaire li'),
+    'image_menu_off' => array('div#menu ul#sommaire li','div#menu ul#sommaire .off','div#menudroit ul#sommaire .off'),
+    'image_menu_on' => array('div#menu ul#sommaire .on','div#menudroit ul#sommaire .on'),
+    'image_impairs' => array('.spip tr.row_even td','div#menuDroit .bloc ul li.un','div#menu .bloc ul li.un','div#contenu ul li.un'),
+    'image_pairs' => array('.spip tr.row_odd td','div#menu .bloc ul li.deux','div#menudroit .bloc ul li.deux','div#contenu ul li.deux'),
+    'liste_menu_off' => array('div#menu ul .off','div#menudroit ul .off'),
+    'liste_menu_on' => array('div#menu ul .on','div#menudroit ul .on'),
+    'liste_impairs_menu' => array('div#menu .bloc ul li.un','div#menudroit .bloc ul li.un'),
+    'liste_pairs_menu' => array('div#menu .bloc ul li.deux','div#menudroit .bloc ul li.deux'),
+    'liste_impairs_contenu' => array('div#contenu ul li.un'),
+    'liste_pairs_contenu' => array('div#contenu ul li.deux')
     );
     return $eva_habillage_images;
 }

@@ -30,8 +30,8 @@ $eva_themes = array(
     "('', 'image', 'Defaut', 'image_menu_on', 'Black/BlackApple_entete_liens.png', 'left', 'top', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_titres', 'Black/BlackApple_titres_secteurs.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_titre_entete', 'Black/BlackApple_entete_arborescence.png', 'left', 'bottom', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', '#Forum .bouton a:first-letter, .divers h4:first-letter, div#Contenu div.lien:first-letter, div#Contenu div.ps h4:first-letter, div#Contenu div.notes h4:first-letter, div#Contenu h4.titre:first-letter, div#Contenu h3:first-letter, div#Contenu .bloc2 h3:first-letter, div#Contenu .bloc2 h3.titre:first-letter, div#Menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#Contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')"
+    "('', 'perso', 'Defaut', '#forum .bouton a:first-letter, .divers h4:first-letter, div#contenu div.lien:first-letter, div#contenu div.ps h4:first-letter, div#contenu div.notes h4:first-letter, div#contenu h4.titre:first-letter, div#contenu h3:first-letter, div#contenu .bloc h3:first-letter, div#contenu .bloc h3.titre:first-letter, div#menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')"
     ), ),
 'Black Cherry' => array(
     /* Thème créé par Olivier Gautier */
@@ -53,8 +53,8 @@ $eva_themes = array(
     "('', 'image', 'Defaut', 'image_menu_off', 'Black/BlackApple_bas_bloc.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_edito', 'Black/BlackApple_edito.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_edito_titre', 'Black/BlackApple_titre_edito.png', 'left', 'bottom', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', '#Forum .bouton a:first-letter, .divers h4:first-letter, div#Contenu div.lien:first-letter, div#Contenu div.ps h4:first-letter, div#Contenu div.notes h4:first-letter, div#Contenu h4.titre:first-letter, div#Contenu h3:first-letter, div#Contenu .bloc2 h3:first-letter, div#Contenu .bloc2 h3.titre:first-letter, div#Menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#Contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')"
+    "('', 'perso', 'Defaut', '#forum .bouton a:first-letter, .divers h4:first-letter, div#contenu div.lien:first-letter, div#contenu div.ps h4:first-letter, div#contenu div.notes h4:first-letter, div#contenu h4.titre:first-letter, div#contenu h3:first-letter, div#contenu .bloc h3:first-letter, div#contenu .bloc h3.titre:first-letter, div#menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')"
     ), ),
 'Black Lemon' => array(
     /* Thème créé par Olivier Gautier */
@@ -76,8 +76,8 @@ $eva_themes = array(
     "('', 'image', 'Defaut', 'image_menu_on', 'Black/BlackLemon_entete_liens.png', 'left', 'top', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_barre_auteur', 'Black/BlackLemon_entete_arborescence.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_titres', 'Black/BlackApple_titres_secteurs.png', 'left', 'bottom', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', '#Forum .bouton a:first-letter, .divers h4:first-letter, div#Contenu div.lien:first-letter, div#Contenu div.ps h4:first-letter, div#Contenu div.notes h4:first-letter, div#Contenu h4.titre:first-letter, div#Contenu h3:first-letter, div#Contenu .bloc2 h3:first-letter, div#Contenu .bloc2 h3.titre:first-letter, div#Menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#Contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')"
+    "('', 'perso', 'Defaut', '#forum .bouton a:first-letter, .divers h4:first-letter, div#contenu div.lien:first-letter, div#contenu div.ps h4:first-letter, div#contenu div.notes h4:first-letter, div#contenu h4.titre:first-letter, div#contenu h3:first-letter, div#contenu .bloc h3:first-letter, div#contenu .bloc h3.titre:first-letter, div#menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')"
     ), ),
 'Black Orange' => array(
     /* Thème créé par Olivier Gautier */
@@ -99,8 +99,8 @@ $eva_themes = array(
     "('', 'image', 'Defaut', 'image_pairs', 'Black/BlackApple_bas_paires.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_ecran', 'Black/BlackApple_degrade_noir_gris.png', 'left', 'top', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_barre_auteur', 'Black/BlackOrange_entete_arborescence.png', 'left', 'bottom', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', '#Forum .bouton a:first-letter, .divers h4:first-letter, div#Contenu div.lien:first-letter, div#Contenu div.ps h4:first-letter, div#Contenu div.notes h4:first-letter, div#Contenu h4.titre:first-letter, div#Contenu h3:first-letter, div#Contenu .bloc2 h3:first-letter, div#Contenu .bloc2 h3.titre:first-letter, div#Menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#Contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')"
+    "('', 'perso', 'Defaut', '#forum .bouton a:first-letter, .divers h4:first-letter, div#contenu div.lien:first-letter, div#contenu div.ps h4:first-letter, div#contenu div.notes h4:first-letter, div#contenu h4.titre:first-letter, div#contenu h3:first-letter, div#contenu .bloc h3:first-letter, div#contenu .bloc h3.titre:first-letter, div#menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')"
     ), ),
 'Black Violet' => array(
     /* Thème créé par Olivier Gautier */
@@ -122,8 +122,8 @@ $eva_themes = array(
     "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'Black/BlackViolet_entete_arborescence.png', 'left', 'top', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_pairs', 'Black/BlackApple_bas_paires.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_ecran', 'Black/BlackApple_degrade_noir_gris.png', 'left', 'top', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', '#Forum .bouton a:first-letter, .divers h4:first-letter, div#Contenu div.lien:first-letter, div#Contenu div.ps h4:first-letter, div#Contenu div.notes h4:first-letter, div#Contenu h4.titre:first-letter, div#Contenu h3:first-letter, div#Contenu .bloc2 h3:first-letter, div#Contenu .bloc2 h3.titre:first-letter, div#Menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#Contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')"
+    "('', 'perso', 'Defaut', '#forum .bouton a:first-letter, .divers h4:first-letter, div#contenu div.lien:first-letter, div#contenu div.ps h4:first-letter, div#contenu div.notes h4:first-letter, div#contenu h4.titre:first-letter, div#contenu h3:first-letter, div#contenu .bloc h3:first-letter, div#contenu .bloc h3.titre:first-letter, div#menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')"
     ), ),
 'Black Ocean' => array(
     /* Thème créé par Olivier Gautier */
@@ -145,8 +145,8 @@ $eva_themes = array(
     "('', 'image', 'Defaut', 'image_menu_off', 'Black/BlackApple_bas_bloc.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_bloc', 'Black/BlackApple_bas_bloc.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_edito_titre', 'Black/BlackApple_titre_edito.png', 'left', 'bottom', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', '#Forum .bouton a:first-letter, .divers h4:first-letter, div#Contenu div.lien:first-letter, div#Contenu div.ps h4:first-letter, div#Contenu div.notes h4:first-letter, div#Contenu h4.titre:first-letter, div#Contenu h3:first-letter, div#Contenu .bloc2 h3:first-letter, div#Contenu .bloc2 h3.titre:first-letter, div#Menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#Contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')"
+    "('', 'perso', 'Defaut', '#forum .bouton a:first-letter, .divers h4:first-letter, div#contenu div.lien:first-letter, div#contenu div.ps h4:first-letter, div#contenu div.notes h4:first-letter, div#contenu h4.titre:first-letter, div#contenu h3:first-letter, div#contenu .bloc h3:first-letter, div#contenu .bloc h3.titre:first-letter, div#menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')"
     ), ),
 'Black Pig' => array(
     /* Thème créé par Olivier Gautier */
@@ -168,15 +168,14 @@ $eva_themes = array(
     "('', 'image', 'Defaut', 'image_titres', 'Black/BlackApple_titres_secteurs.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_entete_page', 'Black/BlackPink_pied.png', 'left', '24px', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'Black/BlackPink_entete_arborescence.png', 'left', 'bottom', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', '#Forum .bouton a:first-letter, .divers h4:first-letter, div#Contenu div.lien:first-letter, div#Contenu div.ps h4:first-letter, div#Contenu div.notes h4:first-letter, div#Contenu h4.titre:first-letter, div#Contenu h3:first-letter, div#Contenu .bloc2 h3:first-letter, div#Contenu .bloc2 h3.titre:first-letter, div#Menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#Contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')"
+    "('', 'perso', 'Defaut', '#forum .bouton a:first-letter, .divers h4:first-letter, div#contenu div.lien:first-letter, div#contenu div.ps h4:first-letter, div#contenu div.notes h4:first-letter, div#contenu h4.titre:first-letter, div#contenu h3:first-letter, div#contenu .bloc h3:first-letter, div#contenu .bloc h3.titre:first-letter, div#menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')"
     ), ),
 'Black Violet Pig' => array(
     /* Thème créé par Olivier Gautier */
     "habillage" => "eva_style_images_de_fond.css",
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#800080', '#ff95ff', '#ff95ff', '#800080', '#800080', '#455245', '#800080', '#ff95ff', '#455245', '#444444', '#333333', '#800080', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#d5f5d9', '#d5f5d9', '#CCC', '#FFF', '#CCC', '#FFFFFF', '#d5f5d9', '#f892cc', '#fbbde0', '#800080', '#FFFFFF', '#f892cc', '#800080', '#222222', '#FFFFFF', '#222222', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#800080', '', '', '', '', 'none', '#ff95ff', '', '', '#800080', '', '', '#800080', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
-    "('', 'perso', 'Defaut', '#Forum .bouton a:first-letter, .divers h4:first-letter, div#Contenu div.lien:first-letter, div#Contenu div.ps h4:first-letter, div#Contenu div.notes h4:first-letter, div#Contenu h4.titre:first-letter, div#Contenu h3:first-letter, div#Contenu .bloc2 h3:first-letter, div#Contenu .bloc2 h3.titre:first-letter, div#Menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#Contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_titre_entete', 'Black/BlackPig2_entete_liens.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_pied', 'Black/BlackPig2_pied.png', 'left', 'top', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_entete_page', 'Black/BlackPig2_pied.png', 'left', '24px', 'repeat-x', 'scroll')",
@@ -192,7 +191,8 @@ $eva_themes = array(
     "('', 'image', 'Defaut', 'image_menu_off', 'Black/BlackApple_bas_bloc.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_edito', 'Black/BlackApple_edito.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_page', 'Black/Black_page.png', 'left', 'bottom', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#Contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')"
+    "('', 'perso', 'Defaut', '#forum .bouton a:first-letter, .divers h4:first-letter, div#contenu div.lien:first-letter, div#contenu div.ps h4:first-letter, div#contenu div.notes h4:first-letter, div#contenu h4.titre:first-letter, div#contenu h3:first-letter, div#contenu .bloc h3:first-letter, div#contenu .bloc h3.titre:first-letter, div#menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')"
     ), ),
 'Black is Black' => array(
     /* Thème créé par Olivier Gautier */
@@ -214,8 +214,8 @@ $eva_themes = array(
     "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'Black/BlackIsBlack_entete_arborescence.png', 'left', 'top', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_barre_auteur', 'Black/BlackIsBlack_entete_arborescence.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_titres', 'Black/BlackApple_titres_secteurs.png', 'left', 'bottom', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', '#Forum .bouton a:first-letter, .divers h4:first-letter, div#Contenu div.lien:first-letter, div#Contenu div.ps h4:first-letter, div#Contenu div.notes h4:first-letter, div#Contenu h4.titre:first-letter, div#Contenu h3:first-letter, div#Contenu .bloc2 h3:first-letter, div#Contenu .bloc2 h3.titre:first-letter, div#Menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#Contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')"
+    "('', 'perso', 'Defaut', '#forum .bouton a:first-letter, .divers h4:first-letter, div#contenu div.lien:first-letter, div#contenu div.ps h4:first-letter, div#contenu div.notes h4:first-letter, div#contenu h4.titre:first-letter, div#contenu h3:first-letter, div#contenu .bloc h3:first-letter, div#contenu .bloc h3.titre:first-letter, div#menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')"
     ), ),
 'Black Tree' => array(
     /* Thème créé par Olivier Gautier */
@@ -223,10 +223,9 @@ $eva_themes = array(
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#bb6c64', '#6d3630', '#bb6c64', '#bb6c64', '#bb6c64', '#455245', '#bb6c64', '#6d3630', '#455245', '#444444', '#333333', '#bb6c64', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#edd8d6', '#CCC', '#FFF', '#CCC', '#FFFFFF', '#edd8d6', '#e7ccc9', '#edd8d6', '#bb6c64', '#FFFFFF', '#e7ccc9', '#bb6c64', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#bb6c64', '', '', '', '', 'none', '#bb6c64', '', '', '#444444', '', '', '#bb6c64', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_page', 'Black/Black_page.png', 'left', 'bottom', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#Contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')",
-    "('', 'image', 'Defaut', 'image_menu_on', 'Black/BlackBrown_entete_liens.png', 'left', 'top', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', '#Forum .bouton a:first-letter, .divers h4:first-letter, div#Contenu div.lien:first-letter, div#Contenu div.ps h4:first-letter, div#Contenu div.notes h4:first-letter, div#Contenu h4.titre:first-letter, div#Contenu h3:first-letter, div#Contenu .bloc2 h3:first-letter, div#Contenu .bloc2 h3.titre:first-letter, div#Menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#Contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
-    "('', 'image', 'Defaut', 'image_titres', 'Black/BlackApple_titres_secteurs.png', 'left', 'bottom', 'repeat-x', 'scroll')",
+    "('', 'perso', 'Defaut', '#forum .bouton a:first-letter, .divers h4:first-letter, div#contenu div.lien:first-letter, div#contenu div.ps h4:first-letter, div#contenu div.notes h4:first-letter, div#contenu h4.titre:first-letter, div#contenu h3:first-letter, div#contenu .bloc h3:first-letter, div#contenu .bloc h3.titre:first-letter, div#menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')",
+    "('', 'image', 'Defaut', 'image_menu_on', 'Black/BlackBrown_entete_liens.png', 'left', 'top', 'repeat-x', 'scroll')",    "('', 'image', 'Defaut', 'image_titres', 'Black/BlackApple_titres_secteurs.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_barre_auteur', 'Black/BlackBrown_entete_arborescence.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_titre_entete', 'Black/BlackBrown_entete_arborescence.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_impairs', 'Black/BlackApple_bas_impaires.png', 'left', 'bottom', 'repeat-x', 'scroll')",
@@ -247,9 +246,9 @@ $eva_themes = array(
     "images" => array(
     "('', 'image', 'Defaut', 'image_menu_off', 'Black/BlackApple_bas_bloc.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_page', 'Black/Black_page.png', 'left', 'bottom', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#Contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '#forum .bouton a:first-letter, .divers h4:first-letter, div#contenu div.lien:first-letter, div#contenu div.ps h4:first-letter, div#contenu div.notes h4:first-letter, div#contenu h4.titre:first-letter, div#contenu h3:first-letter, div#contenu .bloc h3:first-letter, div#contenu .bloc h3.titre:first-letter, div#menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_menu_on', 'Black/BlackSky_entete_liens.png', 'left', 'top', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', '#Forum .bouton a:first-letter, .divers h4:first-letter, div#Contenu div.lien:first-letter, div#Contenu div.ps h4:first-letter, div#Contenu div.notes h4:first-letter, div#Contenu h4.titre:first-letter, div#Contenu h3:first-letter, div#Contenu .bloc2 h3:first-letter, div#Contenu .bloc2 h3.titre:first-letter, div#Menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#Contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_edito', 'Black/BlackApple_edito.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_pied', 'Black/BlackSky_pied.png', 'left', 'top', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_edito_titre', 'Black/BlackApple_titre_edito.png', 'left', 'bottom', 'repeat-x', 'scroll')",
@@ -268,7 +267,8 @@ $eva_themes = array(
     "habillage" => "eva_style_images_de_fond.css",
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#3a7474', '#8bc5c5', '#8bc5c5', '#3a7474', '#3a7474', '#455245', '#3a7474', '#8bc5c5', '#455245', '#444444', '#333333', '#3a7474', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#CCC', '#FFF', '#CCC', '#FFFFFF', '#b6dada', '#b6dada', '#FFFFFF', '#3a7474', '#FFFFFF', '#FFFFFF', '#3a7474', '#333333', '#FFFFFF', '#333333', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#3a7474', '', '', '', '', 'none', '#3a7474', '', '', '#444444', '', '', '#3a7474', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
-    "('', 'perso', 'Defaut', '#Forum .bouton a:first-letter, .divers h4:first-letter, div#Contenu div.lien:first-letter, div#Contenu div.ps h4:first-letter, div#Contenu div.notes h4:first-letter, div#Contenu h4.titre:first-letter, div#Contenu h3:first-letter, div#Contenu .bloc2 h3:first-letter, div#Contenu .bloc2 h3.titre:first-letter, div#Menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#Contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '#forum .bouton a:first-letter, .divers h4:first-letter, div#contenu div.lien:first-letter, div#contenu div.ps h4:first-letter, div#contenu div.notes h4:first-letter, div#contenu h4.titre:first-letter, div#contenu h3:first-letter, div#contenu .bloc h3:first-letter, div#contenu .bloc h3.titre:first-letter, div#menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_edito_titre', 'Black/BlackApple_titre_edito.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_edito', 'Black/BlackApple_edito.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_menu_off', 'Black/BlackApple_bas_bloc.png', 'left', 'bottom', 'repeat-x', 'scroll')",
@@ -283,8 +283,7 @@ $eva_themes = array(
     "('', 'image', 'Defaut', 'image_titres', 'Black/BlackApple_titres_secteurs.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_barre_auteur', 'Black/BlackGreySky_entete_arborescence.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'Black/BlackGreySky_entete_arborescence.png', 'left', 'top', 'repeat-x', 'scroll')",
-    "('', 'image', 'Defaut', 'image_page', 'Black/Black_page.png', 'left', 'bottom', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#Contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')"
+    "('', 'image', 'Defaut', 'image_page', 'Black/Black_page.png', 'left', 'bottom', 'repeat-x', 'scroll')"
     ), ),
 'Black Salmon' => array(
     /* Thème créé par Olivier Gautier */
@@ -305,17 +304,17 @@ $eva_themes = array(
     "('', 'image', 'Defaut', 'image_entete_page', 'Black/BlackSalmon_pied.png', 'left', '24px', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_impairs', 'Black/BlackApple_bas_impaires.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_titres', 'Black/BlackApple_titres_secteurs.png', 'left', 'bottom', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#Contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_pied', 'Black/BlackSalmon_pied.png', 'left', 'top', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', '#Forum .bouton a:first-letter, .divers h4:first-letter, div#Contenu div.lien:first-letter, div#Contenu div.ps h4:first-letter, div#Contenu div.notes h4:first-letter, div#Contenu h4.titre:first-letter, div#Contenu h3:first-letter, div#Contenu .bloc2 h3:first-letter, div#Contenu .bloc2 h3.titre:first-letter, div#Menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#Contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')"
+    "('', 'perso', 'Defaut', '#forum .bouton a:first-letter, .divers h4:first-letter, div#contenu div.lien:first-letter, div#contenu div.ps h4:first-letter, div#contenu div.notes h4:first-letter, div#contenu h4.titre:first-letter, div#contenu h3:first-letter, div#contenu .bloc h3:first-letter, div#contenu .bloc h3.titre:first-letter, div#menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')"
     ), ),
 'Black Pink Lady' => array(
     /* Thème créé par Olivier Gautier */
     "habillage" => "eva_style_images_de_fond.css",
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#92e043', '#fe85a6', '#92e043', '#92e043', '#92e043', '#455245', '#92e043', '#fe85a6', '#455245', '#fe85a6', '#333333', '#92e043', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#222222', '#CCC', '#FFF', '#CCC', '#FFFFFF', '#222222', '#cbb077', '#cbb077', '#fe85a6', '#FFFFFF', '#cbb077', '#fe85a6', '#222222', '#FFFFFF', '#222222', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#92e043', '', '', '', '', 'none', '#92e043', '', '', '#444444', '', '', '#92e043', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
-    "('', 'perso', 'Defaut', 'div#Contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', '#Forum .bouton a:first-letter, .divers h4:first-letter, div#Contenu div.lien:first-letter, div#Contenu div.ps h4:first-letter, div#Contenu div.notes h4:first-letter, div#Contenu h4.titre:first-letter, div#Contenu h3:first-letter, div#Contenu .bloc2 h3:first-letter, div#Contenu .bloc2 h3.titre:first-letter, div#Menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#Contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '#forum .bouton a:first-letter, .divers h4:first-letter, div#contenu div.lien:first-letter, div#contenu div.ps h4:first-letter, div#contenu div.notes h4:first-letter, div#contenu h4.titre:first-letter, div#contenu h3:first-letter, div#contenu .bloc h3:first-letter, div#contenu .bloc h3.titre:first-letter, div#menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_edito_titre', 'Black/BlackApple_titre_edito.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_edito', 'Black/BlackApple_edito.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_menu_off', 'Black/BlackApple_bas_bloc.png', 'left', 'bottom', 'repeat-x', 'scroll')",
@@ -337,8 +336,8 @@ $eva_themes = array(
     "habillage" => "eva_style_images_de_fond.css",
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#6d1fbc', '#92e043', '#6d1fbc', '#6d1fbc', '#6d1fbc', '#455245', '#6d1fbc', '#92e043', '#455245', '#444444', '#333333', '#6d1fbc', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#d5f5d9', '#222222', '#CCC', '#FFF', '#CCC', '#FFFFFF', '#d5f5d9', '#a768e6', '#b783eb', '#6d1fbc', '#FFFFFF', '#b783eb', '#6d1fbc', '#222222', '#222222', '#222222', '#2593d8', '#6d1fbc', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#6d1fbc', '', '', '', '', 'none', '#6d1fbc', '', '', '#444444', '', '', '#6d1fbc', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
-    "('', 'perso', 'Defaut', 'div#Contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', '#Forum .bouton a:first-letter, .divers h4:first-letter, div#Contenu div.lien:first-letter, div#Contenu div.ps h4:first-letter, div#Contenu div.notes h4:first-letter, div#Contenu h4.titre:first-letter, div#Contenu h3:first-letter, div#Contenu .bloc2 h3:first-letter, div#Contenu .bloc2 h3.titre:first-letter, div#Menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#Contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '#forum .bouton a:first-letter, .divers h4:first-letter, div#contenu div.lien:first-letter, div#contenu div.ps h4:first-letter, div#contenu div.notes h4:first-letter, div#contenu h4.titre:first-letter, div#contenu h3:first-letter, div#contenu .bloc h3:first-letter, div#contenu .bloc h3.titre:first-letter, div#menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_titre_entete', 'Black/BlackGreenPurple_entete_arborescence.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_pied', 'Black/BlackGreenPurple_pied.png', 'left', 'top', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_titres', 'Black/BlackApple_titres_secteurs.png', 'left', 'bottom', 'repeat-x', 'scroll')",
@@ -360,10 +359,10 @@ $eva_themes = array(
     "habillage" => "eva_style_images_de_fond.css",
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#0000ff', '#ffff00', '#ffff00', '#0000ff', '#0000ff', '#455245', '#0000ff', '#ffff00', '#455245', '#444444', '#333333', '#0000ff', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#d5f5d9', '#d5f5d9', '#CCC', '#FFF', '#CCC', '#FFFFFF', '#d5f5d9', '#cbf3ef', '#d5f5d9', '#0000ff', '#FFFFFF', '#d5f5d9', '#0000ff', '#222222', '#FFFFFF', '#111111', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#0000ff', '', '', '', '', 'none', '#0000ff', '', '', '#444444', '', '', '#0000ff', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
-    "('', 'perso', 'Defaut', 'div#Contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '#forum .bouton a:first-letter, .divers h4:first-letter, div#contenu div.lien:first-letter, div#contenu div.ps h4:first-letter, div#contenu div.notes h4:first-letter, div#contenu h4.titre:first-letter, div#contenu h3:first-letter, div#contenu .bloc h3:first-letter, div#contenu .bloc h3.titre:first-letter, div#menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_titres', 'Black/BlackApple_titres_secteurs.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_menu_on', 'Black/BlackYellowBleu_entete_liens.png', 'left', 'top', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', '#Forum .bouton a:first-letter, .divers h4:first-letter, div#Contenu div.lien:first-letter, div#Contenu div.ps h4:first-letter, div#Contenu div.notes h4:first-letter, div#Contenu h4.titre:first-letter, div#Contenu h3:first-letter, div#Contenu .bloc2 h3:first-letter, div#Contenu .bloc2 h3.titre:first-letter, div#Menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#Contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_pied', 'Black/BlackYellowBleu_pied.png', 'left', 'top', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_impairs', 'Black/BlackApple_bas_impaires.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_titre_entete', 'Black/BlackYellowBleu_entete_arborescence.png', 'left', 'bottom', 'repeat-x', 'scroll')",
@@ -383,10 +382,10 @@ $eva_themes = array(
     "habillage" => "eva_style_images_de_fond.css",
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#ff0000', '#ffff00', '#ffff00', '#ff0000', '#ff0000', '#455245', '#ff0000', '#ffff00', '#455245', '#444444', '#333333', '#ff0000', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#d5f5d9', '#d5f5d9', '#CCC', '#FFF', '#CCC', '#FFFFFF', '#ffb9b9', '#ffb9b9', '#ffb9b9', '#ff0000', '#FFFFFF', '#ffb9b9', '#ff0000', '#222222', '#222222', '#111111', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#ff0000', '', '', '', '', 'none', '#ff0000', '', '', '#444444', '', '', '#ff0000', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
-    "('', 'perso', 'Defaut', 'div#Contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '#forum .bouton a:first-letter, .divers h4:first-letter, div#contenu div.lien:first-letter, div#contenu div.ps h4:first-letter, div#contenu div.notes h4:first-letter, div#contenu h4.titre:first-letter, div#contenu h3:first-letter, div#contenu .bloc h3:first-letter, div#contenu .bloc h3.titre:first-letter, div#menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu .edito h3.titre {border : 1px solid #1F1F1F;}	', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_titres', 'Black/BlackApple_titres_secteurs.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_menu_on', 'Black/BlackYellowRed_entete_arborescence.png', 'left', 'top', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', '#Forum .bouton a:first-letter, .divers h4:first-letter, div#Contenu div.lien:first-letter, div#Contenu div.ps h4:first-letter, div#Contenu div.notes h4:first-letter, div#Contenu h4.titre:first-letter, div#Contenu h3:first-letter, div#Contenu .bloc2 h3:first-letter, div#Contenu .bloc2 h3.titre:first-letter, div#Menu h3:first-letter, .divers h4:first-letter, h3:first-letter, div#Contenu .edito h3.titre:first-letter {font-size:130%;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_pied', 'Black/BlackYellowRed_pied.png', 'left', 'top', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_impairs', 'Black/BlackApple_bas_impaires.png', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_titre_entete', 'Black/BlackYellowRed_entete_liens.png', 'left', 'bottom', 'repeat-x', 'scroll')",
@@ -410,15 +409,15 @@ $eva_themes = array(
     "('', 'image', 'Defaut', 'image_entete_page', 'Plage/fond_entete.jpg', 'left', 'bottom', 'no-repeat', 'scroll')",
     "('', 'image', 'Defaut', 'image_pied', 'Plage/Fond_pied.gif', 'left', 'top', 'no-repeat', 'scroll')",
     "('', 'image', 'Defaut', 'image_barre_entete', 'Plage/Fond_bouton.png', 'left', 'bottom', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#Menu {padding-left:0px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#menu {padding-left:0px;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_ecran', 'Plage/poisson4.gif', 'right', 'bottom', 'no-repeat', 'fixed')",
     "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'Plage/Fond_arborescence.png', 'left', 'top', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_page', 'Plage/Poisson1.gif', 'left', 'bottom', 'no-repeat', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#Entete h1 span, div#Entete h2 span{border-style:none;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete h1 span, div#entete h2 span{border-style:none;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_menu_on', 'Plage/poisson7.gif', 'right', 'bottom', 'no-repeat', 'scroll')",
     "('', 'image', 'Defaut', 'image_impairs', 'Plage/Liste_impaire.png', 'right', 'top', 'no-repeat', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#Contenu, div#Conteneur {margin-right:0; padding-right:0;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Page{padding:0;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu, div#conteneur {margin-right:0; padding-right:0;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#page{padding:0;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_bloc', 'Plage/poisson13.gif', 'left', 'bottom', 'no-repeat', 'scroll')",
     "('', 'image', 'Defaut', 'image_barre_auteur', 'Plage/poisson15.gif', 'right', 'top', 'no-repeat', 'scroll')",
     "('', 'image', 'Defaut', 'image_menu_off', 'Plage/Menu_off.png', 'right', 'bottom', 'no-repeat', 'scroll')",
@@ -434,37 +433,37 @@ $eva_themes = array(
     "('', 'perso', 'Defaut', 'div#Entete {height:269px;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_barre_entete', 'Plage/haut_top.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'perso', 'Defaut', 'ul.liens {line-height:21px;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Contenu {border-bottom: 1px solid #111;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu {border-bottom: 1px solid #111;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'body {margin-top:0; margin-bottom:0;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_pairs', 'Plage/Liste_paire.png', 'right', 'top', 'no-repeat', 'scroll')",
     "('', 'image', 'Defaut', 'image_barre_auteur', 'Plage/poisson15.gif', 'right', 'top', 'no-repeat', 'scroll')",
     "('', 'image', 'Defaut', 'image_menu_off', 'Plage/Menu_off.png', 'right', 'bottom', 'no-repeat', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#Page{padding:0;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#page{padding:0;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_bloc', 'Plage/poisson13.gif', 'left', 'bottom', 'no-repeat', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#Contenu, div#Conteneur {margin-right:0; padding-right:0;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Entete h1 span, div#Entete h2 span{border-style:none;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu, div#conteneur {margin-right:0; padding-right:0;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete h1 span, div#entete h2 span{border-style:none;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_menu_on', 'Plage/poisson7.gif', 'right', 'bottom', 'no-repeat', 'scroll')",
     "('', 'image', 'Defaut', 'image_impairs', 'Plage/Liste_impaire.png', 'right', 'top', 'no-repeat', 'scroll')",
     "('', 'image', 'Defaut', 'image_page', 'Plage/Poisson1.gif', 'left', 'bottom', 'no-repeat', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#Menu {padding-left:0px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#menu {padding-left:0px;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_ecran', 'Plage/image_fond.jpg', 'left', 'top', 'repeat-x', 'fixed')",
-    "('', 'perso', 'Defaut', 'ul#Logo-Pied, #ul#Pied {margin:0; padding:0;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'ul#logo-pied, #ul#pied {margin:0; padding:0;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'ul.liens {margin-top:0px;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'div.edito{margin-bottom:0;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'div.bloc{margin-top:0;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'ul#Logo-Pied, ul#Pied {display:none;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'ul#logo-pied, ul#pied {display:none;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'div.bloc{margin-bottom:0;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'div.edito{margin-top:0;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Arborescence{margin-left:258px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#arborescence{margin-left:258px;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'Plage/haut_back.jpg', 'left', 'top', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#Arborescence{height:30px;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Arborescence, div#Entete, div#Contenu {border-left: 1px solid #111; border-right: 1px solid #111;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Arborescence{height:27px; line-height:27px;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Menu .bloc {border:1px solid #111; }', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Menu {margin-top:-200px;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#ConteneurSeul div#Contenu {margin : 0 0 0 258px;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#ConteneurSeul {margin:0;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Entete {margin-left:258px;}', '', '', '', '', '')"
+    "('', 'perso', 'Defaut', 'div#arborescence{height:30px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#arborescence, div#entete, div#contenu {border-left: 1px solid #111; border-right: 1px solid #111;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#arborescence{height:27px; line-height:27px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#menu .bloc {border:1px solid #111; }', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#menu {margin-top:-200px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#conteneurseul div#contenu {margin : 0 0 0 258px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#conteneurseul {margin:0;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete {margin-left:258px;}', '', '', '', '', '')"
     ), ),
 'Nature' => array(
     /* Thème créé par Olivier Gautier */
@@ -489,7 +488,7 @@ $eva_themes = array(
     "habillage" => "eva_style_3_colonnes.css",
     "theme" => "('', 'Defaut', '#fff', '#fff', '#fff', '#fff', '#6262A4', '#6262A4', '#6262A4', '#6262A4', '#6262A4', '#990000', '#6262A4', '#fff', '#fff', '#6262A4', '#fff', '#6262A4', '#fff', '#fff', '#E0E0E0', '', '#000', '#000', '#000', '#FFF', '#FFF', '#FFF', '#FFF', '#FFF', '#6262A4', '#990000', '#FFF', '#990000', '#000', '#FFF', '#990000', '#FFF', '#FFF', '#000', '#990000', '#990000; text-decoration:underline', '#990000', '#990000; text-decoration:underline', '#990000', '#990000; text-decoration:underline', '', '', 'none', '#6262A4', '', '', '#FFF', '2px', 'solid', '#6262A4', '', '', '#6262A4', '', '', '#6262A4', '10px', 'solid', '#6262A4', '', '', '', '', 'none', '#6262A4', 'thin', 'solid', '', '', '', '', '120px', '', '50px')",
     "images" => array(
-    "('', 'perso', 'Defaut', '#MenuDroit ul#Sommaire {margin-top:0;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '#menudroit ul#sommaire {margin-top:0;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'a:hover {text-decoration:underline;}', '', '', '', '', '')",
     "('', 'bloc', 'Defaut', 'rubrique_mot', 'centre', '', '', '', '')",
     "('', 'bloc', 'Defaut', 'auteur_navigation', 'gauche', '', '', '', '')",
@@ -504,16 +503,16 @@ $eva_themes = array(
     "('', 'bloc', 'Defaut', 'sommaire_compteur', 'droite', '', '', '', '')",
     "('', 'bloc', 'Defaut', 'rubrique_syndic', 'centre', '', '', '', '')",
     "('', 'perso', 'Defaut', 'div .edito {padding:0;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#MenuDroit .bloc {border-color:#808080;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#MenuDroit h3.titre {background-color:#808080;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#menudroit .bloc {border-color:#808080;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#menudroit h3.titre {background-color:#808080;}', '', '', '', '', '')",
     "('', 'bloc', 'Defaut', 'sommaire_syndic', 'droite', '', '', '', '')",
     "('', 'bloc', 'Defaut', 'sommaire_mini_calendrier', 'gauche', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'ul#Sommaire {margin-top:4px;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Contenu .edito h3.titre {margin:0;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'h3 , div#Contenu h3 , h3:first-letter , div#Contenu h3:first-letter {color:#990000;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'ul#sommaire {margin-top:4px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu .edito h3.titre {margin:0;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'h3 , div#contenu h3 , h3:first-letter , div#contenu h3:first-letter {color:#990000;}', '', '', '', '', '')",
     "('', 'bloc', 'Defaut', 'rubrique_navigation', 'gauche', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Contenu .bloc2 h3:first-letter , div#Contenu .bloc2 h3:first-letter , h3 , div#Contenu h3 , h3:first-letter , div#Contenu h3:first-letter {color:#990000;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Menu ul#Sommaire li{margin:1px 0;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu .bloc h3:first-letter , div#contenu .bloc h3:first-letter , h3 , div#contenu h3 , h3:first-letter , div#contenu h3:first-letter {color:#990000;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#menu ul#sommaire li{margin:1px 0;}', '', '', '', '', '')",
     "('', 'bloc', 'Defaut', 'sommaire_podcast', 'droite', '', '', '', '')",
     "('', 'bloc', 'Defaut', 'sommaire_site', 'droite', '', '', '', '')",
     "('', 'bloc', 'Defaut', 'auteur_articles', 'droite', '', '', '', '')",
@@ -534,8 +533,8 @@ $eva_themes = array(
     "('', 'bloc', 'Defaut', 'article_meme_rubrique', 'gauche', '', '', '', '')",
     "('', 'bloc', 'Defaut', 'article_mot', 'gauche', '', '', '', '')",
     "('', 'bloc', 'Defaut', 'article_compteur', 'centre', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'ul#Pied{padding-right:270px;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'ul#Logo-Pied{padding-right:270px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'ul#pied{padding-right:270px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'ul#logo-pied{padding-right:270px;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'ul.liens {padding-right:270px;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_entete_page', 'FilleGarcon/entete_pied.png', 'right', 'top', 'repeat-y', 'scroll')",
     "('', 'image', 'Defaut', 'image_barre_entete', 'FilleGarcon/entete_pied.png', 'right', 'top', 'repeat-y', 'scroll')",
@@ -544,8 +543,8 @@ $eva_themes = array(
     "('', 'image', 'Defaut', 'image_pied-logo', 'FilleGarcon/entete_pied.png', 'right', 'top', 'repeat-y', 'scroll')",
     "('', 'bloc', 'Defaut', 'article_navigation', 'gauche', '', '', '', '')",
     "('', 'bloc', 'Defaut', 'article_petition', 'gauche', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div #ConteneurSeul {padding-right:270px;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Entete ul.liens {text-align:left}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div #conteneurseul {padding-right:270px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete ul.liens {text-align:left}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'body {margin:0;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_ecran', 'FilleGarcon/page.png', 'right', 'top', 'repeat-y', 'scroll')"
     ), ),
@@ -558,7 +557,7 @@ $eva_themes = array(
     "('', 'image', 'Defaut', 'image_titre_entete', 'souris/carreaux.jpg', 'left', 'top', 'repeat', 'scroll')",
     "('', 'perso', 'Defaut', 'body {margin-top:0; margin-bottom:0;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_barre_auteur', 'souris/bg5.jpg', 'left', 'top', 'repeat', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#Entete h1 span , div#Entete h2 span {border:2px solid #C0C0C0;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete h1 span , div#entete h2 span {border:2px solid #C0C0C0;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_ecran', 'souris/larg.jpg', 'center', 'top', 'repeat-y', 'scroll')",
     "('', 'image', 'Defaut', 'image_pied', 'souris/bg5.jpg', 'left', 'top', 'repeat', 'scroll')"
     ), ),
@@ -571,9 +570,9 @@ $eva_themes = array(
     "('', 'image', 'Defaut', 'image_titre_entete', 'souris/carreaux.jpg', 'left', 'top', 'repeat', 'scroll')",
     "('', 'perso', 'Defaut', 'body {margin-top:0; margin-bottom:0;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_barre_auteur', 'souris/bg5.jpg', 'left', 'top', 'repeat', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#Entete h1 span , div#Entete h2 span {border:2px solid #C0C0C0;}', '', '', '', '', '')",
-     "('', 'perso', 'Defaut', '#Contenu{margin-right:10px;}', '', '', '', '', '')",
-     "('', 'perso', 'Defaut', '.bloc2 {padding-left:10px; padding-right:10px;}', '', '', '', '', '')",    
+    "('', 'perso', 'Defaut', 'div#entete h1 span , div#entete h2 span {border:2px solid #C0C0C0;}', '', '', '', '', '')",
+     "('', 'perso', 'Defaut', '#contenu{margin-right:10px;}', '', '', '', '', '')",
+     "('', 'perso', 'Defaut', '.bloc {padding-left:10px; padding-right:10px;}', '', '', '', '', '')",    
     "('', 'image', 'Defaut', 'image_ecran', 'souris/bleudeg.png', 'center', 'top', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_pied', 'souris/bg5.jpg', 'left', 'top', 'repeat', 'scroll')"
     ), ),
@@ -584,8 +583,8 @@ $eva_themes = array(
     "images" => array(
     "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'Basic/rouge_bas.png', 'left', 'top', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_entete_page', 'Basic/rouge_milieu.png', 'left', 'bottom', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', 'div #Menu {border-right:1px solid #AAA;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div #Menu {border-bottom:1px solid #AAA;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div #menu {border-right:1px solid #AAA;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div #menu {border-bottom:1px solid #AAA;}', '', '', '', '', '')",
     ), ),
 'Basic Bleu' => array(
     /* Thème créé par Olivier Gautier */
@@ -594,8 +593,8 @@ $eva_themes = array(
     "images" => array(
     "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'Basic/bleu_bas.png', 'left', 'top', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_entete_page', 'Basic/bleu_milieu.png', 'left', 'bottom', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', 'div #Menu {border-right:1px solid #AAA;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div #Menu {border-bottom:1px solid #AAA;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div #menu {border-right:1px solid #AAA;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div #menu {border-bottom:1px solid #AAA;}', '', '', '', '', '')",
     ), ),
 'Basic Vert' => array(
     /* Thème créé par Olivier Gautier */
@@ -604,8 +603,8 @@ $eva_themes = array(
     "images" => array(
     "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'Basic/vert_bas.png', 'left', 'top', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_entete_page', 'Basic/vert_milieu.png', 'left', 'bottom', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', 'div #Menu {border-right:1px solid #AAA;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div #Menu {border-bottom:1px solid #AAA;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div #menu {border-right:1px solid #AAA;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div #menu {border-bottom:1px solid #AAA;}', '', '', '', '', '')",
     ), ),
 'Eclipse' => array(
     /* Thème créé par Olivier Gautier */
@@ -740,18 +739,18 @@ $eva_themes = array(
     "habillage" => "eva_style_v1.css",
     "theme" => "('', 'Defaut', '#FFF', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', '#843608', 'transparent', 'transparent', 'transparent', 'transparent', 'serif', '#777', '#777', '#777', '#843608', '#666', '#843608', '#666', '#FFF', '#FFF', '#9A7D9F', '#843608; font-family:fantasy; border-bottom : 1px solid #843608; letter-spacing:0.2em; font-variant:small-caps', '#843608; font-family:fantasy', '#777', '#843608; font-family:fantasy; letter-spacing:0.2em; font-variant:small-caps', '#843608; font-family:fantasy', '#CCC', '#777', '#CCC', '#444', '#9A7D9F', '#444', '#9A7D9F', '#444', '#9A7D9F', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', '', '', '54px', '', '')",
     "images" => array(
-    "('', 'perso', 'Defaut', '.edito .Titre {color : #843608; font-family:fantasy; border-bottom : 1px solid #843608; font-variant:small-caps;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Entete h1 {text-align:right;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Entete h1 span {color:#8C3A0E; font-size:120%; letter-spacing:0.1em; font-weight:lighter;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '.edito .titre {color : #843608; font-family:fantasy; border-bottom : 1px solid #843608; font-variant:small-caps;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete h1 {text-align:right;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete h1 span {color:#8C3A0E; font-size:120%; letter-spacing:0.1em; font-weight:lighter;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_page', 'orchidees/orchidee_medium.JPG', 'right', 'bottom', 'no-repeat', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#Menu {margin-top:280px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#menu {margin-top:280px;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'body {font-size: 90%;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Menu {border:1px solid #843608;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Contenu{padding-top:80px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#menu {border:1px solid #843608;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu{padding-top:80px;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_impairs', 'orchidees/barre.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_ecran', 'orchidees/orchidee.JPG', '10px', 'top', 'no-repeat', 'scroll')",
     "('', 'image', 'Defaut', 'image_pairs', 'orchidees/barre.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#Arborescence{text-align:right; padding-right:15px;}', '', '', '', '', '')",        
+    "('', 'perso', 'Defaut', 'div#arborescence{text-align:right; padding-right:15px;}', '', '', '', '', '')",        
     ), ),
 
 
@@ -760,18 +759,18 @@ $eva_themes = array(
     "habillage" => "eva_style_menu_a_droite.css",
     "theme" => "('', 'Defaut', '#FFF', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', '#93A444', 'transparent', 'transparent', 'transparent', 'transparent', 'serif', '#777', '#777', '#777', '#AEBE61', '#666', '#AEBE61', '#666', '#FFF', '#FFF', '#AEBE61', '#AEBE61; font-family:fantasy; border-bottom : 1px solid #AEBE61; letter-spacing:0.2em; font-variant:small-caps', '#AEBE61; font-family:fantasy', '#777', '#AEBE61; font-family:fantasy; letter-spacing:0.2em; font-variant:small-caps', '#AEBE61; font-family:fantasy', '#CCC', '#777', '#CCC', '#444', '#AEBE61', '#444', '#AEBE61', '#444', '#AEBE61', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', '', '', '54px', '', '')",
     "images" => array(
-    "('', 'perso', 'Defaut', 'div#Arborescence{padding-left:15px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#arborescence{padding-left:15px;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'body {margin-bottom:0;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', '.edito .Titre {color : #AEBE61; font-family:fantasy; border-bottom : 1px solid #AEBE61; font-variant:small-caps;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Entete ul.liens {text-align:left;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '.edito .titre {color : #AEBE61; font-family:fantasy; border-bottom : 1px solid #AEBE61; font-variant:small-caps;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete ul.liens {text-align:left;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_page', 'blanche/blanche2.jpg', 'left', 'bottom', 'no-repeat', 'scroll')",
     "('', 'perso', 'Defaut', 'body {font-size: 90%;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Menu {border:1px solid #AEBE61;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Contenu{padding-top:80px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#menu {border:1px solid #AEBE61;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu{padding-top:80px;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_impairs', 'orchidees/barre.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_ecran', 'blanche/blanche1.jpg', 'right', 'top', 'no-repeat', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#Entete h1 span {color:#AEBE61; font-size:120%; letter-spacing:0.1em; font-weight:lighter;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Menu {margin-top:220px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete h1 span {color:#AEBE61; font-size:120%; letter-spacing:0.1em; font-weight:lighter;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#menu {margin-top:220px;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_pairs', 'orchidees/barre.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
     ), ),
 
@@ -782,17 +781,17 @@ $eva_themes = array(
     "theme" => "('', 'Defaut', '#FFF', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', '#D94600', 'transparent', 'transparent', 'transparent', 'transparent', 'serif', '#777', '#777', '#777', '#E17100', '#666', '#E17100', '#666', '#FFF', '#FFF', '#E17100', '#E17100; font-family:fantasy; border-bottom : 1px solid #E17100; letter-spacing:0.2em; font-variant:small-caps', '#E17100; font-family:fantasy', '#777', '#E17100; font-family:fantasy; letter-spacing:0.2em; font-variant:small-caps', '#E17100; font-family:fantasy', '#CCC', '#777', '#CCC', '#444', '#E17100', '#444', '#E17100', '#444', '#E17100', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', '', '', '54px', '', '')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_pairs', 'orchidees/barre.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#Menu {border:1px solid #E17100; margin-top:360px;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Arborescence{text-align:right; padding-right:15px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#menu {border:1px solid #E17100; margin-top:360px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#arborescence{text-align:right; padding-right:15px;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_impairs', 'orchidees/barre.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#Entete h1 span {color:#E17100; font-size:120%; letter-spacing:0.1em; font-weight:lighter;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete h1 span {color:#E17100; font-size:120%; letter-spacing:0.1em; font-weight:lighter;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_ecran', 'tournesol/tournesol1.jpg', 'left', 'top', 'no-repeat', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#Entete h1 {text-align:right;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', '.edito .Titre {color : #E17100; font-family:fantasy; border-bottom : 1px solid #E17100; font-variant:small-caps;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Contenu{padding-bottom:350px; padding-top:80px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete h1 {text-align:right;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '.edito .titre {color : #E17100; font-family:fantasy; border-bottom : 1px solid #E17100; font-variant:small-caps;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu{padding-bottom:350px; padding-top:80px;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'body {margin-bottom:0; font-size: 90%;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_page', 'tournesol/tournesol2.jpg', 'right', 'bottom', 'no-repeat', 'scroll')",
-    "('', 'perso', 'Defaut', 'ul#Logo-Pied, ul#Pied {display:none;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'ul#logo-pied, ul#pied {display:none;}', '', '', '', '', '')",
     ), ),
 
 
@@ -818,19 +817,19 @@ $eva_themes = array(
     "habillage" => "eva_style_basic_menu_a_gauche.css",
     "theme" => "('', 'Defaut', '#96C31A', '#FFF', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', '#F4F4F4', '#F4F4F4', 'transparent', 'transparent', '#777', '#777', 'transparent', 'transparent', 'serif', '#777', '#777', '#777', '#555', '#666', '#555', '#666', '#FFF', '#FFF', '#96C31A', '#555; font-family:fantasy; border-bottom : 1px solid #555; letter-spacing:0.2em; font-variant:small-caps', '#555; font-family:fantasy', '#777', '#555; font-family:fantasy; letter-spacing:0.2em; font-variant:small-caps', '#555; font-family:fantasy', '#CCC', '#777', '#666', '#444', '#96C31A', '#444', '#96C31A', '#444', '#96C31A', '#999', '10px', 'solid', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '282px', '', '434px', '110px', '', '')",
     "images" => array(
-    "('', 'perso', 'Defaut', 'div#Menu {margin-top:50px;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Contenu {border-left:1px solid #555;border-bottom:1px solid #555; margin-top:216px; background-color:#F4F4F4;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'ul#Logo-Pied, ul#Pied {border-top:6px solid #999;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Entete h1 {padding-right:440px;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Entete h1 span {color:#555; font-size:100%; letter-spacing:0.1em; font-weight:lighter; font-variant:small-caps;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', '.edito .Titre {color : #555; font-family:fantasy; border-bottom : 1px solid #555; font-variant:small-caps;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#menu {margin-top:50px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu {border-left:1px solid #555;border-bottom:1px solid #555; margin-top:216px; background-color:#F4F4F4;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'ul#logo-pied, ul#pied {border-top:6px solid #999;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete h1 {padding-right:440px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete h1 span {color:#555; font-size:100%; letter-spacing:0.1em; font-weight:lighter; font-variant:small-caps;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '.edito .titre {color : #555; font-family:fantasy; border-bottom : 1px solid #555; font-variant:small-caps;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'body {font-size: 90%; margin-bottom:0; margin-top:0;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Arborescence{padding-left:15px; padding-right:440px;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Entete ul.liens {text-align:left; padding-right:440px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#arborescence{padding-left:15px; padding-right:440px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete ul.liens {text-align:left; padding-right:440px;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_page', 'seule/seule.jpg', 'right', 'top', 'no-repeat', 'scroll')",
     "('', 'image', 'Defaut', 'image_impairs', 'orchidees/barre.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', 'ul#Logo-Pied, ul#Pied {line-height:30%;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div #ConteneurSeul, div#Page div#EnteteDiaporama {padding-top:210px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'ul#logo-pied, ul#pied {line-height:30%;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div #conteneurseul, div#page div#entetediaporama {padding-top:210px;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_pairs', 'orchidees/barre.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
     ), ),
 
@@ -842,18 +841,18 @@ $eva_themes = array(
     "('', 'image', 'Defaut', 'image_menu_off', 'foret/foret_menu_off.jpg', 'left', 'top', 'repeat', 'scroll')",
     "('', 'image', 'Defaut', 'image_menu_on', 'foret/foret_menu_on.jpg', 'left', 'top', 'repeat', 'scroll')",
     "('', 'image', 'Defaut', 'image_edito_titre', 'foret/foret_pied.jpg', 'left', 'center', 'repeat', 'scroll')",
-    "('', 'perso', 'Defaut', 'div #Menu {border-right:3px solid #FFF; border-bottom:3px solid #FFF; background-color:#A3C3F2;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div #menu {border-right:3px solid #FFF; border-bottom:3px solid #FFF; background-color:#A3C3F2;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_pied', 'foret/foret_pied.jpg', 'left', 'top', 'repeat', 'scroll')",
     "('', 'perso', 'Defaut', 'body {margin-top:30px; margin-bottom:30px; font-size: 90%;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', '.edito .Titre {color : #FFF; font-family:fantasy; font-variant:small-caps;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '.edito .titre {color : #FFF; font-family:fantasy; font-variant:small-caps;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_entete_page', 'foret/foret_haut.jpg', 'left', 'top', 'no-repeat', 'scroll')",
-    "('', 'perso', 'Defaut', 'ul#Logo-Pied, ul#Pied {line-height:30%;border-top:2px solid #FFF;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Contenu{padding-right:30px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'ul#logo-pied, ul#pied {line-height:30%;border-top:2px solid #FFF;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu{padding-right:30px;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'foret/foret_bas.jpg', 'left', 'top', 'no-repeat', 'scroll')",
     "('', 'image', 'Defaut', 'image_titres', 'foret/foret_pied.jpg', 'left', 'center', 'repeat', 'scroll')",
     "('', 'perso', 'Defaut', 'h4 a,h4.titre a{color:#FFF;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Entete ul.liens {text-align:left;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Arborescence{padding-left:15px; border-bottom:6px solid #FFF;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete ul.liens {text-align:left;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#arborescence{padding-left:15px; border-bottom:6px solid #FFF;}', '', '', '', '', '')",
     ), ),
 
 
@@ -862,21 +861,21 @@ $eva_themes = array(
     "habillage" => "eva_style_basic_menu_a_droite.css",
     "theme" => "('', 'Defaut', '#816B49', '#FCFCFD', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', '#F4F4F4', '#F4F4F4', 'transparent', 'transparent', '#CBBAA3', '#CBBAA3', 'transparent', 'transparent', 'serif', '#222', '#222', '#222', '#555', '#444', '#222', '#444', '#FFF', '#FFF', '#C64C00', '#222; font-family:fantasy; border-bottom : 1px solid #555; letter-spacing:0.2em; font-variant:small-caps', '#222; font-family:fantasy', '#222', '#222; font-family:fantasy; letter-spacing:0.2em; font-variant:small-caps', '#222; font-family:fantasy', '#CCC', '#444', '#666', '#444', '#C64C00', '#444', '#C64C00', '#444', '#C64C00', '', '', '', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '#786343', '2px', 'solid', '', '282px', '', '424px', '110px', '', '')",
     "images" => array(
-    "('', 'perso', 'Defaut', ' div#ConteneurSeul, div#Page div#EnteteDiaporama {margin-top: 210px;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#ConteneurSeul div#Contenu{background-color:transparent;border-bottom-style:none;border-right-style:none;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Entete h1 {text-align:right;padding-left:440px;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Entete h1 span {color:#555; font-size:100%; letter-spacing:0.1em; font-weight:lighter; font-variant:small-caps;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', 'div#Menu {margin-top:50px;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', '.edito .Titre {color : #555; font-family:fantasy; border-bottom : 1px solid #555; font-variant:small-caps;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', ' div#conteneurseul, div#page div#entetediaporama {margin-top: 210px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#conteneurseul div#contenu{background-color:transparent;border-bottom-style:none;border-right-style:none;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete h1 {text-align:right;padding-left:440px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete h1 span {color:#555; font-size:100%; letter-spacing:0.1em; font-weight:lighter; font-variant:small-caps;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#menu {margin-top:50px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '.edito .titre {color : #555; font-family:fantasy; border-bottom : 1px solid #555; font-variant:small-caps;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_page', 'soleil/jaune.jpg', 'left', 'top', 'no-repeat', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#Contenu {border-right:1px solid #555;border-bottom:1px solid #555; margin-top:190px; background-color:#CBBAA3;margin-left:0; padding-left:5px;padding-right:5px; }', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu {border-right:1px solid #555;border-bottom:1px solid #555; margin-top:190px; background-color:#CBBAA3;margin-left:0; padding-left:5px;padding-right:5px; }', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_ecran', 'soleil/jaune_fond.jpg', 'center', 'top', 'repeat-y', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#Arborescence{text-align:right;padding-right:15px; padding-left:440px;}', '', '', '', '', '')",
-    "(''1, 'perso', 'Defaut', 'ul#Logo-Pied, ul#Pied {border-top:6px solid #786343;line-height:30%;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#arborescence{text-align:right;padding-right:15px; padding-left:440px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'ul#logo-pied, ul#pied {border-top:6px solid #786343;line-height:30%;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'body {font-size: 90%; margin-bottom:0; margin-top:0;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_impairs', 'orchidees/barre.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_pairs', 'orchidees/barre.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#Page {border-top-style:none; border-bottom-style:none;border-right:10px solid #786343;border-left:10px solid #786343;} ', '', '', '', '', '')",        
+    "('', 'perso', 'Defaut', 'div#page {border-top-style:none; border-bottom-style:none;border-right:10px solid #786343;border-left:10px solid #786343;} ', '', '', '', '', '')",        
     ), ),
 
 
