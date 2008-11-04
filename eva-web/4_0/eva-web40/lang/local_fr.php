@@ -146,7 +146,7 @@ $test_lang_personnalisation=array(
 'tous_droits' => 'Tous droits r&eacute;serv&eacute;s',
 
 // V
-'version_eva' => 'EVA-Web 4.0 beta 1',
+'version_eva' => 'EVA-Web 4.0 beta 2',
 'visites' => 'Visites',
 'voir_en_ligne' => 'Voir en ligne :',
 'voir_image' => 'Voir l\'image en grand',
