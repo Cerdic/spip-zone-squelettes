@@ -7,7 +7,7 @@ function eva_habillage_definition_themes () {
     //Fond des pages
     $eva_fond_page_background = array('div#page');
     //Fond des blocs
-    $eva_fond_bloc_background = array('hr','.spip_cadre','textarea.spip_cadre','fieldset','#formrecherche','#forum ul.forum div.titre .auteur','.divers div.contenu','div#contenu ul','div.bloc ul','div.bloc','ul#sommaire','div#menu .bloc ul','div#menuDroit .bloc ul');
+    $eva_fond_bloc_background = array('hr','.spip_cadre','textarea.spip_cadre','fieldset','#formrecherche','#forum ul.forum div.titre .auteur','.divers div.contenu','div#contenu ul','div.bloc ul','div#contenu .bloc','div#menu .bloc','div#menudroit .bloc','div.bloc','ul#sommaire','div#menu .bloc ul','div#menuDroit .bloc ul');
     //Fond de l'éditorial et des chapeaux
     $eva_fond_edito_background = array('.edito .titre','div#photo img','div#contenu div.chapo','div.edito','div#entetediaporama','div#boutondiaporama a span');
     //Entêtes des pages
@@ -42,7 +42,7 @@ function eva_habillage_definition_themes () {
     //Type de police de caractères, hors formulaire, <code>...</code>, ...
     $eva_police_type_font_family = array('body');
     //Couleur du texte du site
-    $eva_texte_principal_color = array('div#contenu ul li','div .contenu','h3.titre','h3.titre a','.divers','.erreur','hr','.spip_cadre','textarea.spip_cadre','fieldset','div#contenu','div#contenu .bloc','.bloc','ul#sommaire','div#menu .bloc ul','div#menudroit .bloc ul','div#contenu .bloc ul li','.auteur');
+    $eva_texte_principal_color = array('.menupaginationbas','.menupaginationhaut','div#contenu .bloc','div#menu .bloc','div#menudroit .bloc','div#contenu ul li','div .contenu','h3.titre','h3.titre a','.divers','.erreur','hr','.spip_cadre','textarea.spip_cadre','fieldset','div#contenu','div#contenu .bloc','.bloc','ul#sommaire','div#menu .bloc ul','div#menudroit .bloc ul','div#contenu .bloc ul li','.auteur');
     //Couleur du texte des listes paires
     $texte_liste_paire_color = array('div#menu .bloc ul li.deux','div#menudroit .bloc ul li.deux','div#contenu ul li.deux','div#contenu ul li.deux h2','table.spip tr.row_odd','div#contenu ul.bloc li.deux');
     //Couleur du texte des listes impaire
@@ -93,7 +93,7 @@ function eva_habillage_definition_themes () {
     $bordure_page_border_color = array('div#page');
     //Couleur principale des bordures
     $couleur_bordure_color =array('.divers','hr');
-    $couleur_bordure_border_color = array('.divers','hr','div#boutondiaporama a span','div #entetediaporama','div #entetediaporama h2 span','.lien','.divers','.bloc','#forum .bouton a','#formRecherche','input.formrecherche','fieldset','.forml','textarea.spip_cadre','table.spip th','table.spip td','table.spip tr.row_odd','table.spip tr.row_even','hr','.spip_encadrer','a.spip_barre img','a.spip_barre:hover img');
+    $couleur_bordure_border_color = array('div#contenu .bloc','div#menu .bloc','div#menudroit .bloc','.divers','hr','div#boutondiaporama a span','div #entetediaporama','div #entetediaporama h2 span','.lien','.divers','.bloc','#forum .bouton a','#formRecherche','input.formrecherche','fieldset','.forml','textarea.spip_cadre','table.spip th','table.spip td','table.spip tr.row_odd','table.spip tr.row_even','hr','.spip_encadrer','a.spip_barre img','a.spip_barre:hover img');
     $couleur_bordure_border_top_color = array('h3','#forum ul.forum div.titre h4','.menupaginationbas');
     $couleur_bordure_right_color = array('#forum ul.forum div.titre h4','#forum ul.forum div.titre .auteur','#forum ul.forum div.contenu');
     $couleur_bordure_bottom_color = array('h3','#forum ul.forum div.contenu','.menupaginationhaut');
@@ -580,7 +580,7 @@ function EVA_div_images() {
     $eva_habillage_images = array(
     'image_ecran' => array('body'),
     'image_page' => array('div#page'),
-    'image_bloc' => array('#formrecherche','#forum ul.forum div.titre .auteur','.divers div.contenu','div#contenu ul','div.bloc ul','div.bloc','ul#sommaire','div#menu .bloc ul','div#menudroit .bloc ul'),
+    'image_bloc' => array('div#contenu .bloc','div#menu .bloc','div#menudroit .bloc','#formrecherche','#forum ul.forum div.titre .auteur','.divers div.contenu','div#contenu ul','div.bloc ul','div.bloc','ul#sommaire','div#menu .bloc ul','div#menudroit .bloc ul'),
     'image_edito' => array('div#contenu div.chapo','div.edito'),
     'image_edito_titre' => array('#contenu div.edito h3.titre','.edito .titre'),
     'image_entete_page' => array('div#entete'),
