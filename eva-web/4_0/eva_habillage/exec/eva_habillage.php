@@ -39,7 +39,7 @@ function exec_eva_habillage(){
 
      if (isset($_POST['changement_habillage'])) {
 	sql_updateq('spip_eva_habillage',array('habillage' => $_POST['changement_habillage']),"sauvegarde = 'Defaut'");
-	if ($_POST['changement_habillage']!='eva_style_3_colonnes.css') {
+	if (($_POST['changement_habillage']!='eva4_3colonnes.css') AND ($_POST['changement_habillage']!='eva4_basic_3colonnes.css')){
 		$test_quitte_3colonnes=sql_select('id','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND nom_image='droite'");
 		while ($tab_quitte_3colonnes=sql_fetch($test_quitte_3colonnes)) {
 			sql_updateq('spip_eva_habillage_images',array('nom_image'=>'gauche'),"id='".$tab_quitte_3colonnes['id']."'");
@@ -121,7 +121,7 @@ window.onerror = null;
     
 	$test_3cols=sql_select('habillage','spip_eva_habillage',"sauvegarde='Defaut'");
 	$tab_3cols=sql_fetch($test_3cols);
-	if (($tab_3cols['habillage']=='eva_style_3_colonnes.css') OR ($tab_3cols['habillage']=='eva_style_3_colonnes_v2.css')) {
+	if (($tab_3cols['habillage']=='eva4_3colonnes.css') OR ($tab_3cols['habillage']=='eva4_basic_3colonnes.css')) {
 		$test_3_colonnes=true;
 		$eva_gauche=120;
 		$eva_centre=249;
@@ -339,7 +339,7 @@ window.onerror = null;
 			if (!$eva_gauche) {$texte_eva.='droite';} else  {$texte_eva.='gauche';}
 			$texte_eva.="</option>";
 			$texte_eva.= "<option value='centre'>centre</option>";
-			if (($tab_3cols['habillage']=='eva_style_3_colonnes.css') OR ($tab_3cols['habillage']=='eva_style_3_colonnes_v2.css')){
+			if (($tab_3cols['habillage']=='eva4_3colonnes.css') OR ($tab_3cols['habillage']=='eva4_basic_3colonnes.css')){
 				$texte_eva.= "<option value='droite'>droite</option>";
 			}
 			$texte_eva.= '</select></th><th>';
