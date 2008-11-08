@@ -842,7 +842,7 @@ $eva_themes = array(
     "('', 'perso', 'Defaut', 'body {font-size: 90%; margin-bottom:0; margin-top:0;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_impairs', 'orchidees/barre.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_pairs', 'orchidees/barre.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
-    "('', 'perso', 'Defaut', 'div#page {border-top-style:none; border-bottom-style:none;border-right:10px solid #786343;border-left:10px solid #786343;} ', '', '', '', '', '')",        
+    "('', 'perso', 'Defaut', 'div#page {border-top-style:none; border-bottom-style:none;border-right:10px solid #786343;border-left:10px solid #786343; margin-top:0;margin-bottom:0;}', '', '', '', '', '')",        
     ), ),
 
 
