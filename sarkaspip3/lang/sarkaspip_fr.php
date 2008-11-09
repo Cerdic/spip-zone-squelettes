@@ -674,6 +674,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_galerie_pagination_pas' => 'Nombre d\'albums par page',
 		'cfg_lbl_galerie_pagination_type_page' => 'Affichage des num&eacute;ros de page',
 		'cfg_lbl_galerie_pagination_type_numero' => 'Affichage des num&eacute;ros d\'albums',
+		'cfg_lbl_taille_vignette_galerie' => 'Taille maximale de la vignette en hauteur ou en largeur',
 		'cfg_lbl_liste_contacts' => 'Liste des contacts possibles',
 		'cfg_lbl_taille_logo' => 'Taille maximale du logo en hauteur ou en largeur',
 		'cfg_lbl_effet_aucun' => 'Aucun effet',

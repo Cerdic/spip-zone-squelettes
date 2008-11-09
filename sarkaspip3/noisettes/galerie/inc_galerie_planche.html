@@ -21,13 +21,12 @@
 		<li
       [(#COMPTEUR_BOUCLE|modulo{2}|=={1}|?{' '})class="modulo1"]
       [(#COMPTEUR_BOUCLE|modulo{2}|=={0}|?{' '})class="modulo0"]
-    >
-    
-    
+    >   
         <div class="logo">
           <a href="spip.php?page=album&amp;id_article=#ID_ARTICLE" title="<:sarkaspip:info_afficher_album:>">
               <BOUCLE_vignette_album(DOCUMENTS){id_article}{extension == jpg|png|gif}{mode=document}{doublons}{0,1}>
-                  <img src='[(#LOGO_DOCUMENT||extraire_attribut{src})]' width='[(#LOGO_DOCUMENT||image_reduire{150}||largeur)]' height='[(#LOGO_DOCUMENT||image_reduire{150}||hauteur)]' alt="truc" />
+                  <!--<img src='[(#LOGO_DOCUMENT||extraire_attribut{src})]' width='[(#LOGO_DOCUMENT||image_reduire{150}||largeur)]' height='[(#LOGO_DOCUMENT||image_reduire{150}||hauteur)]' alt="truc" />-->
+                  <img src="[(#FICHIER|image_reduire{0,#CONFIG{sarkaspip_galerie/taille_vignette_galerie, 100}}|extraire_attribut{src})]" class="thumbnail" />
               </BOUCLE_vignette_album>
               </B_vignette_album>
                 [(#LOGO_ARTICLE||image_reduire{150})]
@@ -38,10 +37,7 @@
         </div>
         <h2>#TITRE</h2>
         <div class="introduction">[(#INTRODUCTION{200}|typo_couleur)] </div>
-
-        <br class="nettoyeur" style="margin-top:0px"/>
-        
-        
+        <br class="nettoyeur" />      
     </li>
 </BOUCLE_galerie>
 </ul>

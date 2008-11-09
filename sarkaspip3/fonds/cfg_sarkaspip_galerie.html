@@ -6,6 +6,8 @@
 <script type="text/javascript">
 //<![CDATA[
 	jQuery(document).ready(function() {
+	  [(#ENV{type2, planche_contact}|!={planche_contact}|?{jQuery("#taille_vignette").hide();})] 
+	  
 		[(#ENV{type, 1}|!={2}|?{' '})
 			jQuery("#select_mois1").prepend('<option value=1><:sarkaspip:janvier:></option>');
 			jQuery("#select_mois1 option:first").attr({selected: "selected"});
@@ -16,6 +18,16 @@
 		[(#ENV{type_resume, 1}|!={oui}|?{' '})
 			jQuery("#bloc_taille_resume").hide();
 		]
+
+    jQuery("input[@name='type2']").change(function() {
+			if (jQuery("input[@name='type2']:checked").val() == 'planche_contact')
+				jQuery("#taille_vignette").show();
+			else
+				jQuery("#taille_vignette").hide();
+			jQuery(this).blur();
+		});	
+
+
 		jQuery("input[@name='type']").change(function() {
 			if (jQuery("input[@name='type']:checked").val() == 2) {
 				jQuery("#bloc_mois1").show();
@@ -73,6 +85,10 @@
 			<input type="radio" name="type2" value="planche_contact" [(#ENV{type2, planche_contact}|=={planche_contact}|?{checked="checked"})] />
 			<:sarkaspip:cfg_lbl_galerie_type_1:>
 		</label>
+  		<div id="taille_vignette">
+        <label><:sarkaspip:cfg_lbl_taille_vignette_galerie:></label>
+        <input type="text" name="taille_vignette_galerie" value="#ENV{taille_vignette_galerie, 150}" size="3" class="fondl" />
+  		</div>
 		<br />
 		<label>
 			<input type="radio" name="type2" value="listing_annuel" [(#ENV{type2, planche_contact}|=={listing_annuel}|?{checked="checked"})] />
