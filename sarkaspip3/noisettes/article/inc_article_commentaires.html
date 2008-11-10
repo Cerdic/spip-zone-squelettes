@@ -1,14 +1,20 @@
 [(#REM) 
-<!-- Commentaires de l'article
+<!-- Commentaires de l'article ou le commentaire precise depuis la page forum
 	Recoit en argument :
 		- id_article: id de l'article concernee
+		- id_forum: id du commentaire concerne
 -->
 ]
 <div id="commentaires_article" class="commentaires">
+[(#ENV{id_forum}|?{'', ' '})
 	<a id="commentaires" name="commentaires" href="#commentaires"></a>
 	<a class="fonction" id="commenter"[ href="(#PARAMETRES_FORUM|url_reponse_forum)"] title="<:sarkaspip:commenter_article:>"></a>
 	<h2><:sarkaspip:commentaires_article:></h2>
-<BOUCLE_commentaires(FORUMS){plat}{id_article}{par date}{inverse}>
+]
+[(#ENV{id_forum}|?{' '})
+	<h2><:sarkaspip:reponse_suite_commentaire:></h2>
+]
+<BOUCLE_commentaires(FORUMS){plat}{id_article}{id_forum?}{par date}{inverse}>
 	<!-- Determination du nom de l'auteur -->
 	<BOUCLE_forum_edite(FORUMS){id_parent=#ID_FORUM}{statut=original}>
 		<BOUCLE_auteur_pere1(AUTEURS) {id_auteur=#_forum_edite:ID_AUTEUR}>
@@ -35,6 +41,9 @@
 			})] 
     </div>
 		<div class="cartouche_simple">
+		[(#ENV{id_forum}|?{'', ' '})
+			[<a class="fonction repondre_commentaire" href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow" title="<:sarkaspip:repondre_message:>"></a>]
+		]
 			[(#DATE_REDAC|nom_jour)][&nbsp;(#DATE|affdate)]
 			<:sarkaspip:agrave:>&nbsp;[(#DATE|affdate{'H\hi'})],
 			[<:sarkaspip:par_auteur:>&nbsp;(#GET{nom_auteur})]
