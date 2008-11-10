@@ -570,12 +570,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_css_bandeau' => 'Vous pouvez modifier certains attributs graphiques des trois parties qui composent le bandeau.',
 		'cfg_inf_css_pied' => 'Vous pouvez modifier certains attributs graphiques des deux parties qui composent le bandeau.',
 		'cfg_inf_css_couleurs_bandeau_haut' => 'Choisissez vos couleurs pour la partie haute du bandeau',
+		'cfg_inf_css_couleurs_bandeau_bas' => 'Choisissez vos couleurs pour la partie basse du bandeau',
 		'cfg_inf_css_couleurs_chemin' => 'Choisissez vos couleurs pour le chemin',
 		'cfg_inf_css_couleurs_pied_bas' => 'Choisissez vos attributs pour la partie basse du pied',
 		'cfg_inf_css_couleurs' => 'Cela revient &agrave; choisir la couleur d\'arri&egrave;re plan, la couleur d\'avant plan utilis&eacute;e pour le texte et les liens et la couleur de survol des liens. En outre, 
 		pour l\'arri&egrave;re plan vous avez la possibilit&eacute; de choisir une image et ses attributs de positionnement associ&eacute;s.',
 		'cfg_inf_css_general' => 'Il est possible de d&eacute;finir certains attribut graphiques appliqu&eacute;s &agrave; l\'ensemble du site. C\'est le cas de la police, de la couleur du texte...',
 		'cfg_inf_css_couleurs_site' => 'Choisissez les couleurs du texte et des liens du site qui seront appliqu&eacute;es par d&eacute;faut.',
+		'cfg_lbl_css_image_fond' => 'Vous pouvez afficher une image d\'arri&egrave;re plan nomm&eacute;e bg@lbl_bi_suffixe@, stock&eacute;e dans le dossier images/ et poss&eacute;dant l\'extension gif, png ou jpg.',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
@@ -692,6 +694,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_css_ta' => 'Alignement du texte',
 		'cfg_lbl_css_fo' => 'Polices &agrave; appliquer en priorit&eacute; avant arial et sans-serif toujours incluses',
 		'cfg_lbl_css_td' => 'D&eacute;coration au survol des liens',
+		'cfg_lbl_css_bi1' => 'Extension de l\'image de fond',
+		'cfg_lbl_css_bi2' => 'Propri&eacute;t&eacute;s associ&eacute;es (repeat, position, attachement)',
+		'cfg_lbl_gif' => 'gif',
+		'cfg_lbl_png' => 'png',
+		'cfg_lbl_jpg' => 'jpg',
 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',
