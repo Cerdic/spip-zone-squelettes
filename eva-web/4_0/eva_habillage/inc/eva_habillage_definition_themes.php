@@ -42,7 +42,7 @@ function eva_habillage_definition_themes () {
     //Type de police de caractères, hors formulaire, <code>...</code>, ...
     $eva_police_type_font_family = array('body');
     //Couleur du texte du site
-    $eva_texte_principal_color = array('.menupaginationbas','.menupaginationhaut','div#contenu .bloc','div#menu .bloc','div#menudroit .bloc','div#contenu ul li','div .contenu','h3.titre','h3.titre a','.divers','.erreur','hr','.spip_cadre','textarea.spip_cadre','fieldset','div#contenu','div#contenu .bloc','.bloc','ul#sommaire','div#menu .bloc ul','div#menudroit .bloc ul','div#contenu .bloc ul li','.auteur');
+    $eva_texte_principal_color = array('body','div#menu .bloc ul li','div#contenu .bloc ul li','div#menudroit .bloc ul li','.menupaginationbas','li .menupaginationbas','.menupaginationhaut','li .menupaginationhaut','div#contenu .bloc','div#menu .bloc','div#menudroit .bloc','div#contenu ul li','div .contenu','h3.titre','h3.titre a','.divers','.erreur','hr','.spip_cadre','textarea.spip_cadre','fieldset','div#contenu','div#contenu .bloc','.bloc','ul#sommaire','div#menu .bloc ul','div#menudroit .bloc ul','div#contenu .bloc ul li','.auteur');
     //Couleur du texte des listes paires
     $texte_liste_paire_color = array('div#menu .bloc ul li.deux','div#menudroit .bloc ul li.deux','div#contenu ul li.deux','div#contenu ul li.deux h2','table.spip tr.row_odd','div#contenu ul.bloc li.deux');
     //Couleur du texte des listes impaire
@@ -590,7 +590,7 @@ function EVA_div_images() {
     'image_titre_entete' => array('div#entete h1 span','div#entete h2 span'),
     'image_pied' => array('ul#pied'),
     'image_pied-logo' => array('#logo-pied'),
-    'image_titres' => array('.titre','.bloc .titre','.divers h4','table.spip tr.row_first th','div#contenu div.ps h4','div#menudroit h3.titre','div#contenu h3.titre','div#menu h3.titre','div#menudroit h2.titre','div#contenu h2.titre','div#menu h2.titre','table.spip tr.row_first','div#contenu div.lien','div#contenu div.notes h4','div#contenu h4.titre','#forum ul.forum div.titre h4','#forum .bouton a'),
+    'image_titres' => array('legend','.titre','.bloc .titre','.divers h4','table.spip tr.row_first th','div#contenu div.ps h4','div#menudroit h3.titre','div#contenu h3.titre','div#menu h3.titre','div#menudroit h2.titre','div#contenu h2.titre','div#menu h2.titre','table.spip tr.row_first','div#contenu div.lien','div#contenu div.notes h4','div#contenu h4.titre','#forum ul.forum div.titre h4','#forum .bouton a'),
     'image_menu' => array('ul#sommaire', 'ul#sommaire li'),
     'image_menu_off' => array('div#menu ul#sommaire li','div#menu ul#sommaire .off','div#menudroit ul#sommaire .off'),
     'image_menu_on' => array('div#menu ul#sommaire .on','div#menudroit ul#sommaire .on'),
