@@ -1,4 +1,4 @@
-#CACHE{3600}
+#INCLURE{fond=noisettes/menus/rubrique_li}#CACHE{3600}
 	<div class="retourtop">
 	  <a href="#[(#ENV{titretop}|sinon{<:pyrat:sommaire|nettoyer_marqueur:>})]">[<:pyrat:retourtop:>]</a>
 	</div>
@@ -33,11 +33,11 @@
 <B_Secteurs>
 <ul class="tv">
   <BOUCLE_Secteurs(RUBRIQUES){id_rubrique=#ENV{racinetype}}{par num titre}{doublons}{!lang_select}>
-  <li>[(#MODELE{rubrique_li}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]
+  <li>[({id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]
 <B_Rubriques>
 <ul>
   <BOUCLE_Rubriques(RUBRIQUES){id_parent}{par num titre}{doublons}{!lang_select}>
-  <li>[(#MODELE{rubrique_li}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]<BOUCLE_SsRubriques(BOUCLE_Rubriques)></BOUCLE_SsRubriques></li>
+  <li>[(#INCLURE{fond=noisettes/menus/rubrique_li}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]<BOUCLE_SsRubriques(BOUCLE_Rubriques)></BOUCLE_SsRubriques></li>
   </BOUCLE_Rubriques>
 </ul>
 </B_Rubriques>
