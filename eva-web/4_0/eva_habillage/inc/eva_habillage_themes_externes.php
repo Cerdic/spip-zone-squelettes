@@ -12,7 +12,7 @@ $eva_themes = array(
 
 'Black Apple' => array(
     /* Thème créé par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_basic_menu_gauche.css",
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#26a526', '#216f21', '#26a526', '#26a526', '#26a526', '#455245', '#26a526', '#216f21', '#455245', '#444444', '#333333', '#26a526', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#d5f5d9', '#d5f5d9', '#CCC', '#FFF', '#CCC', '#FFFFFF', '#d5f5d9', '#cbf3ef', '#d5f5d9', '#26a526', '#FFFFFF', '#d5f5d9', '#26a526', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#26a526', '', '', '', '', 'none', '#216f21', '', '', '#444444', '', '', '#26a526', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_page', 'Black/Black_page.png', 'left', 'bottom', 'repeat-x', 'scroll')",
@@ -33,7 +33,7 @@ $eva_themes = array(
     ), ),
 'Black Cherry' => array(
     /* Thème créé par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_basic_menu_gauche.css",
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#CD072B', '#87030D', '#87030D', '#CD072B', '#CD072B', '#455245', '#CD072B', '#87030D', '#455245', '#444444', '#333333', '#CD072B', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#CCC', '#FFF', '#CCC', '#FFFFFF', '#d5f5d9', '#fc98a9', '#FFFFFF', '#CD072B', '#FFFFFF', '#FFFFFF', '#CD072B', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#cd072b', '', '', '', '', 'none', '#cd072b', '', '', '#444444', '', '', '#CD072B', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_page', 'Black/Black_page.png', 'left', 'bottom', 'repeat-x', 'scroll')",
@@ -54,7 +54,7 @@ $eva_themes = array(
     ), ),
 'Black Lemon' => array(
     /* Thème créé par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_basic_menu_gauche.css",
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#f1ec1f', '#a5a90c', '#a5a90c', '#f1ec1f', '#f1ec1f', '#455245', '#f1ec1f', '#a5a90c', '#455245', '#444444', '#333333', '#f1ec1f', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#555', '#CCC', '#FFF', '#CCC', '#FFFFFF', '#222222', '#555', '#FFFFFF', '#f1ec1f', '#FFFFFF', '#FFFFFF', '#f1ec1f', '#222222', '#222222', '#222222', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#f1ec1f', '', '', '', '', 'none', '#f1ec1f', '', '', '#444444', '', '', '#f1ec1f', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_page', 'Black/Black_page.png', 'left', 'bottom', 'repeat-x', 'scroll')",
@@ -75,7 +75,7 @@ $eva_themes = array(
     ), ),
 'Black Orange' => array(
     /* Thème créé par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_basic_menu_gauche.css",
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#fa520a', '#be3c03', '#be3c03', '#fa520a', '#fa520a', '#455245', '#fa520a', '#be3c03', '#455245', '#444444', '#333333', '#fa520a', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#d5f5d9', '#d5f5d9', '#CCC', '#FFF', '#CCC', '#FFFFFF', '#d5f5d9', '#fc9f78', '#FFFFFF', '#fa520a', '#FFFFFF', '#fc9f78', '#fa520a', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#fa520a', '', '', '', '', 'none', '#be3c03', '', '', '#444444', '', '', '#fa520a', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_page', 'Black/Black_page.png', 'left', 'bottom', 'repeat-x', 'scroll')",
@@ -96,7 +96,7 @@ $eva_themes = array(
     ), ),
 'Black Violet' => array(
     /* Thème créé par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_basic_menu_gauche.css",
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#936cb3', '#5a3c73', '#5a3c73', '#936cb3', '#936cb3', '#455245', '#936cb3', '#5a3c73', '#455245', '#444444', '#333333', '#936cb3', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#d5f5d9', '#d5f5d9', '#CCC', '#FFF', '#CCC', '#FFFFFF', '#d5f5d9', '#c8b3d9', '#FFFFFF', '#936cb3', '#FFFFFF', '#c8b3d9', '#936cb3', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#936cb3', '', '', '', '', 'none', '#5a3c73', '', '', '#444444', '', '', '#936cb3', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_page', 'Black/Black_page.png', 'left', 'bottom', 'repeat-x', 'scroll')",
@@ -117,7 +117,7 @@ $eva_themes = array(
     ), ),
 'Black Ocean' => array(
     /* Thème créé par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_basic_menu_gauche.css",
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#6b60d5', '#312691', '#6b60d5', '#6b60d5', '#6b60d5', '#455245', '#6b60d5', '#312691', '#455245', '#444444', '#333333', '#6b60d5', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#d5f5d9', '#d5f5d9', '#CCC', '#FFF', '#CCC', '#FFFFFF', '#d5f5d9', '#9c95e3', '#b9b4eb', '#6b60d5', '#FFFFFF', '#9c95e3', '#6b60d5', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#6b60d5', '', '', '', '', 'none', '#312691', '', '', '#444444', '', '', '#6b60d5', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_page', 'Black/Black_page.png', 'left', 'bottom', 'repeat-x', 'scroll')",
@@ -138,7 +138,7 @@ $eva_themes = array(
      ), ),
 'Black Pig' => array(
     /* Thème créé par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_basic_menu_gauche.css",
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#f341a8', '#8a0953', '#f341a8', '#f341a8', '#f341a8', '#455245', '#f341a8', '#8a0953', '#455245', '#444444', '#333333', '#f341a8', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#d5f5d9', '#d5f5d9', '#CCC', '#FFF', '#CCC', '#FFFFFF', '#d5f5d9', '#f892cc', '#fbbde0', '#f341a8', '#FFFFFF', '#f892cc', '#f341a8', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#f341a8', '', '', '', '', 'none', '#312691', '', '', '#444444', '', '', '#f341a8', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_page', 'Black/Black_page.png', 'left', 'bottom', 'repeat-x', 'scroll')",
@@ -159,7 +159,7 @@ $eva_themes = array(
     ), ),
 'Black Violet Pig' => array(
     /* Thème créé par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_basic_menu_gauche.css",
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#800080', '#ff95ff', '#ff95ff', '#800080', '#800080', '#455245', '#800080', '#ff95ff', '#455245', '#444444', '#333333', '#800080', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#d5f5d9', '#d5f5d9', '#CCC', '#FFF', '#CCC', '#FFFFFF', '#d5f5d9', '#f892cc', '#fbbde0', '#800080', '#FFFFFF', '#f892cc', '#800080', '#222222', '#FFFFFF', '#222222', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#800080', '', '', '', '', 'none', '#ff95ff', '', '', '#800080', '', '', '#800080', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_titre_entete', 'Black/BlackPig2_entete_liens.png', 'left', 'bottom', 'repeat-x', 'scroll')",
@@ -180,7 +180,7 @@ $eva_themes = array(
     ), ),
 'Black is Black' => array(
     /* Thème créé par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_basic_menu_gauche.css",
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#777777', '#000000', '#777777', '#777777', '#777777', '#455245', '#777777', '#000000', '#455245', '#444444', '#333333', '#777777', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#CCC', '#FFF', '#CCC', '#FFFFFF', '#000000', '#000000', '#FFFFFF', '#AAAAAA', '#FFFFFF', '#FFFFFF', '#AAAAAA', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#777777', '', '', '', '', 'none', '#777777', '', '', '#444444', '', '', '#777777', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_page', 'Black/Black_page.png', 'left', 'bottom', 'repeat-x', 'scroll')",
@@ -201,7 +201,7 @@ $eva_themes = array(
     ), ),
 'Black Tree' => array(
     /* Thème créé par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_basic_menu_gauche.css",
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#bb6c64', '#6d3630', '#bb6c64', '#bb6c64', '#bb6c64', '#455245', '#bb6c64', '#6d3630', '#455245', '#444444', '#333333', '#bb6c64', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#edd8d6', '#CCC', '#FFF', '#CCC', '#FFFFFF', '#edd8d6', '#e7ccc9', '#edd8d6', '#bb6c64', '#FFFFFF', '#e7ccc9', '#bb6c64', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#bb6c64', '', '', '', '', 'none', '#bb6c64', '', '', '#444444', '', '', '#bb6c64', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_page', 'Black/Black_page.png', 'left', 'bottom', 'repeat-x', 'scroll')",
@@ -221,7 +221,7 @@ $eva_themes = array(
     ), ),
 'Black Sky' => array(
     /* Thème créé par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_basic_menu_gauche.css",
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#39eae6', '#109895', '#39eae6', '#39eae6', '#39eae6', '#455245', '#39eae6', '#109895', '#455245', '#444444', '#333333', '#39eae6', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#222222', '#CCC', '#FFF', '#CCC', '#cffaf9', '#222222', '#62eeeb', '#cffaf9', '#39eae6', '#FFFFFF', '#cffaf9', '#39eae6', '#FFFFFF', '#222222', '#222222', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#39eae6', '', '', '', '', 'none', '#39eae6', '', '', '#444444', '', '', '#39eae6', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_menu_off', 'Black/BlackApple_bas_bloc.png', 'left', 'bottom', 'repeat-x', 'scroll')",
@@ -242,7 +242,7 @@ $eva_themes = array(
     ), ),
 'Black Grey Sky' => array(
     /* Thème créé par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_basic_menu_gauche.css",
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#3a7474', '#8bc5c5', '#8bc5c5', '#3a7474', '#3a7474', '#455245', '#3a7474', '#8bc5c5', '#455245', '#444444', '#333333', '#3a7474', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#CCC', '#FFF', '#CCC', '#FFFFFF', '#b6dada', '#b6dada', '#FFFFFF', '#3a7474', '#FFFFFF', '#FFFFFF', '#3a7474', '#333333', '#FFFFFF', '#333333', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#3a7474', '', '', '', '', 'none', '#3a7474', '', '', '#444444', '', '', '#3a7474', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_edito_titre', 'Black/BlackApple_titre_edito.png', 'left', 'bottom', 'repeat-x', 'scroll')",
@@ -263,7 +263,7 @@ $eva_themes = array(
     ), ),
 'Black Salmon' => array(
     /* Thème créé par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_basic_menu_gauche.css",
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#fda971', '#ee6102', '#ee6102', '#fda971', '#fda971', '#455245', '#fda971', '#ee6102', '#455245', '#444444', '#333333', '#fda971', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#d5f5d9', '#222222', '#CCC', '#FFF', '#CCC', '#FFFFFF', '#222222', '#fec49c', '#fec49c', '#fda971', '#FFFFFF', '#fec49c', '#fda971', '#222222', '#222222', '#111111', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#fda971', '', '', '', '', 'none', '#fda971', '', '', '#444444', '', '', '#fda971', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_menu_off', 'Black/BlackApple_bas_bloc.png', 'left', 'bottom', 'repeat-x', 'scroll')",
@@ -284,7 +284,7 @@ $eva_themes = array(
     ), ),
 'Black Pink Lady' => array(
     /* Thème créé par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_basic_menu_gauche.css",
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#92e043', '#fe85a6', '#92e043', '#92e043', '#92e043', '#455245', '#92e043', '#fe85a6', '#455245', '#fe85a6', '#333333', '#92e043', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#222222', '#CCC', '#FFF', '#CCC', '#FFFFFF', '#222222', '#cbb077', '#cbb077', '#fe85a6', '#FFFFFF', '#cbb077', '#fe85a6', '#222222', '#FFFFFF', '#222222', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#92e043', '', '', '', '', 'none', '#92e043', '', '', '#444444', '', '', '#92e043', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_edito_titre', 'Black/BlackApple_titre_edito.png', 'left', 'bottom', 'repeat-x', 'scroll')",
@@ -305,7 +305,7 @@ $eva_themes = array(
     ), ),
 'Black Green Purple' => array(
     /* Thème créé par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_basic_menu_gauche.css",
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#6d1fbc', '#92e043', '#6d1fbc', '#6d1fbc', '#6d1fbc', '#455245', '#6d1fbc', '#92e043', '#455245', '#444444', '#333333', '#6d1fbc', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#d5f5d9', '#222222', '#CCC', '#FFF', '#CCC', '#FFFFFF', '#d5f5d9', '#a768e6', '#b783eb', '#6d1fbc', '#FFFFFF', '#b783eb', '#6d1fbc', '#222222', '#222222', '#222222', '#2593d8', '#6d1fbc', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#6d1fbc', '', '', '', '', 'none', '#6d1fbc', '', '', '#444444', '', '', '#6d1fbc', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_titre_entete', 'Black/BlackGreenPurple_entete_arborescence.png', 'left', 'bottom', 'repeat-x', 'scroll')",
@@ -326,7 +326,7 @@ $eva_themes = array(
     ), ),
 'Black Submarine' => array(
     /* Thème créé par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_basic_menu_gauche.css",
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#0000ff', '#ffff00', '#ffff00', '#0000ff', '#0000ff', '#455245', '#0000ff', '#ffff00', '#455245', '#444444', '#333333', '#0000ff', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#d5f5d9', '#d5f5d9', '#CCC', '#FFF', '#CCC', '#FFFFFF', '#d5f5d9', '#cbf3ef', '#d5f5d9', '#0000ff', '#FFFFFF', '#d5f5d9', '#0000ff', '#222222', '#FFFFFF', '#111111', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#0000ff', '', '', '', '', 'none', '#0000ff', '', '', '#444444', '', '', '#0000ff', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_titres', 'Black/BlackApple_titres_secteurs.png', 'left', 'bottom', 'repeat-x', 'scroll')",
@@ -347,7 +347,7 @@ $eva_themes = array(
     ), ),
 'Black Sunrise' => array(
     /* Thème créé par Olivier Gautier */
-    "habillage" => "0",
+    "habillage" => "eva4_basic_menu_gauche.css",
     "theme" => "('', 'Defaut', '#000000', '#252525', '#333333', '#444444', '#000000', '#ff0000', '#ffff00', '#ffff00', '#ff0000', '#ff0000', '#455245', '#ff0000', '#ffff00', '#455245', '#444444', '#333333', '#ff0000', '#5a6958', '#455245', 'georgia', '#FFFFFF', '#FFFFFF', '#d5f5d9', '#d5f5d9', '#CCC', '#FFF', '#CCC', '#FFFFFF', '#ffb9b9', '#ffb9b9', '#ffb9b9', '#ff0000', '#FFFFFF', '#ffb9b9', '#ff0000', '#222222', '#222222', '#111111', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#2593d8', '#25d8c1', '#000000', '', '', '#333333', '', '', '#ff0000', '', '', '', '', 'none', '#ff0000', '', '', '#444444', '', '', '#ff0000', '', '', '#444444', '', '', '#333333', '', '', '', '', '', '', '', '130px', '40px')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_titres', 'Black/BlackApple_titres_secteurs.png', 'left', 'bottom', 'repeat-x', 'scroll')",
