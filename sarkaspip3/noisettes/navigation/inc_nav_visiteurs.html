@@ -8,26 +8,25 @@
 ]
 <div id="nav_visiteur" class="#GET{classe_div}">
 	<ul>
+		[(#CONFIG{sarkaspip_noisettes/lien_plan, 0}|=={1}|?{' '})
+			<li class="[(#GET{classe_li})]"><a href="#URL_PAGE{plan,tri=par_rubrique}"><:sarkaspip:plan_site:></a></li>
+		]
 		<li class="[(#GET{classe_li})]"><a href="#URL_PAGE{contact}"><:sarkaspip:contact:></a></li>
-		
 		[(#CONFIG{activer_sites}|=={oui}|?{
 			[(#REM) <!-- Autorisation niveau visiteur : tout visiteur connecte ou pas peut proposer un site (seul cas possible) -->]
 			[(#CONFIG{proposer_sites}|=={2}|?{
 				[<li class="[(#GET{classe_li})]">(#ENV{id_rubrique}|?{<a href="[(#URL_PAGE{referencement,id_rubrique=[(#ENV{id_rubrique})]})]"><:sarkaspip:bouton_referencement:></a>})</li>]
 			})]
 		})]
-		
 		[(#CONFIG{accepter_inscriptions}|=={oui}|?{<li class="[(#GET{classe_li})]"><a href="[(#URL_PAGE{inscription})]"><:sarkaspip:inscription:></a></li>})]
 		[(#PLUGIN{SPIPLISTES}|?{' '})
 			<li class="[(#GET{classe_li})]"><a href="[(#URL_PAGE{abonnement-newsletter})]"><:sarkaspip:newsletter:></a></li>
 		]
-		
 		[(#SESSION{id_auteur}|?{'',' '})
 			[(#REM) <!-- Auteur non connecte -->]
 			<li class="[(#GET{classe_li})]"><a href="[(#URL_PAGE{login-public}|parametre_url{url,./})]"><:sarkaspip:login_membre:></a></li>
 		</ul>
 		]
-		
 		[(#SESSION{id_auteur}|?{' '})
 			[(#REM) <!-- Auteur connecte -->]
 			<li class="[(#GET{classe_li})]"><a href="[(#URL_LOGOUT)]"><:sarkaspip:logout_membre:></a></li>
@@ -39,6 +38,4 @@
 			[(#SESSION{statut}|=={6forum}|?{	[<li class="auteur" title="<:sarkaspip:message_bonjour:>&nbsp;<:sarkaspip:statut_6forum:>"><span >(#SESSION{nom})</span>&nbsp;<img src="[(#EVAL{_DIR_IMG_PACK})visit-12.gif]" alt="<:sarkaspip:message_bonjour:>&nbsp;<:sarkaspip:statut_6forum:>" /></li>]})]
 		</ul>	
 		]
-		
-	
 </div>
