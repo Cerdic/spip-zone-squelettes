@@ -568,6 +568,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_plugins_n' => 'Vous utilisez plusieurs plugins SPIP. Veuillez valider la configuration Sarka-SPIP de ces plugins (les valeurs Sarka-SPIP de configuration des plugins sont d&eacute;finies dans sarkaspip_options.php)',
 		'cfg_inf_plugins_config' => 'Choissisez le mode de configuration du plugin',
 		'cfg_inf_lire_suite' => 'Voulez-vous afficher un lien du type &#171 Lire la suite &#187 &agrave; la fin de l\'introduction de l\'article ?',
+		'cfg_inf_commentaires' => 'Si vous avez autoris&eacute; les forums sur vos articles il est donc possible depuis la page article d\'ajouter un commentaire ou de r&eacute;pondre &agrave; un commentaire d&eacute;j&agrave; post&eacute;. Dans ce cas, vous &ecirc;tes redirig&eacute; vers la page du formulaire de saisie. 
+		Organisez l\'affichage de cette page ci-dessous.',
+		'cfg_inf_article_commente' => 'Voulez-vous afficher l\'extrait de l\'article &agrave; commenter ?',
+		'cfg_inf_commentaire_repondu' => 'Voulez-vous afficher le message auquel vous r&eacute;pondez, si c\'est le cas ?',
+		'cfg_inf_extrait_sans_logo' => 'Vous avez la possibilit&eacute; de d&eacute;finir un logo pour chaque article (cf. la page d\'&eacute;dition d\'un article). Mais si ce logo n\'est pas renseign&eacute;, le squelette a la possibilit&eacute; d\'afficher le logo de la rubrique. 
+		Voulez-vous activer cette option dans la page du formulaire de commentaire ?',
 		'cfg_inf_css_bandeau' => 'Vous pouvez modifier certains attributs graphiques des trois parties qui composent le bandeau.',
 		'cfg_inf_css_pied' => 'Vous pouvez modifier certains attributs graphiques des deux parties qui composent le bandeau.',
 		'cfg_inf_css_couleurs_bandeau_haut' => 'Choisissez vos couleurs pour la partie haute du bandeau',
@@ -577,14 +583,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_css_couleurs' => 'Cela revient &agrave; choisir la couleur d\'arri&egrave;re plan, la couleur d\'avant plan utilis&eacute;e pour le texte et les liens et la couleur de survol des liens. En outre, 
 		pour l\'arri&egrave;re plan vous avez la possibilit&eacute; de choisir une image et ses attributs de positionnement associ&eacute;s.',
 		'cfg_inf_css_general' => 'Il est possible de d&eacute;finir certains attribut graphiques appliqu&eacute;s &agrave; l\'ensemble du site. C\'est le cas de la police, de la couleur du texte...',
-		'cfg_inf_css_couleurs_site' => 'Choisissez les couleurs du texte et des liens du site qui seront appliqu&eacute;es par d&eacute;faut.',
+		'cfg_inf_css_couleurs_site' => 'Choisissez les couleurs du fond, du texte et des liens du site qui seront appliqu&eacute;es par d&eacute;faut.',
 		'cfg_lbl_css_image_fond' => 'Vous pouvez afficher une image d\'arri&egrave;re plan nomm&eacute;e bg@lbl_bi_suffixe@, stock&eacute;e dans le dossier images/ et poss&eacute;dant l\'extension gif, png ou jpg.',
-		'cfg_inf_commentaires' => 'Si vous avez autoris&eacute; les forums sur vos articles il est donc possible depuis la page article d\'ajouter un commentaire ou de r&eacute;pondre &agrave; un commentaire d&eacute;j&agrave; post&eacute;. Dans ce cas, vous &ecirc;tes redirig&eacute; vers la page du formulaire de saisie. 
-		Organisez l\'affichage de cette page ci-dessous.',
-		'cfg_inf_article_commente' => 'Voulez-vous afficher l\'extrait de l\'article &agrave; commenter ?',
-		'cfg_inf_commentaire_repondu' => 'Voulez-vous afficher le message auquel vous r&eacute;pondez, si c\'est le cas ?',
-		'cfg_inf_extrait_sans_logo' => 'Vous avez la possibilit&eacute; de d&eacute;finir un logo pour chaque article (cf. la page d\'&eacute;dition d\'un article). Mais si ce logo n\'est pas renseign&eacute;, le squelette a la possibilit&eacute; d\'afficher le logo de la rubrique. 
-		Voulez-vous activer cette option dans la page du formulaire de commentaire ?',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',

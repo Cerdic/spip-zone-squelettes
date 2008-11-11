@@ -141,4 +141,98 @@
 
 * html #noisette_miniagenda.noisette .contenu .clearer {display:none}
 
+/* Menus des rubriques et raccourcis inseres dans les colonnes extra et navigation */
+/* Initialisation des variables permettant de derouler le menu vers la droite ou la gauche */
+#SET{css_align, left}
+#SET{css_bg_position, 170}
+[(#CONFIG{sarkaspip_layout/numero_layout, 13}|match{^(14|15|16)$}|?{' '})
+	[(#SET{css_align, right})]
+]
+[(#CONFIG{sarkaspip_layout/numero_layout, 13}|match{^(14|15|16)$}|?{' '})
+	[(#SET{css_bg_position, 9})]
+]
+
+/* Navigation dans les rubriques - arborescence deroulante */
+.menu_rub1 {width: 100%; padding: 0; font-size: 1.2em;[ text-align: (#GET{css_align});]}
+.menu_rub1 ul.menulist,
+.menu_rub1 ul.menulist ul {
+	 background: #6262A4;
+	 border: 1px solid #808080;
+	 border-bottom: 0;
+	 list-style: none;
+	 z-index: 500;
+	 margin: 0;
+	 padding: 0;
+	 line-height:1.2em;
+	 width:178px;}
+* html .menu_rub1 ul.menulist,
+* html .menu_rub1 ul.menulist ul {width: 180px;}
+.menu_rub1 ul.menulist ul {position: absolute; top: -1px;[ (#GET{css_align}): 178px;]}
+.menu_rub1 ul.menulist li {position: relative; margin: 0; padding: 0; border-bottom: 1px solid #808080;}
+.menu_rub1 ul.menulist li ul { display:none; }
+.menu_rub1 ul.menulist li:hover>ul { display:block; }
+
+.menu_rub1 ul.menulist a {display: block; color: #FFFFFF; text-decoration: none; padding: 5px;}
+* html .menu_rub1 ul.menulist a {width: 100%;}
+.menu_rub1 ul.menulist a:hover {background: #323284; color: #FFFFFF;}
+.menu_rub1 ul.menulist li.smenu {
+        [background-image: url((#CHEMIN{images/arrow_from_[(#GET{css_align})].gif}));
+        [ background-position: (#GET{css_bg_position})px;]
+        background-repeat: no-repeat;]}
+.menu_rub1 ul.menulist li.smenu:hover, .menu_rub1 ul.menulist li.smenu>a:hover {
+        [background-image: url((#CHEMIN{images/arrow_from_top.gif}));
+        [ background-position: (#GET{css_bg_position}|moins{3})px;]
+        background-repeat: no-repeat;]}
+
+/* Navigation dans les rubriques - arborescence depliee */
+.menu_rub2 {font-size: 1.2em; border: 0; font-weight: normal;}
+.menu_rub2 ul {margin: 0; padding: 0; list-style: none;}
+.menu_rub2 ul li { margin: 0; padding: 0; border: 0; line-height: 1.3em;}
+.menu_rub2 ul li a {display: block; width: 160px; margin-bottom: 1px; padding: 5px 10px; color: #FFFFFF; background-color: #6262A4;}
+* html .menu_rub2 ul li a {width: 180px !important}
+.menu_rub2 ul li ul li a {display: block; width: 150px; margin-bottom: 1px; padding: 5px 10px 5px 20px; color: #FFFFFF; background-color: #6262A4;}
+.menu_rub2 ul li ul li ul li a {display: block; width: 140px; margin-bottom: 1px; padding: 5px 10px 5px 30px; color: #FFFFFF; background-color: #6262A4;}
+.menu_rub2 a.on {background-color: #323284; font-weight: bold;}
+.menu_rub2 a:hover {background-color: #323284; border: 0; color: #FFFFFF; text-decoration: none;}
+
+/* Navigation dans les rubriques - arborescence accordeon a ouverture automatique */
+.menu_rub3 {width: 100%; padding:0px; font-size: 1.2em;}
+.menu_rub3 .cache {padding-left:10%; width: 90%; background: none; display: none;}
+* html .menu_rub3 .cache {width: 100%;}
+.menu_rub3 .cache a {display: block; background: #6262A4; border-top: 1px solid #808080;}
+.menu_rub3 .cache a.on {background: #323284;}
+.menu_rub3 ul.menulist {
+	 background:none;
+	 border: 0;
+	 list-style:none;
+	 z-index: 500;
+	 margin:0px;
+	 padding:0px;
+	 line-height:1.2em}
+.menu_rub3 ul.menulist li {position: relative; margin: 0; padding: 0; border-bottom: 1px solid #808080;}
+.menu_rub3 ul.menulist a{display:block;	color:#FFFFFF; background:#6262A4; text-decoration:none; padding: 5px;}
+* html .menu_rub3 ul.menulist a {width: 100%;}
+.menu_rub3 ul.menulist a:hover{background:#323284; color:#FFFFFF;}
+.menu_rub3 ul.menulist a.on{background:#323284; color:#FFFFFF;}
+
+/* Bloc de menus des raccourcis de navigation*/
+.nav2 {border: 1px solid #6262A4; background: #E0E0E0; font-size: 1.2em; width: 178px;}
+* html .nav2 {width: 180px;}
+
+.nav2 ul {padding: 0; margin: 0}
+.nav2 li {border: #6262A4 solid 1px; margin: 10px; list-style: none; background: #6262A4; color: #F0F0FA; line-height: 1.4em;}
+.raccourci_nav1 {text-align: center;}
+.raccourci_nav1 a {color: #F0F0FA; display: block; width: 100%;}
+.raccourci_nav1 a:hover {background: #F0F0FA; color: #6262A4; text-decoration: none;}
+
+.nav2 .auteur {  
+	margin: 17px 10px;
+	padding-top: 3px;
+	padding-bottom: 2px;
+	background: #F0F0FA;
+	color: #6262A4;
+	border: 1px solid #6262A4;
+	text-align: center;}
+.nav2 .auteur a {color: #990000;}
+.nav2 .auteur a:hover {text-decoration: underline;}
 
