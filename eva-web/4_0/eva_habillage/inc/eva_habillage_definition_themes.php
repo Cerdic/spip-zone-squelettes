@@ -594,7 +594,7 @@ function EVA_div_images() {
     'image_menu' => array('ul#sommaire', 'ul#sommaire li'),
     'image_menu_off' => array('div#menu ul#sommaire li','div#menu ul#sommaire .off','div#menudroit ul#sommaire .off'),
     'image_menu_on' => array('div#menu ul#sommaire .on','div#menudroit ul#sommaire .on'),
-    'image_impairs' => array('.spip tr.row_even td','div#menuDroit .bloc ul li.un','div#menu .bloc ul li.un','div#contenu ul li.un'),
+    'image_impairs' => array('.spip tr.row_even td','div#menudroit .bloc ul li.un','div#menu .bloc ul li.un','div#contenu ul li.un'),
     'image_pairs' => array('.spip tr.row_odd td','div#menu .bloc ul li.deux','div#menudroit .bloc ul li.deux','div#contenu ul li.deux'),
     'liste_menu_off' => array('div#menu ul .off','div#menudroit ul .off'),
     'liste_menu_on' => array('div#menu ul .on','div#menudroit ul .on'),
