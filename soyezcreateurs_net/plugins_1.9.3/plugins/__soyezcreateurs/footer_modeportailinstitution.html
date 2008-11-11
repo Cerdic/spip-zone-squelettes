@@ -1,4 +1,4 @@
-#INCLURE{fond=noisettes/menus/rubrique_li}#CACHE{3600}
+#CACHE{3600}
 	<div class="retourtop">
 	  <a href="#[(#ENV{titretop}|sinon{<:pyrat:sommaire|nettoyer_marqueur:>})]">[<:pyrat:retourtop:>]</a>
 	</div>
@@ -36,7 +36,7 @@
 <B_Rubriques_MenuHaut>
 <ul>
   <BOUCLE_Rubriques_MenuHaut(RUBRIQUES){id_parent}{par num titre}{doublons}{!lang_select}><BOUCLE_test_expose_MenuHaut(RUBRIQUES) {id_enfant}{0,1}>#EXPOSE{' ',(#CONFIG{soyezcreateurs/sousmenulocaux,'systematique'}|=={systematique}|?{' ',''})}</BOUCLE_test_expose_MenuHaut>
-  <li<BOUCLE_ClasseRubriqueMenuHaut(MOTS){id_rubrique}{type=_ClasseRubriqueMenu}{0,1}>[ class=(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{'"encours ','"'})#TITRE"]</BOUCLE_ClasseRubriqueMenuHaut>[(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{' class="encours"',''})]<//B_ClasseRubriqueMenuHaut>>[({id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]<BOUCLE_SsRubriques_MenuHaut(BOUCLE_Rubriques_MenuHaut)></BOUCLE_SsRubriques_MenuHaut></li>
+  <li<BOUCLE_ClasseRubriqueMenuHaut(MOTS){id_rubrique}{type=_ClasseRubriqueMenu}{0,1}>[ class=(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{'"encours ','"'})#TITRE"]</BOUCLE_ClasseRubriqueMenuHaut>[(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{' class="encours"',''})]<//B_ClasseRubriqueMenuHaut>>[(#INCLURE{fond=noisettes/menus/rubrique_li}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]<BOUCLE_SsRubriques_MenuHaut(BOUCLE_Rubriques_MenuHaut)></BOUCLE_SsRubriques_MenuHaut></li>
   </B_test_expose_MenuHaut></BOUCLE_Rubriques_MenuHaut>
 </ul>
 </B_Rubriques_MenuHaut>
