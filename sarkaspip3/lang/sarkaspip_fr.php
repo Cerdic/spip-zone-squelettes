@@ -265,7 +265,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'rechercher' => 'Rechercher',
 		'repondre_message' => 'R&eacute;pondre &agrave; ce message', // redefinition item SPIP
 		'commentaire_suite_article' => 'Suite &agrave; l\'article...',
-		'reponse_suite_commentaire' => 'Et en r&eacute;ponse au commentaire...',
+		'reponse_suite_commentaire' => 'En r&eacute;ponse au commentaire...',
 		'requete' => 'Saisir le(s) mot(s)',
 		'resultats_recherche' => 'R&eacute;sultats de la recherche', // redefinition item SPIP
 		'retour_article' => 'Retourner &agrave; l\'article',
@@ -383,8 +383,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		son mod&egrave;le voire sa position.',
 		'cfg_descr_agenda' => 'L\'agenda inclus dans Sarka-SPIP permet d\'afficher un listing annuel ainsi qu\'un mini calendrier mensuel. Les caract&eacute;ristiques de ces deux affichages sont configurables dans cette page.',
 		'cfg_descr_sommaire' => 'Le corps de la page sommaire permet d\'afficher plusieurs blocs d\'information : l\'&eacute;dito, la liste des secteurs et les articles r&eacute;cemment publi&eacute;s. Cette page permet de configurer l\'affichage des deux derniers blocs.',
-		'cfg_descr_article' => 'Le corps de la page rubrique permet d\'afficher plusieurs blocs d\'information : la description, les documents et images joints et les commentaires post&eacute;s par des visiteurs. Cette page permet de configurer l\'affichage de tous ces blocs.',
-		'cfg_descr_rubrique' => 'Le corps de la page article permet d\'afficher plusieurs blocs d\'information : la description, les rubriques filles, les documents et images joints et les articles publi&eacute;s dans la rubrique. Cette page permet de configurer l\'affichage de tous ces blocs.',
+		'cfg_descr_article' => 'Le corps de la page article permet d\'afficher plusieurs blocs d\'information : la description, les documents et images joints et les commentaires post&eacute;s par des visiteurs. Cette page permet de configurer l\'affichage de tous ces blocs.',
+		'cfg_descr_rubrique' => 'Le corps de la page rubrique permet d\'afficher plusieurs blocs d\'information : la description, les rubriques filles, les documents et images joints et les articles publi&eacute;s dans la rubrique. Cette page permet de configurer l\'affichage de tous ces blocs.',
 		'cfg_descr_herbier' => 'Le corps de la page herbier propose une liste pagin&eacute;e de sites, agr&eacute;ment&eacute;e de vignettes. Cette page est affich&eacute;e selon deux mod&egrave;les: une liste (description et vignette) et un panorama de vignettes uniquement. 
 		Cette page de configuration vous permet de choisir les caract&eacute;ristiques de chaque mod&egrave;le de votre herbier.',
 		'cfg_descr_galerie' => 'bla bla bla',
@@ -458,6 +458,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_css_pied' => 'Pied',
 		'cfg_lgd_plugins_info' => 'Information',
 		'cfg_lgd_plugin' => 'Plugin',
+		'cfg_lgd_commentaires' => 'Formulaire de saisie d\'un commentaire',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -578,6 +579,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_css_general' => 'Il est possible de d&eacute;finir certains attribut graphiques appliqu&eacute;s &agrave; l\'ensemble du site. C\'est le cas de la police, de la couleur du texte...',
 		'cfg_inf_css_couleurs_site' => 'Choisissez les couleurs du texte et des liens du site qui seront appliqu&eacute;es par d&eacute;faut.',
 		'cfg_lbl_css_image_fond' => 'Vous pouvez afficher une image d\'arri&egrave;re plan nomm&eacute;e bg@lbl_bi_suffixe@, stock&eacute;e dans le dossier images/ et poss&eacute;dant l\'extension gif, png ou jpg.',
+		'cfg_inf_commentaires' => 'Si vous avez autoris&eacute; les forums sur vos articles il est donc possible depuis la page article d\'ajouter un commentaire ou de r&eacute;pondre &agrave; un commentaire d&eacute;j&agrave; post&eacute;. Dans ce cas, vous &ecirc;tes redirig&eacute; vers la page du formulaire de saisie. 
+		Organisez l\'affichage de cette page ci-dessous.',
+		'cfg_inf_article_commente' => 'Voulez-vous afficher l\'extrait de l\'article &agrave; commenter ?',
+		'cfg_inf_commentaire_repondu' => 'Voulez-vous afficher le message auquel vous r&eacute;pondez, si c\'est le cas ?',
+		'cfg_inf_extrait_sans_logo' => 'Vous avez la possibilit&eacute; de d&eacute;finir un logo pour chaque article (cf. la page d\'&eacute;dition d\'un article). Mais si ce logo n\'est pas renseign&eacute;, le squelette a la possibilit&eacute; d\'afficher le logo de la rubrique. 
+		Voulez-vous activer cette option dans la page du formulaire de commentaire ?',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',

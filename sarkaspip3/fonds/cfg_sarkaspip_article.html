@@ -4,6 +4,25 @@
 <INCLURE{fond=noisettes/cfg/inc_cfg_header}>
 #CACHE{0}
 
+<script type="text/javascript">
+//<![CDATA[
+	jQuery(document).ready(function() {
+		[(#ENV{position_extrait, 1}|!={1}|?{' '})
+			jQuery("#bloc_pas_extrait").hide();
+		]
+		jQuery("input[@name='position_extrait']").change(function() {
+			if (jQuery("input[@name='position_extrait']:checked").val() == 1) {
+				jQuery("#bloc_pas_extrait").show();
+			}
+			else {
+				jQuery("#bloc_pas_extrait").hide();
+			}
+			jQuery(this).blur();
+		});	
+	});
+//]]>
+</script>
+
 <form method="post" action="#SELF"><div>
 	[(#ENV{_cfg_}|form_hidden)]
 	<fieldset>
@@ -28,6 +47,38 @@
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_images_jointes:></legend>
 		<INCLURE{fond=noisettes/cfg/inc_cfg_effet_image}{env}>
+	</fieldset>
+
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_commentaires:></legend>
+		<p><:sarkaspip:cfg_inf_commentaires:></p>
+		<p><:sarkaspip:cfg_inf_article_commente:></p>
+		<label>
+			<input type="radio" name="position_extrait" value="1" [(#ENV{position_extrait, 1}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_oui:>
+		</label>
+		<label>
+			<input type="radio" name="position_extrait" value="0" [(#ENV{position_extrait, 1}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_non:>
+		</label>
+		<div id="bloc_pas_extrait">
+			<br />
+			<INCLURE{fond=noisettes/cfg/inc_cfg_introduction}{env}>
+			<br />
+			<INCLURE{fond=noisettes/cfg/inc_cfg_logo}
+				{explication=<:sarkaspip:cfg_inf_extrait_sans_logo:>}
+				{suffixe=_extrait}
+				{env}>
+		</div>
+		<br /><p><:sarkaspip:cfg_inf_commentaire_repondu:></p>
+		<label>
+			<input type="radio" name="position_commentaire" value="1" [(#ENV{position_commentaire, 1}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_oui:>
+		</label>
+		<label>
+			<input type="radio" name="position_commentaire" value="0" [(#ENV{position_commentaire, 1}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_non:>
+		</label>
 	</fieldset>
 	
 	<div style="text-align: right; margin-right:3px;">

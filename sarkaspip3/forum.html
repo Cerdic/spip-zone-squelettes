@@ -18,20 +18,24 @@
 	<div id="content">
 		<h1 class="intitule_page"><:sarkaspip:poster_commentaire:></h1>
         [(#REM) <!-- Resume du texte de l'article auquel le commentaire s'adresse --> ]
+		[(#CONFIG{sarkaspip_article/position_extrait, 1}|=={1}|?{' '})
 		<div id="article_commentaire" class="portfolio">
 			<h2><:sarkaspip:commentaire_suite_article:></h2>
 			<INCLURE{fond=noisettes/article/inc_article_introduction}
 				{id_article}
 				{afficher_mere=non}
 				{afficher_commentaires=non}
-				{logo_rubrique=#CONFIG{sarkaspip_sommaire/logo_rubrique, oui}}
-				{avec_lire_suite=#CONFIG{sarkaspip_sommaire/avec_lire_suite, non}}
-				{taille_logo=#CONFIG{sarkaspip_sommaire/taille_logo, 150}}
-				{taille_introduction=#CONFIG{sarkaspip_sommaire/intro_article, 300}}>
+				{logo_rubrique=#CONFIG{sarkaspip_article/logo_rubrique_extrait, oui}}
+				{avec_lire_suite=#CONFIG{sarkaspip_article/avec_lire_suite, non}}
+				{taille_logo=#CONFIG{sarkaspip_article/taille_logo_extrait, 150}}
+				{taille_introduction=#CONFIG{sarkaspip_article/intro_article, 300}}>
 		</div>
+		]
 		[(#REM) <!-- Visualisation du commentaire ˆ commenter --> ]
-		[(#ENV{id_forum}|?{' '})
-			<INCLURE{fond=noisettes/article/inc_article_commentaires}{id_article}{id_forum}>	
+		[(#CONFIG{sarkaspip_article/position_commentaire, 1}|=={1}|?{' '})
+			[(#ENV{id_forum}|?{' '})
+				<INCLURE{fond=noisettes/article/inc_article_commentaires}{id_article}{id_forum}>	
+			]
 		]
 		[(#REM) <!-- Formulaire de reponse --> ]
 		<div class="formulaire">#FORMULAIRE_FORUM</div>
