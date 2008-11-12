@@ -7,7 +7,7 @@ function eva_habillage_definition_themes () {
     //Fond des pages
     $eva_fond_page_background = array('div#page');
     //Fond des blocs
-    $eva_fond_bloc_background = array('hr','.spip_cadre','textarea.spip_cadre','fieldset','#formrecherche','#forum ul.forum div.titre .auteur','.divers div.contenu','div#contenu ul','div.bloc ul','div#contenu .bloc','div#menu .bloc','div#menudroit .bloc','div.bloc','ul#sommaire','div#menu .bloc ul','div#menuDroit .bloc ul');
+    $eva_fond_bloc_background = array('#forum ul.forum div.contenu','blockquote.spip','#forum ul.forum div.auteur','#forum ul.forum div.texte','#forum ul.forum','hr','.spip_cadre','textarea.spip_cadre','fieldset','#formrecherche','#forum ul.forum div.titre .auteur','.divers div.contenu','div#contenu ul','div.bloc ul','div#contenu .bloc','div#menu .bloc','div#menudroit .bloc','div.bloc','ul#sommaire','div#menu .bloc ul','div#menuDroit .bloc ul');
     //Fond de l'éditorial et des chapeaux
     $eva_fond_edito_background = array('.edito .titre','div#photo img','div#contenu div.chapo','div.edito','div#entetediaporama','div#boutondiaporama a span');
     //Entêtes des pages
@@ -42,7 +42,7 @@ function eva_habillage_definition_themes () {
     //Type de police de caractères, hors formulaire, <code>...</code>, ...
     $eva_police_type_font_family = array('body');
     //Couleur du texte du site
-    $eva_texte_principal_color = array('body','div#menu .bloc ul li','div#contenu .bloc ul li','div#menudroit .bloc ul li','.menupaginationbas','li .menupaginationbas','.menupaginationhaut','li .menupaginationhaut','div#contenu .bloc','div#menu .bloc','div#menudroit .bloc','div#contenu ul li','div .contenu','h3.titre','h3.titre a','.divers','.erreur','hr','.spip_cadre','textarea.spip_cadre','fieldset','div#contenu','div#contenu .bloc','.bloc','ul#sommaire','div#menu .bloc ul','div#menudroit .bloc ul','div#contenu .bloc ul li','.auteur');
+    $eva_texte_principal_color = array('#forum ul.forum div.contenu','blockquote.spip','#forum ul.forum div.auteur','#forum ul.forum div.texte','#forum ul.forum','body','div#menu .bloc ul li','div#contenu .bloc ul li','div#menudroit .bloc ul li','.menupaginationbas','li .menupaginationbas','.menupaginationhaut','li .menupaginationhaut','div#contenu .bloc','div#menu .bloc','div#menudroit .bloc','div#contenu ul li','div .contenu','h3.titre','h3.titre a','.divers','.erreur','hr','.spip_cadre','textarea.spip_cadre','fieldset','div#contenu','div#contenu .bloc','.bloc','ul#sommaire','div#menu .bloc ul','div#menudroit .bloc ul','div#contenu .bloc ul li','.auteur');
     //Couleur du texte des listes paires
     $texte_liste_paire_color = array('div#menu .bloc ul li.deux','div#menudroit .bloc ul li.deux','div#contenu ul li.deux','div#contenu ul li.deux h2','table.spip tr.row_odd','div#contenu ul.bloc li.deux');
     //Couleur du texte des listes impaire
