@@ -74,7 +74,7 @@ function eva_habillage_definition_themes () {
     //Couleur du texte dans les barres des liens et d'arborescence
     $texte_entete_arborescence_color = array('div#arborescence','div#arborescence a','div#arborescence strong','div#arborescence em','div#entete ul.liens','div#entete ul.liens a','div#entete ul.liens li.on a');
     //Couleur du texte du secteur d'auteur
-    $texte_auteur_color = array('#auteursDates','#auteursDates a','.bloc #auteursDates li','.bloc #auteursDates li a');
+    $texte_auteur_color = array('#auteursdates','#auteursdates a','.bloc #auteursdates li','.bloc #auteursdates li a');
     //Couleur des textes du pied de page
     $texte_pied_color = array('ul#pied','ul#pied a','ul#pied li.on a','ul#pied a:hover','ul#pied p a:hover');
     //Couleur des liens
