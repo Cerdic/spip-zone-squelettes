@@ -27,7 +27,7 @@ svn checkout svn://zone.spip.org/spip-zone/_plugins_/_test_/sedna
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/sitemap
 #svn checkout svn://zone.spip.org/spip-zone/_plugins_/_dev_/thickbox2
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_dev_/nyroceros
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_test_/spip_2_reloaded
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/spip-bonux-2
 #svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/woopra
 #svn checkout svn://zone.spip.org/spip-zone/_plugins_/_dev_/notation
 
