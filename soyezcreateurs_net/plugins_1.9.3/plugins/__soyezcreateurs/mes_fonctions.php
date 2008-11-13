@@ -341,6 +341,7 @@ function afficher_les_dates($dateDebut,$dateFin,$horaire, $distance=0, $en_cours
 }
 
 function annee_scolaire($ladate) {
+	if ($ladate=='') return '';
 	$annee = annee($ladate);
 	$mois = mois($ladate);
 	if ($mois <= 8) $annee -= 1;

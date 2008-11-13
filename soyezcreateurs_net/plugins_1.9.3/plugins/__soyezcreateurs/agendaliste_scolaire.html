@@ -21,12 +21,12 @@
 	<ul>
 		<li[ style="list-style-image: url(/(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_secteur}{mode=normal}|image_reduire{9,9}|extraire_attribut{src}));"]>
 		[(#ID_RUBRIQUE|!={#ENV{id_rubrique}}|oui
-		 )<a href="[(#URL_RUBRIQUE|parametre_url{date_ev,[(#ENV{date_ev,''}|annee_scolaire)]-09-01}|parametre_url{id_mot,#ENV{id_mot,''}}|parametre_url{'calendrier',1})]" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">][(#TITRE)][(#ID_RUBRIQUE|!={#ENV{id_rubrique}}|oui)</a>]
+		 )<a href="[(#URL_RUBRIQUE|parametre_url{date_ev,[(#ENV{date_ev,''}|annee_scolaire)-09-01]}|parametre_url{id_mot,#ENV{id_mot,''}}|parametre_url{'calendrier',1})]" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">][(#TITRE)][(#ID_RUBRIQUE|!={#ENV{id_rubrique}}|oui)</a>]
 	<ul>
 		<BOUCLE_sous_rubriques1(RUBRIQUES){id_parent}{par titre}>
 			<li[ style="list-style-image: url(/(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{9,9}|extraire_attribut{src}));"]>
 			[(#ID_RUBRIQUE|!={#ENV{id_rubrique}}|oui
-			 )<a href="[(#URL_RUBRIQUE|parametre_url{date_ev,[(#ENV{date_ev,''}|annee_scolaire)]-09-01}|parametre_url{id_mot,#ENV{id_mot,''}}|parametre_url{'calendrier',1})]" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">][(#TITRE)][(#ID_RUBRIQUE|!={#ENV{id_rubrique}}|oui)</a>]
+			 )<a href="[(#URL_RUBRIQUE|parametre_url{date_ev,[(#ENV{date_ev,''}|annee_scolaire)-09-01]}|parametre_url{id_mot,#ENV{id_mot,''}}|parametre_url{'calendrier',1})]" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">][(#TITRE)][(#ID_RUBRIQUE|!={#ENV{id_rubrique}}|oui)</a>]
 			<BOUCLE_RecursionRubriques(BOUCLE_sous_rubriques1)></BOUCLE_RecursionRubriques>
 			</li>
 		</BOUCLE_sous_rubriques1>
@@ -45,7 +45,7 @@
 		<form id="timenavigation" method="get" action="#SELF"><fieldset><legend><:pyrat:precisezrecherche:></legend>
 		<BOUCLE_PremiereAnnee(EVENEMENTS){branche}{par date_debut}{0,1}>
 		[(#DATE_DEBUT|affdate{Y-m-d}|<{[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)-09-01]}|?{' '})
-		<a href="[(#SELF|parametre_url{'date_ev',[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire|moins{1})]-09-01}|parametre_url{'calendrier',1})]"><img src="#CHEMIN{images/prev.gif}" title="<:precedent:>" alt="<:precedent:>" /></a>
+		<a href="[(#SELF|parametre_url{'date_ev',[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire|moins{1})-09-01]}|parametre_url{'calendrier',1})]"><img src="#CHEMIN{images/prev.gif}" title="<:precedent:>" alt="<:precedent:>" /></a>
 		]
 		</BOUCLE_PremiereAnnee>
 		<select id="date_ev" name="date_ev">
@@ -66,7 +66,7 @@
 		<input type="submit" class="form_submit" value="<:pass_ok:>" />
 		<BOUCLE_DerniereAnnee(EVENEMENTS){branche}{!par date_debut}{0,1}>
 		[(#DATE_DEBUT||affdate{Y-m-d}|>{[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire|plus{1})-09-01]}|?{' '})
-		<a href="[(#SELF|parametre_url{'date_ev',[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire|plus{1})]-09-01}|parametre_url{'calendrier',1})]"><img src="#CHEMIN{images/next.gif}" title="<:suivant:>" alt="<:suivant:>" /></a>
+		<a href="[(#SELF|parametre_url{'date_ev',[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire|plus{1})-09-01]}|parametre_url{'calendrier',1})]"><img src="#CHEMIN{images/next.gif}" title="<:suivant:>" alt="<:suivant:>" /></a>
 		]
 		</BOUCLE_DerniereAnnee>
 		[(#ENV{date}|annee_scolaire|!={[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)]}|?{' '})
