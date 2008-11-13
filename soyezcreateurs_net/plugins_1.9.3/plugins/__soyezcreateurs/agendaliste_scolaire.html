@@ -16,17 +16,25 @@
 <B_themes>
 <div id="artrecents" class="flottant">
 <h2><:pyrat:themes:></h2>
-<BOUCLE_themes(RUBRIQUES){racine}{id_secteur}><B_sous_rubriques1>
+<BOUCLE_themes(RUBRIQUES){racine}{id_secteur}>
+	<B_sous_rubriques1>
+	<ul>
+		<li[ style="list-style-image: url(/(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_secteur}{mode=normal}|image_reduire{9,9}|extraire_attribut{src}));"]>
+		[(#ID_RUBRIQUE|!={#ENV{id_rubrique}}|oui
+		 )<a href="[(#URL_RUBRIQUE|parametre_url{date_ev,[(#ENV{date_ev,''}|annee_scolaire)]-09-01}|parametre_url{id_mot,#ENV{id_mot,''}}|parametre_url{'calendrier',1})]" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">][(#TITRE)][(#ID_RUBRIQUE|!={#ENV{id_rubrique}}|oui)</a>]
 	<ul>
 		<BOUCLE_sous_rubriques1(RUBRIQUES){id_parent}{par titre}>
 			<li[ style="list-style-image: url(/(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{9,9}|extraire_attribut{src}));"]>
-			<?php if ($$GLOBALS['jp_rubrique'] != [(#ID_RUBRIQUE|texte_script)]) { ?>
-			<a href="#URL_RUBRIQUE?date_ev=[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)]-09-01[&amp;id_mot=(#ENV{id_mot,''}|urlencode)]&amp;calendrier=1" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])"><?php } ?>[(#TITRE)]<?php if ($GLOBALS['jp_rubrique'] != [(#ID_RUBRIQUE|texte_script)]) { ?></a><?php } ?>
+			[(#ID_RUBRIQUE|!={#ENV{id_rubrique}}|oui
+			 )<a href="[(#URL_RUBRIQUE|parametre_url{date_ev,[(#ENV{date_ev,''}|annee_scolaire)]-09-01}|parametre_url{id_mot,#ENV{id_mot,''}}|parametre_url{'calendrier',1})]" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">][(#TITRE)][(#ID_RUBRIQUE|!={#ENV{id_rubrique}}|oui)</a>]
 			<BOUCLE_RecursionRubriques(BOUCLE_sous_rubriques1)></BOUCLE_RecursionRubriques>
 			</li>
 		</BOUCLE_sous_rubriques1>
 	</ul>
-</B_sous_rubriques1></BOUCLE_themes>
+		</li>
+	</ul>
+	</B_sous_rubriques1>
+</BOUCLE_themes>
 </div></B_themes>
 
 	<div id="letexte">
@@ -34,12 +42,11 @@
 [(#TEXTE)]
 
 
-		<form id="timenavigation" method="get" action="#URL_RUBRIQUE"><fieldset><legend><:pyrat:precisezrecherche:></legend>
-		<input type="hidden" id="calendrier" name="calendrier" value="1" />
+		<form id="timenavigation" method="get" action="#SELF"><fieldset><legend><:pyrat:precisezrecherche:></legend>
 		<BOUCLE_PremiereAnnee(EVENEMENTS){branche}{par date_debut}{0,1}>
-		<?php if ('[(#DATE_DEBUT|affdate{Y-m-d}))]'<'[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)-09-01]') { ?>
-		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)] - 1); ?>-09-01[&amp;id_mot=(#ENV{id_mot,''}|urlencode)]&amp;calendrier=1"><img src="#CHEMIN{images/prev.gif}" title="<:precedent:>" alt="<:precedent:>" /></a>
-		<?php } ?>
+		[(#DATE_DEBUT|affdate{Y-m-d}|<{[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)-09-01]}|?{' '})
+		<a href="[(#SELF|parametre_url{'date_ev',[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire|moins{1})]-09-01}|parametre_url{'calendrier',1})]"><img src="#CHEMIN{images/prev.gif}" title="<:precedent:>" alt="<:precedent:>" /></a>
+		]
 		</BOUCLE_PremiereAnnee>
 		<select id="date_ev" name="date_ev">
 		<BOUCLE_Annees(EVENEMENTS){branche}{par date_debut}>[
@@ -51,24 +58,28 @@
 		<select id="id_mot" name="id_mot">
 		<option value=""[(#ENV{id_mot,''}|=={''}|?{' selected="selected"',''})]><:pyrat:tout:></option>
 		<BOUCLE_LstMotsClefs(EVENEMENTS){branche}{par titre}><BOUCLE_MotClefAssocie(MOTS){id_evenement}{unique}{doublons statut}>
-		<option value="[(#ID_MOT)]"[(#ENV{id_mot}|=={[(#ID_MOT)]}|?{' selected="selected"',''})]>[(#TITRE)]</option>
+		<option value="[(#ID_MOT)]"[(#ENV{id_mot}|=={[(#ID_MOT)]}|?{' selected="selected"',''})]>[(#TITRE|supprimer_tags)]</option>
 		</BOUCLE_MotClefAssocie></BOUCLE_LstMotsClefs>
 		</select>
 		</B_LstMotsClefs>
 
 		<input type="submit" class="form_submit" value="<:pass_ok:>" />
 		<BOUCLE_DerniereAnnee(EVENEMENTS){branche}{!par date_debut}{0,1}>
-		<?php if ('[(#DATE_DEBUT|affdate{Y-m-d})]'>='[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire|plus{1})-09-01]') { ?>
-		<a href="#_rubrique_principal:URL_RUBRIQUE?date_ev=<?php echo ([(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)] + 1); ?>-09-01[&amp;id_mot=(#ENV{id_mot,''}|urlencode)]&amp;calendrier=1"><img src="#CHEMIN{images/next.gif}" title="<:suivant:>" alt="<:suivant:>" /></a>
-		<?php } ?>
+		[(#DATE_DEBUT||affdate{Y-m-d}|>{[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire|plus{1})-09-01]}|?{' '})
+		<a href="[(#SELF|parametre_url{'date_ev',[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire|plus{1})]-09-01}|parametre_url{'calendrier',1})]"><img src="#CHEMIN{images/next.gif}" title="<:suivant:>" alt="<:suivant:>" /></a>
+		]
 		</BOUCLE_DerniereAnnee>
-		<?php if ( [(#ENV{date}|annee_scolaire)] != [(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)] ) { ?>
-		<input type="button" value="<:pyrat:aujourdhui:>" onclick="document.location.href='#_rubrique_principal:URL_RUBRIQUE[?id_mot=(#ENV{id_mot,''}|urlencode)]'; return false;" />
-		<?php } ?>
+		[(#ENV{date}|annee_scolaire|!={[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)]}|?{' '})
+		<input type="button" class="form_submit" value="<:pyrat:aujourdhui:>" onclick="document.location.href='[(#SELF|parametre_url{'date_ev',''})]'; return false;" />
+		]
 		</fieldset>
 		</form>
+<BOUCLE_LiensMois(EVENEMENTS){branche}{date_debut>=(#ENV{date_ev,#ENV{date}}|annee_scolaire|plus{1})-09-01}{date_debut<(#ENV{date_ev,#ENV{date}}|annee_scolaire|plus{1})-01-01}{par date_debut}{"&nbsp;| "}>[
+<a href="#m(#DATE_DEBUT|affdate{'Ym'}|unique)">[(#DATE_DEBUT|nom_mois|ucfirst)]&nbsp;[(#DATE_DEBUT|annee)]</a>
+]</BOUCLE_LiensMois>
 
-[(#INCLURE{fond=agendaliste_scolaire_filtre}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{id_mot})]
+
+[(#INCLURE{fond=agendaliste_scolaire_filtre}{id_rubrique}{date_ev}{id_mot})]
 
 [<div class="notes">(#NOTES)</div>]
 
