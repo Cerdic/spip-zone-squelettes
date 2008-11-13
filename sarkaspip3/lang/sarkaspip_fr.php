@@ -263,6 +263,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'recherche_breves_resultat' => 'Br&egrave;ves trouv&eacute;es',
 		'recherche_sites_resultat' => 'Sites web trouv&eacute;s',
 		'rechercher' => 'Rechercher',
+		'repondre_commmentaire' => 'R&eacute;pondre &agrave; ce commmentaire', // redefinition item SPIP
 		'repondre_message' => 'R&eacute;pondre &agrave; ce message', // redefinition item SPIP
 		'commentaire_suite_article' => 'Suite &agrave; l\'article...',
 		'reponse_suite_commentaire' => 'En r&eacute;ponse au commentaire...',
