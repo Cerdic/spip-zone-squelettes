@@ -710,6 +710,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_gif' => 'gif',
 		'cfg_lbl_png' => 'png',
 		'cfg_lbl_jpg' => 'jpg',
+		'cfg_lbl_contact_titre' => 'Titre de la page contenant le formulaire',
 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',
