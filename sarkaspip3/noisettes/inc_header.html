@@ -29,22 +29,25 @@
 	<meta name="description" content="[(#GET{meta_description}|textebrut)]" />
 	[<meta name="keywords" content="(#CONFIG{sarkaspip_header/keywords_site})" />]
 
-	[(#REM) <!-- Feuilles de styles du squelettte --> ]
+	[(#REM) <!-- Feuilles de styles du squelette (ecran) --> ]
 	[(#ENV{meta_impression, non}|=={oui}|?{'', ' '})
-		[(#REM) <!-- Page d'ecran --> ]
-		<link rel="stylesheet" type="text/css" media="screen,projection,print" href="[(#CHEMIN{[css/layout(#CONFIG{sarkaspip_layout/numero_layout,13}).css]})]" />
-		[<link rel="stylesheet" type="text/css" media="screen,projection,print" href="(#URL_PAGE{style.css, css=layout&var_mode=recalcul})" />]
-		[<link rel="stylesheet" type="text/css" media="screen,projection,print" href="(#URL_PAGE{style.css, css=base&var_mode=recalcul})" />]
-		[<link rel="stylesheet" type="text/css" media="screen,projection,print" href="(#URL_PAGE{style.css, css=bandeau&var_mode=recalcul})" />]
-		[<link rel="stylesheet" type="text/css" media="screen,projection,print" href="(#URL_PAGE{style.css, css=noisettes&var_mode=recalcul})" />]
-		[<link rel="stylesheet" type="text/css" media="screen,projection,print" href="(#URL_PAGE{style.css, css=elements&var_mode=recalcul})" />]
-		[(#PLUGIN{AGENDA}|?{' '})
-			<link rel="stylesheet" href="[(#CHEMIN{css/agenda.css})]" type="text/css" />
-		]
+		[(#REM) <!-- Raz des styles --> ]
+		<link rel="stylesheet" type="text/css" media="all" href="[(#CHEMIN{css/raz.css})]" />
+		[(#REM) <!-- Layout Gala choisi --> ]
+		<link rel="stylesheet" type="text/css" media="all" href="[(#CHEMIN{[css/layout(#CONFIG{sarkaspip_layout/numero_layout,13}).css]})]" />
+		[(#REM) <!-- Styles SPIP par defaut --> ]
+		<link rel="stylesheet" type="text/css" media="all" href="[(#CHEMIN{spip_style.css}|direction_css)]" />
+		<link rel="stylesheet" type="text/css" media="all" href="[(#CHEMIN{spip_formulaires.css}|direction_css)]" />
+		[(#REM) <!-- Styles du squelette par defaut --> ]
+		[<link rel="stylesheet" type="text/css" media="all" href="(#URL_PAGE{style.css, css=base&var_mode=recalcul})" />]
+		[<link rel="stylesheet" type="text/css" media="all" href="(#URL_PAGE{style.css, css=layout&var_mode=recalcul})" />]
+		[<link rel="stylesheet" type="text/css" media="all" href="(#URL_PAGE{style.css, css=bandeau&var_mode=recalcul})" />]
+		[<link rel="stylesheet" type="text/css" media="all" href="(#URL_PAGE{style.css, css=noisettes&var_mode=recalcul})" />]
+		[<link rel="stylesheet" type="text/css" media="all" href="(#URL_PAGE{style.css, css=elements&var_mode=recalcul})" />]
 	]
+	[(#REM) <!-- Feuilles de styles du squelette (impression) --> ]
 	[(#ENV{meta_impression, non}|=={oui}|?{' '})
-		[(#REM) <!-- Page d'impression --> ]
-		[<link rel="stylesheet" type="text/css" media="screen,projection,print" href="(#URL_PAGE{style.css, css=impression})" />]
+		[<link rel="stylesheet" type="text/css" media="print" href="(#URL_PAGE{style.css, css=impression})" />]
 	]
 	[(#REM) <!-- CSS personnalises --> ]
 	[<link rel="stylesheet" type="text/css" media="screen,projection,print" href="(#CHEMIN{css/perso.css})" />]
