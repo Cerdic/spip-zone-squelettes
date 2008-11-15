@@ -24,14 +24,34 @@ abbr, acronym {} /*Cf.: spip_style.css*/
 small {} /*Cf.: spip_style.css*/
 
 /* Listes SPIP */
-ul.spip {} /*Cf.: spip_style.css*/
-ol.spip {} /*Cf.: spip_style.css*/
-li.spip {} /*Cf.: spip_style.css*/
+
+/* Ces puces ne sont pas incluses dans une balise <ul> et le code obtenu est <li class="spip"> */
+li.spip {[list-style-image: url((#CHEMIN{images/puce-n0.gif})); ]list-style-position: outside; padding: 0; margin: 5px 0 0 20px;}
+
+
+/* Puces generees par un tiret suivant d'un ou plusieurs asterisques (ex: -* blabla...) */
+/* Ces puces sont incluses dans une balise <ul class="spip"> et le code de chaque item est <li class="spip"> */
+ul.spip {padding: 0; margin: 5px 0 5px 20px;}
+ul.spip li.spip {[list-style-image: url((#CHEMIN{images/puce-n1.gif})); ]padding: 0px; margin: 5px 0 0 0;}
+ul.spip ul.spip li.spip {[list-style-image: url((#CHEMIN{images/puce-n2.gif}));]}
+
+
+/* Puces generees par un tiret suivant d'un ou plusieurs diez (ex: -# blabla...) */
+/* Ces puces sont incluses dans une balise <ol class="spip"> et le code de chaque item est <li class="spip"> */
+
+ol.spip  {padding: 0;	margin: 5px 0 0 20px;}
+ol.spip li.spip{list-style-type: decimal;	list-style-image: none;	list-style-position: outside;	padding: 0px;	margin: 5px 0 0 0;}
+
+ol.spip ol.spip li.spip {list-style-type: lower-alpha;}
+ol.spip ol.spip ol.spip li.spip {list-style-type: lower-roman;}
+
+
+ 
 
 /* Citations, code et poesie */
-blockquote.spip {} /*Cf.: spip_style.css*/
+blockquote.spip {display: block; border : 1px solid #990000; border-left : 8px solid #990000; background : #EEEEEE; padding : 0px 5px; font-style :italic; overflow: auto;}
 blockquote.spip_poesie {} /*Cf.: spip_style.css*/
-.spip_code {} /*Cf.: spip_style.css*/
+.spip_code {display: block; border : 1px solid #669999; border-left : 8px solid #669999; background : #E0F0F0; padding : 0px 1em; margin: 1em 0em; font-size: 1.1em; line-height:1.5em;	overflow: auto; max-height: 25em;} 
 .spip_cadre {} /*Cf.: spip_style.css*/
 
 /* Tableaux */
@@ -43,6 +63,7 @@ table.spip td, table.spip th {padding: 0 10px}
 
 /* Logos, documents et images */
 .spip_logos {} /*Cf.: spip_style.css*/
+.image .spip_logos {display: block; float: right; margin: 10px; border:0px;}
 .spip_documents {} /*Cf.: spip_style.css*/
 .spip_documents_center {} /*Cf.: spip_style.css*/
 .spip_documents_left {} /*Cf.: spip_style.css*/
@@ -58,34 +79,6 @@ p {margin: 0 0 10px;}
 img { border: 0px none;}
 
 
-
-blockquote {display: block; border : 1px solid #990000; border-left : 8px solid #990000; background : #EEEEEE; padding : 0px 5px; font-style :italic; overflow: auto;}
-
-/*---affichage de code (pour afficher en mode texte du code html)---*/
-.spip_code {display: block; border : 1px solid #669999; border-left : 8px solid #669999; background : #E0F0F0; padding : 0px 1em; margin: 1em 0em; font-size: 1.1em; line-height:1.5em;	overflow: auto; max-height: 25em;}
-
-/* Puces generees par un tiret seul en debut de ligne */
-/* Ces puces ne sont pas incluses dans une balise <ul> et le code obtenu est <li class="spip"> */
-
-li.spip {[list-style-image: url((#CHEMIN{images/puce-n0.gif})); ]list-style-position: outside; padding: 0; margin: 5px 0 0 20px;}
-
-/* Puces generees par un tiret suivant d'un ou plusieurs asterisques (ex: -* blabla...) */
-/* Ces puces sont incluses dans une balise <ul class="spip"> et le code de chaque item est <li class="spip"> */
-
-ul.spip  {padding: 0; margin: 5px 0 5px 20px;}
-ul.spip li.spip {[list-style-image: url((#CHEMIN{images/puce-n1.gif})); ]padding: 0px; margin: 5px 0 0 0;}
-ul.spip ul.spip li.spip {[list-style-image: url((#CHEMIN{images/puce-n2.gif}));]}
-
-/* Puces generees par un tiret suivant d'un ou plusieurs diez (ex: -# blabla...) */
-/* Ces puces sont incluses dans une balise <ol class="spip"> et le code de chaque item est <li class="spip"> */
-
-ol.spip  {padding: 0;	margin: 5px 0 0 20px;}
-ol.spip li.spip{list-style-type: decimal;	list-style-image: none;	list-style-position: outside;	padding: 0px;	margin: 5px 0 0 0;}
-
-ol.spip ol.spip li.spip {list-style-type: lower-alpha;}
-ol.spip ol.spip ol.spip li.spip {list-style-type: lower-roman;}
-
-.image .spip_logos {display: block; float: right; margin: 10px; border:0px;}
 
 .clearer {clear: both; display: block; height: 0px;}
 .clearer-right {clear: right; display: block; height: 0px;}
