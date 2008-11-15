@@ -18,9 +18,18 @@
 			echo ' class="on"';
 			} ?>><a href="#URL_PAGE{plan}"><:plan_du_site:></a></li>
 	<li><a href="#EVAL{_DIR_RESTREINT_ABS}"><:redaction:></a></li>
-	[<li>(#SESSION{id_auteur}|?{' '}) <a href="#URL_LOGOUT"><:icone_deconnecter:></a></li>]
+	
+	[(#REM) On stocke le nom de l'auteur actuellement connecté ]
+	<BOUCLE_nom-auteur(AUTEURS) {id_auteur=#SESSION{id_auteur}}>#SET{nom_auteur,#NOM}</BOUCLE_nom-auteur>
+	
+	[(#REM) S'il est connecté, on affiche son nom ]
+	[<li>(#SESSION{id_auteur}|?{' '}) <a href="#URL_AUTEUR{#SESSION{id_auteur}}">#GET{nom_auteur}</a></li>]
+
+	[(#REM) Sinon, on affiche "Se connecter" ]
 	[<li>(#SESSION{id_auteur}|?{'',' '}) <a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]" class='login_modal'><:lien_connecter:></a></li>]
-		<li><a href="#bas" ><img src="#EVAL{_DIR_PLUGIN_EVASQUELETTES}images/ancrebas.gif" width="13" height="14" alt="Bas de page" /></a></li>
+
+	[(#REM) Affichage de l'ancre ]
+	<li><a href="#bas" ><img src="#EVAL{_DIR_PLUGIN_EVASQUELETTES}images/ancrebas.gif" width="13" height="14" alt="Bas de page" /></a></li>
 	</ul>
 	
 	[<h1><a href="#URL_SITE_SPIP">[(#LOGO_SITE_SPIP||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})] <span> (#NOM_SITE_SPIP)</span></a></h1>]

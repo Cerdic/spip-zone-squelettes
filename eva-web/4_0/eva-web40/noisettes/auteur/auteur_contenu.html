@@ -1,20 +1,48 @@
 <BOUCLE_principale(AUTEURS){id_auteur}>
+
+[(#REM)  Présentation de l'auteur ]
 <div class="bloc">
-<h3 class="#EDIT{qui} titre">[(#NOM)]</h3>
-[<div class="texte">(#LOGO_AUTEUR)</div>]
-[<div class="#EDIT{bio} texte">(#BIO)</div>]
+	<h3 class="#EDIT{qui} titre">[(#NOM)]</h3>
+			<div id="auteursdates">
+				[<div class="texte">(#LOGO_AUTEUR||image_reduire{100,0})</div>]
+				[(#SESSION{id_auteur}|oui) <a href="#URL_LOGOUT"><:deconnecter:></a>]
+			</div>
+	[<div class="#EDIT{bio} texte">(#BIO)</div>]
 </div>				
+
+		
+[(#REM)  L'url qu'il a mis dans sa fiche auteur ]
 [<div class="#EDIT{hyperlien} lien">
-<strong><:voir_en_ligne:></strong>
-<a href="#URL_SITE">(#NOM_SITE)</a>
+	<strong><:voir_en_ligne:></strong>
+	<a href="#URL_SITE">(#NOM_SITE)</a>
 </div>]				
+
+
+[(#REM) A afficher si l'auteur concerné est connecté ]
+<!-- <INCLURE{fond=noisettes/auteur/auteur_articles}{id_auteur}{ajax}> -->
+[(#SESSION{id_auteur}|=={#ID_AUTEUR})
+	<INCLURE{fond=noisettes/auteur/inc-auteur-derniers-commentaires}{id_auteur}{ajax}>
+	<!-- <INCLURE{fond=noisettes/auteur/derniers-articles-actifs}{id_auteur}{ajax}> -->
+	[(#REM) Messagerie ]
+	<INCLURE{fond=noisettes/auteur/inc-auteur-envoyer}{id_auteur}{ajax}>
+	<INCLURE{fond=noisettes/auteur/inc-auteur-messages_recus}{id_auteur}{ajax}>
+	<INCLURE{fond=noisettes/auteur/inc-auteur-messages_envoyes}{id_auteur}{ajax}>
+  
+    
+]
+
+[(#REM) A afficher si l'auteur concerné n'est pas connecté ]
+[(#SESSION{id_auteur}|?{'',' '})
+[(#REM)  Formulaire permettant à un visiteur d'écrire à cet auteur ]
 <div class="formulaire_spip formulaire_login">
-#FORMULAIRE_ECRIRE_AUTEUR
+	#FORMULAIRE_ECRIRE_AUTEUR
 </div>			
+]
 
 [(#REM)  Notes de bas de page ]
 [<div class="notes">
-<h4>Notes</h4>
-<div>(#NOTES)</div>
+	<h4>Notes</h4>
+	<div>(#NOTES)</div>
 </div>]
+
 </BOUCLE_principale>
