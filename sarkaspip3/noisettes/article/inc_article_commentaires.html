@@ -15,31 +15,38 @@
 	<h2><:sarkaspip:reponse_suite_commentaire:></h2>
 ]
 <BOUCLE_commentaires(FORUMS){plat}{id_article}{id_forum?}{par date}{inverse}>
-	<!-- Determination du nom de l'auteur -->
+	[(#REM) <!-- Determination des infomations sur l'auteur --> ]
 	<BOUCLE_forum_edite(FORUMS){id_parent=#ID_FORUM}{statut=original}>
+		[(#REM) <!-- Cas ou le commentaire a ete crayonne --> ]
 		<BOUCLE_auteur_pere1(AUTEURS) {id_auteur=#_forum_edite:ID_AUTEUR}>
 			#SET{nom_auteur, #NOM}
+			#SET{logo_auteur, #LOGO_AUTEUR}
+			#SET{email_auteur, #EMAIL}
 		</BOUCLE_auteur_pere1>
 			#SET{nom_auteur, #_forum_edite:NOM}
+			#SET{email_auteur, #_forum_edite:#EMAIL}
 		<//B_auteur_pere1>
 	</BOUCLE_forum_edite>
 	</B_forum_edite>
+		[(#REM) <!-- Cas ou le commentaire n'a pas ete crayonne --> ]
 		<BOUCLE_auteur_pere2(AUTEURS) {id_auteur=#_commentaires:ID_AUTEUR}>
 			#SET{nom_auteur, #NOM}
+			#SET{logo_auteur, #LOGO_AUTEUR}
+			#SET{email_auteur, #EMAIL}
 		</BOUCLE_auteur_pere2>
 			#SET{nom_auteur, #_commentaires:NOM}
+			#SET{email_auteur, #_commentaires:#EMAIL}
 		<//B_auteur_pere2>
 	<//B_forum_edite>
 
 	<div class="message"[ id="n(#COMPTEUR_BOUCLE)"]>
 		<a id="forum[(#ID_FORUM)]" name="forum[(#ID_FORUM)]" href="#forum[(#ID_FORUM)]"></a>
 		<div class="gravatar">
-      [(#LOGO_AUTEUR||?{
-					[(#LOGO_AUTEUR||image_passe_partout{32}|image_recadre{32,32,center,FFFFFF}|inserer_attribut{class,'spip_logos gravatar'})]
-					,
-					<img src="[(#EMAIL|gravatar_url)]" width="32" height="32" class="spip_logos gravatar" alt="[(#GET{nom_auteur})]" />
-			})] 
-    </div>
+		[(#GET{logo_auteur}||?{
+			[(#GET{logo_auteur}||image_passe_partout{32}|image_recadre{32,32,center,FFFFFF}|inserer_attribut{class,'spip_logos gravatar'})],
+			<img src="[(#GET{email_auteur}|gravatar_url)]" width="32" height="32" class="spip_logos gravatar" alt="[(#GET{nom_auteur})]" />
+		})] 
+    	</div>
 		<div class="cartouche_simple">
 		[(#ENV{id_forum}|?{'', ' '})
 			[<a class="fonction repondre_commentaire" href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow" title="<:sarkaspip:repondre_commmentaire:>"></a>]
