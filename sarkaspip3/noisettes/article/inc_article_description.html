@@ -35,24 +35,21 @@
 	[(#REM) <!--dans l'edito, le cartouche et l'image sont avant le titre--> ]
 	[(#ENV{page}|=={edito}|?{' '})
 		[(#INCLURE{fond=noisettes/article/inc_article_cartouche}{id_article}{id_evenement}{avec_popularite=non}{page})]
-		<div class="clearer"></div>
+		<br class="nettoyeur" />
 		[<div class="logo droite">(#GET{logo}||image_reduire{#ENV{taille_logo}})</div>]
 	]
 	
 	[<div class="#EDIT{titre} titre"><h1>(#TITRE|supprimer_numero)</h1></div>]
-	[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>]
-	
-	[(#ENV{page}|!={edito}|?{' '})
-		[(#INCLURE{fond=noisettes/article/inc_article_cartouche}{id_article}{avec_popularite}{page})]
-		<div class="clearer"></div>
-		[<div class="logo gauche">(#GET{logo}||image_reduire{#ENV{taille_logo}})</div>]
-		<div class="clearer-right"></div>
-	]
 	
 	<div class="description">
+		[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>]
+	[(#ENV{page}|!={edito}|?{' '})
+		[(#INCLURE{fond=noisettes/article/inc_article_cartouche}{id_article}{avec_popularite}{page})]
+		<br class="nettoyeur" />
+		[<div class="logo gauche">(#GET{logo}||image_reduire{#ENV{taille_logo}})</div>]
+	]
 		[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
 		[<div class="#EDIT{texte} texte">(#TEXTE|typo_couleur)</div>]
-		<div class="clearer">&nbsp;</div>
 		
 		[<div class="#EDIT{nom_site} lien_site"><a href="#URL_SITE">(#NOM_SITE)</a></div>]
 		[<div class="#EDIT{ps} ps">(#PS)</div>]
