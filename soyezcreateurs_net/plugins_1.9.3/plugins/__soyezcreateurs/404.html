@@ -1,24 +1,23 @@
 <?php 
-if ($_SERVER['REQUEST_URI']!='/spip.php?page=404') {
-	spip_log('404 REQUEST_URI:'.$_SERVER['REQUEST_URI'],'404');
-	header('Location: #URL_SITE_SPIP/spip.php?page=404');
-	exit;
-}
+spip_log('404 REQUEST_URI:'.$_SERVER['REQUEST_URI'],'404');
 header("HTTP/1.1 404 Not Found", true);
 ?>#HTTP_HEADER{"Cache-Control: no-store, no-cache, must-revalidate"}
-#HTTP_HEADER{"Pragma: no-cache"}
-[(#SET{titretop,<:pyrat:erreur|nettoyer_marqueur|texte_script:>})]
-[(#INCLURE{fond=header}{connexion}{secteurencours=#GET{secteurencours}}{lang}{title=<:pyrat:erreur|texte_script:>}{env}{titretop=#GET{titretop}})]
+#HTTP_HEADER{Pragma: no-cache}
+[(#SET{titretop,<:pass_erreur:> 404 })]
+[(#INCLURE{fond=header}{connexion}{secteurencours=#GET{secteurencours}}{lang}{title=#GET{titretop}}{env}{titretop=#GET{titretop}})]
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
-	<li><:plan_site:></li>
+	<li><:pass_erreur:> 404</li>
 	</ul>
 	</div>
 <div class="texte">
 <div class="cartouche">
+<div class="surtitre"><span>#EVAL{$_SERVER['REQUEST_URI']}</span></div>
 <h1><:pyrat:erreur_documentexistepas:></h1>
 </div>
+
+[<div class="chapo">(#ENV*{erreur}|propre)</div>]
 
 [(#INCLURE{fond=inc_plan}{lang})]
 </div><!-- Fin de .texte -->
