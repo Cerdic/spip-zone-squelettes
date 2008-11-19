@@ -33,6 +33,7 @@ function exec_eva_habillage(){
     }	
 
 	echo debut_gauche("",true);
+	include_spip('inc/evabonus_habillage');
 	echo debut_droite("",true);
 	include_spip('inc/eva_habillage_boutons');
 	echo eva_habillage_boutons('structure');
