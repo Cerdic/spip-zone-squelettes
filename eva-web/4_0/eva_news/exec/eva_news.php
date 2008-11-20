@@ -36,15 +36,12 @@ $commencer_page = charger_fonction('commencer_page', 'inc');
    echo debut_cadre_trait_couleur($icone, true,'', _T('evanews:titre_boite_principale'));
    echo debut_cadre_couleur('',true);
 
+	$nomeffet=array(0=>"FadeIn et Out",1=>"Glissement de haut en bas",2=>"De gauche à droite",3=>"");   
    echo _T('evanews:texte_descriptif');
    echo "<br />"._T('evanews:titre').lire_config('eva_news/titre');
    echo "<br /><br />"._T('evanews:effet').lire_config('eva_news/effet');
    echo "<br /><br />"._T('evanews:vitesse').lire_config('eva_news/vitesse');
-
-$id = lire_config('eva_mentions/idwebmaster');
-   echo "<br /><br /><strong>"._T('evanews:idwebmaster')."</strong>";
-   echo "<a href='?exec=auteur_infos&id_auteur=".$id."'>$id</a>";
-   echo "<br /><br />";
+   echo '<br />';
    
    echo fin_cadre_couleur(true);
    
@@ -55,7 +52,7 @@ $id = lire_config('eva_mentions/idwebmaster');
     echo '</form>';
    echo '<br />';
 
-   echo '<form method="post" action="../spip.php?page=mentions">';
+   echo '<form method="post" action="../">';
     echo '<input type="submit" class="fondo" value="';
     echo _T('evanews:page_publique');
     echo '" />';
