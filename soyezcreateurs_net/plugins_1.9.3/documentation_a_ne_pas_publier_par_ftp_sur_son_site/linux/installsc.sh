@@ -39,7 +39,7 @@ svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/enluminures_typogr
 sleep 1;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/fonctions_images
 sleep 1;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/forms/forms_et_tables_1_9_3 ./forms_et_tables/
+svn checkout svn://zone.spip.org/spip-zone/_fondation_/forms_1_9_3_foireux_mais_parfois_utile ./forms/
 sleep 1;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_test_/Lecteur_multimedia
 sleep 1;
