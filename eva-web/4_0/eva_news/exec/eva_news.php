@@ -1,5 +1,5 @@
 <?php 
-function evanews_admin() {
+function exec_eva_news() {
    include_spip("inc/presentation");
     // vérifier les droits
    global $connect_statut;
@@ -23,8 +23,7 @@ $commencer_page = charger_fonction('commencer_page', 'inc');
    echo debut_boite_info(true);
    echo _T('evanews:boite_info');
 
-   echo '<br /><br /> Texte complet de la LCEN :';
-   echo '<br /><a href="http://www.legifrance.gouv.fr/texteconsolide/PCEBX.htm" target="_blank" >L&eacute;gifrance</a>';
+	echo _T('evanews:texte_descriptif');
    echo '<br /><br /> Documentation officielle EVA-WEB :';
    echo '<br /><a href="http://eva-web.edres74.net/spip.php?rubrique4" target="_blank" >Documentation eva-web</a>';
    echo fin_boite_info(true);
@@ -37,7 +36,7 @@ $commencer_page = charger_fonction('commencer_page', 'inc');
    echo debut_cadre_trait_couleur($icone, true,'', _T('evanews:titre_boite_principale'));
    echo debut_cadre_couleur('',true);
 
-   echo _T('evanews:lcen');
+   echo _T('evanews:texte_descriptif');
    echo "<br />"._T('evanews:titre').lire_config('eva_news/titre');
    echo "<br /><br />"._T('evanews:effet').lire_config('eva_news/effet');
    echo "<br /><br />"._T('evanews:vitesse').lire_config('eva_news/vitesse');
@@ -49,7 +48,7 @@ $id = lire_config('eva_mentions/idwebmaster');
    
    echo fin_cadre_couleur(true);
    
-   echo '<form method="post" action="?exec=cfg&cfg=eva_mentions">';
+   echo '<form method="post" action="?exec=cfg&cfg=eva_news">';
     echo '<input type="submit" class="fondo" value="';
     echo _T('evanews:modif_renseignements');
     echo '" />';
