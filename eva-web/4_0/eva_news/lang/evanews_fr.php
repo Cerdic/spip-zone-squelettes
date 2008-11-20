@@ -16,9 +16,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'discipline' => "<strong>Discipline : </strong>",
 
 'editer_mentions' => "Editer les mentions l&eacute;gales",
+'effet' => "<strong>Effet de transition actuel : </strong>",
 'eva_mentions' => "Gestion des mentions l&eacute;gales",
 
-'page_publique' => "Voir la page publique des mentions l&eacute;gales",
+'page_publique' => "Aller &agrave; la page sommaire",
 'presentation' => "Ce plugin permet de g&eacute;rer les renseignements &agrave; compl&eacute;ter pour les mentions l&eacute;gales<br/>",
 'probleme_base' => "Il y a un probl&egrave;me dans votre base de donn&eacute;es.<br/>",
 
@@ -35,9 +36,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 'texte_article' => "<strong>Texte de l'article : </strong>",
 'texte_descriptif' => "<br />Here is a jQuery plugins that lets you create JavaScript News Slide as fly.(Tested with jQuery 1.2.3),Effect (Fade In-Out ,Slide Up-Down, Left To Right), version 1.0.5 add button images directory setup function<br />",
+'titre' => "<strong>Titre du bloc de news : </strong>",
 'titre_boite_principale' => " Renseignements affich&eacute;s &agrave; la page des mentions l&eacute;gales :",
 'titre_presentation' => "<strong>Pr&eacute;sentation :</strong><br/>",
 'titre_page' => "EVA_NEWS : Articles sous forme de news avec d&eacute;filement automatique",
+
+'vitesse' => "<strong>Vitesse entre les transitions : </strong>",
 
 'quitter' => "Quitter ce formulaire",
 
