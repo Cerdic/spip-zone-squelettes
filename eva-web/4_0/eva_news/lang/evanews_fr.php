@@ -31,17 +31,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'mot_titre' => "<strong>Nom du mot-cl&eacute; : </strong>",
 'mot_descriptif' => "<strong>Descriptif : </strong>",
 
+'pausevitesse' => "<strong>Dur&eacute;e de pause entre chaque articles (1000=1seconde) : </strong>",
+
 'siteoff1' => "<strong>Site officiel eva-web :</strong><br/>",
 'siteoff2' => "<strong></strong><br/>",
 
 'texte_article' => "<strong>Texte de l'article : </strong>",
 'texte_descriptif' => "<br />Here is a jQuery plugins that lets you create JavaScript News Slide as fly.(Tested with jQuery 1.2.3),Effect (Fade In-Out ,Slide Up-Down, Left To Right), version 1.0.5 add button images directory setup function<br />",
 'titre' => "<strong>Titre du bloc de news : </strong>",
-'titre_boite_principale' => " Renseignements affich&eacute;s &agrave; la page des mentions l&eacute;gales :",
+'titre_boite_principale' => "Param&egrave;trage du plugin :",
 'titre_presentation' => "<strong>Pr&eacute;sentation :</strong><br/>",
-'titre_page' => "EVA_NEWS : Articles sous forme de news avec d&eacute;filement automatique",
+'titre_page' => "EVA NEWS : D&eacute;filement automatique d'articles sous forme de news",
 
-'vitesse' => "<strong>Vitesse entre les transitions : </strong>",
+'vitesse' => "<strong>Vitesse entre les transitions (1000=1seconde) : </strong>",
 
 'quitter' => "Quitter ce formulaire",
 

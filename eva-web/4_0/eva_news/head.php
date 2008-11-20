@@ -20,7 +20,7 @@
 //isauto:set timer true or false(default is true)
 	
 	function evanews_insert_head($flux){
-	$newsspeed = "6000";
+	$newsspeed = lire_config('eva_news/pausevitesse');
 	$effectis = lire_config('eva_news/effet');
 	$effectspeed = lire_config('eva_news/vitesse');
 	$playingtitle = "Article :"; 

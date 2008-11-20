@@ -41,6 +41,7 @@ $commencer_page = charger_fonction('commencer_page', 'inc');
    echo "<br />"._T('evanews:titre').lire_config('eva_news/titre');
    echo "<br /><br />"._T('evanews:effet').lire_config('eva_news/effet');
    echo "<br /><br />"._T('evanews:vitesse').lire_config('eva_news/vitesse');
+   echo "<br /><br />"._T('evanews:pausevitesse').lire_config('eva_news/pausevitesse');   
    echo '<br />';
    
    echo fin_cadre_couleur(true);
