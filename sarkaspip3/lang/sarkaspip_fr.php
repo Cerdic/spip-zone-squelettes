@@ -21,7 +21,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'1_site_web' => 'Site Web',
 		'1_commentaire' => 'commentaire',
 		'1_visiteur_connecte' => 'visiteur actuellement connect&eacute;',
-		'1_visiteurs_connectes' => 'visiteurs actuellement connect&eacute;s',
+		'n_visiteurs_connectes' => 'visiteurs actuellement connect&eacute;s',
 	  
 	
 //A
