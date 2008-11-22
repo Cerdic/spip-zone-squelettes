@@ -23,28 +23,15 @@
 		<div id="content">
 		   [(#REM) <!-- affichage de la breve courante --> ]
 			[(#ENV{id_breve}|?{' '})
-				<div id="breve" class="noisette">
-					[(#INCLURE{fond=noisettes/breve/inc_breve_1}{id_breve}{editable=oui})]
+				<div id="breve" class="breve">
+					[(#INCLURE{fond=noisettes/breve/inc_breve_content}{id_breve}{editable=oui})]
 					<br />
 				</div>
 			]
 			
-			[(#REM) <!-- affichage du plan des breves classees par secteurs (une breves appartien toujours a un secteur --> ]
-			<h1 class="intitule_page"><:sarkaspip:toutes_les_breves:></h1>
-			<div class="plan">
-				<B_rubrique_racine>
-				<BOUCLE_rubrique_racine(RUBRIQUES){racine}{id_rubrique!==#RACINE_SPECIALISEE}{par num titre}>
-					<B_breves_dans_rubrique>
-						[<h2><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a></h2>]
-						<ul>
-					<BOUCLE_breves_dans_rubrique(BREVES) {id_rubrique} {par date}{inverse}>
-							<li><a class="objet_titre" href="#URL_BREVE"><span class="objet_date">[[(#DATE|affdate{'d-m-Y'})]]&nbsp;</span>&nbsp;#TITRE</a></li>
-					</BOUCLE_breves_dans_rubrique>
-						</ul>
-					</B_breves_dans_rubrique>
-				</BOUCLE_rubrique_racine>
-				</B_rubrique_racine>
-			</div>
+			[(#REM) <!-- affichage de toutes les autres breves du site --> ]
+			[(#INCLURE{fond=noisettes/breve/inc_breves_toutes}{ajax}{id_breve})]
+			
 		</div>
 	</div>
 	
