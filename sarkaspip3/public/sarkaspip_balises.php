@@ -30,6 +30,26 @@ function calcul_version_squelette() {
 }
 
 // =======================================================================================================================================
+// Balise : #VISITEURS_CONNECTES
+// =======================================================================================================================================
+// Auteur: SarkASmeL (base sur le plugin Nombre de visiteurs connectes)
+// Fonction : affiche le nombre de visiteurs en cours de connection sur le site
+// Parametre: aucun
+// =======================================================================================================================================
+//
+function balise_VISITEURS_CONNECTES($p) {
+
+	$p->code = 'calcul_visiteurs_connectes()';
+	$p->statut = 'php';
+	return $p;
+}
+
+function calcul_visiteurs_connectes() {
+	$nb = count(preg_files(_DIR_TMP.'visites/','.'));
+	return $nb;
+}
+
+// =======================================================================================================================================
 // Balise : #VISITES_SITE
 // =======================================================================================================================================
 // Auteur: SarkASmeL

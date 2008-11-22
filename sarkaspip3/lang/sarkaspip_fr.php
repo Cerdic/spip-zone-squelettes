@@ -14,11 +14,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'0_breve' => 'Aucune br&egrave;ve',
 		'0_site_web' => 'Aucun site',
 		'0_commentaire' => 'Aucun commentaire',
+		'0_visiteur_connecte' => 'Aucun visiteur actuellement connect&eacute;',
 		'1_article' => 'Article',
 		'1_auteur' => 'Auteur',
 		'1_breve' => 'Br&egrave;ve',
 		'1_site_web' => 'Site Web',
 		'1_commentaire' => 'commentaire',
+		'1_visiteur_connecte' => 'visiteur actuellement connect&eacute;',
+		'1_visiteurs_connectes' => 'visiteurs actuellement connect&eacute;s',
 	  
 	
 //A
@@ -355,6 +358,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_titre_formulaires' => 'Sarka-SPIP - Configuration des pages de formulaires',
 		'cfg_titre_styles' => 'Sarka-SPIP - Configuration des styles',
 		'cfg_titre_plugins' => 'Sarka-SPIP - Configuration des plugins int&eacute;gr&eacute;s',
+		'cfg_titre_auteur' => 'Sarka-SPIP - Configuration de la page auteur',
 
 // Titre des liens des pages
 		'sarkaspip_accueil' => 'Accueil',
@@ -373,6 +377,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'sarkaspip_formulaires' => 'Formulaires',
 		'sarkaspip_styles' => 'Styles',
 		'sarkaspip_plugins' => 'Plugins',
+		'sarkaspip_auteur' => 'Auteur',
 		
 // Descriptif des pages
 		'cfg_descr_accueil' => 'Vous &ecirc;tes sur la page d\'accueil de la configuration du squelette Sarka-SPIP.',
@@ -395,6 +400,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_descr_styles' => 'Cette page permet de configurer certains &eacute;l&eacute;ments communs aux pages du squelette comme les couleurs d\'avant et d\'arri&egrave;re plan, les survols de liens, les cadres...',
 		'cfg_descr_plugins' => 'Cette page permet de fixer la configuration de certains plugins SPIP int&eacute;gr&eacute;s au squelette comme Boutons Texte, Nyroceros... Il est indispensable d\'appliquer ce param&eacute;trage Sarka-SPIP pour obtenir les effets voulus dans le squelette. N&eacute;anmoins, il est possible de revenir &agrave; la 
 		configuration par d&eacute;faut du plugin si vous n\'utilisez plus le squelette.',
+		'cfg_descr_auteur' => 'Le corps de la page auteur permet d\'afficher plusieurs blocs d\'information : la biographie, les articles publi&eacute;s par l\'auteur et un formulaire de contact. Cette page permet de configurer l\'affichage de tous ces blocs.',
 
 // Titre des boites
 		'cfg_boite_accueil' => 'Accueil',
@@ -413,6 +419,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_boite_formulaires' => 'Formulaires',
 		'cfg_boite_styles' => 'Styles',
 		'cfg_boite_plugins' => 'Plugins',
+		'cfg_boite_auteur' => 'Auteur',
 
 // Legendes des blocs contenus dans chaque boite
 		'cfg_lgd_layout' => 'Layout',
@@ -449,7 +456,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     	'cfg_lgd_galerie_tri' => 'Galerie - Tri',	
 		'cfg_lgd_accueil_intro' => 'Pr&eacute;sentation',
 		'cfg_lgd_accueil_debug' => 'Debug',
-		'cfg_lgd_rubrique_articles' => 'Articles publi&eacute;s',
+		'cfg_lgd_articles_publies' => 'Articles publi&eacute;s',
 		'cfg_lgd_description' => 'El&eacute;ments descriptifs',
 		'cfg_lgd_documents_joints' => 'Documents joints',
 		'cfg_lgd_images_jointes' => 'Portfolio',
@@ -578,6 +585,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_commentaire_repondu' => 'Voulez-vous afficher le message auquel vous r&eacute;pondez, si c\'est le cas ?',
 		'cfg_inf_extrait_sans_logo' => 'Vous avez la possibilit&eacute; de d&eacute;finir un logo pour chaque article (cf. la page d\'&eacute;dition d\'un article). Mais si ce logo n\'est pas renseign&eacute;, le squelette a la possibilit&eacute; d\'afficher le logo de la rubrique. 
 		Voulez-vous activer cette option dans la page du formulaire de commentaire ?',
+		'cfg_inf_article_notation' => 'L\'activation du plugin  &#171; Notation d\'&eacute;l&eacute;ments SPIP &#187; vous donne la possibilit&eacute; d\'ins&eacute;rer le formulaire de notation dans le cartouche ou &agrave; la fin du texte de l\'article.',
+		'cfg_inf_auteur_articles' => 'Voulez-vous afficher la liste des articles publi&eacute;s par l\'auteur ? Si oui, vous pourrez ensuite ajuster quelques param&egrave;tres de cet affichage.',
+		'cfg_inf_auteur_contact' => 'Voulez-vous afficher un formulaire pour contacter l\'auteur ?',
 		'cfg_inf_css_bandeau' => 'Vous pouvez modifier certains attributs graphiques des trois parties qui composent le bandeau.',
 		'cfg_inf_css_pied' => 'Vous pouvez modifier certains attributs graphiques des deux parties qui composent le bandeau.',
 		'cfg_inf_css_couleurs_bandeau_haut' => 'Choisissez vos couleurs pour la partie haute du bandeau',
@@ -588,7 +598,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		pour l\'arri&egrave;re plan vous avez la possibilit&eacute; de choisir une image et ses attributs de positionnement associ&eacute;s.',
 		'cfg_inf_css_general' => 'Il est possible de d&eacute;finir certains attribut graphiques appliqu&eacute;s &agrave; l\'ensemble du site. C\'est le cas de la police, de la couleur du texte...',
 		'cfg_inf_css_couleurs_site' => 'Choisissez les couleurs du fond, du texte et des liens du site qui seront appliqu&eacute;es par d&eacute;faut.',
-		'cfg_lbl_css_image_fond' => 'Vous pouvez afficher une image d\'arri&egrave;re plan nomm&eacute;e bg@lbl_bi_suffixe@, stock&eacute;e dans le dossier images/ et poss&eacute;dant l\'extension gif, png ou jpg.',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
@@ -707,10 +716,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_css_td' => 'D&eacute;coration au survol des liens',
 		'cfg_lbl_css_bi1' => 'Extension de l\'image de fond',
 		'cfg_lbl_css_bi2' => 'Propri&eacute;t&eacute;s associ&eacute;es (repeat, position, attachement)',
+		'cfg_lbl_css_image_fond' => 'Vous pouvez afficher une image d\'arri&egrave;re plan nomm&eacute;e bg@lbl_bi_suffixe@, stock&eacute;e dans le dossier images/ et poss&eacute;dant l\'extension gif, png ou jpg.',
 		'cfg_lbl_gif' => 'gif',
 		'cfg_lbl_png' => 'png',
 		'cfg_lbl_jpg' => 'jpg',
 		'cfg_lbl_contact_titre' => 'Titre de la page contenant le formulaire',
+		'cfg_lbl_notation_non' => 'Ne rien ins&eacute;rer',
+		'cfg_lbl_notation_cartouche' => 'Ins&eacute;rer dans le cartouche',
+		'cfg_lbl_notation_fin' => 'Ins&eacute;rer &agrave; la fin du texte de l\'article',
 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',

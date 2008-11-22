@@ -22,9 +22,13 @@
 				<INCLURE{fond=noisettes/auteur/inc_auteur_description}{id_auteur}>
 			</div>
 			[(#REM) <!-- articles publies par l'auteur --> ]
-			<INCLURE{fond=noisettes/auteur/inc_auteur_articles}{ajax}{id_auteur}>
+			[(#CONFIG{sarkaspip_auteur/position_articles, 1}|=={1}|?{' '})
+				<INCLURE{fond=noisettes/auteur/inc_auteur_articles}{ajax}{id_auteur}>
+			]
 			[(#REM) <!-- Formumaire de contact de l'auteur --> ]
-			[<div class="formulaire">(#FORMULAIRE_ECRIRE_AUTEUR)</div>]
+			[(#CONFIG{sarkaspip_auteur/position_contact, 1}|=={1}|?{' '})
+				[<div class="formulaire">(#FORMULAIRE_ECRIRE_AUTEUR)</div>]
+			]
 		</div>
 	</div>
 	
