@@ -5,8 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
 	<title>[[(#NOM_SITE_SPIP|textebrut)]] : [(#TITRE|supprimer_numero|textebrut|entites_html)]</title>
-	<INCLURE{fond=page}{fond=styles}{lang}{id_rubrique}>
 	<INCLURE{fond=inc/inc-meta}{lang}{id_rubrique}>
+	<INCLURE{fond=page}{fond=styles}{lang}{id_rubrique}>
 	<style type="text/css" media="screen">
 <!--
 
@@ -40,11 +40,11 @@
 		</h5>
 		<div class="ligne-debut"></div><!-- ligne-debut -->
     	[<div class="logo-liste-art">
-    		(#LOGO_RUBRIQUE||reduire_image{120,0})
+    		(#LOGO_RUBRIQUE||image_reduire{120,0})
     	</div>]
     <h1 class="#EDIT{titre} titre-article">[(#TITRE|supprimer_numero)]</h1>
 	[<div class="chapo [(#TEXTE*|?{#EDIT{texte},#EDIT{descriptif}})]" id="description">
-        (#TEXTE|reduire_image{440,0}|sinon{[(#DESCRIPTIF)]})
+        (#TEXTE|image_reduire{440,0}|sinon{[(#DESCRIPTIF)]})
         [<div class="notes" style="padding: 0 1.5em;">(#NOTES)</div>]
 	</div><!-- chapo -->]
 	
@@ -60,7 +60,7 @@
 
 			<BOUCLE_afficher_document(DOCUMENTS) {id_document} {id_rubrique} {mode=document}{extension IN png,jpg,gif}>
 			<div class="spip_documents spip_documents_center" id="document_actif">
-				[<a href="[(#URL_DOCUMENT|url_absolue)]">(#FICHIER|reduire_image{450,0}|inserer_attribut{alt,[(#TITRE|supprimer_numero|couper{80}|texte_backend)]})</a>]
+				[<a href="[(#URL_DOCUMENT|url_absolue)]">(#FICHIER|image_reduire{450,0}|inserer_attribut{alt,[(#TITRE|supprimer_numero|couper{80}|texte_backend)]})</a>]
 				[<div class="spip_doc_titre">(#TITRE)</div>]
 				[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
 			</div>
@@ -71,15 +71,15 @@
 	<div class="chapo" id="documents" style="line-height:1;"> 
 		<BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {mode=document} {doublons} {"<hr style='clear:both' />"} {par num titre} {!par date}>
 				[<h3 class="#EDIT{titre}" style="margin-bottom: .6em;"><a href="#URL_DOCUMENT">(#TITRE|supprimer_numero)</a></h3>]
-				[<div style="float:left;padding-right: .5em; margin-right: .5em; width:40%;">
-					<div style="float:left; margin-right: .5em;">(#LOGO_DOCUMENT|#URL_DOCUMENT||reduire_image{60,0})</div>
+				[<div style="float:left;padding-right: .5em;  width:36%;">
+					<div style="float:left; margin-right: .5em;">(#LOGO_DOCUMENT|#URL_DOCUMENT||image_reduire{60,0})</div>
 					<small>
 						[(#DATE|affdate)<br />]
 						[<:spip:info_document:> : (#TYPE_DOCUMENT)<br />]
 						[(#TAILLE|taille_en_octets)]
 					</small>
 				</div>]
-				[<div class="#EDIT{descriptif}" style="margin: 0 0 0 40%; border-left: 1px gray dotted;">(#DESCRIPTIF)</div>]
+				[<div class="#EDIT{descriptif}" style="margin: 0 0 0 40%; border-left: 1px gray dotted;padding-left: 1em">(#DESCRIPTIF)</div>]
 		</BOUCLE_documents_joints>
 		<br class="nettoyeur" />
 	</div><!-- chapo -->
@@ -89,7 +89,7 @@
 [(#REM) - Plan de la rubrique si mot-cle de la rubrique = Rub_type_plan ]
 		<BOUCLE_type_miniplan(MOTS){id_rubrique}{titre=Rub_type_plan}>
 		<div class="chapo" id="miniplan">   	
-    		[(#MODELE{miniplan}{id_rubrique})]
+    	<INCLURE{fond=modeles/miniplan}{lang}{id_rubrique}{id_secteur}{self=#SELF}>
 		</div><!-- chapo, miniplan -->
 		</BOUCLE_type_miniplan>
 		</B_type_miniplan>

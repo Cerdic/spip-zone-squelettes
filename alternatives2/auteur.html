@@ -5,8 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
 	<title>[[(#NOM_SITE_SPIP|textebrut)]] : [(#NOM|textebrut)]</title>
-	<INCLURE{fond=page}{fond=styles}{lang}{id_auteur}>
 	<INCLURE{fond=inc/inc-meta}{lang}{id_auteur}>
+	<link rel="alternate" type="application/rss+xml" title="[(#NOM|textebrut)]" href="[(#URL_PAGE{backend}|parametre_url{id_auteur,#ID_AUTEUR})]" />
+	<INCLURE{fond=page}{fond=styles}{lang}{id_auteur}>
 </head>
 <body dir="#LANG_DIR" class="#LANG auteur aut#ID_AUTEUR">
 <div id="page" class="auteur">
@@ -24,7 +25,7 @@
     ************************************************************* -->
 	<div id="bloc-contenu">
 		<div class="cartouche">
-		[<span style="float:right;">(#LOGO_AUTEUR||reduire_image{120,0})</span>]
+		[<span style="float:right;">(#LOGO_AUTEUR||image_reduire{120,0})</span>]
 			<h1 class="#EDIT{nom}">#NOM</h1>
 			<div class="texte">
 				[<div  class="#EDIT{bio} bio">(#BIO)</div>]
@@ -37,7 +38,7 @@
 		<!-- Articles de l'auteur -->
 		<h2><:articles_auteur:></h2>
 		<BOUCLE_articles(ARTICLES) {id_auteur} {par titre} {"<br />"}>
-			<h3><a href="#URL_SITE_SPIP/spip.php?action=cookie&amp;url=#URL_SITE_SPIP%2F#URL_ARTICLE&amp;var_lang=#LANG" hreflang="#LANG" [title="(#INTRODUCTION|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a></h3>
+			<h3><a href="#URL_SITE_SPIP/spip.php?action=converser&amp;redirect=#URL_SITE_SPIP%2F#URL_ARTICLE&amp;var_lang=#LANG" hreflang="#LANG" [title="(#INTRODUCTION|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a></h3>
 			<div class="detail">
 				[(#DATE|nom_jour)] [(#DATE|affdate)]
 			</div>

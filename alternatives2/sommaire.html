@@ -6,8 +6,23 @@
 	<title>[[(#NOM_SITE_SPIP|textebrut)]]</title>
 	<INCLURE{fond=inc/inc-meta}{lang}>
 	<INCLURE{fond=styles}{lang}>
+
+	[<script type="text/javascript">
+function iPhoneAlert() {
+if((navigator.userAgent.match(/iPhone/i))||(navigator.userAgent.
+match(/iPod/i))){
+var question = confirm("Souhaitez-vous naviguer sur le site optimisé pour iPhone?")
+if (question){
+window.location = "(#URL_PAGE{ispip})";
+}else{
+
+}
+}
+}
+</script><!-- fin script -->]
+
 </head>
-<body dir="#LANG_DIR" class="#LANG sommaire">
+<body dir="#LANG_DIR" class="#LANG sommaire"[ (#PLUGIN{ispip}|=={1}|?{ onload="iPhoneAlert();"})]>
 <div id="page" class="sommaire">
 
 <!-- *****************************************************************
@@ -52,7 +67,6 @@
           <li><b><:pass_vousinscrire:></b>            
             <ul>
               <li>
-                <span><:participer_site:></span>
                 (#FORMULAIRE_INSCRIPTION)
               </li>
             </ul>

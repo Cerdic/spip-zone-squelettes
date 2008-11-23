@@ -1,8 +1,7 @@
-[(#REM) Menu contextuel des langues du site public - alternative à formulaire_menu_lang.html
+[(#REM) Menu contextuel des langues du site public - alternative au formulaire MENU_LANG de SPIP
 
     - si le site est monolingue, le menu ne s'affiche pas
-    - si le site publie dans plus d'une langue, le menu affiche toutes 
-      les langues utilisees seulement
+    - si le site publie dans plus d'une langue, le menu affiche les langues utilisees seulement
     - la langue du contexte est mise en emphase forte, sans lien
     - cliquer sur une autre langue du site, renvoie vers la page d'accueil  
       et change le cookie de langue
@@ -19,10 +18,28 @@
 	<div id="menu-lang">
 		<span class="structure"><:info_langues:> : </span>
 		[<strong class="langue_contexte">(#LANG|traduire_nom_langue)</strong>]
-<BOUCLE_langues(RUBRIQUES){racine} {par lang} {lang !=#ENV{lang}}>[
+<BOUCLE_langues(RUBRIQUES){racine} {par lang} {lang != #ENV{lang}}>[
 		<span lang="#LANG" xml:lang="#LANG">| 
-		<a href="spip.php?action=cookie&amp;url=#URL_SITE_SPIP/&amp;var_lang=#LANG" rel="alternate" hreflang="#LANG" title="<:accueil_site:> : [(#LANG|traduire_nom_langue)]"   dir="#LANG_DIR">(#LANG|unique|traduire_nom_langue{lang})</a>
+		<a href="spip.php?action=converser&amp;redirect=#URL_SITE_SPIP/&amp;var_lang=#LANG" rel="alternate" hreflang="#LANG" title="<:accueil_site:> : [(#LANG|traduire_nom_langue)]"   dir="#LANG_DIR">(#LANG|unique|traduire_nom_langue)</a>
 		</span>
 ]</BOUCLE_langues>
 	</div>
 </B_langues>
+[(#REM) Autres squelettes comportant des bascules de langues avec modification du cookie de langue
+
+    - article.html
+    - auteur.html
+    - plan.html 
+    - recherche.html 
+    - resume.html 
+    - agenda.html
+    - formulaires/formulaire_menu_lang.html  (possiblement obsolete)
+    - inc/inc-trad.html
+   
+   Si vous avez personnalise ces fichiers dans les versions anterieurs, 
+   il faudra remplacer dans vos fichiers /squelettes/
+   les passages suivants :
+   		action=cookie&amp;url=
+   par
+   		action=converser&amp;redirect=
+]

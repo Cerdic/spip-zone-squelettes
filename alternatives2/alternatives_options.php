@@ -16,7 +16,7 @@
 // 3. pour obtenir des adresses du type /article23.html,
 //    supprimer le '#' devant la ligne suivante :
 
-#	$type_urls = "html";
+//	$type_urls = "html";
 
 
 ################ CONFIGURATION TITRAGE #######################
@@ -29,7 +29,12 @@
 // que l'on utilise (backend, formulaire, etc...).
 
 	$table_des_traitements['TITRE'][]= 'supprimer_numero(typo(%s))';
-	
-#	define('SWITCHER_DOSSIERS_SQUELETTES','dist');
+
+################ COMPATIBILITE COUTEAU SUISSE #######################
+// Pour assurer une compatibilite ascendante de la methode de 'decouper en page' 
+// des squelettses d'Alternatives avec la methde du plugin 'Couteau Suisse' 
+// qu'on utilise dorenavant.
+	@define('_decoupe_COMPATIBILITE', '-----');
+
 
 ?>

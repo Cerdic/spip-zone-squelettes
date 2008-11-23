@@ -1,7 +1,9 @@
 <!-- META DATA -->
 	<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
 	<meta http-equiv="Content-language" content="#LANG" />
-	<meta name="generator" content="SPIP" />
+	<meta name="language" content="#LANG" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta name="generator" content="SPIP[ (#SPIP_VERSION)]" />
 	<meta name="robots" content="index,follow" />
 	<link rel="schema.DCTERMS"  href="http://purl.org/dc/terms/" />
 	<link rel="schema.DC"       href="http://purl.org/dc/elements/1.1/" />
@@ -64,8 +66,14 @@
 
 <//B_site_head><//B_rubrique_head><//B_mot_head><//B_breve_head><//B_article_head>
 
-	[(#REM) Icone dans la barre d'adresse - Icon in address bar
-	][<link rel="shortcut icon" href="(#CHEMIN{favicon.ico})" />]
+	[(#REM) Lien vers l'icone destinee a la barre d'adresse du navigateur, au format .ico ]
+	[<link rel="shortcut icon" href="(#ENV*{favicon}
+		|sinon{#CHEMIN{favicon.ico}}
+		|sinon{#LOGO_SITE_SPIP}
+			|image_passe_partout{32,32}
+			|image_recadre{32,32,center}
+			|image_format{ico}|extraire_attribut{src}
+		|sinon{#CHEMIN{spip.ico}})" type="image/x-icon" />]
 
 	[(#REM) Lien vers le(s) fil(s) de syndication RSS - Link(s) to RSS feed(s)
 	][<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:> : [(#NOM_SITE_SPIP|textebrut)]" href="(#URL_PAGE{backend})" />]

@@ -4,8 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
   <title>[[(#NOM_SITE_SPIP|textebrut)]] : <:resultats_recherche:>[ - (#RECHERCHE)]</title>
-  <INCLURE{fond=page}{fond=styles}{lang}>
   <INCLURE{fond=inc/inc-meta}{lang}>
+  <INCLURE{fond=page}{fond=styles}{lang}>
 </head>
 <body dir="#LANG_DIR" class="#LANG recherche">
 <div id="page">
@@ -29,14 +29,14 @@
     <B_rubriques>
       <h2><:info_rubriques_trouvees:> : [(#TOTAL_BOUCLE)]</h2>
     <BOUCLE_rubriques(RUBRIQUES)  {recherche} {lang_select=non} {par points} {inverse}{tout} >
-      <h3><a href="#URL_SITE_SPIP/spip.php?action=cookie&amp;url=#URL_SITE_SPIP%2F#URL_RUBRIQUE&amp;var_lang=#LANG" hreflang="#LANG"[title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a> [<dfn><small>&#8212; (#LANG)</small></dfn>]</h3>
+      <h3><a href="#URL_SITE_SPIP/spip.php?action=converser&amp;redirect=#URL_SITE_SPIP%2F#URL_RUBRIQUE&amp;var_lang=#LANG" hreflang="#LANG"[title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a> [<dfn><small>&#8212; (#LANG)</small></dfn>]</h3>
     </BOUCLE_rubriques>
       <br />
     </B_rubriques>
     <B_articles>
       <h2><:info_articles_trouves:> : [(#TOTAL_BOUCLE)]</h2>
     <BOUCLE_articles(ARTICLES)  {recherche} {lang_select=non} {par points} {inverse} {tout} >
-      <h3><a href="#URL_SITE_SPIP/spip.php?action=cookie&amp;url=#URL_SITE_SPIP%2F#URL_ARTICLE&amp;var_lang=#LANG" hreflang="#LANG" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a></h3>
+      <h3><a href="#URL_SITE_SPIP/spip.php?action=converser&amp;redirect=#URL_SITE_SPIP%2F#URL_ARTICLE&amp;var_lang=#LANG" hreflang="#LANG" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a></h3>
       <div class="detail">
         [(#DATE|nom_jour)] [(#DATE|affdate)]
         <B_auteurs_articles><:par_auteur:> <BOUCLE_auteurs_articles(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_articles> - [<dfn>(#LANG|traduire_nom_langue)</dfn>]
@@ -92,7 +92,7 @@
              <BOUCLE_breves(BREVES) {lang?}{recherche} {par points} {inverse} >
              <li class="menu-item">
                <span>[(#DATE|affdate_court)]</span>
-               <a href="#URL_SITE_SPIP/spip.php?action=cookie&amp;url=#URL_SITE_SPIP%2F#URL_BREVE&amp;var_lang=#LANG" hreflang="#LANG"[title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
+               <a href="#URL_SITE_SPIP/spip.php?action=converser&amp;redirect=#URL_SITE_SPIP%2F#URL_BREVE&amp;var_lang=#LANG" hreflang="#LANG"[title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
              </li>
              </BOUCLE_breves>
            </ul>
@@ -126,7 +126,7 @@
            <ul>
              <BOUCLE_sites(SITES) {recherche} {par points} {inverse} >
              <li class="menu-item">
-               <a href="#URL_SITE_SPIP/[(#ID_SYNDIC|generer_url_site)]" title="[(#DESCRIPTIF|textebrut|entites_html)]">#NOM_SITE</a>
+               <a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">#NOM_SITE</a>
              </li>
              </BOUCLE_sites>
            </ul>
