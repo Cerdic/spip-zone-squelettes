@@ -1,0 +1,60 @@
+#FORMULAIRE_RECHERCHE
+
+[(#REM)
+	Barre de navigation, ouverte sur la hierarchie courante
+
+	On fait un plan, et, quand on avance vers une rubrique,
+	on l'affiche si son parent est expose ou est la racine du site. ]
+
+<B_rubriques>
+	<div onmouseover="this.style.cursor='pointer';" onclick="javascript:montre_tout();" title="Voir toutes les sous-rubriques"><span id="montre_ou_masque_tout" >Sommaire <img class="imageplus" id="img_toute_rubrique" src="#CHEMIN{images/deplierhaut.png}" alt=" + " /></span></div>
+		<dl id="menu">
+			<!--<dt onmouseover="this.style.cursor='pointer';" onclick="javascript:masque();">Fermer</dt>-->
+		<BOUCLE_rubriques(RUBRIQUES) {racine}{par num titre, titre}>
+
+			<B_sous_rubriques_presentes>
+			<BOUCLE_sous_rubriques_presentes(RUBRIQUES) {id_parent}{par num titre, titre}>
+			</BOUCLE_sous_rubriques_presentes>
+				<dt>
+					<span  onmouseover="this.style.cursor='pointer';" onclick="javascript:montre('#smenu#ID_RUBRIQUE',#ID_RUBRIQUE);"><img class="imageplus" id="img#ID_RUBRIQUE" src="#CHEMIN{images/deplierhaut.png}" alt=" + " title="Voir les sous-rubriques"/></span>
+					<a href="#URL_RUBRIQUE" [ class="(#EXPOSE)"] title="[(#TITRE|supprimer_numero)] [- (#DESCRIPTIF|textebrut)]">[(#TITRE|supprimer_numero|couper{50})]</a>
+				</dt>
+			</B_sous_rubriques_presentes>
+			  <dt class="rubrique_vide" >
+			  	<a  href="#URL_RUBRIQUE"[ class="(#EXPOSE)"] title="[(#TITRE|supprimer_numero)] [- (#DESCRIPTIF|textebrut)]">[(#TITRE|supprimer_numero|couper{50})]</a>
+			  </dt>
+			<//B_sous_rubriques_presentes>
+
+			<B_sous_rubriques>
+			<dd id="smenu#ID_RUBRIQUE"  class='dd[(#EXPOSE)]'>
+				<ul  class="ss-rubrique">
+				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
+					<li class="ss-ss-rubrique" ><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]  title="[(#TITRE|supprimer_numero)] [- (#DESCRIPTIF|textebrut)]">[(#TITRE|supprimer_numero|couper{50})]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re></li>
+				</BOUCLE_sous_rubriques>
+				</ul>
+			</dd>
+			</B_sous_rubriques>
+	</BOUCLE_rubriques>
+		</dl>
+
+</B_rubriques>
+
+
+<B_sites_selectionnes>
+<ul id="site_menu">
+<BOUCLE_sites_selectionnes(SITES){titre_mot=outil}>
+			<li><a rel="start" href="#URL_SITE" target="_blank" title="">
+			[(#LOGO_SITE||?{
+
+				[(#LOGO_SITE
+					||image_reduire{150,50}
+					|inserer_attribut{alt,[(#NOM_SITE|textebrut)]}
+					|inserer_attribut{title,[(#NOM_SITE|textebrut)]}
+					)]
+				,
+				<span id="nom_site_spip">#NOM_SITE</span>
+			})]
+			</a></li>
+</BOUCLE_sites_selectionnes>
+</ul>
+</B_sites_selectionnes>
