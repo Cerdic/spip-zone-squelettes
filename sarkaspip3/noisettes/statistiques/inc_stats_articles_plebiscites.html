@@ -1,0 +1,17 @@
+[(#REM) <!-- affichage du hit-parade des articles les mieux notes (plugin notation) --> ]
+<B_hitparade>
+	[(#CONFIG{sarkaspip_noisettes/composition_stats_2, 3}|match{^(1|3)$}|?{' '})
+		<h1 class="intitule"><:sarkaspip:hit_parade_note:></h1>
+	]
+	<div class="contenu">
+		<h2 class="titre_bloc"><:sarkaspip:top_articles_notes:></h2>
+		<div class="liste"><ul>
+<BOUCLE_hitparade(ARTICLES){id_secteur!==#RACINE_SPECIALISEE}{notation}{par notation_moyenne_ponderee}{inverse}{0,#CONFIG{sarkaspip_noisettes/max_articles_top, 5}}>
+			[<li><a class="titre info" href="#URL_ARTICLE">
+				(#TITRE|supprimer_numero)
+				[<span>&nbsp;(#POPULARITE)&nbsp;%&nbsp;</span>]
+			</a></li>]
+</BOUCLE_hitparade>
+		</ul></div>
+	</div>
+</B_hitparade>
