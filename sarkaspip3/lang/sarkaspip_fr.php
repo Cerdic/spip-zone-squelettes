@@ -536,6 +536,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_accueil_intro_14' => '<em>Styles</em> : configuration des styles d&eacute;finissant l\'identit&eacute; visuelle du site (couleurs, polices...)',
 		'cfg_inf_accueil_intro_15' => '<em>Article</em> : configuration des divers affichages de la page article',
 		'cfg_inf_accueil_intro_16' => '<em>Plugins</em> : configuration des plugins utilis&eacute;s par le squelette',
+		'cfg_inf_accueil_intro_17' => '<em>Auteur</em> : configuration des divers blocs de la page auteur',
 		'cfg_inf_accueil_debug' => 'Si vous avez un souci ou voulez rapporter un bug il peut &ecirc;tre utile d\'activer le mode debug pour la configuration des pages. Celui-ci vous permez de lire les variables de chaque fond.',
 		'cfg_inf_rubrique_articles' => 'Voulez-vous afficher la liste des articles publi&eacute;s dans la rubrique ? Si oui, vous pourrez ensuite ajuster quelques param&egrave;tres de cet affichage.',
 		'cfg_inf_pagination_bande' => 'Choisissez la position de la bande de pagination.',
