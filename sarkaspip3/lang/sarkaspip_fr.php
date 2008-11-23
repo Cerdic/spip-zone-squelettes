@@ -467,7 +467,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_css_pied' => 'Pied',
 		'cfg_lgd_plugins_info' => 'Information',
 		'cfg_lgd_plugin' => 'Plugin',
-		'cfg_lgd_commentaires' => 'Formulaire de saisie d\'un commentaire',
+		'cfg_lgd_form_commentaire' => 'Formulaire de saisie d\'un commentaire',
+		'cfg_lgd_commentaires' => 'Commentaires',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -579,7 +580,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_plugins_n' => 'Vous utilisez plusieurs plugins SPIP. Veuillez valider la configuration Sarka-SPIP de ces plugins (les valeurs Sarka-SPIP de configuration des plugins sont d&eacute;finies dans sarkaspip_options.php)',
 		'cfg_inf_plugins_config' => 'Choissisez le mode de configuration du plugin',
 		'cfg_inf_lire_suite' => 'Voulez-vous afficher un lien du type &#171 Lire la suite &#187 &agrave; la fin de l\'introduction de l\'article ?',
-		'cfg_inf_commentaires' => 'Si vous avez autoris&eacute; les forums sur vos articles il est donc possible depuis la page article d\'ajouter un commentaire ou de r&eacute;pondre &agrave; un commentaire d&eacute;j&agrave; post&eacute;. Dans ce cas, vous &ecirc;tes redirig&eacute; vers la page du formulaire de saisie. 
+		'cfg_inf_commentaires' => 'Si vous avez autoris&eacute; les forums sur vos articles les commentaires post&eacute;s sont affich&eacute;s en bas de la page sous la forme d\'une liste pagin&eacute;e.',
+		'cfg_inf_form_commentaire' => 'Si vous avez autoris&eacute; les forums sur vos articles il est donc possible depuis la page article d\'ajouter un commentaire ou de r&eacute;pondre &agrave; un commentaire d&eacute;j&agrave; post&eacute;. Dans ce cas, vous &ecirc;tes redirig&eacute; vers la page du formulaire de saisie. 
 		Organisez l\'affichage de cette page ci-dessous.',
 		'cfg_inf_article_commente' => 'Voulez-vous afficher l\'extrait de l\'article &agrave; commenter ?',
 		'cfg_inf_commentaire_repondu' => 'Voulez-vous afficher le message auquel vous r&eacute;pondez, si c\'est le cas ?',
