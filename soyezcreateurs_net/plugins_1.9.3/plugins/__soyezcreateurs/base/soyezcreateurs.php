@@ -257,7 +257,6 @@ function soyezcreateurs_config_motsclefs() {
 		create_mot("_Specialisation_Rubrique", "info_pratique", "", "");
 		create_mot("_Specialisation_Rubrique", "membres", "", "");
 		create_mot("_Specialisation_Rubrique", "MenuHaut", "Pour qu\'un secteur soit dans un menu horizontal en haut du site", "Affecter ce mot clef aux secteurs (rubriques rattachées à la racine du site) qui doivent être dans le menu horizontal en haut du site.");
-		create_mot("_Specialisation_Rubrique", "NewsLetter", "Mettre ce mot clef à une rubrique dont le contenu doit servir de newsLetter.\n\nMettre ci-dessous l\'URL de désabonnement.", "maito:");
 		create_mot("_Specialisation_Rubrique", "PasDansMenu", "Pour interdire que la rubrique (et ses sous-rubriques) soi(en)t dans le menu de gauche", "");
 		create_mot("_Specialisation_Rubrique", "PasDansPlan", "Permet de masquer une rubrique, et tout son contenu (y compris les sous-rubriques) du plan du site", "À affecter aux rubriques qui ne doivent pas être affichées dans le plan du site");
 		create_mot("_Specialisation_Rubrique", "SecteurPasDansQuoiDeNeuf", "Pour interdire que les articles d\'un secteur entier soit dans «Quoi de Neuf» sur la page d\'accueil", "Un secteur, c\'est une rubrique rattachée à la racine du site et toutes ses sous-rubriques");
