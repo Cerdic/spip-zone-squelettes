@@ -1,0 +1,44 @@
+[(#REM) *****************************************************************
+	Pied-de-page (bas)
+	Footer (bottom) 
+    ************************************************************* ]
+<div id="bas">
+	<a href="#URL_SITE_SPIP" title="<:accueil_site:>"><:accueil_site:></a> | 
+	<B_contact><a href="<BOUCLE_contact(AUTEURS) {tout}{0,1}>[(#URL_AUTEUR)]</BOUCLE_contact>" title="<:info_contact:>"><:info_contact:></a> | </B_contact>
+	<a href="#URL_PAGE{plan}" title="<:plan_site:>"><:plan_site:></a> | 
+	<a href="ecrire" rel="nofollow" title="<:espace_prive:>"><:espace_prive:></a> | 
+	<a href="#URL_PAGE{statistiques}" title="<:titre_statistiques:>"><:icone_statistiques_visites:></a> | 
+	<span style="white-space: nowrap;"><:info_visites:> <INCLURE{fond=inc/inc-affvisit}></span>
+
+	<p>
+		<a href="#URL_PAGE{backend}" rel="nofollow" title="<:bouton_radio_syndication:> [(#LANG|traduire_nom_langue)]"><img src="#CHEMIN{feed.png}" alt="<:icone_suivi_activite:>" style="position:relative;bottom:-0.3em;" width="16" height="16" class="format_png" /><span style="text-transform: uppercase;">&nbsp;#LANG&nbsp;</span></a>
+
+<BOUCLE_rubriques_chemin(HIERARCHIE){id_rubrique}{" "}>
+		<a href="#URL_PAGE{backend,id_rubrique=#ID_RUBRIQUE}" rel="nofollow" title="<:syndiquer_rubrique:>"><img src="#CHEMIN{feed.png}" alt="<:icone_suivi_activite:>" style="position:relative;bottom:-0.3em;" width="16" height="16" class="format_png" /><span>&nbsp;[(#TITRE|supprimer_numero|couper{60})]&nbsp;</span></a>
+</BOUCLE_rubriques_chemin>
+
+<BOUCLE_syndic_rub(RUBRIQUES) {id_rubrique}>
+		<a href="#URL_PAGE{backend,id_rubrique=#ID_RUBRIQUE}" rel="nofollow" title="<:syndiquer_rubrique:>"><img src="#CHEMIN{feed.png}" alt="<:icone_suivi_activite:>" style="position:relative;bottom:-0.3em;" width="16" height="16" class="format_png" /><span>&nbsp;[(#TITRE|supprimer_numero|couper{60})]</span></a>
+</BOUCLE_syndic_rub>
+	<big>&nbsp;
+		<b><a href="http://#LANG.wikipedia.org/wiki/Really_Simple_Syndication">?</a></b>
+	</big>
+	</p>
+	
+	<p>
+		<a href="http://www.spip.net" title="<:site_realise_avec_spip:> #SPIP_VERSION"> <:site_realise_avec_spip:> #VERSION_SPIP_AFFICHEE</a> + 
+		<a href="http://www.stages.alternatives.ca/article286.html" title="<multi>Squelette ALTERNATIVES[en] Template ALTERNATIVES[es]Esqueleto ALTERNATIVES[pt]Esqueleto ALTERNATIVES</multi> - 1.9.2c">ALTERNATIVES</a>
+	</p>
+
+<INCLURE{fond=inc/inc-bas_cc}{lang}>
+
+</div><!-- fin bas -->
+
+<INCLURE{fond=inc/inc-bas_menu-lang}{lang}>
+
+[(#REM)
+	La balise SPIP_CRON permet de deporter les calculs lourds (indexation, etc)
+	dans une image cachee, ce qui evite de ralentir l'affichage des pages.
+	Ne pas effacer au risque de ralentir l'affichage des pages de votre site.
+]	#SPIP_CRON
+

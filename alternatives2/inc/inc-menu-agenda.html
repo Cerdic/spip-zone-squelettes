@@ -1,0 +1,23 @@
+[(#REM) boucle d'affichage d'un agenda ou calendrier d'evenements. 
+Pour s'afficher dans ce menu, un article doit se voir attribuer le mot-cle "Agenda". Pour s'afficher dans l'agenda, les articles doivent, en plus du mot-cle, se voir attribuer une "Date de publication anterieure" qui constituera la date de l'evenement. ]
+
+<B_art_agenda>
+<div class="menu" id="menu-agenda">
+	<br />
+	<h3 class="structure"><:icone_agenda:></h3>
+	<ul>
+		<li>
+			<a class="lien" href="#URL_PAGE{agenda}" title="<:icone_agenda:>"><:icone_agenda:></a>
+			<ul>
+		<BOUCLE_art_agenda(ARTICLES){titre_mot=Agenda}{par date_redac}{inverse}{age_redac < 1}{0,5}{lang}>
+				<li>[<span>(#DATE_REDAC|affdate) [- (#DATE_REDAC|heures|!={0}|?{[(#DATE_REDAC|heures):][(#DATE_REDAC|minutes)],''})]</span>]
+					<a class="lien[(#EXPOSER)] article" href="#URL_ARTICLE" [title="(#INTRODUCTION|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
+
+				</li>
+		</BOUCLE_art_agenda>
+			</ul>
+		</li>
+	</ul>
+</div>
+</B_art_agenda>
+
