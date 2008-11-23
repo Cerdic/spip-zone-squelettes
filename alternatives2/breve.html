@@ -1,0 +1,122 @@
+#CACHE{7200}
+<BOUCLE_breve_principal(BREVES) {id_breve} {doublons}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+	<title>[[(#NOM_SITE_SPIP|textebrut)]] : [(#TITRE|supprimer_numero|textebrut)]</title>
+	<INCLURE{fond=inc/inc-meta}{lang}{id_breve}>
+	<INCLURE{fond=styles}{lang}>
+
+
+</head>
+<body dir="#LANG_DIR" class="#LANG breve sect#ID_SECTEUR rub#ID_RUBRIQUE br#ID_BREVE">
+<div id="page" class="breve">
+
+<!-- *****************************************************************
+	Bandeau, titre du site et menu langue
+	Header and main menu (top and right) 
+    ************************************************************* -->
+	
+<INCLURE{fond=inc/inc-bandeau}{lang}{id_breve}>
+
+<!-- *****************************************************************
+	Contenu principal (centre)
+	Main content (center) 
+    ************************************************************* -->
+	<div id="bloc-contenu">
+		<div id="cartouche">
+			[<span style="float:right;">(#LOGO_BREVE||reduire_image{120,0})</span>]
+			<h2 class="#EDIT{titre} titre-article">[(#TITRE|supprimer_numero)]</h2>
+			<h6>[(#DATE|nom_jour)] [(#DATE|affdate).]</h6>
+		</div><!-- cartouche -->
+		<br />
+		[<div class="#EDIT{texte} texte">(#TEXTE|reduire_image{440,0})</div>]
+		[<div class="chapo"><:voir_en_ligne:> : <a href="(#URL_SITE)">[(#NOM_SITE|sinon{#URL_SITE})]</a></div>]
+		[<div class="notes">(#NOTES)</div>]
+		<br />
+
+		<!-- Forums -->
+		[<div class="forum-repondre"><h5><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_breve:></a></h5></div>]
+
+		<B_forums>
+		<h1 class="structure"><:forum:></h1>
+		<ul class="forum-total">
+			<BOUCLE_forums(FORUMS){id_breve}{par date}{inverse}>
+				<li>
+					<div class="forum-fil">
+						<div class="forum">
+							<a name="forum#ID_FORUM"></a>
+							<div class="forum-chapo">
+								<div class="forum-titre">[(#TITRE|supprimer_numero)]</div>
+								[(#DATE|affdate)][, <:par_auteur:> <a href="mailto:#EMAIL">(#NOM)</a>]
+							</div><!-- forum-chapo -->
+							<div class="forum-item">
+								#TEXTE
+								[<div class="forum-titre"><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
+								[<div class="forum-repondre-message"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_message:></a></div>]
+							</div><!-- forum-item -->
+						</div><!-- forum -->
+						<B_forums_fils>
+						<ul>
+							<BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
+								<li>
+									<div class="forum">
+										<a name="forum#ID_FORUM"></a>
+										<div class="forum-chapo">
+										<div class="forum-titre">[(#TITRE|supprimer_numero)]</div>
+											[(#DATE|affdate)][, par <a href="mailto:#EMAIL">(#NOM)</a>]
+										</div><!-- forum-titre -->
+										<div class="forum-item">
+											#TEXTE
+											[<div class="forum-titre"><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
+											[<div class="forum-repondre-message"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_message:></a></div>]
+										</div><!-- forum-item -->
+									</div><!-- forum -->
+									<BOUCLE_Forums_Boucle(boucle_forums_fils)></BOUCLE_Forums_Boucle>
+								</li>
+							</BOUCLE_forums_fils>
+						</ul>
+						</B_forums_fils>
+					</div><!-- forum-fil -->
+				</li>
+			</BOUCLE_forums>
+		</ul>
+		</B_forums>
+	</div><!-- bloc-contenu -->
+
+<!-- *****************************************************************
+	Menus contextuels (droite)
+	Contextual menus (right) 
+    ************************************************************* -->
+	<div id="encart">
+
+		<!-- Breves dans la meme rubrique -->
+		<B_breves_rubrique>
+		<div class="menu">
+		<h2 class="structure"><:breves:></h2>
+      <ul>
+        <li><b><:autres_breves:></b>
+					<ul>
+					<BOUCLE_breves_rubrique(BREVES) {doublons} {par date} {inverse} {0,20}>
+          	<li>[<span>(#DATE|affdate)</span>]
+              <a href="#URL_SITE_SPIP/#URL_BREVE" [title="(#INTRODUCTION|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
+          	</li>
+					</BOUCLE_breves_rubrique>
+          </ul>
+        </li>
+      </ul>
+		</div><!-- menu -->
+		</B_breves_rubrique>
+
+	</div><!-- encart -->
+	
+<INCLURE{fond=inc/inc-menu}{lang}{id_breve}>
+<INCLURE{fond=inc/inc-bas}{lang}{id_breve}>
+</div><!-- page -->
+
+</body>
+</html>
+</BOUCLE_breve_principal>
+<INCLURE{fond=404}{lang}{id_breve}>
+<//B_breve_principal>

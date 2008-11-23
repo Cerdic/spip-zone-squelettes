@@ -1,0 +1,86 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+	<title>[[(#NOM_SITE_SPIP|textebrut)]] : Archives</title>
+	<INCLURE{fond=page}{fond=styles}>
+	<INCLURE{fond=inc/inc-meta}{lang}>
+
+</head>
+<body dir="#LANG_DIR" class="#LANG plan">
+<div id="page">
+
+<!-- *****************************************************************
+	Bandeau, titre du site et menu langue
+	Header and main menu (top and right) 
+    ************************************************************* -->
+	
+<INCLURE{fond=inc/inc-bandeau}{lang}>
+
+<!-- *****************************************************************
+	Contenu principal (centre)
+	Main content (center) 
+    ************************************************************* -->
+
+	<div id="bloc-contenu">
+		<BOUCLE_langue_contexte_exclus(ARTICLES){tout}{doublons contexte}{lang}></BOUCLE_langue_contexte_exclus>
+		<B_langues>
+		<div id="sommaire">
+			<h4><:info_langues:></h4>
+			<ul>
+			<BOUCLE_langues(ARTICLES){tout}{doublons contexte}{par lang}>[
+				<li lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">
+					<a href="spip.php?action=cookie&amp;url=[(#SELF)]&amp;var_lang=#LANG" hreflang="#LANG">(#LANG|unique|traduire_nom_langue{lang})</a>
+				</li>
+			]</BOUCLE_langues>
+			</ul>
+		</div>
+		</B_langues>
+		
+		<h2><:en_resume:></h2>
+		<h3><:info_visites_par_mois:> [<em>(#LANG|unique|traduire_nom_langue{langues})</em>]</h3>
+	[(#REM) ARCHIVES : 
+	Boucle tiré de "Usage du filtre 'unique' pour classer des articles"
+	sur SPIP-Contrib : http://www.spip-contrib.net/Usage-du-filtre-unique-pour]
+	<BOUCLE_archive(ARTICLES){par date} {inverse} {lang}>
+		[
+			[(#COMPTEUR_BOUCLE|>{1}|?{'</ul></li></ul></div>',''})]
+			<div class="archives">
+			<h3 class="plan-archives" style="cursor: pointer; margin-top:.5em;" onclick="deplier('bloc[(#COMPTEUR_BOUCLE)]');">(#DATE|annee|unique)</h3>
+
+			<ul id="bloc[(#COMPTEUR_BOUCLE)]" style="display: block;">
+		]
+		[
+			[(#DATE|annee|unique{nouvelle}|?{'','</ul></li>'})]
+			<li style="cursor: pointer;" onclick="deplier('bloc[(#COMPTEUR_BOUCLE)2]');">(#DATE|affdate{'Y-m'}|unique|nom_mois)
+  			<ul id="bloc[(#COMPTEUR_BOUCLE)2]" style="display: none;">
+		]
+		<li><a href="#URL_ARTICLE" title="commentaire">[(#TITRE|supprimer_numero)]</a></li>
+	</BOUCLE_archive>
+		</ul></li></ul>
+			</div><!-- archives -->
+	</B_archive>
+	</div><!-- bloc-contenu -->
+
+	[(#REM) Fin de l'archive]
+        
+
+<!-- *****************************************************************
+	Menus contextuels (droite)
+	Contextual menus (right) 
+    ************************************************************* -->
+	<div id="encart">
+    <INCLURE{fond=inc/inc-annonces}{lang}>
+    <INCLURE{fond=inc/inc-breves}{lang}>
+    <INCLURE{fond=inc/inc-syndic}{lang}>
+
+	</div><!-- encart -->
+<INCLURE{fond=inc/inc-menu}{lang}>
+<INCLURE{fond=inc/inc-bas} {lang}>
+</div><!-- page -->
+
+</body>
+</html>
+
+

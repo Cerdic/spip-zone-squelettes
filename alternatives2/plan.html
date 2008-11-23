@@ -1,0 +1,92 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+	<title>[[(#NOM_SITE_SPIP|textebrut)]] : <:plan_site:></title>
+	<INCLURE{fond=page}{fond=styles}>
+	<INCLURE{fond=inc/inc-meta}{lang}>
+</head>
+<body dir="#LANG_DIR" class="#LANG plan">
+<div id="page">
+
+<!-- *****************************************************************
+	Bandeau, titre du site et menu langue
+	Header and main menu (top and right) 
+    ************************************************************* -->
+	
+<INCLURE{fond=inc/inc-bandeau}{lang}>
+
+<!-- *****************************************************************
+	Contenu principal (centre)
+	Main content (center) 
+    ************************************************************* -->
+	<div id="bloc-contenu">
+			<BOUCLE_langue_contexte_exclus(RUBRIQUES){tout}{doublons contexte}{lang}></BOUCLE_langue_contexte_exclus>
+		<B_langues>
+		<div id="sommaire">
+			<h4><:info_langues:></h4>
+			<ul>
+			<BOUCLE_langues(RUBRIQUES){racine}{doublons contexte}{par lang}>[
+				<li lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR">
+					<a href="spip.php?action=cookie&amp;url=[(#SELF)]&amp;var_lang=#LANG" hreflang="#LANG">(#LANG|unique|traduire_nom_langue{lang})</a>
+				</li>
+			]</BOUCLE_langues>
+			</ul>
+		</div>
+		</B_langues>
+		<h2><:plan_site:></h2>
+		<div id="plan">
+			<BOUCLE_secteurs(RUBRIQUES) {racine} {!par lang} {par num titre} {par titre} {lang}>
+			[<h2>(#LANG|unique|traduire_nom_langue{langues})</h2>]
+				<div class="plan-archives" style="clear:both;">
+				[(#LOGO_RUBRIQUE|right||reduire_image{120,0})]
+				<h3><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h3>
+				</div>
+				<B_articles_racine>
+				<ul>
+					<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par num titre} {par titre}>
+						<li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></li>
+					</BOUCLE_articles_racine>
+				</ul>
+				</B_articles_racine>
+					<B_rubriques>
+					<ul>
+						<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par num titre} {par titre}>
+							<li>
+								<a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+								<B_articles>
+								<ul>
+									<BOUCLE_articles(ARTICLES) {id_rubrique} {par num titre} {par titre}>
+										<li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></li>
+									</BOUCLE_articles>
+								</ul>
+								</B_articles>
+								<BOUCLE_sous_rubriques(BOUCLE_rubriques)>
+								</BOUCLE_sous_rubriques>
+							</li>
+						</BOUCLE_rubriques>
+					</ul>
+				</B_rubriques>
+			</BOUCLE_secteurs>
+		</div><!-- plan -->
+	</div><!-- bloc-contenu -->
+
+<!-- *****************************************************************
+	Menus contextuels (droite)
+	Contextual menus (right) 
+    ************************************************************* -->
+	<div id="encart">
+    <INCLURE{fond=inc/inc-annonces}{lang}>
+    <INCLURE{fond=inc/inc-breves}{lang}>
+    <INCLURE{fond=inc/inc-syndic}{lang}>
+
+	</div><!-- encart -->
+<INCLURE{fond=inc/inc-menu}{lang}>
+<INCLURE{fond=inc/inc-bas} {lang}>
+</div><!-- page -->
+
+</body>
+</html>
+
+
