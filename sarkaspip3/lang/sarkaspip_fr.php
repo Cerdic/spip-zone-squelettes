@@ -73,6 +73,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'bouton_referencement' => 'Proposition de site',
 		'breves' => 'Br&egrave;ves', // redefinition item SPIP
 		'breves_mot' => 'Br&egrave;ves associ&eacute;es',
+		'breves_toutes' => 'Toutes les br&egrave;ves du site',
 	  
 	
 //C
@@ -187,6 +188,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'lieu' => 'lieu',
 		'lire_suite_article' => 'lire la suite de l\'article',
 		'lire_evenement_virtuel' => 'Consulter l\'&eacute;v&eacute;nement d\'origine',
+		'lire_breve' => 'lire la br&egrave;ve',
 		'lundi_abrege' => 'Lu',
 		'login_membre' => 'Connexion',
 		'login_sinscrire' => 's\'inscrire', // redefinition item SPIP
@@ -359,6 +361,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_titre_styles' => 'Sarka-SPIP - Configuration des styles',
 		'cfg_titre_plugins' => 'Sarka-SPIP - Configuration des plugins int&eacute;gr&eacute;s',
 		'cfg_titre_auteur' => 'Sarka-SPIP - Configuration de la page auteur',
+		'cfg_titre_breve' => 'Sarka-SPIP - Configuration de la page br&egrave;ve ',
 
 // Titre des liens des pages
 		'sarkaspip_accueil' => 'Accueil',
@@ -378,6 +381,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'sarkaspip_styles' => 'Styles',
 		'sarkaspip_plugins' => 'Plugins',
 		'sarkaspip_auteur' => 'Auteur',
+		'sarkaspip_breve' => 'Br&egrave;ve',
 		
 // Descriptif des pages
 		'cfg_descr_accueil' => 'Vous &ecirc;tes sur la page d\'accueil de la configuration du squelette Sarka-SPIP.',
@@ -393,7 +397,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_descr_rubrique' => 'Le corps de la page rubrique permet d\'afficher plusieurs blocs d\'information : la description, les rubriques filles, les documents et images joints et les articles publi&eacute;s dans la rubrique. Cette page permet de configurer l\'affichage de tous ces blocs.',
 		'cfg_descr_herbier' => 'Le corps de la page herbier propose une liste pagin&eacute;e de sites, agr&eacute;ment&eacute;e de vignettes. Cette page est affich&eacute;e selon deux mod&egrave;les: une liste (description et vignette) et un panorama de vignettes uniquement. 
 		Cette page de configuration vous permet de choisir les caract&eacute;ristiques de chaque mod&egrave;le de votre herbier.',
-		'cfg_descr_galerie' => 'bla bla bla',
+		'cfg_descr_galerie' => 'A compléter ...',
 		'cfg_descr_plan' => 'Le corps de la page plan du site pr&eacute;sente la liste des articles publi&eacute;s dans le site. Cette liste peut &ecirc;tre tri&eacute;e par rubrique, par auteur ou par date. Cette page de configuration vous permet d\'en choisir les caract&eacute;ristiques de tri.',
 		'cfg_descr_header' => 'La plupart des balises meta du site sont calcul&eacute;es automatiquement &agrave; partir des informations de configuration du site et de la page affich&eacute;e. Cette page permet n&eacute;anmoins de pr&eacute;ciser le nom de l\'auteur, les mots-cl&eacute;s et la p&eacute;riode entre deux visites des robots.',
 		'cfg_descr_formulaires' => 'Le corps de certaines pages du squelette permet d\'afficher un formulaire comme le formulaire de contact. Cette page de configuration vous permet d\'en choisir les caract&eacute;ristiques.',
@@ -401,6 +405,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_descr_plugins' => 'Cette page permet de fixer la configuration de certains plugins SPIP int&eacute;gr&eacute;s au squelette comme Boutons Texte, Nyroceros... Il est indispensable d\'appliquer ce param&eacute;trage Sarka-SPIP pour obtenir les effets voulus dans le squelette. N&eacute;anmoins, il est possible de revenir &agrave; la 
 		configuration par d&eacute;faut du plugin si vous n\'utilisez plus le squelette.',
 		'cfg_descr_auteur' => 'Le corps de la page auteur permet d\'afficher plusieurs blocs d\'information : la biographie, les articles publi&eacute;s par l\'auteur et un formulaire de contact. Cette page permet de configurer l\'affichage de tous ces blocs.',
+		'cfg_descr_breve' => 'Le corps de la page breve permet d\'afficher la br&egrave;ve en cours ainsi que la liste de toutes les br&egrave;ves du site. Cette page permet de configurer la pagination de cette liste.',
 
 // Titre des boites
 		'cfg_boite_accueil' => 'Accueil',
@@ -420,6 +425,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_boite_styles' => 'Styles',
 		'cfg_boite_plugins' => 'Plugins',
 		'cfg_boite_auteur' => 'Auteur',
+		'cfg_boite_breve' => 'Br&egrave;ve',
 
 // Legendes des blocs contenus dans chaque boite
 		'cfg_lgd_layout' => 'Layout',
@@ -432,6 +438,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_inc_rubriques' => 'Menu des rubriques',
 		'cfg_lgd_inc_formulaires' => 'Menu des formulaires',
 		'cfg_lgd_inc_breves' => 'Liste des br&egrave;ves',
+		'cfg_lgd_breves_toutes' => 'Liste de toutes les br&egrave;ves du site',
 		'cfg_lgd_inc_commentaires' => 'Liste des commentaires',
 		'cfg_lgd_inc_recherche' => 'Formulaires de recherche',
 		'cfg_lgd_inc_sites' => 'Liste des sites',
@@ -537,6 +544,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_accueil_intro_15' => '<em>Article</em> : configuration des divers affichages de la page article',
 		'cfg_inf_accueil_intro_16' => '<em>Plugins</em> : configuration des plugins utilis&eacute;s par le squelette',
 		'cfg_inf_accueil_intro_17' => '<em>Auteur</em> : configuration des divers blocs de la page auteur',
+		'cfg_inf_accueil_intro_18' => '<em>Br&egrave;ve</em> : configuration des divers blocs de la page br&egrave;ve',
 		'cfg_inf_accueil_debug' => 'Si vous avez un souci ou voulez rapporter un bug il peut &ecirc;tre utile d\'activer le mode debug pour la configuration des pages. Celui-ci vous permez de lire les variables de chaque fond.',
 		'cfg_inf_rubrique_articles' => 'Voulez-vous afficher la liste des articles publi&eacute;s dans la rubrique ? Si oui, vous pourrez ensuite ajuster quelques param&egrave;tres de cet affichage.',
 		'cfg_inf_pagination_bande' => 'Choisissez la position de la bande de pagination.',

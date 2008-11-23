@@ -1,0 +1,42 @@
+<!-- titre=<:sarkaspip:cfg_titre_breve:> -->
+<!-- descriptif=<:sarkaspip:cfg_descr_breve:> -->
+<!-- boite=<:sarkaspip:cfg_boite_breve:> -->
+
+<INCLURE{fond=noisettes/cfg/inc_cfg_header}>
+#CACHE{0}
+
+
+<form method="post" action="#SELF"><div>
+	[(#ENV{_cfg_}|form_hidden)]
+	
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_breves_toutes:></legend>
+		
+		<div id="bloc_breves_toutes">
+			<br />			
+			<INCLURE{fond=noisettes/cfg/inc_cfg_pagination}
+				{defaut_pas=10}
+				{defaut_position=3}
+				{suffixe=_breve}
+				{env}>
+		</div>
+	</fieldset>
+	
+	
+	
+	<div style="text-align: right; margin-right:3px;">
+	[(#CONFIG{sarkaspip_accueil/mode_debug, non}|=={oui}|?{' '})
+		<input type="submit" name="_cfg_delete" class="fondo" value="<:sarkaspip:effacer:>" />
+	]
+		<input type="submit" name="_cfg_ok" class="fondo" value="<:sarkaspip:valider:>" />
+	</div>
+</div></form>
+
+[(#CONFIG{sarkaspip_accueil/mode_debug, non}|=={oui}|?{' '})
+	<div id="bloc_debug">
+		<br />
+		>> Debug - Etat des variables du fond Br&egrave;ve :<br />
+		#CFG_ARBO{sarkaspip_breve}
+	</div>
+]
+
