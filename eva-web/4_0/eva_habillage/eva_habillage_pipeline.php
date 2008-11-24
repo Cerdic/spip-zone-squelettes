@@ -13,5 +13,12 @@ define('_DIR_PLUGIN_EVAHABILLAGE',(_DIR_PLUGINS.end($p)));
 		}
 		return $boutons_admin;
 	}
+	
+	function eva_habillage_declarer_tables_interfaces($interface){
+		$interface['table_des_tables']['eva_habillage']='eva_habillage';
+		$interface['table_des_tables']['eva_habillage_themes']='eva_habillage_themes';
+		$interface['table_des_tables']['eva_habillage_images']='eva_habillage_images';
+	return $interface;
+	}
 
 ?>
