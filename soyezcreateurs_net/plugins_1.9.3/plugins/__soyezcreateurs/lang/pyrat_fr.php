@@ -6,7 +6,7 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 
 // A
 'accueil' => 'Accueil',
-'accueil_menu' => '<em>A</em>ccueil', //le <em> indique la lettre AccessKey
+'accueil_menu' => 'Accueil',
 'agenda' => 'Agenda',
 'agenda_summary' => 'Agenda des &eacute;v&eacute;nements',
 'agendamoisde' => 'Agenda du mois de',
@@ -139,7 +139,7 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 //P
 'par' => 'par',
 'participez' => 'Participez &agrave; la vie du site&nbsp;!',
-'plan_menu' => '<em>P</em>lan du site Web',
+'plan_menu' => 'Plan du site Web',
 'plus_loin' => '&Agrave; voir aussi',
 'plus_loin_title' => 'Site de r&eacute;f&eacute;rences',
 'precisezrecherche' => 'Pr&eacute;cisez votre recherche',
