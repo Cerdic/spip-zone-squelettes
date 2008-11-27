@@ -25,21 +25,22 @@
 			<h1 class="invisible">#NOM_SITE_SPIP</h1>
 		</div>
 
-		[(#REM)Calendrier ]
-		<div class="" id="calendrier">
+		[(#REM) Affichage du calendrier si la configuration du plugin dit oui ]
+		<div class="[(#CONFIG{scolaspip_accueil/calendrier}|=={non}|?{ 'invisible' ,' '})]" id="calendrier" >
 			[(#REM) mini calendrier :
 			1er arg la date,
 			2eme le nom de la variable date (optionel : 'date' par defaut)
 			3eme l'url sur laquelle boucler (optionel : url courante par defaut) ]
-			#CALENDRIER_MINI{#ENV{date},'date',#SELF}
+			#CALENDRIER_SCOLASPIP{#ENV{date},'date',#SELF}
 		</div>
 
-		[<div class="chapo">(#DESCRIPTIF_SITE_SPIP)</div>]
+		[(#REM) Affichage du descriptif du site si la configuration du plugin dit oui ]
+    [(#CONFIG{scolaspip_accueil/descriptifdusite}|=={oui}|?{[<div class="chapo">(#DESCRIPTIF_SITE_SPIP)</div>],' '})]
 
-		[(#CONFIG{scolaspip_accueil/edito,oui}|=={oui}|?{' '}) 
-		<INCLURE{fond=noisettes/edito}{lang}> ]
-		
-		[(#REM) Articles SÃ©lectionnÃ©s du site ]
+		[(#MODELE{edito})]
+
+		[(#REM) Articles Sélectionnés du site ]
+
 		<B_selection>
 		<div class="menu articles">
 		    <h2><:articles_selection:></h2>
@@ -54,78 +55,43 @@
 		    </ul>
 		</div>
 		</B_selection>
-		
+
 		<B_images>
 		<div id="mozaique">
-			<BOUCLE_images(ARTICLES){titre_mot=mozaique}{par date}{inverse} {0,2} {doublons selection}>
-			[<h2 class="titre" >(#TITRE)</h2>]
+			<BOUCLE_images(ARTICLES){titre_mot=mozaique_page_accueil}{par date}{inverse} {0,2} {doublons selection}>
+			[<h2>(#TITRE)</h2>]
 			[(#MODELE{splickrbox}{taille=200}{colonnes=4}{id_article})]
 			</BOUCLE_images>
 		</div>
 		</B_images>
 
-		<B_breves>
-		<div class="menu articles" >
-			#ANCRE_PAGINATION
-			<h2 class="titre" >Les actualit&eacute;s</h2>
-			<ul>
-			<BOUCLE_breves(BREVES){par date}{inverse} {pagination 10} {doublons}>
-				[<li><a href="#URL_BREVE" title="">(#TITRE)</a></li>]
-			</BOUCLE_breves>
-			</ul>
-			[<p class="pagination">Pages :(#PAGINATION{page})</p>]
-		</div>
-		</B_breves>
+		[(#REM) Affichage des dernières brèves si la configuration du plugin dit oui ]
+    [(#CONFIG{scolaspip_accueil/breves}|=={oui}|?{[(#MODELE{breves})],' '})]
 
-		<B_articles><!-- si il n'y a pas de breves -->
-		<div class="menu articles" >
-			#ANCRE_PAGINATION
-			<h2 class="titre" >Les nouveaut&eacute;s</h2>
-			<ul>
-			<BOUCLE_articles(ARTICLES){par date}{inverse} {pagination 10} {doublons}>
-				[<li><a href="#URL_ARTICLE" title="">(#TITRE)</a></li>]
-			</BOUCLE_articles>
-			</ul>
-			[<p class="pagination">Pages :(#PAGINATION{page})</p>]
-		</div>
-		</B_articles>
-
-		<//B_breves> <!-- supprimer cette ligne pour avoir les articles ï¿½ la suite des breves  -->
-
-
+		[(#REM) Affichage des derniers article si la configuration du plugin dit oui ]
+    [(#CONFIG{scolaspip_accueil/articles}|=={oui}|?{[(#MODELE{articles})],' '})]
 
     [(#REM) Sites de la rubrique ]
     <B_sites>
-		        <h2 class="titre nettoyeur"><:nouveau_web:></h2>
-            <BOUCLE_sites(SITES) {tout}{syndication=oui}{titre_mot=une}{par nom_site}>
-		        <div class="menu sites">
-		            <h3 class="titre"><a href="#URL_SITE"  class="spip_out" title="Visiter ce site">#NOM_SITE</a></h3>
-                <B_syndic>
-		            <ul>
-                    <BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {par date}{inverse} {0, 5}>
-                    <li>
-                    <a href="#URL_ARTICLE" class="spip_out">#TITRE</a><small> - [(#DATE|affdate_jourcourt)]</small>
-                    </li>
-                    </BOUCLE_syndic>
-                </ul>
-                </B_syndic>
-		        </div>
-            </BOUCLE_sites>
+		<h2 class="nettoyeur"><:nouveau_web:></h2>
+    <BOUCLE_sites(SITES) {tout}{syndication=oui}{titre_mot=fluxrss_accueil}{par nom_site}>
+		<div class="menu sites">
+		    <h3 class="titre"><a href="#URL_SITE"  class="spip_out" title="Visiter ce site">#NOM_SITE</a></h3>
+        <B_syndic>
+		    <ul>
+            <BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {par date}{inverse} {0, 5}>
+            <li>
+            <a href="#URL_ARTICLE" class="spip_out">#TITRE</a><small> - [(#DATE|affdate_jourcourt)]</small>
+            </li>
+            </BOUCLE_syndic>
+        </ul>
+        </B_syndic>
+		</div>
+    </BOUCLE_sites>
     </B_sites>
 
-		[(#REM) Liens des forums ]
-		<B_forums_liens>
-		<div class="menu forums">
-			<h2 class="titre"><:derniers_commentaires:></h2>
-			<ul>
-				<BOUCLE_forums_liens(FORUMS) {plat} {par date}{inverse} {0,8}>
-				<li>[(#DATE|affdate_jourcourt) &ndash; ]<a href="#URL_FORUM"[ title="(#TITRE|couper{60}|texte_backend)"]>[(#TEXTE|couper{80})]</a></li>
-				</BOUCLE_forums_liens>
-			</ul>
-		</div>
-		</B_forums_liens>
-
-
+		[(#REM) Affichage des commentaires de forum si la configuration du plugin dit oui ]
+    [(#CONFIG{scolaspip_accueil/forums}|=={oui}|?{[(#MODELE{forums})],' '})]
 
 	</div><!--#contenu-->
 	</div><!--#conteneur-->

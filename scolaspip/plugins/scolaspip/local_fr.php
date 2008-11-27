@@ -32,7 +32,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'a_la_une_de_la_rubrique' => '&Agrave la une',
 	'nouveau_site_web' => 'Nouveau sur ce site',
 	'autre_sites_web' => 'Autres sites Web',
-	'articles_selection' => 'Sélection d\'articles'
+	'articles_selection' => 'S&eacute;lection d\'articles',
+	'les_nouveautes' => 'Les nouveaut&eacute;s',
+	'actualites' => 'Les actualit&eacute;s',
+	'pages' => 'Pages'
 
 );
 
