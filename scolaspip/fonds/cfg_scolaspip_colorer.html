@@ -1,0 +1,117 @@
+<!-- descriptif=<h4><:scolaspip:couleurs:></h4>
+<p><:scolaspip:scolaspip_couleurs_texte:></p>
+<p><:scolaspip:texte_lien_accueil_scolaspip:> <a href="?exec=cfg&cfg=scolaspip_accueil" ><:scolaspip:lien_accueil_scolaspip:></a></p>
+
+-->
+<!-- onglet=cfg_scolaspip_accueil -->
+<!-- titre=<multi>[fr]Couleurs du squelette ScolaSPIP</multi>-->
+<!-- head=
+ <script type="text/javascript" src="../plugins/scolaspip/js/farbtastic.js"></script>
+  <script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('#demo').hide();
+    var f = $.farbtastic('#picker');
+
+    var selected;
+    $('.colorwell')
+      .each(function () { f.linkTo(this); $(this).css('opacity', 0.75); })
+      .focus(function() {
+        if (selected) {
+          $(selected).css('opacity', 0.75).removeClass('colorwell-selected');
+        }
+        f.linkTo(this);
+
+        $(selected = this).css('opacity', 1).addClass('colorwell-selected');
+      });
+  });
+ </script>
+ <style>
+#choix_des_couleurs label {
+font-weight:bold; font-size:1.1em;
+}
+#choix_des_couleurs p {
+border-bottom:1px dotted #666;
+font-size:0.9em;
+margin:0 0 1em 0;
+}
+</style>
+<link rel="stylesheet" href="../plugins/scolaspip/js/farbtastic.css" type="text/css" /></SCRIPT>-->
+
+<form method="post" name="form">[(#ENV{_cfg_}|form_hidden)]
+
+<fieldset>
+	<legend><:scolaspip:cfg_couleurs_legend:></legend>
+	<p><:scolaspip:cfg_couleurs_texte:></p>
+		<label for="couleurs1">
+			<input type="radio" name="couleurs" id="couleurs1" value="oui" onclick="$('#choix_des_couleurs').toggle('slow');" [(#ENV{couleurs, oui}|=={oui}|?{checked="checked"})] />
+			<:scolaspip:cfg_oui:>
+		</label>
+		<label for="couleurs2">
+			<input type="radio" name="couleurs" id="couleurs2" value="non" onclick="$('#choix_des_couleurs').toggle('slow');" [(#ENV{couleurs, non}|=={non}|?{checked="checked"})] />
+			<:scolaspip:cfg_non:>
+		</label>
+</fieldset>
+
+<fieldset id="choix_des_couleurs" style="display:[(#ENV{couleurs, non}|=={non}|?{"none"},'block')];">
+	<legend>Palette des couleurs</legend>
+
+  <div id="picker" style="float: left;margin:2em 3em;"></div>
+	<div style="clear:both;"> </div>
+  <label for="bodyfond"><:scolaspip:cfg_background_legend:></label>
+  <input type="text" name="bodyfond" id="bodyfond" value="#ENV{bodyfond, #efefef}" size="10" class="colorwell"  /><br/>
+  <p><:scolaspip:cfg_background_texte:></p>
+
+  <label for="bandeau" ><:scolaspip:cfg_couleur_fond_bandeau_legend:></label>
+  <input type="text" name="bandeau" id="bandeau" value="#ENV{bandeau, #4b4b4b}" size="10" class="colorwell"  /><br/>
+  <p><:scolaspip:cfg_couleur_fond_bandeau_texte:></p>
+
+  <label for="menufond"><:scolaspip:cfg_couleur_fond_menu_legend:></label>
+  <input type="text" name="menufond" id="menufond" value="#ENV{menufond, #4b4b4b}" size="10" class="colorwell"  /><br/>
+  <p><:scolaspip:cfg_couleur_fond_menu_texte:></p>
+
+  <label for="menurollover"><:scolaspip:cfg_liens_rollover_legend:></label>
+  <input type="text" name="menurollover" id="menurollover" value="#ENV{menurollover, #3a3a3a}" size="10" class="colorwell"  /><br/>
+  <p><:scolaspip:cfg_liens_rollover_texte:></p>
+
+  <label for="liensmenu"><:scolaspip:cfg_couleur_liens_menu_legend:></label>
+  <input type="text" name="liensmenu" id="liensmenu" value="#ENV{liensmenu, #ffcc00}" size="10" class="colorwell"  /><br/>
+  <p><:scolaspip:cfg_couleur_liens_menu_texte:></p>
+
+  <label for="couleurbordure"><:scolaspip:cfg_couleur_bordure_legend:></label>
+  <input type="text" name="couleurbordure"  id="couleurbordure" value="#ENV{couleurbordure, #ffcc00}" size="10" class="colorwell"  /><br/>
+  <p><:scolaspip:cfg_couleur_bordure_texte:></p>
+
+  <label for="liens"><:scolaspip:cfg_couleur_liens_legend:></label>
+  <input type="text" name="liens" id="liens" value="#ENV{liens, #cc6600}" size="10" class="colorwell"  /><br/>
+  <p><:scolaspip:cfg_couleur_liens_texte:></p>
+
+  <label for="btcom1"><:scolaspip:cfg_boite_forum1:></label>
+  <input type="text" name="btcom1" id="btcom1" value="#ENV{btcom1, #ffaf11}" size="10" class="colorwell"  /><br/>
+  <p><:scolaspip:cfg_boite_forum1_texte:></p>
+
+  <label for="btcom2"><:scolaspip:cfg_boite_forum2:></label>
+  <input type="text" name="btcom2" id="btcom2" value="#ENV{btcom2, #ffcf22}" size="10" class="colorwell"  /><br/>
+  <p><:scolaspip:cfg_boite_forum2_texte:></p>
+
+  <label for="btcom3"><:scolaspip:cfg_boite_forum3:></label>
+  <input type="text" name="btcom3" id="btcom3" value="#ENV{btcom3, #ffef44}" size="10" class="colorwell"  /><br/>
+  <p><:scolaspip:cfg_boite_forum3_texte:></p>
+
+  <label for="btcom4"><:scolaspip:cfg_boite_forum4:></label>
+  <input type="text" name="btcom4" id="btcom4" value="#ENV{btcom4, #ffff66}" size="10" class="colorwell"  /><br/>
+  <p><:scolaspip:cfg_boite_forum4_texte:></p>
+
+  <label for="btcom5"><:scolaspip:cfg_boite_forum5:></label>
+  <input type="text" name="btcom5" id="btcom5" value="#ENV{btcom5, #ffff88}" size="10" class="colorwell"  /><br/>
+  <p><:scolaspip:cfg_boite_forum5_texte:></p>
+
+  <label for="coulienband" ><:scolaspip:exemple:></label>
+  <input type="text" name="exemple" id="exemple" value="#ENV{exemple, #123456}" size="10" class="colorwell"  /><br/>
+  <p><:scolaspip:exemple_texte:></p>
+
+
+		<input type="submit" name="_cfg_ok" value="<:scolaspip:oK:>" />
+		<input type="reset" value="<:scolaspip:reset:>" />
+		<input type="submit" name="_cfg_delete" value="<:scolaspip:supprimer:>" />
+	</p>
+	</form>

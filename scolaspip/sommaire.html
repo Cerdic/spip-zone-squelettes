@@ -1,0 +1,133 @@
+[(#REM)
+	Un cache plus court, pour la boucle syndic_articles
+]#CACHE{3600}
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+<INCLURE{fond=inc-head}>
+</head>
+
+<body class="page_sommaire">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+
+	[(#REM) Contenu principal : derniers articles publies ]
+	<div class="hfeed" id="conteneur">
+	<div id="contenu">
+        [(#REM) Fil d'Ariane ]
+        <div id="hierarchie"><:accueil_site:></div>
+
+		<div class="cartouche invisible">
+			<h1 class="invisible">#NOM_SITE_SPIP</h1>
+		</div>
+
+		[(#REM) Affichage du calendrier si la configuration du plugin dit oui ]
+		<div class="[(#CONFIG{scolaspip_accueil/calendrier}|=={non}|?{ 'invisible' ,' '})]" id="calendrier" >
+			[(#REM) mini calendrier :
+			1er arg la date,
+			2eme le nom de la variable date (optionel : 'date' par defaut)
+			3eme l'url sur laquelle boucler (optionel : url courante par defaut) ]
+			#CALENDRIER_SCOLASPIP{#ENV{date},'date',#SELF}
+		</div>
+
+		[(#REM) Affichage du descriptif du site si la configuration du plugin dit oui ]
+    [(#CONFIG{scolaspip_accueil/descriptifdusite}|=={oui}|?{[<div class="chapo">(#DESCRIPTIF_SITE_SPIP)</div>],' '})]
+
+		[(#MODELE{edito})]
+
+		[(#REM) Articles Sélectionnés du site ]
+
+		<B_selection>
+		<div class="menu articles">
+		    <h2><:articles_selection:></h2>
+		    <ul>
+		        <BOUCLE_selection(ARTICLES pb_selection){par ordre}{spip_pb_selection.id_rubrique=#ID_RUBRIQUE}{doublons selection}>
+		        <li>
+		            [(#LOGO_ARTICLE|#URL_ARTICLE|image_reduire{150,100})]
+		            <h3><a href="#URL_ARTICLE">#TITRE</a></h3>
+		            <small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</small>
+		        </li>
+		        </BOUCLE_selection>
+		    </ul>
+		</div>
+		</B_selection>
+
+		<B_images>
+		<div id="mozaique">
+			<BOUCLE_images(ARTICLES){titre_mot=mozaique_page_accueil}{par date}{inverse} {0,2} {doublons selection}>
+			[<h2>(#TITRE)</h2>]
+			[(#MODELE{splickrbox}{taille=200}{colonnes=4}{id_article})]
+			</BOUCLE_images>
+		</div>
+		</B_images>
+
+		[(#REM) Affichage des dernières brèves si la configuration du plugin dit oui ]
+    [(#CONFIG{scolaspip_accueil/breves}|=={oui}|?{[(#MODELE{breves})],' '})]
+
+		[(#REM) Affichage des derniers article si la configuration du plugin dit oui ]
+    [(#CONFIG{scolaspip_accueil/articles}|=={oui}|?{[(#MODELE{articles})],' '})]
+
+    [(#REM) Sites de la rubrique ]
+    <B_sites>
+		<h2 class="nettoyeur"><:nouveau_web:></h2>
+    <BOUCLE_sites(SITES) {tout}{syndication=oui}{titre_mot=fluxrss_accueil}{par nom_site}>
+		<div class="menu sites">
+		    <h3 class="titre"><a href="#URL_SITE"  class="spip_out" title="Visiter ce site">#NOM_SITE</a></h3>
+        <B_syndic>
+		    <ul>
+            <BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {par date}{inverse} {0, 5}>
+            <li>
+            <a href="#URL_ARTICLE" class="spip_out">#TITRE</a><small> - [(#DATE|affdate_jourcourt)]</small>
+            </li>
+            </BOUCLE_syndic>
+        </ul>
+        </B_syndic>
+		</div>
+    </BOUCLE_sites>
+    </B_sites>
+
+		[(#REM) Affichage des commentaires de forum si la configuration du plugin dit oui ]
+    [(#CONFIG{scolaspip_accueil/forums}|=={oui}|?{[(#MODELE{forums})],' '})]
+
+	</div><!--#contenu-->
+	</div><!--#conteneur-->
+
+	[(#REM) Menu de navigation laterale ]
+	<div id="navigation">
+
+		[(#REM) Menu de navigation par rubriques ]
+		<INCLURE{fond=inc-rubriques}>
+
+
+			<B_article_video>
+			<div class="" id="video" >
+				<h2 class="titre">Vid&eacute;o</h2>
+				<BOUCLE_article_video(ARTICLES){titre_mot=video_page_accueil}>
+				<BOUCLE_video(DOCUMENTS){id_article}{mode=document}{extension=flv}{par num titre}{0,1}>
+				[(#MODELE{doc_player_mini}{id_document=#ID_DOCUMENT})]
+				</BOUCLE_video>
+				<small>Voir <a href="#URL_ARTICLE" title="Voir la vid&eacute;o en plus grand">l'article contenant cette vid&eacute;o</a>.</small>
+				</BOUCLE_article_video>
+			</div>
+			</B_article_video>
+
+    </div><!--#navigation-->
+
+	[(#REM) Menu de navigation laterale ]
+	<div id="extra">
+
+		[(#REM) Inscription au site ]
+		#FORMULAIRE_INSCRIPTION
+
+	</div><!--#extra-->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+</div><!--#page-->
+</body>
+</html>

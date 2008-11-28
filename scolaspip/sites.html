@@ -1,0 +1,79 @@
+[(#REM)
+	Un cache plus court, pour la boucle syndic_articles
+]#CACHE{3600}
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#NOM_SITE_SPIP|textebrut) - ] Les sites</title>
+<INCLURE{fond=inc-head}>
+</head>
+
+<body class="page_sites">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+
+	[(#REM) Contenu principal : derniers articles publies ]
+	<div class="hfeed" id="conteneur">
+	<div id="contenu">
+        [(#REM) Fil d'Ariane ]
+        <div id="hierarchie"><a href="#URL_SITE_SPIP/" ><:accueil_site:></a> &gt; <:les_sites:></div>
+
+
+			<div class="cartouche">
+				<h1 class="titre">Les liens utiles</h1>
+				<div class="chapo">Cette page vous pr&eacute;sente une s&eacute;lection de sites.</div>
+			</div>
+
+			<B_sites>
+			<div class="menu">
+				#ANCRE_PAGINATION
+				<ul>
+				<BOUCLE_sites(SITES){par id_secteur, id_rubrique} {pagination 10} {doublons} >
+					<li>
+						[<a class="droite" href="#URL_SITE" target="spip_out" title=''>(#LOGO_SITE||image_reduire{150,100})</a>]
+						<a href="#URL_SITE" class="spip_out" title="">#NOM_SITE</a>
+                    <br class="nettoyeur"/>
+                    <B_syndic>
+                    <div class="syndics"><h5>Les 5 derni&egrave;res nouveaut&eacute;s sur ce site :</h5>
+	                    <ul>
+	                        <BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {0,5}>
+	                        <li><a href="#URL_ARTICLE" class="spip_out" title="">#TITRE</a></li>
+	                        </BOUCLE_syndic>
+	                    </ul>
+                    </div>
+                    </B_syndic>
+						[<div  class="chapo">(#DESCRIPTIF)</div><br class="nettoyeur"/>]
+						[(#REM) A developper : Ajouter ici les flux des syndiques (masque par defaut et qui s'afffichent avec jquery) ]
+					</li>
+				</BOUCLE_sites>
+				</ul>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</div>
+			</B_sites>
+
+	</div><!--#contenu-->
+	</div><!--#conteneur-->
+
+    [(#REM) Menu de navigation laterale ]
+    <div id="navigation">
+
+        [(#REM) Menu de navigation par rubriques ]
+        <INCLURE{fond=inc-rubriques}{id_rubrique}>
+
+
+    </div><!--#navigation-->
+
+    [(#REM) Menu de navigation laterale ]
+    <div id="extra">
+
+
+    </div><!--#extra-->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+</div><!--#page-->
+</body>
+</html>

@@ -1,0 +1,34 @@
+<div id="entete">
+
+[(#REM) Afficher le logo ou le titre du site ]
+<div class="logo-versailles"><a target="_blank" href="http://www.ac-versailles.fr/" title="<:site_realise_avec_academie_versailles:>"><img src="#CHEMIN{images/ac-versailles_transparent.png}" alt="Acad?mie de Versailles"   class="format_png" /></a></div>
+
+<a rel="start" href="#URL_SITE_SPIP/" title="<:accueil_site:>">
+[(#LOGO_SITE_SPIP||?{
+
+	[(#LOGO_SITE_SPIP
+		||image_reduire{960,200}
+		|inserer_attribut{alt,[(#NOM_SITE_SPIP|textebrut)]}
+		|inserer_attribut{title,[(#NOM_SITE_SPIP|textebrut)]}
+		)]
+
+	,
+
+	<span id="nom_site_spip">#NOM_SITE_SPIP</span>
+})]
+</a>
+
+<ul id="menuhorizontal">
+	<li>Acc&egrave;s rapide :</li>
+	<li><a href="#pied" title="Bas de page">Bas de page</a></li>
+	<li class="[(#CONFIG{scolaspip_accueil/calendrier}|=={non}|?{ 'invisible' ,' '})]"><a href="#URL_PAGE{calendrier}" title="">Agenda</a></li>
+	<li><a href="#URL_PAGE{sites}" title="">Liens</a></li>
+	<BOUCLE_sites_selectionnes(SITES){titre_mot=site_bandeau}>
+	<li><a href="#URL_SITE" title="">[(#NOM_SITE|couper{30})]</a></li>
+	</BOUCLE_sites_selectionnes>
+	<BOUCLE_articles_selectionnes(ARTICLES){titre_mot=article_bandeau}>
+	<li><a href="#URL_ARTICLE" title="">[(#TITRE|couper{30})]</a></li>
+	</BOUCLE_articles_selectionnes>
+</ul>
+
+</div>
