@@ -476,6 +476,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_plugin' => 'Plugin',
 		'cfg_lgd_form_commentaire' => 'Formulaire de saisie d\'un commentaire',
 		'cfg_lgd_commentaires' => 'Commentaires',
+		'cfg_lgd_css_noisettes' => 'Noisettes des colonnes',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -609,6 +610,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		pour l\'arri&egrave;re plan vous avez la possibilit&eacute; de choisir une image et ses attributs de positionnement associ&eacute;s.',
 		'cfg_inf_css_general' => 'Il est possible de d&eacute;finir certains attribut graphiques appliqu&eacute;s &agrave; l\'ensemble du site. C\'est le cas de la police, de la couleur du texte...',
 		'cfg_inf_css_couleurs_site' => 'Choisissez les couleurs du fond, du texte et des liens du site qui seront appliqu&eacute;es par d&eacute;faut.',
+		'cfg_inf_css_fond_noisettes' => 'Vous pouvez choisir la couleur de fond des colonnes affichant les noisettes.',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
