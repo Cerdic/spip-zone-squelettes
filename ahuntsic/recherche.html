@@ -1,0 +1,163 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+  <title>[[(#NOM_SITE_SPIP|textebrut)]] : <:resultats_recherche:>[ - (#RECHERCHE)]</title>
+  <INCLURE{fond=inc/inc-meta}{lang}>
+  <INCLURE{fond=page}{fond=styles}{lang}>
+</head>
+<body dir="#LANG_DIR" class="#LANG recherche">
+<div id="page">
+
+<!-- *****************************************************************
+  Bandeau, titre du site et menu langue
+  Header and main menu (top and right) 
+    ************************************************************* -->
+  
+<INCLURE{fond=inc/inc-bandeau}{lang}>
+
+<!-- *****************************************************************
+  Contenu principal (centre)
+  Main content (center) 
+    ************************************************************* -->
+  <div id="bloc-contenu">
+    <div class="cartouche">
+      <div class="surtitre"><:resultats_recherche:></div>
+      [<h1 class="titre-article">(#RECHERCHE|majuscules)</h1>
+]    </div><!-- cartouche -->
+    <B_rubriques>
+      <h2><:info_rubriques_trouvees:> : [(#TOTAL_BOUCLE)]</h2>
+    <BOUCLE_rubriques(RUBRIQUES)  {recherche} {lang_select=non} {par points} {inverse}{tout} >
+      <h3><a href="#URL_SITE_SPIP/spip.php?action=converser&amp;redirect=#URL_SITE_SPIP%2F#URL_RUBRIQUE&amp;var_lang=#LANG" hreflang="#LANG"[title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a> [<dfn><small>&#8212; (#LANG)</small></dfn>]</h3>
+    </BOUCLE_rubriques>
+      <br />
+    </B_rubriques>
+    <B_articles>
+      <h2><:info_articles_trouves:> : [(#TOTAL_BOUCLE)]</h2>
+    <BOUCLE_articles(ARTICLES)  {recherche} {lang_select=non} {par points} {inverse} {tout} >
+      <h3><a href="#URL_SITE_SPIP/spip.php?action=converser&amp;redirect=#URL_SITE_SPIP%2F#URL_ARTICLE&amp;var_lang=#LANG" hreflang="#LANG" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a></h3>
+      <div class="detail">
+        [(#DATE|nom_jour)] [(#DATE|affdate)]
+        <B_auteurs_articles><:par_auteur:> <BOUCLE_auteurs_articles(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_articles> - [<dfn>(#LANG|traduire_nom_langue)</dfn>]
+      </div><!-- detail -->
+      <br />
+    </BOUCLE_articles>
+      <br />
+    </B_articles>
+[(#REM) Si aucun resultat, on affiche le formulaire de recherche
+        If no result, we display the research form ] 
+        <BOUCLE_rub_result(RUBRIQUES){recherche}{par points}{inverse}> </BOUCLE_rub_result><BOUCLE_art_result(ARTICLES){recherche}{par points}{inverse}> </BOUCLE_art_result><BOUCLE_breves_result(BREVES){recherche}{par points}{inverse}> </BOUCLE_breves_result><BOUCLE_forums_result(FORUMS){recherche}{par points}{inverse}> </BOUCLE_forums_result><BOUCLE_sites_result(SITES){recherche}{par points}{inverse}> </BOUCLE_sites_result><BOUCLE_auteurs_result(AUTEURS){recherche}{par points}{inverse}> </BOUCLE_auteurs_result><BOUCLE_mots_result(AUTEURS){recherche}{par points}{inverse}> </BOUCLE_mots_result>
+      <div class="surtitre"><:avis_aucun_resultat:></div>
+      <div class="detail">
+        <h1 class="titre-article"><:info_rechercher:></h1>
+          [(#FORMULAIRE_RECHERCHE)]
+          <br />
+      </div><!-- detail -->
+      <//B_mots_result> <//B_auteurs_result> <//B_sites_result> <//B_forums_result> <//B_breves_result> <//B_art_result> <//B_rub_result>
+
+
+
+  </div><!-- bloc-contenu -->
+  
+<!-- *****************************************************************
+  Menus contextuels (droite)
+  Contextual menus (right) 
+    ************************************************************* -->
+  <div id="encart">
+  
+    <!-- Mots trouves -->
+    <B_mots>
+    <div class="menu">
+      <ul>
+        <li><b><:info_mots_cles:></b>
+           <ul>
+             <BOUCLE_mots(MOTS) {recherche} {par points} {inverse} >
+             <li class="menu-item">
+               <a href="#URL_MOT">[(#TITRE|supprimer_numero)]</a>
+             </li>
+             </BOUCLE_mots>
+           </ul>
+         </li>
+       </ul>
+    </div><!-- menu -->
+    </B_mots>
+
+    <!-- Breves trouvees -->
+    <B_breves>
+    <div class="menu">
+      <ul>
+        <li><b><:info_breves_touvees:></b>
+           <ul>
+             <BOUCLE_breves(BREVES) {lang?}{recherche} {par points} {inverse} >
+             <li class="menu-item">
+               <span>[(#DATE|affdate_court)]</span>
+               <a href="#URL_SITE_SPIP/spip.php?action=converser&amp;redirect=#URL_SITE_SPIP%2F#URL_BREVE&amp;var_lang=#LANG" hreflang="#LANG"[title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
+             </li>
+             </BOUCLE_breves>
+           </ul>
+         </li>
+       </ul>
+    </div><!-- menu -->
+    </B_breves>
+
+    <!-- Auteurs trouves -->
+    <B_auteurs>
+    <div class="menu">
+      <ul>
+        <li><b><:info_auteurs_trouves:></b>
+           <ul>
+             <BOUCLE_auteurs(AUTEURS) {recherche} {par points} {inverse} >
+             <li class="menu-item">
+               <a href="#URL_AUTEUR">[(#NOM)]</a>
+             </li>
+             </BOUCLE_auteurs>
+           </ul>
+         </li>
+       </ul>
+    </div><!-- menu -->
+    </B_auteurs>
+
+  <!-- Sites Web trouves -->
+    <B_sites>
+    <div class="menu">
+      <ul>
+        <li><b><:info_sites_trouves:></b>
+           <ul>
+             <BOUCLE_sites(SITES) {recherche} {par points} {inverse} >
+             <li class="menu-item">
+               <a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" title="[(#DESCRIPTIF|textebrut|entites_html)]">#NOM_SITE</a>
+             </li>
+             </BOUCLE_sites>
+           </ul>
+         </li>
+       </ul>
+     </div><!-- menu -->
+     </B_sites>
+
+  <!-- Messages trouves -->
+  <B_messages>
+    <div class="menu">
+      <ul>
+        <li><b><:messages_forum:></b>
+           <ul>
+              <BOUCLE_messages(FORUMS) {recherche} {par points} {inverse} >
+              <li class="menu-item">
+                <a href="#URL_FORUM">[(#TITRE|supprimer_numero)]</a>
+              </li>
+              </BOUCLE_messages>
+           </ul>
+         </li>
+       </ul>
+    </div><!-- menu -->
+    </B_messages>
+
+  </div><!-- encart -->
+<INCLURE{fond=inc/inc-menu}{lang}>
+<INCLURE{fond=inc/inc-bas} {lang}>
+</div><!-- page -->
+
+</body>
+</html>
+
+ 
