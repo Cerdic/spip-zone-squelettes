@@ -1,0 +1,22 @@
+[(#REM)
+
+	Ce modele (a installer dans le dossier modeles/) permet d'afficher,
+	dans n'importe quel texte, une boite listant les 5 derniers liens
+	d'un site syndique. La boite se positionne a droite du texte ou elle
+	est insere. Il suffit d'employer la syntaxe <site1|box> dans le texte 
+	a l'endroit ou on souhaite que la boite apparaisse. Le nombre 1 dans
+	<site1|box> correspond a l'identifiant du site syndique numero 1.
+
+	Variantes : <site1|box|left>, <site1|box|center>...
+]
+
+<BOUCLE_j(SITES){id_syndic}>
+	<div style='[float:(#ALIGN|match{left|right});] margin[-(#ALIGN|match{left}|?{right}|sinon{#ALIGN|match{right}|?{left}})]:1em;' class='spip_modele'>
+		<h4><a href="#URL_SITE" [title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>#NOM_SITE</a></h4>
+		<ul>
+<BOUCLE_i(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{0,5}>
+			<li><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></li>
+</BOUCLE_i>
+		</ul>
+	</div>
+</BOUCLE_j>

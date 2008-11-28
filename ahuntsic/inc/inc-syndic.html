@@ -1,0 +1,68 @@
+    <!-- Sur le Web -->
+
+[(#REM) *********************************************************
+	Sites syndiques (pour une page rubrique) 
+    ************************************************************* ]
+    <B_art_syndic>
+      <div class="menu rub">
+      <ul>
+        <li><a href="#URL_PAGE{site}" title="<:autres_sites:>"><:nouveautes_web:></a>
+          <ul>
+
+            <BOUCLE_art_syndic(SYNDIC_ARTICLES) {id_rubrique} {par date} {inverse} {0,5}>
+            <li>[<span>(#DATE|affdate)</span>]
+                [<a href="#URL_ARTICLE" [title="<:form_prop_nom_site:> : (#NOM_SITE|supprimer_tags|attribut_html)"] class="spip_out">(#TITRE*|supprimer_numero)</a>]
+                [<span style="text-align: right;"><a href="#URL_SITE" [title="(#DESCRIPTIF|supprimer_tags|attribut_html)"] class="spip_out" style="text-align: right; color: maroon; margin-top:-.5em">(#NOM_SITE)</a></span>]
+            </li>
+            </BOUCLE_art_syndic>
+
+          </ul>
+        </li>
+      </ul>
+      </div><!-- menu -->                
+    </B_art_syndic>
+
+[(#REM) *********************************************************
+	Sites syndiques (pour la page d'accueil) 
+    ************************************************************* ]
+    <B_art_syndic2>
+      <div class="menu rub">
+      <ul>
+        <li><a href="#URL_PAGE{site}" title="<:autres_sites:>"><:nouveautes_web:></a>
+          <ul>
+
+            <BOUCLE_art_syndic2(SYNDIC_ARTICLES) {par date}{inverse} {0,10}>
+            <li>[<span>(#DATE|affdate)</span>]
+                [<a href="#URL_ARTICLE" [title="<:form_prop_nom_site:> : (#NOM_SITE|supprimer_tags|attribut_html)"] class="spip_out">(#TITRE*|supprimer_numero)</a>]
+                [<span style="text-align: right;"><a href="#URL_SITE" [title="(#DESCRIPTIF|supprimer_tags|attribut_html)"] class="spip_out" style="text-align: right; color: maroon; margin-top:-.7em">(#NOM_SITE) </a></span>]
+             </li>
+            </BOUCLE_art_syndic2>
+
+          </ul>
+        </li>
+      </ul>
+      </div><!-- menu -->                
+    </B_art_syndic2>
+
+    <//B_art_syndic>
+      	
+[(#REM) *********************************************************
+	Sites references mais non syndiques (pour une page rubrique)	
+    ************************************************************* ]
+    <B_sites>
+      <div class="menu rub">
+      <ul>
+        <li><a href="#URL_PAGE{site}" title="<:autres_sites:>"><:sites_web:></a>
+          <ul>
+            <BOUCLE_sites(SITES) {syndication=non} {id_rubrique} {par nom_site} {0,5}>
+            <li>
+                [<a href="#URL_SITE" [title="(#DESCRIPTIF|supprimer_tags|attribut_html)"] class="spip_out">(#NOM_SITE)</a>]
+            </li>            
+            </BOUCLE_sites>
+          </ul>
+        </li>
+      </ul>
+      </div><!-- menu -->
+    </B_sites>
+
+    

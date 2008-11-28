@@ -1,0 +1,38 @@
+		<B_articles_rubrique>
+		<h2 class="structure"><:articles_rubrique:></h2>
+		 #ANCRE_PAGINATION
+		<BOUCLE_articles_rubrique(ARTICLES) {branche} {par num titre} {!par date} {pagination}>
+			<br class="nettoyeur" />
+			[<div class="logo-liste-art">
+				(#LOGO_ARTICLE|#URL_ARTICLE||image_reduire{120,0})
+			</div>]
+			[<div class="surtitre">(#SURTITRE)</div>]
+			<h3>
+			<a href="#URL_SITE_SPIP/#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a>
+			<BOUCLE_articles_rubrique_nom(RUBRIQUES) {id_rubrique} >
+				<b class="petit-info"><a href="#URL_SITE_SPIP/#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>([(#TITRE|supprimer_numero)])</a></b>
+			</BOUCLE_articles_rubrique_nom>
+			</h3>
+      	[<div class="sous-titre">(#SOUSTITRE)</div>]
+			<div class="detail">
+				[(#DATE|nom_jour)] [(#DATE|affdate)]
+				<B_auteurs_recents><:par_auteur:> <BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}><a href="#URL_SITE_SPIP/#URL_AUTEUR">#NOM</a></BOUCLE_auteurs_recents>
+			</div><!-- detail -->
+      	[<div class="texte">
+      		<div class="extrait">
+      	 	(#DESCRIPTIF|sinon{[(#CHAPO|sinon{#TEXTE}|couper{300})]})&nbsp;<b class="separateur">&gt;</b>&nbsp;<a  class="suite" href="#URL_SITE_SPIP/#URL_ARTICLE" title="...<:suite:>" ><:suite:></a>
+      		</div>
+      	</div>]
+		<br />
+		</BOUCLE_articles_rubrique>
+		
+		[<div class="pagination">
+			<div class="ligne1">
+				<div dir="#LANG_DIR">#TOTAL_BOUCLE/#GRAND_TOTAL <:articles:></div>
+			</div>
+			<div class="ligne2">
+        (#PAGINATION)
+			</div>
+		</div>]
+
+		</B_articles_rubrique>
