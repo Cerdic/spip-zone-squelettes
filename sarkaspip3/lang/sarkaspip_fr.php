@@ -653,6 +653,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_inc_badges_rss' => 'Fil RSS du site',
 		'cfg_lbl_inc_badges_sarka' => 'Squelette Sarka-SPIP',
 		'cfg_lbl_inc_badges_spip' => 'Motoris&eacute; par SPIP',
+		'cfg_lbl_inc_badges_perso' => 'Badge personnel (nomm&eacute;s badge_perso.png et badge_perso_hover.png)',
 		'cfg_lbl_choix_agenda_1' => 'L\'agenda natif de SARKA-SPIP (pensez alors &agrave; d&eacute;sactiver le plugin Agenda)',
 		'cfg_lbl_choix_agenda_2' => 'L\'agenda du plugin Agenda (n&eacute;cessite aussi le plugin Widget)',
 		'cfg_lbl_agenda_modele_1' => 'Par ann&eacute;e calendaire',
