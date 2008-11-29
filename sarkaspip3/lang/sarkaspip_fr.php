@@ -314,7 +314,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //U
 	  
-		'url_fausse' => 'L\'adresse URL que vous demandez n\'existe pas. Le plan du site peut vous aider &agrave; trouver l\'information recherch&eacute;e.',
+		'url_fausse' => 'L\'adresse URL que vous demandez n\'existe pas. <a href="#URL_PAGE{plan,tri=par_rubrique}">Le plan du site</a> peut vous aider &agrave; trouver l\'information recherch&eacute;e.',
 	  
 	
 //V
