@@ -21,7 +21,7 @@
 
 ################ CONFIGURATION TITRAGE #######################
 
-// Dans le squelette ALTERNATIVES, tous les #TITRE sont filtrés
+// Dans le squelette AHUNTSIC, tous les #TITRE sont filtrés
 // par #TITRE|supprimer_numero ; mais il est possible que nous
 // en ayons oublie ; on ne prend pas de chance, on les supprime
 // ici globalement ; ca s'appliquera aussi a tous les squelettes
@@ -32,8 +32,8 @@
 
 ################ COMPATIBILITE COUTEAU SUISSE #######################
 // Pour assurer une compatibilite ascendante de la methode de 'decouper en page' 
-// des squelettses d'Alternatives avec la methde du plugin 'Couteau Suisse' 
-// qu'on utilise dorenavant.
+// des squelettses d'Alternatives avec la methode du plugin 'Couteau Suisse' 
+// qu'on recommande dorenavant.
 	@define('_decoupe_COMPATIBILITE', '-----');
 
 
