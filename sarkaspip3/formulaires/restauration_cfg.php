@@ -8,11 +8,18 @@ function formulaires_restauration_cfg_charger_dist($fond, $items_langue=array())
 
 	$args = array_merge(array('_titre' => _T('cfg:charger_meta_titre'),
 								'_legende' => _T('cfg:charger_meta_legende'),
+								'_label' => _T('cfg:charger_meta_label'),
 								'_description' => _T('cfg:charger_meta_description')),
 								$items);
 
 	$dir = sous_repertoire(_DIR_TMP,"cfg");
-	$save = preg_files($dir, $fond);
+	$saves = preg_files($dir, $fond);
+	$options = '';
+	foreach ($saves as $_fichier) {
+		$nom = basename($_fichier);
+		$options .= '<option value="' . $_fichier . '">' . $nom . '</option>';
+	}
+	$args = array_merge($args, array('_fichiers_sauvegardes' => $options));
 
 	return $args;
 }

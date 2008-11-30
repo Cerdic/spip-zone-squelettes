@@ -753,6 +753,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_notation_cartouche' => 'Ins&eacute;rer dans le cartouche',
 		'cfg_lbl_notation_fin' => 'Ins&eacute;rer &agrave; la fin du texte de l\'article',
 		'cfg_lbl_rainette_ville' => 'Code de la ville dont vous voulez afficher les pr&eacute;visions : ',
+		'cfg_lbl_css_restauration' => 'Fichiers de sauvegarde',
 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',
