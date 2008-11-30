@@ -20,6 +20,7 @@
 		[(#ENV{menu_rubriques, 1}|!={1}|?{jQuery("#bloc_menu_option1_2").hide();})]
 		[(#ENV{menu_rubriques, 1}|match{^(4)$}|?{jQuery("#bloc_menu_option1").hide();})]
 		[(#ENV{position_annonce, 0}|=={0}|?{jQuery("#bloc_annonce_id").hide();})]
+		[(#ENV{position_rainette, 0}|=={0}|?{jQuery("#bloc_rainette_ville").hide();})]
 
 		jQuery("input[@name='image_rechercher']").change(function() {
 			if (jQuery("input[@name='image_rechercher']:checked").val() == 1)
@@ -121,6 +122,14 @@
 				jQuery("#bloc_annonce_id").show();
 			else
 				jQuery("#bloc_annonce_id").hide();
+			jQuery(this).blur();
+		});	
+		
+		jQuery("input[@name='position_rainette']").change(function() {
+			if (jQuery("input[@name='position_rainette']:checked").val() != 0)
+				jQuery("#bloc_rainette_ville").show();
+			else
+				jQuery("#bloc_rainette_ville").hide();
 			jQuery(this).blur();
 		});	
 	});
@@ -468,6 +477,31 @@
 			</B_secteurs>
 		</div>
 	</fieldset>
+
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_inc_rainette:></legend>
+		<p><:sarkaspip:cfg_inf_inc_rainette_pos:></p>
+		<label>
+			<input type="radio" name="position_rainette" value="0" [(#ENV{position_rainette, 1}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_position_0:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="position_rainette" value="1" [(#ENV{position_rainette, 1}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_position_1:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="position_rainette" value="2" [(#ENV{position_rainette, 1}|=={2}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_position_2:>
+		</label>
+		<br />
+		<div id="bloc_rainette_ville">
+			<label><:sarkaspip:cfg_lbl_rainette_ville:></label>
+			<input type="text" name="rainette_ville" value="#ENV{rainette_ville}" size="10" class="fondl" />
+		</div>
+	</fieldset>
+
 	
 	<br />
 	<input type="submit" name="_cfg_ok" class="fondo" value="<:sarkaspip:valider:>" />
