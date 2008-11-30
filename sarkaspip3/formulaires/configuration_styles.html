@@ -1,0 +1,114 @@
+<!-- nom=sarkaspip_styles -->
+<form method="post" action="#SELF"><div>
+	#ACTION_FORMULAIRE{#SELF}
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_css_general:></legend>
+		<p><:sarkaspip:cfg_inf_css_general:></p>
+		<label><:sarkaspip:cfg_lbl_css_fo:></label>
+		<input type="text" name="fo_site" value="#ENV{fo_site, 'Helvetica,Verdana'}" size="50" class="fondl" />,Arial,sans-serif
+		<br />
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_site:>}
+			{suffixe=_site}
+			{choix=fgbgbi}
+			{complement_label=<:sarkaspip:cfg_lbl_css_fg_texte:>}
+			{bg_defaut=#FFFFFF}
+			{fg_defaut=#000000}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{suffixe=_lien}
+			{choix=fghotd}
+			{complement_label=<:sarkaspip:cfg_lbl_css_fg_lien:>}
+			{fg_defaut=#990000}
+			{ho_defaut=#990000}
+			{td_defaut=underline}
+			{env}>
+	</fieldset>
+	
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_css_bandeau:></legend>
+		<p><:sarkaspip:cfg_inf_css_bandeau:></p>
+		<p><:sarkaspip:cfg_inf_css_couleurs:></p>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_bandeau_haut:>}
+			{suffixe=_bandeau_haut}
+			{choix=bgbifghotd}
+			{complement_label=<:sarkaspip:cfg_lbl_css_fg_tout:>}
+			{bg_defaut=#6262a4}
+			{fg_defaut=#eeeeee}
+			{ho_defaut=#aaaaaa}
+			{td_defaut=none}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_bandeau_bas:>}
+			{suffixe=_bandeau_bas}
+			{choix=bgbi}
+			{bg_defaut=#6262a4}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_chemin:>}
+			{suffixe=_chemin}
+			{choix=bgbifghotd}
+			{complement_label=<:sarkaspip:cfg_lbl_css_fg_tout:>}
+			{bg_defaut=#ddddef}
+			{fg_defaut=#6262a4}
+			{ho_defaut=#808080}
+			{td_defaut=none}
+			{env}>
+	</fieldset>
+	
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_css_pied:></legend>
+		<p><:sarkaspip:cfg_inf_css_pied:></p>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_pied_bas:>}
+			{suffixe=_pied_bas}
+			{choix=bgbifghotd}
+			{complement_label=<:sarkaspip:cfg_lbl_css_fg_tout:>}
+			{bg_defaut=#6262a4}
+			{fg_defaut=#eeeeee}
+			{ho_defaut=#aaaaaa}
+			{td_defaut=none}
+			{env}>
+		<label><:sarkaspip:cfg_lbl_css_ta:></label>
+		<input type="text" name="ta_pied_bas" value="#ENV{ta_pied_bas, right}" size="6" class="fondl" />
+		<br />
+	</fieldset>
+
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_css_noisettes:></legend>
+		<p><:sarkaspip:cfg_inf_css_fond_noisettes:></p>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{suffixe=_noisette}
+			{choix=bg}
+			{bg_defaut=transparent}
+			{env}>		
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_menus:>}
+			{suffixe=_menu}
+			{choix=bghbfghotd}
+			{complement_label=<:sarkaspip:cfg_lbl_css_fg_tout:>}
+			{bg_defaut=#ddddef}
+			{hb_defaut=#ddddef}
+			{fg_defaut=#6262a4}
+			{ho_defaut=#808080}
+			{td_defaut=none}
+			{env}>
+	</fieldset>
+	
+	<div style="text-align: right; margin-right:3px;">
+	[(#CONFIG{sarkaspip_accueil/mode_debug, non}|=={oui}|?{' '})
+		<input type="submit" name="_cfg_delete" class="fondo" value="<:sarkaspip:effacer:>" />
+	]
+		<input type="submit" name="_cfg_ok" class="fondo" value="<:sarkaspip:valider:>" />
+	</div>
+</div></form>
+
+[(#CONFIG{sarkaspip_accueil/mode_debug, non}|=={oui}|?{' '})
+	<div id="bloc_debug">
+		<br />
+		>> Debug - Etat des variables du fond Styles:<br />
+		#CFG_ARBO{sarkaspip_styles}
+	</div>
+]
+[(#VAL{1}|fin_cadre_trait_couleur)]

@@ -424,10 +424,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_boite_plan' => 'Plan du site',
 		'cfg_boite_header' => 'Balises meta',
 		'cfg_boite_formulaires' => 'Formulaires',
-		'cfg_boite_styles' => 'Styles',
 		'cfg_boite_plugins' => 'Plugins',
 		'cfg_boite_auteur' => 'Auteur',
 		'cfg_boite_breve' => 'Br&egrave;ve',
+		'cfg_boite_styles_configuration' => 'Configuration des styles',
+		'cfg_boite_styles_sauvegarde' => 'Sauvegarde des styles',
+		'cfg_boite_styles_restauration' => 'Restauration des styles',
 
 // Legendes des blocs contenus dans chaque boite
 		'cfg_lgd_layout' => 'Layout',
@@ -481,6 +483,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_form_commentaire' => 'Formulaire de saisie d\'un commentaire',
 		'cfg_lgd_commentaires' => 'Commentaires',
 		'cfg_lgd_css_noisettes' => 'Noisettes des colonnes',
+		'cfg_lgd_css_sauvegarde' => 'Fichier de sauvegarde',
+		'cfg_lgd_css_restauration' => 'Fichier de sauvegarde',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -618,6 +622,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_css_general' => 'Il est possible de d&eacute;finir certains attribut graphiques appliqu&eacute;s &agrave; l\'ensemble du site. C\'est le cas de la police, de la couleur du texte...',
 		'cfg_inf_css_couleurs_site' => 'Choisissez les couleurs du fond, du texte et des liens du site qui seront appliqu&eacute;es par d&eacute;faut.',
 		'cfg_inf_css_fond_noisettes' => 'Vous pouvez choisir la couleur de fond des colonnes affichant les noisettes.',
+		'cfg_inf_css_sauvegarde' => 'Vous pouvez sauvegarder votre configuration des styles saisie dans le formulaire ci-dessus dans un fichier texte pour une restauration ou une consultation future. Le fichier est cr&eacute;&eacute; dans tmp/cfg/.',
+		'cfg_inf_css_restauration' => 'Vous pouvez restaurer une configuration de styles que vous avez sauvegard&eacute;e. Choisissez le fichier de sauvegarde dans la liste ci-dessous.',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
@@ -752,6 +758,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',
 		'cfg_itm_pagination_format_2' => 'P&eacute;riode (2008-2009)',
 		'cfg_itm_pagination_format_3' => 'P&eacute;riode abr&eacute;g&eacute;e (08-09)',
+		
+// Messages de retour des formulaires cfg
+		'cfg_msg_fichier_sauvegarde_ok' => 'Le fichier de sauvegarde <strong>@nom_fichier@</strong> a bien &eacute;t&eacute; cr&eacute;&eacute;.',
+		'cfg_msg_fichier_sauvegarde_nok' => 'Erreur lors de la cr&eacute;ation du fichier de sauvegarde.',
+		'cfg_msg_fichier_restauration_ok' => 'Le fichier de sauvegarde <strong>@nom_fichier@</strong> a bien &eacute;t&eacute; restaur&eacute;.',
+		'cfg_msg_fichier_restauration_nok' => 'Erreur lors de la restauration du fichier de sauvegarde.',
 	
 );
 
