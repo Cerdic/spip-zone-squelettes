@@ -4,9 +4,44 @@
 <INCLURE{fond=noisettes/cfg/inc_cfg_header}>
 #CACHE{0}
 
+<script type="text/javascript">
+//<![CDATA[
+	jQuery(document).ready(function() {
+		[(#ENV{position_pied, 'block'}|!={'block'}|?{' '})
+			jQuery("#affiche_pied").hide();
+		]
+		jQuery("input[@name='position_pied']").change(function() {
+			if (jQuery("input[@name='position_pied']:checked").val() == 'block') {
+				jQuery("#affiche_pied").show();
+			}
+			else {
+				jQuery("#affiche_pied").hide();
+			}
+			jQuery(this).blur();
+		});	
+	});
+//]]>
+</script>
+
+
 <form method="post" action="#SELF"><div>
 	[(#ENV{_cfg_}|form_hidden)]
-	<fieldset>
+	<fieldset>		
+		
+		<legend><:sarkaspip:cfg_lgd_pied_affichage:></legend>
+		<p><:sarkaspip:cfg_inf_pied_affichage:></p>
+		<label>
+			<input type="radio" name="position_pied" value="block" [(#ENV{position_pied, 'block'}|=={'block'}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_oui:>
+		</label>
+		<label>
+			<input type="radio" name="position_pied" value="none" [(#ENV{position_pied, 'block'}|=={'none'}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_non:>
+		</label>
+	</fieldset>		
+	
+	<div id="affiche_pied">
+		<fieldset>
 		<legend><:sarkaspip:cfg_lgd_pied_copyright:></legend>
 		<p><:sarkaspip:cfg_inf_copyright_site:></p>
 		<label>
@@ -26,9 +61,9 @@
 			<br />
 		</div>
 		<br />
-	</fieldset>
+		</fieldset>
 
-	<fieldset>
+		<fieldset>
 		<legend><:sarkaspip:cfg_lgd_pied_version:></legend>
 		<p><:sarkaspip:cfg_inf_version_spip:></p>
 		<label>
@@ -50,9 +85,9 @@
 			<:sarkaspip:cfg_lbl_non:>
 		</label>
 		<br />
-	</fieldset>	
+		</fieldset>	
 
-	<fieldset>
+		<fieldset>
 		<legend><:sarkaspip:cfg_lgd_pied_liens:></legend>
 		<p><:sarkaspip:cfg_inf_collectif_sarka:></p>
 		<label>
@@ -108,8 +143,9 @@
 			<:sarkaspip:cfg_lbl_non:>
 		</label>
 		<br />
-	</fieldset>
-		
+		</fieldset>
+	</div>
+	
 	<div style="text-align: right; margin-right:3px;">
 	[(#CONFIG{sarkaspip_accueil/mode_debug, non}|=={oui}|?{' '})
 		<input type="submit" name="_cfg_delete" class="fondo" value="<:sarkaspip:effacer:>" />
