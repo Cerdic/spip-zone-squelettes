@@ -1,0 +1,37 @@
+				<div class="column span-3 last">
+					<B_rubriques>					              
+                	<div id="side_categories">
+						<h3 class="mast"><:rubriques:></h3>
+						<ul class="cat">
+						<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}{titre!==0}>
+							<li><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
+								<B_children>
+								<ul class="children">
+									<BOUCLE_children(RUBRIQUES){id_parent} {par num titre, titre}{titre!==0}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}>#EXPOSE{' '}</BOUCLE_test_expose>
+										<li class="cat-item cat-item-#ID_RUBRIQUE"><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a><BOUCLE_re(BOUCLE_children)></BOUCLE_re></li>
+									</BOUCLE_children>
+								</ul>
+								</B_children>
+							</li>
+						</BOUCLE_rubriques>
+						</ul>
+            		</div>
+					</B_rubriques>
+            		
+            		[(#REM) Liens des forums ]
+					<B_forums_liens>
+					<div id="side_recent_comments">
+            
+						<h3 class="mast"><:derniers_commentaires:></h3>
+						
+						<ul class="reccom">	
+						<BOUCLE_forums_liens(FORUMS) {plat} {par date}{inverse} {0,5}>
+							[<li>#NOM : <a href="#URL_FORUM">(#TEXTE|couper{90})</a></li>]
+						</BOUCLE_forums_liens>
+						</ul>
+            		
+            		</div>
+            		
+            		</B_forums_liens>
+					
+            	</div>
