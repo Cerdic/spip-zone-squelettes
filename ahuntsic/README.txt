@@ -9,7 +9,7 @@ Ce dossier contient :
 Compatibilité : SPIP 2.0 ou plus recent
 
 La documentation de ce jeu de squelettes se trouve a :
-	http://edu.ca.edu
+	http://edu.ca.edu/rubrique43.html
 
 Aussi référencé sur spip-contrib.net
 	
