@@ -1,0 +1,87 @@
+<BOUCLE_principale(ARTICLES) {id_article}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head profile="http://gmpg.org/xfn/11">
+	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+	<INCLURE{fond=inc-head}>
+	<INCLURE{fond=inc-entete}>
+</head>
+		<div id="topbanner" class="column span-14">   <!-- start top banner -->
+            <div class="pagetitle">
+                // <:article:>
+            </div>
+        </div>   <!-- end top banner --> 
+        
+        <div id="post_content" class="column span-14">   <!-- start page_content -->
+        
+			<div class="column span-11 first">
+        		 
+				<BOUCLE_parent(RUBRIQUES){id_rubrique}><h2 class="post_cat">#TITRE</h2></BOUCLE_parent>
+
+				<h2 class="post_name" id="post-#ID_ARTICLE #EDIT{soustitre}">#TITRE</h2>
+				
+				<div class="post_meta">
+
+					[<:par_auteur:> (#LESAUTEURS) <span class="dot">&sdot;</span> ]
+					<abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>[ (<:texte_date_publication_anterieure:> (#DATE_REDAC|affdate)).][ <span class="dot">&sdot;</span> <a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_article:></a>]
+
+					[(#PLUGIN{nuage}|?{
+						[(#INCLURE{fond=noisettes/socialtags}{id_article})]
+            		,""})]	
+
+					[(#REM) Inclure le modele des liens de traductions ]
+					#MODELE{article_traductions}
+
+				</div>
+				
+				<div class="surlignable">
+					[<div class="#EDIT{chapo} chapo"><strong>(#CHAPO|image_reduire{500,0})</strong></div>]
+					[<div class="#EDIT{texte} texte entry-content">[<div class="captionright">(#LOGO_ARTICLE||image_reduire{200,200})</div>](#TEXTE|image_reduire{500,0})</div>]
+				</div>
+
+
+				[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+				
+				[<div class="ps surlignable"><h2 class="pas_surlignable"><:info_ps:></h2><div class="#EDIT{ps}">(#PS|image_reduire{500,0})</div></div>]
+
+
+				<B_tags>
+				<div class="post_meta">
+            		<img src="#CHEMIN{images/bg/tag_green.png}" class="posttag" alt="<:tags:>" style="border: 0px;" />
+					<BOUCLE_tags(MOTS){id_article}{", "}>
+						<a href="#URL_MOT">#TITRE</a>
+					</BOUCLE_tags>
+            	</div>
+				</B_tags>
+
+				[(#REM) Gestion du portfolio et des documents
+					Le critere {env} permet de passer d'autres arguments de la page
+					par exemple l'id_document choisi pour un affichage complet
+				]
+				[(#INCLURE{fond=inc-documents}{id_article}{env})]
+
+
+				[(#REM) Petition :
+				La petition ayant une PAGINATION il faut absolument {env}
+				et pourquoi pas ajax
+				][(#PETITION|?{' '})<INCLURE{fond=inc-petition}{id_article}{env}{ajax}>]
+
+				[<div class="notes surlignable"><h2 class="pas_surlignable"><:info_notes:></h2>(#NOTES)</div>]
+				<div id="comments">   <!-- start comments -->
+					[(#REM) Forum de l'article ]
+					<a href="#forum" name="forum" id="forum"></a>
+					<INCLURE{fond=inc-forum}{id_article} />
+					[<p class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_article:></a></p>]
+				</div> <!-- end comments -->
+            	
+            </div> <!-- end first -->
+
+        <INCLURE{fond=inc-sidebar}>    
+
+        </div>   <!-- end page_content -->        
+        
+<INCLURE{fond=inc-footer}{skel=#SQUELETTE}>
+</BOUCLE_principale>
