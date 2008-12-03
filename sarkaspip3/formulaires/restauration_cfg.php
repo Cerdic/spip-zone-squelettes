@@ -31,6 +31,12 @@ function formulaires_restauration_cfg_verifier_dist($fond, $items_langue=array()
 function formulaires_restauration_cfg_traiter_dist($fond, $items_langue=array()){
 	$message=array();
 	
+	$fichier = _request('fichier_sauvegarde');
+	lire_fichier($fichier,$tableau);
+	$tableau = unserialize($tableau);
+
+	$ok = ecrire_config($fond, $tableau);
+	
 	if (!$ok) $message['message_nok'] = _T('sarkaspip:cfg_msg_fichier_restauration_nok');
 	if ($ok) $message['message_ok'] = _T('sarkaspip:cfg_msg_fichier_restauration_ok', array('nom_fichier' => $nom));
 	return $message;
