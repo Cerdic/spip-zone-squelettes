@@ -45,7 +45,6 @@ $GLOBALS['i18n_pyrat_nl'] = array(
 'chercheravecgoogle' => 'Met <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> zoekt op het Web!',
 'copyright_realisation' => 'Copyright : ',
 'copyright_spip' => 'Deze website gebruikt het skelet&nbsp;: <a href=\'http://www.pyrat.net/\' title=\'De website van de producent van dit skelet bezoeken\'>Pyrat.net</a> Voortgestuwd; door <a href=\'http://www.spip.net/\' title=\'De website van SPIP bezoeken, software van beleid van inhoud web in vergunning vrij LPG\'>SPIP</a>',
-'copyright_valide' => '<a href="http://validator.w3.org/check/referer" title="De overeenstemming aan de transitionnel standaard XHTML 1.0 controleren">XHTML</a> &amp; <a href="http://www.w3.org/TR/CSS21/" title="Standard CSS2">CSS</a> valides',
 'copyright_icra' => 'Copyright; <a href="http://www.icra.org/sitelabel">ICRA</a>',
 'copyright_cnil' => 'Copyright CNIL n&ordm;',
 'copyright_droits' => 'Alle gereserveerde rechten.',

@@ -45,7 +45,6 @@ $GLOBALS['i18n_pyrat_en'] = array(
 'chercheravecgoogle' => 'Search the Web with <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> !',
 'copyright_realisation' => 'Made by: ',
 'copyright_spip' => 'This site uses the <a href=\'http://www.pyrat.net/\' title=\'Visiter le site du cr&eacute;ateur de ce squelette\'>Pyrat.net</a> template, powered by <a href=\'http://www.spip.net/\' title=\'Visiter le site de SPIP, logiciel de gestion de contenu web en licence libre GPL\'>SPIP</a>',
-'copyright_valide' => '<a href="http://validator.w3.org/check/referer" title="Check XHTML 1.0 transitional conformity">Valid XHTML</a> &amp; <a href="http://www.w3.org/TR/CSS21/" title="Standard CSS2">CSS</a>',
 'copyright_icra' => 'Labelled with <a href="http://www.icra.org/sitelabel">ICRA</a>',
 'copyright_cnil' => 'CNIL declaration n&ordm;',
 'copyright_droits' => 'All rights reserved',
