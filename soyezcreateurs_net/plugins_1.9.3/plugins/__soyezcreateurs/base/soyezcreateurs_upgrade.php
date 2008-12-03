@@ -24,14 +24,21 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			(sql_countsel('spip_groupes_mots', "(titre = '_LayoutGala')") != 0)
 		) {
 			echo "SoyezCreateurs d&eacute;j&agrave; install&eacute; <br />";
-			ecrire_meta($nom_meta_base_version,$current_version=$version_cible,'non');
+			ecrire_meta($nom_meta_base_version,$current_version='2.1','non');
 		}
 		if (version_compare($current_version,'2.1','<')) {
 			include_spip('base/soyezcreateurs');
 			soyezcreateurs_config_site();
 			soyezcreateurs_config_motsclefs();
-			echo "SoyezCreateurs Install $version_cible <br />";
-			ecrire_meta($nom_meta_base_version,$current_version=$version_cible,'non');
+			echo "SoyezCreateurs Install 2.1<br />";
+			ecrire_meta($nom_meta_base_version,$current_version='2.1','non');
+		}
+		if (
+			(version_compare($current_version,'2.1.3','<'))
+			&& // Verification que les mots clefs ont bien ete supprimes
+			(sql_countsel('spip_mots', "(titre = 'NewsLetter')") != 0)
+		) {
+			ecrire_meta($nom_meta_base_version,$current_version='2.1','non');
 		}
 		if (version_compare($current_version,'2.1.1','<')) {
 			include_spip('base/soyezcreateurs');
@@ -44,8 +51,8 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				sql_delete("spip_mots_syndic", "id_mot=$id_mot");
 				sql_delete("spip_mots_forum", "id_mot=$id_mot");
 			}
-			echo "SoyezCreateurs Install $version_cible <br />";
-			ecrire_meta($nom_meta_base_version,$current_version=$version_cible,'non');
+			echo "SoyezCreateurs MaJ 2.1.1<br />";
+			ecrire_meta($nom_meta_base_version,$current_version='2.1.1','non');
 		}
 		if (version_compare($current_version,'2.1.2','<')) {
 			include_spip('base/soyezcreateurs');
@@ -58,8 +65,14 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				sql_delete("spip_mots_syndic", "id_mot=$id_mot");
 				sql_delete("spip_mots_forum", "id_mot=$id_mot");
 			}
-			echo "SoyezCreateurs Install $version_cible <br />";
-			ecrire_meta($nom_meta_base_version,$current_version=$version_cible,'non');
+			echo "SoyezCreateurs MaJ 2.1.2<br />";
+			ecrire_meta($nom_meta_base_version,$current_version='2.1.2','non');
+		}
+		if (version_compare($current_version,'2.1.3','<')) {
+			include_spip('base/soyezcreateurs');
+			create_mot("_Specialisation", "MenuFooter", "Affecter ce mot clef aux articles devant être affichés dans le menu de pied de page.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...");
+			echo "SoyezCreateurs MaJ 2.1.3<br />";
+			ecrire_meta($nom_meta_base_version,$current_version='2.1.3','non');
 		}
 	}
 }
