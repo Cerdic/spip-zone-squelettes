@@ -745,6 +745,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_css_bi1' => 'Extension de l\'image de fond',
 		'cfg_lbl_css_bi2' => 'Propri&eacute;t&eacute;s associ&eacute;es (repeat, position, attachement)',
 		'cfg_lbl_css_image_fond' => 'Vous pouvez afficher une image d\'arri&egrave;re plan nomm&eacute;e bg@lbl_bi_suffixe@, stock&eacute;e dans le dossier images/ et poss&eacute;dant l\'extension gif, png ou jpg.',
+		'cfg_lbl_css_image_hfond' => 'Vous pouvez afficher une image d\'arri&egrave;re plan pour le survol, nomm&eacute;e bg_hover@lbl_hi_suffixe@, stock&eacute;e dans le dossier images/ et poss&eacute;dant l\'extension gif, png ou jpg.',
 		'cfg_lbl_gif' => 'gif',
 		'cfg_lbl_png' => 'png',
 		'cfg_lbl_jpg' => 'jpg',
