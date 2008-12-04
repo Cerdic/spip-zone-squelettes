@@ -1,27 +1,55 @@
 <?php
-$p=explode(basename(_DIR_PLUGINS)."/",str_replace('\\','/',realpath(dirname(__FILE__))));
-define('_DIR_PLUGIN_EVA_BINETTES',(_DIR_PLUGINS.end($p)));
+/*Adaptés de 
+ *   +----------------------------------+
+ *    Nom du Filtre :    smileys II
+ *   +----------------------------------+
+ *    Date : mercredi 14 octobre 2003
+ *    Auteur :  BoOz (booz.bloog@laposte.net)
+ *   +-------------------------------------+
+ *    Fonctions de ce filtre :
+ *    Dans un texte, génère automatiquement le smiley 
+ *    approprié à la place d'une chaine :nom.
+ *    Ce filtre utilise les icones disponibles dans       
+ *    le répertoire icones/
+ *    Exemple d'application :
+ *    [(#TEXTE|binettes)]
+ *   +-------------------------------------+ 
+ *  
+ * Pour toute suggestion, remarque, proposition d'ajout
+ * reportez-vous au forum de l'article :
+ * http://www.uzine.net/spip_contrib/article.php3?id_article=261
+*/
 
-function evabinettes_pre_typo($chaine) {
-	$chemin = '<img alt="binettes" src="'._DIR_PLUGIN_EVA_BINETTES.'/binettes/';
-	$chaine = preg_replace('/:->+/m', $chemin.'diable.png" />',$chaine);
-	$chaine = preg_replace('/:-\(\(+/m', $chemin.'en_colere.png" />', $chaine);
-	$chaine = preg_replace('/:-\)\)+/m', $chemin."mort_de_rire.png\" />", $chaine);
-	$chaine = preg_replace('/:-D+/m', $chemin."mort_de_rire.png\" />", $chaine);
-	$chaine = preg_replace('/:-\)+/m', $chemin."sourire.png\" />", $chaine);
-	$chaine = preg_replace('/;-\)+/m', $chemin."clin_d-oeil.png\" />", $chaine);
-	$chaine = preg_replace("/:'-\)+/m", $chemin."pleure_de_rire.png\" />", $chaine);
-	$chaine = preg_replace("/:'-D+/m", $chemin."pleure_de_rire.png\" />", $chaine);
-	$chaine = preg_replace('/:o\)+/m', $chemin."rigolo.png\" />", $chaine);
-	$chaine = preg_replace('/B-\)+/m', $chemin."lunettes.png\" />", $chaine);
-	$chaine = preg_replace('/\s:-p/m', $chemin."tire_la_langue.png\" />", $chaine);
-	$chaine = preg_replace('/:-\|+/m', $chemin."bof.png\" />", $chaine);
-	$chaine = preg_replace('/:-\/+/m', $chemin."mouai.png\" />", $chaine);
-	$chaine = preg_replace('/:-o+/m', $chemin."surpris.png\" />", $chaine);
-	$chaine = preg_replace('/:-O+/m', $chemin."surpris.png\" />", $chaine);
-	$chaine = preg_replace('/:-\(+/m', $chemin."pas_content.png\" />", $chaine);
-	$chaine = preg_replace("/:'-\(+/m", $chemin."triste.png\" />", $chaine);
-return $chaine;
+function binettes($chaine, $arg1='') {
+
+
+
+	$listimag=array();
+	$rep1="binettes/";
+	$listfich=opendir($rep1);
+	while ($fich=readdir($listfich))
+	{ 	if(($fich !='..') and ($fich !='.') and ($fich !='.test')
+	AND preg_match(',\.(gif|jpg|png)$,', $fich))
+		{ 
+	$nomfich=substr($fich,0,strrpos($fich, "."));
+	$listimag[$nomfich]="<img alt=\"binettes\" src=\"binettes/".$fich."\">";
+		}
+	}
+
+
+	ksort($listimag);
+	reset($listimag);
+
+	while (list($nom,$chem) = each($listimag))
+	{ 
+		if ($arg1=='non')
+	  $chaine = str_replace(":".$nom, $cheme , $chaine);
+		else
+	 $chaine = str_replace(":".$nom, $chem , $chaine);
+	}
+
+	        return $chaine;
+
 }
 
 ?>
