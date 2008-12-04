@@ -8,11 +8,15 @@
 	 </div>
 	</div>	
    <div  class="texte-cadre">
-    [(#REM) noisette de deconnection]
-    <INCLURE{fond=inclusions/inc_identification_sedeconecter}{lang}>
-
-    [(#REM) noisette de connection]
-    <INCLURE{fond=inclusions/inc_identification_visiteurs}{lang}>
-   </div>
+   <center>
+		<div class="ajax">	#FORMULAIRE_LOGIN{#SELF}
+			<p>[(#SESSION{id_auteur}|?{Bienvenue #SESSION{nom}})]</p>
+			<p>[(#SESSION{statut}|=={0minirezo}?{Statut : administrateur})]</p>
+			<p>[(#SESSION{statut}|=={1comite}?{Statut : rédacteur})]</p>
+			<p>[(#SESSION{statut}|=={6forum}?{Statut : visiteur})]</p>
+			<a href='#URL_LOGOUT'>se déconnecter</a>
+		</div>
+	</center>
+	</div>
   </div>
 </div>
