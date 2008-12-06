@@ -14,7 +14,7 @@ La documentation de ce jeu de squelettes se trouve a :
 Aussi référencé sur spip-contrib.net
 	
 
-1. POUR INSTALLER LE JEU DE SQUELETTES ALTERNATIVES
+1. POUR INSTALLER LE JEU DE SQUELETTES AHUNTSIC
 ---------------------------------------------------
 
 AUTOMATIQUE (méthode préférée) :
@@ -52,15 +52,15 @@ MANUELLE
    - Dans 'Configuration',  'Vider le cache' du répertoire de SPIP et des images calculées.
   
 
-2. POUR PERSONNALISER LES SQUELETTES ALTERNATIVES
+2. POUR PERSONNALISER LES SQUELETTES AHUNTSIC
 -------------------------------------------------
 
 Si vous desirez profiter des mises à jour régulières du jeu de squelettes
-ALTERNATIVES, il est fortement recommandé de ne PAS modifier aucun des fichiers 
+AHUNTSIC, il est fortement recommandé de ne PAS modifier aucun des fichiers 
 qui se trouvent dans :
 	/plugins/auto/ahuntsic/
 
-Pour personnaliser un fichier du jeu de squelettes ALTERNATIVES, 
+Pour personnaliser un fichier du jeu de squelettes AHUNTSIC, 
 utiliser plutôt la procédure suivante :
 
 - Créer è la racine de SPIP un dossier /squelettes/
@@ -74,7 +74,7 @@ utiliser plutôt la procédure suivante :
   	ainsi que les images associées dans un dossier 
   		/squelettes/styles/img/
 
-- Pour modifier n'importe quel autre fichier du jeu de squelettes ALTERNATIVES, 
+- Pour modifier n'importe quel autre fichier du jeu de squelettes AHUNTSIC, 
   il suffit de le recopier dans ce dossier de personnaliation et de 
   le modifier selon vos besoins. Il faut seulement respecter la même
   arboresence de fichiers. 
