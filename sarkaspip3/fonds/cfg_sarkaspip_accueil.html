@@ -64,29 +64,16 @@
 		</ul>
 	</fieldset>
 	
-	<fieldset>
-		<legend><:sarkaspip:cfg_lgd_accueil_debug:></legend>
-		<p><:sarkaspip:cfg_inf_accueil_debug:></p>
-		<label>
-			<input type="radio" name="mode_debug" value="oui" [(#ENV{mode_debug, non}|=={oui}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_accueil_debug_1:>
-		</label>
-		<br />
-		<label>
-			<input type="radio" name="mode_debug" value="non" [(#ENV{mode_debug, non}|=={non}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_accueil_debug_2:>
-		</label>
-		<br />
-	</fieldset>
-	
 	<div style="text-align: right; margin-right:3px;">
 		<input type="submit" name="_cfg_delete" id="bouton_effacer" class="fondo" value="<:sarkaspip:effacer:>" />
 		<input type="submit" name="_cfg_ok" class="fondo" value="<:sarkaspip:valider:>" />
 	</div>
 </div></form>
 
-<div id="bloc_debug">
-	<br />
-	>> Debug - Etat des variables du fond Accueil:<br />
-	#CFG_ARBO{sarkaspip_accueil}
-</div>
+[(#EVAL{_SARKASPIP_DEBUG_CFG}|=={oui}|?{' '})
+	<div id="bloc_debug">
+		<br />
+		>> Debug - Etat des variables du fond Accueil:<br />
+		#CFG_ARBO{sarkaspip_accueil}
+	</div>
+]

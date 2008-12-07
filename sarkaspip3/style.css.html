@@ -1,5 +1,13 @@
 #CACHE{3600*24*7}
 #HTTP_HEADER{Content-Type: text/css; charset=iso-8859-15}
 #HTTP_HEADER{Vary: Accept-Encoding}
-[(#SET{fichier_css,css/[(#ENV{css}|concat{.css}|trim)]})]
-<INCLURE{fond=#GET{fichier_css}}>
+[(#ENV{media, ecran}|=={ecran}|?{' '})
+	<INCLURE{fond=css/base.css}>
+	<INCLURE{fond=css/layout.css}>
+	<INCLURE{fond=css/bandeau.css}>
+	<INCLURE{fond=css/noisettes.css}>
+	<INCLURE{fond=css/elements.css}>
+]
+[(#ENV{media, ecran}|=={impression}|?{' '})
+	<INCLURE{fond=css/impression.css}>
+]

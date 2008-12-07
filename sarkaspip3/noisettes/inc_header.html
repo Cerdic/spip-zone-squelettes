@@ -30,7 +30,11 @@
 	[<meta name="keywords" content="(#CONFIG{sarkaspip_header/keywords_site})" />]
 
 	[(#REM) <!-- Feuilles de styles du squelette (ecran) --> ]
-	[(#ENV{meta_impression, non}|=={oui}|?{'', ' '})
+	[(#SET{mode, ''})]
+	[(#EVAL{_SARKASPIP_DEBUG_CSS}|=={oui}|?{' '})
+		[(#SET{mode, recalcul})]
+	]
+	[(#ENV{meta_impression, non}|=={non}|?{' '})
 		[(#REM) <!-- Raz des styles --> ]
 		<link rel="stylesheet" type="text/css" media="all" href="[(#CHEMIN{css/raz.css})]" />
 		[(#REM) <!-- Layout Gala choisi --> ]
@@ -39,18 +43,14 @@
 		<link rel="stylesheet" type="text/css" media="all" href="[(#CHEMIN{spip_style.css}|direction_css)]" />
 		<link rel="stylesheet" type="text/css" media="all" href="[(#CHEMIN{spip_formulaires.css}|direction_css)]" />
 		[(#REM) <!-- Styles du squelette par defaut --> ]
-		[<link rel="stylesheet" type="text/css" media="all" href="(#URL_PAGE{style.css, css=base&var_mode=recalcul})" />]
-		[<link rel="stylesheet" type="text/css" media="all" href="(#URL_PAGE{style.css, css=layout&var_mode=recalcul})" />]
-		[<link rel="stylesheet" type="text/css" media="all" href="(#URL_PAGE{style.css, css=bandeau&var_mode=recalcul})" />]
-		[<link rel="stylesheet" type="text/css" media="all" href="(#URL_PAGE{style.css, css=noisettes&var_mode=recalcul})" />]
-		[<link rel="stylesheet" type="text/css" media="all" href="(#URL_PAGE{style.css, css=elements&var_mode=recalcul})" />]
+		[<link rel="stylesheet" type="text/css" media="all" href="(#URL_PAGE{style.css, media=ecran[&amp;var_mode=(#GET{mode})]})" />]
 	]
 	[(#REM) <!-- Feuilles de styles du squelette (impression) --> ]
 	[(#ENV{meta_impression, non}|=={oui}|?{' '})
-		[<link rel="stylesheet" type="text/css" media="print" href="(#URL_PAGE{style.css, css=impression})" />]
+		[<link rel="stylesheet" type="text/css" media="print" href="(#URL_PAGE{style.css, media=impression[&amp;var_mode=(#GET{mode})]})" />]
 	]
 	[(#REM) <!-- CSS personnalises --> ]
-	[<link rel="stylesheet" type="text/css" media="screen,projection,print" href="(#CHEMIN{css/perso.css})" />]
+	[<link rel="stylesheet" type="text/css" media="all" href="(#CHEMIN{css/perso.css})" />]
 	[(#REM) <!-- Favicon du site --> ]
 	<link rel="shortcut icon" href="#CHEMIN{images/favicon.ico}" />
 	[(#REM) <!-- Syndication du contenu du site. En option la syndication des rubriques --> ]
