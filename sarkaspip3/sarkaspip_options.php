@@ -6,6 +6,10 @@ define('_SARKASPIP_MOT_SECTEURS_SPECIALISES', 'agenda:galerie:annonce:herbier:fo
 define('_SARKASPIP_TYPE_SECTEURS_SPECIALISES', 'config:config:config:config:motcle');
 define('_SARKASPIP_FOND_SECTEURS_SPECIALISES', 'sarkaspip_agenda:sarkaspip_galerie:sarkaspip_noisettes:sarkaspip_herbier:-');
 
+// Methodes de debug du squelette
+define('_SARKASPIP_DEBUG_CSS', 'non');
+define('_SARKASPIP_DEBUG_CFG', 'non');
+
 // Liste des donnees de configuration du squelette non CFG
 // -- Pour les documents joints et portfolio d'images
 define('_SARKASPIP_CONFIG_LARGEUR_DOCUMENT', 115);
