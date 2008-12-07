@@ -40,6 +40,7 @@ $test_lang_personnalisation=array(
 'de_cet_auteur' => 'de cet auteur',
 'derniere_mise_a_jour' => 'Derni&egrave;re mise &agrave; jour',
 'diaporama' => 'Diaporama',
+'dix_meilleurs_articles' => 'Dix meilleurs articles',
 
 // E
 'erreur_404' => 'Erreur 404',
