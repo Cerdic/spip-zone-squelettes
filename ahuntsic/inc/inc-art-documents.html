@@ -1,0 +1,53 @@
+[(#REM) Portfolio : album d'images ]
+<B_documents_portfolio>
+		<div id="documents_portfolio">
+			<h2><:info_portfolio:></h2>
+	<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document}{extension IN png,jpg,gif} {par num titre, date}{doublons}{vu=non}>[
+			<a href="(#URL_DOCUMENT)" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|attribut_html|couper{80})"]>[(#LOGO_DOCUMENT
+				||image_reduire{0,100}
+				|inserer_attribut{class,spip_vignette_portfolio}
+				|inserer_attribut{alt,[(#TITRE|attribut_html|couper{80})]})]</a>
+	]</BOUCLE_documents_portfolio>
+		</div>
+	</B_documents_portfolio>
+
+[(#REM)  Afficher en grand le document demande dans l'URL  ]
+	<BOUCLE_afficher_document(DOCUMENTS) {id_document}{id_article} {mode=document}{extension IN png,jpg,gif}>
+		<div class="spip_documents spip_documents_center" id="document_actif">
+			[<a href="[(#URL_DOCUMENT|url_absolue)]" type="#MIME_TYPE">(#EMBED_DOCUMENT|image_reduire{520,0})</a>]
+			[<div class="#EDIT{titre} spip_doc_titre">(#TITRE)</div>]
+			[<div class="#EDIT{descriptif} spip_doc_descriptif">(#DESCRIPTIF)</div>]
+		</div>
+	</BOUCLE_afficher_document>
+
+[(#REM)
+	Si un seul document est joint a l'article, et si le texte est vide,
+	on incruste automatiquement ce document
+]
+<BOUCLE_documents_decompte(DOCUMENTS spip_documents_liens articles) {id_article} {mode=document}{texte=''}{extension !IN gif,jpg,png} {vu=non}>
+[(#TOTAL_BOUCLE|=={1}
+	|?{[(#INCLURE{fond=modeles/emb}{id_document}
+	|trim)]})]</BOUCLE_documents_decompte>
+
+
+[(#REM)
+	Sinon, liste des autres documents joints
+]
+	<B_documents_joints>
+	<h2><:ecrire:titre_documents_joints:></h2>
+	<div class="chapo" id="documents" style="line-height:1;"> 
+		<BOUCLE_documents_joints(DOCUMENTS) {id_article} {extension !IN gif,jpg,png} {vu=non} {"<hr style='clear:both' />"} {par num titre} {!par date}>
+				[<h3 class="#EDIT{titre}" style="margin-bottom: .6em;"><a href="#URL_DOCUMENT">(#TITRE|supprimer_numero)</a></h3>]
+				[<div style="float:left;padding-right: .5em;  width:36%;">
+					<div style="float:left; margin-right: .5em;">(#LOGO_DOCUMENT|#URL_DOCUMENT||image_reduire{60,0})</div>
+					<small>
+						[(#DATE|affdate)<br />]
+						[<:spip:info_document:> : (#TYPE_DOCUMENT)<br />]
+						[(#TAILLE|taille_en_octets)]
+					</small>
+				</div>]
+				[<div class="#EDIT{descriptif}" style="margin: 0 0 0 40%; border-left: 1px gray dotted;padding-left: 1em">(#DESCRIPTIF)</div>]
+		</BOUCLE_documents_joints>
+		<br class="nettoyeur" />
+	</div><!-- chapo -->
+	</B_documents_joints>

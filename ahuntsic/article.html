@@ -62,43 +62,19 @@
 
 
 		[<div class="#EDIT{chapo} chapo">(#CHAPO|image_reduire{440,0})</div>]
-		[<div class="#EDIT{texte} texte">(#TEXTE|propre|image_reduire{440,0})</div>]
+		[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{440,0})</div>]
 		[<div class="#EDIT{ps} ps">(#PS)</div>]
 		[<div class="notes">(#NOTES)</div>]
 		[<div class="chapo"><:voir_en_ligne:> : <a href="(#URL_SITE)">[(#NOM_SITE|sinon{#URL_SITE})]</a></div>]
 		<br class="nettoyeur" />
 
-[(#REM) Portfolio : album d'images ]
-	<B_documents_portfolio>
-		<div id="documents_portfolio">
-			<h2><:info_portfolio:></h2>
-	<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
-			[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|couper{80}|texte_backend)"]>(#LOGO_DOCUMENT||image_reduire{120,0}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
-	</BOUCLE_documents_portfolio>
-		</div>
-		<br class="nettoyeur" />
-	</B_documents_portfolio>
+[(#REM) Gestion du portfolio et des documents
+			Le critere {env} permet de passer d'autres arguments de la page
+			par exemple l'id_document choisi pour un affichage complet
+		]
+		[(#INCLURE{fond=inc/inc-art-documents}{id_article}{env})]
 
-			<BOUCLE_afficher_document(DOCUMENTS) {id_document} {id_article} {mode=document}{extension IN png,jpg,gif}>
-			<div class="spip_documents spip_documents_center" id="document_actif">
-				[<a href="[(#URL_DOCUMENT|url_absolue)]">(#FICHIER|image_reduire{450,0}|inserer_attribut{alt,[(#TITRE|supprimer_numero|couper{80}|texte_backend)]})</a>]
-				[<div  class="#EDIT{titre} spip_doc_titre">(#TITRE)</div>]
-				[<div class="#EDIT{descriptif} spip_doc_descriptif">(#DESCRIPTIF)</div>]
-			</div>
-			</BOUCLE_afficher_document>
-
-		<B_documents_joints>
-			<div>
-			<BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {doublons}>
-				<div style="float: left;">
-				[(#LOGO_DOCUMENT|#URL_DOCUMENT)][<div style="clear: both;"><b>(#TITRE)</b></div>][<div style="clear: both;">(#DESCRIPTIF)</div>]
-				</div>
-			</BOUCLE_documents_joints>
-			</div>
-			<br class="nettoyeur" />
-		</B_documents_joints>
-
-		[(#REM) Petition :
+[(#REM) Petition :
 		La petition ayant une PAGINATION il faut absolument lui passer SELF en argument. ]
 		[ #REM Conserver cet invalideur : (#PETITION|?{'',''}) ]
 			<INCLURE{fond=inc-petition}{id_article}{self=#SELF}>
