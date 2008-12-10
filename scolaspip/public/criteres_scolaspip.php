@@ -1,7 +1,7 @@
 <?
-//    Fichier crÃ©Ã© pour SPIP avec un bout de code empruntÃ© Ã  celui ci.
-//    DistribuÃ© sans garantie sous licence GPL./
-//    Jean SÃ©bastien Barboteu
+//    Fichier créé pour SPIP avec un bout de code emprunté Ã  celui ci.
+//    Distribué sans garantie sous licence GPL./
+//    Jean Sébastien Barboteu
 //
 //    This program is free software; you can redistribute it and/or modify
 //    it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 //    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 
-//critÃ¨re {scolaspip_nb_articles}
+//critère {scolaspip_nb_articles}
 
 
 	function critere_scolaspip_nb_articles_dist($idb, &$boucles, $crit) {

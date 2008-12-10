@@ -88,38 +88,7 @@
     [(#REM) Menu de navigation laterale ]
     <div id="extra">
 
-			<div class="menu">
-
-					<B_lesevenements>
-					<h2>&Eacute;v&egrave;nements associ&eacute;s</h2>
-					<ul>
-					<BOUCLE_lesevenements(EVENEMENTS) {par date} {id_article}>
-					<li><strong>[(#TITRE|supprimer_numero|couper{80})]</strong><br/>
-					  [(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
-					  le [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
-					[(#HORAIRE|=={oui}|?{
-					   [(#REM) memes heures ?]
-					     [(#DATE_DEBUT|=={#DATE_FIN}|?{<small>&agrave
-					[(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)]</small>,''})]
-					   [(#REM) pas memes heures ?]
-					     [(#DATE_DEBUT|!={#DATE_FIN}|?{<small>de
-					[(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] &agrave;
-					[(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)]</small>,''})]
-					,''})]
-					,
-					  du [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
-					[(#HORAIRE|=={oui}|?{<small>&agrave; partir de
-					  [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)]</small>,''})] au
-					[(#DATE_FIN|nom_jour)]
-					  [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{<small>jusqu'&agrave;
-					  [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)]</small>,''})]  })]
-					[<br/><strong>lieu</strong>&nbsp;: (#LIEU)]
-					[<br/>(#DESCRIPTIF)]
-					</li>
-					  </BOUCLE_lesevenements>
-					</ul>
-					</B_lesevenements>
-			</div>
+    		[(#CONFIG{plugin/AGENDA/nom}|=={Agenda 2.0}|?{[(#MODELE{evenements})],' '})]
 
         [(#REM) Articles dans la meme rubrique ]
         <B_articles_rubrique>

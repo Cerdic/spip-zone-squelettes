@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 // This is a SPIP language file  --  Ceci est un fichier langue de SPIP
 
@@ -89,9 +89,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 'cfg_couleur_liens_menu_texte' => 'S&eacute;lectionnez la couleur des liens du menu, par d&eacute;faut #ffcc00.',
 
-'cfg_couleur_liens_legend' => 'Couleur des liens des contenus et du menu du haut :',
+'cfg_couleur_liens_legend' => 'Couleur des liens des contenus :',
 
 'cfg_couleur_liens_texte' => 'S&eacute;lectionnez la couleur utilis&eacute;e pour les liens actifs, par d&eacute;faut #cc6600.',
+
+'cfg_couleur_liens_menu_haut_legend' => 'Couleur des liens du menu horizontal (haut):',
+
+'cfg_couleur_liens_menu_haut_texte' => 'S&eacute;lectionnez la couleur des liens du menu horizontal (haut), par d&eacute;faut #cc6600.',
 
 'cfg_couleur_fond_menu_legend' => 'Couleur de fond du menu de navigation : ',
 
@@ -109,7 +113,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'cfg_boite_forum4_texte' => 'Quelle couleur de fond pour les messages de quatri&egrave;me niveau ?',
 'cfg_boite_forum5_texte' => 'Quelle couleur de fond pour les messages de cinqui&egrave;me niveau ?',
 
-'supprimer' => 'Effacer les valeurs pour retrouver les couleurs initiales',
+'supprimer' => 'Retrouver les valeurs initiales',
+'supprimer_couleurs' => 'Retrouver les couleurs initiales',
 
 'ok' => 'Enregistrer',
 
@@ -117,4 +122,3 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 );
 ?>
-
