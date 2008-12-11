@@ -8,7 +8,8 @@ define('_SARKASPIP_FOND_SECTEURS_SPECIALISES', 'sarkaspip_agenda:sarkaspip_galer
 
 // Modes de debug du squelette
 define('_SARKASPIP_DEBUG_CSS', 'non');
-define('_SARKASPIP_DEBUG_CFG', 'non');
+define('_SARKASPIP_DEBUG_CFG_ARBO', 'non');
+define('_SARKASPIP_DEBUG_CFG_BOUTON', 'non');
 
 // Liste des donnees de configuration du squelette non CFG
 // -- Pour les documents joints et portfolio d'images

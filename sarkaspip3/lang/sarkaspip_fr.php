@@ -71,6 +71,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //B
 	  
 		'bouton_referencement' => 'Proposition de site',
+		'bouton_configuration' => 'Configuration',
 		'breves' => 'Br&egrave;ves', // redefinition item SPIP
 		'breves_mot' => 'Br&egrave;ves associ&eacute;es',
 		'breves_toutes' => 'Toutes les br&egrave;ves du site',
