@@ -3,10 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Forums SPIP</title>
-<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
-<meta name="Keywords" content="SPIP, Forums">
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
+<meta name="Keywords" content="SPIP, Forums" />
 <link rel="alternate" type="application/rss+xml" title="forum.spip.org" href="/backend.php3" />
-<style>
+<style type="text/css">
 <!--
 	a {text-decoration: none; }
 	a:hover {text-decoration: underline;}
@@ -50,43 +50,42 @@ FORUMS
 </font></h1> </div>
 
 <br /><br /><br />
-
-
-
+<table border="0" cellpadding="10"><tr><?php
 <B_langues>
-<table border="0" cellpadding="10"><tr>
 <BOUCLE_langues(RUBRIQUES){id_parent=0}{0,3}{doublons}{par lang}>
-<?php
-		$total = 0;
-	<BOUCLE_total_lang(ARTICLES){lang}>
-	<BOUCLE_total_forum(FORUMS){id_article}{plat}></BOUCLE_total_forum>
-		$total += [(#TOTAL_BOUCLE|intval)];
-	<//B_total_forum>
-	</BOUCLE_total_lang>
-		$nb['#LANG'] = $total;
-		$messages['#LANG'] = '<div class="droitpetit" dir="#LANG_DIR"><:messages_forum:>: ' . $total .'</div>';
-		$lien['#LANG'] = '<a href="#URL_RUBRIQUE" title="[(#TITRE|attribut_html|texte_script|texte_script)]">[(#LANG|afficher_nom_langue)]</a></div>';
-		$dir['#LANG'] = '#LANG_DIR';
-?>
-</BOUCLE_langues>
-<BOUCLE_langues_suite(BOUCLE_langues)></BOUCLE_langues_suite>
-</B_langues>
+$titre['#LANG'] = "[(#TITRE|attribut_html|texte_script|texte_script)]";
+$lien['#LANG'] = '#URL_RUBRIQUE';
+$dir['#LANG'] = '#LANG_DIR';
+$nb['#LANG'] = 0<BOUCLE_total_lang(ARTICLES){lang}
+	 ><BOUCLE_total_forum(FORUMS){id_article}{plat}
+	 />[+(#TOTAL_BOUCLE|?{#TOTAL_BOUCLE}
+		)]<//B_total_forum></BOUCLE_total_lang>;
+</BOUCLE_langues><BOUCLE_langues_suite(BOUCLE_langues) /></B_langues>
 
-<?php
-	$max = max($nb);
-	foreach ($nb as $lang => $score) {
-		$size = ceil(1 + sqrt(100*($score*$score)/($max*$max)));
-		echo '<td align="center" dir="'.$dir[$lang].'">'
-			. "<font size='$size'>"
-			. $lien[$lang]
-			. $messages[$lang]
-			. "</font></td>\n";
-		if (++$i %3 == 0) echo "</tr><tr>\n";
-	}
-?>
-
-</tr></table>
-
+$max = max($nb);
+$max *= $max;
+$message = _T('messages_forum');
+foreach ($nb as $lang => $score) {
+	$size = ceil(1 + sqrt(100*($score*$score)/$max));
+	echo '<td align="center" dir="'.$dir[$lang].'">',
+			"<font size='$size'>",
+			'<a href="',
+			$lien[$lang],
+			'" title="',
+			$titre[$lang],
+			'">',
+			afficher_nom_langue($lang),
+			'</a></div>',
+			'<div class="droitpetit" dir="',
+			$dir[$lang],
+			'">',
+			$messages[$lang],
+			' ',
+			$nb[$lang],
+			"</div></font></td>\n";
+	if (++$i %3 == 0) echo "</tr><tr>\n";
+}
+?></tr></table>
 <br /><br /><br />
 </td></tr></table>
 
