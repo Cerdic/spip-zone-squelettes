@@ -1,10 +1,10 @@
 #CACHE{0}
 <INCLURE{fond="header"}><head>
 
-[(#REM)   les m&eacute;tas   ] 
+[(#REM)   les métas   ] 
 
 
-<title>[(#RECHERCHE)][&nbsp;trouv&eacute; sur (#NOM_SITE_SPIP)]</title>  
+<title>[(#RECHERCHE)][ trouvé sur (#NOM_SITE_SPIP)]</title>  
 <meta name="Description" content="[(#RECHERCHE) ][sur (#NOM_SITE_SPIP)]"/> 
 <meta name="Keywords" content="trouver[,(#RECHERCHE)]"/> 
 
@@ -17,7 +17,7 @@
 <body dir="#LANG_DIR"> 
 <div id="container">   [(#REM)   centrage page   ]
 <INCLURE{fond="entete"}{date=#ENV{date}}> 
-<div id="surcontent">  [(#REM)   ouverture ent&ecirc;te   ]
+<div id="surcontent">  [(#REM)   ouverture entête   ]
 <INCLURE{fond="menuhoriz"}>
 <div id="content">  [(#REM)   ouverture contenu   ] 
 <div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
@@ -49,8 +49,8 @@
     <p>
 <:recherche_google:>:
     [(#RECHERCHE|?{  <br/>
-    ::&nbsp;<a href="http://www.google.fr/search&amp;hl=fr&amp;q=#RECHERCHE&amp;btnG=Recherche+Google&amp;meta=">Google</a>
-    &amp;&nbsp;<a href="http://images.google.fr/images?svnum=10&amp;um=1&hl=fr&amp;q=#RECHERCHE&amp;btnG=Recherche+d%27images">Google
+    :: <a href="http://www.google.fr/search&hl=fr&q=#RECHERCHE&btnG=Recherche+Google&meta=">Google</a>
+    & <a href="http://images.google.fr/images?svnum=10&um=1&hl=fr&q=#RECHERCHE&btnG=Recherche+d%27images">Google
     Images</a><br/>
 	
     ,"  "})]
@@ -63,13 +63,13 @@
 </ul>
 </div>
 
-[(#REM)   R&eacute;sultats recherche textes  ]
+[(#REM)   Résultats recherche textes  ]
 <B_articles>
 <div class="grande_boite">
 <h4 class="icone_recherche"><:article_dans:> :</h4>
  [<div class="cartouche">
       <form id="tri" action="#SELF" method="get" name="tri">
-         <h1 class="surtitre"><:resultats_recherche:> <b>Â«(#RECHERCHE)Â»</b>, <:tries_par:>
+         <h1 class="surtitre"><:resultats_recherche:> <b>«(#RECHERCHE)»</b>, <:tries_par:>
             <input type="hidden" name="page" value="recherche" />
             <input type="hidden" name="recherche" value="#RECHERCHE" />
             <select class="" name="tri" onchange="submit(); " class="spip_bouton">
@@ -79,7 +79,7 @@
                 <option value="date_redac"[(#TRI|=={date_redac}|?{' selected="selected" class="selected"'})] /><:date_de_redaction:></option>
                 <option value="date"[(#TRI|=={date}|?{' selected="selected" class="selected"'})] /><:date_de_publication:></option>
             </select>
-            <input type="checkbox" name="ordre" [(#ORDRE|=={on}|?{'checked '})]onchange="submit();">[(#ORDRE|?{&uarr;,&darr;})] </input>
+            <input type="checkbox" name="ordre" [(#ORDRE|=={on}|?{'checked '})]onchange="submit();">[(#ORDRE|?{?,?})] </input>
             <noscript>
                <input type="submit" value="<:trier:>" class="spip_bouton" />
             </noscript>
@@ -111,13 +111,13 @@
 
 
 <B_marecherche_docs>
-[(#REM)   R&eacute;sultats recherche docs ]
+[(#REM)   Résultats recherche docs ]
 <div id="minipics">
 <ul id="diapo">
 <div class="grande_boite">
 <h4 class="icone_recherche"> <:docu_dans:> :</h4></div>
 [(#ANCRE_PAGINATION)]
-<BOUCLE_marecherche_docs(INDEX){recherche}{type_table IN documents} {!par points} {pagination 12}>
+<BOUCLE_marecherche_docs(DOCUMENTS){recherche} {!par points} {pagination 12}>
     <BOUCLE_documents(DOCUMENTS){id_document}>
     <li class="transparent" id="a#ID_DOCUMENT">
     [<a href="#URL_DOCUMENT" class="thickbox">(#LOGO_DOCUMENT||image_reduire{80}|image_aplatir{jpg,ffffff}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
@@ -125,7 +125,7 @@
     </BOUCLE_documents>
 </BOUCLE_marecherche_docs>
 </ul></div>[(#REM)   fermeture minipics   ]
-[<div class="grande_boite"><p class="centre gras">(#PAGINATION)<br/><:docu_total1:> #GRAND_TOTAL <:docu_total2:> #TOTAL_BOUCLE</p></div>]
+[<div class="grande_boite"><p class="centre gras">(#PAGINATION{page_precedent_suivant})<br/><:docu_total1:> #GRAND_TOTAL <:docu_total2:> #TOTAL_BOUCLE</p></div>]
 </B_marecherche_docs>
 [<div class="grande_boite">
 <h4 class="icone_recherche"><:docu_dans:> :</h4>
@@ -138,11 +138,11 @@
 
 
 <B_marecherche_forum>
-[(#REM)   R&eacute;sultats recherche forums  ]
+[(#REM)   Résultats recherche forums  ]
 <div class="grande_boite">
 <h4 class="icone_recherche"><:forum_dans:> :</h4>
 [(#ANCRE_PAGINATION)]
-<BOUCLE_marecherche_forum(INDEX){recherche}{!par points}{type_table IN spip_forum} {pagination 5}>
+<BOUCLE_marecherche_forum(FORUMS) {recherche} {!par points} {pagination 5}>
     <BOUCLE_forum(FORUMS){id_forum}{unique}>
    
     [<p><a href="[(#URL_PAGE{discussion}|parametre_url{id_forum,#ID_FORUM})]"><strong>(#TITRE|titre_forum|couper{70})</strong></a><br/>]
@@ -161,12 +161,12 @@
 
 
 
-[(#REM)   R&eacute;sultats recherche brÃ¨ves  ]
+[(#REM)   Résultats recherche brèves  ]
     <B_marecherche_breves>
 	<div class="grande_boite">
 <h4 class="icone_recherche"><:breve_dans:> :</h4>
     [(#ANCRE_PAGINATION)]
-    <BOUCLE_marecherche_breves(INDEX){recherche}{!par points}{type_table IN breves} {pagination 5}>
+    <BOUCLE_marecherche_breves(BREVES) {recherche} {!par points} {pagination 5}>
         <BOUCLE_breves(BREVES){id_breve}>
         <p>[<a href="#URL_BREVE"><strong>(#TITRE)</strong></a>] 
         [(#INTRODUCTION|couper{60})] <br/>
@@ -184,11 +184,11 @@
 
 
 <B_marecherche_rubriques>
-[(#REM)   R&eacute;sultats recherche rubriques  ]
+[(#REM)   Résultats recherche rubriques  ]
 <div class="grande_boite">
 <h4 class="icone_recherche"><:rub_dans:> :</h4>
  [(#ANCRE_PAGINATION)]
-<BOUCLE_marecherche_rubriques(INDEX){recherche}{!par points}{type_table IN rubriques}{pagination 5}>
+<BOUCLE_marecherche_rubriques(RUBRIQUES){recherche}{!par points}{pagination 5}>
     <BOUCLE_rubriques(RUBRIQUES){id_rubrique}>
        <p> <a href="#URL_RUBRIQUE" title="[(#TITRE)]" class="logogauche">
     <INCLURE{fond="logo"}{id_rubrique,#ID_RUBRIQUE}{taille=46}{date=#ENV{date}}></a>     
@@ -201,19 +201,19 @@
    </div> </B_marecherche_rubriques>
 	[<div class="grande_boite">
 	<h4 class="icone_recherche"><:rub_dans:> :</h4>
-	<p>&quot;(#RECHERCHE)&quot; <:rub_trouver:></p></div>]
+	<p>"(#RECHERCHE)" <:rub_trouver:></p></div>]
    <//B_marecherche_rubriques>
 
 
 
 
 
-[(#REM)   R&eacute;sultats recherche sites web  ] 
+[(#REM)   Résultats recherche sites web  ] 
 <B_marecherche_sitesweb>
 <div class="grande_boite">
    <h4 class="icone_recherche"><:site_dans:> :</h4>
     [(#ANCRE_PAGINATION)]
-    <BOUCLE_marecherche_sitesweb(INDEX){recherche}{!par points}{type_table IN spip_syndic} {pagination 5}>
+    <BOUCLE_marecherche_sitesweb(SITES){recherche}{!par points} {pagination 5}>
         <BOUCLE_sitesweb(SITES){id_syndic}>
      <p>   <a href="#URL_SITE"><strong>[(#NOM_SITE)]</strong></a> [<br/>(#DESCRIPTIF|couper{60})]</p>
         </BOUCLE_sitesweb>
@@ -259,4 +259,3 @@
 </div> [(#REM)   fermeture container   ] 
 </body>
 </html>
-
