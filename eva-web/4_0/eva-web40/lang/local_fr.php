@@ -41,6 +41,8 @@ $test_lang_personnalisation=array(
 'derniere_mise_a_jour' => 'Derni&egrave;re mise &agrave; jour',
 'diaporama' => 'Diaporama',
 'dix_meilleurs_articles' => 'Dix meilleurs articles',
+'dix_meilleurs_commentaires' => 'Dix meilleurs commentaires',
+'dix_meilleurs_breves' => 'Dix meilleures br&egrave;ves',
 
 // E
 'erreur_404' => 'Erreur 404',
