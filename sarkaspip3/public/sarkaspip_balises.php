@@ -17,7 +17,7 @@ function calcul_version_squelette() {
 	$version = NULL;
 	
 	if (lire_fichier(_DIR_PLUGIN_SARKASPIP.'/plugin.xml', $contenu)
-	&& preg_match('/<version>([0-9.]+)<\/version>/', $contenu, $match))
+	&& preg_match('/<version>(.*?)<\/version>/', $contenu, $match))
 		$version .= trim($match[1]);
 
 	$revision = version_svn_courante(_DIR_PLUGIN_SARKASPIP);
