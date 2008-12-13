@@ -50,9 +50,9 @@ FORUMS
 </font></h1> </div>
 
 <br /><br /><br />
-<table border="0" cellpadding="10"><tr><?php
 <B_langues>
-<BOUCLE_langues(RUBRIQUES){id_parent=0}{0,3}{doublons}{par lang}>
+<table border="0" cellpadding="10"><tr><?php
+<BOUCLE_langues(RUBRIQUES){id_parent=0}{par lang}>
 $titre['#LANG'] = "[(#TITRE|attribut_html|texte_script|texte_script)]";
 $lien['#LANG'] = '#URL_RUBRIQUE';
 $dir['#LANG'] = '#LANG_DIR';
@@ -60,11 +60,10 @@ $nb['#LANG'] = 0<BOUCLE_total_lang(ARTICLES){lang}
 	 ><BOUCLE_total_forum(FORUMS){id_article}{plat}
 	 />[+(#TOTAL_BOUCLE|?{#TOTAL_BOUCLE}
 		)]<//B_total_forum></BOUCLE_total_lang>;
-</BOUCLE_langues><BOUCLE_langues_suite(BOUCLE_langues) /></B_langues>
-
+</BOUCLE_langues>
 $max = max($nb);
 $max *= $max;
-$message = _T('messages_forum');
+$message = _T('public:messages_forum');
 foreach ($nb as $lang => $score) {
 	$size = ceil(1 + sqrt(100*($score*$score)/$max));
 	echo '<td align="center" dir="'.$dir[$lang].'">',
@@ -75,17 +74,18 @@ foreach ($nb as $lang => $score) {
 			$titre[$lang],
 			'">',
 			afficher_nom_langue($lang),
-			'</a></div>',
+			'</a></font>',
 			'<div class="droitpetit" dir="',
 			$dir[$lang],
 			'">',
-			$messages[$lang],
-			' ',
-			$nb[$lang],
-			"</div></font></td>\n";
+			$message,
+			'&nbsp;: ',
+			$score,
+			"</div></td>\n";
 	if (++$i %3 == 0) echo "</tr><tr>\n";
 }
 ?></tr></table>
+</B_langues>
 <br /><br /><br />
 </td></tr></table>
 
