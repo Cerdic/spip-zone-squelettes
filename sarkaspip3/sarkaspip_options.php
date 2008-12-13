@@ -19,6 +19,8 @@ define('_SARKASPIP_CONFIG_TAILLE_TITRE_DOCUMENT', 50);
 define('_SARKASPIP_CONFIG_TAILLE_TITRE_IMAGE', 50);
 define('_SARKASPIP_CONFIG_TAILLE_DESCR_DOCUMENT', 100);
 define('_SARKASPIP_CONFIG_TAILLE_DESCR_IMAGE', 100);
+// -- Pour les icones de rainette
+define('_SARKASPIP_CONFIG_LARGEUR_ICONE_METEO', 80);
 // -- Pour le contact du site
 define('_SARKASPIP_CONFIG_AUTORISATION_CONTACT', '0minirezo');
 // Configuration cfg des plugins utilises par le squelette
