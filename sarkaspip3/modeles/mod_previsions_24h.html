@@ -32,8 +32,7 @@
 	]
 ]
 
-
-<div class="pave-prevision" style="overflow: hidden; float: left; width: 178px;">
+<div class="pave-prevision" style="overflow: hidden; float: left; width: 168px;">
 	<p class="maj">[(#ENV{date}|nom_jour|ucfirst)] [(#ENV{date}|affdate_jourcourt)]</p>
 	<div class="temperature prevision">	
 		[(#GET{code_icone}|rainette_icone_meteo{grand}|image_reduire{#EVAL{_SARKASPIP_CONFIG_LARGEUR_ICONE_METEO}})]
@@ -52,5 +51,15 @@
 				<span><:rainette:risque_precipitation|ucfirst:></span>[ : (#GET{risque_precipitation}|rainette_afficher_unite{pourcentage})]
 			</li>
 		</ul>
-	</div>		
+	</div>	
+	<div class="liens">
+		[(#ENV{index}|!={0}|?{' '})
+			<a class="lien-selection" href="#" onclick="$('#slide_selection').animate({marginLeft: [(#ENV{index}|moins{1}|mult{-168})] }); return false;">Jour Precedent</a>
+		]
+		
+		[(#ENV{index}|!={[(#CONFIG{sarkaspip_noisettes/rainette_prevision, 3}|moins{1})]}|?{' '})
+			<a class="lien-selection" href="#" onclick="$('#slide_selection').animate({marginLeft: [(#ENV{index}|plus{1}|mult{-168})] }); return false;">Jour suivant</a>
+		]
+	</div>
 </div>
+
