@@ -83,6 +83,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'derniers_commentaires' => 'Commentaires',
 		'commentaires_article' => 'Commentaires',
 		'commenter_article' => 'Ajouter un commentaire',
+		'conditions_jour' => 'Conditions du jour',
 		'contact' => 'Contact',
 		'contacter_site' => 'Contacter le webmestre',
 		'coordonnees' => 'Coordonn&eacute;es',
@@ -252,6 +253,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'popularite_article' => 'popularit&eacute;',
 		'portfolio' => 'portfolio',
 		'poster_commentaire' => 'Poster un commentaire',
+		'prevision_j' => 'Pr&eacute;visions J+',
 		'ps' => 'Post Scriptum',
 		'publie_sur_site' => 'Publi&eacute; sur le site',
 	  

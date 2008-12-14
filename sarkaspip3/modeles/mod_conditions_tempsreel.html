@@ -3,12 +3,28 @@
 	pour presenter les conditions temps reel d'une ville
  -->
 ]
-<p class="maj"><:sarkaspip:derniere_maj_meteo|ucfirst:> [&nbsp;(#ENV{derniere_maj}|heures)h][(#ENV{derniere_maj}|minutes)]</p>
-<div class="temperature">
-	[(#ENV{code_icone}|rainette_icone_meteo{grand}|image_reduire{#EVAL{_SARKASPIP_CONFIG_LARGEUR_ICONE_METEO}})]
-	<p>
-		[(#ENV{temperature_reelle}|rainette_afficher_unite{temperature})]
-	</p>
+<div class="pave-prevision" style="overflow: hidden; float: left; width: 168px;height: 180px;">
+	<p class="maj"><:sarkaspip:derniere_maj_meteo|ucfirst:> [&nbsp;(#ENV{derniere_maj}|heures)h][(#ENV{derniere_maj}|minutes)]</p>
+	<div class="temperature">
+		[(#ENV{code_icone}|rainette_icone_meteo{grand}|image_reduire{#EVAL{_SARKASPIP_CONFIG_LARGEUR_ICONE_METEO}})]
+		<p>
+			[(#ENV{temperature_reelle}|rainette_afficher_unite{temperature})]
+		</p>
+	</div>
+	<br class="nettoyeur" />
+	<div class="resume">
+		[(#ENV{code_icone}|rainette_resume_meteo)]
+		<ul>
+			<li>
+				<span><:rainette:vent|ucfirst:></span>[ : (#GET{vitesse_vent}|rainette_afficher_unite{vitesse})]
+			</li>
+			<li>
+				<span><:rainette:risque_precipitation|ucfirst:></span>[ : (#GET{risque_precipitation}|rainette_afficher_unite{pourcentage})]
+			</li>
+		</ul>
+	</div>
+	<div class="liens">	
+		<a class="lien-selection" href="#" onclick="$('#slide_selection').animate({marginLeft: -168}); return false;">Prévisions J+1</a>
+	</div>
 </div>
-<br class="nettoyeur" />
-<p class="resume">[(#ENV{code_icone}|rainette_resume_meteo)]</p>
+
