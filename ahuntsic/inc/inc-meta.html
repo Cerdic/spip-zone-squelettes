@@ -66,8 +66,11 @@
 
 <//B_site_head><//B_rubrique_head><//B_mot_head><//B_breve_head><//B_article_head>
 
-	[(#REM) Lien vers l'icone destinee a la barre d'adresse du navigateur, au format .ico ]
-	[<link rel="shortcut icon" href="(#ENV*{favicon}
+[(#REM) Lien vers l'icone destinee a la barre d'adresse du navigateur, au format .ico 
+		favicon.ico du dossier /squelettes/ s'il existe, 
+		sinon favicon.ico construit par SPIP a partir du logo du site,
+		sinon spip.ico, le logo de SPIP.
+][  <link rel="shortcut icon" href="(#ENV*{favicon}
 		|sinon{#CHEMIN{favicon.ico}}
 		|sinon{#LOGO_SITE_SPIP}
 			|image_passe_partout{32,32}
@@ -75,6 +78,6 @@
 			|image_format{ico}|extraire_attribut{src}
 		|sinon{#CHEMIN{spip.ico}})" type="image/x-icon" />]
 
-	[(#REM) Lien vers le(s) fil(s) de syndication RSS - Link(s) to RSS feed(s)
-	][<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:> : [(#NOM_SITE_SPIP|textebrut)]" href="(#URL_PAGE{backend})" />]
+[(#REM) Lien vers le(s) fil(s) de syndication RSS - Link(s) to RSS feed(s)
+][  <link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:> : [(#NOM_SITE_SPIP|textebrut)]" href="(#URL_PAGE{backend})" />]
 
