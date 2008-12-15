@@ -173,8 +173,10 @@ function calcul_rubrique_specialisee($mot_rubrique, $mode) {
 	// Calcul de la balise
 	reset($mots_reserves);
 	while (list($cle, $valeur) = each($mots_reserves)) {
-		if ( in_array($valeur, $mots))
-			$id .= ($id ? '|' : '').calcul_rubrique($valeur, $types_reserves[$cle], $fonds_reserves[$cle], $mode); 
+		if ( in_array($valeur, $mots)) {
+			if ($id != NULL) $id .= '|';
+			$id .= strval(calcul_rubrique($valeur, $types_reserves[$cle], $fonds_reserves[$cle], $mode));
+		}
 	}
 	if (!$comparaison_valeur) $id = '^('.$id.')$';
 	
