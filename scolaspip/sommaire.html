@@ -1,7 +1,7 @@
 [(#REM)
 	Un cache plus court, pour la boucle syndic_articles
 ]#CACHE{3600}
-<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
 <title>[(#NOM_SITE_SPIP|textebrut)]</title>
@@ -26,17 +26,16 @@
 		</div>
 
 		[(#REM) Affichage du calendrier si la configuration du plugin dit oui ]
-		<div class="[(#CONFIG{scolaspip_accueil/calendrier}|=={non}|?{ 'invisible' ,' '})]" id="calendrier" >
+		<div class="[(#CONFIG{scolaspip_accueil/calendrier}|=={oui}|?{ ' ' ,'invisible'})]" id="calendrier" >
 			[(#REM) mini calendrier :
 			1er arg la date,
 			2eme le nom de la variable date (optionel : 'date' par defaut)
 			3eme l'url sur laquelle boucler (optionel : url courante par defaut) ]
 			#CALENDRIER_SCOLASPIP{#ENV{date},'date',#SELF}
-			[(#CONFIG{plugin/AGENDA/nom}|=={Agenda 2.0}|?{' ','<small><small>Le plugin Agenda 2.0 doit<br/> être installé (nécessite <br/>aussi Spip Bonux). <br/>Pour masquer ce message, <br/>les administrateurs du site<br/> peuvent utiliser la <br/>configuration de scolaspip</small></small>'})]
 		</div>
 
 		[(#REM) Affichage du descriptif du site si la configuration du plugin dit oui ]
-    [(#CONFIG{scolaspip_accueil/descriptifdusite}|=={oui}|?{[<div class="chapo">(#DESCRIPTIF_SITE_SPIP)</div>],' '})]
+    [(#CONFIG{scolaspip_accueil/descriptifdusite}|=={non}|?{' ',[<div class="chapo">(#DESCRIPTIF_SITE_SPIP)</div>]})]
 
 		[(#MODELE{edito})]
 
@@ -47,9 +46,8 @@
 		    <ul>
 		        <BOUCLE_selection(ARTICLES pb_selection){par ordre}{spip_pb_selection.id_rubrique=#ID_RUBRIQUE}{doublons selection}>
 		        <li>
-		            [(#LOGO_ARTICLE|#URL_ARTICLE|image_reduire{150,100})]
-		            <h3><a href="#URL_ARTICLE">#TITRE</a></h3>
-		            <small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</small>
+		            <h3><a href="#URL_ARTICLE" title="<:article_selectionne:>">[(#LOGO_ARTICLE|right||image_reduire{100,50})]#TITRE</a></h3>
+		            <small>[(#INTRODUCTION|couper{200})]</small>
 		        </li>
 		        </BOUCLE_selection>
 		    </ul>
@@ -66,18 +64,20 @@
 		</B_images>
 
 		[(#REM) Affichage des dernières brèves si la configuration du plugin dit oui ]
-    [(#CONFIG{scolaspip_accueil/breves}|=={oui}|?{[(#MODELE{breves})],' '})]
+    [(#CONFIG{scolaspip_accueil/breves}|=={non}|?{' ',[(#MODELE{breves})]})]
 
 		[(#REM) Affichage des derniers article si la configuration du plugin dit oui ]
-    [(#CONFIG{scolaspip_accueil/articles}|=={oui}|?{[(#MODELE{articles})],' '})]
+    [(#CONFIG{scolaspip_accueil/articles}|=={non}|?{' ',[(#MODELE{articles})]})]
 
     [(#REM) Sites de la rubrique ]
     <B_sites>
-		<h2 class="nettoyeur"><:nouveau_web:></h2>
+    <br class="nettoyeur"/>
+		<h2><:nouveau_web:></h2>
     <BOUCLE_sites(SITES) {tout}{syndication=oui}{titre_mot=fluxrss_accueil}{par nom_site}>
 		<div class="menu sites">
-		    <h3 class="titre"><a href="#URL_SITE"  class="spip_out" title="Visiter ce site">#NOM_SITE</a></h3>
+		    <h3 class="titre"><a href="#URL_SITE"  class="spip_out" title="Visiter ce site">[(#LOGO_SITE|right||image_reduire{100,50})]#NOM_SITE</a></h3>
         <B_syndic>
+        <br  class="nettoyeur"/>
 		    <ul>
             <BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {par date}{inverse} {0, 5}>
             <li>
@@ -91,7 +91,7 @@
     </B_sites>
 
 		[(#REM) Affichage des commentaires de forum si la configuration du plugin dit oui ]
-    [(#CONFIG{scolaspip_accueil/forums}|=={oui}|?{[(#MODELE{forums})],' '})]
+    [(#CONFIG{scolaspip_accueil/forums}|=={non}|?{' ',[(#MODELE{forums})]})]
 
 	</div><!--#contenu-->
 	</div><!--#conteneur-->

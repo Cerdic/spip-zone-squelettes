@@ -93,6 +93,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 'cfg_couleur_liens_texte' => 'S&eacute;lectionnez la couleur utilis&eacute;e pour les liens actifs, par d&eacute;faut #cc6600.',
 
+'cfg_couleur_liens_over_legend' => 'Couleur des liens survol&eacute;s :',
+
+'cfg_couleur_liens_over_texte' => 'S&eacute;lectionnez la couleur utilis&eacute;e pour les liens survol&eacute;s (contenus et menu), par d&eacute;faut #cc6600.',
+
 'cfg_couleur_liens_menu_haut_legend' => 'Couleur des liens du menu horizontal (haut):',
 
 'cfg_couleur_liens_menu_haut_texte' => 'S&eacute;lectionnez la couleur des liens du menu horizontal (haut), par d&eacute;faut #cc6600.',

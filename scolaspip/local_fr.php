@@ -29,13 +29,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'les_sites' =>'Les sites et leurs nouveaut&eacute;s',
 	'recherche' => 'Recherche rapide',
 	'nouveau_web' => 'Nouveaut&eacute;s sur le Web',
-	'a_la_une_de_la_rubrique' => '&Agrave la une',
+	'a_la_une_de_la_rubrique' => '&Agrave; la une',
 	'nouveau_site_web' => 'Nouveau sur ce site',
 	'autre_sites_web' => 'Autres sites Web',
 	'articles_selection' => 'S&eacute;lection d\'articles',
 	'les_nouveautes' => 'Les nouveaut&eacute;s',
 	'actualites' => 'Les actualit&eacute;s',
-	'pages' => 'Pages'
+	'pages' => 'Pages',
+	'article_selectionne' => 'Article S&eacute;lectionn&eacute;'
 
 );
 
