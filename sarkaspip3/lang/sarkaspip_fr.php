@@ -164,6 +164,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 		'janvier' => 'Janvier',
 		'jeudi_abrege' => 'Je',
+		'jour_suivant' => 'Jour suivant',
+		'jour_precedent' => 'Jour pr&eacute;c&eacute;dent',
 		'juin' => 'Juin',
 		'juillet' => 'Juillet',
 		'jusqu_a' => 'jusqu\'&agrave;',
@@ -213,8 +215,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'meteo' => 'M&eacute;t&eacute;o',
 		'meteo_titre_conditions' => 'Conditions m&eacute;t&eacute;o &agrave;',
 		'meteo_titre_previsions' => 'Pr&eacute;visions du',
-		'meteo_lien_previsions' => 'Pr&eacute;visions du jour',
-		'meteo_lien_conditions' => 'Conditions du jour',
+		'meteo_lien_previsions' => 'Pr&eacute;visions',
+		'meteo_lien_conditions' => 'Conditions',
+		'meteo_previsions_jour' => 'Pr&eacute;visions du jour',
+		'meteo_conditions_jour' => 'Conditions du jour',
 		'mois_precedent' => 'Mois pr&eacute;c&eacute;dent',
 		'mois_suivant' => 'Mois suivant',
 		'mots_clefs' => 'Mots-cl&eacute;s', // redefinition item SPIP
@@ -514,7 +518,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_inc_badges_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les badges.',
 		'cfg_inf_inc_badges_liste' => 'Cochez les badges que vous souhaitez afficher.',
 		'cfg_inf_inc_annonce_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les annonces.',
-		'cfg_inf_inc_rainette_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les pr&eacute;visions m&eacute;t&eacute;orologiques.',
+		'cfg_inf_inc_rainette_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer la noisette m&eacute;t&eacute;o.',
+		'cfg_inf_inc_rainette_ville' => 'La noisette m&eacute;t&eacute;o permet d\'afficher les conditions et les pr&eacute;visions m&eacute;t&eacute;orologiques d\'une ville grace &agrave; un code disponible à <a href="http://xoap.weather.com/search/search?where=paris">cette adresse</a>, en rempla&ccedil;ant paris par le nom de votre ville dans la barre d\'adresse de votre navigateur.',
 		'cfg_inf_choix_agenda' => 'D&eacute;sirez-vous utiliser :',
 		'cfg_inf_agenda_modele' => 'Choisissez le type d\'agenda cal&eacute;, soit sur une ann&eacute;e calendaire, soit sur une saison. Si vous choisissez un agenda saisonnal, vous aurez la possibilit&eacute; de configurer le 
 		premier mois de la saison et le format de pagination.',
@@ -770,7 +775,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_notation_non' => 'Ne rien ins&eacute;rer',
 		'cfg_lbl_notation_cartouche' => 'Ins&eacute;rer dans le cartouche',
 		'cfg_lbl_notation_fin' => 'Ins&eacute;rer &agrave; la fin du texte de l\'article',
-		'cfg_lbl_rainette_ville' => 'Code de la ville dont vous voulez afficher les pr&eacute;visions : ',
+		'cfg_lbl_rainette_ville' => 'Indiquez le code de cette ville : ',
+		'cfg_lbl_rainette_nb_prevision' => 'Indiquez le nombre de jours concern&eacute;s par les pr&eacute;visions : ',
 		'cfg_lbl_css_restauration' => 'Fichiers de sauvegarde',
 
 // Items des select
