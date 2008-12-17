@@ -13,30 +13,7 @@
 <div class="cartouche">
 <h1>[(#SET{lelogo,[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{64,64})]})][<img class="logo_rubrique" src="(#GET{lelogo}|extraire_attribut{src})"[ width="(#GET{lelogo}|extraire_attribut{width})"][ height="(#GET{lelogo}|extraire_attribut{height})"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" />][(#TITRE)] - [(#ENV{date_ev,[(#ENV{date})]}|annee)]</h1>
 </div>
-<B_themes>
-<div id="artrecents" class="flottant">
-<h2><:pyrat:themes:></h2>
-<BOUCLE_themes(RUBRIQUES){racine}{id_secteur}>
-	<B_sous_rubriques1>
-	<ul>
-		<li[ style="list-style-image: url(/(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_secteur}{mode=normal}|image_reduire{9,9}|extraire_attribut{src}));"]>
-			[(#_themes:ID_RUBRIQUE|!={#ENV{id_rubrique}}|oui
-			 )<a href="[(#_themes:URL_RUBRIQUE|parametre_url{date_ev,#ENV{date_ev,''}}|parametre_url{id_mot,#ENV{id_mot,''}}|parametre_url{'calendrier',1})]" title="[(#_themes:DESCRIPTIF|attribut_html)] ([(#_themes:DATE|nom_jour)] [(#_themes:DATE|affdate)])">][(#_themes:TITRE)][(#_themes:ID_RUBRIQUE|!={#ENV{id_rubrique}}|oui)</a>]
-		<ul>
-			<BOUCLE_sous_rubriques1(RUBRIQUES){id_parent}{par titre}>
-				<li[ style="list-style-image: url(/(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{9,9}|extraire_attribut{src}));"]>
-				[(#ID_RUBRIQUE|!={#ENV{id_rubrique}}|oui
-				 )<a href="[(#URL_RUBRIQUE|parametre_url{date_ev,#ENV{date_ev,''}}|parametre_url{id_mot,#ENV{id_mot,''}}|parametre_url{'calendrier',1})]" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">][(#TITRE)][(#ID_RUBRIQUE|!={#ENV{id_rubrique}}|oui)</a>]
-				<BOUCLE_RecursionRubriques(BOUCLE_sous_rubriques1)></BOUCLE_RecursionRubriques>
-				</li>
-			</BOUCLE_sous_rubriques1>
-		</ul>
-		</li>
-	</ul>
-	</B_sous_rubriques1>
-</BOUCLE_themes>
-</div></B_themes>
-
+[(#INCLURE{fond=noisettes/agenda/themes}{id_rubrique=#ID_SECTEUR})]
 	<div id="letexte">
 [<div class="descriptif">(#DESCRIPTIF)</div>]
 [(#TEXTE)]
@@ -79,7 +56,7 @@
 <a href="#m(#DATE_DEBUT|affdate{'Ym'}|unique)">[(#DATE_DEBUT|nom_mois|ucfirst)]&nbsp;[(#DATE_DEBUT|annee)]</a>
 ]</BOUCLE_LiensMois>
 
-[(#INCLURE{fond=agendaliste_filtre}{id_rubrique}{date_ev}{id_mot})]
+[(#INCLURE{fond=noisettes/agenda/agendaliste_filtre}{id_rubrique}{date_ev}{id_mot})]
 
 [<div class="notes">(#NOTES)</div>]
 
