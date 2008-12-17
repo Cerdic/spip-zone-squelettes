@@ -36,17 +36,17 @@
 [(#REM) Attention : ne pas enlever les REMarques : elles servent aerer le source sans que celui ne renvois d'espaces identifie comme une reussite du test ]
 	<BOUCLE_ArtRubLayout(ARTICLES){id_article}>[(#REM) Dans le cas d'un article
 		]<BOUCLE_ArtLayout(MOTS){id_article}{type=_LayoutGala}>[(#REM) Est-ce qu'il a un Layout applique?
-			][(#INCLURE{fond=layout}{layoutgala=[(#TITRE*|textebrut|substr{0,2})]})][(#REM) Appel du layout de l'article si oui
+			][(#INCLURE{fond=noisettes/header/layout}{layoutgala=[(#TITRE*|textebrut|substr{0,2})]})][(#REM) Appel du layout de l'article si oui
 		]</BOUCLE_ArtLayout>[(#REM) Sinon, dans le cas de la rubrique de l'article
 		]<BOUCLE_RubartLayout(MOTS){id_rubrique}{type=_LayoutGala}>[(#REM) Est-ce que sa rubrique a un layout ?
-			][(#INCLURE{fond=layout}{layoutgala=[(#TITRE*|textebrut|substr{0,2})]})][(#REM) Appel du layout de la rubrique si oui
+			][(#INCLURE{fond=noisettes/header/layout}{layoutgala=[(#TITRE*|textebrut|substr{0,2})]})][(#REM) Appel du layout de la rubrique si oui
 		]</BOUCLE_RubartLayout>[(#REM) Fin de la recherche concernant un article
 		]<//B_ArtLayout>[(#REM) Si ce n'est pas un article...
 	]</BOUCLE_ArtRubLayout>[(#REM) ... Est-ce une rubrique ?
 		]<BOUCLE_RubLayout(MOTS){id_rubrique}{type=_LayoutGala}>[(#REM) Dans le cas d'une rubrique
-			][(#INCLURE{fond=layout}{layoutgala=[(#TITRE*|textebrut|substr{0,2})]})][(#REM) Appel du layout de la rubrique si oui
+			][(#INCLURE{fond=noisettes/header/layout}{layoutgala=[(#TITRE*|textebrut|substr{0,2})]})][(#REM) Appel du layout de la rubrique si oui
 		]</BOUCLE_RubLayout>[(#REM) Sinon
-		][(#ENV{template}|=={'Sommaire'}|?{' ',''})[(#INCLURE{fond=layout}{layoutgala=#CONFIG{soyezcreateurs_layout/sommaire_layout,13}})]][(#ENV{template}|=={''}|?{' ',''})[(#INCLURE{fond=layout}{layoutgala=#CONFIG{soyezcreateurs_layout/default_layout,13}})]][(#ENV{template}|=={''}|?{'',' '})[(#ENV{template}|=={'Sommaire'}|?{'',' '})[(#INCLURE{fond=layout}{layoutgala=#CONFIG{soyezcreateurs_layout/autrespages_layout,13}})]]]<//B_RubLayout>[(#REM) Fin de la recherche d'une rubrique
+		][(#ENV{template}|=={'Sommaire'}|?{' ',''})[(#INCLURE{fond=noisettes/header/layout}{layoutgala=#CONFIG{soyezcreateurs_layout/sommaire_layout,13}})]][(#ENV{template}|=={''}|?{' ',''})[(#INCLURE{fond=noisettes/header/layout}{layoutgala=#CONFIG{soyezcreateurs_layout/default_layout,13}})]][(#ENV{template}|=={''}|?{'',' '})[(#ENV{template}|=={'Sommaire'}|?{'',' '})[(#INCLURE{fond=noisettes/header/layout}{layoutgala=#CONFIG{soyezcreateurs_layout/autrespages_layout,13}})]]]<//B_RubLayout>[(#REM) Fin de la recherche d'une rubrique
 	]<//B_ArtRubLayout>
 <link rel="stylesheet" type="text/css" href="@stylessoyezcreateurs.css.html" media="screen, print" />
 [(#ENV{template}|=={'Sommaire'}|?{' ',''})[(#CONFIG{soyezcreateurs/mode_affichage,edito}|match{^portail.*}|?{' ',''})<link rel="stylesheet" type="text/css" href="@stylesportail.css.html" media="screen, print" />]]
@@ -76,7 +76,7 @@ var pageTracker = _gat._getTracker("(#CONFIG{soyezcreateurs_google/google_analyt
 pageTracker._initData();
 pageTracker._trackPageview();
 </script>]
-[(#CONFIG{soyezcreateurs/avertissement_ie}|=={Oui}|?{'',#INCLURE{fond=inc_savethedevelopers}})]
+[(#CONFIG{soyezcreateurs/avertissement_ie}|=={Oui}|?{'',#INCLURE{fond=noisettes/header/savethedevelopers}})]
 </head>
 <body[ (#ENV{template}|=={'Sommaire'}|?{'id="pagesommaire"',''})]>
 <div id="container">
