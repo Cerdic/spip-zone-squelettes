@@ -20,15 +20,11 @@
 <INCLURE{fond=menu}>
 
 <!-- colonne -->
-<div id="navigation">
-  <div id="col-hautdroit"></div>
-  <div id="col-hautgauchelarge">
-   <BOUCLE_majs(RUBRIQUES){age>=0}{par date}{inverse}{0,1}{doublons interdit}>
-   <div class="maj">Site mis à jour le [(#DATE|jour)/][(#DATE|mois)/][(#DATE|annee)]</div>
-   </BOUCLE_majs>
-  </div>
-
+<div id="navigation" class="coins_ronds">
+<INCLURE{fond=inc-mise_a_jour_site}>
 <div class="extrait">
+
+<INCLURE{fond=pave_membre}>
 
 <h2>Rechercher</h2>
 <div class="menu">
@@ -36,34 +32,27 @@
 </div>
 
 
-<INCLURE(session.php){fond=pave_membre}>
-
-
 </div>
-  <div id="col-basdroit"></div><div id="col-basgauche"></div>
 </div>
 
 <!-- Infos sur l'auteur -->
 
 <div class="contenu" id="principal">
 
-<div class="une">
-
-          <div id="une-hautdroit"></div><div id="une-hautgauchelarge">
+<div id="intro" class="coins_ronds">
           [(#LOGO_AUTEUR|right||reduire_image{80,80})]
           <h1 class="titre-texte">#NOM</h1>
-          </div>
 
      <div class="extrait">
 
-          [<div class="chapo">(#BIO)</div>]
-          [<div class="notes">(#NOTES)</div>]
+          [<div class="#EDIT{bio} chapo">(#BIO)</div>]
+          [<div class="#EDIT{notes} notes">(#NOTES)</div>]
           [<h2>Site web</h2>#NOM_SITE : <a href="(#URL_SITE)">#URL_SITE</a><br />]
  
 
 
 <!-- Articles de l'auteur -->
-
+	<B_articless>
           <h2><:articles_auteur:></h2>
 
           <div class="liste-articles">
@@ -76,18 +65,17 @@
           	<br />
           </BOUCLE_articless>
           </div>
+	</B_articless>
+
      </div>
-  <div id="une-basdroit"></div><div id="une-basgauche"></div>
 </div>
 
 
-<div class="une">
+<div id="liste" class="coins_ronds">
 
-<div id="rub-hautdroit"></div><div id="rub-hautgauchelarge">
 [<p><b><:envoyer_message:></b></p>
 <div class='spip_encadrer'>(#FORMULAIRE_ECRIRE_AUTEUR)</div>]
 </div>
-  <div id="rub-basdroit"></div><div id="rub-basgauche"></div>
 </div>
 
 

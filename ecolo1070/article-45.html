@@ -1,39 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2002/REC-xhtml1-20020801/DTD/xhtml1-transitional.dtd">
 #CACHE{12*3600}
 <BOUCLE_article_principals(ARTICLES) {id_article}>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2002/REC-xhtml1-20020801/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
 <head>
 <title>[(#TITRE|textebrut|supprimer_numero) - #NOM_SITE_SPIP]</title>
 [<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
-<INCLURE{fond=inc-head}{id_article}>
-
+<INCLURE{fond=inc-head}>
+<meta name="robots" content="none" />
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/ecolo_membre.css" type="text/css" />
 </head>
 
 
 
 <body dir="#LANG_DIR">
-<INCLURE{fond=inc-titre_site}>
+<INCLURE{fond=entete}>
 
 <!-- menu -->
 
-<INCLURE{fond=inc-menu}{id_secteur}>
+<INCLURE{fond=menu}{id_secteur}>
 
 <!-- colonne -->
-<div id="navigation">
-  <div id="col-hautdroit"></div>
-  <div id="col-hautgauchelarge">
-   <BOUCLE_majs(RUBRIQUES){age>=0}{par date}{inverse}{0,1}{doublons interdit}>
-   <div class="maj">Site mis à jour le [(#DATE|jour)/][(#DATE|mois)/][(#DATE|annee)]</div>
-   </BOUCLE_majs>
-  </div>
-
-
+<div id="navigation" class="coins_ronds">
+<INCLURE{fond=inc-mise_a_jour_site}>
 <div class="extrait">
 
-<INCLURE(session.php){fond=inc-pave_membre}>
+<INCLURE{fond=pave_membre}>
 
-<!-- tags dans la fct -->
-[(#URL_SITE|nb_connect)]
 
 
 
@@ -88,34 +81,32 @@
 
 
 </div>
-    <div id="col-basdroit"></div><div id="col-basgauche"></div>
 </div>
 
 <!-- Contenu : article -->
 
 <div class="contenu" id="principal">
 
-<div id="une-hautdroit"></div><div id="une-hautgauchelarge">
-Vous êtes ici:  <a href="/">Accueil</a> > 
+<div id="liste" class="coins_ronds">
+<div class="maj">Vous êtes ici:  <a href="/">Accueil</a> > 
 <BOUCLE_vous_etes_icis(HIERARCHIE){id_article} {" > "}>
 <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
 </BOUCLE_vous_etes_icis>
 </div>
 
 
-
 <div class="liste-articles">
 <div class="cartouche">
 [<div class="logo_left">(#LOGO_ARTICLE||reduire_image{120})</div>]
-[<div class="surtitre">(#SURTITRE)</div>]
-<h1 class="titre-texte">#TITRE</h1>
-[<div class="surtitre">(#SOUSTITRE)</div>]
+[<div class="#EDIT{surtitre} surtitre">(#SURTITRE)</div>]
+<h1 class="#EDIT{titre} titre-texte">#TITRE</h1>
+[<div class="#EDIT{soustitre} surtitre">(#SOUSTITRE)</div>]
 
 </div>
 
-[<div class="chapo">(#CHAPO)</div>]
-[<div class="texte">(#TEXTE|reduire_image{600})</div>]
-[<div class="ps">(#PS)</div>]
+[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
+[<div class="#EDIT{texte} texte">(#TEXTE|reduire_image{600})</div>]
+[<div class="#EDIT{ps} ps">(#PS)</div>]
 [<div class="notes">(#NOTES)</div>]
 [<p class="lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
 <p class="maj">
@@ -125,7 +116,7 @@ Vous êtes ici:  <a href="/">Accueil</a> >
 <B_documents_jointss>
 <h2>Pièces jointes</h2>
 <BOUCLE_documents_jointss(DOCUMENTS) {id_article} {mode=document} {doublons membres}>
-<div class="docs">
+<div class="#EDIT{titre} #EDIT{descriptif} docs">
 [<div class="logo_left">(#LOGO_DOCUMENT|#URL_DOCUMENT|reduire_image{75})</div>][ (#TITRE)][ - (#DESCRIPTIF)]
 </div>
 </BOUCLE_documents_jointss>
@@ -141,15 +132,15 @@ Vous êtes ici:  <a href="/">Accueil</a> >
 
 
 </div>
-    <div id="une-basdroit"></div><div id="une-basgauche"></div>
 </div>
-<INCLURE{fond=inc-pied}{id_article}>
+</div>
+<INCLURE{fond=pied}{id_article}>
 
 </body>
 </html>
 
 </BOUCLE_article_principals>
-<INCLURE{fond=article}{id_article=707}{retour=#SELF}}>
+<INCLURE{fond=article}{id_article=707}{retour=#SELF}>
 <//B_article_principals>
 
 

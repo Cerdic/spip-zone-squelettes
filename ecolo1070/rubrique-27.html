@@ -14,25 +14,19 @@
 
 
 <body dir="#LANG_DIR">
-<INCLURE(entete.php)>
+<INCLURE{fond=entete}>
 
 <!-- menu -->
 
 <INCLURE{fond=menu}{id_secteur}>
 
 <!-- colonne -->
-
-<div id="navigation">
-  <div id="col-hautdroit"></div>
-  <div id="col-hautgauchelarge">
-   <BOUCLE_majs(RUBRIQUES){age>=0}{par date}{inverse}{0,1}>
-   <div class="maj">Site mis à jour le [(#DATE|jour)/][(#DATE|mois)/][(#DATE|annee)]</div>
-   </BOUCLE_majs>
-  </div>
-
+<div id="navigation" class="coins_ronds">
+<INCLURE{fond=inc-mise_a_jour_site}>
 <div class="extrait">
 
 <INCLURE{fond=pave_membre}>
+
 
 
 	<!-- Breves -->
@@ -79,7 +73,6 @@
 
 
 
-  <div id="col-basdroit"></div><div id="col-basgauche"></div>
 </div>
 
 
@@ -87,7 +80,8 @@
 <div id="principal">
 
 <div class="contenu">
-  <div id="rub-hautdroit"></div><div id="rub-hautgauchelarge">
+    <div id="intro" class="coins_ronds">
+     <div class="maj">
      Vous êtes ici:  <a href="/">Accueil</a> > 
      <BOUCLE_vous_etes_icis(HIERARCHIE){id_article} {" > "}>
      <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
@@ -96,18 +90,16 @@
 
   <div class="liste-articles">
      [<div class="logo_left">(#LOGO_RUBRIQUE||reduire_image{60})</div>]
-     <h2>[(#TITRE|supprimer_numero)]</h2>
-     [<div class="surtitre"> (#TEXTE)</div>]
+     <h2 class="#EDIT{titre} ">[(#TITRE|supprimer_numero)]</h2>
+     [<div class="#EDIT{texte} surtitre">&nbsp;(#TEXTE|reduire_image{75})</div>]
      [<br /><div class="notes"> (#NOTES)</div>]
   </div>
 
 
-<div id="rub-basdroit"></div><div id="rub-basgauche"></div>
-
 </div>
 
 <div class="contenu">
-     <div id="une-hautdroit"></div><div id="une-hautgauchelarge"><h2>Prochains rendez-vous</h2></div>
+     <div id="liste" class="coins_ronds"><h2>Prochains rendez-vous</h2>
 
 
 <!-- Articles de la rubrique -->
@@ -132,9 +124,6 @@
 </B_articles_recents>
 <h3> Repos ;-)</h3>
 <//B_articles_recents>
-
-<div id="une-basdroit"></div><div id="une-basgauche"></div>
-
 
 
 </div>

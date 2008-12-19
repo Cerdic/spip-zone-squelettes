@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2002/REC-xhtml1-20020801/DTD/xhtml1-transitional.dtd">
 #CACHE{48*3600}
 <BOUCLE_article_principals(ARTICLES) {id_article}{doublons interdit}>
@@ -19,18 +20,11 @@
 <INCLURE{fond=menu}{id_secteur}>
 
 <!-- colonne -->
-<div id="navigation">
-  <div id="col-hautdroit"></div>
-  <div id="col-hautgauchelarge">
-   <BOUCLE_majs(RUBRIQUES){age>=0}{par date}{inverse}{0,1}{doublons interdit}>
-   <div class="maj">Site mis à jour le [(#DATE|jour)/][(#DATE|mois)/][(#DATE|annee)]</div>
-   </BOUCLE_majs>
-  </div>
-
-
+<div id="navigation" class="coins_ronds">
+<INCLURE{fond=inc-mise_a_jour_site}>
 <div class="extrait">
 
-<INCLURE(session.php){fond=pave_membre}>
+<INCLURE{fond=pave_membre}>
 
 
 <h2>Rechercher</h2>
@@ -72,15 +66,15 @@
 
 
 </div>
-    <div id="col-basdroit"></div><div id="col-basgauche"></div>
+    
 </div>
 
 <!-- Contenu : article -->
 
 <div class="contenu" id="principal">
 
-<div id="une-hautdroit"></div><div id="une-hautgauchelarge">
-Vous êtes ici:  <a href="/">Accueil</a> > 
+<div id="liste" class="coins_ronds">
+<div class="maj">Vous êtes ici:  <a href="/">Accueil</a> > 
 <BOUCLE_vous_etes_icis(HIERARCHIE){id_article} {" > "}>
 <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
 </BOUCLE_vous_etes_icis>
@@ -91,14 +85,14 @@ Vous êtes ici:  <a href="/">Accueil</a> >
 <div class="liste-articles">
 <div class="cartouche">
 [<div class="logo_left">(#LOGO_ARTICLE||reduire_image{120})</div>]
-[<div class="surtitre">(#SURTITRE)</div>]
-<h1 class="titre-texte">[(#TITRE|supprimer_numero)]</h1>
-[<div class="surtitre">(#SOUSTITRE)</div>]
+[<div class="#EDIT{surtitre} surtitre">(#SURTITRE)</div>]
+<h1 class="#EDIT{titre} titre-texte">[(#TITRE|supprimer_numero)]</h1>
+[<div class="#EDIT{soustitre} surtitre">(#SOUSTITRE)</div>]
 
 </div>
 
-[<div class="chapo">(#CHAPO)</div>]
-[<div class="texte">(#TEXTE|reduire_image{600})</div>]
+[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
+[<div class="#EDIT{texte} texte">(#TEXTE|reduire_image{600})</div>]
 
 
 [<p class="lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
@@ -114,7 +108,7 @@ Vous êtes ici:  <a href="/">Accueil</a> >
 			</B_documents_portfolio>
 			<BOUCLE_afficher_document(DOCUMENTS) {id_document} {id_article} {mode=document}{extension IN png,jpg,gif}>
 			<div class="spip_documents spip_documents_center" id="document_actif">
-				#EMBED_DOCUMENT
+				[(#EMBED_DOCUMENT|reduire_image{600})]
 				[<div class="#EDIT{titre} spip_doc_titre">(#TITRE)</div>]
 				[<div class="#EDIT{descriptif} spip_doc_descriptif">(#DESCRIPTIF)</div>]
 			</div>
@@ -130,8 +124,8 @@ Vous êtes ici:  <a href="/">Accueil</a> >
 					<BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {par num titre, date} {doublons}>
 					<li>
 						[<div class="logo_left">(#LOGO_DOCUMENT||image_reduire{50})</div><br class="nettoyeur" />]
-                                                <div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
-						[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
+                                                <div class="#EDIT{titre} spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
+						[<div class="#EDIT{descriptif} spip_doc_descriptif">(#DESCRIPTIF)</div>]
                                                 <br class="nettoyeur" />
 					</li>
 					</BOUCLE_documents_joints>
@@ -155,7 +149,7 @@ Vous êtes ici:  <a href="/">Accueil</a> >
 			<INCLURE{fond=inc-forum}{id_article}>]
 
 </div>
-    <div id="une-basdroit"></div><div id="une-basgauche"></div>
+</div>
 </div>
 <INCLURE{fond=pied}{id_article}>
 

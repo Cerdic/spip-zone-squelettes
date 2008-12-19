@@ -6,23 +6,8 @@
 	<title><:poster_message:> - [(#NOM_SITE_SPIP|textebrut)]</title>
 <meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
 <meta name="robots" content="index, follow" />
-<link rel="shortcut icon" href="http://www.anderlecht.ecolo.be/favicon.ico" />
-<link rel="stylesheet" href="#DOSSIER_SQUELETTE/ecolo_gen.css" type="text/css" />
-<link rel="stylesheet" href="#DOSSIER_SQUELETTE/spip_admin.css" type="text/css" />
-<link rel="stylesheet" href="#DOSSIER_SQUELETTE/coins.css" type="text/css" />
-<link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/ultraliens/ultraliens.css" media="screen" />
-<script type="text/javascript" src="#DOSSIER_SQUELETTE/ultraliens/ultraliens.js"></script>
-	<script type="text/javascript">
-	<!--//--><![CDATA[//><!--
-	window.onload = function(){
-		//n?essaire pour les ultraliens
-		if(!ie){document.captureEvents(Event.MOUSEMOVE);}
-		document.onmousemove = get_mouse;
-	}
-	//--><!]]>
-	</script>
-<link rel="stylesheet" href="#DOSSIER_SQUELETTE/impression.css" type="text/css" media="print" />
-<link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="#URL_PAGE{backend}" />
+<INCLURE{fond=inc-head}>
+
 </head>
 
 
@@ -36,19 +21,11 @@
 <INCLURE{fond=menu}{id_article}>
 
 <!-- colonne -->
-<div id="navigation">
-  <div id="col-hautdroit"></div>
-  <div id="col-hautgauchelarge">
-   <BOUCLE_majs(RUBRIQUES){age>=0}{par date}{inverse}{0,1}{doublons interdit}>
-   <div class="maj">Site mis &agrave; jour le [(#DATE|jour)/][(#DATE|mois)/][(#DATE|annee)]</div>
-   </BOUCLE_majs>
-  </div>
-
-
+<div id="navigation" class="coins_ronds">
+<INCLURE{fond=inc-mise_a_jour_site}>
 <div class="extrait">
 
-<INCLURE(session.php){fond=pave_membre}>
-
+<INCLURE{fond=pave_membre}>
 
 <h2>Rechercher</h2>
 <div class="menu">
@@ -79,7 +56,7 @@
 	</B_breves>
 
 </div>
-    <div id="col-basdroit"></div><div id="col-basgauche"></div>
+
 </div>
 
 
@@ -87,8 +64,8 @@
 
 <div class="contenu" id="principal">
 
-<div id="une-hautdroit"></div><div id="une-hautgauchelarge">
-Vous &ecirc;tes ici: &nbsp;<a href="/">Accueil</a>
+<div id="liste" class="coins_ronds">
+<div class="maj">Vous êtes ici:  &nbsp;<a href="/">Accueil</a>
 		<BOUCLE_contexte_article(ARTICLES) {id_article}>
 		<BOUCLE_ariane_article(HIERARCHIE) {id_article}>
 		&gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80}|supprimer_numero)]</a>
@@ -127,7 +104,8 @@ Vous &ecirc;tes ici: &nbsp;<a href="/">Accueil</a>
 		&gt; <a href="#URL_FORUM">[(#TITRE|couper{80})]</a>
 		</BOUCLE_contexte_forum>
 		
-	</div>
+
+</div>
 
 
 
@@ -185,7 +163,6 @@ Vous &ecirc;tes ici: &nbsp;<a href="/">Accueil</a>
 
 		<!-- fin contenu -->
 
-    <div id="une-basdroit"></div><div id="une-basgauche"></div>
 
 
 

@@ -19,19 +19,11 @@
 <INCLURE{fond=menu}{id_secteur}>
 
 <!-- colonne -->
-
-<div id="navigation">
-  <div id="col-hautdroit"></div>
-  <div id="col-hautgauchelarge">
-   <BOUCLE_majs(RUBRIQUES){age>=0}{par date}{inverse}{0,1}{doublons interdit}>
-   <div class="maj">Site mis à jour le [(#DATE|jour)/][(#DATE|mois)/][(#DATE|annee)]</div>
-   </BOUCLE_majs>
-  </div>
-
-
+<div id="navigation" class="coins_ronds">
+<INCLURE{fond=inc-mise_a_jour_site}>
 <div class="extrait">
 
-<INCLURE(session.php){fond=pave_membre}>
+<INCLURE{fond=pave_membre}>
 
 <h2>Rechercher</h2>
 <div class="menu">
@@ -103,15 +95,15 @@ Vous êtes ici:  <a href="/">Accueil</a> >
 <div class="liste-articles">
 <div class="cartouche">
 [<div class="logo_left">(#LOGO_ARTICLE||reduire_image{120})</div>]
-[<div class="surtitre">(#SURTITRE)</div>]
-<h1 class="titre-texte">#TITRE</h1>
-[<div class="surtitre">(#SOUSTITRE)</div>]
+[<div class="#EDIT{surtitre} surtitre">(#SURTITRE)</div>]
+<h1 class="#EDIT{titre} titre-texte">#TITRE</h1>
+[<div class="#EDIT{soustitre} surtitre">(#SOUSTITRE)</div>]
 
 </div>
 
-[<div class="chapo">(#CHAPO)</div>]
-[<div class="texte">(#TEXTE|reduire_image{600})</div>]
-[<div class="ps">(#PS)</div>]
+[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
+[<div class="#EDIT{texte} texte">(#TEXTE|reduire_image{600})</div>]
+[<div class="#EDIT {ps} ps">(#PS)</div>]
 [<div class="notes">(#NOTES)</div>]
 [<p class="lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
 <p class="maj">
@@ -121,7 +113,7 @@ Vous êtes ici:  <a href="/">Accueil</a> >
 <B_documents_jointss>
 <h2>Pièces jointes</h2>
 <BOUCLE_documents_jointss(DOCUMENTS) {id_article} {mode=document} {doublons membres}>
-<div class="docs">
+<div class="#EDIT{titre} #EDIT{descriptif} docs">
 [<div class="logo_left">(#LOGO_DOCUMENT|#URL_DOCUMENT|reduire_image{75})</div>][ (#TITRE)][ - (#DESCRIPTIF)]
 </div>
 </BOUCLE_documents_jointss>

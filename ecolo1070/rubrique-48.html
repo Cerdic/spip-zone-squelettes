@@ -21,16 +21,11 @@
 <INCLURE{fond=menu}{id_secteur}>
 
 <!-- colonne -->
-
-<div id="navigation">
-  <div id="col-hautdroit"></div>
-  <div id="col-hautgauchelarge">
-<INCLURE{fond=inc-mise_a_jour_site}>  </div>
-
+<div id="navigation" class="coins_ronds">
+<INCLURE{fond=inc-mise_a_jour_site}>
 <div class="extrait">
 
-
-<INCLURE(session.php){fond=pave_membre}>
+<INCLURE{fond=pave_membre}>
 
 
 
@@ -75,7 +70,7 @@
 <BOUCLE_parutions(SYNDIC_ARTICLES){par date}{inverse}{age<=8}{id_secteur}>
        	<BOUCLE_syndicss(SITES) {syndication=oui}{id_syndic}{unique}>
 		<li class="menu-item">
-		#PUCE&nbsp; <a href="[(#ID_SYNDIC|generer_url_site)]" class="ultralien_site ultralien_vignette" title="#DESCRIPTIF">[(#NOM_SITE*)]</a>
+		#PUCE&nbsp; <a href="[(#URL_SITE)]" class="ultralien_site ultralien_vignette" title="#DESCRIPTIF">[(#NOM_SITE*)]</a>
   		</li>
 	</BOUCLE_syndicss>
 </BOUCLE_parutions>
@@ -88,7 +83,7 @@
 	
 
 </div>
-  <div id="col-basdroit"></div><div id="col-basgauche"></div>
+
 </div>
 
 
@@ -96,16 +91,17 @@
 <div id="principal">
 <div class="contenu">
 
-  <div id="rub-hautdroit"></div><div id="rub-hautgauchelarge">
+  <div id="intro" class="coins_ronds">
      Vous &ecirc;tes ici: &nbsp;<a href="/">Accueil</a>&nbsp;>&nbsp;
      <BOUCLE_vous_etes_icis(HIERARCHIE){id_article} {" > "}>
      <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
      </BOUCLE_vous_etes_icis>
      [<div class="logo_left">(#LOGO_RUBRIQUE||reduire_image{60})</div>]
-     <h2>[(#TITRE|supprimer_numero)]</h2>
-  </div>
+     <h2 class="#EDIT{titre} ">[(#TITRE|supprimer_numero)]</h2>
+
+
   <div class="liste-articles">
-  [<div class="surtitre">&nbsp;(#TEXTE)</div>]
+  [<div class="#EDIT{texte} surtitre">&nbsp;(#TEXTE)</div>]
   [<br /><div class="notes">&nbsp;(#NOTES)</div>]
   </div>
 
@@ -133,14 +129,12 @@
   </div>
   </div>
   </B_sous_rub>
-<div id="rub-basdroit"></div><div id="rub-basgauche"></div>
 
 </div>
 
 <BOUCLE_une_rubrique(MOTS){titre ='A la une de la rubrique'}>
 <B_articles_une>
-<div class="contenu">
-     <div id="une-hautdroit"></div><div id="une-hautgauchelarge"><h2>A lire</h2></div>
+<div id="liste_une" class="coins_ronds"><h2>A lire</h2>
 
 
 
@@ -161,7 +155,6 @@
 	</div>
     </BOUCLE_articles_une>
   </div>
-<div id="une-basdroit"></div><div id="une-basgauche"></div>
 </div>
 </B_articles_une>
 </BOUCLE_une_rubrique>   
@@ -171,8 +164,7 @@
 <BOUCLE_statut_archive(MOTS){titre="Permanent"}>
 <B_articles_permanents>
 
-<div class="contenu">
-     <div id="contact-hautdroit"></div><div id="contact-hautgauchelarge"><h2>Bon &agrave; savoir</h2></div>
+<div id="liste_perm" class="coins_ronds" ><h2>Bon &agrave; savoir</h2>
 
 
 <div class="liste-articles">
@@ -192,7 +184,6 @@
    </BOUCLE_articles_permanents>
 </div>
 
-<div id="contact-basdroit"></div><div id="contact-basgauche"></div>
 </div>
 
 </B_articles_permanents>
@@ -204,8 +195,7 @@
 
 
 <B_articles_recents>
-<div class="contenu">
-  <div id="fil-hautdroit"></div><div id="fil-hautgauchelarge"><h2>Au fil des jours...</h2></div>
+<div id="liste" class="coins_ronds"><h2>Au fil des jours...</h2>
 <div class="liste-articles">
    <BOUCLE_articles_recents(ARTICLES) {id_rubrique} {par date} {inverse}{age<365}{doublons interdit}>
 	<div class="extrait">
@@ -222,13 +212,13 @@
 	</div>
    </BOUCLE_articles_recents>
 </div>
-<div id="fil-basdroit"></div><div id="fil-basgauche"></div>
+
 </B_articles_recents>
 
 
 
-<div class="contenu">
-  <div id="fil-hautdroit"></div><div id="fil-hautgauchelarge"><h2><:nouveautes_web:></h2></div>
+<div id="fil_info" class="coins_ronds">
+<h2><:nouveautes_web:></h2>
 <div class="liste-articles">
 <B_articlem>
 <ul>
@@ -246,18 +236,20 @@
 </B_articlem>
 
 </div>
-<div id="fil-basdroit"></div><div id="fil-basgauche"></div>
 </div>
 
 </div>
 
 <B_documents_jointss>
+<div id="docs_rub" class="coins_ronds">
 <h2>Documents utiles</h2>
 <BOUCLE_documents_jointss(DOCUMENTS) {id_rubrique} {mode=document} {unique}>
 <div class="docs">
 [<div class="logo_left">(#LOGO_DOCUMENT|#URL_DOCUMENT|reduire_image{75})</div>][&nbsp;(#TITRE)][ - (#DESCRIPTIF)]
 </div>
 </BOUCLE_documents_jointss>
+</div>
+</B_documents_joints>s
 
 <!-- ARCHIVES -->
 <B_articles_archives>

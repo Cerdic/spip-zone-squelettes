@@ -1,4 +1,4 @@
-#CACHE{4*3600}
+#CACHE{12*3600}
 <BOUCLE_breve_principal(BREVES) {id_breve}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2002/REC-xhtml1-20020801/DTD/xhtml1-transitional.dtd">
 <html lang="#LANG">
@@ -6,9 +6,10 @@
 <title>[(#TITRE|textebrut|supprimer_numero) - #NOM_SITE_SPIP]</title>
 [<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
 <INCLURE{fond=inc-head}>
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/ecolo_membre.css" type="text/css" />
 [(#REM) Lien vers le flux RSS des breves ]
 <link rel="alternate" type="application/rss+xml" title="<:dernieres_breves:>" href="#URL_PAGE{backend-breves}" />
-<meta name="robots" content="index, follow" />
+<meta name="robots" content="none" />
 </head>
 
 <body dir="#LANG_DIR">
@@ -16,7 +17,7 @@
 
 <!-- menu -->
 
-<INCLURE{fond=menu}{id_rubrique?}>
+<INCLURE{fond=menu}{id_secteur}>
 
 <!-- colonne -->
 <div id="navigation" class="coins_ronds">
@@ -30,8 +31,6 @@
 <div class="menu">
 #FORMULAIRE_RECHERCHE
 </div>
-
-
 
 	<!-- Breves -->
 
@@ -81,12 +80,13 @@
 
 <div class="contenu" id="principal">
 
-<div id="liste" class="coins_ronds">
-<div class="maj">Vous êtes ici:  <a href="/">Accueil</a> > 
-<BOUCLE_vous_etes_icis(HIERARCHIE){id_article} {" > "}>
+<div id="une-hautdroit"></div><div id="une-hautgauchelarge">
+Vous &ecirc;tes ici: &nbsp;<a href="/">Accueil</a>&nbsp;>&nbsp;
+<BOUCLE_vous_etes_icis(RUBRIQUES){id_rubrique} {" > "}>
 <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
 </BOUCLE_vous_etes_icis>
 </div>
+
 
 
 <div class="liste-articles">
@@ -100,9 +100,9 @@
 
 
 [<div class="#EDIT{texte} texte">(#TEXTE)</div>]
-[<div class="#EDIT{ps} ps">(#PS)</div>]
+[<div class="ps">(#PS)</div>]
 [<div class="notes">(#NOTES)</div>]
-[<p class="lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="#EDIT{nom_site} spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+[<p class="lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
 
 <B_documents_jointss>
 <h2>Pi&egrave;ces jointes</h2>
@@ -114,9 +114,15 @@
 
 </div>
 
+
+
 </div>
 <INCLURE{fond=pied}{id_breve}>
 
 </body>
 </html>
+
 </BOUCLE_breve_principal>
+<INCLURE{fond=article}{id_article=707}{retour=#SELF}>
+<//B_breve_principal>
+

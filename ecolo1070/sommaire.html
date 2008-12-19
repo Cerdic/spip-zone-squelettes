@@ -1,5 +1,5 @@
 #CACHE{2*3600}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2002/REC-xhtml1-20020801/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
 <head>
 [<title>(#NOM_SITE_SPIP|attribut_html)</title>]
@@ -9,33 +9,28 @@
 </head>
 <body dir="#LANG_DIR">
 
-<INCLURE{fond=inc-titre_site}>
+<INCLURE{fond=entete}>
 
 <!-- menu -->
 
-<INCLURE{fond=inc-menu}>
+<INCLURE{fond=menu}>
 
 <!-- colonne -->
-<div id="navigation">
-  <div id="col-hautdroit"></div>
-  <div id="col-hautgauchelarge">
-   <BOUCLE_maj(RUBRIQUES){par date}{inverse}{0,1}>
-   <div class="maj">Site mis à jour le [(#DATE|jour)/][(#DATE|mois)/][(#DATE|annee)]</div>
-   </BOUCLE_maj>
-  </div>
+<div id="navigation" class="coins_ronds">
+<INCLURE{fond=inc-mise_a_jour_site}>
 
 <div class="extrait">
 
-<INCLURE(session.php){fond=inc-pave_membre}>
+<INCLURE{fond=pave_membre}>
 
-<INCLURE{fond=inc-prochains_rendez-vous}>
+<INCLURE{fond=prochains_rendez-vous}>
 
 
 <h2>Contact</h2>
 <div class="menu">
 <ul class="general">
         <li class="menu-item"><a href="#adresse">Coordonnées</a></li>
-        <li class="menu-item"><a href="mailto:ecolo1070@gmail.com?subject=Contact Site Web">Courriel</a></li>
+        <li class="menu-item"><a href="mailto:contact@ecolo1070.be?subject=Contact Site Web">Courriel</a></li>
         <BOUCLE_secretariat(AUTEURS){id_auteur=52}><li class="menu-item"><a href="#URL_AUTEUR" [title="(#TITRE|attribut_html)"]>Formulaire</a></li></BOUCLE_secretariat>
 </ul>
 </div>
@@ -91,7 +86,7 @@
 
 
 </div>
-  <div id="col-basdroit"></div><div id="col-basgauche"></div>
+
 </div>
 
 <div id="principal" class="contenu">
@@ -101,10 +96,9 @@
 
 
 <BOUCLE_favorisers(MOTS){titre="A la une du site"}>
-<B_article_unes>
-	<div class="une">
-  <div id="une-hautdroit"></div><div id="une-hautgauchelarge"><h1>A la une</h1></div>
-                <BOUCLE_article_unes(ARTICLES) {id_mot}{par date} {inverse} {0,6} {age<92} {doublons unes}>
+	<B_article_unes>
+	<div id="une" class="coins_ronds"><h1>A la une</h1>
+                <BOUCLE_article_unes(ARTICLES) {id_mot}{par date} {inverse} {0,6} {age<180} {doublons unes}>
                 <div class="extrait">
                 [<div class="logo_left">(#LOGO_ARTICLE_RUBRIQUE||reduire_image{120})</div>]
                 <span class="maj">[(#DATE|nom_jour)] [(#DATE|affdate)]</span>
@@ -114,30 +108,24 @@
                 <br /><a href="#URL_ARTICLE">Lire la suite...</a>
                 </div>
 	        </BOUCLE_article_unes>
-
-  <div id="une-basdroit"></div><div id="une-basgauche"></div>
-
         </div>
+	</B_article_unes>
 </BOUCLE_favorisers>
 
-<div class="une">
-  <div id="fil-hautdroit"></div><div id="fil-hautgauchelarge"><h2>Au fil des jours...</h2></div>
-	<BOUCLE_derniers_arts(ARTICLES){par date}{inverse}{doublons unes}{0,12}{age<123}>
+	<div id="fil" class="coins_ronds"><h2>Au fil des jours...</h2>
+		<BOUCLE_derniers_arts(ARTICLES){par date}{inverse}{doublons unes}{0,11}{age<240}>
                 <div class="extrait">
 		<div class="logo_left">[(#LOGO_ARTICLE||reduire_image{30}|sinon{#PUCE})]</div>
                 <a href="#URL_ARTICLE"[ title="(#SURTITRE|attribut_html)"]>#TITRE</a> <br /><span class="maj">(mise en ligne: [(#DATE|nom_jour)] [(#DATE|affdate)])</span>
-</div>
-	</BOUCLE_derniers_arts>
-  <div id="fil-basdroit"></div><div id="fil-basgauche"></div>
-
-</div>
+		</div>
+		</BOUCLE_derniers_arts>
+	</div>
 
 
 
- <BOUCLE_rub_favoriser(MOTS){titre="A la une du site"}>
+<BOUCLE_rub_favoriser(MOTS){titre="A la une du site"}>
  <B_rub_unes>
- <div class="une">
-      <div id="rub-hautdroit"></div><div id="rub-hautgauchelarge"><h2>Rubriques sous la loupe</h2></div>
+      <div id="rub" class="coins_ronds"><h2>Rubriques sous la loupe</h2>
            <BOUCLE_rub_unes(RUBRIQUES) {id_mot}{0,5} {id_secteur!=45}>
 	        <div class="extrait">
 		[<div class="logo_left">(#LOGO_RUBRIQUE||reduire_image{60})</div>]
@@ -156,20 +144,17 @@
 		</div>
 	        </BOUCLE_rub_unes>
 
-  <div id="rub-basdroit"></div><div id="rub-basgauche"></div>
+  </div>
 
 </BOUCLE_rub_favoriser>
-</div>
+
 
  <B_coord>
- <div class="une">
-   <div id="contact-hautdroit"></div><div id="contact-hautgauchelarge">
+ <div id="coord" class="coins_ronds">
    <BOUCLE_coord(BREVES){titre="Nous contacter"}{par date}{inverse}{0,1}>
    <a name="adresse"></a><h2>#TITRE</h2>
-   </div>
    <div class="extrait">#TEXTE</div>
    </BOUCLE_coord>
-  <div id="contact-basdroit"></div><div id="contact-basgauche"></div>
  </div>
  </B_coord>
 
@@ -178,7 +163,7 @@
 </div>
 
 
-<INCLURE{fond=inc-pied}>
+<INCLURE{fond=pied}>
 
 </body>
 </html>

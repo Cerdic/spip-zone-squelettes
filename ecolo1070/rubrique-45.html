@@ -2,7 +2,7 @@
 <BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2002/REC-xhtml1-20020801/DTD/xhtml1-transitional.dtd">
 
-<html lang="#LANG">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
 <head>
 <title>[(#TITRE|textebrut|supprimer_numero) - #NOM_SITE_SPIP]</title>
 [<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
@@ -22,20 +22,13 @@
 <INCLURE{fond=menu}{id_secteur}>
 
 <!-- colonne -->
-<div id="navigation">
-  <div id="col-hautdroit"></div>
-  <div id="col-hautgauchelarge">
-   <BOUCLE_majs(RUBRIQUES){age>=0}{par date}{inverse}{0,1}>
-   <div class="maj">Site mis &agrave; jour le [(#DATE|jour)/][(#DATE|mois)/][(#DATE|annee)]</div>
-   </BOUCLE_majs>
-  </div>
+<div id="navigation" class="coins_ronds">
+  <INCLURE{fond=inc-mise_a_jour_site}>
 
 <div class="extrait">
 
-<INCLURE(session.php){fond=pave_membre}>
+<INCLURE{fond=pave_membre}>
 
-<!-- tags dans la fct -->
-[(#URL_SITE|nb_connect)]
 
 
 	<!-- Breves -->
@@ -83,7 +76,6 @@
 
 
 </div>
-  <div id="col-basdroit"></div><div id="col-basgauche"></div>
 </div>
 
 
@@ -91,7 +83,8 @@
 <div id="principal">
 
 <div class="contenu">
-  <div id="rub-hautdroit"></div><div id="rub-hautgauchelarge">
+  <div id="intro" class="coins_ronds">
+     <div class="maj">
      Vous &ecirc;tes ici: &nbsp;<a href="/">Accueil</a>&nbsp;>&nbsp;
      <BOUCLE_vous_etes_icis(HIERARCHIE){id_article} {" > "}>
      <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
@@ -100,9 +93,9 @@
 
   <div class="liste-articles">
      [<div class="logo_left">(#LOGO_RUBRIQUE||reduire_image{60})</div>]
-     <h2>[(#TITRE|supprimer_numero)]</h2>
-     [<div class="surtitre">&nbsp;(#TEXTE|reduire_image{75})</div>]
-     [<br /><div class="notes">&nbsp;(#NOTES)</div>]
+     <h2 class="#EDIT{titre} ">[(#TITRE|supprimer_numero)]</h2>
+     [<div class="#EDIT{texte} surtitre">&nbsp;(#TEXTE|reduire_image{75})</div>]
+    [<br /><div class="notes">&nbsp;(#NOTES)</div>]
   </div>
 
 
@@ -133,7 +126,6 @@
   </div>
   </B_sous_rub>
 
-<div id="rub-basdroit"></div><div id="rub-basgauche"></div>
 
 </div>
 
@@ -141,10 +133,7 @@
 
 <BOUCLE_une_rubrique(MOTS){titre ='A la une de la rubrique'}>
 <B_articles_une>
-<div class="contenu" >
-     <div id="une-hautdroit"></div><div id="une-hautgauchelarge"><h2>A lire</h2></div>
-
-
+<div id="liste_une" class="coins_ronds"><h2>A lire</h2>
 
 <!-- Articles une de la rubrique -->
   <div class="liste-articles">
@@ -163,7 +152,6 @@
 	</div>
     </BOUCLE_articles_une>
   </div>
-<div id="une-basdroit"></div><div id="une-basgauche"></div>
 </div>
 </B_articles_une>
 </BOUCLE_une_rubrique>   
@@ -173,9 +161,7 @@
 <BOUCLE_statut_archive(MOTS){titre="Permanent"}>
 <B_articles_permanents>
 
-<div class="contenu" >
-     <div id="contact-hautdroit"></div><div id="contact-hautgauchelarge"><h2>Bon &agrave; savoir</h2></div>
-
+<div id="liste_perm" class="coins_ronds" ><h2>Bon &agrave; savoir</h2>
 
 <div class="liste-articles">
    <BOUCLE_articles_permanents(ARTICLES){id_mot}{id_rubrique}{par titre}{doublons interdit}>
@@ -194,7 +180,6 @@
    </BOUCLE_articles_permanents>
 </div>
 
-<div id="contact-basdroit"></div><div id="contact-basgauche"></div>
 </div>
 
 </B_articles_permanents>
@@ -206,8 +191,8 @@
 
 
 <B_articles_recents>
-<div class="contenu" >
-  <div id="fil-hautdroit"></div><div id="fil-hautgauchelarge"><h2>Au fil des jours...</h2></div>
+<div id="liste" class="coins_ronds"><h2>Au fil des jours...</h2>
+
 <div class="liste-articles">
    <BOUCLE_articles_recents(ARTICLES) {id_rubrique} {par date} {inverse}{age<365}{doublons interdit}>
 	<div class="extrait">
@@ -224,26 +209,30 @@
 	</div>
    </BOUCLE_articles_recents>
 </div>
-<div id="fil-basdroit"></div><div id="fil-basgauche"></div>
 </B_articles_recents>
 
 </div>
 </div>
 
 <B_documents_jointss>
+<div id="docs_rub" class="coins_ronds">
 <h2>Documents utiles</h2>
+
 <BOUCLE_documents_jointss(DOCUMENTS) {id_rubrique} {mode=document} {unique}>
 <div class="docs">
 [<div class="logo_left">(#LOGO_DOCUMENT|#URL_DOCUMENT|reduire_image{75})</div>][&nbsp;(#TITRE)][ - (#DESCRIPTIF)]
 </div>
 </BOUCLE_documents_jointss>
+</div>
+</B_documents_jointss>
+
 
 <!-- ARCHIVES -->
 <B_articles_archives>
 <a name="lien_archives" title="Coming soon">Voir les archives de cette section (pas en service actuellement)</a>
 <BOUCLE_articles_archives(ARTICLES) {id_rubrique} {age>=365} {doublons interdit}>
 </BOUCLE_articles_archives>
-
+</div>
 </BOUCLE_rubrique>
 
 

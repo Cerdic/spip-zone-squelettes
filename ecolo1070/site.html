@@ -2,7 +2,8 @@
 <BOUCLE_site(SITES){id_syndic}>
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
 [(#REM) Les sites n'ont pas de "lang" a proprement parler ; on se base donc sur la langue de la rubrique qui les contient. Les articles syndiques, eux, ont une "lang". ]
-<BOUCLE_lang(RUBRIQUES){id_rubrique}><html dir="#LANG_DIR" lang="#LANG"></BOUCLE_lang>
+<BOUCLE_lang(RUBRIQUES){id_rubrique}><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
+</BOUCLE_lang>
 <head>
 <title>[(#NOM_SITE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
 [<meta name="description" content="(#DESCRIPTIF|couper{150}|textebrut)" />]
@@ -19,18 +20,12 @@
 <INCLURE{fond=menu}{id_secteur}>
 
 <!-- colonne -->
-<div id="navigation">
-  <div id="col-hautdroit"></div>
-  <div id="col-hautgauchelarge">
-   <BOUCLE_majs(RUBRIQUES){age>=0}{par date}{inverse}{0,1}>
-   <div class="maj">Site mis &agrave; jour le [(#DATE|jour)/][(#DATE|mois)/][(#DATE|annee)]</div>
-   </BOUCLE_majs>
-  </div>
+<div id="navigation" class="coins_ronds">
+<INCLURE{fond=inc-mise_a_jour_site}>
 
 <div class="extrait">
 
-<INCLURE(session.php){fond=pave_membre}>
-
+<INCLURE{fond=pave_membre}>
 
 	<!-- Breves -->
 
@@ -64,19 +59,17 @@
 
 
 </div>
-  <div id="col-basdroit"></div><div id="col-basgauche"></div>
 </div>
 
 <div id="principal">
 
 <div class="contenu">
-  <div id="rub-hautdroit"></div><div id="rub-hautgauchelarge">
-     Vous &ecirc;tes ici: &nbsp;<a href="/">Accueil</a>&nbsp;>&nbsp;
+  <div id="intro" class="coins_ronds">
+     <div class="maj">Vous &ecirc;tes ici: &nbsp;<a href="/">Accueil</a>&nbsp;>&nbsp;
      <BOUCLE_vous_etes_icis(HIERARCHIE){id_article} {" > "}>
      <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
      </BOUCLE_vous_etes_icis>
-  </div>
-
+     </div>
 
 
   <div class="liste-articles">
@@ -89,16 +82,14 @@
 
 </div>
 
-<div id="rub-basdroit"></div><div id="rub-basgauche"></div>
-
 </div>
 
 <!-- Articles dUS SITE -->
 
 <B_articles>
-<div class="contenu" >
-  <div id="fil-hautdroit"></div><div id="fil-hautgauchelarge">
-	<h2 class="invisible">Articles publi&eacute;s sur ce site</h2></div>
+<B_articles_recents>
+<div id="liste" class="coins_ronds"><h2 class="invisible">Articles publi&eacute;s sur ce site</h2>
+
 	<div class="liste-articles">
 	#ANCRE_PAGINATION
 	<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {pagination 10}>
@@ -117,7 +108,7 @@
 	</BOUCLE_articles>
 	[<p class="pagination">(#PAGINATION)</p>]
 	</div>
-<div id="fil-basdroit"></div><div id="fil-basgauche"></div>
+
 </B_articles>
 
 [<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
@@ -129,7 +120,7 @@
 <a name="lien_archives" title="Coming soon">Voir les archives de cette section (pas en service actuellement)</a>
 <BOUCLE_articles_archives(ARTICLES) {id_rubrique} {age>=365} {doublons interdit}>
 </BOUCLE_articles_archives>
-
+</div>
 
 
 </div><!-- fin page -->
