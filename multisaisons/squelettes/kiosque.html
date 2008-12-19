@@ -36,13 +36,13 @@
 
       
  
- <B_syndic_sites>#ANCRE_PAGINATION
+ <B_syndic_sites>
  
  [(#REM) On affiche le site si on a un id_site. ]
  
 <BOUCLE_nom_site(SYNDIC_ARTICLES){id_syndic}{0,1}>
 <span class="gauche logorond">
-<a href="[(#URL_SITE)]">
+<a class='ajax' href="[(#URL_SITE)]">
 [(#LOGO_SITE||?{'',' '})
 [(#SET{img,http://open.thumbshots.org/image.pxf?url=#URL_SITE&ext=.jpg})]  
 [(#SET{img,[(#GET{img}|copie_locale)]})]
@@ -69,7 +69,7 @@
 </li>
 </BOUCLE_syndic_sites>
 </ul>
-<p class="centre">#PAGINATION</p>
+<p class="centre pagination">#PAGINATION</p>
 </B_syndic_sites>
 
 
@@ -100,7 +100,7 @@
 
 
 				
-				<B_syndic_mois>#ANCRE_PAGINATION
+				<B_syndic_mois>
                 <BOUCLE_mois_site(SYNDIC_ARTICLES){par date}{mois_relatif=0}{0,1}>  <h4>Les
                   articles en [(#DATE|nom_mois)].</h4>
                 </BOUCLE_mois_site>
@@ -110,7 +110,7 @@
 				</li>
                 </BOUCLE_syndic_mois>
 				</ul>
-				<p class="centre">#PAGINATION</p>
+				<p class="centre pagination">#PAGINATION</p>
                 </B_syndic_mois>
 				<h4><:kiosque_pas_article:> [ (#ENV{date}|affdate_mois_annee) :]</h4>
 				<p><:kiosque_pas_article1:> #NOM_SITE_SPIP.</p>
@@ -172,7 +172,7 @@
   <h4 class="icone_agenda"><:affichage_date:></h4>
   
   
-  		<p class="centre"><BOUCLE_mois2(SYNDIC_ARTICLES){0,1}>
+  		<p class="centre ajax"><BOUCLE_mois2(SYNDIC_ARTICLES){0,1}>
 			[<a	href="(#URL_PAGE{kiosque}|parametre_url{date,[(#ENV{date}|Agenda_moisdecal{-1,'Y-m'})]})"
 				title="[(#ENV{date}|Agenda_moisdecal{-1,'Y-m'}|affdate_mois_annee)]">[(#ENV{date}|Agenda_moisdecal{-1,'Y-m'}|nom_mois)]&nbsp;&#8249;</a>]
 				[<strong>(#ENV{date}|affdate_mois_annee)</strong>]

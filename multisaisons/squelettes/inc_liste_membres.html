@@ -34,13 +34,13 @@
 
 
 <p class="interne">Annuaire:
-<BOUCLE_initial_nom(AUTEURS){tous}{par nom}>[ <a  rel="nofollow" href="[(#SELF|parametre_url{'debut_auteurs',''}|parametre_url{lettre,#NOM|translitteration|couper{1}|lettre1|unique{lien}})]">(#NOM|translitteration|couper{1}|lettre1|unique{titrelien})</a>]</BOUCLE_initial_nom>
+<BOUCLE_initial_nom(AUTEURS){tous}{par nom}>[ <a  class="ajax" rel="nofollow" href="[(#SELF|parametre_url{'debut_auteurs',''}|parametre_url{lettre,#NOM|translitteration|couper{1}|lettre1|unique{lien}})]">(#NOM|translitteration|couper{1}|lettre1|unique{titrelien})</a>]</BOUCLE_initial_nom>
 </p>
 
 
 
 
-<B_auteurs>#ANCRE_PAGINATION
+<B_auteurs>
 
 <ul class="membres">
 <BOUCLE_auteurs(AUTEURS){tous}{par nom}{nom==^#ENV{lettre}}{pagination 20}>
@@ -50,13 +50,13 @@
 [<li class="attente"><a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Compte en attente">]
 #NOM</a></li>
 </BOUCLE_auteurs>
-</ul>[<p class="centre">(#PAGINATION)</p>] 
+</ul>[<p class="centre pagination">(#PAGINATION)</p>] 
 </B_auteurs>
 
 
 
 <BOUCLE_quel_article(articles){id_article=#ENV{id_article}}>
-<B_posteurs_dans_article>#ANCRE_PAGINATION<h4 class="icone_membre">Ils ont posté dans ce forum:</h4>
+<B_posteurs_dans_article><h4 class="icone_membre">Ils ont posté dans ce forum:</h4>
 <ul class="membres">
 <BOUCLE_posteurs_dans_article(FORUMS){id_article}{plat}{!par date}{fusion id_auteur}{pagination 20}>
 <BOUCLE_auteur_forum(AUTEURS){tous}{id_auteur}>
@@ -67,6 +67,6 @@
 #NOM</a></li>
 </BOUCLE_auteur_forum>
 </BOUCLE_posteurs_dans_article>
-</ul>[<p class="centre">(#PAGINATION)</p>] 
+</ul>[<p class="centre pagination">(#PAGINATION)</p>] 
 </B_posteurs_dans_article>
 </BOUCLE_quel_article>
