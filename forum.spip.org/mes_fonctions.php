@@ -213,4 +213,10 @@ function tampons($valeur, $nom, $type, $action){
 }
 return '';
 }
+
+function police_des_bavards($score)
+{
+	return 5*(1+ceil(log10($score)));
+}
+
 ?>

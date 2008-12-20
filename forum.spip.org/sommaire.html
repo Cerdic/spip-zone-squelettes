@@ -51,37 +51,23 @@ FORUMS
 
 <br /><br /><br />
 <B_langues>
-<table border="0" cellpadding="10"><tr><?php
+<table border="0" cellpadding="10"><tr>
 <BOUCLE_langues(RUBRIQUES){id_parent=0}{par lang}>
-$titre['#LANG'] = "[(#TITRE|attribut_html|texte_script|texte_script)]";
-$lien['#LANG'] = '#URL_RUBRIQUE';
-$dir['#LANG'] = '#LANG_DIR';
-$nb['#LANG'] = <BOUCLE_total_forum(FORUMS){plat}{articles.lang}{articles.statut='publie'} />#TOTAL_BOUCLE<//B_total_forum>;
-</BOUCLE_langues>
-$max = max($nb);
-$max *= $max;
-$message = _T('public:messages_forum');
-foreach ($nb as $lang => $score) {
-	$size = ceil(1 + sqrt(100*($score*$score)/$max));
-	echo '<td align="center" dir="'.$dir[$lang].'">',
-			"<font size='$size'>",
-			'<a href="',
-			$lien[$lang],
-			'" title="',
-			$titre[$lang],
-			'">',
-			afficher_nom_langue($lang),
-			'</a></font>',
-			'<div class="droitpetit" dir="',
-			$dir[$lang],
-			'">',
-			$message,
-			'&nbsp;: ',
-			$score,
-			"</div></td>\n";
-	if (++$i %3 == 0) echo "</tr><tr>\n";
-}
-?></tr></table>
+<BOUCLE_total_forum(FORUMS)
+	{plat}
+	{articles.lang=#_langues:LANG}
+	{articles.statut='publie'}
+/><td style='text-align: center; vertical-align: bottom' dir='#LANG_DIR'>
+	<div style='font-size: [(#TOTAL_BOUCLE|police_des_bavards)]pt'>
+	<a href='#URL_RUBRIQUE'
+		title="[(#TITRE|attribut_html|texte_script)]">[(#LANG|afficher_nom_langue)]</a>
+	</div>
+	<div class="droitpetit">
+		<:public:messages_forum:>&nbsp;: #TOTAL_BOUCLE
+	</div>
+</td><//B_total_forum>[(#COMPTEUR_BOUCLE|alterner{'','','
+</tr><tr>'})]</BOUCLE_langues>
+</tr></table>
 </B_langues>
 <br /><br /><br />
 </td></tr></table>
