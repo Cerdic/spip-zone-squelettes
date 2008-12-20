@@ -493,6 +493,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_css_noisettes' => 'Noisettes des colonnes',
 		'cfg_lgd_css_sauvegarde' => 'Fichier de sauvegarde',
 		'cfg_lgd_css_restauration' => 'Fichier de sauvegarde',
+		'cfg_lgd_css_pagination' => 'Pagination',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -638,6 +639,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_css_couleurs_menus' => 'Choisissez vos couleurs pour les menus de la colonne navigation',
 		'cfg_inf_css_sauvegarde' => 'Vous pouvez sauvegarder votre configuration des styles saisie dans le formulaire ci-dessus dans un fichier texte pour une restauration ou une consultation future. Le fichier est cr&eacute;&eacute; dans tmp/cfg/.',
 		'cfg_inf_css_restauration' => 'Vous pouvez restaurer une configuration de styles que vous avez sauvegard&eacute;e. Choisissez le fichier de sauvegarde dans la liste ci-dessous.',
+		'cfg_inf_css_pagination' => 'Vous pouvez modifier les couleurs des items de la pagination pour l\'ensemble des pages o&ugrave; elle est utilis&eacute;e.',
+		'cfg_inf_css_couleurs_pagination' => 'Choisissez vos couleurs pour les liens et le texte',
+		'cfg_inf_css_couleurs_pagination_on' => 'Choisissez vos couleurs pour le lien expos&eacute;',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
