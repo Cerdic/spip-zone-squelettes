@@ -68,6 +68,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 'cfg_couleurs_texte' => 'Activation de la gestion des couleurs du site par le plugin.',
 
+'couleur_aide' => 'Cliquez sur les champs que vous souhaitez modifier pour faire appara&icirc;tre la palette de couleurs.',
+
 'cfg_background_legend' => 'Couleur de l\'arri&egrave;re plan : ',
 
 'cfg_background_texte' => 'Correspond &agrave; l\'arri&egrave;re de la page. Par d&eacute;faut : #efefef (gris tr&egrave;s clair)',
