@@ -17,7 +17,7 @@ function eva_habillage_definition_themes () {
     //Barres d'arborescence situé sous l'entête de la page
     $eva_barres_entete_arborescence_background = array('div#arborescence');
     //Secteur présentant les auteurs et la date
-    $eva_barres_entete_auteur_background = array('#auteursdates','.bloc #auteursdates');
+    $eva_barres_entete_auteur_background = array('#auteursdates','.edito .titre div#auteursdates','.bloc #auteursdates');
    //Fond des titres de l'entête
     $eva_barres_entete_texte_background = array('div#entete h1 span','div#entete h2 span');
     //Fond du secteur de sur-titre, titre et sous-titre
@@ -74,7 +74,7 @@ function eva_habillage_definition_themes () {
     //Couleur du texte dans les barres des liens et d'arborescence
     $texte_entete_arborescence_color = array('div#arborescence','div#arborescence a','div#arborescence strong','div#arborescence em','div#entete ul.liens','div#entete ul.liens a','div#entete ul.liens li.on a');
     //Couleur du texte du secteur d'auteur
-    $texte_auteur_color = array('#auteursdates','#auteursdates a','.bloc #auteursdates li','.bloc #auteursdates li a');
+    $texte_auteur_color = array('#auteursdates','.edito .titre div#auteursdates a','#auteursdates a','.bloc #auteursdates li','.bloc #auteursdates li a');
     //Couleur des textes du pied de page
     $texte_pied_color = array('ul#pied','ul#pied a','ul#pied li.on a','ul#pied a:hover','ul#pied p a:hover');
     //Couleur des liens
@@ -586,7 +586,7 @@ function EVA_div_images() {
     'image_entete_page' => array('div#entete'),
     'image_barre_entete' => array('div#entete ul.liens'),
     'image_barre_entete_arborescence' => array('div#arborescence'),
-    'image_barre_auteur' => array('#auteursdates','.bloc #auteursdates'),
+    'image_barre_auteur' => array('.edito .titre div#auteursdates','#auteursdates','.bloc #auteursdates'),
     'image_titre_entete' => array('div#entete h1 span','div#entete h2 span'),
     'image_pied' => array('ul#pied'),
     'image_pied-logo' => array('#logo-pied'),
