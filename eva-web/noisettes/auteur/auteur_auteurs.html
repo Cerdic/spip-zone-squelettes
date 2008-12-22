@@ -1,0 +1,19 @@
+#CACHE{12*3600}
+
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{nbre_auteur_pag_auteur,#EVANBREAUTEURPAGAUTEUR}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{nbre_auteur_pag_auteur,5}]
+
+  [(#REM) Affichage de tous les auteurs]
+<?php if (#GET{nbre_auteur_pag_auteur}!=0) { ?>
+<B_auteurs>
+	<div class="bloc">
+	<h3 class="titre"><:tous_les_auteurs:></h3>
+	<ul>
+	[<li class="pagination">(#PAGINATION{page_precedent_suivant})</li>]
+	<BOUCLE_auteurs(AUTEURS){pagination #GET{nbre_auteur_pag_auteur}}>
+		<li [ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><a href="#URL_AUTEUR">[<strong>(#NOM)</strong>]</a></li>
+	</BOUCLE_auteurs>
+	<div class="menupaginationbas"><em><:il_y_a2:> #GRAND_TOTAL <:il_y_a4:> #TOTAL_BOUCLE</em></div>
+	</ul>
+	</div>
+</B_auteurs> <?php } ?>
