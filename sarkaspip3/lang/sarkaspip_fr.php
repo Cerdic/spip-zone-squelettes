@@ -324,13 +324,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //U
 	  
-		'url_fausse' => 'L\'adresse URL que vous demandez n\'existe pas. <a href="#URL_PAGE{plan,tri=par_rubrique}">Le plan du site</a> peut vous aider &agrave; trouver l\'information recherch&eacute;e.',
-	  
+		'url_fausse_1' => 'L\'adresse URL que vous demandez n\'existe pas. Le ',
+	  	'url_fausse_2' => 'peut vous aider &agrave; trouver l\'information recherch&eacute;e.',
+
 	
 //V
 	  
 		'vendredi_abrege' => 'Ve',
 		'verifier_xhtml' => 'V&eacute;rifier la validit&eacute; XHTML de cette page',
+		
 		'votre_reponse' => 'Votre r&eacute;ponse',
 	  
 	
@@ -635,7 +637,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_css_noisettes' => 'Ce bloc de formulaires vous permet de modifier les couleurs des noisettes, de fa&ccedil;on globale, et des menus.',
 		'cfg_inf_css_couleurs_noisettes_titre' => 'Choisissez vos couleurs pour le bloc de titre des noisettes',
 		'cfg_inf_css_couleurs_noisettes_soustitre' => 'Choisissez vos couleurs pour les sous-titres des noisettes',
-		'cfg_inf_css_couleurs_noisettes_contenu' => 'Choisissez vos couleurs pour les &eacute;l&eacute:ments du contenu de chaque noisette.',
+		'cfg_inf_css_couleurs_noisettes_contenu' => 'Choisissez vos couleurs pour les &eacute;l&eacute;ments du contenu de chaque noisette.',
 		'cfg_inf_css_couleurs_menus' => 'Choisissez vos couleurs pour les menus de la colonne navigation',
 		'cfg_inf_css_sauvegarde' => 'Vous pouvez sauvegarder votre configuration des styles saisie dans le formulaire ci-dessus dans un fichier texte pour une restauration ou une consultation future. Le fichier est cr&eacute;&eacute; dans tmp/cfg/.',
 		'cfg_inf_css_restauration' => 'Vous pouvez restaurer une configuration de styles que vous avez sauvegard&eacute;e. Choisissez le fichier de sauvegarde dans la liste ci-dessous.',
