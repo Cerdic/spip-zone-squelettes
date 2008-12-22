@@ -98,7 +98,13 @@ echo fin_cadre_trait_couleur(true);
 		if ((strpos($mon_habillage,'droite')!=FALSE) AND ($habillage_cles=='taille_largeur_menu')) {echo _T('evahabillage:taille_largeur_menudroite');}
 			elseif ((strpos($mon_habillage,'droite')!=FALSE) AND ($habillage_cles=='taille_largeur_menudroite')) {echo _T('evahabillage:taille_largeur_menu');}
 			else {echo _T('evahabillage:'.$habillage_cles);}
-		echo '</td><td align="center">'.'<input type="text" name="'.$habillage_cles.'" value="'.$tableau_themes_defini[$habillage_cles].'" size="10">'.'</td></tr>';
+		echo '</td><td align="center">'.'<input ';
+		if ((strpos($habillage_cles,'bordure_style')===FALSE)
+		AND (strpos($habillage_cles,'bordure_largeur')===FALSE)
+		AND (strpos($habillage_cles,'taille_')===FALSE)
+		AND (strpos($habillage_cles,'admin_deplacement')===FALSE)
+		){echo 'class="palette" ';}
+		echo 'type="text" name="'.$habillage_cles.'" value="'.$tableau_themes_defini[$habillage_cles].'" size="10">'.$habillage_cles.'</td></tr>';
             }
         }
     echo '</table><div style="text-align:center;"><input type="submit" value="'._T('evahabillage:EVA_valider').'"></div>';
