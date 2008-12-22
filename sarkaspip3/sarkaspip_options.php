@@ -12,6 +12,8 @@ define('_SARKASPIP_DEBUG_CFG_ARBO', 'non');
 define('_SARKASPIP_DEBUG_CFG_BOUTON', 'non');
 
 // Liste des donnees de configuration du squelette non CFG
+// -- Pour les meta
+define('_SARKASPIP_CONFIG_INTRO_META', 150);
 // -- Pour les documents joints et portfolio d'images
 define('_SARKASPIP_CONFIG_LARGEUR_DOCUMENT', 115);
 define('_SARKASPIP_CONFIG_LARGEUR_IMAGE', 115);

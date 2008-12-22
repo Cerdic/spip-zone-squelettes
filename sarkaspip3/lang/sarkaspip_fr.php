@@ -736,6 +736,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_meta_robot' => 'Nombre de jours entre deux visites des robots (balise revisit-after)',
 		'cfg_lbl_galerie_type_1' => 'Type planche',
 		'cfg_lbl_galerie_type_2' => 'Type plan',
+		'cfg_lbl_intro_galerie' => 'Taille maximale de l\'introduction d\'un album',
 		'cfg_lbl_galerie_modele_1' => 'Par ann&eacute;e calendaire',
 		'cfg_lbl_galerie_modele_2' => 'Par saison',
 		'cfg_lbl_galerie_mois1' => 'Premier mois de la saison',
