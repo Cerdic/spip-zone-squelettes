@@ -751,6 +751,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_taille_vignette_galerie' => 'Taille maximale de la vignette en hauteur ou en largeur',
 		'cfg_lbl_liste_contacts' => 'Liste des contacts possibles',
 		'cfg_lbl_taille_logo' => 'Taille maximale du logo en hauteur ou en largeur',
+		'cfg_lbl_hauteur_minimale' => 'Hauteur minimale de cette partie du bandeau',
 		'cfg_lbl_effet_aucun' => 'Aucun effet',
 		'cfg_lbl_effet_nyroceros' => 'Effet Nyromodal image par image (n&eacute;cessite le plugin Nyroceros)',
 		'cfg_lbl_effet_nyroceros_diapo' => 'Effet Nyromodal en diaporama (n&eacute;cessite le plugin Nyroceros)',
