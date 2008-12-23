@@ -1,11 +1,11 @@
 #CACHE{3600}
 <BOUCLE_Pictos(MOTS){type=_ModePortail}{titre==#ENV{pictoscherches}}>
-#SET{masque,#LOGO_MOT_SURVOL||extraire_attribut{src}}
-#SET{largeur,#LOGO_MOT_SURVOL||extraire_attribut{width}}
-#SET{hauteur,#LOGO_MOT_SURVOL||extraire_attribut{height}}
-#SET{masquetaille,#LOGO_MOT_SURVOL||image_alpha{127}|image_aplatir{png,7f7f7f}|extraire_attribut{src}}
-#SET{texteombre,(#_Pictos:TITRE|utf_8_to_unicode|image_typo{police=Fontin_Sans_B_45b.ttf,taille=16,couleur=000000,align=center,largeur=#GET{largeur},padding=4}|image_recadre{#GET{largeur},#GET{hauteur},center bottom,7f7f7f}|image_aplatir{png,7f7f7f}|image_masque{#GET{masquetaille}}|extraire_attribut{src})}
-#SET{texteclair,(#_Pictos:TITRE|utf_8_to_unicode|image_typo{police=Fontin_Sans_B_45b.ttf,taille=16,couleur=ffffff,align=center,largeur=#GET{largeur},padding=5}|image_recadre{#GET{largeur},#GET{hauteur},center bottom,7f7f7f}|image_aplatir{png,7f7f7f}|image_masque{#GET{masquetaille}}|extraire_attribut{src})}
+#SET{masque,#CHEMIN{images/masque_vignette_portail.png}}
+#SET{largeur,122}
+#SET{hauteur,122}
+#SET{masquetaille,#CHEMIN{images/masque_vignette_portail.png}|en_image|image_alpha{127}|image_aplatir{png,7f7f7f}|extraire_attribut{src}}
+#SET{texteombre,(#_Pictos:TITRE|utf_8_to_unicode|image_typo{police=Fontin_Sans_B_45b.ttf,taille=32,couleur=000000,align=center,largeur=#GET{largeur}|mult{2},padding=8}|image_reduire_par{2}|image_recadre{#GET{largeur},#GET{hauteur},center bottom,7f7f7f}|image_aplatir{png,7f7f7f}|image_masque{#GET{masquetaille}}|extraire_attribut{src})}
+#SET{texteclair,(#_Pictos:TITRE|utf_8_to_unicode|image_typo{police=Fontin_Sans_B_45b.ttf,taille=32,couleur=ffffff,align=center,largeur=#GET{largeur}|mult{2},padding=10}|image_reduire_par{2}|image_recadre{#GET{largeur},#GET{hauteur},center bottom,7f7f7f}|image_aplatir{png,7f7f7f}|image_masque{#GET{masquetaille}}|extraire_attribut{src})}
 <BOUCLE_ArticlePicto(ARTICLES){id_mot}{par hasard}{0,1}>
 <a href="#URL_ARTICLE"[ hreflang="(#LANG)"] class="vignette">
 <img src="[(#LOGO_MOT_NORMAL||extraire_attribut{src}|image_masque{#GET{masque}}|image_masque{#GET{texteombre}}|image_masque{#GET{texteclair}}|image_masque{#GET{texteclair}}|extraire_attribut{src})]" alt="[(#_Pictos:TITRE)]" width="#GET{largeur}" height="#GET{hauteur}" />
