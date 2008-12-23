@@ -119,6 +119,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'filtre_tout' => 'Aucun filtre',
 		'filtre_vide' => 'Sans cat&eacute;gorie',
 		'forum' => 'Forum', // redefinition item SPIP
+		'fourni_par_weather_com' => 'par weather.com&reg;',
 	  
 	
 //G
