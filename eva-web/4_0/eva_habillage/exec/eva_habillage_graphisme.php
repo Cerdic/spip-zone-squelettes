@@ -251,7 +251,7 @@ echo fin_cadre_trait_couleur(true);
     echo debut_cadre_trait_couleur(_DIR_PLUGIN_EVA_HABILLAGE."img_pack/palette.png", true, '', _T('evahabillage:EVA_aide_graphisme'));
      include_spip("inc/eva_habillage_choix_couleur");
     eva_habillage_choix_couleur();
-    echo '<hr /><p><a href="'._DIR_PLUGIN_EVA_HABILLAGE.'colorschemes2" target="_blank" title="Cliquez ici pour utiliser ColorSchemes2 !">'._T('evahabillage:colorschemes2').'</a></p><br />';
+    echo '<hr /><p><a href="'._DIR_PLUGIN_EVA_HABILLAGE.'colorschemes2/index.html" target="_blank" title="Cliquez ici pour utiliser ColorSchemes2 !">'._T('evahabillage:colorschemes2').'</a></p><br />';
     echo fin_cadre_trait_couleur(true);
 
     //Taille des logos
