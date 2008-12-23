@@ -498,6 +498,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_css_restauration' => 'Fichier de sauvegarde',
 		'cfg_lgd_css_pagination' => 'Pagination',
 		'cfg_lgd_css_extraits' => 'Extraits d\'article',
+		'cfg_lgd_css_commentaires' => 'Commentaires d\'article',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -647,8 +648,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_css_couleurs_pagination' => 'Choisissez vos couleurs pour les liens et le texte',
 		'cfg_inf_css_couleurs_pagination_on' => 'Choisissez vos couleurs pour le lien expos&eacute;',
 		'cfg_inf_css_extraits' => 'Vous pouvez modifier les attributs graphiques des extraits d\'articles affich&eacute;s dans les pages sommaire, rubrique...',
-		'cfg_inf_css_couleurs_extrait_1' => 'Choisissez vos couleurs pour les titres et leur survol, le artouche, le fond et le cadre.',
+		'cfg_inf_css_couleurs_extrait_1' => 'Choisissez vos couleurs pour les titres et leur survol, le cartouche, le fond et le cadre.',
 		'cfg_inf_css_couleurs_extrait_2' => 'Choisissez vos couleurs pour les liens rubrique, commentaires, auteurs et lire la suite.',
+		'cfg_inf_css_commentaires' => 'Vous pouvez modifier les attributs graphiques des commentaires d\'articles affich&eacute;s dans les pages article, formulaire de commentaire...',
 
 // Labels des items de choix
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
@@ -766,6 +768,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_css_fg_lien' => 'des liens',
 		'cfg_lbl_css_fg_intertitre' => 'des intertitres',
 		'cfg_lbl_css_fg_titre' => 'des titres',
+		'cfg_lbl_css_fg_titre_cartouche' => 'du titre et du cartouche',
 		'cfg_lbl_css_fg_tout' => '(texte et liens)',
 		'cfg_lbl_css_ho' => 'Couleur de survol @lbl_ho_complement@',
 		'cfg_lbl_css_ho_lien' => 'des liens',
