@@ -1,0 +1,231 @@
+﻿#CACHE{0}
+<BOUCLE_principale(RUBRIQUES){id_rubrique}>
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
+	<head>
+	<INCLURE{fond=noisettes/headers/entete-meta}{env}>
+	</head>
+	<body>
+	<div id="page">
+	
+		[(#REM) Entte de la page]
+		<INCLURE{fond=noisettes/entete/inc_entete-page}{id_rubrique}>
+			
+		[(#REM) Conteneur]
+		<div id="conteneurseul">
+		
+			[(#REM) Contenu de la page ]
+			<div id="contenu">
+
+
+				
+				
+				
+				
+				[(#REM) Liste des rubriques]
+				<B_sous_rubriques>
+					
+					<div class="bloc">
+				<h3 class="titre"><:sous_rubriques:></h3>
+				<ul>
+					<BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par num titre}>
+						[<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2><a href="#URL_RUBRIQUE">[(#LOGO_RUBRIQUE||reduire_image{50,60})](#TITRE|supprimer_numero)</a>]</h2>
+						[(#INTRODUCTION)]
+						<div class="suite"> <a href="#URL_RUBRIQUE"><:lire_suite:></a> </div>
+						<div class="nettoyeur"></div>
+						</li>
+					</BOUCLE_sous_rubriques>
+				</ul>
+					</div>
+				</B_sous_rubriques>
+	
+
+
+
+
+
+
+
+[(#REM) Liste des articles épisodes]
+
+				
+<B_articles>
+					
+					
+<div class="bloc">
+
+#ANCRE_PAGINATION
+					
+<h1 class="titre"><a href="#URL_RUBRIQUE">[(#LOGO_RUBRIQUE||reduire_image{50,60})][(#TITRE|supprimer_numero)]</a></h1>
+
+					
+<ul>
+[<li class="pagination">(#PAGINATION{precedent_suivant})</li>]	
+</ul>
+						
+
+						
+<BOUCLE_articles(ARTICLES){id_rubrique}{par num titre}{pagination 1}>
+
+
+
+<div class="titre">
+
+[<h4 class="#EDIT{surtitre} surtitre">(#SURTITRE)</h4>]
+	[<h2 class="#EDIT{titre}">(#TITRE|supprimer_numero)</h2>]
+	[<h4 class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</h4>]
+	[(#VAL{_DIR_PLUGIN_NOTATION|defined}|oui) #FORMULAIRE_NOTATION ] 
+</div>
+
+
+
+
+[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
+						
+						
+[<div class="#EDIT{texte} texte">(#TEXTE|reduire_image{700,0})</div>]
+						
+						
+<div class="nettoyeur"></div>
+
+
+
+
+[<div class="#EDIT{hyperlien} lien"><strong><:voir_en_ligne:></strong> <a href="#URL_SITE">(#NOM_SITE)</a></div>]
+
+	[(#REM) Liste des Documents joints exclure les doublons des images tant dans le portfolio ]
+
+	<BOUCLE_exclure_doublons_album(MOTS){id_article}{titre=portfolio}>
+		<BOUCLE_exclure_doublons(DOCUMENTS){id_article}{mode=document}{extension==jpg|png|gif}{doublons}>
+		</BOUCLE_exclure_doublons>
+	</BOUCLE_exclure_doublons_album>
+
+	[(#REM) Si mot cle "diaporama"]
+	<BOUCLE_test_diaporama(ARTICLES){id_article}{titre_mot=diaporama}>
+	<B_diapo>
+	<div class="bloc">
+	#ANCRE_PAGINATION
+	<h3 class="titre"><:diaporama:></h3>
+	<ul>
+	<BOUCLE_diapo(DOCUMENTS){id_article}{par num titre}{pagination 1}>
+		<li>
+		[(#EMBED_DOCUMENT|reduire_image{700,0})]
+		</li>
+	</BOUCLE_diapo>
+	</ul>
+	[<p class="pagination">(#PAGINATION{precedent_suivant})</p>]
+	</div>
+	</B_diapo> 
+
+	</BOUCLE_test_diaporama>
+	</B_test_diaporama>
+
+	<B_documents>
+	<div class="divers">
+	<h4><:documents_joints:></h4>
+	<ul>
+	<BOUCLE_documents(DOCUMENTS){id_article}{mode=document}{par num titre}{doublons}>
+		<li>[<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT_RUBRIQUE||image_reduire{#GET{largeurlogopetit},#GET{hauteurlogopetit}})](#TITRE|supprimer_numero|sinon{<:document:>})</a>][, <em>(#TYPE_DOCUMENT)</em>][, <em>(#TAILLE|taille_en_octets)</em>]
+		[(#DESCRIPTIF)]
+		<div class="nettoyeur"></div>
+		</li>
+	</BOUCLE_documents>
+	</ul>
+	</div>
+	</B_documents>
+	<//B_test_diaporama>
+
+	[<div class="divers surlignable">
+	<h4><:post_scriptum:></h4>
+	<div class="#EDIT{ps} contenu">(#PS)</div>
+	</div>]
+
+	[(#REM)  Notes de bas de page ]
+	[<div class="divers">
+	<h4><:notes:></h4>
+	<div class="contenu">(#NOTES)</div>
+	</div>]
+
+
+
+						
+
+
+<div class="suite">
+	
+	
+		
+
+[(#REM) Auteurs et dates]
+
+		
+<B_auteurs>
+
+<p>	
+<strong><:par:></strong> <BOUCLE_auteurs(AUTEURS){id_article}{par nom}{", "}>
+<a href="#URL_AUTEUR">#NOM</a>
+</BOUCLE_auteurs>
+
+</p>
+</B_auteurs>
+
+
+[<strong><:publie:></strong>
+ (#DATE|affdate_jourcourt)]
+
+
+
+<p>
+			
+		
+[(#REM)
+	[<strong><:mis_a_jour:></strong>
+ (#DATE_MODIF|affdate_jourcourt)]]
+	
+</p>
+
+<p>
+<BOUCLE_copy(ARTICLES) {par date} {0,1}>
+[(#DATE|annee)] [-(#ENV{date}|>{#DATE}|?{#ENV{date},''}|annee)] © #NOM_SITE_SPIP - Tous droits réservés
+ 
+</BOUCLE_copy>
+</p>
+
+
+</div>					
+
+					
+
+
+
+
+</BOUCLE_articles>
+
+
+
+
+
+					
+</div>
+
+
+				
+</B_articles>
+
+
+
+
+			
+	<div class="nettoyeur"></div>
+		
+	</div>
+
+
+
+
+		<INCLURE{fond=noisettes/pied/inc_pied}{lang}>
+	</div>
+</body>
+</html>
+</BOUCLE_principale>
