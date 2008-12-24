@@ -553,7 +553,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_ancre_hautpage' => 'D&eacute;sirez vous ins&eacute;rer un lien permettant de remonter vers le haut de la page ?',
 		'cfg_inf_accueil_intro_0' => 'Bienvenue sur l\'espace de param&eacute;trage du squelette Sarka-SPIP. Vous pouvez acc&eacute;der aux diverses pages de configuration via les liens inclus dans le bloc de droite. 
 		Les pages de configuration actuellement disponibles sont:',
-		'cfg_inf_accueil_intro_1' => '<em>Accueil</em> : activation ou d&eacute;sactivatyion du mode debug',
+		'cfg_inf_accueil_intro_1' => '<em>Accueil</em> : pr&eacute;sentation des pages de configuration',
 		'cfg_inf_accueil_intro_2' => '<em>Layout</em> : choix du layout Gala (position des blocs)',
 		'cfg_inf_accueil_intro_3' => '<em>Bandeau</em> : configuration du bandeau', 
 		'cfg_inf_accueil_intro_4' => '<em>Pied de page</em> : configuration du pied de page', 
@@ -595,6 +595,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_plan_sens_tri' => 'Choisissez l\'ordre de tri des dates.',
 		'cfg_inf_meta_keywords' => 'Liste des mots-cles caract&eacute;risant le site s&eacute;par&eacute;s par des virgules (balise keywords)',
 		'cfg_inf_form_contact' => 'Le formulaire de contact permet aux visiteurs d\'envoyer un message &agrave; une adresse reconnue par le site, en g&eacute;n&eacute;ral celle du webmestre ou d\'un administrateur mais ce n\'est en rien une obligation. Choisissez donc ci-apr&egrave;s la personne qui fera office de point de contact.',
+		'cfg_inf_contact_descriptif' => 'Vous pouvez r&eacute;diger un descriptif succinct pour agr&eacute;menter votre formulaire (explication, étiquette, adresse...). Ce texte peut &ecirc;tre &eacute;crit en utilisant les raccourcis classiques de SPIP.',
 		'cfg_inf_annonce_id' => 'Une annonce est mat&eacute;rialis&eacute;e par un article appartenant &agrave; un secteur (rubrique de plus haut niveau). Choisissez donc le secteur qui contiendra vos annonces.',
 		'cfg_inf_accueil_bloc_divers' => '<strong>Configuration d\'&eacute;l&eacute;ments divers</strong>',
 		'cfg_inf_accueil_bloc_layout' => '<strong>Configuration de la structure du site</strong>',
