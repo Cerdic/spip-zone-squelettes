@@ -19,10 +19,25 @@
 
 	Si un lien est passe #ENV{lien} on ajoute la balise <a> avec href=lien
 	sinon on met le href a #URL_DOCUMENT, ce qui permet a toutes les images d'etre cliquables
-	En outre, les images sont compatibles Thickbox
+
+	Si on passe en argument l'effet galerie souhaite (nyroceros, thickbox...) on l'utilise en priorite.
+	Sinon, on utilise l'effet configure pour le squelette
  -->
 ]
 <BOUCLE_document(DOCUMENTS) {id_document}{mode?}>
+	#SET{classe_image, #ENV{lien_class}}
+	[(#ENV{effet}|?{' '})
+		[(#SET{classe_image, [(#ENV{effet})][ (#ENV{lien_class})]})]
+	]
+	[(#ENV{effet}|?{'',' '})
+		[(#CONFIG{sarkaspip_modeles/mode_galerie, 0}|=={1}|?{' '})
+			[(#SET{classe_image, nyroceros[ (#ENV{lien_class})]})]
+		]
+		[(#CONFIG{sarkaspip_modeles/mode_galerie, 0}|=={3}|?{' '})
+			[(#SET{classe_image, thickbox[ (#ENV{lien_class})]})]
+		]
+	]
+	
 	[(#ENV{embed}|?{' '})
 		#SET{affichage, image}
 	]
@@ -54,14 +69,14 @@
 	<span class='spip_document_#ID_DOCUMENT spip_documents[ spip_documents_(#ENV{align})][ (#ENV{class})] spip_lien_ok'[ style='float:(#ENV{align}|match{left|right});']>
 		[(#REM) <!-- image complete ou retaillee --> ]
 		[(#GET{affichage}|=={image}|?{' '})
-			[<a href="(#GET{url})" type="#MIME_TYPE"[ class="(#ENV{lien_class})"][ title="(#GET{titre})"]>]
+			[<a href="(#GET{url})"[ class="(#GET{classe_image})"][ title="(#GET{titre})"]>]
 				<img src="#URL_DOCUMENT"[ width="(#GET{width})"][ height="(#GET{height})"][ alt="(#GET{titre})"] />
 			[(#GET{url}|?{</a>})]
 		]
 		
 		[(#REM) <!-- sinon logo document --> ]
 		[(#GET{affichage}|=={logo}|?{' '})
-			<a href="#GET{url}" type="#MIME_TYPE"[ title="(#GET{titre})"]>
+			<a href="#GET{url}"[ title="(#GET{titre})"]>
 				[(#LOGO_DOCUMENT||inserer_attribut{alt,#GET{titre}})]
 			</a>
 		]

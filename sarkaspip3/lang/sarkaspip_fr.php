@@ -374,7 +374,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_titre_styles' => 'Sarka-SPIP - Configuration des styles',
 		'cfg_titre_plugins' => 'Sarka-SPIP - Configuration des plugins int&eacute;gr&eacute;s',
 		'cfg_titre_auteur' => 'Sarka-SPIP - Configuration de la page auteur',
-		'cfg_titre_breve' => 'Sarka-SPIP - Configuration de la page br&egrave;ve ',
+		'cfg_titre_breve' => 'Sarka-SPIP - Configuration de la page br&egrave;ve',
+		'cfg_titre_modeles' => 'Sarka-SPIP - Configuration des mod&egrave:les',
 
 // Titre des liens des pages
 		'sarkaspip_accueil' => 'Accueil',
@@ -395,6 +396,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'sarkaspip_plugins' => 'Plugins',
 		'sarkaspip_auteur' => 'Auteur',
 		'sarkaspip_breve' => 'Br&egrave;ve',
+		'sarkaspip_modeles' => 'Mod&egrave;les',
 		
 // Descriptif des pages
 		'cfg_descr_accueil' => 'Vous &ecirc;tes sur la page d\'accueil de la configuration du squelette Sarka-SPIP.',
@@ -419,6 +421,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		configuration par d&eacute;faut du plugin si vous n\'utilisez plus le squelette.',
 		'cfg_descr_auteur' => 'Le corps de la page auteur permet d\'afficher plusieurs blocs d\'information : la biographie, les articles publi&eacute;s par l\'auteur et un formulaire de contact. Cette page permet de configurer l\'affichage de tous ces blocs.',
 		'cfg_descr_breve' => 'Le corps de la page breve permet d\'afficher la br&egrave;ve en cours ainsi que la liste de toutes les br&egrave;ves du site. Cette page permet de configurer la pagination de cette liste.',
+		'cfg_descr_modeles' => 'Cette page permet de configurer certains param&egrave;tres globaux applicables mod&egrave;les img, doc et emb.',
 
 // Titre des boites
 		'cfg_boite_accueil' => 'Accueil',
@@ -441,6 +444,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_boite_styles_configuration' => 'Configuration des styles',
 		'cfg_boite_styles_sauvegarde' => 'Sauvegarde des styles',
 		'cfg_boite_styles_restauration' => 'Restauration des styles',
+		'cfg_boite_modeles' => 'Mod&egrave;les',
 
 // Legendes des blocs contenus dans chaque boite
 		'cfg_lgd_layout' => 'Layout',
@@ -499,6 +503,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_css_pagination' => 'Pagination',
 		'cfg_lgd_css_extraits' => 'Extraits d\'article',
 		'cfg_lgd_css_commentaires' => 'Commentaires d\'article',
+		'cfg_lgd_modele_img' => 'Mod&egrave;le img',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -571,6 +576,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_accueil_intro_16' => '<em>Plugins</em> : configuration des plugins utilis&eacute;s par le squelette',
 		'cfg_inf_accueil_intro_17' => '<em>Auteur</em> : configuration des divers blocs de la page auteur',
 		'cfg_inf_accueil_intro_18' => '<em>Br&egrave;ve</em> : configuration des divers blocs de la page br&egrave;ve',
+		'cfg_inf_accueil_intro_19' => '<em>Mod&egrave;les</em> : configuration des mod&egrave;les img, doc et emb',
 		'cfg_inf_accueil_debug' => 'Si vous avez un souci ou voulez rapporter un bug il peut &ecirc;tre utile d\'activer le mode debug pour la configuration des pages. Celui-ci vous permez de lire les variables de chaque fond.',
 		'cfg_inf_rubrique_articles' => 'Voulez-vous afficher la liste des articles publi&eacute;s dans la rubrique ? Si oui, vous pourrez ensuite ajuster quelques param&egrave;tres de cet affichage.',
 		'cfg_inf_pagination_bande' => 'Choisissez la position de la bande de pagination.',
@@ -626,6 +632,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_article_notation' => 'L\'activation du plugin  &#171; Notation d\'&eacute;l&eacute;ments SPIP &#187; vous donne la possibilit&eacute; d\'ins&eacute;rer le formulaire de notation dans le cartouche ou &agrave; la fin du texte de l\'article.',
 		'cfg_inf_auteur_articles' => 'Voulez-vous afficher la liste des articles publi&eacute;s par l\'auteur ? Si oui, vous pourrez ensuite ajuster quelques param&egrave;tres de cet affichage.',
 		'cfg_inf_auteur_contact' => 'Voulez-vous afficher un formulaire pour contacter l\'auteur ?',
+		'cfg_inf_effet_modele_img' => 'Pour les images incrust&eacute;es dans un article, il est possible d\'ajouter des effets de type galerie lors du clic sur ces images. Ces effets n&eacute;cessitent pour la plupart l\'activation du plugin idoine. Vous pouvez choisir d\'activer un effet par d&eacute;faut ci-dessous (il est aussi possible de piloter prioritairement cet effet depuis le mod&egrave;le lui-m&ecirc;me).',
 		'cfg_inf_css_bandeau' => 'Vous pouvez modifier certains attributs graphiques des trois parties qui composent le bandeau.',
 		'cfg_inf_css_pied' => 'Vous pouvez modifier certains attributs graphiques des deux parties qui composent le bandeau.',
 		'cfg_inf_css_couleurs_bandeau_haut' => 'Choisissez vos couleurs pour la partie haute du bandeau',
