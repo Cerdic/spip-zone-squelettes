@@ -11,7 +11,7 @@ sleep 15;
 #Installation des plugins
 mkdir plugins
 cd plugins
-svn checkout svn://zone.spip.org/spip-zone/_squelettes_/soyezcreateurs_net/plugins_1.9.3/plugins/__soyezcreateurs
+svn checkout svn://zone.spip.org/spip-zone/_squelettes_/soyezcreateurs_net/plugins_2.0/plugins/__soyezcreateurs
 sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/acces_restreint
 sleep 15;
