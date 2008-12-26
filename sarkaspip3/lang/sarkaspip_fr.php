@@ -556,7 +556,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_lien_squelette' => 'D&eacute;sirez vous ins&eacute;rer un lien permettant de visualiser ou de t&eacute;l&eacute;charger le squelette de la page en cours ?',
 		'cfg_inf_lien_plan' => 'Voulez-vous ins&eacute;rer le lien menant au &#171; Plan du site &#187; ?',
 		'cfg_inf_ancre_hautpage' => 'D&eacute;sirez vous ins&eacute;rer un lien permettant de remonter vers le haut de la page ?',
-		'cfg_inf_accueil_intro_0' => 'Bienvenue sur l\'espace de param&eacute;trage du squelette Sarka-SPIP. Vous pouvez acc&eacute;der aux diverses pages de configuration via les liens inclus dans le bloc de droite. 
+		'cfg_inf_accueil_intro_0' => 'Bienvenue sur l\'espace de param&eacute;trage du squelette Sarka-SPIP. Vous pouvez acc&eacute;der aux diverses pages de configuration via les liens inclus dans un bloc sur le cot&eacute;. 
 		Les pages de configuration actuellement disponibles sont:',
 		'cfg_inf_accueil_intro_1' => '<em>Accueil</em> : pr&eacute;sentation des pages de configuration',
 		'cfg_inf_accueil_intro_2' => '<em>Layout</em> : choix du layout Gala (position des blocs)',
@@ -633,6 +633,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_auteur_articles' => 'Voulez-vous afficher la liste des articles publi&eacute;s par l\'auteur ? Si oui, vous pourrez ensuite ajuster quelques param&egrave;tres de cet affichage.',
 		'cfg_inf_auteur_contact' => 'Voulez-vous afficher un formulaire pour contacter l\'auteur ?',
 		'cfg_inf_effet_modele_img' => 'Pour les images incrust&eacute;es dans un article, il est possible d\'ajouter des effets de type galerie lors du clic sur ces images. Ces effets n&eacute;cessitent pour la plupart l\'activation du plugin idoine. Vous pouvez choisir d\'activer un effet par d&eacute;faut ci-dessous (il est aussi possible de piloter prioritairement cet effet depuis le mod&egrave;le lui-m&ecirc;me).',
+		'cfg_inf_exclusif_img' => 'Le mod&egrave;le img peut-&ecirc;tre utilis&eacute; en mode exclusif (recommand&eacute;) ou en mode non exclusif (compatible avec les versions pr&eacute;c&eacute;dentes). En mode exclusif, seules les images (document en mode image) sont affich&eacute;es. Voulez-vous utiliser le mode exclusif ?',
 		'cfg_inf_css_bandeau' => 'Vous pouvez modifier certains attributs graphiques des trois parties qui composent le bandeau.',
 		'cfg_inf_css_pied' => 'Vous pouvez modifier certains attributs graphiques des deux parties qui composent le bandeau.',
 		'cfg_inf_css_couleurs_bandeau_haut' => 'Choisissez vos couleurs pour la partie haute du bandeau',

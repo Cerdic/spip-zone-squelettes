@@ -1,6 +1,9 @@
 [(#REM)
 <!-- 
 	Modele pour <img>
+	
+	Si on choisit le mode de fonctionnement du modele "exclusif image" (recommande) alors les documents ne seront pas affiches.
+	Sinon, en mode non exclusif, le fonctionnement sera classique (compatible versions precedentes)
 
 	Si on est en mode "image" (utilisation de ajouter image dans l'espace prive)
 	- si embed=oui, on affiche l'image complete
@@ -30,10 +33,10 @@
 		[(#SET{classe_image, [(#ENV{effet})][ (#ENV{lien_class})]})]
 	]
 	[(#ENV{effet}|?{'',' '})
-		[(#CONFIG{sarkaspip_modeles/mode_galerie, 0}|=={1}|?{' '})
+		[(#CONFIG{sarkaspip_modeles/mode_galerie_img, 0}|=={1}|?{' '})
 			[(#SET{classe_image, nyroceros[ (#ENV{lien_class})]})]
 		]
-		[(#CONFIG{sarkaspip_modeles/mode_galerie, 0}|=={3}|?{' '})
+		[(#CONFIG{sarkaspip_modeles/mode_galerie_img, 0}|=={3}|?{' '})
 			[(#SET{classe_image, thickbox[ (#ENV{lien_class})]})]
 		]
 	]
@@ -77,9 +80,11 @@
 		
 		[(#REM) <!-- sinon logo document --> ]
 		[(#GET{affichage}|=={logo}|?{' '})
+			[(#CONFIG{sarkaspip_modeles/exclusif_img, non}|=={non}|?{' '})
 			<a href="#GET{url}"[ title="(#GET{titre})"]>
 				[(#LOGO_DOCUMENT||inserer_attribut{alt,#GET{titre}})]
 			</a>
+			]
 		]
 	</span>
 </BOUCLE_document>
