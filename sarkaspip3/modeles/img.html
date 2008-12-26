@@ -58,13 +58,14 @@
 		]
 	]
 	<BOUCLE_vignette(DOCUMENTS)	{id_vignette=#ID_DOCUMENT}>
-		#SET{titre, #TITRE|texte_backend|sinon{#TYPE_DOCUMENT}}
+		#SET{titre, #TITRE|texte_backend}
 		#SET{url, #ENV{lien}|sinon{#URL_DOCUMENT}}
 	</BOUCLE_vignette>
 	</B_vignette>
-		#SET{titre, #_document:TITRE|texte_backend|sinon{#_document:TYPE_DOCUMENT}}
+		#SET{titre, #_document:TITRE|texte_backend}
 		#SET{url, #ENV{lien}|sinon{#_document:URL_DOCUMENT}}
 	<//B_vignette>
+	[(#SET{titre, [(#GET{titre}) - ][(#TYPE_DOCUMENT) - ][(#TAILLE|taille_en_octets|texte_backend)]})]
 
 	<span class='spip_document_#ID_DOCUMENT spip_documents[ spip_documents_(#ENV{align})][ (#ENV{class})] spip_lien_ok'[ style='float:(#ENV{align}|match{left|right});']>
 		[(#REM) <!-- image complete ou retaillee --> ]
