@@ -9,17 +9,28 @@
 	jQuery(document).ready(function() {
 		[(#ENV{haut, 1}|=={0}|?{' '})
 			jQuery("#menu_raccourci_defaut").attr({checked: "checked"});
-			jQuery("#bloc_haut2").hide();
+			jQuery("#bloc_haut").hide();
+		]
+		[(#ENV{bas, 1}|=={0}|?{' '})
+			jQuery("#bloc_bas").hide();
 		]
 		[(#ENV{logo_reduit, 1}|=={0}|?{' '})
 			jQuery("#bloc_logo").hide();
 		]
 		jQuery("input[@name='haut']").change(function() {
 			if (jQuery("input[@name='haut']:checked").val() == 1)
-				jQuery("#bloc_haut2").show();
+				jQuery("#bloc_haut").show();
 			else {
 				jQuery("#menu_raccourci_defaut").attr({checked: "checked"});
-				jQuery("#bloc_haut2").hide();
+				jQuery("#bloc_haut").hide();
+			}
+			jQuery(this).blur();
+		});	
+		jQuery("input[@name='bas']").change(function() {
+			if (jQuery("input[@name='bas']:checked").val() == 1)
+				jQuery("#bloc_bas").show();
+			else {
+				jQuery("#bloc_bas").hide();
 			}
 			jQuery(this).blur();
 		});	
@@ -49,10 +60,10 @@
 			<:sarkaspip:cfg_lbl_non:>
 		</label>
 		
-		<div id="bloc_haut2">
+		<div id="bloc_haut">
 			<br />
 			<label><:sarkaspip:cfg_lbl_hauteur_minimale:></label>
-			<input type="text" name="hauteur_min" value="#ENV{hauteur_min, 50}" size="3" class="fondl" />
+			<input type="text" name="haut_minheight" value="#ENV{haut_minheight, 50}" size="3" class="fondl" />
 			<br />
 			<p><:sarkaspip:cfg_inf_logo_reduit:></p>
 			<label>
@@ -123,6 +134,11 @@
 			<:sarkaspip:cfg_lbl_non:>
 		</label>
 		<br />
+		<div id="bloc_bas">
+			<label><:sarkaspip:cfg_lbl_hauteur_minimale:></label>
+			<input type="text" name="bas_minheight" value="#ENV{bas_minheight, 50}" size="3" class="fondl" />
+			<br />
+		</div>
 	</fieldset>
 
 	<fieldset>
