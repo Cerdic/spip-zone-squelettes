@@ -21,6 +21,10 @@ define('_SARKASPIP_CONFIG_TAILLE_TITRE_DOCUMENT', 50);
 define('_SARKASPIP_CONFIG_TAILLE_TITRE_IMAGE', 50);
 define('_SARKASPIP_CONFIG_TAILLE_DESCR_DOCUMENT', 100);
 define('_SARKASPIP_CONFIG_TAILLE_DESCR_IMAGE', 100);
+// -- Pour les modeles d'inscrustation de documents et d'images
+define('_SARKASPIP_CONFIG_IMG_TAILLE_MAX_EMBED', 500);
+define('_SARKASPIP_CONFIG_DOC_LARGEUR_MIN', 120);
+define('_SARKASPIP_CONFIG_DOC_LARGEUR_MAX', 350);
 // -- Pour les icones de rainette
 define('_SARKASPIP_CONFIG_LARGEUR_ICONE_METEO', 80);
 // -- Pour le contact du site

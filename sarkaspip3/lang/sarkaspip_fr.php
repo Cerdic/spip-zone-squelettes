@@ -504,6 +504,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_css_extraits' => 'Extraits d\'article',
 		'cfg_lgd_css_commentaires' => 'Commentaires d\'article',
 		'cfg_lgd_modele_img' => 'Mod&egrave;le img',
+		'cfg_lgd_modele_doc' => 'Mod&egrave;le doc',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -634,6 +635,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_auteur_contact' => 'Voulez-vous afficher un formulaire pour contacter l\'auteur ?',
 		'cfg_inf_effet_modele_img' => 'Pour les images incrust&eacute;es dans un article, il est possible d\'ajouter des effets de type galerie lors du clic sur ces images. Ces effets n&eacute;cessitent pour la plupart l\'activation du plugin idoine. Vous pouvez choisir d\'activer un effet par d&eacute;faut ci-dessous (il est aussi possible de piloter prioritairement cet effet depuis le mod&egrave;le lui-m&ecirc;me).',
 		'cfg_inf_exclusif_img' => 'Le mod&egrave;le img peut-&ecirc;tre utilis&eacute; en mode exclusif (recommand&eacute;) ou en mode non exclusif (compatible avec les versions pr&eacute;c&eacute;dentes). En mode exclusif, seules les images (document en mode image) sont affich&eacute;es. Voulez-vous utiliser le mode exclusif ?',
+		'cfg_inf_exclusif_doc' => 'Le mod&egrave;le doc peut-&ecirc;tre utilis&eacute; en mode exclusif (recommand&eacute;) ou en mode non exclusif (compatible avec les versions pr&eacute;c&eacute;dentes). En mode exclusif, les images (document .jpg, .gif, .png, ) ne sont pas affich&eacute;es. Voulez-vous utiliser le mode exclusif ?',
 		'cfg_inf_css_bandeau' => 'Vous pouvez modifier certains attributs graphiques des trois parties qui composent le bandeau.',
 		'cfg_inf_css_pied' => 'Vous pouvez modifier certains attributs graphiques des deux parties qui composent le bandeau.',
 		'cfg_inf_css_couleurs_bandeau_haut' => 'Choisissez vos couleurs pour la partie haute du bandeau',

@@ -1,0 +1,32 @@
+<BOUCLE_doc (DOCUMENTS) {id_document}{mode?}>
+[(#REM)
+
+	Modele pour <doc> en div pour sarka-SPIP
+
+	Ce modele permet d'encadrer les documents joints,
+	ce qui n'etait pas possible avec l'utilisation
+	des listes de definitions proposees dans le squelette
+	par defaut.
+
+	La largeur de la legende est egale a la largeur de l'image
+	avec un minimum de 110px, et un maximum de 350px.
+
+]
+[(#SET{titre_doc, [(#TITRE) - ][(#TYPE_DOCUMENT) - ][(#TAILLE|taille_en_octets|texte_backend)]})]
+<div class='spip_document_#ID_DOCUMENT[ spip_documents_(#ENV{align}|sinon{"no-float"})][ (#ENV{class})] spip_lien_ok'[ style='float:(#ENV{align}|match{left|right});']>
+	<div class='spip_documents'[ style='width:(#LOGO_DOCUMENT||image_reduire{#CONFIG{taille_preview}}|largeur_majoree{10}|max{120})px;']>
+		<div>
+			<a href="[(#ENV{lien}|sinon{#URL_DOCUMENT})]" type="#MIME_TYPE"[ class="(#ENV{lien_class})"] [title="(#GET{titre_doc})"]>
+				<img src='[(#LOGO_DOCUMENT||extraire_attribut{src})]' width='[(#LOGO_DOCUMENT||largeur)]' height='[(#LOGO_DOCUMENT||hauteur)]' [alt="(#GET{titre_doc})"] />
+			</a>
+		</div>
+		[<div class='spip_doc_titre'[ style='width:(#LOGO_DOCUMENT||image_reduire{#CONFIG{taille_preview}}|largeur|max{110})px;']>
+			<strong>(#TITRE)</strong>
+		</div>]
+		[<div class='spip_doc_descriptif'[ style='width:(#LOGO_DOCUMENT||image_reduire{#CONFIG{taille_preview}}|largeur|min{350}|max{110})px;']>
+			(#DESCRIPTIF)
+			#NOTES
+		</div>]
+	</div>
+</div>
+</BOUCLE_doc>

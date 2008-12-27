@@ -1,32 +1,52 @@
-<BOUCLE_doc (DOCUMENTS) {id_document}{mode?}>
+<BOUCLE_doc (DOCUMENTS) {id_document} {mode?}>
 [(#REM)
-
-	Modele pour <doc> en div pour sarka-SPIP
-
-	Ce modele permet d'encadrer les documents joints,
-	ce qui n'etait pas possible avec l'utilisation
-	des listes de definitions proposees dans le squelette
-	par defaut.
+<!-- 
+	Modele pour <doc> en dl/dt/dd
+	cf. http://pompage.net/pompe/listesdefinitions/
 
 	La largeur de la legende est egale a la largeur de l'image
-	avec un minimum de 110px, et un maximum de 350px.
+	avec un minimum de 120px, et un maximum de 350px (cf define dans le fichier sarkaspip_options.php.
 
+	Dans le cas d'une simple image (mode=image), on affiche
+	le document lui-meme, sans lien de telechargement
+	
+	Si on choisit le mode de fonctionnement du modele "exclusif image" (recommande) alors les images ne seront pas affichees.
+	Sinon, en mode non exclusif, le fonctionnement sera classique (compatible versions precedentes)
+ -->
 ]
-[(#SET{titre_doc, [(#TITRE|couper{80}|sinon{[(#TYPE_DOCUMENT) - [(#TAILLE|taille_en_octets|texte_backend)]]})]})]
-<div class='spip_document_#ID_DOCUMENT[ spip_documents_(#ENV{align}|sinon{"no-float"})][ (#ENV{class})] spip_lien_ok'[ style='float:(#ENV{align}|match{left|right});']>
-	<div class='spip_documents'[ style='width:(#LOGO_DOCUMENT||image_reduire{#CONFIG{taille_preview}}|largeur_majoree{10}|max{120})px;']>
-		<div>
-			<a href="[(#ENV{lien}|sinon{#URL_DOCUMENT})]" type="#MIME_TYPE"[ class="(#ENV{lien_class})"] [title="(#GET{titre_doc})"]>
-				<img src='[(#LOGO_DOCUMENT||extraire_attribut{src})]' width='[(#LOGO_DOCUMENT||largeur)]' height='[(#LOGO_DOCUMENT||hauteur)]' [alt="(#GET{titre_doc})"] />
-			</a>
-		</div>
-		[<div class='spip_doc_titre'[ style='width:(#LOGO_DOCUMENT||image_reduire{#CONFIG{taille_preview}}|largeur|max{110})px;']>
-			<strong>(#TITRE)</strong>
-		</div>]
-		[<div class='spip_doc_descriptif'[ style='width:(#LOGO_DOCUMENT||image_reduire{#CONFIG{taille_preview}}|largeur|min{350}|max{110})px;']>
-			(#DESCRIPTIF)
-			#NOTES
-		</div>]
-	</div>
-</div>
+[(#MODE|=={image}|?{' '})
+	#SET{affichage, image}
+]
+[(#MODE|=={image}|?{'',' '})
+	[(#EXTENSION|match{jpg}|?{' '})
+		#SET{affichage, image}
+	]
+	[(#EXTENSION|match{jpg|png|gif}|?{'',' '})
+		#SET{affichage, logo}
+	]
+]
+#SET{document_a_afficher,oui}
+[(#GET{affichage}|=={image}|?{' '})
+	#SET{fichier,#URL_DOCUMENT}
+	#SET{width,#LARGEUR}
+	#SET{height,#HAUTEUR}
+	#SET{url,#ENV{lien}}
+	[(#CONFIG{sarkaspip_modeles/exclusif_doc, non}|=={oui}|?{' '})
+		#SET{document_a_afficher,non}
+	]
+]
+[(#GET{affichage}|=={logo}|?{' '})
+	[(#SET{fichier,[(#LOGO_DOCUMENT||extraire_attribut{src})]})]
+	[(#SET{width,[(#LOGO_DOCUMENT||extraire_attribut{width})]})]
+	[(#SET{height,[(#LOGO_DOCUMENT||extraire_attribut{height})]})]
+	#SET{url,#ENV{lien,#URL_DOCUMENT}}
+]
+
+[(#GET{document_a_afficher}|=={oui}|?{' '})
+<dl class='spip_document_#ID_DOCUMENT spip_documents[ spip_documents_(#ENV{align})][ (#ENV{class})] spip_lien_ok'[ style='float:(#ENV{align}|match{left|right});']>
+	<dt>[<a href="(#GET{url})"[ class="(#ENV{lien_class})"] title='#TYPE_DOCUMENT - [(#TAILLE|taille_en_octets|texte_backend)]'[ (#ENV{lien}|?{'',type="#MIME_TYPE"})]>]<img src='#GET{fichier}' width='#GET{width}' height='#GET{height}' alt='#TYPE_DOCUMENT - [(#TAILLE|taille_en_octets|texte_backend)]' />[(#GET{url}|?{</a>})]</dt>[
+	<dt class='#EDIT{titre} spip_doc_titre'[ style='width:(#GET{width}|min{#EVAL{_SARKASPIP_CONFIG_DOC_LARGEUR_MAX}}|max{#EVAL{_SARKASPIP_CONFIG_DOC_LARGEUR_MIN}})px;']><strong>(#TITRE)</strong></dt>][
+	<dd class='#EDIT{descriptif} spip_doc_descriptif'[ style='width:(#GET{width}|min{#EVAL{_SARKASPIP_CONFIG_DOC_LARGEUR_MAX}}|max{#EVAL{_SARKASPIP_CONFIG_DOC_LARGEUR_MIN}})px;']>(#DESCRIPTIF|PtoBR)[(#NOTES|PtoBR)]</dd>]
+</dl>
+]
 </BOUCLE_doc>

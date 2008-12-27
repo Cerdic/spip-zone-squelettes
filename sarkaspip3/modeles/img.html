@@ -43,6 +43,10 @@
 	
 	[(#ENV{embed}|?{' '})
 		#SET{affichage, image}
+		#SET{taille_reduire, #EVAL{_SARKASPIP_CONFIG_IMG_TAILLE_MAX_EMBED}}
+		#SET{fichier, #FICHIER|image_reduire{#GET{taille_reduire}}}
+		#SET{width, #FICHIER|image_reduire{#GET{taille_reduire}}|largeur}
+		#SET{height, #FICHIER|image_reduire{#GET{taille_reduire}}|hauteur}
 	]
 	[(#ENV{embed}|?{'',' '})
 		[(#MODE|=={image}|?{' '})
