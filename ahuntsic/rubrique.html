@@ -48,42 +48,11 @@
         [<div class="notes" style="padding: 0 1.5em;">(#NOTES)</div>]
 	</div><!-- chapo -->]
 	
-			[(#REM) Portfolio : album d'images ]
-			<B_documents_portfolio>
-				<h2><:info_portfolio:></h2>
-			<div  class="chapo" id="documents_portfolio">
-				<BOUCLE_documents_portfolio(DOCUMENTS) {id_rubrique} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
-				[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_RUBRIQUE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|couper{80}|texte_backend)"]>(#LOGO_DOCUMENT||image_reduire{0,60}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
-				</BOUCLE_documents_portfolio>
-			</div>
-			</B_documents_portfolio>
-
-			<BOUCLE_afficher_document(DOCUMENTS) {id_document} {id_rubrique} {mode=document}{extension IN png,jpg,gif}>
-			<div class="spip_documents spip_documents_center" id="document_actif">
-				[<a href="[(#URL_DOCUMENT|url_absolue)]">(#FICHIER|image_reduire{450,0}|inserer_attribut{alt,[(#TITRE|supprimer_numero|couper{80}|texte_backend)]})</a>]
-				[<div class="spip_doc_titre">(#TITRE)</div>]
-				[<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
-			</div>
-			</BOUCLE_afficher_document>
-
-	<B_documents_joints>
-	<h2><:ecrire:titre_documents_joints:></h2>
-	<div class="chapo" id="documents" style="line-height:1;"> 
-		<BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {mode=document} {doublons} {"<hr style='clear:both' />"} {par num titre} {!par date}>
-				[<h3 class="#EDIT{titre}" style="margin-bottom: .6em;"><a href="#URL_DOCUMENT">(#TITRE|supprimer_numero)</a></h3>]
-				[<div style="float:left;padding-right: .5em;  width:36%;">
-					<div style="float:left; margin-right: .5em;">(#LOGO_DOCUMENT|#URL_DOCUMENT||image_reduire{60,0})</div>
-					<small>
-						[(#DATE|affdate)<br />]
-						[<:spip:info_document:> : (#TYPE_DOCUMENT)<br />]
-						[(#TAILLE|taille_en_octets)]
-					</small>
-				</div>]
-				[<div class="#EDIT{descriptif}" style="margin: 0 0 0 40%; border-left: 1px gray dotted;padding-left: 1em">(#DESCRIPTIF)</div>]
-		</BOUCLE_documents_joints>
-		<br class="nettoyeur" />
-	</div><!-- chapo -->
-	</B_documents_joints>
+[(#REM) Gestion du portfolio et des documents
+			Le critere {env} permet de passer d'autres arguments de la page
+			par exemple l'id_document choisi pour un affichage complet
+		]
+		[(#INCLURE{fond=inc/inc-rub-documents}{id_rubrique}{env})]
 	
 
 [(#REM) - Plan de la rubrique si mot-cle de la rubrique = Rub_type_plan ]
