@@ -1,15 +1,31 @@
 [(#REM)
-
-	Presenter les regles du jeu du forum sur abonnement
-	avec un lien vers la connexion / l'inscription / le rappel
-
+Presenter les regles du jeu du forum sur abonnement
 ]
-<fieldset>
-	<legend><:Forum:> <:bouton_radio_modere_abonnement:></legend>
-	<p class="explication"><:forum_vous_enregistrer:> <:forum_vous_inscrire:></p>
-	<p class="retour">
-		&#91;<a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]"><:login:></a>&#93;
-		[&#91;<a href="(#ENV{inscription})&amp;mode=6forum[(&amp;id_rubrique=(#ENV{id_rubrique})]&amp;focus=nom_inscription" target="spip_pass" onclick="javascript:window.open(this.href, 'spip_pass', 'scrollbars=yes, resizable=yes, width=480, height=340'); return false;"><:login_sinscrire:></a>&#93;]
-		[&#91;<a href="(#ENV{oubli})" target="spip_pass" onclick="javascript:window.open(this.href, 'spip_pass', 'scrollbars=yes, resizable=yes, width=480, height=340'); return false;"><:login_motpasseoublie:></a>&#93;]
-	</p>
-</fieldset>
+
+
+[(#SESSION{auth}|?{'',' '})
+<div class="formulaire_spip formulaire_login_forum">
+<a name="formulaire_login_forum" id="formulaire_login_forum"></a>
+
+
+<h4 class="icone_membre"><:forum_vous_inscrire:></h4>
+<p><:forum_vous_enregistrer:><strong>
+[(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})"title="S'inscrire"><:forum_vous_inscrire:></a>]]
+ [(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,visit})"title="S'inscrire"><:forum_vous_inscrire:></a>]]
+</strong>
+</p>
+
+
+<h4 class="icone_membre"><:inscrit_ou_pas:> ?</h4>
+<p>
+#FORMULAIRE_LOGIN
+<span class="droite">
+[<a href="(#ENV{oubli})" target="spip_pass" onclick="javascript:window.open(this.href, 'spip_pass', 'scrollbars=yes, resizable=yes, width=480, height=340'); return false;"><:login_motpasseoublie:></a>]
+[<br/>
+<a href="(#URL_PAGE{abonnement})">Modifier mon abonnement.</a>]
+</span>
+
+
+</p>
+</div>
+]

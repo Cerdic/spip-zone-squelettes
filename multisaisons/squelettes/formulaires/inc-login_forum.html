@@ -1,26 +1,34 @@
-[(#REM) Formulaire de connexion pour les forums sur abonnement appele dans formulaire_forum.php ]
 
-<div class="formulaire_spip formulaire_login_forum">
-<a name="formulaire_login_forum" id="formulaire_login_forum"></a>
+[(#REM)
 
+	Formulaire d'identification sur le forum
 
-<h4 class="icone_membre"><:forum_vous_inscrire:></h4>
-<p><:forum_vous_enregistrer:><strong>
-[(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})"title="S'inscrire"><:forum_vous_inscrire:></a>]]
- [(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,visit})"title="S'inscrire"><:forum_vous_inscrire:></a>]]
-</strong>
-</p>
+	Si la session est authentifiee, on propose la deconnexion
 
-<span class="droite">#LOGIN_PUBLIC</span> 
-<h4 class="icone_membre">D&eacute;j&agrave; inscrit ?</h4>
-<p>
+	Si la session n'est pas authentifiee, on presente un formulaire nom/email
 
-<a href="[(#URL_SITE_SPIP|parametre_url{action,pass})]" target="spip_pass" onclick="javascript:window.open(this.href, 'spip_pass', 'scrollbars=yes, resizable=yes, width=500, height=350'); return false;">Retrouver
-ou changer mon mot de passe.</a>
-[<br/>
-<a href="(#URL_PAGE{abonnement})">Modifier mon abonnement.</a>]
-<hr class="spacer">
+	Pour les forums sur abonnement, un squelette specifique presente les regles
 
-</p>
-
-</div>
+]
+<fieldset>
+<legend><:forum_qui_etes_vous:></legend>
+[(#SESSION{auth}|?{' '})
+	[<p class='explication'><:forum_votre_nom:> <strong>(#SESSION{nom}|typo)</strong> <span class="details">&#91;<a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a>&#93;</span></p>]
+	
+]
+[(#SESSION{auth}|?{'',' '})
+	<ul>
+		<li class='saisie_session_nom'>
+			<label for="session_nom"><:forum_votre_nom:></label>
+			<input type="text" class="text" name="session_nom" id="session_nom" value="[(#SESSION**{nom}|sinon{#SESSION**{session_nom}}|entites_html)]" size="40" />
+			[(#CONFIG{accepter_inscriptions}|=={oui}|?{' '})
+			<span class="details">&#91;<a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]" rel="nofollow"><:lien_connecter:></a>&#93;</span>
+			]
+		</li>
+		<li class='saisie_session_email'>
+			<label for="session_email"><:forum_votre_email:></label>
+			<input type="text" class="text" name="session_email" id="session_email" value="[(#SESSION**{email}|sinon{#SESSION**{session_email}}|entites_html)]" size="40" />
+		</li>
+	</ul>
+]
+</fieldset>

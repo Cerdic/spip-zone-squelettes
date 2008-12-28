@@ -26,23 +26,11 @@
 
 <div class="grande_boite">
 [(#ENV{type}|=={question}|?{' ',''})
-
-
-
 <h4 class="icone_membre"><:souhait_faire:> ?</h4>
 <p><:section_restreint:> #NOM_SITE_SPIP.<br/>
   [<strong><a href="(#SELF|parametre_url{type,'redac'})"><:vous_inscrire:></a></strong> <:acces_section:> ?]</p>
 ]
 
-
-[(#ENV{type}|match{redac|visit|question}|?{' ',''})<span class="droite">#LOGIN_PUBLIC</span>
-<h4 class="icone_membre"><:inscrit_ou_pas:> ?</h4>
-<p>
-
-<a href="[(#URL_SITE_SPIP|parametre_url{action,pass})]" target="spip_pass" onclick="javascript:window.open(this.href, 'spip_pass', 'scrollbars=yes, resizable=yes, width=500, height=350'); return false;"><:retrouver_chang_passe:></a>
-[<br/>
-<a href="(#URL_PAGE{abonnement})"><:abonnement_titre_mail:></a>]
-<hr class="spacer">]
 
 [(#ENV{type}|match{redac|visit|suivi}|?{' ',''})
 <h4 class="icone_membre"><:nouveau:> <:sur:> #NOM_SITE_SPIP ?</h4> 
@@ -52,6 +40,15 @@
 ]
 
 
+
+[(#ENV{type}|match{redac|visit|question}|?{' ',''})
+<h4 class="icone_membre"><:inscrit_ou_pas:> ?</h4>
+<p>#FORMULAIRE_LOGIN
+
+<a href="[(#URL_SITE_SPIP|parametre_url{action,pass})]" target="spip_pass" onclick="javascript:window.open(this.href, 'spip_pass', 'scrollbars=yes, resizable=yes, width=500, height=350'); return false;"><:retrouver_chang_passe:></a>
+[<br/>
+<a href="(#URL_PAGE{abonnement})"><:abonnement_titre_mail:></a>]
+<hr class="spacer">]
 
 
 [(#ENV{type}|match{redac|visit|question|suivi}|?{'',' '})

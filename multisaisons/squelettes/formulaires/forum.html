@@ -2,6 +2,7 @@
 [(#REM) pour IE qui sinon se perd dans l'ajax !, ne pas retirer]<br class='bugajaxie' />
 
 [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
 
 [(#ENV{login_forum_abo})
 <INCLURE{fond=formulaires/inc-login_forum_abo}{env} />
@@ -17,14 +18,9 @@
 	il faudra certainement redessiner toute la page pour afficher le nouveau
 	forum
 
-][<form action="#ENV{url}#formulaire_forum" method="post" class="noajax">
+][<form action="#ENV{action}#formulaire_forum" method="post" class="noajax">
 	<div>
-	[(#ACTION_FORMULAIRE{#ENV{url_post}})]
-	[<input type="hidden" name="arg" value="(#ENV{arg})" />]
-	[<input type="hidden" name="hash" value="(#ENV{hash})" />]
-	[<input type="hidden" name="verif_(#ENV{hash})" value="ok" />]
-	[<input type="hidden" name="afficher_texte" value="(#ENV{afficher_texte})" />]
-	[<input type="hidden" name="retour_forum" value="(#ENV*{retour_forum})" />]
+	[(#ACTION_FORMULAIRE{#ENV{action}})]
 	<input type='hidden' name='titre' value="#ENV{titre}" />
 	<input type='hidden' name='texte' value="#ENV{texte}" />
 	<input type='hidden' name='url_site' value="#ENV{url_site}" />
@@ -36,13 +32,8 @@
 </form>]
 
 
-<form action="#ENV{url}#formulaire_forum" method="post" enctype='multipart/form-data'><div>
-[(#ACTION_FORMULAIRE{#ENV{url_post}})]
-[<input type="hidden" name="arg" value="(#ENV{arg})" />]
-[<input type="hidden" name="hash" value="(#ENV{hash})" />]
-[<input type="hidden" name="verif_(#ENV{hash})" value="ok" />]
-[<input type="hidden" name="afficher_texte" value="(#ENV{afficher_texte})" />]
-[<input type="hidden" name="retour_forum" value="(#ENV*{retour_forum})" />]
+<form action="#ENV{action}#formulaire_forum" method="post" enctype='multipart/form-data' name="formulaire_forum"><div>
+[(#ACTION_FORMULAIRE{#ENV{action}})]
 [<input type="hidden" name="id_forum" value="(#ENV*{id_forum})" />]
 [<fieldset>
 	<legend><:bouton_radio_modere_priori:></legend>
@@ -56,20 +47,21 @@
 [(#ENV**{afficher_texte}|choixsiegal{'non', '',' '})
 
 	<fieldset>
-	<legend><:form_pet_message_commentaire:></legend><ul>
-	[<li>(#INCLURE{fond=formulaires/inc-forum_bloc_choix_mots}{table=#ENV*{table}}{ajouter_mot})</li>]
+	<legend><:form_pet_message_commentaire:></legend>[
+(#CONFIG{forums_titre}|!={non}|non)
+		<input type="hidden" name="titre" id="titre"[ value="(#ENV{titre})"] />
+	]<ul>
+	[<li class='saisie_mots_forum'>(#INCLURE{fond=formulaires/inc-forum_bloc_choix_mots}{table=#ENV*{table}}{ajouter_mot})</li>]
 
-[(#CONFIG{forums_titre}|=={oui}|?{
+[(#CONFIG{forums_titre}|!={non}|oui)
 	<li class='saisie_titre[ (#ENV**{erreurs}|table_valeur{titre}|oui)erreur]'>
 		<label for="titre"><:forum_titre:></label>
 		[<span class='erreur_message'>(#ENV**{erreurs}|table_valeur{titre})</span>]
 		<input type="text" class="text" name="titre" id="titre"[ value="(#ENV{titre})"] size="60" />
 	</li>
-,
-	<input type="hidden" name="titre" id="titre"[ value="(#ENV{titre})"] />
-})]
+]
 
-[(#CONFIG{forums_texte}|=={oui}|?{
+[(#CONFIG{forums_texte}|!={non}|?{
 	<li class='saisie_texte[ (#ENV**{erreurs}|table_valeur{texte}|oui)erreur]'>
 		<label for='texte'><:forum_texte|typo:></label>
 		[<span class='erreur_message'>(#ENV**{erreurs}|table_valeur{texte})</span>]
@@ -80,7 +72,7 @@
 })]
 	</ul></fieldset>
 
-[(#CONFIG{forums_urlref}|=={oui}|?{
+[(#CONFIG{forums_urlref}|!={non}|?{
 	<fieldset>
 	<legend><:forum_lien_hyper:></legend>
 	<p class='explication'><:forum_page_url:></p>
@@ -102,13 +94,13 @@
 	[<span class='erreur_message'>(#ENV**{erreurs}|table_valeur{document_forum})</span>]
 	<input type="hidden" name="cle_ajouter_document" value="(#ENV{cle_ajouter_document})" />
 	[<div id="ajouter_document_up">(#ENV{ajouter_document})
-	<input type='checkbox' name='suprimer_document_ajoute' id='supprimer_document_ajoute' />
-	<label for="supprimer_document_ajoute"><:lien_supprimer:></label>
+	<label for="supprimer_document_ajoute"><input type='checkbox' name='supprimer_document_ajoute' id='supprimer_document_ajoute' />
+	<:lien_supprimer:></label>
 	</div>]
 	<div>
 	[<label for="ajouter_document">(#ENV{formats_documents_forum}|join{', '})</label>]
 	<input class='file' type="file" name="ajouter_document" id="ajouter_document"[
-	accept="(#ENV{formats_documents_forum}|join{'|'})"] />
+	accept="(#ENV{formats_documents_forum}|join{','})"] />
 	</div>
 
 	<script type='text/javascript'>
