@@ -5,24 +5,25 @@
 	 Arguments:
 		- id_rubrique: id de la rubrique concernee
 		- classe: permet d'exposer la rubrique si besoin (menu 3)
+		- rang: identifiant du menu pour differencier le premier des autres
 -->]
 <BOUCLE_contexte_rubrique(RUBRIQUES){id_rubrique}>
 	[(#REM) <!-- test sur nombre d'articles -->]
 	<BOUCLE_articles_plusdun(ARTICLES){id_rubrique}{1,1}>
-		<a[ href="(#_contexte_rubrique:URL_RUBRIQUE)]"[ class="(#ENV{classe})"]>
+		<a[ href="(#_contexte_rubrique:URL_RUBRIQUE)]"[ class="(#ENV{classe})"][ id="(#ENV{rang})"]>
 	</BOUCLE_articles_plusdun>
 	</B_articles_plusdun>
 		<BOUCLE_articles_unseul(ARTICLES){id_rubrique}{0,1}>
 			[(#REM) <!-- test sur presence sous-rubriques -->]
 			<BOUCLE_test_sousrubrique(RUBRIQUES){id_parent}>
 			</BOUCLE_test_sousrubrique>
-				<a[ href="(#_contexte_rubrique:URL_RUBRIQUE)]"[ class="(#ENV{classe})"]>
+				<a[ href="(#_contexte_rubrique:URL_RUBRIQUE)]"[ class="(#ENV{classe})"][ id="(#ENV{rang})"]>
 			</B_test_sousrubrique>
-				<a[ href="(#_articles_unseul:URL_ARTICLE)]"[ class="(#ENV{classe})"]>
+				<a[ href="(#_articles_unseul:URL_ARTICLE)]"[ class="(#ENV{classe})"][ id="(#ENV{rang})"]>
 			<//B_test_sousrubrique>
 		</BOUCLE_articles_unseul>
 		</B_articles_unseul>
-			<a[ href="(#_contexte_rubrique:URL_RUBRIQUE)]"[ class="(#ENV{classe})"]>
+			<a[ href="(#_contexte_rubrique:URL_RUBRIQUE)]"[ class="(#ENV{classe})"][ id="(#ENV{rang})"]>
 		<//B_articles_unseul>
 	<//B_articles_plusdun>
 </BOUCLE_contexte_rubrique>
