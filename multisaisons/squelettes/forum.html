@@ -1,4 +1,4 @@
-#CACHE{864000}
+#CACHE{0}
 <INCLURE{fond="header"}><head>
 
 [(#REM)   les m&eacute;tas   ]
@@ -77,37 +77,13 @@ txtarea.value += text; txtarea.focus(); } }
 
 [(#REM)   quel forum   ]
 <BOUCLE_forum_parent(FORUMS){id_forum}>
-
 [<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})]">(#TITRE)</a>]
-
-</p>
-
-
-[<h1><:repondre:> (#TITRE)</h1>
-]
-<p>
-[(#TEXTE|paragrapher|norm_liens|liens_ouvrants|smileys|lignes_longues{45}|couper{2000})]
-[ Ecrit par (#NOM)] </p>
 </BOUCLE_forum_parent>
-		<BOUCLE_descri_article(ARTICLES){id_article}>
-		<p>
-		[(#SOUSTITRE)<br/>]
-		[(#INTRODUCTION)]
-		</p>
-		</BOUCLE_descri_article>
-		<BOUCLE_descri_breve(BREVES){id_breve}>
-		<p>
-		[(#SOUSTITRE)<br/>]
-		[(#INTRODUCTION)]
-		</p>
-		</BOUCLE_descri_breve>
-		
-<//B_forum_parent>
+</p>
 
 <p class="ajax">
 #FORMULAIRE_FORUM
 <p/>
-<hr class="spacer"/>
 </div>
 
 
@@ -136,6 +112,7 @@ txtarea.value += text; txtarea.focus(); } }
 
 <hr class="spacer" />
 
+<INCLURE{fond="inc_fil_discussion"}{id_article}{id_breve}{id_forum}{id_thread}{id_auteur}{self=#SELF}>
 
 
 
