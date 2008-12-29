@@ -78,7 +78,7 @@ AND _request('id_rubrique') == $GLOBALS['contexte']['id_rubrique']) {
 	if (!$id_article)
 		die("Erreur : creation d'article interdite");
 
-	charger_generer_url();
+	generer_url_entite("","","","");
 	include_spip('inc/headers');
 	redirige_par_entete(generer_url_article($id_article, '&'));
 }
