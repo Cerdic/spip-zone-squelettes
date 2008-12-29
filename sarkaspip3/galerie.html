@@ -16,14 +16,15 @@
 
 <div id="wrapper">
 	<div id="content">
-		[(#CONFIG{sarkaspip_galerie/type2, planche_contact}|=={planche_contact}|?{' '})
-		  <INCLURE{fond=noisettes/galerie/inc_galerie_planche}{ajax}{id_rubrique}{annee}{mois}>			
+		<div id="galerie_#ENV{type, planche_contact}" class="galerie">
+		[(#ENV{type, planche}|=={planche}|?{' '})
+		  <INCLURE{fond=noisettes/galerie/inc_galerie_planche}{ajax}{id_rubrique}{categorie}{annee}{mois}>			
 		]
 		
-		[(#CONFIG{sarkaspip_galerie/type2, planche_contact}|=={listing_annuel}|?{' '})
-		  <INCLURE{fond=noisettes/galerie/inc_galerie_liste}{ajax}{id_rubrique}{annee}{mois}>			
+		[(#ENV{type, planche}|=={liste}|?{' '})
+		  <INCLURE{fond=noisettes/galerie/inc_galerie_liste}{ajax}{id_rubrique}{categorie}{annee}{mois}>			
 		]
-		
+		</div><!--galerie-->
 	</div><!--content-->
 </div><!--wrapper-->
 
