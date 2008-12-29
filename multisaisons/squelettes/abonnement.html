@@ -19,9 +19,6 @@
 
 
 
-
-
-
                
 
 <div class="grande_boite">
@@ -41,22 +38,23 @@
 
 
 
-[(#ENV{type}|match{redac|visit|question}|?{' ',''})
+[(#ENV{type}|match{redac|visit|question|suivi}|?{' ',''})
 <h4 class="icone_membre"><:inscrit_ou_pas:> ?</h4>
 <p>#FORMULAIRE_LOGIN
-
-
+</p>
+]
 
 [(#ENV{type}|match{redac|visit|question|suivi}|?{'',' '})
 [(#REM) si l internaute ne demande pas de statut dans l url alors il modifie son compte. On lui demande si l affichage est incorrect] 
 
-[(#FORMULAIRE_MODIF_ABONNEMENT)<hr class="spacer">]
+#FORMULAIRE_MODIF_ABONNEMENT<hr class="spacer">
 
 
 <h4 class="icone_article"><:bloogletter_aff_incorrect:> ?</h4>
 <p><:bloogletter_aff_incorect_envoi_mail1:> 
  [<strong><a href="(#URL_PAGE{auteur}|parametre_url{id_auteur,1})" title="<:contact_webmaster:>"><:bloogletter_aff_incorect_envoi_mail2:></a></strong>] <:bloogletter_aff_incorect_envoi_mail3:> </p>
 ]
+
 </div>
 
    
@@ -81,6 +79,7 @@
 <:contact_webmaster:></a>] <:inscrit_acces:></p>
 </div>]
 
+
 [(#ENV{type}|=={forumabo}|?{' ',''}) 
  
 <div class="boite"> 
@@ -104,9 +103,6 @@
 </p>
 </div>
 </B_message>
- 
- 
-
 </div>   [(#REM)   fermeture colone de droite   ] 
  <hr class="spacer" />
 
