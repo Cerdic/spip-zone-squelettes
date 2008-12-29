@@ -30,11 +30,22 @@
 
 	$table_des_traitements['TITRE'][]= 'supprimer_numero(typo(%s))';
 
-################ COMPATIBILITE COUTEAU SUISSE #######################
-// Pour assurer une compatibilite ascendante de la methode de 'decouper en page' 
-// des squelettses d'Alternatives avec la methode du plugin 'Couteau Suisse' 
-// qu'on recommande dorenavant.
-	@define('_decoupe_COMPATIBILITE', '-----');
 
+############### CONFIGURATION COUTEAU SUISSE ################
+// Installation des outils par defaut
+// Voir : http://www.spip-contrib.net/Le-Couteau-Suisse-a-piloter
+$GLOBALS['cs_installer']['Ahuntsic']['outils'] = 
+	'decoupe|sommaire|soft_scroller|guillemets|pucesli|liens_orphelins';
+// Installation des variables par defaut
+$GLOBALS['cs_installer']['Ahuntsic']['variables'] = array(
+	'lgr_sommaire' => 50, // on limite les items du sommaire a 60 caracteres suivi de ...
+	'auto_sommaire' => 1, // ou 0, si on ne desire pas de sommaire automatique
+	'balise_sommaire' => 0, // ou 1, si on utilise la balise #CS_SOMMAIRE dans les squelettes
+
+	'liens_interrogation' => 1, // ou 0, pour 'non'
+	'liens_orphelins' => 1, // 1 pour 'etendu' ; 0 pour 'basique' ; -1 pour 'non'
+);
+// Compatibilite ascendante avec l'ancien filtre 'decoupe'
+@define('_decoupe_COMPATIBILITE', '-----');
 
 ?>
