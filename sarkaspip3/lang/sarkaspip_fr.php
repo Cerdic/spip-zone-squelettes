@@ -99,6 +99,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'dimanche_abrege' => 'Di',
 		'docu_article' => 'Documents joints',
 		'docu_rubrique' => 'Documents joints',
+		'docu_commentaire' => 'Document joint',
 		'du' => 'du',
 	  
 	
