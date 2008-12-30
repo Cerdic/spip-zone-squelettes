@@ -8,13 +8,23 @@
 		<input type="text" name="fo_site" value="#ENV{fo_site, 'Helvetica,Verdana'}" size="50" class="fondl" />,Arial,sans-serif
 		<br />
 		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
-			{explication=<:sarkaspip:cfg_inf_css_couleurs_site:>}
-			{suffixe=_site}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_container:>}
+			{suffixe=_container}
 			{choix=fg_bg_bi}
 			{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_texte:>}
 			{bg_defaut=#ffffff}
 			{fg_defaut=#000000}
-			{env}>
+			{env}>		
+		[(#CONFIG{sarkaspip_layout/numero_layout, 13}|match{^(7|8|9|10|11|12)$}|?{' '})	
+			<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+				{explication=<:sarkaspip:cfg_inf_css_couleurs_body:>}
+				{suffixe=_body}
+				{choix=fg_bg_bi}
+				{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_texte:>}
+				{bg_defaut=#ffffff}
+				{fg_defaut=#000000}
+				{env}>
+		]	
 		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
 			{suffixe=_lien}
 			{choix=fg_ho_td}
