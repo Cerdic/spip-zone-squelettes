@@ -449,6 +449,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // Legendes des blocs contenus dans chaque boite
 		'cfg_lgd_layout' => 'Layout',
+		'cfg_lgd_layout_fixe' => 'Trois colonnes de largeur fixe',
+		'cfg_lgd_layout_fluide' => 'Trois colonnes : 2 fixes et 1 fluide',
 		'cfg_lgd_bandeau_haut' => 'Partie haute',
 		'cfg_lgd_bandeau_bas' => 'Partie basse',
 		'cfg_lgd_bandeau_chemin' => 'Chemin',
@@ -670,12 +672,20 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_css_couleurs_edito' => 'Choisissez vos couleurs particuli&egrave;res pour l\'&eacute;dito.',
 
 // Labels des items de choix
+		'cfg_lbl_layout_07' => 'Layout #7 (navigation, centre, extra)',
+		'cfg_lbl_layout_08' => 'Layout #8 (extra, centre, navigation)',
+		'cfg_lbl_layout_09' => 'Layout #9 (centre, navigation, extra)',
+		'cfg_lbl_layout_10' => 'Layout #10 (centre, extra, navigation)',
+		'cfg_lbl_layout_11' => 'Layout #11 (navigation, extra, centre)',
+		'cfg_lbl_layout_12' => 'Layout #12 (extra, navigation, centre)',
 		'cfg_lbl_layout_13' => 'Layout #13 (navigation, centre, extra)',
 		'cfg_lbl_layout_14' => 'Layout #14 (extra, centre, navigation)',
 		'cfg_lbl_layout_15' => 'Layout #15 (centre, navigation, extra)',
 		'cfg_lbl_layout_16' => 'Layout #16 (centre, extra, navigation)',
 		'cfg_lbl_layout_17' => 'Layout #17 (extra, navigation, centre)',
 		'cfg_lbl_layout_18' => 'Layout #18 (navigation, extra, centre)',
+		'cfg_lbl_largeur_site' => 'Indiquez la largeur totale de votre site : ',
+		'cfg_lbl_pixel' => 'px',
 		'cfg_lbl_slogan' => 'Slogan du site : ',
 		'cfg_lbl_inc_rubriques_1' => 'Menu des rubriques d&eacute;roulant',
 		'cfg_lbl_inc_rubriques_2' => 'Menu des rubriques d&eacute;pli&eacute;',
