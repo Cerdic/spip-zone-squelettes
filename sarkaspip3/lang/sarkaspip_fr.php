@@ -649,7 +649,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_css_couleurs' => 'Cela revient &agrave; choisir la couleur d\'arri&egrave;re plan, la couleur d\'avant plan utilis&eacute;e pour le texte et les liens et la couleur de survol des liens. En outre, 
 		pour l\'arri&egrave;re plan vous avez la possibilit&eacute; de choisir une image et ses attributs de positionnement associ&eacute;s.',
 		'cfg_inf_css_general' => 'Il est possible de d&eacute;finir certains attribut typographiques appliqu&eacute;s &agrave; l\'ensemble du site. C\'est le cas de la police, de la couleur du texte, des liens...',
-		'cfg_inf_css_couleurs_container' => 'Choisissez les couleurs du fond, du texte, des liens et des intertitres.',
+		'cfg_inf_css_couleurs_site' => 'Choisissez les couleurs du fond, du texte, des liens et des intertitres.',
 		'cfg_inf_css_couleurs_body' => 'Choisissez les couleurs du fond des "marges" de votre site.',
 		'cfg_inf_css_couleurs_tableaux' => 'Choisissez les couleurs de fond des tableaux.',
 		'cfg_inf_css_couleurs_citations' => 'Choisissez les couleurs des divers blocs de citations.',
