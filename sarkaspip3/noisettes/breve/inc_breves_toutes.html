@@ -1,21 +1,17 @@
-<!-- Affichage de toutes les breves du site sauf la breve courante -->
-
+[(#REM) <!-- Affichage de toutes les breves du site sauf la breve courante -->]
 <B_breves_toutes>
-		<div id="breves_toutes" class="breve">
-			<h2><:sarkaspip:breves_toutes:></h2>
-			#ANCRE_PAGINATION
-			[(#CONFIG{sarkaspip_breve/position_pagination_breve, 3}|match{^(1|3)$}|?{' '})
-				[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_breve/modele_pagination_breve}})</div>]
-			]
-	<BOUCLE_breves_toutes(BREVES) {doublons}{par date}{inverse}{pagination   #CONFIG{sarkaspip_breve/pas_pagination_breve, 10}}>
-			[(#INCLURE{fond=noisettes/breve/inc_breve_introduction}
-				{id_breve}
-				{afficher_mere=oui}
-			)]
-	</BOUCLE_breves_toutes>
-			[(#CONFIG{sarkaspip_breve/position_pagination_breve, 3}|match{^(2|3)$}|?{' '})
-				[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_breve/modele_pagination_breve}})</div>]
-			]
-		</div> <!-- Fin derniers-articles -->
-	</B_breves_toutes>
-	<//B_breves_toutes> 	
+<div id="breves_site" class="portfolio">
+	<h2><:sarkaspip:breves_toutes:></h2>
+	#ANCRE_PAGINATION
+[(#CONFIG{sarkaspip_breve/position_pagination_breve, 3}|match{^(1|3)$}|?{' '})
+	[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_breve/modele_pagination_breve}})</div>]
+]
+<BOUCLE_breves_toutes(BREVES) {!id_breve}{par date}{inverse}{pagination #CONFIG{sarkaspip_breve/pas_pagination_breve, 10}}>
+	[(#INCLURE{fond=noisettes/breve/inc_breve_introduction}{id_breve}{afficher_mere=oui})]
+</BOUCLE_breves_toutes>
+[(#CONFIG{sarkaspip_breve/position_pagination_breve, 3}|match{^(2|3)$}|?{' '})
+	[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_breve/modele_pagination_breve}})</div>]
+]
+</div> <!-- Fin portfolio -->
+</B_breves_toutes>
+<//B_breves_toutes> 	
