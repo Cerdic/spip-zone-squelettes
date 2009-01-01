@@ -2,10 +2,10 @@
 <div class="titre"><h1>
 	<:sarkaspip:albums_galerie:>&nbsp;-&nbsp;
 <BOUCLE_titre_categorie(MOTS) {type=squelette_galerie}{id_mot=(#ENV{categorie,-1})}>
-				[<:sarkaspip:info_album_categorie:>&nbsp;:&nbsp;(#TITRE)]
+	[<:sarkaspip:info_album_categorie:>&nbsp;:&nbsp;(#TITRE)]
 </BOUCLE_titre_categorie>
 </B_titre_categorie>
-		[(#ENV{categorie,-1}|=={-1}|?{<:sarkaspip:info_album_sans_filtre:>,[(#ENV{categorie,-1}|=={0}|?{<:sarkaspip:info_album_sans_categorie:>})]})]
+	[(#ENV{categorie,-1}|=={-1}|?{<:sarkaspip:info_album_sans_filtre:>,[(#ENV{categorie,-1}|=={0}|?{<:sarkaspip:info_album_sans_categorie:>})]})]
 <//B_titre_categorie>
 </h1></div>
 
@@ -17,12 +17,13 @@
 	[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_galerie/modele_pagination_1}})</div>]
 ]
 	<ul>
-<BOUCLE_galerie(ARTICLES){id_rubrique=#RACINE_SPECIALISEE{galerie}}{par date}{inverse}{pagination #CONFIG{sarkaspip_article/pas_pagination_1, 5}}>
+<BOUCLE_galerie(ARTICLES){id_rubrique=#RACINE_SPECIALISEE{galerie}}{par date}{inverse}{pagination #CONFIG{sarkaspip_galerie/pas_pagination_1, 5}}>
 	[(#COMPTEUR_BOUCLE|modulo{2}|=={1}|?{' '}) [(#SET{classe, gauche})] ]
 	[(#COMPTEUR_BOUCLE|modulo{2}|=={0}|?{' '}) [(#SET{classe, droite})] ]
-		<li class="[(#GET{classe})][(#COMPTEUR_BOUCLE|<={2}|?{' '}) n1]">   
+	#SET{compteur_dans_page, #COMPTEUR_BOUCLE|modulo{#CONFIG{sarkaspip_galerie/pas_pagination_1, 5}|plus{1}}}
+		<li class="[(#GET{classe})][(#GET{compteur_dans_page}|<={2}|?{' '}) n1]">
 			<div class="logo">
-				<a href="spip.php?page=album&amp;id_article=#ID_ARTICLE" title="<:sarkaspip:info_afficher_album:>">
+				<a href="#URL_PAGE{album, id_article=#ID_ARTICLE}" title="<:sarkaspip:info_afficher_album:>">
 	<BOUCLE_vignette_album(DOCUMENTS){id_article}{extension == jpg|png|gif}{mode=document}{vu=non}{0,1}>
 					#SET{ratio_x,#LARGEUR|div{#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE}}}
 					#SET{ratio_y,#HAUTEUR|div{#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE}}}
@@ -33,17 +34,18 @@
 	</B_vignette_album>
 					[(#LOGO_ARTICLE||image_reduire{150})]
 	<//B_vignette_album>
-					<span class="loupe">En voir plus</span>
 				</a>
+			<br class="nettoyeur" />      
 			</div>
-			[<h3><a class="titre" href="#URL_ARTICLE" title="<:sarkaspip:info_afficher_album:>">(#TITRE|supprimer_numero)</a></h3>]
+			[<h3><a class="titre" href="#URL_PAGE{album, id_article=#ID_ARTICLE}" title="<:sarkaspip:info_afficher_album:>">(#TITRE|supprimer_numero)</a></h3>]
 			<div class="complements">
+				<INCLURE{fond=noisettes/album/inc_album_total_photos}{id_article}{ancre_meme_page=non}>
 			[(#PARAMETRES_FORUM|?{' '})
-					<INCLURE{fond=noisettes/article/inc_article_total_commentaires}{id_article}{ancre_meme_page=non}>
+				&nbsp;-&nbsp;
+				<INCLURE{fond=noisettes/article/inc_article_total_commentaires}{id_article}{ancre_meme_page=non}{page=album}>
 			]
 			</div> <!-- Fin complements -->
 			<div class="introduction">[(#INTRODUCTION{#CONFIG{sarkaspip_galerie/intro_galerie, 200}}|typo_couleur)] </div>
-			<br class="nettoyeur" />      
 		</li>
 </BOUCLE_galerie>
 	</ul>

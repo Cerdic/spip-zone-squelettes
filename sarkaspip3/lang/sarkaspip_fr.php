@@ -13,13 +13,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'0_auteur' => 'Aucun auteur',
 		'0_breve' => 'Aucune br&egrave;ve',
 		'0_site_web' => 'Aucun site',
-		'0_commentaire' => 'Aucun commentaire',
+		'0_commentaire' => 'aucun commentaire',
+		'0_photo' => 'aucune photo',
 		'0_visiteur_connecte' => 'Aucun visiteur actuellement connect&eacute;',
 		'1_article' => 'Article',
 		'1_auteur' => 'Auteur',
 		'1_breve' => 'Br&egrave;ve',
 		'1_site_web' => 'Site Web',
 		'1_commentaire' => 'commentaire',
+		'1_photo' => 'photo',
 		'1_visiteur_connecte' => 'visiteur actuellement connect&eacute;',
 		'n_visiteurs_connectes' => 'visiteurs actuellement connect&eacute;s',
 	  
@@ -256,6 +258,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 		'page_non_trouvee' => 'Page non trouv&eacute;e',
 		'par_auteur' => 'par ', // redefinition item SPIP
+		'photos' => 'photos',
 		'plan_site' => 'Plan du site', // redefinition item SPIP
 		'plusieurs_evenements_jour' => '&eacute;v&eacute;nements dans cette journ&eacute;e',
 		'popularite_article' => 'popularit&eacute;',
