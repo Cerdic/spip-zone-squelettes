@@ -59,6 +59,7 @@ $test_lang_personnalisation=array(
 
 // G
 'go' => 'go',
+'galaxie_spip' => 'La galaxie SPIP',
 
 // H
 
