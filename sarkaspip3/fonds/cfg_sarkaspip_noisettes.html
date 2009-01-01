@@ -7,36 +7,33 @@
 <script type="text/javascript">
 //<![CDATA[
 	jQuery(document).ready(function() {
+		[(#ENV{menu_rubriques, 1}|!={1}|?{jQuery("#bloc_menu_option1_2").hide();})]
 		[(#ENV{liste_breves, 2}|!={2}|?{jQuery("#bloc_intro_breve").hide();})]
-		[(#ENV{position_commentaires, 2}|!={2}|?{jQuery("#bloc_intro_commentaires").hide();})]
+		[(#ENV{position_commentaires, 0}|!={2}|?{jQuery("#bloc_intro_commentaires").hide();})]
 		[(#ENV{liste_sites, 2}|!={1}|?{jQuery("#bloc_max_syndic").hide();})]
-		[(#ENV{position_badges, 1}|=={0}|?{jQuery("#bloc_badges_liste").hide();})]
-		[(#ENV{position_stats_2, 1}|=={0}|?{jQuery("#bloc_stats_2_compo,#bloc_stats_2_max_hasard,#bloc_stats_2_max_top").hide();})]
-		[(#ENV{position_stats_2, 1}|!={0}|?{
+		[(#ENV{position_stats_2, 0}|=={0}|?{jQuery("#bloc_stats_2_compo,#bloc_stats_2_max_hasard,#bloc_stats_2_max_top").hide();})]
+		[(#ENV{position_stats_2, 0}|!={0}|?{
 			[(#ENV{composition_stats_2, 3}|=={1}|?{jQuery("#bloc_stats_2_max_hasard").hide();})]
 			[(#ENV{composition_stats_2, 3}|=={2}|?{jQuery("#bloc_stats_2_max_top").hide();})]}
 		)]
-		[(#ENV{menu_rubriques, 1}|!={1}|?{jQuery("#bloc_menu_option1_2").hide();})]
-		[(#ENV{menu_rubriques, 1}|match{^(4)$}|?{jQuery("#bloc_menu_option1").hide();})]
+		[(#ENV{position_badges, 1}|=={0}|?{jQuery("#bloc_badges_liste").hide();})]
 		[(#ENV{position_annonce, 0}|=={0}|?{jQuery("#bloc_annonce_id").hide();})]
 		[(#ENV{position_rainette, 0}|=={0}|?{jQuery("#bloc_rainette_ville").hide();})]
 
-		jQuery("input[@name='position_badges']").change(function() {
-			if (jQuery("input[@name='position_badges']:checked").val() != 0)
-				jQuery("#bloc_badges_liste").show();
-			else
-				jQuery("#bloc_badges_liste").hide();
+		jQuery("input[@name='menu_rubriques']").change(function() {
+			if (jQuery("input[@name='menu_rubriques']:checked").val() == 1) {
+				jQuery("#bloc_menu_option1").show();
+				jQuery("#bloc_menu_option1_2").show();
+				jQuery("#menu_option1_1").attr({checked: "checked"});
+			}
+			else {
+				jQuery("#bloc_menu_option1").show();
+				jQuery("#bloc_menu_option1_2").hide();
+				jQuery("#menu_option1_1").attr({checked: "checked"});
+			}
 			jQuery(this).blur();
 		});	
-
-		jQuery("input[@name='liste_sites']").change(function() {
-			if (jQuery("input[@name='liste_sites']:checked").val() == 1)
-				jQuery("#bloc_max_syndic").show();
-			else
-				jQuery("#bloc_max_syndic").hide();
-			jQuery(this).blur();
-		});	
-
+		
 		jQuery("input[@name='liste_breves']").change(function() {
 			if (jQuery("input[@name='liste_breves']:checked").val() == 2)
 				jQuery("#bloc_intro_breve").show();
@@ -50,6 +47,14 @@
 				jQuery("#bloc_intro_commentaires").show();
 			else
 				jQuery("#bloc_intro_commentaires").hide();
+			jQuery(this).blur();
+		});	
+
+		jQuery("input[@name='liste_sites']").change(function() {
+			if (jQuery("input[@name='liste_sites']:checked").val() == 1)
+				jQuery("#bloc_max_syndic").show();
+			else
+				jQuery("#bloc_max_syndic").hide();
 			jQuery(this).blur();
 		});	
 
@@ -90,24 +95,14 @@
 			jQuery(this).blur();
 		});	
 
-		jQuery("input[@name='menu_rubriques']").change(function() {
-			if (jQuery("input[@name='menu_rubriques']:checked").val() == 1) {
-				jQuery("#bloc_menu_option1").show();
-				jQuery("#bloc_menu_option1_2").show();
-				jQuery("#menu_option1_1").attr({checked: "checked"});
-			}
-			else if (jQuery("input[@name='menu_rubriques']:checked").val() == 4) {
-				jQuery("#bloc_menu_option1").hide();
-				jQuery("#bloc_menu_option1_2").hide();
-			}
-			else {
-				jQuery("#bloc_menu_option1").show();
-				jQuery("#bloc_menu_option1_2").hide();
-				jQuery("#menu_option1_1").attr({checked: "checked"});
-			}
+		jQuery("input[@name='position_badges']").change(function() {
+			if (jQuery("input[@name='position_badges']:checked").val() != 0)
+				jQuery("#bloc_badges_liste").show();
+			else
+				jQuery("#bloc_badges_liste").hide();
 			jQuery(this).blur();
 		});	
-		
+
 		jQuery("input[@name='position_annonce']").change(function() {
 			if (jQuery("input[@name='position_annonce']:checked").val() != 0)
 				jQuery("#bloc_annonce_id").show();
@@ -129,6 +124,7 @@
 
 <form method="post" action="#SELF" enctype="multipart/form-data"><div>
 	[(#ENV{_cfg_}|form_hidden)]
+	[(#REM) <!-- Choix du menu des rubriques --> ]
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_inc_rubriques:></legend>
 		<p><:sarkaspip:cfg_inf_inc_rubriques:></p>
@@ -147,13 +143,6 @@
 			<:sarkaspip:cfg_lbl_inc_rubriques_3:>
 		</label>
 		<br />
-<!-- 
-		<label>
-			<input type="radio" name="menu_rubriques" value="4" [(#ENV{menu_rubriques, 1}|=={4}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_inc_rubriques_4:>
-		</label>
-		<br />
- -->
 		<div id="bloc_menu_option1">
 			<p><:sarkaspip:cfg_inf_menu_option1:></p>
 			<label>
@@ -174,6 +163,7 @@
 		</div>
 	</fieldset>
 	
+	[(#REM) <!-- Ajout de plan du site aux raccourcis des formulaires --> ]
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_inc_formulaires:></legend>
 		<p><:sarkaspip:cfg_inf_inc_formulaires:></p>
@@ -189,6 +179,7 @@
 		<br />
 	</fieldset>
 	
+	[(#REM) <!-- Choix de presentation des breves --> ]
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_inc_breves:></legend>
 		<p><:sarkaspip:cfg_inf_inc_breves:></p>
@@ -211,16 +202,17 @@
 		<br />
 	</fieldset>
 
+	[(#REM) <!-- Choix de presentation des commentaires --> ]
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_inc_commentaires:></legend>
 		<p><:sarkaspip:cfg_inf_inc_commentaires:></p>
 		<label>
-			<input type="radio" name="position_commentaires" value="0" [(#ENV{position_commentaires, 2}|=={0}|?{checked="checked"})] />
+			<input type="radio" name="position_commentaires" value="0" [(#ENV{position_commentaires, 0}|=={0}|?{checked="checked"})] />
 			<:sarkaspip:cfg_lbl_inc_position_0:>
 		</label>
 		<br />
 		<label>
-			<input type="radio" name="position_commentaires" value="2" [(#ENV{position_commentaires, 2}|=={2}|?{checked="checked"})] />
+			<input type="radio" name="position_commentaires" value="2" [(#ENV{position_commentaires, 0}|=={2}|?{checked="checked"})] />
 			<:sarkaspip:cfg_lbl_inc_position_2:>
 		</label>
 		<br />
@@ -235,6 +227,7 @@
 		</div>
 	</fieldset>
 	
+	[(#REM) <!-- Choix de presentation des sites --> ]
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_inc_sites:></legend>
 		<p><:sarkaspip:cfg_inf_inc_sites:></p>
@@ -257,6 +250,7 @@
 		<br />
 	</fieldset>
 	
+	[(#REM) <!-- Choix des moteurs de recherche --> ]
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_inc_recherche:></legend>
 		<p><:sarkaspip:cfg_inf_inc_rechspip_pos:></p>
@@ -273,12 +267,12 @@
 		<br />
 		<p><:sarkaspip:cfg_inf_inc_recherche_pos:></p>
 		<label>
-			<input type="radio" name="position_recherche" value="1" [(#ENV{position_recherche, 1}|=={1}|?{checked="checked"})] />
+			<input type="radio" name="position_recherche" value="1" [(#ENV{position_recherche, 2}|=={1}|?{checked="checked"})] />
 			<:sarkaspip:cfg_lbl_inc_position_1:>
 		</label>
 		<br />
 		<label>
-			<input type="radio" name="position_recherche" value="2" [(#ENV{position_recherche, 1}|=={2}|?{checked="checked"})] />
+			<input type="radio" name="position_recherche" value="2" [(#ENV{position_recherche, 2}|=={2}|?{checked="checked"})] />
 			<:sarkaspip:cfg_lbl_inc_position_2:>
 		</label>
 		<br />
@@ -315,6 +309,7 @@
 		</label>
 	</fieldset>
 	
+	[(#REM) <!-- Choix de presentation des statistiques du site --> ]
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_inc_statsite:></legend>
 		<p><:sarkaspip:cfg_inf_inc_statsite_pos:></p>
@@ -335,21 +330,22 @@
 		<br />
 	</fieldset>
 	
+	[(#REM) <!-- Choix de presentation des statistiques sur les articles --> ]
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_inc_stathit:></legend>
 		<p><:sarkaspip:cfg_inf_inc_stathit_pos:></p>
 		<label>
-			<input type="radio" name="position_stats_2" value="0" [(#ENV{position_stats_2, 1}|=={0}|?{checked="checked"})] />
+			<input type="radio" name="position_stats_2" value="0" [(#ENV{position_stats_2, 0}|=={0}|?{checked="checked"})] />
 			<:sarkaspip:cfg_lbl_inc_position_0:>
 		</label>
 		<br />
 		<label>
-			<input type="radio" name="position_stats_2" value="1" [(#ENV{position_stats_2, 1}|=={1}|?{checked="checked"})] />
+			<input type="radio" name="position_stats_2" value="1" [(#ENV{position_stats_2, 0}|=={1}|?{checked="checked"})] />
 			<:sarkaspip:cfg_lbl_inc_position_1:>
 		</label>
 		<br />
 		<label>
-			<input type="radio" name="position_stats_2" value="2" [(#ENV{position_stats_2, 1}|=={2}|?{checked="checked"})] />
+			<input type="radio" name="position_stats_2" value="2" [(#ENV{position_stats_2, 0}|=={2}|?{checked="checked"})] />
 			<:sarkaspip:cfg_lbl_inc_position_2:>
 		</label>
 		<br />
@@ -385,6 +381,7 @@
 		</div>
 	</fieldset>
 	
+	[(#REM) <!-- Choix des badges --> ]
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_inc_badges:></legend>
 		<p><:sarkaspip:cfg_inf_inc_badges_pos:></p>
@@ -407,12 +404,12 @@
 		<div id="bloc_badges_liste">
 			<p><:sarkaspip:cfg_inf_inc_badges_liste:></p>
 			<label>
-				<input type="checkbox" name="badge_xhtml" [checked="(#ENV{badge_xhtml}|=={on}|?{checked})"] />
+				<input type="checkbox" name="badge_xhtml" [checked="(#ENV{badge_xhtml, on}|=={on}|?{checked})"] />
 				<:sarkaspip:cfg_lbl_inc_badges_xhtml:>
 			</label>
 			<br />
 			<label>
-				<input type="checkbox" name="badge_rss" [checked="(#ENV{badge_rss}|=={on}|?{checked})"] />
+				<input type="checkbox" name="badge_rss" [checked="(#ENV{badge_rss, on}|=={on}|?{checked})"] />
 				<:sarkaspip:cfg_lbl_inc_badges_rss:>
 			</label>
 			<br />
@@ -434,6 +431,7 @@
 		</div>
 	</fieldset>
 	
+	[(#REM) <!-- Choix de presentation de l'annonce --> ]
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_inc_annonce:></legend>
 		<p><:sarkaspip:cfg_inf_inc_annonce_pos:></p>
@@ -454,21 +452,20 @@
 		<br />
 		<div id="bloc_annonce_id">
 			<p><:sarkaspip:cfg_inf_annonce_id:></p>
-			<B_secteurs>
-				<label><:sarkaspip:cfg_lbl_liste_secteurs:></label>
-				<select name="rubrique_annonce">
+			<label><:sarkaspip:cfg_lbl_liste_secteurs:></label>
+			<select name="rubrique_annonce">
 				<option value="0"[ (#ENV{rubrique_annonce, 0}|=={0}|?{selected="selected"})]>--</option>
-					<BOUCLE_annonce(RUBRIQUES){id_rubrique=#ENV{rubrique_annonce, 0}}>
-						[<option value="#ID_RUBRIQUE" selected="selected">(#TITRE|supprimer_numero|attribut_html)</option>]
-					</BOUCLE_annonce>
+			<BOUCLE_annonce(RUBRIQUES){id_rubrique=#ENV{rubrique_annonce, 0}}>
+				[<option value="#ID_RUBRIQUE" selected="selected">(#TITRE|supprimer_numero|attribut_html)</option>]
+			</BOUCLE_annonce>
 			<BOUCLE_secteurs(RUBRIQUES){racine}{id_rubrique!==#RACINE_SPECIALISEE}{par num titre}{par titre}>
-					[<option value="#ID_RUBRIQUE">(#TITRE|supprimer_numero|attribut_html)</option>]
+				[<option value="#ID_RUBRIQUE">(#TITRE|supprimer_numero|attribut_html)</option>]
 			</BOUCLE_secteurs>
-				</select>
-			</B_secteurs>
+			</select>
 		</div>
 	</fieldset>
 
+	[(#REM) <!-- Choix de presentation de la meteo --> ]
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_inc_rainette:></legend>
 		<p><:sarkaspip:cfg_inf_inc_rainette_pos:></p>

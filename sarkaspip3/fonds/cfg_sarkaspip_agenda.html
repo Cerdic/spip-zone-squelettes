@@ -52,21 +52,17 @@
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_agenda_type:></legend>
 		<p><:sarkaspip:cfg_inf_agenda_id:></p>
-		<B_secteurs>
-			<label><:sarkaspip:cfg_lbl_liste_secteurs:></label>
-			<select name="rubrique_agenda">
-				<option value="0"[ (#ENV{rubrique_agenda, 0}|=={0}|?{selected="selected"})]>--</option>
-				<BOUCLE_agenda(RUBRIQUES){id_rubrique=#ENV{rubrique_agenda, 0}}>
-					[<option value="#ID_RUBRIQUE" selected="selected">(#TITRE|supprimer_numero|attribut_html)</option>]
-				</BOUCLE_agenda>
+		<label><:sarkaspip:cfg_lbl_liste_secteurs:></label>
+		<select name="rubrique_agenda">
+			<option value="0"[ (#ENV{rubrique_agenda, 0}|=={0}|?{selected="selected"})]>--</option>
+		<BOUCLE_agenda(RUBRIQUES){id_rubrique=#ENV{rubrique_agenda, 0}}>
+			[<option value="#ID_RUBRIQUE" selected="selected">(#TITRE|supprimer_numero|attribut_html)</option>]
+		</BOUCLE_agenda>
 		<BOUCLE_secteurs(RUBRIQUES){racine}{id_rubrique!==#RACINE_SPECIALISEE}{par num titre}{par titre}>
-				[<option value="#ID_RUBRIQUE">(#TITRE|supprimer_numero|attribut_html)</option>]
+			[<option value="#ID_RUBRIQUE">(#TITRE|supprimer_numero|attribut_html)</option>]
 		</BOUCLE_secteurs>
-			</select>
-		</B_secteurs>
-		
-		
-		
+		</select>
+
 		<p><:sarkaspip:cfg_inf_choix_agenda:></p>
 		<label>
 			<input type="radio" name="plugin" value="1" [(#ENV{plugin, 1}|=={1}|?{checked="checked"})] />
