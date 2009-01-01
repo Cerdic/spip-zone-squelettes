@@ -151,15 +151,15 @@ function calcul_rubrique_specialisee($mot_rubrique, $mode) {
 
 	// On calcule le liste des mots reserves SarkaSPIP + definis par l'utilisateur
 	$mots_reserves = explode(':', _SARKASPIP_MOT_SECTEURS_SPECIALISES);
-    if (defined(_PERSO_MOT_SECTEURS_SPECIALISES))
+    if (defined('_PERSO_MOT_SECTEURS_SPECIALISES'))
     	if (_PERSO_MOT_SECTEURS_SPECIALISES != '')
 	    	$mots_reserves = array_merge($mots_reserves, explode(':', _PERSO_MOT_SECTEURS_SPECIALISES));
 	$types_reserves = explode(':', _SARKASPIP_TYPE_SECTEURS_SPECIALISES);
-    if (defined(_PERSO_TYPE_SECTEURS_SPECIALISES))
+    if (defined('_PERSO_TYPE_SECTEURS_SPECIALISES'))
     	if (_PERSO_TYPE_SECTEURS_SPECIALISES != '')
 	    	$types_reserves = array_merge($types_reserves, explode(':', _PERSO_TYPE_SECTEURS_SPECIALISES));
 	$fonds_reserves = explode(':', _SARKASPIP_FOND_SECTEURS_SPECIALISES);
-    if (defined(_PERSO_FOND_SECTEURS_SPECIALISES))
+    if (defined('_PERSO_FOND_SECTEURS_SPECIALISES'))
     	if (_PERSO_FOND_SECTEURS_SPECIALISES != '')
 	    	$fonds_reserves = array_merge($fonds_reserves, explode(':', _PERSO_FOND_SECTEURS_SPECIALISES));
 
