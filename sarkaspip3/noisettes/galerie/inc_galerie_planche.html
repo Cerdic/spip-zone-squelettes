@@ -24,16 +24,21 @@
 		<li class="[(#GET{classe})][(#GET{compteur_dans_page}|<={2}|?{' '}) n1]">
 			<div class="logo">
 				<a href="#URL_PAGE{album, id_article=#ID_ARTICLE}" title="<:sarkaspip:info_afficher_album:>">
+				[(#LOGO_ARTICLE||?{' '})
+					#SET{ratio_x,#LOGO_ARTICLE|fichier|largeur|div{#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE}}}
+					#SET{ratio_y,#LOGO_ARTICLE|fichier|hauteur|div{#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE}}}
+					#SET{ratio,#GET{ratio_x}|<={#GET{ratio_y}}|?{#GET{ratio_x},#GET{ratio_y}}}
+					[(#LOGO_ARTICLE||image_reduire_par{#GET{ratio}}||image_recadre{#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE},#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE},center}||inserer_attribut{alt, <:sarkaspip:info_afficher_album:>})]
+				]
 	<BOUCLE_vignette_album(DOCUMENTS){id_article}{extension == jpg|png|gif}{mode=document}{vu=non}{0,1}>
+				[(#LOGO_ARTICLE||?{'',' '})
 					#SET{ratio_x,#LARGEUR|div{#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE}}}
 					#SET{ratio_y,#HAUTEUR|div{#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE}}}
 					#SET{ratio,#GET{ratio_x}|<={#GET{ratio_y}}|?{#GET{ratio_x},#GET{ratio_y}}}
-					[(#SET{titre, <:sarkaspip:info_afficher_album:>})]
-					[(#FICHIER|image_reduire_par{#GET{ratio}}|image_recadre{#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE},#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE},center}|inserer_attribut{alt, #GET{titre}})]
+					#SET{fichier,#FICHIER}
+					[(#GET{fichier}|image_reduire_par{#GET{ratio}}|image_recadre{#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE},#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE},center}|inserer_attribut{alt, <:sarkaspip:info_afficher_album:>})]
+				]
 	</BOUCLE_vignette_album>
-	</B_vignette_album>
-					[(#LOGO_ARTICLE||image_reduire{150})]
-	<//B_vignette_album>
 				</a>
 			<br class="nettoyeur" />      
 			</div>
