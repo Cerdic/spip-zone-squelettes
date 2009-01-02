@@ -21,47 +21,32 @@
 	
 	<div id="wrapper">
 		<div id="content">
-			<div class="plan">
-				[(#REM) <!-- affichage des derniers articles syndiqués, classés par secteur --> ]
-				<BOUCLE_test_syndic(SYNDIC_ARTICLES){0,1}>
-					<B_secteurs_syndic>
-						<h1 class="intitule_page"><:sarkaspip:recents_syndic:></h1>
-				
-					<BOUCLE_secteurs_syndic(RUBRIQUES){racine}{id_rubrique!==#RACINE_SPECIALISEE}{par titre}>
-							<B_syndic_nouveaux>
-								[<h2><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a></h2>]
-								<ul>
-							<BOUCLE_syndic_nouveaux(SYNDIC_ARTICLES) {id_secteur}{par date}{inverse}{0,5}>
-									<li><a class="objet_titre" href="#URL_ARTICLE"><span class="objet_date">[[(#DATE|affdate{'d-m-Y'})]]</span>&nbsp;[(#TITRE|couper{75})]</a>
-									<div class="description">
-										[<:sarkaspip:publie_sur_site:>&nbsp;<span class="site-pere">(#NOM_SITE)</span>]
-										[<:sarkaspip:par_auteur:>&nbsp;<span class="auteur-pere">(#LESAUTEURS)</span>.]<br />
-										[<span class="commentaire">(#DESCRIPTIF|supprimer_tags)</span>]
-									</div></li> 
-							</BOUCLE_syndic_nouveaux>
-								</ul>
-							</B_syndic_nouveaux>
-					</BOUCLE_secteurs_syndic>
-						<br />
-					</B_secteurs_syndic>
-				</BOUCLE_test_syndic>
-				
-				<h1 class="intitule_page"><:sarkaspip:icone_sites_references:></h1>
-				<BOUCLE_secteurs(RUBRIQUES){racine}{id_rubrique!==#RACINE_SPECIALISEE}{par num titre}{par titre}>
-					<B_sites_secteur>
-						[<h2><a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a></h2>]
-								<div class="noisette">
-									<div class="indentation redimensionnement">
-					
-					<BOUCLE_sites_secteur(SITES) {id_secteur ?}{id_rubrique!==#BRANCHE_SPECIALISEE}{par date}{inverse}{0,#CONFIG{sarkaspip_noisettes/max_sites, 5}}>
-						[(#INCLURE{fond=noisettes/site/inc_site_1}{id_syndic}{editable=non}{nb_syndic=#CONFIG{sarkaspip_site/nb_syndic, 10}} )]
-					</BOUCLE_sites_secteur>
-					
-									</div>
-								</div>
-					</B_sites_secteur>
-				</BOUCLE_secteurs>
+		
+		[(#REM) <!-- affichage de la breve courante --> ]
+		[(#ENV{id_syndic}|?{' '})
+			<div class="site">
+				[(#INCLURE{fond=noisettes/site/inc_site_description}{id_syndic}{editable=oui})]
+				<br />
 			</div>
+		]
+		
+		[(#REM) <!-- Affichage de tous les sites -->]
+
+		<div id="sites" class="portfolio">
+			<h2><:sarkaspip:icone_sites_references:></h2>
+			
+			<BOUCLE_secteurs(RUBRIQUES){racine}{id_rubrique!==#RACINE_SPECIALISEE}{par num titre}{par titre}>
+				<B_sites_secteur>
+		
+				<BOUCLE_sites_secteur(SITES) {id_secteur ?}{id_rubrique!==#BRANCHE_SPECIALISEE}{par date}{inverse}{0,#CONFIG{sarkaspip_noisettes/max_sites, 5}}>		
+					[(#INCLURE{fond=noisettes/site/inc_site_introduction}{id_syndic}{afficher_mere=oui}{id_rubrique} )]
+				</BOUCLE_sites_secteur>
+							
+
+				</B_sites_secteur>
+			</BOUCLE_secteurs>
+		</div>
+
 		</div>
 	</div>
 	

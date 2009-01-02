@@ -1,0 +1,34 @@
+[(#REM)
+<!-- 
+	Noisette pour l'affichage des breves en partie #content
+    Recoit en argument :
+		- id_syndic
+		- editable: indique si on doit activer ou pas les crayons
+ -->
+]
+<BOUCLE_description(SITES) {id_syndic}>
+	[<div class="#EDIT{titre} titre"><h1>(#NOM_SITE)</h1></div>]
+
+	<div class="description">
+		
+		<div class="logo droite"><a href="#URL_SITE"[ title="(#NOM_SITE|texte_backend)"]><img src="http://open.thumbshots.org/image.pxf?url=#URL_SITE"[ alt="(#NOM_SITE|texte_backend)"] /></a></div>
+
+		[<div class="#EDIT{descriptif} texte">(#DESCRIPTIF|typo_couleur)</div>]
+		
+		<B_art_syndic>
+			<h3 class="spip"><:sarkaspip:derniers_articles_synd:> :</h3>
+			<ul>
+			<BOUCLE_art_syndic(SYNDIC_ARTICLES) {id_syndic}{par date}{inverse}{0, 10}>
+				[<li><a class="titre info" href="#URL_ARTICLE">
+					(#TITRE*|supprimer_numero)
+					</a>
+					<span> [- (#DATE|nom_jour)]&nbsp;[(#DATE|jour)]&nbsp;[(#DATE|nom_mois)]</span>
+					[<div class="texte">(#DESCRIPTIF)</div>]
+				</li>]
+			</BOUCLE_art_syndic>
+			</ul>	
+		</B_art_syndic>
+		
+		<br class="nettoyeur" />
+	</div> <!-- Fin contenu -->
+</BOUCLE_description>

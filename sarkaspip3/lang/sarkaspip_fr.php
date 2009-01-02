@@ -98,6 +98,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'de' => 'de',
 		'decembre' => 'Decembre',
 		'depuis_debut' => 'depuis le d&eacute;but',
+		'derniers_articles_synd' => 'Les derniers articles de ce site',
 		'dimanche_abrege' => 'Di',
 		'docu_article' => 'Documents joints',
 		'docu_rubrique' => 'Documents joints',
