@@ -1,4 +1,4 @@
-<a class="fonction" id="afficher_galerie_liste" href="[(#URL_PAGE{galerie,[id_rubrique=(#ID_RUBRIQUE)&amp;type=liste][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]" title="<:sarkaspip:lien_galerie_liste:>"></a>
+<a class="fonction" id="afficher_galerie_liste" href="[(#URL_PAGE{galerie}|parametre_url{id_rubrique,#ID_RUBRIQUE}|parametre_url{type,liste}|parametre_url{annee,#AUJOURDHUI|annee}|parametre_url{mois,#AUJOURDHUI|mois})]" title="<:sarkaspip:lien_galerie_liste:>"></a>
 <div class="titre"><h1>
 	<:sarkaspip:albums_galerie:>&nbsp;-&nbsp;
 <BOUCLE_titre_categorie(MOTS) {type=squelette_galerie}{id_mot=(#ENV{categorie,-1})}>
@@ -23,10 +23,10 @@
 	#SET{compteur_dans_page, #COMPTEUR_BOUCLE|modulo{#CONFIG{sarkaspip_galerie/pas_pagination_1, 5}|plus{1}}}
 		<li class="[(#GET{classe})][(#GET{compteur_dans_page}|<={2}|?{' '}) n1]">
 			<div class="logo">
-				<a href="#URL_PAGE{album, id_article=#ID_ARTICLE}" title="<:sarkaspip:info_afficher_album:>">
+				<a href="[(#URL_PAGE{album}|parametre_url{id_article,#ID_ARTICLE})]" title="<:sarkaspip:info_afficher_album:>">
 				[(#LOGO_ARTICLE||?{' '})
-					#SET{ratio_x,#LOGO_ARTICLE|fichier|largeur|div{#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE}}}
-					#SET{ratio_y,#LOGO_ARTICLE|fichier|hauteur|div{#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE}}}
+					#SET{ratio_x,#LOGO_ARTICLE||largeur|div{#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE}}}
+					#SET{ratio_y,#LOGO_ARTICLE||hauteur|div{#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE}}}
 					#SET{ratio,#GET{ratio_x}|<={#GET{ratio_y}}|?{#GET{ratio_x},#GET{ratio_y}}}
 					[(#LOGO_ARTICLE||image_reduire_par{#GET{ratio}}||image_recadre{#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE},#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE},center}||inserer_attribut{alt, <:sarkaspip:info_afficher_album:>})]
 				]
@@ -35,14 +35,13 @@
 					#SET{ratio_x,#LARGEUR|div{#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE}}}
 					#SET{ratio_y,#HAUTEUR|div{#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE}}}
 					#SET{ratio,#GET{ratio_x}|<={#GET{ratio_y}}|?{#GET{ratio_x},#GET{ratio_y}}}
-					#SET{fichier,#FICHIER}
-					[(#GET{fichier}|image_reduire_par{#GET{ratio}}|image_recadre{#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE},#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE},center}|inserer_attribut{alt, <:sarkaspip:info_afficher_album:>})]
+					[(#FICHIER|image_reduire_par{#GET{ratio}}|image_recadre{#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE},#EVAL{_SARKASPIP_CONFIG_LARGEUR_GALERIE},center}|inserer_attribut{alt, <:sarkaspip:info_afficher_album:>})]
 				]
 	</BOUCLE_vignette_album>
 				</a>
 			<br class="nettoyeur" />      
 			</div>
-			[<h3><a class="titre" href="#URL_PAGE{album, id_article=#ID_ARTICLE}" title="<:sarkaspip:info_afficher_album:>">(#TITRE|supprimer_numero)</a></h3>]
+			[<h3><a class="titre" href="[(#URL_PAGE{album}|parametre_url{id_article,#ID_ARTICLE})]" title="<:sarkaspip:info_afficher_album:>">(#TITRE|supprimer_numero)</a></h3>]
 			<div class="complements">
 				<INCLURE{fond=noisettes/album/inc_album_total_photos}{id_article}{ancre_meme_page=non}>
 			[(#PARAMETRES_FORUM|?{' '})
