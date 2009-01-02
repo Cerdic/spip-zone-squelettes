@@ -1,5 +1,5 @@
 [(#RACINE_SPECIALISEE{galerie}|galerie_definir_contexte{	
-    [(#CONFIG{sarkaspip_galerie/type2, planche_contact})],
+    	listing_annuel,
 		[(#CONFIG{sarkaspip_galerie/mois1, 1})],
 		[(#CONFIG{sarkaspip_galerie/format_pagination, periode})]
     }
@@ -17,51 +17,50 @@
 
     [(#RACINE_SPECIALISEE{galerie}|galerie_recenser_album{	
         [(#ID_ARTICLE)], 
-				[(#DATE)], 
-				[(#TITRE|supprimer_numero)],
+		[(#DATE)], 
+		[(#TITRE|supprimer_numero)],
         [(#GET{$logo})],
         [(#INTRODUCTION{#CONFIG{sarkaspip_galerie/intro_galerie, 200}}|typo_couleur)]}
 		)]
 </BOUCLE_galerie>
 		
 [(#REM) <!-- Titre de la page galerie --> ]
-<h1 class="intitule_page">
-    <:sarkaspip:albums_galerie:>&nbsp;-&nbsp;
-    <BOUCLE_titre_categorie(MOTS) {type=squelette_galerie}{id_mot=(#ENV{categorie,-1})}>
-				[<:sarkaspip:info_album_categorie:>&nbsp;:&nbsp;(#TITRE)]
-		</BOUCLE_titre_categorie>
-		</B_titre_categorie>
-		[(#ENV{categorie,-1}|=={-1}|?{<:sarkaspip:info_album_sans_filtre:>,[(#ENV{categorie,-1}|=={0}|?{<:sarkaspip:info_album_sans_categorie:>})]})]
-		<//B_titre_categorie>
-</h1> <!-- Fin intitule -->
+<a class="fonction" id="afficher_galerie_planche" href="[(#URL_PAGE{galerie}|parametre_url{id_rubrique,#ID_RUBRIQUE}|parametre_url{type,planche})]" title="<:sarkaspip:lien_galerie_planche:>"></a>
+<div class="titre"><h1>
+	<:sarkaspip:albums_galerie:>&nbsp;-&nbsp;
+<BOUCLE_titre_categorie(MOTS) {type=squelette_galerie}{id_mot=(#ENV{categorie,-1})}>
+	[<:sarkaspip:info_album_categorie:>&nbsp;:&nbsp;(#TITRE)]
+</BOUCLE_titre_categorie>
+</B_titre_categorie>
+	[(#ENV{categorie,-1}|=={-1}|?{<:sarkaspip:info_album_sans_filtre:>,[(#ENV{categorie,-1}|=={0}|?{<:sarkaspip:info_album_sans_categorie:>})]})]
+<//B_titre_categorie>
+</h1></div>
 		
 [(#REM) <!-- Pagination de la page galerie --> ]
 <div class="pagination">		
-		[(#RACINE_SPECIALISEE{galerie}|galerie_paginer{	
-        [(#ENV{annee, [(#ENV{planche})]})],
-				[(#ENV{mois})],
-				[(#ENV{categorie,-1})],
-				[(#CONFIG{sarkaspip_galerie/separateur_pagination,'&nbsp;|&nbsp;'})],
-				[(#CONFIG{sarkaspip_galerie/ancre_pagination,'album'})],
-				[(#CONFIG{sarkaspip_galerie/sens_tri,'normal'})],
-				[(#CONFIG{sarkaspip_galerie/pas_pagination,5})],
-				[(#CONFIG{sarkaspip_galerie/type_pagination,'page'})]}
-		)]		
+	[(#RACINE_SPECIALISEE{galerie}|galerie_paginer{	
+		[(#ENV{annee})],
+		[(#ENV{mois})],
+		[(#ENV{categorie,-1})],
+		[(#CONFIG{sarkaspip_galerie/separateur_pagination,'&nbsp;|&nbsp;'})],
+		[(#CONFIG{sarkaspip_galerie/ancre_pagination,'album'})],
+		[(#CONFIG{sarkaspip_galerie/sens_tri,'normal'})],
+		[(#CONFIG{sarkaspip_galerie/pas_pagination,5})],
+		[(#CONFIG{sarkaspip_galerie/type_pagination,'page'})]}
+	)]
 </div> <!-- Fin pagination -->
 		
 [(#REM) <!-- Affichage de la liste des albums --> ]
-		[(#RACINE_SPECIALISEE{galerie}|galerie_afficher{	
-        [(#ENV{annee, [(#ENV{planche})]})],
-				[(#ENV{mois})],
-				[(#ENV{categorie,-1})],
-				[(#CONFIG{sarkaspip_galerie/sens_tri,'normal'})]
-        }
+[(#RACINE_SPECIALISEE{galerie}|galerie_afficher{	
+	[(#ENV{annee})],
+	[(#ENV{mois})],
+	[(#ENV{categorie,-1})],
+	[(#CONFIG{sarkaspip_galerie/sens_tri,'normal'})]}
 )]
 
 [(#REM) <!-- Affichage des messages d'erreur --> ]
 [<p class="erreur">
 	(#ID_RUBRIQUE|galerie_avertir{	
-      [(#ENV{annee, [(#ENV{planche})]})],
-      [(#ENV{mois})]
-  })
-</p>]	
+      [(#ENV{annee})],
+      [(#ENV{mois})]}
+)</p>]	
