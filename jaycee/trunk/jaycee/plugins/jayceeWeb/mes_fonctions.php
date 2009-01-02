@@ -112,4 +112,62 @@ function sitemap_changefreq( $texte) {
 }
 
 
+?><?php
+
+// Compatibilite 1.9.2
+if (version_compare($GLOBALS['spip_version_code'],'1.9300','<'))
+	include_spip('gribouille/compat_gribouille');
+
+// Creation d'un nouvel article du WIKI -- cf. inc-entete
+if ( (_request('creer_nouvel_article')!==NULL)
+AND (!preg_match(",http://,",_request('creer_nouvel_article'))) // pas d'url en titre de page, non mais
+AND (_request('id_rubrique')!==NULL)
+AND (!_request('pas_de_robot_merci'))) {
+//AND _request('id_rubrique') == $GLOBALS['contexte']['id_rubrique'])
+
+	$id_rubrique = intval($_POST['id_rubrique']);
+	$id_auteur = intval($_POST['id_auteur']);
+	$id_article = null;
+	$titre = _request('creer_nouvel_article');
+	$lsTexte = "Nouvel article... Double-cliquez et saisissez votre texte.";
+	$lsDate = date('Y-m-d H:i:s');
+
+		include_spip('inc/autoriser');
+		if (autoriser('publierdans', 'rubrique', $id_rubrique)) {
+
+		//$id_article = insert_article($id_rubrique);
+		if (version_compare($GLOBALS['spip_version_code'],'1.9300','<')) { // SPIP <= 1.9.2x 
+			$query=
+				"INSERT INTO spip_articles (titre, id_rubrique, texte, date, statut) 
+				VALUES ('$titre', '$id_rubrique', '$lsTexte', '$lsDate', 'publie')";
+			spip_query($query);
+			$id_article = spip_insert_id();
+		
+		} elseif (version_compare($GLOBALS['spip_version_code'],'1.9300','>=')) {	
+			$id_article = sql_insertq( 'spip_articles', array(
+				'titre'=>$titre, 'id_rubrique'=>$id_rubrique, 
+				'texte'=>$lsTexte, 'statut'=>'publie', 'id_secteur'=>0, 
+				'date'=> $lsDate, 'accepter_forum'=>'non', 'lang'=>$lang));
+		}		
+			
+			
+			$query="INSERT INTO spip_auteurs_articles (id_auteur, id_article) VALUES ('$id_auteur', '$id_article')";
+			$riResult = spip_query($query);
+
+			# pour SPIP 1.9.3
+			if (function_exists('instituer_article'))
+				instituer_article($id_article,array('statut' => 'publie'));
+		}
+
+	if (!$id_article)
+		die("Erreur : creation d'article interdite");
+
+			
+	charger_generer_url();
+	include_spip('inc/headers');
+	redirige_par_entete( generer_url_article($id_article));
+}
+
+define ('RUBRIQUE_WIKI_OK', true);
+
 ?>

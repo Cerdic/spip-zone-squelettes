@@ -79,7 +79,8 @@ function id_article($titre, $id_parent = 0, $id_article= 0) {
 }
 
 
-function create_groupe( $groupe, $descriptif='', $texte='', $unseul='non', $obligatoire='non', $tables_liees='articles', $minirezo='oui', $comite='oui', $forum='non') {
+function create_groupe( $groupe, $descriptif='', $texte='', $unseul='non', $obligatoire='non', $tables_liees='articles', $minirezo='oui', $comite='oui', $forum='non',
+		$articles='non', $rubriques='non', $syndic='non') {
 	$groupe = importer_charset($groupe);
 	$id_groupe = id_groupe($groupe);
 	$texte = importer_charset($texte);
@@ -183,7 +184,7 @@ function create_rubrique($titre, $id_parent='0', $descriptif='') {
 	return $id_rubrique;
 }
 
-function create_rubrique_mot( $id_rubrique=0, $id_mot=0) {
+function create_mot_rubrique( $id_rubrique=0, $id_mot=0) {
 	if ($id_rubrique!=0 && $id_mot!=0) {
 		if (version_compare($GLOBALS['spip_version_code'],'1.9300','<')) { // SPIP <= 1.9.2x 
 			// Pas implémenté... à faire !
@@ -206,15 +207,19 @@ function create_article($titre, $id_rubrique='0', $id_secteur='0', $texte='', $i
 	if ($id_article==0) {
 		$titre = importer_charset($titre);
 		$texte = importer_charset($texte);
+		$lsDate = date('Y-m-d H:i:s');
 		
 		if (version_compare($GLOBALS['spip_version_code'],'1.9300','<')) { // SPIP <= 1.9.2x 
-			// Pas implémenté... à faire !
-		
+			$query=
+				"INSERT INTO spip_articles (titre, id_rubrique, texte, date, statut) 
+				VALUES ('$titre', '$id_rubrique', '$texte', '$lsDate', 'publie')";
+			spip_query($query);
+			$id_article = spip_insert_id();
 		} elseif (version_compare($GLOBALS['spip_version_code'],'1.9300','>=')) {	
 			$id_article = sql_insertq( 'spip_articles', array(
 				'titre'=>$titre, 'id_rubrique'=>$id_rubrique, 
 				'texte'=>$texte, 'statut'=>'publie', 'id_secteur'=>$id_secteur, 
-				'date'=> date('Y-m-d H:i:s'), 'accepter_forum'=>'non', 'lang'=>$lang));
+				'date'=> $lsDate, 'accepter_forum'=>'non', 'lang'=>$lang));
 		}		
 		$titre = stripslashes($titre);
 		echo "<p><a href='?exec=naviguer&id_article=$id_article'>Art&nbsp;$id_article:</a> $titre</p>";
@@ -222,10 +227,11 @@ function create_article($titre, $id_rubrique='0', $id_secteur='0', $texte='', $i
 	return $id_article;
 }
 
-function create_article_mot( $id_article=0, $id_mot=0) {
+function create_mot_article( $id_article=0, $id_mot=0) {
 	if ($id_article!=0 && $id_mot!=0) {
 		if (version_compare($GLOBALS['spip_version_code'],'1.9300','<')) { // SPIP <= 1.9.2x 
-			// Pas implémenté... à faire !
+			$query="INSERT INTO spip_mots_articles (id_mot, id_article) VALUES ('$id_mot', '$id_article')";
+			$riResult = spip_query($query);
 		
 		} elseif (version_compare($GLOBALS['spip_version_code'],'1.9300','>=')) {	
 			if (sql_countsel( 'spip_mots_articles', "(id_article = '$id_article') AND (id_mot = '$id_mot')") == 0) {
@@ -236,6 +242,24 @@ function create_article_mot( $id_article=0, $id_mot=0) {
 	}
 
 	if ($lbInsert) echo "<p>Mot <a href='?exec=mots_edit&id_mot=$id_mot&redirect=%3Fexec%3Dmots_tous'>$id_mot</a> sur&nbsp;Art <a href='?exec=naviguer&id_rubrique=$id_article'>$id_article</a></p>";
+	return TRUE;
+}
+
+function create_auteur_article( $id_auteur=0, $id_article=0) {
+	if ($id_article!=0 && $id_auteur!=0) {
+		if (version_compare($GLOBALS['spip_version_code'],'1.9300','<')) { // SPIP <= 1.9.2x 
+			$query="INSERT INTO spip_auteurs_articles (id_auteur, id_article) VALUES ('$id_auteur', '$id_article')";
+			$riResult = spip_query($query);
+		
+		} elseif (version_compare($GLOBALS['spip_version_code'],'1.9300','>=')) {	
+			if (sql_countsel( 'spip_auteurs_articles', "(id_article = '$id_article') AND (id_auteur = '$id_auteur')") == 0) {
+				$lbInsert = sql_insertq( 'spip_auteurs_articles', array(
+					'id_auteur'=>$id_auteur, 'id_article'=>$id_article));
+			}
+		}
+	}
+
+	if ($lbInsert) echo "<p>Auteur <a href='?exec=auteurs_edit&id_auteur=$id_auteur&redirect=%3Fexec%3Dauteurs_tous'>$id_auteur</a> sur&nbsp;Art <a href='?exec=naviguer&id_rubrique=$id_article'>$id_article</a></p>";
 	return TRUE;
 }
 
@@ -259,7 +283,8 @@ function jayceeWeb_upgrade(){
 			create_groupe( $groupe='_SYSTEME_RUBRIQUES', 
 				$descriptif="Mots clés attachés aux rubriques pour la gestion du site",
 				$texte="", $unseul='non', $obligatoire='non', $tables_liees='rubriques', 
-				$minirezo='oui', $comite='oui', $forum='non'
+				$minirezo='oui', $comite='oui', $forum='non',
+				$rubriques='oui'
 				);
 				
 			$liMotMasquerRubrique =
@@ -275,7 +300,8 @@ function jayceeWeb_upgrade(){
 			create_groupe( $groupe='_SYSTEME_ARTICLES', 
 				$descriptif="Mots clés attachés aux articles pour la gestion du site",
 				$texte="", $unseul='non', $obligatoire='non', $tables_liees='articles', 
-				$minirezo='oui', $comite='oui', $forum='non'
+				$minirezo='oui', $comite='oui', $forum='non',
+				$articles='oui'
 				);
 				create_mot( $groupe='_SYSTEME_ARTICLES',	$mot='_AFFICHER_ABONNEMENT', 
 					$descriptif="Affiche un bulletin d’abonnement à SPIP-Listes", 
@@ -335,7 +361,8 @@ function jayceeWeb_upgrade(){
 			create_groupe( $groupe='_SYSTEME_SITES', 
 				$descriptif="Mots clés attachés aux Sites pour la gestion du site",
 				$texte="", $unseul='non', $obligatoire='non', $tables_liees='syndic,sites', 
-				$minirezo='oui', $comite='oui', $forum='non'
+				$minirezo='oui', $comite='oui', $forum='non',
+				$syndic='oui'
 				);
 				create_mot( $groupe='_SYSTEME_SITES',	$mot='_source_Actualite_externe', 
 					$descriptif="Utilise ce site pour afficher ses annonces RSS par _AFFICHER_ACTUALITE_SYNDICATION", 
@@ -351,7 +378,8 @@ function jayceeWeb_upgrade(){
 			create_groupe( $groupe='_SYSTEME_META', 
 				$descriptif="Mots clés attachés aux objets pour la gestion des entêtes HTML",
 				$texte="", $unseul='non', $obligatoire='non', $tables_liees='articles,rubriques',
-				$minirezo='oui', $comite='oui', $forum='non'
+				$minirezo='oui', $comite='oui', $forum='non',
+				$articles='oui', $rubriques='oui'
 				);
 				create_mot( $groupe='_SYSTEME_META',	$mot="_MaJ-1_Heure", 
 					$descriptif='Période de visite par robot demandée',	$texte='');							
@@ -376,13 +404,13 @@ function jayceeWeb_upgrade(){
 			echo "<h4>Rubriques :</h4>";
 			$liRubFr = create_rubrique( $titre='fr', $id_parent='0', 
 				$descriptif="Articles francophones"); 
-				create_rubrique_mot( $liRubFr, $liMotMaJ6); 
+				create_mot_rubrique( $liRubFr, $liMotMaJ6); 
 			$liRubEn = create_rubrique( $titre='en', $id_parent='0', 
 				$descriptif="Articles in english");
-				create_rubrique_mot( $liRubEn, $liMotMaJ7); 
+				create_mot_rubrique( $liRubEn, $liMotMaJ7); 
 			$liRubEs = create_rubrique( $titre='es', $id_parent='0', 
 				$descriptif="Articulos en castellano");
-				create_rubrique_mot( $liRubEs, $liMotMaJ7); 
+				create_mot_rubrique( $liRubEs, $liMotMaJ7); 
 
 				$liRubFrAsso = 
 					create_rubrique( $titre='Association', $id_parent=$liRubFr, 
@@ -391,7 +419,7 @@ function jayceeWeb_upgrade(){
 				$liRubFrAnnonces = 
 					create_rubrique( $titre='_ANNONCES', $id_parent=$liRubFr, 
 						$descriptif="Annonces pour agenda");
-					create_rubrique_mot( $liRubFrAnnonces, $liMotRubAnnonces); 
+					create_mot_rubrique( $liRubFrAnnonces, $liMotRubAnnonces); 
 					create_rubrique( $titre='Commissions', $id_parent=$liRubFrAnnonces, 
 						$descriptif="Réunions de Commission"); 
 					create_rubrique( $titre='Actions', $id_parent=$liRubFrAnnonces, 
@@ -411,14 +439,14 @@ function jayceeWeb_upgrade(){
 				$id_rubrique=$liRubFr, $id_secteur=$liRubFr, 
 				$texte='Bienvenue sur le nouveau site', 
 				$id_article = 1);
-			create_article_mot( $liArtAccueil, $liMotMasquerMenuRub);				
+			create_mot_article( $liArtAccueil, $liMotMasquerMenuRub);				
 
 		$liArtContact =
 			create_article( $titre='Nous contacter', 
 				$id_rubrique=$liRubFrAsso, $id_secteur=$liRubFr, 
 				$texte='Formulaire de contact :');
 
-			create_article_mot( $liArtContact, $liMotEcrire);
+			create_mot_article( $liArtContact, $liMotEcrire);
 
 			echo "<h4>Activation des fonctionnalités SPIP 2</h4>";
 			echo '<ul>';

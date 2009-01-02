@@ -5,7 +5,7 @@
 				<a id='switcher_anchor'></a>
 				#FORMULAIRE_SELECT_LARGEUR_BODY
 				<?php	if ($_COOKIE['jayceeNoStats'] != '1') { ?>
-					[<p class='zStatistique'>(#CONFIG{jaycee/jayceeStatistiques})</p>]
+					[<p class='zStatistique'>(#CONFIG{jayceeWeb/jayceeStatistiques})</p>]
 				<?php } ?>
 				
 				#SPIP_CRON
@@ -24,21 +24,31 @@
 
 		[(#SESSION{id_auteur}|?{' '})
 						<li>
-							<form action="spip.php?action=logout&amp;url=#SELF" method="post">
+							<form action="spip.php?action=logout&amp;url=/" method="post">
 							Espace membre&nbsp;:
 							<input type="submit" id="submitDeconnecter" name="submitDeconnecter" value="Déconnecter" class='boutonIE' />
 							</form>
-						</li>]
+						</li>
 		
 						<li>
-							<form action="spip.php?page=article_nouveau" method="post">
-								<a href='' title="Créer un nouvel article directement depuis l'espace public">Nouvel article :</a> 
-								<input type='text' name='ajouter_page_jaycee' size='12' value="Tapez le Titre..." class='inputIE' />
-								<span style="display:none;">Laissez ce champ vide :<input name="pas_de_robot_merci" type="text" value="" /></span>
-								<input type="hidden" name="id_rubrique" value="#ID_RUBRIQUE" />
-								<input type='submit' name='submitNouvelArticle' value='Créer' class='boutonIE' />
-							</form> 
-						</li>
+							<form action="#URL_RUBRIQUE" method="post">
+<?php
+	// Creation d'un nouvel article, cf. article_fonctions.php
+	include_spip('inc/autoriser');
+	if (autoriser('publierdans', 'rubrique', '#ID_RUBRIQUE')) {
+		echo ' <br />Nouvel article :
+<input name="creer_nouvel_article" size="24" type="text" value="Titre..."  class="inputIE" />
+<span style="display:none;">Laissez ce champ vide :
+<input name="pas_de_robot_merci" type="text" value="" /></span>
+<input type="hidden" name="id_rubrique" value="#ID_RUBRIQUE" />
+<input type="hidden" name="id_auteur" value="#SESSION{id_auteur}" />
+<input type="submit" name="ok" value="Créer"  class="boutonIE" />
+';
+	}
+?>
+
+							</form>
+						</li>]
 					</ul>
 				</fieldset>
 			</td>
