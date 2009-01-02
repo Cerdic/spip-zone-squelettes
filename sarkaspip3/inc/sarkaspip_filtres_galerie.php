@@ -358,7 +358,7 @@ function galerie_listing_afficher($id_galerie, $annee_choisie, $mois_choisi, $fi
 					if ($mois_courant) {
 						$liste .= '</ul><br />';
 					}
-					$liste .= '<h2><a>'.$albums[$j]['nom_mois'].'&nbsp;'.$albums[$j]['annee'].'</a></h2>';
+					$liste .= '<h2><a>'.ucfirst($albums[$j]['nom_mois']).'&nbsp;'.$albums[$j]['annee'].'</a></h2>';
 					$liste .= '<ul>';
 				}
 				$mois_courant = $mois_album;
