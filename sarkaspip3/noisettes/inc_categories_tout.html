@@ -1,25 +1,25 @@
 [(#REM) <!-- Modele pour l'affichage des mots cles dans les pages type agenda et galerie
 Recoit en argument :
-- page  : qui peut prendre 2 valeurs, agenda ou galerie et permet de calculer le groupe
-- id_rubrique : l'id de la rubrique specialisee 
+- page: qui peut prendre 2 valeurs, agenda ou galerie et permet de calculer le groupe
+- type: planche/liste precise la page galerie (planche contact ou liste chronologique)
+- id_rubrique : l'id de la rubrique specialisee
+- annee, mois, categorie suivant le contexte
 --> ]
 <B_liste_categories>
 	<div id="noisette_categories" class="noisette">
 		<h1 class="intitule"><:sarkaspip:filtrage_categorie:></h1>
 		<div class="contenu">
-			[(#ENV{categorie,-1}|=={-1}|?{<h2 class="titre_bloc"><:sarkaspip:filtre_tout:></h2>,<h2><a class="titre_bloc" href="[(#URL_PAGE{[(#ENV{page})],[id_rubrique=(#ENV{id_rubrique})][&amp;annee=(#ENV{annee})][&amp;mois=(#ENV{mois})]})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]><:sarkaspip:filtre_tout:></a></h2>})]
+			[(#ENV{categorie,-1}|=={-1}|?{<h2 class="titre_bloc"><:sarkaspip:filtre_tout:></h2>,<h2><a class="titre_bloc" href="[(#URL_PAGE{#ENV{page}}|parametre_url{type,#ENV{type}}|parametre_url{id_rubrique,#ENV{id_rubrique}}|parametre_url{annee,#ENV{annee}}|parametre_url{mois,#ENV{mois}})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]><:sarkaspip:filtre_tout:></a></h2>})]
 		</div>
-		
 		<div class="contenu">
-			[(#ENV{categorie,-1}|=={0}|?{<h2 class="titre_bloc"><:sarkaspip:filtre_vide:></h2>,<h2><a class="titre_bloc" href="[(#URL_PAGE{[(#ENV{page})],[id_rubrique=(#ENV{id_rubrique})][&amp;annee=(#ENV{annee})][&amp;mois=(#ENV{mois})&amp;]categorie=0})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]><:sarkaspip:filtre_vide:></a></h2>})]
+			[(#ENV{categorie,-1}|=={0}|?{<h2 class="titre_bloc"><:sarkaspip:filtre_vide:></h2>,<h2><a class="titre_bloc" href="[(#URL_PAGE{#ENV{page}, categorie=0}|parametre_url{type,#ENV{type}}|parametre_url{id_rubrique,#ENV{id_rubrique}}|parametre_url{annee,#ENV{annee}}|parametre_url{mois,#ENV{mois}})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]><:sarkaspip:filtre_vide:></a></h2>})]
 		</div>
-		
 		<div class="contenu">
 			<div class="liste"><ul>
 <BOUCLE_liste_categories(MOTS){type=squelette_#ENV{page}}{par id_groupe}>
 				[(#ID_MOT|=={[(#ENV{categorie,-1})]}|?{
 					<li><span class="titre">#TITRE</span></li>,
-					<li><a class="titre" href="[(#URL_PAGE{[(#ENV{page})],[id_rubrique=(#ENV{id_rubrique})][&amp;annee=(#ENV{annee})][&amp;mois=(#ENV{mois})][&amp;categorie=(#ID_MOT)]})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
+					<li><a class="titre" href="[(#URL_PAGE{#ENV{page}}|parametre_url{type,#ENV{type}}|parametre_url{id_rubrique,#ENV{id_rubrique}}|parametre_url{annee,#ENV{annee}}|parametre_url{mois,#ENV{mois}}|parametre_url{categorie,#ID_MOT})]" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
 						#TITRE
 					</a></li>}
 				)]
