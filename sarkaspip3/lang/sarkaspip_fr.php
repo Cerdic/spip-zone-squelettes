@@ -514,6 +514,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_css_extraits' => 'Extraits d\'article',
 		'cfg_lgd_css_commentaires' => 'Commentaires d\'article',
 		'cfg_lgd_css_description' => 'Description, portfolio &amp; documents d\'article',
+		'cfg_lgd_css_planche' => 'Planche de vignettes',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -663,11 +664,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_css_extraits' => 'Vous pouvez modifier les attributs graphiques des extraits d\'articles affich&eacute;s dans les pages Sommaire, Rubrique... ou des listes de br&eacute;ves ou de sites pr&eacute;sents dans les pages Br&eacute;ve et Site',
 		'cfg_inf_css_couleurs_extrait_1' => 'Choisissez vos couleurs pour les titres et leur survol, le cartouche, le fond et le cadre.',
 		'cfg_inf_css_couleurs_extrait_2' => 'Choisissez vos couleurs pour les liens rubrique, commentaires, auteurs et lire la suite.',
-		'cfg_inf_css_commentaires' => 'Vous pouvez modifier les attributs graphiques des commentaires d\'articles affich&eacute;s dans les pages article, formulaire de commentaire...',
+		'cfg_inf_css_commentaires' => 'Vous pouvez modifier les attributs graphiques des commentaires d\'articles affich&eacute;s dans les pages article, formulaire de commentaire, pour les signatures des p&eacute;titions, pour la liste des articles syndiqu&eacute;s...',
 		'cfg_inf_css_description' => 'Vous pouvez modifier les attributs graphiques de la description, du portfolio et des documents joints de la page article ainsi que de l\'&eacute;dito et de toutes les pages du m&ecirc;me type comme Rubrique, Album, Auteur, Evenement, Br&eacute;ve, Site.',
 		'cfg_inf_css_couleurs_description' => 'Choisissez vos couleurs pour les titres, le cartouche et autres &eacute;l&eacute;ments que le texte.',
 		'cfg_inf_css_couleurs_portfolio' => 'Choisissez vos couleurs pour la bordure de chaque image du portfolio.',
 		'cfg_inf_css_couleurs_edito' => 'Choisissez vos couleurs particuli&egrave;res pour l\'&eacute;dito.',
+		'cfg_inf_css_planche' => 'Vous pouvez modifier les attributs graphiques des blocs de type planche affich&eacute;s dans les pages Galerie et Herbier.',
+		'cfg_inf_css_couleurs_lien' => 'Choisissez vos couleurs pour les liens.',
+		'cfg_inf_css_couleurs_vignette' => 'Choisissez vos couleurs pour la bordure de chaque vignette.',
 
 // Labels des items de choix
 		'cfg_lbl_layout_07' => 'Layout #7 (navigation, centre, extra)',
