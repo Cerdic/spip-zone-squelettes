@@ -8,27 +8,28 @@
 	[(#ENV{_cfg_}|form_hidden)]
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_herbier_type:></legend>
-		<p><:sarkaspip:cfg_inf_herbier_id:></p>
-		<label><:sarkaspip:cfg_lbl_liste_secteurs:></label>
-		<select name="rubrique_herbier">
-			<option value="0"[ (#ENV{rubrique_herbier, 0}|=={0}|?{selected="selected"})]>--</option>
-		<BOUCLE_herbier(RUBRIQUES){id_rubrique=#ENV{rubrique_herbier, 0}}>
-			[<option value="#ID_RUBRIQUE" selected="selected">(#TITRE|supprimer_numero|attribut_html)</option>]
-		</BOUCLE_herbier>
-		<BOUCLE_secteurs(RUBRIQUES){racine}{id_rubrique!==#RACINE_SPECIALISEE}{par num titre}{par titre}>
-			[<option value="#ID_RUBRIQUE">(#TITRE|supprimer_numero|attribut_html)</option>]
-		</BOUCLE_secteurs>
-		</select>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_secteur_specialise}
+			{explication=<:sarkaspip:cfg_inf_herbier_id:>}
+			{secteur=herbier}
+			{env}>
 	</fieldset>
 
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_herbier_pagination_1:></legend>
-		<INCLURE{fond=noisettes/cfg/inc_cfg_pagination}{suffixe=_1}{defaut_pas=5}{defaut_position=3}{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_pagination}
+			{suffixe=_1}
+			{defaut_pas=5}
+			{defaut_position=3}
+			{env}>
 	</fieldset>
 
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_herbier_pagination_2:></legend>
-		<INCLURE{fond=noisettes/cfg/inc_cfg_pagination}{suffixe=_2}{defaut_pas=10}{defaut_position=1}{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_pagination}
+			{suffixe=_2}
+			{defaut_pas=10}
+			{defaut_position=1}
+			{env}>
 	</fieldset>
 
 	<div style="text-align: right; margin-right:3px;">

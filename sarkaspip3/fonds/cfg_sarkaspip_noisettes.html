@@ -451,17 +451,10 @@
 		</label>
 		<br />
 		<div id="bloc_annonce_id">
-			<p><:sarkaspip:cfg_inf_annonce_id:></p>
-			<label><:sarkaspip:cfg_lbl_liste_secteurs:></label>
-			<select name="rubrique_annonce">
-				<option value="0"[ (#ENV{rubrique_annonce, 0}|=={0}|?{selected="selected"})]>--</option>
-			<BOUCLE_annonce(RUBRIQUES){id_rubrique=#ENV{rubrique_annonce, 0}}>
-				[<option value="#ID_RUBRIQUE" selected="selected">(#TITRE|supprimer_numero|attribut_html)</option>]
-			</BOUCLE_annonce>
-			<BOUCLE_secteurs(RUBRIQUES){racine}{id_rubrique!==#RACINE_SPECIALISEE}{par num titre}{par titre}>
-				[<option value="#ID_RUBRIQUE">(#TITRE|supprimer_numero|attribut_html)</option>]
-			</BOUCLE_secteurs>
-			</select>
+			<INCLURE{fond=noisettes/cfg/inc_cfg_secteur_specialise}
+				{explication=<:sarkaspip:cfg_inf_annonce_id:>}
+				{secteur=annonce}
+				{env}>
 		</div>
 	</fieldset>
 

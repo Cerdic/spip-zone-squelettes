@@ -51,17 +51,10 @@
 	
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_agenda_type:></legend>
-		<p><:sarkaspip:cfg_inf_agenda_id:></p>
-		<label><:sarkaspip:cfg_lbl_liste_secteurs:></label>
-		<select name="rubrique_agenda">
-			<option value="0"[ (#ENV{rubrique_agenda, 0}|=={0}|?{selected="selected"})]>--</option>
-		<BOUCLE_agenda(RUBRIQUES){id_rubrique=#ENV{rubrique_agenda, 0}}>
-			[<option value="#ID_RUBRIQUE" selected="selected">(#TITRE|supprimer_numero|attribut_html)</option>]
-		</BOUCLE_agenda>
-		<BOUCLE_secteurs(RUBRIQUES){racine}{id_rubrique!==#RACINE_SPECIALISEE}{par num titre}{par titre}>
-			[<option value="#ID_RUBRIQUE">(#TITRE|supprimer_numero|attribut_html)</option>]
-		</BOUCLE_secteurs>
-		</select>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_secteur_specialise}
+			{explication=<:sarkaspip:cfg_inf_agenda_id:>}
+			{secteur=agenda}
+			{env}>
 
 		<p><:sarkaspip:cfg_inf_choix_agenda:></p>
 		<label>

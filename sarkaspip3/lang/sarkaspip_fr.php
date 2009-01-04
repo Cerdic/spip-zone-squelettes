@@ -419,7 +419,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_descr_rubrique' => 'Le corps de la page rubrique permet d\'afficher plusieurs blocs d\'information : la description, les rubriques filles, les documents et images joints et les articles publi&eacute;s dans la rubrique. Cette page permet de configurer l\'affichage de tous ces blocs.',
 		'cfg_descr_herbier' => 'Le corps de la page herbier propose une liste pagin&eacute;e de sites, agr&eacute;ment&eacute;e de vignettes. Cette page est affich&eacute;e selon deux mod&egrave;les: une liste (description et vignette) et un panorama de vignettes uniquement. 
 		Cette page de configuration vous permet de choisir les caract&eacute;ristiques de chaque mod&egrave;le de votre herbier.',
-		'cfg_descr_galerie' => 'A compléter ...',
+		'cfg_descr_galerie' => 'Le corps de la page galerie propose une liste des albums, agr&eacute;ment&eacute;s ou pas de vignettes. Cette page est affich&eacute;e selon deux mod&egrave;les: une planche contact (description et vignette) ou une liste chronologique (non disponible pour le moment). 
+		Cette page de configuration vous permet de choisir les caract&eacute;ristiques de chaque mod&egrave;le de votre galerie.',
 		'cfg_descr_plan' => 'Le corps de la page plan du site pr&eacute;sente la liste des articles publi&eacute;s dans le site. Cette liste peut &ecirc;tre tri&eacute;e par rubrique, par auteur ou par date. Cette page de configuration vous permet d\'en choisir les caract&eacute;ristiques de tri.',
 		'cfg_descr_header' => 'La plupart des balises meta du site sont calcul&eacute;es automatiquement &agrave; partir des informations de configuration du site et de la page affich&eacute;e. Cette page permet n&eacute;anmoins de pr&eacute;ciser le nom de l\'auteur, les mots-cl&eacute;s et la p&eacute;riode entre deux visites des robots.',
 		'cfg_descr_formulaires' => 'Le corps de certaines pages du squelette permet d\'afficher un formulaire comme le formulaire de contact. Cette page de configuration vous permet d\'en choisir les caract&eacute;ristiques.',
@@ -486,11 +487,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_herbier_type' => 'Typage',		
 		'cfg_lgd_herbier_pagination_1' => 'Liste - Pagination',
 		'cfg_lgd_herbier_pagination_2' => 'Panorama - Pagination',
-		'cfg_lgd_galerie_type_1' => 'Typage',
-		'cfg_lgd_galerie_type_2' => 'Galerie - Type',
-	    'cfg_lgd_galerie_modele' => 'Galerie - Mod&egrave;le',
-    	'cfg_lgd_galerie_pagination' => 'Galerie - Pagination',	
-    	'cfg_lgd_galerie_tri' => 'Galerie - Tri',	
+		'cfg_lgd_galerie_secteur' => 'Choix du secteur &#171;Galerie&#187;',
+    	'cfg_lgd_galerie_pagination_1' => 'Galerie planche - Pagination',	
+    	'cfg_lgd_galerie_tri_1' => 'Galerie planche - Tri',	
 		'cfg_lgd_accueil_intro' => 'Pr&eacute;sentation',
 		'cfg_lgd_accueil_debug' => 'Debug',
 		'cfg_lgd_articles_publies' => 'Articles publi&eacute;s',
@@ -595,17 +594,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_menu_option1' => 'Pour le menu s&eacute;lectionn&eacute;, vous avez la possibilit&eacute; de choisir une des options propos&eacute;e ci-dessous.',
 		'cfg_inf_agenda_id' => 'L\'agenda est mat&eacute;rialis&eacute; par un secteur (rubrique de plus haut niveau); les articles de cette rubrique sont alors consid&eacute;r&eacute;s comme des &eacute;v&eacute;nements. 
 		Choisissez donc le secteur qui deviendra votre agenda.',
-		'cfg_inf_galerie_id' => 'La galerie est mat&eacute;rialis&eacute; par un secteur (rubrique de plus haut niveau); les articles de cette rubrique sont alors consid&eacute;r&eacute;s comme des albums. 
+		'cfg_inf_galerie_id' => 'La galerie est mat&eacute;rialis&eacute;e par un secteur (rubrique de plus haut niveau); les articles de cette branche sont consid&eacute;r&eacute;s comme des albums. 
 		Choisissez donc le secteur qui deviendra votre galerie.',
-		'cfg_inf_galerie_modele' => 'Choisissez le type de galerie cal&eacute;, soit sur une ann&eacute;e calendaire, soit sur une saison. Si vous choisissez une galerie saisonnale, vous aurez la possibilit&eacute; de configurer le 
-		premier mois de la saison et le format de pagination.',
-		'cfg_inf_galerie_type_2' => 'Choisissez le type de galerie, soit de type planche, soit de type plan.',
-		'cfg_inf_galerie_mois1' => 'Pour une galerie saisonnale il vous faut choisir &agrave; quel mois d&eacute;bute la saison.',
-		'cfg_inf_galerie_pagination_1' => 'Pour une galerie au format saison, il vous faut aussi choisir le format de la pagination (2008, 2008-2009 ou 08-09).',
-		'cfg_inf_galerie_pagination_2' => 'Vous pouvez changer le s&eacute;parateur des items de la pagination et le nom de l\'ancre de pagination. Toutefois, il est recommand&eacute; de conserver ces valeurs par d&eacute;faut.',
 		'cfg_inf_galerie_sens_tri' => 'Vous pouvez pr&eacute;senter les albums de la galerie soit dans un ordre chronologique, soit dans un ordre anti-chronologique.',
-		'cfg_inf_galerie_pagination_pas' => 'Dans le cas d\'une galerie de type planche, vous avez la possibilit&eacute; d\'indiquer le pas de la pagination',
-		'cfg_inf_galerie_pagination_type' => 'Vous avez aussi la possibilit&eacute; de choisir le type d\'affichage de cette pagination.',	
 		'cfg_inf_herbier_id' => 'L\'herbier est mat&eacute;rialis&eacute; par les sites r&eacute;f&eacute;renc&eacute;s d\'un secteur (rubrique de plus haut niveau). Choisissez donc le secteur qui deviendra votre herbier.',
 		'cfg_inf_plan_pagination' => 'La page Plan du site est compos&eacute;e de trois onglets assimilables &agrave; une bande de pagination. Les onglets permettent de pr&eacute;senter la liste des articles soit par date, soit par rubrique, soit par auteur.
 		Les articles sont donc tri&eacute;s alphab&eacute;tiquemet ou/et chronologiquement. Le tri alphab&eacute;tique est toujours croissant, par contre, le sens du tri chronologique peut &ecirc;tre choisi. La position de la bande d\'onglets est aussi param&eacute;trable.',
@@ -669,11 +660,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_css_pagination' => 'Vous pouvez modifier les couleurs des items de la pagination pour l\'ensemble des pages o&ugrave; elle est utilis&eacute;e.',
 		'cfg_inf_css_couleurs_pagination' => 'Choisissez vos couleurs pour les liens et le texte',
 		'cfg_inf_css_couleurs_pagination_on' => 'Choisissez vos couleurs pour le lien expos&eacute;',
-		'cfg_inf_css_extraits' => 'Vous pouvez modifier les attributs graphiques des extraits d\'articles affich&eacute;s dans les pages sommaire, rubrique...',
+		'cfg_inf_css_extraits' => 'Vous pouvez modifier les attributs graphiques des extraits d\'articles affich&eacute;s dans les pages Sommaire, Rubrique... ou des listes de br&eacute;ves ou de sites pr&eacute;sents dans les pages Br&eacute;ve et Site',
 		'cfg_inf_css_couleurs_extrait_1' => 'Choisissez vos couleurs pour les titres et leur survol, le cartouche, le fond et le cadre.',
 		'cfg_inf_css_couleurs_extrait_2' => 'Choisissez vos couleurs pour les liens rubrique, commentaires, auteurs et lire la suite.',
 		'cfg_inf_css_commentaires' => 'Vous pouvez modifier les attributs graphiques des commentaires d\'articles affich&eacute;s dans les pages article, formulaire de commentaire...',
-		'cfg_inf_css_description' => 'Vous pouvez modifier les attributs graphiques de la description, du portfolio et des documents joints de la page article et de toutes les pages du m&ecirc;me type comme Rubrique, Album, Auteur, Evenement ainsi que de l\'&eacute;dito.',
+		'cfg_inf_css_description' => 'Vous pouvez modifier les attributs graphiques de la description, du portfolio et des documents joints de la page article ainsi que de l\'&eacute;dito et de toutes les pages du m&ecirc;me type comme Rubrique, Album, Auteur, Evenement, Br&eacute;ve, Site.',
 		'cfg_inf_css_couleurs_description' => 'Choisissez vos couleurs pour les titres, le cartouche et autres &eacute;l&eacute;ments que le texte.',
 		'cfg_inf_css_couleurs_portfolio' => 'Choisissez vos couleurs pour la bordure de chaque image du portfolio.',
 		'cfg_inf_css_couleurs_edito' => 'Choisissez vos couleurs particuli&egrave;res pour l\'&eacute;dito.',
