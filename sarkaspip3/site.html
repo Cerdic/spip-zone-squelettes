@@ -22,12 +22,11 @@
 	<div id="wrapper">
 		<div id="content">
 		[(#REM) <!-- affichage de la breve courante --> ]
-		[(#ENV{id_syndic}|?{' '})
-			<div class="site">
-				[(#INCLURE{fond=noisettes/site/inc_site_description}{id_syndic}{editable=oui})]
-				<br />
-			</div>
-		]
+		<BOUCLE_site(SITES) {id_syndic}>
+			<div class="site">[(#INCLURE{fond=noisettes/site/inc_site_description}{id_syndic}{editable=oui})<br />]</div>
+			#SET{rubrique_site, #ID_RUBRIQUE}
+		</BOUCLE_site>
+
 		[(#REM) <!-- Affichage de tous les sites -->]
 			<div id="sites_site" class="portfolio">
 				<h2><:sarkaspip:icone_sites_references:></h2>
@@ -47,7 +46,7 @@
 	
 	<div id="extra">
 		[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]		
-		<INCLURE{fond=noisettes/extra}{self=#SELF}>
+		<INCLURE{fond=noisettes/extra}{self=#SELF}{id_rubrique=#GET{rubrique_site}}>
 	</div>
 	
 	<div id="footer">

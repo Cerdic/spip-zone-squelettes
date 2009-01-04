@@ -97,7 +97,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'de' => 'de',
 		'decembre' => 'Decembre',
 		'depuis_debut' => 'depuis le d&eacute;but',
-		'derniers_articles_synd' => 'Les derniers articles de ce site',
+		'derniers_articles_syndiques' => 'Les derniers articles de ce site',
 		'dimanche_abrege' => 'Di',
 		'docu_article' => 'Documents joints',
 		'docu_rubrique' => 'Documents joints',
@@ -144,7 +144,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //I
 	  
-		'icone_sites_references' => 'Sites r&eacute;f&eacute;renc&eacute;s', // redefinition item SPIP
+		'icone_sites_references' => 'Sites r&eacute;f&eacute;renc&eacute;s',
 		'img_article' => 'Images jointes &agrave; cet article',
 		'img_descriptif' => 'Descriptif',
 		'img_format' => 'Format',
@@ -230,6 +230,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'mois_suivant' => 'Mois suivant',
 		'mots_clefs' => 'Mots-cl&eacute;s', // redefinition item SPIP
 		'mots_clefs_article' => 'Mots-cl&eacute;s de l\'article', // redefinition item SPIP
+		'mots_clefs_site' => 'Mots-cl&eacute;s du site',
 		'mots_clefs_rubrique' => 'Mots-cl&eacute;s de la rubrique', // redefinition item SPIP
 		'msg_0_article_publie' => 'Aucun article publi&eacute; pour l\'instant',
 		'msg_0_evt_agenda' => 'Aucun &eacute;v&eacute;nement d&eacute;fini dans l\'agenda',
@@ -246,6 +247,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 		'navigation_article' => 'Navigation',
 		'navigation_evenement' => 'Navigation',
+		'navigation_site'=>'Navigation',
 		'newsletter' => 'Lettre d\'information',
 		'nom' => 'Nom', // redefinition item SPIP
 		'novembre' => 'Novembre',
@@ -308,6 +310,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'sites_mot' => 'Sites web associ&eacute;s',
 		'site_web' => 'Site web',
 		'sites_web' => 'Sites Web', // redefinition item SPIP
+		'sites_meme_rubrique' => 'Sites de la rubrique',
 		'sous_rubriques' => 'sous-rubriques',
 		'squelette' => 'squelette',
 		'statistiques' => 'Statistiques',
