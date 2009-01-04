@@ -6,6 +6,7 @@
 		- afficher_commentaires: indicateur d'affichage ou pas du nombre de commentaires de l'article concerne
 		- avec_popularite: indique si on doit afficher ou pas la popularite
 		- avec_notation: indique si on doit afficher ou pas la notation de l'article (necessite le plugin notation)
+		- avec_notation: indique si on doit afficher ou pas les socialtags (necessite le plugin socialtags)
 		- logo_rubrique: indique si on utilise le logo de la rubrique dans le cas ou le logo de l'article est absent
 		- taille_logo: taille max du logo si affiche
 		- id_evenement: id de l'evenement associe a l'article (page evenement avec plugin agenda)
@@ -35,7 +36,7 @@
 	
 	[(#REM) <!--dans l'edito, le cartouche et l'image sont avant le titre--> ]
 	[(#ENV{page}|=={edito}|?{' '})
-		[(#INCLURE{fond=noisettes/article/inc_article_cartouche}{id_article}{id_evenement}{avec_popularite=non}{avec_notation}{page})]
+		[(#INCLURE{fond=noisettes/article/inc_article_cartouche}{id_article}{id_evenement}{avec_popularite=non}{avec_notation}{avec_socialtags}{page})]
 		<br class="nettoyeur" />
 		[<div class="logo droite">(#GET{logo}||image_reduire{#ENV{taille_logo}})</div>]
 	]
@@ -45,7 +46,7 @@
 	<div class="description">
 		[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>[(#ENV{page}|=={edito}|?{' '})<br /><br />]]
 	[(#ENV{page}|!={edito}|?{' '})
-		[(#INCLURE{fond=noisettes/article/inc_article_cartouche}{id_article}{avec_popularite}{avec_notation}{page})]
+		[(#INCLURE{fond=noisettes/article/inc_article_cartouche}{id_article}{avec_popularite}{avec_notation}{avec_socialtags}{page})]
 		<br class="nettoyeur" />
 		[<div class="logo gauche">(#GET{logo}||image_reduire{#ENV{taille_logo}})</div>]
 	]
