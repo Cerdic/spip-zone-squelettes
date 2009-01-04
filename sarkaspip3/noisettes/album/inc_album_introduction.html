@@ -13,7 +13,7 @@
 	[(#SET{classe_li, [(#GET{classe_li}) n1]})]
 ]
 <BOUCLE_galerie_intro(ARTICLES) {id_article}>
-	<li class="[(#GET{classe_li})]">
+	<li class="[(#GET{classe_li})]"><div>
 		<div class="logo">
 			<a href="[(#URL_PAGE{album}|parametre_url{id_article,#ID_ARTICLE})]" title="<:sarkaspip:info_afficher_album:>">
 			[(#LOGO_ARTICLE||?{' '})
@@ -33,6 +33,7 @@
 			</a>
 		</div>
 		[<h3><a class="titre" href="[(#URL_PAGE{album}|parametre_url{id_article,#ID_ARTICLE})]" title="<:sarkaspip:info_afficher_album:>">(#TITRE|supprimer_numero)</a></h3>]
+		<INCLURE{fond=noisettes/article/inc_article_cartouche}{id_article}{page=galerie}{avec_popularite=non}{avec_notation=non}>
 		<div class="complements">
 			<INCLURE{fond=noisettes/album/inc_album_total_photos}{id_article}{ancre_meme_page=non}>
 		[(#PARAMETRES_FORUM|?{' '})
@@ -40,6 +41,6 @@
 			<INCLURE{fond=noisettes/article/inc_article_total_commentaires}{id_article}{ancre_meme_page=non}{page=album}>
 		]
 		</div> <!-- Fin complements -->
-		<div class="introduction">[(#INTRODUCTION{#CONFIG{sarkaspip_galerie/intro_galerie, 200}}|typo_couleur)] </div>
+	</div>	<div class="introduction">[(#INTRODUCTION{#CONFIG{sarkaspip_galerie/intro_galerie, 200}}|typo_couleur)] </div>
 	</li>
 </BOUCLE_galerie_intro>

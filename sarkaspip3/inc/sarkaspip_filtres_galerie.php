@@ -219,7 +219,7 @@ function galerie_listing_paginer($id_galerie, $annee_choisie, $mois_choisi, $fil
 					if ($filtre != '-1') $arg_option = '&amp;categorie='.$filtre;
 					if ($ancre) $arg_option .= '#pagination_'.$ancre;
 					if (intval($debut_saison) != 1) $annee_alb = (intval($mois_alb) < intval($debut_saison)) ? strval(intval($annee_alb)-1) : $annee_alb;
-					$pagination .= '<a href="spip.php?page=galerie&amp;annee='.$annee_alb.'&amp;mois='.$debut_saison.$arg_option.'">'.$albums[$j]['lien_page'].'</a>';
+					$pagination .= '<a class="ajax" href="spip.php?page=galerie&amp;annee='.$annee_alb.'&amp;mois='.$debut_saison.$arg_option.'">'.$albums[$j]['lien_page'].'</a>';
 				}
 			$annee_courante = $annee_album;
 			}

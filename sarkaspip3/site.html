@@ -21,7 +21,6 @@
 	
 	<div id="wrapper">
 		<div id="content">
-		
 		[(#REM) <!-- affichage de la breve courante --> ]
 		[(#ENV{id_syndic}|?{' '})
 			<div class="site">
@@ -29,24 +28,15 @@
 				<br />
 			</div>
 		]
-		
 		[(#REM) <!-- Affichage de tous les sites -->]
-
-		<div id="sites" class="portfolio">
-			<h2><:sarkaspip:icone_sites_references:></h2>
-			
+			<div id="sites_site" class="portfolio">
+				<h2><:sarkaspip:icone_sites_references:></h2>
 			<BOUCLE_secteurs(RUBRIQUES){racine}{id_rubrique!==#RACINE_SPECIALISEE}{par num titre}{par titre}>
-				<B_sites_secteur>
-		
 				<BOUCLE_sites_secteur(SITES) {id_secteur ?}{id_rubrique!==#BRANCHE_SPECIALISEE}{par date}{inverse}{0,#CONFIG{sarkaspip_noisettes/max_sites, 5}}>		
-					[(#INCLURE{fond=noisettes/site/inc_site_introduction}{id_syndic}{afficher_mere=oui}{id_rubrique} )]
+					[(#INCLURE{fond=noisettes/site/inc_site_introduction}{id_syndic}{afficher_mere=oui}{id_rubrique})]
 				</BOUCLE_sites_secteur>
-							
-
-				</B_sites_secteur>
 			</BOUCLE_secteurs>
-		</div>
-
+			</div>
 		</div>
 	</div>
 	

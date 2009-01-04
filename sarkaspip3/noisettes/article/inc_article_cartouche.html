@@ -11,8 +11,8 @@
 <BOUCLE_cartouche(ARTICLES) {id_article}>
 	<div class="cartouche">
 		[(#REM) <!-- Date de l'article ou de l'evenement --> ]
-		[(#ENV{page}|!={evenement}|?{' '})
-			[(#DATE|nom_jour)][&nbsp;(#DATE|affdate)]
+		[(#ENV{page}|=={galerie}|?{' '})
+			[(#DATE|nom_mois|ucfirst)][&nbsp;(#DATE|annee)]
 		]
 		[(#ENV{page}|=={evenement}|?{' '})
 			[(#CONFIG{sarkaspip_agenda/plugin, 1}|=={1}|?{' '})
@@ -22,12 +22,15 @@
 				[(#INCLURE{fond=noisettes/agenda/inc_evenement_date_2}{id_evenement})]
 			]
 		]
+		[(#ENV{page}|match{evenement|galerie}|?{'',' '})
+			[(#DATE|nom_jour)][&nbsp;(#DATE|affdate)]
+		]
 
 		[(#REM) <!-- Auteur de l'article --> ]
 		<B_auteurs_article>
-			[(#ENV{page}|match{^(article|album)$}|?{' '})<br /><:sarkaspip:par_auteur:>]
+			[(#ENV{page}|match{^(article|galerie|album)$}|?{' '})<br /><:sarkaspip:par_auteur:>]
 		<BOUCLE_auteurs_article(AUTEURS) {id_article} {", "}>
-			[(#ENV{page}|match{^(article|album)$}|?{' '})<a href="#URL_AUTEUR">#NOM</a>]
+			[(#ENV{page}|match{^(article|galerie|album)$}|?{' '})<a href="#URL_AUTEUR">#NOM</a>]
 		</BOUCLE_auteurs_article>
 		</B_auteurs_article>
 
