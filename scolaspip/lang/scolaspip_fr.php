@@ -19,10 +19,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'lien_accueil_scolaspip' => 'ScolaSpip Accueil',
 
 'lien_couleur_scolaspip'=>'ScolaSpip Couleurs',
+'lien_plus_scolaspip'=>'ScolaSpip petits plus',
 
 'texte_lien_couleur_scolaspip' => 'Utilisez &eacute;galement pour personnaliser les couleurs :',
 
 'texte_lien_accueil_scolaspip' => 'Utilisez &eacute;galement pour personnaliser la page d\'accueil :',
+
+'texte_lien_plus_scolaspip' => 'Utilisez &eacute;galement pour personnaliser les paramêtres généraux :',
 
 'cfg_descriptifdusite_legend' => 'Descriptif du site sur la page d\'accueil',
 
@@ -121,6 +124,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 'supprimer' => 'Retrouver les valeurs initiales',
 'supprimer_couleurs' => 'Retrouver les couleurs initiales',
+
+'scolaspip_plus' => 'Les petits plus de scolaSPIP',
+'scolaspip_plus_texte' => 'Personnalisez quelques éléments des squelettes scolaSPIP.',
+'cfg_afficheauteurs_legend' => 'Gestion de l\'affichage des auteurs',
+'cfg_afficheauteurs_texte' => 'Masquez les auteurs des articles.',
 
 'ok' => 'Enregistrer',
 
