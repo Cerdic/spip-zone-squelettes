@@ -386,6 +386,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_titre_auteur' => 'Sarka-SPIP - Configuration de la page auteur',
 		'cfg_titre_breve' => 'Sarka-SPIP - Configuration de la page br&egrave;ve',
 		'cfg_titre_modeles' => 'Sarka-SPIP - Configuration des mod&egrave:les',
+		'cfg_titre_site' => 'Sarka-SPIP - Configuration de la page site',
 
 // Titre des liens des pages
 		'sarkaspip_accueil' => 'Accueil',
@@ -407,6 +408,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'sarkaspip_auteur' => 'Auteur',
 		'sarkaspip_breve' => 'Br&egrave;ve',
 		'sarkaspip_modeles' => 'Mod&egrave;les',
+		'sarkaspip_site' => 'Site',
 		
 // Descriptif des pages
 		'cfg_descr_accueil' => 'Vous &ecirc;tes sur la page d\'accueil de la configuration du squelette Sarka-SPIP.',
@@ -433,6 +435,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_descr_auteur' => 'Le corps de la page auteur permet d\'afficher plusieurs blocs d\'information : la biographie, les articles publi&eacute;s par l\'auteur et un formulaire de contact. Cette page permet de configurer l\'affichage de tous ces blocs.',
 		'cfg_descr_breve' => 'Le corps de la page breve permet d\'afficher la br&egrave;ve en cours ainsi que la liste de toutes les br&egrave;ves du site. Cette page permet de configurer la pagination de cette liste.',
 		'cfg_descr_modeles' => 'Cette page permet de configurer certains param&egrave;tres globaux applicables mod&egrave;les img, doc et emb.',
+		'cfg_descr_site' => 'Le corps de la page site permet d\'afficher le site en cours ainsi que la liste de tous les sites r&eacute;f&eacute;renc&eacute;s. Cette page permet de configurer la pagination de cette liste.',
 
 // Titre des boites
 		'cfg_boite_accueil' => 'Accueil',
@@ -456,6 +459,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_boite_styles_sauvegarde' => 'Sauvegarde des styles',
 		'cfg_boite_styles_restauration' => 'Restauration des styles',
 		'cfg_boite_modeles' => 'Mod&egrave;les',
+		'cfg_boite_site' => 'Site',
 
 // Legendes des blocs contenus dans chaque boite
 		'cfg_lgd_layout' => 'Layout',
@@ -471,7 +475,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_inc_rubriques' => 'Menu des rubriques',
 		'cfg_lgd_inc_formulaires' => 'Menu des formulaires',
 		'cfg_lgd_inc_breves' => 'Liste des br&egrave;ves',
-		'cfg_lgd_breves_toutes' => 'Liste de toutes les br&egrave;ves du site',
+		'cfg_lgd_breves_toutes' => 'Liste - Pagination',
+		'cfg_lgd_sites_tous' => 'Liste - Pagination',
 		'cfg_lgd_inc_commentaires' => 'Liste des commentaires',
 		'cfg_lgd_inc_recherche' => 'Formulaires de recherche',
 		'cfg_lgd_inc_sites' => 'Liste des sites',
@@ -591,6 +596,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_accueil_intro_17' => '<em>Auteur</em> : configuration des divers blocs de la page auteur',
 		'cfg_inf_accueil_intro_18' => '<em>Br&egrave;ve</em> : configuration des divers blocs de la page br&egrave;ve',
 		'cfg_inf_accueil_intro_19' => '<em>Mod&egrave;les</em> : configuration des mod&egrave;les img, doc et emb',
+		'cfg_inf_accueil_intro_20' => '<em>Site</em> : configuration des divers blocs de la page site',
 		'cfg_inf_accueil_debug' => 'Si vous avez un souci ou voulez rapporter un bug il peut &ecirc;tre utile d\'activer le mode debug pour la configuration des pages. Celui-ci vous permez de lire les variables de chaque fond.',
 		'cfg_inf_rubrique_articles' => 'Voulez-vous afficher la liste des articles publi&eacute;s dans la rubrique ? Si oui, vous pourrez ensuite ajuster quelques param&egrave;tres de cet affichage.',
 		'cfg_inf_pagination_bande' => 'Choisissez la position de la bande de pagination.',
