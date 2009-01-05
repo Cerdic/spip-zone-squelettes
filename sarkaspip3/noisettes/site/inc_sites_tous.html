@@ -1,0 +1,16 @@
+[(#REM) <!-- Affichage de tous les sites du site sauf le site courant -->]
+<B_sites_tous>
+<div id="sites_site" class="portfolio">
+	<h2><:sarkaspip:icone_sites_references:></h2>
+	#ANCRE_PAGINATION
+[(#CONFIG{sarkaspip_site/position_pagination_site, 3}|match{^(1|3)$}|?{' '})
+	[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_site/modele_pagination_site}})</div>]
+]
+<BOUCLE_sites_tous(SITES) {!id_syndic}{id_rubrique!==#BRANCHE_SPECIALISEE}{par date}{inverse}{pagination #CONFIG{sarkaspip_site/pas_pagination_site, 10}}>		
+		[(#INCLURE{fond=noisettes/site/inc_site_introduction}{id_syndic}{afficher_mere=oui}{id_rubrique})]
+</BOUCLE_sites_tous>
+[(#CONFIG{sarkaspip_site/position_pagination_site, 3}|match{^(2|3)$}|?{' '})
+	[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_site/modele_pagination_site}})</div>]
+]
+</div> <!-- Fin portfolio -->
+</B_sites_tous>

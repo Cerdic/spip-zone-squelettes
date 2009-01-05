@@ -10,12 +10,10 @@
 [(#ENV{page}|=={galerie}|?{' '})
 	<INCLURE{fond=noisettes/inc_categories_tout}{page}{type}{id_rubrique}{categorie}{annee}{mois}>
 ]
-
 [(#REM) <!-- affichage de la navigation dans les evenements de la journee --> ]
 [(#ENV{page}|=={evenement}|?{' '})
 	<INCLURE{fond=noisettes/agenda/inc_evenement_navigation}{id_secteur=#RACINE_SPECIALISEE{agenda}}{id_article}{id_evenement}>
 ]
-
 [(#REM) <!-- affichage du bloc des mots-cles d'une branche ou d'un article et de la navigation propre a la page --> ]
 [(#ENV{page}|=={article}|?{' '})
 	<INCLURE{fond=noisettes/article/inc_article_navigation}{id_article}{id_rubrique}>
@@ -57,14 +55,14 @@
 
 [(#REM) <!-- affichage du panneau derniers commentaires sauf sur la page articles ou album --> ]
 [(#CONFIG{sarkaspip_noisettes/position_commentaires, 0}|=={2}|?{' '})
-	[(#ENV{page}|!={article}|?{' '})
+	[(#ENV{page}|match{article|album}|?{'',' '})
 		<INCLURE{fond=noisettes/inc_commentaires}{id_secteur}>
 	]
 ]
 
 [(#REM) <!-- affichage des X dernieres breves et sites en fonction du contexte --> ]
-<INCLURE{fond=noisettes/breve/inc_breves_recentes}{id_secteur}>
-<INCLURE{fond=noisettes/site/inc_sites}{id_secteur}>
+[(#ENV{page}|!={breve}|?{' '})<INCLURE{fond=noisettes/breve/inc_breves_recentes}{id_secteur}>]
+[(#ENV{page}|!={site}|?{' '})<INCLURE{fond=noisettes/site/inc_sites_recents}{id_secteur}>]
 
 [(#REM) <!-- Blocs de statistiques --> ]
 [(#CONFIG{sarkaspip_noisettes/position_stats_1, 1}|=={2}|?{' '})
