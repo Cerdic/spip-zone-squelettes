@@ -1,8 +1,42 @@
 [(#REM) <!-- affichage de la noisette de navigation vers les objets connexes au site reference --> ]
-<div id="noisette_navigation" class="noisette">
-	<h1 class="intitule"><:sarkaspip:navigation_site:></h1>
-		[(#REM) <!-- Liste des mots-cles du site --> ]
-		<INCLURE{fond=noisettes/site/inc_site_mots_cles}{id_syndic}>
-		[(#REM) <!-- Liste des sites de la meme rubrique --> ]
-		<INCLURE{fond=noisettes/site/inc_site_freres}{id_syndic}{id_rubrique}>
-</div>
+
+[(#REM) <!-- Liste des mots-cles du site reference --> ]
+#SET{titre_positionne, non}
+
+<B_mots>
+	<div id="noisette_navigation" class="noisette">
+		<h1 class="intitule"><:sarkaspip:navigation_site:></h1>
+		#SET{titre_positionne, oui}
+		<div class="contenu">
+			<h2 class="titre_bloc"><:sarkaspip:mots_clefs_site:></h2>
+			<div class="liste"><ul>
+<BOUCLE_mots(MOTS){id_syndic}{type!==^squelette_}{par titre}>
+				<li><a class="titre" href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>
+					#TITRE
+				</a></li>
+</BOUCLE_mots>
+			</ul></div>	
+		</div> <!-- Fin contenu -->
+</B_mots>
+
+
+[(#REM) <!-- Liste des sites freres --> ]
+<B_site_rubrique>
+[(#GET{titre_positionne}|=={non}|?{' '})
+	<div id="noisette_navigation" class="noisette">
+		<h1 class="intitule"><:sarkaspip:navigation_site:></h1>
+		#SET{titre_positionne, oui}]
+		
+		<div class="contenu">
+			<h2 class="titre_bloc"><:sarkaspip:sites_meme_rubrique:></h2>		
+			<div class="liste"><ul>
+<BOUCLE_site_rubrique(SITES){id_rubrique}>
+				[[<li><(#EXPOSE{span class="titre",a class="titre"[ href="(#URL_PAGE{site}|parametre_url{id_syndic,#ID_SYNDIC})"]})>]
+					(#NOM_SITE)
+				[</(#EXPOSE{span,a})></li>]]
+</BOUCLE_site_rubrique>
+			</ul></div>
+		</div>
+</B_site_rubrique>	
+[(#GET{titre_positionne}|=={oui}|?{' '})</div>]
+
