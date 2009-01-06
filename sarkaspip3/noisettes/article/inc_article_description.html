@@ -57,17 +57,22 @@
 		[<br class="nettoyeur" /><div class="#EDIT{ps} ps">(#PS)</div>]
 		[<br class="nettoyeur" /><div class="notes">(#NOTES)</div>]
 		[(#REM) <!-- Notation de l'article --> ]
+		[(#SET{plugin_en_cours, non})]
 		[(#PLUGIN{NOTATION}|?{' '})
 			[(#ENV{avec_notation, 0}|=={2}|?{' '})
-				[<br class="nettoyeur" /><div class="notation">(#FORMULAIRE_NOTATION)</div>]
+				<br class="nettoyeur" /><div class="plugin">[<div class="notation">(#FORMULAIRE_NOTATION)</div>]
+				[(#SET{plugin_en_cours, oui})]
 			]
 		]
-		[(#REM) <!-- Inclusion des boutons de bookmark sur les sites sociaux --> ]
+		[(#REM) <!-- Inclusion des boutons de bookmark sur les reseaux sociaux --> ]
 		[(#PLUGIN{SOCIALTAGS}|?{' '})
 			[(#ENV{avec_socialtags, 0}|=={2}|?{' '})
+				[(#GET{plugin_en_cours}|=={non}|?{' '})<br class="nettoyeur" /><div class="plugin">]
 				[(#INCLURE{fond=noisettes/socialtags_articles}{id_article})]
+				[(#SET{plugin_en_cours, oui})]
 			]
 		]
+		[(#GET{plugin_en_cours}|=={oui}|?{' '})</div>]
 		<br class="nettoyeur" />
 	</div>
 </BOUCLE_description>

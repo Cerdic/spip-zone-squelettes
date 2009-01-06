@@ -5,6 +5,7 @@
 		- page: indique le type de page affichee (article - par defaut -, evenement, album, edito)
 		- avec_popularite: indique si on doit afficher ou pas la popularite
 		- avec_notation: indique si on doit afficher ou pas le formulaire de notation (necessite plugin NOTATION)
+		- avec_socialtags: indique si on doit afficher ou pas les boutons de bookmark sur les reseaux sociaux
 		- id_evenement: id de l'evenement associe a l'article (page evenement avec plugin agenda)
 -->
 ]
@@ -40,16 +41,21 @@
 		]
 
 		[(#REM) <!-- Notation de l'article --> ]
+		[(#SET{plugin_en_cours, non})]
 		[(#PLUGIN{NOTATION}|?{' '})
 			[(#ENV{avec_notation, 0}|=={1}|?{' '})
-				[<br /><div class="notation">(#FORMULAIRE_NOTATION)</div>]
+				<div class="plugin">[<div class="notation">(#FORMULAIRE_NOTATION)</div>]
+				[(#SET{plugin_en_cours, oui})]
 			]
-		[(#REM) <!-- Inclusion des boutons de bookmark sur les sites sociaux --> ]
 		]
+		[(#REM) <!-- Inclusion des boutons de bookmark sur les reseaux sociaux --> ]
 		[(#PLUGIN{SOCIALTAGS}|?{' '})
 			[(#ENV{avec_socialtags, 0}|=={1}|?{' '})
+				[(#GET{plugin_en_cours}|=={non}|?{' '})<div class="plugin">]
 				[(#INCLURE{fond=noisettes/socialtags_articles}{id_article})]
+				[(#SET{plugin_en_cours, oui})]
 			]
 		]
+		[(#GET{plugin_en_cours}|=={oui}|?{' '})</div>]
 	</div>
 </BOUCLE_cartouche>
