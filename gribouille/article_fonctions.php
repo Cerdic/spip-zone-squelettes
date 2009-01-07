@@ -78,9 +78,11 @@ AND _request('id_rubrique') == $GLOBALS['contexte']['id_rubrique']) {
 	if (!$id_article)
 		die("Erreur : creation d'article interdite");
 
-	generer_url_entite("","","","");
 	include_spip('inc/headers');
-	redirige_par_entete(generer_url_article($id_article, '&'));
+	$url = function_exists('generer_url_entite')
+		? generer_url_entite($id_article, 'article')
+		: generer_url_article($id_article, '&');
+	redirige_par_entete($url);
 }
 
 define ('RUBRIQUE_WIKI_OK', true);
