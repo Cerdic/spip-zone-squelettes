@@ -28,9 +28,9 @@
 
 
 <div id="container">   [(#REM)   centrage page   ]
-<INCLURE{fond="entete"}{date=#ENV{date}}>  
+<INCLURE{fond=entete}{date=#ENV{date}}>  
 <div id="surcontent">  
-<INCLURE{fond="menuhoriz"}>[(#REM)   ouverture ent&ecirc;te   ]
+<INCLURE{fond=menuhoriz}>[(#REM)   ouverture ent&ecirc;te   ]
 <div id="content">  [(#REM)   ouverture contenu   ] 
 <div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
 <div class="grande_boite">
@@ -42,7 +42,7 @@
 
 [(#REM) Inclure les deux boîtes en haut  ]
 
-<INCLURE{fond="inc_menu_participer"}>
+<INCLURE{fond=inc_menu_participer}{origine=#ENV{page}}>
 
 
 
@@ -51,37 +51,43 @@
 
 <B_forums_liens>
 <div class="grande_boite">			
-<h4 class="icone_membre">Mes derniers messages.</h4>
 <table class="spip">
+<tr class="row_first gras blanc">
+<td>Suivre mes messages <img src="/squelettes/images/icones/rss.gif" alt="Suivre les flux de ces discussions."/></td>
+<td>Statut</td>
+<td>Date</td>
+<td>R&eacute;ponses</td>
+</tr>
+
+
+[(#REM)  les 5 derniers posts de l'auteur tout en détail   ]
+
 <BOUCLE_forums_liens(FORUMS){id_auteur}{plat}{!par date_heure}{pagination 5}>
 <tr [class="(#EVAL{[(#_forums_liens:COMPTEUR_BOUCLE)]}|alterner{'row_even','row_odd'})"] ><td> 
-[(#DATE|affdate_court) &ndash; ]  [(#STATUT|=={publie}|?{
-<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})]" [title="(#TITRE|couper{80}|texte_backend)"]>[(#TITRE|couper{80})]</a>[ (#TEXTE|couper{140})],[(#TEXTE|couper{140})] })]
-			[(#REM) todo: une couleur pour les statuts autres que 'publie']
-             #STATUT
-           </td>  </tr>
+[(#REM) Quel article correspond à ce forum. Ajoutez le prefixe de votre table si cette boucle ne marche pas  ]
+<BOUCLE_forumart(FORUMS articles){id_forum}>
+[(#STATUT|=={publie}|?{[<a href="(#URL_PAGE{backend}|parametre_url{id_article,#ID_ARTICLE})" title="Suivre le flux rss de ce forum.">]<img src="/squelettes/images/icones/rss.gif" alt="Suivre le flux rss de ce forum."/></a> 
+<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})]" [title="(#TITRE|couper{80}|texte_backend)"]>[(#TITRE|couper{80})]</a>[ (#TEXTE|couper{100})]
+ ,[(#TEXTE|couper{180})] })]</td>
+</BOUCLE_forumart>
+	<td>
+	[(#STATUT|=={prepa}|?{pr&eacute;par&eacute;})]
+	[(#STATUT|=={prop}|?{propos&eacute;})]
+	[(#STATUT|=={refuse}|?{refus&eacute;})]
+	[(#STATUT|=={poubelle}|?{jet&eacute;})]
+	[<span class="vert">(#STATUT|=={publie}|?{publi&eacute;})</span>]
+	</td>  
+<td>
+[(#DATE|affdate{'d/m/Y'})]<br/>
+[(#DATE|affdate{'H:i:s'})]
+</td>
+<td>R&eacute;ponses</td>
+</tr>
 </BOUCLE_forums_liens>
-            </table>
-			[<p class="centre pagination">(#PAGINATION)</p>]			
+</table>
+[<p class="centre pagination">(#PAGINATION)</p>]			
 </div>
 </B_forums_liens>
-
-
-
-
-
-
-<B_doc_forum>
-<div class="grande_boite">
-<h4 class="icone_zip">Mes documents dans les forums.</h4>
-<BOUCLE_doc_forum(DOCUMENTS){id_auteur}><p>
-[(#EXTENSION|match{gif|jpg|png}|?{'',' '})
-					[(#EMBED_DOCUMENT|image_reduire{65})]]
-[(#EXTENSION|match{gif|jpg|png}|?{' ',''})		
-					[(#LOGO_DOCUMENT|#URL_DOCUMENT)]]</p>
-</BOUCLE_doc_forum>
-</div>
-</B_doc_forum>
 
 
 
@@ -91,21 +97,39 @@
 
 <B_auteur_maj>
 <div class="grande_boite">
-<h4 class="icone_membre">Nouveaux membres ou profils modifiés.</h4>
-<BOUCLE_auteur_maj(AUTEURS){tout}{!par maj}{pagination 5}>
-<p>[<span class="gauche carte Boddy #_auteur:EDIT{logo}">(#LOGO_AUTEUR_NORMAL||?{" ","::&nbsp;Pas de logo."})[(#LOGO_AUTEUR_NORMAL||image_reduire{46})]</span>]
-<strong>
+<h4 class="icone_membre">Les derniers membres actifs:</h4>
+</div>
+<B_auteur_maj>
+<div id="minipics">
+<ul>
+<BOUCLE_auteur_maj(AUTEURS){tout}{!par maj}{0,4}>
+<li class="transparent #EDIT{logo}" id="a#ID_DOCUMENT">
 [<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="R&eacute;dacteur d'article">]
 [<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Webmaster/modo">]
 [<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Invit&eacute; ou visiteur">]
 [<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Compte en attente">]
-[(#NOM|couper{100})]</a></strong><br/>
-[(#BIO|couper{250})<br/>]
-[(#PGP|couper{100})<br/>]
-[(#URL_SITE)<br/>]</p>
+[(#LOGO_AUTEUR_NORMAL||?{" ","Pas de logo."})[(#LOGO_AUTEUR_NORMAL||image_reduire{80})]]
+</a>
+[<p class="centre #EDIT{NOM}">(#NOM|lignes_longues{14}|couper{28})</p>]
+</li>
+</BOUCLE_auteur_maj>	
+<hr class="spacer">
+<BOUCLE_auteur_maj2(AUTEURS){tout}{!par maj}{4,4}>
+<li class="transparent #EDIT{logo}" id="a#ID_DOCUMENT">
+[<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="R&eacute;dacteur d'article">]
+[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Webmaster/modo">]
+[<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Invit&eacute; ou visiteur">]
+[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Compte en attente">]
+[(#LOGO_AUTEUR_NORMAL||?{" ","Pas de logo."})[(#LOGO_AUTEUR_NORMAL||image_reduire{80})]]
+</a>
+[<p class="centre #EDIT{NOM}">(#NOM|lignes_longues{14}|couper{28})</p>]
+</li>
+</BOUCLE_auteur_maj2>
+
+		
+</ul>
+</div>[(#REM)   fermeture minipics   ] 	
 <hr class="spacer"/>
-</BOUCLE_auteur_maj>
-[<p class="centre pagination">(#PAGINATION)</p>] </div>
 </B_auteur_maj>
 
 
@@ -115,32 +139,46 @@
 
 
 
-
-
 </div> [(#REM)   fermeture colone de gauche   ]
-
-
  <div class="coldroit">  [(#REM)   ouverture de la colone de droite   ] 
-
-
     <div class="boite">[(#REM)   ouverture boite menu   ] 
-
         <h4 class="icone_menu"><:navigation:></h4>
         <INCLURE{fond="inc_menu_rub"}> 
         </div>[(#REM)   fermeture boite menu   ] 
-
-
-
-	
-	<div class="boite"> [(#REM)   ouverture boite mes contacts de discussion ] 
-		  <h4 class="icone_membre">Avec qui ai-je discuté?</h4> 
-	<p>1:lister toutes les discussions de l'auteur. 2 lister à {plat} tous les messages. 3 lister les auteurs des messages.</p>
-	
-	[(#REM)    
-<INCLURE{fond=inc_liste_dialogue}{lettre=#ENV{lettre}}{self=#SELF}{ajax}{env}>
-  ] 
-
+		
+		
+		
+		
+		
+		
+		
+		
+<B_doc_forum>
+<div class="boite">
+<h4 class="icone_zip">Mes documents dans les forums.</h4>
+<BOUCLE_doc_forum(DOCUMENTS){id_forum}><p>
+#ID_DOCUMENT
+[(#EXTENSION|match{'^(gif|jpg|png)$'}|?{
+					[(#MODELE{emb}|image_reduire{300})]
+				,
+					[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
+				})]</p>
+</BOUCLE_doc_forum>
 </div>
+</B_doc_forum>
+		
+			<BOUCLE_doc(DOCUMENTS)>
+				
+				</BOUCLE_doc>
+		
+		
+		
+		
+<div class="boite"> [(#REM)   ouverture boite mes contacts de discussion ] 
+<INCLURE{fond=inc_mes_contacts}{self=#SELF}{id_auteur}{ajax}>
+</div>
+
+
 
 
 
@@ -150,7 +188,6 @@
 <hr class="spacer" />
 </div>[(#REM)   fermeture contenu   ] 
 <INCLURE{fond="pieddepage"}>
-
 </div> [(#REM)   fermeture surcontenu   ]<br/>
 </div> [(#REM)   fermeture container   ] 
 </body>

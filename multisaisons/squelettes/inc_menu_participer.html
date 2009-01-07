@@ -9,19 +9,23 @@
 <h4><:part_cont:></h4>
 <p>
 
-<BOUCLE_acces_perso(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
-[<a href="ecrire/">(#SESSION{statut}|=={6forum}?{:: <:redaction_visite:>})</a><br/>]
-[<a href="ecrire/?exec=articles_edit&new=oui">(#SESSION{statut}|match{1comite|0minirezo}|?{:: <:article_one:>})</a><br/>]
-[<a href="ecrire/">(#SESSION{statut}|=={0minirezo}?{:: <:article_agir:>})</a><br/>]
-[<a href="ecrire/?exec=auteurs">(#SESSION{statut}|=={0minirezo}?{:: <:membres_eject:>})</a><br/>]
-[<a href="ecrire/">(#SESSION{statut}|match{1comite|0minirezo}|?{:: <:redaction_visite:>})</a><br/>]
-[<a href="ecrire/?exec=controle_forum">(#SESSION{statut}|=={0minirezo}?{:: <:messages_abu:>})</a><br/>]
-<BOUCLE_RUB_FORUM(RUBRIQUES){titre_mot=forum}{0,1}>
-[<a href="#URL_RUBRIQUE">(#SESSION{statut}|=={0minirezo}?{:: <:forum_corr:>})</a><br/>]
-[<a href="#URL_RUBRIQUE">(#SESSION{statut}|match{1comite|6forum|nouveau}|?{:: <:forum_post:>})</a><br/>]
-</BOUCLE_RUB_FORUM>
-</BOUCLE_acces_perso>
 
+<BOUCLE_acces_perso(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
+<BOUCLE_Y_A_FORUM(FORUMS){id_auteur}{0,1}>
+[(#ENV{origine}|=={suivi}|?{'',<a href="[(#URL_PAGE{suivi})]"><:suivre_forum:></a><br/>})]
+</BOUCLE_Y_A_FORUM>
+[(#ENV{origine}|=={mon-profil}|?{'',<a href="[(#URL_PAGE{mon-profil})]"><:profil_modif:></a><br/>})]
+<BOUCLE_RUB_FORUM(RUBRIQUES){titre_mot=forum}{0,1}>
+[<a href="#URL_RUBRIQUE">(#SESSION{statut}|=={0minirezo}?{<:forum_corr:>})</a><br/>]
+[<a href="#URL_RUBRIQUE">(#SESSION{statut}|match{1comite|6forum}|?{<:forum_post:>})</a><br/>]
+</BOUCLE_RUB_FORUM>
+[<a href="ecrire/?exec=controle_forum">(#SESSION{statut}|=={0minirezo}?{<:messages_abu:>})</a><br/>]
+[<a href="ecrire/">(#SESSION{statut}|=={6forum}?{<:redaction_visite:>})</a><br/>]
+[<a href="ecrire/?exec=articles_edit&new=oui">(#SESSION{statut}|match{1comite|0minirezo}|?{<:article_one:>})</a><br/>]
+[<a href="ecrire/">(#SESSION{statut}|=={0minirezo}?{<:article_agir:>})</a><br/>]
+[<a href="ecrire/?exec=auteurs">(#SESSION{statut}|=={0minirezo}?{<:membres_eject:>})</a><br/>]
+[<a href="ecrire/">(#SESSION{statut}|match{1comite|0minirezo}|?{<:redaction_visite:>})</a><br/>]
+</BOUCLE_acces_perso>
 </p>
 </li>
 
@@ -35,7 +39,7 @@
 <p>
 
 <B_ARTICLE_PREP>
-::&nbsp;<:article_last_redac:> :<br/>
+<strong><:article_last_redac:> :</strong><br/>
 <BOUCLE_ARTICLE_PREP(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=prepa}{par date}{inverse}{0,4}>
 <img src="prive/images/puce-blanche.gif" alt="article en r&eacute;daction"> <a href="ecrire/?exec=articles&id_article=#ID_ARTICLE" alt="article en cours de r&eacute;daction">#TITRE</a><br/>
 </BOUCLE_ARTICLE_PREP>
@@ -43,7 +47,7 @@
 
 
 <B_ARTICLE_PROP>
-::&nbsp;<:article_last_propo:> :<br/>
+<strong><:article_last_propo:> :</strong><br/>
 <BOUCLE_ARTICLE_PROP(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=prop}{par date}{inverse}{0,4}>
 <img src="prive/images/puce-orange.gif" alt="article propos&eacute;"> <a href="ecrire/?exec=articles&id_article=#ID_ARTICLE" alt="article propos&eacute; &#224; l'&eacute;valuation">#TITRE</a><br/>
 </BOUCLE_ARTICLE_PROP>
@@ -51,7 +55,7 @@
 
 
 <B_ARTICLE_REF>
-::&nbsp;<:article_last_ref:> :<br/>
+<strong><:article_last_ref:> :</strong><br/>
 <BOUCLE_ARTICLE_REF(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=refuse}{par date}{inverse}{0,4}>
 <img src="prive/images/puce-rouge.gif" alt="article en r&eacute;daction"> <a href="ecrire/?exec=articles&id_article=#ID_ARTICLE" alt="article refus&eacute;">#TITRE</a><br/>
 </BOUCLE_ARTICLE_REF>
@@ -59,7 +63,7 @@
 
 
 <B_ARTICLE_POUB>
-::&nbsp;<:article_last_poub:> :<br/>
+<strong><:article_last_poub:> :</strong><br/>
 <BOUCLE_ARTICLE_POUB(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=poubelle}{par date}{inverse}{0,4}>
 <img src="prive/images/puce-poubelle.gif" alt="article en r&eacute;daction"> <a href="ecrire/?exec=articles&id_article=#ID_ARTICLE" alt="article refus&eacute;">#TITRE</a><br/>
 </BOUCLE_ARTICLE_POUB>
@@ -68,7 +72,7 @@
 
 
 <B_ARTICLE_PUB>
-::&nbsp;<:article_last_pub:> :<br/>
+<strong><:article_last_pub:> :</strong><br/>
 <BOUCLE_ARTICLE_PUB(ARTICLES){id_auteur=#SESSION{id_auteur}}{statut=publie}{par date}{inverse}{0,4}>
 <img src="prive/images/puce-verte.gif" alt="article en ligne"> <a
 href="#URL_ARTICLE">#TITRE</a><br/>
@@ -81,7 +85,7 @@ href="#URL_ARTICLE">#TITRE</a><br/>
 <p>
 <BOUCLE_acces_perso2(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
 [<a href="ecrire/?exec=articles_edit&new=oui">(#SESSION{statut}|match{1comite|0minirezo}|?{:: <:article_one:>})</a>]
-[(#SESSION{statut}|=={6forum}?{:: <:article_redac_no:> <a href="[(#URL_PAGE{auteur}|parametre_url{'id_auteur',1})]"><:abonnement_redac:> #NOM_SITE_SPIP.</a>})]
+[(#SESSION{statut}|=={6forum}?{<:article_redac_no:> <a href="[(#URL_PAGE{auteur}|parametre_url{'id_auteur',1})]"><:abonnement_redac:> #NOM_SITE_SPIP.</a>})]
 
 
 

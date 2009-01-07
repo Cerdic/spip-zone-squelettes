@@ -9,13 +9,12 @@
 [#ANCRE_PAGINATION<p>Page: (#PAGINATION{page_precedent_suivant})</p>]
 
 <BOUCLE_Forums_fil(FORUMS){id_thread}{plat}{par date}{pagination}>	<a name="forum#ID_FORUM"></a>
-
 <div class="discussion">
 <div class="gauche carte"><span class="avatar">
 <BOUCLE_Forums_crayon_parent(FORUMS){id_parent}{statut=original}>
 <BOUCLE_qui(AUTEURS){tout}{id_auteur}>
 <span class="#EDIT{logo}">
-<INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=46}{date=#ENV{date}}></span>
+<INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=80}{date=#ENV{date}}></span>
 </BOUCLE_qui>
 </span>
 <br/>
@@ -112,12 +111,11 @@ title="Signaler un message abusif">Alerter</a>]]
  
 
 <p class="#EDIT{texte}">[(#TEXTE|PtoBR|lier_au_glossaire|norm_liens|liens_ouvrants|smileys|lignes_longues{30})]</p>  
-
-<BOUCLE_doc_forum(DOCUMENTS){id_forum}><p>
-[(#EXTENSION|match{gif|jpg|png}|?{'',' '})
-					[(#EMBED_DOCUMENT|image_reduire{650})]]
-[(#EXTENSION|match{gif|jpg|png}|?{' ',''})		
-					[(#LOGO_DOCUMENT|#URL_DOCUMENT)]]</p>
+<BOUCLE_doc_forum(DOCUMENTS){id_forum}><p>#ID_DOCUMENT  [(#EXTENSION|match{'^(gif|jpg|png)$'}|?{
+					[(#MODELE{emb}|image_reduire{300})]
+				,
+					[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
+				})]</p>
 </BOUCLE_doc_forum>
 [<p class="#EDIT{url_site}"><a rel="nofollow" href="(#URL_SITE)">[(#NOM_SITE|sinon{URL})]</a></p>] 
 
