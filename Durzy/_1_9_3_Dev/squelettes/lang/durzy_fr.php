@@ -34,6 +34,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 <p><i>Fonctionnel sur la page sommaire uniquement pour l&rsquo;instant.</i></p>
 En attendant la documentation sur <a href="http://www.spip-contrib.net">Spip-Contrib</a>, consultez le <a href="http://www.durzy-spip.fr/spip.php?article1"> wiki</a>',
 
+'description_portofolio' => '
+<h4>Configuration du portofolio</h4>
+<p>Les plugins de spip permettent d&rsquo;utiliser des portofolio très différents pour mettre en valeur vos images.</p>
+<p>Afin de faciliter leur mise en place, il vous suffit de désigner quel est le plugin que vous utilisez et l&rsquo;insertion du code nécessaire dans la page article sera automatique.</p>
+En attendant la documentation sur <a href="http://www.spip-contrib.net">Spip-Contrib</a>, consultez le <a href="http://www.durzy-spip.fr/spip.php?article1"> wiki</a>',
+
 'description_gen' => '
 <h4>Configuration g&eacute;n&eacute;rale</h4>
 <p>Choisissez ici l&rsquo;apparence g&eacute;n&eacute;rale de votre site.</p>
