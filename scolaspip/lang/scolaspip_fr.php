@@ -79,7 +79,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 'cfg_couleur_fond_bandeau_legend' => 'Couleur de fond du bandeau : ',
 
-'cfg_couleur_fond_bandeau_texte'  => 'S&eacute;lectionnez la couleur de l\'arri&egrave;re plan du bandeau, par d&eacute;faut #ffffff (blanc). <br/>Pensez &agrave; l\'image (votre logo de site) qui se mettra par dessus.',
+'cfg_couleur_fond_bandeau_texte'  => 'S&eacute;lectionnez la couleur de l\'arri&egrave;re plan du bandeau, par d&eacute;faut #4b4b4b (gris fonc&eacute;). <br/>Pensez &agrave; l\'image (votre logo de site) qui se mettra par dessus.',
 
 
 'cfg_liens_rollover_legend' => 'Couleur de fond rollover sur les liens du menu : ',
