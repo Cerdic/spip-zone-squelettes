@@ -63,27 +63,44 @@
 [(#REM)  les 5 derniers posts de l'auteur tout en détail   ]
 
 <BOUCLE_forums_liens(FORUMS){id_auteur}{plat}{!par date_heure}{pagination 5}>
-<tr [class="(#EVAL{[(#_forums_liens:COMPTEUR_BOUCLE)]}|alterner{'row_even','row_odd'})"] ><td> 
+<tr [class="(#EVAL{[(#_forums_liens:COMPTEUR_BOUCLE)]}|alterner{'row_even','row_odd'})"]><td>
+
+
 [(#REM) Quel article correspond à ce forum. Ajoutez le prefixe de votre table si cette boucle ne marche pas  ]
 <BOUCLE_forumart(FORUMS articles){id_forum}>
 [(#STATUT|=={publie}|?{[<a href="(#URL_PAGE{backend}|parametre_url{id_article,#ID_ARTICLE})" title="Suivre le flux rss de ce forum.">]<img src="/squelettes/images/icones/rss.gif" alt="Suivre le flux rss de ce forum."/></a> 
 <a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})]" [title="(#TITRE|couper{80}|texte_backend)"]>[(#TITRE|couper{80})]</a>[ (#TEXTE|couper{100})]
- ,[(#TEXTE|couper{180})] })]</td>
+,[(#TEXTE|couper{180})]})]</td>
 </BOUCLE_forumart>
-	<td>
-	[(#STATUT|=={prepa}|?{pr&eacute;par&eacute;})]
-	[(#STATUT|=={prop}|?{propos&eacute;})]
-	[(#STATUT|=={refuse}|?{refus&eacute;})]
-	[(#STATUT|=={poubelle}|?{jet&eacute;})]
-	[<span class="vert">(#STATUT|=={publie}|?{publi&eacute;})</span>]
-	</td>  
+
+
+<td>
+[(#STATUT|=={prepa}|?{pr&eacute;par&eacute;})]
+[(#STATUT|=={prop}|?{propos&eacute;})]
+[(#STATUT|=={refuse}|?{refus&eacute;})]
+[(#STATUT|=={poubelle}|?{jet&eacute;})]
+[(#STATUT|=={poubelle}|?{jet&eacute;})]
+[<span class="vert">(#STATUT|=={publie}|?{publi&eacute;})</span>] 
+</td>  
+
+	
 <td>
 [(#DATE|affdate{'d/m/Y'})]<br/>
 [(#DATE|affdate{'H:i:s'})]
 </td>
-<td>R&eacute;ponses</td>
+
+
+<td>
+<BOUCLE_combien(FORUMS){plat}{id_parent}{!id_auteur}>[(#REM) juste pour compter]</BOUCLE_combien>
+[(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|>={2}|?{r&eacute;ponses,r&eacute;ponse})]]
+<//B_combien>
+</td>
 </tr>
 </BOUCLE_forums_liens>
+
+
+
+
 </table>
 [<p class="centre pagination">(#PAGINATION)</p>]			
 </div>
@@ -108,9 +125,15 @@
 [<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Webmaster/modo">]
 [<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Invit&eacute; ou visiteur">]
 [<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Compte en attente">]
-[(#LOGO_AUTEUR_NORMAL||?{" ","Pas de logo."})[(#LOGO_AUTEUR_NORMAL||image_reduire{80})]]
+[(#LOGO_AUTEUR_NORMAL||?{' ','<p class="centre">Pas de logo.</p>'})[(#LOGO_AUTEUR_NORMAL||image_reduire{80})]]
 </a>
-[<p class="centre #EDIT{NOM}">(#NOM|lignes_longues{14}|couper{28})</p>]
+<p class="centre #EDIT{NOM}">
+[<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="R&eacute;dacteur d'article">]
+[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Webmaster/modo">]
+[<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Invit&eacute; ou visiteur">]
+[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Compte en attente">]
+[(#NOM|lignes_longues{14}|couper{28})]
+</a></p>
 </li>
 </BOUCLE_auteur_maj>	
 <hr class="spacer">
@@ -120,11 +143,17 @@
 [<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Webmaster/modo">]
 [<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Invit&eacute; ou visiteur">]
 [<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Compte en attente">]
-[(#LOGO_AUTEUR_NORMAL||?{" ","Pas de logo."})[(#LOGO_AUTEUR_NORMAL||image_reduire{80})]]
+[(#LOGO_AUTEUR_NORMAL||?{' ','<p class="centre">Pas de logo.</p>'})[(#LOGO_AUTEUR_NORMAL||image_reduire{80})]]
 </a>
-[<p class="centre #EDIT{NOM}">(#NOM|lignes_longues{14}|couper{28})</p>]
+<p class="centre #EDIT{NOM}">
+[<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="R&eacute;dacteur d'article">]
+[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Webmaster/modo">]
+[<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Invit&eacute; ou visiteur">]
+[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Compte en attente">]
+[(#NOM|lignes_longues{14}|couper{28})]
+</a></p>
 </li>
-</BOUCLE_auteur_maj2>
+</BOUCLE_auteur_maj2>	
 
 		
 </ul>
