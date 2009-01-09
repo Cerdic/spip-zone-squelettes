@@ -1,6 +1,6 @@
 #CACHE{380000}
 
-<INCLURE{fond="header"}>
+[(#INCLURE{fond=header})]
 
 <BOUCLE_principale(RUBRIQUES){id_rubrique}><head>
 
@@ -17,7 +17,7 @@
 <meta http-equiv="Content-Language" content="fr-fr" />
 
 	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
-	<INCLURE{fond="header-css"}{date=#ENV{date}}{id_rubrique}> 	
+	[(#INCLURE{fond=header-css}{date=#ENV{date}}{id_rubrique})] 	
 
 
 
@@ -27,9 +27,9 @@
 
 
 <div id="container">   [(#REM)   centrage page   ]
-<INCLURE{fond="entete"}{date=#ENV{date}}{id_rubrique}> 
+[(#INCLURE{fond=entete}{date=#ENV{date}}{id_rubrique})] 
 <div id="surcontent">  [(#REM)   ouverture ent&ecirc;te   ]
-<INCLURE{fond="menuhoriz"}{id_rubrique}>
+[(#INCLURE{fond=menuhoriz}{id_rubrique})]
 <div id="content">  [(#REM)   ouverture contenu   ] 
  
  
@@ -46,7 +46,7 @@
 [(#SET{'colo','666666'})]
 <//B_couleur_titre>
   <div class="grande_boite"> [(#REM)   ouverture grd boite texte   ] 
-<p><span class="logogauche"><INCLURE{fond="logo"}{id_rubrique}{taille=48}{date=#ENV{date}}></span>
+<p><span class="logogauche">[(#INCLURE{fond=logo}{id_rubrique}{taille=48}{date=#ENV{date}})]</span>
 [<a href="(#URL_PAGE{sommaire})"><:accueil_site:></a> > ]<BOUCLE_plan(HIERARCHIE){id_rubrique}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a>	
                   </BOUCLE_plan></p>
                  
@@ -70,7 +70,7 @@
                     <BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par titre}{tout_voir}>
 <li class="petite_boite">
                    [<h4><a href="#URL_RUBRIQUE">(#TITRE)</a></h4>] 
-                  <p><span class="minilogogauche"><a href="#URL_RUBRIQUE"><INCLURE{fond="logo"}{id_rubrique}{taille=20}{date=#ENV{date}}></a></span>
+                  <p><span class="minilogogauche"><a href="#URL_RUBRIQUE">[(#INCLURE{fond=logo}{id_rubrique}{taille=20}{date=#ENV{date}})]</a></span>
 
                     <BOUCLE_sites2(SITES){id_rubrique}{tout_voir}>
                   </BOUCLE_sites2><a href="#URL_RUBRIQUE">#TOTAL_BOUCLE
@@ -79,11 +79,11 @@
 ::
                     <BOUCLE_nouv_art23(ARTICLES){id_article}{age<7}>
                     <span class="gras"><:nouveau:> :</span>&nbsp;</BOUCLE_nouv_art23><a href="#URL_ARTICLE">#TITRE</a> 
-                    <INCLURE{fond="inc_cadenas"}{id_article}> <br/>
+                    [(#INCLURE{fond=inc_cadenas}{id_article})] <br/>
                     </BOUCLE_art2>
 <B_sous_sous_rub>
 <BOUCLE_sous_sous_rub(RUBRIQUES){id_parent}{par num titre, date}{tout_voir}>
-[>&nbsp;<a href="#URL_RUBRIQUE">(#TITRE)</a><INCLURE{fond="inc_cadenas"}{id_rubrique}><br/>]
+[>&nbsp;<a href="#URL_RUBRIQUE">(#TITRE)</a>[(#INCLURE{fond=inc_cadenas}{id_rubrique})]<br/>]
 </BOUCLE_sous_sous_rub>
 </B_sous_sous_rub>
 </p>
@@ -107,7 +107,7 @@
  <BOUCLE_photocmpt(DOCUMENTS){id_article}{mode=document}{extension IN jpg,png,gif}> </BOUCLE_photocmpt>
 	[(#EVAL{' '}|concat{#TOTAL_BOUCLE,[&nbsp;(#TOTAL_BOUCLE|>{1}|?{'photos','photo'})]}|image_typo{taille=10,hauteur_ligne=0,police=police.ttf,couleur=#GET{colo}}|image_rotation{-90})]
  </B_photocmpt>
-    <a href="#URL_ARTICLE#diapo"><INCLURE{fond="logo"}{id_article}{id_document}{taille=48}{date=#ENV{date}}></a>
+    <a href="#URL_ARTICLE#diapo">[(#INCLURE{fond=logo}{id_article}{id_document}{taille=48}{date=#ENV{date}})]</a>
    </span>
    </BOUCLE_logo_documents> 
 
@@ -116,8 +116,8 @@
     <BOUCLE_logo_articles(ARTICLES){id_article}{0,1}> 
 <span [class="(#EVAL{[(#_articles:COMPTEUR_BOUCLE)]}|alterner{'gauche','droite'}) logorond"]>
     <a href="#URL_ARTICLE#diapo">
-     	[(#LOGO_ARTICLE||?{' ',''})<INCLURE{fond="logo"}{id_article}{taille=48}{date=#ENV{date}}>]
-		[<span class="plusbas">Pas de<br/>logo<br/></span><span class="transpa">(#LOGO_ARTICLE||?{'',' '})<INCLURE{fond="logo"}{id_rubrique}{taille=48}{date=#ENV{date}}></span>]
+     	[(#LOGO_ARTICLE||?{' ',''})[(#INCLURE{fond=logo}{id_article}{taille=48}{date=#ENV{date}})]]
+		[<span class="plusbas">Pas de<br/>logo<br/></span><span class="transpa">(#LOGO_ARTICLE||?{'',' '})[(#INCLURE{fond=logo}{id_rubrique}{taille=48}{date=#ENV{date}})]</span>]
 			</a>
 </span>
 		</BOUCLE_logo_articles>    
@@ -172,10 +172,10 @@
 [(#SET{img,http://open.thumbshots.org/image.pxf?url=#URL_SITE&ext=.jpg})]  
 [(#SET{img,[(#GET{img}|copie_locale)]})]
 [(#GET{img}|largeur|<{10}|?{'',' '})<img src="#GET{img}" width="48" height="48" alt="[(#TITRE|couper{30})]" />]
-[<span class="plusbas"><:pas_de:><br/><:capture:><br/></span><span class="transpa">(#GET{img}|largeur|<{10}|?{' ',''})<INCLURE{fond="logo"}{id_rubrique}{taille=48}{date=#ENV{date}}></span>]
+[<span class="plusbas"><:pas_de:><br/><:capture:><br/></span><span class="transpa">(#GET{img}|largeur|<{10}|?{' ',''})[(#INCLURE{fond=logo}{id_rubrique}{taille=48}{date=#ENV{date}})]</span>]
 ]
 
-[(#LOGO_SITE||?{' ',''})<INCLURE{fond="logo"}{id_syndic=#ID_SYNDIC}{taille=48}{date=#ENV{date}}>]
+[(#LOGO_SITE||?{' ',''})[(#INCLURE{fond=logo}{id_syndic=#ID_SYNDIC}{taille=48}{date=#ENV{date}})]]
 </a>
 
 </span>
@@ -196,10 +196,10 @@
 [(#SET{img,http://open.thumbshots.org/image.pxf?url=#URL_SITE&ext=.jpg})]  
 [(#SET{img,[(#GET{img}|copie_locale)]})]
 [(#GET{img}|largeur|<{10}|?{'',' '})<img src="#GET{img}" width="48" height="48" alt="[(#TITRE|couper{30})]" />]
-[<span class="plusbas"><:pas_de:><br/><:capture:><br/></span><span class="transpa">(#GET{img}|largeur|<{10}|?{' ',''})<INCLURE{fond="logo"}{id_rubrique}{taille=48}{date=#ENV{date}}></span>]
+[<span class="plusbas"><:pas_de:><br/><:capture:><br/></span><span class="transpa">(#GET{img}|largeur|<{10}|?{' ',''})[(#INCLURE{fond=logo}{id_rubrique}{taille=48}{date=#ENV{date}})]</span>]
 ]
 
-[(#LOGO_SITE||?{' ',''})<INCLURE{fond="logo"}{id_syndic}{taille=48}{date=#ENV{date}}>]
+[(#LOGO_SITE||?{' ',''})[(#INCLURE{fond=logo}{id_syndic}{taille=48}{date=#ENV{date}})]]
 
 </a>
 
@@ -242,7 +242,7 @@
 </B_formsite>
 
 
-<INCLURE{fond=inc_liste_glossaire}{id_breve}{id_rubrique}{lettre=#ENV{lettre}}>
+[(#INCLURE{fond=inc_liste_glossaire}{id_breve}{id_rubrique}{lettre=#ENV{lettre}})]
 </div>[(#REM)   fermeture colone de gauche   ]
 					
 
@@ -251,7 +251,7 @@
 
 <div class="boite">[(#REM)   ouverture boite menu   ] 
     <h4 class="icone_menu"><:navigation:></h4>    
-    <INCLURE{fond="inc_menu_rub"}{id_rubrique}>     
+    [(#INCLURE{fond=inc_menu_rub}{id_rubrique})]     
 </div>[(#REM)   fermeture boite menu   ]
 
 
@@ -265,7 +265,7 @@
       <BOUCLE_archives(ARTICLES){id_rubrique}{doublons}{par num titre}{par date}{inverse}{0,20}>
       <li>
               [<a href="#URL_ARTICLE" [title="(#DESCRIPTIF|couper{100})"]>(#TITRE)</a><br/>]
-              <INCLURE{fond="inc_cadenas"}{delais="7*24*3600"}{id_article}>
+              [(#INCLURE{fond=inc_cadenas}{id_article})]
       </li>                
               </BOUCLE_archives>
       </ul>        
@@ -276,7 +276,7 @@
 <div class="boite">
   <h4 class="icone_stats"><:stats:></h4>
 <BOUCLE_STATS(RUBRIQUES){id_rubrique}{titre_mot==^(annuaire_home|partenaire|liens)$}{0,1}>
-<INCLURE{fond=inc_stats}>
+[(#INCLURE{fond=inc_stats})]
 </BOUCLE_STATS>
 </div>
 </B_STATS>
@@ -286,7 +286,7 @@
 <B_COMMUNAUTE>
 <div class="boite">
 <BOUCLE_COMMUNAUTE(RUBRIQUES){id_rubrique}{titre_mot==^(communaute|partenaire)$}{0,1}>
-<INCLURE{fond=inc_liste_membres}{lettre=#ENV{lettre}}{self=#SELF}>
+[(#INCLURE{fond=inc_liste_membres}{lettre=#ENV{lettre}}{self=#SELF})]
 </BOUCLE_COMMUNAUTE>
 </div>
 </B_COMMUNAUTE>
@@ -295,7 +295,7 @@
 <hr class="spacer" />
 
 </div> [(#REM)   fermeture contenu   ]
-<INCLURE{fond="pieddepage"}{id_rubrique}>
+[(#INCLURE{fond=pieddepage}{id_rubrique})]
 </div>[(#REM)   fermeture surcontenu   ]<br/>
 
 </div> [(#REM)   fermeture container   ] 

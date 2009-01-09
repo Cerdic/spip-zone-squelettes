@@ -1,5 +1,5 @@
 #CACHE{864000}
-<INCLURE{fond="header"}><head>
+[(#INCLURE{fond=header})]<head>
 <BOUCLE_principale(FORUMS){id_forum}>
 [(#REM)   les m&eacute;tas   ]
 <BOUCLE_sujet(FORUMS){id_thread}>
@@ -16,7 +16,7 @@
 	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
 	
 
-<INCLURE{fond="header-css"}{date=#ENV{date}}> 	
+[(#INCLURE{fond=header-css}{date=#ENV{date}})] 	
 
 
 
@@ -25,10 +25,10 @@
 <body dir="#LANG_DIR"> 
 
 <div id="container">   [(#REM)   centrage page   ]
-<INCLURE{fond="entete"}{date=#ENV{date}}>  
+[(#INCLURE{fond=entete}{date=#ENV{date}})]  
 <div id="surcontent">  
 <BOUCLE_pour_onglet(ARTICLES){id_article}>
-<INCLURE{fond="menuhoriz"}{id_rubrique}>[(#REM)   ouverture ent&ecirc;te   ]
+[(#INCLURE{fond=menuhoriz}{id_rubrique})][(#REM)   ouverture ent&ecirc;te   ]
 </BOUCLE_pour_onglet>
 <div id="content">  [(#REM)   ouverture contenu   ] 
 <div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
@@ -38,7 +38,7 @@
 
 [(#REM)   quel article   ]
 <BOUCLE_article(ARTICLES){id_article}><p>
-<span class="logogauche"><a href="#URL_ARTICLE"><INCLURE{fond="logo"}{id_article,#ID_ARTICLE}{taille=46}{date=#ENV{date}}></a></span>
+<span class="logogauche"><a href="#URL_ARTICLE">[(#INCLURE{fond=logo}{id_article,#ID_ARTICLE}{taille=46}{date=#ENV{date}})]</a></span>
 <a href="[(#URL_PAGE{sommaire})]"><:accueil_site:></a> > 
 <BOUCLE_rub3(HIERARCHIE){id_article}>
 [<a href="#URL_RUBRIQUE">(#TITRE)</a> >]
@@ -57,7 +57,7 @@
 
 [(#REM)   quel breve   ]
 <BOUCLE_breve(BREVES){id_breve}><p>
-<span class="logogauche"><a href="#URL_BREVE"><INCLURE{fond="logo"}{id_breve,#ID_BREVE}{taille=46}{date=#ENV{date}}></a></span>
+<span class="logogauche"><a href="#URL_BREVE">[(#INCLURE{fond=logo}{id_breve,#ID_BREVE}{taille=46}{date=#ENV{date}})]</a></span>
 <a href="[(#URL_PAGE{sommaire})]"><:accueil_site:></a> > 
 <BOUCLE_rub4(HIERARCHIE){id_rubrique}>
 [<a href="#URL_RUBRIQUE">(#TITRE)</a> >]
@@ -89,7 +89,7 @@
     <div class="boite">[(#REM)   ouverture boite menu   ] 
 
         <h4 class="icone_menu"><:navigation:></h4>
-        <INCLURE{fond="inc_menu_rub"}> 
+        [(#INCLURE{fond=inc_menu_rub})] 
     
     </div>[(#REM)   fermeture boite menu   ]
 
@@ -102,7 +102,7 @@
 <hr class="spacer" />
 
 
-<INCLURE{fond="inc_discussion"}{id_article}{id_breve}{id_forum}{id_thread}{id_auteur}{self=#SELF}>
+[(#INCLURE{fond=inc_discussion}{id_article}{id_breve}{id_forum}{id_thread}{id_auteur}{self=#SELF})]
 
 
 
@@ -110,7 +110,7 @@
 
 
 </div>[(#REM)   fermeture contenu   ] 
-<INCLURE{fond="pieddepage"}{id_article}{id_breve}>
+[(#INCLURE{fond=pieddepage}{id_article}{id_breve})]
 
 </div> [(#REM)   fermeture surcontenu   ]<br/>
 
@@ -119,7 +119,7 @@
 </body></html>
 </BOUCLE_principale>
 [(#ID_ARTICLE|AccesRestreint_article_restreint|?{' ',''})    
-<INCLURE{fond=authentification}>]
+[(#INCLURE{fond=authentification})]]
 [(#ID_ARTICLE|AccesRestreint_article_restreint|?{'',' '})
-<INCLURE{fond=erreur-forum}>]
+[(#INCLURE{fond=erreur-forum})]]
 <//B_principale>

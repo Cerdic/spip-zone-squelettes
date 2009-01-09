@@ -1,5 +1,5 @@
 #CACHE{43200}
-<INCLURE{fond="header"}>
+[(#INCLURE{fond=header})]
 [(#REM) ci-dessus l'include du fichier header avec un d&eacute;lai de 31 jours. ]
 
 
@@ -18,14 +18,14 @@
 
 
 	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
-	<INCLURE{fond="header-css"}{date=#ENV{date}}> 	
+	[(#INCLURE{fond=header-css}{date=#ENV{date}})] 	
 </head>
 <body dir="#LANG_DIR"> 
 
 <div id="container">   [(#REM) cette div centre la page ]
-<INCLURE{fond="entete"}{date=#ENV{date}}>   
+[(#INCLURE{fond=entete}{date=#ENV{date}})]   
 <div id="surcontent"> 
-<INCLURE{fond="menuhoriz"}> 
+[(#INCLURE{fond=menuhoriz})] 
 <div id="content"> 
 <div id="colgau"> 
 
@@ -47,10 +47,10 @@
 [(#SET{img,http://open.thumbshots.org/image.pxf?url=#URL_SITE&ext=.jpg})]  
 [(#SET{img,[(#GET{img}|copie_locale)]})]
 [(#GET{img}|largeur|<{10}|?{'',' '})<img src="#GET{img}" width="48" height="48" alt="[(#TITRE|couper{30})]" />]
-[<span class="plusbas"><:pas_de:><br/><:capture:><br/></span><span class="transpa">(#GET{img}|largeur|<{10}|?{' ',''})<INCLURE{fond="logo"}{id_rubrique}{taille=48}{date=#ENV{date}}></span>]
+[<span class="plusbas"><:pas_de:><br/><:capture:><br/></span><span class="transpa">(#GET{img}|largeur|<{10}|?{' ',''})[(#INCLURE{fond=logo}{id_rubrique}{taille=48}{date=#ENV{date}})]</span>]
 ]
 
-[(#LOGO_SITE||?{' ',''})<INCLURE{fond="logo"}{id_syndic}{taille=48}{date=#ENV{date}}>]
+[(#LOGO_SITE||?{' ',''})[(#INCLURE{fond=logo}{id_syndic}{taille=48}{date=#ENV{date}})]]
 
 </a>
 </span>
@@ -157,7 +157,7 @@
 
     <div class="boite">[(#REM) ouverture boite menu ] 
         <h4 class="icone_menu"><:navigation:></h4>
-        <INCLURE{fond="inc_menu_rub"}>
+        [(#INCLURE{fond=inc_menu_rub})]
     
     </div>[(#REM) fermeture boite menu ]
 
@@ -203,7 +203,7 @@
 
 <hr class="spacer" /> [(#REM) ajoute une barre hr invisible ] 
 </div>[(#REM) fermeture contenu ] 
-<INCLURE{fond="pieddepage"}{delais=31*24*3600}> [(#REM) le pied de page inclu avec d&eacute;lai ] 
+[(#INCLURE{fond=pieddepage})] [(#REM) le pied de page inclu avec d&eacute;lai ] 
 
 </div> [(#REM) fermeture surcontenu ]<br/>
 

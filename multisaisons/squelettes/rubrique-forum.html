@@ -1,5 +1,5 @@
 #CACHE{864000}
-<INCLURE{fond="header"}>
+[(#INCLURE{fond=header})]
 
 
  <BOUCLE_principale(RUBRIQUES){id_rubrique}><head>
@@ -16,21 +16,21 @@
 <meta http-equiv="content-type" content="text/html; charset=#CHARSET"/>
 <meta http-equiv="Content-Language" content="fr-fr" />
 	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
-	<INCLURE{fond="header-css"}{date=#ENV{date}}> 	
+	[(#INCLURE{fond=header-css}{date=#ENV{date}})] 	
 
 
 </head><body dir="#LANG_DIR"> 
 
 <div id="container">   [(#REM)   centrage page   ]
-<INCLURE{fond="entete"}{date=#ENV{date}}> 
+[(#INCLURE{fond=entete}{date=#ENV{date}})] 
 <div id="surcontent">  [(#REM)   ouverture ent&ecirc;te   ]
-<INCLURE{fond="menuhoriz"}{id_rubrique}>
+[(#INCLURE{fond=menuhoriz}{id_rubrique})]
 <div id="content">  [(#REM)   ouverture contenu   ] 
  
  
 <div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
   <div class="grande_boite"> [(#REM)   ouverture grd boite texte   ] 
-<p class="logogauche"><INCLURE{fond="logo"}{id_rubrique}{taille=46}{date=#ENV{date}}></p>
+<p class="logogauche">[(#INCLURE{fond=logo}{id_rubrique}{taille=46}{date=#ENV{date}})]</p>
 <p>
 <a href="[(#URL_PAGE{sommaire})]"><:accueil_site:></a> > <BOUCLE_plan(HIERARCHIE){id_rubrique}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a>	
                   </BOUCLE_plan>
@@ -53,7 +53,7 @@
 <div class="grande_boite">
 
 <BOUCLE_themes(ARTICLES){titre_mot = forum}{id_rubrique=#ID_RUBRIQUE}{doublons}{par num titre, date}>
-            <span class="logogauche"><a href="#URL_ARTICLE" title="Voir tous les messages"><INCLURE{fond="logo"}{id_article}{taille=46}{date=#ENV{date}}></a></span><h4><a href="#URL_ARTICLE" title="Voir tous les messages">[(#TITRE)]</a></h4>
+            <span class="logogauche"><a href="#URL_ARTICLE" title="Voir tous les messages">[(#INCLURE{fond=logo}{id_article}{taille=46}{date=#ENV{date}})]</a></span><h4><a href="#URL_ARTICLE" title="Voir tous les messages">[(#TITRE)]</a></h4>
 <p>[(#DESCRIPTIF)]</p>
               <table class="spip">
 <tr class="row_first gras blanc">
@@ -141,8 +141,8 @@
 
                     <BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par titre}{tout_voir}>
 <li class="petite_boite">
-                   [<h4><a href="#URL_RUBRIQUE">(#TITRE)</a><INCLURE{fond="inc_cadenas"}{id_rubrique}></h4>] 
-                  <p><span class="minilogogauche"><a href="#URL_RUBRIQUE"><INCLURE{fond="logo"}{id_rubrique}{taille=20}{date=#ENV{date}}></a></span>
+                   [<h4><a href="#URL_RUBRIQUE">(#TITRE)</a>[(#INCLURE{fond=inc_cadenas}{id_rubrique})]</h4>] 
+                  <p><span class="minilogogauche"><a href="#URL_RUBRIQUE">[(#INCLURE{fond=logo}{id_rubrique}{taille=20}{date=#ENV{date}})]</a></span>
 
                     <BOUCLE_sites2(SITES){id_rubrique}{tout_voir}>
                   </BOUCLE_sites2><a href="#URL_RUBRIQUE">#TOTAL_BOUCLE
@@ -151,11 +151,11 @@
 ::
                     <BOUCLE_nouv_art23(ARTICLES){id_article}{age<7}>
                     <span class="gras"><:nouveau:> :</span>&nbsp;</BOUCLE_nouv_art23><a href="#URL_ARTICLE">#TITRE</a> 
-                    <INCLURE{fond="inc_cadenas"}{id_article}> <br/>
+                    [(#INCLURE{fond=inc_cadenas}{id_article})] <br/>
                     </BOUCLE_art2>
 <B_sous_sous_rub>
 <BOUCLE_sous_sous_rub(RUBRIQUES){id_parent}{par titre}{tout_voir}>
-[>&nbsp;<a href="#URL_RUBRIQUE">(#TITRE)</a><INCLURE{fond="inc_cadenas"}{id_rubrique}><br/>]
+[>&nbsp;<a href="#URL_RUBRIQUE">(#TITRE)</a>[(#INCLURE{fond=inc_cadenas}{id_rubrique})]<br/>]
 </BOUCLE_sous_sous_rub>
 </B_sous_sous_rub>
 
@@ -184,7 +184,7 @@
  <BOUCLE_photocmpt(DOCUMENTS){id_article}{mode=document}{extension IN jpg,png,gif}> </BOUCLE_photocmpt>
 	[(#EVAL{' '}|concat{#TOTAL_BOUCLE,[&nbsp;(#TOTAL_BOUCLE|>{1}|?{'photos','photo'})]}|image_typo{taille=10,hauteur_ligne=0,police=police.ttf,couleur=#GET{colo}}|image_rotation{-90})]
  </B_photocmpt>
-    <a href="#URL_ARTICLE#diapo"><INCLURE{fond="logo"}{id_article}{id_document}{taille=48}{date=#ENV{date}}></a>
+    <a href="#URL_ARTICLE#diapo">[(#INCLURE{fond=logo}{id_article}{id_document}{taille=48}{date=#ENV{date}})]</a>
    </span>
    </BOUCLE_logo_documents> 
 
@@ -193,8 +193,8 @@
     <BOUCLE_logo_articles(ARTICLES){id_article}{0,1}> 
 <span [class="(#EVAL{[(#_articles:COMPTEUR_BOUCLE)]}|alterner{'gauche','droite'}) logorond"]>
     <a href="#URL_ARTICLE#diapo">
-     	[(#LOGO_ARTICLE||?{' ',''})<INCLURE{fond="logo"}{id_article}{taille=48}{date=#ENV{date}}>]
-		[<span class="plusbas">Pas de<br/>logo<br/></span><span class="transpa">(#LOGO_ARTICLE||?{'',' '})<INCLURE{fond="logo"}{id_rubrique}{taille=48}{date=#ENV{date}}></span>]
+     	[(#LOGO_ARTICLE||?{' ',''})[(#INCLURE{fond=logo}{id_article}{taille=48}{date=#ENV{date}})]]
+		[<span class="plusbas">Pas de<br/>logo<br/></span><span class="transpa">(#LOGO_ARTICLE||?{'',' '})[(#INCLURE{fond=logo}{id_rubrique}{taille=48}{date=#ENV{date}})]</span>]
 			</a>
 </span>
 		</BOUCLE_logo_articles>    
@@ -234,7 +234,7 @@
     <div class="boite">[(#REM)   ouverture boite menu   ] 
 
 <h4 class="icone_menu"><:navigation:></h4>    
-      <INCLURE{fond="inc_menu_rub"}{id_rubrique}>     
+      [(#INCLURE{fond=inc_menu_rub}{id_rubrique})]     
     </div>[(#REM)   fermeture boite menu   ]
 
 
@@ -243,12 +243,12 @@
 
 
 <div class="boite"> [(#REM)   ouverture boite les membres   ] 
-<INCLURE{fond=inc_liste_membres}{lettre=#ENV{lettre}}{self=#SELF}{ajax}{env}>
+[(#INCLURE{fond=inc_liste_membres}{lettre=#ENV{lettre}}{self=#SELF}{ajax}{env})]
 </div>
 
 <div class="boite"> [(#REM)   ouverture boite derniers messages   ] 
 <h4 class="icone_post"><:messages_derniers:></h4>
-<INCLURE{fond="inc_derniers_messages"}{self=#SELF}{ajax}{env}>
+[(#INCLURE{fond=inc_derniers_messages}{self=#SELF}{ajax}{env})]
 </div>
     
 <B_archives>
@@ -256,7 +256,7 @@
       <h4 class="icone_article"><:voir_egal:></h4>
       <BOUCLE_archives(ARTICLES){id_rubrique}{doublons}{par num titre}{par date}{inverse}{0,20}>
               <a href="#URL_ARTICLE">[(#TITRE)]</a> 
-              <INCLURE{fond="inc_cadenas"}{delais="7*24*3600"}{id_article}> 
+              [(#INCLURE{fond=inc_cadenas}{id_article})] 
               </BOUCLE_archives>
         </div> [(#REM)   fermeture boite   ] 
 </B_archives>
@@ -268,7 +268,7 @@
 <hr class="spacer"/>
 
 </div> [(#REM)   fermeture contenu   ]
-<INCLURE{fond="pieddepage"}{id_rubrique}>
+[(#INCLURE{fond=pieddepage}{id_rubrique})]
 </div>[(#REM)   fermeture surcontenu   ]<br/>
 
 </div> [(#REM)   fermeture container   ] 

@@ -1,15 +1,15 @@
 #CACHE{2678400}
 <BOUCLE_principale(RUBRIQUES){id_rubrique}>
-<BOUCLE_m(MOTS){type==squelette}{titre==(normal|agenda|forum|galerie|boutique|locatif)}{id_rubrique}>
+<BOUCLE_m(MOTS){type==squelette}{titre==(normal|agenda|forum|galerie|boutique|locatif|gribouille)}{id_rubrique}>
 	[(#INCLURE{fond=rubrique-#TITRE}{id_rubrique}{env}{date=#ENV{date}}{recherche}{type=#ENV{type}}{lettre=#ENV{lettre}})]
 </BOUCLE_m>
 	[(#INCLURE{fond=rubrique-normal}{id_rubrique}{env}{date=#ENV{date}}{recherche}{type=#ENV{type}}{lettre=#ENV{lettre}})]
 <//B_m>
 </BOUCLE_principale>
 [(#ID_RUBRIQUE|AccesRestreint_rubrique_restreinte|?{' ',''})  
- [(#ENV{type}|=={redac}|?{' ',''}) <INCLURE{fond=abonnement}{type=redac}>]
-  [(#ENV{type}|=={visit}|?{' ',''}) <INCLURE{fond=abonnement}{type=visit}>]
-[(#ENV{type}|match{redac|visit}|?{'',' '})<INCLURE{fond=abonnement}{type=question}>]
+ [(#ENV{type}|=={redac}|?{' ',''}) [(#INCLURE{fond=abonnement}{type=redac})]]
+  [(#ENV{type}|=={visit}|?{' ',''}) [(#INCLURE{fond=abonnement}{type=visit})]]
+[(#ENV{type}|match{redac|visit}|?{'',' '})[(#INCLURE{fond=abonnement}{type=question})]]
   ]
-[(#ID_RUBRIQUE|AccesRestreint_rubrique_restreinte|?{'',' '})<INCLURE{fond=404}>]
+[(#ID_RUBRIQUE|AccesRestreint_rubrique_restreinte|?{'',' '})[(#INCLURE{fond=404})]]
 <//B_principale>

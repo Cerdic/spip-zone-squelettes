@@ -1,5 +1,5 @@
 #CACHE{450000}
-<INCLURE{fond="header"}>
+[(#INCLURE{fond=header})]
 
 
 <BOUCLE_article(ARTICLES){id_article}><head>
@@ -17,7 +17,7 @@
 <meta http-equiv="Content-Language" content="fr-fr" />
 
 	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
-	<INCLURE{fond="header-css"}{date=#ENV{date}}{id_article}{id_rubrique}> 	
+	[(#INCLURE{fond=header-css}{date=#ENV{date}}{id_article}{id_rubrique})] 	
 
 
 
@@ -25,14 +25,14 @@
 </head><body> 
 
 <div id="container">   [(#REM)   centrage page   ]
-<INCLURE{fond="entete"}{date=#ENV{date}}{id_article}{id_rubrique}> 
+[(#INCLURE{fond=entete}{date=#ENV{date}}{id_article}{id_rubrique})] 
 <div id="surcontent">  
-<INCLURE{fond="menuhoriz"}{id_rubrique}>[(#REM)   ouverture ent�te   ]
+[(#INCLURE{fond=menuhoriz}{id_rubrique})][(#REM)   ouverture entête   ]
 <div id="content">  [(#REM)   ouverture contenu   ] 
 <div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
   <div class="grande_boite"> [(#REM)   ouverture grd boite texte   ]
 <p>
-<span class="logogauche"><INCLURE{fond="logo"}{id_article}{taille=46}{date=#ENV{date}}></span>
+<span class="logogauche">[(#INCLURE{fond=logo}{id_article}{taille=46}{date=#ENV{date}})]</span>
 <a href="#URL_PAGE{sommaire}"><:accueil_site:></a> > <BOUCLE_plan(HIERARCHIE){id_article}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a>	
  </BOUCLE_plan>
 &gt; </p>                 
@@ -41,11 +41,11 @@
 	  <div class="#EDIT{texte}">
    [#DEBUT_SURLIGNE(#TEXTE|image_reduire{450,0}|lier_au_glossaire|paragrapher)#FIN_SURLIGNE]
    </div>
-   <INCLURE{fond=inc_petition}{id_article}>
+   [(#INCLURE{fond=inc_petition}{id_article})]
    
      <B_auteurs>
 	 <BOUCLE_auteurs(AUTEURS){id_article}>                
- <p class="interne droite"><span class="gauche"><a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR})]"><INCLURE{fond="logo"}{id_auteur,#ID_AUTEUR}{taille=28}{date=#ENV{date}}></a></span>[(#NOM|couper{24})<br/>][<a href="(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR})">bio</a> ][<a href="(#URL_SITE)">www</a> ]
+ <p class="interne droite"><span class="gauche"><a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR})]">[(#INCLURE{fond=logo}{id_auteur,#ID_AUTEUR}{taille=28}{date=#ENV{date}})]</a></span>[(#NOM|couper{24})<br/>][<a href="(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR})">bio</a> ][<a href="(#URL_SITE)">www</a> ]
 </p></BOUCLE_auteurs></B_auteurs>
   <hr class="spacer"/>
 
@@ -102,7 +102,7 @@
 
 <//B_combien_d_images>
 
-[(#CONFIG{plugin}|match{GIS}|?{' '})<INCLURE{fond=inc_lien_gis}{id_rubrique}{id_article}>] 
+[(#CONFIG{plugin}|match{GIS}|?{' '})[(#INCLURE{fond=inc_lien_gis}{id_rubrique}{id_article})]] 
 [<div class="#EDIT{notes} grande_boite"><p>(#NOTES)</p></div>]
 [<div class="#EDIT{ps} grande_boite"><p>(#PS)</p></div>] 
 
@@ -115,7 +115,7 @@
     <div class="boite">[(#REM)   ouverture boite menu   ] 
 
         <h4 class="icone_menu"><:navigation:></h4>
-        <INCLURE{fond="inc_menu_rub"}{id_rubrique}{id_article}> 
+        [(#INCLURE{fond=inc_menu_rub}{id_rubrique}{id_article})] 
    
     </div>[(#REM)   fermeture boite menu   ]
     
@@ -134,7 +134,7 @@
     <ul class="petite_liste">
         <BOUCLE_meme_rubrique(ARTICLES){id_rubrique}{exclus}{par num titre}{par date}{inverse}{0,20}>
         <li>
-        <INCLURE{fond="inc_cadenas"}{id_article}><a href="#URL_ARTICLE">#TITRE</a><br/>
+        [(#INCLURE{fond=inc_cadenas}{id_article})]<a href="#URL_ARTICLE">#TITRE</a><br/>
         </li>
         </BOUCLE_meme_rubrique>
     </ul>
@@ -177,7 +177,7 @@
 <div class="boite">
   <h4 class="icone_stats"><:stats:></h4>
 <BOUCLE_STATS(RUBRIQUES){id_rubrique}{titre_mot==^(partenaire|liens|agenda)$}{0,1}>
-<INCLURE{fond="inc_stats"}{delais=24*3600}>
+[(#INCLURE{fond=inc_stats})]
 </BOUCLE_STATS>
 </div>
 </B_STATS>   
@@ -186,7 +186,7 @@
    <B_COMMUNAUTE>
 <div class="boite">
 <BOUCLE_COMMUNAUTE(RUBRIQUES){id_rubrique}{titre_mot==^(communaute|partenaire)$}{0,1}>
-<INCLURE{fond=inc_liste_membres}{lettre=#ENV{lettre}}{self=#SELF}>
+[(#INCLURE{fond=inc_liste_membres}{lettre=#ENV{lettre}}{self=#SELF})]
 </BOUCLE_COMMUNAUTE>
 </div>
 </B_COMMUNAUTE>
@@ -245,7 +245,7 @@
 
 
 <BOUCLE_inc_messages(FORUMS){id_article}{par date_thread}{inverse}{0,1}>
-<INCLURE{fond="inc_discussion"}{id_article}{id_breve}{id_forum}{id_thread}{id_auteur}{self=#SELF}>
+[(#INCLURE{fond=inc_discussion}{id_article}{id_breve}{id_forum}{id_thread}{id_auteur}{self=#SELF})]
 </BOUCLE_inc_messages>
 
 
@@ -256,7 +256,7 @@
 
 
 </div> [(#REM)   fermeture contenu   ] 
-<INCLURE{fond="pieddepage"}{id_rubrique}{id_article}{id_forum}{id_thread}>
+[(#INCLURE{fond=pieddepage}{id_rubrique}{id_article}{id_forum}{id_thread})]
 
 </div> [(#REM)   fermeture surcontenu   ]<br/>
 
