@@ -5,12 +5,14 @@
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOMINIHAUTEUR}] 
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,30}]
 
+<BOUCLE_aexclure(RUBRIQUES){titre_mot=excluredumenu}{doublons}>
+</BOUCLE_aexclure>
 [(#REM) Menu : déroule le niveau (fil d'ariane)]
 
 	<?php
 		$hierarchie = array();
-		<BOUCLE_recup_rub(RUBRIQUES){id_rubrique}{tout}>
-			<BOUCLE_recup_hierarchie(HIERARCHIE){id_rubrique}>
+		<BOUCLE_recup_rub(RUBRIQUES){id_rubrique}{tout}{doublons}>
+			<BOUCLE_recup_hierarchie(HIERARCHIE){id_rubrique}{doublons}>
 				$hierarchie[] = #ID_RUBRIQUE;
 			</BOUCLE_recup_hierarchie>
 			$hierarchie[] = #ID_RUBRIQUE;
@@ -31,7 +33,7 @@
 		?>>[(#LOGO_SITE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})] <:accueil:></a>
 		</li>
 
-		<BOUCLE_rubriques(RUBRIQUES){racine}{par num titre}>
+		<BOUCLE_rubriques(RUBRIQUES){racine}{par num titre}{doublons}>
 		<li[ class="(#EXPOSE{on,off})"]>
 			<a href="#URL_RUBRIQUE"[ class="(#EXPOSE{on,off})"]>[(#LOGO_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})] [(#TITRE|supprimer_numero)]</a>
 		<?php	
@@ -39,7 +41,7 @@
 		?>
 		<B_sous_rubriques>
 		<ul>
-			<BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par num titre}>
+			<BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par num titre}{doublons}>
 			<li[ class="(#EXPOSE{on,off})"]>
 				<a href="#URL_RUBRIQUE"[ class="(#EXPOSE{on,off})"]>[(#TITRE|supprimer_numero)]</a>
 		<?php	
