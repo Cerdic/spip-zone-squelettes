@@ -18,7 +18,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'aller_accueil' => 'Aller &agrave; l\'accueil',
 'alerte_moderation' => 'Bonjour, Je tenais &agrave; vous signaler un comportement abusif sur le message suivant&nbsp;',
 'autres_breves' => 'Autres br&egrave;ves',
-'pas_article' => 'n a pas encore crit d article.',
+'pas_article' => 'n\'a pas encore &eacute;crit d\'article.',
 'pas_accessible' => 'Le document que vous demandez n\'est pas accessible.',
 'authentification_demande' => 'Authentification requise',
 'authentification_souci' => 'Souci d\'authentification',
@@ -221,7 +221,7 @@ Vous pourrez alors confirmer la modification de votre abonnement.',
 'dialoguer' => 'Dialoguer',
 'demons' => 'D&eacute;monstration',
 'definition' => 'D&eacute;finitions',
-
+'double_clic' => 'Double cliquez-moi pour me modifier',
 
 
 //E
@@ -374,7 +374,8 @@ l\'actualit&eacute; pour',
   sont li&eacute;s aux
   articles.',
 'merci' => 'Merci',
-
+'modif_profil' => 'modifier votre profil',
+'modif_profil_maj' => 'Modifier votre profil',
 
 //n
 'navigation' => 'Navigation',

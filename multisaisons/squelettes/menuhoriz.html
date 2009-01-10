@@ -6,21 +6,29 @@
   <div id="menu"> 
     <B_onglets>  
 	<ul id="nav"> 
-	[(#REM) le bouton accueil]
-	<li[ class="(#ENV{sommaire})"]><a href="[(#URL_PAGE{sommaire})]"><:accueil_site:></a></li>
-    	[(#REM) les autres onglets]
-	<BOUCLE_onglets(RUBRIQUES){par num titre}{type=barre_menu}{0,10}> <li [class="(#EXPOSER|oui,non)onglet#ID_RUBRIQUE[ (#EXPOSER|oui,non)]"]>
-	  <BOUCLE_titre_onglets(MOTS){id_rubrique}{type=barre_menu}{0,1}>
 	
+	
+	[(#REM) le bouton accueil. Supprimez la ligne qui suit pour le supprimer]
+	<li[ class="(#ENV{sommaire})"]><a href="[(#URL_PAGE{sommaire})]"><:accueil_site:></a></li>
+	
+	
+	
+    	[(#REM) les autres onglets à destination des rubriques]
+	<BOUCLE_onglets(RUBRIQUES){par num titre}{type=barre_menu}{0,10}>
+	<li [class="(#EXPOSER|oui,non)onglet#ID_RUBRIQUE[ (#EXPOSER|oui,non)]"]>
+	  <BOUCLE_titre_onglets(MOTS){id_rubrique}{type=barre_menu}{0,1}>	
           [<a href="(#URL_RUBRIQUE)">][(#LOGO_MOT)][(#TITRE)]</a>
            </BOUCLE_titre_onglets></li>
 		   </BOUCLE_onglets>
 		   
-		   <BOUCLE_auteur1(AUTEURS){id_auteur=1}>
-		   <li>[<a href="(#URL_AUTEUR)"><:contact:></a>]
-		    </li></BOUCLE_auteur1>
 		   
-        </ul></B_onglets>
+		   	[(#REM) le bouton contact. Supprimez la boucle qui suit pour le supprimer]
+		   <BOUCLE_contact_auteur1(AUTEURS){id_auteur=1}>
+		   <li[ class="(#ENV{contact})"]>[<a href="(#URL_AUTEUR)"><:contact:></a>]
+		    </li></BOUCLE_contact_auteur1>
+		   
+        </ul>
+		</B_onglets>
 		
 <p class="droite blanc img">
 
