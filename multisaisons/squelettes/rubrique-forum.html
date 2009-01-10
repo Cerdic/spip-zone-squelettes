@@ -3,10 +3,7 @@
 
 
  <BOUCLE_principale(RUBRIQUES){id_rubrique}><head>
-
 [(#REM)   les m&eacute;tas   ]
-
-
 
 
 <title>[(#TITRE)]</title>
@@ -50,11 +47,32 @@
 
 [<div class="grande_boite">(#NOTES)</div>]
 
-<div class="grande_boite">
 
 <BOUCLE_themes(ARTICLES){titre_mot = forum}{id_rubrique=#ID_RUBRIQUE}{doublons}{par num titre, date}>
-            <span class="logogauche"><a href="#URL_ARTICLE" title="Voir tous les messages">[(#INCLURE{fond=logo}{id_article}{taille=46}{date=#ENV{date}})]</a></span><h4><a href="#URL_ARTICLE" title="Voir tous les messages">[(#TITRE)]</a></h4>
+<div class="grande_boite">
+<span class="logogauche"><a href="#URL_ARTICLE" title="Voir tous les messages">[(#INCLURE{fond=logo}{id_article}{taille=46}{date=#ENV{date}})]</a></span><h4><a href="#URL_ARTICLE" title="Voir tous les messages">[(#TITRE)]</a></h4>
 <p>[(#DESCRIPTIF)]</p>
+
+
+
+<ul class="forum droite">
+<li>
+
+ [(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})"title="S'inscrire"><:inscrire:></a>]]
+   [(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,visit})"title="S'inscrire"><:inscrire:></a>]]
+   </li>
+
+<li>
+<a href="#URL_ARTICLE" title="Voir tous les messages">
+<:forum_parcourir:></a></li>
+
+<li>
+[<a href="(#PARAMETRES_FORUM|url_reponse_forum)" title="Cr&eacute;er une discussion"><:dialoguer:></a>]
+
+</li>
+</ul>
+
+
               <table class="spip">
 <tr class="row_first gras blanc">
 <td><:derniere_discussion:></td>
@@ -62,7 +80,9 @@
 <td><:date:></td>
 <td><:reponses:></td>
 </tr>
-                 
+                 				 
+				 
+				 
                   <B_discussions>
                   <BOUCLE_discussions(FORUMS){id_article}{par date_thread}{inverse}{doublons}{0,4}>
                           
@@ -86,9 +106,8 @@
 </BOUCLE_dernier_message>	
 </td>
 <td><B_nb_forumtotal>
-<BOUCLE_nb_forumtotal(FORUMS){id_thread}{plat}{1,9999}>
-</BOUCLE_nb_forumtotal>
-#TOTAL_BOUCLE
+<BOUCLE_nb_forumtotal(FORUMS){id_thread}{plat}{1,9999}>[(#REM) compte] </BOUCLE_nb_forumtotal>
+[(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|>{1}|?{r&eacute;ponses,r&eacute;ponse})]]
 </B_nb_forumtotal>
 </td>
 </tr>
@@ -106,38 +125,18 @@
 				  </td>
 				  </tr>
           </table>
-<ul class="forum droite">
-<li>
-
- [(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})"title="S'inscrire"><:inscrire:></a>]]
-   [(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,visit})"title="S'inscrire"><:inscrire:></a>]]
-   </li>
-
-<li>
-<a href="#URL_ARTICLE" title="Voir tous les messages">
-<:forum_parcourir:></a></li>
-
-<li>
-[<a href="(#PARAMETRES_FORUM|url_reponse_forum)" title="Cr&eacute;er une discussion"><:dialoguer:></a>]
-
-</li>
-</ul>
-<hr class="spacer"/><br/>
-
-</BOUCLE_themes> 
-
-
 
 </div>
+<hr class="spacer"/>
+</BOUCLE_themes> 
+
 
 
 
 <div id="celbas">
 <B_sous_rubriques> 
 <ul id="decobas">
-[(#REM)   Les rubriques de la branche et leurs contenus   ]
-
-   
+[(#REM)   Les rubriques de la branche et leurs contenus]   
 
                     <BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par titre}{tout_voir}>
 <li class="petite_boite">
@@ -188,8 +187,10 @@
    </span>
    </BOUCLE_logo_documents> 
 
+   
+   
+   
 [(#REM)   s'il n'y a pas de jpg gif ou png alors on demande le logo de l'article et on ne compte rien  ]
-
     <BOUCLE_logo_articles(ARTICLES){id_article}{0,1}> 
 <span [class="(#EVAL{[(#_articles:COMPTEUR_BOUCLE)]}|alterner{'gauche','droite'}) logorond"]>
     <a href="#URL_ARTICLE#diapo">
@@ -200,25 +201,20 @@
 		</BOUCLE_logo_articles>    
     <//B_logo_documents>
 	
-	
+
+
 	
 	
 	<p>
-
 [<a href="#URL_ARTICLE">(#TITRE)</a>]&nbsp;[((#VISITES)&nbsp;[(#VISITES|>{1}|?{'lectures','lecture'}))]]&nbsp;[(#DESCRIPTIF|couper{200})]
-
     <INCLUDE{fond="inc_cadenas"}{id_article}>  
-   
-    <BOUCLE_forum(FORUMS){id_article}{plat}></BOUCLE_forum>
+       <BOUCLE_forum(FORUMS){id_article}{plat}></BOUCLE_forum>
     [(#TOTAL_BOUCLE|>={1}|?{[&nbsp;<a href="#URL_ARTICLE#forum">(#TOTAL_BOUCLE)&nbsp;messages</a>&nbsp;,],''})]<//B_forum>
     <a href="#URL_ARTICLE"><:lire_suite:></a>
 </p>
 <hr class="spacer"/>
 </div>
-
 </BOUCLE_articles>
-
-
 [<div class="centre pagination"><p>(#PAGINATION{page_precedent_suivant})</p></div>]
 </div>[(#REM) fermeture minipics   ]
 </B_articles>
