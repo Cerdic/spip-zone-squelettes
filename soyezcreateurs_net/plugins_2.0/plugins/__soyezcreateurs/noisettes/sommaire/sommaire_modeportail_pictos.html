@@ -6,18 +6,19 @@
 <BOUCLE_Pictos(MOTS){type=_ModePortail}{titre==#ENV{pictoscherches}}>
 #SET{texteombre,(#_Pictos:TITRE|utf_8_to_unicode|image_typo{police=police_vignettes_portail.ttf,taille=32,couleur=000000,align=center,largeur=#GET{largeur}|mult{2},padding=8}|image_reduire_par{2}|image_recadre{#GET{largeur},#GET{hauteur},center bottom,7f7f7f}|image_aplatir{png,7f7f7f}|image_masque{#GET{masquetaille}}|extraire_attribut{src})}
 #SET{texteclair,(#_Pictos:TITRE|utf_8_to_unicode|image_typo{police=police_vignettes_portail.ttf,taille=32,couleur=ffffff,align=center,largeur=#GET{largeur}|mult{2},padding=10}|image_reduire_par{2}|image_recadre{#GET{largeur},#GET{hauteur},center bottom,7f7f7f}|image_aplatir{png,7f7f7f}|image_masque{#GET{masquetaille}}|extraire_attribut{src})}
+#SET{logo,(#LOGO_MOT_NORMAL||extraire_attribut{src}|sinon{#CHEMIN{images/vignette_portail_default.png}})}
 <BOUCLE_ArticlePicto(ARTICLES){id_mot}{par hasard}{0,1}>
 <a href="#URL_ARTICLE"[ hreflang="(#LANG)"] class="vignette">
-<img src="[(#LOGO_MOT_NORMAL||extraire_attribut{src}|image_masque{#GET{masque}}|image_masque{#GET{texteombre}}|image_masque{#GET{texteclair}}|image_masque{#GET{texteclair}}|extraire_attribut{src})]" alt="[(#_Pictos:TITRE)]" width="#GET{largeur}" height="#GET{hauteur}" />
+<img src="[(#GET{logo}|image_masque{#GET{masque}}|image_masque{#GET{texteombre}}|image_masque{#GET{texteclair}}|image_masque{#GET{texteclair}}|extraire_attribut{src})]" alt="[(#_Pictos:TITRE)]" width="#GET{largeur}" height="#GET{hauteur}" />
 </a>
 </BOUCLE_ArticlePicto>
 <BOUCLE_RubriquePicto(RUBRIQUES){id_mot}{par hasard}{0,1}>
 <a href="#URL_RUBRIQUE" class="vignette">
-<img src="[(#LOGO_MOT_NORMAL||extraire_attribut{src}|image_masque{#GET{masque}}|image_masque{#GET{texteombre}}|image_masque{#GET{texteclair}}|image_masque{#GET{texteclair}}|extraire_attribut{src})]" alt="[(#_Pictos:TITRE)]" width="#GET{largeur}" height="#GET{hauteur}" />
+<img src="[(#GET{logo}|image_masque{#GET{masque}}|image_masque{#GET{texteombre}}|image_masque{#GET{texteclair}}|image_masque{#GET{texteclair}}|extraire_attribut{src})]" alt="[(#_Pictos:TITRE)]" width="#GET{largeur}" height="#GET{hauteur}" />
 </a>
 </BOUCLE_RubriquePicto>
 <a href="#URL_MOT" class="vignette">
-<img src="[(#LOGO_MOT_NORMAL||extraire_attribut{src}|image_masque{#GET{masque}}|image_masque{#GET{texteombre}}|image_masque{#GET{texteclair}}|image_masque{#GET{texteclair}}|extraire_attribut{src})]" alt="[(#_Pictos:TITRE)]" width="#GET{largeur}" height="#GET{hauteur}" /></a>
+<img src="[(#GET{logo}|image_masque{#GET{masque}}|image_masque{#GET{texteombre}}|image_masque{#GET{texteclair}}|image_masque{#GET{texteclair}}|extraire_attribut{src})]" alt="[(#_Pictos:TITRE)]" width="#GET{largeur}" height="#GET{hauteur}" /></a>
 <//B_RubriquePicto>
 <//B_ArticlePicto>
 </BOUCLE_Pictos>
