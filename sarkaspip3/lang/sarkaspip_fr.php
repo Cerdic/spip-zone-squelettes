@@ -196,6 +196,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'lien_herbier_liste' => 'Herbier liste',
 		'lien_herbier_panorama' => 'Herbier panorama',
 		'lieu' => 'lieu',
+		'lire_aussi_article' => 'Lire aussi...',
 		'lire_suite_article' => 'lire la suite de l\'article',
 		'lire_evenement_virtuel' => 'Consulter l\'&eacute;v&eacute;nement d\'origine',
 		'lire_breve' => 'lire la br&egrave;ve',
