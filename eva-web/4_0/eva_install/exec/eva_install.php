@@ -84,7 +84,8 @@ $grp2_affichage = array(
 	"lien-haut" => "Placer un lien dans la ligne de lien tout en haut de la page",
         "mini-calendrier" => "Ajoute un rep&egrave;re dans le mini-calendrier",
 	"excluredusommaire" => "Supprime de la page de sommaire les &eacute;l&eacute;ments (articles, sites, ...) ayant ce mot cl&eacute;",
-	"excluredumenu" => "Supprime du menu de navigation les rubriques concern&eacute;es par ce mot cl&eacute;");
+	"excluredumenu" => "Supprime du menu de navigation les rubriques concern&eacute;es par ce mot cl&eacute;"),
+	"exclureduplan" => "Supprime du plan du site les rubriques concern&eacute;es par ce mot cl&eacute;");
 
 $nbrgrpact = count($grp2_activites);
 $nbrgrpaff = count($grp2_affichage);
