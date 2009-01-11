@@ -4,7 +4,15 @@ header("HTTP/1.1 404 Not Found", true);
 ?>#HTTP_HEADER{"Cache-Control: no-store, no-cache, must-revalidate"}
 #HTTP_HEADER{Pragma: no-cache}
 [(#SET{titretop,<:pass_erreur:> 404 })]
-[(#INCLURE{fond=noisettes/header/header}{connexion}{secteurencours=#GET{secteurencours}}{lang}{title=#GET{titretop}}{env}{titretop=#GET{titretop}})]
+#SET{connexion,#EVAL{intval($_GET['connexion'])}
+<INCLURE{fond=noisettes/header/header}
+	{connexion=#GET{connexion}}
+	{secteurencours=#GET{secteurencours}}
+	{lang}
+	{title=#GET{titretop}}
+	{env}
+	{titretop=#GET{titretop}}
+>
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
@@ -24,4 +32,7 @@ header("HTTP/1.1 404 Not Found", true);
 
 [(#FORMULAIRE_ADMIN)]
 
-[(#INCLURE{fond=noisettes/footer/footer}{lang}{titretop=#GET{titretop}})]
+[(#INCLURE{fond=noisettes/footer/footer}
+	{lang}
+	{titretop=#GET{titretop}}
+)]
