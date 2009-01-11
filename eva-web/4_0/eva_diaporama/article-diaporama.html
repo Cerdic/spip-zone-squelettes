@@ -11,11 +11,31 @@
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogopetit,60}]
 
 <BOUCLE_principale(ARTICLES){id_article}>
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
+	<head>
+	<INCLURE{fond=noisettes/headers/entete-meta}{env}>
+	</head>
+	<body>
+	<div id="page">
+	
+		[(#REM) Entte de la page]
+		<INCLURE{fond=noisettes/entete/inc_entete-page}{id_article}{id_rubrique}>
+			
+		[(#REM) Conteneur]
+		<div id="conteneur">
+		
+		<div id="menu">
+			[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})<INCLURE{fond=noisettes/article/article_gauche_avec_habillage}{id_rubrique}{id_article}{lang}>]
+			[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})<INCLURE{fond=noisettes/article/article_gauche_sans_habillage}{id_rubrique}{id_article}{lang}>]
+		</div>
+		
+			[(#REM) Contenu de la page]
+			<div id="contenu">
 
 #DEBUT_SURLIGNE
-
 [(#REM) chapeau, texte, post-scriptum de l'article ]
-
 <div class="bloc">
 
 	<div class="titre">
@@ -40,47 +60,20 @@
 	<div class="nettoyeur"></div>
 	</div>
 
-	[(#REM) chapeau, texte, post-scriptum de l'article ]
-
-	[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
-	[<div class="#EDIT{texte} texte">(#TEXTE)</div>]	
-	<div class="nettoyeur"></div>		
-	[<div class="#EDIT{hyperlien} lien"><strong><:voir_en_ligne:></strong> <a href="#URL_SITE">(#NOM_SITE)</a></div>]
-
-
-[(#REM) Portfolio ]
-<B_vignettes>
-<div class="divers">
-<h4><:portfolio:></h4>
-	 
-	<ul id="albumvignettes">
-		<BOUCLE_vignettes (DOCUMENTS) {id_article} {mode=document} {extension==jpg|png|gif} {par num titre}{doublons image} >
-		<li[ class="(#EXPOSE{on,off})"]><a [(#CONFIG{plugin}|match{NYRO}|?{' ',''}) 
-			class="nyroModal"  rel="gal" href="#URL_DOCUMENT"[ title="(#TITRE|supprimer_numero)"]>
-			[(#CONFIG{image_process}|=={gd2}|?{[(#FICHIER|image_masque{inc_masque_carre_vignette.png}||inserer_attribut{alt,[(#TITRE|supprimer_numero)]})],[(#FICHIER|image_reduire{85})]})]
-		</a>]</li>
-		</BOUCLE_vignettes>
-	</ul>
-
-	<div class="nettoyeur"></div>
-</div>
-</B_vignettes>
-
-
-	[(#REM) Si mot cle "diaporama"]
+[(#REM) Si mot cle "diaporama"]
 	<BOUCLE_test_diaporama(ARTICLES){id_article}{titre_mot=diaporama}>
 	<B_diapo>
 	<div class="bloc">
-	#ANCRE_PAGINATION
-	<h3 class="titre"><:diaporama:></h3>
-	<ul>
-	<BOUCLE_diapo(DOCUMENTS){id_article}{par num titre}{pagination 1}>
-		<li>
-		[(#EMBED_DOCUMENT)]
-		</li>
-	</BOUCLE_diapo>
-	</ul>
-	[<p class="pagination">(#PAGINATION{precedent_suivant})</p>]
+		#ANCRE_PAGINATION
+		<h3 class="titre"><:diaporama:></h3>
+		<ul>
+			<BOUCLE_diapo(DOCUMENTS){id_article}{extension==jpg|png|gif}{par num titre}{pagination 1}>
+				<li>
+				[(#EMBED_DOCUMENT)]
+				</li>
+			</BOUCLE_diapo>
+		</ul>
+		[<p class="pagination">(#PAGINATION{precedent_suivant})</p>]
 	</div>
 	</B_diapo> 
 
@@ -91,7 +84,7 @@
 	<div class="divers">
 	<h4><:documents_joints:></h4>
 	<ul>
-	<BOUCLE_documents(DOCUMENTS){id_article}{mode=document}{par num titre}{doublons image}>
+	<BOUCLE_documents(DOCUMENTS){id_article}{mode=document}{par num titre}{doublons diapo}>
 		<li>[<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT_RUBRIQUE||image_reduire{#GET{largeurlogopetit},#GET{hauteurlogopetit}})](#TITRE|supprimer_numero|sinon{<:document:>})</a>][, <em>(#TYPE_DOCUMENT)</em>][, <em>(#TAILLE|taille_en_octets)</em>]
 		[(#DESCRIPTIF)]
 		<div class="nettoyeur"></div>
@@ -100,7 +93,34 @@
 	</ul>
 	</div>
 	</B_documents>
-	<//B_test_diaporama>
+	
+
+
+	[(#REM) chapeau, texte, post-scriptum de l'article ]
+	[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
+	[<div class="#EDIT{texte} texte">(#TEXTE)</div>]	
+	<div class="nettoyeur"></div>		
+	[<div class="#EDIT{hyperlien} lien"><strong><:voir_en_ligne:></strong> <a href="#URL_SITE">(#NOM_SITE)</a></div>]
+
+
+<!-- [(#REM) Portfolio ]
+<B_vignettes>
+<div class="divers">
+<h4><:portfolio:></h4>
+	 
+	<ul id="albumvignettes">
+		<BOUCLE_vignettes (DOCUMENTS) {id_article} {mode=document} {extension==jpg|png|gif} {par num titre}{doublons diapo} >
+		<li[ class="(#EXPOSE{on,off})"]><a [(#CONFIG{plugin}|match{NYRO}|?{' ',''}) 
+			class="nyroModal"  rel="gal" href="#URL_DOCUMENT"[ title="(#TITRE|supprimer_numero)"]>
+			[(#CONFIG{image_process}|=={gd2}|?{[(#FICHIER|image_masque{inc_masque_carre_vignette.png}||inserer_attribut{alt,[(#TITRE|supprimer_numero)]})],[(#FICHIER|image_reduire{85})]})]
+		</a>]</li>
+		</BOUCLE_vignettes>
+	</ul>
+
+	<div class="nettoyeur"></div>
+</div>
+</B_vignettes> -->
+
 
 	[<div class="divers surlignable">
 	<h4><:post_scriptum:></h4>
@@ -116,4 +136,12 @@
 	</div> [(#REM) Fin du bloc ]
 	#FIN_SURLIGNE
 
+</div>
+
+			<div class="nettoyeur"></div>
+		</div>
+		<INCLURE{fond=noisettes/pied/inc_pied}{lang}>
+	</div>
+</body>
+</html>
 </BOUCLE_principale>
