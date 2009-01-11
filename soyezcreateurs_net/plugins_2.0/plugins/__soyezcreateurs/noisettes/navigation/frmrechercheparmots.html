@@ -1,28 +1,23 @@
 #CACHE{3600}
 <B_RechercheMot>
 <div class="espaceavant">
-<form action="@mot.html" method="get" id="frmrecherchemot" class="searchfrm">
+<BOUCLE_RechercheMot(GROUPES_MOTS){par titre}{titre==^[^_]}>
+<B_Mots>
+<form action="@mot.html" method="get" id="frmrecherchemot#ID_GROUPE" class="searchfrm">
 <div>
-	<label for="recherchemot" title="<:pyrat:recherche_title:>"><:pyrat:recherche_motclef_label:></label>
-	<select id="recherchemot" name="id_mot" class="searchfield" onchange="return submit(this);">
-		<option value="0" selected="selected"><:pyrat:recherche_motclef:></option>
-		<BOUCLE_RechercheMot(GROUPES_MOTS){par titre}{titre==^[^_]}>
-		<B_Mots>
-		#SET{fermeture,''}
-		<BOUCLE_Mots(MOTS mots_articles){id_groupe}{par titre}{id_article>0}>
-		<B_VerificationDroitArticle>
-		[<optgroup label="(#_RechercheMot:TITRE|unique)">#SET{fermeture,</optgroup>}]
-			<BOUCLE_VerificationDroitArticle(ARTICLES){id_mot}{0,1}>
-			<option value="#_Mots:ID_MOT">[(#_Mots:TITRE|supprimer_tags)]<BOUCLE_ArticleMot(ARTICLES){id_mot}></BOUCLE_ArticleMot>(#TOTAL_BOUCLE)<//B_ArticleMot></option>
-			</BOUCLE_VerificationDroitArticle>
-		</B_VerificationDroitArticle>
+	<label for="recherchemot#ID_GROUPE" title="<:pyrat:recherche_title:>"><:pyrat:recherche_motclef_label:>&nbsp;: #TITRE</label>
+	<select id="recherchemot#ID_GROUPE" name="id_mot" class="searchfield" onchange="return submit(this);" title="[<:pyrat:recherche_motclef_label|attribut_html:>&nbsp;: (#TITRE|attribut_html)]">
+		<option value="0" selected="selected">#TITRE</option>
+		<BOUCLE_Mots(ARTICLES mots_articles mots){mots.id_groupe}{par mots.titre}{fusion L3.id_mot}>
+			<BOUCLE_TitreMot(MOTS){id_mot}>
+			[<option value="(#ID_MOT|unique)">[(#TITRE|supprimer_tags)][((#_Mots:TOTAL_BOUCLE))]</option>]
+			</BOUCLE_TitreMot>
 		</BOUCLE_Mots>
-		#GET{fermeture}
-		</B_Mots>
-		</BOUCLE_RechercheMot>
 		</select>
-	<input name="Submit" type="submit" id="sendsearchmc" class="okfield form_submit" title="<:pyrat:recherche_title_ok:>" value="<:pass_ok:>" />
+	<input name="Submit" type="submit" id="sendsearchmc#ID_GROUPE" class="okfield form_submit" title="<:pyrat:recherche_title_ok:>" value="<:pass_ok:>" />
 </div>
 </form>
+</B_Mots>
+</BOUCLE_RechercheMot>
 </div>
 </B_RechercheMot>
