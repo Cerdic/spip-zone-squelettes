@@ -32,6 +32,9 @@ define('_SARKASPIP_CONFIG_LARGEUR_ALBUM', 80);
 define('_SARKASPIP_CONFIG_LARGEUR_ICONE_METEO', 80);
 // -- Pour le contact du site
 define('_SARKASPIP_CONFIG_AUTORISATION_CONTACT', '0minirezo');
+// -- Pour la fenetre de dialgue utilisant le plugin SHOUTBOX
+define('_SARKASPIP_CONFIG_SHOUTBOX_PAGE', 'dialogue');
+define('_SARKASPIP_CONFIG_SHOUTBOX_TAILLE', 50);
 // Configuration cfg des plugins utilises par le squelette
 // -- Plugin BOUTONS TEXTE
 define('_SARKASPIP_CONFIG_BOUTONSTEXTE_TXTONLY', 'boutonstexte:texte_seulement');
