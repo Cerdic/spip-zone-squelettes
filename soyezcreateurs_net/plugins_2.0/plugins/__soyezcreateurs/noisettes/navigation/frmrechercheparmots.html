@@ -8,11 +8,15 @@
 		<option value="0" selected="selected"><:pyrat:recherche_motclef:></option>
 		<BOUCLE_RechercheMot(GROUPES_MOTS){par titre}{titre==^[^_]}>
 		<B_Mots>
-		<optgroup label="[(#TITRE)]">
-			<BOUCLE_Mots(MOTS mots_articles){id_groupe}{par titre}{id_article>0}>
-			<option value="#ID_MOT">[(#TITRE|supprimer_tags)]<BOUCLE_ArticleMot(ARTICLES){id_mot}></BOUCLE_ArticleMot>(#TOTAL_BOUCLE)<//B_ArticleMot></option>
-			</BOUCLE_Mots>
+		<BOUCLE_Mots(MOTS mots_articles){id_groupe}{par titre}{id_article>0}>
+		<B_VerificationDroitArticle>
+		<optgroup label="[(#_RechercheMot:TITRE)]">
+			<BOUCLE_VerificationDroitArticle(ARTICLES){id_mot}{0,1}>
+			<option value="#_Mots:ID_MOT">[(#_Mots:TITRE|supprimer_tags)]<BOUCLE_ArticleMot(ARTICLES){id_mot}></BOUCLE_ArticleMot>(#TOTAL_BOUCLE)<//B_ArticleMot></option>
+			</BOUCLE_VerificationDroitArticle>
 		</optgroup>
+		</B_VerificationDroitArticle>
+		</BOUCLE_Mots>
 		</B_Mots>
 		</BOUCLE_RechercheMot>
 		</select>
