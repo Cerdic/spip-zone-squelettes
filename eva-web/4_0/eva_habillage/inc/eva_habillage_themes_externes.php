@@ -844,6 +844,14 @@ $eva_themes = array(
     "('', 'image', 'Defaut', 'image_pairs', 'orchidees/barre.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'perso', 'Defaut', 'div#page {border-top-style:none; border-bottom-style:none;border-right:10px solid #786343;border-left:10px solid #786343; margin-top:0;margin-bottom:0;}', '', '', '', '', '')",        
     ), ),
+    
+
+'EVA 2 Ubuntu' => array(
+    /* Thème créé par Olivier Gautier */
+    "habillage" => "eva4_100pour100_menu_gauche.css",
+    "theme" => "('', 'Defaut', '#fff', '#816647', '#fff', '#fff', '#fff', '#d9bb7a', '#ad9060', '#ad9060', '#f4ebd8', 'transparent', 'transparent', '#ad9060', '#ad9060', '#d9bb7a', '#d9bb7a', '#fff', '#fff', '#fff', '#f4ebd8', '', '#808080', '#808080', '#808080', '#fff', '#666', '#666', '#666', '#d9bb7a', '#ff9900', '#ff9900', '#fff', '', '#666', '#666', '', '#fff', '#777', '#fff', '#ff9900', '#816647', '#ff9900', '#816647', '#ff9900', '#816647', '', '', '', '#d9bb7a', '', '', '#fff', '', '', '', '', 'none', '#d9bb7a', '', '', '#d9bb7a', '', '', '#fff', '', '', '#d9bb7a', '', '', '#d9bb7a', '', '', '', '', '', '', '', '', '')",
+    "images" => array()
+    ),
 
 
 );
