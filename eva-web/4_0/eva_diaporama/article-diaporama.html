@@ -69,14 +69,48 @@
 		<ul>
 			<BOUCLE_diapo(DOCUMENTS){id_article}{extension==jpg|png|gif}{par num titre}{pagination 1}{doublons}>
 				<li>
-				[(#EMBED_DOCUMENT|image_reduire{430}|inserer_attribut{alt,[(#TITRE|supprimer_numero)]})]
-				</li>
+				<!-- [(#EMBED_DOCUMENT|image_reduire{430}|inserer_attribut{alt,[(#TITRE|supprimer_numero)]})] -->
+				
+				<?php
+	// récupération des dimentions de l'image pour dimentionner la popup
+	
+	$largeur=#LARGEUR+10;
+	if ( (!empty($largeur)) && ($largeur>1024) ) {
+		$largeur=1024;
+	}
+	$hauteur=#HAUTEUR+10;
+	if ( (!empty($hauteur)) && ($hauteur>768) ) {
+		$hauteur=768;
+	}
+	?>
+	
+				<a [(#CONFIG{plugin}|match{NYRO}|?{' ',''}) 
+						class="nyroModal"  rel="gal" href="[(#URL_DOCUMENT)]" [title="(#TITRE|supprimer_numero)"]>
+					]
+					[(#CONFIG{plugin}|match{NYRO}|?{'',' '}) 
+						[(#CONFIG{plugin}|match{THICKBOX}|?{' ',''}) 
+							class="thickbox" href="[(#URL_DOCUMENT)]" [title="(#TITRE|supprimer_numero)"]>
+						]
+						[(#CONFIG{plugin}|match{THICKBOX}|?{'',' '})
+							href="[(#URL_PAGE{photo}|parametre_url{'id_document',#ID_DOCUMENT})]"
+							onclick="window.open(this.href,'photo','toolbar=no,menubar=no,location=no,scrollbars=1,resizable=yes,height=<?php echo $hauteur; ?>,width=<?php echo $largeur; ?>'); return false;"
+							title="<:voir_image:>[ - (#TITRE|supprimer_numero)]">
+						]
+					]
+			
+					[(#FICHIER|image_reduire{430}|inserer_attribut{alt,[(#TITRE|supprimer_numero)]})]
+				</a>
+			
+				[<h2 class="#EDIT{titre}">(#TITRE|supprimer_numero)</h2>]
+				[<h4 class="#EDIT{soustitre} soustitre">(#DESCRIPTIF)</h4>]
+
+	 			</li>
 			</BOUCLE_diapo>
 		</ul>
 		[<p class="menupaginationbas">(#PAGINATION{page_precedent_suivant})</p>]
 	</div>
-	</B_diapo> 
-
+	</B_diapo>
+	
 	</BOUCLE_test_diaporama>
 	</B_test_diaporama>
 
