@@ -1,0 +1,64 @@
+#CACHE{0}
+<B_discussions>
+	
+<table class="spip">
+<tr class="row_first gras blanc">
+<td>Suivre mes messages</td>
+<td>Statut</td>
+<td>Date</td>
+<td>R&eacute;ponses</td>
+</tr>
+
+
+[(#REM)  les 5 derniers posts de l'auteur tout en détail  ]
+
+<BOUCLE_discussions(FORUMS){id_auteur}{!par date_heure}{pagination 5}>
+[(#REM) Les 5 dernières discussions où l'auteur a participé.] 
+<BOUCLE_forums_dernier(FORUMS){id_thread}{plat}{id_auteur}{par date}{inverse}{0,1}>
+[(#REM) Le dernier des messages de l'auteur dans chacune de ces discussions.] 
+<tr [class="(#EVAL{[(#_discussions:COMPTEUR_BOUCLE)]}|alterner{'row_even','row_odd'})"]><td>
+[(#REM) Quel article correspond à ce forum. Ajoutez le prefixe de votre table si cette boucle ne marche pas  ]
+<BOUCLE_forumart(FORUMS articles){id_forum}>
+[(#STATUT|=={publie}|?{[<a href="(#URL_PAGE{backend}|parametre_url{id_article,#ID_ARTICLE})" title="Suivre le flux rss de ce forum.">]<img src="/squelettes/images/icones/rss.gif" alt="Suivre le flux rss de ce forum."/></a> 
+<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})]" [title="(#TITRE|couper{80}|texte_backend)"]>[(#TITRE|couper{80})]</a>[ (#TEXTE|couper{100})]
+,[(#TEXTE|couper{180})]})]</td>
+</BOUCLE_forumart>
+
+
+<td>
+[(#STATUT|=={prepa}|?{pr&eacute;par&eacute;})]
+[(#STATUT|=={prop}|?{propos&eacute;})]
+[(#STATUT|=={refuse}|?{refus&eacute;})]
+[(#STATUT|=={poubelle}|?{jet&eacute;})]
+[(#STATUT|=={original}|?{corrig&eacute;})]
+[<span class="vert">(#STATUT|=={publie}|?{publi&eacute;})</span>] 
+</td>  
+
+	
+<td>
+[(#DATE|affdate{'d/m/Y'})]<br/>
+[(#DATE|affdate{'H:i:s'})]
+</td>
+
+
+<td>
+
+<BOUCLE_combien(FORUMS){plat}{id_parent}{!id_auteur}>[(#REM) juste pour compter]</BOUCLE_combien>
+[(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|>{1}|?{r&eacute;ponses,r&eacute;ponse})]]
+<//B_combien>
+</td>
+</tr>
+</BOUCLE_forums_dernier>
+</BOUCLE_discussions>
+
+
+
+</table>
+[<p class="centre pagination">(#PAGINATION)</p>]			
+
+</B_discussions>
+<h4 class="icone_membre">Suivre les messages des forums.</h4>
+<p>Apr&egrave;s avoir posté des messages dans les forums, vous pourrez suivre leurs réponses sur cette page.
+Il est aussi possible de suivre les forums par flux rss. Une alerte par e-mail vous sera envoy&eacute; &agrave; chaque nouvelle r&eacute;ponse.
+</p>
+<//B_discussions>

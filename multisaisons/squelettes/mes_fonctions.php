@@ -2,6 +2,51 @@
 
 
 
+
+/*
+ *   +----------------------------------+
+ *    Nom du Filtre :   saisonfr                                  
+ *   +----------------------------------+
+ *    nahojf inspiré par le code spip
+ *   +-------------------------------------+
+ *    Fonctions de ce filtre :
+ *    affiche la saison en français uniquement
+ *   +-------------------------------------+ 
+ *  
+ * Pour toute suggestion, remarque, proposition d'ajout
+ * reportez-vous au forum de l'article :
+ * http://www.multi-saisons.art-logic.info/spip.php?page=discussion&id_forum=1892
+*/
+
+// balise #TOTAL_VISITES
+
+function saisonfr($numdate) {
+
+        $date_array = recup_date($numdate);
+        if ($date_array)
+                list($annee, $mois, $jour) = $date_array;
+        else
+                return '';
+        $mois = intval($mois);
+        if ($mois > 0){
+                $saison = 'hiver';
+                if (($mois == 3 AND $jour >= 21) OR $mois > 3) $saison = 'printemps';
+                if (($mois == 6 AND $jour >= 21) OR $mois > 6) $saison = 'ete';
+                if (($mois == 9 AND $jour >= 21) OR $mois > 9) $saison = 'automne';
+                if (($mois == 12 AND $jour >= 21) OR $mois > 12) $saison = 'hiver';
+        }
+        return $saison;
+}
+
+
+
+
+
+
+
+
+
+
 /*
  *   +----------------------------------+
  *    Nom du Filtre :    pour plus de stats                                        
@@ -18,6 +63,11 @@
 */
 
 // balise #TOTAL_VISITES
+
+
+
+
+
 
 function aff_total_visites() {
 	$query = "SELECT SUM(visites) AS total_absolu FROM spip_visites";
@@ -123,6 +173,9 @@ function balise_MOYENNE_VISITES($p) {
     Insere texte alerte-abus dans corps message pour webmaster
 +----------------------------------+
 */
+
+
+
 function insere_texte_alerter($texte,$insere) {
     if (!$premiere_passe = _request('valide')) {
         if(_request('alerter')=='oui') {
