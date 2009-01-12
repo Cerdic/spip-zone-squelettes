@@ -1,4 +1,4 @@
-#CACHE{4*3600}
+#CACHE{0}
 
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurlogo,#EVALOGOMOYENLARGEUR}] 
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurlogo,140}]
@@ -63,63 +63,28 @@
 [(#REM) Si mot cle "diaporama"]
 	<BOUCLE_test_diaporama(ARTICLES){id_article}{titre_mot=diaporama}>
 	<B_diapo>
-	<div class="bloc">
+	<div id="photo">
 		#ANCRE_PAGINATION
 		<h3 class="titre"><:diaporama:></h3>
 		<ul>
-			<BOUCLE_diapo(DOCUMENTS){id_article}{extension==jpg|png|gif}{par num titre}{pagination 1}>
+			<BOUCLE_diapo(DOCUMENTS){id_article}{extension==jpg|png|gif}{par num titre}{pagination 1}{doublons}>
 				<li>
-				[(#EMBED_DOCUMENT)]
+				[(#EMBED_DOCUMENT|image_reduire{430}|inserer_attribut{alt,[(#TITRE|supprimer_numero)]})]
 				</li>
 			</BOUCLE_diapo>
 		</ul>
-		[<p class="pagination">(#PAGINATION{precedent_suivant})</p>]
+		[<p class="menupaginationbas">(#PAGINATION{page_precedent_suivant})</p>]
 	</div>
 	</B_diapo> 
 
 	</BOUCLE_test_diaporama>
 	</B_test_diaporama>
 
-	<B_documents>
-	<div class="divers">
-	<h4><:documents_joints:></h4>
-	<ul>
-	<BOUCLE_documents(DOCUMENTS){id_article}{mode=document}{par num titre}{doublons diapo}>
-		<li>[<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT_RUBRIQUE||image_reduire{#GET{largeurlogopetit},#GET{hauteurlogopetit}})](#TITRE|supprimer_numero|sinon{<:document:>})</a>][, <em>(#TYPE_DOCUMENT)</em>][, <em>(#TAILLE|taille_en_octets)</em>]
-		[(#DESCRIPTIF)]
-		<div class="nettoyeur"></div>
-		</li>
-	</BOUCLE_documents>
-	</ul>
-	</div>
-	</B_documents>
-	
-
-
 	[(#REM) chapeau, texte, post-scriptum de l'article ]
 	[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
 	[<div class="#EDIT{texte} texte">(#TEXTE)</div>]	
 	<div class="nettoyeur"></div>		
 	[<div class="#EDIT{hyperlien} lien"><strong><:voir_en_ligne:></strong> <a href="#URL_SITE">(#NOM_SITE)</a></div>]
-
-
-<!-- [(#REM) Portfolio ]
-<B_vignettes>
-<div class="divers">
-<h4><:portfolio:></h4>
-	 
-	<ul id="albumvignettes">
-		<BOUCLE_vignettes (DOCUMENTS) {id_article} {mode=document} {extension==jpg|png|gif} {par num titre}{doublons diapo} >
-		<li[ class="(#EXPOSE{on,off})"]><a [(#CONFIG{plugin}|match{NYRO}|?{' ',''}) 
-			class="nyroModal"  rel="gal" href="#URL_DOCUMENT"[ title="(#TITRE|supprimer_numero)"]>
-			[(#CONFIG{image_process}|=={gd2}|?{[(#FICHIER|image_masque{inc_masque_carre_vignette.png}||inserer_attribut{alt,[(#TITRE|supprimer_numero)]})],[(#FICHIER|image_reduire{85})]})]
-		</a>]</li>
-		</BOUCLE_vignettes>
-	</ul>
-
-	<div class="nettoyeur"></div>
-</div>
-</B_vignettes> -->
 
 
 	[<div class="divers surlignable">
@@ -132,6 +97,20 @@
 	<h4><:notes:></h4>
 	<div class="contenu">(#NOTES)</div>
 	</div>]
+	
+		<B_documents>
+	<div class="divers">
+	<h4><:documents_joints:></h4>
+	<ul>
+	<BOUCLE_documents(DOCUMENTS){id_article}{mode=document}{extension!==jpg|png|gif}{par num titre}{doublons}>
+		<li>[<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT_RUBRIQUE||image_reduire{#GET{largeurlogopetit},#GET{hauteurlogopetit}})](#TITRE|supprimer_numero|sinon{<:document:>})</a>][, <em>(#TYPE_DOCUMENT)</em>][, <em>(#TAILLE|taille_en_octets)</em>]
+		[(#DESCRIPTIF)]
+		<div class="nettoyeur"></div>
+		</li>
+	</BOUCLE_documents>
+	</ul>
+	</div>
+	</B_documents>
 
 	</div> [(#REM) Fin du bloc ]
 	#FIN_SURLIGNE
