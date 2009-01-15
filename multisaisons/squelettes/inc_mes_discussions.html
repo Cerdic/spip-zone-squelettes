@@ -4,61 +4,102 @@
 <table class="spip">
 <tr class="row_first gras blanc">
 <td>Suivre mes messages</td>
-<td>Statut</td>
 <td>Date</td>
+<td>Statut</td>
 <td>R&eacute;ponses</td>
+
 </tr>
 
+[(#REM) Les 5 dernières discussions où l'auteur a participé.]
+<BOUCLE_discussions(FORUMS){id_auteur}{tout}{fusion id_thread}{!par date_thread}{statut IN publie, original, off, prop}{pagination 5}>
+[(#REM) Le dernier des messages de l'auteur dans chacune de ces discussions.]
 
-[(#REM)  les 5 derniers posts de l'auteur tout en détail  ]
 
-<BOUCLE_discussions(FORUMS){id_auteur}{!par date_heure}{pagination 5}>
-[(#REM) Les 5 dernières discussions où l'auteur a participé.] 
-<BOUCLE_forums_dernier(FORUMS){id_thread}{plat}{id_auteur}{par date}{inverse}{0,1}>
-[(#REM) Le dernier des messages de l'auteur dans chacune de ces discussions.] 
-<tr [class="(#EVAL{[(#_discussions:COMPTEUR_BOUCLE)]}|alterner{'row_even','row_odd'})"]><td>
+
+<BOUCLE_retourne_thread0(FORUMS){id_thread}{tout}{id_auteur}{!par date}{statut IN publie, off, prop, original}{0,1}>
+<tr [class="(#EVAL{[(#_discussions:COMPTEUR_BOUCLE)]}|alterner{'row_even','row_odd'})"]>
 [(#REM) Quel article correspond à ce forum. Ajoutez le prefixe de votre table si cette boucle ne marche pas  ]
-<BOUCLE_forumart(FORUMS articles){id_forum}>
-[(#STATUT|=={publie}|?{[<a href="(#URL_PAGE{backend}|parametre_url{id_article,#ID_ARTICLE})" title="Suivre le flux rss de ce forum.">]<img src="/squelettes/images/icones/rss.gif" alt="Suivre le flux rss de ce forum."/></a> 
-<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})]" [title="(#TITRE|couper{80}|texte_backend)"]>[(#TITRE|couper{80})]</a>[ (#TEXTE|couper{100})]
-,[(#TEXTE|couper{180})]})]</td>
+
+
+
+<BOUCLE_forumjete(FORUMS articles){id_forum}{statut=off}> <td>
+[<a href="(#URL_PAGE{backend}|parametre_url{id_article,#ID_ARTICLE})" title="Suivre le flux rss de ce forum.">]<img src="/squelettes/images/icones/rss.gif" alt="Suivre le flux rss de ce forum."/></a> 
+<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_THREAD})]" [title="(#TITRE|couper{80}|texte_backend)">]Ce message a &eacute;t&eacute mod&eacute;r&eacute;.</a>[(#TITRE|couper{80})][ (#TEXTE|couper{100})]
+</td>
+</BOUCLE_forumjete>
+
+<BOUCLE_forumpublie(FORUMS articles){id_forum}{statut=original}> <td>
+[<a href="(#URL_PAGE{backend}|parametre_url{id_article,#ID_ARTICLE})" title="Suivre le flux rss de ce forum.">]<img src="/squelettes/images/icones/rss.gif" alt="Suivre le flux rss de ce forum."/></a> 
+<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_THREAD})]" [title="(#TITRE|couper{80}|texte_backend)"]>[(#TITRE|couper{80})]</a>[ (#TEXTE|couper{100})]
+</td>
+</BOUCLE_forumpublie>
+
+<BOUCLE_forumart(FORUMS articles){id_forum}{statut=publie}> <td>
+[<a href="(#URL_PAGE{backend}|parametre_url{id_article,#ID_ARTICLE})" title="Suivre le flux rss de ce forum.">]<img src="/squelettes/images/icones/rss.gif" alt="Suivre le flux rss de ce forum."/></a> 
+<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})#forum#ID_FORUM]" [title="(#TITRE|couper{80}|texte_backend)"]>[(#TITRE|couper{80})]</a>[ (#TEXTE|couper{100})]
+</td>
 </BOUCLE_forumart>
+<//B_forumpublie>
+<//B_forumjete>
 
 
-<td>
-[(#STATUT|=={prepa}|?{pr&eacute;par&eacute;})]
-[(#STATUT|=={prop}|?{propos&eacute;})]
-[(#STATUT|=={refuse}|?{refus&eacute;})]
-[(#STATUT|=={poubelle}|?{jet&eacute;})]
-[(#STATUT|=={original}|?{corrig&eacute;})]
-[<span class="vert">(#STATUT|=={publie}|?{publi&eacute;})</span>] 
-</td>  
 
-	
+
+
+<BOUCLE_forumvalid(FORUMS articles){id_forum}{statut=prop}> <td>
+[<a href="(#URL_PAGE{backend}|parametre_url{id_article,#ID_ARTICLE})" title="Suivre le flux rss de ce forum.">]<img src="/squelettes/images/icones/rss.gif" alt="Suivre le flux rss de ce forum."/></a> 
+<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_THREAD})]" [title="(#TITRE|couper{80}|texte_backend)"]>Ce message doit &egrav;tre valid&eacute; par un administrateur.</a>[(#TITRE|couper{80})][ (#TEXTE|couper{100})]
+</td>
+</BOUCLE_forumvalid>
+
+[(#REM) La date du dernier message. ]	
 <td>
 [(#DATE|affdate{'d/m/Y'})]<br/>
-[(#DATE|affdate{'H:i:s'})]
-</td>
+[(#DATE|affdate{'H:i:s'})]</td>
+</BOUCLE_retourne_thread0>
 
 
-<td>
 
-<BOUCLE_combien(FORUMS){plat}{id_parent}{!id_auteur}>[(#REM) juste pour compter]</BOUCLE_combien>
-[(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|>{1}|?{r&eacute;ponses,r&eacute;ponse})]]
+[(#REM) Les statuts des messages. ]	
+
+<BOUCLE_retourne_thread1(FORUMS){id_thread}{tout}{id_auteur}{!par date}{statut IN publie, original, off, prop}{0,1}>
+	<td>
+[(#STATUT|=={prop}|?{propos&eacute;})]
+[(#STATUT|=={off}|?{mod&eacute;r&eacute;})]
+[<span class="vert">(#STATUT|=={original}|?{corrig&eacute;})</span>]
+[<span class="vert">(#STATUT|=={publie}|?{publi&eacute;})</span>]
+</td> 
+</BOUCLE_retourne_thread1>
+
+
+
+<BOUCLE_retourne_thread3(FORUMS){id_thread}{tout}{statut IN publie, original, off, prop}{id_auteur}{!par date}{0,1}><td>
+<BOUCLE_combien(FORUMS){tout}{id_thread}{!id_auteur}{date>#DATE}></BOUCLE_combien>
+[(#TOTAL_BOUCLE|=={0}|?{En attente<br/>de r&eacute;ponses})]
+[<span class="vert">(#TOTAL_BOUCLE|=={1}|?{1 r&eacute;ponse})</span>]
+[<span class="vert">(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE r&eacute;ponses})</span>]
 <//B_combien>
 </td>
-</tr>
-</BOUCLE_forums_dernier>
+</BOUCLE_retourne_thread3>
+
+
+
+
+
+ </tr>
+
+
+
 </BOUCLE_discussions>
-
-
-
 </table>
-[<p class="centre pagination">(#PAGINATION)</p>]			
 
-</B_discussions>
+
+
+[<p class="centre pagination">(#PAGINATION)</p>]                       
+
+</B_discussions> 
 <h4 class="icone_membre">Suivre les messages des forums.</h4>
-<p>Apr&egrave;s avoir posté des messages dans les forums, vous pourrez suivre leurs réponses sur cette page.
-Il est aussi possible de suivre les forums par flux rss. Une alerte par e-mail vous sera envoy&eacute; &agrave; chaque nouvelle r&eacute;ponse.
+<p>Apr&egrave;s avoir post&eacute;e des messages dans les forums, vous pourrez suivre leurs r&eacute;eponses sur cette page.
+Il est aussi possible de suivre les forums par flux rss. Une alerte par e-mail vous sera envoy&eacute;e &agrave; chaque nouvelle r&eacute;ponse.
 </p>
 <//B_discussions>

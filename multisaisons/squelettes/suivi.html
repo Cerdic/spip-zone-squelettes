@@ -61,7 +61,6 @@
 
 
 
-
 <B_auteur_maj>
 <div class="grande_boite">
 <h4 class="icone_membre">Les derniers membres actifs:</h4>
@@ -119,36 +118,38 @@
 
 
 </div> [(#REM)   fermeture colone de gauche   ]
- <div class="coldroit">  [(#REM)   ouverture de la colone de droite   ] 
-    <div class="boite">[(#REM)   ouverture boite menu   ] 
-        <h4 class="icone_menu"><:navigation:></h4>
-        [(#INCLURE{fond=inc_menu_rub})] 
-        </div>[(#REM)   fermeture boite menu   ] 
+<div class="coldroit">  [(#REM)   ouverture de la colone de droite   ] 
+<div class="boite">[(#REM)   ouverture boite menu   ] 
+<h4 class="icone_menu"><:navigation:></h4>
+[(#INCLURE{fond=inc_menu_rub})] 
+</div>[(#REM)   fermeture boite menu   ] 
+		
+		
+			<div class="boite"> 
+	  <h4 class="icone_membre"><:messages_derniers:></h4> 
+	 
+	[(#INCLURE{fond=inc_derniers_messages}{self=#SELF}{ajax}{env})] 
+	 
+	</div> 
 		
 		
 		
-		
-		
-		
-		
-		
-<B_doc_forum>
+
 <div class="boite">
-<h4 class="icone_zip">Mes documents dans les forums.</h4>
-<BOUCLE_doc_forum(DOCUMENTS){id_forum}><p>
-#ID_DOCUMENT
-[(#EXTENSION|match{'^(gif|jpg|png)$'}|?{
+<h4 class="icone_zip">Mes documents dans les forums.</h4>	<p>	
+<BOUCLE_forum_auteur_doc(FORUMS){tout}{id_auteur}>
+<BOUCLE_doc_forum(DOCUMENTS){id_forum}>
+				[(#EXTENSION|match{'^(gif|jpg|png)$'}|?{
 					[(#MODELE{emb}|image_reduire{300})]
 				,
 					[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
-				})]</p>
+				})]
 </BOUCLE_doc_forum>
-</div>
-</B_doc_forum>
-		
-			<BOUCLE_doc(DOCUMENTS)>
+</BOUCLE_forum_auteur_doc>
+</p></div>
+
+
 				
-				</BOUCLE_doc>
 		
 		
 		
@@ -166,7 +167,7 @@
 [(#REM)   fermeture colone de droite   ] 
 <hr class="spacer" />
 </div>[(#REM)   fermeture contenu   ] 
-[(#INCLURE{fond=pieddepage})]
+<INCLURE{fond=pieddepage}>
 </div> [(#REM)   fermeture surcontenu   ]<br/>
 </div> [(#REM)   fermeture container   ] 
 </body>
