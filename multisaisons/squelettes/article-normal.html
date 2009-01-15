@@ -41,7 +41,6 @@
 	  <div class="#EDIT{texte}">
    [#DEBUT_SURLIGNE(#TEXTE|image_reduire{450,0}|lier_au_glossaire|paragrapher)#FIN_SURLIGNE]
    </div>
-   [(#INCLURE{fond=inc_petition}{id_article})]
    
      <B_auteurs>
 	 <BOUCLE_auteurs(AUTEURS){id_article}>                
@@ -60,6 +59,18 @@
 		<h4 class="icone_membre">Formulaire de signature</h4>
 			<INCLURE{fond=inc-petition}{id_article}{env}{ajax}>
 	</div>]
+
+
+[(#REM) Petition : La petition ayant une PAGINATION il faut absolument {env}
+		et pourquoi pas ajax]
+	
+	[(#PETITION|?{' '})<div class="grande_boite">
+		<h4 class="icone_membre">Formulaire de signature</h4>
+			<INCLURE{fond=inc-petition}{id_article}{env}{ajax}>
+	</div>]
+
+
+
 
 
 <BOUCLE_combien_d_images(DOCUMENTS){id_article}{mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}{1,1}>
