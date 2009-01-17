@@ -7,6 +7,10 @@
 <script type="text/javascript">
 //<![CDATA[
 	jQuery(document).ready(function() {
+		[(#ENV{appliquer_padding, 1}|!={1}|?{' '})
+			jQuery("#largeur_padding").hide();
+		]
+		
 		jQuery("input[@name='numero_layout']").click(function() {
 			if(jQuery("input[@name='numero_layout']:checked").val() == 7)
 				jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout7.gif})]"});
@@ -32,6 +36,15 @@
 				jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout14.gif})]"});
 			else
 				jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout13.gif})]"});
+			jQuery(this).blur();
+		});	
+		jQuery("input[@name='appliquer_padding']").change(function() {
+			if (jQuery("input[@name='appliquer_padding']:checked").val() == 1) {
+				jQuery("#largeur_padding").show();
+			}
+			else {
+				jQuery("#largeur_padding").hide();
+			}
 			jQuery(this).blur();
 		});	
 	});
@@ -77,9 +90,28 @@
 					<:sarkaspip:cfg_lbl_layout_12:>
 				</label>
 				<br />
-				<label><:sarkaspip:cfg_lbl_largeur_site:></label>
+				<label><:sarkaspip:cfg_lbl_largeur_site:>
 					<input type="text" name="largeur_site" value="#ENV{largeur_site, 700}" size="4" class="fondl" />
 					<:sarkaspip:cfg_lbl_pixel:>
+				</label>
+				<br />
+				<p><:sarkaspip:cfg_lbl_appliquer_padding:></p>				
+				<label>
+					<input type="radio" name="appliquer_padding" value="1" [(#ENV{appliquer_padding, 0}|=={1}|?{checked="checked"})] />
+					<:sarkaspip:cfg_lbl_oui:>
+				</label>
+				<label>
+					<input type="radio" name="appliquer_padding" value="0" [(#ENV{appliquer_padding, 0}|=={0}|?{checked="checked"})] />
+					<:sarkaspip:cfg_lbl_non:>
+				</label>
+				<div id="largeur_padding">
+					<br />
+					<label><:sarkaspip:cfg_lbl_largeur_padding:>
+						<input type="text" name="largeur_padding" value="#ENV{largeur_padding, 20}" size="3" class="fondl" />
+						<:sarkaspip:cfg_lbl_pixel:>
+					</label>
+				</div>
+				
 			</fieldset>
 			
 			<br />
