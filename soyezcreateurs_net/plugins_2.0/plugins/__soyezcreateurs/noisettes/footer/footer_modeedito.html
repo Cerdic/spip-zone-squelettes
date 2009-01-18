@@ -7,12 +7,18 @@
 	<div id="navigation" class="equilibre stackable">
 	<h1 class="navstuff ahem">Menus de navigation de #NOM_SITE_SPIP</h1>
 [(#CONFIG{soyezcreateurs/logoheader,navigation}|=={navigation}|?{' ',''})#INCLURE{fond=noisettes/logosite}]
-<div id="menu" class="navStuff">
+<div id="menu" class="navstuff">
 <div class="espaceavant">
 <ul>
   <li>[(#ENV{template}|=={Sommaire}|?{'<strong>',''})]<a name="menusite" href="./" title="<:accueil_site:>"><:pyrat:accueil_menu:></a>[(#ENV{template}|=={Sommaire}|?{'</strong>',''})]</li>
 
 <BOUCLE_EstMenuHaut(RUBRIQUES){titre_mot=MenuHaut}{id_rubrique=#ENV{secteurencours}}{!lang_select}>
+[(#REM) Dans le contexte d'un MenuHaut, prendre aussi les articles de la branche pour le menu de navigation principale : Mot-Clef MENURACINE]
+<B_Racines_Local>
+<BOUCLE_Racines_Local(ARTICLES){branche}{par num titre}{titre_mot=MENURACINE}>
+	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#URL_ARTICLE)]"[ hreflang="(#LANG)"] title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_ARTICLE||image_reduire{16,16}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" />][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
+</BOUCLE_Racines_Local>
+</B_Racines_Local>
 
 <B_Racines_Systematique>
 <BOUCLE_Racines_Systematique(ARTICLES){par num titre}{titre_mot=MENURACINE_Systematique}>
@@ -23,7 +29,9 @@
 </BOUCLE_EstMenuHaut>
 
 <BOUCLE_Racines(ARTICLES){par num titre}{titre_mot IN 'MENURACINE','MENURACINE_Systematique'}>
+<BOUCLE_MENURACINE_EstDansUnMenuHaut(RUBRIQUES){id_secteur=#ID_SECTEUR}{titre_mot=MenuHaut}> </BOUCLE_MENURACINE_EstDansUnMenuHaut>
 	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#URL_ARTICLE)]"[ hreflang="(#LANG)"] title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_ARTICLE||image_reduire{16,16}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" />][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
+<//B_MENURACINE_EstDansUnMenuHaut>
 </BOUCLE_Racines>
 
 <//B_EstMenuHaut>
@@ -51,6 +59,17 @@
 </ul>
 </div>
 </B_RacinesBas_Systematique>
+
+<B_RacinesBas_Local>
+<div class="espaceavant">
+<ul>
+<BOUCLE_RacinesBas_Local(ARTICLES){branche}{par num titre}{titre_mot=MENURACINEBAS}>
+	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#URL_ARTICLE)]"[ hreflang="(#LANG)"] title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_ARTICLE||image_reduire{16,16}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" />][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
+</BOUCLE_RacinesBas_Local>
+</ul>
+</div>
+</B_RacinesBas_Local>
+
 </BOUCLE_MenuHaut>
 
 <div class="espaceavant">
@@ -74,8 +93,12 @@
 <B_RacinesBas>
 <div class="espaceavant">
 <ul>
+[(#REM) Exclure les articles de MENURACINE* placés dans un MenuHaut]
+
 <BOUCLE_RacinesBas(ARTICLES){par num titre}{titre_mot IN 'MENURACINEBAS','MENURACINEBAS_Systematique'}>
+<BOUCLE_MENURACINEBAS_EstDansUnMenuHaut(RUBRIQUES){id_secteur=#ID_SECTEUR}{titre_mot=MenuHaut}> </BOUCLE_MENURACINEBAS_EstDansUnMenuHaut>
 	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#URL_ARTICLE)]"[ hreflang="(#LANG)"] title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img class="menu_gauche_logo" src="(#LOGO_ARTICLE||image_reduire{16,16}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" />][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
+<//B_MENURACINEBAS_EstDansUnMenuHaut>
 </BOUCLE_RacinesBas>
 </ul>
 </div>
