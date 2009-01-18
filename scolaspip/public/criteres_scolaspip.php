@@ -1,4 +1,4 @@
-<?php
+<?
 //    Fichier créé pour SPIP avec un bout de code emprunté Ã  celui ci.
 //    Distribué sans garantie sous licence GPL./
 //    Jean Sébastien Barboteu

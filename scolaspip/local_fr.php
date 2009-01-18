@@ -14,7 +14,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'syndiquer_site' => 'Suivez l\'actualit&eacute; de ce site',
 	'a_propos' => 'Les auteurs et le but de ce site',
 	'autres_groupes_mots_clefs' => 'Autres groupes de th&egrave;mes et notions',
-	'info_rechercher' => 'Tapez ici vos mots-cl&eacute;s',
 	'mots_clefs_associes' => 'Notions et th&egrave;mes associ&eacute;s',
 	'titre_documents_joints' => 'Annexes associ&eacute;es &agrave; cet article :',
 	'explication_sur_le_site' => 'Quel est le but de ce site ?',
