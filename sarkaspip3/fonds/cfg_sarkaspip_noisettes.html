@@ -16,7 +16,10 @@
 			[(#ENV{composition_stats_2, 3}|=={1}|?{jQuery("#bloc_stats_2_max_hasard").hide();})]
 			[(#ENV{composition_stats_2, 3}|=={2}|?{jQuery("#bloc_stats_2_max_top").hide();})]}
 		)]
-		[(#ENV{position_badges, 1}|=={0}|?{jQuery("#bloc_badges_liste").hide();})]
+		[(#ENV{position_badges, 1}|=={0}|?{jQuery("#bloc_badges_liste").hide();jQuery("#bloc_badges_perso").hide();})]
+		[(#ENV{position_badges, 1}|!={0}|?{
+			[(#ENV{badge_perso}|!={on}|?{jQuery("#bloc_badges_perso").hide();})]
+		})]
 		[(#ENV{position_annonce, 0}|=={0}|?{jQuery("#bloc_annonce_id").hide();})]
 		[(#ENV{position_rainette, 0}|=={0}|?{jQuery("#bloc_rainette_ville").hide();})]
 
@@ -100,6 +103,15 @@
 				jQuery("#bloc_badges_liste").show();
 			else
 				jQuery("#bloc_badges_liste").hide();
+			jQuery(this).blur();
+		});	
+		jQuery("input[@name='badge_perso']").change(function() {
+			if (jQuery("input[@name='badge_perso']:checked").val() == 'on') {
+				jQuery("#bloc_badges_perso").show();
+			}
+			else {
+				jQuery("#bloc_badges_perso").hide();
+			}
 			jQuery(this).blur();
 		});	
 
@@ -428,6 +440,14 @@
 				<:sarkaspip:cfg_lbl_inc_badges_perso:>
 			</label>
 			<br />
+			<ul id="bloc_badges_perso">
+				<li><label><:sarkaspip:cfg_lbl_badge_perso_lien:>
+						<input type="text" name="lien_badge_perso" value="#ENV{lien_badge_perso, http://}" size="30" class="fondl" />
+					</label></li>
+				<li><label><:sarkaspip:cfg_lbl_badge_perso_infobulle:>
+						<input type="text" name="infobulle_badge_perso" value="#ENV{infobulle_badge_perso, ''}" size="30" class="fondl" />
+					</label></li>
+			</ul>
 		</div>
 	</fieldset>
 	
