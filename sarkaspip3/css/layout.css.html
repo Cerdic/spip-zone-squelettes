@@ -28,55 +28,60 @@ div#container{background: #CONFIG{sarkaspip_styles/bg_site, #ffffff}[ url((#CHEM
 ]
 
 /* Pour les layouts a largeur fixe*/
-[(#CONFIG{sarkaspip_layout/numero_layout, 13}||=={7}|?{' '})
+[(#CONFIG{sarkaspip_layout/numero_layout, 13}|match{^(7|8|9|10|11|12)$}|?{' '})
 	body{text-align:center}
-	div#container{[width:(#CONFIG{sarkaspip_layout/largeur_site, 700})px; ]margin:0 auto}
-	div#navigation{[margin-left:-(#CONFIG{sarkaspip_layout/largeur_site, 700})px; ]}
-	div#extra{margin-left:-180px}
-	div#content{margin: 0 220px}
-] 
+		div#container{[width:(#CONFIG{sarkaspip_layout/largeur_site, 700})px; ]margin:0 auto}
 
-[(#CONFIG{sarkaspip_layout/numero_layout, 13}||=={8}|?{' '})
-	
-	body{text-align:center}
-	div#container{[width:(#CONFIG{sarkaspip_layout/largeur_site, 700})px; ]margin:0 auto}
-	div#navigation{margin-left:-180px}
-	div#extra{[margin-left:-(#CONFIG{sarkaspip_layout/largeur_site, 700})px; ]}
-	div#content{margin: 0 220px}
-] 
 
-[(#CONFIG{sarkaspip_layout/numero_layout, 13}||=={9}|?{' '})
-	
-	body{text-align:center}
-	div#container{[width:(#CONFIG{sarkaspip_layout/largeur_site, 700})px; ]margin:0 auto}
-	div#navigation{margin-left:-400px}
-	div#extra{margin-left:-180px}
-	div#content{margin-right: 440px}
-] 
+	[(#CONFIG{sarkaspip_layout/appliquer_padding, 1}|=={1}|?{
+		[(#SET{moitie, [(#CONFIG{sarkaspip_layout/largeur_padding, 20}|div{2})]})]
+		[(#SET{gauche, [-(#CONFIG{sarkaspip_layout/largeur_site, 700}|moins{#CONFIG{sarkaspip_layout/largeur_padding, 20}})]})]
+		[(#SET{droite, [-(#CONFIG{sarkaspip_layout/largeur_padding, 20}|plus{180})]})]
+		[(#SET{centre, [(#CONFIG{sarkaspip_layout/largeur_padding, 20}|plus{220})]})]
+		,
+		[(#SET{moitie, 0})]
+		[(#SET{gauche, [-(#CONFIG{sarkaspip_layout/largeur_site, 700})]})]
+		[(#SET{droite, -180})]
+		[(#SET{centre, 220})]
+		}
+	)]
 
-[(#CONFIG{sarkaspip_layout/numero_layout, 13}||=={10}|?{' '})
-	
-	body{text-align:center}
-	div#container{[width:(#CONFIG{sarkaspip_layout/largeur_site, 700})px; ]margin:0 auto}
-	div#navigation{margin-left:-180px}
-	div#extra{margin-left:-400px}
-	div#content{margin-right: 440px}
-] 
 
-[(#CONFIG{sarkaspip_layout/numero_layout, 13}||=={11}|?{' '})
-	
-	body{text-align:center}
-	div#container{[width:(#CONFIG{sarkaspip_layout/largeur_site, 700})px; ]margin:0 auto}
-	div#navigation{[margin-left:-(#CONFIG{sarkaspip_layout/largeur_site, 700})px; ]}
-	div#extra{[margin-left:-(#CONFIG{sarkaspip_layout/largeur_site, 700}|moins{220})px; ]}
-	div#content{margin-left: 440px}
-]
+	[(#CONFIG{sarkaspip_layout/numero_layout, 13}||=={7}|?{' '})
+		div#navigation{[margin-left:(#GET{gauche})px; ]}
+		div#extra{[margin-left:(#GET{droite})px; ]}
+		div#content{[margin: 0 (#GET{centre})px; ]}
+	] 
 
-[(#CONFIG{sarkaspip_layout/numero_layout, 13}||=={12}|?{' '})
-	
-	body{text-align:center}
-	div#container{[width:(#CONFIG{sarkaspip_layout/largeur_site, 700})px; ]margin:0 auto}
-	div#navigation{[margin-left:-(#CONFIG{sarkaspip_layout/largeur_site, 700}|moins{220})px; ]}
-	div#extra{[margin-left:-(#CONFIG{sarkaspip_layout/largeur_site, 700})px; ]}
-	div#content{margin-left: 440px}
+	[(#CONFIG{sarkaspip_layout/numero_layout, 13}||=={8}|?{' '})
+		div#navigation{[margin-left:(#GET{droite})px; ]}
+		div#extra{[margin-left:(#GET{gauche})px; ]}
+		div#content{[margin: 0 (#GET{centre})px; ]}
+	] 
+
+	[(#CONFIG{sarkaspip_layout/numero_layout, 13}||=={9}|?{' '})
+		div#navigation{[margin-left:-(#GET{moitie}|plus{400})px; ]}
+		div#extra{[margin-left:(#GET{droite})px; ]}
+		div#content{margin-right: 440px; [margin-left:(#CONFIG{sarkaspip_layout/largeur_padding, 20})px ;]}
+	] 
+
+	[(#CONFIG{sarkaspip_layout/numero_layout, 13}||=={10}|?{' '})
+		div#navigation{[margin-left:(#GET{droite})px; ]}
+		div#extra{[margin-left:-(#GET{moitie}|plus{400})px; ]}
+		div#content{margin-right: 440px; [margin-left:(#CONFIG{sarkaspip_layout/largeur_padding, 20})px ;]}
+	] 
+
+	[(#CONFIG{sarkaspip_layout/numero_layout, 13}||=={11}|?{' '})
+		div#navigation{[margin-left:(#GET{gauche})px; ]}
+		div#extra{[margin-left:-(#CONFIG{sarkaspip_layout/largeur_site, 700}|moins{220}|moins{#GET{moitie}})px; ]}
+		div#content{margin-left: 440px; [margin-right:(#CONFIG{sarkaspip_layout/largeur_padding, 20})px ;]}
+	]
+
+	[(#CONFIG{sarkaspip_layout/numero_layout, 13}||=={12}|?{' '})
+		div#navigation{[margin-left:-(#CONFIG{sarkaspip_layout/largeur_site, 700}|moins{220}|moins{#GET{moitie}})px; ]}
+		div#extra{[margin-left:(#GET{gauche})px; ]}
+		div#content{margin-left: 440px; [margin-right:(#CONFIG{sarkaspip_layout/largeur_padding, 20})px ;]}
+	]
+
+
 ]
