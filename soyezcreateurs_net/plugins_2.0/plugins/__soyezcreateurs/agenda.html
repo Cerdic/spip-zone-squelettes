@@ -105,9 +105,10 @@ $events = array();
 		<option value="[(#ID_MOT)]"[(#ENV{id_mot}|=={[(#ID_MOT)]}|?{' selected="selected"',''})]>[(#TITRE)]</option>
 		</BOUCLE_ListeMotsClefs>
 		</select>
+		#SET{param_nav_clef," + '&amp;id_mot=' + document.getElementById('var_nav_cle').value"}
 		</B_ListeMotsClefs>
 
-		<input type="button" value="<:pass_ok:>" class="form_submit" onclick="document.location.href='#URL_SITE_SPIP/spip.php?page=agenda&amp;id_rubrique=#_rubrique_principal:ID_RUBRIQUE&amp;date_ev=' + document.getElementById('var_nav_year').value + '-' + document.getElementById('var_nav_month').value + '-01&amp;id_mot=' + document.getElementById('var_nav_cle').value ; return false;" />
+		<input type="button" value="<:pass_ok:>" class="form_submit" onclick="document.location.href='#SELF&amp;date_ev=' + document.getElementById('var_nav_year').value + '-' + document.getElementById('var_nav_month').value + '-01'#GET{param_nav_clef} ; return false;" />
 		<BOUCLE_DerniereAnnee(EVENEMENTS){branche}{!par date_debut}{0,1}>
 		<?php if (!([(#DATE_DEBUT|annee)]==[(#ENV{date_ev,[(#ENV{date})]}|annee)] && [(#ENV{date_ev,[(#ENV{date})]}|mois)]==12)) { ?>
 		<a href="#URL_SITE_SPIP/spip.php?page=agenda&amp;id_rubrique=#_rubrique_principal:ID_RUBRIQUE&amp;date_ev=<?php echo (($M + 1 < 13) ? $Y : ($Y + 1)); ?>-<?php printf('%02d', ($M + 1) < 13 ? ($M + 1) : 1); ?>-01[&amp;id_mot=(#ENV{id_mot,''}|urlencode)]"><img src="#CHEMIN{images/next.gif}" title="<:suivant:>" alt="<:suivant:>" /></a>
