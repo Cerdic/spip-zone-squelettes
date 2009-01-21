@@ -1,18 +1,20 @@
 #CACHE{0}
 <B_quel_auteur1>
-<h4 class="icone_membre">Avec qui ai-je discuté?</h4><ul class="membres">
-<BOUCLE_quel_auteur1(FORUMS){id_auteur=#SESSION{id_auteur}}{!par date}>
+<h4 class="icone_membre">Mes derniers contacts</h4><ul class="membres">
+<BOUCLE_quel_auteur1(FORUMS){id_auteur=#SESSION{id_auteur}}{!par date}{0,20}>
 <BOUCLE_posteurs_dans_article1(FORUMS){plat}{id_thread}{fusion id_auteur}{!par date}>
 <BOUCLE_auteur_forum1(AUTEURS){tous}{id_auteur}{!id_auteur=#ENV{id_auteur}}{doublons 1}>
 [<li class="auteur"><a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="R&eacute;dacteur d'article">]
 [<li class="modo"><a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Webmaster/modo">]
 [<li class="visiteur"><a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Invit&eacute; ou visiteur">]
 [<li class="attente"><a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Compte en attente">]
-#NOM</a></li>
+[(#NOM|textebrut|couper{24})]</a></li>
 </BOUCLE_auteur_forum1>
 </BOUCLE_posteurs_dans_article1>
 </B_posteurs_dans_article1>
 </BOUCLE_quel_auteur1></ul>
+<p>Avec qui ai-je derni&egrave;rement discut&eacute; dans les forums de #NOM_SITE_SPIP?
+</B_quel_auteur1>
 <h4 class="icone_membre">Discuter dans les forums:</h4>
 <p>Vous pouvez commenter des articles et poster des messages dans les forums.</p> 
 <//B_quel_auteur1>

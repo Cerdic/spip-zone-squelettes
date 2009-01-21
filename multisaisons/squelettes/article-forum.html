@@ -9,7 +9,7 @@
 <title>[(#TITRE)]</title>
 [<meta name="Description" content='(#DESCRIPTIF|supprimer_tags|texte_script)'/>]
 <meta name="keywords" content="[(#CHAPO|texte_script)]<BOUCLE_metadocs(DOCUMENTS){id_article}{","}>#TITRE</BOUCLE_metadocs>"/>
-<meta name="author" content="<BOUCLE_author(AUTEURS){id_article}{","}>#NOM</BOUCLE_author>"/>
+<meta name="author" content="<BOUCLE_author(AUTEURS){id_article}{","}>[(#NOM|textebrut|couper{24})]</BOUCLE_author>"/>
 <meta name="revisit-after" content="15 days" />
 <meta http-equiv="content-type" content="text/html; charset=#CHARSET"/>
 <meta http-equiv="Content-Language" content="fr-fr" />
@@ -92,11 +92,11 @@ RSS forum</a></span></p>
 
 <ul class="membres"><li class="modo"><a href="ecrire/?exec=articles_forum&amp;id_article=#ID_ARTICLE" title="Acc&egrave;s priv&eacute; pour mod&eacute;rateurs">Modo:</a></li>
 <BOUCLE_admin(AUTEURS){statut=0minirezo}{par id_auteur}{doublons modo}>
-[<li class="modo"><a href="(#URL_AUTEUR)" title="Contact et profil" >#NOM</a></li>]
+[<li class="modo"><a href="(#URL_AUTEUR)" title="Contact et profil" >[(#NOM|textebrut|couper{24})]</a></li>]
 </BOUCLE_admin>
 
 <BOUCLE_auteurs(AUTEURS){id_article}{doublons modo}>                
- [<li class="modo"><a href="(#URL_AUTEUR)"title="Contact et Profil">#NOM</a></li>]
+ [<li class="modo"><a href="(#URL_AUTEUR)"title="Contact et Profil">[(#NOM|textebrut|couper{24})]</a></li>]
  </BOUCLE_auteurs>
  
 </ul>
@@ -152,9 +152,9 @@ RSS forum</a></span></p>
 [<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de cet admin">]
 [<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de ce visiteur">]
 [<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Compte en attente">]
-[(#NOM|couper{18})</a><br/>]
+[(#NOM|textebrut|couper{18})</a><br/>]
 </BOUCLE_nom3>
-[(#NOM||?{#NOM|couper{18},'Anonyme'})<br/>]
+[(#NOM||?{#NOM|textebrut|couper{18},'Anonyme'})<br/>]
 <//B_nom3></td>
 <td>
 <BOUCLE_dernier_message(FORUMS){id_thread}{plat}{par date}{inverse}{0,1}>

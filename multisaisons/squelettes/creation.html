@@ -1,8 +1,8 @@
 #CACHE{864000}
 
 [(#REM)
-///////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////
+//////////////////////////////////////// Lisez-moi ///////////////
+/////// Lisez-moi ////////////////////////////////////////////////
 
 Cette structure de site est diffusée sous licence GNU GPL. 
 Merci de laisser cette page de crédits ainsi que son contenu.
@@ -12,8 +12,8 @@ La licence GNU GPL est instaurée pour préserver les intérêts
 d'une communauté de passionnés, qui a décidé de mettre à contribution
 les efforts de chacun, pour l'intérêt de tous. 
 
-///////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////
+//////////////////////////////////////// Lisez-moi ///////////////
+/////// Lisez-moi ////////////////////////////////////////////////
 ]
 
 
@@ -75,34 +75,27 @@ Remerciements nombreux à l'équipe SPIP et à tous les contributeurs SPIP.</p>
 <div class="grande_boite">[(#REM)   ouverture d une grande boite    ]
 [(#REM) Vous pouvez changer l'identifiant auteur si besoin.]
 
-[<h4>(#NOM) (Administrateur et webmaster du site)</h4>]
-[<p>(#BIO||?{#BIO,#NOM <:pas_bio:>})</p>]
+[<h4 class="icone_membre">(#NOM|textebrut|couper{24}) (Responsable &eacute;ditorial)</h4>]
+[<p>(#BIO||?{[(#BIO|textebrut)],[(#NOM|textebrut|couper{24})] <:pas_bio:>})</p>]
 [<h4 class="icone_site"><:site_prefere:> :</h4>
-<p><a href="#URL_SITE">(#NOM_SITE)</a></p>]
+<p><a href="#URL_SITE">(#NOM_SITE|textebrut)</a></p>]
 
 
-[(#REM)  Incluera une hcard un de ces jours...
 
-<div class="vcard none"> <img src="#URL_SITE_SPIP/IMG/[(#LOGO_AUTEUR|fichier)]" alt="photo" class="photo"/>
-<a class="url fn " href="#URL_SITE">[(#NOM_SITE)]</a>
-<div class="org">Inscrit sur #NOM_SITE_SPIP - #DESCRIPTIF_SITE_SPIP</div>
-<a class="email" href="#URL_SITE_SPIP/spip.php?page=auteur&id_auteur=#ID_AUTEUR"></a>
-<div class="adr">#BIO</div> 
-</div>
-<span class="droite hcal button"><a href="#" title="Cette page poss?de un microformat hcal">hcal</a></span>
-[(#REM)  Inclue un lien vers une vcard t?l?chargeable  ]
-[<span class="droite vcard button"><a href="(#URL_PAGE{vcard}|parametre_url{'id_auteur',#ID_AUTEUR})"  title="T?l?charger sa carte de visite ?lectronique">vcard</a></span>]
 
-<hr class="spacer"/>  ]
-<?php if ($auteur_session['id_auteur']==1) { ?>
+<hr class="spacer"/>  
+
+[(#REM)  Ajoute un message pour que l'auteur puisse modifier son profil.]
+[(#SESSION{id_auteur}|=={#ID_AUTEUR}|oui)
+
 	<h4 class="icone_membre"> [(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})"title="Modifier mon profil.">]]
- 	   [(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,visit})"title="Modifier mon profil.">]]<:modif_profil:></a>.</h4> 
+ 	   [(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,visit})"title="Modifier mon profil.">]]<:modif_profil_maj:></a>.</h4> 
  	<p><:profil_aff:> #NOM_SITE_SPIP. 
  	 
- 	  #NOM, <:pouvoir:> [(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})"title="Modifier mon profil.">]]
+ 	  [(#NOM|textebrut|couper{24})], <:pouvoir:> [(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})"title="Modifier mon profil.">]]
  	   [(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,visit})"title="Modifier mon profil.">]]<:modif_profil:></a>.
 </p> 
- <?php } ?> 
+]
 </div>[(#REM)   fermeture grande_boite   ]
  </BOUCLE_admin1>
 
@@ -117,34 +110,26 @@ Remerciements nombreux à l'équipe SPIP et à tous les contributeurs SPIP.</p>
 <div class="grande_boite">[(#REM)   ouverture d une grande boite    ]
 
 
-[<h4>(#NOM) (Administrateur)</h4>]
-[<p>(#BIO||?{#BIO,#NOM <:pas_bio:>})</p>]
+[<h4 class="icone_membre">(#NOM|textebrut|couper{24}) (Administrateur)</h4>]
+[<p>(#BIO||?{[(#BIO|textebrut)],[(#NOM|textebrut|couper{24})] <:pas_bio:>})</p>]
 [<h4 class="icone_site"><:site_prefere:> :</h4>
 <p><a href="#URL_SITE">(#NOM_SITE)</a></p>]
 
 
-[(#REM)  Incluera une hcard un de ces jours...
 
-<div class="vcard none"> <img src="#URL_SITE_SPIP/IMG/[(#LOGO_AUTEUR|fichier)]" alt="photo" class="photo"/>
-<a class="url fn " href="#URL_SITE">[(#NOM_SITE)]</a>
-<div class="org">Inscrit sur #NOM_SITE_SPIP - #DESCRIPTIF_SITE_SPIP</div>
-<a class="email" href="#URL_SITE_SPIP/spip.php?page=auteur&id_auteur=#ID_AUTEUR"></a>
-<div class="adr">#BIO</div> 
-</div>
-<span class="droite hcal button"><a href="#" title="Cette page poss?de un microformat hcal">hcal</a></span>
-[(#REM)  Inclue un lien vers une vcard t?l?chargeable  ]
-[<span class="droite vcard button"><a href="(#URL_PAGE{vcard}|parametre_url{'id_auteur',#ID_AUTEUR})"  title="T?l?charger sa carte de visite ?lectronique">vcard</a></span>]
 
-<hr class="spacer"/>  ]
-<?php if ($auteur_session['id_auteur']==#ID_AUTEUR) { ?>
+
+[(#REM)  Ajoute un message pour que l'auteur puisse modifier son profil.]
+[(#SESSION{id_auteur}|=={#ID_AUTEUR}|oui)
+
 	<h4 class="icone_membre"> [(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})"title="Modifier mon profil.">]]
- 	   [(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,visit})"title="Modifier mon profil.">]]<:modif_profil:></a>.</h4> 
+ 	   [(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,visit})"title="Modifier mon profil.">]]<:modif_profil_maj:></a>.</h4> 
  	<p><:profil_aff:> #NOM_SITE_SPIP. 
  	 
- 	  #NOM, <:pouvoir:> [(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})"title="Modifier mon profil.">]]
+ 	  [(#NOM|textebrut|couper{24})], <:pouvoir:> [(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})"title="Modifier mon profil.">]]
  	   [(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,visit})"title="Modifier mon profil.">]]<:modif_profil:></a>.
 </p> 
- <?php } ?> 
+]
 </div>[(#REM)   fermeture grande_boite   ]
  </BOUCLE_adminX>
  

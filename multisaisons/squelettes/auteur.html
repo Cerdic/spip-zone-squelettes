@@ -5,7 +5,7 @@
 [(#REM)   les m&eacute;tas   ]
 
 
-<title><:contacter:> [(#NOM)].</title>
+<title><:contacter:>[(#NOM|supprimer_tags|couper{60})].</title>
 <meta name="Description" content="<:contacter:> [(#NOM|supprimer_tags|texte_script)]"/>
 <meta name="keywords" content="[(#NOM|supprimer_tags|texte_script)]"/>
 <meta name="author" content="[(#NOM|supprimer_tags|texte_script) via #NOM_SITE_SPIP]"/>
@@ -34,8 +34,8 @@
 [(#SET{taille,[(#LOGO_AUTEUR_NORMAL||hauteur|min{210})]})]  
 [(#INCLURE{fond=logo}{id_auteur,#ID_AUTEUR}{taille=#GET{taille}}{date=#ENV{date}})]
 </span>
-[<h1>(#NOM)</h1>]
-[<p>(#BIO||?{#BIO,#NOM <:pas_bio:>})</p>]
+[<h1>(#NOM|textebrut|couper{24})</h1>]
+[<p>(#BIO||?{[(#BIO|textebrut)],[(#NOM|textebrut|couper{24})] <:pas_bio:>})</p>]
 [<h4 class="icone_site"><:site_prefere:> :</h4>
 <p><a href="#URL_SITE">(#NOM_SITE)</a></p>]
 
@@ -48,7 +48,7 @@
 <a class="url fn " href="#URL_SITE">[(#NOM_SITE)]</a>
   <div class="org">Inscrit sur #NOM_SITE_SPIP - #DESCRIPTIF_SITE_SPIP</div>
   <a class="email" href="#URL_SITE_SPIP/spip.php?page=auteur&id_auteur=#ID_AUTEUR"></a>
-  <div class="adr">#BIO</div> 
+  <div class="adr">[(#BIO|textebrut)]</div> 
   </div>
 <span class="droite hcal button"><a href="#" title="Cette page possède un microformat hcal">hcal</a></span>
 [(#REM)  Inclue un lien vers une vcard téléchargeable  ]
@@ -68,7 +68,7 @@
  	   [(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,visit})"title="Modifier mon profil.">]]<:modif_profil_maj:></a>.</h4> 
  	<p><:profil_aff:> #NOM_SITE_SPIP. 
  	 
- 	  #NOM, <:pouvoir:> [(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})"title="Modifier mon profil.">]]
+ 	  [(#NOM|textebrut|couper{24})], <:pouvoir:> [(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})"title="Modifier mon profil.">]]
  	   [(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,visit})"title="Modifier mon profil.">]]<:modif_profil:></a>.
 </p> 
 ]
@@ -79,7 +79,7 @@
     
 [(#SESSION|ou{#ID_AUTEUR|=={1}}|oui)
 <div class="grande_boite">
-[<h4 class="icone_post"><:contacter:> (#NOM)</h4>] 
+[<h4 class="icone_post"><:contacter:> (#NOM|textebrut|couper{24})</h4>] 
 <p class="ajax">
 [(#FORMULAIRE_ECRIRE_AUTEUR)]</p><hr class="spacer"/>
 </div>[(#REM)   fermeture grande boite ]
@@ -93,10 +93,10 @@
 [(#SESSION|ou{#ID_AUTEUR|=={1}}|non)
 <div class="grande_boite">
 <h4 class="icone_membre"> <:connect:></h4>
-<p><:pas_contact_pas_connect1:> #NOM <:pas_contact_pas_connect2:> #NOM_SITE_SPIP.<br/>
-<strong>[(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})"title="<:connect_pour_contact:> #NOM.">]]
-[(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,visit})"title="<:connect_pour_contact:> #NOM.">]]
-<:connect_pour_contact:> #NOM</a>.</strong>
+<p><:pas_contact_pas_connect1:> [(#NOM|textebrut|couper{24})] <:pas_contact_pas_connect2:> #NOM_SITE_SPIP.<br/>
+<strong>[(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})"title="<:connect_pour_contact:> [(#NOM|textebrut|couper{24})].">]]
+[(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,visit})"title="<:connect_pour_contact:> [(#NOM|textebrut|couper{24})].">]]
+<:connect_pour_contact:> [(#NOM|textebrut|couper{24})]</a>.</strong>
 
 </p>
 <hr class="spacer"/>
@@ -189,7 +189,7 @@
 [(#REM)  Inclue logo auteur au survol avec un max de 100 pixel  ] 
 [(#REM)  A voir si on ne met pas par défaut autre chose comme la dernière image postées dans les forums. ] 
 [(#SET{taillesurvol,[(#LOGO_AUTEUR_SURVOL||hauteur|min{150})]})]  
-[(#LOGO_AUTEUR_SURVOL||?{[(#LOGO_AUTEUR_SURVOL||reduire_image{#GET{taillesurvol}}|image_aplatir{gif,ffffff}|inserer_attribut{'alt',#NOM})],<:pas_photographie:>})]
+[(#LOGO_AUTEUR_SURVOL||?{[(#LOGO_AUTEUR_SURVOL||reduire_image{#GET{taillesurvol}}|image_aplatir{gif,ffffff}|inserer_attribut{'alt',[(#NOM|textebrut|couper{24})]})],<:pas_photographie:>})]
 </p>
 </li> 
 
@@ -213,7 +213,7 @@
 <BOUCLE_forum(FORUMS){id_auteur}{plat}{par date}{inverse}{0,6}>
                     [::&nbsp;<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})]" title="#TITRE">(#TITRE)</a><br/>]
                     </BOUCLE_forum>
-					#NOM <:messages_ecri_non:>
+					[(#NOM|textebrut|couper{24})] <:messages_ecri_non:>
 					<//B_forum>
 			</p>
 </li>

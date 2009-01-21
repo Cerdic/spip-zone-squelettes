@@ -39,7 +39,7 @@
 <hr class="spacer"/>
 <ul class="membres"><li class="modo"><a href="ecrire/?exec=controle_forum&amp;type=public" title="Acc&egrave;s priv&eacute; pour mod&eacute;rateurs">Admin:</a></li>
 <BOUCLE_admin(AUTEURS){statut=0minirezo}{par id_auteur}>
-<li class="modo"><a href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact/Profil">#NOM</a></li>
+<li class="modo"><a href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact/Profil">[(#NOM|textebrut|couper{24})]</a></li>
 
 </BOUCLE_admin>
 </ul></div> 
@@ -95,9 +95,9 @@
 [<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de cet admin">]
 [<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de ce visiteur">]
 [<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{membre}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Compte en attente">]
-[(#NOM|couper{18})</a>]
+[(#NOM|textebrut|couper{18})</a>]
 </BOUCLE_nom2>
-[(#NOM||?{#NOM|couper{18},'Anonyme'})]
+[(#NOM||?{#NOM|textebrut|couper{18},'Anonyme'})]
 <//B_nom2></td>
 <td>
 <BOUCLE_dernier_message(FORUMS){id_thread}{plat}{par date}{inverse}{0,1}>
