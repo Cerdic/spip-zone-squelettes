@@ -400,6 +400,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_titre_breve' => 'Sarka-SPIP - Configuration de la page br&egrave;ve',
 		'cfg_titre_modeles' => 'Sarka-SPIP - Configuration des mod&egrave;les',
 		'cfg_titre_site' => 'Sarka-SPIP - Configuration de la page site',
+		'cfg_titre_recherche' => 'Sarka-SPIP - Configuration de la page recherche',
 
 // Titre des liens des pages
 		'sarkaspip_accueil' => 'Accueil',
@@ -422,6 +423,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'sarkaspip_breve' => 'Br&egrave;ve',
 		'sarkaspip_modeles' => 'Mod&egrave;les',
 		'sarkaspip_site' => 'Site',
+		'sarkaspip_recherche' => 'Recherche',
 		
 // Descriptif des pages
 		'cfg_descr_accueil' => 'Vous &ecirc;tes sur la page d\'accueil de la configuration du squelette Sarka-SPIP.',
@@ -449,6 +451,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_descr_breve' => 'Le corps de la page breve permet d\'afficher la br&egrave;ve en cours ainsi que la liste de toutes les br&egrave;ves du site. Cette page permet de configurer la pagination de cette liste.',
 		'cfg_descr_modeles' => 'Cette page permet de configurer certains param&egrave;tres globaux applicables mod&egrave;les img, doc et emb.',
 		'cfg_descr_site' => 'Le corps de la page site permet d\'afficher le site en cours ainsi que la liste de tous les sites r&eacute;f&eacute;renc&eacute;s. Cette page permet de configurer la pagination de cette liste.',
+		'cfg_descr_recherche' => 'Le corps de la page recherche permet d\'afficher les r&eacute;sultats d\'une recherche faite par le formulaire de recherche de SPIP. Cette page permet de configurer la pagination de ces résultats.',
 
 // Titre des boites
 		'cfg_boite_accueil' => 'Accueil',
@@ -473,6 +476,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_boite_styles_restauration' => 'Restauration des styles',
 		'cfg_boite_modeles' => 'Mod&egrave;les',
 		'cfg_boite_site' => 'Site',
+		'cfg_boite_recherche' => 'Recherche',
 
 // Legendes des blocs contenus dans chaque boite
 		'cfg_lgd_layout' => 'Layout',
@@ -537,6 +541,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_css_commentaires' => 'Commentaires d\'article',
 		'cfg_lgd_css_description' => 'Description, portfolio &amp; documents d\'article',
 		'cfg_lgd_css_planche' => 'Planche de vignettes',
+		'cfg_lgd_pagination_resultats'=>'Pagination des résultats',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -611,6 +616,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_accueil_intro_18' => '<em>Br&egrave;ve</em> : configuration des divers blocs de la page br&egrave;ve',
 		'cfg_inf_accueil_intro_19' => '<em>Mod&egrave;les</em> : configuration des mod&egrave;les img, doc et emb',
 		'cfg_inf_accueil_intro_20' => '<em>Site</em> : configuration des divers blocs de la page site',
+		'cfg_inf_accueil_intro_21' => '<em>Recherche</em> : configuration de la page de resultats des recherches',
 		'cfg_inf_accueil_debug' => 'Si vous avez un souci ou voulez rapporter un bug il peut &ecirc;tre utile d\'activer le mode debug pour la configuration des pages. Celui-ci vous permez de lire les variables de chaque fond.',
 		'cfg_inf_rubrique_articles' => 'Voulez-vous afficher la liste des articles publi&eacute;s dans la rubrique ? Si oui, vous pourrez ensuite ajuster quelques param&egrave;tres de cet affichage.',
 		'cfg_inf_pagination_bande' => 'Choisissez la position de la bande de pagination.',
@@ -698,6 +704,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_css_planche' => 'Vous pouvez modifier les attributs graphiques des blocs de type planche affich&eacute;s dans les pages Galerie et Herbier.',
 		'cfg_inf_css_couleurs_lien' => 'Choisissez vos couleurs pour les liens.',
 		'cfg_inf_css_couleurs_vignette' => 'Choisissez vos couleurs pour la bordure de chaque vignette.',
+		'cfg_inf_recherche_article'=>'Articles trouv&eacute;s',
+		'cfg_inf_recherche_commentaire'=>'Commentaires trouv&eacute;s',
+		'cfg_inf_recherche_breve'=>'Br&egrave;ves trouv&eacute;es',
+		'cfg_inf_recherche_rubrique'=>'Rubriques trouv&eacute;es',
+		'cfg_inf_recherche_mot'=>'Mots trouv&eacute;s',
+		'cfg_inf_recherche_site'=>'Sites trouv&eacute;s',
 
 // Labels des items de choix
 		'cfg_lbl_layout_07' => 'Layout #7 (navigation, centre, extra)',

@@ -15,15 +15,21 @@
 	<div id="wrapper">
 		<div id="content">
 			<h1 class="intitule_page"><:sarkaspip:resultats_recherche:>&nbsp;:&nbsp;#RECHERCHE</h1>
-			
-			
+						
 			[(#REM) <!-- Articles trouves --> ]
 			<B_articles_recherche>
 				<div id="recherche_article" class="recherche">
-				<h2><:sarkaspip:recherche_articles_resultat:></h2>
-				<BOUCLE_articles_recherche(ARTICLES) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE} {par points} {inverse} {0,10}>
-					[(#INCLURE{fond=noisettes/recherche/inc_recherche_article}{id_article}{afficher_mere=oui})]
-				</BOUCLE_articles_recherche>
+					<h2><:sarkaspip:recherche_articles_resultat:></h2>				
+					#ANCRE_PAGINATION
+					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_article, 3}|match{^(1|3)$}|?{' '})
+						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_article}})</div>]
+					]
+					<BOUCLE_articles_recherche(ARTICLES) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE} {par points} {inverse}{pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_article, 5}}>
+						[(#INCLURE{fond=noisettes/recherche/inc_recherche_article}{id_article}{afficher_mere=oui}{ajax})]
+					</BOUCLE_articles_recherche>
+					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_article, 3}|match{^(2|3)$}|?{' '})
+						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_article}})</div>]
+					]
 				</div>	
 			</B_articles_recherche>
 			
@@ -33,9 +39,16 @@
 			<B_messages_recherche>
 				<div id="recherche_commentaire" class="recherche">
 					<h2><:sarkaspip:recherche_messages_resultat:></h2>	
-					<BOUCLE_messages_recherche(FORUMS) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE{annonce:herbier:agenda}} {par points} {inverse} {0,10}>
-						[(#INCLURE{fond=noisettes/recherche/inc_recherche_message}{id_forum})]			
+					#ANCRE_PAGINATION
+					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_commentaire, 3}|match{^(1|3)$}|?{' '})
+						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_commentaire}})</div>]
+					]
+					<BOUCLE_messages_recherche(FORUMS) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE{annonce:herbier:agenda}} {par points} {inverse}{pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_commentaire, 5}}>
+						[(#INCLURE{fond=noisettes/recherche/inc_recherche_message}{id_forum}{ajax})]			
 					</BOUCLE_messages_recherche>
+					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_commentaire, 3}|match{^(2|3)$}|?{' '})
+						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_commentaire}})</div>]
+					]
 				</div>
 			</B_messages_recherche>
 				
@@ -44,10 +57,17 @@
 			[(#REM) <!-- Breves trouvees --> ]
 			<B_breves_recherche>
 				<div id="recherche_breve" class="recherche">
-					<h2><:sarkaspip:recherche_breves_resultat:></h2>					
-					<BOUCLE_breves_recherche(BREVES) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE} {par points} {inverse} {0,10}>
-						[(#INCLURE{fond=noisettes/recherche/inc_recherche_breve}{id_breve}{afficher_mere=oui})]
+					<h2><:sarkaspip:recherche_breves_resultat:></h2>
+					#ANCRE_PAGINATION
+					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_breve, 3}|match{^(1|3)$}|?{' '})
+						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_breve}})</div>]
+					]
+					<BOUCLE_breves_recherche(BREVES) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE} {par points} {inverse} {pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_breve, 5}}>
+						[(#INCLURE{fond=noisettes/recherche/inc_recherche_breve}{id_breve}{afficher_mere=oui}{ajax})]
 					</BOUCLE_breves_recherche>
+					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_breve, 3}|match{^(2|3)$}|?{' '})
+						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_breve}})</div>]
+					]
 				</div>
 			</B_breves_recherche>		
 				
@@ -57,9 +77,16 @@
 			<B_rubriques>
 				<div id="recherche_rubrique" class="recherche">
 					<h2><:sarkaspip:recherche_rubriques_resultat:></h2>
-					<BOUCLE_rubriques(RUBRIQUES){recherche}{id_rubrique!==#BRANCHE_SPECIALISEE} {par points}{inverse}{0,5}>
-						[(#INCLURE{fond=noisettes/recherche/inc_recherche_rubrique}{id_rubrique})]
+					#ANCRE_PAGINATION
+					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_rubrique, 3}|match{^(1|3)$}|?{' '})
+						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_rubrique}})</div>]
+					]
+					<BOUCLE_rubriques(RUBRIQUES){recherche}{id_rubrique!==#BRANCHE_SPECIALISEE} {par points}{inverse}{pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_rubrique, 5}}>
+						[(#INCLURE{fond=noisettes/recherche/inc_recherche_rubrique}{id_rubrique}{ajax})]
 					</BOUCLE_rubriques>
+					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_rubrique, 3}|match{^(2|3)$}|?{' '})
+						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_rubrique}})</div>]
+					]
 				</div>
 			</B_rubriques>
 				
@@ -69,9 +96,16 @@
 			<B_mots>
 				<div id="recherche_mot_article" class="recherche">
 					<h2><:sarkaspip:recherche_mots_resultat:></h2>
-					<BOUCLE_mots(MOTS) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE}{par points}{type!==^squelette_}{inverse}{0,5}>
-						[(#INCLURE{fond=noisettes/recherche/inc_recherche_mot}{id_mot})]			
+					#ANCRE_PAGINATION
+					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_mot, 3}|match{^(1|3)$}|?{' '})
+						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_mot}})</div>]
+					]
+					<BOUCLE_mots(MOTS) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE}{par points}{type!==^squelette_}{inverse}{pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_mot, 5}}>
+						[(#INCLURE{fond=noisettes/recherche/inc_recherche_mot}{id_mot}{ajax})]			
 					</BOUCLE_mots>
+					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_mot, 3}|match{^(2|3)$}|?{' '})
+						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_mot}})</div>]
+					]
 				</div>
 			</B_mots>
 			
@@ -81,9 +115,16 @@
 			<B_sites_recherche>
 				<div id="recherche_site" class="recherche">
 					<h2><:sarkaspip:recherche_sites_resultat:></h2>
-					<BOUCLE_sites_recherche(SITES) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE{annonce:galerie:agenda}} {par points} {inverse} {0,10}>
-						[(#INCLURE{fond=noisettes/recherche/inc_recherche_site}{id_syndic}{afficher_mere=oui})]			
+					#ANCRE_PAGINATION
+					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_site, 3}|match{^(1|3)$}|?{' '})
+						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_site}})</div>]
+					]
+					<BOUCLE_sites_recherche(SITES) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE{annonce:galerie:agenda}} {par points} {inverse} {pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_site, 5}}>
+						[(#INCLURE{fond=noisettes/recherche/inc_recherche_site}{id_syndic}{afficher_mere=oui}{ajax})]			
 					</BOUCLE_sites_recherche>
+					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_site, 3}|match{^(2|3)$}|?{' '})
+						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_site}})</div>]
+					]
 				</div>
 			</B_sites_recherche>
 				
