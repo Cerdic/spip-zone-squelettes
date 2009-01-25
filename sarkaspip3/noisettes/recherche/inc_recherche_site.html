@@ -1,0 +1,22 @@
+[(#REM) 
+<!-- Affichage de la liste des sites trouvees lors d'une recherche
+	Recoit en argument :
+		- id_syndic
+		- afficher_mere: indicateur d'affichage ou pas de la rubrique mere de la breve concernee
+-->
+]
+
+<B_recherche_site>
+<ul>
+<BOUCLE_recherche_site(SITES) {id_syndic}>
+	[<li>
+		<div class="logo droite"><img src="http://open.thumbshots.org/image.pxf?url=#URL_SITE"[ alt="(#NOM_SITE|texte_backend)"] width="25px" height="25px"/></div>
+		<a class="titre"[ href="(#URL_PAGE{site}|parametre_url{id_syndic,#ID_SYNDIC})" ]>(#NOM_SITE)</a>
+	  [(#ENV{afficher_mere}|=={oui}|?{' '})
+		 - <INCLURE{fond=noisettes/rubrique/inc_rubrique_mere}{id_rubrique}>
+	   ]
+	   <br class="nettoyeur"/>
+	</li>]
+</BOUCLE_recherche_site>
+</ul>
+</B_recherche_site>

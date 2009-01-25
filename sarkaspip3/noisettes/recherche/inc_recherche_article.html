@@ -1,0 +1,20 @@
+[(#REM) 
+<!-- Affichage de la liste des articles trouvees lors d'une recherche
+	Recoit en argument :
+		- id_article: id de la rubrique concernee
+-->
+]
+<B_recherche_article>
+<ul>
+<BOUCLE_recherche_article (ARTICLES) {id_article}>
+	[<li>
+		<div class="cartouche">[(#DATE|nom_jour)][&nbsp;(#DATE|affdate)]</div>
+		<a class="titre" href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a>
+		[(#ENV{afficher_mere}|=={oui}|?{' '})
+		 - <INCLURE{fond=noisettes/rubrique/inc_rubrique_mere}{id_rubrique}>
+	   ]
+	  <br class="nettoyeur"/>
+	</li>]
+</BOUCLE_recherche_article>
+</ul>
+</B_recherche_article>

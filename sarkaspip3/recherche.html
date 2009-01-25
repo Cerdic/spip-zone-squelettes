@@ -15,105 +15,80 @@
 	<div id="wrapper">
 		<div id="content">
 			<h1 class="intitule_page"><:sarkaspip:resultats_recherche:>&nbsp;:&nbsp;#RECHERCHE</h1>
-			<div class="sommaire">
-				[(#REM) <!-- Rubriques trouvees --> ]
-				<B_rubriques>
-					<div class="elements-trouves"><:sarkaspip:recherche_rubriques_resultat:></div>
-					<div class="indentation">
-				<BOUCLE_rubriques(RUBRIQUES){recherche}{id_rubrique!==#BRANCHE_SPECIALISEE} {par points}{inverse}{0,5}>
-							[(#INCLURE{fond=noisettes/rubrique/inc_rubrique_description}{id_rubrique})]
-				</BOUCLE_rubriques>
-					</div> <!-- Fin indentation -->
-				</B_rubriques>
-				
-				[(#REM) <!-- Mots-cles trouves et articles associes--> ]
-				<B_mots>
-					<div class="elements-trouves"><:sarkaspip:recherche_mots_resultat:></div>
-					<div class="indentation">
-				<BOUCLE_mots(MOTS) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE}{par points}{type!==^squelette_}{inverse}{0,5}>
-							<div class="mot-cle">#TITRE</div>
-				</BOUCLE_mots>
-					</div> <!-- Fin indentation -->
-				</B_mots>
-	
-				[(#REM) <!-- Breves trouvees --> ]
-				<B_breves_recherche>
-					<div class="elements-trouves"><:sarkaspip:recherche_breves_resultat:></div>
-					<div class="indentation redimensionnement">
-						<div class="noisette">
-				<BOUCLE_breves_recherche(BREVES) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE} {par points} {inverse} {0,10}>
-							[(#INCLURE{fond=noisettes/breve/inc_breve_1}{id_breve})]
-							<br />
-				</BOUCLE_breves_recherche>
-						</div> <!-- Fin noisette -->
-					</div> <!-- Fin indentation redimensionnement -->
-				</B_breves_recherche>		
-				
-				[(#REM) <!-- Sites Web trouves --> ]
-				<B_sites_recherche>
-					<div class="elements-trouves"><:sarkaspip:recherche_sites_resultat:></div>
-					<div class="noisette">
-						<div class="indentation redimensionnement">
-				<BOUCLE_sites_recherche(SITES) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE{annonce:galerie:agenda}} {par points} {inverse} {0,10}>
-								[(#INCLURE{fond=noisettes/site/inc_site_1}{id_syndic}{editable=non}{nb_syndic=#CONFIG{sarkaspip_site/nb_syndic, 10}} )]
-								<br />
-				</BOUCLE_sites_recherche>
-						</div> <!-- Fin indentation redimensionnement -->
-					</div> <!-- Fin noisette -->
-				</B_sites_recherche>
-							
-				[(#REM) <!-- Messages trouves --> ]
-				<B_messages_recherche>
-					<div class="elements-trouves"><:sarkaspip:recherche_messages_resultat:></div>
-					<div class="forum">
-						<div class="indentation">
-				<BOUCLE_messages_recherche(FORUMS) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE{annonce:herbier:agenda}} {par points} {inverse} {0,10}>
-								<div class="visualisation">
-									<div class="titre">#TITRE</div>
-									<div class="detail">
-										[(#DATE|nom_jour)] [(#DATE|affdate)]<br />
-										<BOUCLE_forum_edite(FORUMS){id_parent=#ID_FORUM}{statut=original}>
-											<BOUCLE_auteur_pere1(AUTEURS) {id_auteur=#_forum_edite:ID_AUTEUR}>
-												[<:sarkaspip:par_auteur:> (#NOM)]
-											</BOUCLE_auteur_pere1>
-												[<:sarkaspip:par_auteur:> (#_forum_edite:NOM)]
-											<//B_auteur_pere1>
-										</BOUCLE_forum_edite>
-										</B_forum_edite>
-											<BOUCLE_auteur_pere2(AUTEURS) {id_auteur=#_messages-recherche:ID_AUTEUR}>
-												[<:sarkaspip:par_auteur:> (#NOM)]
-											</BOUCLE_auteur_pere2>
-												[<:sarkaspip:par_auteur:> (#_messages-recherche:NOM)]
-											<//B_auteur_pere2>
-										<//B_forum_edite>
-									</div> <!-- Fin detail -->
-									<div class="texte">
-										#TEXTE
-										[<br /><br /><a href="[(#URL_SITE)]">(#NOM_SITE)</a>]
-									</div> <!-- Fin texte -->
-								</div> <!-- Fin visualisation -->
-								[<br />
-								<a class="repondre" href="(#PARAMETRES_FORUM|url_reponse_forum)"><:sarkaspip:repondre_message:></a>]
-								[<a class="repondre" href="(#URL_PAGE{forum-fil,id_thread=#ID_THREAD})"><:sarkaspip:fil_discussion:></a>
-								<br />]
-								<br />
-				</BOUCLE_messages_recherche>
-						</div> <!-- Fin indentation -->
-					</div> <!-- Fin forum -->
-				</B_messages_recherche>
-										
-				[(#REM) <!-- Articles trouves --> ]
-				<B_articles_recherche>
-					<div class="elements-trouves"><:sarkaspip:recherche_articles_resultat:></div>
-					<div class="indentation">
-						<div class="derniers-articles">
+			
+			
+			[(#REM) <!-- Articles trouves --> ]
+			<B_articles_recherche>
+				<div id="recherche_article" class="recherche">
+				<h2><:sarkaspip:recherche_articles_resultat:></h2>
 				<BOUCLE_articles_recherche(ARTICLES) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE} {par points} {inverse} {0,10}>
-							[(#INCLURE{fond=noisettes/article/inc_article_introduction}{id_article}{afficher_mere=non}{taille_introduction=#CONFIG{sarkaspip_recherche/intro_article, 300}})]
+					[(#INCLURE{fond=noisettes/recherche/inc_recherche_article}{id_article}{afficher_mere=oui})]
 				</BOUCLE_articles_recherche>
-						</div> <!-- Fin derniers-articles -->
-					</div> <!-- Fin indentation -->
-				</B_articles_recherche>
-			</div><!--sommaire-->	
+				</div>	
+			</B_articles_recherche>
+			
+			
+			
+			[(#REM) <!-- Messages trouves --> ]
+			<B_messages_recherche>
+				<div id="recherche_commentaire" class="recherche">
+					<h2><:sarkaspip:recherche_messages_resultat:></h2>	
+					<BOUCLE_messages_recherche(FORUMS) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE{annonce:herbier:agenda}} {par points} {inverse} {0,10}>
+						[(#INCLURE{fond=noisettes/recherche/inc_recherche_message}{id_forum})]			
+					</BOUCLE_messages_recherche>
+				</div>
+			</B_messages_recherche>
+				
+							
+		
+			[(#REM) <!-- Breves trouvees --> ]
+			<B_breves_recherche>
+				<div id="recherche_breve" class="recherche">
+					<h2><:sarkaspip:recherche_breves_resultat:></h2>					
+					<BOUCLE_breves_recherche(BREVES) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE} {par points} {inverse} {0,10}>
+						[(#INCLURE{fond=noisettes/recherche/inc_recherche_breve}{id_breve}{afficher_mere=oui})]
+					</BOUCLE_breves_recherche>
+				</div>
+			</B_breves_recherche>		
+				
+				
+				
+			[(#REM) <!-- Rubriques trouvees --> ]
+			<B_rubriques>
+				<div id="recherche_rubrique" class="recherche">
+					<h2><:sarkaspip:recherche_rubriques_resultat:></h2>
+					<BOUCLE_rubriques(RUBRIQUES){recherche}{id_rubrique!==#BRANCHE_SPECIALISEE} {par points}{inverse}{0,5}>
+						[(#INCLURE{fond=noisettes/recherche/inc_recherche_rubrique}{id_rubrique})]
+					</BOUCLE_rubriques>
+				</div>
+			</B_rubriques>
+				
+				
+				
+			[(#REM) <!-- Mots-cles trouves et articles associes--> ]
+			<B_mots>
+				<div id="recherche_mot_article" class="recherche">
+					<h2><:sarkaspip:recherche_mots_resultat:></h2>
+					<BOUCLE_mots(MOTS) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE}{par points}{type!==^squelette_}{inverse}{0,5}>
+						[(#INCLURE{fond=noisettes/recherche/inc_recherche_mot}{id_mot})]			
+					</BOUCLE_mots>
+				</div>
+			</B_mots>
+			
+			
+			
+			[(#REM) <!-- Sites Web trouves --> ]
+			<B_sites_recherche>
+				<div id="recherche_site" class="recherche">
+					<h2><:sarkaspip:recherche_sites_resultat:></h2>
+					<BOUCLE_sites_recherche(SITES) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE{annonce:galerie:agenda}} {par points} {inverse} {0,10}>
+						[(#INCLURE{fond=noisettes/recherche/inc_recherche_site}{id_syndic}{afficher_mere=oui}{id_rubrique})]			
+					</BOUCLE_sites_recherche>
+				</div>
+			</B_sites_recherche>
+				
+				
+							
 		</div><!--content-->
 	</div><!--wrapper-->
 	

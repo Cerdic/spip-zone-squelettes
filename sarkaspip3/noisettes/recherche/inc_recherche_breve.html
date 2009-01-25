@@ -1,0 +1,22 @@
+[(#REM) 
+<!-- Affichage de la liste des breves trouvees lors d'une recherche 
+	Recoit en argument :
+		- id_breve: id de la breve concernee
+		- afficher_mere: indicateur d'affichage ou pas de la rubrique mere de la breve concernee
+		
+-->
+]
+<B_recherche_breve>
+<ul>
+<BOUCLE_recherche_breve(BREVES) {id_breve}>
+	[<li>
+		<INCLURE{fond=noisettes/breve/inc_breve_cartouche}{id_breve}>
+		<a class="titre" href="#URL_BREVE" title="<:sarkaspip:lire_breve:>">(#TITRE|supprimer_numero)</a>
+	  [(#ENV{afficher_mere}|=={oui}|?{' '})
+		 - <INCLURE{fond=noisettes/rubrique/inc_rubrique_mere}{id_rubrique}>
+	   ]
+	   <br class="nettoyeur"/>
+	</li>]
+</BOUCLE_recherche_breve>
+</ul>
+</B_recherche_breve>
