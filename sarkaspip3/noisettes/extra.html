@@ -60,7 +60,12 @@
 	]
 ]
 
-[(#REM) <!-- affichage des X dernieres breves et sites en fonction du contexte --> ]
+[(#REM) <!-- affichage des X dernieres breves, sites et articles syndiques en fonction du contexte --> ]
+[(#ENV{page}|!={herbier}|?{' '})
+	[(#CONFIG{sarkaspip_noisettes/position_herbier, 0}|=={2}|?{' '})
+		<INCLURE{fond=noisettes/herbier/inc_herbier_recents_#CONFIG{sarkaspip_noisettes/liste_herbier, 2}}{id_secteur}>
+	]
+]
 [(#ENV{page}|!={breve}|?{' '})<INCLURE{fond=noisettes/breve/inc_breves_recentes}{id_secteur}>]
 [(#ENV{page}|!={site}|?{' '})<INCLURE{fond=noisettes/site/inc_sites_recents_#CONFIG{sarkaspip_noisettes/liste_sites, 2}}{id_secteur}>]
 
