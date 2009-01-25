@@ -23,8 +23,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'1_site_web' => 'Site Web',
 		'1_commentaire' => 'commentaire',
 		'1_signature' => 'signature',
+		'1_site_herbier' => 'site r&eacute;f&eacute;renc&eacute;',
 		'1_photo' => 'photo',
 		'1_visiteur_connecte' => 'visiteur actuellement connect&eacute;',
+		'n_sites_herbier' => 'sites r&eacute;f&eacute;renc&eacute;s',
 		'n_visiteurs_connectes' => 'visiteurs actuellement connect&eacute;s',
 	  
 	
@@ -144,6 +146,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'hier' => 'hier',
 		'herbier_sites' => 'herbier',
 		'herbier_tag' => 'cat&eacute;gories',
+		'herbier_url' => 'adresse',
+		'herbier_contexte_global' => 'au total',
+		'herbier_contexte_secteur' => 'dans ce secteur',
 		'herbier_url' => 'adresse',
 		'hit_parade' => 'Top Articles',
 	  
