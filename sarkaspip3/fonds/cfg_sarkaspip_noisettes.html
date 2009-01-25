@@ -10,7 +10,7 @@
 		[(#ENV{menu_rubriques, 1}|!={1}|?{jQuery("#bloc_menu_option1_2").hide();})]
 		[(#ENV{liste_breves, 2}|!={2}|?{jQuery("#bloc_intro_breve").hide();})]
 		[(#ENV{position_commentaires, 0}|!={2}|?{jQuery("#bloc_intro_commentaires").hide();})]
-		[(#ENV{liste_sites, 2}|!={1}|?{jQuery("#bloc_max_syndic").hide();})]
+		[(#ENV{liste_sites, 2}|!={1}|?{jQuery("#bloc_max_site").hide();})]
 		[(#ENV{position_stats_2, 0}|=={0}|?{jQuery("#bloc_stats_2_compo,#bloc_stats_2_max_hasard,#bloc_stats_2_max_top").hide();})]
 		[(#ENV{position_stats_2, 0}|!={0}|?{
 			[(#ENV{composition_stats_2, 3}|=={1}|?{jQuery("#bloc_stats_2_max_hasard").hide();})]
@@ -55,9 +55,9 @@
 
 		jQuery("input[@name='liste_sites']").change(function() {
 			if (jQuery("input[@name='liste_sites']:checked").val() == 1)
-				jQuery("#bloc_max_syndic").show();
+				jQuery("#bloc_max_site").show();
 			else
-				jQuery("#bloc_max_syndic").hide();
+				jQuery("#bloc_max_site").hide();
 			jQuery(this).blur();
 		});	
 
@@ -116,11 +116,13 @@
 		});	
 
 		jQuery("input[@name='position_annonce']").change(function() {
-			if (jQuery("input[@name='position_annonce']:checked").val() != 0)
+			if (jQuery("input[@name='position_annonce']:checked").val() != 0) {
 				jQuery("#bloc_annonce_id").show();
-			else
+			}
+			else {
 				jQuery("#bloc_annonce_id").hide();
 				jQuery("#select_secteur option:first").attr({selected: "selected"});
+			}
 			jQuery(this).blur();
 		});	
 		
@@ -192,28 +194,6 @@
 		<br />
 	</fieldset>
 	
-	[(#REM) <!-- Choix de presentation des breves --> ]
-	<fieldset>
-		<legend><:sarkaspip:cfg_lgd_inc_breves:></legend>
-		<p><:sarkaspip:cfg_inf_inc_breves:></p>
-		<label>
-			<input type="radio" name="liste_breves" value="1" [(#ENV{liste_breves, 2}|=={1}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_inc_breves_1:>
-		</label>
-		<br />
-		<label>
-			<input type="radio" name="liste_breves" value="2" [(#ENV{liste_breves, 2}|=={2}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_inc_breves_2:>
-		</label>
-		<br /><br />
-		<label><:sarkaspip:cfg_lbl_max_breves:></label>
-		<input type="text" name="max_breves" value="#ENV{max_breves, 5}" size="2" class="fondl" />
-		<div id="bloc_intro_breve">
-			<label><:sarkaspip:cfg_lbl_intro_breve:></label>
-			<input type="text" name="intro_breve" value="#ENV{intro_breve, 100}" size="3" class="fondl" />
-		</div>
-		<br />
-	</fieldset>
 
 	[(#REM) <!-- Choix de presentation des commentaires --> ]
 	<fieldset>
@@ -239,6 +219,28 @@
 		<br />
 		</div>
 	</fieldset>
+	[(#REM) <!-- Choix de presentation des breves --> ]
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_inc_breves:></legend>
+		<p><:sarkaspip:cfg_inf_inc_breves:></p>
+		<label>
+			<input type="radio" name="liste_breves" value="1" [(#ENV{liste_breves, 2}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_breves_1:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="liste_breves" value="2" [(#ENV{liste_breves, 2}|=={2}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_breves_2:>
+		</label>
+		<br /><br />
+		<label><:sarkaspip:cfg_lbl_max_breves:></label>
+		<input type="text" name="max_breves" value="#ENV{max_breves, 5}" size="2" class="fondl" />
+		<div id="bloc_intro_breve">
+			<label><:sarkaspip:cfg_lbl_intro_breve:></label>
+			<input type="text" name="intro_breve" value="#ENV{intro_breve, 100}" size="3" class="fondl" />
+		</div>
+		<br />
+	</fieldset>
 	
 	[(#REM) <!-- Choix de presentation des sites --> ]
 	<fieldset>
@@ -254,12 +256,12 @@
 			<:sarkaspip:cfg_lbl_inc_sites_2:>
 		</label>
 		<br /><br />
-		<label><:sarkaspip:cfg_lbl_max_sites:></label>
-		<input type="text" name="max_sites" value="#ENV{max_sites, 5}" size="2" class="fondl" />
-		<div id="bloc_max_syndic">
-			<label><:sarkaspip:cfg_lbl_max_syndic:></label>
-			<input type="text" name="max_syndic" value="#ENV{max_syndic, 5}" size="2" class="fondl" />
+		<div id="bloc_max_site">
+			<label><:sarkaspip:cfg_lbl_max_sites:></label>
+			<input type="text" name="max_sites" value="#ENV{max_sites, 5}" size="2" class="fondl" />
 		</div>
+		<label><:sarkaspip:cfg_lbl_max_syndic:></label>
+		<input type="text" name="max_syndic" value="#ENV{max_syndic, 5}" size="2" class="fondl" />
 		<br />
 	</fieldset>
 	
