@@ -11,6 +11,7 @@
 		[(#ENV{liste_breves, 2}|!={2}|?{jQuery("#bloc_intro_breve").hide();})]
 		[(#ENV{position_commentaires, 0}|!={2}|?{jQuery("#bloc_intro_commentaires").hide();})]
 		[(#ENV{liste_sites, 2}|!={1}|?{jQuery("#bloc_max_site").hide();})]
+		[(#ENV{position_herbier, 0}|=={0}|?{jQuery("#bloc_type_herbier").hide();})]
 		[(#ENV{position_stats_2, 0}|=={0}|?{jQuery("#bloc_stats_2_compo,#bloc_stats_2_max_hasard,#bloc_stats_2_max_top").hide();})]
 		[(#ENV{position_stats_2, 0}|!={0}|?{
 			[(#ENV{composition_stats_2, 3}|=={1}|?{jQuery("#bloc_stats_2_max_hasard").hide();})]
@@ -58,6 +59,16 @@
 				jQuery("#bloc_max_site").show();
 			else
 				jQuery("#bloc_max_site").hide();
+			jQuery(this).blur();
+		});	
+
+		jQuery("input[@name='position_herbier']").change(function() {
+			if (jQuery("input[@name='position_herbier']:checked").val() != 0) {
+				jQuery("#bloc_type_herbier").show();
+			}
+			else {
+				jQuery("#bloc_type_herbier").hide();
+			}
 			jQuery(this).blur();
 		});	
 
@@ -194,7 +205,6 @@
 		<br />
 	</fieldset>
 	
-
 	[(#REM) <!-- Choix de presentation des commentaires --> ]
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_inc_commentaires:></legend>
@@ -219,6 +229,7 @@
 		<br />
 		</div>
 	</fieldset>
+
 	[(#REM) <!-- Choix de presentation des breves --> ]
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_inc_breves:></legend>
@@ -242,7 +253,7 @@
 		<br />
 	</fieldset>
 	
-	[(#REM) <!-- Choix de presentation des sites --> ]
+	[(#REM) <!-- Choix de presentation des articles syndiques des sites references --> ]
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_inc_sites:></legend>
 		<p><:sarkaspip:cfg_inf_inc_sites:></p>
@@ -263,6 +274,42 @@
 		<label><:sarkaspip:cfg_lbl_max_syndic:></label>
 		<input type="text" name="max_syndic" value="#ENV{max_syndic, 5}" size="2" class="fondl" />
 		<br />
+	</fieldset>
+	
+	[(#REM) <!-- Choix de presentation de des sites de l'herbier --> ]
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_inc_herbier:></legend>
+		<p><:sarkaspip:cfg_inf_inc_herbier_pos:></p>
+		<label>
+			<input type="radio" name="position_herbier" value="0" [(#ENV{position_herbier, 0}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_position_0:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="position_herbier" value="1" [(#ENV{position_herbier, 0}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_position_1:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="position_herbier" value="2" [(#ENV{position_herbier, 0}|=={2}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_position_2:>
+		</label>
+		<br />
+		<div id="bloc_type_herbier">
+		<p><:sarkaspip:cfg_inf_inc_herbier_type:></p>
+		<label>
+			<input type="radio" name="liste_herbier" value="1" [(#ENV{liste_herbier, 2}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_herbier_1:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="liste_herbier" value="2" [(#ENV{liste_herbier, 2}|=={2}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_herbier_2:>
+		</label>
+		<br /><br />
+			<label><:sarkaspip:cfg_lbl_max_herbier:></label>
+			<input type="text" name="max_herbier" value="#ENV{max_herbier, 5}" size="2" class="fondl" />
+		</div>
 	</fieldset>
 	
 	[(#REM) <!-- Choix des moteurs de recherche --> ]
