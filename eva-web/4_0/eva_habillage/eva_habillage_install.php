@@ -7,6 +7,8 @@ function eva_habillage_install($action){
 	switch ($action){
 	
 	case 'install':
+	include_spip('base/eva_habillage_base_patch');
+	eva_habillage_patch_table();
 	include_spip('base/eva_habillage_base');
 	include_spip('base/create');
 	creer_base();
@@ -43,6 +45,8 @@ function eva_habillage_install($action){
 	break;
 	
 	case 'test':
+	include_spip('base/eva_habillage_base_patch');
+	eva_habillage_patch_table();
 	if (!$GLOBALS['meta']['eva_habillage_base_version']) {return false;}
 	else {
 	include_spip('base/eva_habillage_base');
