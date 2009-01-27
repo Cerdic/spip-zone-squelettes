@@ -8,7 +8,7 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'accueil' => 'Accueil',
 'accueil_menu' => 'Accueil',
 'agenda' => 'Agenda',
-'agenda_summary' => 'Agenda des &eacute;v&eacute;nements',
+'agenda_summary' => 'Agenda des &eacute;v&eacute;nements (du lundi au dimanche)',
 'agendamoisde' => 'Agenda du mois de',
 'alaune' => '&Agrave; la Une',
 'auteur' => 'Auteur',
@@ -43,6 +43,7 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 //C
 'carte_monde' => 'Carte du monde',
 'chercheravecgoogle' => 'Avec <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> cherchez sur le Web!',
+'citations' => 'Citations',
 'copyright_realisation' => 'R&eacute;alisation : ',
 'copyright_spip' => 'Ce site utilise le squelette&nbsp;: <a href=\'http://www.pyrat.net/\' title=\'Visiter le site du cr&eacute;ateur de ce squelette\'>Pyrat.net</a> propuls&eacute; par <a href=\'http://www.spip.net/\' title=\'Visiter le site de SPIP, logiciel de gestion de contenu web en licence libre GPL\'>SPIP</a>',
 'copyright_icra' => '&Eacute;tiquet&eacute; gr&acirc;ce &agrave; <a href="http://www.icra.org/sitelabel">ICRA</a>',
