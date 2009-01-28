@@ -1,20 +1,331 @@
 <!-- titre=<:sarkaspip:cfg_titre_styles:> -->
 <!-- descriptif=<:sarkaspip:cfg_descr_styles:> -->
-<!-- boite=<:sarkaspip:cfg_boite_styles_configuration:> -->
+<!-- boite=<:sarkaspip:cfg_boite_styles:> -->
 <INCLURE{fond=noisettes/cfg/inc_cfg_header}>
 #CACHE{0}
 
-#FORMULAIRE_CONFIGURATION_STYLES
+<form method="post" action="#SELF"><div>
+	[(#ENV{_cfg_}|form_hidden)]
+	
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_css_general:></legend>
+		<p><:sarkaspip:cfg_inf_css_general:></p>
+		<label><:sarkaspip:cfg_lbl_css_fo:></label>
+		<input type="text" name="fo_site" value="#ENV{fo_site, 'Helvetica,Verdana'}" size="50" class="fondl" />,Arial,sans-serif
+		<br />
+		[(#INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_site:>}
+			{suffixe=_site}
+			{choix=fg_bg_bi}
+			{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_texte:>}
+			{bg_defaut=#ffffff}
+			{fg_defaut=#000000}
+			{env})]
+		[(#CONFIG{sarkaspip_layout/numero_layout, 13}|match{^(7|8|9|10|11|12)$}|?{' '})	
+			<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+				{explication=<:sarkaspip:cfg_inf_css_couleurs_body:>}
+				{suffixe=_body}
+				{choix=fg_bg_bi}
+				{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_texte:>}
+				{bg_defaut=#ffffff}
+				{fg_defaut=#000000}
+				{env}>
+		]	
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{suffixe=_lien}
+			{choix=fg_ho_td}
+			{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_lien:>}
+			{fg_defaut=#990000}
+			{ho_defaut=#990000}
+			{td_defaut=underline}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{suffixe=_intertitre}
+			{choix=fg}
+			{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_intertitre:>}
+			{fg_defaut=#6262a4}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_citations:>}
+			{suffixe=_citation}
+			{choix=fg_bg}
+			{bg_defaut=#eeeeee}
+			{fg_defaut=#000000}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{suffixe=_quote}
+			{choix=ca}
+			{complement_label_ca=<:sarkaspip:cfg_lbl_css_ca_quote:>}
+			{ca_defaut=#990000}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{suffixe=_code}
+			{choix=ca}
+			{complement_label_ca=<:sarkaspip:cfg_lbl_css_ca_code:>}
+			{ca_defaut=#669999}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{suffixe=_cadre}
+			{choix=ca}
+			{complement_label_ca=<:sarkaspip:cfg_lbl_css_ca_cadre:>}
+			{ca_defaut=transparent}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_tableaux:>}
+			{suffixe=_thead}
+			{choix=bg_fg}
+			{complement_label_fg=<:sarkaspip:cfg_lbl_css_tb_head:>}
+			{complement_label_bg=<:sarkaspip:cfg_lbl_css_tb_head:>}
+			{bg_defaut=#808080}
+			{fg_defaut=#ffffff}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{suffixe=_todd}
+			{choix=bg}
+			{complement_label_bg=<:sarkaspip:cfg_lbl_css_tb_odd:>}
+			{bg_defaut=#e0e0e0}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{suffixe=_teven}
+			{choix=bg}
+			{complement_label_bg=<:sarkaspip:cfg_lbl_css_tb_even:>}
+			{bg_defaut=#eeeeee}
+			{env}>
+	</fieldset>
+	
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_css_bandeau:></legend>
+		<p><:sarkaspip:cfg_inf_css_bandeau:></p>
+		<p><:sarkaspip:cfg_inf_css_couleurs:></p>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_bandeau_haut:>}
+			{suffixe=_bandeau_haut}
+			{choix=bgbifg_ho_td}
+			{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_tout:>}
+			{bg_defaut=#6262a4}
+			{fg_defaut=#eeeeee}
+			{ho_defaut=#aaaaaa}
+			{td_defaut=none}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_bandeau_bas:>}
+			{suffixe=_bandeau_bas}
+			{choix=bg_bi}
+			{bg_defaut=#6262a4}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_chemin:>}
+			{suffixe=_chemin}
+			{choix=bg_bi_fg_ho_td}
+			{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_tout:>}
+			{bg_defaut=#ddddef}
+			{fg_defaut=#6262a4}
+			{ho_defaut=#808080}
+			{td_defaut=none}
+			{env}>
+	</fieldset>
+	
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_css_pied:></legend>
+		<p><:sarkaspip:cfg_inf_css_pied:></p>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_pied_bas:>}
+			{suffixe=_pied_bas}
+			{choix=bg_bi_fg_ho_td}
+			{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_tout:>}
+			{bg_defaut=#6262a4}
+			{fg_defaut=#eeeeee}
+			{ho_defaut=#aaaaaa}
+			{td_defaut=none}
+			{env}>
+		<label><:sarkaspip:cfg_lbl_css_ta:></label>
+		<input type="text" name="ta_pied_bas" value="#ENV{ta_pied_bas, right}" size="6" class="fondl" />
+		<br />
+	</fieldset>
 
-[(#FORMULAIRE_SAUVEGARDE_CFG{sarkaspip_styles,
-	[(#ARRAY{
-		titre, <:sarkaspip:cfg_boite_styles_sauvegarde:>,
-		legende, <:sarkaspip:cfg_lgd_css_sauvegarde:>,
-		description, <:sarkaspip:cfg_inf_css_sauvegarde:>})]})]
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_css_noisettes:></legend>
+		<p><:sarkaspip:cfg_inf_css_noisettes:></p>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_noisettes_titre:>}
+			{suffixe=_noisette_titre}
+			{choix=bg_bi_hb_hi_fg_ho_td}
+			{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_tout:>}
+			{bg_defaut=#808080}
+			{hb_defaut=#eeeeee}
+			{fg_defaut=#ffffff}
+			{ho_defaut=#808080}
+			{td_defaut=none}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_noisettes_soustitre:>}
+			{suffixe=_noisette_soustitre}
+			{choix=bg_bi_hb_hi_fg_ho_td}
+			{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_tout:>}
+			{bg_defaut=#eeeeee}
+			{hb_defaut=#808080}
+			{fg_defaut=#808080}
+			{ho_defaut=#ffffff}
+			{td_defaut=none}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_noisettes_contenu:>}
+			{suffixe=_noisette}
+			{choix=bg_fg_ho_td_ca}
+			{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_tout:>}
+			{bg_defaut=transparent}
+			{fg_defaut=#808080}
+			{ho_defaut=#808080}
+			{td_defaut=underline}
+			{ca_defaut=#808080}
+			{env}>		
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_menus:>}
+			{suffixe=_menu}
+			{choix=bg_bi_hb_hi_fg_ho_td_ca}
+			{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_tout:>}
+			{bg_defaut=#6262a4}
+			{hb_defaut=#323284}
+			{fg_defaut=#ffffff}
+			{ho_defaut=#ffffff}
+			{td_defaut=none}
+			{ca_defaut=#ffffff}
+			{env}>
+	</fieldset>
 
-[(#FORMULAIRE_RESTAURATION_CFG{sarkaspip_styles,
-	[(#ARRAY{
-		titre, <:sarkaspip:cfg_boite_styles_restauration:>,
-		legende, <:sarkaspip:cfg_lgd_css_restauration:>,
-		label, <:sarkaspip:cfg_lbl_css_restauration:>,
-		description, <:sarkaspip:cfg_inf_css_restauration:>})]})]
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_css_pagination:></legend>
+		<p><:sarkaspip:cfg_inf_css_pagination:></p>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_pagination:>}
+			{suffixe=_pagination}
+			{choix=bg_hb_fg_ho_td}
+			{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_tout:>}
+			{bg_defaut=transparent}
+			{hb_defaut=#f0f0fa}
+			{fg_defaut=#6262a4}
+			{ho_defaut=#6262a4}
+			{td_defaut=none}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_pagination_on:>}
+			{suffixe=_pagination_on}
+			{choix=bg_fg_td}
+			{bg_defaut=#6262a4}
+			{fg_defaut=#ffffff}
+			{td_defaut=none}
+			{env}>
+	</fieldset>
+
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_css_extraits:></legend>
+		<p><:sarkaspip:cfg_inf_css_extraits:></p>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_extrait_1:>}
+			{suffixe=_extrait}
+			{choix=bg_bi_fg_ho_td_ca}
+			{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_titre:>}
+			{complement_label_ho=<:sarkaspip:cfg_lbl_css_ho_titre:>}
+			{bg_defaut=transparent}
+			{fg_defaut=#6262a4}
+			{ho_defaut=#6262a4}
+			{td_defaut=underline}
+			{ca_defaut=#6262a4}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_extrait_2:>}
+			{suffixe=_extrait_lien}
+			{choix=fg_ho_td}
+			{fg_defaut=#990000}
+			{ho_defaut=#990000}
+			{td_defaut=underline}
+			{env}>
+	</fieldset>
+
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_css_description:></legend>
+		<p><:sarkaspip:cfg_inf_css_description:></p>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_description:>}
+			{suffixe=_description}
+			{choix=fg}
+			{fg_defaut=#6262a4}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_portfolio:>}
+			{suffixe=_portfolio}
+			{choix=ca_ch}
+			{ca_defaut=#eeeeee}
+			{ch_defaut=#6262a4}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_edito:>}
+			{suffixe=_edito}
+			{choix=bg_bi_ca}
+			{bg_defaut=#eeeeee}
+			{ca_defaut=#808080}
+			{env}>
+	</fieldset>
+
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_css_commentaires:></legend>
+		<p><:sarkaspip:cfg_inf_css_commentaires:></p>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{suffixe=_commentaire}
+			{choix=bg_bi_hb_fg_ca}
+			{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_titre_cartouche:>}
+			{bg_defaut=transparent}
+			{hb_defaut=#f0f0fa}
+			{fg_defaut=#6262a4}
+			{ca_defaut=#6262a4}
+			{env}>
+	</fieldset>
+
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_css_planche:></legend>
+		<p><:sarkaspip:cfg_inf_css_planche:></p>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_description:>}
+			{suffixe=_planche}
+			{choix=bg_bi_fg_ho_td_ca}
+			{complement_label_fg=<:sarkaspip:cfg_lbl_css_fg_titre:>}
+			{complement_label_ho=<:sarkaspip:cfg_lbl_css_ho_titre:>}
+			{bg_defaut=transparent}
+			{fg_defaut=#6262a4}
+			{ho_defaut=#6262a4}
+			{td_defaut=underline}
+			{ca_defaut=#6262a4}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_lien:>}
+			{suffixe=_planche_lien}
+			{choix=fg_ho_td}
+			{fg_defaut=#990000}
+			{ho_defaut=#990000}
+			{td_defaut=underline}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:sarkaspip:cfg_inf_css_couleurs_vignette:>}
+			{suffixe=_planche_logo}
+			{choix=ca_ch}
+			{ca_defaut=#eeeeee}
+			{ch_defaut=#6262a4}
+			{env}>
+	</fieldset>
+	
+	<div style="text-align: right; margin-right:3px;">
+	[(#EVAL{_SARKASPIP_DEBUG_CFG_BOUTON}|=={oui}|?{' '})
+		<input type="submit" name="_cfg_delete" class="fondo" value="<:sarkaspip:effacer:>" />
+	]
+		<input type="submit" name="_cfg_ok" class="fondo" value="<:sarkaspip:valider:>" />
+	</div>
+</div></form>
+
+[(#EVAL{_SARKASPIP_DEBUG_CFG_ARBO}|=={oui}|?{' '})
+	<div id="bloc_debug">
+		<br />
+		>> Debug - Etat des variables du fond Styles:<br />
+		#CFG_ARBO{sarkaspip_styles}
+	</div>
+]
+[(#VAL{1}|fin_cadre_trait_couleur)]

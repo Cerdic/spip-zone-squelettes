@@ -12,6 +12,12 @@ style="background-color: #GET{bg_color, #ENV{bg_defaut}}; color: #GET{color};" /
 ]
 [(#ENV{choix}|match{(bi)}|?{' '})
 <p><:sarkaspip:cfg_lbl_css_image_fond{lbl_bi_suffixe=#ENV{suffixe}}:></p>
+[(#EVAL{_SARKASPIP_DEBUG_CFG_FONDS}|=={oui}|?{' '})
+[<select name="fond_bi#ENV{suffixe}">
+	(#VAL{1}|lister_fonds{bi, #ENV{suffixe}})
+</select>]
+<br />
+]
 <label><:sarkaspip:cfg_lbl_css_bi1:></label>
 <label>
 	<input type="radio" name="bi_extension#ENV{suffixe}" value=".gif" [(#ENV{bi_extension#ENV{suffixe}, .gif}|=={.gif}|?{checked="checked"})] />
@@ -43,6 +49,12 @@ style="background-color: #GET{bg_color, #ENV{bg_defaut}}; color: #GET{color};" /
 ]
 [(#ENV{choix}|match{(hi)}|?{' '})
 <p><:sarkaspip:cfg_lbl_css_image_hfond{lbl_hi_suffixe=#ENV{suffixe}}:></p>
+[(#EVAL{_SARKASPIP_DEBUG_CFG_FONDS}|=={oui}|?{' '})
+[<select name="fond_hi#ENV{suffixe}">
+	(#VAL{1}|lister_fonds{hi, #ENV{suffixe}})
+</select>]
+<br />
+]
 <label><:sarkaspip:cfg_lbl_css_bi1:></label>
 <label>
 	<input type="radio" name="hi_extension#ENV{suffixe}" value=".gif" [(#ENV{hi_extension#ENV{suffixe}, .gif}|=={.gif}|?{checked="checked"})] />

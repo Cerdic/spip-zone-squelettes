@@ -10,6 +10,7 @@ define('_SARKASPIP_FOND_SECTEURS_SPECIALISES', 'sarkaspip_agenda:sarkaspip_galer
 define('_SARKASPIP_DEBUG_CSS', 'non');
 define('_SARKASPIP_DEBUG_CFG_ARBO', 'non');
 define('_SARKASPIP_DEBUG_CFG_BOUTON', 'non');
+define('_SARKASPIP_DEBUG_CFG_FONDS', 'non');
 
 // Liste des donnees de configuration du squelette non CFG
 // -- Pour les meta

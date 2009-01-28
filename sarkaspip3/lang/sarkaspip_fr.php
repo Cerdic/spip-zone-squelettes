@@ -401,6 +401,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_titre_modeles' => 'Sarka-SPIP - Configuration des mod&egrave;les',
 		'cfg_titre_site' => 'Sarka-SPIP - Configuration de la page site',
 		'cfg_titre_recherche' => 'Sarka-SPIP - Configuration de la page recherche',
+		'cfg_titre_themes' => 'Sarka-SPIP - Sauvegarde / restauration des styles',
 
 // Titre des liens des pages
 		'sarkaspip_accueil' => 'Accueil',
@@ -418,6 +419,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'sarkaspip_header' => 'Balises meta',
 		'sarkaspip_formulaires' => 'Formulaires',
 		'sarkaspip_styles' => 'Styles',
+		'sarkaspip_themes' => 'Th&egrave;mes',
 		'sarkaspip_plugins' => 'Plugins',
 		'sarkaspip_auteur' => 'Auteur',
 		'sarkaspip_breve' => 'Br&egrave;ve',
@@ -445,6 +447,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_descr_header' => 'La plupart des balises meta du site sont calcul&eacute;es automatiquement &agrave; partir des informations de configuration du site et de la page affich&eacute;e. Cette page permet n&eacute;anmoins de pr&eacute;ciser le nom de l\'auteur, les mots-cl&eacute;s et la p&eacute;riode entre deux visites des robots.',
 		'cfg_descr_formulaires' => 'Le corps de certaines pages du squelette permet d\'afficher un formulaire comme le formulaire de contact. Cette page de configuration vous permet d\'en choisir les caract&eacute;ristiques.',
 		'cfg_descr_styles' => 'Cette page permet de configurer certains &eacute;l&eacute;ments communs aux pages du squelette comme les couleurs d\'avant et d\'arri&egrave;re plan, les survols de liens, les cadres...',
+		'cfg_descr_themes' => 'Cette page permet de sauvegarder ou de restaurer les styles configur&eacute;s pour le squelette.',
 		'cfg_descr_plugins' => 'Cette page permet de fixer la configuration de certains plugins SPIP int&eacute;gr&eacute;s au squelette comme Boutons Texte, Nyroceros... Il est indispensable d\'appliquer ce param&eacute;trage Sarka-SPIP pour obtenir les effets voulus dans le squelette. N&eacute;anmoins, il est possible de revenir &agrave; la 
 		configuration par d&eacute;faut du plugin si vous n\'utilisez plus le squelette.',
 		'cfg_descr_auteur' => 'Le corps de la page auteur permet d\'afficher plusieurs blocs d\'information : la biographie, les articles publi&eacute;s par l\'auteur et un formulaire de contact. Cette page permet de configurer l\'affichage de tous ces blocs.',
@@ -471,7 +474,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_boite_plugins' => 'Plugins',
 		'cfg_boite_auteur' => 'Auteur',
 		'cfg_boite_breve' => 'Br&egrave;ve',
-		'cfg_boite_styles_configuration' => 'Configuration des styles',
+		'cfg_boite_styles' => 'Configuration des styles',
+		'cfg_boite_themes' => 'Gestion des th&egrave;mes',
 		'cfg_boite_styles_sauvegarde' => 'Sauvegarde des styles',
 		'cfg_boite_styles_restauration' => 'Restauration des styles',
 		'cfg_boite_modeles' => 'Mod&egrave;les',
