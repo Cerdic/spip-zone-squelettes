@@ -33,7 +33,6 @@ function formulaires_restauration_cfg_traiter_dist($fond, $items_langue=array())
 	
 	$fichier = _request('fichier_sauvegarde');
 	lire_fichier($fichier,$tableau);
-	$tableau = unserialize($tableau);
 
 	$ok = ecrire_config($fond, $tableau);
 	
