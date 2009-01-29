@@ -1,5 +1,8 @@
 <?php
 function cfg_sarkaspip_styles_post_traiter($cfg){
+
+	if ((!defined('_SARKASPIP_DEBUG_CFG_FONDS')) || (_SARKASPIP_DEBUG_CFG_FONDS != 'oui')) return;
+
 	$dir = sous_repertoire(_DIR_RACINE,"squelettes");
 	$dir = sous_repertoire($dir,"images");
 	// Fond bg_site
@@ -54,5 +57,7 @@ function cfg_sarkaspip_styles_post_traiter($cfg){
 	$f = $dir . 'bg_planche' . _request('bi_extension_planche');
 	if ($fond=_request('fond_bi_planche')) copy($fond, $f);
 	else unlink($f);
+	
+	return;
 }
 ?>
