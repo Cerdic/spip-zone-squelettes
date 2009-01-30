@@ -22,8 +22,8 @@
 		]
 		<B_auteurs>
 			<label><:sarkaspip:cfg_lbl_liste_contacts:></label>
-			<select name="contact_auteur">
-				<option value="0"[ (#ENV{contact_auteur, 0}|=={0}|?{selected="selected"})]>--</option>
+			<select name="auteur_contact">
+				<option value="0"[ (#ENV{auteur_contact, 0}|=={0}|?{selected="selected"})]>--</option>
 				#SET{groupe_statut, aucun}
 				#SET{groupe_en_cours, 0}
 		<BOUCLE_auteurs(AUTEURS){tout}{statut IN #GET{critere_statut}}{par statut}{par nom}>
@@ -34,20 +34,20 @@
 				[(#SET{groupe_en_cours, 1})]
 			]
 			[(#EMAIL|?{' '})
-				[<option style="background: #FFFFF; font-weight: normal;" value="#ID_AUTEUR"[ (#ENV{contact_auteur, 0}|=={#ID_AUTEUR}|?{selected="selected"})]>(#NOM)</option>]
+				[<option style="background: #FFFFF; font-weight: normal;" value="#ID_AUTEUR"[ (#ENV{auteur_contact, 0}|=={#ID_AUTEUR}|?{selected="selected"})]>(#NOM)</option>]
 			]
 		</BOUCLE_auteurs>
 				</optgroup>
 			</select>
 		</B_auteurs>
 		<br /><br />
-		<label><:sarkaspip:cfg_lbl_contact_titre:></label><br />
-		<input type="text" name="contact_titre" [value="(#ENV{contact_titre, <:sarkaspip:contacter_site:>})" ]size="50" class="fondl" />
-		<br />
-		<p><:sarkaspip:cfg_inf_contact_descriptif:></p>
-		<label>
-			<textarea name="contact_descriptif" rows="4" cols="40" style="width:100%;">[(#ENV{contact_descriptif}|entites_html)]</textarea>
-		</label>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_information_page}
+			{suffixe=_contact}
+			{choix=avec_descriptif}
+			{label_titre=<:sarkaspip:cfg_lbl_contact_titre:>}
+			{label_descriptif=<:sarkaspip:cfg_inf_contact_descriptif:>}
+			{defaut_titre=<:sarkaspip:contacter_site:>}
+			{env}>
 	</fieldset>
 	
 	<div style="text-align: right; margin-right:3px;">
