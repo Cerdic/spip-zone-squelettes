@@ -286,7 +286,7 @@ function lister_fonds($bidon, $image, $suffixe){
 		$f_selected = lire_config('sarkaspip_styles/fond_'.$image.$suffixe);
 
 	$dir = sous_repertoire(_DIR_TMP, 'fonds');
-	$saves = preg_files($dir, 'nuage');
+	$saves = preg_files($dir);
 	$options = '<option value="">--</option>';
 	foreach ($saves as $_fichier) {
 		$nom = basename($_fichier);
