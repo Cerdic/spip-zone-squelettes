@@ -513,7 +513,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_mini_agenda' => 'Mini calendrier mensuel',
 		'cfg_lgd_sommaire_secteurs' => 'Liste des secteurs',
 		'cfg_lgd_sommaire_articles' => 'Liste des articles r&eacute;cents',
-		'cfg_lgd_herbier_type' => 'Typage',		
+		'cfg_lgd_herbier_page' => 'Informations de base',		
 		'cfg_lgd_herbier_pagination_1' => 'Liste - Pagination',
 		'cfg_lgd_herbier_pagination_2' => 'Panorama - Pagination',
 		'cfg_lgd_galerie_secteur' => 'Choix du secteur &#171;Galerie&#187;',
@@ -631,7 +631,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_galerie_id' => 'La galerie est mat&eacute;rialis&eacute;e par un secteur (rubrique de plus haut niveau); les articles de cette branche sont consid&eacute;r&eacute;s comme des albums. 
 		Choisissez donc le secteur qui deviendra votre galerie.',
 		'cfg_inf_galerie_sens_tri' => 'Vous pouvez pr&eacute;senter les albums de la galerie soit dans un ordre chronologique, soit dans un ordre anti-chronologique.',
-		'cfg_inf_herbier_id' => 'L\'herbier est mat&eacute;rialis&eacute; par les sites r&eacute;f&eacute;renc&eacute;s d\'un secteur (rubrique de plus haut niveau). Choisissez donc le secteur qui deviendra votre herbier.',
+		'cfg_inf_herbier_page' => 'L\'herbier est mat&eacute;rialis&eacute; par les sites r&eacute;f&eacute;renc&eacute;s dans les diverses rubriques du site &agrave; l\'exception des secteurs sp&eacute;cialis&eacute;s. Choisissez les informations de base de la page.',
 		'cfg_inf_plan_pagination' => 'La page Plan du site est compos&eacute;e de trois onglets assimilables &agrave; une bande de pagination. Les onglets permettent de pr&eacute;senter la liste des articles soit par date, soit par rubrique, soit par auteur.
 		Les articles sont donc tri&eacute;s alphab&eacute;tiquemet ou/et chronologiquement. Le tri alphab&eacute;tique est toujours croissant, par contre, le sens du tri chronologique peut &ecirc;tre choisi. La position de la bande d\'onglets est aussi param&eacute;trable.',
 		'cfg_inf_plan_sens_tri' => 'Choisissez l\'ordre de tri des dates.',
@@ -873,6 +873,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_rainette_ville' => 'Indiquez le code de cette ville : ',
 		'cfg_lbl_rainette_nb_prevision' => 'Indiquez le nombre de jours de pr&eacute;visions : ',
 		'cfg_lbl_css_restauration' => 'Fichiers de sauvegarde',
+		'cfg_lbl_herbier_titre' => 'Titre de la page herbier',
 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',

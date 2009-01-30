@@ -1,10 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 #CACHE{86400}
-<BOUCLE_rubrique_herbier(RUBRIQUES) {id_rubrique}>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 	<INCLURE{fond=noisettes/inc_header}
-		{meta_titre=#TITRE|supprimer_numero}
-		{meta_description=#INTRODUCTION{#EVAL{_SARKASPIP_CONFIG_INTRO_META}}}>
+		{meta_titre=<:sarkaspip:herbier_sites|ucfirst:>}>
 
 <body dir="#LANG_DIR"[ (#CONFIG{sarkaspip_noisettes/menu_rubriques, 1}|=={1}|?{onload="setHover()"})]>
 <div id="container">
@@ -18,27 +16,27 @@
 		<div id="content">
 			<div class="bouton_page">
 				[(#ENV{type}|=={liste}|?{' '})
-					<a id="herbier_panorama" href="[(#URL_PAGE{herbier,type=panorama[&id_rubrique=(#ID_RUBRIQUE)]})]" title="<:sarkaspip:lien_herbier_panorama:>"></a>
+					<a id="herbier_panorama" href="[(#URL_PAGE{herbier,type=panorama})]" title="<:sarkaspip:lien_herbier_panorama:>"></a>
 				]
 				[(#ENV{type}|=={panorama}|?{' '})
-					<a id="herbier_liste" href="[(#URL_PAGE{herbier,type=liste[&id_rubrique=(#ID_RUBRIQUE)]})]" title="<:sarkaspip:lien_herbier_liste:>"></a>
+					<a id="herbier_liste" href="[(#URL_PAGE{herbier,type=liste})]" title="<:sarkaspip:lien_herbier_liste:>"></a>
 				]
 			</div>
-			<h1 class="intitule_page">[(#TITRE|supprimer_numero)]</h1>	
+			[<h1 class="intitule_page">(#CONFIG{sarkaspip_herbier/titre, <:sarkaspip:herbier_sites|ucfirst:>}|entites_html)</h1>]
 			<div id="herbier_#ENV{type}" class="plan">
-				<INCLURE{fond=noisettes/herbier/inc_herbier_#ENV{type}}{ajax}{id_secteur=#ID_SECTEUR}>
+				<INCLURE{fond=noisettes/herbier/inc_herbier_#ENV{type}}{ajax}>
 			</div> <!--herbier-->
 		</div> <!--content-->
 	</div> <!--wrapper-->
 	
 	<div id="navigation">
 		[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
-		<INCLURE{fond=noisettes/navigation}>
+		<INCLURE{fond=noisettes/navigation}{page=herbier}>
 	</div> <!--navigation-->
 	
 	<div id="extra">
 		[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
-		<INCLURE{fond=noisettes/extra}{id_secteur=#RACINE_SPECIALISEE{herbier}}>
+		<INCLURE{fond=noisettes/extra}{page=herbier}>
 	</div> <!--extra-->
 	
 	<div id="footer">
@@ -50,6 +48,3 @@
 </body>
 </html>
 [(#REM) <!-- ================================== ERREUR BOUCLE VIDE  ================================== --> ]
-</BOUCLE_rubrique_herbier>
-	<INCLURE{fond=404}>
-<//B_rubrique_herbier>

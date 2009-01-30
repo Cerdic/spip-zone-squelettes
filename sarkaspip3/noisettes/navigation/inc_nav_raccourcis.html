@@ -15,7 +15,7 @@
 	<div id="menu_raccourcis" class="#GET{classe_div}"><ul>
 	[(#SET{raccourci, oui})]
 ]
-<BOUCLE_acces_rubriques(RUBRIQUES) {id_rubrique==#RACINE_SPECIALISEE{agenda:galerie:herbier:forum}}>
+<BOUCLE_acces_rubriques(RUBRIQUES) {id_rubrique==#RACINE_SPECIALISEE{agenda:galerie:forum}}>
 [(#ID_RUBRIQUE|=={#RACINE_SPECIALISEE{agenda}}|?{' '})
 	[(#CONFIG{sarkaspip_agenda/plugin, 1}|=={1}|?{' '})
 		<li[ class="(#GET{classe_li})"]><a href="[(#URL_PAGE{agenda,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:agenda:></a></li>
@@ -36,6 +36,15 @@
 		<li[ class="(#GET{classe_li})"]><a href="#URL_RUBRIQUE"><:sarkaspip:forum:></a></li>
 ]
 </BOUCLE_acces_rubriques>
+
+<B_acces_herbier>
+[(#GET{raccourci}|=={non}|?{' '})
+	<div id="menu_raccourcis" class="#GET{classe_div}"><ul>
+	[(#SET{raccourci, oui})]
+]
+<BOUCLE_acces_herbier(SITES) {id_secteur!==#RACINE_SPECIALISEE{agenda:galerie:forum}}{0,1}>
+			<li[ class="(#GET{classe_li})"]><a href="[(#URL_PAGE{herbier,type=liste})]"><:sarkaspip:herbier_sites|ucfirst:></a></li>
+</BOUCLE_acces_herbier>
 
 <B_acces_mots>
 [(#GET{raccourci}|=={non}|?{' '})
