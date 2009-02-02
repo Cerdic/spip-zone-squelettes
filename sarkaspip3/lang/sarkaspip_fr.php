@@ -139,6 +139,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'go_album' => 'Voir dans la page de l\'album',
 		'go_breve' => 'Voir la br&egrave;ve compl&egrave;te',
 		'go_site' => 'Se rendre sur le site',
+		'go_syndication' => 'Afficher le fichier de syndication du site',
 	  
 	
 //H
