@@ -35,7 +35,7 @@
 [(#INCLURE{fond=logo}{id_auteur,#ID_AUTEUR}{taille=#GET{taille}}{date=#ENV{date}})]
 </span>
 [<h1>(#NOM|textebrut|couper{24})</h1>]
-[<p>(#BIO||?{[(#BIO|textebrut)],[(#NOM|textebrut|couper{24})] <:pas_bio:>})</p>]
+[<p>(#BIO||?{[(#BIO|supprimer_tags)],[(#NOM|textebrut|couper{24})] <:pas_bio:>})</p>]
 [<h4 class="icone_site"><:site_prefere:> :</h4>
 <p><a href="#URL_SITE">(#NOM_SITE)</a></p>]
 
@@ -130,7 +130,7 @@
 
 
 
-
+<BOUCLE_aut(AUTEURS){id_auteur}{tous}> 
 <BOUCLE_art(ARTICLES){id_auteur}{titre_mot=portfolio}>
 <BOUCLE_aut_seul(AUTEURS){id_article}{tous}{1,1}>
 	 	[(#REM) si la boucle retourne un deuxieme auteurs alors on ne prend pas en compte l'article]
@@ -153,29 +153,30 @@
 
 [(#REM) combien de photographies stockées dans le doublons]
 
-<BOUCLE_combien_de_doc_affiche(DOCUMENTS){mode=document}{extension IN png,jpg}{par num titre, date}{!doublons docs #NOM}{0,30}> </BOUCLE_combien_de_doc_affiche>
- [(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE <:photo_total1:>,'<:photo_total2:>'}) <:photo_total3:> : ] 
+<BOUCLE_combien_de_doc_affiche(DOCUMENTS){mode=document}{extension IN png,jpg}{par num titre, date}{!doublons docs #_aut:NOM}> </BOUCLE_combien_de_doc_affiche>
+ [(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE <:photo_total1:>,'<:photo_total2:>'}) #NOM <:photo_total3:> : ] 
 </h4>
 </div>
 </B_combien_de_doc_affiche>
 </BOUCLE_aut2>
 
-
-
 		 [(#REM) affichage des x photographies stockees dans le doublons]
 	
+
+<B_affichage>
   <div id="minipics"><ul>
-    <BOUCLE_affichage(DOCUMENTS){mode=document}{extension IN png,jpg}{par num titre, date}{!doublons docs #NOM}{0,30}>
+      <BOUCLE_affichage(DOCUMENTS){mode=document}{extension IN png,jpg}{par num titre, date}{!doublons docs #_aut:NOM}{pagination 12}>
 <li class="transparent" id="a#ID_DOCUMENT"> 
 	<a class="thickbox nyroceros" href="#URL_DOCUMENT" type="#MIME_TYPE" [title="(#TITRE|couper{40}|texte_backend)"][longdesc="(#DESCRIPTIF|couper{40}|texte_backend)"] rel="gal"> 
 	[(#FICHIER|image_masque{carre-80.png}|image_aplatir{jpg,ffffff}|inserer_attribut{alt,#TITRE})]</a> 
 	  <p class="centre"><BOUCLE_liens_articles(ARTICLES){id_document}>[<a href="(#URL_ARTICLE)">Voir l'article</a>]</BOUCLE_liens_articles></p> 
 </li> 
-</BOUCLE_affichage></ul> 
+</BOUCLE_affichage></ul><hr class="spacer"/> [<p class="centre">Page: <span class="pagination">(#PAGINATION)</span></p>]
 </div>[(#REM)   fermeture minipics ]
 
-<hr class="spacer"/>
+	</B_affichage>
 
+</BOUCLE_aut>
 
 
 
@@ -184,13 +185,24 @@
 
 
 <li class="petite_boite">
-  <h4><:profil_son:>:</h4> 
-<p> 
+
 [(#REM)  Inclue logo auteur au survol avec un max de 100 pixel  ] 
 [(#REM)  A voir si on ne met pas par défaut autre chose comme la dernière image postées dans les forums. ] 
-[(#SET{taillesurvol,[(#LOGO_AUTEUR_SURVOL||hauteur|min{150})]})]  
+<BOUCLE_doc_forum(DOCUMENTS){id_forum}{id_auteur}{0,1}{!par date}>  <h4>Dernier doc:</h4> 
+<p>[(#EXTENSION|match{'^(gif|jpg|png)$'}|?{
+				<a class="thickbox nyroceros" href="#URL_DOCUMENT">[(#MODELE{emb}|image_reduire{220})]</a>
+				,
+					[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
+				})]</p>
+</BOUCLE_doc_forum>
+  <h4><:profil_son:>:</h4> 
+<p> 
+[(#SET{taillesurvol,[(#LOGO_AUTEUR||hauteur|min{150})]})]  
 [(#LOGO_AUTEUR_SURVOL||?{[(#LOGO_AUTEUR_SURVOL||reduire_image{#GET{taillesurvol}}|image_aplatir{gif,ffffff}|inserer_attribut{'alt',[(#NOM|textebrut|couper{24})]})],<:pas_photographie:>})]
 </p>
+<//B_doc_forum>
+
+
 </li> 
 
 
