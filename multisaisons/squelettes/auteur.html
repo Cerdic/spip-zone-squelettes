@@ -30,9 +30,8 @@
 
 <div class="grande_boite"> [(#REM)   ouverture grd boite texte   ]
 <span class="logodroite"> 
-[(#REM)  Inclue logo auteur avec un max de 210 pixel  ]
-[(#SET{taille,[(#LOGO_AUTEUR_NORMAL||hauteur|min{210})]})]  
-[(#INCLURE{fond=logo}{id_auteur,#ID_AUTEUR}{taille=#GET{taille}}{date=#ENV{date}})]
+[(#REM)  Inclue logo auteur avec un max de 216 pixel  ]
+[(#INCLURE{fond=logo}{id_auteur,#ID_AUTEUR}{taille=216}{date=#ENV{date}})]
 </span>
 [<h1>(#NOM|textebrut|couper{24})</h1>]
 [<p>(#BIO||?{[(#BIO|supprimer_tags)],[(#NOM|textebrut|couper{24})] <:pas_bio:>})</p>]
@@ -179,31 +178,10 @@
 </BOUCLE_aut>
 
 
-
+<hr class="spacer"/>
 <div id="cel">
 <ul id="deco">
 
-
-<li class="petite_boite">
-
-[(#REM)  Inclue logo auteur au survol avec un max de 100 pixel  ] 
-[(#REM)  A voir si on ne met pas par défaut autre chose comme la dernière image postées dans les forums. ] 
-<BOUCLE_doc_forum(DOCUMENTS){id_forum}{id_auteur}{0,1}{!par date}>  <h4>Dernier doc:</h4> 
-<p>[(#EXTENSION|match{'^(gif|jpg|png)$'}|?{
-				<a class="thickbox nyroceros" href="#URL_DOCUMENT">[(#MODELE{emb}|image_reduire{220})]</a>
-				,
-					[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
-				})]</p>
-</BOUCLE_doc_forum>
-  <h4><:profil_son:>:</h4> 
-<p> 
-[(#SET{taillesurvol,[(#LOGO_AUTEUR||hauteur|min{150})]})]  
-[(#LOGO_AUTEUR_SURVOL||?{[(#LOGO_AUTEUR_SURVOL||reduire_image{#GET{taillesurvol}}|image_aplatir{gif,ffffff}|inserer_attribut{'alt',[(#NOM|textebrut|couper{24})]})],<:pas_photographie:>})]
-</p>
-<//B_doc_forum>
-
-
-</li> 
 
 
 <li class="petite_boite">
@@ -220,21 +198,53 @@
 					
 
 <li class="petite_boite">
-<h4><:messages_derniers:></h4>
+<h4><:messages_derniers:> :</h4>
 <p>
-<BOUCLE_forum(FORUMS){id_auteur}{plat}{par date}{inverse}{0,6}>
+<BOUCLE_forum(FORUMS){id_auteur}{plat}{!par date}{0,6}>
                     [::&nbsp;<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})]" title="#TITRE">(#TITRE)</a><br/>]
                     </BOUCLE_forum>
 					[(#NOM|textebrut|couper{24})] <:messages_ecri_non:>
 					<//B_forum>
 			</p>
 </li>
+
+
+
+<li class="petite_boite">
+
+[(#REM)  Inclue logo auteur au survol avec un max de 216 pixel  ] 
+[(#REM)  A voir si on ne met pas par défaut autre chose comme la dernière image postées dans les forums. ]
+
+<BOUCLE_forum_auteur(FORUMS){plat}{id_auteur}{par date}> 
+<BOUCLE_doc_forum(DOCUMENTS){id_forum}{0,1}>
+#SET{doc,#ID_DOCUMENT} #SET{foru,#ID_FORUM}
+</BOUCLE_doc_forum>
+</BOUCLE_forum_auteur>
+
+
+
+
+<BOUCLE_quel_doc(DOCUMENTS){id_document=#GET{doc}}{0,1}>
+  <h4>Dernier document :</h4> 
+<p>[(#EXTENSION|match{'^(gif|jpg|png)$'}|?{
+				<a class="thickbox nyroceros" href="#URL_DOCUMENT">[(#MODELE{emb}|image_reduire{216})]</a>
+				,
+					[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
+				})]
+				<BOUCLE_quel_foru(FORUMS){id_forum=#GET{foru}}{0,1}>			
+				[Voir le document dans son contexte: <a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})]">(#TITRE|textebrut|couper{40})</a><br/>]
+		</BOUCLE_quel_foru></p>	
+</BOUCLE_quel_doc>
+  <h4><:profil_son:>:</h4> 
+<p>
+[(#LOGO_AUTEUR||?{[(#LOGO_AUTEUR||image_reduire{216}|image_aplatir{gif,ffffff}|inserer_attribut{'alt',[(#NOM|textebrut|couper{24})]})],<:pas_photographie:>})]
+</p>
+<//B_quel_doc>
+</li> 
+
+
 </ul>
 </div>
-
-
-
-
 
 
 

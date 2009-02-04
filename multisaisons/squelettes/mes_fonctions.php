@@ -707,26 +707,6 @@ array("\xC4"=>"Ae", "\xC6"=>"AE", "\xD6"=>"Oe", "\xDC"=>"Ue", "\xDE"=>"TH", "\xD
 }
 
 
-/*
- *   +----------------------------------+
- *    Nom du Filtre :    titre_forum
- *   +----------------------------------+
- *    Date : lundi 11 mai 2005
- *    Auteur :  BoOz (booz@bloog.net)
- *   +-------------------------------------+
- *    Fonctions de ce filtre :
- *    Nettoie les titres des forums
- *    [(#ID_AUTEUR|messages_prives)]
- *   +-------------------------------------+ 
- *  
- * Pour toute suggestion, remarque, proposition d'ajout
- * reportez-vous au site bloog.net
-*/
-function titre_forum($titre=''){
-$ze_titre = ereg_replace( "> ", "", $titre );
-return $ze_titre;
-}
-
 
 
  /*  +----------------------------------+
