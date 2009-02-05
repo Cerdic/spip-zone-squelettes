@@ -1,0 +1,129 @@
+#CACHE{6*3600}
+<BOUCLE_principale(RUBRIQUES){id_rubrique}{titre_mot=podcast}>
+	<INCLURE{fond=inc_entete-meta}{id_rubrique}{lang}>
+	</head>
+	<body>
+	<div id="Page">
+	
+		[(#REM) Entete de la page]
+		<INCLURE{fond=inc_entete-page}{id_rubrique}>
+			
+		[(#REM) Conteneur]
+		<div id="Conteneur">
+
+			[(#REM) Menu et éléments de navigation]
+			<div id="Menu">
+				<INCLURE{fond=inc_menu}{id_secteur}{id_rubrique}{date}>
+
+				[(#REM) Liste des sous-rubriques]
+				<B_sous_rubriques>
+					<div class="bloc">
+					<h3 class="titre"><:sous_rubriques:></h3>
+					<ul>
+					<BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par num titre}>
+						[<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><h2><a href="#URL_RUBRIQUE">
+						[(#LOGO_RUBRIQUE||reduire_image{300,300})](#TITRE|supprimer_numero)</a>]</h2>
+						[(#INTRODUCTION)]
+						<div class="suite"> <a href="#URL_RUBRIQUE"><:lire_suite:></a> </div>
+
+						</li>
+					</BOUCLE_sous_rubriques>
+					</ul>
+					</div>
+				</B_sous_rubriques>
+				
+			</div>
+            
+			<div id="MenuDroit">
+			</div>
+            
+            
+			[(#REM) Contenu de la page ]
+			<div id="Contenu">			
+
+		[(#REM) Fiche du podcast rubrique]
+		<div class="edito">
+			<div class="Titre">			
+				[<a href="#URL_RUBRIQUE"><h2>(#TITRE|supprimer_numero)</h2></a>]
+				<div class="nettoyeur"></div>
+				[<a href="#URL_RUBRIQUE">(#LOGO_RUBRIQUE||reduire_image{100,100})</a>]
+				[<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
+					[(#REM) Auteurs et dates]
+					<div id="AuteursDates">						[<div><strong>Date de création : </strong>
+						(#DATE|affdate)</div>]
+						[(#REM)
+						[<div><strong><:mis_a_jour:></strong>
+						(#DATE_MODIF|affdate_jourcourt)</div>]]
+					</div>
+				<div class="nettoyeur"></div>
+				
+													
+				[(#REM) Liens d'abonnement]
+				<div class="blocflux">
+					<ul>
+					<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+					<a href="#URL_PAGE{flux-rubrique}&amp;id_rubrique=#ID_RUBRIQUE">
+					<img src="#URL_SITE_SPIP/#EVAL{_DIR_PLUGIN_EVAPODCAST}img_pack/feed.png" width="30" height="30" border="0" alt="Copier, coller ce lien RSS dans votre agrégateur">
+					Pour s'abonner avec un logiciel agrégateur, copier ce lien (clique-droit + copier ce lien)					
+					</a></li>
+					<?php
+						$urlsite = ereg_replace("http://","itpc://","#URL_SITE_SPIP");
+					?>
+					<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+					<a href="<?php echo $urlsite ?>/spip.php?page=flux-rubrique&amp;id_rubrique=#ID_RUBRIQUE">
+					<img src="#URL_SITE_SPIP/#EVAL{_DIR_PLUGIN_EVAPODCAST}img_pack/podcast.gif" width="30" height="30" border="0" alt="Cliquez ici pour s'abonner directement avec iTunes">
+					Pour s'abonner avec iTunes, cliquez ici (celui-ci doit être installé sur votre système)				
+					</a></li>
+					</ul>
+				</div>
+						
+				[<div class="#EDIT{texte} texte">Description du podcast : (#TEXTE)</div>]
+			</div>			
+
+			<div class="nettoyeur"></div>
+		</div>
+
+[(#REM) Liste des épisodes articles du podcast]					
+		<div class="bloc">
+				<B_episodes>
+				<div><center><strong>Il y a #GRAND_TOTAL épisode(s). Voici la liste :</strong></center></div>
+				<ul>
+				<BOUCLE_episodes(ARTICLES){id_rubrique}{!par date}{pagination 5}>
+				<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+					<a href="#URL_ARTICLE"><h2>[(#TITRE|supprimer_numero)]</h2></a>
+						[(#REM) Liste des Documents joints]
+						<B_documentsepisode>
+								<BOUCLE_documentsepisode(DOCUMENTS){id_article}{par num titre}{mode=document}{extension==mp4|mp3|mov|m4a|m4v|pdf}>
+								[<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT_RUBRIQUE||reduire_image{30,0})](#TITRE|supprimer_numero)</a>][ - <em>Format: (#TYPE_DOCUMENT)</em>][ - <em>Taille: (#TAILLE|taille_en_octets)</em>]
+								[(#DESCRIPTIF)]
+								</BOUCLE_documentsepisode>
+						</B_documentsepisode>					
+					[<div><strong><:auteur:></strong> (#LESAUTEURS)</div>]
+					[<div><strong><:duree:></strong>: (#DATE)</div>]
+					[<div><strong><:date:></strong>: (#DATE|affdate)</div>]
+					[<div><strong><:popularite:></strong>: (#POPULARITE) soit environ #POPULARITE_SITE visite(s) par jour</div>]
+					[<div><strong>Description :</strong>(#TEXTE|couper{40})</div>]
+				</li>
+				</BOUCLE_episodes>
+				</ul>
+				[<center><strong>(#PAGINATION{page_precedent_suivant})</strong></center>]
+				</B_episodes>
+		</div>
+    
+				[(#REM)  Notes de bas de page ]
+				[<div class="bloc">
+					<h3 class="titre"><:notes:> :</h3>
+					<ul><li>(#NOTES)</li></ul>
+				</div>]
+				
+			</div>
+			
+
+			
+			<div class="nettoyeur"></div>
+		</div>
+		<INCLURE{fond=inc_pied}{lang}>
+	</div><!-- page -->
+</body>
+</html>
+</BOUCLE_principale>

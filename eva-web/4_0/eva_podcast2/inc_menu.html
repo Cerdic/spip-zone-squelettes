@@ -1,0 +1,64 @@
+﻿#CACHE{4*3600}
+
+[(#REM) Menu : déroule le niveau (fil d'ariane)]
+
+	<?php
+		$hierarchie = array();
+		<BOUCLE_recup_rub(RUBRIQUES){id_rubrique}{tout}>
+			<BOUCLE_recup_hierarchie(HIERARCHIE){id_rubrique}>
+				$hierarchie[] = #ID_RUBRIQUE;
+			</BOUCLE_recup_hierarchie>
+			$hierarchie[] = #ID_RUBRIQUE;
+			
+			$le_secteur = #ID_SECTEUR; 
+			$actuelle = #ID_RUBRIQUE;
+		</BOUCLE_recup_rub>
+	?>
+	
+	<B_rubriques>
+	<ul id="sommaire">
+		
+		<li<?php	
+			if ($TitrePage=='accueil') { echo ' class="on"'; }
+		?>>
+		<a href="#URL_SITE_SPIP"<?php	
+			if ($TitrePage=='accueil') { echo ' class="on"'; }
+		?>>[(#LOGO_SITE||image_reduire{0,30})] <:accueil:></a>
+		</li>
+
+		<BOUCLE_rubriques(RUBRIQUES){racine}{par num titre}>
+		<li[ class="(#EXPOSE{on,off})"]>
+			<a href="#URL_RUBRIQUE"[ class="(#EXPOSE{on,off})"]>[(#LOGO_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})] [(#TITRE|supprimer_numero)]</a>
+		<?php	
+			if (in_array(#ID_RUBRIQUE, $hierarchie)) {
+		?>
+		<B_sous_rubriques>
+		<ul>
+			<BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par num titre}>
+			<li[ class="(#EXPOSE{on,off})"]>
+				<a href="#URL_RUBRIQUE"[ class="(#EXPOSE{on,off})"]>[(#TITRE|supprimer_numero)]</a>
+		<?php	
+			if (in_array(#ID_RUBRIQUE, $hierarchie)) {
+		?>
+				<BOUCLE_sous_sous_rubriques(BOUCLE_sous_rubriques)></BOUCLE_sous_sous_rubriques>
+		<?php
+			}
+		?>
+
+			</li>
+			</BOUCLE_sous_rubriques>
+		</ul>
+		</B_sous_rubriques>
+		<?php
+			}
+		?>
+	
+		</li>
+		
+		</BOUCLE_rubriques>
+		
+	</ul>
+	</B_rubriques>
+
+
+	

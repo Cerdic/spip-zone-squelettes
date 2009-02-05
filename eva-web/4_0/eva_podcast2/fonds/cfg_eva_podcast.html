@@ -1,0 +1,98 @@
+#CACHE{0}
+<form method="post">[(#ENV{_cfg_}|form_hidden)]
+
+[(#REM) descriptif=
+<h4>Gestion du flux des podcasts</h4>
+Ici vous pouvez saisir le contenu m&eacute;tadonnées qui seront utilis&eacute;es pour indexer votre pocast.<br />
+<br /><a href="http://eva-web.edres74.net/spip.php?rubrique4" class="spip_out">Documentation officielle</a>
+]
+
+[(#REM) titre= Gestion du flux des podcasts]
+<BOUCLE_rubpod(RUBRIQUES){tout}{titre_mot=podcast}>
+
+
+<fieldset><legend>Détail du podcast</legend>
+
+<label>Titre du podcast : </label>
+<select name="titrepod">
+        <option value="#ENV{titrepod, #TITRE}">#TITRE (rubrique n°#ID_RUBRIQUE)</option>
+</select><br />
+
+<label>Numéro de l'article contenant à l'épisode : </label>
+<select name="idarticle">
+    <BOUCLE_artpod(ARTICLES)>
+        <option value="#ENV{idarticle, #ID_ARTICLE}">#TITRE (article n°#ID_ARTICLE) #LESAUTEURS</option>
+		#LESAUTEURS
+	</BOUCLE_artpod>
+</select><br />
+            
+
+<label>Description du podcast : </label>
+<textarea name="description" rows="4" cols="40" style="width:100%;">[(#DESCRIPTION)]</textarea><br />
+</fieldset>
+
+<label>Image du podcast (taille 600x600) : </label>
+<textarea name="description" rows="4" cols="40" style="width:100%;">[(#DESCRIPTION)]</textarea><br />
+</fieldset>
+
+<label>Image de l'épisode  (taille 600x600) : </label>
+<textarea name="description" rows="4" cols="40" style="width:100%;">[(#DESCRIPTION)]</textarea><br />
+</fieldset>
+
+<fieldset><legend>Auteurs</legend> 
+<label>Auteur : </label> 
+<select onMouseUp="this.form.id.value = this.options[this.selectedIndex].value;"> 
+<BOUCLE_auteurs(AUTEURS){tout}{par id_auteur}> 
+        <option value="#ID_AUTEUR" [(#ENV{id}|=={#ID_AUTEUR}|?{selected="selected"})]>#LOGIN</option> 
+</BOUCLE_auteurs> 
+</select> 
+</fieldset>
+
+<label>Titre : </label><input type="text" name="titre" value="#ENV{titre, Titre à préciser}" /><br />
+<label>Description du podcast : </label>
+<textarea name="description" rows="4" cols="40" style="width:100%;">[(#ENV{description, A préciser})]</textarea><br />
+</fieldset>
+</BOUCLE_rubpod>
+
+
+<fieldset><legend>Catégorie</legend>
+<label>Catégorie : </label>
+<select name="idcategorie">
+        <option value="#ENV{idcategorie}">Arts</option>
+        <option value="#ENV{idcategorie}">Economie et entreprise</option>
+        <option value="#ENV{idcategorie}">Humour</option>
+        <option value="#ENV{idcategorie}">Enseignement</option>
+        <option value="#ENV{idcategorie}">Jeux et hobbies</option>
+        <option value="#ENV{idcategorie}">Gouvernement et organismes</option>
+        <option value="#ENV{idcategorie}">Santé</option>
+        <option value="#ENV{idcategorie}">Parents et enfants</option>
+        <option value="#ENV{idcategorie}">Musique</option>
+        <option value="#ENV{idcategorie}">Actualités et politique</option>
+        <option value="#ENV{idcategorie}">Religion et spiritualité</option>
+        <option value="#ENV{idcategorie}">Sciences et médecine</option>
+        <option value="#ENV{idcategorie}">Culture et société</option>
+        <option value="#ENV{idcategorie}">Sports et loisirs</option>
+        <option value="#ENV{idcategorie}">Technologies</option>
+        <option value="#ENV{idcategorie}">Télévision et cinéma</option>
+</select>
+</fieldset>
+
+<fieldset><legend>Adresse du flux du podcast</legend>
+<form method="post" action="http://www.feedvalidator.org/check.cgi?url=lire_config(#URL_SITE_SPIP/spip.php?page=podcast)">
+<label>Adresse du flux : </label><input type="text" name="flux" value="#ENV{flux, Flux à préciser}" /><br /><br />
+<input type="submit" value="Vérifier le flux" />
+</form>
+</fieldset>
+<input type="submit" name="_cfg_ok" value="<:valider:>" />
+<br /><br />
+</form>
+
+<form method="post" action="#URL_SITE_SPIP/spip.php?page=podcast">
+<input type="submit" value="<:page_publique:>" />
+</form>
+<br />
+<form method="post" action="?exec=eva_podcast_admin">
+<input type="submit" value="Retour à la page du plugin" />
+</form>
+
+#CFG_ARBO{eva_podcast}

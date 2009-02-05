@@ -1,0 +1,43 @@
+#CACHE{3600}
+<?php
+        @header('Content-type: text/xml[; charset=(#CHARSET)]');
+        echo '<'.'?xml version="1.0" encoding="#CHARSET"?'.">\n";
+?>
+<rss xmlns:itunes="http://www.itunes.com/DTDs/Podcast-1.0.dtd" version="2.0">
+<channel>
+<BOUCLE_rubrique(RUBRIQUES) {id_rubrique ?}{par date} {inverse}> 
+    <title>[(#TITRE|textebrut)]</title>
+    <link>#URL_SITE_SPIP</link>
+    <language>#LANG</language>
+    <copyright>[(#NOM_SITE_SPIP|textebrut)] [(#DATE_annee|textebrut)]
+    </copyright>
+	<itunes:subtitle>[(#DESCRIPTIF|textebrut)]</itunes:subtitle>	<itunes:author>bb</itunes:author>
+    <itunes:summary>[(#TEXTE|textebrut)]</itunes:summary>
+    <description>[(#DESCRIPTIF|textebrut)]</description>
+    <generator>SPIP et EVA-WEB</generator>
+    <itunes:owner>	<itunes:name>cc</itunes:name>	<itunes:email>#EMAIL_WEBMASTER</itunes:email>	</itunes:owner>	<itunes:image>#LOGO_RUBRIQUE||url_absolue|texte_backend</itunes:image>	<itunes:category text="dd"></itunes:category>	<itunes:category text="ee"></itunes:category>	<itunes:category text="ff"></itunes:category>
+   
+    <BOUCLE_episodes(ARTICLES){id_rubrique}{par date}>
+    <item>
+      <title>[(#TITRE|texte_backend)]</title>
+      <link>[(#URL_ARTICLE|url_absolue|unique)]</link>
+      <itunes:author><BOUCLE_auteursb(AUTEURS){id_article}{", "}>[(#NOM|texte_backend)]</BOUCLE_auteursb></itunes:author>
+      [<itunes:subtitle>(#SOUS_TITRE|texte_backend)</itunes:subtitle>]
+      <itunes:summary>[(#TEXTE|liens_absolus|texte_backend)]</itunes:summary>
+      <BOUCLE_podcast(DOCUMENTS){id_article}{mode=document}>
+      [<enclosure url="(#URL_DOCUMENT|url_absolue|unique)" length="[(#TAILLE)]" type="#MIME_TYPE" />]
+      </BOUCLE_podcast>
+      <guid isPermaLink="false">[(#URL_ARTICLE|url_absolue|unique)]</guid>
+      <pubDate>[(#DATE|affdate{'r'})]</pubDate>
+      <itunes:duration></itunes:duration>
+      <itunes:keywords>
+      <BOUCLE_articles_mots(ARTICLES) {id_mot} {par hasard} {0,4}{", "}>
+		#TITRE
+		</BOUCLE_articles_mots>
+		</itunes:keywords>
+    </item>
+	</BOUCLE_episodes>
+
+</BOUCLE_rubrique>
+</channel>
+</rss>
