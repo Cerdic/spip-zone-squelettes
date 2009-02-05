@@ -45,14 +45,13 @@
 						[(#REM) chapeau, texte, post-scriptum de l'article ]		[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]		[<div class="#EDIT{texte} texte">(#TEXTE)</div>]	
 		<div class="nettoyeur"></div>				[<div class="#EDIT{hyperlien} lien"><strong><:voir_en_ligne:></strong> <a href="#URL_SITE">(#NOM_SITE)</a></div>]
 
-				[(#REM) Si mot cle "diaporama"]		<BOUCLE_test_diaporama(ARTICLES){id_article}{titre_mot=diaporama}>			<B_diapo>			<div class="bloc">			#ANCRE_PAGINATION			<h3 class="titre"><:diaporama:></h3>				<ul>				<BOUCLE_diapo(DOCUMENTS){id_article}{par num titre}{pagination 1}>					<li>					[(#EMBED_DOCUMENT)]					</li>				</BOUCLE_diapo>				</ul>			[<p class="pagination">(#PAGINATION{precedent_suivant})</p>]			</div>			</B_diapo> 		</BOUCLE_test_diaporama>		</B_test_diaporama>
 		
-		[(#REM) documents joints"]		<B_documents>		<div class="divers">		<h4><:documents_joints:></h4>		<ul>		<BOUCLE_documents(DOCUMENTS){id_document}{mode=document}{par num titre}{doublons}>			<li>[<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT_RUBRIQUE||image_reduire{300,300})](#TITRE|supprimer_numero|sinon{<:document:>})</a>][, <em>(#TYPE_DOCUMENT)</em>][, <em>(#TAILLE|taille_en_octets)</em>]
+		[(#REM) documents joints"]		<B_documents>		<div class="divers">		<h4><:documents_joints:></h4>		<ul>		<BOUCLE_documents(DOCUMENTS){id_document}{mode=document}{par num titre}>			<li>[<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT_RUBRIQUE||image_reduire{300,300})](#TITRE|supprimer_numero|sinon{<:document:>})</a>][, <em>(#TYPE_DOCUMENT)</em>][, <em>(#TAILLE|taille_en_octets)</em>]
 			[(#CONFIG{plugin}|match{LECTEUR_MULTIMEDIA}|?{' ',''})[(#MODELE{doc_player}{id_document=#ID_DOCUMENT})]] 
 			[(#MODELE{doc_player}{id_document=#ID_DOCUMENT})]
        [(#MODELE{doc_player}{player=neoplayer}{id_document=#ID_DOCUMENT})]
        </BOUCLE_ziq>
-			[(#DESCRIPTIF)]			<div class="nettoyeur"></div>			</li>		</BOUCLE_documents>		</ul>		</div>		</B_documents>		<//B_test_diaporama>
+			[(#DESCRIPTIF)]			<div class="nettoyeur"></div>			</li>		</BOUCLE_documents>		</ul>		</div>		</B_documents>
 		
 		[(#REM) Post_scriptum"]		[<div class="divers surlignable">		<h4><:post_scriptum:></h4>		<div class="#EDIT{ps} contenu">(#PS)</div>		</div>]
 				[(#REM)  Notes de bas de page ]		[<div class="divers">		<h4><:notes:></h4>		<div class="contenu">(#NOTES)</div>		</div>]
