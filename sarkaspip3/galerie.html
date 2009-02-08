@@ -8,41 +8,34 @@
 
 <body dir="#LANG_DIR"[ (#CONFIG{sarkaspip_noisettes/menu_rubriques, 1}|=={1}|?{onload="setHover()"})]>
 <div id="container">
-<div id="header">
-	[(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
-		<INCLURE{fond=noisettes/bandeau}>
-</div>
-
-<div id="wrapper">
-	<div id="content">
-		<div id="#ENV{type, planche}" class="galerie">
-		[(#ENV{type, planche}|=={planche}|?{' '})
-		  <INCLURE{fond=noisettes/galerie/inc_galerie_planche}{ajax}{id_rubrique}{categorie}{annee}{mois}>			
-		]
-		
-		[(#ENV{type, planche}|=={liste}|?{' '})
-		  <INCLURE{fond=noisettes/galerie/inc_galerie_liste}{ajax}{id_rubrique}{categorie}{annee}{mois}>			
-		]
-		</div><!--galerie-->
-	</div><!--content-->
-</div><!--wrapper-->
-
-<div id="navigation">
-	[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
-		<INCLURE{fond=noisettes/navigation}{id_secteur}>
-</div>  <!--navigation-->
-
-<div id="extra">
-	[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
-	<INCLURE{fond=noisettes/extra}{self=#SELF}{id_secteur=#RACINE_SPECIALISEE{galerie}}{type=#ENV{type, planche}}{categorie}{annee}{mois}>
-</div>
-
-<div id="footer">
-	[(#REM) <!-- ================================== ZONE PIED DE PAGE  ================================== --> ]
-		<INCLURE{fond=noisettes/pied}{squelette=#SQUELETTE}>
-</div>  <!--footer-->
-
-</div>
+	<div id="header">
+		[(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
+			<INCLURE{fond=noisettes/bandeau}>
+	</div> <!--header-->
+	
+	<div id="wrapper">
+		<div id="content">
+			<div id="galerie" class="galerie">
+			  <INCLURE{fond=noisettes/galerie/inc_galerie_planche}{ajax}{id_rubrique}{categorie}>
+			</div> <!--galerie-->
+		</div> <!--content-->
+	</div> <!--wrapper-->
+	
+	<div id="navigation">
+		[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
+			<INCLURE{fond=noisettes/navigation}{id_secteur}>
+	</div> <!--navigation-->
+	
+	<div id="extra">
+		[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
+		<INCLURE{fond=noisettes/extra}{self=#SELF}{id_secteur}{categorie}>
+	</div> <!--extra-->
+	
+	<div id="footer">
+		[(#REM) <!-- ================================== ZONE PIED DE PAGE  ================================== --> ]
+			<INCLURE{fond=noisettes/pied}{squelette=#SQUELETTE}>
+	</div> <!--footer-->
+</div> <!--container-->
 </body>
 </html>
 [(#REM) <!-- ================================== ERREUR BOUCLE VIDE  ================================== --> ]

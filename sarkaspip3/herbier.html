@@ -14,29 +14,20 @@
 	
 	<div id="wrapper">
 		<div id="content">
-			<div class="bouton_page">
-				[(#ENV{type}|=={liste}|?{' '})
-					<a id="herbier_panorama" href="[(#URL_PAGE{herbier,type=panorama})]" title="<:sarkaspip:lien_herbier_panorama:>"></a>
-				]
-				[(#ENV{type}|=={panorama}|?{' '})
-					<a id="herbier_liste" href="[(#URL_PAGE{herbier,type=liste})]" title="<:sarkaspip:lien_herbier_liste:>"></a>
-				]
-			</div>
-			[<h1 class="intitule_page">(#CONFIG{sarkaspip_herbier/titre, <:sarkaspip:herbier_sites|ucfirst:>}|entites_html)</h1>]
-			<div id="herbier_#ENV{type}" class="plan">
-				<INCLURE{fond=noisettes/herbier/inc_herbier_#ENV{type}}{ajax}>
+			<div id="herbier" class="herbier">
+			  <INCLURE{fond=noisettes/herbier/inc_herbier_#CONFIG{sarkaspip_herbier/modele, liste}}{ajax}{categorie}>
 			</div> <!--herbier-->
 		</div> <!--content-->
 	</div> <!--wrapper-->
 	
 	<div id="navigation">
 		[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
-		<INCLURE{fond=noisettes/navigation}{page=herbier}{type=#ENV{type, liste}}>
+		<INCLURE{fond=noisettes/navigation}{page=herbier}>
 	</div> <!--navigation-->
 	
 	<div id="extra">
 		[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
-		<INCLURE{fond=noisettes/extra}{page=herbier}{type=#ENV{type, liste}}>
+		<INCLURE{fond=noisettes/extra}{page=herbier}>
 	</div> <!--extra-->
 	
 	<div id="footer">
@@ -44,7 +35,7 @@
 		<INCLURE{fond=noisettes/pied}{squelette=#SQUELETTE}>
 	</div> <!--footer-->
 
-</div>
+</div> <!--container-->
 </body>
 </html>
 [(#REM) <!-- ================================== ERREUR BOUCLE VIDE  ================================== --> ]
