@@ -5,12 +5,10 @@
 [(#REM)   les m&eacute;tas   ]
 
 
-<title><:contacter:>[(#NOM|supprimer_tags|couper{60})].</title>
-<meta name="Description" content="<:contacter:> [(#NOM|supprimer_tags|texte_script)]"/>
+<title><:contacter:>[ (#NOM|supprimer_tags|couper{60})].</title>
+<meta name="Description" content="<:contacter:>[ (#NOM|supprimer_tags|texte_script)]"/>
 <meta name="keywords" content="[(#NOM|supprimer_tags|texte_script)]"/>
 <meta name="author" content="[(#NOM|supprimer_tags|texte_script) via #NOM_SITE_SPIP]"/>
-
-
 <meta name="revisit-after" content="15 days" />
 <meta http-equiv="content-type" content="text/html; charset=#CHARSET"/>
 <meta http-equiv="Content-Language" content="fr-fr" />
@@ -28,6 +26,20 @@
 
 
 
+
+[(#REM)  Ajoute un message pour que l'auteur puisse modifier son profil.]
+[<div class="grande_boite">
+(#SESSION{id_auteur}|=={#ID_AUTEUR}|oui)
+	<h4 class="icone_membre"> [(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})"title="Modifier mon profil.">]]
+ 	   [(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,visit})"title="Modifier mon profil.">]]<:modif_profil_maj:></a>.</h4> 
+ 	<p><:profil_aff:> #NOM_SITE_SPIP. 
+ 	 
+ 	  [(#NOM|textebrut|couper{24})], <:pouvoir:> [(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})"title="Modifier mon profil.">]]
+ 	   [(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,visit})"title="Modifier mon profil.">]]<:modif_profil:></a>.
+</p> 
+</div>]
+
+
 <div class="grande_boite"> [(#REM)   ouverture grd boite texte   ]
 <span class="logodroite"> 
 [(#REM)  Inclue logo auteur avec un max de 216 pixel  ]
@@ -38,44 +50,30 @@
 [<h4 class="icone_site"><:site_prefere:> :</h4>
 <p><a href="#URL_SITE">(#NOM_SITE)</a></p>]
 
-[(#REM) bugué
-[(#MODELE{editer_profil}{id_auteur=#SESSION{id_auteur}})]]
 
 
-[(#REM)  Incluera une hcard un de ces jours... pour les professionnels seulement.
-<div class="vcard none"> <img src="#URL_SITE_SPIP/IMG/[(#LOGO_AUTEUR|fichier)]" alt="photo" class="photo"/>
+
+
+[(#SESSION|ou{#ID_AUTEUR|=={1}}|oui)
+[(#EVAL{defined('_DIR_PLUGIN_INSCRIPTION2')}|?{' '})
+[(#MODELE{editer_profil}{id_auteur=#SESSION{id_auteur}})]]]
+
+
+[(#SESSION|oui)
+<div class="vcard none">vcard: <img src="#URL_SITE_SPIP/IMG/[(#LOGO_AUTEUR|fichier)]" alt="photo" class="photo"/>
 <a class="url fn " href="#URL_SITE">[(#NOM_SITE)]</a>
   <div class="org">Inscrit sur #NOM_SITE_SPIP - #DESCRIPTIF_SITE_SPIP</div>
   <a class="email" href="#URL_SITE_SPIP/spip.php?page=auteur&id_auteur=#ID_AUTEUR"></a>
   <div class="adr">[(#BIO|textebrut)]</div> 
-  </div>
+  </div>  
 <span class="droite hcal button"><a href="#" title="Cette page possède un microformat hcal">hcal</a></span>
 [(#REM)  Inclue un lien vers une vcard téléchargeable  ]
 [<span class="droite vcard button"><a href="(#URL_PAGE{vcard}|parametre_url{'id_auteur',#ID_AUTEUR})"  title="Télécharger sa carte de visite électronique">vcard</a></span>]
-<hr class="spacer"/>
-]
-
-
-
-
-
-
-[(#REM)  Ajoute un message pour que l'auteur puisse modifier son profil.]
-[(#SESSION{id_auteur}|=={#ID_AUTEUR}|oui)
-
-	<h4 class="icone_membre"> [(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})"title="Modifier mon profil.">]]
- 	   [(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,visit})"title="Modifier mon profil.">]]<:modif_profil_maj:></a>.</h4> 
- 	<p><:profil_aff:> #NOM_SITE_SPIP. 
- 	 
- 	  [(#NOM|textebrut|couper{24})], <:pouvoir:> [(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})"title="Modifier mon profil.">]]
- 	   [(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,visit})"title="Modifier mon profil.">]]<:modif_profil:></a>.
-</p> 
-]
-
-
-<hr class="spacer"/>
+<hr class="spacer"/>]
 </div>
-    
+
+	
+	
 [(#SESSION|ou{#ID_AUTEUR|=={1}}|oui)
 <div class="grande_boite">
 [<h4 class="icone_post"><:contacter:> (#NOM|textebrut|couper{24})</h4>] 
@@ -87,11 +85,9 @@
 
 
 
-
-
 [(#SESSION|ou{#ID_AUTEUR|=={1}}|non)
 <div class="grande_boite">
-<h4 class="icone_membre"> <:connect:></h4>
+<h4 class="icone_membre"><:connecter:></h4>
 <p><:pas_contact_pas_connect1:> [(#NOM|textebrut|couper{24})] <:pas_contact_pas_connect2:> #NOM_SITE_SPIP.<br/>
 <strong>[(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})"title="<:connect_pour_contact:> [(#NOM|textebrut|couper{24})].">]]
 [(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,visit})"title="<:connect_pour_contact:> [(#NOM|textebrut|couper{24})].">]]
@@ -103,19 +99,13 @@
 ]
 
 
- 
-	 
-	 
 	 
 	 
 	 
 	</div> 
 	[(#REM)   fermeture colone de gauche   ] 
-	 <div class="coldroit">  [(#REM)   ouverture de la colone de droite   ]  
-	 
-	 
-	    <div class="boite">[(#REM)   ouverture boite menu   ]  
-	 
+	 <div class="coldroit">  [(#REM)   ouverture de la colone de droite   ]  	 
+	    <div class="boite">[(#REM)   ouverture boite menu   ]  	 
 	        <h4 class="icone_menu"><:navigation:></h4> 
 	        [(#INCLURE{fond=inc_menu_rub})] </div>[(#REM)   fermeture boite menu   ]<div class="boite"> [(#REM)   ouverture boite les membres   ]  
 	[(#INCLURE{fond=inc_liste_membres}{lettre=#ENV{lettre}}{self=#SELF}{ajax}{env})] 
