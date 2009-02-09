@@ -719,6 +719,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_recherche_rubrique'=>'Rubriques trouv&eacute;es',
 		'cfg_inf_recherche_mot'=>'Mots trouv&eacute;s',
 		'cfg_inf_recherche_site'=>'Sites trouv&eacute;s',
+		'cfg_inf_herbier_modele'=>'Vous pouvez choisir d\'afficher l\'herbier soit comme une liste de sites pr&eacute;sent&eacute;s avec le nom, la rubrique, la vignette... soit comme un panorama de vignettes.',
 
 // Labels des items de choix
 		'cfg_lbl_layout_07' => 'Layout #7 (navigation, centre, extra)',
@@ -879,6 +880,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_rainette_nb_prevision' => 'Indiquez le nombre de jours de pr&eacute;visions : ',
 		'cfg_lbl_css_restauration' => 'Fichiers de sauvegarde',
 		'cfg_lbl_herbier_titre' => 'Titre de la page herbier',
+		'cfg_lbl_herbier_modele_1' => 'Mod&egrave;le liste',
+		'cfg_lbl_herbier_modele_2' => 'Mod&egrave;le panorama',
 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',
