@@ -45,10 +45,10 @@
 		]<BOUCLE_RubLayout(MOTS){id_rubrique}{type=_LayoutGala}>[(#REM) Dans le cas d'une rubrique
 			][(#INCLURE{fond=noisettes/header/layout}{layoutgala=[(#TITRE*|textebrut|substr{0,2})]})][(#REM) Appel du layout de la rubrique si oui
 		]</BOUCLE_RubLayout>[(#REM) Sinon
-		][(#ENV{template}|=={'Sommaire'}|?{' ',''})[(#INCLURE{fond=noisettes/header/layout}{layoutgala=#CONFIG{soyezcreateurs_layout/sommaire_layout,7}})]][(#ENV{template}|=={''}|?{' ',''})[(#INCLURE{fond=noisettes/header/layout}{layoutgala=#CONFIG{soyezcreateurs_layout/default_layout,7}})]]<//B_RubLayout>[(#REM) Fin de la recherche d'une rubrique
+		][(#ENV{template}|=={'Sommaire'}|oui)[(#INCLURE{fond=noisettes/header/layout}{layoutgala=#CONFIG{soyezcreateurs_layout/sommaire_layout,7}})]][(#ENV{template}|=={'Sommaire'}|non)[(#INCLURE{fond=noisettes/header/layout}{layoutgala=#CONFIG{soyezcreateurs_layout/default_layout,7}})]]<//B_RubLayout>[(#REM) Fin de la recherche d'une rubrique
 	]<//B_ArtRubLayout>
 <link rel="stylesheet" type="text/css" href="@stylessoyezcreateurs.css.html" media="screen, print" />
-[(#ENV{template}|=={'Sommaire'}|?{' ',''})[(#CONFIG{soyezcreateurs/mode_affichage,edito}|match{^portail.*}|?{' ',''})<link rel="stylesheet" type="text/css" href="@stylesportail.css.html" media="screen, print" />]]
+[(#ENV{template}|=={'Sommaire'}|oui)[(#CONFIG{soyezcreateurs/mode_affichage,edito}|match{^portail.*}|?{' ',''})<link rel="stylesheet" type="text/css" href="@stylesportail.css.html" media="screen, print" />]]
 [(#INCLURE{fond=noisettes/presentation/couleurrubrique}{id_article}{id_rubrique})]
 [(#INCLURE{fond=noisettes/header/logoextra}{id_rubrique})]
 <!--[if IE 6]>[
