@@ -1,6 +1,6 @@
 <?php
 
-// This is a SPIP language file  --  Ceci est un fichier langue de SPIP nommé admin_lang genere le NOW()
+// This is a SPIP language file  --  Ceci est un fichier langue de SPIP nommï¿½ admin_lang genere le NOW()
 // langue / language = en
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
@@ -25,6 +25,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'comment' => 'comment',
 'comments' => 'comments',
 'continue_reading' => 'Continue Reading',
+'cryptographic_key' =>'Cryptographic key',
 
 //D
 'dernier_article' => 'Latest post',
