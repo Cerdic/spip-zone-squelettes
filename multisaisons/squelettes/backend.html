@@ -1,0 +1,64 @@
+#CACHE{3600}
+[(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})]<?xml version="1.0"[ encoding="(#CHARSET)"]?>
+<rss version="2.0" [(#REM) rss 2.0.9)]	xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+
+
+<channel[ xml:lang="(#LANG)"]>
+	<title>[(#NOM_SITE_SPIP|texte_backend)]</title>
+	<link>#URL_SITE_SPIP/</link>
+	[<description>(#DESCRIPTIF_SITE_SPIP|supprimer_tags|texte_backend)</description>]
+	<language>#LANG</language>
+	<generator>SPIP - www.spip.net</generator>
+
+[	<image>
+		<title>[(#NOM_SITE_SPIP|texte_backend)]</title>
+		<url>(#LOGO_SITE_SPIP||extraire_attribut{src}|url_absolue|texte_backend)</url>
+		<link>#URL_SITE_SPIP/</link>
+		[<height>(#LOGO_SITE_SPIP||extraire_attribut{height})</height>]
+		[<width>(#LOGO_SITE_SPIP||extraire_attribut{width})</width>]
+	</image>
+]
+
+<BOUCLE_Forums(FORUMS){id_article}{par date}{inverse}{plat}{0,20}>	
+<BOUCLE_original_ou_pas(FORUMS){id_parent}{statut!=original}{0,1}>
+	<item>
+		<title>[(#TITRE|texte_backend) ][- Publication (#DATE|affdate{"ce j/n "})][-(#DATE|heures)][:(#DATE|minutes)]</title>
+		<link>#URL_SITE_SPIP/spip.php?page=discussion&amp;id_forum=#ID_FORUM</link>
+		<guid isPermaLink="true">#URL_SITE_SPIP/spip.php?page=discussion&amp;id_forum=#ID_FORUM</guid>
+		[<description>(#TEXTE|couper{200}|texte_backend)</description>]
+		[<dc:date>(#DATE|date_iso)</dc:date>]
+		<dc:format>text/html</dc:format>
+		<dc:language>#LANG</dc:language>
+		<B_auteursc>
+<dc:creator><BOUCLE_auteursc(AUTEURS){id_auteur}{tous}{", "}><a href="[(#URL_AUTEUR|url_absolue)]">[(#NOM|textebrut|couper{24})]</a></BOUCLE_auteursc></dc:creator>
+</B_auteursc>		
+</item>
+</BOUCLE_original_ou_pas>
+	<item>
+		<title>[(#TITRE|texte_backend) ][- Publication (#DATE|affdate{"ce j/n "})][-(#DATE|heures)][:(#DATE|minutes)]</title>
+		<link>#URL_SITE_SPIP/spip.php?page=discussion&amp;id_forum=#ID_FORUM</link>
+		<guid isPermaLink="true">#URL_SITE_SPIP/spip.php?page=discussion&amp;id_forum=#ID_FORUM</guid>
+		[<description>(#TEXTE|couper{200}|texte_backend)</description>]
+		[<dc:date>(#DATE|date_iso)</dc:date>]
+		<dc:format>text/html</dc:format>
+		<dc:language>#LANG</dc:language>
+		<B_auteursc>
+<dc:creator><BOUCLE_auteursc(AUTEURS){id_auteur}{tous}{", "}><a href="[(#URL_AUTEUR|url_absolue)]">[(#NOM|textebrut|couper{24})]</a></BOUCLE_auteursc></dc:creator>
+</B_auteursc>		
+</item>
+
+<//B_original_ou_pas>
+</BOUCLE_Forums>
+
+<BOUCLE_10recents(ARTICLES){rubrique ?}{lang ?}{branche ?}{par date}{inverse}{0,10}{unique}>
+[(#INCLURE{fond=inc-rss-item}{id_article})]
+</BOUCLE_10recents>
+
+<//B_Forums>
+
+
+
+
+</channel>
+
+</rss>

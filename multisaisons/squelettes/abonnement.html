@@ -1,0 +1,123 @@
+#CACHE{0}
+[(#INCLURE{fond=header})]<head>
+<title>[(#ENV{type}|=={question}|?{' ',''})<:authentification_demande:>] <:abo_gestion:></title>
+<meta name="Description" content="[(#ENV{type}|=={question}|?{' ',''})<:authentification_demande:>] <:abo_gestion:> #NOM_SITE_SPIP"/>
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="content-type" content="text/html; charset=#CHARSET"/>
+[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
+[(#INCLURE{fond=header-css}{date=#ENV{date}})] 	
+</head><body dir="#LANG_DIR"> 
+<div id="container">   [(#REM)   centrage page   ]
+[(#INCLURE{fond=entete}{date=#ENV{date}})] 
+<div id="surcontent">  
+[(#INCLURE{fond=menuhoriz})][(#REM)   ouverture ent&ecirc;te   ]
+<div id="content">  [(#REM)   ouverture contenu   ] 
+<div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
+
+
+
+
+
+
+[(#REM) si l internaute souhaite se connecter à l admin ou s'il souhaite se connecter à une rubrique restreinte]
+[(#ENV{type}|=={question}|?{' ',''})
+<div class="grande_boite">
+<h4 class="icone_membre"><:souhait_faire:> ?</h4>
+<p><:section_restreint:> #NOM_SITE_SPIP.<br/>
+<strong><a href="
+[(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[(#SELF|parametre_url{type,redac})]]
+[(#CONFIG{accepter_inscriptions}|=={oui}|?{'',' '})[(#SELF|parametre_url{type,visit})]]
+"><:vous_inscrire:></a></strong> <:acces_section:> ?</p>
+</div>]
+
+
+
+[(#REM) pour que l internaute puisse se connecter]
+[(#ENV{type}|match{redac|visit|question}|?{' ',''})
+<div class="grande_boite">
+<h4 class="icone_membre"><:inscrit_ou_pas:> ?</h4>
+<p>#FORMULAIRE_LOGIN
+</p><hr class="spacer"/>
+</div>]
+
+
+
+
+[(#REM) pour que l internaute puisse s inscrire ]
+[(#ENV{type}|match{redac|visit}|?{' ',''})
+<div class="grande_boite">
+<h4 class="icone_membre"><:nouveau:> <:sur:> #NOM_SITE_SPIP ?</h4> 
+[(#FORMULAIRE_ABONNEMENT)]
+        <p class="centre"><:confidentialite:>.<br/>
+			  <:cnil:></p><hr class="spacer"/>
+</div>]
+
+
+
+[(#REM) si l internaute ne demande pas de statut dans l url alors il modifie son compte. 
+On lui demande par la même occasion si l affichage est incorrect.] 
+[(#ENV{type}|match{redac|visit|question}|?{'',' '})
+<div class="grande_boite">
+#FORMULAIRE_MODIF_ABONNEMENT<hr class="spacer">
+<h4 class="icone_article"><:bloogletter_aff_incorrect:> ?</h4>
+<p><:bloogletter_aff_incorect_envoi_mail1:> 
+ [<strong><a href="(#URL_PAGE{auteur}|parametre_url{id_auteur,1})" title="<:contact_webmaster:>"><:bloogletter_aff_incorect_envoi_mail2:></a></strong>] <:bloogletter_aff_incorect_envoi_mail3:> </p>
+<hr class="spacer"/></div>]
+
+
+
+
+
+</div>[(#REM)   fermeture colone de gauche   ]
+<div class="coldroit">  [(#REM)   ouverture de la colone de droite   ] 
+<div class="boite">[(#REM)   ouverture boite menu   ] 
+
+        <h4 class="icone_menu"><:navigation:></h4>
+      [(#INCLURE{fond=inc_menu_rub})] 
+    
+    </div>[(#REM)   fermeture boite menu   ]
+
+
+[(#ENV{type}|=={question}|?{' ',''})
+  <div class="boite">
+<h4 class="icone_membre"><:authentification_demande:></h4>
+<p><:qq_section1:> #NOM_SITE_SPIP <:qq_section2:>. [<a href="(#URL_PAGE{auteur}|parametre_url{id_auteur,1})" title="<:contact_webmaster:>">
+<:contact_webmaster:></a>] <:inscrit_acces:></p>
+</div>]
+
+
+[(#ENV{type}|=={forumabo}|?{' ',''})  
+<div class="boite"> 
+ 	<h4 class="icone_membre"><:authentification_souci:> ?</h4> 
+ 	<p><:forum_cookies:> #NOM_SITE_SPIP <:forum_cookies2:>
+	 [<a href="(#URL_PAGE{auteur}|parametre_url{id_auteur,1})" title="<:contact_webmaster:>"> 
+ 	<:contact_webmaster:></a>] <:acces_prob:></p> 
+ </div>] 
+ 
+ 
+ 
+ [(#REM) les dernieres newsletter de spip liste] 
+<B_message>
+<div class="boite"> 
+<h4 class="icone_post"><:bloogletter_derniere:></h4>
+<p>
+<BOUCLE_message(COURRIERS){!par date}{type=nl}{0,5}>
+[<a href="[(#URL_PAGE{message}|parametre_url{'id_courrier',#ID_COURRIER})]">(#TITRE)</a>]
+[ envoy&eacute; le (#DATE|affdate)]<br/>
+</BOUCLE_message> 
+</p>
+</div>
+</B_message>
+</div>   [(#REM)   fermeture colone de droite   ] 
+ <hr class="spacer" />
+
+
+</div>
+ [(#REM)   fermeture contenu   ] 
+<INCLURE{fond=pieddepage}>
+
+</div> [(#REM)   fermeture surcontenu   ]<br/>
+
+</div> [(#REM)   fermeture container   ] 
+</body>
+</html>

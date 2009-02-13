@@ -1,0 +1,200 @@
+#CACHE2678400
+
+[(#INCLURE{fond=header})]
+[(#REM)   ci-dessus l'include du fichier header   ]
+
+<BOUCLE_principale(ARTICLES){id_article}><head>
+
+
+
+[(#REM)   les m&eacute;tas ]
+
+<title>[(#TITRE)]</title>
+[<meta name="Description" content="Carte: (#DESCRIPTIF|supprimer_tags|texte_script)"/>]
+<meta name="keywords" content="[(#CHAPO|supprimer_tags|texte_script)]<BOUCLE_metadocs(DOCUMENTS){id_article}{","}>[(#TITRE|supprimer_tags|texte_script)]</BOUCLE_metadocs>"/>
+<meta name="author" content="<BOUCLE_author(AUTEURS){id_article}{","}>[(#NOM|textebrut|couper{24})]</BOUCLE_author>"/>
+<meta name="revisit-after" content="15 days" />
+<meta http-equiv="content-type" content="text/html; charset=#CHARSET"/>
+<meta http-equiv="Content-Language" content="fr-fr" />
+[(#REM)   cette page n'est pas r&eacute;f&eacute;renc&eacute;e pour &eacute;viter pages satellites et mise en touche]
+<meta name="robot" content="noindex follow" />
+[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
+	
+[(#INCLURE{fond=header-css}{date=#ENV{date}})] 	
+
+<script type="text/javascript" src="[(#CHEMIN{nifty.js})]"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+Nifty("div.boite,div.avatar,div.reponse,div.discussion,p.interne,div.interne");
+Nifty("ul#minipics li,div.grande_boite,div#content,div#footer");
+Nifty("div#container,div.interforum,div.interforumgrand","big");
+Nifty("div#header","top,big");
+Nifty("ul#deco h4,ul#decobas h4,ul#nav li","top");
+Nifty("div#surcontent","bottom,big");
+Nifty("#cel p","bottom,same-height");
+Nifty("#celbas p","bottom");
+});
+
+</script>
+
+
+
+
+</head>
+<body onunload="GUnload()" dir="#LANG_DIR">
+
+
+<div id="container">   [(#REM)   cette div centre la page   ]
+[(#INCLURE{fond=entete}{date=#ENV{date}})]  [(#REM)   include du fichier entete avec le logo   ] 
+<div id="surcontent">  [(#REM)   ouverture ent&ecirc;te   ]
+<INCLURE{fond=menuhoriz}{id_rubrique}> [(#REM)   le menu horizontal avec les onglets   ] 
+<div id="content">  [(#REM)   ouverture contenu   ] 
+<div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
+
+
+
+ <div class="grande_boite">[(#REM)   ouverture d une grande boite    ]
+ 
+ <p>
+<span class="logogauche">[(#INCLURE{fond=logo}{id_article}{taille=48}{date=#ENV{date}})]</span>
+<a href="#URL_PAGE{sommaire}"><:accueil_site:></a> > <BOUCLE_plan(HIERARCHIE){id_article}{" > "}> <a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>[(#TITRE)]</a>	
+ </BOUCLE_plan>[ &gt; <a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|couper{40}|textebrut|attribut_html)"]>(#TITRE)</a>]	
+ </p>                 
+
+ 
+ [<h1>(#TITRE)</h1>]
+ <h4 class="icone_gis"><:localisation:>:</h4>
+   
+
+
+<div class="interne">
+[(#MODELE{carte_gis}{id_article}{id_rubrique}{id_mot}{id_auteur}
+{recherche}{latit}{lonxit}{zoom=13}{type=hybride}{control=large})]
+</div>
+
+ [#DEBUT_SURLIGNE(#TEXTE|image_reduire{450,0}|lier_au_glossaire|paragrapher)#FIN_SURLIGNE]
+   
+   
+  <hr class="spacer"/>
+
+
+</div>[(#REM)   fermeture grande_boite   ]
+
+
+
+  [<div class="grande_boite">(#NOTES)</div>]
+       
+</div>[(#REM)   fermeture colone de gauche   ]
+		
+
+<div class="coldroit">[(#REM)   ouverture de la colone de droite   ] 
+
+
+    <div class="boite inutile">[(#REM)   ouverture boite menu   ] 
+        <h4 class="icone_menu"><:navigation:></h4>
+        [(#INCLURE{fond=inc_menu_rub})]
+    
+    </div>[(#REM)   fermeture boite menu   ]
+
+
+
+
+      
+
+
+<BOUCLE_retirer_doc(DOCUMENTS){id_article}{extension==jpg|gif|png|kml}{doublons doc}>
+    [(#REM)   Boucle pour ne pas afficher les images et mp3 ici   ]
+    </BOUCLE_retirer_doc>
+
+
+
+   
+    
+<div class="boite"> [(#REM)   ouverture boite zip   ]
+     <B_documents><h4 class="icone_zip"><:logic:telechargement:></h4>
+      
+  <BOUCLE_documents(DOCUMENTS){id_article}{par titre}{doublons doc}>
+        [<p class="inutile logogauche"><a href="#URL_DOCUMENT" title="[(#TYPE_DOCUMENT)] [(#TAILLE|taille_en_octets)]">(#LOGO_DOCUMENT)</a></p>]
+<p class="inutile">[<a href="#URL_DOCUMENT" title="[(#TYPE_DOCUMENT)] [(#TAILLE|taille_en_octets)]">(#TITRE)</a>]
+[, (#DESCRIPTIF)]</p>
+[(#REM)   s&eacute;paration documents   ]     
+        <hr class="spacer" /> 
+      </BOUCLE_documents>
+	  
+	  <B_TEST_KML>
+
+<BOUCLE_TEST_KML(DOCUMENTS){id_article}{extension=kml}{0,1}>
+<h4 class="icone_gis inutile"><a href="#URL_DOCUMENT"><:localisation_google:></a></h4>
+
+</BOUCLE_TEST_KML>
+
+<BOUCLE_latlonx(GIS){id_article}{0,1}>
+[(#LAT||?{' ',''})<h4 class="icone_gis">
+<a rel="alternate" href="#microgeo" title="Cette page est g&eacute;o-marqu&eacute;e par un microformat"><span class="droite button microgeo">G&eacute;o</span></a>Coordonn&eacute;es GPS</h4>]
+[<p class="geo">(#LAT||?{' ',''})Latitude d&eacute;cimale:&nbsp;#LAT[, latitude sexag&eacute;simale:&nbsp;<abbr class="latitude">(#LAT|coordonnee{NS})</abbr>]<br/>]
+[(#LAT||?{' ',''})Longitude d&eacute;cimale:&nbsp;#LONX[, longitude sexag&eacute;simale:&nbsp;<abbr class="longitude">(#LONX|coordonnee{EO})</abbr>]</p>]
+</BOUCLE_latlonx>
+
+<//B_TEST_KML>
+	  
+    </div> [(#REM) fermeture boite zip ]
+
+
+
+
+ <B_evenements>
+ <div class="boite">
+<h4 class="icone_agenda"><:date:>:</h4>
+<ul>
+<BOUCLE_evenements(EVENEMENTS){id_article}{statut=publie}{par date_fin}>
+<li class="petite_liste">
+[(#DATE_DEBUT|affdate{'Ymd'}|=={[(#DATE_FIN|affdate{'Ymd'})]}|?{
+ Le [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+[(#HORAIRE|=={oui}|?{
+  [(#REM) memes heures ?]
+    [(#DATE_DEBUT|=={#DATE_FIN}|?{&agrave
+[(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)],''})]
+  [(#REM) pas memes heures ?]
+    [(#DATE_DEBUT|!={#DATE_FIN}|?{de
+[(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] &agrave;
+[(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)],''})]
+,''})]
+,
+ Du [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+[(#HORAIRE|=={oui}|?{&agrave; partir de
+ [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)],''})] au
+[(#DATE_FIN|nom_jour)]
+ [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{jusqu'&agrave;
+ [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)],''})]  })]
+[-&nbsp;lieu&nbsp;: (#LIEU)]
+<BOUCLE_jour_passe(EVENEMENTS){id_evenement}{age_fin>0}>
+(&Eacute;v&eacute;nement pass&eacute;.)
+ </BOUCLE_jour_passe> 
+</li>
+</BOUCLE_evenements>
+</ul>
+</div>
+</B_evenements>    
+
+
+[(#CONFIG{plugin}|match{METEO}|?{' '})
+[(#INCLURE{fond=meteo})]]
+  
+<div class="boite">
+<h4 class="icone_arbre"><:impri_enviro:></h4>
+<p><:impri_enviro1:> </p>
+  </div>
+
+</div>   [(#REM)   fermeture colone de droite   ] 
+<hr class="spacer" /> [(#REM)   ajoute une barre hr invisible   ] 
+</div>[(#REM)   fermeture contenu   ] 
+[(#INCLURE{fond=pieddepage}{id_article})] [(#REM)   le pied de page    ] 
+
+</div> [(#REM)   fermeture surcontenu   ]<br/>
+
+
+</div> [(#REM)   fermeture container   ] 
+</body>
+</html>
+</BOUCLE_principale>

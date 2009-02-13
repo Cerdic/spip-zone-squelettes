@@ -1,0 +1,21 @@
+#CACHE{86400}
+[(#HTTP_HEADER{Content-Type:text/x-vcard})]
+BEGIN:VCARD
+VERSION:3.0
+PROFILE:VCARD
+<BOUCLE_auteur(AUTEURS){id_auteur}{tous}>
+NAME:[(#NOM|translitteration)]
+SOURCE:[(#NOM_SITE_SPIP|translitteration)]
+N:[(#NOM|translitteration)]
+FN:[(#NOM|translitteration)] inscrit sur [(#NOM_SITE_SPIP|translitteration)]
+ORG:Inscrit sur [(#NOM_SITE_SPIP|translitteration)] - [(#DESCRIPTIF_SITE_SPIP|translitteration)]
+PHOTO;VALUE=uri:#URL_SITE_SPIP/IMG/[(#LOGO_AUTEUR|fichier)]
+NOTE:[(#BIO|textebrut|translitteration)]
+URL;WORK:[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR})]
+URL;HOME:#URL_SITE
+EMAIL;TYPE=INTERNET;TYPE=PREF:[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR})]
+[REV:(#DATE|affdate{'Y-m-d'})]
+</BOUCLE_auteur>
+END:VCARD
+
+

@@ -1,0 +1,213 @@
+#CACHE{43200}
+[(#INCLURE{fond=header})]
+[(#REM) ci-dessus l'include du fichier header avec un d&eacute;lai de 31 jours. ]
+
+
+<head>
+
+[(#REM) les metas avec dans l'ordre le titre de la page, la description pour les moteurs de recherches, les mots cles. ]
+<BOUCLE_descri_site(SYNDIC_ARTICLES){id_syndic}{0,1}>
+<title>[Les articles de (#NOM_SITE)]</title> 
+<meta name="Description" content="[La liste des derniers articles de (#NOM_SITE).]"/>
+<meta name="Keywords" content="[Les articles de (#NOM_SITE),][Profitez du kiosque rss de (#NOM_SITE_SPIP)]"/>
+</BOUCLE_descri_site>
+<title>[<:kiosque_de:> (#NOM_SITE_SPIP)[ en (#ENV{date}|affdate_mois_annee)]]</title> 
+<meta name="Description" content="[Kiosque à informations[ en (#ENV{date}|affdate_mois_annee)].]"/>
+<meta name="Keywords" content="[Consultez le kiosque à informations de (#NOM_SITE_SPIP)[ en (#ENV{date}|affdate_mois_annee)].]"/>
+<//B_descri_site>
+
+
+	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
+	[(#INCLURE{fond=header-css}{date=#ENV{date}})] 	
+</head>
+<body dir="#LANG_DIR"> 
+
+<div id="container">   [(#REM) cette div centre la page ]
+[(#INCLURE{fond=entete}{date=#ENV{date}})]   
+<div id="surcontent"> 
+[(#INCLURE{fond=menuhoriz})] 
+<div id="content"> 
+<div id="colgau"> 
+
+
+ <div class="grande_boite">[(#REM) ouverture d une grande boite ]
+
+
+
+      
+ 
+ <B_syndic_sites>
+ 
+ [(#REM) On affiche le site si on a un id_site. ]
+ 
+<BOUCLE_nom_site(SYNDIC_ARTICLES){id_syndic}{0,1}>
+<span class="gauche">
+<a class='ajax' href="[(#URL_SITE)]">
+[(#LOGO_SITE||?{'',' '})
+[(#SET{img,http://open.thumbshots.org/image.pxf?url=#URL_SITE&ext=.jpg})]  
+[(#SET{img,[(#GET{img}|copie_locale)]})]
+[(#GET{img}|largeur|<{10}|?{'',' '})<img src="#GET{img}" width="120" height="90" alt="[(#TITRE|couper{30})]" />]
+[<span class="plusbas"><:pas_de:><br/><:capture:><br/></span><span class="transpa">(#GET{img}|largeur|<{10}|?{' ',''})[(#INCLURE{fond=logo}{id_rubrique}{taille=48}{date=#ENV{date}})]</span>]
+]
+
+[(#LOGO_SITE||?{' ',''})[(#INCLURE{fond=logo}{id_syndic}{taille=120,90}{date=#ENV{date}})]]
+
+</a>
+</span>
+
+
+
+
+
+  <h4><:news_de:> #NOM_SITE.</h4></BOUCLE_nom_site>
+<ul>
+<BOUCLE_syndic_sites(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{pagination}>        
+<li class="grande_liste">[<a href="#URL_ARTICLE">(#TITRE|textebrut)</a>[ Ajout&eacute; le (#DATE|jour)]/[(#DATE|mois).]<br/>] [(#DESCRIPTIF|textebrut|couper{300})]
+[<a href="(#URL_PAGE{kiosque}|parametre_url{date,[(#DATE|affdate{'Y-m'})]})"
+				title="[Les articles en (#DATE|affdate{'Y-m'}|affdate_mois_annee)]">[<:article_voir_ajout:>(#DATE|affdate{'Y-m'}|nom_mois).]</a>]
+				
+</li>
+</BOUCLE_syndic_sites>
+</ul>
+<p class="centre pagination">#PAGINATION</p>
+</B_syndic_sites>
+
+
+ [(#REM) On affiche le mois si on a pas d id_site. ]
+
+  [(#REM) Couleurs du titre suivant mot cle saisons ou pas. ]
+ 
+<BOUCLE_couleur_titre(MOTS){titre=saison}{0,1}>
+[(#ENV{date}|saisonfr|=={printemps}|?{' ',''})#SET{'colo','9dba00'}]
+[(#ENV{date}|saisonfr|translitteration|=={ete}|?{' ',''})#SET{'colo','5da7c5'}]
+[(#ENV{date}|saisonfr|=={automne}|?{' ',''})#SET{'colo','cda261'}]
+[(#ENV{date}|saisonfr|=={hiver}|?{' ',''})#SET{'colo','666666'}]
+</BOUCLE_couleur_titre>
+[(#SET{'colo','666666'})]
+<//B_couleur_titre>
+
+
+		   
+				<div class="droite centre">[(#ENV{date}|nom_mois|texte_backend|image_typo{taille=36,police=police.ttf,couleur=#GET{colo}})]
+<BOUCLE_mois1(SYNDIC_ARTICLES){0,1}><br/>
+			[<a	href="(#URL_PAGE{kiosque}|parametre_url{date,[(#ENV{date}|Agenda_moisdecal{-1,'Y-m'})]})"
+				title="[(#ENV{date}|Agenda_moisdecal{-1,'Y-m'}|affdate_mois_annee)]">[(#ENV{date}|Agenda_moisdecal{-1,'Y-m'}|nom_mois)]&nbsp;&#8249;</a>]
+				[<strong>(#ENV{date}|affdate_mois_annee)</strong>]				
+				[<a	href="(#URL_PAGE{kiosque}|parametre_url{date,[(#ENV{date}|Agenda_moisdecal{1,'Y-m'})]})"
+				title="[(#ENV{date}|Agenda_moisdecal{1,'Y-m'}|affdate_mois_annee)]">&#8250;&nbsp;[(#ENV{date}|Agenda_moisdecal{1,'Y-m'}|nom_mois)]</a>]
+				</BOUCLE_mois1>
+</div>
+
+
+				
+				<B_syndic_mois>
+                <BOUCLE_mois_site(SYNDIC_ARTICLES){par date}{mois_relatif=0}{0,1}>  <h4>Les
+                  articles en [(#DATE|nom_mois)].</h4>
+                </BOUCLE_mois_site>
+		            <ul>
+                <BOUCLE_syndic_mois(SYNDIC_ARTICLES){par date}{inverse}{mois_relatif=0}{pagination}>
+                <li class="grande_liste"> [Ajout&eacute; le (#DATE|jour)]/[(#DATE|mois): ][<a href="#URL_ARTICLE">(#TITRE|textebrut)</a><br/>][(#DESCRIPTIF|textebrut|couper{300}) ][Par <a href="[(#URL_PAGE{kiosque}|parametre_url{id_syndic,#ID_SYNDIC})]">(#NOM_SITE)</a>]
+				</li>
+                </BOUCLE_syndic_mois>
+				</ul>
+				<p class="centre pagination">#PAGINATION</p>
+                </B_syndic_mois>
+				<h4><:kiosque_pas_article:> [ (#ENV{date}|affdate_mois_annee) :]</h4>
+				<p><:kiosque_pas_article1:> #NOM_SITE_SPIP.</p>
+				 <//B_syndic_mois>
+				
+				
+<//B_syndic_sites>
+ 	            
+</div>[(#REM) fermeture grande_boite ]
+
+
+
+
+
+<div id="celbas"> 
+<ul id="deco">
+<li class="petite_boite">
+<BOUCLE_un_site(SYNDIC_ARTICLES){id_syndic}{0,1}>    
+<h4>#NOM_SITE</h4>
+<p><:kiosque_de:> #NOM_SITE <:kiosque_de1:>
+</p>
+</BOUCLE_un_site>
+<h4><:kiosque_a:></h4>
+<p><:kiosque_a1:> #NOM_SITE_SPIP .</p>
+<//B_un_site>
+</li>
+
+<li class="petite_boite">
+<h4><:kiosque_tri:> ?</h4>
+<p>
+[(#ID_SYNDIC|?{<:kiosque_tri1:> <a href="#icone_agenda"><:kiosque_tri2:></a>.,<:kiosque_tri3:> <a href="#icone_site"><:kiosque_tri4:></a>.})]
+</p>
+  </li> 
+</ul>
+</div> [(#REM) fin de cel ]      
+
+
+       
+</div>[(#REM) fermeture colone de gauche ]
+		
+
+<div class="coldroit">[(#REM) ouverture de la colone de droite ] 
+
+
+    <div class="boite">[(#REM) ouverture boite menu ] 
+        <h4 class="icone_menu"><:navigation:></h4>
+        [(#INCLURE{fond=inc_menu_rub})]
+    
+    </div>[(#REM) fermeture boite menu ]
+
+
+
+
+
+
+<B_mois2>
+ 
+<div class="boite" id="icone_agenda">
+  <h4 class="icone_agenda"><:affichage_date:></h4>
+  
+  
+  		<p class="centre ajax"><BOUCLE_mois2(SYNDIC_ARTICLES){0,1}>
+			[<a	href="(#URL_PAGE{kiosque}|parametre_url{date,[(#ENV{date}|Agenda_moisdecal{-1,'Y-m'})]})"
+				title="[(#ENV{date}|Agenda_moisdecal{-1,'Y-m'}|affdate_mois_annee)]">[(#ENV{date}|Agenda_moisdecal{-1,'Y-m'}|nom_mois)]&nbsp;&#8249;</a>]
+				[<strong>(#ENV{date}|affdate_mois_annee)</strong>]
+				
+				[<a	href="(#URL_PAGE{kiosque}|parametre_url{date,[(#ENV{date}|Agenda_moisdecal{1,'Y-m'})]})"
+				title="[(#ENV{date}|Agenda_moisdecal{1,'Y-m'}|affdate_mois_annee)]">&#8250;&nbsp;[(#ENV{date}|Agenda_moisdecal{1,'Y-m'}|nom_mois)]</a>]
+				</BOUCLE_mois2>
+		</p>
+		
+</div>
+      
+	 </B_mois2> 
+  <B_navig_sites>
+<div class="boite" id="icone_site">
+  <h4 class="icone_site"><:affichage_site:></h4>
+<ul>  
+<BOUCLE_navig_sites(SYNDICATION){syndication=oui}{tous}>
+[<li><a href="[(#URL_PAGE{kiosque}|parametre_url{id_syndic,#ID_SYNDIC})]">(#NOM_SITE)</a></li>]
+</BOUCLE_navig_sites>
+</ul>
+</div>
+</B_navig_sites>
+	  
+ 
+
+</div>   [(#REM) fermeture colone de droite ] 
+
+
+<hr class="spacer" /> [(#REM) ajoute une barre hr invisible ] 
+</div>[(#REM) fermeture contenu ] 
+<INCLURE{fond=pieddepage}> [(#REM) le pied de page inclu avec d&eacute;lai ] 
+
+</div> [(#REM) fermeture surcontenu ]<br/>
+
+
+</div> [(#REM) fermeture container ] 
+</body>
+</html>

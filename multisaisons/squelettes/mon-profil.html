@@ -1,0 +1,101 @@
+﻿#CACHE{0}
+<BOUCLE_author0(AUTEURS){tout}{id_auteur=#SESSION{id_auteur}}>
+[(#INCLURE{fond=header})]<head>
+
+[(#REM)   les m&eacute;tas   ]
+
+
+
+<title>Votre profil [(#NOM|textebrut|couper{24})].</title>
+<meta name="Description" content="Votre profil [(#NOM|textebrut|couper{24})]"/>
+<meta name="author" content="[(#NOM|textebrut|couper{24}) via #NOM_SITE_SPIP]"/>
+
+
+<meta name="revisit-after" content="15 days" />
+<meta http-equiv="content-type" content="text/html; charset=#CHARSET"/>
+<meta http-equiv="Content-Language" content="fr-fr" />
+
+
+	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
+	
+
+[(#INCLURE{fond=header-css}{date=#ENV{date}})] 	
+
+</head>
+
+
+<body dir="#LANG_DIR"> 
+
+
+
+<div id="container">   [(#REM)   centrage page   ]
+[(#INCLURE{fond=entete}{date=#ENV{date}})]  
+<div id="surcontent">  
+[(#INCLURE{fond=menuhoriz})][(#REM)   ouverture ent&ecirc;te   ]
+<div id="content">  [(#REM)   ouverture contenu   ] 
+<div id="colgau"> [(#REM)   ouverture colone de gauche   ] 
+<div class="grande_boite">
+<h4><:form_forum_bonjour:> #SESSION{nom}</h4>
+<p> <:vs_connectez1:> #NOM_SITE_SPIP.<br/>
+  <:vs_connectez2:> :</p>
+
+</div>
+
+[(#REM) Inclure les deux boîtes en haut  ]
+[(#INCLURE{fond=inc_menu_participer}{origine=#ENV{page}})]
+
+
+
+
+
+[(#REM)   profil de l'auteur   ]	
+<div class="grande_boite">
+
+
+[(#FORMULAIRE_EDITER_AUTEUR{#ID_AUTEUR,#URL_AUTEUR{#ID_AUTEUR}{ajax}{env}})]
+
+
+</div> [(#REM) fermeture cellule ]
+
+
+
+
+
+</div> [(#REM)   fermeture colone de gauche   ]
+
+
+ <div class="coldroit">  [(#REM)   ouverture de la colone de droite   ] 
+
+
+    <div class="boite">[(#REM)   ouverture boite menu   ] 
+
+        <h4 class="icone_menu"><:navigation:></h4>
+        [(#INCLURE{fond=inc_menu_rub})] 
+    
+    </div>[(#REM)   fermeture boite menu   ]
+	
+	
+
+<BOUCLE_logo_auteur_elargi(AUTEURS_ELARGIS auteurs){id_auteur}{tout}> 
+<div class="boite"> 
+<h4 class="icone_membre">Mon logo/avatar</h4>
+<div class="centre buddy #EDIT{logo}" title="<:double_clic:>">[(#LOGO_AUTEUR||?{<:double_clic:><br/>,'Ajouter mon logo en double cliquant ici.'})[(#LOGO_AUTEUR||image_reduire{212,0}|image_aplatir{jpg,ffffff}|inserer_attribut{'alt',#NOM})]]</div>
+</div>
+</BOUCLE_logo_auteur_elargi>
+
+
+
+</div>
+[(#REM)   fermeture colone de droite   ] 
+<hr class="spacer" />
+</div>[(#REM)   fermeture contenu   ] 
+<INCLURE{fond=pieddepage}>
+
+</div> [(#REM)   fermeture surcontenu   ]<br/>
+</div> [(#REM)   fermeture container   ] 
+</body>
+</html>
+</BOUCLE_author0>
+[(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[(#INCLURE{fond=abonnement}{type=redac})]]
+[(#CONFIG{accepter_inscriptions}|=={oui}|?{'',' '})[(#INCLURE{fond=abonnement}{type=visit})]]
+<//B_author0>
