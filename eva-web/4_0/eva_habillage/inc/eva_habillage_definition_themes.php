@@ -68,7 +68,7 @@ function eva_habillage_definition_themes () {
     //Couleur du texte de l'Editorial et des chapeaux
     $texte_edito_color = array('div#contenu .edito','div#contenu div.chapo','div#entetediaporama h2','div#boutondiaporama a span');
     //Couleur du texte du titre de l'éditorial
-    $texte_edito_titre_color = array('div#contenu .edito h3.titre','.edito .titre','div#contenu .edito .titre a','.edito h2 a');
+    $texte_edito_titre_color = array('div#contenu .edito h3.titre','div#contenu .edito h2.titre','.edito .titre','div#contenu .edito .titre a','.edito h2 a');
     //Couleur de la première lettre du texte du titre de l'éditorial
     $texte_edito_titre_premier_color = array('div#contenu .edito h3.titre:first-letter','.edito .titre:first-letter');
     //Couleur du texte dans les barres des liens et d'arborescence
