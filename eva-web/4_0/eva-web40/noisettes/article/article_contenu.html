@@ -47,40 +47,8 @@
 	<div class="nettoyeur"></div>		
 	[<div class="#EDIT{hyperlien} lien"><strong><:voir_en_ligne:></strong> <a href="#URL_SITE">(#NOM_SITE)</a></div>]
 
-
-[(#REM) Portfolio ]
-<B_vignettes>
-<div class="divers">
-<h4><:portfolio:></h4>
-	<ul id="albumvignettes">
-		<BOUCLE_vignettes (DOCUMENTS) {id_article} {mode=document} {extension==jpg|png|gif} {par num titre}{doublons image} >
-		<li[ class="(#EXPOSE{on,off})"]>
-		<a 
-		[(#CONFIG{plugin}|match{NYRO}|?{' ',''})class="nyroceros" rel="gal"]
-		[(#CONFIG{plugin}|match{THICKBOX}|?{' ',''}) class="thickbox"]
-		href="#URL_DOCUMENT"[ title="(#TITRE|supprimer_numero)"]>
-		[(#CONFIG{image_process}|=={gd2}|?{[(#FICHIER|image_masque{inc_masque_carre_vignette.png}||inserer_attribut{alt,[(#TITRE|supprimer_numero)]})],[(#FICHIER|image_reduire{85})]})]
-		</a>
-		</li>
-		</BOUCLE_vignettes>
-	</ul>
-	<div class="nettoyeur"></div>
-</div>
-</B_vignettes>
-
-	<B_documents>
-	<div class="divers">
-	<h4><:documents_joints:></h4>
-	<ul>
-	<BOUCLE_documents(DOCUMENTS){id_article}{mode=document}{par num titre}{doublons image}>
-		<li>[<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT_RUBRIQUE||image_reduire{#GET{largeurlogopetit},#GET{hauteurlogopetit}})](#TITRE|supprimer_numero|sinon{<:document:>})</a>][, <em>(#TYPE_DOCUMENT)</em>][, <em>(#TAILLE|taille_en_octets)</em>]
-		[(#DESCRIPTIF)]
-		<div class="nettoyeur"></div>
-		</li>
-	</BOUCLE_documents>
-	</ul>
-	</div>
-	</B_documents><!--  -->
+[(#CONFIG{plugin}|match{ALBUM_JFLIP}|?{' ',''})<INCLURE{fond=album_jflip}{id_article}>]
+[(#CONFIG{plugin}|match{ALBUM_JFLIP}|?{'',' '})<INCLURE{fond=noisettes/article/article_documents}{id_article}>]
 
 	[<div class="divers surlignable">
 	<h4><:post_scriptum:></h4>
