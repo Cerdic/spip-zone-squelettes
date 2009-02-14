@@ -7,10 +7,60 @@
 	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
 	[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
 	<INCLURE{fond=inc-head}>
-	[<script type="text/javascript" src="(#CHEMIN{/scripts/effets.js})"></script>]
-</head>
-	<INCLURE{fond=inc-entete}>
+	<script type="text/javascript"> 
+		$(document).ready(function() {
 
+		$("#formulaire_ecrire_auteurnew").hide();
+		
+		$(".email_auteur").click(function() {
+			$("#formulaire_ecrire_auteurnew").slideToggle();
+		});
+		});
+	</script>
+ 
+
+</head>
+	
+	<body>   <!--start body-->
+
+    <div class="container">   <!--start container-->
+    
+        <div id="header" class="column span-14">
+        
+            <div id="logo" class="column first">
+        
+				[(#LOGO_SITE_SPIP||oui)
+				<a rel="start home" href="#URL_SITE_SPIP/" title="<:accueil_site:>">[(#LOGO_SITE_SPIP||image_reduire{535,90})]</a>]
+				
+				[(#LOGO_SITE_SPIP||non)
+				<a rel="start home" class="title" href="#URL_SITE_SPIP/" title="<:accueil_site:>">#NOM_SITE_SPIP</a>]
+				
+			[<div class="desc">(#CONFIG{themorningafter/complement_nom_site})</div>]
+            
+            </div>
+            
+            <div id="search_menu" class="column span-6 border_left last push-0">
+            
+                <div id="search" class="column first">
+                    <h3 class="mast4"><:recherche:></h3>
+                    
+                    #FORMULAIRE_RECHERCHE
+				
+                </div>
+             
+                <ul id="menu">
+                    <li><span class="home"><a href="#URL_SITE_SPIP"><:accueil_site:></a></span></li>
+                    <!--<li><span class="about"><a href="#"><:about:></a></span></li>-->
+                    <li><span class="archives"><a href="#URL_PAGE{archives}"><:archives:></a></span></li>
+                    <li><span class="subscribe"><a href="#URL_PAGE{backend}" rel="alternate" title="<:syndiquer_site:>"><:subscribe:></a></span></li>
+                    <li><span class="contact"><a href="#URL_AUTEUR{1}">Contact</a></span></li>
+                </ul>
+            
+            </div>
+        
+        </div>   <!--fin div header-->
+
+ 
 		<div id="topbanner" class="column span-14">   <!-- start top banner -->
             <div class="pagetitle">
                 // <:auteur:>      
@@ -20,16 +70,16 @@
         <div id="arch_content" class="column span-14">   <!-- start page_content -->
         
 			<div class="column span-3 first">    
-
+ 
 				<h2 class="archive_name #EDIT{qui}">#NOM</h2>        
             		[(#LOGO_AUTEUR||image_reduire{190})]
             	<div class="archive_meta">
             			
             			<div class="archive_number">
 						#NOM <:auteur_count:> <BOUCLE_count(ARTICLES){id_auteur} />[(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE&nbsp;<:billets:>,#TOTAL_BOUCLE&nbsp;<:billet:>}) <:for:> #NOM_SITE_SPIP]<//B_count>
-
+ 
 					</div>
-
+ 
 					<div class="archive_email">
 						<a class="email_auteur"><:email_auteur:></a>
 						[(#FORMULAIRE_ECRIRE_AUTEUR{id_auteur})]
@@ -44,9 +94,9 @@
 					
             			
             	</div>
-
+ 
 			</div>
-
+ 
 			<div class="column span-8">
 
 			<B_posts>

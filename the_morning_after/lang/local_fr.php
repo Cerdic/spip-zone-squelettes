@@ -25,7 +25,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'comment' => 'commentaire',
 'comments' => 'commentaires',
 'continue_reading' => 'Lire la suite',
-'cryptographic_key' =>'Clé cryptographique',
+'cryptographic_key' =>'Cl&eacute; cryptographique',
 
 //D
 'dernier_article' => 'Dernier billet',
