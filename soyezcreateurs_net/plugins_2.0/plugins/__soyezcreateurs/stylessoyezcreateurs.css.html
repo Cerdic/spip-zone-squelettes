@@ -479,12 +479,20 @@ html>body #menu li a, html>body .rightmenu li a {
 	position: relative;
 	[height: [(#LOGO_SITE_SPIP_SURVOL||extraire_attribut{height})]px;
 	background: [(#GET{c_header_bk})] url(/(#LOGO_SITE_SPIP_SURVOL||extraire_attribut{src})) no-repeat !important;]
-	[(#LOGO_SITE_SPIP_SURVOL||non)
-	/*[(#GET{c_header_bk}|!={transparent}|oui)
-	background: #GET{c_header_bk}[ url((#CHEMIN{images/fond_degrade_fonce_en_bas2.png}|image_sepia{[(#GET{c_header_bk})]}|image_aplatir{jpg}|extraire_attribut{src})) repeat-x bottom];]*/
+[(#LOGO_SITE_SPIP_SURVOL||non)
+  [(#CONFIG{soyezcreateurs/default_banniere,lentilles}|=={degrade}|oui)
+	[(#GET{c_header_bk}|!={transparent}|oui)
+	background: #GET{c_header_bk}[ url((#CHEMIN{images/fond_degrade_fonce_en_bas2.png}|image_sepia{[(#GET{c_header_bk})]}|image_aplatir{jpg}|extraire_attribut{src})) repeat-x bottom];]
+  ]
+  [(#CONFIG{soyezcreateurs/default_banniere,lentilles}|=={metal}|oui)
+	[(#GET{c_header_bk}|!={transparent}|oui)
+	background: #GET{c_header_bk}[ url((#CHEMIN{images/trame_metal.jpg}|image_sepia{[(#GET{c_header_bk})]}|image_aplatir{jpg}|extraire_attribut{src})) repeat];]
+  ]
+  [(#CONFIG{soyezcreateurs/default_banniere,lentilles}|=={lentilles}|oui)
 	[height: [(#CHEMIN{images/bandeauhaut_soyezcreateur.png}|hauteur)]px;
 	background: [(#GET{c_header_bk})] url(/(#CHEMIN{images/bandeauhaut_soyezcreateur.png}|image_sepia{[(#GET{c_header_bk})]}|image_aplatir{jpg}|extraire_attribut{src})) no-repeat;]
-	]	
+  ]
+]	
 }
 
 #header h1 {
