@@ -2,13 +2,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
-
 	<title>[(#TITRE|textebrut) - ][(#TITRE_PARENT|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
 	<meta name="description" content="afin d'intégrer _elements.css" />
 	<INCLURE{fond=inc-head}>
 </head>
 
-<body class="page_breve">
+<body class="page_article">
 	<div id="page">
 
 	[(#REM) Entete de la page + titre du site ]
@@ -71,24 +70,30 @@
 				
 				<div id="extra">
 				
+					<B_liens-utiles>
 					<div class="box orange_box boxlinks">
 						<h2>Liens utiles</h2>
 						<ul>
-							<li><a href="#">spip-herbier.net</a> <span class="description">Les meilleurs sites en SPIP</span></li>
-							<li><a href="#">plugins.spip.net</a> <span class="description">Le site des plugins de SPIP</span></li>
-							<li><a href="#">programmer.spip.org</a> <span class="description">Initiation à la programmation en SPIP 2.0</span></li>
+						<BOUCLE_liens-utiles(SITES){id_rubrique}>
+							<li><a href="#URL_SITE" class="#EDIT{nom_site}">#NOM_SITE</a>[ <span class="description #EDIT{descriptif}">(#DESCRIPTIF|textebrut)</span>]</li>
+						</BOUCLE_liens-utiles>
 						</ul>
 					</div>	
 					<div class="box_footer"></div>
+					</B_liens-utiles>
 					
+					<B_breve>
 					<div class="box pink_box boxtext">
-						<h2>Boite de texte</h2>
-						<p>(exemple, intro d'une brève mise en focus à l'aide d'un mot clé) Lorem ipsum et dolor sit amet consectuer et tout le touti quanti...</p>
+					<BOUCLE_breve(BREVES){id_rubrique}{!par date}{0,1}>
+						<h2 class="#EDIT{titre}">#TITRE</h2>
+						<p>#INTRODUCTION</p>
 						<div class="linksmore">
-							<a href="#">En savoir plus</a>
+							<a href="#URL_BREVE">En savoir plus</a>
 						</div>
+					</BOUCLE_breve>
 					</div>
-					<div class="box_footer"></div>	
+					<div class="box_footer"></div>
+					</B_breve>
 					
 					<div class="box blue_box boxform">
 						<h2>Formulaire</h2>
