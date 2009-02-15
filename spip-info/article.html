@@ -6,7 +6,6 @@
 	<title>[(#TITRE|textebrut) - ][(#TITRE_PARENT|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
 	<meta name="description" content="afin d'intégrer _elements.css" />
 	<INCLURE{fond=inc-head}>
-
 </head>
 
 <body class="page_breve">
@@ -29,7 +28,7 @@
 						<h1 class="article-titre #EDIT{titre}">#TITRE</h1>
 						<!--<p class="soustitre #EDIT{soustitre}">#SOUSTITRE</p>-->
 															
-						[(#INCLURE{fond=noisettes/socialtags}{id_article})]
+						[<div style="margin-left:24px">(#INCLURE{fond=noisettes/socialtags}{id_article})</div>]
 
 					</div><!-- .cartouche -->
 					
@@ -39,21 +38,21 @@
 							#CHAPO
 						</div>
 											
-						<div class="texte surlignable">
+						<div class="texte surlignable #EDIT{texte}">
 							#TEXTE
 						</div><!-- .text -->
 
 							<div id="view_more">
 							   [<div id="infos">
 									<h2>En savoir plus</h2>
-									<div class="ps surlignable">
-										<p>#PS)</p>
+									<div class="ps surlignable #EDIT{ps}">
+										<p>(#PS)</p>
 									</div>
 								</div>]
 								
 								[<div id="links">
 									<h2>Voir en ligne</h2>
-									<p class="hyperlien">
+									<p class="hyperlien #EDIT{url_site}">
 										<a href="#NOM_SITE" class="spip_out">(#URL_SITE)</a>
 									</p>
 							   	</div>]
@@ -109,8 +108,10 @@
 
 			[(#REM) Pied de page ]
 			<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
-				
-			</div><!--#pied-->
+			<div class="box dans_la_meme_rubrique">
+				<INCLURE{fond=inc-sousmenu}{env}{ajax}>
+			</div>
+
 		</div><!--#page-->
 	</body>
 </html>
