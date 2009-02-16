@@ -26,7 +26,7 @@
 <link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:> : [(#TITRE|attribut_html)]" href="#URL_PAGE{backend}&amp;id_rubrique=#ID_RUBRIQUE" />
 </BOUCLE_SyndicationRubrique>
 <link rel="alternate" type="application/rss+xml" title="<:dernieres_breves:> [(#NOM_SITE_SPIP|attribut_html)]" href="#URL_PAGE{backend-breves}" />
-[(#PLUGIN{AGENDA}|=={1}|?{' '})<link rel="alternate" type="application/rss+xml" title="<:pyrat:syndiquer_agenda:> [(#NOM_SITE_SPIP|attribut_html)]" href="#URL_PAGE{backendagenda}" />]
+[(#PLUGIN{AGENDA}|=={1}|oui)<link rel="alternate" type="application/rss+xml" title="<:pyrat:syndiquer_agenda:> [(#NOM_SITE_SPIP|attribut_html)]" href="#URL_PAGE{backendagenda}" />]
 <link rel="alternate" href="@piclens.rss.html[?id_article=(#ID_ARTICLE)]" type="application/rss+xml" title="" id="gallery" />
 [<link rel="shortcut icon" href="(#CHEMIN{images/favicon.ico}
 	|sinon{#LOGO_SITE_SPIP_NORMAL}
@@ -51,7 +51,7 @@
 		][(#ENV{template}|=={'Sommaire'}|oui)[(#INCLURE{fond=noisettes/header/layout}{layoutgala=#CONFIG{soyezcreateurs_layout/sommaire_layout,7}})]][(#ENV{template}|=={'Sommaire'}|non)[(#INCLURE{fond=noisettes/header/layout}{layoutgala=#CONFIG{soyezcreateurs_layout/default_layout,7}})]]<//B_RubLayout>[(#REM) Fin de la recherche d'une rubrique
 	]<//B_ArtRubLayout>
 <link rel="stylesheet" type="text/css" href="@stylessoyezcreateurs.css.html" media="screen, print" />
-[(#ENV{template}|=={'Sommaire'}|oui)[(#CONFIG{soyezcreateurs/mode_affichage,edito}|match{^portail.*}|?{' ',''})<link rel="stylesheet" type="text/css" href="@stylesportail.css.html" media="screen, print" />]]
+[(#ENV{template}|=={'Sommaire'}|oui)[(#CONFIG{soyezcreateurs/mode_affichage,edito}|match{^portail.*}|oui)<link rel="stylesheet" type="text/css" href="@stylesportail.css.html" media="screen, print" />]]
 [(#INCLURE{fond=noisettes/presentation/couleurrubrique}{id_article}{id_rubrique})]
 [(#INCLURE{fond=noisettes/header/logoextra}{id_rubrique})]
 <!--[if IE 6]>[
@@ -93,10 +93,10 @@ pageTracker._trackPageview();
 <div id="contenu">
 	<div id="wrapper">
 <div id="content" class="equilibre notstackable">
-[(#CONFIG{soyezcreateurs/menuhautheader,content}|=={content}|?{' ',''})[(#INCLURE{fond=noisettes/menus/menuhaut}{secteurencours})]]
+[(#CONFIG{soyezcreateurs/menuhautheader,content}|=={content}|oui)[(#INCLURE{fond=noisettes/menus/menuhaut}{secteurencours})]]
 [(#ENV{connexion}|=={1}|oui)
 [(#REM) Meme si connexion=1 est dans l'url, il ne faut pas chercher a afficher le panneau de login si on est deja identifie...]
-[(#SESSION{id_auteur}|?{'',' '})
+[(#SESSION{id_auteur}|non)
 [<div id="connexion">(#FORMULAIRE_LOGIN{#SELF|parametre_url{'connexion',''}})</div>]
 ]
 ]

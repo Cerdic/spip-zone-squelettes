@@ -11,12 +11,12 @@
 	{titretop=#GET{titretop}}
 )]
 <BOUCLE_EstAgenda(HIERARCHIE){id_rubrique}{tout}{titre_mot=Agenda}{inverse}{0,1}>
-[(#CONFIG{soyezcreateurs/agendathematique,Non}|=={#ENV{calendrier,Oui}}|?{' ',''})[(#INCLURE{fond=noisettes/agenda/agendathematique}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE})]]
-[(#CONFIG{soyezcreateurs/agendathematique,Non}|!={#ENV{calendrier,Oui}}|?{' ',''})
-	[(#CONFIG{soyezcreateurs/agendascolaire,annuel}|=={scolaire}|?{' ',''})[(#INCLURE{fond=noisettes/agenda/agendaliste_scolaire}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{id_mot})]]
-	[(#CONFIG{soyezcreateurs/agendascolaire,annuel}|=={annuel}|?{' ',''})
-		[(#CONFIG{soyezcreateurs/agendafuturseul,Non}|=={Oui}|?{' ',''})[(#INCLURE{fond=noisettes/agenda/agendaliste_futurseul}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{id_mot})]]
-		[(#CONFIG{soyezcreateurs/agendafuturseul,Non}|=={Non}|?{' ',''})[(#INCLURE{fond=noisettes/agenda/agendaliste}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{id_mot})]]
+[(#CONFIG{soyezcreateurs/agendathematique,Non}|=={#ENV{calendrier,Oui}}|oui)[(#INCLURE{fond=noisettes/agenda/agendathematique}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE})]]
+[(#CONFIG{soyezcreateurs/agendathematique,Non}|!={#ENV{calendrier,Oui}}|oui)
+	[(#CONFIG{soyezcreateurs/agendascolaire,annuel}|=={scolaire}|oui)[(#INCLURE{fond=noisettes/agenda/agendaliste_scolaire}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{id_mot})]]
+	[(#CONFIG{soyezcreateurs/agendascolaire,annuel}|=={annuel}|oui)
+		[(#CONFIG{soyezcreateurs/agendafuturseul,Non}|=={Oui}|oui)[(#INCLURE{fond=noisettes/agenda/agendaliste_futurseul}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{id_mot})]]
+		[(#CONFIG{soyezcreateurs/agendafuturseul,Non}|=={Non}|oui)[(#INCLURE{fond=noisettes/agenda/agendaliste}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{id_mot})]]
 	]
 ]
 </BOUCLE_EstAgenda>
@@ -37,9 +37,9 @@
 	</div>
 
 [(#REM) Ne pas afficher le cartouche si le texte est vide : on affiche déjà la liste des articles avec un extrait à la place du texte
-][(#TEXTE*|=={''}|?{'',' '})[(#INCLURE{fond=noisettes/cartouches/rubrique_cartouche}{id_rubrique})]]
+][(#TEXTE*|=={''}|non)[(#INCLURE{fond=noisettes/cartouches/rubrique_cartouche}{id_rubrique})]]
 [(#REM) Par contre, afficher les nouveautes si la config du site en décide
-][(#TEXTE*|=={''}|?{' ',''})[(#CONFIG{soyezcreateurs/nouveauteparbranche,Non}|=={Oui}|?{' '})[<div id="artrecents" class="flottant">(#INCLURE{fond=noisettes/cartouches/cartouche_nouveaute_branche}{id_rubrique}|trim)</div>]]]
+][(#TEXTE*|=={''}|oui)[(#CONFIG{soyezcreateurs/nouveauteparbranche,Non}|=={Oui}|oui)[<div id="artrecents" class="flottant">(#INCLURE{fond=noisettes/cartouches/cartouche_nouveaute_branche}{id_rubrique}|trim)</div>]]]
 
 <div class="texte">
 <!-- Une : contenu de la rubrique -->
@@ -48,7 +48,7 @@
 </div>
 	<div id="letexte" class="surlignable">
 [<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
-[<div class="#EDIT{texte}">(#TEXTE|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>][(#TEXTE*|=={''}|?{' ',''})[(#INCLURE{fond=noisettes/rubriques/rubrique_automatique}{id_rubrique})]]
+[<div class="#EDIT{texte}">(#TEXTE|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>][(#TEXTE*|=={''}|oui)[(#INCLURE{fond=noisettes/rubriques/rubrique_automatique}{id_rubrique})]]
 [<div class="notes">(#NOTES)</div>]
 	</div><!-- Fin de #LeTexte -->
 </div><!-- Fin de .texte -->

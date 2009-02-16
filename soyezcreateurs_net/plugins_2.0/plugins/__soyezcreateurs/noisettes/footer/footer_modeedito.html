@@ -6,7 +6,7 @@
 	</div><!-- id="wrapper" -->
 	<div id="navigation" class="equilibre stackable">
 	<h1 class="navstuff ahem">Menus de navigation de #NOM_SITE_SPIP</h1>
-[(#CONFIG{soyezcreateurs/logoheader,navigation}|=={navigation}|?{' ',''})#INCLURE{fond=noisettes/logosite}]
+[(#CONFIG{soyezcreateurs/logoheader,navigation}|=={navigation}|oui)#INCLURE{fond=noisettes/logosite}]
 <div id="menu" class="navstuff">
 <div class="espaceavant">
 <ul>
@@ -43,7 +43,7 @@
 [(#INCLURE{fond=noisettes/menus/menuarticles}{id_rubrique}{id_article})]
 <B_Rubriques_MenuHaut>
 <ul>
-  <BOUCLE_Rubriques_MenuHaut(RUBRIQUES){id_parent}{par num titre}{!titre_mot=PasDansMenu}{!lang_select}><BOUCLE_test_expose_MenuHaut(RUBRIQUES) {id_enfant}{0,1}>#EXPOSE{' ',(#CONFIG{soyezcreateurs/sousmenulocaux,'systematique'}|=={systematique}|?{' ',''})}</BOUCLE_test_expose_MenuHaut>
+  <BOUCLE_Rubriques_MenuHaut(RUBRIQUES){id_parent}{par num titre}{!titre_mot=PasDansMenu}{!lang_select}><BOUCLE_test_expose_MenuHaut(RUBRIQUES) {id_enfant}{0,1}>#EXPOSE{' ',(#CONFIG{soyezcreateurs/sousmenulocaux,'systematique'}|=={systematique}|oui)}</BOUCLE_test_expose_MenuHaut>
   <li<BOUCLE_ClasseRubriqueMenuHaut(MOTS){id_rubrique}{type=_ClasseRubriqueMenu}{0,1}>[ class=(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{'"encours ','"'})#TITRE"]</BOUCLE_ClasseRubriqueMenuHaut>[(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{' class="encours"',''})]<//B_ClasseRubriqueMenuHaut>>[(#INCLURE{fond=noisettes/menus/rubrique_li}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]<BOUCLE_SsRubriques_MenuHaut(BOUCLE_Rubriques_MenuHaut)></BOUCLE_SsRubriques_MenuHaut></li>
   </B_test_expose_MenuHaut></BOUCLE_Rubriques_MenuHaut>
 </ul>
@@ -79,7 +79,7 @@
   <li<BOUCLE_ClasseRubriqueMenu(MOTS){id_rubrique}{type=_ClasseRubriqueMenu}{0,1}>[ class=(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{'"encours ','"'})#TITRE"]</BOUCLE_ClasseRubriqueMenu>[(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{' class="encours"',''})]<//B_ClasseRubriqueMenu>>[(#INCLURE{fond=noisettes/menus/rubrique_li}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]
 <B_Rubriques>
 <ul>
-  <BOUCLE_Rubriques(RUBRIQUES){id_parent}{par num titre}{!titre_mot=PasDansMenu}{!lang_select}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}{0,1}>#EXPOSE{' ',(#CONFIG{soyezcreateurs/sousmenulocaux,'systematique'}|=={systematique}|?{' ',''})}</BOUCLE_test_expose>
+  <BOUCLE_Rubriques(RUBRIQUES){id_parent}{par num titre}{!titre_mot=PasDansMenu}{!lang_select}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}{0,1}>#EXPOSE{' ',(#CONFIG{soyezcreateurs/sousmenulocaux,'systematique'}|=={systematique}|oui)}</BOUCLE_test_expose>
   <li>[(#INCLURE{fond=noisettes/menus/rubrique_li}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]<BOUCLE_SsRubriques(BOUCLE_Rubriques)></BOUCLE_SsRubriques></li>
   </B_test_expose></BOUCLE_Rubriques>
 </ul>
@@ -106,21 +106,21 @@
 
 <//B_MenuHaut>
 
-[(#PLUGIN{ACCESRESTREINT}|=={1}|?{' '})[(#INCLURE{fond=noisettes/login-logout}{env})]]
+[(#PLUGIN{ACCESRESTREINT}|=={1}|oui)[(#INCLURE{fond=noisettes/login-logout}{env})]]
 <div class="espaceavant">
 <ul>
 <li>[(#ENV{template}|=={Plan}|?{<strong>})]<a href="@plan.html" title="<:pyrat:toutleplan:>"><:pyrat:plan_menu:></a>[(#ENV{template}|=={Plan}|?{</strong>})]</li>
 <BOUCLE_AuMoinsUnSite(SITES){0,1}><li>[(#ENV{template}|=={Sites}|?{<strong>})]<a href="@site.html" title="<:ecrire:icone_voir_sites_references|attribut_html:>"><:sites_web:></a>[(#ENV{template}|=={Sites}|?{</strong>})]</li></BOUCLE_AuMoinsUnSite>
-[(#PLUGIN{CLEVERMAIL}|=={1}|?{' '})
+[(#PLUGIN{CLEVERMAIL}|=={1}|oui)
 <li>[(#ENV{template}|=={Liste_mail}|?{<strong>})]<a href="@liste_mail.html" title="<:pyrat:newsletter:>"><:pyrat:newsletter:></a>[(#ENV{template}|=={Liste_mail}|?{</strong>})]</li>]
-[(#PLUGIN{ACRONYMES}|=={1}|?{' '})[(#INCLURE{fond=noisettes/navigation/sigles_menu}{env})]]
+[(#PLUGIN{ACRONYMES}|=={1}|oui)[(#INCLURE{fond=noisettes/navigation/sigles_menu}{env})]]
 
 </ul>
 </div>
 [(#INCLURE{fond=noisettes/navigation/frmrecherche})]
-[(#CONFIG{soyezcreateurs_google/google_search}|!={''}|?{' ',''})[(#INCLURE{fond=noisettes/navigation/ads_search})]]
+[(#CONFIG{soyezcreateurs_google/google_search}|!={''}|oui)[(#INCLURE{fond=noisettes/navigation/ads_search})]]
 
-[(#PLUGIN{CLEVERMAIL}|=={1}|?{' '})[<div class="cadreinfo">(#FORMULAIRE_CLEVERMAIL)</div>]]
+[(#PLUGIN{CLEVERMAIL}|=={1}|oui)[<div class="cadreinfo">(#FORMULAIRE_CLEVERMAIL)</div>]]
 
 </div>
 	</div><!-- id="navigation" -->

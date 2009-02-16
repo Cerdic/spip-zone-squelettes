@@ -21,7 +21,7 @@
 
 		<form id="timenavigation" method="get" action="#SELF"><fieldset><legend><:pyrat:precisezrecherche:></legend>
 		<BOUCLE_PremiereAnnee(EVENEMENTS){branche}{par date_debut}{0,1}>
-		[(#DATE_DEBUT|affdate{Y-m-d}|<{[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)-09-01]}|?{' '})
+		[(#DATE_DEBUT|affdate{Y-m-d}|<{[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)-09-01]}|oui)
 		<a href="[(#SELF|parametre_url{'date_ev',[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire|moins{1})-09-01]}|parametre_url{'calendrier',1})]"><img src="#CHEMIN{images/prev.gif}" title="<:precedent:>" alt="<:precedent:>" /></a>
 		]
 		</BOUCLE_PremiereAnnee>
@@ -42,11 +42,11 @@
 
 		<input type="submit" class="form_submit" value="<:pass_ok:>" />
 		<BOUCLE_DerniereAnnee(EVENEMENTS){branche}{!par date_debut}{0,1}>
-		[(#DATE_DEBUT||affdate{Y-m-d}|>{[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire|plus{1})-09-01]}|?{' '})
+		[(#DATE_DEBUT||affdate{Y-m-d}|>{[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire|plus{1})-09-01]}|oui)
 		<a href="[(#SELF|parametre_url{'date_ev',[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire|plus{1})-09-01]}|parametre_url{'calendrier',1})]"><img src="#CHEMIN{images/next.gif}" title="<:suivant:>" alt="<:suivant:>" /></a>
 		]
 		</BOUCLE_DerniereAnnee>
-		[(#ENV{date}|annee_scolaire|!={[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)]}|?{' '})
+		[(#ENV{date}|annee_scolaire|!={[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)]}|oui)
 		<input type="button" class="form_submit" value="<:pyrat:aujourdhui:>" onclick="document.location.href='[(#SELF|parametre_url{'date_ev',''})]'; return false;" />
 		]
 		</fieldset>
