@@ -1,11 +1,9 @@
-[(#REM)
-	Eviter les boutons d'admin sur la page de login
-]
-#HTTP_HEADER{Content-Type: text/html; charset=#CHARSET}
+#CACHE{0}
+[(#HTTP_HEADER{Content-Type: text/html[; charset=(#CHARSET)]})]
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
-<title><:poster_message:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+<title><:pass_vousinscrire:></title>
 <meta name="robots" content="none" />
 <INCLURE{fond=nuts/inc-head}>
 </head>
@@ -20,25 +18,9 @@
 	</div>
 	<div id="primary">
 		<div class="content"><!-- primary content -->
-		<h3>
 	
-	[(#REM)
-		Est-ce qu'on se connecte a l'espace prive ou pas ?
-	]
-	[(#ENV{url}|=={''}|?{#SET{prive,' '}})]
-	[(#ENV{url}|match{'^ecrire/'}|?{#SET{prive,' '}})]
-	[(#GET{prive}) <small><:login_acces_prive:></small>]
-	
-	</h3>
-	
-	#MENU_LANG_ECRIRE
-	
-		[(#FORMULAIRE_LOGIN{#ENV{url}|sinon{#URL_ECRIRE{accueil}}})]
-		<p class="retour">
-		[&#91;<a href="#URL_PAGE{identifiants,focus=nom_inscription}&amp;mode=(#URL_SITE_SPIP|tester_config{1comite})" target="spip_pass" onclick="javascript:window.open(this.href, 'spip_pass', 'scrollbars=yes, resizable=yes, width=480, height=400'); return false;"><:login_sinscrire:></a>&#93;]
-		&#91;<a href="#URL_SITE_SPIP/"><:login_retoursitepublic:></a>&#93;
-		</p>
-	
+#FORMULAIRE_INSCRIPTION{#ENV{mode},#ENV{focus},#ENV{id_rubrique}}
+
 
 		</div>
 	</div>
