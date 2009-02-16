@@ -1,15 +1,11 @@
 <BOUCLE_article_principal(ARTICLES) {id_article}>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
 <title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
-[<meta name="description" content="(#INTRODUCTION|couper{150}|attribut_html)" />]
-<link rel="alternate" type="application/rss+xml" title="<:titre_page_mots_tous:>" href="[(#URL_PAGE{backend})]<BOUCLE_URLMOT(MOTS){id_article}>&amp;id_mot[]=#ID_MOT</BOUCLE_URLMOT>" />
-<link rel="alternate" type="application/rss+xml" title="<:icone_auteurs:>" href="[(#URL_PAGE{backend})]<BOUCLE_URLAUTEURS(AUTEURS){id_article}>&amp;id_auteur[]=#ID_AUTEUR</BOUCLE_URLAUTEURS>" />
- <INCLURE{fond=nuts/inc-head}>
+[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+<INCLURE{fond=nuts/inc-head}>
 </head>
-
 
 <body class="l1 wide equal">
 <div id="container">
@@ -20,6 +16,7 @@
 
 [(#REM) Fil d'Ariane ]
         <p><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]</p>
+        
 	</div>
 	</div>
 	<div id="primary">
@@ -31,68 +28,38 @@
 				<h2 class="#EDIT{titre}">#TITRE</h2>
 				[<p class="#EDIT{soustitre}">(#SOUSTITRE)</p>]
 
-            <p><small><abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>[, <:par_auteur:> (#LESAUTEURS)]</small></p>
+     <p><small><abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>[, <:par_auteur:> (#LESAUTEURS)]</small></p>
+
 
             [(#REM) Inclure le modele des liens de traductions ]
             #MODELE{article_traductions}
     
-        <div class="surlignable">
 			[<div class="#EDIT{chapo}">(#CHAPO|image_reduire{500,0})</div>]
 			[<div class="#EDIT{texte}">(#TEXTE|image_reduire{500,0})</div>]
-		</div>
-
-		[(#REM) Portfolio : album d'images ]
-		<B_documents_portfolio>
-        <div id="documents_portfolio">
-            <h3><:info_portfolio:></h3>
-            <BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
-            [<a href="#URL_DOCUMENT" type="#MIME_TYPE" onClick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|couper{80}|texte_backend)"][ class="(#_article_principal:EXPOSE)"]>(#FICHIER|copie_locale|image_reduire{0,60}|inserer_attribut{class,spip_logos}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
-            </BOUCLE_documents_portfolio>
-        </div>
-        </B_documents_portfolio>
-        <BOUCLE_afficher_document(DOCUMENTS) {id_article}{id_document} {mode=document}{extension IN png,jpg,gif}>
-        <div class="spip_documents spip_documents_center" id="document_actif">
-            [(#EMBED_DOCUMENT|image_reduire{500,0})]
-            [<div class="#EDIT{titre} spip_doc_titre">(#TITRE)</div>]
-            [<div class="#EDIT{descriptif} spip_doc_descriptif">(#DESCRIPTIF)</div>]
-        </div>
-        </BOUCLE_afficher_document>
+	
 		
 		[<p class="#EDIT{hyperlien}"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
-        
-		[<h2 class="pas_surlignable"><:info_ps:></h2><div class="#EDIT{ps}">(#PS|image_reduire{500,0})</div>]
 
-        [(#REM) Autres documents joints a l'article. Si un seul et texte vide, incrustation automatique ]
-		<BOUCLE_documents_decompte(DOCUMENTS) {id_article} {mode=document} {par num titre, date} {doublons}{doublons A}></BOUCLE_documents_decompte>
-		[(#TOTAL_BOUCLE|<>{1}|?{' ',#TEXTE}|?{'',' '})
-		<INCLURE{fond=inc-documents}{id_article}>]
-		<//B_documents_decompte>
-		
-        <B_documents_joints>
-        <div id="documents_joints">
-            <h3><:titre_documents_joints:></h3>
-            <ul>
-                <BOUCLE_documents_joints(DOCUMENTS){!doublons A}>
-                <li>
-                    <strong><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a></strong>
-                    <small>(#TYPE_DOCUMENT[ &ndash; (#TAILLE|taille_en_octets)])</small>
-                    #DESCRIPTIF
-                </li>
-                </BOUCLE_documents_joints>
-            </ul>
-        </div>
-        </B_documents_joints>
-        
+		[<h2><:info_ps:></h2><div class="#EDIT{ps}">(#PS|image_reduire{500,0})</div>]
+
+		[(#REM) Gestion du portfolio et des documents
+			Le critere {env} permet de passer d'autres arguments de la page
+			par exemple l'id_document choisi pour un affichage complet
+		]
+		[(#INCLURE{fond=inc-documents}{id_article}{env})]
+
+		       
         [(#REM) Petition :
-		La petition ayant une PAGINATION il faut absolument lui passer le critere env ]
-        [(#PETITION|?{' '})<INCLURE{fond=inc-petition}{id_article}{env}>]
+		La petition ayant une PAGINATION il faut absolument {env}
+		et pourquoi pas ajax
+		][(#PETITION|?{' '})<INCLURE{fond=inc-petition}{id_article}{env}{ajax}>]
 
-        [<h3><:info_notes:></h3>(#NOTES)]
+        [<div class="notes surlignable"><h2 class="pas_surlignable"><:info_notes:></h2>(#NOTES)</div>]
 
-        [(#REM) Forum de l'article ]
-        <a href="#forum" name="forum" id="forum"></a>
-        <INCLURE{fond=inc-forum}{id_article}>
-        [<p><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a></p>]
+		[(#REM) Forum de l'article ]
+		<a href="#forum" name="forum" id="forum"></a>
+		<INCLURE{fond=inc-forum}{id_article} />
+		[<p><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_article:></a></p>] 
 
 
 		</div>
@@ -120,7 +87,7 @@
 	<div id="footer">
 		<div class="content"><!-- footer content -->
 		<INCLURE{fond=nuts/inc-footer}>
-</div>
+		</div>
 	</div>
 </div>
 </body>

@@ -1,11 +1,12 @@
-<BOUCLE_auteur_principal(AUTEURS) {id_auteur}>
+<BOUCLE_principale(AUTEURS) {id_auteur}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
 <title>[(#NOM|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
 [<meta name="description" content="(#BIO|couper{150}|attribut_html)" />]
-<link rel="alternate" type="application/rss+xml" title="<:icone_auteurs:>" href="[(#URL_PAGE{backend})]<BOUCLE_URLAUTEURS(AUTEURS){id_article}>&amp;id_auteur[]=#ID_AUTEUR</BOUCLE_URLAUTEURS>" />
- <INCLURE{fond=nuts/inc-head}>
+<INCLURE{fond=nuts/inc-head}{favicon=#LOGO_AUTEUR} />
+[(#REM) Lien vers le flux RSS des articles de l'auteur ]
+<link rel="alternate" type="application/rss+xml" title="[(#NOM|textebrut)]" href="[(#URL_PAGE{backend}|parametre_url{id_auteur,#ID_AUTEUR})]" /> 
  </head>
  
 <body class="l1 wide equal">
@@ -14,11 +15,10 @@
 		<div class="content">
 		<!-- header content -->
 		[(#REM) Entete de la page + titre du site ]
-<INCLURE{fond=nuts/inc-header}>
+			<INCLURE{fond=nuts/inc-header}>
 
-[(#REM) Fil d'Ariane ]
+		[(#REM) Fil d'Ariane ]
         <p><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:info_auteurs:>[ &gt; <strong class="on">(#NOM|couper{80})</strong>]</p>
-
 		</div>
 	</div>
 	<div id="primary">
@@ -57,12 +57,12 @@
 		<!-- secondary content -->
 		#FORMULAIRE_RECHERCHE
 
-[(#REM) Menu de navigation par rubriques ]
-<INCLURE{fond=nuts/inc-rubriques}>
+		[(#REM) Menu de navigation par rubriques ]
+		<INCLURE{fond=nuts/inc-rubriques}>
 		
-[(#REM) Autres auteurs ]
-<INCLURE{fond=nuts/inc-autresauteurs}>
-</div>
+		[(#REM) Autres auteurs ]
+		<INCLURE{fond=nuts/inc-autresauteurs}{env}>
+		</div>
 	</div>
 	<div id="tertiary">
 		<div class="content"><!-- tertiary content --></div>
@@ -76,4 +76,4 @@
 </div>
 </body>
 </html>
-</BOUCLE_auteur_principal>
+</BOUCLE_principale>
