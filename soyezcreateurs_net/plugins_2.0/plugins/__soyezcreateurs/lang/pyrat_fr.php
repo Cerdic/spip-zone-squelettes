@@ -109,6 +109,7 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'derniersarticlespublies' => 'Les derniers articles publi&eacute;s',
 'liresuitede' => 'Lire la suite de&nbsp;:',
 'liresuiteeditorial' => 'Lire la suite de l\'&eacute;ditorial',
+'listezones' => 'liste des zones cliquables',
 
 //M
 'memerubrique' => 'Dans la m&ecirc;me rubrique...',
