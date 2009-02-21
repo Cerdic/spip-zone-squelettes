@@ -117,7 +117,7 @@ function exec_eva_habillage_sauvegarde(){
     $tab_presence = sql_fetch($test_presence);
     
     echo '<div style="text-align:center;">'._T('evahabillage:EVA_etape4_sauvegarder').'<br />&nbsp;<br /><form method="POST" action="'.generer_url_ecrire("eva_habillage_sauvegarde").'">';
-    echo '<input type="text" name="nouvelle_sauvegarde">&nbsp;&nbsp;<input type="submit" value="'._T('evahabillage:EVA_sauvegarder').'"></div></form>';
+    echo '<input type="text" name="nouvelle_sauvegarde" size="40">&nbsp;&nbsp;<input type="submit" value="'._T('evahabillage:EVA_sauvegarder').'"></div></form>';
     
 if ($tab_presence!='') {
     echo '<br /><hr /><div style="text-align:center;">'._T('evahabillage:EVA_etape4_restaurer').'<br />&nbsp;<br /><form method="POST" action="'.generer_url_ecrire("eva_habillage_sauvegarde").'"><select name="restauration_habillage">';

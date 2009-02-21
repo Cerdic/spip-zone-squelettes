@@ -72,7 +72,7 @@ echo debut_cadre_trait_couleur(_DIR_PLUGIN_EVA_HABILLAGE."img_pack/text.png", tr
 	echo '<div style="text-align:center;">';
         foreach(EVA_def_textes() as $habillage_cles => $habillage_inutile) {
 	echo _T('evahabillage:'.$habillage_cles);
-	echo '<input type="text" name="'.$habillage_cles.'" value="'.$tableau_themes_defini[$habillage_cles].'" size="10">';
+	echo '<input type="text" name="'.$habillage_cles.'" value="'.$tableau_themes_defini[$habillage_cles].'" size="50">';
         }
 	echo '<input type="submit" value="'._T('evahabillage:EVA_valider').'"></div><input type="hidden" name="modif_habillage" value="2"></form>';
 
@@ -104,7 +104,7 @@ echo fin_cadre_trait_couleur(true);
 		AND (strpos($habillage_cles,'taille_')===FALSE)
 		AND (strpos($habillage_cles,'admin_deplacement')===FALSE)
 		){echo 'class="palette" ';}
-		echo 'type="text" name="'.$habillage_cles.'" value="'.$tableau_themes_defini[$habillage_cles].'" size="10"></td></tr>';
+		echo 'type="text" name="'.$habillage_cles.'" value="'.$tableau_themes_defini[$habillage_cles].'" size="25"></td></tr>';
             }
         }
     echo '</table><div style="text-align:center;"><input type="submit" value="'._T('evahabillage:EVA_valider').'"></div>';
@@ -295,11 +295,11 @@ echo fin_cadre_trait_couleur(true);
     echo '<tr align="center" class="row_even">';
     echo '<td  align="center">Type de logo</td><td  align="center">Largeur maximale</td><td  align="center">Hauteur maximale</td></tr>';
     echo '<tr align="center" class="row_odd">';
-    echo '<td  align="center">Mini logos</td><td  align="center"><center><input type="text" name="largeur_mini_logo" value="'.$logo1l.'" size="4"></center></td><td  align="center"><center><input type="text" name="hauteur_mini_logo" value="'.$logo1h.'" size="4"></center></td></tr>';
+    echo '<td  align="center">Mini logos</td><td  align="center"><center><input type="text" name="largeur_mini_logo" value="'.$logo1l.'" size="10"></center></td><td  align="center"><center><input type="text" name="hauteur_mini_logo" value="'.$logo1h.'" size="10"></center></td></tr>';
     echo '<tr align="center" class="row_even">';
-    echo '<td  align="center">Petits logos</td><td  align="center"><center><input type="text" name="largeur_petit_logo" value="'.$logo2l.'" size="4"></center></td><td  align="center"><center><input type="text" name="hauteur_petit_logo" value="'.$logo2h.'" size="4"></center></td></tr>';
+    echo '<td  align="center">Petits logos</td><td  align="center"><center><input type="text" name="largeur_petit_logo" value="'.$logo2l.'" size="10"></center></td><td  align="center"><center><input type="text" name="hauteur_petit_logo" value="'.$logo2h.'" size="10"></center></td></tr>';
     echo '<tr align="center" class="row_odd">';
-    echo '<td  align="center">Logos moyens</td><td  align="center"><center><input type="text" name="largeur_logo_moyen" value="'.$logo3l.'" size="4"></center></td><td  align="center"><center><input type="text" name="hauteur_logo_moyen" value="'.$logo3h.'" size="4"></center></td></tr>'; 
+    echo '<td  align="center">Logos moyens</td><td  align="center"><center><input type="text" name="largeur_logo_moyen" value="'.$logo3l.'" size="10"></center></td><td  align="center"><center><input type="text" name="hauteur_logo_moyen" value="'.$logo3h.'" size="10"></center></td></tr>'; 
     echo '</table><br /><input type="hidden" name="test_logo" value="2"><input type="submit" value="'._T('evahabillage:EVA_valider').'" /></form>';
     echo fin_cadre_trait_couleur(true);
     

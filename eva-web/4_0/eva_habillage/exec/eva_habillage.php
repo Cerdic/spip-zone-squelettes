@@ -369,7 +369,7 @@ window.onerror = null;
 	echo _T('evahabillage:EVA_choisir_squelette2').'<br />&nbsp;<br />';
 	echo '<form method="POST" action="'.generer_url_ecrire("eva_habillage").'">';
 	echo '<table class="spip"><tr class="row_odd"><th>Nom du squelette</th><th>A ins&eacute;rer dans</th><th>Dans la colonne</th><th>Ordre</th></tr>';
-	echo '<tr class="row_even"><th><input type="text" name="eva_mon_bloc_perso_nom"></th>';
+	echo '<tr class="row_even"><th><input type="text" name="eva_mon_bloc_perso_nom" size="30" /></th>';
 	echo '<th><select name="eva_mon_bloc_perso_skel">';
 	foreach (EVA_les_blocs() as $bloc=>$inutile) {
 		echo '<option value="'.$bloc.'">'.$bloc.'</option>';
@@ -595,7 +595,7 @@ window.onerror = null;
 	echo _T('evahabillage:EVA_choisir_squelette2').'<br />&nbsp;<br />';
 	echo '<form method="POST" action="'.generer_url_ecrire("eva_habillage").'">';
 	echo '<table class="spip"><tr class="row_odd"><th>Nom du squelette</th><th>A ins&eacute;rer dans</th><th>Ordre</th></tr>';
-	echo '<tr class="row_even"><th><input type="text" name="eva_mon_bloc_perso_nom"></th>';
+	echo '<tr class="row_even"><th><input type="text" name="eva_mon_bloc_perso_nom" size="40" /></th>';
 	echo '<input type="hidden" name="eva_mon_bloc_perso_nom_image" value="oui">';
 	echo '<th><select name="eva_mon_bloc_perso_skel">';
 	echo '<option value="entete">Ent&ecirc;te</option>';
@@ -682,7 +682,7 @@ window.onerror = null;
 	if (($couleur_table%2)==0) {echo 'class="row_even"';} else {echo 'class="row_odd"';}
 	$couleur_table++;
 	echo '><td align="center">'.$val.'</td>';
-	echo '<td align="center"><input type="text" name="eva_lang_'.$cle.'" value="'.htmlentities($resultat).'"><input type="hidden" name="EvaLangTest" value="'.$cle.'"></td>';
+	echo '<td align="center"><input type="text" name="eva_lang_'.$cle.'" value="'.htmlentities($resultat).'" size="25" /><input type="hidden" name="EvaLangTest" value="'.$cle.'" /></td>';
 	echo '<td align="center"><div style="text-align:center;"><input type="submit" value="'._T('evahabillage:EVA_valider').'"></div></td></tr></form>';
     }
     echo '</table>';

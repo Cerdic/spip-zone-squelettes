@@ -61,7 +61,7 @@ if (isset($_POST['injection_css'])) {sql_insertq('spip_eva_habillage_images',arr
     
     echo '<div style="text-align:center;">'._T('evahabillage:EVA_etape5_detail').'<br />';
     echo '<form method="POST" action="'.generer_url_ecrire("eva_habillage_css").'">';
-    echo '<br /><input type="text" name="nouvelle_regle" />&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'._T('evahabillage:EVA_valider').'" /></div></form><br />';
+    echo '<br /><input type="text" name="nouvelle_regle" size="60" />&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'._T('evahabillage:EVA_valider').'" /></div></form><br />';
     echo fin_cadre_trait_couleur(true);
     echo '<br />&nbsp;<br />';
     echo debut_cadre_trait_couleur(_DIR_PLUGIN_EVA_HABILLAGE."img_pack/css.png", true, '', _T('evahabillage:EVA_etape5_defini'));
