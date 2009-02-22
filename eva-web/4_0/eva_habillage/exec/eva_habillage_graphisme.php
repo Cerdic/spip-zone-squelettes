@@ -244,8 +244,59 @@ echo fin_cadre_trait_couleur(true);
     else {
     echo '&nbsp;<br />'._T('evahabillage:EVA_aucune_image_fond');
     }
+    
+    
+    //Choix de la puce
+    if (isset($_POST['supprime_puce'])) {
+    sql_delete('spip_eva_habillage_images',"type='puce_spip' AND nom_habillage='Defaut'");
+    }
+    if (isset($_POST['nom_puce'])) {
+	sql_delete('spip_eva_habillage_images',"type='puce_spip' AND nom_habillage='Defaut'");
+	sql_insertq('spip_eva_habillage_images',array('type'=>'puce_spip','nom_habillage'=>'Defaut','nom_image'=>$_POST['nom_puce']));
+    }
+    $test_puce=sql_select('nom_image','spip_eva_habillage_images',"type='puce_spip' AND nom_habillage='Defaut'");
+    $tab_puce=sql_fetch($test_puce);
+    $puce=$tab_puce['nom_image'];
     echo fin_block().'<br />';
+    echo '<hr /><br />';
+    echo bouton_block_depliable(_T('evahabillage:EVA_etape3_liste_puce'),false,'');
+    echo debut_block_depliable(false);
+    echo "<p>"._T('evahabillage:EVA_etape3_liste_puce_explication')."</p>";
+    echo '<div style="text-align:center;"><form method="POST" action="'.generer_url_ecrire("eva_habillage_graphisme").'">';
+    echo '<select name="nom_puce">';
+    $dir = opendir(_DIR_PLUGIN_EVA_HABILLAGE."mon_image");
+    while ($nom_fichier = readdir($dir)) {
+        if (($nom_fichier!='.') AND ($nom_fichier!='..') AND ((strpos($nom_fichier,'.gif')) OR (strpos($nom_fichier,'.jpg')) OR (strpos($nom_fichier,'.png')) OR (strpos($nom_fichier,'.GIF')) OR (strpos($nom_fichier,'.JPG')) OR (strpos($nom_fichier,'.PNG')))) {
+        echo '<option value="'.$nom_fichier.'">'.$nom_fichier.'</option>';
+        }
+    }
+    closedir($dir);
+    $dir = opendir(_DIR_IMG."eva_habillage");
+    while ($nom_fichier = readdir($dir)) {
+        if (($nom_fichier!='.') AND ($nom_fichier!='..') AND ((strpos($nom_fichier,'.gif')) OR (strpos($nom_fichier,'.jpg')) OR (strpos($nom_fichier,'.png')) OR (strpos($nom_fichier,'.GIF')) OR (strpos($nom_fichier,'.JPG')) OR (strpos($nom_fichier,'.PNG')))) {
+        echo '<option value="'.$nom_fichier.'">'.$nom_fichier.'</option>';
+        }
+    }
+    closedir($dir);
+    echo '</select><br />&nbsp;<br /><input type="submit" value="'._T('evahabillage:EVA_valider').'"></form></div>';
+    echo fin_block();
+    if ($puce) {
+    echo bouton_block_depliable(_T('evahabillage:EVA_etape3_definition_puce'),false,'');
+    echo debut_block_depliable(false);
+    echo "<div style='text-align:center;'>La puce actuelle est <img src='"._DIR_IMG."eva_habillage/".$puce."' />";
+    echo "<br />La supprimer et revenir aux puces g&eacute;n&eacute;r&eacute;es par SPIP ?<br />";
+    echo '<form method="POST" action="'.generer_url_ecrire("eva_habillage_graphisme").'">';
+    echo '<input type="hidden" name="supprime_puce" value="2" />';
+    echo '<input type="submit" value="'._T('evahabillage:EVA_supprimer').'" /></td></form></tr>';
+    echo "</form></div>";
+    echo fin_block();
+    }
+    echo '<br />';
     echo fin_cadre_trait_couleur(true);
+    
+    
+    
+    
     
     //Aide graphiques (codes couleur et ColorSchemes)
     echo debut_cadre_trait_couleur(_DIR_PLUGIN_EVA_HABILLAGE."img_pack/palette.png", true, '', _T('evahabillage:EVA_aide_graphisme'));
