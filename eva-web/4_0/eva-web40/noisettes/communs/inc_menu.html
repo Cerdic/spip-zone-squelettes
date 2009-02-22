@@ -8,18 +8,17 @@
 <BOUCLE_aexclure(RUBRIQUES){titre_mot=excluredumenu}{doublons}>
 </BOUCLE_aexclure>
 [(#REM) Menu : déroule le niveau (fil d'ariane)]
+<?php
+	$hierarchie = array();
 <BOUCLE_principale(RUBRIQUES){id_rubrique}>
-	<?php
-		$hierarchie = array();
-			<BOUCLE_recup_hierarchie(HIERARCHIE){id_rubrique}{doublons}>
-				$hierarchie[] = #ID_RUBRIQUE;
-			</BOUCLE_recup_hierarchie>
-			$hierarchie[] = #ID_RUBRIQUE;
-			
-			$le_secteur = #ID_SECTEUR; 
-			$actuelle = #ID_RUBRIQUE;
-	?>
+	<BOUCLE_recup_hierarchie(HIERARCHIE){id_rubrique}{doublons}>
+		$hierarchie[] = #ID_RUBRIQUE;
+	</BOUCLE_recup_hierarchie>
+	$hierarchie[] = #ID_RUBRIQUE;
+	$le_secteur = #ID_SECTEUR; 
+	$actuelle = #ID_RUBRIQUE;
 </BOUCLE_principale>
+?>
 	<B_rubriques>
 	<ul id="sommaire">
 		
