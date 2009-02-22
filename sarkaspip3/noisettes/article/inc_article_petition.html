@@ -17,26 +17,28 @@
 	[(#CONFIG{sarkaspip_article/position_pagination_signatures, 3}|match{^(1|3)$}|?{' '})
 		[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_article/modele_pagination_signatures}})</div>]
 	]
-	<table class="spip">
-		<thead>
-			<tr class="row_first">
-				<td><:sarkaspip:date:></td>
-				<td><:sarkaspip:nom:></td>
-				<td><:sarkaspip:sites_web:></td>
-				<td><:sarkaspip:message:></td>
-			</tr>
-		</thead>
-		<tbody>
-		<BOUCLE_signatures(SIGNATURES) {id_article} {par date} {inverse} {pagination #CONFIG{sarkaspip_article/pas_pagination_signatures, 5}}>
-			<tr [class="(#COMPTEUR_BOUCLE|alterner{'row_even','row_odd'})"]>		
-				<td>[(#DATE|affdate_court)]</td>
-				<td>#NOM</td>
-				<td><a href="#URL_SITE">[(#NOM_SITE)]</a></td>
-				<td class="#EDIT{message}">[(#MESSAGE)]</td>
-			</tr>
-		</BOUCLE_signatures>
-		</tbody>
-	</table>
+	<div class="description">
+		<table class="spip">
+			<thead>
+				<tr class="row_first">
+					<td><:sarkaspip:date:></td>
+					<td><:sarkaspip:nom:></td>
+					<td><:sarkaspip:sites_web:></td>
+					<td><:sarkaspip:message:></td>
+				</tr>
+			</thead>
+			<tbody>
+			<BOUCLE_signatures(SIGNATURES) {id_article} {par date} {inverse} {pagination #CONFIG{sarkaspip_article/pas_pagination_signatures, 5}}>
+				<tr [class="(#COMPTEUR_BOUCLE|alterner{'row_even','row_odd'})"]>		
+					<td>[(#DATE|affdate_court)]</td>
+					<td>#NOM</td>
+					<td><a href="#URL_SITE">[(#NOM_SITE)]</a></td>
+					<td class="#EDIT{message}">[(#MESSAGE)]</td>
+				</tr>
+			</BOUCLE_signatures>
+			</tbody>
+		</table>
+	</div>
 	
 	[(#CONFIG{sarkaspip_article/position_pagination_signatures, 3}|match{^(2|3)$}|?{' '})
 		[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_article/modele_pagination_signatures}})</div>]
