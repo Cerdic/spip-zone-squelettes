@@ -25,7 +25,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 'texte_lien_accueil_scolaspip' => 'Utilisez &eacute;galement pour personnaliser la page d\'accueil :',
 
-'texte_lien_plus_scolaspip' => 'Utilisez &eacute;galement pour personnaliser les paramêtres généraux :',
+'texte_lien_plus_scolaspip' => 'Utilisez &eacute;galement pour personnaliser les param&egrave;tres g&eacute;n&eacute;raux :',
 
 'cfg_descriptifdusite_legend' => 'Descriptif du site sur la page d\'accueil',
 
@@ -126,13 +126,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'supprimer_couleurs' => 'Retrouver les couleurs initiales',
 
 'scolaspip_plus' => 'Les petits plus de scolaSPIP',
-'scolaspip_plus_texte' => 'Personnalisez quelques éléments des squelettes scolaSPIP.',
+'scolaspip_plus_texte' => 'Personnalisez quelques &eacute;l&eacute;ments des squelettes scolaSPIP.',
 'cfg_afficheauteurs_legend' => 'Gestion de l\'affichage des auteurs',
-'cfg_afficheauteurs_texte' => 'Masquez les auteurs des articles.',
+'cfg_afficheauteurs_texte' => 'Masquer les auteurs des articles.',
 
 'ok' => 'Enregistrer',
 
-'reset' => 'Annuler mes derniers changements'
+'reset' => 'Annuler mes derniers changements',
+'cache_couleur' => 'Apr&egrave;s avoir enregistrer les couleurs, <a href="?exec=admin_vider">vider le cache</a> de SPIP pour que les couleurs soient prises en compte.'
 
 );
 ?>
