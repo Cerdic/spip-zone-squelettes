@@ -1,22 +1,29 @@
 [(#CACHE{3600})[(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})]]<?xml version="1.0"[ encoding="(#CHARSET)"]?>
-<opml version="1.1">
+<opml version="1.0">
+
+[(#REM) 
+Documentation
+	http://www.scriptol.fr/xml/OPML-1.0.html
+Pour validation
+	http://feedvalidator.org/check.cgi?url=http://edu.ca.edu/spip.php?page=opml
+	http://www.kbcafe.com/rss/rsv.aspx?xml=http://edu.ca.edu/spip.php?page=opml
+]
 
 <head>
 	<title>[(#NOM_SITE_SPIP|texte_backend)]</title>
-	<dateCreated>[(#DATE|affdate{'Y-m-d'})]</dateCreated>
+	<dateCreated>[(#DATE|date_822)]</dateCreated>
 </head>
 <body>
 
 <BOUCLE_syndic(SITES){tout}{syndication=oui} {par nom_site}>
 <outline 
-	id="#ID_SYNDIC"
 	text="[(#NOM_SITE|texte_backend)]"
 	description="[(#DESCRIPTIF|supprimer_tags|texte_backend)]"
 	title="[(#NOM_SITE|texte_backend)]"
 	type="rss" 
 	version="RSS"
 	htmlUrl="#URL_SITE"
-	<BOUCLE_lang(RUBRIQUES){id_rubrique}>[language="(#LANG)"]</BOUCLE_lang>
+	language="<BOUCLE_lang(RUBRIQUES) {id_rubrique}>[(#LANG)]</BOUCLE_lang>"
 	xmlUrl="#URL_SYNDIC" 
 />
 </BOUCLE_syndic>
