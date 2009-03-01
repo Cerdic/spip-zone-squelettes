@@ -1,37 +1,5 @@
 <?php
 // =======================================================================================================================================
-// Filtre : hauteur_majoree
-// =======================================================================================================================================
-// Auteur: S. Bellego
-// Fonction : Retourne la hauteur d'une image + 20. Sert pour afficher correctemnt le logo d'une rubrique
-// =======================================================================================================================================
-//
-function hauteur_majoree($img) {
-	if (!$img) return;
-	include_spip('logos.php');
-	list ($h,$l) = taille_image($img);
-	$h+=20;
-	return $h;
-}
-//FIN du Filtre : hauteur_majoree
-
-// =======================================================================================================================================
-// Filtre : largeur_majoree
-// =======================================================================================================================================
-// Auteur: S. Bellego
-// Fonction : Retourne la largeur d'une image argument.Utilisee pour dimensionner les cadres des documents dans les articles
-// =======================================================================================================================================
-//
-function largeur_majoree($img, $maj = 0) {
-	if (!$img) return;
-	include_spip('logos.php');
-	list ($h,$l) = taille_image($img);
-	$l+=$maj;
-	return $l;
-}
-//FIN du Filtre : largeur_majoree
-
-// =======================================================================================================================================
 // Filtre : typo_couleur
 // =======================================================================================================================================
 // Auteur : Smellup, inspire du filtre original de A. Pierard
@@ -181,69 +149,6 @@ function fin_journee($date) {
 	return $jour;
 }
 // FIN du Filtre : fin_journee
-
-// =======================================================================================================================================
-// Filtre : mot_associations
-// =======================================================================================================================================
-// Auteur: Smellup
-// Fonction : Retourne le nombre d'associations valides du mot-cle user passe en argument
-// =======================================================================================================================================
-//
-function mot_associations($mot) {
-	if (!$mot) return;
-	
-	static $mots_reserves = array('agenda', 'galerie', 'annonce');
-	$rub_specialisee = array();
-	reset($mots_reserves);
-	while (list($cle, $valeur) = each($mots_reserves)) {
-		$rub_specialisee[] = intval(calcul_rubrique($valeur)); 
-	}
-
-	$mot = intval($mot);
-	$nb = 0;
-	
-	// Decompte des associations avec des articles
-	$from = array('spip_mots_articles AS t1 JOIN spip_articles AS t2 USING (id_article)');
-	$where = array('t1.id_mot='.sql_quote($mot),
-				   't2.id_rubrique NOT IN ('.sql_quote($rub_specialisee).')');
-	$groupby = array('t1.id_mot');
-	$nb_articles = sql_countsel($from[0], $where, $groupby);
-
-	// Decompte des associations avec des breves
-	$from = array('spip_mots_breves AS t1 JOIN spip_breves AS t2 USING (id_breve)');
-	$where = array('t1.id_mot='.sql_quote($mot),
-				   't2.id_rubrique NOT IN ('.sql_quote($rub_specialisee).')');
-	$groupby = array('id_mot');
-	$nb_breves = sql_countsel($from[0], $where, $groupby);
-
-	// Decompte des associations avec des rubriques
-	$from = array('spip_mots_rubriques AS t1');
-	$where = array('t1.id_mot='.sql_quote($mot),
-				   't1.id_rubrique NOT IN ('.sql_quote($rub_specialisee).')');
-	$groupby = array('id_mot');
-	$nb_rubriques = sql_countsel($from[0], $where, $groupby);
-
-	// Decompte des associations avec des messages de forums
-	$from = array('spip_mots_forum AS t1 JOIN spip_forum AS t2 USING (id_forum)');
-	$where = array('t1.id_mot='.sql_quote($mot),
-				   't2.id_rubrique NOT IN ('.sql_quote($rub_specialisee).')');
-	$groupby = array('id_mot');
-	$nb_forums = sql_countsel($from[0], $where, $groupby);
-
-	// Decompte des associations avec des sites
-	$from = array('spip_mots_syndic AS t1 JOIN spip_syndic AS t2 USING (id_syndic)');
-	$where = array('t1.id_mot='.sql_quote($mot),
-				   't2.id_rubrique NOT IN ('.sql_quote($rub_specialisee).')');
-	$groupby = array('id_mot');
-	$nb_syndics = sql_countsel($from[0], $where, $groupby);
-
-	$nb = $nb_articles + $nb_breves + $nb_rubriques + $nb_forums + $nb_syndics;
-//	echo 'idmot='.$mot.' art='.$nb_articles.' brv='.$nb_breves.' rub='.$nb_rubriques.' frm='.$nb_forums.' sit='.$nb_syndics.'<br />';
-	
-	return $nb;
-}
-// FIN du Filtre : mot_associations
-
 
 // =======================================================================================================================================
 // Filtre : gravatar_url
