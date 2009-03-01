@@ -140,6 +140,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'go_breve' => 'Voir la br&egrave;ve compl&egrave;te',
 		'go_site' => 'Se rendre sur le site',
 		'go_syndication' => 'Afficher le fichier de syndication du site',
+		'gravatar_de' => 'Gravatar de',
 	  
 	
 //H
@@ -218,6 +219,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'login_sinscrire' => 's\'inscrire', // redefinition item SPIP
 		'login_motpasseoublie' => 'mot&nbsp;de&nbsp;passe&nbsp;oubli&eacute;&nbsp;?', // redefinition item SPIP
 		'login_retoursitepublic' => 'retour&nbsp;au&nbsp;site&nbsp;public', // redefinition item SPIP
+		'logo_de' => 'Logo de',
 		'logout_membre' => 'Deconnexion',
 		'lxh' => 'par',
 	  

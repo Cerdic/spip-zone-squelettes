@@ -5,11 +5,26 @@
 -->
 ]
 <BOUCLE_description (AUTEURS) {tout}{id_auteur}>
-	[<div class="titre"><h1>(#NOM)</h1></div>]
+<div class="vcard">
+	[<div class="titre"><h1 class="#EDIT{nom} fn nickname">(#NOM)</h1></div>]
 	<div class="description">
-		[<div class="logo droite">(#LOGO_AUTEUR||image_reduire{#CONFIG{sarkaspip_auteur/taille_logo_rubrique, 150}})</div>]
-		[<div class="#EDIT{bio} texte">(#BIO|typo_couleur)</div>]
-		[<div class="#EDIT{nom_site} lien_site"><a href="#URL_SITE">(#NOM_SITE)</a></div>]
+	[(#LOGO_AUTEUR||?{' '})
+		[(#SET{classe_logo, [(#LOGO_AUTEUR||extraire_attribut{class}) photo]})]
+		[(#SET{alternative_logo, [<:sarkaspip:logo_de:> (#NOM)]})]
+		[<div class="logo droite">
+			(#LOGO_AUTEUR||image_reduire{#CONFIG{sarkaspip_auteur/taille_logo_rubrique, 150}}||inserer_attribut{class, #GET{classe_logo}}||inserer_attribut{alt, #GET{alternative_logo}})
+		</div>]
+	]
+	[(#LOGO_AUTEUR||?{'', ' '})
+		[(#SET{classe_logo, spip_logos photo})]
+		[(#SET{alternative_logo, [<:sarkaspip:gravatar_de:> (#NOM)]})]
+		[<div class="logo droite">
+			<img src="(#EMAIL|gravatar_url{80})" width="80" height="80"[ class="(#GET{classe_logo})"][ alt="(#GET{alternative_logo})"] />
+		</div>]
+	]
+		[<div class="#EDIT{bio} texte note">(#BIO|typo_couleur)</div>]
+		[<div class="#EDIT{nom_site} lien_site"><a class="url org" href="#URL_SITE">(#NOM_SITE)</a></div>]
 		<br class="nettoyeur" />
 	</div>
+</div>
 </BOUCLE_description>

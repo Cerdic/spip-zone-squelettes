@@ -252,9 +252,9 @@ function mot_associations($mot) {
 // Fonction : Retourne l'url du gravatar si l'email de l'auteur est enregistre sur gravatar.com
 // =======================================================================================================================================
 //
-function gravatar_url($email = '') {
+function gravatar_url($email = '', $taille = 32) {
 	if ($email != '') {
-		return 'http://www.gravatar.com/avatar.php?gravatar_id='.md5($email).'&amp;size=32&amp;rating=PG';
+		return 'http://www.gravatar.com/avatar.php?gravatar_id='.md5($email).'&amp;size='.$taille.'&amp;rating=PG';
 	}
 	else {
 		return '';
