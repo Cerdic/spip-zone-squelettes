@@ -74,6 +74,13 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			echo "SoyezCreateurs MaJ 2.1.3<br />";
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.3','non');
 		}
+		if (version_compare($current_version,'2.1.4','<')) {
+			ecrire_meta('image_process', 'gd2', 'non');
+			ecrire_meta('btv2', 'a:1:{s:7:"avancee";s:3:"Oui";}', 'non');
+			ecrire_meta('bte', 'a:14:{s:5:"puces";s:3:"Oui";s:14:"titraille1open";s:17:"<h2 class="spip">";s:15:"titraille1close";s:5:"</h2>";s:14:"titraille2open";s:17:"<h3 class="spip">";s:15:"titraille2close";s:5:"</h3>";s:14:"titraille3open";s:17:"<h4 class="spip">";s:15:"titraille3close";s:5:"</h4>";s:14:"titraille4open";s:17:"<h5 class="spip">";s:15:"titraille4close";s:5:"</h5>";s:14:"titraille5open";s:17:"<h6 class="spip">";s:15:"titraille5close";s:5:"</h6>";s:9:"insertcss";s:3:"Non";s:17:"defaultbarrestyle";s:5:"close";s:14:"mode_titraille";N;}', 'non');
+			echo "SoyezCreateurs MaJ 2.1.4<br />";
+			ecrire_meta($nom_meta_base_version,$current_version='2.1.4','non');
+		}
 	}
 }
 
