@@ -1,6 +1,6 @@
 #! /bin/sh
 #Installation de SPIP
-svn checkout svn://trac.rezo.net/spip/branches/spip-2.0.0 ./
+svn checkout svn://trac.rezo.net/spip/branches/spip-2.0 ./
 sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_squelettes_/gribouille
 sleep 15;
