@@ -21,10 +21,6 @@ svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/agenda/2_0_0 ./age
 sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_dev_/autorite
 sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/barre_typo_generalisee
-sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/barre_typo_v2 
-sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/boutonstexte
 sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/cfg
@@ -35,7 +31,9 @@ svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/couteau_suisse
 sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/crayons
 sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/enluminures_typographiques_v2
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/_core_/porte_plume
+sleep 15;
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/enluminures_typographiques_v3
 sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/fonctions_images
 sleep 15;
@@ -44,8 +42,6 @@ sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_test_/Lecteur_multimedia
 sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_test_/sedna
-sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/sitemap
 sleep 15;
 #svn checkout svn://zone.spip.org/spip-zone/_plugins_/_dev_/thickbox2
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_dev_/nyroceros
