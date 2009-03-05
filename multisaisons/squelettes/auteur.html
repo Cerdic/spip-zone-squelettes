@@ -1,5 +1,5 @@
+#CACHE{100*3600}
 <BOUCLE_author0(AUTEURS){tout}{id_auteur}>
-#CACHE{36000}
 [(#INCLURE{fond=header})]<head>
 
 [(#REM)   les m&eacute;tas   ]
@@ -46,31 +46,36 @@
 [(#INCLURE{fond=logo}{id_auteur,#ID_AUTEUR}{taille=216}{date=#ENV{date}})]
 </span>
 [<h1>(#NOM|textebrut|couper{24})</h1>]
-[<p>(#BIO||?{[(#BIO|supprimer_tags)],[(#NOM|textebrut|couper{24})] <:pas_bio:>})</p>]
+[<p>(#BIO||?{[(#BIO)],[(#NOM|textebrut|couper{24})] <:pas_bio:>})</p>]
 [<h4 class="icone_site"><:site_prefere:> :</h4>
-<p><a href="#URL_SITE">(#NOM_SITE)</a></p>]
+<p><a href="#URL_SITE"  rel="nofollow">(#NOM_SITE)</a></p>]
+<hr class="spacer"/>
 
 
 
-
-
-[(#SESSION|ou{#ID_AUTEUR|=={1}}|oui)
-[(#EVAL{defined('_DIR_PLUGIN_INSCRIPTION2')}|?{' '})
-[(#MODELE{editer_profil}{id_auteur=#SESSION{id_auteur}})]]]
 
 
 [(#SESSION|oui)
-<div class="vcard none">vcard: <img src="#URL_SITE_SPIP/IMG/[(#LOGO_AUTEUR|fichier)]" alt="photo" class="photo"/>
-<a class="url fn " href="#URL_SITE">[(#NOM_SITE)]</a>
+[(#EVAL{defined('_DIR_PLUGIN_INSCRIPTION2')}|?{' '})
+[(#MODELE{editer_profil}{id_auteur=#SESSION{id_auteur}})]]
+]
+
+
+<div class="vcard none"> <img src="#URL_SITE_SPIP/IMG/[(#LOGO_AUTEUR|fichier)]" alt="photo" class="photo"/>
+<a class="url fn " href="#URL_SITE"  rel="nofollow">[(#NOM_SITE)]</a>
   <div class="org">Inscrit sur #NOM_SITE_SPIP - #DESCRIPTIF_SITE_SPIP</div>
   <a class="email" href="#URL_SITE_SPIP/spip.php?page=auteur&id_auteur=#ID_AUTEUR"></a>
   <div class="adr">[(#BIO|textebrut)]</div> 
-  </div>  
+  </div>
 <span class="droite hcal button"><a href="#" title="Cette page possède un microformat hcal">hcal</a></span>
 [(#REM)  Inclue un lien vers une vcard téléchargeable  ]
 [<span class="droite vcard button"><a href="(#URL_PAGE{vcard}|parametre_url{'id_auteur',#ID_AUTEUR})"  title="Télécharger sa carte de visite électronique">vcard</a></span>]
-<hr class="spacer"/>]
+<hr class="spacer"/>
+
+
+
 </div>
+
 
 	
 	
@@ -85,9 +90,11 @@
 
 
 
+
+
 [(#SESSION|ou{#ID_AUTEUR|=={1}}|non)
 <div class="grande_boite">
-<h4 class="icone_membre"><:connecter:></h4>
+<h4 class="icone_membre"><:connecter:>.</h4>
 <p><:pas_contact_pas_connect1:> [(#NOM|textebrut|couper{24})] <:pas_contact_pas_connect2:> #NOM_SITE_SPIP.<br/>
 <strong>[(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,redac})"title="<:connect_pour_contact:> [(#NOM|textebrut|couper{24})].">]]
 [(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{mon-profil}|parametre_url{type,visit})"title="<:connect_pour_contact:> [(#NOM|textebrut|couper{24})].">]]
@@ -99,13 +106,19 @@
 ]
 
 
+ 
+	 
+	 
 	 
 	 
 	 
 	</div> 
 	[(#REM)   fermeture colone de gauche   ] 
-	 <div class="coldroit">  [(#REM)   ouverture de la colone de droite   ]  	 
-	    <div class="boite">[(#REM)   ouverture boite menu   ]  	 
+	 <div class="coldroit">  [(#REM)   ouverture de la colone de droite   ]  
+	 
+	 
+	    <div class="boite">[(#REM)   ouverture boite menu   ]  
+	 
 	        <h4 class="icone_menu"><:navigation:></h4> 
 	        [(#INCLURE{fond=inc_menu_rub})] </div>[(#REM)   fermeture boite menu   ]<div class="boite"> [(#REM)   ouverture boite les membres   ]  
 	[(#INCLURE{fond=inc_liste_membres}{lettre=#ENV{lettre}}{self=#SELF}{ajax}{env})] 
@@ -156,8 +169,8 @@
   <div id="minipics"><ul>
       <BOUCLE_affichage(DOCUMENTS){mode=document}{extension IN png,jpg}{par num titre, date}{!doublons docs #_aut:NOM}{pagination 12}>
 <li class="transparent" id="a#ID_DOCUMENT"> 
-	<a class="thickbox nyroceros" href="#URL_DOCUMENT" type="#MIME_TYPE" [title="(#TITRE|couper{40}|texte_backend)"][longdesc="(#DESCRIPTIF|couper{40}|texte_backend)"] rel="gal"> 
-	[(#FICHIER|image_masque{carre-80.png}|image_aplatir{jpg,ffffff}|inserer_attribut{alt,#TITRE})]</a> 
+	<a class="thickbox nyroceros" href="#URL_DOCUMENT" type="#MIME_TYPE" [title="(#TITRE|couper{40}||textebrut)"][longdesc="(#DESCRIPTIF|couper{40}||textebrut)"] rel="gal"> 
+	<img src="[(#FICHIER|image_masque{carre-80.png}|image_aplatir{jpg,ffffff}|extraire_attribut{src})]" alt="photo[ : (#TITRE|couper{80}|textebrut)]" style="width:80px; height:80px;" /></a> 
 	  <p class="centre"><BOUCLE_liens_articles(ARTICLES){id_document}>[<a href="(#URL_ARTICLE)">Voir l'article</a>]</BOUCLE_liens_articles></p> 
 </li> 
 </BOUCLE_affichage></ul><hr class="spacer"/> [<p class="centre">Page: <span class="pagination">(#PAGINATION)</span></p>]
@@ -207,7 +220,7 @@
 <li class="petite_boite">
 
 [(#REM)  Inclue logo auteur au survol avec un max de 216 pixel  ] 
-[(#REM)  A voir si on ne met pas par défaut autre chose comme la dernière image postées dans les forums. ]
+
 
 <BOUCLE_forum_auteur(FORUMS){plat}{id_auteur}{par date}> 
 <BOUCLE_doc_forum(DOCUMENTS){id_forum}{0,1}>
@@ -228,7 +241,7 @@
 					[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
 				})]
 				<BOUCLE_quel_foru(FORUMS){id_forum=#GET{foru}}{0,1}>			
-				[Voir le document dans son contexte: <a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})]">(#TITRE|textebrut|couper{40})</a><br/>]
+				[<br/>Voir le document dans son contexte: <a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})]">(#TITRE|textebrut|couper{40})</a><br/>]
 		</BOUCLE_quel_foru></p>	
 </BOUCLE_quel_doc>
   <h4><:profil_son:> :</h4> 
