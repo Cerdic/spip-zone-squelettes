@@ -24,7 +24,7 @@ version="1.0"[ encoding="(#CHARSET)"]?>
 
 <BOUCLE_agenda(RUBRIQUES){titre_mot=Agenda}{id_parent=0}{branche ?}>
 
-<BOUCLE_AgendaDerniersAjouts(EVENEMENTS){branche}{par date_debut}{0,10}{date_debut>=(#ENV{date}|affdate{'Y-m-d'})}>
+<BOUCLE_AgendaDerniersAjouts(EVENEMENTS){branche}{par date_debut}{0,10}{date_fin>=(#ENV{date}|affdate{'Y-m-d'})}>
 	<BOUCLE_DernierEvenementArticle(ARTICLES){id_article}>
 	<item[ xml:lang="(#LANG)"]>
 		<title>[(#_DernierEvenementArticle:TITRE|!={#_AgendaDerniersAjouts:TITRE}|?{[(#TITRE|texte_backend)][ : (#_AgendaDerniersAjouts:TITRE|texte_backend) - ][(#_AgendaDerniersAjouts:DATE_DEBUT|afficher_les_dates{#_AgendaDerniersAjouts:DATE_FIN,#_AgendaDerniersAjouts:HORAIRE,0,0,0,0}|texte_backend)],[(#TITRE|texte_backend) - ][(#_AgendaDerniersAjouts:DATE_DEBUT|afficher_les_dates{#_AgendaDerniersAjouts:DATE_FIN,#_AgendaDerniersAjouts:HORAIRE,0,0,0,0}|texte_backend)]})]</title>

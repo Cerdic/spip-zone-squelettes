@@ -21,13 +21,13 @@
 
 
 		<form id="timenavigation" method="get" action="#SELF"><fieldset><legend><:pyrat:precisezrecherche:></legend>
-		<BOUCLE_PremiereAnnee(EVENEMENTS){branche}{date_debut>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}{par date_debut}{0,1}>
+		<BOUCLE_PremiereAnnee(EVENEMENTS){branche}{date_fin>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}{par date_debut}{0,1}>
 		[(#DATE_DEBUT|annee|<{[(#ENV{date_ev,[(#ENV{date})]}|annee)]}|oui)
 		<a href="[(#SELF|parametre_url{'date_ev',[(#ENV{date_ev,[(#ENV{date})]}|annee|moins{1})]-01-01}|parametre_url{'calendrier',1})]"><img src="#CHEMIN{images/prev.gif}" title="<:precedent:>" alt="<:precedent:>" /></a>
 		]
 		</BOUCLE_PremiereAnnee>
 		<select id="date_ev" name="date_ev">
-		<BOUCLE_Annees(EVENEMENTS){branche}{date_debut>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}{par date_debut}>[
+		<BOUCLE_Annees(EVENEMENTS){branche}{date_fin>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}{par date_debut}>[
 		<option value="[(#DATE_DEBUT|affdate{'Y-m-d'})]"[(#ENV{date_ev,[(#ENV{date})]}|annee|=={[(#DATE_DEBUT|annee)]}|?{' selected="selected"',''})]>(#DATE_DEBUT|annee|unique)</option>
 		]</BOUCLE_Annees>
 		</select>
@@ -35,7 +35,7 @@
 		<B_LstMotsClefs>[(#REM) Objectif : n'afficher que les mots clefs effectivement utilisé dans le secteur]
 		<select id="id_mot" name="id_mot">
 		<option value=""[(#ENV{id_mot,''}|=={''}|?{' selected="selected"',''})]><:pyrat:tout:></option>
-		<BOUCLE_LstMotsClefs(EVENEMENTS){branche}{par titre}{date_debut>=(#ENV{date}|affdate{'Y-m-d'})}><BOUCLE_MotClefAssocie(MOTS){id_evenement}{unique}{doublons statut}>
+		<BOUCLE_LstMotsClefs(EVENEMENTS){branche}{par titre}{date_fin>=(#ENV{date}|affdate{'Y-m-d'})}><BOUCLE_MotClefAssocie(MOTS){id_evenement}{unique}{doublons statut}>
 		<option value="[(#ID_MOT)]"[(#ENV{id_mot}|=={[(#ID_MOT)]}|?{' selected="selected"',''})]>[(#TITRE|supprimer_tags)]</option>
 		</BOUCLE_MotClefAssocie></BOUCLE_LstMotsClefs>
 		</select>
@@ -53,7 +53,7 @@
 		</fieldset>
 		</form>
 
-<BOUCLE_LiensMois(EVENEMENTS){branche}{date_debut>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}{par date_debut}{"&nbsp;| "}>[
+<BOUCLE_LiensMois(EVENEMENTS){branche}{date_fin>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}{par date_debut}{"&nbsp;| "}>[
 <a href="#m(#DATE_DEBUT|affdate{'Ym'}|unique)">[(#DATE_DEBUT|nom_mois|ucfirst)]&nbsp;[(#DATE_DEBUT|annee)]</a>
 ]</BOUCLE_LiensMois>
 

@@ -3,9 +3,8 @@
 <BOUCLE_article(EVENEMENTS)
 	{id_mot ?}
 	{branche}
-	{date_debut>=(#ENV{date_ev,(#ENV{date})}|annee_scolaire)-09-01}
-	{date_debut<=(#ENV{date_ev,(#ENV{date})}|annee_scolaire|plus{1})-12-31}
-	{date_debut>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}
+	{date_fin>=(#ENV{date_ev,(#ENV{date})}|annee_scolaire)-09-01}
+	{date_fin<=(#ENV{date_ev,(#ENV{date})}|annee_scolaire|plus{1})-12-31}
 	{par date_debut}
 >
 <BOUCLE_premierdumois(EVENEMENTS)
@@ -22,7 +21,7 @@
 <BOUCLE_MOIS(EVENEMENTS)
 	{branche}
 	{id_mot ?}
-	{date_debut>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}
+	{date_fin>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}
 	{date_debut==^(#_article:DATE_DEBUT|affdate{'Y-m'})}
 	{doublons}
 	{par date_debut}
