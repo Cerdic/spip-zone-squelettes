@@ -1,0 +1,32 @@
+#CACHE{3600}
+[(#SET{titretop,<:pyrat:connexiontitle|attribut_html|nettoyer_marqueur|texte_script:>})]
+[(#INCLURE{fond=noisettes/header/header}
+	{connexion}
+	{title=<:pyrat:connexiontitle|attribut_html|texte_script:>}
+	{titretop=#GET{titretop}}
+)]
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
+	<li><:pyrat:connexiontitle:></li>
+	</ul>
+	</div>
+
+<div class="texte">
+	<div class="cartouche">
+		<h1><:pyrat:connexiontitle:></h1>
+	</div>
+	<div id="letexte" class="surlignable">
+[(#REM) Il ne faut pas chercher a afficher le panneau de login si on est deja identifie...]
+[(#SESSION{id_auteur}|non)
+[(#FORMULAIRE_LOGIN{#ENV{url}})]
+]
+		
+	</div><!-- Fin de #LeTexte -->
+</div><!-- Fin de .texte -->
+
+[(#FORMULAIRE_ADMIN)]
+
+[(#INCLURE{fond=noisettes/footer/footer}
+	{titretop=#GET{titretop}}
+)]
