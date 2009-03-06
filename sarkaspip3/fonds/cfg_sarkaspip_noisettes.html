@@ -8,6 +8,7 @@
 //<![CDATA[
 	jQuery(document).ready(function() {
 		[(#ENV{menu_rubriques, 1}|!={1}|?{jQuery("#bloc_menu_option1_2").hide();})]
+		[(#ENV{menu_rubriques, 1}|=={0}|?{jQuery("#bloc_menu_option1").hide();})]
 		[(#ENV{liste_breves, 2}|!={2}|?{jQuery("#bloc_intro_breve").hide();})]
 		[(#ENV{position_commentaires, 0}|!={2}|?{jQuery("#bloc_intro_commentaires").hide();})]
 		[(#ENV{liste_sites, 2}|!={1}|?{jQuery("#bloc_max_site").hide();})]
@@ -29,6 +30,10 @@
 				jQuery("#bloc_menu_option1").show();
 				jQuery("#bloc_menu_option1_2").show();
 				jQuery("#menu_option1_1").attr({checked: "checked"});
+			}
+			else if (jQuery("input[@name='menu_rubriques']:checked").val() == 0) {
+				jQuery("#bloc_menu_option1_2").hide();
+				jQuery("#bloc_menu_option1").hide();
 			}
 			else {
 				jQuery("#bloc_menu_option1").show();
@@ -154,6 +159,11 @@
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_inc_rubriques:></legend>
 		<p><:sarkaspip:cfg_inf_inc_rubriques:></p>
+		<label>
+			<input type="radio" name="menu_rubriques" value="0" [(#ENV{menu_rubriques, 1}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_rubriques_0:>
+		</label>
+		<br />
 		<label>
 			<input type="radio" name="menu_rubriques" value="1" [(#ENV{menu_rubriques, 1}|=={1}|?{checked="checked"})] />
 			<:sarkaspip:cfg_lbl_inc_rubriques_1:>
