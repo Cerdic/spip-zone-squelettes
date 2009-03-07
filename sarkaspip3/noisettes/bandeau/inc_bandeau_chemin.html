@@ -16,14 +16,16 @@
 	<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
 		<BOUCLE_hierarchie(HIERARCHIE)>
 			[(#ID_RUBRIQUE|=={#RACINE_SPECIALISEE{agenda}}|?{' '})
-				|<a href="[(#URL_PAGE{agenda,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:agenda:></a>
+				#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}
+				<a href="[(#URL_PAGE{agenda,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:agenda:></a>
 			]
 			[(#ID_RUBRIQUE|=={#RACINE_SPECIALISEE{galerie}}|?{' '})
-				|<a href="[(#URL_PAGE{galerie,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:galerie:></a>
+				#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}
+				<a href="[(#URL_PAGE{galerie,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:galerie:></a>
 			]
 			[(#ID_RUBRIQUE|match{#RACINE_SPECIALISEE{agenda:galerie}}|?{'', ' '})
 				[(#ID_SECTEUR|match{#RACINE_SPECIALISEE{agenda:galerie}}|?{'', ' '})
-					|
+					#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}
 					[(#CONFIG{sarkaspip_noisettes/menu_option_1, 0}|!={2}|?{<a href="#URL_RUBRIQUE">})]
 					[(#CONFIG{sarkaspip_noisettes/menu_option_1, 0}|=={2}|?{' '})<INCLURE{fond=noisettes/navigation/inc_nav_rubriques_url}{id_rubrique=#ID_RUBRIQUE}>]
 						[(#TITRE|supprimer_numero)]
@@ -32,14 +34,16 @@
 			]
 		</BOUCLE_hierarchie>
 		[(#ENV{id_rubrique}|=={#RACINE_SPECIALISEE{agenda}}|?{' '})
-			|<a href="[(#URL_PAGE{agenda,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:agenda:></a>
+			#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}
+			<a href="[(#URL_PAGE{agenda,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:agenda:></a>
 		]
 		[(#ENV{id_rubrique}|=={#RACINE_SPECIALISEE{galerie}}|?{' '})
-			|<a href="[(#URL_PAGE{galerie,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:galerie:></a>
+			#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}
+			<a href="[(#URL_PAGE{galerie,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:galerie:></a>
 		]
 		[(#ENV{id_rubrique}|match{#RACINE_SPECIALISEE{agenda:galerie}}|?{'', ' '})
 			[(#ID_SECTEUR|match{#RACINE_SPECIALISEE{agenda:galerie}}|?{'', ' '})
-				|
+				#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}
 				[(#CONFIG{sarkaspip_noisettes/menu_option_1, 0}|!={2}|?{<a href="#URL_RUBRIQUE">})]
 				[(#CONFIG{sarkaspip_noisettes/menu_option_1, 0}|=={2}|?{' '})<INCLURE{fond=noisettes/navigation/inc_nav_rubriques_url}{id_rubrique}>]
 					[(#TITRE|supprimer_numero)]
