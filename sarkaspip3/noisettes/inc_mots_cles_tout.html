@@ -1,24 +1,23 @@
 [(#REM) <!-- Noisette mots-cles associes a la rubrique et aux rubriques et articles de la branche
 Recoit en argument:
 -->]
-#SET{groupe_en_cours, non}
-<B_mots>
-	<div id="noisette_motscles" class="noisette">
+
+<B_groupe>
+<div id="noisette_motscles" class="noisette">
 		<h1><a class="intitule" href="#URL_PAGE{mot}"><:sarkaspip:mots_clefs:></a></h1>
-<BOUCLE_mots(MOTS){type!==^squelette_}{par titre}>
-	<BOUCLE_groupe(GROUPES_MOTS){id_groupe}{unique}>				
-		[(#GET{groupe_en_cours}|=={oui}|?{' '})
-			</ul></div></div>
-			#SET{groupe_en_cours, non}
-		]
-		[<div class="contenu">
-			<h2 class="titre_bloc">(#TITRE)</h2>
-			<div class="liste"><ul>
-			#SET{groupe_en_cours, oui}
-		] 
-	</BOUCLE_groupe>
-				<li><a class="titre" href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></li>
-</BOUCLE_mots>
-		</ul></div></div>
-	</div> <!-- Fin noisette -->
-</B_mots>
+<BOUCLE_groupe(GROUPES_MOTS){titre!==^squelette_}>
+<div class="contenu">
+			<h2 class="titre_bloc">#TITRE</h2>
+      <B_mots>
+			   <div class="liste">
+          <ul>
+      <BOUCLE_mots(MOTS){id_groupe}{par titre}>
+            <li><a class="titre" href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></li>
+      </BOUCLE_mots>
+		      </ul>
+        </div>
+      </B_mots>
+</div>
+</BOUCLE_groupe>
+</div> <!-- Fin noisette -->
+</B_groupe>
