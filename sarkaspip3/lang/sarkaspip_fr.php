@@ -562,6 +562,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_css_planche' => 'Planche de vignettes',
 		'cfg_lgd_pagination_resultats'=>'Pagination des résultats',
 		'cfg_lgd_secteur_squelette'=>'Secteur sp&eacute;cialis&eacute; pour le squelette',
+		'cfg_lgd_edito'=>'Edito de bienvenue',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -740,6 +741,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_recherche_site'=>'Sites trouv&eacute;s',
 		'cfg_inf_herbier_modele'=>'Vous pouvez choisir d\'afficher l\'herbier soit comme une liste de sites pr&eacute;sent&eacute;s avec le nom, la rubrique, la vignette... soit comme un panorama de vignettes.',
 		'cfg_inf_squelette_id'=>'Certaines options de Sarka-SPIP ne sont accessibles qu\'au travers d\'un secteur sp&eacute;cialis&eacute;. C\'est le cas de l\'&eacute;dito de bienvenue, des annonces... Tous les objets de ce secteur ne seront visibles qu\'au travers de ces options et ne seront jamais affich&eacute;s comme un article, une rubrique, une br&egrave;ve...',
+		'cfg_inf_edito_id'=>'Vous pouvez afficher un &eacute;dito de bienvenue en haut de la page sommaire pour présenter votre site. Cet &eacute;dito est un article appartenant au secteur sp&eacute;cialis&eacute; &#171;&nbsp;squelette&nbsp;&#187; choisi dans la page de configuration Accueil. Choisissez donc l\'article qui contiendra votre &eacute;dito.',
 
 // Labels des items de choix
 		'cfg_lbl_layout_07' => 'Layout #7 (navigation, centre, extra)',
@@ -909,7 +911,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_herbier_descriptif' => 'Vous pouvez r&eacute;diger un descriptif succinct pour pr&eacute;senter votre herbier (composition, mots-clés...). Ce texte peut &ecirc;tre &eacute;crit en utilisant les raccourcis classiques de SPIP.',
 		'cfg_lbl_herbier_modele_1' => 'Mod&egrave;le liste',
 		'cfg_lbl_herbier_modele_2' => 'Mod&egrave;le panorama',
-
+		'cfg_lbl_menu_horizontal_2' => 'Menu des secteurs d&eacute;pliable',
+		'cfg_lbl_menu_horizontal_3' => 'Menu de liens configurables',
+ 
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',
 		'cfg_itm_pagination_format_2' => 'P&eacute;riode (2008-2009)',
