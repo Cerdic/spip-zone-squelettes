@@ -2,9 +2,9 @@
 // Liste des rubriques specialisees standard du squelette
 // Pour ajouter des rubriques perso, definir de la meme facon les constantes _PERSO_XXX
 // dans le fichier mes_options.php
-define('_SARKASPIP_MOT_SECTEURS_SPECIALISES', 'agenda:galerie:annonce:forum');
+define('_SARKASPIP_MOT_SECTEURS_SPECIALISES', 'agenda:galerie:squelette:forum');
 define('_SARKASPIP_TYPE_SECTEURS_SPECIALISES', 'config:config:config:motcle');
-define('_SARKASPIP_FOND_SECTEURS_SPECIALISES', 'sarkaspip_agenda:sarkaspip_galerie:sarkaspip_noisettes:-');
+define('_SARKASPIP_FOND_SECTEURS_SPECIALISES', 'sarkaspip_agenda:sarkaspip_galerie:sarkaspip_accueil:-');
 
 // Modes de debug du squelette
 define('_SARKASPIP_DEBUG_CSS', 'non');

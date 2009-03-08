@@ -561,6 +561,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_css_description' => 'Description, portfolio &amp; documents d\'article',
 		'cfg_lgd_css_planche' => 'Planche de vignettes',
 		'cfg_lgd_pagination_resultats'=>'Pagination des résultats',
+		'cfg_lgd_secteur_squelette'=>'Secteur sp&eacute;cialis&eacute; pour le squelette',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -662,7 +663,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_form_referencement' => 'Le formulaire de r&eacute;f&eacute;rencement permet aux visiteurs de proposer un site de leur choix.',
 		'cfg_inf_form_login1' => 'Le formulaire de login public permet aux membres du site de se connecter sans entrer dans l\'espace priv&eacute;.',
 		'cfg_inf_form_login2' => 'Le formulaire de login priv&eacute; permet aux membres du site de se connecter et d\'entrer dans l\'espace priv&eacute; dans la foul&eacute;e.',
-		'cfg_inf_annonce_id' => 'Une annonce est mat&eacute;rialis&eacute;e par un article appartenant &agrave; un secteur (rubrique de plus haut niveau). Choisissez donc le secteur qui contiendra vos annonces.',
+		'cfg_inf_annonce_id' => 'Une annonce est mat&eacute;rialis&eacute;e par un article appartenant au secteur sp&eacute;cialis&eacute; &#171;&nbsp;squelette&nbsp;&#187; choisi dans la page de configuration Accueil. Choisissez donc l\'article qui contiendra votre annonce.',
 		'cfg_inf_accueil_bloc_divers' => '<strong>Configuration d\'&eacute;l&eacute;ments divers</strong>',
 		'cfg_inf_accueil_bloc_layout' => '<strong>Configuration de la structure du site</strong>',
 		'cfg_inf_accueil_bloc_page' => '<strong>Configuration du corps de chaque page</strong>',
@@ -738,6 +739,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_recherche_mot'=>'Mots trouv&eacute;s',
 		'cfg_inf_recherche_site'=>'Sites trouv&eacute;s',
 		'cfg_inf_herbier_modele'=>'Vous pouvez choisir d\'afficher l\'herbier soit comme une liste de sites pr&eacute;sent&eacute;s avec le nom, la rubrique, la vignette... soit comme un panorama de vignettes.',
+		'cfg_inf_squelette_id'=>'Certaines options de Sarka-SPIP ne sont accessibles qu\'au travers d\'un secteur sp&eacute;cialis&eacute;. C\'est le cas de l\'&eacute;dito de bienvenue, des annonces... Tous les objets de ce secteur ne seront visibles qu\'au travers de ces options et ne seront jamais affich&eacute;s comme un article, une rubrique, une br&egrave;ve...',
 
 // Labels des items de choix
 		'cfg_lbl_layout_07' => 'Layout #7 (navigation, centre, extra)',
@@ -842,6 +844,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_menu_option1_2' => 'Afficher la liste des articles de chaque rubrique',
 		'cfg_lbl_menu_option1_3' => 'Si la rubrique ne contient qu\'un seul article, faire pointer le titre de cette rubrique vers la page de l\'article',
 		'cfg_lbl_liste_secteurs' => 'Liste des secteurs possibles',
+		'cfg_lbl_liste_articles' => 'Liste des articles possibles',
 		'cfg_lbl_meta_auteur' => 'Nom de l\'auteur du site (balise author)',
 		'cfg_lbl_meta_robot' => 'Nombre de jours entre deux visites des robots (balise revisit-after)',
 		'cfg_lbl_galerie_type_1' => 'Type planche',
