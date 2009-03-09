@@ -9,6 +9,7 @@
 	jQuery(document).ready(function() {
 		[(#ENV{menu_rubriques, 1}|!={1}|?{jQuery("#bloc_menu_option1_2").hide();})]
 		[(#ENV{menu_rubriques, 1}|=={0}|?{jQuery("#bloc_menu_option1").hide();})]
+		[(#ENV{menu_horizontal, 0}|=={0}|?{jQuery("#largeur_item").hide();})]
 		[(#ENV{liste_breves, 2}|!={2}|?{jQuery("#bloc_intro_breve").hide();})]
 		[(#ENV{position_commentaires, 0}|!={2}|?{jQuery("#bloc_intro_commentaires").hide();})]
 		[(#ENV{liste_sites, 2}|!={1}|?{jQuery("#bloc_max_site").hide();})]
@@ -41,6 +42,14 @@
 				jQuery("#menu_option1_1").attr({checked: "checked"});
 			}
 			jQuery(this).blur();
+		});	
+		
+		jQuery("input[@name='menu_horizontal']").change(function() {
+		  if (jQuery("input[@name='menu_horizontal']:checked").val() == 0) {
+		      jQuery("#largeur_item").hide();}
+			else {jQuery("#largeur_item").show();}
+		
+		  jQuery(this).blur();
 		});	
 		
 		jQuery("input[@name='liste_breves']").change(function() {
@@ -195,7 +204,6 @@
 				<input type="radio" name="menu_option_1" value="2" [(#ENV{menu_option_1, 0}|=={2}|?{checked="checked"})] />
 				<:sarkaspip:cfg_lbl_menu_option1_3:>
 			</label>
-			<br />
 		</div>
 	</fieldset>
 	
@@ -222,7 +230,13 @@
 			<input type="radio" name="menu_horizontal" value="3" [(#ENV{menu_horizontal, 0}|=={3}|?{checked="checked"})] disabled="disabled" />
 			<:sarkaspip:cfg_lbl_menu_horizontal_3:>
 		</label>
-		<br />
+		<div id="largeur_item">
+			<br />
+  			<label><:sarkaspip:cfg_lbl_largeur_item_menu_h:>
+  					<input type="text" name="largeur_item_menu_h" value="#ENV{largeur_item_menu_h, 150}" size="4" class="fondl" />
+  					<:sarkaspip:cfg_lbl_pixel:>
+  			</label>
+			</div>
 		<div id="bloc_menu_hoption1">
 		</div>
 	</fieldset>
