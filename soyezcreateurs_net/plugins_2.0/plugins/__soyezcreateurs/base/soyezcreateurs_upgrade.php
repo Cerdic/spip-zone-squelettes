@@ -81,6 +81,13 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			echo "SoyezCreateurs MaJ 2.1.4<br />";
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.4','non');
 		}
+		if (version_compare($current_version,'2.1.5','<')) {
+			ecrire_meta('gd_formats_read', 'gif,jpg,png', 'non');
+			ecrire_meta('gd_formats', 'gif,jpg,png', 'non');
+			ecrire_meta('formats_graphiques', 'gif,jpg,png', 'non');
+			echo "SoyezCreateurs MaJ 2.1.5<br />";
+			ecrire_meta($nom_meta_base_version,$current_version='2.1.5','non');
+		}
 	}
 }
 
