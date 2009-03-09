@@ -10,6 +10,7 @@
 		- logo_rubrique: indique si on utilise le logo de la rubrique dans le cas ou le logo de l'article est absent
 		- taille_logo: taille max du logo si affiche
 		- id_evenement: id de l'evenement associe a l'article (page evenement avec plugin agenda)
+		- id_rubrique: rubrique de l'article (utilise uniquement dans la une)
 -->
 ]
 <BOUCLE_description (ARTICLES) {id_article}>
@@ -19,8 +20,8 @@
 		[(#SET{logo, #LOGO_ARTICLE_RUBRIQUE})]
 	]
 	
-	[(#REM) <!-- Icones d'action si l'article n'est pas l'edito --> ]
-	[(#ENV{page}|!={edito}|?{' '})
+	[(#REM) <!-- Icones d'action si l'article n'est pas l'edito ou la une --> ]
+	[(#ENV{page}|match{^(edito|une)$}|?{'',' '})
 		<a class="fonction" id="imprimer" href="#URL_PAGE{imprimer,id_article=#ID_ARTICLE}" title="<:sarkaspip:imprimer_article:>"></a>
 	]
 	[(#PLUGIN{ARTICLE_PDF}|?{' '})
@@ -41,9 +42,8 @@
 		]
 	]
 	
-	
-	[(#REM) <!--dans l'edito, le cartouche et l'image sont avant le titre--> ]
-	[(#ENV{page}|=={edito}|?{' '})
+	[(#REM) <!--dans l'article en une, le cartouche et l'image sont avant le titre--> ]
+	[(#ENV{page}|=={une}|?{' '})
 		[(#INCLURE{fond=noisettes/article/inc_article_cartouche}
 			{id_article}
 			{avec_popularite=non}
@@ -53,14 +53,34 @@
 		<br class="nettoyeur" />
 		[<div class="logo droite">(#GET{logo}||image_reduire{#ENV{taille_logo}})</div>]
 	]
+	[(#ENV{page}|=={edito}|?{' '})
+		<br class="nettoyeur" />
+		[<div class="logo droite">(#GET{logo}||image_reduire{#ENV{taille_logo}})</div>]
+	]
 	
-	[<div class="#EDIT{titre} titre"><h1>(#TITRE|supprimer_numero)</h1></div>]
+	[<div class="#EDIT{titre} titre"><h1>(#TITRE|supprimer_numero)</a></h1></div>]
+
+	[(#ENV{page}|=={une}|?{' '})
+		<div class="complements">
+			<INCLURE{fond=noisettes/rubrique/inc_rubrique_mere}{id_rubrique}>
+		[(#PETITION|?{'', ' '})
+			[(#PARAMETRES_FORUM|?{' '})
+				&nbsp;-&nbsp;
+				<INCLURE{fond=noisettes/article/inc_article_total_commentaires}{id_article}{ancre_meme_page=non}>
+			]
+		]
+		[(#PETITION|?{' '})
+			&nbsp;-&nbsp;
+			<INCLURE{fond=noisettes/article/inc_article_total_signatures}{id_article}{ancre_meme_page=non}>
+		]
+		</div>
+	]
 	
 	<div class="description">
 	[(#ENV{page}|!={evenement}|?{' '})
 		[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>[(#ENV{page}|=={edito}|?{' '})<br /><br />]]
 	]
-	[(#ENV{page}|!={edito}|?{' '})
+	[(#ENV{page}|match{^(edito|une)$}|?{'',' '})
 		[(#INCLURE{fond=noisettes/article/inc_article_cartouche}
 			{id_article}
 			{id_evenement}
