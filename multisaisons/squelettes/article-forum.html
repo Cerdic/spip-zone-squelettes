@@ -1,4 +1,4 @@
-#CACHE{864000}
+#CACHE{20*24*3600}
 [(#INCLURE{fond=header})]
 
 <BOUCLE_principale(ARTICLES){id_article}><head>
@@ -17,7 +17,7 @@
 	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
 	
 
-[(#INCLURE{fond=header-css}{date=#ENV{date}})] 	
+[(#INCLURE{fond=header-css}{date=#ENV{date}}{id_article}{id_rubrique})] 	
 
 
 </head><body> 
@@ -42,7 +42,7 @@ if (location.hash){
 </script>
 
 <div id="container">   [(#REM)   centrage page   ]
-[(#INCLURE{fond=entete}{date=#ENV{date}})] 
+[(#INCLURE{fond=entete}{date=#ENV{date}}{id_article}{id_rubrique})] 
 <div id="surcontent">  
 <INCLURE{fond=menuhoriz}{id_rubrique}>[(#REM)   ouverture entête   ]
 <div id="content">  [(#REM)   ouverture contenu   ] 
@@ -190,8 +190,7 @@ RSS forum</a></span></p>
 <BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension IN png,jpg,gif}{par num titre, date}{pagination 40}>
 <li class="transparent" id="a#ID_DOCUMENT">
 <a class="thickbox nyroceros" href="#URL_DOCUMENT" type="#MIME_TYPE" [title="(#TITRE|couper{80}|texte_backend)"][longdesc="(#DESCRIPTIF|couper{120}|texte_backend)"] rel="gal">
-
-[(#FICHIER|image_masque{carre-80.png}|image_aplatir{jpg,ffffff}|inserer_attribut{alt,#TITRE})]</a>
+<img src="[(#FICHIER|image_masque{carre-80.png}|image_aplatir{jpg,ffffff}|extraire_attribut{src})]" alt="photos[ : (#TITRE|couper{80}|textebrut)]" style="width:80px; height:80px;" /></a>
 </li>
 </BOUCLE_documents_portfolio>				
 </ul>
@@ -240,7 +239,7 @@ RSS forum</a></span></p>
         <h4 class="icone_menu">Navigation</h4>
         [(#INCLURE{fond="inc_menu_rub"}{delais="7*24*3600"}{id_rubrique}{id_article})] </div>[(#REM)   fermeture boite menu   ]
 		<div class="boite"> [(#REM)   ouverture boite les membres   ] 
-[(#INCLURE{fond=inc_liste_membres}{lettre=#ENV{lettre}}{self=#SELF}{id_article})]
+[(#INCLURE{fond=inc_liste_membres}{lettre=#ENV{lettre}}{self=#SELF}{ajax}{env}{id_article})]
 </div>
 
 

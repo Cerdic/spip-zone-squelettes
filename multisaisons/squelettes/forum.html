@@ -1,26 +1,20 @@
 #CACHE{0}
+[(#PARAMETRES_FORUM|?{''})]
 [(#INCLURE{fond=header})]<head>
 
 [(#REM)   les m&eacute;tas   ]
 <BOUCLE_metarticle(ARTICLES){id_article}>
 
-
-
 <title>Participez sur ce forum[, (#TITRE)]</title>
 <meta name="Description" content='[(#INTRODUCTION|supprimer_tags|texte_script)][, (#TITRE|supprimer_tags|texte_script)]'/>
 </BOUCLE_metarticle>
-<BOUCLE_metabreve(BREVES){id_breve}>
-<title>Participez sur ce forum[, (#TITRE)]</title>
-<meta name="Description" content='[(#INTRODUCTION|supprimer_tags|texte_script)][, (#TITRE|supprimer_tags|texte_script)]'/>
-</BOUCLE_metabreve>
+
 <meta name="revisit-after" content="15 days" />
 <meta http-equiv="content-type" content="text/html; charset=#CHARSET"/>
 <meta http-equiv="Content-Language" content="fr-fr" />
 
 	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
 	
-
-[(#INCLURE{fond=header-css}{date=#ENV{date}})] 	
 
 <!-- Les smilleys -->
 <script type="text/javascript"> <!--
@@ -32,19 +26,19 @@ caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? caretPos.text +
 text + ' ' : caretPos.text + text; txtarea.focus(); } else {
 txtarea.value += text; txtarea.focus(); } } 
 --> </script>
+<BOUCLE_article(ARTICLES){id_article}>
+[(#INCLURE{fond=header-css}{date=#ENV{date}}{id_article}{id_rubrique})] 	
 
 </head>
 <body dir="#LANG_DIR"> 
 
 <div id="container">   [(#REM)   centrage page   ]
-[(#INCLURE{fond=entete}{date=#ENV{date}})]  
+[(#INCLURE{fond=entete}{date=#ENV{date}}{id_article}{id_rubrique})]  
 <div id="surcontent">  
-<BOUCLE_fondmenu(ARTICLES){id_article}>
+
 <INCLURE{fond=menuhoriz}{id_rubrique}>[(#REM)   ouverture ent&ecirc;te   ]
-</BOUCLE_fondmenu>
-<BOUCLE_fondmenubreve(BREVES){id_breve}>
-<INCLURE{fond=menuhoriz}{id_rubrique}>[(#REM)   ouverture ent&ecirc;te   ]
-</BOUCLE_fondmenubreve>
+
+
 
 <div id="content">  [(#REM)   ouverture contenu   ] 
 
@@ -55,18 +49,9 @@ txtarea.value += text; txtarea.focus(); } }
 
 <p>
 
-[(#REM)   quelle breve   ]
-<BOUCLE_breve(BREVES){id_breve}>
-<span class="logogauche"><a href="#URL_BREVE">[(#INCLURE{fond=logo}{id_breve,#ID_BREVE}{taille=48}{date=#ENV{date}})]</a></span>
-[<a href="(#URL_PAGE{sommaire})">Accueil</a> >]
-
-<BOUCLE_rub2(HIERARCHIE){id_rubrique}>[<a href="#URL_RUBRIQUE">(#TITRE)</a> >]
-</BOUCLE_rub2>
-[<a href="#URL_BREVE">(#TITRE)</a> >]
-</BOUCLE_breve>
 
 [(#REM)   quel article   ]
-<BOUCLE_article(ARTICLES){id_article}>
+
 <span class="logogauche"><a href="#URL_ARTICLE">[(#INCLURE{fond=logo}{id_article,#ID_ARTICLE}{taille=48}{date=#ENV{date}})]</a></span>
 [<a href="(#URL_PAGE{sommaire})"><:accueil_site:></a> >]
 
@@ -113,8 +98,6 @@ txtarea.value += text; txtarea.focus(); } }
 <hr class="spacer" />
 
 [(#INCLURE{fond=inc_fil_discussion}{id_article}{id_breve}{id_forum}{id_thread}{id_auteur}{self=#SELF})]
-
-
 
 </div>[(#REM)   fermeture contenu   ] 
 [(#INCLURE{fond=pieddepage}{id_article}{id_breve})]

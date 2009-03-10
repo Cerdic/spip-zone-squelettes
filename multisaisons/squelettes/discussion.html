@@ -13,10 +13,9 @@
 <meta http-equiv="content-type" content="text/html; charset=#CHARSET"/>
 <meta http-equiv="Content-Language" content="fr-fr" />
 
-	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
-	
-
-[(#INCLURE{fond=header-css}{date=#ENV{date}})] 	
+<BOUCLE_pour_onglet(ARTICLES){id_article}>
+[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
+[(#INCLURE{fond=header-css}{date=#ENV{date}}{id_article}{id_rubrique})] 	
 
 
 
@@ -25,9 +24,9 @@
 <body dir="#LANG_DIR"> 
 
 <div id="container">   [(#REM)   centrage page   ]
-[(#INCLURE{fond=entete}{date=#ENV{date}})]  
+[(#INCLURE{fond=entete}{date=#ENV{date}}{id_article}{id_rubrique})]  
 <div id="surcontent">  
-<BOUCLE_pour_onglet(ARTICLES){id_article}>
+
 <INCLURE{fond=menuhoriz}{id_rubrique}>[(#REM)   ouverture ent&ecirc;te   ]
 </BOUCLE_pour_onglet>
 <div id="content">  [(#REM)   ouverture contenu   ] 
@@ -102,7 +101,7 @@
 <hr class="spacer" />
 
 
-<INCLURE{fond=inc_discussion}{id_article}{id_breve}{id_forum}{id_thread}{id_auteur}{self=#SELF}>
+<INCLURE{fond=inc_discussion}{id_article}{id_breve}{id_forum}{id_thread}{id_auteur}{self=#SELF}{ajax}{env}>
 
 
 

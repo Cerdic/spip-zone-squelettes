@@ -1,4 +1,4 @@
-#CACHE{450000}
+#CACHE{30*24*3600}
 [(#INCLURE{fond=header})]
 
 
@@ -40,6 +40,7 @@
       </h1><br/>]
 	  <div class="#EDIT{texte}">
    [#DEBUT_SURLIGNE(#TEXTE|image_reduire{450,0}|lier_au_glossaire|paragrapher)#FIN_SURLIGNE]
+ 
    </div>
    
      <B_auteurs>
@@ -72,9 +73,10 @@
 
 <BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension IN png,jpg,gif}{par num titre, date}{pagination 40}>
 <li class="transparent" id="a#ID_DOCUMENT">
-<a class="thickbox nyroceros" href="#URL_DOCUMENT" type="#MIME_TYPE" [title="(#TITRE|couper{80}|texte_backend)"][longdesc="(#DESCRIPTIF|couper{120}|texte_backend)"] rel="gal">
+<a class="thickbox nyroceros" href="#URL_DOCUMENT" type="#MIME_TYPE" [title="(#TITRE|couper{80}|textebrut)"] [longdesc="(#DESCRIPTIF|couper{120}|texte_backend)"] rel="gal">
+<img src="[(#FICHIER|image_masque{carre-80.png}|image_aplatir{jpg,ffffff}|extraire_attribut{src})]" alt="photo[ : (#TITRE|couper{80}|textebrut)]" style="width:80px; height:80px;" />
+</a>
 
-[(#FICHIER|image_masque{carre-80.png}|image_aplatir{jpg,ffffff}|inserer_attribut{alt,#TITRE})]</a>
 </li>
 </BOUCLE_documents_portfolio>				
 </ul>
@@ -96,6 +98,7 @@
 <BOUCLE_afficher_photo_seule(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date}{0,1}{doublons}>
 <a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;" title="[(#TITRE|couper{200}|texte_backend)]">
 [(#FICHIER|reduire_image{450,1000}|inserer_attribut{alt,#TITRE #TAILLE #LARGEUR x #HAUTEUR})]
+
 <span>[(#TITRE)<br />]
 [(#DESCRIPTIF)<br />]
 [(#DATE|affdate), ]
@@ -190,7 +193,7 @@
    <B_COMMUNAUTE>
 <div class="boite">
 <BOUCLE_COMMUNAUTE(RUBRIQUES){id_rubrique}{titre_mot==^(communaute|partenaire)$}{0,1}>
-[(#INCLURE{fond=inc_liste_membres}{lettre=#ENV{lettre}}{self=#SELF})]
+[(#INCLURE{fond=inc_liste_membres}{lettre=#ENV{lettre}}{self=#SELF}{ajax}{env})]
 </BOUCLE_COMMUNAUTE>
 </div>
 </B_COMMUNAUTE>
