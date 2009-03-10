@@ -4,7 +4,7 @@
 // si le selecteur generique n'est pas la on ne fait rien
 if ($.fn.Autocomplete)
 $(document).ready(function() {
-	$('input[@name=recherche]')
+	$('input[name=recherche]')
 	.Autocomplete({
 		'source': 'spip.php?page=gribouille_selecteur_recherche',
 		'delay': 300,

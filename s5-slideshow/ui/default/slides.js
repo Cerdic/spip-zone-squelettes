@@ -258,8 +258,8 @@ function fixLinks() {
 
 //si l'url posséde rel=external, on fait un renvoit extérieur
 function externalLinks() {
-    $('a[@href^=http]').addClass('external').attr('target','_blank');
-    $('a[@rel=external]').addClass('external').attr('target','_blank');
+    $('a[href^=http]').addClass('external').attr('target','_blank');
+    $('a[rel=external]').addClass('external').attr('target','_blank');
 }
 
 function createControls() {
@@ -357,8 +357,8 @@ function BrowserFix() {
 }
 
 function defaultCheck() {
-    defaultView = $('meta[@name=defaultView]').attr('content');
-    controlVis = $('meta[@name=controlVis]').attr('content');
+    defaultView = $('meta[name=defaultView]').attr('content');
+    controlVis = $('meta[name=controlVis]').attr('content');
 }
 
 // Key trap fix, new function body for trap()
