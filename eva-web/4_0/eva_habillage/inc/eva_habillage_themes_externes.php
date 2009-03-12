@@ -704,9 +704,9 @@ $eva_themes = array(
 'Orchidee' => array(
     /* Thème créé par Olivier Gautier et inspiré du site CssZenGarden*/
     "habillage" => "0",
-    "theme" => "('', 'Defaut', '#FFF', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', '#843608', 'transparent', 'transparent', 'transparent', 'transparent', 'serif', '#777', '#777', '#777', '#843608', '#666', '#843608', '#666', '#FFF', '#FFF', '#9A7D9F', '#843608; font-family:fantasy; border-bottom : 1px solid #843608; letter-spacing:0.2em; font-variant:small-caps', '#843608; font-family:fantasy', '#777', '#843608; font-family:fantasy; letter-spacing:0.2em; font-variant:small-caps', '#843608; font-family:fantasy', '#CCC', '#777', '#CCC', '#444', '#9A7D9F', '#444', '#9A7D9F', '#444', '#9A7D9F', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', '', '', '54px', '', '')",
+    "theme" => "('', 'Defaut', '#FFF', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', '#843608', 'transparent', 'transparent', 'transparent', 'transparent', 'Verdana, Geneva, Arial, Helvetica, sans-serif', '#777', '#777', '#777', '#843608', '#666', '#843608', '#666', '#FFF', '#FFF', '#9A7D9F', '#843608; border-bottom : 1px solid #843608; letter-spacing:0.2em; font-variant:small-caps', '#843608', '#777', '#843608; letter-spacing:0.2em; font-variant:small-caps', '#843608', '#CCC', '#777', '#CCC', '#444', '#9A7D9F', '#444', '#9A7D9F', '#444', '#9A7D9F', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', '', '', '54px', '', '')",
     "images" => array(
-    "('', 'perso', 'Defaut', '.edito .titre {color : #843608; font-family:fantasy; border-bottom : 1px solid #843608; font-variant:small-caps;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '.edito .titre {color : #843608; border-bottom : 1px solid #843608; font-variant:small-caps;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'div#entete h1 {text-align:right;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'div#entete h1 span {color:#8C3A0E; font-size:120%; letter-spacing:0.1em; font-weight:lighter;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_page', 'orchidees/orchidee_medium.JPG', 'right', 'bottom', 'no-repeat', 'scroll')",
@@ -724,11 +724,11 @@ $eva_themes = array(
 'Blanche' => array(
     /* Thème créé par Olivier Gautier et inspiré du site CssZenGarden*/
     "habillage" => "eva4_basic_menu_droite.css",
-    "theme" => "('', 'Defaut', '#FFF', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', '#93A444', 'transparent', 'transparent', 'transparent', 'transparent', 'serif', '#777', '#777', '#777', '#AEBE61', '#666', '#AEBE61', '#666', '#FFF', '#FFF', '#AEBE61', '#AEBE61; font-family:fantasy; border-bottom : 1px solid #AEBE61; letter-spacing:0.2em; font-variant:small-caps', '#AEBE61; font-family:fantasy', '#777', '#AEBE61; font-family:fantasy; letter-spacing:0.2em; font-variant:small-caps', '#AEBE61; font-family:fantasy', '#CCC', '#777', '#CCC', '#444', '#AEBE61', '#444', '#AEBE61', '#444', '#AEBE61', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', '', '', '54px', '', '')",
+    "theme" => "('', 'Defaut', '#FFF', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', '#93A444', 'transparent', 'transparent', 'transparent', 'transparent', 'Verdana, Geneva, Arial, Helvetica, sans-serif', '#777', '#777', '#777', '#AEBE61', '#666', '#AEBE61', '#666', '#FFF', '#FFF', '#AEBE61', '#AEBE61; border-bottom : 1px solid #AEBE61; letter-spacing:0.2em; font-variant:small-caps', '#AEBE61', '#777', '#AEBE61; letter-spacing:0.2em; font-variant:small-caps', '#AEBE61', '#CCC', '#777', '#CCC', '#444', '#AEBE61', '#444', '#AEBE61', '#444', '#AEBE61', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', '', '', '54px', '', '')",
     "images" => array(
     "('', 'perso', 'Defaut', 'div#arborescence{padding-left:15px;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'body {margin-bottom:0;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', '.edito .titre {color : #AEBE61; font-family:fantasy; border-bottom : 1px solid #AEBE61; font-variant:small-caps;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '.edito .titre {color : #AEBE61; border-bottom : 1px solid #AEBE61; font-variant:small-caps;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'div#entete ul.liens {text-align:left;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_page', 'blanche/blanche2.jpg', 'left', 'bottom', 'no-repeat', 'scroll')",
     "('', 'perso', 'Defaut', 'body {font-size: 90%;}', '', '', '', '', '')",
@@ -745,7 +745,7 @@ $eva_themes = array(
 'Tournesol' => array(
     /* Thème créé par Olivier Gautier et inspiré du site CssZenGarden*/
     "habillage" => "0",
-    "theme" => "('', 'Defaut', '#FFF', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', '#D94600', 'transparent', 'transparent', 'transparent', 'transparent', 'serif', '#777', '#777', '#777', '#E17100', '#666', '#E17100', '#666', '#FFF', '#FFF', '#E17100', '#E17100; font-family:fantasy; border-bottom : 1px solid #E17100; letter-spacing:0.2em; font-variant:small-caps', '#E17100; font-family:fantasy', '#777', '#E17100; font-family:fantasy; letter-spacing:0.2em; font-variant:small-caps', '#E17100; font-family:fantasy', '#CCC', '#777', '#CCC', '#444', '#E17100', '#444', '#E17100', '#444', '#E17100', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', '', '', '54px', '', '')",
+    "theme" => "('', 'Defaut', '#FFF', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', '#D94600', 'transparent', 'transparent', 'transparent', 'transparent', 'Verdana, Geneva, Arial, Helvetica, sans-serif', '#777', '#777', '#777', '#E17100', '#666', '#E17100', '#666', '#FFF', '#FFF', '#E17100', '#E17100; border-bottom : 1px solid #E17100; letter-spacing:0.2em; font-variant:small-caps', '#E17100', '#777', '#E17100; letter-spacing:0.2em; font-variant:small-caps', '#E17100', '#CCC', '#777', '#CCC', '#444', '#E17100', '#444', '#E17100', '#444', '#E17100', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', '', '', '54px', '', '')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_pairs', 'orchidees/barre.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'perso', 'Defaut', 'div#menu {border:1px solid #E17100; margin-top:360px;}', '', '', '', '', '')",
@@ -754,7 +754,7 @@ $eva_themes = array(
     "('', 'perso', 'Defaut', 'div#entete h1 span {color:#E17100; font-size:120%; letter-spacing:0.1em; font-weight:lighter;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_ecran', 'tournesol/tournesol1.jpg', 'left', 'top', 'no-repeat', 'scroll')",
     "('', 'perso', 'Defaut', 'div#entete h1 {text-align:right;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', '.edito .titre {color : #E17100; font-family:fantasy; border-bottom : 1px solid #E17100; font-variant:small-caps;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '.edito .titre {color : #E17100; border-bottom : 1px solid #E17100; font-variant:small-caps;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'div#contenu{padding-bottom:350px; padding-top:80px;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'body {margin-bottom:0; font-size: 90%;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_page', 'tournesol/tournesol2.jpg', 'right', 'bottom', 'no-repeat', 'scroll')",
@@ -782,7 +782,7 @@ $eva_themes = array(
 'Seule...' => array(
     /* Thème créé par Olivier Gautier et inspiré du site CssZenGarden*/
     "habillage" => "eva4_basic_menu_gauche.css",
-    "theme" => "('', 'Defaut', '#96C31A', '#FFF', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', '#F4F4F4', '#F4F4F4', 'transparent', 'transparent', '#777', '#777', 'transparent', 'transparent', 'serif', '#777', '#777', '#777', '#555', '#666', '#555', '#666', '#FFF', '#FFF', '#96C31A', '#555; font-family:fantasy; border-bottom : 1px solid #555; letter-spacing:0.2em; font-variant:small-caps', '#555; font-family:fantasy', '#777', '#555; font-family:fantasy; letter-spacing:0.2em; font-variant:small-caps', '#555; font-family:fantasy', '#CCC', '#777', '#666', '#444', '#96C31A', '#444', '#96C31A', '#444', '#96C31A', '#999', '10px', 'solid', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '282px', '', '434px', '110px', '', '')",
+    "theme" => "('', 'Defaut', '#96C31A', '#FFF', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', '#F4F4F4', '#F4F4F4', 'transparent', 'transparent', '#777', '#777', 'transparent', 'transparent', 'Verdana, Geneva, Arial, Helvetica, sans-serif', '#777', '#777', '#777', '#555', '#666', '#555', '#666', '#FFF', '#FFF', '#96C31A', '#555; border-bottom : 1px solid #555; letter-spacing:0.2em; font-variant:small-caps', '#555', '#777', '#555; letter-spacing:0.2em; font-variant:small-caps', '#555', '#CCC', '#777', '#666', '#444', '#96C31A', '#444', '#96C31A', '#444', '#96C31A', '#999', '10px', 'solid', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '282px', '', '434px', '110px', '', '')",
     "images" => array(
     "('', 'perso', 'Defaut', 'div#menu {margin-top:50px;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'div#contenu {margin-right:0;}', '', '', '', '', '')",
@@ -790,7 +790,7 @@ $eva_themes = array(
     "('', 'perso', 'Defaut', 'ul#logo-pied, ul#pied {border-top:6px solid #999;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'div#entete h1 {padding-right:440px;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'div#entete h1 span {color:#555; font-size:100%; letter-spacing:0.1em; font-weight:lighter; font-variant:small-caps;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', '.edito .titre {color : #555; font-family:fantasy; border-bottom : 1px solid #555; font-variant:small-caps;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '.edito .titre {color : #555; border-bottom : 1px solid #555; font-variant:small-caps;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'body {font-size: 90%; margin-bottom:0; margin-top:0;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'div#arborescence{padding-left:15px; padding-right:440px;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'div#entete ul.liens {text-align:left; padding-right:440px;}', '', '', '', '', '')",
@@ -804,7 +804,7 @@ $eva_themes = array(
 'Automne maritime' => array(
     /* Thème créé par Olivier Gautier et inspiré du site CssZenGarden*/
     "habillage" => "eva4_basic_menu_gauche.css",
-    "theme" => "('', 'Defaut', '#464646', '#E5ECF7', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', '#AA6C21', '#5B6729', 'transparent', 'transparent', 'serif', '#000', '#000', '#000', '#FFF', '#FFF', '#FFF', '#FFF', '#FFF', '#FFF', '#A3C3F2', '#FFF; font-family:fantasy; letter-spacing:0.2em; font-variant:small-caps; border:#FFF 1px solid', '#FFF; font-family:fantasy', '#000', '#FFF; font-family:fantasy; letter-spacing:0.2em; font-variant:small-caps', '#FFF; font-family:fantasy', '#FFF', '#FFF', '#FFF', '#444', '#AA6C21', '#444', '#AA6C21', '#444', '#AA6C21', '#FFF', '6px', 'solid', '', '', 'none', '', '', 'none', '#FFF', '1px', 'solid', '', '', 'none', '', '', 'none', '', '', 'none', '#FFF', '1px', 'solid', '', '', 'none', '750px', '170px', '', '540px', '241px', '', '')",
+    "theme" => "('', 'Defaut', '#464646', '#E5ECF7', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', '#AA6C21', '#5B6729', 'transparent', 'transparent', 'Verdana, Geneva, Arial, Helvetica, sans-serif', '#000', '#000', '#000', '#FFF', '#FFF', '#FFF', '#FFF', '#FFF', '#FFF', '#A3C3F2', '#FFF; letter-spacing:0.2em; font-variant:small-caps; border:#FFF 1px solid', '#FFF', '#000', '#FFF; letter-spacing:0.2em; font-variant:small-caps', '#FFF', '#FFF', '#FFF', '#FFF', '#444', '#AA6C21', '#444', '#AA6C21', '#444', '#AA6C21', '#FFF', '6px', 'solid', '', '', 'none', '', '', 'none', '#FFF', '1px', 'solid', '', '', 'none', '', '', 'none', '', '', 'none', '#FFF', '1px', 'solid', '', '', 'none', '750px', '170px', '', '540px', '241px', '', '')",
     "images" => array(
     "('', 'image', 'Defaut', 'image_menu_off', 'foret/foret_menu_off.jpg', 'left', 'top', 'repeat', 'scroll')",
     "('', 'image', 'Defaut', 'image_menu_on', 'foret/foret_menu_on.jpg', 'left', 'top', 'repeat', 'scroll')",
@@ -812,7 +812,7 @@ $eva_themes = array(
     "('', 'perso', 'Defaut', 'div #menu {border-right:3px solid #FFF; border-bottom:3px solid #FFF; background-color:#A3C3F2;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_pied', 'foret/foret_pied.jpg', 'left', 'top', 'repeat', 'scroll')",
     "('', 'perso', 'Defaut', 'body {margin-top:30px; margin-bottom:30px; font-size: 90%;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', '.edito .titre {color : #FFF; font-family:fantasy; font-variant:small-caps;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '.edito .titre {color : #FFF; font-variant:small-caps;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_entete_page', 'foret/foret_haut.jpg', 'left', 'top', 'no-repeat', 'scroll')",
     "('', 'perso', 'Defaut', 'ul#logo-pied, ul#pied {line-height:30%;border-top:2px solid #FFF;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'foret/foret_bas.jpg', 'left', 'top', 'no-repeat', 'scroll')",
@@ -826,14 +826,14 @@ $eva_themes = array(
 'Soleil' => array(
     /* Thème créé par Olivier Gautier et inspiré du site CssZenGarden*/
     "habillage" => "eva4_basic_menu_droite.css",
-    "theme" => "('', 'Defaut', '#816B49', '#FCFCFD', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', '#F4F4F4', '#F4F4F4', 'transparent', 'transparent', '#CBBAA3', '#CBBAA3', 'transparent', 'transparent', 'serif', '#222', '#222', '#222', '#555', '#444', '#222', '#444', '#FFF', '#FFF', '#C64C00', '#222; font-family:fantasy; border-bottom : 1px solid #555; letter-spacing:0.2em; font-variant:small-caps', '#222; font-family:fantasy', '#222', '#222; font-family:fantasy; letter-spacing:0.2em; font-variant:small-caps', '#222; font-family:fantasy', '#CCC', '#444', '#666', '#444', '#C64C00', '#444', '#C64C00', '#444', '#C64C00', '', '', '', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '#786343', '2px', 'solid', '', '282px', '', '424px', '110px', '', '')",
+    "theme" => "('', 'Defaut', '#816B49', '#FCFCFD', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', '#F4F4F4', '#F4F4F4', 'transparent', 'transparent', '#CBBAA3', '#CBBAA3', 'transparent', 'transparent', 'Verdana, Geneva, Arial, Helvetica, sans-serif', '#222', '#222', '#222', '#555', '#444', '#222', '#444', '#FFF', '#FFF', '#C64C00', '#222; border-bottom : 1px solid #555; letter-spacing:0.2em; font-variant:small-caps', '#222', '#222', '#222; letter-spacing:0.2em; font-variant:small-caps', '#222', '#CCC', '#444', '#666', '#444', '#C64C00', '#444', '#C64C00', '#444', '#C64C00', '', '', '', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '#786343', '2px', 'solid', '', '282px', '', '424px', '110px', '', '')",
     "images" => array(
     "('', 'perso', 'Defaut', ' div#conteneurseul, div#page div#entetediaporama {margin-top: 210px;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'div#conteneurseul div#contenu{background-color:transparent;border-bottom-style:none;border-right-style:none;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'div#entete h1 {text-align:right;padding-left:440px;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'div#entete h1 span {color:#555; font-size:100%; letter-spacing:0.1em; font-weight:lighter; font-variant:small-caps;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', 'div#menu {margin-top:50px;}', '', '', '', '', '')",
-    "('', 'perso', 'Defaut', '.edito .titre {color : #555; font-family:fantasy; border-bottom : 1px solid #555; font-variant:small-caps;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '.edito .titre {color : #555; border-bottom : 1px solid #555; font-variant:small-caps;}', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_page', 'soleil/jaune.jpg', 'left', 'top', 'no-repeat', 'scroll')",
     "('', 'perso', 'Defaut', 'div#contenu {border-right:1px solid #555;border-bottom:1px solid #555; margin-top:190px; background-color:#CBBAA3;margin-left:0; padding-left:5px;padding-right:5px; }', '', '', '', '', '')",
     "('', 'image', 'Defaut', 'image_ecran', 'soleil/jaune_fond.jpg', 'center', 'top', 'repeat-y', 'scroll')",
