@@ -10,12 +10,24 @@
 		[(#ENV{position_articles_recents, 1}|!={1}|?{' '})
 			jQuery("#bloc_max_articles").hide();
 		]
+		[(#ENV{article_edito, 0}|=={0}|?{' '})
+			jQuery("#bloc_titre_edito").hide();
+		]
 		jQuery("input[@name='position_articles_recents']").change(function() {
 			if (jQuery("input[@name='position_articles_recents']:checked").val() == 1) {
 				jQuery("#bloc_max_articles").show();
 			}
 			else {
 				jQuery("#bloc_max_articles").hide();
+			}
+			jQuery(this).blur();
+		});	
+		jQuery("#select_article").change(function() {
+			if (jQuery("#select_article option:selected").val() == 0) {
+				jQuery("#bloc_titre_edito").hide();
+			}
+			else {
+				jQuery("#bloc_titre_edito").show();
 			}
 			jQuery(this).blur();
 		});	
@@ -31,6 +43,18 @@
 			{explication=<:sarkaspip:cfg_inf_edito_id:>}
 			{article=edito}
 			{env}>
+
+		<div id="bloc_titre_edito">
+			<p><:sarkaspip:cfg_inf_titre_edito:></p>
+			<label>
+				<input type="radio" name="titre_edito" value="1" [(#ENV{titre_edito, 1}|=={1}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_oui:>
+			</label>
+			<label>
+				<input type="radio" name="titre_edito" value="0" [(#ENV{titre_edito, 1}|=={0}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_non:>
+			</label>
+		</div>
 	</fieldset>
 
 	<fieldset>

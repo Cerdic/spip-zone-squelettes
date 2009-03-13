@@ -742,6 +742,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_herbier_modele'=>'Vous pouvez choisir d\'afficher l\'herbier soit comme une liste de sites pr&eacute;sent&eacute;s avec le nom, la rubrique, la vignette... soit comme un panorama de vignettes.',
 		'cfg_inf_squelette_id'=>'Certaines options de Sarka-SPIP ne sont accessibles qu\'au travers d\'un secteur sp&eacute;cialis&eacute;. C\'est le cas de l\'&eacute;dito de bienvenue, des annonces... Tous les objets de ce secteur ne seront visibles qu\'au travers de ces options et ne seront jamais affich&eacute;s comme un article, une rubrique, une br&egrave;ve...',
 		'cfg_inf_edito_id'=>'Vous pouvez afficher un &eacute;dito de bienvenue en haut de la page sommaire pour présenter votre site. Cet &eacute;dito est un article appartenant au secteur sp&eacute;cialis&eacute; &#171;&nbsp;squelette&nbsp;&#187; choisi dans la page de configuration Accueil. Choisissez donc l\'article qui contiendra votre &eacute;dito.',
+		'cfg_inf_titre_edito'=>'Voulez-vous afficher le titre de l\'&eacute;dito ?',
 
 // Labels des items de choix
 		'cfg_lbl_layout_07' => 'Layout #7 (navigation, centre, extra)',
