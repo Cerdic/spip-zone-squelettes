@@ -464,8 +464,10 @@ function agenda_mini_header($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='&
 	$header .= '<h2><a class="titre_bloc bord ajax" href="'.$url_base.'calendrier_mois='.$mois_prec.'&amp;calendrier_annee='.$annee_prec.'" title="'.$nom_mois[$mois_prec].'&nbsp;'.$annee_prec.'">'.$icone_prec.'</a></h2>';
 	$header .= '<h2 class="titre_bloc centre">'.$nom_mois[$mois_choisi].'</h2>';   
 	$header .= '<h2><a class="titre_bloc bord ajax" href="'.$url_base.'calendrier_mois='.$mois_suiv.'&amp;calendrier_annee='.$annee_suiv.'" title="'.$nom_mois[$mois_suiv].'&nbsp;'.$annee_suiv.'">'.$icone_suiv.'</a></h2>';
+	// Ligne 3 : retour au mois du jour courant
+	$header .= '<h2><a class="titre_bloc ajax" href="'.$url_base.'calendrier_mois='.$mois_courant.'&amp;calendrier_annee='.$annee_courante.'" title="'.$nom_mois[intval($mois_courant)].'&nbsp;'.$annee_courante.'">'.ucfirst(_T('sarkaspip:aujourdhui')).'</a></h2>';
 	// Fin de l'en-tete
-	$header .= '<br class="nettoyeur" />';
+	
 	return $header;
 }
 
@@ -622,9 +624,6 @@ function agenda_mini_footer($id_agenda=0, $critere='oui', $max_mois=6, $taille=5
 	// Init de la chaine
 	$footer = NULL;
 
-	// Ligne 1 : retour au mois du jour courant
-	$footer .= '<h2 id="auj"><a class="titre_bloc ajax" href="'.$url_base.'calendrier_mois='.$mois_courant.'&amp;calendrier_annee='.$annee_courante.'" title="'.$nom_mois[intval($mois_courant)].'&nbsp;'.$annee_courante.'">'.ucfirst(_T('sarkaspip:aujourdhui')).'</a></h2>';
-	
 	// Extraction des evenements du rsum si demande
 	if ($critere == 'oui') {
 		$i = 1;
