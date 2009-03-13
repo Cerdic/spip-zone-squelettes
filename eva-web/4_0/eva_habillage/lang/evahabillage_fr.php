@@ -340,13 +340,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'EVA_bloc_pied_classique' => 'Pied classique : raccourcis et mentions',
 'EVA_bloc_headers_classiques' => 'Headers classiques d\'EVA-web',
 'EVA_bloc_headers_menu_dynamique' => 'Headers du menu d&eacute;pliable',
-'logos_taille_def' => "<div style='text-align:center;'>Red&eacute;finir la taille des logos</div>",
-'logos_taille_detail' => "<p>Les squelettes de la distribution EVA-web contiennent des filtres qui r&eacute;duisent les tailles des logos utilis&eacute;s dans votre site.
-Vous pouvez red&eacute;finir ces tailles si vous le souhaitez.</p>Par d&eacute;faut, les tailles utilis&eacute;es sont les suivantes :
+'logos_taille_def' => "<div style='text-align:center;'>Red&eacute;finir la taille des logos et des images r&eacute;duites dans les articles</div>",
+'logos_taille_detail' => "<p>Les squelettes de la distribution EVA-web contiennent des filtres qui r&eacute;duisent les tailles des logos utilis&eacute;s dans votre site ainsi que la taille des images contenues dans les articles.
+Vous pouvez red&eacute;finir ces tailles si vous le souhaitez.</p>Par d&eacute;faut, les tailles utilis&eacute;es pour les logos sont les suivantes :
 <ul><li> mini logos : 30 pixels en largeur et hauteur au maximum</li>
 <li> petits logos : 50 pixels en largeur et 60 pixels en hauteur au maximum</li>
 <li> logos moyens : 140 pixels en largeur et 70 pixels en hauteur au maximum</li></ul>
 <p><strong>Entrez une taille en pixels en &eacute;crivant uniquement un nombre (ne pas &eacute;crire \"px\").</strong></p>
 Pour ignorer un crit&egrave;re de r&eacute;duction, &eacute;crire 0.",
+'logos_taille_image_article' => "<p><div style='text-align:center; text-decoration:underline;'>R&eacute;duction de la largeur des images dans les articles et l'&eacute;ditorial</div></p>
+<p><strong>Entrez une taille en pixels en &eacute;crivant uniquement un nombre (ne pas &eacute;crire \"px\").</strong></p>
+Pour ignorer un crit&egrave;re de r&eacute;duction, laissez le formulaire vide ou &eacute;crire 0.",
 );
 ?>

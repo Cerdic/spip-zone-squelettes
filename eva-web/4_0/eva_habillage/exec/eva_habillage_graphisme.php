@@ -352,6 +352,22 @@ echo fin_cadre_trait_couleur(true);
     echo '<tr align="center" class="row_odd">';
     echo '<td  align="center">Logos moyens</td><td  align="center"><center><input type="text" name="largeur_logo_moyen" value="'.$logo3l.'" size="10"></center></td><td  align="center"><center><input type="text" name="hauteur_logo_moyen" value="'.$logo3h.'" size="10"></center></td></tr>'; 
     echo '</table><br /><input type="hidden" name="test_logo" value="2"><input type="submit" value="'._T('evahabillage:EVA_valider').'" /></form>';
+    echo '<hr />';
+    if ($_POST['test_image_article']==2) {
+	sql_delete('spip_eva_habillage_images',"type='logos' AND nom_habillage='Defaut' AND nom_div='largeur_image_article'");
+	if (is_numeric($_POST['largeur_image_article'])) {$image_article=$_POST['largeur_image_article'];} else {$image_article='';}
+	sql_insertq('spip_eva_habillage_images',array('type'=>'logos','nom_habillage'=>'Defaut','nom_div'=>'largeur_image_article','nom_image'=>$image_article));
+    }
+    $test_image_article=sql_select('nom_image','spip_eva_habillage_images',"type='logos' AND nom_habillage='Defaut' AND nom_div='largeur_image_article'");
+    $tab_image_article=sql_fetch($test_image_article);
+    $image_article=$tab_image_article['nom_image'];
+    
+    echo _T('evahabillage:logos_taille_image_article');
+    echo '<p><center><form method="POST" action="'.generer_url_ecrire("eva_habillage_graphisme").'">';
+    echo '<input type="text" name="largeur_image_article" value="'.$image_article.'" size="10">';
+    echo '&nbsp;&nbsp;<input type="submit" value="'._T('evahabillage:EVA_valider').'" />';
+    echo '<input type="hidden" name="test_image_article" value="2">';
+    echo '</form></center></p>';
     echo fin_cadre_trait_couleur(true);
     
    //Insertion de banières Flash (format swf)
