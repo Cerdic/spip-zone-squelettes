@@ -3,6 +3,9 @@
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOMOYENHAUTEUR}] 
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,70}]
 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurimagearticle,#EVALARGEURIMAGEARTICLE}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurimagearticle,0}]
+
 <BOUCLE_edito (ARTICLES){titre_mot=editorial}{par date}{inverse}{lang}>
 	<div class="edito">
 	
@@ -17,7 +20,7 @@
 	[(#REM) chapeau, texte, post-scriptum de l'article ]
 
 	[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
-	[<div class="#EDIT{texte} texte">(#TEXTE)</div>]	
+	[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{#GET{largeurimagearticle},0})</div>]	
 	<div class="nettoyeur"></div>		
 	[<div class="#EDIT{hyperlien} lien"><strong><:voir_en_ligne:></strong> <a href="#URL_SITE">(#NOM_SITE)</a></div>]
 

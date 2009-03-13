@@ -10,6 +10,10 @@
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogopetit,#EVALOGOPETITHAUTEUR}] 
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogopetit,60}]
 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{largeurimagearticle,#EVALARGEURIMAGEARTICLE}] 
+[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{largeurimagearticle,0}]
+
+
 <BOUCLE_principale(ARTICLES){id_article}>
 
 #DEBUT_SURLIGNE
@@ -43,7 +47,7 @@
 	[(#REM) chapeau, texte, post-scriptum de l'article ]
 
 	[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
-	[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{450,0})</div>]	
+	[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{#GET{largeurimagearticle},0})</div>]	
 	<div class="nettoyeur"></div>		
 	[<div class="#EDIT{hyperlien} lien"><strong><:voir_en_ligne:></strong> <a href="#URL_SITE">(#NOM_SITE)</a></div>]
 
