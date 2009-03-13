@@ -33,7 +33,7 @@ svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/crayons
 sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_core_/porte_plume
 sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/enluminures_typographiques_v3
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/porte_plume/extensions/enluminures_typographiques_v3
 sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/fonctions_images
 sleep 15;
