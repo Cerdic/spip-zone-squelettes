@@ -49,6 +49,8 @@ sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/spip-bonux-2
 sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_test_/accessibilite
+sleep 15;
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/fulltext
 #svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/woopra
 #svn checkout svn://zone.spip.org/spip-zone/_plugins_/_dev_/notation
 sleep 15;
