@@ -57,13 +57,12 @@ cd ..
 
 #Installation du squelette SoyezCreateur : il faut le faire dans un sous dossier
 #car sinon, conflit avec le .svn de SPIP
-svn checkout svn://zone.spip.org/spip-zone/_squelettes_/soyezcreateurs_net/plugins_1.9.3/ ./__sc/
-sleep 15;
+svn checkout svn://zone.spip.org/spip-zone/_squelettes_/soyezcreateurs_net/plugins_2.0/ ./__sc/
 #Deplacement du squelette au bon endroit
 mv ./__sc/htaccess.txt ./.htaccess
 
 #Effacer ses traces
-#rm -r ./__sc
+rm -r -f ./__sc
 
 #Creer le dossier squelettes au besoin
 mkdir squelettes
