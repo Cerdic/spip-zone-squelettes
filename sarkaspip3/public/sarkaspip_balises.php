@@ -129,9 +129,11 @@ function balise_RACINE_SPECIALISEE($p) {
 
 	$mot_rubrique = interprete_argument_balise(1,$p);
 	$mot_rubrique = isset($mot_rubrique) ? str_replace('\'', '"', $mot_rubrique) : '""';
+	$critere = interprete_argument_balise(2,$p);
+	$critere = isset($critere) ? str_replace('\'', '"', $critere) : '"in"';
 	$mode = "secteur";
 
-	$p->code = 'calcul_rubrique_specialisee('.strtolower($mot_rubrique).','.$mode.')';
+	$p->code = 'calcul_rubrique_specialisee('.strtolower($mot_rubrique).','.$mode.','.$critere.')';
 	$p->interdire_scripts = false;
 	return $p;
 }
@@ -140,16 +142,18 @@ function balise_BRANCHE_SPECIALISEE($p) {
 
 	$mot_rubrique = interprete_argument_balise(1,$p);
 	$mot_rubrique = isset($mot_rubrique) ? str_replace('\'', '"', $mot_rubrique) : '""';
+	$critere = interprete_argument_balise(2,$p);
+	$critere = isset($critere) ? str_replace('\'', '"', $critere) : '"in"';
 	$mode = "branche";
 
-	$p->code = 'calcul_rubrique_specialisee('.strtolower($mot_rubrique).','.$mode.')';
+	$p->code = 'calcul_rubrique_specialisee('.strtolower($mot_rubrique).','.$mode.','.$critere.')';
 	$p->interdire_scripts = false;
 	return $p;
 }
 
-function calcul_rubrique_specialisee($mot_rubrique, $mode) {
+function calcul_rubrique_specialisee($mot_rubrique, $mode, $critere) {
 
-	// On calcule le liste des mots reserves SarkaSPIP + definis par l'utilisateur
+	// On calcule la liste des mots reserves SarkaSPIP + definis par l'utilisateur
 	$mots_reserves = explode(':', _SARKASPIP_MOT_SECTEURS_SPECIALISES);
     if (defined('_PERSO_MOT_SECTEURS_SPECIALISES'))
     	if (_PERSO_MOT_SECTEURS_SPECIALISES != '')
@@ -166,6 +170,10 @@ function calcul_rubrique_specialisee($mot_rubrique, $mode) {
 	// Determination de la liste des mots cles associes aux secteurs specialises demandes par la balise
 	$id = NULL;
 	$mots = explode(':', $mot_rubrique);
+	if ($critere == "not_in") {
+		$mots = array_diff($mots_reserves, $mots);
+		sort($mots);
+	}
  	if (!$mots[0]) $mots = $mots_reserves;
  	// Si on est en en mode secteur (ie. balise #RACINE_SPECIALISEE) et qu'on demande un seul secteur specialise
  	// on renvoie une valeur; sinon on renvoie toujours une regexp
