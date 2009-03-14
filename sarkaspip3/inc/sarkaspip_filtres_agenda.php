@@ -427,6 +427,9 @@ function agenda_mini_header($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='&
 	$mois_choisi = $contexte_aff['mois_base'];
 	$annee_choisie = $contexte_aff['annee_base'];
 	$url_base = $contexte_aff['url_base'];
+	// Init de l'annee et du mois courant
+	$mois_courant = affdate_base(date('Y-m-d'), 'mois');
+	$annee_courante = affdate_base(date('Y-m-d'), 'annee');
 
 	// Calcul des mois precedent et suivant
 	$mois = $mois_choisi-1;
