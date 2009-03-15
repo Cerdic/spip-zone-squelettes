@@ -1,7 +1,9 @@
 [(#REM) <!-- affichage des X messages de forum les plus recents du site ou du secteur concerne --> ]
 <B_messages>
 	<div id="noisette_forum" class="noisette">
-		<h1 class="intitule"><:sarkaspip:derniers_messages:></h1>
+	<BOUCLE_acces_forum(RUBRIQUES) {id_rubrique==#RACINE_SPECIALISEE{forum}}>
+		<h1><a class="intitule" href="#URL_RUBRIQUE"><:sarkaspip:derniers_messages:></a></h1>
+	</BOUCLE_acces_forum>
 		<div class="contenu mixte">
 <BOUCLE_messages(FORUMS){articles.id_rubrique==#BRANCHE_SPECIALISEE{forum}}{plat}{!par date_heure}{0,#CONFIG{sarkaspip_noisettes/max_messages, 5}}>
 			[<h2 class="titre">(#DATE|affdate_court|unique)</h2>]
