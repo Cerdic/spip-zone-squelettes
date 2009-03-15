@@ -115,7 +115,7 @@ $test_lang_personnalisation=array(
 'notes' => 'Notes',
 
 // P
-'plan_du_site' => 'Plan du site',
+'plan_du_site' => 'Plan',
 'post_scriptum' => 'Post-scriptum',
 'par' => 'Par :',
 'publie' => 'Publi&eacute; :',
@@ -150,7 +150,7 @@ $test_lang_personnalisation=array(
 'tous_droits' => 'Tous droits r&eacute;serv&eacute;s',
 
 // V
-'version_eva' => 'EVA-Web 4.0 beta 2',
+'version_eva' => 'EVA-Web 4.0 stable',
 'visites' => 'Visites',
 'voir_en_ligne' => 'Voir en ligne :',
 'voir_image' => 'Voir l\'image en grand',
