@@ -10,6 +10,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //#
 	  
 		'0_article' => 'Aucun article',
+		'0_album' => 'Aucun album photo',
 		'0_auteur' => 'Aucun auteur',
 		'0_breve' => 'Aucune br&egrave;ve',
 		'0_site_web' => 'Aucun site',
@@ -18,6 +19,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'0_photo' => 'aucune photo',
 		'0_visiteur_connecte' => 'Aucun visiteur actuellement connect&eacute;',
 		'1_article' => 'Article',
+		'1_album' => 'Album photo',
 		'1_auteur' => 'Auteur',
 		'1_breve' => 'Br&egrave;ve',
 		'1_site_web' => 'Site Web',
@@ -26,6 +28,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'1_site_herbier' => 'site r&eacute;f&eacute;renc&eacute;',
 		'1_photo' => 'photo',
 		'1_visiteur_connecte' => 'visiteur actuellement connect&eacute;',
+		'n_albums' => 'Albums photo',
 		'n_sites_herbier' => 'sites r&eacute;f&eacute;renc&eacute;s',
 		'n_visiteurs_connectes' => 'visiteurs actuellement connect&eacute;s',
 	  
