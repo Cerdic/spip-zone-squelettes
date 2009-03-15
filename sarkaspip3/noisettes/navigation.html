@@ -9,13 +9,16 @@
 ]
 
 [(#REM) <!-- Bloc de navigation des raccourcis --> ]
-[(#CONFIG{sarkaspip_bandeau/menu_raccourcis, 0}|!={1}|?{' '})
-	<INCLURE{fond=noisettes/navigation/inc_nav_raccourcis}>
+[(#CONFIG{sarkaspip_noisettes/menu_horizontal, 0}|!={4}|?{' '})
+  [(#REM) <!-- On exclue le menu des raccourcis dans le bloc navigation
+                si il est affiché dans le menu horizontal --> ]
+  [(#CONFIG{sarkaspip_bandeau/menu_raccourcis, 0}|!={1}|?{' '})
+  	<INCLURE{fond=noisettes/navigation/inc_nav_raccourcis}>
+  ]
+  [(#CONFIG{sarkaspip_bandeau/menu_raccourcis, 0}|!={2}|?{' '})
+  	<INCLURE{fond=noisettes/navigation/inc_nav_visiteurs}{id_rubrique}>
+  ]
 ]
-[(#CONFIG{sarkaspip_bandeau/menu_raccourcis, 0}|!={2}|?{' '})
-	<INCLURE{fond=noisettes/navigation/inc_nav_visiteurs}{id_rubrique}>
-]
-
 [(#REM) <!-- affichage du panneau d'annonce --> ]
 [(#CONFIG{sarkaspip_noisettes/position_annonce, 0}|=={1}|?{' '})
 	<INCLURE{fond=noisettes/inc_annonce}>
