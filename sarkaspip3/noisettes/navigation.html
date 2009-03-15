@@ -10,8 +10,7 @@
 
 [(#REM) <!-- Bloc de navigation des raccourcis --> ]
 [(#CONFIG{sarkaspip_noisettes/menu_horizontal, 0}|!={4}|?{' '})
-  [(#REM) <!-- On exclue le menu des raccourcis dans le bloc navigation
-                si il est affiché dans le menu horizontal --> ]
+  [(#REM) <!-- On exclue le menu des raccourcis dans le bloc navigation si il est affiche dans le menu horizontal --> ]
   [(#CONFIG{sarkaspip_bandeau/menu_raccourcis, 0}|!={1}|?{' '})
   	<INCLURE{fond=noisettes/navigation/inc_nav_raccourcis}>
   ]
@@ -19,6 +18,21 @@
   	<INCLURE{fond=noisettes/navigation/inc_nav_visiteurs}{id_rubrique}>
   ]
 ]
+
+[(#REM) <!-- affichage du panneau derniers commentaires sauf sur la page articles ou album --> ]
+[(#CONFIG{sarkaspip_noisettes/position_commentaires, 0}|=={1}|?{' '})
+	[(#ENV{page}|match{article|album}|?{'',' '})
+		<INCLURE{fond=noisettes/inc_commentaires}{id_secteur}>
+	]
+]
+
+[(#REM) <!-- affichage du panneau derniers messages de forum sauf sur les pages du forum --> ]
+[(#CONFIG{sarkaspip_noisettes/position_messages, 0}|=={1}|?{' '})
+	[(#ENV{id_secteur}|=={#RACINE_SPECIALISEE{forum}}|?{'',' '})
+		<INCLURE{fond=noisettes/inc_messages}{id_secteur}>
+	]
+]
+
 [(#REM) <!-- affichage du panneau d'annonce --> ]
 [(#CONFIG{sarkaspip_noisettes/position_annonce, 0}|=={1}|?{' '})
 	<INCLURE{fond=noisettes/inc_annonce}>

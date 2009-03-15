@@ -1,14 +1,9 @@
-[(#REM) <!-- affichage des X messages de forum les plus recents du site ou du secteur concerne --> ]
-<BOUCLE_secteur(ARTICLES){id_secteur ?}{id_rubrique!==#BRANCHE_SPECIALISEE{galerie,not_in}}>
-	<BOUCLE_article(FORUMS){doublons}{plat}{id_article}>
-	</BOUCLE_article>
-</BOUCLE_secteur>
-
+[(#REM) <!-- affichage des X commentaires d'articles les plus recents du site ou du secteur concerne --> ]
 <B_commentaires>
 	<div id="noisette_commentaires" class="noisette">
 		<h1 class="intitule"><:sarkaspip:derniers_commentaires:></h1>
 		<div class="contenu mixte">
-<BOUCLE_commentaires(FORUMS){plat}{!doublons}{!par date}{0,#CONFIG{sarkaspip_noisettes/max_commentaires, 5}}>
+<BOUCLE_commentaires(FORUMS){id_secteur ?}{articles.id_rubrique!==#BRANCHE_SPECIALISEE{galerie,not_in}}{plat}{!par date_heure}{0,#CONFIG{sarkaspip_noisettes/max_commentaires, 5}}>
 		<BOUCLE_article_commente(ARTICLES){id_article}>
 			[(#ID_SECTEUR|=={#RACINE_SPECIALISEE{galerie}}|?{' '})
 				[(#SET{url, #URL_PAGE{album,id_article=#ID_ARTICLE}|ancre_url{forum#ID_FORUM}})] 

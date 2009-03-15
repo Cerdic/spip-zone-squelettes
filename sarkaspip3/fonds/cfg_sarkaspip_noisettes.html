@@ -12,7 +12,8 @@
 		[(#ENV{menu_horizontal, 0}|=={0}|?{jQuery("#largeur_item").hide();})]
 		[(#ENV{menu_horizontal, 0}|!={3}|?{jQuery("#liens_configurables").hide();})]
 		[(#ENV{liste_breves, 2}|!={2}|?{jQuery("#bloc_intro_breve").hide();})]
-		[(#ENV{position_commentaires, 0}|!={2}|?{jQuery("#bloc_intro_commentaires").hide();})]
+		[(#ENV{position_commentaires, 0}|=={0}|?{jQuery("#bloc_intro_commentaires").hide();})]
+		[(#ENV{position_messages, 0}|=={0}|?{jQuery("#bloc_intro_messages").hide();})]
 		[(#ENV{liste_sites, 2}|!={1}|?{jQuery("#bloc_max_site").hide();})]
 		[(#ENV{position_herbier, 0}|=={0}|?{jQuery("#bloc_type_herbier").hide();})]
 		[(#ENV{position_stats_2, 0}|=={0}|?{jQuery("#bloc_stats_2_compo,#bloc_stats_2_max_hasard,#bloc_stats_2_max_top").hide();})]
@@ -66,10 +67,18 @@
 		});	
 
 		jQuery("input[@name='position_commentaires']").change(function() {
-			if (jQuery("input[@name='position_commentaires']:checked").val() == 2)
+			if (jQuery("input[@name='position_commentaires']:checked").val() != 0)
 				jQuery("#bloc_intro_commentaires").show();
 			else
 				jQuery("#bloc_intro_commentaires").hide();
+			jQuery(this).blur();
+		});	
+
+		jQuery("input[@name='position_messages']").change(function() {
+			if (jQuery("input[@name='position_messages']:checked").val() != 0)
+				jQuery("#bloc_intro_messages").show();
+			else
+				jQuery("#bloc_intro_messages").hide();
 			jQuery(this).blur();
 		});	
 
@@ -232,6 +241,11 @@
 		</label>
 		<br />
 		<label>
+			<input type="radio" name="menu_horizontal" value="4" [(#ENV{menu_horizontal, 0}|=={4}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_menu_horizontal_4:>
+		</label>
+		<br />
+		<label>
 			<input type="radio" name="menu_horizontal" value="3" [(#ENV{menu_horizontal, 0}|=={3}|?{checked="checked"})] />
 			<:sarkaspip:cfg_lbl_menu_horizontal_3:>
 		</label>
@@ -264,11 +278,6 @@
 		    </tr>
 		  </table>
 		</div>
-		<br />
-		<label>
-			<input type="radio" name="menu_horizontal" value="4" [(#ENV{menu_horizontal, 0}|=={4}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_menu_horizontal_4:>
-		</label>
 		<div id="largeur_item">
 			<br />
   			<label><:sarkaspip:cfg_lbl_largeur_item_menu_h:>
@@ -306,6 +315,11 @@
 		</label>
 		<br />
 		<label>
+			<input type="radio" name="position_commentaires" value="1" [(#ENV{position_commentaires, 0}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_position_1:>
+		</label>
+		<br />
+		<label>
 			<input type="radio" name="position_commentaires" value="2" [(#ENV{position_commentaires, 0}|=={2}|?{checked="checked"})] />
 			<:sarkaspip:cfg_lbl_inc_position_2:>
 		</label>
@@ -317,6 +331,36 @@
 		<br />
 		<label><:sarkaspip:cfg_lbl_intro_commentaires:></label>
 			<input type="text" name="intro_commentaire" value="#ENV{intro_commentaire, 100}" size="3" class="fondl" />
+		<br />
+		</div>
+	</fieldset>
+	
+	[(#REM) <!-- Choix de presentation des messages de forum --> ]
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_inc_messages:></legend>
+		<p><:sarkaspip:cfg_inf_inc_messages:></p>
+		<label>
+			<input type="radio" name="position_messages" value="0" [(#ENV{position_messages, 0}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_position_0:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="position_messages" value="1" [(#ENV{position_messages, 0}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_position_1:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="position_messages" value="2" [(#ENV{position_messages, 0}|=={2}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_position_2:>
+		</label>
+		<br />
+		<div id="bloc_intro_messages">
+		<br />
+		<label><:sarkaspip:cfg_lbl_max_messages:></label>
+			<input type="text" name="max_messages" value="#ENV{max_messages, 5}" size="2" class="fondl" />
+		<br />
+		<label><:sarkaspip:cfg_lbl_intro_messages:></label>
+			<input type="text" name="intro_message" value="#ENV{intro_message, 100}" size="3" class="fondl" />
 		<br />
 		</div>
 	</fieldset>
@@ -367,7 +411,7 @@
 		<br />
 	</fieldset>
 	
-	[(#REM) <!-- Choix de presentation de des sites de l'herbier --> ]
+	[(#REM) <!-- Choix de presentation des sites de l'herbier --> ]
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_inc_herbier:></legend>
 		<p><:sarkaspip:cfg_inf_inc_herbier_pos:></p>
