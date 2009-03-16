@@ -725,6 +725,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_css_couleurs_noisettes_soustitre' => 'Choisissez vos couleurs pour les sous-titres des noisettes',
 		'cfg_inf_css_couleurs_noisettes_contenu' => 'Choisissez vos couleurs pour les &eacute;l&eacute;ments du contenu de chaque noisette.',
 		'cfg_inf_css_couleurs_menus' => 'Choisissez vos couleurs pour les menus de la colonne navigation',
+		'cfg_inf_css_couleurs_hmenus' => 'Choisissez vos couleurs pour les menus horizontaux de la partie basse du bandeau',
 		'cfg_inf_css_sauvegarde' => 'Vous pouvez sauvegarder votre configuration des styles saisie dans le formulaire ci-dessus dans un fichier texte pour une restauration ou une consultation future. Le fichier est cr&eacute;&eacute; dans tmp/cfg/.',
 		'cfg_inf_css_restauration' => 'Vous pouvez restaurer une configuration de styles que vous avez sauvegard&eacute;e. Choisissez le fichier de sauvegarde dans la liste ci-dessous.',
 		'cfg_inf_css_pagination' => 'Vous pouvez modifier les couleurs des items de la pagination pour l\'ensemble des pages o&ugrave; elle est utilis&eacute;e.',
