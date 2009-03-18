@@ -5,8 +5,10 @@
 			<ul class='forum previsu'>
 
 [(#REM) Si on est en train de creer une nouvelle question, suggerer des pistes]
-#SET{recherche,(#ENV*{titre}) #ENV*{texte}}
-<INCLUDE{fond=formulaires/suggerer-reponse}{recherche=#GET{recherche}|textebrut} />
+[(#ENV{id_forum}|non)
+	[(#SET{recherche,[(#ENV*{titre}) ]#ENV*{texte}})]
+	[(#INCLUDE{fond=formulaires/suggerer-reponse}{recherche=#GET{recherche}|textebrut})]
+]
 				<li class="forum-fil">
 					<div class="forum-message">
 						<div class="forum-chapo">
