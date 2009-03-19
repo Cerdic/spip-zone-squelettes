@@ -147,11 +147,11 @@ RSS forum</a></span></p>
 <td class="#EDIT{titre}">
 <a href="[(#URL_PAGE{discussion}|parametre_url{id_forum,#ID_FORUM})]"	title="">#TITRE</a>
 </td>
-<td><BOUCLE_nom3(AUTEURS){tout}{id_auteur}{statut=original}>
-[<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de ce r&eacute;dacteur">]
-[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de cet admin">]
-[<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Contact et profil de ce visiteur">]
-[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#ID_AUTEUR})]" title="Compte en attente">]
+<td><BOUCLE_nom3(AUTEURS){tous}{id_auteur}{0,1}>
+[<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Contact et profil de ce r&eacute;dacteur">]
+[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Contact et profil de cet admin">]
+[<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Contact et profil de ce visiteur">]
+[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Compte en attente">]
 [(#NOM|textebrut|couper{18})</a><br/>]
 </BOUCLE_nom3>
 [(#NOM||?{#NOM|textebrut|couper{18},'Anonyme'})<br/>]
@@ -163,9 +163,10 @@ RSS forum</a></span></p>
 	</BOUCLE_dernier_message>
 </td>
 <td><B_nb_forumtotal>
-<BOUCLE_nb_forumtotal(FORUMS){id_thread}{plat}>
-</BOUCLE_nb_forumtotal>
-<?php echo #TOTAL_BOUCLE -1 ?>
+<BOUCLE_nb_forumtotal(FORUMS){id_thread}{plat}> </BOUCLE_nb_forumtotal>
+[<span class="vert">(#TOTAL_BOUCLE|=={1}|?{En attente de r&eacute;ponses})</span>]
+[(#TOTAL_BOUCLE|=={2}|?{1 r&eacute;ponse})]
+[(#TOTAL_BOUCLE|>{2}|?{[(#TOTAL_BOUCLE|moins{1})] r&eacute;ponses})]
 </B_nb_forumtotal>
 </td>
 </tr>
