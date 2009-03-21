@@ -67,6 +67,11 @@
 	[(#ENV{page}|=={edito}|?{'', ' '})
 		[<div class="#EDIT{titre} titre"><h1>(#TITRE|supprimer_numero)</h1></div>]
 	]
+	
+	<div class="description">
+	[(#ENV{page}|!={evenement}|?{' '})
+		[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>[(#ENV{page}|match{^(edito|une)$}|?{' '})<br /><br />]]
+	]
 
 	[(#ENV{page}|=={une}|?{' '})
 		<div class="complements">
@@ -83,11 +88,7 @@
 		]
 		</div>
 	]
-	
-	<div class="description">
-	[(#ENV{page}|!={evenement}|?{' '})
-		[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>[(#ENV{page}|=={edito}|?{' '})<br /><br />]]
-	]
+
 	[(#ENV{page}|match{^(edito|une)$}|?{'',' '})
 		[(#INCLURE{fond=noisettes/article/inc_article_cartouche}
 			{id_article}
