@@ -1,9 +1,10 @@
+<BOUCLE_principale(ARTICLES){id_article}{doublons}>
 [(#REM) Portfolio ]
 <B_vignettes>
 <div class="divers">
 <h4><:portfolio:></h4>
 	<ul id="albumvignettes">
-		<BOUCLE_vignettes (DOCUMENTS) {id_article} {mode=document} {extension==jpg|png|gif} {par num titre}{doublons image} >
+		<BOUCLE_vignettes (DOCUMENTS) {id_article} {mode=document} {extension==jpg|png|gif} {par num titre}{doublons} >
 		<li[ class="(#EXPOSE{on,off})"]>
 		<a 
 		[(#CONFIG{plugin}|match{NYRO}|?{' ',''})class="nyroceros" rel="gal"]
@@ -22,7 +23,7 @@
 	<div class="divers">
 	<h4><:documents_joints:></h4>
 	<ul>
-	<BOUCLE_documents(DOCUMENTS){id_article}{mode=document}{par num titre}{doublons image}>
+	<BOUCLE_documents(DOCUMENTS){id_article}{mode=document}{par num titre}{doublons}>
 		<li>[<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT_RUBRIQUE||image_reduire{#GET{largeurlogopetit},#GET{hauteurlogopetit}})](#TITRE|supprimer_numero|sinon{<:document:>})</a>][, <em>(#TYPE_DOCUMENT)</em>][, <em>(#TAILLE|taille_en_octets)</em>]
 		[(#DESCRIPTIF)]
 		<div class="nettoyeur"></div>
@@ -30,4 +31,5 @@
 	</BOUCLE_documents>
 	</ul>
 	</div>
-	</B_documents><!--  -->
+	</B_documents>
+</BOUCLE_principale>
