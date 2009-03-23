@@ -179,6 +179,7 @@ window.onerror = null;
         else {echo _T('evahabillage:EVA_restauration_externe_aucun');}
     }
     else {echo _T('evahabillage:EVA_restauration_externe_aucun');}
+    echo '<hr />'._T('evahabillage:eva_habillage_CC');
     echo fin_cadre_trait_couleur(true);
     echo fin_gauche(), fin_page();
 }

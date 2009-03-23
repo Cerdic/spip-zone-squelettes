@@ -351,5 +351,7 @@ Pour ignorer un crit&egrave;re de r&eacute;duction, &eacute;crire 0.",
 'logos_taille_image_article' => "<p><div style='text-align:center; text-decoration:underline;'>R&eacute;duction de la largeur des images dans les articles et l'&eacute;ditorial</div></p>
 <p><strong>Entrez une taille en pixels en &eacute;crivant uniquement un nombre (ne pas &eacute;crire \"px\").</strong></p>
 Pour ignorer un crit&egrave;re de r&eacute;duction, laissez le formulaire vide ou &eacute;crire 0.",
+'eva_habillage_CC' => "<p>Certains des habillages propos&eacute;s ci-dessus (ceux suivis de -CC) sont issus du site <a href='http://www.freelayouts.com/'>FreeLayout</a> et sont distribu&eacute;s sous <a href='http://creativecommons.org/licenses/by/2.5/'>licence Creative Commons Attribution 2.5</a></p>
+<p>Pour les utiliser, vous devez sp&eacute;cifier imp&eacute;rativement la nature de cette licence sur votre site. C'est pourquoi une mention est automatiquement ajout&eacute;e dans le pied de page lors de l'utilisation de ces habillages.</p>",
 );
 ?>

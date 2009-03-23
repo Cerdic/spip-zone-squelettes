@@ -853,6 +853,20 @@ $eva_themes = array(
     "images" => array()
     ),
 
+'corporate-office-CC' => array(
+    /* Thème graphique adapté de Corporate Office sous licence Creative Commons Attribution 2.5 License, adaptation réalisée par Olivier Gautier */
+    "habillage" => "eva4_basic_menu_droite.css",
+    "theme" => "('', 'Defaut', '#d7d7bd', '#fff', '', '', '', '', '', '#000', '', '', '', '#000', '#000', '', '', '', '', '', '', 'Tahoma,Arial,Helvetica,sans-serif; text-align: justify;  line-height: 25px; font-size: 11px;  color: #3c3c37', '#3c3c37', '#3c3c37', '#3c3c37', '#000', '', '#005880;text-transform: lowercase; font-weight: normal; line-height: 18px', '', '#005880', '#005880; text-decoration:underline', '#005880; text-decoration:underline', '#005880;text-transform: lowercase;  font-size: 1.6em;  font-weight: normal;  border-bottom-width: 1px;  border-bottom-style: dashed;  border-bottom-color: #cccccc; line-height: 18px; text-transform: capitalize', '', '', 'color:#005880;text-transform: lowercase; font-weight: normal; text-decoration:none;border-bottom-width: 1px;  border-bottom-style: dashed;  border-bottom-color: #cccccc; line-height: 18px; text-transform: capitalize', '', '#fff', '', '#fff; line-height: 14px', '#005880; text-decoration:underline', '#005880; text-decoration:none', '#005880; text-decoration:underline', '#005880; text-decoration:none', '#005880; text-decoration:underline', '#005880; text-decoration:none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '', '', 'none', '800px', '240px;margin-right:10px', '', '500px;margin-left:10px', '250px', '', '')",
+    "images" => array(
+    "('', 'perso', 'Defaut', 'div#arborescence{line-height:50px;height:50px;margin-bottom:20px;padding-left:40px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#contenu .edito .titre a, .edito h2 a {color:#005880; border-bottom-style:none; font-size:1.4em;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '#page{padding:20px;}', '', '', '', '', '')",
+    "('', 'bloc', 'Defaut', 'corporate-office-CC', 'oui', '1', '', 'perso', 'pied')",
+    "('', 'perso', 'Defaut', '#entete h1 {top:100px; left:80px; font-size:3em;text-transform: lowercase;font-weight: normal;}', '', '', '', '', '')",
+    "('', 'image', 'Defaut', 'image_entete_page', 'corporate-office-CC/building.jpg', 'center', 'bottom', 'no-repeat', 'scroll')",
+    "('', 'perso', 'Defaut', 'ul.liens {display:none;}', '', '', '', '', '')",
+    ), ),
+
 
 );
 return $eva_themes;
