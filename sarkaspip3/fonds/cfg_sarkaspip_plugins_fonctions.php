@@ -10,10 +10,8 @@ function cfg_sarkaspip_plugins_post_traiter($cfg){
 												'cssFile'=>_SARKASPIP_CONFIG_BOUTONSTEXTE_CSSFILE,
 												'imgPath'=>_SARKASPIP_CONFIG_BOUTONSTEXTE_IMGPATH));
 	}
-	else {
+	else
 		effacer_config('boutonstexte/');
-  }
-
 
 	if ($cfg->val['config_nyroceros']=='sarkaspip') {
 		ecrire_config('nyroceros/', array(	'traiter_toutes_images'=>_SARKASPIP_CONFIG_NYROCEROS_TOUT,
@@ -23,8 +21,13 @@ function cfg_sarkaspip_plugins_post_traiter($cfg){
 											'preload'=>_SARKASPIP_CONFIG_NYROCEROS_PRELOAD,
 											'bgcolor'=>_SARKASPIP_CONFIG_NYROCEROS_BGFOND));
 	}
-	else {
+	else
 		effacer_config('nyroceros/');
-  }
+
+	if ($cfg->val['config_socialtags']=='sarkaspip') {
+		ecrire_config('socialtags/', array(	'jsselector'=>_SARKASPIP_CONFIG_SOCIALTAGS_SELECTOR));
+	}
+	else
+		effacer_config('socialtags/');
 }
 ?>
