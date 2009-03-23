@@ -8,7 +8,7 @@ $GLOBALS['i18n_pyrat_en'] = array(
 'accueil' => 'Home',
 'accueil_menu' => 'Home',
 'agenda' => 'Calendar',
-'agenda_summary' => 'Calendar of events',
+'agenda_summary' => 'Calendar of events (forim monday to sunday)',
 'agendamoisde' => 'Calendar for',
 'alaune' => 'Featured',
 'auteur' => 'Author',
@@ -43,6 +43,7 @@ $GLOBALS['i18n_pyrat_en'] = array(
 //C
 'carte_monde' => 'World map',
 'chercheravecgoogle' => 'Search the Web with <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> !',
+'citations' => 'Quotes',
 'copyright_realisation' => 'Made by: ',
 'copyright_spip' => 'This site uses the <a href=\'http://www.pyrat.net/\' title=\'Visiter le site du cr&eacute;ateur de ce squelette\'>Pyrat.net</a> template, powered by <a href=\'http://www.spip.net/\' title=\'Visiter le site de SPIP, logiciel de gestion de contenu web en licence libre GPL\'>SPIP</a>',
 'copyright_icra' => 'Labelled with <a href="http://www.icra.org/sitelabel">ICRA</a>',
@@ -106,6 +107,9 @@ $GLOBALS['i18n_pyrat_en'] = array(
 
 //L
 'derniersarticlespublies' => 'The last articles published',
+'liresuitede' => 'More to read about&nbsp;:',
+'liresuiteeditorial' => 'Read the end of the editorial',
+'listezones' => 'Hot spot's list',
 
 //M
 'memerubrique' => 'In the same section...',
