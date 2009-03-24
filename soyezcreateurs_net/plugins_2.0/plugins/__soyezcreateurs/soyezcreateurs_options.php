@@ -1,5 +1,4 @@
 <?php
-$GLOBALS['type_urls'] = 'propres2';
 $GLOBALS['toujours_paragrapher'] = true;
 $GLOBALS['barre_typo_pas_de_fork_typo'] = false; // Pour tenir compte de http://zone.spip.org/trac/spip-zone/changeset/22723 et disposer des raccourcis typo supplémentaires !
 
@@ -109,10 +108,6 @@ $GLOBALS['fin_italique'] = '</em>';
 
 // Pour pouvoir styler en appliquant : http://www.sovavsiti.cz/css/hr.html
 $GLOBALS['ligne_horizontale'] = "\n<div class='hrspip'><hr class='spip' /></div>\n";
-
-# La liste des webmestres n'ayant pas besoin d'autentification FTP pour les actions avancées de SPIP
-# Séparer les id_auteurs par ':'
-define('_ID_WEBMESTRES', '1');
 
 # Envoi de mail aux contributeurs d'un forum si reponse a leur message
 define('_SUIVI_FORUM_THREAD', true);

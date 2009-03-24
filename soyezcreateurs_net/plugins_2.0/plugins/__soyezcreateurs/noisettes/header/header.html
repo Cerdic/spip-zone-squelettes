@@ -27,7 +27,7 @@
 </BOUCLE_SyndicationRubrique>
 <link rel="alternate" type="application/rss+xml" title="<:dernieres_breves:> [(#NOM_SITE_SPIP|attribut_html)]" href="#URL_PAGE{backend-breves}" />
 [(#PLUGIN{AGENDA}|=={1}|oui)<link rel="alternate" type="application/rss+xml" title="<:pyrat:syndiquer_agenda:> [(#NOM_SITE_SPIP|attribut_html)]" href="#URL_PAGE{backendagenda}" />]
-<link rel="alternate" href="@piclens.rss.html[?id_article=(#ID_ARTICLE)]" type="application/rss+xml" title="" id="gallery" />
+<link rel="alternate" href="[(#URL_PAGE{piclens.rss}|parametre_url{id_article,#ID_ARTICLE})]" type="application/rss+xml" title="" id="gallery" />
 #INSERT_HEAD
 [(#REM) Attention : ne pas enlever les REMarques : elles servent aerer le source sans que celui ne renvois d'espaces identifie comme une reussite du test ]
 	<BOUCLE_ArtRubLayout(ARTICLES){id_article}>[(#REM) Dans le cas d'un article
@@ -44,8 +44,8 @@
 		]</BOUCLE_RubLayout>[(#REM) Sinon
 		][(#ENV{template}|=={'Sommaire'}|oui)[(#INCLURE{fond=noisettes/header/layout}{layoutgala=#CONFIG{soyezcreateurs_layout/sommaire_layout,7}})]][(#ENV{template}|=={'Sommaire'}|non)[(#INCLURE{fond=noisettes/header/layout}{layoutgala=#CONFIG{soyezcreateurs_layout/default_layout,7}})]]<//B_RubLayout>[(#REM) Fin de la recherche d'une rubrique
 	]<//B_ArtRubLayout>
-<link rel="stylesheet" type="text/css" href="@stylessoyezcreateurs.css.html" media="screen, print" />
-[(#ENV{template}|=={'Sommaire'}|oui)[(#CONFIG{soyezcreateurs/mode_affichage,edito}|match{^portail.*}|oui)<link rel="stylesheet" type="text/css" href="@stylesportail.css.html" media="screen, print" />]]
+<link rel="stylesheet" type="text/css" href="#URL_PAGE{stylessoyezcreateurs.css}" media="all" />
+[(#ENV{template}|=={'Sommaire'}|oui)[(#CONFIG{soyezcreateurs/mode_affichage,edito}|match{^portail.*}|oui)<link rel="stylesheet" type="text/css" href="#URL_PAGE{stylesportail.css}" media="screen, print" />]]
 [(#INCLURE{fond=noisettes/presentation/couleurrubrique}{id_article}{id_rubrique})]
 [(#INCLURE{fond=noisettes/header/logoextra}{id_rubrique})]
 <!--[if IE 6]>[
