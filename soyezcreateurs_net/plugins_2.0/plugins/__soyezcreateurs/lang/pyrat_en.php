@@ -109,7 +109,7 @@ $GLOBALS['i18n_pyrat_en'] = array(
 'derniersarticlespublies' => 'The last articles published',
 'liresuitede' => 'More to read about&nbsp;:',
 'liresuiteeditorial' => 'Read the end of the editorial',
-'listezones' => 'Hot spot's list',
+'listezones' => 'Hot spot\'s list',
 
 //M
 'memerubrique' => 'In the same section...',

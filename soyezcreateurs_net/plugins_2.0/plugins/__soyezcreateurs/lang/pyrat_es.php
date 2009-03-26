@@ -2,7 +2,7 @@
 
 // This is a SPIP-forum module file  --  Ceci est un fichier module de SPIP-forum
 
-$GLOBALS['i18n_pyrat_it'] = array(
+$GLOBALS['i18n_pyrat_es'] = array(
 
 // A
 'accueil' => 'Accueil',
