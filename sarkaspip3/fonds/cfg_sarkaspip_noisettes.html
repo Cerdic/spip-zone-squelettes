@@ -7,8 +7,6 @@
 <script type="text/javascript">
 //<![CDATA[
 	jQuery(document).ready(function() {
-		[(#ENV{menu_rubriques, 1}|!={1}|?{jQuery("#bloc_menu_option1_2").hide();})]
-		[(#ENV{menu_rubriques, 1}|=={0}|?{jQuery("#bloc_menu_option1").hide();})]
 		[(#ENV{menu_horizontal, 0}|=={0}|?{jQuery("#largeur_item").hide();})]
 		[(#ENV{menu_horizontal, 0}|!={3}|?{jQuery("#liens_configurables").hide();})]
 		[(#ENV{liste_breves, 2}|!={2}|?{jQuery("#bloc_intro_breve").hide();})]
@@ -28,24 +26,6 @@
 		[(#ENV{position_annonce, 0}|=={0}|?{jQuery("#bloc_annonce_id").hide();})]
 		[(#ENV{position_rainette, 0}|=={0}|?{jQuery("#bloc_rainette_ville").hide();})]
 
-		jQuery("input[@name='menu_rubriques']").change(function() {
-			if (jQuery("input[@name='menu_rubriques']:checked").val() == 1) {
-				jQuery("#bloc_menu_option1").show();
-				jQuery("#bloc_menu_option1_2").show();
-				jQuery("#menu_option1_1").attr({checked: "checked"});
-			}
-			else if (jQuery("input[@name='menu_rubriques']:checked").val() == 0) {
-				jQuery("#bloc_menu_option1_2").hide();
-				jQuery("#bloc_menu_option1").hide();
-			}
-			else {
-				jQuery("#bloc_menu_option1").show();
-				jQuery("#bloc_menu_option1_2").hide();
-				jQuery("#menu_option1_1").attr({checked: "checked"});
-			}
-			jQuery(this).blur();
-		});	
-		
 		jQuery("input[@name='menu_horizontal']").change(function() {
 		  if (jQuery("input[@name='menu_horizontal']:checked").val() == 0) {
 		      jQuery("#largeur_item").hide();}
@@ -178,49 +158,6 @@
 
 <form method="post" action="#SELF" enctype="multipart/form-data"><div>
 	[(#ENV{_cfg_}|form_hidden)]
-	[(#REM) <!-- Choix du menu des rubriques vertical --> ]
-	<fieldset>
-		<legend><:sarkaspip:cfg_lgd_inc_rubriques:></legend>
-		<p><:sarkaspip:cfg_inf_inc_rubriques:></p>
-		<label>
-			<input type="radio" name="menu_rubriques" value="0" [(#ENV{menu_rubriques, 1}|=={0}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_inc_rubriques_0:>
-		</label>
-		<br />
-		<label>
-			<input type="radio" name="menu_rubriques" value="1" [(#ENV{menu_rubriques, 1}|=={1}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_inc_rubriques_1:>
-		</label>
-		<br />
-		<label>
-			<input type="radio" name="menu_rubriques" value="2" [(#ENV{menu_rubriques, 1}|=={2}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_inc_rubriques_2:>
-		</label>
-		<br />
-		<label>
-			<input type="radio" name="menu_rubriques" value="3" [(#ENV{menu_rubriques, 1}|=={3}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_inc_rubriques_3:>
-		</label>
-		<br />
-		<div id="bloc_menu_option1">
-			<p><:sarkaspip:cfg_inf_menu_option1:></p>
-			<label>
-				<input type="radio" name="menu_option_1" id="menu_option1_1" value="0" [(#ENV{menu_option_1, 0}|=={0}|?{checked="checked"})] />
-				<:sarkaspip:cfg_lbl_menu_option1_1:>
-			</label>
-			<br />
-			<label id="bloc_menu_option1_2">
-				<input type="radio" name="menu_option_1" value="1" [(#ENV{menu_option_1, 0}|=={1}|?{checked="checked"})] />
-				<:sarkaspip:cfg_lbl_menu_option1_2:>
-			<br />
-			</label>
-			<label>
-				<input type="radio" name="menu_option_1" value="2" [(#ENV{menu_option_1, 0}|=={2}|?{checked="checked"})] />
-				<:sarkaspip:cfg_lbl_menu_option1_3:>
-			</label>
-		</div>
-	</fieldset>
-	
 	[(#REM) <!-- Choix du menu des rubriques horizontal --> ]
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_menu_horizontal:></legend>
