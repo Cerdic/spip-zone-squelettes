@@ -10,8 +10,7 @@
 		[(#ENV{modele_rubriques, 1}|!={1}|?{jQuery("#bloc_option2").hide();})]
 		[(#ENV{modele_rubriques, 1}|=={0}|?{jQuery("#bloc_option1").hide();})]
 		[(#ENV{position_rubriques, 1}|=={0}|?{jQuery("#bloc_modele1").hide();})]
-		[(#ENV{menu_horizontal, 0}|=={0}|?{jQuery("#largeur_item").hide();})]
-		[(#ENV{menu_horizontal, 0}|!={3}|?{jQuery("#liens_configurables").hide();})]
+		[(#ENV{position_perso, 0}|=={0}|?{jQuery("#bloc_liens").hide();})]
 
 		jQuery("input[@name='position_rubriques']").change(function() {
 			if (jQuery("input[@name='position_rubriques']:checked").val() == 0) {
@@ -41,16 +40,13 @@
 			jQuery(this).blur();
 		});	
 		
-		jQuery("input[@name='menu_horizontal']").change(function() {
-			if (jQuery("input[@name='menu_horizontal']:checked").val() == 0) {
-		      jQuery("#largeur_item").hide();}
-			else {jQuery("#largeur_item").show();}
+		jQuery("input[@name='position_perso']").change(function() {
+			if (jQuery("input[@name='position_perso']:checked").val() == 0) {
+				jQuery("#bloc_liens").hide();}
+			else {
+				jQuery("#bloc_liens").show();}		
 		
-			if (jQuery("input[@name='menu_horizontal']:checked").val() == 3) {
-		      jQuery("#liens_configurables").show();}
-			else {jQuery("#liens_configurables").hide();}		
-		
-		  jQuery(this).blur();
+		jQuery(this).blur();
 		});	
 	});
 //]]>
@@ -114,87 +110,20 @@
 		</div>
 	</fieldset>
 	
-	[(#REM) <!-- Choix du menu des rubriques horizontal --> ]
+	[(#REM) <!-- Menu des secteurs --> ]
 	<fieldset>
-		<legend><:sarkaspip:cfg_lgd_menu_horizontal:></legend>
-		<p><:sarkaspip:cfg_inf_menu_horizontal:></p>
+		<legend><:sarkaspip:cfg_lgd_menu_secteurs:></legend>
+		<p><:sarkaspip:cfg_inf_menu_secteurs:></p>
 		<label>
-			<input type="radio" name="menu_horizontal" value="0" [(#ENV{menu_horizontal, 0}|=={0}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_menu_horizontal_0:>
+			<input type="radio" name="position_secteurs" value="0" [(#ENV{position_secteurs, 0}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_position_0:>
 		</label>
 		<br />
 		<label>
-			<input type="radio" name="menu_horizontal" value="1" [(#ENV{menu_horizontal, 0}|=={1}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_menu_horizontal_1:>
+			<input type="radio" name="position_secteurs" value="5" [(#ENV{position_secteurs, 0}|=={5}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_position_5:>
 		</label>
 		<br />
-		<label>
-			<input type="radio" name="menu_horizontal" value="2" [(#ENV{menu_horizontal, 0}|=={2}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_menu_horizontal_2:>
-		</label>
-		<br />
-		<label>
-			<input type="radio" name="menu_horizontal" value="4" [(#ENV{menu_horizontal, 0}|=={4}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_menu_horizontal_4:>
-		</label>
-		<br />
-		<label>
-			<input type="radio" name="menu_horizontal" value="3" [(#ENV{menu_horizontal, 0}|=={3}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_menu_horizontal_3:>
-		</label>
-		<div id="liens_configurables">
-		  <p><:sarkaspip:cfg_inf_menu_horizontal_3:></p>
-		  <table>
-		    <tr>
-		      <th><:sarkaspip:cfg_lbl_lien_texte:></th>
-		      <th><:sarkaspip:cfg_lbl_lien_url:></th>
-		    </tr>
-		    <tr>
-		      <td><input type="text" name="lien_texte_1" value="#ENV{lien_texte_1}" size="30" class="fondl" /></td>
-		      <td><input type="text" name="lien_url_1" value="[(#ENV{lien_url_1})]" size="40" class="fondl" /></td>
-		    </tr>
-		    <tr>
-		      <td><input type="text" name="lien_texte_2" value="#ENV{lien_texte_2}" size="30" class="fondl" /></td>
-		      <td><input type="text" name="lien_url_2" value="[(#ENV{lien_url_2})]" size="40" class="fondl" /></td>
-		    </tr>
-		    <tr>
-		      <td><input type="text" name="lien_texte_3" value="#ENV{lien_texte_3}" size="30" class="fondl" /></td>
-		      <td><input type="text" name="lien_url_3" value="[(#ENV{lien_url_3})]" size="40" class="fondl" /></td>
-		    </tr>
-		    <tr>
-		      <td><input type="text" name="lien_texte_4" value="#ENV{lien_texte_4}" size="30" class="fondl" /></td>
-		      <td><input type="text" name="lien_url_4" value="[(#ENV{lien_url_4})]" size="40" class="fondl" /></td>
-		    </tr>
-		    <tr>
-		      <td><input type="text" name="lien_texte_5" value="#ENV{lien_texte_5}" size="30" class="fondl" /></td>
-		      <td><input type="text" name="lien_url_5" value="[(#ENV{lien_url_5})]" size="40" class="fondl" /></td>
-		    </tr>
-		  </table>
-		</div>
-		<div id="largeur_item">
-			<br />
-  			<label><:sarkaspip:cfg_lbl_largeur_item_menu_h:>
-  					<input type="text" name="largeur_item_menu_h" value="#ENV{largeur_item_menu_h, 150}" size="4" class="fondl" />
-  					<:sarkaspip:cfg_lbl_pixel:>
-  			</label>
-  		<br />
-  			<label><:sarkaspip:cfg_lbl_largeur_menu_h:>
-  					<input type="text" name="largeur_menu_h" value="#ENV{largeur_menu_h, 600}" size="4" class="fondl" />
-  					<:sarkaspip:cfg_lbl_pixel:> (largeur chaque item x nombre d'items ) 					
-  			</label>
-  			
-			</div>
-		<div id="bloc_align_menu_h">
-		  <p><:sarkaspip:cfg_lbl_align_menu_h:></p>
-		  <label>
-			 <input type="radio" name="align" value="0" [(#ENV{align, 0}|=={0}|?{checked="checked"})] />
-			 <:sarkaspip:cfg_lbl_align_left:>
-		  </label>
-		  <label>
-			 <input type="radio" name="align" value="auto" [(#ENV{align, 0}|=={auto}|?{checked="checked"})] />
-			 <:sarkaspip:cfg_lbl_align_centre:>
-		  </label>
-		</div>
 	</fieldset>
 	
 	[(#REM) <!-- Menu raccourcis des pages speciales --> ]
@@ -269,7 +198,51 @@
 		</label>
 		<br />
 	</fieldset>
-
+	
+	[(#REM) <!-- Choix du menu de liens personnalises --> ]
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_menu_perso:></legend>
+		<p><:sarkaspip:cfg_inf_menu_perso:></p>
+		<label>
+			<input type="radio" name="position_perso" value="0" [(#ENV{position_perso, 0}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_position_0:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="position_perso" value="5" [(#ENV{position_perso, 0}|=={5}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_position_5:>
+		</label>
+		<br />
+		<div id="bloc_liens">
+		  <p><:sarkaspip:cfg_inf_menu_perso_aide:></p>
+		  <table>
+		    <tr>
+		      <th><:sarkaspip:cfg_lbl_lien_texte:></th>
+		      <th><:sarkaspip:cfg_lbl_lien_url:></th>
+		    </tr>
+		    <tr>
+		      <td><input type="text" name="lien_texte_1" value="#ENV{lien_texte_1}" size="30" class="fondl" /></td>
+		      <td><input type="text" name="lien_url_1" value="[(#ENV{lien_url_1})]" size="40" class="fondl" /></td>
+		    </tr>
+		    <tr>
+		      <td><input type="text" name="lien_texte_2" value="#ENV{lien_texte_2}" size="30" class="fondl" /></td>
+		      <td><input type="text" name="lien_url_2" value="[(#ENV{lien_url_2})]" size="40" class="fondl" /></td>
+		    </tr>
+		    <tr>
+		      <td><input type="text" name="lien_texte_3" value="#ENV{lien_texte_3}" size="30" class="fondl" /></td>
+		      <td><input type="text" name="lien_url_3" value="[(#ENV{lien_url_3})]" size="40" class="fondl" /></td>
+		    </tr>
+		    <tr>
+		      <td><input type="text" name="lien_texte_4" value="#ENV{lien_texte_4}" size="30" class="fondl" /></td>
+		      <td><input type="text" name="lien_url_4" value="[(#ENV{lien_url_4})]" size="40" class="fondl" /></td>
+		    </tr>
+		    <tr>
+		      <td><input type="text" name="lien_texte_5" value="#ENV{lien_texte_5}" size="30" class="fondl" /></td>
+		      <td><input type="text" name="lien_url_5" value="[(#ENV{lien_url_5})]" size="40" class="fondl" /></td>
+		    </tr>
+		  </table>
+		</div>
+	</fieldset>
 	
 	<div style="text-align: right; margin-right:3px;">
 	[(#EVAL{_SARKASPIP_DEBUG_CFG_BOUTON}|=={oui}|?{' '})

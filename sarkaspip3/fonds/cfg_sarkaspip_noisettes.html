@@ -7,8 +7,6 @@
 <script type="text/javascript">
 //<![CDATA[
 	jQuery(document).ready(function() {
-		[(#ENV{menu_horizontal, 0}|=={0}|?{jQuery("#largeur_item").hide();})]
-		[(#ENV{menu_horizontal, 0}|!={3}|?{jQuery("#liens_configurables").hide();})]
 		[(#ENV{liste_breves, 2}|!={2}|?{jQuery("#bloc_intro_breve").hide();})]
 		[(#ENV{position_commentaires, 0}|=={0}|?{jQuery("#bloc_intro_commentaires").hide();})]
 		[(#ENV{position_messages, 0}|=={0}|?{jQuery("#bloc_intro_messages").hide();})]
@@ -26,18 +24,6 @@
 		[(#ENV{position_annonce, 0}|=={0}|?{jQuery("#bloc_annonce_id").hide();})]
 		[(#ENV{position_rainette, 0}|=={0}|?{jQuery("#bloc_rainette_ville").hide();})]
 
-		jQuery("input[@name='menu_horizontal']").change(function() {
-		  if (jQuery("input[@name='menu_horizontal']:checked").val() == 0) {
-		      jQuery("#largeur_item").hide();}
-			else {jQuery("#largeur_item").show();}
-		
-      if (jQuery("input[@name='menu_horizontal']:checked").val() == 3) {
-		      jQuery("#liens_configurables").show();}
-			else {jQuery("#liens_configurables").hide();}		
-		
-		  jQuery(this).blur();
-		});	
-		
 		jQuery("input[@name='liste_breves']").change(function() {
 			if (jQuery("input[@name='liste_breves']:checked").val() == 2)
 				jQuery("#bloc_intro_breve").show();
@@ -158,104 +144,6 @@
 
 <form method="post" action="#SELF" enctype="multipart/form-data"><div>
 	[(#ENV{_cfg_}|form_hidden)]
-	[(#REM) <!-- Choix du menu des rubriques horizontal --> ]
-	<fieldset>
-		<legend><:sarkaspip:cfg_lgd_menu_horizontal:></legend>
-		<p><:sarkaspip:cfg_inf_menu_horizontal:></p>
-		<label>
-			<input type="radio" name="menu_horizontal" value="0" [(#ENV{menu_horizontal, 0}|=={0}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_menu_horizontal_0:>
-		</label>
-		<br />
-		<label>
-			<input type="radio" name="menu_horizontal" value="1" [(#ENV{menu_horizontal, 0}|=={1}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_menu_horizontal_1:>
-		</label>
-		<br />
-		<label>
-			<input type="radio" name="menu_horizontal" value="2" [(#ENV{menu_horizontal, 0}|=={2}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_menu_horizontal_2:>
-		</label>
-		<br />
-		<label>
-			<input type="radio" name="menu_horizontal" value="4" [(#ENV{menu_horizontal, 0}|=={4}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_menu_horizontal_4:>
-		</label>
-		<br />
-		<label>
-			<input type="radio" name="menu_horizontal" value="3" [(#ENV{menu_horizontal, 0}|=={3}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_menu_horizontal_3:>
-		</label>
-		<div id="liens_configurables">
-		  <p><:sarkaspip:cfg_inf_menu_horizontal_3:></p>
-		  <table>
-		    <tr>
-		      <th><:sarkaspip:cfg_lbl_lien_texte:></th>
-		      <th><:sarkaspip:cfg_lbl_lien_url:></th>
-		    </tr>
-		    <tr>
-		      <td><input type="text" name="lien_texte_1" value="#ENV{lien_texte_1}" size="30" class="fondl" /></td>
-		      <td><input type="text" name="lien_url_1" value="[(#ENV{lien_url_1})]" size="40" class="fondl" /></td>
-		    </tr>
-		    <tr>
-		      <td><input type="text" name="lien_texte_2" value="#ENV{lien_texte_2}" size="30" class="fondl" /></td>
-		      <td><input type="text" name="lien_url_2" value="[(#ENV{lien_url_2})]" size="40" class="fondl" /></td>
-		    </tr>
-		    <tr>
-		      <td><input type="text" name="lien_texte_3" value="#ENV{lien_texte_3}" size="30" class="fondl" /></td>
-		      <td><input type="text" name="lien_url_3" value="[(#ENV{lien_url_3})]" size="40" class="fondl" /></td>
-		    </tr>
-		    <tr>
-		      <td><input type="text" name="lien_texte_4" value="#ENV{lien_texte_4}" size="30" class="fondl" /></td>
-		      <td><input type="text" name="lien_url_4" value="[(#ENV{lien_url_4})]" size="40" class="fondl" /></td>
-		    </tr>
-		    <tr>
-		      <td><input type="text" name="lien_texte_5" value="#ENV{lien_texte_5}" size="30" class="fondl" /></td>
-		      <td><input type="text" name="lien_url_5" value="[(#ENV{lien_url_5})]" size="40" class="fondl" /></td>
-		    </tr>
-		  </table>
-		</div>
-		<div id="largeur_item">
-			<br />
-  			<label><:sarkaspip:cfg_lbl_largeur_item_menu_h:>
-  					<input type="text" name="largeur_item_menu_h" value="#ENV{largeur_item_menu_h, 150}" size="4" class="fondl" />
-  					<:sarkaspip:cfg_lbl_pixel:>
-  			</label>
-  		<br />
-  			<label><:sarkaspip:cfg_lbl_largeur_menu_h:>
-  					<input type="text" name="largeur_menu_h" value="#ENV{largeur_menu_h, 600}" size="4" class="fondl" />
-  					<:sarkaspip:cfg_lbl_pixel:> (largeur chaque item x nombre d'items ) 					
-  			</label>
-  			
-			</div>
-		<div id="bloc_align_menu_h">
-		  <p><:sarkaspip:cfg_lbl_align_menu_h:></p>
-		  <label>
-			 <input type="radio" name="align" value="0" [(#ENV{align, 0}|=={0}|?{checked="checked"})] />
-			 <:sarkaspip:cfg_lbl_align_left:>
-		  </label>
-		  <label>
-			 <input type="radio" name="align" value="auto" [(#ENV{align, 0}|=={auto}|?{checked="checked"})] />
-			 <:sarkaspip:cfg_lbl_align_centre:>
-		  </label>
-		</div>
-	</fieldset>
-	
-	[(#REM) <!-- Ajout de plan du site aux raccourcis des formulaires --> ]
-	<fieldset>
-		<legend><:sarkaspip:cfg_lgd_inc_formulaires:></legend>
-		<p><:sarkaspip:cfg_inf_inc_formulaires:></p>
-		<p><:sarkaspip:cfg_inf_lien_plan:></p>
-		<label>
-			<input type="radio" name="lien_plan" value="1" [(#ENV{lien_plan, 0}|=={1}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_oui:>
-		</label>
-		<label>
-			<input type="radio" name="lien_plan" value="0" [(#ENV{lien_plan, 0}|=={0}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_non:>
-		</label>
-		<br />
-	</fieldset>
 	
 	[(#REM) <!-- Choix de presentation des commentaires --> ]
 	<fieldset>

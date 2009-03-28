@@ -571,11 +571,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_pagination_resultats'=>'Pagination des résultats',
 		'cfg_lgd_secteur_squelette'=>'Secteur sp&eacute;cialis&eacute; pour le squelette',
 		'cfg_lgd_edito'=>'Edito de bienvenue',
-		'cfg_lgd_menu_horizontal' => 'Menu horizontal',
+		'cfg_lgd_menu_perso' => 'Menu de liens personnalis&eacute;s',
 		'cfg_lgd_menu_pages_speciales' => 'Menu des pages sp&eacute;ciales',
 		'cfg_lgd_menu_formulaires' => 'Menu des formulaires',
 		'cfg_lgd_menu_langues' => 'Menu des langues',
 		'cfg_lgd_menu_rubriques' => 'Menu des rubriques',
+		'cfg_lgd_menu_secteurs' => 'Menu des secteurs',
 
 // Informations de configuration de chaque bloc
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
@@ -758,10 +759,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_menu_langues' => 'Choisissez dans quelle partie du layout du site vous souhaitez ins&eacute;rer le menu des langues (ce menu vous permet de choisir la langue courante d\'affichage du site) ?',
 		'cfg_inf_menu_pages_speciales' => 'Choisissez dans quelle partie du layout du site vous souhaitez ins&eacute;rer le menu des pages sp&eacute;ciales comme Agenda, Galerie, Mots-cl&eacute;s... ?',
 		'cfg_inf_menu_formulaires' => 'Choisissez dans quelle partie du layout du site vous souhaitez ins&eacute;rer le menu des formulaires comme Connexion, Inscription... ?',
-		'cfg_inf_menu_horizontal' => 'Choisissez le mod&egrave;le de menu horizontal qui vous convient parmi ceux propos&eacute;s ci-dessous. Ce menu est int&eacute;gr&eacute; dans la partie basse du bandeau.',
-		'cfg_inf_menu_horizontal_3'=> 'Le champ "Texte &agrave; afficher" d&eacute;clanche l\'affichage dans le menu, m&ecirc;me si l\'URL est vide',
+		'cfg_inf_menu_perso' => 'Choisissez dans quelle partie du layout du site vous souhaitez ins&eacute;rer un menu de liens que vous pourrez personnaliser (texte + adresse) ?',
 		'cfg_inf_menu_rubriques' => 'Choisissez dans quelle partie du layout du site vous souhaitez ins&eacute;rer le menu des rubriques ?',
 		'cfg_inf_menu_modele_rubriques' => 'Choisissez le mod&egrave;le de menu des rubriques qui vous convient parmi ceux propos&eacute;s ci-dessous.',
+		'cfg_inf_menu_secteurs' => 'Choisissez dans quelle partie du layout du site vous souhaitez ins&eacute;rer le menu des secteurs (hors secteurs sp&eacute;cialis&eacute;s) ?',
+
+		'cfg_inf_menu_perso_aide'=> 'Le champ &#171; Texte &agrave; afficher &#187; d&eacute;clenche l\'affichage dans le menu, m&ecirc;me si l\'URL est vide',
 
 // Labels des items de choix
 		'cfg_lbl_layout_07' => 'Layout #7 (navigation, centre, extra)',
@@ -786,10 +789,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_inc_rubriques_2' => 'Menu des rubriques d&eacute;pli&eacute;',
 		'cfg_lbl_inc_rubriques_3' => 'Menu des rubriques accord&eacute;on &agrave; ouverture automatique',
 		'cfg_lbl_inc_rubriques_4' => 'Menu des rubriques accord&eacute;on &agrave; ouverture manuelle',
-		'cfg_lbl_menu_horizontal_1' => 'Menu des secteurs',
-		'cfg_lbl_menu_horizontal_2' => 'Menu des secteurs d&eacute;pliable',
-		'cfg_lbl_menu_horizontal_3' => 'Menu de liens configurables',
-		'cfg_lbl_menu_horizontal_4' => 'Menu des raccourcis ',
 		'cfg_lbl_lien_texte' =>'Texte &agrave; afficher',
 		'cfg_lbl_lien_url' =>'URL du lien',
 		'cfg_lbl_largeur_item_menu_h' => 'D&eacute;finissez la largeur des items du menu horizontal : ',
