@@ -48,9 +48,6 @@
 
 
 
-
-
-
 <div class="grande_boite">
 
 <B_derniers_articles><a name="article"></a>
@@ -120,7 +117,7 @@ modifi&eacute; le (#DATE_MODIF|nom_jour)] [(#DATE_MODIF|affdate),]
 <h4 class="icone_agenda"><:evene_futur:></h4>				
 <p>
 <BOUCLE_sous_rubragenda(RUBRIQUES){titre_mot=Agenda}{0,1}>
-<BOUCLE_articles_agenda(EVENEMENTS){agendafull date_debut, date_fin, mois} {statut=publie}{par date_debut}{doublons}{0,5}>
+<BOUCLE_articles_agenda(EVENEMENTS) {age_fin<0}{statut=publie}{par date_debut}{doublons}{0,5}>
 <a href="#URL_ARTICLE"[ title="(#DESCRIPTIF|textebrut|attribut_html|couper{60})"]>#TITRE</a>
 [(#DATE_DEBUT|affdate{'Ymd'}|=={[(#DATE_FIN|affdate{'Ymd'})]}|?{
  Le [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
@@ -164,10 +161,6 @@ modifi&eacute; le (#DATE_MODIF|nom_jour)] [(#DATE_MODIF|affdate),]
     </div>[(#REM)   fermeture boite menu   ]
 
   
-<div class="boite">
- <h4 class="icone_recherche"><:recherche:></h4>
-[(#INCLURE{fond=inc-recherche})]
-	    </div>
 
 <div class="boite"><a name="messages"></a> [(#REM)   ouverture boite derniers messages   ] 
 <h4 class="icone_post"><:messages_derniers:></h4>

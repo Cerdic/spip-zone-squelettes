@@ -1,14 +1,15 @@
+#CACHE{5*24*3600}
 
 
 <B_affichage>
   <div id="minipics"><ul>
-      <BOUCLE_affichage(DOCUMENTS){mode=document}{extension IN png,jpg}{par num titre, date}{!doublons docs #_aut:NOM}{pagination 12}>
+      <BOUCLE_affichage(DOCUMENTS){!doublons docs #_aut:NOM}{mode=document}{extension IN png,jpg}{par num titre, date}{pagination 12}>
 <li class="transparent" id="a#ID_DOCUMENT"> 
-	<a class="thickbox nyroceros" href="#URL_DOCUMENT" type="#MIME_TYPE" [title="(#TITRE|couper{40}|texte_backend)"][longdesc="(#DESCRIPTIF|couper{40}|texte_backend)"] rel="gal"> 
-<img src="[(#FICHIER|image_masque{carre-80.png}|image_aplatir{jpg,ffffff}|extraire_attribut{src})]" alt="photo[ : (#TITRE|couper{80}|textebrut)]" style="width:80px; height:80px;" /></a> 
+	<a class="thickbox nyroceros" href="#URL_DOCUMENT" type="#MIME_TYPE" [title="(#TITRE|couper{40}||textebrut)"][longdesc="(#DESCRIPTIF|couper{40}||textebrut)"] rel="gal"> 
+	<img src="[(#FICHIER|image_masque{carre-80.png}|image_aplatir{jpg,ffffff}|extraire_attribut{src})]" alt="photo[ : (#TITRE|couper{80}|textebrut)]" style="width:80px; height:80px;" /></a> 
 	  <p class="centre"><BOUCLE_liens_articles(ARTICLES){id_document}>[<a href="(#URL_ARTICLE)">Voir l'article</a>]</BOUCLE_liens_articles></p> 
 </li> 
-</BOUCLE_affichage></ul><hr class="spacer"/> [<p class="centre">Page: <span class="pagination">(#PAGINATION{page})</span></p>]
+</BOUCLE_affichage></ul><hr class="spacer"/> [<p class="centre pagination">(#PAGINATION)</p>]
 </div>[(#REM)   fermeture minipics ]
 
 	</B_affichage>

@@ -2,22 +2,22 @@
 <BOUCLE_principale(ARTICLES){id_article}>
 [(#REM) si mot clé dans article alors article-mot.html ]
 <BOUCLE_mrub(MOTS){type==squelette}{titre==(normal|agenda|forum|galerie|boutique|locatif|gribouille)}{id_article}>
-	[(#INCLURE{fond=article-#TITRE}{id_rubrique}{id_article}{env}{type=#ENV{type}}{date=#ENV{date}}{recherche}{lettre=#ENV{lettre}})]
+	<INCLURE{fond=article-#TITRE}{id_rubrique}{id_article}{env}{type=#ENV{type}}{date=#ENV{date}}{recherche}{lettre=#ENV{lettre}}>
 </BOUCLE_mrub>
 <BOUCLE_mart(MOTS){type==squelette}{titre==(normal|agenda|forum|galerie|boutique|locatif|gribouille)}{id_rubrique}>
 [(#REM) sinon on test la présence d'un mot clé sur la rubrique  ]
-	[(#INCLURE{fond=article-#TITRE}{id_rubrique}{id_article}{env}{type=#ENV{type}}{date=#ENV{date}}{recherche}{lettre=#ENV{lettre}})]
+	<INCLURE{fond=article-#TITRE}{id_rubrique}{id_article}{env}{type=#ENV{type}}{date=#ENV{date}}{recherche}{lettre=#ENV{lettre}}>
 </BOUCLE_mart>
 [(#REM) et s'il n'y en a pas alors on affiche article-normal.  ]
-	[(#INCLURE{fond=article-normal}{id_rubrique}{id_article}{env}{type=#ENV{type}}{date=#ENV{date}}{recherche}{lettre=#ENV{lettre}})]
+	<INCLURE{fond=article-normal}{id_rubrique}{id_article}{env}{type=#ENV{type}}{date=#ENV{date}}{recherche}{lettre=#ENV{lettre}}>
 <//B_mart>
 <//B_mrub>
 </BOUCLE_principale>
 [(#ID_ARTICLE|AccesRestreint_article_restreint|?{' ',''})    
- [(#ENV{type}|=={redac}|?{' ',''}) [(#INCLURE{fond=abonnement}{type=redac})]]
-  [(#ENV{type}|=={visit}|?{' ',''}) [(#INCLURE{fond=abonnement}{type=visit})]]
-[(#ENV{type}|match{redac|visit}|?{'',' '})[(#INCLURE{fond=abonnement}{type=question})]]
+ [(#ENV{type}|=={redac}|?{' ',''}) <INCLURE{fond=abonnement}{type=redac}>]
+  [(#ENV{type}|=={visit}|?{' ',''}) <INCLURE{fond=abonnement}{type=visit}>]
+[(#ENV{type}|match{redac|visit}|?{'',' '})<INCLURE{fond=abonnement}{type=question}>]
   ]
 [(#ID_ARTICLE|AccesRestreint_article_restreint|?{'',' '})
-[(#INCLURE{fond=404})]]
+<INCLURE{fond=404}>]
 <//B_principale>
