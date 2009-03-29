@@ -95,6 +95,23 @@
 		</div>
 	</fieldset>
 
+	#SET{menu_horizontal_affiche, non}
+[(#CONFIG{sarkaspip_menus/position_rubriques, 1}|=={5}|?{' '})
+	#SET{menu_horizontal_affiche, oui}
+	[(#SET{menu_horizontal_modele, <:sarkaspip:cfg_lgd_menu_rubriques:>})]
+]
+[(#CONFIG{sarkaspip_menus/position_secteurs, 0}|=={5}|?{' '})
+	#SET{menu_horizontal_affiche, oui}
+	[(#SET{menu_horizontal_modele, <:sarkaspip:cfg_lgd_menu_secteurs:>})]
+]
+[(#CONFIG{sarkaspip_menus/position_pages, 1}|=={5}|?{' '})
+	#SET{menu_horizontal_affiche, oui}
+	[(#SET{menu_horizontal_modele, <:sarkaspip:cfg_lgd_menu_pages_speciales:>})]
+]
+[(#CONFIG{sarkaspip_menus/position_perso, 0}|=={5}|?{' '})
+	#SET{menu_horizontal_affiche, oui}
+	[(#SET{menu_horizontal_modele, <:sarkaspip:cfg_lgd_menu_perso:>})]
+]
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_bandeau_bas:></legend>
 		<p><:sarkaspip:cfg_inf_bandeau_bas:></p>
@@ -111,6 +128,41 @@
 			<label><:sarkaspip:cfg_lbl_hauteur_minimale:></label>
 			<input type="text" name="bas_minheight" value="#ENV{bas_minheight, 23}" size="3" class="fondl" />
 			<br />
+[(#GET{menu_horizontal_affiche}|=={oui}|?{' '})
+			<p><:sarkaspip:cfg_inf_bandeau_bas_menu{lbl_menu=#GET{menu_horizontal_modele}}:></p>
+			<p><:sarkaspip:cfg_inf_alignement_menu:></p>
+			<label>
+				<input type="radio" name="menu_align" value="0" [(#ENV{menu_align, 0}|=={0}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_align_gauche:>
+			</label>
+			<label>
+				<input type="radio" name="menu_align" value="auto" [(#ENV{menu_align, 0}|=={auto}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_align_centre:>
+			</label>
+			<p><:sarkaspip:cfg_inf_alignement_item:></p>
+			<label>
+				<input type="radio" name="item_align" value="left" [(#ENV{item_align, left}|=={left}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_align_gauche:>
+			</label>
+			<label>
+				<input type="radio" name="item_align" value="center" [(#ENV{item_align, left}|=={center}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_align_centre:>
+			</label>
+			<div id="bloc_largeur_item">
+				<br />
+				<label>
+					<:sarkaspip:cfg_lbl_largeur_item:>
+					<input type="text" name="item_largeur" value="#ENV{item_largeur, 150}" size="4" class="fondl" />
+				</label>
+			</div>
+			<div id="bloc_largeur_menu">
+				<br />
+				<label>
+					<:sarkaspip:cfg_lbl_largeur_menu:>
+					<input type="text" name="menu_largeur" value="#ENV{menu_largeur, 600}" size="4" class="fondl" />
+				</label>
+			</div>
+]
 		</div>
 	</fieldset>
 

@@ -583,7 +583,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_bandeau_haut' => 'D&eacute;sirez vous afficher la partie du bandeau contenant le logo, le nom et le slogan du site, ainsi que la bande de navigation horizontale ?',
 		'cfg_inf_titre_site' => 'Souhaitez vous afficher le nom de votre site dans le bandeau ?',
 		'cfg_inf_logo_reduit' => 'Souhaitez vous que le squelette r&eacute;duise automatiquement la taille du logo du site ?',
-		'cfg_inf_bandeau_bas' => 'D&eacute;sirez vous afficher la partie du bandeau contenant la banni&egrave;re ?',
+		'cfg_inf_bandeau_bas' => 'D&eacute;sirez vous afficher la partie du bandeau pouvant contenir une banni&egrave;re ou un menu horizontal ?',
 		'cfg_inf_bandeau_chemin' => 'D&eacute;sirez vous afficher la partie du bandeau contenant la bande indiquant le chemin des articles et rubriques ?',
 		'cfg_inf_inc_breves' => 'Choisissez le mod&egrave;le de liste des br&egrave;ves qui vous convient parmi ceux propos&eacute;s ci-dessous.',
 		'cfg_inf_inc_commentaires' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les derniers commentaires sur les articles ou les albums.',
@@ -763,8 +763,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_menu_rubriques' => 'Choisissez dans quelle partie du layout du site vous souhaitez ins&eacute;rer le menu des rubriques ?',
 		'cfg_inf_menu_modele_rubriques' => 'Choisissez le mod&egrave;le de menu des rubriques qui vous convient parmi ceux propos&eacute;s ci-dessous.',
 		'cfg_inf_menu_secteurs' => 'Choisissez dans quelle partie du layout du site vous souhaitez ins&eacute;rer le menu des secteurs (hors secteurs sp&eacute;cialis&eacute;s) ?',
-
 		'cfg_inf_menu_perso_aide'=> 'Le champ &#171; Texte &agrave; afficher &#187; d&eacute;clenche l\'affichage dans le menu, m&ecirc;me si l\'URL est vide',
+		'cfg_inf_bandeau_bas_menu' => 'Vous avez choisi d\'afficher le &#171; @lbl_menu@ &#187; horizontalement dans cette partie du bandeau. Veuillez choisir ci-dessous ses param&egrave;tres d\'alignement.',
+		'cfg_inf_alignement_menu' => 'Choisissez l\'alignement global que vous souhaitez pour votre menu horizontal',
+		'cfg_inf_alignement_item' => 'Choisissez l\'alignement que vous souhaitez pour chaque item du menu',
 
 // Labels des items de choix
 		'cfg_lbl_layout_07' => 'Layout #7 (navigation, centre, extra)',
@@ -791,7 +793,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_inc_rubriques_4' => 'Menu des rubriques accord&eacute;on &agrave; ouverture manuelle',
 		'cfg_lbl_lien_texte' =>'Texte &agrave; afficher',
 		'cfg_lbl_lien_url' =>'URL du lien',
-		'cfg_lbl_largeur_item_menu_h' => 'D&eacute;finissez la largeur des items du menu horizontal : ',
 		'cfg_lbl_inc_breves_1' => 'Un bloc par br&egrave;ve',
 		'cfg_lbl_inc_breves_2' => 'Un bloc pour toutes les br&egrave;ves (affichage de l\'introduction uniquement)',
 		'cfg_lbl_max_breves' => 'Nombre maximal de br&egrave;ves dans la liste',
@@ -936,10 +937,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_herbier_descriptif' => 'Vous pouvez r&eacute;diger un descriptif succinct pour pr&eacute;senter votre herbier (composition, mots-clés...). Ce texte peut &ecirc;tre &eacute;crit en utilisant les raccourcis classiques de SPIP.',
 		'cfg_lbl_herbier_modele_1' => 'Mod&egrave;le liste',
 		'cfg_lbl_herbier_modele_2' => 'Mod&egrave;le panorama',
-
-		'cfg_lbl_menu_raccourcis_0' => 'Ne pas afficher de menu de raccourcis',
-		'cfg_lbl_menu_raccourcis_1' => 'Afficher les raccourcis des pages sp&eacute;ciales',
-		'cfg_lbl_menu_raccourcis_2' => 'Afficher les raccourcis des formulaires',
+		'cfg_lbl_align_gauche' => 'A gauche',
+		'cfg_lbl_align_droite' => 'A droite',
+		'cfg_lbl_align_centre' => 'Au centre',
+		'cfg_lbl_largeur_item' => 'D&eacute;finissez la largeur de chaque item du menu horizontal (en pixels): ',
+		'cfg_lbl_largeur_menu' => 'D&eacute;finissez la largeur totale menu horizontal (en pixels): ',
  
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',
