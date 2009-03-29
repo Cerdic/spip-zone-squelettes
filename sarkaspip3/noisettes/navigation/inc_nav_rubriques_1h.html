@@ -1,0 +1,48 @@
+<script type="text/javascript">
+//<![CDATA[	
+function hover(obj) {
+	if(document.all) {
+		UL = obj.getElementsByTagName('ul');
+		if(UL.length > 0) {UL[0].style.display = 'block';}
+	}
+}
+
+function hout(obj) {
+	if(document.all) {
+		UL = obj.getElementsByTagName('ul');
+		if(UL.length > 0) {UL[0].style.display = 'none';}
+	}
+}
+function setHover(){
+	if (document.getElementById('menu_rubriques')) {
+		LI = document.getElementById('menu_rubriques').getElementsByTagName('li');
+		nLI = LI.length;
+		for(i=0; i < nLI; i++){
+			LI[i].onmouseover = function(){hover(this);}
+			LI[i].onmouseout = function(){hout(this);}
+		}
+	}
+}
+//]]>
+</script>
+
+<B_secteurs>
+<div id="menu_rubriques" class="noisette menu_horiz">
+	<ul>
+<BOUCLE_secteurs(RUBRIQUES){racine}{id_rubrique!==#RACINE_SPECIALISEE}{par num titre}>
+		<li<BOUCLE_smen1(RUBRIQUES){id_parent}{0,1}> class="smenu_h"</BOUCLE_smen1>>
+			<a id="n#COMPTEUR_BOUCLE" href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+	<B_smenusecteur>
+			<ul>
+	<BOUCLE_smenusecteur(RUBRIQUES){id_parent}{par num titre}>
+				<li<BOUCLE_smen2(RUBRIQUES){id_parent}{0,1}> class="smenu_h"</BOUCLE_smen2>>
+					<a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+				</li>
+	</BOUCLE_smenusecteur>  
+			</ul>
+	</B_smenusecteur>
+		</li>
+</BOUCLE_secteurs>
+	</ul>
+</div> <!-- menu_horiz -->
+</B_secteurs>
