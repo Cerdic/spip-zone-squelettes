@@ -292,23 +292,29 @@
 .nav2 .auteur {margin: 7px 10px; padding-top: 3px; padding-bottom: 2px; text-align: center;	background: transparent; border: 0;}
 
 /* Menu horizontal dans le bandeau bas */
+[(#CONFIG{sarkaspip_bandeau/menu_align, 0}|!={0}|?{' '})
+	[(#SET{largeur_menu, [width: (#CONFIG{sarkaspip_bandeau/menu_largeur, 600})px]})]
+]
+[(#CONFIG{sarkaspip_bandeau/item_largeur, 150}|!={0}|?{' '})
+	[(#SET{largeur_item, [width: (#CONFIG{sarkaspip_bandeau/item_largeur, 150})px]})]
+]
 .menu_horiz {padding: 0 20px; font-size: 1.2em;
-	[min-height: (#CONFIG{sarkaspip_bandeau/bas_minheight, 50})px; ]
-	color: #CONFIG{sarkaspip_styles/fg_menu_horiz, #ffffff};
-	[width:(#CONFIG{sarkaspip_bandeau/menu_largeur, 600})px;]
-	[margin:(#CONFIG{sarkaspip_bandeau/menu_align, 0});]}
+	[ min-height: (#CONFIG{sarkaspip_bandeau/bas_minheight, 50})px;]
+	[ color: (#CONFIG{sarkaspip_styles/fg_menu_horiz, #ffffff});]
+	[ (#GET{largeur_menu});]
+	[ margin:(#CONFIG{sarkaspip_bandeau/menu_align, 0});]}
 .menu_horiz ul {padding: 0; margin: 0; line-height: 1em; position: absolute;}
 .menu_horiz li {float: left; list-style: none; }
 .menu_horiz li a {display: block; padding: 5px 10px; text-decoration: none;
 	background: #CONFIG{sarkaspip_styles/bg_menu_horiz, #6262a4}[ url((#CHEMIN{images/bg_menu_horiz#CONFIG{sarkaspip_styles/bi_extension_menu_horiz, .gif}}))][ (#CONFIG{sarkaspip_styles/bi_proprietes_menu_horiz})];
-	[border-left: (#CONFIG{sarkaspip_styles/ca_menu_horiz, #6262a4}) solid 1px; ]
+	[ border-left: (#CONFIG{sarkaspip_styles/ca_menu_horiz, #6262a4}) solid 1px;]
 	[ color: (#CONFIG{sarkaspip_styles/fg_menu_horiz, #ffffff});]}
 .menu_horiz li a#n1 {border-left: none; padding-left: 5px;}
 .menu_horiz li a:hover {color: #CONFIG{sarkaspip_styles/ho_menu_horiz, #ffffff};
 	background: #CONFIG{sarkaspip_styles/hb_menu_horiz, #323284}[ url((#CHEMIN{images/bg_hover_menu_horiz#CONFIG{sarkaspip_styles/hi_extension_menu_horiz, .gif}}))][ (#CONFIG{sarkaspip_styles/hi_proprietes_menu_horiz})];
 	text-decoration: #CONFIG{sarkaspip_styles/td_menu_horiz, none};}
 .menu_horiz li a.on {font-size: 1.25em; font-weight: bold;}
-.menu_horiz ul li {	text-align: #CONFIG{sarkaspip_bandeau/item_align, left}; width: #CONFIG{sarkaspip_bandeau/item_largeur, 150}px ;height: 100%}
+.menu_horiz ul li {	text-align: #CONFIG{sarkaspip_bandeau/item_align, left};[ (#GET{largeur_item});] height: 100%}
 .menu_horiz ul li:hover>ul {display:block;}
 .menu_horiz ul li ul {display:none; overflow: hidden;}
 .menu_horiz ul li ul li {display:block; float:none; overflow: hidden;[ border-top: (#CONFIG{sarkaspip_styles/ca_menu_horiz, #6262a4}) solid 1px;]}

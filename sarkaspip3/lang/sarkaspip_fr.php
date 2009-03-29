@@ -940,8 +940,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_align_gauche' => 'A gauche',
 		'cfg_lbl_align_droite' => 'A droite',
 		'cfg_lbl_align_centre' => 'Au centre',
-		'cfg_lbl_largeur_item' => 'D&eacute;finissez la largeur de chaque item du menu horizontal (en pixels): ',
-		'cfg_lbl_largeur_menu' => 'D&eacute;finissez la largeur totale menu horizontal (en pixels): ',
+		'cfg_lbl_largeur_item' => 'Largeur de chaque item, en pixels: ',
+		'cfg_lbl_largeur_menu' => 'Largeur totale du menu, en pixels: ',
  
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',

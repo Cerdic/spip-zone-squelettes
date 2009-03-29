@@ -11,11 +11,9 @@
 			jQuery("#menu_raccourci_defaut").attr({checked: "checked"});
 			jQuery("#bloc_haut").hide();
 		]
-		[(#ENV{bas, 1}|=={0}|?{' '})
-			jQuery("#bloc_bas").hide();
-		]
-		[(#ENV{logo_reduit, 1}|=={0}|?{' '})
-			jQuery("#bloc_logo").hide();
+		[(#ENV{bas, 1}|=={0}|?{' '}) jQuery("#bloc_bas").hide();]
+		[(#ENV{menu_align, 0}|=={0}|?{' '})	jQuery("#bloc_largeur_menu").hide();]
+		[(#ENV{logo_reduit, 1}|=={0}|?{' '}) jQuery("#bloc_logo").hide();
 		]
 		jQuery("input[@name='haut']").change(function() {
 			if (jQuery("input[@name='haut']:checked").val() == 1)
@@ -31,6 +29,15 @@
 				jQuery("#bloc_bas").show();
 			else {
 				jQuery("#bloc_bas").hide();
+			}
+			jQuery(this).blur();
+		});	
+		jQuery("input[@name='menu_align']").change(function() {
+			if (jQuery("input[@name='menu_align']:checked").val() == 0)
+				jQuery("#bloc_largeur_menu").hide();
+			else {
+				jQuery("#bloc_largeur_menu").show();
+				jQuery("input[@name='item_largeur']").attr({value: "150"});
 			}
 			jQuery(this).blur();
 		});	
@@ -156,7 +163,6 @@
 				</label>
 			</div>
 			<div id="bloc_largeur_menu">
-				<br />
 				<label>
 					<:sarkaspip:cfg_lbl_largeur_menu:>
 					<input type="text" name="menu_largeur" value="#ENV{menu_largeur, 600}" size="4" class="fondl" />
