@@ -25,7 +25,25 @@
 
 
 <body dir="#LANG_DIR"> 
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function() {
+var q = (window.location.href.match(RegExp('&id_auteur.*$')));
+if (!q) { $("div.cache").hide();}
+else {   $(document).ready(function(){
+           $("div.cache").fadeIn(3000);
+   });}
+$("p.parag").hide();
+$("span.titre").css("cursor","pointer").click(function(){
+$('p.parag').toggle('slow');	
+});
+if (location.hash){
+	$(location.hash).show();
+}
 
+});
+//]]>/*
+</script>
 
 
 <div id="container">   [(#REM)   centrage page   ]
@@ -52,7 +70,17 @@
 <div class="grande_boite">
 
 
-[(#FORMULAIRE_EDITER_AUTEUR{#ID_AUTEUR,#URL_AUTEUR{#ID_AUTEUR}{ajax}{env}})]
+<div class="interne cache"> <h4 class="titre">Votre profil est maintenant modifi&eacute;.</h4> 
+  <p>Votre page de contact sera modifi&eacute;e en fonction de vos indications d'ici quelques temps. <span class="droite button titre">Plus d'info</span></p>
+  <p class="parag">Les pages de ce site sont mise en cache sur le serveur. Ce cache sera renouvel&eacute; au plus tard dans 3 jours.</p>
+<hr class="spacer"/>
+</div>
+
+
+
+
+
+[(#FORMULAIRE_EDITER_AUTEUR{#ID_AUTEUR,#SELF{#ID_AUTEUR}{ajax}{env}})]
 
 
 </div> [(#REM) fermeture cellule ]
