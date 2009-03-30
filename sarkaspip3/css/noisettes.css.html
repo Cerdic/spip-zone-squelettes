@@ -151,9 +151,30 @@
 #noisette_miniagenda.noisette .contenu table th {text-align: center; padding: 2px 0;}
 #noisette_miniagenda.noisette .contenu table td {line-height: 1.1em; color: #CONFIG{sarkaspip_styles/fg_noisette, #808080}}
 #noisette_miniagenda.noisette .contenu table td.libre,
-#noisette_miniagenda.noisette .contenu table td.occupe {background-color: #ffffff; border: 1px solid #ffffff;}
-#noisette_miniagenda.noisette .contenu table td.horsperiode {background: #eeeeee; color: #aaaaaa; border: 1px solid #eeeeee;}
-#noisette_miniagenda.noisette .contenu table td.today {font-weight: bolder; background: #ffffff; border: 2px solid #CONFIG{sarkaspip_styles/bg_noisette_titre, #808080};}
+#noisette_miniagenda.noisette .contenu table td.occupe {[background-color: (#CONFIG{sarkaspip_styles/bg_noisette, #ffffff});] [border: 1px solid (#CONFIG{sarkaspip_styles/bg_noisette, #ffffff});]}
+#noisette_miniagenda.noisette .contenu table td.horsperiode {
+  [(#CONFIG{sarkaspip_styles/bg_noisette, #ffffff}|=={#ffffff}|?{' '})
+    background: #eeeeee;border: 1px solid #eeeeee;]
+  
+  [(#CONFIG{sarkaspip_styles/bg_noisette, #ffffff}|!={#ffffff}|?{' '})
+    [(#CONFIG{sarkaspip_styles/bg_noisette, #ffffff}|=={#000000}|?{' '})
+    background: #bbbbbb;border: 1px solid #bbbbbb;]
+  
+    [(#CONFIG{sarkaspip_styles/bg_noisette, #ffffff}|!={#000000}|?{' '})
+      [background-color: #(#CONFIG{sarkaspip_styles/bg_noisette, #ffffff}|substr{1}|couleur_eclaircir|couleur_eclaircir);]
+      [border: 1px solid #(#CONFIG{sarkaspip_styles/bg_noisette, #ffffff}|substr{1}|couleur_eclaircir|couleur_eclaircir);]
+    ]
+  ]
+  
+  
+  [(#CONFIG{sarkaspip_styles/fg_noisette, #808080}|=={#ffffff}|?{' '}) 
+    color: #aaaaaa;]
+  [(#CONFIG{sarkaspip_styles/fg_noisette, #808080}|!={#ffffff}|?{' '}) 
+    [(#CONFIG{sarkaspip_styles/fg_noisette, #808080}|=={#000000}|?{' '}) color: #aaaaaa;]
+    [(#CONFIG{sarkaspip_styles/fg_noisette, #808080}|!={#000000}|?{' '}) [color: #(#CONFIG{sarkaspip_styles/fg_noisette, #808080}|substr{1}|couleur_eclaircir);]]
+  ]
+}
+#noisette_miniagenda.noisette .contenu table td.today {font-weight: bolder;  [border: 2px solid #(#CONFIG{sarkaspip_styles/bg_noisette, #ffffff}|substr{1}|couleur_foncer);]}
 #noisette_miniagenda.noisette .contenu table td a {font-weight: bolder;}
 #noisette_miniagenda.noisette .contenu table td a:hover {}
 
