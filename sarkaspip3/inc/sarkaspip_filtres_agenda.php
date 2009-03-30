@@ -502,7 +502,7 @@ function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui
 
 	$body = NULL;
 	// DŽbut du tableau
-	$body .= '<table summary="'._T('sarkaspip:resume_mini_agenda').'">';
+	$body .= '<table summary="'._T('sarkaspip:resume_mini_agenda_body').'">';
 	
 	// 1ere ligne : nom abrege des jours de dimanche a samedi
 	$body .= '<thead>'; 
@@ -638,7 +638,7 @@ function agenda_mini_footer($id_agenda=0, $critere='oui', $max_mois=6, $taille=5
 			$jour = $evenements[$i]['jour'];
 			$date = mktime(0,0,0,$mois, $jour, $annee);
 			if ((date('Y-m-d',$date) >= $date_base) && ($count_liste < $taille)) {
-				if ($count_liste == 0) $cellule .= '<table id="footer_evenements">';
+				if ($count_liste == 0) $cellule .= '<table id="footer_evenements" summary="'._T('sarkaspip:resume_mini_agenda_footer').'">';
 				$cellule .= '<tr><td class="footer_colg">'.affdate_base($evenements[$i]['date_redac'], 'd-m H:i').':&nbsp;</td>';
 				$cellule .= '<td class="footer_cold"><a href="spip.php?page=evenement&amp;id_article='.$evenements[$i]['id'].'">'.$evenements[$i]['titre'].'</a></td></tr>';
 				$count_liste += 1;
@@ -659,7 +659,6 @@ function agenda_mini_footer($id_agenda=0, $critere='oui', $max_mois=6, $taille=5
 
 		$footer .= $cellule;
 	}
-
 	return $footer;
 }
 ?>

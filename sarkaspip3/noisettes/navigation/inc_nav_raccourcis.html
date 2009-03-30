@@ -15,6 +15,7 @@
 ]
 
 #SET{raccourci, non}
+#SET{no_menu, 1}
 <B_acces_rubriques>
 [(#GET{raccourci}|=={non}|?{' '})
 	<div id="menu_raccourcis" class="#GET{classe_div}"><ul>
@@ -23,19 +24,23 @@
 <BOUCLE_acces_rubriques(RUBRIQUES) {id_rubrique==#RACINE_SPECIALISEE{agenda:galerie:forum}}>
 [(#ID_RUBRIQUE|=={#RACINE_SPECIALISEE{agenda}}|?{' '})
 	[(#CONFIG{sarkaspip_agenda/plugin, 1}|=={1}|?{' '})
-		<li[ class="(#GET{classe_li})"]><a id="n1"[ href="(#URL_PAGE{agenda}|parametre_url{id_rubrique,#ID_RUBRIQUE}|parametre_url{annee,[(#AUJOURDHUI|annee)]}|parametre_url{mois,[(#AUJOURDHUI|mois)]})"]><:sarkaspip:agenda:></a></li>
+		<li[ class="(#GET{classe_li})"]><a[(#ENV{position}|=={bandeau_bas}|?{' '})[ id="mh_n(#GET{no_menu})"]][ href="(#URL_PAGE{agenda}|parametre_url{id_rubrique,#ID_RUBRIQUE}|parametre_url{annee,[(#AUJOURDHUI|annee)]}|parametre_url{mois,[(#AUJOURDHUI|mois)]})"]><:sarkaspip:agenda:></a></li>
+		#SET{no_menu, #GET{no_menu}|plus{1}}
 	]
 	[(#CONFIG{sarkaspip_agenda/plugin, 1}|=={2}|?{' '})
 		[(#PLUGIN{AGENDA}|?{' '})
-		<li[ class="(#GET{classe_li})"]><a[ href="(#URL_PAGE{agenda}|parametre_url{id_rubrique,#ID_RUBRIQUE}|parametre_url{annee,#AUJOURDHUI|annee}|parametre_url{mois,#AUJOURDHUI|mois})"]><:sarkaspip:agenda:></a></li>
+		<li[ class="(#GET{classe_li})"]><a[(#ENV{position}|=={bandeau_bas}|?{' '})[ id="mh_n(#GET{no_menu})"]][ href="(#URL_PAGE{agenda}|parametre_url{id_rubrique,#ID_RUBRIQUE}|parametre_url{annee,#AUJOURDHUI|annee}|parametre_url{mois,#AUJOURDHUI|mois})"]><:sarkaspip:agenda:></a></li>
+		#SET{no_menu, #GET{no_menu}|plus{1}}
 		]
 	]
 ]
 [(#ID_RUBRIQUE|=={#RACINE_SPECIALISEE{galerie}}|?{' '})
-		<li[ class="(#GET{classe_li})"]><a[ href="(#URL_PAGE{galerie}|parametre_url{id_rubrique,#ID_RUBRIQUE})"]><:sarkaspip:galerie:></a></li>
+		<li[ class="(#GET{classe_li})"]><a[(#ENV{position}|=={bandeau_bas}|?{' '})[ id="mh_n(#GET{no_menu})"]][ href="(#URL_PAGE{galerie}|parametre_url{id_rubrique,#ID_RUBRIQUE})"]><:sarkaspip:galerie:></a></li>
+		#SET{no_menu, #GET{no_menu}|plus{1}}
 ]
 [(#ID_RUBRIQUE|=={#RACINE_SPECIALISEE{forum}}|?{' '})
-		<li[ class="(#GET{classe_li})"]><a[ href="(#URL_RUBRIQUE)"]><:sarkaspip:forum:></a></li>
+		<li[ class="(#GET{classe_li})"]><a[(#ENV{position}|=={bandeau_bas}|?{' '})[ id="mh_n(#GET{no_menu})"]][ href="(#URL_RUBRIQUE)"]><:sarkaspip:forum:></a></li>
+		#SET{no_menu, #GET{no_menu}|plus{1}}
 ]
 </BOUCLE_acces_rubriques>
 
@@ -45,7 +50,8 @@
 	[(#SET{raccourci, oui})]
 ]
 <BOUCLE_acces_herbier(SITES) {id_secteur!==#RACINE_SPECIALISEE{galerie,not_in}}{0,1}>
-	<li[ class="(#GET{classe_li})"]><a[ href="(#URL_PAGE{herbier})"]><:sarkaspip:herbier_sites|ucfirst:></a></li>
+	<li[ class="(#GET{classe_li})"]><a[(#ENV{position}|=={bandeau_bas}|?{' '})[ id="mh_n(#GET{no_menu})"]][ href="(#URL_PAGE{herbier})"]><:sarkaspip:herbier_sites|ucfirst:></a></li>
+		#SET{no_menu, #GET{no_menu}|plus{1}}
 </BOUCLE_acces_herbier>
 
 <B_acces_mots>
@@ -54,7 +60,8 @@
 	[(#SET{raccourci, oui})]
 ]
 <BOUCLE_acces_mots(MOTS) {type!==^squelette_}{0,1}>
-			<li[ class="(#GET{classe_li})"]><a[ href="(#URL_PAGE{mot})"]><:sarkaspip:mots_clefs:></a></li>
+		<li[ class="(#GET{classe_li})"]><a[(#ENV{position}|=={bandeau_bas}|?{' '})[ id="mh_n(#GET{no_menu})"]][ href="(#URL_PAGE{mot})"]><:sarkaspip:mots_clefs:></a></li>
+		#SET{no_menu, #GET{no_menu}|plus{1}}
 </BOUCLE_acces_mots>
 
 [(#GET{raccourci}|=={oui}|?{' '})
