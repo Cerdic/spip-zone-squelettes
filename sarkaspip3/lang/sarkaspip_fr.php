@@ -504,7 +504,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // Legendes des blocs contenus dans chaque boite
 		'cfg_lgd_layout' => 'Layout',
 		'cfg_lgd_layout_fixe' => 'Trois colonnes de largeur fixe',
-		'cfg_lgd_layout_fluide' => 'Trois colonnes : 2 fixes et 1 fluide',
+		'cfg_lgd_layout_fluide' => 'Trois colonnes dont deux fixes et une fluide',
 		'cfg_lgd_bandeau_haut' => 'Partie haute',
 		'cfg_lgd_bandeau_bas' => 'Partie basse',
 		'cfg_lgd_bandeau_chemin' => 'Chemin',
@@ -786,7 +786,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_largeur_site' => 'Indiquez la largeur totale de votre site : ',
 		'cfg_lbl_pixel' => 'px',
 		'cfg_lbl_appliquer_padding' => 'D&eacute;sirez vous appliquer une marge entre les bords externes des noisettes et le fond de la fen&ecirc;tre du navigateur ?',
-		'cfg_lbl_largeur_padding'=>'Taille du padding :',
+		'cfg_lbl_largeur_padding'=>'Largeur de cette marge:',
 		'cfg_lbl_slogan' => 'Slogan du site : ',
 		'cfg_lbl_inc_rubriques_0' => 'Aucun menu des rubriques vertical',
 		'cfg_lbl_inc_rubriques_1' => 'Menu des rubriques d&eacute;roulant',
