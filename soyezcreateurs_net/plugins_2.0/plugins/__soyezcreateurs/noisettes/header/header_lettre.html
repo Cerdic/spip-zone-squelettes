@@ -1,7 +1,4 @@
 <BOUCLE_messages(cm_posts){pst_id}>
-<?php
-$jp_rubrique = 'Liste_mail';
-?>
 [(#SET{titretop,<:pyrat:newsletter|nettoyer_marqueur|texte_script:>})]
 
  [(#INCLURE{fond=noisettes/header/header}{title=<:pyrat:newsletter|texte_script:>}{titretop=#GET{titretop}})]
@@ -12,14 +9,9 @@ $jp_rubrique = 'Liste_mail';
 			<BOUCLE_Uneliste2(cm_lists){lst_id}>
 			<li><a href="[(#URL_PAGE{liste_mail}|parametre_url{'lst_id',#LST_ID})]">#LST_NAME</a></li>
 			</BOUCLE_Uneliste2>
-			<BOUCLE_messagesAriane(cm_posts){pst_id}>[<li>(#PST_SUBJECT)</li>]</BOUCLE_messagesAriane>
+			<BOUCLE_messagesAriane(cm_posts){pst_id}>[<li>(#PST_SUBJECT)</li>][(#SET{subject,#PST_SUBJECT})]</BOUCLE_messagesAriane>
 		</ul>
 	</div>
 	
 <div class="texte">
-	<div class="cartouche">
-	<h1 class="titre">#LST_NAME</h1>
-	<div class="datepublication"><span><:pyrat:publiele:> [(#DATE|nom_jour)] [(#DATE|affdate)]</span></div>
-	</div>
-		<div id="letexte">
 </BOUCLE_messages>

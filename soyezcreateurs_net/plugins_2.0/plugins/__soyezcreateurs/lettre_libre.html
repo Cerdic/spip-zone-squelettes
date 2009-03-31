@@ -1,6 +1,37 @@
 #CACHE{0}
+#SET{f_navigation,(#CONFIG{soyezcreateurs_couleurs/fontsnavigation,'Verdana, Arial, Geneva, sans-serif'})}
+#SET{f_content,(#CONFIG{soyezcreateurs_couleurs/fontscontent,'Verdana, Arial, Geneva, sans-serif'})}
+
+#SET{c_body_bk,(#CONFIG{soyezcreateurs_couleurs/body_bk,#a1856e})}
+#SET{c_logo_bk,(#CONFIG{soyezcreateurs_couleurs/logo_bk,transparent})}
+
 #SET{c_header,(#CONFIG{soyezcreateurs_couleurs/header,#ffffff})}
 	#SET{c_header_bk,(#CONFIG{soyezcreateurs_couleurs/header_bk,#664e3b})}
+#SET{c_footer,(#CONFIG{soyezcreateurs_couleurs/footer,#ffffff})}
+	#SET{c_footer_bk,(#CONFIG{soyezcreateurs_couleurs/footer_bk,#664e3b})}
+#SET{c_navigation,(#CONFIG{soyezcreateurs_couleurs/navigation,#013067})}
+	#SET{c_navigation_bk,(#CONFIG{soyezcreateurs_couleurs/navigation_bk,#3fa3d7})}
+#SET{c_container,(#CONFIG{soyezcreateurs_couleurs/container,#013067})}
+	#SET{c_container_bk,(#CONFIG{soyezcreateurs_couleurs/container_bk,#ffffff})}
+#SET{c_titraille,(#CONFIG{soyezcreateurs_couleurs/titraille,#013067})}
+	#SET{c_titraille_bk,(#CONFIG{soyezcreateurs_couleurs/titraille_bk,#a6cbec})}
+
+	#SET{c_link,(#CONFIG{soyezcreateurs_couleurs/link,#5599cd})}
+#SET{c_visited,(#CONFIG{soyezcreateurs_couleurs/visited,#66aade})}
+#SET{c_hover,(#CONFIG{soyezcreateurs_couleurs/hover,#a1856e})}
+#SET{c_active,(#CONFIG{soyezcreateurs_couleurs/active,#402816})}
+
+#SET{c_menu_a,(#CONFIG{soyezcreateurs_couleurs/menu_a,#ffffff})}
+	#SET{c_menu_a_bk,(#CONFIG{soyezcreateurs_couleurs/menu_a_bk,#5599cd})}
+#SET{c_menu_a_hover,(#CONFIG{soyezcreateurs_couleurs/menu_a_hover,#ffffff})}
+	#SET{c_menu_a_hover_bk,(#CONFIG{soyezcreateurs_couleurs/menu_a_hover_bk,#66aade})}
+#SET{c_menu_a_active,(#CONFIG{soyezcreateurs_couleurs/menu_a_active,#5599cd})}
+	#SET{c_menu_a_active_bk,(#CONFIG{soyezcreateurs_couleurs/menu_a_active_bk,#ffffff})}
+#SET{c_menu_a_strong,(#CONFIG{soyezcreateurs_couleurs/menu_a_strong,#013067})}
+	#SET{c_menu_a_strong_bk,(#CONFIG{soyezcreateurs_couleurs/menu_a_strong_bk,#ffffff})}
+	
+#SET{c_vignettes_bk,(#CONFIG{soyezcreateurs_couleurs/vignettes_bk,#3fa3d7})}
+
 <BOUCLE_articles(ARTICLES){titre_mot=Courrier_libre}{!par date}{0,1}>
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html>
@@ -9,65 +40,126 @@
 		
 <style type="text/css"> 
 [(#REM) Recuperation des CSS par defaut de SPIP ]
-[(#INCLURE{fond=stylessoyezcreateurs.css}|url_absolue_css|compacte_css)]
+[(#INCLURE{#CHEMIN{spip_style.css}|url_absolue_css}|compacte_css)]
 
-#header {
-	font-size: 0.82em;
-	font-style: italic;
-	background-color: transparent;
+html, body { padding: 0; margin: 0; font-family: #GET{f_content}; }
+html { background-color: #GET{c_body_bk}; color: #[(#GET{c_body}|couleur_inverserluminosite{80})]; font-size: 62.7%; }
+#nl_header, #nl_footer {
 	color: #GET{c_header};
-	position: relative;
-	background: #GET{c_header_bk};
+	background-color: #GET{c_header_bk};
 }
-#headercontent div {
+#nl_headercontent {
 	padding:1em;
-	background: [#(#GET{c_header_bk}|couleur_inverserluminosite{30,true})];
 }
-#container {
+
+div.nl_liensheader {
+	padding: .15em 1em;
+	color: #GET{c_container};
+	background-color: #GET{c_container_bk};
+}
+
+#nl_footer p {
+	margin: 1em 1em;
+	padding: .5em 1em;
+	color: #GET{c_container};
+	background-color: #GET{c_container_bk};
+}
+
+#nl_container {
 	width:900px;
+	color: #GET{c_container};
+	background-color: #GET{c_container_bk};
 }
-#navigation {
+#nl_navigation {
 	width:200px;
+	color: #GET{c_navigation};
+	background-color: #GET{c_navigation_bk};
 }
-#navigation h2{
+
+#nl_logosite {
+	background-color: #GET{c_logo_bk};
+	padding: 1em 0;
+}
+
+#nl_navigation table {
+ 	margin: 1em;
+}
+#nl_navigation h2{
 	
 }
-#artrecents {
-	max-height:auto;
-	overflow:auto;
-	padding:inherit;
-	width:auto;
-	z-index:inherit;
+#nl_artrecents {
 }
+
+#artrecents ul, #artrecents li { list-style-image: none; }
+#artrecents ul { padding: 0; margin: 0; }
+#artrecents li { padding: 0 0; background: transparent; list-style: none; list-style-image: none; }
+
+#artrecents a {
+	display: block; padding: 5px 0 5px 20px; margin: 4px 0; background-color: #GET{c_menu_a_bk}; border-left: none; color: #GET{c_menu_a}; font-size: 1em; font-weight: bold; text-align: left; text-decoration: none;
+}
+#artrecents a:link, #artrecents a:visited {
+	color: #GET{c_menu_a};
+	background-color: #GET{c_menu_a_bk};
+}
+#artrecents a:hover {
+	color: #GET{c_menu_a_hover};
+	background-color: #GET{c_menu_a_hover_bk};
+}
+#artrecents a:active {
+	color: #GET{c_menu_a_active};
+	background-color: #GET{c_menu_a_active_bk};
+}
+
+#artrecents ul.alaune li a {
+	border: 2px solid #GET{c_vignettes_bk};
+}
+#artrecents p a {
+	border: 1px solid #GET{c_vignettes_bk};
+}
+
+
+#lettre {
+	margin: 1em;
+}
+
+a { color: #GET{c_link}; font-weight: bold; text-decoration: none; }
+a:visited { color: #GET{c_visited}; }
+a:hover { color: #GET{c_hover}; text-decoration: underline; }
+a:active { color: #GET{c_active}; }
+
+
+
 </style>
 
 	</head>
 	<body> 
 	<center>
-		<table  id="container" cellspacing="0" cellpadding="0" width="900px">
-			<tr id="header">
-				<td id="headercontent">
+		<table  id="nl_container" cellspacing="0" cellpadding="0" width="900px">
+			<tr id="nl_header">
+				<td id="nl_headercontent">
 					<div>
 						<p><:bonjour:>,</p>
 						<p>Vous avez re&ccedil;u un courrier de la part du site&nbsp;:</p>
 					</div>
 					<h1>[(#NOM_SITE_SPIP)]</h1>
-					<div>
-						<p>Si ce courrier ne s'affiche pas, vous pouvez le <a href="#URL_SITE_SPIP/#URL_ARTICLE" title="[(#TITRE|textebrut)] &mdash; [(#NOM_SITE_SPIP|textebrut)]">visualiser sur le site</a>.</p>
+					<div class="nl_liensheader">
+						<p>Si ce courrier ne s'affiche pas, vous pouvez le <a href="#URL_SITE_SPIP/spip.php?page=liste_mail&amp;pst_id=@@ID_LETTRE@@">visualiser sur le site</a>.</p>
 						<p>Vous pouvez vous <a href="@@URL_DESINSCRIPTION@@" title="Desabonner">désabonner</a> de cette newsletter.</p>
 					</div>
 				</td>
-				<td id="navigation" colspan="1" rowspan="2" valign="top" style="height:100%;">
+				<td id="nl_navigation" colspan="1" rowspan="2" valign="top" style="height:100%;">
 					<table cellspacing="0"  cellpadding="0" style="height:100%;">
 						<tr valign="top">
-							<td id="logo" valign="top" style="height:[(#LOGO_SITE_SPIP_NORMAL||url_absolue|extraire_attribut{height}|sinon{0})]px;">
-					[<div id="logosite"><a href="#URL_SITE_SPIP"><img src="(#LOGO_SITE_SPIP_NORMAL||liens_absolus|extraire_attribut{src})" 
+							<td id="nl_logo" valign="top" style="height:[(#LOGO_SITE_SPIP_NORMAL||url_absolue|extraire_attribut{height}|sinon{0})]px;">
+					[<div id="nl_logosite"><center><a href="#URL_SITE_SPIP"><img src="(#LOGO_SITE_SPIP_NORMAL||liens_absolus|extraire_attribut{src})" 
 					width="[(#LOGO_SITE_SPIP_NORMAL||liens_absolus|extraire_attribut{width})]" 
 					height="[(#LOGO_SITE_SPIP_NORMAL||liens_absolus|extraire_attribut{height})]"
 					alt="<:pyrat:retouraccueil:> [(#NOM_SITE_SPIP|supprimer_tags|attribut_html)]" /></a>
-					</div>]
-					<div id="nom_site">
-					<h1><BOUCLE_TitreRubrique(RUBRIQUES){id_rubrique}>[(#TITRE)]</BOUCLE_TitreRubrique></h1>
+					</center></div>]
+					<div id="nl_nom_site">
+					<h1>@@NOM_LETTRE@@</h1>
+					<h2>@@SUJET_LETTRE@@</h2>
+					<div>@@DESCRIPTION@@</div>
 					</div>
 							</td>
 						</tr>
@@ -94,33 +186,32 @@
 			<tr id="content">
 				<td>
 					<div id="lettre">
+					<!-- CutHere -->
 						<div class="cartouche">
 							[<div class="surtitre"><span>(#SURTITRE)</span></div>]
-							<div>
-								<h1>
-								[<img class="logo_article" src="(#LOGO_ARTICLE_NORMAL||url_absolue|image_reduire{64,64}|extraire_attribut{src})" 
-					width="[(#LOGO_ARTICLE_NORMAL||url_absolue|image_reduire{64,64}|extraire_attribut{width})]" 
-					height="[(#LOGO_ARTICLE_NORMAL||url_absolue|image_reduire{64,64}|extraire_attribut{height})]"
-					alt="<:pyrat:retouraccueil:> [(#NOM_SITE_SPIP|supprimer_tags|attribut_html)]" />]
-								[(#TITRE)]</h1>
-							</div>
-						[<div class="soustitre"><span>(#SOUSTITRE)</span></div>]
-						[(#INCLURE{fond=noisettes/aff_datepublication}{id_article}{lang})][(#INCLURE{fond=noisettes/liste_auteurs}{id_article}{lang})]
-						</div> <!-- FIn .cartouche -->
-						[<div class="chapo">(#CHAPO|sinon{#DESCRIPTIF})</div>]
+							<h1>[<img class="logo_article" src="(#LOGO_ARTICLE_NORMAL||url_absolue|image_reduire{64,64}|extraire_attribut{src})" 
+				width="[(#LOGO_ARTICLE_NORMAL||url_absolue|image_reduire{64,64}|extraire_attribut{width})]" 
+				height="[(#LOGO_ARTICLE_NORMAL||url_absolue|image_reduire{64,64}|extraire_attribut{height})]"
+				alt="<:pyrat:retouraccueil:> [(#NOM_SITE_SPIP|supprimer_tags|attribut_html)]" />
+							][(#TITRE)]</h1>
+							[<div class="soustitre"><span>(#SOUSTITRE)</span></div>]
+							[(#INCLURE{fond=noisettes/aff_datepublication}{id_article}{lang})][(#INCLURE{fond=noisettes/liste_auteurs}{id_article}{lang})]
+						</div> <!-- Fin .cartouche -->
 						<div id="letexte">
+							[<div class="chapo">(#CHAPO|sinon{#DESCRIPTIF})</div>]
 							[(#TEXTE|image_reduire{400,0}|liens_absolus)]
 							[<div class="ps">(#PS)</div>]
 							[<div class="notes">(#NOTES)</div>]
-						</div><!-- FIn #letexte_lettre>-->
+					<!-- /CutHere -->
+						</div><!-- Fin de #letexte -->
 					</div><!-- Fin de #lettre -->
 				</td>
 			</tr>
-			<tr id="footer">
+			<tr id="nl_footer">
 				<td colspan="2" align="center" valign="bottom">
-					<div id="bandeaucontact">
+					<div id="nl_bandeaucontact">
 						[(#CONFIG{soyezcreateurs/bandeau_contact}|propre)]
-					</div><!-- #bandeaucontact2 -->
+					</div><!-- #nl_bandeaucontact -->
 				</td>
 			</tr>
 		</table>

@@ -353,7 +353,9 @@ function annee_scolaire($ladate) {
 
 function garder_body($texte) {
 	$texte = eregi_replace('^.*<body[^>]*>', '', $texte);
-	$texte = eregi_replace('</body[^>]*>.*$', '', $texte);
+	$texte = eregi_replace('</body>.*$', '', $texte);
+	$texte = eregi_replace('^.*<!-- CutHere -->', '', $texte);
+	$texte = eregi_replace('<!-- /CutHere -->.*$', '', $texte);
 	return $texte;
 }
 
