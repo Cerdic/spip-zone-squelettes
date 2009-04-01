@@ -105,7 +105,7 @@ function agenda_recenser_evenement($id_agenda=0, $id=0, $date_redac=0, $titre=''
 		$result = sql_select($select, $from, $where);
 		$cat = NULL;
 		while ($row = sql_fetch($result))
-			$cat .= '|'.$row['id_mot'];
+			$cat .= '<'.$row['id_mot'].'>';
 		$liste_evt[$count_evt]['categorie'] = $cat;
 
 		// Liste indexee par jour des evenements
@@ -217,7 +217,8 @@ function agenda_liste_paginer($id_agenda=0, $annee_choisie=0, $mois_choisi=0, $f
 		$j = ($tri == 'inverse') ? $count_evt - $i + 1 : $i;
 		if (($filtre == '-1') || 
 			(($filtre == '0') && (!$evenements[$j]['categorie'])) ||
-			(($filtre != '-1') && ($filtre != '0') && (strpos($evenements[$j]['categorie'],$filtre) !== FALSE))) {
+			(($filtre != '-1') && ($filtre != '0') && (preg_match("/<$filtre>/",$evenements[$j]['categorie']) > 0))) {
+
 
 			$annee_redac = $evenements[$j]['saison'];
 			$annee_evt = $evenements[$j]['annee'];
@@ -288,7 +289,8 @@ function agenda_liste_afficher($id_agenda=0, $annee_choisie=0, $mois_choisi=0, $
 		if ($evenements[$j]['saison'] == $annee_choisie) {
 			if (($filtre == '-1') || 
 				(($filtre == '0') && (!$evenements[$j]['categorie'])) ||
-				(($filtre != '-1') && ($filtre != 0) && (strpos($evenements[$j]['categorie'],$filtre) !== FALSE))) {
+				(($filtre != '-1') && ($filtre != 0) && (preg_match("/<$filtre>/",$evenements[$j]['categorie']) > 0))) {
+
 
 				$count_evt_filtre += 1;
 				$mois_redac = $evenements[$j]['nom_mois'];
