@@ -28,7 +28,7 @@
 
 [(#REM) <!-- Listing annuel des evenements --> ]
 <h1 class="intitule_page">
-	<:sarkaspip:agenda:>&nbsp;-&nbsp;
+	[(#CONFIG{sarkaspip_agenda/titre, <:sarkaspip:agenda:>}|entites_html)]&nbsp;-&nbsp;
 	<BOUCLE_titre_categorie(MOTS) {id_mot=(#ENV{categorie,-1})}>
 		[<:sarkaspip:info_categorie:>&nbsp;:&nbsp;(#TITRE)]
 	</BOUCLE_titre_categorie>
@@ -38,6 +38,7 @@
 </h1>
 
 <div id="agenda_annuel" class="plan">
+	[<div class="description">(#CONFIG{sarkaspip_agenda/descriptif}|propre)</div>]
 	<div class="pagination">
 		[(#ENV{id_rubrique}|agenda_liste_paginer{
 						[(#ENV{annee})],

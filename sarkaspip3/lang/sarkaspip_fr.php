@@ -525,7 +525,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_inc_annonce' => 'Annonces',
 		'cfg_lgd_inc_rainette' => 'Rainette',
 		'cfg_lgd_inc_herbier' => 'Herbier',
-		'cfg_lgd_agenda_type' => 'Typage',		
+		'cfg_lgd_agenda_secteur' => 'Informations de base',		
 		'cfg_lgd_agenda_modele' => 'Agenda annuel - Mod&egrave;le',
 		'cfg_lgd_agenda_pagination' => 'Agenda annuel - Pagination',
 		'cfg_lgd_agenda_tri' => 'Agenda annuel - Tri',
@@ -606,6 +606,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_inc_herbier_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer la noisette de l\'herbier',
 		'cfg_inf_inc_herbier_type' => 'Choisissez le mod&egrave;le de pr&eacute;sentation de l\'herbier qui vous convient parmi ceux propos&eacute;s ci-dessous.',
 		'cfg_inf_choix_agenda' => 'D&eacute;sirez-vous utiliser :',
+		'cfg_inf_agenda_page' => 'Vous pouvez saisir un titre et un descriptif sp&eacute;cifique pour votre page agenda.',
 		'cfg_inf_agenda_modele' => 'Choisissez le type d\'agenda cal&eacute;, soit sur une ann&eacute;e calendaire, soit sur une saison. Si vous choisissez un agenda saisonnal, vous aurez la possibilit&eacute; de configurer le 
 		premier mois de la saison et le format de pagination.',
 		'cfg_inf_agenda_mois1' => 'Pour un agenda saisonnal il vous faut choisir &agrave; quel mois d&eacute;bute la saison.',
@@ -944,6 +945,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_align_centre' => 'Au centre',
 		'cfg_lbl_largeur_item' => 'Largeur de chaque item, en pixels: ',
 		'cfg_lbl_largeur_menu' => 'Largeur totale du menu, en pixels: ',
+		'cfg_lbl_agenda_titre' => 'Titre de la page agenda',
+		'cfg_lbl_agenda_descriptif' => 'Vous pouvez r&eacute;diger un descriptif succinct pour pr&eacute;senter votre agenda (composition, mots-clés...). Ce texte peut &ecirc;tre &eacute;crit en utilisant les raccourcis classiques de SPIP.',
  
 // Items des select
 		'cfg_itm_pagination_format_1' => 'Ann&eacute;e (2008)',
