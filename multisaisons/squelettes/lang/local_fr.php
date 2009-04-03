@@ -90,7 +90,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 'inscription_mail_forum' => 'Voici vos identifiants pour vous connecter au site @nom_site_spip@ (@adresse_site@)',
 
-'inscription_mail_redac' => 'Voici vos identifiants pour vous connecter au site @nom_site_spip@ (@adresse_site@) et &agrave; l\'interface de r&eacute;daction (@adresse_site@/ecrire)',
+'inscription_mail_redac' => 'Voici vos identifiants pour vous connecter &agrave; votre page @nom_site_spip@. (@adresse_site@/spip.php?page=mon-profil)',
 
 'bloogletter_mail_non' => 'Vous n\'&ecirc;tes pas abonn&eacute; &agrave; la lettre d\'information du site @nom_site_spip@',
 'bloogletter_mail_format' => 'Vous &ecirc;tes abonn&eacute; &agrave; la lettre d\'information du site @nom_site_spip@ en format',
@@ -137,7 +137,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'bloogletter_alerte_modif' => '<b>Apr&egrave;s le chargement du patron vous pouvez modifier le code source du message</b>',
 'bloogletter_charger_le_patron' => 'charger le patron',
 'bloogletter_patron_disponibles' => 'patrons disponibles pour les courriers',
-'bloogletter_aff_incorrect' => 'Courrier &agrave; l\'affichage incorrect',
+'bloogletter_aff_incorrect' => 'Affichage incorrect',
 'bloogletter_aff_incorect_envoi_mail1' => 'Votre news-letter n\'est pas affich&eacute;e correctement? Une mauvaise
 interpr&eacute;tation de l\'encodage par un serveur, un logiciel courrier ou
 un webmail est souvent &agrave; l\'origine du probl&egrave;me. Merci de ',

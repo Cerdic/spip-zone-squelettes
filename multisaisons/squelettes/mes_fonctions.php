@@ -18,7 +18,7 @@
  * http://www.multi-saisons.art-logic.info/spip.php?page=discussion&id_forum=1892
 */
 
-// balise #TOTAL_VISITES
+// 
 
 function saisonfr($numdate) {
 
@@ -42,11 +42,6 @@ function saisonfr($numdate) {
 
 
 
-
-
-
-
-
 /*
  *   +----------------------------------+
  *    Nom du Filtre :    pour plus de stats                                        
@@ -54,7 +49,7 @@ function saisonfr($numdate) {
  *  . SCOTY .. 
  *   +-------------------------------------+
  *    Fonctions de ce filtre :
- *     affiche le texte à citer    
+ *     balise #TOTAL_VISITES  
  *   +-------------------------------------+ 
  *  
  * Pour toute suggestion, remarque, proposition d'ajout
@@ -62,7 +57,7 @@ function saisonfr($numdate) {
  * http://www.koakidi.com/spip.php?article279
 */
 
-// balise #TOTAL_VISITES
+
 
 
 
@@ -220,21 +215,20 @@ function insere_sujet_alerter($sujet,$insere) {
  * http://www.spip-contrib.net/Pagination,663
 */
 
-function barre_forum_citer($texte, $lan, $rows, $cols, $lang='') {
-	if (!$premiere_passe = rawurldecode(_request('retour_forum'))) {
-		if(_request('citer')=='oui'){
-			$id_citation = _request('id_forum') ;
-			$query = "SELECT auteur, texte FROM spip_forum WHERE id_forum=$id_citation";
-		    $result = spip_query($query);
-		    $row = spip_fetch_array($result);
-		    $aut_cite=$row['auteur'];
-		    $text_cite=$row['texte'];
-		    
-			//ajout de la citation
-			$texte="{{ $aut_cite $lan }}\n<quote>\n$text_cite</quote>\n";
-		}
-	}
-	return barre_textarea($texte, $rows, $cols, $lang);
+
+function barre_forum_citer($texte, $lan) {
+ if (!$premiere_passe = rawurldecode(_request('retour_forum'))) {
+   if(_request('citer')=='oui'){
+        $id_citation = _request('id_forum') ;
+        $row = sql_fetsel('auteur,texte','spip_forum',"id_forum=$id_citation");
+        $aut_cite=$row['auteur'];
+        $text_cite=$row['texte'];
+
+        //ajout de la citation
+        $texte="{{ $aut_cite $lan }}\n<quote>\n$text_cite</quote>\n";
+   }
+ }
+ return $texte;
 }
 
  /*

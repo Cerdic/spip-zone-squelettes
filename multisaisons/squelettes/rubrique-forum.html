@@ -56,20 +56,22 @@
 
 
 <ul class="forum droite">
-<li>
 
+
+<li class="inscriforum">
  [(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{suivi}|parametre_url{type,redac})"title="S'inscrire"><:inscrire:></a>]]
    [(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{suivi}|parametre_url{type,visit})"title="S'inscrire"><:inscrire:></a>]]
    </li>
 
-<li>
+<li class="voirmessage">
 <a href="#URL_ARTICLE" title="Voir tous les messages">
 <:forum_parcourir:></a></li>
 
-<li>
+<li class="newdiscut">
 [<a href="(#PARAMETRES_FORUM|url_reponse_forum)" title="Cr&eacute;er une discussion"><:dialoguer:></a>]
-
 </li>
+
+
 </ul>
 
 
@@ -84,21 +86,39 @@
 				 
 				 
                   <B_discussions>
-                  <BOUCLE_discussions(FORUMS){id_article}{par date_thread}{inverse}{doublons}{0,4}>
+                  <BOUCLE_discussions(FORUMS){id_article}{!par date_thread}{doublons}{0,4}>
                           
 <tr [class="(#EVAL{[(#_discussions:COMPTEUR_BOUCLE)]}|alterner{'row_even','row_odd'})"] >
 <td>
 [<a href="[(#URL_PAGE{discussion}|parametre_url{id_forum,#ID_FORUM})]" [title="(#TITRE|couper{60})"]>(#TITRE|couper{40})</a>]
 </td>
-<td><BOUCLE_nom2(AUTEURS){tout}{id_auteur}{0,1}>
+<td>
+
+
+<BOUCLE_Forums_crayon_parent(FORUMS){id_parent}{statut=original}>
+<BOUCLE_nom3(AUTEURS){tous}{id_auteur}{0,1}>
 [<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Contact et profil de ce r&eacute;dacteur">]
 [<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Contact et profil de cet admin">]
 [<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Contact et profil de ce visiteur">]
 [<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Compte en attente">]
-[(#NOM|textebrut|couper{18})</a>]
-</BOUCLE_nom2>
-[(#NOM||?{#NOM|textebrut|couper{18},'Anonyme'})]
-<//B_nom2></td>
+[(#NOM|textebrut|couper{18})</a><br/>]
+</BOUCLE_nom3>
+[(#NOM||?{#NOM|textebrut|couper{18},'Anonyme'})<br/>]
+<//B_nom3>
+</BOUCLE_Forums_crayon_parent>
+<BOUCLE_nom32(AUTEURS){tous}{id_auteur}{0,1}>
+[<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Contact et profil de ce r&eacute;dacteur">]
+[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Contact et profil de cet admin">]
+[<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Contact et profil de ce visiteur">]
+[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Compte en attente">]
+[(#NOM|textebrut|couper{18})</a><br/>]
+</BOUCLE_nom32>
+[(#NOM||?{#NOM|textebrut|couper{18},'Anonyme'})<br/>]
+<//B_nom32>
+<//B_Forums_crayon_parent></td>
+
+
+
 <td>
 <BOUCLE_dernier_message(FORUMS){id_thread}{plat}{par date}{inverse}{0,1}>
 [(#DATE|affdate{'d/m/Y'})<br/>]

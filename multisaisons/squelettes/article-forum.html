@@ -72,7 +72,7 @@ if (location.hash){
 <div class="interne cache"> <h4 class="titre">Suivre les réponses de vos messages.</h4> 
   <p>Un fil Rss vous permet de suivre les r&eacute;ponses de vos messages.
    R&eacute;cup&eacute;rez <a href="[(#URL_PAGE{backend}|parametre_url{id_article,#ID_ARTICLE})]">
-l'adresse&nbsp;du&nbsp;fil&nbsp;rss</a> pour suivre les discussions de ce forum. <span class="titre droite button">Plus d'info</span><span class="droite button rss"><a href="[(#URL_PAGE{backend}|parametre_url{id_article,#ID_ARTICLE})]">
+l'adresse&nbsp;du&nbsp;fil&nbsp;rss</a> pour suivre les discussions de ce forum. <span class="button titre droite ">Plus d'info</span><span class="button droite rss"><a href="[(#URL_PAGE{backend}|parametre_url{id_article,#ID_ARTICLE})]">
 RSS forum</a></span></p>
   <p class="parag">Internet Explorer7, Firefox, Thunderbird, Mozilla, Op&eacute;ra,
     Safari peuvent suivre les forums de #NOM_SITE_SPIP au format de news RSS.
@@ -142,12 +142,14 @@ RSS forum</a></span></p>
 
 
 
-<BOUCLE_derniers(FORUMS){id_article}{par date_thread}{inverse}{doublons}{pagination 20}>
+<BOUCLE_derniers(FORUMS){id_article}{!par date_thread}{doublons}{pagination 20}>
 <tr [class="(#EVAL{[(#_derniers:COMPTEUR_BOUCLE)]}|alterner{'row_even','row_odd'})"] >
 <td class="#EDIT{titre}">
 <a href="[(#URL_PAGE{discussion}|parametre_url{id_forum,#ID_FORUM})]"	title="">#TITRE</a>
 </td>
-<td><BOUCLE_nom3(AUTEURS){tous}{id_auteur}{0,1}>
+<td>
+<BOUCLE_Forums_crayon_parent(FORUMS){id_parent}{statut=original}>
+<BOUCLE_nom3(AUTEURS){tous}{id_auteur}{0,1}>
 [<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Contact et profil de ce r&eacute;dacteur">]
 [<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Contact et profil de cet admin">]
 [<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Contact et profil de ce visiteur">]
@@ -155,7 +157,18 @@ RSS forum</a></span></p>
 [(#NOM|textebrut|couper{18})</a><br/>]
 </BOUCLE_nom3>
 [(#NOM||?{#NOM|textebrut|couper{18},'Anonyme'})<br/>]
-<//B_nom3></td>
+<//B_nom3>
+</BOUCLE_Forums_crayon_parent>
+<BOUCLE_nom32(AUTEURS){tous}{id_auteur}{0,1}>
+[<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Contact et profil de ce r&eacute;dacteur">]
+[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Contact et profil de cet admin">]
+[<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Contact et profil de ce visiteur">]
+[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Compte en attente">]
+[(#NOM|textebrut|couper{18})</a><br/>]
+</BOUCLE_nom32>
+[(#NOM||?{#NOM|textebrut|couper{18},'Anonyme'})<br/>]
+<//B_nom32>
+<//B_Forums_crayon_parent></td>
 <td>
 <BOUCLE_dernier_message(FORUMS){id_thread}{plat}{par date}{inverse}{0,1}>
 [(#DATE|affdate{'d/m/Y'})]<br/>
