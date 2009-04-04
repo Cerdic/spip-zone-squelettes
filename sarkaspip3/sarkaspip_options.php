@@ -36,9 +36,14 @@ define('_SARKASPIP_CONFIG_AUTORISATION_CONTACT', '0minirezo');
 // -- Pour la fenetre de dialgue utilisant le plugin SHOUTBOX
 define('_SARKASPIP_CONFIG_SHOUTBOX_PAGE', 'dialogue');
 define('_SARKASPIP_CONFIG_SHOUTBOX_TAILLE', 50);
-// -- Pour la fenetre de dialgue utilisant le plugin SHOUTBOX
-define('_SARKASPIP_CONFIG_SYMBOLE_PAGINATION', '|');
+// -- Pour le chemin du bandeau
 define('_SARKASPIP_CONFIG_SYMBOLE_CHEMIN', '&gt;');
+// -- Pour la pagination
+define('_SARKASPIP_CONFIG_SYMBOLE_PAGINATION', '&nbsp;|&nbsp;');
+// -- Pour l'agenda
+define('_SARKASPIP_CONFIG_AGENDA_ANCRE_PAGINATION', 'evenement');
+define('_SARKASPIP_CONFIG_AGENDA_SYMBOLE_SUIVANT', '&gt;&gt;');
+define('_SARKASPIP_CONFIG_AGENDA_SYMBOLE_PRECEDENT', '&lt;&lt;');
 // Configuration cfg des plugins utilises par le squelette
 // -- Plugin BOUTONS TEXTE
 define('_SARKASPIP_CONFIG_BOUTONSTEXTE_TXTONLY', 'boutonstexte:texte_seulement');

@@ -14,7 +14,7 @@
 			jQuery("#bloc_format_pagination option:first").attr({selected: "selected"});
 			jQuery("#bloc_format_pagination").hide();
 		]
-		[(#ENV{type_resume, 1}|!={oui}|?{' '})
+		[(#ENV{type_resume, oui}|!={oui}|?{' '})
 			jQuery("#bloc_taille_resume").hide();
 		]
 		jQuery("input[@name='type']").change(function() {
@@ -69,6 +69,10 @@
 		</label>
 		]
  -->
+	</fieldset>
+
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_agenda_page:></legend>
 		<p><:sarkaspip:cfg_inf_agenda_page:></p>
 		<INCLURE{fond=noisettes/cfg/inc_cfg_information_page}
 			{choix=titre_descriptif}
@@ -109,26 +113,19 @@
 		</div>
 	</fieldset>
 	
-	<fieldset>
-		<legend><:sarkaspip:cfg_lgd_agenda_pagination:></legend>
-		<div id="bloc_format_pagination">
-			<p><:sarkaspip:cfg_inf_agenda_pagination_1:></p>
-			<label><:sarkaspip:cfg_lbl_pagination_format:></label>
-			<select name="format_pagination">
-				<option value="annee" [(#ENV{format_pagination, annee}|=={annee}|?{selected="selected"})]><:sarkaspip:cfg_itm_pagination_format_1:></option>
-				<option value="periode" [(#ENV{format_pagination, annee}|=={periode}|?{selected="selected"})]><:sarkaspip:cfg_itm_pagination_format_2:></option>
-				<option value="periode_abregee" [(#ENV{format_pagination, annee}|=={periode_abregee}|?{selected="selected"})]><:sarkaspip:cfg_itm_pagination_format_3:></option>
-			</select>
-			<br /> 
-		</div>
-		<p><:sarkaspip:cfg_inf_agenda_pagination_2:></p>
-		<label><:sarkaspip:cfg_lbl_pagination_separateur:></label>
-		<input type="text" name="separateur_pagination" value="#ENV{separateur_pagination,'&nbsp;|&nbsp;'}" size="11" class="fondl" />
-		<br /> 
-		<label><:sarkaspip:cfg_lbl_pagination_ancre:></label>
-		<input type="text" name="ancre_pagination" value="#ENV{ancre_pagination,'evenement'}" size="15" class="fondl" />
-		<br /> 
-	</fieldset>
+	<div id="bloc_format_pagination">
+		<fieldset>
+			<legend><:sarkaspip:cfg_lgd_agenda_pagination:></legend>
+				<p><:sarkaspip:cfg_inf_agenda_pagination_1:></p>
+				<label><:sarkaspip:cfg_lbl_pagination_format:></label>
+				<select name="format_pagination">
+					<option value="annee" [(#ENV{format_pagination, annee}|=={annee}|?{selected="selected"})]><:sarkaspip:cfg_itm_pagination_format_1:></option>
+					<option value="periode" [(#ENV{format_pagination, annee}|=={periode}|?{selected="selected"})]><:sarkaspip:cfg_itm_pagination_format_2:></option>
+					<option value="periode_abregee" [(#ENV{format_pagination, annee}|=={periode_abregee}|?{selected="selected"})]><:sarkaspip:cfg_itm_pagination_format_3:></option>
+				</select>
+				<br /> 
+		</fieldset>
+	</div>
 	
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_agenda_tri:></legend>
@@ -147,14 +144,17 @@
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_mini_agenda:></legend>
 		<p><:sarkaspip:cfg_inf_mini_agenda:></p>
-		<p><:sarkaspip:cfg_inf_mini_agenda_navigation:></p>
-		<label><:sarkaspip:cfg_lbl_mini_agenda_suiv:></label>
-		<input type="text" name="icone_suivant" value="[(#ENV{icone_suivant,'&gt;&gt;'}|entites_html)]" size="10" class="fondl" />
-		<br /> 
-		<label><:sarkaspip:cfg_lbl_mini_agenda_prec:></label>
-		<input type="text" name="icone_precedent" value="[(#ENV{icone_precedent,'&lt;&lt;'}|entites_html)]" size="10" class="fondl" />
-		<br /> 
 		<p><:sarkaspip:cfg_inf_mini_agenda_mois:></p>
+		<label>
+			<input type="radio" name="affichage_hors_mois" value="oui" [(#ENV{affichage_hors_mois, oui}|=={oui}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_horsmois_oui:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="affichage_hors_mois" value="non" [(#ENV{affichage_hors_mois, oui}|=={non}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_horsmois_non:>
+		</label>
+		<br /><br /> 
 		<label><:sarkaspip:cfg_lbl_mini_agenda_jour1:></label>
 		<select name="jour1">
 			<option value="0" [(#ENV{jour1, 1}|=={0}|?{selected="selected"})]><:sarkaspip:dimanche:></option>
@@ -165,16 +165,6 @@
 			<option value="5" [(#ENV{jour1, 1}|=={5}|?{selected="selected"})]><:sarkaspip:vendredi:></option>
 			<option value="6" [(#ENV{jour1, 1}|=={6}|?{selected="selected"})]><:sarkaspip:samedi:></option>
 		</select>
-		<br /> 
-		<label>
-			<input type="radio" name="affichage_hors_mois" value="oui" [(#ENV{affichage_hors_mois, oui}|=={oui}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_horsmois_oui:>
-		</label>
-		<br />
-		<label>
-			<input type="radio" name="affichage_hors_mois" value="non" [(#ENV{affichage_hors_mois, oui}|=={non}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_horsmois_non:>
-		</label>
 		<br /> 
 		<p><:sarkaspip:cfg_inf_mini_agenda_resume_1:></p>
 		<p><:sarkaspip:cfg_inf_mini_agenda_resume_2:></p>
