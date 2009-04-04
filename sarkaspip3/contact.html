@@ -19,7 +19,14 @@
 			<div id="contact" class="formulaire">
 				[<div class="titre"><h1>(#CONFIG{sarkaspip_formulaires/titre_contact, <:sarkaspip:contacter_site:>})</h1></div>]
 				[<div class="description">(#CONFIG{sarkaspip_formulaires/descriptif_contact}|propre)</div>]
-				[(#FORMULAIRE_ECRIRE_AUTEUR)]
+				[(#CONFIG{sarkaspip_formulaires/plugin_contact, 0}|=={0}|?{' '})
+					[(#FORMULAIRE_ECRIRE_AUTEUR)]
+				]
+				[(#CONFIG{sarkaspip_formulaires/plugin_contact, 0}|=={1}|?{' '})
+					[(#PLUGIN{CONTACT}|?{' '})
+						[(#FORMULAIRE_CONTACT)]
+					]
+				]
 			</div>
 		</div>
 	</div>

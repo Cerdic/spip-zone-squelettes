@@ -4,43 +4,82 @@
 <INCLURE{fond=noisettes/cfg/inc_cfg_header}>
 #CACHE{0}
 
+<script type="text/javascript">
+//<![CDATA[
+	jQuery(document).ready(function() {
+		[(#ENV{plugin_contact, 0}|=={0}|?{' '})
+			jQuery("#bloc_contact_1").hide();
+		]
+		[(#ENV{plugin_contact, 0}|=={1}|?{' '})
+			jQuery("#bloc_contact_0").hide();
+		]
+		jQuery("input[@name='plugin_contact']").change(function() {
+			if (jQuery("input[@name='plugin_contact']:checked").val() == 0) {
+				jQuery("#bloc_contact_1").hide();
+				jQuery("#bloc_contact_0").show();
+			}
+			else {
+				jQuery("#bloc_contact_0").hide();
+				jQuery("#bloc_contact_1").show();
+			}
+			jQuery(this).blur();
+		});	
+	});
+//]]>
+</script>
+
 <form method="post" action="#SELF"><div>
 	[(#ENV{_cfg_}|form_hidden)]
 	
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_form_contact:></legend>
 		<p><:sarkaspip:cfg_inf_form_contact:></p>
-
-		[(#EVAL{_SARKASPIP_CONFIG_AUTORISATION_CONTACT}|=={0minirezo}|?{' '})
-			#SET{critere_statut, #ARRAY{0,0minirezo}}
-		]
-		[(#EVAL{_SARKASPIP_CONFIG_AUTORISATION_CONTACT}|=={1comite}|?{' '})
-			#SET{critere_statut, #ARRAY{0,0minirezo,1,1comite}}
-		]
-		[(#EVAL{_SARKASPIP_CONFIG_AUTORISATION_CONTACT}|=={6forum}|?{' '})
-			#SET{critere_statut, #ARRAY{0,0minirezo,1,1comite,2,6forum}}
-		]
-		<B_auteurs>
-			<label><:sarkaspip:cfg_lbl_liste_contacts:></label>
-			<select name="auteur_contact">
-				<option value="0"[ (#ENV{auteur_contact, 0}|=={0}|?{selected="selected"})]>--</option>
-				#SET{groupe_statut, aucun}
-				#SET{groupe_en_cours, 0}
-		<BOUCLE_auteurs(AUTEURS){tout}{statut IN #GET{critere_statut}}{par statut}{par nom}>
-			[(#GET{groupe_statut}|!={#STATUT}|?{' '})
-				[(#GET{groupe_en_cours}|?{' '})</optgroup>]
-				<optgroup style="font-weight: strong;"[ label="(#STATUT|libelle_statut|ucfirst)"]>
-				[(#SET{groupe_statut, #STATUT})]
-				[(#SET{groupe_en_cours, 1})]
+		<p><:sarkaspip:cfg_inf_form_contact_plugin:></p>
+		<label>
+			<input type="radio" name="plugin_contact" value="1" [(#ENV{plugin_contact, 0}|=={1}|?{checked="checked"})] [(#PLUGIN{CONTACT}|?{'',' '})disabled="disabled"] />
+			<:sarkaspip:cfg_lbl_contact_1:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="plugin_contact" value="0" [(#ENV{plugin_contact, 0}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_contact_0:>
+		</label>
+		<div id="bloc_contact_0">
+			<p><:sarkaspip:cfg_inf_form_contact_plugin_0:></p>
+			[(#EVAL{_SARKASPIP_CONFIG_AUTORISATION_CONTACT}|=={0minirezo}|?{' '})
+				#SET{critere_statut, #ARRAY{0,0minirezo}}
 			]
-			[(#EMAIL|?{' '})
-				[<option style="background: #FFFFF; font-weight: normal;" value="#ID_AUTEUR"[ (#ENV{auteur_contact, 0}|=={#ID_AUTEUR}|?{selected="selected"})]>(#NOM)</option>]
+			[(#EVAL{_SARKASPIP_CONFIG_AUTORISATION_CONTACT}|=={1comite}|?{' '})
+				#SET{critere_statut, #ARRAY{0,0minirezo,1,1comite}}
 			]
-		</BOUCLE_auteurs>
-				</optgroup>
-			</select>
-		</B_auteurs>
-		<br /><br />
+			[(#EVAL{_SARKASPIP_CONFIG_AUTORISATION_CONTACT}|=={6forum}|?{' '})
+				#SET{critere_statut, #ARRAY{0,0minirezo,1,1comite,2,6forum}}
+			]
+			<B_auteurs>
+				<label><:sarkaspip:cfg_lbl_liste_contacts:></label>
+				<select name="auteur_contact">
+					<option value="0"[ (#ENV{auteur_contact, 0}|=={0}|?{selected="selected"})]>--</option>
+					#SET{groupe_statut, aucun}
+					#SET{groupe_en_cours, 0}
+			<BOUCLE_auteurs(AUTEURS){tout}{statut IN #GET{critere_statut}}{par statut}{par nom}>
+				[(#GET{groupe_statut}|!={#STATUT}|?{' '})
+					[(#GET{groupe_en_cours}|?{' '})</optgroup>]
+					<optgroup style="font-weight: strong;"[ label="(#STATUT|libelle_statut|ucfirst)"]>
+					[(#SET{groupe_statut, #STATUT})]
+					[(#SET{groupe_en_cours, 1})]
+				]
+				[(#EMAIL|?{' '})
+					[<option style="background: #FFFFF; font-weight: normal;" value="#ID_AUTEUR"[ (#ENV{auteur_contact, 0}|=={#ID_AUTEUR}|?{selected="selected"})]>(#NOM)</option>]
+				]
+			</BOUCLE_auteurs>
+					</optgroup>
+				</select>
+			</B_auteurs>
+			<br /><br />
+		</div>
+		<div id="bloc_contact_1">
+			<p><:sarkaspip:cfg_inf_form_contact_plugin_1:></p>
+		</div>
 		<INCLURE{fond=noisettes/cfg/inc_cfg_information_page}
 			{suffixe=_contact}
 			{choix=titre_descriptif}
