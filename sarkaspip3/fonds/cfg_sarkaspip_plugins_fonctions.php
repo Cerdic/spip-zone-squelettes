@@ -13,6 +13,18 @@ function cfg_sarkaspip_plugins_post_traiter($cfg){
 	else
 		effacer_config('boutonstexte/');
 
+	if ($cfg->val['config_fancybox']=='sarkaspip') {
+		ecrire_config('fancybox/', array(	'padding'=>_SARKASPIP_CONFIG_FANCYBOX_MARGE,
+											'selecteur_commun'=>_SARKASPIP_CONFIG_FANCYBOX_IMAGE,
+											'selecteur_galerie'=>_SARKASPIP_CONFIG_FANCYBOX_GALERIE,
+											'imagescale'=>_SARKASPIP_CONFIG_FANCYBOX_RETAILLE,
+											'overlayshow'=>_SARKASPIP_CONFIG_NYROCEROS_ARRIERE_PLAN,
+											'overlayopacity'=>_SARKASPIP_CONFIG_NYROCEROS_OPACITE,
+											'hideoncontentclick'=>_SARKASPIP_CONFIG_NYROCEROS_FERME_CLIC));
+	}
+	else
+		effacer_config('fancybox/');
+
 	if ($cfg->val['config_nyroceros']=='sarkaspip') {
 		ecrire_config('nyroceros/', array(	'traiter_toutes_images'=>_SARKASPIP_CONFIG_NYROCEROS_TOUT,
 											'selecteur_commun'=>_SARKASPIP_CONFIG_NYROCEROS_IMAGE,
