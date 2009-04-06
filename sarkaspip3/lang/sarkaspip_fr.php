@@ -445,7 +445,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'sarkaspip_themes' => 'Th&egrave;mes',
 		
 // Descriptif des pages
-		'cfg_descr_accueil' => 'Vous &ecirc;tes sur la page d\'accueil de la configuration du squelette Sarka-SPIP.',
+		'cfg_descr_accueil' => 'Vous &ecirc;tes sur la page d\'accueil de la configuration du squelette Sarka-SPIP. Vous utilisez actuellement la version @lbl_version@.',
 		'cfg_descr_agenda' => 'L\'agenda inclus dans Sarka-SPIP permet d\'afficher un listing annuel ainsi qu\'un mini calendrier mensuel. Les caract&eacute;ristiques de ces deux affichages sont configurables dans cette page.',
 		'cfg_descr_article' => 'Le corps de la page article permet d\'afficher plusieurs blocs d\'information : la description, les documents et images joints et les commentaires post&eacute;s par des visiteurs. Cette page permet de configurer l\'affichage de tous ces blocs.',
 		'cfg_descr_auteur' => 'Le corps de la page auteur permet d\'afficher plusieurs blocs d\'information : la biographie, les articles publi&eacute;s par l\'auteur et un formulaire de contact. Cette page permet de configurer l\'affichage de tous ces blocs.',
