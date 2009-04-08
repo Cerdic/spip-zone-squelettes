@@ -1,0 +1,95 @@
+<div class="formulaire_spip formulaire_forum ajax" id="formulaire_forum">
+[(#REM) pour IE qui sinon se perd dans l'ajax !, ne pas retirer]<br class='bugajaxie' />
+
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+[(#ENV{login_forum_abo})
+<INCLURE{fond=formulaires/inc-login_forum_abo}{env} />
+]
+
+[(#ENV{editable})
+
+
+[(#REM)
+	Bloc de previsualisation du forum envoye
+
+	Si on valide la previsu, on n'envoie pas en ajax car, si le post reussit
+	il faudra certainement redessiner toute la page pour afficher le nouveau
+	forum
+
+][<form action="#ENV{action}#formulaire_forum" method="post" class="noajax">
+	<div>
+	[(#ACTION_FORMULAIRE{#ENV{action}})]
+	<input type='hidden' name='titre' value="#ENV{titre}" />
+	<input type='hidden' name='texte' value="#ENV{texte}" />
+	<input type='hidden' name='url_site' value="#ENV{url_site}" />
+	<input type='hidden' name='nom_site' value="#ENV{nom_site}" />
+	[<input type="hidden" name="id_forum" value="(#ENV*{id_forum})" />]
+	[(#INCLURE{fond=formulaires/inc-forum_ajouter_mot}{ajouter_mot})]
+	(#ENV*{erreurs}|table_valeur{previsu})
+	</div>
+</form>]
+
+<div id ="leave_a_comment_wrap">
+<div class="leave_a_comment">
+<h2><:repondre_article:></h2>
+</div>
+<div class="trackback_rss">
+<p><a href="#URL_PAGE{rss_forum_article}">RSS feed for comments on this post.</a></p></div>
+</div>
+
+<div class="leave_a_comment">
+<form action="#ENV{action}#formulaire_forum" method="post" enctype='multipart/form-data'><div>
+[(#ACTION_FORMULAIRE{#ENV{action}})]
+[<input type="hidden" name="id_forum" value="(#ENV*{id_forum})" />]
+[<fieldset>
+	<legend><:bouton_radio_modere_priori:></legend>
+	<p class="explication">(#ENV{modere})<:forum_info_modere:></p>
+</fieldset>]
+</div>
+
+
+<div id="comment_form">
+
+<form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform">
+
+<?php if ( $user_ID ) : ?>
+<p>Logged in as <b><a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a></b>. <a href="<?php echo get_option('siteurl'); ?>/wp-login.php?action=logout" title="Log out of this account"><b>Logout</b></a></p>
+<?php else : ?>
+
+<p>
+<label for="author">Username <?php if ($req) echo "(required)"; ?> :</label><br />
+<input type="text" name="author" id="author" value="<?php echo $comment_author; ?>" size="27" tabindex="1" class="data" /><br />
+</p>
+
+<p>
+<label for="email">Email <?php if ($req) echo "(required)"; ?> :</label><br />
+<input type="text" name="email" id="email" value="<?php echo $comment_author_email; ?>" size="27" tabindex="2" class="data" /><br />
+</p>
+
+<p>
+<label for="url">Web Site :</label><br />
+<input type="text" name="url" id="url" value="<?php echo $comment_author_url; ?>" size="27" tabindex="3" class="data" /><br />
+</p>
+
+<?php endif; ?>
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <?php echo allowed_tags(); ?></small></p>-->
+
+<p>
+<label for="comment">Comment :</label><br />
+<textarea name="comment" id="comment" cols="50" rows="10" tabindex="4"></textarea>
+</p>
+
+<p>
+<input name="submit" type="submit" id="submit" tabindex="5" value="Submit" class="sbutton"/>
+</p>
+
+<p>
+<input type="hidden" name="comment_post_ID" value="<?php echo $id; ?>" />
+</p>
+
+<?php do_action('comment_form', $post->ID); ?>
+</form>
+</div>

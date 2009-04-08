@@ -1,0 +1,34 @@
+<div id="wrap">
+<div id="header">
+<h2>[(#ENV{page}|!=={sommaire}|?{<a rel="start home" href="#URL_SITE_SPIP/" title="<:accueil_site:>">#NOM_SITE_SPIP</a>,#NOM_SITE_SPIP})]</h2>
+[<p>(#DESCRIPTIF_SITE_SPIP)</p>]
+</div>
+<div id="menu">
+<ul>
+<li class="page_item[(#ENV{page}|=={sommaire}|?{' current_page_item',' '})]"><a href="#URL_SITE_SPIP">Accueil</a></li>
+<li class="page_item[(#ENV{page}|=={rubrique}|?{' current_page_item',' '})]"><a href="#URL_PAGE{rubrique}">Messages</a></li>
+<li class="page_item[(#ENV{page}|=={calendrier}|?{' current_page_item',' '})]"><a href="#URL_PAGE{calendrier}" >Agenda</a></li>
+<li class="page_item[(#ENV{page}|=={documents}|?{' current_page_item',' '})]"><a href="#URL_PAGE{documents}" >Documents</a></li>
+<li class="page_item[(#ENV{page}|=={annuaire}|?{' current_page_item',' '})]"><a href="#URL_PAGE{annuaire}" >Annuaire</a></li>
+</ul>
+<div id="login">
+[(#SESSION{id_auteur}|?{' '})<p>[Bonjour <a href="(#URL_PAGE{auteur}|parametre_url{id_auteur,[(#SESSION{id_auteur})]})">][(#SESSION{nom})]</a>. <a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a></p>]
+[(#SESSION{id_auteur}|?{'',' '})<p><a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]" rel="nofollow" class='login_modal'><:lien_connecter:></a></p>]
+</div>
+</div>
+<div id="page_desc">
+<div id="text">
+
+<p>Hello and welcome to beautiful "name".</p>
+<p>echo get_post_meta($post->ID, "desc", true)</p>
+
+</div>
+<div id="search_top">
+<form method="get" id="searchform" action="#">
+<div>
+<input type="text" value="#" name="s" id="s" class="sfield" />
+<input type="image" src="#CHEMIN{img/search_button.gif}" class="sbutton" id="searchsubmit" />
+</div>
+</form>
+</div>
+</div>

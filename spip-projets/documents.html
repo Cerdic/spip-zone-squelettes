@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+<INCLURE{fond=inc-head}>
+</head>
+<INCLURE{fond=inc-header}{page=documents}>
+
+<div id="content_wrap">
+<div id="content">
+<div id="caption">
+<h2>Documents</h2>
+</div>
+	<B_documents_joints>
+	[(#ANCRE_PAGINATION)]
+		<BOUCLE_documents_joints(DOCUMENTS) {tous} {vu=non}{!par date}{pagination 20}>
+		<div class="document">
+			<div class="logo_document"
+			[(#EXTENSION|match{'^(gif|jpg|png)$'}|?{
+					[<a href="(#URL_DOCUMENT)" title="<:bouton_telecharger:>" type="#MIME_TYPE">(#MODELE{emb}|image_reduire{52})</a>]
+				,
+					[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
+				})]
+			</div>
+			[
+			<strong><a href="(#URL_DOCUMENT)" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{[(#FICHIER|basename)]})]</a></strong>
+				<small>(<span>#TYPE_DOCUMENT[ &ndash; (#TAILLE|taille_en_octets)]</span>)</small>
+				#DESCRIPTIF
+				]
+		<br class="nettoyeur" />
+		</div>
+		</BOUCLE_documents_joints>
+	[<div id="more_posts">
+	(#PAGINATION)
+	</div>]
+	</B_documents_joints>
+</div>
+<INCLURE{fond=inc-sidebar}>
+<INCLURE{fond=inc-footer}{page=documents}>
