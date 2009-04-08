@@ -1,5 +1,23 @@
 Adaptation pour SPIP d'un thème Wordpress par Valéry-Xavier Lentz (http://www.valeryxavierlentz.eu) en vue de construire un squelette dédié au travail collaboratif pour un intranet.
 
+Liste des plugins utilisés pour le développement et dont la mise en oeuvre est envisagée (à confirmer) :
+
+Acces Restreint 3.0
+Agenda 2.0
+Autorité
+Barre Typo V2 pour 1.9.2 et suivantes
+cfg : moteur de configuration
+Le Couteau Suisse
+Crayons
+Gravatar
+Messagerie
+Notifications
+Pages
+SPIP Bonux 2.0
+Thickbox v2
+Nombres de visiteurs connectés
+Champs Extras2
+
 ------------------------------------------------------------
 
 Thank you for downloading my work, Word Press theme Cubsimo.
