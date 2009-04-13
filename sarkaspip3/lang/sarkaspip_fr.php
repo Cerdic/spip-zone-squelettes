@@ -354,6 +354,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //T
 	  
+		'titre_rubriques_filles' => 'Suivez aussi les sous-rubriques ci-dessous',
 		'top_articles' => 'Les plus populaires',
 		'toutes_les_breves' => 'Toutes les br&egrave;ves du site',
 		'tri_par_auteur' => 'Par auteur',
@@ -574,6 +575,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_plan_pagination' => 'Pagination',
 		'cfg_lgd_plugin' => 'Plugin',
 		'cfg_lgd_plugins_info' => 'Information',
+		'cfg_lgd_rubriques_filles' => 'Sous-rubriques',
 		'cfg_lgd_secteur_squelette'=>'Secteur sp&eacute;cialis&eacute; pour le squelette',
 		'cfg_lgd_sites_tous' => 'Liste - Pagination',
 		'cfg_lgd_sommaire_articles' => 'Liste des articles r&eacute;cents',
@@ -754,6 +756,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_recherche_rubrique'=>'Rubriques trouv&eacute;es',
 		'cfg_inf_recherche_site'=>'Sites trouv&eacute;s',
 		'cfg_inf_rubrique_articles' => 'Voulez-vous afficher la liste des articles publi&eacute;s dans la rubrique ? Si oui, vous pourrez ensuite ajuster quelques param&egrave;tres de cet affichage.',
+		'cfg_inf_rubrique_filles' => 'Voulez-vous afficher la liste des sous-rubriques dans le corps de la page ?',
 		'cfg_inf_rubrique_logo' => 'Vous avez la possibilit&eacute; de d&eacute;finir la taille du logo affich&eacute; dans le bloc textuel de la rubrique.',
 		'cfg_inf_sommaire_articles' => 'Voulez-vous afficher la liste des articles r&eacute;cents dans la page sommaire ? Si oui, vous pourrez ensuite ajuster quelques param&egrave;tres de cet affichage.',
 		'cfg_inf_sommaire_sans_logo' => 'Vous avez la possibilit&eacute; de d&eacute;finir un logo pour chaque article (cf. la page d\'&eacute;dition d\'un article). Mais si ce logo n\'est pas renseign&eacute;, le squelette a la possibilit&eacute; d\'afficher le logo de la rubrique. Voulez-vous activer cette option dans les articles r&eacute;cents de la page sommaire ?',
