@@ -1,66 +1,7 @@
 <!-- titre=<:sunny:configuration_sunny:> -->
-<!-- autoriser=webmestre -->
-<!-- refus=<:cfg:refus_configuration_webmestre:> -->
 <!-- descriptif= <h4><:sunny:configuration_sunny:></h4> -->
-<!-- nom=sunny -->
+<!-- interpreter=non -->
 
-#CACHE{0}
-
-
-<form method="post" action="#SELF">
-<div>
-<div>[(#ENV{_cfg_}|form_hidden)]</div>
-
-
-<fieldset class="cadre"><legend><:sunny:configuration:></legend>
-
-	
-	<label for="sun_id_rubrique_region"><:sunny:rubrique_region:></label><br />
-	<select name="id_rubrique_region" id="sun_id_rubrique_region" class="forml">
-	<option value="0">&nbsp;</option>
-	<BOUCLE_r(RUBRIQUES){racine}{par num titre}>
-		<option value="#ID_RUBRIQUE"
-		[(#ID_RUBRIQUE|=={#ENV{id_rubrique_region}}|?{' selected="selected"'})]>
-		  #TITRE
-		</option>
-	</BOUCLE_r>
-	</select>
-	<br />	
-	
-	<label for="sun_id_mot_agenda_region"><:sunny:mot_agenda_region:></label><br />
-	<select name="id_mot_agenda_region" id="sun_id_mot_agenda_region" class="forml">
-	<option value="0">&nbsp;</option>
-	<BOUCLE_m1(MOTS){par titre}>
-		<option value="#ID_MOT"
-		[(#ID_MOT|=={#ENV{id_mot_agenda_region}}|?{' selected="selected"'})]>
-		  #TITRE
-		</option>
-	</BOUCLE_m1>
-	</select>
-	<br />	
-	
-	<label for="sun_id_mot_agenda_departement"><:sunny:mot_agenda_departement:></label><br />
-	<select name="id_mot_agenda_departement" id="sun_id_mot_agenda_departement" class="forml">
-	<option value="0">&nbsp;</option>
-	<BOUCLE_m2(MOTS){par titre}>
-		<option value="#ID_MOT"
-		[(#ID_MOT|=={#ENV{id_mot_agenda_departement}}|?{' selected="selected"'})]>
-		  #TITRE
-		</option>
-	</BOUCLE_m2>
-	</select>
-	<br />	
-</fieldset>
-
-<br />
-
-
-<div>
-<input type="submit" name="_cfg_ok" value="<:oK:>" class="fondo" />
-<input type="reset" value="<:reset:>" class="fondo" />
-<input type="submit" name="_cfg_delete" value="<:supprimer:>" class="fondo" />
-</div>
-</div>
-</form>
+<div class="ajax">#FORMULAIRE_CONFIG_SUNNY</div>
 
 
