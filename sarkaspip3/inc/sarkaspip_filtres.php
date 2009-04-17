@@ -158,12 +158,15 @@ function fin_journee($date) {
 // =======================================================================================================================================
 //
 function gravatar_url($email = '', $taille = 32) {
+	$url = '';
 	if ($email != '') {
-		return 'http://www.gravatar.com/avatar.php?gravatar_id='.md5($email).'&amp;size='.$taille.'&amp;rating=PG';
+		$url = 'http://www.gravatar.com/avatar.php?gravatar_id='.md5($email).'&amp;size='.$taille.'&amp;rating=PG';
+		// Ceci est le hash du gravatar bleu moche par defaut : on l'ignore
+		$gravatar = recuperer_page($url);
+		if (md5($gravatar) !== 'b96222c79b6c9f8e022e2da13b9f43ee')
+			$url = '';
 	}
-	else {
-		return '';
-	}
+	return $url;
 }
 // FIN du Filtre : gravatar_url
 

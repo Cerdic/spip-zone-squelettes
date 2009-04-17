@@ -628,6 +628,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_article_socialtags' => 'L\'activation du plugin  &#171; Social Tags &#187; (r&eacute;seaux sociaux de partage de liens) vous donne la possibilit&eacute; d\'ins&eacute;rer un bloc de boutons dans le cartouche ou &agrave; la fin du texte de l\'article.',
 		'cfg_inf_auteur_articles' => 'Voulez-vous afficher la liste des articles publi&eacute;s par l\'auteur ? Si oui, vous pourrez ensuite ajuster quelques param&egrave;tres de cet affichage.',
 		'cfg_inf_auteur_contact' => 'Voulez-vous afficher un formulaire pour contacter l\'auteur ?',
+		'cfg_inf_auteur_logo' => 'Vous avez la possibilit&eacute; de d&eacute;finir la taille du logo affich&eacute; dans le bloc biographique de l\'auteur.',
 		'cfg_inf_bandeau_bas_menu' => 'Vous avez choisi d\'afficher le &#171; @lbl_menu@ &#187; horizontalement dans cette partie du bandeau. Veuillez choisir ci-dessous ses param&egrave;tres d\'alignement.',
 		'cfg_inf_bandeau_bas' => 'D&eacute;sirez vous afficher la partie du bandeau pouvant contenir une banni&egrave;re ou un menu horizontal ?',
 		'cfg_inf_bandeau_chemin' => 'D&eacute;sirez vous afficher la partie du bandeau contenant la bande indiquant le chemin des articles et rubriques ?',
