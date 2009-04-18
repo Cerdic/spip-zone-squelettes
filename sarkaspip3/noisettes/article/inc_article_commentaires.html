@@ -8,11 +8,13 @@
 <div id="commentaires_article" class="commentaires">
 [(#ENV{id_forum}|?{'', ' '})
 	<a id="commentaires" name="commentaires" href="#commentaires"></a>
-  <a class="fonction" id="commenter"[ href="(#URL_PAGE{post, #PARAMETRES_FORUM})"] title="<:sarkaspip:commenter_article:>"></a>
+	<a class="fonction" id="commenter"[ href="(#URL_PAGE{post, #PARAMETRES_FORUM})"] title="<:sarkaspip:commenter_article:>"></a>
 	<h2><:sarkaspip:commentaires_article:></h2>
 ]
 [(#ENV{id_forum}|?{' '})
-	<h2><:sarkaspip:reponse_suite_commentaire:></h2>
+	[(#ENV{afficher_titre, oui}|=={oui}|?{' '})
+		<h2><:sarkaspip:reponse_suite_commentaire|ucfirst:></h2>
+	]
 ]
 <B_commentaires>
 [(#ENV{id_forum}|?{'', ' '})
