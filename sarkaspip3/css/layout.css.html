@@ -17,7 +17,7 @@ div#navigation{width: 180px; background: none;}
 div#extra{width:180px; background: none;} 
 div#container{background: #CONFIG{sarkaspip_styles/bg_site, #ffffff}[ url((#CHEMIN{images/bg_site#CONFIG{sarkaspip_styles/bi_extension_site, .gif}}))][ (#CONFIG{sarkaspip_styles/bi_proprietes_site})]; 
 }  
-#wrapper {}
+
 
 
 /* Pour les layouts a largeur variable*/
@@ -27,11 +27,10 @@ div#container{background: #CONFIG{sarkaspip_styles/bg_site, #ffffff}[ url((#CHEM
 	#content {padding: 0 20px;}
 ]
 
-/* Pour les layouts a largeur fixe*/
+/* Pour les layouts a largeur fixe 3 colonnes*/
 [(#CONFIG{sarkaspip_layout/numero_layout, 13}|match{^(7|8|9|10|11|12)$}|?{' '})
 	body{text-align:center}
-		div#container{[width:(#CONFIG{sarkaspip_layout/largeur_site, 700})px; ]margin:0 auto}
-
+	div#container{[width:(#CONFIG{sarkaspip_layout/largeur_site, 700})px; ]margin:0 auto}
 
 	[(#CONFIG{sarkaspip_layout/appliquer_padding, 1}|=={1}|?{
 		[(#SET{moitie, [(#CONFIG{sarkaspip_layout/largeur_padding, 20}|div{2})]})]
@@ -82,6 +81,31 @@ div#container{background: #CONFIG{sarkaspip_styles/bg_site, #ffffff}[ url((#CHEM
 		div#extra{[margin-left:(#GET{gauche})px; ]}
 		div#content{margin-left: 440px; [margin-right:(#CONFIG{sarkaspip_layout/largeur_padding, 20})px ;]}
 	]
+]
 
+/* Pour les layouts a 2 colonnes*/
+[(#CONFIG{sarkaspip_layout/numero_layout, 13}|match{^(34)$}|?{' '})
+	  body{text-align:center}
+		div#container{[width:(#CONFIG{sarkaspip_layout/largeur_site, 700})px; ]margin:0 auto;}
+		
+		[(#CONFIG{sarkaspip_layout/appliquer_padding, 1}|=={1}|?{
+		  [(#SET{double, [(#CONFIG{sarkaspip_layout/largeur_padding, 20}|mult{2})]})]
+		  [(#SET{gauche, [(#CONFIG{sarkaspip_layout/largeur_padding, 20})]})]
+		  [(#SET{droite, [(#CONFIG{sarkaspip_layout/largeur_padding, 20})]})]		  
+		,
+		  [(#SET{double, 0})]
+		  [(#SET{gauche, 0})]
+		  [(#SET{droite, 0})]
+	)]
+		
+	 [(#CONFIG{sarkaspip_layout/numero_layout, 13}||=={34}|?{' '})
+	  #wrapper{zoom:normal;}
+		div#navigation{[margin-left:(#GET{gauche})px ;]}
+		div#extra     {[margin-left:(#GET{gauche})px ;]}
+		div#content{
+      [width:(#CONFIG{sarkaspip_layout/largeur_site, 700}|moins{220}|moins{#GET{double}})px ;]
+      [margin-right:(#GET{droite})px ;]
+    }
 
+	]	
 ]

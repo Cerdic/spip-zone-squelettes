@@ -8,35 +8,30 @@
 //<![CDATA[
 	jQuery(document).ready(function() {
 		[(#ENV{appliquer_padding, 0}|!={1}|?{' '}) jQuery("#bloc_marge").hide();]
-		[(#ENV{numero_layout, 13}|>{12}|?{' '}) jQuery("#bloc_largeur").hide();]
-		
+		[(#ENV{numero_layout, 13}|match{^(13|14|15|16|17|18)$}|?{' '}) jQuery("#bloc_largeur").hide();]
+
 		jQuery("input[@name='numero_layout']").click(function() {
-			if(jQuery("input[@name='numero_layout']:checked").val() == 7)
-				jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout7.gif})]"});
-			else if(jQuery("input[@name='numero_layout']:checked").val() == 8)
-				jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout8.gif})]"});
-			else if(jQuery("input[@name='numero_layout']:checked").val() == 9)
-				jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout9.gif})]"});
-			else if(jQuery("input[@name='numero_layout']:checked").val() == 10)
-				jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout10.gif})]"});
-			else if(jQuery("input[@name='numero_layout']:checked").val() == 11)
-				jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout11.gif})]"});
-			else if(jQuery("input[@name='numero_layout']:checked").val() == 12)
-				jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout12.gif})]"});
-			else if(jQuery("input[@name='numero_layout']:checked").val() == 18)
-				jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout18.gif})]"});
-			else if (jQuery("input[@name='numero_layout']:checked").val() == 17)
-				jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout17.gif})]"});
-			else if (jQuery("input[@name='numero_layout']:checked").val() == 16)
-				jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout16.gif})]"});
-			else if (jQuery("input[@name='numero_layout']:checked").val() == 15)
-				jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout15.gif})]"});
-			else if (jQuery("input[@name='numero_layout']:checked").val() == 14)
-				jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout14.gif})]"});
-			else
-				jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout13.gif})]"});
+		
+		switch(jQuery("input[@name='numero_layout']:checked").val()){
+      case '7' :jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout7.gif})]"});break;
+      case '8' :jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout8.gif})]"});break;
+      case '9' :jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout9.gif})]"});break;
+      case '10' :jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout10.gif})]"});break;
+      case '11' :jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout11.gif})]"});break;
+      case '12' :jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout12.gif})]"});break;
+      case '13' :jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout13.gif})]"});break;
+      case '14' :jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout14.gif})]"});break;
+      case '15' :jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout15.gif})]"});break;
+      case '16' :jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout16.gif})]"});break;
+      case '17' :jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout17.gif})]"});break;
+      case '18' :jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout18.gif})]"});break;      
+      case '34' :jQuery("#bloc_layout_image").attr({src: "[(#CHEMIN{images/layout34.gif})]"});break;
+      default : jQuery("#bloc_largeur").hide();break;    
+    }
+
 			jQuery(this).blur();
 		});	
+		
 		jQuery("input[@name='appliquer_padding']").change(function() {
 			if (jQuery("input[@name='appliquer_padding']:checked").val() == 1) {
 				jQuery("#bloc_marge").show();
@@ -46,13 +41,21 @@
 			}
 			jQuery(this).blur();
 		});	
+		
+		
 		jQuery("input[@name='numero_layout']").change(function() {
-			if (jQuery("input[@name='numero_layout']:checked").val() <= 12) {
-				jQuery("#bloc_largeur").show();
-			}
-			else {
-				jQuery("#bloc_largeur").hide();
-			}
+		
+      switch(jQuery("input[@name='numero_layout']:checked").val()){
+      case '7' :
+      case '8' :
+      case '9' :
+      case '10' :
+      case '11' :
+      case '12' :
+      case '34' :jQuery("#bloc_largeur").show();break;
+      default : jQuery("#bloc_largeur").hide();break;    
+      }
+
 			jQuery(this).blur();
 		});	
 	});
@@ -96,6 +99,11 @@
 				<label>
 					<input type="radio" name="numero_layout" value="12" [(#ENV{numero_layout, 13}|=={12}|?{checked="checked"})] />
 					<:sarkaspip:cfg_lbl_layout_12:>
+				</label>
+				<br />
+				<label>
+					<input type="radio" name="numero_layout" value="34" [(#ENV{numero_layout, 13}|=={34}|?{checked="checked"})] />
+					<:sarkaspip:cfg_lbl_layout_34:>
 				</label>
 				<br />
 				<div id="bloc_largeur">
