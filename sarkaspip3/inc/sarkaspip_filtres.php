@@ -163,7 +163,7 @@ function gravatar_url($email = '', $taille = 32) {
 		$url = 'http://www.gravatar.com/avatar.php?gravatar_id='.md5($email).'&amp;size='.$taille.'&amp;rating=PG';
 		// Ceci est le hash du gravatar bleu moche par defaut : on l'ignore
 		$gravatar = recuperer_page($url);
-		if (md5($gravatar) !== 'b96222c79b6c9f8e022e2da13b9f43ee')
+		if (md5($gravatar) === '2bd0ca9726695502d06e2b11bf4ed555')
 			$url = '';
 	}
 	return $url;
