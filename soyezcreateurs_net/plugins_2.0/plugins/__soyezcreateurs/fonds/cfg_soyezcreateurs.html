@@ -35,6 +35,7 @@
 	</select>
 </fieldset>
 <fieldset><legend><:cfgpyrat:apparence_header:></legend>
+[(#LOGO_SITE_SPIP_SURVOL||non)
 	<p><label for="sc_menuhautheader">Choix de la bannière (si pas de logo de survol pour le site)&nbsp;:</label><p>
 <table style="border:1px solid #888;border-collapse:collapse;width:100%" class="spip">
 	<thead class="spip">
@@ -43,14 +44,14 @@
 			<th class="spip" style="border:1px solid #888;">Choix</th>
 		</tr>
 	</thead>
-	#SET{c_header_bk,(#CONFIG{soyezcreateurs_couleurs/header_bk,#664e3b})}
+	[(#SET{c_header_bk,#CONFIG{soyezcreateurs_couleurs/header_bk,#664e3b}})]
 	<tbody class="spip">
 		<tr class="spip">
-			<td class="spip" style="height:150px;border:1px solid #888;background: #GET{c_header_bk}[ url((#CHEMIN{images/fond_degrade_fonce_en_bas2.png}|image_sepia{[(#GET{c_header_bk})]}|image_aplatir{jpg}|extraire_attribut{src})) repeat-x bottom];]">&nbsp;</td>
+			<td class="spip" style="height:150px;border:1px solid #888;background: [(#GET{c_header_bk})][ url((#CHEMIN{images/fond_degrade_fonce_en_bas2.png}|image_sepia{[(#GET{c_header_bk})]}|image_aplatir{jpg}|extraire_attribut{src})) repeat-x bottom];">&nbsp;</td>
 			<td class="spip" style="border:1px solid #888;"><input type="radio" name="default_banniere" id="sc_default_banniere1" value="degrade"[ checked="(#ENV{default_banniere,lentilles}|=={degrade}|?{checked})"] /><label for="sc_default_banniere#ID_MOT">&nbsp;Fond dégradé</label></td>
 		</tr>
 		<tr class="spip">
-			<td class="spip" style="height:150px;border:1px solid #888;background: #GET{c_header_bk}[ url((#CHEMIN{images/trame_metal.jpg}|image_sepia{[(#GET{c_header_bk})]}|image_aplatir{jpg}|extraire_attribut{src})) repeat];]">&nbsp;</td>
+			<td class="spip" style="height:150px;border:1px solid #888;background: [(#GET{c_header_bk})][ url((#CHEMIN{images/trame_metal.jpg}|image_sepia{[(#GET{c_header_bk})]}|image_aplatir{jpg}|extraire_attribut{src})) repeat];">&nbsp;</td>
 			<td class="spip" style="border:1px solid #888;"><input type="radio" name="default_banniere" id="sc_default_banniere2" value="metal"[ checked="(#ENV{default_banniere,lentilles}|=={metal}|?{checked})"] /><label for="sc_default_banniere#ID_MOT">&nbsp;Métal brossé</label></td>
 		</tr>
 		<tr class="spip">
@@ -58,10 +59,9 @@
 	background: [(#GET{c_header_bk})] url(/(#CHEMIN{images/bandeauhaut_soyezcreateur.png}|image_sepia{[(#GET{c_header_bk})]}|image_aplatir{jpg}|extraire_attribut{src})) no-repeat right;]">&nbsp;</td>
 			<td class="spip" style="border:1px solid #888;"><input type="radio" name="default_banniere" id="sc_default_banniere3" value="lentilles"[ checked="(#ENV{default_banniere,lentilles}|=={lentilles}|?{checked})"] /><label for="sc_default_banniere#ID_MOT">&nbsp;Effet de lentilles</label></td>
 		</tr>
-		</BOUCLE_Layouts>
 	</tbody>
 </table>
-
+][<p>(#LOGO_SITE_SPIP_SURVOL||image_reduire{300,0})</p>]
 	<p><label for="sc_menuhautheader">Mode d'affichage du menu du haut (si présent)&nbsp;:</label>
 	<select name="menuhautheader" id="sc_menuhautheader" class="fondl">
 		<option value="content"[ selected="(#ENV{menuhautheader,content}|=={content}|?{selected})"]>Affichage au dessus du contenu, de la même largeur</option>
