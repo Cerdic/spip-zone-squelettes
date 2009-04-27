@@ -1,10 +1,9 @@
-<BOUCLE_themes(RUBRIQUES){id_rubrique}>[(#SET{iconeracine,[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique=#_themes:ID_RUBRIQUE}{mode=normal}|image_reduire{9,9}|extraire_attribut{src})]})]
-<B_sous_rubriques1><div id="artrecents" class="flottant">
+<BOUCLE_AvecDesEnfants(RUBRIQUES){id_parent=#ENV{id_rubrique}}{0,1}><BOUCLE_themes(RUBRIQUES){id_rubrique=#ENV{id_rubrique}}>[(#SET{iconeracine,[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique=#_themes:ID_RUBRIQUE}{mode=normal}|image_reduire{9,9}|extraire_attribut{src})]})]
+<div id="artrecents" class="flottant">
 <h2><:pyrat:themes:></h2>
 	<ul>
-		<li[ style="list-style-image: url(/(#GET{iconeracine}));"]>
-			[(#_themes:ID_RUBRIQUE|!={#ENV{id_rubrique}}|oui
-			 )<a href="[(#_themes:URL_RUBRIQUE|parametre_url{date_ev,#ENV{date_ev,''}}|parametre_url{id_mot,#ENV{id_mot,''}}|parametre_url{'calendrier',1})]" title="[(#_themes:DESCRIPTIF|attribut_html)] ([(#_themes:DATE|nom_jour)] [(#_themes:DATE|affdate)])">][(#_themes:TITRE)][(#_themes:ID_RUBRIQUE|!={#ENV{id_rubrique}}|oui)</a>]
+		<li[ style="list-style-image: url(/(#GET{iconeracine}));"]>[(#TITRE)]
+<B_sous_rubriques1>
 			<ul>
 			<BOUCLE_sous_rubriques1(RUBRIQUES){id_parent}{par titre}>
 				<li[ style="list-style-image: url(/(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{9,9}|extraire_attribut{src}));"]>
@@ -14,7 +13,8 @@
 				</li>
 			</BOUCLE_sous_rubriques1>
 			</ul>
+</B_sous_rubriques1>
 		</li>
 	</ul>
-</div></B_sous_rubriques1>
-</BOUCLE_themes>
+</div>
+</BOUCLE_themes></BOUCLE_AvecDesEnfants>
