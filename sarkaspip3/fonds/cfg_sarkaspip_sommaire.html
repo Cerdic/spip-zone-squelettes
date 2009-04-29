@@ -10,6 +10,9 @@
 		[(#ENV{position_articles_recents, 1}|!={1}|?{' '})
 			jQuery("#bloc_max_articles").hide();
 		]
+		[(#ENV{position_albums_recents, 1}|!={1}|?{' '})
+			jQuery("#bloc_max_albums").hide();
+		]
 		[(#ENV{article_edito, 0}|=={0}|?{' '})
 			jQuery("#bloc_titre_edito").hide();
 		]
@@ -19,6 +22,15 @@
 			}
 			else {
 				jQuery("#bloc_max_articles").hide();
+			}
+			jQuery(this).blur();
+		});	
+		jQuery("input[@name='position_albums_recents']").change(function() {
+			if (jQuery("input[@name='position_albums_recents']:checked").val() == 1) {
+				jQuery("#bloc_max_albums").show();
+			}
+			else {
+				jQuery("#bloc_max_albums").hide();
 			}
 			jQuery(this).blur();
 		});	
@@ -88,6 +100,34 @@
 			<br />
 			<INCLURE{fond=noisettes/cfg/inc_cfg_introduction}{env}>
 			<INCLURE{fond=noisettes/cfg/inc_cfg_logo}{explication=<:sarkaspip:cfg_inf_sommaire_sans_logo:>}{env}>
+		</div>
+	</fieldset>
+	
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_sommaire_albums:></legend>
+		<p><:sarkaspip:cfg_inf_sommaire_albums:></p>
+		<label>
+			<input type="radio" name="position_albums_recents" value="1" [(#ENV{position_albums_recents, 1}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_oui:>
+		</label>
+		<label>
+			<input type="radio" name="position_albums_recents" value="0" [(#ENV{position_albums_recents, 1}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_non:>
+		</label>
+		<div id="bloc_max_albums">
+			<br />
+			<label><:sarkaspip:cfg_lbl_max_albums_recents:></label>
+			<input type="text" name="max_albums_recents" value="#ENV{max_albums_recents, 5}" size="3" class="fondl" />
+			<p><:sarkaspip:cfg_inf_sommaire_albums_1_colonne:></p>
+			<label>
+				<input type="radio" name="album_1_colonne" value="1" [(#ENV{album_1_colonne, 0}|=={1}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_1_colonne:>
+			</label>
+			<br />
+			<label>
+				<input type="radio" name="album_1_colonne" value="0" [(#ENV{album_1_colonne, 0}|=={0}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_2_colonnes:>
+			</label>
 		</div>
 	</fieldset>
 	
