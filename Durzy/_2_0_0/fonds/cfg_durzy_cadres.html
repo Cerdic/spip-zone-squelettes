@@ -1,0 +1,247 @@
+#CACHE{0}
+<!-- titre=Squelettes Durzy - Configuration des cadres -->
+<!-- icone=images/cfg_cadres.png -->
+[(#SET{logo, <img src='#DOSSIER_SQUELETTE/../images/cfg_cadres.png' width='20' height='19' alt='cadres' style="float:#LANG_RIGHT;" /> })]
+<!-- descriptif= [(#GET{logo})] <:durzy:description_cadres:> -->
+
+<!-- nom=durzy -->
+<!-- onglet=durzy -->
+
+<!-- liens*=durzy -->
+<!-- liens*=durzy_general -->
+<!-- liens*=durzy_couleurs -->
+
+<form method="post" action="#SELF">[(#ENV{_cfg_}|form_hidden)]
+
+<fieldset style="border:0">
+
+	<div style="float:right">
+		<input type="submit" name="_cfg_ok" value="<:oK:>" class="fondo" />
+		<input type="reset" value="<:reset:>" class="fondo" />
+		<input type="submit" name="_cfg_delete" value="<:supprimer:>" class="fondo" />
+	</div>
+	<br /> <br/>
+
+<fieldset style="background-color:#FFFFCC"><legend>Nombre d'éléments affichés dans les cadres</legend>
+	<label>
+	<select name="nb_article">
+		<option value="1"  [(#CONFIG{durzy/nb_article}|=={1}|? {selected="selected",''})]> 1</option>
+		<option value="2"  [(#CONFIG{durzy/nb_article}|=={2}|? {selected="selected",''})]> 2</option>
+		<option value="3"  [(#CONFIG{durzy/nb_article}|=={3}|? {selected="selected",''})]> 3</option>
+		<option value="4"  [(#CONFIG{durzy/nb_article}|=={4}|? {selected="selected",''})]> 4</option>
+		<option value="5"  [(#CONFIG{durzy/nb_article}|=={5}|? {selected="selected",''})]> 5</option>
+		<option value="6"  [(#CONFIG{durzy/nb_article}|=={6}|? {selected="selected",''})]> 6</option>
+		<option value="7"  [(#CONFIG{durzy/nb_article}|=={7}|? {selected="selected",''})]> 7</option>
+		<option value="8"  [(#CONFIG{durzy/nb_article}|=={8}|? {selected="selected",''})]> 8</option>
+		<option value="9"  [(#CONFIG{durzy/nb_article}|=={9}|? {selected="selected",''})]> 9</option>
+		<option value="10" [(#CONFIG{durzy/nb_article}|=={10}|?{selected="selected",''})]> 10</option>
+	</select>
+	articles dans le <b>cadre Les derniers articles</b>
+    </label>  
+    <br />
+    <label>
+	<select name="nb_message">
+		<option value="1"  [(#CONFIG{durzy/nb_message}|=={1}|? {selected="selected",''})]> 1</option>
+		<option value="2"  [(#CONFIG{durzy/nb_message}|=={2}|? {selected="selected",''})]> 2</option>
+		<option value="3"  [(#CONFIG{durzy/nb_message}|=={3}|? {selected="selected",''})]> 3</option>
+		<option value="4"  [(#CONFIG{durzy/nb_message}|=={4}|? {selected="selected",''})]> 4</option>
+		<option value="5"  [(#CONFIG{durzy/nb_message}|=={5}|? {selected="selected",''})]> 5</option>
+		<option value="6"  [(#CONFIG{durzy/nb_message}|=={6}|? {selected="selected",''})]> 6</option>
+		<option value="7"  [(#CONFIG{durzy/nb_message}|=={7}|? {selected="selected",''})]> 7</option>
+		<option value="8"  [(#CONFIG{durzy/nb_message}|=={8}|? {selected="selected",''})]> 8</option>
+		<option value="9"  [(#CONFIG{durzy/nb_message}|=={9}|? {selected="selected",''})]> 9</option>
+		<option value="10" [(#CONFIG{durzy/nb_message}|=={10}|?{selected="selected",''})]> 10</option>
+	</select>
+	messages de forum dans le <b>cadre Les derniers messages</b>
+    </label> 
+    <br />
+    <label>
+	<select name="nb_breves">
+		<option value="1"  [(#CONFIG{durzy/nb_breves}|=={1}|? {selected="selected",''})]> 1</option>
+		<option value="2"  [(#CONFIG{durzy/nb_breves}|=={2}|? {selected="selected",''})]> 2</option>
+		<option value="3"  [(#CONFIG{durzy/nb_breves}|=={3}|? {selected="selected",''})]> 3</option>
+		<option value="4"  [(#CONFIG{durzy/nb_breves}|=={4}|? {selected="selected",''})]> 4</option>
+		<option value="5"  [(#CONFIG{durzy/nb_breves}|=={5}|? {selected="selected",''})]> 5</option>
+		<option value="6"  [(#CONFIG{durzy/nb_breves}|=={6}|? {selected="selected",''})]> 6</option>
+		<option value="7"  [(#CONFIG{durzy/nb_breves}|=={7}|? {selected="selected",''})]> 7</option>
+		<option value="8"  [(#CONFIG{durzy/nb_breves}|=={8}|? {selected="selected",''})]> 8</option>
+		<option value="9"  [(#CONFIG{durzy/nb_breves}|=={9}|? {selected="selected",''})]> 9</option>
+		<option value="10" [(#CONFIG{durzy/nb_breves}|=={10}|?{selected="selected",''})]> 10 </option>
+	</select>
+	brèves dans le <b>cadre Les dernières brèves</b>
+    </label>  
+    
+</fieldset>
+
+
+
+
+[(#EVAL{defined('_DIR_PLUGIN_JQUERYP')}|?{' ',''}) 
+	#JQUERY_PLUGIN{ui.tabs}
+	#JQUERY_PLUGIN_THEME{flora, flora.tabs}
+	
+	<script>
+		$(document).ready(function(){
+		  $("#mesonglets3 > ul").tabs({ unselected: true });
+		})
+	</script>
+]
+<div id="mesonglets3" class="flora"><br />
+	<ul>
+		<li><a href="#fragment-4"><span>Organisation</span></a></li>
+		<li><a href="#fragment-5"><span>Position</span></a></li>
+		<li><a href="#fragment-6"><span>Coins et bordures</span></a></li>
+	</ul>
+
+
+	[(#REM) ------------- Organisation --------------- ]
+	<div id="fragment-4">
+		<center>
+			<input type="radio" name="squelette_sommaire" [(#CONFIG{durzy/squelette_sommaire}|=={sommaire_left}|?{checked})] value="sommaire_left">Cadres tous à gauche
+			<input type="radio" name="squelette_sommaire" [(#CONFIG{durzy/squelette_sommaire}|=={sommaire_center}|?{checked})] value="sommaire_center">Cadres des deux cotés
+			<input type="radio" name="squelette_sommaire" [(#CONFIG{durzy/squelette_sommaire}|=={sommaire_right}|?{checked})] value="sommaire_right">Cadres tous à droite
+			<img src="../squelettes/images/sommaire-left.png">
+			<img src="../squelettes/images/sommaire-center.png">
+			<img src="../squelettes/images/sommaire-right.png">
+		</center>
+	</div>
+	
+	[(#REM) ------------- Position des cadres --------------- ]
+	<div id="fragment-5">
+		
+			<fieldset style="background-color:#FFFFCC"><legend>Choix du cadre à afficher à gauche en haut :</legend>
+				<input type="radio" name="aff_cadre_gh" [(#CONFIG{durzy/aff_cadre_gh}|=={agenda_gh}|?{checked})] value="agenda_gh">Le mini agenda 
+				<input type="radio" name="aff_cadre_gh" [(#CONFIG{durzy/aff_cadre_gh}|=={edito_gh}|?{checked})] value="edito_gh">L'édito 
+				<input type="radio" name="aff_cadre_gh" [(#CONFIG{durzy/aff_cadre_gh}|=={ident_gh}|?{checked})] value="ident_gh">L'identification
+				<input type="radio" name="aff_cadre_gh" [(#CONFIG{durzy/aff_cadre_gh}|=={news_gh}|?{checked})] value="news_gh">Les derniers articles 
+				<input type="radio" name="aff_cadre_gh" [(#CONFIG{durzy/aff_cadre_gh}|=={direct_gh}|?{checked})] value="direct_gh">l'accès direct 
+				<input type="radio" name="aff_cadre_gh" [(#CONFIG{durzy/aff_cadre_gh}|=={breve_gh}|?{checked})] value="breve_gh">Les brèves
+				<input type="radio" name="aff_cadre_gh" [(#CONFIG{durzy/aff_cadre_gh}|=={aucun}|?{checked})] value="aucun">Aucun
+			</fieldset>
+			<fieldset style="background-color:#FFFFCC"><legend>Choix du cadre à afficher à gauche au milieu :</legend>
+				<input type="radio" name="aff_cadre_gm" [(#CONFIG{durzy/aff_cadre_gm}|=={agenda_gh}|?{checked})] value="agenda_gm">Le mini agenda 
+				<input type="radio" name="aff_cadre_gm" [(#CONFIG{durzy/aff_cadre_gm}|=={edito_gm}|?{checked})] value="edito_gm">L'édito 
+				<input type="radio" name="aff_cadre_gm" [(#CONFIG{durzy/aff_cadre_gm}|=={ident_gm}|?{checked})] value="ident_gm">L'identification
+				<input type="radio" name="aff_cadre_gm" [(#CONFIG{durzy/aff_cadre_gm}|=={news_gm}|?{checked})] value="news_gm">Les derniers articles 
+				<input type="radio" name="aff_cadre_gm" [(#CONFIG{durzy/aff_cadre_gm}|=={direct_gm}|?{checked})] value="direct_gm">l'accès direct 
+				<input type="radio" name="aff_cadre_gm" [(#CONFIG{durzy/aff_cadre_gm}|=={breve_gm}|?{checked})] value="breve_gm">Les brèves
+				<input type="radio" name="aff_cadre_gm" [[(#CONFIG{durzy/aff_cadre_gm}|=={aucun}|?{checked})] value="aucun">Aucun
+			</fieldset>
+			<fieldset style="background-color:#FFFFCC"><legend>Choix du cadre à afficher à gauche en bas :</legend>
+				<input type="radio" name="aff_cadre_gb" [(#CONFIG{durzy/aff_cadre_gb}|=={agenda_gb}|?{checked})] value="agenda_gb">Le mini agenda 
+				<input type="radio" name="aff_cadre_gb" [(#CONFIG{durzy/aff_cadre_gb}|=={edito_gb}|?{checked})] value="edito_gb">L'édito 
+				<input type="radio" name="aff_cadre_gb" [(#CONFIG{durzy/aff_cadre_gb}|=={ident_gb}|?{checked})] value="ident_gb">L'identification
+				<input type="radio" name="aff_cadre_gb" [(#CONFIG{durzy/aff_cadre_gb}|=={news_gb}|?{checked})] value="news_gb">Les derniers articles 
+				<input type="radio" name="aff_cadre_gb" [(#CONFIG{durzy/aff_cadre_gb}|=={direct_gb}|?{checked})] value="direct_gb">l'accès direct 
+				<input type="radio" name="aff_cadre_gb" [(#CONFIG{durzy/aff_cadre_gb}|=={breve_gb}|?{checked})] value="breve_gb">Les brèves
+				<input type="radio" name="aff_cadre_gb" [(#CONFIG{durzy/aff_cadre_gb}|=={aucun}|?{checked})] value="aucun">Aucun
+			</fieldset>
+			
+			<fieldset style="background-color:#FFFFCC"><legend>Choix du cadre à afficher à droite en haut :</legend>
+				<input type="radio" name="aff_cadre_dh" [(#CONFIG{durzy/aff_cadre_dh}|=={agenda_dh}|?{checked})] value="agenda_dh">Le mini agenda 
+				<input type="radio" name="aff_cadre_dh" [(#CONFIG{durzy/aff_cadre_dh}|=={edito_dh}|?{checked})] value="edito_dh">L'édito 
+				<input type="radio" name="aff_cadre_dh" [(#CONFIG{durzy/aff_cadre_dh}|=={ident_dh}|?{checked})] value="ident_dh">L'identification
+				<input type="radio" name="aff_cadre_dh" [(#CONFIG{durzy/aff_cadre_dh}|=={news_dh}|?{checked})] value="news_dh">Les derniers articles 
+				<input type="radio" name="aff_cadre_dh" [(#CONFIG{durzy/aff_cadre_dh}|=={direct_dh}|?{checked})] value="direct_dh">l'accès direct 
+				<input type="radio" name="aff_cadre_dh" [(#CONFIG{durzy/aff_cadre_dh}|=={breve_dh}|?{checked})] value="breve_dh">Les brèves
+				<input type="radio" name="aff_cadre_dh" [(#CONFIG{durzy/aff_cadre_dh}|=={aucun}|?{checked})] value="aucun">Aucun
+			</fieldset>
+			<fieldset style="background-color:#FFFFCC"><legend>Choix du cadre à afficher à droite au milieu :</legend>
+				<input type="radio" name="aff_cadre_dm" [(#CONFIG{durzy/aff_cadre_dm}|=={agenda_dm}|?{checked})] value="agenda_dm">Le mini agenda 
+				<input type="radio" name="aff_cadre_dm" [(#CONFIG{durzy/aff_cadre_dm}|=={edito_dm}|?{checked})] value="edito_dm">L'édito 
+				<input type="radio" name="aff_cadre_dm" [(#CONFIG{durzy/aff_cadre_dm}|=={ident_dm}|?{checked})] value="ident_dm">L'identification
+				<input type="radio" name="aff_cadre_dm" [(#CONFIG{durzy/aff_cadre_dm}|=={news_dm}|?{checked})] value="news_dm">Les derniers articles 
+				<input type="radio" name="aff_cadre_dm" [(#CONFIG{durzy/aff_cadre_dm}|=={direct_dm}|?{checked})] value="direct_dm">l'accès direct 
+				<input type="radio" name="aff_cadre_dm" [(#CONFIG{durzy/aff_cadre_dm}|=={breve_dm}|?{checked})] value="breve_dm">Les brèves
+				<input type="radio" name="aff_cadre_dm" [(#CONFIG{durzy/aff_cadre_dm}|=={aucun}|?{checked})] value="aucun">Aucun
+			</fieldset>
+			<fieldset style="background-color:#FFFFCC"><legend>Choix du cadre à afficher à droite en bas :</legend>
+				<input type="radio" name="aff_cadre_db" [(#CONFIG{durzy/aff_cadre_db}|=={agenda_db}|?{checked})] value="agenda_db">Le mini agenda 
+				<input type="radio" name="aff_cadre_db" [(#CONFIG{durzy/aff_cadre_db}|=={edito_db}|?{checked})] value="edito_db">L'édito 
+				<input type="radio" name="aff_cadre_db" [(#CONFIG{durzy/aff_cadre_db}|=={ident_db}|?{checked})] value="ident_db">L'identification
+				<input type="radio" name="aff_cadre_db" [(#CONFIG{durzy/aff_cadre_db}|=={news_db}|?{checked})] value="news_db">Les derniers articles 
+				<input type="radio" name="aff_cadre_db" [(#CONFIG{durzy/aff_cadre_db}|=={direct_db}|?{checked})] value="direct_db">l'accès direct 
+				<input type="radio" name="aff_cadre_db" [(#CONFIG{durzy/aff_cadre_db}|=={breve_db}|?{checked})] value="breve_db">Les brèves
+				<input type="radio" name="aff_cadre_db" [(#CONFIG{durzy/aff_cadre_db}|=={aucun}|?{checked})] value="aucun">Aucun
+			</fieldset>
+		
+	</div>
+
+	<div id="fragment-6">
+	<fieldset style="background-color:#FFFFCC"><legend>Coins arrondis dans les cadres ?</legend><p>Uniquement valable dans Firefox et Safari&nbsp;:&nbsp;
+	<select name="cadres_arrondis">
+		<option value="/*spécification css3 pour les bords arrondis*/
+			border-radius: 0.5em;
+			/*spécification css3 pour les bords arrondis adaptée pour Safari et tous les navigateurs basés sur webkit*/
+			-webkit-border-radius: 0.5em;
+			/*spécification css3 pour les bords arrondis adaptée pour Firefox et tous les navigateurs basés sur gecko*/
+			-moz-border-radius: 0.5em;" 
+			[(#CONFIG{durzy/cadres_arrondis}|=={
+			/*spécification css3 pour les bords arrondis*/
+			border-radius: 0.5em;
+			/*spécification css3 pour les bords arrondis adaptée pour Safari et tous les navigateurs basés sur webkit*/
+			-webkit-border-radius: 0.5em;
+			/*spécification css3 pour les bords arrondis adaptée pour Firefox et tous les navigateurs basés sur gecko*/
+			-moz-border-radius: 0.5em;}|?{selected="selected",''})]>
+			<p>Arrondis</p>
+		</option>
+		<option value="/*carres*/" [(#CONFIG{durzy/cadres_arrondis}|=={/*carres*/}|?{selected="selected",''})]><p>Carrés</p></option>
+	</select></p>
+</fieldset>
+
+
+
+<fieldset style="background-color:#FFFFCC"><legend>Coins arrondis pour les titres des cadres ?</legend><p>Uniquement valable dans Firefox et Safari&nbsp;:&nbsp;
+	<select name="titre_cadres_arrondis">
+		<option value="/*texte ombré dans safari*/
+			text-shadow: 3px 3px 5px grey;
+			/*spécification css3 pour les bords arrondis*/
+			border-top-right-radius: 0.6em; 
+			border-top-left-radius: 0.6em;
+			/*spécification css3 pour les bords arrondis adaptée pour Safari et tous les navigateurs basés sur webkit*/
+			-webkit-border-top-right-radius: 0.6em;
+			-webkit-border-top-left-radius: 0.6em;
+			/*spécification css3 pour les bords arrondis adaptée pour Firefox et tous les navigateurs basés sur gecko*/
+			-moz-border-radius-topright: 0.6em;
+			-moz-border-radius-topleft: 0.6em;" 
+			[(#CONFIG{durzy/titre_cadres_arrondis}|=={	
+			/*texte ombré dans safari*/
+			text-shadow: 3px 3px 5px grey;
+			/*spécification css3 pour les bords arrondis*/
+			border-top-right-radius: 0.6em; 
+			border-top-left-radius: 0.6em;
+			/*spécification css3 pour les bords arrondis adaptée pour Safari et tous les navigateurs basés sur webkit*/
+			-webkit-border-top-right-radius: 0.6em;
+			-webkit-border-top-left-radius: 0.6em;
+			/*spécification css3 pour les bords arrondis adaptée pour Firefox et tous les navigateurs basés sur gecko*/
+			-moz-border-radius-topright: 0.6em;
+			-moz-border-radius-topleft: 0.6em;}|?{selected="selected",''})]>
+			<p>Arrondis</p>
+		</option>
+		<option value="black" [(#CONFIG{durzy/titre_cadres_arrondis}|=={black}|?{selected="selected",''})]><p>Carrés</p></option>
+	</select></p>
+</fieldset>
+
+
+<fieldset style="background-color:#FFFFCC"><legend>Epaisseur des bordures</legend>
+	<p>Attention, choisir la couleur des bordures pour chacun des cadres dans l'onglet "Les couleurs"</p>
+		<select name="epaisseur_bordures">
+			<option value="0px "[(#CONFIG{durzy/epaisseur_bordures}|=={0px }|?{selected="selected",''})]> 0 (par défaut)</option>
+			<option value="1px "[(#CONFIG{durzy/epaisseur_bordures}|=={1px }|?{selected="selected",''})]> 1</option>
+			<option value="2px "[(#CONFIG{durzy/epaisseur_bordures}|=={2px }|?{selected="selected",''})]> 2</option>
+			<option value="3px "[(#CONFIG{durzy/epaisseur_bordures}|=={3px }|?{selected="selected",''})]> 3</option>
+		</select>
+		
+	
+</fieldset>
+</div><div class="nettoyeur" />
+<br />
+	<div style="float:right">
+		<input type="submit" name="_cfg_ok" value="<:oK:>" class="fondo" />
+		<input type="reset" value="<:reset:>" class="fondo" />
+		<input type="submit" name="_cfg_delete" value="<:supprimer:>" class="fondo" />
+	</div>
+	<div class="nettoyeur" />
+
+</fieldset>
+</form>

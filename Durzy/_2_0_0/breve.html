@@ -1,0 +1,109 @@
+#CACHE{43200}
+<BOUCLE_breve_principal(BREVES) {id_breve}>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+
+<head>
+	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+
+	[(#REM) Lien vers le flux RSS des breves ]
+	<link rel="alternate" type="application/rss+xml" title="<:dernieres_breves:>" href="#URL_PAGE{backend-breves}" />
+	<!-- CSS général  -->		
+	<INCLURE{fond=/inclusions/inc-head}{lang}> 
+</head>
+
+<body onload="setHover()">
+
+<div id="page">
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inclusions/inc-entete}{lang}>
+
+	[(#REM) Gauche de la page ]      
+	<div id="gauche">
+		<div class="espace"></div>
+		<INCLURE {fond=inclusions/inc-breve-rubrique}{id_rubrique}>
+		<!-- Acces direct   -->
+		<div class="espace"></div>
+		<INCLURE{fond=inclusions/inc-direct-acces}{lang}>
+		<div class="espace"></div>
+	</div>
+
+	[(#REM) Droite de la page ]
+	<div id="article-cadre">
+		<div class="espace"></div>
+
+		[(#REM) Chemin de navigation ] 
+       <INCLURE{fond=inclusions/inc-chemin} {id_article} {id_breve} {id_rubrique}>
+		[(#REM) Fin du chemin de navigation ]
+
+
+		<div class="espace"></div>      
+
+		[(#REM) Corps de l'article ] 
+		<div class="cadre">
+
+		[(#REM) En tête de l'article ] 
+		<div class="cadre-titre-article">  
+			 
+			<BOUCLE_rubrique_parent(RUBRIQUES){id_rubrique}>
+				<a href="#URL_RUBRIQUE">[(#LOGO_BREVE|right||image_reduire{120,0})]</a>
+			</BOUCLE_rubrique_parent>
+			 
+
+			[(#REM) titre de la brève ]
+			<div class="titre-article"> 
+			<h1 class="#EDIT{titre} titre">#TITRE</h1>
+			</div>
+
+			[(#REM) Date de mise en ligne et auteur(s)de la brève ]
+			<div class="espace"></div>
+			<div class="espace"></div>
+			<div class="espace"></div>
+			<div align="right">
+				[Brève mise en ligne le (#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]
+				&nbsp;
+			</div>
+		</div> <!-- fin du "cadre-titre-article" --> 
+
+		<div align="left">
+			<span style="font-size:10px;">
+				<a href="#URL_PAGE{imprimer-breve,id_breve=#ID_BREVE}">
+					Imprimer la brève <img src="#CHEMIN{images/imprimer.gif}" width="16" height="16" border="0" align="bottom" alt="imprimer" />
+				</a>
+			</span>
+		</div>
+
+		[(#REM) Contenu de la brève]
+        <div class="espace"> </div>
+		 [<div class="#EDIT{texte} texte">(#TEXTE||image_reduire{620,0})</div>]
+        <div class="espace"> </div>
+		[(#REM) Ajout du site web associé s'il existe ]
+		[<hr size="1" noshade>
+		<img src="#CHEMIN{images/puce-on.png}"  border="0" align="absmiddle"  alt="" />
+		<:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">
+		[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a>
+		<div class="espace"> </div>]
+	</div><!-- fin de "cadre" pour affichage de l'article -->
+
+	<div class="espace"> </div>
+
+	[(#REM) Forum de la brève ]
+	<img src='#CHEMIN{images/forum.png}' alt="Le forum" border='0'/>&nbsp;
+	<span style="font-size:12px;">
+		[<a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_breve:></a>]
+	</span> 
+	<INCLURE{fond=/inclusions/inc-forum}{id_breve}>
+	<div class="espace"></div>
+</div><!-- Fin de "cadre" -->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inclusions/inc-footer}>
+
+</div><!-- Fin de "page" -->
+</body>
+</html>
+</BOUCLE_breve_principal>
+  [(#ID_BREVE|accesgroupes_breve_restreinte|?{' ',''})<INCLURE{fond=inc_accesgroupes_login}>]
+<//B_breve_principal>

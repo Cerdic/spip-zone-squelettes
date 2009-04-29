@@ -1,0 +1,30 @@
+	<div id="gauche">
+		<div class="espace"></div>
+		[(#CONFIG{durzy/aff_cadre_gh}|!={aucun}|?{' ',''})<INCLURE {fond=inclusions/inc-aff-cadre-gh}>]
+		<div class="espace"></div>
+		[(#CONFIG{durzy/aff_cadre_gm}|!={aucun}|?{' ',''})<INCLURE {fond=inclusions/inc-aff-cadre-gm}>]
+		<div class="espace"></div>
+		[(#CONFIG{durzy/aff_cadre_gb}|!={aucun}|?{' ',''})<INCLURE {fond=inclusions/inc-aff-cadre-gb}>]
+		<div class="espace"></div>
+	</div>
+
+	<div id="centre" style="width: #EVAL{36*#CONFIG{durzy/largeur_site}}em;">
+		[(#REM) -------------------- Affichage de la une en fonction de Cfg -----------------------------]
+		[(#REM) Affichage du dernier article publié après extraction de tous les articles des rubriques masquées]
+		<BOUCLE_exclure_rub(RUBRIQUES){titre_mot=rubrique-masquée}>
+			<BOUCLE_extract(articles) {id_rubrique} {doublons}>
+			</BOUCLE_extract>
+		</BOUCLE_exclure_rub>
+		<BOUCLE_derniers(ARTICLES){par date}{inverse}{0,1} {doublons}>
+			[(#CONFIG{durzy/aff_sommaire}|=={sommaire_last}|?{' ',''})
+			<INCLURE{fond=inclusions/inc-article-sommaire}{id_article=#ID_ARTICLE}>]
+		</BOUCLE_derniers> 
+		
+		[(#REM) Affichage d'un article au choix]
+		[(#CONFIG{durzy/aff_sommaire}|=={sommaire_article}|?{' ',''})
+		<INCLURE{fond=inclusions/inc-article-sommaire}{id_article=#CONFIG{durzy/article_sommaire}}{self=#SELF}>]
+		
+		[(#REM) Affichage d'une image au choix, qui sera redimensionnée automatiquement en fonction de la largeur du site]
+		[(#CONFIG{durzy/aff_sommaire}|=={sommaire_image}|?{' ',''})
+		[(#MODELE{AFFICHE_IMAGE}{id_document=#CONFIG{durzy/image_sommaire}}||image_reduire{#EVAL{400*#CONFIG{durzy/largeur_site}},0})]]
+	</div>

@@ -1,0 +1,92 @@
+#CACHE{3600}
+#HTTP_HEADER{"Cache-Control: max-age=3600, must-revalidate"}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+
+<head>
+	<title><:poster_message:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+	<meta name="robots" content="none" />
+	<INCLURE{fond=/inclusions/inc-head}{lang}> 
+</head>
+
+<body onload="setHover()">
+<div id="page">
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=/inclusions/inc-entete}{lang}>
+
+	[(#REM) Fil d'Ariane ]
+	<div class="cadre">
+	<img src="#CHEMIN{images/puce1.png}" border="0" alt="" />
+	<a href="#URL_SITE_SPIP/">Accueil</a>
+
+		<BOUCLE_contexte_article(ARTICLES) {id_article}>
+		<BOUCLE_ariane_article(HIERARCHIE) {id_article}>
+		<img src="#CHEMIN{images/puce1.png}" border="0" alt=""/> <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+		</BOUCLE_ariane_article>
+		<img src="#CHEMIN{/images/puce1.png}" border="0" alt=""/> <a href="#URL_ARTICLE">[(#TITRE|couper{80})]</a>
+		</BOUCLE_contexte_article>
+		</B_contexte_article>
+
+		<BOUCLE_contexte_breve(BREVES) {id_breve}>
+		<BOUCLE_ariane_breve(RUBRIQUES) {id_rubrique}>
+		<img src="#CHEMIN{images/puce1.png}" border="0" alt=""/> <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+		</BOUCLE_ariane_breve>
+		<img src="#CHEMIN{images/puce1.png}" border="0" alt=""/> <a href="#URL_BREVE">[(#TITRE|couper{80})]</a>
+		</BOUCLE_contexte_breve>
+
+		<BOUCLE_contexte_rubrique(RUBRIQUES) {id_rubrique}>
+		<BOUCLE_ariane_rubrique(HIERARCHIE) {id_rubrique}>
+		<img src="#CHEMIN{images/puce1.png}" border="0" alt=""/> <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+		</BOUCLE_ariane_rubrique>
+		<img src="#CHEMIN{images/puce1.png}" border="0" alt=""/> <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+		</BOUCLE_contexte_rubrique>
+
+		<BOUCLE_contexte_site(SITES) {id_syndic}>
+		<BOUCLE_ariane_site(HIERARCHIE) {id_rubrique}>
+		<img src="#CHEMIN{images/puce1.png}" border="0" alt=""/> <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+		</BOUCLE_ariane_site>
+		<img src="#CHEMIN{images/puce1.png}" border="0" alt=""/> <a href="[(#ID_SYNDIC|generer_url_site)]">[(#TITRE|couper{80})</a>
+		</BOUCLE_contexte_site>
+
+		<//B_contexte_site>
+		<//B_contexte_rubrique>
+		<//B_contexte_breve>
+		<//B_contexte_article>
+
+		<BOUCLE_contexte_forum(FORUMS) {id_forum}>
+		<img src="#CHEMIN{images/puce1.png}" border="0" alt=""/> <a href="#URL_FORUM">[(#TITRE|couper{80})]</a>
+		</BOUCLE_contexte_forum>
+
+		<img src="#CHEMIN{images/puce1.png}" border="0" alt=""/> <:poster_message:>	
+	</div>
+    
+	[(#REM) Contenu : poster un message dans le forum ]
+	<div class="cadre">
+     
+	   <:en_reponse:> 
+	   	
+		<BOUCLE_forum_parent(FORUMS) {id_forum}>
+		 <div class="cadre">
+		  <div class="cadre-titre-article">
+		   <a href="#URL_FORUM" ><strong>#TITRE</strong></a>
+		   [posté le (#DATE|affdate)][(#DATE|heures)][:(#DATE|minutes)][, <:par_auteur:> (#NOM)]		  </div>
+		  [(#TEXTE|lignes_longues)]
+		 </div>
+	   </BOUCLE_forum_parent>
+	   
+       <//B_forum_parent>
+	 
+    <div class="espace"></div>
+	[<h3 class="spip"><:envoyer_message:></h3>
+	<div class="espace"></div>
+	(#FORMULAIRE_FORUM)]
+	<div class="espace"></div>
+   </div><!-- fin conteneur -->
+   
+   [(#REM) Pied de page ]
+   <INCLURE{fond=/inclusions/inc-footer}{lang}>
+
+ </div><!-- fin page -->
+</body>
+</html>

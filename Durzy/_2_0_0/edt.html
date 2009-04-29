@@ -1,0 +1,84 @@
+#CACHE{3600}
+<BOUCLE_article_principal(ARTICLES) {id_article}{doublons}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+
+<head>
+	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+	<INCLURE{fond=/inclusions/inc-head}{lang}> 
+</head>
+
+
+<body onload="setHover()">
+
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=/inclusions/inc-entete}{lang}>     
+
+	<div id="gauche">
+		<div class="espace"></div>
+		<INCLURE {fond=inclusions/inc-edt}>
+	</div>
+	
+	<div class="espace"></div>
+	
+	<div id="article-cadre" >
+		<div class="cadre">
+			
+			<div class="cadre-titre-article">  
+				[(#REM) Type d'EDT ]
+				<div class="titre-article">
+					#TITRE
+				</div>  
+			 
+                [(#REM) Information à l'utilisateur ]
+			    <div id="descriptif-article"> 
+			 	 Cliquez sur un des liens pour faire apparaître l'emploi du temps dans une nouvelle fenêtre
+			    </div>
+				
+				[(#REM) Version de l'EDT]
+				<div align="right">
+				[Version du (#DATE|affdate)]
+				&nbsp;
+				</div>
+				
+			</div> <!-- id="cadre-titre-article" -->
+			
+			<div class="espace"></div>
+			<div class="texte-article" >
+            <table width="100%" border="0">
+            <tr>
+              <td align="center" valign="top" bgcolor="#EEEEEE"><span class="Style1">
+                <B_documents_portfolio1>
+                <BOUCLE_documents_portfolio1(DOCUMENTS) {id_article} {mode=document}{extension==(png|jpg|gif)$} {par date} {1/2}>
+                [<a href="#URL_PAGE{popup,id_document=#ID_DOCUMENT}" onclick="window.open(this.href, '[(#TITRE|couper{80}|texte_backend)]','toolbar=0,status=0,scrollbars=0,resizable=1,menuBar=0, width=[(#LARGEUR)],height=[(#HAUTEUR)]');return(false)"[ title="(#TITRE|couper{80}|texte_backend)"]>(#FICHIER|edt)</a>]<br />
+                </BOUCLE_documents_portfolio1>
+                </B_documents_portfolio1>
+                </span></td>
+              <td align="center" valign="top" bgcolor="#EEEEEE"><span class="Style1">
+                <BOUCLE_documents_portfolio2(DOCUMENTS) {id_article} {mode=document}{extension==(png|jpg|gif)$} {par date} {2/2}>
+                [<a href="#URL_PAGE{popup,id_document=#ID_DOCUMENT}" onclick="window.open(this.href ,'[(#TITRE|couper{80}|texte_backend)]','toolbar=0,status=0,scrollbars=0,resizable=1,menuBar=0, width=[(#LARGEUR)],height=[(#HAUTEUR)]');return(false)"[ title="(#TITRE|couper{80}|texte_backend)"]>(#FICHIER|edt)</a>]<br />
+                </BOUCLE_documents_portfolio2>
+                </span></td>
+            </tr>
+          </table>
+				<div class="espace"></div>
+			</div>
+		</div> <!-- fin de "cadre" -->
+		<div class="espace"></div>
+	</div> <!-- fin de "article-cadre" -->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=/inclusions/inc-footer}{lang}>
+</div><!-- fin page -->
+</body>
+</html>
+</BOUCLE_article_principal>
+
+ <!-- Si on arrive ici c'est que l'utilisateur tente d'accéder à un article restreint. 
+      On le prévient donc, plutôt que d'afficher une page blanche...                      -->
+  [(#ID_ARTICLE|accesgroupes_article_restreint|?{' ',''})<INCLURE{fond=/inclusions/inc_accesgroupes_login}>]
+
+<//B_article_principal>

@@ -1,0 +1,59 @@
+#CACHE{24 * 3600}
+#HTTP_HEADER{"Cache-Control: no-store, no-cache, must-revalidate"}
+#HTTP_HEADER{Pragma: no-cache}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+
+<head>
+	<title><:pass_erreur:> 404 - [(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+	<INCLURE{fond=/inclusions/inc-head}{lang}> 
+</head>
+
+<body onload="setHover()">
+<div id="page">
+	<INCLURE{fond=/inclusions/inc-entete}{lang}> 
+	<div id="gauche">
+		<div class="espace"></div>
+			[(#REM) mini calendrier : 
+			1er arg la date,
+			2eme le nom de la variable date (optionel : 'date' par defaut)
+			3eme l'url sur laquelle boucler (optionel : url courante par defaut) ]
+			#CALENDRIER_MINI{#ENV{date},'date',#SELF}
+		<div class="espace"></div>
+		<INCLURE {fond=inclusions/inc-edito}{lang}>
+		<div class="espace"></div>
+	</div>
+ 
+	<div id="centre">
+		<div class="espace"></div>
+		<div class="cadre-titre-article">
+			<div class="titre-rubrique" style="text-align:center">
+			[(#ENV*{erreur}|propre) ]
+			<div class="espace"></div>
+			<img src="#CHEMIN{images/404-erreur.png}" border="0" alt="" />
+			<div class="espace"></div>
+			</div>
+		
+			 
+		</div>
+	</div>
+ 
+	<div id="droite">
+		<div class="espace"></div>
+		<!-- Derniers articles   -->
+		<INCLURE {fond=inclusions/inc-last-articles}>
+		<div class="espace"></div>
+		<!-- Accés direct   -->
+		<INCLURE {fond=inclusions/inc-direct-acces}>
+		<div class="espace"></div>
+		<INCLURE {fond=inclusions/inc-breve}>
+		<div class="espace"></div>
+	</div>
+
+	<!-- Pied de page   -->
+	<INCLURE{fond=inclusions/inc-footer}{lang}>
+</div>
+#SPIP_CRON
+</body>
+</html>

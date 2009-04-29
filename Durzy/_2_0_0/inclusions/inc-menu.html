@@ -1,0 +1,10 @@
+[<script type="text/javascript" src="(#CHEMIN{javascript/menu.js})"> </script>]
+<div id="menu">
+<ul class="menu">
+    [(#REM) Afficher ou pas le lien vers l'accueil dans le menu]
+	[(#CONFIG{durzy/aff_accueil}|?{'<li><a href="spip.php?page=sommaire">Accueil</a></li>',''})]
+    
+    [(#REM) Tester la présence du plugin 'Accès restreint par groupes' pour afficher la bonne version du menu ]
+    [(#PLUGIN{accesgroupes}|=={1}|?{' ',''})<INCLURE {fond=inclusions/inc-menu-restreint}>]
+    [(#PLUGIN{accesgroupes}|!={1}|?{' ',''})<INCLURE {fond=inclusions/inc-menu-non-restreint}>]
+</div>

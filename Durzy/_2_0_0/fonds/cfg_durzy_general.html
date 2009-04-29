@@ -1,0 +1,154 @@
+#CACHE{0}
+<!-- head= 
+[<link rel="stylesheet" type="text/css" href="(#CHEMIN{styles/accordion.css})" />]
+[<script type="text/javascript" src="(#CHEMIN{javascript/interface.js})"></script>]
+[<script type="text/javascript" src="(#CHEMIN{javascript/menu_accordeon.js})"></script>]
+
+[<script type="text/javascript"  src="(#CHEMIN{javascript/jquery.bgiframe.js})" type="text/javascript"></script>]
+[<script type="text/javascript"  src="(#CHEMIN{javascript/jquery.dimensions.js})" type="text/javascript"></script>]
+[<script type="text/javascript"  src="(#CHEMIN{javascript/jquery.tooltip.js})" type="text/javascript"></script>]
+[<link rel="stylesheet" href="(#CHEMIN{javascript/jquery.tooltip.css})" />]
+
+<script type="text/javascript">
+jQuery(function() {
+
+jQuery('a').tooltip({
+	track: true,
+	delay: 0,
+	showURL: false,
+	showBody: " - "
+});
+});
+</script>
+
+
+
+-->
+<!-- titre=Squelettes Durzy - Configuration g&eacute;n&eacute;rale -->
+<!-- icone=images/config.png -->
+[(#SET{logo, <img src='#DOSSIER_SQUELETTE/../images/config.png' width='24' height='24' alt='couleurs' style="float:#LANG_RIGHT;" /> })]
+<!-- descriptif= [(#GET{logo})] <:durzy:description_gen:> -->
+
+<!-- nom=durzy -->
+<!-- onglet=durzy -->
+
+<!-- liens*=durzy -->
+<!-- liens*=durzy_cadres -->
+<!-- liens*=durzy_couleurs -->
+
+<form method="post" action="#SELF">[(#ENV{_cfg_}|form_hidden)]
+
+	<div style="float:right">
+		<input type="submit" name="_cfg_ok" value="<:oK:>" class="fondo" />
+		<input type="reset" value="<:reset:>" class="fondo" />
+		<input type="submit" name="_cfg_delete" value="<:supprimer:>" class="fondo" />
+	</div>
+	<br /> <br/>
+
+<!-- Généralités pour les réglages-->
+
+<fieldset style="background-color:#FFFFCC"><legend><strong><:durzy:apparence_site:></strong></legend>
+	
+	<p>
+	<label for="largeur_site"><a href="#" title="<:durzy:largeur_site:> - <:durzy:desc_largeur_site:>"><:durzy:largeur_site:></a></label>
+	<select name="largeur_site">
+		<option value="1"     [(#CONFIG{durzy/largeur_site}|=={1}|?{selected="selected",''})]> 800</option>
+		<option value="1.125" [(#CONFIG{durzy/largeur_site}|=={1.125}|?{selected="selected",''})]> 1024</option>
+		<option value="1.5"   [(#CONFIG{durzy/largeur_site}|=={1.5}|?{selected="selected",''})]> 1280 </option>
+	</select>&nbsp;<i> px</i>
+	</p>
+	
+	<p>
+	<label for="lien_accueil"><a href="#" title="<:durzy:lien_accueil:> - <:durzy:desc_lien_accueil:>"><:durzy:lien_accueil:></a></label>
+	<input type="checkbox" name="aff_accueil" [(#CONFIG{durzy/aff_accueil}|?{Checked="checked",''})]
+	<img src="../squelettes/images/accueil.png"/ alt="icone accueil">
+	</p>
+	
+	<p>
+	<label for="bandeau_inferieur"><a href="#" title="<:durzy:bandeau_inferieur:> - <:durzy:desc_bandeau_inferieur:>"><:durzy:bandeau_inferieur:></a></label>
+	<input type="checkbox" name="aff_pdp_sommaire" [(#CONFIG{durzy/aff_pdp_sommaire}|?{checked})]>Sommaire 
+	<input type="checkbox" name="aff_pdp_article"  [(#CONFIG{durzy/aff_pdp_article}|?{checked})]>Article
+	<input type="checkbox" name="aff_pdp_rubrique" [(#CONFIG{durzy/aff_pdp_rubrique}|?{checked})]>Rubrique
+    <input type="checkbox" name="aff_pdp_recherche" [(#CONFIG{durzy/aff_pdp_rubrique}|?{checked})]>Recherche
+    
+	&nbsp;<img src="../squelettes/images/pdp.jpg">
+	</p>
+	
+	<label for="puces_animees"><a href="#" title="<:durzy:puces_animees:> - <:durzy:desc_puces_animees:>"><:durzy:puces_animees:></a></label>
+	<select name="puces_animees">
+		<option value="puce-" [(#CONFIG{durzy/puces_animees}|=={puce-}|?{selected="selected",''})]>Par défaut</option>
+		<option value="puce-aix-"  [(# CONFIG{durzy/puces_animees}|=={puce-aix-}|?{selected="selected",''})]>Puces académie d'Aix Marseille</option>
+		<option value="puce-durzy-" [(#CONFIG{durzy/puces_animees}|=={puce-durzy-}|?{selected="selected",''})]>Puces lycée Durzy</option>
+		<option value="puce-cortat-" [(#CONFIG{durzy/puces_animees}|=={puce-cortat-}|?{selected="selected",''})]>Puces lycée Cortat</option>
+		<option value="">Personnalisées</option>
+	</select>
+	<img src="../squelettes/images/puces/#CONFIG{durzy/puces_animees}on.png"/ alt="puce on">
+	&nbsp;
+	<img src="../squelettes/images/puces/#CONFIG{durzy/puces_animees}off.png"/ alt="puce off">
+
+</fieldset>
+
+
+<fieldset style="background-color:#FFFFCC"><legend><:durzy:polices_site:></legend>
+	<label for="taille_texte_menus"><a href="#" title="<:durzy:taille_texte_menus:> - <:durzy:desc_taille_texte_menus:>"><:durzy:taille_texte_menus:></a></label>
+		<select name="taille_texte_menus">
+			<option value="10"  [(#CONFIG{durzy/taille_texte_menus}|=={10}|?{selected="selected",''})]>10</option>
+			<option value="11" [(#CONFIG{durzy/taille_texte_menus}|=={11}|?{selected="selected",''})]> 11</option>
+			<option value="12" [(#CONFIG{durzy/taille_texte_menus}|=={12}|?{selected="selected",''})]> 12</option>
+		</select>&nbsp;<i> px</i>&nbsp;&nbsp;&nbsp;
+
+		<label for="taille_texte_cadres"><a href="#" title="<:durzy:taille_texte_cadres:> - <:durzy:desc_taille_texte_cadres:>"><:durzy:taille_texte_cadres:></a></label>
+		<select name="taille_texte_cadres">
+			<option value="10"  [(#CONFIG{durzy/taille_texte_cadres}|=={10}|?{selected="selected",''})]>10</option>
+			<option value="11" [(#CONFIG{durzy/taille_texte_cadres}|=={11}|?{selected="selected",''})]> 11</option>
+			<option value="12" [(#CONFIG{durzy/taille_texte_cadres}|=={12}|?{selected="selected",''})]> 12</option>
+		</select>&nbsp;<i> px</i>
+</fieldset>
+
+
+<!-- Affichage de la une en page sommaire-->
+<fieldset style="background-color:#FFFFCC"><legend>La Une de la <strong>page sommaire</strong></legend>
+<input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_aucun}|?{checked})] value="sommaire_aucun">Rien (Permet de placer le code de votre choix dans cette zone de la page)<br />
+<input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_image}|?{checked})] value="sommaire_image">Une image au choix&nbsp;:
+<select name="image_sommaire">
+ <BOUCLE_images_site(DOCUMENTS) {tout} {mode=image}>
+  <option value="#ID_DOCUMENT" [(#CONFIG{durzy/image_sommaire}|=={#ID_DOCUMENT}|?{selected="selected",''})]>#ID_DOCUMENT . #TITRE</option>
+  </BOUCLE_images_site>
+	</select>
+	<br />
+	<input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_last}|?{checked})] value="sommaire_last">Le dernier article publié
+	<br />
+	<input type="radio" name="aff_sommaire" [(#CONFIG{durzy/aff_sommaire}|=={sommaire_article}|?{checked})] value="sommaire_article">Un article au choix.
+	&nbsp;Est actuellement sélectionné&nbsp;:&nbsp;
+	<ul>
+ 	 <li>L'article
+ 	  <BOUCLE_article_sommaire(ARTICLES) {id_article=#CONFIG{durzy/article_sommaire}}><strong> n° #ID_ARTICLE - #TITRE</strong>
+		<BOUCLE_rubrique_article_sommaire(RUBRIQUES) {id_rubrique}>
+		 </li>
+		 <li>Dans la rubrique :<strong> #TITRE</strong>
+		</BOUCLE_rubrique_article_sommaire>
+	  </BOUCLE_article_sommaire>
+	 </li>
+	</ul>
+	
+    [(#REM) Affichage du menu accordéon pour le choix de l'article de une]
+	 <dl id="myAccordion">
+	 <BOUCLE_secteurs(RUBRIQUES) {tout}{par num titre}>
+	 <dt><strong>rubrique : #TITRE</strong></dt>
+	  <dd>
+	  <BOUCLE_articles(ARTICLES) {id_rubrique} {par num titre}>
+	   <li>
+		<input type="radio" name="article_sommaire" [(#CONFIG{durzy/article_sommaire}|=={#ID_ARTICLE}|?{checked})] value="#ID_ARTICLE">#ID_ARTICLE . #TITRE
+	   </li>
+	  </BOUCLE_articles>
+	  </dd>
+	  </BOUCLE_secteurs>	
+	  </dl>
+</fieldset>
+	<div style="float:right">
+		<input type="submit" name="_cfg_ok" value="<:oK:>" class="fondo" />
+		<input type="reset" value="<:reset:>" class="fondo" />
+		<input type="submit" name="_cfg_delete" value="<:supprimer:>" class="fondo" />
+	</div>
+	<div class="nettoyeur" />
+	</form>

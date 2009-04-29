@@ -1,0 +1,105 @@
+#CACHE{0}
+#HTTP_HEADER{"Cache-Control: no-store, no-cache, must-revalidate"}
+#HTTP_HEADER{Pragma: no-cache}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+
+<head>
+	<title>Identification nécessaire - [(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+	<INCLURE{fond=/inclusions/inc-head}{lang}> 
+</head>
+
+<body onload="setHover()">
+<div id="page">
+	<INCLURE{fond=/inclusions/inc-entete}{lang}> 
+	<div id="gauche">
+		<div class="espace"></div>
+			#CALENDRIER_MINI{#ENV{date},'date',#SELF}
+		<div class="espace"></div>
+		<INCLURE {fond=inclusions/inc-edito}{lang}>
+		<div class="espace"></div>
+	</div>
+ 
+	<div id="centre">
+
+		<div class="cadre-titre-article">
+			<div class="titre-rubrique" style="text-align:center">
+			[(#REM) Le code php qui suit a été simplement recopié depuis la 
+			        page "inc_accesgroupes_login" originale qui se trouve par 
+					défaut dans le répertoire du plugin "acces restreint par groupe" ]
+	  <img style="width: 24px; height: 24px;" alt="Espace réservé" src="#CHEMIN{images/zones-acces-24.gif}" align="middle"/>
+	 <?php  $id_elem = '';
+       $elem = '';
+      // on est dans une config de 404 avec une url du type ?articlexxx ou ?breveyyy ou ?rubriquezzz
+      // trouver l'id_rubrique d'après le paramètre envoyé par l'url
+       $Turl = explode('&',$_SERVER['QUERY_STRING']);
+       $Telem = array('rubrique', 'article', 'breve');
+       foreach ($Telem as $e) {
+          		 foreach ($Turl as $m) {
+          				 				 if ($Tquery = explode($e, $m)) {
+          								 		$id_elem = $Tquery[1];
+          										$elem = $e;
+          										break;
+          								 }
+          		 }
+      				 if ($id_elem != '') {
+      					  break;
+      				 }
+       }
+       if ($elem == 'rubrique') {
+       		$id_rubrique = $id_elem;
+       }
+       else {
+       			$sql = "SELECT id_rubrique FROM spip_".$elem."s WHERE id_".$elem." = ".$id_elem." LIMIT 1";
+//echo '<br>$sql = '.$sql;							
+      			$result = spip_query($sql);
+//echo '<br>mysql_error = '.mysql_error();							
+      			$row = spip_fetch_array($result);
+      			$id_rubrique = $row['id_rubrique'];
+			 }
+			 if ($elem == 'article') {  ?>
+				 <h2><:accesgroupes:bloque_article:></h2> 
+<?php	 }
+			 elseif ($elem == 'breve') {  ?>
+				 <h2><:accesgroupes:bloque_breve:></h2> 
+<?php  }			 
+			 else {  ?>
+			 	 <h2><:accesgroupes:bloque_rubrique:></h2> 
+<?php  } 
+			 if ($auteur_session) { 
+			  // formulaire de demande d'accès
+			 		accesgroupes_affichage_acces_restreint(); ?>
+				 <br /><span style="font-size: 75%;">Login : <strong><?php echo $auteur_session['nom']; ?></strong>
+<?php     if ($auteur_session['statut'] == '0minirezo') { ?>				
+				 <a href="[(#URL_LOGOUT)]">[<:accesgroupes:se_reconnecter:>]</a>
+<?php	    }  ?>
+				  </span>
+<?php  }
+			 else { ?>	
+					 #LOGIN_PUBLIC			 
+<?php  } ?> <!-- fin du script php    -->
+		
+			</div> 
+		       <div class="espace"></div> 
+                </div>
+	</div>
+ 
+	<div id="droite">
+		<div class="espace"></div>
+		<!-- Derniers articles   -->
+		<INCLURE {fond=inclusions/inc-last-articles}>
+		<div class="espace"></div>
+		<!-- Accés direct   -->
+		<INCLURE {fond=inclusions/inc-direct-acces}>
+		<div class="espace"></div>
+		<INCLURE {fond=inclusions/inc-breve}>
+		<div class="espace"></div>
+	</div>
+
+	<!-- Pied de page   -->
+	<INCLURE{fond=inclusions/inc-footer}{lang}>
+</div>
+#SPIP_CRON
+</body>
+</html>

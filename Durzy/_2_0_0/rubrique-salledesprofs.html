@@ -1,0 +1,135 @@
+#CACHE{7200}
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+
+<head>
+	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+
+	[(#REM) Lien vers le flux RSS de la rubrique ]
+	<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
+
+	<INCLURE{fond=/inclusions/inc-head}{lang}> 
+</head>
+
+<body onload="setHover()">
+
+		<div id="page">
+			[(#REM) Entete de la page + menu du site ]
+			<INCLURE{fond=/inclusions/inc-entete}{lang}>
+
+			<div id="gauche">
+				<div class="espace"></div>
+				#CALENDRIER_MINI{#ENV{date},'date','#SELF'} 
+				<div class="espace"></div>
+					<!-- les sites référencés dans la rubrique -->
+
+					<B_sites_rubrique>
+
+					   <div class="espace"></div>
+
+					   <div class="cadre">
+						<div class="texte-cadre" style="margin-left:5px;margin-top:5px">			
+						    <img src="#CHEMIN{images/puce1.png}" alt="" /> Sur le WEB :
+					<BOUCLE_sites_rubrique(SITES){id_rubrique}{par date}> 
+							[(#LOGO_SITE|right||image_reduire{100,0})]
+							<div class="espace"></div>
+							[(#DESCRIPTIF)]
+							<a href="#URL_SITE"> #NOM_SITE</a>
+							<div class="espace"></div>
+					</BOUCLE_sites_rubrique>
+					    </div>
+					   </div>
+					</B_sites_rubrique>	
+      			<div class="espace"></div>
+            	<!-- Dernieres breves   -->   
+      			<INCLURE{fond=/inclusions/inc-breve}{lang}>
+				<div class="espace"></div>
+			</div>
+
+		<div id="centre">
+ 				<!-- Chemin de navigation -->
+				<div class="cadre">
+					<div id="texte-cadre" style="margin-left:5px ">
+						<a href="#URL_SITE_SPIP/"><img src="#CHEMIN{images/puce1.png}" border="0" alt="" />&nbsp;Accueil</a> 
+						<BOUCLE_chemin_rubriques(HIERARCHIE){id_rubrique}{tout}>
+							&nbsp;<img src="#CHEMIN{images/puce1.png}" width="10" height="10" alt="" />
+							<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+						</BOUCLE_chemin_rubriques>
+					</div>
+				</div>
+				<div class="espace"></div>
+		
+				<!-- les articles de la rubrique (s'ils existent) -->
+				<div id="texte-article" > 
+					<B_articles_rubs>
+						<div class="cadre-titre-article">
+							<div id="logotitrepage"> #LOGO_RUBRIQUE </div>
+							<!-- id="logotitrepage" -->
+							<div class="#EDIT{titre} titre-rubrique">
+								[(#TITRE)]
+								<!-- Le descriptif lié à la rubrique (s'il existe)  -->  
+								[<br/>
+								<div class="#EDIT{descriptif} descriptif-rubrique">(#DESCRIPTIF)</div>]
+								<!-- Le texte lié à la rubrique (s'il existe)  -->  
+								[<div id="#EDIT{texte} texte-rubrique" >(#TEXTE)</div>]
+								<div class="espace"></div>
+							</div>
+						</div>
+
+						<BOUCLE_articles_rubs(ARTICLES) {id_rubrique} {par date}{inverse}>
+							<div class="espace"></div>
+							<!--cadre liste des articles-->
+							<div class="cadre" style="margin-left:10px ">
+								<div onmouseover="imag#ID_ARTICLE.src='#CHEMIN{images/puce-on.png}'" onmouseout="imag#ID_ARTICLE.src='#CHEMIN{images/puce-off.png}'">  
+									<div id="titre-article-rub">
+										<a href="#URL_ARTICLE">
+											<img src="#CHEMIN{images/puce-off.png}" name="imag#ID_ARTICLE"  border="0" align="middle" id="imag#ID_ARTICLE" alt=""/>
+											[(#TITRE)]
+										</a>
+									</div>
+									[<div id="introduction-article">(#INTRODUCTION|supprimer_tags)</div>]
+									<div class="bas-cadre">[Article mis en ligne le (#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]&nbsp; </div>
+									<div class="espace" ></div>
+								</div> <!-- fin du cadre liste des articles -->
+							</div>
+						</BOUCLE_articles_rubs>
+			</div>		
+		</div>	
+
+<div id="droite">
+        <div class="espace"></div>
+		<!-- Les emplois du temps, s'ils existent   -->
+		<INCLURE {fond=inclusions/inc-edt}>
+        <div class="espace"></div>
+		 <!-- Affichage des sous-rubriques (un seul niveau) -->
+         <!-- Enlever les sous rubriques masquées et surtout la rubrique emploi du temps-->
+         <BOUCLE_exclure_rub(RUBRIQUES){id_parent}{titre_mot=rubrique-masquée}{doublons rub}>
+		 </BOUCLE_exclure_rub>
+
+  	     <BOUCLE_SsRubriques(RUBRIQUES) {id_parent} {par date}{inverse}{doublons rub}>
+   		   <div class="espace"></div>
+   		   <div class="cadre" style="margin-left:10px ">
+ 		     <a href="#URL_RUBRIQUE" > 
+ 	  	      [(#LOGO_RUBRIQUE|right)]
+	  	      [(#TITRE|Supprimer_numero)]
+		     </a>
+   		     [<div id="descriptif-sous-rubrique">(#DESCRIPTIF)</div>]
+   		   </div>
+		</BOUCLE_SsRubriques>
+</div>
+
+      <!-- Pied de page   -->
+      <INCLURE{fond=/inclusions/inc-footer}{lang}>
+</div>
+
+
+
+</body>
+</html>
+
+</BOUCLE_rubrique_principal>
+  [(#ID_RUBRIQUE|accesgroupes_rubrique_restreinte|?{' ',''})
+    <INCLURE{fond=inclusions/inc_accesgroupes_login}>]
+<//B_rubrique_principal>

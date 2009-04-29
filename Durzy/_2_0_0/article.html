@@ -1,0 +1,162 @@
+#CACHE{86400}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+
+<head>
+	<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+	<!-- CSS général  -->
+	<INCLURE{fond=/inclusions/inc-head}{lang}> 
+</head>
+
+<body onload="setHover()">
+
+<div id="page">
+	<INCLURE{fond=/inclusions/inc-entete}{lang}> 
+	[(#REM) Gauche de la page ]
+	<div id="gauche">
+		<div class="espace"></div>
+		<INCLURE{fond=inclusions/inc-meme-rub}{id_rubrique} {doublons}{lang}>
+		[(#REM) Accès direct ]
+		<div class="espace"></div>
+		<INCLURE{fond=inclusions/inc-direct-acces}{lang}>
+		[(#REM) Derniers messages ]
+		<div class="espace"></div>
+		<INCLURE{fond=inclusions/inc-last-messages}{id_article}{lang}>
+		<div class="espace"></div>
+	</div>
+
+	[(#REM) Droite de la page ]
+	<div id="article-cadre">
+		<div class="espace"></div>
+		
+		[(#REM) Chemin de navigation ] 
+		<INCLURE{fond=inclusions/inc-chemin} {id_article} {id_breve} {id_rubrique}>
+		[(#REM) Fin du chemin de navigation ]
+		
+		<div class="espace"></div>
+		
+        [(#REM) Cadre de l'article ]
+		<div class="cadre"> 
+			
+			<div class="cadre-titre-article"> [(#REM) En-tête de l'article ]
+				<BOUCLE_rubrique_parent(RUBRIQUES){id_rubrique}>
+					<a href="#URL_RUBRIQUE">[(#LOGO_ARTICLE_RUBRIQUE|right||image_reduire{120,60})]</a>
+				</BOUCLE_rubrique_parent>
+				
+				<div class="titre-article"> [(#REM) titre de l'article ]
+					<h1 class="#EDIT{titre} titre">#TITRE</h1>
+				</div>
+				
+				[<div id="descriptif-article"> [(#REM) Descriptif de l'article ]
+					<div class="#EDIT{descriptif}descriptif">(#DESCRIPTIF)</div>
+				</div>]
+				
+				<div style="text-align:right">
+					[Article mis en ligne le (#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]&nbsp;
+				</div>
+			</div> [(#REM) Fin de l'En-tête de l'article ]
+			
+            [(#REM) dans l'attente d'un fonctionnement correct en 1.9.3
+            <INCLURE{fond=inc-barre-outils}{id_article}>
+            ]
+            
+			<div align="left">
+				<span style="font-size:10px;">
+					<a href="#URL_PAGE{imprimer-article,id_article=#ID_ARTICLE}">
+						Imprimer l'article <img src="#CHEMIN{images/imprimer.gif}" width="16" height="16" border="0" align="bottom" alt="imprimer" />
+					</a>
+				</span>
+			</div>
+            
+			
+			[(#REM) Contenu de l'article ]
+			<div id="texte-article">
+				[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
+				[<div class="#EDIT{texte} texte">(#TEXTE||image_reduire{550,0})</div>] [(#REM) Affichage du texte de l'article, découpé le cas échéant ]
+				[<br/>
+				<div>(#NOTES)</div>]
+				[<br/>
+				<div><b>PS : </b>(#PS)</div>]
+				
+				[(#REM) Ajout du site web associé s'il existe ]
+				[ <div class="nettoyeur">&nbsp;</div> <!-- pour forcer l'affichage sous la dernière images -->
+				<div class="#EDIT{hyperlien} hyperlien">
+					<img src="#CHEMIN{images/internet.png}"  border="0" align="absmiddle"  alt="" />
+					<:voir_en_ligne:> : 
+					<a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a>
+				</div>
+				<div class="espace"> </div>
+                ] 
+			</div>[(#REM) fin de "texte-article" pour affichage de l'article]
+			<div class="nettoyeur">&nbsp;</div> <!-- pour éviter le débordement des images vers le bas -->
+		</div> [(#REM) fin de "cadre" pour affichage de l'article]
+		
+		<!--<INCLURE{fond=inclusions/#CONFIG{durzy/portofolio}}{id_article}>-->
+
+		
+		<B_documents_portfolio> [(#REM) Portfolio : album d'images ]
+			<div class="espace"> </div>
+			<div id="cadre-telechargement">
+				<img src="#CHEMIN{images/image-24.gif}" border="0" align="middle" alt="télécharger" />
+				<strong>&nbsp;Galerie de photos :</strong>
+				<div class="espace"> </div>
+				<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document}{extension IN png,jpg,gif}{doublons}>
+					<div class="documents_portfolio">					
+						<a href="#URL_DOCUMENT" class="thickbox">
+							[(#EMBED_DOCUMENT||image_reduire{115,0})]
+						</a>
+						[<div class="#EDIT{titre}titre">(#TITRE)</div> <br />]
+						[<div class="#EDIT{descriptif}descriptif">(#DESCRIPTIF)</div>]
+					</div>
+				</BOUCLE_documents_portfolio>
+				<div class="separateur"> </div>
+			</div>
+			<div class="separateur"> </div>
+		</B_documents_portfolio>
+		
+		[(#REM) Documents joints a l'article ]
+		<B_doc_joints>
+			<div class="espace"> </div>
+			<div id="cadre-telechargement">
+				<img src="#CHEMIN{images/download.gif}" border="0" align="middle" alt="télécharger" /> 
+				<strong>&nbsp;Fichier(s) à télécharger :</strong>
+				<div class="espace"> </div>
+				<BOUCLE_doc_joints(DOCUMENTS){id_article}{par titre}{mode=document}{doublons}>
+					<div id="cadre-doc-telechargement" >
+						[(#LOGO_DOCUMENT|left|#URL_DOCUMENT)]
+						<div id="stat" style="padding-left:7em">
+							<ul style="list-style:circle">
+								<li><a href="#URL_DOCUMENT" title="Télécharger #TITRE">[<strong>(#TITRE)</strong><small>&nbsp;- #TYPE_DOCUMENT</small>]</a></li>
+								[<li>(#DESCRIPTIF)</li>]
+								<li><img src="#CHEMIN{images/size.gif}" align="absmiddle" title="Taille du fichier" alt="" /> [(#TAILLE|taille_en_octets)]</li>
+								[(#REM) Tester la présence du plugin DW2 pour afficher les statistiques ou pas ]
+								[(#PLUGIN{DW2}|?{' ',''})<INCLURE {fond=inclusions/inc-stats-dw2} {id_document}>]
+							</ul>
+						</div>
+						<div class="espace"> </div>
+					</div> [(#REM) Fin de "cadre-doc-telechargement"]
+				</BOUCLE_doc_joints>
+			<div class="spacer">&nbsp;</div> <!-- pour éviter le débordement de l'icone vers le bas -->
+            </div>
+		</B_doc_joints> [(#REM) Fin de "cadre-telechargement ]
+		
+		[(#REM) Forum de l'article ]
+		[<div class="espace"> </div>
+		<img src='#CHEMIN{images/forum.png}' alt="Le forum" border='0'/>&nbsp;
+		<span style="font-size:12px;">
+			<a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_article:></a>
+		</span> ]
+		<INCLURE{fond=/inclusions/inc-forum}{id_article}>
+		<div class="espace"></div>
+	</div> [(#REM) Fin de "article-cadre"]
+	
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inclusions/inc-footer}>
+	
+</div>[(#REM) Fin de "page"]
+
+[(#REM) Test de l'affichage du pied de page ]
+[(#CONFIG{durzy/aff_pdp_article}|?{' ',''})<INCLURE{fond=/inclusions/inc-pdp}{lang}>]
+</body>
+</html>

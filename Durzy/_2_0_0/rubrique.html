@@ -1,0 +1,231 @@
+#CACHE{7200}
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+
+	<head>
+		<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+		[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+		<!-- CSS général  -->
+		<INCLURE{fond=/inclusions/inc-head}{lang}> 
+	</head>
+
+	<body onload="setHover()">
+
+		<div id="page">
+			[(#REM) Entete de la page + menu du site ]
+			<INCLURE{fond=/inclusions/inc-entete}{lang}>
+
+			<div id="gauche">
+				<div class="espace"></div>
+				#CALENDRIER_MINI{#ENV{date},'date','#SELF'} 
+				<div class="espace"></div>
+				<INCLURE{fond=/inclusions/inc-edito}{lang}>
+				<div class="espace"></div>
+				<INCLURE {fond=inclusions/inc-breve-rubrique}{id_rubrique}>
+				<div class="espace"></div>
+			</div>
+
+
+			<div id="centre">
+
+				[(#REM) Chemin de navigation ] 
+				<INCLURE{fond=inclusions/inc-chemin} {id_article} {id_breve} {id_rubrique}>
+				[(#REM) Fin du chemin de navigation ]
+
+				<div class="espace"></div>
+				
+				[(#REM) Afficher les articles et les sous rubriques non masquées de cette rubrique ]
+				
+				[(#REM) extraire les rubriques masquées]
+				<BOUCLE_exclure_rub(RUBRIQUES){titre_mot=rubrique-masquée}{doublons}>
+				</BOUCLE_exclure_rub>
+				
+				[(#REM) Commencer par les articles de la rubrique (s'ils existent), paginés par 5 ]
+				<div id="texte-article" > 
+					<B_articles_rubs>
+						<div class="cadre-titre-article">
+							<a href="#URL_RUBRIQUE">[(#LOGO_RUBRIQUE|right||image_reduire{100,0})]</a>
+							<div class="#EDIT{titre} titre-rubrique">
+								[(#TITRE)]
+							</div>
+							
+							[(#REM) Descriptif de la rubrique ]
+							[<div id="descriptif-article"> 
+								<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div> 
+							</div>]
+							
+							[(#REM) Le texte lié à la rubrique (s'il existe)]
+							[<div id="texte-rubrique">
+								<div id="#EDIT{texte} texte-rubrique">(#TEXTE)</div>
+							</div>]
+							<div class="espace"></div>
+						</div>
+						
+						#ANCRE_PAGINATION
+						<BOUCLE_articles_rubs(ARTICLES) {id_rubrique} {par date}{inverse}{pagination 5}>
+							<div class="espace"></div>
+							
+							[(#REM) cadre liste des articles]
+							<div class="cadre" style="margin-left:10px ">
+								<div onmouseover="imag#ID_ARTICLE.src='#CHEMIN{images/puce-on.png}'" onmouseout="imag#ID_ARTICLE.src='#CHEMIN{images/puce-off.png}'">
+									<div id="titre-article-rub">
+										<a href="#URL_ARTICLE">
+											<img src="#CHEMIN{images/puce-off.png}" name="imag#ID_ARTICLE" border="0" align="middle" id="imag#ID_ARTICLE" alt=""/>
+											[(#TITRE)]
+										</a>
+									</div>
+									[<div id="introduction-article">(#INTRODUCTION|supprimer_tags|couper)</div>]
+									<div class="bas-cadre">[Article mis en ligne le (#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]&nbsp; </div>
+									<div class="espace" ></div>
+								</div>
+							</div>
+							[(#REM) Fin du cadre liste des articles]
+						</BOUCLE_articles_rubs>
+						[<p class="pagination" style="font-size:0.71em; color:#00824A">Accèdez aux articles plus anciens&nbsp;
+							<img src="#CHEMIN{puce.gif}"  alt="" />
+							(#PAGINATION) &ndash; #GRAND_TOTAL articles
+						</p>]
+						
+						[(#REM) afficher ensuite les sous-rubriques (non masquées) si elles existent, paginées par 5 ]
+						#ANCRE_PAGINATION
+						<BOUCLE_SsRubriques1(RUBRIQUES) {id_parent} {par date}{doublons}{pagination 5}>
+							<div class="espace"></div>
+							<div class="cadre" style="margin-left:20px ">
+								<a href="#URL_RUBRIQUE" > [(#LOGO_RUBRIQUE|right||image_reduire{100,0})] </a>
+								<div class="titre-sous-rubrique" onmouseover="imag#ID_ARTICLE.src='#CHEMIN{images/puce-on.png}'" onmouseout="imag#ID_ARTICLE.src='#CHEMIN{images/puce-off.png}'">
+									<a href="#URL_RUBRIQUE"><img src="#CHEMIN{images/puce-off.png}" name="imag#ID_ARTICLE" border="0" align="middle" alt="" /> [(#TITRE)]</a>
+								</div>
+								[<div class="descriptif-sous-rubrique">(#DESCRIPTIF)</div>]
+								
+								<B_ss_rub_art1>
+									<BOUCLE_ss_rub_art1(ARTICLES){id_rubrique}>
+									</BOUCLE_ss_rub_art1>
+									<br/>
+									<div class="bas-cadre" style="color: #333333;">
+										Cette rubrique contient [(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''}) [(#TOTAL_BOUCLE|=={1}|?{ article, articles})] ]&nbsp;
+									</div> 
+								</B_ss_rub_art1>
+							</div>
+						</BOUCLE_SsRubriques1>
+						[<p class="pagination" style="font-size:0.71em; color:#00824A">Accèdez aux autres sous rubriques&nbsp;
+							<img src="#CHEMIN{puce.gif}"  alt="" />
+							(#PAGINATION) &ndash; #GRAND_TOTAL sous rubriques
+						</p>]
+						</B_SsRubriques1>
+					</B_articles_rubs>
+					
+					[(#REM) Si pas d'article, n'afficher que les sous-rubriques (non masquées) si elles existent, paginés par 5 ]
+					<B_SsRubriques>
+						[(#REM) Logo de la rubrique mère, s'il existe ]
+						[(#LOGO_RUBRIQUE|right||image_reduire{100,0})]
+						<div class="cadre-titre-article">
+							<div class="titre-rubrique">
+								A découvrir dans <strong>[(#TITRE)]</strong>
+								[(#REM) Le descriptif lié à la rubrique (s'il existe)]
+								[<br/>
+								<div class="descriptif-rubrique">(#DESCRIPTIF)</div>]
+								[(#REM) Le texte lié à la rubrique (s'il existe)]
+								[<div class="espace"></div>
+								<div id="texte-rubrique" >(#TEXTE)</div>]
+								<div class="espace"></div>
+							</div>
+						</div>
+						
+						#ANCRE_PAGINATION
+						<BOUCLE_SsRubriques(RUBRIQUES) {id_parent} {par date}{inverse} {doublons}{pagination 5}>
+							<div class="espace"></div>
+							<div class="cadre" style="margin-left:10px">
+								<a href="#URL_RUBRIQUE" > [(#LOGO_RUBRIQUE|right||image_reduire{100,0})]</a>
+								<div class="titre-sous-rubrique" onmouseover="imag#ID_ARTICLE.src='#CHEMIN{images/puce-on.png}'" onmouseout="imag#ID_ARTICLE.src='#CHEMIN{images/puce-off.png}'">
+									<a href="#URL_RUBRIQUE">
+										<img src="#CHEMIN{images/puce-off.png}" name="imag#ID_ARTICLE" border="0" align="middle" alt="" /> 
+										[(#TITRE)]
+									</a>
+								</div>
+								[(#REM) Le descriptif lié à la rubrique (s'il existe)]
+								[ <div class="descriptif-rubrique">(#DESCRIPTIF)</div>]
+								[(#REM) Le texte lié à la rubrique (s'il existe)]
+								[<div id="texte-rubrique" >(#TEXTE)</div>]
+								[(#REM) Le nombre d'articles dans la rubrique]
+								<B_ss_rub_art>
+									<BOUCLE_ss_rub_art(ARTICLES){id_rubrique}>
+									</BOUCLE_ss_rub_art>
+									<br/>
+									<div class="bas-cadre" style="color: #333333;">
+										Cette rubrique contient [(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''}) [(#TOTAL_BOUCLE|=={1}|?{ article, articles})] ]&nbsp;
+									</div> 
+								</B_ss_rub_art>
+							</div>
+						</BOUCLE_SsRubriques>
+						[<p class="pagination" style="font-size:0.71em; color:#00824A">Accèdez aux autres sous rubriques &nbsp;
+							<img src="#CHEMIN{puce.gif}"  alt="" />
+							(#PAGINATION) &ndash; #GRAND_TOTAL sous rubriques
+						</p>]
+					</B_SsRubriques>
+					<//B_articles_rubs>
+					
+					
+					[(#REM) les sites référencés dans la rubrique]
+					<B_sites_rubrique>
+						<div class="espace"></div>
+						<div class="cadre">
+							<div class="texte-cadre" style="margin-left:5px;margin-top:5px">
+								<BOUCLE_sites_rubrique(SITES){id_rubrique}{par date}> 
+									[(#LOGO_SITE|right||image_reduire{100,0})]
+									<div class="espace"></div>
+									[ <div class="nettoyeur">&nbsp;</div> <!-- pour forcer l'affichage sous la dernière images -->
+									<div class="#EDIT{hyperlien} hyperlien">
+										<img src="#CHEMIN{images/internet.png}"  border="0" align="absmiddle"  alt="" />
+										<:voir_en_ligne:> : 
+										<a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a>
+									</div>
+									<div class="espace"> </div>]
+								</BOUCLE_sites_rubrique>
+							</div>
+						</div>
+					</B_sites_rubrique>	
+				</div>
+				
+				
+				[(#REM) Documents joints a la rubrique ]
+				<B_doc_joints>
+					<div class="espace"> </div>
+					<div id="cadre-telechargement">
+						<img src="#CHEMIN{images/download.gif}" border="0" align="middle" alt="télécharger" /> 
+						<strong>&nbsp;Fichier(s) à télécharger :</strong>
+						<div class="espace"> </div>
+						<BOUCLE_doc_joints(DOCUMENTS){id_rubrique}{par titre}{mode=document}{doublons}>
+							<div id="cadre-doc-telechargement" >
+								[(#LOGO_DOC|left|#URL_DOCUMENT)]
+								<div id="stat" style="padding-left:7em">
+									<ul style="list-style:circle">
+										<li><a href="#URL_DOCUMENT" title="Télécharger #TITRE">[<strong>(#TITRE)</strong>]</a></li>
+										[<li>(#DESCRIPTIF)</li>]
+										<li><img src="#CHEMIN{images/size.gif}" align="absmiddle" title="Taille du fichier" alt="" /> [(#TAILLE|taille_en_octets)]</li>
+										[(#REM) Tester la présence du plugin DW2 pour afficher les statistiques ou pas ]
+										[(#PLUGIN{DW2}|?{' ',''})<INCLURE {fond=inclusions/inc-stats-dw2} {id_document}>]
+									</ul>
+								</div>
+								<div class="espace"> </div>
+							</div> <!-- Fin de "cadre-doc-telechargement"-->
+						</BOUCLE_doc_joints>
+					</div> <!-- Fin de "cadre-telechargement"-->
+				</B_doc_joints>
+			</div>
+			
+			<div id="droite">
+				<div class="espace"></div>
+				<!-- Derniers articles   -->
+				<INCLURE{fond=/inclusions/inc-last-articles}{lang} {ajax} {self=#self}>
+				<div class="espace"></div>
+				
+				<!-- Accès direct   -->
+				<INCLURE{fond=/inclusions/inc-direct-acces}{lang}>
+				<div class="espace"></div>
+			</div>
+			
+			<INCLURE{fond=/inclusions/inc-footer}{lang}>
+		</div>
+		[(#CONFIG{durzy/aff_pdp_rubrique}|?{' ',''})<INCLURE{fond=/inclusions/inc-pdp}{lang}>]
+	</body>
+</html>

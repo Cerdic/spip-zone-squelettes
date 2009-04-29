@@ -1,0 +1,51 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title><:icone_agenda:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+<INCLURE{fond=/inclusions/inc-head}>
+<meta name="robots" content="none" />
+<link rel="stylesheet" href="#CHEMIN{styles/calendrier.css}" type="text/css" />
+
+
+<script type="text/javascript" src="#EVAL{_DIR_JAVASCRIPT}layer.js"> </script> 
+<script type="text/javascript" src="#EVAL{_DIR_JAVASCRIPT}presentation.js"> </script> 
+</head>
+
+<body onload="setHover()">
+
+<div id="page">
+[(#REM) Entete de la page + titre du site ]
+<INCLURE{fond=inclusions/inc-entete}{lang}>
+	
+<div class="espace"></div>
+<div class="cadre-titre-article">  
+	<div class="titre-article">
+		Agenda de l'établissement
+	</div>  
+</div> <!-- id="cadre-titre-article" --> 
+<div class="espace"></div>	  
+	
+
+[(#ENV{type, mois}|agenda_connu)
+<INCLURE {fond=agenda_#ENV{type,mois}} {type} {delais=900} {annee} {mois} {jour} {echelle} {partie_cal} {theme}>]
+<div class="espace"></div>
+<div class="cadre">
+	<B_agenda>
+		<h2>Evénements à venir :</h2>
+		<div>
+			<BOUCLE_agenda(EVENEMENTS){age<0}{par date}{statut=publie}>
+				- <strong>#TITRE</strong> [le (#DATE_DEBUT|affdate)] [- Lieu : (#LIEU)] [- Descriptif : (#DESCRIPTIF)] <br />
+			</BOUCLE_agenda>
+		</div>
+	</B_agenda>
+	<div class="espace"></div>	  
+</div>
+
+<div class="espace"></div>
+[(#REM) Pied de page ]
+<INCLURE{fond=inclusions/inc-footer}{lang}>
+</div><!-- Fin de "page" -->
+</body>
+</html>

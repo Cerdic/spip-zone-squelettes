@@ -1,0 +1,40 @@
+<div class="cadre">
+	<BOUCLE_exclure_rub(RUBRIQUES){titre_mot=rubrique-masquée}>
+		<BOUCLE_extract(articles) {id_rubrique} {doublons}>
+			<!-- extraire tous les articles des rubriques masquées -->
+		</BOUCLE_extract>
+	</BOUCLE_exclure_rub>
+
+	<B_topten>
+		<img src="#CHEMIN{images/article-24.gif}" alt="" width="24" height="24" align="left" />
+		<div class="stat" style="padding-left:3em">
+			<strong>Top10 Articles</strong>
+			<div class="espace"></div> &nbsp;
+		</div>
+
+		<BOUCLE_topten(ARTICLES){tous}{!par visites}{pagination 10} {doublons}>
+			<div style="background-color:[(#COMPTEUR_BOUCLE|alterner{'#E5EFF8','#FFFFEE'})];">
+				<div style="float:right">
+					<a href="#URL_ARTICLE" [title="(#TITRE|textebrut|entites_html)"]>[(#VISITES|>{0}|?{#VISITES ,''})[(#VISITES|=={1}|?{visite&nbsp;,visites})]]</a>
+				</div>
+				#BLOC_TITRE		
+                #TITRE
+				#BLOC_DEBUT
+				[(#LOGO_ARTICLE|left||image_reduire{120,50})]
+				<div class="stat">
+					<ul style="list-style:circle">
+						<li>[(#INTRODUCTION|couper{100}|textebrut)]<a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]> [la suite...]</a></li>
+						<li>Publié le  [(#DATE|affdate{'d/m/y'})]</li>
+						<li>Popularité de&nbsp;[(#POPULARITE_ABSOLUE|>{0}|?{#POPULARITE_ABSOLUE ,''})]</li>
+						<li>Dans la rubrique
+							<BOUCLE_rub2(RUBRIQUES) {id_rubrique}>
+								<a href="#URL_RUBRIQUE"><strong>#TITRE</strong></a>
+							</BOUCLE_rub2>
+						</li>
+					</ul>
+				</div>
+				#BLOC_FIN
+			</div>
+		</BOUCLE_topten>
+	</B_topten>
+</div>

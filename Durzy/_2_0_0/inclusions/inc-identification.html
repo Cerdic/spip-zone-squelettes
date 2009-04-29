@@ -1,0 +1,23 @@
+<!-- Début du cadre "identification"   -->
+<div class="acces-direct">
+   <div class="boxcontent">
+	<div class="entete-cadre" >
+	 <div class="cadre-titre">
+	   <img style="width: 24px; height: 24px;" alt="Espace membre" src="#CHEMIN{images/zones-acces-24.gif}" align="middle"/>
+	  Identification
+	 </div>
+	</div>	
+   <div  class="texte-authentification">
+		<div>#FORMULAIRE_LOGIN{#SELF}</div>			
+		<p>[(#SESSION{id_auteur}|?{Bienvenue #SESSION{nom}})]</p>
+		<BOUCLE_test_logo(CONDITION){si #SESSION|?{' ',''}}>
+ 			<BOUCLE_logo(AUTEURS){id_auteur=#SESSION{id_auteur}}>[(#LOGO_AUTEUR|center||image_reduire{100})]</BOUCLE_logo>
+		</BOUCLE_test_logo>  
+		<p>[(#SESSION{statut}|=={0minirezo}?{Statut : administrateur})]
+		[(#SESSION{statut}|=={1comite}?{Statut : rédacteur})]
+		[(#SESSION{statut}|=={6forum}?{Statut : visiteur})]</p>
+		<p>[(#SESSION{id_auteur}|?{<a href="ecrire/" title="L'espace des auteurs et des administrateurs">Espace Privé</a>})]</p>
+		<p>[(#SESSION{id_auteur}|?{' '}) <a href="[(#URL_LOGOUT{spip.php?page=sommaire})]">Se déconnecter</a>]</p>
+	</div>
+  </div>
+</div>

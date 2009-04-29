@@ -1,0 +1,97 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+
+<head>
+	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+	<INCLURE{fond=/inclusions/inc-head}{lang}> 
+</head>
+
+<body onload="setHover()">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=/inclusions/inc-entete}{lang}>   
+
+	<div class="espace"></div>
+	<div class="cadre">
+    <BOUCLE_exclure_rub(RUBRIQUES){titre_mot=rubrique-masquée}>
+	 <BOUCLE_extract(articles) {id_rubrique} {doublons}>
+		<!-- extraire tous les articles des rubriques masquées -->
+	 </BOUCLE_extract>
+	</BOUCLE_exclure_rub> 	
+		
+		<B_articles>
+			<!-- au moins un article trouvé -->
+			<div class="cadre-titre-article"> 
+				<div class="titre-article">Résultat de la recherche</div> 
+				&nbsp;#TOTAL_BOUCLE réponse(s) pour la recherche sur <strong>[(#RECHERCHE)] </strong>
+				<br /> 
+			</div> 
+			<div class="texte-article" >
+				<BOUCLE_articles(ARTICLES) {recherche} {par points} {inverse} {doublons}>
+					<!-- les article trouvés -->
+					<br />
+					<a href="#URL_ARTICLE">[&nbsp;(#TITRE) ]</a> 
+					[(#DATE|nom_mois)] [(#DATE|annee)] par #LESAUTEURS
+					<hr size="1" noshade="noshade"/>
+					[<div id="descriptif-article" style="font-size:11px " >(#DESCRIPTIF)</div>]
+					[<blockquote>(#TEXTE|couper{200})</blockquote>]
+				</BOUCLE_articles>
+				<!-- après les articles trouvés, on teste les sites -->
+				<B_sites>
+					<!-- au moins un site trouvé -->
+					<div class="cadre-titre-article">  
+						&nbsp;#TOTAL_BOUCLE réponse(s) sur le WEB
+						<br /> 
+					</div> 
+					<ul>
+						<BOUCLE_sites(SITES) {recherche} {par points} {inverse}>
+							<!-- les sites trouvés -->
+							<li >
+								<a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut|entites_html)]">#NOM_SITE</a>
+							</li>
+						</BOUCLE_sites>
+					</ul>
+				</B_sites>
+			</div>
+			<//B_sites>
+		</B_articles>
+		<!-- pas d'articles trouvés, on test les sites -->
+		<B_sites1>
+			<!-- au moins un site trouvé -->
+			<div class="cadre-titre-article"> 
+				<div class="titre-article">Résultat de la recherche</div> 
+				&nbsp;#TOTAL_BOUCLE réponse(s) sur le WEB pour la recherche sur 
+				<strong>[(#RECHERCHE)] </strong>
+				<br /> 
+			</div> 
+			<ul>
+				<BOUCLE_sites1(SITES) {recherche} {par points} {inverse}>
+					<!-- les sites trouvés -->
+					<li >
+						<a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut|entites_html)]">#NOM_SITE</a>
+					</li>
+				</BOUCLE_sites1>
+			</ul>
+		</B_sites1>
+		<!-- ni articles ni sites -->
+		<div class="cadre-titre-article"> 
+			<div class="espace"></div>
+			<div class="titre-article" style="text-align:center ">Aucun résultat pour cette recherche</div> 
+			<div class="espace"></div>  
+		</div>
+		<//B_sites1>
+		<//B_articles>
+	</div>
+	[(#REM) Pied de page ]
+	<div class="espace"></div>
+	<INCLURE{fond=/inclusions/inc-footer}{lang}>
+</div>
+
+[(#REM) Test de l'affichage du pied de page ]
+[(#CONFIG{durzy/aff_pdp_recherche}|?{' ',''})<INCLURE{fond=/inclusions/inc-pdp}{lang}>]
+
+</body>
+</html>

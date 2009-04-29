@@ -1,0 +1,29 @@
+[(#REM) Breves ]
+<div class="breve">
+	<!-- extraire tous les brèves des rubriques masquées -->
+	<BOUCLE_exclure_rub(RUBRIQUES){titre_mot=rubrique-masquée}>
+		<BOUCLE_extract(BREVES) {id_rubrique} {doublons}> </BOUCLE_extract>
+	</BOUCLE_exclure_rub>
+	
+	<B_breves>
+		<div class="boxcontent">
+			<div class="entete-cadre" >
+				<div class="cadre-titre">
+					<img src="#CHEMIN{dist/images/breve-24.gif}" width="24" height="24" align="middle" alt="" />
+					Les dernières brèves 
+				</div>
+			</div>
+			<div class="breves">
+				<div  class="texte-cadre">
+					#ANCRE_PAGINATION
+					<ul>
+						<BOUCLE_breves(BREVES){par date}{inverse} {doublons} {pagination #CONFIG{durzy/nb_breves}}>
+							<li>[(#DATE|affdate_court) : ]<div class="#EDIT{titre}titre"><a href="#URL_BREVE">#TITRE</a></div></li>
+						</BOUCLE_breves>
+					</ul>
+					<p class="pagination">#PAGINATION</p>
+				</div>
+			</div>
+		</div>
+	</B_breves>
+</div>

@@ -1,0 +1,41 @@
+[(#REM) cadre "les derniers articles"]
+<div class="last-articles">
+	<!-- extraire tous les articles des rubriques masquées -->
+	<BOUCLE_exclure_rub(RUBRIQUES){titre_mot=rubrique-masquée}>
+		<BOUCLE_extract(articles) {id_rubrique} {doublons}> </BOUCLE_extract>
+	</BOUCLE_exclure_rub>
+	
+	<B_derniers>
+	<div class="boxcontent">
+		<div class="liste-articles">
+			<div class="entete-cadre">
+				<div class="cadre-titre">
+					<img src="#CHEMIN{images/breve-24.gif}" width="24" height="24" align="middle" alt="" />
+					Les derniers articles
+				</div>
+			</div>
+			
+			<div class="texte-cadre">
+				#ANCRE_PAGINATION
+				<ul>
+					<BOUCLE_derniers(ARTICLES){par date}{inverse}{doublons}{pagination #CONFIG{durzy/nb_article}}>
+						<li class="minicadre">
+							<div class="#EDIT{titre}titre">
+							<a class="texte-cadre" href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
+							 #TITRE
+							</a></div>
+							<small>
+								[publié le (#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]
+							</small>
+							
+						</li>
+					</BOUCLE_derniers> 
+				</ul>
+				<p class="pagination">#PAGINATION</p>
+			</div>
+			
+		</div>
+	</div>
+	</B_derniers>
+</div>
+<!-- Fin du code du cadre "les derniers articles" -->

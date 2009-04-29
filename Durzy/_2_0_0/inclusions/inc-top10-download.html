@@ -1,0 +1,36 @@
+<div class="espace"></div>
+<div class="cadre">
+	<B_toutcat>
+		<img src="#CHEMIN{images/telech.gif}" width="24" height="24" align="left" alt="" />
+		<div class="stat" style="padding-left:3em">
+			<strong>Top10 téléchargement</strong> 
+			<div class="espace"></div>
+			<img src="#CHEMIN{images/documents.gif}" align="middle" title="Nombre total de documents en téléchargement"  alt="" />
+			[(#GRAND_TOTAL|>{0}|?{#GRAND_TOTAL ,''})[(#GRAND_TOTAL|=={1}|?{document,documents})]] en téléchargement
+			<img src="#CHEMIN{images/compteur.gif}" align="middle" title="Nombre total de téléchargement(s)" alt="" /> 
+			[(#TOTAL_DOC_SITE|>{0}|?{#TOTAL_DOC_SITE ,''})[(#TOTAL_DOC_SITE|=={1}|?{téléchargement,téléchargements})]] au total
+			
+		</div>
+		
+		<BOUCLE_toutcat(DW2_DOC){par #ENV{odb,total}}{inverse #ENV{sens}}{pagination 10}>
+			<div style="background-color:[(#COMPTEUR_BOUCLE|alterner{'#FFFFEE','#FFCF94'})];">
+				<div style="float:right">
+					<a href="#URL_DOC_OUT">[(#TOTAL_DOC|>{0}|?{#TOTAL_DOC ,''})[(#TOTAL_DOC|=={1}|?{téléchargement&nbsp;,téléchargements})]]</a>
+				</div>
+				#BLOC_TITRE
+				#NOM_DOC
+				#BLOC_DEBUT
+				[(#LOGO_DOC|left|#URL_DOC_OUT)]
+				<div class="stat">
+					<ul style="list-style:circle">
+						<li><img src="#CHEMIN{images/size.gif}" align="middle" title="Taille du fichier" alt="" /> [(#TAILLE_DOC|taille_en_octets)]</li>
+						<li>Publié le [(#DATE_CREA|affdate{'d/m/y'})]</li>
+						<li>Associé à l'article <a href="#URL_CONT_DOC" [title="(#DESCRIPTIF|textebrut|entites_html)"]><strong>#TITRE_CONT_DOC</strong></a></li><br />
+					</ul>
+				</div>
+				#BLOC_FIN
+			</div>
+		</BOUCLE_toutcat>
+	</B_toutcat>
+</div>
+<br />

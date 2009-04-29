@@ -1,0 +1,56 @@
+#CACHE{3600}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+
+<head>
+	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+	[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+	<INCLURE{fond=/inclusions/inc-head}{lang}> 
+</head>
+
+
+<body onload="setHover()">
+
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=/inclusions/inc-entete}{lang}>     
+
+	<div id="gauche">
+		<div class="espace"></div>
+		<INCLURE {fond=inclusions/inc-direct-acces}>
+		<div class="espace"></div>
+	</div>
+	<div class="espace"></div>
+	<div id="article-cadre" >
+		<div class="cadre">
+			<div class="cadre-titre-article">  
+				<div class="titre-article">
+					Vous avez aimé... 
+					<img src="#CHEMIN{images/coeur.gif}" width="24" height="24" border="0" alt="coeur" align="bottom"/>
+				</div>  
+			</div> <!-- id="cadre-titre-article" --> 
+
+			<div class="espace"></div>
+
+			<div class="texte-article" >
+				<!-- Top 10 des téléchargements -->	
+				[(#REM) Tester la présence du plugin DW2 pour afficher les statistiques de téléchargement ou pas ]
+				[(#PLUGIN{DW2}|?{' ',''}) <INCLURE{fond=inclusions/inc-top10-download}{sens=1}>
+                <div class="espace"></div>
+                ]
+				<!-- Top 10 des articles -->
+				<INCLURE{fond=inclusions/inc-top10-articles}>
+				
+				<div class="espace"></div>
+			</div>
+		</div> <!-- fin de "cadre" -->
+		<div class="espace"></div>
+	</div> <!-- fin de "article-cadre" -->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=/inclusions/inc-footer}{lang}>
+</div><!-- fin page -->
+</body>
+</html>

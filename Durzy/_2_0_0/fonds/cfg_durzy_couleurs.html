@@ -1,0 +1,250 @@
+#CACHE{0}
+
+<!-- head= 
+[<script type="text/javascript"  src="(#CHEMIN{javascript/jquery.bgiframe.js})" type="text/javascript"></script>]
+[<script type="text/javascript"  src="(#CHEMIN{javascript/jquery.dimensions.js})" type="text/javascript"></script>]
+[<script type="text/javascript"  src="(#CHEMIN{javascript/jquery.tooltip.js})" type="text/javascript"></script>]
+[<link rel="stylesheet" href="(#CHEMIN{javascript/jquery.tooltip.css})" />]
+
+<script type="text/javascript">
+jQuery(function() {
+
+jQuery('a').tooltip({
+	track: true,
+	delay: 0,
+	showURL: false,
+	showBody: " - "
+});
+});
+</script>
+
+<style type="text/css">
+	table.def td{padding-left:1em; padding-right:1em;}
+	tr.def2 {text-align:center}
+</style>
+-->
+<!-- titre=Squelettes Durzy - Configuration des couleurs -->
+<!-- icone=images/cfg_couleurs.png -->
+[(#SET{logo, <img src='#DOSSIER_SQUELETTE/../images/cfg_couleurs.png' width='20' height='19' alt='cadres' style="float:#LANG_RIGHT;" /> })]
+<!-- descriptif= [(#GET{logo})] <:durzy:description_couleurs:> -->
+
+<!-- nom=durzy -->
+<!-- onglet=durzy -->
+
+<!-- liens*=durzy -->
+<!-- liens*=durzy_general -->
+<!-- liens*=durzy_cadres -->
+
+
+<form method="post" enctype="multipart/form-data">
+	<div>[(#ENV{_cfg_}|form_hidden)]</div>
+
+	<fieldset><legend><:durzy:images_site:></legend>
+			<label for="bandeau_entete"><a href="#" title="<:durzy:bandeau_entete:> - <:durzy:desc_bandeau_entete:>"><:durzy:bandeau_entete:></a></label>
+			<input type="file" name="bandeau" value="" size="30" /> [(#CFG_CHEMIN{durzy/bandeau}|image_reduire{100})]
+			[<span class='erreur'>(#ENV**{erreurs}|table_valeur{bandeau})</span>]
+			<br /> <br />
+			
+			<label for="image_fond"><a href="#" title="<:durzy:image_fond:> - <:durzy:desc_image_fond:>"><:durzy:image_fond:></a></label>
+			<input type="file" name="image_fond_site" value="" size="30" /> [(#CFG_CHEMIN{durzy/image_fond_site}|image_reduire{100})]
+			[<span class='erreur'>(#ENV**{erreurs}|table_valeur{image_fond_site})</span>]
+	<div style="float:right">
+		<input type="submit" name="_cfg_ok" value="<:oK:>" class="fondo" />
+		<input type="reset" value="<:reset:>" class="fondo" />
+		<input type="submit" name="_cfg_delete" value="<:supprimer:>" class="fondo" />
+	</div>
+	
+	</fieldset>
+
+	
+	<br /> <br />
+</form>
+	
+<form method="post" action="#SELF" enctype="multipart/form-data">
+	<div>[(#ENV{_cfg_}|form_hidden)]</div>
+	
+	<fieldset><legend><:durzy:couleurs_site:></legend>
+	
+	<table class="def">
+		<thead>
+			<tr class="def2">
+				<th></th>
+				<th><:durzy:fond:></th>
+				<th><:durzy:titre:></th>
+				<th><:durzy:bordure:></th>
+				<th><:durzy:texte:></th>
+				<th><:durzy:descriptif:></th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr>
+				<th><label for="fond_site"><a href="#" title="<:durzy:fond_site:> - <:durzy:desc_fond_site:>"><:durzy:fond_site:></a></label></th>
+				<td><input class="palette" type="text" name="couleur_fond" value="[(#ENV{couleur_fond}|sinon{#9facbc})]" size="7">
+				<td><input class="palette" type="text" name="couleur_titre" value="[(#ENV{couleur_titre}|sinon{#fff})]" size="7">
+				<td><input class="palette" type="text" name="couleur_bordures" value="[(#ENV{couleur_bordures}|sinon{#9facbc})]" size="7">
+				<td><input class="palette" type="text" name="couleur_texte" value="[(#ENV{couleur_texte}|sinon{#333})]" size="7">
+				<td><input class="palette" type="text" name="couleur_descriptif_site" value="[(#ENV{couleur_descriptif_site}|sinon{#fff})]" size="7">
+			</tr>
+			
+			<tr>
+				<th><label for="fond_gauche"><a href="#" title="<:durzy:fond_gauche:> - <:durzy:desc_fond_gauche:>"><:durzy:fond_gauche:></label></th>
+				<td><input class="palette" type="text" name="couleur_gauche" value="[(#ENV{couleur_gauche}|sinon{transparent})]" size="7"></td>
+			<tr>
+				<th><label for="fond_droite"><a href="#" title="<:durzy:fond_droite:> - <:durzy:desc_fond_droite:>"><:durzy:fond_droite:></label></th>
+				<td><input class="palette" type="text" name="couleur_droite" value="[(#ENV{couleur_droite}|sinon{transparent})]" size="7"></td>
+			</td>
+			
+			</tr>
+
+			
+			<tr>
+				<th><label for="entete"><a href="#" title="<:durzy:entete:> - <:durzy:desc_entete:>"><:durzy:entete:></a></label></th>
+				<td><input type="text" name="couleur_entete" class="palette" value="[(#ENV{couleur_entete}|sinon{#82ade2})]" size="7"></td>
+			</tr>
+			
+			<tr>
+				<th><label for="pied_de_page"><a href="#" title="<:durzy:pied_de_page:> - <:durzy:desc_pied_de_page:>"><:durzy:pied_de_page:></a></label></th>
+				<td><input type="text" name="couleur_pied" class="palette" value="[(#ENV{couleur_pied}|sinon{#e5eff8})]" size="7"></td>
+				<td></td>
+				<td><input type="text" name="couleur_pied_bordures" class="palette" value="[(#ENV{couleur_pied_bordures}|sinon{#c4ccd4})]" size="7"></td>
+				<td><input type="text" name="couleur_pied_texte" class="palette" value="[(#ENV{couleur_pied_texte}|sinon{#000})]" size="7"></td>
+				
+			</tr>
+			
+			<tr>
+				<th><label for="bandeau_inf"><a href="#" title="<:durzy:bandeau_inf:> - <:durzy:desc_bandeau_inf:>"><:durzy:bandeau_inf:></a></label></th>
+				<td><input type="text" name="couleur_footer" class="palette" value="[(#ENV{couleur_footer}|sinon{#333})]" size="7"></td>
+			</tr>
+			
+			<tr>
+				<th colspan="5">&nbsp;</th>
+			</tr>
+			
+			<tr class="def2">
+				<th></th>
+				<th><:durzy:menu:></th>
+				<th><:durzy:sous_menu:></th>
+				<th></th>
+				<th></th>
+				<th><:durzy:survol:></th>
+			</tr>
+			
+			<tr>
+				<th><label for="menu_hor"><a href="#" title="<:durzy:menu_hor:> - <:durzy:desc_menu_hor:>"><:durzy:menu_hor:></a></label></th>
+				<td><input type="text" name="couleur_menu" class="palette" value="[(#ENV{couleur_menu}|sinon{#82ade2})]" size="7"></td>
+				<td><input type="text" name="couleur_sousmenu" class="palette" value="[(#ENV{couleur_sousmenu}|sinon{#90b5d3})]" size="7"></td>
+				<td><input type="text" name="couleur_menu_bordures" class="palette" value="[(#ENV{couleur_menu_bordures}|sinon{#ccc})]" size="7"></td>
+				<td><input type="text" name="couleur_menu_texte" class="palette" value="[(#ENV{couleur_menu_texte}|sinon{#666})]" size="7"></td>
+				<td><input type="text" name="couleur_sousmenusurvole" class="palette" value="[(#ENV{couleur_sousmenusurvole}|sinon{#e5eff8})]" size="7"></td>
+			</tr>
+			
+			<tr class="def2">
+				<th></th>
+				<th><:durzy:liens:></th>
+				<th><:durzy:liens_visites:></th>
+			</tr>
+			
+			<tr>
+				<th><label for="links"><a href="#" title="<:durzy:links:> - <:durzy:desc_links:>"><:durzy:links:></a></label></th>
+				<td><input type="text" name="couleur_liens" class="palette" value="[(#ENV{couleur_liens}|sinon{#333399})]" size="7"></td>
+				<td><input type="text" name="couleur_liens_visites" class="palette" value="[(#ENV{couleur_liens_visites}|sinon{#003366})]" size="7"></td>
+				<td></td>
+				<td></td>
+				<td><input type="text" name="couleur_liens_survoles" class="palette" value="[(#ENV{couleur_liens_survoles}|sinon{#6666FF})]" size="7"></td>
+			</tr>
+			
+			<tr>
+				<th colspan="5">&nbsp;</th>
+			</tr>
+			
+			<tr class="def2">
+				<th><:durzy:cadres:></th>
+				<th><:durzy:fond:></th>
+				<th><:durzy:titre:></th>
+				<th><:durzy:bordure:></th>
+				<th><:durzy:texte:></th>
+				<th><:durzy:fond_titre:></th>
+			</tr>
+			
+			<tr>
+				<th><label for="cadre_derniers_articles"><a href="#" title="<:durzy:cadre_derniers_articles:> - <:durzy:desc_cadre_derniers_articles:>"><:durzy:cadre_derniers_articles:></a></label></th>
+				<td><input type="text" name="couleur_last_articles_fond" class="palette" value="[(#ENV{couleur_last_articles_fond}|sinon{#e5eff8})]" size="7"></td>
+				<td><input type="text" name="couleur_last_articles_titre" class="palette" value="[(#ENV{couleur_last_articles_titre}|sinon{#666})]" size="7"></td>
+				<td><input type="text" name="couleur_last_articles_bordures" class="palette" value="[(#ENV{couleur_last_articles_bordures}|sinon{#999})]" size="7"></td>
+				<td><input type="text" name="couleur_last_articles_texte" class="palette" value="[(#ENV{couleur_last_articles_texte}|sinon{#999})]" size="7"></td>
+				<td><input type="text" name="couleur_last_articles_fondtitre" class="palette" value="[(#ENV{couleur_last_articles_fondtitre}|sinon{#82ade2})]" size="7"></td>
+			</tr>
+			
+			<tr>
+				<th><label for="cadre_edito"><a href="#" title="<:durzy:cadre_edito:> - <:durzy:desc_cadre_edito:>"><:durzy:cadre_edito:></a></label></th>
+				<td><input type="text" name="couleur_edito_fond" class="palette" value="[(#ENV{couleur_edito_fond}|sinon{#fff8ac})]" size="7"></td>
+				<td><input type="text" name="couleur_edito_titre" class="palette" value="[(#ENV{couleur_edito_titre}|sinon{#999})]" size="7"></td>
+				<td><input type="text" name="couleur_edito_bordures" class="palette" value="[(#ENV{couleur_edito_bordures}|sinon{#999})]" size="7"></td>
+				<td><input type="text" name="couleur_edito_texte" class="palette" value="[(#ENV{couleur_edito_texte}|sinon{#999})]" size="7"></td>
+				<td><input type="text" name="couleur_edito_fondtitre" class="palette" value="[(#ENV{couleur_edito_fondtitre}|sinon{#ffed00})]" size="7"></td>
+			</tr>
+			
+			<tr>
+				<th><label for="cadre_breves"><a href="#" title="<:durzy:cadre_breves:> - <:durzy:desc_cadre_breves:>"><:durzy:cadre_breves:></a></label></th>
+				<td><input type="text" name="couleur_breves_fond" class="palette" value="[(#ENV{couleur_breves_fond}|sinon{#e5eff8})]" size="7"></td>
+				<td><input type="text" name="couleur_breves_titre" class="palette" value="[(#ENV{couleur_breves_titre}|sinon{#666})]" size="7">
+				<td><input type="text" name="couleur_breves_bordures" class="palette" value="[(#ENV{couleur_breves_bordures}|sinon{#999})]" size="7"></td>
+				<td><input type="text" name="couleur_breves_texte" class="palette" value="[(#ENV{couleur_breves_texte}|sinon{#999})]" size="7"></td>
+				</td><td><input type="text" name="couleur_breves_fondtitre" class="palette" value="[(#ENV{couleur_breves_fondtitre}|sinon{#82ade2})]" size="7"></td>
+			</tr>
+			
+			<tr>
+				<th><label for="cadre_acces_direct"><a href="#" title="<:durzy:cadre_acces_direct:> - <:durzy:desc_cadre_acces_direct:>"><:durzy:cadre_acces_direct:></a></label></th>
+				<td><input type="text" name="couleur_acces_direct_fond" class="palette" value="[(#ENV{couleur_acces_direct_fond}|sinon{#d6eaca})]" size="7"></td>
+				<td><input type="text" name="couleur_acces_direct_titre" class="palette" value="[(#ENV{couleur_acces_direct_titre}|sinon{#666})]" size="7"></td>
+				<td><input type="text" name="couleur_acces_direct_bordures" class="palette" value="[(#ENV{couleur_acces_direct_bordures}|sinon{#999})]" size="7"></td>
+				<td><input type="text" name="couleur_acces_direct_texte" class="palette" value="[(#ENV{couleur_acces_direct_texte}|sinon{#999})]" size="7"></td>
+				<td><input type="text" name="couleur_acces_direct_fondtitre" class="palette" value="[(#ENV{couleur_acces_direct_fondtitre}|sinon{#51b169})]" size="7"></td>
+			</tr>
+			
+			<tr>
+				<th colspan="5">&nbsp;</th>
+			</tr>
+			
+			<tr class="def2">
+				<th><:durzy:un_article:></th>
+				<th><:durzy:fond:></th>
+				<th><:durzy:titre:></th>
+				<th><:durzy:bordure:></th>
+				<th><:durzy:texte:></th>
+				<th><:durzy:descriptif:></th>
+			</tr>
+			
+			<tr>
+				<th><label for="article_tete"><a href="#" title="<:durzy:article_tete:> - <:durzy:desc_article_tete:>"><:durzy:article_tete:></a></label></th>
+				<td><input type="text" name="couleur_article_fondtitre" class="palette" value="[(#ENV{couleur_article_fondtitre}|sinon{#e5eff8})]" size="7"></td>
+				<td><input type="text" name="couleur_article_titre" class="palette" value="[(#ENV{couleur_article_titre}|sinon{#006898})]" size="7"></td>
+				<td><input type="text" name="couleur_article_bordures" class="palette" value="[(#ENV{couleur_article_bordures}|sinon{#c4ccd4})]" size="7"></td>
+				<td></td>
+				<td><input type="text" name="couleur_article_descriptif" class="palette" value="[(#ENV{couleur_article_descriptif}|sinon{#336699})]" size="7"></td>
+			</tr>
+			
+			<tr>
+				<th><label for="article_corps"><a href="#" title="<:durzy:article_corps:> - <:durzy:desc_article_corps:>"><:durzy:article_corps:></a></label></th>
+				<td><input type="text" name="couleur_article_fond" class="palette" value="[(#ENV{couleur_article_fond}|sinon{#fff})]" size="7"></td>
+				<td></td>
+				<td><input type="text" name="couleur_article_bordurescorps" class="palette" value="[(#ENV{couleur_article_bordurescorps}|sinon{#c4ccd4})]" size="7"></td>
+				<td><input type="text" name="couleur_article_texte" class="palette" value="[(#ENV{couleur_article_texte}|sinon{#666})]" size="7"></td>
+				<td></td>
+			</tr>
+			
+			
+		</tbody>
+	</table>
+	<div style="float:right">
+		<input type="submit" name="_cfg_ok" value="<:oK:>" class="fondo" />
+		<input type="reset" value="<:reset:>" class="fondo" />
+		<input type="submit" name="_cfg_delete" value="<:supprimer:>" class="fondo" />
+	</div>
+	</fieldset>
+
+
+
+	<div class="nettoyeur" />
+</form>

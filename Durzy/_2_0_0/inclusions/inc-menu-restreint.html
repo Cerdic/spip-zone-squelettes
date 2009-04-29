@@ -1,0 +1,31 @@
+	<!-- affichage des menus, sauf pour les rubriques et sous rubriques masquées -->
+	<BOUCLE_exclure_rub(RUBRIQUES){tout}{titre_mot=rubrique-masquée}{doublons}>
+	</BOUCLE_exclure_rub>
+	<BOUCLE_smenuspipr(RUBRIQUES){racine}{par num titre}{tout}{doublons}{tout_voir}>
+	<li<BOUCLE_smenr(RUBRIQUES){id_parent}{0,1}>  
+		</BOUCLE_smenr>>
+	   <a href="#URL_RUBRIQUE">[(#TITRE|accesgroupes_visualise{#ID_RUBRIQUE, #CHEMIN{images/cadenas-petit.png}})]
+	   <!-- tester la présence de sous-rubrique, et ajouter une petite flèche vers le bas si présente -->
+	   <BOUCLE_smen1r(RUBRIQUES){id_parent}{0,1}{tout_voir}> 
+	   <img src="#CHEMIN{images/fleche-bas.gif}" width="5" height="5" style="border:0;" alt="" />
+	   </BOUCLE_smen1r></a>
+	  <B_smenuspip>
+	   
+  <ul>
+    <!-- affichage des sous-menus, sauf pour les sous-rubriques masquées -->
+	<BOUCLE_smenuspip(RUBRIQUES){id_parent}{par num titre}{doublons }{tout_voir}> 
+	  <li<BOUCLE_smen(RUBRIQUES){id_parent}{0,1}> 
+	  </BOUCLE_smen> > 
+		<a href="#URL_RUBRIQUE">
+		[(#TITRE|accesgroupes_visualise{#ID_RUBRIQUE, #CHEMIN{images/cadenas-petit.png}})] 
+		<BOUCLE_smen1(RUBRIQUES){id_parent}{0,1}> 
+		<img class="fleche" src="#CHEMIN{images/fleche.gif}" width="6" height="6" style="border:0; align:bottom;" alt="" /> 
+		</BOUCLE_smen1>
+		</a> 
+    <div class="espace"></div><BOUCLE_ssmenu(boucle_smenuspip)></BOUCLE_ssmenu>
+    </li> </BOUCLE_smenuspip> 
+  </ul>
+	  </B_smenuspip>
+     </li>
+	</BOUCLE_smenuspipr>
+  </ul>
