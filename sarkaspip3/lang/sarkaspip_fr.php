@@ -535,6 +535,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_form_login1' => 'Login public',
 		'cfg_lgd_form_login2' => 'Login priv&eacute;',
 		'cfg_lgd_form_referencement' => 'R&eacute;f&eacute;rencement de site',
+    	'cfg_lgd_galerie_modele' => 'Mod&egrave;le',	
     	'cfg_lgd_galerie_pagination_1' => 'Galerie planche - Pagination',	
     	'cfg_lgd_galerie_page' => 'Description',	
 		'cfg_lgd_galerie_secteur' => 'Choix du secteur &#171;Galerie&#187;',
@@ -699,6 +700,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_form_login1' => 'Le formulaire de login public permet aux membres du site de se connecter sans entrer dans l\'espace priv&eacute;.',
 		'cfg_inf_form_login2' => 'Le formulaire de login priv&eacute; permet aux membres du site de se connecter et d\'entrer dans l\'espace priv&eacute; dans la foul&eacute;e.',
 		'cfg_inf_form_referencement' => 'Le formulaire de r&eacute;f&eacute;rencement permet aux visiteurs de proposer un site de leur choix.',
+		'cfg_inf_galerie_albums_1_colonne' => 'Vous pouvez choisir de pr&eacute;senter la liste des albums de la galerie sur une ou deux colonnes.',
 		'cfg_inf_galerie_id' => 'La galerie est mat&eacute;rialis&eacute;e par un secteur (rubrique de plus haut niveau); les articles de cette branche sont consid&eacute;r&eacute;s comme des albums. Choisissez donc le secteur qui deviendra votre galerie.',
 		'cfg_inf_galerie_page' => 'Vous pouvez saisir un titre et un descriptif sp&eacute;cifique pour votre page galerie.',
 		'cfg_inf_galerie_sens_tri' => 'Vous pouvez pr&eacute;senter les albums de la galerie soit dans un ordre chronologique, soit dans un ordre anti-chronologique.',
@@ -773,8 +775,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_version_spip' => 'D&eacute;sirez vous afficher la version de SPIP install&eacute;e ?',
 
 // Labels des items de choix
-		'cfg_lbl_1_colonne' => 'affichage une colonne',
-		'cfg_lbl_2_colonnes' => 'affichage deux colonnes',
+		'cfg_lbl_1_colonne' => 'Affichage une colonne',
+		'cfg_lbl_2_colonnes' => 'Affichage deux colonnes',
 		'cfg_lbl_accueil_debug_1' => 'Mode debug actif',
 		'cfg_lbl_accueil_debug_2' => 'Mode debug inactif',
 		'cfg_lbl_agenda_descriptif' => 'Vous pouvez r&eacute;diger un descriptif succinct pour pr&eacute;senter votre agenda (composition, mots-clés...). Ce texte peut &ecirc;tre &eacute;crit en utilisant les raccourcis classiques de SPIP.',
