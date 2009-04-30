@@ -5,12 +5,20 @@
 		- compteur_boucle: compteur de boucle
 -->
 ]
-#SET{compteur_page, #ENV{compteur_boucle}|div{#CONFIG{sarkaspip_galerie/pas_pagination_1, 5}|plus{1}}|floor}
-#SET{compteur_local, #ENV{compteur_boucle}|moins{#GET{compteur_page}|mult{#CONFIG{sarkaspip_galerie/pas_pagination_1, 5}}}}
-[(#GET{compteur_local}|modulo{2}|=={1}|?{' '}) [(#SET{classe_li, gauche})] ]
-[(#GET{compteur_local}|modulo{2}|=={0}|?{' '}) [(#SET{classe_li, droite})] ]
-[(#GET{compteur_local}|<={2}|?{' '})
-	[(#SET{classe_li, [(#GET{classe_li}) n1]})]
+[(#CONFIG{sarkaspip_sommaire/album_1_colonne, 0}|non)
+	[(#SET{compteur_page, #ENV{compteur_boucle}|div{#CONFIG{sarkaspip_galerie/pas_pagination_1, 5}|plus{1}}|floor})]
+	[(#SET{compteur_local, #ENV{compteur_boucle}|moins{#GET{compteur_page}|mult{#CONFIG{sarkaspip_galerie/pas_pagination_1, 5}}}})]
+	[(#GET{compteur_local}|modulo{2}|=={1}|?{' '}) [(#SET{classe_li, gauche})] ]
+	[(#GET{compteur_local}|modulo{2}|=={0}|?{' '}) [(#SET{classe_li, droite})] ]
+	[(#GET{compteur_local}|<={2}|?{' '})
+		[(#SET{classe_li, [(#GET{classe_li}) n1]})]
+	]
+]
+[(#CONFIG{sarkaspip_sommaire/album_1_colonne, 0}|oui)
+	[(#SET{classe_li, gauche})]
+	[(#ENV{compteur_boucle}|=={1}|?{' '})
+		[(#SET{classe_li, [(#GET{classe_li}) n1]})]
+	]
 ]
 <BOUCLE_galerie_intro(ARTICLES) {id_article}>
 	<li class="[(#GET{classe_li})]">
