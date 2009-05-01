@@ -2,10 +2,11 @@
 <!-- Introduction d'un article affiche dans la liste des articles recents, des articles publies dans une rubrique...
 	Recoit en argument :
 		- id_article: id de l'album concerne
+		- 1_colonne: indicateur d'affichage une (1) ou deux colonnes (0)
 		- compteur_boucle: compteur de boucle
 -->
 ]
-[(#CONFIG{sarkaspip_sommaire/album_1_colonne, 0}|non)
+[(#ENV{1_colonne, 0}|non)
 	[(#SET{compteur_page, #ENV{compteur_boucle}|div{#CONFIG{sarkaspip_galerie/pas_pagination_1, 5}|plus{1}}|floor})]
 	[(#SET{compteur_local, #ENV{compteur_boucle}|moins{#GET{compteur_page}|mult{#CONFIG{sarkaspip_galerie/pas_pagination_1, 5}}}})]
 	[(#GET{compteur_local}|modulo{2}|=={1}|?{' '}) [(#SET{classe_li, gauche})] ]
@@ -14,7 +15,7 @@
 		[(#SET{classe_li, [(#GET{classe_li}) n1]})]
 	]
 ]
-[(#CONFIG{sarkaspip_sommaire/album_1_colonne, 0}|oui)
+[(#ENV{1_colonne, 0}|oui)
 	[(#SET{classe_li, gauche})]
 	[(#ENV{compteur_boucle}|=={1}|?{' '})
 		[(#SET{classe_li, [(#GET{classe_li}) n1]})]
