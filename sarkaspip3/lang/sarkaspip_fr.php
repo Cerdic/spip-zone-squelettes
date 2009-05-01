@@ -22,6 +22,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'1_album' => 'Album photo',
 		'1_auteur' => 'Auteur',
 		'1_breve' => 'Br&egrave;ve',
+		'1_evenement' => 'Ev&egrave;nement',
+		'1_mot_clef' => 'Mot-clef',
+		'1_rubrique' => 'Rubrique',
 		'1_site_web' => 'Site Web',
 		'1_commentaire' => 'commentaire',
 		'1_signature' => 'signature',
@@ -48,6 +51,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // 		'agenda_mois_vide' => 'Aucun &eacute;v&egrave;nement pr&eacute;vu ce mois-ci',
 // 		'agenda_fin_mois_depasse' => 'Mois ant&eacute;rieur &agrave; la date courante. Aucun &eacute;v&egrave;nement ne peut &ecirc;tre affich&eacute;',
 		'agenda_saisonnier' => 'Agenda saisonnier',
+		'albums' => 'Albums',
 		'album_nav_debut' => 'Premi&egrave;re page',
 		'album_nav_precedent' => 'Page pr&eacute;c&eacute;dente',
 		'album_nav_suivant' => 'Page suivante',
@@ -120,11 +124,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 	
 //E
-	  
+	  'est_present' => 'est pr&eacute;sent dans :',
 		'erreur' => 'erreur',
 		'espace_prive' => 'Espace&nbsp;priv&eacute;', // redefinition item SPIP
 		'espace_membre' => 'Espace membre',
 // 		'evenements_du_jour' => 'Ev&eacute;nements de la journ&eacute;e',
+    'evenements' => 'Ev&egrave;nements',
 		'evenements_meme_journee' => 'dans la journ&eacute;e...',
 	  
 	
@@ -213,6 +218,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //L
 	  
 	  'le' => 'le',
+	  'le_mot' => 'Le mot',
 		'licence_gpl' => 'GPLv3',
 		'licence_site' => 'Licence &agrave; d&eacute;finir',
 		'lien_herbier_liste' => 'Herbier liste',
@@ -286,7 +292,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 	
 //P
-	  
+	  'pas_present' => 'n\'est pas pr&eacute;sent sur ce site ',
 		'par_auteur' => 'par ', // redefinition item SPIP
 		'photos' => 'photos',
 		'plan_site' => 'Plan du site', // redefinition item SPIP
@@ -306,8 +312,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 		'realisation_squelette' => 'Collectif Sarka-SPIP',
 		'recents_syndic' => 'Derni&egrave;res nouvelles du web',
+		'recherche_albums_resultat' => 'Albums trouv&eacute;s',
 		'recherche_articles_resultat' => 'Articles trouv&eacute;s',
 		'recherche_commentaires_resultat' => 'Commentaires trouv&eacute;s',
+		'recherche_evenements_resultat' => 'Ev&egrave;nements trouv&eacute;s',
 		'recherche_mots_resultat' => 'Mots-cl&eacute;s trouv&eacute;s et articles associ&eacute;s',
 		'recherche_rubriques_resultat' => 'Rubriques trouv&eacute;es',
 		'recherche_breves_resultat' => 'Br&egrave;ves trouv&eacute;es',
@@ -322,6 +330,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'resultats_recherche' => 'R&eacute;sultats de la recherche', // redefinition item SPIP
 		'retour_article' => 'Retourner &agrave; l\'article',
 		'retour_aujourdhui' => 'Revenir &agrave; la date d\'aujourd\'hui',
+		'rubriques' => 'Rubriques',
 		'rubriques_mot' => 'Rubriques associ&eacute;es',
 
 	
