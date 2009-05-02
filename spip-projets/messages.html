@@ -1,0 +1,51 @@
+<?php if ($auteur_session) { ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+<INCLURE{fond=inc-head}>
+</head>
+<INCLURE{fond=inc-header}{page=rubrique}>
+<div id="page_desc">
+<div id="text">
+
+        [(#REM) Fil d'Ariane ]
+        <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <a href="#URL_PAGE{messages}"><:messages:></a></div>
+
+        <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <strong class="on"><:messages:></strong></div>
+<//B_fil>
+</div>
+<div id="search_top">
+#FORMULAIRE_RECHERCHE
+</div>
+</div><div id="content_wrap">
+<div id="content">
+[(#REM) Derniers articles ]
+<B_articles_recents>
+[(#ANCRE_PAGINATION)]
+<div id="caption">
+	<h2><:derniers_articles:></h2>
+	#PAGINATION{precedent_suivant}
+</div>
+<BOUCLE_articles_recents(ARTICLES){id_rubrique ?}{par date}{inverse} {pagination 5}>
+<div class="post">
+<h2><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h2>
+#TEXTE
+</div>
+<div class="post_details">
+<p>Publi&eacute; le [(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)], dans #TITRE_PARENT. <a href="#">xx commentaires</a>.</p>
+</div>
+</BOUCLE_articles_recents>
+#PAGINATION{precedent_suivant}
+[<div id="more_posts">
+(#PAGINATION)
+</div>]
+</B_articles_recents>
+
+</div>
+<INCLURE{fond=inc-sidebar}{page=rubrique}>
+<INCLURE{fond=inc-footer}{page=rubrique}>
+<?php } else { ?>
+<INCLURE{fond=login_public}>
+<?php } ?>

@@ -9,9 +9,9 @@
 <INCLURE{fond=inc-header}{page=rubrique}>
 <div id="page_desc">
 <div id="text">
-<BOUCLE_fil(RUBRIQUES) {id_rubrique}>
+<BOUCLE_fil(RUBRIQUES){id_rubrique}>
         [(#REM) Fil d'Ariane ]
-        <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]</div>
+        <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <a href="#URL_PAGE{messages}">Messages</a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]</div>
 </BOUCLE_fil>
         <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <strong class="on">Messages</strong></div>
 <//B_fil>
@@ -27,10 +27,7 @@
 [(#ANCRE_PAGINATION)]
 <div id="caption">
 	[<h2>(#TITRE|sinon{'<:derniers_articles:>'})</h2>]
-	<div id="m_post">
-		<div class="o_entries"><span>Older Entries</span></div>
-		<div class="r_entries"><span>Recent Entries</span></div>
-	</div>
+		#PAGINATION{precedent_suivant}
 </div>
 <BOUCLE_articles_recents(ARTICLES){id_rubrique ?}{par date}{inverse} {pagination 5}>
 <div class="post">
@@ -41,14 +38,49 @@
 <p>Publi&eacute; le [(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)], dans #TITRE_PARENT. <a href="#">xx commentaires</a>.</p>
 </div>
 </BOUCLE_articles_recents>
-
+#PAGINATION{precedent_suivant}
 [<div id="more_posts">
 (#PAGINATION)
 </div>]
 </B_articles_recents>
+	<B_enfants>
+	<div id="caption">
+	[<h2>(#TITRE)</h2>]
+	</div>
+	<div class="post">
+	<h3><:sous_rubriques:></h3>
+	<ul>
+	<BOUCLE_enfants(RUBRIQUES){id_parent}>
+		<li><a href="#URL_RUBRIQUE">#TITRE</a></li>
+	</BOUCLE_enfants>
+	</ul>
+	</div>
+	<B_articles_branche>
+		[(#ANCRE_PAGINATION)]
+		#PAGINATION{precedent_suivant}
+		<div class="post">
+
+			<h3><:derniers_articles:></h3>
+			<BOUCLE_articles_branche(ARTICLES){branche}{par date}{inverse} {pagination 5}>
+				<div class="post">
+				<h2><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h2>
+				#TEXTE
+				</div>
+				<div class="post_details">
+				<p>Publi&eacute; le [(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)], dans #TITRE_PARENT. <a href="#">xx commentaires</a>.</p>
+				</div>
+			</BOUCLE_articles_branche>
+		</div>
+			#PAGINATION{precedent_suivant}
+			[<div id="more_posts">
+			(#PAGINATION)
+			</div>]
+	</B_articles_branche>
+	</B_enfants>
+<//B_articles_recents>
 </BOUCLE_principale>
 </div>
-<INCLURE{fond=inc-sidebar}>
+<INCLURE{fond=inc-sidebar}{page=rubrique}{id_rubrique}>
 <INCLURE{fond=inc-footer}{page=rubrique}>
 <?php } else { ?>
 <INCLURE{fond=login_public}>
