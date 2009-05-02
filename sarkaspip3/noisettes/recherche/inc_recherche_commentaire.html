@@ -1,18 +1,35 @@
 [(#REM) 
 <!-- Affichage de la liste des commentaires trouves lors d'une recherche
 	Recoit en argument :
-		- id_forum: id du commentaire concerne
+		- recherche : critere de recherche
 -->
 ]
-<B_recherche_commentaire>
-<ul>
-<BOUCLE_recherche_commentaire(FORUMS) {id_forum}>
-	[<li>
-		<div class="cartouche">[(#DATE|nom_jour)][&nbsp;(#DATE|affdate)]</div>
-		<a class="titre" href="#URL_FORUM">(#TITRE)</a>
-		[- par (#NOM)]
-	  <br class="nettoyeur"/>
-	</li>]
-</BOUCLE_recherche_commentaire>
-</ul>
-</B_recherche_commentaire>
+
+<B_commentaires_recherche>
+  <div id="recherche_commentaire" class="portfolio">
+    <a name="commentaires"></a>
+    <a href="#minisommaire" title="retour sommaire" class="retour_top">&nbsp;</a>
+    <h2><:sarkaspip:recherche_commentaires_resultat:>&nbsp;&#40;#GRAND_TOTAL&#41;</h2>	
+    #ANCRE_PAGINATION
+    [(#CONFIG{sarkaspip_recherche/position_pagination_recherche_commentaire, 3}|match{^(1|3)$}|?{' '})
+	   [<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_commentaire}})</div>]
+    ]
+    <ul>
+  <BOUCLE_commentaires_recherche(FORUMS) {recherche}{articles.id_rubrique!==#BRANCHE_SPECIALISEE{galerie,not_in}}{par points} {inverse}{pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_commentaire, 5}}>
+			[(#INCLURE{fond=noisettes/recherche/inc_recherche_extrait}
+        {titre=#TITRE}
+        {afficher_date=oui}{date=#DATE}
+        {url=#URL_FORUM}
+        {afficher_mere=non}{id_rubrique}
+        {afficher_logo=non}
+        {afficher_auteur=oui}{auteur=#NOM}
+        {ajax}
+      )]			
+  </BOUCLE_commentaires_recherche>
+    </ul>
+    [(#CONFIG{sarkaspip_recherche/position_pagination_recherche_commentaire, 3}|match{^(2|3)$}|?{' '})
+	   [<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_commentaire}})</div>]
+    ]
+	</div>
+</B_commentaires_recherche>
+

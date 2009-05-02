@@ -1,17 +1,33 @@
 [(#REM) 
 <!-- Affichage de la liste des rubriques trouvees lors d'une recherche
 	Recoit en argument :
-		- id_rubrique: id de la rubrique concernee
+		- recherche : critere de recherche
 -->
 ]
-<B_recherche_rubrique>
-<ul>
-<BOUCLE_recherche_rubrique (RUBRIQUES) {id_rubrique}>
-	[<li>
-		[<div class="logo droite">(#LOGO_RUBRIQUE||image_reduire{25})</div>]
-		<a class="titre" href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>
-	  <br class="nettoyeur"/>
-	</li>]
-</BOUCLE_recherche_rubrique>
-</ul>
-</B_recherche_rubrique>
+<B_rubriques>
+  <div id="recherche_rubrique" class="portfolio">
+    <a name="rubriques"></a>
+    <a href="#minisommaire" title="retour sommaire" class="retour_top">&nbsp;</a>
+    <h2><:sarkaspip:recherche_rubriques_resultat:>&nbsp;&#40;#GRAND_TOTAL&#41;</h2>
+    #ANCRE_PAGINATION
+    [(#CONFIG{sarkaspip_recherche/position_pagination_recherche_rubrique, 3}|match{^(1|3)$}|?{' '})
+      [<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_rubrique}})</div>]
+    ]
+    <ul>
+  <BOUCLE_rubriques(RUBRIQUES){recherche}{id_rubrique!==#BRANCHE_SPECIALISEE} {par points}{inverse}{pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_rubrique, 5}}>
+			[(#INCLURE{fond=noisettes/recherche/inc_recherche_extrait}
+        {titre=#TITRE}
+        {afficher_date=non}{date=#DATE}
+        {url=#URL_RUBRIQUE}
+        {afficher_mere=oui}{id_rubrique}        
+        {afficher_logo=oui}{logo=#LOGO_RUBRIQUE}
+        {afficher_auteur=non}
+        {ajax}
+      )]
+  </BOUCLE_rubriques>
+    <ul>
+    [(#CONFIG{sarkaspip_recherche/position_pagination_recherche_rubrique, 3}|match{^(2|3)$}|?{' '})
+      [<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_rubrique}})</div>]
+    ]
+  </div>
+</B_rubriques>

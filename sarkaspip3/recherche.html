@@ -15,256 +15,32 @@
 	<div id="wrapper">
 		<div id="content">
 			<div class="titre"><h1><:sarkaspip:resultats_recherche:></h1></div>
-			<div id="minisommaire" class="description">
-			  <a name="minisommaire"></a>
-			  <div class="filles">
-			  #SET{recherche_vide, oui}	    
-			   <BOUCLE_nb_articles_recherche(ARTICLES) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE} {par points}></BOUCLE_nb_articles_recherche>
-			     [(#TOTAL_BOUCLE|!={0}|?{' '})
-			      [(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
-            [<h2><a href="#articles">(#TOTAL_BOUCLE) 
-                [(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_article:>,<:sarkaspip:articles:>})]
-            </a></h2>]
-            #SET{recherche_vide, non}
-           ]
-			   <//B_nb_articles_recherche>
-			   
-			   <BOUCLE_nb_commentaires_recherche(FORUMS) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE{galerie,not_in}} {par points}></BOUCLE_nb_commentaires_recherche>
-  			   [(#TOTAL_BOUCLE|!={0}|?{' '})
-			      [(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
-            [<h2><a href="#commentaires">(#TOTAL_BOUCLE) 
-              [(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_commentaire:>,<:sarkaspip:commentaires:>})]
-            </a></h2>]
-            #SET{recherche_vide, non}
-  				 ]  
-			   <//B_nb_commentaires_recherche>
-			   
-			   <BOUCLE_nb_albums_recherche(ARTICLES) {recherche}{id_secteur=#RACINE_SPECIALISEE{galerie}} {par points}></BOUCLE_nb_albums_recherche>
-			     [(#TOTAL_BOUCLE|!={0}|?{' '})
-			       [(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
-			       [<h2><a href="#albums">(#TOTAL_BOUCLE) 
-                [(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_album:>,<:sarkaspip:albums:>})]
-              </a></h2>]
-			       #SET{recherche_vide, non}
-			     ] 
-			   <//B_nb_albums_recherche>
-			   
-         <BOUCLE_nb_evenements_recherche(ARTICLES) {recherche}{id_secteur=#RACINE_SPECIALISEE{agenda}} {par points}></BOUCLE_nb_evenements_recherche>
-			     [(#TOTAL_BOUCLE|!={0}|?{' '})
-			      [(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
-            [<h2><a href="#evenements">(#TOTAL_BOUCLE)
-                [(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_evenement:>,<:sarkaspip:evenements:>})] 
-            </a></h2>]
-            #SET{recherche_vide, non}
-           ]
-			   <//B_nb_evenements_recherche>
-		   
-			   <BOUCLE_nb_breves_recherche(BREVES) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE{galerie,not_in}} {par points}></BOUCLE_nb_breves_recherche>
-			     [(#TOTAL_BOUCLE|!={0}|?{' '})
-			      [(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
-            [<h2><a href="#breves">(#TOTAL_BOUCLE)
-                [(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_breve:>,<:sarkaspip:breves:>})]
-            </a></h2>]
-            #SET{recherche_vide, non}
-           ]
-			   <//B_nb_breves_recherche>
-			   
-         <BOUCLE_nb_rubriques_recherche(RUBRIQUES){recherche}{id_rubrique!==#BRANCHE_SPECIALISEE} {par points}></BOUCLE_nb_rubriques_recherche>
-			     [(#TOTAL_BOUCLE|!={0}|?{' '})
-			      [(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
-            [<h2><a href="#rubriques">(#TOTAL_BOUCLE)
-                [(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_rubrique:>,<:sarkaspip:rubriques:>})]
-            </a></h2>]
-            #SET{recherche_vide, non}
-           ]
-			   <//B_nb_rubriques_recherche>
-		   
-			   <BOUCLE_nb_mots_recherche(MOTS) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE}{par points}{type!==^squelette_}></BOUCLE_nb_mots_recherche>
-			     [(#TOTAL_BOUCLE|!={0}|?{' '})
-			      [(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
-            [<h2><a href="#mots">(#TOTAL_BOUCLE)
-                [(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_mot_clef:>,<:sarkaspip:mots_clefs:>})] 
-            </a></h2>]
-            #SET{recherche_vide, non}
-           ]
-			   <//B_nb_mots_recherche>
-			   
-			   <BOUCLE_nb_sites_recherche(SITES) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE{galerie,not_in}} {par points}></BOUCLE_nb_sites_recherche>
-			     [(#TOTAL_BOUCLE|!={0}|?{' '})
-			      [(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
-            [<h2><a href="#sites">(#TOTAL_BOUCLE)
-                [(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_site:>,<:sarkaspip:sites:>})]
-            </a></h2>]
-            #SET{recherche_vide, non}
-           ]
-			   <//B_nb_sites_recherche>
-			   
-			   [(#GET{recherche_vide}|=={oui}|?{' '})
-    					<h2><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:pas_present:></h2>
-         ]
-			  </div>	
-      </div>			
-      
+			[(#INCLURE{fond=noisettes/recherche/inc_recherche_sommaire}{recherche})]			
       
 			[(#REM) <!-- Articles trouves --> ]
-			<B_articles_recherche>
-				<div id="recherche_article" class="portfolio">
-				  <a name="articles"></a>
-          <a href="#minisommaire" title="retour sommaire" class="retour_top">&nbsp;</a>
-					<h2><:sarkaspip:recherche_articles_resultat:>&nbsp;&#40;#GRAND_TOTAL&#41;</h2>				
-					#ANCRE_PAGINATION
-					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_article, 3}|match{^(1|3)$}|?{' '})
-						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_article}})</div>]
-					]
-					<BOUCLE_articles_recherche(ARTICLES) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE} {par points} {inverse}{pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_article, 5}}>
-						[(#INCLURE{fond=noisettes/recherche/inc_recherche_article}{id_article}{afficher_mere=oui}{ajax})]
-					</BOUCLE_articles_recherche>
-					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_article, 3}|match{^(2|3)$}|?{' '})
-						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_article}})</div>]
-					]
-				</div>	
-			</B_articles_recherche>
-			
-			
+      [(#INCLURE{fond=noisettes/recherche/inc_recherche_article}{recherche})]
 			
 			[(#REM) <!-- Commentaires trouves --> ]
-			<B_commentaires_recherche>
-				<div id="recherche_commentaire" class="portfolio">
-				  <a name="commentaires"></a>
-				  <a href="#minisommaire" title="retour sommaire" class="retour_top">&nbsp;</a>
-					<h2><:sarkaspip:recherche_commentaires_resultat:>&nbsp;&#40;#GRAND_TOTAL&#41;</h2>	
-					#ANCRE_PAGINATION
-					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_commentaire, 3}|match{^(1|3)$}|?{' '})
-						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_commentaire}})</div>]
-					]
-					<BOUCLE_commentaires_recherche(FORUMS) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE{galerie,not_in}} {par points} {inverse}{pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_commentaire, 5}}>
-						[(#INCLURE{fond=noisettes/recherche/inc_recherche_commentaire}{id_forum}{ajax})]			
-					</BOUCLE_commentaires_recherche>
-					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_commentaire, 3}|match{^(2|3)$}|?{' '})
-						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_commentaire}})</div>]
-					]
-				</div>
-			</B_commentaires_recherche>
+      [(#INCLURE{fond=noisettes/recherche/inc_recherche_commentaire}{recherche})]
 				
 			[(#REM) <!-- Albums trouves --> ]
-			<B_albums_recherche>
-				<div id="recherche_album" class="portfolio">
-				  <a name="albums"></a>
-				  <a href="#minisommaire" title="retour sommaire" class="retour_top">&nbsp;</a>
-					<h2><:sarkaspip:recherche_albums_resultat:>&nbsp;&#40;#GRAND_TOTAL&#41;</h2>				
-					#ANCRE_PAGINATION
-					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_article, 3}|match{^(1|3)$}|?{' '})
-						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_article}})</div>]
-					]
-					<BOUCLE_albums_recherche(ARTICLES) {recherche}{id_secteur=#RACINE_SPECIALISEE{galerie}} {par points} {inverse}{pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_article, 5}}>
-						[(#INCLURE{fond=noisettes/recherche/inc_recherche_article}{id_article}{afficher_mere=oui}{ajax})]
-					</BOUCLE_albums_recherche>
-					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_article, 3}|match{^(2|3)$}|?{' '})
-						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_article}})</div>]
-					]
-				</div>	
-			</B_albums_recherche>		
+      [(#INCLURE{fond=noisettes/recherche/inc_recherche_album}{recherche})]
       
       [(#REM) <!-- Evenements trouves --> ]
-			<B_evenements_recherche>
-				<div id="recherche_evenement" class="portfolio">
-				  <a name="evenements"></a>
-				  <a href="#minisommaire" title="retour sommaire" class="retour_top">&nbsp;</a>
-					<h2><:sarkaspip:recherche_evenements_resultat:>&nbsp;&#40;#GRAND_TOTAL&#41;</h2>				
-					#ANCRE_PAGINATION
-					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_article, 3}|match{^(1|3)$}|?{' '})
-						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_article}})</div>]
-					]
-					<BOUCLE_evenements_recherche(ARTICLES) {recherche}{id_secteur=#RACINE_SPECIALISEE{agenda}} {par points} {inverse}{pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_article, 5}}>
-						[(#INCLURE{fond=noisettes/recherche/inc_recherche_article}{id_article}{afficher_mere=oui}{ajax})]
-					</BOUCLE_evenements_recherche>
-					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_article, 3}|match{^(2|3)$}|?{' '})
-						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_article}})</div>]
-					]
-				</div>	
-			</B_evenements_recherche>												
-		
+      [(#INCLURE{fond=noisettes/recherche/inc_recherche_evenement}{recherche})]
+									
 			[(#REM) <!-- Breves trouvees --> ]
-			<B_breves_recherche>
-				<div id="recherche_breve" class="portfolio">
-				  <a name="breves"></a>
-				  <a href="#minisommaire" title="retour sommaire" class="retour_top">&nbsp;</a>
-					<h2><:sarkaspip:recherche_breves_resultat:>&nbsp;&#40;#GRAND_TOTAL&#41;</h2>
-					#ANCRE_PAGINATION
-					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_breve, 3}|match{^(1|3)$}|?{' '})
-						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_breve}})</div>]
-					]
-					<BOUCLE_breves_recherche(BREVES) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE{galerie,not_in}} {par points} {inverse} {pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_breve, 5}}>
-						[(#INCLURE{fond=noisettes/recherche/inc_recherche_breve}{id_breve}{afficher_mere=oui}{ajax})]
-					</BOUCLE_breves_recherche>
-					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_breve, 3}|match{^(2|3)$}|?{' '})
-						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_breve}})</div>]
-					]
-				</div>
-			</B_breves_recherche>		
-				
-				
-				
+			[(#INCLURE{fond=noisettes/recherche/inc_recherche_breve}{recherche})]
+	
 			[(#REM) <!-- Rubriques trouvees --> ]
-			<B_rubriques>
-				<div id="recherche_rubrique" class="portfolio">
-				  <a name="rubriques"></a>
-				  <a href="#minisommaire" title="retour sommaire" class="retour_top">&nbsp;</a>
-					<h2><:sarkaspip:recherche_rubriques_resultat:>&nbsp;&#40;#GRAND_TOTAL&#41;</h2>
-					#ANCRE_PAGINATION
-					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_rubrique, 3}|match{^(1|3)$}|?{' '})
-						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_rubrique}})</div>]
-					]
-					<BOUCLE_rubriques(RUBRIQUES){recherche}{id_rubrique!==#BRANCHE_SPECIALISEE} {par points}{inverse}{pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_rubrique, 5}}>
-						[(#INCLURE{fond=noisettes/recherche/inc_recherche_rubrique}{id_rubrique}{ajax})]
-					</BOUCLE_rubriques>
-					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_rubrique, 3}|match{^(2|3)$}|?{' '})
-						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_rubrique}})</div>]
-					]
-				</div>
-			</B_rubriques>
-				
-				
-				
+			[(#INCLURE{fond=noisettes/recherche/inc_recherche_rubrique}{recherche})]
+
 			[(#REM) <!-- Mots-cles trouves et articles associes--> ]
-			<B_mots>
-				<div id="recherche_mot_article" class="portfolio">
-				  <a name="mots"></a>
-				  <a href="#minisommaire" title="retour sommaire" class="retour_top">&nbsp;</a>
-					<h2><:sarkaspip:recherche_mots_resultat:>&nbsp;&#40;#GRAND_TOTAL&#41;</h2>
-					#ANCRE_PAGINATION
-					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_mot, 3}|match{^(1|3)$}|?{' '})
-						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_mot}})</div>]
-					]
-					<BOUCLE_mots(MOTS) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE}{par points}{type!==^squelette_}{inverse}{pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_mot, 5}}>
-						[(#INCLURE{fond=noisettes/recherche/inc_recherche_mot}{id_mot}{ajax})]			
-					</BOUCLE_mots>
-					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_mot, 3}|match{^(2|3)$}|?{' '})
-						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_mot}})</div>]
-					]
-				</div>
-			</B_mots>
-			
-			
-			
+      [(#INCLURE{fond=noisettes/recherche/inc_recherche_mot}{recherche})]
+
 			[(#REM) <!-- Sites Web trouves --> ]
-			<B_sites_recherche>
-				<div id="recherche_site" class="portfolio">
-				  <a name="sites"></a>
-				  <a href="#minisommaire" title="retour sommaire" class="retour_top">&nbsp;</a>
-					<h2><:sarkaspip:recherche_sites_resultat:>&nbsp;&#40;#GRAND_TOTAL&#41;</h2>
-					#ANCRE_PAGINATION
-					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_site, 3}|match{^(1|3)$}|?{' '})
-						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_site}})</div>]
-					]
-					<BOUCLE_sites_recherche(SITES) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE{galerie,not_in}} {par points} {inverse} {pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_site, 5}}>
-						[(#INCLURE{fond=noisettes/recherche/inc_recherche_site}{id_syndic}{afficher_mere=oui}{ajax})]			
-					</BOUCLE_sites_recherche>
-					[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_site, 3}|match{^(2|3)$}|?{' '})
-						[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_site}})</div>]
-					]
-				</div>
-			</B_sites_recherche>
+			[(#INCLURE{fond=noisettes/recherche/inc_recherche_site}{recherche})]
+
 				
 				
 							
