@@ -44,6 +44,10 @@ define('_SARKASPIP_CONFIG_SYMBOLE_PAGINATION', '&nbsp;|&nbsp;');
 define('_SARKASPIP_CONFIG_AGENDA_ANCRE_PAGINATION', 'evenement');
 define('_SARKASPIP_CONFIG_AGENDA_SYMBOLE_SUIVANT', '&gt;&gt;');
 define('_SARKASPIP_CONFIG_AGENDA_SYMBOLE_PRECEDENT', '&lt;&lt;');
+// -- Pour la page afaire (plugin Tickets)
+define('_SARKASPIP_AFAIRE_JALONS_AFFICHES', '');
+define('_SARKASPIP_AFAIRE_ID_ARTICLE', '0');
+define('_SARKASPIP_AFAIRE_TAILLE_LOGO', '150');
 // Configuration cfg des plugins utilises par le squelette
 // -- Plugin BOUTONS TEXTE
 define('_SARKASPIP_CONFIG_BOUTONSTEXTE_TXTONLY', 'boutonstexte:texte_seulement');

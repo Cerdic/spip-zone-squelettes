@@ -215,15 +215,18 @@ function lister_fonds($bidon, $image, $suffixe){
 //
 function afaire_liste_par_jalon($jalons) {
 	$page = NULL;
-	if ($jalons) {
+	if (($jalons) && defined('_SARKASPIP_AFAIRE_JALONS_AFFICHES')) {
 		$liste = explode(":", $jalons);
+		$i =0;
 		foreach($liste as $_jalon) {
-			$page .= recuperer_fond('noisettes/afaire/inc_afaire_jalon', array('jalon' => $_jalon));
+			$i += 1;
+			$page .= recuperer_fond('noisettes/afaire/inc_afaire_jalon', 
+				array('jalon' => $_jalon, 'ancre' => 'ancre_jalon_'.strval($i)));
 		}
 	}
 	return $page;
 }
-// FIN du Filtre : lister_fonds
+// FIN du Filtre : afaire_liste_par_jalon
 
 // =======================================================================================================================================
 // Filtre : afaire_tdm_par_jalon
@@ -234,15 +237,49 @@ function afaire_liste_par_jalon($jalons) {
 //
 function afaire_tdm_par_jalon($jalons) {
 	$page = NULL;
-	if ($jalons) {
+	if (($jalons) && defined('_SARKASPIP_AFAIRE_JALONS_AFFICHES')) {
 		$liste = explode(":", $jalons);
+		$i =0;
 		foreach($liste as $_jalon) {
-			$page .= recuperer_fond('noisettes/afaire/inc_afaire_jalon', array('jalon' => $_jalon));
+			$i += 1;
+			$nb = afaire_compteur_jalon($_jalon);
+			$nb_str = ($nb == 0) ? _T('sarkaspip:0_ticket') : (($nb == 1) ? strval($nb).' '._T('sarkaspip:1_ticket') : strval($nb).' '._T('sarkaspip:n_tickets'));
+			$page .= '<li><a href="#ancre_jalon_'.strval($i).'" title="'._T('sarkaspip:afaire_aller_jalon').'">'
+				._T('sarkaspip:afaire_colonne_jalon').'&nbsp;&#171;&nbsp;'.$_jalon.'&nbsp;&#187;, '.$nb_str
+				.'</a></li>';
 		}
+	}
+	$nb = afaire_compteur_jalon();
+	if ($nb > 0) {
+		$nb_str = ($nb == 1) ? strval($nb).' '._T('sarkaspip:1_ticket') : strval($nb).' '._T('sarkaspip:n_tickets');
+		$page .= '<li><a href="#ancre_jalon_non_planifie" title="'._T('sarkaspip:afaire_aller_jalon').'">&#171;&nbsp;'
+			._T('sarkaspip:afaire_non_planifies').'&nbsp;&#187;, '.$nb_str
+			.'</a></li>';
 	}
 	return $page;
 }
-// FIN du Filtre : lister_fonds
+// FIN du Filtre : afaire_tdm_par_jalon
+
+// =======================================================================================================================================
+// Filtre : afaire_avancement_jalon
+// =======================================================================================================================================
+// Auteur: Smellup
+// Fonction : Retourne le nombre de tickets pour le jalon ou pour le jalon et le statut choisis
+// =======================================================================================================================================
+//
+function afaire_compteur_jalon($jalon='', $statut='') {
+	$valeur = 0;
+	// Nombre total de tickets pour le jalon
+	$select = array('t1.id_ticket');
+	$from = array('spip_tickets AS t1');
+	$where = array('t1.jalon='.sql_quote($jalon));
+	if ($statut)
+		$where = array_merge($where, array('t1.statut='.sql_quote($statut)));
+	$result = sql_select($select, $from, $where);
+	$valeur = sql_count($result);
+	return $valeur;
+}
+// FIN du Filtre : afaire_compteur_jalon
 
 // =======================================================================================================================================
 // Filtre : afaire_avancement_jalon
@@ -251,26 +288,24 @@ function afaire_tdm_par_jalon($jalons) {
 // Fonction : Retourne le pourcetage de tickets termines sur le nombre de tickets total du jalon
 // =======================================================================================================================================
 //
-function afaire_avancement_jalon($jalon) {
+function afaire_avancement_jalon($jalon='') {
 	$valeur = 0;
-	if ($jalon) {
-		// Nombre total de tickets pour le jalon
-		$select = array('t1.id_ticket');
-		$from = array('spip_tickets AS t1');
-		$where = array('t1.jalon='.sql_quote($jalon));
+	// Nombre total de tickets pour le jalon
+	$select = array('t1.id_ticket');
+	$from = array('spip_tickets AS t1');
+	$where = array('t1.jalon='.sql_quote($jalon));
+	$result = sql_select($select, $from, $where);
+	$n1 = sql_count($result);
+	// Nombre de tickets termines pour le jalon
+	if ($n1 != 0) {
+		$where = array_merge($where, array(sql_in('t1.statut', array('resolu','ferme'))));
 		$result = sql_select($select, $from, $where);
-		$n1 = sql_count($result);
-		
-		if ($n1 != 0) {
-			$where = array_merge($where, array(sql_in('t1.statut', array('resolu','ferme'))));
-			$result = sql_select($select, $from, $where);
-			$n2 = sql_count($result);
-			$valeur = floor($n2*100/$n1);
-		}
+		$n2 = sql_count($result);
+		$valeur = floor($n2*100/$n1);
 	}
 	return $valeur;
 }
-// FIN du Filtre : lister_fonds
+// FIN du Filtre : afaire_avancement_jalon
 
 // =======================================================================================================================================
 // Filtres : module AGENDA
