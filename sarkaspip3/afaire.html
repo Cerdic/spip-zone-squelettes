@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+#CACHE{7200}
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+	<INCLURE{fond=noisettes/inc_header}{meta_titre=<:sarkaspip:afaire:>}>
+
+<body dir="#LANG_DIR"[ (#CONFIG{sarkaspip_menus/modele_rubriques, 1}|=={1}|?{onload="setHover()"})]>
+<div id="container">
+
+	<div id="header">
+		[(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
+		<INCLURE{fond=noisettes/bandeau}>
+	</div>
+	
+	<div id="wrapper">
+		<div id="content">
+			[(#REM) <!-- Contenu de l'article --> ]
+			<div id="afaire" class="article">
+				<INCLURE{fond=noisettes/article/inc_article_specialise_description}
+					{id_article=#CONFIG{sarkaspip_afaire/article, 100}}
+					{titre_defaut=<:sarkaspip:afaire_titre_page:>}
+					{descriptif_defaut=<:sarkaspip:afaire_descriptif_page:>}
+					{taille_logo=#CONFIG{sarkaspip_afaire/taille_logo, 150}}
+					{page=afaire}>
+			</div>
+			[(#REM) <!-- Listes de tickets pour chaque jalon considere --> ]
+ 			[(#EVAL{_SARKASPIP_AFAIRE_JALONS_AFFICHES}|afaire_liste_par_jalon)]
+			[(#REM) <!-- Liste des ticketsnon planifie --> ]
+ 			<INCLURE{fond=noisettes/afaire/inc_afaire_non_planifie}>
+		</div>
+	</div>
+	
+	<div id="navigation">
+		[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
+		<INCLURE{fond=noisettes/navigation}{page=afaire}>
+	</div>
+	
+	<div id="extra">
+		[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]		
+		<INCLURE{fond=noisettes/extra}{self=#SELF}>
+	</div>
+	
+	<div id="footer">
+		[(#REM) <!-- ================================== ZONE PIED DE PAGE  ================================== --> ]
+		<INCLURE{fond=noisettes/pied}{squelette=#SQUELETTE}>
+	</div>
+
+</div>
+</body>
+</html>

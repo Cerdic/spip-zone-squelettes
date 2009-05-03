@@ -207,6 +207,72 @@ function lister_fonds($bidon, $image, $suffixe){
 // FIN du Filtre : lister_fonds
 
 // =======================================================================================================================================
+// Filtre : afaire_liste_par_jalon
+// =======================================================================================================================================
+// Auteur: Smellup
+// Fonction : Retourne les blocs d'affichage des tickets par jalon dans la page afaire
+// =======================================================================================================================================
+//
+function afaire_liste_par_jalon($jalons) {
+	$page = NULL;
+	if ($jalons) {
+		$liste = explode(":", $jalons);
+		foreach($liste as $_jalon) {
+			$page .= recuperer_fond('noisettes/afaire/inc_afaire_jalon', array('jalon' => $_jalon));
+		}
+	}
+	return $page;
+}
+// FIN du Filtre : lister_fonds
+
+// =======================================================================================================================================
+// Filtre : afaire_tdm_par_jalon
+// =======================================================================================================================================
+// Auteur: Smellup
+// Fonction : Retourne les blocs d'affichage des tickets par jalon dans la page afaire
+// =======================================================================================================================================
+//
+function afaire_tdm_par_jalon($jalons) {
+	$page = NULL;
+	if ($jalons) {
+		$liste = explode(":", $jalons);
+		foreach($liste as $_jalon) {
+			$page .= recuperer_fond('noisettes/afaire/inc_afaire_jalon', array('jalon' => $_jalon));
+		}
+	}
+	return $page;
+}
+// FIN du Filtre : lister_fonds
+
+// =======================================================================================================================================
+// Filtre : afaire_avancement_jalon
+// =======================================================================================================================================
+// Auteur: Smellup
+// Fonction : Retourne le pourcetage de tickets termines sur le nombre de tickets total du jalon
+// =======================================================================================================================================
+//
+function afaire_avancement_jalon($jalon) {
+	$valeur = 0;
+	if ($jalon) {
+		// Nombre total de tickets pour le jalon
+		$select = array('t1.id_ticket');
+		$from = array('spip_tickets AS t1');
+		$where = array('t1.jalon='.sql_quote($jalon));
+		$result = sql_select($select, $from, $where);
+		$n1 = sql_count($result);
+		
+		if ($n1 != 0) {
+			$where = array_merge($where, array(sql_in('t1.statut', array('resolu','ferme'))));
+			$result = sql_select($select, $from, $where);
+			$n2 = sql_count($result);
+			$valeur = floor($n2*100/$n1);
+		}
+	}
+	return $valeur;
+}
+// FIN du Filtre : lister_fonds
+
+// =======================================================================================================================================
 // Filtres : module AGENDA
 // =======================================================================================================================================
 // Auteur: Smellup
