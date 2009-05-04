@@ -1,8 +1,7 @@
 <?php
 
-function menuder_insert_head($flux){
-	$flux .= "<script type='text/javascript' src='".find_in_path('menu_deroulant.js')."'></script>\n";
-	$flux .= '<link rel="stylesheet" href="'.find_in_path('menu_deroulant.css').'" type="text/css" media="projection, screen" />';
+function SarkaSpip_insert_head($flux){
+	$flux .='<script src="'.url_absolue(find_in_path('scripts/menu_deroulant.js')).'" type="text/javascript"></script>';
 	return $flux;
 }
 ?>
