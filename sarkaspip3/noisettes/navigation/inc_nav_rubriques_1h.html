@@ -1,40 +1,40 @@
 <div id='menu_rubriques' class="noisette menu_horiz"> 
 <B_rubriques>
 	<ul>
-	<BOUCLE_rubriques(RUBRIQUES) {racine} {id_rubrique!==#RACINE_SPECIALISEE}{par num titre, titre}>
+<BOUCLE_rubriques(RUBRIQUES) {racine} {id_rubrique!==#RACINE_SPECIALISEE}{par num titre, titre}>
 		<li>
-		  [(#CONFIG{sarkaspip_menus/option_rubriques, 0}|!={2}|?{' '}) <a href="#URL_RUBRIQUE">]
-			[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|?{' '}) <INCLURE{fond=noisettes/navigation/inc_nav_rubriques_url}{id_rubrique}>]
-					[(#TITRE|supprimer_numero|couper{80})]
-				</a>
-				[(#SET{ul_encours, non})]
-			<B_sous_rubriques>
+		[(#SET{rang_secteur, [mh_n(#COMPTEUR_BOUCLE)]})]
+			[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|!={2}|?{' '}) <a[ id="(#GET{rang_secteur})"] href="#URL_RUBRIQUE">]
+			[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|?{' '}) <INCLURE{fond=noisettes/navigation/inc_nav_rubriques_url}{id_rubrique}{rang=#GET{rang_secteur}}>]
+				[(#TITRE|supprimer_numero|couper{80})]
+			</a>
+			[(#SET{ul_encours, non})]
+	<B_sous_rubriques>
 			<ul>
 			 [(#SET{ul_encours, oui})]
-				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
-					<li>
-					  #SET{class_a, class=""}
-					  <BOUCLE_test_sousrub(RUBRIQUES){id_parent}{0,1}>#SET{class_a, class="daddy"}</BOUCLE_test_sousrub>
-					  
-					  [(#CONFIG{sarkaspip_menus/option_rubriques, 0}|!={2}|?{' '}) <a href="#URL_RUBRIQUE" #GET{class_a}>]
-						[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|?{' '}) <INCLURE{fond=noisettes/navigation/inc_nav_rubriques_url}{id_rubrique}>]
-							[(#TITRE|supprimer_numero|couper{80})]
-						</a>
-            [(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|?{' '}) <INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique}{ul_encours=non}>]
-            <BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	
-          </li>
-				</BOUCLE_sous_rubriques>
+	<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
+				<li>
+				<BOUCLE_test_sousrub(RUBRIQUES){id_parent}{0,1}>
+					#SET{class_a, pere}
+				</BOUCLE_test_sousrub>
+					#SET{class_a, ''}
+				<//B_test_sousrub>
+					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|!={2}|?{' '}) <a[ class="(#GET{class_a})"]  href="#URL_RUBRIQUE">]
+					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|?{' '}) <INCLURE{fond=noisettes/navigation/inc_nav_rubriques_url}{id_rubrique}{classe=#GET{class_a}}>]
+						[(#TITRE|supprimer_numero|couper{80})]
+					</a>
+					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|?{' '}) <INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique}{ul_encours=non}>]
+					<BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	
+				</li>
+	</BOUCLE_sous_rubriques>
 				[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|?{' '}) <INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique}{ul_encours=#GET{ul_encours}}>]
-				[(#GET{ul_encours}|=={oui}|?{' '}) </ul>]
-
-			</B_sous_rubriques>
+			[(#GET{ul_encours}|=={oui}|?{' '}) </ul>]
+	</B_sous_rubriques>
 			[(#GET{ul_encours}|=={non}|?{' '})
-					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|?{' '}) <INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique}{ul_encours=#GET{ul_encours}}>]
+				[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|?{' '}) <INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique}{ul_encours=#GET{ul_encours}}>]
 			]
-
 		</li>
-	</BOUCLE_rubriques>
-
+</BOUCLE_rubriques>
 	</ul>
 </B_rubriques>
 </div>
