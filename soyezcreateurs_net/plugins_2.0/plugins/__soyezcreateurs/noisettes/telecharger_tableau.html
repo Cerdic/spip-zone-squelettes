@@ -1,4 +1,4 @@
-﻿<BOUCLE_SsRubrique(RUBRIQUES){id_rubrique}><B_Articles>#SET{total,0}<BOUCLE_SsCompteArticles(ARTICLES){id_rubrique}><BOUCLE_SsCompteDocuments(DOCUMENTS){id_article}{mode=document}> </BOUCLE_SsCompteDocuments>#SET{total,#GET{total}|plus{#TOTAL_BOUCLE}}</B_SsCompteDocuments></BOUCLE_SsCompteArticles>(#GET{total})
+﻿<BOUCLE_SsRubrique(RUBRIQUES){id_rubrique}><B_Articles>#SET{total,0}<BOUCLE_SsCompteArticles(ARTICLES){id_rubrique}><BOUCLE_SsCompteDocuments(DOCUMENTS){id_article}{mode=document}{extension !IN gif,jpg,png}> </BOUCLE_SsCompteDocuments>#SET{total,#GET{total}|plus{#TOTAL_BOUCLE}}</B_SsCompteDocuments></BOUCLE_SsCompteArticles>(#GET{total})
 								<div class="smallchild">
 									<table class="spip" cellspacing="0" summary="Documents : [(#TITRE|attribut_html)], avec pour chacun le type, le titre, l'emetteur, la description et le poids ">
 										<thead>
@@ -11,7 +11,7 @@
 										</thead>
 										<tbody>#SET{compteur_ligne,0}
 											<BOUCLE_Articles(ARTICLES){id_rubrique}><B_Documents>
-											<BOUCLE_Documents(DOCUMENTS){id_article}{par num titre}{mode=document}>#SET{compteur_ligne,#GET{compteur_ligne}|plus{1}}
+											<BOUCLE_Documents(DOCUMENTS){id_article}{par num titre}{mode=document}{extension !IN gif,jpg,png}>#SET{compteur_ligne,#GET{compteur_ligne}|plus{1}}
 											<tr class="[(#GET{compteur_ligne}|alterner{'row_even','row_odd'})]">
 												<td><img src="[(#LOGO_DOCUMENT||image_reduire{17,17}|extraire_attribut{src})]" height="[(#LOGO_DOCUMENT||image_reduire{17,17}|extraire_attribut{height})]" width="[(#LOGO_DOCUMENT||image_reduire{17,17}|extraire_attribut{width})]" alt="Format: #TYPE_DOCUMENT" title="Format: #TYPE_DOCUMENT" /></td>
 												<td><a href="#URL_DOCUMENT">#TITRE</a></td>
