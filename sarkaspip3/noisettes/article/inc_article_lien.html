@@ -1,0 +1,24 @@
+[(#REM) 
+<!-- Affichage du lien d'un article (traite le cas d'un article specialise)
+	Recoit en argument :
+		- id_article: id de l'article concerne
+		- classe: attribut class css du lien
+		- bulle: attribut title du lien 
+-->
+]
+<BOUCLE_article_lien(ARTICLES){id_article}>
+	#SET{titre, #TITRE|supprimer_numero}
+	[(#ID_SECTEUR|=={#RACINE_SPECIALISEE{galerie}}|oui)
+		#SET{url, #URL_PAGE{album}|parametre_url{id_article,#ID_ARTICLE}}
+	]
+	[(#ID_SECTEUR|=={#RACINE_SPECIALISEE{agenda}}|oui)
+		#SET{url, #URL_PAGE{evenement}|parametre_url{id_article,#ID_ARTICLE}}
+	]
+	[(#ID_SECTEUR|=={#RACINE_SPECIALISEE{forum}}|oui)
+		#SET{url, #URL_ARTICLE}
+	]
+	[(#ID_SECTEUR|match{#RACINE_SPECIALISEE}|non)
+		#SET{url, #URL_ARTICLE}
+	]
+</BOUCLE_article_lien>
+<a[ class="(#ENV{classe})"] href="#GET{url}"[ title="(#ENV{bulle})"]>#GET{titre}</a>

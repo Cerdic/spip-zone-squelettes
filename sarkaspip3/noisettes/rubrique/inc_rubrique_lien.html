@@ -1,25 +1,24 @@
 [(#REM) 
-<!-- Affichage de la rubrique mere d'un article
+<!-- Affichage du lien d'une rubrique (traite les cas de rubrique specialisee)
 	Recoit en argument :
 		- id_rubrique: id de la rubrique concernee
+		- classe: attribut class css du lien
+		- bulle: attribut title du lien 
 -->
 ]
-<BOUCLE_rubrique_mere(RUBRIQUES){id_rubrique}>
+<BOUCLE_rubrique_lien(RUBRIQUES){id_rubrique}>
+	#SET{titre, #TITRE|supprimer_numero}
 	[(#ID_SECTEUR|=={#RACINE_SPECIALISEE{galerie}}|oui)
-		#SET{titre, #TITRE|supprimer_numero}
 		#SET{url, #URL_PAGE{galerie}|parametre_url{id_rubrique,#ID_SECTEUR}}
 	]
 	[(#ID_SECTEUR|=={#RACINE_SPECIALISEE{agenda}}|oui)
-		#SET{titre, #TITRE|supprimer_numero}
 		#SET{url, #URL_PAGE{agenda}|parametre_url{id_rubrique,#ID_RUBRIQUE}|parametre_url{annee,#AUJOURDHUI|annee}|parametre_url{mois,#AUJOURDHUI|mois}}
 	]
 	[(#ID_SECTEUR|=={#RACINE_SPECIALISEE{forum}}|oui)
-		#SET{titre, #TITRE|supprimer_numero}
 		#SET{url, #URL_RUBRIQUE}
 	]
 	[(#ID_SECTEUR|match{#RACINE_SPECIALISEE}|non)
-		#SET{titre, #TITRE|supprimer_numero}
 		#SET{url, #URL_RUBRIQUE}
 	]
-</BOUCLE_rubrique_mere>
-[<a href="#GET{url}">(#GET{titre})</a>]
+</BOUCLE_rubrique_lien>
+<a[ class="(#ENV{classe})"] href="#GET{url}"[ title="(#ENV{bulle})"]>#GET{titre}</a>
