@@ -29,6 +29,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //D
 'dernier_article' => 'Dernier billet',
+'dernieres_breves' => 'Derni&egrave;res brèves',
 'derniers_articles' => 'Billets r&eacute;cents',
 'discussion' => 'Commentaires',
 
