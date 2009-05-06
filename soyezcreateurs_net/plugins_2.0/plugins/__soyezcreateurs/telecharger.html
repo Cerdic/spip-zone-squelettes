@@ -1,0 +1,37 @@
+﻿#CACHE{3600}
+[(#SET{titretop,<:ecrire:onglet_documents|nettoyer_marqueur|texte_script:>})]
+[(#INCLURE{fond=noisettes/header/header}
+	{template=Documents}
+	{title=<:ecrire:onglet_documents|texte_script:>}
+	{titretop=#GET{titretop}}
+)]
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
+	<li><:plan_site:></li>
+	</ul>
+	</div>
+	<div class="texte">
+		<div class="cartouche">
+		<h1><:ecrire:onglet_documents:></h1>
+		</div>
+			<div id="letexte">
+				<BOUCLE_SecteursAvecDoc(DOCUMENTS spip_documents_liens){mode=document}{objet=article}{fusion spip_documents_liens.id_objet}><BOUCLE_ArticleAvecDoc(ARTICLES){id_article=#ID_OBJET}><BOUCLE_MemoriseSecteurs(RUBRIQUES){id_rubrique=#ID_SECTEUR}{doublons SecteursAvecDoc} /></BOUCLE_ArticleAvecDoc></BOUCLE_SecteursAvecDoc>
+				<B_Secteurs>
+				<ul id="listview">
+					<BOUCLE_Secteurs(RUBRIQUES){!titre_mot=PasDansPlan}{par num titre}{!doublons SecteursAvecDoc}><li>#TITRE[(#INCLURE{fond=noisettes/telecharger_tableau}{id_rubrique}{env})]<B_SsRubrique>
+						<ul>
+							<BOUCLE_SsRubrique(RUBRIQUES){id_parent}{par num titre}><li>#TITRE[(#INCLURE{fond=noisettes/telecharger_tableau}{id_rubrique}{env})]<BOUCLE_Recursion(BOUCLE_SsRubrique) /></li></BOUCLE_SsRubrique>
+						</ul>
+					</B_SsRubrique></li></BOUCLE_Secteurs>
+				</ul>
+				</B_Secteurs>
+		</div><!-- Fin de #letexte -->
+	</div><!-- Fin de .texte -->
+
+[(#FORMULAIRE_ADMIN)]
+
+[(#INCLURE{fond=noisettes/footer/footer}
+	{template=Documents}
+	{titretop=#GET{titretop}}
+)]

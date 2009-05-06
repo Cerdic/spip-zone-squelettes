@@ -1,0 +1,22 @@
+﻿<BOUCLE_SsRubrique(RUBRIQUES){id_rubrique}><B_Articles>[(#SET{total,0})]<BOUCLE_SsCompteArticles(ARTICLES){id_rubrique}><BOUCLE_SsCompteDocuments(DOCUMENTS){id_article}{mode=document}> </BOUCLE_SsCompteDocuments>#SET{total,#GET{total}|plus{#TOTAL_BOUCLE}}</B_SsCompteDocuments></BOUCLE_SsCompteArticles> ([(#GET{total})])
+								<div class="smallchild">
+									<table cellspacing="0" summary="Documents : [(#TITRE|attribut_html)], avec pour chacun le type, le titre, l'emetteur, la description et le poids ">
+										<tr>
+											<th scope="col">Type</th>
+											<th scope="col">Titre</th>
+											<th scope="col">Description</th>
+											<th scope="col">Poids</th>
+										</tr>
+										<BOUCLE_Articles(ARTICLES){id_rubrique}><B_Documents>
+										<BOUCLE_Documents(DOCUMENTS){id_article}{par num titre}{mode=document}>
+										<tr>
+											<td><img src="[(#LOGO_DOCUMENT||image_reduire{17,17}|extraire_attribut{src})]" alt="Format: #TYPE_DOCUMENT" title="Format: #TYPE_DOCUMENT" /></td>
+											<td><a href="#URL_DOCUMENT">#TITRE</a></td>
+											<td>[(#DESCRIPTIF|couper{80})]</td>
+											<td>[(#TAILLE|taille_en_octets)]</td>
+										</tr>
+										</BOUCLE_Documents>
+										</B_Documents></BOUCLE_Articles>
+									</table>
+								</div>
+</B_Articles></BOUCLE_SsRubrique>
