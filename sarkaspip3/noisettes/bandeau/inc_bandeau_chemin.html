@@ -13,44 +13,34 @@
 ]
 	<div class="chemin">
 	<a href="#URL_SITE_SPIP"><:sarkaspip:accueil_site:></a>
-	<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
-		<BOUCLE_hierarchie(HIERARCHIE)>
-			[(#ID_RUBRIQUE|=={#RACINE_SPECIALISEE{agenda}}|?{' '})
-				#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}
-				<a href="[(#URL_PAGE{agenda,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:agenda:></a>
-			]
-			[(#ID_RUBRIQUE|=={#RACINE_SPECIALISEE{galerie}}|?{' '})
-				#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}
-				<a href="[(#URL_PAGE{galerie,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:galerie:></a>
-			]
-			[(#ID_RUBRIQUE|match{#RACINE_SPECIALISEE{agenda:galerie}}|?{'', ' '})
-				[(#ID_SECTEUR|match{#RACINE_SPECIALISEE{agenda:galerie}}|?{'', ' '})
-					#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}
-					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|!={2}|?{<a href="#URL_RUBRIQUE">})]
-					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|?{' '})<INCLURE{fond=noisettes/navigation/inc_nav_rubriques_url}{id_rubrique=#ID_RUBRIQUE}>]
-						[(#TITRE|supprimer_numero)]
-					</a>
-				]
-			]
-		</BOUCLE_hierarchie>
-		[(#ENV{id_rubrique}|=={#RACINE_SPECIALISEE{agenda}}|?{' '})
-			#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}
-			<a href="[(#URL_PAGE{agenda,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:agenda:></a>
+<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
+	<BOUCLE_hierarchie(HIERARCHIE)>
+		#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}
+		[(#ID_RUBRIQUE|match{#RACINE_SPECIALISEE}|oui)
+			<INCLURE{fond=noisettes/rubrique/inc_rubrique_lien}{id_rubrique=#ID_RUBRIQUE}>
 		]
-		[(#ENV{id_rubrique}|=={#RACINE_SPECIALISEE{galerie}}|?{' '})
-			#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}
-			<a href="[(#URL_PAGE{galerie,[id_rubrique=(#ID_RUBRIQUE)][&amp;annee=(#AUJOURDHUI|annee)][&amp;mois=(#AUJOURDHUI|mois)]})]"><:sarkaspip:galerie:></a>
-		]
-		[(#ENV{id_rubrique}|match{#RACINE_SPECIALISEE{agenda:galerie}}|?{'', ' '})
-			[(#ID_SECTEUR|match{#RACINE_SPECIALISEE{agenda:galerie}}|?{'', ' '})
-				#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}
-				[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|!={2}|?{<a href="#URL_RUBRIQUE">})]
-				[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|?{' '})<INCLURE{fond=noisettes/navigation/inc_nav_rubriques_url}{id_rubrique}>]
-					[(#TITRE|supprimer_numero)]
-				</a>
+		[(#ID_SECTEUR|match{#RACINE_SPECIALISEE}|non)
+			[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|non)
+				<INCLURE{fond=noisettes/rubrique/inc_rubrique_lien}{id_rubrique=#ID_RUBRIQUE}>
+			]
+			[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|oui)
+				<INCLURE{fond=noisettes/navigation/inc_nav_rubrique_lien}{id_rubrique=#ID_RUBRIQUE}>
 			]
 		]
-	</BOUCLE_rubrique>
+	</BOUCLE_hierarchie>
+		#EVAL{_SARKASPIP_CONFIG_SYMBOLE_CHEMIN}
+		[(#ID_RUBRIQUE|match{#RACINE_SPECIALISEE}|oui)
+			<INCLURE{fond=noisettes/rubrique/inc_rubrique_lien}{id_rubrique=#ID_RUBRIQUE}>
+		]
+		[(#ID_SECTEUR|match{#RACINE_SPECIALISEE}|non)
+			[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|non)
+				<INCLURE{fond=noisettes/rubrique/inc_rubrique_lien}{id_rubrique=#ID_RUBRIQUE}>
+			]
+			[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|oui)
+				<INCLURE{fond=noisettes/navigation/inc_nav_rubrique_lien}{id_rubrique=#ID_RUBRIQUE}>
+			]
+		]
+</BOUCLE_rubrique>
 	</div>
 
 </div>
