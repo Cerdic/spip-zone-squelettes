@@ -583,6 +583,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_inc_commentaires' => 'Liste des commentaires',
 		'cfg_lgd_inc_herbier' => 'Herbier',
 		'cfg_lgd_inc_messages' => 'Liste des messages du forum',
+		'cfg_lgd_inc_navigation' => 'Navigation dans les articles &amp; rubriques',
 		'cfg_lgd_inc_rainette' => 'Rainette',
 		'cfg_lgd_inc_recherche' => 'Formulaires de recherche',
 		'cfg_lgd_inc_sites' => 'Liste des articles syndiqu&eacute;s',
