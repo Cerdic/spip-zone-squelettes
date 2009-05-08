@@ -12,13 +12,14 @@
 			 [(#SET{ul_encours, oui})]
 	<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
 				<li>
+				[(#SET{rang_item, [it_n(#COMPTEUR_BOUCLE)]})]
 				<BOUCLE_test_sousrub(RUBRIQUES){id_parent}{0,1}>
 					#SET{class_a, pere}
 				</BOUCLE_test_sousrub>
 					#SET{class_a, ''}
 				<//B_test_sousrub>
-					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|!={2}|?{' '})[<a[ class="(#GET{class_a})"] href="#URL_RUBRIQUE">(#TITRE|supprimer_numero|couper{80})</a>]]
-					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|?{' '})<INCLURE{fond=noisettes/navigation/inc_nav_rubrique_lien}{id_rubrique}{classe=#GET{class_a}}>]
+					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|!={2}|?{' '})[<a class="[(#GET{class_a})] [(#GET{rang_item})]" href="#URL_RUBRIQUE">(#TITRE|supprimer_numero|couper{80})</a>]]
+					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|?{' '})<INCLURE{fond=noisettes/navigation/inc_nav_rubrique_lien}{id_rubrique}{classe=#GET{class_a} #GET{rang_item}}>]
 					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|?{' '})<INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique}{ul_encours=non}>]
 					<BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	
 				</li>
