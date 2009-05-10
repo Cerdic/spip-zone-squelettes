@@ -22,4 +22,21 @@ function SarkaSpip_insert_head($flux){
 
 	return $flux;
 }
+
+// Pipeline "mes_fichiers_a_sauver" permettant de rajouter des fichiers ˆ sauvegarder dans le plugin Mes Fichiers 2
+function SarkaSpip_mes_fichiers_a_sauver($flux){
+	$tmp_fonds = defined('_DIR_TMP') ? _DIR_TMP.'fonds/': _DIR_RACINE.'tmp/fonds/';
+	$tmp_styles = defined('_DIR_TMP') ? _DIR_TMP.'cfg/': _DIR_RACINE.'tmp/cfg/';
+
+	// le repertoire des images de fonds pour les styles
+	if (@is_dir($tmp_fonds))
+		$flux[] = $tmp_fonds;
+	// le repertoire sauvegardes du cfg des styles
+	if (@is_dir($tmp_styles))
+		$flux[] = $tmp_styles;
+
+	spip_log('*** SarkaSpip_mes_fichiers_a_sauver ***');
+	spip_log($flux);
+	return $flux;
+}
 ?>
