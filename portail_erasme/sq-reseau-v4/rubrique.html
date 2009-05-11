@@ -7,14 +7,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml2/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 <head>
-	[(#INCLURE {fond=inc-head})]
+	<INCLURE {fond=inc-head}{titre=#TITRE}>
 </head>
 <body>
 
 <div id="container">
 
-	[(#INCLURE {fond=entete})]
-	[(#INCLURE {fond=menu}{id_rubrique}{id_rubrique})]
+	<INCLURE {fond=entete}>
+	<INCLURE {fond=menu}{id_rubrique}{id_rubrique}>
 
 [(#REM) ------------------------------------- COLONE GAUCHE ----------------------------------------- ]
 	<div id="supportingText">
@@ -40,7 +40,10 @@
 				  [(#LOGO_RUBRIQUE|right||image_reduire{200,200})]
 				  [<h1><span>(#TITRE|supprimer_numero)</span></h1>]
 				  [<h4>(#SOUSTITRE|majuscules)</h4>]
+	
+	[(#REM) ---------------------- Editos ---------------------- ]			  
 				  [<div id="web"><div id="web_texte">(#TEXTE)</div></div>]
+				  
 					<B_article_0>
 						<div id="web"><div id="web_texte">
 					<BOUCLE_article_0(ARTICLES) {id_rubrique} {titre_mot=rubrique_edito} {0,1} {doublons}>
@@ -55,7 +58,7 @@
 					
 					<B_serv>
 						<BOUCLE_serv(RUBRIQUES){id_rubrique}{tout}{titre_mot=service-public.fr}>
-							[(#INCLURE{fond=rubrique-serv}{id_rubrique})]
+							<INCLURE{fond=rubrique-serv}{id_rubrique}>
 						</BOUCLE_serv>
 						</div>
 					</B_serv>
@@ -64,7 +67,7 @@
 
 							<BOUCLE_serv0(RUBRIQUES){id_parent}{tout}{titre_mot=service-public.fr}>
 							</BOUCLE_serv0>
-								[(#INCLURE{fond=rubrique-serv}{id_rubrique})]
+								<INCLURE{fond=rubrique-serv}{id_rubrique}>
 								</div>
 							<//B_serv0>	
 
@@ -72,7 +75,7 @@
 
 							<B_trombino>
 								<BOUCLE_trombino(RUBRIQUES){tout}{id_rubrique}{titre_mot=trombinoscope}>
-									[(#INCLURE{fond=rubrique-trombino}{id_rubrique})]
+									<INCLURE{fond=rubrique-trombino}{id_rubrique}>
 								</BOUCLE_trombino>
 								</div>
 							</B_trombino>
@@ -80,11 +83,11 @@
 							<B_plan>
 								</div>
 								<BOUCLE_plan(RUBRIQUES){tout}{id_rubrique}{titre_mot=chrono}>
-									[(#INCLURE{fond=rubrique-chrono}{id_rubrique})]
+									<INCLURE{fond=rubrique-chrono}{id_rubrique}>
 								</BOUCLE_plan>
 							</B_plan>
 
-							[(#INCLURE{fond=rubrique-plan}{id_rubrique})]
+							<INCLURE{fond=rubrique-plan}{id_rubrique}>
 							</div>
 						<//B_plan>
 
@@ -107,28 +110,28 @@
 		<B_serv2>
 		<BOUCLE_serv2(RUBRIQUES){id_rubrique}{tout}{titre_mot=service-public.fr}>
 		</BOUCLE_serv2>
-			[(#INCLURE{fond=rubrique-serv-droite}{id_rubrique})]
+			<INCLURE{fond=rubrique-serv-droite}{id_rubrique}>
 		</B_serv2>
 
 	[(#REM) ---------------------- Recherche ---------------------- ]
 	
-		[(#INCLURE{fond=bloc-recherche})]
+		<INCLURE{fond=bloc-recherche}>
 
 	[(#REM) ---------------------- Sous rubriques ---------------------- ]
 	
-		[(#INCLURE{fond=bloc-ss-rubriques}{id_rubrique})]
+		<INCLURE{fond=bloc-ss-rubriques}{id_rubrique}>
 
 	[(#REM) ---------------------- Sites syndiqués ---------------------- ]
 	
-		[(#INCLURE{fond=bloc-web}{id_rubrique})]
+		<INCLURE{fond=bloc-web}{id_rubrique}>
 
 	[(#REM) ---------------------- Forum ---------------------- ]
 	
-		[(#INCLURE{fond=bloc-forum}{id_rubrique})]
+		<INCLURE{fond=bloc-forum}{id_rubrique}>
 	
 	</div>
 	
-	[(#INCLURE {fond=bas_page})]
+	<INCLURE {fond=bas_page}>
 	
 </div>
 

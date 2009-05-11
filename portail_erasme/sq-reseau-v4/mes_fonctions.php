@@ -15,6 +15,7 @@ function redu_txt2($texte,$long='30',$ligne='12')
 
 }
 
+
 function limit_images_size($string, $largeur_maxi=0, $hauteur_maxi=0, $with_link=0, $border=0) {
 
 //<img src='IMG/drop-zone_city2_450.jpg' border=0 width='450' height='261' align='center' hspace='5' vspace='3'>

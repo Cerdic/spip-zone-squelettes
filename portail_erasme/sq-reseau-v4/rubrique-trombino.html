@@ -1,16 +1,17 @@
+#CACHE{48*3600}
 <BOUCLE_ex(ARTICLES) {id_rubrique} {titre_mot=rubrique_edito} {0,1} {doublons}></BOUCLE_ex>
 
 <B_documents_portfolio>
 		<div id="documents_portfolio">
 			<p>&nbsp;</p>
-			<BOUCLE_documents_portfolio(RUBRIQUES) {id_rubrique} {titre_mot=trombinoscope}>
-               	<BOUCLE_articles_trombi(ARTICLES) {id_rubrique} {par titre} {doublons}>
-					<div style="float: left; text-align: center; width: 150px;">
-						[<a href="#URL_ARTICLE" target="_blank" >(#LOGO_ARTICLE||image_reduire{0,100}||inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
-						[<span class="#EDIT{titre}"><br /><strong>(#TITRE)</strong></span>]
-					</div>
-				</BOUCLE_articles_trombi>
-			</BOUCLE_documents_portfolio>
+			<BOUCLE_trombinoscope(RUBRIQUES) {id_rubrique} {titre_mot=trombinoscope}>
+        	<BOUCLE_articles_trombi(ARTICLES) {id_rubrique} {par num titre} {doublons}>
+	        	<div class="bloc_trombino" >
+					<a href="#URL_ARTICLE" >[(#LOGO_ARTICLE_RUBRIQUE||reduire_image{200,70}|inserer_attribut{class,image_trombino})]</a>
+					[<div align="center"><b>(#TITRE|couper{50}|ligne_longue{20})</b></div>]
+				</div>
+			</BOUCLE_articles_trombi>
+    		</BOUCLE_trombinoscope>
 		</div>
 		<div style="clear: both;"></div>
 </B_documents_portfolio>

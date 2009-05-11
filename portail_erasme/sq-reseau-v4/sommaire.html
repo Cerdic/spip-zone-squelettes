@@ -1,10 +1,10 @@
-#CACHE{0}
+#CACHE{48*3600}
 
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml2/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 
 <head>
-	<INCLURE{fond=inc-head}>
+	<INCLURE{fond=inc-head}{agenda=oui}>
 </head>
 
 <body>
@@ -12,11 +12,11 @@
 
 <div id="container">
 
-	[(#INCLURE {fond=entete})]
-	[(#INCLURE {fond=menu}{id_rubrique}{id_article})]
+	<INCLURE{fond=entete}>
+	<INCLURE{fond=menu}{id_rubrique}{id_article}>
 
 	<div id="thirdcolum">
-		[(#INCLURE {fond=menu2}{id_rubrique}{id_article})]
+		<INCLURE{fond=menu2}{id_rubrique}{id_article}>
 	</div>
 
 [(#REM) ---------------------- A exclure---------------------- ]
@@ -28,25 +28,27 @@
 	
 	<div id="linkList">
 	
-		[(#INCLURE {fond=bloc-recherche})]
+		<INCLURE{fond=bloc-recherche}>
 
 		<div id="agenda">
-			[(#INCLURE {fond=agenda_mini})]
+			<INCLURE{fond=agenda_mini}>
 		</div>
 		
+		<?php if ($GLOBALS['bloc-sommaire-choix-style']=='oui') { ?>
 		<div align=center style="display : table; margin : 0px auto;">
-			<p>[(#INCLURE {fond=choix_couleur})]</p>
+			<p><INCLURE{fond=choix_couleur}></p>
 		</div>
-
+		<?php } ?>
+		
 		<B_edito_3>
-				<BOUCLE_edito_3(ARTICLES) {par date} {inverse} {titre_mot=sommaire_droite} {doublons} {0,4} >
-					[<div id="article_breve_titre" class="#EDIT{titre}"><h6><span>(#TITRE|supprimer_numero)</span></h6></div>]
-					<div id="web">
-					<div id="web_texte" class="#EDIT{texte}">
-						[<p>(#TEXTE)</p>]
-					</div>
-					</div>
-				</BOUCLE_edito_3>
+			<BOUCLE_edito_3(ARTICLES) {par date} {inverse} {titre_mot=sommaire_droite} {doublons} {0,4} >
+				[<div id="article_breve_titre" class="#EDIT{titre}"><h6><span>(#TITRE|supprimer_numero)</span></h6></div>]
+				<div id="web">
+				<div id="web_texte" class="#EDIT{texte}">
+					[<p>(#TEXTE)</p>]
+				</div>
+				</div>
+			</BOUCLE_edito_3>
 		</B_edito_3>
 
 		<B_sites>
@@ -111,13 +113,16 @@
 						[<p><br /><br /><a href="#URL_ARTICLE">(#TEXTE|textebrut|couper{125})</a></p>]
 					</div>
 				</BOUCLE_alaune>
+					<div style="clear: both;"></div>
+				</B_alaune>
+
 				<BOUCLE_alaune2(ARTICLES) {par date} {inverse} {titre_mot=sommaire_centre} {0,2} {doublons}>
 					<div id="alaune_#COMPTEUR_BOUCLE">
 						[<h3><a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a></h3>]
 						[(#LOGO_ARTICLE_RUBRIQUE|right||reduire_image{70,70})]
 						[<br /><br /><a href="#URL_ARTICLE">(#TEXTE|textebrut|couper{125})</a>]
 					</div>
-			</BOUCLE_alaune2>
+				</BOUCLE_alaune2>
 			</div>
 	</B_alaune>
 
@@ -142,7 +147,7 @@
 				<B_article_2>
 					<div id="article_breve_all">
 						<BOUCLE_article_2(ARTICLES) {par date} {inverse} {0,7} {doublons}>
-									<div id="article_texte">
+								<div id="article_texte">
 								<BOUCLE_hierarchie(HIERARCHIE){id_article}{0,1}>[(#LOGO_RUBRIQUE||image_reduire{30,30})]</BOUCLE_hierarchie>
 										<h5><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h5>
 										<em>[Le (#DATE|nom_jour)] [(#DATE|affdate)]<B_auteurs_2> par <BOUCLE_auteurs_2(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_2></em>
@@ -187,7 +192,7 @@
 	</B_breve_1>
 
 </div>
-	[(#INCLURE {fond=bas_page})]	
+	<INCLURE{fond=bas_page}>	
 </div>
 
 </body></html>
