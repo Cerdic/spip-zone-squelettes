@@ -33,22 +33,11 @@
 								
 						</div> <!-- #presentation_site -->
 						
-						<div id="listing_fonctionnel">
-						
-							<ul class="gauche">
-								<li>installation automatis&eacute;e</li>
-							    <li>publication simplifi&eacute;e de contenus &eacute;ditoriaux</li>
-							    <li>outils de travail collaboratif</li>
-							    <li>multilinguisme avanc&eacute;</li>
-							</ul>
-							<ul class="droite">
-								<li>int&eacute;gration des fils RSS</li>							
-							    <li>nombreuses extensions et th&egrave;mes</li>
-							    <li>interfaces dynamiques</li>
-							    <li>compl&egrave;tement personnalisable</li>
-							</ul>
-
-					  	</div> <!-- #listing_fonctionnel -->
+						<BOUCLE_listing_fonctionnel(ARTICLES) {id_article=12}>
+						[<div id="listing_fonctionnel">
+							(#TEXTE)
+					  	</div>] <!-- #listing_fonctionnel -->
+						</BOUCLE_listing_fonctionnel>
 
 						<div id="boxes">
 					  		
@@ -77,14 +66,18 @@
 							</BOUCLE_selection2>
 							
 							<div class="box_footer">
+
+								<B_aller_plus_loin(SITES) {titre = aller_plus_loin}>
 								<div class="box blue_box boxlinks">
 									<h2>Pour aller plus loin</h2>
 									<ul>
-										<li><a href="http://www.spip-herbier.net/">spip-herbier.net</a> <span class="description">Les meilleurs sites en SPIP</span></li>
-										<li><a href="http://plugins.spip.net/">plugins.spip.net</a> <span class="description">Le site des plugins de SPIP</span></li>
-										<li><a href="http://programmer.spip.org/">programmer.spip.org</a> <span class="description">Initiation &agrave; la programmation en SPIP 2.0</span></li>
+										<BOUCLE_aller_plus_loin(SITES) {titre = aller_plus_loin} {par num titre, titre} {0,3}>
+											<li><a href="#URL_SITE">#NOM_SITE</a> <span class="description">#DESCRIPTIF</span></li>
+										</BOUCLE_aller_plus_loin>
 									</ul>
-								</div>		
+								</div>	
+								</B_aller_plus_loin>
+								
 							</div>					  	
 			
 						</div><!-- #boxes -->
@@ -98,17 +91,6 @@
 	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
 
 		</div><!--#page-->
-		
-		<!--[if lt IE 7]>
-			<div id="ie6_warning">
-				<h1><blink>Vous utilisez Internet Explorer 6 !</blink></h1>
-				<p>
-					Ce navigateur n'étant <strong>plus maintenu</strong>, Spip-Info ne peut assurer sa compatibilité avec les technologies avancées en oeuvre sur son site web. <strong>Spip-Info ne garantit par conséquent ni la sécurité, ni la conformité, ni le confort de votre navigation sur ce site web.</strong><br/>
-					Nous vous recommandons d'<a  onclick="window.open(this.href);return false;" href="http://www.mozilla-europe.org/fr/products/firefox/" title="T&eacute;l&eacute;charger gratuitement Mozilla Firefox pour PC Windows MAC-OSX LINUX" class="LinkOut" >utiliser Mozilla Firefox</a> ou de <a  onclick="window.open(this.href);return false;" href="http://www.microsoft.com/france/windows/downloads/ie/getitnow.mspx" title="T&eacute;l&eacute;charger Gratuitement Internet Explorer pour PC Windows" class="LinkFile">mettre à jour votre version d'Internet Explorer</a><br/>
-				</p>
-			</div>
-		<![endif]-->
-
 		
 	</body>
 </html>
