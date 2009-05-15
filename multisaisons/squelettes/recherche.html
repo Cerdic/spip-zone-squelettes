@@ -1,4 +1,5 @@
 #CACHE{0}
+
 [(#INCLURE{fond=header})]<head>
 
 [(#REM)   les métas   ] 
@@ -73,13 +74,14 @@
             <input type="hidden" name="page" value="recherche" />
             <input type="hidden" name="recherche" value="#RECHERCHE" />
             <select class="" name="tri" onchange="submit(); " class="spip_bouton">
-               <option value="points"[(#TRI|=={points}|?{' selected="selected" class="selected"'})] /><:pertinence:></option>
-               <option value="popularite"[(#TRI|=={popularite}|?{' selected="selected" class="selected"'})] /><:popularite:></option>
-                <option value="visites"[(#TRI|=={visites}|?{' selected="selected" class="selected"'})] /><:nb_de_visites:></option>
-                <option value="date_redac"[(#TRI|=={date_redac}|?{' selected="selected" class="selected"'})] /><:date_de_redaction:></option>
-                <option value="date"[(#TRI|=={date}|?{' selected="selected" class="selected"'})] /><:date_de_publication:></option>
+               <option value="points"[(#ENV{tri}|=={points}|?{' selected="selected" class="selected"'})] /><:pertinence:></option>
+               <option value="popularite"[(#ENV{tri}=={popularite}|?{' selected="selected" class="selected"'})] /><:popularite:></option>
+                <option value="visites"[(#ENV{tri}|=={visites}|?{' selected="selected" class="selected"'})] /><:nb_de_visites:></option>
+                <option value="date_redac"[(#ENV{tri}|=={date_redac}|?{' selected="selected" class="selected"'})] /><:date_de_redaction:></option>
+                <option value="date"[(#ENV{tri}|=={date}|?{' selected="selected" class="selected"'})] /><:date_de_publication:></option>
             </select>
-            <input type="checkbox" name="ordre" [(#ORDRE|=={on}|?{'checked '})]onchange="submit();">[(#ORDRE|?{?,?})] </input>
+	 , <:tries_par:> ordre inverse 
+	 <input type="checkbox" name="ordre" [(#ORDRE|=={on}|?{'checked '})]onchange="submit();">[(#ORDRE|?{?,?})] </input>
             <noscript>
                <input type="submit" value="<:trier:>" class="spip_bouton" />
             </noscript>
@@ -88,7 +90,7 @@
    </div>]
 <B_articles>
 [(#ANCRE_PAGINATION)]
-    <BOUCLE_articles(ARTICLES) {recherche} {par (#TRI|?{#TRI,points})} {inverse (#ORDRE|?{0,1})} {pagination 5}>
+    <BOUCLE_articles(ARTICLES) {recherche}{tri}{par (#ENV{tri}|?{#ENV{tri},points})} {inverse (#ORDRE|?{0,1})} {pagination 5}>
     <p>
     [<a href="#URL_ARTICLE"><strong>(#TITRE)</strong></a><br/>] [(#INTRODUCTION)<br/>]
     [(#DATE|nom_jour)] [(#DATE|jour)] [(#DATE|nom_mois)] [(#DATE|annee)] 
@@ -117,7 +119,7 @@
 <div class="grande_boite">
 <h4 class="icone_recherche"> <:docu_dans:> :</h4></div>
 [(#ANCRE_PAGINATION)]
-<BOUCLE_marecherche_docs(DOCUMENTS){recherche} {!par points} {pagination 12}>
+<BOUCLE_marecherche_docs(DOCUMENTS){recherche}{tri} {!par points} {pagination 12}>
     <BOUCLE_documents(DOCUMENTS){id_document}>
     <li class="transparent" id="a#ID_DOCUMENT">
     <a href="#URL_DOCUMENT" class="thickbox nyroceros" rel="gal"><img src="[(#LOGO_DOCUMENT||image_masque{carre-80.png}|image_aplatir{jpg,ffffff}|extraire_attribut{src})]" alt="document[ : (#TITRE|couper{80}|textebrut)]" style="width:80px; height:80px;" /></a>
@@ -142,7 +144,7 @@
 <div class="grande_boite">
 <h4 class="icone_recherche"><:forum_dans:> :</h4>
 [(#ANCRE_PAGINATION)]
-<BOUCLE_marecherche_forum(FORUMS) {recherche} {!par points} {pagination 5}>
+<BOUCLE_marecherche_forum(FORUMS) {recherche}{tri} {!par points} {pagination 5}>
     <BOUCLE_forum(FORUMS){id_forum}{unique}>
    
     [<p><a href="[(#URL_PAGE{discussion}|parametre_url{id_forum,#ID_FORUM})]"><strong>(#TITRE|couper{70})</strong></a><br/>]
@@ -166,7 +168,7 @@
 	<div class="grande_boite">
 <h4 class="icone_recherche"><:breve_dans:> :</h4>
     [(#ANCRE_PAGINATION)]
-    <BOUCLE_marecherche_breves(BREVES) {recherche} {!par points} {pagination 5}>
+    <BOUCLE_marecherche_breves(BREVES) {recherche}{tri} {!par points} {pagination 5}>
         <BOUCLE_breves(BREVES){id_breve}>
         <p>[<a href="#URL_BREVE"><strong>(#TITRE)</strong></a>] 
         [(#INTRODUCTION|couper{60})] <br/>
@@ -188,7 +190,7 @@
 <div class="grande_boite">
 <h4 class="icone_recherche"><:rub_dans:> :</h4>
  [(#ANCRE_PAGINATION)]
-<BOUCLE_marecherche_rubriques(RUBRIQUES){recherche}{!par points}{pagination 5}>
+<BOUCLE_marecherche_rubriques(RUBRIQUES){recherche}{tri}{!par points}{pagination 5}>
     <BOUCLE_rubriques(RUBRIQUES){id_rubrique}>
        <p> <a href="#URL_RUBRIQUE" title="[(#TITRE)]" class="logogauche">
     [(#INCLURE{fond=logo}{id_rubrique,#ID_RUBRIQUE}{taille=48}{date=#ENV{date}})]</a>     
@@ -213,7 +215,7 @@
 <div class="grande_boite">
    <h4 class="icone_recherche"><:site_dans:> :</h4>
     [(#ANCRE_PAGINATION)]
-    <BOUCLE_marecherche_sitesweb(SITES){recherche}{!par points} {pagination 5}>
+    <BOUCLE_marecherche_sitesweb(SITES){recherche}{tri}{!par points} {pagination 5}>
         <BOUCLE_sitesweb(SITES){id_syndic}>
      <p>   <a href="#URL_SITE"><strong>[(#NOM_SITE)]</strong></a> [<br/>(#DESCRIPTIF|couper{60})]</p>
         </BOUCLE_sitesweb>
