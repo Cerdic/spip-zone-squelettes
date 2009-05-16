@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#NOM_SITE_SPIP|textebrut) - ][(#SLOGAN_SITE_SPIP|textebrut) - ]<:plan_site:></title>
+<meta name="description" content="[(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html) - ][(#NOM_SITE_SPIP|textebrut)]" />
+<INCLURE{fond=inc-head}>
+<meta name="robots" content="none" />
+</head>
+
+<body class="page_plan">
+<div id="page">
+	
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+
+    <div id="wrapper">
+
+	[(#REM) Le plan de site ci-dessous est a adapter selon les besoins. En particulier, on n'aura pas necessairement besoin de tous les elements (sous-rubriques, articles, breves et sites) ]
+    <div id="conteneur">
+    <div id="contenu">
+
+
+	        [(#REM) Fil d'Ariane ]
+	        <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <strong class="on"><:plan_site:></strong></div>
+	    
+	        <div class="cartouche">
+	            <h1><:plan_site:></h1>
+	        </div>
+
+	        <div id="main">
+
+	        	<div class="texte">
+		        <BOUCLE_secteurs(RUBRIQUES) {racine} {par titre} {!id_rubrique = 4}>
+		        
+			        <h2><a href="#URL_RUBRIQUE">#TITRE</a></h2>
+			        <div class="plan_rubrique">
+				        [(#REM) Articles et sous-rubriques ]
+				        <B_articles_racine>
+				        <h3><:articles:></h3>
+				        <ul>
+				            <BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
+				            <li><a href="#URL_ARTICLE">#TITRE</a></li>
+				            </BOUCLE_articles_racine>
+				        </ul>
+				        </B_articles_racine>
+				        
+				        <B_rubriques>
+				        <ul>
+				            <BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+				            <li>
+				                <strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
+				                
+				                <B_articles>
+				                <ul>
+				                    <BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
+				                    <li><a href="#URL_ARTICLE">#TITRE</a></li>
+				                    </BOUCLE_articles>
+				                </ul>
+				                </B_articles>
+				                
+				                <BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+				            </li>
+				            </BOUCLE_rubriques>
+				        </ul>
+				        </B_rubriques>
+				        
+				        [(#REM) Sur le Web ]
+				        <B_sites>
+				        <h3><:sites_web:></h3>
+				        <ul>
+				            <BOUCLE_sites(SITES) {id_secteur} {par nom_site}>
+							<li><a href="#URL_SITE">#NOM_SITE</a></li>
+							</BOUCLE_sites>
+				        </ul>
+				        </B_sites>
+					</div> <!-- /.plan_rubrique -->
+
+		        </BOUCLE_secteurs>
+		        </div> <!-- /.texte -->
+				
+				<p class="skiplink" id="retour_top" accesskey="h"><a href="#contenu">Haut de page</a></p>
+			</div><!-- #main -->
+			
+		</div><!--#contenu-->
+		</div><!--#conteneur-->
+	
+	    
+		[(#REM) Menu de navigation laterale ]
+		<div id="extra">
+			
+			<div class="box orange_box boxlinks hslice" id="breves">
+				<h2 class="entry-title">Toutes les actualit&eacute;s <a href="#URL_PAGE{backend-breve}" class="rss_breves" title="Abonnez vous aux actualités de SPIP.info"><img src="#CHEMIN{images/feed.png}" alt="Abonnez vous aux actualités de SPIP.info"/></a></h2>
+					<INCLURE{fond=inc-breves}{env}{ajax}>
+			</div>	
+			<div class="box_footer"></div>
+			
+		</div><!--#extra-->
+	</div><!-- #wrapper -->
+	
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+</div><!--#page-->
+</body>
+</html>
