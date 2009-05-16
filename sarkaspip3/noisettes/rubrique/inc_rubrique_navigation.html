@@ -12,19 +12,20 @@ Recoit en argument:
 </BOUCLE_articles>
 	
 <B_mots>
-	<div id="noisette_navigation" class="noisette">
-		<h1 class="intitule"><:sarkaspip:navigation_article:></h1>
-		#SET{titre_positionne, oui}
-		<div class="contenu">
-			<h2 class="titre_bloc"><:sarkaspip:mots_clefs_rubrique:></h2>
-			<div class="liste"><ul>
-<BOUCLE_mots(MOTS){!doublons}{par titre}>
-				<li><a class="titre" href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>
-					#TITRE
-				</a></li>
+<div id="noisette_navigation" class="noisette">
+	<h1 class="intitule"><:sarkaspip:navigation_article:></h1>
+	#SET{titre_positionne, oui}
+	<div class="contenu">
+		<h2 class="titre_bloc"><:sarkaspip:mots_clefs_rubrique:></h2>
+		<div class="liste"><ul>
+<BOUCLE_mots(MOTS){!doublons}{par titre}{pagination #CONFIG{sarkaspip_noisettes/pas_pagination_motcle, 10}}>
+			<li><a class="titre" href="#URL_MOT"[ title="(#DESCRIPTIF|textebrut|entites_html)"]>
+				#TITRE
+			</a></li>
 </BOUCLE_mots>
-			</ul></div>
-		</div>
+		</ul></div>
+		[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_noisettes/modele_pagination_motcle}})</div>]
+	</div>
 </B_mots>
 
 [(#REM) <!-- Liste des rubriques filles de la rubrique --> ]
