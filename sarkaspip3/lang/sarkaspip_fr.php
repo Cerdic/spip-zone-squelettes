@@ -108,9 +108,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 		'bouton_referencement' => 'Proposition de site',
 		'bouton_configuration' => 'Configuration',
+		'bouton_effacer' => 'Effacer',
+		'bouton_supprimer' => 'Supprimer',
+		'bouton_valider' => 'Valider',
 		'breves' => 'Br&egrave;ves', // redefinition item SPIP
 		'breves_mot' => 'Br&egrave;ves associ&eacute;es',
 		'breves_toutes' => 'Toutes les br&egrave;ves du site',
+		'bulle_bouton_effacer' => 'Effacer les saisies et revenir aux valeurs de d&eacute;part',
+		'bulle_bouton_supprimer' => 'Supprimer les valeurs de configuration dans la base',
+		'bulle_bouton_valider' => 'Valider les saisies',
 	  
 	
 //C
