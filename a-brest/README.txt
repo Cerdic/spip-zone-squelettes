@@ -15,5 +15,5 @@ Tous les fichiers ci-joints sont sous licence GPL version 2.
 
 
 auteur:  	erational <http://www.erational.org>
-date: 	2007.08.21
+date: 	  2009.05.07
 ----------------------------------------------------
