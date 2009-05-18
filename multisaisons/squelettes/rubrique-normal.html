@@ -25,7 +25,6 @@
 
 
 
-
 <div id="container">   [(#REM)   centrage page   ]
 <INCLURE{fond=entete}{date=#ENV{date}}{id_rubrique}>
 <div id="surcontent">  [(#REM)   ouverture ent&ecirc;te   ]
@@ -49,13 +48,12 @@
                  
    [<h1>(#TITRE)</h1><br/>]
     [(#SOUSTITRE)<br/>]   
-   [#DEBUT_SURLIGNE(#TEXTE|image_reduire{450,0}|lier_au_glossaire|paragrapher)#FIN_SURLIGNE]
+   #DEBUT_SURLIGNE[(#TEXTE|image_reduire{450,0}|lier_au_glossaire|paragrapher)]#FIN_SURLIGNE
 <hr class="spacer"/>
+
 </div>[(#REM)   fermeture grande boite   ]
 
 
-
-[<div class="grande_boite">(#NOTES)</div>]
 
 <div id="celbas">
 <B_sous_rubriques> 
@@ -89,7 +87,13 @@
 </ul>
 </B_sous_rubriques>
 </div>
+[<div class="grande_boite">
+<div class="interne">
+(#ID_RUBRIQUE|in_array{#CONFIG{gis/rubriques_gis,#ARRAY}}|oui)
+[(#MODELE{carte_gis}{id_rubrique}{id_article}{id_mot}{id_auteur}{recherche}{latit}{lonxit}{zoom}{type=hybride}{control=large}{recursive=1}{attente=1}{ombre=0})]
+</div></div>]
 
+[<div class="grande_boite">(#NOTES)</div>]
 
 [(#REM)   les articles de la rubrique   ]
 <B_articles>   
