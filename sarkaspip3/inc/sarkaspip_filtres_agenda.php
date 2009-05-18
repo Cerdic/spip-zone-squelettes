@@ -394,7 +394,7 @@ function agenda_nom_jour($id_jour=0) {
 //
 function agenda_mini_afficher($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='&gt;&gt;', 
 											$jour_debut=0, $affichage_hors_mois='oui',
-											$critere='oui', $max_mois=6, $taille=5) {
+											$critere='oui', $max_mois=6, $taille=5, $format='d-m H:i') {
 
 	if ($id_agenda == 0)
 		return;
@@ -408,7 +408,7 @@ function agenda_mini_afficher($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv=
 	$agenda .= agenda_mini_body($id_agenda, $jour_debut, $affichage_hors_mois);
 	
 	// Creation du footer compose des items de navigation aujourd'hui et du resume des evenements du mois
-	$agenda .= agenda_mini_footer($id_agenda, $critere, $max_mois, $taille);
+	$agenda .= agenda_mini_footer($id_agenda, $critere, $max_mois, $taille, $format);
 
 	return $agenda;
 }
@@ -593,7 +593,7 @@ function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui
 //               fin du mois % date du jour)
 // ===================================================
 //
-function agenda_mini_footer($id_agenda=0, $critere='oui', $max_mois=6, $taille=5) {
+function agenda_mini_footer($id_agenda=0, $critere='oui', $max_mois=6, $taille=5, $format='d-m H:i') {
 
 	$nom_mois = array(1 => _T('sarkaspip:janvier'), 2 => _T('sarkaspip:fevrier'), 3 => _T('sarkaspip:mars'), 4 => _T('sarkaspip:avril'), 
 					5 => _T('sarkaspip:mai'), 6 => _T('sarkaspip:juin'), 7 => _T('sarkaspip:juillet'), 8 => _T('sarkaspip:aout'),
@@ -641,7 +641,7 @@ function agenda_mini_footer($id_agenda=0, $critere='oui', $max_mois=6, $taille=5
 			$date = mktime(0,0,0,$mois, $jour, $annee);
 			if ((date('Y-m-d',$date) >= $date_base) && ($count_liste < $taille)) {
 				if ($count_liste == 0) $cellule .= '<table id="footer_evenements" summary="'._T('sarkaspip:resume_mini_agenda_footer').'">';
-				$cellule .= '<tr><td class="footer_colg">'.affdate_base($evenements[$i]['date_redac'], 'd-m H:i').':&nbsp;</td>';
+				$cellule .= '<tr><td class="footer_colg">'.affdate_base($evenements[$i]['date_redac'], $format).':&nbsp;</td>';
 				$cellule .= '<td class="footer_cold"><a href="spip.php?page=evenement&amp;id_article='.$evenements[$i]['id'].'">'.$evenements[$i]['titre'].'</a></td></tr>';
 				$count_liste += 1;
 			}
