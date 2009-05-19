@@ -2,10 +2,8 @@
 // Pipeline insert_head public
 function SarkaSpip_insert_head($flux){
 	// Recuperation des parametres cfg sur le menu des rubriques
-	$position = lire_config('sarkaspip_menus/position_rubriques');
-	if (!$position) $position = 1;
-	$modele = lire_config('sarkaspip_menus/modele_rubriques');
-	if (!$modele) $modele = 1;
+	$position = lire_config('sarkaspip_menus/position_rubriques', 1);
+	$modele = lire_config('sarkaspip_menus/modele_rubriques', 1);
 
 	// Si le menu des rubriques est deroulant dans le bandeau
 	if (($position == 5) && ($modele == 1))
