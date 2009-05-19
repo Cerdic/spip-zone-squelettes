@@ -88,6 +88,12 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			echo "SoyezCreateurs MaJ 2.1.5<br />";
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.5','non');
 		}
+		if (version_compare($current_version,'2.1.6','<')) {
+			include_spip('base/soyezcreateurs');
+			create_mot("_Specialisation", "Outils", "Affecter ce mot clef aux articles devant être affichés dans le cadre Outils dans le bandeau du haut de la page.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...\n\nLe logo de l\'article sera utilisé comme picto à droite du titre.");
+			echo "SoyezCreateurs MaJ 2.1.6<br />";
+			ecrire_meta($nom_meta_base_version,$current_version='2.1.6','non');
+		}
 	}
 }
 
