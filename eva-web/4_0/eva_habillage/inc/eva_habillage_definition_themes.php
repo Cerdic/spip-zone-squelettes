@@ -27,7 +27,7 @@ function eva_habillage_definition_themes () {
     //Pied de page : barre des logos
     $eva_pied_logo_background = array('#logo-pied');
     //Fond des titre des blocs,du menu, des premiers éléments des tableaux générés par SPIP
-    $eva_fond_titres_background = array('h3.titre','.bloc .titre','.divers','.divers h4','table.spip tr.row_first th','div#contenu div.ps h4','div#menu h3.titre','div#menudroit h3.titre','table.spip tr.row_first','div#contenu div.lien','div#contenu div.notes h4','div#contenu h4.titre','div#contenu h3.titre','#forum ul.forum div.titre h4');
+    $eva_fond_titres_background = array('h3','h3.titre','.bloc .titre','.divers','.divers h4','table.spip tr.row_first th','div#contenu div.ps h4','div#menu h3.titre','div#menudroit h3.titre','table.spip tr.row_first','div#contenu div.lien','div#contenu div.notes h4','div#contenu h4.titre','div#contenu h3.titre','#forum ul.forum div.titre h4');
     $eva_fond_titres_background_color = array('#forum .bouton a','#forum .bouton a:hover');
     //Fonds du menu de navigation
     $eva_menu_fond_background_color = array('ul#sommaire', 'ul#sommaire li');
@@ -64,7 +64,7 @@ function eva_habillage_definition_themes () {
     //Couleur des textes des titres des blocs
     $texte_barres_entete_color = array('h3','div#contenu h3','legend','#forum .bouton a','.bloc .titre','.divers h4','table.spip tr.row_first th','div#contenu div.ps h4','div#menu h3.titre','div#menudroit h3.titre','table.spip tr.row_first','div#contenu div.lien','.contenu .lien','div#contenu div.notes h4','div#contenu h4.titre','div#contenu h3.titre','#forum ul.forum div.titre h4');
     //Couleur de le première lettre des titres des blocs
-    $texte_premiere_lettre_entete_color = array('.titre h2:first-letter','#forum .bouton a:first-letter','.bloc .titre:first-letter','.divers h4:first-letter','div#contenu div.lien:first-letter','div#contenu div.ps h4:first-letter','div#contenu div.notes h4:first-letter','div#contenu div.lien:first-letter','.contenu .lien:first-letter','div#contenu h4.titre:first-letter','div#contenu h3:first-letter','div#contenu .bloc h3:first-letter','div#contenu .bloc h3.titre:first-letter','div#menu h3:first-letter','div#menuDroit h3:first-letter','.divers h4:first-letter','h3:first-letter');
+    $texte_premiere_lettre_entete_color = array('h3:first-letter','.titre h2:first-letter','#forum .bouton a:first-letter','.bloc .titre:first-letter','.divers h4:first-letter','div#contenu div.lien:first-letter','div#contenu div.ps h4:first-letter','div#contenu div.notes h4:first-letter','div#contenu div.lien:first-letter','.contenu .lien:first-letter','div#contenu h4.titre:first-letter','div#contenu h3:first-letter','div#contenu .bloc h3:first-letter','div#contenu .bloc h3.titre:first-letter','div#menu h3:first-letter','div#menuDroit h3:first-letter','.divers h4:first-letter','h3:first-letter');
     //Couleur du texte de l'Editorial et des chapeaux
     $texte_edito_color = array('div#contenu .edito','div#contenu div.chapo','div#entetediaporama h2','div#boutondiaporama a span');
     //Couleur du texte du titre de l'éditorial
@@ -590,7 +590,7 @@ function EVA_div_images() {
     'image_titre_entete' => array('div#entete h1 span','div#entete h2 span'),
     'image_pied' => array('ul#pied'),
     'image_pied-logo' => array('#logo-pied'),
-    'image_titres' => array('legend','.titre','.bloc .titre','.divers h4','table.spip tr.row_first th','div#contenu div.ps h4','div#menudroit h3.titre','div#contenu h3.titre','div#menu h3.titre','div#menudroit h2.titre','div#contenu h2.titre','div#menu h2.titre','table.spip tr.row_first','div#contenu div.lien','div#contenu div.notes h4','div#contenu h4.titre','#forum ul.forum div.titre h4','#forum .bouton a'),
+    'image_titres' => array('h3','legend','.titre','.bloc .titre','.divers h4','table.spip tr.row_first th','div#contenu div.ps h4','div#menudroit h3.titre','div#contenu h3.titre','div#menu h3.titre','div#menudroit h2.titre','div#contenu h2.titre','div#menu h2.titre','table.spip tr.row_first','div#contenu div.lien','div#contenu div.notes h4','div#contenu h4.titre','#forum ul.forum div.titre h4','#forum .bouton a'),
     'image_menu' => array('ul#sommaire', 'ul#sommaire li'),
     'image_menu_off' => array('div#menu ul#sommaire li','div#menu ul#sommaire .off','div#menudroit ul#sommaire .off'),
     'image_menu_on' => array('div#menu ul#sommaire .on','div#menudroit ul#sommaire .on'),
