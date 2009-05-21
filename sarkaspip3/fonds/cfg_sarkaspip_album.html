@@ -1,0 +1,118 @@
+<!-- titre=<:sarkaspip:cfg_titre_album:> -->
+<!-- descriptif=<:sarkaspip:cfg_descr_album:> -->
+<!-- boite=<:sarkaspip:cfg_boite_album:> -->
+<INCLURE{fond=noisettes/cfg/inc_cfg_header}>
+#CACHE{0}
+
+<script type="text/javascript">
+//<![CDATA[
+	jQuery(document).ready(function() {
+		[(#ENV{modele_carrousel, 1}|=={1}|?{jQuery("#bloc_modele_2").hide();})]
+		[(#ENV{position_carrousel, 1}|=={0}|?{jQuery("#bloc_modele_1").hide();})]
+
+		jQuery("input[@name='position_carrousel']").change(function() {
+			if (jQuery("input[@name='position_carrousel']:checked").val() == 0) {
+				jQuery("#bloc_modele_1").hide();
+			}
+			else {
+				jQuery("#bloc_modele_1").show();
+			}
+			jQuery(this).blur();
+		});	
+
+		jQuery("input[@name='modele_carrousel']").change(function() {
+			if (jQuery("input[@name='modele_carrousel']:checked").val() == 1) {
+				jQuery("#bloc_modele_2").hide();
+			}
+			else {
+				jQuery("#bloc_modele_2").show();
+			}
+			jQuery(this).blur();
+		});	
+	});
+//]]>
+</script>
+
+<form method="post" action="#SELF"><div>
+	[(#ENV{_cfg_}|form_hidden)]
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_album_presentation:></legend>
+		<p><:sarkaspip:cfg_inf_album_presentation:></p>
+		<label>
+			<input type="radio" name="presentation" value="1" [(#ENV{presentation, 1}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_album_presentation_1:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="presentation" value="2" [(#ENV{presentation, 1}|=={2}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_album_presentation_2:>
+		</label>
+	</fieldset>
+
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_album_carrousel:></legend>
+		<p><:sarkaspip:cfg_inf_album_carrousel_position:></p>
+		<label>
+			<input type="radio" name="position_carrousel" value="0" [(#ENV{position_carrousel, 1}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_carrousel_position_0:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="position_carrousel" value="1" [(#ENV{position_carrousel, 1}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_carrousel_position_1:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="position_carrousel" value="2" [(#ENV{position_carrousel, 1}|=={2}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_carrousel_position_2:>
+		</label>
+		<br />
+		<div id="bloc_modele_1">
+			<p><:sarkaspip:cfg_inf_album_carrousel_modele:></p>
+			<label>
+				<input type="radio" name="modele_carrousel" value="1" [(#ENV{modele_carrousel, 1}|=={1}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_carrousel_modele_1:>
+			</label>
+			<br />
+			<label>
+				<input type="radio" name="modele_carrousel" value="2" [(#ENV{modele_carrousel, 1}|=={2}|?{checked="checked"})] />
+				<:sarkaspip:cfg_lbl_carrousel_modele_2:>
+			</label>
+			<div id="bloc_modele_2">
+				<p><:sarkaspip:cfg_inf_album_carrousel_pagination:></p>
+				<INCLURE{fond=noisettes/cfg/inc_cfg_pagination}
+					{suffixe=_carrousel}
+					{defaut_pas=20}
+					{choix=sans_position}
+					{env}>
+			</div>
+		</div>
+	</fieldset>
+
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_album_zoom:></legend>
+		<p><:sarkaspip:cfg_inf_album_zoom:></p>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_effet_image}
+			{explication=<:sarkaspip:cfg_inf_album_zoom_effet:>}
+			{env}>
+		<p><:sarkaspip:cfg_inf_album_zoom_exif:></p>
+		<label>
+			<input type="radio" name="afficher_exif" value="oui" [(#ENV{afficher_exif, non}|=={oui}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_oui:>
+		</label>
+		<label>
+			<input type="radio" name="afficher_exif" value="non" [(#ENV{afficher_exif, non}|=={non}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_non:>
+		</label>
+	</fieldset>
+
+	<INCLURE{fond=noisettes/cfg/inc_cfg_boutons}>
+</div></form>
+
+[(#EVAL{_SARKASPIP_DEBUG_CFG_ARBO}|=={oui}|?{' '})
+	<div id="bloc_debug">
+		<br />
+		>> Debug - Etat des variables du fond Album:<br />
+		#CFG_ARBO{sarkaspip_album}
+	</div>
+]

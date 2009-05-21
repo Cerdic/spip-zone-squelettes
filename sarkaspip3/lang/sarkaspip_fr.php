@@ -436,6 +436,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // Titre des pages
 		'cfg_titre_accueil' => 'Sarka-SPIP - Accueil',
 		'cfg_titre_agenda' => 'Sarka-SPIP - Configuration de l\'agenda',
+		'cfg_titre_album' => 'Sarka-SPIP - Configuration de la page Album',
 		'cfg_titre_article' => 'Sarka-SPIP - Configuration de la page article',
 		'cfg_titre_auteur' => 'Sarka-SPIP - Configuration de la page auteur',
 		'cfg_titre_bandeau' => 'Sarka-SPIP - Bandeau',
@@ -461,6 +462,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // Titre des liens des pages
 		'sarkaspip_accueil' => 'Accueil',
 		'sarkaspip_agenda' => 'Agenda',
+		'sarkaspip_album' => 'Album',
 		'sarkaspip_article' => 'Article',
 		'sarkaspip_auteur' => 'Auteur',
 		'sarkaspip_bandeau' => 'Bandeau',
@@ -486,6 +488,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // Descriptif des pages
 		'cfg_descr_accueil' => 'Vous &ecirc;tes sur la page d\'accueil de la configuration du squelette Sarka-SPIP. Vous utilisez actuellement la version @lbl_version@.',
 		'cfg_descr_agenda' => 'L\'agenda inclus dans Sarka-SPIP permet d\'afficher un listing annuel ainsi qu\'un mini calendrier mensuel. Les caract&eacute;ristiques de ces deux affichages sont configurables dans cette page.',
+		'cfg_descr_album' => 'Le corps de la page article permet d\'afficher plusieurs blocs d\'information : la description, les photos avec plusieurs mod&egrave;les de pr&eacute;sentation, les documents joints et les commentaires post&eacute;s par des visiteurs. Cette page permet de configurer l\'affichage de tous ces blocs.',
 		'cfg_descr_article' => 'Le corps de la page article permet d\'afficher plusieurs blocs d\'information : la description, les documents et images joints et les commentaires post&eacute;s par des visiteurs. Cette page permet de configurer l\'affichage de tous ces blocs.',
 		'cfg_descr_auteur' => 'Le corps de la page auteur permet d\'afficher plusieurs blocs d\'information : la biographie, les articles publi&eacute;s par l\'auteur et un formulaire de contact. Cette page permet de configurer l\'affichage de tous ces blocs.',
 		'cfg_descr_bandeau' => 'Le bandeau de chaque page est constitu&eacute; de plusieurs blocs configurables. Cette page de configuration vous permet d\'en choisir les caract&eacute;ristiques.',
@@ -511,6 +514,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // Titre des boites
 		'cfg_boite_accueil' => 'Accueil',
 		'cfg_boite_agenda' => 'Agenda',
+		'cfg_boite_album' => 'Album',
 		'cfg_boite_article' => 'Article',
 		'cfg_boite_auteur' => 'Auteur',
 		'cfg_boite_bandeau' => 'Bandeau',

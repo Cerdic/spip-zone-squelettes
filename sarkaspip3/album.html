@@ -19,35 +19,33 @@
 			[(#REM) <!-- Contenu de l'article --> ]
 			<div id="album" class="article">
 				[(#REM) <!-- Titre, logo, texte de la rubrique --> ]
-				[(#INCLURE{fond=noisettes/article/inc_article_description}{id_article}{avec_popularite=oui}{avec_commentaire=non})]
+				<INCLURE{fond=noisettes/article/inc_article_description}
+					{id_article}
+					{page=album}
+					{afficher_commentaires=oui}
+					{avec_popularite=#CONFIG{sarkaspip_album/avec_popularite, oui}}
+					{avec_notation=#CONFIG{sarkaspip_album/position_notation, 0}}
+					{avec_socialtags=#CONFIG{sarkaspip_album/position_socialtags, 0}}
+					{logo_rubrique=#CONFIG{sarkaspip_album/logo_rubrique, oui}}
+					{taille_logo=#CONFIG{sarkaspip_album/taille_logo, 150}}>
+		
+				[(#REM) <!-- Presentation des photos --> ]
+				<INCLURE{fond=noisettes/album/inc_album_presentation_photos}
+					{id_article}
+					{id_document}>
 				
 				[(#REM) <!-- Documents (sauf images) du portfolio de la rubrique --> ]
 				[(#CONFIG{sarkaspip_article/position_documents, 1}|=={1}|?{' '})
 					[(#INCLURE{fond=noisettes/document/inc_documents_joints}{id_article})]
 				]
 			</div>
-					
-				[(#REM) <!-- Vignettes de l'album --> ]
-					[(#REM) <!-- album : bloc de vignettes--> ]
-					<B_vignettes>
-						<div class="album_menu"></div>
-						#ANCRE_PAGINATION
-						[<div class="pagination">(#PAGINATION)</div>]
-						<div class="album_vignette">
-							<table>
-					<BOUCLE_vignettes(DOCUMENTS){pagination #CONFIG{sarkaspip_galerie/max_photos_page, 18}}{id_article}{mode=document}{extension IN png,jpg,gif}>
-							[(#COMPTEUR_BOUCLE|modulo{#CONFIG{sarkaspip_galerie/max_photos_page, 18}}|modulo{#CONFIG{sarkaspip_galerie/max_photos_ligne,3}}|=={1}|?{' '})<tr>] 
-							<td>
-								[<a href="#FICHIER" type="#MIME_TYPE"[ title="(#TITRE|couper{80})"]>
-								(#FICHIER|copie_locale|image_reduire{120}|inserer_attribut{alt,[(#TITRE|couper{80})]})
-								</a>]
-							</td>					
-							[(#COMPTEUR_BOUCLE|modulo{#CONFIG{sarkaspip_galerie/max_photos_page, 18}}|modulo{#CONFIG{sarkaspip_galerie/max_photos_ligne,3}}|=={0}|?{' '})</tr>] 
-					</BOUCLE_vignettes>
-						[(#TOTAL_BOUCLE|modulo{#CONFIG{sarkaspip_galerie/max_photos_page, 18}}|modulo{#CONFIG{sarkaspip_galerie/max_photos_ligne,3}}|!={0}|?{' '})</tr>]
-						</table>
-					</B_vignettes>
-						</div>
+    				
+			[(#REM) <!-- Commentaires --> ]
+			[(#PETITION|?{'', ' '})
+				[(#PARAMETRES_FORUM|?{' '})
+					<INCLURE{fond=noisettes/article/inc_article_commentaires}{ajax}{id_article}>
+    			] 
+    		]	
 		</div>
 	</div>
 	

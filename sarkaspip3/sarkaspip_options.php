@@ -28,7 +28,9 @@ define('_SARKASPIP_CONFIG_DOC_LARGEUR_MIN', 120);
 define('_SARKASPIP_CONFIG_DOC_LARGEUR_MAX', 350);
 // -- Pour les vignettes de la galerie et des albums
 define('_SARKASPIP_CONFIG_LARGEUR_GALERIE', 80);
-define('_SARKASPIP_CONFIG_LARGEUR_ALBUM', 80);
+define('_SARKASPIP_CONFIG_TAILLE_MAX_VIGNETTE_1', 80);
+define('_SARKASPIP_CONFIG_TAILLE_MAX_VIGNETTE_2', 40);
+define('_SARKASPIP_CONFIG_TAILLE_MAX_PHOTO', 400);
 // -- Pour les icones de rainette
 define('_SARKASPIP_CONFIG_LARGEUR_ICONE_METEO', 80);
 // -- Pour le contact du site
