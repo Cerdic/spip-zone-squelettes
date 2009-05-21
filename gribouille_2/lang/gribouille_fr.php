@@ -38,6 +38,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// S
 	'sous_rubriques' => 'Sous-rubriques',
 	
+	// T
+	'texte_bienvenue' => 'Bienvenue sur le carnet de notes de @nom_site@.',
+	
 	// Z
 	'z' => 'zzz'
 );

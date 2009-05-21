@@ -3,7 +3,6 @@
 ###################
 # Gestion du wiki #
 ###################
-define('SECTEURS_WIKI', '201,202');
 
 function autoriser_article_modifier($faire, $type, $id, $qui, $opt) {
 	// Si on est deja autorise en standard, dire 'OK'
@@ -11,9 +10,9 @@ function autoriser_article_modifier($faire, $type, $id, $qui, $opt) {
 		return true;
 
 	// Sinon, verifier si l'article est dans un secteur wiki
-	$s = spip_query("SELECT id_secteur FROM spip_articles WHERE id_article="._q($id));
-	if ($t = spip_fetch_array($s)
-	AND in_array($t['id_secteur'], explode(',', SECTEURS_WIKI))
+	$s = sql_select("id_secteur","spip_articles","id_article=".sql_quote($id));
+	if ($t = sql_fetch($s)
+	AND in_array($t['id_secteur'], lire_config('gribouille/secteurs_wiki',array()))
 #	AND in_array($qui['statut'], array('0minirezo', '1comite'))
 	)
 		return true;
@@ -33,11 +32,11 @@ function autoriser_rubrique_publierdans($faire, $type, $id, $qui, $opt) {
 	in_array($qui['statut'], array('0minirezo', '1comite'))
 
 	AND
-	(in_array($id, array(201,202))
+	(in_array($id, lire_config('gribouille/secteurs_wiki',array()))
 	OR (
-		$s = spip_query("SELECT id_secteur FROM spip_rubriques WHERE id_rubrique="._q($id))
-		AND $t = spip_fetch_array($s)
-		AND in_array($t['id_secteur'], explode(',', SECTEURS_WIKI))
+		$s = sql_select("id_secteur","spip_rubriques","id_rubrique=".sql_quote($id))
+		AND $t = sql_fetch($s)
+		AND in_array($t['id_secteur'], lire_config('gribouille/secteurs_wiki',array()))
 	))
 	)
 		return true;
