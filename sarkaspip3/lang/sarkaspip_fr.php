@@ -73,10 +73,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // 		'agenda_fin_mois_depasse' => 'Mois ant&eacute;rieur &agrave; la date courante. Aucun &eacute;v&egrave;nement ne peut &ecirc;tre affich&eacute;',
 		'agenda_saisonnier' => 'Agenda saisonnier',
 		'albums' => 'Albums',
-		'album_nav_debut' => 'Premi&egrave;re page',
-		'album_nav_precedent' => 'Page pr&eacute;c&eacute;dente',
-		'album_nav_suivant' => 'Page suivante',
-		'album_nav_fin' => 'Derni&egrave;re page',
+		'albums_freres' => 'Albums de la galerie',
 		'album_repondre'=> 'Commenter l\'album',
 		'album_une'=> 'Top Album',
 		'albums_auteur' => 'Albums de cet auteur',
@@ -305,6 +302,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		
 //N
 	  
+		'navigation_album' => 'Navigation',
 		'navigation_article' => 'Navigation',
 		'navigation_evenement' => 'Navigation',
 		'navigation_site'=>'Navigation',

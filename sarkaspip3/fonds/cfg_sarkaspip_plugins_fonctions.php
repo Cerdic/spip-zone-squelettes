@@ -18,9 +18,9 @@ function cfg_sarkaspip_plugins_post_traiter($cfg){
 											'selecteur_commun'=>_SARKASPIP_CONFIG_FANCYBOX_IMAGE,
 											'selecteur_galerie'=>_SARKASPIP_CONFIG_FANCYBOX_GALERIE,
 											'imagescale'=>_SARKASPIP_CONFIG_FANCYBOX_RETAILLE,
-											'overlayshow'=>_SARKASPIP_CONFIG_NYROCEROS_ARRIERE_PLAN,
-											'overlayopacity'=>_SARKASPIP_CONFIG_NYROCEROS_OPACITE,
-											'hideoncontentclick'=>_SARKASPIP_CONFIG_NYROCEROS_FERME_CLIC));
+											'overlayshow'=>_SARKASPIP_CONFIG_FANCYBOX_ARRIERE_PLAN,
+											'overlayopacity'=>_SARKASPIP_CONFIG_FANCYBOX_OPACITE,
+											'hideoncontentclick'=>_SARKASPIP_CONFIG_FANCYBOX_FERME_CLIC));
 	}
 	else
 		effacer_config('fancybox/');

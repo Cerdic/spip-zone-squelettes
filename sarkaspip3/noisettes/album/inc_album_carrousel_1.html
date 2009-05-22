@@ -2,31 +2,34 @@
 <!-- Presentation du carrousel des photos de l'album en mode slider
 	Recoit en argument :
 		- id_article: id de l'album concerne
+		- nb_photos: nombre total de photos dans l'album
 -->
 ]
 <script type='text/javascript'>
 //<![CDATA[ 
 	// Initialise le carrousel
 	jQuery(document).ready(function() {
+		var nCarrousel = Math.min(#ENV{nb_photos}, #CONFIG{sarkaspip_album/taille_carrousel, 10});
+		var bCirculaire = true;
 		jQuery("#a_defilement.carrousel .contenu").jCarouselLite({
 			btnNext: "#a_defilement.carrousel .navigation #droite.defilement",
 			btnPrev: "#a_defilement.carrousel .navigation #gauche.defilement",
 			mouseWheel: true,
-			visible: 10,
-			circular: true,
+			visible: nCarrousel,
+			circular: bCirculaire,
 			start: 0
 		});
 
 		jQuery(".carrousel .contenu li.vignette a").click(function() {
 			// On fais disparaitre l'image en cours
-			jQuery("#image_agrandie").fadeOut("slow");
+			jQuery(".zoom").fadeOut("slow");
 			// On recharge la noisette de l'image agrandie comme une page
 			var href = $(this).attr("href") + " #conteneur_photo,#titre_photo,#exif_photo";
 			jQuery(".zoom").load(href,[],function(){
 				var lpadding = Math.round((jQuery("#conteneur_photo").outerWidth() - jQuery("#image_agrandie").width()) / 2);
 				// On la centre en changeant le padding left de son conteneur
 				jQuery("#conteneur_photo").css("padding-left", lpadding);
-				jQuery("#image_agrandie").fadeIn("slow");
+				jQuery(".zoom").fadeIn("slow");
 			});
 			return false;
 		});

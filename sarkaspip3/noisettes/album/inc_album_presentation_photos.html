@@ -2,11 +2,17 @@
 <!-- Presentation des photos de l'album
 	Recoit en argument :
 		- id_article: id de l'album concerne
-		- id_document: id de la photo agrandie
 -->
 ]
 <div class="album">
-<BOUCLE_test_photos(DOCUMENTS){id_document ?}{id_article}{mode=document}{extension IN png,jpg,gif}{par num titre, titre}{0,1}>
+<BOUCLE_nb_photos(DOCUMENTS){id_article}{mode=document}{extension IN png,jpg,gif}>
+</BOUCLE_nb_photos>
+	#SET{nb_photos, #COMPTEUR_BOUCLE}
+</B_nb_photos>
+	#SET{nb_photos, 0}
+<//B_nb_photos>
+
+<BOUCLE_test_photos(DOCUMENTS){id_article}{mode=document}{extension IN png,jpg,gif}{par num titre, titre}{0,1}>
 	[(#REM) <!-- Affichage de la photo agrandie -->]
 	#SET{plugin, aucun}
 	#SET{diaporama, non}
@@ -24,9 +30,11 @@
 	]
 
 	[(#REM) <!-- Affichage du carrousel des vignettes (au dessus de l'image) -->]
-	[(#CONFIG{sarkaspip_article/position_carrousel, 1}|=={1}|oui)
+	[(#CONFIG{sarkaspip_album/position_carrousel, 1}|=={1}|oui)
 		<INCLURE{fond=noisettes/album/inc_album_carrousel_#CONFIG{sarkaspip_album/modele_carrousel, 1}}
+			{ajax}
 			{id_article}
+			{nb_photos=#GET{nb_photos}}
 			{effet_galerie=#GET{plugin}}
 			{avec_exif=#CONFIG{sarkaspip_album/afficher_exif, non}}>
 	]
@@ -38,9 +46,11 @@
 		{avec_exif=#CONFIG{sarkaspip_album/afficher_exif, non}}>
 
 	[(#REM) <!-- Affichage du carrousel des vignettes (au dessous de l'image) -->]
-	[(#CONFIG{sarkaspip_article/position_carrousel, 1}|=={2}|oui)
+	[(#CONFIG{sarkaspip_album/position_carrousel, 1}|=={2}|oui)
 		<INCLURE{fond=noisettes/album/inc_album_carrousel_#CONFIG{sarkaspip_album/modele_carrousel, 1}}
+			{ajax}
 			{id_article}
+			{nb_photos=#GET{nb_photos}}
 			{effet_galerie=#GET{plugin}}
 			{avec_exif=#CONFIG{sarkaspip_album/afficher_exif, non}}>
 	]
