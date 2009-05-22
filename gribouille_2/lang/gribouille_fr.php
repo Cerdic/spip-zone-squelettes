@@ -6,6 +6,10 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
+	// A
+	'ajouter_article_wiki' => 'Ajouter une page',
+	'ajouter_rubrique_wiki' => 'Ajouter une rubrique',
+	
 	// C
 	'cette_version' => 'Cette version',
 	'cfg_aucun_secteur' => 'Aucun',
@@ -40,6 +44,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 	// T
 	'texte_bienvenue' => 'Bienvenue sur le carnet de notes de @nom_site@.',
+	'titre_input' => 'Titre...',
 	
 	// Z
 	'z' => 'zzz'

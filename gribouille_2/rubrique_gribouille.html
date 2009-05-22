@@ -1,5 +1,5 @@
 [(#REM) Page d'accueil de gribouille ]
-<BOUCLE_r(RUBRIQUES){id_rubrique}>
+<BOUCLE_r(RUBRIQUES){id_rubrique}{tout}>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -25,7 +25,7 @@
 
 [<div style='float:left;[width:(#LOGO_RUBRIQUE||extraire_attribut{width})px;]margin:0 9px 5px 0;'>(#LOGO_RUBRIQUE)</div>]
 
-<div class="#EDIT{texte} chapo texte">[(#TEXTE|sinon{<:gribouille:texte_bienvenue{nom_site=#NOM_SITE_SPIP}:>})]</div>
+<div class="#EDIT{texte} chapo texte">[(#TEXTE|sinon{[(#ID_RUBRIQUE|=={#ID_SECTEUR}|?{<:gribouille:texte_bienvenue{nom_site=#NOM_SITE_SPIP}:>,<:gribouille:click_ajout_texte:>})]})]</div>
 
 
 [<h2>Recherche : (#RECHERCHE)</h2>]
@@ -81,7 +81,7 @@
 <h2><:gribouille:sous_rubriques:></h2>
 
 <ul>
-<BOUCLE_sous(RUBRIQUES){branche}{exclus}>
+<BOUCLE_sous(RUBRIQUES){branche}{tout}{exclus}>
 <li><a href="#URL_RUBRIQUE">#TITRE</a></li>
 </BOUCLE_sous>
 </ul>
