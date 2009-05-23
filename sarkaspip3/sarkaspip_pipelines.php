@@ -21,8 +21,8 @@ function SarkaSpip_insert_head($flux){
 	$flux .='<script src="'.url_absolue(find_in_path('scripts/jquery.mousewheel.js')).'" type="text/javascript"></script>';
 
 	// Insertion de la librairie Galleria et de ces css
-//	$flux .='<script src="'.url_absolue(find_in_path('scripts/jquery.galleria.js')).'" type="text/javascript"></script>';
-//	$flux .='<link rel="stylesheet" href="'.url_absolue(find_in_path('css/galleria.css')).'" type="text/css" />';
+	$flux .='<script src="'.url_absolue(find_in_path('scripts/jquery.galleria.js')).'" type="text/javascript"></script>';
+	$flux .='<link rel="stylesheet" href="'.url_absolue(find_in_path('css/galleria.css')).'" type="text/css" />';
 
 	// Insertion de la librairie Innerfade pour la noisette des sites favoris
 	$position = lire_config('sarkaspip_noisettes/position_herbier', 0);

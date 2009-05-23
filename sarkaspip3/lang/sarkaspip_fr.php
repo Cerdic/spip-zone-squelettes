@@ -667,6 +667,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_agenda_pagination_1' => 'Pour un agenda saisonnal il vous faut aussi choisir le format de la pagination (2008, 2008-2009 ou 08-09).',
 		'cfg_inf_agenda_pagination_2' => 'Vous pouvez changer le s&eacute;parateur des items de la pagination et le nom de l\'ancre de pagination. Toutefois, il est recommand&eacute; de conserver ces valeurs par d&eacute;faut.',
 		'cfg_inf_agenda_sens_tri' => 'Vous pouvez pr&eacute;senter les &eacute;v&eacute;nements de l\'agenda annuel soit dans un ordre chronologique, soit dans un ordre anti-chronologique.',
+		'cfg_inf_album_carrousel_hover' => 'Voulez-vous afficher une image l&eacute;g&egrave;rement agrandie au survol des vignettes ?',
 		'cfg_inf_album_carrousel_modele' => 'La liste des vignettes peut &ecirc;tre affich&eacute;e sous la forme d\'un carrousel &agrave; d&eacute;filement horizontal ou d\'une liste pagin&eacute;e.',
 		'cfg_inf_album_carrousel_position' => 'Il est possible d\'afficher une liste de vignettes carr&eacute;es au-dessus ou en-dessous de la photo choisie pour &ecirc;tre agrandie.',
 		'cfg_inf_album_presentation' => 'La pr&eacute;sentation de certains blocs de la page album utilise des plugins jQuery (donc n&eacute;cessite d\'activer javascript) ce qui a pour effet d\'en modifier l\'agencement. Choisissez ci-dessous la pr&eacute;sentation qui vous convient.',
