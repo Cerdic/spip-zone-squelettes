@@ -1,16 +1,17 @@
-[(#REM) <!-- affichage de tous les sites syndiques pour navigation --> ]
-<B_sites_syndiques>
+[(#REM) <!-- Liste des sites syndiques sur l'ensemble du site
+Recoit en argument :
+		- id_syndic: id du site en cours d'affichage eventuellement
+ --> ]
+<B_sites_freres>
 	<div class="contenu">
 		<h2 class="titre_bloc"><:sarkaspip:sites_syndiques:></h2>
 		<div class="liste"><ul>
-<BOUCLE_sites_syndiques(SITES){syndication=oui}{pagination #CONFIG{sarkaspip_noisettes/pas_pagination_navigation, 10}}>
+<BOUCLE_sites_freres(SITES){syndication=oui}{par nom_site}{pagination #CONFIG{sarkaspip_noisettes/pas_pagination_navigation, 10}}>
       [[<li><(#EXPOSE{span class="titre",a class="titre"[ href="(#URL_PAGE{site}|parametre_url{id_syndic,#ID_SYNDIC})"]})>]
 					(#NOM_SITE)
 			[</(#EXPOSE{span,a})></li>]]
-</BOUCLE_sites_syndiques>
+</BOUCLE_sites_freres>
 		</ul></div>
 		[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_noisettes/modele_pagination_navigation}})</div>]
 	</div> <!-- Fin contenu -->
-</B_sites_syndiques>
-		
-
+</B_sites_freres>

@@ -1,29 +1,39 @@
 [(#REM) 
-<!-- Article syndique du site
+<!-- Articles syndiques de l'ensemble du site ou d'un site reference donne
 	Recoit en argument :
 		- id_syndic: id du site concernee
 -->
 ]
-<B_art_syndic>
-<div id="site_article-syndic" class="commentaires">
-	<h2><:sarkaspip:derniers_articles_syndiques:></h2>
-	
- 	#ANCRE_PAGINATION
-	[(#CONFIG{sarkaspip_site/position_pagination_site, 3}|match{^(1|3)$}|?{' '})
-		[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_site/modele_pagination_site}})</div>]
-	] 
-<BOUCLE_art_syndic(SYNDIC_ARTICLES) {id_syndic}{par date}{inverse}{pagination #CONFIG{sarkaspip_site/pas_pagination_site, 10}}>
-	<div class="message">
-		[<div class="titre"><a href="#URL_ARTICLE">(#TITRE*|supprimer_numero)</a></div>]
-		<div class="cartouche_simple">
-			[(#DATE|nom_jour|ucfirst)]&nbsp;[(#DATE|jour)]&nbsp;[(#DATE|nom_mois|ucfirst)]&nbsp;[(#DATE|annee)]
-		</div>
-		[<div class="texte">(#DESCRIPTIF)</div>]
-		<br class="nettoyeur" />
-	</div>
-</BOUCLE_art_syndic>
-  [(#CONFIG{sarkaspip_site/position_pagination_site, 3}|match{^(2|3)$}|?{' '})
-    [<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_site/modele_pagination_site}})</div>]
+[(#REM) <!-- affichage des syndications de tous les sites sinon --> ]
+<div id="articles_syndiques" class="commentaires">	    
+<B_articles_syndiques>
+#ANCRE_PAGINATION
+[(#CONFIG{sarkaspip_site/position_pagination_site, 3}|match{^(1|3)$}|?{' '})
+	[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_site/modele_pagination_site}})</div>]
+]
+#SET{date_courante, 0}
+<BOUCLE_articles_syndiques(SYNDIC_ARTICLES){id_syndic ?}{par date}{inverse}{age<#CONFIG{sarkaspip_site/nb_jours_syndiques, 10}}{pagination #CONFIG{sarkaspip_site/pas_pagination_site, 10}}>
+[(#DATE|affdate|unique|oui)
+	[(#DATE|affdate|!={#GET{date_courante}}|oui)
+		[(#GET{date_courante}|!={0}|oui)
+			</ul>
+		]
 	]
-</div>
-</B_art_syndic>
+	<h2 class="date">[(#DATE|nom_jour)][&nbsp;(#DATE|affdate)]</h2>
+	<ul>
+	[(#SET{date_courante, [(#DATE|affdate)]})]
+]
+		<li>
+		[(#ENV{id_syndic}|non)
+			<div class="logo droite"><a href="#URL_SITE" title="#NOM_SITE"><img src="http://open.thumbshots.org/image.pxf?url=#URL_SITE"[ alt="(#NOM_SITE|texte_backend)"] width="40px" height="40px"/></a></div>
+		]
+			[<a class="titre" href="#URL_ARTICLE">(#TITRE*|supprimer_numero)</a>]
+			[<div class="texte">(#DESCRIPTIF)</div>]
+			<br class="nettoyeur"/>
+		</li>
+</BOUCLE_articles_syndiques>
+[(#CONFIG{sarkaspip_site/position_pagination_site, 3}|match{^(2|3)$}|?{' '})
+	[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_site/modele_pagination_site}})</div>]
+]
+</B_articles_syndiques>
+</div> <!-- commentaires -->
