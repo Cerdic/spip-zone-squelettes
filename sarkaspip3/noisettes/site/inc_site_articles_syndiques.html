@@ -2,6 +2,7 @@
 <!-- Articles syndiques de l'ensemble du site ou d'un site reference donne
 	Recoit en argument :
 		- id_syndic: id du site concernee
+		- nb_jours: nombre de jours de syndication
 -->
 ]
 [(#REM) <!-- affichage des syndications de tous les sites sinon --> ]
@@ -11,7 +12,7 @@
 [(#CONFIG{sarkaspip_site/position_pagination_site, 3}|match{^(1|3)$}|?{' '})
 	[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_site/modele_pagination_site}})</div>]
 ]
-<BOUCLE_articles_syndiques(SYNDIC_ARTICLES){id_syndic ?}{par date}{inverse}{age<#CONFIG{sarkaspip_site/nb_jours_syndiques, 10}}{pagination #CONFIG{sarkaspip_site/pas_pagination_site, 10}}>
+<BOUCLE_articles_syndiques(SYNDIC_ARTICLES){id_syndic ?}{par date}{inverse}{age<#ENV{nb_jours}}{pagination #CONFIG{sarkaspip_site/pas_pagination_site, 50}}>
 [(#DATE|affdate|unique|oui)
 	[(#DATE|affdate|!={#GET{date_courante}}|oui)
 		[(#GET{date_courante}|oui)</ul>]
