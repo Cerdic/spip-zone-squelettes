@@ -64,7 +64,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'afaire_tickets_en_analyse' => 'Tickets en cours d\'analyse',
 		'afaire_tickets_en_traitement' => 'Tickets en cours de traitement',
 		'afaire_tickets_termines' => 'Tickets termin&eacute;s',
-
 		'agenda' => 'Agenda',
 		'agenda_annuel' => 'Agenda annuel',
 		'agenda_1_mois_vide' => 'Aucun &eacute;v&egrave;nement &agrave; venir d\'ici la fin du mois',
@@ -150,12 +149,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 	
 //E
-	  'est_present' => 'est pr&eacute;sent dans :',
+		'est_present' => 'est pr&eacute;sent dans :',
 		'erreur' => 'erreur',
 		'espace_prive' => 'Espace&nbsp;priv&eacute;', // redefinition item SPIP
 		'espace_membre' => 'Espace membre',
 // 		'evenements_du_jour' => 'Ev&eacute;nements de la journ&eacute;e',
-    'evenements' => 'Ev&egrave;nements',
+    	'evenements' => 'Ev&egrave;nements',
 		'evenements_meme_journee' => 'dans la journ&eacute;e...',
 	  
 	
@@ -164,6 +163,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'fevrier' => 'F&eacute;vrier',
 		'fil_discussion' => 'Fil de discussion',
 		'filtrage_categorie' => 'Cat&eacute;gories',
+		'filtre_titre'=>'Filtres',
+		'filtre_soustitre_site'=>'Sites syndiqu&eacute;s',
+		'filtre_soustitre_motcle'=>'Mots-cl&eacute;s',
+		'filtre_soustitre_rubrique'=>'Rubriques',
+		'filtre_site_bulle_tout_site'=>'Afficher tous les articles syndiqu&eacute;s',
+		'filtre_site_bulle_un_site'=>'Afficher les articles syndiqu&eacute;s de ce site',
+		'filtre_site_bulle_un_motcle'=>'Afficher les articles syndiqu&eacute;s associ&eacute;s &agrave; ce mot-cl&eacute;',
+		'filtre_site_bulle_une_rubrique'=>'Afficher les articles syndiqu&eacute;s des sites appartenant &agrave; cette rubrique',
 		'filtre_tout' => 'Aucun filtre',
 		'filtre_vide' => 'Sans cat&eacute;gorie',
 		'forum' => 'Forum', // redefinition item SPIP
@@ -306,7 +313,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'navigation_album' => 'Navigation',
 		'navigation_article' => 'Navigation',
 		'navigation_evenement' => 'Navigation',
-		'navigation_site'=>'Navigation',
 		'newsletter' => 'Lettre d\'information',
 		'nom' => 'Nom', // redefinition item SPIP
 		'novembre' => 'Novembre',
@@ -319,7 +325,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 	
 //P
-	  'pas_present' => 'n\'est pas pr&eacute;sent sur ce site ',
+	  	'pas_present' => 'n\'est pas pr&eacute;sent sur ce site ',
 		'par_auteur' => 'par ', // redefinition item SPIP
 		'photos' => 'photos',
 		'plan_site' => 'Plan du site', // redefinition item SPIP
@@ -371,7 +377,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'site_realise_avec_npp' => 'Site r&eacute;alis&eacute; avec Notepad++',
 		'site_realise_avec_spip' => 'Site r&eacute;alis&eacute; avec SPIP', // redefinition item SPIP
 		'sites_mot' => 'Sites web associ&eacute;s',
-		'sites_syndiques' => 'Sites syndiqu&eacute;s',
 		'site_web' => 'Site web',
 		'sites_web' => 'Sites Web', // redefinition item SPIP
 		'sites_meme_rubrique' => 'Sites de la rubrique',
@@ -626,7 +631,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_plugins_info' => 'Information',
 		'cfg_lgd_rubriques_filles' => 'Sous-rubriques',
 		'cfg_lgd_secteur_squelette'=>'Secteur sp&eacute;cialis&eacute; pour le squelette',
-		'cfg_lgd_sites_tous' => 'Liste - Pagination',
 		'cfg_lgd_sommaire_albums' => 'Liste des albums r&eacute;cents',
 		'cfg_lgd_sommaire_articles' => 'Liste des articles r&eacute;cents',
 		'cfg_lgd_sommaire_secteurs' => 'Liste des secteurs',
@@ -783,7 +787,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_inc_stathit_compo' => 'Choisissez la composition de la noisette:',
 		'cfg_inf_inc_stathit_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer le hit-parade des articles les plus visit&eacute;s du site et/ou la liste des articles choisis au hasard.',
 		'cfg_inf_inc_statsite_pos' => 'Choisissez dans quelle colonne vous d&eacute;sirez ins&eacute;rer les statistiques du site.',
-		'cfg_inf_jours_syndication' => 'Dans la page site, choisissez le nombre de jours &agrave; afficher dans la liste de tous les articles syndiqu&eacute;s.  ',
 		'cfg_inf_layout' => 'Choisissez le layout qui vous convient parmi ceux propos&eacute;s ci-dessous en vous aidant de la vignette affich&eacute;e en regard du layout s&eacute;lectionn&eacute;.',
 		'cfg_inf_licence_site' => 'Licence du site. Elle s\'affichera &agrave; droite de votre copyright.<br />(laissez vide pour ne rien afficher)',
 		'cfg_inf_licence_squelette' => 'D&eacute;sirez vous ins&eacute;rer un lien vers la description de la licence GPL adopt&eacute;e par le squelette Sarka-SPIP ?',
@@ -832,6 +835,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_sommaire_sans_logo' => 'Vous avez la possibilit&eacute; de d&eacute;finir un logo pour chaque article (cf. la page d\'&eacute;dition d\'un article). Mais si ce logo n\'est pas renseign&eacute;, le squelette a la possibilit&eacute; d\'afficher le logo de la rubrique. Voulez-vous activer cette option dans les articles r&eacute;cents de la page sommaire ?',
 		'cfg_inf_sommaire_secteurs' => 'Voulez-vous afficher la liste des secteurs dans la page sommaire ?',
 		'cfg_inf_squelette_id'=>'Certaines options de Sarka-SPIP ne sont accessibles qu\'au travers d\'un secteur sp&eacute;cialis&eacute;. C\'est le cas de l\'&eacute;dito de bienvenue, des annonces... Tous les objets de ce secteur ne seront visibles qu\'au travers de ces options et ne seront jamais affich&eacute;s comme un article, une rubrique, une br&egrave;ve...',
+		'cfg_inf_syndication_nbj' => 'Vous pouvez choisir le nombre de jours de syndication &agrave; afficher dans la page quelle soit compl&egrave;te ou filtr&eacute;e sur un site donn&eacute;.',
+		'cfg_inf_syndication_pagination' => 'La liste des articles syndiqu&eacute;s d\'un site ou de tous les sites est pagin&eacute;e',
 		'cfg_inf_titre_edito'=>'Voulez-vous afficher le titre de l\'&eacute;dito ?',
 		'cfg_inf_titre_site' => 'Souhaitez vous afficher le nom de votre site dans le bandeau ?',
 		'cfg_inf_version_sarka' => 'D&eacute;sirez vous afficher la version de Sarka-SPIP install&eacute;e ?',
@@ -1010,7 +1015,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_mini_agenda_jour1' => 'Premier jour de la semaine',
 		'cfg_lbl_mini_agenda_prec' => 'Symbole pour pr&eacute;c&eacute;dent',
 		'cfg_lbl_mini_agenda_suiv' => 'Symbole pour suivant',
-		'cfg_lbl_nb_jours_syndiques'=> 'Nombre de jours',
+		'cfg_lbl_nb_jours_syndiques_1'=> 'Nombre de jours pour la page compl&egrave;te',
+		'cfg_lbl_nb_jours_syndiques_2'=> 'Nombre de jours pour un site donn&eacute;',
 		'cfg_lbl_non' => 'Non',
 		'cfg_lbl_oui' => 'Oui',
 		'cfg_lbl_pagination_1' => 'Num&eacute;ros d\'ordre du premier &eacute;l&eacute;ment de chaque page (0|5|10)',
