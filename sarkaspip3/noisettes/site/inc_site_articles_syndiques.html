@@ -11,13 +11,10 @@
 [(#CONFIG{sarkaspip_site/position_pagination_site, 3}|match{^(1|3)$}|?{' '})
 	[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_site/modele_pagination_site}})</div>]
 ]
-#SET{date_courante, 0}
 <BOUCLE_articles_syndiques(SYNDIC_ARTICLES){id_syndic ?}{par date}{inverse}{age<#CONFIG{sarkaspip_site/nb_jours_syndiques, 10}}{pagination #CONFIG{sarkaspip_site/pas_pagination_site, 10}}>
 [(#DATE|affdate|unique|oui)
 	[(#DATE|affdate|!={#GET{date_courante}}|oui)
-		[(#GET{date_courante}|!={0}|oui)
-			</ul>
-		]
+		[(#GET{date_courante}|oui)</ul>]
 	]
 	<h2 class="date">[(#DATE|nom_jour)][&nbsp;(#DATE|affdate)]</h2>
 	<ul>
@@ -25,13 +22,14 @@
 ]
 		<li>
 		[(#ENV{id_syndic}|non)
-			<div class="logo droite"><a href="#URL_SITE" title="#NOM_SITE"><img src="http://open.thumbshots.org/image.pxf?url=#URL_SITE"[ alt="(#NOM_SITE|texte_backend)"] width="40px" height="40px"/></a></div>
+			<div class="logo droite"><a href="#URL_SITE" title="#NOM_SITE"><img src="http://open.thumbshots.org/image.pxf?url=#URL_SITE"[ alt="(#NOM_SITE|texte_backend)"] style="width:40px;height:40px;"/></a></div>
 		]
 			[<a class="titre" href="#URL_ARTICLE">(#TITRE*|supprimer_numero)</a>]
 			[<div class="texte">(#DESCRIPTIF)</div>]
 			<br class="nettoyeur"/>
 		</li>
 </BOUCLE_articles_syndiques>
+	</ul>
 [(#CONFIG{sarkaspip_site/position_pagination_site, 3}|match{^(2|3)$}|?{' '})
 	[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_site/modele_pagination_site}})</div>]
 ]
