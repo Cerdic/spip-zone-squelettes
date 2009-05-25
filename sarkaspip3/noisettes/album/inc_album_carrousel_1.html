@@ -9,26 +9,15 @@
 //<![CDATA[ 
 	// Initialise le carrousel
 	jQuery(document).ready(function() {
-		var nCarrousel = Math.min(#ENV{nb_photos}, #CONFIG{sarkaspip_album/taille_carrousel, 10});
-		var bCirculaire = true;
+		var n = #ENV{nb_photos};
+		var t = #ENV{taille_carrousel};
 		jQuery("#a_defilement.carrousel .contenu").jCarouselLite({
-			btnNext: "#a_defilement.carrousel .navigation #droite.defilement",
-			btnPrev: "#a_defilement.carrousel .navigation #gauche.defilement",
+			btnNext: "#a_defilement.carrousel .navigation #droite",
+			btnPrev: "#a_defilement.carrousel .navigation #gauche",
 			mouseWheel: true,
-			visible: nCarrousel,
-			circular: bCirculaire,
+			visible: Math.min(n,t),
+			circular: true,
 			start: 0
-		});
-
-		jQuery(".carrousel .contenu li.vignette a").click(function() {
-			// On recharge la noisette de l'image agrandie comme une page
-			var href = $(this).attr("href") + " #conteneur_photo,#titre_photo,#descriptif_photo,#exif_photo";
-			jQuery(".zoom").load(href,[],function(){
-				var lpadding = Math.round((jQuery("#conteneur_photo").outerWidth() - jQuery("#image_agrandie").width()) / 2);
-				// On la centre en changeant le padding left de son conteneur
-				jQuery("#conteneur_photo").css("padding-left", lpadding);
-			});
-			return false;
 		});
 	});
 //]]>
@@ -56,8 +45,9 @@
 
 		[(#REM) <!-- Affichage des boutons de navigation -->]
 		<div class="navigation">
-			<a class="defilement" id="droite" href="#" title="<:sarkaspip:defiler_carrousel:>"></a>
-			<a class="defilement" id="gauche" href="#" title="<:sarkaspip:defiler_carrousel:>"></a>
+			<a id="gauche" href="#" title="<:sarkaspip:bulle_bouton_defiler_gauche:>"><:sarkaspip:defiler_a_gauche:></a>
+			&nbsp;|&nbsp;
+			<a id="droite" href="#" title="<:sarkaspip:bulle_bouton_defiler_droite:>"><:sarkaspip:defiler_a_droite:></a>
 			<br class="nettoyeur" />
 		</div>
 	</div> <!-- fin carrousel -->

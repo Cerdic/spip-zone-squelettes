@@ -4,6 +4,24 @@
 		- id_article: id de l'album concerne
 -->
 ]
+<script type='text/javascript'>
+//<![CDATA[ 
+	// Initialise le carrousel
+	jQuery(document).ready(function() {
+		jQuery(".carrousel .contenu li.vignette a").click(function() {
+			// On recharge la noisette de l'image agrandie comme une page
+			var href = $(this).attr("href") + " #conteneur_photo,#titre_photo,#descriptif_photo,#exif_photo";
+			jQuery(".zoom").load(href,[],function(){
+				var lpadding = Math.round((jQuery("#conteneur_photo").outerWidth() - jQuery("#image_agrandie").width()) / 2);
+				// On la centre en changeant le padding left de son conteneur
+				jQuery("#conteneur_photo").css("padding-left", lpadding);
+			});
+			return false;
+		});
+	});
+//]]>
+</script>
+
 <div class="album">
 <BOUCLE_nb_photos(DOCUMENTS){id_article}{mode=document}{extension IN png,jpg,gif}>
 </BOUCLE_nb_photos>
@@ -35,6 +53,7 @@
 			{ajax}
 			{id_article}
 			{nb_photos=#GET{nb_photos}}
+			{taille_carrousel=#CONFIG{sarkaspip_album/taille_carrousel, 10}}
 			{effet_galerie=#GET{plugin}}
 			{avec_exif=#CONFIG{sarkaspip_album/afficher_exif, non}}>
 	]

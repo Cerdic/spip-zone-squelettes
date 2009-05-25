@@ -114,6 +114,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'bulle_bouton_effacer' => 'Effacer les saisies et revenir aux valeurs de d&eacute;part',
 		'bulle_bouton_supprimer' => 'Supprimer les valeurs de configuration dans la base',
 		'bulle_bouton_valider' => 'Valider les saisies',
+		'bulle_bouton_defiler_droite' => 'Faire d&eacute;filer le carrousel vers la droite',
+		'bulle_bouton_defiler_gauche' => 'Faire d&eacute;filer le carrousel vers la gauche',
 	  
 	
 //C
@@ -134,6 +136,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'date_aujourdhui' => 'aujourd\'hui', // redefinition item SPIP
 		'de' => 'de',
 		'decembre' => 'D&eacute;cembre',
+		'defiler_a_droite' => 'Suivant &gt;&gt;',
+		'defiler_a_gauche' => ' &lt;&lt; Pr&eacute;c&eacute;dent',
 		'depuis_debut' => 'depuis le d&eacute;but',
 		'derniers_articles_syndiques' => 'Les derniers articles de ce site',
 		'derniers_commentaires' => 'Commentaires',
