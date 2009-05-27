@@ -7,8 +7,8 @@
 ]
 <script type='text/javascript'>
 //<![CDATA[ 
-	// Initialise le carrousel
 	jQuery(document).ready(function() {
+		// Initialise le carrousel
 		var n = #ENV{nb_photos};
 		var t = #ENV{taille_carrousel};
 		jQuery("#a_defilement.carrousel .contenu").jCarouselLite({
@@ -18,6 +18,17 @@
 			visible: Math.min(n,t),
 			circular: true,
 			start: 0
+		});
+		// Click sur la vignette et affichage de l'image agrandie
+		jQuery(".carrousel .contenu li.vignette a").click(function() {
+			// On recharge la noisette de l'image agrandie comme une page
+			var href = $(this).attr("href") + " #conteneur_photo,#titre_photo,#descriptif_photo,#exif_photo";
+			jQuery(".zoom").load(href,[],function(){
+				var lpadding = Math.round((jQuery("#conteneur_photo").outerWidth() - jQuery("#image_agrandie").width()) / 2);
+				// On la centre en changeant le padding left de son conteneur
+				jQuery("#conteneur_photo").css("padding-left", lpadding);
+			});
+			return false;
 		});
 	});
 //]]>
