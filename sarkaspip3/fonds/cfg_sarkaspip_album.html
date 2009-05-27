@@ -10,6 +10,7 @@
 		[(#ENV{modele_carrousel, 1}|=={1}|?{jQuery("#bloc_modele_3").hide();})]
 		[(#ENV{modele_carrousel, 1}|!={1}|?{jQuery("#bloc_modele_2").hide();})]
 		[(#ENV{position_carrousel, 1}|=={0}|?{jQuery("#bloc_modele_1").hide();})]
+		[(#ENV{afficher_zoom, oui}|=={oui}|?{jQuery("#effet_fancybox_diapo").hide();jQuery("#effet_nyroceros_diapo").hide();})]
 
 		jQuery("input[@name='position_carrousel']").change(function() {
 			if (jQuery("input[@name='position_carrousel']:checked").val() == 0) {
@@ -29,6 +30,18 @@
 			else {
 				jQuery("#bloc_modele_2").hide();
 				jQuery("#bloc_modele_3").show();
+			}
+			jQuery(this).blur();
+		});	
+
+		jQuery("input[@name='afficher_zoom']").change(function() {
+			if (jQuery("input[@name='afficher_zoom']:checked").val() == "oui") {
+				jQuery("#effet_fancybox_diapo").hide();
+				jQuery("#effet_nyroceros_diapo").hide();
+			}
+			else {
+				jQuery("#effet_fancybox_diapo").show();
+				jQuery("#effet_nyroceros_diapo").show();
 			}
 			jQuery(this).blur();
 		});	
@@ -99,8 +112,17 @@
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_album_zoom:></legend>
 		<p><:sarkaspip:cfg_inf_album_zoom:></p>
+		<label>
+			<input type="radio" name="afficher_zoom" value="oui" [(#ENV{afficher_zoom, oui}|=={oui}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_oui:>
+		</label>
+		<label>
+			<input type="radio" name="afficher_zoom" value="non" [(#ENV{afficher_zoom, oui}|=={non}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_non:>
+		</label>
 		<INCLURE{fond=noisettes/cfg/inc_cfg_effet_image}
 			{explication=<:sarkaspip:cfg_inf_album_zoom_effet:>}
+			{choix=album}
 			{env}>
 		<p><:sarkaspip:cfg_inf_album_zoom_exif:></p>
 		<label>

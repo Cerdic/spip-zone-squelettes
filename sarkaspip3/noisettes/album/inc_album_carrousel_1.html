@@ -3,6 +3,11 @@
 	Recoit en argument :
 		- id_article: id de l'album concerne
 		- nb_photos: nombre total de photos dans l'album
+		- taille_carrousel: nombre max de vignettes visibles dans le carrousel
+		- effet_galerie: plugin utilise afficher un agrandissement sur le clic vignette
+		- avec_diaporama: precise que le plugin est utilise en mode diaporama
+		- avec_zoom: indique que l'image zoom doit etre affichee
+		- avec_exif: indique que les exif de l'image cliquee doivent etre affiches
 -->
 ]
 <script type='text/javascript'>
@@ -20,6 +25,8 @@
 			start: 0
 		});
 		// Click sur la vignette et affichage de l'image agrandie
+		var afficher_zoom = "#ENV{avec_zoom}";
+		if (afficher_zoom == "oui") {
 		jQuery(".carrousel .contenu li.vignette a").click(function() {
 			// On recharge la noisette de l'image agrandie comme une page
 			var href = $(this).attr("href") + " #conteneur_photo,#titre_photo,#descriptif_photo,#exif_photo";
@@ -30,23 +37,31 @@
 			});
 			return false;
 		});
+		}
 	});
 //]]>
 </script>
 
+[(#ENV{avec_zoom}|=={non}|oui)
+	#SET{classe, #ENV{effet_galerie}}
+]
 <B_carrousel>
 	<div id="a_defilement" class="carrousel">
 		[(#REM) <!-- Affichage des vignettes -->]
 		<div class="contenu">
-			<ul>
+			<ul[ class="(#ENV{avec_diaporama}|=={oui}|?{galerie})"]>
 <BOUCLE_carrousel(DOCUMENTS){id_article}{mode=document}{extension IN png,jpg,gif}{par num titre, titre}>
 				#SET{ratio_x,#LARGEUR|div{#EVAL{_SARKASPIP_CONFIG_TAILLE_MAX_VIGNETTE_1}}}
 				#SET{ratio_y,#HAUTEUR|div{#EVAL{_SARKASPIP_CONFIG_TAILLE_MAX_VIGNETTE_1}}}
 				#SET{ratio,#GET{ratio_x}|<={#GET{ratio_y}}|?{#GET{ratio_x},#GET{ratio_y}}}
 				[(#SET{titre, [(#TITRE|texte_backend|supprimer_numero|couper{#EVAL{_SARKASPIP_CONFIG_TAILLE_TITRE_IMAGE}}|sinon{[(#TYPE_DOCUMENT) - ][(#TAILLE|taille_en_octets)]})]})]
 
+				[(#SET{url, [(#URL_PAGE{inc_album_zoom_1}|parametre_url{id_document,#ID_DOCUMENT}|parametre_url{effet_galerie,#ENV{effet_galerie}}|parametre_url{avec_diaporama,#ENV{avec_diaporama}}|parametre_url{avec_exif,#ENV{avec_exif}})]})]
+				[(#ENV{avec_zoom}|=={non}|oui)
+					#SET{url, #FICHIER}
+				]
 				[<li class="vignette">
-					<a[ href="(#URL_PAGE{inc_album_zoom_1}|parametre_url{id_document,#ID_DOCUMENT}|parametre_url{effet_galerie,#ENV{effet_galerie}}|parametre_url{avec_exif,#ENV{avec_exif}})"][ title="(#GET{titre})"]>
+					<a[ class="(#GET{classe})"][ href="(#GET{url})"][ title="(#GET{titre})"]>
 						(#FICHIER|image_reduire_par{#GET{ratio}}|image_recadre{#EVAL{_SARKASPIP_CONFIG_TAILLE_MAX_VIGNETTE_1},#EVAL{_SARKASPIP_CONFIG_TAILLE_MAX_VIGNETTE_1},center}|inserer_attribut{alt, #GET{titre}})
 					</a>
 				</li>]
