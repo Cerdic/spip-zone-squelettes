@@ -7,7 +7,7 @@ function eva_habillage_definition_themes () {
     //Fond des pages
     $eva_fond_page_background = array('div#page');
     //Fond des blocs
-    $eva_fond_bloc_background = array('#forum ul.forum div.contenu','blockquote.spip','#forum ul.forum div.auteur','#forum ul.forum div.texte','#forum ul.forum','hr','.spip_cadre','textarea.spip_cadre','fieldset','#formrecherche','#forum ul.forum div.titre .auteur','.divers div.contenu','div#contenu ul','div.bloc ul','div#contenu .bloc','div#menu .bloc','div#menudroit .bloc','div.bloc','ul#sommaire','div#menu .bloc ul','div#menuDroit .bloc ul');
+    $eva_fond_bloc_background = array('#forum ul.forum div.contenu','blockquote.spip','#forum ul.forum div.auteur','#forum ul.forum div.texte','#forum ul.forum','hr','.spip_cadre','textarea.spip_cadre','fieldset','#formrecherche','#forum ul.forum div.titre .auteur','.divers div.contenu','div#contenu ul','div.bloc ul','div#contenu .bloc','div#menu .bloc','div#menudroit .bloc','div.bloc','ul#sommaire','div#menu .bloc ul','div#menudroit .bloc ul');
     //Fond de l'éditorial et des chapeaux
     $eva_fond_edito_background = array('.edito .titre','div#photo img','div#contenu div.chapo','div.edito','div#entetediaporama','div#boutondiaporama a span');
     //Entêtes des pages
