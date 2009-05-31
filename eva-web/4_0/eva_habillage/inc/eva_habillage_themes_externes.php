@@ -844,7 +844,6 @@ $eva_themes = array(
     "('', 'image', 'Defaut', 'image_pairs', 'orchidees/barre.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'perso', 'Defaut', 'div#page {border-top-style:none; border-bottom-style:none;border-right:10px solid #786343;border-left:10px solid #786343; margin-top:0;margin-bottom:0;}', '', '', '', '', '')",        
     ), ),
-    
 
 'EVA 3 Ubuntu' => array(
     /* Thème créé par Olivier Gautier */
@@ -866,6 +865,139 @@ $eva_themes = array(
     "('', 'image', 'Defaut', 'image_entete_page', 'corporate-office-CC/building.jpg', 'center', 'bottom', 'no-repeat', 'scroll')",
     "('', 'perso', 'Defaut', 'ul.liens {display:none;}', '', '', '', '', '')",
     ), ),
+
+'Roussette bleu' => array(
+    /* Thème créé par Olivier Gautier */
+    "habillage" => "eva4_basic_menu_gauche.css",
+    "theme" => "('', 'Defaut', '#ffc', '#001f7a', '#fff', '#fff', '#f7deae', '#fff', '#0033CC', '#0033CC', 'transparent', 'transparent', '#0033CC', '#222', '#222', '#0033CC', '#c00', '#c00', '#c00', 'transparent', 'transparent', '', '#000', '#000', '#000', '#000', '#fff', '#fff', '#fff', '#fff', '#fff; text-transform:uppercase', '#fff; text-decoration:underline', '#fff; font-variant: small-caps', '', '#000', '#900', '', '#fff', '#fff', '#fff', '#001f7a', '#001f7a; text-decoration:underline', '#001f7a', '#001f7a; text-decoration:underline', '#001f7a', '#001f7a; text-decoration:underline', '#001f7a', '', '', '', '', 'none', '#001f7a', '', '', '#001f7a', '', '', '', 'none', '', '#f7deae', '5px', 'solid', '#fff', '', '', '#830000', '', '', '', '', '', '', '', '', '', '', '', '')",
+    "images" => array(
+   "('', 'image', 'Defaut', 'image_titres', 'roussette/titres_bleu.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+   "('', 'perso', 'Defaut', 'div#entete h1 span{border-style:none;}', '', '', '', '', '')",
+   "('', 'perso', 'Defaut', '.edito .titre {margin:0; font-variant: small-caps; text-align:center;}', '', '', '', '', '')",
+   "('', 'perso', 'Defaut', 'div#entete h1 {top:42px;}', '', '', '', '', '')",
+   "('', 'image', 'Defaut', 'image_menu', 'roussette/titres.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+   "('', 'image', 'Defaut', 'image_edito_titre', 'roussette/titre_edito.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+   "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'roussette/entete_arborescence_bleu.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+   "('', 'image', 'Defaut', 'image_barre_entete', 'roussette/titres_bleu.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+   "('', 'image', 'Defaut', 'image_ecran', 'roussette/fond.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    ), ),
+
+'Roussette bleu clair' => array(
+    /* Thème créé par Olivier Gautier */
+    "habillage" => "eva4_basic_menu_gauche.css",
+    "theme" => "('', 'Defaut', '#ffc', '#369', '#fff', '#fff', '#f7deae', '#fff', '#69C', '#69C', 'transparent', 'transparent', '#69C', '#222', '#222', '#69C', '#c00', '#c00', '#c00', 'transparent', 'transparent', '', '#000', '#000', '#000', '#000', '#fff', '#fff', '#fff', '#fff', '#fff; text-transform:uppercase', '#fff; text-decoration:underline', '#fff; font-variant: small-caps', '', '#000', '#900', '', '#fff', '#fff', '#fff', '#369', '#369; text-decoration:underline', '#369', '#369; text-decoration:underline', '#369', '#369; text-decoration:underline', '#001f7a', '', '', '', '', 'none', '#001f7a', '', '', '#001f7a', '', '', '', 'none', '', '#f7deae', '5px', 'solid', '#fff', '', '', '#830000', '', '', '', '', '', '', '', '', '', '', '', '')",
+    "images" => array(
+   "('', 'image', 'Defaut', 'image_titres', 'roussette/titres_bleu_clair.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+   "('', 'perso', 'Defaut', 'div#entete h1 span{border-style:none;}', '', '', '', '', '')",
+   "('', 'perso', 'Defaut', '.edito .titre {margin:0; font-variant: small-caps; text-align:center;}', '', '', '', '', '')",
+   "('', 'perso', 'Defaut', 'div#entete h1 {top:42px;}', '', '', '', '', '')",
+   "('', 'image', 'Defaut', 'image_menu', 'roussette/titres.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+   "('', 'image', 'Defaut', 'image_edito_titre', 'roussette/titre_edito.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+   "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'roussette/entete_arborescence_bleu_clair.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+   "('', 'image', 'Defaut', 'image_barre_entete', 'roussette/titres_bleu_clair.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+   "('', 'image', 'Defaut', 'image_ecran', 'roussette/fond.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    ), ),
+
+
+'Roussette bleu sombre' => array(
+    /* Thème créé par Olivier Gautier */
+    "habillage" => "eva4_basic_menu_gauche.css",
+    "theme" => "('', 'Defaut', '#ffc', '#336', '#fff', '#fff', '#f7deae', '#fff', '#669', '#669', 'transparent', 'transparent', '#669', '#222', '#222', '#669', '#c00', '#c00', '#c00', 'transparent', 'transparent', '', '#000', '#000', '#000', '#000', '#fff', '#fff', '#fff', '#fff', '#fff; text-transform:uppercase', '#fff; text-decoration:underline', '#fff; font-variant: small-caps', '', '#000', '#900', '', '#fff', '#fff', '#fff', '#336', '#336; text-decoration:underline', '#336', '#336; text-decoration:underline', '#336', '#336; text-decoration:underline', '#001f7a', '', '', '', '', 'none', '#001f7a', '', '', '#001f7a', '', '', '', 'none', '', '#f7deae', '5px', 'solid', '#fff', '', '', '#830000', '', '', '', '', '', '', '', '', '', '', '', '')",
+    "images" => array(
+    "('', 'image', 'Defaut', 'image_titres', 'roussette/titres_bleu_sombre.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'perso', 'Defaut', 'div#entete h1 span{border-style:none;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '.edito .titre {margin:0; font-variant: small-caps; text-align:center;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete h1 {top:42px;}', '', '', '', '', '')",
+    "('', 'image', 'Defaut', 'image_menu', 'roussette/titres.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_edito_titre', 'roussette/titre_edito.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'roussette/entete_arborescence_bleu_sombre.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_barre_entete', 'roussette/titres_bleu_sombre.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_ecran', 'roussette/fond.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    ), ),
+
+'Roussette violet' => array(
+    /* Thème créé par Olivier Gautier */
+    "habillage" => "eva4_basic_menu_gauche.css",
+    "theme" => "('', 'Defaut', '#ffc', '#636', '#fff', '#fff', '#ffc', '#fff', '#969', '#969', 'transparent', 'transparent', '#969', '#222', '#222', '#969', '#fcf', '#fcf', '#fcf', 'transparent', 'transparent', '', '#000', '#000', '#000', '#000', '#fff', '#fff', '#fff', '#636', '#636; text-transform:uppercase', '#636; text-decoration:underline', '#fff; font-variant: small-caps', '', '#000', '#636', '', '#fff', '#fff', '#fff', '#636', '#636; text-decoration:underline', '#636', '#636; text-decoration:underline', '#636', '#636; text-decoration:underline', '#636', '', '', '', '', 'none', '#636', '', '', '#636', '', '', '', 'none', '', '#ffc', '5px', 'solid', '#fff', '', '', '', '', 'none', '', '', '', '', '', '', '', '', '', '')",
+    "images" => array(
+    "('', 'image', 'Defaut', 'image_titres', 'roussette/titres_violet.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'perso', 'Defaut', 'div#entete h1 span{border-style:none;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '.edito .titre {margin:0; font-variant: small-caps; text-align:center;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete h1 {top:42px;}', '', '', '', '', '')",
+    "('', 'image', 'Defaut', 'image_menu', 'roussette/fond_menu_violet.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_edito_titre', 'roussette/titre_edito_violet.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'roussette/entete_arborescence_violet.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_barre_entete', 'roussette/titres_violet.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_ecran', 'roussette/fond.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    ), ),
+
+'Roussette turquoise' => array(
+    /* Thème créé par Olivier Gautier */
+    "habillage" => "eva4_basic_menu_gauche.css",
+    "theme" => "('', 'Defaut', '#ffc', '#008C54', '#fff', '#fff', '#BFFFE5', '#fff', '#0FB', '#0FB', 'transparent', 'transparent', '#0FB', '#222', '#222', '#0FB', '#8C0E1C', 'transparent', 'transparent', 'transparent', 'transparent', '', '#000', '#000', '#000', '#000', '#fff', '#fff', '#fff', '#FFF', '#FFF; text-transform:uppercase', '#FFF; text-decoration:underline', '#8C0E1C; font-variant: small-caps', '', '#000', '#8C0E1C', '', '#8C0E1C', '#fff', '#fff', '#8C0E1C', '#8C0E1C; text-decoration:underline', '#8C0E1C', '#8C0E1C; text-decoration:underline', '#8C0E1C', '#8C0E1C; text-decoration:underline', '#008C54', '', '', '', '', 'none', '#008C54', '', '', '#008C54', '', '', '', 'none', '', '#BFFFE5', '5px', 'solid', '#fff', '', '', '#3C060C', '1px', 'solid', '', '', '', '', '', '', '', '', '', '')",
+    "images" => array(
+    "('', 'image', 'Defaut', 'image_titres', 'roussette/titres_turquoise.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'perso', 'Defaut', 'div#entete h1 span{border-style:none;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '.edito .titre {margin:0; font-variant: small-caps; text-align:center;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete h1 {top:42px;}', '', '', '', '', '')",
+    "('', 'image', 'Defaut', 'image_menu', 'roussette/fond_menu_turquoise.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_edito_titre', 'roussette/titre_edito_turquoise.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'roussette/entete_arborescence_turquoise.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_barre_entete', 'roussette/titres_turquoise.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_ecran', 'roussette/fond.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    ), ),
+
+'Roussette bleu ocean' => array(
+    /* Thème créé par Olivier Gautier */
+    "habillage" => "eva4_basic_menu_gauche.css",
+    "theme" => "('', 'Defaut', '#00388c', '#0065ff', '#fff', '#fff', '#8C0E1c', '#fff', '#5999ff', '#5999ff', 'transparent', 'transparent', '#5999ff', '#111', '#111', '#5999ff', '#8C0E1c', 'transparent', 'transparent', 'transparent', 'transparent', '', '#000', '#000', '#000', '#000', '#fff', '#fff', '#fff', '#fff', '#fff; text-transform:uppercase', '#fff; text-decoration:underline', '#fff; font-variant: small-caps', '', '#000', '#fff', '', '#fff', '#fff', '#fff', '#00388c', '#00388c; text-decoration:underline', '#00388c', '#00388c; text-decoration:underline', '#00388c', '#00388c; text-decoration:underline', '#0065ff', '', '', '', '', 'none', '#0065ff', '', '', '#0065ff', '', '', '', 'none', '', '#8C0E1c', '5px', 'solid', '#fff', '', '', '#3C060C', '1px', 'solid', '', '', '', '', '', '', '', '', '', '')",
+    "images" => array(
+    "('', 'image', 'Defaut', 'image_titres', 'roussette/titres_bleu_ocean.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'perso', 'Defaut', 'div#entete h1 span{border-style:none;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '.edito .titre {margin:0; font-variant: small-caps; text-align:center;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete h1 {top:42px;}', '', '', '', '', '')",
+    "('', 'image', 'Defaut', 'image_menu', 'roussette/fond_menu_turquoise.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_edito_titre', 'roussette/titre_edito_bleu_ocean.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'roussette/entete_arborescence_bleu_ocean.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_barre_entete', 'roussette/titres_bleu_ocean.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_ecran', 'roussette/fond_bleu_ocean.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_page', 'roussette/fond_contenu_bleu_ocean.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+    ), ),
+
+'Roussette bleu mer' => array(
+    /* Thème créé par Olivier Gautier */
+    "habillage" => "eva4_basic_menu_gauche.css",
+    "theme" => "('', 'Defaut', '#c0d9ff', '#0065ff', '#fff', '#fff', '#ff6500', '#fff', '#5999ff', '#5999ff', 'transparent', 'transparent', '#5999ff', '#111', '#111', '#5999ff', '#ff6500', 'transparent', 'transparent', 'transparent', 'transparent', '', '#000', '#000', '#000', '#000', '#fff', '#fff', '#fff', '#fff', '#fff; text-transform:uppercase', '#fff; text-decoration:underline', '#fff; font-variant: small-caps', '', '#000', '#fff', '', '#fff', '#fff', '#fff', '#00388c', '#00388c; text-decoration:underline', '#00388c', '#00388c; text-decoration:underline', '#00388c', '#00388c; text-decoration:underline', '#0065ff', '', '', '', '', 'none', '#0065ff', '', '', '#0065ff', '', '', '', 'none', '', '#ff6500', '5px', 'solid', '#fff', '', '', '#3C060C', '1px', 'solid', '', '', '', '', '', '', '', '', '', '')",
+    "images" => array(
+    "('', 'perso', 'Defaut', 'div#entete h1 span{border-style:none;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '.edito .titre {margin:0; font-variant: small-caps; text-align:center;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete h1 {top:42px;}', '', '', '', '', '')",
+    "('', 'image', 'Defaut', 'image_page', 'roussette/fond_contenu_bleu_ocean.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_titres', 'roussette/titres_bleu_ocean.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_menu', 'roussette/fond_menu_bleu_mer.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_edito_titre', 'roussette/titre_edito_bleu_mer.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'roussette/entete_arborescence_bleu_ocean.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_barre_entete', 'roussette/titres_bleu_ocean.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    ), ),
+
+'Roussette Abou Simbel' => array(
+    /* Thème créé par Olivier Gautier */
+    "habillage" => "eva4_basic_menu_gauche.css",
+    "theme" => "(77, 'Defaut', '#D8C0A5', '#4E7FB7', '#fff', '#fff', '#D8C0A5', '#fff', '#D8C0A5', '#D8C0A5', 'transparent', 'transparent', '#5999ff', '#111', '#111', '#D8C0A5', '#D8C0A5', 'transparent', 'transparent', 'transparent', 'transparent', '', '#000', '#000', '#000', '#fff', '#fff', '#fff', '#fff', '#4C3022', '#4C3022; text-transform:uppercase', '#4C3022; text-decoration:underline', '#fff; font-variant: small-caps', '', '#000', '#4C3022', '', '#fff', '#fff', '#fff', '#00388c', '#00388c; text-decoration:underline', '#00388c', '#00388c; text-decoration:underline', '#00388c', '#00388c; text-decoration:underline', '#0065ff', '', '', '', '', 'none', '', '', 'none', '#0065ff', '', '', '', 'none', '', '#D8C0A5', '5px', 'solid', '#fff', '', '', '#4C3022', '1px', 'solid', '', '', '', '', '', '', '', '300px', '', '')",
+    "images" => array(
+    "('', 'perso', 'Defaut', 'div#entete h1 span{border-style:none;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '.edito .titre {margin:0; font-variant: small-caps; text-align:center;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete h1 {top:42px;}', '', '', '', '', '')",
+    "('', 'image', 'Defaut', 'image_ecran', 'roussette/fond_abu_simbel.jpg', 'left', 'top', 'repeat-x', 'scroll'),",
+    "('', 'image', 'Defaut', 'image_page', 'roussette/fond_page_abu_simbel.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_entete_page', 'roussette/bandeau_abu_simbel.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_titres', 'roussette/titre_abu_simbel.jpg', 'right', 'top', 'repeat', 'scroll')",
+    "('', 'image', 'Defaut', 'image_menu', 'roussette/titre_edito_abu_simbel.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_edito_titre', 'roussette/titre_edito_abu_simbel.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'roussette/arborescence_abu_simbel.png', 'left', 'top', 'no-repeat', 'scroll')",
+    "('', 'image', 'Defaut', 'image_barre_entete', 'roussette/boutons_abu_simbel.png', 'left', 'top', 'no-repeat', 'scroll')",
+    ), ),
+
 
 
 );
