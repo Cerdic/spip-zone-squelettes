@@ -10,15 +10,22 @@
 	#SET{titre, #TITRE|supprimer_numero}
 	[(#ID_SECTEUR|=={#RACINE_SPECIALISEE{galerie}}|oui)
 		#SET{url, #URL_PAGE{album}|parametre_url{id_article,#ID_ARTICLE}}
+		[(#SET{bulle, <:sarkaspip:navigation_bulle_vers_album:>})]
 	]
 	[(#ID_SECTEUR|=={#RACINE_SPECIALISEE{agenda}}|oui)
 		#SET{url, #URL_PAGE{evenement}|parametre_url{id_article,#ID_ARTICLE}}
+		[(#SET{bulle, <:sarkaspip:navigation_bulle_vers_evenement:>})]
 	]
 	[(#ID_SECTEUR|=={#RACINE_SPECIALISEE{forum}}|oui)
 		#SET{url, #URL_ARTICLE}
+		[(#SET{bulle, <:sarkaspip:navigation_bulle_vers_forum:>})]
 	]
 	[(#ID_SECTEUR|match{#RACINE_SPECIALISEE}|non)
 		#SET{url, #URL_ARTICLE}
+		[(#SET{bulle, <:sarkaspip:navigation_bulle_vers_article:>})]
 	]
 </BOUCLE_article_lien>
-<a[ class="(#ENV{classe})"] href="#GET{url}"[ title="(#ENV{bulle})"]>#GET{titre}</a>
+[(#ENV{bulle}|oui)
+	[(#SET{bulle, #ENV{bulle}})]
+]
+<a[ class="(#ENV{classe})"] href="#GET{url}"[ title="(#GET{bulle})"]>#GET{titre}</a>
