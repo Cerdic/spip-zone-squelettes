@@ -35,6 +35,7 @@ $test_lang_personnalisation=array(
 'deconnecter' => 'Se d&eacute;connecter',
 'derniers_articles' => 'Derniers articles',
 'dernieres_breves' => 'Derni&egrave;res br&egrave;ves',
+'derniers_commentaires' => 'Derniers commentaires',
 'derniers_podcasts' => 'Derniers podcasts',
 'derniers_sites' => 'Derniers sites',
 'de_cet_auteur' => 'de cet auteur',

@@ -12,6 +12,8 @@ array('meteo_actuelle','sommaire rubrique article breve site auteur','Bloc affic
 array('meteo_infos','sommaire rubrique article breve site auteur','Bloc affichant les informations g&eacute;ographiques de la commune (longitude et latitude)','Olivier Gautier'),
 array('meteo_jour_nuit','sommaire rubrique article breve site auteur','Bloc affichant les pr&eacute;visions m&eacute;t&eacute;o des deux demi-journ&eacute;es du lendemain','Olivier Gautier'),
 array('meteo_previsions','sommaire rubrique article breve site auteur','Bloc affichant les pr&eacute;visions m&eacute;t&eacute;o des jours &agrave; venir','Olivier Gautier'),
+array('derniers_commentaires','sommaire','Bloc affichant les derniers commentaires du site','David Buffo et Olivier Gautier'),
+
 );
 return $retour;
 }
