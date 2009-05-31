@@ -13,6 +13,7 @@ array('meteo_infos','sommaire rubrique article breve site auteur','Bloc affichan
 array('meteo_jour_nuit','sommaire rubrique article breve site auteur','Bloc affichant les pr&eacute;visions m&eacute;t&eacute;o des deux demi-journ&eacute;es du lendemain','Olivier Gautier'),
 array('meteo_previsions','sommaire rubrique article breve site auteur','Bloc affichant les pr&eacute;visions m&eacute;t&eacute;o des jours &agrave; venir','Olivier Gautier'),
 array('derniers_commentaires','sommaire','Bloc affichant les derniers commentaires du site','David Buffo et Olivier Gautier'),
+array('sites_acces_direct','sommaire','Bloc affichant les derniers sites avec un acc&egrave;s direct dans les liens g&eacute;n&eacute;r&eacute;s','Olivier Gautier'),
 
 );
 return $retour;
