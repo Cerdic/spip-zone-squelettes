@@ -52,8 +52,20 @@
 <form method="post" action="#SELF"><div>
 	[(#ENV{_cfg_}|form_hidden)]
 	<fieldset>
-		<legend><:sarkaspip:cfg_lgd_album_presentation:></legend>
-		<p><:sarkaspip:cfg_inf_album_presentation:></p>
+		<legend><:sarkaspip:cfg_lgd_description:></legend>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_logo}
+			{explication=<:sarkaspip:cfg_inf_album_sans_logo:>}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_cartouche}
+			{explication_popularite=<:sarkaspip:cfg_inf_album_popularite:>}
+			{explication_notation=<:sarkaspip:cfg_inf_album_notation:>}
+			{explication_socialtags=<:sarkaspip:cfg_inf_album_socialtags:>}
+			{env}>
+	</fieldset>
+	
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_documents_joints:></legend>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_descriptif_document}{env}>
 	</fieldset>
 
 	<fieldset>
@@ -142,6 +154,16 @@
 			<input type="radio" name="afficher_exif" value="non" [(#ENV{afficher_exif, non}|=={non}|?{checked="checked"})] />
 			<:sarkaspip:cfg_lbl_non:>
 		</label>
+	</fieldset>
+
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_commentaires:></legend>
+		<p><:sarkaspip:cfg_inf_album_commentaires:></p>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_pagination}
+			{defaut_pas=20}
+			{defaut_position=2}
+			{suffixe=_commentaires}
+			{env}>
 	</fieldset>
 
 	<INCLURE{fond=noisettes/cfg/inc_cfg_boutons}>

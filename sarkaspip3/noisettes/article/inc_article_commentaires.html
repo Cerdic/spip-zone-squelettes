@@ -19,11 +19,11 @@
 <B_commentaires>
 [(#ENV{id_forum}|?{'', ' '})
 	#ANCRE_PAGINATION
-	[(#CONFIG{sarkaspip_article/position_pagination_commentaires, 3}|match{^(1|3)$}|?{' '})
-		[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_article/modele_pagination_commentaires}})</div>]
+	[(#ENV{position_pagination}|match{^(1|3)$}|?{' '})
+		[<div class="pagination">(#PAGINATION{#ENV{modele_pagination}})</div>]
 	]
 ]
-<BOUCLE_commentaires(FORUMS){plat}{id_article}{id_forum?}{par date}{inverse}{pagination #CONFIG{sarkaspip_article/pas_pagination_commentaires, 5}}>
+<BOUCLE_commentaires(FORUMS){plat}{id_article}{id_forum?}{par date}{inverse}{pagination #ENV{pas_pagination}}>
 	[(#REM) <!-- Determination des infomations sur l'auteur --> ]
 	<BOUCLE_forum_edite(FORUMS){id_parent=#ID_FORUM}{statut=original}>
 		[(#REM) <!-- Cas ou le commentaire a ete crayonne --> ]
@@ -75,8 +75,8 @@
 	</div>
 </BOUCLE_commentaires>
 [(#ENV{id_forum}|?{'', ' '})
-	[(#CONFIG{sarkaspip_article/position_pagination_commentaires, 3}|match{^(2|3)$}|?{' '})
-		[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_article/modele_pagination_commentaires}})</div>]
+	[(#ENV{position_pagination}|match{^(2|3)$}|?{' '})
+		[<div class="pagination">(#PAGINATION{#ENV{modele_pagination}})</div>]
 	]
 ]
 </B_commentaires>
