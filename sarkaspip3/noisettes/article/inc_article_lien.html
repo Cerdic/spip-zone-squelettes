@@ -4,6 +4,8 @@
 		- id_article: id de l'article concerne
 		- classe: attribut class css du lien
 		- bulle: attribut title du lien 
+		- avant_titre: html a inserer avant le titre
+		- apres_titre: html a inserer apres le titre
 -->
 ]
 <BOUCLE_article_lien(ARTICLES){id_article}>
@@ -28,4 +30,4 @@
 [(#ENV{bulle}|oui)
 	[(#SET{bulle, #ENV{bulle}})]
 ]
-<a[ class="(#ENV{classe})"] href="#GET{url}"[ title="(#GET{bulle})"]>#GET{titre}</a>
+<a[ class="(#ENV{classe})"] href="#GET{url}"[ title="(#GET{bulle})"]>[(#ENV*{avant_titre})][(#GET{titre})][(#ENV*{apres_titre})]</a>

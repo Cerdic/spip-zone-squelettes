@@ -319,11 +319,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //N
 	  
 		'navigation_bulle_recherche_motcle'=>'Rechercher tous les objets li&eacute;s &agrave; ce mot-cl&eacute;',
+		'navigation_bulle_vers_agenda'=>'Se rendre sur la page de l\'agenda annuel',
 		'navigation_bulle_vers_album'=>'Se rendre sur la page de cet album',
 		'navigation_bulle_vers_article'=>'Se rendre sur la page de cet article',
 		'navigation_bulle_vers_evenement'=>'Se rendre sur la page de cet &eacute;v&egrave;nement',
-		'navigation_bulle_vers_forum'=>'Se rendre sur la page de ce forum',
+		'navigation_bulle_vers_forum'=>'Se rendre sur la page du forum',
 		'navigation_bulle_vers_rubrique'=>'Se rendre sur la page de cette rubrique',
+		'navigation_bulle_vers_galerie'=>'Se rendre sur la page de la galerie',
 		'navigation_titre' => 'Navigation',
 		'newsletter' => 'Lettre d\'information',
 		'nom' => 'Nom', // redefinition item SPIP
