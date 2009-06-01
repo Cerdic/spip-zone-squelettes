@@ -983,7 +983,7 @@ $eva_themes = array(
 'Roussette Abou Simbel' => array(
     /* Thème créé par Olivier Gautier */
     "habillage" => "eva4_basic_menu_gauche.css",
-    "theme" => "(77, 'Defaut', '#D8C0A5', '#4E7FB7', '#fff', '#fff', '#D8C0A5', '#fff', '#D8C0A5', '#D8C0A5', 'transparent', 'transparent', '#5999ff', '#111', '#111', '#D8C0A5', '#D8C0A5', 'transparent', 'transparent', 'transparent', 'transparent', '', '#000', '#000', '#000', '#fff', '#fff', '#fff', '#fff', '#4C3022', '#4C3022; text-transform:uppercase', '#4C3022; text-decoration:underline', '#fff; font-variant: small-caps', '', '#000', '#4C3022', '', '#fff', '#fff', '#fff', '#00388c', '#00388c; text-decoration:underline', '#00388c', '#00388c; text-decoration:underline', '#00388c', '#00388c; text-decoration:underline', '#0065ff', '', '', '', '', 'none', '', '', 'none', '#0065ff', '', '', '', 'none', '', '#D8C0A5', '5px', 'solid', '#fff', '', '', '#4C3022', '1px', 'solid', '', '', '', '', '', '', '', '300px', '', '')",
+    "theme" => "('', 'Defaut', '#D8C0A5', '#4E7FB7', '#fff', '#fff', '#D8C0A5', '#fff', '#D8C0A5', '#D8C0A5', 'transparent', 'transparent', '#5999ff', '#111', '#111', '#D8C0A5', '#D8C0A5', 'transparent', 'transparent', 'transparent', 'transparent', '', '#000', '#000', '#000', '#fff', '#fff', '#fff', '#fff', '#4C3022', '#4C3022; text-transform:uppercase', '#4C3022; text-decoration:underline', '#fff; font-variant: small-caps', '', '#000', '#4C3022', '', '#fff', '#fff', '#fff', '#00388c', '#00388c; text-decoration:underline', '#00388c', '#00388c; text-decoration:underline', '#00388c', '#00388c; text-decoration:underline', '#0065ff', '', '', '', '', 'none', '', '', 'none', '#0065ff', '', '', '', 'none', '', '#D8C0A5', '5px', 'solid', '#fff', '', '', '#4C3022', '1px', 'solid', '', '', '', '', '', '', '', '300px', '', '')",
     "images" => array(
     "('', 'perso', 'Defaut', 'div#entete h1 span{border-style:none;}', '', '', '', '', '')",
     "('', 'perso', 'Defaut', '.edito .titre {margin:0; font-variant: small-caps; text-align:center;}', '', '', '', '', '')",
@@ -996,6 +996,24 @@ $eva_themes = array(
     "('', 'image', 'Defaut', 'image_edito_titre', 'roussette/titre_edito_abu_simbel.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
     "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'roussette/arborescence_abu_simbel.png', 'left', 'top', 'no-repeat', 'scroll')",
     "('', 'image', 'Defaut', 'image_barre_entete', 'roussette/boutons_abu_simbel.png', 'left', 'top', 'no-repeat', 'scroll')",
+    ), ),
+
+
+'Roussette Bleu Vert' => array(
+    /* Thème créé par Olivier Gautier */
+    "habillage" => "eva4_basic_menu_gauche.css",
+    "theme" => "('', 'Defaut', '#65ffbf', '#0056d8', '#fff', '#fff', '#8c3800', '#fff', '#00Bf13', '#00Bf13', 'transparent', 'transparent', '#00Bf13', '#111', '#111', '#00Bf13', '#8c3800', 'transparent', 'transparent', 'transparent', 'transparent', '', '#000', '#000', '#000', '#000', '#fff', '#fff', '#fff', '#fff', '#fff; text-transform:uppercase', '#fff; text-decoration:underline', '#fff; font-variant: small-caps', '', '#000', '#fff', '', '#fff', '#fff', '#fff', '#00388c', '#00388c; text-decoration:underline', '#00388c', '#00388c; text-decoration:underline', '#00388c', '#00388c; text-decoration:underline', '#0065ff', '', '', '', '', 'none', '#0065ff', '', '', '#0065ff', '', '', '', 'none', '', '#8c3800', '5px', 'solid', '#fff', '', '', '#3C060C', '1px', 'solid', '', '', '', '', '', '', '', '', '', '')",
+    "images" => array(
+    "('', 'perso', 'Defaut', 'div#entete h1 span{border-style:none;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '.edito .titre {margin:0; font-variant: small-caps; text-align:center;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete h1 {top:42px;}', '', '', '', '', '')",
+    "('', 'image', 'Defaut', 'image_page', 'roussette/fond_page_bleu_vert.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_ecran', 'roussette/fond_bleu_vert.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_barre_entete', 'roussette/titres_bleu_vert.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'roussette/entete_arborescence_bleu_vert.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_edito_titre', 'roussette/titre_edito_bleu_vert.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_menu', 'roussette/fond_menu_bleu_vert.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_titres', 'roussette/titres_bleu_vert.jpg', 'left', 'top', 'repeat-x', 'scroll')",
     ), ),
 
 
