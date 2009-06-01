@@ -2,6 +2,16 @@
 #CACHE{0}
 <BOUCLE_article_principal(ARTICLES) {id_article}>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+	[(#SET{complement, ''})]
+	[(#CONFIG{sarkaspip_formulaires/position_extrait, 1}|=={1}|oui)
+		[(#SET{complement, <:sarkaspip:commentaire_suite_article:>})]
+	]
+	[(#CONFIG{sarkaspip_formulaires/position_extrait, 1}|=={1}|non)
+		[(#CONFIG{sarkaspip_formulaires/position_commentaire, 1}|=={1}|oui)
+			[(#SET{complement, <:sarkaspip:reponse_suite_commentaire:>})]
+			[(#SET{afficher_titre, non})]
+		]
+	]
 	<INCLURE{fond=noisettes/inc_header}
 		{meta_titre=<:sarkaspip:poster_commentaire{poster_complement=}:>}>
 
@@ -15,32 +25,22 @@
 
 <div id="wrapper">
 	<div id="content">
-		[(#SET{complement, ''})]
-		[(#CONFIG{sarkaspip_article/position_extrait, 1}|=={1}|?{' '})
-			[(#SET{complement, <:sarkaspip:commentaire_suite_article:>})]
-		]
-		[(#CONFIG{sarkaspip_article/position_extrait, 1}|=={1}|?{'',' '})
-			[(#CONFIG{sarkaspip_article/position_commentaire, 1}|=={1}|?{' '})
-				[(#SET{complement, <:sarkaspip:reponse_suite_commentaire:>})]
-				[(#SET{afficher_titre, non})]
-			]
-		]
 		<div class="titre"><h1><:sarkaspip:poster_commentaire{poster_complement=#GET{complement}}:></h1></div>
         [(#REM) <!-- Resume du texte de l'article auquel le commentaire s'adresse --> ]
-		[(#CONFIG{sarkaspip_article/position_extrait, 1}|=={1}|?{' '})
+		[(#CONFIG{sarkaspip_formulaires/position_extrait, 1}|=={1}|oui)
 		<div id="article_commentaire" class="portfolio">
 			<INCLURE{fond=noisettes/article/inc_article_introduction}
 				{id_article}
 				{afficher_mere=non}
 				{afficher_commentaires=non}
-				{logo_rubrique=#CONFIG{sarkaspip_article/logo_rubrique_extrait, oui}}
-				{avec_lire_suite=#CONFIG{sarkaspip_article/avec_lire_suite, non}}
-				{taille_logo=#CONFIG{sarkaspip_article/taille_logo_extrait, 150}}
-				{taille_introduction=#CONFIG{sarkaspip_article/intro_article, 300}}>
+				{logo_rubrique=#CONFIG{sarkaspip_formulaires/logo_rubrique_extrait, oui}}
+				{avec_lire_suite=#CONFIG{sarkaspip_formulaires/avec_lire_suite, non}}
+				{taille_logo=#CONFIG{sarkaspip_formulaires/taille_logo_extrait, 150}}
+				{taille_introduction=#CONFIG{sarkaspip_formulaires/intro_article, 300}}>
 		</div>
 		]
 		[(#REM) <!-- Visualisation du commentaire ˆ commenter --> ]
-		[(#CONFIG{sarkaspip_article/position_commentaire, 1}|=={1}|?{' '})
+		[(#CONFIG{sarkaspip_formulaires/position_commentaire, 1}|=={1}|oui)
 			[(#ENV{id_forum}|?{' '})
 				<INCLURE{fond=noisettes/article/inc_article_commentaires}
 					{id_article}
