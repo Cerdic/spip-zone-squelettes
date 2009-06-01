@@ -363,4 +363,9 @@ function generer_url_refsite($id, $args, $ancre) {
 	return array('site', $id);
 }
 
+/* Transforme un texte en lien raccourcis SPIP et calcule le résultat */
+function texte2urlspip($url) {
+	return expanser_liens('[->'.$url.']');
+}
+
 ?>

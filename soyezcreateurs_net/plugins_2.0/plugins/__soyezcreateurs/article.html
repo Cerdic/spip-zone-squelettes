@@ -11,6 +11,12 @@
 	{title=[(#TITRE|attribut_html|texte_script)]}
 	{titretop=#GET{titretop}}
 )]
+
+<BOUCLE_TypeRubrique(HIERARCHIE){id_rubrique}{tout}{type=_TypeRubrique}{inverse} {0,1}><BOUCLE_Mot_TypeRubrique(MOTS){type=_TypeRubrique}>
+[(#INCLURE{fond=noisettes/articles/typearticle_#TITRE}{id_article=#_article_principal:ID_ARTICLE}{rubriqueencours}{template}{secteurencours}{lang}{racinetype=#_TypeRubrique:ID_RUBRIQUE})]
+</BOUCLE_Mot_TypeRubrique></BOUCLE_TypeRubrique>
+
+
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
@@ -21,7 +27,6 @@
 	</ul>
 [(#INCLURE{fond=noisettes/affrubcomplete}{id_rubrique}{lang})]
 	</div>
-
 [(#INCLURE{fond=noisettes/cartouches/article_cartouche}{id_article}{lang})]
 
 <div class="texte">
@@ -173,6 +178,7 @@
 <//B_GraverSonNom>
 
 [(#FORMULAIRE_ADMIN)]
+<//B_TypeRubrique>
 [<script src="(#CONFIG{soyezcreateurs_google/feedflare})?i=[(#URL_ARTICLE|url_absolue)]" type="text/javascript" charset="utf-8"></script>]
 [(#INCLURE{fond=noisettes/footer/footer}
 	{rubriqueencours=#ID_RUBRIQUE}
