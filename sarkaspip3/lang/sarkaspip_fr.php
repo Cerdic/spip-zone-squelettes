@@ -258,8 +258,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //L
 	  
-	  'le' => 'le',
-	  'le_mot' => 'Le mot',
+		'le' => 'le',
+		'le_mot' => 'Le mot',
 		'licence_gpl' => 'GPLv3',
 		'licence_site' => 'Licence &agrave; d&eacute;finir',
 		'lien_herbier_liste' => 'Herbier liste',
@@ -319,6 +319,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //N
 	  
 		'navigation_bulle_recherche_motcle'=>'Rechercher tous les objets li&eacute;s &agrave; ce mot-cl&eacute;',
+		'navigation_bulle_vers_album'=>'Se rendre sur la page de cet album',
 		'navigation_bulle_vers_article'=>'Se rendre sur la page de cet article',
 		'navigation_bulle_vers_evenement'=>'Se rendre sur la page de cet &eacute;v&egrave;nement',
 		'navigation_bulle_vers_forum'=>'Se rendre sur la page de ce forum',
