@@ -1016,6 +1016,22 @@ $eva_themes = array(
     "('', 'image', 'Defaut', 'image_titres', 'roussette/titres_bleu_vert.jpg', 'left', 'top', 'repeat-x', 'scroll')",
     ), ),
 
+'Roussette Bleu Orange' => array(
+    /* Thème créé par Ghislain Chasme et Olivier Gautier */
+    "habillage" => "eva4_basic_menu_gauche.css",
+    "theme" => "('', 'Defaut', '#ffc', '#67c6E6', '#fff', '#fff', '#0099CC', '#0099CC', '#FF8300', '#FF8300', 'transparent', 'transparent', '#0099CC', '#222', '#222', '#0099CC', '#FF8300', 'transparent', 'transparent', 'transparent', 'transparent', '', '#000', '#000', '#000', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff; text-transform:uppercase', '#fff; text-decoration:underline', '#fff; font-variant: small-caps', '', '#000', '#fff', '', '#fff', '#fff', '#fff', '#001f7a', '#001f7a; text-decoration:underline', '#001f7a', '#001f7a; text-decoration:underline', '#001f7a', '#001f7a; text-decoration:underline', '#001f7a', '', '', '', '', 'none', '#001f7a', '', '', '#001f7a', '', '', '', 'none', '', '#0099CC', '5px', 'solid', '#fff', '', '', '#830000', '', '', '', '', '', '', '', '', '', '', '', '')",
+    "images" => array(
+    "('', 'perso', 'Defaut', 'div#entete h1 span{border-style:none;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '.edito .titre {margin:0; font-variant: small-caps; text-align:center;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete h1 {top:42px;}', '', '', '', '', '')",
+    "('', 'image', 'Defaut', 'image_ecran', 'roussette/fond.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_barre_entete', 'roussette/entete_liens_ghislain.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'roussette/entete_arborescence_ghislain.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_edito_titre', 'roussette/titre_edito_ghislain.jpg', 'left', 'bottom', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_menu', 'roussette/fond_menu_ghislain.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_titres', 'roussette/titres_ghislain.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    ), ),
+
 
 
 );
