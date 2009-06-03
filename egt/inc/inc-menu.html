@@ -10,8 +10,8 @@
 			<!-- rubriques racine sauf celles associées au mot clé "exclure du menu"-->
 			<BOUCLE_secteurs(RUBRIQUES) {racine} {lang} {par titre} {!titre_mot=exclure du menu}>
 				<ul class="open">
-				<li id="rub#ID_RUBRIQUE"><a onclick="toggle('#ID_RUBRIQUE', '#CHEMIN{images}')" onkeypress="if (event.keyCode == 13) { toggle('#ID_RUBRIQUE', '#CHEMIN{images}'); }"><img src="#CHEMIN{images/closed.png}" alt="+" title="<:spip:info_deplier:>" id="img_#ID_RUBRIQUE" /></a>&nbsp;<a href="#URL_RUBRIQUE" title="[<:dernier_ajout:> : (#DATE|affdate_court)]" [ class="(#EXPOSE{actif})"]>[(#TITRE|supprimer_numero)]</a>
-					<ul id="ul_#ID_RUBRIQUE" class="closed">
+				<li id="rub#ID_RUBRIQUE"><a onclick="toggle('#ID_RUBRIQUE', '#CHEMIN{images}')" onkeypress="if (event.keyCode == 13) { toggle('#ID_RUBRIQUE', '#CHEMIN{images}'); }"><img src="#CHEMIN{#EXPOSE{images/opened.png,images/closed.png}}" alt="+" title="<:spip:info_deplier:>" id="img_#ID_RUBRIQUE" /></a>&nbsp;<a href="#URL_RUBRIQUE" title="[<:dernier_ajout:> : (#DATE|affdate_court)]" [ class="(#EXPOSE{actif})"]>[(#TITRE|supprimer_numero)]</a>
+					<ul id="ul_#ID_RUBRIQUE" [class="(#EXPOSE{open,closed})"]>
 
 					<B_menu_a>
 						<!-- Articles des rubriques racine -->
@@ -36,11 +36,11 @@
 							<li id="srub#ID_RUBRIQUE">
 								<BOUCLE_rubriques(RUBRIQUES){id_parent}>
 
-								<a onclick="toggle('#ID_RUBRIQUE', '#CHEMIN{images}')" onkeypress="if (event.keyCode == 13) { toggle('#ID_RUBRIQUE', '#CHEMIN{images}'); }"><img src="#CHEMIN{images/closed.png}" alt="-" title="<:spip:info_deplier:>" id="img_#ID_RUBRIQUE"  /></a>
+								<a onclick="toggle('#ID_RUBRIQUE', '#CHEMIN{images}')" onkeypress="if (event.keyCode == 13) { toggle('#ID_RUBRIQUE', '#CHEMIN{images}'); }"><img src="#CHEMIN{#EXPOSE{images/opened.png,images/closed.png}}" alt="-" title="<:spip:info_deplier:>" id="img_#ID_RUBRIQUE"  /></a>
 								&nbsp;<a href="#URL_RUBRIQUE" title="[<:dernier_ajout:> : (#DATE|affdate_court)]" [ class="(#EXPOSE{actif})"]>[(#TITRE|supprimer_numero)]</a><br />
 
 								<!-- articles des sous-rubriques -->
-								<ul id="ul_#ID_RUBRIQUE" class="closed">
+								<ul id="ul_#ID_RUBRIQUE" [class="(#EXPOSE{open,closed})"]>
 									<BOUCLE_menu_ab(ARTICLES) {id_rubrique} {par titre}>	
 									<li class="artracine"><a href="#URL_ARTICLE" title="<:ecrire:info_statut_site_2:> : [(#DATE|affdate_court)]" [ class="(#EXPOSE{actif})"]>[(#TITRE|supprimer_numero)]</a>
 									</li>
