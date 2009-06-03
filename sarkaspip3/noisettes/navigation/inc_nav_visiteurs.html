@@ -11,8 +11,17 @@
 		[(#CONFIG{sarkaspip_menus/lien_plan, 0}|=={1}|?{' '})
 			<li class="[(#GET{classe_li})]"><a href="#URL_PAGE{plan,tri=par_rubrique}"><:sarkaspip:plan_site:></a></li>
 		]
-		[(#CONFIG{sarkaspip_formulaires/auteur_contact}|?{' '})
+		[(#CONFIG{sarkaspip_formulaires/plugin_contact, 0}|=={0}|?{' '})
+			[(#CONFIG{sarkaspip_formulaires/auteur_contact}|?{' '})
 			<li class="[(#GET{classe_li})]"><a href="#URL_PAGE{contact}"><:sarkaspip:contact:></a></li>
+				]
+		]
+		[(#CONFIG{sarkaspip_formulaires/plugin_contact, 0}|=={1}|?{' '})
+			[(#PLUGIN{CONTACT}|?{' '})
+				[(#CONFIG{contact/choix_destinataires}|?{' '})
+					<li class="[(#GET{classe_li})]"><a href="#URL_PAGE{contact}"><:sarkaspip:contact:></a></li>
+				]
+			]
 		]
 		[(#CONFIG{activer_sites}|=={oui}|?{
 			[(#REM) <!-- Autorisation niveau visiteur : tout visiteur connecte ou pas peut proposer un site (seul cas possible) -->]

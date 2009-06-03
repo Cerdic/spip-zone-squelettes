@@ -1,6 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 #CACHE{86400}
-<BOUCLE_auteur_principal(AUTEURS) {tout}{id_auteur=#CONFIG{sarkaspip_formulaires/auteur_contact}}>
+
+[(#CONFIG{sarkaspip_formulaires/plugin_contact, 0}|=={0}|?{' '})
+	#SET{contact, #CONFIG{sarkaspip_formulaires/auteur_contact}}
+]
+[(#CONFIG{sarkaspip_formulaires/plugin_contact, 0}|=={1}|?{' '})
+	[(#PLUGIN{CONTACT}|?{' '})
+		[(#CONFIG{contact/choix_destinataires}|?{' '})
+			#SET{contact, #CONFIG{contact/choix_destinataires}|table_valeur{0}}
+		]
+	]
+]
+<BOUCLE_auteur_principal(AUTEURS) {tout}{id_auteur=#GET{contact}|sinon{0}}>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 	<INCLURE{fond=noisettes/inc_header}
 		{meta_titre=(#CONFIG{sarkaspip_formulaires/titre_contact, <:sarkaspip:contacter_site:>})}
