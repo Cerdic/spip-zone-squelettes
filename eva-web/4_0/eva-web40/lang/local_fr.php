@@ -92,6 +92,7 @@ $test_lang_personnalisation=array(
 // L
 'lire_suite' => 'Lire la suite',
 'lancer_diaporama' => 'Lancer le Diaporama',
+'lien_externe'=>"Lien externe au site, s'ouvre dans une nouvelle fen&ecirc;tre",
 
 // M
 'meme_rubrique' => 'Dans cette rubrique',
