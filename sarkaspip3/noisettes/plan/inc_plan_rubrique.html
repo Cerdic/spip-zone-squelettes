@@ -3,11 +3,11 @@
 	<INCLURE{fond=noisettes/plan/inc_plan_pagination}{tri=par_rubrique}>
 ]
 [(#REM) <!-- Les articles des rubriques non specialisees --> ]
-<BOUCLE_secteurs(RUBRIQUES){racine}{id_rubrique!==#RACINE_SPECIALISEE}{par num titre}{par titre}>
+<BOUCLE_secteurs(RUBRIQUES){racine}{id_rubrique!==#RACINE_SPECIALISEE}{par num titre, titre}>
 	[<h2>(#INCLURE{fond=noisettes/rubrique/inc_rubrique_lien}{id_rubrique})</h2>]
 	<B_articles_secteur>
 		<ul>
-	<BOUCLE_articles_secteur(ARTICLES){id_rubrique}{par num titre}{par date}{inverse #CONFIG{sarkaspip_plan/senstri_date, 1}}>
+	<BOUCLE_articles_secteur(ARTICLES){id_rubrique}{par date}{inverse #CONFIG{sarkaspip_plan/senstri_date, 1}}>
 			[(#SET{date, [<span class="objet_date">&#91;(#DATE|affdate{'d-m-Y'})&#93;&nbsp;</span>&nbsp;]})]
 			[<li>
 				(#INCLUDE{fond=noisettes/article/inc_article_lien}
@@ -21,12 +21,12 @@
 
 	<B_hierarchie>
 		<ul>
-	<BOUCLE_hierarchie(RUBRIQUES){id_parent}{par num titre}{par titre}>
+	<BOUCLE_hierarchie(RUBRIQUES){id_parent}{par num titre, titre}>
 			<li>
 				[<h2>(#INCLURE{fond=noisettes/rubrique/inc_rubrique_lien}{id_rubrique})</h2>]
 			<B_articles_hierarchie>
 				<ul>
-			<BOUCLE_articles_hierarchie(ARTICLES){id_rubrique}{par num titre}{par date}{inverse #CONFIG{sarkaspip_plan/senstri_date, 1}}>
+			<BOUCLE_articles_hierarchie(ARTICLES){id_rubrique}{par date}{inverse #CONFIG{sarkaspip_plan/senstri_date, 1}}>
 					[(#SET{date, [<span class="objet_date">&#91;(#DATE|affdate{'d-m-Y'})&#93;&nbsp;</span>&nbsp;]})]
 					[<li>
 						(#INCLUDE{fond=noisettes/article/inc_article_lien}
@@ -51,7 +51,7 @@
 	[<h2>(#INCLURE{fond=noisettes/rubrique/inc_rubrique_lien}{id_rubrique})</h2>]
 </BOUCLE_galerie>
 	<ul>
-<BOUCLE_albums(ARTICLES){id_secteur=#RACINE_SPECIALISEE{galerie}}{par num titre, titre}>
+<BOUCLE_albums(ARTICLES){id_secteur=#RACINE_SPECIALISEE{galerie}}{par date}{inverse #CONFIG{sarkaspip_plan/senstri_date, 1}>
 		[(#SET{date, [<span class="objet_date">&#91;(#DATE|affdate{'d-m-Y'})&#93;&nbsp;</span>&nbsp;]})]
 		[<li>
 			(#INCLUDE{fond=noisettes/article/inc_article_lien}
