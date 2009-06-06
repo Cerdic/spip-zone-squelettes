@@ -20,6 +20,17 @@ function exec_eva_habillage_css(){
     function showColor(val)  {
         document.colorform.hexval.value = val;
     }
+	function toggleCSSEdit(id, edit) {
+		var cssPerso = document.getElementById('css_perso_'+id);
+		var cssPersoEdit = document.getElementById('css_perso_'+id+'_edition');
+		if(edit) {
+			cssPerso.style.display = 'none';
+			cssPersoEdit.style.display = 'block';
+		} else {
+			cssPerso.style.display = 'block';
+			cssPersoEdit.style.display = 'none';
+		}
+	}
     </script><?php
 	$commencer_page = charger_fonction('commencer_page', 'inc');
 	echo $commencer_page(_T('evahabillage:EVA_nom') , '', '', '');
@@ -57,7 +68,8 @@ if (isset($_POST['injection_css'])) {sql_insertq('spip_eva_habillage_images',arr
    echo '<br />&nbsp;<br />'; 
     echo debut_cadre_trait_couleur(_DIR_PLUGIN_EVA_HABILLAGE."img_pack/css.png", true, '', _T('evahabillage:EVA_etape5'));
     if (isset($_POST['nouvelle_regle'])) {sql_insertq('spip_eva_habillage_images',array("type" => "perso", "nom_habillage" => "Defaut", "nom_div" => mysql_escape_string($_POST['nouvelle_regle'])));}
-    if (isset($_POST['supprime_perso'])) {sql_delete('spip_eva_habillage_images',"id=".$_POST['supprime_perso']);}
+    if (isset($_POST['modifie_perso'])) {sql_updateq('spip_eva_habillage_images',array("type" => "perso", "nom_habillage" => "Defaut", "nom_div" => mysql_escape_string($_POST['regle'])),"id=".$_POST['modifie_perso']);}
+	if (isset($_POST['supprime_perso'])) {sql_delete('spip_eva_habillage_images',"id=".$_POST['supprime_perso']);}
     
     echo '<div style="text-align:center;">'._T('evahabillage:EVA_etape5_detail').'<br />';
     echo '<form method="POST" action="'.generer_url_ecrire("eva_habillage_css").'">';
@@ -74,11 +86,25 @@ if (isset($_POST['injection_css'])) {sql_insertq('spip_eva_habillage_images',arr
         echo '<tr align="center" ';
         if (($couleur_table%2)==0) {echo 'class="row_even"';} else {echo 'class="row_odd"';}
         $couleur_table++;
-        echo '><form method="POST" action="'.generer_url_ecrire("eva_habillage_css").'"><td align="center">';
-        echo '<strong>'.mysql_escape_string($tab['nom_div']).'</strong></td><td align="center">';
-        echo '<input type="hidden" name="supprime_perso" value="'.$tab['id'].'" />';
+        echo '><td align="center">';
+        echo '<div id="css_perso_'.$tab['id'].'" style="display:block;">';
+		echo '<strong>'.mysql_escape_string($tab['nom_div']).'</strong>';
+		echo '</div>';
+        echo '<div id="css_perso_'.$tab['id'].'_edition" style="display:none;">';
+		echo '<form method="POST" action="'.generer_url_ecrire("eva_habillage_css").'">';
+		echo '<input type="hidden" name="modifie_perso" value="'.$tab['id'].'" />';
+		echo '<input type="text" name="regle" value="'.mysql_escape_string($tab['nom_div']).'" style="width: 100%" />';
+		echo '<input type="reset" value="'._T('evahabillage:EVA_annuler').'" onclick="toggleCSSEdit('.$tab['id'].', false);" />';
+		echo '<input type="submit" value="'._T('evahabillage:EVA_valider').'" />';
+		echo '</form>';
+		echo '</div>';		
+		echo '</td><td align="center">';
+        echo '<input type="button" value="'._T('evahabillage:EVA_modifier').'" onclick="toggleCSSEdit('.$tab['id'].', true);" />';
+		echo '<form method="POST" action="'.generer_url_ecrire("eva_habillage_css").'">';
+		echo '<input type="hidden" name="supprime_perso" value="'.$tab['id'].'" />';
         echo '<input type="submit" value="'._T('evahabillage:EVA_supprimer').'" />';
-        echo '</td></form></tr>';
+		echo '</form>';
+        echo '</td></tr>';
     }
     echo '</table>';
     }

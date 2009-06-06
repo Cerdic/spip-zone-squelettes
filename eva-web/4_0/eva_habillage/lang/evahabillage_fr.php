@@ -104,6 +104,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'EVA_supprimer' => "Supprimer ?",
 'EVA_suppression' => "Supprimer",
 'EVA_restaurer' => "Restaurer",
+'EVA_modifier' => "Modifier",
 'EVA_choix_bloc' => "<div style='text-align:center;'><strong>Choisir la position des blocs dans les pages du site</strong><br />(colonnes de gauche, du centre ou de droite dans le cas d'un affichage en 3 colonnes)</div>",
 'EVA_choix_bloc_sommaire' => "Position des blocs dans la page de sommaire :",
 'EVA_choix_bloc_rubrique' => "Position des blocs dans les pages des rubriques :",
