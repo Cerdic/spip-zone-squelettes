@@ -5,18 +5,21 @@
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOMINIHAUTEUR}] 
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,30}]
 
+<BOUCLE_aexclure(RUBRIQUES){titre_mot=excluredumenu}{doublons}>
+</BOUCLE_aexclure>
+
 <B_rubriques>
 <ul id="sommaire">
 
 	<li>
 	<a href="#URL_SITE_SPIP">[(#LOGO_SITE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})] <:accueil:></a>
 	</li>
-	<BOUCLE_rubriques(RUBRIQUES){racine}{par num titre}>
+	<BOUCLE_rubriques(RUBRIQUES){racine}{doublons}{par num titre}>
 	<li[ class="(#EXPOSE{on,off})"]>
 		<a href="#URL_RUBRIQUE"[ class="(#EXPOSE{on,off})"]>[(#LOGO_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})] [(#TITRE|supprimer_numero)]</a>
 	<B_sous_rubriques>
 	<ul>
-		<BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par num titre}>
+		<BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{doublons}{par num titre}>
 		<li[ class="(#EXPOSE{on,off})"]>
 			<a href="#URL_RUBRIQUE"[ class="(#EXPOSE{on,off})"]>[(#TITRE|supprimer_numero)]</a>
 			<BOUCLE_sous_sous_rubriques(BOUCLE_sous_rubriques)></BOUCLE_sous_sous_rubriques>
