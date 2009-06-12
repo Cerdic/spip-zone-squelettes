@@ -19,9 +19,6 @@
 	[(#REM) les css et js peuvent changer suivant type d article ou de breve ]
 	[(#INCLURE{fond=header-css}{date=#ENV{date}}{id_article}{id_rubrique})] 	
 
-
-
-
 </head><body> 
 
 <div id="container">   [(#REM)   centrage page   ]
@@ -42,15 +39,15 @@
    [#DEBUT_SURLIGNE(#TEXTE|image_reduire{450,0}|lier_au_glossaire|paragrapher)#FIN_SURLIGNE]
  
    </div>
-   
-     <B_auteurs>
-	 <BOUCLE_auteurs(AUTEURS){id_article}>                
- <div class="carte_auteur"><span class="gauche"><a href="[(#URL_AUTEUR)]">[(#INCLURE{fond=logo}{id_auteur,#ID_AUTEUR}{taille=28}{date=#ENV{date}})]</a></span>[(#NOM|textebrut|couper{24})<br/>][<a href="(#URL_AUTEUR)">bio</a> ][<a href="(#URL_SITE)">www</a>]
-</div></BOUCLE_auteurs></B_auteurs>
+<BOUCLE_carte_auteurs(AUTEURS){id_article}>   
+<INCLURE{fond=inc_carte_auteur}{id_auteur}>
+</BOUCLE_carte_auteurs>   
+
+
+
+
   <hr class="spacer"/>
-
-
-   
+  
 </div> [(#REM)   fermeture grande boite   ]
 
 [(#REM) Petition : La petition ayant une PAGINATION il faut absolument {env}
