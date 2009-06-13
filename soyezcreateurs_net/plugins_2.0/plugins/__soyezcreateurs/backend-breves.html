@@ -25,7 +25,7 @@ version="1.0"[ encoding="(#CHARSET)"]?>
 <BOUCLE_breves(BREVES){id_rubrique ?}{lang ?}{id_mot ?}
 {par date}{inverse}{0,20}>
 	<item[ xml:lang="(#LANG)"]>
-		<title>[(#TITRE|supprimer_tags|supprimer_numero|texte_backend)]</title>
+		<title>[(#TITRE|supprimer_tags|texte_backend)]</title>
 		<link>[(#URL_BREVE|url_absolue)]</link>
 		[<guid isPermaLink="true">(#URL_BREVE|url_absolue)</guid>]
 		[<dc:date>(#DATE|date_iso)</dc:date>]
@@ -33,10 +33,8 @@ version="1.0"[ encoding="(#CHARSET)"]?>
 		[<dc:language>(#LANG)</dc:language>]
 		[(#REM)
 			Le bloc qui suit diffuse diffuse les mots-cles a la mode RSS
-		]<BOUCLE_rubrique_rss(RUBRIQUES){id_rubrique}>
-<BOUCLE_mots_rss(MOTS){id_breve}>
-		[<dc:subject>(#TITRE|supprimer_tags|supprimer_numero|texte_backend)</dc:subject>]</BOUCLE_mots_rss>
-</BOUCLE_rubrique_rss>
+		]<BOUCLE_mots_rss(MOTS){id_breve}>[
+		<dc:subject>(#TITRE|supprimer_tags|texte_backend)</dc:subject>]</BOUCLE_mots_rss>
 		<description>[(#INTRODUCTION|texte_backend)]
 
 [(#REM)
@@ -44,10 +42,10 @@ version="1.0"[ encoding="(#CHARSET)"]?>
 	sous forme de "microformats"
 
 ]<BOUCLE_rubrique_mf(RUBRIQUES){id_rubrique}>-
-[&lt;a href="[(#URL_RUBRIQUE|url_absolue)]" rel="directory"&gt;(#TITRE|supprimer_tags|supprimer_numero|texte_backend)&lt;/a&gt;]
+[&lt;a href="[(#URL_RUBRIQUE|url_absolue)]" rel="directory"&gt;(#TITRE|supprimer_tags|texte_backend)&lt;/a&gt;]
 </BOUCLE_rubrique_mf><B_mots_mf>
 / <BOUCLE_mots_mf(MOTS){id_breve}{", "}>
-[&lt;a href="[(#URL_MOT|url_absolue)]" rel="tag"&gt;(#TITRE|supprimer_tags|supprimer_numero|texte_backend)&lt;/a&gt;]</BOUCLE_mots_mf>
+[&lt;a href="[(#URL_MOT|url_absolue)]" rel="tag"&gt;(#TITRE|supprimer_tags|texte_backend)&lt;/a&gt;]</BOUCLE_mots_mf>
 
 		</description>
 
