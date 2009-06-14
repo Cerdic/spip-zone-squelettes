@@ -5,7 +5,7 @@ sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_squelettes_/gribouille
 sleep 15;
 #Si besoin de la mutualisation, decomenter la ligne suivante
-#svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/mutualisation
+#svn checkout svn://zone.spip.org/spip-zone/_plugins_/mutualisation
 #sleep 15;
 
 #Installation des plugins
@@ -15,7 +15,7 @@ svn checkout svn://zone.spip.org/spip-zone/_squelettes_/soyezcreateurs_net/plugi
 sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/acces_restreint
 sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/acronymes
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/acronymes
 sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/agenda/2_0_0 ./agenda/
 sleep 15;
@@ -43,7 +43,7 @@ svn checkout svn://zone.spip.org/spip-zone/_plugins_/Lecteur_multimedia
 sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/sedna
 sleep 15;
-#svn checkout svn://zone.spip.org/spip-zone/_plugins_/_dev_/thickbox2
+#svn checkout svn://zone.spip.org/spip-zone/_plugins_/thickbox2
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/nyroceros
 sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/spip-bonux-2
@@ -51,8 +51,8 @@ sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/accessibilite
 sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/fulltext
-#svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/woopra
-#svn checkout svn://zone.spip.org/spip-zone/_plugins_/_dev_/notation
+#svn checkout svn://zone.spip.org/spip-zone/_plugins_/woopra
+#svn checkout svn://zone.spip.org/spip-zone/_plugins_/notation
 sleep 15;
 
 cd ..
