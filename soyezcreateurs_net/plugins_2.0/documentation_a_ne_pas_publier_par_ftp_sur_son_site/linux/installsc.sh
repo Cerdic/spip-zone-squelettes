@@ -13,44 +13,44 @@ mkdir plugins
 cd plugins
 svn checkout svn://zone.spip.org/spip-zone/_squelettes_/soyezcreateurs_net/plugins_2.0/plugins/__soyezcreateurs
 sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/acces_restreint
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/acces_restreint
 sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/acronymes
 sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/agenda/2_0_0 ./agenda/
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/agenda/2_0_0 ./agenda/
 sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_dev_/autorite
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/autorite
 sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/boutonstexte
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/boutonstexte
 sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/cfg
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/cfg
 sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/clevermail/1_9_3 ./clevermail/
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/clevermail/1_9_3 ./clevermail/
 sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/couteau_suisse
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/couteau_suisse
 sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/crayons
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/crayons
 sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_core_/porte_plume
+svn checkout svn://zone.spip.org/spip-zone/_core_/plugins/porte_plume
 sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/porte_plume/extensions/enluminures_typographiques_v3
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/enluminures_typographiques_v3
 sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/fonctions_images
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/fonctions_images
 sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_fondation_/forms_1_9_3_foireux_mais_parfois_utile ./forms/
 sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_test_/Lecteur_multimedia
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/Lecteur_multimedia
 sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_test_/sedna
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/sedna
 sleep 15;
 #svn checkout svn://zone.spip.org/spip-zone/_plugins_/_dev_/thickbox2
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_dev_/nyroceros
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/nyroceros
 sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/spip-bonux-2
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/spip-bonux-2
 sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_test_/accessibilite
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/accessibilite
 sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/fulltext
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/fulltext
 #svn checkout svn://zone.spip.org/spip-zone/_plugins_/_stable_/woopra
 #svn checkout svn://zone.spip.org/spip-zone/_plugins_/_dev_/notation
 sleep 15;
