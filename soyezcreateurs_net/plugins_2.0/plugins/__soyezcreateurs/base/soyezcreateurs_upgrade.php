@@ -14,10 +14,22 @@ include_spip('inc/meta');
  * @param unknown_type $nom_meta_base_version
  * @param unknown_type $version_cible
  */
+function soyezcreateurs_install($action){
+	switch ($action){
+		case 'test':
+			soyezcreateurs_upgrade('soyezcreateurs_base_version', '2.1.7');
+		break;
+		case 'install':
+			soyezcreateurs_upgrade('soyezcreateurs_base_version', '2.1.7');
+		break;
+		case 'uninstall':
+			soyezcreateurs_vider_tables();
+		break;
+	}
+}
 function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 	$current_version = 0.0;
-	if (   (!isset($GLOBALS['meta'][$nom_meta_base_version]) )
-			|| (($current_version = $GLOBALS['meta'][$nom_meta_base_version])!=$version_cible)){
+		if ((!isset($GLOBALS['meta'][$nom_meta_base_version])) || (($current_version = $GLOBALS['meta'][$nom_meta_base_version])!=$version_cible)){
 		if (
 			(version_compare($current_version,'2.1','<'))
 			&& // Verification que le plugin n'a pas ete deja installe par l'ancienne methode
@@ -111,7 +123,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				sql_delete("spip_mots_forum", "id_mot=$id_mot");
 			}
 			echo "SoyezCreateurs MaJ 2.1.7<br />";
-			#ecrire_meta($nom_meta_base_version,$current_version='2.1.7','non');
+			ecrire_meta($nom_meta_base_version,$current_version='2.1.7','non');
 		}
 	}
 }

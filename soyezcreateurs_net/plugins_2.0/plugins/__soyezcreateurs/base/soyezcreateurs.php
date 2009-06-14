@@ -48,29 +48,33 @@ function soyezcreateurs_config_site() {
 // Fonctions pour mot-clés
 //
 function id_groupe($titre) {
-	$result = spip_query("SELECT id_groupe FROM spip_groupes_mots WHERE titre='$titre'");
-	if ($row = spip_fetch_array($result)) return $row['id_groupe'];
+	$result = sql_select("id_groupe", "spip_groupes_mots", 'titre="$titre"');
+	if ($row = sql_fetch($result)) return $row['id_groupe'];
 	return 0;
 }
 
 function id_mot($titre, $titre_groupe='') {
 	if ($titre_groupe) {
 		$id_groupe = id_groupe($titre_groupe);
-		$result = spip_query("SELECT id_mot FROM spip_mots WHERE titre='$titre' AND id_groupe=$id_groupe");
+		$result = sql_select("id_mot", "spip_mots", array(
+		'titre="$titre"',
+		'id_groupe="$id_groupe"')
+		);
 	} else {
-		$result = spip_query("SELECT id_mot FROM spip_mots WHERE titre='$titre'");
+		$result = sql_select("id_mot", "spip_mots", 'titre="$titre"');
 	}
-	if ($row = spip_fetch_array($result)) return $row['id_mot'];
+	if ($row = sql_fetch($result)) return $row['id_mot'];
 	return 0;
 }
 
 function id_rubrique($titre) {
-	$result = spip_query("SELECT id_rubrique FROM spip_rubriques WHERE titre='$titre'");
-	if ($row = spip_fetch_array($result)) return $row['id_rubrique'];
+	$result = sql_select("id_rubrique", "spip_rubriques", 'titre="$titre"');
+	if ($row = sql_fetch($result)) return $row['id_rubrique'];
 	return 0;
 }
 
 function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $obligatoire='non', $articles='oui', $breves='non', $rubriques='non', $syndic='non', $evenements='non', $minirezo='oui', $comite='oui', $forum='non') {
+	include_spip('base/abstract_sql');
 	$groupe = importer_charset($groupe, 'iso-8859-1');
 	$id_groupe=id_groupe($groupe);
 	$texte = importer_charset($texte, 'iso-8859-1');
@@ -85,18 +89,30 @@ function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $oblig
 	
 	if ($id_groupe == 0) {
 		//Création groupe + mots clé
-		$query = "INSERT INTO spip_groupes_mots SET titre='$groupe', descriptif='$descriptif', texte='$texte', unseul='$unseul', obligatoire='$obligatoire',
-			tables_liees='$tables_liees',
-			minirezo='$minirezo', comite='$comite', forum='$forum'";
-		spip_query($query);
-		$id_groupe = spip_insert_id();
+		$id_groupe = sql_insertq('spip_groupes_mots', array(
+		"id_groupe" => '',
+		"titre" => $groupe,
+		"descriptif" => $descriptif,
+		"texte" => $texte,
+		"unseul" => $unseul,
+		"obligatoire" => $obligatoire,
+		"tables_liees" => $tables_liees,
+		"minirezo" => $minirezo,
+		"comite" => $comite,
+		"forum" => $forum
+		));
 	} else {
 		// Mise à jour
-		spip_query("UPDATE spip_groupes_mots SET descriptif='$descriptif', texte='$texte', unseul='$unseul', obligatoire='$obligatoire',
-			tables_liees='$tables_liees',
-			minirezo='$minirezo', comite='$comite', forum='$forum' WHERE id_groupe=$id_groupe");
+		sql_updateq('spip_groupes_mots', array(
+		"descriptif" => $descriptif,
+		"texte" => $texte,
+		"unseul" => $unseul,
+		"obligatoire" => $obligatoire,
+		"tables_liees" => $tables_liees,
+		"minirezo" => $minirezo,
+		"comite" => $comite,
+		"forum" => $forum), "id_groupe=$id_groupe");
 	}
-	$groupe = stripslashes($groupe);
 	return $id_groupe;
 }
 
@@ -109,14 +125,22 @@ function create_mot($groupe, $mot, $descriptif='', $texte='') {
 	if ($id_groupe != 0) {
 		$id_mot=id_mot($mot);
 		if ($id_mot == 0 ) {
-			spip_query("INSERT INTO spip_mots (type, titre, id_groupe, descriptif, texte) VALUES ('$groupe', '$mot', '$id_groupe', '$descriptif', '$texte')");
-			$id_mot = spip_insert_id();
+			$id_mot = sql_insertq('spip_mots', array(
+			"id_mot" => '',
+			"type" => $groupe,
+			"titre" => $mot,
+			"id_groupe" => $id_groupe,
+			"descriptif" => $descriptif,
+			"texte" => $texte));
 		} else {
 			// Mise à jour
-			spip_query("UPDATE spip_mots SET type='$groupe', id_groupe='$id_groupe', descriptif='$descriptif', texte='$texte' WHERE id_mot=$id_mot");
+			sql_updateq('spip_mots', array(
+			"type" => $groupe,
+			"id_groupe" => $id_groupe,
+			"descriptif" => $descriptif,
+			"texte" => $texte), "id_mot=$id_mot");
 		}
 	}
-	$mot = stripslashes($mot);
 	return $id_mot;
 }
 
@@ -125,9 +149,10 @@ function create_rubrique($titre, $id_parent='0', $descriptif='') {
 	if ($id_rubrique==0) {
 		$titre = importer_charset($titre, 'iso-8859-1');
 		$descriptif = importer_charset($descriptif, 'iso-8859-1');
-		$query="INSERT INTO spip_rubriques (titre, id_parent, descriptif) VALUES ('$titre', '$id_parent', '$descriptif')";
-		spip_query($query);
-		$id_rubrique = spip_insert_id();
+		$id_rubrique = sql_insertq("spip_rubriques", array(
+		"titre" => $titre,
+		"id_parent" => $id_parent,
+		"descriptif" => $descriptif));
 	}
 	return $id_rubrique;
 }
@@ -136,27 +161,25 @@ function create_rubrique_mot($rubrique, $mot) {
 	$id_rubrique = id_rubrique($rubrique);
 	$id_mot=id_mot($mot);
 	if ($id_rubrique!=0 && $id_mot!=0) {
-		$query="SELECT count(*) as nb_rub_mot FROM spip_mots_rubriques WHERE id_mot='$id_mot' AND id_rubrique='$id_rubrique'";
-		$result=spip_query($query);
-		if ($row = spip_fetch_array($result)) {
-			if ($row['nb_rub_mot']==0) {
-				$query="INSERT INTO spip_mots_rubriques (id_mot, id_rubrique) VALUES ('$id_mot', '$id_rubrique')";
-				spip_query($query);
+		$count_s = sql_countsel('spip_mots_rubriques',
+		"(id_mot = '$id_mot') AND (id_rubrique = '$id_rubrique')");
+			if ($count_s == 0) {
+				sql_insertq("spip_mots_rubriques", array(
+				"id_mot" => $id_mot,
+				"id_rubrique" => $id_rubrique)
+				);
 			}
-		}
 	}
 	return true;
 }
 
 function soyezcreateurs_config_motsclefs() {
+	//les rubriques
 	create_rubrique('000. Fourre-tout', '0', "Vous trouverez dans cette rubrique:\n\n-* Les Éditos\n-* Des articles concernant le site lui-même\n");
 	create_rubrique('900. Agenda', '0');
 	create_rubrique('999. Citations', '0', "Mettre dans cette rubrique une citation par article");
-
-## -------------------------------------------->
-
-	create_groupe("Thèmes de l\'Agenda", "Détermine la liste des éléments pouvant être présentés en liste déroulante dans l\'Agenda du site", "Un événement de l\'Agenda peut avoir un ou {{plusieurs}} mot clefs ratachés (les sélectionner avec maj-clic).", 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'oui', 'oui', 'non');
-
+	//les groupes
+	create_groupe("Thèmes de l\'Agenda", "Détermine la liste des éléments pouvant être présentés en liste déroulante dans l\'Agenda du site", "Un événement de l'Agenda peut avoir un ou {{plusieurs}} mot clefs ratachés (les sélectionner avec maj-clic).", 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'oui', 'oui', 'non');
 	create_groupe("_AgendaStatut", "Statut d\'un événement dans l\'Agenda", "Permet de spécifier un statut d\'un événement dans l\'Agenda.\n\nL\'événement sera affiché dans la couleur spécifiée par le {Texte} du Mot Clef.\n\nLe {Descriptif rapide} sera quant à lui utilisé en bulle d\'aide.", 'oui', 'oui', 'non', 'non', 'non', 'non', 'oui', 'oui', 'oui', 'non');
 
 	create_groupe("_ClasseRubriqueMenu", "Pour affecter une classe spécifique aux éléments du menu", "", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
@@ -270,9 +293,6 @@ function soyezcreateurs_config_motsclefs() {
 	create_groupe("_Specialisation_Rubrique_ou_Article", "Spécialisation d\'une rubrique ou d\'un article", "Un mot clef pris dans ce groupe permettra de modifier\n\n-* le comportement d\'une rubrique et de ses articles\n-* le comportement d\'un article particulier", 'non', 'non', 'oui', 'non', 'oui', 'non', 'non', 'oui', 'oui', 'non');
 		create_mot("_Specialisation_Rubrique_ou_Article", "PasDansQuoiDeNeuf", "Pour interdire que l\'article ou la rubrique soit dans «Quoi de Neuf» sur la page d\'accueil", "À mettre soit:\n\n-* pour un article précis\n-* pour une rubrique particulière\n\nRemarque : si elle a des sous rubriques, il faut aussi le faire pour chacunes de celles-ci si on veut les exclure aussi...");
 		create_mot("_Specialisation_Rubrique_ou_Article", "Sommaire", "Pour dire que les articles de cette rubrique ont un sommaire ou que l\'article a un sommaire", "Un sommaire automatique sera placé en début d\'article.\n\nCe sommaire sera bati à partir des titres et sous-titres du texte de l\'article.");
-
-## <--------------------------------------------
-
 	// Liaison entre rubrique et mot clé
 	create_rubrique_mot('000. Fourre-tout', 'SecteurPasDansQuoiDeNeuf');
 	create_rubrique_mot('000. Fourre-tout', 'PasDansMenu');
