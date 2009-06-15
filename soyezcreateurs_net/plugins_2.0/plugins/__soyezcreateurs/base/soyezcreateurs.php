@@ -12,6 +12,7 @@ include_spip("inc/lang");
 include_spip("inc/charsets");	
 include_spip('inc/meta');
 
+//fonction de création des métas du site
 function soyezcreateurs_config_site() {	
 	ecrire_meta('activer_breves', 'oui','non');
 	ecrire_meta('activer_logos_survol', 'oui','non');
@@ -41,38 +42,52 @@ function soyezcreateurs_config_site() {
 	ecrire_meta('btv2', 'a:1:{s:7:\"avancee\";s:3:\"Oui\";}','non');
 	ecrire_meta('barre_typo_generalisee', 'a:6:{s:38:\"rubriques_texte_barre_typo_generalisee\";s:2:\"on\";s:40:\"groupesmots_texte_barre_typo_generalisee\";s:2:\"on\";s:33:\"mots_texte_barre_typo_generalisee\";s:2:\"on\";s:40:\"sites_description_barre_typo_generalisee\";s:2:\"on\";s:48:\"configuration_description_barre_typo_generalisee\";s:2:\"on\";s:42:\"auteurs_quietesvous_barre_typo_generalisee\";s:2:\"on\";}','non');
 	ecrire_meta('nom_site', 'Mon site SPIP <sub>Squelette SoyezCreateurs</sub>','non');
+	spip_log("metas du plugins ecrite", "soyezcreateurs_install");
 	return true;
 }
 
-//
-// Fonctions pour mot-clés
-//
+// fonction pour trouver l'id du groupe de mots clés à partir du titre
 function id_groupe($titre) {
-	$result = sql_select("id_groupe", "spip_groupes_mots", 'titre="$titre"');
-	if ($row = sql_fetch($result)) return $row['id_groupe'];
-	return 0;
-}
-
-function id_mot($titre, $titre_groupe='') {
-	if ($titre_groupe) {
-		$id_groupe = id_groupe($titre_groupe);
-		$result = sql_select("id_mot", "spip_mots", array(
-		'titre="$titre"',
-		'id_groupe="$id_groupe"')
-		);
-	} else {
-		$result = sql_select("id_mot", "spip_mots", 'titre="$titre"');
+	include_spip('base/abstract_sql');
+	$titre = addslashes($titre);
+	spip_log("recherche de l'id de : $titre", "soyezcreateurs_install");
+	$count = sql_countsel("spip_groupes_mots", "titre='$titre'");
+	if ($count == 1) {
+		$result = sql_fetsel("id_groupe", "spip_groupes_mots", "titre='$titre'");
+		$resultat = $result['id_groupe'];
 	}
-	if ($row = sql_fetch($result)) return $row['id_mot'];
-	return 0;
+	else if (($count > 1) OR ($count == 0))
+		$resultat = 'rien';
+	spip_log("resultat de la recherche : compteur = $count, resultat = $resultat", "soyezcreateurs_install");
+	return $resultat;
 }
 
+//fonction qui permet de trouver l'id du mot clé à partir du titre
+function id_mot($titre, $titre_groupe=false) {
+		$count = sql_countsel("spip_mots", "titre='$titre'");
+		$id_mot = true;
+		if ($count == 0) {
+			$id_mot = false;
+		}
+		else if ($count == 1) {
+			$result = sql_fetsel("id_mot", "spip_mots", "titre='$titre'");
+			$id_mot = $result['id_mot'];
+		}
+		else if ($count > 1) {
+			$id_mot = $count;
+		}
+	return $id_mot;
+}
+
+//fonction qui permet de trouver l'id d'une rubrique à partir du titre
 function id_rubrique($titre) {
-	$result = sql_select("id_rubrique", "spip_rubriques", 'titre="$titre"');
-	if ($row = sql_fetch($result)) return $row['id_rubrique'];
-	return 0;
+	$resultat = 'faux';
+	$result = sql_fetsel("id_rubrique", "spip_rubriques", "titre='$titre'");
+	$resultat = $result['id_rubrique'];
+	return $resultat;
 }
 
+//fonction qui permet de créer un groupe de mot clé
 function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $obligatoire='non', $articles='oui', $breves='non', $rubriques='non', $syndic='non', $evenements='non', $minirezo='oui', $comite='oui', $forum='non') {
 	include_spip('base/abstract_sql');
 	$groupe = importer_charset($groupe, 'iso-8859-1');
@@ -88,7 +103,6 @@ function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $oblig
 	if ($evenements=='oui') $tables_liees.='evenements,';
 	
 	if ($id_groupe == 0) {
-		//Création groupe + mots clé
 		$id_groupe = sql_insertq('spip_groupes_mots', array(
 		"id_groupe" => '',
 		"titre" => $groupe,
@@ -102,7 +116,6 @@ function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $oblig
 		"forum" => $forum
 		));
 	} else {
-		// Mise à jour
 		sql_updateq('spip_groupes_mots', array(
 		"descriptif" => $descriptif,
 		"texte" => $texte,
@@ -116,25 +129,28 @@ function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $oblig
 	return $id_groupe;
 }
 
+//fonction qui permet de créer un mot clé
 function create_mot($groupe, $mot, $descriptif='', $texte='') {
+	include_spip('base/abstract_sql');
+	$id_groupe = id_groupe($groupe);
 	$groupe = importer_charset($groupe, 'iso-8859-1');
-	$id_groupe=id_groupe($groupe);
 	$mot = importer_charset($mot, 'iso-8859-1');
 	$texte = importer_charset($texte, 'iso-8859-1');
 	$descriptif = importer_charset($descriptif, 'iso-8859-1');
-	if ($id_groupe != 0) {
-		$id_mot=id_mot($mot);
-		if ($id_mot == 0 ) {
-			$id_mot = sql_insertq('spip_mots', array(
-			"id_mot" => '',
-			"titre" => $mot,
-			"descriptif" => $descriptif,
-			"texte" => $texte,
-			"id_groupe" => $id_groupe,
-			"type" => $groupe
-			));
+	if ($id_groupe != 'rien') {
+		$id_mot = id_mot($mot);
+		if ($id_mot == 0) {
+			spip_log("insertion dans la table du mot cle : $mot", "soyezcreateurs_install");
+			sql_insertq('spip_mots', array(
+				"id_mot" => '',
+				"titre" => $mot,
+				"descriptif" => $descriptif,
+				"texte" => $texte,
+				"id_groupe" => $id_groupe,
+				"type" => $groupe)
+			);
 		} else {
-			// Mise à jour
+			spip_log("mise à jour dans la table du mot clé : $mot", "soyezcreateurs_install");
 			sql_updateq('spip_mots', array(
 			"descriptif" => $descriptif,
 			"texte" => $texte,
@@ -143,9 +159,12 @@ function create_mot($groupe, $mot, $descriptif='', $texte='') {
 			), "id_mot=$id_mot");
 		}
 	}
-	return $id_mot;
+	else {
+		spip_log("insertion impossible ! debug : groupe = $groupe --- id_groupe = $id_groupe", "soyezcreateurs_install");
+	}
 }
 
+//fonction qui permet de créer une rubrique
 function create_rubrique($titre, $id_parent='0', $descriptif='') {
 	$id_rubrique = id_rubrique($titre);
 	if ($id_rubrique==0) {
@@ -155,16 +174,20 @@ function create_rubrique($titre, $id_parent='0', $descriptif='') {
 		"titre" => $titre,
 		"id_parent" => $id_parent,
 		"descriptif" => $descriptif));
+		spip_log("rubrique cree : id = $id_rubrique, titre = $titre", "soyezcreateurs_install");
 	}
 	return $id_rubrique;
 }
 
+//fonction qui permet de créer une relation entre une rubrique et un mot clé
 function create_rubrique_mot($rubrique, $mot) {
 	$id_rubrique = id_rubrique($rubrique);
-	$id_mot=id_mot($mot);
+	$id_mot = id_mot($mot);
+	spip_log("creation relation avec rubrique : rubrique = $rubrique --- mot = $mot
+	--- id_rubrique = $id_rubrique --- id_mot = $id_mot", "soyezcreateurs_install");
 	if ($id_rubrique!=0 && $id_mot!=0) {
 		$count_s = sql_countsel('spip_mots_rubriques',
-		"(id_mot = '$id_mot') AND (id_rubrique = '$id_rubrique')");
+		array("id_mot" => $id_mot, "id_rubrique" => $id_rubrique));
 			if ($count_s == 0) {
 				sql_insertq("spip_mots_rubriques", array(
 				"id_mot" => $id_mot,
@@ -175,33 +198,29 @@ function create_rubrique_mot($rubrique, $mot) {
 	return true;
 }
 
+//c'est parti ! On crée le tout
 function soyezcreateurs_config_motsclefs() {
 	//les rubriques
 	create_rubrique('000. Fourre-tout', '0', "Vous trouverez dans cette rubrique:\n\n-* Les Éditos\n-* Des articles concernant le site lui-même\n");
 	create_rubrique('900. Agenda', '0');
 	create_rubrique('999. Citations', '0', "Mettre dans cette rubrique une citation par article");
-	//les groupes
+	//les groupes puis mots
 	create_groupe("Thèmes de l'Agenda", "Détermine la liste des éléments pouvant être présentés en liste déroulante dans l'Agenda du site", "Un événement de l'Agenda peut avoir un ou {{plusieurs}} mot clefs ratachés (les sélectionner avec maj-clic).", 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'oui', 'oui', 'non');
 	create_groupe("_AgendaStatut", "Statut d'un événement dans l'Agenda", "Permet de spécifier un statut d'un événement dans l'Agenda.\n\nL'événement sera affiché dans la couleur spécifiée par le {Texte} du Mot Clef.\n\nLe {Descriptif rapide} sera quant à lui utilisé en bulle d'aide.", 'oui', 'oui', 'non', 'non', 'non', 'non', 'oui', 'oui', 'oui', 'non');
-
 	create_groupe("_ClasseRubriqueMenu", "Pour affecter une classe spécifique aux éléments du menu", "", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_ClasseRubriqueMenu", "separation", "Affecter ce mot clef aux rubriques qui doivent être affichée avec une séparation dans le menu.", "");
-
 	create_groupe("_CouleurRubrique", "Permet de changer la couleur d'une Rubrique.", "Affecter un mot clef de ce groupe à une rubrique (et ses descendants) pour en changer la tonalité de couleur.\n\nPour chacun des mots clefs, mettre en titre quelque chose d'intelligible, un éventuel descriptif rapide sur l'usage à en faire et le code hexadecimal de la couleur dans le texte. \n\nExemple : \n-* Titre: Orange\n-* Texte : f78221", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_CouleurRubrique", "Bleu", "", "6392A9");
 		create_mot("_CouleurRubrique", "Marron clair", "", "9F7561");
 		create_mot("_CouleurRubrique", "Turkoise pastel", "", "89A699");
-
 	create_groupe("_HTTP-EQUIV", "Paramétrage du site", "Paramétrage des entêtes HTML HTTP-EQUIV.\n\nÀ utiliser en sachant pourquoi.", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_HTTP-EQUIV", "pics-label", "Mettre ci-dessous le contenu du label ICRA (XHTML) généré depuis [->http://www.icra.org/].\n\nIl s'agit d'une démarche volontaire du responsable du site visant à indiquer si le site peut ou non être visité sans dommage par des enfants.", "");
-
 	create_groupe("_InformationsLegales", "Mention légales obligatoire ([CNIL|Commision Nationale Informatique et Liberté->http://www.cnil.fr/] et [LcEN|Loi sur la confiance en l'Économie Numérique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L])", "[Décryptage des obligations légales->http://maitre.eolas.free.fr/journal/index.php?2005/05/27/135-responsabilite-du-blogueur].", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_InformationsLegales", "10. Propriétaire du site", "Mettre les coordonnées du propriétaire du site ci-dessous", "");
 		create_mot("_InformationsLegales", "20. Hébergeur", "Mettre les coordonnées de l'hébergeur ci-dessous", "");
 		create_mot("_InformationsLegales", "30. Liens vers ce site", "Mettre ci-dessous les conditions d'utilisation du contenu", "Le site autorise tout site Internet ou tout autre support à le citer ou à mettre en place un lien hypertexte pointant vers son contenu.\n\nL'autorisation de mise en place d'un lien est valable pour tout support, à l'exception de ceux diffusant des informations à caractère polémique, pornographique, xénophobe ou pouvant, dans une plus large mesure porter atteinte à la sensibilité du plus grand nombre.\n\nLa reprise intégrale du contenu d'une page est aussi autorisée, sous réserve d'établir un lien clair vers sa source. C'est la [licence CC-By-SA|Paternité-Partage des Conditions Initiales à l'Identique 2.0 France->http://creativecommons.org/licenses/by-sa/2.0/fr/] qui s'applique.");
 		create_mot("_InformationsLegales", "35. Traitement automatisé d'informations nominatives", "", "Ce site ne collecte sur les visiteurs du site aucune autre information nominative ou personnelle que celles qui lui sont ouvertement et volontairement fournies en particulier par l'intermédiaire des adresses électroniques de ses correspondants.\n\nNous vous rappelons que vous disposez d'un droit d'accès, de modification, de rectification et de suppression des données vous concernant (article 34 de la loi \"Informatique et Libertés\" du 6 janvier 1978). \nPour exercer ce droit, contactez-nous.\n");
 		create_mot("_InformationsLegales", "40. Réalisation", "Mettre ci-dessous les informations concernant la réalisation de ce site.", "Ce site a été réalisé par [PYRAT.net|Création de sites web->http://www.pyrat.net/] en utilisant l'outil [SPIP->http://www.spip.net/].\n\n[PYRAT.net|Création de sites web->http://www.pyrat.net/] a réalisé ce site dans les respect des [normes pour l'accessibilité->http://www.pyrat.net/Accessibilite-d-un-site-web,193.html] des sites web à tous.");
-
 	create_groupe("_LayoutGala", "Permet de faire appel à l'une des 40 mises en page disponibles sur [Layout Gala->http://blog.html.it/layoutgala/]", "Mode d'emploi : affecter un des mots mots clefs de ce groupe à un objet de SPIP (Articles, Rubriques, Brèves, Sites) permet de lui affecter la mise en page associée", 'oui', 'non', 'oui', 'oui', 'oui', 'oui', 'non', 'oui', 'non', 'non');
 		create_mot("_LayoutGala", "01. Three percentage columns", "", "");
 		create_mot("_LayoutGala", "02. Three percentage columns (InverseColor)", "", "");
@@ -243,21 +262,17 @@ function soyezcreateurs_config_motsclefs() {
 		create_mot("_LayoutGala", "38. Two colums fixed", "", "");
 		create_mot("_LayoutGala", "39. One column fixed and two halves (Right)", "", "");
 		create_mot("_LayoutGala", "40. One column fixed and two halves", "", "");
-
 	create_groupe("_LogosExtra", "Permet de placer une image en fond de la colonne Extra (c'est-à-dire, soit la colonne secondaire qui peut être afichée soit de l'autre côté du menu, soit en dessous de celui-ci).", "{{Utilisation}} : affecter un ou plusieurs mots clefs de ce groupe aux rubriques (héritage automatique) qui doivent avoir une ou plusieurs image en fond. L'image est choisie aléatoirement parmis celles disponibles.\n\n{{Configuration}} : \n-* créer des mots clefs dans ce groupe et leur donner un logo de mot clef.\n-* il est possible de mettre un logo de survol qui sera alors utilisé en fond de texte (en plus de l'autre logo) et positionné en haut à droite sauf si le texte contient les ordres CSS de positionnement ({bottom left} par exemple)", 'non', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
-
 	create_groupe("_META", "Paramètrage du site", "Permet de spécifier des META pour le site.\n\nIl est possible de rajouter des METAs non encore présents, mais, comme d'habitude en la matière : sachez ce que vous faites !", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_META", "Description", "Mettre ci-dessous la description du site", "");
 		create_mot("_META", "ICBM", "Mettre la latitude et la longitude du lieu sous la forme : XXX.XXXXX, XXX.XXXXX\n_ Pour trouver vos coordonnées : [Multimap->http://www.multimap.com/]\n_ Et [vous référencer sur GeoURL->http://geourl.org/ping/]", "");
 		create_mot("_META", "Keywords", "Mettre ci-dessous les mots clef du site séparés par des virgules", "");
 		create_mot("_META", "revisit-after", "Fréquence d'indexation du site", "3 days");
-
 	create_groupe("_ModePortail", "Les mots clefs de ce groupe permettent de gérer les éléments qui s'affichent sur la page d'accueil du site si celui-ci est en mode portail.", "Les mots clefs numérotés dans leur titre de 0. à 9. verront leur logo utilisé dans les colonnes de gauche et de droite de la page d'accueil (respectivement pour les numéros impairs et pairs).", 'oui', 'non', 'oui', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
 		create_mot("_ModePortail", "1. Mot1", "", "");
 		create_mot("_ModePortail", "2. Mot2", "", "");
 		create_mot("_ModePortail", "Goodies", "Affecter ce mot clef aux objets SPIP devant apparaitre dans la zone des Goodies.", "Ne pas oublier de mettre un logo (120×30) aux objet concernés.");
 		create_mot("_ModePortail", "ZoomSur", "Affecter ce mot clef à l'objet que vous voulez placer dans le cadre « Zoom sur » (facultatif).\n\nLe site prendra les 3 derniers articles ayant ce mot clef", "S'applique aux :\n-* articles\n-* rubriques");
-
 	create_groupe("_Specialisation", "Spécialisation d'un article ", "Un mot clef pris dans ce groupe permettra de modifier\n\n-* le comportement d'un article particulier\n", 'non', 'non', 'oui', 'non', 'non', 'non', 'non', 'oui', 'oui', 'non');
 		create_mot("_Specialisation", "AccesibiliteLien", "Affecter ce mot clef à l'article traitant de la politique d'accessibilité du site.", "Un fois l'article écrit, lui affecter ce mot clef pour qu'il soit disponible en lien en haut de la page (caché pour les voyants, sauf sur la page d'accueil).");
 		create_mot("_Specialisation", "ALaUne", "Article qui doit rester à la une du site (soit dans quoi de neuf, soit dans la liste des articles en ModeNews, Soit dans le cartouche À la une en ModePortail)", "");
@@ -274,7 +289,6 @@ function soyezcreateurs_config_motsclefs() {
 		create_mot("_Specialisation", "MENURACINE_Systematique", "Affichage systématique dans le menu de gauche en haut", "Affecter ce mot clef à un article qui devra être présent dans le menu de gauche, en haut, que l'on soit dans un secteur avec MenuHaut ou non.");
 		create_mot("_Specialisation", "PasDansRecherche", "Permet de masquer un article des résultats de la recherche", "À affecter aux articles qui ne doivent pas être affichées dans les résultats de la recherche");
 		create_mot("_Specialisation", "PasdeSiteDansForums", "Pour que les sites référencés n'apparaissent pas dans un forum (mesure anti SPAM)", "Pour décourager ceux qui utiliseraient vos forums pour faire de la pub pour leurs site (généralement, des sonneries de téléphone)");
-
 	create_groupe("_Specialisation_Rubrique", "Spécialisation d'une rubrique", "Un mot clef pris dans ce groupe permettra de modifier\n\n-* le comportement d'une rubrique et de ses articles\n", 'non', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'oui', 'non');
 		create_mot("_Specialisation_Rubrique", "AfficherArticlesMenu", "Affichage des articles de la rubrique dans le menu de gauche", "Affecter ce mot clef aux rubriques dont la liste des articles doit être affichée dans le menu de gauche.");
 		create_mot("_Specialisation_Rubrique", "Agenda", "Pour dire qu'une rubrique est dans l'Agenda", "Il est impératif de mettre ce mot clef pour la rubrique à la racine ayant cette caractéristique (inutile pour les sous rubriques de cette rubrique).");
@@ -291,11 +305,10 @@ function soyezcreateurs_config_motsclefs() {
 		create_mot("_Specialisation_Rubrique", "PasDansMenu", "Pour interdire que la rubrique (et ses sous-rubriques) soi(en)t dans le menu de gauche", "");
 		create_mot("_Specialisation_Rubrique", "PasDansPlan", "Permet de masquer une rubrique, et tout son contenu (y compris les sous-rubriques) du plan du site", "À affecter aux rubriques qui ne doivent pas être affichées dans le plan du site");
 		create_mot("_Specialisation_Rubrique", "SecteurPasDansQuoiDeNeuf", "Pour interdire que les articles d'un secteur entier soit dans «Quoi de Neuf» sur la page d'accueil", "Un secteur, c'est une rubrique rattachée à la racine du site et toutes ses sous-rubriques");
-
 	create_groupe("_Specialisation_Rubrique_ou_Article", "Spécialisation d'une rubrique ou d'un article", "Un mot clef pris dans ce groupe permettra de modifier\n\n-* le comportement d'une rubrique et de ses articles\n-* le comportement d'un article particulier", 'non', 'non', 'oui', 'non', 'oui', 'non', 'non', 'oui', 'oui', 'non');
 		create_mot("_Specialisation_Rubrique_ou_Article", "PasDansQuoiDeNeuf", "Pour interdire que l'article ou la rubrique soit dans «Quoi de Neuf» sur la page d'accueil", "À mettre soit:\n\n-* pour un article précis\n-* pour une rubrique particulière\n\nRemarque : si elle a des sous rubriques, il faut aussi le faire pour chacunes de celles-ci si on veut les exclure aussi...");
 		create_mot("_Specialisation_Rubrique_ou_Article", "Sommaire", "Pour dire que les articles de cette rubrique ont un sommaire ou que l'article a un sommaire", "Un sommaire automatique sera placé en début d'article.\n\nCe sommaire sera bati à partir des titres et sous-titres du texte de l'article.");
-	// Liaison entre rubrique et mot clé
+	// les liaisons entre rubriques et mot clé
 	create_rubrique_mot('000. Fourre-tout', 'SecteurPasDansQuoiDeNeuf');
 	create_rubrique_mot('000. Fourre-tout', 'PasDansMenu');
 	create_rubrique_mot('000. Fourre-tout', 'PasDansPlan');

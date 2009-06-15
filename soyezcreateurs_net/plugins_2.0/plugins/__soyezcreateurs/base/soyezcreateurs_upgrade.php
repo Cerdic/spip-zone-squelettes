@@ -35,14 +35,14 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			&& // Verification que le plugin n'a pas ete deja installe par l'ancienne methode
 			(sql_countsel('spip_groupes_mots', "(titre = '_LayoutGala')") != 0)
 		) {
-			echo "SoyezCreateurs d&eacute;j&agrave; install&eacute; <br />";
+			spip_log("SoyezCreateurs deja installe", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1','non');
 		}
 		if (version_compare($current_version,'2.1','<')) {
 			include_spip('base/soyezcreateurs');
 			soyezcreateurs_config_site();
 			soyezcreateurs_config_motsclefs();
-			echo "SoyezCreateurs Install 2.1<br />";
+			spip_log("SoyezCreateurs installation 2.1", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1','non');
 		}
 		if (
@@ -51,6 +51,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			(sql_countsel('spip_mots', "(titre = 'NewsLetter')") != 0)
 		) {
 			ecrire_meta($nom_meta_base_version,$current_version='2.1','non');
+			spip_log("SoyezCreateurs installation 2.1 avec mot", "soyezcreateurs_install");
 		}
 		if (version_compare($current_version,'2.1.1','<')) {
 			include_spip('base/soyezcreateurs');
@@ -63,7 +64,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				sql_delete("spip_mots_syndic", "id_mot=$id_mot");
 				sql_delete("spip_mots_forum", "id_mot=$id_mot");
 			}
-			echo "SoyezCreateurs MaJ 2.1.1<br />";
+			spip_log("SoyezCreateurs maj 2.1.1", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.1','non');
 		}
 		if (version_compare($current_version,'2.1.2','<')) {
@@ -77,33 +78,33 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				sql_delete("spip_mots_syndic", "id_mot=$id_mot");
 				sql_delete("spip_mots_forum", "id_mot=$id_mot");
 			}
-			echo "SoyezCreateurs MaJ 2.1.2<br />";
+			spip_log("SoyezCreateurs maj 2.1.2", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.2','non');
 		}
 		if (version_compare($current_version,'2.1.3','<')) {
 			include_spip('base/soyezcreateurs');
 			create_mot("_Specialisation", "MenuFooter", "Affecter ce mot clef aux articles devant être affichés dans le menu de pied de page.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...");
-			echo "SoyezCreateurs MaJ 2.1.3<br />";
+			spip_log("SoyezCreateurs maj 2.1.3", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.3','non');
 		}
 		if (version_compare($current_version,'2.1.4','<')) {
 			ecrire_meta('image_process', 'gd2', 'non');
 			ecrire_meta('btv2', 'a:1:{s:7:"avancee";s:3:"Oui";}', 'non');
 			ecrire_meta('bte', 'a:14:{s:5:"puces";s:3:"Oui";s:14:"titraille1open";s:17:"<h2 class="spip">";s:15:"titraille1close";s:5:"</h2>";s:14:"titraille2open";s:17:"<h3 class="spip">";s:15:"titraille2close";s:5:"</h3>";s:14:"titraille3open";s:17:"<h4 class="spip">";s:15:"titraille3close";s:5:"</h4>";s:14:"titraille4open";s:17:"<h5 class="spip">";s:15:"titraille4close";s:5:"</h5>";s:14:"titraille5open";s:17:"<h6 class="spip">";s:15:"titraille5close";s:5:"</h6>";s:9:"insertcss";s:3:"Non";s:17:"defaultbarrestyle";s:5:"close";s:14:"mode_titraille";N;}', 'non');
-			echo "SoyezCreateurs MaJ 2.1.4<br />";
+			spip_log("SoyezCreateurs maj 2.1.4", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.4','non');
 		}
 		if (version_compare($current_version,'2.1.5','<')) {
 			ecrire_meta('gd_formats_read', 'gif,jpg,png', 'non');
 			ecrire_meta('gd_formats', 'gif,jpg,png', 'non');
 			ecrire_meta('formats_graphiques', 'gif,jpg,png', 'non');
-			echo "SoyezCreateurs MaJ 2.1.5<br />";
+			spip_log("SoyezCreateurs maj 2.1.5", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.5','non');
 		}
 		if (version_compare($current_version,'2.1.6','<')) {
 			include_spip('base/soyezcreateurs');
 			create_mot("_Specialisation", "Outils", "Affecter ce mot clef aux articles devant être affichés dans le cadre Outils dans le bandeau du haut de la page.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...\n\nLe logo de l\'article sera utilisé comme picto à droite du titre.");
-			echo "SoyezCreateurs MaJ 2.1.6<br />";
+			spip_log("SoyezCreateurs maj 2.1.6", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.6','non');
 		}
 		if (version_compare($current_version,'2.1.7','<')) {
@@ -122,7 +123,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				sql_delete("spip_mots_syndic", "id_mot=$id_mot");
 				sql_delete("spip_mots_forum", "id_mot=$id_mot");
 			}
-			echo "SoyezCreateurs MaJ 2.1.7<br />";
+			spip_log("SoyezCreateurs maj 2.1.7", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.7','non');
 		}
 	}
