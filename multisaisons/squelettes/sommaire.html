@@ -35,9 +35,9 @@
 <li class="petite_boite">
 [(#REM) une breve en haut &agrave; gauche avec un mot cl&eacute;.]
 <BOUCLE_blogbox_haut(BREVES){titre_mot=homebox_haut}{par num titre}{par date}{inverse}{0,1}> 
-<h4>[(#TITRE)]</h4>
+<h4 class="#EDIT{titre}">[(#TITRE)]</h4>
 <p><span class="logogauche"><a href="#URL_BREVE">[(#INCLURE{fond=logo}{id_breve}{taille=48}{date=#ENV{date}})]</a></span>
-[(#TEXTE|PtoBR|lier_au_glossaire)]</p>
+<span class="#EDIT{texte}">[(#TEXTE|PtoBR|lier_au_glossaire)]</span></p>
 </BOUCLE_blogbox_haut>
 <h4><:bienvenue:></h4>
 <p><:bienvenue_sur:>#NOM_SITE_SPIP.</p>
@@ -50,9 +50,9 @@
 <li class="petite_boite">
 <BOUCLE_blogue(BREVES){titre_mot=blogue}{doublons}{par num titre}{par date}{inverse}{0,1}>
 [(#REM)  Le logo de la breve bloguee  ]
-<h4><a href="#URL_BREVE" title="lire tout">[(#TITRE)]</a></h4>
+<h4 class="#EDIT{titre}"><a href="#URL_BREVE" title="lire tout">[(#TITRE)]</a></h4>
 <p><span class="logogauche"><a href="#URL_BREVE">[(#INCLURE{fond=logo}{id_breve}{taille=48}{date=#ENV{date}})]</a></span>
-[(#TEXTE|PtoBR|lier_au_glossaire)]</p>
+<span class="#EDIT{texte}">[(#TEXTE|PtoBR|lier_au_glossaire)]</span></p>
 </BOUCLE_blogue>
 <h4><:news_plus:></h4>
 <p>
@@ -71,8 +71,8 @@
 <BOUCLE_blogue_article(ARTICLES){titre_mot=blogue}{doublons}{par num titre}{par date}{inverse}{pagination}>
 <span class="logogauche"><a href="#URL_ARTICLE#diapo">[(#INCLURE{fond=logo}{id_article}{taille=48}{date=#ENV{date}})]</a></span>
 	
-[<h4><a href="#URL_ARTICLE">(#TITRE)</a></h4>]
-[<p>(#DESCRIPTIF) <a href="#URL_ARTICLE"><:lire_suite:></a></p>]
+[<h4 class="#EDIT{titre}"><a href="#URL_ARTICLE">(#TITRE)</a></h4>]
+[<p class="#EDIT{descriptif}">(#DESCRIPTIF) <a href="#URL_ARTICLE"><:lire_suite:></a></p>]
 
 <BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{par num titre, date}{0,1}>
 [<p><a href="(#URL_ARTICLE)" title="[(#TITRE|couper{100})]">[(#FICHIER|reduire_image{450,10000}|inserer_attribut{alt,#TITRE})]</a></p>]
@@ -86,9 +86,9 @@
   [(#REM)Les rubriques importante sur l'accueil]
 
               <BOUCLE_appel(RUBRIQUES){titre_mot = menu_rub}{par titre}{tout_voir}> <a href="#URL_RUBRIQUE" [title="(#TITRE)"] class="logogauche">[(#INCLURE{fond=logo}{id_rubrique}{taille=48}{date=#ENV{date}})]</a>   
-[<h4><a href="#URL_RUBRIQUE" title="#TITRE">(#TITRE)</a></h4>]
+[<h4 class="#EDIT{titre}"><a href="#URL_RUBRIQUE" title="#TITRE">(#TITRE)</a></h4>]
 
-<p> #DESCRIPTIF [(#INCLURE{fond=inc_cadenas}{id_rubrique})]
+<p class="#EDIT{descriptif}"> #DESCRIPTIF [(#INCLURE{fond=inc_cadenas}{id_rubrique})]
              <BOUCLE_nouv_art(ARTICLES){id_rubrique}{age<14}{par num titre}{par date}{inverse}{0,5}{tout_voir}>
              [<br/><strong><:nouveau:> :</strong>&nbsp;<a href="#URL_ARTICLE">(#TITRE)</a>] 
               [(#INCLURE{fond=inc_cadenas}{id_article})]
@@ -110,7 +110,7 @@
 <p>
 <BOUCLE_une(ARTICLES){tout}{doublons}{titre_mot=une}{par date}{inverse}{0,2}{tout_voir}>
 <BOUCLE_logo_documents(DOCUMENTS){id_article}{mode=document}{par date}{inverse}{extension IN jpg,png,gif}{0,1}>
-<span class="logogauche"><a href="#URL_ARTICLE#diapo">[(#INCLURE{fond=logo}{id_article}{id_document}{taille=30}{date=#ENV{date}})]</a></span>
+<span class="logogauche"><a href="#URL_ARTICLE">[(#INCLURE{fond=logo}{id_article}{id_document}{taille=30}{date=#ENV{date}})]</a></span>
 </BOUCLE_logo_documents> 
 [(#REM)   s'il n'y a pas de jpg gif ou png alors on demande le logo de l'article / rubrique  ]
 <BOUCLE_logo_articles(ARTICLES){id_article}{0,1}> 
@@ -123,8 +123,8 @@
 
 
 
-<strong><a href="#URL_ARTICLE">[(#TITRE)]</a></strong>[(#INCLURE{fond=inc_cadenas}{id_article})]
-[(#INTRODUCTION|couper{300})]
+<span class="#EDIT{titre} gras"><a href="#URL_ARTICLE">[(#TITRE)]</a></span><br/>
+[(#INCLURE{fond=inc_cadenas}{id_article})]<span class="#EDIT{introduction}">[(#INTRODUCTION|couper{300})]</span>
 </BOUCLE_une></p>
 </li>
 </B_une>
@@ -146,9 +146,9 @@
 </a></span>
 </BOUCLE_logo_articles2>    
 <//B_logo_documents2>
-<strong><a href="#URL_ARTICLE">[(#TITRE)]</a></strong>
+<span class="#EDIT{titre} gras"><a href="#URL_ARTICLE">[(#TITRE)]</a></span><br/>
 [(#INCLURE{fond=inc_cadenas}{id_article})]
-[(#INTRODUCTION|couper{300})<br/>]
+<span class="#EDIT{introduction}">[(#INTRODUCTION|couper{300})<br/>]</span>
 </BOUCLE_popu>
 </p>
 </li>
