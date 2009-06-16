@@ -29,16 +29,14 @@
 				<BOUCLE_parent(RUBRIQUES){id_rubrique}><h2 class="post_cat #EDIT{titre}">#TITRE</h2></BOUCLE_parent>
 
 				[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
-				<h2 class="post_name #EDIT{titre}" id="post-#ID_ARTICLE #EDIT{soustitre}">#TITRE</h2>
+				<h2 class="post_name #EDIT{titre}" id="post-#ID_ARTICLE">#TITRE</h2>
 				[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
 
 				<div class="post_meta">
 
 					[<:par_auteur:> (#LESAUTEURS) <span class="dot">&sdot;</span> ]
 					<abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>[ (<:texte_date_publication_anterieure:> (#DATE_REDAC|affdate)).][ <span class="dot">&sdot;</span> <a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_article:></a>]
-					[(#PLUGIN{socialtags}|oui)
-						[(#INCLURE{fond=noisettes/socialtags}{id_article})]
-						]	
+					
 
 					[(#REM) Inclure le modele des liens de traductions ]
 					#MODELE{article_traductions}
@@ -80,12 +78,15 @@
 				[<div class="notes surlignable"><h2 class="pas_surlignable"><:info_notes:></h2>(#NOTES)</div>]
 				
 				
-				
+				[(#PLUGIN{socialtags}|oui)
+						[(#INCLURE{fond=noisettes/socialtags}{id_article})]
+						]	
 				<div id="comments">   <!-- start comments -->
 					[(#REM) Forum de l'article ]
 					<a href="#forum" name="forum" id="forum"></a>
-					<INCLURE{fond=inc-forum}{id_article} />
 					[<p class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_article:></a></p>]
+					<INCLURE{fond=inc-forum}{id_article} />
+					
 				</div> <!-- end comments -->
             	
             </div> <!-- end first -->
