@@ -124,7 +124,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				sql_delete("spip_mots_forum", "id_mot=$id_mot");
 			}
 			spip_log("SoyezCreateurs maj 2.1.7", "soyezcreateurs_install");
-			ecrire_meta($nom_meta_base_version,$current_version='2.1.7','non');
+			#ecrire_meta($nom_meta_base_version,$current_version='2.1.7','non');
 		}
 	}
 }
