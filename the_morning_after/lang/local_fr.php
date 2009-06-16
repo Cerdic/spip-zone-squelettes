@@ -27,6 +27,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'continue_reading' => 'Lire la suite',
 'cryptographic_key' =>'Cl&eacute; cryptographique',
 
+
 //D
 'dernier_article' => 'Dernier billet',
 'dernieres_breves' => 'Derni&egrave;res brèves',
