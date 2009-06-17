@@ -109,6 +109,8 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		}
 		if (version_compare($current_version,'2.1.7','<')) {
 			include_spip('base/soyezcreateurs');
+			include_spip('inc/sc_article');
+			spip_log("SoyezCreateurs maj 2.1.7", "soyezcreateurs_install");
 			create_groupe("_Specialisation_Sites", "Groupe permettant de spécifier un rôle particulier pour des sites", "", 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'oui', 'non', 'non');
 				create_mot("_Specialisation_Sites", "SaintDuJour", "Mettre ce mot clef au site donnant le Saint du jour", "");
 			create_groupe("_TypeRubrique", "Pour indiquer un type spécifique de rubrique", "Il faut choisir un mot clef dans cette liste pour obtenir un affichage spécifique de rubrique.\n\nNB : pour rajouter un mot clef \"mc1\", il faut aussi rajouter les squelettes correspondants :\n-* noisettes/rubriques/typerubrique_mc1.html\n-* noisettes/footer/footer_typerubrique_mc1.html\n-* noisettes/articles/typearticle_mc1.html", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
@@ -123,7 +125,9 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				sql_delete("spip_mots_syndic", "id_mot=$id_mot");
 				sql_delete("spip_mots_forum", "id_mot=$id_mot");
 			}
-			spip_log("SoyezCreateurs maj 2.1.7", "soyezcreateurs_install");
+			$article1 = trouve_article_sc("Premiers pas dans le squelette SoyezCreateurs");
+			create_article("Premiers pas dans le squelette SoyezCreateurs", $article1, "000. Fourre-tout");
+			create_article_mot("Premiers pas dans le squelette SoyezCreateurs", "EDITO");
 			#ecrire_meta($nom_meta_base_version,$current_version='2.1.7','non');
 		}
 	}
