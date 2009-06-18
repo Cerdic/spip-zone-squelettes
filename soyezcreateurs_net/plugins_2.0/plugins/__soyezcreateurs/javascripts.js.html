@@ -186,6 +186,7 @@ function adjustLayout() {
 
 function clickOnDiv(elt,target) {
 	jQuery(elt).css('cursor','pointer');
+	jQuery(elt).attr("title", "<:accueil_site:>");
 	jQuery(elt).children().css('cursor','auto');
 	jQuery(elt).click(function() {
 		window.location = target;
@@ -214,4 +215,17 @@ $(document).ready(function() {
 		$('div.texte').bind('emchange', function(e, cur, prev) { adjustLayout(); });
 		onAjaxLoad(adjustLayout); // Merci Marcimat sur IRC !
 	}
+[(#CONFIG{soyezcreateurs/native_tooltips}|=={Oui}|non)
+	$(function() {
+		$('a, input, select, img, button, h2, h3, dd, acronym, abbr, area').tooltip({ 
+			track: false, 
+			delay: 0, 
+			showURL: false, 
+			showBody: " - ", 
+			fade: 250 
+		});
+	});
+]
+	
+	
 });
