@@ -524,6 +524,12 @@ function soyezcreateurs_config_motsclefs() {
 	create_rubrique_mot('999. Citations', 'PasDansMenu', "_Specialisation_Rubrique");
 	create_rubrique_mot('999. Citations', 'PasDansPlan', "_Specialisation_Rubrique");
 	create_rubrique_mot('999. Citations', 'Citations', "_Specialisation_Rubrique");
+	
+	include_spip('inc/sc_article');
+	$article1 = trouve_article_sc("Premiers pas dans le squelette SoyezCreateurs");
+	create_article("Premiers pas dans le squelette SoyezCreateurs", $article1, "000. Fourre-tout");
+	create_article_mot("Premiers pas dans le squelette SoyezCreateurs", "000. Fourre-tout", "EDITO", "_Specialisation");
+	
 	return true;
 }
 ?>
