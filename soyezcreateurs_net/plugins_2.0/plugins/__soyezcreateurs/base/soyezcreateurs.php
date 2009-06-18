@@ -228,6 +228,11 @@ function create_rubrique($titre, $id_parent='0', $descriptif='') {
 				"descriptif" => $descriptif
 			)
 		);
+		sql_updateq(
+			"spip_rubriques", array(
+				"id_secteur" => $id_rubrique
+			), "id_rubrique=$id_rubrique"
+		);
 		spip_log("1. (create_rubrique) rubrique cree : id = $id_rubrique, titre = $titre", "soyezcreateurs_install");
 	}
 	else if ($id_rubrique > 0) {
