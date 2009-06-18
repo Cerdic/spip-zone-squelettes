@@ -323,6 +323,8 @@ function create_article($article, $texte, $rubrique) {
 				"id_article" => $id_article
 			)
 		);
+		include_spip('inc/rubriques');
+		calculer_rubriques();
 		spip_log("2. (create_article) article insere : $id_article", "soyezcreateurs_install");
 	}
 	else if ($id_article > 0) {
