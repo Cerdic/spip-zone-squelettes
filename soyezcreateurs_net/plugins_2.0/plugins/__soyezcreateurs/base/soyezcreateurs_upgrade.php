@@ -133,7 +133,6 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			$article1 = trouve_article_sc("Premiers pas dans le squelette SoyezCreateurs");
 			create_article("Premiers pas dans le squelette SoyezCreateurs", $article1, "000. Fourre-tout");
 			create_article_mot("Premiers pas dans le squelette SoyezCreateurs", "000. Fourre-tout", "EDITO", "_Specialisation");
-			create_article_mot("Premiers pas dans le squelette SoyezCreateurs", "000. Fourre-tout", "PasDansQuoiDeNeuf", "_Specialisation_Rubrique_ou_Article");
 			#ecrire_meta($nom_meta_base_version,$current_version='2.1.7','non');
 		}
 	}
