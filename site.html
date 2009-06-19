@@ -1,0 +1,88 @@
+[(#REM)
+	Un cache plus court, pour la boucle syndic_articles
+]#CACHE{0}
+<BOUCLE_principale(SITES){id_syndic}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[(#REM) Les sites n'ont pas de "lang" a proprement parler ; on se base donc sur la langue de la rubrique qui les contient. Les articles syndiques, eux, ont une "lang". ]
+<BOUCLE_lang(RUBRIQUES){id_rubrique}>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+</BOUCLE_lang>
+<head>
+<title>[(#NOM_SITE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF|couper{150}|textebrut)" />]
+<INCLURE{fond=inc/inc-head}{id_rubrique}{id_syndic}>
+[(#REM) On demande aux moteurs de ne pas indexer cette page pour ne pas passer devant le site qu'on reference.
+]<meta name="robots" content="noindex" />
+</head>
+<body>
+<div id="container">
+
+	[(#REM) Afficher l'entete :]
+	<INCLURE{fond=inc/inc-entete}>
+	
+	[(#REM) Fil d'Ariane ]
+    <div class="hierarchie">
+		<a href="#URL_SITE_SPIP/"><:accueil_site:></a>
+		<BOUCLE_ariane(HIERARCHIE){id_syndic}> &gt; 
+		<a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+		</BOUCLE_ariane>
+		[ &gt; <strong class="on">(#NOM_SITE|couper{80})</strong>]
+	</div><!--#hierarchie-->
+		
+	[(#REM) Contenu principal : affichage du site ]
+    <div id="content">
+		<p />
+		<fieldset class="chapo">
+		<img src="http://open.thumbshots.org/image.aspx?url=#URL_SITE" [ alt="(#NOM_SITE|texte_backend)"] />
+		[(#LOGO_SITE||image_reduire{150,100})]
+		<legend>[(#NOM_SITE|textebrut)]</legend>
+		#FORMULAIRE_NOTATION<br />
+		<p class="texte_chapo">
+        [<div class="#EDIT{descriptif} chapo">(#DESCRIPTIF)</div>]
+        [<p class="#EDIT{url_site} hyperlien"><a href="#URL_SITE" target="_blank">(#URL_SITE|couper{80})</a></p>]
+		</p>
+		</fieldset>		
+
+        [(#REM) Articles issus de la syndication ]
+        <B_articles>
+        <div class="menu_articles">
+		<fieldset class="chapo">
+            #ANCRE_PAGINATION
+            <legend><:articles:></legend>
+            <ul>
+                <BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {par date}{inverse} {pagination #CONFIG{annuaire/pas_pagination_rss, 5}}>
+                <li>
+                    <h3><a href="#URL_ARTICLE" target="_blank">#TITRE</a></h3>
+                    [<div class="enclosures">(#TAGS|afficher_enclosures)</div>]
+                    <small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</small>
+                    [<div class="introduction">(#DESCRIPTIF|image_reduire{300})</div>]
+                </li>
+                </BOUCLE_articles>
+            </ul>
+            [<p class="pagination">(#PAGINATION)</p>]
+        </div><!--#menu_article-->
+        </B_articles>
+		<div id="pas_syndic"><:annuaire:pas_syndic:></div>
+		<//B_articles>
+		</fieldset>
+        [<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+
+	</div><!--#content-->
+
+	[(#REM) Navigation => colonne droite :]
+	<div id="navigation">
+		[(#REM) Afficher les mot clefs :]
+		<INCLURE{fond=inc/inc-mot}{id_rubrique}{id_syndic}>
+	<p />
+		[(#REM) Afficher les rubriques :]
+		<INCLURE{fond=inc/inc-rubriques}>
+	</div><!--#navigation-->
+	
+	<div id="footer">
+		[(#REM) Afficher le pied de page :]
+		<INCLURE{fond=inc/inc-pied}>
+	</div><!--#footer-->
+</div><!--#container-->
+</body>
+</html>	
+</BOUCLE_principale>
