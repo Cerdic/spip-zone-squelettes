@@ -10,7 +10,6 @@
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
 include_spip("inc/lang");
-include_spip("inc/charsets");	
 include_spip('inc/meta');
 
 //fonction qui permet de créer les métas de config du site
@@ -69,9 +68,6 @@ function id_groupe($titre) {
 //fonction qui permet de créer un groupe de mots clés
 function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $obligatoire='non', $articles='oui', $breves='non', $rubriques='non', $syndic='non', $evenements='non', $minirezo='oui', $comite='oui', $forum='non') {
 	$id_groupe = find_groupe($groupe);
-	#$groupe = importer_charset($groupe, 'iso-8859-1');
-	#$texte = importer_charset($texte, 'iso-8859-1');
-	#$descriptif = importer_charset($descriptif, 'iso-8859-1');
 	$tables_liees = '';
 	if ($articles == 'oui') 
 		$tables_liees.='articles,';
@@ -153,10 +149,6 @@ function id_mot($titre, $id_groupe) {
 //fonction qui permet de créer un mot clé
 function create_mot($groupe, $mot, $descriptif='', $texte='') {
 	$id_groupe = id_groupe($groupe);
-	#$groupe = importer_charset($groupe, 'iso-8859-1');
-	#$mot = importer_charset($mot, 'iso-8859-1');
-	#$texte = importer_charset($texte, 'iso-8859-1');
-	#$descriptif = importer_charset($descriptif, 'iso-8859-1');
 	$find_mot = find_mot($mot, $id_groupe);
 	if ($find_mot == 0) {
 		spip_log("1. (create_mot) debut create_mot. mot inexistant donc creation : $id_groupe - $mot", "soyezcreateurs_install");
@@ -220,8 +212,6 @@ function id_rubrique($titre) {
 function create_rubrique($titre, $id_parent='0', $descriptif='') {
 	$id_rubrique = find_rubrique($titre);
 	if ($id_rubrique == 0) {
-		#$titre = importer_charset($titre, 'iso-8859-1');
-		#$descriptif = importer_charset($descriptif, 'iso-8859-1');
 		$id_rubrique = sql_insertq(
 			"spip_rubriques", array(
 				"titre" => $titre,
