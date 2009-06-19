@@ -2,6 +2,8 @@
 /*
 * Correspondance des articles pour ne pas mettre trop dans les autres fichiers
 * Realisation : Yohann : prigent.yohann@gmail.com
+* et RealET : real3t@gmail.com
+* Attention, fichier en UTF-8 sans BOM
 */
 
 if (!defined("_ECRIRE_INC_VERSION")) return;
@@ -10,8 +12,11 @@ include_spip("inc/lang");
 include_spip("inc/charsets");	
 
 function trouve_article_sc($article) {
-	if ($article = "Premiers pas dans le squelette SoyezCreateurs") {
-		$texte = <<<EOF
+	/* Premiers pas dans le squelette SoyezCreateurs */
+	$contenu = array();
+	if ($article == "Premiers pas dans le squelette SoyezCreateurs") {
+		$contenu['titre'] = $article;
+		$contenu['texte'] = <<<EOF
 Bravo !!!!
 
 Vous avez correctement passé la première étape en installant ce squelette.
@@ -36,6 +41,32 @@ Vous trouverez aussi plusieurs documentations disponibles aux adresses ci-dessou
 -** Fonctionnels
 EOF;
 	}
-return $texte;
+	
+	/* Partage */
+	if ($article == 'Partage') {
+		$contenu['titre'] = $article;
+		$contenu['descriptif'] = 'Sénèque';
+		$contenu['texte'] = "«~Un bien n'est agréable que si on le partage.~»";
+	}
+	/* Économies */
+	if ($article == 'Économies') {
+		$contenu['titre'] = $article;
+		$contenu['descriptif'] = 'Ma vieille grand-mère';
+		$contenu['texte'] = "« On n'est pas assez riches pour acheter du bon marché. »";
+	}
+	/* Concision */
+	if ($article == 'Concision') {
+		$contenu['titre'] = $article;
+		$contenu['descriptif'] = 'Pascal';
+		$contenu['texte'] = "« Je n'ai pas eu le temps de faire court... »";
+	}
+	/* Contact */
+	if ($article == 'Contact') {
+		$contenu['titre'] = $article;
+		$contenu['descriptif'] = 'Nous contacter';
+		$contenu['chapo'] = "=aut1";
+	}
+
+	return $contenu;
 }
 ?>

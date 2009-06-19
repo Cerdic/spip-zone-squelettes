@@ -277,44 +277,42 @@ function id_article($titre, $id_rubrique) {
 }
 
 //fonction qui permet de créer un article
-function create_article($article, $texte, $rubrique) {
-	$article = addslashes($article);
+function create_article($texte, $rubrique, $lang='fr') {
 	$id_rubrique = id_rubrique($rubrique);
-	$id_article = find_article($article, $id_rubrique);
-	if ($id_article == 0) {
-		spip_log("1. (create_article) insertion d'un article : $article", "soyezcreateurs_install");
+	$count_articles = find_article($texte['titre'], $id_rubrique);
+	if ($count_articles == 0) {
+		spip_log("1. (create_article) insertion d'un article : ".$texte['titre'], "soyezcreateurs_install");
 		$statut = 'publie';
 		$date = date("Y-m-d H:i:s");
-		$article = stripslashes($article);
 		$id_article = sql_insertq(
 			"spip_articles", array(
 				"id_article" => '',
-				"surtitre" => '',
-				"titre" => $article,
-				"soustitre" => '',
+				"surtitre" => $texte['surtitre'],
+				"titre" => $texte['titre'],
+				"soustitre" => $texte['soustitre'],
 				"id_rubrique" => $id_rubrique,
-				"descriptif" => '',
-				"chapo" => '',
-				"texte" => $texte,
-				"ps" => '',
+				"descriptif" => $texte['descriptif'],
+				"chapo" => $texte['chapo'],
+				"texte" => $texte['texte'],
+				"ps" => $texte['ps'],
 				"date" => $date,
 				"statut" => $statut,
 				"id_secteur" => $id_rubrique,
 				"maj" => $date,
-				"export" => "",
+				"export" => '',
 				"date_redac" => '0000-00-00 00:00:00',
-				"visites" => 1,
+				"visites" => 0,
 				"referers" => 0,
 				"popularite" => 0,
-				"accepter_forum" => "abo",
+				"accepter_forum" => '',
 				"date_modif" => $date,
-				"lang" => "fr",
-				"langue_choisie" => "non",
+				"lang" => $lang,
+				"langue_choisie" => 'non',
 				"id_trad" => 0,
 				"extra" => 'NULL',
 				"id_version" => 0,
-				"nom_site" => "",
-				"url_site" => ""
+				"nom_site" => $texte['nom_site'],
+				"url_site" => $texte['url_site']
 			)
 		);
 		sql_insertq(
@@ -327,9 +325,9 @@ function create_article($article, $texte, $rubrique) {
 		calculer_rubriques();
 		spip_log("2. (create_article) article insere : $id_article", "soyezcreateurs_install");
 	}
-	else if ($id_article > 0) {
-		$id_article = id_article($titre, $id_rubrique);
-		spip_log("2. (create_article) maj de l'article : $article", "soyezcreateurs_install");
+	else if ($count_articles > 0) {
+		$id_article = id_article($texte['titre'], $id_rubrique);
+		spip_log("2. (create_article) maj de l'article : ".$texte['titre'], "soyezcreateurs_install");
 		remplacer_article($id_article, $id_rubrique, $texte);
 	}
 }
@@ -338,7 +336,14 @@ function create_article($article, $texte, $rubrique) {
 function remplacer_article($id_article, $id_rubrique, $texte) {
 	sql_updateq(
 		"spip_articles", array(
-			"texte" => $texte
+			"surtitre" => $texte['surtitre'],
+			"soustitre" => $texte['soustitre'],
+			"descriptif" => $texte['descriptif'],
+			"chapo" => $texte['chapo'],
+			"texte" => $texte['texte'],
+			"ps" => $texte['ps'],
+			"nom_site" => $texte['nom_site'],
+			"url_site" => $texte['url_site']
 		), "id_article='$id_article' AND id_rubrique = $id_rubrique"
 	);
 	return true;
@@ -527,8 +532,17 @@ function soyezcreateurs_config_motsclefs() {
 	
 	include_spip('inc/sc_article');
 	$article1 = trouve_article_sc("Premiers pas dans le squelette SoyezCreateurs");
-	create_article("Premiers pas dans le squelette SoyezCreateurs", $article1, "000. Fourre-tout");
-	create_article_mot("Premiers pas dans le squelette SoyezCreateurs", "000. Fourre-tout", "EDITO", "_Specialisation");
+	create_article($article1, "000. Fourre-tout");
+	create_article_mot($article1['titre'], "000. Fourre-tout", "EDITO", "_Specialisation");
+	$article2 = trouve_article_sc('Partage');
+	create_article($article2, '999. Citations');
+	$article3 = trouve_article_sc('Contact');
+	create_article($article3, '000. Fourre-tout');
+	create_article_mot($article3['titre'], '000. Fourre-tout', "MENURACINEBAS_Systematique", "_Specialisation");
+	$article4 = trouve_article_sc('Économies');
+	create_article($article4, '999. Citations');
+	$article5 = trouve_article_sc('Concision');
+	create_article($article5, '999. Citations');
 	
 	return true;
 }

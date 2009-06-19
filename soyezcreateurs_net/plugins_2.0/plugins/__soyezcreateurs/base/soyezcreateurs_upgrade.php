@@ -2,6 +2,7 @@
 /*
 * Configuration de SPIP pour SoyezCreateurs
 * Realisation : RealET : real3t@gmail.com
+* Attention, fichier en UTF-8 sans BOM
 */
 
 if (!defined("_ECRIRE_INC_VERSION")) return;
@@ -12,7 +13,6 @@ include_spip('inc/meta');
 function soyezcreateurs_install($action){
 	switch ($action){
 		case 'test':
-			soyezcreateurs_upgrade('soyezcreateurs_base_version', '2.1.7');
 		break;
 		case 'install':
 			soyezcreateurs_upgrade('soyezcreateurs_base_version', '2.1.7');
@@ -87,7 +87,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		}
 		if (version_compare($current_version,'2.1.3','<')) {
 			include_spip('base/soyezcreateurs');
-			create_mot("_Specialisation", "MenuFooter", "Affecter ce mot clef aux articles devant être affichés dans le menu de pied de page.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...");
+			create_mot("_Specialisation", "MenuFooter", "Affecter ce mot clef aux articles devant Ãªtre affichÃ©s dans le menu de pied de page.", "Les liens vers les articles seront faits triÃ©s par numÃ©ro de titre.\n\nIl est bien sÃ»r possible de faire des articles de redirection...");
 			spip_log("SoyezCreateurs maj 2.1.3", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.3','non');
 		}
@@ -107,19 +107,19 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		}
 		if (version_compare($current_version,'2.1.6','<')) {
 			include_spip('base/soyezcreateurs');
-			create_mot("_Specialisation", "Outils", "Affecter ce mot clef aux articles devant être affichés dans le cadre Outils dans le bandeau du haut de la page.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...\n\nLe logo de l'article sera utilisé comme picto à droite du titre.");
+			create_mot("_Specialisation", "Outils", "Affecter ce mot clef aux articles devant Ãªtre affichÃ©s dans le cadre Outils dans le bandeau du haut de la page.", "Les liens vers les articles seront faits triÃ©s par numÃ©ro de titre.\n\nIl est bien sÃ»r possible de faire des articles de redirection...\n\nLe logo de l'article sera utilisÃ© comme picto Ã  droite du titre.");
 			spip_log("SoyezCreateurs maj 2.1.6", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.6','non');
 		}
 		if (version_compare($current_version,'2.1.7','<')) {
 			include_spip('base/soyezcreateurs');
 			spip_log("SoyezCreateurs maj 2.1.7", "soyezcreateurs_install");
-			create_groupe("_Specialisation_Sites", "Groupe permettant de spécifier un rôle particulier pour des sites", "", 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'oui', 'non', 'non');
+			create_groupe("_Specialisation_Sites", "Groupe permettant de spÃ©cifier un rÃ´le particulier pour des sites", "", 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'oui', 'non', 'non');
 				create_mot("_Specialisation_Sites", "SaintDuJour", "Mettre ce mot clef au site donnant le Saint du jour", "");
-			create_groupe("_TypeRubrique", "Pour indiquer un type spécifique de rubrique", "Il faut choisir un mot clef dans cette liste pour obtenir un affichage spécifique de rubrique.\n\nNB : pour rajouter un mot clef \"mc1\", il faut aussi rajouter les squelettes correspondants :\n-* noisettes/rubriques/typerubrique_mc1.html\n-* noisettes/footer/footer_typerubrique_mc1.html\n-* noisettes/articles/typearticle_mc1.html", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
-				create_mot("_TypeRubrique", "annuaire", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des annuaires.", "Affecter ce mot clef à chaque rubrique racine d'un annuaire.");
-			create_groupe("_TypeArticle", "Pour indiquer un type spécifique d'article", "Il faut choisir un mot clef dans cette liste pour obtenir un affichage spécifique d'article.\n\nNB : pour rajouter un mot clef \"mc1\", il faut aussi rajouter les squelettes correspondants :\n-* noisettes/articles/typearticle_mc1.html\n-* noisettes/footer/footer_typearticle_mc1.html", 'oui', 'non', 'oui', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
-				create_mot("_TypeArticle", "annuaire", "Pour dire que l'article ayant ce mot clef doit utiliser le squelette type des annuaire.", "Affecter ce mot clef à chaque article de l'annuaire.");
+			create_groupe("_TypeRubrique", "Pour indiquer un type spÃ©cifique de rubrique", "Il faut choisir un mot clef dans cette liste pour obtenir un affichage spÃ©cifique de rubrique.\n\nNB : pour rajouter un mot clef \"mc1\", il faut aussi rajouter les squelettes correspondants :\n-* noisettes/rubriques/typerubrique_mc1.html\n-* noisettes/footer/footer_typerubrique_mc1.html\n-* noisettes/articles/typearticle_mc1.html", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
+				create_mot("_TypeRubrique", "annuaire", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des annuaires.", "Affecter ce mot clef Ã  chaque rubrique racine d'un annuaire.");
+			create_groupe("_TypeArticle", "Pour indiquer un type spÃ©cifique d'article", "Il faut choisir un mot clef dans cette liste pour obtenir un affichage spÃ©cifique d'article.\n\nNB : pour rajouter un mot clef \"mc1\", il faut aussi rajouter les squelettes correspondants :\n-* noisettes/articles/typearticle_mc1.html\n-* noisettes/footer/footer_typearticle_mc1.html", 'oui', 'non', 'oui', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
+				create_mot("_TypeArticle", "annuaire", "Pour dire que l'article ayant ce mot clef doit utiliser le squelette type des annuaire.", "Affecter ce mot clef Ã  chaque article de l'annuaire.");
 			$id_groupe = id_groupe("_TypeRubrique");
 			$id_mot = id_mot("membre", $id_groupe);
 			if ($id_mot>0) {
