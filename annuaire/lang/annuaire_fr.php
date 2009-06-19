@@ -72,9 +72,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // CFG du plugins
 //A
 'annuaire' =>'Annuaire',
+'annuaire_boucles' =>'Boucles',
+'annuaire_style' =>'Style',
 
 //B
 'boucles' =>'R&eacute;glages des boucles',
+'boite_boucles' => 'Page boucles',
+'boite_style' => 'Page style',
 
 //C
 'css' => 'Les css',
@@ -96,10 +100,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'css_pied' => 'Pied',
 
 //D
-'descriptif' =>'<h4>R&eacute;glage de l\'annuaire</h4>
-				<br />R&eacute;gl&eacute; le nombre de sites dans les diff&eacute;rentes boucles sur le site.
-				<br />R&eacute;glage des css du site',
-				
+'descriptif_boucles' => '<h4>R&eacute;glage des boucles</h4>
+				<br />R&eacute;gl&eacute; le nombre de sites dans les diff&eacute;rentes boucles sur le site.',
+'descriptif_style' => '<h4>R&eacute;glage du style</h4>
+				<br />Choisissez vos couleurs pour le site',
+
 //E
 
 //F
