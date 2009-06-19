@@ -9,20 +9,6 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 
 include_spip('inc/meta');
 
-//fonction qui permet de choisir que faire
-function soyezcreateurs_install($action){
-	switch ($action){
-		case 'test':
-		break;
-		case 'install':
-			soyezcreateurs_upgrade('soyezcreateurs_base_version', '2.1.7');
-		break;
-		case 'uninstall':
-			soyezcreateurs_vider_tables();
-		break;
-	}
-}
-
 /*
  * Fonction d'installation, mise a jour de la base
  *
@@ -129,7 +115,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				sql_delete("spip_mots_syndic", "id_mot=$id_mot");
 				sql_delete("spip_mots_forum", "id_mot=$id_mot");
 			}
-			#ecrire_meta($nom_meta_base_version,$current_version='2.1.7','non');
+			ecrire_meta($nom_meta_base_version,$current_version='2.1.7','non');
 		}
 	}
 }
