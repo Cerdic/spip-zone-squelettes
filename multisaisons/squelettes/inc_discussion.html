@@ -1,10 +1,8 @@
 [(#PARAMETRES_FORUM|?{''})]
 
-<BOUCLE_Forums(FORUMS){id_article ?}{id_breve ?}{id_forum}{par date}{inverse}{0,1}>	
-
 <B_Forums_fil>
 
-[#ANCRE_PAGINATION<p>Page: (#PAGINATION)</p>]
+[#ANCRE_PAGINATION<p class="pagination">Messages: (#PAGINATION)</p>]
 
 <BOUCLE_Forums_fil(FORUMS){id_thread}{plat}{par date}{pagination}>	
 <div class="discussion">
@@ -12,7 +10,7 @@
 <BOUCLE_Forums_crayon_parent(FORUMS){id_parent}{statut=original}>
 <BOUCLE_qui(AUTEURS){tout}{id_auteur}>
 <span class="#EDIT{logo}">
-[(#INCLURE{fond=logo}{id_auteur_AUTEUR}{taille=100}{date=#ENV{date}})]</span>
+[(#INCLURE{fond=logo}{id_auteur}{taille=100}{date=#ENV{date}})]</span>
 </BOUCLE_qui>
 </span>
 <br/>
@@ -54,7 +52,7 @@ Message  &eacute;dit&eacute;.
 
 <BOUCLE_qui_ori(AUTEURS){id_auteur}{tous}>
 <span class="#EDIT{logo}">
-[(#INCLURE{fond=logo}{id_auteur_AUTEUR}{taille=100}{date=#ENV{date}})]
+[(#INCLURE{fond=logo}{id_auteur}{taille=100}{date=#ENV{date}})]
 </span>
 </BOUCLE_qui_ori>
 </span>
@@ -114,7 +112,7 @@ title="Signaler un message abusif">Alerter</a>]]
 
 <p class="#EDIT{texte}">[(#TEXTE|PtoBR|lier_au_glossaire|norm_liens|liens_ouvrants|smileys|lignes_longues{30})]</p>  
 <BOUCLE_doc_forum(DOCUMENTS){id_forum}><p class="centre #EDIT{fichier}">[(#EXTENSION|match{'^(gif|jpg|png)$'}|?{
-				<a class="thickbox nyroceros" href="#URL_DOCUMENT" title="[(#FICHIER|basename)]">[(#MODELE{emb}|image_reduire{100}|inserer_attribut{'alt',[(#FICHIER|basename)]})]</a>
+				<span class="thickbox nyroceros fancybox"><a href="#URL_DOCUMENT" title="[(#FICHIER|basename)]">[(#MODELE{emb}|image_reduire{100}|inserer_attribut{'alt',[(#FICHIER|basename)]})]</a></span>
 				[<br/>(#TAILLE|>{100000}|oui{''})[Attention : (#TAILLE|taille_en_octets)]]
 				,
 					[(#LOGO_DOCUMENT|#URL_DOCUMENT)][<br/>(#TAILLE|>{100000}|oui{''})[Attention : (#TAILLE|taille_en_octets)]]
@@ -133,7 +131,7 @@ title="Signaler un message abusif">Alerter</a>]]
 
 
 </BOUCLE_Forums_fil>
-[<p class="centre">Page: (#PAGINATION)</p>]
+[<p class="pagination">Messages: (#PAGINATION)</p>]
 </B_Forums_fil>
 
 
@@ -144,7 +142,7 @@ title="Signaler un message abusif">Alerter</a>]]
 
 </p></BOUCLE_Forums_fin>
 
-</BOUCLE_Forums>
+
 
 
 
