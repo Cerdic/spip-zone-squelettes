@@ -107,7 +107,14 @@ return $chaine;
 
 function iconespedago_porte_plume_barre_pre_charger($barres) {
 	$barre = &$barres['edition'];
-	$barre->ajouterApres('liste_ul',
+	$barre->ajouterApres('grpCaracteres',
+	array(
+		// groupe code et bouton <code>
+		"id"          => 'sepIconesPedago',
+		"separator" => "---------------",
+		"display"   => false,
+	));
+	$barre->ajouterApres('sepIconesPedago',
 	array(
 		// groupe code et bouton <code>
 		"id"          => 'iconespedago_onglet_consignes',
@@ -357,6 +364,306 @@ function iconespedago_porte_plume_barre_pre_charger($barres) {
 	));
 	
 	
+$barre->ajouterApres('iconespedago_onglet_domino',
+	array(
+		// groupe code et bouton <code>
+		"id"          => 'iconespedago_onglet_mains',
+		"name"        => _T('iconespedago:mains'),
+		"className"   => 'iconespedago_onglet_mains',
+		"replaceWith" => "",
+		"display"     => true,
+		"dropMenu"    => array(
+			array(
+				"id"          => 'iconespedago_gauche_un',
+				"name"        => _T('iconespedago:gauche1'),
+				"className"   => 'iconespedago_gauche_un', 
+				"replaceWith" => " :un-g ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_gauche_deux',
+				"name"        => _T('iconespedago:gauche2'),
+				"className"   => 'iconespedago_gauche_deux', 
+				"replaceWith" => " :deux-g ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_gauche_trois',
+				"name"        => _T('iconespedago:gauche3'),
+				"className"   => 'iconespedago_gauche_trois', 
+				"replaceWith" => " :trois-g ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_gauche_quatre',
+				"name"        => _T('iconespedago:gauche4'),
+				"className"   => 'iconespedago_gauche_quatre', 
+				"replaceWith" => " :quatre-g ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_gauche_cinq',
+				"name"        => _T('iconespedago:gauche5'),
+				"className"   => 'iconespedago_gauche_cinq', 
+				"replaceWith" => " :cinq-g ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_droite_un',
+				"name"        => _T('iconespedago:droite1'),
+				"className"   => 'iconespedago_droite_un', 
+				"replaceWith" => " :un-d ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_droite_deux',
+				"name"        => _T('iconespedago:droite2'),
+				"className"   => 'iconespedago_droite_deux', 
+				"replaceWith" => " :deux-d ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_droite_trois',
+				"name"        => _T('iconespedago:droite3'),
+				"className"   => 'iconespedago_droite_trois', 
+				"replaceWith" => " :trois-d ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_droite_quatre',
+				"name"        => _T('iconespedago:droite4'),
+				"className"   => 'iconespedago_droite_quatre', 
+				"replaceWith" => " :quatre-d ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_droite_cinq',
+				"name"        => _T('iconespedago:droite5'),
+				"className"   => 'iconespedago_droite_cinq', 
+				"replaceWith" => " :cinq-d ",
+				"display"     => true,
+			),
+		),
+	
+	));
+
+
+$barre->ajouterApres('iconespedago_onglet_mains',
+	array(
+		// groupe code et bouton <code>
+		"id"          => 'iconespedago_onglet_phonologie',
+		"name"        => _T('iconespedago:phonologie'),
+		"className"   => 'iconespedago_onglet_phonologie',
+		"replaceWith" => "",
+		"display"     => true,
+		"dropMenu"    => array(
+			array(
+				"id"          => 'iconespedago_phonologie_oeil',
+				"name"        => _T('iconespedago:oeil'),
+				"className"   => 'iconespedago_phonologie_oeil', 
+				"replaceWith" => " :oeil ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_phonologie_oreille',
+				"name"        => _T('iconespedago:oreille'),
+				"className"   => 'iconespedago_phonologie_oreille', 
+				"replaceWith" => " :oreille ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_phonologie_noeil',
+				"name"        => _T('iconespedago:noeil'),
+				"className"   => 'iconespedago_phonologie_noeil', 
+				"replaceWith" => " :noeil ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_phonologie_noreille',
+				"name"        => _T('iconespedago:noreille'),
+				"className"   => 'iconespedago_phonologie_noreille', 
+				"replaceWith" => " :noreille ",
+				"display"     => true,
+			),
+		),
+	
+	));
+
+
+$barre->ajouterApres('iconespedago_onglet_phonologie',
+	array(
+		// groupe code et bouton <code>
+		"id"          => 'iconespedago_onglet_ecriture',
+		"name"        => _T('iconespedago:ecriture'),
+		"className"   => 'iconespedago_onglet_ecriture',
+		"replaceWith" => "",
+		"display"     => true,
+		"dropMenu"    => array(
+			array(
+				"id"          => 'iconespedago_ecriture_q5mm',
+				"name"        => _T('iconespedago:q5mm'),
+				"className"   => 'iconespedago_ecriture_q5mm', 
+				"replaceWith" => " :q5mm ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_ecriture_q1cm',
+				"name"        => _T('iconespedago:q1cm'),
+				"className"   => 'iconespedago_ecriture_q1cm', 
+				"replaceWith" => " :q1cm ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_ecriture_carreaux1cm',
+				"name"        => _T('iconespedago:carreaux1cm'),
+				"className"   => 'iconespedago_ecriture_carreaux1cm', 
+				"replaceWith" => " :carreaux1cm ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_ecriture_trou',
+				"name"        => _T('iconespedago:trou'),
+				"className"   => 'iconespedago_ecriture_trou', 
+				"replaceWith" => " :trou ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_ecriture_rond',
+				"name"        => _T('iconespedago:rond'),
+				"className"   => 'iconespedago_ecriture_rond', 
+				"replaceWith" => " :rond ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_ecriture_ligne',
+				"name"        => _T('iconespedago:ligne'),
+				"className"   => 'iconespedago_ecriture_ligne', 
+				"replaceWith" => " :ligne ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_ecriture_frise',
+				"name"        => _T('iconespedago:frise'),
+				"className"   => 'iconespedago_ecriture_frise', 
+				"replaceWith" => " :frise ",
+				"display"     => true,
+			),
+		),
+	
+	));
+
+
+$barre->ajouterApres('iconespedago_onglet_ecriture',
+	array(
+		// groupe code et bouton <code>
+		"id"          => 'iconespedago_onglet_binettes',
+		"name"        => _T('iconespedago:binettes'),
+		"className"   => 'iconespedago_onglet_binettes',
+		"replaceWith" => "",
+		"display"     => true,
+		"dropMenu"    => array(
+			array(
+				"id"          => 'iconespedago_binettes_diable',
+				"name"        => _T('iconespedago:diable'),
+				"className"   => 'iconespedago_binettes_diable', 
+				"replaceWith" => " :-> ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_binettes_colere',
+				"name"        => _T('iconespedago:colere'),
+				"className"   => 'iconespedago_binettes_colere', 
+				"replaceWith" => " :-(( ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_binettes_mdr',
+				"name"        => _T('iconespedago:mdr'),
+				"className"   => 'iconespedago_binettes_mdr', 
+				"replaceWith" => " :-)) ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_binettes_sourire',
+				"name"        => _T('iconespedago:sourire'),
+				"className"   => 'iconespedago_binettes_sourire', 
+				"replaceWith" => " :-) ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_binettes_oeil',
+				"name"        => _T('iconespedago:clin_oeil'),
+				"className"   => 'iconespedago_binettes_oeil', 
+				"replaceWith" => " ;-) ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_binettes_pleure_rire',
+				"name"        => _T('iconespedago:pleure_rire'),
+				"className"   => 'iconespedago_binettes_pleure_rire', 
+				"replaceWith" => " :'-) ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_binettes_rigolo',
+				"name"        => _T('iconespedago:rigolo'),
+				"className"   => 'iconespedago_binettes_rigolo', 
+				"replaceWith" => " :o) ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_binettes_lunettes',
+				"name"        => _T('iconespedago:lunettes'),
+				"className"   => 'iconespedago_binettes_lunettes', 
+				"replaceWith" => " B-) ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_binettes_langues',
+				"name"        => _T('iconespedago:langues'),
+				"className"   => 'iconespedago_binettes_langues', 
+				"replaceWith" => " :-p ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_binettes_bof',
+				"name"        => _T('iconespedago:bof'),
+				"className"   => 'iconespedago_binettes_bof', 
+				"replaceWith" => " :-| ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_binettes_mouai',
+				"name"        => _T('iconespedago:mouai'),
+				"className"   => 'iconespedago_binettes_mouai', 
+				"replaceWith" => " :-/ ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_binettes_surpris',
+				"name"        => _T('iconespedago:surpris'),
+				"className"   => 'iconespedago_binettes_surpris', 
+				"replaceWith" => " :-O ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_binettes_mecontent',
+				"name"        => _T('iconespedago:mecontent'),
+				"className"   => 'iconespedago_binettes_mecontent', 
+				"replaceWith" => " :-( ",
+				"display"     => true,
+			),
+			array(
+				"id"          => 'iconespedago_binettes_triste',
+				"name"        => _T('iconespedago:triste'),
+				"className"   => 'iconespedago_binettes_triste', 
+				"replaceWith" => " :'-( ",
+				"display"     => true,
+			),
+		),
+	
+	));
+
 	return $barres;
 }
 
@@ -395,6 +702,45 @@ function iconespedago_porte_plume_lien_classe_vers_icone($flux) {
 		'iconespedago_domino_huit' => 'bouton_domino8.png',
 		'iconespedago_domino_neuf' => 'bouton_domino9.png',
 		'iconespedago_domino_dix' => 'bouton_dominovide_temp.png',
+		'iconespedago_onglet_mains' => 'bouton_un-g.png',
+		'iconespedago_gauche_un' => 'bouton_un-g.png',
+		'iconespedago_gauche_deux' => 'bouton_deux-g.png',
+		'iconespedago_gauche_trois' => 'bouton_trois-g.png',
+		'iconespedago_gauche_quatre' => 'bouton_quatre-g.png',
+		'iconespedago_gauche_cinq' => 'bouton_cinq-g.png',
+		'iconespedago_droite_un' => 'bouton_un-d.png',
+		'iconespedago_droite_deux' => 'bouton_deux-d.png',
+		'iconespedago_droite_trois' => 'bouton_trois-d.png',
+		'iconespedago_droite_quatre' => 'bouton_quatre-d.png',
+		'iconespedago_droite_cinq' => 'bouton_cinq-d.png',
+		'iconespedago_onglet_phonologie' => 'bouton_oeil.png',
+		'iconespedago_phonologie_oeil' => 'bouton_oeil.png',
+		'iconespedago_phonologie_oreille' => 'bouton_oreille.png',
+		'iconespedago_phonologie_noeil' => 'bouton_noeil.png',
+		'iconespedago_phonologie_noreille' => 'bouton_noreille.png',
+		'iconespedago_onglet_ecriture' => 'bouton_frise.png',
+		'iconespedago_ecriture_q5mm' => 'bouton_quadrillage5mm.gif',
+		'iconespedago_ecriture_q1cm' => 'bouton_quadrillage1cm.gif',
+		'iconespedago_ecriture_carreaux1cm' => 'bouton_carreaux1cm.png',
+		'iconespedago_ecriture_trou' => 'bouton_trou.png',
+		'iconespedago_ecriture_rond' => 'bouton_rond.png',
+		'iconespedago_ecriture_ligne' => 'bouton_ligne.png',
+		'iconespedago_ecriture_frise' => 'bouton_frise.png',
+		'iconespedago_onglet_binettes' => 'bouton_sourire.png',
+		'iconespedago_binettes_diable' => 'bouton_diable.png',
+		'iconespedago_binettes_colere' => 'bouton_en_colere.png',
+		'iconespedago_binettes_mdr' => 'bouton_mort_de_rire.png',
+		'iconespedago_binettes_sourire' => 'bouton_sourire.png',
+		'iconespedago_binettes_oeil' => 'bouton_clin_d-oeil.png',
+		'iconespedago_binettes_pleure_rire' => 'bouton_pleure_de_rire.png',
+		'iconespedago_binettes_rigolo' => 'bouton_rigolo.png',
+		'iconespedago_binettes_lunettes' => 'bouton_lunettes.png',
+		'iconespedago_binettes_langues' => 'bouton_tire_la_langue.png',
+		'iconespedago_binettes_bof' => 'bouton_bof.png',
+		'iconespedago_binettes_mouai' => 'bouton_mouai.png',
+		'iconespedago_binettes_surpris' => 'bouton_surpris.png',
+		'iconespedago_binettes_mecontent' => 'bouton_pas_content.png',
+		'iconespedago_binettes_triste' => 'bouton_triste.png',
 	));
 }
 
