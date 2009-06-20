@@ -90,6 +90,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'css_couleurs_bandeau' => 'Choisissez vos couleurs pour le bandeau',
 'css_couleurs_chemin' => 'Choisissez vos couleurs pour le chemin',
 'css_couleurs_fond_som' => 'Choisissez vos couleurs pour le fond de la page "sommaire"',
+'css_couleurs_fond_rub' => 'Choisissez vos couleurs pour le fond de la page "rubrique"',
 'css_couleurs_fond_mot' => 'Choisissez vos couleurs pour le fond de la page "mot"',
 'css_couleurs_fond_site' => 'Choisissez vos couleurs pour le fond de la page "site"',
 'css_couleurs_fond_expli' =>'Cela revient à choisir la couleur d\'arrière plan sur une page.',
