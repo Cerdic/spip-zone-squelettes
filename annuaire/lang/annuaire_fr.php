@@ -95,17 +95,23 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'css_couleurs_fond_site' => 'Choisissez vos couleurs pour le fond de la page "site"',
 'css_couleurs_fond_expli' =>'Cela revient à choisir la couleur d\'arrière plan sur une page.',
 'css_couleurs_hierarchie' => 'Choisissez vos couleurs pour la hierarchie',
+'css_couleurs_mot' => 'Choisissez vos couleurs pour la page mot',
 'css_couleurs_nav' => 'Choisissez vos couleurs pour la colonne de droite.',
 'css_couleurs_new' => 'Choisissez vos couleurs pour la boucle nouveauté.',
 'css_couleurs_pied' => 'Choisissez vos couleurs pour le pied de page.',
 'css_couleurs_pop' => 'Choisissez vos couleurs pour la boucle populaire.',
+'css_couleurs_rub' => 'Choisissez vos couleurs pour la page rubrique.',
+'css_couleurs_site' => 'Choisissez vos couleurs pour la page site.',
 'css_couleurs_zard' => 'Choisissez vos couleurs pour la boucle hasard.',
 'css_bg' => 'Couleur d\'arrière plan',
 'css_fond' => 'Fond de page',
 'css_fg' => 'Couleur d\'avant plan (texte et liens)',
 'css_ho' => 'Couleur de survol',
+'css_mot' => 'Mot',
 'css_navigation' => 'Colonne de droite',
 'css_pied' => 'Pied',
+'css_rubrique' => 'Rubrique',
+'css_site' => 'Site',
 
 //D
 'descriptif_boucles' => '<h4>R&eacute;glage des boucles</h4>

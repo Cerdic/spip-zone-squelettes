@@ -26,22 +26,20 @@
 
 	[(#REM) Contenu principal : affichage du site ]
 	<div id="content">
-
         <div class="cartouche">
             [(#LOGO_MOT||image_reduire{200,200})]
             <h1 class="#EDIT{titre}">#TITRE</h1>
         </div><!--#cartouche-->
-
         [<div class="#EDIT{texte} chapo">(#TEXTE)</div>]
-
         [(#REM) Sites web lies au mot-cle ]
         <B_sites>
         <div class="menu">
+		<fieldset class="chapo">
             #ANCRE_PAGINATION
-            <h2><:sites_web:></h2>
+            <legend><:sites_web:></legend>
             <ul>
                 <BOUCLE_sites(SITES) {id_mot}{notation}{!par nombre_votes}{par nom_site} {pagination #CONFIG{annuaire_boucles/pas_pagination_site, 10}}>
-				<li><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a>
+				<li><a class="site" href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a>
 				#FORMULAIRE_NOTATION</li>
 				</BOUCLE_sites>
             </ul>
@@ -50,7 +48,6 @@
         </B_sites>
 		<:annuaire:pas_syndic:>
 		<//B_sites>
-		
         [<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
 
 	</div><!--#content-->
