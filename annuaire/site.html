@@ -15,7 +15,7 @@
 ]<meta name="robots" content="noindex" />
 </head>
 <body>
-<div id="container">
+<div id="site">
 
 	[(#REM) Afficher l'entete :]
 	<INCLURE{fond=inc/inc-entete}>
@@ -32,7 +32,7 @@
 	[(#REM) Contenu principal : affichage du site ]
     <div id="content">
 		<p />
-		<fieldset class="chapo">
+		<fieldset id="chapo">
 		<img src="http://open.thumbshots.org/image.aspx?url=#URL_SITE" [ alt="(#NOM_SITE|texte_backend)"] />
 		[(#LOGO_SITE||image_reduire{150,100})]
 		<legend>[(#NOM_SITE|textebrut)]</legend>
@@ -46,11 +46,11 @@
         [(#REM) Articles issus de la syndication ]
         <B_articles>
         <div class="menu_articles">
-		<fieldset class="chapo">
+		<fieldset id="chapo">
             #ANCRE_PAGINATION
             <legend><:articles:></legend>
             <ul>
-                <BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {par date}{inverse} {pagination #CONFIG{annuaire/pas_pagination_rss, 5}}>
+                <BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {par date}{inverse} {pagination #CONFIG{annuaire_boucles/pas_pagination_rss, 5}}>
                 <li>
                     <h3><a href="#URL_ARTICLE" target="_blank">#TITRE</a></h3>
                     [<div class="enclosures">(#TAGS|afficher_enclosures)</div>]
@@ -82,7 +82,7 @@
 		[(#REM) Afficher le pied de page :]
 		<INCLURE{fond=inc/inc-pied}>
 	</div><!--#footer-->
-</div><!--#container-->
+</div><!--#site-->
 </body>
 </html>	
 </BOUCLE_principale>
