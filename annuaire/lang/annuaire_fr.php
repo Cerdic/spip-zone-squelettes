@@ -42,6 +42,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //P
 'pas_new' => 'Pas de nouveaut&eacute;s',
 'pas_pop' => 'Pas de populaires, car pas de votes',
+'pas_sites' => 'Pas de site rattach&eacute; &agrave; ce mot clef.',
 'pas_syndic' => 'Pas d\'articles syndiqu&eacute; pour ce site.',
 'pas_zard' => 'Pas de sites au hasard, enregistrez-en ...',
 'plus_pop' => 'Les plus populaires',
