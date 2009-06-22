@@ -591,7 +591,7 @@ function EVA_div_images() {
     'image_pied' => array('ul#pied'),
     'image_pied-logo' => array('#logo-pied'),
     'image_titres' => array('h3','legend','.titre','.bloc .titre','.divers h4','table.spip tr.row_first th','div#contenu div.ps h4','div#menudroit h3.titre','div#contenu h3.titre','div#menu h3.titre','div#menudroit h2.titre','div#contenu h2.titre','div#menu h2.titre','table.spip tr.row_first','div#contenu div.lien','div#contenu div.notes h4','div#contenu h4.titre','#forum ul.forum div.titre h4','#forum .bouton a'),
-    'image_menu' => array('ul#sommaire', 'ul#sommaire li'),
+    'image_menu' => array('ul#sommaire'),
     'image_menu_off' => array('div#menu ul#sommaire li','div#menu ul#sommaire .off','div#menudroit ul#sommaire .off'),
     'image_menu_on' => array('div#menu ul#sommaire .on','div#menudroit ul#sommaire .on'),
     'image_impairs' => array('.spip tr.row_even td','div#menudroit .bloc ul li.un','div#menu .bloc ul li.un','div#contenu ul li.un'),
