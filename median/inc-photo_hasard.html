@@ -1,0 +1,18 @@
+#CACHE{0}
+      #SET{nb_tofs, 0}
+      #SET{max_tofs, 20}
+      <B_art_tofs>
+      <ul id="defile_tofs" class="innerfade">
+      <BOUCLE_art_tofs(ARTICLES){titre_mot=photos_sommaire}{par hasard}>
+          <BOUCLE_limite_nb(CONDITION){si #GET{nb_tofs}|<{#GET{max_tofs}}}>
+              <BOUCLE_tof_auhazard(DOCUMENTS){id_article}{extension IN png,jpg,gif} {largeur > hauteur} {par hasard} {0,20}>
+                  [(#LARGEUR|>{#HAUTEUR}|oui)<li>
+                      <a href="#URL_DOCUMENT" class="nyroceros" title="#TITRE">[(#FICHIER|image_reduire{0,110}|inserer_attribut{alt, #TITRE}|inserer_attribut{class, encadrement})]</a>
+                    </li>
+                    [(#SET{nb_tofs, #GET{nb_tofs|plus{1}}})]
+                  ]
+              </BOUCLE_tof_auhazard>
+          </BOUCLE_limite_nb>
+      </BOUCLE_art_tofs>
+      </ul>
+      </B_art_tofs>

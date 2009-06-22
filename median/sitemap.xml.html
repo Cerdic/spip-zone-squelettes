@@ -1,0 +1,53 @@
+[(#REM)
+
+	Exemple tres simple de sitemap.xml accessible via URL_SITE_SPIP/sitemap.xml
+	(copier htaccess.txt en .htaccess pour en beneficier)
+
+	Ce sitemap affiche la liste des rubriques, breves et articles, en se limitant a 1000 rubriques, 1000 breves et 2000 articles pour des raisons
+	de performances.
+
+	Duree de reindexation et priorite ne sont pas precisees,
+	sauf pour l'accueil.
+
+	Mais si date_modif est recente (1 jour) on l'indique, pour que ce
+	soit reindexe en priorite
+
+]#HTTP_HEADER{Content-Type: text/xml; charset=utf-8}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+[(#REM) la totale pour faire fonctionner le mot clé _invisible_ ]
+    [(#REM) choper en doublon les rubriques ayant le mot clé invisible, les articles et breves qu'elles contiennent ]
+    <BOUCLE_rubriques_exclues(RUBRIQUES) {titre_mot=_invisible_} {doublons _invisible_}>
+      <BOUCLE_articles_int(ARTICLES) {doublons _invisible_} {id_rubrique}></BOUCLE_articles_int>
+      <BOUCLE_breves_int(BREVES) {doublons _invisible_} {id_rubrique}></BOUCLE_breves_int>
+      [(#REM) choper en doublon les sous-rubriques, récursivement, et les articles inclus dans des rubriques avec le mot clé invisible ]
+      <BOUCLE_rubriques_int(RUBRIQUES) {doublons _invisible_} {id_parent}>
+        <BOUCLE_art_int(ARTICLES) {doublons _invisible_} {id_rubrique}></BOUCLE_art_int>
+        <BOUCLE_recursive(BOUCLE_rubriques_int)></BOUCLE_recursive>
+      </BOUCLE_rubriques_int>
+    </BOUCLE_rubriques_exclues>
+    [(#REM) choper en doublon les articles et brèves ayant le mot clé invisible ]
+    <BOUCLE_articles_exclus(ARTICLES) {titre_mot=_invisible_} {doublons _invisible_}></BOUCLE_articles_exclus>
+    <BOUCLE_breves_exclues(BREVES) {titre_mot=_invisible_} {doublons _invisible_}></BOUCLE_breves_exclues>
+
+[(#REM) Accueil]
+<url>
+	<loc>#URL_SITE_SPIP/</loc>
+	<changefreq>hourly</changefreq>
+</url>
+
+[(#REM) Rubriques ]
+<BOUCLE_r(RUBRIQUES){!par date}{0,1000}>[
+<url><loc>(#URL_RUBRIQUE|url_absolue)</loc></url>]</BOUCLE_r>
+
+[(#REM) Articles ]
+[(#SET{recent,[(#VAL{'Y-m-d H:i:s'}|date{[(#DATE|affdate{U}|moins{86400})]})]})]
+<BOUCLE_a(ARTICLES){!par date_modif}{!par date}{0,2000}{!titre_mot=restricted_access}>[
+<url><loc>(#URL_ARTICLE|url_absolue)</loc>[(#DATE_MODIF|>{#GET{recent}}|?{[<lastmod>(#DATE_MODIF|date_iso)</lastmod>]})]</url>]</BOUCLE_a>
+
+[(#REM) Breves ]
+<BOUCLE_b(BREVES){!par date}{0,1000}>[
+<url><loc>(#URL_BREVE|url_absolue)</loc></url>]</BOUCLE_b>
+
+</urlset>
