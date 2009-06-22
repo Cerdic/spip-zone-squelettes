@@ -356,6 +356,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'navigation_bulle_vers_forum'=>'Se rendre sur la page du forum',
 		'navigation_bulle_vers_rubrique'=>'Se rendre sur la page de cette rubrique',
 		'navigation_bulle_vers_galerie'=>'Se rendre sur la page de la galerie',
+		'navigation_bulle_vers_auteur'=>'Se rendre sur la page de l\'auteur',
 		'navigation_titre' => 'Navigation',
 		'newsletter' => 'Lettre d\'information',
 		'nom' => 'Nom', // redefinition item SPIP
