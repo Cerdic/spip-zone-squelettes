@@ -2,30 +2,30 @@
 if (!defined("_ECRIRE_INC_VERSION")) return;
 include_spip('base/abstract_sql');
 
-// Fichier de langue du site, utilis√© dans les squelettes
+// Fichier de langue du site, utilise dans les squelettes
 
-$GLOBALS[$GLOBALS['idx_lang']]=array(
+$test_lang_personnalisation=array(
 // A <:form_pet_message_commentaire:>
 'accueil' => 'Portada del sitio',
 'acces_restreint' => 'Acceso limitado',
 'agenda' => 'Agenda',
 'aide' => 'Ayuda',
-'articles' => 'Articulos',
-'article_complet' => 'Articulo entero',
+'articles' => 'Art&iacute;culos',
+'article_complet' => 'Art&iacute;culo entero',
 'aucun_resultat_pour' => 'Ning&uacute;n resultado para',
 'article_precedent' => 'Precedente',
 'article_precedent_premier' => 'Primero',
 'article_suivant' => 'Siguiente',
-'article_suivant_dernier' => 'Ultimo',
+'article_suivant_dernier' => '&Uacute;ltimo art&iacute;culo',
 'aucun_evenement' => 'No hay ning&uacute;n acontecimiento previsto durante este mes en el orden del d&iacute;a',
 
 // B
 'breves' => 'Noticias cortas',
-'breves_rubrique' => 'Noticias cortas de la r&uacute;brica',
+'breves_rubrique' => 'Noticias cortas de la secci&oacute;',
 
 // C
 'contact' => 'Contacto',
-'copyright_spip' => 'Este sitio web esta administrado por',
+'copyright_spip' => 'Este sitio web est&aacute; administrado con',
 'copyright_eva' => 'y utiliza el esqueleto',
 
 // D
@@ -33,29 +33,29 @@ $GLOBALS[$GLOBALS['idx_lang']]=array(
 'documents_joints' => 'Documentos adjuntos',
 'document' => 'Documento',
 'deconnecter' => 'Desconectarse',
-'derniers_articles' => 'Los ultimos articulos',
-'dernieres_breves' => 'Los &uacute;ltimos articulos cortos',
+'derniers_articles' => 'Los &uacute;ltimos art&iacute;culos',
+'dernieres_breves' => 'Los &uacute;ltimos art&iacute;culos cortos',
 'derniers_commentaires' => 'Los &uacute;ltimos comentarios',
 'derniers_podcasts' => '&Uacute;ltimos podcasts',
 'derniers_sites' => '&Uacute;ltimos sitios',
 'de_cet_auteur' => 'de este autor',
 'derniere_mise_a_jour' => '&Uacute;ltimas actualizaciones',
 'diaporama' => 'Diaporama',
-'dix_meilleurs_articles' => 'Los diez mejores articulos',
+'dix_meilleurs_articles' => 'Los diez mejores art&iacute;culos',
 'dix_meilleurs_commentaires' => 'Los diez mejores comentarios',
 'dix_meilleurs_breves' => 'Las diez mejores noticias cortas',
 
 // E
 'erreur_404' => 'Error 404',
 'evenements_du' => 'Los acontecimientos del',
-'evenements_a_venir' => 'Los acontecimientos a venir',
+'evenements_a_venir' => 'Los pr&oacute;ximos acontecimientos',
 'evenement_aucun' => 'No hay ning&uacute;n acontecimiento previsto durante este mes en el orden del d&iacute;a',
-'evenements_passes' => 'Ev&egrave;nements pass&eacute;s',
-'evenements_passes_aucun' => 'No hay ning&uacute;n acontecimiento previsto  en este orden del d&iacute;a',
+'evenements_passes' => 'Acontecimientos pasados',
+'evenements_passes_aucun' => 'No hay ning&uacute;n acontecimiento pasados en este orden del d&iacute;a',
 
 // F
 'fermer_fenetre' => 'Cerrar la ventana',
-'form_pet_message_commentaire' => '¿un comentario?',
+'form_pet_message_commentaire' => '&iquest;un comentario?',
 'feuilleter_livre' => 'hojear el libro',
 
 // G
@@ -65,45 +65,45 @@ $GLOBALS[$GLOBALS['idx_lang']]=array(
 // H
 
 // I
-'identifier' => 'Usted es autentificado',
+'identifier' => 'Usted se ha autentificado',
 'il_y_a' => 'Hay',
-'il_y_a1' => 'firma (s) para esta petici&oacute;n',
+'il_y_a1' => 'firma(s) para esta petici&oacute;n',
 'il_y_a2' => 'Se encuentra en total',
-'il_y_a3' => 'articulo(s).<br /> Este bloque en cartel',
+'il_y_a3' => 'art&iacute;culo(s).<br /> Este bloque en cartel',
 'il_y_a4' => 'autor(es).<br /> Este bloque en cartel',
 'il_y_a5' => 'Noticia(s) cortas.<br /> Este bloque en cartel',
 
 // J
 'j1' => 'lu',
 'j2' => 'ma',
-'j3' => 'mier',
+'j3' => 'mi&eacute;r',
 'j4' => 'ju',
 'j5' => 'vi',
-'j6' => 'sa',
+'j6' => 's&aacute;',
 'j7' => 'do',
 'jo1' => 'Lunes',
 'jo2' => 'Martes',
 'jo3' => 'Mi&eacute;rcoles',
 'jo4' => 'Jueves',
 'jo5' => 'Viernes',
-'jo6' => 'Sabado',
+'jo6' => 'S&aacute;bado',
 'jo7' => 'Domingo',
 
 // L
-'lire_suite' => 'Leer la concecuencia',
-'lancer_diaporama' => 'Abri el Diaporama',
-'lien_externe'=>"V&iacute;nculo exterior al sitio, se abre en una nueva ventana",
+'lire_suite' => 'Leer m&aacute;s',
+'lancer_diaporama' => 'Abrir el Diaporama',
+'lien_externe'=>"Enlace exterior al sitio, se abre en una nueva ventana",
 
 // M
-'meme_rubrique' => 'En la misma r&uacute;brica',
-'mot_cle' => 'Palabras Llaves',
-'mis_a_jour' => 'Actualisaci&oacute;n; :',
-'mentions' => 'Mentions',
-'mentions_legales' => 'menciones legales',
+'meme_rubrique' => 'En la misma secci&oacute;n',
+'mot_cle' => 'Palabra clave',
+'mis_a_jour' => 'Actualizaci&oacute;n :',
+'mentions' => 'Menciones',
+'mentions_legales' => 'Menciones legales',
 'm1' => 'enero',
-'m2' => 'fevrero',
+'m2' => 'febrero',
 'm3' => 'marzo',
-'m4' => 'avril',
+'m4' => 'abril',
 'm5' => 'mayo',
 'm6' => 'junio',
 'm7' => 'julio',
@@ -114,17 +114,15 @@ $GLOBALS[$GLOBALS['idx_lang']]=array(
 'm12' => 'diciembre',
 
 // N
-'notes' => 'Notas',
+'notes' => 'Apuntes',
 
 // P
 'plan_du_site' => 'Mapa del sitio',
-'post_scriptum' => 'Post-scriptum',
+'post_scriptum' => 'Postdata',
 'par' => 'Por :',
 'publie' => 'Publicado :',
-'rechercher' => 'Buscar a',
-'resultats' => 'Resultados',
 'pour' => 'para',
-'pages' => 'hojas',
+'pages' => 'P&aacute:ginas',
 'partenaires' => 'Socios',
 'podcasts' =>'Podcasts',
 'podcasts_rss' => 'Podcast y RSS',
@@ -132,34 +130,49 @@ $GLOBALS[$GLOBALS['idx_lang']]=array(
 // R
 'redaction' => 'Redacci&oacute;n',
 'rechercher' => 'Buscar',
+'resultats' => 'Resultados',
 'replier' => 'Doblar',
 
 // S
 'sites' => 'otros sitios :',
-'sites_references' => 'Sitio hechos r&eacutef&acute;rencia',
-'sites_rubrique' => 'Los sitios de la r&uacute;brica',
-'sites_syndic' => 'Sitios ref&eacute;renciados que pr&eacutesentan trabajos ',
-'sur_le_web' => 'Sur le web',
-'sur_un_total_de' => 'sur un total de',
-'sous_rubrique' => 'Sous-rubrique',
-'statut_admin' => 'Statut : Administrateur<br />',
-'statut_redac' => 'Statut : R&eacute;dacteur',
-'statut_visit' => 'Statut : Visiteur',
+'sites_references' => 'Sitios referenciados',
+'sites_rubrique' => 'Los sitios de la secci&oacute;n',
+'sites_syndic' => 'Sitios sindicados',
+'sur_le_web' => 'En la Web',
+'sur_un_total_de' => 'sobre un total de',
+'sous_rubrique' => 'subdivisi&oacute;n de secci&oacute;n',
+'statut_admin' => 'Estatuto : Administrador',
+'statut_redac' => 'Estatuto : Redactor',
+'statut_visit' => 'Estatuto : Visitante',
 
 // T
-'texte_page_404' => '<em>¡l&aacutestima !</em><br />La pgina que Usted trata de leer no existe mas. ',
+'texte_page_404' => '<em> &iexcl; l&aacutestima !</em><br />La p&aacute;gina que Usted trata de leer ya no existe.',
 'tous_les_auteurs' => 'Todos los autores',
-'tous_droits' => 'Todos los derechos',
+'tous_droits' => 'Todos derechos reservados',
 
 // V
 'version_eva' => 'EVA-Web 4.0 estable',
-'visites' => 'Visitores',
-'voir_en_ligne' => 'Ver sobre el Web :',
+'visites' => 'Visitas',
+'voir_en_ligne' => 'Ver en l&iacute;nea :',
 'voir_image' => 'Ver la imagen en modo normal',
-'vous_etes_ici' => 'Esta usted aqu&iacute).fr :',
+'vous_etes_ici' => 'Usted est&aacute; aqu&iacute; :',
 
 //Z
 
 'zone' => 'zona protegida',
 );
+foreach ($test_lang_personnalisation as $cle=>$val) {
+if ((isset($GLOBALS['meta']['eva_habillage_base_version'])) AND !($_GET['action']=='desinstaller_plugin')) {
+	$test_lang=sql_select('nom_image','spip_eva_habillage_images',"type = 'fichier_lang' AND nom_habillage = 'Defaut' AND nom_div = '$cle'");
+	$result_lang=sql_fetch($test_lang);
+	$resultat=$result_lang['nom_image'];
+	if ($resultat) {
+		$GLOBALS[$GLOBALS['idx_lang']][$cle] = $resultat;
+	}
+	else {
+		$GLOBALS[$GLOBALS['idx_lang']] [$cle] = $val;
+	}
+}
+else {$GLOBALS[$GLOBALS['idx_lang']] [$cle] = $val;}
+}
 ?>
