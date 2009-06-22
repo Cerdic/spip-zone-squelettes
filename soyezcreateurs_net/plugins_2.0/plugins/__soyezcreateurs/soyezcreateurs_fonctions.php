@@ -81,31 +81,6 @@ function sc_get_jour ($nb) {
 	$jour["6"] = _T('date_jour_7');
 	return $jour[$j];
 }
-function sc_menu_mois ($mois) {
-	$l_mois = array(
-		'01' => _T('date_mois_1'),
-		'02' => _T('date_mois_2'),
-		'03' => _T('date_mois_3'),
-		'04' => _T('date_mois_4'),
-		'05' => _T('date_mois_5'),
-		'06' => _T('date_mois_6'),
-		'07' => _T('date_mois_7'),
-		'08' => _T('date_mois_8'),
-		'09' => _T('date_mois_9'),
-		'10' => _T('date_mois_10'),
-		'11' => _T('date_mois_11'),
-		'12' => _T('date_mois_12')
-	);
-	$resultat = '';
-	foreach($l_mois as $key => $value) {
-		if ($mois == $key)
-			$selected =  ' selected="selected"';
-		else
-			$selected = '';
-		$resultat .= '<option'.$selected.' value="'.$key.'">'.$value.'</option>';
-	}
-	return $resultat;
-}
 function sc_agenda_mini($i) {
   $args = func_get_args();
   $une_date = array_shift($args); // une date comme balise

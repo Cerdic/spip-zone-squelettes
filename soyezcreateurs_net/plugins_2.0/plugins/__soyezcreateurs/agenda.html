@@ -27,7 +27,7 @@
 		<ul>
 		<BOUCLE_sous_rubriques1(RUBRIQUES){id_parent}{par titre}>
 		<li[ style="list-style-image: url(/(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{9,9}|extraire_attribut{src}));"]>
-		<a href="#URL_PAGE{agenda}&amp;id_rubrique=#ID_RUBRIQUE&amp;date_ev=[(#ENV{date_ev,[(#ENV{date})]}|annee)]-[(#ENV{date_ev,[(#ENV{date})]}|mois)]-01[&amp;id_mot=(#ENV{id_mot,''}|urlencode)]" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">
+		<a href="[(#URL_PAGE{agenda}|parametre_url{'id_rubrique',#ID_RUBRIQUE}|parametre_url{'date_ev', [(#ENV{date_ev,[(#ENV{date})]}|annee)]-[(#ENV{date_ev,[(#ENV{date})]}|mois)]-01}|parametre_url{'id_mot', (#ENV{id_mot,''}|urlencode)})]" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">
 			[(#TITRE)]
 		</a>
 		<BOUCLE_RecursionRubriques(BOUCLE_sous_rubriques1) />
@@ -58,7 +58,18 @@
 				]
 				</BOUCLE_PremiereAnnee>
 				<select id="var_nav_month">
-					[(#ENV{date}|mois|sc_menu_mois)]
+					<option value="01"[ (#GET{date}|nom_mois|=={<:date_mois_1:>}|oui) selected="selected"]><:date_mois_1:></option>
+					<option value="02"[ (#GET{date}|nom_mois|=={<:date_mois_2:>}|oui) selected="selected"]><:date_mois_2:></option>
+					<option value="03"[ (#GET{date}|nom_mois|=={<:date_mois_3:>}|oui) selected="selected"]><:date_mois_3:></option>
+					<option value="04"[ (#GET{date}|nom_mois|=={<:date_mois_4:>}|oui) selected="selected"]><:date_mois_4:></option>
+					<option value="05"[ (#GET{date}|nom_mois|=={<:date_mois_5:>}|oui) selected="selected"]><:date_mois_5:></option>
+					<option value="06"[ (#GET{date}|nom_mois|=={<:date_mois_6:>}|oui) selected="selected"]><:date_mois_6:></option>
+					<option value="07"[ (#GET{date}|nom_mois|=={<:date_mois_7:>}|oui) selected="selected"]><:date_mois_7:></option>
+					<option value="08"[ (#GET{date}|nom_mois|=={<:date_mois_8:>}|oui) selected="selected"]><:date_mois_8:></option>
+					<option value="09"[ (#GET{date}|nom_mois|=={<:date_mois_9:>}|oui) selected="selected"]><:date_mois_9:></option>
+					<option value="10"[ (#GET{date}|nom_mois|=={<:date_mois_10:>}|oui) selected="selected"]><:date_mois_10:></option>
+					<option value="11"[ (#GET{date}|nom_mois|=={<:date_mois_11:>}|oui) selected="selected"]><:date_mois_11:></option>
+					<option value="12"[ (#GET{date}|nom_mois|=={<:date_mois_12:>}|oui) selected="selected"]><:date_mois_12:></option>
 				</select>
 				<B_Annees>
 				<select id="var_nav_year">
