@@ -107,6 +107,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'css_couleurs_pop' => 'Choisissez vos couleurs pour la boucle populaire.',
 'css_couleurs_rub' => 'Choisissez vos couleurs pour la page rubrique.',
 'css_couleurs_site' => 'Choisissez vos couleurs pour la page site.',
+'css_couleurs_tag' => 'Choisissez vos couleurs pour le tags de mot clef.',
 'css_couleurs_zard' => 'Choisissez vos couleurs pour la boucle hasard.',
 'css_bg' => 'Couleur d\'arrière plan',
 'css_fond' => 'Fond de page',
@@ -118,6 +119,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'css_plan' => 'Plan',
 'css_rubrique' => 'Rubrique',
 'css_site' => 'Site',
+'css_tag' => 'Tags',
 
 //D
 'descriptif_boucles' => '<h4>R&eacute;glage des boucles</h4>

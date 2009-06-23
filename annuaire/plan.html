@@ -13,44 +13,42 @@
 	<INCLURE{fond=inc/inc-entete}>
 	
 	[(#REM) Fil d'Ariane ]
-    <div id="hierarchie">
+    <div class="hierarchie">
 		<a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; 
 		<strong class="on"><:plan_site:></strong>
 	</div>
     
 	[(#REM) Contenu principal : affichage du site ]
 	<div id="content">
-        <div class="cartouche">
-            <h1><:plan_site:></h1>
-        </div><!--#cartouche-->
 		<fieldset class="chapo">
-        <BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
-        <h2><a href="#URL_RUBRIQUE">#TITRE</a></h2>
-        
-		[(#REM) Sous-rubriques ]
-		<B_rubriques>
-		<ul>
-			<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
-			<li class="liste">
-				<strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
-				<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
-			</li>
-			</BOUCLE_rubriques>
-		</ul>
-		</B_rubriques>
+		<legend><:plan_site:></legend>
+			<fieldset class="chapo">
+			<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
+        	<legend><a class="site" href="#URL_RUBRIQUE">#TITRE</a></legend>
 
-        
-        [(#REM) Sur le Web ]
-        <B_sites>
-        <h3><:sites_web:></h3>
-        <ul>
-            <BOUCLE_sites(SITES) {id_secteur} {par nom_site}>
-			<li class="liste"><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a></li>
-			</BOUCLE_sites>
-        </ul>
-        </B_sites>
-        
-        </BOUCLE_secteurs>
+			[(#REM) Sous-rubriques ]
+			<B_rubriques>
+			<ul>
+				<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+				<li class="site">
+					<strong><a class="site" href="#URL_RUBRIQUE">#TITRE</a></strong>
+					<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+				</li>
+				</BOUCLE_rubriques>
+			</ul>
+			</B_rubriques>
+
+	        [(#REM) Sur le Web ]
+	        <B_sites>
+	        <h3><:sites_web:></h3>
+	        <ul>
+	            <BOUCLE_sites(SITES) {id_secteur} {par nom_site}>
+				<li class="site"><a class="site" href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a></li>
+				</BOUCLE_sites>
+	        </ul>
+	        </B_sites>
+	        </BOUCLE_secteurs>
+			</fieldset>
 		</fieldset>
 	</div><!--#content-->
 	
