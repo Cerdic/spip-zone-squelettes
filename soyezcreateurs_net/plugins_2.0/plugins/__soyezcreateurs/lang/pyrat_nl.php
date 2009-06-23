@@ -92,7 +92,6 @@ $GLOBALS['i18n_pyrat_nl'] = array(
 'forum_votre_prenom' => 'Uw voornaam :',
 'forum_repondre' => 'Uw getuigenis toevoegen',
 'forum_vosreponses' => 'Uw getuigenissen',
-'forum_postermessage' => 'Een bericht verzenden',
 'forum' => 'Forum',
 'forum_enreponse' => 'In antwoord op het artikel&nbsp;:',
 'forum_enreponse_breve' => 'In antwoord op de korte informatie&nbsp;:',

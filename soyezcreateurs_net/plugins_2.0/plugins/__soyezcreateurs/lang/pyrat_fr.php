@@ -12,7 +12,6 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'agendamoisde' => 'Agenda du mois de',
 'alaune' => '&Agrave; la Une',
 'auteur' => 'Auteur',
-'auteurs' => 'Auteurs',
 'auteurs_liste' => 'Liste des auteurs',
 'auteurs_site' => 'Auteurs du site',
 'aujourdhui' => 'Aujourd\'hui',
@@ -54,6 +53,8 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'connexion' => 'Connexion',
 'connexiontitle' => 'Acc&eacute;der &agrave; l\'espace r&eacute;serv&eacute;',
 'commencer' => 'Pour bien commencer',
+'clevermail' => 'CleverMail',
+'clever_uns' => 'Desinscription accompli',
 
 //D
 'date_j_1' => 'D',
@@ -94,7 +95,6 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'forum_votre_prenom' => 'Votre pr&eacute;nom :',
 'forum_repondre' => 'Rajouter votre t&eacute;moignage',
 'forum_vosreponses' => 'Vos t&eacute;moignages',
-'forum_postermessage' => 'Poster un message',
 'forum' => 'Forum',
 'forum_enreponse' => 'En r&eacute;ponse &agrave; l\'article&nbsp;:',
 'forum_enreponse_breve' => 'En r&eacute;ponse &agrave; la br&egrave;ve&nbsp;:',

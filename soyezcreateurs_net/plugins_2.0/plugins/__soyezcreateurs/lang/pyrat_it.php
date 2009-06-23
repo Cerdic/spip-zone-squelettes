@@ -93,7 +93,6 @@ $GLOBALS['i18n_pyrat_it'] = array(
 'forum_votre_prenom' => 'Votre pr&eacute;nom :',
 'forum_repondre' => 'Rajouter votre t&eacute;moignage',
 'forum_vosreponses' => 'Vos t&eacute;moignages',
-'forum_postermessage' => 'Poster un message',
 'forum' => 'Forum',
 'forum_enreponse' => 'En r&eacute;ponse &agrave; l\'article&nbsp;:',
 'forum_enreponse_breve' => 'En r&eacute;ponse &agrave; la br&egrave;ve&nbsp;:',
