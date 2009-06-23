@@ -1,5 +1,5 @@
 [(#REM) Edito : C'est le dernier article en date ayant pour mot-clef "EDITO" )]
-<BOUCLE_article_principal(ARTICLES) {titre_mot=EDITO#ENV{typeedito}}{!par date}{0,1}>
+<BOUCLE_article_principal(ARTICLES){lang}{titre_mot=EDITO#ENV{typeedito}}{!par date}{0,1}>
 	<div id="miettesdepain">
 	<ul>
 	<li><a href="./"><:pyrat:accueil:></a></li>
@@ -28,5 +28,36 @@
 	</div><!-- Fin de LeTexte -->
 </div><!-- Fin de .texte -->
 </BOUCLE_article_principal>
+<BOUCLE_article_principal_bis(ARTICLES){titre_mot=EDITO#ENV{typeedito}}{lang=#CONFIG{langue_site}}{!par date}{0,1}>
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="./"><:pyrat:accueil:></a></li>
+	<li>[(#TITRE)]</li>
+	</ul>
+	</div>
+[(#INCLURE{fond=noisettes/cartouches/sommaire_cartouche})]
+
+<div class="texte">
+<div class="cartouche">
+[<div class="#EDIT{surtitre} surtitre"><span>(#SURTITRE)</span></div>]
+[(#INCLURE{fond=noisettes/aff_datepublication}{id_article})]
+<h1 class="#EDIT{titre} entry-title">[<img src="(#LOGO_ARTICLE_NORMAL||image_reduire{64,64}|extraire_attribut{src})" class="logo_article" alt="[(#TITRE|texte_script|supprimer_tags|attribut_html) (logo)]" width="[(#LOGO_ARTICLE_NORMAL||image_reduire{64,64}|extraire_attribut{width})]" height="[(#LOGO_ARTICLE_NORMAL||image_reduire{64,64}|extraire_attribut{height})]" />][(#TITRE)]</h1>
+[<div class="#EDIT{soustitre} soustitre"><span>(#SOUSTITRE)</span></div>][(#INCLURE{fond=noisettes/liste_auteurs}{id_article}{lang})]
+</div>
+
+	<div id="letexte" class="surlignable">
+[<div class="[(#CHAPO|?{#EDIT{chapo},#EDIT{descriptif}}) ]chapo">(#CHAPO|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0}|sinon{#DESCRIPTIF})</div>]
+[<div class="#EDIT{texte} entry-content">(#TEXTE|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>]
+[<div class="#EDIT{ps} ps">(#PS|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>]
+[<div class="notes">(#NOTES)</div>]
+[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+
+[(#INCLURE{fond=noisettes/galerie}{ajax}{id_article}{env})]
+
+	</div><!-- Fin de LeTexte -->
+</div><!-- Fin de .texte -->
+</BOUCLE_article_principal_bis>
+</B_article_principal_bis>
 [(#ENV{typeedito}|=={''}|?{#INCLURE{fond=noisettes/mode_emploi},#INCLURE{fond=noisettes/sommaire/sommaire_modeedito_type}})]
+<//B_article_principal_bis>
 <//B_article_principal>

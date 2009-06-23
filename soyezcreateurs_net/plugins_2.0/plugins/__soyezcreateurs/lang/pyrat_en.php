@@ -53,6 +53,7 @@ $GLOBALS['i18n_pyrat_en'] = array(
 'chapitre_complet_title' => 'Display the entire section contents: ',
 'connexion' => 'Connection',
 'connexiontitle' => 'Access to admin interface',
+'commencer' => 'To start',
 
 //D
 'date_j_1' => 'S',

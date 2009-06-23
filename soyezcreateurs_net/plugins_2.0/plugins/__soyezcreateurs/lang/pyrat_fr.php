@@ -53,6 +53,7 @@ $GLOBALS['i18n_pyrat_fr'] = array(
 'chapitre_complet_title' => 'Afficher en entier le contenu de la rubrique&nbsp;: ',
 'connexion' => 'Connexion',
 'connexiontitle' => 'Acc&eacute;der &agrave; l\'espace r&eacute;serv&eacute;',
+'commencer' => 'Pour bien commencer',
 
 //D
 'date_j_1' => 'D',
