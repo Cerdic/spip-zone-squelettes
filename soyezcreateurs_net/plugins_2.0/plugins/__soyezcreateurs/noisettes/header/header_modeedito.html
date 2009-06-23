@@ -9,6 +9,25 @@
 	<li><a href="#formulaire_recherche"><:pyrat:accessibilite_recherche:></a></li>
 </ul></div>
 <div id="datemajsite"><span><BOUCLE_datemajsite(ARTICLES){!par date_modif}{0,1}{lang}><:pyrat:dernieremaj:> [(#DATE_MODIF|nom_jour)] [(#DATE_MODIF|affdate)]</BOUCLE_datemajsite>[(#CONFIG{soyezcreateurs/positionfluxrss,bottom}|=={header}|oui)<a href="#URL_PAGE{backend}"><img src="#CHEMIN{images/rss.gif}" alt="<:syndiquer_site:> [(#NOM_SITE_SPIP|attribut_html)]" width="36" height="15" /></a>]</span></div>
+<div id="menu_lang">
+	#SET{arr_a, #ARRAY{}}
+	<B_trad>
+	<BOUCLE_trad(ARTICLES){traduction}>
+		#SET_MERGE{arr_a,#GET{arr_a},#ARRAY{#LANG,#URL_ARTICLE}}
+	</BOUCLE_trad>
+	#SET{'aff', 0}
+	<BOUCLE_langues(ARTICLES){par lang}>
+		[(#LANG|traduire_nom_langue|unique{_langues}|!={''}|oui)
+		#SET{'aff', #GET{aff}|plus{1}}]
+	</BOUCLE_langues>
+	<BOUCLE_test(CONDITION){si #GET{'aff'}|>{1}}>
+		<BOUCLE_l(ARTICLES){par lang}>
+			[<a href="[(#URL_ACTION_AUTEUR{'converser', #LANG&var_lang=#LANG, #GET{arr_a}|table_valeur{#LANG}|sinon{#SELF}})]" rel="alternate" title="[(#LANG|traduire_nom_langue)]">
+				(#LANG|unique{langues})
+			</a>]
+		</BOUCLE_l>
+	</BOUCLE_test>
+</div>
 <a name="[(#ENV{titretop}|sinon{<:pyrat:sommaire|nettoyer_marqueur:>})]" id="[(#ENV{titretop}|sinon{<:pyrat:sommaire|nettoyer_marqueur:>})]"></a>
 [(#CONFIG{soyezcreateurs/logoheader}|=={header}|oui)#INCLURE{fond=noisettes/logosite}]
 <h1 class="crayon meta-valeur-nom_site">[(#NOM_SITE_SPIP)]</h1>
