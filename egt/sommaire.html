@@ -1,4 +1,4 @@
-<!-- squelette egt v0.3 -->
+<!-- squelette egt v0.4 -->
 <!-- auteurs: damazone, sBa - licence GPL -->
 <!-- http://www.spip-contrib.net/EGT-squelette-plugin-pour-SPIP-2 -->
 #CACHE{86400}
@@ -9,31 +9,22 @@
 </head>
 
 <body>
-
-
-<div id="conteneur1">  
+<div id="page">
   
 [(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
-	 <INCLURE{fond=inc/inc-bandeau}>         
-	 
-	<!-- liste de langues url -->
-	[<div id="menu_langues">(#CONFIG{langues_utilisees}|url_lang)</div>]
+	 <INCLURE{fond=inc/inc-entete}{lang}>        
 
 [(#REM) <!-- =========================== ZONE CHEMIN DE NAVIGATION ============================= --> ]
-	<INCLURE{fond=inc/inc-chemin}> 
-
-[(#REM) <!-- =========================== ZONE MENU HORIZONTAL ============================= --> ]
-	<INCLURE{fond=inc/inc-menu-horizontal}> 	
+	<INCLURE{fond=inc/inc-chemin}{lang}> 
 
 [(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
-	<INCLURE{fond=inc/inc-gauche}>
+	<INCLURE{fond=inc/inc-gauche}{lang}>
 
 [(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]	
-	<INCLURE{fond=inc/inc-droite-all-news}>
+	<INCLURE{fond=inc/inc-droite}{lang}>
 
 [(#REM) <!-- =================================== ZONE CORPS  ====================================== --> ]
     <div id="centre">
-	
 		<!-- Articles à la une en colonne centrale -->
 		<a name="contenu"></a>
 		<h2 class="invisible"><:egt:a_la_une:></h2> 
@@ -41,12 +32,7 @@
 		[(#LOGO_MOT||inserer_attribut{'title',#TEXTE})]
 		</BOUCLE_logoaretenir>       
 		<BOUCLE_edito(ARTICLES){par date}{inverse}{lang}{titre_mot=afficher article dans colonne centrale}> 
-			<!-- filtre image typo voir dossier polices du squelette --> 
-			<!-- cfr http://www.spip.net/fr_article3325.html -->
-			<!-- image_alpha transforme l'image en PNG transparent. Attention: l'intégralité de  l'image devient semi-transparente. La variable indique: 0 pas de transparente; 127 transparence totale.  -->
-			<!-- <h3 class="centre-top">[(#TITRE|supprimer_numero|image_typo{police=Tuffy_Bold.ttf,largeur=400,couleur=21759E,taille=25}|image_alpha{60})]</h3> -->
 			<h3 class="#EDIT{titre} centre-top">[(#TITRE|supprimer_numero)]</h3>		 
-
 			[<div class="#EDIT{chapo} centre-chapeau">(#CHAPO)</div>]	
 			[<div class="#EDIT{texte} texte">(#TEXTE|reduire_image{400})</div>]			
 			
@@ -92,13 +78,14 @@
 		
 		<!-- sommaire des 5 derniers articles publiés -->
 		<h2 class="invisible"><:derniers_articles:></h2> 
-		<div class="titre_bloc">
-			<BOUCLE_logo_der_parutions(MOTS){titre=exclure de dernieres parutions}>
-			[(#LOGO_MOT||inserer_attribut{'title',#TEXTE}|sinon{<:spip:articles_recents:><hr />})]
-			</BOUCLE_logo_der_parutions>
-		</div>
 				
 		<div id="actu">    
+		<div class="titrebloc">
+			<BOUCLE_logo_der_parutions(MOTS){titre=exclure de dernieres parutions}>
+			[(#LOGO_MOT||inserer_attribut{'title',#TEXTE}|sinon{<:spip:articles_recents:>})]
+			</BOUCLE_logo_der_parutions>
+		</div>
+
 			<B_actu>
 				[(#ANCRE_PAGINATION)]
 						[(#ENV{debut_articles}|?{'',' '})]			
@@ -122,9 +109,9 @@
     </div><!-- fin du div centre --> 
       
 [(#REM) <!-- ================================== ZONE PIED DE PAGE  ================================== --> ]
-	<INCLURE{fond=inc/inc-pied}{skel=#SQUELETTE}{self=#SELF}> 
+	<INCLURE{fond=inc/inc-pied}{skel=#SQUELETTE}{self=#SELF}{lang}> 
 	
-</div><!-- fin du div conteneur1-->
+</div><!-- fin du div page-->
   
 [(#FORMULAIRE_ADMIN{'spip-admin-float'})]
 

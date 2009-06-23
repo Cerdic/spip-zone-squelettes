@@ -1,30 +1,6 @@
 <?php
 
 // =======================================================================================================================================
-// adaptation du menu_lang plat sans URL sur la langue sélectionnée
-// cfr. http://www.spip-contrib.net/-Formulaire-menu-lang-plat-
-// =======================================================================================================================================
-//
-function url_lang ($langues) {
-   $texte = '';
-   $compteur = 0;
-   $tab_langues = explode(',', $GLOBALS['meta']['langues_multilingue']);
-   while ( list($clef, $valeur) = each($tab_langues) ) {
-        if ($valeur == $GLOBALS['spip_lang']) {
-        $texte .= $valeur.' | ';
-		$compteur .= 1;
-        }
-        else {
-        $texte .= '<a href="'.parametre_url(self(true), 'lang', $valeur, '&').'">'.$valeur.'</a> | ';
-        $compteur .= 1;
-		}
-	}
-		// s'il n'y a qu'une seule langue, on n'affiche rien
-		if ($compteur == 1) {$texte = '';}
-   return $texte;
-}
-
-// =======================================================================================================================================
 // Nombre de visiteurs sur le site
 // base sur le plugin Nombre de visiteurs connectes
 // Fonction : affiche le nombre de visiteurs en cours de connection sur le site

@@ -1,4 +1,4 @@
-<!-- squelette egt v0.3 -->
+<!-- squelette egt v0.4 -->
 <!-- auteurs: damazone, sBa - licence GPL -->
 <!-- http://www.spip-contrib.net/EGT-squelette-plugin-pour-SPIP-2 -->
 <!-- squelette présentant les événements -->
@@ -11,17 +11,15 @@
 
 <body>
 
-<div id="conteneur1">  
+<div id="page">  
  
 [(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
-	<INCLURE{fond=inc/inc-bandeau}>          
+	<INCLURE{fond=inc/inc-entete}>          
 
 [(#REM) <!-- =========================== ZONE CHEMIN DE NAVIGATION ============================= --> ]
-	<div id="haut">
-		<ul>         
-		<li><a href="#URL_SITE_SPIP"><:accueil_site:></a> <img src="#CHEMIN{images/puce.png}" alt=">"/> </li>
-		<li><:agenda:agenda:> <:agenda:evenements:></li>
-		</ul>
+	<div id="navigation">
+		<a href="#URL_SITE_SPIP"><:accueil_site:></a> <img src="#CHEMIN{images/puce.png}" alt=">"/>
+		<:agenda:agenda:> <:agenda:evenements:>
 	</div><!-- fin de haut -->    
 
 [(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
@@ -50,40 +48,32 @@
 		</B_rubriques>
 		
 	[(#REM) <!-- ========================= AGENDA  DES EVENEMENTS ============================== --> ]
-	
-		<!-- #SET{self,#SELF|parametre_url{id_evenement|date_debut,''}|parametre_url{debut_mois,#EVAL{_request('debut_mois')}}} -->
 
 		<h2 class='titrerub'><:agenda:agenda:> :
-		<BOUCLE_compte(EVENEMENTS){id_rubrique?}{id_article?}{id_mot?}{id_evenement_source?} {statut=publie} />
+		<BOUCLE_compte(EVENEMENTS){id_rubrique?}{id_article?}{id_mot?}{id_evenement_source?} {statut=publie} {age_relatif_debut<=0} />
 			[(#TOTAL_BOUCLE|agenda_affiche_un_ou_plusieurs{agenda:info_un_evenement,agenda:info_nombre_evenements}|sinon{	<:agenda:aucun_evenement:>})]#SET{yena,#TOTAL_BOUCLE|oui}<//B_compte>
-		</h2>	
-		
-			[(#GET{self}|parametre_url{date_debut,#ENV{date}|affdate{Y-m-d}}|aoustrong{<:agenda:evenements_a_venir:>,#ENV{date_debut,''}|non}) | ]
-			<BOUCLE_debut(EVENEMENTS){par date_debut}{0,1}{id_article?}{id_rubrique?}{id_evenement_source?}{statut=publie}>
-			[(#GET{self}|parametre_url{date_debut,#DATE_DEBUT|affdate{Y-01-01}}|aoustrong{<:agenda:evenements_depuis_debut:>,#ENV{date_debut,''}|=={#DATE_DEBUT|affdate{Y-01-01}}})]
-			</BOUCLE_debut>
+		</h2>			
 		
 		<B_agenda>
 			
 			<ul>
 		        <BOUCLE_agenda(EVENEMENTS){par date_debut}{pagination #ENV{pagine,20}}{age_relatif_debut<=0}{id_evenement?}{id_article?}{id_rubrique?}{id_mot?}{id_evenement_source?}{statut=publie}>
-		        <li><h4 class="tit-art-rub">
-					<div class="jour">[(#DATE_DEBUT|affdate_jourcourt|unique)]</div>
-					[(#MODELE{evenement_vevent}|trim|sinon{'?'})]
+		        <li class="even">
+					[(#DATE_DEBUT|affdate_jourcourt|unique)<br />]
 					
-					<p class="actions">
-							<span class="lien_article">[<a href='[(#URL_PAGE{article,id_article=#ID_ARTICLE})]'><:article:></a>]</span>
-							[<span class="lien_source">&#91;<a class='ajax' (#ID_EVENEMENT_SOURCE|oui) href='[(#GET{self}|parametre_url{id_evenement,#ID_EVENEMENT_SOURCE}|parametre_url{date_debut,1900-01-01})]'>source</a>&#93;</span>]
-					</p>
+					<BOUCLE_vevent(EVENEMENTS){id_evenement}{tout}>
+							<a href='[(#URL_PAGE{article,id_article=#ID_ARTICLE})]'><span class="titreven">#TITRE<span></a><br />
+							[<span class="dateven">(#DATE_DEBUT|agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE,'hcal'})</span><br />]
+							[<span class="descriptioneven">(#DESCRIPTIF|PtoBR)</span><br />]
+							[<span class="locationeven">(#LIEU|PtoBR)</span>[<span class="adresseven">(#ADRESSE|PtoBR)</span>]<br />]
+					</BOUCLE_vevent>
+
 		        </li>
 		        </BOUCLE_agenda>
 				[<p class="pagination">(#PAGINATION{page})</p>]
 			</ul>
 		</B_agenda>
-			<!-- [(#GET{yena})
-			[(#GET{self}|parametre_url{date_debut,1900-01-01}|aoustrong{<:agenda:evenements_depuis_debut:>,#ENV{date_debut}|=={1900-01-01},noajax}) |]
-			[(#GET{self}|aoustrong{<:agenda:evenements_a_venir:>,#ENV{date_debut}|=={#ENV{date}|affdate{Y-m-d}},noajax}) ]
-			] -->
+		
 		<//B_agenda>
 		
     </div><!-- fin du div centre-article -->
@@ -91,7 +81,7 @@
 [(#REM) <!-- ================================== ZONE PIED DE PAGE  ================================== --> ]
 	<INCLURE{fond=inc/inc-pied}{skel=#SQUELETTE}{self=#SELF}>     
      
-</div><!-- fin du div conteneur1 -->
+</div><!-- fin du div page -->
 
 [(#FORMULAIRE_ADMIN{'spip-admin-float'})]
 

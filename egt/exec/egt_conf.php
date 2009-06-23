@@ -255,7 +255,7 @@ echo debut_cadre_trait_couleur(find_in_path('img_pack/egt.png'), true, "", $titr
 // Affichage et arret si la base n'est pas coherente
 //
 foreach (array('egt_squelette') as $titre) id_groupe($titre);
-foreach (array('afficher aide site', 'afficher article actu','afficher article dans colonne centrale','afficher infos bandeau','afficher logo breves','afficher logo participer','afficher logo rechercher','afficher nom site','afficher site syndique et articles','afficher texte a retenir','afficher titre a retenir','exclure de dernieres parutions','exclure du menu','ne pas afficher formulaire site','album une','espace membres',) as $titre) id_mot($titre, 'egt_squelette');
+foreach (array('afficher aide site', 'afficher article actu','afficher article dans colonne centrale','afficher infos bandeau','afficher logo breves','afficher logo participer','afficher logo rechercher','afficher nom site','afficher site syndique et articles','afficher texte a retenir','afficher titre a retenir','exclure de dernieres parutions','exclure du menu','ne pas afficher formulaire site','album une','espace membres','afficher statistiques','afficher accesskey','afficher topnav',) as $titre) id_mot($titre, 'egt_squelette');
 
 
 //
@@ -275,8 +275,14 @@ foreach (array('egt_squelette') as $titre) {
 	echo "<br />";
   }
 }
-$u = generer_url_ecrire("egt_conf","",false);
-echo "<div style=\"text-align:right\"><a href=\"$u\"><img src=\"".find_in_path('images/action_reload.png')."\" alt=\""._T('egt:rafraichir')."\" width=\"20px\" height=\"20px\" />"._T('egt:rafraichir')."</a></div>";
+//
+// $u = generer_url_ecrire("egt_conf","",false);
+// echo "<form action=\"$u\" method=\"post\">";
+// echo "<div style=\"float: right;\">";
+// echo "<input type=\"submit\" name=\"refresh\" value=\""._T('egt:rafraichir')."\" />";
+// echo "</div>";
+// echo "</form>"; 
+//
 
 // Analyse et traitement requete
 //
@@ -286,7 +292,7 @@ switch ($param) {
   case 'mots_on' : {  echo "<h1>"._T('egt:creation_mots')."</h1>";
 			$id_groupe=id_groupe('egt_squelette');
 			if ($id_groupe == 0) {
-			active_groupe('egt_squelette', array('afficher aide site', 'afficher article actu','afficher article dans colonne centrale','afficher infos bandeau','afficher logo breves','afficher logo participer','afficher logo rechercher','afficher nom site','afficher site syndique et articles','afficher texte a retenir','afficher titre a retenir','exclure de dernieres parutions','exclure du menu','ne pas afficher formulaire site','album une','espace membres',));
+			active_groupe('egt_squelette', array('afficher aide site', 'afficher article actu','afficher article dans colonne centrale','afficher infos bandeau','afficher logo breves','afficher logo participer','afficher logo rechercher','afficher nom site','afficher site syndique et articles','afficher texte a retenir','afficher titre a retenir','exclure de dernieres parutions','exclure du menu','ne pas afficher formulaire site','album une','espace membres','afficher statistiques','afficher accesskey','afficher topnav',));
 			} else {
 				avertir(_T('egt:msg_groupe_existe_deja'));
 				affiche_mots($id_groupe);
@@ -316,15 +322,15 @@ echo fin_boite_info(true);
 echo debut_cadre_relief(  "", false, "", $titre = _T('egt:creation_auto_mots'));
 debut_boite_info(true);
 $u = generer_url_ecrire("egt_conf","param=mots_on",false);
-echo "<a href=\"$u\">"._T('egt:creer_mots')."<br /></a>";
-echo fin_boite_info(true);
+echo _T('egt:creer_mots');
+echo "<br /><br />";
 
+echo "<form action=\"$u\" method=\"post\">";
+echo "<div style=\"float: right;\">";
+echo "<input type=\"submit\" name=\"param_on\" value=\""._T('spip:bouton_valider')."\" />";
+echo "</div>";
+echo "</form>"; 
 
-//Remerciements
-echo debut_cadre_relief(  "", false, "", $titre = _T('Remerciements'));
-debut_boite_info(true);
-echo "Merci &agrave; Marc pour ce script (squelette <a href=\"http://spip-epona.org/\">Epona</a>) 
-ainsi que <a href=\"http://www.plugandspip.com\"> Les plugins Spip</a> pour leurs tutoriels";
 echo fin_boite_info(true);
 
 echo fin_cadre_trait_couleur(true);
