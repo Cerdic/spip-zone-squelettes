@@ -17,6 +17,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'epingle_site' => '&eacute;pingl&eacute;s sur l\'',
 
 //F
+'flux_rss' => 'Les flux rss',
 
 //G
 'grp_vide' => 'R&eacute;f&eacute;renc&eacute; des sites avec un mot clef pour ce groupe',
@@ -45,6 +46,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'pas_sites' => 'Pas de site rattach&eacute; &agrave; ce mot clef.',
 'pas_syndic' => 'Pas d\'articles syndiqu&eacute; pour ce site.',
 'pas_zard' => 'Pas de sites au hasard, enregistrez-en ...',
+'plan_site' => 'Plan du site',
 'plus_pop' => 'Les plus populaires',
 'plus_encore' => 'Plus encore !',
 'popu_site' => 'la popularit&eacute; du site est de ',
@@ -56,6 +58,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //S
 
 //T
+'tags' => 'Tags',
 
 //U
 
@@ -100,6 +103,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'css_couleurs_nav' => 'Choisissez vos couleurs pour la colonne de droite.',
 'css_couleurs_new' => 'Choisissez vos couleurs pour la boucle nouveauté.',
 'css_couleurs_pied' => 'Choisissez vos couleurs pour le pied de page.',
+'css_couleurs_plan' => 'Choisissez vos couleurs pour la page plan.',
 'css_couleurs_pop' => 'Choisissez vos couleurs pour la boucle populaire.',
 'css_couleurs_rub' => 'Choisissez vos couleurs pour la page rubrique.',
 'css_couleurs_site' => 'Choisissez vos couleurs pour la page site.',
@@ -111,6 +115,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'css_mot' => 'Mot',
 'css_navigation' => 'Colonne de droite',
 'css_pied' => 'Pied',
+'css_plan' => 'Plan',
 'css_rubrique' => 'Rubrique',
 'css_site' => 'Site',
 
