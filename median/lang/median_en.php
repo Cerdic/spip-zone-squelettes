@@ -37,6 +37,9 @@ you certainly find what you are looking for!',
 'descriptif_configuration' => 'Median\'s template parameters to configure (all are optionnals)',
 
 // E
+'erreur_install_groupe_technique' => 'error during Median\'s technical keywords group creation ',
+'erreur_install_groupe_coordonnees' => 'error during Median\'s Coordonates keywords group creation ',
+'erreur_creation_mot_cle' => 'error while creating keyword ', 
 'explication_groupes_mots_techniques' => 'keywords in ticked\'s groups will not be viewing in publics pages',
 'explication_palette' => 'to choose a color: first click on the circle, then click on the squarre',
 
@@ -49,6 +52,8 @@ you certainly find what you are looking for!',
 
 // M
 'meta_keywords' => 'The contents of the tag "meta keywords" (about fifteen words separated by commas)',
+'mots_cles_coordonnees' => 'keywords for the coordonates ',
+'mots_cles_techniques_median' => 'technical keywords for Median\' template',
 
 // N
 'nb_blocs_sommaire' => 'Number of article\'s blocs',

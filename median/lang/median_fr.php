@@ -37,6 +37,9 @@ mais vous devriez certainement trouver ce que vous cherchez!',
 'descriptif_configuration' => 'parametres de configuration du squelette Median',
 
 // E
+'erreur_install_groupe_technique' => 'erreur cr&eacute;ation du groupe de mots cl&eacute;s techniques pour le squelette Median',
+'erreur_install_groupe_coordonnees' => 'erreur cr&eacute;ation du groupe de mots cl&eacute;s coordonnees pour le squelette Median',
+'erreur_creation_mot_cle' => 'erreur creation du mot cle ',
 'explication_groupes_mots_techniques' => 'les mots cl&eacute;s des groupes coch&eacute; ne seront pas affich&eacute;s dans les pages publiques',
 'explication_palette' => 'pour choisir une couleur: cliquez d\'abord sur le cercle puis sur le carr&eacute;',
 
@@ -48,6 +51,8 @@ mais vous devriez certainement trouver ce que vous cherchez!',
 
 // M
 'meta_keywords' => 'Le contenu de la balise "meta keywords" (une 15aine de mots s&eacute;par&eacute;s par des virgules)',
+'mots_cles_coordonnees' => 'les mots cl&eacute; pour les coordon&acute;es de contact',
+'mots_cles_techniques_median' => 'les mots cles techniques du squelette Median',
 
 // N
 'nb_blocs_sommaire' => 'Nombre de blocs articles',
