@@ -1,12 +1,12 @@
 [(#REM)
 	Un cache plus court, pour la boucle syndic_articles
 ]#CACHE{3600}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
   <title>[(#NOM_SITE_SPIP|textebrut)]</title>
   [<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
-  <INCLURE{fond=nuts/inc-head}>
+  <INCLURE{fond=inc-head}>
   </head>
   
 <body class="[(#CONFIG{tripoli/lay}) ] [(#CONFIG{tripoli/width}) ] [(#CONFIG{tripoli/style}) ]">
@@ -15,19 +15,19 @@
 		<div class="content"><!-- header content -->
 		
 	[(#REM) Entete de la page + titre du site ]
-	<INCLURE{fond=nuts/inc-header}>
+	<INCLURE{fond=inc-header}>
 
 		</div>
 	</div>
 	<div id="primary">
 		<div class="content"><!-- primary content -->
 		
-	[(#REM) Derniers articles ]
+		[(#REM) Derniers articles ]
 		<B_articles_recents>
 			[(#ANCRE_PAGINATION)]
 			<h3><:derniers_articles:></h3>
 			
-				<BOUCLE_articles_recents(ARTICLES) {par date}{inverse}{pagination}>
+				<BOUCLE_articles_recents(ARTICLES) {par date}{inverse}{pagination 5}>
 			
 					[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{150,100})]
 					<h4><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h4>
@@ -47,19 +47,16 @@
 #FORMULAIRE_RECHERCHE
 
 [(#REM) Menu de navigation par rubriques ]
-<INCLURE{fond=nuts/inc-rubriques}>
+<INCLURE{fond=inc-rubriques}>
 		
 [(#REM) Breves ]
 <INCLURE{fond=nuts/inc-breves}>
 
-[(#REM) archives ]
-<!-- <INCLURE{fond=nuts/inc-archives}> -->
-
 [(#REM) Liens des forums ]
-<INCLURE{fond=nuts/inc-forums}>
+<INCLURE{fond=inc-forums}>
 
 [(#REM) Sur le Web ]
-<INCLURE{fond=nuts/inc-web}>
+<INCLURE{fond=inc-web}>
 
 		
 		</div>
@@ -73,7 +70,7 @@
 	</div>
 	<div id="footer">
 		<div class="content"><!-- footer content -->
-		<INCLURE{fond=nuts/inc-footer}>
+		<INCLURE{fond=inc-footer}>
 
 </div>
 	</div>
