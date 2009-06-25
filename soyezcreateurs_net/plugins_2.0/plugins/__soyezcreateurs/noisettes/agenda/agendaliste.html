@@ -2,7 +2,7 @@
 <BOUCLE_rubrique_principal(RUBRIQUES){id_rubrique}>
 	<div id="miettesdepain">
 	<ul>
-	<li><a href="#URL_SITE_SPIP"><:pyrat:accueil:></a></li>
+	<li><a href="#URL_SITE_SPIP"><:soyezcreateurs:accueil:></a></li>
 	<BOUCLE_plan(HIERARCHIE){id_rubrique}><li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
 	</BOUCLE_plan>
 	<li>[(#TITRE)]</li>
@@ -21,7 +21,7 @@
 
 
 		<B_Annees>
-		<form id="timenavigation" method="get" action="#SELF"><fieldset><legend><:pyrat:precisezrecherche:></legend>
+		<form id="timenavigation" method="get" action="#SELF"><fieldset><legend><:soyezcreateurs:precisezrecherche:></legend>
 		<BOUCLE_PremiereAnnee(EVENEMENTS){branche}{par date_debut}{0,1}>
 		[(#DATE_DEBUT|annee|<{[(#ENV{date_ev,[(#ENV{date})]}|annee)]}|oui)
 		<a href="[(#SELF|parametre_url{'date_ev',[(#ENV{date_ev,[(#ENV{date})]}|annee|moins{1})]-01-01}|parametre_url{'calendrier',1})]"><img src="#CHEMIN{images/prev.gif}" title="<:precedent:>" alt="<:precedent:>" /></a>
@@ -35,7 +35,7 @@
 		<BOUCLE_ExclureStatut(MOTS){type=_AgendaStatut}{doublons statut}></BOUCLE_ExclureStatut>
 		<B_LstMotsClefs>[(#REM) Objectif : n'afficher que les mots clefs effectivement utilisé dans le secteur]
 		<select id="id_mot" name="id_mot">
-		<option value=""[(#ENV{id_mot,''}|=={''}|?{' selected="selected"',''})]><:pyrat:tout:></option>
+		<option value=""[(#ENV{id_mot,''}|=={''}|?{' selected="selected"',''})]><:soyezcreateurs:tout:></option>
 		<BOUCLE_LstMotsClefs(EVENEMENTS){branche}{par titre}><BOUCLE_MotClefAssocie(MOTS){id_evenement}{unique}{doublons statut}>
 		<option value="[(#ID_MOT)]"[(#ENV{id_mot}|=={[(#ID_MOT)]}|?{' selected="selected"',''})]>[(#TITRE|supprimer_tags)]</option>
 		</BOUCLE_MotClefAssocie></BOUCLE_LstMotsClefs>
@@ -49,7 +49,7 @@
 		]
 		</BOUCLE_DerniereAnnee>
 		[(#ENV{date}|annee|!={[(#ENV{date_ev,[(#ENV{date})]}|annee)]}|oui)
-		<input type="button" class="form_submit" value="<:pyrat:aujourdhui:>" onclick="document.location.href='[(#SELF|parametre_url{'date_ev',''})]'; return false;" />
+		<input type="button" class="form_submit" value="<:soyezcreateurs:aujourdhui:>" onclick="document.location.href='[(#SELF|parametre_url{'date_ev',''})]'; return false;" />
 		]
 		</fieldset>
 		</form>
