@@ -1,6 +1,6 @@
 <?php
 // This is a SPIP module file  --  Ceci est un fichier module de SPIP
-$GLOBALS['i18n_pyrat_en'] = array(
+$GLOBALS['i18n_soyezcreateurs_en'] = array(
 // A
 'accessibilite_menu' => 'Go to menu',
 'accessibilite_politique' => 'Accessibility policy',
@@ -164,5 +164,5 @@ $GLOBALS['i18n_pyrat_en'] = array(
 'voirimage' => 'See the image on its own',
 'voirle' => 'See the',
 'voirsitespar' => 'See the sites with'
-?>
 );
+?>
