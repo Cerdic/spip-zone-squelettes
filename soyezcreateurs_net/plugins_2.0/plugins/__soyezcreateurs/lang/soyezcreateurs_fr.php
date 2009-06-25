@@ -1,6 +1,6 @@
 <?php
 // This is a SPIP module file  --  Ceci est un fichier module de SPIP
-$GLOBALS['i18n_soyezcreateurs_fr'] = array(
+$GLOBALS[$GLOBALS['idx_lang']] = array(
 // A
 'accessibilite_menu' => 'Aller au menu',
 'accessibilite_politique' => 'Politique d\'accessibilit&eacute;',
