@@ -523,17 +523,20 @@ function soyezcreateurs_config_motsclefs() {
 	
 	include_spip('inc/sc_article');
 	$article1 = trouve_article_sc("Premiers pas dans le squelette SoyezCreateurs");
-	create_article($article1, "000. Fourre-tout");
-	create_article_mot($article1['titre'], "000. Fourre-tout", "EDITO", "_Specialisation");
+		create_article($article1, "000. Fourre-tout");
+		create_article_mot($article1['titre'], "000. Fourre-tout", "EDITO", "_Specialisation");
 	$article2 = trouve_article_sc('Partage');
-	create_article($article2, '999. Citations');
+		create_article($article2, '999. Citations');
 	$article3 = trouve_article_sc('Contact');
-	create_article($article3, '000. Fourre-tout');
-	create_article_mot($article3['titre'], '000. Fourre-tout', "MENURACINEBAS_Systematique", "_Specialisation");
+		create_article($article3, '000. Fourre-tout');
+		create_article_mot($article3['titre'], '000. Fourre-tout', "MENURACINEBAS_Systematique", "_Specialisation");
 	$article4 = trouve_article_sc('Économies');
-	create_article($article4, '999. Citations');
+		create_article($article4, '999. Citations');
 	$article5 = trouve_article_sc('Concision');
-	create_article($article5, '999. Citations');
+		create_article($article5, '999. Citations');
+	$article6 = trouve_article_sc("Raccourcis Typographiques de SPIP, mode d'emploi");
+		create_article($article6, "000. Fourre-tout");
+		create_article_mot($article6['titre'], "000. Fourre-tout", "ALaUne", "_Specialisation");
 	
 	return true;
 }
