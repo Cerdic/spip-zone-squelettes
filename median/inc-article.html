@@ -27,17 +27,22 @@
 
 		   [(#REM) Portfolio : album d'images à droite si pas mot clé port_folio_dessous ]
        #SET{nb_img, #SURTITRE|sinon{3}}
-			<BOUCLE_portfolio_droite(MOTS){id_article}{titre=port_folio_dessous}{0,1}>
-        </BOUCLE_portfolio_droite>
-        <B_documents_portfolio_droite>
-        <div id="documents_portfolio_droite">
+			<BOUCLE_portfolio_dessous(MOTS){id_article}{titre=port_folio_dessous}{0,1}>
+        </BOUCLE_portfolio_dessous>
+          <B_documents_portfolio_droite>
+          [(#REM) si mot clé port_folio_left faire flotter à gauche ]
+          <BOUCLE_flotte_gauche(MOTS){id_article}{titre=port_folio_left}{0,1}>
+            <div id="documents_portfolio_gauche">
+          </BOUCLE_flotte_gauche>
+            <div id="documents_portfolio_droite">
+          <//B_flotte_gauche>
 				<!--<h2><:info_portfolio:></h2>-->
 				<BOUCLE_documents_portfolio_droite(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons} {0, #GET{nb_img}}>
 				[(#MODELE{doc_pf_droite}{id_document}{align}{nb_img=#GET{nb_img}})]
             </BOUCLE_documents_portfolio_droite>
 			</div>
 			</B_documents_portfolio_droite>
-        <//B_portfolio_droite>
+        <//B_portfolio_dessous>
         
         
 			#DEBUT_SURLIGNE
