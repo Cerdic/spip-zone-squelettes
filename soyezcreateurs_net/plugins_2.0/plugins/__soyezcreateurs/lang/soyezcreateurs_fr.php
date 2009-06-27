@@ -79,6 +79,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'docatelecharger' => 'Documents &agrave; t&eacute;l&eacute;charger',
 
 	// E
+    'ecoute' => 'Ecoute de :',
 	'edito' => '&Eacute;dito',
 	'editos' => '&Eacute;ditos',
 	'entravaux' => 'En travaux',
