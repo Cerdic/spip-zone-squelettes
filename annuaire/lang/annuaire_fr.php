@@ -17,7 +17,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'epingle_site' => '&eacute;pingl&eacute;s sur l\'',
 
 //F
-'flux_rss' => 'Les flux rss',
 
 //G
 'grp_vide' => 'R&eacute;f&eacute;renc&eacute; des sites avec un mot clef pour ce groupe',
@@ -54,6 +53,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //Q
 
 //R
+'herbier' => 'Sur le web',
 
 //S
 

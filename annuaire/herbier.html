@@ -1,0 +1,42 @@
+[(#REM)
+	Une page pour afficher les articles des sites syndiqués
+]#CACHE{3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title><:annuaire:herbier:></title>
+[<meta name="description" content="(#DESCRIPTIF|couper{150}|textebrut)" />]
+<INCLURE{fond=inc/inc-head}>
+</head>
+
+<body>
+<div id="herbier">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc/inc-entete}>
+		
+	[(#REM) Contenu principal : affichage du site ]
+    <div id="content">
+		[(#REM) Sur le Web ]
+		<fieldset class="chapo">
+		<B_syndic>
+		<div class="menu">
+			<h2><:nouveautes_web:></h2>
+			<ul class="art">
+				<BOUCLE_syndic(SYNDIC_ARTICLES) {age<180} {par date}{inverse} {0,6}>
+				<li>[(#DATE|affdate_jourcourt) &ndash; ]<a href="#URL_ARTICLE"[ title="(#NOM_SITE|attribut_html|couper{80})"] class="spip_out">#TITRE</a></li>
+				</BOUCLE_syndic>
+			</ul>
+		</div>
+		</B_syndic>
+		</fieldset>
+	</div><!--#content-->
+
+	[(#REM) Navigation => colonne droite :]
+	<INCLURE{fond=inc/inc-nav}{id_syndic}>
+	
+	[(#REM) Afficher le pied de page :]
+	<INCLURE{fond=inc/inc-pied}>
+</div><!--#site-->
+</body>
+</html>	
