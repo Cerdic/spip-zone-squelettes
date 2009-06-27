@@ -83,6 +83,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'boucles' =>'R&eacute;glages des boucles',
 'boite_boucles' => 'Page boucles',
 'boite_style' => 'Page style',
+'bandeau' => 'le "bandeau"',
 
 //C
 'css' => 'Les css',
@@ -91,24 +92,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'css_boucles' => 'Boucles',
 'css_couleurs' => 'Cela revient à choisir la couleur d\'arrière plan, la couleur d\'avant plan 
 					utilisée pour le texte et les liens et la couleur de survol des liens.',
-'css_couleurs_bandeau' => 'Choisissez vos couleurs pour le bandeau',
-'css_couleurs_chemin' => 'Choisissez vos couleurs pour le chemin',
-'css_couleurs_fond_som' => 'Choisissez vos couleurs pour le fond de la page "sommaire"',
-'css_couleurs_fond_rub' => 'Choisissez vos couleurs pour le fond de la page "rubrique"',
-'css_couleurs_fond_mot' => 'Choisissez vos couleurs pour le fond de la page "mot"',
-'css_couleurs_fond_site' => 'Choisissez vos couleurs pour le fond de la page "site"',
+'css_couleurs_' => 'Choisissez vos couleurs pour ',
 'css_couleurs_fond_expli' =>'Cela revient à choisir la couleur d\'arrière plan sur une page.',
-'css_couleurs_hierarchie' => 'Choisissez vos couleurs pour la hierarchie',
-'css_couleurs_mot' => 'Choisissez vos couleurs pour la page mot',
-'css_couleurs_nav' => 'Choisissez vos couleurs pour la colonne de droite.',
-'css_couleurs_new' => 'Choisissez vos couleurs pour la boucle nouveauté.',
-'css_couleurs_pied' => 'Choisissez vos couleurs pour le pied de page.',
-'css_couleurs_plan' => 'Choisissez vos couleurs pour la page plan.',
-'css_couleurs_pop' => 'Choisissez vos couleurs pour la boucle populaire.',
-'css_couleurs_rub' => 'Choisissez vos couleurs pour la page rubrique.',
-'css_couleurs_site' => 'Choisissez vos couleurs pour la page site.',
-'css_couleurs_tag' => 'Choisissez vos couleurs pour le tags de mot clef.',
-'css_couleurs_zard' => 'Choisissez vos couleurs pour la boucle hasard.',
+'css_couleurs_fond_page' =>'Choisissez vos couleurs pour le fond de la page ',
 'css_bg' => 'Couleur d\'arrière plan',
 'css_fond' => 'Fond de page',
 'css_fg' => 'Couleur d\'avant plan (texte et liens)',
@@ -135,6 +121,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //H
 'hasard' => 'Sites au hasard',
+'herbier2' => 'la page "herbier"',
+'hierarchie' => 'la "hierarchie"',
 
 //I
 
@@ -145,30 +133,41 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //L
 
 //M
+'mot' => 'la page "mot"',
 
 //N
-'nouveaute' =>'Site nouveaut&eacute;',
+'nav' => 'la colonne "navigation"',
 'nbr_articles' => 'Nombre d\'articles :',
 'nbr_sites' => 'Nombre de sites :',
+'new' => 'la boucle "nouveautés"',
+'nouveaute' =>'Site nouveaut&eacute;',
 
 //O
 
 //P
 'pas_pagination' => 'Nombre d\'&eacute;l&eacute;ments par page',
+'page_herbier' => 'Page herbier :',
 'page_mot' => 'Page mot :',
 'page_rubrique' => 'Page rubrique :',
 'page_sommaire' => 'Page sommaire :',
 'page_site' => 'Page site :',
+'plan' => 'la page "plan"',
 'populaire' => 'Site populaire',
+'pied' => 'le pied de page',
+'pop' => 'la boucle populaire',
 
 //Q
 
 //R
 'rss' => 'Nombres d\'articles syndiqu&eacute; par page.',
+'rubrique' => 'la page "rubrique"',
 
 //S
+'site' => 'la page "site"',
+'sommaire' => 'la page "sommaire"',
 
 //T
+'tag' => 'la noisette "tags"',
 
 //U
 
@@ -181,7 +180,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //Y
 
 //Z
-
+'zard' => 'la boucle "hasard"',
 
 );
 
