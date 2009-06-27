@@ -6,75 +6,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //A
 'actuellement' => 'Il y a actuellement ',
-
-//B
-
-//C
-'copyright_site' => '&copy;',
-//D
-
-//E
-'epingle_site' => '&eacute;pingl&eacute;s sur l\'',
-
-//F
-
-//G
-'grp_vide' => 'R&eacute;f&eacute;renc&eacute; des sites avec un mot clef pour ce groupe',
-
-//H
-'hasard' => 'Le hasard',
-
-//I
-
-//J
-
-//K
-
-//L
-
-//M
-
-//N
-
-//O
-
-
-//P
-'pas_new' => 'Pas de nouveaut&eacute;s',
-'pas_pop' => 'Pas de populaires, car pas de votes',
-'pas_sites' => 'Pas de site rattach&eacute; &agrave; ce mot clef.',
-'pas_syndic' => 'Pas d\'articles syndiqu&eacute; pour ce site.',
-'pas_zard' => 'Pas de sites au hasard, enregistrez-en ...',
-'plan_site' => 'Plan du site',
-'plus_pop' => 'Les plus populaires',
-'plus_encore' => 'Plus encore !',
-'popu_site' => 'la popularit&eacute; du site est de ',
-
-//Q
-
-//R
-'herbier' => 'Sur le web',
-
-//S
-
-//T
-'tags' => 'Tags',
-
-//U
-
-//V
-
-//W
-
-//X
-
-//Y
-
-//Z
-
-/***************************************/
-// CFG du plugins
-//A
 'annuaire' =>'Annuaire',
 'annuaire_boucles' =>'Boucles',
 'annuaire_style' =>'Style',
@@ -86,6 +17,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'bandeau' => 'le "bandeau"',
 
 //C
+'copyright_site' => '&copy;',
 'css' => 'Les css',
 'css_bandeau' => 'Bandeau',
 'css_bandeau_com' => 'Pour modifier les couleurs du bandeau "ent&ecirc;te"',
@@ -112,16 +44,18 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 				<br />R&eacute;gl&eacute; le nombre de sites dans les diff&eacute;rentes boucles sur le site.',
 'descriptif_style' => '<h4>R&eacute;glage du style</h4>
 				<br />Choisissez vos couleurs pour le site',
-
+				
 //E
+'epingle_site' => '&eacute;pingl&eacute;s sur l\'',
 
 //F
 
 //G
+'grp_vide' => 'R&eacute;f&eacute;renc&eacute; des sites avec un mot clef pour ce groupe',
 
 //H
 'hasard' => 'Sites au hasard',
-'herbier2' => 'la page "herbier"',
+'herbier' => 'la page "herbier"',
 'hierarchie' => 'la "hierarchie"',
 
 //I
@@ -145,6 +79,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //O
 
 //P
+'pas_new' => 'Pas de nouveaut&eacute;s',
+'pas_pop' => 'Pas de populaires, car pas de votes',
+'pas_sites' => 'Pas de site rattach&eacute; &agrave; ce mot clef.',
+'pas_syndic' => 'Pas d\'articles syndiqu&eacute; pour ce site.',
+'pas_zard' => 'Pas de sites au , enregistrez-en ...',
+'plan_site' => 'Plan du site',
+'plus_pop' => 'Les plus populaires',
+'plus_encore' => 'Plus encore !',
+'popu_site' => 'la popularit&eacute; du site est de ',
 'pas_pagination' => 'Nombre d\'&eacute;l&eacute;ments par page',
 'page_herbier' => 'Page herbier :',
 'page_mot' => 'Page mot :',
@@ -166,7 +109,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'site' => 'la page "site"',
 'sommaire' => 'la page "sommaire"',
 
+
 //T
+'tags' => 'Tags',
 'tag' => 'la noisette "tags"',
 
 //U
