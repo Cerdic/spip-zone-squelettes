@@ -1,13 +1,85 @@
 <div id="navigation">
-[(#REM) Afficher les mot clefs :]
-<INCLURE{fond=inc/inc-mot}{id_groupe}{id_syndic}>
-<p />
-[(#REM) Afficher les rubriques :]
-<INCLURE{fond=inc/inc-rubriques}>
-<p />
-[(#REM) Afficher le tags :]
-<INCLURE{fond=inc/inc-tags}>
-<p />
-[(#REM) Reduire le pied :]
-<INCLURE{fond=inc/inc-lien}>
+	<div id="content">
+		[(#REM) Afficher les mot clef du site]
+		<fieldset class="chapo">
+				<legend><:mots_clefs:></legend>
+				<B_mot>
+					[(#REM) j'affiche les mots relier au site syndic ]
+					<BOUCLE_mot(MOTS){id_syndic}>
+					<h3>#TYPE</h3>
+						<BOUCLE_mots(MOTS){id_groupe}{id_syndic}{par titre}{" - "}>
+						<a class="texte" href="#URL_MOT">#TITRE</a>
+						</BOUCLE_mots>
+					</BOUCLE_mot>
+				</B_mot>
+				[(#REM) affichage de tout les mots du sites]
+				<BOUCLE_mot1(GROUPES_MOTS)>
+				<h3>#TITRE</h3>
+					<BOUCLE_mots2(MOTS){id_groupe}{par titre}{" - "}>
+					<a class="texte" href="#URL_MOT">#TITRE</a>
+					</BOUCLE_mots2>
+				</BOUCLE_mot1>
+				<//B_mot>
+		</fieldset><!--#chapo-->
+
+		[(#REM)
+		Barre de navigation, ouverte sur la hierarchie courante
+		On fait un plan, et, quand on avance vers une rubrique,
+		on l'affiche si son parent est expose ou est la racine du site. ]
+
+		<fieldset class="chapo">
+		<legend><:rubriques:></legend>
+		<B_rubriques>
+		<ul>
+		<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
+			<li>
+				<a class="texte" href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
+				<B_sous_rubriques>
+				<ul>
+					<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
+					<BOUCLE_test_expose(RUBRIQUES) {id_enfant}>#EXPOSE{' '}</BOUCLE_test_expose>
+					<li>
+					<a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
+					<BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>
+					</li>
+					</B_test_expose>
+					</BOUCLE_sous_rubriques>
+				</ul>
+				</B_sous_rubriques>
+			</li>
+		</BOUCLE_rubriques>
+		</ul>
+		</B_rubriques>
+		</fieldset><!--#chapo-->
+
+		[(#REM) Afficher les mot clef du site]
+		<div id="tag">
+			<fieldset class="chapo">
+			<legend><:annuaire:tags:></legend>
+				[(#MODELE{nuage_site})]
+			</fieldset>
+		</div>
+
+		[(#REM) Afficher les liens]
+		<div class="lien">
+		<fieldset class="chapo">
+			<br />
+			[(#REM) lien vers le plen de page]
+			<a href="#URL_PAGE{herbier}"><:sur_web:></a>
+			<br />
+			[(#REM) lien vers le plen de page]
+			<a href="#URL_PAGE{plan}"><:annuaire:plan_site:></a>
+			<br />
+			[(#REM) Un rss]
+			<a class="link" href="#URL_PAGE{backend}" rel="alternate" title="<:syndiquer_site:>">
+			<img src="#CHEMIN{feed.png}" alt="<:icone_suivi_activite:>" width="16" height="16" />
+			&nbsp;RSS&nbsp;2.0</a>
+			<br />
+			[(#REM) Le igoogle]
+			<a href="http://fusion.google.com/add?source=atgs&amp;feedurl=#URL_SITE_SPIP/spip.php?page=backend">
+			<img src="http://gmodules.com/ig/images/plus_google.gif" border="0" alt="Add to Google">
+			</a>
+		</fieldset><!--#chapo-->
+		</div><!--#lien-->
+	</div><!--#content-->
 </div><!--#navigation-->

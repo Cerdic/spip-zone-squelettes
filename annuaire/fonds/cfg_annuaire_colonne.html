@@ -1,14 +1,25 @@
 #CACHE{0}
 <!-- titre=<:annuaire:annuaire:> -->
-<!-- descriptif=<:annuaire:descriptif_colonne> -->
+<!-- descriptif=<:annuaire:descriptif_colonne:> -->
 <!-- icone=img/annuaire_24.jpg -->
 <!-- boite=<:annuaire:boite_colonne:> -->
 
 <INCLURE{fond=noisettes/cfg/inc_cfg_header}>
 
 <form method="post">[(#ENV{_cfg_}|form_hidden)]
-<fieldset><!--#pied-->
-	<legend><:annuaire:boucles:></legend>
+[(#REM) Couleurs]
+<fieldset><!--#fond-->
+	<legend><:annuaire:css_fond:></legend>
+	<p><:annuaire:css_couleurs_fond_expli:></p>
+	<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+		{explication=<:annuaire:css_couleurs_fond_page:><:annuaire:nav:>}
+		{suffixe=_fond_nav}
+		{choix=bg}
+		{bg_defaut=#8989ec}
+		{env}>
+</fieldset><!--#fond-->
+<fieldset><!--#css-->
+	<legend><:annuaire:css:></legend>
 	<p><:annuaire:css_couleurs:></p>
 	<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
 		{explication=<:annuaire:css_couleurs_:><:annuaire:pied:>}
@@ -18,10 +29,6 @@
 		{fg_defaut=#FFFFFF}
 		{ho_defaut=#808080}
 		{env}>
-</fieldset><!--#pied-->
-<fieldset><!--#navigation-->
-	<legend><:annuaire:css:></legend>
-	<p><:annuaire:css_couleurs:></p>
 	<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
 		{explication=<:annuaire:css_couleurs_:><:annuaire:nav:>}
 		{suffixe=_nav}
@@ -30,7 +37,7 @@
 		{fg_defaut=#000000}
 		{ho_defaut=#ffffff}
 		{env}>
-</fieldset><!--#navigation-->
+</fieldset><!--#css-->
 <input type="submit" name="_cfg_ok" value="<:OK:>" />
 <input type="submit" name="_cfg_delete" value="<:Supprimer:>" />
 </form>
