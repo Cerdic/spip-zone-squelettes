@@ -41,15 +41,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'css_bg' => 'Couleur d\'arrière plan',
 'css_fond' => 'Fond de page',
 'css_fg' => 'Couleur d\'avant plan (texte et liens)',
-'css_herbier' => 'Herbier',
 'css_ho' => 'Couleur de survol',
-'css_mot' => 'Mot',
-'css_navigation' => 'Colonne de droite',
-'css_pied' => 'Pied',
-'css_plan' => 'Plan',
-'css_rubrique' => 'Rubrique',
-'css_site' => 'Site',
-'css_tag' => 'Tags',
 
 //D
 'descriptif_bandeau' => '<h4>R&eacute;glage du bandeau</h4>
@@ -104,11 +96,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //O
 
 //P
-'page_herbier' => 'Page herbier :',
-'page_mot' => 'Page mot :',
-'page_rubrique' => 'Page rubrique :',
-'page_sommaire' => 'Page sommaire :',
-'page_site' => 'Page site :',
 'pas_new' => 'Pas de nouveaut&eacute;s',
 'pas_pagination' => 'Nombre d\'&eacute;l&eacute;ments par page',
 'pas_pop' => 'Pas de populaires, car pas de votes',
