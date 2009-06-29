@@ -1,15 +1,25 @@
 <B_groupe>
+[(#ENV{message_ok}|oui)<INCLURE{fond=formulaires/pluri_criteres-resultats}{id_groupe=#ENV{message_ok}}> <hr />]
 <div class="formulaire_spip">
 <form method="get">
-<input type="hidden" name="page" value="[(#SELF|parametre_url{page})]" />
+#ACTION_FORMULAIRE{#ENV{action}}
+[<ul class="erreur">
+<li class="erreur">
+<span class="erreur_message">(#ENV{message_erreur})</span>
+</li>
+</ul>
+]
+
 <ul>
+
 <BOUCLE_groupe(GROUPES_MOTS){par num titre}>
 
 
-    <li><INCLURE{fond=saisi/select_mots}{id_groupe}{titre}{id_mot=#ENV{groupe}|table_valeur{#ID_GROUPE}}></li>
+
+    <li><INCLURE{fond=saisi/select_mots}{id_groupe}{titre}{id_mot=#ENV{message_ok}|table_valeur{#ID_GROUPE}}></li>
 </BOUCLE_groupe>
 </ul>
-    <input type="submit" class="ajax" value="<:ok:>" />
+    <input type="submit" value="<:ok:>" />
 </form>
 </div>
 </B_groupe>
