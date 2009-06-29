@@ -12,7 +12,11 @@ function sc_trouver_corr_pl ($id_article) {
 	"id_article=$id_article");
 	return $row;
 }
-function sc_decoder_date ($date_d, $date_e) {
+function sc_decoder_date ($date_d, $date_e, $mode=false) {
+	if($mode == 'skel') {
+		$date_d = date_ical($date_d);
+		$date_e = date_ical($date_e);
+	}
 	$debut = array();
 	$debut['annee'] = substr($date_d, 0, 4);
 	$debut['mois'] = substr($date_d, 4, 2);
