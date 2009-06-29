@@ -20,6 +20,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'bandeau' => 'le "bandeau"',
 'boite_bandeau' => 'Page bandeau',
 'boite_colonne' => 'Colonne et pied',
+'boite_herbier' => 'Herbier',
 'boite_mot' => 'Page mot',
 'boite_plan' => 'Page plan',
 'boite_rubrique' => 'Page rubrique',
