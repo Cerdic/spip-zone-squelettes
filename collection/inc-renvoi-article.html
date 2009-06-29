@@ -2,7 +2,9 @@
 <BOUCLE_article(ARTICLES){id_article}>
 <div class="renvoi-article">
     <BOUCLE_doc(DOCUMENTS){id_article}{par num titre}{0,1}>
-    [(#FICHIER|image_reduire{200})]
+    [(#SET{alt_title,[(#_article:TITRE|attribut_html)] [((#TITRE|attribut_html))]})]
+    
+    [<a href="#FICHIER" title="#GET{alt_title}" type="#MIME_TYPE" alt="#GET{alt_title}" title="#GET{alt_title}">(#FICHIER|image_reduire{200})</a>]
     </BOUCLE_doc>
     [<span class="(#EDIT{titre})">#TITRE</span>]
     <a href="#URL_ARTICLE"><:collection:plus_infos:></a>
