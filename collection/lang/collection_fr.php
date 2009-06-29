@@ -15,7 +15,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'pluri_criteres'        =>'Recherche pluri-crit&egrave;res',
     'pluri_criteres_menu'   =>'Mettre la recherche pluri-crit&egrave;res dans le menu de navigation',
     'pluri_criteres_nul'    =>'Aucun r&eacute;sultat pour la recherche pluri-crit&egrave;re',
-    'plus_infos'            =>"Plus d'infos"
+    'plus_infos'            =>"Plus d'infos",
+    'resultats'             =>'R&eacute;sultats : '
 );
 
 ?>

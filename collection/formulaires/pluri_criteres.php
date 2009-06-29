@@ -1,6 +1,6 @@
 <?php
-function formulaires_pluri_criteres_charger_dist(){
-    return array();
+function formulaires_pluri_criteres_charger_dist($resultat_bref=''){
+    return array('resultat_bref' =>$resultat_bref);
 }
 function formulaires_pluri_criteres_verifier_dist(){
     $groupe = _request('groupe');
