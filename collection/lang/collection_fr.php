@@ -5,6 +5,8 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
     "accueil"               => 'Accueil',
+    'collection_aleatoire_sing' => 'Un objet tir&eacute; de mani&egrave;re al&eacute;atoire',
+    'collection_aleatoire_plu'  => '@total@ objets tir&eacute;s de mani&egrave;re al&eacute;atoire',
     'choisir_un_critere'    => 'Merci de choisir au moins un crit&egrave;re.', 
     'criteres_recherche'    =>'Vous avez fait une recherche avec les crit&egrave;res suivants :',
     'cfg'                   => 'Configuration du squelette "Collection"',
@@ -19,7 +21,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     
     
     //cfg
-    'cfg_pluri_criteres_menu'   =>'Mettre la recherche pluri-crit&egrave;res dans le menu de navigation',
+    'cfg_menu'   =>'Que mettre dans le menu de navigation ?',
     'cfg_sommaire'              =>'Que mettre sur la page sommaire ?',
     'cfg_plan'                  =>'Le plan du site',
     'cfg_alea9'                 =>'Neuf objets tir&eacute;s de mani&egrave;re al&eacute;atoire'

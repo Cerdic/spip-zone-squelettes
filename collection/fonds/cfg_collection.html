@@ -5,17 +5,23 @@
 <ul>
     
     <li>
-    <label for="pluri_criteres_menu"><:collection:cfg_pluri_criteres_menu:></label>
-    <input type="checkbox" name="pluri_criteres_menu" value="ok" id="pluri_criteres_menu"[(#ENV{pluri_criteres_menu}|oui) checked="checked"]/>
+    <label for="menu"><:collection:cfg_menu:></label>
+    <select name="menu[]" multiple="multiple" id="menu">
+    
+        <option value="plan"[(#VAL{plan}|in_array{#ENV{menu}}|oui) selected="selected"]><:collection:cfg_plan:></option>
+        <option value="pluri_criteres"[(#VAL{pluri_criteres}|in_array{#ENV{menu}}|oui)  selected="selected"]><:collection:pluri_criteres:></option>
+    
+    </select>
     </li>
     <li>
     
     <label for="sommaire"><:collection:cfg_sommaire:></label>
-    <select name="sommaire[]" id="sommaire" multiple="oui">
+    <select name="sommaire[]" id="sommaire" multiple="multiple">
     
         <option value="alea9"[(#VAL{alea9}|in_array{#ENV{sommaire}}|oui)  selected="selected"]><:collection:cfg_alea9:></option>
         <option value="pluri_criteres"[(#VAL{pluri_criteres}|in_array{#ENV{sommaire}}|oui)  selected="selected"]><:collection:pluri_criteres:></option>
         <option value="plan"[(#VAL{plan}|in_array{#ENV{sommaire}}|oui)  selected="selected"]><:collection:cfg_plan:></option>
+    
     </select>
     
 </ul>
