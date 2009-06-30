@@ -29,7 +29,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     
     
     //cfg
-    'cfg_menu'   =>'Que mettre dans le menu de navigation ?',
+    'cfg_couleur_filets'       =>'Couleurs des filets de s&eacute;paration',
+    'cfg_presentation'          =>'Configuration de la pr&eacute;sentation',
+    'cfg_contenu'               =>'Configuration du contenu du site', 
+    'cfg_menu'                  =>'Que mettre dans le menu de navigation ?',
     'cfg_sommaire'              =>'Que mettre sur la page sommaire ?',
     'cfg_plan'                  =>'Le plan du site',
     'cfg_alea9'                 =>'Neuf objets tir&eacute;s de mani&egrave;re al&eacute;atoire'
