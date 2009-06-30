@@ -14,10 +14,18 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     "contact"               => 'Contact',
     'explication_pluri_criteres'    => 'Vous pouvez faire une recherche pluri-crit&egrave;res',
     'indifferent'           =>'Indiff&eacute;rent',
+    'objets'                =>'Objets',
     'pluri_criteres'        =>'Recherche pluri-crit&egrave;res',
     'pluri_criteres_nul'    =>'Aucun r&eacute;sultat pour la recherche pluri-crit&egrave;re',
     'plus_infos'            =>"Plus d'infos",
+    'presentation_stat'     =>"Tout ce que vous avez toujour voulu savoir sur la collection, sans jamais avoir os&eacute; le demander !",
     'resultats'             =>'R&eacute;sultats : ',
+    'statistiques'          =>'Statistiques',
+    'stat_generales'        =>'Statistiques g&eacute;n&eacute;rales',
+    'stat_par_critere'      =>'Statistiques par critères',
+    'stat_pour_critere'     =>'Statistiques pour le crit&egrave;re «@crit@»',
+    'total'                 =>'Total',
+    
     
     
     //cfg
