@@ -13,10 +13,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'explication_pluri_criteres'    => 'Vous pouvez faire une recherche pluri-crit&egrave;res',
     'indifferent'           =>'Indiff&eacute;rent',
     'pluri_criteres'        =>'Recherche pluri-crit&egrave;res',
-    'pluri_criteres_menu'   =>'Mettre la recherche pluri-crit&egrave;res dans le menu de navigation',
     'pluri_criteres_nul'    =>'Aucun r&eacute;sultat pour la recherche pluri-crit&egrave;re',
     'plus_infos'            =>"Plus d'infos",
-    'resultats'             =>'R&eacute;sultats : '
+    'resultats'             =>'R&eacute;sultats : ',
+    
+    
+    //cfg
+    'cfg_pluri_criteres_menu'   =>'Mettre la recherche pluri-crit&egrave;res dans le menu de navigation',
+    'cfg_sommaire'              =>'Que mettre sur la page sommaire ?',
+    'cfg_plan'                  =>'Le plan du site',
+    'cfg_alea9'                 =>'Neuf objets tir&eacute;s de mani&egrave;re al&eacute;atoire'
 );
 
 ?>

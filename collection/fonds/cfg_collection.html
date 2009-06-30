@@ -3,10 +3,21 @@
 <form method="post" class="formulaire_spip">[(#ENV{_cfg_}|form_hidden)]
 <h2 style="text-align:center;"><:collection:cfg:></h2>
 <ul>
+    
     <li>
-    <label for="pluri_criteres_menu"><:collection:pluri_criteres_menu:></label>
+    <label for="pluri_criteres_menu"><:collection:cfg_pluri_criteres_menu:></label>
     <input type="checkbox" name="pluri_criteres_menu" value="ok" id="pluri_criteres_menu"[(#ENV{pluri_criteres_menu}|oui) checked="checked"]/>
     </li>
+    <li>
+    
+    <label for="sommaire"><:collection:cfg_sommaire:></label>
+    <select name="sommaire[]" id="sommaire" multiple="oui">
+    
+        <option value="alea9"[(#VAL{alea9}|in_array{#ENV{sommaire}}|oui)  selected="selected"]><:collection:cfg_alea9:></option>
+        <option value="pluri_criteres"[(#VAL{pluri_criteres}|in_array{#ENV{sommaire}}|oui)  selected="selected"]><:collection:pluri_criteres:></option>
+        <option value="plan"[(#VAL{plan}|in_array{#ENV{sommaire}}|oui)  selected="selected"]><:collection:cfg_plan:></option>
+    </select>
+    
 </ul>
 <p align="right"><input class="fondo"  type="submit" name="_cfg_ok" value="<:valider:>" /></p>
 </form>
