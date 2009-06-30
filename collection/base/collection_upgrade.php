@@ -6,7 +6,7 @@ function collection_install($action){
         case 'test':
             return true;
         case 'install':
-            ecrire_config('collection/menu','plan');
+            ecrire_config('collection/menu[]','plan');
             ecrire_config('collection/sommaire[]','alea9');
             return true;
         case 'uninstall':
