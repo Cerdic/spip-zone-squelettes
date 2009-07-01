@@ -4,6 +4,8 @@
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
+    '404'                   =>'Page introuvable',
+    '404_explication'       =>'La page demand&eacute;e n\'existe pas ... d&eacute;sol&eacute;',
     "accueil"               => 'Accueil',
     'categorie'            => 'Classement',
     'collection_aleatoire_sing' => 'Un objet tir&eacute; de mani&egrave;re al&eacute;atoire',
