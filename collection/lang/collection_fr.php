@@ -5,6 +5,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
     '404'                   =>'Page introuvable',
+    'sites'                  =>'Sites &agrave; consulter ...',
     'aucun_resultats'       =>'Aucun r&eacute;sultat ...',
     '404_explication'       =>'La page demand&eacute;e n\'existe pas ... d&eacute;sol&eacute;',
     "accueil"               => 'Accueil',
