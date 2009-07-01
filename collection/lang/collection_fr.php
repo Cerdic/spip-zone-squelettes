@@ -29,6 +29,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     
     
     //cfg
+    'cfg_liens_nav'                 =>'Couleurs des liens de navigations',
+    'cfg_liens_spip_in'         =>'Couleurs des liens SPIP internes',
+    'cfg_liens_spip_out'        =>'Couleurs des liens SPIP externes',
+    'cfg_liens_spip_glossaire'  =>'Couleurs des liens SPIP vers le glossaire (Wikipédia)',
+    'cfg_couleur_liens'         =>'Couleur des liens',
     'cfg_pagination'            =>'Nombre maximum d\'objets par page (x3 ; 0 si illimit&eacute;)',
     'cfg_couleur_titres'         =>'Couleur des titres',
     'cfg_fond_sepia'            =>'Couleur du d&eacute;grad&eacute; de fond de page (gauche)',
