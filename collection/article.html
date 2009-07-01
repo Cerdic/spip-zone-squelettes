@@ -16,7 +16,10 @@
             <h1[ class="(#EDIT{titre})"]>#TITRE</h1>
             <INCLURE{fond=inc-mots-article}{id_article}>
             [<div class="chapo[ (#EDIT{texte})]">(#TEXTE)</div>]
-            <INCLURE{fond=inc-documents}{id_article}>
+            [(#CONFIG{collection/pagination}|=={0}|oui)
+            <INCLURE{fond=inc-documents}{id_article}{titre}{ajax}>]
+            [(#CONFIG{collection/pagination}|=={0}|non)
+            <INCLURE{fond=inc-documents_pag}{id_article}{titre}{ajax}>]
             
             </div>
         </div>

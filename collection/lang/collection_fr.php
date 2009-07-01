@@ -29,6 +29,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     
     
     //cfg
+    'cfg_pagination'            =>'Nombre maximum d\'objets par page (x3 ; 0 si illimit&eacute;)',
     'cfg_couleur_titres'         =>'Couleur des titres',
     'cfg_fond_sepia'            =>'Couleur du d&eacute;grad&eacute; de fond de page (gauche)',
     'cfg_afficher_hr'           =>'Afficher les filets de s&eacute;paration horizontaux',
