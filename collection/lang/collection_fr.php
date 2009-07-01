@@ -5,6 +5,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
     '404'                   =>'Page introuvable',
+    'aucun_resultats'       =>'Aucun r&eacute;sultat ...',
     '404_explication'       =>'La page demand&eacute;e n\'existe pas ... d&eacute;sol&eacute;',
     "accueil"               => 'Accueil',
     'categorie'            => 'Classement',
@@ -31,6 +32,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'stat_pour_critere'     =>'Statistiques pour le crit&egrave;re «@crit@»',
     'total'                 =>'Total',
     'squelette'            =>'Squelette “Collection”',
+    'recherche_explication' =>'La recherche se fait avec le moteur de [SPIP->http://www.spip.net] uniquement sur la description des objets, pour une recherche plus approfondie, utiliser un [?moteur de recherche].',
     
     
     
