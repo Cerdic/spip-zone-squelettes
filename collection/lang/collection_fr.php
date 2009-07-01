@@ -36,6 +36,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'cfg_afficher_date'         =>'Afficher la date d\'ajout &agrave; la collection (date de publication)',
     'cfg_afficher_date_redac'         =>'Afficher la date d\'ajout &agrave; la collection (date de r&eacute;daction ant&eacute;rieure)',
     'cfg_tout_objet'            =>'Tout les objets',
+    'cfg_colorer_fond_texte'     =>'Colorer les fonds de texte (descriptif d\'un objet, introduction &agrave; une cat&eacute;gorie)',
     'cfg_liens_nav'                 =>'Couleurs des liens de navigations',
     'cfg_liens_spip_in'         =>'Couleurs des liens SPIP internes',
     'cfg_liens_spip_out'        =>'Couleurs des liens SPIP externes',
