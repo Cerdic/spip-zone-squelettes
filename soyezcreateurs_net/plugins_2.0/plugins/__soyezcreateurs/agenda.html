@@ -1,6 +1,6 @@
 #CACHE{3600}
 <BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
-[(#SET{titretop,[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]})]
+[(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)]})]
 [(#INCLURE{fond=noisettes/header/header}{title=[(#TITRE|attribut_html|texte_script)] - [(#ENV{date_ev}|sinon{#ENV{date}}|affdate_mois_annee)]}{titretop=#GET{titretop}})]
 <div id="miettesdepain">
 	<ul>
@@ -127,8 +127,8 @@
 					<th class="agendahead" scope="col"><:date_jour_1:></th>
 				</tr>
 			<BOUCLE_evenement(EVENEMENTS){branche}
-			{date_debut > (#ENV{date}|affdate{'Y-m-01'}|DateAdd{-6})}
-			{date_debut < (#ENV{date}|affdate{'Y-m-01'}|DateAdd{35})}
+			{date_debut > (#ENV{date}|affdate{'Y-m-01'}|sc_DateAdd{-6})}
+			{date_debut < (#ENV{date}|affdate{'Y-m-01'}|sc_DateAdd{35})}
 			{par date_debut}{statut=publie}>
 				[(#DATE_DEBUT|sc_Agenda_memo_full{#DATE_FIN,[(#TITRE|addslashes)],
 				#DESCRIPTIF,#LIEU,

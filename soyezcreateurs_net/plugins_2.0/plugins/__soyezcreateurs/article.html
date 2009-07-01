@@ -1,6 +1,6 @@
 #CACHE{3600}
 <BOUCLE_article_principal(ARTICLES) {id_article}><BOUCLE_Gribouille(HIERARCHIE){id_article}{tout}{titre_mot=Gribouille}{inverse}{0,1}>[(#INCLURE{fond=gribouille/article}{env})]</BOUCLE_Gribouille><BOUCLE_RacineMenuHaut(HIERARCHIE){id_rubrique}{tout}{titre_mot=MenuHaut}{inverse} {0,1}>[(#SET{secteurencours,#ID_RUBRIQUE})]</BOUCLE_RacineMenuHaut>
-[(#SET{titretop,[(#TITRE|attribut_html|nettoyer_marqueur|texte_script)]})]
+[(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)]})]
 [(#INCLURE{fond=noisettes/header/header}
 	{id_article}
 	{id_rubrique}
@@ -41,11 +41,11 @@
 
 <BOUCLE_Sommaire(MOTS){id_rubrique}{titre = Sommaire}> </BOUCLE_Sommaire>
 [<div id='sommaire'><h2><:soyezcreateurs:sommaire:></h2>
-(#TEXTE*|sommaire_article|propre)</div>]
+(#TEXTE*|sc_sommaire_article|propre)</div>]
 </B_Sommaire>
 <BOUCLE_SommaireArticle(MOTS){id_article}{titre = Sommaire}> </BOUCLE_SommaireArticle>
 [<div id='sommaire'><h2><:soyezcreateurs:sommaire:></h2>
-(#TEXTE*|sommaire_article|propre)</div>]
+(#TEXTE*|sc_sommaire_article|propre)</div>]
 </B_SommaireArticle>
 <//B_Sommaire>
 
@@ -57,11 +57,11 @@
 
 <BOUCLE_SommaireAncre(MOTS){id_rubrique}{titre = Sommaire}>
 </BOUCLE_SommaireAncre>
-[<div class="#EDIT{texte} entry-content">(#TEXTE|sommaire_ancre|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>]
+[<div class="#EDIT{texte} entry-content">(#TEXTE|sc_sommaire_ancre|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>]
 </B_SommaireAncre>
 <BOUCLE_SommaireArticleAncre(MOTS){id_article}{titre = Sommaire}>
 </BOUCLE_SommaireArticleAncre>
-[<div class="#EDIT{texte} entry-content">(#TEXTE|sommaire_ancre|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>]
+[<div class="#EDIT{texte} entry-content">(#TEXTE|sc_sommaire_ancre|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>]
 </B_SommaireArticleAncre>
 [<div class="#EDIT{texte} entry-content">(#TEXTE|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>]
 <//B_SommaireArticleAncre>
@@ -132,7 +132,7 @@
 <span class="#EDIT{qui} forum-auteur">[(#DATE|affdate)][, <:soyezcreateurs:par:> (#NOM)]</span>
 </div>
 <div class="#EDIT{texte} forum-item">
-<BOUCLE_PasdeSiteDansForums(ARTICLES){id_article}{titre_mot=PasdeSiteDansForums}>[(#_forums:TEXTE|anti_glouton)]</BOUCLE_PasdeSiteDansForums>
+<BOUCLE_PasdeSiteDansForums(ARTICLES){id_article}{titre_mot=PasdeSiteDansForums}>[(#_forums:TEXTE|sc_anti_glouton)]</BOUCLE_PasdeSiteDansForums>
 [(#_forums:TEXTE)]
 [<div class='#EDIT{hyperlien} forum-titre'><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
 <//B_PasdeSiteDansForums>
@@ -157,7 +157,7 @@
 	<span class="#EDIT{qui} forum-auteur">[(#DATE|affdate)][, <:soyezcreateurs:par:> (#NOM)]</span>
 	</div>
 	<div class="#EDIT{texte} forum-item">
-	<BOUCLE_PasdeSiteDansSsForums(ARTICLES){id_article}{titre_mot=PasdeSiteDansForums}>[(#_forums_fils:TEXTE|anti_glouton)]</BOUCLE_PasdeSiteDansSsForums>
+	<BOUCLE_PasdeSiteDansSsForums(ARTICLES){id_article}{titre_mot=PasdeSiteDansForums}>[(#_forums_fils:TEXTE|sc_anti_glouton)]</BOUCLE_PasdeSiteDansSsForums>
 	[(#_forums_fils:TEXTE)]
 	[<div class='#EDIT{hyperlien} forum-titre'><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
 	<//B_PasdeSiteDansSsForums>

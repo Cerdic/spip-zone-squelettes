@@ -11,7 +11,7 @@
 
 <div class="texte">
 <div class="cartouche">
-<h1 class="#EDIT{titre}">[(#SET{lelogo,[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{64,64})]})][<img class="logo_rubrique" src="(#GET{lelogo}|extraire_attribut{src})"[ width="(#GET{lelogo}|extraire_attribut{width})"][ height="(#GET{lelogo}|extraire_attribut{height})"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" />][(#TITRE)] - [(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)]-[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire|plus{1})]</h1>
+<h1 class="#EDIT{titre}">[(#SET{lelogo,[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{64,64})]})][<img class="logo_rubrique" src="(#GET{lelogo}|extraire_attribut{src})"[ width="(#GET{lelogo}|extraire_attribut{width})"][ height="(#GET{lelogo}|extraire_attribut{height})"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" />][(#TITRE)] - [(#ENV{date_ev,[(#ENV{date})]}|sc_annee_scolaire)]-[(#ENV{date_ev,[(#ENV{date})]}|sc_annee_scolaire|plus{1})]</h1>
 </div>
 [(#INCLURE{fond=noisettes/cartouches/themes}{id_rubrique=#ID_SECTEUR})]
 	<div id="letexte">
@@ -22,13 +22,13 @@
 		<B_Annees>
 		<form id="timenavigation" method="get" action="#SELF"><fieldset><legend><:soyezcreateurs:precisezrecherche:></legend>
 		<BOUCLE_PremiereAnnee(EVENEMENTS){branche}{par date_debut}{0,1}>
-		[(#DATE_DEBUT|affdate{Y-m-d}|<{[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)-09-01]}|oui)
-		<a href="[(#SELF|parametre_url{'date_ev',[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire|moins{1})-09-01]}|parametre_url{'calendrier',1})]"><img src="#CHEMIN{images/prev.gif}" title="<:precedent:>" alt="<:precedent:>" /></a>
+		[(#DATE_DEBUT|affdate{Y-m-d}|<{[(#ENV{date_ev,[(#ENV{date})]}|sc_annee_scolaire)-09-01]}|oui)
+		<a href="[(#SELF|parametre_url{'date_ev',[(#ENV{date_ev,[(#ENV{date})]}|sc_annee_scolaire|moins{1})-09-01]}|parametre_url{'calendrier',1})]"><img src="#CHEMIN{images/prev.gif}" title="<:precedent:>" alt="<:precedent:>" /></a>
 		]
 		</BOUCLE_PremiereAnnee>
 		<select id="date_ev" name="date_ev">
 		<BOUCLE_Annees(EVENEMENTS){branche}{par date_debut}>[
-		<option value="[(#DATE_DEBUT|annee_scolaire)-09-01]"[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire|=={[(#DATE_DEBUT|annee_scolaire)]}|?{' selected="selected"',''})]>(#DATE_DEBUT|annee_scolaire|unique)[-(#DATE_DEBUT|annee_scolaire|plus{1})]</option>
+		<option value="[(#DATE_DEBUT|sc_annee_scolaire)-09-01]"[(#ENV{date_ev,[(#ENV{date})]}|sc_annee_scolaire|=={[(#DATE_DEBUT|sc_annee_scolaire)]}|?{' selected="selected"',''})]>(#DATE_DEBUT|sc_annee_scolaire|unique)[-(#DATE_DEBUT|sc_annee_scolaire|plus{1})]</option>
 		]</BOUCLE_Annees>
 		</select>
 		<BOUCLE_ExclureStatut(MOTS){type=_AgendaStatut}{doublons statut}></BOUCLE_ExclureStatut>
@@ -43,11 +43,11 @@
 
 		<input type="submit" class="form_submit" value="<:pass_ok:>" />
 		<BOUCLE_DerniereAnnee(EVENEMENTS){branche}{!par date_debut}{0,1}>
-		[(#DATE_DEBUT||affdate{Y-m-d}|>{[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire|plus{1})-09-01]}|oui)
-		<a href="[(#SELF|parametre_url{'date_ev',[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire|plus{1})-09-01]}|parametre_url{'calendrier',1})]"><img src="#CHEMIN{images/next.gif}" title="<:suivant:>" alt="<:suivant:>" /></a>
+		[(#DATE_DEBUT||affdate{Y-m-d}|>{[(#ENV{date_ev,[(#ENV{date})]}|sc_annee_scolaire|plus{1})-09-01]}|oui)
+		<a href="[(#SELF|parametre_url{'date_ev',[(#ENV{date_ev,[(#ENV{date})]}|sc_annee_scolaire|plus{1})-09-01]}|parametre_url{'calendrier',1})]"><img src="#CHEMIN{images/next.gif}" title="<:suivant:>" alt="<:suivant:>" /></a>
 		]
 		</BOUCLE_DerniereAnnee>
-		[(#ENV{date}|annee_scolaire|!={[(#ENV{date_ev,[(#ENV{date})]}|annee_scolaire)]}|oui)
+		[(#ENV{date}|sc_annee_scolaire|!={[(#ENV{date_ev,[(#ENV{date})]}|sc_annee_scolaire)]}|oui)
 		<input type="button" class="form_submit" value="<:soyezcreateurs:aujourdhui:>" onclick="document.location.href='[(#SELF|parametre_url{'date_ev',''})]'; return false;" />
 		]
 		</fieldset>
@@ -55,7 +55,7 @@
 		</B_Annees>
 <BOUCLE_LiensMois(EVENEMENTS)
 	{branche}
-	{date_fin<=(#ENV{date_ev,(#ENV{date})}|annee_scolaire|plus{1})-12-31}
+	{date_fin<=(#ENV{date_ev,(#ENV{date})}|sc_annee_scolaire|plus{1})-12-31}
 	{date_fin>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}
 	{par date_debut}
 	{"&nbsp;| "}
