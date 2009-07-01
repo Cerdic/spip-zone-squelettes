@@ -2,6 +2,7 @@
 <!-- Affichage de la rubrique: logo, titre, texte ou descriptif
 	Recoit en argument :
 		- id_rubrique: id de la rubrique concernee
+		- avec_filles: indique si on doit afficher les rubriques filles ou pas
 -->
 ]
 <BOUCLE_description (RUBRIQUES) {id_rubrique}>
@@ -15,7 +16,7 @@
 		[<br class="nettoyeur" /><div class="notes">(#NOTES)</div>]
 		<br class="nettoyeur" />
 		[(#REM) <!-- Rubriques filles --> ]
-		[(#CONFIG{sarkaspip_rubrique/avec_filles, non}|=={oui}|?{' '})
+		[(#ENV{avec_filles, non}|=={oui}|?{' '})
 			<INCLURE{fond=noisettes/rubrique/inc_rubrique_filles}{id_rubrique}>
 		]
 	</div>
