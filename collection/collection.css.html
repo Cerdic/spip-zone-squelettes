@@ -2,6 +2,7 @@
 /*On défini ici tout les variables, histoire de ne pas se gourer après*/
 #SET{couleur_filets,#CONFIG{collection/couleur_filets,#808080}}
 #SET{image_fond,#CHEMIN{images/fond.jpg}|image_sepia{#CONFIG{collection/couleur_fond_sepia}}|extraire_attribut{src}}
+#SET{couleur_titre,#CONFIG{collection/couleur_titre,black}}
 /*bloc principaux*/
 html{
     background-image:url([(#GET{image_fond}|url_absolue)]);
@@ -38,8 +39,8 @@ body{
     }
 
 
-/*navigation*/
-.renvoi-article{
+/*navigation et documents*/
+.renvoi-article,.document{
     border : 1px solid #GET{couleur_filets};
     margin:0.5ex;
     padding:0.5ex;
@@ -54,12 +55,14 @@ body{
     clear:both}
 
 /*titre*/
-hr{
-    clear:both
+h1,h2,h3{
+    color:#GET{couleur_titre};
     }
 
 /*séparateur*/
+
 hr{
+    clear:both;
     [(#CONFIG{collection/afficher_hr}|non)display:none;]
     margin-bottom:0;
     margin-top:10ex;
@@ -73,3 +76,4 @@ hr{
 hr.spip{
     display:visible;
 }
+
