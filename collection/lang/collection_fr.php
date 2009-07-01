@@ -29,6 +29,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     
     
     //cfg
+    'cfg_fond_sepia'            =>'Couleur du d&eacute:grad&eacute; de fond de page (gauche)',
     'cfg_afficher_hr'           =>'Afficher les filets de s&eacute;paration horizontaux',
     'cfg_couleur_filets'        =>'Couleurs des filets de s&eacute;paration',
     'cfg_presentation'          =>'Configuration de la pr&eacute;sentation',

@@ -1,8 +1,21 @@
 #HTTP_HEADER{content-type:text/css}
 /*On défini ici tout les variables, histoire de ne pas se gourer après*/
 #SET{couleur_filets,#CONFIG{collection/couleur_filets,#808080}}
-
+#SET{image_fond,#CHEMIN{images/fond.jpg}|image_sepia{#CONFIG{collection/couleur_fond_sepia}}|extraire_attribut{src}}
 /*bloc principaux*/
+html{
+    background-image:url([(#GET{image_fond}|url_absolue)]);
+    background-color:[#(#GET{image_fond}|couleur_extraire{15,5})];
+    background-repeat:repeat-y;
+}
+body{
+    border-left:#GET{couleur_filet} solid 1px;
+    border-right:#GET{couleur_filet} solid 1px;    
+    background-color:#FFFFFF;
+    margin-top:0;
+    margin-bottom:0;
+    margin-left:95px;
+    margin-right:95px;}
 
 #entete{
     width:100%;
