@@ -25,10 +25,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'stat_par_critere'      =>'Statistiques par critères',
     'stat_pour_critere'     =>'Statistiques pour le crit&egrave;re «@crit@»',
     'total'                 =>'Total',
+    'squelette'            =>'Squelette “Collection”',
     
     
     
     //cfg
+    'cfg_tout_objet'            =>'Tout les objets',
     'cfg_liens_nav'                 =>'Couleurs des liens de navigations',
     'cfg_liens_spip_in'         =>'Couleurs des liens SPIP internes',
     'cfg_liens_spip_out'        =>'Couleurs des liens SPIP externes',
