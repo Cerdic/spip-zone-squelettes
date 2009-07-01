@@ -1,39 +1,4 @@
 ﻿<?php
-/* -------------
-
-Ces 2 balises permettent d'afficher dans une page :
- - le(s) saint(s) du jour
- - l'Evangile du jour
-
-Le tout remis en forme correctement.
-
----------------*/
-function balise_SAINT_DU_JOUR($p) {
-	$saint_du_jour = str_replace('+','&dagger;',str_replace("\r",'',str_replace("\n",'',str_replace('&nbsp;',' ',supprimer_tags(recuperer_page('http://www.levangileauquotidien.org/ind-saints-d.php?language=FR', true))))));
-	if ($p->param[0][1][0]->texte == -1) {
-		if (($posvirg = strpos($saint_du_jour, ',')) > 0) $saint_du_jour = substr($saint_du_jour, 0, $posvirg);
-	}
-	$saint_du_jour = str_replace('ème','<sup>e</sup>', $saint_du_jour);
-	$p->code = "'$saint_du_jour'";
-	return $p;
-}
-
-function balise_EVANGILE_DU_JOUR($p) {
-	$evangile_du_jour = str_replace("'", '&#8217;', recuperer_page('http://www.levangileauquotidien.org/ind-gospel-d.php?language=FR', true));
-	if ($evangile_du_jour) {
-		$evangile_du_jour = ereg_replace("<script.*</script>", '', $evangile_du_jour); // Suppression du script
-		$evangile_du_jour = ereg_replace("<center.*</form>", '', $evangile_du_jour); // Suppression des mentions d'abonnement
-		$evangile_du_jour = ereg_replace("<p[^>]*>", '', $evangile_du_jour); // Suppression du debut de paragraphe inutile
-		$evangile_du_jour = ereg_replace("<font[^>]*>", '', trim($evangile_du_jour)); // Suppression des font inutiles
-		$evangile_du_jour = str_replace("</font>", '', $evangile_du_jour);
-		$evangile_du_jour = str_replace("</a><br><br>", '</dt><dd>', '<dl><dt>'.$evangile_du_jour); // Titre
-		$evangile_du_jour = str_replace("<br><br>E", '</dd><dt class="aelf">E', $evangile_du_jour); // Le copyright
-		$evangile_du_jour = str_replace("<br><br>", '</dt></dl>', $evangile_du_jour); // La fin du copyright
-		$evangile_du_jour = str_replace("<br>", '</dd><dd>', $evangile_du_jour); // Un dd par verset
-	}
-	$p->code = "'$evangile_du_jour'";
-	return $p;
-}
 /*
  *   +----------------------------------+
  *    Nom du Filtre : Sommaire de l'article
