@@ -1,23 +1,14 @@
 <ul>
     <li><a href="#URL_PAGE{sommaire}"><:collection:accueil:></a></li>
-    <li><a href="#URL_PAGE{plan}"><:plan_site:></a></li>
-    <li><a href="#URL_PAGE{pluri_criteres}"><:collection:pluri_criteres:></a>
-    <li><a href="#URL_PAGE{statistiques}"><:collection:statistiques:></a></li>
-    
-    <li><a href="#URL_PAGE{contact}"><:collection:contact:></a></li>
+    <BOUCLE_page(POUR){tableau #CONFIG{collection/pages}}>
+    <li><a href="[(#VAL{&amp;connect=pour}|str_replace{'',#URL_PAGE{#VALEUR}})]">[(#VAL{collection:#VALEUR}|_T)]</a></li>
+    </BOUCLE_page>
 </ul>
 
-    #FORMULAIRE_RECHERCHE
-[(#VAL{plan}|in_array{#CONFIG{collection/menu}}|oui)
-    <INCLURE{fond=inc-plan}>
-]
+    
+    [(#CONFIG{collection/proposer_recherche}|oui)#FORMULAIRE_RECHERCHE]
 
-[(#VAL{pluri_criteres}|in_array{#CONFIG{collection/menu}}|oui)
-    <h3><:collection:pluri_criteres:></h3>
-    <div class="ajax">#FORMULAIRE_PLURI_CRITERES{oui}</div>
-]
-
-[(#VAL{sites}|in_array{#CONFIG{collection/menu}}|oui)
-
-    <INCLURE{fond=inc-sites}>
-]
+    <BOUCLE_noisette(POUR){tableau #CONFIG{collection/menu}}>
+    <INCLURE{fond=inc-#VALEUR}>
+    </BOUCLE_noisette>
+    

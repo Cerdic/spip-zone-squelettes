@@ -14,23 +14,9 @@
             
             <h1>#NOM_SITE_SPIP</h1>
             [<div class="chapo">(#DESCRIPTIF_SITE_SPIP)</div>]
-            [(#VAL{tout_objet}|in_array{#CONFIG{collection/sommaire}}|oui)
-                <INCLURE{fond=inc-articles}>
-            ]
-            
-            [(#VAL{alea9}|in_array{#CONFIG{collection/sommaire}}|oui)
-                <INCLURE{fond=inc-alea9}>
-            ]
-            [(#VAL{pluri_criteres}|in_array{#CONFIG{collection/sommaire}}|oui)
-                <div>
-                <h3><:collection:pluri_criteres:></h3>
-                <div class="ajax">#FORMULAIRE_PLURI_CRITERES{oui}</div>
-                </div>
-                
-            ]
-            [(#VAL{plan}|in_array{#CONFIG{collection/sommaire}}|oui)
-                <INCLURE{fond=inc-plan}>
-            ]
+            <BOUCLE_noisette(POUR){tableau #CONFIG{collection/sommaire}}>
+                <INCLURE{fond=inc-#VALEUR}>
+            </BOUCLE_noisette>
             </div>
         </div>
         

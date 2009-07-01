@@ -27,6 +27,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'plus_infos'            =>"Plus d'infos",
     'presentation_stat'     =>"Tout ce que vous avez toujour voulu savoir sur la collection, sans jamais avoir os&eacute; le demander !",
     'resultats'             =>'R&eacute;sultats : ',
+    'plan'                  =>'Plan du site',
     'statistiques'          =>'Statistiques',
     'stat_generales'        =>'Statistiques g&eacute;n&eacute;rales',
     'stat_par_critere'      =>'Statistiques par critères',
@@ -38,6 +39,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     
     
     //cfg
+    'cfg_proposer_recherche'    =>'Proposer de rechercher avec le moteurs de SPIP',
+    'cfg_pages'                 =>'Pages disponibles',
     'cfg_afficher_date'         =>'Afficher la date d\'ajout &agrave; la collection (date de publication)',
     'cfg_afficher_date_redac'         =>'Afficher la date d\'ajout &agrave; la collection (date de r&eacute;daction ant&eacute;rieure)',
     'cfg_tout_objet'            =>'Tout les objets',
