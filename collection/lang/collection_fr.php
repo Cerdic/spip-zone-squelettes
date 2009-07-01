@@ -29,7 +29,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     
     
     //cfg
-    'cfg_couleur_filets'       =>'Couleurs des filets de s&eacute;paration',
+    'cfg_afficher_hr'           =>'Afficher les filets de s&eacute;paration horizontaux',
+    'cfg_couleur_filets'        =>'Couleurs des filets de s&eacute;paration',
     'cfg_presentation'          =>'Configuration de la pr&eacute;sentation',
     'cfg_contenu'               =>'Configuration du contenu du site', 
     'cfg_menu'                  =>'Que mettre dans le menu de navigation ?',

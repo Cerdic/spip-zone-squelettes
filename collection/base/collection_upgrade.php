@@ -23,7 +23,11 @@ function collection_upgrade($nom_meta_base_version,$version_cible){
 		if (version_compare($current_version,'0.1','<=')){
             ecrire_config('collection/menu',array('plan'));
             ecrire_config('collection/sommaire',array('alea9'));
-			ecrire_meta($nom_meta_base_version,$current_version="0.1");
+				}
+		
+		if (version_compare($current_version,'0.2','<=')){
+            ecrire_config('collection/afficher_hr','oui');
+			ecrire_meta($nom_meta_base_version,$current_version="0.2");
 				}
 		ecrire_metas();
 		}
