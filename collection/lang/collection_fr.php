@@ -5,6 +5,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
     "accueil"               => 'Accueil',
+    'categorie'            => 'Classement',
     'collection_aleatoire_sing' => 'Un objet tir&eacute; de mani&egrave;re al&eacute;atoire',
     'collection_aleatoire_plu'  => '@total@ objets tir&eacute;s de mani&egrave;re al&eacute;atoire',
     'choisir_un_critere'    => 'Merci de choisir au moins un crit&egrave;re.', 
@@ -12,6 +13,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'cfg'                   => 'Configuration du squelette "Collection"',
     'classement'            => 'Classement par :',
     "contact"               => 'Contact',
+    'date_ajout'            => 'Date d\'ajout',
+    'date_objet'            => 'Date de l\'objet',
     'explication_pluri_criteres'    => 'Vous pouvez faire une recherche pluri-crit&egrave;res',
     'indifferent'           =>'Indiff&eacute;rent',
     'objets'                =>'Objets',
@@ -30,6 +33,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     
     
     //cfg
+    'cfg_afficher_date'         =>'Afficher la date d\'ajout &agrave; la collection (date de publication)',
+    'cfg_afficher_date_redac'         =>'Afficher la date d\'ajout &agrave; la collection (date de r&eacute;daction ant&eacute;rieure)',
     'cfg_tout_objet'            =>'Tout les objets',
     'cfg_liens_nav'                 =>'Couleurs des liens de navigations',
     'cfg_liens_spip_in'         =>'Couleurs des liens SPIP internes',
