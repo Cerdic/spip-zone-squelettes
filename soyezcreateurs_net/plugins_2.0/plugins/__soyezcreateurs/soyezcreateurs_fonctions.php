@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*
  *   +----------------------------------+
  *    Nom du Filtre : Sommaire de l'article
