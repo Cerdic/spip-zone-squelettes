@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 //
 // Configurateur de mots clefs et de rubriques bas'e sur
 // Configurateur Squelette Epona - 2004 Nov 10 - Marc Lebas.
