@@ -1,5 +1,9 @@
-
-<BOUCLE_art(ARTICLES){id_mot IN #ENV{id_mot}}{par num titre}>
-[(#REM) on fait un id_mot IN car on peut l'appeler parfois avec un tableau en entré]
-<INCLURE{fond=inc-renvoi-article}{id_article}{retour=#COMPTEUR_BOUCLE|alterner{oui,non,non}}>
+#SET{articles,#ARRAY}
+<BOUCLE_art(ARTICLES){id_mot}{par num titre}>
+#SET{articles,#GET{articles}|push{#ID_ARTICLE}}
 </BOUCLE_art>
+
+[(#CONFIG{collection/pagination}|=={0}|oui)
+            <INCLURE{fond=inc-renvois-articles}{articles=#GET{articles}}>]
+[(#CONFIG{collection/pagination}|=={0}|non)
+            <INCLURE{fond=inc-renvois-articles_pag}{articles=#GET{articles}}{ajax}>]

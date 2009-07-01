@@ -1,9 +1,9 @@
-<B_article>
+
 <div id="resultat_multi_criteres">
-<BOUCLE_article(ARTICLES){par num titre}{id_article IN #ENV{id_article}}>
-<INCLURE{fond=inc-renvoi-article}{id_article}{retour=#COMPTEUR_BOUCLE|alterner{oui,non,non}}>
-</BOUCLE_article>
+[(#CONFIG{collection/pagination}|=={0}|oui)
+            <INCLURE{fond=inc-renvois-articles}{articles=#ENV{id_article}}>]
+[(#CONFIG{collection/pagination}|=={0}|non)
+            <INCLURE{fond=inc-renvois-articles_pag}{articles=#ENV{id_article}}{ajax}>]
 </div>
-</B_article>
-    <div class="chapo"><:collection:pluri_criteres_nul:></div>
+
 <//B_article>
