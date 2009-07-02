@@ -1,5 +1,5 @@
 [(#REM) ce squelette est appelé pour tout les renvoi vers un article (ex : depuis une page de résultat de recheche]
-<BOUCLE_article(ARTICLES){id_article}>
+<BOUCLE_article(ARTICLES){notation}{id_article}>
 <div class="renvoi-article retour-#ENV{retour}">
     <BOUCLE_doc(DOCUMENTS){id_article}{par num titre}{0,1}>
     [(#SET{alt_title,[(#_article:TITRE|attribut_html)] [((#TITRE|attribut_html))]})]
@@ -9,6 +9,6 @@
     </BOUCLE_doc>
     [<div [class="(#EDIT{titre})]"><a href="#URL_ARTICLE">(#TITRE)</a></div>
     ]
-    #FORMULAIRE_NOTATION
+    [(#PLUGIN{notation}|oui)#NOTATION_ETOILE{#NOTATION_MOYENNE_PONDEREE}]
 </div>
 </BOUCLE_article>
