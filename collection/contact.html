@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
-    <title><:collection:contact:> [(#NOM_SITE_SPIP)]</title>
+    <title><:collection:contact:> [[(#NOM_SITE_SPIP|textebrut)]]</title>
     [<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|attribut_html)" />]
     <INCLUDE{fond=inc-head}>
 </head>
@@ -14,8 +14,13 @@
             
             <h1><:collection:contact:></h1>
             
-            [<div class="ajax">(#FORMULAIRE_CONTACT|sinon{<INCLURE{fond=inc-contact}>})</div>]
+                <div class="ajax">
+                [(#PLUGIN{contact}|oui)#FORMULAIRE_CONTACT]
+                [(#PLUGIN{contact}|non)<INCLURE{fond=inc-contact}>]
+                </div>
+            
             </div>
+            
         </div>
         
          <div id="navigation">
