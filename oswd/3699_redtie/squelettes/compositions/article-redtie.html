@@ -1,0 +1,59 @@
+<BOUCLE_principale(ARTICLES){id_article}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<INCLUDE {fond=inc/header}{letitre=#TITRE}>
+
+<body>
+	<div id="page" align="center">
+		<div id="content" style="width:800px">
+		<INCLURE{fond=inc/tete}>
+<div id="submenu">
+				<div align="right" class="smallgraytext" style="padding:9px;">
+					<div id="hierarchie"><a href="./">Accueil</a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]</div>
+			</div>
+			</div>
+			<div id="contenttext">
+				<div style="padding:10px">
+					<BOUCLE_article(ARTICLES){id_article}>
+					<span class="titletext">#TITRE</span>
+					</div>
+					<div class="bodytext" style="padding:12px;" align="justify">
+					#TEXTE
+				</div>
+					</BOUCLE_article>
+			</div>
+			<div id="leftpanel">
+				<div align="justify" class="graypanel">
+					<span class="smalltitle">Menu</span><br /><br />
+			<B_rubriques>
+<div class="menu rubriques">
+	<h2><:rubriques:></h2>
+	<ul>
+	<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}{!titre_mot=PasDansMenu}>
+		<li>
+			<a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
+
+			<B_sous_rubriques>
+			<ul>
+				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}>#EXPOSE{' '}</BOUCLE_test_expose>
+					<li><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
+				</B_test_expose></BOUCLE_sous_rubriques>
+			</ul>
+			</B_sous_rubriques>
+
+		</li>
+	</BOUCLE_rubriques>
+
+	</ul>
+</div>
+</B_rubriques>
+#FORMULAIRE_RECHERCHE
+	</div>
+			</div>
+			<INCLURE{fond=inc/pied}>
+			
+		</div>
+	</div>
+</body>
+</html>
+</BOUCLE_principale>

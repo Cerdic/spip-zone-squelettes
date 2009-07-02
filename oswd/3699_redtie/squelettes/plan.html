@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title><:plan_site:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<link rel="stylesheet" href="#CHEMIN{images/style.css}" type="text/css" />
+</head>
+<body>
+	<div id="page" align="center">
+		<div id="content" style="width:800px">
+		<INCLURE{fond=inc/tete}>
+		
+		<div id="submenu">
+				<div align="right" class="smallgraytext" style="padding:9px;">
+		<a href="./">Accueil</a> &gt; Plan du site
+		</div>
+			</div>
+		<div id="contenttext">
+				<div style="padding:10px">
+					<span class="titletext">PLAN DU SITE</span>
+					</div>
+		<div class="bodytext" style="padding:12px;" align="justify">
+		 <BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
+        
+        <h2><a href="#URL_RUBRIQUE">#TITRE</a></h2>
+        
+        [(#REM) Articles et sous-rubriques ]
+        <B_articles_racine>
+        <h3><:articles:></h3>
+        <ul>
+            <BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
+            <li><a href="#URL_ARTICLE">#TITRE</a></li>
+            </BOUCLE_articles_racine>
+        </ul>
+        </B_articles_racine>
+        
+        <B_rubrique>
+        <ul>
+            <BOUCLE_rubrique(RUBRIQUES) {id_parent} {par titre}>
+            <li>
+                <strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
+                
+                <B_articles>
+                <ul>
+                    <BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
+                    <li><a href="#URL_ARTICLE">#TITRE</a></li>
+                    </BOUCLE_articles>
+                </ul>
+                </B_articles>
+                
+                <BOUCLE_sous_rubrique(BOUCLE_rubrique)></BOUCLE_sous_rubrique>
+            </li>
+            </BOUCLE_rubrique>
+        </ul>
+        </B_rubrique>
+        
+        [(#REM) Breves ]
+        <B_breves>
+        <h3><:breves:></h3>
+        <ul>
+            <BOUCLE_breves(BREVES) {id_rubrique} {par date}{inverse}>
+            <li><a href="#URL_BREVE">#TITRE</a></li>
+            </BOUCLE_breves>
+        </ul>
+        </B_breves>
+        
+        [(#REM) Sur le Web ]
+        <B_sites>
+        <h3><:sites_web:></h3>
+        <ul>
+            <BOUCLE_sites(SITES) {id_secteur} {par nom_site}>
+			<li><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a></li>
+			</BOUCLE_sites>
+        </ul>
+        </B_sites>
+        
+        </BOUCLE_secteurs>
+		</div>
+			</div>
+					<div id="leftpanel">
+				<div align="justify" class="graypanel">
+					<span class="smalltitle">Menu</span><br /><br />
+			<B_rubriques>
+<div class="menu rubriques">
+	<h2><:rubriques:></h2>
+	<ul>
+	<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}{!titre_mot=PasDansMenu}>
+		<li>
+			<a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
+
+			<B_sous_rubriques>
+			<ul>
+				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}>#EXPOSE{' '}</BOUCLE_test_expose>
+					<li><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
+				</B_test_expose></BOUCLE_sous_rubriques>
+			</ul>
+			</B_sous_rubriques>
+
+		</li>
+	</BOUCLE_rubriques>
+
+	</ul>
+</div>
+</B_rubriques>
+#FORMULAIRE_RECHERCHE
+	</div>
+			</div>
+			<INCLURE{fond=inc/pied}>
+		</div>	
+	</div>
+</body>
+</html>
