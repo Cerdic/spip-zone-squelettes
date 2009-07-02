@@ -20,14 +20,22 @@ function collection_upgrade($nom_meta_base_version,$version_cible){
 	if (   (!isset($GLOBALS['meta'][$nom_meta_base_version]) )
 			|| (($current_version = $GLOBALS['meta'][$nom_meta_base_version])!=$version_cible)){
 		
-		if (version_compare($current_version,'0.1','<=')){
-            ecrire_config('collection/menu',array('plan'));
-            ecrire_config('collection/sommaire',array('alea9'));
-				}
 		
-		if (version_compare($current_version,'0.2','<=')){
-            ecrire_config('collection/afficher_hr','oui');
-			ecrire_meta($nom_meta_base_version,$current_version="0.2");
+		
+		if (version_compare($current_version,'0.3','<=')){
+		      // paramètrage de collection
+            ecrire_config('collection/afficher_hr','');
+            ecrire_config('collection/proposer_recherche','on');
+            ecrire_config('collection/menu',array('plan'));
+            ecrire_config('collection/sommaire',array('articles'));
+            ecrire_config('collection/pages',array('plan','pluri_criteres','contact'));
+            ecrire_config('collection/pagination',3);
+            
+                //paramétrage de spip
+            ecrire_meta('article_redac','oui');
+            ecrire_meta('articles_mots','oui');
+            ecrire_meta('config_precise_groupes','oui');
+            ecrire_meta($nom_meta_base_version,'0.3');
 				}
 		ecrire_metas();
 		}
