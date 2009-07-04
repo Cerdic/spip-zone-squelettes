@@ -2,8 +2,9 @@
 function eva_bonus_tab() {
 $retour=array(
 array('menu_tout_deplie','sommaire rubrique article breve site auteur','Un menu de navigation enti&egrave;rement d&eacute;pli&eacute;','Olivier Gautier'),
-array('menu_depliable_articles','sommaire rubrique article breve site auteur','Un menu de navigation enti&egrave;rement d&eacute;pliable affichant également les articles','Thomas Delhom&eacute;nie'),
+array('menu_depliable_articles','sommaire rubrique article breve site auteur','Un menu de navigation enti&egrave;rement d&eacute;pliable affichant &eacute;galement les articles','Thomas Delhom&eacute;nie'),
 array('menu_depliable_horizontal','entete','Un menu de navigation horizontal d&eacute;pliable (&agrave accompagner impérativement des headers accompagnant ce menu : headers_menu_depliable_horiz)','Thomas Delhom&eacute;nie'),
+array('menu_depliable_horizontal_articles','entete','Un menu de navigation horizontal d&eacute;pliable affichant &eacute;galement les articles (&agrave accompagner impérativement des headers accompagnant ce menu : headers_menu_depliable_horiz)','Thomas Delhom&eacute;nie'),
 array('headers_menu_depliable_horiz','headers','Headers du menu horizontal d&eacute;pliable','Thomas Delhom&eacute;nie'),
 array('nuage_mot_cle','sommaire','Ajoute un nuage de mots cl&eacute; (plugin nuage indispensable)','Olivier Gautier'),
 array('bloc_recherche','sommaire rubrique article breve site auteur','Bloc formulaire de recherche','Olivier Gautier'),
