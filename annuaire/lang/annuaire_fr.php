@@ -1,6 +1,6 @@
 <?php
 
-// This is a SPIP language file  --  Ceci est un fichier langue de SPIP
+// Fichier de langue du plugins annuaire - Pierre KUHN
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
@@ -97,12 +97,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //O
 
 //P
+'page_herbier' => 'Herbier',
 'pas_new' => 'Pas de nouveaut&eacute;s',
 'pas_pagination' => 'Nombre d\'&eacute;l&eacute;ments par page',
 'pas_pop' => 'Pas de populaires, car pas de votes',
 'pas_sites' => 'Pas de site rattach&eacute; &agrave; ce mot clef.',
 'pas_syndic' => 'Pas d\'articles syndiqu&eacute; pour ce site.',
-'pas_zard' => 'Pas de sites au , enregistrez-en ...',
+'pas_zard' => 'Pas de sites au hasard, enregistrez-en ...',
 'pied' => 'le pied de page',
 'plan' => 'la page "plan"',
 'plan_site' => 'Plan du site',
@@ -111,6 +112,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'pop' => 'la boucle "populaire"',
 'popu_site' => 'la popularit&eacute; du site est de ',
 'populaire' => 'Site populaire',
+'propo_site' => 'Proposer un site',
 
 //Q
 
