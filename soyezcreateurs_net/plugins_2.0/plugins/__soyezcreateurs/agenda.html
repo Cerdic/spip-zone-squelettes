@@ -6,7 +6,7 @@
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:soyezcreateurs:accueil:></a></li>
 	<BOUCLE_plan(HIERARCHIE){id_rubrique}>
-	<li><a href="[(#URL_PAGE{agenda}|parametre_url{'id_rubrique', #ID_RUBRIQUE}|parametre_url{'date_ev', [(#ENV{date_ev, [(#ENV{date})]}|annee)]'-[(#ENV{date_ev,[(#ENV{date})]}|mois)]-01'}|parametre_url{'id_mot', [(#ENV{id_mot,''}|urlencode)]})]"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+	<li><a href="[(#URL_PAGE{agenda}|parametre_url{'id_rubrique', #ID_RUBRIQUE}|parametre_url{'date_ev', [(#ENV{date_ev, [(#ENV{date})]}|annee)]'-[(#ENV{date_ev,[(#ENV{date})]}|mois)]-01'}|parametre_url{'id_mot', [(#ENV{id_mot,''}|urlencode)]})]"[ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>[(#TITRE)]</a></li>
 	</BOUCLE_plan>
 	<li>[(#TITRE)]</li>
 	</ul>
@@ -27,7 +27,7 @@
 		<ul>
 		<BOUCLE_sous_rubriques1(RUBRIQUES){id_parent}{par titre}>
 		<li[ style="list-style-image: url(/(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{9,9}|extraire_attribut{src}));"]>
-		<a href="[(#URL_PAGE{agenda}|parametre_url{'id_rubrique',#ID_RUBRIQUE}|parametre_url{'date_ev', [(#ENV{date_ev,[(#ENV{date})]}|annee)]-[(#ENV{date_ev,[(#ENV{date})]}|mois)]-01}|parametre_url{'id_mot', (#ENV{id_mot,''}|urlencode)})]" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">
+		<a href="[(#URL_PAGE{agenda}|parametre_url{'id_rubrique',#ID_RUBRIQUE}|parametre_url{'date_ev', [(#ENV{date_ev,[(#ENV{date})]}|annee)]-[(#ENV{date_ev,[(#ENV{date})]}|mois)]-01}|parametre_url{'id_mot', (#ENV{id_mot,''}|urlencode)})]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">
 			[(#TITRE)]
 		</a>
 		<BOUCLE_RecursionRubriques(BOUCLE_sous_rubriques1) />
@@ -130,7 +130,7 @@
 			{date_debut > (#ENV{date}|affdate{'Y-m-01'}|sc_DateAdd{-6})}
 			{date_debut < (#ENV{date}|affdate{'Y-m-01'}|sc_DateAdd{35})}
 			{par date_debut}{statut=publie}>
-				[(#DATE_DEBUT|sc_Agenda_memo_full{#DATE_FIN,[(#TITRE|addslashes)],
+				[(#DATE_DEBUT|sc_Agenda_memo_full{#DATE_FIN,[(#TITRE)],
 				#DESCRIPTIF,#LIEU,
 				#ID_ARTICLE})]
 			</BOUCLE_evenement>
