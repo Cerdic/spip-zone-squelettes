@@ -308,6 +308,30 @@ function afaire_avancement_jalon($jalon='') {
 // FIN du Filtre : afaire_avancement_jalon
 
 // =======================================================================================================================================
+// Filtre : afaire_ticket_existe
+// =======================================================================================================================================
+// Auteur: Smellup
+// Fonction : Retourne l'info qu'au moins un ticket a ete cree
+// =======================================================================================================================================
+//
+function afaire_ticket_existe($bidon) {
+	$existe = false;
+	// Test si la table existe
+	$table = sql_showtable('spip_tickets', true);
+	if ($table) {
+		// Nombre total de tickets
+		$from = array('spip_tickets AS t1');
+		$where = array();
+		$result = sql_countsel($from, $where);
+		// Nombre de tickets termines pour le jalon
+		if ($result >= 1)
+			$existe = true;
+	}
+	return $existe;
+}
+// FIN du Filtre : afaire_avancement_jalon
+
+// =======================================================================================================================================
 // Filtres : module AGENDA
 // =======================================================================================================================================
 // Auteur: Smellup

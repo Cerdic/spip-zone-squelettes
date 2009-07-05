@@ -74,19 +74,18 @@
 		#SET{no_menu, #GET{no_menu}|plus{1}}
 </BOUCLE_acces_syndics>
 
-<B_acces_tickets>
-[(#PLUGIN{TICKETS}|oui)
-	[(#GET{raccourci}|=={non}|oui)
-	<div id="menu_raccourcis" class="#GET{classe_div}"><ul>
-	[(#SET{raccourci, oui})]
+[(#VAL{1}|afaire_ticket_existe|oui)
+	[(#PLUGIN{TICKETS}|oui)
+		[(#GET{raccourci}|=={non}|oui)
+		<div id="menu_raccourcis" class="#GET{classe_div}"><ul>
+		[(#SET{raccourci, oui})]
+		]
+		<li[ class="(#GET{classe_li})"]><a[(#ENV{position}|=={bandeau_bas}|oui)[ id="mh_n(#GET{no_menu})"]][ href="(#URL_PAGE{afaire})"]><:sarkaspip:afaire:></a></li>
+		#SET{no_menu, #GET{no_menu}|plus{1}}
 	]
 ]
-<BOUCLE_acces_tickets(TICKETS) {0,1}>
-[(#PLUGIN{TICKETS}|oui)
-	<li[ class="(#GET{classe_li})"]><a[(#ENV{position}|=={bandeau_bas}|oui)[ id="mh_n(#GET{no_menu})"]][ href="(#URL_PAGE{afaire})"]><:sarkaspip:afaire:></a></li>
-	#SET{no_menu, #GET{no_menu}|plus{1}}
-]
-</BOUCLE_acces_tickets>
+
+
 
 [(#GET{raccourci}|=={oui}|oui)
 	</ul>
