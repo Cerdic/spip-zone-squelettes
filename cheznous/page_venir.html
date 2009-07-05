@@ -12,11 +12,18 @@
 	<BOUCLE_article(ARTICLES){titre_mot=page_venir}{0,1}>
 	<div id="contenu">
 		<h1 class="#EDIT{titre} big">#TITRE</h1>
+        [(#PLUGIN{rainette}|oui)
+        <p class="coordonnees"><strong>#RAINETTE_INFOS{FRXX0066,ville}</strong> &mdash; 
+            <:rainette:longitude|ucfirst:>&nbsp;:[&nbsp;(#RAINETTE_INFOS{FRXX0066,longitude}|rainette_afficher_unite{angle})] &mdash; 
+            <:rainette:latitude|ucfirst:>&nbsp;:[&nbsp;(#RAINETTE_INFOS{FRXX0066,latitude}|rainette_afficher_unite{angle})]
+        </p>]
 		[<div class="#EDIT{chapo} chapo">(#CHAPO|image_reduire{520,*})</div>]
 		[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{520,*})</div>]
+        [(#PLUGIN{rainette}|oui)[<div class="texte"><h2 class="spip">P&eacute;visions m&eacute;t&eacute;o</h2>(#MODELE{rainette_previsions, code=FRXX0066, type=x_jours, jour=4, sous_modele=previsions_24h})</div>]]
 	</div><!--#contenu-->
 	
 	<div id="extra">
+    	[(#LOGO_ARTICLE||image_reduire{200,0})]
 		[<div class="#EDIT{ps} ps">(#PS|image_reduire{520,*})</div>]
 		[<div class="notes">(#NOTES)</div>]
 	</div><!--#extra-->
