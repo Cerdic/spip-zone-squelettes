@@ -205,7 +205,7 @@ function sc_trouver_corr_pl ($id_article) {
 	"id_article=$id_article");
 	return $row;
 }
-function sc_decoder_date ($date_d, $date_e, $mode=false, $court=false) {
+function sc_decoder_date ($date_d, $date_e, $horaire='oui', $mode=false, $court=false) {
 	if($mode == 'skel') {
 		$date_d = date_ical($date_d);
 		$date_e = date_ical($date_e);
@@ -234,19 +234,29 @@ function sc_decoder_date ($date_d, $date_e, $mode=false, $court=false) {
 			$resultat = '<acronym title="'.$debut['jour_fr'].'" class="spip_acronym">'.substr($debut['jour_fr'],0,2).'</acronym>&nbsp;'.$debut['jour'].'&nbsp;';
 		}
 		else {
-		if (intval($debut['jour']) < 10)
-			$debut['jour'] = substr($debut['jour'], 1, 1);
-		$resultat = _T('soyezcreateurs:agenda_sd', array(
-			'djour_l' => $debut['jour_fr'],
-			'djour' => $debut['jour'],
-			'dmois_l' => $debut['mois_fr'],
-			'dannee' => $debut['annee'],
-			'dheure' => $debut['heure'],
-			'dminutes' => $debut['minutes'],
-			'fheure' => $fin['heure'],
-			'fminutes' => $fin['minutes']
-			)
-		);
+			if (intval($debut['jour']) < 10)
+				$debut['jour'] = substr($debut['jour'], 1, 1);
+			if ($horaire=='oui') {
+				$resultat = _T('soyezcreateurs:agenda_sd', array(
+					'djour_l' => $debut['jour_fr'],
+					'djour' => $debut['jour'],
+					'dmois_l' => $debut['mois_fr'],
+					'dannee' => $debut['annee'],
+					'dheure' => $debut['heure'],
+					'dminutes' => $debut['minutes'],
+					'fheure' => $fin['heure'],
+					'fminutes' => $fin['minutes']
+					)
+				);
+			} else {
+				$resultat = _T('soyezcreateurs:agenda_sd_notime', array(
+					'djour_l' => $debut['jour_fr'],
+					'djour' => $debut['jour'],
+					'dmois_l' => $debut['mois_fr'],
+					'dannee' => $debut['annee']
+					)
+				);
+			}
 		}
 	}
 	else if (!$get_same) {
@@ -256,25 +266,39 @@ function sc_decoder_date ($date_d, $date_e, $mode=false, $court=false) {
 			$resultat .= '&nbsp;'.$fin['mois_fr'].'&nbsp;'.$fin['annee'].'&nbsp;';
 		}
 		else {
-		if (intval($debut['jour']) < 10)
-			$debut['jour'] = substr($debut['jour'], 1, 1);
-		if (intval($fin['jour']) < 10)
-			$fin['jour'] = substr($fin['jour'], 1, 1);
-		$resultat = _T('soyezcreateurs:agenda_fsd', array(
-			'djour_l' => $debut['jour_fr'],
-			'djour' => $debut['jour'],
-			'dmois_l' => $debut['mois_fr'],
-			'dannee' => $debut['annee'],
-			'dheure' => $debut['heure'],
-			'dminutes' => $debut['minutes'],
-			'fjour_l' => $fin['jour_fr'],
-			'fjour' => $fin['jour'],
-			'fmois_l' => $fin['mois_fr'],
-			'fannee' => $fin['annee'],
-			'fheure' => $fin['heure'],
-			'fminutes' => $fin['minutes']
-			)
-		);
+			if (intval($debut['jour']) < 10)
+				$debut['jour'] = substr($debut['jour'], 1, 1);
+			if (intval($fin['jour']) < 10)
+				$fin['jour'] = substr($fin['jour'], 1, 1);
+			if ($horaire=='oui') {
+				$resultat = _T('soyezcreateurs:agenda_fsd', array(
+					'djour_l' => $debut['jour_fr'],
+					'djour' => $debut['jour'],
+					'dmois_l' => $debut['mois_fr'],
+					'dannee' => $debut['annee'],
+					'dheure' => $debut['heure'],
+					'dminutes' => $debut['minutes'],
+					'fjour_l' => $fin['jour_fr'],
+					'fjour' => $fin['jour'],
+					'fmois_l' => $fin['mois_fr'],
+					'fannee' => $fin['annee'],
+					'fheure' => $fin['heure'],
+					'fminutes' => $fin['minutes']
+					)
+				);
+			} else {
+				$resultat = _T('soyezcreateurs:agenda_fsd_notime', array(
+					'djour_l' => $debut['jour_fr'],
+					'djour' => $debut['jour'],
+					'dmois_l' => $debut['mois_fr'],
+					'dannee' => $debut['annee'],
+					'fjour_l' => $fin['jour_fr'],
+					'fjour' => $fin['jour'],
+					'fmois_l' => $fin['mois_fr'],
+					'fannee' => $fin['annee']
+					)
+				);
+			}
 		}
 	}
 	return $resultat;
