@@ -13,11 +13,11 @@
 	
 	<div id="wrapper">
 		<div id="content">
-		#SET{page_vide, oui}
+		#SET{page_vide, 1}
 		[(#REM) <!-- Editorial de bienvenue --> ]
 		[(#CONFIG{sarkaspip_sommaire/article_edito, 0}|!={0}|?{' '})
 			<INCLURE{fond=noisettes/sommaire/inc_edito}>
-			#SET{page_vide, non}
+			#SET{page_vide, 0}
 		]
 
 		[(#REM) <!-- Article a la Une --> ]
@@ -31,7 +31,7 @@
 				{taille_logo=#CONFIG{sarkaspip_article/taille_logo, 150}}
 				{page=une}
 				{id_rubrique=#ID_RUBRIQUE}>
-			#SET{page_vide, non}
+			#SET{page_vide, 0}
 		</BOUCLE_une>
 			</div>
 		</B_une>
@@ -39,27 +39,25 @@
 		[(#REM) <!-- Rubriques de niveau zero (secteurs) --> ]
 		[(#CONFIG{sarkaspip_sommaire/position_secteurs, 0}|=={1}|?{' '})
 			<INCLURE{fond=noisettes/sommaire/inc_secteurs}{lang}>
-			#SET{page_vide, non}
+			#SET{page_vide, 0}
 		]
 
 		[(#REM) <!-- Derniers articles publies --> ]
 		[(#CONFIG{sarkaspip_sommaire/position_articles_recents, 1}|=={1}|?{' '})
 			<INCLURE{fond=noisettes/sommaire/inc_articles_recents}{doublons}{lang}>
-			#SET{page_vide, non}
+			#SET{page_vide, 0}
 		]
 
 		[(#REM) <!-- Derniers articles publies --> ]
 		[(#CONFIG{sarkaspip_sommaire/position_albums_recents, 1}|=={1}|?{' '})
 			<INCLURE{fond=noisettes/sommaire/inc_albums_recents}{lang}>
-			#SET{page_vide, non}
+			#SET{page_vide, 0}
 		]
 
-		[(#GET{page_vide}|=={oui}|?{' '})
+		[(#GET{page_vide}|oui)
 			<div id="page_vide" class="erreur">
 				<div class="titre"><h1><:sarkaspip:erreur|ucfirst:>&nbsp;-&nbsp;<:sarkaspip:accueil_site:></h1></div>
-				<div class="description">
-					<div class="texte"><:sarkaspip:msg_page_vide:></div>
-				</div>
+				<div class="description"><div class="texte"><:sarkaspip:msg_page_vide:></div></div>
 			</div>
 		]
 		</div>
