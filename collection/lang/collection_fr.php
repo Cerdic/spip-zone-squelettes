@@ -35,6 +35,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'total'                 =>'Total',
     'squelette'            =>'Squelette “Collection”',
     'recherche_explication' =>'La recherche se fait avec le moteur de [SPIP->http://www.spip.net] uniquement sur la description des objets, pour une recherche plus approfondie, utiliser un [?moteur de recherche].',
+    'hebergeur'             =>'H&eacute;berg&eacute; par <a class="spip_out" href="@url@">@nom@</a>',
     
     
     
@@ -60,7 +61,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'cfg_menu'                  =>'Que mettre dans le menu de navigation ?',
     'cfg_sommaire'              =>'Que mettre sur la page sommaire ?',
     'cfg_plan'                  =>'Le plan du site',
-    'cfg_alea9'                 =>'Neuf objets tir&eacute;s de mani&egrave;re al&eacute;atoire'
-);
+    'cfg_alea9'                 =>'Neuf objets tir&eacute;s de mani&egrave;re al&eacute;atoire',
+    'cfg_url_hebergeur'         =>'Adresse de l\'h&eacute;bergeur',
+    'cfg_nom_hebergeur'         =>'Nom de l\'h&eacute;bergeur',
+    'cfg_infos_site'            =>'Informations sur le site'
+);  
 
 ?>

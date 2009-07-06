@@ -35,8 +35,12 @@ function collection_upgrade($nom_meta_base_version,$version_cible){
             ecrire_meta('article_redac','oui');
             ecrire_meta('articles_mots','oui');
             ecrire_meta('config_precise_groupes','oui');
-            ecrire_meta($nom_meta_base_version,'0.3');
+            
 				}
+        if (version_compare($current_version,'0.4','<=')){
+				ecrire_meta('mots_cles_forums','non');
+				ecrire_meta($nom_meta_base_version,'0.4');
+                }
 		ecrire_metas();
 		}
     
