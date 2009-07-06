@@ -90,6 +90,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //N
 'nav' => 'la colonne "navigation"',
+'nav_mot' => 'le bloc "mots clef"',
+'nav_rub' => 'le bloc "rubriques"',
 'nbr_articles' => 'Nombre d\'articles :',
 'nbr_sites' => 'Nombre de sites :',
 'new' => 'la boucle "nouveautés"',
