@@ -630,7 +630,7 @@ function http_calendrier_sc_mini($annee, $mois, $jour, $echelle, $partie_cal, $s
 			else{
 				$row = sc_trouver_corr_un($evts[0]['ID']);
 				$url = generer_url_entite($row['id_article'], 'article');
-				$info = sc_decoder_date($evts[0]['DTSTART'], $evts[0]['DTEND']);
+				$info = sc_decoder_date($evts[0]['DTSTART'], $evts[0]['DTEND'], $evts[0]['HORAIRE']);
 				if ($evts[0]['SUMMARY'] == $row['titre'])
 					$title = $row['titre']." - ".$info;
 				else
@@ -677,7 +677,7 @@ function http_calendrier_sc_mini($annee, $mois, $jour, $echelle, $partie_cal, $s
 			else{
 				$row = sc_trouver_corr_un($evts[0]['ID']);
 				$url = generer_url_entite($row['id_article'], 'article');
-				$info = sc_decoder_date($evts[0]['DTSTART'], $evts[0]['DTEND']);
+				$info = sc_decoder_date($evts[0]['DTSTART'], $evts[0]['DTEND'], $evts[0]['HORAIRE']);
 				if ($evts[0]['SUMMARY'] == $row['titre'])
 					$title = $row['titre']." - ".$info;
 				else
@@ -717,7 +717,7 @@ function http_calendrier_sc_mini($annee, $mois, $jour, $echelle, $partie_cal, $s
 			else{
 				$row = sc_trouver_corr_un($evts[0]['ID']);
 				$url = generer_url_entite($row['id_article'], 'article');
-				$info = sc_decoder_date($evts[0]['DTSTART'], $evts[0]['DTEND']);
+				$info = sc_decoder_date($evts[0]['DTSTART'], $evts[0]['DTEND'], $evts[0]['HORAIRE']);
 				if ($evts[0]['SUMMARY'] == $row['titre'])
 					$title = $row['titre']." - ".$info;
 				else
@@ -737,7 +737,7 @@ function http_calendrier_sc_mini($annee, $mois, $jour, $echelle, $partie_cal, $s
 
 	return $total . ($ligne ? "\n<tr>$ligne\n</tr>" : '');
 }
-function sc_agenda_memo_full($date_deb=0, $date_fin=0 , $titre='', $descriptif='', $lieu='', $url='', $cal='')
+function sc_agenda_memo_full($date_deb=0, $date_fin=0 , $titre='', $descriptif='', $lieu='', $url='', $horaire='oui', $cal='')
 {
 	static $agenda = array();
 	if (!$date_deb) {
@@ -765,6 +765,7 @@ function sc_agenda_memo_full($date_deb=0, $date_fin=0 , $titre='', $descriptif='
 			'DTEND' => $vidatefin,
 			'DESCRIPTION' => $descriptif,
 			'SUMMARY' => $titre,
+			'HORAIRE' => $horaire,
 			'LOCATION' => $lieu,
 			'ID' => $url);
 		$ts_startday1 += 26*3600; // le jour suivant : +26 h pour gerer les changements d'heure
