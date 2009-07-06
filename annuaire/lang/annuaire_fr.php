@@ -6,6 +6,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //A
 'actuellement' => 'Il y a actuellement ',
+'ajouter_google' => 'Ajouter &agrave; google',
 'annuaire' =>'Annuaire',
 'annuaire_bandeau' =>'Bandeau',
 'annuaire_colonne' =>'Colonne et pied',
