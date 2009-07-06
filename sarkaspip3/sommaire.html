@@ -14,11 +14,13 @@
 	<div id="wrapper">
 		<div id="content">
 		#SET{page_vide, 1}
+		<BOUCLE_0_squelette(ARTICLES) {id_secteur=#RACINE_SPECIALISEE{squelette}}{0,1}>
 		[(#REM) <!-- Editorial de bienvenue --> ]
 		[(#CONFIG{sarkaspip_sommaire/article_edito, 0}|!={0}|?{' '})
 			<INCLURE{fond=noisettes/sommaire/inc_edito}>
 			#SET{page_vide, 0}
 		]
+		</BOUCLE_0_squelette>
 
 		[(#REM) <!-- Article a la Une --> ]
 		<B_une>
@@ -40,21 +42,22 @@
 			[(#REM) <!-- Rubriques de niveau zero (secteurs) --> ]
 			[(#CONFIG{sarkaspip_sommaire/position_secteurs, 0}|=={1}|?{' '})
 				<INCLURE{fond=noisettes/sommaire/inc_secteurs}{lang}>
+				#SET{page_vide, 0}
 			]
 	
 			[(#REM) <!-- Derniers articles publies --> ]
 			[(#CONFIG{sarkaspip_sommaire/position_articles_recents, 1}|=={1}|?{' '})
 				<INCLURE{fond=noisettes/sommaire/inc_articles_recents}{doublons}{lang}>
+				#SET{page_vide, 0}
 			]
-			#SET{page_vide, 0}
 		</BOUCLE_0_article>
 
 		<BOUCLE_0_album(ARTICLES) {id_secteur=#RACINE_SPECIALISEE{galerie}}{0,1}>
 			[(#REM) <!-- Derniers articles publies --> ]
 			[(#CONFIG{sarkaspip_sommaire/position_albums_recents, 1}|=={1}|?{' '})
 				<INCLURE{fond=noisettes/sommaire/inc_albums_recents}{lang}>
+				#SET{page_vide, 0}
 			]
-			#SET{page_vide, 0}
 		</BOUCLE_0_album>
 
 		[(#GET{page_vide}|oui)
