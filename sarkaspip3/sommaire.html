@@ -36,23 +36,26 @@
 			</div>
 		</B_une>
 
-		[(#REM) <!-- Rubriques de niveau zero (secteurs) --> ]
-		[(#CONFIG{sarkaspip_sommaire/position_secteurs, 0}|=={1}|?{' '})
-			<INCLURE{fond=noisettes/sommaire/inc_secteurs}{lang}>
+		<BOUCLE_0_article(ARTICLES) {id_secteur!==#RACINE_SPECIALISEE}{0,1}>
+			[(#REM) <!-- Rubriques de niveau zero (secteurs) --> ]
+			[(#CONFIG{sarkaspip_sommaire/position_secteurs, 0}|=={1}|?{' '})
+				<INCLURE{fond=noisettes/sommaire/inc_secteurs}{lang}>
+			]
+	
+			[(#REM) <!-- Derniers articles publies --> ]
+			[(#CONFIG{sarkaspip_sommaire/position_articles_recents, 1}|=={1}|?{' '})
+				<INCLURE{fond=noisettes/sommaire/inc_articles_recents}{doublons}{lang}>
+			]
 			#SET{page_vide, 0}
-		]
+		</BOUCLE_0_article>
 
-		[(#REM) <!-- Derniers articles publies --> ]
-		[(#CONFIG{sarkaspip_sommaire/position_articles_recents, 1}|=={1}|?{' '})
-			<INCLURE{fond=noisettes/sommaire/inc_articles_recents}{doublons}{lang}>
+		<BOUCLE_0_album(ARTICLES) {id_secteur=#RACINE_SPECIALISEE{galerie}}{0,1}>
+			[(#REM) <!-- Derniers articles publies --> ]
+			[(#CONFIG{sarkaspip_sommaire/position_albums_recents, 1}|=={1}|?{' '})
+				<INCLURE{fond=noisettes/sommaire/inc_albums_recents}{lang}>
+			]
 			#SET{page_vide, 0}
-		]
-
-		[(#REM) <!-- Derniers articles publies --> ]
-		[(#CONFIG{sarkaspip_sommaire/position_albums_recents, 1}|=={1}|?{' '})
-			<INCLURE{fond=noisettes/sommaire/inc_albums_recents}{lang}>
-			#SET{page_vide, 0}
-		]
+		</BOUCLE_0_album>
 
 		[(#GET{page_vide}|oui)
 			<div id="page_vide" class="erreur">
