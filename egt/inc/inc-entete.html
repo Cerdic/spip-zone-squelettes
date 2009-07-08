@@ -47,7 +47,7 @@
 				<!-- DEBUT BOUCLE_Afficher_topnav_rubriques-->
 				<BOUCLE_Afficher_topnav_rubriques(RUBRIQUES){titre_mot=afficher topnav}{lang}{doublons}{par num titre}>
 				 <li><a href="#URL_RUBRIQUE" target="_self" title="[(#DESCRIPTIF|textebrut|entites_html)]">
-					  [(#TITRE|supprimer_numero)]
+					  [(#TITRE|supprimer_numero|ucfirst)]
 				 </a></li>
 				</BOUCLE_Afficher_topnav_rubriques>
 				<!-- FIN BOUCLE_Afficher_topnav_rubriques-->	  
@@ -59,7 +59,7 @@
 				<!-- DEBUT BOUCLE_Afficher_topnav_articles-->
 				<BOUCLE_Afficher_topnav_articles(ARTICLES){titre_mot=afficher topnav}{lang}{doublons}{par num titre}>
 					<li><a href="#URL_ARTICLE" target="_self" title="[(#DESCRIPTIF|textebrut|entites_html)]">
-						[(#TITRE|supprimer_numero)]
+						[(#TITRE|supprimer_numero|ucfirst)]
 					</a></li>
 				</BOUCLE_Afficher_topnav_articles>
 				<!-- FIN BOUCLE_Afficher_topnav_articles-->			  
@@ -69,7 +69,7 @@
 			[(#PLUGIN{agenda}|oui)
 				<ul>
 					<li><a href="[(#URL_PAGE{evenements}|parametre_url{'lang',#LANG}|parametre_url{'date_debut',#ENV{date}|affdate{Y-m-d}})]" target="_self" title="<:egt:tous_nos_rdv:>">
-						<:agenda:agenda:>
+						<:agenda:agenda|ucfirst:>
 					</a></li>
 				</ul>
 			]
@@ -77,7 +77,7 @@
 			[(#PLUGIN{spiplistes}|oui)
 				<ul>
 					<li><a href="[(#URL_PAGE{gerer_abonnement}|parametre_url{'lang',#LANG})]" target="_self" title="<:spiplistes:lettre_info:>">
-						<span class="majuscule"><:spiplistes:abonner:></span>
+<:spiplistes:abonner|ucfirst:>
 					</a></li>
 				</ul>
 			]	
@@ -85,7 +85,7 @@
 			[(#PLUGIN{spiplistes}|non)
 				<ul>
 					<li><a href="[(#URL_PAGE{inscription}|parametre_url{'lang',#LANG})]" target="_self" title="<:spip:pass_vousinscrire:>">
-						<span class="majuscule"><:spip:login_sinscrire:></span>
+<:spip:login_sinscrire|ucfirst:>
 					</a></li>
 				</ul>
 			]				
