@@ -1,7 +1,7 @@
 <div id="nav">
 		[(#REM) Afficher les mot clef du site]
 		<fieldset class="mots">
-				<legend><:mots_clefs:></legend>
+				<object><:mots_clefs:></object>
 				<B_mot>
 					[(#REM) j'affiche les mots relier au site syndic ]
 					<BOUCLE_mot(MOTS){id_syndic}>
@@ -27,7 +27,7 @@
 		on l'affiche si son parent est expose ou est la racine du site. ]
 
 		<fieldset class="rub">
-		<legend><:rubriques:></legend>
+		<object><:rubriques:></object>
 		<B_rubriques>
 		<ul>
 		<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
@@ -36,12 +36,7 @@
 				<B_sous_rubriques>
 				<ul>
 					<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
-					<BOUCLE_test_expose(RUBRIQUES) {id_enfant}>#EXPOSE{' '}</BOUCLE_test_expose>
-					<li>
-					<a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
-					<BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>
-					</li>
-					</B_test_expose>
+						<li class="sous"><a class="texte" href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
 					</BOUCLE_sous_rubriques>
 				</ul>
 				</B_sous_rubriques>
@@ -53,7 +48,7 @@
 
 		[(#REM) Afficher les mot clef du site]
 		<fieldset class="tag">
-			<legend><:annuaire:tags:></legend>
+			<object><:annuaire:tags:></object>
 				[(#MODELE{nuage_site})]
 		</fieldset><!--#tag-->
 		
@@ -73,7 +68,7 @@
 			<br />
 			[(#REM) Le igoogle]
 			<a class="texte" href="http://fusion.google.com/add?source=atgs&amp;feedurl=#URL_SITE_SPIP/spip.php?page=backend">
-			<img src="http://gmodules.com/ig/images/plus_google.gif" border="0" alt="<:annuaire:ajouter_google:>">
+			<img src="http://gmodules.com/ig/images/plus_google.gif" border="0" alt="<:annuaire:ajouter_google:>" />
 			</a>
 		</fieldset><!--#lien-->
 </div><!--#navigation-->
