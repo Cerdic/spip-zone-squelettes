@@ -1,22 +1,80 @@
 #CACHE{7*24*3600}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $gsLANG; ?>" dir="<?php echo $gsLANG_DIR; ?>" lang="<?php echo $gsLANG; ?>">
+[
+(#REM) ===== Récupération des variables des COOKIES avant texte =====
+]<?php
+	switch ($_COOKIE[ 'prefBodyWidth']) {
+		case '780px' : $lsBodyWidth = '780px'; break;
+		case '1000px': $lsBodyWidth = '1000px'; break;
+		case '80pc'  : $lsBodyWidth = '80%'; break;
+		case '90pc'  : $lsBodyWidth = '90%'; break;
+		case '100pc' : $lsBodyWidth = '100%'; break;
+		default : $lsBodyWidth = ''; }
+	if ($lsBodyWidth != '') $gsBodyStyle = <<<BSTY
+	<style type='text/css'><!-- body { width: $lsBodyWidth; } --></style>\n
+BSTY
+;
+?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[
+(#REM) ===== Récupération des variables de RUBRIQUE ===== 
+]<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
+ [(#SET{gsLANG,#LANG}))
+][(#SET{gsLANG_DIR,#LANG_DIR})
+][(#SET{gsThisRubrique,#ID_RUBRIQUE})
+][(#SET{gsTITRE,[(#TITRE|supprimer_numero)]})
+] <BOUCLE_freq_rub(HIERARCHIE){id_rubrique}{titre_mot==^_MaJ-([0-9])_(.*)$}{tout}><?php
+		if ( ($liMot = "<BOUCLE_freq(MOTS){id_rubrique}{titre==^_MaJ-([0-9])_(.*)$}{0,1}>[(#TITRE|meta_revisit_after)]</BOUCLE_freq>") != '') $liMeta_revisit_after = $liMot;
+?></BOUCLE_freq_rub></BOUCLE_rubrique>[
+(#REM) =========== META_DATAS génériques depuis CFG  =============
+][(#SET{gsDescription,[(#CONFIG{jayceeWeb/jayceeDescription})]})
+][(#SET{gsAbstract,[(#CONFIG{jayceeWeb/jayceeAbstract})]})
+][(#SET{gsKeywords,[(#CONFIG{jayceeWeb/jayceeKeywords})]})
+][
+(#REM) =========== META_DATAS personnalisés par rubrique =============
+]<BOUCLE_2meta_rubs(HIERARCHIE){id_rubrique}{tout}{inverse}>
+	<BOUCLE_2meta_art(ARTICLES){id_rubrique}{titre_mot=_META_DATAS}><?php	 
+		// Dernière Description
+		if ( $gsDescription == '')
+			$gsDescription = "[(#DESCRIPTIF|textebrut)]";
+	
+		// Dernière Abstract
+		if ( $gsAbstract == '')
+			$gsAbstract = "[(#CHAPO|textebrut)]";
+
+		//Mots-clés
+		if ( ( ($lsKeys = "[(#PS|textebrut)]") != '') ) {
+			$gsKeywords .= $lsKeys.',';
+			//$gsKeywords .= 'rub'.'#ID_RUBRIQUE'.', ';
+		}	
+?></BOUCLE_2meta_art>
+</BOUCLE_2meta_rubs>
+[
+(#REM) ===== Récupération des variables de ARTICLE =====
+]<BOUCLE_article(ARTICLES){id_article}
+>[(#SET{gsLANG,#LANG}))
+][(#SET{gsLANG_DIR,#LANG_DIR})
+][(#SET{gsThisArticle,#ID_ARTICLE})
+][(#SET{gsTITRE,[(#TITRE|supprimer_numero)]})
+][(#SET{gsREVISION,[(#DATE_MODIF|affdate{'Ymd'})]})
+]
+</BOUCLE_article>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#GET{gsLANG}" dir="#GET{gsLANG_DIR}" lang="#GET{gsLANG}">
 <head>
 	<link rel="shortcut icon" href="#CHEMIN{styles/jci.ico}" />
-	<title>#NOM_SITE_SPIP :: <?php echo $gsTITRE; ?></title>
+	<title>#NOM_SITE_SPIP :: #GET{gsTITRE}</title>
 	
 	<meta http-equiv='Content-Type' content='text/html; charset=#CHARSET' />
 	<meta name='author' content="Stéphane Gautreau" />
 	<meta name='Identifier-URL' content='#URL_SITE_SPIP' />
 	<meta name='revisit-after' content='<?php echo $liMeta_revisit_after; ?>' />
-	<meta name='date-creation-yyyymmdd' content='20060125' />
-	<meta name='date-revision-yyyymmdd' content='[(#DATE_MODIF|affdate{'Ymd'})]' />
-	<meta name='robots' content="index,follow,all" />
-	<meta name='description' content="<?php echo $gsDescription; ?>" />
-	<meta name='abstract' content="<?php echo $gsAbstract; ?>" />
-	<meta name='keywords' content="<?php echo $gsKeywords; ?>" />
-
+[	<meta name='date-creation-yyyymmdd' content='(#CONFIG{jayceeWeb/jayceeDateCreation})' />
+][	<meta name='date-revision-yyyymmdd' content='(#GET{gsREVISION})' />
+]	<meta name='robots' content="index,follow,all" />
+ [	<meta name='description' content="(#GET{gsDescription}|textebrut|couper{200})" />
+][	<meta name='abstract' content="(#GET{gsAbstract}|textebrut|couper{200})" />
+][	<meta name='keywords' content="(#GET{gsKeywords}|textebrut)" />
+]
 	#INSERT_HEAD
+	#IMAGEFLOW_INSERT_HEAD
 
 	<!-- Styles CSS -->
 	<link rel="stylesheet" type="text/css" href="#CHEMIN{styles/styles.css}" />

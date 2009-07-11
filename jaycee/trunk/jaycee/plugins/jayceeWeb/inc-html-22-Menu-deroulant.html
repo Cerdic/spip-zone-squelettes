@@ -1,30 +1,21 @@
 #CACHE{7*24*3600}
-	<BOUCLE_masquer_secteurs(RUBRIQUES){titre_mot=_MASQUER_RUBRIQUE}{doublons secteur}>
-	</BOUCLE_masquer_secteurs>
-
-	[(#REM) Masque les articles de meta-donnees dans le secteur ]
-	<BOUCLE_masquer_articles(ARTICLES){titre_mot=_MASQUER_ARTICLE}{doublons articles}>
-	</BOUCLE_masquer_articles>
 
 <BOUCLE_local(RUBRIQUES){id_rubrique}>
   <BOUCLE_secteur(HIERARCHIE){tout}{0,1}><?php  $liLevel = 0; ?>
     <ul class='menuList' id='menuList1'>
 
-		<BOUCLE_articles_secteur(ARTICLES){id_rubrique}{doublons articles}{par titre}>
+		<BOUCLE_articles_secteur(ARTICLES){id_rubrique}{!titre_mot='_MASQUER_ARTICLE'}{par titre}>
 			<li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero|textebrut)]</a></li>
 		</BOUCLE_articles_secteur>
 		
-	  <BOUCLE_rubriques(RUBRIQUES){id_parent}{doublons secteur}{par titre}>
+	  <BOUCLE_rubriques(RUBRIQUES){id_parent}{!titre_mot='_MASQUER_RUBRIQUE'}{doublons rub_secteur}{par titre}>
 			<li class='liRub#GET{stylezone}'><?php $lbLayer = (++$liLevel > 1); ?>
 				<a href='#URL_RUBRIQUE'>[(#TITRE|supprimer_numero|textebrut)] 
 				<?php	if ($lbLayer) echo ' <span>►</span>'; ?></a>
 
-				<BOUCLE_masquer_rubriques(RUBRIQUES){titre_mot=_MASQUER_RUBRIQUE}{doublons rubrique}>
-				</BOUCLE_masquer_rubriques>
-
-				<BOUCLE_afficher(RUBRIQUES){id_rubrique}>
+				<BOUCLE_afficher(RUBRIQUES){id_rubrique}{!titre_mot='_MASQUER_RUBRIQUE'}>
 					<ul>
-            <BOUCLE_articles(ARTICLES){id_rubrique}{doublons articles}{par titre}>
+            <BOUCLE_articles(ARTICLES){id_rubrique}{!titre_mot='_MASQUER_ARTICLE'}{par titre}>
            	<li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero|textebrut)]</a></li>
             </BOUCLE_articles>
             <BOUCLE_sous_rubriques(BOUCLE_rubriques)>
@@ -33,14 +24,12 @@
 				</BOUCLE_afficher>
 			</li><?php $liLevel--; ?>
 		</BOUCLE_rubriques>
-		
-	  <BOUCLE_restreint(RUBRIQUES){id_parent}{tout_voir}{doublons secteur}{par titre}>
-			<li class='liRub'>
-				<a href="/spip.php?page=login&url=#URL_RUBRIQUE" title="Espace membre, accès restreint">[(#TITRE|supprimer_numero|textebrut|accesgroupes_visualise{#ID_RUBRIQUE,#CHEMIN{styles/images/cadenas-12.gif}})]</a>
-			</li>
-	  </BOUCLE_restreint>
-		
-		<INCLURE{fond=inc-html-23-Menu-deroulant-syndication}>
+
+[(#PLUGIN{accesrestreint}|oui)		
+		[(#INCLURE{fond=inc-html-22-Menu-deroulant-restreint}{id_rubrique}{doublons})]
+]		
+
+		[(#INCLURE{fond=inc-html-23-Menu-deroulant-syndication})]
 		
 		<BOUCLE_contact(ARTICLES){titre_mot=_source_Contact}>
 			<li><a href="#URL_ARTICLE"[ title="(#TITRE|supprimer_numero)"]><img src="#CHEMIN{styles/images/message-16x12px.png}" alt='' title='Contact'/> Contact</a></li>
