@@ -116,6 +116,44 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				sql_delete("spip_mots_syndic", "id_mot=$id_mot");
 				sql_delete("spip_mots_forum", "id_mot=$id_mot");
 			}
+			include_spip('inc/cfg_config'); 
+			$cfg = array(
+				'geolocalisation' => 'radio',
+				'affichage_ephemeride' => 'radio',
+				'aff_datepublication' => 'radio',
+				'agendafuturseul' => 'radio',
+				'affichage_lien_antichrono' => 'oui_non',
+				'nouveauteparbranche' => 'oui_non',
+				'activerrechercheparmots' => 'oui_non',
+				'miniagenda' => 'oui_non',
+				'agendathematique' => 'oui_non',
+				'anonymatglobal' => 'oui_non',
+				'aff_complet_pour_impression' => 'oui_non'
+				);
+			foreach ($cfg as $conf => $faire) {
+				$recherche_conf = lire_config('soyezcreateurs/'.$conf);
+				spip_log('cfg = '.$conf.' = '.$recherche_conf.' go','soyezcreateurs_install');
+				if ($faire == 'radio') {
+					if ($recherche_conf == 'Oui') {
+						$res = ecrire_config('soyezcreateurs/'.$conf, 'oui');
+						spip_log('cfg go to '.$faire.'= '.$recherche_conf.' ok','soyezcreateurs_install');
+					}
+					else if ($recherche_conf == 'Non') {
+						$res = ecrire_config('soyezcreateurs/'.$conf, 'non');
+						spip_log('cfg go to '.$faire.'= '.$recherche_conf.' ok','soyezcreateurs_install');
+					}
+				}
+				else if ($faire == 'oui_non') {
+					if ($recherche_conf == 'Non') {
+						$res = ecrire_config('soyezcreateurs/'.$conf, '');
+						spip_log('cfg go to '.$faire.'= '.$recherche_conf.' ok','soyezcreateurs_install');
+					}
+					else if ($recherche_conf == 'Oui') {
+						$res = ecrire_config('soyezcreateurs/'.$conf, 'on');
+						spip_log('cfg go to '.$faire.'= '.$recherche_conf.' ok','soyezcreateurs_install');
+					}
+				}
+			}
 			#ecrire_meta($nom_meta_base_version,$current_version='2.1.7','non');
 		}
 	}

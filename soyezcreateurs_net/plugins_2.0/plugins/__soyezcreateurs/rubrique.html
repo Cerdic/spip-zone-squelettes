@@ -10,12 +10,12 @@
 	{titretop=#GET{titretop}}
 )]
 <BOUCLE_EstAgenda(HIERARCHIE){id_rubrique}{tout}{titre_mot=Agenda}{inverse}{0,1}>
-[(#CONFIG{soyezcreateurs/agendathematique,Non}|=={#ENV{calendrier,Oui}}|oui)[(#INCLURE{fond=noisettes/agenda/agendathematique}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE})]]
-[(#CONFIG{soyezcreateurs/agendathematique,Non}|!={#ENV{calendrier,Oui}}|oui)
+[(#CONFIG{soyezcreateurs/agendathematique, }|=={#ENV{calendrier,Oui}}|oui)[(#INCLURE{fond=noisettes/agenda/agendathematique}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE})]]
+[(#CONFIG{soyezcreateurs/agendathematique, }|!={#ENV{calendrier,Oui}}|oui)
 	[(#CONFIG{soyezcreateurs/agendascolaire,annuel}|=={scolaire}|oui)[(#INCLURE{fond=noisettes/agenda/agendaliste_scolaire}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{id_mot})]]
 	[(#CONFIG{soyezcreateurs/agendascolaire,annuel}|=={annuel}|oui)
-		[(#CONFIG{soyezcreateurs/agendafuturseul,Non}|=={Oui}|oui)[(#INCLURE{fond=noisettes/agenda/agendaliste_futurseul}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{id_mot})]]
-		[(#CONFIG{soyezcreateurs/agendafuturseul,Non}|=={Non}|oui)[(#INCLURE{fond=noisettes/agenda/agendaliste}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{id_mot})]]
+		[(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={oui}|oui)[(#INCLURE{fond=noisettes/agenda/agendaliste_futurseul}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{id_mot})]]
+		[(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={non}|oui)[(#INCLURE{fond=noisettes/agenda/agendaliste}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{id_mot})]]
 	]
 ]
 </BOUCLE_EstAgenda>
@@ -38,7 +38,7 @@
 [(#REM) Ne pas afficher le cartouche si le texte est vide : on affiche déjà la liste des articles avec un extrait à la place du texte
 ][(#TEXTE*|=={''}|non)[(#INCLURE{fond=noisettes/cartouches/rubrique_cartouche}{id_rubrique})]]
 [(#REM) Par contre, afficher les nouveautes si la config du site en décide
-][(#TEXTE*|=={''}|oui)[(#CONFIG{soyezcreateurs/nouveauteparbranche,Non}|=={Oui}|oui)[<div id="artrecents" class="flottant">(#INCLURE{fond=noisettes/cartouches/cartouche_nouveaute_branche}{id_rubrique}|trim)</div>]]]
+][(#TEXTE*|=={''}|oui)[(#CONFIG{soyezcreateurs/nouveauteparbranche, }|=={on}|oui)[<div id="artrecents" class="flottant">(#INCLURE{fond=noisettes/cartouches/cartouche_nouveaute_branche}{id_rubrique}|trim)</div>]]]
 
 <div class="texte">
 <!-- Une : contenu de la rubrique -->
