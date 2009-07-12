@@ -623,7 +623,7 @@ function http_calendrier_sc_mini($annee, $mois, $jour, $echelle, $partie_cal, $s
 				$row = sc_trouver_corr_pl($evts[0]['ID']);
 				$id_rub = intval($row['id_secteur']);
 				$titre_rub = supprimer_numero($row['titre']);
-				$url = generer_url_public('agenda', 'id_rubrique='.$id_rub.'');
+				$url = generer_url_public('agenda_calendrier', 'id_rubrique='.$id_rub.'');
 				$evts = "<a href='".$url."' title='".supprimer_tags($titre_rub)." ("._T('agenda:voir_evenements_rubrique').")'>".intval($jour_mois_precedent)."</a>";
 				$class='agendanotthismonth events';
 			}
@@ -670,7 +670,7 @@ function http_calendrier_sc_mini($annee, $mois, $jour, $echelle, $partie_cal, $s
 				$row = sc_trouver_corr_pl($evts[0]['ID']);
 				$id_rub = intval($row['id_secteur']);
 				$titre_rub = supprimer_numero($row['titre']);
-				$url = generer_url_public('agenda', 'id_rubrique='.$id_rub.'');
+				$url = generer_url_public('agenda_calendrier', 'id_rubrique='.$id_rub.'');
 				$evts = "<a href='".$url."' title='".supprimer_tags($titre_rub)." ("._T('agenda:voir_evenements_rubrique').")'>".intval($jour)."</a>";
 				$class = 'agendathismonth events';
 			}
@@ -710,7 +710,7 @@ function http_calendrier_sc_mini($annee, $mois, $jour, $echelle, $partie_cal, $s
 				$row = sc_trouver_corr_pl($evts[0]['ID']);
 				$id_rub = intval($row['id_secteur']);
 				$titre_rub = supprimer_numero($row['titre']);
-				$url = generer_url_public('agenda', 'id_rubrique='.$id_rub.'');
+				$url = generer_url_public('agenda_calendrier', 'id_rubrique='.$id_rub.'');
 				$evts = "<a href='".$url."' title='".supprimer_tags($titre_rub)." ("._T('agenda:voir_evenements_rubrique').")'>".intval($jour_mois_suivant++)."</a>";
 				$class='agendanotthismonth events';
 			}
