@@ -5,6 +5,12 @@
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //A
+'acceuil_presentation' =>'Présentation',
+'accueil_intro' =>'Bienvenue sur la page de présentation du plugins "annuaire".',
+'acceuil_requis' =>'Les requis pour un bon fonctionnement du site',
+'acceuil_requis_1' =>'Pour un bon référencement de votre site, ils vous faut créer :
+					<br />un groupe de mot clef "_META"
+					<br />les mots clefs keywords et description',
 'actuellement' => 'Il y a actuellement ',
 'ajouter_google' => 'Ajouter &agrave; google',
 'annuaire' =>'Annuaire',
@@ -20,6 +26,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //B
 'bandeau' => 'le "bandeau"',
+'boite_acceuil' => 'Acceuil',
 'boite_bandeau' => 'Page bandeau',
 'boite_colonne' => 'Colonne et pied',
 'boite_herbier' => 'Herbier',
@@ -47,6 +54,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'css_ho' => 'Couleur de survol',
 
 //D
+'descriptif_acceuil' => 'Présentation du plugins "annuaire" et de c\'est fonctions.',
 'descriptif_bandeau' => '<h4>R&eacute;glage du bandeau</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur le bandeau.',
 'descriptif_herbier' => '<h4>R&eacute;glage de l\'herbier</h4>
