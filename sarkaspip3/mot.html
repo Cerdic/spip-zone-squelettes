@@ -14,101 +14,14 @@
 	
 	<div id="wrapper">
 		<div id="content">
-		<B_mot_principal>
-		<BOUCLE_mot_principal(MOTS) {id_mot}>
-		  <div class="titre"><h1><:sarkaspip:objets_mot:>&nbsp;:&nbsp;#TITRE</h1></div>
+		
+		  <div class="titre"><h1><:sarkaspip:objets_mot:></h1></div>
 			<div class="sommaire">
-				[(#REM) <!-- Rubriques trouvees --> ]
-				<B_rubriques>
-					<div class="elements-trouves"><:sarkaspip:rubriques_mot:></div>
-					<div class="indentation">
-				<BOUCLE_rubriques(RUBRIQUES){id_mot}{id_rubrique!==#BRANCHE_SPECIALISEE} {par titre}>
-							[(#INCLURE{fond=noisettes/rubrique/inc_rubrique_description}{id_rubrique})]
-				</BOUCLE_rubriques>
-					</div> <!-- Fin indentation -->
-				</B_rubriques>
-				
-				
-				[(#REM) <!-- Articles trouves --> ]
-				<B_articles_recherche>
-					<div class="elements-trouves"><:sarkaspip:articles_mot:></div>
-					<div class="indentation">
-						<div class="derniers-articles">
-							#ANCRE_PAGINATION
-							[<div class="pagination">(#PAGINATION)</div>]
-				<BOUCLE_articles_recherche(ARTICLES) {id_mot}{id_rubrique!==#BRANCHE_SPECIALISEE} {par date} {inverse}{pagination 10}>
-								[(#INCLURE{fond=noisettes/article/inc_article_introduction}
-                    {id_article}
-                    {afficher_mere=non}
-                    {taille_introduction=#CONFIG{sarkaspip_recherche/intro_article, 300}}
-                    {taille_logo=#CONFIG{sarkaspip_article/taille_logo, 150}}
-                )]
-				</BOUCLE_articles_recherche>
-							[<div class="pagination">(#PAGINATION)</div>]
-						</div> <!-- Fin derniers-articles -->
-					</div> <!-- Fin indentation -->
-				</B_articles_recherche>
-				
-				
-				
-				[(#REM) <!-- Breves trouvees --> ]
-				<B_breves_recherche>
-					<div class="elements-trouves"><:sarkaspip:breves_mot:></div>
-					<div class="indentation redimensionnement">
-						<div id="breves" class="noisette">
-				<BOUCLE_breves_recherche(BREVES) {id_mot}{id_rubrique!==#BRANCHE_SPECIALISEE} {par date} {inverse}>
-								[(#INCLUDE{fond=noisettes/breve/inc_breve_1}{id_breve})]
-								<br />
-				</BOUCLE_breves_recherche>
-						</div> <!-- Fin noisette -->
-					</div> <!-- Fin indentation redimensionnement -->
-				</B_breves_recherche>
-			
-				
-				
-				[(#REM) <!-- Sites Web trouves --> ]
-				<B_sites_recherche>
-					<div class="elements-trouves"><:sarkaspip:sites_mot:></div>
-					<div id="web" class="noisette">
-						<div class="indentation redimensionnement">
-				<BOUCLE_sites_recherche(SITES) {id_mot}{id_rubrique!==#BRANCHE_SPECIALISEE} {par date} {inverse}>
-								[(#INCLURE{fond=noisettes/site/inc_site_1}{id_syndic}{editable=non}{nb_syndic=#CONFIG{sarkaspip_site/nb_syndic, 10}} )]
-								<br />
-				</BOUCLE_sites_recherche>
-						</div> <!-- Fin indentation redimensionnement -->
-					</div> <!-- Fin web -->
-				</B_sites_recherche>
-				
-						
-				[(#REM) <!-- Messages trouves --> ]
-				<B_messages_recherche>
-					<div class="elements-trouves"><:sarkaspip:messages_mot:></div>
-					<div class="forum">
-						<div class="indentation">
-				<BOUCLE_messages_recherche(FORUMS) {id_mot}{id_rubrique!==#BRANCHE_SPECIALISEE} {par date} {inverse}>
-								<div class="visualisation">
-									<div class="titre">#TITRE</div>
-									<div class="detail">
-										[(#DATE|nom_jour)]&nbsp;[(#DATE|affdate)]<br />
-										[<:sarkaspip:par_auteur:>&nbsp;(#NOM)]
-									</div> <!-- Fin detail -->
-									<div class="texte">
-										#TEXTE
-										[<br /><br /><a href="[(#URL_SITE)]">(#NOM_SITE)</a>]
-									</div> <!-- Fin texte -->
-								</div> <!-- Fin visualisation -->
-								<br /><a class="repondre" href="#URL_FORUM"><:sarkaspip:forum:></a><br /><br />
-				</BOUCLE_messages_recherche>
-						</div> <!-- Fin indentation -->
-					</div> <!-- Fin forum -->
-				</B_messages_recherche>
+				<div class="ajax">#FORMULAIRE_MULTI_CRITERES</div>
 			
 			
 			</div><!--sommaire-->			
-		</BOUCLE_mot_principal>	 
-		</B_mot_principal>
-			<div class="titre"><h1><:sarkaspip:objets_mot:>&nbsp;:&nbsp;</h1></div>
-		<//B_mot_principal>			
+		
 		</div><!--content-->
 	</div><!--wrapper-->
 	

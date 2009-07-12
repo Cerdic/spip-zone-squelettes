@@ -1,0 +1,73 @@
+[(#REM) 
+<!-- Affichage de la liste des articles trouves lors d'une recherche multi-critere par mot cle
+	Est appele par le formulaire : #FORMULAIRE_PLURI_CRITERES
+-->
+]
+
+[(#REM) <!-- 1ere partie : le rappel des criteres de selection -->]
+<div id="minisommaire" class="description">
+	#SET{i,1}
+	<B_groupe>
+	<h2><:sarkaspip:criteres_recherche:></h2>
+	<div class="filles">
+		<ul>
+
+		<BOUCLE_groupe(GROUPES_MOTS){id_groupe IN #ENV{id_groupe}|array_keys}>
+			<li><strong>#TITRE : </strong>
+				
+				<BOUCLE_mot(MOTS){id_mot IN #ENV{id_groupe}|table_valeur{#ID_GROUPE}}>
+				#TITRE
+				[(#GET{i}|=={1}|oui)#SET{tableau_article,#ARRAY}]
+				#SET{tableau_article1,#ARRAY}
+		   
+					<BOUCLE_art_mot(ARTICLES){id_mot}>
+					[(#GET{i}|=={1}|oui)#SET{tableau_article,#GET{tableau_article}|push{#ID_ARTICLE}}]
+					#SET{tableau_article1,#GET{tableau_article1}|push{#ID_ARTICLE}}
+					</BOUCLE_art_mot>
+				
+				
+				#SET{tableau_article,#GET{tableau_article1}|array_intersect{#GET{tableau_article}}}
+				#SET{i,#GET{i}|plus{1}}
+				</BOUCLE_mot>
+				<:sarkaspip:indifferent:>
+				<//B_mot>
+			</li>
+		</BOUCLE_groupe>
+		</ul>
+	</div>
+</div>
+
+
+
+[(#REM) <!-- 2eme partie : les résultats de la recherche multi-criteres -->]
+<B_article>
+<div id="recherche_multicritere" class="commentaires">
+ 
+    <h2><:sarkaspip:recherche_articles_resultat:>&nbsp;&#40;#GRAND_TOTAL&#41;</h2>
+
+	#ANCRE_PAGINATION
+    [(#CONFIG{sarkaspip_recherche/position_pagination_recherche_article, 3}|match{^(1|3)$}|?{' '})
+      [<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_article}})</div>]
+    ]
+    <ul>
+	
+<BOUCLE_article(ARTICLES){id_article IN #GET{tableau_article}}{pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_article, 5}}>
+  		[(#INCLURE{fond=noisettes/recherche/inc_recherche_extrait}
+          {titre=#TITRE}
+          {afficher_date=oui}{date=#DATE}
+          {url=#URL_ARTICLE}
+          {afficher_mere=oui}{id_rubrique}
+          {afficher_logo=non}
+          {afficher_auteur=non}
+          {ajax}
+        )]
+</BOUCLE_article>
+		
+	</ul>
+	
+	[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_article, 3}|match{^(2|3)$}|?{' '})
+      [<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_article}})</div>]
+    ]
+	
+</div>
+</B_article>
