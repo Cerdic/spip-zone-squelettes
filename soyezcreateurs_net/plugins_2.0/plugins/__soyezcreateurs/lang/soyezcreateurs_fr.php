@@ -21,6 +21,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_de' => ' de ',
 	'agenda_du' => 'Du ',
 	'agenda_sd' => 'Le @djour_l@ @djour@ @dmois_l@ @dannee@ de @dheure@:@dminutes@ &agrave; @fheure@:@fminutes@',
+	'agenda_sd_h' => 'Le @djour_l@ @djour@ @dmois_l@ @dannee@ &agrave; @dheure@:@dminutes@',
 	'agenda_sd_notime' => 'Le @djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_fsd' => 'Du @djour_l@ @djour@ @dmois_l@ @dannee@ &agrave; @dheure@:@dminutes@ au @fjour_l@ @fjour@ @fmois_l@ @fannee@ &agrave; @fheure@:@fminutes@',
 	'agenda_fsd_notime' => 'Du @djour_l@ @djour@ @dmois_l@ @dannee@ au @fjour_l@ @fjour@ @fmois_l@ @fannee@',

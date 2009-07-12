@@ -237,6 +237,20 @@ function sc_decoder_date ($date_d, $date_e, $horaire='oui', $mode=false, $court=
 			if (intval($debut['jour']) < 10)
 				$debut['jour'] = substr($debut['jour'], 1, 1);
 			if ($horaire=='oui') {
+				$comd = $debut['heure'].$debut['minutes'];
+				$comf = $fin['heure'].$fin['minutes'];
+				if ($comd == $comf) {
+					$resultat = _T('soyezcreateurs:agenda_sd_h', array(
+						'djour_l' => $debut['jour_fr'],
+						'djour' => $debut['jour'],
+						'dmois_l' => $debut['mois_fr'],
+						'dannee' => $debut['annee'],
+						'dheure' => $debut['heure'],
+						'dminutes' => $debut['minutes'],
+						)
+					);
+				}
+				else {
 				$resultat = _T('soyezcreateurs:agenda_sd', array(
 					'djour_l' => $debut['jour_fr'],
 					'djour' => $debut['jour'],
@@ -248,6 +262,7 @@ function sc_decoder_date ($date_d, $date_e, $horaire='oui', $mode=false, $court=
 					'fminutes' => $fin['minutes']
 					)
 				);
+				}
 			} else {
 				$resultat = _T('soyezcreateurs:agenda_sd_notime', array(
 					'djour_l' => $debut['jour_fr'],
