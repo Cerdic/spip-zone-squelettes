@@ -8,6 +8,7 @@
 //<![CDATA[
 	jQuery(document).ready(function() {
 		[(#ENV{liste_breves, 2}|!={2}|?{jQuery("#bloc_intro_breve").hide();})]
+		[(#ENV{position_publications, 0}|=={0}|?{jQuery("#bloc_max_publications").hide();})]
 		[(#ENV{position_commentaires, 0}|=={0}|?{jQuery("#bloc_intro_commentaires").hide();})]
 		[(#ENV{position_messages, 0}|=={0}|?{jQuery("#bloc_intro_messages").hide();})]
 		[(#ENV{liste_sites, 2}|!={1}|?{jQuery("#bloc_max_site").hide();})]
@@ -29,6 +30,14 @@
 				jQuery("#bloc_intro_breve").show();
 			else
 				jQuery("#bloc_intro_breve").hide();
+			jQuery(this).blur();
+		});	
+
+		jQuery("input[@name='position_publications']").change(function() {
+			if (jQuery("input[@name='position_publications']:checked").val() != 0)
+				jQuery("#bloc_max_publications").show();
+			else
+				jQuery("#bloc_max_publications").hide();
 			jQuery(this).blur();
 		});	
 
@@ -166,6 +175,33 @@
 			{suffixe=_filtre}
 			{choix=sans_position}
 			{env}>
+	</fieldset>
+
+	[(#REM) <!-- Choix de presentation des publications --> ]
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_inc_publications:></legend>
+		<p><:sarkaspip:cfg_inf_inc_publications:></p>
+		<label>
+			<input type="radio" name="position_publications" value="0" [(#ENV{position_publications, 0}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_position_0:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="position_publications" value="1" [(#ENV{position_publications, 0}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_position_1:>
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="position_publications" value="2" [(#ENV{position_publications, 0}|=={2}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_inc_position_2:>
+		</label>
+		<br />
+		<div id="bloc_max_publications">
+		<br />
+		<label><:sarkaspip:cfg_lbl_max_publications:></label>
+			<input type="text" name="max_publications" value="#ENV{max_publications, 5}" size="2" class="fondl" />
+		<br />
+		</div>
 	</fieldset>
 
 	[(#REM) <!-- Choix de presentation des commentaires --> ]
