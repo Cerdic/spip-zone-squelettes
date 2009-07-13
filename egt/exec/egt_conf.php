@@ -2,10 +2,8 @@
 
 //
 // Ce code permet la creation du groupe de mots cle egt_squelette et les 16 mots qui lui sont lies
-// Avec l'aimable autorisation de l'auteur :
-// Configurateur Squelette Epona - 2006 Fev 28 - Marc Lebas - http://spip-epona.org/
 // Adapté pour spip2 par damazone
-// squelette egt v0.3
+// squelette egt v0.4
 //
 
 include_spip('inc/presentation');

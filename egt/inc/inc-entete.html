@@ -11,8 +11,21 @@
 <div id="conteneur"> <!-- ce div se ferme sur les pages principales --> 
 	
 		<div id="entete">
+
+			[(#REM) Toutes les langues du site public : ]
+			<span class="invisible"><:info_langues:> : </span>
+			<p class="langues">
+			<BOUCLE_langues(RUBRIQUES){racine}{fusion lang}{par lang}>
+				[(#TOTAL_BOUCLE|>{1}|?{
+				<span lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR"[ (#LANG|=={#ENV{lang}}|?{class="on",''})]>
+
+					[&#91;<a href="#URL_SITE_SPIP/?lang=#LANG" rel="alternate" title="[(#LANG|traduire_nom_langue)]">(#LANG|unique{langues})</a>&#93;]
+				</span>})]
+			</BOUCLE_langues>			
+			</p>
 		
 			<h1 class="invisible">#NOM_SITE_SPIP</h1>
+
 			<div id="entete-logo">
 				[<a rel="start" href="#URL_SITE_SPIP/?lang=#LANG" title="[(#NOM_SITE_SPIP|textebrut)]">
 					(#LOGO_SITE_SPIP)
@@ -22,76 +35,55 @@
 				<div id="entete-texte">
 					[(#TEXTE|sinon{#NOM_SITE_SPIP})]
 				</div> <!-- fin div entete-texte -->
+
 				<div id="entete-descriptif">[(#DESCRIPTIF_SITE_SPIP|PtoBR)]</div>
 				<div id="entete-logo-mot">[(#LOGO_MOT|right)]</div>  
 			</BOUCLE_bandeau>
 
-			[(#REM) Toutes les langues du site public : ]
-			<span class="invisible"><:info_langues:> : </span>
-			<p class="langues">
-			<BOUCLE_langues(RUBRIQUES){racine}{fusion lang}{par lang}>
-				[(#TOTAL_BOUCLE|>{1}|?{
-				<span lang="#LANG" xml:lang="#LANG" dir="#LANG_DIR"[ (#LANG|=={#ENV{lang}}|?{class="on",''})]>
-					[&#91;<a href="#URL_SITE_SPIP/?lang=#LANG" rel="alternate" title="[(#LANG|traduire_nom_langue)]">(#LANG|unique{langues})</a>&#93;]
-				</span>})]
-			</BOUCLE_langues>			
-			</p>
-
 		</div> <!-- fin div entete -->
 		
 		[(#REM) Menu horizontal ]
-		<div id="topnav">
+			<div id="topnav">
+				<ul>
+					<!-- DEBUT BOUCLE_Afficher_topnav_rubriques-->
 
-			<BOUCLE_topnav_rubrique_existe(RUBRIQUES){titre_mot=afficher topnav}{lang}{0,1}>
-				<ul>
-				<!-- DEBUT BOUCLE_Afficher_topnav_rubriques-->
-				<BOUCLE_Afficher_topnav_rubriques(RUBRIQUES){titre_mot=afficher topnav}{lang}{doublons}{par num titre}>
-				 <li><a href="#URL_RUBRIQUE" target="_self" title="[(#DESCRIPTIF|textebrut|entites_html)]">
-					  [(#TITRE|supprimer_numero|ucfirst)]
-				 </a></li>
-				</BOUCLE_Afficher_topnav_rubriques>
-				<!-- FIN BOUCLE_Afficher_topnav_rubriques-->	  
-				</ul>
-			</BOUCLE_topnav_rubrique_existe>
+					<BOUCLE_Afficher_topnav_rubriques(RUBRIQUES){titre_mot=afficher topnav}{lang}{doublons}{par num titre}>
+					 <li><a href="#URL_RUBRIQUE" target="_self" title="[(#DESCRIPTIF|textebrut|entites_html)]">
+						  [(#TITRE|supprimer_numero|ucfirst)]
+					 </a></li>
+					</BOUCLE_Afficher_topnav_rubriques>
+					<!-- FIN BOUCLE_Afficher_topnav_rubriques-->	  
 
-			<BOUCLE_topnav_article_existe(ARTICLES){titre_mot=afficher topnav}{lang}{0,1}>
-				<ul>
-				<!-- DEBUT BOUCLE_Afficher_topnav_articles-->
-				<BOUCLE_Afficher_topnav_articles(ARTICLES){titre_mot=afficher topnav}{lang}{doublons}{par num titre}>
-					<li><a href="#URL_ARTICLE" target="_self" title="[(#DESCRIPTIF|textebrut|entites_html)]">
-						[(#TITRE|supprimer_numero|ucfirst)]
-					</a></li>
-				</BOUCLE_Afficher_topnav_articles>
-				<!-- FIN BOUCLE_Afficher_topnav_articles-->			  
-				 </ul>
-			</BOUCLE_topnav_article_existe>			
+					<!-- DEBUT BOUCLE_Afficher_topnav_articles-->
+					<BOUCLE_Afficher_topnav_articles(ARTICLES){titre_mot=afficher topnav}{lang}{doublons}{par num titre}>
+						<li><a href="#URL_ARTICLE" target="_self" title="[(#DESCRIPTIF|textebrut|entites_html)]">
+							[(#TITRE|supprimer_numero|ucfirst)]
+						</a></li>
 
-			[(#PLUGIN{agenda}|oui)
-				<ul>
-					<li><a href="[(#URL_PAGE{evenements}|parametre_url{'lang',#LANG}|parametre_url{'date_debut',#ENV{date}|affdate{Y-m-d}})]" target="_self" title="<:egt:tous_nos_rdv:>">
-						<:agenda:agenda|ucfirst:>
-					</a></li>
-				</ul>
-			]
-				
-			[(#PLUGIN{spiplistes}|oui)
-				<ul>
-					<li><a href="[(#URL_PAGE{gerer_abonnement}|parametre_url{'lang',#LANG})]" target="_self" title="<:spiplistes:lettre_info:>">
+					</BOUCLE_Afficher_topnav_articles>
+					<!-- FIN BOUCLE_Afficher_topnav_articles-->			  	
+
+					[(#PLUGIN{agenda}|oui)
+							<li><a href="[(#URL_PAGE{evenements}|parametre_url{'lang',#LANG}|parametre_url{'date_debut',#ENV{date}|affdate{Y-m-d}})]" target="_self" title="<:egt:tous_nos_rdv:>">
+								<:agenda:agenda|ucfirst:>
+							</a></li>
+					]
+						
+					[(#PLUGIN{spiplistes}|oui)
+							<li><a href="[(#URL_PAGE{gerer_abonnement}|parametre_url{'lang',#LANG})]" target="_self" title="<:spiplistes:lettre_info:>">
 <:spiplistes:abonner|ucfirst:>
-					</a></li>
-				</ul>
-			]	
+							</a></li>
+					]	
 
-			[(#PLUGIN{spiplistes}|non)
-				<ul>
-					<li><a href="[(#URL_PAGE{inscription}|parametre_url{'lang',#LANG})]" target="_self" title="<:spip:pass_vousinscrire:>">
+					[(#PLUGIN{spiplistes}|non)
+							<li><a href="[(#URL_PAGE{inscription}|parametre_url{'lang',#LANG})]" target="_self" title="<:spip:pass_vousinscrire:>">
+
 <:spip:login_sinscrire|ucfirst:>
-					</a></li>
+							</a></li>
+					]	
 				</ul>
-			]				
-			
-		</div>	 <!-- fin div topnav -->
-
+				
+			</div>	 <!-- fin div topnav -->
 				
 		<div id="trouver">
 			[(#REM) Texte agrandi ou diminué ]
@@ -103,6 +95,7 @@
 			[(#REM) Formulaire de recherche ]
 			<!-- accessibilite -->		
 			<a name="rechercher"></a>
+
 			[(#FORMULAIRE_RECHERCHE)]	
 			
 		</div> <!-- fin div trouver -->
