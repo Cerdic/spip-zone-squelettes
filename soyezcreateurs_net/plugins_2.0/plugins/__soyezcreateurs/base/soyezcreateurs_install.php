@@ -129,13 +129,13 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				'anonymatglobal' => 'oui_non',
 				'aff_complet_pour_impression' => 'oui_non'
 				);
-			soyezcreateurs_changer_conf_cfg($cfg);
+			soyezcreateurs_changer_cfg($cfg);
 			#ecrire_meta($nom_meta_base_version,$current_version='2.1.7','non');
 		}
 	}
 }
 
-function  {
+function soyezcreateurs_changer_cfg($cfg) {
 	include_spip('inc/cfg_config'); 
 	foreach ($cfg as $conf => $faire) {
 		$recherche_conf = lire_config('soyezcreateurs/'.$conf);
