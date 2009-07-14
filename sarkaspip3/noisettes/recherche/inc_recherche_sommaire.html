@@ -6,92 +6,97 @@
 ]
 
 <div id="minisommaire" class="description">
-			  <a name="minisommaire"></a>
-			  <div class="filles">
-			  #SET{recherche_vide, oui}	    
-			   <BOUCLE_nb_articles_recherche(ARTICLES) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE} {par points}></BOUCLE_nb_articles_recherche>
-			     [(#TOTAL_BOUCLE|!={0}|?{' '})
-			      [(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
-            [<h2><a href="#articles">(#TOTAL_BOUCLE) 
-                [(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_article:>,<:sarkaspip:articles:>})]
-            </a></h2>]
-            #SET{recherche_vide, non}
-           ]
-			   <//B_nb_articles_recherche>
+	<a name="minisommaire"></a>
+	<div class="filles">
+		#SET{recherche_vide, oui}	    
+		<BOUCLE_nb_articles_recherche(ARTICLES) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE} {par points}>
+		</BOUCLE_nb_articles_recherche>
+			[(#TOTAL_BOUCLE|!={0}|?{' '})
+				[(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
+				[<h2><a href="#articles">(#TOTAL_BOUCLE) 
+					[(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_article:>,<:sarkaspip:articles:>})]
+				</a></h2>]
+				#SET{recherche_vide, non}
+			]
+		<//B_nb_articles_recherche>
 			   
-			   <BOUCLE_nb_commentaires_recherche(FORUMS) {recherche}{articles.id_rubrique!==#BRANCHE_SPECIALISEE{galerie,not_in}} {par points}></BOUCLE_nb_commentaires_recherche>
-  			   [(#TOTAL_BOUCLE|!={0}|?{' '})
-			      [(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
-            [<h2><a href="#commentaires">(#TOTAL_BOUCLE) 
-              [(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_commentaire:>,<:sarkaspip:commentaires:>})]
-            </a></h2>]
-            #SET{recherche_vide, non}
-  				 ]  
-			   <//B_nb_commentaires_recherche>
+		<BOUCLE_nb_commentaires_recherche(FORUMS) {recherche}{articles.id_rubrique!==#BRANCHE_SPECIALISEE{galerie,not_in}} {par points}>
+		</BOUCLE_nb_commentaires_recherche>
+			[(#TOTAL_BOUCLE|!={0}|?{' '})
+			    [(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
+				[<h2><a href="#commentaires">(#TOTAL_BOUCLE) 
+					[(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_commentaire:>,<:sarkaspip:commentaires:>})]
+				</a></h2>]
+				#SET{recherche_vide, non}
+  			]  
+		<//B_nb_commentaires_recherche>
 			   
-			   <BOUCLE_nb_albums_recherche(ARTICLES) {recherche}{id_secteur=#RACINE_SPECIALISEE{galerie}} {par points}></BOUCLE_nb_albums_recherche>
-			     [(#TOTAL_BOUCLE|!={0}|?{' '})
-			       [(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
-			       [<h2><a href="#albums">(#TOTAL_BOUCLE) 
-                [(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_album:>,<:sarkaspip:albums:>})]
-              </a></h2>]
-			       #SET{recherche_vide, non}
-			     ] 
-			   <//B_nb_albums_recherche>
+		<BOUCLE_nb_albums_recherche(ARTICLES) {recherche}{id_secteur=#RACINE_SPECIALISEE{galerie}} {par points}>
+		</BOUCLE_nb_albums_recherche>
+			[(#TOTAL_BOUCLE|!={0}|?{' '})
+			    [(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
+			    [<h2><a href="#albums">(#TOTAL_BOUCLE) 
+					[(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_album:>,<:sarkaspip:albums:>})]
+				</a></h2>]
+			    #SET{recherche_vide, non}
+			] 
+		<//B_nb_albums_recherche>
 			   
-         <BOUCLE_nb_evenements_recherche(ARTICLES) {recherche}{id_secteur=#RACINE_SPECIALISEE{agenda}} {par points}></BOUCLE_nb_evenements_recherche>
-			     [(#TOTAL_BOUCLE|!={0}|?{' '})
-			      [(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
-            [<h2><a href="#evenements">(#TOTAL_BOUCLE)
-                [(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_evenement:>,<:sarkaspip:evenements:>})] 
-            </a></h2>]
-            #SET{recherche_vide, non}
-           ]
-			   <//B_nb_evenements_recherche>
+        <BOUCLE_nb_evenements_recherche(ARTICLES) {recherche}{id_secteur=#RACINE_SPECIALISEE{agenda}} {par points}>
+		</BOUCLE_nb_evenements_recherche>
+			[(#TOTAL_BOUCLE|!={0}|?{' '})
+			    [(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
+				[<h2><a href="#evenements">(#TOTAL_BOUCLE)
+					[(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_evenement:>,<:sarkaspip:evenements:>})] 
+				</a></h2>]
+				#SET{recherche_vide, non}
+			]
+		<//B_nb_evenements_recherche>
 		   
-			   <BOUCLE_nb_breves_recherche(BREVES) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE{galerie,not_in}} {par points}></BOUCLE_nb_breves_recherche>
-			     [(#TOTAL_BOUCLE|!={0}|?{' '})
-			      [(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
-            [<h2><a href="#breves">(#TOTAL_BOUCLE)
-                [(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_breve:>,<:sarkaspip:breves:>})]
-            </a></h2>]
-            #SET{recherche_vide, non}
-           ]
-			   <//B_nb_breves_recherche>
+		<BOUCLE_nb_breves_recherche(BREVES) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE{galerie,not_in}} {par points}>
+		</BOUCLE_nb_breves_recherche>
+			[(#TOTAL_BOUCLE|!={0}|?{' '})
+			    [(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
+				[<h2><a href="#breves">(#TOTAL_BOUCLE)
+					[(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_breve:>,<:sarkaspip:breves:>})]
+				</a></h2>]
+				#SET{recherche_vide, non}
+			]
+		<//B_nb_breves_recherche>
 			   
-         <BOUCLE_nb_rubriques_recherche(RUBRIQUES){recherche}{id_rubrique!==#BRANCHE_SPECIALISEE} {par points}></BOUCLE_nb_rubriques_recherche>
-			     [(#TOTAL_BOUCLE|!={0}|?{' '})
-			      [(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
-            [<h2><a href="#rubriques">(#TOTAL_BOUCLE)
-                [(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_rubrique:>,<:sarkaspip:rubriques:>})]
-            </a></h2>]
-            #SET{recherche_vide, non}
-           ]
-			   <//B_nb_rubriques_recherche>
+        <BOUCLE_nb_rubriques_recherche(RUBRIQUES){recherche}{id_rubrique!==#BRANCHE_SPECIALISEE} {par points}>
+		</BOUCLE_nb_rubriques_recherche>
+			[(#TOTAL_BOUCLE|!={0}|?{' '})
+			    [(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
+				[<h2><a href="#rubriques">(#TOTAL_BOUCLE)
+					[(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_rubrique:>,<:sarkaspip:rubriques:>})]
+				</a></h2>]
+				#SET{recherche_vide, non}
+			]
+		<//B_nb_rubriques_recherche>
 		   
-			   <BOUCLE_nb_mots_recherche(MOTS) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE}{par points}{type!==^squelette_}></BOUCLE_nb_mots_recherche>
-			     [(#TOTAL_BOUCLE|!={0}|?{' '})
-			      [(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
-            [<h2><a href="#mots">(#TOTAL_BOUCLE)
-                [(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_mot_clef:>,<:sarkaspip:mots_clefs:>})] 
-            </a></h2>]
-            #SET{recherche_vide, non}
-           ]
-			   <//B_nb_mots_recherche>
+		<BOUCLE_nb_mots_recherche(MOTS) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE}{par points}{type!==^squelette_}></BOUCLE_nb_mots_recherche>
+			[(#TOTAL_BOUCLE|!={0}|?{' '})
+				[(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
+				[<h2><a href="#mots">(#TOTAL_BOUCLE)
+					[(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_mot_clef:>,<:sarkaspip:mots_clefs:>})] 
+				</a></h2>]
+				#SET{recherche_vide, non}
+			]
+		<//B_nb_mots_recherche>
 			   
-			   <BOUCLE_nb_sites_recherche(SITES) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE{galerie,not_in}} {par points}></BOUCLE_nb_sites_recherche>
-			     [(#TOTAL_BOUCLE|!={0}|?{' '})
-			      [(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
-            [<h2><a href="#sites">(#TOTAL_BOUCLE)
-                [(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_site:>,<:sarkaspip:sites:>})]
-            </a></h2>]
-            #SET{recherche_vide, non}
-           ]
-			   <//B_nb_sites_recherche>
+		<BOUCLE_nb_sites_recherche(SITES) {recherche}{id_rubrique!==#BRANCHE_SPECIALISEE{galerie,not_in}} {par points}></BOUCLE_nb_sites_recherche>
+			[(#TOTAL_BOUCLE|!={0}|?{' '})
+				[(#GET{recherche_vide}|=={oui}|?{' '})<p><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:est_present:></p>]
+				[<h2><a href="#sites">(#TOTAL_BOUCLE)
+					[(#TOTAL_BOUCLE|=={1}|?{<:sarkaspip:1_site:>,<:sarkaspip:sites:>})]
+				</a></h2>]
+				#SET{recherche_vide, non}
+			]
+		<//B_nb_sites_recherche>
 			   
-			   [(#GET{recherche_vide}|=={oui}|?{' '})
-    					<h2><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:pas_present:></h2>
-         ]
-			  </div>	
-      </div>			
-      
+		[(#GET{recherche_vide}|=={oui}|?{' '})
+			<h2><:sarkaspip:le_mot:>&nbsp;" #RECHERCHE "&nbsp;<:sarkaspip:pas_present:></h2>
+        ]
+	</div>	
+</div>
