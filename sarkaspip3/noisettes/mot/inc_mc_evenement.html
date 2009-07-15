@@ -1,0 +1,31 @@
+<B_evenement>
+<div id="multicritere_evenement" class="commentaires">
+	<a href="#minisommaire" title="retour sommaire" class="fonction revenir_haut_page"></a>
+    <h2><:sarkaspip:recherche_evenements_resultat:>&nbsp;&#40;#GRAND_TOTAL&#41;</h2>
+
+	#ANCRE_PAGINATION
+    [(#CONFIG{sarkaspip_recherche/position_pagination_recherche_article, 3}|match{^(1|3)$}|?{' '})
+      [<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_article}})</div>]
+    ]
+    <ul>
+	
+<BOUCLE_evenement(ARTICLES){id_article IN #ENV{id_article}}{id_secteur=#RACINE_SPECIALISEE{agenda}}{pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_article, 5}}>
+  		[(#INCLURE{fond=noisettes/recherche/inc_recherche_extrait}
+          {titre=#TITRE}
+          {afficher_date=oui}{date=#DATE}
+          {url=#URL_ARTICLE}
+          {afficher_mere=oui}{id_rubrique}
+          {afficher_logo=non}
+          {afficher_auteur=non}
+          {ajax}
+        )]
+</BOUCLE_evenement>
+		
+	</ul>
+	
+	[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_article, 3}|match{^(2|3)$}|?{' '})
+      [<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_article}})</div>]
+    ]
+	
+</div>
+</B_evenement>

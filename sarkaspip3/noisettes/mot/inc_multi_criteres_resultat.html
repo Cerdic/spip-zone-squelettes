@@ -7,6 +7,9 @@
 [(#REM) <!-- 1ere partie : le rappel des criteres de selection -->]
 <div id="minisommaire" class="description">
 	#SET{i,1}
+	#SET{j,1}
+	#SET{k,1}
+	#SET{m,1}
 	<B_groupe>
 	<h2><:sarkaspip:criteres_recherche:></h2>
 	<div class="filles">
@@ -17,17 +20,44 @@
 				
 				<BOUCLE_mot(MOTS){id_mot IN #ENV{id_groupe}|table_valeur{#ID_GROUPE}}>
 				#TITRE
-				[(#GET{i}|=={1}|oui)#SET{tableau_article,#ARRAY}]
-				#SET{tableau_article1,#ARRAY}
-		   
+				
+					[(#GET{i}|=={1}|oui)#SET{tableau_article,#ARRAY}]
+					#SET{tableau_article1,#ARRAY}		   
 					<BOUCLE_art_mot(ARTICLES){id_mot}>
-					[(#GET{i}|=={1}|oui)#SET{tableau_article,#GET{tableau_article}|push{#ID_ARTICLE}}]
-					#SET{tableau_article1,#GET{tableau_article1}|push{#ID_ARTICLE}}
+						[(#GET{i}|=={1}|oui)#SET{tableau_article,#GET{tableau_article}|push{#ID_ARTICLE}}]
+						#SET{tableau_article1,#GET{tableau_article1}|push{#ID_ARTICLE}}
 					</BOUCLE_art_mot>
-				
-				
-				#SET{tableau_article,#GET{tableau_article1}|array_intersect{#GET{tableau_article}}}
-				#SET{i,#GET{i}|plus{1}}
+					#SET{tableau_article,#GET{tableau_article1}|array_intersect{#GET{tableau_article}}}
+					#SET{i,#GET{i}|plus{1}}
+					
+					[(#GET{j}|=={1}|oui)#SET{tableau_breve,#ARRAY}]
+					#SET{tableau_breve1,#ARRAY}		   
+					<BOUCLE_breve_mot(BREVES){id_mot}>
+						[(#GET{j}|=={1}|oui)#SET{tableau_breve,#GET{tableau_breve}|push{#ID_BREVE}}]
+						#SET{tableau_breve1,#GET{tableau_breve1}|push{#ID_BREVE}}
+					</BOUCLE_breve_mot>
+					#SET{tableau_breve,#GET{tableau_breve1}|array_intersect{#GET{tableau_breve}}}
+					#SET{j,#GET{j}|plus{1}}
+					
+					
+					[(#GET{k}|=={1}|oui)#SET{tableau_rub,#ARRAY}]
+					#SET{tableau_rub1,#ARRAY}		   
+					<BOUCLE_rubrique_mot(RUBRIQUES){id_mot}>
+						[(#GET{k}|=={1}|oui)#SET{tableau_rub,#GET{tableau_rub}|push{#ID_RUBRIQUE}}]
+						#SET{tableau_rub1,#GET{tableau_rub1}|push{#ID_RUBRIQUE}}
+					</BOUCLE_rubrique_mot>
+					#SET{tableau_rub,#GET{tableau_rub1}|array_intersect{#GET{tableau_rub}}}
+					#SET{k,#GET{k}|plus{1}}
+					
+					[(#GET{m}|=={1}|oui)#SET{tableau_site,#ARRAY}]
+					#SET{tableau_site1,#ARRAY}		   
+					<BOUCLE_site_mot(SYNDIC){id_mot}>
+						[(#GET{m}|=={1}|oui)#SET{tableau_site,#GET{tableau_site}|push{#ID_SYNDIC}}]
+						#SET{tableau_site1,#GET{tableau_site1}|push{#ID_SYNDIC}}
+					</BOUCLE_site_mot>
+					#SET{tableau_site,#GET{tableau_site1}|array_intersect{#GET{tableau_site}}}
+					#SET{m,#GET{m}|plus{1}}
+					
 				</BOUCLE_mot>
 				<:sarkaspip:indifferent:>
 				<//B_mot>
@@ -40,34 +70,10 @@
 
 
 [(#REM) <!-- 2eme partie : les résultats de la recherche multi-criteres -->]
-<B_article>
-<div id="recherche_multicritere" class="commentaires">
- 
-    <h2><:sarkaspip:recherche_articles_resultat:>&nbsp;&#40;#GRAND_TOTAL&#41;</h2>
 
-	#ANCRE_PAGINATION
-    [(#CONFIG{sarkaspip_recherche/position_pagination_recherche_article, 3}|match{^(1|3)$}|?{' '})
-      [<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_article}})</div>]
-    ]
-    <ul>
-	
-<BOUCLE_article(ARTICLES){id_article IN #GET{tableau_article}}{pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_article, 5}}>
-  		[(#INCLURE{fond=noisettes/recherche/inc_recherche_extrait}
-          {titre=#TITRE}
-          {afficher_date=oui}{date=#DATE}
-          {url=#URL_ARTICLE}
-          {afficher_mere=oui}{id_rubrique}
-          {afficher_logo=non}
-          {afficher_auteur=non}
-          {ajax}
-        )]
-</BOUCLE_article>
-		
-	</ul>
-	
-	[(#CONFIG{sarkaspip_recherche/position_pagination_recherche_article, 3}|match{^(2|3)$}|?{' '})
-      [<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_article}})</div>]
-    ]
-	
-</div>
-</B_article>
+<INCLURE{fond=noisettes/mot/inc_mc_article}{id_article=#GET{tableau_article}}>
+<INCLURE{fond=noisettes/mot/inc_mc_album}{id_article=#GET{tableau_article}}>
+<INCLURE{fond=noisettes/mot/inc_mc_evenement}{id_article=#GET{tableau_article}}>
+<INCLURE{fond=noisettes/mot/inc_mc_breve}{id_breve=#GET{tableau_breve}}>
+<INCLURE{fond=noisettes/mot/inc_mc_rubrique}{id_rubrique=#GET{tableau_rub}}>
+<INCLURE{fond=noisettes/mot/inc_mc_site}{id_syndic=#GET{tableau_site}}>

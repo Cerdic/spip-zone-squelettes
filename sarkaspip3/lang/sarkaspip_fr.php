@@ -119,7 +119,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 	
 //C
-	  
+	 
+		'choisir_un_critere' => 'Choisir un crit&egrave;re de recherche',
 		'commentaires' => 'commentaires',
 		'commentaires_article' => 'Commentaires',
 		'commenter_article' => 'Ajouter un commentaire',
