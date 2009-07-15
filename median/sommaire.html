@@ -64,9 +64,9 @@
 			<h1 class="invisible">#NOM_SITE_SPIP</h1>
 		</div>
 
+    <div class="cartouche">
     [(#REM) afficher l'article défini comme article accueil ]
     <BOUCLE_aa(ARTICLES){id_article=(#CONFIG{median/id_aa})}>
-      <div class="cartouche">
       #DEBUT_SURLIGNE
       [(#CONFIG{median/logo}|=={on}|?{[(#LOGO_ARTICLE||image_reduire{200,200})],''})]
       [(#CONFIG{median/titre}|=={on}|?{[<h1 class="#EDIT{titre} sommaire">(#TITRE)</h1>],'<br/>'})]
@@ -82,14 +82,18 @@
       [(#CONFIG{median/soustitre}|=={on}|?{[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>],'<br/>'})]
       [(#CONFIG{median/chapo}|=={on}|?{[<div class="#EDIT{chapo} soustitre">(#CHAPO)</div>],'<br/>'})]
       #FIN_SURLIGNE
-      </div>
       
       [(#CONFIG{median/texte}|=={on}|?{[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{520,0})</div>],''})]               
     </BOUCLE_aa>
     
+      [(#REM) une photo au hazard parmi celles qui sont associées aux articles ayant le mot clé photos_sommaire ]
+      [<div id="tof_hazard">
+        (#INCLURE{fond=inc-photo_hasard})
+      </div>]
       [(#REM) si aa ne sort rien, afficher le descriptif du site ]
-		  [<br/><br/><div class="soustitre">(#DESCRIPTIF_SITE_SPIP)</div>]
+		  [<div class="soustitre" id="desc_site">(#DESCRIPTIF_SITE_SPIP)</div>]
     <//B_aa>
+    </div> <!-- fin cartouche -->
     
     <br class="nettoyeur" />
     [(#REM) les blocs sous le texte d'accueil: articles avec mot clé: bloc_sommaire ]
@@ -111,7 +115,7 @@
                 <h2><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h2>
                 <div class="#GET{class_bloc}"><a href="#URL_ARTICLE">[(#DESCRIPTIF|couper{#GET{longueur_texte}}|sinon{#TEXTE|couper{#GET{longueur_texte}}})]</a></div>
             </div>
-            <div class="read_more" style="background-image: url('#CHEMIN{logo_read_more.jpg}');"><a href="#URL_ARTICLE">Read more</a></div>
+            <div class="read_more" style="background-image: url('#CHEMIN{logo_read_more.jpg}');"><a href="#URL_ARTICLE"><:median:lire_suite:></a></div>
         </div>
     </BOUCLE_blocs_art>
         #SET{nb_blocs, #TOTAL_BOUCLE}
@@ -128,9 +132,9 @@
                     <h2><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h2>
                     <div class="#GET{class_bloc}"><a href="#URL_ARTICLE">[(#DESCRIPTIF|couper{#GET{longueur_texte}}|sinon{#TEXTE|couper{#GET{longueur_texte}}})]</a></div>
                 </div>
-                    <div class="read_more" style="background-image: url('#CHEMIN{logo_read_more.jpg}');"><a href="#URL_ARTICLE">Read more</a></div>
+                    <div class="read_more" style="background-image: url('#CHEMIN{logo_read_more.jpg}');"><a href="#URL_ARTICLE"><:median:lire_suite:></a></div>
             </div>
-        </BOUCLE_blocs_art2>
+        </BOUCLE_blocs_art2><:median:lire_suite:>
             [(#SET{nb_blocs, [(#GET{nb_blocs}|plus{#TOTAL_BOUCLE})]})]
         </B_blocs_art2>
     </BOUCLE_test_nbblocs1> 
@@ -147,7 +151,7 @@
                 <h2><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h2>
                 <div class="#GET{class_bloc}"><a href="#URL_ARTICLE">[(#DESCRIPTIF|couper{#GET{longueur_texte}}|sinon{#TEXTE|couper{#GET{longueur_texte}}})]</a></div>
             </div>
-                <div class="read_more" style="background-image: url('#CHEMIN{logo_read_more.jpg}');"><a href="#URL_ARTICLE">Read more</a></div>
+                <div class="read_more" style="background-image: url('#CHEMIN{logo_read_more.jpg}');"><a href="#URL_ARTICLE"><:median:lire_suite:></a></div>
         </div>
       </BOUCLE_complement_blocs>
     </BOUCLE_test_nbblocs2>

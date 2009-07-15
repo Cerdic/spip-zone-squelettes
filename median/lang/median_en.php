@@ -4,6 +4,7 @@ $GLOBALS['i18n_median_en'] = array(
 
 // A
 'aa_elements' => 'Article\'s elements to use',
+'accueil' => 'Home',
 
 // C
 'chapo' => 'introduction',
@@ -48,6 +49,7 @@ you certainly find what you are looking for!',
 'image_typo' => 'Top page\'s title if no site\'s logo defined',
 
 // L
+'lire_suite' => 'Read more',
 'logo'=> 'logo',
 
 // M

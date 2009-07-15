@@ -4,6 +4,7 @@ $GLOBALS['i18n_median_fr'] = array(
 
 // A
 'aa_elements' => 'El&eacute;ments de l\'article &agrave; utiliser',
+'accueil' => 'Accueil',
 
 // C
 'chapo' => 'chapo',
@@ -47,6 +48,7 @@ mais vous devriez certainement trouver ce que vous cherchez!',
 'id' => 'id groupe',
 
 // L
+'lire_suite' => 'Lire la suite',
 'logo'=> 'logo',
 
 // M
