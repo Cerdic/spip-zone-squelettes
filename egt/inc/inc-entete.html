@@ -42,8 +42,7 @@
 		[(#REM) Menu horizontal ]
 		<div id="topnav">
 
-			<BOUCLE_topnav_rubrique_existe(RUBRIQUES){titre_mot=afficher topnav}{lang}{0,1}>
-				<ul>
+			<ul>
 				<!-- DEBUT BOUCLE_Afficher_topnav_rubriques-->
 				<BOUCLE_Afficher_topnav_rubriques(RUBRIQUES){titre_mot=afficher topnav}{lang}{doublons}{par num titre}>
 				 <li><a href="#URL_RUBRIQUE" target="_self" title="[(#DESCRIPTIF|textebrut|entites_html)]">
@@ -51,44 +50,35 @@
 				 </a></li>
 				</BOUCLE_Afficher_topnav_rubriques>
 				<!-- FIN BOUCLE_Afficher_topnav_rubriques-->	  
-				</ul>
-			</BOUCLE_topnav_rubrique_existe>
 
-			<BOUCLE_topnav_article_existe(ARTICLES){titre_mot=afficher topnav}{lang}{0,1}>
-				<ul>
+
 				<!-- DEBUT BOUCLE_Afficher_topnav_articles-->
 				<BOUCLE_Afficher_topnav_articles(ARTICLES){titre_mot=afficher topnav}{lang}{doublons}{par num titre}>
 					<li><a href="#URL_ARTICLE" target="_self" title="[(#DESCRIPTIF|textebrut|entites_html)]">
 						[(#TITRE|supprimer_numero|ucfirst)]
 					</a></li>
 				</BOUCLE_Afficher_topnav_articles>
-				<!-- FIN BOUCLE_Afficher_topnav_articles-->			  
-				 </ul>
-			</BOUCLE_topnav_article_existe>			
+				<!-- FIN BOUCLE_Afficher_topnav_articles-->			  	
 
 			[(#PLUGIN{agenda}|oui)
-				<ul>
 					<li><a href="[(#URL_PAGE{evenements}|parametre_url{'lang',#LANG}|parametre_url{'date_debut',#ENV{date}|affdate{Y-m-d}})]" target="_self" title="<:egt:tous_nos_rdv:>">
 						<:agenda:agenda|ucfirst:>
 					</a></li>
-				</ul>
 			]
 				
 			[(#PLUGIN{spiplistes}|oui)
-				<ul>
 					<li><a href="[(#URL_PAGE{gerer_abonnement}|parametre_url{'lang',#LANG})]" target="_self" title="<:spiplistes:lettre_info:>">
 <:spiplistes:abonner|ucfirst:>
 					</a></li>
-				</ul>
 			]	
 
 			[(#PLUGIN{spiplistes}|non)
-				<ul>
 					<li><a href="[(#URL_PAGE{inscription}|parametre_url{'lang',#LANG})]" target="_self" title="<:spip:pass_vousinscrire:>">
 <:spip:login_sinscrire|ucfirst:>
 					</a></li>
-				</ul>
-			]				
+			]	
+
+			</ul>
 			
 		</div>	 <!-- fin div topnav -->
 

@@ -1,8 +1,5 @@
-        <div id="agenda">
-
-			 <!-- debut calendrier et agenda -->
-			[(#CALENDRIER_MINI{#ENV{date},'date',#SELF})]
-			
+		<!-- affichage des 2 prochains événements -->		
+		<div id="agenda">
 			<div style="text-align:center;">
 				<a href="[(#URL_PAGE{agenda}|parametre_url{'lang',#LANG})]" title="<:agenda:afficher_calendrier:>"><:egt:plus_action:></a><br />
 				<a href="[(#URL_PAGE{agenda-rss}|parametre_url{'lang',#LANG})]" title="<:egt:tous_nos_rdv:>">Agenda-rss</a>
@@ -14,10 +11,11 @@
 				<BOUCLE_agenda(EVENEMENTS){age<0}{par date}{statut=publie}{pagination 2}>
 				  <dt>#TITRE</dt>
 				  [<dd>(#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})</dd>]
-				  <dd class='engras'>#LIEU #ADRESSE</dd>
-				  <dd>#DESCRIPTIF</dd> 
+				  [<dd class='engras'>(#LIEU|PtoBr)</dd>]
+				  [<dd>(#DESCRIPTIF|PtoBr)</dd>] 
 				</BOUCLE_agenda></dl>         
 				[<p class="pagination">(#PAGINATION)</p>]    
 			  </B_agenda>
+
         </div><!-- fin du div agenda -->
-        <!-- fin calendrier et agenda -->    
+        <!-- fin evenements agenda -->   

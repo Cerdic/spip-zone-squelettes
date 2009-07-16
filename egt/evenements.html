@@ -25,6 +25,18 @@
 [(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
 	<INCLURE{fond=inc/inc-gauche}>
 
+[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]	
+
+    <div id="droite"> 
+
+		[(#REM) <!-- affichage du mini calendrier  --> ]
+		#CALENDRIER_MINI{#ENV{date},'date',#SELF} 
+
+		[(#REM) <!-- affichage des 2 prochains événements  --> ]
+		[(#PLUGIN{Agenda}|oui) <INCLURE{fond=inc/inc-agenda}{lang}>] 
+		
+	</div><!-- fin du div droite -->
+	
 [(#REM) <!-- =================================== ZONE CORPS  ====================================== --> ]    
     <div id="centre-rubrique">	
 		<!-- accessibilite -->
@@ -62,7 +74,7 @@
 					[(#DATE_DEBUT|affdate_jourcourt|unique)<br />]
 					
 					<BOUCLE_vevent(EVENEMENTS){id_evenement}{tout}>
-							<a href='[(#URL_PAGE{article,id_article=#ID_ARTICLE})]'><span class="titreven">#TITRE<span></a><br />
+							<span class="titreven"><a href='[(#URL_PAGE{article,id_article=#ID_ARTICLE})]'>#TITRE</a></span><br />
 							[<span class="dateven">(#DATE_DEBUT|agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE,'hcal'})</span><br />]
 							[<span class="descriptioneven">(#DESCRIPTIF|PtoBR)</span><br />]
 							[<span class="locationeven">(#LIEU|PtoBR)</span>[<span class="adresseven">(#ADRESSE|PtoBR)</span>]<br />]
