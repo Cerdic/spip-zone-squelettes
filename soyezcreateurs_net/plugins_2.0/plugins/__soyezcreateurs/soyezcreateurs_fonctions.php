@@ -187,6 +187,11 @@ function sc_garder_body($texte) {
 	return $texte;
 }
 
+/* Permet dans un texte de faire [->refsite12] qui fera un lien vers la page du site en cours décrivant ce site (et non pas un lien direct vers le site de destination) */
+function generer_url_refsite($id, $args, $ancre) {
+	return array('site', $id);
+}
+
 /* Transforme un texte en lien raccourcis SPIP et calcule le résultat */
 function sc_texte2urlspip($url) {
 	return expanser_liens('[->'.$url.']');
