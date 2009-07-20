@@ -208,6 +208,21 @@ function id_rubrique($titre) {
 	return $resultat;
 }
 
+// fonction qui permet de renommer une rubrique à partir du titre
+function rename_rubrique($titre, $nouveau_titre) {
+	$id_rubrique = id_rubrique($titre);
+	if ($id_rubrique) {
+		sql_updateq(
+			"spip_rubriques", array(
+				"titre" => $nouveau_titre
+			), "id_rubrique=$id_rubrique"
+		);
+		spip_log("rename_rubrique) renommage de $titre en $nouveau_titre", "soyezcreateurs_install");
+	}
+	return true;
+}
+	
+
 //fonction qui permet de créer une rubrique
 function create_rubrique($titre, $id_parent='0', $descriptif='') {
 	$id_rubrique = find_rubrique($titre);

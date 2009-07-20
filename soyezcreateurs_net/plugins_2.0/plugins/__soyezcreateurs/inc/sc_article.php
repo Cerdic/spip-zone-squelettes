@@ -382,6 +382,71 @@ EOF;
 		$contenu['descriptif'] = 'Nous contacter';
 		$contenu['chapo'] = "=aut1";
 	}
+	/* Politique d'accessibilité du site */
+	if ($article == "Politique d'accessibilité du site") {
+		$contenu['titre'] = $article;
+		$contenu['descriptif'] = "Politique d'accessibilité du site";
+		$contenu['chapo'] = "Le [squelette SPIP SoyezCreateurs->http://www.spip-contrib.net/SoyezCreateurs,1237] utilisé sur ce site est conçu pour faciliter la mise en œuvre des bonnes pratiques de l'accessibilité des sites pour tous.";
+		$contenu['texte'] = <<<EOF
+SoyezCreateurs accorde un soin tout particulier à la qualité de réalisation de ses sites Internet. Il est ainsi engagée dans une démarche d’optimisation de l’accessibilité de ses contenus web. Cette démarche vise dans un premier temps à faciliter la consultation de nos sites par les personnes handicapées, non voyantes, malvoyantes ou malentendantes. Mais plus généralement, la démarche d’accessibilité est indispensable pour garantir le plus large accès à nos contenus par tous les internautes et tous les dispositifs de lecture.
+
+{{{L’accessibilité des services de communication publique de l’État}}}
+
+La loi n° 2005-102 du 11 février 2005 « pour l’égalité des droits et des chances, la participation et la citoyenneté des personnes handicapées » instaure au titre de l’article 47, l’obligation pour les services de communication publique en ligne des services de l’Etat, des collectivités territoriales et des établissements publics qui en dépendent d’être accessibles aux personnes handicapées.
+
+<quote>Article 47 : « Les services de communication publique en ligne des services de l’Etat, des collectivités territoriales et des établissements publics qui en dépendent doivent être accessibles aux personnes handicapées.
+
+L’accessibilité des services de communication publique en ligne concerne l’accès à tout type d’information sous forme numérique quels que soient le moyen d’accès, les contenus et le mode de consultation. Les recommandations internationales pour l’accessibilité de l’internet doivent être appliquées pour les services de communication publique en ligne.
+
+Un [décret en Conseil d’État->http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000020616980&dateTexte=20090527] fixe les règles relatives à l’accessibilité et précise, par référence aux recommandations établies par l’Agence pour le développement de l’administration électronique, la nature des adaptations à mettre en œuvre ainsi que les délais de mise en conformité des sites existants, qui ne peuvent excéder trois ans, et les sanctions imposées en cas de non-respect de cette mise en accessibilité. Le décret énonce en outre les modalités de formation des personnels intervenant sur les services de communication publique en ligne ».</quote>
+
+Le [Référentiel général d’accessibilité pour les administrations->http://www.references.modernisation.gouv.fr/] (RGAA) est le guide de référence (compatible avec les recommandations du W3C) pour assurer la mise en conformité des sites Internet publics.
+
+SoyezCreateurs, respecte[[En ce qui concerne le contenant ; le contenu devant lui aussi être rendu accessible par les rédacteurs du site...]] l’intégralité des points de contrôle obligatoires et le plus grand nombre de points de contrôle recommandés.
+
+Néanmoins, si vous rencontrez des difficultés techniques pour consulter notre site, merci de nous contacter.
+
+{{{Conseils et astuces pour faciliter votre navigation}}}
+
+{2{Naviguez comme vous le souhaitez}2}
+
+L’ensemble du site est consultable au clavier. Vous pouvez ainsi parcourir la page dans son ordre logique de lecture, de liens en liens, en utilisant la touche « tabulation » de votre clavier.
+
+{2{Agrandissez les caractères}2}
+
+En appuyant simultanément sur les touches <code>Ctrl et +</code>, vous grossissez par effet de loupe l’ensemble de la page (Internet Explorer et Firefox).
+
+<code>Ctrl + 0</code> permet de revenir à la taille par défaut
+
+{2{Imprimez une version adaptée au papier}2}
+
+Toutes les pages sont imprimables (Fichier > Impression ou touches <code>CTRL + P</code>) dans une version adaptée au papier : le texte et plus aéré et les différents éléments inutiles à la lecture (principalement les menus de navigation) ont été supprimés.
+
+{2{Utilisez une version récente de navigateur}2}
+
+En mettant à jour gratuitement la version de votre navigateur, vous vous assurez une lecture la plus conforme aux standards et donc la plus accessible. Pour télécharger les dernières versions des principaux navigateurs :
+
+-* [Mozilla FireFox->http://www.mozilla-europe.org/fr/firefox/]
+-* [Apple Safari->http://www.apple.com/fr/safari/]
+-* [Opera->http://www.opera.com/browser/]
+-* [Google Chrome->http://www.google.com/chrome]
+-* [Microsoft Internet Explorer->http://www.microsoft.com/france/windows/products/winfamily/ie]
+
+Nous vous invitons en particulier à ne plus utiliser les versions 6 et inférieures d’Internet Explorer, considérées aujourd’hui comme obsolètes en terme de sécurité et de conformité aux standards.
+
+{2{Ouverture des liens dans une nouvelle fenêtre/onglet}2}
+
+Vous avez le choix ! C'est vous qui décidez ! Rien ne vous est imposé.
+
+Pour ouvrir un lien dans une nouvelle fenêtre (ou un nouvel onglet), il suffit :
+-* à la souris de cliquer avec la molette sur le lien
+-* pas de molette ? <code>Ctrl + clic gauche</code>
+-* ou encore, bouton droit sur le lien et choisir l'option adéquate 
+
+Bonne navigation !
+EOF;
+		$contenu['PS'] = "{{NB}} : Ce texte a été librement repris et adapté depuis [son original->http://www.vie-publique.fr/information/politique-accessibilite.html] avec l'aimable autorisation de vie-publique.fr.";
+	}
 
 	return $contenu;
 }

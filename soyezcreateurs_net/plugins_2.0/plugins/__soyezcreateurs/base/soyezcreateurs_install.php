@@ -128,16 +128,28 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			soyezcreateurs_changer_cfg($cfg);
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.7','non');
 		}
-		/*
-		# En attente !
 		if (version_compare($current_version,'2.1.8','<')) {
 			include_spip('base/soyezcreateurs');
 			spip_log("SoyezCreateurs maj 2.1.8", "soyezcreateurs_install");
+			include_spip('inc/sc_article');
+			rename_rubrique("000. Racine", "000. Fourre-tout");
+			$article1 = trouve_article_sc("Politique d'accessibilité du site");
+				create_article($article1, "000. Fourre-tout");
+				create_article_mot($article1['titre'], "000. Fourre-tout", "AccesibiliteLien", "_Specialisation");
+				create_article_mot($article1['titre'], "000. Fourre-tout", "Sommaire", "_Specialisation_Rubrique_ou_Article");
+			ecrire_meta($nom_meta_base_version,$current_version='2.1.8','non');
+		}
+
+		/*
+		# En attente !
+		if (version_compare($current_version,'2.1.9','<')) {
+			include_spip('base/soyezcreateurs');
+			spip_log("SoyezCreateurs maj 2.1.9", "soyezcreateurs_install");
 			create_groupe("_TypeRubrique", "Pour indiquer un type spécifique de rubrique", "Il faut choisir un mot clef dans cette liste pour obtenir un affichage spécifique de rubrique.\n\nNB : pour rajouter un mot clef \"mc1\", il faut aussi rajouter les squelettes correspondants :\n-* noisettes/rubriques/typerubrique_mc1.html\n-* noisettes/footer/footer_typerubrique_mc1.html\n-* noisettes/articles/typearticle_mc1.html", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
 				create_mot("_TypeRubrique", "annuaire", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des annuaires.", "Affecter ce mot clef à chaque rubrique racine d'un annuaire.");
 			create_groupe("_TypeArticle", "Pour indiquer un type spécifique d'article", "Il faut choisir un mot clef dans cette liste pour obtenir un affichage spécifique d'article.\n\nNB : pour rajouter un mot clef \"mc1\", il faut aussi rajouter les squelettes correspondants :\n-* noisettes/articles/typearticle_mc1.html\n-* noisettes/footer/footer_typearticle_mc1.html", 'oui', 'non', 'oui', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
 				create_mot("_TypeArticle", "annuaire", "Pour dire que l'article ayant ce mot clef doit utiliser le squelette type des annuaire.", "Affecter ce mot clef à chaque article de l'annuaire.");
-			ecrire_meta($nom_meta_base_version,$current_version='2.1.*','non');
+			ecrire_meta($nom_meta_base_version,$current_version='2.1.9','non');
 		}
 		*/
 	}
