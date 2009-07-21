@@ -603,7 +603,26 @@ function EVA_div_images() {
     'liste_impairs_contenu' => array('div#contenu ul li.un'),
     'liste_pairs_contenu' => array('div#contenu ul li.deux')
     );
-    return $eva_habillage_images;
+  
+$req_menu_horizontal_actif0=sql_select('nom_image','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND nom_div='menu_depliable_horizontal_articles' AND attach='entete'");
+$req_menu_horizontal_actif1=sql_select('nom_image','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND nom_div='menu_depliable_horizontal' AND attach='entete'");
+$req_menu_horizontal_actif2=sql_select('nom_image','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND nom_div='headers_menu_depliable_horiz' AND attach='headers'");
+$tab_menu_horizontal_actif0=sql_fetch($req_menu_horizontal_actif0);
+$tab_menu_horizontal_actif1=sql_fetch($req_menu_horizontal_actif1);
+$tab_menu_horizontal_actif2=sql_fetch($req_menu_horizontal_actif2);
+$req_menu_horizontal_actif0=$tab_menu_horizontal_actif0['nom_image'];
+$req_menu_horizontal_actif1=$tab_menu_horizontal_actif1['nom_image'];
+$req_menu_horizontal_actif2=$tab_menu_horizontal_actif2['nom_image'];
+if (
+($req_menu_horizontal_actif0=='oui' OR $req_menu_horizontal_actif1=='oui')
+AND $req_menu_horizontal_actif2=='oui')
+{
+$eva_habillage_images['image_fond_menu_horizontal_base']=array('#menu_horizontal','#menu_horizontal a');
+$eva_habillage_images['image_fond_menu_horizontal_survol']=array('#menu_horizontal a:hover','#menu_horizontal li .on:hover');
+$eva_habillage_images['image_fond_menu_horizontal_actif']=array('#menu_horizontal li .on');
+}
+    
+return $eva_habillage_images;
 }
 
 function EVA_blocs_sommaire() {
@@ -787,5 +806,19 @@ $flash = array(
 'flash_secteur_barre_logo',
 );
 return $flash;
+}
+function EVA_menu_dynamique_horizontal() {
+$menu = array(
+'evabonus_menu_horizontal_couleur_fond'=>'#menu_horizontal , #menu_horizontal li , #menu_horizontal li a , #menu_horizontal a {background-color:',
+'evabonus_menu_horizontal_couleur_fond_survol'=>'#menu_horizontal li a:hover {background-color:',
+'evabonus_menu_horizontal_couleur_fond_actif'=>'#menu_horizontal a .on, #menu_horizontal li .on {background-color:',
+'evabonus_menu_horizontal_couleur_texte'=>'#menu_horizontal a {color:',
+'evabonus_menu_horizontal_couleur_texte_survol'=>'#menu_horizontal a:hover {color:',
+'evabonus_menu_horizontal_couleur_texte_actif'=>'#menu_horizontal a .on, #menu_horizontal li .on{color:',
+'evabonus_menu_horizontal_couleur_bordure_style'=>'#menu_horizontal li {border-right-style:',
+'evabonus_menu_horizontal_couleur_bordure_largeur'=>'#menu_horizontal li {border-right-width:',
+'evabonus_menu_horizontal_couleur_bordure_couleur'=>'#menu_horizontal li {border-right-color:'
+);
+return $menu;
 }
 ?>

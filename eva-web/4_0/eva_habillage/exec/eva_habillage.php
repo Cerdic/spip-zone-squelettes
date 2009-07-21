@@ -615,6 +615,8 @@ window.onerror = null;
 	echo fin_block();
     echo fin_cadre_trait_couleur(true).'<br />';
     
+    include_spip('inc/evabonus_menu_horizontal_structure');
+    
     echo debut_cadre_trait_couleur(_DIR_PLUGIN_EVA_HABILLAGE."img_pack/nbre.png", true, '', _T('evahabillage:EVA_choix_nbre'));
 
     $nbre = EVA_mes_nbres();
