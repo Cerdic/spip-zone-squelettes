@@ -287,7 +287,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// M
 	'memerubrique' => 'Dans la m&ecirc;me rubrique...',
-	'mentionslegales' => 'Mentions l&eacute;gales &amp; conditions d\'utilisation',
 	'menu_deplier' => 'd\\351plier: ',
 	'menu_picalt' => 'Cliquer pour ',
 	'menu_replier' => 'replier: ',
