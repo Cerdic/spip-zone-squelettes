@@ -46,25 +46,16 @@
 [(#INCLURE{fond=logo}{id_auteur}{taille=216}{date=#ENV{date}})]
 </span>
 [<h1>(#NOM|textebrut|couper{24})</h1>]
-[<p>(#BIO||?{[(#BIO)],[(#NOM|textebrut|couper{24})] <:pas_bio:>})</p>]
+[(#BIO||?{[(#BIO)],[(#NOM|textebrut|couper{24})] <:pas_bio:>})]
 [<h4 class="icone_site"><:site_prefere:> :</h4>
 <p><a href="#URL_SITE"  rel="nofollow">(#NOM_SITE)</a></p>]
 <hr class="spacer"/>
 
 
-
-
-
-[(#SESSION|oui)
-[(#EVAL{defined('_DIR_PLUGIN_INSCRIPTION2')}|?{' '})
-[(#MODELE{editer_profil}{id_auteur=#SESSION{id_auteur}})]]
-]
-
-
 <div class="vcard none"> <img src="#URL_SITE_SPIP/IMG/[(#LOGO_AUTEUR|fichier)]" alt="photo" class="photo"/>
 <a class="url fn " href="#URL_SITE"  rel="nofollow">[(#NOM_SITE)]</a>
   <div class="org">Inscrit sur #NOM_SITE_SPIP - #DESCRIPTIF_SITE_SPIP</div>
-  <a class="email" href="#URL_SITE_SPIP/spip.php?page=auteur&id_auteur=#ID_AUTEUR"></a>
+  <a class="email" href="#URL_AUTEUR"></a>
   <div class="adr">[(#BIO|textebrut)]</div> 
   </div>
 <span class="droite hcal button"><a href="#" title="Cette page possède un microformat hcal">hcal</a></span>
@@ -80,12 +71,11 @@
 	
 	
 [(#SESSION|ou{#ID_AUTEUR|=={1}}|oui)
-<div class="grande_boite">
+[<div class="grande_boite">
 [<h4 class="icone_post"><:contacter:> (#NOM|textebrut|couper{24})</h4>] 
-<p class="ajax">
-[(#FORMULAIRE_ECRIRE_AUTEUR)]</p><hr class="spacer"/>
-</div>[(#REM)   fermeture grande boite ]
-]
+<div class="ajax">
+(#FORMULAIRE_ECRIRE_AUTEUR)</div><hr class="spacer"/>
+</div>[(#REM)   fermeture grande boite ]]]
 
 
 
@@ -154,7 +144,7 @@
 [(#REM) combien de photographies stockées dans le doublons]
 
 <BOUCLE_combien_de_doc_affiche(DOCUMENTS){!doublons docs #_aut:NOM}{mode=document}{extension IN png,jpg}{par num titre, date}> </BOUCLE_combien_de_doc_affiche>
- [(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE <:photo_total1:>,<:photo_total2:>}) #NOM <:photo_total3:> : ] 
+ [(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE <:photo_total1:>,'<:photo_total2:>'}) #NOM <:photo_total3:> : ] 
 </h4>
 </div>
 </B_combien_de_doc_affiche>
@@ -167,7 +157,7 @@
   <div id="minipics"><ul>
       <BOUCLE_affichage(DOCUMENTS){!doublons docs #_aut:NOM}{mode=document}{extension IN png,jpg}{par num titre, date}{pagination 12}>
 <li class="transparent" id="a#ID_DOCUMENT"> 
-	<a class="thickbox nyroceros" href="#URL_DOCUMENT" type="#MIME_TYPE" [title="(#TITRE|couper{40}||textebrut)"][longdesc="(#DESCRIPTIF|couper{40}||textebrut)"] rel="gal"> 
+	<a class="thickbox nyroceros fancybox" href="#URL_DOCUMENT" type="#MIME_TYPE"[ title="(#TITRE|couper{40}||textebrut)"] rel="gal"> 
 	<img src="[(#FICHIER|image_masque{carre-80.png}|image_aplatir{jpg,ffffff}|extraire_attribut{src})]" alt="photo[ : (#TITRE|couper{80}|textebrut)]" style="width:80px; height:80px;" /></a> 
 	  <p class="centre"><BOUCLE_liens_articles(ARTICLES){id_document}>[<a href="(#URL_ARTICLE)">Voir l'article</a>]</BOUCLE_liens_articles></p> 
 </li> 
@@ -176,11 +166,7 @@
 </B_affichage>
 
 
-
-
 </BOUCLE_aut>
-
-
 
 <hr class="spacer"/>
 <div id="cel">
@@ -225,7 +211,7 @@
 <BOUCLE_dfa(FORUMS spip_documents_liens) {plat} {id_auteur} {objet=forum} {par date} {inverse} {0,1}> 
   <h4>Dernier document :</h4> 
 <p>[(#EXTENSION|match{'^(gif|jpg|png)$'}|?{
-				<a class="thickbox nyroceros" href="#URL_DOCUMENT">[(#MODELE{emb}|image_reduire{216})]</a>
+				<a class="thickbox nyroceros fancybox" href="#URL_DOCUMENT">[(#MODELE{emb}|image_reduire{216})]</a>
 				,
 					[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
 				})]

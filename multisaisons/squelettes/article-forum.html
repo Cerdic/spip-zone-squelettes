@@ -87,17 +87,15 @@ RSS forum</a></span></p>
 <hr class="spacer"/>
 </div>
 
-   [#DEBUT_SURLIGNE(#TEXTE|image_reduire{450,0}|lier_au_glossaire|paragrapher)#FIN_SURLIGNE][<br/>
-    (#PS|paragrapher)]
+   [#DEBUT_SURLIGNE(#TEXTE|image_reduire{450,0}|lier_au_glossaire|paragrapher)#FIN_SURLIGNE]
 
 <ul class="membres"><li class="modo"><a href="ecrire/?exec=articles_forum&amp;id_article=#ID_ARTICLE" title="Acc&egrave;s priv&eacute; pour mod&eacute;rateurs">Modo:</a></li>
-<BOUCLE_admin(AUTEURS){statut=0minirezo}{par id_auteur}{doublons modo}>
+<BOUCLE_rubs(AUTEURS) {statut=0minirezo}{spip_auteurs_rubriques.id_rubrique=#ID_RUBRIQUE} {tout} {par nom}>
 [<li class="modo"><a href="(#URL_AUTEUR)" title="Contact et profil" >[(#NOM|textebrut|couper{24})]</a></li>]
-</BOUCLE_admin>
+</BOUCLE_rubs>
 
-<BOUCLE_auteurs(AUTEURS){id_article}{doublons modo}>                
- [<li class="modo"><a href="(#URL_AUTEUR)"title="Contact et Profil">[(#NOM|textebrut|couper{24})]</a></li>]
- </BOUCLE_auteurs>
+
+
  
 </ul>
 
@@ -143,6 +141,7 @@ RSS forum</a></span></p>
 
 
 <BOUCLE_derniers(FORUMS){id_article}{!par date_thread}{doublons}{pagination 20}>
+
 <tr [class="(#EVAL{[(#_derniers:COMPTEUR_BOUCLE)]}|alterner{'row_even','row_odd'})"] >
 <td class="#EDIT{titre}">
 <a href="[(#URL_PAGE{discussion}|parametre_url{id_forum,#ID_FORUM})]"	title="">#TITRE</a>
@@ -186,8 +185,10 @@ RSS forum</a></span></p>
 	
 
 
-</BOUCLE_derniers>
-<td colspan="4">#PAGINATION</B_derniers></td>
+</BOUCLE_derniers><tr>
+<td colspan="4">#PAGINATION</td>
+</tr>
+</B_derniers>
 
 </table>
 <hr class="spacer"/> 
@@ -203,7 +204,7 @@ RSS forum</a></span></p>
 #ANCRE_PAGINATION
 <BOUCLE_documents_portfolio(DOCUMENTS){id_article}{mode=document}{extension IN png,jpg,gif}{par num titre, date}{pagination 40}>
 <li class="transparent" id="a#ID_DOCUMENT">
-<a class="thickbox nyroceros" href="#URL_DOCUMENT" type="#MIME_TYPE" [title="(#TITRE|couper{80}|texte_backend)"][longdesc="(#DESCRIPTIF|couper{120}|texte_backend)"] rel="gal">
+<a class="thickbox nyroceros fancybox" href="#URL_DOCUMENT" type="#MIME_TYPE" [title="(#TITRE|couper{80}|texte_backend)"][longdesc="(#DESCRIPTIF|couper{120}|texte_backend)"] rel="gal">
 <img src="[(#FICHIER|image_masque{carre-80.png}|image_aplatir{jpg,ffffff}|extraire_attribut{src})]" alt="photos[ : (#TITRE|couper{80}|textebrut)]" style="width:80px; height:80px;" /></a>
 </li>
 </BOUCLE_documents_portfolio>				
@@ -240,6 +241,10 @@ RSS forum</a></span></p>
 
 
 <//B_combien_d_images>
+
+
+
+[<div class="grande_boite">(#PS|paragrapher)</div>]
 
 
 [(#CONFIG{plugin}|match{GIS}|?{' '})[(#INCLURE{fond=inc_lien_gis}{id_rubrique}{id_article})]] 
