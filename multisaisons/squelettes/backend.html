@@ -2,22 +2,30 @@
 [(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})]<?xml version="1.0"[ encoding="(#CHARSET)"]?>
 <rss version="2.0" [(#REM) rss 2.0.9)]	xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
 
-
+ [(#REM)  Voir pour mettre la description de la rubrique si elle est demandée ]
+ 
 <channel[ xml:lang="(#LANG)"]>
 	<title>[(#NOM_SITE_SPIP|texte_backend)]</title>
 	<link>#URL_SITE_SPIP/</link>
 	[<description>(#DESCRIPTIF_SITE_SPIP|supprimer_tags|texte_backend)</description>]
 	<language>#LANG</language>
 	<generator>SPIP - www.spip.net</generator>
+	
+	
+	 [(#REM)  le logo site reduit sur 150 pixels des fois que l on use d un bandeau comme logo site.  ]
 
 [	<image>
 		<title>[(#NOM_SITE_SPIP|texte_backend)]</title>
-		<url>(#LOGO_SITE_SPIP||extraire_attribut{src}|url_absolue|texte_backend)</url>
+		<url>(#LOGO_SITE_SPIP||image_reduire{150,0}|extraire_attribut{src}|url_absolue|texte_backend)</url>
 		<link>#URL_SITE_SPIP/</link>
-		[<height>(#LOGO_SITE_SPIP||extraire_attribut{height})</height>]
-		[<width>(#LOGO_SITE_SPIP||extraire_attribut{width})</width>]
+		[<height>(#LOGO_SITE_SPIP||image_reduire{150,0}|extraire_attribut{height})</height>]
+		[<width>(#LOGO_SITE_SPIP||image_reduire{150,0}|extraire_attribut{width})</width>]
 	</image>
 ]
+
+
+ [(#REM)  les derniers forums d un article en fonction d une moderation ou pas  ]
+
 
 <BOUCLE_Forums(FORUMS){id_article}{par date}{inverse}{plat}{0,20}>	
 <BOUCLE_original_ou_pas(FORUMS){id_parent}{statut!=original}{0,1}>
@@ -29,9 +37,11 @@
 		[<dc:date>(#DATE|date_iso)</dc:date>]
 		<dc:format>text/html</dc:format>
 		<dc:language>#LANG</dc:language>
+		
 		<B_auteursc>
-<dc:creator><BOUCLE_auteursc(AUTEURS){id_auteur}{tous}{", "}><a href="[(#URL_AUTEUR|url_absolue)]">[(#NOM|textebrut|couper{24})]</a></BOUCLE_auteursc></dc:creator>
-</B_auteursc>		
+<dc:creator><BOUCLE_auteursc(AUTEURS){id_auteur}{tous}{0,1}><a href="[(#URL_AUTEUR|url_absolue)]">[(#NOM|textebrut|couper{24})]</a></BOUCLE_auteursc></dc:creator>
+</B_auteursc>	
+	
 </item>
 </BOUCLE_original_ou_pas>
 	<item>
@@ -43,7 +53,7 @@
 		<dc:format>text/html</dc:format>
 		<dc:language>#LANG</dc:language>
 		<B_auteursc2>
-<dc:creator><BOUCLE_auteursc2(AUTEURS){id_auteur}{tous}{", "}><a href="[(#URL_AUTEUR|url_absolue)]">[(#NOM|textebrut|couper{24})]</a></BOUCLE_auteursc2></dc:creator>
+<dc:creator><BOUCLE_auteursc2(AUTEURS){id_auteur}{tous}{0,1}><a href="[(#URL_AUTEUR|url_absolue)]">[(#NOM|textebrut|couper{24})]</a></BOUCLE_auteursc2></dc:creator>
 </B_auteursc2>		
 </item>
 
