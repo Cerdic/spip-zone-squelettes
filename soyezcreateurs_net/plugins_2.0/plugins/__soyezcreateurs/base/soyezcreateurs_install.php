@@ -142,7 +142,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 
 		if (version_compare($current_version,'2.1.9','<')) {
 			include_spip('base/soyezcreateurs');
-			spip_log("SoyezCreateurs maj 2.1.10", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 2.1.9", "soyezcreateurs_install");
 			$mentions = array('titre' => 'Mentions légales & conditions d’utilisation', 'texte' => '');
 			$id_groupe = id_groupe("_InformationsLegales");
 			$row = sql_select('0+titre AS num, titre, texte', 'spip_mots', "id_groupe=$id_groupe", '', 'num');
