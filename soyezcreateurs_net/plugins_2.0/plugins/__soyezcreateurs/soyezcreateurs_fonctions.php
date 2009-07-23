@@ -394,6 +394,87 @@ function sc_agenda_grand($i) {
     include_spip('inc/agenda');
     return http_calendrier_init($la_date, $type, '', '', '', array('', $evt));
 }
+function sc_generer_ligne_agenda($jour, $amj, $evts, $type, $agenda) {
+	//definissons le retour en un tableau
+	$aff = array();
+	//s'il y a un/des evenement(s) 
+	if ($evts) {
+		$nb_elmts= @count($evts);
+		//s'il y a plus d'un evenements
+		if ($nb_elmts>1){
+			if ($agenda == 'mini') {
+				$row = sc_trouver_corr_pl($evts[0]['ID']);
+				$id_rub = intval($row['id_secteur']);
+				$titre_rub = supprimer_numero($row['titre']);
+				$url = generer_url_public('agenda_calendrier', 'id_rubrique='.$id_rub.'');
+				$aff['ligne'] = "<a href='".$url."' title='".supprimer_tags($titre_rub)." ("._T('agenda:voir_evenements_rubrique').")'>".intval($jour)."</a>";
+			}
+			foreach($evts as $key => $ev) {
+				if ($agenda == 'grand') {
+					if ($key == 0) {
+						$aff['ligne'] .= intval($jour);
+						$aff['ligne'] .= '<div class="odd">';
+						$row = sc_trouver_corr_pl($ev['ID']);
+						$row2 = sc_trouver_corr_un($ev['ID']);
+						$aff['ligne'] .= '<strong>'.supprimer_numero($row['titre']).'</strong>&nbsp;: ';
+						$url = generer_url_entite($row2['id_article'], 'article');
+						if (supprimer_tags($ev['SUMMARY']) == $row2['titre'])
+							$aff['ligne'] .= "<a href='".$url."'>".$ev['SUMMARY']."</a>";
+						else
+							$aff['ligne'] .= "<a href='".$url."'>".$row2['titre']."&nbsp;: ".$ev['SUMMARY']."</a>";	
+						$aff['ligne'] .= '</div>';
+					}
+					else {
+						$aff['ligne'] .= '<div>';
+						$row = sc_trouver_corr_pl($ev['ID']);
+						$row2 = sc_trouver_corr_un($ev['ID']);
+						$aff['ligne'] .= "<strong>".supprimer_numero($row['titre'])."</strong>&nbsp;: ";
+						$url = generer_url_entite($row2['id_article'], 'article');
+						if (supprimer_tags($ev['SUMMARY']) == $row2['titre'])
+							$aff['ligne'] .= "<a href='".$url."'>".$ev['SUMMARY']."</a>";
+						else
+							$aff['ligne'] .= "<a href='".$url."'>".$row2['titre']."&nbsp;: ".$ev['SUMMARY']."</a>";	
+						$aff['ligne'] .= '</div>';
+					}
+				}
+			}
+		$aff['class']= $type.' events';
+		}
+		//s'il n'y a qu'un evenement
+		else{
+			if ($agenda == 'grand') {
+				$aff['ligne'] .= intval($jour);
+				$aff['ligne'] .= '<div class="odd">';
+				$row = sc_trouver_corr_pl($evts[0]['ID']);
+				$row2 = sc_trouver_corr_un($evts[0]['ID']);
+				$aff['ligne'] .= '<strong>'.supprimer_numero($row['titre']).'</strong>&nbsp;: ';
+					$url = generer_url_entite($row2['id_article'], 'article');
+				if (supprimer_tags($evts[0]['SUMMARY']) == $row2['titre'])
+					$aff['ligne'] .= "<a href='".$url."'>".$evts[0]['SUMMARY']."</a>";
+				else
+					$aff['ligne'] .= "<a href='".$url."'>".$row2['titre']."&nbsp;: ".$evts[0]['SUMMARY']."</a>";
+				$aff['ligne'] .= '</div>';
+			}
+			else if ($agenda == 'mini') {
+				$row = sc_trouver_corr_un($evts[0]['ID']);
+				$url = generer_url_entite($row['id_article'], 'article');
+				$info = sc_decoder_date($evts[0]['DTSTART'], $evts[0]['DTEND'], $evts[0]['HORAIRE']);
+				if (supprimer_tags($evts[0]['SUMMARY']) == $row['titre'])
+					$title = $row['titre']." - ".$info;
+				else
+					$title = $row['titre']." : ".$evts[0]['SUMMARY']." - ".$info;
+				$aff['ligne'] = "<a href='".$url."' title='".supprimer_tags($title)."'>".intval($jour)."</a>";
+			}
+		$aff['class']= $type.' event';
+		}
+	}
+	//s'il n'y a rien
+	else {
+		$aff['ligne'] = intval($jour);
+		$aff['class'] = $type;
+	}
+	return $aff;
+}
 function http_calendrier_sc_grand($annee, $mois, $jour, $echelle, $partie_cal, $script, $ancre, $evt) {
 	list($sansduree, $evenements, $premier_jour, $dernier_jour) = $evt;
 
@@ -419,59 +500,8 @@ function http_calendrier_sc_grand($annee, $mois, $jour, $echelle, $partie_cal, $
 		$annee_en_cours = date("Y",$nom);
 		$amj = date("Y",$mois_t_precedent) . $mois_precedent . $jour_mois_precedent;
 		$evts = $evenements[$amj];
-		$class="";
-		$aff = '';
-		if ($evts) {
-			$nb_elmts= @count($evts);
-			if ($nb_elmts>1){
-				foreach($evts as $key => $ev) {
-					if ($key == 0) {
-						$aff .= intval($jour_mois_precedent);
-						$aff .= '<div class="odd">';
-						$row = sc_trouver_corr_pl($ev['ID']);
-						$row2 = sc_trouver_corr_un($ev['ID']);
-						$aff .= '<strong>'.supprimer_numero($row['titre']).'</strong>&nbsp;: ';
-						$url = generer_url_entite($row2['id_article'], 'article');
-						if (supprimer_tags($ev['SUMMARY']) == $row2['titre'])
-							$aff .= "<a href='".$url."'>".$ev['SUMMARY']."</a>";
-						else
-							$aff .= "<a href='".$url."'>".$row2['titre']."&nbsp;: ".$ev['SUMMARY']."</a>";	
-						$aff .= '</div>';
-					} 
-					else {
-						$aff .= '<div>';
-						$row = sc_trouver_corr_pl($ev['ID']);
-						$row2 = sc_trouver_corr_un($ev['ID']);
-						$aff .= "<strong>".supprimer_numero($row['titre'])."</strong>&nbsp;: ";
-						$url = generer_url_entite($row2['id_article'], 'article');
-						if (supprimer_tags($ev['SUMMARY']) == $row2['titre'])
-							$aff .= "<a href='".$url."'>".$ev['SUMMARY']."</a>";
-						else
-							$aff .= "<a href='".$url."'>".$row2['titre']."&nbsp;: ".$ev['SUMMARY']."</a>";	
-						$aff .= '</div>';
-					}
-				$class='agendanotthismonth events';
-				}
-			}
-			else{
-				$aff .= intval($jour_mois_precedent);
-				$aff .= '<div class="odd">';
-				$row = sc_trouver_corr_pl($evts[0]['ID']);
-				$row2 = sc_trouver_corr_un($evts[0]['ID']);
-				$aff .= '<strong>'.supprimer_numero($row['titre']).'</strong>&nbsp;: ';
-				$url = generer_url_entite($row2['id_article'], 'article');
-				if (supprimer_tags($evts[0]['SUMMARY']) == $row2['titre'])
-					$aff .= "<a href='".$url."'>".$evts[0]['SUMMARY']."</a>";
-				else
-					$aff .= "<a href='".$url."'>".$row2['titre']."&nbsp;: ".$evts[0]['SUMMARY']."</a>";				$aff .= '</div>';
-				$class='agendanotthismonth event';
-			}
-		}
-		else {
-			$evts = intval($jour_mois_precedent);
-			$class = 'agendanotthismonth';
-		}
-		$ligne .= '<td valign="top" class="$class">'.$aff.'</td>';
+		$aff = sc_generer_ligne_agenda($jour_mois_precedent, $amj, $evts, 'agendanotthismonth', 'grand');
+		$ligne .= '<td valign="top" class="'.$aff['class'].'">'.$aff['ligne'].'</td>';
 	}
 	//mois en cours
 	$total = '';
@@ -487,61 +517,10 @@ function http_calendrier_sc_grand($annee, $mois, $jour, $echelle, $partie_cal, $
 			$ligne = '';
 		}
 		$evts = $evenements[$amj];
-		$class="";
-		$aff = '';
-		if ($evts) {
-			$nb_elmts= @count($evts);
-			if ($nb_elmts>1){
-				foreach($evts as $key => $ev) {
-					if ($key == 0) {
-						$aff .= intval($jour);
-						$aff .= '<div class="odd">';
-						$row = sc_trouver_corr_pl($ev['ID']);
-						$row2 = sc_trouver_corr_un($ev['ID']);
-						$aff .= '<strong>'.supprimer_numero($row['titre']).'</strong>&nbsp;: ';
-						$url = generer_url_entite($row2['id_article'], 'article');
-						if (supprimer_tags($ev['SUMMARY']) == $row2['titre'])
-							$aff .= "<a href='".$url."'>".$ev['SUMMARY']."</a>";
-						else
-							$aff .= "<a href='".$url."'>".$row2['titre']."&nbsp;: ".$ev['SUMMARY']."</a>";	
-						$aff .= '</div>';
-					} 
-					else {
-						$aff .= '<div>';
-						$row = sc_trouver_corr_pl($ev['ID']);
-						$row2 = sc_trouver_corr_un($ev['ID']);
-						$aff .= "<strong>".supprimer_numero($row['titre'])."</strong>&nbsp;: ";
-						$url = generer_url_entite($row2['id_article'], 'article');
-						if (supprimer_tags($ev['SUMMARY']) == $row2['titre'])
-							$aff .= "<a href='".$url."'>".$ev['SUMMARY']."</a>";
-						else
-							$aff .= "<a href='".$url."'>".$row2['titre']."&nbsp;: ".$ev['SUMMARY']."</a>";	
-						$aff .= '</div>';
-					}
-					$class = 'agendathismonth event';
-				}
-			}
-			else{
-				$aff .= intval($jour);
-				$aff .= '<div class="odd">';
-				$row = sc_trouver_corr_pl($evts[0]['ID']);
-				$row2 = sc_trouver_corr_un($evts[0]['ID']);
-				$aff .= '<strong>'.supprimer_numero($row['titre']).'</strong>&nbsp;: ';
-				$url = generer_url_entite($row2['id_article'], 'article');
-				if (supprimer_tags($evts[0]['SUMMARY']) == $row2['titre'])
-					$aff .= "<a href='".$url."'>".$evts[0]['SUMMARY']."</a>";
-				else
-					$aff .= "<a href='".$url."'>".$row2['titre']."&nbsp;: ".$evts[0]['SUMMARY']."</a>";				$aff .= '</div>';
-				$class = 'agendathismonth event';
-			}
-		}
-		else {
-			$aff = intval($jour);
-			$class='agendathismonth';
-		}
-		$ligne .= '<td valign="top" class="'.($amj == date("Ymd")?"agendathisday": $class).'">' . $aff . '</td>';
+		$aff = sc_generer_ligne_agenda($jour, $amj, $evts, 'agendathismonth', 'grand');
+		$ligne .= '<td valign="top" class="'.($amj == date("Ymd")?"agendathisday": $aff['class']).'">' . $aff['ligne'] . '</td>';
 	}
-	$jour_mois_suivant=1;
+	$jour_mois_suivant=0;
 	// affichage de la fin de semaine hors periode
 	for($j=$jour_semaine ? $jour_semaine : 7; $j<7; $j++) {
 		$nom = mktime(1,1,1,$mois+1,$j,$annee);
@@ -549,62 +528,10 @@ function http_calendrier_sc_grand($annee, $mois, $jour, $echelle, $partie_cal, $
 		$jour_semaine = date("w",$nom);
 		$mois_suivant = date("m",$nom);
 		$annee_en_cours = date("Y",$nom);
-		$amj = date("Y",$nom) . $mois_suivant . '0'.$jour_mois_suivant;
+		$amj = date("Y",$nom) . $mois_suivant . '0'.$jour_mois_suivant++;
 		$evts = $evenements[$amj];
-		$class="";
-		$aff = '';
-		if ($evts) {
-			$nb_elmts= @count($evts);
-			if ($nb_elmts>1){
-				foreach($evts as $key => $ev) {
-					if ($key == 0) {
-						$aff .= intval($jour_mois_suivant++);
-						$aff .= '<div class="odd">';
-						$row = sc_trouver_corr_pl($ev['ID']);
-						$row2 = sc_trouver_corr_un($ev['ID']);
-						$aff .= '<strong>'.supprimer_numero($row['titre']).'</strong>&nbsp;: ';
-						$url = generer_url_entite($row2['id_article'], 'article');
-						if (supprimer_tags($ev['SUMMARY']) == $row2['titre'])
-							$aff .= "<a href='".$url."'>".$ev['SUMMARY']."</a>";
-						else
-							$aff .= "<a href='".$url."'>".$row2['titre']."&nbsp;: ".$ev['SUMMARY']."</a>";	
-						$aff .= '</div>';
-					} 
-					else {
-						$aff .= '<div>';
-						$row = sc_trouver_corr_pl($ev['ID']);
-						$row2 = sc_trouver_corr_un($ev['ID']);
-						$aff .= "<strong>".supprimer_numero($row['titre'])."</strong>&nbsp;: ";
-						$url = generer_url_entite($row2['id_article'], 'article');
-						if (supprimer_tags($ev['SUMMARY']) == $row2['titre'])
-							$aff .= "<a href='".$url."'>".$ev['SUMMARY']."</a>";
-						else
-							$aff .= "<a href='".$url."'>".$row2['titre']."&nbsp;: ".$ev['SUMMARY']."</a>";
-						$aff .= '</div>';
-					}
-					$class='agendanotthismonth events';
-				}
-			}
-			else{
-				$aff .= intval($jour_mois_suivant++);
-				$aff .= '<div class="odd">';
-				$row = sc_trouver_corr_pl($evts[0]['ID']);
-				$row2 = sc_trouver_corr_un($evts[0]['ID']);
-				$aff .= '<strong>'.supprimer_numero($row['titre']).'</strong>&nbsp;: ';
-				$url = generer_url_entite($row2['id_article'], 'article');
-				if (supprimer_tags($evts[0]['SUMMARY']) == $row2['titre'])
-					$aff .= "<a href='".$url."'>".$evts[0]['SUMMARY']."</a>";
-				else
-					$aff .= "<a href='".$url."'>".$row2['titre']."&nbsp;: ".$evts[0]['SUMMARY']."</a>";
-				$aff .= '</div>';
-				$class='agendanotthismonth event';
-			}
-		}
-		else {
-			$evts = intval($jour_mois_suivant++);
-			$class = 'agendanotthismonth';
-		}
-		$ligne .= "\n<td valign='top' class=\"$class\">".$aff."</td>";
+		$aff = sc_generer_ligne_agenda($jour_mois_suivant, $amj, $evts, 'agendanotthismonth', 'grand');
+		$ligne .= '<td valign="top" class="'.$aff['class'].'">'.$aff['ligne'].'</td>';
 	}
 
 	return $total . ($ligne ? "\n<tr>$ligne\n</tr>" : '');
@@ -636,36 +563,8 @@ function http_calendrier_sc_mini($annee, $mois, $jour, $echelle, $partie_cal, $s
 		$annee_en_cours = date("Y",$nom);
 		$amj = date("Y",$mois_t_precedent) . $mois_precedent . $jour_mois_precedent;
 		$evts = $evenements[$amj];
-		$class="";
-		if ($evts) {
-			$nb_elmts= @count($evts);
-			if ($nb_elmts>1){
-				$row = sc_trouver_corr_pl($evts[0]['ID']);
-				$id_rub = intval($row['id_secteur']);
-				$titre_rub = supprimer_numero($row['titre']);
-				$url = generer_url_public('agenda_calendrier', 'id_rubrique='.$id_rub.'');
-				$evts = "<a href='".$url."' title='".supprimer_tags($titre_rub)." ("._T('agenda:voir_evenements_rubrique').")'>".intval($jour_mois_precedent)."</a>";
-				$class='agendanotthismonth events';
-			}
-			else{
-				$row = sc_trouver_corr_un($evts[0]['ID']);
-				$url = generer_url_entite($row['id_article'], 'article');
-				$info = sc_decoder_date($evts[0]['DTSTART'], $evts[0]['DTEND'], $evts[0]['HORAIRE']);
-				if (supprimer_tags($evts[0]['SUMMARY']) == $row['titre'])
-					$title = $row['titre']." - ".$info;
-				else
-					$title = $row['titre']." : ".$evts[0]['SUMMARY']." - ".$info;
-				$evts = "<a href='".$url."' title='".supprimer_tags($title).
-				"'>".intval($jour_mois_precedent)."</a>";
-				$class='agendanotthismonth event';
-			}
-			
-		}
-		else {
-			$evts = intval($jour_mois_precedent);
-			$class = 'agendanotthismonth';
-		}
-		$ligne .= "\n\t<td class=\"$class\">".$evts."</td>";
+		$aff = sc_generer_ligne_agenda($jour_mois_precedent, $amj, $evts, 'agendanotthismonth', 'mini');
+		$ligne .= '<td class="'.$aff['class'].'">'.$aff['ligne'].'</td>';
 	}
 	//mois en cours
 	$total = '';
@@ -683,35 +582,8 @@ function http_calendrier_sc_mini($annee, $mois, $jour, $echelle, $partie_cal, $s
 		}
 
 		$evts = $evenements[$amj];
-		$class="";
-		if ($evts) {
-			$nb_elmts= @count($evts);
-			if ($nb_elmts>1){
-				$row = sc_trouver_corr_pl($evts[0]['ID']);
-				$id_rub = intval($row['id_secteur']);
-				$titre_rub = supprimer_numero($row['titre']);
-				$url = generer_url_public('agenda_calendrier', 'id_rubrique='.$id_rub.'');
-				$evts = "<a href='".$url."' title='".supprimer_tags($titre_rub)." ("._T('agenda:voir_evenements_rubrique').")'>".intval($jour)."</a>";
-				$class = 'agendathismonth events';
-			}
-			else{
-				$row = sc_trouver_corr_un($evts[0]['ID']);
-				$url = generer_url_entite($row['id_article'], 'article');
-				$info = sc_decoder_date($evts[0]['DTSTART'], $evts[0]['DTEND'], $evts[0]['HORAIRE']);
-				if (supprimer_tags($evts[0]['SUMMARY']) == $row['titre'])
-					$title = $row['titre']." - ".$info;
-				else
-					$title = $row['titre']." : ".$evts[0]['SUMMARY']." - ".$info;
-				$evts = "<a href='".$url."' title='".supprimer_tags($title).
-				"'>".intval($jour)."</a>";
-				$class = 'agendathismonth event';
-			}
-		}
-		else {
-			$evts = intval($jour);
-			$class='agendathismonth';
-		}
-		$ligne .= "\n\t<td  class='".($amj == date("Ymd")?'agendathisday': $class)."'>" . $evts . "\n\t</td>";
+		$aff = sc_generer_ligne_agenda($jour, $amj, $evts, 'agendathismonth', 'mini');
+		$ligne .= '<td class="'.$aff['class'].'">'.$aff['ligne'].'</td>';
 	}
 	$jour_mois_suivant=1;
 	// affichage de la fin de semaine hors periode
@@ -723,36 +595,8 @@ function http_calendrier_sc_mini($annee, $mois, $jour, $echelle, $partie_cal, $s
 		$annee_en_cours = date("Y",$nom);
 		$amj = date("Y",$nom) . $mois_suivant . '0'.$jour_mois_suivant;
 		$evts = $evenements[$amj];
-		$class="";
-		if ($evts) {
-			$nb_elmts= @count($evts);
-			if ($nb_elmts>1){
-				$row = sc_trouver_corr_pl($evts[0]['ID']);
-				$id_rub = intval($row['id_secteur']);
-				$titre_rub = supprimer_numero($row['titre']);
-				$url = generer_url_public('agenda_calendrier', 'id_rubrique='.$id_rub.'');
-				$evts = "<a href='".$url."' title='".supprimer_tags($titre_rub)." ("._T('agenda:voir_evenements_rubrique').")'>".intval($jour_mois_suivant++)."</a>";
-				$class='agendanotthismonth events';
-			}
-			else{
-				$row = sc_trouver_corr_un($evts[0]['ID']);
-				$url = generer_url_entite($row['id_article'], 'article');
-				$info = sc_decoder_date($evts[0]['DTSTART'], $evts[0]['DTEND'], $evts[0]['HORAIRE']);
-				if (supprimer_tags($evts[0]['SUMMARY']) == $row['titre'])
-					$title = $row['titre']." - ".$info;
-				else
-					$title = $row['titre']." : ".$evts[0]['SUMMARY']." - ".$info;
-				$evts = "<a href='".$url."' title='".supprimer_tags($title).
-				"'>".intval($jour_mois_suivant++)."</a>";
-				$class='agendanotthismonth event';
-			}
-			
-		}
-		else {
-			$evts = intval($jour_mois_suivant++);
-			$class = 'agendanotthismonth';
-		}
-		$ligne .= "\n\t<td class=\"$class\">".$evts."</td>";
+		$aff = sc_generer_ligne_agenda($jour_mois_suivant++, $amj, $evts, 'agendanotthismonth', 'mini');
+		$ligne .= '<td class="'.$aff['class'].'">'.$aff['ligne'].'</td>';
 	}
 
 	return $total . ($ligne ? "\n<tr>$ligne\n</tr>" : '');
