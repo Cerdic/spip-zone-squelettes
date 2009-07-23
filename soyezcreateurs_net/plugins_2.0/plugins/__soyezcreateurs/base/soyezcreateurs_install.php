@@ -144,7 +144,8 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			include_spip('base/soyezcreateurs');
 			spip_log("SoyezCreateurs maj 2.1.10", "soyezcreateurs_install");
 			$mentions = array('titre' => 'Mentions légales & conditions d’utilisation', 'texte' => '');
-			$row = sql_select('0+titre AS num, titre, texte', 'spip_mots', 'id_groupe=6', '', 'num');
+			$id_groupe = id_groupe("_InformationsLegales");
+			$row = sql_select('0+titre AS num, titre, texte', 'spip_mots', "id_groupe=$id_groupe", '', 'num');
 			while($r = sql_fetch($row)){
     			$mentions['texte'] .= '{{{'.supprimer_numero($r['titre']).'}}}'."\n";
     			$mentions['texte'] .= "\n".$r['texte']."\n\n";
@@ -154,7 +155,6 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			create_article($mentions, "000. Fourre-tout");
 			create_mot("_Specialisation", "MentionsLegales", $ex, "Affecter ce mot clef à l'article destiné à afficher les mentions légales du site.");
 			create_article_mot($mentions['titre'], "000. Fourre-tout", "MentionsLegales", "_Specialisation");
-			$id_groupe = id_groupe("_InformationsLegales");
 			sql_delete("spip_mots", "id_groupe=$id_groupe");
 			sql_delete("spip_groupes_mots", "id_groupe=$id_groupe");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.9','non');
