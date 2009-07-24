@@ -8,18 +8,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 </BOUCLE_lang>
 <head>
-<title>[(#NOM_SITE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+<title>#NOM_SITE - #NOM_SITE_SPIP</title>
 [<meta name="description" content="(#DESCRIPTIF|couper{150}|textebrut)" />]
 <INCLURE{fond=inc/inc-head}{id_rubrique}{id_syndic}{lang}>
 [(#REM) On demande aux moteurs de ne pas indexer cette page pour ne pas passer devant le site qu'on reference.
 ]<meta name="robots" content="noindex" />
 </head>
-<body>
-<div id="site">
+<body id="site">
+<div>
 
 	[(#REM) Afficher l'entete :]
 	<INCLURE{fond=inc/inc-entete}{lang}>
-	
+
+    <div id="content">
 	[(#REM) Fil d'Ariane ]
     <div class="hierarchie">
 		<a href="#URL_SITE_SPIP/"><:accueil_site:></a>
@@ -28,9 +29,8 @@
 		</BOUCLE_ariane>
 		[ &gt; <strong class="on">(#NOM_SITE|couper{80})</strong>]
 	</div><!--#hierarchie-->
-		
+
 	[(#REM) Contenu principal : affichage du site ]
-    <div id="content">
 		<p />
 		<fieldset class="chapo">
 		<object>[(#NOM_SITE|textebrut)]</object>
@@ -39,10 +39,9 @@
 		[(#LOGO_SITE||image_reduire{150,100})]</a>
 		<p />
 		#FORMULAIRE_NOTATION<br />
-		<p>
-        [<div class="texte">(#DESCRIPTIF)</div>]
+		<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />
+        [<q class="texte">(#DESCRIPTIF**|attribut_html)</q>]
         [<p><a class="url" href="#URL_SITE" target="_blank">(#URL_SITE|couper{80})</a></p>]
-		</p>
 		</fieldset>		
 
         [(#REM) Articles issus de la syndication ]
@@ -56,7 +55,7 @@
                 <li class="article">
                     <h3><a class="article" href="#URL_ARTICLE" target="_blank">#TITRE</a></h3>
                     <small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</small>
-                    [<div class="introduction">(#DESCRIPTIF|image_reduire{300})</div>]
+                    [<div class="introduction">(#DESCRIPTIF**|image_reduire{300})</div>]
                 </li>
                 </BOUCLE_articles>
             </ul>
@@ -74,8 +73,8 @@
 	<INCLURE{fond=inc/inc-nav}{id_syndic}{lang}>
 	
 	[(#REM) Afficher le pied de page :]
-	<INCLURE{fond=inc/inc-pied}{lang}>
-</div><!--#site-->
-</body>
-</html>	
+	<INCLURE{fond=inc/inc-menu}{lang}>
+</div>
+</body><!--#site-->
+</html>
 </BOUCLE_principale>

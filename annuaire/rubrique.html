@@ -5,18 +5,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
-<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+<title>#TITRE - #NOM_SITE_SPIP</title>
 [<meta name="description" content="(#INTRODUCTION{150}|textebrut)" />]
 [(#REM) Lien vers le flux RSS des articles la rubrique ]
 <link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
 <INCLURE{fond=inc/inc-head}{id_rubrique}{id_syndic}{lang}>
 </head>
-<body>
-<div id="rubrique">
+<body id="rubrique">
+<div>
 
 	[(#REM) Afficher l'entete :]
-	<INCLURE{fond=inc/inc-entete}>
-	
+	<INCLURE{fond=inc/inc-entete}{lang}>
+
+	<div id="content">
     [(#REM) Fil d'Ariane ]
     <div class="hierarchie">
 		<a href="#URL_SITE_SPIP/"><:accueil_site:></a>
@@ -25,9 +26,8 @@
 		</BOUCLE_ariane>
 		[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]
 	</div>
-	
+
 	[(#REM) Contenu principal : affichage du site ]
-	<div id="content">
         <div class="cartouche">
             [(#LOGO_RUBRIQUE||image_reduire{200,200})]
             <h1 class="#EDIT{titre}">#TITRE</h1>
@@ -82,8 +82,8 @@
 	<INCLURE{fond=inc/inc-nav}{lang}>
 	
 	[(#REM) Afficher le pied de page :]
-	<INCLURE{fond=inc/inc-pied}{lang}>
-</div><!--#rubrique-->
-</body>
+	<INCLURE{fond=inc/inc-menu}{lang}>
+</div>
+</body><!--#rubrique-->
 </html>	
 </BOUCLE_principale>
