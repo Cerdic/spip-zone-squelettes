@@ -1,33 +1,33 @@
-#CACHE{10}
+#CACHE{0}
 <B_forums_liens>
 
 <table class="spip">
-<BOUCLE_forums_liens(FORUMS){plat}{par date}{inverse}{pagination 10}> 
+<BOUCLE_forums_liens(FORUMS){plat}{!par date}{pagination 10}> 
 <tr [class="(#EVAL{[(#_forums_liens:COMPTEUR_BOUCLE)]}|alterner{'row_even','row_odd'})"] >
 
 <td> 
 [(#DATE|jour)]/[(#DATE|mois) ]  
-<BOUCLE_ArticleForum(ARTICLES){id_article}>
+[(#SET{dateforum,#DATE})]
+
 [(#INCLURE{fond=inc_cadenas}{id_article})] 
-<BOUCLE_mot(MOTS){id_article}{titre=forum}>
-<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})]" title="#TITRE"> 
-</BOUCLE_mot>
-<a href="#URL_ARTICLE" title="#TITRE"> 
-<//B_mot>
-</BOUCLE_ArticleForum>
-<BOUCLE_BreveForum(BREVES){id_breve}>
-[(#INCLURE{fond=inc_cadenas}{id_breve})]
-<a href="#URL_BREVE" title="#TITRE"> 
-</BOUCLE_BreveForum>
 
+<BOUCLE_forums_pagi(FORUMS){id_thread}{plat}{date<#GET{dateforum}}>
+</BOUCLE_forums_pagi>
+[(#SET{combien,[(#TOTAL_BOUCLE|div{10}|floor|mult{10})]})] 
+</B_forums_pagi>
+[(#SET{combien,'0'})] 
+<//B_forums_pagi>
 
-<BOUCLE_SiteForum(SITES){id_syndic}>
-<a href="[(#URL_PAGE{kiosque}|parametre_url{'id_syndic',#ID_SYNDIC})]" > 
-</BOUCLE_SiteForum>
-<//B_SiteForum>
-<//B_BreveForum>
-<//B_ArticleForum>
+  
+  
+  
+<BOUCLE_b(AUTEURS) {id_auteur = #SESSION{id_auteur}} >
+[<strong>(#DATE|>={#MAJ}|?{'Nouveau message : ',''})</strong>]
+</BOUCLE_b>
+
+<a rel="nofollow" href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM}|parametre_url{'debut_Forums_fil',#GET{combien}})#forum#ID_FORUM]" title="#TITRE"> 
 [(#TITRE|rtrim{.,})]</a>
+
 
 <BOUCLE_crayon_parent(FORUMS){id_parent}{statut=original}{0,1}>
 <BOUCLE_nom(AUTEURS){tout}{id_auteur}>
