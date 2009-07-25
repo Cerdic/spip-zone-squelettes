@@ -1,0 +1,75 @@
+<div id="nav">
+		[(#REM) Afficher les mot clef du site]
+		<fieldset class="mots">
+				<object><:mots_clefs:></object>
+				<B_mot>
+					[(#REM) j'affiche les mots relier au site syndic ]
+					<BOUCLE_mot(MOTS){id_syndic}>
+					<h3>#TYPE</h3>
+						<BOUCLE_mots(MOTS){id_groupe}{id_syndic}{par titre}{" - "}>
+						<a class="texte" href="#URL_MOT">#TITRE</a>
+						</BOUCLE_mots>
+					</BOUCLE_mot>
+				</B_mot>
+					[(#REM) affichage de tout les mots du sites]
+					<BOUCLE_mot1(GROUPES_MOTS){titre !IN _META,Affichage}>
+					<h3>#TITRE</h3>
+						<BOUCLE_mots2(MOTS){id_groupe}{par titre}{" - "}>
+						<a class="texte" href="#URL_MOT">#TITRE</a>
+						</BOUCLE_mots2>
+					</BOUCLE_mot1>
+				<//B_mot>
+		</fieldset><!--#mots-->
+
+		[(#REM)
+		Barre de navigation, ouverte sur la hierarchie courante
+		On fait un plan, et, quand on avance vers une rubrique,
+		on l'affiche si son parent est expose ou est la racine du site. ]
+
+		<fieldset class="rub">
+		<object><:rubriques:></object>
+		<B_rubriques>
+		<ul>
+		<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
+			<li>
+				<a class="texte" href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
+				<B_sous_rubriques>
+				<ul>
+					<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
+						<li class="sous"><a class="texte" href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
+					</BOUCLE_sous_rubriques>
+				</ul>
+				</B_sous_rubriques>
+			</li>
+		</BOUCLE_rubriques>
+		</ul>
+		</B_rubriques>
+		</fieldset><!--#rub-->
+
+		[(#REM) Afficher les mot clef du site si le plugins est actif]
+		[(#PLUGIN{nuage}|oui)
+		<fieldset class="tag">
+			<object><:annuaire:tags:></object>
+				[(#MODELE{nuage_site})]
+		</fieldset><!--#tag-->]
+		
+		[(#REM) Afficher les liens]
+		<fieldset class="lien">
+			<br />
+			[(#REM) lien vers la synthése des flux rss]
+			<a class="texte" href="#URL_PAGE{herbier}"><:sur_web:></a>
+			<br />
+			[(#REM) lien vers le plan de page]
+			<a class="texte" href="#URL_PAGE{plan}"><:annuaire:plan_site:></a>
+			<br />
+			[(#REM) Un rss]
+			<a class="texte" href="#URL_PAGE{backend}" rel="alternate" title="<:syndiquer_site:>">
+			<img src="#CHEMIN{feed.png}" alt="<:icone_suivi_activite:>" width="16" height="16" />
+			&nbsp;RSS&nbsp;2.0</a>
+			<br />
+			[(#REM) Le igoogle]
+			<a class="texte" href="http://fusion.google.com/add?source=atgs&amp;feedurl=#URL_SITE_SPIP/spip.php?page=backend">
+			<img src="http://gmodules.com/ig/images/plus_google.gif" border="0" alt="<:annuaire:ajouter_google:>" />
+			</a>
+		</fieldset><!--#lien-->
+</div><!--#navigation-->
