@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+#CACHE{0}
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>#NOM_SITE_SPIP</title>
+<INCLURE{fond=inc/inc-head}{id_rubrique}{id_syndic}{lang}>
+</head>
+<body id="sommaire">
+<div>
+
+	[(#REM) Afficher l'entete :]
+	<INCLURE{fond=inc/inc-entete}{lang}>
+
+	<div id="content">
+	[(#REM) Contenu principal : affichage du site ]
+		[(#REM) Afficher les nouveautés :]
+		<div id="new">
+			<h2><:nouveautes:></h2>
+			<ul>
+			<BOUCLE_new(SITES){!par date}{doublons}{pagination #CONFIG{annuaire_sommaire/pas_pagination_nouveaute, 3}}>
+			<li>
+				<fieldset class="chapo">
+				<a class="nom" href="[(#ID_SYNDIC|generer_url_entite{site})]">
+				<object class="titre">#NOM_SITE</object>
+				</a>
+				<a class="img" href="[(#ID_SYNDIC|generer_url_entite{site})]">
+				<img src="http://open.thumbshots.org/image.aspx?url=#URL_SITE" [ alt="(#NOM_SITE|texte_backend)"] />
+				[(#LOGO_SITE||image_reduire{150,100})]</a>
+				#FORMULAIRE_NOTATION<br />
+				<p class="texte_chapo">#DESCRIPTIF**</p>
+				</fieldset>
+			</li>
+			</BOUCLE_new>
+			</ul>
+		</div><!--#new-->
+		
+		[(#REM) Afficher les populaires :]
+		<div id="pop">
+			<h2><:annuaire:plus_pop:></h2>
+			<ul>
+			<B_pop>
+			<BOUCLE_pop(SITES){notation}{!par nombre_votes}{doublons}{pagination #CONFIG{annuaire_sommaire/pas_pagination_populaire, 3}}>
+			<li>
+				<fieldset class="chapo">
+				<a class="nom" href="[(#ID_SYNDIC|generer_url_entite{site})]">
+				<object class="titre">#NOM_SITE</object>
+				</a>
+				<a class="img" href="[(#ID_SYNDIC|generer_url_entite{site})]">
+				<img src="http://open.thumbshots.org/image.aspx?url=#URL_SITE" [ alt="(#NOM_SITE|texte_backend)"] />
+				[(#LOGO_SITE||image_reduire{150,100})]</a>
+				#FORMULAIRE_NOTATION<br />
+				<p class="texte_chapo">#DESCRIPTIF**</p>
+				</fieldset>
+			</li>
+			</BOUCLE_pop>
+			</ul>
+			<:annuaire:pas_pop:>
+			<//B_pop>
+		</div><!--#pop-->
+
+		[(#REM) Afficher au hazard :]
+		<div id="zard">
+			<h2><:annuaire:hasard:></h2>
+			<B_zard>
+			<ul>
+			<BOUCLE_zard(SITES){par hasard}{doublons}{pagination #CONFIG{annuaire_sommaire/pas_pagination_hasard, 3}}>
+			<li>
+				<fieldset class="chapo">
+				<a class="nom" href="[(#ID_SYNDIC|generer_url_entite{site})]">
+				<object class="titre">#NOM_SITE</object>
+				</a>
+				<a class="img" href="[(#ID_SYNDIC|generer_url_entite{site})]">
+				<img src="http://open.thumbshots.org/image.aspx?url=#URL_SITE" [ alt="(#NOM_SITE|texte_backend)"] />
+				[(#LOGO_SITE||image_reduire{150,100})]</a>
+				#FORMULAIRE_NOTATION<br />
+				<p class="texte_chapo">#DESCRIPTIF**</p>
+				</fieldset>
+			</li>
+			</BOUCLE_zard>
+			</ul>
+			<:annuaire:pas_zard:>
+			<//B_zard>
+		</div><!--#zard-->
+	</div><!--#content-->
+	
+	[(#REM) Navigation => colonne droite :]
+	<INCLURE{fond=inc/inc-nav}{lang}>
+	
+	[(#REM) Afficher le pied de page :]
+	<INCLURE{fond=inc/inc-menu}{lang}>
+</div>
+</body><!--#sommaire-->
+</html>	

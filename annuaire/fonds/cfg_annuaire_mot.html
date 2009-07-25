@@ -1,0 +1,43 @@
+#CACHE{0}
+<!-- titre=<:annuaire:annuaire:> - <:annuaire:configuration:> <:annuaire:de:> <:annuaire:mot:>-->
+<!-- descriptif=<:annuaire:descriptif_mot:>-->
+<!-- icone=img/annuaire_24.jpg -->
+<!-- boite=<:annuaire:boite_mot:> -->
+
+<INCLURE{fond=noisettes/cfg/inc_cfg_header}>
+
+<form method="post">[(#ENV{_cfg_}|form_hidden)]
+[(#REM) Boucles]
+<fieldset>
+	<legend><:annuaire:boucles:></legend>
+	[(#REM) Nbr sites page mot]
+	<p><b><:annuaire:nbr_sites:></b></p>
+	<INCLURE{fond=noisettes/cfg/inc_cfg_pagination}{defaut_pas=10}{suffixe=_site}{env}>
+</fieldset>
+[(#REM) Couleurs]
+<fieldset><!--#fond-->
+	<legend><:annuaire:css_fond:></legend>
+	<p><:annuaire:css_couleurs_fond_expli:></p>
+	<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+		{explication=<:annuaire:css_couleurs_fond_page:><:annuaire:mot:>}
+		{suffixe=_fond_mot}
+		{choix=bg}
+		{bg_defaut=#8989ec}
+		{env}>
+</fieldset><!--#fond-->
+<fieldset><!--#mot-->
+	<legend><:annuaire:css:></legend>
+	<p><:annuaire:css_couleurs:></p>
+	<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+		{explication=<:annuaire:css_couleurs_:><:annuaire:mot:>}
+		{suffixe=_mot}
+		{choix=bg_fg_ho}
+		{bg_defaut=#8484fb}
+		{fg_defaut=#000000}
+		{ho_defaut=#ffffff}
+		{env}>
+</fieldset><!--#mot-->
+<input type="submit" name="_cfg_ok" value="<:OK:>" />
+<input type="submit" name="_cfg_delete" value="<:Supprimer:>" />
+</form>
+
