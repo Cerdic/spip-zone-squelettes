@@ -40,12 +40,20 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'auteurs_site' => 'Site authors',
 	'avertissement_ie' => '<!--[if lt IE 7]><div style="color:#fff; background-color:#000; border:2px solid red; padding:1em; font-family: \'Trebuchet MS\', verdana, arial, helvetica, sans-serif; font-size: 120%; position:relative;"><p><strong style="color:#f00;">Caution</strong>: you are using an old version of Internet Explorer! You can visit this site with your existing browser.</p><p>However, we suggest that you </p><ol style="color:#fff;position:relative;"><li><a href="http://update.microsoft.com/">update</a> your operating systemand install the most recent version of Internet Explorer (for <a href="http://www.pyrat.net/Utilisez-Windows-Update.html">security</a> reasons)</li><li>and use a modern browser: <a href="http://www.mozilla-europe.org/fr/">FireFox</a>.</li></ol></div><![endif]-->',
 
+	// B
+	'barre_typo_generalisee' => '<NEW>Barre Typographique G&eacute;n&eacute;ralis&eacute;e',
+	'boutonstexte' => 'Text button',
+	'bte' => '<NEW>Enluminures Typo',
+	'btv2' => '<NEW>Barre typographique',
+
 	// C
 	'carte_monde' => 'World map',
 	'chapitre_complet' => 'Display complete chapter for printing',
 	'chapitre_complet_title' => 'Display the entire section contents: ',
 	'chercheravecgoogle' => 'Search the Web with <a href=\'http://www.google.com/\'><img src=\'http://www.google.com/logos/Logo_25wht.gif\' alt=\'Google\' title=\'Google\' style=\'vertical-align:middle;\' width=\'75\' height=\'32\' /></a> !',
 	'citations' => 'Quotes',
+	'clever_uns' => 'Unsubscription done',
+	'clevermail' => 'CleverMail',
 	'commencer' => 'To start',
 	'connexion' => 'Connection',
 	'connexiontitle' => 'Access to admin interface',
@@ -105,13 +113,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'gpm_ouinon' => 'Values',
 
 	// L
+	'layout_accueil_title' => 'Specific arrangement to home page',
+	'layout_autres' => 'Other pages',
+	'layout_autres_title' => 'Arrangement for specific pages (plan...)',
+	'layout_defaut_title' => '<NEW>Agencement par d&eacute;faut pour le site (articles et rubriques)',
 	'liresuitede' => 'More to read about&nbsp;:',
 	'liresuiteeditorial' => 'Read the end of the editorial',
 	'listezones' => 'Hot spot\'s list',
 
 	// M
 	'memerubrique' => 'In the same section...',
-	'mentionslegales' => 'Legal mentions &amp; usage',
 	'menu_deplier' => 'Expand: ',
 	'menu_picalt' => 'Click to ',
 	'menu_replier' => 'Collapse: ',
@@ -139,6 +150,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// P
 	'par' => 'by',
+	'parametres_google' => 'Google settings',
+	'parametres_xiti' => 'Xiti Settings',
 	'participez' => 'Take part in the life of the site!',
 	'plan_menu' => 'Sitemap',
 	'plus_loin' => 'See also',
@@ -167,9 +180,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'savoirpluscritere' => 'Learn more about the criterion',
 	'sedna' => 'Sedna (RSS aggregator)',
 	'sommaire' => 'Summary',
+	'soyezcreateurs' => 'Be Creative',
+	'soyezcreateurs_couleurs' => 'Colors',
+	'soyezcreateurs_google' => 'Referencing',
+	'soyezcreateurs_layout' => '<NEW>Positionnement',
 	'syndiquer_agenda' => 'Syndiquer l\'agenda',
 
 	// T
+	'textesiplanvide' => 'Text if the plan is empty',
 	'themes' => 'Themes',
 	'tousarticlesantichrono' => 'All articles by date',
 	'tout' => 'All',

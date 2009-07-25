@@ -104,7 +104,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// M
 	'memerubrique' => 'In deze rubriek...',
-	'mentionslegales' => 'Wettelijke vermeldingen &amp; voorwaarden voor gebruik',
 	'menu_deplier' => 'ontvouwen: ',
 	'menu_picalt' => 'klikken voor ',
 	'menu_replier' => 'opvouwen: ',
