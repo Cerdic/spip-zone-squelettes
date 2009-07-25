@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title><:plan_site:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
+<INCLURE{fond=inc/inc-head}{lang}>
+<meta name="robots" content="none" />
+</head>
+<body>
+<div id="plan">
+
+	[(#REM) Afficher l'entete :]
+	<INCLURE{fond=inc/inc-entete}{lang}>
+	
+	[(#REM) Fil d'Ariane ]
+    <div class="hierarchie">
+		<a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; 
+		<strong class="on"><:plan_site:></strong>
+	</div>
+    
+	[(#REM) Contenu principal : affichage du site ]
+	<div id="content">
+		<fieldset class="chapo">
+		<object><:plan_site:></object>
+			<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
+        	<h2><a class="site" href="#URL_RUBRIQUE">#TITRE</a></h2>
+
+			[(#REM) Sous-rubriques ]
+			<B_rubriques>
+			<ul>
+				<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+				<li class="site">
+					<strong><a class="site" href="#URL_RUBRIQUE">#TITRE</a></strong>
+					<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+				</li>
+				</BOUCLE_rubriques>
+			</ul>
+			</B_rubriques>
+
+	        [(#REM) Sur le Web ]
+	        <B_sites>
+	        <h3><:sites_web:></h3>
+	        <ul>
+	            <BOUCLE_sites(SITES) {id_secteur} {par nom_site}>
+				<li class="site"><a class="site" href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a></li>
+				</BOUCLE_sites>
+	        </ul>
+	        </B_sites>
+	        </BOUCLE_secteurs>
+		</fieldset><!--#chapo-->
+	</div><!--#content-->
+	
+	[(#REM) Navigation => colonne droite :]
+	<INCLURE{fond=inc/inc-nav}{lang}>
+	
+	[(#REM) Afficher le pied de page :]
+	<INCLURE{fond=inc/inc-pied}{lang}>
+</div><!--#plan-->
+</body>
+</html>
