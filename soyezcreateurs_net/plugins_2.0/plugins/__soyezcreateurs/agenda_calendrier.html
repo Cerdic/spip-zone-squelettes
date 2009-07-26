@@ -1,7 +1,20 @@
 #CACHE{3600}
 <BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+[(#ENV{'date_ev'}|!={''}|non)
+	[(#ENV{'month'}|oui)
+		[(#ENV{'year'}|oui)
+			#SET{'date', #ENV{'year'}|concat{'-'#ENV{'month'}}|concat{'-01 00:00:00'}}
+		]
+	]
+	[(#ENV{'month'}|non)
+		#SET{'date', #ENV{date}}
+	]
+]
+[(#ENV{'date_ev'}|!={''}|oui)
+	#SET{'date', #ENV{date_ev}|concat{'00:00:00'}}
+]
 [(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)]})]
-[(#INCLURE{fond=noisettes/header/header}{title=[(#TITRE|attribut_html|texte_script)] - [(#ENV{date_ev}|sinon{#ENV{date}}|affdate_mois_annee)]}{titretop=#GET{titretop}})]
+[(#INCLURE{fond=noisettes/header/header}{title=[(#TITRE|attribut_html|texte_script)] - [(#GET{date}|affdate_mois_annee)]}{titretop=#GET{titretop}})]
 <div id="miettesdepain">
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:soyezcreateurs:accueil:></a></li>
@@ -16,7 +29,7 @@
 	<div class="cartouche">
 		<h1>
 			[(#SET{lelogo,[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{64,64})]})][<img class="logo_rubrique" src="(#GET{lelogo}|extraire_attribut{src})" width="[(#GET{lelogo}|extraire_attribut{width})]" height="[(#GET{lelogo}|extraire_attribut{height})]" alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" />]
-			[(#TITRE)] - [(#ENV{date_ev}|sinon{#ENV{date}}|affdate_mois_annee)]
+			[(#TITRE)] - [(#GET{date}|affdate_mois_annee)]
 		</h1>
 	</div>
 	<B_themes>
@@ -41,19 +54,6 @@
 		[<div class="descriptif">(#DESCRIPTIF)</div>]
 		[(#TEXTE)]
 		<!-- Fabrication du tableau : l'en tete -->
-		[(#ENV{'date_ev'}|!={''}|non)
-			[(#ENV{'month'}|oui)
-				[(#ENV{'year'}|oui)
-					#SET{'date', #ENV{'year'}|concat{'-'#ENV{'month'}}|concat{'-01 00:00:00'}}
-				]
-			]
-			[(#ENV{'month'}|non)
-				#SET{'date', #ENV{date}}
-			]
-		]
-		[(#ENV{'date_ev'}|!={''}|oui)
-			#SET{'date', #ENV{date_ev}|concat{'00:00:00'}}
-		]
 		<form id="frmnavigation" method="get" action="[(#URL_PAGE{agenda_calendrier}|parametre_url{id_rubrique, #ID_RUBRIQUE})]">
 			<fieldset style="text-align:center;">
 			<input type="hidden" value="agenda_calendrier" name="page" alt=""/>
@@ -64,7 +64,7 @@
 			[(#ENV{date}|mois|!={[(#ENV{date_ev,[(#ENV{date})]}|mois)]}|oui)
 				#SET{'condition_m', 'oui'}]
 			[(#GET{'condition_m'}|=={'oui'}|non)
-				<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique', #_rubrique_principal:ID_RUBRIQUE}|parametre_url{'date_ev', [(#ENV{date}|annee)]-[(#ENV{date}|mois)]-[(#ENV{date}|jour)]}|parametre_url{'id_mot', #ENV{id_mot}})]">Aujourd'hui</a>
+				<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique', #_rubrique_principal:ID_RUBRIQUE}|parametre_url{'date_ev', [(#ENV{date}|annee)]-[(#ENV{date}|mois)]-[(#ENV{date}|jour)]}|parametre_url{'id_mot', #ENV{id_mot}})]"><:spip:date_aujourdhui:></a>
 				]
 			</fieldset>
 			<fieldset style="text-align:center;">
