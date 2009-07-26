@@ -42,13 +42,32 @@
 		[(#TEXTE)]
 		<!-- Fabrication du tableau : l'en tete -->
 		[(#ENV{'date_ev'}|!={''}|non)
-		#SET{'date', #ENV{date}}
+			[(#ENV{'month'}|oui)
+				[(#ENV{'year'}|oui)
+					#SET{'date', #ENV{'year'}|concat{'-'#ENV{'month'}}|concat{'-01 00:00:00'}}
+				]
+			]
+			[(#ENV{'month'}|non)
+				#SET{'date', #ENV{date}}
+			]
 		]
 		[(#ENV{'date_ev'}|!={''}|oui)
-		#SET{'date', #ENV{date_ev}|concat{'00:00:00'}}
+			#SET{'date', #ENV{date_ev}|concat{'00:00:00'}}
 		]
-		<form id="frmnavigation" method="get" action="#SELF">
-			<fieldset>
+		<form id="frmnavigation" method="get" action="[(#URL_PAGE{agenda_calendrier}|parametre_url{id_rubrique, #ID_RUBRIQUE})]">
+			<fieldset style="text-align:center;">
+			<input type="hidden" value="agenda_calendrier" name="page" alt=""/>
+			<input type="hidden" value="#ID_RUBRIQUE" name="id_rubrique" alt=""/>
+			#SET{'condition_m', 'non'}
+			[(#ENV{date}|annee|!={[(#ENV{date_ev,[(#ENV{date})]}|annee)]}|oui)
+				#SET{'condition_m', 'oui'}]
+			[(#ENV{date}|mois|!={[(#ENV{date_ev,[(#ENV{date})]}|mois)]}|oui)
+				#SET{'condition_m', 'oui'}]
+			[(#GET{'condition_m'}|=={'oui'}|non)
+				<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique', #_rubrique_principal:ID_RUBRIQUE}|parametre_url{'date_ev', [(#ENV{date}|annee)]-[(#ENV{date}|mois)]-[(#ENV{date}|jour)]}|parametre_url{'id_mot', #ENV{id_mot}})]">Aujourd'hui</a>
+				]
+			</fieldset>
+			<fieldset style="text-align:center;">
 				<legend><:soyezcreateurs:precisezrecherche:></legend>
 				<BOUCLE_PremiereAnnee(EVENEMENTS){branche}{par date_debut}{0,1}>
 				[(#DATE_DEBUT|annee|=={#ENV{date_ev,#ENV{date}}|annee}|oui)
@@ -57,7 +76,7 @@
 					]
 				]
 				</BOUCLE_PremiereAnnee>
-				<select id="var_nav_month">
+				<select name="month" id="var_nav_month">
 					<option value="01"[ (#GET{date}|nom_mois|=={<:date_mois_1:>}|oui) selected="selected"]><:date_mois_1:></option>
 					<option value="02"[ (#GET{date}|nom_mois|=={<:date_mois_2:>}|oui) selected="selected"]><:date_mois_2:></option>
 					<option value="03"[ (#GET{date}|nom_mois|=={<:date_mois_3:>}|oui) selected="selected"]><:date_mois_3:></option>
@@ -72,7 +91,7 @@
 					<option value="12"[ (#GET{date}|nom_mois|=={<:date_mois_12:>}|oui) selected="selected"]><:date_mois_12:></option>
 				</select>
 				<B_Annees>
-				<select id="var_nav_year">
+				<select name="year" id="var_nav_year">
 					<BOUCLE_Annees(EVENEMENTS){branche}{par date_debut}>[
 					<option value="[(#DATE_DEBUT|annee)]"[(#ENV{date_ev,[(#ENV{date})]}|annee|=={[(#DATE_DEBUT|annee)]}|?{' selected="selected"',''})]>
 						(#DATE_DEBUT|annee|unique)
@@ -80,33 +99,26 @@
 					]</BOUCLE_Annees>
 				</select>
 				</B_Annees>
-				<input type="button" value="<:pass_ok:>" class="form_submit" onclick="document.location.href='#SELF&amp;date_ev=' + document.getElementById('var_nav_year').value + '-' + document.getElementById('var_nav_month').value + '-01'#GET{param_nav_clef} ; return false;" />
+				<BOUCLE_ListMotsClefs(EVENEMENTS){branche}>
+				<BOUCLE_MotClefAssocie(MOTS){id_evenement}{unique}{doublons listemots} />
+				</BOUCLE_ListMotsClefs>
+				<B_ListeMotsClefs>[(#REM) Objectif : n'afficher que les mots clefs effectivement utilise' dans le secteur]
+				<select name="id_mot" id="var_nav_cle">
+					<option value="non"[(#ENV{id_mot,''}|=={''}|oui) selected="selected"]><:soyezcreateurs:tout:></option>
+					<BOUCLE_ListeMotsClefs(MOTS){!doublons listemots}{par titre}>
+					<option value="[(#ID_MOT)]"[(#ENV{id_mot}|=={[(#ID_MOT)]}|oui) selected="selected"]>[(#TITRE|supprimer_tags)]</option>
+					</BOUCLE_ListeMotsClefs>
+				</select>
+				</B_ListeMotsClefs>
 				<BOUCLE_DerniereAnnee(EVENEMENTS){branche}{!par date_debut}{0,1}>
 				[(#DATE_DEBUT|annee|=={#ENV{date_ev,#ENV{date}}|annee}|oui)
 				[(#ENV{date_ev,#ENV{date}}|mois|=={'12'}|non)
 					<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique',#_rubrique_principal:ID_RUBRIQUE}|parametre_url{'date_ev', #GET{date}|Agenda_moisdecal{1,'Y-m-d'}}|parametre_url{'id_mot', #ENV{id_mot,''}|urlencode})]"><img src="#CHEMIN{images/next.gif}" title="<:suivant:>" alt="<:suivant:>" /></a>
 				]]
 				</BOUCLE_DerniereAnnee>
-				<BOUCLE_ListMotsClefs(EVENEMENTS){branche}>
-				<BOUCLE_MotClefAssocie(MOTS){id_evenement}{unique}{doublons listemots} />
-				</BOUCLE_ListMotsClefs>
-				<B_ListeMotsClefs>[(#REM) Objectif : n'afficher que les mots clefs effectivement utilise' dans le secteur]
-				<select id="var_nav_cle">
-					<option value=""[(#ENV{id_mot,''}|=={''}|?{' selected="selected"',''})]><:soyezcreateurs:tout:></option>
-					<BOUCLE_ListeMotsClefs(MOTS){!doublons listemots}{par titre}>
-					<option value="[(#ID_MOT)]"[(#ENV{id_mot}|=={[(#ID_MOT)]}|?{' selected="selected"',''})]>[(#TITRE|supprimer_tags)]</option>
-					</BOUCLE_ListeMotsClefs>
-				</select>
-				#SET{param_nav_clef," + '&amp;id_mot=' + document.getElementById('var_nav_cle').value"}
-				</B_ListeMotsClefs>
-				#SET{'condition_m', 'non'}
-				[(#ENV{date}|annee|!={[(#ENV{date_ev,[(#ENV{date})]}|annee)]}|oui)
-				#SET{'condition_m', 'oui'}]
-				[(#ENV{date}|mois|!={[(#ENV{date_ev,[(#ENV{date})]}|mois)]}|oui)
-				#SET{'condition_m', 'oui'}]
-				[(#GET{'condition_m'}|=={'oui'}|non)
-					<input type="button" value="Aujourd'hui"[ onclick="document.location.href='(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique', #_rubrique_principal:ID_RUBRIQUE}|parametre_url{'date_ev', [(#ENV{date}|annee)]-[(#ENV{date}|mois)]-[(#ENV{date}|jour)]}|parametre_url{'id_mot', [(#ENV{id_mot}|texte_script)]})'; return false;"] />
-				]
+				<p>
+				<input type="submit" value="<:pass_ok:>" class="form_submit" />
+				</p>
 			</fieldset>
 		</form>
 		<h2>[(#TITRE)]</h2>
