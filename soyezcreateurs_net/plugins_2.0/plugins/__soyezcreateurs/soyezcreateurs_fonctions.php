@@ -143,11 +143,11 @@ function sc_nettoyer_marqueur($texte) {
 			/* U */ chr(217).chr(218).chr(219).chr(220).
 			/* u */ chr(249).chr(250).chr(251).chr(252).
 			/* yNn */ chr(255).chr(209).chr(241);
-	$texte = ereg_replace("<[^<]*>", "", $texte);
-	$texte = ereg_replace("[^A-Za-z0-9]", "_", strtr($texte,$accents,"AAAAAAaaaaaaOOOOOOooooooEEEEeeeeCcIIIIiiiiUUUUuuuuyNn"));
-	$texte = ereg_replace(" ", "_", $texte);
-	$texte = ereg_replace(" ", "_", $texte);
-	$texte = ereg_replace("_+", "_", $texte);
+	$texte = preg_replace("#<[^<]*>#", "", $texte);
+	$texte = preg_replace("#[^A-Za-z0-9]#", "_", strtr($texte,$accents,"AAAAAAaaaaaaOOOOOOooooooEEEEeeeeCcIIIIiiiiUUUUuuuuyNn"));
+	$texte = preg_replace("#\s#", "_", $texte);
+	$texte = preg_replace("#\s#", "_", $texte);
+	$texte = preg_replace("#_+#", "_", $texte);
 	return strtolower($texte);
 }
 
