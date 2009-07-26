@@ -145,7 +145,7 @@ function sc_nettoyer_marqueur($texte) {
 			/* yNn */ chr(255).chr(209).chr(241);
 	$texte = preg_replace("#<[^<]*>#", "", $texte);
 	$texte = preg_replace("#[^A-Za-z0-9]#", "_", strtr($texte,$accents,"AAAAAAaaaaaaOOOOOOooooooEEEEeeeeCcIIIIiiiiUUUUuuuuyNn"));
-	$texte = preg_replace("#\s#", "_", $texte);
+	$texte = preg_replace("#Â #", "_", $texte); 
 	$texte = preg_replace("#\s#", "_", $texte);
 	$texte = preg_replace("#_+#", "_", $texte);
 	return strtolower($texte);
