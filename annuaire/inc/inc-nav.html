@@ -13,53 +13,52 @@
 			<a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a>]
 		</fieldset><!--#connect-->
 	</div><!--#nav_haut-->
+	
 	<div id="nav_bas">
-		[(#REM) Afficher les mot clef du site]
-		<fieldset class="mots">
-			<object><:mots_clefs:></object>
-			<B_mot>
-				[(#REM) j'affiche les mots relier au site syndic ]
-				<BOUCLE_mot(MOTS){id_syndic}>
-				<h3>#TYPE</h3>
-					<BOUCLE_mots(MOTS){id_groupe}{id_syndic}{par titre}{" - "}>
-					<a class="texte" href="#URL_MOT">#TITRE</a>
-					</BOUCLE_mots>
-				</BOUCLE_mot>
-			</B_mot>
-				[(#REM) affichage de tout les mots du sites]
-				<BOUCLE_mot1(GROUPES_MOTS){titre !IN _META,Affichage}>
-				<h3>#TITRE</h3>
-					<BOUCLE_mots2(MOTS){id_groupe}{par titre}{" - "}>
-					<a class="texte" href="#URL_MOT">#TITRE</a>
-					</BOUCLE_mots2>
-				</BOUCLE_mot1>
-			<//B_mot>
-		</fieldset><!--#mots-->
-
+	[(#REM) Afficher les mot clef du site]
+	<B_mot>
+	<fieldset class="mots">
+		<object><:mots_clefs:></object>
+		<BOUCLE_mot(MOTS){id_syndic}>
+		<h3>#TYPE</h3>
+			<BOUCLE_mots(MOTS){id_groupe}{id_syndic}{par titre}{" - "}>
+			<a class="texte" href="#URL_MOT">#TITRE</a>
+			</BOUCLE_mots>
+		</BOUCLE_mot>
+	</B_mot>
+	[(#REM) affichage de tout les mots du sites]
+	<BOUCLE_mot1(GROUPES_MOTS){titre !IN _META,Affichage}>
+		<h3>#TITRE</h3>
+		<BOUCLE_mots2(MOTS){id_groupe}{par titre}{" - "}>
+		<a class="texte" href="#URL_MOT">#TITRE</a>
+		</BOUCLE_mots2>
+	</BOUCLE_mot1>
+	</fieldset><!--#mots-->
+	<//B_mot>
 		[(#REM)
 		Barre de navigation, ouverte sur la hierarchie courante
 		On fait un plan, et, quand on avance vers une rubrique,
 		on l'affiche si son parent est expose ou est la racine du site. ]
 
-		<fieldset class="rub">
-		<object><:rubriques:></object>
-		<B_rubriques>
-		<ul>
-		<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
-			<li>
-				<a class="texte" href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
-				<B_sous_rubriques>
-				<ul>
-					<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
-						<li class="sous"><a class="texte" href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
-					</BOUCLE_sous_rubriques>
-				</ul>
-				</B_sous_rubriques>
-			</li>
-		</BOUCLE_rubriques>
-		</ul>
-		</B_rubriques>
-		</fieldset><!--#rub-->
+	<B_rubriques>
+	<fieldset class="rub">
+	<object><:rubriques:></object>
+	<ul>
+	<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
+		<li>
+			<a class="texte" href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
+			<B_sous_rubriques>
+			<ul>
+				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
+					<li class="sous"><a class="texte" href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
+				</BOUCLE_sous_rubriques>
+			</ul>
+			</B_sous_rubriques>
+		</li>
+	</BOUCLE_rubriques>
+	</ul>
+	</fieldset><!--#rub-->
+	</B_rubriques>
 
 		[(#REM) Afficher les liens]
 		<fieldset class="lien">
@@ -90,7 +89,7 @@
 			<a class="link" href="http://www.spip.net/" title="<:site_realise_avec_spip:>">
 			<img src="#CHEMIN{spip.png}" alt="SPIP" width="48" height="16" /></a> | 
 			<:annuaire:copyright_site:>
-			<BOUCLE_copy_1(SITES){par date}{0,1}{doublons}>[(#DATE|annee)]</BOUCLE_copy_1> 
+			<BOUCLE_copy(SITES) {par date} {0,1}>[(#DATE|annee)][-(#ENV{date}|>{#DATE}|?{#ENV{date},''}|annee)]</BOUCLE_copy>
 			<strong>[(#NOM_SITE_SPIP|textebrut)]</strong>
 		</fieldset><!--#footer-->
 	</div><!--#nav_bas-->
