@@ -21,19 +21,43 @@
 	{extension IN jpg,gif,png}
 	{largeur>300}{hauteur>200}
 	{doublons tof}
+	{mode=document}
 	{!par date}
 	>
 
-	<BOUCLE_tof_titre(ARTICLES)
+	[(#SET{desc,[(#TITRE*|sinon{#DESCRIPTIF*}|?{' '})]})]
+	<BOUCLE_lien_article(ARTICLES)
 	{id_document}
+	{exclus}
 	{0,1}
-	>#SET{tof_titre,#TITRE}</BOUCLE_tof_titre>
+	>#SET{tof_titre,#TITRE}</BOUCLE_lien_article>
 	[(#COMPTEUR_BOUCLE|moins{#GET{pas}}|<={#ENV{debut_photos,0}}|?{#COMPTEUR_BOUCLE}|>{#ENV{debut_photos,0}}|?{
 		[(#SET{vignette,[(#FICHIER|copie_locale|image_passe_partout{#GET{taille},#GET{taille}}|image_recadre{#GET{taille},#GET{taille},center}|image_aplatir{jpg,ffffff}|inserer_attribut{class,spip_logos[ modulo(#COMPTEUR_BOUCLE|alterner{1,2,3,4,5})]})]})]
 	,
 		[(#SET{vignette,''})]
 	})]
-	<a href="[(#FICHIER|copie_locale|image_reduire{800}|extraire_attribut{src})]" type="#MIME_TYPE"[ title="(#TITRE|sinon{#GET{tof_titre}}|texte_backend)"]>#GET{vignette}</a>
+
+	[(#REM)
+		Inserer le longdesc dans la vignette (la creer le cas echeant)
+	]
+	[(#GET{desc}|?{[(#SET{vignette,[(#GET{vignette}
+		|sinon{<img style="display:none;" />}
+		|inserer_attribut{longdesc,[(#VAL{#desc}|concat{#ID_DOCUMENT})]})]})]})]
+	<a href="[(#FICHIER|copie_locale|image_reduire{800}|extraire_attribut{src})]"
+	type="#MIME_TYPE"[
+	title="(#TITRE|sinon{#GET{tof_titre}|supprimer_tags}|texte_backend)"]>#GET{vignette}</a>
+
+	[(#GET{desc})
+	[(#VAL{"<script"}|unique{scriptlongdesc}) type="text/javascript">
+		$("<style>div.longdesc {position: absolute; left: -9999px;}<\/style>")
+		.attr('type', 'text/css')
+		.appendTo('head');
+	</script>
+	]
+	<div id="desc#ID_DOCUMENT" class="longdesc">
+		[<h4 class="#EDIT{titre}">(#TITRE)</h4>]
+		[<div class="#EDIT{descriptif}">(#DESCRIPTIF)</div>]
+	</div>]
 	</BOUCLE_tof>
 
 	<BOUCLE_photos(DOCUMENTS)
