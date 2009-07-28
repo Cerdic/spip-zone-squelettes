@@ -1,5 +1,6 @@
 [(#REM) 
-<!-- Description d'un site de l'herbier
+<!-- Description d'un site de l'herbier. Si le plugin Thumbsites est actif #LOGO_SITE renvoie le logo ou
+la vignette si pas de logo
 	Recoit en argument :
 		- id_syndic: id du site concerne
 		- compteur_boucle: compteur de boucle
@@ -13,7 +14,7 @@
 ]
 <BOUCLE_herbier_intro(SITES) {id_syndic}>
 	<li class="[(#GET{classe_li})]">
-		<a href="#URL_SITE"[ title="(#NOM_SITE|texte_backend)"]><img src="http://open.thumbshots.org/image.pxf?url=#URL_SITE"[ alt="(#NOM_SITE|texte_backend)"] /></a>
+		[<a[ href="(#URL_SITE)"][ title="(#NOM_SITE|texte_backend)"]>(#LOGO_SITE||image_reduire{120}||inserer_attribut{alt,#NOM_SITE|texte_backend})</a>]
 		[<h3><a class="titre" href="#URL_SITE"[ title="(#NOM_SITE|texte_backend)"]>(#NOM_SITE)</a></h3>]
 		<div class="cartouche">[(#DATE|nom_mois|ucfirst)][&nbsp;(#DATE|annee)]</div> <!-- Fin cartouche -->
 		<div class="complements">
