@@ -10,8 +10,8 @@
 <link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
 <INCLURE{fond=inc/inc-head}{id_rubrique}{id_syndic}{lang}>
 </head>
-<body id="rubrique">
-<div>
+<body>
+<div id="rubrique">
 
 	[(#REM) Afficher l'entete :]
 	<INCLURE{fond=inc/inc-entete}{lang}>
@@ -65,8 +65,12 @@
             <object><:sur_web:></object>
             <ul>
                 <BOUCLE_sites(SITES) {id_rubrique} {par nom_site} {pagination #CONFIG{annuaire_rubrique/pas_pagination_art, 5}}>
-                <li class="site"><a class="site" href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a>
+                <li class="site">
+				[<a class="site" href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" title="(#NOM_SITE|texte_backend)">
+				#NOM_SITE</a>]
 				#FORMULAIRE_NOTATION</li>
+				[(#PLUGIN{pb_pagerank}|oui)
+				<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]
 				</BOUCLE_sites>
             </ul>
 			[<p class="pagination">(#PAGINATION)</p>]
@@ -81,7 +85,9 @@
 	<INCLURE{fond=inc/inc-nav}{lang}>
 	
 	[(#REM) Afficher le pied de page :]
+	<div id="menu_site">
 	<INCLURE{fond=inc/inc-menu}{lang}>
+	</div><!--#menu_site-->
 </div>
 </body><!--#rubrique-->
 </html>	

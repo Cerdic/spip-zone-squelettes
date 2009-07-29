@@ -7,8 +7,8 @@
 <title><:annuaire:partenaire:> - #NOM_SITE_SPIP</title>
 <INCLURE{fond=inc/inc-head}{lang}>
 </head>
-<body id="partenaire">
-<div>
+<body>
+<div id="partenaire">
 
 	[(#REM) Entete de la page + titre du site ]
 	<INCLURE{fond=inc/inc-entete}{lang}>
@@ -30,10 +30,11 @@
 			<a class="nom" href="[(#ID_SYNDIC|generer_url_entite{site})]">
 			<object class="titre">#NOM_SITE</object>
 			</a>
-			<a class="img" href="[(#ID_SYNDIC|generer_url_entite{site})]">
-			<img src="http://open.thumbshots.org/image.aspx?url=#URL_SITE" [ alt="(#NOM_SITE|texte_backend)"] />
-			[(#LOGO_SITE||image_reduire{150,100})]</a>
+			<a class="img" href="[(#ID_SYNDIC|generer_url_entite{site})]"[ title="(#NOM_SITE|texte_backend)"]>
+			(#LOGO_SITE||image_reduire{120}||inserer_attribut{alt,#NOM_SITE|texte_backend})</a>
 			#FORMULAIRE_NOTATION<br />
+			[(#PLUGIN{pb_pagerank}|oui)
+			<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]
 			<p class="texte_chapo">#DESCRIPTIF**</p>
 			</fieldset>
 		</li>
@@ -48,7 +49,9 @@
 	<INCLURE{fond=inc/inc-nav}{id_syndic}{lang}>
 	
 	[(#REM) Afficher le pied de page :]
+	<div id="menu_site">
 	<INCLURE{fond=inc/inc-menu}{lang}>
+	</div><!--#menu_site-->
 </div>
 </body><!--#herbier-->
 </html>	
