@@ -22,20 +22,19 @@ version="1.0"[ encoding="(#CHARSET)"]?>
 ]
 
 [(#REM)	<!-- On diffuse les articles des n derniers jours --> ]
-<BOUCLE_articles_recents(ARTICLES){lang ?}{branche ?}{id_mot ?}{id_auteur ?}  {id_secteur!==#RACINE_SPECIALISEE}{par date}{inverse}{0, #CONFIG{sarkaspip_backend/nb_articles, 10}}{unique}>
-<INCLURE{fond=inc-rss-item}{id_article}>
-</BOUCLE_articles_recents>
+[(#CONFIG{sarkaspip_backend/rss_articles, oui}|=={oui}|?{' '})
+	<INCLURE{fond=noisettes/backend/inc_flux_rss_articles}>
+]
 
 [(#REM)	<!-- On diffuse les albums des n derniers jours --> ]
-<BOUCLE_albums_recents(ARTICLES){lang ?}{branche ?}{id_mot ?}{id_auteur ?} {id_secteur=#RACINE_SPECIALISEE{galerie}}{par date}{inverse}{0, #CONFIG{sarkaspip_backend/nb_albums, 5}}{unique}>
-<INCLURE{fond=inc-rss-item}{id_article}>
-</BOUCLE_albums_recents>
+[(#CONFIG{sarkaspip_backend/rss_albums, oui}|=={oui}|?{' '})
+	<INCLURE{fond=noisettes/backend/inc_flux_rss_albums}>
+]
 
 [(#REM)	<!-- On diffuse les evenements des n derniers jours --> ]
-<BOUCLE_evenements_recents(ARTICLES){lang ?}{branche ?}{id_mot ?}{id_auteur ?} {id_secteur=#RACINE_SPECIALISEE{agenda}}{par date}{inverse}{0, #CONFIG{sarkaspip_backend/nb_evenements, 5}}{unique}>
-<INCLURE{fond=inc-rss-item}{id_article}>
-</BOUCLE_evenements_recents>
+[(#CONFIG{sarkaspip_backend/rss_evenements, oui}|=={oui}|?{' '})
+	<INCLURE{fond=noisettes/backend/inc_flux_rss_evenements}>
+]
 
 </channel>
-
 </rss>
