@@ -1,63 +1,61 @@
 #CACHE{24*3600}
-<BOUCLE_secteur_annonces(RUBRIQUES){titre_mot=_RUB_ANNONCES}>
+[(#REM) Les fermetures de balises sont à la ligne pour ne pas insérer d'espace avant l'entête HTML
+]<BOUCLE_secteur_annonces(RUBRIQUES){titre_mot=_RUB_ANNONCES}>
 <BOUCLE_rubrique_annonces(RUBRIQUES){id_parent}{id_rubrique=#ENV{id_rubrique}}
-><INCLURE{fond=inc-html-11-Head}{id_rubrique}>
+><INCLURE{fond=inc-html/inc-html-11-Head}{id_rubrique}>
 </head>
 <body onload="setHover('menuList1')">
   [(#FORMULAIRE_ADMIN)]
   
-	[(#INCLURE{fond=inc-html-21-Entete-Bandeau1}{id_article})]
-	[(#INCLURE{fond=inc-html-22-Menu-deroulant}{id_rubrique})]
-	<INCLURE{fond=inc-html-24-Entete-Bandeau2}>
+	[(#INCLURE{fond=inc-html/inc-html-21-Entete-Bandeau1}{id_article})]
+	[(#INCLURE{fond=inc-html/inc-html-22-Menu-deroulant}{id_rubrique})]
+	[(#INCLURE{fond=inc-html/inc-html-24-Entete-Bandeau2}{id_secteur}{id_rubrique})]
 	[(#REM)id_article permet de fournir le contexte, pour menu bandeau par exemple]
 	
   <div id='zPrincipal'>
 
 		<div class='zColGauche'> 	
 			[(#FORMULAIRE_RECHERCHE)]
-  	  <INCLURE{fond=inc-html-53-Annonces-rubrique}{id_secteur}{id_rubrique}>
-		</div><!-- zLeft -->
+  	  <INCLURE{fond=inc-html/inc-html-53-Annonces-rubrique}{id_secteur}{id_rubrique}>
+		</div><!-- zColGauche -->
 
-		<INCLURE{fond=inc-html-25-Entete-contexte}{id_secteur}{id_rubrique}{id_article}>
+		<div class='zColDroite'>
+	  	  <INCLURE{fond=inc-html/inc-html-43-Date-Heure}>
+		</div>
 
 		<div class="zContenu"> 		  
-			<br />
+			<INCLURE{fond=inc-html/inc-html-25-Entete-contexte}{id_secteur}{id_rubrique}{id_article}>
 
-			<div class='zColDroite'>
-	  	  <INCLURE{fond=inc-html-43-Date-Heure}>
+			[<h1>(#TITRE|supprimer_numero)</h1>]
+			
+			<BOUCLE_annonces(ARTICLES){id_rubrique}{par date}{inverse}>
+				<a id='ann#ID_ARTICLE'></a>
+
+				[<h2>(#TITRE|supprimer_numero)</h2>]
+				[<h3>(#SOUSTITRE)</h3>]
+				<p>
+					<strong>[(#DATE|affdate_court)]</strong>
+					[ - <a href="(#URL_ARTICLE|art2ann)">Article seul</a>]
+				</p>
+			
+				[(#LOGO_ARTICLE||reduire_image{100,})]
+				[(#TEXTE|winGUI|spip_jaycee)]
+    		<INCLURE{fond=inc-Documents}{id_article}>
+	    </BOUCLE_annonces>
+
+[  		<div class='zPubBas'>
+			(#CONFIG{jayceeWeb/jayceePubBas})  
 			</div>
-
-			[<h1>(#TITRE|supprimer_numero)</h1>]
-			<hr />
-			
-		<BOUCLE_annonces(ARTICLES){id_rubrique}{par date}{inverse}>
-			<a id='ann#ID_ARTICLE'></a>
-
-			[<h1>(#TITRE|supprimer_numero)</h1>]
-			[<h2>(#SOUSTITRE)</h2>]
-			<p>
-				<strong>[(#DATE|affdate_court)]</strong>
-				[ - <a href="(#URL_ARTICLE|art2ann)">Article seul</a>]
-			</p>
-			
-			[(#LOGO_ARTICLE||reduire_image{100,})]
-			[(#TEXTE|winGUI|spip_jaycee)]
-			
-    	<INCLURE{fond=inc-Documents}{id_article}>
-    	<hr />
-    </BOUCLE_annonces>
+]		
+			<hr class='clearBothHidden' />
+			<div class='zFooter'>	
+				[(#INCLURE{fond=inc-html/inc-html-36-Menu-secteur}{id_rubrique})]
+			</div>
 		</div><!-- zContenu -->
-
-		<hr class='clearBothHidden' />
-		
-		<div class='zFooter'>	
-			<INCLURE{fond=inc-html-36-Menu-secteur}{id_rubrique}>
-		</div> <!-- div : zFooter -->
+		<div class='zPrincipalBas'></div>
 	</div><!-- zPrincipal -->
 
-	<div class='zFooter'>	
- 	 	<INCLURE{fond=inc-html-47-Acces-prive}{id_article}{id_rubrique}>
-	</div>
+ 	<INCLURE{fond=inc-html/inc-html-47-Acces-prive}{id_article}{id_rubrique}>
 </body>
 </html>
 </BOUCLE_rubrique_annonces>

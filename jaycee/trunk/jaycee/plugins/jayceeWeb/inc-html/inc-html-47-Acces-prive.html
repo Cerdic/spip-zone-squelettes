@@ -2,27 +2,38 @@
 	<table class='zAccesEdition'>
 		<tr>
 			<td class='zThemes'>
-				<a id='switcher_anchor'></a>
+[(#CONFIG{jayceeWeb/jayceeSwitcherAffiche}|oui)
+  [(#CONFIG{jayceeWeb/jayceeSwitcherBalise})]
+]
 				#FORMULAIRE_SELECT_LARGEUR_BODY
+				#FORMULAIRE_SELECT_WEB_CLIENT
 				<?php	if ($_COOKIE['jayceeNoStats'] != '1') { ?>
 					[<p class='zStatistique'>(#CONFIG{jayceeWeb/jayceeStatistiques})</p>]
 				<?php } ?>
+
+[(#SESSION{'prefWebClient'}|=={mobile}|non)
+<p>Mode Portable non détecté</p>
+]
 				
 				#SPIP_CRON
 			</td>
+			
+			
 			<td class='zAccesPublic'>
 				<fieldset>
 				<legend> Espace public&nbsp;: </legend>
 					<ul class='zAccesEdition'>
-		[(#SESSION{id_auteur}|?{'', ' '})
+		[(#SESSION{id_auteur}|non)
 						<li> 
 							<form action="spip.php?page=login&amp;url=#SELF" method="post">
-								Espace membre&nbsp;:
-								<input type="submit" id="submitAccesMembres" name="submitAccesMembres" value="Se connecter" class='boutonIE' />
+								<div>
+									Espace membre&nbsp;:
+									<input type="submit" id="submitAccesMembres" name="submitAccesMembres" value="Se connecter" class='boutonIE' />
+								</div>
 							</form>
 						</li>]
 
-		[(#SESSION{id_auteur}|?{' '})
+		[(#SESSION{id_auteur}|oui)
 						<li>
 							<form action="spip.php?action=logout&amp;url=/" method="post">
 							Espace membre&nbsp;:
@@ -49,6 +60,7 @@
 
 							</form>
 						</li>]
+												
 					</ul>
 				</fieldset>
 			</td>

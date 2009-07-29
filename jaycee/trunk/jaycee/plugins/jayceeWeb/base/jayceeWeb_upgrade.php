@@ -12,7 +12,7 @@
  *
  */
 	
-	$GLOBALS['jaycee_base_version'] = 0.9;
+	$GLOBALS['jaycee_base_version'] = 0.92;
 	
 //
 // Fonctions pour mot-clés
@@ -280,7 +280,7 @@ function jayceeWeb_upgrade(){
 		// !!!! 	PAS d'apostrophes dans les descriptifs cause SQL
 		
 		// ************* Création du groupe et mots-clés
-			create_groupe( $groupe='_SYSTEME_RUBRIQUES', 
+			create_groupe( $groupe='_AFFICHAGE_RUBRIQUE', 
 				$descriptif="Mots clés attachés aux rubriques pour la gestion du site",
 				$texte="", $unseul='non', $obligatoire='non', $tables_liees='rubriques', 
 				$minirezo='oui', $comite='oui', $forum='non',
@@ -288,89 +288,103 @@ function jayceeWeb_upgrade(){
 				);
 				
 			$liMotMasquerRubrique =
-				create_mot( $groupe='_SYSTEME_RUBRIQUES',	$mot="_MASQUER_RUBRIQUE", 
+				create_mot( $groupe='_AFFICHAGE_RUBRIQUE',	$mot="_MASQUER_RUBRIQUE", 
 					$descriptif='Rubrique non visible sur site public', 
 					$texte='');
 			$liMotRubAnnonces =							
-				create_mot( $groupe='_SYSTEME_RUBRIQUES',	$mot="_RUB_ANNONCES", 
+				create_mot( $groupe='_AFFICHAGE_RUBRIQUE',	$mot="_RUB_ANNONCES", 
 					$descriptif='Identifie la rubrique source des annonces (brèves)', 
 					$texte='');							
 					
 		// ************* Création du groupe et mots-clés
-			create_groupe( $groupe='_SYSTEME_ARTICLES', 
+			create_groupe( $groupe='_AFFICHAGE_ARTICLE', 
 				$descriptif="Mots clés attachés aux articles pour la gestion du site",
 				$texte="", $unseul='non', $obligatoire='non', $tables_liees='articles', 
 				$minirezo='oui', $comite='oui', $forum='non',
 				$articles='oui'
 				);
-				create_mot( $groupe='_SYSTEME_ARTICLES',	$mot='_AFFICHER_ABONNEMENT', 
+				create_mot( $groupe='_AFFICHAGE_ARTICLE',	$mot='_AFFICHER_ABONNEMENT', 
 					$descriptif="Affiche un bulletin d’abonnement à SPIP-Listes", 
 					$texte="");							
-				create_mot( $groupe='_SYSTEME_ARTICLES',	$mot='_AFFICHER_ACTUALITES', 
+				create_mot( $groupe='_AFFICHAGE_ARTICLE',	$mot='_AFFICHER_ACTUALITES', 
 					$descriptif="Affiche ’à la une’ les Chapos des articles _source_Actualite", 
 					$texte="");							
-				create_mot( $groupe='_SYSTEME_ARTICLES',	$mot='_AFFICHER_ACTUALITES_SYNDICATION', 
+				create_mot( $groupe='_AFFICHAGE_ARTICLE',	$mot='_AFFICHER_ACTUALITES_SYNDICATION', 
 					$descriptif="Affiche les résumés des sites _source_Actualite_Externe", 
 					$texte="");							
-				create_mot( $groupe='_SYSTEME_ARTICLES',	$mot='_AFFICHER_AGENDA_LOCAL', 
+				create_mot( $groupe='_AFFICHAGE_ARTICLE',	$mot='_AFFICHER_AGENDA_LOCAL', 
 					$descriptif="Affiche les annonces futures toutes rubriques confondues", 
 					$texte="");							
-				create_mot( $groupe='_SYSTEME_ARTICLES',	$mot='_AFFICHER_AGENDA_SYNDICATION', 
+				create_mot( $groupe='_AFFICHAGE_ARTICLE',	$mot='_AFFICHER_AGENDA_SYNDICATION', 
 					$descriptif="Affiche l’agenda des sites _source_Agenda", 
 					$texte="");							
-				create_mot( $groupe='_SYSTEME_ARTICLES',	$mot='_AFFICHER_ANNONCES_PASSE', 
+				create_mot( $groupe='_AFFICHAGE_ARTICLE',	$mot='_AFFICHER_ANNONCES_PASSE', 
 					$descriptif="Affiche les annonces passées, classées par rubrique", 
 					$texte="");							
 			$liMotEcrire = 
-				create_mot( $groupe='_SYSTEME_ARTICLES',	$mot='_AFFICHER_ECRIRE_AUTEURS', 
+				create_mot( $groupe='_AFFICHAGE_ARTICLE',	$mot='_AFFICHER_ECRIRE_AUTEURS', 
 					$descriptif="Affiche un formulaire pour envoi de mail aux auteurs", 
 					$texte="");							
-				create_mot( $groupe='_SYSTEME_ARTICLES',	$mot='_AFFICHER_EDITOS', 
+				create_mot( $groupe='_AFFICHAGE_ARTICLE',	$mot='_AFFICHER_EDITOS', 
 					$descriptif="Affiche l’intro des éditos définis par _source_Edito", 
 					$texte="");							
-				create_mot( $groupe='_SYSTEME_ARTICLES',	$mot='_AFFICHER_MINI_CALENDRIER', 
+				create_mot( $groupe='_AFFICHAGE_ARTICLE',	$mot='_AFFICHER_A_LA_UNE', 
+					$descriptif="Affiche un résumé de l'article en Une ", 
+					$texte="");							
+				create_mot( $groupe='_AFFICHAGE_ARTICLE',	$mot='_AFFICHER_MINI_CALENDRIER', 
 					$descriptif="Affiche le mini calendrier du Plugin Agenda", 
 					$texte="");							
-				create_mot( $groupe='_SYSTEME_ARTICLES',	$mot='_AFFICHER_PARTENAIRES', 
+				create_mot( $groupe='_AFFICHAGE_ARTICLE',	$mot='_AFFICHER_PARTENAIRES', 
 					$descriptif="Affiche le corps des articles définis par _source_Partenaire", 
 					$texte="");							
-				create_mot( $groupe='_SYSTEME_ARTICLES',	$mot='_MASQUER_ARTICLE', 
+				create_mot( $groupe='_AFFICHAGE_ARTICLE',	$mot='_MASQUER_ARTICLE', 
 					$descriptif="Masque l’article dans le site public", 
 					$texte="Normalement, inutile. Masquer un article en commençant le titre par un point");							
 			$liMotMasquerMenuRub =
-				create_mot( $groupe='_SYSTEME_ARTICLES',	$mot='_MASQUER_MENU_RUBRIQUE', 
+				create_mot( $groupe='_AFFICHAGE_ARTICLE',	$mot='_MASQUER_MENU_RUBRIQUE', 
 					$descriptif="Masque le sous-menu de la rubrique", 
 					$texte="Typiquement sur la page d'accueil");							
-				create_mot( $groupe='_SYSTEME_ARTICLES',	$mot='_META_DATAS', 
-					$descriptif="Utilise les infos de l'article (à masquer) pour mettre à jour les meta-data HTML", 
+
+		// ************* Création du groupe et mots-clés
+			create_groupe( $groupe='_USAGE_ARTICLE', 
+				$descriptif="Mots clés attachés aux articles pour la gestion du site",
+				$texte="", $unseul='non', $obligatoire='non', $tables_liees='articles', 
+				$minirezo='oui', $comite='oui', $forum='non',
+				$articles='oui'
+				);
+				create_mot( $groupe='_USAGE_ARTICLE',	$mot='_source_Action', 
+					$descriptif="Utilise cet article comme ACTION pour le mettre à la une par _AFFICHER_A_LA_UNE", 
 					$texte="");							
-				create_mot( $groupe='_SYSTEME_ARTICLES',	$mot='_source_Actualite', 
+				create_mot( $groupe='_USAGE_ARTICLE',	$mot='_source_Actualite', 
 					$descriptif="Utilise cet article pour le mettre à la une par _AFFICHER_ACTUALITES", 
 					$texte="");							
-				create_mot( $groupe='_SYSTEME_ARTICLES',	$mot='_source_Contact', 
+				create_mot( $groupe='_USAGE_ARTICLE',	$mot='_source_Contact', 
 					$descriptif="Utilise cet article pour le menu CONTACT du menu déroulant", 
 					$texte="");							
-				create_mot( $groupe='_SYSTEME_ARTICLES',	$mot='_source_Edito', 
+				create_mot( $groupe='_USAGE_ARTICLE',	$mot='_source_Edito', 
 					$descriptif="Utilise cet article pour l'afficher en édito par _AFFICHER_EDITOS", 
 					$texte="");							
-				create_mot( $groupe='_SYSTEME_ARTICLES',	$mot='_source_Partenaire', 
+				create_mot( $groupe='_USAGE_ARTICLE',	$mot='_source_La_Une', 
+					$descriptif="Utilise cet article pour afficher un résumé à La Une par _AFFICHER_A_LA_UNE", 
+					$texte="");							
+				create_mot( $groupe='_USAGE_ARTICLE',	$mot='_source_Partenaire', 
 					$descriptif="Utilise cet article pour afficher les partenaires par _AFFICHER_PARTENAIRES", 
 					$texte="Typiquement, contient des logos et des liens");							
 
 		// ************* Création du groupe et mots-clés
-			create_groupe( $groupe='_SYSTEME_SITES', 
+			create_groupe( $groupe='_USAGE_SITE', 
 				$descriptif="Mots clés attachés aux Sites pour la gestion du site",
 				$texte="", $unseul='non', $obligatoire='non', $tables_liees='syndic,sites', 
 				$minirezo='oui', $comite='oui', $forum='non',
 				$syndic='oui'
 				);
-				create_mot( $groupe='_SYSTEME_SITES',	$mot='_source_Actualite_externe', 
+				create_mot( $groupe='_USAGE_SITE',	$mot='_source_Actualite_externe', 
 					$descriptif="Utilise ce site pour afficher ses annonces RSS par _AFFICHER_ACTUALITE_SYNDICATION", 
 					$texte="");							
-				create_mot( $groupe='_SYSTEME_SITES',	$mot='_source_Agenda', 
+				create_mot( $groupe='_USAGE_SITE',	$mot='_source_Agenda', 
 					$descriptif="Utilise ce site pour afficher son agenda en local par _AFFICHER_AGENDA_SYNDICATION", 
 					$texte="");							
-				create_mot( $groupe='_SYSTEME_SITES',	$mot='_source_Menus', 
+				create_mot( $groupe='_USAGE_SITE',	$mot='_source_Menus', 
 					$descriptif="Utilise ce site pour intégrer son menu déroulant dans le site local", 
 					$texte="");							
 

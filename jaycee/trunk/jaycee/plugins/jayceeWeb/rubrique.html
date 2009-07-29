@@ -1,40 +1,42 @@
 ﻿#CACHE{24*3600}
 [(#REM) Les fermetures de balises sont à la ligne pour ne pas insérer d'espace avant l'entête HTML
 ]<BOUCLE_rubrique_principal(RUBRIQUES){id_rubrique}
-><INCLURE{fond=inc-html-11-Head}{id_rubrique}>
+><INCLURE{fond=inc-html/inc-html-11-Head}{id_rubrique}>
 </head>
 <body onload="setHover('menuList1')">
   [(#FORMULAIRE_ADMIN)]
   
-	[(#INCLURE{fond=inc-html-21-Entete-Bandeau1}{id_article})]
-
-	[(#INCLURE{fond=inc-html-22-Menu-deroulant}{id_rubrique})]
-	<INCLURE{fond=inc-html-24-Entete-Bandeau2}>
+	[(#INCLURE{fond=inc-html/inc-html-21-Entete-Bandeau1}{id_article})]
+[  		<div class='zPubHaut'>
+			(#CONFIG{jayceeWeb/jayceePubHaut})  
+			</div>
+]	[(#INCLURE{fond=inc-html/inc-html-22-Menu-deroulant}{id_rubrique})]
+	[(#INCLURE{fond=inc-html/inc-html-24-Entete-Bandeau2}{id_secteur}{id_rubrique})]
 	[(#REM)id_article permet de fournir le contexte, pour menu bandeau par exemple]
 	
 	<div id='zPrincipal'> 
-		<INCLURE{fond=inc-html-25-Entete-contexte}{id_secteur}{id_rubrique}{id_article}>
 	
 		<div class='zColGauche'>
 			[(#REM)Pas d'edito sur une rubrique]		
-  	  <INCLURE{fond=inc-html-34-Menu-rubrique}{id_rubrique}{id_article}>
+  	  <INCLURE{fond=inc-html/inc-html-34-Menu-rubrique}{id_rubrique}{id_article}>
 			[(#FORMULAIRE_RECHERCHE)<hr />]
-  	  <div class='zLeft'>&nbsp;</div>
-		</div><!-- zLeft -->
+  	  <div class='zColGaucheBas'>&nbsp;</div>
+		</div><!-- zColGauche -->
 
-		<INCLURE{fond=inc-html-35-Menu-chemin}{id_rubrique}{id_article}>
+		<div class='zColDroite'>
+  	  <INCLURE{fond=inc-html/inc-html-43-Date-Heure}>
+	  	  
+			<div class='zBreves'>
+				<INCLURE{fond=inc-html/inc-html-52-Annonces-Agenda}{id_secteur}{id_rubrique}>
+			</div>
+  	  <div class='zColDroiteBas'>&nbsp;</div>
+		</div><!-- zColDroite -->
+
 
 		<div class="zContenu"><a id='Contenu'></a>
+			<INCLURE{fond=inc-html/inc-html-25-Entete-contexte}{id_secteur}{id_rubrique}{id_article}>
+			<INCLURE{fond=inc-html/inc-html-35-Menu-chemin}{id_rubrique}{id_article}>
 		
-			<div class='zColDroite'>
-	  	  <INCLURE{fond=inc-html-43-Date-Heure}>
-	  	  
- 				<div class='zBreves'>
-					<INCLURE{fond=inc-html-52-Annonces-Agenda}{id_secteur}{id_rubrique}>
-
-				</div>
-			</div>
-
 			<!-- Une : contenu de la rubrique -->
 			[<h1>(#TITRE|supprimer_numero)</h2>]
 			[<p class="chapo">(#TEXTE|winGUI)</p>]
@@ -72,13 +74,13 @@
 			
 			<hr class='clearBothHidden' />
 			<div class='zFooter'>	
-			 <INCLURE{fond=inc-html-36-Menu-secteur}{id_rubrique}>
+			 <INCLURE{fond=inc-html/inc-html-36-Menu-secteur}{id_rubrique}>
 			</div> <!-- div : zFooter -->
 					
 		</div><!-- zContenu -->		
 	</div><!-- zPrincipal -->
 	
-  	<INCLURE{fond=inc-html-47-Acces-prive}{id_article}{id_rubrique}>
+  	<INCLURE{fond=inc-html/inc-html-47-Acces-prive}{id_article}{id_rubrique}>
 	
 </body>
 </html>
