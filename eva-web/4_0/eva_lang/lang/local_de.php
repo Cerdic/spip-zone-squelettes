@@ -2,6 +2,8 @@
 
 // Fichier de langue SPIP
 
+if (!defined("_ECRIRE_INC_VERSION")) return;
+
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 // A <:form_pet_message_commentaire:>
 'accueil' => 'Homepage',
