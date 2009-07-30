@@ -118,6 +118,7 @@ window.onerror = null;
     echo "</form></div><br />";
    echo fin_cadre_trait_couleur(true);
 
+// Choix des noisettes dans les colonnes
     echo debut_cadre_trait_couleur(_DIR_PLUGIN_EVA_HABILLAGE."img_pack/blocs.png", true, '', _T('evahabillage:EVA_choix_bloc'));
     
 	$test_3cols=sql_select('habillage','spip_eva_habillage',"sauvegarde='Defaut'");
@@ -396,7 +397,7 @@ window.onerror = null;
 	$supp_skel_perso=sql_select('*','spip_eva_habillage_images',"type='bloc' AND nom_habillage='Defaut' AND repetition='perso'");
 	while ($tab_supp_skel_perso=sql_fetch($supp_skel_perso)) {
 		$test_suppr=true;
-		$texte_suppr.= '<option value="'.$tab_supp_skel_perso['id'].'">'.$tab_supp_skel_perso['nom_div'].'.html</option>';
+		$texte_suppr.= '<option value="'.$tab_supp_skel_perso['id'].'">'.$tab_supp_skel_perso['nom_div'].'.html ('.$tab_supp_skel_perso['attach'].')</option>';
 	}
 	$texte_suppr.= "</select></div>";
 	$texte_suppr.= '<div style="text-align:center;"><input type="submit" value="'._T('evahabillage:EVA_suppression').'"></div><br /></form>';
