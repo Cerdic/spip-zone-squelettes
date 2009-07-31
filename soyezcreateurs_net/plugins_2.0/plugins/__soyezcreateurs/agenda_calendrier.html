@@ -55,40 +55,28 @@
 		[(#TEXTE)]
 		<!-- Fabrication du tableau : l'en tete -->
 		<form id="frmnavigation" method="get" action="[(#URL_PAGE{agenda_calendrier}|parametre_url{id_rubrique, #ID_RUBRIQUE})]">
-			<fieldset style="text-align:center;">
+			<fieldset>
 			<input type="hidden" value="agenda_calendrier" name="page" alt=""/>
 			<input type="hidden" value="#ID_RUBRIQUE" name="id_rubrique" alt=""/>
-			#SET{'condition_m', 'non'}
-			[(#ENV{date}|annee|!={[(#ENV{date_ev,[(#ENV{date})]}|annee)]}|oui)
-				#SET{'condition_m', 'oui'}]
-			[(#ENV{date}|mois|!={[(#ENV{date_ev,[(#ENV{date})]}|mois)]}|oui)
-				#SET{'condition_m', 'oui'}]
-			[(#GET{'condition_m'}|=={'oui'}|non)
-				<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique', #_rubrique_principal:ID_RUBRIQUE}|parametre_url{'date_ev', [(#ENV{date}|annee)]-[(#ENV{date}|mois)]-[(#ENV{date}|jour)]}|parametre_url{'id_mot', #ENV{id_mot}})]"><:spip:date_aujourdhui:></a>
-				]
-			</fieldset>
-			<fieldset style="text-align:center;">
 				<legend><:soyezcreateurs:precisezrecherche:></legend>
 				<BOUCLE_PremiereAnnee(EVENEMENTS){branche}{par date_debut}{0,1}>
-				[(#DATE_DEBUT|annee|=={#ENV{date_ev,#ENV{date}}|annee}|oui)
-					[(#ENV{date_ev,#ENV{date}}|mois|=={'01'}|non)
-						<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique',#_rubrique_principal:ID_RUBRIQUE}|parametre_url{'date_ev', #GET{date}|Agenda_moisdecal{-1,'Y-m-d'}}|parametre_url{'id_mot', #ENV{id_mot,''}|urlencode})]"><img src="#CHEMIN{images/prev.gif}" title="<:precedent:>" alt="<:precedent:>" /></a>
-					]
+				[(#DATE_DEBUT|affdate{'Y-m'}|=={#ENV{date_ev,#ENV{date}}|affdate{'Y-m'}}|non)
+					<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique',#_rubrique_principal:ID_RUBRIQUE}|parametre_url{'date_ev', #GET{date}|Agenda_moisdecal{-1,'Y-m-d'}}|parametre_url{'id_mot', #ENV{id_mot,''}|urlencode})]"><img src="#CHEMIN{images/prev.gif}" title="<:precedent:>" alt="<:precedent:>" /></a>
 				]
 				</BOUCLE_PremiereAnnee>
 				<select name="month" id="var_nav_month">
-					<option value="01"[ (#GET{date}|nom_mois|=={<:date_mois_1:>}|oui) selected="selected"]><:date_mois_1:></option>
-					<option value="02"[ (#GET{date}|nom_mois|=={<:date_mois_2:>}|oui) selected="selected"]><:date_mois_2:></option>
-					<option value="03"[ (#GET{date}|nom_mois|=={<:date_mois_3:>}|oui) selected="selected"]><:date_mois_3:></option>
-					<option value="04"[ (#GET{date}|nom_mois|=={<:date_mois_4:>}|oui) selected="selected"]><:date_mois_4:></option>
-					<option value="05"[ (#GET{date}|nom_mois|=={<:date_mois_5:>}|oui) selected="selected"]><:date_mois_5:></option>
-					<option value="06"[ (#GET{date}|nom_mois|=={<:date_mois_6:>}|oui) selected="selected"]><:date_mois_6:></option>
-					<option value="07"[ (#GET{date}|nom_mois|=={<:date_mois_7:>}|oui) selected="selected"]><:date_mois_7:></option>
-					<option value="08"[ (#GET{date}|nom_mois|=={<:date_mois_8:>}|oui) selected="selected"]><:date_mois_8:></option>
-					<option value="09"[ (#GET{date}|nom_mois|=={<:date_mois_9:>}|oui) selected="selected"]><:date_mois_9:></option>
-					<option value="10"[ (#GET{date}|nom_mois|=={<:date_mois_10:>}|oui) selected="selected"]><:date_mois_10:></option>
-					<option value="11"[ (#GET{date}|nom_mois|=={<:date_mois_11:>}|oui) selected="selected"]><:date_mois_11:></option>
-					<option value="12"[ (#GET{date}|nom_mois|=={<:date_mois_12:>}|oui) selected="selected"]><:date_mois_12:></option>
+					<option value="01"[ (#GET{date}|nom_mois|=={<:date_mois_1:>}|oui) selected="selected"]><:date_mois_1|ucfirst:></option>
+					<option value="02"[ (#GET{date}|nom_mois|=={<:date_mois_2:>}|oui) selected="selected"]><:date_mois_2|ucfirst:></option>
+					<option value="03"[ (#GET{date}|nom_mois|=={<:date_mois_3:>}|oui) selected="selected"]><:date_mois_3|ucfirst:></option>
+					<option value="04"[ (#GET{date}|nom_mois|=={<:date_mois_4:>}|oui) selected="selected"]><:date_mois_4|ucfirst:></option>
+					<option value="05"[ (#GET{date}|nom_mois|=={<:date_mois_5:>}|oui) selected="selected"]><:date_mois_5|ucfirst:></option>
+					<option value="06"[ (#GET{date}|nom_mois|=={<:date_mois_6:>}|oui) selected="selected"]><:date_mois_6|ucfirst:></option>
+					<option value="07"[ (#GET{date}|nom_mois|=={<:date_mois_7:>}|oui) selected="selected"]><:date_mois_7|ucfirst:></option>
+					<option value="08"[ (#GET{date}|nom_mois|=={<:date_mois_8:>}|oui) selected="selected"]><:date_mois_8|ucfirst:></option>
+					<option value="09"[ (#GET{date}|nom_mois|=={<:date_mois_9:>}|oui) selected="selected"]><:date_mois_9|ucfirst:></option>
+					<option value="10"[ (#GET{date}|nom_mois|=={<:date_mois_10:>}|oui) selected="selected"]><:date_mois_10|ucfirst:></option>
+					<option value="11"[ (#GET{date}|nom_mois|=={<:date_mois_11:>}|oui) selected="selected"]><:date_mois_11|ucfirst:></option>
+					<option value="12"[ (#GET{date}|nom_mois|=={<:date_mois_12:>}|oui) selected="selected"]><:date_mois_12|ucfirst:></option>
 				</select>
 				<B_Annees>
 				<select name="year" id="var_nav_year">
@@ -111,12 +99,20 @@
 				</select>
 				</B_ListeMotsClefs>
 				<BOUCLE_DerniereAnnee(EVENEMENTS){branche}{!par date_debut}{0,1}>
-				[(#DATE_DEBUT|annee|=={#ENV{date_ev,#ENV{date}}|annee}|oui)
-				[(#ENV{date_ev,#ENV{date}}|mois|=={'12'}|non)
+				[(#DATE_DEBUT|affdate{'Y-m'}|=={#ENV{date_ev,#ENV{date}}|affdate{'Y-m'}}|non)
 					<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique',#_rubrique_principal:ID_RUBRIQUE}|parametre_url{'date_ev', #GET{date}|Agenda_moisdecal{1,'Y-m-d'}}|parametre_url{'id_mot', #ENV{id_mot,''}|urlencode})]"><img src="#CHEMIN{images/next.gif}" title="<:suivant:>" alt="<:suivant:>" /></a>
-				]]
+				]
 				</BOUCLE_DerniereAnnee>
 				<input type="submit" value="<:pass_ok:>" class="form_submit" />
+				[(#REM) N'afficher le lien "Aujourd'hui" que si l'année ou le mois sont différents de celui affiché ]
+				#SET{'condition_m', 'non'}
+				[(#ENV{date}|annee|!={[(#ENV{date_ev,[(#ENV{date})]}|annee)]}|oui)
+					#SET{'condition_m', 'oui'}]
+				[(#ENV{date}|mois|!={[(#ENV{date_ev,[(#ENV{date})]}|mois)]}|oui)
+					#SET{'condition_m', 'oui'}]
+				[(#GET{'condition_m'}|=={'oui'}|oui)
+				<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique', #_rubrique_principal:ID_RUBRIQUE}|parametre_url{'id_mot', #ENV{id_mot}})]"><:spip:date_aujourdhui|ucfirst:></a>
+				]
 			</fieldset>
 		</form>
 		<h2>[(#TITRE)]</h2>
