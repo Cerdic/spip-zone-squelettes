@@ -223,7 +223,7 @@ function sc_decoder_date ($date_d, $date_e, $horaire='oui', $mode=false, $court=
 	$debut['minutes'] = substr($date_d, 11, 2);
 	$debut['secondes'] = substr($date_d, 13, 2);
 	$debut['mois_fr'] = sc_get_mois($debut['mois']);
-	$debut['jour_fr'] = sc_get_jour(mktime($debut['heure'], $debut['minutes'], $debut['secondes'], $debut['mois'], $debut['jour'], $debut['annee']));
+	$debut['jour_fr'] = ucfirst(sc_get_jour(mktime($debut['heure'], $debut['minutes'], $debut['secondes'], $debut['mois'], $debut['jour'], $debut['annee'])));
 	$fin = array();
 	$fin['annee'] = substr($date_e, 0, 4);
 	$fin['mois'] = substr($date_e, 4, 2);
@@ -246,7 +246,7 @@ function sc_decoder_date ($date_d, $date_e, $horaire='oui', $mode=false, $court=
 				$comf = $fin['heure'].$fin['minutes'];
 				if ($comd == $comf) {
 					$resultat = _T('soyezcreateurs:agenda_sd_h', array(
-						'djour_l' => $debut['jour_fr'],
+						'djour_l' => ucfirst($debut['jour_fr']),
 						'djour' => $debut['jour'],
 						'dmois_l' => $debut['mois_fr'],
 						'dannee' => $debut['annee'],
@@ -270,7 +270,7 @@ function sc_decoder_date ($date_d, $date_e, $horaire='oui', $mode=false, $court=
 				}
 			} else {
 				$resultat = _T('soyezcreateurs:agenda_sd_notime', array(
-					'djour_l' => $debut['jour_fr'],
+					'djour_l' => ucfirst($debut['jour_fr']),
 					'djour' => $debut['jour'],
 					'dmois_l' => $debut['mois_fr'],
 					'dannee' => $debut['annee']
@@ -292,7 +292,7 @@ function sc_decoder_date ($date_d, $date_e, $horaire='oui', $mode=false, $court=
 				$fin['jour'] = substr($fin['jour'], 1, 1);
 			if ($horaire=='oui') {
 				$resultat = _T('soyezcreateurs:agenda_fsd', array(
-					'djour_l' => $debut['jour_fr'],
+					'djour_l' => ucfirst($debut['jour_fr']),
 					'djour' => $debut['jour'],
 					'dmois_l' => $debut['mois_fr'],
 					'dannee' => $debut['annee'],
@@ -308,7 +308,7 @@ function sc_decoder_date ($date_d, $date_e, $horaire='oui', $mode=false, $court=
 				);
 			} else {
 				$resultat = _T('soyezcreateurs:agenda_fsd_notime', array(
-					'djour_l' => $debut['jour_fr'],
+					'djour_l' => ucfirst($debut['jour_fr']),
 					'djour' => $debut['jour'],
 					'dmois_l' => $debut['mois_fr'],
 					'dannee' => $debut['annee'],
