@@ -22,15 +22,13 @@
 	<B_rubriques>
 	<ul id="sommaire">
 		
-		<li<?php	
-			if ($TitrePage=='accueil') { echo ' class="on"'; }
-		?>>
-		<a href="#URL_SITE_SPIP"<?php	
+		<li>
+		<a href="[(#URL_SITE_SPIP|parametre_url{lang,#LANG})]"<?php	
 			if ($TitrePage=='accueil') { echo ' class="on"'; }
 		?>>[(#LOGO_SITE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})] <:accueil:></a>
 		</li>
 
-		<BOUCLE_rubriques(RUBRIQUES){racine}{par num titre}{doublons}>
+		<BOUCLE_rubriques(RUBRIQUES){racine}{par num titre}{doublons}{lang}>
 		<li[ class="(#EXPOSE{on,off})"]>
 			<a href="#URL_RUBRIQUE"[ class="(#EXPOSE{on,off})"]>[(#LOGO_RUBRIQUE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})] [(#TITRE|supprimer_numero)]</a>
 		<?php	
@@ -38,7 +36,7 @@
 		?>
 		<B_sous_rubriques>
 		<ul>
-			<BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par num titre}{doublons}>
+			<BOUCLE_sous_rubriques(RUBRIQUES){id_parent}{par num titre}{doublons}{lang}>
 			<li[ class="(#EXPOSE{on,off})"]>
 				<a href="#URL_RUBRIQUE"[ class="(#EXPOSE{on,off})"]>[(#TITRE|supprimer_numero)]</a>
 		<?php	

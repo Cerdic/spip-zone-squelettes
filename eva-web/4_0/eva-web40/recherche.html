@@ -15,7 +15,7 @@
 	<div id="page">
 	
 		[(#REM) Entete de la page]
-		<INCLURE{fond=noisettes/entete/inc_entete-page}{id_article}{id_rubrique}>
+		<INCLURE{fond=noisettes/entete/inc_entete-page}{id_article}{id_rubrique}{lang}>
 
 		[(#REM) Conteneur]
 		<div id="conteneurseul">
@@ -31,7 +31,7 @@
 			#ANCRE_PAGINATION
 			<h2 class="titre"><:articles:> (#GRAND_TOTAL)</h2>
 			<ul>
-				<BOUCLE_articles(ARTICLES) {recherche} {par points}{inverse} {pagination}>
+				<BOUCLE_articles(ARTICLES){recherche}{par points}{inverse}{pagination}{lang}>
 				<li [class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><a href="#URL_ARTICLE">#TITRE</a></li>
 				</BOUCLE_articles>
 			[<li class="menupaginationbas">(#PAGINATION)</li>]</ul>
@@ -44,7 +44,7 @@
 			#ANCRE_PAGINATION
 			<h2 class="titre"><:rubriques:> (#GRAND_TOTAL)</h2>
 			<ul>
-				<BOUCLE_rubriques(RUBRIQUES) {recherche} {par points}{inverse} {pagination 5}>
+				<BOUCLE_rubriques(RUBRIQUES){recherche}{par points}{inverse}{lang}{pagination 5}>
 				<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><a href="#URL_RUBRIQUE">#TITRE</a></li>
 				</BOUCLE_rubriques>
 			[<li class="menupaginationbas">(#PAGINATION)</li>]</ul>
@@ -57,8 +57,8 @@
 			#ANCRE_PAGINATION
 			<h2 class="titre"><:mots_clefs:> (#GRAND_TOTAL)</h2>
 			<ul>
-				<BOUCLE_mots(MOTS) {recherche} {par points}{inverse} {pagination 5}>
-				<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><a href="#URL_MOT">#TITRE</a></li>
+				<BOUCLE_mots(MOTS){recherche}{par points}{inverse}{pagination 5}>
+				<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><a href="[(#URL_MOT|parametre_url{lang,#LANG})]">#TITRE</a></li>
 				</BOUCLE_mots>
 			[<li class="menupaginationbas">(#PAGINATION)</li>]</ul>
 		</div>
@@ -70,8 +70,8 @@
 			#ANCRE_PAGINATION
 			<h2 class="titre"><:breves:> (#GRAND_TOTAL)</h2>
 			<ul>
-				<BOUCLE_breves(BREVES) {recherche} {par points}{inverse} {pagination 5}>
-				<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><a href="#URL_BREVE">#TITRE</a></li>
+				<BOUCLE_breves(BREVES){recherche}{par points}{inverse}{lang}{pagination 5}>
+				<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><a href="[(#URL_BREVE|parametre_url{lang,#LANG})]">#TITRE</a></li>
 				</BOUCLE_breves>
 			[<li class="menupaginationbas">(#PAGINATION)</li>]</ul>
 		</div>
@@ -83,7 +83,7 @@
 			#ANCRE_PAGINATION
 			<h2 class="titre"><:messages_forum:> (#GRAND_TOTAL)</h2>
 			<ul>
-				<BOUCLE_messages(FORUMS) {recherche} {par points}{inverse} {pagination 5}>
+				<BOUCLE_messages(FORUMS){recherche}{par points}{inverse}{pagination 5}>
 				<li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]><a href="#URL_FORUM"[ title="(#TITRE|attribut_html|couper{80})"]>[(#TEXTE|couper{80})]</a></li>
 				</BOUCLE_messages>
 			[<li class="menupaginationbas">(#PAGINATION)</li>]</ul>
@@ -96,8 +96,8 @@
 			#ANCRE_PAGINATION
 			<h2 class="titre"><:sites_web:> (#GRAND_TOTAL)</h2>
 			<ul>
-				<BOUCLE_sites(SITES) {recherche} {par points}{inverse} {pagination 5}><li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
-		<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a>
+				<BOUCLE_sites(SITES){recherche}{par points}{inverse}{pagination 5}><li[ class="(#COMPTEUR_BOUCLE|alterner{'un','deux'})"]>
+		<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT}|parametre_url{lang,#LANG})]">#NOM_SITE</a>
 			</li></BOUCLE_sites>
 			
 			[<li class="menupaginationbas">(#PAGINATION)</li>]</ul>

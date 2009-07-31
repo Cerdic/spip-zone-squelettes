@@ -9,8 +9,8 @@
 	<body>
 	<div id="page">
 	
-		[(#REM) Entête de la page]
-		<INCLURE{fond=noisettes/entete/inc_entete-page}{id_article}{id_breve}>
+		[(#REM) Entete de la page]
+		<INCLURE{fond=noisettes/entete/inc_entete-page}{id_article}{id_breve}{lang}>
 			
 		[(#REM) Conteneur]
 		<div id="conteneurseul">
@@ -28,7 +28,7 @@
 				[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{' ',''})#SET{hauteurlogo,#EVALOGOMOYENHAUTEUR}] 
 				[(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,70}]
 
-					<BOUCLE_forum_parent(FORUMS) {id_forum}>
+					<BOUCLE_forum_parent(FORUMS){id_forum}>
 					<h3 class="titre"><a href="#URL_FORUM">#TITRE</a></h3>
 					<div class="texte">
 					<small>[(#DATE|affdate_jourcourt)][&nbsp;(#DATE|heures)][:(#DATE|minutes)][, <:par_auteur:> (#NOM)]</small>
@@ -36,7 +36,7 @@
 					</div>
 					</BOUCLE_forum_parent>
 
-					<BOUCLE_article(ARTICLES) {id_article}>
+					<BOUCLE_article(ARTICLES){id_article}>
 					[(#LOGO_ARTICLE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})]
 					<h3><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h3>
 					<div class="nettoyeur"></div>
@@ -46,9 +46,9 @@
 					</div>
 					</BOUCLE_article>
 
-					<BOUCLE_breve(BREVES) {id_breve}>
+					<BOUCLE_breve(BREVES){id_breve}>
 					[(#LOGO_BREVE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})]
-					<h3 class="titre"><a href="#URL_BREVE">[(#TITRE|supprimer_numero)]</a></h3>
+					<h3 class="titre"><a href="[(#URL_BREVE|parametre_url{'lang',#LANG})]">[(#TITRE|supprimer_numero)]</a></h3>
 					<div class="nettoyeur"></div>
 					<div class="texte">
 					<small>[(#DATE|affdate_jourcourt)]</small>
@@ -56,7 +56,7 @@
 					</div>
 					</BOUCLE_breve>
 
-					<BOUCLE_rubrique(RUBRIQUES) {id_rubrique}>
+					<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
 					<h3 class="titre"><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h3>
 					<div class="nettoyeur"></div>
 					<div class="texte">
@@ -64,8 +64,8 @@
 					</div>
 					</BOUCLE_rubrique>
 
-					<BOUCLE_syndic(SITES) {id_syndic}>
-					<h3 class="titre"><a href="[(#ID_SYNDIC|generer_url_site)]">#NOM_SITE</a></h3>
+					<BOUCLE_syndic(SITES){id_syndic}>
+					<h3 class="titre"><a href="[(#ID_SYNDIC|generer_url_site|parametre_url{'lang',#LANG})]">#NOM_SITE</a></h3>
 					<div class="nettoyeur"></div>
 					<div class="bloc">
 					[(#DESCRIPTIF)]

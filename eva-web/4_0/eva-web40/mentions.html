@@ -10,7 +10,7 @@
 	<body>
 	<div id="page">
 	
-<INCLURE{fond=noisettes/entete/inc_entete-page}>
+<INCLURE{fond=noisettes/entete/inc_entete-page}{lang}>
 
 <div id="conteneurseul">
 
@@ -39,7 +39,7 @@
 <div class="texte" style="margin:2%"> 
   <h3 class="titre">Mentions l&eacute;gales :</h3>
    <p>En vertu de la loi pour la confiance dans l'&eacute;conomie num&eacute;rique (LCEN) du 21 juin 2004, voici les coordonn&eacute;es de l'&eacute;diteur et du prestataire qui accueille le site : <br />
-    <a href="#URL_SITE_SPIP">#URL_SITE_SPIP</a></p>
+    <a href="[(#URL_SITE_SPIP|parametre_url{lang,#LANG})]">#URL_SITE_SPIP</a></p>
 
    [<p>Site Internet de : (#CONFIG{eva_mentions/structure})<br />]
    
@@ -50,7 +50,7 @@
    [<p>Prestataire assurant le stockage direct et permanent : (#CONFIG{eva_mentions/hebergeur})<br />]
 	[Adresse : (#CONFIG{eva_mentions/adresse})</p>]
 	
-   <p>Webmestre : <a href="#URL_PAGE{auteur}&id_auteur=#CONFIG{eva_mentions/idwebmaster}">#CONFIG{eva_mentions/webmaster}</a><br />
+   <p>Webmestre : <a href="[(#URL_PAGE{auteur}|parametre_url{id_auteur,#CONFIG{eva_mentions/idwebmaster}}|parametre_url{lang,#LANG})]">#CONFIG{eva_mentions/webmaster}</a><br />
    [Qualit&eacute; : (#CONFIG{eva_mentions/fonction})</a></p>]
 </div>
 
@@ -84,7 +84,7 @@
 [(#CONFIG{plugin}|match{EVA_HABILLAGE}|?{'',' '})#SET{hauteurlogo,70}]
 
 <B_mentions>
-	<BOUCLE_mentions(ARTICLES){titre_mot=mentions}>
+	<BOUCLE_mentions(ARTICLES){titre_mot=mentions}{lang}>
 		<div class="texte" style="margin:2%"> 
 			<h3 class="spip">[(#TITRE|supprimer_numero)]</h3>
 			[<a href="#URL_ARTICLE">(#LOGO_ARTICLE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})</a>]

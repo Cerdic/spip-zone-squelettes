@@ -11,20 +11,20 @@
 	
 		[(#REM) Entete de la page]
 
-		<INCLURE{fond=noisettes/entete/inc_entete-page}>	
+		<INCLURE{fond=noisettes/entete/inc_entete-page}{lang}>	
 		
 		[(#REM) Conteneur]
 		<div id="conteneurseul">
 
-		[(#REM) Contenu de la page ]
+		[(#REM) Contenu de la page]
 		<div id="contenu">
-		
+	
 	[(#REM) Liste des secteurs]
 	
 	<BOUCLE_aexclure(RUBRIQUES){titre_mot=exclureduplan}{doublons}>
 	</BOUCLE_aexclure>
 	
-	<BOUCLE_secteurs(RUBRIQUES){racine}{par num titre}{doublons}>
+	<BOUCLE_secteurs(RUBRIQUES){racine}{par num titre}{lang}{doublons}>
 
 	<div class="bloc">
 			<h3 class="titre"><a href="#URL_RUBRIQUE"><span>[(#TITRE|supprimer_numero)]</span></a></h3>
@@ -36,9 +36,9 @@
 			<div class="bloc">
            		<h3 class="titre"><:breves:></h3>            
             	<ul>
-				  	<BOUCLE_breves_secteur(BREVES) {id_secteur} {par date} {inverse} {0,5}>
+				  	<BOUCLE_breves_secteur(BREVES){id_secteur}{par date}{inverse}{lang}{0,5}>
 	              	<li>
-	              	<a href="#URL_BREVE">[(#TITRE|supprimer_numero)]</a>
+	              	<a href="[(#URL_BREVE|parametre_url{lang,#LANG})]">[(#TITRE|supprimer_numero)]</a>
 	              	</li>
               		</BOUCLE_breves_secteur>
             	</ul>
@@ -51,7 +51,7 @@
 			<div class="bloc">			
 				<h3 class="titre">Sites référencés</h3>            
             <ul>
-				  <BOUCLE_sites_rub(SITES) {id_rubrique} {par date} {inverse} {0,5}>
+				  <BOUCLE_sites_rub(SITES){id_rubrique}{par date}{inverse}{0,5}>
 	              <li>
 	              <a href="#URL_SITE" target="_blank">[(#NOM_SITE|supprimer_numero)]</a>[, 
 	              (#DESCRIPTIF|couper{80})]
@@ -67,7 +67,7 @@
 		</BOUCLE_article_mentions>
 
 				<ul>
-					<BOUCLE_articles(ARTICLES){id_rubrique}{doublons}{par num titre}>
+					<BOUCLE_articles(ARTICLES){id_rubrique}{doublons}{lang}{par num titre}>
 					<li class="article">
 					<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a>
 					</li>
@@ -76,12 +76,12 @@
 
 					<B_rubriques>
 					<ul>
-						<BOUCLE_rubriques(RUBRIQUES){id_parent}{par titre}{doublons}>
+						<BOUCLE_rubriques(RUBRIQUES){id_parent}{par titre}{lang}{doublons}>
 						<li><strong><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></strong>
 
 							<B_articles2>
 							<ul>
-								<BOUCLE_articles2(ARTICLES) {doublons} {id_rubrique} {par titre}>
+								<BOUCLE_articles2(ARTICLES) {doublons}{id_rubrique}{lang}{par titre}>
 								<li><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></li>
 								</BOUCLE_articles2>
 							</ul>

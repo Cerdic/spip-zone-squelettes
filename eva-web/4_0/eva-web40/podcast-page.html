@@ -16,21 +16,21 @@
 	<body>
 	<div id="page">
 	[(#REM) Entete de la page + titre du site ]
-	<INCLURE{fond=noisettes/entete/inc_entete-page}{id_syndic}>
+	<INCLURE{fond=noisettes/entete/inc_entete-page}{id_syndic}{lang}>
 
 	<div id="conteneur">
 
 		[(#REM) Contenu principal : affichage du site ]
 		<div id="contenu">
 
-				<a href="#URL_SITE">[(#LOGO_SITE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})]</a>
+				<a href="[(#URL_SITE|parametre_url{lang,#LANG})]">[(#LOGO_SITE||image_reduire{#GET{largeurlogo},#GET{hauteurlogo}})]</a>
 				<h2 class="titre">#NOM_SITE</h2>
 
 					[(#REM) Auteurs et dates]
 					<ul id="auteursdates">
 						<B_auteurs>
 						<li class="premier"><strong><:par:></strong> <BOUCLE_auteurs(AUTEURS){id_article}{par nom}{", "}>
-								<a href="#URL_AUTEUR">#NOM</a></BOUCLE_auteurs></li>
+								<a href="[(#URL_AUTEUR|parametre_url{lang,#LANG})]">#NOM</a></BOUCLE_auteurs></li>
 						</B_auteurs>
 						
 						[<li><strong><:publie:></strong>
@@ -52,7 +52,7 @@
 				<h3 class="titre">Liste des chapitres</h3>
 
 				<ul class="bloc">
-					<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {pagination 5}>
+					<BOUCLE_articles(SYNDIC_ARTICLES){id_syndic}{age<180}{par date}{inverse}{pagination 5}>
 					<li>
 						<h3 class="spip"><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></h3>
 						[<div class="enclosures">(#TAGS|afficher_enclosures)</div>]
@@ -72,7 +72,7 @@
 
 		[(#REM) Menu de navigation ]
 		<div id="menu">
-			<INCLURE{fond=inc_menu}{id_syndic}>
+			<INCLURE{fond=inc_menu}{id_syndic}{lang}>
 
 			[(#REM) Autres sites web ]
 			<B_sites>
@@ -80,8 +80,8 @@
 				<h3 class="titre"><:sites_web:></h3>
 				<ul>
 					[<li class="pagination">(#PAGINATION)</li>]
-					<BOUCLE_sites(SITES) {par nom_site} {pagination 10}>
-					<li><a href="[(#ID_SYNDIC|generer_url_site)]"[ class="(#EXPOSE)"]>#NOM_SITE</a></li>
+					<BOUCLE_sites(SITES){par nom_site}{pagination 10}>
+					<li><a href="[(#ID_SYNDIC|generer_url_site|parametre_url{lang,#LANG})]"[ class="(#EXPOSE)"]>#NOM_SITE</a></li>
 					</BOUCLE_sites>
 				</ul>
 			</div>
