@@ -21,7 +21,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'actuellement' => 'Il y a actuellement ',
 'affichage' => 'L\'affichage',
 'ajouter_google' => 'Ajouter &agrave; google',
-'annuaire' =>'annuaire',
+'annuaire' =>'Annuaire',
 'annuaire_acceuil' => 'Acceuil',
 'annuaire_bandeau' => 'Bandeau',
 'annuaire_contact' => 'Contact',
@@ -30,6 +30,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'annuaire_mot' => 'Mot',
 'annuaire_partenaire' => 'Partenaire',
 'annuaire_plan' => 'Plan',
+'annuaire_recherche' => 'Recherche',
 'annuaire_rubrique' => 'Rubrique',
 'annuaire_site' => 'Site',
 'annuaire_sommaire' => 'Sommaire',
@@ -46,6 +47,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'boite_mot' => 'page mot',
 'boite_plan' => 'Page plan',
 'boite_partenaire' => 'Page partenaire',
+'boite_recherche' => 'Page recherche',
 'boite_rubrique' => 'Page rubrique',
 'boite_site' => 'Page sites',
 'boite_sommaire' => 'Page sommaire',
@@ -84,6 +86,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 				<br />R&eacute;gl&eacute; vos boucles et styles sur la page mot.',
 'descriptif_plan' => '<h4>R&eacute;glage de la page plan</h4>
 				<br />R&eacute;gl&eacute; vos styles du plan.',
+'descriptif_recherche' => '<h4>R&eacute;glage de la page recherche</h4>
+				<br />R&eacute;gl&eacute; vos boucles et styles sur la page recherche.',
 'descriptif_rubrique' => '<h4>R&eacute;glage de la page rubrique</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur la page rubrique.',
 'descriptif_site' => '<h4>R&eacute;glage de la page site</h4>
@@ -159,6 +163,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //Q
 
 //R
+'resultats' => 'Résultats dans les boucles',
+'recherche' => 'la page "recherche"',
 'recherche_site' => 'Recherche d\'un site',
 'rechercher' => 'Rechercher',
 'ref_site' => 'R&eacute;f&eacute;rencement de mon site',

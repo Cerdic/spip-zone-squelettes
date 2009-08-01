@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title><:resultats_recherche:> - #NOM_SITE_SPIP</title>
+<INCLURE{fond=inc/inc-head}{lang}>
+<meta name="robots" content="none" />
+</head>
+<body>
+<div id="recherche">
+
+	[(#REM) Afficher l'entete :]
+	<INCLURE{fond=inc/inc-entete}{lang}>
+
+	[(#REM) Fil d'Ariane ]
+    <div class="hierarchie">
+		<a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; 
+		<:info_rechercher:>[ &gt; <strong class="on">(#RECHERCHE)</strong>]
+	</div><!--#hierarchie-->
+	
+	<div id="content">
+		[<div class="cartouche">
+			<h3><:resultats_recherche:></h3>
+			<p class="soustitre">&#171;&nbsp;(#RECHERCHE)&nbsp;&#187;</p>
+		</div>]
+		
+		[(#REM) Rubriques trouvees ]
+		<B_rubriques>
+		<fieldset>
+		<div class="menu rubriques">
+			#ANCRE_PAGINATION
+			<h2><:rubriques:> (#GRAND_TOTAL)</h2>
+			<ul>
+				<BOUCLE_rubriques(RUBRIQUES) {recherche} {par points}{inverse} {pagination #CONFIG{annuaire_recherche/pas_pagination_recherche, 5}}>
+				<li><a href="#URL_RUBRIQUE">#TITRE</a></li>
+				</BOUCLE_rubriques>
+			</ul>
+			[<p class="pagination">(#PAGINATION)</p>]
+		</div>
+		</fieldset>
+		</B_rubriques>
+		
+		[(#REM) Mots-cles trouves ]
+		<B_mots>
+		<fieldset>
+		<div class="menu">
+			#ANCRE_PAGINATION
+			<h2><:mots_clefs:> (#GRAND_TOTAL)</h2>
+			<ul>
+				<BOUCLE_mots(MOTS) {recherche} {par points}{inverse} {pagination #CONFIG{annuaire_recherche/pas_pagination_recherche, 5}}>
+				<p /><li>#TYPE <br /><a href="#URL_MOT">#TITRE</a></li>
+				</BOUCLE_mots>
+			</ul>
+			[<p class="pagination">(#PAGINATION)</p>]
+		</div>
+		</fieldset>
+		</B_mots>
+		
+		[(#REM) Sites web trouves ]
+		<B_sites>
+		<fieldset>
+		<div class="menu">
+			#ANCRE_PAGINATION
+			<h2><:sites_web:> (#GRAND_TOTAL)</h2>
+			<ul>
+				<BOUCLE_sites(SITES) {recherche} {par points}{inverse} {pagination #CONFIG{annuaire_recherche/pas_pagination_recherche, 5}}>
+				<li><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a></li>
+				</BOUCLE_sites>
+			</ul>
+			[<p class="pagination">(#PAGINATION)</p>]
+		</div>
+		</fieldset>
+		</B_sites>
+		
+	</div><!--#content-->
+	
+	[(#REM) Navigation => colonne droite :]
+	<INCLURE{fond=inc/inc-nav}{lang}>
+	
+	[(#REM) Afficher le pied de page :]
+	<div class="menu_site">
+	<INCLURE{fond=inc/inc-menu}{lang}>
+	</div><!--#menu_site-->
+</div><!--#rechercher-->
+</body>
+</html>
