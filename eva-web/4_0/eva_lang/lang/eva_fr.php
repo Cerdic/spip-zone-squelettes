@@ -110,6 +110,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mentions_legales' => 'Mentions l&eacute;gales',
 	'mis_a_jour' => 'Modifi&eacute; :',
 	'mot_cle' => 'Mots-cl&eacute;',
+	'multilinguisme' => 'Afficher le menu de langue d\'EVA-web dans les pages publiques ?',
 
 	// N
 	'notes' => 'Notes',
