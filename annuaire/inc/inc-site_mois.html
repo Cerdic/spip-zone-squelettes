@@ -1,0 +1,14 @@
+#CACHE{3600*24*30}
+<BOUCLE_mois(SITES){par hasard}{0,1}>
+	<fieldset class="chapo">
+	<a class="nom" href="[(#ID_SYNDIC|generer_url_entite{site})]">
+	<object class="titre">#NOM_SITE</object>
+	</a>
+	[<a class="img" href="[(#ID_SYNDIC|generer_url_entite{site})]"[ title="(#NOM_SITE|texte_backend)"]>
+	(#LOGO_SITE||image_reduire{120}||inserer_attribut{alt,#NOM_SITE|texte_backend})</a>]
+	#FORMULAIRE_NOTATION
+	[(#PLUGIN{pb_pagerank}|oui)
+	<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]
+	<p class="texte_chapo">#DESCRIPTIF**</p>
+	</fieldset>
+</BOUCLE_mois>

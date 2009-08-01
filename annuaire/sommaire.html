@@ -13,6 +13,13 @@
 	
 	<div id="content">
 	[(#REM) Contenu principal : affichage du site ]
+	
+		[(#REM) Afficher le site du mois :]
+		<div id="site_mois">
+		<h2><:annuaire:site_mois|ucfirst:></h2>
+		<INCLURE{fond=inc/inc-site_mois}{lang}>
+		</div><!--#site_mois-->
+		
 		[(#REM) Afficher les nouveautés :]
 		<div id="new">
 			<h2><:nouveautes:></h2>
@@ -25,11 +32,11 @@
 				</a>
 				[<a class="img" href="[(#ID_SYNDIC|generer_url_entite{site})]"[ title="(#NOM_SITE|texte_backend)"]>
 				(#LOGO_SITE||image_reduire{150,100}||inserer_attribut{alt,#NOM_SITE|texte_backend})</a>]
-				#FORMULAIRE_NOTATION<br />
+				#FORMULAIRE_NOTATION
 				[(#PLUGIN{pb_pagerank}|oui)
 				<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]
 				<p class="texte_chapo">#DESCRIPTIF**</p>
-				</fieldset>
+				</fieldset><!--#chapo-->
 			</li>
 			</BOUCLE_new>
 			</ul>
@@ -48,11 +55,11 @@
 				</a>
 				[<a class="img" href="[(#ID_SYNDIC|generer_url_entite{site})]"[ title="(#NOM_SITE|texte_backend)"]>
 				(#LOGO_SITE||image_reduire{120}||inserer_attribut{alt,#NOM_SITE|texte_backend})</a>]
-				#FORMULAIRE_NOTATION<br />
+				#FORMULAIRE_NOTATION
 				[(#PLUGIN{pb_pagerank}|oui)
 				<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]
 				<p class="texte_chapo">#DESCRIPTIF**</p>
-				</fieldset>
+				</fieldset><!--#chapo-->
 			</li>
 			</BOUCLE_pop>
 			</ul>
@@ -63,8 +70,8 @@
 		[(#REM) Afficher au hazard :]
 		<div id="zard">
 			<h2><:annuaire:hasard:></h2>
-			<B_zard>
 			<ul>
+			<B_zard>
 			<BOUCLE_zard(SITES){par hasard}{doublons}{pagination #CONFIG{annuaire_sommaire/pas_pagination_hasard, 3}}>
 			<li>
 				<fieldset class="chapo">
@@ -73,11 +80,11 @@
 				</a>
 				[<a class="img" href="[(#ID_SYNDIC|generer_url_entite{site})]"[ title="(#NOM_SITE|texte_backend)"]>
 				(#LOGO_SITE||image_reduire{120}||inserer_attribut{alt,#NOM_SITE|texte_backend})</a>]
-				#FORMULAIRE_NOTATION<br />
+				#FORMULAIRE_NOTATION
 				[(#PLUGIN{pb_pagerank}|oui)
 				<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]
 				<p class="texte_chapo">#DESCRIPTIF**</p>
-				</fieldset>
+				</fieldset><!--#chapo-->
 			</li>
 			</BOUCLE_zard>
 			</ul>
@@ -90,7 +97,7 @@
 	<INCLURE{fond=inc/inc-nav}{lang}>
 	
 	[(#REM) Afficher le pied de page :]
-	<div id="menu_site">
+	<div class="menu_site">
 	<INCLURE{fond=inc/inc-menu}{lang}>
 	</div><!--#menu_site-->
 </div>

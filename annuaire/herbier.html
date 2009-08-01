@@ -18,7 +18,7 @@
     <div class="hierarchie">
 		<a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; 
 		<strong class="on"><:annuaire:page_herbier:></strong>
-	</div>
+	</div><!--#hierarchie-->
 	
 	[(#REM) Contenu principal : affichage du site ]
 		[(#REM) Sur le Web ]
@@ -29,22 +29,22 @@
 			<h2><:nouveautes_web:></h2>
 			<ul class="art">
 				<BOUCLE_syndic(SYNDIC_ARTICLES) {age<180} {par date}{inverse} {pagination #CONFIG{annuaire_herbier/pas_pagination_herbier, 10}}>
-				<li>[(#DATE|affdate_jourcourt) &ndash; ]<a href="#URL_ARTICLE"[ title="(#NOM_SITE|attribut_html|couper{80})"] class="spip_out">#TITRE</a></li>
+				<li>[(#DATE|affdate_jourcourt) &ndash; ]<a href="#URL_ARTICLE"[ title="(#NOM_SITE|attribut_html|couper{80})"] class="spip_out">#TITRE - (#NOM_SITE)</a></li>
 				</BOUCLE_syndic>
 			</ul>
-            [<p class="pagination">(#PAGINATION)</p>]
-		</div>
+            [<p class="pagination">(#PAGINATION{page_precedent_suivant})&nbsp;&nbsp; #GRAND_TOTAL{pagination #CONFIG{annuaire_herbier/pas_pagination_herbier, 10}}</p>]
+		</div><!--#menu-->
 		</B_syndic>
-		</fieldset>
+		</fieldset><!--#chapo-->
 	</div><!--#content-->
 
 	[(#REM) Navigation => colonne droite :]
 	<INCLURE{fond=inc/inc-nav}{id_syndic}{lang}>
 	
 	[(#REM) Afficher le pied de page :]
-	<div id="menu_site">
+	<div class="menu_site">
 	<INCLURE{fond=inc/inc-menu}{lang}>
 	</div><!--#menu_site-->
-</div>
-</body><!--#herbier-->
+</div><!--#herbier-->
+</body>
 </html>	

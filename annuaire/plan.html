@@ -20,7 +20,6 @@
 
 	[(#REM) Contenu principal : affichage du site ]
 		<fieldset class="chapo">
-		<object><:plan_site:></object>
 			<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
         	<h2><a class="site" href="#URL_RUBRIQUE">#TITRE</a></h2>
 
@@ -31,7 +30,7 @@
 				<li class="site">
 					<strong><a class="site" href="#URL_RUBRIQUE">#TITRE</a></strong>
 					<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
-				</li>
+				</li><!--#site-->
 				</BOUCLE_rubriques>
 			</ul>
 			</B_rubriques>
@@ -42,7 +41,10 @@
 	            <BOUCLE_sites(SITES) {id_secteur} {par nom_site}>
 				<li class="site">
 				[<a class="site" href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" title="(#NOM_SITE|texte_backend)">
-				#NOM_SITE</a>]
+				#NOM_SITE</a>]&nbsp;&nbsp;
+				[(#PLUGIN{pb_pagerank}|oui)
+				<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]
+				</li><!--#site-->
 				</BOUCLE_sites>
 	        </ul>
 	        </B_sites>
@@ -54,9 +56,9 @@
 	<INCLURE{fond=inc/inc-nav}{lang}>
 	
 	[(#REM) Afficher le pied de page :]
-	<div id="menu_site">
+	<div class="menu_site">
 	<INCLURE{fond=inc/inc-menu}{lang}>
 	</div><!--#menu_site-->
-</div>
-</body><!--#plan-->
+</div><!--#plan-->
+</body>
 </html>

@@ -24,23 +24,23 @@
 		<ul>
 		<B_partenaires>
             #ANCRE_PAGINATION
-		<BOUCLE_partenaires(SITES){id_groupe=2}{titre_mot=partenaire} {pagination #CONFIG{annuaire_partenaire/pas_pagination_partenaire, 5}}>
+		<BOUCLE_partenaires(SITES){titre_mot=partenaire} {pagination #CONFIG{annuaire_partenaire/pas_pagination_partenaire, 5}}>
 		<li>
-			<fieldset>
+			<fieldset class="chapo">
 			<a class="nom" href="[(#ID_SYNDIC|generer_url_entite{site})]">
 			<object class="titre">#NOM_SITE</object>
 			</a>
-			<a class="img" href="[(#ID_SYNDIC|generer_url_entite{site})]"[ title="(#NOM_SITE|texte_backend)"]>
-			(#LOGO_SITE||image_reduire{120}||inserer_attribut{alt,#NOM_SITE|texte_backend})</a>
-			#FORMULAIRE_NOTATION<br />
+			[<a class="img" href="[(#ID_SYNDIC|generer_url_entite{site})]"[ title="(#NOM_SITE|texte_backend)"]>
+			(#LOGO_SITE||image_reduire{150,100}||inserer_attribut{alt,#NOM_SITE|texte_backend})</a>]
+			#FORMULAIRE_NOTATION
 			[(#PLUGIN{pb_pagerank}|oui)
 			<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]
 			<p class="texte_chapo">#DESCRIPTIF**</p>
-			</fieldset>
+			</fieldset><!--#chapo-->
 		</li>
 		</BOUCLE_partenaires>
 		</ul>
-            [<p class="pagination">(#PAGINATION)</p>]
+            [<p class="pagination">(#PAGINATION{page_precedent_suivant})&nbsp;&nbsp; #GRAND_TOTAL</p>]
 		<:annuaire:pas_partenaire:>
 		<//B_partenaires>
 	</div><!--#content-->
@@ -49,10 +49,10 @@
 	<INCLURE{fond=inc/inc-nav}{id_syndic}{lang}>
 	
 	[(#REM) Afficher le pied de page :]
-	<div id="menu_site">
+	<div class="menu_site">
 	<INCLURE{fond=inc/inc-menu}{lang}>
 	</div><!--#menu_site-->
-</div>
-</body><!--#herbier-->
+</div><!--#herbier-->
+</body>
 </html>	
 

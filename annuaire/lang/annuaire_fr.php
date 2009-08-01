@@ -19,20 +19,21 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 					créé le groupe "Affichage" avec le mot clef "partenaire" et attibuer le à 
 					chacun des sites voulus.',
 'actuellement' => 'Il y a actuellement ',
+'affichage' => 'L\'affichage',
 'ajouter_google' => 'Ajouter &agrave; google',
-'annuaire' =>'Annuaire',
-'annuaire_acceuil' =>'Acceuil',
-'annuaire_bandeau' =>'Bandeau',
-'annuaire_contact' =>'Contact',
-'annuaire_colonne' =>'Colonne et pied',
-'annuaire_herbier' =>'Herbier',
-'annuaire_mot' =>'Mot',
-'annuaire_partenaire' =>'Partenaire',
-'annuaire_plan' =>'Plan',
-'annuaire_rubrique' =>'Rubrique',
-'annuaire_site' =>'Site',
-'annuaire_sommaire' =>'Sommaire',
-'annuaire_style' =>'Style',
+'annuaire' =>'annuaire',
+'annuaire_acceuil' => 'Acceuil',
+'annuaire_bandeau' => 'Bandeau',
+'annuaire_contact' => 'Contact',
+'annuaire_colonne' => 'Colonne et pied',
+'annuaire_herbier' => 'Herbier',
+'annuaire_mot' => 'Mot',
+'annuaire_partenaire' => 'Partenaire',
+'annuaire_plan' => 'Plan',
+'annuaire_rubrique' => 'Rubrique',
+'annuaire_site' => 'Site',
+'annuaire_sommaire' => 'Sommaire',
+'annuaire_style' => 'Style',
 
 //B
 'bandeau' => 'le "bandeau"',
@@ -42,8 +43,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'boite_contact' => 'Contact',
 'boite_colonne' => 'Colonne et pied',
 'boite_herbier' => 'Herbier',
-'boite_mot' => 'Page mot',
+'boite_mot' => 'page mot',
 'boite_plan' => 'Page plan',
+'boite_partenaire' => 'Page partenaire',
 'boite_rubrique' => 'Page rubrique',
 'boite_site' => 'Page sites',
 'boite_sommaire' => 'Page sommaire',
@@ -53,7 +55,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'colonne_pied' => 'de la colonne et du pied',
 'configuration' => 'Configuration',
 'contact' => 'la page "contact"',
-'copyright_site' => '&copy;',
+'conception' => 'Conception :',
 'css' => 'Les css',
 'css_bandeau' => 'Bandeau',
 'css_bandeau_com' => 'Pour modifier les couleurs du bandeau "ent&ecirc;te"',
@@ -90,6 +92,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 				<br />R&eacute;gl&eacute; vos boucles et styles du sommaire.',
 'descriptif_colonne' => '<h4>R&eacute;glage du style</h4>
 				<br />Choisissez vos couleurs pour les colonnes et pied de page',
+'style' => 'Style :',
+'styliste' => 'Indiquer la personne qui a changer les couleurs : (afficher colonne de droite en
+			 bas uniquement si remplis), possibilitée de mettre du code spip ou html.',
 
 //E
 'epingle_site' => '&eacute;pingl&eacute;s sur',
@@ -117,12 +122,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'mot' => 'la page "mot"',
 
 //N
-'nav_bas' => 'la colonne "navigation"partie basse',
-'nav_haut' => 'la colonne "navigation"partie haute',
+'nav_bas' => 'la colonne "navigation" partie basse',
+'nav_copy' => 'le bloc "copyright"',
+'nav_haut' => 'la colonne "navigation" partie haute',
 'nav_lien' => 'le bloc "liens"',
 'nav_mot' => 'le bloc "mots clef"',
 'nav_rub' => 'le bloc "rubriques"',
-'nav_tag' => 'le bloc "tags"',
+'nav_sites' => 'le bloc avec le nombre de "site référencés"',
 'nbr_articles' => 'Nombre d\'articles :',
 'nbr_sites' => 'Nombre de sites :',
 'new' => 'la boucle "nouveautés"',
@@ -161,13 +167,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //S
 'site' => 'la page "site"',
+'site_mois' => 'le site du mois',
 'sites' => 'Les sites',
 'sommaire' => 'la page "sommaire"',
 
 
 //T
-'tags' => 'Tags',
-'tag' => 'la noisette "tags"',
 
 //U
 'utilisation' => 'Utilisation',

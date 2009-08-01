@@ -21,16 +21,17 @@
 		<object><:mots_clefs:></object>
 		<BOUCLE_mot(MOTS){id_syndic}>
 		<h3>#TYPE</h3>
-			<BOUCLE_mots(MOTS){id_groupe}{id_syndic}{par titre}{" - "}>
-			<a class="texte" href="#URL_MOT">#TITRE</a>
+			<BOUCLE_mots(MOTS){id_groupe}{id_syndic}{par titre}>
+			<br /><a class="texte" href="#URL_MOT">#TITRE</a>
 			</BOUCLE_mots>
 		</BOUCLE_mot>
 	</B_mot>
 	[(#REM) affichage de tout les mots du sites]
+	<object><:mots_clefs:></object>
 	<BOUCLE_mot1(GROUPES_MOTS){titre !IN _META,Affichage}>
 		<h3>#TITRE</h3>
-		<BOUCLE_mots2(MOTS){id_groupe}{par titre}{" - "}>
-		<a class="texte" href="#URL_MOT">#TITRE</a>
+		<BOUCLE_mots2(MOTS){id_groupe}{par titre}>
+		<br /><a class="texte" href="#URL_MOT">#TITRE</a>
 		</BOUCLE_mots2>
 	</BOUCLE_mot1>
 	</fieldset><!--#mots-->
@@ -60,37 +61,38 @@
 	</fieldset><!--#rub-->
 	</B_rubriques>
 
-		[(#REM) Afficher les liens]
-		<fieldset class="lien">
-			<br />
-			[(#REM) lien vers la synthése des flux rss]
-			<a class="texte" href="#URL_PAGE{herbier}"><:sur_web:></a>
-			<br />
-			[(#REM) Un rss]
-			<a class="texte" href="#URL_PAGE{backend}" rel="alternate" title="<:syndiquer_site:>">
-			<img src="#CHEMIN{feed.png}" alt="<:icone_suivi_activite:>" width="16" height="16" />
-			&nbsp;RSS&nbsp;2.0</a>
-			<br />
-			[(#REM) Le igoogle]
-			<a class="texte" href="http://fusion.google.com/add?source=atgs&amp;feedurl=#URL_SITE_SPIP/spip.php?page=backend">
-			<img src="http://gmodules.com/ig/images/plus_google.gif" border="0" alt="<:annuaire:ajouter_google:>" />
-			</a>
-		</fieldset><!--#lien-->
-		<fieldset class="footer">
-			<p><small>
-			<BOUCLE_total(SITES)> </BOUCLE_total>
-			[<:annuaire:actuellement:>(#TOTAL_BOUCLE)&nbsp;<:sites_web:> <:annuaire:epingle_site:>
-			<a class="link" href="#URL_SITE_SPIP">[(#NOM_SITE_SPIP|textebrut)]</a>]
-			</B_total> 
-			[<:annuaire:popu_site:>&nbsp;(#POPULARITE_SITE).]&nbsp;&nbsp;
-			<BOUCLE_maj(SITES){!par date}{0,1}><:dernier_ajout:>&nbsp;: [(#DATE|affdate).]
-			</BOUCLE_maj>
-			</small></p>
-			<a class="link" href="http://www.spip.net/" title="<:site_realise_avec_spip:>">
-			<img src="#CHEMIN{spip.png}" alt="SPIP" width="48" height="16" /></a> | 
-			<:annuaire:copyright_site:>
-			<BOUCLE_copy(SITES) {par date} {0,1}>[(#DATE|annee)][-(#ENV{date}|>{#DATE}|?{#ENV{date},''}|annee)]</BOUCLE_copy>
-			<strong>[(#NOM_SITE_SPIP|textebrut)]</strong>
-		</fieldset><!--#footer-->
+	[(#REM) Afficher les liens]
+	<fieldset class="lien">
+		<br />
+		[(#REM) lien vers la synthése des flux rss]
+		<a class="texte" href="#URL_PAGE{herbier}"><:sur_web:></a>
+		<br />
+		[(#REM) Un rss]
+		<a class="texte" href="#URL_PAGE{backend}" rel="alternate" title="<:syndiquer_site:>">
+		<img src="#CHEMIN{feed.png}" alt="<:icone_suivi_activite:>" width="16" height="16" />
+		&nbsp;RSS&nbsp;2.0</a>
+		<br />
+		[(#REM) Le igoogle]
+		<a class="texte" href="http://fusion.google.com/add?source=atgs&amp;feedurl=#URL_SITE_SPIP/spip.php?page=backend">
+		<img src="http://gmodules.com/ig/images/plus_google.gif" border="0" alt="<:annuaire:ajouter_google:>" />
+		</a>
+	</fieldset><!--#lien-->
+	<fieldset class="sites">
+		<BOUCLE_total(SITES)> </BOUCLE_total>
+		[<:annuaire:actuellement:>(#TOTAL_BOUCLE)&nbsp;<:sites_web:> <:annuaire:epingle_site:>
+		<a class="link" href="#URL_SITE_SPIP">[(#NOM_SITE_SPIP|textebrut)]</a>]
+		</B_total> 
+		[<:annuaire:popu_site:>&nbsp;(#POPULARITE_SITE|>={0}).]<br />
+		<BOUCLE_maj(SITES){!par date}{0,1}><:dernier_ajout:>&nbsp;: [(#DATE|affdate).]
+		</BOUCLE_maj>
+	</fieldset><!--#sites-->
+	<fieldset class="copy">
+		<a class="link" href="http://www.spip.net/" title="<:site_realise_avec_spip:>">
+		<img src="#CHEMIN{spip.png}" alt="SPIP" width="48" height="16" /></a>
+		<br /> &copy;<BOUCLE_copy(SITES) {par date} {0,1}>[(#DATE|annee|unique)][-(#ENV{date}|>{#DATE}|?{#ENV{date},''}|annee|unique)]</BOUCLE_copy>
+		<strong>[(#NOM_SITE_SPIP|textebrut)]</strong>
+		<br /> <:annuaire:conception:> <a href="http://www.pierre-kuhn.org" title="<:annuaire:conception:>">Pierre KUHN</a>
+		[<br /> <:annuaire:style:> &nbsp;(#CONFIG{annuaire_acceuil/styliste}|propre|ptobr)]
+		</fieldset><!--#copy-->
 	</div><!--#nav_bas-->
 </div><!--#nav-->

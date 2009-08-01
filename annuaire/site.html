@@ -35,8 +35,7 @@
 		<object>#NOM_SITE**</object>
 		[<a class="img"[ href="(#URL_SITE)"][ title="(#NOM_SITE|texte_backend)"]>
 		(#LOGO_SITE||image_reduire{120}||inserer_attribut{alt,#NOM_SITE|texte_backend})</a>]
-		<p />
-		#FORMULAIRE_NOTATION<br />
+		#FORMULAIRE_NOTATION
 		[(#PLUGIN{pb_pagerank}|oui)
 		<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]
         [<q class="texte">(#DESCRIPTIF**|attribut_html)</q>]
@@ -50,15 +49,15 @@
             #ANCRE_PAGINATION
             <object><:articles:></object>
             <ul>
-                <BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {par date}{inverse} {pagination #CONFIG{annuaire_site/pas_pagination_rss, 5}}>
+                <BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {! par date} {pagination #CONFIG{annuaire_site/pas_pagination_rss, 5}}>
                 <li class="article">
                     <h3><a class="article" href="#URL_ARTICLE" target="_blank">#TITRE</a></h3>
                     <small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</small>
                     [<div class="introduction">(#DESCRIPTIF**|image_reduire{300})</div>]
-                </li>
+                </li><!--#article-->
                 </BOUCLE_articles>
             </ul>
-            [<p class="pagination">(#PAGINATION)</p>]
+            [<p class="pagination">(#PAGINATION{page_precedent_suivant})&nbsp;&nbsp; #GRAND_TOTAL</p>]
 		</fieldset><!--#chapo-->
         </div><!--#menu-->
         </B_articles>
@@ -72,10 +71,10 @@
 	<INCLURE{fond=inc/inc-nav}{id_syndic}{lang}>
 	
 	[(#REM) Afficher le pied de page :]
-	<div id="menu_site">
+	<div class="menu_site">
 	<INCLURE{fond=inc/inc-menu}{lang}>
 	</div><!--#menu_site-->
-</div>
-</body><!--#site-->
+</div><!--#site-->
+</body>
 </html>
 </BOUCLE_principale>

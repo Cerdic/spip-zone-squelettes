@@ -30,7 +30,8 @@
             <h1 class="#EDIT{titre}">#TITRE</h1>
         </div><!--#cartouche-->
         [<div class="#EDIT{texte} chapo">(#TEXTE)</div>]
-        [(#REM) Sites web lies au mot-cle ]
+        
+	[(#REM) Sites web lies au mot-cle ]
         <B_sites>
         <div class="menu">
 		<fieldset class="chapo">
@@ -42,9 +43,11 @@
 				[<a class="site" href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" title="(#NOM_SITE|texte_backend)">
 				#NOM_SITE</a>]
 				#FORMULAIRE_NOTATION</li>
+				[(#PLUGIN{pb_pagerank}|oui)
+				<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]
 				</BOUCLE_sites>
             </ul>
-            [<p class="pagination">(#PAGINATION)</p>]
+            [<p class="pagination">(#PAGINATION{page_precedent_suivant})&nbsp;&nbsp; #GRAND_TOTAL</p>]
 		</fieldset><!--#chapo-->
         </div><!--#menu-->
         </B_sites>
@@ -57,10 +60,10 @@
 	<INCLURE{fond=inc/inc-nav}{lang}>
 	
 	[(#REM) Afficher le pied de page :]
-	<div id="menu_site">
+	<div class="menu_site">
 	<INCLURE{fond=inc/inc-menu}{lang}>
 	</div><!--#menu_site-->
-</div>
-</body><!--#mot-->
+</div><!--#mot-->
+</body>
 </html>	
 </BOUCLE_principale>
