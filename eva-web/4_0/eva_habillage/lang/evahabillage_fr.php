@@ -357,5 +357,13 @@ Pour ignorer un crit&egrave;re de r&eacute;duction, laissez le formulaire vide o
 'image_fond_menu_horizontal_base'=>'Menu horizontal d&eacute;pliable',
 'image_fond_menu_horizontal_survol'=>'Rubriques du menu horizontal d&eacute;pliable lors du survol',
 'image_fond_menu_horizontal_actif'=>'Rubrique active du menu horizontal d&eacute;pliable',
+'image_fond_menu_langue'=>'Menu de langue et traductions',
+'eva_menu_langue_couleur_fond'=>'Couleur de fond',
+'eva_menu_langue_couleur_texte'=>'Couleur du texte',
+'eva_menu_langue_bordure_style'=>'Style de la bordure',
+'eva_menu_langue_bordure_width'=>'Largeur de la bordure',
+'eva_menu_langue_bordure_couleur'=>'Couleur de la bordure',
+'eva_menu_langue_graphisme' => '<div style="text-align:center;">Menu de langue et de traduction</div>',
+'eva_menu_langue_graphisme_explication' => 'Choisissez ici vos pr&eacute;f&eacute;rences concernant l\'aspect graphique de votre menu de langue. Pour ins&eacute;rer des images de fond, il faut vous rendre dans le module de gestion des images de fond situ&eacute; ci-dessous.',
 );
 ?>

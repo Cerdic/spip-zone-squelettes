@@ -116,6 +116,8 @@ echo fin_cadre_trait_couleur(true);
 
 include_spip('inc/evabonus_menu_horizontal');
 
+include_spip('inc/eva_menu_langue_graphisme');
+
 //Module 3 - Ajout d'imges de fond dans les secteurs
     echo debut_cadre_trait_couleur(_DIR_PLUGIN_EVA_HABILLAGE."img_pack/img_bloc.png", true, '', _T('evahabillage:EVA_etape3'));
     if(!empty($_FILES['image_eva_habillage_envoi']['tmp_name']) AND is_uploaded_file($_FILES['image_eva_habillage_envoi']['tmp_name']) AND filesize($_FILES['image_eva_habillage_envoi']['tmp_name'])<2000000){

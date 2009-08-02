@@ -65,6 +65,20 @@ foreach ($tab_evabonus_menu as $cle_evabonus_menu=>$val_evabonus_menu)
 } 
 //Fin Menu depliable
 
+//Menu de langue
+$tab_evabonus_menu=EVA_menu_langue();
+foreach ($tab_evabonus_menu as $cle_evabonus_menu=>$val_evabonus_menu)
+{
+	$req_menu_depliable=sql_select('nom_image','spip_eva_habillage_images',"type='multilinguisme' AND nom_habillage='Defaut' AND nom_div='".$cle_evabonus_menu."'");
+	$tab_menu_depliable=sql_fetch($req_menu_depliable);
+	$code_menu_depliable=$tab_menu_depliable['nom_image'];
+	if ($code_menu_depliable)
+	{
+		$envoi .="$val_evabonus_menu".$code_menu_depliable.";}\n";
+	}
+} 
+//Fin Menu de langue
+
     $mes_CSS = sql_select('nom_div','spip_eva_habillage_images',"nom_habillage = 'Defaut' AND type = 'perso'");
     while ($CSS = sql_fetch($mes_CSS)) {$envoi .=$CSS['nom_div']."\n";}
     $envoi .= '</style>';

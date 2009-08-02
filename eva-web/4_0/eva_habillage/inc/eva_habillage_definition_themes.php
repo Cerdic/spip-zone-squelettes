@@ -621,7 +621,12 @@ $eva_habillage_images['image_fond_menu_horizontal_base']=array('#menu_horizontal
 $eva_habillage_images['image_fond_menu_horizontal_survol']=array('#menu_horizontal a:hover','#menu_horizontal li .on:hover');
 $eva_habillage_images['image_fond_menu_horizontal_actif']=array('#menu_horizontal li .on');
 }
-    
+$test=sql_select('nom_image','spip_eva_habillage_images',"type='multilinguisme' AND nom_habillage='Defaut' AND nom_div='menu_langue_actif'");
+$tab=sql_fetch($test);
+$envoi=$tab['nom_image'];
+if ($envoi) {
+$eva_habillage_images['image_fond_menu_langue']=array('.menulangue');
+}    
 return $eva_habillage_images;
 }
 
@@ -818,6 +823,16 @@ $menu = array(
 'evabonus_menu_horizontal_couleur_bordure_style'=>'#menu_horizontal li {border-right-style:',
 'evabonus_menu_horizontal_couleur_bordure_largeur'=>'#menu_horizontal li {border-right-width:',
 'evabonus_menu_horizontal_couleur_bordure_couleur'=>'#menu_horizontal li {border-right-color:'
+);
+return $menu;
+}
+function EVA_menu_langue() {
+$menu = array(
+'eva_menu_langue_couleur_fond'=>'.menulangue {background-color:',
+'eva_menu_langue_couleur_texte'=>'.menulangue, .menulangue a {color:',
+'eva_menu_langue_bordure_style'=>'.menulangue  {border-style:',
+'eva_menu_langue_bordure_width'=>'.menulangue {border-width:',
+'eva_menu_langue_bordure_couleur'=>'.menulangue {border-color:'
 );
 return $menu;
 }
