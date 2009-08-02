@@ -943,6 +943,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_bloc_non' => 'Ne rien ins&eacute;rer',
 		'cfg_lbl_carrousel_modele_1' => 'Carrousel de vignettes &agrave; d&eacute;filement horizontal',
 		'cfg_lbl_carrousel_modele_2' => 'Liste pagin&eacute;e de vignettes',
+		'cfg_lbl_carrousel_modele_3' => 'Liste pagin&eacute;e de vignettes larges sans agrandissement',
 		'cfg_lbl_carrousel_position_0' => 'Aucune liste de vignettes',
 		'cfg_lbl_carrousel_position_1' => 'Au-dessus de l\'agrandissement',
 		'cfg_lbl_carrousel_position_2' => 'Au-dessous de l\'agrandissement',
