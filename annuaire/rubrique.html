@@ -40,14 +40,14 @@
             <h2><:sous_rubriques:></h2>
             <ul>
                 <BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
-                <li class="site">
-                    <a class="site" href="#URL_RUBRIQUE">[(#TITRE)]</a>
+                <li>
+                    <a href="#URL_RUBRIQUE">[(#TITRE)]</a>
 
                     [(#REM) Une boucle recursive pour le mini plan]
                     <B_miniplan>
                     <ul>
                         <BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre, titre}>
-                        <li><a class="site" href="#URL_RUBRIQUE">[(#TITRE)]</a>
+                        <li><a href="#URL_RUBRIQUE">[(#TITRE)]</a>
                         <BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2></li>
                         </BOUCLE_miniplan>
                     </ul>
@@ -66,15 +66,15 @@
             <object><:sur_web:></object>
             <ul>
                 <BOUCLE_sites(SITES) {id_rubrique} {par nom_site} {pagination #CONFIG{annuaire_rubrique/pas_pagination_art, 5}}>
-                <li class="site">
-				[<a class="site" href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" title="(#NOM_SITE|texte_backend)">
+                <li>
+				[<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" title="(#NOM_SITE|texte_backend)">
 				#NOM_SITE</a>]
 				#FORMULAIRE_NOTATION
 				[(#PLUGIN{pb_pagerank}|oui)
 				<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]</li>
 				</BOUCLE_sites>
             </ul>
-			[<p class="pagination">(#PAGINATION{page_precedent_suivant})&nbsp;&nbsp; #GRAND_TOTAL</p>]
+			[<p>(#PAGINATION{page_precedent_suivant})&nbsp;&nbsp; #GRAND_TOTAL</p>]
 		</fieldset>
         </div><!--#menu-->
         </B_sites>

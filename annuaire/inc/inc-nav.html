@@ -16,22 +16,24 @@
 	
 	<div id="nav_bas">
 	[(#REM) Afficher les mot clef du site]
-	<fieldset class="mots">
 	<B_mot>
+	<fieldset class="mots">
 		<object><:mots_clefs:></object>
 		<BOUCLE_mot(MOTS){id_syndic}>
 		<h3>#TYPE</h3>
 			<BOUCLE_mots(MOTS){id_groupe}{id_syndic}{par titre}>
-			<br /><a class="texte" href="#URL_MOT">#TITRE</a>
+			<br /><a  href="#URL_MOT">#TITRE</a>
 			</BOUCLE_mots>
 		</BOUCLE_mot>
+	</fieldset><!--#mots-->
 	</B_mot>
 	[(#REM) affichage de tout les mots du sites]
+	<fieldset class="mots">
 	<object><:mots_clefs:></object>
 	<BOUCLE_mot1(GROUPES_MOTS){titre !IN _META,Affichage}>
 		<h3>#TITRE</h3>
 		<BOUCLE_mots2(MOTS){id_groupe}{par titre}>
-		<br /><a class="texte" href="#URL_MOT">#TITRE</a>
+		<br /><a  href="#URL_MOT">#TITRE</a>
 		</BOUCLE_mots2>
 	</BOUCLE_mot1>
 	</fieldset><!--#mots-->
@@ -47,11 +49,11 @@
 	<ul>
 	<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
 		<li>
-			<a class="texte" href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
+			<a  href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
 			<B_sous_rubriques>
 			<ul>
 				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
-					<li class="sous"><a class="texte" href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
+					<li class="sous"><a  href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
 				</BOUCLE_sous_rubriques>
 			</ul>
 			</B_sous_rubriques>
@@ -65,15 +67,15 @@
 	<fieldset class="lien">
 		<br />
 		[(#REM) lien vers la synthése des flux rss]
-		<a class="texte" href="#URL_PAGE{herbier}"><:sur_web:></a>
+		<a  href="#URL_PAGE{herbier}"><:sur_web:></a>
 		<br />
 		[(#REM) Un rss]
-		<a class="texte" href="#URL_PAGE{backend}" rel="alternate" title="<:syndiquer_site:>">
+		<a  href="#URL_PAGE{backend}" rel="alternate" title="<:syndiquer_site:>">
 		<img src="#CHEMIN{feed.png}" alt="<:icone_suivi_activite:>" width="16" height="16" />
 		&nbsp;RSS&nbsp;2.0</a>
 		<br />
 		[(#REM) Le igoogle]
-		<a class="texte" href="http://fusion.google.com/add?source=atgs&amp;feedurl=#URL_SITE_SPIP/spip.php?page=backend">
+		<a  href="http://fusion.google.com/add?source=atgs&amp;feedurl=#URL_SITE_SPIP/spip.php?page=backend">
 		<img src="http://gmodules.com/ig/images/plus_google.gif" border="0" alt="<:annuaire:ajouter_google:>" />
 		</a>
 	</fieldset><!--#lien-->
