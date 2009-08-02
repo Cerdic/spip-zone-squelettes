@@ -45,6 +45,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// B
 	'barre_typo_generalisee' => 'Barre Typographique G&eacute;n&eacute;ralis&eacute;e',
+	'boutique' => 'Boutique (en dev)',
 	'boutonstexte' => 'Boutons texte',
 	'bte' => 'Enluminures Typo',
 	'btv2' => 'Barre typographique',
