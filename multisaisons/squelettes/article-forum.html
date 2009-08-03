@@ -3,7 +3,7 @@
 
 <BOUCLE_principale(ARTICLES){id_article}><head>
 
-[(#REM)   les métas   ]
+[(#REM) les métas]
 
 
 <title>[(#TITRE)]</title>
@@ -112,86 +112,33 @@ RSS forum</a></span></p>
 
 <ul class="forum centre">
 <li>
-
+ [(#SESSION{statut}|match{1comite|0minirezo|6forum}|non)
  [(#CONFIG{accepter_inscriptions}|=={oui}|?{' ',''})[<a href="(#URL_PAGE{suivi}|parametre_url{type,redac})"title="S'inscrire">S'inscrire</a>]]
-   [(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{suivi}|parametre_url{type,visit})"title="S'inscrire">S'inscrire</a>]]
+   [(#CONFIG{accepter_inscriptions}|=={non}|?{' ',''})[<a href="(#URL_PAGE{suivi}|parametre_url{type,visit})"title="S'inscrire">S'inscrire</a>]]]
 </li>
 
 <li>
-[<a href="(#PARAMETRES_FORUM|url_reponse_forum)" title="Créer une discussion">Dialoguer</a>]
+ [(#SESSION{statut}|match{1comite|0minirezo|6forum}|non)
+[<a href="(#PARAMETRES_FORUM|url_reponse_forum)" title="Créer une discussion">Dialoguer</a>]]
+ [(#SESSION{statut}|match{1comite|0minirezo|6forum}|oui)
+[<a href="(#PARAMETRES_FORUM|url_reponse_forum)" title="Créer une nouvelle discussion">Cr&eacute;er une nouvelle discussion</a>]]
 </li>
 
 </ul>
 
 <hr class="spacer"/>  
 			  
-<table class="spip">
-<tr class="row_first gras blanc">
-<td>Dernières discussions</td>
-<td>Auteur</td>
-<td>Date</td>
-<td>R&eacute;ponses</td>
-</tr>
+			  
+			  
+<INCLURE{fond=inc/inc_liste_forum_article}{id_article}{id_forum}{id_thread}{id_auteur}{id_mot}{ajax}{env}>
+			  
+			  
+			  
+			  
+			  
 
 
 
-
-
-
-
-
-<BOUCLE_derniers(FORUMS){id_article}{!par date_thread}{doublons}{pagination 20}>
-
-<tr [class="(#EVAL{[(#_derniers:COMPTEUR_BOUCLE)]}|alterner{'row_even','row_odd'})"] >
-<td class="#EDIT{titre}">
-<a href="[(#URL_PAGE{discussion}|parametre_url{id_forum,#ID_FORUM})]"	title="">#TITRE</a>
-</td>
-<td>
-<BOUCLE_Forums_crayon_parent(FORUMS){id_parent}{statut=original}>
-<BOUCLE_nom3(AUTEURS){tous}{id_auteur}{0,1}>
-[<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Contact et profil de ce r&eacute;dacteur">]
-[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Contact et profil de cet admin">]
-[<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Contact et profil de ce visiteur">]
-[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Compte en attente">]
-[(#NOM|textebrut|couper{18})</a><br/>]
-</BOUCLE_nom3>
-[(#NOM||?{#NOM|textebrut|couper{18},'Anonyme'})<br/>]
-<//B_nom3>
-</BOUCLE_Forums_crayon_parent>
-<BOUCLE_nom32(AUTEURS){tous}{id_auteur}{0,1}>
-[<a (#STATUT|=={'1comite'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Contact et profil de ce r&eacute;dacteur">]
-[<a (#STATUT|=={'0minirezo'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Contact et profil de cet admin">]
-[<a (#STATUT|=={'6forum'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Contact et profil de ce visiteur">]
-[<a (#STATUT|=={'nouveau'}|?{' ',''}) href="[(#URL_AUTEUR)]" title="Compte en attente">]
-[(#NOM|textebrut|couper{18})</a><br/>]
-</BOUCLE_nom32>
-[(#NOM||?{#NOM|textebrut|couper{18},'Anonyme'})<br/>]
-<//B_nom32>
-<//B_Forums_crayon_parent></td>
-<td>
-<BOUCLE_dernier_message(FORUMS){id_thread}{plat}{par date}{inverse}{0,1}>
-[(#DATE|affdate{'d/m/Y'})]<br/>
-	[(#DATE|affdate{'H:i:s'})]
-	</BOUCLE_dernier_message>
-</td>
-<td><B_nb_forumtotal>
-<BOUCLE_nb_forumtotal(FORUMS){id_thread}{plat}> </BOUCLE_nb_forumtotal>
-[<span class="vert">(#TOTAL_BOUCLE|=={1}|?{En attente de r&eacute;ponses})</span>]
-[(#TOTAL_BOUCLE|=={2}|?{1 r&eacute;ponse})]
-[(#TOTAL_BOUCLE|>{2}|?{[(#TOTAL_BOUCLE|moins{1})] r&eacute;ponses})]
-</B_nb_forumtotal>
-</td>
-</tr>
-	
-
-
-</BOUCLE_derniers><tr>
-<td colspan="4">#PAGINATION</td>
-</tr>
-</B_derniers>
-
-</table>
-<hr class="spacer"/> 
 
 </div>
 

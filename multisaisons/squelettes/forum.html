@@ -1,13 +1,13 @@
 #CACHE{0}
-[(#PARAMETRES_FORUM|?{''})]
+<BOUCLE_metarticle(ARTICLES){id_article}>
 [(#INCLURE{fond=header})]<head>
 
 [(#REM)   les m&eacute;tas   ]
-<BOUCLE_metarticle(ARTICLES){id_article}>
+
 
 <title>Participez sur ce forum[, (#TITRE)]</title>
 <meta name="Description" content='[(#INTRODUCTION|supprimer_tags|texte_script)][, (#TITRE|supprimer_tags|texte_script)]'/>
-</BOUCLE_metarticle>
+
 
 <meta name="revisit-after" content="15 days" />
 <meta http-equiv="content-type" content="text/html; charset=#CHARSET"/>
@@ -48,11 +48,8 @@ txtarea.value += text; txtarea.focus(); } }
 
 
 <p>
-
-
 [(#REM)   quel article   ]
-
-<span class="logogauche"><a href="#URL_ARTICLE">[(#INCLURE{fond=logo}{id_article}{taille=48}{date=#ENV{date}})]</a></span>
+<span class="logogauche"><a href="#URL_ARTICLE">[(#INCLURE{fond=logo}{id_article,#ID_ARTICLE}{taille=48}{date=#ENV{date}})]</a></span>
 [<a href="(#URL_PAGE{sommaire})"><:accueil_site:></a> >]
 
 <BOUCLE_rub3(HIERARCHIE){id_article}>[<a href="#URL_RUBRIQUE">(#TITRE)</a> >]
@@ -66,13 +63,26 @@ txtarea.value += text; txtarea.focus(); } }
 </BOUCLE_forum_parent>
 </p>
 
+[(#REM)  Dans l ordre: le forum est cloture ou c est un forum ouvert ou c est un nouveau forum ]
+<BOUCLE_quel_thread(FORUMS){id_forum}{0,1}>
+<BOUCLE_Forum_cloture(FORUMS){id_thread}{plat}{titre_mot=Fermer toute la discussion}{0,1}>
+<p class="centre"><span class="gras">Discussion ferm&eacute;e</span></p>
+</BOUCLE_Forum_cloture>
 <p class="ajax">
 #FORMULAIRE_FORUM
 <p/>
+<//B_Forum_cloture>
+</BOUCLE_quel_thread>
+<p class="ajax">
+#FORMULAIRE_FORUM
+<p/>
+<//B_quel_thread>
+
+
+
+
+
 </div>
-
-
-
 
 </div>[(#REM)   fermeture colone de gauche   ]
  <div class="coldroit">  [(#REM)   ouverture de la colone de droite   ] 
@@ -108,4 +118,13 @@ txtarea.value += text; txtarea.focus(); } }
 </div> [(#REM)   fermeture container   ] 
 </body>
 </html>
+</BOUCLE_metarticle>
 
+[(#ID_ARTICLE|AccesRestreint_article_restreint|?{' ',''})    
+ [(#ENV{type}|=={redac}|?{' ',''}) <INCLURE{fond=abonnement}{type=redac}>]
+  [(#ENV{type}|=={visit}|?{' ',''}) <INCLURE{fond=abonnement}{type=visit}>]
+[(#ENV{type}|match{redac|visit}|?{'',' '})<INCLURE{fond=abonnement}{type=question}>]
+  ]
+[(#ID_ARTICLE|AccesRestreint_article_restreint|?{'',' '})
+<INCLURE{fond=404}>]
+<//B_metarticle>

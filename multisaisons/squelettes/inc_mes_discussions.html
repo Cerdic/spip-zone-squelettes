@@ -10,10 +10,13 @@
 
 </tr>
 
+
+
+
+
 [(#REM) Les 5 dernières discussions où l'auteur a participé.]
 <BOUCLE_discussions(FORUMS){id_auteur}{tout}{fusion id_thread}{!par date_thread}{statut IN publie, original, off, prop}{pagination 5}>
 [(#REM) Le dernier des messages de l'auteur dans chacune de ces discussions.]
-
 
 
 <BOUCLE_retourne_thread0(FORUMS){id_thread}{tout}{id_auteur}{!par date}{statut IN publie, off, prop, original}{0,1}>
@@ -34,11 +37,28 @@
 </td>
 </BOUCLE_forumpublie>
 
+
+
 <BOUCLE_forumart(FORUMS articles){id_forum}{statut=publie}> <td>
+
+[(#SET{dateforum,#DATE})]
+<BOUCLE_forums_pagi(FORUMS){id_thread}{plat}{date<#GET{dateforum}}>
+</BOUCLE_forums_pagi>
+[(#SET{combien,[(#TOTAL_BOUCLE|div{10}|floor|mult{10})]})] 
+</B_forums_pagi>
+[(#SET{combien,'0'})] 
+<//B_forums_pagi>
 [<a href="(#URL_PAGE{backend}|parametre_url{id_article,#ID_ARTICLE})" title="Suivre le flux rss de ce forum.">]<img src="squelettes/images/icones/rss.gif" alt="Suivre le flux rss de ce forum."/></a> 
-<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM})#forum#ID_FORUM]" [title="(#TITRE|couper{80}|texte_backend)"]>[(#TITRE|couper{80})]</a>[ (#TEXTE|couper{100})]
+<a href="[(#URL_PAGE{discussion}|parametre_url{'id_forum',#ID_FORUM}|parametre_url{'debut_Forums_fil',#GET{combien}})#forum#ID_FORUM]" [title="(#TITRE|couper{80}|texte_backend)"]>[(#TITRE|couper{80})]</a>[ (#TEXTE|couper{100})]
 </td>
 </BOUCLE_forumart>
+
+
+
+
+
+
+
 <//B_forumpublie>
 <//B_forumjete>
 
@@ -84,7 +104,7 @@
  </tr>
 </BOUCLE_discussions>
 </table>
-[<p class="centre pagination">(#PAGINATION{page})</p>]                       
+[<p class="centre pagination">(#PAGINATION)</p>]                       
 </B_discussions>
 
 
