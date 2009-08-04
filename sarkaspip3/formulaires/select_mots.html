@@ -1,10 +1,23 @@
-<B_mot>
-<label for="groupe-#ID_GROUPE">[(#ENV{titre}|supprimer_numero)]</label>
-<select name="groupe[#ID_GROUPE]" id="groupe-#ID_GROUPE">
-    <option value=''><:sarkaspip:indifferent:></option>
-    <BOUCLE_mot(MOTS){id_groupe}{par num titre}>
-    [<option value="#ID_MOT"[ (#ID_MOT|=={#ENV{id_mot}}|oui)selected="selected"]>(#TITRE)</option>]
-    </BOUCLE_mot>
+[(#REM) 
+<!-- liste tous les mots-cles classe par groupe de mot au sein d'un select
+	Recoit en argument :
+		- suffixe : numero compris entre 1 et 3 correspondant a l'id du select
+		- label : le label qui sera utilise pour le select
+-->
+]
 
-</select> 
-</B_mot>
+
+<B_groupe>	
+ 	<label>#ENV{label}</label>
+	<select name="mot&#91;#ENV{suffixe}&#93;" id="mot_#ENV{suffixe}">
+		<option value=''><:sarkaspip:indifferent:></option>	
+	
+<BOUCLE_groupe(GROUPES_MOTS){titre!=squelette_habillage}{par num titre}>
+	<optgroup style="font-weight: strong;"[ label="(#TITRE)"]>
+		<BOUCLE_mot(MOTS){id_groupe=#ID_GROUPE}{par num titre}>
+			[<option style="background: #FFFFF; font-weight: normal;" value="#ID_MOT"[ (#ID_MOT|=={#ENV{id_mot}}|oui)selected="selected"]>(#TITRE)</option>]
+		</BOUCLE_mot>
+	</optgroup>
+</BOUCLE_groupe>
+	</select> 	
+</B_groupe>
