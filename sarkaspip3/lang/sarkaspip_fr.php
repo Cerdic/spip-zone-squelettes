@@ -260,7 +260,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'img_rubrique' =>'Images jointes &agrave; cette rubrique',
 		'img_taille' => 'Taille',
 		'img_titre' => 'Titre',
-		'imprimer_article' => 'imprimer l\'article',
 		'indifferent' => 'Indiff&eacute;rent',
 		'info_afficher_album' => 'Consulter cet album',
 		'info_langues' => 'Langues du site', // redefinition item SPIP
