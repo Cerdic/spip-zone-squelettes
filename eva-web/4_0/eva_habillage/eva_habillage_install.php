@@ -45,6 +45,7 @@ function eva_habillage_install($action){
 	break;
 	
 	case 'test':
+	$test_eva=$GLOBALS['meta']['eva_habillage_base_version'];
 	include_spip('base/eva_habillage_base_patch');
 	eva_habillage_patch_table();
 	if (!$GLOBALS['meta']['eva_habillage_base_version']) {return false;}
@@ -81,6 +82,16 @@ function eva_habillage_install($action){
 	include_spip('inc/eva_habillage_transition_module');
 	eva_habillage_transition_module();	
 	ecrire_meta('eva_habillage_base_version','0.5');
+
+	//Préparation au multilinguisme
+	$test_eva=$GLOBALS['meta']['eva_habillage_base_version'];
+	if ($test_eva=='0.5') {
+		$test_langue = sql_select("id","spip_eva_habillage_images","type='fichier_lang' AND attach=''");
+		while ($tab = sql_fetch($test_langue)) {
+			sql_updateq('spip_eva_habillage_images',array('attach'=>utiliser_langue_site()),"id='".$tab['id']."'");
+		}
+	ecrire_meta('eva_habillage_base_version','0.6');
+	}
 	return true;
 	}
 	break;

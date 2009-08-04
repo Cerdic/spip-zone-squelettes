@@ -306,7 +306,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'favicon_choisir3' => "S&eacute;lectionnez le favicon (au format png, gif ou ico) apr&egrave;s l'avoir charg&eacute; par FTP dans le r&eacute;pertoire ",
 'favicon_a_choisir3' => "Vous avez d&eacute;j&agrave; choisi le favicon suivant : ",
 'favicon_a_supprimer' => "Vous pouvez le supprimer et utiliser le favicon de la distribution EVA-Web 3 ou le remplacer en en s&eacute;lectionnant un autre dans le formulaire suivant : ",
-'titrebloc_titre' => "<center><span style='text-decoration:underline;'>Red&eacute;finir le fichier de langue d'EVA-Web</span></center>",
+'titrebloc_titre' => "Red&eacute;finir le fichier de langue d'EVA-Web",
 'titrebloc_go' => "C'est parti !",
 'titrebloc_tab1' => "<center><strong><span style='text-decoration:underline;'>D&eacute;finition initiale</span></strong></center>",
 'titrebloc_tab2' => "<center><strong><span style='text-decoration:underline;'>Nouvelle d&eacute;finition</span></strong></center>",
@@ -365,5 +365,7 @@ Pour ignorer un crit&egrave;re de r&eacute;duction, laissez le formulaire vide o
 'eva_menu_langue_bordure_couleur'=>'Couleur de la bordure',
 'eva_menu_langue_graphisme' => '<div style="text-align:center;">Menu de langue et de traduction</div>',
 'eva_menu_langue_graphisme_explication' => 'Choisissez ici vos pr&eacute;f&eacute;rences concernant l\'aspect graphique de votre menu de langue. Pour ins&eacute;rer des images de fond, il faut vous rendre dans le module de gestion des images de fond situ&eacute; ci-dessous.',
+'eva_langue_absente1' => 'La langue ',
+'eva_langue_absente2' => ' n\'a pas encore &eacute;t&eacute; traduite, il est donc impossible de red&eacute;finir les entr&eacute;es du fichier de langue correspondant.',
 );
 ?>

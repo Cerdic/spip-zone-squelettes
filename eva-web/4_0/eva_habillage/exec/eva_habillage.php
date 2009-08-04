@@ -651,8 +651,9 @@ window.onerror = null;
     }
     echo fin_cadre_trait_couleur(true);
     
-    echo debut_cadre_trait_couleur(_DIR_PLUGIN_EVA_HABILLAGE."img_pack/titrebloc.png", true, '', _T('evahabillage:titrebloc_titre'));
-    
+    global  $spip_lang;
+    echo debut_cadre_trait_couleur(_DIR_PLUGIN_EVA_HABILLAGE."img_pack/titrebloc.png", true, '', "<center><span style='text-decoration:underline;'>"._T('evahabillage:titrebloc_titre').traduire_nom_langue($spip_lang)."</span></center>");
+    if (file_exists(_DIR_PLUGIN_EVASQUELETTES.'lang/local_'.$spip_lang.'.php')) {
     echo _T('evahabillage:titrebloc_debut');
     echo '<br />';
     
@@ -663,34 +664,42 @@ window.onerror = null;
     
     echo bouton_block_depliable(_T('evahabillage:titrebloc_go'),false,'');
     echo debut_block_depliable(false);
-    include(_DIR_PLUGIN_EVASQUELETTES.'lang/local_fr.php');
-    if ($_POST['EvaLangTest']) {
-	$val=mysql_escape_string($_POST['eva_lang_'.$_POST['EvaLangTest']]);
-	sql_delete('spip_eva_habillage_images',"type = 'fichier_lang' AND nom_habillage = 'Defaut' AND nom_div = '".$_POST['EvaLangTest']."'");
+    
+    include(_DIR_PLUGIN_EVASQUELETTES.'lang/local_'.$spip_lang.'.php');
+    if ($_POST['evalangtest']) {
+    foreach ($langue_fichier_initial as $cle => $val) {
+	$val=mysql_escape_string($_POST[$cle]);
+	sql_delete('spip_eva_habillage_images',"type = 'fichier_lang' AND attach='".$spip_lang."' AND nom_habillage = 'Defaut' AND nom_div = '".$cle."'");
 	if ($val!='') {
-		sql_insertq('spip_eva_habillage_images',array('type' => 'fichier_lang','nom_habillage' => 'Defaut','nom_div' => $_POST['EvaLangTest'],'nom_image' => $val));
+		sql_insertq('spip_eva_habillage_images',array('type' => 'fichier_lang','nom_habillage' => 'Defaut','nom_div' => $cle,'nom_image' => $val,'attach' => $spip_lang));
 	}
+
+    } 
     }
     $couleur_table = 0;
-    echo '<br /><table align="center" class="spip">';
+    echo '<br /><form method="POST" action="'.generer_url_ecrire("eva_habillage").'"><table align="center" class="spip">';
     echo '<tr align="center" class="row_even"><td align="center">'._T('evahabillage:titrebloc_tab1').'</td>';
-    echo '<td align="center">'._T('evahabillage:titrebloc_tab2').'</td>';
-    echo '<td align="center">'._T('evahabillage:EVA_valider').'</td></tr>';
+    echo '<td align="center">'._T('evahabillage:titrebloc_tab2').'</td></tr>';
     $couleur_table++;
-    foreach ($test_lang_personnalisation as $cle => $val) {
-	$test_langue=sql_select('nom_image','spip_eva_habillage_images',"type = 'fichier_lang' AND nom_habillage = 'Defaut' AND nom_div = '$cle'");
+    foreach ($langue_fichier_initial as $cle => $val) {
+	$test_langue=sql_select('nom_image','spip_eva_habillage_images',"type = 'fichier_lang' AND nom_habillage = 'Defaut' AND attach='".$spip_lang."' AND nom_div = '$cle'");
 	$result_langue=sql_fetch($test_langue);
 	$resultat=$result_langue['nom_image'];
-	echo '<form method="POST" action="'.generer_url_ecrire("eva_habillage").'"><tr align="center" ';
+	echo '<tr align="center" ';
 	if (($couleur_table%2)==0) {echo 'class="row_even"';} else {echo 'class="row_odd"';}
 	$couleur_table++;
 	echo '><td align="center">'.$val.'</td>';
-	echo '<td align="center"><input type="text" name="eva_lang_'.$cle.'" value="'.htmlentities($resultat).'" size="25" /><input type="hidden" name="EvaLangTest" value="'.$cle.'" /></td>';
-	echo '<td align="center"><div style="text-align:center;"><input type="submit" value="'._T('evahabillage:EVA_valider').'"></div></td></tr></form>';
+	echo '<td align="center"><input type="text" name="'.$cle.'" value="'.htmlentities($resultat).'" size="25" /></td>';
+	echo '</tr>';
     }
-    echo '</table>';
-    
+    echo '</table><br />';
+    echo '<input type="hidden" name="evalangtest" value="2" />';
+    echo '<div style="text-align:center;"><input type="submit" value="'._T('evahabillage:EVA_valider').'"></div></form>';
     echo fin_block();
+    }
+    else {
+    echo _T('evahabillage:eva_langue_absente1').traduire_nom_langue($spip_lang)._T('evahabillage:eva_langue_absente2');
+    }
     echo fin_cadre_trait_couleur(true);
     
     echo fin_gauche(), fin_page();
