@@ -2,10 +2,10 @@
 if (!defined("_ECRIRE_INC_VERSION")) return;
 include_spip('base/abstract_sql');
 
-// Fichier de langue du site, utilis‚Äö√Ñ√∂‚àö√ë‚àö‚àÇ‚Äö√†√∂‚Äö√Ñ‚Ä†‚Äö√†√∂‚Äö√†√á¬¨¬®¬¨¬Æ¬¨¬®¬¨¬© dans les squelettes
+// Fichier de langue du site
 
 $test_lang_personnalisation=array(
-// A <:form_pet_message_commentaire:>
+// A
 'accueil' => 'Home page',
 'acces_restreint' => 'Acceso limitado',
 'agenda' => 'ordine del giorno',
@@ -161,18 +161,17 @@ $test_lang_personnalisation=array(
 
 'zone' => 'Zona protetta',
 );
-foreach ($test_lang_personnalisation as $cle=>$val) {
-if ((isset($GLOBALS['meta']['eva_habillage_base_version'])) AND !($_GET['action']=='desinstaller_plugin')) {
-	$test_lang=sql_select('nom_image','spip_eva_habillage_images',"type = 'fichier_lang' AND nom_habillage = 'Defaut' AND nom_div = '$cle'");
-	$result_lang=sql_fetch($test_lang);
-	$resultat=$result_lang['nom_image'];
-	if ($resultat) {
-		$GLOBALS[$GLOBALS['idx_lang']][$cle] = $resultat;
-	}
-	else {
-		$GLOBALS[$GLOBALS['idx_lang']] [$cle] = $val;
-	}
+
+$langue_fichier_initial=$test_lang_personnalisation;
+$surcharges = sql_allfetsel(array('nom_image AS texte', 'nom_div AS cle'),'spip_eva_habillage_images',  array(
+        "type = 'fichier_lang'",
+        "nom_habillage = 'Defaut'",
+	"attach = 'it'",
+        "nom_image != ''"));
+foreach ($surcharges as $s) {
+        if (isset($test_lang_personnalisation[$s['cle']])) {
+                $test_lang_personnalisation[$s['cle']] = $s['texte'];
+        }
 }
-else {$GLOBALS[$GLOBALS['idx_lang']] [$cle] = $val;}
-}
+$GLOBALS[$GLOBALS['idx_lang']] = $test_lang_personnalisation;
 ?>
