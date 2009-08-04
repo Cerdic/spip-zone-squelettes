@@ -4,16 +4,16 @@ function formulaires_multi_criteres_charger_dist($resultat_bref=''){
 }
 
 function formulaires_multi_criteres_verifier_dist(){
-    $groupe = _request('groupe');
+    $mot = _request('mot');
 
-    if (array_sum($groupe) == 0){
+    if (array_sum($mot) == 0){
         return array('message_erreur' =>_T('sarkaspip:choisir_un_critere'));
     }
     return array();
     }
 function formulaires_multi_criteres_traiter_dist(){
-    $groupe = _request('groupe');
-    return array('message_ok' => $groupe);
+    $mot = _request('mot');
+    return array('message_ok' => $mot);
     
 }
 ?>
