@@ -12,6 +12,7 @@
 		[<input type='hidden' name='logo' value='(#ENV**{logo,''})' />]
 		[<input type='hidden' name='format_logo' value='(#ENV**{format_logo,''})' />]
 
+
 		[<!-- Le logo auto-detecte -->
 		<div style='height:1px;'>(#ENV**{logo}|image_reduire{180,999}|inserer_attribut{style,
 			position: relative;
@@ -21,13 +22,12 @@
 
 		<ul>
 		[(#ENV{id_syndic}|intval|sinon{#ENV{url_site}}|non)
-			[(#SESSION{statut}|=={0minirezo}|?{' ',#ENV{config}|table_valeur{proposer_sites}|>{0}|oui})
 			<li class="editer_referencement_automatise fieldset">
 			  <fieldset>
 				  <ul>
 					  <li class="editer_url_auto[ (#ENV**{erreurs}|table_valeur{url_auto}|oui)erreur]">
 							[<span class='erreur_message'>(#ENV**{erreurs}|table_valeur{url_auto})</span>]
-							<p class="explication"><:texte_referencement_automatique:></p>
+							<p class="explicationA"><:texte_referencement_automatique:></p>
 							<input type="text" name="url_auto" id="url_auto" class='text' size='40' value="[(#ENV{url_site}|sinon{http://})]" />
 					  </li>
 				  </ul>
@@ -36,7 +36,7 @@
 				<p class="explication"><:texte_non_fonction_referencement:></p>
 				
 		  </li>
-			]]
+			]
 	    <li class="editer_nom_site obligatoire[ (#ENV**{erreurs}|table_valeur{nom_site}|oui)erreur]">
 		    	<label for="nom_site"><:info_nom_site_2:></label>[
 				<span class='erreur_message'>(#ENV**{erreurs}|table_valeur{nom_site})</span>

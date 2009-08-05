@@ -143,7 +143,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //P
 'page_herbier' => 'Herbier',
 'page_contact' => 'Contact',
-'page_propo_site' => 'Proposer un site web',
+'page_propo_site' => 'Proposer un site',
 'partenaire' => 'Partenaires',
 'pas_new' => 'Pas de nouveaut&eacute;s',
 'pas_pagination' => 'Nombre d\'&eacute;l&eacute;ments par page',

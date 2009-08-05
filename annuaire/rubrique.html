@@ -35,29 +35,31 @@
         [<div class="#EDIT{texte} chapo">(#TEXTE)</div>]
         
 		[(#REM) Si aucun article, affiche un plan de la rubrique ]
-        <B_sous_rubriques>
+		<B_sous_rubriques>
         <div class="menu_rub">
-            <h2><:sous_rubriques:></h2>
-            <ul>
-                <BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
-                <li>
-                    <a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+		<fieldset>
+			<object><:sous_rubriques:></object>
+			<ul>
+				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
+				<li>
+					<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
 
-                    [(#REM) Une boucle recursive pour le mini plan]
-                    <B_miniplan>
+					[(#REM) Une boucle recursive pour le mini plan]
+					<B_miniplan>
                     <ul>
                         <BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre, titre}>
-                        <li><a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+                        <li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
                         <BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2></li>
                         </BOUCLE_miniplan>
                     </ul>
-                    </B_miniplan>
-                </li>
-                </BOUCLE_sous_rubriques>
-            </ul>
-            </div>
+					</B_miniplan>
+				</li>
+				</BOUCLE_sous_rubriques>
+			</ul>
+		</fieldset>
+        </div><!--#menu_rub-->
         </B_sous_rubriques>
-
+		
         [(#REM) Sites de la rubrique ]
         <B_sites>
         <div class="menu">
@@ -71,7 +73,7 @@
 				#NOM_SITE</a>]
 				#FORMULAIRE_JAIME_JAIMEPAS
 				[(#PLUGIN{pb_pagerank}|oui)
-				<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]</li>
+				<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]</li><p />
 				</BOUCLE_sites>
             </ul>
 			[<p>(#PAGINATION{page_precedent_suivant})&nbsp;&nbsp; #GRAND_TOTAL</p>]
