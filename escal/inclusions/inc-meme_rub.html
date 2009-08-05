@@ -1,0 +1,36 @@
+#CACHE{24*3600}
+
+<!-- Affichage des articles de la même rubrique s'ils existent-->
+<B_meme_rubrique>
+
+<h1 class="cadre" >
+	Dans la m&ecirc;me rubrique :
+	[(#LOGO_RUBRIQUE||image_reduire{36})]
+</h1>
+
+<div class="texte" >
+
+	<BOUCLE_meme_rubrique(ARTICLES){id_rubrique}{exclus}{par date}{inverse}{0,10}>
+	
+		<!-- 	affichage du titre avec lien vers l'article
+					de la date de publication
+					et de l'auteur(s) avec un lien pour lui envoyer un message -->
+		<div class="titre-article-cadre">
+			<a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
+			[(#TITRE)]
+			</a>
+		</div>
+
+		<div class="date-auteur-cadre">
+			[le (#DATE|affdate) par]
+			<br />
+			<BOUCLE_auteurs(AUTEURS) {id_article} {"et<br />"}>
+			[<a href="spip.php?auteur=#ID_AUTEUR"> (#NOM) </a>]
+			</BOUCLE_auteurs>
+		</div>
+		
+	</BOUCLE_meme_rubrique>
+</div>
+
+</B_meme_rubrique>
+

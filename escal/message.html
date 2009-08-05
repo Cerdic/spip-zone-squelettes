@@ -1,0 +1,92 @@
+#CACHE{24*3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+  <BOUCLE_principale(FORUMS){id_forum}>
+    <head>
+      <title>Forum - [[(#NOM_SITE_SPIP|textebrut)]]
+      </title>
+      <INCLURE {fond=inclusions/inc-head}>
+    </head>
+
+    <body onload="setHover('menu')">
+      <div id="ombre-gauche">
+        <div id="ombre-droite">
+          <div id="conteneur">
+
+            <div id="entete">
+              <div id="titrepage">  [(#NOM_SITE_SPIP|image_typo{police=magnetob.ttf,taille=20,couleur=000000})]
+              </div>
+              <INCLURE {fond=inclusions/inc-bandeau}>
+              <INCLURE {fond=inclusions/inc-menu}{id_rubrique}>
+            </div>
+
+            <div id="espace">
+            </div>
+
+            <div id="page">
+              <div id="contenu">
+                <div id="cadre-article">
+                  <div id="cadre-titre-article">
+                    <BOUCLE_larticle(ARTICLES){id_article}>
+                      Forum de l'article
+                      <br />
+                      <h1>[(#TITRE)]</h1>
+                    </BOUCLE_larticle>
+                  </div>
+
+                  <!-- affichage du formulaire de reponse -->
+                  #FORMULAIRE_FORUM
+
+                  <!-- affichage du fil de discussion -->
+                  <BOUCLE_thread(FORUMS){id_thread}{par date}>
+                    Rappel de la discussion
+                    <div class="forum-thread" >
+                      <div class="titre-message">
+                        #TITRE
+                        <div class="auteur-message">
+                        [ <strong>(#NOM)]</strong> [ - le (#DATE|affdate)]
+                        </div>
+                      </div>
+                      <div class="texte-message">
+                        [(#TEXTE)]
+                      </div>
+                    </div>
+                    <B_reponses>
+                      <div class="decal-reponse">
+                        <BOUCLE_reponses(FORUMS){id_parent}{par date}>
+                          <div class="forum_reponse" >
+                            <div class="titre-message">
+                              #TITRE
+                              <div class="auteur-message">
+                                [ <strong>(#NOM)]</strong> [ - le (#DATE|affdate)]
+                              </div>
+                            </div>
+                            <div class="texte-message">[(#TEXTE)]
+                            </div>
+                          </div>
+                          <BOUCLE_rep_messages(boucle_reponses)>
+                          </BOUCLE_rep_messages>
+                        </BOUCLE_reponses>
+                      </div>
+                      </B_reponses>
+                    </BOUCLE_thread>
+                </div><!-- fin cadre-article -->
+              </div><!-- fin contenu -->
+            </div><!-- fin page -->
+
+            <div id="navigation">
+              <div class="cadre-bleu">
+                <INCLURE {fond=inclusions/inc-acces_direct}>
+              </div>
+            </div>
+
+            <div id="pied">
+              <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}>
+            </div>
+
+          </div><!-- fin conteneur -->
+        </div>
+      </div>
+    </body>
+  </BOUCLE_principale>
+</html>

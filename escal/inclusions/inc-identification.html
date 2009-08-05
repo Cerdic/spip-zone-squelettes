@@ -1,0 +1,27 @@
+#CACHE{24*3600}
+
+<h1 class="cadre">
+
+[(#REM) si l'auteur est identifie, on lui souhaite bienvenue]
+		[(#SESSION{id_auteur}|?{"Bienvenue"<br />#SESSION{nom},"Identification "})]
+
+[(#REM) affichage de l'icone pour ce cadre]
+    <img class="a-droite" src="#CHEMIN{images/identification.png}"  width="36" height="36" alt="Identification" />
+</h1>
+
+<div class="texte" >
+
+[(#REM) formulaire d'identification]
+		#FORMULAIRE_LOGIN
+
+[(#REM) si l'auteur est identifie, on lui permet de se deconnecter ou d'acceder a l'espace auteur]	
+<div id="liensilogue">
+		[<a (#SESSION{id_auteur}|oui) href="#URL_LOGOUT"><:icone_deconnecter:></a>]
+    [<a(#AUTORISER{ecrire}) href="#EVAL{_DIR_RESTREINT_ABS}">Espace Rédacteurs</a>]
+</div>		
+
+</div>
+
+
+
+

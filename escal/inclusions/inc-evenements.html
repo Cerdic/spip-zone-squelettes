@@ -1,0 +1,30 @@
+#CACHE{24*3600}
+
+	<h1 class="cadre">
+  &Eacute;v&egrave;nements &agrave; venir
+  </h1>
+
+  <div class="texte" id="evenements">
+
+    <BOUCLE_selection_rubrique(RUBRIQUES){titre_mot=agenda}>
+    <BOUCLE_selection_articles1(ARTICLES){branche}{age_redac<=0}{doublons evenements}>
+    </BOUCLE_selection_articles1>
+    </BOUCLE_selection_rubrique>
+
+    <BOUCLE_selection_articles(ARTICLES){titre_mot=agenda}{age_redac<=0}{doublons evenements}>
+    </BOUCLE_selection_articles>
+
+    <B_affichage_articles>
+      <ul>
+    <BOUCLE_affichage_articles(ARTICLES){!doublons evenements}{par date_redac}>
+      <li>
+        [le (#DATE_REDAC|affdate) :]
+        <a href="#URL_ARTICLE" title="[(#DESCRIPTIF*)]">#TITRE</a>
+      </li>
+    </BOUCLE_affichage_articles>
+      </ul>
+    </B_affichage_articles>
+
+  </div>
+
+

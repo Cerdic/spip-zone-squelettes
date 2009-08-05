@@ -1,0 +1,33 @@
+#CACHE{24*3600}
+
+	<h1 class="cadre">
+	Les derniers articles
+	[(#LOGO_RUBRIQUE||image_reduire{36})]
+	</h1>
+
+<div class="texte" >
+
+<BOUCLE_derniers(ARTICLES){branche}{par date}{inverse}{0,5}{doublons}>
+
+		<!-- 	affichage du titre avec lien vers l'article
+					de la date de publication
+					et de l'auteur(s) avec un lien pour lui envoyer un message -->
+		<div class="titre-article-cadre">
+			<a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>
+			[(#TITRE|supprimer_numero)]
+			</a>
+		</div>
+
+		<div class="date-auteur-cadre">
+			[Publié le (#DATE|affdate) par]
+			<br />
+			<BOUCLE_auteurs(AUTEURS) {id_article} {"et<br />"}>
+			[<a href="spip.php?auteur=#ID_AUTEUR"> (#NOM) </a>]
+			</BOUCLE_auteurs>
+		</div>
+
+</BOUCLE_derniers>
+
+
+
+</div><!-- fin texte -->

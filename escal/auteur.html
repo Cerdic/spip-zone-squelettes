@@ -1,0 +1,95 @@
+#CACHE{24*3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+  <head>
+    <title>Auteurs - [[(#NOM_SITE_SPIP|textebrut)]]
+    </title>
+    <INCLURE {fond=inclusions/inc-head}>
+  </head>
+
+  <body onload="setHover('menu')">
+    <div id="ombre-gauche">
+      <div id="ombre-droite">
+        <div id="conteneur">
+
+          <div id="entete">
+            <div id="titrepage">  [(#NOM_SITE_SPIP|image_typo{police=magnetob.ttf,taille=20,couleur=000000})]
+            </div>
+            <INCLURE {fond=inclusions/inc-bandeau}>
+            <INCLURE {fond=inclusions/inc-menu}{id_rubrique}>
+          </div>
+
+          <div id="espace">
+          </div>
+
+          <div id="page">
+            <div id="contenu">
+              <div id="cadre-article">
+
+                <div id="cadre-titre-article">
+                  <BOUCLE_auteur_principal(AUTEURS){id_auteur}>
+                    <div id="titre-article">Envoyer un message &agrave; <strong>#NOM</strong>
+                    </div>
+                    <!-- Affichage de la bio si elle existe -->
+                    <div id="descriptif-article">			[(#BIO)] 			<br />
+                      <!-- si l'auteur n'a pas donne d'adresse, on le signale
+                      		s'il l'a donne,  le formumaire s'affiche -->
+                      [(#EMAIL|?{'',"Cet auteur n'a pas fourni son adresse e-mail"})]
+                    </div>
+                </div><!-- fin cadre-titre-article -->
+                
+                <div id="texte-article" >
+                  #FORMULAIRE_ECRIRE_AUTEUR
+
+                  <!-- exclusion des articles des rubriques avec le mot-cle "pas-au-menu" et de ses sous-rubriques -->
+                  <BOUCLE_exclure_rub(RUBRIQUES){titre_mot=pas-au-menu}>
+                    <BOUCLE_exclure_art(ARTICLES){id_rubrique}{doublons}>
+                    </BOUCLE_exclure_art>
+                    <BOUCLE_exclure_ssrub(RUBRIQUES){id_parent}>
+                      <BOUCLE_exclure_art2(ARTICLES){id_rubrique}{doublons}>
+                      </BOUCLE_exclure_art2>
+                    </BOUCLE_exclure_ssrub>
+                  </BOUCLE_exclure_rub>
+
+                  <strong>Cet auteur a &eacute;crit :</strong>
+                  <!-- les articles de l'auteur avec leur date de mise en ligne-->
+                  <B_articles_auteurs>
+                  #PAGINATION
+                  <BOUCLE_articles_auteurs(ARTICLES){id_auteur}{doublons}{par date}{inverse}{pagination 5}>
+
+                  <div class="cadre-articles-rubrique">
+                    <div class="titre-articles-rubrique">
+                      <a href="#URL_ARTICLE">[(#TITRE)]</a>
+                    </div>
+
+                    <div class="introduction-articles-rubrique">
+                    [(#INTRODUCTION|supprimer_tags|couper{200})]
+                    </div>
+
+                    <div class="auteur-articles-rubrique">
+                    [Article mis en ligne le (#DATE|affdate)]
+                    </div>
+                  </div>
+                  </BOUCLE_articles_auteurs>
+
+                  </BOUCLE_auteur_principal>
+                </div><!-- fin texte-article -->
+              </div><!-- fin cadre-article -->
+            </div><!-- fin contenu -->
+          </div>
+
+          <div id="navigation">
+            <div class="cadre-bleu">
+              <INCLURE {fond=inclusions/inc-acces_direct}>
+            </div>
+          </div>
+
+          <div id="pied">
+            <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}>
+          </div>
+
+        </div><!-- fin conteneur -->
+      </div>
+    </div>
+  </body>
+</html>

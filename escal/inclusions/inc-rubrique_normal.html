@@ -1,0 +1,112 @@
+#CACHE{24*3600}
+
+	<div class="cadre-chemin">
+	<!-- affichage du chemin de la rubrique -->
+	<a href="#URL_SITE_SPIP"><img src="#CHEMIN{images/fleche_droite.gif}" alt="fleche" /> Accueil</a>
+	<BOUCLE_chemin_rubriques(HIERARCHIE){id_rubrique}{tout}>
+	<img src="#CHEMIN{images/fleche_droite.gif}"  alt="fleche" />
+	<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+	</BOUCLE_chemin_rubriques>
+	</div>
+
+	<BOUCLE_contexte(RUBRIQUES){id_rubrique}>
+<!-- affichage du logo, du titre, du descriptif et du texte de la rubrique appelée -->
+    <div id="cadre-rubrique">
+	      <div class="logorub">[(#LOGO_RUBRIQUE||image_reduire{50})] </div>
+	  				<div id="titre-rubrique">
+			  			[(#TITRE)]
+			  			<br /><div id="descriptif-rubrique">[(#DESCRIPTIF)]</div>
+			  			<div id="texte-rubrique" >[(#TEXTE)]</div>
+	  				</div>
+		</div>
+	</BOUCLE_contexte>		
+		
+<B_articles_rubs>
+<!-- affichage des articles de la rubrique -->
+<div class="texte-insert">
+Les articles de cette rubrique
+</div>
+
+<!-- si plus de x articles, on pagine (x est defini plus bas avec {pagination x} ) -->
+<p align="right">#PAGINATION</p>
+
+	<BOUCLE_articles_rubs(ARTICLES){id_rubrique}{par num titre}{par date}{inverse}{pagination 5}>
+		<div class="cadre-articles-rubrique">
+			<div class="titre-articles-rubrique"><a href="#URL_ARTICLE">[(#TITRE)]</a></div>
+			<div class="introduction-articles-rubrique">
+      [(#INTRODUCTION|supprimer_tags|couper{150})]
+      <br/>
+      <a href="#URL_ARTICLE" ><strong>Lire l'article ...</strong></a>
+      <br/>
+      </div>
+			<div class="auteur-articles-rubrique">
+				[Article mis en ligne le (#DATE|affdate)] par
+				<BOUCLE_auteurs(AUTEURS) {id_article} {"et"}>
+				[ <a href="spip.php?auteur=#ID_AUTEUR"> (#NOM)</a>]
+				</BOUCLE_auteurs>
+			</div>
+		</div>
+	</BOUCLE_articles_rubs>
+
+<!-- si plus de x articles, on pagine (x est defini plus haut avec {pagination x} ) -->
+<p align="right">#PAGINATION</p>
+
+</B_articles_rubs>
+
+<B_SsRubriques>
+<!-- Afficher les sous-rubriques associées à cette rubrique -->
+<div class="texte-insert">
+Les sous-rubriques de cette rubrique
+</div>
+		<BOUCLE_SsRubriques(RUBRIQUES) {id_parent} {par date}{par num titre}>
+			<div class="cadre-sous-rubrique">
+				<a href="#URL_RUBRIQUE" >[(#LOGO_RUBRIQUE|right||image_reduire{36})]
+				<span class="titre-sous-rubrique">
+					[(#TITRE|Supprimer_numero)]
+          </span>
+					</a>
+				
+     		<div class="descriptif-sous-rubrique">[(#INTRODUCTION|supprimer_tags|couper{150})]</div>
+
+					<!-- on compte et on affiche le nombre d'articles dans cette sous-rubrique -->
+					<B_ss_rub_art>
+					<BOUCLE_ss_rub_art(ARTICLES){id_rubrique}>
+					</BOUCLE_ss_rub_art>
+						<div class="nombre-articles-rubrique">
+						Cette rubrique contient [(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|>{1}|?{'articles','article'})]]
+						</div>
+					</B_ss_rub_art>
+
+					<!-- on compte et on affiche le nombre de rubriques dans cette sous-rubrique -->
+					<B_ss_rub_rub>
+					<BOUCLE_ss_rub_rub(RUBRIQUES){id_parent}>
+					</BOUCLE_ss_rub_rub>
+						<div class="nombre-articles-rubrique">
+						Cette rubrique contient [(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|>{1}|?{'sous-rubriques','sous-rubrique'})]]
+						</div>
+					</B_ss_rub_rub>
+					
+					<!-- on compte et on affiche le nombre de sites references dans cette sous-rubrique -->
+					<BOUCLE_sites_ref(SITES){id_rubrique}>
+					</BOUCLE_sites_ref>
+							<div class="nombre-articles-rubrique">
+							Cette rubrique contient [(#TOTAL_BOUCLE) [(#TOTAL_BOUCLE|>{1}|?{'sites référencés','site référencé'})]]
+							</div>
+					</B_sites_ref>
+
+   </div>
+		</BOUCLE_SsRubriques>
+
+<B_derniers_sites>
+		<hr />
+  <div class="texte-insert">
+  Les sites r&eacute;f&eacute;renc&eacute;s dans cette rubrique
+  </div>
+      <BOUCLE_derniers_sites(SITES){id_rubrique} >
+      	<div class="cadre-sous-rubrique">
+  		    <div class="titre-sous-rubrique"<a href="#URL_SITE">#NOM_SITE</a></div>
+  		    <div class="descriptif-sous-rubrique"> [(#DESCRIPTIF)]</div>
+		    </div>
+      </BOUCLE_derniers_sites>
+
+</B_derniers_sites>

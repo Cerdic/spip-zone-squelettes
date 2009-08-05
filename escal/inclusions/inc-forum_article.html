@@ -1,0 +1,72 @@
+#CACHE{24*3600}
+
+	<div id="forum-article">
+
+	<BOUCLE_forums(ARTICLES){id_article}>
+		<B_thread>
+
+
+			<img src="#CHEMIN{images/forum.png}" alt='Le forum' />
+
+			<div id="repondre-article">
+  			[<a href="spip.php?page=forum&(#PARAMETRES_FORUM)" title="R&eacute;agir &agrave; cet article">
+  			R&eacute;agir &agrave; cet article
+  			</a>]
+			</div>
+
+			<BOUCLE_thread(FORUMS){id_article}{par date}{inverse}>
+
+				<div class="forum-thread" >
+				  <div class="titre-message">
+						#TITRE
+					<div class="auteur-message">[ <strong>(#NOM)]</strong> [ - le (#DATE|affdate)]</div>
+          </div>
+
+					[<div class="#EDIT{texte} texte-message">(#TEXTE)</div>]
+
+					<div class="reponse">
+					<a href="spip.php?page=message&id_forum=#ID_FORUM" title="R&eacute;pondre &agrave; ce message">
+					R&eacute;pondre &agrave; ce message
+					</a>
+					</div>
+
+        </div>
+
+					<B_reponses>
+						<div class="decal-reponse">
+					<BOUCLE_reponses(FORUMS){id_parent}{par date}>
+						<div class="forum_reponse" >
+    				  <div class="titre-message">
+    						#TITRE
+    					<div class="auteur-message">[ <strong>(#NOM)]</strong> [ - le (#DATE|affdate)]</div>
+              </div>
+
+    					[<div class="#EDIT{texte} texte-message">(#TEXTE)</div>]
+
+    					<div class="reponse">
+    					<a href="spip.php?page=message&id_forum=#ID_FORUM" title="R&eacute;pondre &agrave; ce message">
+    					R&eacute;pondre &agrave; ce message
+    					</a>
+    					</div>
+						</div>
+
+							<BOUCLE_rep_messages(boucle_reponses)>
+							</BOUCLE_rep_messages>
+					</BOUCLE_reponses>
+          	</div>
+        </B_reponses>
+
+			</BOUCLE_thread>
+			</B_thread>
+
+			<div id="repondre-article">
+			[<a href="spip.php?page=forum&(#PARAMETRES_FORUM)" title="R&eacute;agir &agrave; cet article">
+			<img src="#CHEMIN{images/forum.png}" alt='Le forum' />
+			R&eacute;agir &agrave; cet article
+			</a>
+			(pas de message pour le moment)]
+			</div>
+
+      <//B_thread>
+    </BOUCLE_forums>
+	</div><!-- fin forum-article -->
