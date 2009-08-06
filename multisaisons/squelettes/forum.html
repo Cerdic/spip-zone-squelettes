@@ -26,14 +26,14 @@ caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? caretPos.text +
 text + ' ' : caretPos.text + text; txtarea.focus(); } else {
 txtarea.value += text; txtarea.focus(); } } 
 --> </script>
-<BOUCLE_article(ARTICLES){id_article}>
-[(#INCLURE{fond=header-css}{date=#ENV{date}}{id_article}{id_rubrique})] 	
+<BOUCLE_article_head(ARTICLES){id_article}>
+<INCLURE{fond=header-css}{date=#ENV{date}}{id_article}{id_rubrique}>	
 
 </head>
 <body dir="#LANG_DIR"> 
 
 <div id="container">   [(#REM)   centrage page   ]
-[(#INCLURE{fond=entete}{date=#ENV{date}}{id_article}{id_rubrique})]  
+<INCLURE{fond=entete}{date=#ENV{date}}{id_article}{id_rubrique}>  
 <div id="surcontent">  
 
 <INCLURE{fond=menuhoriz}{id_rubrique}>[(#REM)   ouverture ent&ecirc;te   ]
@@ -49,13 +49,13 @@ txtarea.value += text; txtarea.focus(); } }
 
 <p>
 [(#REM)   quel article   ]
-<span class="logogauche"><a href="#URL_ARTICLE">[(#INCLURE{fond=logo}{id_article,#ID_ARTICLE}{taille=48}{date=#ENV{date}})]</a></span>
+<span class="logogauche"><a href="#URL_ARTICLE">[(#INCLURE{fond=logo}{id_article}{taille=48}{date=#ENV{date}})]</a></span>
 [<a href="(#URL_PAGE{sommaire})"><:accueil_site:></a> >]
 
 <BOUCLE_rub3(HIERARCHIE){id_article}>[<a href="#URL_RUBRIQUE">(#TITRE)</a> >]
 </BOUCLE_rub3>
 [<a href="#URL_ARTICLE">(#TITRE)</a> >]
-</BOUCLE_article>
+</BOUCLE_article_head>
 
 [(#REM)   quel forum   ]
 <BOUCLE_forum_parent(FORUMS){id_forum}>
