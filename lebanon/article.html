@@ -1,0 +1,112 @@
+#CACHE{86400}
+<BOUCLE_article_principal(ARTICLES) {id_article}><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#TITRE|supprimer_numero|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION|couper{150}|attribut_html)" />]
+<INCLURE{fond=inc-head}{lang=#ENV{lang}}>
+<link rel="stylesheet" href="#CHEMIN{lightbox/lightbox.css}" type="text/css" />
+<script type="text/javascript" src="#CHEMIN{lightbox/prototype.js}"></script>
+<script type="text/javascript" src="#CHEMIN{lightbox/scriptaculous.js}?load=effects"></script>
+<script type="text/javascript" src="#CHEMIN{lightbox/lightbox.js}"></script>
+</head>
+
+<body class="page_article">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}{lang=#ENV{lang}}>
+
+	[(#REM) Contenu principal : contenu de l'article ]
+	<div id="contenu" dir="#LANG_DIR" lang="#LANG" xml:lang="#LANG" style="text-align: #LANG_LEFT;">
+
+		<div class="cartouche">
+			#DEBUT_SURLIGNE
+			[(#LOGO_ARTICLE||image_reduire{200,200})]
+			[<p class="surtitre">(#SURTITRE)</p>]
+			<h1 class="titre">#TITRE</h1>
+			[<p class="soustitre">(#SOUSTITRE)</p>]
+			#FIN_SURLIGNE
+
+			<p><small>[(#DATE|nom_jour) ][(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</small></p>
+
+			[(#REM) Traductions de l'article ]
+			<B_traductions>
+			<div class="traductions">
+			<p><:trad_article_traduction:></p>
+			<ul>
+				<BOUCLE_traductions(ARTICLES) {traduction} {par lang}>
+				<li dir="#LANG_DIR" lang="#LANG" xml:lang="#LANG"[ class="(#EXPOSE)"]>
+					[(#EXPOSE{
+					<span>,
+					<a href="#URL_ARTICLE" rel="alternate" hreflang="#LANG"[ title="(#TITRE|texte_backend)"]>}
+					)][(#LANG|traduire_nom_langue)]#EXPOSE{</span>,</a>}
+				</li>
+				</BOUCLE_traductions>
+			</ul>
+			</div>
+			</B_traductions>
+		</div>
+
+
+		#DEBUT_SURLIGNE
+		[<div class="chapo">(#CHAPO)</div>]
+		<br class="nettoyeur" />
+		[<div class="texte">(#TEXTE|image_reduire{520,0})</div>]
+		#FIN_SURLIGNE
+
+		[(#REM) Portfolio : album d'images ]
+		<B_documents_portfolio>
+		<div id="documents_portfolio">
+			<h2><:info_portfolio:></h2>
+			<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document}{extension==(png|jpg|gif)$} {par date} {doublons}>
+			<a rel="lightbox[portfolio#ID_ARTICLE]"[ href="(#FICHIER||image_reduire{800,500}|extraire_attribut{src})"] type="#MIME_TYPE"[ title="(#TITRE|supprimer_numero|texte_backend)"]>[(#LOGO_DOCUMENT||image_reduire{0,80}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})]</a>
+			</BOUCLE_documents_portfolio>
+		</div>
+		</B_documents_portfolio>
+		<BOUCLE_afficher_document(DOCUMENTS) {id_document} {mode=document}{extension==(png|jpg|gif)$}>
+		<div class="spip_documents" id="document_actif">
+			[(#FICHIER|image_reduire{530,0})]
+			<p class="spip_doc_descriptif">[(#DATE|affdate)][ - <strong>(#TITRE)</strong>][ - (#DESCRIPTIF|PtoBR)]</p>
+		</div>
+		</BOUCLE_afficher_document>
+		[(#PARAMETRES_FORUM|?{<h2 class="forum-repondre"><a href="#URL_ARTICLE#formulaire_forum"><:form_pet_message_commentaire:></a></h2>,''})]
+		</B_afficher_document>
+
+		<div class="ps">
+		[<h2><:info_ps:></h2>#DEBUT_SURLIGNE(#PS)#FIN_SURLIGNE]
+		[<p><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+		</div><!-- fin ps -->
+
+		[(#REM) Autres documents joints a l'article ]
+		<B_documents_joints>
+		<div id="documents_joints">
+			<h2><:titre_documents_joints:></h2>
+			<ul>
+				<BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {par date} {doublons}>
+				<li><span class="spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>">[(#TITRE|sinon{<:info_document:>})]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></span>
+				[<p class="spip_doc_descriptif">(#DESCRIPTIF|PtoBR)</p>]</li>
+				</BOUCLE_documents_joints>
+			</ul>
+		</div>
+		</B_documents_joints>
+
+		[<div class="notes"><h2><:info_notes:></h2>#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
+
+		[(#REM) Forum de l'article ]
+		<a href="#forum" name="forum" id="forum"></a>
+		<INCLURE{fond=inc-forum}{id_article}>
+		[(#PARAMETRES_FORUM|?{<h2 class="forum-repondre invisible"><:repondre_article:>&nbsp;:</h2>,''})]
+		#FORMULAIRE_FORUM
+
+		<//B_afficher_document>
+
+	</div><!-- fin contenu -->
+
+	<INCLURE{fond=inc-navigation}{lang=#ENV{lang}|sinon{#LANG}}{id_rubrique}{id_article}>
+	<INCLURE{fond=inc-pied}{lang=#ENV{lang}}>
+
+</div><!-- fin page -->
+</body>
+</html>
+</BOUCLE_article_principal>

@@ -1,0 +1,45 @@
+#CACHE{0}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title><:resultats_recherche:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+<meta name="robots" content="none" />
+<INCLURE{fond=inc-head}{lang=#ENV{lang}}>
+</head>
+
+<body class="page_recherche">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}{lang=#ENV{lang}}>
+
+		[(#REM) Contenu principal : Resultats de la recherche ]
+		<div id="contenu">
+
+			[<div class="cartouche">
+				<h1 class="surtitre"><:resultats_recherche:></h1>
+				<p class="titre">&#171;&nbsp;(#RECHERCHE)&nbsp;&#187;</p>
+			</div>]
+
+				<B_articles>
+				<h2 class="pagination">[(#GRAND_TOTAL) <:info_articles_trouves:>][ : (#PAGINATION)]</h2>
+				<div class="texte">
+					<ul>
+						<BOUCLE_articles(ARTICLES) {recherche} {!par points} {pagination}>
+						<li><a href="#URL_ARTICLE">#TITRE</a></li>
+						</BOUCLE_articles>
+					</ul>
+				</div>
+				</B_articles>
+				<p class="reponse_formulaire"><:avis_aucun_resultat:></p>
+				<//B_articles>
+
+		</div><!-- fin contenu -->
+
+	<INCLURE{fond=inc-navigation}{lang=#ENV{lang}|sinon{#LANG}}>
+	<INCLURE{fond=inc-pied}{lang=#ENV{lang}}>
+
+</div><!-- fin page -->
+</body>
+</html>

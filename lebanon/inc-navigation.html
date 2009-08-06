@@ -1,0 +1,69 @@
+<div id="navigation">
+[(#REM) Derniers articles mis en ligne ]
+<B_articles>
+<div class="articles">
+	<h2><:derniers_articles:></h2>
+	<ul>
+		<BOUCLE_articles(ARTICLES) {!par date} {0,10}>
+		<li dir="#LANG_DIR" lang="#LANG" xml:lang="#LANG" style="text-align: #LANG_LEFT;">[(#EXPOSE{
+					<span[ class="(#EXPOSE)"]>,
+					<a href="[(#URL_ARTICLE|parametre_url{lang,#ENV{lang}})]"title="[(#TITRE|couper{60}|texte_backend) - ][(#DATE|affdate)]">}
+					)][(#TITRE|couper{80})]#EXPOSE{</span>,</a>}
+		</li>
+		</BOUCLE_articles>
+	</ul>
+	<BOUCLE_articles_suite(ARTICLES) {!par date} {10,1}>
+	<p class="plus"><small><img src="#CHEMIN{plus.gif}" alt="+" width="6" height="6" /> <a href="[(#URL_PAGE{sommaire}|parametre_url{lang,#ENV{lang}}|parametre_url{debut_articles,10})]"><:articles_precedents:></a></small></p>
+	</BOUCLE_articles_suite>
+</div>
+</B_articles>
+
+[(#REM) Menu de navigation par rubriques ]
+<INCLURE{fond=inc-rubriques}{id_rubrique ?}>
+
+[(#REM) Sur le Web : articles issus de la syndication ]
+<h2><:nouveautes_web:></h2>
+<B_syndic><div class="syndic"><ul>
+<BOUCLE_syndic(SYNDIC_ARTICLES) {age<180} {!par date} {0,5}>
+<li>[<small[ title="(#DATE|affdate)"]>(#DATE|affdate{'d|m'}) &ndash; </small>]<a href="#URL_ARTICLE" title="[(#TITRE|couper{60}|texte_backend) - ][(#NOM_SITE|texte_backend)]" class="spip_out">[(#TITRE|couper{80})]</a></li>
+</BOUCLE_syndic>
+</ul></div></B_syndic>
+
+[(#REM)
+	Badge Flickr : Photos tagged with lebanon
+	Vous pouvez supprimer ou remplacer ce badge en modifiant le code ci-dessous :
+]
+<h3 class="invisible">Flickr : Photos tagged with lebanon</h3>
+<style type="text/css">
+.zg_div { margin: 0 5px 5px 0; width: 117px; margin: 10px auto 0 auto; }
+.zg_div_inner { border: solid 1px #666666; background-color: #FFFFFF; color: #333333; text-align:center; font-family: verdana, arial, helvetica; font-size:11px; }
+.zg_div a, .zg_div a:hover, .zg_div a:visited { color: #0066CC; background: inherit !important; text-decoration: none !important; }
+</style>
+<script type="text/javascript">
+zg_insert_badge = function() {
+var zg_bg_color = 'FFFFFF';
+var zgi_url = 'http://www.flickr.com/apps/badge/badge_iframe.gne?zg_bg_color='+zg_bg_color+'&zg_tags=lebanon&zg_tag_mode=any';
+document.write('<iframe style="background-color:#'+zg_bg_color+'; border-color:#'+zg_bg_color+'; border:none;" width="113" height="151" frameborder="0" scrolling="no" src="'+zgi_url+'" title="Flickr Badge"><\/iframe>');
+if (document.getElementById) document.write('<div id="zg_whatlink"><a href="http://www.flickr.com/badge_new.gne"	style="color:#0066CC;" onclick="zg_toggleWhat(); return false;">what is this?<\/a><\/div>');
+}
+zg_toggleWhat = function() {
+document.getElementById('zg_whatdiv').style.display = (document.getElementById('zg_whatdiv').style.display != 'none') ? 'none' : 'block';
+document.getElementById('zg_whatlink').style.display = (document.getElementById('zg_whatdiv').style.display != 'none') ? 'none' : 'block';
+return false;
+}
+</script>
+<div class="zg_div"><div class="zg_div_inner"><a href="http://www.flickr.com">www.<strong style="color: #3993ff;">flick<span style="color: #ff1c92;">r</span></strong>.com</a><br />
+<script type="text/javascript">zg_insert_badge();</script>
+<div id="zg_whatdiv">This is a Flickr badge showing public photos from Flickr tagged with <a href="http://www.flickr.com/photos/tags/lebanon">lebanon</a>. Make your own badge <a href="http://www.flickr.com/badge_new.gne">here</a>.</div>
+<script type="text/javascript">if (document.getElementById) document.getElementById('zg_whatdiv').style.display = 'none';</script>
+</div></div><!-- End of Flickr Badge -->
+
+[(#REM) Autres sites web ]
+<B_sites><div class="syndic">
+<h2 class="menu-titre"><:sites_web:></h2><ul>
+<BOUCLE_sites(SITES) {par num nom_site, nom_site}>
+<li><a href="#URL_SITE" class="spip_out">[(#NOM_SITE|supprimer_numero)]</a></li>
+</BOUCLE_sites>
+</ul></div></B_sites>
+
+</div><!-- fin navigation -->

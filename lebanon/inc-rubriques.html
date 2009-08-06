@@ -1,0 +1,24 @@
+<BOUCLE_rubriques_combien(RUBRIQUES){3,1}>
+<B_rubriques>
+<div class="rubriques">
+	<h2><:rubriques:></h2>
+	<ul>
+	<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
+		<li dir="#LANG_DIR" lang="#LANG" xml:lang="#LANG" style="text-align: #LANG_LEFT;"[ class="(#EXPOSE)"]>
+			<h3><a href="#URL_RUBRIQUE"[ (#ENV{id_rubrique}|=={#ID_RUBRIQUE}|?{class="on",''})]>[(#TITRE|supprimer_numero|couper{80})]</a></h3>
+			<B_sous_rubriques>
+			<ul>
+				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
+				<li dir="#LANG_DIR" lang="#LANG" xml:lang="#LANG" style="text-align: #LANG_LEFT;"[ class="(#EXPOSE)"]>
+					<a href="#URL_RUBRIQUE"[ (#ENV{id_rubrique}|=={#ID_RUBRIQUE}|?{class="on",''})] style="padding-#LANG_LEFT: 0.5em;">[(#TITRE|supprimer_numero|couper{80})]</a>
+					<BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>
+				</li>
+				</BOUCLE_sous_rubriques>
+			</ul>
+			</B_sous_rubriques>
+		</li>
+	</BOUCLE_rubriques>
+	</ul>
+</div>
+</B_rubriques>
+</BOUCLE_rubriques_combien>

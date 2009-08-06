@@ -1,0 +1,47 @@
+<div class="formulaire_spip formulaire_forum" style="background: transparent url(#CHEMIN{cedre_liban.gif}) #LANG_RIGHT bottom no-repeat; padding-#LANG_LEFT: 0; padding-#LANG_RIGHT: 175px; min-height: 227px;">
+
+<a id="formulaire_forum" name="formulaire_forum"></a>
+
+<form action="#ENV{url}#formulaire_forum" method="post">
+[(#ENV{url_post}|form_hidden)]
+[<input type="hidden" name="alea" value="(#ENV{alea})" />]
+[<input type="hidden" name="hash" value="(#ENV{hash})" />]
+[<input type="hidden" name="verif_(#ENV{hash})" value="ok" />]
+[<input type="hidden" name="afficher_texte" value="(#ENV{afficher_texte})" />]
+[<input type="hidden" name="retour_forum" value="(#ENV*{retour_forum}|rawurlencode)" />]
+
+[(#ENV*{previsu})]
+
+[(#ENV**{afficher_texte}|choixsiegal{'non', ' ',''})
+[<input type="hidden" name="titre" value="(#ENV{titre})" />]
+<div class="spip_bouton"><input type="submit" value="<:forum_valider:>" /></div>]
+
+[(#ENV**{afficher_texte}|choixsiegal{'non', '',' '})
+
+	<fieldset>
+	<legend><:form_pet_message_commentaire:></legend>
+	<p class="invisible"><label for="titre"><:forum_titre:></label>
+	<input type="text" class="forml" name="titre" id="titre"[ value="(#ENV{titre})"] size="40" /></p>
+
+	<label><:forum_texte:></label><br />
+	<small><:info_creation_paragraphe:></small>
+	[(#ENV**{texte}|barre_textarea{12,40})]
+	
+	<p><label for="auteur"><:forum_votre_nom:></label>
+	<input type="text" class="forml" name="auteur" id="auteur" value="#ENV{auteur}" size="40"[ readonly="(#ENV{readonly})"] /></p>
+	<p><label for="email_auteur"><:forum_votre_email:></label>
+	<input type="text" class="forml" name="email_auteur" id="email_auteur" value="#ENV{email_auteur}" size="40"[ readonly="(#ENV{readonly})"] /></p>
+	<p><label for="url_site"><:form_pet_votre_site:>&nbsp;:</label>
+	<input type="text" class="forml" name="url_site" id="url_site" style="text-align: left;" dir="ltr" size="40" value="#ENV{url_site}" /></p>
+	</fieldset>
+
+	[(#REM) Piege a robots spammeurs ]
+	<p style="display: none;"><label for="nobot"><:antispam_champ_vide:></label>
+	<input type="text" name="nobot" value="#ENV{nobot}" size="10" /></p>
+
+	<div class="spip_bouton"><input type="submit" value="<:forum_voir_avant:>" /></div>
+]
+
+</form>
+
+</div>

@@ -1,0 +1,49 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title><:icone_suivi_activite:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+<meta name="robots" content="none" />
+<INCLURE{fond=inc-head}{lang=#ENV{lang}}>
+</head>
+
+<body class="page_suivre">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}{lang=#ENV{lang}}>
+
+	<div id="contenu">
+
+		<div class="cartouche">
+			<h1 class="titre"><:icone_suivi_activite:></h1>
+			<p class="chapo"><:ical_info1:></p>
+		</div>
+
+		<div class="texte">
+			
+			<h3 class="spip"><img src="#CHEMIN{feed.png}" alt="-" width="16" height="16" class="format_png" /> <:ical_titre_rss:>&nbsp;RSS&nbsp;2.0</h3>
+			<p><:ical_texte_rss:></p>
+			<p><:ical_texte_rss_articles:></p>
+			<textarea class="spip_cadre" dir="ltr">#URL_PAGE{backend}</textarea>
+			
+			<h3 class="spip"><img src="#CHEMIN{javascript.gif}" alt="-" width="15" height="15" class="format_png" /> <:ical_titre_js:></h3>
+			<p><:ical_texte_js:></p>
+			<textarea class="spip_cadre" dir="ltr"><script type="text/javascript" src="#URL_PAGE{distrib}"></script></textarea>
+			
+			<h3 class="spip"><img src="#CHEMIN{ical.png}" alt="-" width="20" height="20" class="format_png" /> <:icone_calendrier:>&nbsp;iCal</h3>
+			<p><:calendrier_synchro:></p>
+			<p><:ical_texte_public:></p>
+			<textarea class="spip_cadre" dir="ltr">[(#URL_PAGE{ical}|replace{^http,webcal})]</textarea>
+		
+		</div>
+
+	</div><!-- fin contenu -->
+
+	<INCLURE{fond=inc-navigation}{lang=#ENV{lang}|sinon{#LANG}}>
+	<INCLURE{fond=inc-pied}{lang=#ENV{lang}}>
+
+</div><!-- fin page -->
+#SPIP_CRON
+</body>
+</html>

@@ -1,0 +1,32 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
+<INCLURE{fond=inc-head}{lang=#ENV{lang}}>
+</head>
+
+<body class="page_sommaire">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}{lang=#ENV{lang}}>
+
+	[(#REM) Contenu principal : derniers articles publies ]
+	<div id="contenu">
+
+		<h1 class="invisible">#NOM_SITE_SPIP</h1>
+
+		[(#REM) Les derniers articles ]
+		<INCLURE{fond=inc-liste}{lang=#ENV{lang}}{self=#SELF}>
+
+	</div><!-- fin contenu -->
+
+	<INCLURE{fond=inc-navigation}{lang=#ENV{lang}|sinon{#LANG}}>
+	<INCLURE{fond=inc-pied}{lang=#ENV{lang}}>
+
+</div><!-- fin page -->
+#SPIP_CRON
+</body>
+</html>

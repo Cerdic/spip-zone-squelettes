@@ -1,0 +1,39 @@
+<B_articles>
+<div class="liste-articles">
+	[<h2 class="pagination" dir="#LANG_DIR" lang="#LANG" xml:lang="#LANG" style="text-align: #LANG_LEFT;">#GRAND_TOTAL&nbsp;<:articles:>&nbsp;: (#PAGINATION)</h2><br />]
+	<ul>
+		<BOUCLE_articles(ARTICLES) {id_rubrique ?} {!par date} {pagination 5}>
+		<li dir="#LANG_DIR" style="text-align: #LANG_LEFT;">
+			<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+
+			<small>[(#DATE|affdate)]<B_auteurs>, <:par_auteur:><BOUCLE_auteurs(AUTEURS){id_article}{", "}>#NOM</BOUCLE_auteurs>
+
+			<BOUCLE_decompte(FORUMS) {id_article}{plat}></BOUCLE_decompte>
+			[ &mdash; <a href="#URL_ARTICLE#forum">(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
+			[(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>})]</a>]<//B_decompte>
+
+			</small>
+
+			<div class="texte">
+
+				[(#REM) Si le champ texte contient quelque chose, on affiche l'introduction ]
+				[(#TEXTE|?{
+				[(#INTRODUCTION)&nbsp;<a href="#URL_ARTICLE"[ title="(#TITRE|couper{80}|texte_backend)"] class="suite"><img src="#CHEMIN{suite-#LANG_LEFT.gif}" alt="<:suite:>" width="7" height="7" />&nbsp;<:suite:></a>]
+				,''})]
+	
+				[(#REM) Si le champ texte est vide, on affiche les images ]
+				<BOUCLE_documents(DOCUMENTS){id_article} {mode=document} {extension==(png|jpg|gif)$} {par date} {doublons}>
+				[(#TEXTE|?{'',
+				[<a href="#URL_ARTICLE">(#LOGO_DOCUMENT||image_reduire{0,50}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
+				})]
+				</BOUCLE_documents>
+	
+				<br class="nettoyeur" />
+
+		  	</div>
+
+		</li>
+		</BOUCLE_articles>
+	</ul>
+</div>
+</B_articles>

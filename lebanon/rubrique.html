@@ -1,0 +1,42 @@
+#CACHE{7200}
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#TITRE|supprimer_numero|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION|couper{150}|attribut_html)" />]
+<INCLURE{fond=inc-head}{lang=#ENV{lang}}>
+</head>
+
+<body class="page_rubrique">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}{lang=#ENV{lang}}>
+
+		[(#REM) Contenu principal : contenu de la rubrique ]
+
+		<div id="contenu" dir="#LANG_DIR" lang="#LANG" xml:lang="#LANG" style="text-align: #LANG_LEFT;">
+			<div class="cartouche">
+				[(#LOGO_RUBRIQUE||image_reduire{200,200})]
+				<h1 class="titre">[(#TITRE|supprimer_numero)]</h1>
+			</div>
+			[<div class="chapo">(#DESCRIPTIF)</div>]
+			[<div class="texte">(#TEXTE)</div>]
+
+			<br class="nettoyeur" />
+
+			[(#REM) Articles de la rubrique ]
+			<INCLURE{fond=inc-liste}{lang=#ENV{lang}}{self=#SELF}{id_rubrique}>
+
+			[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+
+		</div><!-- fin contenu -->
+
+<INCLURE{fond=inc-navigation}{lang=#ENV{lang}|sinon{#LANG}}{id_rubrique}>
+	<INCLURE{fond=inc-pied}{lang=#ENV{lang}}>
+
+</div><!-- fin page -->
+</body>
+</html>
+</BOUCLE_rubrique_principal>
