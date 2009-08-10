@@ -30,6 +30,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'annuaire_mot' => 'Mot',
 'annuaire_partenaire' => 'Partenaire',
 'annuaire_plan' => 'Plan',
+'annuaire_propo_site' => 'Proposition de site',
 'annuaire_recherche' => 'Recherche',
 'annuaire_rubrique' => 'Rubrique',
 'annuaire_site' => 'Site',
@@ -47,6 +48,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'boite_mot' => 'page mot',
 'boite_plan' => 'Page plan',
 'boite_partenaire' => 'Page partenaire',
+'boite_proposer_site' => 'Proposer un site',
 'boite_recherche' => 'Page recherche',
 'boite_rubrique' => 'Page rubrique',
 'boite_site' => 'Page sites',
@@ -84,6 +86,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 				<p />C\'est la page ou l\'on affiche l\'actualiter des sites syndiqué',
 'descriptif_mot' => '<h4>R&eacute;glage de la page mot</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur la page mot.',
+'descriptif_partenaire' => '<h4>R&eacute;glage de la page partenaire</h4>
+				<br />R&eacute;gl&eacute; votre boucle et vos style sur la page partenaire.',
 'descriptif_plan' => '<h4>R&eacute;glage de la page plan</h4>
 				<br />R&eacute;gl&eacute; vos styles du plan.',
 'descriptif_recherche' => '<h4>R&eacute;glage de la page recherche</h4>
@@ -159,6 +163,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'pop' => 'la boucle "populaire"',
 'popu_site' => 'la popularit&eacute; du site est de ',
 'populaire' => 'Site populaire',
+'propo_site' => 'la page "proposer un site"',
 
 //Q
 
