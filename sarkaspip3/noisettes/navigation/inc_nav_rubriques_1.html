@@ -30,26 +30,36 @@ function setHover(){
 	<div id="menu_rubriques" class="noisette menu_rub1">
 		<ul class="menulist">
 <BOUCLE_smenuspipr(RUBRIQUES){racine}{id_rubrique!==#RACINE_SPECIALISEE}{par num titre}>
-			<li<BOUCLE_smenr(RUBRIQUES){id_parent}{0,1}> class="smenu"</BOUCLE_smenr>>
-				[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|!={2}|?{' '})[<a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero|couper{80})</a>]]
-				[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|?{' '})<INCLURE{fond=noisettes/navigation/inc_nav_rubrique_lien}{id_rubrique}>]
+			<BOUCLE_smenr(RUBRIQUES){id_parent}{0,1}><li class="smenu"></BOUCLE_smenr><li><//B_smenr>
+				[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|!={2}|oui)[<a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero|couper{80})</a>]]
+				[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|oui)
+					[(#INCLURE{fond=noisettes/navigation/inc_nav_rubrique_lien}{id_rubrique})]
+				]
 				#SET{ul_encours, non}
 				<B_smenuspip>
 					<ul>
 					#SET{ul_encours, oui}
 				<BOUCLE_smenuspip(RUBRIQUES){id_parent}{par num titre}>
-					<li<BOUCLE_smen(RUBRIQUES){id_parent}{0,1}> class="smenu"</BOUCLE_smen>>
-						[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|!={2}|?{' '})[<a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero|couper{80})</a>]]
-						[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|?{' '})<INCLURE{fond=noisettes/navigation/inc_nav_rubrique_lien}{id_rubrique}>]
-						[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|?{' '})<INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique}{ul_encours=non}>]
+					<BOUCLE_smen(RUBRIQUES){id_parent}{0,1}><li class="smenu"></BOUCLE_smen><li><//B_smen>
+						[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|!={2}|oui)[<a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero|couper{80})</a>]]
+						[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|oui)
+							[(#INCLURE{fond=noisettes/navigation/inc_nav_rubrique_lien}{id_rubrique})]
+						]
+						[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|oui)
+							[(#INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique}{ul_encours=non})]
+						]
 						<BOUCLE_ssmenu(boucle_smenuspip)></BOUCLE_ssmenu>
 					</li>
 				</BOUCLE_smenuspip>
-					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|?{' '})<INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique}{ul_encours=#GET{ul_encours}}>]
-					[(#GET{ul_encours}|=={oui}|?{' '})</ul>]
+					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|oui)
+						[(#INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique}{ul_encours=#GET{ul_encours}})]
+					]
+					[(#GET{ul_encours}|=={oui}|oui)</ul>]
 				</B_smenuspip>
-				[(#GET{ul_encours}|=={non}|?{' '})
-					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|?{' '})<INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique}{ul_encours=#GET{ul_encours}}>]
+				[(#GET{ul_encours}|=={non}|oui)
+					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|oui)
+						[(#INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique}{ul_encours=#GET{ul_encours}})]
+					]
 				]
 			</li>
 </BOUCLE_smenuspipr>
