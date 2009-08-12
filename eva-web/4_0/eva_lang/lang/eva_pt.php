@@ -18,7 +18,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'article_suivant' => 'Seguinte',
 	'article_suivant_dernier' => '&Uacute;ltimo',
 	'articles' => 'Artigos',
-	'aucun_evenement' => 'N&atil;o h&aacute; nenhum evento previsto para este m&ecirc;s na agenda',
+	'aucun_evenement' => 'N&amp;atilde;o h&aacute; nenhum evento previsto para este m&ecirc;s na agenda',
 	'aucun_resultat_pour' => 'Nenhum resultado para',
 
 	// B
@@ -33,7 +33,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// D
 	'de_cet_auteur' => 'deste autor',
 	'deconnecter' => 'Desligar-se',
-	'derniere_mise_a_jour' => '&Uacute;ltima actualiza&ccedil;&atil;o',
+	'derniere_mise_a_jour' => '&Uacute;ltima actualiza&amp;ccedil;&amp;atilde;o',
 	'dernieres_breves' => '&Uacute;ltimas breves',
 	'derniers_articles' => '&Uacute;ltimos artigos',
 	'derniers_commentaires' => '&Uacute;ltimos coment&aacute;rios',
@@ -43,17 +43,17 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'dix_meilleurs_articles' => 'Dez melhores artigos',
 	'dix_meilleurs_breves' => 'Dez melhores breves',
 	'dix_meilleurs_commentaires' => 'Dez melhores coment&aacute;rios',
-	'doc_redacteurs' => 'Documenta&ccedil;&atil;o em linha para os autores que usam EVA-Red',
+	'doc_redacteurs' => 'Documenta&amp;ccedil;&amp;atilde;o em linha para os autores que usam EVA-Red',
 	'document' => 'Documento',
 	'documents_joints' => 'Documentos juntos',
 
 	// E
 	'erreur_404' => 'Erro 404',
-	'evenement_aucun' => 'N&atil;o h&aacute; nenhum evento previsto para este m&ecirc;s na agenda',
+	'evenement_aucun' => 'N&amp;atilde;o h&aacute; nenhum evento previsto para este m&ecirc;s na agenda',
 	'evenements_a_venir' => 'Pr&oacute;ximos eventos',
 	'evenements_du' => 'Eventos do',
 	'evenements_passes' => 'Eventos passados',
-	'evenements_passes_aucun' => 'N&atil;o h&aacute; nenhum evento passado na agenda',
+	'evenements_passes_aucun' => 'N&amp;atilde;o h&aacute; nenhum evento passado na agenda',
 
 	// F
 	'fermer_fenetre' => 'Fechar a janela',
@@ -67,7 +67,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// I
 	'identifier' => 'Voc?™ j&aacute; est&aacute; autentificado',
 	'il_y_a' => 'H&aacute;',
-	'il_y_a1' => 'assinatura(s) para esta peti&ccedil;&atil;o',
+	'il_y_a1' => 'assinatura(s) para esta peti&amp;ccedil;&amp;atilde;o',
 	'il_y_a2' => 'H&aacute; na totalidade',
 	'il_y_a3' => 'artigo(s).<br /> Este bloco em cartaz',
 	'il_y_a4' => 'autor(es).<br /> Este bloco em cartaz',
@@ -82,7 +82,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'j6' => 's&aacute;b',
 	'j7' => 'dom',
 	'jo1' => 'Segunda-feira',
-	'jo2' => 'Ter&ccedil;a-feira',
+	'jo2' => 'Ter&amp;ccedil;a-feira',
 	'jo3' => 'Quarta-feira',
 	'jo4' => 'Quinta-feira',
 	'jo5' => 'Sexta-feira',
@@ -91,7 +91,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// L
 	'lancer_diaporama' => 'Abrir o diaporama',
-	'lien_externe' => 'Hiperliga&ccedil;&atil;o externa ao s&iacute;tio, abre em nova janela',
+	'lien_externe' => 'Hiperliga&amp;ccedil;&amp;atilde;o externa ao s&iacute;tio, abre em nova janela',
 	'lire_suite' => 'Ler mais',
 
 	// M
@@ -100,7 +100,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'm11' => 'novembro',
 	'm12' => 'dezembro',
 	'm2' => 'fevereiro',
-	'm3' => 'mar&ccedil;o',
+	'm3' => 'mar&amp;ccedil;o',
 	'm4' => 'abril',
 	'm5' => 'maio',
 	'm6' => 'junho',
@@ -108,10 +108,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'm8' => 'agosto',
 	'm9' => 'setembro',
 	'meme_rubrique' => 'Nesta rubrica',
-	'mentions' => 'Men&ccedil;&otil;es',
-	'mentions_legales' => 'Men&ccedil;&otil;es legais',
-	'mis_a_jour' => 'Actualiza&ccedil;&atil;o :',
+	'mentions' => 'Men&amp;ccedil;&amp;otilde;es',
+	'mentions_legales' => 'Men&amp;ccedil;&amp;otilde;es legais',
+	'mis_a_jour' => 'Actualiza&amp;ccedil;&amp;atilde;o :',
 	'mot_cle' => 'Palavras-chaves',
+	'multilinguisme' => 'Afixar a ementa de l&iacute;ngua EVA-web nas p&aacute;ginas p&uacute;blicas?',
+	'multilinguisme_article' => 'Este artigo:',
 
 	// N
 	'notes' => 'Notas',
@@ -129,7 +131,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// R
 	'rechercher' => 'Pesquisar',
-	'redaction' => 'Redac&ccedil;&atil;o',
+	'redaction' => 'Reda&amp;ccedil;&amp;atilde;o',
 	'replier' => 'Dobrar',
 	'resultats' => 'Resultados',
 
@@ -142,11 +144,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'statut_admin' => 'Estatuto: Administrador',
 	'statut_redac' => 'Estatuto: Autor',
 	'statut_visit' => 'Estatuto: Visitante',
-	'sur_le_web' => 'Liga&ccedil;&otil;es &uacute;teis',
+	'sur_le_web' => 'Liga&amp;ccedil;&amp;otilde;es &uacute;teis',
 	'sur_un_total_de' => 'sobre um total de',
 
 	// T
-	'texte_page_404' => '<em> Desculpe!</em><br />A p&aacute;gina que procura n&atil;o foi encontrada. ',
+	'texte_page_404' => '<em>Desculpe!</em><br />A p&aacute;gina que procura n&amp;atilde;o foi encontrada. ',
 	'tous_droits' => 'Todos os direitos reservados',
 	'tous_les_auteurs' => 'Todos os autores',
 
@@ -155,7 +157,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'visites' => 'Visitas',
 	'voir_en_ligne' => 'Ver em linha:',
 	'voir_image' => 'Ver a imagem ampliada',
-	'vous_etes_ici' => 'Voc?™ encontra-se aqui:',
+	'vous_etes_ici' => 'Voc&amp;ecirc; encontra-se aqui:',
 
 	// Z
 	'zone' => 'zona protegida'

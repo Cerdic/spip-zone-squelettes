@@ -112,6 +112,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mentions_legales' => 'Menciones legales',
 	'mis_a_jour' => 'Actualizaci&oacute;n :',
 	'mot_cle' => 'Palabra clave',
+	'multilinguisme' => '&iquest;Indicar la carta de lengua de EVA-red en las p&aacute;ginas p&uacute;blicas?',
+	'multilinguisme_article' => 'Este art&iacute;culo en:',
 
 	// N
 	'notes' => 'Apuntes',
