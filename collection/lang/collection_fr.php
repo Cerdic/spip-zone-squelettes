@@ -64,6 +64,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'cfg_alea9'                 =>'Neuf objets tir&eacute;s de mani&egrave;re al&eacute;atoire',
     'cfg_url_hebergeur'         =>'Adresse de l\'h&eacute;bergeur',
     'cfg_nom_hebergeur'         =>'Nom de l\'h&eacute;bergeur',
+    'cfg_nyceros_pagination'    =>'Proposer de prendre les images non affich&eacute;es dans Nyceros',
     'cfg_infos_site'            =>'Informations sur le site'
 );  
 

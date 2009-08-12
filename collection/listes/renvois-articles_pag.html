@@ -1,7 +1,14 @@
 <B_article>
 <div class="pagination">#PAGINATION</div>
-<BOUCLE_article(ARTICLES){id_article IN #ENV**{articles}}{pagination #CONFIG{collection/pagination}|mult{3}}>
+<BOUCLE_article(ARTICLES){id_article IN #ENV**{articles}}{pagination #CONFIG{collection/pagination}|mult{3}}{doublons}>
 <INCLURE{fond=objets/renvoi-article}{id_article}{retour=#COMPTEUR_BOUCLE|alterner{oui,non,non}}>
 </BOUCLE_article>
 <div class="pagination">#PAGINATION</div>
 </B_article>
+
+
+<BOUCLE_test_nyceros_pagination(CONDITION){si #CONFIG{collection/nyceros_pagination}|=={on}}>
+<BOUCLE_nyceros(ARTICLES){doublons}{id_article IN #ENV**{articles}}>
+<INCLURE{fond=objets/article_nyceros}{id_article}>
+</BOUCLE_nyceros>
+</BOUCLE_test_nyceros_pagination>
