@@ -1,0 +1,26 @@
+  <div class="cadre_gris">Les auteurs</div>
+   <B_auteur>
+ #ANCRE_PAGINATION
+	 <BOUCLE_auteur(AUTEURS){pagination 3}>
+	 <div class="auteur_mini">
+	<div class="nom_auteur"><a href="#URL_AUTEUR">#NOM</a></div>
+	
+	     [(#REM)si pas de logo auteur, un avatar par défaut]
+	
+		 [<div style="float: right; padding:0 10px 10px 10px;">(#LOGO_AUTEUR||reduire_image{50}|non)
+		 <img src="plugins/globenews/images/onebit_18.png" alt="image" title="#NOM" />		 
+		 		 </div>]
+		[<div style="float: right; padding:0 10px 10px 10px;">(#LOGO_AUTEUR||reduire_image{50})
+		 </div>]		 	 
+	  
+	   [(#REM)Si pas bio, inclure le dernier article de l'auteur jusqu'à 70 caractères]
+	    [(#BIO|couper{70})]
+	    [(#BIO|non)
+	   <INCLURE{fond=inc/inc-art-aut}{id_auteur}>	   
+	    ]	
+	   
+	    
+	    </div>
+	    	    </BOUCLE_auteur>
+	    	  [<div class="pagination">Pages:(#PAGINATION{page_precedent_suivant})</div>]	 
+	    	  	    	     </B_auteur>

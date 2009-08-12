@@ -1,0 +1,34 @@
+<!-- titre=col1-->
+<!-- autoriser=configurer -->
+<!-- depot=metapack -->
+<!-- nom=globenews-->
+<!-- casier=col1-->
+#CACHE{0}
+<div class="formulaire_spip formulaire_cfg formulaire_config_rubrique3">
+[<p class='formulaire_erreur'>(#ENV*{message_erreur})</p>]
+[<p class="formulaire_message">(#ENV*{message_ok})</p>]
+<form method="post" action="#SELF">
+	<div> #ACTION_FORMULAIRE{#SELF} 
+		<fieldset><div class="titre_rubrique"><label>Les articles de la colonne 1 dans la rubrique :
+		<BOUCLE_rub1(RUBRIQUES){id_rubrique IN #CONFIG{globenews/col1/col1}}>
+		#TITRE
+		</BOUCLE_rub1>
+		</label></div>
+<select name="col1">
+<option value="Choisissez">Choisissez</option>
+<BOUCLE_rub(RUBRIQUES){racine}{par titre}>
+  <option value="#ID_RUBRIQUE"[(#CONFIG{globenews/col1}|=={#ID_RUBRIQUE}|?{selected="selected",''})]>#TITRE</option>
+</BOUCLE_rub>
+</select>
+</fieldset>
+
+
+		[<span class='erreur'>(#ENV**{erreurs}|table_valeur{description})</span>]
+		
+		<input type="submit" name="_cfg_ok" value="<:cfg:OK:>" />
+		
+		</div>
+</form>
+</div>
+
+

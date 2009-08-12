@@ -1,0 +1,53 @@
+#CACHE{3600}
+<BOUCLE_principale(RUBRIQUES){id_rubrique}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<INCLURE{fond=inc/inc-head} />
+</head>
+<body>
+<div id="doc2" class="yui-t3">
+     <div class="descriptif">#DESCRIPTIF_SITE_SPIP | <a href="spip.php?page=sommaire">Accueil</a></div>
+  <div id="hd">
+<div class="titre">#NOM_SITE_SPIP</div>   
+   
+   </div>
+   <div id="bd">
+	<div class="logo_site">[(#LOGO_SITE||image_recadre{950,70,center})]</div>
+ <div class="ligne"></div>
+ 	<div id="yui-main">
+	<div class="yui-b"><div class="yui-g">
+	
+	<BOUCLE_article(ARTICLES){id_rubrique}{par date}{inverse}>	
+	<div class="titre_article"><a href="#URL_ARTICLE">#TITRE</a></div>
+	[(#TEXTE|couper{350})]
+				</BOUCLE_article>
+		
+	</div>
+</div>
+	</div>
+	<div class="yui-b">
+	 <div class="cadre_noir_mot">
+	  <a href="spip.php?page=backend&amp;id_rubrique=#ID_RUBRIQUE"><img src="plugins/globenews/images/feed.png" title="Abonnez-vous aux fils RSS de la rubrique #TITRE" alt="RSS"/></a>	                 #TITRE
+	 	 </div>
+	 
+       [<div class="logo_rubrique">(#LOGO_RUBRIQUE||image_reduire{297,400})</div>]
+	
+	<div class="mot_article">
+		<BOUCLE_art_rub(ARTICLES){id_rubrique}>
+	  <BOUCLE_mot_art(MOTS){id_article}>
+	  <a href="#URL_MOT">#TITRE</a>
+	  	  </BOUCLE_mot_art>
+		 	</BOUCLE_art_rub>
+	 </div>
+	
+	  </div>
+	
+	    </div>
+   <div id="ft">
+    <INCLURE{fond=inc/inc-footer}>
+   </div>
+</div>
+</body>
+</html>
+</BOUCLE_principale>

@@ -1,0 +1,184 @@
+#CACHE{3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<INCLURE{fond=inc/inc-head} />
+</head>
+<body>
+<div id="doc2" class="yui-t7">
+     <div class="descriptif">#DESCRIPTIF_SITE_SPIP
+	 </div>
+	 <div class="recherche">#FORMULAIRE_RECHERCHE</div>
+   <div id="hd">
+   <div class="titre">#NOM_SITE_SPIP</div>
+   </div>
+   <div id="bd">
+	<div class="yui-g">
+	<div class="logo_site">[(#LOGO_SITE||image_recadre{950,70,center})]</div>
+    <div class="yui-u first">
+    <div class="ligne"></div>
+    <div class="cadre_noir">Les derniers articles</div>
+	   
+     [(#REM) Ici les articles qui ne sont pas contenus dans les colonnes  1,2 et 3]
+     
+     <BOUCLE_dernier_article(ARTICLES){par date}{inverse}{0,1}{!id_rubrique IN #CONFIG{globenews/col1/col1},#CONFIG{globenews/col2/col2},#CONFIG{globenews/col3/col3}}{doublons}>
+     [ <div class="logo_article_une">(#LOGO_ARTICLE||image_recadre{461,150})</div>]
+       <div class="titre_une"><a href="#URL_ARTICLE">#TITRE</a></div>
+         [(#TEXTE|couper{400})]
+           <div class="date">[(#DATE|affdate)] par #LESAUTEURS - Dans <BOUCLE_rubrique_une(HIERARCHIE){id_article}><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_rubrique_une>
+           </div>
+                     <div class="comment">
+                     <img src="plugins/globenews/images/comment.gif" alt="image" />
+                                           <B_comment_une>
+                   #SET{n,#TOTAL_BOUCLE}
+               <small>[(#GET{n}|>{1}|?{#TOTAL_BOUCLE commentaires,#TOTAL_BOUCLE commentaire})]</small>
+                    <BOUCLE_comment_une(FORUMS){id_article}{plat}>
+                                           </BOUCLE_comment_une><a href="spip.php?page=forum&amp;id_article=#ID_ARTICLE">0</a><//B_comment_une>
+                             </div>
+                         </BOUCLE_dernier_article>
+      
+           <BOUCLE_autre_article(ARTICLES){par date}{inverse}{0,2}{!id_rubrique IN #CONFIG{globenews/col1/col1},#CONFIG{globenews/col2/col2},#CONFIG{globenews/col3/col3}}{doublons}>
+                 [<div class="logo_article">(#LOGO_ARTICLE||image_recadre{460,90})</div>]
+                 <div class="titre_article"><a href="#URL_ARTICLE">#TITRE</a></div>
+         [(#TEXTE|couper{400})]
+         
+     <div class="date">[(#DATE|affdate)] par #LESAUTEURS - Dans <BOUCLE_rubrique_article(HIERARCHIE){id_article}><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_rubrique_article></div>
+               <div class="comment">   
+			   <img src="plugins/globenews/images/comment.gif" alt="image" />
+										   <B_comment_art>
+                   #SET{n,#TOTAL_BOUCLE}
+              [(#GET{n}|>{1}|?{#TOTAL_BOUCLE commentaires,#TOTAL_BOUCLE commentaire})]
+                    <BOUCLE_comment_art(FORUMS){id_article}{plat}>
+                                           </BOUCLE_comment_art><a href="spip.php?page=forum&amp;id_article=#ID_ARTICLE"><small>0</small></a><//B_comment_art>
+           </div>
+		   </BOUCLE_autre_article>     
+	   
+	    </div>
+    <div class="yui-g">
+        <div class="yui-u first">
+        <div class="ligne"></div>
+		[(#REM) Colonne 2; titre à préciser dans les formulaires du plugin Globenews]
+         [<div class="cadre_noir">(#CONFIG{globenews/titre2/titre2}|sinon{Titre à définir})</div>]
+          <BOUCLE_derniere_breve(ARTICLES){id_rubrique=#CONFIG{globenews/col2/col2}}{par date}{inverse}{0,5}{doublons}>
+                      <div class="titre_article"><a href="#URL_ARTICLE">#TITRE</a></div>
+          [(#TEXTE|couper{150})]
+           <div class="date">[(#DATE|affdate)] par #LESAUTEURS</div>
+            <div class="comment">
+                     <img src="plugins/globenews/images/comment.gif" alt="image" />
+                                           <B_comment_breve>
+                   #SET{n,#TOTAL_BOUCLE}
+               [(#GET{n}|>{1}|?{#TOTAL_BOUCLE commentaires,#TOTAL_BOUCLE commentaire})]
+                    <BOUCLE_comment_breve(FORUMS){id_article}{plat}>
+                                           </BOUCLE_comment_breve><a href="spip.php?page=forum&amp;id_article=#ID_ARTICLE">0</a><//B_comment_breve>
+                             </div>               
+                        </BOUCLE_derniere_breve>
+
+		    </div>
+        <div class="yui-u">
+
+	 <div class="ligne"></div>
+		[(#REM) Colonne 3; titre à préciser dans les formulaires du plugin Globenews]
+     [<div class="cadre_noir">(#CONFIG{globenews/titre3/titre3}|sinon{Titre à définir})</div>]
+         	 <BOUCLE_chronique(ARTICLES){id_rubrique=#CONFIG{globenews/col3/col3}}{par date}{inverse}{0,3}{doublons}>
+         	 [<div class="logo_chronique">(#LOGO_ARTICLE||image_recadre{221,100,center})</div>]
+         	          <div class="titre_article"><a href="#URL_ARTICLE">#TITRE</a></div>
+          [(#TEXTE|couper{200})]
+      <div class="date">[(#DATE|affdate)] par #LESAUTEURS</div>
+      
+       <div class="comment">
+                     <img src="plugins/globenews/images/comment.gif" alt="image" />
+                                           <B_comment_chronique>
+                   #SET{n,#TOTAL_BOUCLE}
+               [(#GET{n}|>{1}|?{#TOTAL_BOUCLE commentaires,#TOTAL_BOUCLE commentaire})]
+                    <BOUCLE_comment_chronique(FORUMS){id_article}{plat}>
+                    </BOUCLE_comment_chronique><a href="spip.php?page=forum&amp;id_article=#ID_ARTICLE">0</a><//B_comment_chronique>
+                             </div>
+                      </BOUCLE_chronique>
+		            </div>
+                     </div>
+                       </div>
+<div class="yui-g">
+    <div class="yui-g first">
+        <div class="yui-u first">
+	 <div class="cadre_gris">On en parle</div>
+	 <INCLURE{fond=inc/inc-reaction}{env}{ajax} />
+	        </div>
+        <div class="yui-u">
+	 <div class="cadre_gris">Web Press</div>
+	 <INCLURE{fond=inc/inc-syndic}{env}{ajax} />
+		    </div>
+    </div>
+    <div class="yui-g">
+        <div class="yui-u first">
+		<INCLURE{fond=inc/inc-lesauteurs}{env}{ajax}>
+		        </div>
+        <div class="yui-u">
+	 <div class="cadre_gris">Rubriques</div>
+	  <INCLURE{fond=inc/inc-rubriques}{env}{ajax}>
+	        </div>
+             </div>
+              </div>
+    <div class="yui-gb">
+        <div class="yui-u first">
+		[(#REM) Colonne 1; titre à préciser dans les formulaires du plugin Globenews]
+	 [<div class="cadre_gris_bis">(#CONFIG{globenews/titre1/titre1}sinon{Titre à définir})</div>]
+	 <BOUCLE_dossier_dernier(ARTICLES){id_rubrique=#CONFIG{globenews/col1/col1}}{par date}{inverse}{0,1}{doublons}>
+         	  [<div class="logo_article_dossier">(#LOGO_ARTICLE||image_recadre{294,100,center})</div>]
+         	          <div class="titre_dossier"><a href="#URL_ARTICLE">#TITRE</a></div>
+                       <div class="texte_dossier"> [(#TEXTE|couper{300})]</div>
+                        <div class="date_dossier">[(#DATE|affdate)] par #LESAUTEURS</div>
+                          <div class="comment_dossier">
+                     <img src="plugins/globenews/images/comment.gif" alt="image" />
+               <B_comment_dossier_dernier>
+                   #SET{n,#TOTAL_BOUCLE}
+               [(#GET{n}|>{1}|?{#TOTAL_BOUCLE commentaires,#TOTAL_BOUCLE commentaire})]
+                    <BOUCLE_comment_dossier_dernier(FORUMS){id_article}{plat}>
+                    </BOUCLE_comment_dossier_dernier><a href="spip.php?page=forum&amp;id_article=#ID_ARTICLE">0</a><//B_comment_dossier_dernier>
+                             </div>
+					  </BOUCLE_dossier_dernier>        		   
+		   
+	 <BOUCLE_dossier_autre(ARTICLES){id_rubrique=#CONFIG{globenews/col1/col1}}{par date}{inverse}{0,3}{doublons}>
+         	          <div class="titre_une"><a href="#URL_ARTICLE">#PUCE#TITRE</a></div>
+                      </BOUCLE_dossier_autre>        		   
+		   
+		    </div>
+        <div class="yui-u">
+	 <div class="cadre_gris_images">#NOM_SITE_SPIP en images</div>
+	<div class="diaporama">
+<BOUCLE_documents_portfolio(DOCUMENTS){mode IN image,document}{extension IN png,jpg,gif}{0,24}{par hasard}{par num titre, date}{doublons}>[
+	<a href="(#URL_DOCUMENT)" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE
+		|parametre_url{id_document,#ID_DOCUMENT}
+		)]#documents_portfolio';return false;"[ class="(#EXPOSER)"][ title="(#TITRE|attribut_html|couper{80})"]>[(#FICHIER
+		|image_recadre{70,70,centrer}
+		|inserer_attribut{class,spip_logos}
+		|inserer_attribut{alt,[(#TITRE|attribut_html|couper{80})]})]</a>
+	]</BOUCLE_documents_portfolio>      
+	</div>
+	 </div>
+        <div class="yui-u">
+	 <div class="cadre_gris">Tags</div>
+	 [(#MODELE{nuage2}{id_groupe=1})]
+		    </div>
+		     </div>
+	          </div>
+   <div id="ft">
+  <INCLURE{fond=inc/inc-footer} />   
+   </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+

@@ -1,0 +1,88 @@
+#CACHE{3600}
+<BOUCLE_principale(ARTICLES){id_article}{doublons}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<INCLURE{fond=inc/inc-head} />
+</head>
+<body>
+<div id="doc2" class="yui-t5">
+     <div class="descriptif">#DESCRIPTIF_SITE_SPIP | <a href="spip.php?page=sommaire">Accueil</a>
+</div>
+<div class="recherche">#FORMULAIRE_RECHERCHE</div>	 
+  <div id="hd">
+<div class="titre">#NOM_SITE_SPIP</div>   
+   
+   </div>
+   <div id="bd">
+	<div class="logo_site">[(#LOGO_SITE||image_recadre{950,70,center})]</div>
+ <div class="ligne"></div>
+ 	<div id="yui-main">
+	<div class="yui-b">
+	<div class="yui-g">
+	[<div class="cadre_soustitre">(#SOUSTITRE)</div>]
+	 [<div class="#EDIT{texte} texte">(#TEXTE||reduire_image{450})</div>]
+	
+	 
+	 [(#REM) Forum de l'article ]
+		<a href="#forum" name="forum" id="forum"></a>
+		<INCLURE{fond=inc/inc-forum}{id_article} />
+		[<p class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow">Faire un commentaire</a></p>] 	
+	
+	
+	</div>
+</div>
+	</div>
+	<div class="yui-b">
+	 <div class="cadre_noir">#TITRE</div>
+	[<div class="logo_article_article">(#LOGO_ARTICLE||image_reduire{236,800})</div>]
+	
+	<div class="auteur">
+	Par #LESAUTEURS
+	</div>
+	<div class="date_article">Publié le: [(#DATE|affdate)]</div>
+	
+	<div class="rubrique_article">#PUCE Dans la rubrique: <BOUCLE_rubrique_article(HIERARCHIE){id_article}><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_rubrique_article>
+	
+ <div id="socialtags"></div></div> 
+ 	
+		<div class="mot_article">
+	<BOUCLE_mot(MOTS){id_article}>
+	<a href="#URL_MOT">#TITRE</a>
+	</BOUCLE_mot>
+	</div>
+	
+	
+	<div class="diaporama">
+<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode IN document,image}{extension IN png,jpg,gif} {par num titre, date}{doublons}{vu=non}>[
+	<a href="(#URL_DOCUMENT)" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE
+		|parametre_url{id_document,#ID_DOCUMENT}
+		)]#documents_portfolio';return false;"[ class="(#EXPOSER)"][ title="(#TITRE|attribut_html|couper{80})"]>[(#FICHIER
+		|image_recadre{80,80,centrer}
+		|inserer_attribut{class,spip_logos}
+		|inserer_attribut{alt,[(#TITRE|attribut_html|couper{80})]})]</a>
+	]</BOUCLE_documents_portfolio>      
+	</div>
+	
+ 
+ <BOUCLE_meme_auteur(AUTEURS){id_article}>
+   <B_art_meme_auteur>
+   <div class="titre_meme_auteur">
+	Du même auteur
+	</div>   
+   
+   <BOUCLE_art_meme_auteur(ARTICLES){id_auteur}{par date}{inverse}{doublons}>
+    <div class="titre_art_meme_auteur"><a href="#URL_ARTICLE">- #TITRE</a></div>
+     </BOUCLE_art_meme_auteur>
+       </BOUCLE_meme_auteur>	
+
+	</div>
+	
+	</div>
+   <div id="ft">
+    <INCLURE{fond=inc/inc-footer}>
+   </div>
+</div>
+</body>
+</html>
+</BOUCLE_principale>

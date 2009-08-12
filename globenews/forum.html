@@ -1,0 +1,41 @@
+#CACHE{3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<INCLURE{fond=inc/inc-head} />
+</head>
+
+<body>
+<div id="doc2" class="yui-t7">
+     <div class="descriptif">#DESCRIPTIF_SITE_SPIP | <a href="spip.php?page=sommaire">Accueil</a></div>
+	 <div class="recherche">#FORMULAIRE_RECHERCHE</div>
+   <div id="hd">
+   <div class="titre">#NOM_SITE_SPIP</div>
+   </div>
+   <div id="bd">
+	<div class="logo_site">[(#LOGO_SITE||image_recadre{950,70,center})]</div>
+	<div class="yui-g">
+
+              <div class="cadre_gris">Vous commentez</div>
+          
+            <BOUCLE_forum_parent(FORUMS) {id_forum}>
+          <div class="titre_une"><a href="#URL_FORUM">#TITRE</a></div>
+            <small>[(#DATE|affdate_jourcourt)][&nbsp;(#DATE|heures)][:(#DATE|minutes)][, <:par_auteur:> (#NOM)]</small>
+            [<div class="introduction">(#INTRODUCTION|lignes_longues)</div>]
+            </BOUCLE_forum_parent>
+            </div>
+            <BOUCLE_article(ARTICLES) {id_article}>
+        <div class="titre_une"><a href="#URL_ARTICLE">#TITRE</a></div>
+            <div class="date">[(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</div>
+            [<div class="introduction">(#INTRODUCTION)</div>]
+            </BOUCLE_article>			
+            <//B_forum_parent>
+        #FORMULAIRE_FORUM
+	</div>
+	</div>
+	
+   <div id="ft">
+    <INCLURE{fond=inc/inc-footer}>
+      </div>
+</body>
+</html>

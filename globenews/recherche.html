@@ -1,0 +1,99 @@
+#CACHE{3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<INCLURE{fond=inc/inc-head} />
+</head>
+<body>
+<div id="doc2" class="yui-t5">
+     <div class="descriptif">#DESCRIPTIF_SITE_SPIP | <a href="spip.php?page=sommaire">Accueil</a></div>
+	 <div class="recherche">#FORMULAIRE_RECHERCHE</div>
+  <div id="hd">
+<div class="titre">#NOM_SITE_SPIP</div>   
+   
+   </div>
+   <div id="bd">
+	<div class="logo_site">[(#LOGO_SITE||image_recadre{950,70,center})]</div>
+	<div class="yui-g">
+	
+	<h2>Les résultats pour #RECHERCHE</h2>
+			
+		[(#REM) Articles trouves ]
+		<B_articles>
+		
+					#ANCRE_PAGINATION
+			<div class="cadre_noir"><:articles:> (#GRAND_TOTAL)</div>
+			
+				<BOUCLE_articles(ARTICLES) {recherche} {par points}{inverse} {pagination 5}>
+				<div class="titre_article_recherche"><a href="#URL_ARTICLE">#TITRE</a></div>				
+				</BOUCLE_articles>
+						[<p class="pagination">(#PAGINATION)</p>]
+	          			</B_articles>
+		
+		[(#REM) Rubriques trouvees ]
+		<B_rubriques>
+					#ANCRE_PAGINATION
+			<div class="cadre_noir"><:rubriques:> (#GRAND_TOTAL)</div>
+							<BOUCLE_rubriques(RUBRIQUES) {recherche} {par points}{inverse} {pagination 5}>
+				<div class="titre_article_recherche"><a href="#URL_RUBRIQUE">#TITRE</a></div>
+				</BOUCLE_rubriques>
+					[<p class="pagination">(#PAGINATION)</p>]
+		
+		</B_rubriques>
+		
+		[(#REM) Mots-cles trouves ]
+		<B_mots>
+		
+			#ANCRE_PAGINATION
+			<div class="cadre_noir"><:mots_clefs:> (#GRAND_TOTAL)</div>
+							<BOUCLE_mots(MOTS) {recherche} {par points}{inverse} {pagination 5}>
+				<div class="titre_article_recherche"><a href="#URL_MOT">#TITRE</a></div>
+				</BOUCLE_mots>
+						[<p class="pagination">(#PAGINATION)</p>]
+				</B_mots>
+		
+		[(#REM) Breves trouvees]
+		<B_breves>
+				#ANCRE_PAGINATION
+			<div class="cadre_noir"><:breves:> (#GRAND_TOTAL)</div>
+			<BOUCLE_breves(BREVES) {recherche} {par points}{inverse} {pagination 5}>
+				<div class="titre_article_recherche"><a href="#URL_BREVE">#TITRE</a></div>
+				</BOUCLE_breves>
+		
+			[<p class="pagination">(#PAGINATION)</p>]
+		
+		</B_breves> 
+		
+				
+		[(#REM) Messages trouves ]
+		<B_messages>
+		
+			#ANCRE_PAGINATION
+			<div class="cadre_noir"><:messages_forum:> (#GRAND_TOTAL)</div>
+			<BOUCLE_messages(FORUMS) {recherche} {par points}{inverse} {pagination 5}>
+				<div class="titre_article_recherche"><a href="#URL_FORUM"[ title="(#TITRE|attribut_html|couper{80})"]>[(#TEXTE|couper{80})]</a></div>
+				</BOUCLE_messages>
+			
+			[<p class="pagination">(#PAGINATION)</p>]
+		
+		</B_messages>
+		
+		[(#REM) Sites web trouves ]
+		<B_sites>
+		<div class="menu">
+			#ANCRE_PAGINATION
+			<div class="cadre_noir"><:sites_web:> (#GRAND_TOTAL)</div>
+							<BOUCLE_sites(SITES) {recherche} {par points}{inverse} {pagination 5}>
+				<div class="titre_article_recherche"><a href="#URL_SITE">#NOM_SITE</a></div>
+				</BOUCLE_sites>
+						[<p class="pagination">(#PAGINATION)</p>]
+				</B_sites>
+	</div>
+	</div>
+	</div>
+   <div id="ft">
+  <INCLURE{fond=inc/inc-footer}>
+   </div>
+</div>
+</body>
+</html>
