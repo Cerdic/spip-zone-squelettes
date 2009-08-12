@@ -5,161 +5,160 @@ include_spip('base/abstract_sql');
 // Fichier de langue du site, utilis‚àö¬© dans les squelettes
 
 $test_lang_personnalisation=array(
-// A <:form_pet_message_commentaire:>
-'accueil' => 'Home page',
-'acces_restreint' => 'Restricted access',
-'agenda' => 'Diary',
-'aide' => 'Help',
-'articles' => 'Articles',
-'article_complet' =>  'Complete articles',
-'aucun_resultat_pour' =>  'No results for',
-'article_precedent' =>  'Previous',
-'article_precedent_premier' => 'First article',
-'article_suivant' => 'Next',
-'article_suivant_dernier' => 'Lastest article',
-'aucun_evenement' => 'No comming event invisaged this month in the diary',
+// A
+	'acces_restreint' => 'Restricted access',
+	'accueil' => 'Home page',
+	'agenda' => 'Diary',
+	'aide' => 'Help',
+	'article_complet' => 'Complete articles',
+	'article_precedent' => 'Previous',
+	'article_precedent_premier' => 'First article',
+	'article_suivant' => 'Next',
+	'article_suivant_dernier' => 'Lastest article',
+	'articles' => 'Articles',
+	'aucun_evenement' => 'No comming event invisaged this month in the diary',
+	'aucun_resultat_pour' => 'No results for',
 
-// B
-'breves' => 'News',
-'breves_rubrique' => 'News for this section',
+	// B
+	'breves' => 'News',
+	'breves_rubrique' => 'News for this section',
 
-// C
-'contact' => 'Contact',
-'copyright_spip' => 'This site is managed by',
-'copyright_eva' => 'and use template',
+	// C
+	'contact' => 'Contact',
+	'copyright_eva' => 'and use template',
+	'copyright_spip' => 'This site is managed by',
 
-// D
-'doc_redacteurs' => 'On line documents for writers using EVA_Red',
-'documents_joints' => 'Attachments',
-'document' => 'Document',
-'deconnecter' => 'Logout',
-'derniers_articles' => 'Latest articles',
-'dernieres_breves' => 'Latest news',
-'derniers_commentaires' => 'Latest comments',
-'derniers_podcasts' => 'Latest podcasts',
-'derniers_sites' => 'Latest sites',
-'de_cet_auteur' => 'By this author',
-'derniere_mise_a_jour' => 'Latest updates',
-'diaporama' =>  'Slide show',
-'dix_meilleurs_articles' => 'Top ten articles',
-'dix_meilleurs_commentaires' => 'Top ten comments',
-'dix_meilleurs_breves' => 'Top ten News',
+	// D
+	'de_cet_auteur' => 'By this author',
+	'deconnecter' => 'Logout',
+	'derniere_mise_a_jour' => 'Latest updates',
+	'dernieres_breves' => 'Latest news',
+	'derniers_articles' => 'Latest articles',
+	'derniers_commentaires' => 'Latest comments',
+	'derniers_podcasts' => 'Latest podcasts',
+	'derniers_sites' => 'Latest sites',
+	'diaporama' => 'Slide show',
+	'dix_meilleurs_articles' => 'Top ten articles',
+	'dix_meilleurs_breves' => 'Top ten News',
+	'dix_meilleurs_commentaires' => 'Top ten comments',
+	'doc_redacteurs' => 'On line documents for writers using EVA_Red',
+	'document' => 'Document',
+	'documents_joints' => 'Attachments',
 
-// E
-'erreur_404' => 'Error 404',
-'evenements_du' => 'Events for',
-'evenements_a_venir' => 'Events to come',
-'evenement_aucun' => 'No comming event invisaged this month in the diary',
-'evenements_passes' => 'Past events',
-'evenements_passes_aucun' => 'No past event in the diary',
+	// E
+	'erreur_404' => 'Error 404',
+	'evenement_aucun' => 'No comming event invisaged this month in the diary',
+	'evenements_a_venir' => 'Events to come',
+	'evenements_du' => 'Events for',
+	'evenements_passes' => 'Past events',
+	'evenements_passes_aucun' => 'No past event in the diary',
 
-// F
-'fermer_fenetre' => 'Close the window',
-'form_pet_message_commentaire' => 'One comment?',
-'feuilleter_livre' => 'Leaf through the book',
+	// F
+	'fermer_fenetre' => 'Close the window',
+	'feuilleter_livre' => 'Leaf through the book',
+	'form_pet_message_commentaire' => 'One comment?',
 
-// G
-'go' => 'Go',
-'galaxie_spip' => 'The SPIP galaxy',
+	// G
+	'galaxie_spip' => 'The SPIP galaxy',
+	'go' => 'Go',
 
-// H
+	// I
+	'identifier' => 'You are connected',
+	'il_y_a' => 'There is',
+	'il_y_a1' => 'Signature(s) for this petition',
+	'il_y_a2' => 'There is in total',
+	'il_y_a3' => 'Article(s).</br> This block in poster',
+	'il_y_a4' => 'Author(s).</br> This block in poster',
+	'il_y_a5' => 'News.</br>This block in poster',
 
-// I
-'identifier' => 'You are connected',
-'il_y_a' => 'There is',
-'il_y_a1' => 'Signature(s) for this petition',
-'il_y_a2' =>  'There is in total',
-'il_y_a3' => 'Article(s).</br> This block in poster',
-'il_y_a4' => 'Author(s).</br> This block in poster',
-'il_y_a5' => 'News.</br>This block in poster',
+	// J
+	'j1' => 'Mon',
+	'j2' => 'Tue',
+	'j3' => 'Wen',
+	'j4' => 'Thur',
+	'j5' => 'Fri',
+	'j6' => 'Sat',
+	'j7' => 'Sun',
+	'jo1' => 'Monday',
+	'jo2' => 'Tuesday',
+	'jo3' => 'Wednesday',
+	'jo4' => 'Thursday',
+	'jo5' => 'Friday',
+	'jo6' => 'Saturday',
+	'jo7' => 'Sunday',
 
-// J
-'j1' => 'Mon',
-'j2' => 'Tue',
-'j3' => 'Wen',
-'j4' => 'Thur',
-'j5' => 'Fri',
-'j6' => 'Sat',
-'j7' => 'Sun',
-'jo1' =>'Monday',
-'jo2' => 'Tuesday',
-'jo3' => 'Wednesday',
-'jo4' => 'Thursday',
-'jo5' => 'Friday',
-'jo6' =>  'Saturday',
-'jo7' => 'Sunday',
+	// L
+	'lancer_diaporama' => 'Open Slide show',
+	'lien_externe' => 'External link, open in new window',
+	'lire_suite' => 'Read more',
 
-// L
-'lire_suite' => 'Read more',
-'lancer_diaporama' => 'Open Slide show',
-'lien_externe'=> 'External link, open in new window',
+	// M
+	'm1' => 'January',
+	'm10' => 'October',
+	'm11' => 'November',
+	'm12' => 'December',
+	'm2' => 'February',
+	'm3' => 'March',
+	'm4' => 'April',
+	'm5' => 'May',
+	'm6' => 'June',
+	'm7' => 'July',
+	'm8' => 'August',
+	'm9' => 'September',
+	'meme_rubrique' => 'In this section',
+	'mentions' => 'Mentions',
+	'mentions_legales' => 'Legal mentions',
+	'mis_a_jour' => 'Updating : ',
+	'mot_cle' => 'Key words',
+	'multilinguisme' => 'Display the menu of language of EVA-Web in the public pages?',
+	'multilinguisme_article' => 'This article in :',
 
-// M
-'meme_rubrique' => 'In this section',
-'mot_cle' => 'Key words',
-'mis_a_jour' => 'Updating : ',
-'mentions' => 'Mentions',
-'mentions_legales' => 'Legal mentions',
-'m1' => 'January',
-'m2' => 'February',
-'m3' => 'March',
-'m4' => 'April',
-'m5' => 'May',
-'m6' => 'June',
-'m7' => 'July',
-'m8' => 'August',
-'m9' => 'September',
-'m10' => 'October',
-'m11' => 'November',
-'m12' => 'December',
+	// N
+	'notes' => 'Notes',
 
-// N
-'notes' => 'Notes',
+	// P
+	'pages' => 'Pages',
+	'par' => 'by :',
+	'partenaires' => 'Partners',
+	'plan_du_site' => 'Site map',
+	'podcasts' => 'Podcasts',
+	'podcasts_rss' => 'Podcasts and RSS',
+	'post_scriptum' => 'Post-scriptum',
+	'pour' => 'for',
+	'publie' => 'Published',
 
-// P
-'plan_du_site' => 'Site map',
-'post_scriptum' => 'Post-scriptum',
-'par' => 'by :',
-'publie' => 'Published',
-'pour' => 'for',
-'pages' => 'Pages',
-'partenaires' => 'Partners',
-'podcasts' => 'Podcasts',
-'podcasts_rss' => 'Podcasts and RSS',
+	// R
+	'rechercher' => 'Find',
+	'redaction' => 'Redaction',
+	'replier' => 'Close',
+	'resultats' => 'Results',
 
-// R
-'redaction' => 'Redaction',
-'rechercher' => 'Find',
-'resultats' => 'Results',
-'replier' => 'Close',
+	// S
+	'sites' => 'Other Sites :',
+	'sites_references' => 'Reference Sites',
+	'sites_rubrique' => 'Sites for this section',
+	'sites_syndic' => 'Syndicated sites',
+	'sous_rubrique' => 'Subsection',
+	'statut_admin' => 'Status : Manager',
+	'statut_redac' => 'Status : Writer',
+	'statut_visit' => 'Status : Visitor',
+	'sur_le_web' => 'On the Web',
+	'sur_un_total_de' => 'From total of',
 
-// S
-'sites' => 'Other Sites :',
-'sites_references' => 'Reference Sites',
-'sites_rubrique' =>  'Sites for this section',
-'sites_syndic' => 'Syndicated sites',
-'sur_le_web' => 'On the Web',
-'sur_un_total_de' => 'From total of',
-'sous_rubrique' => 'Subsection',
-'statut_admin' =>  'Status : Manager',
-'statut_redac' => 'Status : Writer',
-'statut_visit' => 'Status : Visitor',
+	// T
+	'texte_page_404' => '<em>Sorry !</em></br>This page seems to have been removed from this site',
+	'tous_droits' => 'All rights reserved',
+	'tous_les_auteurs' => 'All writers',
 
-// T
-'texte_page_404' => '<em>Sorry !</em></br>This page seems to have been removed from this site',
-'tous_les_auteurs' => 'All writers',
-'tous_droits' =>  'All rights reserved',
+	// V
+	'version_eva' => 'EVA-Web 4.0 stable',
+	'visites' => 'Visits',
+	'voir_en_ligne' => 'See on the web',
+	'voir_image' => 'See the picture with original size',
+	'vous_etes_ici' => 'You are here',
 
-// V
-'version_eva' => 'EVA-Web 4.0 stable',
-'visites' =>'Visits',
-'voir_en_ligne' => 'See on the web',
-'voir_image' => 'See the picture with original size',
-'vous_etes_ici' => 'You are here',
-
-//Z
-
-'zone' => 'Protected zone',
+	// Z
+	'zone' => 'Protected zone'
 );
 
 $langue_fichier_initial=$test_lang_personnalisation;
