@@ -50,7 +50,7 @@
 <li class="petite_boite">
 <BOUCLE_blogue(BREVES){titre_mot=blogue}{doublons}{par num titre}{par date}{inverse}{0,1}>
 [(#REM)  Le logo de la breve bloguee  ]
-<h4 class="#EDIT{titre}"><a href="#URL_BREVE" title="lire tout">[(#TITRE)]</a></h4>
+<h4 class="#EDIT{titre}">[(#TITRE)]</h4>
 <p><span class="logogauche"><a href="#URL_BREVE">[(#INCLURE{fond=logo}{id_breve}{taille=48}{date=#ENV{date}})]</a></span>
 <span class="#EDIT{texte}">[(#TEXTE|PtoBR|lier_au_glossaire)]</span></p>
 </BOUCLE_blogue>
@@ -173,11 +173,24 @@
     </div>[(#REM)   fermeture boite menu  ]
 	
 			
+[(#REM)  ici on sélectionne le dernier article publié qui a au minimum 8 documents images  ]
+#SET{ma_selection, #ARRAY{}}
+<BOUCLE_a(DOCUMENTS_LIENS documents){documents.extension IN 'jpg','gif','png'}{objet = article}{fusion id_objet}>
+  <BOUCLE_b(DOCUMENTS_LIENS){id_objet}{objet = article}> </BOUCLE_b>
+  [(#_b:TOTAL_BOUCLE|>{7}|oui)[(#SET{ma_selection, #GET{ma_selection}|push{#ID_OBJET}})]]
+</BOUCLE_a>
+<BOUCLE_c(ARTICLES){id_article IN #GET{ma_selection}}{par date}{inverse}{0, 1}>				
 
-<BOUCLE_huit_images_une(ARTICLES){titre_mot=images_une}{par date}{inverse}{0,1}>
+
+
+
+
+
+
+
+[(#REM) on regarde s'il y a le mot cle saison  ]
 
 <BOUCLE_huit_saison(MOTS){titre=saison}{0,1}>
-
 [(#REM) On donne des couleurs hexad&eacute;cimales aux saisons. Vous pouvez les modifier "#eef"  devient  "eeeeff"]
 
 [(#ENV{date}|saisonfr|=={printemps}|?{' ',''})#SET{'colo','e3ae9b'}]
@@ -203,13 +216,13 @@
 			</tr></table>
 </div>
 </B_flickr>			
-
 </BOUCLE_huit_saison>
 
 
 
 <div class="boite">
-[(#REM) ouverture boite photos flickr 2]
+[(#REM) s il  n y a pas de mot cle saison alors les photos ne seront pas colorees]
+
 <h4 class="icone_photo"><:photo_selection:></h4>
 
 <B_flickr2>
@@ -234,7 +247,12 @@
 
 
 </div>
-</BOUCLE_huit_images_une>
+</BOUCLE_c>		
+
+
+
+
+
 
 <BOUCLE_test_forum(ARTICLES){accepter_forum!=non}{0,1}>  
 	 
