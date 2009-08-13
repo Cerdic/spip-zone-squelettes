@@ -1,6 +1,8 @@
-<B_rubrique>
 <div id="multicritere_rubrique" class="commentaires">
 	<a href="#minisommaire" title="retour sommaire" class="fonction revenir_haut_page"></a> 
+
+<B_rubrique>
+
     <h2><:sarkaspip:recherche_rubriques_resultat:>&nbsp;&#40;#GRAND_TOTAL&#41;</h2>
 
 	#ANCRE_PAGINATION
@@ -9,7 +11,11 @@
     ]
     <ul>
 	
-<BOUCLE_rubrique(RUBRIQUES){id_rubrique IN #ENV{id_rubrique}}{pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_article, 5}}>
+<BOUCLE_rubrique(RUBRIQUES){pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_article, 5}}
+	{id_mot=#ENV{id1,#ENV{id2,#ENV{id3}}}}
+	{id_mot=#ENV{id2,#ENV{id3,#ENV{id1}}}}
+	{id_mot=#ENV{id3,#ENV{id1,#ENV{id2}}}}
+>
 	[(#INCLURE{fond=noisettes/recherche/inc_recherche_extrait}
         {titre=#TITRE}
         {afficher_date=non}{date=#DATE}
@@ -27,5 +33,9 @@
       [<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_article}})</div>]
     ]
 	
-</div>
+
 </B_rubrique>
+	<h2><:sarkaspip:recherche_rubriques_resultat:> : <:sarkaspip:aucune:></h2>
+<//B_rubrique>
+
+</div>

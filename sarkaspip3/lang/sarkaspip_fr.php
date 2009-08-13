@@ -13,10 +13,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'0_album' => 'Aucun album photo',
 		'0_auteur' => 'Aucun auteur',
 		'0_breve' => 'Aucune br&egrave;ve',
-		'0_site_web' => 'Aucun site',
 		'0_commentaire' => 'aucun commentaire',
-		'0_signature' => 'aucune signature',
+		'0_evenement' => 'Aucun Ev&egrave;nement',
 		'0_photo' => 'aucune photo',
+		'0_rubrique' => 'aucune rubrique',
+		'0_signature' => 'aucune signature',
+		'0_site_web' => 'Aucun site',
 		'0_ticket' => 'aucun ticket',
 		'0_visiteur_connecte' => 'Aucun visiteur actuellement connect&eacute;',
 		'1_article' => 'Article',
@@ -93,6 +95,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'articles_rubrique' => 'Articles de cette rubrique', // redefinition item SPIP
 		'articles_syndiques_n_jours' => 'ces @nb_jour@ derniers jours ',
 		'au' => 'au',
+		'aucun' => 'aucun',
+		'aucune' => 'aucune',
 		'aucun_message' => 'Aucun message n\'a encore &eacute;t&eacute; publi&eacute; en r&eacute;action aux articles de ce site.',
 		'aucun_article' => 'Il n\'y a pas d\'article &agrave; cette adresse', // redefinition item SPIP
 		'aujourdhui' => 'aujourd\'hui',
@@ -370,7 +374,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //O
 	  
-		'objets_mot' => 'Objets associ&eacute;s au mot-cl&eacute;',
 		'octobre' => 'Octobre',
 	  
 	
@@ -397,13 +400,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'recents_syndic' => 'Derni&egrave;res nouvelles du web',
 		'recherche_albums_resultat' => 'Albums trouv&eacute;s',
 		'recherche_articles_resultat' => 'Articles trouv&eacute;s',
+		'recherche_breves_resultat' => 'Br&egrave;ves trouv&eacute;es',
 		'recherche_commentaires_resultat' => 'Commentaires trouv&eacute;s',
 		'recherche_evenements_resultat' => 'Ev&egrave;nements trouv&eacute;s',
 		'recherche_mots_resultat' => 'Mots-cl&eacute;s trouv&eacute;s et articles associ&eacute;s',
 		'recherche_rubriques_resultat' => 'Rubriques trouv&eacute;es',
-		'recherche_breves_resultat' => 'Br&egrave;ves trouv&eacute;es',
 		'recherche_sites_resultat' => 'Sites web trouv&eacute;s',
 		'rechercher' => 'Rechercher',
+		'rechercher_par_mot' => 'Recherche par mots clés',
 		'rechercher_sur_site' => 'Rechercher dans le site',
 		'recommander_article' => 'Recommander &agrave; un ami',
 		'repondre_commmentaire' => 'R&eacute;pondre &agrave; ce commmentaire', // redefinition item SPIP
