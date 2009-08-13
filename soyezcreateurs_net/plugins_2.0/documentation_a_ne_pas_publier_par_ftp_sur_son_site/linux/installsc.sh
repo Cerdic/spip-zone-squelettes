@@ -54,6 +54,8 @@ svn checkout svn://zone.spip.org/spip-zone/_plugins_/accessibilite
 sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/fulltext
 sleep 15;
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/savefg
+sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/gestion_documents
 #svn checkout svn://zone.spip.org/spip-zone/_plugins_/woopra
 #svn checkout svn://zone.spip.org/spip-zone/_plugins_/notation
