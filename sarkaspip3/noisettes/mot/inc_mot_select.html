@@ -6,19 +6,18 @@
 		- mot : id du mot selectionne
 -->
 ]
-
-
 <B_groupe>	
  	<label>#ENV{label}</label>
 	<select name="mot_#ENV{suffixe}" id="mot_#ENV{suffixe}">
 		<option value=''><:sarkaspip:indifferent:></option>	
-	
 <BOUCLE_groupe(GROUPES_MOTS){titre!=squelette_habillage}{par num titre, titre}>
-	<optgroup style="font-weight: strong;"[ label="(#TITRE)"]>
-		<BOUCLE_mot(MOTS){id_groupe=#ID_GROUPE}{par num titre, titre}>
+	<B_mot>
+		<optgroup style="font-weight: strong;"[ label="(#TITRE)"]>
+	<BOUCLE_mot(MOTS){id_groupe=#ID_GROUPE}{par num titre, titre}>
 			[<option style="background: #FFFFF; font-weight: normal;" value="#ID_MOT"[ (#ID_MOT|=={#ENV{mot}}|oui)selected="selected"]>(#TITRE)</option>]
-		</BOUCLE_mot>
-	</optgroup>
+	</BOUCLE_mot>
+		</optgroup>
+	</B_mot>
 </BOUCLE_groupe>
 	</select> 	
 </B_groupe>
