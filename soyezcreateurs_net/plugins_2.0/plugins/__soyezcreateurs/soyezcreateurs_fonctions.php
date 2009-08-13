@@ -589,7 +589,7 @@ function http_calendrier_sc_mini($annee, $mois, $jour, $echelle, $partie_cal, $s
 
 		$evts = $evenements[$amj];
 		$aff = sc_generer_ligne_agenda($jour, $amj, $evts, 'agendathismonth', 'mini');
-		$ligne .= '<td class="'.$aff['class'].'">'.$aff['ligne'].'</td>';
+		$ligne .= '<td class="'.($amj == date("Ymd")?"agendathisday": $aff['class']).'">' . $aff['ligne'] . '</td>';
 	}
 	$jour_mois_suivant=1;
 	// affichage de la fin de semaine hors periode
