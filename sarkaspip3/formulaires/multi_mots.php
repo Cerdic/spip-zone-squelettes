@@ -7,7 +7,7 @@ function formulaires_multi_mots_charger_dist($mot){
 	$valeurs['mot_1'] = $mot;
 	$valeurs['mot_2'] = '';
 	$valeurs['mot_3'] = '';
-	// Si au chargement $mot exite c'est qu'on vient d'un mot-clé direct
+	// Si au chargement $mot existe c'est qu'on vient d'un mot-cle direct
 	if ($mot) 
 		$valeurs['message_ok'] = 'oui';
 
