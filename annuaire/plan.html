@@ -25,30 +25,30 @@
 
 			[(#REM) Sous-rubriques ]
 			<B_rubriques>
-			<ul>
+			<ul id="rub">
 				<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
 				<li>
 					<strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
 					<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+					
+					[(#REM) Sur le Web ]
+	        		<B_sites>
+	        		<ul id="site">
+						<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}{doublons}>
+						<li id="site">
+						[<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" title="(#NOM_SITE|texte_backend)">
+						(#NOM_SITE|couper{80})</a>]&nbsp;&nbsp;
+						[(#PLUGIN{pb_pagerank}|oui)
+						<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]
+						</li>
+						</BOUCLE_sites>
+					</ul>
+					</B_sites>
 				</li>
 				</BOUCLE_rubriques>
 			</ul>
 			</B_rubriques>
-
-	        [(#REM) Sur le Web ]
-	        <B_sites>
-	        <ul>
-	            <BOUCLE_sites(SITES) {id_secteur} {par nom_site}>
-				<li>
-				[<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" title="(#NOM_SITE|texte_backend)">
-				#NOM_SITE</a>]&nbsp;&nbsp;
-				[(#PLUGIN{pb_pagerank}|oui)
-				<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]
-				</li>
-				</BOUCLE_sites>
-	        </ul>
-	        </B_sites>
-	        </BOUCLE_secteurs>
+			</BOUCLE_secteurs>
 		</fieldset>
 	</div><!--#content-->
 	
