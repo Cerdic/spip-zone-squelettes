@@ -352,6 +352,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'msg_0_album_filtre_annee' => 'Aucun album de cette cat&eacute;gorie pour l\'ann&eacute;e',
 		'msg_0_album_filtre_saison' => 'Aucun album de cette cat&eacute;gorie pour la saison',
 		'msg_0_album_filtre_planche' => 'Aucun album de cette cat&eacute;gorie disponible',
+		'msg_album_vide' => 'Aucune photo n\'est encore ins&eacute;r&eacute;e dans cet album',
 		'msg_evenement_virtuel' => 'Le texte de cet &eacute;v&eacute;nement n\'est pas accessible directement sur ce site. Vous pouvez tout de m&ecirc;me consulter la description d\'origine en cliquant sur le lien ci-dessous',
 		'msg_site_sans_descriptif' => 'Ce site ne comporte pas de descriptif...',
 		
