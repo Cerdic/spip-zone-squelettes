@@ -20,6 +20,13 @@
 	<INCLURE{fond=noisettes/navigation/inc_nav_visiteurs}{id_rubrique}{position=navigation}>
 ]
 
+[(#REM) <!-- affichage de la noisette Nuage --> ]
+[(#PLUGIN{NUAGE}|?{' '})
+	[(#CONFIG{sarkaspip_noisettes/position_nuage, 0}|=={1}|?{' '})
+		<INCLURE{fond=noisettes/mot/inc_mot_nuage}>
+	]
+]
+
 [(#REM) <!-- affichage du panneau derniers commentaires sauf sur la page articles ou album --> ]
 [(#CONFIG{sarkaspip_noisettes/position_commentaires, 0}|=={1}|?{' '})
 	[(#ENV{page}|match{article|album}|?{'',' '})
@@ -31,13 +38,6 @@
 [(#CONFIG{sarkaspip_noisettes/position_messages, 0}|=={1}|?{' '})
 	[(#ENV{id_secteur}|=={#RACINE_SPECIALISEE{forum}}|?{'',' '})
 		<INCLURE{fond=noisettes/inc_messages}{id_secteur}>
-	]
-]
-
-[(#REM) <!-- affichage de la noisette Nuage --> ]
-[(#PLUGIN{NUAGE}|?{' '})
-	[(#CONFIG{sarkaspip_noisettes/position_nuage, 0}|=={1}|?{' '})
-		<INCLURE{fond=noisettes/mot/inc_mot_nuage}>
 	]
 ]
 
