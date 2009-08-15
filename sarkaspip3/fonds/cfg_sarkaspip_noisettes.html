@@ -9,6 +9,7 @@
 	jQuery(document).ready(function() {
 		[(#ENV{liste_breves, 2}|!={2}|?{jQuery("#bloc_intro_breve").hide();})]
 		[(#ENV{position_publications, 0}|=={0}|?{jQuery("#bloc_max_publications").hide();})]
+		[(#ENV{position_nuage, 0}|=={0}|?{jQuery("#bloc_nuage").hide();})]
 		[(#ENV{position_commentaires, 0}|=={0}|?{jQuery("#bloc_intro_commentaires").hide();})]
 		[(#ENV{position_messages, 0}|=={0}|?{jQuery("#bloc_intro_messages").hide();})]
 		[(#ENV{liste_sites, 2}|!={1}|?{jQuery("#bloc_max_site").hide();})]
@@ -38,6 +39,14 @@
 				jQuery("#bloc_max_publications").show();
 			else
 				jQuery("#bloc_max_publications").hide();
+			jQuery(this).blur();
+		});	
+
+		jQuery("input[@name='position_nuage']").change(function() {
+			if (jQuery("input[@name='position_nuage']:checked").val() != 0)
+				jQuery("#bloc_nuage").show();
+			else
+				jQuery("#bloc_nuage").hide();
 			jQuery(this).blur();
 		});	
 
@@ -222,13 +231,15 @@
 			<input type="radio" name="position_nuage" value="2" [(#ENV{position_nuage, 0}|=={2}|?{checked="checked"})] />
 			<:sarkaspip:cfg_lbl_inc_position_2:>
 		</label>
-		[(#REM) <!--<br />
-		<div id="bloc_max_publications">
-		<br />
-		<label><:sarkaspip:cfg_lbl_max_publications:></label>
-			<input type="text" name="max_publications" value="#ENV{max_publications, 5}" size="2" class="fondl" />
-		<br />
-		</div>--> ]
+		<div id="bloc_nuage">
+			<br />
+			<label><:sarkaspip:cfg_lbl_max_nuage:></label>
+			<input type="text" name="max_nuage" value="#ENV{max_nuage, 50}" size="3" class="fondl" />
+			<br /><br />
+			<INCLURE{fond=noisettes/cfg/inc_cfg_groupes_mots}
+				{suffixe=_nuage}
+				{env}>
+		</div>
 	</fieldset>
 
 	[(#REM) <!-- Choix de presentation des commentaires --> ]
