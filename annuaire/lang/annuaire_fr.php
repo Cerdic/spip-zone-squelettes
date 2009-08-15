@@ -154,6 +154,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'pas_partenaire' => 'Nous n\'avons pas de partenaires &agrave; ce jour, si vous le souhaitez,
 					rejoingnez-nous.',
 'pas_pop' => 'Pas de populaires, car pas de votes ou pas assez de site',
+'pas_rss' => 'Nous n\'avons &agrave; ce jour pas de sites syndiqu&eacute;s',
 'pas_sites' => 'Pas de site rattach&eacute; &agrave; ce mot clef.',
 'pas_syndic' => 'Pas d\'articles syndiqu&eacute; pour ce site.',
 'pas_zard' => 'Pas de sites au hasard, enregistrez-en ...',
@@ -161,7 +162,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'plus_pop' => 'Les plus populaires',
 'plus_encore' => 'Plus encore !',
 'pop' => 'la boucle "populaire"',
-'popu_site' => 'la popularit&eacute; du site est de ',
+'popu_site' => 'La popularit&eacute; du site est de ',
 'populaire' => 'Site populaire',
 'propo_site' => 'la page "proposer un site"',
 
