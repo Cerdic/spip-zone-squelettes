@@ -28,36 +28,36 @@
 	<div id="content">
 	[(#REM) Contenu principal : affichage du site ]
         <div class="cartouche">
-            [(#LOGO_RUBRIQUE||image_reduire{200,200})]<h1 class="#EDIT{titre}">#TITRE</h1>
+            [(#LOGO_RUBRIQUE||image_reduire{100,100})]<h1 class="#EDIT{titre}">#TITRE</h1>
             [<p><small><:dernier_ajout:> : (#DATE|affdate_jourcourt).</small></p>]
         </div>
         [<div class="#EDIT{texte} chapo">(#TEXTE)</div>]
         
 		[(#REM) Si aucun article, affiche un plan de la rubrique ]
-		<B_sous_rubriques>
-        <div class="menu_rub">
-		<fieldset>
+        <B_sous_rubriques>
+		<div class="menu_rub">
+			<fieldset>
 			<object><:sous_rubriques:></object>
 			<ul>
 				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
-				<li>
-					<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+				<li id="rub">
+				<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
 
-					[(#REM) Une boucle recursive pour le mini plan]
-					<B_miniplan>
-                    <ul>
-                        <BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre, titre}>
-                        <li><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
-                        <BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2></li>
-                        </BOUCLE_miniplan>
-                    </ul>
-					</B_miniplan>
+				[(#REM) Une boucle recursive pour le mini plan]
+				<B_miniplan>
+				<ul>
+					<BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre, titre}>
+					<li id="sous_rub"><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+					<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2></li>
+					</BOUCLE_miniplan>
+				</ul>
+				</B_miniplan>
 				</li>
 				</BOUCLE_sous_rubriques>
 			</ul>
-		</fieldset>
-        </div><!--#menu_rub-->
-        </B_sous_rubriques>
+			</fieldset>
+		</div><!--#menu_rub-->
+		</B_sous_rubriques>
 		
         [(#REM) Sites de la rubrique ]
         <B_sites>
