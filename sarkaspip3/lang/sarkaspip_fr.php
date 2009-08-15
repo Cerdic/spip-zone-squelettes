@@ -455,6 +455,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //T
 	  
+		'themes_site' => 'Th&egrave;mes',
 		'titre_rubriques_filles' => 'Suivez aussi les sous-rubriques ci-dessous',
 		'top_articles' => 'Les plus populaires',
 		'toutes_les_breves' => 'Toutes les br&egrave;ves du site',
