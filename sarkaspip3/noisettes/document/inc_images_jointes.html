@@ -18,8 +18,8 @@ Utilise Nyroceros, Thickbox ou Smoothgallery.
 			[<h3>Image (#COMPTEUR_BOUCLE) sur #TOTAL_BOUCLE[ - (#TITRE)]</h3>]
 			[<p>(#DESCRIPTIF|?{#DESCRIPTIF,' '})</p>]
 			<a href="#URL_DOCUMENT" title="open image" class="open"></a>
-			<img src="[(#FICHIER|image_reduire{[(#CONFIG{smoothgallery/largeur})],0}|extraire_attribut{src})]" class="full" />
-			<img src="[(#FICHIER|image_reduire{0,60}|extraire_attribut{src})]" class="thumbnail" />
+			<img src="[(#FICHIER|copie_locale|image_reduire{[(#CONFIG{smoothgallery/largeur})],0}|extraire_attribut{src})]" class="full" />
+			<img src="[(#FICHIER|copie_locale|image_reduire{0,60}|extraire_attribut{src})]" class="thumbnail" />
 			</div>
 		]
 		[(#ENV{effet_galerie}|=={smoothgallery}|?{'', ' '})
@@ -28,7 +28,7 @@ Utilise Nyroceros, Thickbox ou Smoothgallery.
 			#SET{ratio,#GET{ratio_x}|<={#GET{ratio_y}}|?{#GET{ratio_x},#GET{ratio_y}}}
 			[(#SET{titre, [(#TITRE|texte_backend|supprimer_numero|couper{#EVAL{_SARKASPIP_CONFIG_TAILLE_TITRE_IMAGE}}|sinon{[(#TYPE_DOCUMENT) - ][(#TAILLE|taille_en_octets)]})]})]
 			[<a href="#FICHIER"[ class="(#ENV{effet_galerie})"][ title="(#GET{titre})"]>
-				(#FICHIER|image_reduire_par{#GET{ratio}}|image_recadre{#EVAL{_SARKASPIP_CONFIG_LARGEUR_IMAGE},#EVAL{_SARKASPIP_CONFIG_LARGEUR_IMAGE},center}|inserer_attribut{alt, #GET{titre}})
+				(#FICHIER|copie_locale|image_reduire_par{#GET{ratio}}|image_recadre{#EVAL{_SARKASPIP_CONFIG_LARGEUR_IMAGE},#EVAL{_SARKASPIP_CONFIG_LARGEUR_IMAGE},center}|inserer_attribut{alt, #GET{titre}})
 			</a>]
 		]
 </BOUCLE_images_article>
