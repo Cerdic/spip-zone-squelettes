@@ -70,8 +70,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'agenda_annuel' => 'Agenda annuel',
 		'agenda_1_mois_vide' => 'Aucun &eacute;v&egrave;nement &agrave; venir d\'ici la fin du mois',
 		'agenda_n_mois_vides' => 'Aucun &eacute;v&egrave;nement &agrave; venir les @mois@ prochains mois',
-// 		'agenda_mois_vide' => 'Aucun &eacute;v&egrave;nement pr&eacute;vu ce mois-ci',
-// 		'agenda_fin_mois_depasse' => 'Mois ant&eacute;rieur &agrave; la date courante. Aucun &eacute;v&egrave;nement ne peut &ecirc;tre affich&eacute;',
 		'agenda_saisonnier' => 'Agenda saisonnier',
 		'albums' => 'Albums',
 		'albums_freres' => 'Albums de la galerie',
@@ -160,11 +158,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 	
 //E
-		'est_present' => 'est pr&eacute;sent dans :',
 		'erreur' => 'erreur',
 		'espace_prive' => 'Espace&nbsp;priv&eacute;', // redefinition item SPIP
 		'espace_membre' => 'Espace membre',
-// 		'evenements_du_jour' => 'Ev&eacute;nements de la journ&eacute;e',
     	'evenements' => 'Ev&egrave;nements',
 		'evenements_meme_journee' => 'dans la journ&eacute;e...',
 		'exif_angle_exposition' => 'Angle d\'exposition',		
@@ -296,7 +292,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //L
 	  
 		'le' => 'le',
-		'le_mot' => 'Le mot',
 		'licence_gpl' => 'GPLv3',
 		'licence_site' => 'Licence &agrave; d&eacute;finir',
 		'lien_herbier_liste' => 'Herbier liste',
@@ -378,7 +373,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 	
 //P
-	  	'pas_present' => 'n\'est pas pr&eacute;sent sur ce site ',
 		'par_auteur' => 'par ', // redefinition item SPIP
 		'photos' => 'photos',
 		'plan_site' => 'Plan du site', // redefinition item SPIP
@@ -418,6 +412,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'resume_mini_agenda_body' => 'Mini agenda mensuel',
 		'resume_mini_agenda_footer' => 'Liste des &eacute;v&egrave;nements &agrave; venir',
 		'resultats_recherche' => 'R&eacute;sultats de la recherche', // redefinition item SPIP
+		'resultats_recherche_dans' => 'L\'expression &#171; @recherche@ &#187; est pr&eacute;sente dans :', // redefinition item SPIP
 		'retour_article' => 'Retourner &agrave; l\'article',
 		'retour_aujourdhui' => 'Revenir &agrave; la date d\'aujourd\'hui',
 		'rubriques' => 'Rubriques',
