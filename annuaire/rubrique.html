@@ -42,14 +42,16 @@
 			<ul>
 				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
 				<li id="rub">
-				<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+				<a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>&nbsp;&nbsp;
+					<BOUCLE_site(SITES) {id_rubrique}> </BOUCLE_site>(#TOTAL_BOUCLE site(s))</B_site>
 
 				[(#REM) Une boucle recursive pour le mini plan]
 				<B_miniplan>
 				<ul>
 					<BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre, titre}>
-					<li id="sous_rub"><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
-					<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2></li>
+					<li id="sous_rub"><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>&nbsp;&nbsp;
+						<BOUCLE_sites1(SITES) {id_rubrique}> </BOUCLE_sites1>(#TOTAL_BOUCLE site(s))</B_site1>
+					<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2></li><!--#sous_rub-->
 					</BOUCLE_miniplan>
 				</ul>
 				</B_miniplan>
