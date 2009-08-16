@@ -33,37 +33,35 @@
 		<BOUCLE_mots2(MOTS){id_groupe}{par titre}>
 		<br /><a  href="#URL_MOT">#TITRE</a>
 		</BOUCLE_mots2>
-	</BOUCLE_mot1>
 	</fieldset><!--#mots-->
+	</BOUCLE_mot1>
 	<//B_mot>
 		[(#REM)
 		Barre de navigation, ouverte sur la hierarchie courante
 		On fait un plan, et, quand on avance vers une rubrique,
 		on l'affiche si son parent est expose ou est la racine du site. ]
-
 	<B_rubriques>
 	<fieldset class="rub">
 	<object><:rubriques:></object>
 	<ul>
 	<BOUCLE_rubriques(RUBRIQUES) {racine} {titre}>
 		<li>
-			<a  href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80}|supprimer_numero)]</a>
+			<a href="#URL_RUBRIQUE">[(#TITRE|couper{80}|supprimer_numero)]</a>
 			<B_sous_rubriques>
 			<ul>
 				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}>#EXPOSE{' '}</BOUCLE_test_expose>
-					<li class="sous"><a  href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80}|supprimer_numero)]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
+					<li class="sous"><a href="#URL_RUBRIQUE">[(#TITRE|couper{80}|supprimer_numero)]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
 				</BOUCLE_sous_rubriques>
 			</ul>
 			</B_sous_rubriques>
 		</li>
-	</BOUCLE_rubriques>
 	</ul>
 	</fieldset><!--#rub-->
-	</B_rubriques>
-
+	</BOUCLE_rubriques>
+	<//B_rubriques>
 	[(#REM) Afficher les liens]
 	<fieldset class="lien">
-		[(#REM) lien vers la synthése des flux rss]
+		[(#REM) lien vers la synthése des flux rss si j'ai des articles]
 		<BOUCLE_syndic(SYNDIC_ARTICLES) {age<180} {0,1}>
 		<a  href="#URL_PAGE{herbier}"><:sur_web:></a>
 		<br class="nettoyeur" />
@@ -83,6 +81,7 @@
 		[<:annuaire:actuellement:>(#TOTAL_BOUCLE)&nbsp;<:sites_web:> <:annuaire:epingle_site:>
 		<a class="link" href="#URL_SITE_SPIP">[(#NOM_SITE_SPIP|textebrut)]</a>]
 		</B_total> 
+		<br class="nettoyeur" />
 		[<:annuaire:popu_site:>&nbsp;(#POPULARITE_SITE|>={0}).]<br />
 		<BOUCLE_maj(SITES){!par date}{0,1}><:dernier_ajout:>&nbsp;: [(#DATE|affdate).]
 		</BOUCLE_maj>
