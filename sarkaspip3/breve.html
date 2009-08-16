@@ -5,6 +5,7 @@
 		<INCLURE{fond=noisettes/inc_header}
 			{meta_titre=(#TITRE|supprimer_numero)}
 			{meta_description=#INTRODUCTION{#EVAL{_SARKASPIP_CONFIG_INTRO_META}}}>
+			#SET{secteur, #ID_SECTEUR}
 	</BOUCLE_meta>
 		<INCLURE{fond=noisettes/inc_header}
 			{meta_titre=<:sarkaspip:breves:>}>
@@ -35,28 +36,14 @@
 	
 	<div id="navigation">
 		[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
-		<INCLURE{fond=noisettes/navigation}{id_secteur}>
+		<INCLURE{fond=noisettes/navigation}{id_secteur=#GET{secteur}}>
 	</div>
 	
 	<div id="extra">
 		[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
 			
 		[(#REM) <!-- Affichage des mots-cles associes a la breve --> ]
-		<B_mots>
-			<div id="mots-cles" class="noisette">
-				<div><a class="intitule" href="#URL_PAGE{mot}"><:sarkaspip:mots_clefs:></a></div>
-				<div class="contenu">
-		<BOUCLE_mots(MOTS) {id_breve} {type!=squelette_habillage} {par titre}>
-			<BOUCLE_groupe(GROUPES_MOTS){id_groupe} {unique}>
-				[(#REM)[<div class="nom-groupe">(#TITRE)&nbsp;:</div>]]
-				[<a class="type">(#TITRE)</a>]
-			</BOUCLE_groupe>
-			<a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
-		</BOUCLE_mots>
-				</div>
-			</div>
-		</B_mots>
-		<INCLURE{fond=noisettes/extra}{id_secteur}{self=#SELF}{page=breve}>
+		<INCLURE{fond=noisettes/extra}{id_breve}{id_secteur=#GET{secteur}}{self=#SELF}{page=breve}>
 	</div>
 	
 	<div id="footer">
