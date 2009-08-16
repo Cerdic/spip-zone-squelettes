@@ -1,6 +1,7 @@
 [(#REM) 
 <!-- liste tous les mots-cles classe par groupe de mot au sein d'un select
 	Recoit en argument :
+		- groupes : tableau contenant les id des groupes a selectionner
 		- suffixe : numero compris entre 1 et 3 correspondant a l'id du select
 		- label : le label qui sera utilise pour le select
 		- mot : id du mot selectionne
@@ -10,7 +11,7 @@
  	<label>#ENV{label}</label>
 	<select name="mot_#ENV{suffixe}" id="mot_#ENV{suffixe}">
 		<option value=''><:sarkaspip:indifferent:></option>	
-<BOUCLE_groupe(GROUPES_MOTS){titre!=squelette_habillage}{par num titre, titre}>
+<BOUCLE_groupe(GROUPES_MOTS){id_groupe IN #ENV{groupes}|sinon{0}}{par num titre, titre}>
 	<B_mot>
 		<optgroup style="font-weight: strong;"[ label="(#TITRE)"]>
 	<BOUCLE_mot(MOTS){id_groupe=#ID_GROUPE}{par num titre, titre}>
