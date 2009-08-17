@@ -233,13 +233,19 @@
 		</label>
 		<div id="bloc_nuage">
 			<br />
+		[(#CONFIG{sarkaspip_recherche/groupes_recherche}|oui)
 			<label><:sarkaspip:cfg_lbl_max_nuage:></label>
 			<input type="text" name="max_nuage" value="#ENV{max_nuage, 50}" size="3" class="fondl" />
 			<br /><br />
 			<INCLURE{fond=noisettes/cfg/inc_cfg_groupes_mots}
 				{suffixe=_nuage}
 				{label=<:sarkaspip:cfg_lbl_groupes_mots:>}
+				{id_groupe=#CONFIG{sarkaspip_recherche/groupes_recherche, #ARRAY{0,0}}}
 				{env}>
+		]
+		[(#CONFIG{sarkaspip_recherche/groupes_recherche}|non)
+			<p><:sarkaspip:cfg_inf_aucun_groupe_nuage:></p>
+		]
 		</div>
 	</fieldset>
 
