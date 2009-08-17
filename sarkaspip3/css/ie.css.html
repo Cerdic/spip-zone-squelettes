@@ -24,50 +24,48 @@
 * html .formulaire_recherche input.text {height:23px; width:118px; border:1px solid #6262A4;}
 * html .formulaire_recherche input.submit {border: 0px;}
 *+html .formulaire_recherche input.submit {float : right;}
+
 /* -------------------------------------------------------------------- */
 /* layout.css                                                           */
 /* -------------------------------------------------------------------- */
 [(#CONFIG{sarkaspip_layout/numero_layout, 13}|match{^(34)$}|?{' '})
-  [(#CONFIG{sarkaspip_layout/appliquer_padding, 1}|=={1}|?{
-    	[(#SET{gauche_moitie, [(#CONFIG{sarkaspip_layout/largeur_padding, 20}|mult{0.5})]})]
-		  [(#SET{droite_moitie, [(#CONFIG{sarkaspip_layout/largeur_padding, 20}|mult{0.5})]})]
-		  ,		  		  
-		  [(#SET{gauche_moitie, 0})]
-		  [(#SET{droite_moitie, 0})] 
-		}
+	[(#CONFIG{sarkaspip_layout/appliquer_padding, 1}|=={1}|?{
+		[(#SET{gauche_moitie, [(#CONFIG{sarkaspip_layout/largeur_padding, 20}|mult{0.5})]})]
+		[(#SET{droite_moitie, [(#CONFIG{sarkaspip_layout/largeur_padding, 20}|mult{0.5})]})]
+		,		  		  
+		[(#SET{gauche_moitie, 0})]
+		[(#SET{droite_moitie, 0})]}
 	)]  
-	
 	
 	[(#CONFIG{sarkaspip_layout/numero_layout, 13}||=={34}|?{' '})
 		* html div#content   {[margin-right:(#GET{droite_moitie})px ;] }
 		* html div#navigation{[margin-left:(#GET{gauche_moitie})px ;]}
 		* html div#extra     {[margin-left:(#GET{gauche_moitie})px ;]}
 	]  
-       
 ]
 
 /* -------------------------------------------------------------------- */
 /* bandeau.css                                                          */
 /* -------------------------------------------------------------------- */
-/* html .bandeau_haut {[height: (#CONFIG{sarkaspip_bandeau/haut_minheight, 50})px;]} /* IE6 ne comprend pas min-height */
-* html .bandeau_haut {height:50px;}
-* html .nav_bandeau{width: 45%;} /* IE6 ne comprend pas max-width */
+* html .bandeau_haut {height: #CONFIG{sarkaspip_bandeau/haut_minheight, 50}px;} /* IE6 ne comprend pas min-height */
+* html .nav_bandeau {width: 45%;} /* IE6 ne comprend pas max-width */
 * html .bandeau_bas {height: 23px;}
 * html .bandeau_chemin {height: 22px;}
 
 /* -------------------------------------------------------------------- */
 /* noisettes.css                                                        */
 /* -------------------------------------------------------------------- */
-* html #noisette_herbier.noisette .contenu .texte ul.innerfade li, 
-*+html #noisette_herbier.noisette .contenu .texte ul.innerfade li  {margin-left:-60px;}
+* html #noisette_herbier.noisette .contenu .texte ul.innerfade li {margin-left:-60px;}
+*+html #noisette_herbier.noisette .contenu .texte ul.innerfade li {margin-left:-60px;}
 
 * html #noisette_miniagenda.noisette {height:auto;}
-* html #noisette_miniagenda.noisette .contenu{width:178px}
-* html #noisette_miniagenda.noisette .contenu br.nettoyeur{line-height : 0;} /* Sous IE6 ce nettoyeur a une hauteur non nulle */
+* html #noisette_miniagenda.noisette .contenu {width:178px}
+* html #noisette_miniagenda.noisette .contenu br.nettoyeur {line-height : 0;} /* Sous IE6 ce nettoyeur a une hauteur non nulle */
 * html #noisette_miniagenda.noisette .contenu h2 {float:left;}
-* html #noisette_miniagenda.noisette .contenu h2.titre_bloc.centre{width: 90px;}
-* html #noisette_miniagenda.noisette .contenu h2 a.titre_bloc.bord{width: 44px;}
-* html #noisette_miniagenda.noisette .contenu h2 a.titre_bloc#auj{border:none; width: 100%;}
+* html #noisette_miniagenda.noisette .contenu h2.titre_bloc.centre {width: 90px;}
+* html #noisette_miniagenda.noisette .contenu h2 a.titre_bloc.bord {width: 44px;}
+* html #noisette_miniagenda.noisette .contenu h2 a.titre_bloc#auj {border:none; width: 100%;}
+
 * html .menu_rub1 ul.menulist ul {top: 0; left: 173px;}
 *+html .menu_rub1 ul.menulist ul {top: 0;} 
 
@@ -76,24 +74,18 @@
 /* -------------------------------------------------------------------- */
 * html .planche .cartouche {width :140px; float:none;}
 * html .planche li {height: 18em;}
+* html #planche.galerie-album {height: 220px;}
+*+html #planche.galerie-album {height: 220px;}
 
-
-* html #planche.galerie-album, *+html #planche.galerie-album  {height: 220px;}
-* html .album_vignette a.image-vignette, *+html .album_vignette a.image-vignette {/*hack pour ie : permet de creer le fond bleu des vignettes et l'espacement entre elles*/
-	background-color: #E0E0E0;
-	padding: 0;
-	margin: 5px;
-	height: 100px;
-}
+/* permet de creer le fond bleu des vignettes et l'espacement entre elles */
+* html .album_vignette a.image-vignette {background-color: #E0E0E0; padding: 0; margin: 5px; height: 100px;}
+*+html .album_vignette a.image-vignette {background-color: #E0E0E0; padding: 0; margin: 5px; height: 100px;}
 
 * html .carrousel .contenu ul.vignettes span.wrap2 {display: inline-block; text-align: left;}
-* html .carrousel .contenu ul.vignettes span.wrap2 a,
-* html .carrousel .contenu ul.vignettes span.wrap2 span {
-  overflow: visible;  top: 50%; text-align: center;}
+* html .carrousel .contenu ul.vignettes span.wrap2 a {overflow: visible;  top: 50%; text-align: center;}
+* html .carrousel .contenu ul.vignettes span.wrap2 span {overflow: visible;  top: 50%; text-align: center;}
 * html .carrousel .contenu ul.vignettes img {margin-top: 10px;  top: -30%; }
-
 *+html .carrousel .contenu ul.vignettes span.wrap2 {display: block; position: relative; text-align: left;}
-*+html .carrousel .contenu ul.vignettes span.wrap2 a,
-*+html .carrousel .contenu ul.vignettes span.wrap2 span {
-  overflow: visible; position: absolute; top: 50%; text-align: center;}
+*+html .carrousel .contenu ul.vignettes span.wrap2 a {overflow: visible; position: absolute; top: 50%; text-align: center;}
+*+html .carrousel .contenu ul.vignettes span.wrap2 span {overflow: visible; position: absolute; top: 50%; text-align: center;}
 *+html .carrousel .contenu ul.vignettes img {position: relative; top: -50%;  margin-top: 2%;}
