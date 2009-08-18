@@ -7,15 +7,18 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //A
 'acceuil_presentation' =>'Présentation',
 'acceuil_intro' =>'Bienvenue sur la page de présentation du plugins "annuaire".',
-'acceuil_option' =>'Certain plugins sont devenu optionnel :',
+'acceuil_option' =>'Certain plugins sont optionnel :',
 'acceuil_option_contact' =>'Le plugins "contact" permets ou non d\'affiché la page de contact',
+'acceuil_option_rubriques' => 'Par défaut le squellette n\'affiche plus les rubriques, nous 
+vous proposons de le faire avec le plugins "menus" et de créer un menu avec l\'identifiant 
+"nav" et de limité le nombre à 3 sous rubriques.',
 'acceuil_option_visiteurs' =>'Le plugins "visiteur connectés" permets d\'afficher dans l\'entête
 							le nombre de visiteur connectés',
 'acceuil_requis' =>'Les requis pour un bon fonctionnement du site',
 'acceuil_requis_1' =>'Pour un bon référencement de votre site, ils vous faut créer :
 					<br />un groupe de mot clef "_META"
 					<br />les mots clefs keywords et description',
-'acceuil_requis_2' =>'Pour afficher des partenaires sur la page "Partenaires" il vous faut
+'acceuil_requis_2' =>'Pour afficher des partenaires sur la page "Partenaires", il vous faut
 					créé le groupe "Affichage" avec le mot clef "partenaire" et attibuer le à 
 					chacun des sites voulus.',
 'actuellement' => 'Il y a actuellement ',
