@@ -894,6 +894,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_mini_agenda_resume_1' => '<strong>R&eacute;sum&eacute; des &eacute;v&eacute;nements</strong>: liste les &eacute;v&eacute;nements &agrave; venir &agrave; partir de la date courante ou du premier jour du mois si celui-ci n\'est pas le mois courant. Si vous choisissez d\'afficher ce r&eacute;sum&eacute;, vous pouvez d&eacute;finir, d\'une part, le nombre maximal d\'&eacute;v&eacute;nements affich&eacute;s, et d\'autre part, la p&eacute;riode &agrave; prendre en compte.',
 		'cfg_inf_mini_agenda_resume_2' => 'Voulez-vous afficher le r&eacute;sum&eacute; ?',
 		'cfg_inf_mini_agenda' => 'Le mini calendrier est compos&eacute; d\'un bandeau de navigation, d\'un tableau des jours et d\'un r&eacute;sum&eacute; des &eacute;v&eacute;nements du mois.',
+		'cfg_inf_outils_perso' => 'Vous pouvez ajouter des informations personnelles dans le bloc des liens du pied de page. Elle s\'afficheront avant le lien permettant de remonter en haut de la page (laissez vide pour ne rien afficher) .',
 		'cfg_inf_pagination_bande' => 'Choisissez la position de la bande de pagination.',
 		'cfg_inf_pagination_1' => 'Choisissez le mod&egrave;le de pagination, le nombre d\'&eacute;l&eacute;ments affich&eacute;s dans chaque page et la position de la bande de pagination.',
 		'cfg_inf_pagination_2' => 'Choisissez le mod&egrave;le de pagination et le nombre d\'&eacute;l&eacute;ments affich&eacute;s dans chaque page.',
