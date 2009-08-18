@@ -2,10 +2,10 @@
 
 	<div class="cadre-chemin">
 	<!-- affichage du chemin de la rubrique -->
-	<a href="#URL_SITE_SPIP"><img src="#CHEMIN{images/fleche_droite.gif}" alt="fleche" /> Accueil</a>
+	<a href="#URL_SITE_SPIP" [ title="(#NOM_SITE|couper{80}|attribut_html)"]><img src="#CHEMIN{images/fleche_droite.gif}" alt="fleche" /> Accueil</a>
 	<BOUCLE_chemin_rubriques(HIERARCHIE){id_rubrique}{tout}>
 	<img src="#CHEMIN{images/fleche_droite.gif}"  alt="fleche" />
-	<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+	<a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a>
 	</BOUCLE_chemin_rubriques>
 	</div>
 
@@ -32,11 +32,11 @@ Les articles de cette rubrique
 
 	<BOUCLE_articles_rubs(ARTICLES){id_rubrique}{par num titre}{par date}{inverse}{pagination 5}>
 		<div class="cadre-articles-rubrique">
-			<div class="titre-articles-rubrique"><a href="#URL_ARTICLE">[(#TITRE)]</a></div>
+			<div class="titre-articles-rubrique"><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|textebrut)]">[(#TITRE)]</a></div>
 			<div class="introduction-articles-rubrique">
       [(#INTRODUCTION|supprimer_tags|couper{150})]
       <br/>
-      <a href="#URL_ARTICLE" ><strong>Lire l'article ...</strong></a>
+      <a href="#URL_ARTICLE" title="[(#DESCRIPTIF|textebrut)]"><strong>Lire l'article ...</strong></a>
       <br/>
       </div>
 			<div class="auteur-articles-rubrique">
@@ -45,7 +45,7 @@ Les articles de cette rubrique
 		    </BOUCLE_test>
 	       par
 			   <BOUCLE_auteurs_art(AUTEURS) {id_article} {"et"}>
-			   <a href="spip.php?auteur=#ID_AUTEUR"> #NOM</a>
+			   <a href="spip.php?auteur=#ID_AUTEUR" title="page de l&#39;auteur"> #NOM</a>
 			   </BOUCLE_auteurs_art>
 	       </B_test>
       </div>
@@ -64,7 +64,7 @@ Les sous-rubriques de cette rubrique
 </div>
 		<BOUCLE_SsRubriques(RUBRIQUES) {id_parent} {par date}{par num titre}>
 			<div class="cadre-sous-rubrique">
-				<a href="#URL_RUBRIQUE" >[(#LOGO_RUBRIQUE|right||image_reduire{36})]
+				<a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|textebrut)]">[(#LOGO_RUBRIQUE|right||image_reduire{36})]
 				<span class="titre-sous-rubrique">
 					[(#TITRE|Supprimer_numero)]
           </span>
@@ -108,7 +108,7 @@ Les sous-rubriques de cette rubrique
   </div>
       <BOUCLE_derniers_sites(SITES){id_rubrique} >
       	<div class="cadre-sous-rubrique">
-  		    <div class="titre-sous-rubrique"<a href="#URL_SITE">#NOM_SITE</a></div>
+  		    <div class="titre-sous-rubrique"<a href="#URL_SITE" [ title="(#NOM_SITE|couper{80}|attribut_html)"]>#NOM_SITE</a></div>
   		    <div class="descriptif-sous-rubrique"> [(#DESCRIPTIF)]</div>
 		    </div>
       </BOUCLE_derniers_sites>
