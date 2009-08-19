@@ -14,9 +14,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'0_auteur' => 'Aucun auteur',
 		'0_breve' => 'Aucune br&egrave;ve',
 		'0_commentaire' => 'aucun commentaire',
-		'0_evenement' => 'Aucun Ev&egrave;nement',
 		'0_photo' => 'aucune photo',
-		'0_rubrique' => 'aucune rubrique',
 		'0_signature' => 'aucune signature',
 		'0_site_web' => 'Aucun site',
 		'0_ticket' => 'aucun ticket',
@@ -25,9 +23,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'1_album' => 'Album photo',
 		'1_auteur' => 'Auteur',
 		'1_breve' => 'Br&egrave;ve',
-		'1_evenement' => 'Ev&egrave;nement',
-		'1_mot_clef' => 'Mot-clef',
-		'1_rubrique' => 'Rubrique',
 		'1_site_web' => 'Site Web',
 		'1_commentaire' => 'commentaire',
 		'1_signature' => 'signature',
@@ -44,7 +39,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //A
 		
 		'agrave' => '&agrave;',
-		'a_partir_de' => '&agrave; partir de',
 		'acceder_espace_membre' => 'Se connecter comme membre du site',
 		'acceder_espace_prive' => 'Acc&eacute;der &agrave; l\'espace priv&eacute;',
 		'accueil_site' => 'Accueil du site', // redefinition item SPIP
@@ -58,7 +52,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'afaire_colonne_titre' => 'R&eacute;sum&eacute;',
 		'afaire_colonne_type' => 'Type',
 		'afaire_msg_0_ticket_jalon' => 'Aucun ticket planifi&eacute; pour ce jalon',
-		'afaire_msg_0_ticket_non_planifie' => 'Aucun ticket non planifi&eacute;',
 		'afaire_non_planifies' => 'Non planifi&eacute;s',
 		'afaire_page_titre' => 'Feuille de route',
 		'afaire_page_descriptif' => 'Cette page a pour but de lister les tickets class&eacute;s par jalon et l\'avancement des travaux associ&eacute;s.',
@@ -67,36 +60,25 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'afaire_tickets_en_traitement' => 'Tickets en cours de traitement',
 		'afaire_tickets_termines' => 'Tickets termin&eacute;s',
 		'agenda' => 'Agenda',
-		'agenda_annuel' => 'Agenda annuel',
 		'agenda_1_mois_vide' => 'Aucun &eacute;v&egrave;nement &agrave; venir d\'ici la fin du mois',
 		'agenda_n_mois_vides' => 'Aucun &eacute;v&egrave;nement &agrave; venir les @mois@ prochains mois',
-		'agenda_saisonnier' => 'Agenda saisonnier',
-		'albums' => 'Albums',
 		'albums_freres' => 'Albums de la galerie',
-		'album_repondre'=> 'Commenter l\'album',
 		'album_une'=> 'Top Album',
 		'albums_auteur' => 'Albums de cet auteur',
 		'albums_galerie' => 'Galerie',
 		'albums_recents' => 'Albums les plus r&eacute;cents', // redefinition item SPIP
 		'ancre_haut_page' => 'Haut &uarr;',
-		'annee_precedente' => 'Ann&eacute;e pr&eacute;c&eacute;dente',
-		'annee_suivante' => 'Ann&eacute;e  suivant',
 		'annonces' => 'Annonces',
 		'aout' => 'Ao&ucirc;t',
 		'articles' => 'Articles', // redefinition item SPIP
 		'articles_aleatoires' => 'Au hasard',
 		'articles_auteur' => 'Articles de cet auteur', // redefinition item SPIP
 		'articles_meme_rubrique' => 'Articles de la rubrique',
-		'articles_mot' => 'Articles associ&eacute;s',
 		'articles_recents' => 'Articles les plus r&eacute;cents', // redefinition item SPIP
-		'article_rubrique' => 'Articles publi&eacute;s dans cette rubrique',
-		'articles_rubrique' => 'Articles de cette rubrique', // redefinition item SPIP
+		'articles_rubrique' => 'Articles publi&eacute;s dans cette rubrique',
 		'articles_syndiques_n_jours' => 'ces @nb_jour@ derniers jours ',
-		'au' => 'au',
-		'aucun_message' => 'Aucun message n\'a encore &eacute;t&eacute; publi&eacute; en r&eacute;action aux articles de ce site.',
 		'aucun_article' => 'Il n\'y a pas d\'article &agrave; cette adresse', // redefinition item SPIP
 		'aujourdhui' => 'aujourd\'hui',
-		'auteur' => 'Auteur',
 		'auteurs' => 'Auteurs',
 		'avril' => 'Avril',
 	  
@@ -111,7 +93,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'bouton_valider' => 'Valider',
 		'breves' => 'Br&egrave;ves', // redefinition item SPIP
 		'breves_meme_rubrique' => 'Br&egrave;ves de la rubrique',
-		'breves_mot' => 'Br&egrave;ves associ&eacute;es',
 		'breves_toutes' => 'Toutes les br&egrave;ves du site',
 		'bulle_bouton_effacer' => 'Effacer les saisies et revenir aux valeurs de d&eacute;part',
 		'bulle_bouton_supprimer' => 'Supprimer les valeurs de configuration dans la base',
@@ -129,23 +110,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'commentaire_suite_article' => '&agrave; la suite de l\'article...',
 		'contact' => 'Contact',
 		'contacter_site' => 'Contacter le webmestre',
-		'coordonnees' => 'Coordonn&eacute;es',
 		'copyright_site' => '&copy;',
-		'criteres_recherche' => 'Crit&egrave;re de recherche : ',
 	  
 	
 //D
 	  
 		'date' => 'Date', // redefinition item SPIP
 		'date_aujourdhui' => 'aujourd\'hui', // redefinition item SPIP
-		'de' => 'de',
 		'decembre' => 'D&eacute;cembre',
 		'defiler_a_droite' => 'Suivant &gt;&gt;',
 		'defiler_a_gauche' => ' &lt;&lt; Pr&eacute;c&eacute;dent',
 		'depuis_debut' => 'depuis le d&eacute;but',
 		'dernieres_publications' => 'Publications',
 		'derniers_articles_publies' => 'Derniers articles publi&eacute;s',
-		'derniers_articles_syndiques' => 'Les derniers articles de ce site',
 		'derniers_commentaires' => 'Commentaires',
 		'derniers_messages' => 'Forum',
 		'dialogue' => 'Dialogue',
@@ -153,16 +130,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'dialoguer_site' => 'Dialoguer sur le site',
 		'dimanche_abrege' => 'Di',
 		'docu_article' => 'Documents joints',
-		'docu_rubrique' => 'Documents joints',
 		'docu_commentaire' => 'Document joint',
-		'du' => 'du',
 	  
 	
 //E
 		'erreur' => 'erreur',
 		'espace_prive' => 'Espace&nbsp;priv&eacute;', // redefinition item SPIP
-		'espace_membre' => 'Espace membre',
-    	'evenements' => 'Ev&egrave;nements',
 		'evenements_meme_journee' => 'dans la journ&eacute;e...',
 		'exif_angle_exposition' => 'Angle d\'exposition',		
 		'exif_appareil' => 'Appareil Photo',		
@@ -199,7 +172,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //F
 	  
 		'fevrier' => 'F&eacute;vrier',
-		'fil_discussion' => 'Fil de discussion',
 		'filtre_bulle_album_0_motcle'=>'Afficher tous les albums sans mot-cl&eacute;',
 		'filtre_bulle_album_1_motcle'=>'Afficher tous les albums associ&eacute; &agrave; ce mot-cl&eacute;',
 		'filtre_bulle_album_tout'=>'Afficher tous les albums de la galerie',
@@ -218,7 +190,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'filtre_soustitre_herbier_0_motcle'=>'Sans mot-cl&eacute;',
 		'filtre_soustitre_herbier_tout'=>'Tous les sites favoris',
 		'filtre_soustitre_motcle'=>'Avec le mot-cl&eacute;',
-		'filtre_soustitre_rubrique'=>'Par rubrique',
 		'filtre_soustitre_site_tout'=>'Tous les articles syndiqu&eacute;s',
 		'filtre_soustitre_site'=>'Du site syndiqu&eacute;',
 		'filtre_titre'=>'Filtre',
@@ -242,24 +213,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 		'hier' => 'hier',
 		'herbier_sites' => 'sites favoris',
-		'herbier_tag' => 'cat&eacute;gories',
-		'herbier_url' => 'adresse',
 		'herbier_contexte_global' => 'au total',
 		'herbier_contexte_secteur' => 'dans ce secteur',
-		'herbier_url' => 'adresse',
 		'hit_parade' => 'Top Articles',
 	  
 	
 //I
 	  
-		'icone_sites_references' => 'Sites r&eacute;f&eacute;renc&eacute;s',
-		'img_article' => 'Images jointes &agrave; cet article',
-		'img_descriptif' => 'Descriptif',
-		'img_format' => 'Format',
-		'img_poids' => 'Poids',
-		'img_rubrique' =>'Images jointes &agrave; cette rubrique',
-		'img_taille' => 'Taille',
-		'img_titre' => 'Titre',
 		'indifferent' => 'Indiff&eacute;rent',
 		'info_afficher_album' => 'Consulter cet album',
 		'info_langues' => 'Langues du site', // redefinition item SPIP
@@ -277,7 +237,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'jour_precedent' => 'Jour pr&eacute;c&eacute;dent',
 		'juin' => 'Juin',
 		'juillet' => 'Juillet',
-		'jusqu_a' => 'jusqu\'&agrave;',
 
 	
 //K
@@ -292,18 +251,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //L
 	  
-		'le' => 'le',
 		'licence_gpl' => 'GPLv3',
-		'licence_site' => 'Licence &agrave; d&eacute;finir',
-		'lien_herbier_liste' => 'Herbier liste',
-		'lien_herbier_panorama' => 'Herbier panorama',
-		'lieu' => 'lieu',
 		'liste_mot_1' => 'Choisir un premier mot (obligatoire)',
 		'liste_mot_2' => 'Choisir un deuxi&egrave;me mot (optionnel)',
 		'liste_mot_3' => 'Choisir un troisi&egrave;me mot (optionnel)',
 		'lire_aussi_article' => 'Lire aussi...',
 		'lire_suite_article' => 'lire la suite de l\'article',
-		'lire_evenement_virtuel' => 'Consulter l\'&eacute;v&eacute;nement d\'origine',
 		'lire_breve' => 'lire la br&egrave;ve',
 		'lundi_abrege' => 'Lu',
 		'login_membre' => 'Connexion',
@@ -312,7 +265,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'login_retoursitepublic' => 'retour&nbsp;au&nbsp;site&nbsp;public', // redefinition item SPIP
 		'logo_de' => 'Logo de',
 		'logout_membre' => 'Deconnexion',
-		'lxh' => 'par',
 	  
 	
 //M
@@ -323,9 +275,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'mars' => 'Mars',
 		'mercredi_abrege' => 'Me',
 		'message' => 'Message', // redefinition item SPIP
-		'messages_mot' => 'Messages associ&eacute;s',
 		'message_bonjour' => 'Bonjour, cher(&egrave;re)',
-		'messages_recents' => 'Messages de forums les plus r&eacute;cents', // redefinition item SPIP
 		'meteo' => 'M&eacute;t&eacute;o',
 		'meteo_titre_conditions' => 'Conditions m&eacute;t&eacute;o &agrave;',
 		'meteo_titre_previsions' => 'Pr&eacute;visions du',
@@ -333,23 +283,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'meteo_lien_conditions' => 'Conditions',
 		'meteo_previsions_jour' => 'Pr&eacute;visions du jour',
 		'meteo_conditions_jour' => 'Conditions du jour',
-		'mois_precedent' => 'Mois pr&eacute;c&eacute;dent',
-		'mois_suivant' => 'Mois suivant',
 		'mots_clefs' => 'Mots-cl&eacute;s', // redefinition item SPIP
 		'mots_clefs_article' => 'Mots-cl&eacute;s de l\'article', // redefinition item SPIP
 		'mots_clefs_breve' => 'Mots-cl&eacute;s de la br&egrave;ve', // redefinition item SPIP
-		'mots_clefs_site' => 'Mots-cl&eacute;s du site',
 		'mots_clefs_rubrique' => 'Mots-cl&eacute;s de la rubrique', // redefinition item SPIP
 		'msg_0_article_publie' => 'Aucun article publi&eacute; pour l\'instant',
 		'msg_0_evt_agenda' => 'Aucun &eacute;v&eacute;nement d&eacute;fini dans l\'agenda',
 		'msg_0_evt_annee' => 'Aucun &eacute;v&eacute;nement de cette cat&eacute;gorie pour l\'ann&eacute;e',
 		'msg_0_evt_saison' => 'Aucun &eacute;v&eacute;nement de cette cat&eacute;gorie pour la saison',
-		'msg_0_album_galerie' => 'Aucun album disponible pour l\'instant dans la galerie',
-		'msg_0_album_filtre_annee' => 'Aucun album de cette cat&eacute;gorie pour l\'ann&eacute;e',
-		'msg_0_album_filtre_saison' => 'Aucun album de cette cat&eacute;gorie pour la saison',
-		'msg_0_album_filtre_planche' => 'Aucun album de cette cat&eacute;gorie disponible',
 		'msg_album_vide' => 'Aucune photo n\'est encore ins&eacute;r&eacute;e dans cet album',
-		'msg_evenement_virtuel' => 'Le texte de cet &eacute;v&eacute;nement n\'est pas accessible directement sur ce site. Vous pouvez tout de m&ecirc;me consulter la description d\'origine en cliquant sur le lien ci-dessous',
 		'msg_site_sans_descriptif' => 'Ce site ne comporte pas de descriptif...',
 		
 //N
@@ -383,8 +325,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'popularite_article' => 'popularit&eacute;',
 		'portfolio' => 'portfolio',
 		'poster_commentaire' => 'Poster un commentaire @poster_complement@',
-		'ps' => 'Post Scriptum',
-		'publie_sur_site' => 'Publi&eacute; sur le site',
 	  
 	
 //Q
@@ -394,7 +334,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //R
 	  
 		'realisation_squelette' => 'Collectif Sarka-SPIP',
-		'recents_syndic' => 'Derni&egrave;res nouvelles du web',
 		'recherche_albums_resultat' => 'Albums trouv&eacute;s',
 		'recherche_articles_resultat' => 'Articles trouv&eacute;s',
 		'recherche_breves_resultat' => 'Br&egrave;ves trouv&eacute;es',
@@ -408,7 +347,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'rechercher_sur_site' => 'Rechercher dans le site',
 		'recommander_article' => 'Recommander &agrave; un ami',
 		'repondre_commmentaire' => 'R&eacute;pondre &agrave; ce commmentaire', // redefinition item SPIP
-		'repondre_message' => 'R&eacute;pondre &agrave; ce message', // redefinition item SPIP
 		'reponse_suite_commentaire' => 'en r&eacute;ponse &agrave;...',
 		'requete' => 'Saisir le(s) mot(s)',
 		'resume_exif_photo' => 'Donn&eacute;es EXIF de la photo',
@@ -416,10 +354,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'resume_mini_agenda_footer' => 'Liste des &eacute;v&egrave;nements &agrave; venir',
 		'resultats_recherche' => 'R&eacute;sultats de la recherche', // redefinition item SPIP
 		'resultats_recherche_dans' => 'L\'expression &#171; @recherche@ &#187; est pr&eacute;sente dans :', // redefinition item SPIP
-		'retour_article' => 'Retourner &agrave; l\'article',
-		'retour_aujourdhui' => 'Revenir &agrave; la date d\'aujourd\'hui',
-		'rubriques' => 'Rubriques',
-		'rubriques_mot' => 'Rubriques associ&eacute;es',
 
 	
 //S
@@ -429,12 +363,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'signatures_petition' => 'Signatures', // redefinition item SPIP
 		'signature_petition' => 'Signature',
 		'signer_petition' => 'Signer la p&eacute;tition',
-		'site_realise_avec_npp' => 'Site r&eacute;alis&eacute; avec Notepad++',
 		'site_realise_avec_spip' => 'Site r&eacute;alis&eacute; avec SPIP', // redefinition item SPIP
-		'sites_mot' => 'Sites web associ&eacute;s',
 		'site_web' => 'Site web',
 		'sites_web' => 'Sites Web', // redefinition item SPIP
-		'sites_meme_rubrique' => 'Sites de la rubrique',
 		'sous_rubriques' => 'sous-rubriques',
 		'squelette' => 'squelette',
 		'sstitre_recherche_site' => 'dans le site',
@@ -455,7 +386,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'themes_site' => 'Th&egrave;mes',
 		'titre_rubriques_filles' => 'Suivez aussi les sous-rubriques ci-dessous',
 		'top_articles' => 'Les plus populaires',
-		'toutes_les_breves' => 'Toutes les br&egrave;ves du site',
 		'tri_par_auteur' => 'Par auteur',
 		'tri_par_date' => 'Par date',
 		'tri_par_rubrique' => 'Par rubrique',
@@ -471,8 +401,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	  
 		'vendredi_abrege' => 'Ve',
 		'verifier_xhtml' => 'V&eacute;rifier la validit&eacute; XHTML de cette page',
-		
-		'votre_reponse' => 'Votre r&eacute;ponse',
 	  
 	
 //W
@@ -495,7 +423,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // CFG : items de langue de la configuration du squelette (espace prive)        
 // Titre des pages
-		'cfg_titre_accueil' => 'Sarka-SPIP - Accueil',
+		'cfg_titre_accueil' => 'Sarka-SPIP',
 		'cfg_titre_agenda' => 'Sarka-SPIP - Configuration de l\'agenda',
 		'cfg_titre_album' => 'Sarka-SPIP - Configuration de la page Album',
 		'cfg_titre_article' => 'Sarka-SPIP - Configuration de la page article',
@@ -605,7 +533,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_boite_styles' => 'Configuration des styles',
 
 // Legendes des blocs contenus dans chaque boite
-		'cfg_lgd_accueil_debug' => 'Debug',
+//		'cfg_lgd_accueil_debug' => 'Debug',
 		'cfg_lgd_accueil_intro' => 'Pr&eacute;sentation',
 		'cfg_lgd_agenda_modele' => 'Agenda annuel - Mod&egrave;le',
 		'cfg_lgd_agenda_page' => 'Agenda annuel - Description',		
@@ -613,7 +541,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lgd_agenda_secteur' => 'Choix du secteur &#171;Agenda&#187;',		
 		'cfg_lgd_agenda_tri' => 'Agenda annuel - Tri',
 		'cfg_lgd_album_carrousel' => 'Liste des vignettes',
-		'cfg_lgd_album_presentation' => 'Pr&eacute;sentation g&eacute;n&eacute;rale',
 		'cfg_lgd_album_zoom' => 'Agrandissement',
 		'cfg_lgd_album_exif' => 'Donn&eacute;es EXIF',
 		'cfg_lgd_albums_publies' => 'Albums publi&eacute;s',
@@ -711,7 +638,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_accueil_bloc_layout' => 'Configuration de la structure du site',
 		'cfg_inf_accueil_bloc_page' => 'Configuration du corps de chaque page',
 		'cfg_inf_accueil_bloc_style' => 'Configuration des &eacute;l&eacute;ments graphiques',
-		'cfg_inf_accueil_debug' => 'Si vous avez un souci ou voulez rapporter un bug il peut &ecirc;tre utile d\'activer le mode debug pour la configuration des pages. Celui-ci vous permez de lire les variables de chaque fond.',
 		'cfg_inf_accueil_intro_0' => 'Bienvenue sur l\'espace de param&eacute;trage du squelette Sarka-SPIP. Vous pouvez acc&eacute;der aux diverses pages de configuration via les liens inclus dans un bloc sur le cot&eacute;. Les pages de configuration actuellement disponibles sont:',
 		'cfg_inf_accueil_intro_1' => '<em>Accueil</em> : pr&eacute;sentation des pages de configuration',
 		'cfg_inf_accueil_intro_10' => '<em>Plan du site</em> : choix des param&egrave;tres de la pagination', 
@@ -753,7 +679,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_album_carrousel_hover' => 'Voulez-vous afficher une image l&eacute;g&egrave;rement agrandie au survol des vignettes ?',
 		'cfg_inf_album_carrousel_modele' => 'La liste des vignettes peut &ecirc;tre affich&eacute;e sous la forme d\'un carrousel &agrave; d&eacute;filement horizontal ou d\'une liste pagin&eacute;e.',
 		'cfg_inf_album_carrousel_position' => 'Il est possible d\'afficher une liste de vignettes carr&eacute;es au-dessus ou en-dessous de la photo choisie pour &ecirc;tre agrandie.',
-		'cfg_inf_album_presentation' => 'La pr&eacute;sentation de certains blocs de la page album utilise des plugins jQuery (donc n&eacute;cessite d\'activer javascript) ce qui a pour effet d\'en modifier l\'agencement. Choisissez ci-dessous la pr&eacute;sentation qui vous convient.',
 		'cfg_inf_album_zoom' => 'En cliquant sur une vignette, la photo choisie peut &ecirc;tre affich&eacute;e agrandie (mais rarement en taille r&eacute;elle), accompagn&eacute;e de son titre et de son descriptif. Voulez-vous ins&eacute;rer cet agrandissement dans votre page album ?',
 		'cfg_inf_album_zoom_effet' => 'En cliquant sur cette photo vous pouvez l\'afficher dans sa taille originale avec un effet de type galerie. Choissisez l\'effet désir&eacute; parmi ceux propos&eacute;s ci-dessous :',
 		'cfg_inf_album_zoom_exif' => 'Voulez-vous aussi pr&eacute;senter les donn&eacute;es EXIF de la photo ?',
@@ -897,7 +822,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_outils_perso' => 'Vous pouvez ajouter des informations personnelles dans le bloc des liens du pied de page. Elle s\'afficheront avant le lien permettant de remonter en haut de la page (laissez vide pour ne rien afficher) .',
 		'cfg_inf_pagination_bande' => 'Choisissez la position de la bande de pagination.',
 		'cfg_inf_pagination_1' => 'Choisissez le mod&egrave;le de pagination, le nombre d\'&eacute;l&eacute;ments affich&eacute;s dans chaque page et la position de la bande de pagination.',
-		'cfg_inf_pagination_2' => 'Choisissez le mod&egrave;le de pagination et le nombre d\'&eacute;l&eacute;ments affich&eacute;s dans chaque page.',
 		'cfg_inf_petition' => 'Si vous avez autoris&eacute; les petitions sur vos articles les signatures sont affich&eacute;es en bas de la page sous la forme d\'un tableau pagin&eacute;.',
 		'cfg_inf_pied_affichage' => 'D&eacute;sirez vous afficher le pied du site ?',
 		'cfg_inf_plan_pagination' => 'La page Plan du site est compos&eacute;e de trois onglets assimilables &agrave; une bande de pagination. Les onglets permettent de pr&eacute;senter la liste des articles soit par date, soit par rubrique, soit par auteur. Les articles sont donc tri&eacute;s alphab&eacute;tiquemet ou/et chronologiquement. Le tri alphab&eacute;tique est toujours croissant, par contre, le sens du tri chronologique peut &ecirc;tre choisi. La position de la bande d\'onglets est aussi param&eacute;trable.',
@@ -935,17 +859,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // Labels des items de choix
 		'cfg_lbl_1_colonne' => 'Affichage une colonne',
 		'cfg_lbl_2_colonnes' => 'Affichage deux colonnes',
-		'cfg_lbl_accueil_debug_1' => 'Mode debug actif',
-		'cfg_lbl_accueil_debug_2' => 'Mode debug inactif',
 		'cfg_lbl_agenda_descriptif' => 'Vous pouvez r&eacute;diger un descriptif succinct pour pr&eacute;senter votre agenda (composition, mots-clés...). Ce texte peut &ecirc;tre &eacute;crit en utilisant les raccourcis classiques de SPIP.',
 		'cfg_lbl_agenda_modele_1' => 'Par ann&eacute;e calendaire',
 		'cfg_lbl_agenda_modele_2' => 'Par saison',
 		'cfg_lbl_agenda_mois1' => 'Premier mois de la saison',
 		'cfg_lbl_agenda_titre' => 'Titre de la page agenda',
-		'cfg_lbl_album_presentation_1' => 'Avec carrousel d&eacute;filant possible (utilisation du plugin jCarrouselLite)',
-		'cfg_lbl_album_presentation_2' => 'Sans carrousel d&eacute;filant (utilisation du plugin Galleria)',
 		'cfg_lbl_align_centre' => 'Au centre',
-		'cfg_lbl_align_droite' => 'A droite',
 		'cfg_lbl_align_gauche' => 'A gauche',
 		'cfg_lbl_appliquer_padding' => 'D&eacute;sirez vous appliquer une marge entre les bords externes des noisettes et le fond de la fen&ecirc;tre du navigateur ?',
 		'cfg_lbl_badge_perso_infobulle' => 'Infobulle associ&eacute;e au badge perso :',
@@ -988,7 +907,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_css_fg' => 'Couleur d\'avant plan @lbl_fg_complement@',
 		'cfg_lbl_css_fo' => 'Polices &agrave; appliquer en priorit&eacute; avant arial et sans-serif toujours incluses',
 		'cfg_lbl_css_hb' => 'Couleur de survol de l\'arri&egrave;re plan',
-		'cfg_lbl_css_ho_lien' => 'des liens',
 		'cfg_lbl_css_ho_titre' => 'des titres',
 		'cfg_lbl_css_ho' => 'Couleur de survol @lbl_ho_complement@',
 		'cfg_lbl_css_image_fond' => 'Vous pouvez afficher une image d\'arri&egrave;re plan nomm&eacute;e bg@lbl_bi_suffixe@, stock&eacute;e dans le dossier images/ et poss&eacute;dant l\'extension gif, png ou jpg.',
@@ -1012,15 +930,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_form_descriptif' => 'Vous pouvez r&eacute;diger un descriptif succinct pour pr&eacute;senter le formulaire. Ce texte peut &ecirc;tre &eacute;crit en utilisant les raccourcis classiques de SPIP.',
 		'cfg_lbl_form_titre' => 'Titre de la page contenant le formulaire',
 		'cfg_lbl_galerie_descriptif' => 'Vous pouvez r&eacute;diger un descriptif succinct pour pr&eacute;senter votre galerie (composition, mots-clés...). Ce texte peut &ecirc;tre &eacute;crit en utilisant les raccourcis classiques de SPIP.',
-		'cfg_lbl_galerie_modele_1' => 'Par ann&eacute;e calendaire',
-		'cfg_lbl_galerie_modele_2' => 'Par saison',
-		'cfg_lbl_galerie_mois1' => 'Premier mois de la saison',
-		'cfg_lbl_galerie_pagination_pas' => 'Nombre d\'albums par page',
-		'cfg_lbl_galerie_pagination_type_numero' => 'Affichage des num&eacute;ros d\'albums',
-		'cfg_lbl_galerie_pagination_type_page' => 'Affichage des num&eacute;ros de page',
 		'cfg_lbl_galerie_titre' => 'Titre de la page galerie',
-		'cfg_lbl_galerie_type_1' => 'Type planche',
-		'cfg_lbl_galerie_type_2' => 'Type plan',
 		'cfg_lbl_gif' => 'gif',
 		'cfg_lbl_groupes_mots' => 'Groupes de mots-cl&eacute;s pouvant &ecirc;tre affich&eacute;s dans le nuage (choix multiple)',
 		'cfg_lbl_groupes_mots_recherche' => 'Groupes de mots-cl&eacute;s pouvant &ecirc;tre affich&eacute;s dans le formulaire de recherche par mots-cl&eacute;s (choix multiple)',
@@ -1046,7 +956,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_inc_position_3' => 'Chemin du bandeau',
 		'cfg_lbl_inc_position_4' => 'Partie haute du bandeau',
 		'cfg_lbl_inc_position_5' => 'Partie basse du bandeau',
-		'cfg_lbl_inc_position_6' => 'Pied de page',
+		'cfg_lbl_inc_position_6' => 'Pied de page', // Utilisation future
 		'cfg_lbl_inc_position_7' => 'Colonne extra ou navigation',
 		'cfg_lbl_inc_recherche_ext_0' => 'Aucun moteur de recherche suppl&eacute;mentaire',
 		'cfg_lbl_inc_recherche_ext_1' => 'Exalead',
@@ -1054,11 +964,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_inc_recherche_ext_3' => 'Yahoo',
 		'cfg_lbl_inc_recherche_ext_4' => 'MSN Search',
 		'cfg_lbl_inc_recherche_ext_5' => 'Voila',
-		'cfg_lbl_inc_rubriques_0' => 'Aucun menu des rubriques vertical',
 		'cfg_lbl_inc_rubriques_1' => 'Menu des rubriques d&eacute;roulant',
 		'cfg_lbl_inc_rubriques_2' => 'Menu des rubriques d&eacute;pli&eacute;',
 		'cfg_lbl_inc_rubriques_3' => 'Menu des rubriques accord&eacute;on &agrave; ouverture automatique',
-		'cfg_lbl_inc_rubriques_4' => 'Menu des rubriques accord&eacute;on &agrave; ouverture manuelle',
+		'cfg_lbl_inc_rubriques_4' => 'Menu des rubriques accord&eacute;on &agrave; ouverture manuelle', // Utilisation future
 		'cfg_lbl_inc_sites_1' => 'Un bloc par site avec ses articles syndiqu&eacute;s r&eacute;cemment',
 		'cfg_lbl_inc_sites_2' => 'Un bloc pour toutes les syndications les plus r&eacute;centes',
 		'cfg_lbl_inc_stathit_compo_1' => 'Uniquement le hit-parade des articles les plus visit&eacute;s du site',
@@ -1067,7 +976,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_intro_article' => 'Taille maximale de l\'introduction d\'un article',
 		'cfg_lbl_intro_breve' => 'Taille maximale de l\'introduction d\'une br&egrave;ve',
 		'cfg_lbl_intro_commentaires' => 'Taille maximale de l\'introduction d\'un commentaire',
-		'cfg_lbl_intro_galerie' => 'Taille maximale de l\'introduction d\'un album',
 		'cfg_lbl_intro_messages' => 'Taille maximale de l\'introduction d\'un message',
 		'cfg_lbl_jpg' => 'jpg',
 		'cfg_lbl_largeur_item' => 'Largeur de chaque item, en pixels: ',
@@ -1109,8 +1017,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_meta_auteur' => 'Nom de l\'auteur du site (balise author)',
 		'cfg_lbl_meta_robot' => 'Nombre de jours entre deux visites des robots (balise revisit-after)',
 		'cfg_lbl_mini_agenda_jour1' => 'Premier jour de la semaine',
-		'cfg_lbl_mini_agenda_prec' => 'Symbole pour pr&eacute;c&eacute;dent',
-		'cfg_lbl_mini_agenda_suiv' => 'Symbole pour suivant',
 		'cfg_lbl_nb_jours_syndiques_1'=> 'Nombre de jours pour la page compl&egrave;te',
 		'cfg_lbl_nb_jours_syndiques_2'=> 'Nombre de jours pour un site donn&eacute;',
 		'cfg_lbl_non' => 'Non',
@@ -1119,17 +1025,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_pagination_2' => 'Num&eacute;ros des pages (1|2|3)',
 		'cfg_lbl_pagination_3' => 'Items pr&eacute;c&eacute;dent et suivant uniquement (page pr&eacute;c&eacute;dente | page suivante)',
 		'cfg_lbl_pagination_4' => 'Num&eacute;ros des pages et items pr&eacute;c&eacute;dent et suivant (<1|2|3|>)',
-		'cfg_lbl_pagination_ancre' => 'Nom de l\'ancre',
 		'cfg_lbl_pagination_format' => 'Format des items de pagination',
-		'cfg_lbl_pagination_separateur' => 'S&eacute;parateur',
 		'cfg_lbl_pas_pagination' => 'Nombre d\'&eacute;l&eacute;ments par page',
 		'cfg_lbl_pixel' => 'px',
 		'cfg_lbl_png' => 'png',
 		'cfg_lbl_rainette_nb_prevision' => 'Indiquez le nombre de jours de pr&eacute;visions : ',
 		'cfg_lbl_rainette_ville' => 'Indiquez le code de cette ville : ',
 		'cfg_lgd_recherche_choix_groupe' => 'Groupes de mots-cl&eacute;s', 
-		'cfg_lbl_resume_non' => 'Afficher les n derniers &eacute;v&eacute;nements du mois',
-		'cfg_lbl_resume_oui' => 'Afficher le ',
 		'cfg_lbl_rss_age' => 'Age maximal pour faire partie du flux (en jours)',
 		'cfg_lbl_rss_nombre' => 'Nombre maximal d\'&eacute;l&eacute;ments dans le flux sans tenir compte de l\'&acirc;ge',
 		'cfg_lbl_slogan' => 'Slogan du site : ',
@@ -1137,7 +1039,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_lbl_stathit_max_top' => 'Nombre maximal d\'articles populaires',
 		'cfg_lbl_taille_logo' => 'Taille maximale du logo en hauteur ou en largeur',
 		'cfg_lbl_taille_resume' => 'Nombre maximal d\'&eacute;v&eacute;nements',
-		'cfg_lbl_taille_vignette_galerie' => 'Taille maximale de la vignette en hauteur ou en largeur',
 		'cfg_lbl_tri_antichrono' => 'Tri anti-chronologique',
 		'cfg_lbl_tri_antichrono' => 'Tri anti-chronologique',
 		'cfg_lbl_tri_chrono' => 'Tri chronologique',
