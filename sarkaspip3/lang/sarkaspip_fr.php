@@ -822,6 +822,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		'cfg_inf_outils_perso' => 'Vous pouvez ajouter des informations personnelles dans le bloc des liens du pied de page. Elle s\'afficheront avant le lien permettant de remonter en haut de la page (laissez vide pour ne rien afficher) .',
 		'cfg_inf_pagination_bande' => 'Choisissez la position de la bande de pagination.',
 		'cfg_inf_pagination_1' => 'Choisissez le mod&egrave;le de pagination, le nombre d\'&eacute;l&eacute;ments affich&eacute;s dans chaque page et la position de la bande de pagination.',
+		'cfg_inf_pagination_2' => 'Choisissez le mod&egrave;le de pagination et le nombre d\'&eacute;l&eacute;ments affich&eacute;s dans chaque page.',
 		'cfg_inf_petition' => 'Si vous avez autoris&eacute; les petitions sur vos articles les signatures sont affich&eacute;es en bas de la page sous la forme d\'un tableau pagin&eacute;.',
 		'cfg_inf_pied_affichage' => 'D&eacute;sirez vous afficher le pied du site ?',
 		'cfg_inf_plan_pagination' => 'La page Plan du site est compos&eacute;e de trois onglets assimilables &agrave; une bande de pagination. Les onglets permettent de pr&eacute;senter la liste des articles soit par date, soit par rubrique, soit par auteur. Les articles sont donc tri&eacute;s alphab&eacute;tiquemet ou/et chronologiquement. Le tri alphab&eacute;tique est toujours croissant, par contre, le sens du tri chronologique peut &ecirc;tre choisi. La position de la bande d\'onglets est aussi param&eacute;trable.',
