@@ -121,7 +121,8 @@ vous proposons de le faire avec le plugins "menus" et de créer un menu avec l\'
 'hierarchie' => 'la "hierarchie"',
 
 //I
-
+'infos' => 'Afficher une infos sur toutes les rubriques (si vous la souhaitez différentes 
+			utiliser la description.)',
 //J
 
 //K
