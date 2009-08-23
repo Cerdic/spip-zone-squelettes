@@ -18,7 +18,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'article_suivant' => 'Next',
 	'article_suivant_dernier' => 'Lastest article',
 	'articles' => 'Articles',
-	'aucun_evenement' => 'No comming event invisaged this month in the diary',
+	'aucun_evenement' => 'No coming event envisaged this month in the diary',
 	'aucun_resultat_pour' => 'No results for',
 
 	// B
@@ -39,17 +39,17 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'derniers_commentaires' => 'Latest comments',
 	'derniers_podcasts' => 'Latest podcasts',
 	'derniers_sites' => 'Latest sites',
-	'diaporama' => 'Slide show',
+	'diaporama' => 'Slideshow',
 	'dix_meilleurs_articles' => 'Top ten articles',
 	'dix_meilleurs_breves' => 'Top ten News',
 	'dix_meilleurs_commentaires' => 'Top ten comments',
-	'doc_redacteurs' => 'On line documents for writers using EVA_Red',
+	'doc_redacteurs' => 'Online documents for writers using EVA_Red',
 	'document' => 'Document',
 	'documents_joints' => 'Attachments',
 
 	// E
 	'erreur_404' => 'Error 404',
-	'evenement_aucun' => 'No comming event invisaged this month in the diary',
+	'evenement_aucun' => 'No coming event envisaged this month in the diary',
 	'evenements_a_venir' => 'Events to come',
 	'evenements_du' => 'Events for',
 	'evenements_passes' => 'Past events',
@@ -76,8 +76,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// J
 	'j1' => 'Mon',
 	'j2' => 'Tue',
-	'j3' => 'Wen',
-	'j4' => 'Thur',
+	'j3' => 'Wed',
+	'j4' => 'Thu',
 	'j5' => 'Fri',
 	'j6' => 'Sat',
 	'j7' => 'Sun',
@@ -90,8 +90,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'jo7' => 'Sunday',
 
 	// L
-	'lancer_diaporama' => 'Open Slide show',
-	'lien_externe' => 'External link, open in new window',
+	'lancer_diaporama' => 'Open Slideshow',
+	'lien_externe' => 'External link, opens in a new window',
 	'lire_suite' => 'Read more',
 
 	// M
@@ -108,10 +108,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'm8' => 'August',
 	'm9' => 'September',
 	'meme_rubrique' => 'In this section',
-	'mentions' => 'Mentions',
-	'mentions_legales' => 'Legal mentions',
-	'mis_a_jour' => 'Updating : ',
-	'mot_cle' => 'Key words',
+	'mentions' => 'Notes',
+	'mentions_legales' => 'Legal notes',
+	'meteo' => 'Weather',
+	'meteo_info' => 'Geographical information',
+	'meteo_previsions' => 'Weather forecast',
+	'mis_a_jour' => 'Updated: ',
+	'mot_cle' => 'Keywords',
 	'multilinguisme' => 'Display the menu of language of EVA-Web in the public pages?',
 	'multilinguisme_article' => 'This article in :',
 
