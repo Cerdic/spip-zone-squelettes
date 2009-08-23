@@ -1,4 +1,4 @@
-var styles = [ "60%" , "80%" , "100%" , "120%" , "140%" , "160%" , "180%" ]
+var styles = [ "8px" , "10px" , "12px" , "15px" , "19px" , "24px" , "30px" ]
 var style = 3
 function changestyle(l_direction)
 	{
