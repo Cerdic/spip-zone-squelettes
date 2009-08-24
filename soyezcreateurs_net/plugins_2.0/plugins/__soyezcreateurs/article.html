@@ -1,17 +1,17 @@
 #CACHE{3600}
 <BOUCLE_article_principal(ARTICLES) {id_article}><BOUCLE_Gribouille(HIERARCHIE){id_article}{tout}{titre_mot=Gribouille}{inverse}{0,1}>[(#INCLURE{fond=gribouille/article}{env})]</BOUCLE_Gribouille><BOUCLE_RacineMenuHaut(HIERARCHIE){id_rubrique}{tout}{titre_mot=MenuHaut}{inverse} {0,1}>[(#SET{secteurencours,#ID_RUBRIQUE})]</BOUCLE_RacineMenuHaut>
 [(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)]})]
-[(#INCLURE{fond=noisettes/header/header}
+<INCLURE{fond=noisettes/header/header}
 	{id_article}
 	{id_rubrique}
 	{id_trad}
 	{rubriqueencours=#ID_RUBRIQUE}
 	{secteurencours=#GET{secteurencours}}
 	{lang}
-	{metadescription=[(#INTRODUCTION{150}|supprimer_tags|attribut_html)]}
-	{title=[(#TITRE|attribut_html|texte_script)]}
+	{metadescription=(#INTRODUCTION{150}|supprimer_tags|attribut_html)}
+	{title=(#TITRE|attribut_html|texte_script)}
 	{titretop=#GET{titretop}}
-)]
+>
 
 <BOUCLE_TypeRubrique(HIERARCHIE){id_rubrique}{tout}{type=_TypeRubrique}{inverse} {0,1}><BOUCLE_Mot_TypeRubrique(MOTS){type=_TypeRubrique}>
 [(#INCLURE{fond=noisettes/articles/typearticle_#TITRE}{id_article=#_article_principal:ID_ARTICLE}{rubriqueencours}{template}{secteurencours}{lang}{racinetype=#_TypeRubrique:ID_RUBRIQUE})]
@@ -181,14 +181,14 @@
 [(#FORMULAIRE_ADMIN)]
 <//B_TypeRubrique>
 [<script src="(#CONFIG{soyezcreateurs_google/feedflare})?i=[(#URL_ARTICLE|url_absolue)]" type="text/javascript" charset="utf-8"></script>]
-[(#INCLURE{fond=noisettes/footer/footer}
+<INCLURE{fond=noisettes/footer/footer}
 	{rubriqueencours=#ID_RUBRIQUE}
 	{id_rubrique}
 	{id_article}
 	{secteurencours=#GET{secteurencours}}
 	{lang}
 	{titretop=#GET{titretop}}
-)]
+>
 <//B_Gribouille>
 </BOUCLE_article_principal>[
 (#CONFIG{soyezcreateurs_google/redirection_ancien_site})[(#INCLURE{fond=noisettes/redirect})]

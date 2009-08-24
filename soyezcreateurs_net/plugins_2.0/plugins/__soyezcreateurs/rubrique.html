@@ -2,13 +2,13 @@
 <BOUCLE_Gribouille(RUBRIQUES){id_rubrique}{titre_mot=Gribouille}>[(#INCLURE{fond=gribouille/rubrique}{env})]</BOUCLE_Gribouille>
 <BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}{!lang_select}>[(#SET{id_rubrique,#ID_RUBRIQUE})]<BOUCLE_RacineMenuHaut(HIERARCHIE){tout}{id_rubrique}{titre_mot=MenuHaut}{inverse} {0,1}>[(#SET{secteurencours,#ID_RUBRIQUE})]</BOUCLE_RacineMenuHaut>
 [(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)]})]
-[(#INCLURE{fond=noisettes/header/header}
+<INCLURE{fond=noisettes/header/header}
 	{id_rubrique}
 	{secteurencours=#GET{secteurencours}}
-	{metadescription=[(#INTRODUCTION{150}|supprimer_tags|attribut_html)]}
-	{title=[(#TITRE|attribut_html|texte_script)]}
+	{metadescription=(#INTRODUCTION{150}|supprimer_tags|attribut_html)}
+	{title=(#TITRE|attribut_html|texte_script)}
 	{titretop=#GET{titretop}}
-)]
+>
 <BOUCLE_EstAgenda(HIERARCHIE){id_rubrique}{tout}{titre_mot=Agenda}{inverse}{0,1}>
 [(#CONFIG{soyezcreateurs/agendathematique,}|=={#ENV{calendrier,on}}|oui)[(#INCLURE{fond=noisettes/agenda/agendathematique}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE})]]
 [(#CONFIG{soyezcreateurs/agendathematique,}|!={#ENV{calendrier,on}}|oui)
@@ -56,11 +56,11 @@
 
 <//B_EstAgenda>
 </BOUCLE_rubrique_principal>
-[(#INCLURE{fond=noisettes/footer/footer}
+<INCLURE{fond=noisettes/footer/footer}
 	{rubriqueencours=#ID_RUBRIQUE}
 	{id_rubrique}
 	{secteurencours=#GET{secteurencours}}
 	{titretop=#GET{titretop}}
-)]
+>
 </B_rubrique_principal>[(#PLUGIN{ACCESRESTREINT}|=={1}|oui)[(#INCLURE{fond=noisettes/accesrestreint/rubrique_restreinte}{env})]]<//B_rubrique_principal>
 <//B_Gribouille>

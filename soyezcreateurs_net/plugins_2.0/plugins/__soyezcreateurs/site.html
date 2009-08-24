@@ -2,19 +2,19 @@
 <BOUCLE_site(SITES){id_syndic}>
 [(#SET{titretop,<:sites_web|sc_nettoyer_marqueur:>_[(#NOM_SITE|sc_nettoyer_marqueur)]})]
 <BOUCLE_ArticleSyndiqueTitre(SYNDIC_ARTICLES) {id_syndic_article} >
-[(#INCLURE{fond=noisettes/header/header}
-	{metadescription=[(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)]}
-	{title=[(#TITRE|textebrut|texte_script)][ - (#NOM_SITE|textebrut|texte_script) (<:sites_web:>)]}
+<INCLURE{fond=noisettes/header/header}
+	{metadescription=(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)}
+	{title=(#TITRE|textebrut|texte_script) - (#NOM_SITE|textebrut|texte_script) (<:sites_web:>)}
 	{titretop=#GET{titretop}}
 	{secteurencours=#ID_SECTEUR}
-)]
+>
 </BOUCLE_ArticleSyndiqueTitre>
-[(#INCLURE{fond=noisettes/header/header}
-	{metadescription=[(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)]}
-	{title=[(#NOM_SITE|textebrut|texte_script) (<:sites_web:>)]}
+<INCLURE{fond=noisettes/header/header}
+	{metadescription=(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)}
+	{title=(#NOM_SITE|textebrut|texte_script) (<:sites_web:>)}
 	{titretop=#GET{titretop}}
 	{secteurencours=#ID_SECTEUR}
-)]
+>
 <//B_ArticleSyndiqueTitre>
 	<div id="miettesdepain">
 	<ul>
@@ -84,7 +84,7 @@
 	
 [(#FORMULAIRE_ADMIN)]
 
-[(#INCLURE{fond=noisettes/footer/footer}
+<INCLURE{fond=noisettes/footer/footer}
 	{rubriqueencours=#ID_RUBRIQUE}
 	{id_rubrique=#ID_RUBRIQUE}
 	{secteurencours=#ID_SECTEUR}
@@ -92,13 +92,16 @@
 	{template=Sites}
 	{jp_site=#ID_SYNDIC}
 	{jp_syndication=#ENV{id_syndic_article}}
-)]
+>
 
 </BOUCLE_site>
 
 [(#SET{titretop,<:sites_web|sc_nettoyer_marqueur:>})]
 
-[(#INCLURE{fond=noisettes/header/header}{title=<:sites_web:>}{titretop=#GET{titretop}})]
+<INCLURE{fond=noisettes/header/header}
+	{title=<:sites_web:>}
+	{titretop=#GET{titretop}}
+>
 
 <div id="miettesdepain">
 	<ul>
@@ -121,9 +124,9 @@
 					
 [(#FORMULAIRE_ADMIN)]
 
-[(#INCLURE{fond=noisettes/footer/footer}
+<INCLURE{fond=noisettes/footer/footer}
 	{secteurencours=#GET{secteurencours}}
 	{titretop=#GET{titretop}}
 	{template=Sites}
-)]
+>
 <//B_site>

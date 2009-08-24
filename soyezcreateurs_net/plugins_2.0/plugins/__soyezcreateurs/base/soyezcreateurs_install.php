@@ -159,6 +159,14 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			sql_delete("spip_groupes_mots", "id_groupe=$id_groupe");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.9','non');
 		}
+		if (version_compare($current_version,'2.1.10','<')) {
+			include_spip('base/soyezcreateurs');
+			spip_log("SoyezCreateurs maj 2.1.10", "soyezcreateurs_install");
+			include_spip('inc/sc_article');
+			create_groupe("_HeaderBanner", "Pour définir plusieurs bannières pour le site.", "Il faut créer un mot clef par bannière (le titre n'a pas d'importance).\n\nC'est le logo du mot clef qui est utilisé comme bannière du site.\n\n{{Attention}} : si vous avez déjà défini une bannière avec le logo de survol du site, alors, cette dernière n'est plus utilisée ; seuls les logos des mots clefs de ce groupe seront pris en compte.", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'non');
+			ecrire_meta($nom_meta_base_version,$current_version='2.1.10','non');
+		}
+
 		/*
 		#En attente
 		if (version_compare($current_version,'2.1.10','<')) {
