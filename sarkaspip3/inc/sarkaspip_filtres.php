@@ -151,26 +151,6 @@ function fin_journee($date) {
 // FIN du Filtre : fin_journee
 
 // =======================================================================================================================================
-// Filtre : gravatar_url
-// =======================================================================================================================================
-// Auteur: Smellup
-// Fonction : Retourne l'url du gravatar si l'email de l'auteur est enregistre sur gravatar.com
-// =======================================================================================================================================
-//
-function gravatar_url($email = '', $taille = 32) {
-	$url = '';
-	if ($email != '') {
-		$url = 'http://www.gravatar.com/avatar.php?gravatar_id='.md5($email).'&amp;size='.$taille.'&amp;rating=PG';
-		// Ceci est le hash du gravatar bleu moche par defaut : on l'ignore
-		$gravatar = recuperer_page($url);
-		if (md5($gravatar) === '2bd0ca9726695502d06e2b11bf4ed555')
-			$url = '';
-	}
-	return $url;
-}
-// FIN du Filtre : gravatar_url
-
-// =======================================================================================================================================
 // Filtre : libelle_statut
 // =======================================================================================================================================
 // Auteur: Smellup
@@ -180,7 +160,7 @@ function gravatar_url($email = '', $taille = 32) {
 function libelle_statut($statut) {
 	return _T('sarkaspip:statut_'.$statut);
 }
-// FIN du Filtre : gravatar_url
+// FIN du Filtre : libelle_statut
 
 // =======================================================================================================================================
 // Filtre : lister_fonds

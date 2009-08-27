@@ -24,39 +24,14 @@
 	]
 ]
 <BOUCLE_commentaires(FORUMS){plat}{id_article}{id_forum?}{par date}{inverse}{pagination #ENV{pas_pagination}}>
-	[(#REM) <!-- Determination des infomations sur l'auteur --> ]
-	<BOUCLE_forum_edite(FORUMS){id_parent=#ID_FORUM}{statut=original}>
-		[(#REM) <!-- Cas ou le commentaire a ete crayonne --> ]
-		<BOUCLE_auteur_pere1(AUTEURS) {tout}{id_auteur=#_forum_edite:ID_AUTEUR}>
-			#SET{nom_auteur, #NOM}
-			#SET{logo_auteur, #LOGO_AUTEUR}
-			#SET{email_auteur, #EMAIL}
-		</BOUCLE_auteur_pere1>
-			#SET{nom_auteur, #_forum_edite:NOM}
-			#SET{logo_auteur, ''}
-			#SET{email_auteur, #_forum_edite:#EMAIL}
-		<//B_auteur_pere1>
-	</BOUCLE_forum_edite>
-	</B_forum_edite>
-		[(#REM) <!-- Cas ou le commentaire n'a pas ete crayonne --> ]
-		<BOUCLE_auteur_pere2(AUTEURS) {tout}{id_auteur=#_commentaires:ID_AUTEUR}>
-			#SET{nom_auteur, #NOM}
-			#SET{logo_auteur, #LOGO_AUTEUR}
-			#SET{email_auteur, #EMAIL}
-		</BOUCLE_auteur_pere2>
-			#SET{nom_auteur, #_commentaires:NOM}
-			#SET{logo_auteur, ''}
-			#SET{email_auteur, #_commentaires:#EMAIL}
-		<//B_auteur_pere2>
-	<//B_forum_edite>
-
 	<div class="message"[ id="co_n(#COMPTEUR_BOUCLE)"]>
 		<a id="forum[(#ID_FORUM)]" name="forum[(#ID_FORUM)]" href="#forum[(#ID_FORUM)]"></a>
 		<div class="gravatar">
-		[(#GET{logo_auteur}||?{
-			[(#GET{logo_auteur}||image_passe_partout{32}|image_recadre{32,32,center,FFFFFF}|inserer_attribut{class,spip_logos gravatar}|inserer_attribut{alt,[<:sarkaspip:logo_de:> (#NOM)]})],
-			<img src="[(#GET{email_auteur}|gravatar_url{32}|sinon{#CHEMIN{images/gravatar32.png}})]" width="32" height="32" class="spip_logos gravatar" alt="[<:sarkaspip:gravatar_de:> (#GET{nom_auteur})]" />
-		})]
+	<BOUCLE_auteur_pere(AUTEURS) {tout}{id_auteur=#_commentaires:ID_AUTEUR}>
+			[(#LOGO_AUTEUR||sinon{#CHEMIN{images/gravatar32.png}}||image_passe_partout{32}|image_recadre{32,32,center,FFFFFF}|inserer_attribut{class,spip_logos gravatar}|inserer_attribut{alt,[<:sarkaspip:logo_de:> (#NOM)]})]
+	</BOUCLE_auteur_pere>
+			[(#GRAVATAR{#_commentaires:#EMAIL, 32, #CHEMIN{images/gravatar32.png}}||image_passe_partout{32}|image_recadre{32,32,center,FFFFFF}|inserer_attribut{class,spip_logos gravatar}|inserer_attribut{alt,[<:sarkaspip:logo_de:> (#_commentaires:NOM)]})]
+	<//B_auteur_pere>
     	</div>
 		<div class="cartouche_simple">
 		[(#ENV{id_forum}|?{'', ' '})
