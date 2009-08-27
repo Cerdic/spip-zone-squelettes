@@ -35,7 +35,7 @@
 
             		<div class="archive_number">
             			<:category_count:> <BOUCLE_count(ARTICLES){id_rubrique} />[(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE&nbsp;<:billets:>,#TOTAL_BOUCLE&nbsp;<:billet:>})]<//B_count>
-            		</div>           		
+            		</div>
             	
             	</div>
 
@@ -49,12 +49,12 @@
 			#ANCRE_PAGINATION
 				<BOUCLE_posts(ARTICLES){id_rubrique}{! par date}{doublons art_accueil}{pagination 10}>
 					<div class="archive_post_block">
-						<h3 class="archive_title" id="post-#ID_ARTICLE"><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h3>
+						<h3 class="archive_title" id="post-#ID_ARTICLE"><a href="#URL_ARTICLE" title="#TITRE" rel="bookmark">#TITRE</a></h3>
 						<div class="archive_post_meta">
 							[<:par_auteur:> (#LESAUTEURS) <span class="dot">&sdot;</span> ]
 							<abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>[ (<:texte_date_publication_anterieure:> (#DATE_REDAC|affdate)).]<BOUCLE_messages0(FORUMS){id_article} />[ <span class="dot">&sdot;</span> <a href="#URL_ARTICLE#forum">(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE&nbsp;<:comments:>,#TOTAL_BOUCLE&nbsp;<:comment:>})</a>]<//B_messages0>
 						</div>
-						<p>#INTRODUCTION{360, [...]}</p>
+						[<p class="post_intro"><a href="#URL_ARTICLE" title="#TITRE">(#INTRODUCTION|couper{360})&nbsp;<span class="continue_reading">(<:continue_reading:>&#133;)</span></a></p>]
 					</div>
 				</BOUCLE_posts>
 				[<p class="navigation">(#PAGINATION{precedent_suivant})</p>]
