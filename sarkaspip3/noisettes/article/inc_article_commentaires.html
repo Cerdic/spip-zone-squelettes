@@ -28,8 +28,10 @@
 		<a id="forum[(#ID_FORUM)]" name="forum[(#ID_FORUM)]" href="#forum[(#ID_FORUM)]"></a>
 		<div class="gravatar">
 	<BOUCLE_auteur_pere(AUTEURS) {tout}{id_auteur=#_commentaires:ID_AUTEUR}>
+			#SET{nom_auteur, #NOM}
 			[(#LOGO_AUTEUR||sinon{#CHEMIN{images/gravatar32.png}}||image_passe_partout{32}|image_recadre{32,32,center,FFFFFF}|inserer_attribut{class,spip_logos gravatar}|inserer_attribut{alt,[<:sarkaspip:logo_de:> (#NOM)]})]
 	</BOUCLE_auteur_pere>
+			#SET{nom_auteur, #_commentaires:NOM}
 			[(#GRAVATAR{#_commentaires:#EMAIL, 32, #CHEMIN{images/gravatar32.png}}||image_passe_partout{32}|image_recadre{32,32,center,FFFFFF}|inserer_attribut{class,spip_logos gravatar}|inserer_attribut{alt,[<:sarkaspip:logo_de:> (#_commentaires:NOM)]})]
 	<//B_auteur_pere>
     	</div>
@@ -38,14 +40,11 @@
 			[<a class="fonction repondre_commentaire" href="(#URL_PAGE{post, #PARAMETRES_FORUM})" rel="noindex nofollow" title="<:sarkaspip:repondre_commmentaire:>"></a>]
 		]
 			[(#DATE|nom_jour)][&nbsp;(#DATE|affdate)]
-			<:sarkaspip:agrave:>&nbsp;[(#DATE|affdate{'H\hi'})],
-			[<:sarkaspip:par_auteur:>&nbsp;(#GET{nom_auteur})]
+			<:sarkaspip:agrave:>&nbsp;[(#DATE|affdate{'H\hi'})][, <:sarkaspip:par_auteur:>&nbsp;(#GET{nom_auteur})]
 		</div>
-		<div class="#EDIT{texte} texte">
-			#TEXTE
-			[<br /><br /><:sarkaspip:site_web:>&nbsp;:&nbsp;<a href="[(#URL_SITE)]">(#NOM_SITE)</a>]
-			<INCLURE{fond=noisettes/document/inc_documents_commentaires}{id_forum}>
-		</div>
+		<div class="#EDIT{texte} texte">#TEXTE</div>
+		[<div class="texte #EDIT{hyperlien}"><:sarkaspip:site_web:>&nbsp;:&nbsp;<span class="lien_site"><a href="[(#URL_SITE)]">(#NOM_SITE)</a></span></div>]
+		<INCLURE{fond=noisettes/document/inc_documents_commentaires}{id_forum}>
 		<div class="nettoyeur"></div>
 	</div>
 </BOUCLE_commentaires>
