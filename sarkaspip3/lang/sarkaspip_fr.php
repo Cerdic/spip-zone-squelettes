@@ -85,20 +85,21 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 //B
 	  
-		'bouton_referencement' => 'Proposition de site',
 		'bouton_configuration' => 'Configuration',
+		'bouton_configurer' => 'Configurer Sarka-SPIP',
 		'bouton_effacer' => 'Effacer',
 		'bouton_rechercher' => 'Rechercher',
+		'bouton_referencement' => 'Proposition de site',
 		'bouton_supprimer' => 'Supprimer',
 		'bouton_valider' => 'Valider',
-		'breves' => 'Br&egrave;ves', // redefinition item SPIP
 		'breves_meme_rubrique' => 'Br&egrave;ves de la rubrique',
 		'breves_toutes' => 'Toutes les br&egrave;ves du site',
+		'breves' => 'Br&egrave;ves', // redefinition item SPIP
+		'bulle_bouton_defiler_droite' => 'Faire d&eacute;filer le carrousel vers la droite',
+		'bulle_bouton_defiler_gauche' => 'Faire d&eacute;filer le carrousel vers la gauche',
 		'bulle_bouton_effacer' => 'Effacer les saisies et revenir aux valeurs de d&eacute;part',
 		'bulle_bouton_supprimer' => 'Supprimer les valeurs de configuration dans la base',
 		'bulle_bouton_valider' => 'Valider les saisies',
-		'bulle_bouton_defiler_droite' => 'Faire d&eacute;filer le carrousel vers la droite',
-		'bulle_bouton_defiler_gauche' => 'Faire d&eacute;filer le carrousel vers la gauche',
 	  
 	
 //C
