@@ -20,8 +20,17 @@
 */
 function sc_sommaire_article($texte,$istxt=0)
 {
+	// Conversion des intertitres d'enluminures type {ß{titre}ß}
+	// ou ß est un nombre en intertitres avec des étoiles type {{{* (avec ß étoiles)
+	// {1{ sera converti en {{{* ; {2{ sera converti en {{{** ; etc.
+	$texte=preg_replace_callback ("/(\{(\d)\{)(.*?)(\}\\2\})/",
+					create_function (
+						'$matches',
+						'return "{{{".str_repeat("*",$matches[2]).$matches[3]."}}}";'
+						),
+					$texte);
 
-	preg_match_all("|(\{[\{12345]\{)(.*)(\}[\}12345]\})|U", $texte, $regs);
+	preg_match_all("|\{\{\{([*]*?)(.*)(\}\}\})|U", $texte, $regs);
 
 
 	$nb=1;
@@ -29,8 +38,8 @@ function sc_sommaire_article($texte,$istxt=0)
 	if ($istxt==0) {
 		$texte='';
 		for($j=0;$j<count($regs[2]);$j++) {
-			$niveau=substr($regs[1][$j], 1, 1);
-			if ($niveau=='{') {$niveau=1;}
+			$niveau=strlen($regs[1][$j]);
+			if ($niveau===0) {$niveau=1;}
 			if ($niveau==$lastniveau) {
 				$texte.="</li>\n";
 			}
@@ -61,12 +70,13 @@ function sc_sommaire_article($texte,$istxt=0)
 		$texte="";
 		for($j=0;$j<count($regs[2]);$j++)
 		{
-			$niveau=substr($regs[1][$j], 1, 1);
-			if ($niveau=='{') { $puce="\n- ";}
-			if ($niveau==2) { $puce=" · ";}
-			if ($niveau==3) { $puce="  × ";}
-			if ($niveau==4) { $puce="   ° ";}
-			if ($niveau==5) { $puce="    ¤ ";}
+			$niveau=strlen($regs[1][$j]);
+			if ($niveau===0) {$niveau=1;}
+			if ($niveau===1) { $puce="\n- ";}
+			if ($niveau===2) { $puce=" · ";}
+			if ($niveau===3) { $puce="  × ";}
+			if ($niveau===4) { $puce="   ° ";}
+			if ($niveau===5) { $puce="    ¤ ";}
 			$texte.=$puce.$regs[2][$j]."\n";
 		}
 
