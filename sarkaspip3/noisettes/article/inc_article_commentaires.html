@@ -29,10 +29,15 @@
 		<div class="gravatar">
 	<BOUCLE_auteur_pere(AUTEURS) {tout}{id_auteur=#_commentaires:ID_AUTEUR}>
 			#SET{nom_auteur, #NOM}
-			[(#LOGO_AUTEUR||sinon{#CHEMIN{images/gravatar32.png}}||image_passe_partout{32}|image_recadre{32,32,center,FFFFFF}|inserer_attribut{class,spip_logos gravatar}|inserer_attribut{alt,[<:sarkaspip:logo_de:> (#NOM)]})]
+			[(#LOGO_AUTEUR||sinon{#CHEMIN{images/gravatar32.png}}||image_passe_partout{32}|image_recadre{32,32,center,FFFFFF}|inserer_attribut{class,spip_logos gravatar}|inserer_attribut{alt,[<:sarkaspip:logo_de:> (#GET{nom_auteur})]})]
 	</BOUCLE_auteur_pere>
 			#SET{nom_auteur, #_commentaires:NOM}
-			[(#GRAVATAR{#_commentaires:#EMAIL, 32, #CHEMIN{images/gravatar32.png}}||image_passe_partout{32}|image_recadre{32,32,center,FFFFFF}|inserer_attribut{class,spip_logos gravatar}|inserer_attribut{alt,[<:sarkaspip:logo_de:> (#_commentaires:NOM)]})]
+			[(#PLUGIN{GRAVATAR}|oui)
+				[(#GRAVATAR{#_commentaires:#EMAIL, 32, #CHEMIN{images/gravatar32.png}}||image_passe_partout{32}|image_recadre{32,32,center,FFFFFF}|inserer_attribut{class,spip_logos gravatar}|inserer_attribut{alt,[<:sarkaspip:logo_de:> (#GET{nom_auteur})]})]
+			]
+			[(#PLUGIN{GRAVATAR}|non)
+				<img src="#CHEMIN{images/gravatar32.png}" width="32" height="32" class="spip_logos gravatar" alt="[<:sarkaspip:logo_de:> (#GET{nom_auteur})]" />
+			]
 	<//B_auteur_pere>
     	</div>
 		<div class="cartouche_simple">
