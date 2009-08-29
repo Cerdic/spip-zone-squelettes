@@ -4,14 +4,20 @@
 	[(#ENV{'month'}|oui)
 		[(#ENV{'year'}|oui)
 			#SET{'date', #ENV{'year'}|concat{'-'#ENV{'month'}}|concat{'-01 00:00:00'}}
+			#SET{'date_th', #ENV{'year'}|concat{'-'#ENV{'month'}}|concat{'-01'}}
 		]
 	]
 	[(#ENV{'month'}|non)
 		#SET{'date', #ENV{date}}
+		#SET{'date_th', #ENV{date}|affdate{'Y-m-d'}
 	]
 ]
 [(#ENV{'date_ev'}|!={''}|oui)
 	#SET{'date', #ENV{date_ev}|concat{'00:00:00'}}
+	#SET{'date_th', #ENV{date_ev}}
+]
+[(#ENV{'id_mot'}|!={'non'}|oui)
+	#SET{id_mot, #ENV{id_mot}}
 ]
 [(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)]})]
 <INCLURE{fond=noisettes/header/header}
@@ -22,7 +28,7 @@
 	<ul>
 	<li><a href="#URL_SITE_SPIP"><:soyezcreateurs:accueil:></a></li>
 	<BOUCLE_plan(HIERARCHIE){id_rubrique}>
-	<li><a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique', #ID_RUBRIQUE}|parametre_url{'date_ev', [(#ENV{date_ev, [(#ENV{date})]}|annee)]'-[(#ENV{date_ev,[(#ENV{date})]}|mois)]-01'}|parametre_url{'id_mot', [(#ENV{id_mot,''}|urlencode)]})]"[ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>[(#TITRE)]</a></li>
+	<li><a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique', #ID_RUBRIQUE}|parametre_url{'date_ev', [(#ENV{date_ev, [(#ENV{date})]}|annee)]'-[(#ENV{date_ev,[(#ENV{date})]}|mois)]-01'}|parametre_url{'id_mot', [(#GET{id_mot,''}|urlencode)]})]"[ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>[(#TITRE)]</a></li>
 	</BOUCLE_plan>
 	<li>[(#TITRE)]</li>
 	</ul>
@@ -43,7 +49,7 @@
 		<ul>
 		<BOUCLE_sous_rubriques1(RUBRIQUES){id_parent}{par titre}>
 		<li[ style="list-style-image: url(/(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{9,9}|extraire_attribut{src}));"]>
-		<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique',#ID_RUBRIQUE}|parametre_url{'date_ev', [(#ENV{date_ev,[(#ENV{date})]}|annee)]-[(#ENV{date_ev,[(#ENV{date})]}|mois)]-01}|parametre_url{'id_mot', (#ENV{id_mot,''}|urlencode)})]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">
+		<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique',#ID_RUBRIQUE}|parametre_url{'date_ev', #GET{date_th}}|parametre_url{'id_mot', [(#GET{id_mot,''}|urlencode)]})]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">
 			[(#TITRE)]
 		</a>
 		<BOUCLE_RecursionRubriques(BOUCLE_sous_rubriques1) />
@@ -64,7 +70,7 @@
 				<legend><:soyezcreateurs:precisezrecherche:></legend>
 				<BOUCLE_PremiereAnnee(EVENEMENTS){branche}{par date_debut}{0,1}>
 				[(#DATE_DEBUT|affdate{'Y-m'}|=={#ENV{date_ev,#ENV{date}}|affdate{'Y-m'}}|non)
-					<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique',#_rubrique_principal:ID_RUBRIQUE}|parametre_url{'date_ev', #GET{date}|Agenda_moisdecal{-1,'Y-m-01'}}|parametre_url{'id_mot', #ENV{id_mot,''}|urlencode})]"><img src="#CHEMIN{images/prev.gif}" title="<:precedent:>" alt="<:precedent:>" /></a>
+					<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique',#_rubrique_principal:ID_RUBRIQUE}|parametre_url{'date_ev', #GET{date}|Agenda_moisdecal{-1,'Y-m-01'}}|parametre_url{'id_mot', #GET{id_mot,''}|urlencode})]"><img src="#CHEMIN{images/prev.gif}" title="<:precedent:>" alt="<:precedent:>" /></a>
 				]
 				</BOUCLE_PremiereAnnee>
 				<select name="month" id="var_nav_month">
@@ -95,26 +101,26 @@
 				</BOUCLE_ListMotsClefs>
 				<B_ListeMotsClefs>[(#REM) Objectif : n'afficher que les mots clefs effectivement utilise' dans le secteur]
 				<select name="id_mot" id="var_nav_cle">
-					<option value="non"[(#ENV{id_mot,''}|=={''}|oui) selected="selected"]><:soyezcreateurs:tout:></option>
+					<option value="non"[(#GET{id_mot,''}|=={''}|oui) selected="selected"]><:soyezcreateurs:tout:></option>
 					<BOUCLE_ListeMotsClefs(MOTS){!doublons listemots}{par titre}>
-					<option value="[(#ID_MOT)]"[(#ENV{id_mot}|=={[(#ID_MOT)]}|oui) selected="selected"]>[(#TITRE|supprimer_tags)]</option>
+					<option value="[(#ID_MOT)]"[(#GET{id_mot}|=={[(#ID_MOT)]}|oui) selected="selected"]>[(#TITRE|supprimer_tags)]</option>
 					</BOUCLE_ListeMotsClefs>
 				</select>
 				</B_ListeMotsClefs>
 				<BOUCLE_DerniereAnnee(EVENEMENTS){branche}{!par date_debut}{0,1}>
 				[(#DATE_DEBUT|affdate{'Y-m'}|=={#ENV{date_ev,#ENV{date}}|affdate{'Y-m'}}|non)
-					<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique',#_rubrique_principal:ID_RUBRIQUE}|parametre_url{'date_ev', #GET{date}|Agenda_moisdecal{1,'Y-m-01'}}|parametre_url{'id_mot', #ENV{id_mot,''}|urlencode})]"><img src="#CHEMIN{images/next.gif}" title="<:suivant:>" alt="<:suivant:>" /></a>
+					<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique',#_rubrique_principal:ID_RUBRIQUE}|parametre_url{'date_ev', #GET{date}|Agenda_moisdecal{1,'Y-m-01'}}|parametre_url{'id_mot', #GET{id_mot,''}|urlencode})]"><img src="#CHEMIN{images/next.gif}" title="<:suivant:>" alt="<:suivant:>" /></a>
 				]
 				</BOUCLE_DerniereAnnee>
 				<input type="submit" value="<:pass_ok:>" class="form_submit" />
 				[(#REM) N'afficher le lien "Aujourd'hui" que si l'année ou le mois sont différents de celui affiché ]
 				#SET{'condition_m', 'non'}
-				[(#ENV{date}|annee|!={[(#ENV{date_ev,[(#ENV{date})]}|annee)]}|oui)
+				[(#ENV{date}|annee|!={[(#GET{date}|annee)]}|oui)
 					#SET{'condition_m', 'oui'}]
-				[(#ENV{date}|mois|!={[(#ENV{date_ev,[(#ENV{date})]}|mois)]}|oui)
+				[(#ENV{date}|mois|!={[(#GET{date}|mois)]}|oui)
 					#SET{'condition_m', 'oui'}]
 				[(#GET{'condition_m'}|=={'oui'}|oui)
-				<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique', #_rubrique_principal:ID_RUBRIQUE}|parametre_url{'id_mot', #ENV{id_mot}})]"><:spip:date_aujourdhui|ucfirst:></a>
+				<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique', #_rubrique_principal:ID_RUBRIQUE}|parametre_url{'id_mot', #GET{id_mot}})]"><:spip:date_aujourdhui|ucfirst:></a>
 				]
 			</fieldset>
 		</form>
