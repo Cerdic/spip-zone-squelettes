@@ -75,7 +75,7 @@ Certains attributs typographiques ne peuvent s'appliquer qu'à des paragraphes e
 
 Dans la Barre Typographique de SPIP, les attributs de caractères forment le premier groupe sur la gauche, les attributs typographiques de paragraphes le deuxième.[definition_ancre<-]
 
-{2{Paragraphes}2}
+{{{**Paragraphes}}}
 
 Un paragraphe dans SPIP est précédé d'une ligne vide et suivi d'une ligne vide[[Sauf les listes à puce et les tableaux]].
 
@@ -122,13 +122,13 @@ Les retours à la ligne simples aussi !
 
 <quote>C'est en forgeant que l'on devient forgeron.</quote>
 
-{2{Caractères}2}
+{{{**Caractères}}}
 
 Les attributs de caractères {{doivent}} être ouverts et fermés à l'intérieur du même paragraphe (pas question de débuter le gras sur un premier paragraphe et de le terminer sur un deuxième).
 
 Ils peuvent être utilisés dans {{tous}} les champs de SPIP.
 
-{3{Mise en forme}3}
+{{{***Mise en forme}}}
 
 -* gras : <code>{{</code>texte en gras<code>}}</code>; à utiliser pour un élément que l'on souhaite appuyer (sera prononcé plus fort dans un logiciel de lecture vocal) : {{texte en gras}}
 -* italique : <code>{</code>italique<code>}</code>; à utiliser pour une élément sur lequel on veut insister (sera prononcé avec emphase) : {italique}
@@ -138,14 +138,14 @@ Ils peuvent être utilisés dans {{tous}} les champs de SPIP.
 -* code : <html><tt>&lt;code&gt;</tt></html>du code (raccourcis typographiques, html...)<html><tt>&lt;/code&gt;</tt></html> que l'on ne souhaite pas que SPIP interprète
 -* biffé : <code><del></code>texte biffé<code></del></code> : pour indiquer qu'on avait pensé à un autre mot et que l'on a changé d'avis : SPIP, c'est <del>bien</del> fantastique!
 
-{3{Comportement spécifique}3}
+{{{***Comportement spécifique}}}
 
-{4{Aides à la compréhension du texte}4}
+{{{****Aides à la compréhension du texte}}}
 
 -* bulle d'aide : <code>[GPL|Gnu Public Licence]</code> : pour donner la signification d'un terme ou d'une abréviation : [GPL|Gnu Public Licence]
 _ Ce raccourcis est beaucoup moins nécessaire depuis que vous disposez de [->444] automatiques.
 
-{4{Liens internes et externes}4}
+{{{****Liens internes et externes}}}
 
 -* lien : <code>[texte du lien->http://www.spip.net/]</code> : lien : [texte du lien->http://www.spip.net/]
 _ À noter qu'il est possible de faire des liens à l'intérieur du site SPIP à l'aide des {{numéros}} des éléments et de leur type (se reporter à l'aide en ligne fournie par SPIP).
@@ -157,13 +157,13 @@ _ À noter qu'il est possible de faire des liens à l'intérieur du site SPIP à
 _ Avec bulle d'aide : <code>[?GPL|Définition sur Wikipédia]</code> : [?GPL|Définition sur Wikipédia]
 -* note de bas de page : <code>texte[[note de bas de page]]</code> : crée une note de bas de page avec le texte entre les doubles crochets[[Et la note de bas de page est automatiquement numérotée, rendue clicable, pour la consulter, et pour revenir au texte l'ayant appelée]]
 
-{2{Listes}2}
+{{{**Listes}}}
 
 Les listes sont à utiliser pour tout ce qui à le {{sens}} d'une énumération.
 
 {{Attention}}: il faut entourer un bloc de listes à puces d'une ligne vide avant et après.
 
-{3{Listes à puces}3}
+{{{***Listes à puces}}}
 
 <cadre>
 -* première ligne
@@ -179,7 +179,7 @@ Donnera :
 -** une sous liste à puce
 -* de retour dans le niveau initial
 
-{3{Listes numérotées}3}
+{{{***Listes numérotées}}}
 
 <cadre>
 -# première ligne
@@ -195,7 +195,7 @@ Donnera :
 -## une sous liste numérotée
 -# de retour dans le niveau initial
 
-{2{Tableaux}2}
+{{{**Tableaux}}}
 
 Pour être complètement accessible, un tableau dans SPIP doit avoir un titre et une description.
 
@@ -224,7 +224,7 @@ Notez les doubles <code>||</code> sur la première ligne du tableau !
 -* ne pas avoir le même nombre de | sur une ligne
 -* avoir un espace {{après}} le dernier | de la ligne (un moyen simple de vérifier : la touche fin du clavier amène à la fin de la ligne)
 
-{2{Tableaux avec fusion de cellules}2}
+{{{**Tableaux avec fusion de cellules}}}
 
 <cadre>
 ||Tableau avec fusion|Ce tableau sert d'exemple de mise en forme spip||
@@ -291,21 +291,21 @@ _ Usage {{[*interdit*]}}: pour mettre plus d'espace vertical entre deux élémen
 
 <code>{</code><code>{{</code>Exemples de titraille : Titre principal<code>}}</code><code>}</code>
 
-{2{Titre niveau deux}2}
+{{{**Titre niveau deux}}}
 
-<code>{</code><code>2{</code>Titre niveau deux<code>}2</code><code>}</code>
+<code>{</code><code>{{**</code>Titre niveau deux<code>}}</code><code>}</code>
 
-{3{Titre niveau trois}3}
+{{{***Titre niveau trois}}}
 
-<code>{</code><code>3{</code>Titre niveau trois<code>}3</code><code>}</code>
+<code>{</code><code>{{***</code>Titre niveau trois<code>}}</code><code>}</code>
 
-{4{Titre niveau quatre}4}
+{{{****Titre niveau quatre}}}
 
-<code>{</code><code>4{</code>Titre niveau quatre<code>}4</code><code>}</code>
+<code>{</code><code>{{****</code>Titre niveau quatre<code>}}</code><code>}</code>
 
-{5{Titre niveau cinq}5}
+{{{*****Titre niveau cinq}}}
 
-<code>{</code><code>5{</code>Titre niveau cinq<code>}5</code><code>}</code>
+<code>{</code><code>{{*****</code>Titre niveau cinq<code>}}</code><code>}</code>
 
 {{{Placement des images}}}
 
@@ -408,21 +408,21 @@ Néanmoins, si vous rencontrez des difficultés techniques pour consulter notre 
 
 {{{Conseils et astuces pour faciliter votre navigation}}}
 
-{2{Naviguez comme vous le souhaitez}2}
+{{{**Naviguez comme vous le souhaitez}}}
 
 L’ensemble du site est consultable au clavier. Vous pouvez ainsi parcourir la page dans son ordre logique de lecture, de liens en liens, en utilisant la touche « tabulation » de votre clavier.
 
-{2{Agrandissez les caractères}2}
+{{{**Agrandissez les caractères}}}
 
 En appuyant simultanément sur les touches <code>Ctrl et +</code>, vous grossissez par effet de loupe l’ensemble de la page (Internet Explorer et Firefox).
 
 <code>Ctrl + 0</code> permet de revenir à la taille par défaut
 
-{2{Imprimez une version adaptée au papier}2}
+{{{**Imprimez une version adaptée au papier}}}
 
 Toutes les pages sont imprimables (Fichier > Impression ou touches <code>CTRL + P</code>) dans une version adaptée au papier : le texte et plus aéré et les différents éléments inutiles à la lecture (principalement les menus de navigation) ont été supprimés.
 
-{2{Utilisez une version récente de navigateur}2}
+{{{**Utilisez une version récente de navigateur}}}
 
 En mettant à jour gratuitement la version de votre navigateur, vous vous assurez une lecture la plus conforme aux standards et donc la plus accessible. Pour télécharger les dernières versions des principaux navigateurs :
 
@@ -434,7 +434,7 @@ En mettant à jour gratuitement la version de votre navigateur, vous vous assure
 
 Nous vous invitons en particulier à ne plus utiliser les versions 6 et inférieures d’Internet Explorer, considérées aujourd’hui comme obsolètes en terme de sécurité et de conformité aux standards.
 
-{2{Ouverture des liens dans une nouvelle fenêtre/onglet}2}
+{{{**Ouverture des liens dans une nouvelle fenêtre/onglet}}}
 
 Vous avez le choix ! C'est vous qui décidez ! Rien ne vous est imposé.
 
