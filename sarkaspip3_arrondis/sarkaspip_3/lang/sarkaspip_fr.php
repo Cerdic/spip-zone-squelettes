@@ -987,6 +987,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // S
 	'samedi_abrege' => 'Sa',
+	'sarkaspip_coins' => 'Coins arrondis',
 	'sarkaspip_accueil' => 'Accueil',
 	'sarkaspip_agenda' => 'Agenda',
 	'sarkaspip_album' => 'Album',
