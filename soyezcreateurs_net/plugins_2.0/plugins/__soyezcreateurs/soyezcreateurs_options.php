@@ -93,6 +93,7 @@ $couleurs( array(
 // Tous ces parametres sont inutiles et non pris en compte si le plugin cfg est installe
 $GLOBALS['barre_typo_pas_de_fausses_puces'] = true;
 $GLOBALS['BarreTypoEnrichie_Preserve_Header'] = true;
+$GLOBALS['config_intertitre'] = true; // Necessaire pour empécher la configuration par CFG
 $GLOBALS['debut_intertitre'] = '<h2 class="spip">';
 $GLOBALS['fin_intertitre'] = '</h2>';
 $GLOBALS['debut_intertitre_2'] = '<h3 class="spip">';
