@@ -43,9 +43,14 @@
 		<INCLURE{fond=noisettes/article/inc_article_cartouche}{id_article}{page=galerie}{avec_popularite=non}{avec_notation=non}>
 		<div class="complements">
 			<INCLURE{fond=noisettes/album/inc_album_total_photos}{id_article}{ancre_meme_page=non}>
-		[(#PARAMETRES_FORUM|?{' '})
+		[(#SET{statut, [(#ENV{id_article}|statut_forum)]})]
+		[(#GET{statut}|!={non_autorise}|oui)
 			&nbsp;-&nbsp;
-			<INCLURE{fond=noisettes/article/inc_article_total_commentaires}{id_article}{ancre_meme_page=non}{page=album}>
+			<INCLURE{fond=noisettes/article/inc_article_total_commentaires}
+				{id_article}
+				{statut=#GET{statut}}
+				{ancre_meme_page=non}
+				{page=album}>
 		]
 		</div> <!-- Fin complements -->
 	[<div class="introduction">(#INTRODUCTION{#CONFIG{sarkaspip_galerie/intro_galerie, 200}}|typo_couleur)</div>]

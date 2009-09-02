@@ -241,7 +241,7 @@ function afaire_tdm_par_jalon($jalons) {
 // FIN du Filtre : afaire_tdm_par_jalon
 
 // =======================================================================================================================================
-// Filtre : afaire_avancement_jalon
+// Filtre : afaire_compteur_jalon
 // =======================================================================================================================================
 // Auteur: Smellup
 // Fonction : Retourne le nombre de tickets pour le jalon ou pour le jalon et le statut choisis
@@ -309,7 +309,42 @@ function afaire_ticket_existe($bidon) {
 	}
 	return $existe;
 }
-// FIN du Filtre : afaire_avancement_jalon
+// FIN du Filtre : afaire_ticket_existe
+
+// =======================================================================================================================================
+// Filtre : statut_forum
+// =======================================================================================================================================
+// Auteur: Smellup
+// Fonction : Retourne le statut d'un forum cad non autorise, ouvert, ferme
+// =======================================================================================================================================
+//
+function statut_forum($id_article) {
+
+	$id = intval($id_article);
+	$statut = 'non_autorise';
+
+	// Forum active ou pas ?
+	$accepter = 'non';
+	$select = array('t1.accepter_forum');
+	$from = array('spip_articles AS t1');
+	$where = array('t1.id_article='.sql_quote($id));
+	$result = sql_select($select, $from, $where);
+	if ($row = sql_fetch($result)) 
+		$accepter = $row['accepter_forum'];
+
+	// Nombre messages de forum de l'article
+	$from = array('spip_forum AS t1');
+	$where = array('t1.id_article='.sql_quote($id));
+	$nb = sql_countsel($from, $where);
+	// Nombre de tickets termines pour le jalon
+	if ($nb >= 1)
+		$statut = ($accepter == 'non') ? 'ferme' : 'ouvert';
+	else
+		if ($accepter != 'non') $statut = 'ouvert';
+//echo $id_article . '=' . $statut . $nb . $accepter . '<br />';	
+	return $statut;
+}
+// FIN du Filtre : statut_forum
 
 // =======================================================================================================================================
 // Filtres : module AGENDA

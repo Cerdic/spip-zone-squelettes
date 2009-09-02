@@ -34,9 +34,13 @@
 	]
 	
 	[(#PETITION|?{'', ' '})
-		[(#PARAMETRES_FORUM|?{' '})
+		[(#SET{statut, [(#ENV{id_article}|statut_forum)]})]
+		[(#GET{statut}|!={non_autorise}|oui)
 			[(#ENV{afficher_commentaires}|=={oui}|?{' '})
-				<INCLURE{fond=noisettes/article/inc_article_total_commentaires}{id_article}{ancre_meme_page=oui}>
+				<INCLURE{fond=noisettes/article/inc_article_total_commentaires}
+				{id_article}
+				{statut=#GET{statut}}
+				{ancre_meme_page=oui}>
 			]
 		]
 	]
@@ -80,9 +84,13 @@
 		<div class="complements">
 			<INCLURE{fond=noisettes/rubrique/inc_rubrique_lien}{id_rubrique}>
 		[(#PETITION|?{'', ' '})
-			[(#PARAMETRES_FORUM|?{' '})
+			[(#SET{statut, [(#ENV{id_article}|statut_forum)]})]
+			[(#GET{statut}|!={non_autorise}|oui)
 				&nbsp;-&nbsp;
-				<INCLURE{fond=noisettes/article/inc_article_total_commentaires}{id_article}{ancre_meme_page=non}>
+				<INCLURE{fond=noisettes/article/inc_article_total_commentaires}
+					{id_article}
+					{statut=#GET{statut}}
+					{ancre_meme_page=non}>
 			]
 		]
 		[(#PETITION|?{' '})

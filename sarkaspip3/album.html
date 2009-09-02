@@ -41,15 +41,15 @@
 			</div>
     				
 			[(#REM) <!-- Commentaires --> ]
-			[(#PETITION|?{'', ' '})
-				[(#PARAMETRES_FORUM|?{' '})
-					<INCLURE{fond=noisettes/article/inc_article_commentaires}
-						{ajax}
-						{id_article}
-						{pas_pagination=#CONFIG{sarkaspip_album/pas_pagination_commentaires, 20}}
-						{modele_pagination=#CONFIG{sarkaspip_album/modele_pagination_commentaires}}
-						{position_pagination=#CONFIG{sarkaspip_album/position_pagination_commentaires, 2}}>
-    			] 
+			[(#SET{statut, [(#ENV{id_article}|statut_forum)]})]
+			[(#GET{statut}|!={non_autorise}|oui)
+				<INCLURE{fond=noisettes/article/inc_article_commentaires}
+					{ajax}
+					{id_article}
+					{statut=#GET{statut}}
+					{pas_pagination=#CONFIG{sarkaspip_album/pas_pagination_commentaires, 20}}
+					{modele_pagination=#CONFIG{sarkaspip_album/modele_pagination_commentaires}}
+					{position_pagination=#CONFIG{sarkaspip_album/position_pagination_commentaires, 2}}>
     		]	
 		</div>
 	</div>

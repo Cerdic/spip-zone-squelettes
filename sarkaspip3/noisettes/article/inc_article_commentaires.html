@@ -8,8 +8,15 @@
 <div id="commentaires_article" class="commentaires">
 [(#ENV{id_forum}|?{'', ' '})
 	<a id="commentaires" name="commentaires" href="#commentaires"></a>
+	[(#ENV{statut}|=={ferme}|non)
 	<a class="fonction" id="commenter"[ href="(#URL_PAGE{post, #PARAMETRES_FORUM})"] title="<:sarkaspip:commenter_article:>"></a>
-	<h2><:sarkaspip:commentaires_article:></h2>
+	]
+	<h2>
+		<:sarkaspip:commentaires_article:>
+	[(#ENV{statut}|=={ferme}|oui)
+		&nbsp;<:sarkaspip:forum_ferme:>
+	]
+	</h2>
 ]
 [(#ENV{id_forum}|?{' '})
 	[(#ENV{afficher_titre, oui}|=={oui}|?{' '})
@@ -42,7 +49,9 @@
     	</div>
 		<div class="cartouche_simple">
 		[(#ENV{id_forum}|?{'', ' '})
+			[(#ENV{statut}|=={ferme}|non)
 			[<a class="fonction repondre_commentaire" href="(#URL_PAGE{post, #PARAMETRES_FORUM})" rel="noindex nofollow" title="<:sarkaspip:repondre_commmentaire:>"></a>]
+			]
 		]
 			[(#DATE|nom_jour)][&nbsp;(#DATE|affdate)]
 			<:sarkaspip:agrave:>&nbsp;[(#DATE|affdate{'H\hi'})][, <:sarkaspip:par_auteur:>&nbsp;(#GET{nom_auteur})]

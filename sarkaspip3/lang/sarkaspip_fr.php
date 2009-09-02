@@ -772,6 +772,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'filtre_soustitre_site_tout' => 'Tous les articles syndiqu&eacute;s',
 	'filtre_titre' => 'Filtre',
 	'forum' => 'Forum',
+	'forum_ferme' => '(ferm&eacute;)',
 	'fourni_par_weather_com' => 'par weather.com&reg;',
 
 // G

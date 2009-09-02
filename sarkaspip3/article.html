@@ -60,10 +60,12 @@
 
 			[(#REM) <!-- Commentaires --> ]
 			[(#PETITION|?{'', ' '})
-				[(#PARAMETRES_FORUM|?{' '})
+				[(#SET{statut, [(#ENV{id_article}|statut_forum)]})]
+				[(#GET{statut}|!={non_autorise}|oui)
 					<INCLURE{fond=noisettes/article/inc_article_commentaires}
 						{ajax}
 						{id_article}
+						{statut=#GET{statut}}
 						{pas_pagination=#CONFIG{sarkaspip_article/pas_pagination_commentaires, 20}}
 						{modele_pagination=#CONFIG{sarkaspip_article/modele_pagination_commentaires}}
 						{position_pagination=#CONFIG{sarkaspip_article/position_pagination_commentaires, 2}}>
