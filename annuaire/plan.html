@@ -24,6 +24,20 @@
         	<fieldset>
 			<h2><a href="#URL_RUBRIQUE">#TITRE</a></h2>
 
+			[(#REM) Sur le Web ]
+       		<B_sites1>
+       		<ul class="site">
+				<BOUCLE_sites1(SITES) {id_rubrique} {par nom_site}{doublons}>
+				<li class="site">
+				[<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" title="(#NOM_SITE|texte_backend)">
+				(#NOM_SITE|couper{80})</a>]&nbsp;&nbsp;
+				[(#PLUGIN{pb_pagerank}|oui)
+				<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]
+				</li>
+				</BOUCLE_sites1>
+			</ul>
+			</B_sites1>
+
 			[(#REM) Sous-rubriques ]
 			<B_rubriques>
 			<ul id="rubri">
