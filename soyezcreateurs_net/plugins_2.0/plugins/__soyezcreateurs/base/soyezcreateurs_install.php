@@ -172,9 +172,6 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		if (version_compare($current_version,'2.1.10','<')) {
 			include_spip('base/soyezcreateurs');
 			spip_log("SoyezCreateurs maj 2.1.10", "soyezcreateurs_install");
-			if ((count(sql_showtable('spip_savecfg')) > 0) AND (sql_countsel('spip_meta', 'nom='.sql_quote('savecfg_base_version')) > 0)) {
-				
-			}
 			create_groupe("_TypeRubrique", "Pour indiquer un type spécifique de rubrique", "Il faut choisir un mot clef dans cette liste pour obtenir un affichage spécifique de rubrique.\n\nNB : pour rajouter un mot clef \"mc1\", il faut aussi rajouter les squelettes correspondants :\n-* noisettes/rubriques/typerubrique_mc1.html\n-* noisettes/footer/footer_typerubrique_mc1.html\n-* noisettes/articles/typearticle_mc1.html", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
 				create_mot("_TypeRubrique", "annuaire", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des annuaires.", "Affecter ce mot clef à chaque rubrique racine d'un annuaire.");
 			create_groupe("_TypeArticle", "Pour indiquer un type spécifique d'article", "Il faut choisir un mot clef dans cette liste pour obtenir un affichage spécifique d'article.\n\nNB : pour rajouter un mot clef \"mc1\", il faut aussi rajouter les squelettes correspondants :\n-* noisettes/articles/typearticle_mc1.html\n-* noisettes/footer/footer_typearticle_mc1.html", 'oui', 'non', 'oui', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
