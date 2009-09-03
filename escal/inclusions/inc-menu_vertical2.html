@@ -1,0 +1,43 @@
+#CACHE{24*3600}
+
+<div id="menuV2">
+
+<ul class="menulist">
+
+	<!-- exclusion des rubriques masquées, c'est à dire avec le mot-clé "pas-au-menu"-->
+	<BOUCLE_exclure_rub_menu(RUBRIQUES){tout}{titre_mot=pas-au-menu}{doublons}>
+	</BOUCLE_exclure_rub_menu>
+
+ <!-- affichage des autres rubriques -->
+	<BOUCLE_smenuspipr(RUBRIQUES){racine}{par num titre}{doublons}>
+	   <li<BOUCLE_smenr(RUBRIQUES){id_parent}{0,1}></BOUCLE_smenr>>
+	   <a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF*)"]>[(#TITRE)]
+	   
+	   <!-- tester la présence de sous-rubrique, et ajouter une petite flèche vers le bas si présente -->
+	   <BOUCLE_smen1r(RUBRIQUES){id_parent}{0,1}>
+	   <img src="#CHEMIN{images/deplier-droite.png}" alt="fleche" />
+	   </BOUCLE_smen1r></a>
+
+  			<!-- affichage des sous-menus -->
+  			<B_smenuspip>
+			  <ul>
+				<BOUCLE_smenuspip(RUBRIQUES){id_parent}{par num titre}{doublons }>
+				  <li<BOUCLE_smen(RUBRIQUES){id_parent}{0,1}></BOUCLE_smen>>
+				  <a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"] [title="(#DESCRIPTIF*)"]>[(#TITRE)]
+						<BOUCLE_smen1(RUBRIQUES){id_parent}{0,1}>
+				    <img src="#CHEMIN{images/deplier-droite.png}" alt="fleche" />
+				    </BOUCLE_smen1>
+			    </a>
+			    <BOUCLE_ssmenu(boucle_smenuspip)></BOUCLE_ssmenu>
+			    </li>
+				</BOUCLE_smenuspip>
+			  </ul>
+				</B_smenuspip>
+
+     </li>
+	</BOUCLE_smenuspipr>
+</ul>
+
+</div>
+	
+
