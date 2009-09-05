@@ -7,13 +7,31 @@
 <script type="text/javascript">
 //<![CDATA[
 jQuery(document).ready(function() {
-		[(#ENV{position_coin, 0}|=={0}|?{jQuery("#bloc_inc_coins").hide();})]
-			
-		jQuery("input[@name='position_coin']").change(function() {
+    [(#ENV{position_coin, 0}|=={0}|?{jQuery("#bloc_inc_coins,#bloc_inc_defaut_coins,#bloc_inc_noisettes_coins").hide();})]
+    [(#ENV{position_defaut_coin, 0}|=={0}|?{jQuery("#bloc_inc_noisettes_coins").hide();})]
+    [(#ENV{position_noisettes_coin, 0}|=={0}|?{jQuery("#bloc_inc_noisettes_coins").hide();})]
+            		
+	 jQuery("input[@name='position_coin']").change(function() {
 			if (jQuery("input[@name='position_coin']:checked").val() == 1)
 				jQuery("#bloc_inc_coins").show();
 			else
-				jQuery("#bloc_inc_coins").hide(); 			  
+				jQuery("#bloc_inc_coins").hide();
+			jQuery(this).blur();
+		});
+    
+    jQuery("input[@name='position_defaut_coin']").change(function() {
+			if (jQuery("input[@name='position_defaut_coin']:checked").val() == 1)
+				jQuery("#bloc_inc_defaut_coins").show();				
+			else
+				jQuery("#bloc_inc_defaut_coins").hide();
+			jQuery(this).blur();
+		});
+				    
+    jQuery("input[@name='position_noisettes_coin']").change(function() {
+			if (jQuery("input[@name='position_noisettes_coin']:checked").val() == 1)
+				jQuery("#bloc_inc_noisettes_coins").show();
+			else
+				jQuery("#bloc_inc_noisettes_coins").hide();
 			jQuery(this).blur();
 		});	
 	});
@@ -35,8 +53,59 @@ jQuery(document).ready(function() {
 			<:sarkaspip:cfg_lbl_non:>
 		</label>		
     <br /><br />
-   <div id="bloc_inc_coins">  	
-	 [(#REM) <!-- Choix de presentation des publications --> ]
+   <div id="bloc_inc_coins">
+   <fieldset>
+	<legend><:sarkaspip:cfg_lgd_inc_defaut_coins:></legend> 
+   [(#REM) <!-- Choix de presentation de tout le site --> ]
+   <label>
+			<input type="radio" name="position_defaut_coin" value="1" [(#ENV{position_defaut_coin, 0}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_defaut_coins:>
+		</label>
+    <label>
+			<input type="radio" name="position_defaut_coin" value="0" [(#ENV{position_defaut_coin, 0}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_non:>
+		</label>
+    <div id="bloc_inc_defaut_coins">     
+    <fieldset>		
+		  <legend><:sarkaspip:cfg_lgd_inc_defaut_titre_coins:></legend>
+		  <INCLURE{fond=noisettes/cfg/inc_cfg_coins}
+      {coins=_defaut_titre}
+      {env}>
+		</fieldset>
+		<fieldset>
+		  <legend><:sarkaspip:cfg_lgd_inc_defaut_soustitre_coins:></legend>
+		  <INCLURE{fond=noisettes/cfg/inc_cfg_coins}
+      {coins=_defaut_soustitre}         
+      {env}>
+	  </fieldset>
+	  <fieldset>
+		  <legend><:sarkaspip:cfg_lgd_inc_defaut_contenu_coins:></legend>
+		  <INCLURE{fond=noisettes/cfg/inc_cfg_coins}
+      {coins=_defaut_cadre}         
+      {env}>
+	  </fieldset>
+	  <fieldset>
+		  <legend><:sarkaspip:cfg_lgd_inc_defaut_contenu_coins:></legend>
+		  <INCLURE{fond=noisettes/cfg/inc_cfg_coins_adornment}
+      {adornment=_defaut_adornment}         
+      {env}>
+	  </fieldset>
+	</div>  
+	</fieldset>
+  <fieldset>
+		<legend><:sarkaspip:cfg_lgd_inc_noisettes_coins:></legend>	
+    <label>
+			<input type="radio" name="position_noisettes_coin" value="1" [(#ENV{position_noisettes_coin, 0}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_noisettes_coins:>
+		</label>
+    <label>
+			<input type="radio" name="position_noisettes_coin" value="0" [(#ENV{position_noisettes_coin, 0}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_non:>
+		</label>		
+    <br /><br />
+  <div id="bloc_inc_noisettes_coins">    
+  [(#REM) <!-- Choix de presentation des noisettes du site --> ]
+  [(#REM) <!-- Choix de presentation des publications --> ]
 	 [(#CONFIG{sarkaspip_noisettes/position_publications, 0}|!={0}|oui)
 	 <fieldset>
 		<legend><:sarkaspip:cfg_lgd_inc_publications_coins:></legend>
@@ -52,6 +121,12 @@ jQuery(document).ready(function() {
       {coins=_publications_soustitre}         
       {env}>
 	  </fieldset>
+	  <fieldset>
+		  <legend><:sarkaspip:cfg_lgd_inc_contenu:></legend>
+		  <INCLURE{fond=noisettes/cfg/inc_cfg_coins_adornment}
+      {adornment=_publications_adornment}         
+      {env}>
+	  </fieldset>	  
   </fieldset>	  	
 	]
 	[(#REM) <!-- Choix de presentation des commentaires --> ]
@@ -161,7 +236,13 @@ jQuery(document).ready(function() {
 		  <INCLURE{fond=noisettes/cfg/inc_cfg_coins}
       {coins=_statistiques_articles_soustitre}         
       {env}>
-	  </fieldset>		
+	  </fieldset>
+    <fieldset>
+		  <legend><:sarkaspip:cfg_lgd_inc_contenu:></legend>
+		  <INCLURE{fond=noisettes/cfg/inc_cfg_coins_adornment}
+      {adornment=_statistiques_articles_adornment}         
+      {env}>
+	  </fieldset>    	
   </fieldset>	  	
 	]
   [(#REM) <!-- Choix de presentation des annonces --> ]
@@ -247,7 +328,13 @@ jQuery(document).ready(function() {
 		  <INCLURE{fond=noisettes/cfg/inc_cfg_coins}
       {coins=_forums_titre}
       {env}>
-		</fieldset>		
+		</fieldset>
+    <fieldset>
+		  <legend><:sarkaspip:cfg_lgd_inc_contenu:></legend>
+		  <INCLURE{fond=noisettes/cfg/inc_cfg_coins_adornment}
+      {adornment=_forums_adornment}         
+      {env}>
+	  </fieldset>  		
   </fieldset>
   [(#REM) <!-- Choix de presentation du bandeau haut --> ]
   	<fieldset>
@@ -255,7 +342,7 @@ jQuery(document).ready(function() {
 		<fieldset>
 		  <legend><:sarkaspip:cfg_lgd_inc_bandeau_haut_cadre_coins:></legend>
 		  <INCLURE{fond=noisettes/cfg/inc_cfg_coins}
-      {coins=_bandeau_haut_cadre_coins}
+      {coins=_bandeau_haut_cadre}
       {env}>
 		</fieldset>		
   </fieldset>
@@ -266,7 +353,7 @@ jQuery(document).ready(function() {
 		<fieldset>
 		  <legend><:sarkaspip:cfg_lgd_inc_bandeau_bas_cadre_coins:></legend>
 		  <INCLURE{fond=noisettes/cfg/inc_cfg_coins}
-      {coins=_bandeau_bas_cadre_coins}
+      {coins=_bandeau_bas_cadre}
       {env}>
 		</fieldset>		
   </fieldset>
@@ -278,7 +365,7 @@ jQuery(document).ready(function() {
 		<fieldset>
 		  <legend><:sarkaspip:cfg_lgd_inc_bandeau_chemin_cadre_coins:></legend>
 		  <INCLURE{fond=noisettes/cfg/inc_cfg_coins}
-      {coins=_bandeau_chemin_cadre_coins}
+      {coins=_bandeau_chemin_cadre}
       {env}>
 		</fieldset>		
   </fieldset>
@@ -290,7 +377,7 @@ jQuery(document).ready(function() {
 		<fieldset>
 		  <legend><:sarkaspip:cfg_lgd_inc_pied_bas_cadre_coins:></legend>
 		  <INCLURE{fond=noisettes/cfg/inc_cfg_coins}
-      {coins=_pied_bas_cadre_coins}
+      {coins=_pied_bas_cadre}
       {env}>
 		</fieldset>		
   </fieldset>
@@ -313,9 +400,11 @@ jQuery(document).ready(function() {
 		  <INCLURE{fond=noisettes/cfg/inc_cfg_coins}
       {coins=_top_album_titre}
       {env}>
-		</fieldset>		
+		</fieldset>
+    
+  </div>  		
   </fieldset>
-  	     	  	
+    	     	  	
 	</div>
 	</fieldset>
 	
