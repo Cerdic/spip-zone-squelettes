@@ -125,7 +125,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //K
 
 //L
-'le_site' => 'Le site ',
 
 //M
 'menu_site' => 'le menu du site',
@@ -164,8 +163,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'pop' => 'la boucle "populaire"',
 'popu_site' => 'La popularit&eacute; du site est de ',
 'populaire' => 'Site populaire',
-'pour_propo_site' => 'Afin que tous le monde puisse proposer des sites et suretout le ranger où
-					 il le souhaite, je vous propose de vous inscrire sur le site comme rédacteur.',
+'pour_propo_site' => 'Afin que tous le monde puisse proposer des sites et suretout le ranger 
+					 o&ugrave; il le souhaite, je vous propose de vous inscrire sur le site 
+					 comme r&eacute;dacteur.',
 'propo_site' => 'la page "proposer un site"',
 
 //Q
@@ -184,7 +184,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'site_mois' => 'le site du mois',
 'sites' => 'Les sites',
 'sommaire' => 'la page "sommaire"',
-'soumis_par' => ' a été soumis dans l\'annuaire par ',
 'style' => 'Style :',
 'styliste' => 'Indiquer la personne qui a changer les couleurs : (afficher colonne de droite en
 			 bas uniquement si remplis), possibilitée de mettre du code spip ou html.',
