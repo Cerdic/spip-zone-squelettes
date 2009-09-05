@@ -9,9 +9,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'acceuil_intro' =>'Bienvenue sur la page de présentation du plugins "annuaire".',
 'acceuil_option' =>'Certain plugins sont optionnel :',
 'acceuil_option_contact' =>'Le plugins "contact" permets ou non d\'affiché la page de contact',
-'acceuil_option_rubriques' => 'Par défaut le squellette n\'affiche plus les rubriques, nous 
-vous proposons de le faire avec le plugins "menus" et de créer un menu avec l\'identifiant 
-"nav" et de limité le nombre à 3 sous rubriques.',
+'acceuil_option_pub' => 'Si vous souhaitez intégré dans votre site des pub google, il vous 
+						faudra créé le mot clef "pub" dans le groupe "Affichage" et dans une 
+						rubrique nommé "squelette"',
 'acceuil_option_visiteurs' =>'Le plugins "visiteur connectés" permets d\'afficher dans l\'entête
 							le nombre de visiteur connectés',
 'acceuil_requis' =>'Les requis pour un bon fonctionnement du site',
@@ -103,9 +103,6 @@ vous proposons de le faire avec le plugins "menus" et de créer un menu avec l\'
 				<br />R&eacute;gl&eacute; vos boucles et styles du sommaire.',
 'descriptif_colonne' => '<h4>R&eacute;glage du style</h4>
 				<br />Choisissez vos couleurs pour les colonnes et pied de page',
-'style' => 'Style :',
-'styliste' => 'Indiquer la personne qui a changer les couleurs : (afficher colonne de droite en
-			 bas uniquement si remplis), possibilitée de mettre du code spip ou html.',
 
 //E
 'epingle_site' => '&eacute;pingl&eacute;s sur',
@@ -128,6 +125,7 @@ vous proposons de le faire avec le plugins "menus" et de créer un menu avec l\'
 //K
 
 //L
+'le_site' => 'Le site ',
 
 //M
 'menu_site' => 'le menu du site',
@@ -159,7 +157,6 @@ vous proposons de le faire avec le plugins "menus" et de créer un menu avec l\'
 					rejoingnez-nous.',
 'pas_pop' => 'Pas de populaires, car pas de votes ou pas assez de site',
 'pas_sites' => 'Pas de site rattach&eacute; &agrave; ce mot clef.',
-'pas_syndic' => 'Pas d\'articles syndiqu&eacute; pour ce site.',
 'pas_zard' => 'Pas de sites au hasard, enregistrez-en ...',
 'plan' => 'la page "plan"',
 'plus_pop' => 'Les plus populaires',
@@ -167,6 +164,8 @@ vous proposons de le faire avec le plugins "menus" et de créer un menu avec l\'
 'pop' => 'la boucle "populaire"',
 'popu_site' => 'La popularit&eacute; du site est de ',
 'populaire' => 'Site populaire',
+'pour_propo_site' => 'Afin que tous le monde puisse proposer des sites et suretout le ranger où
+					 il le souhaite, je vous propose de vous inscrire sur le site comme rédacteur.',
 'propo_site' => 'la page "proposer un site"',
 
 //Q
@@ -185,7 +184,10 @@ vous proposons de le faire avec le plugins "menus" et de créer un menu avec l\'
 'site_mois' => 'le site du mois',
 'sites' => 'Les sites',
 'sommaire' => 'la page "sommaire"',
-
+'soumis_par' => ' a été soumis dans l\'annuaire par ',
+'style' => 'Style :',
+'styliste' => 'Indiquer la personne qui a changer les couleurs : (afficher colonne de droite en
+			 bas uniquement si remplis), possibilitée de mettre du code spip ou html.',
 
 //T
 

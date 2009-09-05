@@ -42,10 +42,22 @@
 	<//B_mot>
 
 	[(#REM) Pour afficher la hierarchie]
-	[(#PLUGIN{menus}|oui)
 	<fieldset id="rub">
-	<INCLURE{fond=inclure/menu, env, identifiant=nav}>
-	</fieldset>]
+	<ul>
+	<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre} {titre !=squelette}>
+		<li>
+			<a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+			<B_sous_rubriques>
+			<ul>
+				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
+					<li><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
+				</BOUCLE_sous_rubriques>
+			</ul>
+			</B_sous_rubriques>
+		</li>
+	</BOUCLE_rubriques>
+	</ul>
+	</fieldset>
 	
 	[(#REM) Afficher les liens]
 	<fieldset id="lien">
