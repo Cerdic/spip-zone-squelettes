@@ -1,9 +1,9 @@
 <div id="nav">
 	<div id="nav_haut">
-	
+
 		[(#REM) Pour se connecter]
 		<fieldset class="connect">
-			[(#SESSION{id_auteur}|?{' '}) 
+			[(#SESSION{id_auteur}|?{' '})
 			<a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a>
 			][(#SESSION{id_auteur}|?{'',' '})
 			<a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]" rel="nofollow" class='login_modal'><:lien_connecter:></a>][
@@ -13,7 +13,7 @@
 			 #FORMULAIRE_ADMIN
 		</fieldset><!--#connect-->
 	</div><!--#nav_haut-->
-	
+
 	<div id="nav_bas">
 	[(#REM) Afficher les mot clef du site]
 	<B_mot>
@@ -21,9 +21,10 @@
 		<object><:mots_clefs:></object>
 		<BOUCLE_mot(MOTS){id_syndic}>
 		<h3>#TYPE</h3>
-			<BOUCLE_mots(MOTS){id_groupe}{id_syndic}{par titre}>
-			<br /><a  href="#URL_MOT">#TITRE</a>
-			</BOUCLE_mots>
+		<BOUCLE_mots(MOTS){id_groupe}{id_syndic}{par num titre, titre}>
+		<br /><a  href="#URL_MOT">[(#TITRE|supprimer_numero)]</a>
+		<BOUCLE_site_mot1(SITES) {id_mot}> </BOUCLE_site_mot1>(#TOTAL_BOUCLE site(s))</B_site_mot1>
+		</BOUCLE_mots>
 		</BOUCLE_mot>
 	</fieldset><!--#mots-->
 	<br class="nettoyeur" />
@@ -33,32 +34,15 @@
 	<fieldset class="mots">
 	<object><:mots_clefs:></object>
 		<h3>#TITRE</h3>
-		<BOUCLE_mots2(MOTS){id_groupe}{par titre}>
-		<br /><a  href="#URL_MOT">#TITRE</a>
+		<BOUCLE_mots2(MOTS){id_groupe}{par num titre, titre}>
+		<br /><a  href="#URL_MOT">[(#TITRE|supprimer_numero)]</a>
+		<BOUCLE_site_mot2(SITES) {id_mot}> </BOUCLE_site_mot2>(#TOTAL_BOUCLE site(s))</B_site_mot2>
 		</BOUCLE_mots2>
 	</fieldset><!--#mots-->
 	<br class="nettoyeur" />
 	</BOUCLE_mot1>
 	<//B_mot>
 
-	[(#REM) Pour afficher la hierarchie]
-	<fieldset id="rub">
-	<ul>
-	<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre} {titre !=squelette}>
-		<li>
-			<a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
-			<B_sous_rubriques>
-			<ul>
-				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
-					<li><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
-				</BOUCLE_sous_rubriques>
-			</ul>
-			</B_sous_rubriques>
-		</li>
-	</BOUCLE_rubriques>
-	</ul>
-	</fieldset>
-	
 	[(#REM) Afficher les liens]
 	<fieldset id="lien">
 		[(#REM) lien vers la synthése des flux rss si j'ai des articles]
@@ -72,7 +56,7 @@
 		&nbsp;RSS&nbsp;2.0</a>
 		<br class="nettoyeur" />
 		[(#REM) Le igoogle]
-		<a  href="http://fusion.google.com/add?source=atgs&amp;feedurl=#URL_SITE_SPIP/spip.php?page=backend">
+		<a  href="http://fusion.google.com/add?source=atgs&amp;feedurl=#URL_SITE_SPIP/spip.php?page=backend" target="_blank">
 		<img src="http://www.gmodules.com/ig/images/plus_google.gif" border="0" alt="<:annuaire:ajouter_google:>" />
 		</a>
 	</fieldset><!--#lien-->
@@ -80,12 +64,13 @@
 	<fieldset id="sites">
 		<BOUCLE_total(SITES)> </BOUCLE_total>
 		[<:annuaire:actuellement:>(#TOTAL_BOUCLE)&nbsp;<:sites_web:> <:annuaire:epingle_site:>
-		<a class="link" href="#URL_SITE_SPIP">[(#NOM_SITE_SPIP|textebrut)]</a>]
-		</B_total> 
+		<a class="link" href="#URL_SITE_SPIP">#NOM_SITE_SPIP**</a>]</B_total>
 		<br class="nettoyeur" />
 		[<:annuaire:popu_site:>&nbsp;(#POPULARITE_SITE|>={0}).]<br />
 		<BOUCLE_maj(SITES){!par date}{0,1}><:dernier_ajout:>&nbsp;: [(#DATE|affdate).]
-		</BOUCLE_maj>
+		</BOUCLE_maj><br />
+	<!--[(#PLUGIN{pb_pagerank}|oui)#NOM_SITE_SPIP**&nbsp;<:annuaire:page_rank_de:>
+		<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE_SPIP}><br />]-->
 	</fieldset><!--#sites-->
 	<br class="nettoyeur" />
 	<fieldset id="copy">
@@ -93,7 +78,7 @@
 		<img src="#CHEMIN{spip.png}" alt="SPIP" width="48" height="16" /></a>
 		<br /> &copy;<BOUCLE_copy(SITES) {par date} {0,1}>[(#DATE|annee|unique)][-(#ENV{date}|>{#DATE}|?{#ENV{date},''}|annee|unique)]</BOUCLE_copy>
 		<strong>[(#NOM_SITE_SPIP|textebrut)]</strong>
-		<br /> <:annuaire:conception:> <a href="http://www.pierre-kuhn.org" title="<:annuaire:conception:>">Pierre KUHN</a>
+		<br /> <:annuaire:conception|ucfirst:>: <a href="http://www.pierre-kuhn.org" title="<:annuaire:conception:>">Pierre KUHN</a>
 		[<br /> <:annuaire:style:> &nbsp;(#CONFIG{annuaire_acceuil/styliste}|propre|ptobr)]
 	</fieldset><!--#copy-->
 	<br class="nettoyeur" />

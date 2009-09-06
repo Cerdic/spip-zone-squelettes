@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
-<title>#TITRE - #NOM_SITE_SPIP</title>
+<title>[(#TITRE|supprimer_numero)] - #NOM_SITE_SPIP</title>
 <INCLURE{fond=inc/inc-head}{lang?}>
 </head>
 <body>
@@ -20,14 +20,14 @@
 		<BOUCLE_ariane(GROUPES_MOTS){id_groupe}> &gt;
 		[(#TITRE|couper{80})]
 		</BOUCLE_ariane>
-		[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]
+		[ &gt; <strong class="on">(#TITRE|couper{80}|supprimer_numero)</strong>]
 	</div><!--#hierarchie-->
 
 	<div id="content">
 	[(#REM) Contenu principal : affichage du site ]
         <div class="cartouche">
             [(#LOGO_MOT||image_reduire{200,200})]
-            <h1 class="#EDIT{titre}">#TITRE</h1>
+            <h1 class="#EDIT{titre}">[(#TITRE|supprimer_numero)]</h1>
         </div><!--#cartouche-->
         [<div class="#EDIT{texte} chapo">(#TEXTE)</div>]
 
@@ -39,12 +39,13 @@
             <object><:sites_web:></object>
             <ul>
                 <BOUCLE_sites(SITES) {id_mot}{notation}{!par nombre_votes}{par nom_site} {pagination #CONFIG{annuaire_mot/pas_pagination_site, 10}}>
-				<li>
+				<li class="site">
 				[<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" title="(#NOM_SITE|texte_backend)">
 				#NOM_SITE</a>]
-				#FORMULAIRE_JAIME_JAIMEPAS</li>
 				[(#PLUGIN{pb_pagerank}|oui)
 				<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]
+				#FORMULAIRE_JAIME_JAIMEPAS
+				</li><!--#site-->
 				</BOUCLE_sites>
             </ul>
             [<p>(#PAGINATION{page_precedent_suivant})&nbsp;&nbsp; #GRAND_TOTAL</p>]
