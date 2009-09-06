@@ -860,6 +860,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'msg_0_evt_annee' => 'Aucun &eacute;v&eacute;nement de cette cat&eacute;gorie pour l\'ann&eacute;e',
 	'msg_0_evt_saison' => 'Aucun &eacute;v&eacute;nement de cette cat&eacute;gorie pour la saison',
 	'msg_album_vide' => 'Aucune photo n\'est encore ins&eacute;r&eacute;e dans cet album',
+	'msg_page_vide' => 'Ne souhaitez vous pas afficher quelque information sur la page d\'accueil ?',
 	'msg_site_sans_descriptif' => 'Ce site ne comporte pas de descriptif...',
 
 // N
