@@ -561,7 +561,7 @@ function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui
 		$cellule .= '</td>';
 		$body .= $cellule;
 
-		$jour += 1;
+		$jour = $jour+1;
 		$date = mktime(0,0,0,$mois_choisi, $jour, $annee_choisie);
 	}
 
@@ -572,7 +572,7 @@ function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui
 		$cellule .= '</td>';
 
 		$body .= $cellule;
-		$jour += 1;
+		$jour = $jour+1;
 		$date = mktime(0,0,0,$mois_choisi, $jour, $annee_choisie);
 	}
 	$body .= '</tr>';
@@ -646,7 +646,7 @@ function agenda_mini_footer($id_agenda=0, $critere='oui', $max_mois=6, $taille=5
 				$count_liste += 1;
 			}
 			$liste_complete = ($count_liste == $taille);
-			$i += 1;
+			$i = $i + 1;
 		}
 		if ($count_liste == 0) {
 			if ($max_mois == 1)
