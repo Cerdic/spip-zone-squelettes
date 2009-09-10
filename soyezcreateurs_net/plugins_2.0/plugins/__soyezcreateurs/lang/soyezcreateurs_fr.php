@@ -52,7 +52,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// C
 	'carte_monde' => 'Carte du monde',
-	'cfg_actuelle_url_date' => 'Actuellement, l\'URL de destination est ',
 	'cfg_affichage_impression' => 'Affichage complet',
 	'cfg_affichage_impression_label' => 'Affichage rubrique compl&egrave;te',
 	'cfg_affichage_nouveautes_label' => 'Affichage des nouveaut&eacute;s par branche',
@@ -118,6 +117,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_indexation_info' => 'Indexation du site par les moteurs de recherche',
 	'cfg_indexation_non' => 'Ne pas indexer le site dans les moteurs de recherche',
 	'cfg_indexation_oui' => 'Indexer le site dans les moteurs de recherche',
+	'cfg_inf_rainette_ville' => 'Permet d\'afficher les conditions et les pr&eacute;visions m&eacute;t&eacute;orologiques d\'une ville fran&ccedil;aise gr&acirc;ce &agrave; un code disponible <a href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">sur le site de weather.com &reg;</a> .',
 	'cfg_info' => 'Configuration du squelette SoyezCreateurs',
 	'cfg_largeur' => 'Largeur',
 	'cfg_largeur_conteneur' => 'Largeur du conteneur',
@@ -188,6 +188,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_position_flux_rss_label' => 'Position de l\'icone de flux RSS',
 	'cfg_px' => 'en <b>px</b>',
 	'cfg_quoideneuf_label' => 'Nombre quoi de neuf',
+	'cfg_rainette_ville' => 'Code Ville (M&eacute;t&eacute;o)',
 	'cfg_realisation' => 'R&eacute;alisation',
 	'cfg_recherche_mot_label' => 'Activer la recherche par mot clef',
 	'cfg_redirection_ancien_site' => 'Redirection vers l\'ancien site',
@@ -206,7 +207,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_titraille' => 'Titraille',
 	'cfg_tous_evenements' => 'Tous les &eacute;v&eacute;nements',
 	'cfg_type_agenda_label' => 'Agenda de type',
-	'cfg_url_date_label' => 'URL associ&eacute;e &agrave; la date du jour',
 	'cfg_url_feedflare' => 'URL FeedFlare',
 	'cfg_url_redirection' => 'URL de l\'ancien site (pour redirection 301 si article existe pas)',
 	'cfg_url_xiti' => 'URL de votre marqueur Xiti',
