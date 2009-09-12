@@ -16,32 +16,28 @@
 
 	<div id="nav_bas">
 	[(#REM) Afficher les mot clef du site]
-	<B_mot>
 	<fieldset class="mots">
-		<object><:mots_clefs:></object>
+	<object><:mots_clefs:></object>
+	<B_mot>
 		<BOUCLE_mot(MOTS){id_syndic}>
 		<h3>#TYPE</h3>
 		<BOUCLE_mots(MOTS){id_groupe}{id_syndic}{par num titre, titre}>
-		<br /><a  href="#URL_MOT">[(#TITRE|supprimer_numero)]</a>
+		<br /><a  href="#URL_MOT">[(#TITRE|supprimer_numero|ucfirst)]</a>
 		<BOUCLE_site_mot1(SITES) {id_mot}> </BOUCLE_site_mot1>(#TOTAL_BOUCLE site(s))</B_site_mot1>
 		</BOUCLE_mots>
 		</BOUCLE_mot>
-	</fieldset><!--#mots-->
-	<br class="nettoyeur" />
 	</B_mot>
 	[(#REM) affichage de tout les mots du sites]
 	<BOUCLE_mot1(GROUPES_MOTS){titre !IN _META,Affichage}>
-	<fieldset class="mots">
-	<object><:mots_clefs:></object>
 		<h3>#TITRE</h3>
 		<BOUCLE_mots2(MOTS){id_groupe}{par num titre, titre}>
-		<br /><a  href="#URL_MOT">[(#TITRE|supprimer_numero)]</a>
+		<br /><a  href="#URL_MOT">[(#TITRE|supprimer_numero|ucfirst)]</a>
 		<BOUCLE_site_mot2(SITES) {id_mot}> </BOUCLE_site_mot2>(#TOTAL_BOUCLE site(s))</B_site_mot2>
 		</BOUCLE_mots2>
-	</fieldset><!--#mots-->
-	<br class="nettoyeur" />
 	</BOUCLE_mot1>
 	<//B_mot>
+	</fieldset><!--#mots-->
+	<br class="nettoyeur" />
 
 	[(#REM) Afficher les liens]
 	<fieldset id="lien">
