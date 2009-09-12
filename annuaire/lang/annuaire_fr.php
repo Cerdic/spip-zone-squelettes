@@ -5,22 +5,24 @@
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //A
-'acceuil_presentation' =>'Présentation',
-'acceuil_intro' =>'Bienvenue sur la page de présentation du plugins "annuaire".',
+'acceuil_presentation' =>'Pr&eacute;sentation',
+'acceuil_intro' =>'Bienvenue sur la page de pr&eacute;sentation du plugins "annuaire".',
 'acceuil_option' =>'Certain plugins sont optionnel :',
-'acceuil_option_contact' =>'Le plugins "contact" permets ou non d\'affiché la page de contact',
-'acceuil_option_pub' => 'Si vous souhaitez intégré dans votre site des pub google, il vous
-						faudra créé le mot clef "pub" dans le groupe "Affichage" et dans une
-						rubrique nommé "squelette"',
-'acceuil_option_visiteurs' =>'Le plugins "visiteur connectés" permets d\'afficher dans l\'entête
-							le nombre de visiteur connectés',
+'acceuil_option_contact' =>'Le plugins "contact" permets ou non d\'affich&eacute; la page de
+							 contact',
+'acceuil_option_pub' => 'Si vous souhaitez int&eacute;gr&eacute; dans votre site des pub google
+						, il vous faudra cr&eacute;&eacute; le mot clef "pub" dans le groupe
+						 "Affichage" et dans une rubrique nomm&eacute; "squelette"',
+'acceuil_option_visiteurs' =>'Le plugins "visiteur connect&eacute;s" permets d\'afficher dans
+							 l\'ent&ecirc;te le nombre de visiteur connect&eacute;s',
 'acceuil_requis' =>'Les requis pour un bon fonctionnement du site',
-'acceuil_requis_1' =>'Pour un bon référencement de votre site, ils vous faut créer :
+'acceuil_requis_1' =>'Pour un bon r&eacute;f&eacute;rencement de votre site, ils vous faut 
+					cr&eacute;er :
 					<br />un groupe de mot clef "_META"
 					<br />les mots clefs keywords et description',
 'acceuil_requis_2' =>'Pour afficher des partenaires sur la page "Partenaires", il vous faut
-					créé le groupe "Affichage" avec le mot clef "partenaire" et attibuer le à
-					chacun des sites voulus.',
+					cr&eacute;&eacute; le groupe "Affichage" avec le mot clef "partenaire" et
+					 attibuer le &agrave; chacun des sites voulus.',
 'actuellement' => 'Il y a actuellement ',
 'affichage' => 'L\'affichage',
 'ajouter_google' => 'Ajouter &agrave; google',
@@ -74,18 +76,18 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'css_bandeau' => 'Bandeau',
 'css_bandeau_com' => 'Pour modifier les couleurs du bandeau "ent&ecirc;te"',
 'css_boucles' => 'Boucles',
-'css_couleurs' => 'Cela revient à choisir la couleur d\'arrière plan, la couleur d\'avant plan
-					utilisée pour le texte et les liens et la couleur de survol des liens.',
+'css_couleurs' => 'Cela revient à choisir la couleur d\'arri&egrave;re plan, la couleur d\'avant plan
+					utilis&eacute;e pour le texte et les liens et la couleur de survol des liens.',
 'css_couleurs_' => 'Choisissez vos couleurs pour ',
-'css_couleurs_fond_expli' =>'Cela revient à choisir la couleur d\'arrière plan sur une page.',
+'css_couleurs_fond_expli' =>'Cela revient à choisir la couleur d\'arri&egrave;re plan sur une page.',
 'css_couleurs_fond_page' =>'Choisissez la couleur pour le fond de ',
-'css_bg' => 'Couleur d\'arrière plan',
+'css_bg' => 'Couleur d\'arri&egrave;re plan',
 'css_fond' => 'Fond de page',
 'css_fg' => 'Couleur d\'avant plan (texte et liens)',
 'css_ho' => 'Couleur de survol',
 
 //D
-'descriptif_acceuil' => 'Présentation du plugins "annuaire" et de ses fonctions.',
+'descriptif_acceuil' => 'Pr&eacute;sentation du plugins "annuaire" et de ses fonctions.',
 'descriptif_bandeau' => '<h4>R&eacute;glage du bandeau</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur le bandeau.',
 'descriptif_contact' => '<h4>R&eacute;glage de la page contact</h4>
@@ -93,10 +95,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'descriptif_coul_mot' => '<h4>Choisir une couleur avec des mots clefs</h4>
 				<br />Nous vous laissons choisir une couleur:
 				<br />- en fonction du mot clef que vous avez choisi
-				<br />- la couleur attibuée',
+				<br />- la couleur attibu&eacute;e',
 'descriptif_herbier' => '<h4>R&eacute;glage de l\'herbier</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur l\'herbier.
-				<p />C\'est la page ou l\'on affiche l\'actualiter des sites syndiqué',
+				<p />C\'est la page ou l\'on affiche l\'actualiter des sites syndiqu&eacute;',
 'descriptif_mot' => '<h4>R&eacute;glage de la page mot</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur la page mot.',
 'descriptif_partenaire' => '<h4>R&eacute;glage de la page partenaire</h4>
@@ -127,7 +129,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'hierarchie' => 'la "hierarchie"',
 
 //I
-'infos' => 'Afficher une infos sur toutes les rubriques (si vous la souhaitez différentes
+'infos' => 'Afficher une infos sur toutes les rubriques (si vous la souhaitez diff&eacute;rentes
 			utiliser la description.)',
 
 //J
@@ -146,10 +148,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'nav_lien' => 'le bloc "liens"',
 'nav_mot' => 'le bloc "mots clef"',
 'nav_rub' => 'le bloc "rubriques"',
-'nav_sites' => 'le bloc avec le nombre de "site référencés"',
+'nav_sites' => 'le bloc avec le nombre de "site r&eacute;f&eacute;renc&eacute;s"',
 'nbr_articles' => 'Nombre d\'articles :',
 'nbr_sites' => 'Nombre de sites :',
-'new' => 'la boucle "nouveautés"',
+'new' => 'la boucle "nouveaut&eacute;s"',
 'nouveaute' =>'Site nouveaut&eacute;',
 
 //O
@@ -176,7 +178,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //Q
 
 //R
-'resultats' => 'Résultats dans les boucles',
+'resultats' => 'R&eacute;sultats dans les boucles',
 'recherche_site' => 'Recherche d\'un site',
 'rechercher' => 'Rechercher',
 'ref_site' => 'R&eacute;f&eacute;rencement de mon site',
@@ -188,14 +190,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'supprimer' => 'Supprimer',
 'style' => 'Style :',
 'styliste' => 'Indiquer la personne qui a changer les couleurs : (afficher colonne de droite en
-			 bas uniquement si remplis), possibilitée de mettre du code spip ou html.',
+			 bas uniquement si remplis), possibilit&eacute;e de mettre du code spip ou html.',
 
 //T
 
 //U
 'utilisation' => 'Utilisation',
-'utilisation_expli' => 'Vous ne verez apparaître cette page (côté public) que si le plugins
-						"contact avancé" est activé.',
+'utilisation_expli_1' => 'Pour pouvoir la configur&eacute;e, il vous faut activ&eacute; le
+						 plugins.',
+'utilisation_expli_2' => 'Vous pouvez configurez cette page parce que le plugin "contact" est
+						 activ&eacute;.',
 
 //V
 
