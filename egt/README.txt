@@ -1,3 +1,12 @@
+Changements egt v 0.5 par rapport à v 0.4
+-----------------------------------------
+- rajouter des critères de langue un peu partout
+- egt est disponible maintenant aussi en espagnol et début de traduction en portugais (egt_es.php et egt_pt.php)
+- ne pas limiter le résultat de la recherche à huit éléments (recherche.html)
+- enlever la pagination sur les 2 prochains events du calendrier (inc-agenda.html)
+- trier les sous-rubriques du menu sur le titre ou num titre (inc-menu.html)
+- prise en compte des pièces jointes dans les rubriques (inc-documents-rubrique.html)
+
 Changements egt v 0.4 par rapport à v 0.3
 -----------------------------------------
 - Gros changements dans les feuilles de style: habillage.css et impression.css

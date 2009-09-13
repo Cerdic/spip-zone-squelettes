@@ -1,11 +1,11 @@
-<!-- squelette egt v0.4 -->
+<!-- squelette egt v0.5 -->
 <!-- auteurs: damazone, sBa - licence GPL -->
 <!-- http://www.spip-contrib.net/EGT-squelette-plugin-pour-SPIP-2 -->
 #CACHE{86400}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
   <head>
-	<INCLURE{fond=inc/inc-header} {titreheader=- <:resultats_recherche:>}>
+	<INCLURE{fond=inc/inc-header}{lang} {titreheader=- <:resultats_recherche:>}>
   </head>
 
 <body class="page_recherche">
@@ -13,21 +13,21 @@
   <div id="page">  
   
 [(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
- <INCLURE{fond=inc/inc-entete}>         
+ <INCLURE{fond=inc/inc-entete}{lang}>         
  
 [(#REM) <!-- =========================== ZONE CHEMIN DE NAVIGATION ============================= --> ]
-	<INCLURE{fond=inc/inc-chemin}>
+	<INCLURE{fond=inc/inc-chemin}{lang}>
 
 [(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
-	<INCLURE{fond=inc/inc-gauche}>
+	<INCLURE{fond=inc/inc-gauche}{lang}>
 
 [(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]	
     <div id="droite">
 		<!-- a retenir -->
-		<INCLURE{fond=inc/inc-aretenir}>         
+		<INCLURE{fond=inc/inc-aretenir}{lang}>         
 		
 		<!-- sites syndiques et logo site -->
-		<INCLURE{fond=inc/inc-sites-syndiques}>                
+		<INCLURE{fond=inc/inc-sites-syndiques}{lang}>                
                  
     </div><!-- fin du div droite--> 
 
@@ -45,9 +45,10 @@
 		<ul>
 		<!-- Rubriques trouvees -->
 
-		<BOUCLE_rubriques(RUBRIQUES) {recherche} {par points} {inverse} {0,8}>
+		<BOUCLE_rubriques(RUBRIQUES) {recherche} {par points} {inverse} {pagination 5}>
 		<li><a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a></li>
 		</BOUCLE_rubriques>
+		[<p class="pagination">(#PAGINATION)</p>]
 		</ul>
 
 		</B_rubriques>
@@ -61,12 +62,13 @@
 				<:breves:>
 
 				<ul>
-			<BOUCLE_breves(BREVES) {recherche} {par points} {inverse} {0,8}>
+			<BOUCLE_breves(BREVES) {recherche} {par points} {inverse} {pagination 5}>
 				<li>
 				[(#DATE|affdate_court)]:
 				<a href="#URL_BREVE">#TITRE</a>
 				</li>
 			</BOUCLE_breves>
+			[<p class="pagination">(#PAGINATION)</p>]
 				</ul>
 
 			</B_breves>
@@ -77,11 +79,12 @@
 				<:sites_web:>
 
 				<ul>
-			<BOUCLE_sites(SITES) {recherche} {par points} {inverse} {0,8}>
+			<BOUCLE_sites(SITES) {recherche} {par points} {inverse} {pagination 5}>
 				<li>
 				<a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut|entites_html)]">#NOM_SITE</a>
 				</li>
 			</BOUCLE_sites>
+			[<p class="pagination">(#PAGINATION)</p>]
 				</ul>
 			</B_sites>
 
@@ -91,11 +94,12 @@
 				<:messages_forum:>
 			
 				<ul>
-			<BOUCLE_messages(FORUMS) {recherche} {par points} {inverse} {0,8}>
+			<BOUCLE_messages(FORUMS) {recherche} {par points} {inverse} {pagination 5}>
 				<li>
 				<a href="#URL_FORUM">#TITRE</a>
 				</li>
 			</BOUCLE_messages>
+			[<p class="pagination">(#PAGINATION)</p>]
 				</ul>
 
 			</B_messages>
@@ -104,10 +108,11 @@
 		<B_articles>
 		<:articles:>
 		<ul>
-		<BOUCLE_articles(ARTICLES) {recherche} {par points} {inverse} {0,10}>
+		<BOUCLE_articles(ARTICLES) {recherche} {par points} {inverse} {pagination 10}>
 			<li><h3><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a></h3><div class="publierech"><:spip:info_mise_en_ligne:> [(#DATE|nom_jour)] [(#DATE|affdate)]
 			<B_auteurs_articles><:par_auteur:> <BOUCLE_auteurs_articles(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_articles></div></li>
 		</BOUCLE_articles>
+		[<p class="pagination">(#PAGINATION)</p>]
 		</ul>
 		</B_articles>   
 
@@ -116,7 +121,7 @@
     </div><!-- fin du div centre-rubrique -->  
         
 [(#REM) <!-- ================================== ZONE PIED DE PAGE  ================================== --> ]
-	<INCLURE{fond=inc/inc-pied}{skel=#SQUELETTE}{self=#SELF}>
+	<INCLURE{fond=inc/inc-pied}{skel=#SQUELETTE}{self=#SELF}{lang}>
      
 </div> <!-- fin du div page -->
 

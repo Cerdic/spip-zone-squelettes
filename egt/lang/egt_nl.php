@@ -7,7 +7,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //sommaire.html
 'a_la_une' => 'Topartikels'
 
-//inc-accessibilite.html
+//inc-accesskey.html
 , 'accessibilite' => 'Toegankelijkheid'
 , 'contenu' => 'Inhoud'
 , 'contenu_page' => 'Ga naar de inhoud van deze pagina'
@@ -28,7 +28,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 , 'lettres_information_2' => 'Nieuwsbrieven'
 , 'voir_messages_envoyes' => 'de alreeds verstuurde berichten raadplegen'
 
-//login_public.html, inc-accessibilite.html
+//login_public.html, inc-acceskey.html
 , 'espace_membres' => 'Ledenruimte'
 , 'zone_protegee' => 'beschermde zone'
 
