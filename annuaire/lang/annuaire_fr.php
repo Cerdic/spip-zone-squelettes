@@ -72,7 +72,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'configuration_site' => 'Configuration de la page "site"',
 'configuration_sommaire' => 'Configuration de la page "sommaire"',
 'conception' => 'conception',
-'couleur_sur_mot' => 'D&eacute;finir une couleur sur les mots',
 'css' => 'Les css',
 'css_bandeau' => 'Bandeau',
 'css_bandeau_com' => 'Pour modifier les couleurs du bandeau "ent&ecirc;te"',
