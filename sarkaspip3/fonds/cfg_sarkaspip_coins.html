@@ -1,0 +1,39 @@
+<!-- titre=<:sarkaspip:cfg_titre_coins:> -->
+<!-- descriptif=<:sarkaspip:cfg_descr_coins:> -->
+<!-- boite=<:sarkaspip:cfg_boite_coins:> -->
+<INCLURE{fond=noisettes/cfg/inc_cfg_header}>
+#CACHE{0}
+
+<script type="text/javascript">
+//<![CDATA[
+jQuery(document).ready(function() {
+	});
+//]]>
+</script>
+
+<form method="post" action="#SELF" enctype="multipart/form-data"><div>
+	[(#ENV{_cfg_}|form_hidden)]
+	
+  <fieldset>	
+		<legend><:sarkaspip:cfg_lgd_coins:></legend>
+		<p><:sarkaspip:cfg_inf_coins:></p>
+		<label>
+			<input type="radio" name="avec_arrondis" value="1" [(#ENV{avec_arrondis, 0}|=={1}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_oui:>
+		</label>
+		<label>
+			<input type="radio" name="avec_arrondis" value="0" [(#ENV{avec_arrondis, 0}|=={0}|?{checked="checked"})] />
+			<:sarkaspip:cfg_lbl_non:>
+		</label>		
+  </fieldset>	
+
+	<INCLURE{fond=noisettes/cfg/inc_cfg_boutons}>
+</div></form>
+
+[(#EVAL{_SARKASPIP_DEBUG_CFG_ARBO}|=={oui}|?{' '})
+	<div id="bloc_debug">
+		<br />
+		>> Debug - Etat des variables du fond Coins:<br />
+		#CFG_ARBO{sarkaspip_coins}
+	</div>
+]

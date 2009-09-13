@@ -31,6 +31,13 @@ function SarkaSpip_insert_head($flux){
 		$flux .='<script src="'.url_absolue(find_in_path('scripts/jquery.innerfade.js')).'" type="text/javascript"></script>';
 	}
 	
+	// Insertion de la librairie jquery.corner pour la noisette cfg_sarkaspip_coins
+	$coins_arrondis = lire_config('sarkaspip_coins/avec_arrondis', 0);
+	if (($coins_arrondis == 1)) {
+		$flux .= '<script src="'.url_absolue(find_in_path('scripts/jquery.corner.js')).'" type="text/javascript"></script>';
+		$flux .= '<script src="'.generer_url_public('sarkaspip_coins.js').'" type="text/javascript"></script>';
+	}
+	
 	return $flux;
 }
 
