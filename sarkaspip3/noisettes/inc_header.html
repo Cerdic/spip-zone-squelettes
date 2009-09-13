@@ -5,7 +5,6 @@
 		- meta_titre : le titre de la page affiche par la balise title
 		- meta_description : la description de la page inseree dans le metatag description
 		- meta_options : lignes d'options permettant en particulier d'inclure la syndication d'une rubrique
-		- meta_impression : oui, indique qu'on est en presence d'une page d'impression (vide ou non sinon)
 
 	et quelques variables de config:
 		- recurrence_robot : nombre de jours entre deux visite (metatag revisit-after)
@@ -29,34 +28,30 @@
 	<meta name="description" content="[(#GET{meta_description}|textebrut)]" />
 	[<meta name="keywords" content="(#CONFIG{sarkaspip_header/keywords_site}|textebrut)" />]
 
-	[(#REM) <!-- Feuilles de styles du squelette (ecran) --> ]
+	[(#REM) <!-- Feuilles de styles du squelette (ecran et impression) --> ]
 	[(#SET{mode, ''})]
 	[(#EVAL{_SARKASPIP_DEBUG_CSS}|=={oui}|?{' '})
 		[(#SET{mode, recalcul})]
 	]
-	[(#ENV{meta_impression, non}|=={non}|?{' '})
-		[(#REM) <!-- Raz des styles --> ]
-		<link rel="stylesheet" type="text/css" media="all" href="[(#CHEMIN{css/raz.css})]" />
-		[(#REM) <!-- Layout Gala choisi --> ]
-		<link rel="stylesheet" type="text/css" media="all" href="[(#CHEMIN{[css/layouts/layout(#CONFIG{sarkaspip_layout/numero_layout,13}).css]})]" />
-		[(#REM) <!-- Styles SPIP par defaut --> ]
-		<link rel="stylesheet" type="text/css" media="all" href="[(#CHEMIN{spip_style.css}|direction_css)]" />
-		<link rel="stylesheet" type="text/css" media="all" href="[(#CHEMIN{spip_formulaires.css}|direction_css)]" />
-		[(#REM) <!-- Styles du squelette par defaut --> ]
-		[<link rel="stylesheet" type="text/css" media="all" href="(#URL_PAGE{style.css,[&amp;var_mode=(#GET{mode})]})" />]
-
-	]
-	
+	[(#REM) <!-- Raz des styles --> ]
+	<link rel="stylesheet" type="text/css" media="all" href="[(#CHEMIN{css/raz.css})]" />
+	[(#REM) <!-- Layout Gala choisi --> ]
+	<link rel="stylesheet" type="text/css" media="all" href="[(#CHEMIN{[css/layouts/layout(#CONFIG{sarkaspip_layout/numero_layout,13}).css]})]" />
+	[(#REM) <!-- Styles SPIP par defaut --> ]
+	<link rel="stylesheet" type="text/css" media="all" href="[(#CHEMIN{spip_style.css}|direction_css)]" />
+	<link rel="stylesheet" type="text/css" media="all" href="[(#CHEMIN{spip_formulaires.css}|direction_css)]" />
+	[(#REM) <!-- Styles du squelette par defaut --> ]
+	[<link rel="stylesheet" type="text/css" media="all" href="(#URL_PAGE{style.css,[&amp;var_mode=(#GET{mode})]})" />]
 	[(#REM) <!-- CSS personnalises --> ]
 	[<link rel="stylesheet" type="text/css" media="all" href="(#CHEMIN{css/perso.css})" />]
+	[(#REM) <!--  Feuille de style CSS pour l'impression --> ]
+	[<link rel="stylesheet" href="(#CHEMIN{css/impression.css}|direction_css)" type="text/css" media="print" />]
+
 	[(#REM) <!-- Favicon du site --> ]
 	<link rel="shortcut icon" href="#CHEMIN{images/favicon.ico}" />
 	[(#REM) <!-- Syndication du contenu du site. En option la syndication des rubriques --> ]
 	[<link rel="alternate" type="application/rss+xml" title="<:sarkaspip:syndiquer_site:>" href="(#URL_PAGE{backend})" />]
 	[(#ENV*{meta_options})]
-	
-	[(#REM) <!--  Feuille de style CSS pour l'impression --> ]
-	[<link rel="stylesheet" href="(#CHEMIN{css/impression.css}|direction_css)" type="text/css" media="print" />]
 
 	<title>[(#ENV{meta_titre}|textebrut)][ - (#NOM_SITE_SPIP|textebrut)]</title>
 	
