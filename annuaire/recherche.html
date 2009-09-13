@@ -47,7 +47,7 @@
 			<h2><:mots_clefs:> (#GRAND_TOTAL)</h2>
 			<ul>
 				<BOUCLE_mots(MOTS) {recherche} {type !IN _META,Affichage}{par points}{inverse} {pagination #CONFIG{annuaire_recherche/pas_pagination_recherche, 5}}>
-				<p /><li>#TYPE <br /><a href="#URL_MOT">#TITRE</a></li>
+				<p /><li>#TYPE <br /><a href="#URL_MOT">[(#TITRE|supprimer_numero)]</a></li>
 				</BOUCLE_mots>
 			</ul>
 			[<p class="pagination">(#PAGINATION)</p>]
@@ -63,7 +63,8 @@
 			<h2><:sites_web:> (#GRAND_TOTAL)</h2>
 			<ul>
 				<BOUCLE_sites(SITES) {recherche} {par points}{inverse} {pagination #CONFIG{annuaire_recherche/pas_pagination_recherche, 5}}>
-				<li>
+				<BOUCLE_couleur1(MOTS){id_syndic}>#SET{ma_couleur,#DESCRIPTIF*}</BOUCLE_couleur1>
+				<li style="background-color:#GET{ma_couleur};">
 					<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a>
 					#FORMULAIRE_JAIME_JAIMEPAS<p />
 				</li>
