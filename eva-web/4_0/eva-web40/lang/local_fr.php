@@ -212,6 +212,8 @@ $test_lang_personnalisation=array(
 );
 
 $langue_fichier_initial=$test_lang_personnalisation;
+include_spip('base/trouver_table');
+if (base_trouver_table_dist(spip_eva_habillage_images)) {
 $surcharges = sql_allfetsel(array('nom_image AS texte', 'nom_div AS cle'),'spip_eva_habillage_images',  array(
         "type = 'fichier_lang'",
         "nom_habillage = 'Defaut'",
@@ -221,6 +223,7 @@ foreach ($surcharges as $s) {
         if (isset($test_lang_personnalisation[$s['cle']])) {
                 $test_lang_personnalisation[$s['cle']] = $s['texte'];
         }
+}
 }
 $GLOBALS[$GLOBALS['idx_lang']] = $test_lang_personnalisation;
 ?>
