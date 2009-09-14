@@ -26,8 +26,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 
 //D
-'dernier_article' => '&Uacute;ltimo art&iacute;lo',
-'derniers_articles' => '&Uacute;ltimos art&iacute;los',
+'dernier_article' => '&Uacute;ltimo art&iacute;culo',
+'derniers_articles' => '&Uacute;ltimos art&iacute;culos',
 'discussion' => 'Comentarios',
 
 //E
