@@ -39,7 +39,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //R
 'retour_accueil' => '¿Perdido/a? Vuelva a la p&aacute;gina de inicio',
-'rubriques' => 'Categor&iacute;s',
+'rubriques' => 'Categor&iacute;as',
 'recherche' => 'Buscar',
 'rss_section' => 'Canal RSS para esta secci&oacute;n',
 
