@@ -10,7 +10,7 @@ foreach (eva_bonus_tab() as $tab) {
 	echo '<tr ';
         if (($couleur_table%2)==0) {echo 'class="row_even"';} else {echo 'class="row_odd"';}
         $couleur_table++;
-	echo '><td style="text-align:center;" title="S\'applique sur : '.$tab[1].'">'.$tab[0].'</td></tr>';
+	echo ' style="font-size:0.5em;"><td style="text-align:center;" title="S\'applique sur : '.$tab[1].'">'.$tab[0].'</td></tr>';
 }
 echo '</table></div>';
 echo fin_cadre_enfonce(true);
