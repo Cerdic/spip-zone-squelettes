@@ -38,6 +38,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'annuaire_plan' => 'Plan',
 'annuaire_recherche' => 'Recherche',
 'annuaire_rubrique' => 'Rubrique',
+'annuaire_rubrique_complet' => 'Rubrique complet',
 'annuaire_site' => 'Site',
 'annuaire_sommaire' => 'Sommaire',
 'annuaire_style' => 'Style',
@@ -69,6 +70,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'configuration_plan' => 'Configuration de la page "plan"',
 'configuration_recherche' => 'Configuration de la page "recherche"',
 'configuration_rubrique' => 'Configuration de la page "rubrique"',
+'configuration_rubrique_complet' => 'Configuration de la page "rubrique complet"',
 'configuration_site' => 'Configuration de la page "site"',
 'configuration_sommaire' => 'Configuration de la page "sommaire"',
 'conception' => 'conception',
@@ -109,6 +111,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 				<br />R&eacute;gl&eacute; vos boucles et styles sur la page recherche.',
 'descriptif_rubrique' => '<h4>R&eacute;glage de la page rubrique</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur la page rubrique.',
+'descriptif_rubrique_complet' => '<h4>R&eacute;glage de la page rubrique complet</h4>
+				<br />R&eacute;gl&eacute; vos styles sur la page rubrique complet.
+				<br />Cette page est en fait un plan complet qui affiche m&ecric;me les 
+				rubriques pour les quelles vous avez pas en core de sites, cette page
+				 facilitera la proposition de site par le visiteur.',
 'descriptif_site' => '<h4>R&eacute;glage de la page site</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur la page site.',
 'descriptif_sommaire' => '<h4>R&eacute;glage sur le sommaire</h4>
@@ -183,16 +190,17 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rechercher' => 'Rechercher',
 'ref_site' => 'R&eacute;f&eacute;rencement de mon site',
 'rss' => 'Nombres d\'articles syndiqu&eacute; par page.',
+'rubrique_complet' => 'rubrique complet',
 
 //S
 'site_mois' => 'le site du mois',
-'sites' => 'Les sites',
 'supprimer' => 'Supprimer',
 'style' => 'Style :',
 'styliste' => 'Indiquer la personne qui a changer les couleurs : (afficher colonne de droite en
 			 bas uniquement si remplis), possibilit&eacute;e de mettre du code spip ou html.',
 
 //T
+'toutes_rubriques' => 'Toutes les rubriques',
 
 //U
 'utilisation' => 'Utilisation',
