@@ -151,7 +151,7 @@ $test_lang_personnalisation=array(
 	'tous_les_auteurs' => 'Alle Verfa&szlig;er',
 
 	// V
-	'version_eva' => 'Eva-Web 4,0 Stall',
+	'version_eva' => 'Eva-Web 4.1',
 	'visites' => 'Besuche',
 	'voir_en_ligne' => 'Sehen Sie auf dem Web',
 	'voir_image' => 'Sehen Sie, da&szlig; die Abbildung mit urspr&uuml;nglicher Gr&ouml;&szlig;e',

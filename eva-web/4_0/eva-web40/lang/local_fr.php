@@ -201,7 +201,7 @@ $test_lang_personnalisation=array(
 	'tous_les_auteurs' => 'Tous les auteurs',
 
 	// V
-	'version_eva' => 'EVA-Web 4.0',
+	'version_eva' => 'EVA-Web 4.1',
 	'visites' => 'Visites',
 	'voir_en_ligne' => 'Voir en ligne :',
 	'voir_image' => 'Voir l\'image en grand',

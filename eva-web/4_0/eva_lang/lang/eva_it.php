@@ -153,7 +153,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'tous_les_auteurs' => 'tutti gli autori',
 
 	// V
-	'version_eva' => 'EWA-Web 4.0 stabile',
+	'version_eva' => 'EWA-Web 4.1',
 	'visites' => 'Visite',
 	'voir_en_ligne' => 'Vedere sul net :',
 	'voir_image' => 'Vedere l\'immagine in dimensione normale',

@@ -155,7 +155,7 @@ $test_lang_personnalisation=array(
 	'tous_les_auteurs' => 'Tots els autors',
 
 	// V
-	'version_eva' => 'EVA-Web 4.0 estable',
+	'version_eva' => 'EVA-Web 4.1',
 	'visites' => 'Visites',
 	'voir_en_ligne' => 'Veure en l&iacute;nia:',
 	'voir_image' => 'Veure la imatge m&eacute;s gran',
