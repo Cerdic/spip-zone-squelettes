@@ -1,3 +1,4 @@
+#CACHE{0.5*3600}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
 <!--
@@ -7,21 +8,24 @@
 |      DATE + 2005.05.12                                |
 | COPYRIGHT + free use if this notice is kept in place  |
 |                                                       |
-| ADAPTATION SPIP + ERIC NOEL + NE0FUTUR + TATANKA      |
-|      DATE + 2005.07.19 + 2006.02.05                   |
+| ADAPTATION SPIP + ERIC NOEL + TATANKA                 |
+|      DATE + 2005.07.19 + 2005.10.23                   |
 |_______________________________________________________|
 
 -->
 <head>
   <title>[#NOM_SITE_SPIP]</title>
   <meta http-equiv="content-type" content="application/xhtml+xml; charset=#CHARSET" />
-  <meta name="author" content="Fullahead + Eric Noel + ne0futur + Tatanka" />
-  <meta name="keywords" content="reflection,fullahead,pat,OSWD,more,keywords,separated,with,commas" />
-  <meta name="description" content="OSWD reflection XHTML template by fullahead.org" />
-  <!-- Lien vers les backends pour navigateurs eclaires -->
-  <link rel="alternate" type="application/atom+xml" href="atom1.php3" title="#NOM_SITE_SPIP _ Fil Atom 1.0" />
-  <link rel="alternate" type="application/rss+xml" href="rss2.php3" title="#NOM_SITE_SPIP _ Fil RSS 2.0" />
-  <link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/styles/screen_aqua.css" media="screen, tv, projection" />
+  <meta name="author" content="Fullahead + Eric Noel + Tatanka + neofutur" />
+  <meta name="keywords" content="reflection, fullahead, pat, OSWD, more, keywords, separated, with, commas" />
+  <link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/screen_aqua.css" media="screen, tv, projection" />
+  <link rel="stylesheet" href="#DOSSIER_SQUELETTE/dialog.css" media="screen, tv, projection" />
+  <link rel="stylesheet" href="#DOSSIER_SQUELETTE/example-variants.css" media="screen, tv, projection" />
+<!-- Lien vers le backend pour navigateurs eclaires -->
+  <meta name="description" content="Syndication de fils RSS d'informations" />
+  <meta name="Robots" content="Index, Follow" />
+  <!-- Lien vers le backend pour navigateurs eclaires -->
+  <link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="spip.php?page=backend" />
 </head>
 <body>
 <!-- Main site container -->
@@ -29,7 +33,7 @@
   <!-- Main site header : holds the img, title and top tabbed menu -->
   <div id="header">
     <!-- top rounded corner -->
-    <img src="#DOSSIER_SQUELETTE/images/corner_tl.gif" alt="corner" style="float:left;" />
+    <img src="images/corner_tl.gif" alt="corner" style="float:left;" />
     <!-- Site title and subTitle -->
     <span class="title">
       <span class="white">#NOM_SITE_SPIP</span>
@@ -38,55 +42,53 @@
     <!-- Menu is displayed in reverse order from how you define it (caused by float: right) -->
     <a href="[mailto:(#EMAIL_WEBMASTER|antispam)]" title="contact" class="lastMenuItem">Contact<span class="desc">Courriel</span></a>
     <a href="/ecrire" title="services">Privé<span class="desc">Rédaction</span></a>
-    <a href="/" title="Accueil" class="active">Accueil<span class="desc">Bienvenue</span></a>
+    <a href="/" title="Accueil">Accueil<span class="desc">Bienvenue</span></a>
   </div>
+  <INCLURE{fond=banner}>
+
   <!-- Content begins -->
   <div id="content">
     <!-- Left side menu : side bar links/news/search/etc. -->
     <div id="contentLeft">
-      <INCLURE(menu_haut.php3)> <?php /* Fichier à remplir si vous souhaitez personnaliser la partie haute du menu */ ?>
       <p><span class="header">Rubriques des inscrits</span></p>
       <BOUCLE_rubriques(RUBRIQUES) {par titre}>
-      <div class="menu_gauche"><a href="#URL_RUBRIQUE" class="menunoItem">#TITRE</a></div>
+        <div class="menu_gauche"><a href="#URL_RUBRIQUE" class="menunoItem">#TITRE</a></div>
       </BOUCLE_rubriques>
+<INCLURE{fond=menu1}>
       <p><span class="header">Carnet des inscrits</span></p>
       <BOUCLE_syndic_sites(SITES) {par nom_site} {tout}>
-      <div class="menu_gauche"><a href="site.php3?id_rubrique=#ID_RUBRIQUE&amp;id_syndic=#ID_SYNDIC" class="menunoItem" title="#DESCRIPTIF">#NOM_SITE</a></div>
+
+	<div class="menu_gauche"><a href="spip.php?site#ID_SYNDIC" class="menunoItem" title="#DESCRIPTIF">#NOM_SITE</a></div> 
       </BOUCLE_syndic_sites>
+
       <p><span class="header">Syndication</span></p>
-      <div class="menu_gauche"><a href="atom1.php3" class="menunoItem">Fil Atom 1.0</a></div>
-      <div class="menu_gauche"><a href="rss2.php3" class="menunoItem">Fil RSS 2.0</a></div>
-      <INCLURE(menu_bas.php3)> <?php /* Fichier à remplir si vous souhaitez personnaliser la partie basse du menu */ ?>
+      <div class="menu_gauche_d"><a href="spip.php?page=backend" class="menunoItem">Fil rss</a></div>
       <!-- Creates the rounded corner on the bottom of the left menu -->
-      <div class="bottomCorner"><img src="#DOSSIER_SQUELETTE/images/corner_sub_br.gif" alt="bottom corner" class="vBottom"/></div>
+      <div class="bottomCorner"><img src="images/corner_sub_br.gif" alt="bottom corner" class="vBottom"/></div>
+      <INCLURE{fond=leftfooter}>
     </div>
     <!-- Right side main content -->
-    <div id="contentRight">
-      <div id="contentTopRight">
-        <div id="cal">
-          [(#URL_SITE_SPIP|monCalendrier)]
-        </div>
-        <div id="edito">
-          <BOUCLE_breves(BREVES) {par date} {inverse} {0,1}>
-            <span class="headerTop">#TITRE :: [(#DATE|nom_jour)] [(#DATE|affdate)]</span><br />
-            [(#TEXTE|textebrut)]
-          </BOUCLE_breves>
-        </div>
-      </div>
-      [(#URL_SITE_SPIP|monDrawSyndic)]
-      <!-- Creates bottom left rounded corner -->
-      <img src="#DOSSIER_SQUELETTE/images/corner_sub_bl.gif" alt="bottom corner" class="vBottom" />
-    </div>
+<div id="contentRight">
+   <table id="contentTopRight" summary="contenu principal"><tr>
+    <td id="edito">
+        <INCLURE{fond=message}> <hr />
+        <span class="header"><a href="#URL_SITE">#NOM_SITE</a> :: <BOUCLE_rss(SITES){id_syndic}><a href="#URL_SYNDIC">RSS</a></BOUCLE_rss></span>
+     #DESCRIPTIF
+    </td>
+    <td id="cal">
+     [(#URL_SITE_SPIP|monCalendrier)]
+    </td>
+   </tr></table>
+   [(#URL_SITE_SPIP|monDrawSyndic{0,0})]
+   <!-- Creates bottom left rounded corner -->
+   <img src="images/corner_sub_bl.gif" alt="bottom corner" class="vBottom" />
   </div>
+  
   <!-- Footer begins -->
   <div id="footer">
-    <div id="footerLeft">
-      &nbsp;&nbsp;design <a href="http://oswd.org/userinfo.phtml?user=snop" title="OSWD design work">snop</a> <span class="grey">+</span> photo <a href="http://www.sxc.hu/browse.phtml?f=profile&amp;l=plasticboy&amp;p=1" title="stock.xchng">plasticboy</a> <span class="grey">+</span> système de publication <a href="http://www.spip.net/fr" title="powered by spip">spip</a> <span class="grey">=</span> valid <a href="http://validator.w3.org/check?uri=referer" title="validate XHTML">XHTML Strict 1.0</a> &amp; <a href="http://jigsaw.w3.org/css-validator/validator?uri=(#URL_SITE_SPIP|entites_html)%2F(#DOSSIER_SQUELETTE|entites_html)%2Fscreen_aqua.css&amp;usermedium=all" title="validate CSS">CSS 2.1</a>
-    </div>
-    <div id="footerRight">
-      &nbsp;Modifié <em>un peu</em> par <a href="http://www.neofutur.net/">ne0futur</a> et <a href="http://suivinfo.free.fr/">Tatanka</a>&nbsp;&nbsp;
-    </div>
+  <INCLURE{fond=footer}>
   </div>
+ </div>
 </div>
 </body>
 </html>

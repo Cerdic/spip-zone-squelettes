@@ -1,35 +1,43 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
+
 <!--
- _______________________________________________________
-|                                                       |
-|    DESIGN + http://fullahead.org                      |
-|      DATE + 2005.05.12                                |
-| COPYRIGHT + free use if this notice is kept in place  |
-|                                                       |
-| ADAPTATION SPIP + ERIC NOEL + NE0FUTUR + TATANKA      |
-|      DATE + 2005.07.19 + 2006.02.05                   |
-|_______________________________________________________|
+ _________________________________________________________
+|                                                         |
+|    DESIGN + http://fullahead.org                        |
+|      DATE + 2005.05.12                                  |
+| COPYRIGHT + free use if this notice is kept in place    |
+|                                                         |
+|       ADAPTATION SPIP + ERIC NOEL + neofutur + tatanka  |
+|                       DATE    + 2005.07.19              |
+|_________________________________________________________|
 
 -->
+
 <head>
-  <title>[#NOM_SITE_SPIP]</title>
+
   <meta http-equiv="content-type" content="application/xhtml+xml; charset=#CHARSET" />
-  <meta name="author" content="Fullahead + Eric Noel + ne0futur + Tatanka" />
-  <meta name="keywords" content="reflection,fullahead,pat,OSWD,more,keywords,separated,with,commas" />
-  <meta name="description" content="OSWD reflection XHTML template by fullahead.org" />
-  <!-- Lien vers les backends pour navigateurs eclaires -->
-  <link rel="alternate" type="application/atom+xml" href="atom1.php3" title="#NOM_SITE_SPIP _ Fil Atom 1.0" />
-  <link rel="alternate" type="application/rss+xml" href="rss2.php3" title="#NOM_SITE_SPIP _ Fil RSS 2.0" />
-  <link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/styles/screen_aqua.css" media="screen, tv, projection" />
+  <meta name="author" content="Fullahead + Eric Noel + neofutur + Tatanka" />
+  <meta name="keywords" content="feeder, news, RSS, SpipFeeder, Spip, infos, blogs, aggregateur" />
+  <meta name="description" content="SpipFeeder aggregateur de News" />
+  <meta name="Robots" content="Index, Follow" />
+ <!-- Lien vers le backend pour navigateurs eclaires -->
+  <link rel="alternate" type="application/rss+xml" title="<:syndiquer_site:>" href="spip.php?page=backend" />
+  <link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="spip.php?page=backend&amp;id_rubrique=#ID_RUBRIQUE" />
+  <title>[#NOM_SITE_SPIP]</title>
+  <link rel="stylesheet" type="text/css" href="#DOSSIER_SQUELETTE/screen_aqua.css" media="screen, tv, projection" />
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/dialog.css" media="screen" />
+<link rel="stylesheet" href="#DOSSIER_SQUELETTE/example-variants.css" media="screen" />
+
 </head>
+
 <body>
 <!-- Main site container -->
 <div id="siteBox">
   <!-- Main site header : holds the img, title and top tabbed menu -->
   <div id="header">
     <!-- top rounded corner -->
-    <img src="#DOSSIER_SQUELETTE/images/corner_tl.gif" alt="corner" style="float:left;" />
+    <img src="images/corner_tl.gif" alt="corner" style="float:left;" />
     <!-- Site title and subTitle -->
     <span class="title">
       <span class="white">#NOM_SITE_SPIP</span>
@@ -40,58 +48,61 @@
     <a href="/ecrire" title="services">Privé<span class="desc">Rédaction</span></a>
     <a href="/" title="Accueil">Accueil<span class="desc">Bienvenue</span></a>
   </div>
+  <INCLURE{fond=banner}>
+  <?php
+   $rubrique = #ENV{id_rubrique};
+   $get_id_rub = #ENV{id_rubrique};
+   //$_GET['id_rubrique']=$get_id_rub;
+   //echo $rubrique;
+  ?>
   <!-- Content begins -->
   <div id="content">
     <!-- Left side menu : side bar links/news/search/etc. -->
     <div id="contentLeft">
+   <INCLURE{fond=menu1}>
       <p><span class="header">Rubriques des inscrits</span></p>
       <BOUCLE_rubriques(RUBRIQUES) {par titre}>
         <div class="menu_gauche"><b><a href="#URL_RUBRIQUE" class="menunoItem">#TITRE</a></b></div>
         <?php
           $spip_id_rub = "#ID_RUBRIQUE";
-          $get_id_rub = $_GET['id_rubrique'];
           if ($spip_id_rub == $get_id_rub) {
             $spip_titre_rub = "#TITRE";
             $spip_desc_rub = "#DESCRIPTIF";
         ?>
         <BOUCLE_syndic_sites(SITES) {id_rubrique} {par nom_site} {tout}>
-          <div class="menu_gauche_s"><a href="site.php3?id_rubrique=#ID_RUBRIQUE&amp;id_syndic=#ID_SYNDIC" class="menunoItem" title="#DESCRIPTIF">#NOM_SITE</a></div>
+          <div class="menu_gauche_s"><a href="spip.php?page=site&amp;id_rubrique=#ID_RUBRIQUE&amp;id_syndic=#ID_SYNDIC" class="menunoItem" title="#DESCRIPTIF">#NOM_SITE</a></div>
         </BOUCLE_syndic_sites>
         <?php
           }
         ?>
       </BOUCLE_rubriques>
+   <INCLURE{fond=menu2}>
       <p><span class="header">Syndication</span></p>
-      <div class="menu_gauche"><a href="atom1.php3" class="menunoItem">Fil Atom 1.0</a></div>
-      <div class="menu_gauche"><a href="rss2.php3" class="menunoItem">Fil RSS 2.0</a></div>
+      <div class="menu_gauche_d"><a href="spip.php?page=backend" class="menunoItem">Fil rss</a></div>
       <!-- Creates the rounded corner on the bottom of the left menu -->
-      <div class="bottomCorner"><img src="#DOSSIER_SQUELETTE/images/corner_sub_br.gif" alt="bottom corner" class="vBottom"/></div>
+      <div class="bottomCorner"><img src="images/corner_sub_br.gif" alt="bottom corner" class="vBottom"/></div>
     </div>
     <!-- Right side main content -->
     <div id="contentRight">
-      <div id="contentTopRight">
-        <div id="cal">
-          [(#URL_SITE_SPIP|monCalendrier)]
-        </div>
-        <div id="edito">
-          <span class="headerTop"><?php echo $spip_titre_rub; ?></span><br />
+     <table id="contentTopRight" summary="contenu principal"><tr>
+      <td id="edito">
+        <INCLURE{fond=message}> <hr />
+	  <span class="header"><?php echo $spip_titre_rub; ?></span>
           <?php echo $spip_desc_rub; ?>
-        </div>
-      </div>
-      [(#URL_SITE_SPIP|monDrawSyndic)]
+      </td>
+      <td id="cal">
+       [(#URL_SITE_SPIP|monCalendrier)]
+      </td>
+     </tr></table>
+      [(#URL_SITE_SPIP|monDrawSyndic{#ENV{id_rubrique},0})]
       <!-- Creates bottom left rounded corner -->
-      <img src="#DOSSIER_SQUELETTE/images/corner_sub_bl.gif" alt="bottom corner" class="vBottom" />
+      <img src="images/corner_sub_bl.gif" alt="bottom corner" class="vBottom" />
+     </div> 
     </div>
+   <!-- Footer begins -->
+   <div id="footer">
+    <INCLURE{fond=footer}>
+   </div>
   </div>
-  <!-- Footer begins -->
-  <div id="footer">
-    <div id="footerLeft">
-      &nbsp;&nbsp;design <a href="http://oswd.org/userinfo.phtml?user=snop" title="OSWD design work">snop</a> <span class="grey">+</span> photo <a href="http://www.sxc.hu/browse.phtml?f=profile&amp;l=plasticboy&amp;p=1" title="stock.xchng">plasticboy</a> <span class="grey">+</span> système de publication <a href="http://www.spip.net/fr" title="powered by spip">spip</a> <span class="grey">=</span> valid <a href="http://validator.w3.org/check?uri=referer" title="validate XHTML">XHTML Strict 1.0</a> &amp; <a href="http://jigsaw.w3.org/css-validator/validator?uri=(#URL_SITE_SPIP|entites_html)%2F(#DOSSIER_SQUELETTE|entites_html)%2Fscreen_aqua.css&amp;usermedium=all" title="validate CSS">CSS 2.1</a>
-    </div>
-    <div id="footerRight">
-      &nbsp;Modifié <em>un peu</em> par <a href="http://www.neofutur.net/">ne0futur</a> et <a href="http://suivinfo.free.fr/">Tatanka</a>&nbsp;&nbsp;
-    </div>
-  </div>
-</div>
-</body>
+ </body>
 </html>
