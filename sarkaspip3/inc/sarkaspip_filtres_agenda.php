@@ -503,7 +503,7 @@ function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui
 	$mini_evenements = agenda_recenser_evenement(-1);
 
 	$body = NULL;
-	// Début du tableau
+	// Debut du tableau
 	$body .= '<table summary="'._T('sarkaspip:resume_mini_agenda_body').'">';
 	
 	// 1ere ligne : nom abrege des jours de dimanche a samedi
@@ -567,7 +567,7 @@ function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui
 
 	// Cellules des jours visibles suivant le mois courant (toujours inclus strictement dans la derniere ligne)
 	while (date('w', $date) != $jour_debut) {
-		$cellule = '<td class="horsperiode">';   //width="14%" valign="top"
+		$cellule = '<td class="horsperiode">';  
 		$cellule .= ($affichage_hors_mois == 'oui') ? strval(date('j', $date)) : '&nbsp;';
 		$cellule .= '</td>';
 
@@ -587,7 +587,7 @@ function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui
 // ===================================================
 // Auteur: Smellup
 // Fonction : Insertion du resume des evenements du mois
-// Utilisation : Choix possible de la taille masx de la
+// Utilisation : Choix possible de la taille max de la
 //               liste et du critere de selection des 
 //               evenements (tous le mois ou juste la  
 //               fin du mois % date du jour)
@@ -619,7 +619,7 @@ function agenda_mini_footer($id_agenda=0, $critere='oui', $max_mois=6, $taille=5
 
 	// Init de la date de base pour calculer le nombre d'evenements du resume a afficher
 	// - si le mois choisi est le mois courant, la date de base est la date courante, on affichera donc les evenements posterieurs
-	// - si le mois choisi est antérieur ou posterieur au mois courant, la date de base est le 1er jour du mois
+	// - si le mois choisi est anterieur ou posterieur au mois courant, la date de base est le 1er jour du mois
 	if (($annee_choisie==$annee_courante) && ($mois_choisi==$mois_courant)) 
 		$date_base = date('Y-m-d');
 	else
@@ -628,7 +628,7 @@ function agenda_mini_footer($id_agenda=0, $critere='oui', $max_mois=6, $taille=5
 	// Init de la chaine
 	$footer = NULL;
 
-	// Extraction des evenements du résumé si demande
+	// Extraction des evenements du resume si demande
 	if ($critere == 'oui') {
 		$i = 1;
 		$liste_complete = FALSE;
