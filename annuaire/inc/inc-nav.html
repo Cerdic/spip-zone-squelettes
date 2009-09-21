@@ -14,15 +14,23 @@
 		</fieldset><!--#connect-->
 	</div><!--#nav_haut-->
 
+	<BOUCLE_pub1(BREVES){titre_mot=pub-nav}>
+	<div id="nav_pub">
+	<fieldset>
+		#TEXTE
+	</fieldset>
+	</div><!--#nav_pub-->
+	</BOUCLE_pub1>
+
 	<div id="nav_bas">
-	[(#REM) Afficher les mot clef du site]
+	[(#REM) Afficher les mots clef du site]
 	<fieldset class="mots">
 	<object><:mots_clefs:></object>
 	<B_mot>
 		<BOUCLE_mot(MOTS){id_syndic}>
 		<h3>#TYPE</h3>
 		<BOUCLE_mots(MOTS){id_groupe}{id_syndic}{par num titre, titre}>
-		<BOUCLE_couleur10(MOTS){id_syndic}>#SET{ma_couleur,#DESCRIPTIF*}</BOUCLE_couleur10>
+		<BOUCLE_couleur10(MOTS) {id_mot}>#SET{ma_couleur,#DESCRIPTIF*}</BOUCLE_couleur10>
 		<br /><a href="#URL_MOT" style="background-color:#GET{ma_couleur};">[(#TITRE|supprimer_numero|ucfirst)]</a>
 		<BOUCLE_site_mot1(SITES) {id_mot}> </BOUCLE_site_mot1>(#TOTAL_BOUCLE site(s))</B_site_mot1>
 		</BOUCLE_mots>
