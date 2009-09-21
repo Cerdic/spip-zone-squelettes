@@ -5,7 +5,9 @@
 		<li>
 		[(#SET{rang_secteur, [mh_n(#COMPTEUR_BOUCLE)]})]
 			[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|!={2}|?{' '})[<a[ id="(#GET{rang_secteur})"] href="#URL_RUBRIQUE">(#TITRE|supprimer_numero|couper{80})</a>]]
-			[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|?{' '})<INCLURE{fond=noisettes/navigation/inc_nav_rubrique_lien}{id_rubrique}{rang=#GET{rang_secteur}}>]
+			[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|?{' '})
+				[(#INCLURE{fond=noisettes/navigation/inc_nav_rubrique_lien}{id_rubrique}{rang=#GET{rang_secteur}})]
+			]
 			[(#SET{ul_encours, non})]
 	<B_sous_rubriques>
 			<ul>
@@ -20,16 +22,24 @@
 					[(#SET{class_a, [(#GET{rang_item})]})]
 				<//B_test_sousrub>
 					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|!={2}|?{' '})[<a class="[(#GET{class_a})]" href="#URL_RUBRIQUE">(#TITRE|supprimer_numero|couper{80})</a>]]
-					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|?{' '})<INCLURE{fond=noisettes/navigation/inc_nav_rubrique_lien}{id_rubrique}{classe=#GET{class_a}}>]
-					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|?{' '})<INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique}{ul_encours=non}>]
+					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|?{' '})
+						[(#INCLURE{fond=noisettes/navigation/inc_nav_rubrique_lien}{id_rubrique}{classe=#GET{class_a}})]
+					]
+					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|?{' '})
+						[(#INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique}{ul_encours=non})]
+					]
 					<BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	
 				</li>
 	</BOUCLE_sous_rubriques>
-				[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|?{' '})<INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique}{ul_encours=#GET{ul_encours}}>]
+				[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|?{' '})
+					[(#INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique}{ul_encours=#GET{ul_encours}})]
+				]
 			[(#GET{ul_encours}|=={oui}|?{' '}) </ul>]
 	</B_sous_rubriques>
 			[(#GET{ul_encours}|=={non}|?{' '})
-				[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|?{' '})<INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique}{ul_encours=#GET{ul_encours}}>]
+				[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|?{' '})
+					[(#INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique}{ul_encours=#GET{ul_encours}})]
+				]
 			]
 		</li>
 </BOUCLE_rubriques>
