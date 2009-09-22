@@ -110,6 +110,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'meme_rubrique' => 'nella stessa sezione',
 	'mentions' => 'Menzioni',
 	'mentions_legales' => 'Menzioni legali',
+	'meteo' => '<NEW>M&eacute;t&eacute;o',
+	'meteo_info' => '<NEW>Informations g&eacute;ographiques',
+	'meteo_previsions' => '<NEW>Pr&eacute;visions m&eacute;t&eacute;o',
 	'mis_a_jour' => 'aggiornamenti : ',
 	'mot_cle' => 'parole chiave',
 	'multilinguisme' => 'Pubblicare il frammento di linguaggio di Eva-web nelle pagine pubbliche?',
@@ -153,7 +156,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'tous_les_auteurs' => 'tutti gli autori',
 
 	// V
-	'version_eva' => 'EWA-Web 4.1',
+	'version_eva' => '<MODIF>EWA-Web 4.0 stabile',
 	'visites' => 'Visite',
 	'voir_en_ligne' => 'Vedere sul net :',
 	'voir_image' => 'Vedere l\'immagine in dimensione normale',

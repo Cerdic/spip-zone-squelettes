@@ -110,6 +110,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'meme_rubrique' => 'En la misma secci&oacute;n',
 	'mentions' => 'Menciones',
 	'mentions_legales' => 'Menciones legales',
+	'meteo' => 'Meteo',
+	'meteo_info' => 'Informaciones geogr&aacute;ficas',
+	'meteo_previsions' => 'predicciones meteol&oacute;gicas',
 	'mis_a_jour' => 'Actualizaci&oacute;n :',
 	'mot_cle' => 'Palabra clave',
 	'multilinguisme' => '&iquest;Indicar la carta de lengua de EVA-red en las p&aacute;ginas p&uacute;blicas?',
@@ -153,7 +156,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'tous_les_auteurs' => 'Todos los autores',
 
 	// V
-	'version_eva' => 'EVA-Web 4.1',
+	'version_eva' => '<MODIF>EVA-Web 4.0 estable',
 	'visites' => 'Visitas',
 	'voir_en_ligne' => 'Ver en l&iacute;nea :',
 	'voir_image' => 'Ver la imagen en modo normal',
