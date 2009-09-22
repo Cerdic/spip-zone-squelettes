@@ -80,6 +80,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_bas_principale' => 'En bas du menu de navigation principal',
 	'cfg_bulle_aide_label' => 'Bulle d\'aide affich&eacute;e nativement par le navigateur',
 	'cfg_cadre_vignettes' => 'Cadre vignettes (mode portail)',
+	'cfg_cartouche' => 'Cadre "Quoi de neuf", "Contenu"...',
 	'cfg_choix_banniere_label' => 'Choix de la banni&egrave;re (si pas de logo de survol pour le site)',
 	'cfg_choix_banniere_tableau' => 'Liste des banni&egrave;res',
 	'cfg_code_pub_google' => 'Code Google pour le bandeau de pub',
