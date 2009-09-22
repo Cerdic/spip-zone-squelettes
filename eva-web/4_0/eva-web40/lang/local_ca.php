@@ -166,8 +166,8 @@ $test_lang_personnalisation=array(
 );
 
 $langue_fichier_initial=$test_lang_personnalisation;
-include_spip('base/trouver_table');
-if (base_trouver_table_dist(spip_eva_habillage_images)) {
+$test=sql_showtable('spip_eva_habillage_images',true);
+if ($test['field']) {
 $surcharges = sql_allfetsel(array('nom_image AS texte', 'nom_div AS cle'),'spip_eva_habillage_images',  array(
         "type = 'fichier_lang'",
         "nom_habillage = 'Defaut'",
