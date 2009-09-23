@@ -495,6 +495,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_lbl_inc_stathit_compo_1' => 'Uniquement le hit-parade des articles les plus visit&eacute;s du site',
 	'cfg_lbl_inc_stathit_compo_2' => 'Uniquement la liste des articles choisis au hasard',
 	'cfg_lbl_inc_stathit_compo_3' => 'Les deux',
+	'cfg_lbl_intro_album' => 'Taille maximale de l\'introduction d\'un album',
 	'cfg_lbl_intro_article' => 'Taille maximale de l\'introduction d\'un article',
 	'cfg_lbl_intro_breve' => 'Taille maximale de l\'introduction d\'une br&egrave;ve',
 	'cfg_lbl_intro_commentaires' => 'Taille maximale de l\'introduction d\'un commentaire',
