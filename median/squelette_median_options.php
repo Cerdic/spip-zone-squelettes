@@ -15,12 +15,11 @@
 # $GLOBALS['table_des_traitements']['TITRE'][]= 'typo(supprimer_numero(%s))';
 
 // si on utilise ce plugin, configuration du dossier de squelettes correspondant
-$GLOBALS['dossier_squelettes'] = '';
   $chem_squel = 'squelettes';
-  if ($Tsquel = explode(":",$GLOBALS['dossier_squelettes'])) $chem_squel = $Tsquel[0];
+  if ($Tsquel = explode(":",$GLOBALS['dossier_squelettes']) AND $Tsquel[0] != '') 
+      $chem_squel = $Tsquel[0];
   $sep = ($GLOBALS['dossier_squelettes'] != ''? ':' : '');
   $GLOBALS['dossier_squelettes'] .= $sep.$chem_squel.'/median';
 
-var_dump(  $GLOBALS['dossier_squelettes']);
   
 ?>
