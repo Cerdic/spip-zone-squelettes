@@ -16,17 +16,4 @@ function gravatar_url($email = '')
    }
 }
 
-// ajouter un <title> si la page n'en a pas
-function titrer_page($page) {
-  if (!strpos('<title', $page)) {
-    $title = supprimer_tags(
-      (preg_match(',<(h1).*</\1>,Ums', $page, $r)
-        ? $r[0].' | ' : '')
-        . $GLOBALS['meta']['nom_site']
-      );
-    $page = str_replace('</head>', '<title>'.$title.'</title></head>', $page);
-  }
-  return $page;
-}
-
 ?>
