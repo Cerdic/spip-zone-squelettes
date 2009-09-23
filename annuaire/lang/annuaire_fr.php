@@ -154,6 +154,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'nav_haut' => 'la colonne "navigation" partie haute',
 'nav_lien' => 'le bloc "liens"',
 'nav_mot' => 'le bloc "mots clef"',
+'nav_pied' => 'le "pied de page"',
 'nav_rub' => 'le bloc "rubriques"',
 'nav_sites' => 'le bloc avec le nombre de "site r&eacute;f&eacute;renc&eacute;s"',
 'nbr_articles' => 'Nombre d\'articles :',
