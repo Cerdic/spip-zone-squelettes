@@ -91,7 +91,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //D
 'descriptif_acceuil' => 'Pr&eacute;sentation du plugins "annuaire" et de ses fonctions.',
 'descriptif_bandeau' => '<h4>R&eacute;glage du bandeau</h4>
-				<br />R&eacute;gl&eacute; vos boucles et styles sur le bandeau.',
+				<br />R&eacute;gl&eacute; vos styles sur le bandeau.',
 'descriptif_contact' => '<h4>R&eacute;glage de la page contact</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur le bandeau.',
 'descriptif_coul_mot' => '<h4>Choisir une couleur avec des mots clefs</h4>
@@ -121,7 +121,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'descriptif_sommaire' => '<h4>R&eacute;glage sur le sommaire</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles du sommaire.',
 'descriptif_colonne' => '<h4>R&eacute;glage du style</h4>
-				<br />Choisissez vos couleurs pour les colonnes et pied de page',
+				<br />Choisissez vos couleurs pour les colonnes et pied de page.',
 
 //E
 'epingle_site' => '&eacute;pingl&eacute;s sur',

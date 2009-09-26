@@ -15,12 +15,12 @@
 <meta name="keywords" content="#TITRE" /></BOUCLE_mots>
 </head>
 <body>
-<div id="site">
 
 	[(#REM) Afficher l'entete :]
 	<INCLURE{fond=inc/inc-entete}{lang?}>
 	<INCLURE{fond=inc/inc-menu}{class=entete}{lang?}>
 
+<div id="site">
 	[(#REM) Fil d'Ariane ]
     <div class="hierarchie">
 		<a href="#URL_SITE_SPIP/"><:accueil_site:></a>
@@ -40,7 +40,7 @@
 		#FORMULAIRE_JAIME_JAIMEPAS
 		[(#PLUGIN{pb_pagerank}|oui)
 		<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]
-        [<q>(#DESCRIPTIF**|attribut_html)</q>]
+        #DESCRIPTIF
         [<p><a class="url" href="#URL_SITE" target="_blank">(#URL_SITE|couper{80})</a></p>]
 		</fieldset>
 
@@ -55,7 +55,7 @@
                 <li>
                     <h3><a href="#URL_ARTICLE" target="_blank">#TITRE</a></h3>
                     <small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</small>
-                    [<div class="introduction">(#DESCRIPTIF**|image_reduire{300})</div>]
+                    [<div class="introduction">(#DESCRIPTIF|image_reduire{300})</div>]
                 </li><!--#article-->
                 </BOUCLE_articles>
             </ul>
