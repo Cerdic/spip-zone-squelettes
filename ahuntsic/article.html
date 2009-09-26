@@ -51,12 +51,10 @@
 			[<div  class="#EDIT{surtitre} surtitre">(#SURTITRE)</div>]
 			<h1 class="#EDIT{titre} titre-article">[(#TITRE|supprimer_numero)]</h1>
             [<div class="#EDIT{soustitre} sous-titre">(#SOUSTITRE)</div>]
-				<p class="detail">
-				[(#DATE|nom_jour)] [(#DATE|affdate)]
-				<B_auteurs_recents><:par_auteur:>
-				<BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}><a href="#URL_SITE_SPIP/#URL_AUTEUR">#NOM</a>
-				</BOUCLE_auteurs_recents>
-				</p>
+      		<div class="detail">
+				[<span class="date">(#DATE|nom_jour)] [(#DATE|affdate)</span>] 
+				[<span class="auteurs">par (#LESAUTEURS)</span>]				
+     		 </div><!-- detail -->
 				
       </div><!-- cartouche -->
 
@@ -74,10 +72,9 @@
 		]
 		[(#INCLURE{fond=inc/inc-art-documents}{id_article}{env})]
 
-[(#REM) Petition :
-		La petition ayant une PAGINATION il faut absolument lui passer SELF en argument. ]
-		[ #REM Conserver cet invalideur : (#PETITION|?{'',''}) ]
-			<INCLURE{fond=inc-petition}{id_article}{self=#SELF}>
+		[(#REM) Petition :
+		La petition ayant une PAGINATION il faut absolument {env} et pourquoi pas ajax
+		][(#PETITION|?{' '})<INCLURE{fond=inc/inc-petition}{id_article}{env}{ajax}>]
 		
 		<!-- Derniers articles des auteurs de l'article -->
 		<B_auteurs>
@@ -100,7 +97,7 @@
 		</B_auteurs>
 
 		<!-- Mots cles -->
-		<BOUCLE_mots_eclus(MOTS){type=_config_}{doublons}></BOUCLE_mots_eclus>
+		<BOUCLE_mots_eclus(MOTS){type == '^_config'}{doublons}></BOUCLE_mots_eclus>
 		<B_mots>
 		<div class="ps" id="mots-cles_associes">
 			<h2><:mots_clefs:></h2>
