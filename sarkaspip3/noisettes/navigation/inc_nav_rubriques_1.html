@@ -1,68 +1,42 @@
-<script type="text/javascript">
-//<![CDATA[	
-function hover(obj) {
-	if(document.all) {
-		UL = obj.getElementsByTagName('ul');
-		if(UL.length > 0) {UL[0].style.display = 'block';}
-	}
-}
-
-function hout(obj) {
-	if(document.all) {
-		UL = obj.getElementsByTagName('ul');
-		if(UL.length > 0) {UL[0].style.display = 'none';}
-	}
-}
-function setHover(){
-	if (document.getElementById('menu_rubriques')) {
-		LI = document.getElementById('menu_rubriques').getElementsByTagName('li');
-		nLI = LI.length;
-		for(i=0; i < nLI; i++){
-			LI[i].onmouseover = function(){hover(this);}
-			LI[i].onmouseout = function(){hout(this);}
-		}
-	}
-}
-//]]>
-</script>
-
-<B_smenuspipr>
-	<div id="menu_rubriques" class="noisette menu_rub1">
-		<ul class="menulist">
-<BOUCLE_smenuspipr(RUBRIQUES){racine}{id_rubrique!==#RACINE_SPECIALISEE}{par num titre, titre}>
-			<BOUCLE_smenr(RUBRIQUES){id_parent}{0,1}><li class="smenu"></BOUCLE_smenr><li><//B_smenr>
-				[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|!={2}|oui)[<a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero|couper{80})</a>]]
-				[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|oui)
-					[(#INCLURE{fond=noisettes/navigation/inc_nav_rubrique_lien}{id_rubrique})]
-				]
-				#SET{ul_encours, non}
-				<B_smenuspip>
-					<ul>
-					#SET{ul_encours, oui}
-				<BOUCLE_smenuspip(RUBRIQUES){id_parent}{par num titre}>
-					<BOUCLE_smen(RUBRIQUES){id_parent}{0,1}><li class="smenu"></BOUCLE_smen><li><//B_smen>
-						[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|!={2}|oui)[<a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero|couper{80})</a>]]
-						[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|oui)
-							[(#INCLURE{fond=noisettes/navigation/inc_nav_rubrique_lien}{id_rubrique})]
-						]
-						[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|oui)
-							[(#INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique}{ul_encours=non})]
-						]
-						<BOUCLE_ssmenu(boucle_smenuspip)></BOUCLE_ssmenu>
-					</li>
-				</BOUCLE_smenuspip>
-					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|oui)
-						[(#INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique}{ul_encours=#GET{ul_encours}})]
+<B_menu_rubriques>
+<div id="menu_rubriques" class="noisette menu_rub1">
+	<ul class="menulist">
+<BOUCLE_menu_rubriques(RUBRIQUES){racine}{id_rubrique!==#RACINE_SPECIALISEE}{par num titre, titre}>
+		<BOUCLE_debut_secteur(RUBRIQUES){id_parent}{0,1}><li class="smenu"></BOUCLE_debut_secteur><li><//B_debut_secteur>
+			[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|!={2}|oui)[<a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero|couper{80})</a>]]
+			[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|oui)
+				[(#INCLURE{fond=noisettes/navigation/inc_nav_rubrique_lien}{id_rubrique})]
+			]
+			<B_menu_ssrubriques>
+				<ul>
+			<BOUCLE_menu_ssrubriques(RUBRIQUES){id_parent}{par num titre, titre}>
+				<BOUCLE_debut_ssrubrique(RUBRIQUES){id_parent}{0,1}><li class="smenu"></BOUCLE_debut_ssrubrique><li><//B_debut_ssrubrique>
+					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|!={2}|oui)[<a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero|couper{80})</a>]]
+					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={2}|oui)
+						[(#INCLURE{fond=noisettes/navigation/inc_nav_rubrique_lien}{id_rubrique})]
 					]
-					[(#GET{ul_encours}|=={oui}|oui)</ul>]
-				</B_smenuspip>
-				[(#GET{ul_encours}|=={non}|oui)
+				<BOUCLE_fin_hierarchie(RUBRIQUES){id_parent}{0,1}> </BOUCLE_fin_hierarchie>
 					[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|oui)
-						[(#INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique}{ul_encours=#GET{ul_encours}})]
+						[(#INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique}{avec_ul=oui})]
+					]
+				<//B_fin_hierarchie>
+					<BOUCLE_ssmenu(boucle_menu_ssrubriques)></BOUCLE_ssmenu>
+				</li>
+				[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|oui)
+					[(#COMPTEUR_BOUCLE|=={#TOTAL_BOUCLE}|oui)
+						[(#INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique=#ID_PARENT}{avec_ul=non})]
 					]
 				]
-			</li>
-</BOUCLE_smenuspipr>
-		</ul> <!-- menulist -->
-	</div> <!-- menu_rub1 -->
-</B_smenuspipr>
+			</BOUCLE_menu_ssrubriques>
+				</ul>
+			</B_menu_ssrubriques>
+		<BOUCLE_fin_secteur(RUBRIQUES){id_parent}{0,1}> </BOUCLE_fin_secteur>
+			[(#CONFIG{sarkaspip_menus/option_rubriques, 0}|=={1}|oui)
+				[(#INCLURE{fond=noisettes/navigation/inc_nav_articles_1}{id_rubrique=#ID_SECTEUR}{avec_ul=oui})]
+			]
+		<//B_fin_secteur>
+		</li>
+</BOUCLE_menu_rubriques>
+	</ul> <!-- menulist -->
+</div> <!-- menu_rub1 -->
+</B_menu_rubriques>

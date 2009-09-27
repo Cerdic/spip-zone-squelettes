@@ -6,15 +6,10 @@ function SarkaSpip_insert_head($flux){
 	$modele = lire_config('sarkaspip_menus/modele_rubriques', 1);
 	// Si le menu des rubriques est deroulant dans le bandeau
 	if (($position == 5) && ($modele == 1))
-		$flux .='<script src="'.url_absolue(find_in_path('scripts/menu_deroulant.js')).'" type="text/javascript"></script>';
+		$flux .='<script src="'.url_absolue(find_in_path('scripts/menu_deroulant_horizontal.js')).'" type="text/javascript"></script>';
 	// Si le menu des rubriques est deroulant dans la colonne navigation
 	if (($position == 1) && ($modele == 1))
-		$flux .= 
-			'<script type="text/javascript">
-				jQuery(document).ready(function() {
-					setHover()
-				});
-			</script>';
+		$flux .='<script src="'.url_absolue(find_in_path('scripts/menu_deroulant_vertical.js')).'" type="text/javascript"></script>';
 
 	// Insertion de la librairie jCarouselLite et des librairies connexes
 	$position = lire_config('sarkaspip_album/position_carrousel', 1);
