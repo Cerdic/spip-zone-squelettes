@@ -177,6 +177,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'pas_pop' => 'Pas de populaires, car pas de votes ou pas assez de site',
 'pas_sites' => 'Pas de site rattach&eacute; &agrave; ce mot clef.',
 'pas_zard' => 'Pas de sites au hasard, enregistrez-en ...',
+'plan_complet' => 'plan complet',
 'plus_pop' => 'Les plus populaires',
 'plus_encore' => 'Plus encore !',
 'pop' => 'la boucle "populaire"',
@@ -191,7 +192,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rechercher' => 'Rechercher',
 'ref_site' => 'R&eacute;f&eacute;rencement de mon site',
 'rss' => 'Nombres d\'articles syndiqu&eacute; par page.',
-'rubrique_complet' => 'rubrique complet',
 
 //S
 'site_mois' => 'le site du mois',
