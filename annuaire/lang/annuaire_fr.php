@@ -43,7 +43,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'annuaire_site' => 'Site',
 'annuaire_sommaire' => 'Sommaire',
 'annuaire_style' => 'Style',
-'article_syndic' => 'article(s) syndiqué.',
+'article_syndic' => 'article(s) syndiqu&eacute;.',
 
 //B
 'bandeau' => 'le "bandeau"',
