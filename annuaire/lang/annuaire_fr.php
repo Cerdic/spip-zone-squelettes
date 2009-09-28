@@ -36,12 +36,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'annuaire_mot' => 'Mot',
 'annuaire_partenaire' => 'Partenaire',
 'annuaire_plan' => 'Plan',
+'annuaire_plan_complet' => 'Plan complet',
 'annuaire_recherche' => 'Recherche',
 'annuaire_rubrique' => 'Rubrique',
-'annuaire_rubrique_complet' => 'Rubrique complet',
+'annuaire_plan_complet' => 'Plan complet',
 'annuaire_site' => 'Site',
 'annuaire_sommaire' => 'Sommaire',
 'annuaire_style' => 'Style',
+'article_syndic' => 'article(s) syndiqué.',
 
 //B
 'bandeau' => 'le "bandeau"',
@@ -53,6 +55,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'boite_herbier' => 'Herbier',
 'boite_mot' => 'Mots',
 'boite_plan' => 'Page plan',
+'boite_plan_complet' => 'Page plan complet',
 'boite_partenaire' => 'Page partenaire',
 'boite_recherche' => 'Page recherche',
 'boite_rubrique' => 'Page rubrique',
@@ -68,9 +71,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'configuration_mot' => 'Configuration de la page "mot"',
 'configuration_partenaire' => 'Configuration de la page "partenaire"',
 'configuration_plan' => 'Configuration de la page "plan"',
+'configuration_plan_complet' => 'Configuration de la page "plan complet"',
 'configuration_recherche' => 'Configuration de la page "recherche"',
 'configuration_rubrique' => 'Configuration de la page "rubrique"',
-'configuration_rubrique_complet' => 'Configuration de la page "rubrique complet"',
 'configuration_site' => 'Configuration de la page "site"',
 'configuration_sommaire' => 'Configuration de la page "sommaire"',
 'conception' => 'conception',
@@ -107,15 +110,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 				<br />R&eacute;gl&eacute; votre boucle et vos style sur la page partenaire.',
 'descriptif_plan' => '<h4>R&eacute;glage de la page plan</h4>
 				<br />R&eacute;gl&eacute; vos styles du plan.',
+'descriptif_plan_complet' => '<h4>R&eacute;glage de la page plan complet</h4>
+				<br />R&eacute;gl&eacute; vos styles sur la page plan complet.
+				<br />Cette page est en fait un plan complet qui affiche m&ecirc;me les 
+				rubriques pour les quelles vous avez pas en core de sites, cette page
+				 facilitera la proposition de site par le visiteur.',
 'descriptif_recherche' => '<h4>R&eacute;glage de la page recherche</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur la page recherche.',
 'descriptif_rubrique' => '<h4>R&eacute;glage de la page rubrique</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur la page rubrique.',
-'descriptif_rubrique_complet' => '<h4>R&eacute;glage de la page rubrique complet</h4>
-				<br />R&eacute;gl&eacute; vos styles sur la page rubrique complet.
-				<br />Cette page est en fait un plan complet qui affiche m&ecric;me les 
-				rubriques pour les quelles vous avez pas en core de sites, cette page
-				 facilitera la proposition de site par le visiteur.',
 'descriptif_site' => '<h4>R&eacute;glage de la page site</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur la page site.',
 'descriptif_sommaire' => '<h4>R&eacute;glage sur le sommaire</h4>
@@ -125,7 +128,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //E
 'epingle_site' => '&eacute;pingl&eacute;s sur',
-
+'est_rattache' => 'est rattach&eacute; &agrave;',
 //F
 
 //G
@@ -144,6 +147,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //K
 
 //L
+'le_mot' => 'Le mot',
+'le_site' => 'Le site',
 
 //M
 'menu_site' => 'le menu du site',
@@ -160,6 +165,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'nbr_articles' => 'Nombre d\'articles :',
 'nbr_sites' => 'Nombre de sites :',
 'new' => 'la boucle "nouveaut&eacute;s"',
+'nous_avons' => 'Nous avons',
 'nouveaute' =>'Site nouveaut&eacute;',
 
 //O
@@ -169,7 +175,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'page_herbier' => 'Herbier',
 'page_contact' => 'Contact',
 'page_rank_de' => 'a un page rank de',
-'partenaire' => 'Partenaires',
+'partenaire' => 'partenaires',
 'pas_new' => 'Pas de nouveaut&eacute;s',
 'pas_pagination' => 'Nombre d\'&eacute;l&eacute;ments par page',
 'pas_partenaire' => 'Nous n\'avons pas de partenaires &agrave; ce jour, si vous le souhaitez,
@@ -192,8 +198,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rechercher' => 'Rechercher',
 'ref_site' => 'R&eacute;f&eacute;rencement de mon site',
 'rss' => 'Nombres d\'articles syndiqu&eacute; par page.',
+'rss_contient' => 'Le flux RSS contient ',
+'rubrique_contient' => 'La rubrique contient',
 
 //S
+'sites' => 'sites',
 'site_mois' => 'le site du mois',
 'supprimer' => 'Supprimer',
 'style' => 'Style :',
