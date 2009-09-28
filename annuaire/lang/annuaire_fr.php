@@ -32,6 +32,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'annuaire_contact' => 'Contact',
 'annuaire_colonne' => 'Colonne et pied',
 'annuaire_coul_mot_clef' => 'Couleur avec les mots',
+'annuaire_gratuit' => 'Annuaire gratuit de liens en dur',
 'annuaire_herbier' => 'Herbier',
 'annuaire_mot' => 'Mot',
 'annuaire_partenaire' => 'Partenaire',
@@ -152,7 +153,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //M
 'menu_site' => 'le menu du site',
-
+'miniature_sites_miwim' => 'Miniatures de sites avec Miwim Thumbs',
+'miniatures' => 'miniatures',
 //N
 'nav_bas' => 'la colonne "navigation" partie basse',
 'nav_copy' => 'le bloc "copyright"',
@@ -175,6 +177,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'page_herbier' => 'Herbier',
 'page_contact' => 'Contact',
 'page_rank_de' => 'a un page rank de',
+'par' => 'par',
 'partenaire' => 'partenaires',
 'pas_new' => 'Pas de nouveaut&eacute;s',
 'pas_pagination' => 'Nombre d\'&eacute;l&eacute;ments par page',
