@@ -22,8 +22,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 					<br />les mots clefs keywords et description',
 'acceuil_requis_2' =>'Pour afficher des partenaires sur la page "Partenaires", il vous faut
 					cr&eacute;&eacute; le groupe "Affichage" avec le mot clef "partenaire" et
-					 attibuer le &agrave; chacun des sites voulus. Il est désormé possible de
-					 les mettres dans une rubrique nommée Partenaires à la racine du site.',
+					 attibuer le &agrave; chacun des sites voulus. Il est d&eacute;sorm&eacute; possible de
+					 les mettres dans une rubrique nomm&eacute;e Partenaires &agrave; la racine
+					 du site.',
 'actuellement' => 'Il y a actuellement ',
 'affichage' => 'L\'affichage',
 'ajouter_google' => 'Ajouter &agrave; google',
@@ -109,7 +110,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'descriptif_mot' => '<h4>R&eacute;glage de la page mot</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur la page mot.',
 'descriptif_partenaire' => '<h4>R&eacute;glage de la page partenaire</h4>
-				<br />R&eacute;gl&eacute; votre boucle et vos style sur la page partenaire.',
+				<br />R&eacute;gl&eacute; votre boucle et vos styles sur la page partenaire.',
 'descriptif_plan' => '<h4>R&eacute;glage de la page plan</h4>
 				<br />R&eacute;gl&eacute; vos styles du plan.',
 'descriptif_plan_complet' => '<h4>R&eacute;glage de la page plan complet</h4>
