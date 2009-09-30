@@ -22,7 +22,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 					<br />les mots clefs keywords et description',
 'acceuil_requis_2' =>'Pour afficher des partenaires sur la page "Partenaires", il vous faut
 					cr&eacute;&eacute; le groupe "Affichage" avec le mot clef "partenaire" et
-					 attibuer le &agrave; chacun des sites voulus.',
+					 attibuer le &agrave; chacun des sites voulus. Il est désormé possible de
+					 les mettres dans une rubrique nommée Partenaires à la racine du site.',
 'actuellement' => 'Il y a actuellement ',
 'affichage' => 'L\'affichage',
 'ajouter_google' => 'Ajouter &agrave; google',
