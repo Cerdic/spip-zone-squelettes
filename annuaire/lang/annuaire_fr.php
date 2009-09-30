@@ -149,7 +149,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //L
 'le_mot' => 'Le mot',
-'le_site' => 'Le site',
+'le_site' => 'Le site a',
 
 //M
 'menu_site' => 'le menu du site',
