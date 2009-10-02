@@ -36,6 +36,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'squelette'            =>'Squelette “<a href="http://www.spip-contrib.net/Squelette-collection,3148" class="spip_out">Collection</a>”',
     'recherche_explication' =>'La recherche se fait avec le moteur de [SPIP->http://www.spip.net] uniquement sur la description des objets, pour une recherche plus approfondie, utiliser un [?moteur de recherche].',
     'hebergeur'             =>'H&eacute;berg&eacute; par <a class="spip_out" href="@url@">@nom@</a>',
+    'voir_en_ligne'         =>'Voir en ligne',
+    'abonnement'            =>'Lettre d\'informations',
     
     
     
