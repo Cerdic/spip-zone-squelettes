@@ -81,7 +81,7 @@ define('_SARKASPIP_CONFIG_NYROCEROS_BGFOND', '#000000');
 define('_SARKASPIP_CONFIG_SOCIALTAGS_SELECTOR', '#socialtags');
 
 // Declaration des pipelines specifiques a Sarka-SPIP
-define('_SARKASPIP_PIPELINES', 'colonne_extra_debut:colonne_extra_fin:colonne_navigation_debut:colonne_navigation_fin');
+define('_SARKASPIP_PIPELINES', 'colonne_extra_debut:colonne_extra_fin:colonne_navigation_debut:colonne_navigation_fin:menu_pages_speciales_fin:bandeau_haut_debut:bandeau_haut_fin:bandeau_bas_debut:bandeau_bas_fin');
 $pipelines = explode(':', _SARKASPIP_PIPELINES);
 foreach ($pipelines as $_pipe) {
 	if (!isset($GLOBALS['spip_pipeline'][$_pipe]))
