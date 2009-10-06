@@ -1,0 +1,64 @@
+[(#REM)
+	Options:
+	- mfx_doublons : 				nom d'un doublon... (#inclure seulement)
+	- mfx_afficher_details : 		affiche ou non les détails : date, auteurs, rubrique et nombre commentaires {oui*|non}
+	- mfx_afficher_surtitre : 		affiche ou non le surtitre {oui*|non}
+	- mfx_afficher_soustitre : 		affiche ou non le soustitre {oui*|non}
+	- mfx_afficher_logo : 			affiche ou non le logo {oui*|non}
+	- mfx_logo_taille : 			affiche ou non le logo {nombre|100*}
+	- mfx_logo_align : 				affiche ou non le logo {left|center|right*}
+	- mfx_afficher_lire_suite : 	affiche ou non un "lire la suite"  {oui|non*}
+	- mfx_afficher_nombre_commentaires : 	affiche le nombre de commentaires  {oui|non*}
+	- mfx_lien_sur_titre : 			affiche ou non un lien sur le titre  {oui*|non}
+	- mfx_couper_texte : 			coupe le texte de l'intro à la taille donné {nombre|non*}
+	- mfx_balise_titre : 			balise pour afficher le titre {h1*|h2}
+]
+
+[(#SET{doublons,[(#ENV{mfx_doublons}|sinon{#DOUBLON_ALEA})]})]
+[(#SET{logo_taille,[(#ENV{mfx_logo_taille}|sinon{100})]})]
+[(#SET{logo_align,[(#ENV{mfx_logo_align}|sinon{right})]})]
+
+#LOAD_DOUBLONS
+<BOUCLE_intro_article_mot(ARTICLES){id_rubrique?}{mots.titre=#ENV{titre_mot}}{!par date}{doublons #GET{doublons}}{0,1}>
+	  [(#ENV{mfx_afficher_surtitre}|=={'non'}|?{'',' '})
+	    [<h3 class="[(#EDIT{surtitre}) ]surtitre">(#SURTITRE)</h3>]
+	  ]
+	  
+	  <h1 class="[(#EDIT{titre}) ]titre">
+	    [(#ENV{mfx_lien_sur_titre}|=={'non'}|?{  
+          #TITRE
+          ,
+          <a href="#URL_ARTICLE">#TITRE</a>
+        })]
+	  </h1>
+	  
+	  [(#ENV{mfx_afficher_soustitre}|=={'non'}|?{'',' '})
+	   [<h3 class="[(#EDIT{soustitre})] soustitre">(#SOUSTITRE)</h3>]
+	  ]
+	  
+	  [(#ENV{mfx_afficher_details}|=={'non'}|?{'',' '})
+	    <p class="details">[(#DATE|nom_jour|ucfirst) ][(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)][ <:multiflex:dans_rubrique:> (#INCLURE{fond=noisettes/rubrique/inc/titre_rubrique}{id_rubrique})]</p>
+	  ]
+	  
+	[(#ENV{mfx_afficher_logo}|!={non}|?{' '})
+	  [(#LOGO_ARTICLE|||inserer_attribut{class,[(#GET{logo_align})]}|image_reduire{[(#GET{logo_taille})]}|image_renforcement{0.2})]
+	]
+	  	
+	  <p[ class="(#EDIT{introduction})"]>
+	  [(#ENV{mfx_couper_texte}|?{#INTRODUCTION{#ENV{mfx_couper_texte}},[(#INTRODUCTION|replace{<p>,}|replace{</p>,})]})] 
+	  [(#ENV{mfx_afficher_lire_suite}|=={oui}|?{' '})
+	    <a href="#URL_ARTICLE"><:multiflex:lire_suite:></a>
+	  ]
+	  </p>
+
+	  
+	  [(#ENV{mfx_afficher_details}|=={'non'}|?{'',' '})
+		  [<p class="details">
+		  (#ENV{mfx_afficher_nombre_commentaires}|=={oui}|?{' ',''})
+		   [<a href="#URL_ARTICLE#forum">(#INCLURE{fond=noisettes/forum/inc/nombre_commentaires_article}{id_article}|trim)</a>]
+		  </p>] 
+	  ]
+</BOUCLE_intro_article_mot>
+
+#SAVE_DOUBLONS
+
