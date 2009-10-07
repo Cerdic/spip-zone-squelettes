@@ -19,6 +19,7 @@ array('meteo_previsions','sommaire rubrique article breve site auteur','Bloc aff
 array('derniers_commentaires','sommaire','Bloc affichant les derniers commentaires du site','David Buffo et Olivier Gautier'),
 array('sites_acces_direct','sommaire','Bloc affichant les derniers sites avec un acc&egrave;s direct dans les liens g&eacute;n&eacute;r&eacute;s','Olivier Gautier'),
 array('sites_par_num_titre','sommaire','Bloc affichant les derniers sites rang&eacute;s dans l\'ordre de leur num&eacute;ro de nom. Les liens g&eacute;n&eacute;r&eacute;s ouvrent un nouvel onglet (non conforme Xhtml Strict). Seuls les sites poss&eacute;dant un num&eacute;ro seront affich&eacute;s.','Olivier Gautier'),
+array('logo_bloc','rubrique article breve site auteur','Bloc affichant les sites partenaires (sites ayant un logo et le mot-cl&eacute; "logo-bloc"). Ce bloc est disponible par d&eacute;faut uniquement pour le sommaire dans EVA. Ici, on peut l\'&eacute;tendre aux autres pages du site.','Olivier Gautier'),
 
 );
 return $retour;
