@@ -166,6 +166,15 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			create_groupe("_HeaderBanner", "Pour définir plusieurs bannières pour le site.", "Il faut créer un mot clef par bannière (le titre n'a pas d'importance).\n\nC'est le logo du mot clef qui est utilisé comme bannière du site.\n\n{{Attention}} : si vous avez déjà défini une bannière avec le logo de survol du site, alors, cette dernière n'est plus utilisée ; seuls les logos des mots clefs de ce groupe seront pris en compte.", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'non');
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.10','non');
 		}
+		if (version_compare($current_version,'2.1.11','<')) {
+			include_spip('base/soyezcreateurs');
+			spip_log("SoyezCreateurs maj 2.1.11", "soyezcreateurs_install");
+			include_spip('inc/sc_article');
+			create_mot("_Specialisation_Rubrique", "PasDansFildAriane", "Pour interdire que la rubrique soit affichée dans le fil d'ariane du site.", "Affecter ce mot clef aux rubriques qui ne doivent pas figurer dans le fil d'ariane.");
+			create_rubrique_mot('000. Fourre-tout', 'PasDansFildAriane', "_Specialisation_Rubrique");
+			create_rubrique_mot('999. Citations', 'PasDansFildAriane', "_Specialisation_Rubrique");
+			ecrire_meta($nom_meta_base_version,$current_version='2.1.11','non');
+		}
 
 		/*
 		#En attente
