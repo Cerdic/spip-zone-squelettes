@@ -37,9 +37,20 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 'cfg_edito_texte' => 'La fonctionnalit&eacute; &eacute;dito permet d\'afficher article en page d\'accueil. pour cela, il faudra affecter le mot cl&eacute; <em>edito</em>',
 
+'cfg_evens_legend'  => 'Les &eacute;v&eacute;nements de la page d\'accueil',
+
+'cfg_evens_texte'  => 'Souhaitez-vous y afficher les liens vers les prochains &eacute;&eacute;nements ?',
+
+
 'cfg_breves_legend'  => 'Les br&egrave;ves de la page d\'accueil',
 
 'cfg_breves_texte'  => 'Souhaitez-vous y afficher les liens vers les derni&egrave;res breves ?',
+
+'cfg_pagination_evens_texte' => 'Le nombre de &eacute;v&egrave;nements que vous souhaitez afficher par page : ',
+
+'cfg_pagination_evens_legend' => 'Pagination des &eacute;v&egrave;nements : ',
+
+'cfg_nb_evens_texte' => 'Le nombre maximum d\'&eacute;v&egrave;nements accessible : ',
 
 'cfg_pagination_breves_texte' => 'Le nombre de breves que vous souhaitez afficher par page : ',
 
@@ -129,6 +140,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'scolaspip_plus_texte' => 'Personnalisez quelques &eacute;l&eacute;ments des squelettes scolaSPIP.',
 'cfg_afficheauteurs_legend' => 'Gestion de l\'affichage des auteurs',
 'cfg_afficheauteurs_texte' => 'Masquer les auteurs des articles.',
+
+
+'cfg_afficheplusarticles_legend' => 'Gestion de l\'affichage des articles',
+'cfg_affichedate_texte' => 'Masquer les dates des articles.',
+'cfg_afficheintroduction_texte' => 'Masquer le r&eacute;sum&eacute; des articles.',
 
 'ok' => 'Enregistrer',
 

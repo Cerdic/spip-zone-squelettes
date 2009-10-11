@@ -39,4 +39,11 @@
 
 }
 
+function critere_scolaspip_nb_evenements_dist($idb, &$boucles, $crit) {
+	    $boucle = &$boucles[$idb];
+	    $var=lire_config('scolaspip_accueil/nb_evenements');
+	    $boucle->limit = '0, ' .$var ;
+
+}
+
 ?>
