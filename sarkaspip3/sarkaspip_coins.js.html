@@ -7,9 +7,9 @@ $(document).ready(function(){
 	modele = [(#CONFIG{sarkaspip_coins/modele_bandeau, 0})];
 	if (modele > 0) {
 		// Position des arrondis
-		forme_h = "top";
+		forme_h = " top";
 		forme_b = "";
-		if (modele > 1) {forme_b = "bottom";}
+		if (modele > 1) {forme_b = " bottom";}
 		// Taille des arrondis
 		var taille = [" (#CONFIG{sarkaspip_coins/taille_bandeau, 10})px"];
 		// Selecteurs auxquels appliquer les arrondis
@@ -37,29 +37,60 @@ $(document).ready(function(){
 		}
 	}
 
-	// Traitement du pied
-	modele = [(#CONFIG{sarkaspip_coins/modele_pied, 0})];
+	// Traitement du formulaire de recherche
+	modele = [(#CONFIG{sarkaspip_coins/modele_recherche, 0})];
 	if (modele > 0) {
-		forme = "";
-		if (modele == 1) {forme = "bottom";}
-		var taille = [" (#CONFIG{sarkaspip_coins/taille_pied, 10})px"];
-		$('div.pied_bas').corner("round" + forme + taille);
+		var taille = [" (#CONFIG{sarkaspip_coins/taille_recherche, 10})px"];
+		$("input[@name='recherche']").corner("round" + taille);
+	}
+
+	// Traitement des noisettes des colonnes
+	modele = [(#CONFIG{sarkaspip_coins/modele_noisette, 0})];
+	if (modele > 0) {
+		var taille = [" (#CONFIG{sarkaspip_coins/taille_noisette, 10})px"];
+		var forme_t = "";
+		var forme_c = "";
+		if (modele < 3) {forme_t = " top";}
+		if (modele == 3) {forme_c = " top";}
+		// Arrondir le titre
+		$(".noisette h1.intitule, .noisette h1 a.intitule").corner("round" + forme_t + taille);
+		// Arrondir le contenu
+		if (modele > 1) {
+			$(".noisette div.contenu").corner("round" + forme_c + taille);
+			$(".noisette div.contenu h2.titre_bloc, .noisette div.contenu h2 a.titre_bloc").corner("round top" + taille);
+		}
 	}
 
 	// Traitement des menus formulaires et pages speciales
 	modele = [(#CONFIG{sarkaspip_coins/modele_nav, 0})];
 	if (modele > 0) {
 		forme = "";
-		if (modele == 1) {forme = "top";}
+		if (modele == 1) {forme = " top";}
 		var taille_cadre = [" (#CONFIG{sarkaspip_coins/taille_nav_cadre, 10})px"];
 		// Arrondir le cadre
 		$('div.noisette.nav2').corner("round" + forme + taille_cadre);
 	}
 
-	// Traitement du formulaire de recherche
-	modele = [(#CONFIG{sarkaspip_coins/modele_recherche, 0})];
+	// Traitement de l'edito et de la une
+	modele = [(#CONFIG{sarkaspip_coins/modele_edito, 0})];
 	if (modele > 0) {
-		var taille = [" (#CONFIG{sarkaspip_coins/taille_recherche, 10})px"];
-		$("input[@name='recherche']").corner("round" + taille);
+		var taille = [" (#CONFIG{sarkaspip_coins/taille_edito, 10})px"];
+		$("div.article#edito, div.article#une").corner("round" + taille);
+	}
+
+	// Traitement des blocs de type extrait
+	modele = [(#CONFIG{sarkaspip_coins/modele_extrait, 0})];
+	if (modele > 0) {
+		var taille = [" (#CONFIG{sarkaspip_coins/taille_extrait, 10})px"];
+		$("div.extrait").corner("round bl" + taille);
+	}
+
+	// Traitement du pied
+	modele = [(#CONFIG{sarkaspip_coins/modele_pied, 0})];
+	if (modele > 0) {
+		forme = "";
+		if (modele == 1) {forme = " bottom";}
+		var taille = [" (#CONFIG{sarkaspip_coins/taille_pied, 10})px"];
+		$('div.pied_bas').corner("round" + forme + taille);
 	}
 });
