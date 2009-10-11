@@ -1,5 +1,10 @@
 [(#REM) <!-- Bandeau bas --> ]
 <div class="bandeau_bas">
+[(#PIPELINE{
+	bandeau_bas_debut,
+	[(#ARRAY{args, [(#ARRAY{id_rubrique, #ENV{id_rubrique}})], data, ''})]}
+)]
+
 [(#CONFIG{sarkaspip_menus/position_rubriques, 1}|=={5}|?{' '})
   <INCLURE{fond=noisettes/navigation/inc_nav_rubriques_1h}{id_rubrique}>
 ]
@@ -12,4 +17,9 @@
 [(#CONFIG{sarkaspip_menus/position_perso, 0}|=={5}|?{' '})
 	<INCLURE{fond=noisettes/navigation/inc_menu_perso}>
 ]
+
+[(#PIPELINE{
+	bandeau_bas_fin,
+	[(#ARRAY{args, [(#ARRAY{id_rubrique, #ENV{id_rubrique}})], data, ''})]}
+)]
 </div>

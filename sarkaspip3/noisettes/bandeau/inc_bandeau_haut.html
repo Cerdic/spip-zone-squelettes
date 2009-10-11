@@ -1,5 +1,9 @@
 [(#REM) <!-- Bandeau Haut --> ]
 <div class="bandeau_haut">	
+	[(#PIPELINE{
+		bandeau_haut_debut,
+		[(#ARRAY{args, [(#ARRAY{id_rubrique, #ENV{id_rubrique}})], data, ''})]}
+	)]
 	<div class="nav_bandeau">  
     	<!-- Navigation dans les langues -->
 		[(#CONFIG{sarkaspip_menus/position_langues, 4}|=={4}|?{' '})
@@ -27,4 +31,8 @@
 	   [<h2>(#CONFIG{sarkaspip_bandeau/slogan})</h2>]
 	</div>
 	<br class="nettoyeur" />
+	[(#PIPELINE{
+		bandeau_haut_fin,
+		[(#ARRAY{args, [(#ARRAY{id_rubrique, #ENV{id_rubrique}})], data, ''})]}
+	)]
 </div>
