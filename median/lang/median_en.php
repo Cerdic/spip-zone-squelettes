@@ -22,6 +22,7 @@ $GLOBALS['i18n_median_en'] = array(
 'couleur_titre_principale' => 'First title\'s color',
 'couleur_titre_secondaire' => 'Secondary title\'s color',
 'couleur_titre_tertiaire' => 'Tertiary title\'s color',
+'contact_us' => 'Contact us',
 
 // D
 'defaut_meta_keywords' => 'SPIP, squelette Median',

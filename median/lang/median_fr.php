@@ -22,9 +22,10 @@ $GLOBALS['i18n_median_fr'] = array(
 'couleur_titre_principale' => 'Couleur des titre principaux',
 'couleur_titre_secondaire' => 'Couleur des titre secondaires',
 'couleur_titre_tertiaire' => 'Couleur des titres tertiaires',
+'contact_us' => 'Nous contacter',
 
 // D
-'defaut_texte_404' => 'soit la  page demand&eacute;e n\'existe pas, soit son adresse &agrave; chang&eactue;... alors maintenant:
+'defaut_texte_404' => 'soit la  page demand&eacute;e n\'existe pas, soit son adresse &agrave; chang&eacute;... alors maintenant:
 <ul>
   <li>soit vous utilisez le menu pour explorer les rubriques</li>
   <li>ou vous s&eacute;lectionnez un mots cl&eacute; dans le "nuage" ci-dessous</li>
@@ -78,6 +79,7 @@ mais vous devriez certainement trouver ce que vous cherchez!',
 'texte_acces_restreint' => 'Texte d\'explication lorsque l\'identification est requise',
 'texte_creation_compte' => 'Titre du formulaire de cr&eacute;ation de compte',
 'texte_titre_nuage' => 'Titre du nuage de mots cl&eacute; (i.e. liste des mots cl&eacute;s) pour les pages sommaire, plan et 404',
+'articles_rubrique' => 'Les pages de cette rubrique',
 'titre' => 'Titre',
 'titre_median' => 'Squelette Median',
 'top_logo_couleur' => 'Couleur',
