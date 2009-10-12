@@ -25,7 +25,7 @@ $GLOBALS['i18n_median_fr'] = array(
 'contact_us' => 'Nous contacter',
 
 // D
-'defaut_texte_404' => 'soit la  page demand&eacute;e n\'existe pas, soit son adresse &agrave; chang&eacute;... alors maintenant:
+'defaut_texte_404' => 'soit la  page demand&eacute;e n\'existe pas, soit son adresse a chang&eacute;... alors maintenant:
 <ul>
   <li>soit vous utilisez le menu pour explorer les rubriques</li>
   <li>ou vous s&eacute;lectionnez un mots cl&eacute; dans le "nuage" ci-dessous</li>
