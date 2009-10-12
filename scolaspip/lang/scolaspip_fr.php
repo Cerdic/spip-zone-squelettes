@@ -37,9 +37,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 'cfg_edito_texte' => 'La fonctionnalit&eacute; &eacute;dito permet d\'afficher article en page d\'accueil. pour cela, il faudra affecter le mot cl&eacute; <em>edito</em>',
 
-'cfg_evens_legend'  => 'Les &eacute;v&eacute;nements de la page d\'accueil',
+'cfg_evens_legend'  => 'Les &eacute;v&egrave;nements de la page d\'accueil',
 
-'cfg_evens_texte'  => 'Souhaitez-vous y afficher les liens vers les prochains &eacute;&eacute;nements ?',
+'cfg_evens_texte'  => 'Souhaitez-vous y afficher les liens vers les prochains &eacute;v&egrave;nements ?',
 
 
 'cfg_breves_legend'  => 'Les br&egrave;ves de la page d\'accueil',
