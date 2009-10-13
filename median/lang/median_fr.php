@@ -1,6 +1,6 @@
 <?php
 
-$GLOBALS['i18n_median_fr'] = array(
+$GLOBALS['i18n_median_es'] = array(
 
 // A
 'aa_elements' => 'El&eacute;ments de l\'article &agrave; utiliser',
