@@ -14,7 +14,8 @@
     if (sql_countsel('spip_mots', "titre IN ('_invisible_','bloc_sommaire','page_contact','photos_sommaire')") == 0) {
 
         $id_groupe = sql_insertq('spip_groupes_mots', 
-                   array('titre'=>'squelette_Median', 'descriptif'=>_T('median:mots_cles_techniques_median'))
+                   array('titre'=>'squelette_Median', 'descriptif'=>_T('median:mots_cles_techniques_median'),
+                         'tables_liees'=>'articles,breves,rubriques,syndic', 'minirezo'=>'oui')
                   );
         if (sql_error() != '') die((_T('median:erreur_install_groupe_technique ')).sql_error());
         

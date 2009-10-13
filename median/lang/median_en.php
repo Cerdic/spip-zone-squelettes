@@ -5,6 +5,7 @@ $GLOBALS['i18n_median_en'] = array(
 // A
 'aa_elements' => 'Article\'s elements to use',
 'accueil' => 'Home',
+'acces_rubrique'=>'Access section',
 
 // C
 'chapo' => 'introduction',
@@ -19,6 +20,7 @@ $GLOBALS['i18n_median_en'] = array(
 'couleur_boite_motscles' => '"keywords"\'s boxes color',
 'couleur_boite_autresarticles' => '"other pages"\'s boxes color',
 'couleur_boite_sousrubriques' => '"sub-sections"\'s boxes color',
+'couleur_boite_forum' => '"Forum"\'s boxes color',
 'couleur_titre_principale' => 'First title\'s color',
 'couleur_titre_secondaire' => 'Secondary title\'s color',
 'couleur_titre_tertiaire' => 'Tertiary title\'s color',
