@@ -1,10 +1,14 @@
 #CACHE{3600}
 <BOUCLE_rubrique_principale(RUBRIQUES){id_rubrique}>
-
+[(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={oui}|oui)
+	[(#SET{ledebut,[(#ENV{date_ev,#ENV{date}}|affdate{'Y-m-d'})]})]
+][(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={non}|oui)
+	[(#SET{ledebut,[(#ENV{date_ev,#ENV{date}}|sc_annee_scolaire)]-09-01})]
+]
 <BOUCLE_ListeEvenements(EVENEMENTS)
 	{id_mot ?}
 	{branche}
-	{date_debut>=(#ENV{date_ev,(#ENV{date})}|sc_annee_scolaire)-09-01}
+	{date_debut>=#GET{ledebut}}
 	{date_debut<=(#ENV{date_ev,(#ENV{date})}|sc_annee_scolaire|plus{1})-12-31}
 	{par date_debut}
 >
