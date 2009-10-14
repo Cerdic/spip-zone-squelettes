@@ -19,7 +19,9 @@
                   );
         if (sql_error() != '') die((_T('median:erreur_install_groupe_technique ')).sql_error());
         
-        $Tstatuts = array('_invisible_','bloc_sommaire', 'edito_rubrique', 'form_account_creation', 'page_contact', 'page_souscription', 'photos_sommaire', 'restricted_access');
+        $Tstatuts = array('_invisible_','bloc_sommaire', 'edito_rubrique', 'form_account_creation', 
+                          'page_contact', 'page_souscription', 'photos_sommaire', 'restricted_access',
+                          'port_folio_left');
         foreach ($Tstatuts as $st) {
           sql_insertq('spip_mots', 
                       array('titre'=>$st, 'id_groupe'=>$id_groupe, 'type'=>'squelette_Median')
