@@ -85,7 +85,7 @@ de todas maneras, van a encontrar lo que buscan !',
 'titre_median' => 'Esqueleto Median',
 'top_logo_couleur' => 'Color',
 'top_logo_largeur' => 'Anchura maxima (en pixeles, si el tiyulo es mas largo, habra un salto a la linea)',
-'top_logo_police' => 'fuente (nombre des archivo ttf colocado en la carpeta /squelettes/polices)',
+'top_logo_police' => 'fuente (nombre del archivo ttf colocado en la carpeta /squelettes/polices)',
 'top_logo_taille' => 'Tamano de la fuente (en pixeles)',
 'top_logo_url' => 'El logo arriba de la pagina esta un vinculo hasta la pagina de inicio, pero en este campo puedes elegir otra URL',
 
