@@ -174,6 +174,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_inf_accueil_intro_23' => '<em>Menus</em> : configuration des divers menus du bandeau et des colonnes',
 	'cfg_inf_accueil_intro_24' => '<em>Album</em> : configuration de la pr&eacute;sentation des albums',
 	'cfg_inf_accueil_intro_25' => '<em>Flux rss</em> : configuration de la composition des flux rss du site',
+	'cfg_inf_accueil_intro_26' => '<em>Coins arrondis</em> : configuration des bordures de certains blocs du squelette',
 	'cfg_inf_accueil_intro_3' => '<em>Bandeau</em> : configuration du bandeau',
 	'cfg_inf_accueil_intro_4' => '<em>Pied de page</em> : configuration du pied de page',
 	'cfg_inf_accueil_intro_5' => '<em>Colonnes</em> : affichage, positionnement et contenu des noisettes des colonnes',
