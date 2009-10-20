@@ -193,7 +193,7 @@ function monDrawSyndic( $url, $rubrique, $syndic ) {
   $DebutSyndic = ($_GET['debut_syndic'] ? $_GET['debut_syndic'] : 0);
   if (!is_numeric($DebutSyndic))
     die('Paramètre au mauvais format.');
-  $NbSyndic = 44;
+  $NbSyndic = 20;
   $ret = "";
 
   $filtre = "";
