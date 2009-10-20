@@ -292,6 +292,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'layout_defaut_title' => 'Agencement par d&eacute;faut pour le site (articles et rubriques)',
 	'liresuitede' => 'Lire la suite de&nbsp;:',
 	'liresuiteeditorial' => 'Lire la suite de l\'&eacute;ditorial',
+	'liresuitesyndic' => 'Lire la suite sur le site d\'origine...',
 	'listezones' => 'liste des zones cliquables',
 
 	// M

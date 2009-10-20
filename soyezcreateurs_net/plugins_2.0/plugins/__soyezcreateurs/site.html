@@ -1,17 +1,17 @@
 #CACHE{3600}
 <BOUCLE_site(SITES){id_syndic}>
-[(#SET{titretop,<:sites_web|sc_nettoyer_marqueur:>_[(#NOM_SITE|sc_nettoyer_marqueur)]})]
+[(#SET{titretop,<:sites_web|sc_nettoyer_marqueur:>_[(#NOM_SITE|typo|sc_nettoyer_marqueur)]})]
 <BOUCLE_ArticleSyndiqueTitre(SYNDIC_ARTICLES) {id_syndic_article} >
 <INCLURE{fond=noisettes/header/header}
 	{metadescription=(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)}
-	{title=(#TITRE|textebrut|texte_script) - (#NOM_SITE|textebrut|texte_script) (<:sites_web:>)}
+	{title=(#TITRE|typo|supprimer_tags|texte_script) - (#NOM_SITE|typo|supprimer_tags|texte_script) (<:sites_web:>)}
 	{titretop=#GET{titretop}}
 	{secteurencours=#ID_SECTEUR}
 >
 </BOUCLE_ArticleSyndiqueTitre>
 <INCLURE{fond=noisettes/header/header}
 	{metadescription=(#DESCRIPTIF|couper{150}|supprimer_tags|attribut_html)}
-	{title=(#NOM_SITE|textebrut|texte_script) (<:sites_web:>)}
+	{title=(#NOM_SITE|typo|supprimer_tags|texte_script) (<:sites_web:>)}
 	{titretop=#GET{titretop}}
 	{secteurencours=#ID_SECTEUR}
 >
@@ -21,10 +21,10 @@
 		<li><a href="#URL_SITE_SPIP" title="Accueil"><:soyezcreateurs:accueil:></a></li>
 		<BOUCLE_ariane(HIERARCHIE){id_syndic}{!titre_mot=PasDansFildAriane}><li><a href="#URL_RUBRIQUE">[(#TITRE)]</a></li></BOUCLE_ariane><li><a href="#URL_PAGE{site}"><:sites_web:></a></li>
 		<BOUCLE_UnArticleSyndique(SYNDIC_ARTICLES) {id_syndic_article}>
-		<li><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]">#NOM_SITE</a></li>
-		<li>[(#TITRE)]</li>
+		<li><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]">[(#NOM_SITE|typo)]</a></li>
+		<li>[(#TITRE|typo)]</li>
 		</BOUCLE_UnArticleSyndique>
-		<li>[(#NOM_SITE|couper{80})]</li>
+		<li>[(#NOM_SITE|typo|couper{80})]</li>
 		<//B_UnArticleSyndique>
 	</ul>
 	</div>
@@ -32,9 +32,9 @@
 <div class="texte">
 <!-- Contenu : corps du site syndiqué -->
 <div class="cartouche">
-				<h1 class="titre">[<img src="(#LOGO_SITE_NORMAL||image_reduire{64,64}|extraire_attribut{src})" class="logo_site" alt="[(#TITRE|texte_script|supprimer_tags|attribut_html) (logo)]" width="[(#LOGO_SITE_NORMAL||image_reduire{64,64}|extraire_attribut{width})]" height="[(#LOGO_SITE_NORMAL||image_reduire{64,64}|extraire_attribut{height})]" />]
+				<h1 class="titre">[<img src="(#LOGO_SITE_NORMAL||image_reduire{64,64}|extraire_attribut{src})" class="logo_site" alt="[(#TITRE|typo|texte_script|supprimer_tags|attribut_html) (logo)]" width="[(#LOGO_SITE_NORMAL||image_reduire{64,64}|extraire_attribut{width})]" height="[(#LOGO_SITE_NORMAL||image_reduire{64,64}|extraire_attribut{height})]" />]
 				<:sites_web:>&nbsp;: 
-				<span class="#EDIT{nom_site}">#NOM_SITE</span>
+				<span class="#EDIT{nom_site}">[(#NOM_SITE|typo)]</span>
 				</h1>
 				
 <div class="datepublication"><span><:soyezcreateurs:publiele:> [(#DATE|nom_jour)] [(#DATE|affdate)]</span></div>
@@ -47,11 +47,11 @@
 		<B_ArticleSyndique>
 		<div class="syndic">
 			<BOUCLE_ArticleSyndique(SYNDIC_ARTICLES) {id_syndic_article} >
-				<h2 class="#EDIT{titre}">[(#TITRE)]</h2>
+				<h2 class="#EDIT{titre}">[(#TITRE|typo)]</h2>
 				[<div class="enclosures">(#TAGS|afficher_enclosures)</div>]
 				<small>[(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)][ &mdash; <em>(#TAGS|afficher_tags|supprimer_tags)</em>]</small>
-				[<div class="#EDIT{descriptif}">(#DESCRIPTIF|image_reduire{300})</div>]
-				[<p class="#EDIT{url_article} hyperlien">&rarr;&nbsp;<a href="#URL_ARTICLE*" class="spip_out">(#URL_ARTICLE*|couper{80})</a></p><br class="nettoyeur" />]
+				[<div class="#EDIT{descriptif}">(#DESCRIPTIF|typo|image_reduire{300})</div>]
+				[<p class="#EDIT{url_article} hyperlien">&rarr;&nbsp;<a href="(#URL_ARTICLE*)" class="spip_out"><:soyezcreateurs:liresuitesyndic|typo:></a></p><br class="nettoyeur" />]
 				
 			</BOUCLE_ArticleSyndique>
 		</div>
@@ -64,10 +64,10 @@
 			<h2><:ecrire:titre_articles_syndiques:></h2>
 			<dl>
 			<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {!par date} {pagination}>
-				<dt class="#EDIT{titre}"><a href="[(#ID_SYNDIC|generer_url_entite{'site'}|parametre_url{'id_syndic_article',#ID_SYNDIC_ARTICLE})]">[(#TITRE)]</a></dt>
+				<dt class="#EDIT{titre}"><a href="[(#ID_SYNDIC|generer_url_entite{'site'}|parametre_url{'id_syndic_article',#ID_SYNDIC_ARTICLE})]">[(#TITRE|typo)]</a></dt>
 				<dd>
 					<small>[(#DATE|affdate_court)][, <:par_auteur:> (#LESAUTEURS)]</small>
-					[<div class="#EDIT{descriptif}">(#DESCRIPTIF|couper{300}|image_reduire{300})
+					[<div class="#EDIT{descriptif}">(#DESCRIPTIF|typo|couper{300}|image_reduire{300})
 					<br class="nettoyeur" /></div>]
 				</dd>
 			</BOUCLE_articles>
@@ -113,7 +113,7 @@
 	<div class="texte">
 <!-- Contenu : corps du site syndiqué -->
 <div class="cartouche">
-				<h1 class="#EDIT{nom_site} titre"><:sites_web:></h1>
+				<h1 class="titre"><:sites_web:></h1>
 </div>
 <div id="letexte">
 [(#INCLURE{fond=noisettes/sites_rubriques})]
