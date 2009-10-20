@@ -44,17 +44,18 @@
     <a href="/ecrire" title="services">Privé<span class="desc">Rédaction</span></a>
     <a href="/" title="Accueil">Accueil<span class="desc">Bienvenue</span></a>
   </div>
-  <INCLURE{fond=banner}>
+  <INCLURE(banner.php3)>
 
   <!-- Content begins -->
   <div id="content">
+   <div id="ads">
     <!-- Left side menu : side bar links/news/search/etc. -->
     <div id="contentLeft">
       <p><span class="header">Rubriques des inscrits</span></p>
       <BOUCLE_rubriques(RUBRIQUES) {par titre}>
         <div class="menu_gauche"><a href="#URL_RUBRIQUE" class="menunoItem">#TITRE</a></div>
       </BOUCLE_rubriques>
-<INCLURE{fond=menu1}>
+      <INCLURE(menu1.php3)>
       <p><span class="header">Carnet des inscrits</span></p>
       <BOUCLE_syndic_sites(SITES) {par nom_site} {tout}>
 
@@ -65,30 +66,43 @@
       <div class="menu_gauche_d"><a href="spip.php?page=backend" class="menunoItem">Fil rss</a></div>
       <!-- Creates the rounded corner on the bottom of the left menu -->
       <div class="bottomCorner"><img src="images/corner_sub_br.gif" alt="bottom corner" class="vBottom"/></div>
-      <INCLURE{fond=leftfooter}>
-    </div>
+      <INCLURE(leftfooter.php3)>
+    </div> <!-- End left side menu -->
+    <div id="contentRight">
     <!-- Right side main content -->
-<div id="contentRight">
-   <table id="contentTopRight" summary="contenu principal"><tr>
-    <td id="edito">
-        <INCLURE{fond=message}> <hr />
+     <table id="contentTopRight" summary="contenu principal"><tr>
+      <td id="edito">
+        <INCLURE(message.php3)> <hr />
         <span class="header"><a href="#URL_SITE">#NOM_SITE</a> :: <BOUCLE_rss(SITES){id_syndic}><a href="#URL_SYNDIC">RSS</a></BOUCLE_rss></span>
      #DESCRIPTIF
-    </td>
-    <td id="cal">
-     [(#URL_SITE_SPIP|monCalendrier)]
-    </td>
-   </tr></table>
-   [(#URL_SITE_SPIP|monDrawSyndic{0,0})]
-   <!-- Creates bottom left rounded corner -->
-   <img src="images/corner_sub_bl.gif" alt="bottom corner" class="vBottom" />
-  </div>
-  
-  <!-- Footer begins -->
-  <div id="footer">
-  <INCLURE{fond=footer}>
-  </div>
- </div>
-</div>
+      </td>
+      <td id="cal">
+       [(#URL_SITE_SPIP|monCalendrier)]
+      </td>
+     </tr></table>
+     [(#URL_SITE_SPIP|monDrawSyndic{0,0})]
+     <!-- Creates bottom left rounded corner -->
+     <img src="images/corner_sub_bl.gif" alt="bottom corner" class="vBottom" />
+    </div> <!-- End Right side main content -->
+   </div>  <!-- End ads -->
+   <div id="warning">
+<h3>Vous avez ete bloque car vous utilisez l extension firefox <b>adblock</b> </h3><br />
+   Vous avez raison de vous proteger des publicites agressives<br />
+   ( popups et autres pubs clignotantes . . . ) mais . . . <br />
+   Notre site n utilise <b> aucune</b> publicite agressive et n en<br />
+   utilisera <b>jamais</b>, pas de popups, popunder, flash.<br />
+   Les quelques annonces <b>uniquement textuelles</b> sur ce site<br />
+   web nous aident a payer le cout de la bande passante necessaire pour<br />
+   vous offrir un media libre, alternatif et gratuit<br />
+   Nous vous remercions donc de <a href="http://www.devcha.com/2007/08/how-to-disable-adblock-plus-or.html">desactiver l extension Adblock pour ce site</a><br />
+   puis de rafraichir la page pour acceder au contenu que vous souhaitiez voir<br />
+   </div> <!-- end warning -->
+
+  </div> <!-- End content -->
+   <!-- Footer begins --> 
+   <div id="footer">
+    <INCLURE(footer.php3)>
+   </div>
+ </div>  <!-- End sitebox -->
 </body>
 </html>
