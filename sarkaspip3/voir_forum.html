@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+#CACHE{7200}
+<BOUCLE_article(ARTICLES){id_article}>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+	<INCLURE{fond=noisettes/inc_header}
+		{meta_titre=(#TITRE|supprimer_numero)}
+		{meta_description=#INTRODUCTION{#EVAL{_SARKASPIP_CONFIG_INTRO_META}}}>
+
+<body dir="#LANG_DIR">
+<div id="container">
+	<div id="header">
+		[(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
+		<INCLURE{fond=noisettes/bandeau}{id_rubrique=#ID_RUBRIQUE}>
+	</div>
+	
+	<div id="wrapper">
+		<div id="content">
+			<div class="forum">
+			
+				<a class="fonction" id="commenter" href="[(#URL_PAGE{forum})][&amp;(#PARAMETRES_FORUM)]" title="<:sarkaspip:nouvelle_discussion:>"></a>
+				<br class="nettoyeur">
+				<table>
+					<tr>
+						<th colspan="5" class='tforum'>#TITRE</th>
+					</tr>
+					<tr class="salon">
+						<td></td>
+						<td><:sarkaspip:discussions:></td>
+						<td><:sarkaspip:reponses:></td>
+						<td><:sarkaspip:vu:></td>
+						<td><:sarkaspip:messages_derniers:></td>
+					</tr>
+				
+				<B_discussions>
+				<BOUCLE_discussions(FORUMS){id_article}{plat}{!par date_thread}>
+				
+				<BOUCLE_sujet(FORUMS){id_thread}{doublons}>
+					<tr>
+						<td></td>
+						<td class="titre_forum" id="forum#ID_FORUM">
+							<div class="[(#EDIT{titre})]"><a href="[(#URL_PAGE{voir_discussion}|parametre_url{id_article,#ID_ARTICLE}|parametre_url{id_forum,#ID_FORUM})]">#TITRE</a></div>
+						</td>
+						<td class="nbr_message">
+							<BOUCLE_reponses(FORUMS){id_thread}{plat}{exclus}></BOUCLE_reponses>
+							#TOTAL_BOUCLE
+							<//B_reponses>
+						</td>
+						<td class="nbr_vu">
+							A virer
+						</td>
+						<td class="dernier_msg">
+						<BOUCLE_dernier_message(FORUMS){id_thread}{plat}{!par date}{0,1}>
+							[(#DATE|affdate{'d/m/Y'})] [ - (#DATE|heures)]:[(#DATE|minutes)]<br />
+							<:sarkaspip:par_auteur:>
+							<BOUCLE_auteur(AUTEURS){id_auteur}{tout}>
+								<a href="#URL_AUTEUR">#NOM</a>
+							</BOUCLE_auteur>
+							</B_auteur>
+								[(#NOM|sinon{<:sarkaspip:anonyme:>})]
+							<//B_auteur>
+							
+						<a href="[(#URL_PAGE{voir_discussion}|parametre_url{id_article,#ID_ARTICLE}|parametre_url{id_forum,#_sujet:ID_FORUM})]#forum#ID_FORUM" class="adermsg" title="<:spipbb:messages_voir_dernier:>">
+							&nbsp;<span>(<:spipbb:messages_voir_dernier:>)</span>
+						</a>
+					</BOUCLE_dernier_message> - <//B_dernier_message>
+						</td>
+					</tr>
+				</BOUCLE_sujet>
+				</BOUCLE_discussions>	
+				</table>
+				
+				
+				
+			</div>
+		</div>
+	</div>
+	
+	<div id="navigation">
+		[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
+		<INCLURE{fond=noisettes/navigation}{id_rubrique}{id_secteur}>
+	</div>
+	
+	<div id="extra">
+		[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
+		<INCLURE{fond=noisettes/extra}{self=#SELF}{page=article}{id_secteur}{id_rubrique}{id_article}>
+	</div>
+	
+	<div id="footer">
+		[(#REM) <!-- ================================== ZONE PIED DE PAGE  ================================== --> ]
+		<INCLURE{fond=noisettes/pied}{squelette=#SQUELETTE}>
+	</div>
+
+</div>
+</body>
+</html>
+[(#REM) <!-- ================================== ERREUR BOUCLE VIDE  ================================== --> ]
+</BOUCLE_article>
+	<INCLURE{fond=404}>
+<//B_article>

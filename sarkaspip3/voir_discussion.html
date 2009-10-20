@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+#CACHE{3600}
+<BOUCLE_forum(FORUMS){id_forum}{doublons}>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+	<INCLURE{fond=noisettes/inc_header}
+		{meta_titre=(#TITRE|supprimer_numero)}
+		{meta_description=#INTRODUCTION{#EVAL{_SARKASPIP_CONFIG_INTRO_META}}}>
+		
+<body dir="#LANG_DIR">
+<div id="container">
+	<div id="header">
+		[(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
+		<INCLURE{fond=noisettes/bandeau}{id_rubrique}>
+	</div>
+	
+	<div id="wrapper">
+		<div id="content">
+			<div class="forum">
+			
+				[<div class="#EDIT{titre} titre"><h1>(#TITRE|supprimer_numero)</h1></div>]
+				<div class="cartouche">
+					[(#DATE|nom_jour)][&nbsp;(#DATE|affdate)] <:sarkaspip:agrave:>&nbsp;[(#DATE|affdate{'H\hi'})]
+					[<br />
+					<:sarkaspip:par:> <a href="#URL_AUTEUR">(#AUTEUR)</a>]
+				</div>
+				<br class="nettoyeur" />
+				<div class="gravatar_pere">
+					<BOUCLE_auteur_pere(AUTEURS){id_auteur=#_forum:ID_AUTEUR} {tout}>
+						[(#LOGO_AUTEUR||sinon{#CHEMIN{images/gravatar32.png}}||image_passe_partout{50}|image_recadre{50,50,center,FFFFFF}|inserer_attribut{class,spip_logos gravatar}|inserer_attribut{alt,[<:sarkaspip:logo_de:> (#NOM)]})]					
+					</BOUCLE_auteur_pere>
+						[(#PLUGIN{GRAVATAR}|oui)
+							[(#GRAVATAR{#EMAIL, 50, #CHEMIN{images/gravatar32.png}}||image_passe_partout{50}|image_recadre{50,50,center,FFFFFF}|inserer_attribut{class,spip_logos gravatar}|inserer_attribut{alt,[<:sarkaspip:logo_de:> (#NOM)]})]
+						]		
+					<//B_auteur_pere>
+				</div>
+				[<div class="#EDIT{premier_message} premier_message">(#TEXTE|typo_couleur)</div>]
+				
+				
+				<a class="fonction" id="commenter" href="[(#URL_PAGE{forum})][&amp;(#PARAMETRES_FORUM)]" title="<:sarkaspip:ecrire_reponse:>"></a>
+				<br class="nettoyeur">
+				
+				<a id="forum[(#ID_FORUM)]" name="forum[(#ID_FORUM)]" href="#forum[(#ID_FORUM)]"></a>
+
+				<table>
+					
+					<BOUCLE_reponses(FORUMS){id_thread}{plat}{par date}{doublons}>
+
+					<tr class="ligne_sujet row[(#COMPTEUR_BOUCLE|alterner{2,1})]">
+						<td  id="forum#ID_FORUM" class="detail_auteur">
+							<a id="forum[(#ID_FORUM)]" name="forum[(#ID_FORUM)]" href="#forum[(#ID_FORUM)]"></a>
+							[(#DATE|affdate)] <:sarkaspip:agrave:>&nbsp;[(#DATE|affdate{'H\hi'})]
+						
+							<div class="gravatar">
+							<B_auteurpr>
+							<BOUCLE_auteurpr(AUTEURS){id_auteur}{tout}>
+								<a href="#URL_AUTEUR">#NOM</a>
+								<br class="nettoyeur" />
+								<br class="nettoyeur" />
+								[(#LOGO_AUTEUR||sinon{#CHEMIN{images/gravatar32.png}}||image_passe_partout{32}|image_recadre{32,32,center,FFFFFF}|inserer_attribut{class,spip_logos gravatar}|inserer_attribut{alt,[<:sarkaspip:logo_de:> (#NOM)]})]	
+							</BOUCLE_auteurpr>
+								[(#PLUGIN{GRAVATAR}|oui)
+									[(#GRAVATAR{#EMAIL, 32, #CHEMIN{images/gravatar32.png}}||image_passe_partout{32}|image_recadre{32,32,center,FFFFFF}|inserer_attribut{class,spip_logos gravatar}|inserer_attribut{alt,[<:sarkaspip:logo_de:> (#NOM)]})]
+								]
+							<//B_auteurpr>
+							</div>
+						</td>
+						
+						<td>
+							<div class="#EDIT{texte} forum-texte">
+								[(#TEXTE|lignes_longues)]
+							<BOUCLE_doc(DOCUMENTS){id_forum}>
+								[(#EXTENSION|match{'^(gif|jpg|png)$'}|?{
+									[(#EMBED_DOCUMENT|image_reduire{300})]
+								,
+									[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
+								})]
+							</BOUCLE_doc>
+							</div>
+							[<a class="lien_propose" href="#URL_SITE">(#NOM_SITE)</a>]
+						</td>
+					</tr>
+						
+					</BOUCLE_reponses>				
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div id="navigation">
+		[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
+		<INCLURE{fond=noisettes/navigation}{id_rubrique}{id_secteur}>
+	</div>
+	
+	<div id="extra">
+		[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
+		<INCLURE{fond=noisettes/extra}{self=#SELF}{page=article}{id_secteur}{id_rubrique}{id_article}>
+	</div>
+	
+	<div id="footer">
+		[(#REM) <!-- ================================== ZONE PIED DE PAGE  ================================== --> ]
+		<INCLURE{fond=noisettes/pied}{squelette=#SQUELETTE}>
+	</div>
+
+</div>
+</body>
+</html>
+[(#REM) <!-- ================================== ERREUR BOUCLE VIDE  ================================== --> ]
+</BOUCLE_forum>
+	<INCLURE{fond=404}>
+<//B_forum>
