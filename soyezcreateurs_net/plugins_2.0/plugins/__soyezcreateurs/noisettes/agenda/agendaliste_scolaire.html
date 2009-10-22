@@ -56,9 +56,15 @@
 		</fieldset>
 		</form>
 		</B_Annees>
+
+[(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={oui}|oui)
+	[(#SET{lafin,[(#ENV{date_ev,#ENV{date}}|affdate{'Y-m-d'})]})]
+][(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={non}|oui)
+	[(#SET{lafin,[(#ENV{date_ev,#ENV{date}}|sc_annee_scolaire)]-09-01})]
+]
 <BOUCLE_LiensMois(EVENEMENTS)
 	{branche}
-	{date_debut>=(#ENV{date_ev,(#ENV{date})}|affdate{'Y-m-d'})}
+	{date_fin>=#GET{lafin}}
 	{date_debut<=(#ENV{date_ev,(#ENV{date})}|sc_annee_scolaire|plus{1})-12-31}
 	{par date_debut}
 	{"&nbsp;| "}
