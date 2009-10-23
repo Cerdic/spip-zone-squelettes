@@ -17,21 +17,21 @@
 <B_contenu_article>
 <BOUCLE_contenu_article(ARTICLES){id_article}>
 	  
-	  [(#ENV{mfx_afficher_surtitre}|=={'non'}|?{'',' '})
+	  [(#ENV{mfx_afficher_surtitre}|=={'non'}|non)
 	    [<h3 class="[(#EDIT{surtitre}) ]surtitre">(#SURTITRE)</h3>]
 	  ]
 	  
 	  <h1 class="[(#EDIT{titre}) ]titre">#TITRE</h1>
 	  
-	  [(#ENV{mfx_afficher_soustitre}|=={'non'}|?{'',' '})
+	  [(#ENV{mfx_afficher_soustitre}|=={'non'}|non)
 	    [<h3 class="[(#EDIT{soustitre})] soustitre">(#SOUSTITRE)</h3>]
 	  ]
 	  
-	  [(#ENV{mfx_afficher_details}|=={'non'}|?{'',' '})
+	  [(#ENV{mfx_afficher_details}|=={'non'}|non)
 	    <p class="details">[(#DATE|nom_jour|ucfirst) ][(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)][ <:multiflex:dans_rubrique:> (#INCLURE{fond=noisettes/rubrique/inc/titre_rubrique}{id_rubrique})]</p>
 	  ]
 	  
-	  [(#ENV{mfx_afficher_logo}|!={non}|?{' '})
+	  [(#ENV{mfx_afficher_logo}|!={non}|oui)
 	    [(#LOGO_ARTICLE||inserer_attribut{class,[(#GET{logo_align})]}|image_reduire{[(#GET{logo_taille})]}|image_renforcement{0.2})]
 	  ]
 	  	
@@ -48,16 +48,16 @@
 			
 			[(#REM) Petition :
 			La petition ayant une PAGINATION il faut absolument lui passer env]
-			[(#PETITION|?{' '})
+			[(#PETITION|oui)
 				<INCLURE{fond=inc-petition}{id_article}{ajax}{env}>
 			]
 
 
 	  [<h2 class="pas_surlignable"><:info_ps:></h2><div class="#EDIT{ps}">(#PS)</div>]
 	  	  
-	  [(#ENV{mfx_afficher_details}|=={'non'}|?{'',' '})
+	  [(#ENV{mfx_afficher_details}|=={'non'}|non)
 		  [<p class="details">
-		  (#ENV{mfx_afficher_nombre_commentaires}|=={oui}|?{' ',''})
+		  (#ENV{mfx_afficher_nombre_commentaires}|=={oui}|oui)
 		   [<a href="#URL_ARTICLE#forum">(#INCLURE{fond=noisettes/forum/inc/nombre_commentaires_article}{id_article}|trim)</a>]
 		  </p>] 
 	  ]

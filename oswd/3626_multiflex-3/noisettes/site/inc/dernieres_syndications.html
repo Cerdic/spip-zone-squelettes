@@ -29,21 +29,21 @@
 	  })]
 	</#GET{balise_titre}>
 	
-	[(#ENV{mfx_afficher_details}|=={non}|?{'',' '}) 
+	[(#ENV{mfx_afficher_details}|=={non}|non) 
 	  [<h3><:multiflex:sur:> (#NOM_SITE|texte_backend)</h3>]
       <p class="details">[(#DATE|nom_jour|ucfirst) ][(#DATE|affdate)][, <:par_auteur:> (#LESAUTEURS)]</p>
 	]	
 
-	[(#ENV{mfx_afficher_texte}|=={non}|?{'',' '})
+	[(#ENV{mfx_afficher_texte}|=={non}|non)
 	  <p>
 	  [(#GET{couper_texte}|!={non}|?{
 	  	[(#DESCRIPTIF|couper{#GET{couper_texte}})]
-			[(#ENV{mfx_afficher_lire_suite}|=={oui}|?{' '})
+			[(#ENV{mfx_afficher_lire_suite}|=={oui}|oui)
 			  <a href="#URL_ARTICLE"><:multiflex:lire_suite:></a>
 			]	  	
 	  	,
 	  	#DESCRIPTIF
-	  		[(#ENV{mfx_afficher_lire_suite}|=={oui}|?{' '})
+	  		[(#ENV{mfx_afficher_lire_suite}|=={oui}|oui)
 			  <a href="#URL_ARTICLE"><:multiflex:lire_suite:></a>
 			]	
 	  })]
@@ -51,7 +51,7 @@
 	]
 
 </BOUCLE_syndic>
-	[(#ENV{mfx_pagination_liens_pages}|=={non}|?{'',' '})
+	[(#ENV{mfx_pagination_liens_pages}|=={non}|non)
 	  <p class="pagination">#PAGINATION{page}</p>
 	]
 </B_syndic>

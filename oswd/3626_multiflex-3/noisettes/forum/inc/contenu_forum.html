@@ -20,29 +20,29 @@
 	<BOUCLE_forum_parent(FORUMS) {id_forum}>
 	 <#GET{balise_titre}[ class="(#EDIT{titre})"]><a href="#URL_FORUM">#TITRE</a></#GET{balise_titre}>
 	<p class="details">[(#DATE|affdate_jourcourt)][&nbsp;(#DATE|heures)][:(#DATE|minutes)][, <:par_auteur:> (#NOM)]</p>
-	[(#ENV{mfx_afficher_texte}|=={'non'}|?{'',' '})
+	[(#ENV{mfx_afficher_texte}|=={'non'}|non)
 		[<p>(#INTRODUCTION|lignes_longues)</p>]
 	]
 	</BOUCLE_forum_parent>
 
 	<BOUCLE_article(ARTICLES) {id_article}>
-	  [(#ENV{mfx_afficher_logo}|!={non}|?{' '})
+	  [(#ENV{mfx_afficher_logo}|!={non}|oui)
 	    [(#LOGO_ARTICLE||inserer_attribut{class,[(#GET{logo_align})]}|image_reduire{[(#GET{logo_taille})]}|image_renforcement{0.2})]
 	  ]
 	 <#GET{balise_titre}[ class="(#EDIT{titre})"]><a href="#URL_ARTICLE">#TITRE</a></#GET{balise_titre}>
 	<p class="details">[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</p>
-	[(#ENV{mfx_afficher_texte}|=={'non'}|?{'',' '})
+	[(#ENV{mfx_afficher_texte}|=={'non'}|non)
 		[<p>(#INTRODUCTION)</p>]
 	]
 	</BOUCLE_article>
 
 	<BOUCLE_breve(BREVES) {id_breve}>
-	  [(#ENV{mfx_afficher_logo}|!={non}|?{' '})
+	  [(#ENV{mfx_afficher_logo}|!={non}|oui)
 	    [(#LOGO_BREVE||inserer_attribut{class,[(#GET{logo_align})]}|image_reduire{[(#GET{logo_taille})]}|image_renforcement{0.2})]
 	  ]
 	 <#GET{balise_titre}[ class="(#EDIT{titre})"]><a href="#URL_BREVE">#TITRE</a></#GET{balise_titre}>
 	<p class="details">[(#DATE|affdate_jourcourt)]</p>
-	[(#ENV{mfx_afficher_texte}|=={'non'}|?{'',' '})
+	[(#ENV{mfx_afficher_texte}|=={'non'}|non)
 		[<p>(#INTRODUCTION)</p>]
 	]
 	</BOUCLE_breve>
@@ -54,7 +54,7 @@
 
 	<BOUCLE_syndic(SITES) {id_syndic}>
 	 <#GET{balise_titre}[ class="(#EDIT{titre})"]><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]">#NOM_SITE</a></#GET{balise_titre}>
-	[(#ENV{mfx_afficher_texte}|=={'non'}|?{'',' '})
+	[(#ENV{mfx_afficher_texte}|=={'non'}|non)
 		[<p>(#DESCRIPTIF)</p>]
 	]
 	</BOUCLE_syndic>

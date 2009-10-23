@@ -25,20 +25,20 @@
 	  })]
 	</h1>
 	
-	[(#ENV{mfx_afficher_details}|=={'non'}|?{'',' '}) 
+	[(#ENV{mfx_afficher_details}|=={'non'}|non) 
       <p class="details">[(#DATE|nom_jour|ucfirst) ][(#DATE|affdate)]</p>
 	]	
 
-	[(#ENV{mfx_afficher_texte}|=={'non'}|?{'',' '})
+	[(#ENV{mfx_afficher_texte}|=={'non'}|non)
 	  <p>
 	  [(#ENV{mfx_couper_texte}|?{[(#ENV{mfx_couper_texte}!={non}|?{
 	  	[(#DESCRIPTIF|couper{#ENV{mfx_couper_texte}})]
-			[(#ENV{mfx_afficher_lire_suite}|=={oui}|?{' '})
+			[(#ENV{mfx_afficher_lire_suite}|=={oui}|oui)
 			  <a href="#URL_SITE"><:multiflex:voir_site:></a>
 			]	  	
 	  	,
 	  	#DESCRIPTIF
-	  		[(#ENV{mfx_afficher_lire_suite}|=={oui}|?{' '})
+	  		[(#ENV{mfx_afficher_lire_suite}|=={oui}|oui)
 			  <a href="#URL_SITE"><:multiflex:voir_site:></a>
 			]	
 	  })]})]
@@ -46,7 +46,7 @@
 	]
 
 </BOUCLE_derniers_sites>
-	[(#ENV{mfx_pagination_liens_pages}|=={non}|?{'',' '})
+	[(#ENV{mfx_pagination_liens_pages}|=={non}|non)
 	  <p class="pagination">#PAGINATION{page}</p>
 	]
 </B_derniers_sites>

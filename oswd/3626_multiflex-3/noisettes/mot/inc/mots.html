@@ -18,27 +18,27 @@
 <BOUCLE_mots(MOTS){id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?}{id_groupe ?}{pagination #ENV{mfx_pagination_nombre}|sinon{3}}{par num titre}>
 	<#GET{balise_titre}[ class="(#EDIT{titre})"]>
 	  [(#ENV{mfx_lien_sur_titre}|=={'non'}|?{  
-	  	[(#ENV{mfx_afficher_logo}|!={non}|?{' '})
+	  	[(#ENV{mfx_afficher_logo}|!={non}|oui)
 	  	  [(#LOGO_DOCUMENT||image_reduire{20})]
 	  	]
 		#TITRE
 		,
 		<a href="#URL_MOT">
-		[(#ENV{mfx_afficher_logo}|!={non}|?{' '})
+		[(#ENV{mfx_afficher_logo}|!={non}|oui)
 	  	  [(#LOGO_DOCUMENT||image_reduire{20})]
 	  	]
 		#TITRE</a>
 	  })]
 	</#GET{balise_titre}>
 	
-	[(#ENV{mfx_afficher_details}|=={'non'}|?{'',' '}) 
+	[(#ENV{mfx_afficher_details}|=={'non'}|non) 
       <p class="details"> <:multiflex:dans_groupe:> #TYPE</p>
 	]
 	
-	[(#ENV{mfx_afficher_texte}|=={'non'}|?{'',' '})
+	[(#ENV{mfx_afficher_texte}|=={'non'}|non)
 	  <div[ class="(#EDIT{texte})"]>[(#ENV{mfx_couper_texte}|?{
 	  	<p>[(#TEXTE|couper{#ENV{mfx_couper_texte}})]
-			[(#ENV{mfx_afficher_lire_suite}|=={oui}|?{' '})
+			[(#ENV{mfx_afficher_lire_suite}|=={oui}|oui)
 			  <a href="#URL_MOT"><:multiflex:lire_suite:></a>
 			]	  	
 	  	</p>
@@ -47,7 +47,7 @@
 	  })] </div>
 	]
 </BOUCLE_mots>
-	[(#ENV{mfx_pagination_liens_pages}|=={non}|?{'',' '})
+	[(#ENV{mfx_pagination_liens_pages}|=={non}|non)
 	  <p class="pagination">#PAGINATION{page}</p>
 	]
 </B_mots>

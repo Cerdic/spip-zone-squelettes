@@ -14,27 +14,27 @@
 <BOUCLE_documents(DOCUMENTS){id_rubrique ?}{id_article ?}{id_breve ?}{par num titre}{mode=document}>
 	<#GET{balise_titre}[ class="(#EDIT{titre})"]>
 	  [(#ENV{mfx_lien_sur_titre}|=={non}|?{ 
-	  	[(#ENV{mfx_afficher_logo}|!={non}|?{' '})
+	  	[(#ENV{mfx_afficher_logo}|!={non}|oui)
 	  	  [(#LOGO_DOCUMENT||image_reduire{20})]
 	  	]
 		#TITRE
 		,
 		<a href="#URL_DOCUMENT">
-	  	[(#ENV{mfx_afficher_logo}|!={non}|?{' '})
+	  	[(#ENV{mfx_afficher_logo}|!={non}|oui)
 	  	  [(#LOGO_DOCUMENT||image_reduire{20})]
 	  	]		
 		#TITRE</a>
 	  })]
 	</#GET{balise_titre}>
 
-	  [(#ENV{mfx_afficher_details}|!={non}|?{' '}) 
+	  [(#ENV{mfx_afficher_details}|!={non}|oui) 
         <p class="details">[(#TYPE_DOCUMENT)][, (#TAILLE|taille_en_octets)][, (#LARGEUR|!={0}|?{#LARGEUR x [(#HAUTEUR)]px})]</p>
 	  ]
 
-	[(#ENV{mfx_afficher_texte}|!={non}|?{' '})
+	[(#ENV{mfx_afficher_texte}|!={non}|oui)
 	  <div[ class="(#EDIT{descriptif})"]>[(#ENV{mfx_couper_texte}|?{
 	  	<p>[(#DESCRIPTIF|couper{#ENV{mfx_couper_texte}})]
-			[(#ENV{mfx_afficher_lire_suite}|=={oui}|?{' '})
+			[(#ENV{mfx_afficher_lire_suite}|=={oui}|oui)
 			  <a href="#URL_DOCUMENT"><:multiflex:lire_suite:></a>
 			]	  	
 	  	</p>

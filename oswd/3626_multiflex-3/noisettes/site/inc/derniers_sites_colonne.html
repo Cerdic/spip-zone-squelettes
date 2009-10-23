@@ -18,7 +18,7 @@
 #ANCRE_PAGINATION
 <BOUCLE_derniers_sites(SITES){id_rubrique ?}{par date}{inverse}{pagination #ENV{mfx_pagination_nombre}|sinon{3}}{doublons #GET{doublons}}>
 	<h3[ class="(#EDIT{nom_site})"]>
-	  [(#ENV{mfx_afficher_details}|=={'non'}|?{'',' '}) [(#DATE|jour)/][(#DATE|mois) &mdash; ]]
+	  [(#ENV{mfx_afficher_details}|=={'non'}|non) [(#DATE|jour)/][(#DATE|mois) &mdash; ]]
 	  [(#ENV{mfx_lien_sur_titre}|=={'non'}|?{  
 		#NOM_SITE
 		,
@@ -27,22 +27,22 @@
 	</h3>	
 	
 
-	[(#ENV{mfx_afficher_texte}|=={'non'}|?{'',' '})
+	[(#ENV{mfx_afficher_texte}|=={'non'}|non)
 	  [(#ENV{mfx_couper_texte}|?{[(#ENV{mfx_couper_texte}!={non}|?{
 	  	[(#DESCRIPTIF|couper{#ENV{mfx_couper_texte}})]
-			[(#ENV{mfx_afficher_lire_suite}|=={oui}|?{' '})
+			[(#ENV{mfx_afficher_lire_suite}|=={oui}|oui)
 			   <p><a href="#URL_SITE"><:multiflex:voir_site:></a></p>
 			]	  	
 	  	,
 	  	#DESCRIPTIF
-	  		[(#ENV{mfx_afficher_lire_suite}|=={oui}|?{' '})
+	  		[(#ENV{mfx_afficher_lire_suite}|=={oui}|oui)
 			  <p><a href="#URL_SITE"><:multiflex:voir_site:></a></p>
 			]	
 	  })]})]
 	]
 
 </BOUCLE_derniers_sites>
-	[(#ENV{mfx_pagination_liens_pages}|=={non}|?{'',' '})
+	[(#ENV{mfx_pagination_liens_pages}|=={non}|non)
 	  <p class="pagination">#PAGINATION{page}</p>
 	]
 </B_derniers_sites>

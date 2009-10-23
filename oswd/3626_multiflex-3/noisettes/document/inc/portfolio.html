@@ -16,8 +16,8 @@
 	<div class="vignettes_portfolio">
 	<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document}{vu=non} {extension IN png,jpg,gif} {par num titre, date}>
 	#REM{si thickbox, on ne lance pas l'ajax}
-	[(#PLUGIN{ThickBox1}|=={1}|?{' ',''}) <a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#document_actif';return false;"[ title="(#TITRE|couper{80}|texte_backend)"]> ]
-	[(#PLUGIN{ThickBox1}|=={1}|?{'',' '}) <a class="ajax" href="[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#document_actif"[ title="(#TITRE|couper{80}|texte_backend)"]> ]	
+	[(#PLUGIN{ThickBox1}|=={1}|oui) <a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#document_actif';return false;"[ title="(#TITRE|couper{80}|texte_backend)"]> ]
+	[(#PLUGIN{ThickBox1}|=={1}|non) <a class="ajax" href="[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#document_actif"[ title="(#TITRE|couper{80}|texte_backend)"]> ]	
 	
 	[(#FICHIER|copie_locale|image_reduire{0,60}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
 	</BOUCLE_documents_portfolio>

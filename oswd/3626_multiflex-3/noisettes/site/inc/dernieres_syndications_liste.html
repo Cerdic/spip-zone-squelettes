@@ -16,17 +16,17 @@
 <ul>
 <BOUCLE_syndic(SYNDIC_ARTICLES){id_rubrique ?}{par date}{inverse}{pagination #ENV{mfx_pagination_nombre}|sinon{3}}{doublons #GET{doublons}}>
 	<li>
-	  [(#ENV{mfx_afficher_details}|=={'non'}|?{'',' '}) [(#DATE|jour)/][(#DATE|mois) &mdash; ]]
+	  [(#ENV{mfx_afficher_details}|=={'non'}|non) [(#DATE|jour)/][(#DATE|mois) &mdash; ]]
 	  [(#ENV{mfx_lien_sur_titre}|=={'non'}|?{  
 		#TITRE
 		,
 		<a href="#URL_ARTICLE"[ title="(#NOM_SITE|texte_backend)"]>#TITRE</a>
 	  })]
-	  [(#ENV{mfx_afficher_details}|=={'non'}|?{'',' '}) [<:par_auteur:> (#LESAUTEURS)][ <:multiflex:sur:> (#NOM_SITE|texte_backend)] ]
+	  [(#ENV{mfx_afficher_details}|=={'non'}|non) [<:par_auteur:> (#LESAUTEURS)][ <:multiflex:sur:> (#NOM_SITE|texte_backend)] ]
 	</li>
 </BOUCLE_syndic>
 	</ul>
-	[(#ENV{mfx_pagination_liens_pages}|=={non}|?{'',' '})
+	[(#ENV{mfx_pagination_liens_pages}|=={non}|non)
 	  <p class="pagination">#PAGINATION{page}</p>
 	]
 </B_syndic>
