@@ -5,33 +5,34 @@
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //A
-'acceuil_presentation' =>'Pr&eacute;sentation',
-'acceuil_intro' =>'Bienvenue sur la page de pr&eacute;sentation du plugins "annuaire".',
-'acceuil_option' =>'Certain plugins sont optionnel :',
-'acceuil_option_contact' =>'Le plugins "contact" permets ou non d\'affich&eacute; la page de
+'accueil_presentation' =>'Pr&eacute;sentation',
+'accueil_intro' =>'Bienvenue sur la page de pr&eacute;sentation du plugins "annuaire".',
+'accueil_option' =>'Certain plugins sont optionnel :',
+'accueil_option_contact' =>'Le plugins "contact" permets ou non d\'affich&eacute; la page de
 							 contact',
-'acceuil_option_pub' => 'Si vous souhaitez int&eacute;gr&eacute; dans votre site des pub google
+'accueil_option_pub' => 'Si vous souhaitez int&eacute;gr&eacute; dans votre site des pub google
 						, il vous faudra cr&eacute;&eacute; le mot clef "pub" dans le groupe
 						 "Affichage" et dans une rubrique nomm&eacute; "squelette"',
-'acceuil_option_visiteurs' =>'Le plugins "visiteur connect&eacute;s" permets d\'afficher dans
+'accueil_option_visiteurs' =>'Le plugins "visiteur connect&eacute;s" permets d\'afficher dans
 							 l\'ent&ecirc;te le nombre de visiteur connect&eacute;s',
-'acceuil_requis' =>'Les requis pour un bon fonctionnement du site',
-'acceuil_requis_1' =>'Pour un bon r&eacute;f&eacute;rencement de votre site, ils vous faut 
+'accueil_requis' =>'Les requis pour un bon fonctionnement du site',
+'accueil_requis_1' =>'Pour un bon r&eacute;f&eacute;rencement de votre site, ils vous faut 
 					cr&eacute;er :
 					<br />un groupe de mot clef "_META"
 					<br />les mots clefs keywords et description',
-'acceuil_requis_2' =>'Pour afficher des partenaires sur la page "Partenaires", il vous faut
+'accueil_requis_2' =>'Pour afficher des partenaires sur la page "Partenaires", il vous faut
 					cr&eacute;&eacute; le groupe "Affichage" avec le mot clef "partenaire" et
 					 attibuer le &agrave; chacun des sites voulus.',
 'actuellement' => 'Il y a actuellement ',
 'affichage' => 'L\'affichage',
-'ajouter_google' => 'Ajouter &agrave; google',
-'annuaire' =>'Annuaire',
-'annuaire_acceuil' => 'Acceuil',
+'ajouter_google' => 'ajouter &agrave; google',
+'annuaire' =>'annuaire',
+'annuaire_accueil' => 'Accueil',
 'annuaire_bandeau' => 'Bandeau',
 'annuaire_contact' => 'Contact',
 'annuaire_colonne' => 'Colonne et pied',
 'annuaire_coul_mot_clef' => 'Couleur avec les mots',
+'annuaire_general' => 'G&eacute;n&eacute;ralit&eacute;s',
 'annuaire_gratuit' => 'Annuaire gratuit de liens en dur',
 'annuaire_herbier' => 'Herbier',
 'annuaire_mot' => 'Mot',
@@ -48,35 +49,37 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //B
 'bandeau' => 'le "bandeau"',
-'boite_acceuil' => 'Acceuil',
-'boite_bandeau' => 'Bandeau',
-'boite_contact' => 'Contact',
-'boite_colonne' => 'Colonne et pied',
-'boite_coul_mot' => 'Couleur avec les mots',
-'boite_herbier' => 'Herbier',
-'boite_mot' => 'Mots',
-'boite_plan' => 'Page plan',
-'boite_plan_complet' => 'Page plan complet',
-'boite_partenaire' => 'Page partenaire',
-'boite_recherche' => 'Page recherche',
-'boite_rubrique' => 'Page rubrique',
-'boite_site' => 'Page sites',
-'boite_sommaire' => 'Page sommaire',
+'boite_accueil' => 'accueil',
+'boite_bandeau' => 'bandeau',
+'boite_contact' => 'contact',
+'boite_colonne' => 'colonne et pied',
+'boite_coul_mot' => 'couleur avec les mots',
+'boite_general' => 'g&eacute;n&eacute;ralit&eacute;s',
+'boite_herbier' => 'herbier',
+'boite_mot' => 'mots',
+'boite_plan' => 'page plan',
+'boite_plan_complet' => 'page plan complet',
+'boite_partenaire' => 'page partenaire',
+'boite_recherche' => 'page recherche',
+'boite_rubrique' => 'page rubrique',
+'boite_site' => 'page sites',
+'boite_sommaire' => 'page sommaire',
 'boucles' =>'R&eacute;glages des boucles',
 
 //C
-'configuration_bandeau' => 'Configuration du bandeau',
-'configuration_colonne_pied' => 'Configuration de la colonne et du pied',
-'configuration_contact' => 'Configuration de la page "contact"',
-'configuration_herbier' => 'Configuration de la page "herbier"',
-'configuration_mot' => 'Configuration de la page "mot"',
-'configuration_partenaire' => 'Configuration de la page "partenaire"',
-'configuration_plan' => 'Configuration de la page "plan"',
-'configuration_plan_complet' => 'Configuration de la page "plan complet"',
-'configuration_recherche' => 'Configuration de la page "recherche"',
-'configuration_rubrique' => 'Configuration de la page "rubrique"',
-'configuration_site' => 'Configuration de la page "site"',
-'configuration_sommaire' => 'Configuration de la page "sommaire"',
+'configuration_bandeau' => 'configuration du bandeau',
+'configuration_colonne_pied' => 'configuration de la colonne et du pied',
+'configuration_contact' => 'configuration de la page "contact"',
+'configuration_herbier' => 'configuration de la page "herbier"',
+'configuration_general' => 'configuration des g&eacute;n&eacute;ralit&eacute;s du site',
+'configuration_mot' => 'configuration de la page "mot"',
+'configuration_partenaire' => 'configuration de la page "partenaire"',
+'configuration_plan' => 'configuration de la page "plan"',
+'configuration_plan_complet' => 'configuration de la page "plan complet"',
+'configuration_recherche' => 'configuration de la page "recherche"',
+'configuration_rubrique' => 'configuration de la page "rubrique"',
+'configuration_site' => 'configuration de la page "site"',
+'configuration_sommaire' => 'configuration de la page "sommaire"',
 'conception' => 'conception',
 'css' => 'Les css',
 'css_bandeau' => 'Bandeau',
@@ -93,7 +96,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'css_ho' => 'Couleur de survol',
 
 //D
-'descriptif_acceuil' => 'Pr&eacute;sentation du plugins "annuaire" et de ses fonctions.',
+'descriptif_accueil' => 'Pr&eacute;sentation du plugins "annuaire" et de ses fonctions.',
 'descriptif_bandeau' => '<h4>R&eacute;glage du bandeau</h4>
 				<br />R&eacute;gl&eacute; vos styles sur le bandeau.',
 'descriptif_contact' => '<h4>R&eacute;glage de la page contact</h4>
@@ -102,6 +105,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 				<br />Nous vous laissons choisir une couleur:
 				<br />- en fonction du mot clef que vous avez choisi
 				<br />- la couleur attibu&eacute;e',
+'descriptif_general' => '<h4>R&eacute;glages g&eacute;n&eacute;raux</h4>
+				<br />Une page qui regroupe tous les r&eacute;glages g&eacute;n&eacute;raux du site.',
 'descriptif_herbier' => '<h4>R&eacute;glage de l\'herbier</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur l\'herbier.
 				<p />C\'est la page ou l\'on affiche l\'actualiter des sites syndiqu&eacute;',
@@ -140,6 +145,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'hierarchie' => 'la "hierarchie"',
 
 //I
+'indexation_info' => 'Indexation du site par les moteurs de recherche',
+'indexation_oui' => 'Indexer le site dans les moteurs de recherche',
+'indexation_non' => 'Ne pas indexer le site dans les moteurs de recherche',
 'infos' => 'Afficher une infos sur toutes les rubriques (si vous la souhaitez diff&eacute;rentes
 			utiliser la description.)',
 
@@ -199,6 +207,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'resultats' => 'R&eacute;sultats dans les boucles',
 'recherche_site' => 'Recherche d\'un site',
 'rechercher' => 'Rechercher',
+'referencement' => 'R&eacute;f&eacute;rencement',
 'ref_site' => 'R&eacute;f&eacute;rencement de mon site',
 'rss' => 'Nombres d\'articles syndiqu&eacute; par page.',
 'rss_contient' => 'Le flux RSS contient ',
