@@ -2,7 +2,7 @@
 <!-- Affichage de l'article: logo, titre, chapo, texte, ps...
 	Recoit en argument :
 		- id_article: id de l'article concerne
-		- page: indique le type de page affichee (article - par defaut -, evenement, album, edito, une)
+		- page: indique le type de page affichee (article - par defaut -, evenement, album, edito, une, forum)
 		- afficher_commentaires: indicateur d'affichage ou pas du nombre de commentaires de l'article concerne
 		- avec_popularite: indique si on doit afficher ou pas la popularite
 		- avec_notation: indique si on doit afficher ou pas la notation de l'article (necessite le plugin notation)
@@ -60,18 +60,18 @@
 		<br class="nettoyeur" />
 		[<div class="logo droite">(#GET{logo}||image_reduire{#ENV{taille_logo}})</div>]
 	]
-	[(#ENV{page}|=={edito}|?{' '})
+	[(#ENV{page}|match{^(edito|forum)$}|?{' '})
 		<br class="nettoyeur" />
 		[<div class="logo droite">(#GET{logo}||image_reduire{#ENV{taille_logo}})</div>]
 	]
 	
-	[(#ENV{page}|=={edito}|?{' '})
+	[(#ENV{page}|match{^(edito|forum)$}|?{' '})
 		[(#CONFIG{sarkaspip_sommaire/titre_edito, 1}|=={1}|?{' '})
 		[<div class="#EDIT{titre} titre"><h1>(#TITRE|supprimer_numero)</h1></div>]
 		]
 	]
 
-	[(#ENV{page}|=={edito}|?{'', ' '})
+	[(#ENV{page}|match{^(edito|forum)$}|?{'', ' '})
 		[<div class="#EDIT{titre} titre"><h1>(#TITRE|supprimer_numero)</h1></div>]
 	]
 	
@@ -100,7 +100,7 @@
 		</div>
 	]
 
-	[(#ENV{page}|match{^(edito|une)$}|?{'',' '})
+	[(#ENV{page}|match{^(edito|forum|une)$}|?{'',' '})
 		[(#INCLURE{fond=noisettes/article/inc_article_cartouche}
 			{id_article}
 			{id_evenement}

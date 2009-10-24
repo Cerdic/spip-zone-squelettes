@@ -862,6 +862,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'lire_aussi_article' => 'Lire aussi...',
 	'lire_breve' => 'lire la br&egrave;ve',
 	'lire_suite_article' => 'lire la suite de l\'article',
+	'liste_forum' => 'Liste des forums',
 	'liste_mot_1' => 'Choisir un premier mot (obligatoire)',
 	'liste_mot_2' => 'Choisir un deuxi&egrave;me mot (optionnel)',
 	'liste_mot_3' => 'Choisir un troisi&egrave;me mot (optionnel)',

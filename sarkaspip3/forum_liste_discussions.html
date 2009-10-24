@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-#CACHE{7200}
+#CACHE{0}
 <BOUCLE_article(ARTICLES){id_article}>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 	<INCLURE{fond=noisettes/inc_header}
@@ -10,25 +10,33 @@
 <div id="container">
 	<div id="header">
 		[(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
-		<INCLURE{fond=noisettes/bandeau}{id_rubrique=#ID_RUBRIQUE}>
+		<INCLURE{fond=noisettes/bandeau}{lang}{id_rubrique=#ID_RUBRIQUE}{id_article}>
 	</div>
 	
 	<div id="wrapper">
 		<div id="content">
 			<div class="forum">
 			
+				[(#REM) <!-- Titre, logo, texte de la rubrique --> ]
+				<INCLURE{fond=noisettes/article/inc_article_description}
+					{id_article}
+					{page=forum}
+					{afficher_commentaires=non}
+					{avec_popularite=non}
+					{avec_notation=non}
+					{avec_socialtags=non}
+					{logo_rubrique=non}
+					{afficher_commentaires=non}
+					
+				>	
+			
 				<a class="fonction" id="commenter" href="[(#URL_PAGE{forum_post})][&amp;(#PARAMETRES_FORUM)]" title="<:sarkaspip:nouvelle_discussion:>"></a>
 				<br class="nettoyeur">
 				<table>
 					<tr>
-						<th colspan="5" class='tforum'>#TITRE</th>
-					</tr>
-					<tr class="salon">
-						<td></td>
-						<td><:sarkaspip:discussions:></td>
-						<td><:sarkaspip:reponses:></td>
-						<td><:sarkaspip:vu:></td>
-						<td><:sarkaspip:messages_derniers:></td>
+						<th colspan="2"><:sarkaspip:discussions:></th>
+						<th><:sarkaspip:reponses:></th>
+						<th><:sarkaspip:messages_derniers:></th>
 					</tr>
 				
 				<B_discussions>
@@ -44,9 +52,6 @@
 							<BOUCLE_reponses(FORUMS){id_thread}{plat}{exclus}></BOUCLE_reponses>
 							#TOTAL_BOUCLE
 							<//B_reponses>
-						</td>
-						<td class="nbr_vu">
-							A virer
 						</td>
 						<td class="dernier_msg">
 						<BOUCLE_dernier_message(FORUMS){id_thread}{plat}{!par date}{0,1}>
