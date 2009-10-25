@@ -655,4 +655,92 @@ function sc_agenda_memo_full($date_deb=0, $date_fin=0 , $titre='', $descriptif='
 	// toujours retourner vide pour qu'il ne se passe rien
 	return "";
 }
+
+function direction_css_intelligente ($css, $voulue='', $type_css='none') {
+	if (!preg_match(',(_rtl)?\.css$,i', $css, $r)) return $css;
+
+	// si on a precise le sens voulu en argument, le prendre en compte
+	if ($voulue = strtolower($voulue)) {
+		if ($voulue != 'rtl' AND $voulue != 'ltr')
+			$voulue = lang_dir($voulue);
+	}
+	else
+		$voulue =  lang_dir();
+
+	$r = count($r) > 1;
+	$right = $r ? 'left' : 'right'; // 'right' de la css lue en entree
+	$dir = $r ? 'rtl' : 'ltr';
+	$ndir = $r ? 'ltr' : 'rtl';
+
+	if ($voulue == $dir)
+		return $css;
+
+	// 1.
+	$f = preg_replace(',(_rtl)?\.css$,i', '_'.$ndir.'.css', $css);
+	if (@file_exists($f))
+		return $f;
+
+	// 2.
+	$dir_var = sous_repertoire (_DIR_VAR, 'cache-css');
+	$f = $dir_var
+		. preg_replace(',.*/(.*?)(_rtl)?\.css,', '\1', $css)
+		. '.' . substr(md5($css), 0,4) . '_' . $ndir . '.css';
+
+	// la css peut etre distante (url absolue !)
+	if (preg_match(",^http:,i",$css)){
+		include_spip('inc/distant');
+		// cas des css dynamiques en SPIP
+		if ($type_css = 'spip')
+			$contenu = recuperer_page($css.'&lang='.$GLOBALS['lang']);
+		else
+			$contenu = recuperer_page($css);
+		if (!$contenu) return $css;
+	}
+	else {
+		if ((@filemtime($f) > @filemtime($css))
+			AND ($GLOBALS['var_mode'] != 'recalcul'))
+			return $f;
+		if ($contenu = recuperer_fond($css))
+			return $css;
+	}
+	
+	if (strstr($f, '?'))
+		$f = str_replace('?', '_', $f);
+
+	$contenu = str_replace(
+		array('right', 'left', '@@@@L E F T@@@@'),
+		array('@@@@L E F T@@@@', 'right', 'left'),
+		$contenu);
+	
+	// reperer les @import auxquels il faut propager le direction_css
+	preg_match_all(",\@import\s*url\s*\(\s*['\"]?([^'\"/][^:]*)['\"]?\s*\),Uims",$contenu,$regs);
+	$src = array();$src_direction_css = array();$src_faux_abs=array();
+	$d = dirname($css);
+	foreach($regs[1] as $k=>$import_css){
+		$css_direction = direction_css("$d/$import_css",$voulue);
+		// si la css_direction est dans le meme path que la css d'origine, on tronque le path, elle sera passee en absolue
+		if (substr($css_direction,0,strlen($d)+1)=="$d/") $css_direction = substr($css_direction,strlen($d)+1);
+		// si la css_direction commence par $dir_var on la fait passer pour une absolue
+		elseif (substr($css_direction,0,strlen($dir_var))==$dir_var) {
+			$css_direction = substr($css_direction,strlen($dir_var));
+			$src_faux_abs["/@@@@@@/".$css_direction] = $css_direction;
+			$css_direction = "/@@@@@@/".$css_direction;
+		}
+		$src[] = $regs[0][$k];
+		$src_direction_css[] = str_replace($import_css,$css_direction,$regs[0][$k]);
+	}
+	$contenu = str_replace($src,$src_direction_css,$contenu);
+
+	$contenu = urls_absolues_css($contenu, $css);
+
+	// virer les fausses url absolues que l'on a mis dans les import
+	if (count($src_faux_abs))
+		$contenu = str_replace(array_keys($src_faux_abs),$src_faux_abs,$contenu);
+
+	if (!ecrire_fichier($f, $contenu))
+		return $css;
+
+	return $f;
+}
+
 ?>
