@@ -656,10 +656,22 @@ function sc_agenda_memo_full($date_deb=0, $date_fin=0 , $titre='', $descriptif='
 	return "";
 }
 
-function direction_css_intelligente ($css, $voulue='', $type_css='none') {
-	if (!preg_match(',(_rtl)?\.css$,i', $css, $r)) return $css;
-
-	// si on a precise le sens voulu en argument, le prendre en compte
+function direction_css_intelligente ($css, $voulue='') {
+	// On teste si la css est distante
+	// Si elle est distante, on commence a preparer le chemin de la css
+	if (preg_match(",^http:,i",$css)){
+		$distante = true;
+		// en cas de sript php on prend ce qui est après le ?
+		if ($n = strstr(basename($css), '?')) {
+			$chemin = substr($n, 1);
+		}
+	}
+	else {
+		$distante = false;
+		$chemin = $css;
+	}
+	
+	// avant tout si on a precise le sens voulu en argument, le prendre en compte
 	if ($voulue = strtolower($voulue)) {
 		if ($voulue != 'rtl' AND $voulue != 'ltr')
 			$voulue = lang_dir($voulue);
@@ -674,38 +686,49 @@ function direction_css_intelligente ($css, $voulue='', $type_css='none') {
 
 	if ($voulue == $dir)
 		return $css;
-
-	// 1.
-	$f = preg_replace(',(_rtl)?\.css$,i', '_'.$ndir.'.css', $css);
-	if (@file_exists($f))
-		return $f;
-
-	// 2.
+	
+	// construction du chemin
 	$dir_var = sous_repertoire (_DIR_VAR, 'cache-css');
+	// enlevons les caracteres exotiques
+	$chemin = preg_replace(',[^\w-],', '', basename($chemin));
 	$f = $dir_var
-		. preg_replace(',.*/(.*?)(_rtl)?\.css,', '\1', $css)
-		. '.' . substr(md5($css), 0,4) . '_' . $ndir . '.css';
+		. preg_replace(',.*/(.*?)(_rtl)?\.css,', '\1', $chemin)
+		. '.' . substr(md5($chemin), 0,4) . '_' . $ndir . '.css';
+		
+	if (!$distante AND !preg_match(',(_rtl)?\.css$,i', $css, $r)) return $css;
 
-	// la css peut etre distante (url absolue !)
-	if (preg_match(",^http:,i",$css)){
+	// on regarde si une css _rtl existe
+	$cd = preg_replace(',(_rtl)?\.css$,i', '_'.$ndir.'.css', $css);
+	if (@file_exists($cd)) {
+		return $cd;
+	}
+	
+	// Si le fichier est en cache depuis pas trop de temps
+	// on le retourne
+	if (@file_exists($f)) {
+		if (@filemtime($f) > @filemtime($css))
+			return $f;
+	}
+	
+	if ($distante){
 		include_spip('inc/distant');
-		// cas des css dynamiques en SPIP
-		if ($type_css = 'spip')
-			$contenu = recuperer_page($css.'&lang='.$GLOBALS['lang']);
-		else
-			$contenu = recuperer_page($css);
+		if ($headers = recuperer_page($css, false, true, $max, '', '', true)) {
+			list($headers, $a['body']) = explode("\n\n", $headers, 2);
+			if (preg_match(",\nContent-Type: *([^[:space:];]*),i", "\n$headers", $regs))
+				$mime_type = (trim($regs[1]));
+				$type = sql_getfetsel('extension', 'spip_types_documents', 'mime_type='.sql_quote($mime_type));
+		}
+		if ($type != 'css') return $css;
+		$contenu = recuperer_page($css);
 		if (!$contenu) return $css;
 	}
 	else {
 		if ((@filemtime($f) > @filemtime($css))
 			AND ($GLOBALS['var_mode'] != 'recalcul'))
 			return $f;
-		if ($contenu = recuperer_fond($css))
+		if (!lire_fichier($css, $contenu))
 			return $css;
 	}
-	
-	if (strstr($f, '?'))
-		$f = str_replace('?', '_', $f);
 
 	$contenu = str_replace(
 		array('right', 'left', '@@@@L E F T@@@@'),
