@@ -124,10 +124,12 @@ a em { font-style: normal; text-decoration: underline; }
 #header .cadre_recherche #form_rech .searchfield { width: [(#GET{LargeurMenuDroit}|moins{60})]px; }
 #header .cadre_recherche form { display: inline; }
 #header .cadre_recherche form div { display: inline; }
-[(#LOGO_SITE_SPIP_SURVOL||oui)
+[(#REM) Si logo de survol du site ET titre invisible ]
+[(#LOGO_SITE_SPIP_SURVOL||oui|?{[(#CONFIG{soyezcreateurs/afficher_titre,invisible}|=={invisible}|oui)]})
 #header h1 { position:absolute !important; overflow:hidden !important; top:-2000px !important; left:-2000px !important; height:0 !important; width:0 !important; }
 ]
-[(#LOGO_SITE_SPIP_SURVOL||non)
+[(#REM) Si titre visible OU pas de logo de survol du site ]
+[(#CONFIG{soyezcreateurs/afficher_titre,invisible}|=={visible}|oui|?{' ',[(#LOGO_SITE_SPIP_SURVOL||non)]})
 #header h1 { float:left; margin:0; padding:0 1em; }
 #header h1, #header h1 a, #header h1 a:link, #header h1 a:visited, #header h1 a:hover, #header h1 a:active { color: #GET{c_header}; }
 ]
