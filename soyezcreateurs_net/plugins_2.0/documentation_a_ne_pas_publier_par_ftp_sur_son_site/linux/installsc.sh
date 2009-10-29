@@ -27,7 +27,9 @@ svn checkout svn://zone.spip.org/spip-zone/_plugins_/cfg
 sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/saisies
 sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/clevermail/1_9_3 ./clevermail/
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/facteur
+sleep 15;
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/clevermail/2_0 ./clevermail/
 sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/couteau_suisse
 sleep 15;
