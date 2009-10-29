@@ -36,7 +36,7 @@ function formulaires_ajouter_page_wiki_verifier($id_rubrique=''){
 function formulaires_ajouter_page_wiki_traiter($id_rubrique=''){
 
 	$id_article = null;
-	$message = "";
+	$message = array();
 	
 	// on verifie d'abord qu'un article de ce titre n'existe pas deja
 	$s = sql_select("id_article","spip_articles","titre="
@@ -65,9 +65,8 @@ function formulaires_ajouter_page_wiki_traiter($id_rubrique=''){
 	$retour = generer_url_entite($id_article, 'article');
 
 	include_spip('inc/headers');
-	spip_log($retour);
-	$message .= redirige_formulaire($retour);
-	spip_log($message);
+	$message['message_ok'] = redirige_formulaire($retour);
+	$message['editable'] = false;
 	return $message;
 }
 

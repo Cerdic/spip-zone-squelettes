@@ -22,33 +22,8 @@ CONFIGURATION
 Autorisations
 -------------
 
-Ce squelette se base sur l'interface normale des autorisations de SPIP, qui
-veut que seuls les administrateurs ont le droit de publier/modifier un
-article. Pour un wiki ouvert à un public plus large, il faudra créer un schéma
-d'autorisations adapté à la situation.
-
-
-Les autorisations exploitées par ce squelette sont les deux suivantes :
-
-	autoriser('modifier', 'article', $id_article)
-et
-	autoriser('publierdans', 'rubrique', $id_rubrique)
-
-
-Pour (par exemple) ouvrir à tous les visiteurs (enregistrés ou non) la possibilité d'éditer un article, et réserver aux seuls rédacteurs la possibilité de créer une nouvelle page, on créera deux fonctions d'autorisation suivantes (à installer dans mes_options.php, cf. fichier d'exemple).
-
-
-Il faut aussi signaler au plugin crayons qu'un simple visiteur peut avoir
-des droits d'édition : pour cela ajouter aussi dans ecrire/mes_options la
-fonction suivante :
-
-function analyse_droits_rapide() {
-    return true;
-}
-
-
-[Ces fonctions pourraient à terme faire l'objet d'un plugin configurable]
-
+Les autorisations sont gérées dans le formulaire de configuration CFG dans 
+l'administration de SPIP
 
 
 Cantonner ces articles
