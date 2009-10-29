@@ -19,19 +19,17 @@
 
 	<div id="content">
 	[(#REM) Contenu principal : affichage du plan ]
-		<B_secteurs>
 		<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre} {titre !=squelette}>
         	<fieldset>
 			<h2><a href="#URL_RUBRIQUE">#TITRE</a></h2>
 
 			[(#REM) Sur le Web ]
        		<B_sites1>
-       		<ul class="site">
+       		<ul>
 				<BOUCLE_sites1(SITES) {id_rubrique} {par nom_site}{doublons}>
 				<BOUCLE_couleur1(MOTS){id_syndic}>#SET{ma_couleur,#DESCRIPTIF*}</BOUCLE_couleur1>
-				<li class="site" style="background-color:#GET{ma_couleur};">
-				[<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" title="#NOM_SITE">
-				(#NOM_SITE|couper{80})</a>]&nbsp;&nbsp;
+				<li class="site" style="color:#(#GET{ma_couleur});">
+				[<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" title="#NOM_SITE">(#NOM_SITE|couper{80})</a>]&nbsp;&nbsp;
 				[(#PLUGIN{pb_pagerank}|oui)
 				<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]
 				</li>
@@ -41,7 +39,7 @@
 
 			[(#REM) Sous-rubriques ]
 			<B_rubriques>
-			<ul class="rubri">
+			<ul>
 				<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
 				<li>
 					<strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
@@ -49,7 +47,7 @@
 
 					[(#REM) Sur le Web ]
 	        		<B_sites>
-	        		<ul class="site">
+	        		<ul>
 						<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}{doublons}>
 						<BOUCLE_couleur2(MOTS){id_syndic}>#SET{ma_couleur,#DESCRIPTIF*}</BOUCLE_couleur2>
 						<li class="site" style="background-color:#GET{ma_couleur};">
@@ -67,8 +65,6 @@
 			</B_rubriques>
 			</fieldset>
 		</BOUCLE_secteurs>
-		<h4 class="pas_de"><:annuaire:pas_rss:></h4>
-		<//B_secteurs>
 	</div><!--#content-->
 
 	[(#REM) Navigation => colonne droite :]
