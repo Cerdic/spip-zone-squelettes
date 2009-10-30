@@ -62,8 +62,6 @@ svn checkout svn://zone.spip.org/spip-zone/_plugins_/gestion_documents
 sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/contact
 sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_plugins_/edition_plein_ecran
-sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/protection_formulaires
 #svn checkout svn://zone.spip.org/spip-zone/_plugins_/woopra
 #svn checkout svn://zone.spip.org/spip-zone/_plugins_/notation
