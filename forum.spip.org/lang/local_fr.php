@@ -18,6 +18,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // D
 'download' => 'T&eacute;l&eacute;charger la derni&egrave;re version',
+'derniers' => 'Derniers messages',
+'derniers_categorie' => 'Derniers messages dans cette cat&eacute;gorie',
 
 // F
 'forum_votre_email' => 'Votre adresse email (si vous souhaitez recevoir les r&eacute;ponses)&nbsp;:',
@@ -28,9 +30,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'interetreponse' => 'Indiquez l\'int&eacute;r&ecirc;t que vous portez &agrave; cette r&eacute;ponse',
 'inutile' => 'inutile',
 
+// L
+'login_login2' => 'Login',
 
 // M
 'merci' => 'merci',
+'messages' => 'messages',
 
 
 // N
@@ -51,8 +56,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rechercher' => 'Rechercher',
 'rechercher_forums' => 'Rechercher dans les forums',
 'rechercher_tout_site' => 'tout le site',
-'reponses' => 'R&eacute;ponses',
+'reponses' => 'r&eacute;ponse(s)',
 
+// S
+'suggestion' => 'Avant de continuer, avez-vous consult&eacute; les pages suivantes&nbsp;? Elles contiennent peut-&ecirc;tre la r&eacute;ponse que vous cherchez.',
+'suivi_thread' => 'Syndiquer ce fil de forum',
 
 // T
 'thememessage' => 'Th&egrave;me de ce forum :',
