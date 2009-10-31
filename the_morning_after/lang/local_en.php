@@ -35,22 +35,30 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //E
 'email_auteur' => 'Email the author',
+'end_404' => 'was not found on this server.',
+'error' => 'uh oh!',
 
 //F
 'featured_post' => 'Featured post',
 'for' => 'for',
 
+//O
+'oops' => 'Oops!',
+
 //R
-'retour_accueil' => 'Lost? Go back to the home page',
+'retour_accueil' => 'Lost? Go back to the',
+'retour_accueil_link' => 'home page',
 'rubriques' => 'Categories',
 'recherche' => 'Search',
 'rss_section' => 'RSS feed fot this section',
 
 //S
 'subscribe' => 'Subscribe',
+'start_404' => 'The requested URL',
 
 //T
 'tags' => 'Tags',
+
 
 //W
 'welcome' => 'Welcome to'

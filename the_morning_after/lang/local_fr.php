@@ -36,19 +36,26 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //E
 'email_auteur' => '&Eacute;crire &agrave; l&#39;auteur',
+'end_404' => 'n&#39;existe pas',
+'error' => 'oh oh!',
 
 //F
 'featured_post' => 'S&eacute;lection',
 'for' => 'pour',
 
+//O
+'oops' => 'Oups !',
+
 //R
-'retour_accueil' => 'Perdu ? Retour &agrave; la page d&#39;accueil',
+'retour_accueil' => 'Perdu ? Retour &agrave; la ',
+'retour_accueil_link' => 'page d&#39;accueil',
 'rubriques' => 'Cat&eacute;gories',
 'recherche' => 'Recherche',
 'rss_section' => 'Fil RSS pour cette rubrique',
 
 //S
 'subscribe' => 'Abonnement',
+'start_404' => 'La page demand&eacute;e',
 
 //T
 'tags' => '&Eacute;tiquettes',
