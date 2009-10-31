@@ -61,13 +61,13 @@
 		[(#REM) lien vers la synthése des flux rss si j'ai des articles]
 		<BOUCLE_syndic(SYNDIC_ARTICLES) {age<180} {0,1}>
 		<a  href="#URL_PAGE{herbier}"><:sur_web:></a>
-		<br class="nettoyeur" />
+		<br />
 		</BOUCLE_syndic>
 		[(#REM) Un rss]
 		<a  href="#URL_PAGE{backend}" rel="alternate" title="<:syndiquer_site:>">
 		<img src="#CHEMIN{feed.png}" alt="<:icone_suivi_activite:>" width="16" height="16" />
 		&nbsp;RSS&nbsp;2.0</a>
-		<br class="nettoyeur" />
+		<br/>
 		[(#REM) Le igoogle]
 		<a  href="http://fusion.google.com/add?source=atgs&amp;feedurl=#URL_SITE_SPIP/spip.php?page=backend" target="_blank">
 		<img src="http://www.gmodules.com/ig/images/plus_google.gif" border="0" alt="<:annuaire:ajouter_google:>" />
@@ -77,13 +77,14 @@
 	<fieldset id="sites">
 		<BOUCLE_total(SITES)> </BOUCLE_total>
 		[<:annuaire:actuellement:>(#TOTAL_BOUCLE)&nbsp;<:sites_web:> <:annuaire:epingle_site:>
-		<a class="link" href="#URL_SITE_SPIP">#NOM_SITE_SPIP**</a>]</B_total>
+		<a class="link" href="#URL_SITE_SPIP">#NOM_SITE_SPIP**</a>]
+		[(#PLUGIN{pb_pagerank}|oui)
+		<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE_SPIP}><br />
+		]</B_total>
 		<br class="nettoyeur" />
 		[<:annuaire:popu_site:>&nbsp;(#POPULARITE_SITE|>={0}).]<br />
-		<BOUCLE_maj(SITES){!par date}{0,1}><:dernier_ajout:>&nbsp;: [(#DATE|affdate).]
-		</BOUCLE_maj><br />
-	<!--[(#PLUGIN{pb_pagerank}|oui)#NOM_SITE_SPIP**&nbsp;<:annuaire:page_rank_de:>
-		<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE_SPIP}><br />]-->
+		<BOUCLE_maj(SITES){!par date}{0,1}><:dernier_ajout:>&nbsp;: [(#DATE|affdate).]</BOUCLE_maj><br />
+
 	</fieldset><!--#sites-->
 	<br class="nettoyeur" />
 	<fieldset id="copy">
@@ -93,7 +94,7 @@
 		<strong>[(#NOM_SITE_SPIP|textebrut)]</strong>
 		<br /> <:annuaire:conception|ucfirst:>: <a href="http://www.pierre-kuhn.org" title="<:annuaire:conception:>">Pierre KUHN</a>
 		[<br /> <:annuaire:style:> &nbsp;(#CONFIG{config_general/styliste}|propre|ptobr)]
-	<p />
+	<br />
 	<a href="http://validator.w3.org/check?uri=referer">
 	<img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a>
 	<br />

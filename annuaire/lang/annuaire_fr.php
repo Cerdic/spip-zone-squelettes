@@ -184,7 +184,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //P
 'page_herbier' => 'Herbier',
 'page_contact' => 'Contact',
-'page_rank_de' => 'a un page rank de',
 'par' => 'par',
 'partenaire' => 'partenaires',
 'pas_new' => 'Pas de nouveaut&eacute;s',
