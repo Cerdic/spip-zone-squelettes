@@ -36,14 +36,19 @@
 				[<div class="#EDIT{premier_message} premier_message">(#TEXTE|typo_couleur)</div>]
 				
 				
-				<a class="fonction" id="commenter" href="[(#URL_PAGE{forum_post})][&amp;(#PARAMETRES_FORUM)]" title="<:sarkaspip:ecrire_reponse:>"></a>
+				<a class="fonction" id="commenter" href="[(#URL_PAGE{forum_post, #PARAMETRES_FORUM})]" title="<:sarkaspip:ecrire_reponse:>"></a>
 				<br class="nettoyeur">
 				
 				<a id="forum[(#ID_FORUM)]" name="forum[(#ID_FORUM)]" href="#forum[(#ID_FORUM)]"></a>
 
+		<B_reponses>
+	#ANCRE_PAGINATION
+	[(#CONFIG{sarkaspip_forum/position_pagination_reponses, 2}|match{^(1|3)$}|?{' '})
+		[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_forum/modele_pagination_reponses}})</div>]
+	]				
 				<table>
 					
-					<BOUCLE_reponses(FORUMS){id_thread}{plat}{par date}{doublons}>
+					<BOUCLE_reponses(FORUMS){id_thread}{plat}{par date}{doublons}{pagination #CONFIG{sarkaspip_forum/pas_pagination_reponses, 20}}>
 
 					<tr class="ligne_sujet row[(#COMPTEUR_BOUCLE|alterner{2,1})]">
 						<td  id="forum#ID_FORUM" class="detail_auteur">
@@ -80,8 +85,18 @@
 						</td>
 					</tr>
 						
-					</BOUCLE_reponses>				
+					</BOUCLE_reponses>		
+
+	
 				</table>
+	[(#CONFIG{sarkaspip_forum/position_pagination_reponses, 2}|match{^(2|3)$}|?{' '})
+		[<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_forum/modele_pagination_reponses}})</div>]
+	]				
+
+		</B_reponses>			
+				
+				
+				
 			</div>
 		</div>
 	</div>
