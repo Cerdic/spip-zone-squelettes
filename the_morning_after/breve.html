@@ -29,14 +29,12 @@
         		 
 				<BOUCLE_parent(RUBRIQUES){id_rubrique}><h2 class="post_cat #EDIT{titre}">#TITRE</h2></BOUCLE_parent>
 
-				[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
-				<h2 class="post_name #EDIT{titre}" id="post-#ID_ARTICLE #EDIT{soustitre}">#TITRE</h2>
-				[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
+				<h2 class="post_name #EDIT{titre}" id="post-#ID_BREVE #EDIT{soustitre}">#TITRE</h2>
 
 				<div class="post_meta">
 
 					[<:par_auteur:> (#LESAUTEURS) <span class="dot">&sdot;</span> ]
-					<abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>[ (<:texte_date_publication_anterieure:> (#DATE_REDAC|affdate)).][ <span class="dot">&sdot;</span> <a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_breve:></a>]
+					<abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>[ <span class="dot">&sdot;</span> <a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_breve:></a>]
 					[(#PLUGIN{socialtags}|oui)
 						[(#INCLURE{fond=noisettes/socialtags}{id_article})]
 						]	
@@ -47,15 +45,36 @@
 				</div>
 				
 				<div class="surlignable">
-					[<div class="#EDIT{chapo} chapo"><strong>(#CHAPO|image_reduire{500,0})</strong></div>]
 					[<div class="#EDIT{texte} texte entry-content">[<div class="captionright">(#LOGO_BREVE||image_reduire{200,200})</div>](#TEXTE|image_reduire{500,0})</div>]
 				</div>
 
 
 				[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
-
+				<B_tags>
+				<div class="post_meta">
+            		<img src="#CHEMIN{images/bg/tag_green.png}" class="posttag" alt="<:tags:>" style="border: 0px;" />
+					<BOUCLE_tags(MOTS){id_breve}{", "}>
+						<a href="#URL_MOT" rel="tag">#TITRE</a>
+					</BOUCLE_tags>
+					
+            	</div>
+				</B_tags>
+				
 				[<div class="notes surlignable"><h2 class="pas_surlignable"><:info_notes:></h2>(#NOTES)</div>]
-            	
+
+				[(#PLUGIN{socialtags}|oui)
+						[(#INCLURE{fond=noisettes/socialtags}{id_article})]
+						]	
+
+				<div id="comments">   <!-- start comments -->
+					[(#REM) Forum de la breve ]
+					<a href="#forum" name="forum" id="forum"></a>
+					[<p class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_breve:></a></p>]
+					<INCLURE{fond=inc-forum}{id_breve} />
+					
+				</div> <!-- end comments -->
+				
+				
             </div> <!-- end first -->
 
         <INCLURE{fond=inc-sidebar}>    
