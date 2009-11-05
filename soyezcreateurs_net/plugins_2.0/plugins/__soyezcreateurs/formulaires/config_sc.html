@@ -62,63 +62,34 @@
 				<li class="fieldset">
 					<fieldset>
 						<h3 class="legend"><:soyezcreateurs:cfg_apparence_header:></h3>
-							[(#LOGO_SITE_SPIP_SURVOL||non)
+							<BOUCLE_HeaderBanner(MOTS){type=_HeaderBanner}{0,1}>[(#SET{headerbanner,[(#LOGO_MOT_NORMAL||image_reduire{300,0})]})]</BOUCLE_HeaderBanner>
+							[(#LOGO_SITE_SPIP_SURVOL||non|et{#GET{headerbanner}|non})
 								[(#SET{c_header_bk,#CONFIG{soyezcreateurs_couleurs/header_bk,#664e3b}})]
-								<table style="margin:0 5px 0 5px;border:1px solid #888;border-collapse:collapse;text-align: center;">
-									<caption><:soyezcreateurs:cfg_choix_banniere_tableau:></caption>
-									<thead>
-										<tr>
-											<th style="border:1px solid #888;width:75%;"><:soyezcreateurs:cfg_banniere:></th>
-											<th style="border:1px solid #888;"><:soyezcreateurs:cfg_nom_banniere:></th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td style="height:150px;border:1px solid #888;background: [(#GET{c_header_bk})][ url((#CHEMIN{images/fond_degrade_fonce_en_bas2.png}|image_sepia{[(#GET{c_header_bk})]}|image_aplatir{jpg}|extraire_attribut{src})) repeat-x bottom];">
-												&nbsp;
-											</td>
-											<td style="border:1px solid #888;">
-												<:soyezcreateurs:cfg_banniere_degrade:>
-											</td>
-										</tr>
-										<tr>
-											<td style="height:150px;border:1px solid #888;background: [(#GET{c_header_bk})][ url((#CHEMIN{images/trame_metal.jpg}|image_sepia{[(#GET{c_header_bk})]}|image_aplatir{jpg}|extraire_attribut{src})) repeat];">
-												&nbsp;
-											</td>
-											<td style="border:1px solid #888;">
-												<:soyezcreateurs:cfg_banniere_metal:>
-											</td>
-										</tr>
-										<tr>
-											<td style="[height: [(#CHEMIN{images/bandeauhaut_soyezcreateur.png}|hauteur)]px; background: [(#GET{c_header_bk})] url(/(#CHEMIN{images/bandeauhaut_soyezcreateur.png}|image_sepia{[(#GET{c_header_bk})]}|image_aplatir{jpg}|extraire_attribut{src})) no-repeat right;]">
-												&nbsp;
-											</td>
-											<td style="border:1px solid #888;">
-												<:soyezcreateurs:cfg_banniere_lentilles:>
-											</td>
-										</tr>
-									</tbody>
-								</table>
+								[(#SET{bandeg,<:soyezcreateurs:cfg_banniere_degrade:><span style="display:block; height:150px;border:1px solid #888;background: [(#GET{c_header_bk})][ url((#CHEMIN{images/fond_degrade_fonce_en_bas2.png}|image_sepia{[(#GET{c_header_bk})]}|image_aplatir{jpg}|extraire_attribut{src})) repeat-x bottom];">&nbsp;</span>})]
+								[(#SET{banmet,<:soyezcreateurs:cfg_banniere_metal:><span style="display:block; height:150px;border:1px solid #888;background: [(#GET{c_header_bk})][ url((#CHEMIN{images/trame_metal.jpg}|image_sepia{[(#GET{c_header_bk})]}|image_aplatir{jpg}|extraire_attribut{src})) repeat];">&nbsp;</span>})]
+								[(#SET{banlen,<:soyezcreateurs:cfg_banniere_lentilles:><span style="display:block; [height: [(#CHEMIN{images/bandeauhaut_soyezcreateur.png}|hauteur)]px; background: [(#GET{c_header_bk})] url(/(#CHEMIN{images/bandeauhaut_soyezcreateur.png}|image_sepia{[(#GET{c_header_bk})]}|image_aplatir{jpg}|extraire_attribut{src})) no-repeat right;]">&nbsp;</span>})]
 								[<ul>(#SAISIE{radio,default_banniere,
 									label=<:soyezcreateurs:cfg_choix_banniere_label:>,
 									datas=#ARRAY{
-										degrade,<:soyezcreateurs:cfg_banniere_degrade:>,
-										metal,<:soyezcreateurs:cfg_banniere_metal:>,
-										lentilles,<:soyezcreateurs:cfg_banniere_lentilles:>,
+										degrade,#GET{bandeg},
+										metal,#GET{banmet},
+										lentilles,#GET{banlen},
 									},
 									defaut=lentilles}
 								)</ul>]
 							]
 						<ul>
+							[(#LOGO_SITE_SPIP_SURVOL||oui|ou{#GET{headerbanner}|oui})
 							[(#SAISIE{radio,afficher_titre,
 								label=<:soyezcreateurs:cfg_afficher_titre_label:>,
 								datas=#ARRAY{
 									invisible,<:soyezcreateurs:cfg_afficher_titre_invisible:>,
 									visible,<:soyezcreateurs:cfg_afficher_titre_visible:>,
 								},
-								explication=[(#ENV{afficher_titre}|=={visible}|?{#NOM_SITE_SPIP})<br />][(#LOGO_SITE_SPIP_SURVOL||image_reduire{300,0})],
+								explication=[(#ENV{afficher_titre}|=={visible}|?{#NOM_SITE_SPIP})<br />][(#LOGO_SITE_SPIP_SURVOL||image_reduire{300,0}|sinon{#GET{headerbanner}})],
 								defaut=invisible}
 							)]
+							]
 							[(#SAISIE{selection,menuhautheader,
 								label=<:soyezcreateurs:cfg_mode_affichage_haut_label:>,
 								datas=#ARRAY{
