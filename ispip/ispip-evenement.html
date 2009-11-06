@@ -1,0 +1,61 @@
+	<BOUCLE_articles(EVENEMENTS) {id_evenement}>
+		<div id="even[(#ID_EVENEMENT)]" class="panel" title="[(#TITRE|supprimer_numero)]"  selected="true">
+
+			<div class="cartouche">  
+				#DEBUT_SURLIGNE
+				[(#LOGO_ARTICLE||image_reduire{300,200})]
+				
+				<h1 class="#EDIT{titre} titre">[(#TITRE|supprimer_numero)]</h1>
+				
+				#FIN_SURLIGNE
+
+				<p><span class="day">[(#DATE_DEBUT|jour)]</span><span class="month">[(#DATE_DEBUT|nom_mois|couper{3})].</span>	
+						
+						<abbr class="published" title="[(#DATE|date_iso)]">[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
+					  
+					[(#HORAIRE|=={oui}|?{
+					   [(#REM) memes heures ?]
+					     [(#DATE_DEBUT|=={#DATE_FIN}|?{<small>&agrave
+					[(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)]</small>,''})]
+					   [(#REM) pas memes heures ?]
+					     [(#DATE_DEBUT|!={#DATE_FIN}|?{<small>
+					[(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] &agrave;
+					[(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)]</small>,''})]
+					,''})]
+					,
+					  du [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+					[(#HORAIRE|=={oui}|?{<small>&agrave; partir de
+					  [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)]</small>,''})] au
+					[(#DATE_FIN|nom_jour)]
+					  [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{<small>jusqu'&agrave;
+					  [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)]</small>,''})]  })]</abbr></p>
+
+			</div><!-- cartouche -->
+	
+			#DEBUT_SURLIGNE
+			
+			[<div class="#EDIT{chapo} chapo">Adresse : (#ADRESSE)</div>]
+			<br class="nettoyeur" />
+			
+			[<div class="#EDIT{texte} texte">(#DESCRIPTIF)</div>]
+			#FIN_SURLIGNE
+
+					
+
+			
+			<hr />
+
+			
+		
+		<p><a class="whiteButton" href="#URL_PAGE{ispip-agenda}">L'agenda</a></p>
+			
+		
+		<p><a class="whiteButton" href="#URL_PAGE{ispip}" target="_self"><:accueil_site:></a></p>
+		
+       </div><!-- div id article -->		
+
+   		[(#REM) MENU MOTS CLES ]
+               
+
+</BOUCLE_articles><!-- boucle principale -->
+

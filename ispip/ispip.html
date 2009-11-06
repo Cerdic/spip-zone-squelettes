@@ -11,7 +11,7 @@
 	[(#REM) Icone WebClip pour iPhone/iPod Touch ]
 	[<link rel="apple-touch-icon" href="(#CHEMIN{apple-touch-icon.png})"/>]
 	
-	[(#REM) Balise permettant aux plugins d'inserer des appels javascript ou CSS ]
+	[(#REM) Balise permettant aux plugins d'inserer des appels javascript ou css ]
 	#INSERT_HEAD
 	
 	[(#REM) Appliquer le _blank en fonction de certaines class]
@@ -26,6 +26,7 @@
 	<meta name="viewport" content="width = device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 	<link rel='stylesheet' href='#URL_PAGE{ispip_css}' type='text/css' media="screen" />
 	<script type="application/x-javascript" src="#CHEMIN{iui/iui.js}"></script>
+
 </head>
 
 <body onclick="console.log('Hello', event.target);">
@@ -41,32 +42,36 @@
 	<ul id="home" title="#NOM_SITE_SPIP" selected="true">
 		[<li>(#LOGO_SITE_SPIP||image_reduire{0,50})</li>]
 		<li class="group"><:ispip:sommaire:></li>
-			<BOUCLE_menu_princ(RUBRIQUES) {racine} {par num titre}>
-			[<li><a href="#URL_PAGE{ispip-rubrique,id_rubrique=#ID_RUBRIQUE}">(#TITRE)</a></li>]
-			</BOUCLE_menu_princ>
+		<BOUCLE_menu_princ(RUBRIQUES) {racine} {par num titre}>
+			[<li><a href="#URL_PAGE{ispip-rubrique,id_rubrique=#ID_RUBRIQUE}">(#TITRE|supprimer_numero)</a></li>]
+		</BOUCLE_menu_princ>
 		<li><a href="#auteurs"><:spip:icone_auteurs:></a></li>
 		<li><a href="#mots_list"><:mots_clefs:></a></li>
+		<li class="group">Actualit&eacute;s</li>
+		<li><a href="#URL_PAGE{ispip-breves}">En bref</a></li>
+		<li><a href="#URL_PAGE{ispip-agenda}">Prochainement</a></li>
+		
 		<li class="group"><:ispip:infos:></li>
 			<form class="panel">
 				<ul>
-					<li><a href="#URL_SITE_SPIP" target="_blank"><:ispip:versionclassique:></a></li>
-					<li><a href="http://www.spip-contrib.net/plugin-iSPIP" title="iSPIP" target="_blank"><:ispip:ispip:></a></li>
+					<li><a href="#URL_SITE_SPIP" target = "_blank"><:ispip:versionclassique:></a></li>
+					<li><a href="http://www.spip-contrib.net/plugin-iSPIP" title="iSPIP" target = "_blank"><:ispip:ispip:></a></li>
 				</ul>
 			</form>
 	</ul>
 
 		[(#REM) MENU AUTEURS ]
 		<ul id="auteurs" title="<:spip:icone_auteurs:>">
-			<BOUCLE_auteur_site(AUTEURS) {par nom}>
+		<BOUCLE_auteur_site(AUTEURS) {par nom}>
 			<li><a href="#URL_PAGE{ispip-auteur,id_auteur=#ID_AUTEUR}">#NOM</a></li>
-			</BOUCLE_auteur_site>
+		</BOUCLE_auteur_site>
 		</ul>
 
 		[(#REM) MENU MOTS CLES ]
 		<ul id="mots_list" title="<:mots_clefs:>">
-			<BOUCLE_mots_list(MOTS)>
+		<BOUCLE_mots_list(MOTS)>
 			<li><a href="#URL_PAGE{ispip-mot,id_mot=#ID_MOT}">#TITRE</a></li>
-			</BOUCLE_mots_list>
+		</BOUCLE_mots_list>
 		</ul>
 
 	[(#REM) FORMULAIRE DE RECHERCHE ]
@@ -77,11 +82,12 @@
 			<input type="hidden" name="page" value="ispip-recherche" />
 			<!-- <a class="button leftButton" type="cancel"><:ispip:annuler:></a>
 			<a class="button blueButton" type="submit" id="recherche" name="recherche"><:spip:info_rechercher:></a> -->
-			<input type="text" class="text" name="recherche" id="recherche"  />
-			<input type="submit" class="submit" value="<:spip:info_rechercher:>" />
-			<input type="button" class="button" value="<:ispip:annuler:>" onclick='forms.searchForm.removeAttribute("selected");' />
+			<input type="text" class="forml" name="recherche" id="recherche"  />
+			<input type="submit" value="<:spip:info_rechercher:>" />
+			<input type="button" value="<:ispip:annuler:>" onClick='forms.searchForm.removeAttribute("selected");' />
 		</fieldset>
 	</form>
+
 
 </body>
 </html>
