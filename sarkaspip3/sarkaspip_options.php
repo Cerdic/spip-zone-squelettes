@@ -80,11 +80,134 @@ define('_SARKASPIP_CONFIG_NYROCEROS_BGFOND', '#000000');
 // -- Plugin SOCIALTAGS
 define('_SARKASPIP_CONFIG_SOCIALTAGS_SELECTOR', '#socialtags');
 
-// Declaration des pipelines specifiques a Sarka-SPIP
+// Pipelines specifiques a Sarka-SPIP
+// -- Declaration
 define('_SARKASPIP_PIPELINES', 'colonne_extra_debut:colonne_extra_fin:colonne_navigation_debut:colonne_navigation_fin:menu_pages_speciales_fin:bandeau_haut_debut:bandeau_haut_fin:bandeau_bas_debut:bandeau_bas_fin:pied_debut:pied_fin');
 $pipelines = explode(':', _SARKASPIP_PIPELINES);
 foreach ($pipelines as $_pipe) {
 	if (!isset($GLOBALS['spip_pipeline'][$_pipe]))
-		$GLOBALS['spip_pipeline'][$_pipe] = '';
+		$GLOBALS['spip_pipeline'][$_pipe] = "|personnaliser_$_pipe";
 }
+// -- Fonction d'insertion en debut de colonne extra
+function personnaliser_colonne_extra_debut($flux){
+	if (defined('_PERSO_COLONNE_EXTRA_DEBUT')) {
+		$noisettes = explode(':', _PERSO_COLONNE_EXTRA_DEBUT);
+		foreach ($noisettes as $_fond) {
+			$html = recuperer_fond($_fond, array_merge($flux['args'], array('ajax' => true)));
+			$flux['data'] .= $html;
+		}
+	}
+	return $flux;
+}
+// -- Fonction d'insertion en fin de colonne extra
+function personnaliser_colonne_extra_fin($flux){
+	if (defined('_PERSO_COLONNE_EXTRA_FIN')) {
+		$noisettes = explode(':', _PERSO_COLONNE_EXTRA_FIN);
+		foreach ($noisettes as $_fond) {
+			$html = recuperer_fond($_fond, array_merge($flux['args'], array('ajax' => true)));
+			$flux['data'] .= $html;
+		}
+	}
+	return $flux;
+}
+// -- Fonction d'insertion en debut de colonne navigation
+function personnaliser_colonne_navigation_debut($flux){
+	if (defined('_PERSO_COLONNE_NAVIGATION_DEBUT')) {
+		$noisettes = explode(':', _PERSO_COLONNE_NAVIGATION_DEBUT);
+		foreach ($noisettes as $_fond) {
+			$html = recuperer_fond($_fond, array_merge($flux['args'], array('ajax' => true)));
+			$flux['data'] .= $html;
+		}
+	}
+	return $flux;
+}
+// -- Fonction d'insertion en fin de colonne navigation
+function personnaliser_colonne_navigation_fin($flux){
+	if (defined('_PERSO_COLONNE_NAVIGATION_FIN')) {
+		$noisettes = explode(':', _PERSO_COLONNE_NAVIGATION_FIN);
+		foreach ($noisettes as $_fond) {
+			$html = recuperer_fond($_fond, array_merge($flux['args'], array('ajax' => true)));
+			$flux['data'] .= $html;
+		}
+	}
+	return $flux;
+}
+// -- Fonction d'insertion en fin de menu des pages speciales
+function personnaliser_menu_pages_speciales_fin($flux){
+	if (defined('_PERSO_MENU_PAGES_SPECIALES_FIN')) {
+		$noisettes = explode(':', _PERSO_MENU_PAGES_SPECIALES_FIN);
+		foreach ($noisettes as $_fond) {
+			$html = recuperer_fond($_fond, $flux['args']);
+			$flux['data'] .= $html;
+		}
+	}
+	return $flux;
+}
+// -- Fonction d'insertion en debut de bandeau haut
+function personnaliser_bandeau_haut_debut($flux){
+	if (defined('_PERSO_BANDEAU_HAUT_DEBUT')) {
+		$noisettes = explode(':', _PERSO_BANDEAU_HAUT_DEBUT);
+		foreach ($noisettes as $_fond) {
+			$html = recuperer_fond($_fond, $flux['args']);
+			$flux['data'] .= $html;
+		}
+	}
+	return $flux;
+}
+// -- Fonction d'insertion en fin de bandeau haut
+function personnaliser_bandeau_haut_fin($flux){
+	if (defined('_PERSO_BANDEAU_HAUT_FIN')) {
+		$noisettes = explode(':', _PERSO_BANDEAU_HAUT_FIN);
+		foreach ($noisettes as $_fond) {
+			$html = recuperer_fond($_fond, $flux['args']);
+			$flux['data'] .= $html;
+		}
+	}
+	return $flux;
+}
+// -- Fonction d'insertion en debut de bandeau bas
+function personnaliser_bandeau_bas_debut($flux){
+	if (defined('_PERSO_BANDEAU_BAS_DEBUT')) {
+		$noisettes = explode(':', _PERSO_BANDEAU_BAS_DEBUT);
+		foreach ($noisettes as $_fond) {
+			$html = recuperer_fond($_fond, $flux['args']);
+			$flux['data'] .= $html;
+		}
+	}
+	return $flux;
+}
+// -- Fonction d'insertion en fin de bandeau bas
+function personnaliser_bandeau_bas_fin($flux){
+	if (defined('_PERSO_BANDEAU_BAS_FIN')) {
+		$noisettes = explode(':', _PERSO_BANDEAU_BAS_FIN);
+		foreach ($noisettes as $_fond) {
+			$html = recuperer_fond($_fond, $flux['args']);
+			$flux['data'] .= $html;
+		}
+	}
+	return $flux;
+}
+// -- Fonction d'insertion en debut de pied
+function personnaliser_pied_debut($flux){
+	if (defined('_PERSO_PIED_DEBUT')) {
+		$noisettes = explode(':', _PERSO_PIED_DEBUT);
+		foreach ($noisettes as $_fond) {
+			$html = recuperer_fond($_fond, $flux['args']);
+			$flux['data'] .= $html;
+		}
+	}
+	return $flux;
+}
+// -- Fonction d'insertion en fin de pied
+function personnaliser_pied_fin($flux){
+	if (defined('_PERSO_PIED_FIN')) {
+		$noisettes = explode(':', _PERSO_PIED_FIN);
+		foreach ($noisettes as $_fond) {
+			$html = recuperer_fond($_fond, $flux['args']);
+			$flux['data'] .= $html;
+		}
+	}
+	return $flux;
+}
+
 ?>
