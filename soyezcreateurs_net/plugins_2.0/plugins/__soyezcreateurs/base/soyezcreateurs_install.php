@@ -179,6 +179,13 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			create_mot("_Specialisation_Sites", "NoIndex", "Pour ne pas indexer les articles syndiqués d'un site.", "Affecter ce mot clef aux sites dont les articles syndiqués ne doivent pas être affichés dans l'index des moteurs de recherche.\n\nÀ noter : les liens seront quand même suivis. But : éviter du duplicate content.\n\nVoir la documentation de Google webmaster Central sur les [Meta tags->http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=79812].");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.12','non');
 		}
+		if (version_compare($current_version,'2.1.13','<')) {
+			include_spip('base/soyezcreateurs');
+			spip_log("SoyezCreateurs maj 2.1.13", "soyezcreateurs_install");
+		create_mot("_ModePortail", "Goodies", "Affecter ce mot clef aux objets SPIP devant apparaitre dans la zone des Goodies (en bas du sommaire du mode portail, sur une colonne).", "S'applique aux articles uniquement.\n\nLe site prendra les 3 derniers articles ayant ce mot clef");
+		create_mot("_ModePortail", "ZoomSur", "Affecter ce mot clef à l'objet que vous voulez placer dans le cadre « Zoom sur » (facultatif).\n\nLe site prendra le dernier articles ayant ce mot clef", "S'applique aux articles uniquement.");
+			ecrire_meta($nom_meta_base_version,$current_version='2.1.13','non');
+		}
 
 		/*
 		#En attente
