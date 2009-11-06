@@ -37,28 +37,35 @@
         
         <div id="arch_content" class="column span-14">   <!-- start page_content -->
         
-			<div class="column span-3 first">    
- 
-				<h2 class="archive_name #EDIT{qui}">#NOM</h2>        
-            		[(#LOGO_AUTEUR||image_reduire{190,0})]
-				[<div class="#EDIT{bio} chapo">(#BIO|image_reduire{190,0})</div>]
+			<div class="column span-3 first">   
+				<div class="vcard">[(#REM) microformat vcard]
+				<h2 class="archive_name #EDIT{qui} fn">#NOM</h2>        
+            		[(#LOGO_AUTEUR||image_reduire{190,0}|inserer_attribut{class,photo})]
+				[<div class="#EDIT{bio} note chapo">(#BIO|image_reduire{190,0})</div>]
             	<div class="archive_meta">
             			
-            			<div class="archive_number">
+            		<div class="archive_number">
 						#NOM <:auteur_count:> <BOUCLE_count(ARTICLES){id_auteur} />[(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE&nbsp;<:billets:>,#TOTAL_BOUCLE&nbsp;<:billet:>}) <:for:> #NOM_SITE_SPIP]<//B_count>
  
 					</div>
+
+            		[<div class="archive_lien #EDIT{hyperlien}">
+					<:voir_en_ligne:> <a href="(#URL_SITE)" class="url org spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a>
+					</div>]
+
  
 					<div class="archive_email">
 						<a class="email_auteur"><:email_auteur:></a>
 						[(#FORMULAIRE_ECRIRE_AUTEUR{id_auteur})]
 					</div>
+
 					[(#PGP|?{
-						<div class="archive_pgp">
+					<div class="archive_pgp">
 						<a href="[(#URL_PAGE{pgp, id_auteur=#ID_AUTEUR})]" class="pgp_auteur"><:cryptographic_key:></a>	
-						</div>
+					</div>
 					})]
             	</div>
+				</div>[(#REM) / vcard]
  
 			</div>
  
