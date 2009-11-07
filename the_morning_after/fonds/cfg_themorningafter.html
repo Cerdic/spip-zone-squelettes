@@ -23,12 +23,16 @@ modifier ces param&#232;tres.-->
 </fieldset>
 
 <fieldset class="cadre"><legend><:cfg_nuage:></legend>
-	<label for="complement_nom_site"><:cfg_nuage_info:></label><br />
-	<input type="text" name="nuage" id="nuage" value="#ENV{nuage}" size="2" class="fond2"  /><br />
+	<p><:cfg_nuage_info:></p><br />
 	<B_groupes>
 	<:cfg_nuage_liste_groupes:>
 	<ul>
-	<BOUCLE_groupes(GROUPES_MOTS)><li>#TITRE: <strong>#ID_GROUPE</strong></li></BOUCLE_groupes>
+	  <BOUCLE_groupes(GROUPES_MOTS)><li>
+        <label for="noid_nuage[]" >
+        <input type="checkbox" name="noid_nuage[]" 
+        [(#ENV{noid_nuage}|oui) [(#ID_GROUPE|in_array{#ENV{noid_nuage}}|oui) checked="checked"] ]
+        value="#ID_GROUPE" />#TITRE: <strong>#ID_GROUPE</strong></label>
+    </li></BOUCLE_groupes>
 	</ul>
 	</B_groupes>
 	<:cfg_nuage_aucun:>

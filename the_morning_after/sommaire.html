@@ -124,10 +124,14 @@
 					<INCLURE{fond=inc-ad_home}>
 						
 					[(#PLUGIN{nuage}|oui)
+          [(#CONFIG{themorningafter/noid_nuage}|oui)
+          [(#SET{notin, [(#CONFIG{themorningafter/noid_nuage}|implode{|})]})]
+          ]
 					[<div id="side_tag_cloud">
 						<h2 class="mast"><:browse:></h2>
-						(#MODELE{nuage_tma})
-            			</div>]]	
+						(#MODELE{nuage}{notid=#GET{notin}})
+            			</div>]
+          ]	
 
 					[(#REM) Inscription au site ]
 					#FORMULAIRE_INSCRIPTION
