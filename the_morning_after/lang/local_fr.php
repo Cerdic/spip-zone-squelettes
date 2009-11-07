@@ -1,6 +1,6 @@
 <?php
 
-// This is a SPIP language file  --  Ceci est un fichier langue de SPIP nomm� admin_lang genere le NOW()
+// This is a SPIP language file  --  Ceci est un fichier langue de SPIP nommé admin_lang genere le NOW()
 // langue / language = fr
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
@@ -26,7 +26,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'comments' => 'commentaires',
 'continue_reading' => 'Lire la suite',
 'cryptographic_key' =>'Cl&eacute; cryptographique',
-
 
 //D
 'dernier_article' => 'Dernier billet',
@@ -61,7 +60,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'tags' => '&Eacute;tiquettes',
 
 //W
-'welcome' => 'Bienvenue sur'
+'welcome' => 'Bienvenue sur',
+
+// CFG
+'cfg_themorningafter' => 'Configurer The Morning After pour SPIP',
+'cfg_descriptions_site' =>  'Slogan du site',
+'cfg_complement_nom_site' =>  'Cette phrase s\'affichera sous le nom du site.',
+'cfg_nuage' =>  'Nuage de mot-cl&eacute;s',
+'cfg_nuage_info' =>  'Si vous avez activ&eacute; le <a href=\'http://www.spip-contrib.net/Nuage-de-mots-cles\'>plugin Nuage</a>, indiquez l\'id_groupe du groupe de mot-cl&eacute;s &agrave; afficher.',
+'cfg_nuage_liste_groupes' => 'Groupes de mot-cl&eacute;s disponibles&nbsp;:',
+'cfg_nuage_aucun' => 'Veuillez cr&eacute;er d\'abord un groupe de mots'
 
 );
 

@@ -50,7 +50,17 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'tags' => 'Claves',
 
 //W
-'welcome' => 'Bienvenido/a a'
+'welcome' => 'Bienvenido/a a',
+
+// CFG
+'cfg_themorningafter' => 'Configurer The Morning After pour SPIP',
+'cfg_descriptions_site' =>  'Slogan du site',
+'cfg_complement_nom_site' =>  'Cette phrase s\'affichera sous le nom du site.',
+'cfg_nuage' =>  'Nuage de mot-cl&eacute;s',
+'cfg_nuage_info' =>  'Si vous avez activ&eacute; le <a href=\'http://www.spip-contrib.net/Nuage-de-mots-cles\'>plugin Nuage</a>, indiquez l\'id_groupe du groupe de mot-cl&eacute;s &agrave; afficher.',
+'cfg_nuage_liste_groupes' => 'Groupes de mot-cl&eacute;s disponibles&nbsp;:',
+'cfg_nuage_aucun' => 'Veuillez cr&eacute;er d\'abord un groupe de mots'
+
 
 );
 

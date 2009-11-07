@@ -61,7 +61,17 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 
 //W
-'welcome' => 'Welcome to'
+'welcome' => 'Welcome to',
+
+// CFG
+'cfg_themorningafter' => 'The Morning After for SPIP: settings',
+'cfg_descriptions_site' =>  'Website baseline',
+'cfg_complement_nom_site' =>  'This sentence will be displayed under the website\'s title.',
+'cfg_nuage' =>  'Tag cloud',
+'cfg_nuage_info' =>  'If you use the <a href=\'http://www.spip-contrib.net/Nuage-de-mots-cles\' hreflang=\"fr\"Nuage plugin</a>, seelct the id_groupe of the keyword group to use.',
+'cfg_nuage_liste_groupes' => 'Available keyword groups:',
+'cfg_nuage_aucun' => 'Please create a keyword group first.'
+
 
 );
 
