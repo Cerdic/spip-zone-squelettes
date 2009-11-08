@@ -8,7 +8,9 @@
 		<li[(#COMPTEUR_BOUCLE|alterner{' class="odd"',''})]><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
 	</BOUCLE_articles_recents>
 	</ul>
+[(#VAL{cartouche}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|oui)
 	[(#INCLURE{fond=modeles/documentsjoints}{id_rubrique})]
+]
 	[(#CONFIG{soyezcreateurs/nouveauteparbranche, }|=={on}|oui)[(#INCLURE{fond=noisettes/cartouches/cartouche_nouveaute_branche}{id_rubrique})]]
 </div>
 	</B_articles_recents>
@@ -20,6 +22,9 @@
 		<li[(#COMPTEUR_BOUCLE|alterner{' class="odd"',''})]><BOUCLE_articles_plusdun(ARTICLES) {id_rubrique} {1,1} {lang}><a href="#URL_RUBRIQUE" title="[(#_SsRubriques:DESCRIPTIF|attribut_html)] ([(#_SsRubriques:DATE|nom_jour)] [(#_SsRubriques:DATE|affdate)])">[(#_SsRubriques:TITRE)]</a></BOUCLE_articles_plusdun><BOUCLE_articles_unseul(ARTICLES) {id_rubrique} {0,1} {lang}><a href="#URL_ARTICLE" title="[(#_SsRubriques:DESCRIPTIF|attribut_html)] ([(#_SsRubriques:DATE|nom_jour)] [(#_SsRubriques:DATE|affdate)])">[(#_SsRubriques:TITRE)]</a></BOUCLE_articles_unseul><a href="#URL_RUBRIQUE" title="[(#_SsRubriques:DESCRIPTIF|attribut_html)] ([(#_SsRubriques:DATE|nom_jour)] [(#_SsRubriques:DATE|affdate)])">[(#_SsRubriques:TITRE)]</a><//B_articles_unseul>  <//B_articles_plusdun></li>
 		</BOUCLE_SsRubriques>
 	</ul>
+[(#VAL{cartouche}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|oui)
+	[(#INCLURE{fond=modeles/documentsjoints}{id_rubrique})]
+]
 	[(#CONFIG{soyezcreateurs/nouveauteparbranche, }|=={on}|oui)[(#INCLURE{fond=noisettes/cartouches/cartouche_nouveaute_branche}{id_rubrique})]]
 </div>
 		</B_SsRubriques>
