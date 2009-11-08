@@ -10,26 +10,21 @@
 		[(#ENV{type, 1}|!={2}|?{' '})
 			jQuery("#select_mois1").prepend('<option value=1><:sarkaspip:janvier:></option>');
 			jQuery("#select_mois1 option:first").attr({selected: "selected"});
-			jQuery("#bloc_mois1").hide();
-			jQuery("#bloc_format_pagination option:first").attr({selected: "selected"});
-			jQuery("#bloc_format_pagination").hide();
+			jQuery("#bloc_saison").hide();
 		]
 		[(#ENV{type_resume, oui}|!={oui}|?{' '})
 			jQuery("#bloc_taille_resume").hide();
 		]
 		jQuery("input[@name='type']").change(function() {
 			if (jQuery("input[@name='type']:checked").val() == 2) {
-				jQuery("#bloc_mois1").show();
+				jQuery("#bloc_saison").show();
 				jQuery("#select_mois1 option:first").remove();
 				jQuery("#select_mois1 option:first").attr({selected: "selected"});
-				jQuery("#bloc_format_pagination").show();
 			}
 			else {
 				jQuery("#select_mois1").prepend('<option value=1><:sarkaspip:janvier:></option>');
 				jQuery("#select_mois1 option:first").attr({selected: "selected"});
-				jQuery("#bloc_mois1").hide();
-				jQuery("#bloc_format_pagination option:first").attr({selected: "selected"});
-				jQuery("#bloc_format_pagination").hide();
+				jQuery("#bloc_saison").hide();
 			}
 			jQuery(this).blur();
 		});	
@@ -55,20 +50,6 @@
 			{explication=<:sarkaspip:cfg_inf_agenda_id:>}
 			{secteur=agenda}
 			{env}>
-<!-- MISE EN COMMENTAIRE TANT QUE LE PLUGIN AGENDA N'EST PAS INTEGRE 
-		<p><:sarkaspip:cfg_inf_choix_agenda:></p>
-		<label>
-			<input type="radio" name="plugin" value="1" [(#ENV{plugin, 1}|=={1}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_choix_agenda_1:>
-		</label>
-		[(#PLUGIN{AGENDA}|?{' '})
-		<br />
-		<label>
-			<input type="radio" name="plugin" value="2" [(#ENV{plugin, 1}|=={2}|?{checked="checked"})] />
-			<:sarkaspip:cfg_lbl_choix_agenda_2:>
-		</label>
-		]
- -->
 	</fieldset>
 
 	<fieldset>
@@ -94,7 +75,7 @@
 			<input type="radio" name="type" value="2" [(#ENV{type, 1}|=={2}|?{checked="checked"})] />
 			<:sarkaspip:cfg_lbl_agenda_modele_2:>
 		</label>
-		<div id="bloc_mois1">
+		<div id="bloc_saison">
 			<p><:sarkaspip:cfg_inf_agenda_mois1:></p>
 			<label><:sarkaspip:cfg_lbl_agenda_mois1:></label>
 			<select name="mois1" id="select_mois1">
@@ -110,22 +91,15 @@
 				<option value="11"[ (#ENV{mois1, 1}|=={11}|?{selected="selected"})]><:sarkaspip:novembre:></option>
 				<option value="12"[ (#ENV{mois1, 1}|=={12}|?{selected="selected"})]><:sarkaspip:decembre:></option>
 			</select>
+			<br /><br /> 
+			<label><:sarkaspip:cfg_lbl_pagination_format:></label>
+			<select name="format_pagination" id="select_pagination">
+				<option value="annee" [(#ENV{format_pagination, annee}|=={annee}|?{selected="selected"})]><:sarkaspip:cfg_itm_pagination_format_1:></option>
+				<option value="periode" [(#ENV{format_pagination, annee}|=={periode}|?{selected="selected"})]><:sarkaspip:cfg_itm_pagination_format_2:></option>
+				<option value="periode_abregee" [(#ENV{format_pagination, annee}|=={periode_abregee}|?{selected="selected"})]><:sarkaspip:cfg_itm_pagination_format_3:></option>
+			</select>
 		</div>
 	</fieldset>
-	
-	<div id="bloc_format_pagination">
-		<fieldset>
-			<legend><:sarkaspip:cfg_lgd_agenda_pagination:></legend>
-				<p><:sarkaspip:cfg_inf_agenda_pagination_1:></p>
-				<label><:sarkaspip:cfg_lbl_pagination_format:></label>
-				<select name="format_pagination">
-					<option value="annee" [(#ENV{format_pagination, annee}|=={annee}|?{selected="selected"})]><:sarkaspip:cfg_itm_pagination_format_1:></option>
-					<option value="periode" [(#ENV{format_pagination, annee}|=={periode}|?{selected="selected"})]><:sarkaspip:cfg_itm_pagination_format_2:></option>
-					<option value="periode_abregee" [(#ENV{format_pagination, annee}|=={periode_abregee}|?{selected="selected"})]><:sarkaspip:cfg_itm_pagination_format_3:></option>
-				</select>
-				<br /> 
-		</fieldset>
-	</div>
 	
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_agenda_tri:></legend>
