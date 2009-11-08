@@ -38,7 +38,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'hebergeur'             =>'H&eacute;berg&eacute; par <a class="spip_out" href="@url@">@nom@</a>',
     'voir_en_ligne'         =>'Voir en ligne',
     'abonnement'            =>'Lettre d\'informations',
-    
+    'sondage'                   =>'Sondage',
     
     
     //cfg
@@ -68,6 +68,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'cfg_nom_hebergeur'         =>'Nom de l\'h&eacute;bergeur',
     'cfg_nyceros_pagination'    =>'Proposer de prendre les images non affich&eacute;es dans Nyceros',
     'cfg_infos_site'            =>'Informations sur le site'
+
 );  
 
 ?>
