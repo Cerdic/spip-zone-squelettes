@@ -27,9 +27,9 @@
        		<B_sites1>
        		<ul>
 				<BOUCLE_sites1(SITES) {id_rubrique} {par nom_site}{doublons}>
-				<BOUCLE_couleur1(MOTS){id_syndic}>#SET{ma_couleur,#DESCRIPTIF*}</BOUCLE_couleur1>
-				<li class="site" style="color:#(#GET{ma_couleur});">
+				<li>
 					[<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" title="#NOM_SITE">(#NOM_SITE|couper{120})</a>]
+					<BOUCLE_logo(MOTS){id_syndic}>[(#LOGO_MOT||inserer_attribut{alt, #TITRE|supprimer_numero})]</BOUCLE_logo>
 					[(#PLUGIN{pb_pagerank}|oui)<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}>]
 				</li>
 				</BOUCLE_sites1>
@@ -48,9 +48,9 @@
 	        		<B_sites>
 	        		<ul>
 						<BOUCLE_sites(SITES) {id_rubrique} {par nom_site}{doublons}>
-						<BOUCLE_couleur2(MOTS){id_syndic}>#SET{ma_couleur,#DESCRIPTIF*}</BOUCLE_couleur2>
-						<li class="site" style="color:#GET{ma_couleur};">
+						<li>
 							[<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" title="#NOM_SITE">(#NOM_SITE|couper{120})</a>]&nbsp;
+							<BOUCLE_logo2(MOTS){id_syndic} {'  '}>[(#LOGO_MOT||inserer_attribut{alt, #TITRE|supprimer_numero})]</BOUCLE_logo2>
 							[(#PLUGIN{pb_pagerank}|oui)<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}>]
 						</li>
 						</BOUCLE_sites>

@@ -27,16 +27,13 @@
             #ANCRE_PAGINATION
 		<BOUCLE_partenaires(SITES){titre_mot=partenaire}{notation}{!par nombre_votes} {pagination #CONFIG{annuaire_partenaire/pas_pagination_partenaire, 5}}>
 		<li>
-			<BOUCLE_couleur1(MOTS){id_syndic}>#SET{ma_couleur,#DESCRIPTIF*}</BOUCLE_couleur1>
-			<fieldset style="background-color:#GET{ma_couleur};">
-			<a href="[(#ID_SYNDIC|generer_url_entite{site})]">
-			<object>#NOM_SITE</object>
-			</a>
+			<fieldset>
+			<a href="[(#ID_SYNDIC|generer_url_entite{site})]"><object>#NOM_SITE</object></a>
+			<BOUCLE_logo(MOTS){id_syndic} {'  '}>[(#LOGO_MOT||inserer_attribut{alt, #TITRE|supprimer_numero})]</BOUCLE_logo>
 			[<a class="img" href="[(#ID_SYNDIC|generer_url_entite{site})]"[ title="(#NOM_SITE|texte_backend)"]>
 			(#LOGO_SITE||image_reduire{150,100}||inserer_attribut{alt,#NOM_SITE|texte_backend})</a>]
 			#FORMULAIRE_JAIME_JAIMEPAS
-			[(#PLUGIN{pb_pagerank}|oui)
-			<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]
+			[(#PLUGIN{pb_pagerank}|oui)<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]
 			<p class="texte_chapo">#DESCRIPTIF|ptobr</p>
 			</fieldset>
 		</li>

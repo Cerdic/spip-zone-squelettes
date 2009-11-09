@@ -67,12 +67,11 @@
             <object><:sur_web:></object>
             <ul>
                 <BOUCLE_sites(SITES) {id_rubrique} {par nom_site} {pagination #CONFIG{annuaire_rubrique/pas_pagination_art, 5}}>
-                <BOUCLE_couleur1(MOTS){id_syndic}>#SET{ma_couleur,#DESCRIPTIF*}</BOUCLE_couleur1>
-				<li style="background-color:#GET{ma_couleur};">
+                <li>
 				[<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" title="(#NOM_SITE|texte_backend)">
 				#NOM_SITE</a>]
-				[(#PLUGIN{pb_pagerank}|oui)
-				<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]
+				<BOUCLE_logo(MOTS){id_syndic} {'  '}>[(#LOGO_MOT||inserer_attribut{alt, #TITRE|supprimer_numero})]</BOUCLE_logo>
+				[(#PLUGIN{pb_pagerank}|oui)<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]
 				#FORMULAIRE_JAIME_JAIMEPAS</li>
 				</BOUCLE_sites>
             </ul>
@@ -83,7 +82,7 @@
         </B_sites>
         [<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
 		
-		#FORMULAIRE_SITE{id_rubrique}
+		#FORMULAIRE_PROPOSER_SITE{id_rubrique}
 
 	</div><!--#content-->
 

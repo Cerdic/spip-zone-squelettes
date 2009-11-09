@@ -10,19 +10,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'accueil_option' =>'Certain plugins sont optionnel :',
 'accueil_option_contact' =>'Le plugins "contact" permets ou non d\'affich&eacute; la page de
 							 contact',
-'accueil_option_pub' => 'Si vous souhaitez int&eacute;gr&eacute; dans votre site des pub google
-						, il vous faudra cr&eacute;&eacute; le mot clef "pub" dans le groupe
-						 "Affichage" et dans une rubrique nomm&eacute; "squelette"',
-'accueil_option_visiteurs' =>'Le plugins "visiteur connect&eacute;s" permets d\'afficher dans
-							 l\'ent&ecirc;te le nombre de visiteur connect&eacute;s',
+'accueil_option_pub' => 'Si vous souhaitez int&eacute;gr&eacute; dans votre site des pub google, il vous faudra cr&eacute;&eacute; le mot clef "pub" dans le groupe "Affichage" et dans une rubrique nomm&eacute; "squelette"',
+'accueil_option_visiteurs' =>'Le plugins "visiteur connect&eacute;s" permets d\'afficher dans l\'ent&ecirc;te le nombre de visiteur connect&eacute;s',
 'accueil_requis' =>'Les requis pour un bon fonctionnement du site',
-'accueil_requis_1' =>'Pour un bon r&eacute;f&eacute;rencement de votre site, ils vous faut 
-					cr&eacute;er :
+'accueil_requis_1' =>'Pour un bon r&eacute;f&eacute;rencement de votre site, ils vous faut cr&eacute;er :
 					<br />un groupe de mot clef "_META"
 					<br />les mots clefs keywords et description',
-'accueil_requis_2' =>'Pour afficher des partenaires sur la page "Partenaires", il vous faut
-					cr&eacute;&eacute; le groupe "Affichage" avec le mot clef "partenaire" et
-					 attibuer le &agrave; chacun des sites voulus.',
+'accueil_requis_2' =>'Pour afficher des partenaires sur la page "Partenaires", il vous faut cr&eacute;&eacute; le groupe "Affichage" avec le mot clef "partenaire" et attibuer le &agrave; chacun des sites voulus.',
 'actuellement' => 'Il y a actuellement ',
 'affichage' => 'L\'affichage',
 'ajouter_google' => 'ajouter &agrave; google',
@@ -85,8 +79,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'css_bandeau' => 'Bandeau',
 'css_bandeau_com' => 'Pour modifier les couleurs du bandeau "ent&ecirc;te"',
 'css_boucles' => 'Boucles',
-'css_couleurs' => 'Cela revient à choisir la couleur d\'arri&egrave;re plan, la couleur d\'avant plan
-					utilis&eacute;e pour le texte et les liens et la couleur de survol des liens.',
+'css_couleurs' => 'Cela revient à choisir la couleur d\'arri&egrave;re plan, la couleur d\'avant
+					 plan utilis&eacute;e pour le texte et les liens et la couleur de survol des
+					 liens.',
 'css_couleurs_' => 'Choisissez vos couleurs pour ',
 'css_couleurs_fond_expli' =>'Cela revient à choisir la couleur d\'arri&egrave;re plan sur une page.',
 'css_couleurs_fond_page' =>'Choisissez la couleur pour le fond de ',
@@ -118,9 +113,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 				<br />R&eacute;gl&eacute; vos styles du plan.',
 'descriptif_plan_complet' => '<h4>R&eacute;glage de la page plan complet</h4>
 				<br />R&eacute;gl&eacute; vos styles sur la page plan complet.
-				<br />Cette page est en fait un plan complet qui affiche m&ecirc;me les 
-				rubriques pour les quelles vous avez pas en core de sites, cette page
-				 facilitera la proposition de site par le visiteur.',
+				<br />Cette page est en fait un plan complet qui affiche m&ecirc;me les rubriques pour les quelles vous avez pas en core de sites, cette page facilitera la proposition de site par le visiteur.',
 'descriptif_recherche' => '<h4>R&eacute;glage de la page recherche</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur la page recherche.',
 'descriptif_rubrique' => '<h4>R&eacute;glage de la page rubrique</h4>
@@ -131,12 +124,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 				<br />R&eacute;gl&eacute; vos boucles et styles du sommaire.',
 'descriptif_colonne' => '<h4>R&eacute;glage du style</h4>
 				<br />Choisissez vos couleurs pour les colonnes et pied de page.',
+'description' => 'Description',
+'description_site' => 'Description du site',
 
 //E
 'epingle_site' => '&eacute;pingl&eacute;s sur',
 'est_rattache' => 'est rattach&eacute; &agrave;',
-//F
 
+//F
+'faites_lien' => 'Faites un lien vers',
 //G
 'grp_vide' => 'R&eacute;f&eacute;renc&eacute; des sites avec un mot clef pour ce groupe',
 
@@ -148,8 +144,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'indexation_info' => 'Indexation du site par les moteurs de recherche',
 'indexation_oui' => 'Indexer le site dans les moteurs de recherche',
 'indexation_non' => 'Ne pas indexer le site dans les moteurs de recherche',
-'infos' => 'Afficher une infos sur toutes les rubriques (si vous la souhaitez diff&eacute;rentes
-			utiliser la description.)',
+'infos' => 'Afficher une infos sur toutes les rubriques (si vous la souhaitez diff&eacute;rentes utiliser la description.)',
 
 //J
 
@@ -157,12 +152,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //L
 'le_mot' => 'Le mot',
-'le_site' => 'Le site a',
+'le_site' => 'Le site',
 
 //M
 'menu_site' => 'le menu du site',
 'miniature_sites_miwim' => 'Miniatures de sites avec Miwim Thumbs',
 'miniatures' => 'miniatures',
+'mot_site' => 'Mot cl&eacute;',
+
 //N
 'nav_bas' => 'la colonne "navigation" partie basse',
 'nav_copy' => 'le bloc "copyright"',
@@ -175,6 +172,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'nbr_articles' => 'Nombre d\'articles :',
 'nbr_sites' => 'Nombre de sites :',
 'new' => 'la boucle "nouveaut&eacute;s"',
+'nom_proprio_site' => 'Votre nom :',
+'nom_site' => 'Titre du site',
 'nous_avons' => 'Nous avons',
 'nouveaute' =>'Site nouveaut&eacute;',
 
@@ -188,8 +187,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'partenaire' => 'partenaires',
 'pas_new' => 'Pas de nouveaut&eacute;s',
 'pas_pagination' => 'Nombre d\'&eacute;l&eacute;ments par page',
-'pas_partenaire' => 'Nous n\'avons pas de partenaires &agrave; ce jour, si vous le souhaitez,
-					rejoingnez-nous.',
+'pas_partenaire' => 'Nous n\'avons pas de partenaires &agrave; ce jour, si vous le souhaitez, rejoingnez-nous...',
 'pas_pop' => 'Pas de populaires, car pas de votes ou pas assez de site',
 'pas_sites' => 'Pas de site rattach&eacute; &agrave; ce mot clef.',
 'pas_zard' => 'Pas de sites au hasard, enregistrez-en ...',
@@ -199,6 +197,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'pop' => 'la boucle "populaire"',
 'popu_site' => 'La popularit&eacute; du site est de ',
 'populaire' => 'Site populaire',
+'proposer_site_annuaire' => 'Proposition de site dans l\'annuaire',
+'proposer_rubrique' => 'Proposer une nouvelle rubrique :',
+'proposition_site' => 'Proposition de site',
+'proposition_site_annuaire' => 'Proposition de site dans l\'annuaire',
 
 //Q
 
@@ -208,6 +210,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rechercher' => 'Rechercher',
 'referencement' => 'R&eacute;f&eacute;rencement',
 'ref_site' => 'R&eacute;f&eacute;rencement de mon site',
+'remercier' => 'Pour remercier',
 'rss' => 'Nombres d\'articles syndiqu&eacute; par page.',
 'rss_contient' => 'Le flux RSS contient ',
 'rubrique_contient' => 'La rubrique contient',
@@ -216,21 +219,23 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'sites' => 'sites',
 'site_mois' => 'le site du mois',
 'supprimer' => 'Supprimer',
+'sur_site' => 'sur le site',
 'style' => 'Style :',
-'styliste' => 'Indiquer la personne qui a changer les couleurs : (afficher colonne de droite en
-			 bas uniquement si remplis), possibilit&eacute;e de mettre du code spip ou html.',
+'styliste' => 'Indiquer la personne qui a con&Ccedil;u le design : (afficher colonne de droite en			 bas uniquement si remplis), possibilit&eacute;e de mettre du code spip ou html.',
 
 //T
 'toutes_rubriques' => 'Toutes les rubriques',
 
 //U
+'url_flux' => 'URL du flux rss',
 'utilisation' => 'Utilisation',
-'utilisation_expli_1' => 'Pour pouvoir la configur&eacute;e, il vous faut activ&eacute; le
-						 plugins.',
-'utilisation_expli_2' => 'Vous pouvez configurez cette page parce que le plugin "contact" est
-						 activ&eacute;.',
+'utilisation_expli_1' => 'Pour pouvoir la configur&eacute;e, il vous faut activ&eacute; le plugins.',
+'utilisation_expli_2' => 'Vous pouvez configurez cette page parce que le plugin "contact" est activ&eacute;.',
+'utiliser_form_contact' => 'utilisez le formulaire de contact',
 
 //V
+'votre_nom' => 'Votre nom',
+'votre_email' => 'Votre e-mail',
 
 //W
 
