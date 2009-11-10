@@ -11,7 +11,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'annuler' => 'Annuler',
 'actus' => 'Actualit&eacute;s',
 'agenda' => 'Prochainement',
-'selection_articles' => '&Agrave; la une',
+'select_articles' => '&Agrave; la une',
 
 );
 
