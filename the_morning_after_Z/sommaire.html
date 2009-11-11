@@ -1,0 +1,147 @@
+[(#REM) Un cache plus court, pour la boucle syndic_articles]
+#CACHE{3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head profile="http://gmpg.org/xfn/11">
+	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+	<INCLURE{fond=inc-head}>
+</head>
+	<body>   <!--start body-->
+
+    <div class="container">   <!--start container-->
+    
+       <INCLURE{fond=inc-entete}>
+
+	<div id="topbanner" class="column span-14">   <!-- start top banner -->
+            <div class="pagetitle">
+                // <:accueil_site:>
+            </div>
+      </div>   <!-- end top banner --> 
+        
+        <div id="home_content" class="column span-14">   <!-- start home_content -->
+        
+            <div id="home_left" class="column span-7 first">   <!-- start home_left -->
+            
+				[(#REM) Dernier article ]
+				<B_latest_post>
+				
+				<div id="latest_post">   <!-- start latest_post -->
+
+					<h2 class="mast"><:dernier_article:></h2>
+										
+					<BOUCLE_latest_post(ARTICLES) {par date}{inverse} {0,1}{doublons}>
+					
+					[<div id="latest_post_image">
+					(#LOGO_ARTICLE_RUBRIQUE||largeur|>{470}|?{[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{470}|image_recadre{470,175,center}|inserer_attribut{'style',float:left;margin-left:0})],[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{470,175})]})
+					</div>]
+										
+					<h3 class="latest_post_title #EDIT{titre}" id="post-#ID_ARTICLE"><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h3>
+					
+					[<div class="#EDIT{intro}">(#INTRODUCTION)</div>]
+					
+					<div class="latest_post_meta">
+						<span class="latest_read_on"><a href="#URL_ARTICLE" rel="bookmark" title="#TITRE"><:continue_reading:></a></span>
+						<BOUCLE_messages0(FORUMS){id_article}{plat} />[<span class="latest_comments"><a href="#URL_ARTICLE#forum">(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE&nbsp;<:comments:>,#TOTAL_BOUCLE&nbsp;<:comment:>})</a></span>]<//B_messages0>
+												
+						<BOUCLE_parent(RUBRIQUES){id_rubrique}><span class="latest_category"><a href="#URL_RUBRIQUE">#TITRE</a></span></BOUCLE_parent>
+					</div>
+					</BOUCLE_latest_post>
+				</div>   <!-- end latest_post -->
+				</B_latest_post>
+				
+				<B_home_featured>
+				<div id="home_featured">   <!-- start home_featured -->
+					<h3 class="home_featured"><:featured_post:></h3>
+					
+					<BOUCLE_home_featured(ARTICLES){par date}{inverse}{0,1}{doublons}{titre_mot=featured}>
+					
+					<div class="feat_content">
+										
+						[<div class="feat_thumb">
+						(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_masque{images/featured/temp.png}|inserer_attribut{class,featured_home_img})					
+						</div>]
+												
+						<div class="feat_title #EDIT{titre}"><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></div>
+						
+						[<div class="feat_exc #EDIT{intro}">						
+							(#INTRODUCTION)
+						</div>]
+											
+					</div>
+					
+					</BOUCLE_home_featured>
+						
+				</div>   <!-- end home_featured -->
+				</B_home_featured>
+
+				<INCLURE{fond=inc-asides}{env}{ajax}>
+				
+            </div>   <!-- end home_left -->
+            
+            
+            <div id="home_right" class="column span-7 last">
+            
+            	<div id="home_about">
+					
+					<h2 class="mast3"><:welcome:> #NOM_SITE_SPIP</h2>
+					
+					#DESCRIPTIF_SITE_SPIP		
+				
+				</div>
+					
+				<div class="column span-4 first">
+					[(#REM) Derniers articles ]
+					<B_articles_recents>
+					<h2 class="mast"><:derniers_articles:></h2>
+					
+					<BOUCLE_articles_recents(ARTICLES) {par date}{inverse}{0,5}{doublons}>
+					
+					<div class="home_recent_post">
+					
+						[<div class="home_recent_thumb">
+						(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_masque{images/thumbs/thumb.jpg}|inserer_attribut{class,thumb_home_img})					
+						</div>]
+						
+						<div class="home_recent_title" id="post-#ID_ARTICLE">
+							<a href="#URL_ARTICLE" rel="bookmark">#TITRE</a>
+						</div>
+						
+						<div class="home_recent_date">
+							<abbr [ title="(#DATE|date_iso)"]>[(#DATE|affdate_jourcourt)]</abbr>
+						</div>
+						
+						[<div class="home_recent_auth">
+							<:par_auteur:> (#LESAUTEURS)
+						</div>]
+
+					</div>
+
+					</BOUCLE_articles_recents>
+					</B_articles_recents>
+			
+					<INCLURE{fond=inc-ad_home}>
+						
+					[(#PLUGIN{nuage}|oui)
+          [(#CONFIG{themorningafter/noid_nuage}|oui)
+          [(#SET{notin, [(#CONFIG{themorningafter/noid_nuage}|implode{|})]})]
+          ]
+					[<div id="side_tag_cloud">
+						<h2 class="mast"><:browse:></h2>
+						(#MODELE{nuage}{notid=#GET{notin}})
+            			</div>]
+          ]	
+
+					[(#REM) Inscription au site ]
+					#FORMULAIRE_INSCRIPTION
+					
+            	</div>
+            
+                <INCLURE{fond=inc-sidebar}>        
+            
+            </div>
+        
+        </div>   <!-- end home_content -->        
+        
+<INCLURE{fond=inc-footer}{skel=#SQUELETTE}>

@@ -1,0 +1,50 @@
+<!-- titre=<:cfg_themorningafter:> -->
+
+<!-- autoriser=webmestre -->
+
+<!-- refus=Seuls les webmestres du site sont autoris&#233;s &#224; 
+modifier ces param&#232;tres.-->
+
+<!-- descriptif=
+<h4><:cfg_themorningafter:></h4>
+-->
+
+<!-- nom=themorningafter -->
+
+#CACHE{0}
+
+<form method="post" action="#SELF">
+<div>
+<div>[(#ENV{_cfg_}|form_hidden)]</div>
+
+<fieldset class="cadre"><legend><:cfg_descriptions_site:></legend>
+	<label for="complement_nom_site"><:cfg_complement_nom_site:></label><br />
+	<input type="text" name="complement_nom_site" id="complement_nom_site" value="#ENV{complement_nom_site}" size="70" class="fondl"  /><br />
+</fieldset>
+
+<fieldset class="cadre"><legend><:cfg_nuage:></legend>
+	<p><:cfg_nuage_info:></p><br />
+	<B_groupes>
+	<:cfg_nuage_liste_groupes:>
+	<ul>
+	  <BOUCLE_groupes(GROUPES_MOTS)><li>
+        <label for="noid_nuage[]" >
+        <input type="checkbox" name="noid_nuage[]" 
+        [(#ENV{noid_nuage}|oui) [(#ID_GROUPE|in_array{#ENV{noid_nuage}}|oui) checked="checked"] ]
+        value="#ID_GROUPE" />#TITRE: <strong>#ID_GROUPE</strong></label>
+    </li></BOUCLE_groupes>
+	</ul>
+	</B_groupes>
+	<:cfg_nuage_aucun:>
+	<//B_groupes>
+</fieldset>
+
+<br />
+
+<div>
+<input type="submit" name="_cfg_ok" value="<:oK:>" class="fondo" />
+<input type="reset" value="<:reset:>" class="fondo" />
+<input type="submit" name="_cfg_delete" value="<:supprimer:>" class="fondo" />
+</div>
+</div>
+</form>
