@@ -6,11 +6,9 @@
 				[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{300,200})</div>]
 			</form>
 
-			<B_art_select>
-				<li class="group"><:ispip:select_articles:></li>
-			<BOUCLE_art_select(ARTICLES pb_selection){par ordre}{spip_pb_selection.id_rubrique=#ID_RUBRIQUE}{doublons selection}>
-				[<li><a href="#URL_PAGE{ispip-article,id_article=#ID_ARTICLE}">(#TITRE|supprimer_numero)</a></li>]
-			</BOUCLE_art_select>
+			[(#CONFIG{plugin}|match{pb_selection}|?{' '})
+				[(#INCLURE{fond=ispip-inc-articles-une-rubrique}{id_rubrique})]
+			]
 
 			<B_sous_rub>
 				<li class="group"><:sous_rubriques:></li>
@@ -28,11 +26,11 @@
 
 			<B_art_list>
 				<li class="group"><:articles:></li>
-			<BOUCLE_art_list(ARTICLES){id_rubrique}{!par date}{doublons selection}>
+			<BOUCLE_art_list(ARTICLES){id_rubrique}{!par date}>
 				[<li><a href="#URL_PAGE{ispip-article,id_article=#ID_ARTICLE}">(#TITRE|supprimer_numero)</a></li>]
 			</BOUCLE_art_list>
 
-			[(#REM) Documents joints a l'article ]
+			[(#REM) Documents joints a la rubrique ]
 			<B_documents_joints>
 			<form class="panel">
 				<h2><:titre_documents_joints:></h2>
