@@ -2,6 +2,7 @@
 	Head standard de toutes les pages ; les elements specifiques
 	(title, description) figurent dans le squelette article.html
 ]
+
 [(#REM) Preciser le charset ]
 <meta http-equiv="Content-Type" content="text/html; charset=#CHARSET" />
 
@@ -17,15 +18,24 @@
 [(#REM) Feuille de style par defaut pour les formulaires de SPIP ]
 [<link rel="stylesheet" href="(#CHEMIN{spip_formulaires.css}|direction_css)" type="text/css" media="projection, screen, tv" />]
 
-[(#REM) Feuille de style CSS pour l'affichage du site a l'ecran ]
-[<link rel="stylesheet" href="(#URL_PAGE{collection.css}|direction_css)" type="text/css" media="projection, screen, tv" />]
+[(#CHEMIN{inc-theme-head.html}|oui)
+#INCLURE{fond=inc-theme-head,env}
+]
 
-[(#REM) Feuille de style CSS pour l'affichage du site a l'ecran personalise]
-[(#CHEMIN{collection_perso.css.html}|oui)[<link rel="stylesheet" href="(#URL_PAGE{collection_perso.css}|direction_css)" type="text/css" media="projection, screen, tv" />]]
+[(#REM) Feuille de style CSS pour l'affichage du site a l'ecran ]
+[<link rel="stylesheet" href="(#CHEMIN{habillage.css}|direction_css)" type="text/css" media="projection, screen, tv" />]
+
+[<link rel="stylesheet" href="(#CHEMIN{collection_obligatoire.css}|direction_css)" type="text/css" media="projection, screen, tv" />]
+
+[(#CHEMIN{habillage.css}|non)<link rel="stylesheet" href="[(#URL_PAGE{collection.css}|direction_css)]" type="text/css" media="projection, screen, tv" />]
 
 [(#REM) Feuille de style CSS pour l'impression ]
 [<link rel="stylesheet" href="(#CHEMIN{impression.css}|direction_css)" type="text/css" media="print" />]
 
+[(#REM) Feuille de style personnalisee pour surcharger les precedentes
+	A noter par defaut cette css n'existe pas
+]
+[<link rel="stylesheet" href="(#CHEMIN{perso.css}|direction_css)" type="text/css" media="all" />]
 
 [(#REM) Balise permettant aux plugins d'inserer des appels javascript ou css ;
 	C'est ici que SPIP va inserer l'appel de la librairie jQuery
