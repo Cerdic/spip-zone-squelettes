@@ -1,0 +1,29 @@
+<BOUCLE_article(ARTICLES){id_article}>
+<div class="info-objet">
+            <h1[ class="(#EDIT{titre})"]>#TITRE</h1>
+            [(#CONFIG{collection/afficher_date_redac}|oui)
+            [<div><strong><:collection:date_objet:></strong> : <span class="date">(#DATE_REDAC|affdate)</span></div>]]
+            [(#CONFIG{collection/afficher_date}|oui)
+            [<div><strong><:collection:date_ajout:></strong> : <span class="date">(#DATE|affdate)</span></div>]
+            ]
+            
+
+</div>
+            
+            
+        <div class="texte"><INCLURE{fond=listes/mots-article}{id_article}>
+        [(#CONFIG{collection/pagination}|=={0}|oui)
+        <INCLURE{fond=listes/documents}{id_article}{titre=#TITRE}>]
+        [(#CONFIG{collection/pagination}|=={0}|non)
+        <INCLURE{fond=listes/documents_pag}{id_article}{titre=#TITRE}{ajax}>]
+        
+        [<div class="[(#EDIT{texte})]">
+        (#TEXTE)
+        </div>]
+        <div class="spacer"></div>
+        </div>
+        [<div class="notes">(#NOTES)</div>]
+        
+        
+        <INCLURE{fond=listes/forums,env}>
+</BOUCLE_article>
