@@ -1,39 +1,27 @@
-	<BOUCLE_articles(ARTICLES) {id_article}>
-		<div id="art[(#ID_ARTICLE)]" class="panel" title="[(#TITRE|supprimer_numero)]"  selected="true">
+	<BOUCLE_article(ARTICLES) {id_article}>
+		<div id="art[(#ID_ARTICLE)]" class="panel"[ title="(#TITRE|supprimer_numero|attribut_html|couper{80})"]  selected="true">
 
-			<div class="cartouche">  
-				#DEBUT_SURLIGNE
+			<div class="cartouche">
 				[(#LOGO_ARTICLE||image_reduire{300,200})]
 				[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
 				<h1 class="#EDIT{titre} titre">[(#TITRE|supprimer_numero)]</h1>
 				[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
-				#FIN_SURLIGNE
-
-				<p><small>[(#DATE|nom_jour) ][(#DATE|affdate)], <:par_auteur:> 
-					<BOUCLE_auteur_art1(AUTEURS) {id_article}>
-						<a href="#URL_PAGE{ispip-auteur,id_auteur=#ID_AUTEUR}">#NOM</a>
-					</BOUCLE_auteur_art1>
-				</small></p>
-
-				[(#REM) Inclure le modele des liens de traductions ]
+				<p><small>[(#DATE|nom_jour) ][(#DATE|affdate)]<B_auteur_art1>, <:par_auteur:><BOUCLE_auteur_art1(AUTEURS) {id_article}><a href="#URL_PAGE{ispip-auteur,id_auteur=#ID_AUTEUR}">#NOM</a></BOUCLE_auteur_art1></small></p>
 				#MODELE{article_traductions}
-
-			</div><!-- cartouche -->
-	
-			#DEBUT_SURLIGNE
+			</div><!--.cartouche-->
+			
 			[<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
 			[<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
 			<br class="nettoyeur" />
 			[<p class="#EDIT{hyperlien} lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out" target="_self">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
 			[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{300,200})</div>]
-			#FIN_SURLIGNE
-
+            
 			[(#REM) Portfolio : album d'images ]
 			<B_documents_portfolio>
 			<div id="documents_portfolio">
 				<h2><:info_portfolio:></h2>
 				<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
-				[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|couper{80}|texte_backend)"]>(#FICHIER|copie_locale|image_reduire{0,60}|inserer_attribut{alt,[(#TITRE|supprimer_numero|couper{80}|texte_backend)]})</a>]
+				[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|attribut_html|couper{80})"]>(#FICHIER|copie_locale|image_reduire{0,60}|inserer_attribut{alt,[(#TITRE|supprimer_numero|attribut_html|couper{60})]})</a>]
 				</BOUCLE_documents_portfolio>
 			</div>
 			</B_documents_portfolio>
@@ -45,7 +33,7 @@
 			</div>
 			</BOUCLE_afficher_document>
 
-			[<div class="ps"><h2><:info_ps:></h2>#DEBUT_SURLIGNE<div class="#EDIT{ps}">(#PS)</div>#FIN_SURLIGNE</div>]
+			[<div class="ps"><h2><:info_ps:></h2><div class="#EDIT{ps}">(#PS)</div></div>]
 
 			[(#REM) Autres documents joints a l'article ]
 			<B_documents_joints>
@@ -63,7 +51,7 @@
 			</div>
 			</B_documents_joints>
 
-			[<div class="notes"><h2><:info_notes:></h2>#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
+			[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
 
 			<hr />
 
@@ -79,17 +67,15 @@
 	
 		<p><a class="whiteButton" href="#URL_PAGE{ispip}" target="_self"><:accueil_site:></a></p>
 		
-       </div><!-- div id article -->		
+       </div><!--.panel-->		
 
    		[(#REM) MENU MOTS CLES ]
         <B_mots_de_art>
         <ul id="mots-art[(#ID_ARTICLE)]" title="<:mots_clefs:>">
-        <BOUCLE_mots_de_art(MOTS) {id_article}>
-                <li><a href="#URL_PAGE{ispip-mot,id_mot=#ID_MOT }">#TITRE</a></li>
-        </BOUCLE_mots_de_art>
+        	<BOUCLE_mots_de_art(MOTS) {id_article}>
+            <li><a href="#URL_PAGE{ispip-mot,id_mot=#ID_MOT }">#TITRE</a></li>
+        	</BOUCLE_mots_de_art>
         </ul>
         </B_mots_de_art>
         
-
-</BOUCLE_articles><!-- boucle principale -->
-
+</BOUCLE_article>

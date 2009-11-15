@@ -11,7 +11,7 @@
 	[(#REM) Icone WebClip pour iPhone/iPod Touch ]
 	[<link rel="apple-touch-icon" href="(#CHEMIN{apple-touch-icon.png})"/>]
 	
-	[(#REM) Balise permettant aux plugins d'inserer des appels javascript ou css ]
+	[(#REM) Balise permettant aux plugins d'inserer des appels javascript ou CSS ]
 	#INSERT_HEAD
 	
 	[(#REM) Appliquer le _blank en fonction de certaines class]
@@ -39,7 +39,7 @@
 	</div>
 
 	[(#REM) MENU PRINCIPAL ]
-	<ul id="home" title="#NOM_SITE_SPIP" selected="true">
+	<ul id="home"[ title="(#NOM_SITE_SPIP|attribut_html|couper{80})"] selected="true">
 		[<li>(#LOGO_SITE_SPIP||image_reduire{0,50})</li>]
 		<li class="group"><:ispip:sommaire:></li>
 		<BOUCLE_menu_princ(RUBRIQUES) {racine} {par num titre}>
@@ -56,8 +56,8 @@
 		<li class="group"><:ispip:infos:></li>
 			<form class="panel">
 				<ul>
-					<li><a href="#URL_SITE_SPIP" target = "_blank"><:ispip:versionclassique:></a></li>
-					<li><a href="http://www.spip-contrib.net/plugin-iSPIP" title="iSPIP" target = "_blank"><:ispip:ispip:></a></li>
+					<li><a href="#URL_SITE_SPIP" target="_blank"><:ispip:versionclassique:></a></li>
+					<li><a href="http://www.spip-contrib.net/plugin-iSPIP" title="iSPIP" target="_blank"><:ispip:ispip:></a></li>
 				</ul>
 			</form>
 	</ul>
@@ -77,16 +77,16 @@
 		</ul>
 
 	[(#REM) FORMULAIRE DE RECHERCHE ]
-	<form id="searchForm" class="dialog" action="spip.php" method="get" target = "_self">
+	<form id="searchForm" class="dialog" action="spip.php" method="get" target="_self">
 		<fieldset>
 			<h1><:spip:info_rechercher:></h1>
 			[<input type="hidden" name="lang" value="(#ENV{lang})" />]
 			<input type="hidden" name="page" value="ispip-recherche" />
 			<!-- <a class="button leftButton" type="cancel"><:ispip:annuler:></a>
 			<a class="button blueButton" type="submit" id="recherche" name="recherche"><:spip:info_rechercher:></a> -->
-			<input type="text" class="forml" name="recherche" id="recherche"  />
-			<input type="submit" value="<:spip:info_rechercher:>" />
-			<input type="button" value="<:ispip:annuler:>" onClick='forms.searchForm.removeAttribute("selected");' />
+			<input type="text" class="text" name="recherche" id="recherche"  />
+			<input type="submit" class="submit" value="<:spip:info_rechercher:>" />
+			<input type="button" class="button" value="<:ispip:annuler:>" onclick='forms.searchForm.removeAttribute("selected");' />
 		</fieldset>
 	</form>
 

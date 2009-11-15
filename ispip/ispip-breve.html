@@ -1,34 +1,23 @@
-	<BOUCLE_breves(BREVES) {id_breve}>
-		<div id="art[(#ID_BREVE)]" class="panel" title="[(#TITRE|supprimer_numero)]"  selected="true">
+	<BOUCLE_breve(BREVES) {id_breve}>
+		<div id="art[(#ID_BREVE)]" class="panel"[ title="(#TITRE|supprimer_numero|attribut_html|couper{80})"] selected="true">
 
-			<div class="cartouche">  
-				#DEBUT_SURLIGNE
+			<div class="cartouche">
 				[(#LOGO_BREVE||image_reduire{300,200})]
-				
 				<h1 class="#EDIT{titre} titre">[(#TITRE|supprimer_numero)]</h1>
-				
-				#FIN_SURLIGNE
-
-				<p><small>[(#DATE|nom_jour) ][(#DATE|affdate)]
-				</small></p>
-
-				
-
-			</div><!-- cartouche -->
-	
-			#DEBUT_SURLIGNE
+				<p><small>[(#DATE|nom_jour) ][(#DATE|affdate)]</small></p>
+			</div><!--.cartouche-->
 						
 			<br class="nettoyeur" />
 			[<p class="#EDIT{hyperlien} lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out" target="_self">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
 			[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{300,200})</div>]
-			#FIN_SURLIGNE
+			
 
 			[(#REM) Portfolio : album d'images ]
 			<B_documents_portfolio>
 			<div id="documents_portfolio">
 				<h2><:info_portfolio:></h2>
 				<BOUCLE_documents_portfolio(DOCUMENTS) {id_breve} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
-				[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_BREVE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|couper{80}|texte_backend)"]>(#FICHIER|copie_locale|image_reduire{0,60}|inserer_attribut{alt,[(#TITRE|supprimer_numero|couper{80}|texte_backend)]})</a>]
+				[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_BREVE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|attribut_html|couper{80})"]>(#FICHIER|copie_locale|image_reduire{0,60}|inserer_attribut{alt,[(#TITRE|supprimer_numero|attribut_html|couper{60})]})</a>]
 				</BOUCLE_documents_portfolio>
 			</div>
 			</B_documents_portfolio>
@@ -69,7 +58,7 @@
 	
 		<p><a class="whiteButton" href="#URL_PAGE{ispip}" target="_self"><:accueil_site:></a></p>
 		
-       </div><!-- div id article -->		
+       </div><!--.panel-->		
 
    		[(#REM) MENU MOTS CLES ]
         <B_mots_de_art>
@@ -81,5 +70,4 @@
         </B_mots_de_art>
         
 
-</BOUCLE_breves><!-- boucle principale -->
-
+</BOUCLE_breve>

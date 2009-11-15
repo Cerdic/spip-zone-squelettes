@@ -1,17 +1,12 @@
-	<BOUCLE_articles(EVENEMENTS) {id_evenement}>
-		<div id="even[(#ID_EVENEMENT)]" class="panel" title="[(#TITRE|supprimer_numero)]"  selected="true">
+	<BOUCLE_evenement(EVENEMENTS) {id_evenement}>
+		<div id="even[(#ID_EVENEMENT)]" class="panel"[ title="(#TITRE|supprimer_numero|attribut_html|couper{80})"]  selected="true">
 
-			<div class="cartouche">  
-				#DEBUT_SURLIGNE
+			<div class="cartouche">
 				[(#LOGO_ARTICLE||image_reduire{300,200})]
-				
 				<h1 class="#EDIT{titre} titre">[(#TITRE|supprimer_numero)]</h1>
-				
-				#FIN_SURLIGNE
-
 				<p><span class="day">[(#DATE_DEBUT|jour)]</span><span class="month">[(#DATE_DEBUT|nom_mois|couper{3})].</span>	
 						
-						<abbr class="published" title="[(#DATE|date_iso)]">[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
+						<abbr class="published"[ title="(#DATE|date_iso)"]>[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
 					  
 					[(#HORAIRE|=={oui}|?{
 					   [(#REM) memes heures ?]
@@ -30,15 +25,15 @@
 					  [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{<small>jusqu'&agrave;
 					  [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)]</small>,''})]  })]</abbr></p>
 
-			</div><!-- cartouche -->
+			</div><!--.cartouche-->
 	
-			#DEBUT_SURLIGNE
+			
 			
 			[<div class="#EDIT{chapo} chapo">Adresse : (#ADRESSE)</div>]
 			<br class="nettoyeur" />
 			
 			[<div class="#EDIT{texte} texte">(#DESCRIPTIF)</div>]
-			#FIN_SURLIGNE
+			
 
 					
 
@@ -52,10 +47,6 @@
 		
 		<p><a class="whiteButton" href="#URL_PAGE{ispip}" target="_self"><:accueil_site:></a></p>
 		
-       </div><!-- div id article -->		
-
-   		[(#REM) MENU MOTS CLES ]
-               
-
-</BOUCLE_articles><!-- boucle principale -->
-
+       </div><!--.panel-->
+       
+</BOUCLE_evenement>
