@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title><:poster_message:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+<INCLURE{fond=inc/inc-head}{id_syndic}{lang?}>
+<meta name="robots" content="none" />
+</head>
+<body>
+
+	[(#REM) Afficher l'entete :]
+	<INCLURE{fond=inc/inc-entete}{lang?}>
+	<INCLURE{fond=inc/inc-menu}{class=entete}{lang?}>
+
+<div id="forum">
+        [(#REM) Fil d'Ariane ]
+        <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a>
+    
+			<BOUCLE_contexte_site(SITES) {id_syndic}>
+			<BOUCLE_ariane_site(HIERARCHIE) {id_rubrique}>
+			&gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+			</BOUCLE_ariane_site>
+			&gt; <a href="[(#ID_SYNDIC|generer_url_entite{site})]">[(#NOM_SITE|couper{80})]</a>
+			</BOUCLE_contexte_site>
+    
+            <BOUCLE_contexte_forum(FORUMS) {id_forum}>
+            &gt; <a href="#URL_FORUM">[(#TITRE|couper{80})]</a>
+            </BOUCLE_contexte_forum>
+    
+            &gt; <strong class="on"><:poster_message:></strong>
+	</div><!--#hierarchie-->
+
+    <div id="content">
+    	[(#REM) Contenu principal : affichage du forum ]
+		<h2><:poster_message:></h2>
+
+		<h2><:en_reponse:></h2>
+
+		<BOUCLE_syndic(SITES) {id_syndic}>
+			<fieldset id="nom_site">
+			<object>#NOM_SITE**</object>
+			<BOUCLE_logo(MOTS){id_syndic} {'  '}>[(#LOGO_MOT||inserer_attribut{alt, #TITRE|supprimer_numero})]</BOUCLE_logo>
+			[(#PLUGIN{pb_pagerank}|oui)<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]
+			#DESCRIPTIF
+			</fieldset>
+		</BOUCLE_syndic>
+
+        #FORMULAIRE_FORUM
+	</div><!--#content-->
+	
+	[(#REM) Navigation => colonne droite :]
+	<INCLURE{fond=inc/inc-nav}{id_syndic}{lang?}{ajax}>
+
+	[(#REM) Afficher le pied de page :]
+	<INCLURE{fond=inc/inc-menu}{class=pied}{lang?}{ajax}>
+</div><!--#forum-->
+</body>
+</html>

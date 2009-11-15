@@ -1,6 +1,4 @@
-[(#REM)
-	Un cache plus court, pour la boucle syndic_articles
-]#CACHE{0}
+[(#REM)Un cache plus court, pour la boucle syndic_articles]#CACHE{0}
 <BOUCLE_principale(SITES){id_syndic}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 [(#REM) Les sites n'ont pas de "lang" a proprement parler ; on se base donc sur la langue de la rubrique qui les contient. Les articles syndiques, eux, ont une "lang". ]
@@ -20,7 +18,7 @@
 
 <div id="site">
 	[(#REM) Fil d'Ariane ]
-    <div class="hierarchie">
+    <div id="hierarchie">
 		<a href="#URL_SITE_SPIP/"><:accueil_site:></a>
 		<BOUCLE_ariane(HIERARCHIE){id_syndic}> &gt;
 		<a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
@@ -60,6 +58,11 @@
 		</fieldset><!--#menu-->
         </B_articles>
         [<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+
+		[(#REM) Forum du site ]
+		<a href="#forum" name="forum" id="forum"></a>
+		<INCLURE{fond=inc/inc-forum}{id_syndic} />
+		[<p class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:annuaire:repondre_site:></a></p>] 
 
 	</div><!--#content-->
 

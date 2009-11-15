@@ -25,7 +25,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'annuaire_bandeau' => 'Bandeau',
 'annuaire_contact' => 'Contact',
 'annuaire_colonne' => 'Colonne et pied',
-'annuaire_coul_mot_clef' => 'Couleur avec les mots',
+'annuaire_forum' => 'Forum',
 'annuaire_general' => 'G&eacute;n&eacute;ralit&eacute;s',
 'annuaire_gratuit' => 'Annuaire gratuit de liens en dur',
 'annuaire_herbier' => 'Herbier',
@@ -47,7 +47,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'boite_bandeau' => 'bandeau',
 'boite_contact' => 'contact',
 'boite_colonne' => 'colonne et pied',
-'boite_coul_mot' => 'couleur avec les mots',
+'boite_forum' => 'forum',
 'boite_general' => 'g&eacute;n&eacute;ralit&eacute;s',
 'boite_herbier' => 'herbier',
 'boite_mot' => 'mots',
@@ -64,6 +64,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'configuration_bandeau' => 'configuration du bandeau',
 'configuration_colonne_pied' => 'configuration de la colonne et du pied',
 'configuration_contact' => 'configuration de la page "contact"',
+'configuration_forum' => 'configuration des forum du site',
 'configuration_herbier' => 'configuration de la page "herbier"',
 'configuration_general' => 'configuration des g&eacute;n&eacute;ralit&eacute;s du site',
 'configuration_mot' => 'configuration de la page "mot"',
@@ -96,10 +97,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 				<br />R&eacute;gl&eacute; vos styles sur le bandeau.',
 'descriptif_contact' => '<h4>R&eacute;glage de la page contact</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur le bandeau.',
-'descriptif_coul_mot' => '<h4>Choisir une couleur avec des mots clefs</h4>
-				<br />Nous vous laissons choisir une couleur:
-				<br />- en fonction du mot clef que vous avez choisi
-				<br />- la couleur attibu&eacute;e',
+'descriptif_forum' => '<h4>R&eacute;glage du forum</h4>
+				<br />R&eacute;gl&eacute; vos couleurs de la page forum',
 'descriptif_general' => '<h4>R&eacute;glages g&eacute;n&eacute;raux</h4>
 				<br />Une page qui regroupe tous les r&eacute;glages g&eacute;n&eacute;raux du site.',
 'descriptif_herbier' => '<h4>R&eacute;glage de l\'herbier</h4>
@@ -197,10 +196,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'pop' => 'la boucle "populaire"',
 'popu_site' => 'La popularit&eacute; du site est de ',
 'populaire' => 'Site populaire',
-'proposer_site_annuaire' => 'Proposition de site dans l\'annuaire',
 'proposer_rubrique' => 'Proposer une nouvelle rubrique :',
-'proposition_site' => 'Proposition de site',
-'proposition_site_annuaire' => 'Proposition de site dans l\'annuaire',
 
 //Q
 
@@ -211,6 +207,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'referencement' => 'R&eacute;f&eacute;rencement',
 'ref_site' => 'R&eacute;f&eacute;rencement de mon site',
 'remercier' => 'Pour remercier',
+'repondre_site' => 'R&eacute;pondre &agrave; ce site',
 'rss' => 'Nombres d\'articles syndiqu&eacute; par page.',
 'rss_contient' => 'Le flux RSS contient ',
 'rubrique_contient' => 'La rubrique contient',
@@ -221,7 +218,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'supprimer' => 'Supprimer',
 'sur_site' => 'sur le site',
 'style' => 'Style :',
-'styliste' => 'Indiquer la personne qui a con&Ccedil;u le design : (afficher colonne de droite en			 bas uniquement si remplis), possibilit&eacute;e de mettre du code spip ou html.',
+'styliste' => 'Indiquer la personne qui a con&ccedil;u le design : (afficher colonne de droite en			 bas uniquement si remplis), possibilit&eacute;e de mettre du code spip ou html.',
 
 //T
 'toutes_rubriques' => 'Toutes les rubriques',
