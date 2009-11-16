@@ -207,7 +207,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'referencement' => 'R&eacute;f&eacute;rencement',
 'ref_site' => 'R&eacute;f&eacute;rencement de mon site',
 'remercier' => 'Pour remercier',
-'repondre_site' => 'R&eacute;pondre &agrave; ce site',
 'rss' => 'Nombres d\'articles syndiqu&eacute; par page.',
 'rss_contient' => 'Le flux RSS contient ',
 'rubrique_contient' => 'La rubrique contient',
