@@ -30,7 +30,7 @@
 			#ANCRE_PAGINATION
 			<h2><:rubriques:> (#GRAND_TOTAL)</h2>
 			<ul>
-				<BOUCLE_rubriques(RUBRIQUES) {recherche} {par points}{inverse} {pagination #CONFIG{annuaire_recherche/pas_pagination_recherche, 5}}>
+				<BOUCLE_rubriques(RUBRIQUES) {recherche} {!par points} {pagination #CONFIG{annuaire_recherche/pas_pagination_recherche, 5}}>
 				<li><a href="#URL_RUBRIQUE">#TITRE</a></li>
 				</BOUCLE_rubriques>
 			</ul>
@@ -46,7 +46,7 @@
 			#ANCRE_PAGINATION
 			<h2><:mots_clefs:> (#GRAND_TOTAL)</h2>
 			<ul>
-				<BOUCLE_mots(MOTS) {recherche} {type !IN _META,Affichage}{par points}{inverse} {pagination #CONFIG{annuaire_recherche/pas_pagination_recherche, 5}}>
+				<BOUCLE_mots(MOTS) {recherche} {type !IN _META,Affichage}{!par points} {pagination #CONFIG{annuaire_recherche/pas_pagination_recherche, 5}}>
 				<p /><li>#TYPE <br /><a href="#URL_MOT">[(#TITRE|supprimer_numero)]</a></li>
 				</BOUCLE_mots>
 			</ul>
@@ -62,10 +62,10 @@
 			#ANCRE_PAGINATION
 			<h2><:sites_web:> (#GRAND_TOTAL)</h2>
 			<ul>
-				<BOUCLE_sites(SITES) {recherche} {par points}{inverse} {pagination #CONFIG{annuaire_recherche/pas_pagination_recherche, 5}}>
+				<BOUCLE_sites(SITES) {recherche} {!par points} {pagination #CONFIG{annuaire_recherche/pas_pagination_recherche, 5}}>
 				<li>
 					<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">#NOM_SITE</a>
-					<BOUCLE_logo(MOTS){id_syndic} {'  '}>[(#LOGO_MOT||inserer_attribut{alt, #TITRE|supprimer_numero})]</BOUCLE_logo>
+					<BOUCLE_logo(MOTS){id_syndic} {'  '}>[(#LOGO_MOT||inserer_attribut{title, #TITRE|supprimer_numero})]</BOUCLE_logo>
 					#FORMULAIRE_JAIME_JAIMEPAS<p />
 				</li>
 				</BOUCLE_sites>

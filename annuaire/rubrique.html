@@ -29,8 +29,8 @@
 
 		[(#REM) Donnée de la rubrique]
         <div id="cartouche">
-			[(#LOGO_RUBRIQUE_NORMAL|left||image_reduire{100,100}|inserer_attribut{'class',nyroceros}|inserer_attribut{'alt',#TITRE})]
-			[(#LOGO_RUBRIQUE_SURVOL|right||image_reduire{100,100}|inserer_attribut{'class',nyroceros}|inserer_attribut{'alt',#TITRE})]
+			[(#LOGO_RUBRIQUE_NORMAL|left||image_reduire{100,100}|inserer_attribut{'class',nyroceros}|inserer_attribut{'title',#TITRE})]
+			[(#LOGO_RUBRIQUE_SURVOL|right||image_reduire{100,100}|inserer_attribut{'class',nyroceros}|inserer_attribut{'title',#TITRE})]
 			<div id="texte">
 			<h1 class="titre">#TITRE</h1>
             [<small><:dernier_ajout:> : (#DATE|affdate_jourcourt).</small>]
@@ -69,7 +69,7 @@
                 <BOUCLE_sites(SITES) {id_rubrique} {par nom_site} {pagination #CONFIG{annuaire_rubrique/pas_pagination_art, 5}}>
                 <li>
 				[<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" title="(#NOM_SITE|texte_backend)">#NOM_SITE</a>]
-				<BOUCLE_logo(MOTS){id_syndic} {'  '}>[(#LOGO_MOT||inserer_attribut{alt, #TITRE|supprimer_numero})]</BOUCLE_logo>
+				<BOUCLE_logo(MOTS){id_syndic} {'  '}>[(#LOGO_MOT||inserer_attribut{title, #TITRE|supprimer_numero})]</BOUCLE_logo>
 				[(#PLUGIN{pb_pagerank}|oui)<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}>]
 				#FORMULAIRE_JAIME_JAIMEPAS
 				[(#REM) Nombre total de messages ]
