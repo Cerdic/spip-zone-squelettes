@@ -37,7 +37,7 @@
 		<BOUCLE_mot(MOTS){id_syndic}>
 		<h3>#TYPE</h3>
 		<BOUCLE_mots(MOTS){id_groupe}{id_syndic}{par num titre, titre}>
-		<br /><BOUCLE_logo10(MOTS) {id_mot}>#LOGO_MOT</BOUCLE_logo10>&nbsp;&nbsp;<a href="#URL_MOT">[(#TITRE|supprimer_numero|ucfirst)]</a>
+		<br /><BOUCLE_logo10(MOTS) {id_mot}>[(#LOGO_MOT||sinon{"&nbsp;&nbsp;&nbsp;"})]</BOUCLE_logo10>&nbsp;&nbsp;<a href="#URL_MOT">[(#TITRE|supprimer_numero|ucfirst)]</a>
 		<BOUCLE_site_mot1(SITES) {id_mot}> </BOUCLE_site_mot1>(#TOTAL_BOUCLE site(s))</B_site_mot1>
 		</BOUCLE_mots>
 		</BOUCLE_mot>
@@ -46,7 +46,7 @@
 		<BOUCLE_mot1(GROUPES_MOTS){titre !IN _META,Affichage}>
 			<h3>#TITRE</h3>
 			<BOUCLE_mots2(MOTS){id_groupe}{par num titre, titre}>
-			<br /><BOUCLE_logo11(MOTS) {id_mot}>#LOGO_MOT</BOUCLE_logo11>&nbsp;&nbsp;<a href="#URL_MOT">[(#TITRE|supprimer_numero|ucfirst)]</a>
+			<br /><BOUCLE_logo11(MOTS) {id_mot}>[(#LOGO_MOT||sinon{"&nbsp;&nbsp;&nbsp;"})]</BOUCLE_logo11>&nbsp;&nbsp;<a href="#URL_MOT">[(#TITRE|supprimer_numero|ucfirst)]</a>
 			<BOUCLE_site_mot2(SITES) {id_mot}> </BOUCLE_site_mot2>(#TOTAL_BOUCLE site(s))</B_site_mot2>
 			</BOUCLE_mots2>
 		</BOUCLE_mot1>
@@ -76,9 +76,7 @@
 		<BOUCLE_total(SITES)> </BOUCLE_total>
 		[<:annuaire:actuellement:>(#TOTAL_BOUCLE)&nbsp;<:sites_web:> <:annuaire:epingle_site:>
 		<a class="link" href="#URL_SITE_SPIP">#NOM_SITE_SPIP**</a>]
-		[(#PLUGIN{pb_pagerank}|oui)
-		<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE_SPIP}><br />
-		]</B_total>
+		[(#PLUGIN{pb_pagerank}|oui)<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE_SPIP}>]</B_total>
 		<br class="nettoyeur" />
 		[<:annuaire:popu_site:>&nbsp;(#POPULARITE_SITE|>={0}).]<br />
 		<BOUCLE_maj(SITES){!par date}{0,1}><:dernier_ajout:>&nbsp;: [(#DATE|affdate).]</BOUCLE_maj><br />
