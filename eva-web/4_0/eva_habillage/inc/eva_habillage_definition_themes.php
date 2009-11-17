@@ -27,7 +27,7 @@ function eva_habillage_definition_themes () {
     //Pied de page : barre des logos
     $eva_pied_logo_background = array('#logo-pied');
     //Fond des titre des blocs,du menu, des premiers éléments des tableaux générés par SPIP
-    $eva_fond_titres_background = array('h3','h3.titre','.bloc .titre','.divers','.divers h4','table.spip tr.row_first th','div#contenu div.ps h4','div#menu h3.titre','div#menudroit h3.titre','table.spip tr.row_first','div#contenu div.lien','div#contenu div.notes h4','div#contenu h4.titre','div#contenu h3.titre','#forum ul.forum div.titre h4');
+    $eva_fond_titres_background = array('h3','h3.titre','legend','.bloc .titre','.divers','.divers h4','table.spip tr.row_first th','div#contenu div.ps h4','div#menu h3.titre','div#menudroit h3.titre','table.spip tr.row_first','div#contenu div.lien','div#contenu div.notes h4','div#contenu h4.titre','div#contenu h3.titre','#forum ul.forum div.titre h4');
     $eva_fond_titres_background_color = array('#forum .bouton a','#forum .bouton a:hover');
     //Fonds du menu de navigation
     $eva_menu_fond_background_color = array('ul#sommaire', 'ul#sommaire li');
