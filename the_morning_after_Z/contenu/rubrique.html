@@ -30,14 +30,16 @@
 		<ul class="liste-items">
 			<BOUCLE_articles(ARTICLES){id_rubrique} {!par date} {pagination 5}>
 			<li class="item">
-				<div class="small">[(#DATE|affdate_jourcourt)]</div>
-				<h3 class="h3"><a href="#URL_ARTICLE">#TITRE</a></h3>
+				<h3 class="h3" id="post-#ID_ARTICLE"><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h3>
 				[(#LOGO_ARTICLE{#URL_ARTICLE}||image_reduire{150,100})]
+				<div class="info-publi">
+					[<:par_auteur:> (#LESAUTEURS) <span class="dot">&sdot;</span> ]<abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>[ (<:texte_date_publication_anterieure:> (#DATE_REDAC|affdate)).]<BOUCLE_messages0(FORUMS){id_article} />[ <span class="dot">&sdot;</span> <a href="#URL_ARTICLE#forum">(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE&nbsp;<:comments:>,#TOTAL_BOUCLE&nbsp;<:comment:>})</a>]<//B_messages0>
+				</div><!-- fin info-publi -->
 				[<div class="#EDIT{intro} introduction">(#INTRODUCTION)</div>]
 			</li>
 			</BOUCLE_articles>
 		</ul>
-		[<p class="pagination">(#PAGINATION)</p>]
+		[<p class="navigation">(#PAGINATION{precedent_suivant})</p>]
 	</div>
 	</B_articles>
 	

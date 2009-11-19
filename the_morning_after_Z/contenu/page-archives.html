@@ -1,0 +1,36 @@
+	[(#REM) Fil d'Ariane ]
+	<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <strong class="on"><:archives:></strong></p>
+
+			<div class="column span-3 first cartouche">
+				<h1 class="h1">#NOM_SITE_SPIP</h1>
+				<div class="info-publi">
+            		<div class="archive_feed">
+            			<a href="#URL_PAGE{backend}" title="RSS"><:subscribe:></a>           			
+            		</div>
+            		<div class="archive_number">
+            			<BOUCLE_count(ARTICLES) />[(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE&nbsp;<:billets:>,#TOTAL_BOUCLE&nbsp;<:billet:>})]<//B_count>
+            		</div>           		
+            	</div>
+            </div> <!-- end first -->
+
+			<div class="column span-8 last">
+				<B_articles>
+				<div class="liste articles">
+					#ANCRE_PAGINATION
+					<ul class="liste-items">
+						<BOUCLE_articles(ARTICLES){!par date} {pagination 10}>
+							<li class="item">
+								<h3 class="h3" id="post-#ID_ARTICLE"><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h3>
+								<div class="info-publi">
+									[<:par_auteur:> (#LESAUTEURS) <span class="dot">&sdot;</span> ]<abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>[ (<:texte_date_publication_anterieure:> (#DATE_REDAC|affdate)).]<BOUCLE_messages0(FORUMS){id_article} />[ <span class="dot">&sdot;</span> <a href="#URL_ARTICLE#forum">(#TOTAL_BOUCLE|>{1}|?{#TOTAL_BOUCLE&nbsp;<:comments:>,#TOTAL_BOUCLE&nbsp;<:comment:>})</a>]<//B_messages0>
+								</div><!-- fin info-publi -->
+								[<div class="#EDIT{intro} introduction">(#INTRODUCTION)</div>]
+							</li>
+						</BOUCLE_articles>
+					</ul>
+					[<p class="navigation">(#PAGINATION{precedent_suivant})</p>]
+				</div>
+				</B_articles>
+			<p><a href="#URL_SITE_SPIP"><:retour_accueil:></a>.</p>
+			<//B_posts>
+			</div>
