@@ -119,6 +119,9 @@ define('_SUIVI_FORUM_THREAD', true);
 // Se passer de |supprimer_numero partout
 $table_des_traitements['TITRE'][]= 'typo(trim(supprimer_numero(%s)))';
 
+// Ne pas afficher l'inscription dans le plugin Agenda : ça n'est pas pris en compte
+// cf http://zone.spip.org/trac/spip-zone/changeset/33103
+$GLOBALS['agenda_affiche_inscription'] = 'non';
 
 ######## PACK ACTUEL DE CONFIGURATION DU COUTEAU SUISSE #########
 // Attention, les surcharges sur les define() ou les globales ne sont pas specifiees ici
