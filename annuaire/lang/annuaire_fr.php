@@ -8,10 +8,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'accueil_presentation' =>'Pr&eacute;sentation',
 'accueil_intro' =>'Bienvenue sur la page de pr&eacute;sentation du plugins "annuaire".',
 'accueil_option' =>'Certain plugins sont optionnel :',
-'accueil_option_contact' =>'Le plugins "contact" permets ou non d\'affich&eacute; la page de
-							 contact',
-'accueil_option_pub' => 'Si vous souhaitez int&eacute;gr&eacute; dans votre site des pub google, il vous faudra cr&eacute;&eacute; le mot clef "pub" dans le groupe "Affichage" et dans une rubrique nomm&eacute; "squelette"',
-'accueil_option_visiteurs' =>'Le plugins "visiteur connect&eacute;s" permets d\'afficher dans l\'ent&ecirc;te le nombre de visiteur connect&eacute;s',
+'accueil_option_contact' =>'Le plugins "contact" permets ou non d\'affich&eacute; la page de contact et son réglage dans le plugins.',
+'accueil_option_pub' => 'Si vous souhaitez int&eacute;gr&eacute; dans votre site des pub google, il vous faudra cr&eacute;&eacute; les mots clefs "pub-entete" et pub-nav" dans le groupe "Affichage" et plac&eacute; la br&egrave;ve dans une rubrique nomm&eacute; "squelette".',
+'accueil_option_spiplistes' =>'Le plugins "spip liste" permets ou non d\'affich&eacute; la page abonnement et son réglage dans le plugins.',
+'accueil_option_visiteurs' =>'Le plugins "visiteur connect&eacute;s" ou la lame du couteau suisse permets d\'afficher dans la colonne de navigation (droite) le nombre de visiteur connect&eacute;s.',
 'accueil_requis' =>'Les requis pour un bon fonctionnement du site',
 'accueil_requis_1' =>'Pour un bon r&eacute;f&eacute;rencement de votre site, ils vous faut cr&eacute;er :
 					<br />un groupe de mot clef "_META"
@@ -36,7 +36,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'annuaire_plan_complet' => 'Plan complet',
 'annuaire_recherche' => 'Recherche',
 'annuaire_rubrique' => 'Rubrique',
-'annuaire_plan_complet' => 'Plan complet',
 'annuaire_site' => 'Site',
 'annuaire_sommaire' => 'Sommaire',
 'annuaire_style' => 'Style',
@@ -44,22 +43,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //B
 'bandeau' => 'le "bandeau"',
-'boite_abonnement' => 'abonnement',
-'boite_accueil' => 'accueil',
-'boite_bandeau' => 'bandeau',
-'boite_contact' => 'contact',
-'boite_colonne' => 'colonne et pied',
-'boite_forum' => 'forum',
-'boite_general' => 'g&eacute;n&eacute;ralit&eacute;s',
-'boite_herbier' => 'herbier',
-'boite_mot' => 'mots',
-'boite_plan' => 'page plan',
-'boite_plan_complet' => 'page plan complet',
-'boite_partenaire' => 'page partenaire',
-'boite_recherche' => 'page recherche',
-'boite_rubrique' => 'page rubrique',
-'boite_site' => 'page sites',
-'boite_sommaire' => 'page sommaire',
 'boucles' =>'R&eacute;glages des boucles',
 
 //C
@@ -150,6 +133,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'indexation_non' => 'Ne pas indexer le site dans les moteurs de recherche',
 'infos' => 'Afficher une infos sur toutes les rubriques (si vous la souhaitez diff&eacute;rentes utiliser la description.)',
 'info_abo' => 'Vous trouverez sur cette page les listes de diffusion c\'est &agrave; dire les listes de nouveaut&eacute;es',
+
 //J
 
 //K
@@ -185,9 +169,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'ok' => 'OK',
 
 //P
-'page_abonnement' => 'Abonnement',
-'page_herbier' => 'Herbier',
-'page_contact' => 'Contact',
 'par' => 'par',
 'partenaire' => 'partenaires',
 'pas_new' => 'Pas de nouveaut&eacute;s',
