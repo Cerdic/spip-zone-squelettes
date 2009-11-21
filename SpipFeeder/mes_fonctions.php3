@@ -231,7 +231,7 @@ function monDrawSyndic( $url, $rubrique, $syndic ) {
   $ReqFnd = "SELECT FOUND_ROWS()";
   $ResFnd = spip_query($ReqFnd);
   $NbFnd = mysql_result($ResFnd , 0);
-
+  $MaxLinks = 1000; // nombre maximum de links a afficher
   $url = $_SERVER['PHP_SELF'].'?';
   foreach ($_GET as $k => $v)
     if ($k != 'debut_syndic')
@@ -239,6 +239,9 @@ function monDrawSyndic( $url, $rubrique, $syndic ) {
   $ret .= "<p class='centre'>";
         $ret.="<b style='text-decoration : blink'>Ce jour : $NbFnd informations libres :</b> ";
         $thelinks="";
+  // on limite la pagination a $MaxLinks = 1000
+  if ( $NbFnd > $MaxLinks ) $NbFnd = $MaxLinks;
+
   for ($numero = 0; $numero < $NbFnd; $numero = $numero + $NbSyndic) {
     $NumFin = $numero + $NbSyndic;
     if ($NumFin > $NbFnd)
