@@ -21,6 +21,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'affichage' => 'L\'affichage',
 'ajouter_google' => 'ajouter &agrave; google',
 'annuaire' =>'annuaire',
+'annuaire_abonnement' => 'Abonnement',
 'annuaire_accueil' => 'Accueil',
 'annuaire_bandeau' => 'Bandeau',
 'annuaire_contact' => 'Contact',
@@ -43,6 +44,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //B
 'bandeau' => 'le "bandeau"',
+'boite_abonnement' => 'abonnement',
 'boite_accueil' => 'accueil',
 'boite_bandeau' => 'bandeau',
 'boite_contact' => 'contact',
@@ -61,6 +63,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'boucles' =>'R&eacute;glages des boucles',
 
 //C
+'configuration_abonnement' => 'configuration de la page des abonnements',
 'configuration_bandeau' => 'configuration du bandeau',
 'configuration_colonne_pied' => 'configuration de la colonne et du pied',
 'configuration_contact' => 'configuration de la page "contact"',
@@ -92,11 +95,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'css_ho' => 'Couleur de survol',
 
 //D
+'descriptif_abonnement' => '<h4>R&eacute;glage de la page contact</h4>
+				<br />R&eacute;gl&eacute; vos styles sur la page abonnement.',
 'descriptif_accueil' => 'Pr&eacute;sentation du plugins "annuaire" et de ses fonctions.',
 'descriptif_bandeau' => '<h4>R&eacute;glage du bandeau</h4>
 				<br />R&eacute;gl&eacute; vos styles sur le bandeau.',
 'descriptif_contact' => '<h4>R&eacute;glage de la page contact</h4>
-				<br />R&eacute;gl&eacute; vos boucles et styles sur le bandeau.',
+				<br />R&eacute;gl&eacute; vos styles sur la page contact.',
 'descriptif_forum' => '<h4>R&eacute;glage du forum</h4>
 				<br />R&eacute;gl&eacute; vos couleurs de la page forum',
 'descriptif_general' => '<h4>R&eacute;glages g&eacute;n&eacute;raux</h4>
@@ -144,7 +149,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'indexation_oui' => 'Indexer le site dans les moteurs de recherche',
 'indexation_non' => 'Ne pas indexer le site dans les moteurs de recherche',
 'infos' => 'Afficher une infos sur toutes les rubriques (si vous la souhaitez diff&eacute;rentes utiliser la description.)',
-
+'info_abo' => 'Vous trouverez sur cette page les listes de diffusion c\'est &agrave; dire les listes de nouveaut&eacute;es',
 //J
 
 //K
@@ -180,6 +185,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'ok' => 'OK',
 
 //P
+'page_abonnement' => 'Abonnement',
 'page_herbier' => 'Herbier',
 'page_contact' => 'Contact',
 'par' => 'par',
@@ -217,7 +223,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'supprimer' => 'Supprimer',
 'sur_site' => 'sur le site',
 'style' => 'Style :',
-'styliste' => 'Indiquer la personne qui a con&ccedil;u le design : (afficher colonne de droite en			 bas uniquement si remplis), possibilit&eacute;e de mettre du code spip ou html.',
+'styliste' => 'Indiquer la personne qui a con&ccedil;u le design : (afficher colonne de droite en bas uniquement si remplis), possibilit&eacute;e de mettre du code spip ou html.',
 
 //T
 'toutes_rubriques' => 'Toutes les rubriques',
@@ -225,8 +231,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //U
 'url_flux' => 'URL du flux rss',
 'utilisation' => 'Utilisation',
-'utilisation_expli_1' => 'Pour pouvoir la configur&eacute;e, il vous faut activ&eacute; le plugins.',
-'utilisation_expli_2' => 'Vous pouvez configurez cette page parce que le plugin "contact" est activ&eacute;.',
+'utilisation_expli_contact_1' => 'Pour pouvoir configurer cette page, il vous faut le plugins "contact".',
+'utilisation_expli_contact_2' => 'Vous pouvez configurez cette page parce que le plugin "contact" est activ&eacute;.',
+'utilisation_expli_spiplistes_1' => 'PPour pouvoir configurer cette page, il vous faut le plugins "spip listes".',
+'utilisation_expli_spiplistes_2' => 'Vous pouvez configurez cette page parce que le plugin "spip listes" est activ&eacute;.',
 'utiliser_form_contact' => 'utilisez le formulaire de contact',
 
 //V
