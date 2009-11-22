@@ -128,9 +128,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'hierarchie' => 'la "hierarchie"',
 
 //I
-'indexation_info' => 'Indexation du site par les moteurs de recherche',
-'indexation_oui' => 'Indexer le site dans les moteurs de recherche',
-'indexation_non' => 'Ne pas indexer le site dans les moteurs de recherche',
 'infos' => 'Afficher une infos sur toutes les rubriques (si vous la souhaitez diff&eacute;rentes utiliser la description.)',
 'info_abo' => 'Vous trouverez sur cette page les listes de diffusion c\'est &agrave; dire les listes de nouveaut&eacute;es',
 
@@ -191,7 +188,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'resultats' => 'R&eacute;sultats dans les boucles',
 'recherche_site' => 'Recherche d\'un site',
 'rechercher' => 'Rechercher',
-'referencement' => 'R&eacute;f&eacute;rencement',
 'ref_site' => 'R&eacute;f&eacute;rencement de mon site',
 'remercier' => 'Pour remercier',
 'rss' => 'Nombres d\'articles syndiqu&eacute; par page.',
