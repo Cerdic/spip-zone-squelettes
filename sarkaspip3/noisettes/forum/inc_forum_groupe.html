@@ -8,16 +8,19 @@
 <BOUCLE_groupe_forum(RUBRIQUES){id_rubrique}>
 
 <table>
-	<tr class="salon">
+	<thead>
+	<tr>
 		<th colspan="2" [class="tforum (#EDIT{titre})"]>[(#TITRE|supprimer_numero)]</th>
 		<th class='sujet'><:sarkaspip:discussions:></th>
 		<th class='message'><:sarkaspip:reponses:></th>
-		<th class='dern'><:sarkaspip:messages_derniers:></th>						
+		<th class='dern'><:sarkaspip:messages_derniers:></th>	
 	</tr>
+	</thead>
 
 	[(#REM) Afficher table par rubrique ou toute si racine ]
 	#SET{display,#ENV{id_rubrique}|=={#ID_RUBRIQUE}|?{'display',#ENV{id_rubrique}|=={#GET{secteur}}|?{'display','none'}}}
-
+	<B_forums>
+	<tbody>
 	<BOUCLE_forums(ARTICLES){id_rubrique}{par num titre}>
 	<tr class="ligne_forum" style="display:#GET{display};">
 		<BOUCLE_ligne(ARTICLES){id_article}>
@@ -56,7 +59,8 @@
 		</BOUCLE_ligne>
 	</tr>
 	</BOUCLE_forums>
-						
+	</tbody>
+	</B_forums>	
 </table>	
 
 </BOUCLE_groupe_forum>
