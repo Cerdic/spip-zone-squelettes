@@ -913,6 +913,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'navigation_bulle_vers_evenement' => 'Se rendre sur la page de cet &eacute;v&egrave;nement',
 	'navigation_bulle_vers_forum' => 'Se rendre sur la page du forum',
 	'navigation_bulle_vers_galerie' => 'Se rendre sur la page de la galerie',
+	'navigation_bulle_vers_groupe' => 'Se rendre sur la page d\'index du forum',
 	'navigation_bulle_vers_rubrique' => 'Se rendre sur la page de cette rubrique',
 	'navigation_titre' => 'Navigation',
 	'newsletter' => 'Lettre d\'information',
