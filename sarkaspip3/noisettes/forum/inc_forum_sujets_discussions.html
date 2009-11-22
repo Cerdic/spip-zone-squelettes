@@ -1,0 +1,28 @@
+[(#REM) 
+<!-- Affichage des sujets non epingles d'un forum
+	Recoit en argument :
+		- id_article: id de l'article concerne
+		- sujet: toujours a discussion
+-->
+]
+<B_forum_sujets>
+<table id="#ENV{sujet}" class="sujet" summary="">
+	<thead>
+		<tr>
+			<th colspan="2"><:sarkaspip:forum_discussions:></th>
+			<th><:sarkaspip:forum_reponses:></th>
+			<th><:sarkaspip:forum_derniers_messages:></th>
+		</tr>
+	</thead>
+	<tbody>
+<BOUCLE_forum_sujets(FORUMS){id_article}{plat}{id_parent=0}{!par date_thread}{titre!==^(annonce:|epingle:)}>
+		<INCLURE{fond=noisettes/forum/inc_forum_sujet_ligne}
+			{id_article}
+			{id_forum}
+			{id_thread}
+			{titre}
+			{sujet=discussion}>
+</BOUCLE_forum_sujets>
+	</tbody>
+</table>
+</B_forum_sujets>
