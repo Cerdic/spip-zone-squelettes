@@ -20,77 +20,17 @@
 	<div id="wrapper">
 		<div id="content">
 			[(#REM) <!-- Contenu de la rubrique --> ]
-			<div class="forum">
+			<div id="groupe" class="forum">
 				[(#REM) <!-- Titre, logo, texte de la rubrique --> ]
 				<INCLURE{fond=noisettes/rubrique/inc_rubrique_description}
 					{id_rubrique}
 					{avec_filles=non}>			
 				
-				[(#REM) <!-- En-tete du forum --> ]
-				<!-- boucles tableau -->
-
-				<table>
-					<tr>
-						<th colspan="2" class='tforum'><:sarkaspip:liste_forum:></th>
-						<th class='sujet'><:sarkaspip:discussions:></th>
-						<th class='message'><:sarkaspip:reponses:></th>
-						<th class='dern'><:sarkaspip:messages_derniers:></th>
-					</tr>
-					
-				
-					<B_categories>
-					<BOUCLE_categories(RUBRIQUES){id_parent}{par num titre}>
-						<tr class="salon">
-							<td colspan="5"[ class="(#EDIT{titre})"]>[(#TITRE|supprimer_numero)]</td>
-						</tr>
-
-						[(#REM) Afficher table par rubrique ou toute si racine ]
-						#SET{display,#ENV{id_rubrique}|=={#ID_RUBRIQUE}|?{'display',#ENV{id_rubrique}|=={#GET{secteur}}|?{'display','none'}}}
-
-						<BOUCLE_forums(ARTICLES){id_rubrique}{par num titre}>
-							<tr class="ligne_forum" style="display:#GET{display};">
-								<BOUCLE_ligne(ARTICLES){id_article}>
-									<td class="etatforum forumouvert"><span>&nbsp;</span></td>
-									<td class="titre_forum">
-										[<div class="[(#EDIT{titre}) ]titrelien"><a href="[(#URL_PAGE{forum_forum}|parametre_url{id_article,#ID_ARTICLE})]" class="titre">(#TITRE|supprimer_numero)</a></div>]
-										[<div class="[(#EDIT{texte}) ]texte">(#TEXTE|typo_couleur)</div>]
-									</td>
-									
-								<BOUCLE_discussions(FORUMS){id_article}{doublons sujets}></BOUCLE_discussions>
-									<td class="nbr_discussion">#TOTAL_BOUCLE</td>
-								<//B_discussions>
-
-								<BOUCLE_messages(FORUMS){id_article}{plat}{doublons sujets}></BOUCLE_messages>
-									<td class="nbr_message">#TOTAL_BOUCLE</td>
-								<//B_messages>
-
-									<td class="dernier_msg">
-								<BOUCLE_dernier_message(FORUMS){id_article}{plat}{!par date}{0,1}>
-									[(#DATE|affdate{'d/m/Y'})] [ - (#DATE|heures)]:[(#DATE|minutes)<br	/>]
-									<:sarkaspip:par_auteur:>
-									<BOUCLE_auteur(AUTEURS){id_auteur}{tout}>
-										<a href="#URL_AUTEUR">#NOM</a>
-									</BOUCLE_auteur>
-									</B_auteur>
-										[(#NOM|sinon{<:sarkaspip:anonyme:>})]
-									<//B_auteur>
-									
-									<BOUCLE_papa(FORUMS){id_thread}>#SET{idforum,#ID_FORUM}</BOUCLE_papa>
-									<a href="[(#URL_PAGE{forum_discussion}|parametre_url{id_article,#ID_ARTICLE}|parametre_url{id_forum,#GET{idforum}})]#forum#ID_FORUM" class="adermsg" title="<:sarkaspip:messages_voir_dernier:>">&nbsp;
-										<span>(<:sarkaspip:messages_voir_dernier:>)</span></a>
-								</BOUCLE_dernier_message> 
-									- 
-								<//B_dernier_message>
-									
-									</td>
-								</BOUCLE_ligne>
-							</tr>
-						</BOUCLE_forums>
-					</BOUCLE_categories>
-					</B_categories>
-				
-				</table>
-
+				[(#REM) <!-- Affichage des differents groupes de forums --> ]
+				<BOUCLE_groupe(RUBRIQUES){id_parent}{par num titre}>
+					<INCLURE{fond=noisettes/forum/inc_forum_groupe}
+						{id_rubrique}>			
+				</BOUCLE_groupe>
 			</div>
 		</div> <!--content-->
 	</div> <!--wrapper-->
@@ -102,7 +42,7 @@
 	
 	<div id="extra">
 		[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
-		<INCLURE{fond=noisettes/extra}{lang}{self=#SELF}{page=rubrique}{id_secteur}>
+		<INCLURE{fond=noisettes/extra}{lang}{self=#SELF}{page=forum_groupe}{id_secteur}>
 	</div>
 	
 	<div id="footer">
