@@ -1,14 +1,46 @@
-<!-- nom=sarkaspip_styles -->
+<!-- nom=sarkaspip_maintenance -->
+
+<script type="text/javascript">
+//<![CDATA[
+	jQuery(document).ready(function() {
+		[(#ENV{mode, page}|=={tout}|oui)
+			jQuery("#bloc_fonds").hide();
+		]
+		jQuery("input[@name='mode']").change(function() {
+			if (jQuery("input[@name='mode']:checked").val() == 'page') {
+				jQuery("#bloc_fonds").show();
+			}
+			else {
+				jQuery("#bloc_fonds").hide();
+			}
+			jQuery(this).blur();
+		});	
+	});
+//]]>
+</script>
+
 [(#VAL{1}|debut_cadre_trait_couleur{1,"",#ENV{_titre}})]
 <form method="post" action="#SELF"><div>
 	#ACTION_FORMULAIRE{#SELF}
 	<fieldset>
 		[<legend>(#ENV{_legende})</legend>]
 		[<p>(#ENV**{_description})</p>]
-		[<label>(#ENV{_label})</label>]
-		[<select name="fond_a_sauvegarder">
-			(#ENV*{_fonds})
-		</select>]
+		
+		[<p>(#ENV**{_choix})</p>]
+		<label>
+			<input type="radio" name="mode" value="tout" [(#ENV{mode, page}|=={tout}|?{checked="checked"})] />
+			#ENV{_label_oui}
+		</label>
+		<label>
+			<input type="radio" name="mode" value="page" [(#ENV{mode, page}|=={page}|?{checked="checked"})] />
+			#ENV{_label_non}
+		</label>
+		<p id="bloc_fonds">
+			[<label>(#ENV{_label_fond})</label>]
+			[<select name="fond_a_sauvegarder">
+				(#ENV*{_fonds})
+			</select>]
+		</p>
 	</fieldset>
 
 	[<fieldset><div class="formulaire_message formulaire_message_ok">(#ENV*{message_ok})</div></fieldset>]
