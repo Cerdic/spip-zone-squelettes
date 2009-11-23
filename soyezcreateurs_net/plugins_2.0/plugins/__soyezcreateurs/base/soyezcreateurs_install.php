@@ -182,8 +182,8 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		if (version_compare($current_version,'2.1.13','<')) {
 			include_spip('base/soyezcreateurs');
 			spip_log("SoyezCreateurs maj 2.1.13", "soyezcreateurs_install");
-		create_mot("_ModePortail", "Goodies", "Affecter ce mot clef aux objets SPIP devant apparaitre dans la zone des Goodies (en bas du sommaire du mode portail, sur une colonne).", "S'applique aux articles uniquement.\n\nLe site prendra les 3 derniers articles ayant ce mot clef");
-		create_mot("_ModePortail", "ZoomSur", "Affecter ce mot clef à l'objet que vous voulez placer dans le cadre « Zoom sur » (facultatif).\n\nLe site prendra le dernier article ayant ce mot clef", "S'applique aux articles uniquement.");
+			create_mot("_ModePortail", "Goodies", "Affecter ce mot clef aux objets SPIP devant apparaitre dans la zone des Goodies (en bas du sommaire du mode portail, sur une colonne).", "S'applique aux articles uniquement.\n\nLe site prendra les 3 derniers articles ayant ce mot clef");
+			create_mot("_ModePortail", "ZoomSur", "Affecter ce mot clef à l'objet que vous voulez placer dans le cadre « Zoom sur » (facultatif).\n\nLe site prendra le dernier article ayant ce mot clef", "S'applique aux articles uniquement.");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.13','non');
 		}
 
@@ -197,6 +197,25 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			create_groupe("_TypeArticle", "Pour indiquer un type spécifique d'article", "Il faut choisir un mot clef dans cette liste pour obtenir un affichage spécifique d'article.\n\nNB : pour rajouter un mot clef \"mc1\", il faut aussi rajouter les squelettes correspondants :\n-* noisettes/articles/typearticle_mc1.html\n-* noisettes/footer/footer_typearticle_mc1.html", 'oui', 'non', 'oui', 'non', 'non', 'non', 'non', 'oui', 'non', 'non');
 				create_mot("_TypeArticle", "annuaire", "Pour dire que l'article ayant ce mot clef doit utiliser le squelette type des annuaire.", "Affecter ce mot clef à chaque article de l'annuaire.");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.10','non');
+		}
+		// A integrer quand SPIP permettra d'avoir des critères optionnels sur un champ de table innexistant
+		// en l'occurrence, remplacer dans le squelette {titre_mot=Agenda} par {agenda=1}
+		if (version_compare($current_version,'2.1.14','<')) {
+			include_spip('base/soyezcreateurs');
+			spip_log("SoyezCreateurs maj 2.1.14", "soyezcreateurs_install");
+			sql_query('UPDATE spip_rubriques INNER JOIN spip_mots_rubriques ON spip_rubriques.id_rubrique=spip_mots_rubriques.id_rubrique INNER JOIN spip_mots ON spip_mots_rubriques.id_mot=spip_mots.id_mot 
+SET spip_rubriques.agenda = 1
+WHERE spip_mots.titre=\'Agenda\'');
+			$id_groupe = id_groupe("_Specialisation_Rubrique");
+			$id_mot = id_mot("Agenda", $id_groupe);
+			if ($id_mot>0) {
+				sql_delete("spip_mots", "id_mot=$id_mot");
+				sql_delete("spip_mots_articles", "id_mot=$id_mot");
+				sql_delete("spip_mots_rubriques", "id_mot=$id_mot");
+				sql_delete("spip_mots_syndic", "id_mot=$id_mot");
+				sql_delete("spip_mots_forum", "id_mot=$id_mot");
+			}
+			ecrire_meta($nom_meta_base_version,$current_version='2.1.14','non');
 		}
 		*/
 	}
