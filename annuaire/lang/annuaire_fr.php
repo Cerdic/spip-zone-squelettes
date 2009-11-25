@@ -15,11 +15,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'accueil_requis' =>'Les requis pour un bon fonctionnement du site',
 'accueil_requis_1' =>'Pour un bon r&eacute;f&eacute;rencement de votre site, ils vous faut cr&eacute;er :
 					<br />un groupe de mot clef "_META"
-					<br />les mots clefs keywords et description',
+					<br />les mots clefs keywords, description et remplir le champ texte pour que votre site ce r&ecute;f&ecute;rence
+					<br />et &agrave; l\'inverse cr&ecute;&ecute; robots et le texte noindex, nofollow pour ne pas le r&ecute;f&ecute;renc&ecute; ',
 'accueil_requis_2' =>'Pour afficher des partenaires sur la page "Partenaires", il vous faut cr&eacute;&eacute; le groupe "Affichage" avec le mot clef "partenaire" et attibuer le &agrave; chacun des sites voulus.',
 'actuellement' => 'Il y a actuellement ',
 'affichage' => 'L\'affichage',
 'ajouter_google' => 'ajouter &agrave; google',
+'ajouter_commentaire' => 'Ajouter un commentaire',
 'annuaire' =>'annuaire',
 'annuaire_abonnement' => 'Abonnement',
 'annuaire_accueil' => 'Accueil',
@@ -46,6 +48,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'boucles' =>'R&eacute;glages des boucles',
 
 //C
+'commentaire' => 'commentaire(s)',
 'configuration_abonnement' => 'configuration de la page des abonnements',
 'configuration_bandeau' => 'configuration du bandeau',
 'configuration_colonne_pied' => 'configuration de la colonne et du pied',
@@ -168,6 +171,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //P
 'par' => 'par',
 'partenaire' => 'partenaires',
+'pas_commentaire' => 'Pas de commentaire',
 'pas_new' => 'Pas de nouveaut&eacute;s',
 'pas_pagination' => 'Nombre d\'&eacute;l&eacute;ments par page',
 'pas_partenaire' => 'Nous n\'avons pas de partenaires &agrave; ce jour, si vous le souhaitez, rejoingnez-nous...',

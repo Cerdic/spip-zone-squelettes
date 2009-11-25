@@ -1,7 +1,7 @@
 [(#REM)
 	Un cache plus court, pour la boucle syndic_articles
 ]#CACHE{0}
-<BOUCLE_principale(RUBRIQUES) {id_rubrique}{lang?} {tout}>
+<BOUCLE_principale(RUBRIQUES) {id_rubrique} {lang?} {tout}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
@@ -44,12 +44,12 @@
 
 		[(#REM) Si aucun article, affiche un plan de la rubrique ]
         <B_sous_rubriques>
-		<div class="menu_rub">
+		<div id="menu_rub">
 			<fieldset>
 			<object><:sous_rubriques:></object>
 			<ul>
 				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
-				<li id="rubri">
+				<li class="rubri">
 				<a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>&nbsp;&nbsp;
 					<BOUCLE_site(SITES) {id_rubrique}> </BOUCLE_site>(#TOTAL_BOUCLE site(s))</B_site>
 				</li><!--#rubri-->
@@ -61,29 +61,34 @@
 
         [(#REM) Sites de la rubrique ]
         <B_sites>
-        <div class="menu">
+        <div id="site">
 		<fieldset>
             #ANCRE_PAGINATION
             <object><:sur_web:></object>
             <ul>
                 <BOUCLE_sites(SITES) {id_rubrique} {par nom_site} {pagination #CONFIG{annuaire_rubrique/pas_pagination_art, 5}}>
-                <li>
+                <li class="site">
 				[<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" title="(#NOM_SITE|texte_backend)">#NOM_SITE</a>]
 				<BOUCLE_logo(MOTS){id_syndic} {'  '}>[(#LOGO_MOT||inserer_attribut{title, #TITRE|supprimer_numero})]</BOUCLE_logo>
 				[(#PLUGIN{pb_pagerank}|oui)<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}>]
 				#FORMULAIRE_JAIME_JAIMEPAS
 				[(#REM) Nombre total de messages ]
-					<BOUCLE_decompte(FORUMS) {id_syndic ?} {plat} />[(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
-					[(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>})]]<//B_decompte></li>
+					<BOUCLE_forum(FORUMS){id_syndic}{plat}>
+						<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]#forum" title="<:annuaire:ajouter_commentaire:>">#TOTAL_BOUCLE&nbsp;&nbsp;<:annuaire:commentaire:></a>
+					</BOUCLE_forum>
+						<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]#forum" title="<:annuaire:ajouter_commentaire:>"><:annuaire:pas_commentaire:></a>
+					<//B_forum>
+				</li><!--#site-->
 				</BOUCLE_sites>
             </ul>
 			[<p>(#PAGINATION{page_precedent_suivant})</p>
 			<:annuaire:rubrique_contient:>&nbsp;#GRAND_TOTAL{pagination #CONFIG{annuaire_rubrique/pas_pagination_art, 5}}&nbsp;<:sites:>]
 		</fieldset>
-        </div><!--#menu-->
+        </div><!--#site-->
         </B_sites>
         [<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
 		
+		<br class="nettoyeur" />
 		#FORMULAIRE_PROPOSER_SITE{id_rubrique}
 
 	</div><!--#content-->
