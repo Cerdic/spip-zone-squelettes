@@ -26,8 +26,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'annuaire_abonnement' => 'Abonnement',
 'annuaire_accueil' => 'Accueil',
 'annuaire_bandeau' => 'Bandeau',
-'annuaire_contact' => 'Contact',
 'annuaire_colonne' => 'Colonne et pied',
+'annuaire_contact' => 'Contact',
+'annuaire_erreur' => 'Erreur',
 'annuaire_forum' => 'Forum',
 'annuaire_general' => 'G&eacute;n&eacute;ralit&eacute;s',
 'annuaire_gratuit' => 'Annuaire gratuit de liens en dur',
@@ -53,6 +54,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'configuration_bandeau' => 'configuration du bandeau',
 'configuration_colonne_pied' => 'configuration de la colonne et du pied',
 'configuration_contact' => 'configuration de la page "contact"',
+'configuration_erreur' => 'configration des pages erreur',
 'configuration_forum' => 'configuration des forum du site',
 'configuration_herbier' => 'configuration de la page "herbier"',
 'configuration_general' => 'configuration des g&eacute;n&eacute;ralit&eacute;s du site',
@@ -88,6 +90,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 				<br />R&eacute;gl&eacute; vos styles sur le bandeau.',
 'descriptif_contact' => '<h4>R&eacute;glage de la page contact</h4>
 				<br />R&eacute;gl&eacute; vos styles sur la page contact.',
+'descriptif_erreur' => '<h4>R&eacute;glage des pages erreurs</h4>
+				<br />R&eacute;gl&eacute; vos styles sur les pages erreurs.',
 'descriptif_forum' => '<h4>R&eacute;glage du forum</h4>
 				<br />R&eacute;gl&eacute; vos couleurs de la page forum',
 'descriptif_general' => '<h4>R&eacute;glages g&eacute;n&eacute;raux</h4>
