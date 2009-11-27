@@ -179,15 +179,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'pas_new' => 'Pas de nouveaut&eacute;s',
 'pas_pagination' => 'Nombre d\'&eacute;l&eacute;ments par page',
 'pas_partenaire' => 'Nous n\'avons pas de partenaires &agrave; ce jour, si vous le souhaitez, rejoingnez-nous...',
-'pas_pop' => 'Pas de populaires, car pas de votes ou pas assez de site',
 'pas_sites' => 'Pas de site rattach&eacute; &agrave; ce mot clef.',
+'pas_vote' => 'Pas de site dans cette partie car pas encore de vote.',
 'pas_zard' => 'Pas de sites au hasard, enregistrez-en ...',
 'plan_complet' => 'plan complet',
-'plus_pop' => 'Les plus populaires',
 'plus_encore' => 'Plus encore !',
-'pop' => 'la boucle "populaire"',
+'plus_votes' => 'Sites les plus vot&eacute;s',
+'plus_vote' => 'la boucle "plus de votes"',
 'popu_site' => 'La popularit&eacute; du site est de ',
-'populaire' => 'Site populaire',
 'proposer_rubrique' => 'Proposer une nouvelle rubrique :',
 
 //Q
@@ -225,6 +224,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //V
 'votre_nom' => 'Votre nom',
 'votre_email' => 'Votre e-mail',
+'votes' => 'vote(s)',
 
 //W
 
