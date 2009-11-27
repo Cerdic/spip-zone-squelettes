@@ -33,10 +33,13 @@
 				[(#PLUGIN{pb_pagerank}|oui)<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}>]
 				[<a class="img" href="[(#ID_SYNDIC|generer_url_entite{site})]"[ title="(#NOM_SITE|texte_backend)"]>
 				(#LOGO_SITE||image_reduire{150,100}||inserer_attribut{title,#NOM_SITE|texte_backend})</a>]
-				#FORMULAIRE_JAIME_JAIMEPAS
+				<br />#NOTATION_ETOILE{#NOTE}<br />
 				[(#REM) Nombre total de messages ]
-				<BOUCLE_decompte2(FORUMS) {id_syndic ?} {plat} />[(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
-				[(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>})]]<//B_decompte2>
+					<BOUCLE_forum2(FORUMS){id_syndic}{plat}>
+						<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]#forum" title="<:annuaire:ajouter_commentaire:>">#TOTAL_BOUCLE&nbsp;&nbsp;<:annuaire:commentaire:></a>
+					</BOUCLE_forum2>
+						<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]#forum" title="<:annuaire:ajouter_commentaire:>"><:annuaire:pas_commentaire:></a>
+					<//B_forum2>
 				#DESCRIPTIF
 				</fieldset>
 			</li>
@@ -45,11 +48,11 @@
 		</div><!--#new-->
 
 		[(#REM) Afficher les mieux notés :]
-		<div id="pop">
-			<h2><:annuaire:plus_pop:></h2>
-			<B_pop>
+		<div id="plus_votes">
+			<h2><:annuaire:plus_votes:></h2>
+			<B_sites_plus_votes>
 			<ul>
-			<BOUCLE_pop(SITES){notation}{!par nombre_votes}{doublons}{pagination #CONFIG{annuaire_sommaire/pas_pagination_populaire, 3}}>
+			<BOUCLE_sites_plus_votes(SITES notations_objets){nombre_votes>0}{!par nombre_votes}{doublons}{pagination #CONFIG{annuaire_sommaire/pas_pagination_plus_vote, 3}}>
 			<li>
 				<fieldset>
 				<a href="[(#ID_SYNDIC|generer_url_entite{site})]"><object>#NOM_SITE</object></a>
@@ -57,19 +60,22 @@
 				[(#PLUGIN{pb_pagerank}|oui)<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}>]
 				[<a class="img" href="[(#ID_SYNDIC|generer_url_entite{site})]"[ title="(#NOM_SITE|texte_backend)"]>
 				(#LOGO_SITE||image_reduire{120}||inserer_attribut{title,#NOM_SITE|texte_backend})</a>]
-				#FORMULAIRE_JAIME_JAIMEPAS
+				<br />#NOMBRE_VOTES <:annuaire:votes:><br />
 				[(#REM) Nombre total de messages ]
-				<BOUCLE_decompte3(FORUMS) {id_syndic ?} {plat} />[(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
-				[(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>})]]<//B_decompte3>
+					<BOUCLE_forum3(FORUMS){id_syndic}{plat}>
+						<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]#forum" title="<:annuaire:ajouter_commentaire:>">#TOTAL_BOUCLE&nbsp;&nbsp;<:annuaire:commentaire:></a>
+					</BOUCLE_forum3>
+						<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]#forum" title="<:annuaire:ajouter_commentaire:>"><:annuaire:pas_commentaire:></a>
+					<//B_forum3>
 				#DESCRIPTIF
 				</fieldset>
 			</li>
-			</BOUCLE_pop>
+			</BOUCLE_sites_plus_votes>
 			</ul>
-			</B_pop>
-			<h4 class="pas_de"><:annuaire:pas_pop:></h4>
-			<//B_pop>
-		</div><!--#pop-->
+			</B_sites_plus_votes>
+			<h4 class="pas_de"><:annuaire:pas_votes:></h4>
+			<//B_sites_plus_votes>
+		</div><!--#plus_votes-->
 
 		[(#REM) Afficher au hazard :]
 		<div id="zard">
@@ -84,10 +90,13 @@
 				[(#PLUGIN{pb_pagerank}|oui)<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}>]
 				[<a class="img" href="[(#ID_SYNDIC|generer_url_entite{site})]"[ title="(#NOM_SITE|texte_backend)"]>
 				(#LOGO_SITE||image_reduire{120}||inserer_attribut{title,#NOM_SITE|texte_backend})</a>]
-				#FORMULAIRE_JAIME_JAIMEPAS
+				<br />#NOTATION_ETOILE{#NOTE}<br />
 				[(#REM) Nombre total de messages ]
-				<BOUCLE_decompte4(FORUMS) {id_syndic ?} {plat} />[(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
-				[(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>})]]<//B_decompte4>
+					<BOUCLE_forum4(FORUMS){id_syndic}{plat}>
+						<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]#forum" title="<:annuaire:ajouter_commentaire:>">#TOTAL_BOUCLE&nbsp;&nbsp;<:annuaire:commentaire:></a>
+					</BOUCLE_forum4>
+						<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]#forum" title="<:annuaire:ajouter_commentaire:>"><:annuaire:pas_commentaire:></a>
+					<//B_forum4>
 				#DESCRIPTIF
 				</fieldset>
 			</li>
