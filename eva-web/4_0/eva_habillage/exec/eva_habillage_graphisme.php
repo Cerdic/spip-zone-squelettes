@@ -72,7 +72,7 @@ echo debut_cadre_trait_couleur(_DIR_PLUGIN_EVA_HABILLAGE."img_pack/text.png", tr
 	echo '<div style="text-align:center;">';
         foreach(EVA_def_textes() as $habillage_cles => $habillage_inutile) {
 	echo _T('evahabillage:'.$habillage_cles);
-	echo '<input type="text" name="'.$habillage_cles.'" value="'.$tableau_themes_defini[$habillage_cles].'" size="50">';
+	echo '<input type="text" name="'.$habillage_cles.'" value="'.htmlentities($tableau_themes_defini[$habillage_cles]).'" size="50">';
         }
 	echo '<input type="submit" value="'._T('evahabillage:EVA_valider').'"></div><input type="hidden" name="modif_habillage" value="2"></form>';
 

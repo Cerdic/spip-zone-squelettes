@@ -1032,6 +1032,29 @@ $eva_themes = array(
     "('', 'image', 'Defaut', 'image_titres', 'roussette/titres_ghislain.jpg', 'left', 'top', 'repeat-x', 'scroll')",
     ), ),
 
+'Blue-Pigment-CC' => array(
+    /* Thème graphique adapté de Blue Pigment sous licence Creative Commons Attribution 2.5 License, adaptation réalisée par Olivier Gautier */
+    "habillage" => "eva4_basic_3colonnes.css",
+    "theme" => "('', 'Defaut', '', '#1183DA', '', '', '', '', '', '', '', '', '', '#011343', '#011343', '', '', '', '', '', '', '', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff;background-color:#0F7ACC', '#ffffff', '', '#ffffff', '#ffffff', '', '#ffffff', '#ffffff', '#ffffff', '#ffffff;font-weight:bolder', '#ffffff;text-decoration:underline', '#ffffff;font-weight:bolder', '#ffffff;text-decoration:underline', '#ffffff;font-weight:bolder', '#ffffff;text-decoration:underline', '', '', '', '#1F8ADE', '5px', 'solid', '', '', '', '', '', '', '', '', '', '#1F8ADE', '5px', 'solid', '', '', '', '', '', '', '', '', '', '', '', '', '', '175px', '', '')",
+    "images" => array(
+    "('', 'perso', 'Defaut', '.rainette_infos,div#contenu .rainette_infos h2 .ville{color:#1183DA;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '#forum .bouton a:hover {background-color:#1183DA;color:#ffffff;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '#forum .bouton a {color:#1183DA;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete .menulangue {background-color:#1183DA;border-color:#323F76;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'h3 {border-style:none;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'hr {border-width:1px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div.bloc h3.titre {border-bottom:#1F8ADE solid 2px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'ul#sommaire{border:#77B60F solid 5px;background-color:transparent;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '.menulangue {right:23.05%;bottom:10px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete h1 {top:50px;margin-right:60px;left:50px;font-size:40px;}', '', '', '', '', '')",
+    "('', 'image', 'Defaut', 'image_bloc', 'BluePigment/bloc.jpg', 'left', 'top', 'repeat', 'scroll')",
+    "('', 'image', 'Defaut', 'image_edito', 'BluePigment/bloc.jpg', 'left', 'top', 'repeat', 'scroll')",
+    "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'BluePigment/header_basse.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_entete_page', 'BluePigment/header_haute.jpg', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'perso', 'Defaut', 'ul#pied a, ul#pied li.on a {color:#1F8ADE; font-weight:bolder;}', '', '', '', '', '')",
+    "('', 'bloc', 'Defaut', 'Blue-Pigment-CC', 'oui', '1', '', 'perso', 'pied')",
+    ), ),
+
 
 
 );
