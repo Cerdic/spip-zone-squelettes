@@ -1058,6 +1058,31 @@ $eva_themes = array(
     ), ),
 
 
+'Purple-Pigment-CC' => array(
+    /* Thème graphique adapté de Blue Pigment sous licence Creative Commons Attribution 2.5 License, adaptation réalisée par Olivier Gautier */
+    "habillage" => "eva4_basic_3colonnes.css",
+    "theme" => "('', 'Defaut', '', '#8E0AE7', '', '', '', '', '', '', '', '', '', '#330055', '#330055', '', '', '', '', '', '', '', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#55DD00', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#55DD00;font-weight:bolder', '', '#ffffff', '#55DD00;font-weight:bolder', '', '#ffffff', '#ffffff', '#ffffff', '#ffffff;font-weight:bolder', '#ffffff;text-decoration:underline', '#ffffff;font-weight:bolder', '#ffffff;text-decoration:underline', '#ffffff;font-weight:bolder', '#ffffff;text-decoration:underline', '', '', '', '#B95AF8', '5px', 'solid', '', '', '', '', '', '', '', '', '', '#B95AF8', '5px', 'solid', '', '', '', '', '', '', '', '', '', '', '', '', '', '175px', '', '')",
+    "images" => array(
+    "('', 'perso', 'Defaut', 'div#conteneur{padding-top:14px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'ul#pied a, ul#pied li.on a {color:#B95AF8; font-weight:bolder;}', '', '', '', '', '')",
+    "('', 'image', 'Defaut', 'image_page', 'BluePigment/violet_contenu_haut.jpg', 'left', '197px', 'repeat-x', 'scroll')",
+    "('', 'perso', 'Defaut', '.menulangue {right:23.05%;bottom:10px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete h1 {top:50px;margin-right:60px;left:50px;font-size:40px;}', '', '', '', '', '')",
+    "('', 'image', 'Defaut', 'image_bloc', 'BluePigment/bloc_violet.png', 'left', 'top', 'repeat', 'scroll')",
+    "('', 'image', 'Defaut', 'image_edito', 'BluePigment/bloc_violet.png', 'left', 'top', 'repeat', 'scroll')",
+    "('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'BluePigment/arbo_violet.png', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'image', 'Defaut', 'image_entete_page', 'BluePigment/entete_haut.png', 'left', 'top', 'repeat-x', 'scroll')",
+    "('', 'perso', 'Defaut', 'div.bloc h3.titre {border-bottom:#B95AF8 solid 2px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'ul#sommaire{border:#55DD00 solid 5px;background-color:transparent;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'hr {border-width:1px;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'h3 {border-style:none;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', 'div#entete .menulangue {background-color:#8E0AE7;border-color:#B95AF8;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '#forum .bouton a:hover {background-color:#8E0AE7;color:#ffffff;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '#forum .bouton a {color:#8E0AE7;}', '', '', '', '', '')",
+    "('', 'perso', 'Defaut', '.rainette_infos,div#contenu .rainette_infos h2 .ville, fieldset{color:#8E0AE7;}', '', '', '', '', '')",
+    "('', 'bloc', 'Defaut', 'Blue-Pigment-CC', 'oui', '1', '', 'perso', 'pied')",
+    ), ),
+
 
 );
 return $eva_themes;
