@@ -176,6 +176,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'par' => 'par',
 'partenaire' => 'partenaires',
 'pas_commentaire' => 'Pas de commentaire',
+'pas_descriptif' => 'Nous n\'avons pas de descriptif pour ce site, si vous &ecirc;tes le webmaster vous pouvez nous contacter afin de proposer un descriptif au site.',
 'pas_new' => 'Pas de nouveaut&eacute;s',
 'pas_pagination' => 'Nombre d\'&eacute;l&eacute;ments par page',
 'pas_partenaire' => 'Nous n\'avons pas de partenaires &agrave; ce jour, si vous le souhaitez, rejoingnez-nous...',
