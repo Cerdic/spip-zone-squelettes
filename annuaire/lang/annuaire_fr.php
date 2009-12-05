@@ -127,6 +127,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //F
 'faites_lien' => 'Faites un lien vers',
+
 //G
 'grp_vide' => 'R&eacute;f&eacute;renc&eacute; des sites avec un mot clef pour ce groupe',
 
@@ -208,7 +209,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'supprimer' => 'Supprimer',
 'sur_site' => 'sur le site',
 'style' => 'Style :',
-'styliste' => 'Indiquer la personne qui a con&ccedil;u le design : (afficher colonne de droite en bas uniquement si remplis), possibilit&eacute;e de mettre du code spip ou html.',
+'styliste' => 'Indiquer la personne responsable la charte graphique : (afficher colonne de droite en bas uniquement si remplis), possibilit&eacute;e de mettre du code spip ou html.',
 
 //T
 'toutes_rubriques' => 'Toutes les rubriques',
@@ -218,7 +219,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'utilisation' => 'Utilisation',
 'utilisation_expli_contact_1' => 'Pour pouvoir configurer cette page, il vous faut le plugins "contact".',
 'utilisation_expli_contact_2' => 'Vous pouvez configurez cette page parce que le plugin "contact" est activ&eacute;.',
-'utilisation_expli_spiplistes_1' => 'PPour pouvoir configurer cette page, il vous faut le plugins "spip listes".',
+'utilisation_expli_spiplistes_1' => 'Pour pouvoir configurer cette page, il vous faut le plugins "spip listes".',
 'utilisation_expli_spiplistes_2' => 'Vous pouvez configurez cette page parce que le plugin "spip listes" est activ&eacute;.',
 'utiliser_form_contact' => 'utilisez le formulaire de contact',
 
