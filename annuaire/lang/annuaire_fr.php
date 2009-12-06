@@ -6,18 +6,18 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //A
 'accueil_presentation' =>'Pr&eacute;sentation',
-'accueil_intro' =>'Bienvenue sur la page de pr&eacute;sentation du plugins "annuaire".',
+'accueil_intro' =>'Bienvenue sur la page de pr&eacute;sentation du plugin "annuaire".',
 'accueil_option' =>'Certain plugins sont optionnel :',
-'accueil_option_contact' =>'Le plugins "contact" permets ou non d\'affich&eacute; la page de contact et son r&eacute;glage dans le plugins.',
+'accueil_option_contact' =>'Le plugin "contact" permets ou non d\'affich&eacute; la page de contact et son r&eacute;glage dans le plugin.',
 'accueil_option_pub' => 'Si vous souhaitez int&eacute;gr&eacute; dans votre site des pub google, il vous faudra cr&eacute;&eacute; les mots clefs "pub-entete" et pub-nav" dans le groupe "Affichage" et plac&eacute; la br&egrave;ve dans une rubrique nomm&eacute; "squelette".',
-'accueil_option_spiplistes' =>'Le plugins "spip liste" permets ou non d\'affich&eacute; la page abonnement et son r&eacute;glage dans le plugins.',
-'accueil_option_visiteurs' =>'Le plugins "visiteur connect&eacute;s" ou la lame du couteau suisse permets d\'afficher dans la colonne de navigation (droite) le nombre de visiteur connect&eacute;s.',
+'accueil_option_spiplistes' =>'Le plugin "spip liste" permets ou non d\'affich&eacute; la page abonnement et son r&eacute;glage dans le plugin.',
+'accueil_option_visiteurs' =>'Le plugin "visiteur connect&eacute;s" ou la lame du couteau suisse permets d\'afficher dans la colonne de navigation (droite) le nombre de visiteur connect&eacute;s.',
 'accueil_requis' =>'Les requis pour un bon fonctionnement du site',
 'accueil_requis_1' =>'Pour un bon r&eacute;f&eacute;rencement de votre site, ils vous faut cr&eacute;er :
 					<br />un groupe de mot clef "_META"
 					<br />les mots clefs keywords, description et remplir le champ texte pour que votre site ce r&ecute;f&ecute;rence
 					<br />et &agrave; l\'inverse cr&ecute;&ecute; robots et le texte noindex, nofollow pour ne pas le r&ecute;f&ecute;renc&ecute; ',
-'accueil_requis_2' =>'Pour afficher des partenaires sur la page "Partenaires", il vous faut cr&eacute;&eacute; le groupe "Affichage" avec le mot clef "partenaire" et attibuer le &agrave; chacun des sites voulus.',
+'accueil_requis_2' =>'Pour afficher des partenaires sur la page "Partenaire", il vous faut cr&eacute;&eacute; le groupe "Affichage" avec le mot clef "partenaire" et attibuer le &agrave; chacun des sites voulus.',
 'actuellement' => 'Il y a actuellement ',
 'affichage' => 'L\'affichage',
 'ajouter_google' => 'ajouter &agrave; google',
@@ -71,9 +71,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'css_bandeau' => 'Bandeau',
 'css_bandeau_com' => 'Pour modifier les couleurs du bandeau "ent&ecirc;te"',
 'css_boucles' => 'Boucles',
-'css_couleurs' => 'Cela revient à choisir la couleur d\'arri&egrave;re plan, la couleur d\'avant
-					 plan utilis&eacute;e pour le texte et les liens et la couleur de survol des
-					 liens.',
+'css_couleurs' => 'Cela revient à choisir la couleur d\'arri&egrave;re plan, la couleur d\'avant plan utilis&eacute;e pour le texte et les liens et la couleur de survol des liens.',
 'css_couleurs_' => 'Choisissez vos couleurs pour ',
 'css_couleurs_fond_expli' =>'Cela revient à choisir la couleur d\'arri&egrave;re plan sur une page.',
 'css_couleurs_fond_page' =>'Choisissez la couleur pour le fond de ',
@@ -126,10 +124,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'est_rattache' => 'est rattach&eacute; &agrave;',
 
 //F
-'faites_lien' => 'Faites un lien vers',
 
 //G
-'grp_vide' => 'R&eacute;f&eacute;renc&eacute; des sites avec un mot clef pour ce groupe',
 
 //H
 'hasard' => 'Sites au hasard',
@@ -176,14 +172,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //P
 'par' => 'par',
 'partenaire' => 'partenaires',
-'pas_commentaire' => 'Pas de commentaire',
+'pas_commentaire' => 'Pas encore de commentaire',
 'pas_descriptif' => 'Nous n\'avons pas de descriptif pour ce site, si vous &ecirc;tes le webmaster vous pouvez nous contacter afin de proposer un descriptif au site.',
 'pas_new' => 'Pas de nouveaut&eacute;s',
 'pas_pagination' => 'Nombre d\'&eacute;l&eacute;ments par page',
-'pas_partenaire' => 'Nous n\'avons pas de partenaires &agrave; ce jour, si vous le souhaitez, rejoingnez-nous...',
-'pas_sites' => 'Pas de site rattach&eacute; &agrave; ce mot clef.',
-'pas_vote' => 'Pas de site dans cette partie car pas encore de vote.',
-'pas_zard' => 'Pas de sites au hasard, enregistrez-en ...',
+'pas_partenaire' => 'Nous n\'avons pas de partenaire(s) &agrave; ce jour, si vous le souhaitez, rejoingnez-nous...',
+'pas_vote' => 'Pas de site(s) dans cette partie car pas encore de vote.',
+'pas_zard' => 'Pas de site(s) au hasard, enregistrez-en ...',
 'plan_complet' => 'plan complet',
 'plus_encore' => 'Plus encore !',
 'plus_votes' => 'Sites les plus vot&eacute;s',
@@ -205,9 +200,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //S
 'sites' => 'sites',
-'site_mois' => 'le site du mois',
 'supprimer' => 'Supprimer',
-'sur_site' => 'sur le site',
 'style' => 'Style :',
 'styliste' => 'Indiquer la personne responsable la charte graphique : (afficher colonne de droite en bas uniquement si remplis), possibilit&eacute;e de mettre du code spip ou html.',
 
@@ -217,10 +210,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //U
 'url_flux' => 'URL du flux rss',
 'utilisation' => 'Utilisation',
-'utilisation_expli_contact_1' => 'Pour pouvoir configurer cette page, il vous faut le plugins "contact".',
-'utilisation_expli_contact_2' => 'Vous pouvez configurez cette page parce que le plugin "contact" est activ&eacute;.',
-'utilisation_expli_spiplistes_1' => 'Pour pouvoir configurer cette page, il vous faut le plugins "spip listes".',
-'utilisation_expli_spiplistes_2' => 'Vous pouvez configurez cette page parce que le plugin "spip listes" est activ&eacute;.',
+'utilisation_expli_contact_1' => 'Pour pouvoir configurer cette page, il vous faut le plugin "contact".',
+'utilisation_expli_contact_2' => 'Vous pouvez configurer cette page parce que le plugin "contact" est activ&eacute;.',
+'utilisation_expli_spiplistes_1' => 'Pour pouvoir configurer cette page, il vous faut le plugin "spip listes".',
+'utilisation_expli_spiplistes_2' => 'Vous pouvez configurer cette page parce que le plugin "spip listes" est activ&eacute;.',
 'utiliser_form_contact' => 'utilisez le formulaire de contact',
 
 //V

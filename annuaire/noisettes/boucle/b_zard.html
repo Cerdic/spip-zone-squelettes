@@ -1,0 +1,26 @@
+<h2><:annuaire:hasard:></h2>
+<B_zard>
+<ul>
+<BOUCLE_zard(SITES){doublons}{par hasard}{pagination #CONFIG{annuaire_sommaire/pas_pagination_hasard, 3}}>
+<li>
+	<fieldset>
+	<a href="[(#ID_SYNDIC|generer_url_entite{site})]"><object>#NOM_SITE</object></a>
+	<BOUCLE_logo_zard(MOTS){id_syndic} {'  '}>[(#LOGO_MOT||inserer_attribut{title, #TITRE|supprimer_numero})]</BOUCLE_logo_zard>
+	[(#PLUGIN{pb_pagerank}|oui)<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}>]
+	[<a class="img" href="[(#ID_SYNDIC|generer_url_entite{site})]"[ title="(#NOM_SITE|texte_backend)"]>
+	(#LOGO_SITE||image_reduire{120}||inserer_attribut{title,#NOM_SITE|texte_backend})</a>]
+	<br />#NOTATION_ETOILE{#NOTE}<br />
+	[(#REM) Nombre total de messages ]
+		<BOUCLE_forum_zard(FORUMS){id_syndic}{plat}>
+			<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]#forum" title="<:annuaire:ajouter_commentaire:>">#TOTAL_BOUCLE&nbsp;&nbsp;<:annuaire:commentaire:></a>
+		</BOUCLE_forum_zard>
+			<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]#forum" title="<:annuaire:ajouter_commentaire:>"><:annuaire:pas_commentaire:></a>
+		<//B_forum_zard>
+	[(#DESCRIPTIF|sinon{<p><:annuaire:pas_descriptif:></p>})]
+	</fieldset>
+</li>
+</BOUCLE_zard>
+</ul>
+</B_zard>
+<h4 class="pas_de"><:annuaire:pas_zard:></h4>
+<//B_zard>
