@@ -1,0 +1,59 @@
+<!-- titre=<:sarkaspip:cfg_titre_article:> -->
+<!-- descriptif=<:sarkaspip:cfg_descr_article:> -->
+<!-- boite=<:sarkaspip:cfg_boite_article:> -->
+<INCLURE{fond=noisettes/cfg/inc_cfg_header}>
+#CACHE{0}
+
+<form method="post" action="#SELF"><div>
+	[(#ENV{_cfg_}|form_hidden)]
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_description:></legend>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_logo}
+			{explication=<:sarkaspip:cfg_inf_article_sans_logo:>}
+			{env}>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_cartouche}
+			{explication_popularite=<:sarkaspip:cfg_inf_article_popularite:>}
+			{explication_notation=<:sarkaspip:cfg_inf_article_notation:>}
+			{explication_socialtags=<:sarkaspip:cfg_inf_article_socialtags:>}
+			{env}>
+	</fieldset>
+	
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_documents_joints:></legend>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_descriptif_document}{env}>
+	</fieldset>
+	
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_images_jointes:></legend>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_effet_image}
+			{explication=<:sarkaspip:cfg_inf_effet_image:>}
+			{choix=portfolio}
+			{env}>
+	</fieldset>
+
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_commentaires:></legend>
+		<p><:sarkaspip:cfg_inf_article_commentaires:></p>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_pagination}
+			{defaut_pas=20}
+			{defaut_position=2}
+			{suffixe=_commentaires}
+			{env}>
+	</fieldset>
+	
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_petition:></legend>
+		<p><:sarkaspip:cfg_inf_petition:></p>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_pagination}{defaut_pas=20}{defaut_position=2}{suffixe=_signatures}{env}>
+	</fieldset>
+	
+	<INCLURE{fond=noisettes/cfg/inc_cfg_boutons}>
+</div></form>
+
+[(#EVAL{_SARKASPIP_DEBUG_CFG_ARBO}|=={oui}|?{' '})
+	<div id="bloc_debug">
+		<br />
+		>> Debug - Etat des variables du fond Article:<br />
+		#CFG_ARBO{sarkaspip_article}
+	</div>
+]

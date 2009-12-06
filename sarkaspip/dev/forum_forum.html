@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+#CACHE{0}
+<BOUCLE_article(ARTICLES){id_article}>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+	<INCLURE{fond=noisettes/inc_header}
+		{meta_titre=(#TITRE|supprimer_numero)}
+		{meta_description=#INTRODUCTION{#EVAL{_SARKASPIP_CONFIG_INTRO_META}}}>
+
+<body dir="#LANG_DIR">
+<div id="container">
+	<div id="header">
+		[(#REM) <!-- =================================== ZONE BANDEAU ==================================== --> ]
+		<INCLURE{fond=noisettes/bandeau}{lang}{id_rubrique}>
+	</div>
+	
+	<div id="wrapper">
+		<div id="content">
+			<div id="forum" class="forum">
+				[(#REM) <!-- Titre, logo, texte de la page du forum --> ]
+				<INCLURE{fond=noisettes/article/inc_article_description}
+					{id_article}
+					{page=forum}
+					{afficher_commentaires=non}
+					{avec_popularite=non}
+					{avec_notation=non}
+					{avec_socialtags=non}
+					{logo_rubrique=oui}
+					{taille_logo=100}>
+			
+				<a class="fonction" id="commenter" href="[(#URL_PAGE{forum_post})][&amp;(#PARAMETRES_FORUM)]" title="<:sarkaspip:poster_sujet:>"></a>
+				<br class="nettoyeur" />
+
+				[(#REM) <!-- On traite d'abord les annonces --> ]
+				<INCLURE{fond=noisettes/forum/inc_forum_sujets_speciaux}
+					{id_article}
+					{sujet=annonce}>
+
+				[(#REM) <!-- On traite ensuite les sujets epingles --> ]
+				<INCLURE{fond=noisettes/forum/inc_forum_sujets_speciaux}
+					{id_article}
+					{sujet=epingle}>
+
+				[(#REM) <!-- On traite enfin les sujets non epingles --> ]
+				<INCLURE{fond=noisettes/forum/inc_forum_sujets_discussions}
+					{id_article}
+					{sujet=discussion}>
+			</div>
+		</div>
+	</div>
+	
+	<div id="navigation">
+		[(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
+		<INCLURE{fond=noisettes/navigation}{id_rubrique}{id_secteur}>
+	</div>
+	
+	<div id="extra">
+		[(#REM) <!-- ============================== ZONE COLONNE DE DROITE  ============================= --> ]
+		<INCLURE{fond=noisettes/extra}{self=#SELF}{page=forum_forum}{id_secteur}{id_rubrique}{id_article}>
+	</div>
+	
+	<div id="footer">
+		[(#REM) <!-- ================================== ZONE PIED DE PAGE  ================================== --> ]
+		<INCLURE{fond=noisettes/pied}{squelette=#SQUELETTE}>
+	</div>
+
+</div>
+</body>
+</html>
+[(#REM) <!-- ================================== ERREUR BOUCLE VIDE  ================================== --> ]
+</BOUCLE_article>
+	<INCLURE{fond=404}>
+<//B_article>

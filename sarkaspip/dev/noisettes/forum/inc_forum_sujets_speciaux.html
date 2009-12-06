@@ -1,0 +1,35 @@
+[(#REM) 
+<!-- Affichage des annonces d'un forum
+	Recoit en argument :
+		- id_article: id de l'article concerne
+		- sujet: type de sujet (annonce ou epingle)
+-->
+]
+[(#SET{regexp, [^(#ENV{sujet}):]})]
+[(#ENV{sujet}|=={annonce}|oui)
+	[(#SET{colonne_sujet, <:sarkaspip:forum_annonces:>})]
+]
+[(#ENV{sujet}|=={epingle}|oui)
+	[(#SET{colonne_sujet, <:sarkaspip:forum_epingles:>})]
+]
+<B_forum_sujets>
+<table id="#ENV{sujet}" class="sujet" summary="">
+	<thead>
+		<tr>
+			<th colspan="2">#GET{colonne_sujet}</th>
+			<th><:sarkaspip:forum_reponses:></th>
+			<th><:sarkaspip:forum_derniers_messages:></th>
+		</tr>
+	</thead>
+	<tbody>
+<BOUCLE_forum_sujets(FORUMS){id_article}{plat}{id_parent=0}{!par date_thread}{titre==#GET{regexp}}>
+		<INCLURE{fond=noisettes/forum/inc_forum_sujet_ligne}
+			{id_article}
+			{id_forum}
+			{id_thread}
+			{titre}
+			{sujet=#ENV{sujet}}>
+</BOUCLE_forum_sujets>
+	</tbody>
+</table>
+</B_forum_sujets>
