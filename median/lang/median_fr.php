@@ -64,9 +64,11 @@ mais vous devriez certainement trouver ce que vous cherchez!',
 
 // P
 'page_sommaire' => 'Page d\'accueil',
+'pages_pertinentes' => 'Pages pertinentes',
 
 // R
 'reglages' => 'R&eacute;glages divers',
+'rubriques_pertinentes' => 'Rubriques pertinentes',
 
 // S
 //'saisir_id_groupes_mots' => 'entrez les ID des groupes de mots s&eacute;par&eacute;s par un |',

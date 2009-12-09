@@ -54,7 +54,7 @@ de todas maneras, van a encontrar lo que buscan !',
 'logo'=> 'logo',
 
 // M
-'meta_keywords' => 'El contenido de la baliza "meta keywords" ( una quinzena de palabras separadas por comas)',
+'meta_keywords' => 'El contenido de la baliza "meta keywords" (una quinzena de palabras separadas por comas)',
 'mots_cles_coordonnees' => 'las palabras claves para las coordenadas de contacto',
 'mots_cles_techniques_median' => 'las palabras claves tecnicas para el esqueleto Median',
 
@@ -63,9 +63,11 @@ de todas maneras, van a encontrar lo que buscan !',
 
 // P
 'page_sommaire' => 'Pagina de inicio',
+'pages_pertinentes' => 'Paginas pertinentes',
 
 // R
 'reglages' => 'Arreglos varios',
+'rubriques_pertinentes' => 'Secciones pertinentes',
 
 // S
 //'saisir_id_groupes_mots' => 'entrez les ID des groupes de mots s&eacute;par&eacute;s par un |',

@@ -65,9 +65,11 @@ you certainly find what you are looking for!',
 
 // P
 'page_sommaire' => 'Home page',
+'pages_pertinentes' => 'Relevant pages',
 
 // R
 'reglages' => 'Various settings',
+'rubriques_pertinentes' => 'Relevant sections',
 
 // S
 'saisir_couleur' => 'choose a color by clicking in the input box',
