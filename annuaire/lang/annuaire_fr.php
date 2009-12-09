@@ -5,6 +5,7 @@
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //A
+'abonnement' => 'd\' "abonnement"',
 'accueil_presentation' =>'Pr&eacute;sentation',
 'accueil_intro' =>'Bienvenue sur la page de pr&eacute;sentation du plugin "annuaire".',
 'accueil_option' =>'Certain plugins sont optionnel :',
@@ -41,11 +42,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'annuaire_rubrique' => 'Rubrique',
 'annuaire_site' => 'Site',
 'annuaire_sommaire' => 'Sommaire',
-'annuaire_style' => 'Style',
+'articles' => 'des "articles"',
 'article_syndic' => 'article(s) syndiqu&eacute;(s).',
 
 //B
-'bandeau' => 'le "bandeau"',
+'bandeau' => 'du "bandeau"',
 'boucles' =>'R&eacute;glages des boucles',
 
 //C
@@ -67,21 +68,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'configuration_site' => 'configuration de la page "site"',
 'configuration_sommaire' => 'configuration de la page "sommaire"',
 'conception' => 'conception',
+'contact' => 'de "contact"',
 'css' => 'Les css',
-'css_bandeau' => 'Bandeau',
-'css_bandeau_com' => 'Pour modifier les couleurs du bandeau "ent&ecirc;te"',
-'css_boucles' => 'Boucles',
-'css_couleurs' => 'Cela revient à choisir la couleur d\'arri&egrave;re plan, la couleur d\'avant plan utilis&eacute;e pour le texte et les liens et la couleur de survol des liens.',
+'css_couleurs' => 'Cela revient &agrave; choisir la couleur d\'arri&egrave;re plan, la couleur d\'avant plan utilis&eacute;e pour le texte et les liens et la couleur de survol des liens.',
 'css_couleurs_' => 'Choisissez vos couleurs pour ',
-'css_couleurs_fond_expli' =>'Cela revient à choisir la couleur d\'arri&egrave;re plan sur une page.',
-'css_couleurs_fond_page' =>'Choisissez la couleur pour le fond de ',
+'css_couleurs_fond_expli' =>'Cela revient &agrave; choisir la couleur d\'arri&egrave;re plan sur une page.',
+'css_couleurs_fond_page' =>'Choisissez la couleur pour le fond ',
 'css_bg' => 'Couleur d\'arri&egrave;re plan',
 'css_fond' => 'Fond de page',
 'css_fg' => 'Couleur d\'avant plan (texte et liens)',
 'css_ho' => 'Couleur de survol',
 
 //D
-'descriptif_abonnement' => '<h4>R&eacute;glage de la page contact</h4>
+'descriptif_abonnement' => '<h4>R&eacute;glage de la page abonnement</h4>
 				<br />R&eacute;gl&eacute; vos styles sur la page abonnement.',
 'descriptif_accueil' => 'Pr&eacute;sentation du plugins "annuaire" et de ses fonctions.',
 'descriptif_bandeau' => '<h4>R&eacute;glage du bandeau</h4>
@@ -116,20 +115,22 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 				<br />R&eacute;gl&eacute; vos boucles et styles du sommaire.',
 'descriptif_colonne' => '<h4>R&eacute;glage du style</h4>
 				<br />Choisissez vos couleurs pour les colonnes et pied de page.',
-'description' => 'Description',
 'description_site' => 'Description du site',
 
 //E
 'epingle_site' => '&eacute;pingl&eacute;s sur',
 'est_rattache' => 'est rattach&eacute; &agrave;',
+'erreur' => 'des "erreurs"',
 
 //F
+'forum' => 'du "forum"',
 
 //G
 
 //H
 'hasard' => 'Sites au hasard',
-'hierarchie' => 'la "hierarchie"',
+'herbier' => 'de l\' "herbier"',
+'hierarchie' => 'de la "hierarchie"',
 
 //I
 'infos' => 'Afficher une infos sur toutes les rubriques (si vous la souhaitez diff&eacute;rentes utiliser la description.)',
@@ -145,9 +146,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //M
 'menu_site' => 'le menu du site',
+'miniature' => 'de "miniatures"',
 'miniature_sites_miwim' => 'Miniatures de sites avec Miwim Thumbs',
-'miniatures' => 'miniatures',
-'mot_site' => 'Mot cl&eacute;',
+'mot' => 'de "mot"',
 
 //N
 'nav_bas' => 'la colonne "navigation" partie basse',
@@ -161,8 +162,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'nbr_articles' => 'Nombre d\'articles :',
 'nbr_sites' => 'Nombre de sites :',
 'new' => 'la boucle "nouveaut&eacute;s"',
-'nom_proprio_site' => 'Votre nom :',
-'nom_site' => 'Titre du site',
 'nous_avons' => 'Nous avons',
 'nouveaute' =>'Site nouveaut&eacute;',
 
@@ -171,16 +170,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //P
 'par' => 'par',
-'partenaire' => 'partenaires',
+'partenaire' => 'de "partenaires"',
 'pas_commentaire' => 'Pas encore de commentaire',
 'pas_descriptif' => 'Nous n\'avons pas de descriptif pour ce site, si vous &ecirc;tes le webmaster vous pouvez nous contacter afin de proposer un descriptif au site.',
-'pas_new' => 'Pas de nouveaut&eacute;s',
 'pas_pagination' => 'Nombre d\'&eacute;l&eacute;ments par page',
 'pas_partenaire' => 'Nous n\'avons pas de partenaire(s) &agrave; ce jour, si vous le souhaitez, rejoingnez-nous...',
-'pas_vote' => 'Pas de site(s) dans cette partie car pas encore de vote.',
+'pas_votes' => 'Pas encore de votes',
 'pas_zard' => 'Pas de site(s) au hasard, enregistrez-en ...',
-'plan_complet' => 'plan complet',
-'plus_encore' => 'Plus encore !',
+'plan' => 'du "plan"',
+'plan_complet' => 'de "plan complet"',
 'plus_votes' => 'Sites les plus vot&eacute;s',
 'plus_vote' => 'la boucle "plus de votes"',
 'popu_site' => 'La popularit&eacute; du site est de ',
@@ -190,16 +188,18 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //R
 'resultats' => 'R&eacute;sultats dans les boucles',
+'recherche' => 'de "recherche"',
 'recherche_site' => 'Recherche d\'un site',
 'rechercher' => 'Rechercher',
-'ref_site' => 'R&eacute;f&eacute;rencement de mon site',
-'remercier' => 'Pour remercier',
 'rss' => 'Nombres d\'articles syndiqu&eacute; par page.',
 'rss_contient' => 'Le flux RSS contient ',
+'rubrique' => 'de la "rubrique"',
 'rubrique_contient' => 'La rubrique contient',
 
 //S
+'site' => 'de "site"',
 'sites' => 'sites',
+'sommaire' => 'de "sommaire"',
 'supprimer' => 'Supprimer',
 'style' => 'Style :',
 'styliste' => 'Indiquer la personne responsable la charte graphique : (afficher colonne de droite en bas uniquement si remplis), possibilit&eacute;e de mettre du code spip ou html.',
@@ -214,7 +214,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'utilisation_expli_contact_2' => 'Vous pouvez configurer cette page parce que le plugin "contact" est activ&eacute;.',
 'utilisation_expli_spiplistes_1' => 'Pour pouvoir configurer cette page, il vous faut le plugin "spip listes".',
 'utilisation_expli_spiplistes_2' => 'Vous pouvez configurer cette page parce que le plugin "spip listes" est activ&eacute;.',
-'utiliser_form_contact' => 'utilisez le formulaire de contact',
 
 //V
 'votre_nom' => 'Votre nom',
