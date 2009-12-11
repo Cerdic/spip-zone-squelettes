@@ -5,11 +5,17 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
-'accueil_site' => 'Accueil',
+'agenda' => 'Agenda',
 'annuaire' => 'Annuaire',
-'calendrier' => 'Agenda',
+'categories' => 'Cat&ecute;gories',
+'commentaires' => 'commentaires',
+'dans' => 'dans',
+'derniers_visiteurs' => 'Derniers visiteurs',
 'documents' => 'Documents',
-'messages' => 'Messages'
+'groupes_travail' => 'Vos groupes de travail',
+'messages' => 'Messages',
+'publier' => 'Publi&eacute; le',
+'retour_haut' => 'Retour en haut',
 );
 
 ?>
