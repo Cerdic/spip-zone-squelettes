@@ -11,11 +11,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'commentaires' => 'commentaires',
 'dans' => 'dans',
 'derniers_visiteurs' => 'Derniers visiteurs',
+'design' => 'Charte graphique par',
 'documents' => 'Documents',
 'groupes_travail' => 'Vos groupes de travail',
+'icons' => 'Images par',
 'messages' => 'Messages',
 'publier' => 'Publi&eacute; le',
-'retour_haut' => 'Retour en haut',
+'haut_page' => 'Haut de la page',
+
 );
 
 ?>
