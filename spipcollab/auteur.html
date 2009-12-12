@@ -12,35 +12,43 @@
 [(#REM) Lien vers le flux RSS des articles de l'auteur ]
 <link rel="alternate" type="application/rss+xml" title="[(#NOM|textebrut)]" href="[(#URL_PAGE{backend}|parametre_url{id_auteur,#ID_AUTEUR})]" />
 </head>
-<INCLURE{fond=inc-header}{page=annuaire}>
 
-<div id="page_desc">
-<div id="text">
-        [(#REM) Fil d'Ariane ]
-        <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <a href="#URL_PAGE{annuaire}"><:annuaire:></a>[ &gt; <strong class="on">(#NOM|couper{80})</strong>]</div>
-</div>
-<div id="search_top">
-#FORMULAIRE_RECHERCHE
-</div>
-</div>
+<div id="wrap">
+	<INCLURE{fond=inc-header}{page=annuaire}>
+	<div id="page_desc">
+		<div id="text">
+			[(#REM) Fil d'Ariane ]
+			<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <a href="#URL_PAGE{annuaire}"><:annuaire:></a>[ &gt; <strong class="on">(#NOM|couper{80})</strong>]</div>
+		</div><!--#text-->
+		<div id="search_top">
+			#FORMULAIRE_RECHERCHE
+		</div><!--#search_top-->
+	</div><!--#page_desc-->
 
-<div id="content_wrap">
-	<div id="content" class="vcard">
-		<div id="caption">
-			   <h2 class="#EDIT{qui} fn">#NOM</h2>
-		</div>
-		<div class="post">
-			 [(#LOGO_AUTEUR||image_reduire{52,52})]
-			 [<div class="#EDIT{bio} texte note">(#BIO)</div>]
-			[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="url org spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
-		</div>
-		<INCLURE{fond=inc-articles_auteur}{ajax}{env}>
-		[<div class="post">(#FORMULAIRE_ECRIRE_AUTEUR)</div>]
-		[<div class="post notes"><h2><:info_notes:></h2>(#NOTES)</div>]
-	</div>
-	<INCLURE{fond=inc-sidebar}>
+	<div id="content_wrap">
+		<div id="content" class="vcard">
+			<div id="caption">
+				<h2 class="#EDIT{qui} fn">#NOM</h2>
+			</div><!--#caption-->
+			<div class="post">
+				[(#LOGO_AUTEUR||image_reduire{52,52})]
+				[<div class="#EDIT{bio} texte note">(#BIO)</div>]
+				[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="url org spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+			</div><!--.post-->
+			<INCLURE{fond=inc-articles_auteur}{ajax}{env}>
+			[<div class="post">(#FORMULAIRE_ECRIRE_AUTEUR)</div>]
+			[<div class="post notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+		</div><!--#content-->
+		<INCLURE{fond=inc-sidebar}>
+	</div><!--#content_wrap-->
 	<INCLURE{fond=inc-footer}{page=annuaire}>
-</div>
+</div><!--#wrap-->
+[(#REM)
+	Cette balise permet de deporter les calculs lourds (indexation etc)
+	dans une image cachee, ce qui evite de ralentir l'affichage des pages.
+]#SPIP_CRON
+</body>
+</html>
 </BOUCLE_principale>
 <?php } else { ?>
 <INCLURE{fond=login_public}>

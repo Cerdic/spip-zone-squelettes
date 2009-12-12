@@ -11,29 +11,38 @@
 <script type="text/javascript" src="#EVAL{_DIR_JAVASCRIPT}layer.js"> </script> 
 <script type="text/javascript" src="#EVAL{_DIR_JAVASCRIPT}presentation.js"> </script> 
 </head>
-<INCLURE{fond=inc-header}{page=calendrier}>
-<div id="page_desc">
-<div id="text">
-        [(#REM) Fil d'Ariane ]
-        <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <strong class="on"><:calendrier:></strong></div>
-</div>
-<div id="search_top">
-#FORMULAIRE_RECHERCHE
-</div>
-</div>
 
-<div id="content_wrap">
-<div id="content">
-<div id="caption">
-<h2><:calendrier:></h2>
-</div>
-<div class="post">
-	[(#ENV{type, mois}|agenda_connu)<INCLURE {fond=noisettes/agenda_#ENV{type,mois}} {type} {delais=900} {annee} {mois} {jour} {echelle} {partie_cal} {theme}{ajax}>]
-</div>
+<div id="wrap">
+	<INCLURE{fond=inc-header}{page=calendrier}>
+	<div id="page_desc">
+		<div id="text">
+			[(#REM) Fil d'Ariane ]
+			<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <strong class="on"><:agenda:></strong></div>
+		</div><!--#text-->
+		<div id="search_top">
+			#FORMULAIRE_RECHERCHE
+		</div><!--#search_top-->
+	</div><!--#page_desc-->
+	<div id="content_wrap">
+		<div id="content">
+			<div id="caption">
+			<h2><:agenda:></h2>
+			</div><!--#caption-->
+			<div class="post">
+				[(#ENV{type, mois}|agenda_connu)<INCLURE {fond=noisettes/agenda_#ENV{type,mois}} {type} {delais=900} {annee} {mois} {jour} {echelle} {partie_cal} {theme}{ajax}>]
+			</div><!--.post-->
+		</div><!--#content-->
+		<INCLURE{fond=inc-sidebar}>
+	</div><!--#content_wrap-->
+	<INCLURE{fond=inc-footer}{page=calendrier}>
+</div><!--#wrap-->
+[(#REM)
+	Cette balise permet de deporter les calculs lourds (indexation etc)
+	dans une image cachee, ce qui evite de ralentir l'affichage des pages.
+]#SPIP_CRON
+</body>
+</html>
 
-</div>
-<INCLURE{fond=inc-sidebar}>
-<INCLURE{fond=inc-footer}{page=calendrier}>
 <?php } else { ?>
 <INCLURE{fond=login_public}>
 <?php } ?>

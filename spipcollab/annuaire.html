@@ -6,48 +6,51 @@
 [<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
 <INCLURE{fond=inc-head}>
 </head>
-<INCLURE{fond=inc-header}{page=auteurs}>
-<div id="page_desc">
-<div id="text">
-<div id="text">
-        [(#REM) Fil d'Ariane ]
-        <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <strong class="on"><:annuaire:></strong></div>
-</div>
-</div>
-<div id="search_top">
-#FORMULAIRE_RECHERCHE
-</div>
-</div>
-<div id="content_wrap">
-<div id="content">
 
-<div id="caption">
-<h2><:annuaire:></h2>
-</div>
-	<B_auteurs>
-	[(#ANCRE_PAGINATION)]
-	#PAGINATION{precedent_suivant}
-		<BOUCLE_auteurs(AUTEURS) {tous} {par nom}{pagination 20}>
-		<div class="document">
-			[<div class="logo_document"
-			(#LOGO_AUTEUR|#URL_AUTEUR|image_masque{img/thumb.jpg})
-			</div>]
+<div id="wrap">
+	<INCLURE{fond=inc-header}{page=auteurs}>
+	<div id="page_desc">
+		<div id="text">
+			[(#REM) Fil d'Ariane ]
+			<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <strong class="on"><:annuaire:></strong></div>
+		</div><!--#text-->
+		<div id="search_top">
+			#FORMULAIRE_RECHERCHE
+		</div><!--#search_top-->
+	</div><!--#page_desc-->
+	<div id="content_wrap">
+		<div id="content">
+			<div id="caption">
+			<h2><:annuaire:></h2>
+			</div><!--#caption-->
+				<B_auteurs>
+				[(#ANCRE_PAGINATION)]
+				#PAGINATION{precedent_suivant}
+					<BOUCLE_auteurs(AUTEURS) {tous} {par nom}{pagination 20}>
+					<div class="document">
+						[<div class="logo_document"
+						(#LOGO_AUTEUR|#URL_AUTEUR|image_masque{img/thumb.jpg})
+						</div>]
+						[<strong><a href="(#URL_AUTEUR)">#NOM</a></strong>
+						#BIO]
+					<br class="nettoyeur" />
+					</div><!--.document-->
+					</BOUCLE_auteurs>
+				#PAGINATION{precedent_suivant}
+				[<div id="more_posts">(#PAGINATION)</div>]
+				</B_auteurs>
+		</div><!--#content-->
+		<INCLURE{fond=inc-sidebar}>
+		</div><!--#content_wrap-->
+	<INCLURE{fond=inc-footer}{page=auteurs}>
+</div><!--#wrap-->
+[(#REM)
+	Cette balise permet de deporter les calculs lourds (indexation etc)
+	dans une image cachee, ce qui evite de ralentir l'affichage des pages.
+]#SPIP_CRON
+</body>
+</html>
 
-			[
-			<strong><a href="(#URL_AUTEUR)">#NOM</a></strong>
-				#BIO
-				]
-		<br class="nettoyeur" />
-		</div>
-		</BOUCLE_auteurs>
-	#PAGINATION{precedent_suivant}
-	[<div id="more_posts">
-	(#PAGINATION)
-	</div>]
-	</B_auteurs>
-</div>
-<INCLURE{fond=inc-sidebar}>
-<INCLURE{fond=inc-footer}{page=auteurs}>
 <?php } else { ?>
 <INCLURE{fond=login_public}>
 <?php } ?>

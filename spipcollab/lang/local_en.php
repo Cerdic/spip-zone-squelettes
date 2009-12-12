@@ -12,7 +12,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'icons' => 'Icons by',
 'identifiant' => 'Logout',
 'identifiant_compte' => 'Logout of this account',
-'site_internet' => 'Web Site',
 'surnom' => 'Username',
 
 );
