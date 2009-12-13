@@ -14,6 +14,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //C
 'categories' => 'Cat&ecute;gories',
+'commentaires' => 'Commentaires',
 'connecter_comme' => 'Connecté comme',
 'courriel' => 'Courriel',
 
