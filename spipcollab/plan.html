@@ -22,42 +22,36 @@
 		<div id="content">
 		[(#REM) Contenu principal : affichage du plan ]
 		<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
-			<div id="caption">
+			<div class="post">
 			<h2><a href="#URL_RUBRIQUE">#TITRE</a></h2>
-			</div><!--#caption-->
 
 			[(#REM) Les articles ]
-			<div class="post">
-			<B_art1>
 			<ul>
 				<BOUCLE_art1(ARTICLES) {id_rubrique} {par nom_site}{doublons}>
 				<li>[<a href="#URL_ARTICLE" title="#TITRE">(#TITRE|couper{120})</a>]</li>
 				</BOUCLE_art1>
 			</ul>
-			</B_art1>
 			</div><!--.post-->
 
 			[(#REM) Sous-rubriques ]
 			<B_rubriques>
-			<ul id="feed">
+			<div class="post">
+			<ul>
 				<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
 				<li>
 					<strong><a href="#URL_RUBRIQUE">#TITRE</a></strong>
 					<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
 
 					[(#REM) Les articles ]
-					<div class="post">
-					<B_art2>
 					<ul>
 						<BOUCLE_art2(ARTICLES) {id_rubrique} {par nom_site}{doublons}>
 						<li>[<a href="#URL_ARTICLE" title="#TITRE">(#TITRE|couper{120})</a>]</li>
 						</BOUCLE_art2>
 					</ul>
-					</B_art2>
-					</div><!--.post-->
 				</li>
 				</BOUCLE_rubriques>
-			</ul><!--#feed-->
+			</ul>
+			</div><!--.post-->
 			</B_rubriques>
 		</BOUCLE_secteurs>
 		</div><!--#content-->
