@@ -7,12 +7,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //A
 'agenda' => 'Agenda',
+'ajouter_commentaire' => 'Ajouter un commentaire',
 'annuaire' => 'Annuaire',
 'aucun_document' => 'Aucun document',
+'aucun_commentaire' => 'Aucun commentaire',
 
 //C
 'categories' => 'Cat&ecute;gories',
-'commentaires' => 'commentaires',
 'connecter_comme' => 'Connecté comme',
 'courriel' => 'Courriel',
 
