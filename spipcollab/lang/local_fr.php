@@ -25,7 +25,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //F
 'flux_forum_article' => 'Flux rss du forum de cet article',
-'forum_voir_avant' => 'Voir le forum avant',
 
 //G
 'groupes_travail' => 'Vos groupes de travail',
