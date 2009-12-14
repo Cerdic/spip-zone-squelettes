@@ -1,8 +1,9 @@
 <?php if ($auteur_session) { ?>
+<BOUCLE_principale(RUBRIQUES) {id_rubrique}>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
-<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+<title>[(#TITRE) - ][(#NOM_SITE_SPIP|textebrut)]</title>
 [<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
 <INCLURE{fond=inc-head}>
 </head>
@@ -10,12 +11,12 @@
 	<INCLURE{fond=inc-header}{page=rubrique}>
 	<div id="page_desc">
 		<div id="text">
-		<BOUCLE_fil(RUBRIQUES){id_rubrique}>
-			[(#REM) Fil d'Ariane ]
-			<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <a href="#URL_PAGE{messages}"><:messages:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]</div>
-		</BOUCLE_fil>
-			<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <strong class="on"><:messages:></strong></div>
-		<//B_fil>
+			<BOUCLE_fil(RUBRIQUES){id_rubrique}>
+				[(#REM) Fil d'Ariane ]
+				<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <a href="#URL_PAGE{messages}"><:messages:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]</div>
+			</BOUCLE_fil>
+				<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <strong class="on"><:messages:></strong></div>
+			<//B_fil>
 		</div><!--#text-->
 
 		<div id="search_top">
@@ -24,7 +25,6 @@
 	</div><!--#page_desc-->
 	<div id="content_wrap">
 		<div id="content">
-			<BOUCLE_principale(RUBRIQUES){id_rubrique ?}>
 			[(#REM) Derniers articles ]
 				<B_articles_recents>
 				[(#ANCRE_PAGINATION)]
@@ -41,12 +41,14 @@
 				[(#TEXTE|couper{100})]
 				</div><!--.post-->
 				<div class="post_details">
-				<p><:publier:> [(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)], [<:dans:> (#TITRE_PARENT).] 
-					<BOUCLE_forum1(FORUMS){id_article}{plat}>
-						<a href="#URL_ARTICLE#forum" title="<:ajouter_commentaire:>">#TOTAL_BOUCLE&nbsp;&nbsp;<:commentaire:></a>
-					</BOUCLE_forum1>
-						<a href="#URL_ARTICLE#forum" title="<:ajouter_commentaire:>"><:aucun_commentaire:></a>
-					<//B_forum1>
+				<p><:publier:> [(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)][, <:dans:> "(#TITRE_PARENT)"] 
+					[(#REM) Nombre total de messages ]
+					<a href="#URL_ARTICLE#forum" title="<:ajouter_commentaire:>">
+					<BOUCLE_decompte1(FORUMS) {id_article ?} {plat} />
+					[, (#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
+					[(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>}).]]
+					<//B_decompte1>
+					</a>
 				</p>
 				</div><!--.post_details-->
 				</BOUCLE_articles_recents>
@@ -55,47 +57,48 @@
 				<p />
 				</B_articles_recents>
 
-			[(#REM) Les sous rubriques]
-			<B_enfants>
-				<div id="caption">
-					[<h2>(#TITRE)</h2>]
-				</div><!--#caption-->
-				<div class="post">
-				<h3><:sous_rubriques:></h3>
-				<ul>
-				<BOUCLE_enfants(RUBRIQUES){id_parent}>
-					<li><a href="#URL_RUBRIQUE">#TITRE</a></li>
-				</BOUCLE_enfants>
-				</ul>
-				</div><!--.post-->
-				<B_articles_branche>
-				[(#ANCRE_PAGINATION)]
-				#PAGINATION{precedent_suivant}
-				<div class="post">
-					<h3><:derniers_articles:></h3>
-					<BOUCLE_articles_branche(ARTICLES){branche}{par date}{inverse} {pagination 5}>
-						<div class="post">
-						<h2><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h2>
-						[(#TEXTE|couper{100})]
-						</div><!--.post-->
-						<div class="post_details">
-						<p><:publier:> [(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)], [<:dans:> (#TITRE_PARENT).] 
-							<BOUCLE_forum2(FORUMS){id_article}{plat}>
-								<a href="#URL_ARTICLE#forum" title="<:ajouter_commentaire:>">#TOTAL_BOUCLE&nbsp;&nbsp;<:commentaire:></a>
-							</BOUCLE_forum2>
-								<a href="#URL_ARTICLE#forum" title="<:ajouter_commentaire:>"><:aucun_commentaire:></a>
-							<//B_forum2>
-						</p>
-						<p />
-						</div><!--.post_details-->
-					</BOUCLE_articles_branche>
-				</div><!--.post-->
-				#PAGINATION{precedent_suivant}
-				[<div id="more_posts">(#PAGINATION)</div>]
-				</B_articles_branche>
-			</B_enfants>
-			<//B_articles_recents>
-			</BOUCLE_principale>
+				[(#REM) Les sous rubriques]
+					<B_enfants>
+					<div id="caption">
+						[<h2>(#TITRE)</h2>]
+					</div><!--#caption-->
+					<div class="post">
+					<h3><:sous_rubriques:></h3>
+					<ul>
+					<BOUCLE_enfants(RUBRIQUES){id_parent}>
+						<li><a href="#URL_RUBRIQUE">#TITRE</a></li>
+					</BOUCLE_enfants>
+					</ul>
+					</div><!--.post-->
+					<B_articles_branche>
+					[(#ANCRE_PAGINATION)]
+					#PAGINATION{precedent_suivant}
+					<div class="post">
+						<h3><:derniers_articles:></h3>
+						<BOUCLE_articles_branche(ARTICLES){branche}{par date}{inverse} {pagination 5}>
+							<div class="post">
+							<h2><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h2>
+							[(#TEXTE|couper{100})]
+							</div><!--.post-->
+							<div class="post_details">
+							<p><:publier:> [(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)][, <:dans:> "(#TITRE_PARENT)"] 
+								[(#REM) Nombre total de messages ]
+								<a href="#URL_ARTICLE#forum" title="<:ajouter_commentaire:>">
+								<BOUCLE_decompte2(FORUMS) {id_article ?} {plat} />
+								[, (#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
+								[(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>}).]]
+								<//B_decompte2>
+								</a>
+							</p>
+							</div><!--.post_details-->
+						</BOUCLE_articles_branche>
+					</div><!--.post-->
+					#PAGINATION{precedent_suivant}
+					[<div id="more_posts">(#PAGINATION)</div>]
+					<p />
+					</B_articles_branche>
+					</B_enfants>
+					<//B_articles_recents>
 			</div><!--#content-->
 		<INCLURE{fond=inc-sidebar}{page=rubrique}{id_rubrique}>
 	</div><!--#content_wrap-->
@@ -107,7 +110,7 @@
 ]#SPIP_CRON
 </body>
 </html>
-
+</BOUCLE_principale>
 <?php } else { ?>
 <INCLURE{fond=login_public}>
 <?php } ?>

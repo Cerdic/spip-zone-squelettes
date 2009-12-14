@@ -12,8 +12,6 @@
 	<div id="page_desc">
 		<div id="text">
 			[(#REM) Fil d'Ariane ]
-			<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <a href="#URL_PAGE{messages}"><:messages:></a></div>
-
 			<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <strong class="on"><:messages:></strong></div>
 		</div><!--#text-->
 		<div id="search_top">
@@ -35,7 +33,15 @@
 				#TEXTE
 			</div>
 			<div class="post_details">
-				<p><:publier:> [(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)], <:dans:> #TITRE_PARENT. <a href="#">xx <:commentaires:></a>.</p>
+				<p><:publier:> [(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)][, <:dans:> "(#TITRE_PARENT)"] 
+					[(#REM) Nombre total de messages ]
+					<a href="#URL_ARTICLE#forum" title="<:ajouter_commentaire:>">
+					<BOUCLE_decompte1(FORUMS) {id_article ?} {plat} />
+					[, (#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
+					[(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>})]]
+					<//B_decompte1>
+					</a>.
+				</p>
 			</div><!--.post_details-->
 			</BOUCLE_articles_recents>
 			#PAGINATION{precedent_suivant}
