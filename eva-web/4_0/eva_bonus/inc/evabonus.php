@@ -21,7 +21,7 @@ array('sites_acces_direct','sommaire','Bloc affichant les derniers sites avec un
 array('sites_par_num_titre','sommaire','Bloc affichant les derniers sites rang&eacute;s dans l\'ordre de leur num&eacute;ro de nom. Les liens g&eacute;n&eacute;r&eacute;s ouvrent un nouvel onglet (non conforme Xhtml Strict). Seuls les sites poss&eacute;dant un num&eacute;ro seront affich&eacute;s.','Olivier Gautier'),
 array('logo_bloc','rubrique article breve site auteur','Bloc affichant les sites partenaires (sites ayant un logo et le mot-cl&eacute; "logo-bloc"). Ce bloc est disponible par d&eacute;faut uniquement pour le sommaire dans EVA. Ici, on peut l\'&eacute;tendre aux autres pages du site.','Olivier Gautier'),
 array('form_inscriptions','sommaire rubrique article breve site auteur entete pied','Formulaire d\'inscription. Disponible si on a autoris&eacute; l\'inscription des r&eacute;dacteurs dans les pages de configuration de SPIP. On pourra ajouter les r&egrave;gles CSS suivantes pour am&eacute;liorer la pr&eacute;sentation du formulaire :<br /><em>legend {margin-top:6px;} #nom_inscription, #mail_inscription {width:80%;}</em>.','Olivier Gautier'),
-
+array('abonnement-liste','sommaire rubrique article breve site auteur','Propose un formulaire d\'inscription aux listes de diffusion du site. N&eacute;cessite le plugin spip-liste.','Olivier Gautier'),
 );
 return $retour;
 }
