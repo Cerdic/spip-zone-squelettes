@@ -294,6 +294,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'layout_defaut_title' => 'Format, per defecte, pel lloc (articles i seccions)',
 	'liresuitede' => 'Llegir la continuaci&oacute; de:',
 	'liresuiteeditorial' => 'Llegir la continuaci&oacute; de l\'editorial',
+	'liresuitesyndic' => 'Llegir la continuaci&oacute; al lloc d\'origen...',
 	'listezones' => 'llista de les zones on es pot clicar',
 
 	// M
