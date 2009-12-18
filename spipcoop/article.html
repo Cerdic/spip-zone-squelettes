@@ -25,25 +25,24 @@
 				[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
 				<h2 class="#EDIT{titre}">#TITRE</h2>
 				[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
-					<div class="surlignable">
-						[<div class="#EDIT{chapo} chapo">(#CHAPO|image_reduire{500,0})</div>]
-						[<div class="#EDIT{texte} texte entry-content">(#TEXTE|image_reduire{500,0})</div>]
-					</div>
-					[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
-					[<div class="ps surlignable"><h2 class="pas_surlignable"><:info_ps:></h2><div class="#EDIT{ps}">(#PS|image_reduire{500,0})</div></div>]
+				<div class="surlignable">
+					[<div class="#EDIT{chapo} chapo">(#CHAPO|image_reduire{500,0})</div>]
+					[<div class="#EDIT{texte} texte entry-content">(#TEXTE|image_reduire{500,0})</div>]
+				</div><!--.surlignable-->
+				[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+				[<div class="ps surlignable"><h2 class="pas_surlignable"><:info_ps:></h2><div class="#EDIT{ps}">(#PS|image_reduire{500,0})</div></div>]
 
-					[(#REM) Gestion du portfolio et des documents
-						Le critere {env} permet de passer d'autres arguments de la page
-						par exemple l'id_document choisi pour un affichage complet
-					]
-					[(#INCLURE{fond=inc-documents}{id_article}{env})]
+				[(#REM) Gestion du portfolio et des documents
+				Le critere {env} permet de passer d'autres arguments de la page
+				par exemple l'id_document choisi pour un affichage complet]
+				[(#INCLURE{fond=inc-documents}{id_article}{env})]
+				
+				[(#REM) Petition :
+				La petition ayant une PAGINATION il faut absolument {env}
+				et pourquoi pas ajax]
+				[(#PETITION|?{' '})<INCLURE{fond=inc-petition}{id_article}{env}{ajax}>]
 
-					[(#REM) Petition :
-					La petition ayant une PAGINATION il faut absolument {env}
-					et pourquoi pas ajax
-					][(#PETITION|?{' '})<INCLURE{fond=inc-petition}{id_article}{env}{ajax}>]
-
-					[<div class="notes surlignable"><h2 class="pas_surlignable"><:info_notes:></h2>(#NOTES)</div>]
+				[<div class="notes surlignable"><h2 class="pas_surlignable"><:info_notes:></h2>(#NOTES)</div>]
 			</div><!--.post-->
 			<div class="post_details">
 				<p><abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>[, <:par_auteur:> (#LESAUTEURS)][ (<:texte_date_publication_anterieure:> (#DATE_REDAC|affdate)).]</p>
