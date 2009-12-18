@@ -31,10 +31,10 @@
 				<div id="caption">
 					[<h2>(#TITRE|sinon{<:derniers_articles:>})</h2>]
 				</div><!--#caption-->
-				<div id="caption">
+				<div class="post">
 					[(#TEXTE|sinon{#DESCRIPTIF})]
+				</div><!--.post-->
 					#PAGINATION{precedent_suivant}
-				</div><!--#caption-->
 				<BOUCLE_articles_recents(ARTICLES){id_rubrique ?}{par date}{inverse} {pagination 5}>
 				<div class="post">
 				<h2><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h2>
@@ -46,7 +46,7 @@
 					<a href="#URL_ARTICLE#forum" title="<:ajouter_commentaire:>">
 					<BOUCLE_decompte1(FORUMS) {id_article ?} {plat} />
 					[, (#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
-					[(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>}).]]
+					[(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>})]].
 					<//B_decompte1>
 					</a>
 				</p>
@@ -57,48 +57,34 @@
 				<p />
 				</B_articles_recents>
 
-				[(#REM) Les sous rubriques]
-					<B_enfants>
-					<div id="caption">
-						[<h2>(#TITRE)</h2>]
-					</div><!--#caption-->
-					<div class="post">
-					<h3><:sous_rubriques:></h3>
+				[(#REM) Si aucun article, affiche un plan de la rubrique ]
+				<B_sous_rubriques>
+				<div class="post">
+					<h2><:sous_rubriques:></h2>
+				</div><!--.post-->
+				<div class="post">
 					<ul>
-					<BOUCLE_enfants(RUBRIQUES){id_parent}>
-						<li><a href="#URL_RUBRIQUE">#TITRE</a></li>
-					</BOUCLE_enfants>
+						<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
+						<li>
+							<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+							[(#REM) Une boucle recursive pour le mini plan]
+							<B_miniplan>
+							<ul>
+								<BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre, titre}>
+								<li>
+									<a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+									<BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2>
+								</li>
+								</BOUCLE_miniplan>
+							</ul>
+							</B_miniplan>
+						</li>
+						</BOUCLE_sous_rubriques>
 					</ul>
 					</div><!--.post-->
-					<B_articles_branche>
-					[(#ANCRE_PAGINATION)]
-					#PAGINATION{precedent_suivant}
-					<div class="post">
-						<h3><:derniers_articles:></h3>
-						<BOUCLE_articles_branche(ARTICLES){branche}{par date}{inverse} {pagination 5}>
-							<div class="post">
-							<h2><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h2>
-							[(#TEXTE|couper{100})]
-							</div><!--.post-->
-							<div class="post_details">
-							<p><:publier:> [(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)][, <:dans:> "(#TITRE_PARENT)"] 
-								[(#REM) Nombre total de messages ]
-								<a href="#URL_ARTICLE#forum" title="<:ajouter_commentaire:>">
-								<BOUCLE_decompte2(FORUMS) {id_article ?} {plat} />
-								[, (#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
-								[(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>}).]]
-								<//B_decompte2>
-								</a>
-							</p>
-							</div><!--.post_details-->
-						</BOUCLE_articles_branche>
-					</div><!--.post-->
-					#PAGINATION{precedent_suivant}
-					[<div id="more_posts">(#PAGINATION)</div>]
-					<p />
-					</B_articles_branche>
-					</B_enfants>
-					<//B_articles_recents>
+				</B_sous_rubriques>
+
+				<//B_articles>[(#REM) supprimer pour toujours avoir le miniplan]
 			</div><!--#content-->
 		<INCLURE{fond=inc-sidebar}{page=rubrique}{id_rubrique}>
 	</div><!--#content_wrap-->
