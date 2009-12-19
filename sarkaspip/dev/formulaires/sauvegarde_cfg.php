@@ -43,14 +43,9 @@ function formulaires_sauvegarde_cfg_traiter_dist($dir_fonds, $items_langue=array
 			$fonds[] = substr(basename($_fichier,'.html'), 4);
 		}
 	}
-	
 	$dir_cfg = sous_repertoire(_DIR_TMP,"cfg");
-	foreach ($fonds as $_fond) {
-		$dir = sous_repertoire($dir_cfg, $_fond);
-		$nom = $_fond . "_" . date("Ymd_Hi") . ".txt";
-		$f = $dir . $nom;
-		$ok = ecrire_fichier($f, serialize(lire_config($_fond)));
-	}
+	include_spip('inc/sarkaspip_filtres');
+	$ok = sauvegarder_fonds($fonds, $dir_cfg, 'maintenance');
 	
 	if (!$ok) $message['message_nok'] = _T('sarkaspip:cfg_msg_fichier_sauvegarde_nok');
 	if ($ok) 

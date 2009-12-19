@@ -341,10 +341,52 @@ function statut_forum($id_article) {
 		$statut = ($accepter == 'non') ? 'ferme' : 'ouvert';
 	else
 		if ($accepter != 'non') $statut = 'ouvert';
-//echo $id_article . '=' . $statut . $nb . $accepter . '<br />';	
 	return $statut;
 }
 // FIN du Filtre : statut_forum
+
+// =======================================================================================================================================
+// Filtre : sauvegarder_fonds
+// =======================================================================================================================================
+// Auteur: Smellup
+// Fonction : Cree les sauvegardes d'une liste de fonds suivant un format et dans un repertoire donne 
+// =======================================================================================================================================
+//
+function sauvegarder_fonds($fonds, $ou, $mode='maintenance') {
+	$dir = $ou;
+	foreach ($fonds as $_fond) {
+		if ($mode == 'maintenance') {
+			$dir = sous_repertoire($ou, $_fond);
+			$nom = $_fond . "_" . date("Ymd_Hi") . ".txt";
+		}
+		else {
+			$nom = $_fond . ".txt";
+		}
+		$f = $dir . $nom;
+		$ok = ecrire_fichier($f, serialize(lire_config($_fond)));
+	}
+
+	return $ok;
+}
+// FIN du Filtre : sauvegarder_fonds
+
+// =======================================================================================================================================
+// Filtre : restaurer_fonds
+// =======================================================================================================================================
+// Auteur: Smellup
+// Fonction : Restaure les sauvegardes d'une liste de fonds suivant un format et dans un repertoire donne 
+// =======================================================================================================================================
+//
+function restaurer_fonds($fichiers) {
+	foreach ($fichiers as $_fichier) {
+		lire_fichier($_fichier,$tableau);
+		$fond = basename($_fichier, '.txt');
+		$ok = ecrire_config($fond, $tableau);
+	}
+
+	return $ok;
+}
+// FIN du Filtre : restaurer_fonds
 
 // =======================================================================================================================================
 // Filtres : module AGENDA
