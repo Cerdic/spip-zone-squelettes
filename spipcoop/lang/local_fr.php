@@ -47,6 +47,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //N
 'nouveau_message' => 'Nouveau message',
+'nouveau_site' => 'Nouveau site',
 
 //P
 'publier' => 'Publi&eacute; le',
