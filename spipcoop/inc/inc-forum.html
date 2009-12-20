@@ -2,60 +2,70 @@
 la premiere fois qu'un message est poste (cf. inc/invalideur). ]
 [(#PARAMETRES_FORUM|?{''})]
 
+<div class="post">
 [(#REM) Nombre total de messages ]
 <BOUCLE_decompte(FORUMS) {id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?} {plat} />
-<div class="comments_caption" id="comments">
 [<h2>(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
 [(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>})]</h2>]
-</div>
 <//B_decompte>
+</div><!--.post-->
 
 [(#REM) Messages du forum ]
-	<BOUCLE_forums(FORUMS) {id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?}{plat}{par date}>
-	<div class="comment_wrap" id="comment-#ID_FORUM">
-		<div class="comment_wrap_head">
-			[<p><strong class="#EDIT{titre}"><a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM">#COMPTEUR_BOUCLE. (#TITRE|sinon{<a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM"></a>})</a></strong></p>]
-			<p><span>[(#DATE|affdate_jourcourt)][&nbsp;(#DATE|heures)][:(#DATE|minutes)]</span>[, <:par_auteur:> <a href="#URL_AUTEUR" class="#EDIT{qui}">(#NOM|couper{80})</a>]</p>
-		</div><!--.comment_wrap_head-->
+<div class="post">
+	<B_forums>
+	<ul>
+		<BOUCLE_forums(FORUMS) {id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?} {par date}>
+		<li class="forum-fil">
+			<div class="forum-message">
+				<div class="forum-chapo">
+					<strong class="#EDIT{titre} forum-titre"><a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM">#TITRE</a></strong>
+					<small>[(#DATE|affdate_jourcourt)][&nbsp;(#DATE|heures)][:(#DATE|minutes)][, <:par_auteur:> <span class="#EDIT{qui}">(#NOM|couper{80})</span>]</small>
+				</div>
+				<div class="#EDIT{texte} forum-texte">
+					[(#TEXTE|lignes_longues)]
+					[<div class="notes surlignable">(#NOTES|safehtml|lignes_longues)</div>]
+					[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+					<BOUCLE_doc(DOCUMENTS){id_forum}>
+					[(#EXTENSION|match{'^(gif|jpg|png)$'}|?{
+						[(#MODELE{emb}|image_reduire{300})]
+					,
+						[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
+					})]
+					</BOUCLE_doc>
+					[<p class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_message:></a></p>]
+				</div>
+			</div>
 
-		<div class="#EDIT{texte} comment_wrap_post">
-			[(#TEXTE|lignes_longues)]
-			[<div class="notes surlignable">(#NOTES|safehtml|lignes_longues)</div>]
-			[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
-
-			<BOUCLE_doc(DOCUMENTS){id_forum}>
-			[(#EXTENSION|match{'^(gif|jpg|png)$'}|?{
-				[<p>(#MODELE{emb}|image_reduire{625})</p>]
-			,
-				[<p>(#LOGO_DOCUMENT|#URL_DOCUMENT)</p>]
-			})]
-			</BOUCLE_doc>
-				[<p class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_message:></a></p>]
-		</div><!--.comment_wrap_post-->
-	</div><!--.comment_wrap-->
-
-		<BOUCLE_forums_fils(FORUMS) {id_parent} {par date}>
-		<div class="comment_wrap" id="comment-#ID_FORUM">
-			<div class="comment_wrap_head">
-				<strong class="#EDIT{titre} forum-titre"><a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM">#TITRE</a></strong>
-				<small>[(#DATE|affdate_jourcourt)][&nbsp;(#DATE|heures)][:(#DATE|minutes)][, <:par_auteur:> <a href="#URL_AUTEUR" class="#EDIT{qui}">(#NOM|couper{80})</a>]</small>
-			</div><!--.comment_wrap_head-->
-
-			<div class="#EDIT{texte} comment_wrap_post">
-				[(#TEXTE|lignes_longues)]
-				[<div class="notes surlignable">(#NOTES|safehtml|lignes_longues)</div>]
-				[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
-
-				<BOUCLE_doc2(DOCUMENTS){id_forum}>
-				[(#EXTENSION|match{'^(gif|jpg|png)$'}|?{
-				[(#MODELE{emb}|image_reduire{300})]
-				,
-				[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
-				})]
-				</BOUCLE_doc2>
-
-				[<p class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_message:></a></p>]
-			</div><!--.comment_wrap_post-->
-			<BOUCLE_forums_boucle(boucle_forums_fils)></BOUCLE_forums_boucle>
-		</BOUCLE_forums_fils>
-	</BOUCLE_forums>
+			<B_forums_fils>
+			<ul>
+				<BOUCLE_forums_fils(FORUMS) {id_parent} {par date}>
+				<li>
+					<div class="forum-message">
+						<div class="forum-chapo">
+							<strong class="#EDIT{titre} forum-titre"><a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM">#TITRE</a></strong>
+							<small>[(#DATE|affdate_jourcourt)][&nbsp;(#DATE|heures)][:(#DATE|minutes)][, <:par_auteur:> <span class="#EDIT{qui}">(#NOM|couper{80})</span>]</small>
+						</div>
+						<div class="#EDIT{texte} forum-texte">
+							[(#TEXTE|lignes_longues)]
+							[<div class="notes surlignable">(#NOTES|safehtml|lignes_longues)</div>]
+							[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+							<BOUCLE_doc2(DOCUMENTS){id_forum}>
+							[(#EXTENSION|match{'^(gif|jpg|png)$'}|?{
+								[(#MODELE{emb}|image_reduire{300})]
+							,
+								[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
+							})]
+							</BOUCLE_doc2>
+							[<p class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_message:></a></p>]
+						</div>
+					</div>
+					<BOUCLE_forums_boucle(boucle_forums_fils)></BOUCLE_forums_boucle>
+				</li>
+				</BOUCLE_forums_fils>
+			</ul>
+			</B_forums_fils>
+		</li>
+		</BOUCLE_forums>
+	</ul>
+	</B_forums>
+</div><!--.post-->
