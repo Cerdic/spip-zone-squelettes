@@ -7,6 +7,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //A
 'accueil_site' => 'Portada',
+'adresse_mail' => '<NEW>',
 'agenda' => 'Agenda',
 'ajouter_commentaire' => 'Comentar',
 'annuaire' => 'Participantes',
@@ -18,7 +19,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'categories' => 'Categor&iacute;as',
 'commentaires' => 'Comentarios',
 'connecter_comme' => 'Connectada como',
-'courriel' => 'Courriel',
 
 //D
 'dans' => 'en',

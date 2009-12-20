@@ -6,6 +6,8 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //A
+'accueil' => 'Accueil',
+'adresse_mail' => 'Adresse mail',
 'agenda' => 'Agenda',
 'ajouter_commentaire' => 'Ajouter un commentaire',
 'annuaire' => 'Annuaire',
@@ -16,7 +18,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'categories' => 'Cat&ecute;gories',
 'commentaires' => 'Commentaires',
 'connecter_comme' => 'Connecté comme',
-'courriel' => 'Courriel',
 
 //D
 'dans' => 'dans',

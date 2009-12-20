@@ -1,0 +1,30 @@
+<?php if ($auteur_session) { ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+	<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+	<meta http-equiv='Content-Type' content='text/html; charset=#CHARSET' />
+	<INCLURE{fond=inc/inc-head}>
+	<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<div id='wrap'>
+	<INCLURE{fond=inc/inc-header}>
+		<div id='content_wrap'>
+			<div id="content">
+					[(#REM) si un cookie est passé OU si un auteur est connecté
+							on affiche le formulaire de gestion d'abonnement ]
+
+					[(#ENV{d}|oui|ou{#SESSION{id_auteur}|oui})
+						#FORMULAIRE_GESTION_ABONNEMENT]
+			</div><!--#content-->
+			<INCLURE{fond=inc/inc-sidebar}>
+		</div><!--#content_wrap-->
+	<INCLURE{fond=inc/inc-footer}>
+</div><!--#wrap-->
+</body>
+</html>
+
+<?php } else { ?>
+<INCLURE{fond=login_public}>
+<?php } ?>
