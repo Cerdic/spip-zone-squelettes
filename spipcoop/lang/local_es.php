@@ -20,7 +20,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'connecter_comme' => 'Connectada como',
 'courriel' => 'Courriel',
 
-
 //D
 'dans' => 'en',
 'derniers_articles' => '&Uacute;ltimos mensajes',
@@ -50,6 +49,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //N
 'nouveau_message' => 'Nuevo mensaje',
+'nouveau_site' => 'Nuevo sitio',
 
 //P
 'publier' => 'Publicado el',

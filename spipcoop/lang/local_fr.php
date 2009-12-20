@@ -18,7 +18,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'connecter_comme' => 'Connecté comme',
 'courriel' => 'Courriel',
 
-
 //D
 'dans' => 'dans',
 'derniers_visiteurs' => 'Derniers visiteurs',
