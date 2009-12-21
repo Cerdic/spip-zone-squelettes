@@ -33,21 +33,22 @@
 	[(#REM) Sites web lies au mot-cle ]
         <B_sites>
         <div class="menu">
-		<fieldset>
             #ANCRE_PAGINATION
-            <object><:sites_web:></object>
             <ul>
                 <BOUCLE_sites(SITES) {id_mot}{notation}{!par nombre_votes}{par nom_site} {pagination #CONFIG{annuaire_mot/pas_pagination_site, 10}}>
 				<li class="site">
+				<fieldset>
 				[<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" title="(#NOM_SITE|texte_backend)">#NOM_SITE</a>]
 				[(#PLUGIN{pb_pagerank}|oui)<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}><br />]
+				[<a class="img"[ href="(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})"][ title="(#NOM_SITE|texte_backend)"] target="_blank">
+				(#LOGO_SITE||image_reduire{120}||inserer_attribut{title,#NOM_SITE|texte_backend})</a>]
 				#FORMULAIRE_JAIME_JAIMEPAS
+				</fieldset>
 				</li><!--#site-->
 				</BOUCLE_sites>
             </ul>
             [<p>(#PAGINATION{page_precedent_suivant})</p>
 			<:annuaire:le_mot:> &#148;[(#TITRE|supprimer_numero)]&#148; <:annuaire:est_rattache:> #GRAND_TOTAL{pagination #CONFIG{annuaire_mot/pas_pagination_site, 10}}&nbsp;<:annaire:sites:>.]
-		</fieldset>
         </div><!--#menu-->
         </B_sites>
         [<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
