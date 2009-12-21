@@ -4,7 +4,26 @@
 <!-- icone=img/annuaire_24.jpg -->
 <!-- boite=<:annuaire:annuaire_general:> -->
 <INCLURE{fond=noisettes/cfg/inc_cfg_header}>
-
-<div class="ajax">
-	#FORMULAIRE_CONFIG_GENERAL
-</div>
+<form method="post">[(#ENV{_cfg_}|form_hidden)]
+	<fieldset><!--#affichage-->
+		<object><:annuaire:affichage:></object>
+		<p /><:annuaire:styliste:><br />
+		<input type="text" name="styliste" value="[(#ENV{styliste})]" size="66" class="fondl" />
+		<p /><:annuaire:infos:><br />
+		<label>
+			<textarea name="infos" rows="4" cols="40" style="width:100%;">[(#ENV{infos})]</textarea>
+		</label>
+	</fieldset><!--#affichage-->
+	<fieldset><!--#fieldset-->
+		<object><:annuaire:css_fieldset:></object>
+		<p><:annuaire:css_couleurs_fieldset:></p>
+		<INCLURE{fond=noisettes/cfg/inc_cfg_couleurs}
+			{explication=<:annuaire:css_couleurs_:><:annuaire:fieldset:>}
+			{suffixe=_fieldset}
+			{choix=bs}
+			{bs_defaut=#cccccc}
+			{env}>
+	</fieldset><!--#fieldset-->
+<input type="submit" name="_cfg_ok" value="<:annuaire:ok:>" />
+<input type="submit" name="_cfg_delete" value="<:annuaire:supprimer:>" />
+</form>

@@ -47,3 +47,14 @@ style="background-color: #GET{bg_color, #ENV{bg_defaut}}; color: #GET{color};" /
 style="background-color: #GET{bg_color, #ENV{bg_defaut}}; color: #GET{color};" />
 <br />
 ]
+[(#ENV{choix}|match{(bs)}|?{' '})
+<label><:annuaire:css_bs{lbl_bs_complement=#ENV{complement_label_bs}}:></label>
+[(#SET{bg_color, [(#ENV{bs#ENV{suffixe}, #ENV{bs_defaut}})]})]
+[(#SET{color, #[(#ENV{bs#ENV{suffixe}, #ENV{bs_defaut}}|couleur_inverser|couleur_extreme)]})]
+[(#ENV{bs#ENV{suffixe}, #ENV{bs_defaut}}|match{(transparent)}|?{' '})
+	[(#SET{color, #000000})]
+]
+<input type="text" name="bs#ENV{suffixe}" value="#ENV{bs#ENV{suffixe}, #ENV{bs_defaut}}" size="11" class="fondl palette"
+style="background-color: #GET{bg_color, #ENV{bg_defaut}}; color: #GET{color};" />
+<br />
+]

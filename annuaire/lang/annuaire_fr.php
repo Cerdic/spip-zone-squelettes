@@ -47,7 +47,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //B
 'bandeau' => 'du "bandeau"',
-'boucles' =>'R&eacute;glages des boucles',
+'boucles' => 'R&eacute;glages des boucles',
 
 //C
 'commentaire' => 'commentaire(s)',
@@ -72,9 +72,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'css' => 'Les css',
 'css_couleurs' => 'Cela revient &agrave; choisir la couleur d\'arri&egrave;re plan, la couleur d\'avant plan utilis&eacute;e pour le texte et les liens et la couleur de survol des liens.',
 'css_couleurs_' => 'Choisissez vos couleurs pour ',
-'css_couleurs_fond_expli' =>'Cela revient &agrave; choisir la couleur d\'arri&egrave;re plan sur une page.',
-'css_couleurs_fond_page' =>'Choisissez la couleur pour le fond ',
+'css_couleurs_fieldset' => 'Changer les couleurs pour les contour mais sur tout le site.',
+'css_couleurs_fond_expli' => 'Cela revient &agrave; choisir la couleur d\'arri&egrave;re plan sur une page.',
+'css_couleurs_fond_page' => 'Choisissez la couleur pour le fond ',
 'css_bg' => 'Couleur d\'arri&egrave;re plan',
+'css_bs' => 'Couleur de la bordure',
+'css_fieldset' => 'Couleur des cadres',
 'css_fond' => 'Fond de page',
 'css_fg' => 'Couleur d\'avant plan (texte et liens)',
 'css_ho' => 'Couleur de survol',
@@ -123,6 +126,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'erreur' => 'des "erreurs"',
 
 //F
+'fieldset' => 'le "fieldset"',
 'forum' => 'du "forum"',
 
 //G
