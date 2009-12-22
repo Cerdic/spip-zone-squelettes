@@ -16,8 +16,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'accueil_requis' =>'Les requis pour un bon fonctionnement du site',
 'accueil_requis_1' =>'Pour un bon r&eacute;f&eacute;rencement de votre site, ils vous faut cr&eacute;er :
 					<br />un groupe de mot clef "_META"
-					<br />les mots clefs keywords, description et remplir le champ texte pour que votre site ce r&ecute;f&ecute;rence
-					<br />et &agrave; l\'inverse cr&ecute;&ecute; robots et le texte noindex, nofollow pour ne pas le r&ecute;f&ecute;renc&ecute; ',
+					<br />les mots clefs keywords, description et remplir le champ texte pour que votre site ce r&eacute;f&eacute;rence
+					<br />et &agrave; l\'inverse cr&eacute;&eacute; robots et le texte noindex, nofollow pour ne pas le r&eacute;f&eacute;renc&eacute; ',
 'accueil_requis_2' =>'Pour afficher des partenaires sur la page "Partenaire", il vous faut cr&eacute;&eacute; le groupe "Affichage" avec le mot clef "partenaire" et attibuer le &agrave; chacun des sites voulus.',
 'actuellement' => 'Il y a actuellement ',
 'affichage' => 'L\'affichage',
