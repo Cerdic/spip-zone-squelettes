@@ -15,7 +15,7 @@
 (#REM)]<BOUCLE_breves_exclues(BREVES) {titre_mot=_invisible_} {doublons}></BOUCLE_breves_exclues>[
 
 (#REM) début affichage
-]<BOUCLE_article_principal(ARTICLES) {id_article} {doublons}>
+]<BOUCLE_article_principal(ARTICLES) {id_article} {lang} {doublons}>
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
 <html dir="#LANG_DIR" lang="#LANG">
 <head>
@@ -42,7 +42,7 @@
 	<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{40})]</a></BOUCLE_ariane>[ &gt; (#TITRE|supprimer_numero|couper{40})]</div>
 
   [(#REM) gerer le cas du mot cle restricted_access => il faut etre loggue pour voir l'article ]
-  <BOUCLE_restrict_access(ARTICLES) {titre_mot=restricted_access}{id_article}{0,1}>
+  <BOUCLE_restrict_access(ARTICLES) {titre_mot=restricted_access}{id_article}{lang}{0,1}>
     [(#SESSION{login}|oui) [(#INCLURE{fond=inc-article}{id_article}{env})] ]
     
     [(#REM) si pas loggué envoyer les formulaires selon config ]

@@ -53,7 +53,7 @@
     <//B_test_ssrub>
     
   [(#REM) la rubrique n'a t'elle qu'un seul article? ]
-    <BOUCLE_test_unique(ARTICLES) {id_rubrique}>[(#TOTAL_BOUCLE|=={1}|?{[(#SET{art_unique, #ID_ARTICLE})]})]</BOUCLE_test_unique>
+    <BOUCLE_test_unique(ARTICLES) {id_rubrique}{lang}>[(#TOTAL_BOUCLE|=={1}|?{[(#SET{art_unique, #ID_ARTICLE})]})]</BOUCLE_test_unique>
 [(#REM)       
 existe_ssrub: #GET{existe_ssrub}<br>
 pas_ssrub: #GET{pas_ssrub}<br>
@@ -182,7 +182,7 @@ art_unique: #GET{art_unique}<br>
         	#ANCRE_PAGINATION
         	<h2 ><:median:articles_rubrique:></h2>
         	<ul>
-        		<BOUCLE_articles(ARTICLES) {id_rubrique} {par num titre, titre} {pagination}{doublons}>
+        		<BOUCLE_articles(ARTICLES) {id_rubrique} {lang} {par num titre, titre} {pagination}{doublons}>
         		<li style="[background-image: url((#LOGO_ARTICLE_RUBRIQUE||image_passe_partout{#GET{larg_logo},#GET{larg_logo}}|image_recadre{#GET{larg_logo},#GET{ht_logo},left=0 top=0}|extraire_attribut{src}));][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})]">
         			[<h3 class="titre"><a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a></h3>]
                       

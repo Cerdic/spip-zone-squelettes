@@ -107,7 +107,7 @@
     #SET{class_bloc, txt_bloc}
     
     [(#REM) on chope d'abord les articles avec le mot clé + titre AVEC numéro ]    
-    <BOUCLE_blocs_art(ARTICLES){titre_mot=bloc_sommaire}{doublons} {par num titre, titre} {0,#GET{nb_art}} {titre==^[0-9]+\.}>
+    <BOUCLE_blocs_art(ARTICLES){titre_mot=bloc_sommaire}{lang}{doublons} {par num titre, titre} {0,#GET{nb_art}} {titre==^[0-9]+\.}>
         #SET{longueur_texte, #GET{longueur_texte_court}}
         <div class="bloc_sommaire[ (#COMPTEUR_BOUCLE|modulo{4}|!={0}|oui)bloc_milieu]">
             <div class="cont_bloc">
@@ -124,7 +124,7 @@
     [(#REM) si pas suffisament d'articles on chope ensuite les articles avec le mot clé SANS numéro dans le titre ]    
     <BOUCLE_test_nbblocs1(CONDITION){si #GET{nb_blocs}|<{#GET{nb_art}}}>
         #SET{nb_complement, #GET{nb_art}|moins{#GET{nb_blocs}}}
-        <BOUCLE_blocs_art2(ARTICLES){titre_mot=bloc_sommaire}{doublons} {par num titre, titre} {0,#GET{nb_complement}}>
+        <BOUCLE_blocs_art2(ARTICLES){titre_mot=bloc_sommaire}{lang}{doublons} {par num titre, titre} {0,#GET{nb_complement}}>
             #SET{longueur_texte, #GET{longueur_texte_court}}
             <div class="bloc_sommaire[ (#COMPTEUR_BOUCLE|plus{#GET{nb_blocs}}|modulo{4}|!={0}|oui)bloc_milieu]">
                 <div class="cont_bloc">
@@ -143,7 +143,7 @@
     [(#REM) si pas suffisament d'articles avec le mot clé bloc_sommaire prendre les derniers publiés ]
     <BOUCLE_test_nbblocs2(CONDITION){si #GET{nb_blocs}|<{#GET{nb_art}}}>
       #SET{nb_complement, #GET{nb_art}|moins{#GET{nb_blocs}}}
-      <BOUCLE_complement_blocs(ARTICLES) {!par date} {0, #GET{nb_complement}} {doublons}>
+      <BOUCLE_complement_blocs(ARTICLES) {!par date} {lang} {0, #GET{nb_complement}} {doublons}>
         #SET{longueur_texte, #GET{longueur_texte_court}}
         <div class="bloc_sommaire[ (#COMPTEUR_BOUCLE|plus{#GET{nb_blocs}}|modulo{4}|!={0}|oui)bloc_milieu]">
             <div class="cont_bloc">
