@@ -29,11 +29,11 @@ $GLOBALS['i18n_median_fr'] = array(
 // D
 'defaut_texte_404' => 'soit la  page demand&eacute;e n\'existe pas, soit son adresse a chang&eacute;... alors maintenant:
 <ul>
-  <li>soit vous utilisez le menu pour explorer les rubriques</li>
-  <li>ou vous s&eacute;lectionnez un mots cl&eacute; dans le "nuage" ci-dessous</li>
-  <li>ou vous utilisez le moteur de recherche</li>
+  <li>soit vous pouvez utiliser le menu pour explorer les rubriques</li>
+  <li>ou vous pouvez s&eacute;lectionner un mots cl&eacute; dans le "nuage" ci-dessous</li>
+  <li>ou vous pouvez utiliser le moteur de recherche</li>
 </ul>
-mais vous devriez certainement trouver ce que vous cherchez!',
+mais vous devriez certainement trouver ce que vous cherchez !',
 'defaut_meta_keywords' => 'SPIP, squelette Median',
 'defaut_texte_titre_nuage' => 'Mots cl&eacute;s',
 'defaut_texte_creation_compte' => 'L\'acc&egrave;s &agrave; cette page est r&eacute;serv&eacute; aux utilisateurs identifi&eacute;s',
@@ -55,7 +55,7 @@ mais vous devriez certainement trouver ce que vous cherchez!',
 'logo'=> 'logo',
 
 // M
-'meta_keywords' => 'Le contenu de la balise "meta keywords" (une 15aine de mots s&eacute;par&eacute;s par des virgules)',
+'meta_keywords' => 'Le contenu de la balise "meta keywords" (une quinzaine de mots s&eacute;par&eacute;s par des virgules)',
 'mots_cles_coordonnees' => 'les mots cl&eacute; pour les coordon&acute;es de contact',
 'mots_cles_techniques_median' => 'les mots cles techniques du squelette Median',
 
@@ -90,7 +90,7 @@ mais vous devriez certainement trouver ce que vous cherchez!',
 'top_logo_largeur' => 'Largeur maximum (en pixels, si le titre est plus long il y aura saut de ligne)',
 'top_logo_police' => 'Police (nom du fichier ttf plac&eacute; dans le dossier /squelettes/polices)',
 'top_logo_taille' => 'Taille de la police (en pixels)',
-'top_logo_url' => 'Le logo de sommet de page comporte un lien sur la page d’accueil du site: ce champ permet de d&eacute;finir une autre URL',
+'top_logo_url' => 'Le logo de sommet de page comporte un lien sur la page d\'accueil du site: ce champ permet de d&eacute;finir une autre URL',
 
 // V
 'vitesse_diaporama' => 'Dur&eacute;e entre 2 photos du diaporama de la page d\'accueil (en milliseconds)'
