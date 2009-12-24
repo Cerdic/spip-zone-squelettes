@@ -825,6 +825,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'gravatar_de' => 'Gravatar de',
 
 // H
+	'habillage_concepteur' => 'Habillage visuel par',
+	'habillage_licence' => 'sous licence',
 	'herbier_contexte_global' => 'au total',
 	'herbier_contexte_secteur' => 'dans ce secteur',
 	'herbier_sites' => 'sites favoris',
