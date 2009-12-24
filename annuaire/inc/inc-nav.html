@@ -1,24 +1,10 @@
 <div id="nav">
 	<div id="nav_haut">
-	<fieldset id="option">
-		[(#REM) Afficher un menu de lang et le nombre de visiteurs connecté]
-		#MENU_LANG
-		[(#PLUGIN{visiteurs_connectes}|oui)<INCLURE{fond=inc-visiteurs}>]
-		[(#PLUGIN{couteau_suisse}|oui)<INCLURE{fond=fonds/visiteurs_connectes}>] 
-		#FORMULAIRE_RECHERCHE
-	</fieldset><!--#header_right-->
+	[(#REM) Pour afficher les options]
+	<INCLURE{fond=noisettes/nav/nav_options}>
 	
 	[(#REM) Pour se connecter]
-	<fieldset id="connect">
-		[(#SESSION{id_auteur}|?{' '})
-		<a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a>
-		][(#SESSION{id_auteur}|?{'',' '})
-		<a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]" rel="nofollow" class='login_modal'><:lien_connecter:></a>][
-		(#AUTORISER{ecrire})<br />
-		<a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a>]
-		<br class="nettoyeur" />
-		 #FORMULAIRE_ADMIN
-	</fieldset><!--#connect-->
+	<INCLURE{fond=noisettes/nav/nav_connect}>
 	</div><!--#nav_haut-->
 
 	<BOUCLE_pub1(BREVES){titre_mot=pub-nav}>
@@ -30,77 +16,16 @@
 	</BOUCLE_pub1>
 
 	<div id="nav_bas">
-	<fieldset id="mots">
-	<object><:mots_clefs:></object>
-	[(#REM) Afficher les mots clef du site syndiques]
-	<B_mot>
-		<BOUCLE_mot(MOTS){id_syndic}>
-		<h3>#TYPE</h3>
-		<BOUCLE_mots(MOTS){id_groupe}{id_syndic}{par num titre, titre}>
-		<br /><BOUCLE_logo10(MOTS) {id_mot}>[(#LOGO_MOT||sinon{"&nbsp;&nbsp;&nbsp;"})]</BOUCLE_logo10>&nbsp;&nbsp;<a href="#URL_MOT">[(#TITRE|supprimer_numero|ucfirst)]</a>
-		<BOUCLE_site_mot1(SITES) {id_mot}> </BOUCLE_site_mot1>(#TOTAL_BOUCLE site(s))</B_site_mot1>
-		</BOUCLE_mots>
-		</BOUCLE_mot>
-	</B_mot>
-	[(#REM) affichage de tout les mots de l'annuaire]
-		<BOUCLE_mot1(GROUPES_MOTS){titre !IN _META,Affichage}>
-			<h3>#TITRE</h3>
-			<BOUCLE_mots2(MOTS){id_groupe}{par num titre, titre}{id_syndic>0}>
-			<br /><BOUCLE_logo11(MOTS) {id_mot}>[(#LOGO_MOT||sinon{"&nbsp;&nbsp;&nbsp;"})]</BOUCLE_logo11>&nbsp;&nbsp;<a href="#URL_MOT">[(#TITRE|supprimer_numero|ucfirst)]</a>
-			<BOUCLE_site_mot2(SITES) {id_mot}> </BOUCLE_site_mot2>(#TOTAL_BOUCLE site(s))</B_site_mot2>
-			</BOUCLE_mots2>
-		</BOUCLE_mot1>
-	<//B_mot>
-	</fieldset><!--#mots-->
-	<br class="nettoyeur" />
+	[(#REM) Afficher les mots cle]
+	<INCLURE{fond=noisettes/nav/nav_motcle}>
 
 	[(#REM) Afficher les liens]
-	<fieldset id="lien">
-		[(#REM) lien vers la synthése des flux rss si j'ai des articles]
-		<BOUCLE_syndic(SYNDIC_ARTICLES) {age<180} {0,1}>
-		<a  href="#URL_PAGE{herbier}"><:sur_web:></a>
-		<br />
-		</BOUCLE_syndic>
-		[(#REM) Un rss]
-		<a  href="#URL_PAGE{backend}" rel="alternate" title="<:syndiquer_site:>">
-		<img src="#CHEMIN{feed.png}" alt="<:icone_suivi_activite:>" width="16" height="16" />
-		&nbsp;RSS&nbsp;2.0</a>
-		<br/>
-		[(#REM) Le igoogle]
-		<a  href="http://fusion.google.com/add?source=atgs&amp;feedurl=#URL_SITE_SPIP/spip.php?page=backend" target="_blank">
-		<img src="http://www.gmodules.com/ig/images/plus_google.gif" border="0" alt="<:annuaire:ajouter_google:>" />
-		</a>
-	</fieldset><!--#lien-->
-	<br class="nettoyeur" />
-	<fieldset id="sites">
-		<BOUCLE_total(SITES)> </BOUCLE_total>
-		[<:annuaire:actuellement:>(#TOTAL_BOUCLE)&nbsp;<:sites_web:> <:annuaire:epingle_site:>
-		<a class="link" href="#URL_SITE_SPIP">#NOM_SITE_SPIP**</a>]
-		[(#PLUGIN{pb_pagerank}|oui)<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE_SPIP}>]</B_total>
-		<br class="nettoyeur" />
-		[<:annuaire:popu_site:>&nbsp;(#POPULARITE_SITE|>={0}).]<br />
-		<BOUCLE_maj(SITES){!par date}{0,1}><:dernier_ajout:>&nbsp;: [(#DATE|affdate).]</BOUCLE_maj><br />
+	<INCLURE{fond=noisettes/nav/nav_lien}>
 
-	</fieldset><!--#sites-->
+	[(#REM) Afficher leinfos du sites]
+	<INCLURE{fond=noisettes/nav/nav_sites}>
+
 	[(#REM) Afficher le copyright]
-	<fieldset id="copy">
-		<a class="link" href="http://www.spip.net/" title="<:site_realise_avec_spip:>">
-		<img src="#CHEMIN{spip.png}" alt="SPIP" width="48" height="16" /></a>
-		<br /> &copy;<BOUCLE_copy(SITES) {par date} {0,1}>[(#DATE|annee|unique)][-(#ENV{date}|>{#DATE}|?{#ENV{date},''}|annee|unique)]</BOUCLE_copy>
-		<strong>[(#NOM_SITE_SPIP|textebrut)]</strong>
-		<br /><:annuaire:conception|ucfirst:>: <a href="http://www.pierre-kuhn.org" title="<:annuaire:conception:>">Pierre KUHN</a>
-		[<br /><:annuaire:style:> &nbsp;(#CONFIG{annuaire_general/styliste}|propre|ptobr)]
-	<br />
-	<a href="http://validator.w3.org/check?uri=referer">
-	<img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a>
-	<br />
-	[(#CONFIG{thumbsites/serveur}|=={miwin}|oui)
-	<a href="http://thumbs.miwim.fr" title="<:annuaire:miniature_sites_miwim:>" target="_blank"><:annuaire:miniature|ucfirst:></a>
-	&nbsp;<:annuaire:par:>&nbsp;<a href="http://www.miwim.fr" title="<:annuaire:annuaire_gratuit:>" target="_blank"><:thumbsites:cfg_itm_serveur_miwin:></a>
-	<br />]
-	[(#CONFIG{thumbsites/serveur}|=={rebothumb}|oui)
-	<:annuaire:miniature|ucfirst:>&nbsp;<:annuaire:par:>&nbsp;<a href="http://www.robothumb.com"><:thumbsites:cfg_itm_serveur_robothumb:></a>]
-	</fieldset><!--#copy-->
-	<br class="nettoyeur" />
+	<INCLURE{fond=noisettes/nav/nav_copy}>
 	</div><!--#nav_bas-->
 </div><!--#nav-->
