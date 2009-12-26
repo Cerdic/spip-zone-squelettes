@@ -130,6 +130,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'forum' => 'du "forum"',
 
 //G
+'groupe_mots' => 'Groupes de mots',
+'groupe_mots_expli' => 'Remplire avec le titre des groupes de mots clef, s&eacute;par&eacute; par des virgules, que vous ne souhaitez pas afficher dans la colonne de droite.',
 
 //H
 'hasard' => 'Sites au hasard',
