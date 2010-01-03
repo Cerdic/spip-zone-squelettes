@@ -41,7 +41,7 @@ svn checkout svn://zone.spip.org/spip-zone/_plugins_/porte_plume/extensions/enlu
 sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/fonctions_images
 sleep 15;
-svn checkout svn://zone.spip.org/spip-zone/_fondation_/forms_1_9_3_foireux_mais_parfois_utile ./forms/
+svn checkout svn://zone.spip.org/spip-zone/_plugins_/forms/forms_et_tables_2_0 ./forms/
 sleep 15;
 svn checkout svn://zone.spip.org/spip-zone/_plugins_/Lecteur_multimedia
 sleep 15;
