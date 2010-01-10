@@ -152,7 +152,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //M
 'menu_site' => 'le menu du site',
-'miniature' => 'de "miniatures"',
+'miniatures_par' => 'Miniatures par',
 'miniature_sites_miwim' => 'Miniatures de sites avec Miwim Thumbs',
 'mot' => 'de "mot"',
 
