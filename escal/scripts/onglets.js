@@ -17,8 +17,8 @@
                                                     // avons modifié le titre du lien par le nom de
                                                     // l'identifiant de la boite de contenu
                                                     var contenu_aff = $(this).attr("name");
-                                                    $("#" + contenu_aff).slideDown();
+                                                    $("." + contenu_aff).slideDown();
                                                 }
                                               );
                         }
-                    );
+                    ); 
