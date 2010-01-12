@@ -153,7 +153,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //M
 'menu_site' => 'le menu du site',
 'miniatures_par' => 'Miniatures par',
-'miniature_sites_miwim' => 'Miniatures de sites avec Miwim Thumbs',
 'mot' => 'de "mot"',
 
 //N
@@ -177,7 +176,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'ok' => 'OK',
 
 //P
-'par' => 'par',
 'partenaire' => 'de "partenaires"',
 'pas_commentaire' => 'Pas encore de commentaire',
 'pas_descriptif' => 'Nous n\'avons pas de descriptif pour ce site, si vous &ecirc;tes le webmaster vous pouvez nous contacter afin de proposer un descriptif au site.',
