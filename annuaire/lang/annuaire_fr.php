@@ -209,6 +209,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'supprimer' => 'Supprimer',
 'style' => 'Style :',
 'styliste' => 'Indiquer la personne responsable la charte graphique : (afficher colonne de droite en bas uniquement si remplis), possibilit&eacute;e de mettre du code spip ou html.',
+'synthese_flux' => 'Synth&egrave;se des flux',
 
 //T
 'toutes_rubriques' => 'Toutes les rubriques',
