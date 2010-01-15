@@ -1,9 +1,4 @@
 #CACHE{3600}
-
-[(#ENV{rub_active}|oui)
-	#SET{laCarte,16}
-]
-
 <BOUCLE_article_principal(ARTICLES) {id_article}><BOUCLE_Gribouille(HIERARCHIE){id_article}{tout}{titre_mot=Gribouille}{inverse}{0,1}>[(#INCLURE{fond=gribouille/article}{env})]</BOUCLE_Gribouille><BOUCLE_RacineMenuHaut(HIERARCHIE){id_rubrique}{tout}{titre_mot=MenuHaut}{inverse} {0,1}>[(#SET{secteurencours,#ID_RUBRIQUE})]</BOUCLE_RacineMenuHaut>
 [(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)]})]
 <INCLURE{fond=noisettes/header/header}
@@ -76,9 +71,9 @@
 [<div class="#EDIT{ps} ps">(#PS|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>]
 [<div class="notes">(#NOTES)</div>]
 [<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
-<div id="Carte">
-	[(#PLUGIN{GIS}|=={1}|oui)#INCLURE{fond=noisettes/articles/carto,id_rubrique}]
-</div>
+[<div id="Carte">
+(#PLUGIN{GIS}|=={1}|oui)#INCLURE{fond=noisettes/articles/carto,id_rubrique}
+</div>]
 
 [(#INCLURE{fond=noisettes/galerie}{ajax}{id_article}{env})]
 [(#VAL{enbas}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|oui)
