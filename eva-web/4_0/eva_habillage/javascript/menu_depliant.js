@@ -11,7 +11,7 @@ $(document).ready(function () {
 		e.stopPropagation();		
 	});
 	//éviter un effet de bord (pliage) lors d'un click sur le lien
-	$("a").click(function (e) {
+	$("#sommaire a").click(function (e) {
 		e.stopPropagation();
 	});
 	//eviter un effet de bord (pliage) lors d'un click sur une feuille
