@@ -1,0 +1,51 @@
+[(#REM)
+	page d'accueil
+	
+	on prend le premier article publié du site 
+  (c'est la logique d'indexibit)
+  
+  astuce:
+  l'article peut etre cache (statut = propose a l'edition) 
+  
+  
+]<BOUCLE_principale(ARTICLES){0,1}{par id_article}{statut IN prop,publie}>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='fr' lang='fr'>
+  <head>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+  <title>[(#TITRE|supprimer_numero|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+  [<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+  <INCLURE{fond=inc-head}>
+</head>
+
+<body class='section-#ID_RUBRIQUE'>
+  <INCLURE{fond=inc-menu}{id_article}>	
+
+  <!-- content-->
+  <div id='content'><div class='container'>
+  
+  <!-- text and image -->
+	[(#LOGO_ARTICLE||image_reduire{200,200})]
+	[<div class="#EDIT{surtitre} surtitre">(#SURTITRE)</div>]
+	<!-- <h1 class="#EDIT{titre} entry-title">[(#TITRE|supprimer_numero)]</h1>-->
+	[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>]
+  [(#REM) Gestion traduction ]  
+  #MODELE{article_traductions}
+  
+  [<div class="#EDIT{chapo} chapo">(#CHAPO|image_reduire{500,0})</div>]
+	[<div class="#EDIT{texte} texte entry-content">(#TEXTE|image_reduire{500,0})</div>]
+	[<div class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></div>]
+  [<div class="#EDIT{ps}">(#PS|image_reduire{500,0})</div>]
+
+  [(#REM) Gestion du portfolio et des documents]
+  [(#INCLURE{fond=inc-documents}{id_article}{env})]
+  <!-- #text and image -->
+  
+  </div></div><!-- #content-->
+
+</body>
+</html>
+</BOUCLE_principale></B_principale>
+      <:en_construction:>
+<//B_principale>
