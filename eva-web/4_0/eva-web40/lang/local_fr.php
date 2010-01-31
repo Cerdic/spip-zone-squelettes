@@ -65,13 +65,13 @@ $test_lang_personnalisation=array(
 	// I
 	'icone_eva' => 'Icone EVA-web 4',
 	'identifier' => 'Vous &ecirc;tes authentifi&eacute;',
-	'inscription' => 'Inscription',
 	'il_y_a' => 'Il y a',
 	'il_y_a1' => 'signature(s) &agrave; cette p&eacute;tition.',
 	'il_y_a2' => 'Il y a au total',
 	'il_y_a3' => 'article(s).<br /> Ce bloc en affiche',
 	'il_y_a4' => 'auteur(s).<br /> Ce bloc en affiche',
 	'il_y_a5' => 'br&egrave;ve(s).<br /> Ce bloc en affiche',
+	'inscription' => 'Inscription',
 
 	// J
 	'j1' => 'lu',
@@ -162,9 +162,9 @@ $test_lang_personnalisation=array(
 	'notes' => 'Notes',
 
 	// P
-	'pages' => 'Pages',
 	'page_bas' => 'Bas de page',
 	'page_haut' => 'Haut de page',
+	'pages' => 'Pages',
 	'par' => 'Par :',
 	'partenaires' => 'Partenaires',
 	'plan_du_site' => 'Plan',
@@ -192,8 +192,8 @@ $test_lang_personnalisation=array(
 	'statut_visit' => 'Statut : Visiteur',
 	'sur_le_web' => 'Sur le web',
 	'sur_un_total_de' => 'sur un total de',
-	'syndic_site' => 'Syndiquer tout le site',
 	'syndic_breves' => 'Syndiquer les br&egrave;ves du site',
+	'syndic_site' => 'Syndiquer tout le site',
 
 	// T
 	'texte_page_404' => '<em>D&eacute;sol&eacute; !</em><br />La page que vous demandez n\'existe pas ou plus.',

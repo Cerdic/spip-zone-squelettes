@@ -63,6 +63,7 @@ $test_lang_personnalisation=array(
 	'go' => 'ir',
 
 	// I
+	'icone_eva' => 'Icono EVA-red 4',
 	'identifier' => 'Usted se ha autentificado',
 	'il_y_a' => 'Hay',
 	'il_y_a1' => 'firma(s) para esta petici&oacute;n',
@@ -70,6 +71,7 @@ $test_lang_personnalisation=array(
 	'il_y_a3' => 'art&iacute;culo(s).<br /> Este bloque en cartel',
 	'il_y_a4' => 'autor(es).<br /> Este bloque en cartel',
 	'il_y_a5' => 'Noticia(s) cortas.<br /> Este bloque en cartel',
+	'inscription' => 'inscripci&oacute;n',
 
 	// J
 	'j1' => 'lu',
@@ -107,7 +109,50 @@ $test_lang_personnalisation=array(
 	'm9' => 'septiembre',
 	'meme_rubrique' => 'En la misma secci&oacute;n',
 	'mentions' => 'Menciones',
+	'mentions_adresse' => 'Direcci&oacute;n : ',
+	'mentions_directeur_publication' => 'Director de la publicaci&oacute;n :',
+	'mentions_droit_auteur_texte' => '<p>este sitio est&aacute; incluido en la legislaci&oacute;n francesa e internacional sobre los derechos de autor y la propiedad intelectual </p>
+ <p>Se reservan todos los derechos de reproducci&oacute;n.</p>',
+	'mentions_droit_auteur_titre' => 'derechos de autores :',
 	'mentions_legales' => 'Menciones legales',
+	'mentions_liens_hypertexte_texte' => '<p>Este sitio contiene v&iacute;nculos hipertextuales que dan paso a unos sitios que no son producidos por el responsable de este sitio.</p>
+ <p>Por consiguiente el director de publicaci&oacute;n no puede ser considerado como responsable del contenido de los sitios a los que el internauta podr&iacute;a acceder.</p>
+ <p>Queda terminantemente prohibido recoger y utilizar las informaciones disponibles en el sitio con fines comerciales.</p>
+ <p>Esta prohibici&oacute;n se refiere, sin que el listado siguiente sea limitativo, a todos los elementos de redacci&oacute;n que se encuentran en el sitio, la presentaci&oacute;n de las pantallas, los programas inform&aacute;ticos necesarios a la explotaci&oacute;n, los logotipos, las im&aacute;genes, las fotograf&iacute;as, los gr&aacute;ficos, cualquiera sea su forma.</p>',
+	'mentions_liens_hypertexte_titre' => 'v&iacute;nculos hipertexto :',
+	'mentions_liens_texte' => '<NEW><p>A l\'exception de sites diffusant des informations et/ou contenus ayant un caract&egrave;re ill&eacute;gal et/ou &agrave; caract&egrave;re politique, religieux, pornographique, x&eacute;nophobe, vous pouvez cr&eacute;er un lien hypertexte vers notre Site sur votre site.</p>
+	<p>La mise en place de lien hypertexte n\'autorise en aucune fa&ccedil;on la reproduction d\'&eacute;l&eacute;ments du Site ou la pr&eacute;sentation sur des sites tiers d\'&eacute;l&eacute;ments du Site sous forme de Frame ou syst&egrave;me apparent&eacute;.</p>
+	<p>Enfin, la mise en place de lien hypertexte n\'autorise en aucune fa&ccedil;on de proposer l\'envoi d\'un message pr&eacute;-r&eacute;dig&eacute; &agrave; une adresse mail li&eacute;e au Site ou la mise en place d\'un syst&egrave;me permettant l\'envoi massif de messages quelle qu\'en soit la nature.</p>
+	<p>Tous les droits de reproduction sont r&eacute;serv&eacute;s.</p>',
+	'mentions_liens_titre' => 'V&iacute;nculos hipertexto hacia este sitio :',
+	'mentions_logo_cddp74' => 'Sitio official del CDDP74',
+	'mentions_logo_citic' => 'Centro de Inform&aacute;tica y de las TIC de Haute-Savoie (ex CRI74)',
+	'mentions_logo_edres' => 'Educaci&oacute;n Red Haute-Savoie, proyecto departamental',
+	'mentions_logo_eva' => 'Sitio oficial del proyecto eva-reb',
+	'mentions_logo_spip' => 'Sitio oficial de SPIP',
+	'mentions_logo_spipedu' => 'Spip-edu, sitio de la comunidad educativa ',
+	'mentions_lois' => 'En virtud de la ley para la confianza en la econom&iacute;a num&eacute;rica (LCEN) del 21 de junio de 2004, ah&iacute; tienen los datos del editor y el prestador de servicios que acoge el sitio :',
+	'mentions_prestataire' => 'Prestador de servicios que garantiza el almacenamiento directo y permanente :',
+	'mentions_qualite' => 'Calidad :',
+	'mentions_qui_texte' => '<NEW><p>A l\'origine <a href="http://eva-web.edres74.net/eva/">EVA</a>
+	correspond &agrave; un projet de portail d\'Intranet d\'&Eacute;tablissement, install&eacute; sur 
+	les serveurs <a href="http://www.pingoo.org/">PingOO</a>.</p>
+	<p>Cette version, l&eacute;g&egrave;rement adapt&eacute;e, permet &agrave; une &eacute;cole ou &agrave; un &eacute;tablissement de mettre 
+	en place un site web collaboratif, en proposant diff&eacute;rents mod&egrave;les de publication 
+	(article, album photo, diaporama ...) </p>
+	<p>Pour plus de renseignements sur le projet <a href="http://eva-web.edres74.net">EVA-web</a>, consultez le site 
+  	<a href="http://eva-web.edres74.net">http://eva-web.edres74.net</a></p>
+	<p><a href="http://eva-web.edres74.net">EVA-web</a> est un logiciel libre distribu&eacute; sous Licence Publique G&eacute;n&eacute;rale 
+	<a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html">GNU (GNU General Public License ou GPL)</a>
+	con&ccedil;u pour fonctionner &agrave; partir de l\'application <a href="http://www.spip.net/">SPIP</a>.</p>
+	<div style="text-align:center;"><a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html"><img alt="Licence GNU GPL" style="border-width:0" width="80" height="100" src="http://www.fsf.org/graphics/philosophical-gnu-sm.jpg"/></a></div>',
+	'mentions_qui_titre' => '&iquest; EVA, por qui&eacute;n, par qui&eacute;n ?',
+	'mentions_responsable_edition' => 'Director de la redacci&oacute;n :',
+	'mentions_site' => 'Sitio Internet de : ',
+	'mentions_webmestre' => 'Webmaster :',
+	'meteo' => 'Meteo',
+	'meteo_info' => 'Informaciones geogr&aacute;ficas',
+	'meteo_previsions' => 'predicciones meteol&oacute;gicas',
 	'mis_a_jour' => 'Actualizaci&oacute;n :',
 	'mot_cle' => 'Palabra clave',
 	'multilinguisme' => '&iquest;Indicar la carta de lengua de EVA-red en las p&aacute;ginas p&uacute;blicas?',
@@ -117,6 +162,8 @@ $test_lang_personnalisation=array(
 	'notes' => 'Apuntes',
 
 	// P
+	'page_bas' => 'p&aacute;gina abajo',
+	'page_haut' => 'p&aacute;gina arriba',
 	'pages' => 'P&aacute:ginas',
 	'par' => 'Por :',
 	'partenaires' => 'Socios',
@@ -134,6 +181,7 @@ $test_lang_personnalisation=array(
 	'resultats' => 'Resultados',
 
 	// S
+	'site' => 'sitio',
 	'sites' => 'otros sitios :',
 	'sites_references' => 'Sitios referenciados',
 	'sites_rubrique' => 'Los sitios de la secci&oacute;n',
@@ -144,6 +192,8 @@ $test_lang_personnalisation=array(
 	'statut_visit' => 'Estatuto : Visitante',
 	'sur_le_web' => 'En la Web',
 	'sur_un_total_de' => 'sobre un total de',
+	'syndic_breves' => 'Sindicar las noticias breves del sitio',
+	'syndic_site' => 'Sindicar todo el contenido del sitio',
 
 	// T
 	'texte_page_404' => '<em> &iexcl; l&aacutestima !</em><br />La p&aacute;gina que Usted trata de leer ya no existe.',
