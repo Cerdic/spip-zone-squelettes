@@ -1,4 +1,4 @@
-<!-- squelette egt v0.5 -->
+<!-- squelette egt v0.6 -->
 <!-- auteurs: damazone, sBa - licence GPL -->
 <!-- http://www.spip-contrib.net/EGT-squelette-plugin-pour-SPIP-2 -->
 <!-- squelette présentant les messages envoyés par spip-listes -->
@@ -18,10 +18,8 @@
 
 [(#REM) <!-- =========================== ZONE CHEMIN DE NAVIGATION ============================= --> ]
 	<div id="navigation">
-		<ul>         
-		<li><a href="#URL_SITE_SPIP"><:accueil_site:></a> <img src="#CHEMIN{images/puce.png}" alt=">"/> </li>
-		<li><:egt:archive:> <:egt:lettres_information:></li>
-		</ul>
+		<a href="#URL_SITE_SPIP"><:accueil_site:></a> <img src="#CHEMIN{images/puce.png}" alt=">"/> 
+		<:egt:archive:> <:egt:lettres_information:>
 	</div><!-- fin de navigation -->    
 
 [(#REM) <!-- ============================== ZONE COLONNE DE GAUCHE  ============================= --> ]
@@ -30,10 +28,35 @@
 [(#REM) <!-- =================================== ZONE CORPS  ====================================== --> ]    
     <div id="centre-rubrique">
 		<h2 class="titrerub"><:egt:archive:> <:egt:lettres_information:></h2>
-        <BOUCLE_archives(COURRIERS) {!par date} {statut IN publie, auto} {type IN nl, auto} {nb_emails_envoyes > 0}>
+		
+		[(#REM) <!-- ============================ ANNÉE D'ENVOI  ================================ --> ]
+
+		<B_courriers>
+			[(#REM) navigation par année]
+			[<p class='pagination'>(#PAGINATION{page})</p>]
+			<ul class='liste_items'>
+
+				<BOUCLE_courriers(COURRIERS){!par date} {statut IN publie, auto} {type IN nl, auto} {nb_emails_envoyes > 0} {fusion YEAR(date_debut_envoi)}{pagination 5}>
+				
+				[( [(#DATE_DEBUT_ENVOI|annee)]|?==(#ENV{date}|annee)|?{class="on",''} )]
+				<li>
+					<a href="[(#URL_PAGE{archive_courriers,date=[(#DATE_DEBUT_ENVOI|annee)]})]">[(#DATE_DEBUT_ENVOI|annee)]</a></li>
+				</BOUCLE_courriers>
+				
+			</ul>
+		</B_courriers>		
+		
+		[(#REM) <!-- ======================== COURRIERS DE L'ANNÉE D'ENVOI  ================================ --> ]
+
+		<h2 class='titrerub'><:spiplistes:courriers:> :
+		<BOUCLE_compte(COURRIERS){id_courrier?}{statut IN publie, auto} {type IN nl, auto} {nb_emails_envoyes > 0} {YEAR(date_debut_envoi) = #ENV{date}|annee} />
+			[(#TOTAL_BOUCLE|sinon{	<:spiplistes:aucun:>})]<//B_compte>
+		</h2>				
+		
+        <BOUCLE_archives_annee_encours(COURRIERS) {!par date} {statut IN publie, auto} {type IN nl, auto} {nb_emails_envoyes > 0} {YEAR(date_debut_envoi) = #ENV{date}|annee}>
             <p>[(#DATE_DEBUT_ENVOI|affdate{'Y-m-d'})] - <a href="[(#URL_PAGE{courrier,id_courrier=#ID_COURRIER})]">#TITRE</a><br />
             </p>
-        </BOUCLE_archives>
+        </BOUCLE_archives_annee_encours>
 
     </div><!-- fin du div centre-rubrique -->
       

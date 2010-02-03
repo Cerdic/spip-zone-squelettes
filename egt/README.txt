@@ -1,3 +1,12 @@
+Changements egt v 0.6 par rapport à v 0.5
+-----------------------------------------
+- corrections de la page courrier
+- petites corrections d'habillage (bordures ombrées, image du champ de saisie recherche...)
+- rajout du fil rss dans l'entête
+- afficher les ps, notes et liens sur le sommaire
+- encore quelques petites corrections de langue
+- sortir le div splickrbox de la boucle si plusieurs albums à la une
+
 Changements egt v 0.5 par rapport à v 0.4
 -----------------------------------------
 - rajouter des critères de langue un peu partout
