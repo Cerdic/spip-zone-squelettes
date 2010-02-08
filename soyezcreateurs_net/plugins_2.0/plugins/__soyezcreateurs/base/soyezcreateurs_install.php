@@ -186,6 +186,10 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			create_mot("_ModePortail", "ZoomSur", "Affecter ce mot clef à l'objet que vous voulez placer dans le cadre « Zoom sur » (facultatif).\n\nLe site prendra le dernier article ayant ce mot clef", "S'applique aux articles uniquement.");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.13','non');
 		}
+		if (version_compare($current_version,'2.1.14','<')) {
+			ecrire_meta('ppp', 'a:5:{s:14:"descriptif_ppp";s:0:"";s:9:"chapo_ppp";s:2:"on";s:6:"ps_ppp";s:2:"on";s:29:"configuration_description_ppp";s:2:"on";s:23:"auteurs_quietesvous_ppp";s:2:"on";}', 'non');
+			ecrire_meta($nom_meta_base_version,$current_version='2.1.14','non');
+		}
 
 		/*
 		#En attente
