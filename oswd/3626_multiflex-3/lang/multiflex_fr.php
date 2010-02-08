@@ -43,10 +43,10 @@ $GLOBALS['i18n_multiflex_fr'] = array(
 
 // pour liens CFG
 'multiflex' => 'Multiflex',
-'multiflex_general' => 'Multiflex G&eacute;n&eacute;ral',
-'multiflex_couleurs' => 'Multiflex Couleurs',
-'multiflex_navigation' => 'Multiflex Navigation',
-'multiflex_layouts' => 'Multiflex Layouts',
+'multiflex_general' => 'Multiflex',
+'multiflex_couleurs' => 'Couleurs',
+'multiflex_navigation' => 'Navigation',
+'multiflex_layouts' => 'Structure',
 
 // pour cfg_multiflex
 'afficher_nombre_commentaires' => 'Afficher le nombre de commentaires',
