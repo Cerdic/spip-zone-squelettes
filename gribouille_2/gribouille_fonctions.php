@@ -39,7 +39,7 @@ function affiche_diff($id_objet,$objet, $id_version, $format='complet') {
 }
 
 function revisions_tout_objets() {
-	return ($GLOBALS['spip_version_branche'] < '2.1') ? '', ' ';
+	return ($GLOBALS['spip_version_branche'] < '2.1') ? '' : ' ';
 }
 
 /**
