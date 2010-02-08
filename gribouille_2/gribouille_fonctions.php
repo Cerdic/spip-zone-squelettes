@@ -38,6 +38,10 @@ function affiche_diff($id_objet,$objet, $id_version, $format='complet') {
 	return $ret;
 }
 
+function revisions_tout_objets() {
+	return ($GLOBALS['spip_version_branche'] < '2.1') ? '', ' ';
+}
+
 /**
  * Affiche le nom de l'auteur à partir de son id_auteur
  * 
