@@ -8,7 +8,6 @@
 <head>
 <title>#NOM_SITE - #NOM_SITE_SPIP</title>
 <INCLURE{fond=inc/inc-head}{id_syndic}{lang?}>
-<meta name="keywords" content="<BOUCLE_mots(MOTS){id_syndic}{par titre}{", "}>[(#TITRE|supprimer_numero)]</BOUCLE_mots>" />
 </head>
 <body>
 
@@ -21,7 +20,7 @@
     <div id="hierarchie">
 		<a id="accueil" href="#URL_SITE_SPIP/"><:accueil_site:></a>
 		<BOUCLE_ariane(HIERARCHIE){id_syndic}> &gt;
-		<a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a>
+		[<a href="#URL_RUBRIQUE">(#TITRE|couper{80})</a>]
 		</BOUCLE_ariane>
 		[ &gt; <strong class="on">(#NOM_SITE|couper{80})</strong>]
 	</div><!--#hierarchie-->
@@ -30,9 +29,9 @@
 	[(#REM) Contenu principal : affichage du site ]
 		<fieldset id="nom_site">
 		<object>#NOM_SITE**</object>
-		<BOUCLE_logo(MOTS){id_syndic} {'  '}>[(#LOGO_MOT||inserer_attribut{title, #TITRE|supprimer_numero})]</BOUCLE_logo>
+		<BOUCLE_logo(MOTS){id_syndic} {'  '}>[(#LOGO_MOT||inserer_attribut{title, #TITRE|supprimer_numero}|inserer_attribut{alt, #TITRE|supprimer_numero})]</BOUCLE_logo>
 		[(#PLUGIN{pb_pagerank}|oui)<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}>]
-        [<a class="img"[ href="(#URL_SITE)"][ title="(#NOM_SITE|texte_backend)"] target="_blank">
+        [<a class="img"[ href="(#URL_SITE)"][ title="(#NOM_SITE|texte_backend)"][ alt="(#NOM_SITE|texte_backend)"] target="_blank">
 		(#THUMBSHOT{#URL_SITE})</a>]
 		#FORMULAIRE_NOTATION <br />
 		[(#DESCRIPTIF|sinon{<p><:annuaire:pas_descriptif:></p>})]

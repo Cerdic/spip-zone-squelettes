@@ -11,6 +11,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'accueil_option' =>'Certain plugins sont optionnel :',
 'accueil_option_contact' =>'Le plugin "contact" permets ou non d\'affich&eacute; la page de contact et son r&eacute;glage dans le plugin.',
 'accueil_option_pub' => 'Si vous souhaitez int&eacute;gr&eacute; dans votre site des pub google, il vous faudra cr&eacute;&eacute; les mots clefs "pub-entete" et pub-nav" dans le groupe "Affichage" et plac&eacute; la br&egrave;ve dans une rubrique nomm&eacute; "squelette".',
+'accueil_option_slogan' =>'Le plugin "slogan" permets de rajouter un slogan a votre site.',
 'accueil_option_spiplistes' =>'Le plugin "spip liste" permets ou non d\'affich&eacute; la page abonnement et son r&eacute;glage dans le plugin.',
 'accueil_option_visiteurs' =>'Le plugin "visiteur connect&eacute;s" ou la lame du couteau suisse permets d\'afficher dans la colonne de navigation (droite) le nombre de visiteur connect&eacute;s.',
 'accueil_requis' =>'Les requis pour un bon fonctionnement du site',

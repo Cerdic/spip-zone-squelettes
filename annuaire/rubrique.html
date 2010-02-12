@@ -50,7 +50,7 @@
 			<ul>
 				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
 				<li class="rubri">
-				<a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>&nbsp;&nbsp;
+				[<a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>&nbsp;&nbsp;]
 					<BOUCLE_site(SITES) {id_rubrique}> </BOUCLE_site>(#TOTAL_BOUCLE site(s))</B_site>
 				</li><!--#rubri-->
 				</BOUCLE_sous_rubriques>
@@ -69,7 +69,7 @@
                 <BOUCLE_sites(SITES) {id_rubrique} {par nom_site} {pagination #CONFIG{annuaire_rubrique/pas_pagination_art, 5}}>
                 <li class="site">
 				[<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" title="(#NOM_SITE|texte_backend)">#NOM_SITE</a>]
-				<BOUCLE_logo(MOTS){id_syndic} {'  '}>[(#LOGO_MOT||inserer_attribut{title, #TITRE|supprimer_numero})]</BOUCLE_logo>
+				<BOUCLE_logo(MOTS){id_syndic} {'  '}>[(#LOGO_MOT||inserer_attribut{title, #TITRE|supprimer_numero}|inserer_attribut{alt, #TITRE|supprimer_numero})]</BOUCLE_logo>
 				[(#PLUGIN{pb_pagerank}|oui)<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}>]
 				#FORMULAIRE_NOTATION <br />
 				[(#REM) Nombre total de messages ]
