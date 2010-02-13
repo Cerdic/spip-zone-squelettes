@@ -6,40 +6,49 @@
 ]
 
 <BOUCLE_groupe_forum(RUBRIQUES){id_rubrique}>
-
-<table>
-	<thead>
-	<tr>
-		<th colspan="2" [class="tforum (#EDIT{titre})"]>[(#TITRE|supprimer_numero)]</th>
-		<th class='sujet'><:sarkaspip:discussions:></th>
-		<th class='message'><:sarkaspip:reponses:></th>
-		<th class='dern'><:sarkaspip:messages_derniers:></th>	
-	</tr>
-	</thead>
-
-	[(#REM) Afficher table par rubrique ou toute si racine ]
-	#SET{display,#ENV{id_rubrique}|=={#ID_RUBRIQUE}|?{'display',#ENV{id_rubrique}|=={#GET{secteur}}|?{'display','none'}}}
+<div class="groupe">
+	<h2[ class="titre (#EDIT{titre})"]>[(#TITRE|supprimer_numero)]</h2>
+	<div class="bord">
+	<table>
+		<thead>
+			<tr>
+				<th colspan="2"><:sarkaspip:colonne_forum:></th>
+				<th class="centre"><:sarkaspip:colonne_nombre_sujets:></th>
+				<th class="centre"><:sarkaspip:colonne_nombre_reponses:></th>
+				<th><:sarkaspip:colonne_dernier_message:></th>	
+			</tr>
+		</thead>
+	
+	[(#REM) <!-- Afficher table par rubrique ou toute si racine --> ]
 	<B_forums>
-	<tbody>
-	<BOUCLE_forums(ARTICLES){id_rubrique}{par num titre}>
-	<tr class="ligne_forum" style="display:#GET{display};">
-		<BOUCLE_ligne(ARTICLES){id_article}>
-			<td class="etatforum forumouvert"><span>&nbsp;</span></td>
-			<td class="titre_forum">
-				[<div class="[(#EDIT{titre}) ]titrelien"><a href="[(#URL_PAGE{forum_forum}|parametre_url{id_article,#ID_ARTICLE})]" class="titre">(#TITRE|supprimer_numero)</a></div>]
-				[<div class="[(#EDIT{texte}) ]texte">(#TEXTE|typo_couleur)</div>]
-			</td>
-									
-		<BOUCLE_discussions(FORUMS){id_article}{doublons sujets}></BOUCLE_discussions>
-			<td class="nbr_discussion">#TOTAL_BOUCLE</td>
-		<//B_discussions>
+		<tbody>
+		<BOUCLE_forums(ARTICLES){id_rubrique}{par num titre}>
+			<tr>
+			<BOUCLE_ligne(ARTICLES){id_article}>
+				[(#REM) <!-- Etat et description du forum --> ]
+				<td class="etat forumouvert"><span>&nbsp;</span></td>
+				<td class="description">
+					[<h3 class="[(#EDIT{titre}) ]titre"><a href="[(#URL_PAGE{forum_forum}|parametre_url{id_article,#ID_ARTICLE})]" class="titre">(#TITRE|supprimer_numero)</a></h3>]
+					[<div class="[(#EDIT{texte}) ]texte">(#TEXTE|typo_couleur)</div>]
+				</td>
 
-		<BOUCLE_messages(FORUMS){id_article}{plat}{doublons sujets}></BOUCLE_messages>
-			<td class="nbr_message">#TOTAL_BOUCLE</td>
-		<//B_messages>
+				[(#REM) <!-- Nombre de sujets du forum --> ]
+				<BOUCLE_discussions(FORUMS){id_article}{doublons sujets}></BOUCLE_discussions>
+				<td class="sujets">#TOTAL_BOUCLE</td>
+				<//B_discussions>
 
-			<td class="dernier_msg">
+				[(#REM) <!-- Nombre de réponses du forum --> ]
+				<BOUCLE_messages(FORUMS){id_article}{plat}{doublons sujets}></BOUCLE_messages>
+				<td class="messages">#TOTAL_BOUCLE</td>
+				<//B_messages>
+
+				[(#REM) <!-- Informations sur le dernier message du forum --> ]
+				<td class="dernier_message">
 				<BOUCLE_dernier_message(FORUMS){id_article}{plat}{!par date}{0,1}>
+					<BOUCLE_papa(FORUMS){id_thread}>#SET{idforum,#ID_FORUM}</BOUCLE_papa>
+					[<a href="[(#URL_PAGE{forum_sujet}|parametre_url{id_article,#ID_ARTICLE}|parametre_url{id_forum,#GET{idforum}})]#forum#ID_FORUM" class="titre" title="<:sarkaspip:bulle_lien_dernier_message:>">
+					<span>(#TITRE|couper{25,...})</span></a>
+					<br />]
 					[(#DATE|affdate)]&nbsp;<:sarkaspip:agrave:>&nbsp;[(#DATE|affdate{'H\hi'})]<br />
 					<:sarkaspip:par_auteur:>
 					<BOUCLE_auteur(AUTEURS){id_auteur}{tout}>
@@ -48,19 +57,16 @@
 					</B_auteur>
 						[(#NOM|sinon{<:sarkaspip:anonyme:>})]
 					<//B_auteur>
-									
-					<BOUCLE_papa(FORUMS){id_thread}>#SET{idforum,#ID_FORUM}</BOUCLE_papa>
-						<a href="[(#URL_PAGE{forum_sujet}|parametre_url{id_article,#ID_ARTICLE}|parametre_url{id_forum,#GET{idforum}})]#forum#ID_FORUM" class="adermsg" title="<:sarkaspip:messages_voir_dernier:>">&nbsp;
-							<span>(<:sarkaspip:messages_voir_dernier:>)</span></a>
 				</BOUCLE_dernier_message> 
-					- 
+						- 
 				<//B_dernier_message>		
-			</td>
-		</BOUCLE_ligne>
-	</tr>
-	</BOUCLE_forums>
-	</tbody>
+				</td>
+			</BOUCLE_ligne>
+			</tr>
+		</BOUCLE_forums>
+		</tbody>
 	</B_forums>	
-</table>	
-
+	</table>	
+	</div>
+</div>
 </BOUCLE_groupe_forum>

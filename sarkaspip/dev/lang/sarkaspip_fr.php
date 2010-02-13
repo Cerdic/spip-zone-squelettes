@@ -94,6 +94,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'bulle_bouton_effacer' => 'Effacer les saisies et revenir aux valeurs de d&eacute;part',
 	'bulle_bouton_supprimer' => 'Supprimer les valeurs de configuration dans la base',
 	'bulle_bouton_valider' => 'Valider les saisies',
+	'bulle_lien_dernier_message' => 'Voir le dernier message de ce forum',
 
 // C
 	'cfg_boite_accueil' => 'Accueil',
@@ -725,6 +726,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_titre_sommaire' => 'Sarka-SPIP - Configuration de la page sommaire',
 	'cfg_titre_styles' => 'Sarka-SPIP - Configuration des styles',
 	'choisir_un_critere' => 'Choisir un crit&egrave;re de recherche',
+	'colonne_dernier_message' => 'Dernier message',
+	'colonne_forum' => 'Forum',
+	'colonne_nombre_reponses' => 'Réponses',
+	'colonne_nombre_sujets' => 'Sujets',
 	'commentaire_suite_article' => '&agrave; la suite de l\'article...',
 	'commentaires' => 'commentaires',
 	'commentaires_article' => 'Commentaires',
