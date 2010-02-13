@@ -46,8 +46,10 @@
             <ul>
                 <BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {! par date} {pagination #CONFIG{annuaire_site/pas_pagination_rss, 5}}>
                 <li>
-                    <h3><a href="#URL_ARTICLE" target="_blank">#TITRE</a></h3>
-                    <small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</small>
+                    <h3><a href="#URL_ARTICLE">#TITRE</a></h3>
+                    <small>[(#DATE|affdate_jourcourt)]
+                    #SET{ma_regexp, '@[\w.-]+\.[a-zA-Z]{2,6}'}
+                    [, <:par_auteur:> (#LESAUTEURS|replace{#GET{ma_regexp}, @})]</small>
                     [<div class="introduction">(#DESCRIPTIF|image_reduire{300})</div>]
                 </li><!--#article-->
                 </BOUCLE_articles>
