@@ -7,8 +7,8 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 // Ajout de l'outil 'email_lesauteurs'
 function outils_email_lesauteurs_config_dist() { add_outil(array(
         'id' => 'email_lesauteurs',
-        'nom' => 'Email dans #LESAUTEURS',
-        'description' => 'Sur les balises #LESAUTEURS et #DESCRIPTIF de la page "site" nous coupons les adresses mail si elles existent afin d\'&eacute;vit&eacute; que le webmastre nous dise qu\'on le spam.',
+        'nom' => '<:annuaire:email_lesauteurs:nom:>',
+        'description' => '<:annuaire:email_lesauteurs:description:>',
         'categorie' => 'typo-corr',
         'traitement:LESAUTEURS, traitement:DESCRIPTIF' => 'email_lesauteurs',
         'code:options' =>'

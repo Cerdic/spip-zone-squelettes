@@ -5,7 +5,6 @@
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //A
-
 'abonnement' => 'd\' "abonnement"',
 'accueil_presentation' => 'Pr&eacute;sentation',
 'accueil_intro' => 'Bienvenue sur la page de pr&eacute;sentation du plugin "annuaire".',
@@ -124,6 +123,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'description_site' => 'Description du site',
 
 //E
+'email_lesauteurs:nom' => 'Email dans les flux rss',
+'email_lesauteurs:description' => 'Sur les balises #LESAUTEURS et #DESCRIPTIF de la page "site" nous coupons les adresses mail si elles existent afin d’&eacute;vit&eacute; que le webmastre nous dise qu’on le spam.',
 'epingle_site' => '&eacute;pingl&eacute;s sur',
 'est_rattache' => 'est rattach&eacute; &agrave;',
 'erreur' => 'des "erreurs"',
