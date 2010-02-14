@@ -14,7 +14,6 @@ function outils_email_lesauteurs_config_dist() { add_outil(array(
         'code:options' =>'
 // Fonction de traitement
 function email_lesauteurs($texte) {
-	$texte .= " test OK !";
         if (strpos($texte, "@")===false) return $texte;
 		$autorises=\'\\!\\#\\$\\%\\&\\\'\\*\\+\\-\\/\\=\\?\\^\\_\\`\\.\\{\\|\\}\\~a-zA-Z0-9\';
         return preg_replace(",\b([{$autorises}]*@)[a-zA-Z][a-zA-Z0-9-.]*\.[a-zA-Z]+(\?[{$autorises}]*)?,", \'$1\', $texte);
