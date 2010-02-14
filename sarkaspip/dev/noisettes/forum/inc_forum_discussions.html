@@ -1,0 +1,33 @@
+[(#REM) 
+<!-- Affichage des sujets non epingles d'un forum
+	Recoit en argument :
+		- id_article: id de l'article concerne
+-->
+]
+#SET{regexp, ^\[(annonce|epingle)\]}
+<B_forum_sujets>
+<div class="groupe">
+	<h2 class="titre"><:sarkaspip:titre_discussions_forum:></h2>
+	<div class="bord">
+		<table summary="<:sarkaspip:resume_epingles_forum:>">
+			<thead>
+				<tr>
+					<th colspan="2"><:sarkaspip:colonne_sujet:></th>
+					<th class="centre"><:sarkaspip:colonne_nombre_reponses:></th>
+					<th><:sarkaspip:colonne_dernier_message:></th>
+				</tr>
+			</thead>
+			<tbody>
+<BOUCLE_forum_sujets(FORUMS){id_article}{plat}{id_parent=0}{!par date_thread}{titre!==#GET{regexp}}>
+		<INCLURE{fond=noisettes/forum/inc_forum_sujet_ligne}
+			{id_article}
+			{id_forum}
+			{id_thread}
+			{titre}
+			{sujet=discussion}>
+</BOUCLE_forum_sujets>
+			</tbody>
+		</table>
+	</div>
+</div>
+</B_forum_sujets>

@@ -4,7 +4,7 @@
 		- id_rubrique: id de rubrique correspondant au groupe de forums
 -->
 ]
-
+#SET{regexp, ^(annonce:|epingle:)}
 <BOUCLE_groupe_forum(RUBRIQUES){id_rubrique}>
 <div class="groupe">
 	<h2[ class="titre (#EDIT{titre})"]>[(#TITRE|supprimer_numero)]</h2>
@@ -28,7 +28,7 @@
 				[(#REM) <!-- Etat et description du forum --> ]
 				<td class="etat forumouvert"><span>&nbsp;</span></td>
 				<td class="description">
-					[<h3 class="[(#EDIT{titre}) ]titre"><a href="[(#URL_PAGE{forum_forum}|parametre_url{id_article,#ID_ARTICLE})]" class="titre">(#TITRE|supprimer_numero)</a></h3>]
+					[<h3 class="[(#EDIT{titre}) ]titre"><a href="[(#URL_PAGE{forum_forum}|parametre_url{id_article,#ID_ARTICLE})]">(#TITRE|supprimer_numero)</a></h3>]
 					[<div class="[(#EDIT{texte}) ]texte">(#TEXTE|typo_couleur)</div>]
 				</td>
 
@@ -47,7 +47,7 @@
 				<BOUCLE_dernier_message(FORUMS){id_article}{plat}{!par date}{0,1}>
 					<BOUCLE_papa(FORUMS){id_thread}>#SET{idforum,#ID_FORUM}</BOUCLE_papa>
 					[<a href="[(#URL_PAGE{forum_sujet}|parametre_url{id_article,#ID_ARTICLE}|parametre_url{id_forum,#GET{idforum}})]#forum#ID_FORUM" class="titre" title="<:sarkaspip:bulle_lien_dernier_message:>">
-					<span>(#TITRE|couper{25,...})</span></a>
+					<span>(#TITRE|nettoyer_titre_sujet|couper{25,...})</span></a>
 					<br />]
 					[(#DATE|affdate)]&nbsp;<:sarkaspip:agrave:>&nbsp;[(#DATE|affdate{'H\hi'})]<br />
 					<:sarkaspip:par_auteur:>
@@ -55,7 +55,7 @@
 						<a href="#URL_AUTEUR">#NOM</a>
 					</BOUCLE_auteur>
 					</B_auteur>
-						[(#NOM|sinon{<:sarkaspip:anonyme:>})]
+						[(#NOM|sinon{<:sarkaspip:auteur_anonyme:>})]
 					<//B_auteur>
 				</BOUCLE_dernier_message> 
 						- 

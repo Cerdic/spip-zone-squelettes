@@ -27,23 +27,18 @@
 					{logo_rubrique=oui}
 					{taille_logo=100}>
 			
-				<a class="fonction" id="commenter" href="[(#URL_PAGE{forum_post})][&amp;(#PARAMETRES_FORUM)]" title="<:sarkaspip:poster_sujet:>"></a>
+				<a class="fonction" id="commenter" href="[(#URL_PAGE{forum_post})][&amp;(#PARAMETRES_FORUM{#SELF})]" title="<:sarkaspip:poster_sujet:>"></a>
 				<br class="nettoyeur" />
-
+				<br />
+				
 				[(#REM) <!-- On traite d'abord les annonces --> ]
-				<INCLURE{fond=noisettes/forum/inc_forum_sujets_speciaux}
-					{id_article}
-					{sujet=annonce}>
+				<INCLURE{fond=noisettes/forum/inc_forum_annonces}{id_article}>
 
 				[(#REM) <!-- On traite ensuite les sujets epingles --> ]
-				<INCLURE{fond=noisettes/forum/inc_forum_sujets_speciaux}
-					{id_article}
-					{sujet=epingle}>
+				<INCLURE{fond=noisettes/forum/inc_forum_epingles}{id_article}>
 
 				[(#REM) <!-- On traite enfin les sujets non epingles --> ]
-				<INCLURE{fond=noisettes/forum/inc_forum_sujets_discussions}
-					{id_article}
-					{sujet=discussion}>
+				<INCLURE{fond=noisettes/forum/inc_forum_discussions}{id_article}>
 			</div>
 		</div>
 	</div>
