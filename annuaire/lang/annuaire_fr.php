@@ -10,7 +10,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'accueil_intro' => 'Bienvenue sur la page de pr&eacute;sentation du plugin "annuaire".',
 'accueil_option' => 'Certain plugins sont optionnel :',
 'accueil_option_contact' => 'Le plugin "contact" permets ou non d\'affich&eacute; la page de contact et son r&eacute;glage dans le plugin.',
-'accueil_option_couteau_suisse' => 'Le plugin "couteau suisse" vous fournis d&eacute;sorm&eacute; une lame pour cacher les adresses mails se trouvant dans la balise #LESAUTEURS sur la page site.',
+'accueil_option_couteau_suisse' => 'Le plugin "couteau suisse" vous fournis d&eacute;sorm&eacute; une lame pour cacher les adresses mails se trouvant dans les balises #LESAUTEURS et #DESCRIPTIF sur la page site.',
 'accueil_option_pub' => 'Si vous souhaitez int&eacute;gr&eacute; dans votre site des pub google, il vous faudra cr&eacute;&eacute; les mots clefs "pub-entete" et pub-nav" dans le groupe "Affichage" et plac&eacute; la br&egrave;ve dans une rubrique nomm&eacute; "squelette".',
 'accueil_option_slogan' =>'Le plugin "slogan" permets de rajouter un slogan a votre site.',
 'accueil_option_spiplistes' => 'Le plugin "spip liste" permets ou non d\'affich&eacute; la page abonnement et son r&eacute;glage dans le plugin.',
@@ -139,6 +139,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //H
 'hasard' => 'Sites au hasard',
+'hebergement' => 'Indiquer la soci&eacute;t&eacute;e ou la personne qui vous h&eacute;berge : (afficher colonne de droite en bas uniquement si remplis), possibilit&eacute;e de mettre du code spip ou html.',
+'hebergeur' => 'H&eacute;bergeur du site :',
 'herbier' => 'de l\' "herbier"',
 'hierarchie' => 'de la "hierarchie"',
 
