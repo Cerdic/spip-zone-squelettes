@@ -5,21 +5,23 @@
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //A
+
 'abonnement' => 'd\' "abonnement"',
-'accueil_presentation' =>'Pr&eacute;sentation',
-'accueil_intro' =>'Bienvenue sur la page de pr&eacute;sentation du plugin "annuaire".',
-'accueil_option' =>'Certain plugins sont optionnel :',
-'accueil_option_contact' =>'Le plugin "contact" permets ou non d\'affich&eacute; la page de contact et son r&eacute;glage dans le plugin.',
+'accueil_presentation' => 'Pr&eacute;sentation',
+'accueil_intro' => 'Bienvenue sur la page de pr&eacute;sentation du plugin "annuaire".',
+'accueil_option' => 'Certain plugins sont optionnel :',
+'accueil_option_contact' => 'Le plugin "contact" permets ou non d\'affich&eacute; la page de contact et son r&eacute;glage dans le plugin.',
+'accueil_option_couteau_suisse' => 'Le plugin "couteau suisse" vous fournis d&eacute;sorm&eacute; une lame pour cacher les adresses mails se trouvant dans la balise #LESAUTEURS sur la page site.',
 'accueil_option_pub' => 'Si vous souhaitez int&eacute;gr&eacute; dans votre site des pub google, il vous faudra cr&eacute;&eacute; les mots clefs "pub-entete" et pub-nav" dans le groupe "Affichage" et plac&eacute; la br&egrave;ve dans une rubrique nomm&eacute; "squelette".',
 'accueil_option_slogan' =>'Le plugin "slogan" permets de rajouter un slogan a votre site.',
-'accueil_option_spiplistes' =>'Le plugin "spip liste" permets ou non d\'affich&eacute; la page abonnement et son r&eacute;glage dans le plugin.',
-'accueil_option_visiteurs' =>'Le plugin "visiteur connect&eacute;s" ou la lame du couteau suisse permets d\'afficher dans la colonne de navigation (droite) le nombre de visiteur connect&eacute;s.',
-'accueil_requis' =>'Les requis pour un bon fonctionnement du site',
-'accueil_requis_1' =>'Pour un bon r&eacute;f&eacute;rencement de votre site, ils vous faut cr&eacute;er :
+'accueil_option_spiplistes' => 'Le plugin "spip liste" permets ou non d\'affich&eacute; la page abonnement et son r&eacute;glage dans le plugin.',
+'accueil_option_visiteurs' => 'Le plugin "visiteur connect&eacute;s" ou la lame du couteau suisse permets d\'afficher dans la colonne de navigation (droite) le nombre de visiteur connect&eacute;s.',
+'accueil_requis' => 'Les requis pour un bon fonctionnement du site',
+'accueil_requis_1' => 'Pour un bon r&eacute;f&eacute;rencement de votre site, ils vous faut cr&eacute;er :
 					<br />un groupe de mot clef "_META"
 					<br />les mots clefs keywords, description et remplir le champ texte pour que votre site ce r&eacute;f&eacute;rence
 					<br />et &agrave; l\'inverse cr&eacute;&eacute; robots et le texte noindex, nofollow pour ne pas le r&eacute;f&eacute;renc&eacute; ',
-'accueil_requis_2' =>'Pour afficher des partenaires sur la page "Partenaire", il vous faut cr&eacute;&eacute; le groupe "Affichage" avec le mot clef "partenaire" et attibuer le &agrave; chacun des sites voulus.',
+'accueil_requis_2' => 'Pour afficher des partenaires sur la page "Partenaire", il vous faut cr&eacute;&eacute; le groupe "Affichage" avec le mot clef "partenaire" et attibuer le &agrave; chacun des sites voulus.',
 'actuellement' => 'Il y a actuellement ',
 'affichage' => 'L\'affichage',
 'ajouter_google' => 'ajouter &agrave; google',
