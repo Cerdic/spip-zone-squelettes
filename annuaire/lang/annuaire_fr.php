@@ -44,8 +44,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'annuaire_rubrique' => 'Rubrique',
 'annuaire_site' => 'Site',
 'annuaire_sommaire' => 'Sommaire',
-'articles' => 'des "articles"',
-'article_syndic' => 'article(s) syndiqu&eacute;(s).',
+'article' => '@nb@ article',
+'articles' => '@nb@ articles',
+'article_syndic' => '@nb@ article syndiqu&eacute;',
+'articles_syndic' => '@nb@ articles syndiqu&eacute;s',
 
 //B
 'bandeau' => 'du "bandeau"',
@@ -154,7 +156,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //L
 'le_mot' => 'Le mot',
-'le_site' => 'Le site',
+'le_site' => 'Le site compte',
 
 //M
 'menu_site' => 'le menu du site',
@@ -182,10 +184,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'ok' => 'OK',
 
 //P
-'partenaire' => 'de "partenaires"',
+'partenaire1' => 'de "partenaire"',
+'partenaire' => '@nb@ partenaire',
+'partenaires' => '@nb@ partenaires',
 'pas_commentaire' => 'Pas encore de commentaire',
 'pas_descriptif' => 'Nous n\'avons pas de descriptif pour ce site, si vous &ecirc;tes le webmaster vous pouvez nous contacter afin de proposer un descriptif au site.',
-'pas_pagination' => 'Nombre d\'&eacute;l&eacute;ments par page',
+'pas_pagination' => 'Nombre d\'&eacute;l&eacute;ments par boucle',
 'pas_partenaire' => 'Nous n\'avons pas de partenaire(s) &agrave; ce jour, si vous le souhaitez, rejoingnez-nous...',
 'pas_votes' => 'Pas encore de votes',
 'pas_zard' => 'Pas de site(s) au hasard, enregistrez-en ...',
@@ -209,8 +213,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'rubrique_contient' => 'La rubrique contient',
 
 //S
-'site' => 'de "site"',
-'sites' => 'sites',
+'site1' => 'de "site"',
+'site' => '@nb@ site',
+'sites' => '@nb@ sites',
 'sommaire' => 'de "sommaire"',
 'supprimer' => 'Supprimer',
 'style' => 'Style :',
@@ -231,7 +236,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //V
 'votre_nom' => 'Votre nom',
 'votre_email' => 'Votre e-mail',
-'votes' => 'vote(s)',
+'vote' => '@nb@ vote',
+'votes' => '@nb@ votes',
 
 //W
 
