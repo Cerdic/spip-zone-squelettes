@@ -13,7 +13,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'accueil_option_couteau_suisse' => 'Le plugin "couteau suisse" vous fournis d&eacute;sorm&eacute; une lame pour cacher les adresses mails se trouvant dans les balises #LESAUTEURS et #DESCRIPTIF sur la page site.',
 'accueil_option_pub' => 'Si vous souhaitez int&eacute;gr&eacute; dans votre site des pub google, il vous faudra cr&eacute;&eacute; les mots clefs "pub-entete" et pub-nav" dans le groupe "Affichage" et plac&eacute; la br&egrave;ve dans une rubrique nomm&eacute; "squelette".',
 'accueil_option_slogan' =>'Le plugin "slogan" permets de rajouter un slogan a votre site.',
-'accueil_option_spiplistes' => 'Le plugin "spip liste" permets ou non d\'affich&eacute; la page abonnement et son r&eacute;glage dans le plugin.',
+'accueil_option_spiplistes' => 'Le plugin "spip liste" ou "clevermail" permetent ou non d\'affich&eacute;s la page abonnement et son r&eacute;glage dans le plugin.',
 'accueil_option_visiteurs' => 'Le plugin "visiteur connect&eacute;s" ou la lame du couteau suisse permets d\'afficher dans la colonne de navigation (droite) le nombre de visiteur connect&eacute;s.',
 'accueil_requis' => 'Les requis pour un bon fonctionnement du site',
 'accueil_requis_1' => 'Pour un bon r&eacute;f&eacute;rencement de votre site, ils vous faut cr&eacute;er :
@@ -225,8 +225,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'utilisation' => 'Utilisation',
 'utilisation_expli_contact_1' => 'Pour pouvoir configurer cette page, il vous faut le plugin "contact".',
 'utilisation_expli_contact_2' => 'Vous pouvez configurer cette page parce que le plugin "contact" est activ&eacute;.',
-'utilisation_expli_spiplistes_1' => 'Pour pouvoir configurer cette page, il vous faut le plugin "spip listes".',
-'utilisation_expli_spiplistes_2' => 'Vous pouvez configurer cette page parce que le plugin "spip listes" est activ&eacute;.',
+'utilisation_expli_spiplistes_clevermail_1' => 'Pour pouvoir configurer cette page, il vous faut le plugin "spip listes" ou "clevermail".',
+'utilisation_expli_spiplistes_clevermail_2' => 'Vous pouvez configurer cette page parce que le plugin "spip listes" ou "clevermail" sont activ&eacute;s.',
 
 //V
 'votre_nom' => 'Votre nom',
