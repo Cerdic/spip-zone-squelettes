@@ -1,16 +1,18 @@
 [(#REM) choisir le classement)]
+[(#ENV{menu}|oui)#SET{ul,menu-liste}#SET{li,menu-entree}]
+[(#ENV{menu}|non)#SET{ul,liste-item}#SET{li,item}]
 <B_groupe>
 
 [(#ENV{titre}|=={non}|non)
 <hr />
-<h3 class="h3"><:collection:classement:></h3>]
-<ul class="liste-items">
+<h2 class="h2"><:collection:classement:></h2>]
+<ul class="#GET{ul}">
 <BOUCLE_groupe(GROUPES_MOTS){par num titre}>
     <B_mot>
-    <li class="items">#TITRE
-        <ul class="liste-items">
+    <li class="#GET{li}">#TITRE
+        <ul class="#GET{ul}">
         <BOUCLE_mot(MOTS (MOTS spip_mots_articles spip_articles) {articles.statut = publie} {fusion mots.id_mot}{id_groupe}>
-            <li class="item"><a href="#URL_MOT">#TITRE</a></li>
+            <li class="#GET{li}"><a href="#URL_MOT">#TITRE</a></li>
         </BOUCLE_mot>
         </ul>
     </li>
