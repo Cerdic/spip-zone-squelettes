@@ -48,10 +48,11 @@
 #SET{f_navigation,(#CONFIG{soyezcreateurs_couleurs/fontsnavigation,'Verdana, Arial, Geneva, sans-serif'})}
 #SET{f_content,(#CONFIG{soyezcreateurs_couleurs/fontscontent,'Verdana, Arial, Geneva, sans-serif'})}
 
+#SET{d_body_degrade,#CONFIG{soyezcreateurs_couleurs/body_degrade}}
 
 /*************** DEFAULT DEFINITION */
 html, body { padding: 0; margin: 0; font-family: #GET{f_content}; }
-html { background-color: #GET{c_body_bk}; [(#GET{c_body_bk}|!={transparent}|oui) background: #GET{c_body_bk}[ url((#CHEMIN{images/fond_degrade_fonce_en_haut3.png}|image_sepia{[(#GET{c_body_bk})]}|image_aplatir{jpg}|extraire_attribut{src}|url_absolue)) repeat-x top];] color: #[(#GET{c_body_bk}|couleur_inverserluminosite{80})]; font-size: 62.7%; }
+html { background-color: #GET{c_body_bk}; [(#GET{c_body_bk}|!={transparent}|oui|et{[(#GET{d_body_degrade}|non)]}) background: #GET{c_body_bk}[ url((#CHEMIN{images/fond_degrade_fonce_en_haut3.png}|image_sepia{[(#GET{c_body_bk})]}|image_aplatir{jpg}|extraire_attribut{src}|url_absolue)) repeat-x top];] color: #[(#GET{c_body_bk}|couleur_inverserluminosite{80})]; font-size: 62.7%; }
 #header, #navigation, #extra, #footer { font-family: #GET{f_navigation}; }
 div { margin: 0; padding: 0; border: 0; }
 img { z-index: 0; border: none; }

@@ -114,6 +114,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_exemple_rendu' => 'Exemple de rendu',
 	'cfg_feedflare' => 'FeedFlare',
 	'cfg_fond' => 'Fond',
+	'cfg_fond_degrade' => 'D&eacute;grad&eacute;',
 	'cfg_footer' => 'Footer',
 	'cfg_formulaire_recherche' => 'Formulaire de Recherche',
 	'cfg_futur_seul' => 'Seulement dans le futur',
