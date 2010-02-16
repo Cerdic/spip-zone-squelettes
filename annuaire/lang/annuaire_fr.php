@@ -214,7 +214,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //S
 'site1' => 'de "site"',
-'site' => '@nb@ site',
+'site' => '1 site',
 'sites' => '@nb@ sites',
 'sommaire' => 'de "sommaire"',
 'supprimer' => 'Supprimer',
@@ -236,7 +236,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //V
 'votre_nom' => 'Votre nom',
 'votre_email' => 'Votre e-mail',
-'vote' => '@nb@ vote',
+'vote' => '1 vote',
 'votes' => '@nb@ votes',
 
 //W
