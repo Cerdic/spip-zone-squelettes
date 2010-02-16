@@ -52,6 +52,9 @@
 #SET{d_footer_degrade,#CONFIG{soyezcreateurs_couleurs/footer_degrade}}
 #SET{d_titraille_degrade,#CONFIG{soyezcreateurs_couleurs/titraille_degrade}}
 #SET{d_menuhaut_degrade,#CONFIG{soyezcreateurs_couleurs/menuhaut_degrade}}
+#SET{d_cartouche_degrade,#CONFIG{soyezcreateurs_couleurs/cartouche_degrade}}
+#SET{d_cadreinfo_degrade,#CONFIG{soyezcreateurs_couleurs/cadreinfo_degrade}}
+#SET{d_citations_degrade,#CONFIG{soyezcreateurs_couleurs/citations_degrade}}
 
 /*************** DEFAULT DEFINITION */
 html, body { padding: 0; margin: 0; font-family: #GET{f_content}; }
@@ -323,7 +326,7 @@ html > body div.popup-calendar { left:auto; right:40px; }
 /* sommaire en début d'article/de page */
 #artrecents {
      display: inline; overflow: auto; float: right; position: relative; z-index: 100; width: 160px; max-height: 350px; padding: 0; margin: 0 8px; color: #GET{c_navigation}; font-size: 1em;
-	[background: (#GET{c_navigation_bk});] [(#GET{c_navigation_bk}|!={transparent}|oui) background: #GET{c_navigation_bk}[ url((#CHEMIN{images/fond_degrade_fonce_en_bas3.png}|image_sepia{[(#GET{c_navigation_bk})]}|image_aplatir{jpg}|extraire_attribut{src}|url_absolue)) repeat-x top]; ]
+	[background: (#GET{c_navigation_bk});] [(#GET{c_navigation_bk}|!={transparent}|oui|et{[(#GET{d_cartouche_degrade}|non)]}) background: #GET{c_navigation_bk}[ url((#CHEMIN{images/fond_degrade_fonce_en_bas3.png}|image_sepia{[(#GET{c_navigation_bk})]}|image_aplatir{jpg}|extraire_attribut{src}|url_absolue)) repeat-x top]; ]
     border: 1px solid [#(#GET{c_navigation_bk}|couleur_inverserluminosite{30})];
 	border-bottom-color: [#(#GET{c_navigation_bk}|couleur_inverserluminosite{70})];
 	border-right-color: [#(#GET{c_navigation_bk}|couleur_inverserluminosite{70})];
@@ -423,8 +426,8 @@ div.spip_poesie div { margin-left: 60px; text-indent: -60px; }
 #letexte form p { text-align: right; }
 #letexte form .forum-texte p { text-align: left; }
 
-.cadreinfo { padding: 5px; margin: 20px 10px 10px; [color: #(#GET{c_menu_a_bk}|couleur_inverserluminosite{20,true});] [background: #(#GET{c_menu_a_bk}|couleur_inverserluminosite{20,true});] text-decoration: none; font-size: 1em;
-	[(#GET{c_menu_a_bk}|!={transparent}|oui)
+.cadreinfo { padding: 5px; margin: 20px 10px 10px; [color: #(#GET{c_menu_a}|couleur_inverserluminosite{20,true});] [background: #(#GET{c_menu_a_bk}|couleur_inverserluminosite{20,true});] text-decoration: none; font-size: 1em;
+	[(#GET{c_menu_a_bk}|!={transparent}|oui|et{[(#GET{d_cadreinfo_degrade}|non)]}) 
 	background: [#(#GET{c_menu_a_bk}|couleur_inverserluminosite{20,true})][ url((#CHEMIN{images/fond_degrade_fonce_en_bas3.png}|image_sepia{[(#GET{c_menu_a_bk}|couleur_inverserluminosite{20,true})]}|image_aplatir{jpg}|extraire_attribut{src}|url_absolue)) repeat-x top];]
 }
 
@@ -513,7 +516,7 @@ strong.agendastatut { padding: .1em 1em; margin-right: 1em; border: 1px solid #F
 
 /*************** CONTENT - MAIN SIDEBAR */
 #menu .cadreinfo { padding: 10px 5px; margin-left: 5px; margin-bottom: 0; border: none; [color: #(#GET{c_menu_a_bk}|couleur_inverserluminosite{20,true});] [background: #(#GET{c_menu_a_bk}|couleur_inverserluminosite{30});]
-	[(#GET{c_menu_a_bk}|!={transparent}|oui)
+	[(#GET{c_menu_a_bk}|!={transparent}|oui|et{[(#GET{d_cadreinfo_degrade}|non)]})
 	background: [#(#GET{c_menu_a_bk}|couleur_inverserluminosite{30})][ url((#CHEMIN{images/fond_degrade_fonce_en_bas3.png}|image_sepia{[(#GET{c_menu_a_bk}|couleur_inverserluminosite{30})]}|image_aplatir{jpg}|extraire_attribut{src}|url_absolue)) repeat-x top];]
 }
 #menu .cadreinfo p { margin: .5em 0 0; text-align: left; }
@@ -528,8 +531,8 @@ strong.agendastatut { padding: .1em 1em; margin-right: 1em; border: 1px solid #F
 #citations { position: relative; overflow: hidden; padding: 0; margin-top:2em; margin-right: 10px; margin-bottom: .5em; margin-left: 10px; width: [(#GET{LargeurMenuDroit}|moins{20})]px; }
 #citations dt { overflow: hidden; padding: .25em .5em; margin: 0; background-color: #GET{c_menu_a_bk}; border-bottom: solid 1px[ #(#GET{c_menu_a_bk}|couleur_foncerluminosite)]; -moz-border-radius-topright: .5em; -webkit-border-top-right-radius: .5em; -moz-border-radius-topleft: .5em; -webkit-border-top-left-radius: .5em; color: #GET{c_menu_a}; font-family: #GET{f_content}; font-size: 1.1em; font-weight: bold; }
 #citations dd { background-color:[ #(#GET{c_menu_a_bk}|couleur_inverserluminosite{80})];
-	[(#GET{c_menu_a_bk}|!={transparent}|oui)
-	overflow: hidden; padding: .5em .6em; margin: 0; background: [#(#GET{c_menu_a_bk}|couleur_inverserluminosite{80})][ url((#CHEMIN{images/fond_degrade_fonce_en_bas3.png}|image_sepia{[(#GET{c_menu_a_bk}|couleur_inverserluminosite{80})]}|image_aplatir{jpg}|extraire_attribut{src}|url_absolue)) repeat-x top];] border-bottom: solid 1px[ #(#GET{c_menu_a_bk}|couleur_inverserluminosite{20,true})]; border-right: solid 1px[ #(#GET{c_menu_a_bk}|couleur_inverserluminosite{20,true})]; -moz-border-radius-bottomright: .5em; -webkit-border-bottom-right-radius: .5em; -moz-border-radius-bottomleft: .5em; -webkit-border-bottom-left-radius: .5em; color:[ #(#GET{c_menu_a_bk}|couleur_foncerluminosite)]; font-size: 1em;
+	[(#GET{c_menu_a_bk}|!={transparent}|oui|et{[(#GET{d_citations_degrade}|non)]})
+	background: [#(#GET{c_menu_a_bk}|couleur_inverserluminosite{80})][ url((#CHEMIN{images/fond_degrade_fonce_en_bas3.png}|image_sepia{[(#GET{c_menu_a_bk}|couleur_inverserluminosite{80})]}|image_aplatir{jpg}|extraire_attribut{src}|url_absolue)) repeat-x top];] border-bottom: solid 1px[ #(#GET{c_menu_a_bk}|couleur_inverserluminosite{20,true})]; border-right: solid 1px[ #(#GET{c_menu_a_bk}|couleur_inverserluminosite{20,true})]; -moz-border-radius-bottomright: .5em; -webkit-border-bottom-right-radius: .5em; -moz-border-radius-bottomleft: .5em; -webkit-border-bottom-left-radius: .5em; color:[ #(#GET{c_menu_a_bk}|couleur_foncerluminosite)]; font-size: 1em; overflow: hidden; padding: .5em .6em; margin: 0;
 }
 #header #citationsheader { clear: right; float: right; width: 400px; font-size: 80%; }
 /* xiti et compteurs */
