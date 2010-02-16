@@ -49,6 +49,9 @@
 #SET{f_content,(#CONFIG{soyezcreateurs_couleurs/fontscontent,'Verdana, Arial, Geneva, sans-serif'})}
 
 #SET{d_body_degrade,#CONFIG{soyezcreateurs_couleurs/body_degrade}}
+#SET{d_footer_degrade,#CONFIG{soyezcreateurs_couleurs/footer_degrade}}
+#SET{d_titraille_degrade,#CONFIG{soyezcreateurs_couleurs/titraille_degrade}}
+#SET{d_menuhaut_degrade,#CONFIG{soyezcreateurs_couleurs/menuhaut_degrade}}
 
 /*************** DEFAULT DEFINITION */
 html, body { padding: 0; margin: 0; font-family: #GET{f_content}; }
@@ -217,7 +220,7 @@ a#logo { display: block; clear: right; margin-left: 80px; }
 
 /*************** STRUCTURE - FOOTER */
 #footer { width: auto !important; background-color: #GET{c_footer_bk};
-	[(#GET{c_footer_bk}|!={transparent}|oui)
+	[(#GET{c_footer_bk}|!={transparent}|oui|et{[(#GET{d_footer_degrade}|non)]})
 	background: #GET{c_footer_bk}[ url((#CHEMIN{images/fond_degrade_fonce_en_bas4.png}|image_sepia{[(#GET{c_footer_bk})]}|image_aplatir{jpg}|extraire_attribut{src}|url_absolue)) repeat-x top];]
 	color: #GET{c_footer}; font-size: #CONFIG{soyezcreateurs_couleurs/fontsizefooter,1.2}em;
 }
@@ -233,7 +236,7 @@ a#logo { display: block; clear: right; margin-left: 80px; }
 #footer a:active, .cadreinfo a:active { color: #f00; }
 /* ?? */
 #menufooter { background-color: #GET{c_navigation_bk};
-	[(#GET{c_navigation_bk}|!={transparent}|oui)
+	[(#GET{c_navigation_bk}|!={transparent}|oui|et{[(#GET{d_menuhaut_degrade}|non)]})
 	background: #GET{c_navigation_bk}[ url((#CHEMIN{images/fond_degrade_fonce_en_bas_menu.png}|image_sepia{[(#GET{c_navigation_bk})]}|image_aplatir{jpg}|extraire_attribut{src}|url_absolue)) repeat-x center];]
 	text-align:right;
 }
@@ -253,7 +256,7 @@ a#logo { display: block; clear: right; margin-left: 80px; }
 /*************** GENERAL - CONTENT */
 #content img { padding: 0 1.5em; }
 #content h1 { background-color: #GET{c_titraille_bk}; color: #GET{c_titraille};
-	[(#GET{c_titraille_bk}|!={transparent}|oui)
+	[(#GET{c_titraille_bk}|!={transparent}|oui|et{[(#GET{d_titraille_degrade}|non)]})
 	background: #GET{c_titraille_bk}[ url((#CHEMIN{images/fond_degrade_fonce_en_bas4.png}|image_sepia{[(#GET{c_titraille_bk})]}|image_aplatir{jpg}|extraire_attribut{src}|url_absolue)) repeat-x top];]
 	font-family: #GET{f_content}; font-size: 2em; font-weight: bold; letter-spacing: 1px; margin-bottom: 0em; margin-top: 0em; margin-right: 0; margin-left: 0; padding-top: 0.7em; padding-left: .5em; padding-bottom: 0.5em; padding-right: 50px; border-bottom: 4px solid [#(#GET{c_titraille_bk}|couleur_foncerluminosite)]; line-height: 1.5em;
 }
@@ -301,7 +304,7 @@ html > body div.popup-calendar { left:auto; right:40px; }
 
 /* menu en haut du contenu (onglets) */
 #menuhaut { padding-bottom: 1.7em; background-color: #GET{c_menuhaut_bk}; color: #GET{c_menuhaut};
-	[(#GET{c_menuhaut_bk}|!={transparent}|oui)
+	[(#GET{c_menuhaut_bk}|!={transparent}|oui|et{[(#GET{d_menuhaut_degrade}|non)]})
 	padding-top: 8px; padding-left: 8px; background: #GET{c_menuhaut_bk}[ url((#CHEMIN{images/fond_degrade_fonce_en_bas_menu.png}|image_sepia{[(#GET{c_menuhaut_bk})]}|image_aplatir{jpg}|extraire_attribut{src}|url_absolue)) repeat-x center];]
 	font-size: 130%;
 }
