@@ -2,17 +2,17 @@
 la premiere fois qu'un message est poste (cf. inc/invalideur). ]
 [(#PARAMETRES_FORUM|?{''})]
 
-<div class="post">
 [(#REM) Nombre total de messages ]
 <BOUCLE_decompte(FORUMS) {id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?} {plat} />
+<div class="post">
 [<h2>(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
 [(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>})]</h2>]
-<//B_decompte>
 </div><!--.post-->
+<//B_decompte>
 
 [(#REM) Messages du forum ]
-<div class="post">
-	<B_forums>
+<B_forums>
+	<div class="post">
 	<ul>
 		<BOUCLE_forums(FORUMS) {id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?} {par date}>
 		<li class="forum-fil">
@@ -20,7 +20,7 @@ la premiere fois qu'un message est poste (cf. inc/invalideur). ]
 				<div class="forum-chapo">
 					<strong class="#EDIT{titre} forum-titre"><a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM">#TITRE</a></strong>
 					<small>[(#DATE|affdate_jourcourt)][&nbsp;(#DATE|heures)][:(#DATE|minutes)][, <:par_auteur:> <a href="#URL_AUTEUR"><span class="#EDIT{qui}">(#NOM|couper{80})</span></a>]</small>
-				</div>
+				</div><!--.forum-chapo-->
 				<div class="#EDIT{texte} forum-texte">
 					[(#TEXTE|lignes_longues)]
 					[<div class="notes surlignable">(#NOTES|safehtml|lignes_longues)</div>]
@@ -33,8 +33,8 @@ la premiere fois qu'un message est poste (cf. inc/invalideur). ]
 					})]
 					</BOUCLE_doc>
 					[<p class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_message:></a></p>]
-				</div>
-			</div>
+				</div><!--.forum-texte-->
+			</div><!--.forum-message-->
 
 			<B_forums_fils>
 			<ul>
@@ -44,7 +44,7 @@ la premiere fois qu'un message est poste (cf. inc/invalideur). ]
 						<div class="forum-chapo">
 							<strong class="#EDIT{titre} forum-titre"><a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM">#TITRE</a></strong>
 							<small>[(#DATE|affdate_jourcourt)][&nbsp;(#DATE|heures)][:(#DATE|minutes)][, <:par_auteur:> <a href="#URL_AUTEUR"><span class="#EDIT{qui}">(#NOM|couper{80})</span></a>]</small>
-						</div>
+						</div><!--.forum-chapo-->
 						<div class="#EDIT{texte} forum-texte">
 							[(#TEXTE|lignes_longues)]
 							[<div class="notes surlignable">(#NOTES|safehtml|lignes_longues)</div>]
@@ -57,8 +57,8 @@ la premiere fois qu'un message est poste (cf. inc/invalideur). ]
 							})]
 							</BOUCLE_doc2>
 							[<p class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_message:></a></p>]
-						</div>
-					</div>
+						</div><!--.forum-texte-->
+					</div><!--.forum-message-->
 					<BOUCLE_forums_boucle(boucle_forums_fils)></BOUCLE_forums_boucle>
 				</li>
 				</BOUCLE_forums_fils>
@@ -67,5 +67,5 @@ la premiere fois qu'un message est poste (cf. inc/invalideur). ]
 		</li>
 		</BOUCLE_forums>
 	</ul>
-	</B_forums>
-</div><!--.post-->
+	</div><!--.post-->
+</B_forums>
