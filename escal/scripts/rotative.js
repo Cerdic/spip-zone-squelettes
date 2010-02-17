@@ -14,7 +14,7 @@ var headline_count;
    $('#scrollup').hover(function() {
      clearInterval(headline_interval);
    }, function() {
-     headline_interval = setInterval(headline_rotate,5000); //temps en milliseconds
+     headline_interval = setInterval(headline_rotate,5000); //temps en millisecondes
      headline_rotate();
    });
  });
