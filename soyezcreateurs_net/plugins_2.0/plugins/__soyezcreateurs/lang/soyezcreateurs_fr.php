@@ -87,6 +87,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_bas_principale' => 'En bas du menu de navigation principal',
 	'cfg_bulle_aide_label' => 'Bulle d\'aide affich&eacute;e nativement par le navigateur',
 	'cfg_cadreinfo' => 'Cadres info',
+	'cfg_cadrestexte' => 'Cadres du contenu',
 	'cfg_cadre_vignettes' => 'Cadre vignettes (mode portail)',
 	'cfg_cartouche' => 'Cadre "Quoi de neuf", "Contenu"...',
 	'cfg_choix_banniere_label' => 'Choix de la banni&egrave;re (si pas de logo de survol pour le site)',
