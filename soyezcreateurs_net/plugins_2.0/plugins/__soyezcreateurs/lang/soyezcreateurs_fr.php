@@ -243,6 +243,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'clever_uns' => 'Desinscription accompli',
 	'clevermail' => 'CleverMail',
 	'commencer' => 'Pour bien commencer',
+	'configurersc' => 'Configurer Soyez Cr&eacute;ateurs',
 	'connexion' => 'Connexion',
 	'connexiontitle' => 'Acc&eacute;der &agrave; l\'espace r&eacute;serv&eacute;',
 	'copyright_cnil' => 'D&eacute;claration CNIL n&ordm;',
