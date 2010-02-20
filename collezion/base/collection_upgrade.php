@@ -35,6 +35,27 @@ function collection_upgrade($nom_meta_base_version,$version_cible){
 				ecrire_meta('mots_cles_forums','non');
 				ecrire_meta($nom_meta_base_version,'0.4');
                 }
+        if (version_compare($current_version,'0.5','<=')){
+				ecrire_config('collezionth/couleur_titre',lire_config('collection/couleur_titre'));
+				ecrire_config('collezionth/couleur_filets',lire_config('collection/couleur_filets'));
+				ecrire_config('collezionth/couleur_fond_sepia',lire_config('collection/couleur_fond_sepia'));
+				ecrire_config('collezionth/colorer_fond_texte',lire_config('collection/colorer_fond_texte'));
+				ecrire_config('collezionth/couleur_liens_nav',lire_config('collection/couleur_liens_nav'));
+				ecrire_config('collezionth/couleur_liens_spip_in',lire_config('collection/couleur_liens_spip_in'));
+				ecrire_config('collezionth/couleur_liens_spip_out',lire_config('collection/couleur_spip_out'));
+				ecrire_config('collezionth/couleur_liens_spip_glossaire',lire_config('collection/couleur_liens_spip_glossaire'));
+				
+				effacer_config('collection/couleur_titre');
+				effacer_config('collection/couleur_filets');
+				effacer_config('collection/couleur_fond_sepia');
+				effacer_config('collection/colorer_fond_texte');
+				effacer_config('collection/couleur_liens_nav');
+				effacer_config('collection/couleur_liens_spip_in');
+				effacer_config('collection/couleur_spip_out');
+				effacer_config('collection/couleur_liens_spip_glossaire');
+				
+				ecrire_meta($nom_meta_base_version,'0.5');
+                }
 		ecrire_metas();
 		}
     
