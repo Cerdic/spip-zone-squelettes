@@ -24,6 +24,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/spip-bonux-2
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/fulltext
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/gestion_documents
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/protection_formulaires
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/slogan
 cd ../..
 
 #Installation des plugins
