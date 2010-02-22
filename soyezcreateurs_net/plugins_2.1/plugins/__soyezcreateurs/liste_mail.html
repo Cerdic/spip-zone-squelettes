@@ -1,0 +1,110 @@
+#CACHE{3600}
+<B_messages>
+			[(#ENV{mode}|=={lettreseule}|non)
+				[(#INCLURE{fond=noisettes/header/header_lettre}{pst_id}{titretop=#GET{titretop}})]
+			]
+
+		<BOUCLE_messages(SPIP_CM_POSTS){pst_id}{pst_date_sent!=0}{!par pst_date_sent}>
+			[(#REM) Affichage du détail du message du courrier ]
+			[(#ENV{mode}|=={lettreseule}|oui)
+				[(#PST_HTML)]
+			]
+			[(#ENV{mode}|=={lettreseule}|non)
+				[(#PST_HTML|sc_garder_body)]
+			]
+		</BOUCLE_messages>
+			[(#ENV{mode}|=={lettreseule}|non)
+		</div><!-- Fin de .letexte -->
+</div><!-- Fin de .texte -->
+]
+</B_messages>
+
+<BOUCLE_list(SPIP_CM_LISTS){lst_id}>
+[(#SET{titretop,<:soyezcreateurs:newsletter|sc_nettoyer_marqueur|texte_script:>})]
+<INCLURE{fond=noisettes/header/header}
+	{title=<:soyezcreateurs:newsletter|texte_script:>}
+	{titretop=#GET{titretop}}
+	{template=Liste_mail}
+>
+	<div id="miettesdepain">
+		<ul>
+			<li><a href="#URL_SITE_SPIP" title="Accueil"><:soyezcreateurs:accueil:></a></li>
+			<li><a href="#URL_PAGE{liste_mail}"><:soyezcreateurs:newsletter:></a></li>
+			<BOUCLE_Uneliste(SPIP_CM_LISTS) {lst_id}>
+			<li>#LST_NAME</li>
+			</BOUCLE_Uneliste>
+		</ul>
+	</div>
+
+<div class="texte">
+
+<div class="cartouche">
+<div class="titrepage"><h1 class="titre">#LST_NAME</h1></div>
+<div class="datepublication"><span><:soyezcreateurs:publiele:> [(#DATE|nom_jour)] [(#DATE|affdate)]</span></div>
+</div>
+
+	<div id="letexte">
+	[<div class="chapo">(#DESCRIPTIF)</div>]
+[(#REM) Affichage du détail de la liste ]
+	<B_archives>
+	<ul>
+		<BOUCLE_archives(SPIP_CM_POSTS) {lst_id}{pst_date_sent!=0}{pagination}{!par pst_date_sent}>
+		<li><a href="[(#URL_PAGE{liste_mail}|parametre_url{'pst_id',#PST_ID})]">[(#PST_SUBJECT)]</a>
+		<small>[(#DATE|affdate_court)]</small></li>
+		</BOUCLE_archives>
+	</ul>
+		[<p class="pagination">(#PAGINATION)</p>]
+	</B_archives>
+
+
+
+	</div><!-- Fin de .letexte -->
+</div><!-- Fin de .texte -->
+
+</BOUCLE_list>
+
+[(#SET{titretop,<:soyezcreateurs:newsletter|sc_nettoyer_marqueur|texte_script:>})]
+<INCLURE{fond=noisettes/header/header}
+	{title=<:soyezcreateurs:newsletter|texte_script:>}
+	{titretop=#GET{titretop}}
+	{template=Liste_mail}
+>
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP"><:soyezcreateurs:accueil:></a></li>
+	<li><:soyezcreateurs:newsletter:></li>
+	</ul>
+	</div>
+	
+<div class="texte">
+<div class="cartouche">
+<div class="titrepage"><h1><:soyezcreateurs:newsletter:></h1></div>
+</div>
+
+	<div id="letexte">
+
+<BOUCLE_listes(SPIP_CM_LISTS){lst_moderation!=closed}{par lst_name}>
+	
+	<h2><a href="[(#URL_PAGE{liste_mail}|parametre_url{'lst_id',#LST_ID})]" title="#LST_NAME">#LST_NAME</a></h2>
+	<B_lettres>
+	<ul>
+	<BOUCLE_lettres(SPIP_CM_POSTS){lst_id}{pst_date_sent!=0}{!par pst_date_sent}>
+			<li><a href="[(#URL_PAGE{liste_mail}|parametre_url{'pst_id',#PST_ID})]" title="<:soyezcreateurs:publiele|attribut_html|:> [(#DATE|nom_jour|attribut_html|)] [(#DATE|affdate|attribut_html|)]">#PST_SUBJECT</a></li>
+	</BOUCLE_lettres>
+	</ul>
+	</B_lettres>
+</BOUCLE_listes>
+
+	</div><!-- Fin de .letexte -->
+</div><!-- Fin de .texte -->
+
+<//B_list>
+
+<//B_messages>
+			[(#ENV{mode}|=={lettreseule}|non)
+[(#FORMULAIRE_ADMIN)]
+<INCLURE{fond=noisettes/footer/footer}
+	{titretop=#GET{titretop}}
+	{template=Liste_mail}
+>
+]

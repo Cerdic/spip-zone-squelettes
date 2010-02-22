@@ -1,0 +1,88 @@
+[(#SET{titretop,<:resultats_recherche|sc_nettoyer_marqueur|texte_script:>})]
+[(#SET{title,<:resultats_recherche|texte_script:>[ : (#RECHERCHE|attribut_html|texte_script)]})]
+<INCLURE{fond=noisettes/header/header}
+	{title=#GET{title}}
+	{titretop=#GET{titretop}}
+>
+<!-- Une : articles trouves -->
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP"><:soyezcreateurs:accueil:></a></li>
+	<li><:resultats_recherche:>[ : <em>(#RECHERCHE)</em>]</li>
+	</ul>
+	</div>
+<div class="texte">
+<div class="cartouche">
+<div class="titrepage"><h1><:resultats_recherche:>[ : <em>(#RECHERCHE)</em>]</h1></div>
+</div>
+	<div id="letexte">
+<BOUCLE_ArticlesExclus(ARTICLES){titre_mot=PasDansRecherche}{doublons}{!lang_select}></BOUCLE_ArticlesExclus>
+[(#SET{nbelementstrouves,0})]
+<B_articles>
+	<h2>#ANCRE_PAGINATION<:articles:></h2>
+	<ul>
+		<BOUCLE_articles(ARTICLES) {recherche} {!par points} {pagination 25}{doublons}{!lang_select}>
+			<li><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a> : [(#DATE|nom_jour)] [(#DATE|affdate)]</li>
+		</BOUCLE_articles>
+	</ul>
+	[<p class="pagination">(#PAGINATION)</p>]
+	[(#SET{nbelementstrouves,#GET{nbelementstrouves}|plus{#GRAND_TOTAL}})]
+</B_articles>
+
+<!-- Rubriques trouvees -->
+<B_rubriques>
+	<h2>#ANCRE_PAGINATION<:rubriques:></h2>
+	<ul>
+		<BOUCLE_rubriques(RUBRIQUES) {recherche} {!par points} {pagination 25}{!lang_select}>
+			<li><a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a> : [(#DATE|nom_jour)] [(#DATE|affdate)]</li>
+		</BOUCLE_rubriques>
+	</ul>
+	[<p class="pagination">(#PAGINATION)</p>]
+	[(#SET{nbelementstrouves,#GET{nbelementstrouves}|plus{#GRAND_TOTAL}})]
+</B_rubriques>
+
+<B_breves>
+	<!-- Breves trouvees -->
+	<h2>#ANCRE_PAGINATION<:breves:></h2>
+	<ul>
+		<BOUCLE_breves(BREVES) {recherche} {!par points} {pagination 25}{!lang_select}>
+			<li><a href="#URL_BREVE">[(#TITRE)]</a> : [(#DATE|nom_jour)] [(#DATE|affdate)]</li>
+		</BOUCLE_breves>
+	</ul>
+	[<p class="pagination">(#PAGINATION)</p>]
+	[(#SET{nbelementstrouves,#GET{nbelementstrouves}|plus{#GRAND_TOTAL}})]
+</B_breves>
+
+<!-- Sites Web trouves -->
+
+<B_sites>
+	<h2>#ANCRE_PAGINATION<:sites_web:></h2>
+	<ul>
+		<BOUCLE_sites(SITES) {recherche} {!par points} {pagination 25}{!lang_select}>
+			<li><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]" title="[(#DESCRIPTIF|attribut_html)]">[(#NOM_SITE)]</a> : [(#DATE|nom_jour)] [(#DATE|affdate)]</li>
+		</BOUCLE_sites>
+	</ul>
+	[<p class="pagination">(#PAGINATION)</p>]
+	[(#SET{nbelementstrouves,#GET{nbelementstrouves}|plus{#GRAND_TOTAL}})]
+</B_sites>
+
+<B_Syndications>
+	<h2>#ANCRE_PAGINATION<:ecrire:titre_syndication:></h2>
+	<ul>
+		<BOUCLE_Syndications(SYNDIC_ARTICLES) {recherche} {!par points} {pagination 25}{!lang_select}>
+			<li><a href="[(#ID_SYNDIC|generer_url_entite{'site'}|parametre_url{'id_syndic_article',#ID_SYNDIC_ARTICLE})]" title="[(#DATE) - ][(#DESCRIPTIF|supprimer_tags|attribut_html)]">[(#TITRE|supprimer_tags)]</a> : [(#DATE|nom_jour)] [(#DATE|affdate)]</li>
+		</BOUCLE_Syndications>
+	</ul>
+	[<p class="pagination">(#PAGINATION)</p>]
+	[(#SET{nbelementstrouves,#GET{nbelementstrouves}|plus{#GRAND_TOTAL}})]
+</B_Syndications>
+
+[(#GET{nbelementstrouves}|=={0}|?{<:soyezcreateurs:recherche_infructueuse:>})]
+[(#GET{nbelementstrouves}|>{0}|?{<hr /><:soyezcreateurs:recherche_total:>&nbsp;: [<strong>(#GET{nbelementstrouves})</strong>]})]
+	</div>
+</div><!-- Fin de .texte -->
+[(#FORMULAIRE_ADMIN)]
+
+<INCLURE{fond=noisettes/footer/footer}
+	{titretop=#GET{titretop}}{env}
+>

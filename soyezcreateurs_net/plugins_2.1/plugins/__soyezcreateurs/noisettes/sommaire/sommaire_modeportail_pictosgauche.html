@@ -1,0 +1,39 @@
+[(#REM) Pictos de gauche]
+	<div id="navigation" class="equilibre stackable"><a name="menusite"></a>
+<INCLURE{fond=noisettes/sommaire/sommaire_modeportail_pictos_#CONFIG{soyezcreateurs_couleurs/autovignettes,auto}}{pictoscherches=^[13579]\.}>
+<B_Racines>
+<div class="espaceavant">
+<ul>
+<BOUCLE_Racines(ARTICLES){titre_mot==^(MENURACINE|MENURACINE_Systematique)$}{par num titre} {lang}>
+	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="[(#URL_ARTICLE)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img src="(#LOGO_ARTICLE||image_reduire{16,16}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" />][(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
+</BOUCLE_Racines>
+</ul>
+</div>
+</B_Racines>
+<B_RacinesBas>
+<div class="espaceavant">
+<ul>
+<BOUCLE_RacinesBas(ARTICLES){par num titre}{titre_mot==^MENURACINEBAS.*} {lang}>
+	<li><a href="[(#URL_ARTICLE)]" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[<img src="(#LOGO_ARTICLE||image_reduire{16,16}|extraire_attribut{src})" alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" />][(#TITRE)]</a></li>
+</BOUCLE_RacinesBas>
+</ul>
+</div>
+</B_RacinesBas>
+[(#CONFIG{soyezcreateurs/positionrecherche,navigation}|=={navigation}|oui)
+[(#INCLURE{fond=noisettes/header/cadre_recherche}{env})]
+]
+[(#PLUGIN{ACCESRESTREINT}|=={1}|oui)[(#INCLURE{fond=noisettes/accesrestreint/login-logout}{env})]]
+[(#CONFIG{soyezcreateurs/bandeau_contact_extra}|=={extra}|oui)
+	[<div id="bandeaucontact">(#CONFIG{soyezcreateurs/bandeau_contact}|propre)</div>]
+]
+<div class="espaceavant">
+<ul>
+<li>[(#ENV{template}|=={Plan}|?{<strong>})]<a href="#URL_PAGE{plan}" title="<:soyezcreateurs:toutleplan:>"><:soyezcreateurs:plan_menu:></a>[(#ENV{template}|=={Plan}|?{</strong>})]</li>
+<BOUCLE_AuMoinsUnSite(SITES){0,1}><li>[(#ENV{template}|=={Sites}|?{<strong>})]<a href="#URL_PAGE{site}" title="<:ecrire:icone_voir_sites_references|attribut_html:>"><:sites_web:></a>[(#ENV{template}|=={Sites}|?{</strong>})]</li></BOUCLE_AuMoinsUnSite>
+<BOUCLE_AuMoinsUnDoc(DOCUMENTS){mode=document}{extension !IN gif,jpg,png}{0,1}><li>[(#ENV{template}|=={Documents}|?{<strong>})]<a href="#URL_PAGE{telecharger}" title="<:ecrire:titre_page_documents_liste|attribut_html:>"><:ecrire:onglet_documents:></a>[(#ENV{template}|=={Documents}|?{</strong>})]</li></BOUCLE_AuMoinsUnDoc>
+[(#PLUGIN{CLEVERMAIL}|=={1}|oui)
+<li>[(#ENV{template}|=={Liste_mail}|?{<strong>})]<a href="#URL_PAGE{liste_mail}" title="<:soyezcreateurs:newsletter:>"><:soyezcreateurs:newsletter:></a>[(#ENV{template}|=={Liste_mail}|?{</strong>})]</li>]
+[(#PLUGIN{acronymes}|=={1}|oui)#INCLURE{fond=noisettes/navigation/sigles_menu}]
+</ul>
+</div>
+	</div><!-- id="navigation" -->

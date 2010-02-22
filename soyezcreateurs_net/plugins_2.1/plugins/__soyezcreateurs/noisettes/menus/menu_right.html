@@ -1,0 +1,64 @@
+#CACHE{3600}
+	<div id="extra" class="navStuff equilibre stackable laststackable">
+[(#PLUGIN{PB_PANIER}|=={1}|oui)[(#CONFIG{soyezcreateurs_layout/positionpanier,extra}|=={extra}|oui)<INCLURE{fond=pb_panier_small}>]]
+[(#CONFIG{soyezcreateurs/citationsheader,extra}|=={extra}|oui)<INCLURE{fond=noisettes/extra/citations}>]
+[(#CONFIG{soyezcreateurs/bandeau_contact_extra}|=={extra}|oui)
+	[<div id="bandeaucontact">(#CONFIG{soyezcreateurs/bandeau_contact}|propre)</div>]
+]
+<div class="rightmenu">
+	[(#PLUGIN{AGENDA}|=={1}|oui)[(#CONFIG{soyezcreateurs/miniagenda,on}|=={on}|oui)[(#INCLURE{fond=noisettes/agenda/miniagenda,env,ajax})]]]
+[(#ENV{template}|=={'Sommaire'}|?{[(#INCLURE{fond=noisettes/menus/menu_right_sommaire}{env})]})]
+
+[(#REM) Si pas sommaire]
+	<B_Breves>
+	<h2><:breves:></h2>
+	<ul>
+	  <BOUCLE_Breves(BREVES){id_rubrique}{!par date}{age<120}><li>[(#ENV{id_breve}|=={#ID_BREVE}|?{<strong>})]<a href="[(#URL_BREVE)]" title="[(#DATE|nom_jour)] [(#DATE|affdate)]">[<img class="menu_right_logo" src="(#LOGO_BREVE_NORMAL||image_reduire{120,50}|extraire_attribut{src})"[ width="(#LOGO_BREVE_NORMAL||image_reduire{120,50}|extraire_attribut{width})"][ height="(#LOGO_BREVE_NORMAL||image_reduire{120,50}|extraire_attribut{height})"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" /><br />][(#TITRE)]</a>[(#ENV{id_breve}|=={#ID_BREVE}|?{</strong>})]</li></BOUCLE_Breves>
+	</ul>
+	</B_Breves>
+
+[(#REM) afficher les rub & art qui ont le mot clef : DessousBreves si c est un tel article qui est affiche ]
+
+<BOUCLE_ArticlesDessousBreves(RUBRIQUES){id_rubrique}{titre_mot = DessousBreves }>
+ <h2 [title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>[(#SET{lelogo,[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{120,50})]})][<img class="menu_right_logo" src="(#GET{lelogo}|extraire_attribut{src})"[ width="(#GET{lelogo}|extraire_attribut{width})"][ height="(#GET{lelogo}|extraire_attribut{height})"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" /><br />][(#TITRE)]</h2>
+  <ul>
+<BOUCLE_art_recents(ARTICLES) {id_rubrique}{!par date} {lang}>
+	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="#URL_ARTICLE" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
+</BOUCLE_art_recents>
+</ul>
+</BOUCLE_ArticlesDessousBreves>
+[(#REM) finde afficher les rub & art qui ont le mot clef : DessousBreves ]
+
+
+
+
+<BOUCLE_RubriqueSites(RUBRIQUES){id_rubrique}>
+[<h2 title="<:soyezcreateurs:plus_loin_title:>"><:soyezcreateurs:plus_loin:></h2>
+<ul>
+(#INCLURE{fond=noisettes/menus/menu_right_sites}{id_rubrique}{env})
+</ul>]
+</BOUCLE_RubriqueSites>
+<B_RubriquesPasDansMenu>
+<h2 title="<:soyezcreateurs:plus_loin_title:>"><:soyezcreateurs:plus_loin:></h2>
+<ul>
+<BOUCLE_RubriquesPasDansMenu(RUBRIQUES){titre_mot=PasDansMenu}>[
+(#INCLURE{fond=noisettes/menus/menu_right_sites}{id_rubrique}{env})
+]</BOUCLE_RubriquesPasDansMenu>
+</ul>
+</B_RubriquesPasDansMenu>
+<//B_RubriqueSites>
+</div><!-- class="rightmenu"-->
+[(#INCLURE{fond=noisettes/extra/ads_column})]
+[(#CONFIG{soyezcreateurs/geolocalisation,non}|=={non}|oui)#INCLURE{fond=noisettes/extra/ousommesnous}]
+[(#CONFIG{soyezcreateurs/positionfluxrss,bottom}|=={bottom}|oui)<div class="centrer_div">
+<a href="#URL_PAGE{backend}"><img src="#CHEMIN{images/rss.gif}" alt="<:syndiquer_site:> [(#NOM_SITE_SPIP|attribut_html)]" title="<:syndiquer_site:> [(#NOM_SITE_SPIP|attribut_html)]" width="36" height="15" /></a>
+</div>]
+[<div class="centrer_div"><!-- AddThis Bookmark Button BEGIN -->
+<script type="text/javascript">
+  addthis_url    = location.href;   
+  addthis_title  = document.title;  
+  addthis_pub    = '(#CONFIG{soyezcreateurs_google/addthis})';     
+</script><script type="text/javascript" src="http://s7.addthis.com/js/addthis_widget.php?v=12" ></script>
+<!-- AddThis Bookmark Button END --></div>]
+[(#CONFIG{soyezcreateurs_google/xiti_id}|!={''}|oui)[(#INCLURE{fond=noisettes/compteur})]]
+	</div><!-- id="extra" -->

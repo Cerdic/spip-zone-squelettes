@@ -1,0 +1,20 @@
+<BOUCLE_messages(SPIP_CM_POSTS){pst_id}>
+[(#SET{titretop,<:soyezcreateurs:newsletter|sc_nettoyer_marqueur|texte_script:>})]
+
+ <INCLURE{fond=noisettes/header/header}
+	 {title=<:soyezcreateurs:newsletter|texte_script:>}
+	 {titretop=#GET{titretop}}
+ >
+	<div id="miettesdepain">
+		<ul>
+			<li><a href="#URL_SITE_SPIP" title="Accueil"><:soyezcreateurs:accueil:></a></li>
+			<li><a href="#URL_PAGE{liste_mail}"><:soyezcreateurs:newsletter:></a></li>
+			<BOUCLE_Uneliste2(SPIP_CM_LISTS){lst_id}>
+			<li><a href="[(#URL_PAGE{liste_mail}|parametre_url{'lst_id',#LST_ID})]">#LST_NAME</a></li>
+			</BOUCLE_Uneliste2>
+			<BOUCLE_messagesAriane(SPIP_CM_POSTS){pst_id}>[<li>(#PST_SUBJECT)</li>][(#SET{subject,#PST_SUBJECT})]</BOUCLE_messagesAriane>
+		</ul>
+	</div>
+	
+<div class="texte">
+</BOUCLE_messages>

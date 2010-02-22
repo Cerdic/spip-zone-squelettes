@@ -1,0 +1,22 @@
+	<div id="header">
+	<div id="header_inner">
+<div class="ahem"><ul>
+<BOUCLE_AccesibiliteLien(ARTICLES){titre_mot=AccesibiliteLien}{0,1}{!par date}>
+	<li><a href="#URL_ARTICLE">[(#TITRE)]</a></li>
+</BOUCLE_AccesibiliteLien>
+	<li><a href="#letexte"><:soyezcreateurs:accessibilite_texte:></a></li>
+	<li><a href="#menusite"><:soyezcreateurs:accessibilite_menu:></a></li>
+	<li><a href="#formulaire_recherche"><:soyezcreateurs:accessibilite_recherche:></a></li>
+</ul></div>
+<div id="datemajsite"><span><BOUCLE_datemajsite(ARTICLES){!par date_modif}{0,1}{lang}><:soyezcreateurs:dernieremaj:> [(#DATE_MODIF|nom_jour)] [(#DATE_MODIF|affdate)]</BOUCLE_datemajsite>[(#CONFIG{soyezcreateurs/positionfluxrss,bottom}|=={header}|oui)<a href="#URL_PAGE{backend}"><img src="#CHEMIN{images/rss.gif}" alt="<:syndiquer_site:> [(#NOM_SITE_SPIP|attribut_html)]" width="36" height="15" /></a>]</span></div>
+[(#INCLURE{fond=noisettes/header/menu_lang}{env})]
+<a name="[(#ENV{titretop}|sinon{<:soyezcreateurs:sommaire|sc_nettoyer_marqueur:>})]" id="[(#ENV{titretop}|sinon{<:soyezcreateurs:sommaire|sc_nettoyer_marqueur:>})]"></a>
+[(#CONFIG{soyezcreateurs/logoheader}|=={header}|oui)#INCLURE{fond=noisettes/logosite}]
+<h1 class="crayon meta-valeur-nom_site"><a href="#URL_SITE_SPIP" title="<:accueil_site|attribut_html:>">[(#NOM_SITE_SPIP)]</a></h1>
+[(#INCLURE{fond=noisettes/header/cadre_outils}{env})]
+[(#CONFIG{soyezcreateurs/positionrecherche,navigation}|=={header}|oui)[(#INCLURE{fond=noisettes/header/cadre_recherche}{env}{id_recherche=cadre_recherche})]]
+[(#CONFIG{soyezcreateurs/citationsheader}|=={header}|oui)[(#INCLURE{fond=noisettes/extra/citations})]]
+[<div id="bandeau_annonce">(#CONFIG{soyezcreateurs/bandeau_annonce}|propre|ptobr)</div>]
+	</div><!-- id="header_inner" -->
+	</div><!-- id="header" -->
+[(#CONFIG{soyezcreateurs/menuhautheader}|=={header}|oui)[(#INCLURE{fond=noisettes/menus/menuhaut}{secteurencours})]]

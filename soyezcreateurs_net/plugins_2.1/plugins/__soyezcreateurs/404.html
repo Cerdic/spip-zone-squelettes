@@ -1,0 +1,36 @@
+<?php 
+spip_log('404 REQUEST_URI: '.$_SERVER['REQUEST_URI'].' | User agent: '.$_SERVER['HTTP_USER_AGENT'].' | Referer: '.$_SERVER['HTTP_REFERER'], '404');
+header("HTTP/1.1 404 Not Found", true);
+?>[(#HTTP_HEADER{"Cache-Control: no-store, no-cache, must-revalidate"}
+)][(#HTTP_HEADER{Pragma: no-cache}
+)][(#SET{titretop,<:pass_erreur:>_404})]
+<INCLURE{fond=noisettes/header/header}
+	{secteurencours=#GET{secteurencours}}
+	{lang}
+	{title=#GET{titretop}}
+	{env}
+	{titretop=#GET{titretop}}
+>
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP"><:soyezcreateurs:accueil:></a></li>
+	<li><:pass_erreur:> 404</li>
+	</ul>
+	</div>
+<div class="texte">
+<div class="cartouche">
+<div class="surtitre"><span>#EVAL{$_SERVER['REQUEST_URI']}</span></div>
+<div class="titrepage"><h1><:soyezcreateurs:erreur_documentexistepas:></h1></div>
+</div>
+
+[<div class="chapo">(#ENV*{erreur}|propre)</div>]
+
+[(#INCLURE{fond=noisettes/plan}{lang})]
+</div><!-- Fin de .texte -->
+
+[(#FORMULAIRE_ADMIN)]
+
+<INCLURE{fond=noisettes/footer/footer}
+	{lang}
+	{titretop=#GET{titretop}}
+>

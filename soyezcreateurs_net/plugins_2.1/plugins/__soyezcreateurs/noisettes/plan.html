@@ -1,0 +1,56 @@
+#CACHE{3600}
+<B_Autres_Flottant>
+<div id="artrecents" class="flottant">
+	<BOUCLE_Autres_Flottant(RUBRIQUES){racine}{!titre_mot=PasDansPlan}{par num titre}>
+	<B_sites>
+		<h2><:sites_web:>[ ((#TITRE))]</h2>
+		<ul>
+		<BOUCLE_sites(SITES) {id_secteur} {par nom_site}>[<li><a href="(#URL_SITE)">#NOM_SITE</a></li>]</BOUCLE_sites>
+		</ul>
+	</B_sites>
+	<B_breves>
+		<h2><:breves:>[ ((#TITRE))]</h2>
+		<ul>
+		<BOUCLE_breves(BREVES) {id_secteur} {!par date} {0,15}>
+			<li class="menu-item"><a href="#URL_BREVE"[ title="(#DATE|affdate|attribut_html)"]>[(#TITRE)]</a></li>
+		</BOUCLE_breves>
+		</ul>
+	</B_breves>
+	</BOUCLE_Autres_Flottant>
+</div>
+</B_Autres_Flottant>
+
+<div id="letexte">
+
+<B_Autres>
+<p><:soyezcreateurs:voirarticlespar:> <a href="#URL_PAGE{antichrono}"><:soyezcreateurs:ordreantichronologique:></a>.</p>
+<BOUCLE_Autres(RUBRIQUES){racine}{!titre_mot=PasDansPlan}{par num titre}>
+	<h2><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a></h2>
+		<B_articles_rubrique_Racine>
+		<ul>
+		<BOUCLE_articles_rubrique_Racine(ARTICLES) {id_rubrique} {par num titre}{!par date} {lang}>
+			<li><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
+		</BOUCLE_articles_rubrique_Racine>
+		</ul>
+		</B_articles_rubrique_Racine>
+
+	<B_Autres_Details>
+		<ul>
+		<BOUCLE_Autres_Details(RUBRIQUES){id_parent}{!titre_mot=PasDansPlan}{par num titre}>
+			<li style="list-style-image: url(/#CHEMIN{images/menu_plus.gif});"><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)]">[(#TITRE)]</a>
+			<BOUCLE_Recurssion(BOUCLE_Autres_Details) />
+				<B_articles_rubrique>
+				<ul>
+				<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par num titre}{!par date} {lang}>
+					<li><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
+				</BOUCLE_articles_rubrique>
+				</ul>
+				</B_articles_rubrique>
+			</li>
+		</BOUCLE_Autres_Details>
+		</ul>
+	</B_Autres_Details>
+</BOUCLE_Autres>
+[<div>(#CONFIG{soyezcreateurs/textesiplanvide}|propre)</div>]
+<//B_Autres>
+</div>

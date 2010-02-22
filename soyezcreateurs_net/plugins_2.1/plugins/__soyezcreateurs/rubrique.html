@@ -1,0 +1,73 @@
+#CACHE{3600}
+<BOUCLE_Gribouille(RUBRIQUES){id_rubrique}{titre_mot=Gribouille}>[(#INCLURE{fond=gribouille/rubrique}{env})]</BOUCLE_Gribouille>
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}{!lang_select}>[(#SET{id_rubrique,#ID_RUBRIQUE})]<BOUCLE_RacineMenuHaut(HIERARCHIE){tout}{id_rubrique}{titre_mot=MenuHaut}{inverse} {0,1}>[(#SET{secteurencours,#ID_RUBRIQUE})]</BOUCLE_RacineMenuHaut>
+[(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)]})]
+<INCLURE{fond=noisettes/header/header}
+	{id_rubrique}
+	{secteurencours=#GET{secteurencours}}
+	{metadescription=(#INTRODUCTION{150}|supprimer_tags|attribut_html)}
+	{title=(#TITRE|attribut_html|texte_script)}
+	{titretop=#GET{titretop}}
+>
+<BOUCLE_EstAgenda(HIERARCHIE){id_rubrique}{tout}{titre_mot=Agenda}{inverse}{0,1}>
+[(#CONFIG{soyezcreateurs/agendathematique,}|=={#ENV{calendrier,on}}|oui)[(#INCLURE{fond=noisettes/agenda/agendathematique}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE})]]
+[(#CONFIG{soyezcreateurs/agendathematique,}|!={#ENV{calendrier,on}}|oui)
+	[(#CONFIG{soyezcreateurs/agendascolaire,annuel}|=={scolaire}|oui)[(#INCLURE{fond=noisettes/agenda/agendaliste_scolaire}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{id_mot})]]
+	[(#CONFIG{soyezcreateurs/agendascolaire,annuel}|=={annuel}|oui)
+		[(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={oui}|oui)[(#INCLURE{fond=noisettes/agenda/agendaliste_futurseul}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{id_mot})]]
+		[(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={non}|oui)[(#INCLURE{fond=noisettes/agenda/agendaliste}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{date_ev}{id_mot})]]
+	]
+]
+</BOUCLE_EstAgenda>
+
+<BOUCLE_TypeRubrique(HIERARCHIE){id_rubrique}{tout}{type=_TypeRubrique}{inverse} {0,1}><BOUCLE_Mot_TypeRubrique(MOTS){type=_TypeRubrique}>
+[(#INCLURE{fond=noisettes/rubriques/typerubrique_#TITRE}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{rubriqueencours}{template}{secteurencours}{lang}{racinetype=#_TypeRubrique:ID_RUBRIQUE})]
+</BOUCLE_Mot_TypeRubrique></BOUCLE_TypeRubrique>
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP"><:soyezcreateurs:accueil:></a></li>
+	<BOUCLE_plan(HIERARCHIE){id_rubrique}{!titre_mot=PasDansFildAriane}>
+	<li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+	</BOUCLE_plan>
+	<li>[(#TITRE)]</li>
+	</ul>
+[(#INCLURE{fond=noisettes/affrubcomplete}{id_rubrique})]
+
+	</div>
+
+[(#REM) Ne pas afficher le cartouche si le texte est vide : on affiche déjà la liste des articles avec un extrait à la place du texte
+][(#TEXTE*|=={''}|non)[(#INCLURE{fond=noisettes/cartouches/rubrique_cartouche}{id_rubrique})]]
+[(#REM) Par contre, afficher les nouveautes si la config du site en décide
+][(#TEXTE*|=={''}|oui)[(#CONFIG{soyezcreateurs/nouveauteparbranche, }|=={on}|oui)[<div id="artrecents" class="flottant">(#INCLURE{fond=noisettes/cartouches/cartouche_nouveaute_branche}{id_rubrique}|trim)</div>]]]
+
+<div class="texte">
+<!-- Une : contenu de la rubrique -->
+<div class="cartouche">
+<div class="titrepage"><h1 class="#EDIT{titre} surlignable">[<img src="(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{64,64}|extraire_attribut{src})" class="logo_rubrique" alt="[(#TITRE|texte_script|supprimer_tags|attribut_html) (logo)]" width="[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{64,64}|extraire_attribut{width})]" height="[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{64,64}|extraire_attribut{height})]" />][(#TITRE)]</h1></div>
+</div>
+	<div id="letexte" class="surlignable">
+[<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
+[<div class="#EDIT{texte}">(#TEXTE|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>][(#TEXTE*|=={''}|oui)[(#INCLURE{fond=noisettes/rubriques/rubrique_automatique}{id_rubrique})]]
+[(#REM) Vérification de la présence du plugin GIS dans la rubrique et si oui on inclut la carte grace au modèle, qui est dans la page carte_gis.html]
+[<div id="carto">
+(#PLUGIN{GIS}|=={1}|oui)#INCLURE{fond=noisettes/rubriques/carto,id_rubrique}
+</div>]
+[<div class="notes">(#NOTES)</div>]
+[(#VAL{enbas}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|oui)
+[(#INCLURE{fond=modeles/documentsjoints}{id_rubrique})]
+]
+	</div><!-- Fin de #LeTexte -->
+</div><!-- Fin de .texte -->
+[(#FORMULAIRE_ADMIN)]
+<//B_TypeRubrique>
+
+<//B_EstAgenda>
+</BOUCLE_rubrique_principal>
+<INCLURE{fond=noisettes/footer/footer}
+	{rubriqueencours=#ID_RUBRIQUE}
+	{id_rubrique}
+	{secteurencours=#GET{secteurencours}}
+	{titretop=#GET{titretop}}
+>
+</B_rubrique_principal>[(#PLUGIN{ACCESRESTREINT}|=={1}|oui)[(#INCLURE{fond=noisettes/accesrestreint/rubrique_restreinte}{env})]]<//B_rubrique_principal>
+<//B_Gribouille>

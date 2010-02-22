@@ -1,0 +1,21 @@
+<B_RechercheMot>
+[(#ENV{prefix}|oui)<h2><:soyezcreateurs:recherche_motclef_label:></h2>]
+[(#ENV{prefix}|non)<ul><li><a href="#URL_PAGE{mot}"><:soyezcreateurs:recherche_motclef_label:></a></li></ul>]
+<BOUCLE_RechercheMot(GROUPES_MOTS){par num titre, titre}{titre==^[^_]}>
+<B_Mots>
+<form action="#URL_PAGE{mot}" method="get" id="#ENV{prefix}frmrecherchemot#ID_GROUPE" class="searchfrm">
+<div>
+	<input type="hidden" name="page" value="mot" />
+	<label for="#ENV{prefix}recherchemot#ID_GROUPE" title="<:soyezcreateurs:recherche_title:>"><:soyezcreateurs:recherche_motclef_label:>&nbsp;: #TITRE</label>
+	<select id="#ENV{prefix}recherchemot#ID_GROUPE" name="id_mot" class="searchfield" onchange="if ( (this.value != 0) [&& (this.value != (#ENV{id_mot})) ]) return submit(this);" title="[<:soyezcreateurs:recherche_motclef_label|attribut_html:>&nbsp;: (#TITRE|attribut_html)]">
+		<option value="0">[(#TITRE|supprimer_tags)]</option>
+		<BOUCLE_Mots(MOTS){id_groupe}{par titre}{compteur articles}>
+			[<option value="(#ID_MOT)"[ (#ENV{id_mot}|=={#ID_MOT}|?{selected="selected"})]>[&nbsp;(#TITRE|supprimer_tags)][ ((#COMPTEUR{articles}))]</option>]
+		</BOUCLE_Mots>
+		</select>
+	<input name="Submit" type="submit" id="#ENV{prefix}sendsearchmc#ID_GROUPE" class="okfield form_submit" title="<:soyezcreateurs:recherche_title_ok:>" value="<:pass_ok:>" />
+</div>
+</form>
+</B_Mots>
+</BOUCLE_RechercheMot>
+</B_RechercheMot>

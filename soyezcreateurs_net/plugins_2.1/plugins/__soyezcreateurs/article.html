@@ -1,0 +1,203 @@
+#CACHE{3600}
+<BOUCLE_article_principal(ARTICLES) {id_article}><BOUCLE_Gribouille(HIERARCHIE){id_article}{tout}{titre_mot=Gribouille}{inverse}{0,1}>[(#INCLURE{fond=gribouille/article}{env})]</BOUCLE_Gribouille><BOUCLE_RacineMenuHaut(HIERARCHIE){id_rubrique}{tout}{titre_mot=MenuHaut}{inverse} {0,1}>[(#SET{secteurencours,#ID_RUBRIQUE})]</BOUCLE_RacineMenuHaut>
+[(#SET{titretop,[(#TITRE|attribut_html|sc_nettoyer_marqueur|texte_script)]})]
+<INCLURE{fond=noisettes/header/header}
+	{id_article}
+	{id_rubrique}
+	{id_trad}
+	{rubriqueencours=#ID_RUBRIQUE}
+	{secteurencours=#GET{secteurencours}}
+	{lang}
+	{metadescription=(#INTRODUCTION{150}|supprimer_tags|attribut_html)}
+	{title=(#TITRE|attribut_html|texte_script)}
+	{titretop=#GET{titretop}}
+>
+
+<BOUCLE_TypeRubrique(HIERARCHIE){id_rubrique}{tout}{type=_TypeRubrique}{inverse} {0,1}><BOUCLE_Mot_TypeRubrique(MOTS){type=_TypeRubrique}>
+[(#INCLURE{fond=noisettes/articles/typearticle_#TITRE}{id_article=#_article_principal:ID_ARTICLE}{rubriqueencours}{template}{secteurencours}{lang}{racinetype=#_TypeRubrique:ID_RUBRIQUE})]
+</BOUCLE_Mot_TypeRubrique></BOUCLE_TypeRubrique>
+
+
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP"><:soyezcreateurs:accueil:></a></li>
+	<BOUCLE_plan(HIERARCHIE){id_article}{!titre_mot=PasDansFildAriane}>
+	<li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+	</BOUCLE_plan>
+	<li>[(#TITRE)]</li>
+	</ul>
+[(#INCLURE{fond=noisettes/affrubcomplete}{id_rubrique}{lang})]
+	</div>
+[(#INCLURE{fond=noisettes/cartouches/article_cartouche}{id_article}{lang})]
+
+<div class="texte">
+<div class="cartouche surlignable">
+[<div class="#EDIT{surtitre} surtitre"><span>(#SURTITRE)</span></div>]
+[(#INCLURE{fond=noisettes/aff_datepublication}{id_article}{lang})]
+<div class="titrepage"><h1 class="#EDIT{titre} entry-title">[<img src="(#LOGO_ARTICLE_NORMAL||image_reduire{64,64}|extraire_attribut{src})" class="logo_article" alt="[(#TITRE|texte_script|supprimer_tags|attribut_html) (logo)]" width="[(#LOGO_ARTICLE_NORMAL||image_reduire{64,64}|extraire_attribut{width})]" height="[(#LOGO_ARTICLE_NORMAL||image_reduire{64,64}|extraire_attribut{height})]" />][(#TITRE)][(#PLUGIN{ARTICLE_PDF}|=={1}|oui)#ARTICLE_PDF]</h1></div>
+[(#PLUGIN{PB_PANIER}|=={1}|oui)<div class="pb_panier_produit">[(#INCLURE{fond=noisettes/pb_panier/produit_detail}{id_article}{lang})]</div>
+[<div class="pb_panier_add">(#ID_ARTICLE|bouton_ajouter_au_panier)</div>]]
+[<div class="#EDIT{soustitre} soustitre"><span>(#SOUSTITRE)</span></div>][(#INCLURE{fond=noisettes/liste_auteurs}{id_article}{lang})]
+[<div class="notation pas_surlignable">(#FORMULAIRE_NOTATION)</div>]
+</div>
+
+<BOUCLE_Sommaire(MOTS){id_rubrique}{titre = Sommaire}> </BOUCLE_Sommaire>
+[<div id='sommaire'><h2><:soyezcreateurs:sommaire:></h2>
+(#TEXTE*|sc_sommaire_article|propre)</div>]
+</B_Sommaire>
+<BOUCLE_SommaireArticle(MOTS){id_article}{titre = Sommaire}> </BOUCLE_SommaireArticle>
+[<div id='sommaire'><h2><:soyezcreateurs:sommaire:></h2>
+(#TEXTE*|sc_sommaire_article|propre)</div>]
+</B_SommaireArticle>
+<//B_Sommaire>
+
+	<div id="letexte" class="surlignable">
+[<div class="[(#CHAPO*|?{#EDIT{chapo},#EDIT{descriptif}}) ]chapo">(#CHAPO|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0}|sinon{#DESCRIPTIF})</div>]
+
+[(#PLUGIN{AGENDA}|=={1}|oui)[(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={oui}|oui)<INCLURE{fond=noisettes/agenda/agenda_detail_futur_seul}{id_article}{lang}>]
+[(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={non}|oui)<INCLURE{fond=noisettes/agenda/agenda_detail}{id_article}{lang}>]]
+
+<BOUCLE_SommaireAncre(MOTS){id_rubrique}{titre = Sommaire}>
+</BOUCLE_SommaireAncre>
+[<div class="#EDIT{texte} entry-content">(#TEXTE|sc_sommaire_ancre|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>]
+</B_SommaireAncre>
+<BOUCLE_SommaireArticleAncre(MOTS){id_article}{titre = Sommaire}>
+</BOUCLE_SommaireArticleAncre>
+[<div class="#EDIT{texte} entry-content">(#TEXTE|sc_sommaire_ancre|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>]
+</B_SommaireArticleAncre>
+[<div class="#EDIT{texte} entry-content">(#TEXTE|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>]
+<//B_SommaireArticleAncre>
+<//B_SommaireAncre>
+[<div class="#EDIT{ps} ps">(#PS|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>]
+[<div class="notes">(#NOTES)</div>]
+[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+[<div id="carto">
+(#PLUGIN{GIS}|=={1}|oui)#INCLURE{fond=noisettes/articles/carto,id_article}
+</div>]
+
+[(#INCLURE{fond=noisettes/galerie}{ajax}{id_article}{env})]
+[(#VAL{enbas}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|oui)
+[(#INCLURE{fond=modeles/documentsjoints}{id_article})]
+]
+
+	</div><!-- Fin de #LeTexte -->
+</div><!-- Fin de .texte -->
+ [(#PLUGIN{SOCIALTAGS}|?{[(#INCLURE{fond=noisettes/socialtags}{id_article})]})]
+<!-- Signatures petition -->
+
+<BOUCLE_signatures_decompte(SIGNATURES) {id_article}></BOUCLE_signatures_decompte>
+[<div class="signatures-titre">(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''}) <:signatures_petition:></div>
+
+<table class="signatures">
+<thead class="structure">
+<tr>
+	<th><:date:></th>
+	<th><:nom:></th>
+</tr>
+</thead>
+<tbody>]
+<//B_signatures_decompte>
+<BOUCLE_signatures(SIGNATURES) {id_article} {!par date} {0,30}>
+<tr[(#COMPTEUR_BOUCLE|alterner{' class="alt"',''})]>
+	<td class="signature-date">[(#DATE|affdate_court)]</td>
+	<td class="#EDIT{qui} signature-nom">#NOM[, <a href="(#URL_SITE)">#NOM_SITE</a>]</td>
+</tr>
+</BOUCLE_signatures>
+</tbody>
+</table>
+</B_signatures>
+
+<BOUCLE_GraverSonNom(ARTICLES){id_article}{titre_mot=GraverSonNom}>
+[<div class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)#formulaire_forum" rel="nofollow"><:soyezcreateurs:deposer_intention:></a></div>]
+
+<div id="graversonnom">
+<BOUCLE_LogoGraverSonNom(MOTS){titre=GraverSonNom}>[(#SET{logograver,[(#LOGO_MOT_NORMAL||extraire_attribut{src})]})]
+	<B_NomsGraves>
+	<ul>
+	<BOUCLE_NomsGraves(FORUMS){id_article}{!par date}{0,500}{age<60}>
+		<li><img src='#GET{logograver}' alt='[(#NOM|attribut_html)]' title='[(#NOM|attribut_html)]' /></li>
+	</BOUCLE_NomsGraves>
+	</ul>
+	</B_NomsGraves>
+</BOUCLE_LogoGraverSonNom>
+</div>
+</BOUCLE_GraverSonNom>
+
+<!-- Forums -->
+
+[<div class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)#formulaire_forum" rel="nofollow">[(#CONFIG{soyezcreateurs/zone_forum_invite}|sinon{<:soyezcreateurs:forum_repondre:>})]</a></div>]
+<B_forums>
+<div id="cadreforum">
+<h1 class="structure">[(#CONFIG{soyezcreateurs/zone_forum_titre}|sinon{<:soyezcreateurs:forum_vosreponses:>})]</h1>
+<ul class="forum-total">
+<BOUCLE_forums(FORUMS){id_article}{!par date}>
+<li>
+<div class="forum-fil surlignable">
+<div class="forum">
+<a name="forum#ID_FORUM"></a>
+<div class="forum-chapo">
+<span class="#EDIT{titre} forum-titre"><a href="#forum#ID_FORUM" name="forum#ID_FORUM" id="forum#ID_FORUM">[(#TITRE)]</a></span>
+<span class="#EDIT{qui} forum-auteur">[(#DATE|affdate)][, <:soyezcreateurs:par:> (#NOM)]</span>
+</div>
+<div class="#EDIT{texte} forum-item">
+<BOUCLE_PasdeSiteDansForums(ARTICLES){id_article}{titre_mot=PasdeSiteDansForums}>[(#_forums:TEXTE|sc_anti_glouton)]</BOUCLE_PasdeSiteDansForums>
+[(#_forums:TEXTE)]
+[<div class='#EDIT{hyperlien} forum-titre'><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
+<//B_PasdeSiteDansForums>
+[<div class="notes">(#NOTES|safehtml)</div>]
+<B_LivredOr>
+<BOUCLE_LivredOr(MOTS){id_article}{titre = Livre d'Or}>
+</BOUCLE_LivredOr>
+</B_LivredOr>
+[<div class='forum-repondre-message'><a href="(#PARAMETRES_FORUM|url_reponse_forum)#formulaire_forum" rel="nofollow"><:repondre_message:></a></div>]
+<//B_LivredOr>
+</div>
+</div>
+
+<B_forums_fils>
+	<ul>
+	<BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
+	<li>
+	<div class="forum">
+	<a name="forum#ID_FORUM"></a>
+	<div class="forum-chapo">
+	<span class="#EDIT{titre} forum-titre">[(#TITRE)]</span>
+	<span class="#EDIT{qui} forum-auteur">[(#DATE|affdate)][, <:soyezcreateurs:par:> (#NOM)]</span>
+	</div>
+	<div class="#EDIT{texte} forum-item">
+	<BOUCLE_PasdeSiteDansSsForums(ARTICLES){id_article}{titre_mot=PasdeSiteDansForums}>[(#_forums_fils:TEXTE|sc_anti_glouton)]</BOUCLE_PasdeSiteDansSsForums>
+	[(#_forums_fils:TEXTE)]
+	[<div class='#EDIT{hyperlien} forum-titre'><a href="(#URL_SITE)" class="spip_out">#NOM_SITE</a></div>]
+	<//B_PasdeSiteDansSsForums>
+	[<div class="notes">(#NOTES|safehtml)</div>]
+	[<div class='forum-repondre-message'><a href="(#PARAMETRES_FORUM|url_reponse_forum)#formulaire_forum" rel="nofollow"><:repondre_message:></a></div>]
+	</div>
+	</div>
+	<BOUCLE_Forums_Boucle(BOUCLE_forums_fils) />
+	</li>
+	</BOUCLE_forums_fils>
+	</ul>
+</B_forums_fils>
+</div>
+</li>
+</BOUCLE_forums>
+</ul>
+</div>
+</B_forums>
+<//B_GraverSonNom>
+
+[(#FORMULAIRE_ADMIN)]
+<//B_TypeRubrique>
+[<script src="(#CONFIG{soyezcreateurs_google/feedflare})?i=[(#URL_ARTICLE|url_absolue)]" type="text/javascript" charset="utf-8"></script>]
+<INCLURE{fond=noisettes/footer/footer}
+	{rubriqueencours=#ID_RUBRIQUE}
+	{id_rubrique}
+	{id_article}
+	{secteurencours=#GET{secteurencours}}
+	{lang}
+	{titretop=#GET{titretop}}
+>
+<//B_Gribouille>
+</BOUCLE_article_principal>[
+(#CONFIG{soyezcreateurs_google/redirection_ancien_site})[(#INCLURE{fond=noisettes/redirect})]
+][(#PLUGIN{ACCESRESTREINT}|=={1}|oui)[(#INCLURE{fond=noisettes/accesrestreint/article_restreint}{env})]]<//B_article_principal>
