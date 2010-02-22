@@ -16,6 +16,7 @@ include_spip('inc/meta');
  * @param unknown_type $version_cible
  */
 function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
+	include_spip('base/soyezcreateurs');
 	$current_version = 0.0;
 		if ((!isset($GLOBALS['meta'][$nom_meta_base_version])) || (($current_version = $GLOBALS['meta'][$nom_meta_base_version])!=$version_cible)){
 		if (
@@ -27,7 +28,6 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta($nom_meta_base_version,$current_version='2.1','non');
 		}
 		if (version_compare($current_version,'2.1','<')) {
-			include_spip('base/soyezcreateurs');
 			soyezcreateurs_config_site();
 			soyezcreateurs_config_motsclefs();
 			spip_log("SoyezCreateurs installation 2.1", "soyezcreateurs_install");
@@ -42,7 +42,6 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			spip_log("SoyezCreateurs installation 2.1 avec mot", "soyezcreateurs_install");
 		}
 		if (version_compare($current_version,'2.1.1','<')) {
-			include_spip('base/soyezcreateurs');
 			// Suppresion de "_Specialisation", "Gallerie"
 			$id_groupe = id_groupe("_Specialisation");
 			$id_mot = id_mot("Gallerie", $id_groupe);
@@ -57,7 +56,6 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.1','non');
 		}
 		if (version_compare($current_version,'2.1.2','<')) {
-			include_spip('base/soyezcreateurs');
 			// Suppresion de "_Specialisation_Rubrique", "NewsLetter"
 			$id_groupe = id_groupe("_Specialisation_Rubrique");
 			$id_mot = id_mot("NewsLetter", $id_groupe);
@@ -72,7 +70,6 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.2','non');
 		}
 		if (version_compare($current_version,'2.1.3','<')) {
-			include_spip('base/soyezcreateurs');
 			create_mot("_Specialisation", "MenuFooter", "Affecter ce mot clef aux articles devant être affichés dans le menu de pied de page.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...");
 			spip_log("SoyezCreateurs maj 2.1.3", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.3','non');
@@ -92,13 +89,11 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.5','non');
 		}
 		if (version_compare($current_version,'2.1.6','<')) {
-			include_spip('base/soyezcreateurs');
 			create_mot("_Specialisation", "Outils", "Affecter ce mot clef aux articles devant être affichés dans le cadre Outils dans le bandeau du haut de la page.", "Les liens vers les articles seront faits triés par numéro de titre.\n\nIl est bien sûr possible de faire des articles de redirection...\n\nLe logo de l'article sera utilisé comme picto à droite du titre.");
 			spip_log("SoyezCreateurs maj 2.1.6", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.6','non');
 		}
 		if (version_compare($current_version,'2.1.7','<')) {
-			include_spip('base/soyezcreateurs');
 			spip_log("SoyezCreateurs maj 2.1.7", "soyezcreateurs_install");
 			create_groupe("_Specialisation_Sites", "Groupe permettant de spécifier un rôle particulier pour des sites", "", 'non', 'non', 'non', 'non', 'non', 'oui', 'non', 'oui', 'non', 'non');
 				create_mot("_Specialisation_Sites", "SaintDuJour", "Mettre ce mot clef au site donnant le Saint du jour", "");
@@ -129,7 +124,6 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.7','non');
 		}
 		if (version_compare($current_version,'2.1.8','<')) {
-			include_spip('base/soyezcreateurs');
 			spip_log("SoyezCreateurs maj 2.1.8", "soyezcreateurs_install");
 			include_spip('inc/sc_article');
 			rename_rubrique("000. Racine", "000. Fourre-tout");
@@ -141,7 +135,6 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		}
 
 		if (version_compare($current_version,'2.1.9','<')) {
-			include_spip('base/soyezcreateurs');
 			spip_log("SoyezCreateurs maj 2.1.9", "soyezcreateurs_install");
 			$mentions = array('titre' => 'Mentions légales & conditions d’utilisation', 'texte' => '');
 			$id_groupe = id_groupe("_InformationsLegales");
@@ -160,13 +153,11 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.9','non');
 		}
 		if (version_compare($current_version,'2.1.10','<')) {
-			include_spip('base/soyezcreateurs');
 			spip_log("SoyezCreateurs maj 2.1.10", "soyezcreateurs_install");
 			create_groupe("_HeaderBanner", "Pour définir plusieurs bannières pour le site.", "Il faut créer un mot clef par bannière (le titre n'a pas d'importance).\n\nC'est le logo du mot clef qui est utilisé comme bannière du site.\n\n{{Attention}} : si vous avez déjà défini une bannière avec le logo de survol du site, alors, cette dernière n'est plus utilisée ; seuls les logos des mots clefs de ce groupe seront pris en compte.", 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'non', 'non');
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.10','non');
 		}
 		if (version_compare($current_version,'2.1.11','<')) {
-			include_spip('base/soyezcreateurs');
 			spip_log("SoyezCreateurs maj 2.1.11", "soyezcreateurs_install");
 			create_mot("_Specialisation_Rubrique", "PasDansFildAriane", "Pour interdire que la rubrique soit affichée dans le fil d'ariane du site.", "Affecter ce mot clef aux rubriques qui ne doivent pas figurer dans le fil d'ariane.");
 			create_rubrique_mot('000. Fourre-tout', 'PasDansFildAriane', "_Specialisation_Rubrique");
@@ -174,13 +165,11 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.11','non');
 		}
 		if (version_compare($current_version,'2.1.12','<')) {
-			include_spip('base/soyezcreateurs');
 			spip_log("SoyezCreateurs maj 2.1.12", "soyezcreateurs_install");
 			create_mot("_Specialisation_Sites", "NoIndex", "Pour ne pas indexer les articles syndiqués d'un site.", "Affecter ce mot clef aux sites dont les articles syndiqués ne doivent pas être affichés dans l'index des moteurs de recherche.\n\nÀ noter : les liens seront quand même suivis. But : éviter du duplicate content.\n\nVoir la documentation de Google webmaster Central sur les [Meta tags->http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=79812].");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.12','non');
 		}
 		if (version_compare($current_version,'2.1.13','<')) {
-			include_spip('base/soyezcreateurs');
 			spip_log("SoyezCreateurs maj 2.1.13", "soyezcreateurs_install");
 			create_mot("_ModePortail", "Goodies", "Affecter ce mot clef aux objets SPIP devant apparaitre dans la zone des Goodies (en bas du sommaire du mode portail, sur une colonne).", "S'applique aux articles uniquement.\n\nLe site prendra les 3 derniers articles ayant ce mot clef");
 			create_mot("_ModePortail", "ZoomSur", "Affecter ce mot clef à l'objet que vous voulez placer dans le cadre « Zoom sur » (facultatif).\n\nLe site prendra le dernier article ayant ce mot clef", "S'applique aux articles uniquement.");
@@ -189,6 +178,10 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		if (version_compare($current_version,'2.1.14','<')) {
 			ecrire_meta('ppp', 'a:5:{s:14:"descriptif_ppp";s:0:"";s:9:"chapo_ppp";s:2:"on";s:6:"ps_ppp";s:2:"on";s:29:"configuration_description_ppp";s:2:"on";s:23:"auteurs_quietesvous_ppp";s:2:"on";}', 'non');
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.14','non');
+		}
+		if (version_compare($current_version,'2.1.15','<')) {
+			create_mot("_Specialisation_Rubrique", "PlanLocal", "Affecter ce mot clef aux rubriques où vous voulez afficher le plan local à la place de la liste des articles.");
+			ecrire_meta($nom_meta_base_version,$current_version='2.1.15','non');
 		}
 
 		/*
