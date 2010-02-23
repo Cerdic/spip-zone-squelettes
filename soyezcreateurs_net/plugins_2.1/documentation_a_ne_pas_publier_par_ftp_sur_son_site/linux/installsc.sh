@@ -39,6 +39,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/contact
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/facteur
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/Lecteur_multimedia
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/menu_langues_liens
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/noie
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/notation
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/nyroceros
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/sedna
