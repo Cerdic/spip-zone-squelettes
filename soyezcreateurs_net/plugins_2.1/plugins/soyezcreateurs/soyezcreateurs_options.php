@@ -2,6 +2,8 @@
 $forcer_lang = true;
 define('_EXTENSION_PHP', ''); // Ne pas chercher de .php3 !
 
+define('_BONUX_STYLE',1); // http://zone.spip.org/trac/spip-zone/changeset/35480
+
 $GLOBALS['toujours_paragrapher'] = true;
 $GLOBALS['barre_typo_pas_de_fork_typo'] = false; // Pour tenir compte de http://zone.spip.org/trac/spip-zone/changeset/22723 et disposer des raccourcis typo supplémentaires !
 
