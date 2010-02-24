@@ -1,0 +1,34 @@
+#CACHE{24*3600}
+
+<!-- on exclut les mots des groupes de mot "techniques" utilises dans Escal -->   
+<BOUCLE_exclusion1(MOTS){id_article}{type=affichage}{doublons}>
+</BOUCLE_exclusion1>
+<BOUCLE_exclusion2(MOTS){id_article}{type=trombino}{doublons}>
+</BOUCLE_exclusion2>
+<BOUCLE_exclusion3(MOTS){id_article}{type=type_rubrique}{doublons}>
+</BOUCLE_exclusion3> 
+
+
+
+<!-- on teste s'il y a un mot-cle associé à l'article 
+en excluant les mots des groupes de mot "techniques" utilises dans Escal-->
+<BOUCLE_test(MOTS){id_article}{type!==affichage}{type!==trombino}{type!==type_rubrique}{id_mot?}>
+</BOUCLE_test>
+<!-- si la boucle ne renvoie rien, rien ne s'affiche
+  et si elle renvoie quelque chose, on affiche le cadre avec lee groupes de mots et les mots -->
+	<h1 class="cadre">
+  Mots-clés associés
+  </h1>
+
+  <div class="texte" id="navmots">
+
+			<BOUCLE_mots(MOTS){id_article}{doublons}>
+				<BOUCLE_groupe(GROUPES_MOTS){id_groupe} {unique}>
+					[<div class="titre-groupe">(#TITRE) :</div>]
+				</BOUCLE_groupe>
+				<a href="#URL_MOT" [title="voir les articles associés à (#TITRE)"]>#TITRE</a>
+			</BOUCLE_mots>
+
+  </div>
+
+</B_test>
