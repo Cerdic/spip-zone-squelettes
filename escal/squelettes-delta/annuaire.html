@@ -1,0 +1,132 @@
+#CACHE{24*3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+
+  <head>
+    <title>Annuaire - [(#NOM_SITE_SPIP|textebrut)]</title>
+    [<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|textebrut)" />]
+    <INCLURE {fond=inclusions/inc-head}>
+      [(#REM) feuille de style pour le bloc a_la_une ]
+      <link href="#CHEMIN{styles/alaune.css}" rel="stylesheet" type="text/css" />		[(#REM) javascript pour les articles a la une ]
+<script src="#CHEMIN{scripts/onglets.js}" language="JavaScript" type="text/javaScript"></script>
+<script src="#CHEMIN{scripts/jquery.tabs.pack.js}" language="JavaScript" type="text/javaScript"></script>
+<script type="text/javascript">
+	   	$(document).ready(function(){
+	    // La une
+	    $('#laune').tabs({
+	        fxSlide: true,
+	        fxFade: true,
+	        fxSpeed: 'slow'
+	        });
+	});
+</script>
+  </head>
+
+<body onload="setHover('menu')">
+    <div id="ombre-gauche">
+      <div id="ombre-droite">
+        <div id="conteneur">
+
+          <div id="entete">
+            <INCLURE {fond=inclusions/inc-bandeau}>
+            <INCLURE {fond=inclusions/inc-menu_direct}>
+          </div>
+
+
+          <div id="page">
+            <div id="contenu">
+              <div id="espace">
+                <img src="#CHEMIN{images/coinvert.gif}" alt="coin vert" />
+                  <div id="recherche">
+                  #FORMULAIRE_RECHERCHE
+                  </div>
+              </div>
+              <div id="corps">
+                <BOUCLE_signe(ARTICLES){titre_mot="annuaire"}>
+                  <div id="cadre-titre-article">
+                    <div id="titre-article">[(#TITRE)]
+                    </div>
+                    <div id="descriptif-article">[(#DESCRIPTIF)]
+                    </div>
+                  </div>
+                  <!-- fin cadre-titre-article -->
+                  <div id="cadre-article">
+                    <div id="texte-article" >
+                      [<div class="#EDIT{texte}">(#TEXTE)
+                      </div>]
+                      [(#REM) Signatures de la petition : on n'affiche un site que s'il est unique ]
+                      <B_signatures>
+                        <div id="signatures">
+                          [<h3><:resultats_recherche:> (#RECHERCHE_SIGNATURES)</h3>]
+                          #ANCRE_PAGINATION
+                          [<p class="pagination">(#PAGINATION) | #GRAND_TOTAL <:sites_web:></p>]
+
+                          <ul>
+                            <BOUCLE_signatures(SIGNATURES) {recherche ?#ENV{recherche_signatures}} {id_article} {!par date} {pagination 5}>
+                              [<li>
+                              <a href="#URL_SITE"[ title="(#NOM_SITE|couper{80}|attribut_html)"]>
+                                <img src="http://images.websnapr.com/?size=S&key=EQ0L03rFD73p&url=#URL_SITE" width=120 [ alt="(#NOM_SITE|couper{60}|attribut_html)"] class="spip_logos" />
+                              </a>
+                              <h3 class="#EDIT{nom_site}">#NOM_SITE</h3>
+                              <p class="url">
+                                url :<a href="#URL_SITE" class="spip_url">(#URL_SITE|unique{signatures}|couper{80})</a>
+                              </p>
+                              <p class="nom">
+                                <small>[webmestre :<a href="mailto:#AD_EMAIL">(#NOM)</a>]</small>
+                              </p>
+                              [<p class="#EDIT{message} message">
+                                (#MESSAGE|PtoBR|supprimer_tags|couper{500})
+                              </p>]
+                              </li>]
+                              </BOUCLE_signatures>
+                          </ul>
+
+                          [<p class="pagination">
+                            (#PAGINATION) | #GRAND_TOTAL <:sites_web:>
+                          </p>]
+                          [(#REM) Si plus de 50 signatures, on affiche un moteur de recherche ]
+                          [(#GRAND_TOTAL|>{50}|oui)
+                          <div>
+                            <form method='get' action='#SELF'>
+                            [(#SELF|form_hidden)]
+                              <div class="formulaire_spip formulaire_recherche" id="formulaire_recherche_signatures">
+                                <:chercher_parmi_les_signataires:>&nbsp;:
+                                  <input type="text" class="text" size="15" name="recherche_signatures" id="recherche_signatures" />
+                                  <input type="submit" class="submit" value="<:info_rechercher:>" />
+                              </div>
+                            </form>
+                          </div>]
+                        </div>
+                        </B_signatures>
+                        [(#REM) Signer la petition ]
+                        <a name="signature" id="signature"></a>
+                        [<div class="form-signature">
+                          <h3 class="spip">Vous aussi, vous utilisez ESCAL-V2 ?</h3>
+                          <h3 class="spip">Alors ajoutez votre site dans cette page</h3>
+                          (#FORMULAIRE_SIGNATURE)
+                        </div>]
+                    </div>
+                    <!-- Fin texte-article -->
+                  </div>
+                  <!-- Fin cadre-article-->
+                  </BOUCLE_signe>
+              </div>
+            </div>
+          </div>
+
+          <div id="navigation">
+            <div class="cadre-vert">
+              <INCLURE {fond=inclusions/inc-menu_vertical}>
+            </div>
+          </div>
+
+
+          <div id="pied">
+            <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}>
+          </div>
+
+        </div><!-- fin conteneur -->
+      </div>
+    </div>
+  </body>
+</html>

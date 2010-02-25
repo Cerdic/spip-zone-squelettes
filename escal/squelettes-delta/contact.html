@@ -1,0 +1,158 @@
+#CACHE{24*3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+  <head>
+    <title>Contact - [[(#NOM_SITE_SPIP|textebrut)]]
+    </title>
+    [<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+    <INCLURE {fond=inclusions/inc-head}>
+  </head>
+
+  <body onload="setHover('menu')">
+    <div id="ombre-gauche">
+      <div id="ombre-droite">
+        <div id="conteneur">
+
+          <div id="entete">
+            <INCLURE {fond=inclusions/inc-bandeau}>
+            <INCLURE {fond=inclusions/inc-menu_direct}>
+          </div>
+
+
+
+          <div id="page">
+            <div id="contenu">
+          <div id="espace">
+          <img src="#CHEMIN{images/coinvert.gif}" alt="coin vert" />
+          </div>
+          
+          <div id="corps">
+              <div id="cadre-rubrique">
+                <div id="titre-rubrique">Page contact
+                </div>
+              </div>
+              <div id="formulaire-contact">
+                <div id="descriptif-article">
+                  Pour contacter le r&eacute;f&eacute;rent technique,
+                  <br />veuillez remplir tous les champs de ce formulaire.
+                </div>
+<?php
+// Merci &agrave; Alain Sichel pour cette page contact
+function formulaire($Nom="",$Prenom="",$Email="",$Sujet="",$Message="") {
+                ?>
+                <form action="<?php echo $PHP_SELF ?>" method="post">
+                  <ul id="item">  <li>
+                    <div class="liste">Votre nom :
+                    </div>
+                    <input type="text" name="Nom" size="30" value="<?php echo trim(htmlentities($_POST['Nom'])) ?>" /></li>  <li>
+                    <div class="liste">Votre prénom :
+                    </div>
+                    <input type="text" name="Prenom" value="<?php echo trim(htmlentities($_POST['Prenom'])) ?>" size="30" /></li>  <li>
+                    <div class="liste">Votre e-mail :
+                    </div>
+                    <input type="text" name="Email" value="<?php echo trim(htmlentities($_POST['Email'])) ?>" size="30" /></li>  <li>Motif de votre message :
+                    <ul>      <li>
+                      <input type="radio" name="Sujet" value="Renseignement"  size="30" <?php if ($_POST['Sujet']=='Renseignement') { echo 'checked="checked"'; } ?> />Renseignement</li>      <li>
+                      <input type="radio" name="Sujet" value="Inscription"  size="30" <?php if ($_POST['Sujet']=='Inscription') { echo 'checked="checked"';  } ?> />Inscription</li>      <li>
+                      <input type="radio" name="Sujet" value="Probleme Technique"  size="30" <?php if ($_POST['Sujet']=='Probleme_Technique') { echo 'checked="checked"';  } ?> />Probl&egrave;me technique</li>      <li>
+                      <input type="radio" name="Sujet" value="Avis sur le site"  size="30" <?php if ($_POST['Sujet']=='Avis sur le site') { echo 'checked="checked"';  } ?> />Votre avis sur le site</li>      <li>
+                      <input type="radio" name="Sujet" value="Autre sujet"  size="30" <?php if ($_POST['Sujet']=='Autre sujet') { echo 'checked="checked"';  } ?> />Autre</li>
+                    </ul>  </li>  <li>Votre message :</li>  <li>
+<textarea name="Message" rows="10" cols="35" style="background-color:#ffffff"><?php if (ereg("[]%~#`$&|}{^[><]",$Message)) { echo "Certains caract&egrave;res utilis&eacute;s sont interdits";
+    $erreur=1; }
+    else {echo trim($_POST['Message']); } ?></textarea>  </li>  <li>
+                    <input id="envoi" type="submit" name="Submit" value="Envoyer" alt="Envoi"  title="Envoi de votre message" />  </li>
+                  </ul>
+<?php
+}
+	$nom_site = entites_html($GLOBALS['meta']["nom_site"]);
+	$email_webmaster = entites_html($GLOBALS['meta']["email_webmaster"]);
+if(!isset($_POST["Nom"])) {
+	formulaire();
+}
+else {
+	$vNom=trim(htmlentities($_POST["Nom"]));
+	$vPrenom=trim(htmlentities($_POST["Prenom"]));
+	$vMessage=trim(utf8_decode($_POST["Message"]));
+	$vEmail=trim(htmlentities($_POST["Email"]));
+	$vSujet=trim(htmlentities($_POST["Sujet"]));
+	$destinataire=$email_webmaster;
+	$titre="Page contact de $nom_site";
+	$message="Provenance : $HTTP_REFERER\n";
+	$message.="Adresse IP : $REMOTE_ADDR,\n";
+	$message.="Navigateur : $HTTP_USER_AGENT\n";
+	$message.="Nom : $vNom\n";
+	$message.="Prenom : $vPrenom\n";
+	$message.="E-mail : $vEmail\n";
+	$message.="Motif : $vSujet\n";
+	$message.="Message : \n $vMessage\n";
+	if (empty($vNom)) {
+		echo "<p class='alerte'>Vous n'avez pas donn&eacute; votre nom.</p>";
+		$erreur=1;
+	}
+	if (empty($vPrenom)) {
+		echo "<p class='alerte'>Vous n'avez pas donn&eacute; votre pr&eacute;nom.</p>";
+		$erreur=1;
+	}
+	if (empty($vEmail)) {
+		echo "<p class='alerte'>Vous n'avez pas donn&eacute; votre adresse &eacute;lectronique ... comment pourrais-je vous r&eacute;pondre ?</p>";
+		$erreur=1;
+	}
+	if (empty($vSujet)) {
+		echo "<p class='alerte'>Vous n'avez pas choisi le motif de votre message.</p>";
+		$erreur=1;
+	}
+	if (!eregi("^[0-9a-z]([-_.]?[0-9a-z])*@[0-9a-z]([-_.]?[0-9a-z])*\\.[a-z]{2,4}$",$vEmail) && ($erreur<>1)){
+		echo "<p class='alerte'>L'adresse e-mail n'est pas correcte&nbsp;:</p>";
+		$erreur=1;
+	}
+	if (empty($vMessage)) {
+		echo "<p class='alerte'>Vous n'avez pas compos&eacute; de message ! Distrait(e) ?</p>";
+		$erreur=1;
+	}
+	if ($erreur==1) {
+		formulaire($Nom,$Prenom,$Email,$Sujet,$Message);
+	}
+	else {
+	                // PREPARATION DES HEADERS
+	       $headers ='From: <'.$vEmail.'>'."\n";
+         $headers .='Content-Type: text/plain; charset="iso-8859-1"'."\n";
+         $headers .='Content-Transfer-Encoding: 8bit';
+   mail($destinataire,$titre,$message,$headers) ;
+
+		echo '<p class="texte-retour1">
+		Bonjour, <span class="valeur1">  '. $vPrenom.' '. $vNom.'</span>.<br />
+		Votre message a bien &eacute;t&eacute; envoy&eacute; au webmestre du site
+		qui vous r&eacute;pondra d&egrave;s que possible &agrave; cette adresse :
+		<span class="valeur1"> '. $vEmail.'</span>
+		 </p>';
+		echo '<p class="texte-retour2">Motif de votre message :</p>';
+		echo '<p class="valeur2">'. $vSujet.'</p>';
+
+		echo '<p class="texte-retour2">Votre message :</p>';
+
+		echo '<p class="valeur3">'. $vMessage=utf8_encode(nl2br($vMessage)) .'</p>';
+	}
+}
+                  ?>
+                </form>
+              </div><!-- fin formulaire-contact -->
+              </div>
+            </div><!-- fin contenu -->
+          </div><!-- fin page -->
+
+          <div id="navigation">
+            <div class="cadre-vert">
+              <INCLURE {fond=inclusions/inc-menu_vertical}>
+            </div>
+          </div>
+
+          <div id="pied">
+            <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}>
+          </div>
+
+        </div><!-- fin conteneur -->
+      </div>
+    </div>
+  </body>
+</html>

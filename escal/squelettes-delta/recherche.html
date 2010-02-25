@@ -1,0 +1,111 @@
+#CACHE{24*3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+  <head>
+    <title>Recherche - [[(#NOM_SITE_SPIP|textebrut)]]
+    </title>	[
+    <meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+    <INCLURE {fond=inclusions/inc-head}>
+  </head>
+
+  <body onload="setHover('menu')">
+    <div id="ombre-gauche">
+      <div id="ombre-droite">
+        <div id="conteneur">
+
+          <div id="entete">
+            <INCLURE {fond=inclusions/inc-bandeau}>
+            <INCLURE {fond=inclusions/inc-menu_direct}>
+          </div>
+            
+
+
+          <div id="page">
+            <div id="contenu">
+
+              <div id="espace">
+              <img src="#CHEMIN{images/coinvert.gif}" alt="coin vert" />
+              #FORMULAIRE_RECHERCHE
+              </div>
+              
+              <div id="corps">
+              <div id="cadre-article">
+                <div id="cadre-titre-article">
+                  <div id="titre-article">
+                    Résultat de la recherche pour "<strong>[(#RECHERCHE)]</strong>"
+                  </div>
+                </div>
+                <div id="texte-article" >
+                  <B_articles>
+                    <!-- si au moins un article trouvé, on affiche le nombre trouvé -->
+                    <div class="cadre-resultat">
+                      #TOTAL_BOUCLE [(#TOTAL_BOUCLE|>{01}|?{'articles trouvés','article trouvé'})] dans le site
+                    </div>
+                  <BOUCLE_articles(ARTICLES) {recherche} {par points} {inverse}>
+                    <!-- on affiche le ou les article(s) -->
+                    <div class="cadre-articles-rubrique">
+                      <div class="titre-articles-rubrique">
+                        <a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a>
+                      </div>
+                      <div class="introduction-articles-rubrique">
+                        [(#INTRODUCTION|supprimer_tags|couper{150})]
+                      </div>
+                      <div class="auteur-articles-rubrique">
+                        [Article mis en ligne le (#DATE|affdate)] par
+                        <BOUCLE_auteurs(AUTEURS) {id_article} {"et"}>					[
+                          <a href="spip.php?auteur=#ID_AUTEUR"> (#NOM)</a>]
+                        </BOUCLE_auteurs>
+                      </div>
+                    </div>
+                  </BOUCLE_articles>
+                  </B_articles>
+                    <!-- si pas d'article trouvé -->
+                    <div class="cadre-resultat">
+                      Aucun article pour cette recherche
+                    </div>
+                  <//B_articles>
+
+                  <B_sites>
+                    <!-- si au moins un site trouvé -->
+                    <div class="cadre-resultat">
+                      #TOTAL_BOUCLE [(#TOTAL_BOUCLE|>{01}|?{'sites référencés','site référencé'})] dans le site
+                    </div>
+                  <BOUCLE_sites(SITES) {recherche} {par points} {inverse}>
+                    <!-- on affiche les sites trouvés -->
+                    <div class="cadre-articles-rubrique">
+                      <div class="titre-articles-rubrique">
+                        <a href="#URL_SITE">#NOM_SITE</a>
+                      </div>
+                      <div class="introduction-articles-rubrique">
+                        [(#DESCRIPTIF|couper{150})]
+                      </div>
+                    </div>
+                  </BOUCLE_sites>
+                  </B_sites>
+                    <!-- si pas de site trouvé -->
+                    <div class="cadre-resultat">
+                      Aucun site pour cette recherche
+                    </div>
+                  <//B_sites>
+                </div><!-- fin texte-article -->
+              </div><!-- fin cadre-article -->
+              </div>
+
+            </div>
+          </div>
+
+          <div id="navigation">
+            <div class="cadre-vert">
+              <INCLURE {fond=inclusions/inc-menu_vertical}>
+            </div>
+          </div>
+
+          <div id="pied">
+            <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}>
+          </div>
+
+        </div><!-- fin conteneur -->
+      </div>
+    </div>
+  </body>
+</html>

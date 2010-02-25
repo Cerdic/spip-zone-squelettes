@@ -1,0 +1,68 @@
+#CACHE{24*3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+
+  <head>
+    <BOUCLE_titre(ARTICLES){id_article}>
+    <title>[(#TITRE|textebrut) -] [[(#NOM_SITE_SPIP|textebrut)]]
+    </title>
+    </BOUCLE_titre>
+    [<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+    <INCLURE {fond=inclusions/inc-head}>
+      [(#REM) appel de la feuille de style pour l'impression ]
+      <link media="print" href="#CHEMIN{styles/imprime.css}" rel="stylesheet" type="text/css" />
+  </head>
+  <body id="top" onload="setHover('menu')">
+    <div id="ombre-gauche">
+      <div id="ombre-droite">
+        <div id="conteneur">
+
+          <div id="entete">
+            <INCLURE {fond=inclusions/inc-bandeau}>
+            <INCLURE {fond=inclusions/inc-menu_direct}>
+          </div>
+
+
+
+          <!-- on se met dans le contexte de l'article appelé -->
+          <BOUCLE_article_principal(ARTICLES){id_article}{doublons}>
+
+            <div id="page">
+              <div id="contenu">
+
+              <div id="espace">
+              <img src="#CHEMIN{images/coinvert.gif}" alt="coin vert" />
+              #FORMULAIRE_RECHERCHE
+              </div>
+              
+              <div id="corps">
+              <INCLURE {fond=inclusions/inc-article}{id_article}{id_rubrique}>
+              </div>
+              
+              </div>
+            </div>
+
+            <div id="navigation">
+              <div class="cadre-vert">
+                <INCLURE {fond=inclusions/inc-menu_vertical}{id_article}>
+              </div>
+
+            </div>
+
+            <div id="extra">
+              <div class="cadre-vert">
+                <INCLURE {fond=inclusions/inc-meme_rub}{id_rubrique}{id_article}{self=#SELF}>
+              </div>
+            </div>
+
+          </BOUCLE_article_principal>
+
+            <div id="pied">
+              <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}>
+            </div>
+        </div>
+        <!-- fin conteneur -->
+      </div>
+    </div>
+  </body>
+</html>

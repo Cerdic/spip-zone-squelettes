@@ -1,0 +1,27 @@
+#CACHE{24*3600}
+
+<div class="cadre-une">
+
+<B_onglets>
+  <ul class="onglets">
+  
+  <li><a href="#" name="contenu_1" class="tab active">Actus</a></li>
+<BOUCLE_onglets(RUBRIQUES){racine}{par num titre}{titre_mot="RubriqueActive"}{doublons rubrique}>
+  #SET{numero1, #COMPTEUR_BOUCLE|plus{1}}
+  <li><a href="#" name="contenu_#GET{numero1}" class="tab">#TITRE</a></li>
+</BOUCLE_onglets>
+  </ul>
+</B_onglets>
+
+        <div class="contenu_1 content">
+        <INCLURE {fond=inclusions/inc-une_derniers}>
+        </div>
+
+<BOUCLE_contenu(RUBRIQUES){!doublons rubrique}{par num titre}>
+  #SET{numero2, #COMPTEUR_BOUCLE|plus{1}}
+        <div class="contenu_[(#GET{numero2})] content">
+        <INCLURE {fond=inclusions/inc-rubrique_onglet}{id_rubrique}>
+        </div>
+</BOUCLE_contenu>
+
+</div>

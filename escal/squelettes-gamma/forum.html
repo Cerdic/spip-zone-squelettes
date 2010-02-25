@@ -1,0 +1,72 @@
+#CACHE{24*3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+  <head>
+    <title>Forum - [[(#NOM_SITE_SPIP|textebrut)]]
+    </title>
+    <INCLURE {fond=inclusions/inc-head}>
+  </head>
+
+  <body onload="setHover('menu')">
+    <div id="ombre-gauche">
+      <div id="ombre-droite">
+        <div id="conteneur">
+
+          <div id="entete">
+            <INCLURE {fond=inclusions/inc-bandeau}>
+          </div>
+
+
+
+          <div id="page">
+            <div id="contenu">
+          <div id="espace">
+          </div>
+              <div id="cadre-article">
+                <div id="cadre-titre-article">Poster un nouveau message
+                </div>
+                <!-- affichage du logo de l'article ou de sa rubrique, de son titre, son auteur et sa date -->
+                <div id="texte-article" >
+                  <BOUCLE_article(ARTICLES) {id_article}>
+                    <:en_reponse:>
+                    [(#LOGO_ARTICLE_RUBRIQUE|right||image_reduire{36})]
+                      <div id="titre-article">
+                        [(#TITRE)]
+                        <div id="auteur-article">
+                          de
+                          <BOUCLE_auteurs_un(AUTEURS) {id_article} {", "}>
+                          [(#NOM)]
+                          </BOUCLE_auteurs_un>
+                          le [(#DATE|nom_jour)] [(#DATE|affdate)]
+                        </div>
+                      </div>
+                      <!-- affichage du debut du texte de l'article -->
+                      [(#INTRODUCTION)]
+                      </BOUCLE_article>
+                </div>
+              </div><!-- fin cadre-article -->
+
+              <!-- affichage du formulaire de reponse -->
+              #FORMULAIRE_FORUM
+
+            </div><!-- fin contenu -->
+          </div><!-- fin page -->
+
+          <div id="navigation">
+            <div class="cadre-vert">
+              <INCLURE {fond=inclusions/inc-menu_vertical}>
+            </div>
+            <div class="cadre-vert">
+              <INCLURE {fond=inclusions/inc-acces_direct}>
+            </div>
+          </div>
+
+          <div id="pied">
+            <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}>
+          </div>
+
+        </div><!-- fin conteneur -->
+      </div>
+    </div>
+  </body>
+</html>

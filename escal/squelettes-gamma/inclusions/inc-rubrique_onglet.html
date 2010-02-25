@@ -1,0 +1,36 @@
+<div class="cadre-onglet">
+
+<B_articles>
+  <ul class="article">
+    <BOUCLE_articles(ARTICLES) {id_rubrique} {par num titre, titre}{doublons}>
+      <li>
+      <a href="#URL_ARTICLE">[(#TITRE)]</a>
+      </li>
+    </BOUCLE_articles>
+  </ul>
+</B_articles>
+
+<B_rubriques>
+  <ul class="rubrique">
+    <BOUCLE_rubriques(RUBRIQUES) {id_parent} {par num titre, titre} {doublons}>
+      <li>
+      <a href="#URL_RUBRIQUE">[(#TITRE)]</a>
+        <!-- affichage des articles -->
+        <B_articles2>
+          <ul class="article">
+            <BOUCLE_articles2(ARTICLES) {id_rubrique} {par num titre, titre}{doublons}>
+              <li>
+              <a href="#URL_ARTICLE">[(#TITRE)]</a>
+              </li>
+            </BOUCLE_articles2>
+          </ul>
+        </B_articles2>
+        <!-- on refait tourner la boucle pour les sous-sous...-rubriques -->
+        <BOUCLE_sous_rubriques(BOUCLE_rubriques)>
+        </BOUCLE_sous_rubriques>
+      </li>
+    </BOUCLE_rubriques>
+  </ul>
+</B_rubriques>
+
+</div>

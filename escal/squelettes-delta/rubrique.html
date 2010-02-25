@@ -1,0 +1,75 @@
+#CACHE{24*3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+  <!-- on se met dans le contexte de la rubrique appelée -->
+  <BOUCLE_rubrique_principal(RUBRIQUES){id_rubrique}>
+    <head>
+      <title>[(#TITRE|textebrut) -] [[(#NOM_SITE_SPIP|textebrut)]]
+      </title>	[
+      <meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+      <INCLURE {fond=inclusions/inc-head}>
+    </head>
+
+    <body onload="setHover('menu')">
+      <div id="ombre-gauche">
+        <div id="ombre-droite">
+          <div id="conteneur">
+
+            <div id="entete">
+              <INCLURE {fond=inclusions/inc-bandeau}>
+              <INCLURE {fond=inclusions/inc-menu_direct}>
+            </div>
+
+            <div id="page">
+              <div id="contenu">
+
+              <div id="espace">
+              <img src="#CHEMIN{images/coinvert.gif}" alt="coin vert" />
+              #FORMULAIRE_RECHERCHE
+              </div>
+              
+              <div id="corps">
+                <!-- on cherches si la rubrique est rattachee a un mot clef du groupe type_rubrique-->
+                <!-- si oui, on stocke le mot-cle dans la variable "type" -->
+                <BOUCLE_type_rubrique(MOTS){id_rubrique}{type=type_rubrique}{0,1}>
+                  #SET{type, #TITRE}
+                </BOUCLE_type_rubrique>
+                  <!-- on recupere le chemin de la noisette associee -->
+                  #SET{inclusion, (#CHEMIN{inclusions/inc-rubrique_(#GET{type}|concat{.html})})}
+                  <!-- s'il y a une noisette associee, on l'affiche -->
+                  [(#GET{inclusion}|oui)[(#INCLURE{fond=inclusions/inc-rubrique_#GET{type}}{env})]]
+                  <!-- s'il n'y a en a pas, on affiche le noisette normale -->
+                  [(#GET{inclusion}|non)[(#INCLURE{fond=inclusions/inc-rubrique_normal}{env})]]
+              </div>
+              
+              </div>
+            </div>
+
+            <div id="navigation">
+              <div class="cadre-vert">
+                <INCLURE {fond=inclusions/inc-menu_vertical}{id_rubrique}>
+              </div>
+
+            </div>
+
+            <div id="extra">
+              <BOUCLE_test(RUBRIQUES){id_rubrique}{titre_mot="trombino"}>
+              </BOUCLE_test>
+              </B_test>   
+                <div class="cadre-bleu">
+                  <INCLURE {fond=inclusions/inc-derniers_articles}{id_rubrique}>
+                </div>
+              <//B_test>
+            </div>
+
+            <div id="pied">
+              <INCLURE {fond=inclusions/inc-pied}{skel=#SQUELETTE}>
+            </div>
+
+          </div>
+          <!-- fin conteneur -->
+        </div>
+      </div>
+    </body>
+    </BOUCLE_rubrique_principal>
+</html>
