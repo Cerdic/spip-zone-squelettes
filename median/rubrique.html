@@ -1,19 +1,21 @@
 #CACHE{7200}[
 (#REM) la totale pour faire fonctionner le mot clé _invisible_, 
         y compris rediriger sur 404 si la rubrique en cours ou son ascendance est munie du mot-clé _invisible_ 
-][(#REM) choper en doublon les rubriques ayant le mot clé invisible, les articles et breves qu'elles contiennent 
+][(#REM) choper en doublon les rubriques ayant le mot clé invisible, les articles, sites et breves qu'elles contiennent 
 ]<BOUCLE_rubriques_exclues(RUBRIQUES) {titre_mot=_invisible_} {doublons}>[(#REM)
   ]<BOUCLE_articles_int(ARTICLES) {doublons} {id_rubrique}></BOUCLE_articles_int>[(#REM)
+  ]<BOUCLE_sites_int(BREVES) {doublons} {id_rubrique}></BOUCLE_sites_int>[(#REM)
   ]<BOUCLE_breves_int(BREVES) {doublons} {id_rubrique}></BOUCLE_breves_int>[
-(#REM) choper en doublon les sous-rubriques, récusivement, et les articles inclus dans des rubriques avec le mot clé invisible 
+(#REM) choper en doublon les sous-rubriques, récursivement, et les articles inclus dans des rubriques avec le mot clé invisible 
   ]<BOUCLE_rubriques_int(RUBRIQUES) {doublons} {id_parent}>[(#REM)
     ]<BOUCLE_art_int(ARTICLES) {doublons} {id_rubrique}></BOUCLE_art_int>[(#REM)
     ]<BOUCLE_recursive(BOUCLE_rubriques_int)></BOUCLE_recursive>[(#REM)
   ]</BOUCLE_rubriques_int>[(#REM)
 ]</BOUCLE_rubriques_exclues>[
-(#REM) choper en doublon les articles et brèves ayant le mot clé invisible 
+(#REM) choper en doublon les articles, sites et brèves ayant le mot clé invisible 
 ]<BOUCLE_articles_exclus(ARTICLES) {titre_mot=_invisible_} {doublons}></BOUCLE_articles_exclus>[
 (#REM)]<BOUCLE_breves_exclues(BREVES) {titre_mot=_invisible_} {doublons}></BOUCLE_breves_exclues>[
+(#REM)]<BOUCLE_sites_exclus(SITES) {titre_mot=_invisible_} {doublons}></BOUCLE_sites_exclus>[
 
 (#REM) début affichage
 ]<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique} {doublons}>
@@ -44,7 +46,6 @@
 	[(#REM) Fil d'Ariane ]
 	<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{40})]</a></BOUCLE_ariane>[ &gt; (#TITRE|supprimer_numero|couper{40})]</div>
 
-
     [(#REM) existe t'il des sous-rubriques? ]
     <BOUCLE_test_ssrub(RUBRIQUES) {id_parent} {0,1}>
         #SET{existe_ssrub, 1}
@@ -52,15 +53,24 @@
         #SET{pas_ssrub, 1}
     <//B_test_ssrub>
     
+    [(#REM) existe t'il des sites? ]
+    <BOUCLE_test_sites(SITES) {id_rubrique} {0,1}>
+        #SET{existe_site, 1}
+    </BOUCLE_test_sites>
+        #SET{pas_site, 1}
+    <//B_test_sites>
+    
   [(#REM) la rubrique n'a t'elle qu'un seul article? ]
     <BOUCLE_test_unique(ARTICLES) {id_rubrique}{lang}>[(#TOTAL_BOUCLE|=={1}|?{[(#SET{art_unique, #ID_ARTICLE})]})]</BOUCLE_test_unique>
 [(#REM)       
 existe_ssrub: #GET{existe_ssrub}<br>
 pas_ssrub: #GET{pas_ssrub}<br>
+existe_site:#GET{existe_site}<br>
+pas_site: #GET{pas_site}<br>
 art_unique: #GET{art_unique}<br>
 ] 
-        <BOUCLE_art_unique(CONDITION){si #GET{art_unique}|et{#GET{pas_ssrub}}}>
-        [(#REM) si pas de ss-rub et un seul article l'afficher directement ]
+        <BOUCLE_art_unique(CONDITION){si #GET{art_unique}|et{#GET{pas_ssrub}}|et{#GET{pas_site}}}>
+        [(#REM) si pas de ss-rub et pas de sites et un seul article l'afficher directement ]
         
           [(#REM) gerer le cas du mot cle restricted_access => il faut etre loggue pour voir l'article ]
           <BOUCLE_restrict_access(ARTICLES) {titre_mot=restricted_access}{id_article=#GET{art_unique}}>
@@ -152,8 +162,8 @@ art_unique: #GET{art_unique}<br>
         		</div><!-- fin contenu -->
         	</div><!-- fin conteneur -->
           
-    #SET{larg_logo, 20}
-    #SET{ht_logo, 20}    
+    [(#SET{larg_logo, [(#CONFIG{median/taille_micro_vignettes,20})]})]
+    [(#SET{ht_logo, [(#CONFIG{median/taille_micro_vignettes,20})]})]    
     <div class="contre-encart">
             
         [(#REM) les mots clés attachés à la rubrique et aux articles de la rubrique ]
@@ -167,7 +177,7 @@ art_unique: #GET{art_unique}<br>
         	<h2><:titre_documents_joints:></h2>
         	<ul>
         		<BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {mode=document} {par num titre, date} {doublons}>
-					<li style="[background-image: url((#LOGO_DOCUMENT||image_reduire{0,20}|extraire_attribut{src}));][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})]">
+					<li style="[background-image: url((#LOGO_DOCUMENT||image_reduire{0,[(#GET{ht_logo})]}|extraire_attribut{src}));][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})]">
 						<div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
 						[<div class="spip_doc_descriptif">(#DESCRIPTIF*)</div>]
 					</li>
@@ -183,9 +193,12 @@ art_unique: #GET{art_unique}<br>
         	<h2 ><:median:articles_rubrique:></h2>
         	<ul>
         		<BOUCLE_articles(ARTICLES) {id_rubrique} {lang} {par num titre, titre} {pagination}{doublons}>
-        		<li style="[background-image: url((#LOGO_ARTICLE_RUBRIQUE||image_passe_partout{#GET{larg_logo},#GET{larg_logo}}|image_recadre{#GET{larg_logo},#GET{ht_logo},left=0 top=0}|extraire_attribut{src}));][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})]">
-        			[<h3 class="titre"><a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a></h3>]
-                      
+        		[(#CONFIG{median/micro_vignettes_carrees}|=={oui}|?{
+                    <li style="[background-image: url((#LOGO_ARTICLE_RUBRIQUE||image_passe_partout{#GET{larg_logo},#GET{larg_logo}}|image_recadre{#GET{larg_logo},#GET{ht_logo},left=0 top=0}|extraire_attribut{src}));][padding-left: (#GET{larg_logo}|plus{5})px;][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})]">
+        		    ,
+                    <li style="[background-image: url((#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{larg_logo},#GET{ht_logo}}|extraire_attribut{src}));][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})][padding-left: (#GET{larg_logo}|plus{5})px;]">
+                })]
+                	[<h3 class="titre"><a href="#URL_ARTICLE">(#TITRE|supprimer_numero)</a></h3>]               
                       [(#DESCRIPTIF|sinon{
                           [(#CHAPO|match{.*[(#URL_SITE_SPIP)].*}|?{'',' '})
                             [(#CHAPO|sinon{[<p>(#TEXTE|couper{140}|image_reduire{360,500})</p>]})]
@@ -199,6 +212,34 @@ art_unique: #GET{art_unique}<br>
         </div>
         </B_articles>
         
+        [(#REM) Sites de la rubrique ]
+        <B_sites>
+        <div class="liste-articles">
+        	#ANCRE_PAGINATION
+        	<h2 ><:sur_web:></h2>
+        	<ul>
+        		<BOUCLE_sites(SITES) {id_rubrique} {par nom_site} {pagination}{doublons}>
+        		[(#CONFIG{median/micro_vignettes_carrees}|=={oui}|?{
+                    <li style="[background-image: url((#LOGO_SITE_RUBRIQUE||image_passe_partout{#GET{larg_logo},#GET{larg_logo}}|image_recadre{#GET{larg_logo},#GET{ht_logo},left=0 top=0}|extraire_attribut{src}));][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})][padding-left: (#GET{larg_logo}|plus{5})px;]">
+        		    ,
+                    <li style="[background-image: url((#LOGO_SITE_RUBRIQUE||image_reduire{#GET{larg_logo},#GET{ht_logo},left=0 top=0}|extraire_attribut{src}));][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})][padding-left: (#GET{larg_logo}|plus{5})px;]">
+                })]
+        			[<h3 class="titre"><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]">(#NOM_SITE)</a></h3>]
+                    <B_syndic>
+                    <ul class="liste-sites">
+                        <BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {0,3}>
+                        <li style="background: url('#CHEMIN{externe.png}') no-repeat 3px center;"><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></li>
+                        </BOUCLE_syndic>
+                    </ul>
+                    </B_syndic>
+        		      <div class="read_more" style="background-image: url('#CHEMIN{logo_read_more.jpg}');"><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]"><:median:visiter_site:></a></div>
+                </li>
+        		</BOUCLE_sites>
+        	</ul>
+        	[<p class="pagination">(#PAGINATION)</p>]
+        </div>
+        </B_sites>
+
         [(#REM) Plan des sous-rubriques ]
         <B_sous_rubriques>
         		<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>

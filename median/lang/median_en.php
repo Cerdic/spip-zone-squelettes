@@ -57,6 +57,7 @@ you certainly find what you are looking for!',
 
 // M
 'meta_keywords' => 'The contents of the tag "meta keywords" (about fifteen words separated by commas)',
+'micro_vignettes_retaillees_carrees'=>'Square resizing micro-thumb',
 'mots_cles_coordonnees' => 'keywords for the coordonates ',
 'mots_cles_techniques_median' => 'technical keywords for Median\' template',
 
@@ -72,11 +73,13 @@ you certainly find what you are looking for!',
 'rubriques_pertinentes' => 'Relevant sections',
 
 // S
+'site_reference'=>'Referenced site', 
 'saisir_couleur' => 'choose a color by clicking in the input box',
 'sous-titre'=> 'subtitle',
 //'saisir_id_groupes_mots' => 'enter the groups ID separated by a  |',
 
 // T
+'taille_micro_vignettes'=>'Article\'s logo size  in pixels for section\'s pages (micro-thumbs)',
 'texte' => 'text',
 'texte_404' => '404 error\'s page',
 'textes_caches' => 'Texts not directly displayed',
@@ -94,6 +97,7 @@ you certainly find what you are looking for!',
 'top_logo_url' => 'The top banner is linked to the home page of the site but the URL could be change by using this field',
 
 // V
+'visiter_site'=>'Visit the site',
 'vitesse_diaporama' => 'Duration between 2 photos in home\' page slideshow (in milliseconds)'
 
 );

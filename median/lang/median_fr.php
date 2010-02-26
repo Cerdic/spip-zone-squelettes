@@ -6,6 +6,7 @@ $GLOBALS['i18n_median_fr'] = array(
 'aa_elements' => 'El&eacute;ments de l\'article &agrave; utiliser',
 'accueil' => 'Accueil',
 'acces_rubrique'=>'Acc&egrave;s &agrave; la rubrique',
+'articles_rubrique' => 'Dans cette rubrique',
 
 // C
 'chapo' => 'chapo',
@@ -56,6 +57,7 @@ mais vous devriez certainement trouver ce que vous cherchez !',
 
 // M
 'meta_keywords' => 'Le contenu de la balise "meta keywords" (une quinzaine de mots s&eacute;par&eacute;s par des virgules)',
+'micro_vignettes_retaillees_carrees'=>'Retailler les micro-vignette au carr&eacute;',
 'mots_cles_coordonnees' => 'les mots cl&eacute; pour les coordon&acute;es de contact',
 'mots_cles_techniques_median' => 'les mots cles techniques du squelette Median',
 
@@ -71,11 +73,13 @@ mais vous devriez certainement trouver ce que vous cherchez !',
 'rubriques_pertinentes' => 'Rubriques pertinentes',
 
 // S
+'site_reference'=>'Site r&eacute;f&eacute;renc&eacute;', 
 //'saisir_id_groupes_mots' => 'entrez les ID des groupes de mots s&eacute;par&eacute;s par un |',
 'saisir_couleur' => 'choisissez une couleur en cliquant dans la zone de saisie',
 'sous-titre'=> 'sous titre',
 
 // T
+'taille_micro_vignettes'=>'Taille en pixels des logos des articles dans les pages rubriques (micro-vignettes)',
 'texte' => 'texte',
 'texte_404' => 'Texte de la page erreur 404',
 'textes_caches' => 'Textes non affich&eacute;s directement',
@@ -83,7 +87,6 @@ mais vous devriez certainement trouver ce que vous cherchez !',
 'texte_acces_restreint' => 'Texte d\'explication lorsque l\'identification est requise',
 'texte_creation_compte' => 'Titre du formulaire de cr&eacute;ation de compte',
 'texte_titre_nuage' => 'Titre du nuage de mots cl&eacute; (i.e. liste des mots cl&eacute;s) pour les pages sommaire, plan et 404',
-'articles_rubrique' => 'Dans cette rubrique',
 'titre' => 'Titre',
 'titre_median' => 'Squelette Median',
 'top_logo_couleur' => 'Couleur',
@@ -93,6 +96,7 @@ mais vous devriez certainement trouver ce que vous cherchez !',
 'top_logo_url' => 'Le logo de sommet de page comporte un lien sur la page d\'accueil du site: ce champ permet de d&eacute;finir une autre URL',
 
 // V
+'visiter_site'=>'Visiter le site',
 'vitesse_diaporama' => 'Dur&eacute;e entre 2 photos du diaporama de la page d\'accueil (en milliseconds)'
 
 );
