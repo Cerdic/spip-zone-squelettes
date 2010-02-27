@@ -65,7 +65,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'go' => 'Gehen Sie',
 
 	// I
-	'icone_eva' => '<NEW>Icone EVA-web 4',
+	'icone_eva' => 'EVA-Web 4 Icon',
 	'identifier' => 'Sie werden angeschlo&szlig;en',
 	'il_y_a' => 'Es gibt',
 	'il_y_a1' => 'Kennzeichnen Sie herein diese Petition',
@@ -73,7 +73,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'il_y_a3' => 'Artikel </br> dieser Block im poster',
 	'il_y_a4' => 'Autor </br> dieser Block im poster',
 	'il_y_a5' => 'Nachrichten </br> dieser Block im poster',
-	'inscription' => '<NEW>Inscription',
+	'inscription' => 'Anmeldung',
 
 	// J
 	'j1' => 'mon',
@@ -111,50 +111,50 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'm9' => 'September',
 	'meme_rubrique' => 'In diesem Kapitel',
 	'mentions' => 'Erw&auml;hnungen',
-	'mentions_adresse' => '<NEW>Adresse :',
-	'mentions_directeur_publication' => '<NEW>Directeur de la publication :',
-	'mentions_droit_auteur_texte' => '<NEW><p>Ce site rel&egrave;ve de la l&eacute;gislation fran&ccedil;aise et internationale sur le droit d\'auteur et la propri&eacute;t&eacute; intellectuelle.</p>
-	<p>Tous les droits de reproduction sont r&eacute;serv&eacute;s.</p>',
-	'mentions_droit_auteur_titre' => '<NEW>Droits d\'auteurs :',
+	'mentions_adresse' => 'Adresse:',
+	'mentions_directeur_publication' => 'Chefredakteur:',
+	'mentions_droit_auteur_texte' => '<p>Diese Website unterliegt nationalem und internationalem Urheberrecht.</p>
+ <p>Die Wiedergabe der Inhalte in einem anderen Kontext bed&uuml;rfen der Ausdr&uuml;cklichen Zustimmung der Autoren.</p>',
+	'mentions_droit_auteur_titre' => 'Urheberrechte:',
 	'mentions_legales' => 'Legale Erw&auml;hnungen',
 	'mentions_liens_hypertexte_texte' => '<NEW><p>Ce site contient des liens hypertextes permettant l\'acc&egrave;s &agrave; des sites qui ne sont pas &eacute;dit&eacute;s par le responsable de ce site.</p>
-	<p>En cons&eacute;quence le directeur de publication ne saurait &ecirc;tre tenu pour responsable du contenu des sites auxquels l\'internaute aurait ainsi acc&egrave;s.</p>
-	<p>Il est formellement interdit de collecter et d\'utiliser les informations disponibles sur le site &agrave; des fins commerciales.</p>
-	<p>Cette interdiction s\'&eacute;tend notamment, sans que cette liste ne soit limitative, &agrave; tout &eacute;l&eacute;ment r&eacute;dactionnel figurant sur le site, &agrave; la pr&eacute;sentation des &eacute;crans, aux logiciels n&eacute;cessaires &agrave; l\'exploitation, aux logos, images, photos, graphiques, de quelque nature qu\'ils soient.</p>',
-	'mentions_liens_hypertexte_titre' => '<NEW>Liens hypertextes :',
+ <p>En cons&eacute;quence le directeur de publication ne saurait &ecirc;tre tenu pour responsable du contenu des sites auxquels l\'internaute aurait ainsi acc&egrave;s.</p>
+ <p>Il est formellement interdit de collecter et d\'utiliser les informations disponibles sur le site &agrave; des fins commerciales.</p>
+ <p>Cette interdiction s\'&eacute;tend notamment, sans que cette liste ne soit limitative, &agrave; tout &eacute;l&eacute;ment r&eacute;dactionnel figurant sur le site, &agrave; la pr&eacute;sentation des &eacute;crans, aux logiciels n&eacute;cessaires &agrave; l\'exploitation, aux logos, images, photos, graphiques, de quelque nature qu\'ils soient.</p>',
+	'mentions_liens_hypertexte_titre' => 'Hyperlinks:',
 	'mentions_liens_texte' => '<NEW><p>A l\'exception de sites diffusant des informations et/ou contenus ayant un caract&egrave;re ill&eacute;gal et/ou &agrave; caract&egrave;re politique, religieux, pornographique, x&eacute;nophobe, vous pouvez cr&eacute;er un lien hypertexte vers notre Site sur votre site.</p>
-	<p>La mise en place de lien hypertexte n\'autorise en aucune fa&ccedil;on la reproduction d\'&eacute;l&eacute;ments du Site ou la pr&eacute;sentation sur des sites tiers d\'&eacute;l&eacute;ments du Site sous forme de Frame ou syst&egrave;me apparent&eacute;.</p>
-	<p>Enfin, la mise en place de lien hypertexte n\'autorise en aucune fa&ccedil;on de proposer l\'envoi d\'un message pr&eacute;-r&eacute;dig&eacute; &agrave; une adresse mail li&eacute;e au Site ou la mise en place d\'un syst&egrave;me permettant l\'envoi massif de messages quelle qu\'en soit la nature.</p>
-	<p>Tous les droits de reproduction sont r&eacute;serv&eacute;s.</p>',
-	'mentions_liens_titre' => '<NEW>Liens hypertextes vers ce site :',
-	'mentions_logo_cddp74' => '<NEW>Site officiel du CDDP74',
-	'mentions_logo_citic' => '<NEW>Centre de l\'Informatique et des TIC de Haute-Savoie (ex CRI74)',
-	'mentions_logo_edres' => '<NEW>&Eacute;ducation R&eacute;seau Haute-Savoie, projet d&eacute;partemental',
-	'mentions_logo_eva' => '<NEW>Site officiel du projet eva-web',
-	'mentions_logo_spip' => '<NEW>Site officiel de SPIP',
-	'mentions_logo_spipedu' => '<NEW>Spip-edu, site de la communaut&eacute; &eacute;ducative',
-	'mentions_lois' => '<NEW>En vertu de la loi pour la confiance dans l\'&eacute;conomie num&eacute;rique (LCEN) du 21 juin 2004, voici les coordonn&eacute;es de l\'&eacute;diteur et du prestataire qui accueille le site :',
-	'mentions_prestataire' => '<NEW>Prestataire assurant le stockage direct et permanent :',
-	'mentions_qualite' => '<NEW>Qualit&eacute; :',
+ <p>La mise en place de lien hypertexte n\'autorise en aucune fa&ccedil;on la reproduction d\'&eacute;l&eacute;ments du Site ou la pr&eacute;sentation sur des sites tiers d\'&eacute;l&eacute;ments du Site sous forme de Frame ou syst&egrave;me apparent&eacute;.</p>
+ <p>Enfin, la mise en place de lien hypertexte n\'autorise en aucune fa&ccedil;on de proposer l\'envoi d\'un message pr&eacute;-r&eacute;dig&eacute; &agrave; une adresse mail li&eacute;e au Site ou la mise en place d\'un syst&egrave;me permettant l\'envoi massif de messages quelle qu\'en soit la nature.</p>
+ <p>Tous les droits de reproduction sont r&eacute;serv&eacute;s.</p>',
+	'mentions_liens_titre' => 'Hyperlinks zu dieser Website:',
+	'mentions_logo_cddp74' => 'Offizielle Website des CDDP74',
+	'mentions_logo_citic' => 'Centre de l\'Informatique et des TIC de Haute-Savoie (ex CRI74)', # NEW
+	'mentions_logo_edres' => '&Eacute;ducation R&eacute;seau Haute-Savoie, projet d&eacute;partemental', # NEW
+	'mentions_logo_eva' => 'Offizielle Seite des Projekts Eva-Web',
+	'mentions_logo_spip' => 'Offizielle Seite von SPIP',
+	'mentions_logo_spipedu' => 'Spip-edu, die Website der p&auml;dagogischen SPIP-Gemeinde',
+	'mentions_lois' => 'En vertu de la loi pour la confiance dans l\'&eacute;conomie num&eacute;rique (LCEN) du 21 juin 2004, voici les coordonn&eacute;es de l\'&eacute;diteur et du prestataire qui accueille le site :', # NEW
+	'mentions_prestataire' => 'Dienstleister f&uuml;r direkte und dauerhafte Speicherung:',
+	'mentions_qualite' => 'Qualit&auml;t:',
 	'mentions_qui_texte' => '<NEW><p>A l\'origine <a href="http://eva-web.edres74.net/eva/">EVA</a>
-	correspond &agrave; un projet de portail d\'Intranet d\'&Eacute;tablissement, install&eacute; sur 
-	les serveurs <a href="http://www.pingoo.org/">PingOO</a>.</p>
-	<p>Cette version, l&eacute;g&egrave;rement adapt&eacute;e, permet &agrave; une &eacute;cole ou &agrave; un &eacute;tablissement de mettre 
-	en place un site web collaboratif, en proposant diff&eacute;rents mod&egrave;les de publication 
-	(article, album photo, diaporama ...) </p>
-	<p>Pour plus de renseignements sur le projet <a href="http://eva-web.edres74.net">EVA-web</a>, consultez le site 
-  	<a href="http://eva-web.edres74.net">http://eva-web.edres74.net</a></p>
-	<p><a href="http://eva-web.edres74.net">EVA-web</a> est un logiciel libre distribu&eacute; sous Licence Publique G&eacute;n&eacute;rale 
-	<a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html">GNU (GNU General Public License ou GPL)</a>
-	con&ccedil;u pour fonctionner &agrave; partir de l\'application <a href="http://www.spip.net/">SPIP</a>.</p>
-	<div style="text-align:center;"><a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html"><img alt="Licence GNU GPL" style="border-width:0" width="80" height="100" src="http://www.fsf.org/graphics/philosophical-gnu-sm.jpg"/></a></div>',
-	'mentions_qui_titre' => '<NEW>EVA, par qui, pour qui ?',
-	'mentions_responsable_edition' => '<NEW>Responsable d\'&eacute;dition :',
-	'mentions_site' => '<NEW>Site Internet de : ',
-	'mentions_webmestre' => '<NEW>Webmestre :',
-	'meteo' => '<NEW>M&eacute;t&eacute;o',
-	'meteo_info' => '<NEW>Informations g&eacute;ographiques',
-	'meteo_previsions' => '<NEW>Pr&eacute;visions m&eacute;t&eacute;o',
+ correspond &agrave; un projet de portail d\'Intranet d\'&Eacute;tablissement, install&eacute; sur 
+ les serveurs <a href="http://www.pingoo.org/">PingOO</a>.</p>
+ <p>Cette version, l&eacute;g&egrave;rement adapt&eacute;e, permet &agrave; une &eacute;cole ou &agrave; un &eacute;tablissement de mettre 
+ en place un site web collaboratif, en proposant diff&eacute;rents mod&egrave;les de publication 
+ (article, album photo, diaporama ...) </p>
+ <p>Pour plus de renseignements sur le projet <a href="http://eva-web.edres74.net">EVA-web</a>, consultez le site 
+   <a href="http://eva-web.edres74.net">http://eva-web.edres74.net</a></p>
+ <p><a href="http://eva-web.edres74.net">EVA-web</a> est un logiciel libre distribu&eacute; sous Licence Publique G&eacute;n&eacute;rale 
+ <a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html">GNU (GNU General Public License ou GPL)</a>
+ con&ccedil;u pour fonctionner &agrave; partir de l\'application <a href="http://www.spip.net/">SPIP</a>.</p>
+ <div style="text-align:center;"><a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html"><img alt="Licence GNU GPL" style="border-width:0" width="80" height="100" src="http://www.fsf.org/graphics/philosophical-gnu-sm.jpg"/></a></div>',
+	'mentions_qui_titre' => 'EVA, von wem, f&uuml;r wen?',
+	'mentions_responsable_edition' => 'Verantwortlicher Redakteur:',
+	'mentions_site' => 'Website von: ',
+	'mentions_webmestre' => 'Webmaster:',
+	'meteo' => 'Wetter',
+	'meteo_info' => 'Geogrphische Informationen',
+	'meteo_previsions' => 'Wettervorhersage',
 	'mis_a_jour' => 'Aktualisierend : ',
 	'mot_cle' => 'Schl&uuml;&szlig;elw&ouml;rter',
 	'multilinguisme' => 'Das SprachMen&uuml; von Eva-Netz in den &ouml;ffentlichen Seiten anschlagen?',
@@ -164,8 +164,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'notes' => 'Anmerkungen',
 
 	// P
-	'page_bas' => '<NEW>Bas de page',
-	'page_haut' => '<NEW>Haut de page',
+	'page_bas' => 'Bas de page', # NEW
+	'page_haut' => 'Haut de page', # NEW
 	'pages' => 'Seiten',
 	'par' => 'vorbei :',
 	'partenaires' => 'Partners',
@@ -183,7 +183,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'resultats' => 'Resultiert',
 
 	// S
-	'site' => '<NEW>site',
+	'site' => 'site', # NEW
 	'sites' => 'Andere Sites :',
 	'sites_references' => 'Bezug&szlig;ites',
 	'sites_rubrique' => 'Sites f&uuml;r dieses Kapitel',
@@ -194,8 +194,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'statut_visit' => 'Status : Besucher',
 	'sur_le_web' => 'Auf dem Web',
 	'sur_un_total_de' => 'Von der Summe von',
-	'syndic_breves' => '<NEW>Syndiquer les br&egrave;ves du site',
-	'syndic_site' => '<NEW>Syndiquer tout le site',
+	'syndic_breves' => 'Meldungen der Website syndizieren',
+	'syndic_site' => 'Ganze Website syndizieren',
 
 	// T
 	'texte_page_404' => '<em>Traurig!</em></br>Diese Seite existiert nicht.',

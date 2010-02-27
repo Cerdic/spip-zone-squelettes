@@ -122,10 +122,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
  <p>Queda terminantemente prohibido recoger y utilizar las informaciones disponibles en el sitio con fines comerciales.</p>
  <p>Esta prohibici&oacute;n se refiere, sin que el listado siguiente sea limitativo, a todos los elementos de redacci&oacute;n que se encuentran en el sitio, la presentaci&oacute;n de las pantallas, los programas inform&aacute;ticos necesarios a la explotaci&oacute;n, los logotipos, las im&aacute;genes, las fotograf&iacute;as, los gr&aacute;ficos, cualquiera sea su forma.</p>',
 	'mentions_liens_hypertexte_titre' => 'v&iacute;nculos hipertexto :',
-	'mentions_liens_texte' => '<NEW><p>A l\'exception de sites diffusant des informations et/ou contenus ayant un caract&egrave;re ill&eacute;gal et/ou &agrave; caract&egrave;re politique, religieux, pornographique, x&eacute;nophobe, vous pouvez cr&eacute;er un lien hypertexte vers notre Site sur votre site.</p>
+	'mentions_liens_texte' => '<p>A l\'exception de sites diffusant des informations et/ou contenus ayant un caract&egrave;re ill&eacute;gal et/ou &agrave; caract&egrave;re politique, religieux, pornographique, x&eacute;nophobe, vous pouvez cr&eacute;er un lien hypertexte vers notre Site sur votre site.</p>
 	<p>La mise en place de lien hypertexte n\'autorise en aucune fa&ccedil;on la reproduction d\'&eacute;l&eacute;ments du Site ou la pr&eacute;sentation sur des sites tiers d\'&eacute;l&eacute;ments du Site sous forme de Frame ou syst&egrave;me apparent&eacute;.</p>
 	<p>Enfin, la mise en place de lien hypertexte n\'autorise en aucune fa&ccedil;on de proposer l\'envoi d\'un message pr&eacute;-r&eacute;dig&eacute; &agrave; une adresse mail li&eacute;e au Site ou la mise en place d\'un syst&egrave;me permettant l\'envoi massif de messages quelle qu\'en soit la nature.</p>
-	<p>Tous les droits de reproduction sont r&eacute;serv&eacute;s.</p>',
+	<p>Tous les droits de reproduction sont r&eacute;serv&eacute;s.</p>', # NEW
 	'mentions_liens_titre' => 'V&iacute;nculos hipertexto hacia este sitio :',
 	'mentions_logo_cddp74' => 'Sitio official del CDDP74',
 	'mentions_logo_citic' => 'Centro de Inform&aacute;tica y de las TIC de Haute-Savoie (ex CRI74)',
@@ -136,7 +136,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mentions_lois' => 'En virtud de la ley para la confianza en la econom&iacute;a num&eacute;rica (LCEN) del 21 de junio de 2004, ah&iacute; tienen los datos del editor y el prestador de servicios que acoge el sitio :',
 	'mentions_prestataire' => 'Prestador de servicios que garantiza el almacenamiento directo y permanente :',
 	'mentions_qualite' => 'Calidad :',
-	'mentions_qui_texte' => '<NEW><p>A l\'origine <a href="http://eva-web.edres74.net/eva/">EVA</a>
+	'mentions_qui_texte' => '<p>A l\'origine <a href="http://eva-web.edres74.net/eva/">EVA</a>
 	correspond &agrave; un projet de portail d\'Intranet d\'&Eacute;tablissement, install&eacute; sur 
 	les serveurs <a href="http://www.pingoo.org/">PingOO</a>.</p>
 	<p>Cette version, l&eacute;g&egrave;rement adapt&eacute;e, permet &agrave; une &eacute;cole ou &agrave; un &eacute;tablissement de mettre 
@@ -147,7 +147,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	<p><a href="http://eva-web.edres74.net">EVA-web</a> est un logiciel libre distribu&eacute; sous Licence Publique G&eacute;n&eacute;rale 
 	<a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html">GNU (GNU General Public License ou GPL)</a>
 	con&ccedil;u pour fonctionner &agrave; partir de l\'application <a href="http://www.spip.net/">SPIP</a>.</p>
-	<div style="text-align:center;"><a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html"><img alt="Licence GNU GPL" style="border-width:0" width="80" height="100" src="http://www.fsf.org/graphics/philosophical-gnu-sm.jpg"/></a></div>',
+	<div style="text-align:center;"><a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html"><img alt="Licence GNU GPL" style="border-width:0" width="80" height="100" src="http://www.fsf.org/graphics/philosophical-gnu-sm.jpg"/></a></div>', # NEW
 	'mentions_qui_titre' => '&iquest; EVA, por qui&eacute;n, par qui&eacute;n ?',
 	'mentions_responsable_edition' => 'Director de la redacci&oacute;n :',
 	'mentions_site' => 'Sitio Internet de : ',
