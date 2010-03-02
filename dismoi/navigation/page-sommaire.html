@@ -1,0 +1,24 @@
+[(#REM) Inscription au site ]
+#FORMULAIRE_INSCRIPTION
+
+
+[(#REM) Sur le Web ]
+<B_syndic>
+#ANCRE_PAGINATION
+<div class="liste syndic_articles">
+	<h2 class="h2"><:nouveautes_web:></h2>
+	<ul class="liste-items">
+		<BOUCLE_syndic(SYNDIC_ARTICLES) {par date}{inverse} {pagination 10}>
+		<li class="item">
+		[<span class="date-article-syndic">(#DATE|affdate_jourcourt)</span>]<a href="#URL_ARTICLE"[ title="(#NOM_SITE|attribut_html|couper{80})"] class="spip_out">#TITRE</a>
+		<li class="info-publi">
+		[(#DESCRIPTIF|extraire_balise{img}|
+        		inserer_attribut{style,'text-align: center;'}|sinon{#DESCRIPTIF})]
+		</li>
+		</li>
+		</BOUCLE_syndic>
+	</ul>
+	[<p class="pagination">(#PAGINATION{page})</p>]
+</div>
+</B_syndic>
+<//B_syndic>

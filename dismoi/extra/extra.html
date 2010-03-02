@@ -1,0 +1,82 @@
+[(#REM) Liens des forums ]
+				<B_forums_liens>
+				<div class="boite">
+					<h2 class="menu-titre"><:messages_forum:></h2>
+
+					<ul>
+						<BOUCLE_forums_liens(FORUMS) {plat} {par date}{inverse} {0,5}>
+						<li>[(#DATE|affdate_court) &ndash; ]<a href="#URL_FORUM">[(#TEXTE|couper{50})] &ndash; <i>par [(#NOM|sinon{"???"})]</i> </a></li>
+						</BOUCLE_forums_liens>
+					</ul>
+
+				</div>
+				</B_forums_liens>
+				
+
+[(#REM)] 
+				<div class="boite">
+					<h2 class="menu-titre"><:articles_populaires:></h2>
+					<ul>
+						<BOUCLE_hitparade(ARTICLES){par popularite}{inverse}{0,10}>
+						<li><a href="#URL_ARTICLE">#TITRE</a>[<small> ((#POPULARITE))</small>]</li>
+						</BOUCLE_hitparade>
+					</ul>
+				</div>
+
+
+
+
+[(#REM) Menu de navigation mots-cles ]
+			<div class="boite">
+				<h2 class="menu-titre"><:mots_clefs:></h2>
+				<ul style="text-align: center;">
+					[(#MODELE{nuage})]
+				</ul>
+			</div>
+
+
+[(#REM) Menu archives ]
+
+				<div class="boite">
+				<B_archives_mois>
+					<h2 class="menu-titre"><:archives:></h2>
+					<li>
+				<BOUCLE_archives_mois(ARTICLES){tout}{!par date}>
+					<B_archives>
+						<BOUCLE_archives(ARTICLES){mois_relatif}{0,1}>
+							[
+							<a href="spip.php?page=archive&date=[(#DATE|affdate{'Y-m'})]">(#DATE|affdate_mois_annee|unique)</a>]
+						</BOUCLE_archives>
+					</B_archives>
+				</BOUCLE_archives_mois>
+				</li>
+				</B_archives_mois>
+				</div>
+
+
+
+[(#REM) Sticky]
+	<div class="boite">
+		<h2 class="menu-titre"><:autres:></h2>
+			<ul>
+					<li>
+						<BOUCLE_contact(AUTEURS){id_auteur=1}>
+						<a href="#URL_AUTEUR">contact</a>
+						</BOUCLE_contact>
+					</li>
+			</ul>
+	</div>
+
+[(#REM) Liens RSS]
+				<div class="boite">
+					<h2 class="menu-titre">RSS :</h2>
+					<ul>
+						<li><a href="#URL_PAGE{backend}"> #NOM_SITE_SPIP <img src="#CHEMIN{feed.png}" width="10" heigh="10" alt="RSS"></a>  :
+						</li>
+					</ul>
+					<ul>
+						<li><a href="#URL_PAGE{backend-commentaire}"> #NOM_SITE_SPIP, les commentaires <img src="#CHEMIN{feed.png}" width="10" heigh="10" alt="RSS"></a>
+						</li>
+					</ul>
+	</div>
+s

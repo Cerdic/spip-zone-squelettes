@@ -1,0 +1,29 @@
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]</p>
+
+<div class="contenu-principal">
+
+	<div class="cartouche">
+		<h1 class="h1 #EDIT{titre}">Archives : [(#DATE||nom_mois)] [(#DATE|annee)]</h1>
+		[<p class="info-publi"><span class="published"><:dernier_ajout:> : (#DATE|affdate_jourcourt).</span></p>]
+	</div>
+
+	[<div class="#EDIT{texte} chapo">(#TEXTE)</div>]
+</div>
+<div class="liste articles">
+
+<B_contenu_archive>
+#ANCRE_PAGINATION
+<BOUCLE_contenu_archive(ARTICLES){mois_relatif=0}{par date}{pagination}>
+
+	#INCLURE{fond=inclure/article,id_article}
+</BOUCLE_contenu_archive>
+[<p class="pagination">(#PAGINATION{page})</p>]
+</B_contenu_archive>
+
+
+</div>
+
+
+
+[<div class="notes"><h2 class="h2"><:info_notes:></h2>(#NOTES)</div>]

@@ -1,0 +1,59 @@
+<BOUCLE_contenu_article(ARTICLES){id_article}>
+
+<div class="contenu-principal">
+	<div class="cartouche">
+		[(#LOGO_ARTICLE||image_reduire{200,200})]
+		[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
+		<h1 class="h1 #EDIT{titre}"><a href="#URL_ARTICLE" rel="bookmark">#TITRE</a></h1>
+		[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
+		[<div class="formulaire_notation">(#FORMULAIRE_NOTATION)</div>]
+
+		<p class="info-publi"><abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>[, <span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]</p>
+
+
+
+		[(#REM) Inclure le modele des liens de traductions ]
+		#MODELE{article_traductions}
+	</div>
+
+	<div class="surlignable">
+		[<div class="#EDIT{chapo} chapo">(#CHAPO|image_reduire{500,0})</div>]
+		[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{500,0})</div>]
+	</div>
+
+	[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+
+	[<div class="ps">
+		<h2 class="h2"><:info_ps:></h2>
+		<div class="#EDIT{ps} surlignable">(#PS|image_reduire{500,0})</div>
+	</div>]
+
+[(#REM) Gestion du portfolio et des documents ]
+[(#INCLURE{fond=inclure/documents}{id_article})]
+
+</div>
+
+[(#REM) Petition :
+La petition ayant une PAGINATION il faut absolument {env}
+et pourquoi pas ajax
+][(#PETITION|oui)<INCLURE{fond=inclure/petition}{id_article}{env}{ajax}>]
+
+[<div class="notes surlignable"><h2 class="h2 pas_surlignable"><:info_notes:></h2>(#NOTES)</div>]
+
+<div class="raccourcis"></div>
+<div class="more_info">
+					<small> 
+					[(#REM) Nombre total de messages ]
+		<a href="#URL_ARTICLE#formulaire_forum"><:repondre_message:></a>
+		[(#REM) Nombre total de messages ]
+		<BOUCLE_decompte(FORUMS){id_article}{plat}></BOUCLE_decompte>[ :: <a href="#URL_ARTICLE#forum">(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
+		[(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>})]</a>]<//B_decompte>
+		 :: <a href="#URL_ARTICLE">lien permanent</a>
+					<BOUCLE_tags(MOTS) {id_article} {par titre}>
+						 - #<a href="#URL_MOT">#TITRE</a>
+					</BOUCLE_tags> :: 
+					[(#DATE|heures)]:[(#DATE|minutes)] 
+					</small>
+</div>
+
+</BOUCLE_contenu_article>
