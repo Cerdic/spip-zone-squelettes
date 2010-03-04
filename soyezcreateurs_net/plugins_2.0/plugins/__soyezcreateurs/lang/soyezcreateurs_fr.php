@@ -34,6 +34,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_sd_notime' => 'Le @djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_summary' => 'Agenda des &eacute;v&eacute;nements (du lundi au dimanche)',
 	'agendamoisde' => 'Agenda du mois de',
+	'aidesc' => 'Aide sur SoyezCr&eacute;ateurs',
 	'alaune' => '&Agrave; la Une',
 	'articlesconnexes' => 'Articles connexes',
 	'articlesordreantichrono' => 'Articles par ordre antichronologique',
@@ -41,7 +42,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'auteur' => 'Auteur',
 	'auteurs_liste' => 'Liste des auteurs',
 	'auteurs_site' => 'Auteurs du site',
-	'avertissement_ie' => '<!--[if lt IE 7]><div style="color:#fff; background-color:#000; border:2px solid red; padding:1em; font-family: \'Trebuchet MS\', verdana, arial, helvetica, sans-serif; font-size: 120%; position:relative;"><p><strong style="color:#f00;">Avertissement</strong>&nbsp;: vous utilisez une version p&eacute;rim&eacute;e d\'Internet Explorer&nbsp;! L\'int&eacute;gralit&eacute; du site vous est n&eacute;anmoins accessible.</p><p>Nous vous invitons&nbsp;:</p><ol style="color:#fff;position:relative;"><li>&agrave; <a href="http://update.microsoft.com/">mettre &agrave; jour</a> votre syst&egrave;me d\'exploitation et &agrave; installer la derni&egrave;re version d\'Internet Explorer (pour des raisons de <a href="http://www.pyrat.net/Utilisez-Windows-Update.html">s&eacute;curit&eacute;</a>)</li><li>et &agrave; utiliser un navigateur moderne : <a href="http://www.mozilla-europe.org/fr/">FireFox</a>.</li></ol></div><![endif]-->',
 
 	// B
 	'barre_typo_generalisee' => 'Barre Typographique G&eacute;n&eacute;ralis&eacute;e',
@@ -75,8 +75,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_anonymatglobal' => 'Annonymat Global',
 	'cfg_anonymatglobal_label' => 'Anonymat global (peut &ecirc;tre r&eacute;activ&eacute; article par article avec le Mot-clef "D&eacute;voilerIdentite")',
 	'cfg_apparence_header' => 'Apparence du haut de page',
-	'cfg_avertissementie' => 'Avertissement IE',
-	'cfg_avertissementie_label' => 'Masquer l\'avertissement d\'absolescence d\'Internet Explorer 5, 5.5 et 6',
 	'cfg_bandeau_annonce' => 'Affichage du bandeau d\'annonce',
 	'cfg_bandeau_contact' => 'Affichage du bandeau de contact',
 	'cfg_bandeau_page' => 'Dans le bandeau d\'en-t&ecirc;te de la page',
@@ -89,6 +87,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_cadre_vignettes' => 'Cadre vignettes (mode portail)',
 	'cfg_cadreinfo' => 'Cadres info',
 	'cfg_cadrestexte' => 'Cadres du contenu',
+	'cfg_cadre_vignettes' => 'Cadre vignettes (mode portail)',
 	'cfg_cartouche' => 'Cadre "Quoi de neuf", "Contenu"...',
 	'cfg_choix_banniere_label' => 'Choix de la banni&egrave;re (si pas de logo de survol pour le site)',
 	'cfg_choix_banniere_tableau' => 'Liste des banni&egrave;res',
