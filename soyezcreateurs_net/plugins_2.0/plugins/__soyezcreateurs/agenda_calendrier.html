@@ -90,7 +90,7 @@
 				<B_Annees>
 				<select name="year" id="var_nav_year">
 					<BOUCLE_Annees(EVENEMENTS){branche}{par date_debut}>[
-					<option value="[(#DATE_DEBUT|annee)]"[(#ENV{date_ev,[(#ENV{date})]}|annee|=={[(#DATE_DEBUT|annee)]}|?{' selected="selected"',''})]>
+					<option value="[(#DATE_DEBUT|annee)]"[(#ENV{year,[(#ENV{date}|annee)]}|=={[(#DATE_DEBUT|annee)]}|?{' selected="selected"',''})]>
 						(#DATE_DEBUT|annee|unique)
 					</option>
 					]</BOUCLE_Annees>
@@ -101,7 +101,7 @@
 				</BOUCLE_ListMotsClefs>
 				<B_ListeMotsClefs>[(#REM) Objectif : n'afficher que les mots clefs effectivement utilise' dans le secteur]
 				<select name="id_mot" id="var_nav_cle">
-					<option value="non"[(#GET{id_mot,''}|=={''}|oui) selected="selected"]><:soyezcreateurs:tout:></option>
+					<option value=""[(#GET{id_mot,''}|=={''}|oui) selected="selected"]><:soyezcreateurs:tout:></option>
 					<BOUCLE_ListeMotsClefs(MOTS){!doublons listemots}{par titre}>
 					<option value="[(#ID_MOT)]"[(#GET{id_mot}|=={[(#ID_MOT)]}|oui) selected="selected"]>[(#TITRE|supprimer_tags)]</option>
 					</BOUCLE_ListeMotsClefs>
