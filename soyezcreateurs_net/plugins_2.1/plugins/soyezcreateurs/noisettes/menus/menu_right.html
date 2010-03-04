@@ -13,14 +13,14 @@
 	<B_Breves>
 	<h2><:breves:></h2>
 	<ul>
-	  <BOUCLE_Breves(BREVES){id_rubrique}{!par date}{age<120}><li>[(#ENV{id_breve}|=={#ID_BREVE}|?{<strong>})]<a href="[(#URL_BREVE)]" title="[(#DATE|nom_jour)] [(#DATE|affdate)]">[<img class="menu_right_logo" src="(#LOGO_BREVE_NORMAL|image_reduire{120,50}|extraire_attribut{src})"[ width="(#LOGO_BREVE_NORMAL|image_reduire{120,50}|extraire_attribut{width})"][ height="(#LOGO_BREVE_NORMAL|image_reduire{120,50}|extraire_attribut{height})"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" /><br />][(#TITRE)]</a>[(#ENV{id_breve}|=={#ID_BREVE}|?{</strong>})]</li></BOUCLE_Breves>
+	  <BOUCLE_Breves(BREVES){id_rubrique}{!par date}{age<120}><li>[(#ENV{id_breve}|=={#ID_BREVE}|?{<strong>})]<a href="[(#URL_BREVE)]" title="[(#DATE|nom_jour)] [(#DATE|affdate)]">[<img class="menu_right_logo" src="(#LOGO_BREVE_NORMAL|image_reduire{120,50}|extraire_attribut{src})"[ width="(#LOGO_BREVE_NORMAL|image_reduire{120,50}|largeur)"][ height="(#LOGO_BREVE_NORMAL|image_reduire{120,50}|hauteur)"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" /><br />][(#TITRE)]</a>[(#ENV{id_breve}|=={#ID_BREVE}|?{</strong>})]</li></BOUCLE_Breves>
 	</ul>
 	</B_Breves>
 
 [(#REM) afficher les rub & art qui ont le mot clef : DessousBreves si c est un tel article qui est affiche ]
 
 <BOUCLE_ArticlesDessousBreves(RUBRIQUES){id_rubrique}{titre_mot = DessousBreves }>
- <h2 [title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>[(#SET{lelogo,[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{120,50})]})][<img class="menu_right_logo" src="(#GET{lelogo}|extraire_attribut{src})"[ width="(#GET{lelogo}|extraire_attribut{width})"][ height="(#GET{lelogo}|extraire_attribut{height})"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" /><br />][(#TITRE)]</h2>
+ <h2 [title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>[(#SET{lelogo,[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{120,50})]})][<img class="menu_right_logo" src="(#GET{lelogo}|extraire_attribut{src})"[ width="(#GET{lelogo}|largeur)"][ height="(#GET{lelogo}|hauteur)"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" /><br />][(#TITRE)]</h2>
   <ul>
 <BOUCLE_art_recents(ARTICLES) {id_rubrique}{!par date} {lang}>
 	<li>[(#ENV{id_article}|=={#ID_ARTICLE}|?{<strong>})]<a href="#URL_ARTICLE" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a>[(#ENV{id_article}|=={#ID_ARTICLE}|?{</strong>})]</li>
