@@ -34,8 +34,8 @@
 <div class="cartouche surlignable">
 [<div class="#EDIT{surtitre} surtitre"><span>(#SURTITRE)</span></div>]
 [(#INCLURE{fond=noisettes/aff_datepublication}{id_article}{lang})]
-<div class="titrepage"><h1 class="#EDIT{titre} entry-title">[<img src="(#LOGO_ARTICLE_NORMAL||image_reduire{64,64}|extraire_attribut{src})" class="logo_article" alt="[(#TITRE|texte_script|supprimer_tags|attribut_html) (logo)]" width="[(#LOGO_ARTICLE_NORMAL||image_reduire{64,64}|largeur)]" height="[(#LOGO_ARTICLE_NORMAL||image_reduire{64,64}|hauteur)]" />][(#TITRE)][(#PLUGIN{ARTICLE_PDF}|=={1}|oui)#ARTICLE_PDF]</h1></div>
-[(#PLUGIN{PB_PANIER}|=={1}|oui)[<div class="pb_panier_produit">(#INCLURE{fond=noisettes/pb_panier/produit_detail}{id_article}{lang})</div>[<div class="pb_panier_add">(#ID_ARTICLE|bouton_ajouter_au_panier)</div>]]
+<div class="titrepage"><h1 class="#EDIT{titre} entry-title">[<img src="(#LOGO_ARTICLE_NORMAL||image_reduire{64,64}|extraire_attribut{src})" class="logo_article" alt="[(#TITRE|texte_script|supprimer_tags|attribut_html) (logo)]" width="[(#LOGO_ARTICLE_NORMAL||image_reduire{64,64}|largeur)]" height="[(#LOGO_ARTICLE_NORMAL||image_reduire{64,64}|hauteur)]" />][(#TITRE)][(#PLUGIN{ARTICLE_PDF}|oui)#ARTICLE_PDF]</h1></div>
+[(#PLUGIN{PB_PANIER}|oui)[<div class="pb_panier_produit">(#INCLURE{fond=noisettes/pb_panier/produit_detail}{id_article}{lang})</div>[<div class="pb_panier_add">(#ID_ARTICLE|bouton_ajouter_au_panier)</div>]]
 ]
 [<div class="#EDIT{soustitre} soustitre"><span>(#SOUSTITRE)</span></div>][(#INCLURE{fond=noisettes/liste_auteurs}{id_article}{lang})]
 [<div class="notation pas_surlignable">(#FORMULAIRE_NOTATION)</div>]
@@ -56,7 +56,7 @@
 	<div id="letexte" class="surlignable">
 [<div class="[(#CHAPO*|?{#EDIT{chapo},#EDIT{descriptif}}) ]chapo">(#CHAPO|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0}|sinon{#DESCRIPTIF})</div>]
 
-[(#PLUGIN{AGENDA}|=={1}|oui)[(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={oui}|oui)<INCLURE{fond=noisettes/agenda/agenda_detail_futur_seul}{id_article}{lang}>]
+[(#PLUGIN{AGENDA}|oui)[(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={oui}|oui)<INCLURE{fond=noisettes/agenda/agenda_detail_futur_seul}{id_article}{lang}>]
 [(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={non}|oui)<INCLURE{fond=noisettes/agenda/agenda_detail}{id_article}{lang}>]]
 
 <BOUCLE_SommaireAncre(MOTS){id_rubrique}{titre = Sommaire}>
@@ -74,7 +74,7 @@
 [<div class="notes">(#NOTES)</div>]
 [<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
 [<div id="carto">
-(#PLUGIN{GIS}|=={1}|oui)#INCLURE{fond=noisettes/articles/carto,id_article}
+(#PLUGIN{GIS}|oui)#INCLURE{fond=noisettes/articles/carto,id_article}
 </div>]
 
 [(#INCLURE{fond=noisettes/galerie}{ajax}{id_article}{env})]
@@ -202,4 +202,4 @@
 <//B_Gribouille>
 </BOUCLE_article_principal>[
 (#CONFIG{soyezcreateurs_google/redirection_ancien_site})[(#INCLURE{fond=noisettes/redirect})]
-][(#PLUGIN{ACCESRESTREINT}|=={1}|oui)[(#INCLURE{fond=noisettes/accesrestreint/article_restreint}{env})]]<//B_article_principal>
+][(#PLUGIN{ACCESRESTREINT}|oui)[(#INCLURE{fond=noisettes/accesrestreint/article_restreint}{env})]]<//B_article_principal>
