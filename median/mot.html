@@ -66,7 +66,7 @@
         <B_mots_freres>
         <div id="keywords">
             #ANCRE_PAGINATION
-            <h2><:mots_clefs_meme_groupe:></h2>
+            <h2><:mots_clefs_meme_groupe:>: #TYPE</h2>
             <ul>
                 <BOUCLE_mots_freres(MOTS) {type} {par titre} {pagination 20} {doublons}>
                 <li[ (#COMPTEUR_BOUCLE|=={1}|?{'style="border-top: 0;"'})]><a href="#URL_MOT"[ class="(#EXPOSE)"]>#TITRE</a></li>
@@ -81,7 +81,7 @@
         <div id="groupes_mots">
             <h2><:autres_groupes_mots_clefs:></h2>
             <ul>
-                <BOUCLE_groupes_freres(GROUPES_MOTS) {!id_groupe} {id_groupe !IN (1,5)} {par titre} {doublons} >
+                <BOUCLE_groupes_freres(GROUPES_MOTS) {!id_groupe} {id_groupe !IN #CONFIG{median/groupes_mots_techniques}} {par titre} {doublons} >
                 <BOUCLE_mot_cousin(MOTS) {id_groupe} {par titre} {0,1}>
                 <li[ (#COMPTEUR_BOUCLE|=={1}|?{'style="border-top: 0;"'})]><a href="#URL_MOT">#TYPE</a></li>
                 </BOUCLE_mot_cousin>
