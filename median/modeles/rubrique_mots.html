@@ -1,13 +1,13 @@
 [(#REM)	Liste des mots-cles attachés à une rubrique, ses articles, ses ss-rubriques et leurs articles ]
   [(#SET{array_mots, #ARRAY})]
     <BOUCLE_rub(RUBRIQUES) {id_parent=#ID_RUBRIQUE}>
-        <BOUCLE_rubrique_mots(MOTS){id_rubrique} {par titre} {id_groupe !IN (1,5)}>
+        <BOUCLE_rubrique_mots(MOTS){id_rubrique} {par titre} {id_groupe !IN #CONFIG{median/groupes_mots_techniques}}>
             [(#TITRE|in_array{#GET{array_mots}}|?{'',' '}) 
                 [(#SET_PUSH{array_mots,[(#TITRE)]})]  
             ]
         </BOUCLE_rubrique_mots>
         <BOUCLE_articles2(ARTICLES){id_rubrique}>
-        	<BOUCLE_mots_art2(MOTS) {id_article} {par titre} {id_groupe !IN (1,5)}>
+        	<BOUCLE_mots_art2(MOTS) {id_article} {par titre} {id_groupe !IN #CONFIG{median/groupes_mots_techniques}}>
                 [(#TITRE|in_array{#GET{array_mots}}|?{'',' '}) 
                     [(#SET_PUSH{array_mots,[(#TITRE)]})]  
                 ]
@@ -15,13 +15,13 @@
         </BOUCLE_articles2>
     </BOUCLE_rub>
     
-    <BOUCLE_rubrique(MOTS){id_rubrique} {par titre} {id_groupe !IN (1,5)}>
+    <BOUCLE_rubrique(MOTS){id_rubrique} {par titre} {id_groupe !IN #CONFIG{median/groupes_mots_techniques}}>
         [(#TITRE|in_array{#GET{array_mots}}|?{'',' '}) 
             [(#SET_PUSH{array_mots,[(#TITRE)]})]  
         ]
     </BOUCLE_rubrique>
     <BOUCLE_articles(ARTICLES){id_rubrique}>
-    	<BOUCLE_mots_art(MOTS) {id_article} {par titre} {id_groupe !IN (1,5)}>
+    	<BOUCLE_mots_art(MOTS) {id_article} {par titre} {id_groupe !IN #CONFIG{median/groupes_mots_techniques}}>
             [(#TITRE|in_array{#GET{array_mots}}|?{'',' '}) 
                 [(#SET_PUSH{array_mots,[(#TITRE)]})]  
             ]
