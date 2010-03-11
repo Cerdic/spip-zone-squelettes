@@ -27,6 +27,8 @@ $GLOBALS['i18n_median_fr'] = array(
 'couleur_titre_principale' => 'Couleur des titre principaux',
 'couleur_titre_secondaire' => 'Couleur des titre secondaires',
 'couleur_titre_tertiaire' => 'Couleur des titres tertiaires',
+'couleur_liens'=>'Couleur des liens',
+'couleur_liens_survol'=>'Couleur des liens survol&eacute;s',
 'contact_us' => 'Nous contacter',
 
 // D
