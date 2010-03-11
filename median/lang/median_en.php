@@ -27,7 +27,8 @@ $GLOBALS['i18n_median_en'] = array(
 'couleur_titre_secondaire' => 'Secondary title\'s color',
 'couleur_titre_tertiaire' => 'Tertiary title\'s color',
 'couleur_liens'=>'Link\'s color',
-'couleur_liens_survol'=>'Hover link\'s color',
+'couleur_liens_survol'=>'Hover / visited link\'s color',
+'couleur_liens_out'=>'Externals link\'s color',
 'contact_us' => 'Contact us',
 
 // D
@@ -50,6 +51,9 @@ you certainly find what you are looking for!',
 'erreur_creation_mot_cle' => 'error while creating keyword ', 
 'explication_groupes_mots_techniques' => 'keywords in ticked\'s groups will not be viewing in publics pages',
 'explication_palette' => 'to choose a color: first click on the circle, then click on the squarre',
+
+// F
+'fond_mot_cles_survol'=>'Cloud\'s keywords hover background color', 
 
 // I
 'id_groupe' => 'groupe\'s id',

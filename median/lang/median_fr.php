@@ -28,7 +28,8 @@ $GLOBALS['i18n_median_fr'] = array(
 'couleur_titre_secondaire' => 'Couleur des titre secondaires',
 'couleur_titre_tertiaire' => 'Couleur des titres tertiaires',
 'couleur_liens'=>'Couleur des liens',
-'couleur_liens_survol'=>'Couleur des liens survol&eacute;s',
+'couleur_liens_survol'=>'Couleur des liens survol&eacute;s / visit&eacute;s',
+'couleur_liens_out'=>'Couleur des liens externes',
 'contact_us' => 'Nous contacter',
 
 // D
@@ -51,6 +52,9 @@ mais vous devriez certainement trouver ce que vous cherchez !',
 'erreur_creation_mot_cle' => 'erreur creation du mot cle ',
 'explication_groupes_mots_techniques' => 'les mots cl&eacute;s des groupes coch&eacute; ne seront pas affich&eacute;s dans les pages publiques',
 'explication_palette' => 'pour choisir une couleur: cliquez d\'abord sur le cercle puis sur le carr&eacute;',
+
+// F
+'fond_mot_cles_survol'=>'Couleur de fond des mots du nuage au survol', 
 
 // I
 'id' => 'id groupe',
