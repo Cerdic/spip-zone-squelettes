@@ -52,33 +52,20 @@ define('_SARKASPIP_CONFIG_AGENDA_SYMBOLE_PRECEDENT', '&lt;&lt;');
 define('_SARKASPIP_AFAIRE_JALONS_AFFICHES', '');
 define('_SARKASPIP_AFAIRE_ID_ARTICLE', '0');
 define('_SARKASPIP_AFAIRE_TAILLE_LOGO', '150');
-// Configuration cfg des plugins utilises par le squelette
+// Configuration minimale des plugins utilises par le squelette
 // -- Plugin BOUTONS TEXTE
-define('_SARKASPIP_CONFIG_BOUTONSTEXTE_TXTONLY', 'boutonstexte:texte_seulement');
-define('_SARKASPIP_CONFIG_BOUTONSTEXTE_TXTBACKSPIP', 'boutonstexte:retour_a_spip');
-define('_SARKASPIP_CONFIG_BOUTONSTEXTE_TXTSIZEUP', 'boutonstexte:augmenter_police');
-define('_SARKASPIP_CONFIG_BOUTONSTEXTE_TXTSIZEDOWN', 'boutonstexte:diminuer_police');
 define('_SARKASPIP_CONFIG_BOUTONSTEXTE_SELECTOR', '#wrapper');
-define('_SARKASPIP_CONFIG_BOUTONSTEXTE_JSFILE', 'boutonstexte.js');
-define('_SARKASPIP_CONFIG_BOUTONSTEXTE_CSSFILE', 'boutonstexte');
-define('_SARKASPIP_CONFIG_BOUTONSTEXTE_IMGPATH', 'images/fontsizeup.png');
 // -- Plugin FANCYBOX
-define('_SARKASPIP_CONFIG_FANCYBOX_MARGE', '5');
 define('_SARKASPIP_CONFIG_FANCYBOX_IMAGE', '.fancybox');
 define('_SARKASPIP_CONFIG_FANCYBOX_GALERIE', '.galerie .fancybox');
-define('_SARKASPIP_CONFIG_FANCYBOX_RETAILLE', 'true');
-define('_SARKASPIP_CONFIG_FANCYBOX_ARRIERE_PLAN', 'true');
-define('_SARKASPIP_CONFIG_FANCYBOX_OPACITE', '0.3');
-define('_SARKASPIP_CONFIG_FANCYBOX_FERME_CLIC', 'true');
 // -- Plugin NYROCEROS
 define('_SARKASPIP_CONFIG_NYROCEROS_TOUT', 'non');
 define('_SARKASPIP_CONFIG_NYROCEROS_IMAGE', '.nyroceros');
 define('_SARKASPIP_CONFIG_NYROCEROS_GALERIE', '.galerie .nyroceros');
 define('_SARKASPIP_CONFIG_NYROCEROS_DIAPORAMA', 'non');
-define('_SARKASPIP_CONFIG_NYROCEROS_PRELOAD', 'oui');
-define('_SARKASPIP_CONFIG_NYROCEROS_BGFOND', '#000000');
 // -- Plugin SOCIALTAGS
 define('_SARKASPIP_CONFIG_SOCIALTAGS_SELECTOR', '#socialtags');
+define('_SARKASPIP_CONFIG_SOCIALTAGS_TAGS', 'delicious:facebook:google:netvibes');
 
 // Pipelines specifiques a Sarka-SPIP
 // -- Declaration
