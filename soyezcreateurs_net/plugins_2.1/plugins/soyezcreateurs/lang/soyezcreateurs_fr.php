@@ -87,7 +87,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_cadre_vignettes' => 'Cadre vignettes (mode portail)',
 	'cfg_cadreinfo' => 'Cadres info',
 	'cfg_cadrestexte' => 'Cadres du contenu',
-	'cfg_cadre_vignettes' => 'Cadre vignettes (mode portail)',
 	'cfg_cartouche' => 'Cadre "Quoi de neuf", "Contenu"...',
 	'cfg_choix_banniere_label' => 'Choix de la banni&egrave;re (si pas de logo de survol pour le site)',
 	'cfg_choix_banniere_tableau' => 'Liste des banni&egrave;res',

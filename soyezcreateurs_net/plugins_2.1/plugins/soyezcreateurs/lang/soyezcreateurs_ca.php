@@ -36,6 +36,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_sd_notime' => 'El @djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_summary' => 'Agenda dels esdeveniments (de dilluns a diumenge)',
 	'agendamoisde' => 'Agenda del mes de',
+	'aidesc' => 'Aide sur SoyezCr&eacute;ateurs', # NEW
 	'alaune' => 'A la portada ',
 	'articlesconnexes' => 'Articles connexes',
 	'articlesordreantichrono' => 'Articles per ordre anticronol&ograve;gic',
@@ -43,7 +44,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'auteur' => 'Autor',
 	'auteurs_liste' => 'Llista d\'autors',
 	'auteurs_site' => 'Autors del lloc',
-	'avertissement_ie' => '<!--[if lt IE 7]><div style="color:#fff; background-color:#000; border:2px solid red; padding:1em; font-family: \'Trebuchet MS\', verdana, arial, helvetica, sans-serif; font-size: 120%; position:relative;"><p><strong style="color:#f00;">Advertiment</strong>&nbsp;: esteu fent servir una versi&oacute; caducada d\'Internet Explorer&nbsp;! No obstant, la totalitat del vostre lloc &eacute;s accessible.</p><p>Us convidem :</p><ol style="color:#fff;position:relative;"><li>a <a href="http://update.microsoft.com/">actualitzar</a> el vostre sistema d\'explotaci&oacute; i a instal&middot;lar la darrera versi&oacute; d\'Internet Explorer (per raons de <a href="http://www.pyrat.net/Utilisez-Windows-Update.html">seguretat</a>)</li><li>i a fer servir un navegador modern: <a href="http://www.mozilla-europe.org/ca/">FireFox</a>.</li></ol></div><![endif]-->',
 
 	// B
 	'barre_typo_generalisee' => 'Barra Tipogr&agrave;fica Generalitzada',
@@ -77,8 +77,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_anonymatglobal' => 'Anonimat Global',
 	'cfg_anonymatglobal_label' => 'Anonimat global (pot ser reactivat article per article amb la Paraula-clau "D&eacute;voilerIdentite")',
 	'cfg_apparence_header' => 'Aparen&ccedil;a del capdamunt de la p&agrave;gina',
-	'cfg_avertissementie' => 'Advertiment IE',
-	'cfg_avertissementie_label' => 'Amagar l\'advertiment d\'obsolesc&egrave;ncia d\'Internet Explorer 5, 5.5 i 6',
 	'cfg_bandeau_annonce' => 'Visualitzaci&oacute; de la banda d\'anuncis',
 	'cfg_bandeau_contact' => 'Publicaci&oacute; de la banda de contacte',
 	'cfg_bandeau_page' => 'A la banda d\'encap&ccedil;alament de la p&agrave;gina',
