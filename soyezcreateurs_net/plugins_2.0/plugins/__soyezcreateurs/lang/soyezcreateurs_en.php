@@ -36,6 +36,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_sd_notime' => 'The @djour_l@ @djour@ @dmois_l@ @dannee@',
 	'agenda_summary' => 'Calendar of events (forim monday to sunday)',
 	'agendamoisde' => 'Calendar for',
+	'aidesc' => 'Aide sur SoyezCr&eacute;ateurs', # NEW
 	'alaune' => 'Featured',
 	'articlesconnexes' => 'Related articles',
 	'articlesordreantichrono' => 'Articles in chronological order',
@@ -43,7 +44,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'auteur' => 'Author',
 	'auteurs_liste' => 'List of authors',
 	'auteurs_site' => 'Site authors',
-	'avertissement_ie' => '<!--[if lt IE 7]><div style="color:#fff; background-color:#000; border:2px solid red; padding:1em; font-family: \'Trebuchet MS\', verdana, arial, helvetica, sans-serif; font-size: 120%; position:relative;"><p><strong style="color:#f00;">Caution</strong>: you are using an old version of Internet Explorer! You can visit this site with your existing browser.</p><p>However, we suggest that you </p><ol style="color:#fff;position:relative;"><li><a href="http://update.microsoft.com/">update</a> your operating systemand install the most recent version of Internet Explorer (for <a href="http://www.pyrat.net/Utilisez-Windows-Update.html">security</a> reasons)</li><li>and use a modern browser: <a href="http://www.mozilla-europe.org/fr/">FireFox</a>.</li></ol></div><![endif]-->',
 
 	// B
 	'barre_typo_generalisee' => 'Typographical bar generalized',
@@ -77,8 +77,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_anonymatglobal' => 'Global anonymity',
 	'cfg_anonymatglobal_label' => 'Global anonymity (can be enabled article by article with the "D&eacute;voilerIdentite" keyword)',
 	'cfg_apparence_header' => 'Likeness of the header',
-	'cfg_avertissementie' => 'IE user\'s warning',
-	'cfg_avertissementie_label' => 'Hide the depreacated warning for Internet Explorer 5, 5.5 and 6',
 	'cfg_bandeau_annonce' => 'Display the announcement banner',
 	'cfg_bandeau_contact' => 'Display the joining banner',
 	'cfg_bandeau_page' => 'In the header banner of the page',
