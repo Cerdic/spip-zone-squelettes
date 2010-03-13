@@ -5,6 +5,8 @@ $GLOBALS['i18n_median_es'] = array(
 // A
 'aa_elements' => 'Elementos de los articulos',
 'accueil' => 'Inicio',
+'acces_rubrique'=>'Acceso a esta seccion',
+'articles_rubrique' => 'En esta seccion',
 
 // C
 'chapo' => 'chapo',
