@@ -146,10 +146,24 @@
 			{env}>
 	</fieldset>
 ]	
-[(#PLUGIN{SPIPLISTES}|oui)	
+[(#PLUGIN{SPIPLISTES}|ou{#PLUGIN{CLEVERMAIL}}|ou{#PLUGIN{ABOMAILMANS}}|oui)
+	[(#PLUGIN{ABOMAILMANS}|oui)
+		[(#SET{plugin, [(#PLUGIN{ABOMAILMANS, nom}|extraire_multi)]})]
+	]
+	[(#PLUGIN{ABOMAILMANS}|non)
+		[(#PLUGIN{CLEVERMAIL}|oui)
+			[(#SET{plugin, [(#PLUGIN{CLEVERMAIL, nom}|extraire_multi)]})]
+		]
+		[(#PLUGIN{CLEVERMAIL}|non)
+			[(#PLUGIN{SPIPLISTES}|oui)
+				[(#SET{plugin, [(#PLUGIN{SPIPLISTES, nom}|extraire_multi)]})]
+			]
+		]
+	]
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_form_lettre:></legend>
 		<p><:sarkaspip:cfg_inf_form_lettre:></p>
+		<p><:sarkaspip:cfg_inf_form_lettre_plugin{plugin=#GET{plugin}}:></p>
 		<INCLURE{fond=noisettes/cfg/inc_cfg_information_page}
 			{suffixe=_lettre}
 			{choix=titre_descriptif}
