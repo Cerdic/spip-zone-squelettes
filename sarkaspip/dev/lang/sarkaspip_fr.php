@@ -125,7 +125,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_boite_site' => 'Site',
 	'cfg_boite_sommaire' => 'Sommaire',
 	'cfg_boite_styles' => 'Configuration des styles',
-	'cfg_descr_accueil' => 'Vous &ecirc;tes sur la page d\'accueil de la configuration du squelette Sarka-SPIP. Vous utilisez actuellement la version @lbl_version@.',
+	'cfg_descr_accueil' => 'Vous &ecirc;tes sur la page d\'accueil de la configuration du squelette Sarka-SPIP. Vous utilisez actuellement :<ul style="margin: 0px 0px 5px; padding-left: 15px; font-size: 0.9em;"><li>Sarka-SPIP @lbl_vskel@</li><li>SPIP @lbl_vspip@</li><li>PHP @lbl_vphp@</li></ul>',
 	'cfg_descr_agenda' => 'L\'agenda inclus dans Sarka-SPIP permet d\'afficher un listing annuel ainsi qu\'un mini calendrier mensuel. Les caract&eacute;ristiques de ces deux affichages sont configurables dans cette page.',
 	'cfg_descr_album' => 'Le corps de la page album permet d\'afficher plusieurs blocs d\'information : la description, les photos avec plusieurs mod&egrave;les de pr&eacute;sentation, les documents joints et les commentaires post&eacute;s par des visiteurs. Cette page permet de configurer l\'affichage de tous ces blocs.',
 	'cfg_descr_article' => 'Le corps de la page article permet d\'afficher plusieurs blocs d\'information : la description, les documents et images joints et les commentaires post&eacute;s par des visiteurs. Cette page permet de configurer l\'affichage de tous ces blocs.',
