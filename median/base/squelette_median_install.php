@@ -11,24 +11,32 @@
     
   // création du groupe de mots clé squelette_median et de ses mots clés
     $Terreur = array();
-    if (sql_countsel('spip_mots', "titre IN ('_invisible_','bloc_sommaire','page_contact','photos_sommaire')") == 0) {
-
+    $Tstatuts = array('_invisible_','bloc_sommaire', 'edito_rubrique', 'form_account_creation', 
+                          'page_contact', 'page_souscription', 'photos_sommaire', 'restricted_access',
+                          'port_folio_left', 'classement_date', 'classement_date_inverse');
+                          
+    if (sql_countsel('spip_groupes_mots', "titre = 'squelette_Median'") == 0) {
         $id_groupe = sql_insertq('spip_groupes_mots', 
                    array('titre'=>'squelette_Median', 'descriptif'=>_T('median:mots_cles_techniques_median'),
                          'tables_liees'=>'articles,breves,rubriques,syndic', 'minirezo'=>'oui')
                   );
         if (sql_error() != '') die((_T('median:erreur_install_groupe_technique ')).sql_error());
-        
-        $Tstatuts = array('_invisible_','bloc_sommaire', 'edito_rubrique', 'form_account_creation', 
-                          'page_contact', 'page_souscription', 'photos_sommaire', 'restricted_access',
-                          'port_folio_left');
-        foreach ($Tstatuts as $st) {
-          sql_insertq('spip_mots', 
+    }
+    else {
+    	$res = sql_fetsel(array('id_groupe'), 'spip_groupes_mots', "titre = 'squelette_Median'");
+        $id_groupe = $res['id_groupe'];
+        if (sql_error() != '') die((_T('median:erreur_install_groupe_technique ')).sql_error());
+    }
+    
+    foreach ($Tstatuts as $st) {
+        if (sql_countsel('spip_mots', "titre = '".$st."'") == 0) {
+            sql_insertq('spip_mots', 
                       array('titre'=>$st, 'id_groupe'=>$id_groupe, 'type'=>'squelette_Median')
                      );
-          if (sql_error() != '') $Terreurs[] = (_T('erreur_creation_mot_cle')).$st.': '.sql_error();
+            if (sql_error() != '') $Terreurs[] = (_T('erreur_creation_mot_cle')).$st.': '.sql_error();
         }
     }
+    
     
   // création du groupe de mots clés Coordonnees et de ses mots cles
     if (sql_countsel('spip_groupes_mots', "titre = Coordonnees") == 0) {
