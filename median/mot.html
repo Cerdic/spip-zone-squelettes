@@ -43,8 +43,8 @@
   [(#REM) Fil d'Ariane ]
   <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:mots_clefs:><BOUCLE_ariane(GROUPES_MOTS){id_groupe}> &gt; [(#TITRE|couper{80})]</BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]</div>
 
-  #SET{larg_logo, 20}
-  #SET{ht_logo, 20}    
+[(#SET{larg_logo, [(#CONFIG{median/taille_micro_vignettes,20})]})]
+[(#SET{ht_logo, [(#CONFIG{median/taille_micro_vignettes,20})]})]
 
 	<div id="conteneur">
 		[(#REM) Contenu principal : titre et descriptif du mot ]
@@ -99,7 +99,11 @@
             <h2><:median:pages_pertinentes:></h2>
             <ul>
                 <BOUCLE_articles(ARTICLES) {id_mot} {par popularite}{inverse} {pagination 10} {doublons}>
-                <li style="[background-image: url((#LOGO_ARTICLE_RUBRIQUE||image_passe_partout{#GET{larg_logo},#GET{larg_logo}}|image_recadre{#GET{larg_logo},#GET{ht_logo},left=0 top=0}|extraire_attribut{src}));][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})]">
+    		[(#CONFIG{median/micro_vignettes_carrees}|=={oui}|?{
+                    <li style="[background-image: url((#LOGO_ARTICLE_RUBRIQUE||image_passe_partout{#GET{larg_logo},#GET{larg_logo}}|image_recadre{#GET{larg_logo},#GET{ht_logo},left=0 top=0}|extraire_attribut{src}));][padding-left: (#GET{larg_logo}|plus{5})px;][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})]">
+        		    ,
+                    <li style="[background-image: url((#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{larg_logo},#GET{ht_logo}}|extraire_attribut{src}));][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})][padding-left: (#GET{larg_logo}|plus{5})px;]">
+            })]
                 <h3><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h3>
                       [(#DESCRIPTIF|sinon{  
                         [(#CHAPO|sinon{[(#TEXTE|couper{140})]})]
@@ -118,7 +122,11 @@
             <h2><:median:rubriques_pertinentes:></h2>
             <ul>
                 <BOUCLE_rubriques(RUBRIQUES) {id_mot} {par titre} {doublons}>
-                <li style="[background-image: url((#LOGO_RUBRIQUE||image_passe_partout{#GET{larg_logo},#GET{larg_logo}}|image_recadre{#GET{larg_logo},#GET{ht_logo},left=0 top=0}|extraire_attribut{src}));][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})]">
+    		[(#CONFIG{median/micro_vignettes_carrees}|=={oui}|?{
+                    <li style="[background-image: url((#LOGO_RUBRIQUE||image_passe_partout{#GET{larg_logo},#GET{larg_logo}}|image_recadre{#GET{larg_logo},#GET{ht_logo},left=0 top=0}|extraire_attribut{src}));][padding-left: (#GET{larg_logo}|plus{5})px;][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})]">
+        		    ,
+                    <li style="[background-image: url((#LOGO_RUBRIQUE||image_reduire{#GET{larg_logo},#GET{ht_logo}}|extraire_attribut{src}));][(#COMPTEUR_BOUCLE|=={1}|?{'border-top: 0;'})][padding-left: (#GET{larg_logo}|plus{5})px;]">
+            })]
                     <h3><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h3>
                         [(#DESCRIPTIF|sinon{[<p>(#TEXTE|couper{140})</p>]})]
                         <div class="read_more" style="background-image: url('#CHEMIN{logo_access_section.jpg}');"><a href="#URL_RUBRIQUE"><:median:acces_rubrique:></a></div>
