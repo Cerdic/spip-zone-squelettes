@@ -6,6 +6,9 @@ $GLOBALS['i18n_median_en'] = array(
 'aa_elements' => 'Article\'s elements to use',
 'accueil' => 'Home',
 'acces_rubrique'=>'Access section',
+'afficher_logo_xhtml'=>'Show logo "valid XHTML" in the footer',
+'articles_rubrique' => 'In this section',
+
 
 // C
 'chapo' => 'introduction',

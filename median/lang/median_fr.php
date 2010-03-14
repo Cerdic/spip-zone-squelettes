@@ -6,6 +6,7 @@ $GLOBALS['i18n_median_fr'] = array(
 'aa_elements' => 'El&eacute;ments de l\'article &agrave; utiliser',
 'accueil' => 'Accueil',
 'acces_rubrique'=>'Acc&egrave;s &agrave; la rubrique',
+'afficher_logo_xhtml'=>'Afficher le logo "valide XHTML" dans le pied de page',
 'articles_rubrique' => 'Dans cette rubrique',
 
 // C
