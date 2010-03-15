@@ -10,13 +10,10 @@
 
 [(#REM) le nécessaire pour le diaporama innerfade ]
 <script src="#CHEMIN{jquery.innerfade.js}" type="text/javascript"></script>
-#SET{vitesse_diaporama, 3000}
-<BOUCLE_recup_vitesse(BREVES){titre=vitesse_diaporama}{0,1}>
-    #SET{vitesse_diaporama, #TEXTE*}
-</BOUCLE_recup_vitesse>
+[(#SET{vitesse_diaporama, [(#CONFIG{median/vitesse_diaporama}|sinon{10000})]})]
 <script type="text/javascript">  
   $(document).ready( function(){ 
-      $('#defile_tofs').innerfade({ speed: 'slow', timeout: [(#GET{vitesse_diaporama}|sinon{6000})], type: 'sequence', containerheight: '120px' });
+      $('#defile_tofs').innerfade({ speed: 'slow', timeout: [(#GET{vitesse_diaporama})], type: 'sequence', containerheight: '120px' });
   });
 </script>
 </head>
