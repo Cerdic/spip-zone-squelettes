@@ -86,6 +86,7 @@ mais vous devriez certainement trouver ce que vous cherchez !',
 //'saisir_id_groupes_mots' => 'entrez les ID des groupes de mots s&eacute;par&eacute;s par un |',
 'saisir_couleur' => 'choisissez une couleur en cliquant dans la zone de saisie',
 'sous-titre'=> 'sous titre',
+'subscribe_newsletter'=>'Nos lettres d\'information',
 
 // T
 'taille_micro_vignettes'=>'Taille en pixels des logos des articles dans les pages rubriques (micro-vignettes)',

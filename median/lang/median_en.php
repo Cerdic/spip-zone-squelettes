@@ -85,9 +85,10 @@ you certainly find what you are looking for!',
 
 // S
 'site_reference'=>'Referenced site', 
+//'saisir_id_groupes_mots' => 'enter the groups ID separated by a  |',
 'saisir_couleur' => 'choose a color by clicking in the input box',
 'sous-titre'=> 'subtitle',
-//'saisir_id_groupes_mots' => 'enter the groups ID separated by a  |',
+'subscribe_newsletter'=>'Subscribe ours newsletters',
 
 // T
 'taille_micro_vignettes'=>'Article\'s logo size  in pixels for section\'s pages (micro-thumbs)',

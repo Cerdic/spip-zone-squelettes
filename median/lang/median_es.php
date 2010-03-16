@@ -72,9 +72,11 @@ de todas maneras, van a encontrar lo que buscan !',
 'rubriques_pertinentes' => 'Secciones pertinentes',
 
 // S
+'site_reference'=>'Referencia sitio', 
 //'saisir_id_groupes_mots' => 'entrez les ID des groupes de mots s&eacute;par&eacute;s par un |',
 'saisir_couleur' => 'Elegir una color haciendo clic en la zona de entrada',
 'sous-titre'=> 'subtitulo',
+'subscribe_newsletter'=>'Boletines informativos nuestro',
 
 // T
 'texte' => 'texto',
