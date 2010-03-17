@@ -1,0 +1,49 @@
+#CACHE{3600}
+[(#SET{titretop,<:plan_site|sc_nettoyer_marqueur|texte_script:>})]
+<INCLURE{fond=noisettes/header/header,
+	template=mots_filtres,
+	title=<:soyezcreateurs:recherche_filtres|texte_script:>,
+	titretop=#GET{titretop},
+	env
+	}
+>
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP"><:soyezcreateurs:accueil:></a></li>
+	<li><:plan_site:></li>
+	</ul>
+	</div>
+<div class="texte">
+<div class="cartouche">
+<div class="titrepage"><h1><:resultats_recherche:></h1></div>
+</div>
+#SET{FiltreGroupes,#ARRAY}
+<BOUCLE_FiltreGroupes(GROUPES_MOTS){titre==^[^_]}>
+#SET{FiltreGroupes,
+	   #GET{FiltreGroupes}|push{#ID_GROUPE}}
+</BOUCLE_FiltreGroupes>
+[<div id="mots_filtres" class="ajax">
+(#FORMULAIRE_RECHERCHE_PAR_MOTS{#GET{FiltreGroupes},#URL_PAGE{mots_filtres}})
+</div>]	
+<div class="clearing">&nbsp;</div>
+
+<B_recherche_par>
+	<ul>
+	<BOUCLE_recherche_par(ARTICLES){mots_selon_id}{!par date}>
+		<li><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a> : [(#DATE|nom_jour)] [(#DATE|affdate)]</li>
+	</BOUCLE_recherche_par>
+	</ul>
+</B_recherche_par>
+	<p>Nada !</p>
+<//B_recherche_par>
+
+</div><!-- Fin de .texte -->
+
+[(#FORMULAIRE_ADMIN)]
+
+<INCLURE{fond=noisettes/footer/footer,
+	template=mots_filtres,
+	titretop=#GET{titretop},
+	env
+	}
+>
