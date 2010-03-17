@@ -68,6 +68,7 @@ de todas maneras, van a encontrar lo que buscan !',
 'pages_pertinentes' => 'Paginas pertinentes',
 
 // R
+'rechercher'=>'Buscar',
 'reglages' => 'Arreglos varios',
 'rubriques_pertinentes' => 'Secciones pertinentes',
 

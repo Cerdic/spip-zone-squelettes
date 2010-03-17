@@ -80,6 +80,7 @@ you certainly find what you are looking for!',
 'pages_pertinentes' => 'Relevant pages',
 
 // R
+'rechercher'=>'Search',
 'reglages' => 'Various settings',
 'rubriques_pertinentes' => 'Relevant sections',
 

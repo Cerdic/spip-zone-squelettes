@@ -78,6 +78,7 @@ mais vous devriez certainement trouver ce que vous cherchez !',
 'pages_pertinentes' => 'Pages pertinentes',
 
 // R
+'rechercher'=>'Rechercher',
 'reglages' => 'R&eacute;glages divers',
 'rubriques_pertinentes' => 'Rubriques pertinentes',
 
