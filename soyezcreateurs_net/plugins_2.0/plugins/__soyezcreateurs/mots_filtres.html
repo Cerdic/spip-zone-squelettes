@@ -1,8 +1,10 @@
 #CACHE{3600}
-[(#SET{titretop,<:plan_site|sc_nettoyer_marqueur|texte_script:>})]
+[(#SET{titretop,<:resultats_recherche|sc_nettoyer_marqueur|texte_script:>})]
+<BOUCLE_Tags(MOTS){id_mot IN #ENV{mots}}{par titre}>[(#SET{tags,[(#GET{tags}|concat{[[(#COMPTEUR_BOUCLE|>{1}|?{+})](#TITRE|ucfirst)]})]})]</BOUCLE_Tags>
+[(#SET{title,<:resultats_recherche|texte_script:>[ : (#GET{tags}|attribut_html|texte_script)]})]
 <INCLURE{fond=noisettes/header/header,
 	template=mots_filtres,
-	title=<:soyezcreateurs:recherche_filtres|texte_script:>,
+	title=#GET{title},
 	titretop=#GET{titretop},
 	env
 	}
@@ -13,30 +15,33 @@
 	<li><:plan_site:></li>
 	</ul>
 	</div>
-<div class="texte">
-<div class="cartouche">
-<div class="titrepage"><h1><:resultats_recherche:></h1></div>
-</div>
-#SET{FiltreGroupes,#ARRAY}
-<BOUCLE_FiltreGroupes(GROUPES_MOTS){titre==^[^_]}{tables_liees LIKE %articles%}>
-#SET{FiltreGroupes,
-	   #GET{FiltreGroupes}|push{#ID_GROUPE}}
-</BOUCLE_FiltreGroupes>
-[<div id="mots_filtres" class="ajax">
-(#FORMULAIRE_RECHERCHE_PAR_MOTS{#GET{FiltreGroupes},#URL_PAGE{mots_filtres}})
-</div>]	
-<div class="clearing">&nbsp;</div>
+	<div class="texte">
+	
+	<INCLURE{fond=noisettes/navigation/frmrechercheparmots,env}>	
+	<div class="clearing">&nbsp;</div>
+	<div class="cartouche">
+		<div class="titrepage"><h1><:resultats_recherche:></h1></div>
+	</div>
 
-<B_recherche_par>
-	<ul>
-	<BOUCLE_recherche_par(ARTICLES){mots_selon_id}{!par date}>
-		<li><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a> : [(#DATE|nom_jour)] [(#DATE|affdate)]</li>
-	</BOUCLE_recherche_par>
-	</ul>
-</B_recherche_par>
-	<p>Nada !</p>
-<//B_recherche_par>
+	<div id="resultats">
+	<BOUCLE_ArticlesExclus(ARTICLES){titre_mot=PasDansRecherche}{doublons}{!lang_select}></BOUCLE_ArticlesExclus>
+	[(#SET{nbelementstrouves,0})]
+	<B_recherche_par>
+		#ANCRE_PAGINATION
+		<ul>
+		<BOUCLE_recherche_par(ARTICLES){mots_selon_id}{!par date}{pagination 25}{doublons}{!lang_select}>
+			<li><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a> : [(#DATE|nom_jour)] [(#DATE|affdate)]</li>
+		</BOUCLE_recherche_par>
+		</ul>
+		[<p class="pagination">(#PAGINATION)</p>]
+		[(#SET{nbelementstrouves,#GET{nbelementstrouves}|plus{#GRAND_TOTAL}})]
 
+	</B_recherche_par>
+	<p>
+	[(#GET{nbelementstrouves}|=={0}|?{<:soyezcreateurs:recherche_infructueuse:>})]
+	[(#GET{nbelementstrouves}|>{0}|?{<:soyezcreateurs:recherche_total:>&nbsp;: [<strong>(#GET{nbelementstrouves})</strong>]})]
+	</p>
+	</div>
 </div><!-- Fin de .texte -->
 
 [(#FORMULAIRE_ADMIN)]
