@@ -7,16 +7,20 @@
       [<div class="pagination">(#PAGINATION{#CONFIG{sarkaspip_recherche/modele_pagination_recherche_article}})</div>]
     ]
     <ul>
-<BOUCLE_site(SYNDIC){pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_article, 5}}
+<BOUCLE_site(SITES){pagination #CONFIG{sarkaspip_recherche/pas_pagination_recherche_article, 5}}
 	{id_mot=#ENV{id1,#ENV{id2,#ENV{id3}}}}
 	{id_mot=#ENV{id2,#ENV{id3,#ENV{id1}}}}
 	{id_mot=#ENV{id3,#ENV{id1,#ENV{id2}}}}
 >
+#SET{url, #URL_PAGE{site, id_syndic=#ID_SYNDIC}}
+[(#SYNDICATION|=={oui}|non)
+	#SET{url, #URL_SITE}
+]
   	[(#INCLURE{fond=noisettes/recherche/inc_recherche_extrait}
         {titre=#NOM_SITE}
         {afficher_date=non}
         {date=#DATE}
-        {url=#URL_PAGE{site}|parametre_url{id_syndic,#ID_SYNDIC}}
+        {url=#GET{url}}
         {afficher_logo=oui}
         {logo=#LOGO_SITE||inserer_attribut{alt,#NOM_SITE|texte_backend}}        
         {afficher_auteur=non}
