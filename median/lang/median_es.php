@@ -6,7 +6,7 @@ $GLOBALS['i18n_median_es'] = array(
 'aa_elements' => 'Elementos de los articulos',
 'accueil' => 'Inicio',
 'acces_rubrique'=>'Acceso a esta seccion',
-'afficher_logo_xhtml'=>'mostrar el logo "valid XHTML" en el footer',
+'afficher_logo_xhtml'=>'Mostrar el logo "valid XHTML" en el footer',
 'articles_rubrique' => 'En esta seccion',
 
 
@@ -15,8 +15,8 @@ $GLOBALS['i18n_median_es'] = array(
 'choix_aa' => 'Articulo de presentacion',
 'choix_groupes_mots_techniques' => 'Definicion de los grupos de palabras claves tecnicos',
 'configuration_median' => 'Configuracion del esqueleto Median',
-'couleur_body'=>'color del fondo del sitio (body)',
-'couleur_fond_page'=>'color del fondo de la pagina principal',
+'couleur_body'=>'Color del fondo del sitio (body)',
+'couleur_fond_page'=>'Color del fondo de la pagina principal',
 'choix_teinte_generale' => 'Colores del sitio',
 'couleur_principale' => 'Color principal',
 'couleur_secondaire' => 'Color secundario',
@@ -52,7 +52,7 @@ de todas maneras, van a encontrar lo que buscan !',
 'error_install_groupe_technique' => 'error de creacion del grupo de palabras claves tecnicas para el esqueleto Median',
 'error_install_groupe_coordonnees' => 'error de creacion del grupo de palabras claves del grupo de palabras claves de coordenadas para el esqueleto Median',
 'error_creation_mot_cle' => 'error de creacion de la palabra clave',
-'explication_groupes_mots_techniques' => 'las palabras claves de los grupos seleccionados no seran mostrados en las paginas publicas',
+'explication_groupes_mots_techniques' => 'Las palabras claves de los grupos seleccionados no seran mostrados en las paginas publicas',
 'explication_palette' => 'para elegir una color: primero haz clic en el circulo, y depues en el cuadrado',
 
 // F
@@ -103,7 +103,7 @@ de todas maneras, van a encontrar lo que buscan !',
 'titre_median' => 'Esqueleto Median',
 'top_logo_couleur' => 'Color',
 'top_logo_largeur' => 'Anchura maxima (en pixeles, si el tiyulo es mas largo, habra un salto a la linea)',
-'top_logo_police' => 'fuente (nombre del archivo ttf colocado en la carpeta /squelettes/polices)',
+'top_logo_police' => 'Fuente (nombre del archivo ttf colocado en la carpeta /squelettes/polices)',
 'top_logo_taille' => 'Tamano de la fuente (en pixeles)',
 'top_logo_url' => 'El logo arriba de la pagina esta un vinculo hasta la pagina de inicio, pero en este campo puedes elegir otra URL',
 
