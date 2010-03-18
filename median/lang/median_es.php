@@ -6,14 +6,18 @@ $GLOBALS['i18n_median_es'] = array(
 'aa_elements' => 'Elementos de los articulos',
 'accueil' => 'Inicio',
 'acces_rubrique'=>'Acceso a esta seccion',
+'afficher_logo_xhtml'=>'mostrar el logo "valid XHTML" en el footer',
 'articles_rubrique' => 'En esta seccion',
 
+
 // C
-'chapo' => 'chapo',
+'chapo' => 'Descripción',
 'choix_aa' => 'Articulo de presentacion',
 'choix_groupes_mots_techniques' => 'Definicion de los grupos de palabras claves tecnicos',
-'choix_teinte_generale' => 'Las colores del sitio',
 'configuration_median' => 'Configuracion del esqueleto Median',
+'couleur_body'=>'color del fondo del sitio (body)',
+'couleur_fond_page'=>'color del fondo de la pagina principal',
+'choix_teinte_generale' => 'Colores del sitio',
 'couleur_principale' => 'Color principal',
 'couleur_secondaire' => 'Color secundario',
 'couleur_blocs' => 'Color de los bloques de la pagina de inicio',
@@ -25,9 +29,13 @@ $GLOBALS['i18n_median_es'] = array(
 'couleur_titre_principale' => 'Color de los titulos principales',
 'couleur_titre_secondaire' => 'Color de los titulos secundarios',
 'couleur_titre_tertiaire' => 'Color de los titulos terceros',
+'couleur_liens'=>'Color de los enlaces',
+'couleur_liens_survol'=>'Color del sobrevuelo de las enlaces',
+'couleur_liens_out'=>'Color de los enlaces eternales',
 'contact_us' => 'Para contactarnos',
 
 // D
+'defaut_meta_keywords' => 'SPIP, esqueleto Median',
 'defaut_texte_404' => 'esta pagina no existe, o su direcion ha cambiado . . . ahora puedes :
 <ul>
   <li>usar el menu para explorar las subsecciones</li>
@@ -35,7 +43,6 @@ $GLOBALS['i18n_median_es'] = array(
   <li>usar el buscador</li>
 </ul>
 de todas maneras, van a encontrar lo que buscan !',
-'defaut_meta_keywords' => 'SPIP, esqueleto Median',
 'defaut_texte_titre_nuage' => 'Palabras claves',
 'defaut_texte_creation_compte' => 'El acceso a esta pagina esta reservado para usadores identificados',
 'defaut_texte_acces_restreint' => 'Quieres crear una cuenta?',
@@ -48,8 +55,12 @@ de todas maneras, van a encontrar lo que buscan !',
 'explication_groupes_mots_techniques' => 'las palabras claves de los grupos seleccionados no seran mostrados en las paginas publicas',
 'explication_palette' => 'para elegir una color: primero haz clic en el circulo, y depues en el cuadrado',
 
+// F
+'fond_mot_cles_survol'=>'Color de fondo de las palabras claves al sobrevuelo',
+
 // I
 'id' => 'id grupo',
+'image_typo' => 'Titulo de la pagina cuando no hay ningun logo del sitio',
 
 // L
 'lire_suite' => 'Leer mas',
