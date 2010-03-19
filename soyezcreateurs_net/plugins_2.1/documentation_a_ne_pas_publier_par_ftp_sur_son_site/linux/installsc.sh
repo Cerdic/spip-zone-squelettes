@@ -20,6 +20,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/forms/forms_et_
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/fulltext
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/gestion_documents
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/porte_plume_extras/enluminures_typographiques_v3
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/porte_plume_extras/partout
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/protection_formulaires
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/saisies
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/slogan
@@ -36,6 +37,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/acces_restreint
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/autorite
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/clevermail/2_0 ./clevermail/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/contact
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/critere_mots
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/facteur
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/Lecteur_multimedia
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/menu_langues_liens
