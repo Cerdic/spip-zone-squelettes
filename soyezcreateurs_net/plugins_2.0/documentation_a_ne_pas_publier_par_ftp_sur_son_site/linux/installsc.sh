@@ -35,6 +35,8 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/savecfg
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/gestion_documents
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/contact
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/protection_formulaires
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/critere_mots
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/porte_plume_extras/partout
 #sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/woopra
 #sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/notation
 
