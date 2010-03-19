@@ -1,4 +1,8 @@
 <?php
+// Supprimer systematiquement les numeros des titres et noms
+$GLOBALS['table_des_traitements']['TITRE'][]= 'typo(supprimer_numero(%s), "TYPO", $connect)';
+$GLOBALS['table_des_traitements']['NOM'][]= 'typo(supprimer_numero(%s), "TYPO", $connect)';
+
 // Liste des rubriques specialisees standard du squelette
 // Pour ajouter des rubriques perso, definir de la meme facon les constantes _PERSO_XXX
 // dans le fichier mes_options.php
