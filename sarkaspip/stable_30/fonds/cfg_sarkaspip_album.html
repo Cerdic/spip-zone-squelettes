@@ -145,6 +145,7 @@
 
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_album_exif:></legend>
+[(#PLUGIN{PHOTO_INFOS}|oui)
 		<p><:sarkaspip:cfg_inf_album_zoom_exif:></p>
 		<label>
 			<input type="radio" name="afficher_exif" value="oui" [(#ENV{afficher_exif, non}|=={oui}|?{checked="checked"})] />
@@ -154,6 +155,11 @@
 			<input type="radio" name="afficher_exif" value="non" [(#ENV{afficher_exif, non}|=={non}|?{checked="checked"})] />
 			<:sarkaspip:cfg_lbl_non:>
 		</label>
+]
+[(#PLUGIN{PHOTO_INFOS}|non)
+		#SET{plugin, Metadonn&eacute;es photo}
+		<p class="avertissement"><:sarkaspip:cfg_inf_plugin_inactif{lbl_plugin=#GET{plugin}}:></p>
+]
 	</fieldset>
 
 	<fieldset>
