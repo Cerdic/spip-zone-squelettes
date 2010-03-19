@@ -132,9 +132,9 @@
 			<:sarkaspip:cfg_lbl_non:>
 		</label>
 	</fieldset>
-[(#PLUGIN{SHOUTBOX}|oui)	
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_form_dialogue:></legend>
+[(#PLUGIN{SHOUTBOX}|oui)	
 		<p><:sarkaspip:cfg_inf_form_dialogue:></p>
 		<INCLURE{fond=noisettes/cfg/inc_cfg_information_page}
 			{suffixe=_dialogue}
@@ -144,8 +144,16 @@
 			{defaut_titre=<:sarkaspip:dialoguer_site:>}
 			{defaut_descriptif=<:sarkaspip:dialogue_descriptif:>}
 			{env}>
+]
+[(#PLUGIN{SHOUTBOX}|non)
+		#SET{plugin, Shoutbox}
+		<p class="avertissement"><:sarkaspip:cfg_inf_plugin_inactif{lbl_plugin=#GET{plugin}}:></p>
+]
 	</fieldset>
-]	
+
+	<fieldset>
+		<legend><:sarkaspip:cfg_lgd_form_lettre:></legend>
+[(#SET{plugin, ''})]
 [(#PLUGIN{SPIPLISTES}|ou{#PLUGIN{CLEVERMAIL}}|ou{#PLUGIN{ABOMAILMANS}}|oui)
 	[(#PLUGIN{ABOMAILMANS}|oui)
 		[(#SET{plugin, [(#PLUGIN{ABOMAILMANS, nom}|extraire_multi)]})]
@@ -160,8 +168,6 @@
 			]
 		]
 	]
-	<fieldset>
-		<legend><:sarkaspip:cfg_lgd_form_lettre:></legend>
 		<p><:sarkaspip:cfg_inf_form_lettre:></p>
 		<p><:sarkaspip:cfg_inf_form_lettre_plugin{plugin=#GET{plugin}}:></p>
 		<INCLURE{fond=noisettes/cfg/inc_cfg_information_page}
@@ -171,8 +177,13 @@
 			{label_descriptif=<:sarkaspip:cfg_lbl_form_descriptif:>}
 			{defaut_titre=<:sarkaspip:inscrire_a_newsletter:>}
 			{env}>
-	</fieldset>
 ]	
+[(#GET{plugin}|non)
+		#SET{plugins, "<ul><li>&#171; Abomailmans &#187;</li><li>&#171; Clevermail &#187;</li><li>&#171; SPIP-Listes &#187;</li>"}
+		<p class="avertissement"><:sarkaspip:cfg_inf_plugins_inactifs{lbl_plugins=#GET{plugins}}:></p>
+]
+	</fieldset>
+
 	<fieldset>
 		<legend><:sarkaspip:cfg_lgd_form_inscription:></legend>
 		<p><:sarkaspip:cfg_inf_form_inscription:></p>
