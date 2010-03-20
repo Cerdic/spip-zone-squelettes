@@ -45,6 +45,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_documents' => 'Par d&eacute;faut, n\'affiche pas les photos, celles-ci &eacute;tant affich&eacute;es usuellement via un port-folio. Vous pouvez forcer l\'affichage des photos au cas o&ugrave; vous n\'affichez pas de port-folio.',
 	'description_article-filariane' => 'Affiche l\'arborescence des rubriques jusqu\'&agrave; l\'article.',
 	'description_portfolio' => 'Port-folio de la distribution par d&eacute,faut de SPIP',
+	'description_navigation_rubriques' => 'Liste des rubriques et des sous-rubriques (toutes langues) tri&eacute;es par titre.',
 	
 	'nom_article-contenuprincipal' => 'Contenu principal',
 	'nom_rubrique-contenuprincipal' => 'Contenu principal',
@@ -54,6 +55,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_petition' => 'P&eacute;tition',
 	'nom_portfolio' => 'Port-folio',
 	'nom_logositespip' => 'Logo du site SPIP',
+	'nom_formulaire_recherche' => 'Formulaire de recherche',
+	'nom_navigation_rubriques' => 'Navigation par rubriques',
 	
 	'label_afficher_date' => 'Afficher la date de publication&nbsp;?',
 	'label_afficher_date_modif' => 'Afficher la date de derni&egrave;re modification&nbsp;?',
@@ -70,7 +73,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_taille_max_image' => 'Taille maximum de l\'image (en pixels)&nbsp;:',
 	'label_afficher_descriptif' => 'Afficher descriptif&nbsp;?',
 	'label_afficher_recherche' => 'Afficher le texte recherch&eacute;&nbsp;?',
-	'label_inclure_photos_vues' => 'Afficher les photos d&eacute;j&eacute; inclues dans la page&nbsp;?',
+	'label_inclure_photos_vues' => 'Afficher les photos d&eacute;j&agrave; inclues dans la page&nbsp;?',
+	'label_afficher_titre_rubriques' => 'Afficher "Rubriques" comme titre&nbsp;?',
 	
 	// Description du bloc avantcontenu
 	'nom_bloc_avantcontenu' => 'Avant le contenu principal',
