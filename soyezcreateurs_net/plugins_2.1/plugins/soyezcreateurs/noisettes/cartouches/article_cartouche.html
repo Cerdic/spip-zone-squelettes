@@ -1,5 +1,13 @@
 <BOUCLE_article_principal(ARTICLES) {id_article}>
-<div id="artrecents">
+[(#SET{div_artrecents,0})]
+[(#REM) 
+		On ne va afficher la liste des articles que :
+		- s'il y a plusieurs
+		- et que les articles ne sont pas listés dans le menu principal (mot clef AfficherArticlesMenu)
+]
+<BOUCLE_PlusieursArticles(ARTICLES) {id_rubrique} {lang} {1,1}>
+<BOUCLE_AfficherArticlesMenu(RUBRIQUES) {id_rubrique} {titre_mot=AfficherArticlesMenu}> </BOUCLE_AfficherArticlesMenu>
+<div id="artrecents">#SET{div_artrecents,1}
 		<B_articles_rubrique>
 		<h2><:soyezcreateurs:memerubrique:></h2>
 		<ul>
@@ -8,31 +16,33 @@
 		</BOUCLE_articles_rubrique>
 		</ul>
 		</B_articles_rubrique>
+<//B_AfficherArticlesMenu>
+</BOUCLE_PlusieursArticles>		
+
 [(#VAL{cartouche}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|oui)
-[(#INCLURE{fond=modeles/documentsjoints}{id_article})]
+[[(#GET{div_artrecents}|non)<div id="artrecents">[(#SET{div_artrecents,1})]](#INCLURE{fond=modeles/documentsjoints}{id_article}{cartouche=_cartouche})]
 ]
 
 <BOUCLE_GpAdmin1(GROUPES_MOTS){titre==^_}>
 	<BOUCLE_MotsExclus1(MOTS){id_groupe}{doublons 1}> </BOUCLE_MotsExclus1>
 </BOUCLE_GpAdmin1>
 <B_MotsClefsArticle>
-<hr />
+[(#GET{div_artrecents}|non)<div id="artrecents">[(#SET{div_artrecents,1})]]
 <h2><:mots_clefs:></h2>
 <ul>
 <BOUCLE_MotsClefsArticle(MOTS){id_article}{doublons 1}>
 <li><a href="#_MotsClefsArticle:URL_MOT" rel="tag"[ title="(#_MotsClefsArticle:DESCRIPTIF|attribut_html)"]>[(#_MotsClefsArticle:TITRE|sc_replace{'_',' '})]</a></li>
 </BOUCLE_MotsClefsArticle>
 </ul>
-</B_MotsClefsArticle>
-
 <BOUCLE_EstDansUnMenuHaut(RUBRIQUES){id_secteur}{titre_mot=MenuHaut}>
 [(#CONFIG{soyezcreateurs/navigationtransversalelocale,locale}|=={locale}|oui)[(#INCLURE{fond=noisettes/articles_connexes_locaux}{id_secteur}{id_article})]]
 [(#CONFIG{soyezcreateurs/navigationtransversalelocale,locale}|=={globale}|oui)[(#INCLURE{fond=noisettes/articles_connexes}{id_secteur}{id_article})]]
 </BOUCLE_EstDansUnMenuHaut>
 [(#INCLURE{fond=noisettes/articles_connexes}{id_secteur}{id_article})]
 <//B_EstDansUnMenuHaut>
+</B_MotsClefsArticle>
 
-</div>
+[(#GET{div_artrecents}|oui)</div>]
 [<div id="signature">
 (#FORMULAIRE_SIGNATURE)
 </div>]

@@ -183,6 +183,25 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			create_mot("_Specialisation_Rubrique", "PlanLocal", "Affecter ce mot clef aux rubriques où vous voulez afficher le plan local à la place de la liste des articles.");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.15','non');
 		}
+		if (version_compare($current_version,'3.0.0','<')) {
+			// PasDansPlan devient utilisable aussi au niveau des articles
+			$id_groupe_actuel = id_groupe("_Specialisation_Rubrique");
+			$id_mot = id_mot("PasDansPlan", $id_groupe_actuel);
+			if ($id_mot>0) {
+				$id_groupe_destination = id_groupe("_Specialisation_Rubrique_ou_Article");
+				sql_updateq('spip_mots', 
+					array(
+						'id_groupe'  => $id_groupe_destination, 
+						'descriptif' => "Permet de masquer une rubrique, et tout son contenu (y compris les sous-rubriques) du plan du site et des documents à télécharger.\n\nPermet aussi de le faire article par article.",
+						'texte'  => "À affecter aux rubriques ou articles qui ne doivent pas être affichés dans le plan du site et dans la liste des documents à télécharger."
+						),
+					'id_mot='  . intval($id_mot));
+			}
+			// Activer les crayons dans ecrire
+			ecrire_meta('crayons', 'a:9:{s:9:"barretypo";s:2:"on";s:11:"msgNoChange";N;s:10:"msgAbandon";N;s:5:"filet";N;s:11:"yellow_fade";N;s:9:"clickhide";N;s:12:"reduire_logo";s:3:"400";s:11:"espaceprive";s:2:"on";s:13:"exec_autorise";s:62:"articles,articles_edit,naviguer,rubriques_edit,sites,portfolio";}','non');
+			spip_log("SoyezCreateurs maj 3.0.0", "soyezcreateurs_install");
+			#ecrire_meta($nom_meta_base_version,$current_version='3.0.0','non');
+		}
 
 		/*
 		#En attente
