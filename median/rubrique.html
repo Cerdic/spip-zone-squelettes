@@ -18,7 +18,10 @@
 (#REM)]<BOUCLE_sites_exclus(SITES) {titre_mot=_invisible_} {doublons}></BOUCLE_sites_exclus>[
 
 (#REM) début affichage
-]<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique} {doublons}>
+]<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique} {doublons}>[
+  (#REM) la rubrique n'a t'elle qu'un seul article? si l'article unique est une redirection, faire le transfert
+    ]<BOUCLE_test_unique(ARTICLES) {id_rubrique}{lang}>[(#TOTAL_BOUCLE|=={1}|oui)[(#SET{art_unique, #ID_ARTICLE})][(#CHAPO**|match{^=http}|oui)[(#CHAPO**|substr{1}|redirige_page)]]]</BOUCLE_test_unique>
+          
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="#LANG_DIR" lang="#LANG">
 <head>
@@ -31,8 +34,6 @@
 
 <body class="page_rubrique">
 <div id="page">
-
-	[(#REM) Entete de la page + titre du site ]
 	<INCLURE{fond=inc-entete}>
 
   [(#REM) Menu de navigation par rubriques ]
@@ -65,8 +66,6 @@
     <BOUCLE_classement1(MOTS){id_rubrique}{titre = classement_date} {0,1}>#SET{classement, date} #SET{num, 0}</BOUCLE_classement1>
     <BOUCLE_classement2(MOTS){id_rubrique}{titre = classement_date_inverse} {0,1}>#SET{classement, date} #SET{inverse, 1} #SET{num, 0}</BOUCLE_classement2>
     
-  [(#REM) la rubrique n'a t'elle qu'un seul article? ]
-    <BOUCLE_test_unique(ARTICLES) {id_rubrique}{lang}>[(#TOTAL_BOUCLE|=={1}|?{[(#SET{art_unique, #ID_ARTICLE})]})]</BOUCLE_test_unique>
 [(#REM)       
 existe_ssrub: #GET{existe_ssrub}<br>
 pas_ssrub: #GET{pas_ssrub}<br>
@@ -76,7 +75,7 @@ art_unique: #GET{art_unique}<br>
 ] 
         <BOUCLE_art_unique(CONDITION){si #GET{art_unique}|et{#GET{pas_ssrub}}|et{#GET{pas_site}}}>
         [(#REM) si pas de ss-rub et pas de sites et un seul article l'afficher directement ]
-        
+          
           [(#REM) gerer le cas du mot cle restricted_access => il faut etre loggue pour voir l'article ]
           <BOUCLE_restrict_access(ARTICLES) {titre_mot=restricted_access}{id_article=#GET{art_unique}}>
             [(#REM) recuperer le texte qui explique qu'il faut se logguer ]

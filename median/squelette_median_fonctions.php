@@ -37,7 +37,12 @@
     function suprime_diese($txt) {
         return str_replace('#', '', $txt);
     }
-
+    
+  // faire la redirection par en-tete vers url
+    function redirige_page($url){
+        include_spip('inc/headers');
+        redirige_par_entete($url);
+    }
     
 /* balises pour doublons entre #inclure (idee _renato_)
  *  code de Matthieu Marcillaud (squelette multiflex3)
