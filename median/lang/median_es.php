@@ -59,7 +59,7 @@ de todas maneras, van a encontrar lo que buscan !',
 'fond_mot_cles_survol'=>'Color de fondo de las palabras claves al sobrevuelo',
 
 // I
-'id' => 'id grupo',
+'id_groupe' => 'id grupo',
 'image_typo' => 'Titulo de la pagina cuando no hay ningun logo del sitio',
 
 // L

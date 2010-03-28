@@ -43,7 +43,7 @@ $GLOBALS['i18n_median_ro'] = array(
 'explication_palette' => 'Pentru a alege o culoare: clic stânga pe cerc, apoi pe pătrat',
 
 // I
-'id' => 'id grup',
+'id_groupe' => 'id grup',
 
 // L
 'lire_suite' => 'Continuare',

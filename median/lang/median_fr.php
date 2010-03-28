@@ -58,7 +58,7 @@ mais vous devriez certainement trouver ce que vous cherchez !',
 'fond_mot_cles_survol'=>'Couleur de fond des mots du nuage au survol', 
 
 // I
-'id' => 'id groupe',
+'id_groupe' => 'id groupe',
 
 // L
 'lire_suite' => 'Lire la suite',
