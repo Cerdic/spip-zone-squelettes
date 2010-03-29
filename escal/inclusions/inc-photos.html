@@ -1,0 +1,31 @@
+#CACHE{24*3600}
+
+
+<!-- on teste s'il y a au moins un article avec le mot-cle acces-direct -->   
+<BOUCLE_test(ARTICLES){titre_mot=photo-une}>
+</BOUCLE_test>
+<!-- si la boucle ne renvoie rien, rien ne s'affiche
+  et si elle renvoie quelque chose, on affiche les photos -->      
+      
+<BOUCLE_direct(ARTICLES){titre_mot=photo-une}>
+
+	<h1 class="cadre">
+	 Quelques photos<br />au hasard
+  </h1>
+
+	<div class="texte">
+    <div id="scrollup2">
+      <BOUCLE_photo_une(DOCUMENTS){id_article}{mode=image}{extension==jpg|png|gif}{0,10}{par hasard}>
+      <div class="headline2">
+      <img src="[(#FICHIER|image_reduire{170,0}|extraire_attribut{src})]"
+								 alt='[(#TITRE)]'
+								 title="[(#TITRE)]" />
+      </div>
+      </BOUCLE_photo_une>   
+    </div>
+	</div>      
+
+</BOUCLE_direct>
+
+
+</B_test>
