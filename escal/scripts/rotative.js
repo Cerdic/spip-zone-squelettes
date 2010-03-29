@@ -39,11 +39,11 @@ var headline_count;
    headline2_count = $("div.headline2").size();
    $("div.headline2:eq("+current_headline2+")").css('top','5px');
  
-   headline2_interval = setInterval(headline2_rotate,5000); //temps en millisecondes
+   headline2_interval = setInterval(headline2_rotate,8000); //temps en millisecondes
    $('#scrollup2').hover(function() {
      clearInterval(headline2_interval);
    }, function() {
-     headline2_interval = setInterval(headline2_rotate,5000); //temps en millisecondes
+     headline2_interval = setInterval(headline2_rotate,8000); //temps en millisecondes
      headline2_rotate();
    });
  });
