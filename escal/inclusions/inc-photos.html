@@ -1,20 +1,30 @@
 #CACHE{24*3600}
 
+<!-- on selectionne les articles des rubriques avec le mot-cle agenda et on stocke dans doublons evenements -->
+    <BOUCLE_selection_rubrique(RUBRIQUES){titre_mot=photo-une}>
+    <BOUCLE_selection_articles1(ARTICLES){branche}{doublons photos}>
+    </BOUCLE_selection_articles1>
+    </BOUCLE_selection_rubrique>
+<!-- on selectionne les articles avec le mot-cle agenda et on stocke dans doublons evenements -->
+    <BOUCLE_selection_articles2(ARTICLES){titre_mot=photo-une}{doublons photos}>
+    </BOUCLE_selection_articles2>
+
 
 <!-- on teste s'il y a au moins un article avec le mot-cle acces-direct -->   
-<BOUCLE_test(ARTICLES){titre_mot=photo-une}>
+<BOUCLE_test(ARTICLES){!doublons photos}>
 </BOUCLE_test>
 <!-- si la boucle ne renvoie rien, rien ne s'affiche
   et si elle renvoie quelque chose, on affiche les photos -->      
-      
-<BOUCLE_direct(ARTICLES){titre_mot=photo-une}>
+
 
 	<h1 class="cadre">
 	 Quelques photos<br />au hasard
-  </h1>
+  </h1>      
 
 	<div class="texte">
-    <div id="scrollup2">
+  <div id="scrollup2">
+  <BOUCLE_direct(ARTICLES){!doublons photos}>
+
       <BOUCLE_photo_une(DOCUMENTS){id_article}{mode=image}{extension==jpg|png|gif}{0,10}{par hasard}>
       <div class="headline2">
       <img src="[(#FICHIER|image_reduire{170,0}|extraire_attribut{src})]"
@@ -22,10 +32,9 @@
 								 title="[(#TITRE)]" />
       </div>
       </BOUCLE_photo_une>   
-    </div>
-	</div>      
-
-</BOUCLE_direct>
-
+  
+  </BOUCLE_direct>
+	</div>
+  </div>
 
 </B_test>
