@@ -1,5 +1,11 @@
 <BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
-[(#REM) Articles recents ]
+[(#REM) 
+		On ne va afficher la liste des articles 
+		(dans le cartouche qui n'est visible que s'il y a un texte dans la rubrique) 
+		dans une rubrique que si les articles ne sont pas listés dans le menu principal (mot clef AfficherArticlesMenu).
+]
+<BOUCLE_AuMoinsUnArticle(ARTICLES) {id_rubrique} {lang} {0,1}>
+<BOUCLE_AfficherArticlesMenu(RUBRIQUES) {id_rubrique} {titre_mot=AfficherArticlesMenu}> </BOUCLE_AfficherArticlesMenu>
 	<B_articles_recents>
 <div id="artrecents" class="flottant">
 	<h2>Contenu</h2>
@@ -14,6 +20,8 @@
 	[(#CONFIG{soyezcreateurs/nouveauteparbranche, }|=={on}|oui)[(#INCLURE{fond=noisettes/cartouches/cartouche_nouveaute_branche}{id_rubrique})]]
 </div>
 	</B_articles_recents>
+<//B_AfficherArticlesMenu>
+</BOUCLE_AuMoinsUnArticle>
 		<B_SsRubriques>
 <div id="artrecents" class="flottant">
 	<h2>Contenu</h2>
@@ -28,5 +36,5 @@
 	[(#CONFIG{soyezcreateurs/nouveauteparbranche, }|=={on}|oui)[(#INCLURE{fond=noisettes/cartouches/cartouche_nouveaute_branche}{id_rubrique})]]
 </div>
 		</B_SsRubriques>
-	<//B_articles_recents>
+	<//B_AuMoinsUnArticle>
 </BOUCLE_rubrique_principal>
