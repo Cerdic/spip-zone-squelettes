@@ -8,14 +8,14 @@
 //<![CDATA[
 	jQuery(document).ready(function() {
 		[(#ENV{position_pied, 1}|!={1}|?{' '})
-			jQuery("#affiche_pied").hide();
+			jQuery("#affiche_pied_1 ,#affiche_pied_2").hide();
 		]
 		jQuery("input[name='position_pied']").change(function() {
 			if (jQuery("input[name='position_pied']:checked").val() == 1) {
-				jQuery("#affiche_pied").show();
+				jQuery("#affiche_pied_1 ,#affiche_pied_2").show();
 			}
 			else {
-				jQuery("#affiche_pied").hide();
+				jQuery("#affiche_pied_1 ,#affiche_pied_2").hide();
 			}
 			jQuery(this).blur();
 		});	
@@ -27,7 +27,6 @@
 <form method="post" action="#SELF"><div>
 	[(#ENV{_cfg_}|form_hidden)]
 	<fieldset>		
-		
 		<legend><:sarkaspip:cfg_lgd_pied_affichage:></legend>
 		<p><:sarkaspip:cfg_inf_pied_affichage:></p>
 		<label>
@@ -38,6 +37,16 @@
 			<input type="radio" name="position_pied" value="0" [(#ENV{position_pied, 1}|=={0}|?{checked="checked"})] />
 			<:sarkaspip:cfg_lbl_non:>
 		</label>
+
+		<div id="affiche_pied_1">
+			<br />
+			<label><:sarkaspip:cfg_lbl_hauteur_minimale:></label>
+			<input type="text" name="bas_minheight" value="#ENV{bas_minheight, 50}" size="3" class="fondl" />
+			<br />
+			<label><:sarkaspip:cfg_lbl_top_padding:></label>
+			<input type="text" name="bas_toppadding" value="#ENV{bas_toppadding, 10}" size="3" class="fondl" />
+			<br />
+		</div>
 	</fieldset>		
 	
 	<div id="affiche_pied">
