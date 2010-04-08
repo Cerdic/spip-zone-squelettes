@@ -62,6 +62,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichagelistedocuments' => 'Affichage de la liste des documents joints',
 	'cfg_affichagelistedocuments_cartouche' => 'En bas du cartouche des articles et des rubriques',
 	'cfg_affichagelistedocuments_enbas' => 'En bas des articles et des rubriques',
+	'cfg_affichagelistedocuments_nulpart' => 'Nul part (d&eacute;cocher les autres choix&nbsp;!)',
 	'cfg_affichagelistedocuments_label' => 'Zone d\'affichage',
 	'cfg_afficher_titre_invisible' => 'Invisible : le texte est brul&eacute; dans le bandeau',
 	'cfg_afficher_titre_label' => 'Affichage du nom du site',
