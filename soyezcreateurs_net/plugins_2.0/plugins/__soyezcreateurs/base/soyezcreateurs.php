@@ -14,7 +14,7 @@ include_spip('inc/meta');
 
 //fonction qui permet de créer les métas de config du site
 function soyezcreateurs_config_site() {	
-	ecrire_meta('activer_breves', 'oui','non');
+	ecrire_meta('activer_breves', 'non','non');
 	ecrire_meta('activer_logos_survol', 'oui','non');
 	ecrire_meta('config_precise_groupes', 'oui','non');
 	ecrire_meta('articles_surtitre', 'oui','non');
@@ -102,6 +102,33 @@ function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $oblig
 		spip_log("2. (create_groupe) retour de find_groupe : $id_groupe... passage a remplacer_groupe", "soyezcreateurs_install");
 	}
 	return $id_insert;
+}
+
+function supprimer_mot_groupe($nom_groupe,$nom_mot) {
+	$id_groupe = id_groupe($nom_groupe);
+	$id_mot = id_mot($nom_mot, $id_groupe);
+	if ($id_mot>0) {
+		sql_delete("spip_mots", "id_mot=$id_mot");
+		sql_delete("spip_mots_articles", "id_mot=$id_mot");
+		sql_delete("spip_mots_rubriques", "id_mot=$id_mot");
+		sql_delete("spip_mots_syndic", "id_mot=$id_mot");
+		sql_delete("spip_mots_forum", "id_mot=$id_mot");
+	}
+}
+
+function vider_groupe($nom_groupe) {
+	$id_groupe = id_groupe($nom_groupe);
+	if ($id_groupe>0) {
+		$id_mots = sql_select('id_mot',  'spip_mots',  'id_groupe='.sql_quote($id_groupe));
+		while($id_mot = sql_fetch($id_mots)){
+			sql_delete("spip_mots", "id_mot=".$id_mot['id_mot']);
+			sql_delete("spip_mots_articles", "id_mot=".$id_mot['id_mot']);
+			sql_delete("spip_mots_rubriques", "id_mot=".$id_mot['id_mot']);
+			sql_delete("spip_mots_syndic", "id_mot=".$id_mot['id_mot']);
+			sql_delete("spip_mots_forum", "id_mot=".$id_mot['id_mot']);
+		}
+		sql_delete("spip_groupes_mots", "id_groupe=$id_groupe");
+	}
 }
 
 //fonction qui mets à jour un groupe de mots clés
