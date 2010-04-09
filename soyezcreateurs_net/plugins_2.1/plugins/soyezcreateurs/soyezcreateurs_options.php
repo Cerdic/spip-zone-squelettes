@@ -10,11 +10,11 @@ $GLOBALS['barre_typo_pas_de_fork_typo'] = false; // Pour tenir compte de http://
 
 // Recalculer le cache si la config du site change
 $GLOBALS['marqueur'] .= ":".md5($GLOBALS['meta']['boutonstexte'].$GLOBALS['meta']['btv2'].$GLOBALS['meta']['soyezcreateurs_couleurs'].$GLOBALS['meta']['soyezcreateurs_layout'].$GLOBALS['meta']['soyezcreateurs'].$GLOBALS['meta']['soyezcreateurs_google'].$GLOBALS['meta']['bte'].$GLOBALS['meta']['nom_site'].$GLOBALS['meta']['slogan_site'].$GLOBALS['meta']['descriptif_site'].$GLOBALS['meta']['email_webmaster']); // Sur un conseil de Cedric : http://permalink.gmane.org/gmane.comp.web.spip.zone/6258
-define('_TRI_GROUPES_MOTS', 'titre');  // cf http://trac.rezo.net/trac/spip/changeset/14712
+define('_TRI_GROUPES_MOTS', '0+titre,titre');  // cf http://trac.rezo.net/trac/spip/changeset/14712
 define('_DUREE_CACHE_DEFAUT', 30*24*3600); // pris en compte à partir de http://trac.rezo.net/trac/spip/changeset/10121
 define('_URLS_PROPRES_MAX', 60); // pris en compte à partire de http://trac.rezo.net/trac/spip/changeset/10346 
-define('_TRI_ARTICLES_RUBRIQUE', 'date DESC'); // cf http://trac.rezo.net/trac/spip/changeset/11492
-define('_CS_OUTILS_CACHES', 'cs_comportement:insert_head:verstexte:trousse_balises:dossier_squelettes:type_urls:filtrer_javascript:spam:moderation_moderee:paragrapher2:auteur_forum:no_IP:flock:spip_cache:forum_lgrmaxi:simpl_interface:icone_visiter:pucesli:glossaire:blocs:toutmulti:decoupe:filets_sep:couleurs:f_jQuery:desactiver_flash:jcorner:SPIP_liens:class_spip:supprimer_numero:xml:visiteurs_connectes:titre_parent:horloge:liens_en_clair:orientation');
+define('_TRI_ARTICLES_RUBRIQUE', '0+titre,date DESC'); // cf http://trac.rezo.net/trac/spip/changeset/11492
+define('_CS_OUTILS_CACHES', 'cs_comportement:insert_head:verstexte:trousse_balises:dossier_squelettes:type_urls:filtrer_javascript:spam:moderation_moderee:paragrapher2:auteur_forum:no_IP:flock:spip_cache:forum_lgrmaxi:simpl_interface:icone_visiter:pucesli:glossaire:blocs:toutmulti:decoupe:filets_sep:couleurs:f_jQuery:desactiver_flash:jcorner:SPIP_liens:class_spip:supprimer_numero:xml:visiteurs_connectes:titre_parent:horloge:liens_en_clair:orientation:sommaire:maj_auto:previsualisation:chatons:introduction:forcer_langue:masquer:introduction:tri_articles');
 
 $couleurs = charger_fonction('couleurs', 'inc');
 $couleurs( array(
@@ -130,14 +130,51 @@ $GLOBALS['agenda_affiche_inscription'] = 'non';
 ######## PACK ACTUEL DE CONFIGURATION DU COUTEAU SUISSE #########
 // Attention, les surcharges sur les define() ou les globales ne sont pas specifiees ici
 $GLOBALS['cs_installer']['SoyezCreateurs'] = array(
-
-	// Installation des outils par defaut
+	// Installation des outils par défaut
 	'outils' =>
-		'typo_exposants|guillemets|smileys|mailcrypt|soft_scroller',
+		'webmestres,
+		boites_privees,
+		auteurs,
+		citations_bb,
+		decoration,
+		typo_exposants,
+		guillemets,
+		smileys,
+		mailcrypt,
+		soft_scroller,
+		insertions,
+		corbeille,
+		spip_ecran',
 
-	// Installation des variables par defaut
+	// Installation des variables par défaut
 	'variables' => array(
-		'expo_bofbof' => 1
+		'expo_bofbof' => 1,
+		'webmestres' => '1:2',
+		'decoration_styles' => 'span.surfluo = background-color:#ffff00; padding:0px 2px;
+span.surgris = background-color:#EAEAEC; padding:0px 2px;
+fluo = surfluo
+span.en.lang = en
+span.de.lang = de
+span.it.lang = it
+span.es.lang = es
+div.bloc-en.lang = en
+div.bloc-de.lang = de
+div.bloc-it.lang = it
+div.bloc-es.lang = es',
+		'pp_edition_decoration' => 1,
+		'pp_forum_decoration' => 1,
+		'spip_ecran' => 'large',
+		'insertions' => 'oeuf = &oelig;uf
+cceuil = ccueil
+(a priori) = {a priori}
+(([hH])uits) = $1uit
+/([cC]h?)oeur/ = $1&oelig;ur
+/oeuvre/ = &oelig;uvre
+(O[Ee]uvre([rs]?)) = &OElig;uvre$1
+/\\b([cC]|[mM].c|[rR]ec)on+ais+a((?:n(?:ce|te?)|ble)s?)\\b/ = $1onnaissa$2
+CO2 = <abbr title="CO2, Dioxyde de carbone, O=C=O">CO<sub>2</sub></abbr>
+oeil = &oelig;il
+(O[Ee]il) = &OElig;il'
 	)
 );
 
