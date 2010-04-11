@@ -5,11 +5,11 @@
   Distribue sous licence GPL
   Modifié pour Aveline
 ]
-<BOUCLE_articles(ARTICLES) {id_article} {statut?}>
+<BOUCLE_article(ARTICLES) {id_article} {statut?}>
 <li class="item hentry">
 	<h3 class="h3 entry-title">
 		[(#ENV{afficher_surtitre}|oui)#SURTITRE ]
-		<a href="#URL_ARTICLE" rel="bookmark">
+		<a href="#URL_ARTICLE" rel="bookmark"[(#ENV{id_article_expose}|=={#ID_ARTICLE}) class="on"]>
 			[(#ENV{afficher_logo}|oui)
 				[(#ENV{utiliser_logo_article_rubrique}|oui)[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{[(#ENV{taille_max_logo}|sinon{150})]})]]
 				[(#ENV{utiliser_logo_article_rubrique}|non)[(#LOGO_ARTICLE||image_reduire{[(#ENV{taille_max_logo}|sinon{150})]})]]
@@ -33,4 +33,4 @@
 		[(#ENV{afficher_traductions}|oui)#MODELE{article_traductions}]
 	[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_nb_commentaires}}|ou{#ENV{afficher_rubrique}}|ou{#ENV{afficher_mots_cles}}|ou{#ENV{afficher_popularite}}|ou{#ENV{afficher_traductions}})</div>]
 </li>
-</BOUCLE_articles>
+</BOUCLE_article>
