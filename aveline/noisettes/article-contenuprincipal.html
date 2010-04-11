@@ -5,31 +5,30 @@
 [(#SET{afficher_lienhypertexte, #ENV{afficher_lienhypertexte}|is_null|non|?{#ENV{afficher_lienhypertexte},'on'}})]
 [(#SET{afficher_logo, #ENV{afficher_logo}|is_null|non|?{#ENV{afficher_logo},'on'}})]
 [(#SET{utiliser_logo_article_rubrique, #ENV{utiliser_logo_article_rubrique}|is_null|non|?{#ENV{utiliser_logo_article_rubrique},''}})]
+[(#SET{taille_max_logo, #ENV{taille_max_logo}|is_null|non|?{#ENV{taille_max_logo},200}})]
 
 <BOUCLE_article(ARTICLES){id_article}>
 <div class="contenu-principal">
 	<div class="cartouche">
 		[(#GET{afficher_logo}|oui)
 			[(#GET{utiliser_logo_article_rubrique}|oui)
-				[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{200,200})]
+				[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{#GET{taille_max_logo}})]
 			]
 			[(#GET{utiliser_logo_article_rubrique}|non)
-				[(#LOGO_ARTICLE||image_reduire{200,200})]
+				[(#LOGO_ARTICLE||image_reduire{#GET{taille_max_logo}})]
 			]
 		]
 		[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
 		<h1 class="h1 #EDIT{titre}">#TITRE</h1>
 		[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
 
-		<p class="info-publi">
+		[(#GET{afficher_date}|ou{#GET{afficher_auteurs}}|ou{#GET{afficher_date_modif}})<p class="info-publi">]
 			[(#GET{afficher_date}|oui)<abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr>]
-			[(#GET{afficher_date}|oui)[(#GET{afficher_auteurs}|=={'oui'}|oui), ]]
-			[(#GET{afficher_auteurs}|oui)[<span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]]
-			[(#GET{afficher_date_modif}|oui)<br /><:noizetier:derniere_maj:> [(#DATE_MODIF|nom_jour) ][(#DATE_MODIF|affdate)]]
-		</p>
-		[(#GET{afficher_traductions}|oui)
-			#MODELE{article_traductions}
-		]
+			[(#GET{afficher_date}|oui)[(#GET{afficher_auteurs}|=={'oui'}|oui)]]
+			[(#GET{afficher_auteurs}|oui)[<span class="auteurs">, <:par_auteur:> (#LESAUTEURS)</span>.]]
+			[(#GET{afficher_date_modif}|oui)[(#ENV{afficher_date}|ou{#ENV{afficher_auteurs}})<br />]<:aveline:mis_a_jour_le:> [(#DATE_MODIF|nom_jour) ][(#DATE_MODIF|affdate)]]
+		[(#GET{afficher_date}|ou{#GET{afficher_auteurs}}|ou{#GET{afficher_date_modif}})</p>]
+		[(#GET{afficher_traductions}|oui)#MODELE{article_traductions}]
 	</div>
 
 	<div class="surlignable">
