@@ -26,7 +26,7 @@
 
 [(#REM) Si on exclu l'article en cours ]
 <BOUCLE_test_exclure_article_en_cours(CONDITION){si (#GET{exclure_article_en_cours}|oui)}>
-	<BOUCLE_article_en_cours_exclu(ARTICLES) {id_article} {doublons articles_rubrique}>
+	<BOUCLE_article_en_cours_exclu(ARTICLES) {id_article} {doublons articles_en_cours}>
 	</BOUCLE_article_en_cours_exclu>
 </BOUCLE_test_exclure_article_en_cours>
 
@@ -36,7 +36,7 @@
 	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})</h2>]]
 	[(#GET{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
 	<ul class="liste-items">
-	<BOUCLE_liste_articles(ARTICLES) {id_rubrique == #GET{id_rubrique}|sinon{.}} {par num #GET{tri_num}}{inverse #ENV{senstri}}{par #GET{tri}}{inverse #ENV{senstri}}{doublons articles_rubrique}{lang == #GET{langue_choisie}|sinon{.}}{pagination #GET{pas_pagination}}>
+	<BOUCLE_liste_articles(ARTICLES) {id_rubrique == #GET{id_rubrique}|sinon{.}} {par num #GET{tri_num}}{inverse #ENV{senstri}}{par #GET{tri}}{inverse #ENV{senstri}}{doublons articles_en_cours}{lang == #GET{langue_choisie}|sinon{.}}{pagination #GET{pas_pagination}}>
 	[(#GET{style_liste}|=={liste}|oui)
 		#INCLURE{fond=inclure/article-liste,id_article=#ID_ARTICLE,id_article_expose=#ENV{id_article},env}
 	]
