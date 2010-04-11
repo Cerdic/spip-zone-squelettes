@@ -1,0 +1,61 @@
+[(#SET{selection, #ENV{selection}|sinon{limite}})]
+[(#SET{tri, #ENV{tri}|sinon{date}})]
+[(#SET{senstri, #ENV{senstri}|sinon{1}})]
+[(#SET{tri_num, #ENV{tri}|=={titre}|?{titre,''}})]
+
+[(#SET{pas_pagination, #ENV{pas_pagination}|sinon{5}})]
+[(#SET{limite, #ENV{limite}|sinon{10}})]
+[(#GET{selection}|=={tout}|oui)#SET{pas_pagination,1000000}]
+[(#GET{selection}|=={limite}|oui)#SET{pas_pagination,#GET{limite}}]
+[(#SET{position_pagination, #ENV{position_pagination}|sinon{fin}})]
+[(#SET{position_pagination_debut,#GET{selection}|!={pagination}|ou{#GET{position_pagination}|=={fin}}|?{'',on}})]
+[(#SET{position_pagination_fin,#GET{selection}|!={pagination}|ou{#GET{position_pagination}|=={debut}}|?{'',on}})]
+
+[(#SET{langue_choisie, [(#ENV{restreindre_langue}|oui|?{[^(#ENV{lang})$],''})]})]
+[(#SET{exclure_article_en_cours, #ENV{exclure_article_en_cours}|is_null|non|?{#ENV{exclure_article_en_cours},''}})]
+[(#SET{style_liste, #ENV{style_liste}|sinon{liste}})]
+[(#SET{afficher_titre_liste, #ENV{afficher_titre_liste}|is_null|non|?{#ENV{afficher_titre_liste},'on'}})]
+[(#SET{titre_liste, #ENV{titre_liste}|sinon{public:articles}})]
+[(#SET{titre,[(#GET{titre_liste}|=={titre_perso}|?{[(#ENV**{titre_liste_perso}|propre)],[(#GET{titre_liste}|_T)]})]})]
+[(#SET{style_pagination, #ENV{style_pagination}|sinon{''}})]
+
+[(#SET{liste_articles, #ENV{liste_articles}|sinon{tous}})]
+[(#SET{id_rubrique, [^(#ENV{rubrique_specifique}|picker_selected{rubrique}|table_valeur{0})$]})]
+[(#SET{id_rubrique, #GET{liste_articles}|=={tous}|?{'',#GET{id_rubrique}}})]
+[(#SET{id_rubrique, [(#GET{liste_articles}|=={meme_rubrique}|?{[^(#ENV{id_rubrique})$],#GET{id_rubrique}})]})]
+
+[(#REM) Si on exclu l'article en cours ]
+<BOUCLE_test_exclure_article_en_cours(CONDITION){si (#GET{exclure_article_en_cours}|oui)}>
+	<BOUCLE_article_en_cours_exclu(ARTICLES) {id_article} {doublons articles_rubrique}>
+	</BOUCLE_article_en_cours_exclu>
+</BOUCLE_test_exclure_article_en_cours>
+
+<B_liste_articles>
+<div class="liste articles">
+	#ANCRE_PAGINATION
+	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})</h2>]]
+	[(#GET{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
+	<ul class="liste-items">
+	<BOUCLE_liste_articles(ARTICLES) {id_rubrique == #GET{id_rubrique}|sinon{.}} {par num #GET{tri_num}}{inverse #ENV{senstri}}{par #GET{tri}}{inverse #ENV{senstri}}{doublons articles_rubrique}{lang == #GET{langue_choisie}|sinon{.}}{pagination #GET{pas_pagination}}>
+	[(#GET{style_liste}|=={liste}|oui)
+		<li class="item">[(#ENV{liste_afficher_surtitre}|oui)#SURTITRE ]<a href="#URL_ARTICLE"[ class="(#EXPOSE)"]>#TITRE</a>[(#ENV{liste_afficher_soustitre}|oui) #SOUSTITRE]
+		[(#ENV{liste_afficher_date}|ou{#ENV{liste_afficher_date_modif}}|ou{#ENV{liste_afficher_auteurs}}|ou{#ENV{liste_afficher_nb_commentaires}}|ou{#ENV{liste_afficher_rubrique}}|ou{#ENV{liste_afficher_mots_cles}}|ou{#ENV{liste_afficher_popularite}}|ou{#ENV{liste_afficher_traductions}})<div class="info-publi">]
+			[(#ENV{liste_afficher_date}|oui)[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>][(#ENV{liste_afficher_auteurs}|et{#LESAUTEURS}|?{',','.'})]]
+			[(#ENV{liste_afficher_auteurs}|oui)[<:par_auteur:> (#LESAUTEURS).]]
+			[(#ENV{liste_afficher_date_modif}|oui)<:aveline:mis_a_jour_le:> [(#DATE_MODIF|affdate)].]
+			[(#ENV{liste_afficher_rubrique}oui)#INCLURE{fond=inclure/rubrique-titre,id_rubrique,texte_devant_rubrique=#ENV{liste_texte_devant_rubrique}}.]
+			[(#ENV{liste_afficher_mots_cles}oui)#INCLURE{fond=inclure/article-mots_cles,id_article,texte_devant_mots_cles=#ENV{liste_texte_devant_mots_cles},ajoute_point='on'}]
+			[(#ENV{liste_afficher_nb_commentaires}|oui)#INCLURE{fond=inclure/article-nb_commentaires,id_article,ajoute_point='on'}]
+			[(#ENV{liste_afficher_popularite}|oui)#POPULARITE_ABSOLUE <:aveline:visiteurs_quotidiens:>.]
+			[(#ENV{liste_afficher_traductions}|oui)#MODELE{article_traductions}]
+		[(#ENV{liste_afficher_date}|ou{#ENV{liste_afficher_date_modif}}|ou{#ENV{liste_afficher_auteurs}}|ou{#ENV{liste_afficher_nb_commentaires}}|ou{#ENV{liste_afficher_rubrique}}|ou{#ENV{liste_afficher_mots_cles}}|ou{#ENV{liste_afficher_popularite}}|ou{#ENV{liste_afficher_traductions}})</div>]
+		</li>
+	]
+	[(#GET{style_liste}|=={resume}|oui)
+			#INCLURE{fond=inclure/article-resume,id_article=#ID_ARTICLE,env}
+	]
+	</BOUCLE_liste_articles>
+	</ul>
+	[(#GET{position_pagination_fin}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
+</div>
+</B_liste_articles>

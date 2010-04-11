@@ -1,0 +1,36 @@
+[(#REM)
+
+  Squelette Presentation d'un article dans une liste
+  (c) 2009 Zpip
+  Distribue sous licence GPL
+  Modifié pour Aveline
+]
+<BOUCLE_articles(ARTICLES) {id_article} {statut?}>
+<li class="item hentry">
+	<h3 class="h3 entry-title">
+		[(#ENV{afficher_surtitre}|oui)#SURTITRE ]
+		<a href="#URL_ARTICLE" rel="bookmark">
+			[(#ENV{afficher_logo}|oui)
+				[(#ENV{utiliser_logo_article_rubrique}|oui)[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{[(#ENV{taille_max_logo}|sinon{150})]})]]
+				[(#ENV{utiliser_logo_article_rubrique}|non)[(#LOGO_ARTICLE||image_reduire{[(#ENV{taille_max_logo}|sinon{150})]})]]
+			]
+			#TITRE
+		</a>
+		[(#ENV{afficher_soustitre}|oui) #SOUSTITRE]
+	</h3>
+	[(#ENV{afficher_date}|ou{#ENV{afficher_auteurs}}|ou{#ENV{afficher_date_modif}})<div class="info-publi">]
+		[(#ENV{afficher_date}|oui)[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>]][(#ENV{afficher_date}|et{#ENV{afficher_auteurs}|et{#LESAUTEURS}}?{'<span class="sep">,</span>'})]
+		[(#ENV{afficher_auteurs}|oui)[<span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]]
+		[(#ENV{afficher_date_modif}|oui)[(#ENV{afficher_date}|ou{#ENV{afficher_auteurs}})<br />]<:aveline:mis_a_jour_le:> [(#DATE_MODIF|nom_jour) ][(#DATE_MODIF|affdate)]]
+	[(#ENV{afficher_date}|ou{#ENV{afficher_auteurs}}|ou{#ENV{afficher_date_modif}})</div>]
+	[(#ENV{afficher_introduction}|oui)[<div class="#EDIT{intro} introduction entry-content">(#INTRODUCTION{[(#ENV{longueur_max_introduction}|sinon{600})]})</div>]]
+	[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_nb_commentaires}}|ou{#ENV{afficher_rubrique}}|ou{#ENV{afficher_mots_cles}}|ou{#ENV{afficher_popularite}}|ou{#ENV{afficher_traductions}})<div class="meta-publi">]
+		[(#ENV{afficher_lire_la_suite}|oui)<a class="lire-la-suite" href="#URL_ARTICLE"><:zpip:lire_la_suite:>[(#ENV{rappeler_titre}|oui)<span class="lire-la-suite-titre"><:zpip:lire_la_suite_de:> <em>#TITRE</em></span>]</a>]
+		[(#ENV{afficher_rubrique}oui)[(#INCLURE{fond=inclure/rubrique-titre,id_rubrique,texte_devant_rubrique=#ENV{texte_devant_rubrique},affiche_sep=[(#ENV{afficher_lire_la_suite}|oui|?{'on',''})]})]]
+		[(#ENV{afficher_mots_cles}oui)[(#INCLURE{fond=inclure/article-mots_cles,id_article,texte_devant_mots_cles=#ENV{texte_devant_mots_cles},affiche_sep=[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_rubrique}}|?{'on',''})]})]]
+		[(#ENV{afficher_nb_commentaires}|oui)[(#INCLURE{fond=inclure/article-nb_commentaires,id_article,affiche_sep=[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_rubrique}}|ou{#ENV{afficher_mots_cles}}|?{'on',''})]})]]
+		[(#ENV{liste_afficher_popularite}|oui)[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_rubrique}}|ou{#ENV{afficher_mots_cles}}|ou{#ENV{afficher_nb_commentaires}})<span class="sep">|</span> ]#POPULARITE_ABSOLUE <:aveline:visiteurs_quotidiens:>]
+		[(#ENV{afficher_traductions}|oui)#MODELE{article_traductions}]
+	[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_nb_commentaires}}|ou{#ENV{afficher_rubrique}}|ou{#ENV{afficher_mots_cles}}|ou{#ENV{afficher_popularite}}|ou{#ENV{afficher_traductions}})</div>]
+</li>
+</BOUCLE_articles>
