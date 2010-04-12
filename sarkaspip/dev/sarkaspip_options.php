@@ -79,126 +79,74 @@ foreach ($pipelines as $_pipe) {
 	if (!isset($GLOBALS['spip_pipeline'][$_pipe]))
 		$GLOBALS['spip_pipeline'][$_pipe] = "|personnaliser_$_pipe";
 }
-// -- Fonction d'insertion en debut de colonne extra
-function personnaliser_colonne_extra_debut($flux){
-	if (defined('_PERSO_COLONNE_EXTRA_DEBUT')) {
-		$noisettes = explode(':', _PERSO_COLONNE_EXTRA_DEBUT);
-		foreach ($noisettes as $_fond) {
-			$html = recuperer_fond($_fond, array_merge($flux['args'], array('ajax' => true)));
+// -- Fonction d'affichage des noisettes
+function afficher_noisettes($define, $flux, $ajax=true){
+	$noisettes = explode(':', $define);
+	foreach ($noisettes as $_fond) {
+		if (find_in_path($_fond.'.html')) {
+			$contexte = $ajax ? array_merge($flux['args'], array('ajax' => true)) : $flux['args'];
+			$html = recuperer_fond($_fond, $contexte);
 			$flux['data'] .= $html;
 		}
+		else 
+			$flux['data'] .= '<div class="noisette avertissement" style="margin-top: 0; font-size: 0.95em">' . _T('sarkaspip:msg_fichier_introuvable', array('fichier' => $_fond . '.html')) . '</div>';
 	}
 	return $flux;
+}
+// -- Fonction d'insertion en debut de colonne extra
+function personnaliser_colonne_extra_debut($flux){
+	if (defined('_PERSO_COLONNE_EXTRA_DEBUT'))
+		return afficher_noisettes(_PERSO_COLONNE_EXTRA_DEBUT, $flux, true);
 }
 // -- Fonction d'insertion en fin de colonne extra
 function personnaliser_colonne_extra_fin($flux){
-	if (defined('_PERSO_COLONNE_EXTRA_FIN')) {
-		$noisettes = explode(':', _PERSO_COLONNE_EXTRA_FIN);
-		foreach ($noisettes as $_fond) {
-			$html = recuperer_fond($_fond, array_merge($flux['args'], array('ajax' => true)));
-			$flux['data'] .= $html;
-		}
-	}
-	return $flux;
+	if (defined('_PERSO_COLONNE_EXTRA_FIN')) 
+		return afficher_noisettes(_PERSO_COLONNE_EXTRA_FIN, $flux, true);
 }
 // -- Fonction d'insertion en debut de colonne navigation
 function personnaliser_colonne_navigation_debut($flux){
-	if (defined('_PERSO_COLONNE_NAVIGATION_DEBUT')) {
-		$noisettes = explode(':', _PERSO_COLONNE_NAVIGATION_DEBUT);
-		foreach ($noisettes as $_fond) {
-			$html = recuperer_fond($_fond, array_merge($flux['args'], array('ajax' => true)));
-			$flux['data'] .= $html;
-		}
-	}
-	return $flux;
+	if (defined('_PERSO_COLONNE_NAVIGATION_DEBUT'))
+		return afficher_noisettes(_PERSO_COLONNE_NAVIGATION_DEBUT, $flux, true);
 }
 // -- Fonction d'insertion en fin de colonne navigation
 function personnaliser_colonne_navigation_fin($flux){
-	if (defined('_PERSO_COLONNE_NAVIGATION_FIN')) {
-		$noisettes = explode(':', _PERSO_COLONNE_NAVIGATION_FIN);
-		foreach ($noisettes as $_fond) {
-			$html = recuperer_fond($_fond, array_merge($flux['args'], array('ajax' => true)));
-			$flux['data'] .= $html;
-		}
-	}
-	return $flux;
+	if (defined('_PERSO_COLONNE_NAVIGATION_FIN'))
+		return afficher_noisettes(_PERSO_COLONNE_NAVIGATION_FIN, $flux, true);
 }
 // -- Fonction d'insertion en fin de menu des pages speciales
 function personnaliser_menu_pages_speciales_fin($flux){
-	if (defined('_PERSO_MENU_PAGES_SPECIALES_FIN')) {
-		$noisettes = explode(':', _PERSO_MENU_PAGES_SPECIALES_FIN);
-		foreach ($noisettes as $_fond) {
-			$html = recuperer_fond($_fond, $flux['args']);
-			$flux['data'] .= $html;
-		}
-	}
-	return $flux;
+	if (defined('_PERSO_MENU_PAGES_SPECIALES_FIN'))
+		return afficher_noisettes(_PERSO_MENU_PAGES_SPECIALES_FIN, $flux, false);
 }
 // -- Fonction d'insertion en debut de bandeau haut
 function personnaliser_bandeau_haut_debut($flux){
-	if (defined('_PERSO_BANDEAU_HAUT_DEBUT')) {
-		$noisettes = explode(':', _PERSO_BANDEAU_HAUT_DEBUT);
-		foreach ($noisettes as $_fond) {
-			$html = recuperer_fond($_fond, $flux['args']);
-			$flux['data'] .= $html;
-		}
-	}
-	return $flux;
+	if (defined('_PERSO_BANDEAU_HAUT_DEBUT'))
+		return afficher_noisettes(_PERSO_BANDEAU_HAUT_DEBUT, $flux, false);
 }
 // -- Fonction d'insertion en fin de bandeau haut
 function personnaliser_bandeau_haut_fin($flux){
-	if (defined('_PERSO_BANDEAU_HAUT_FIN')) {
-		$noisettes = explode(':', _PERSO_BANDEAU_HAUT_FIN);
-		foreach ($noisettes as $_fond) {
-			$html = recuperer_fond($_fond, $flux['args']);
-			$flux['data'] .= $html;
-		}
-	}
-	return $flux;
+	if (defined('_PERSO_BANDEAU_HAUT_FIN'))
+		return afficher_noisettes(_PERSO_BANDEAU_HAUT_FIN, $flux, false);
 }
 // -- Fonction d'insertion en debut de bandeau bas
 function personnaliser_bandeau_bas_debut($flux){
-	if (defined('_PERSO_BANDEAU_BAS_DEBUT')) {
-		$noisettes = explode(':', _PERSO_BANDEAU_BAS_DEBUT);
-		foreach ($noisettes as $_fond) {
-			$html = recuperer_fond($_fond, $flux['args']);
-			$flux['data'] .= $html;
-		}
-	}
-	return $flux;
+	if (defined('_PERSO_BANDEAU_BAS_DEBUT'))
+		return afficher_noisettes(_PERSO_BANDEAU_BAS_DEBUT, $flux, false);
 }
 // -- Fonction d'insertion en fin de bandeau bas
 function personnaliser_bandeau_bas_fin($flux){
-	if (defined('_PERSO_BANDEAU_BAS_FIN')) {
-		$noisettes = explode(':', _PERSO_BANDEAU_BAS_FIN);
-		foreach ($noisettes as $_fond) {
-			$html = recuperer_fond($_fond, $flux['args']);
-			$flux['data'] .= $html;
-		}
-	}
-	return $flux;
+	if (defined('_PERSO_BANDEAU_BAS_FIN'))
+		return afficher_noisettes(_PERSO_BANDEAU_BAS_FIN, $flux, false);
 }
 // -- Fonction d'insertion en debut de pied
 function personnaliser_pied_debut($flux){
-	if (defined('_PERSO_PIED_DEBUT')) {
-		$noisettes = explode(':', _PERSO_PIED_DEBUT);
-		foreach ($noisettes as $_fond) {
-			$html = recuperer_fond($_fond, $flux['args']);
-			$flux['data'] .= $html;
-		}
-	}
-	return $flux;
+	if (defined('_PERSO_PIED_DEBUT'))
+		return afficher_noisettes(_PERSO_PIED_DEBUT, $flux, false);
 }
 // -- Fonction d'insertion en fin de pied
 function personnaliser_pied_fin($flux){
-	if (defined('_PERSO_PIED_FIN')) {
-		$noisettes = explode(':', _PERSO_PIED_FIN);
-		foreach ($noisettes as $_fond) {
-			$html = recuperer_fond($_fond, $flux['args']);
-			$flux['data'] .= $html;
-		}
-	}
-	return $flux;
+	if (defined('_PERSO_PIED_FIN'))
+		return afficher_noisettes(_PERSO_PIED_FIN, $flux, false);
 }
 
 ?>
