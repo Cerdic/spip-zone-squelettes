@@ -17,17 +17,11 @@ parametres:
         meme_rubrique: '<:aveline:item_meme_rubrique:>'
         rubrique_specifique: '<:aveline:item_rubrique_specifique:>'
   -
-    saisie: 'fieldset'
-    options: 
-      nom: 'si_rubrique_specifique'
-      label: '<:aveline:label_si_rubrique_specifique:>'
+    saisie: 'selecteur_rubrique'
+    options:
+      nom: 'rubrique_specifique'
+      label: '<:aveline:label_rubrique_specifique:>'
       #si: 'liste_articles == "rubrique_specifique"'
-    saisies:
-      -
-        saisie: 'selecteur_rubrique'
-        options:
-          nom: 'rubrique_specifique'
-          label: '<:aveline:label_rubrique_specifique:>'
   -
     saisie: 'selection'
     options:
@@ -76,10 +70,23 @@ parametres:
         limite: '<:aveline:item_limite:>'
         pagination: '<:aveline:item_pagination:>'
   -
+    saisie: 'input'
+    options:
+      nom: 'limite'
+      label: '<:aveline:label_limite:>'
+      defaut: 10
+      #si: 'selection == "limite"'
+    verifier:
+      type: 'entier'
+      options:
+        min: 1
+  -
     saisie: 'fieldset'
     options:
       nom: 'si_pagination'
       label: '<:aveline:label_si_pagination:>'
+      pliable: 'oui'
+      plie: 'oui'
       #si: 'selection == "pagination"'
     saisies:
       -
@@ -116,57 +123,34 @@ parametres:
             page: '<:aveline:item_pagination_page:>'
             page_precedent_suivant: '<:aveline:item_pagination_page_precedent_suivant:>'
   -
-    saisie: 'fieldset'
-    options:
-      nom: 'si_limite'
-      label: '<:aveline:label_si_limite:>'
-      #si: 'selection =="limite"'
-    saisies:
-      -
-        saisie: 'input'
-        options:
-          nom: 'limite'
-          label: '<:aveline:label_limite:>'
-          defaut: 10
-        verifier:
-          type: 'entier'
-          options:
-            min: 1
-  -
     saisie: 'oui_non'
     options:
       nom: 'afficher_titre_liste'
       label: '<:aveline:label_afficher_titre_liste:>'
       defaut: 'on'
   -
-    saisie: 'fieldset'
+    saisie: 'selection'
     options:
-      nom: 'si_titre_liste'
-      label: '<:aveline:label_si_titre_liste:>'
+      nom: 'titre_liste'
+      label: '<:aveline:label_titre_liste:>'
+      defaut: 'public:articles'
+      cacher_option_intro: 'oui'
+      datas:
+        'public:articles': '<:public:articles:>'
+        'public:articles_populaires': '<:public:articles_populaires:>'
+        'public:articles_rubrique': '<:public:articles_rubrique:>'
+        'public:derniers_articles': '<:public:derniers_articles:>'
+        'public:meme_rubrique': '<:public:meme_rubrique:>'
+        'public:nouveaux_articles': '<:public:nouveaux_articles:>'
+        titre_perso: '<:aveline:item_titre_perso:>'
       #si: 'afficher_titre_liste == "on"'
-    saisies:
-      -
-        saisie: 'selection'
-        options:
-          nom: 'titre_liste'
-          label: '<:aveline:label_titre_liste:>'
-          defaut: 'public:articles'
-          cacher_option_intro: 'oui'
-          datas:
-            'public:articles': '<:public:articles:>'
-            'public:articles_populaires': '<:public:articles_populaires:>'
-            'public:articles_rubrique': '<:public:articles_rubrique:>'
-            'public:derniers_articles': '<:public:derniers_articles:>'
-            'public:meme_rubrique': '<:public:meme_rubrique:>'
-            'public:nouveaux_articles': '<:public:nouveaux_articles:>'
-            titre_perso: '<:aveline:item_titre_perso:>'
-      -
-        saisie: 'input'
-        options:
-          nom: 'titre_liste_perso'
-          label: '<:aveline:label_titre_liste_perso:>'
-          explication: '<:aveline:explication_raccourcis_typo:>'
-          #si: 'titre_liste == "titre_perso"'
+  -
+    saisie: 'input'
+    options:
+      nom: 'titre_liste_perso'
+      label: '<:aveline:label_titre_liste_perso:>'
+      explication: '<:aveline:explication_raccourcis_typo:>'
+      #si: 'afficher_titre_liste == "on" && titre_liste == "titre_perso"'
   -
     saisie: 'selection'
     options:
@@ -182,6 +166,8 @@ parametres:
     options:
       nom: 'si_liste_simple'
       label: '<:aveline:label_si_liste_simple:>'
+      pliable: 'oui'
+      plie: 'oui'
       #si: 'style_liste == "liste"'
     saisies:
       -
@@ -278,6 +264,8 @@ parametres:
     options:
       nom: 'si_resume'
       label: '<:aveline:label_si_resume:>'
+      pliable: 'oui'
+      plie: 'oui'
       #si: 'style_liste == "resume"'
     saisies:
       -
