@@ -58,7 +58,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
 	// Description des noisettes
 	
-	'description_article-contenuprincipal' => 'Affiche logo, surtitre, titre, sous-titre, date, auteur, traduction, chapeau, texte, lien hypertexte, post-scriptum et notes. Utilisez les param&egrave;tres ci-dessous pour personnaliser les &eacute;l&eacute;ments &agrave; afficher.',
+	'description_article-contenuprincipal' => 'Affiche logo, surtitre, titre, sous-titre, date, auteur, traduction, chapeau, texte, lien hypertexte, post-scriptum et notes.',
 	'description_liste_articles' => 'Liste l\'ensemble des articles du site ou bien les articles situ&eacute;s dans la m&ecirc;me rubrique ou dans une rubrique donn&eacute;e.',
 	'description_rubrique-contenuprincipal' => 'Affiche logo, date de dernier ajout et texte. Utilisez les param&egrave;tres ci-dessous pour personnaliser les &eacute;l&eacute;ments &agrave; afficher.',
 	'description_documents' => 'Par d&eacute;faut, n\'affiche pas les photos, celles-ci &eacute;tant affich&eacute;es usuellement via un port-folio. Vous pouvez forcer l\'affichage des photos au cas o&ugrave; vous n\'affichez pas de port-folio.',
@@ -67,7 +67,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_navigation_rubriques' => 'Liste des rubriques et des sous-rubriques (toutes langues) tri&eacute;es par titre.',
 	'description_article-mots_cles' => 'Liste les mots-cl&eacute;s associ&eacute;s &agrave; l\'article.',
 	
-	'nom_article-contenuprincipal' => 'Contenu principal',
+	'nom_article-contenuprincipal' => 'Contenu principal de l\'article',
 	'nom_liste_articles' => 'Articles de la rubrique ou tous les articles',
 	'nom_rubrique-contenuprincipal' => 'Contenu principal',
 	'nom_documents' => 'Documents',
@@ -120,7 +120,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_afficher_soustitre' => 'Afficher le sous-titre&nbsp;?',
 	'label_afficher_rubrique' => 'Afficher la rubrique&nbsp;?',
 	'label_texte_devant_rubrique' => 'Si oui, texte devant la rubrique&nbsp;:',
-	'label_longueur_max_introduction' => 'Longueur maximum de l\'introduction&nbsp;:',
+	'label_longueur_max_introduction' => 'Si introduction, longueur maximum&nbsp;:',
+	'label_afficher_texte_article' => 'Afficher le texte de l\'article&nbsp;?',
 	'label_afficher_lire_la_suite' => 'Afficher \'Lire la suite\'&nbsp;?',
 	'label_rappeler_titre' => 'Rappeler le titre&nbsp;?',
 	'label_afficher_nb_commentaires' => 'Afficher le nombre de commentaires&nbsp;?',
@@ -133,6 +134,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_afficher_groupe' => 'Afficher le type (groupe) de mot-cl&eacute;&nbsp;?',
 	'label_lien_groupe_mots' => 'Si oui, ajouter un lien vers la page des groupes de mots&nbsp;?',
 	'label_afficher_statistiques_mot' => 'Afficher les statistiques du mot-cl&eacute;&nbsp;?',
+	'label_si_texte_complet' => 'Si affichage du texte complet',
 	
 	'explication_restreindre_langue' => 'Dans le cas d\'un site multilingue, on peut vouloir restreindre l\'affichage uniquement aux objets dans la m&ecirc;me langue.',
 	'explication_raccourcis_typo' => 'Vous pouvez utiliser les raccourcis typographiques de SPIP.',
@@ -163,6 +165,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'item_rubrique_specifique' => 'dans une rubrique sp&eacute;cifique',
 	'item_mots_tous' => 'tous les mots-cl&eacute;s',
 	'item_groupes_specifiques' => 'uniquement les mots-cl&eacute;s appartenant &agrave; certains groupes',
+	'item_rien' => 'rien',
+	'item_introduction' => 'introduction',
+	'item_complet' => 'texte complet',
 	
 	// Description du bloc avantcontenu
 	'nom_bloc_avantcontenu' => 'Avant le contenu principal',

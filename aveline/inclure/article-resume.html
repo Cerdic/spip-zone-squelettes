@@ -23,7 +23,22 @@
 		[(#ENV{afficher_auteurs}|oui)[<span class="auteurs"><:par_auteur:> (#LESAUTEURS)</span>]]
 		[(#ENV{afficher_date_modif}|oui)[(#ENV{afficher_date}|ou{#ENV{afficher_auteurs}})<br />]<:aveline:mis_a_jour_le:> [(#DATE_MODIF|nom_jour) ][(#DATE_MODIF|affdate)]]
 	[(#ENV{afficher_date}|ou{#ENV{afficher_auteurs}}|ou{#ENV{afficher_date_modif}})</div>]
-	[(#ENV{afficher_introduction}|oui)[<div class="#EDIT{intro} introduction entry-content">(#INTRODUCTION{[(#ENV{longueur_max_introduction}|sinon{600})]})</div>]]
+	[(#ENV{afficher_texte_article}|=={introduction}|oui)
+		[<div class="#EDIT{intro} introduction entry-content">(#INTRODUCTION{[(#ENV{longueur_max_introduction}|sinon{600})]})</div>]
+	]
+	[(#ENV{afficher_texte_article}|=={complet}|oui)
+		[(#ENV{afficher_descriptif}|oui) [<div class="#EDIT{descriptif} chapo">(#DESCRIPTIF|image_reduire{500,0})</div>]]
+		[<div class="#EDIT{chapo} chapo">(#CHAPO|image_reduire{500,0})</div>]
+		[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{500,0})</div>]
+		[(#ENV{afficher_lienhypertexte}|oui)
+			[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+		]
+		[<div class="ps">
+			<h3 class="h3 spip"><:info_ps:></h2>
+			<div class="#EDIT{ps}">(#PS|image_reduire{500,0})</div>
+		</div>]
+		[<div class="notes"><h3 class="h3 spip"><:info_notes:></h2>(#NOTES)</div>]
+	]
 	[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_nb_commentaires}}|ou{#ENV{afficher_rubrique}}|ou{#ENV{afficher_mots_cles}}|ou{#ENV{afficher_popularite}}|ou{#ENV{afficher_traductions}})<div class="meta-publi">]
 		[(#ENV{afficher_lire_la_suite}|oui)<a class="lire-la-suite" href="#URL_ARTICLE"><:zpip:lire_la_suite:>[(#ENV{rappeler_titre}|oui)<span class="lire-la-suite-titre"><:zpip:lire_la_suite_de:> <em>#TITRE</em></span>]</a>]
 		[(#ENV{afficher_rubrique}oui)[(#INCLURE{fond=inclure/rubrique-titre,id_rubrique,texte_devant_rubrique=#ENV{texte_devant_rubrique},affiche_sep=[(#ENV{afficher_lire_la_suite}|oui|?{'on',''})]})]]
