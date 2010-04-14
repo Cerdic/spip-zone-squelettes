@@ -135,6 +135,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_lien_groupe_mots' => 'Si oui, ajouter un lien vers la page des groupes de mots&nbsp;?',
 	'label_afficher_statistiques_mot' => 'Afficher les statistiques du mot-cl&eacute;&nbsp;?',
 	'label_si_texte_complet' => 'Si affichage du texte complet',
+	'label_taille_max_images_texte' => 'Largeur maximale (en pixels) des images dans le texte&nbsp;:',
 	
 	'explication_restreindre_langue' => 'Dans le cas d\'un site multilingue, on peut vouloir restreindre l\'affichage uniquement aux objets dans la m&ecirc;me langue.',
 	'explication_raccourcis_typo' => 'Vous pouvez utiliser les raccourcis typographiques de SPIP.',

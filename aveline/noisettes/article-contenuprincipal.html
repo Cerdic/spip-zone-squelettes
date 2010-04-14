@@ -1,4 +1,5 @@
 [(#SET{taille_max_logo, #ENV{taille_max_logo}|is_null|non|?{#ENV{taille_max_logo},200}})]
+[(#SET{taille_max_images_texte, #ENV{taille_max_images_texte}|is_null|non|?{#ENV{taille_max_images_texte},500}})]
 
 <BOUCLE_article(ARTICLES){id_article}>
 <div class="contenu-principal">
@@ -25,9 +26,9 @@
 	</div>
 
 	<div class="surlignable">
-		[(#ENV{afficher_descriptif}|oui) [<div class="#EDIT{descriptif} chapo">(#DESCRIPTIF|image_reduire{500,0})</div>]]
-		[<div class="#EDIT{chapo} chapo">(#CHAPO|image_reduire{500,0})</div>]
-		[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{500,0})</div>]
+		[(#ENV{afficher_descriptif}|oui) [<div class="#EDIT{descriptif} chapo">(#DESCRIPTIF|image_reduire{#GET{taille_max_images_texte},0})</div>]]
+		[<div class="#EDIT{chapo} chapo">(#CHAPO|image_reduire{#GET{taille_max_images_texte},0})</div>]
+		[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{#GET{taille_max_images_texte},0})</div>]
 	</div>
 
 	[(#ENV{afficher_lienhypertexte}|oui)
@@ -36,7 +37,7 @@
 
 	[<div class="ps">
 		<h2 class="h2"><:info_ps:></h2>
-		<div class="#EDIT{ps} surlignable">(#PS|image_reduire{500,0})</div>
+		<div class="#EDIT{ps} surlignable">(#PS|image_reduire{#GET{taille_max_images_texte},0})</div>
 	</div>]
 </div>
 
