@@ -26,11 +26,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// Description des pages
 	
 	'description_pagedefaut' => 'Les blocs de cette page seront affich&eacute;s par d&eacute;faut pour les blocs o&ugrave; aucune noisette n\'est d&eacute;finie.',
-	'description_page_article' => 'C\'est la page utilis&eacute;e pour afficher chaque article.',
-	'description_page_rubrique' => 'C\'est la page utilis&eacute;e pour afficher chaque rubrique.',
-	'description_page_auteur' => 'C\'est la page utilis&eacute;e pour afficher chaque auteur.',
-	'description_page_breve' => 'C\'est la page utilis&eacute;e pour afficher chaque br&egrave;ve.',
-	'description_page_mot' => 'C\'est la page utilis&eacute;e pour afficher chaque mot-cl&eacute;.',
+	'description_page_article' => 'Page par d&eacute;faut pour les articles.',
+	'description_page_rubrique' => 'Page par d&eacute;faut pour les rubriques.',
+	'description_page_auteur' => 'Page par d&eacute;faut pour les auteurs.',
+	'description_page_breve' => 'Page par d&eacute;faut pour les br&egrave;s.',
+	'description_page_mot' => 'Page par d&eacute;faut pour les mot-cl&eacute;s.',
 	'description_page-forum' => 'Cette page est appel&eacute;e lorsqu\'un visiteur souhaiter poster un message dans un forum.',
 	'description_page-plan' => 'Cette page est appel&eacute;e pour afficher le plan du site.',
 	'description_page-recherche' => 'Cette page est affich&eacute;e lorsqu\'une recherche est effectu&eacute;e sur le site.',
@@ -38,7 +38,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_page-spip_pass' => 'Cette page est affich&eacute;e lorsqu\'un visiteur a oubli&eacute; son mot de passe et souhaite en changer.',
 	'description_page-401' => 'Cette page est affich&eacute;e lorsqu\'un visiteur demande &agrave; voir une page pour laquelle il n\'est pas autoris&eacute;.',
 	'description_page-404' => 'Cette page est affich&eacute;e lorsqu\'un visiteur demande &agrave; voir une page qui n\'existe pas ou plus.',
-	'description_page_site' => 'Cette page est affich&eacute;e pour chaque site web r&eacute;f&eacute;renc&eacute;.',
+	'description_page_site' => 'Page par d&eacute;faut pour les sites web r&eacute;f&eacute;renc&eacute;s.',
 	
 	'nom_page-sommaire' => 'Page d\'accueil du site',
 	'nom_pagedefaut' => 'Page par d&eacute;faut',
