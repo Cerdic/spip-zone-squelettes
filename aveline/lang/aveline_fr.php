@@ -161,6 +161,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'item_pagination_precedent_suivant' => '    page pr&eacute;c&eacute;dente | page suivante',
 	'item_pagination_page' => '1 | 2 | 3 | 4 | 5 | 6',
 	'item_pagination_page_precedent_suivant' => '< 1 | 2 | 3 | 4 | 5 | 6 | >',
+	'item_pagination_simple' => '&laquo; 1 /10 &raquo;',
 	'item_articles_tous' => 'tous les articles du site',
 	'item_meme_rubrique' => 'dans la m&ecirc;me rubrique',
 	'item_rubrique_specifique' => 'dans une rubrique sp&eacute;cifique',
