@@ -66,6 +66,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_portfolio' => 'Port-folio de la distribution par d&eacute;faut de SPIP',
 	'description_navigation_rubriques' => 'Liste des rubriques et des sous-rubriques (toutes langues) tri&eacute;es par titre.',
 	'description_article-mots_cles' => 'Liste les mots-cl&eacute;s associ&eacute;s &agrave; l\'article.',
+	'description_menu' => 'Affiche un menu d&eacute;fini avec le plugin Menus.',
 	
 	'nom_article-contenuprincipal' => 'Contenu principal de l\'article',
 	'nom_liste_articles' => 'Articles de la rubrique ou tous les articles',
