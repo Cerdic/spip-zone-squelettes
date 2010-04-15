@@ -79,6 +79,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_formulaire_recherche' => 'Formulaire de recherche',
 	'nom_navigation_rubriques' => 'Navigation par rubriques',
 	'nom_article-mots_cles' => 'Mots-Cl&eacute;s de l\'article',
+	'nom_menu' => 'Menu',
 	
 	'label_afficher_date' => 'Afficher la date de publication&nbsp;?',
 	'label_afficher_date_modif' => 'Afficher la date de derni&egrave;re modification&nbsp;?',
@@ -136,6 +137,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_afficher_statistiques_mot' => 'Afficher les statistiques du mot-cl&eacute;&nbsp;?',
 	'label_si_texte_complet' => 'Si affichage du texte complet',
 	'label_taille_max_images_texte' => 'Largeur maximale (en pixels) des images dans le texte&nbsp;:',
+	'label_identifiant_menu' => 'Menu &eacute; afficher&nbsp;:',
+	'label_afficher_titre_menu' => 'Afficher le titre du menu&nbsp;?',
 	
 	'explication_restreindre_langue' => 'Dans le cas d\'un site multilingue, on peut vouloir restreindre l\'affichage uniquement aux objets dans la m&ecirc;me langue.',
 	'explication_raccourcis_typo' => 'Vous pouvez utiliser les raccourcis typographiques de SPIP.',
