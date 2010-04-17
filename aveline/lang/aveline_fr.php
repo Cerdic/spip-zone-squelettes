@@ -25,7 +25,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// Description des pages
 	
-	'description_pagedefaut' => 'Les blocs de cette page seront affich&eacute;s par d&eacute;faut pour les blocs o&ugrave; aucune noisette n\'est d&eacute;finie.',
+	'description_pagedefaut' => 'Les blocs de cette page seront ajout&eacute;s sur toutes les pages du site.',
 	'description_page_article' => 'Page par d&eacute;faut pour les articles.',
 	'description_page_rubrique' => 'Page par d&eacute;faut pour les rubriques.',
 	'description_page_auteur' => 'Page par d&eacute;faut pour les auteurs.',
@@ -34,7 +34,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_page-forum' => 'Cette page est appel&eacute;e lorsqu\'un visiteur souhaiter poster un message dans un forum.',
 	'description_page-plan' => 'Cette page est appel&eacute;e pour afficher le plan du site.',
 	'description_page-recherche' => 'Cette page est affich&eacute;e lorsqu\'une recherche est effectu&eacute;e sur le site.',
-	'description_page-login' => 'Cette page est affich&eacute;e lorsqu\'un visiteur souhaite se connecter.',
+	'description_page-login' => 'Cette page est n&eacute;cessaire pour se connecter &agrave; l\'espace priv&eacute;. Par s&eacute;curit&eacute;, si la noisette <i>Formulaire d\'identification</i> sp&eacute;cifique &agrave; cette page n\'est pas ins&eacute;r&eacute;e dans le bloc <i>Contenu</i>, elle y sera ins&eacute;r&eacute;e d\'office.',
 	'description_page-spip_pass' => 'Cette page est affich&eacute;e lorsqu\'un visiteur a oubli&eacute; son mot de passe et souhaite en changer.',
 	'description_page-401' => 'Cette page est affich&eacute;e lorsqu\'un visiteur demande &agrave; voir une page pour laquelle il n\'est pas autoris&eacute;.',
 	'description_page-404' => 'Cette page est affich&eacute;e lorsqu\'un visiteur demande &agrave; voir une page qui n\'existe pas ou plus.',
@@ -55,6 +55,20 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_page-401' => 'Erreur 401',
 	'nom_page-404' => 'Erreur 404',
 	'nom_page_site' => 'Site r&eacute;f&eacute;renc&eacute;',
+	
+	// Description des blocs de la page par défaut
+	'nom_bloc_pre_contenu' => 'Pr&eacute;-Contenu',
+	'nom_bloc_post_contenu' => 'Post-Contenu',
+	'nom_bloc_pre_navigation' => 'Pr&eacute;-Navigation',
+	'nom_bloc_post_navigation' => 'Post-Navigation',
+	'nom_bloc_pre_extra' => 'Pr&eacute;-Extra',
+	'nom_bloc_post_extra' => 'Post-Extra',
+	'description_bloc_pre_contenu' => 'Les noisettes de ce bloc seront ins&eacute;r&eacute;es sur toutes les pages avant le bloc <i>Contenu</i>.',
+	'description_bloc_post_contenu' => 'Les noisettes de ce bloc seront ins&eacute;r&eacute;es sur toutes les pages apr&egrave; le bloc <i>Contenu</i>.',
+	'description_bloc_pre_navigation' => 'Les noisettes de ce bloc seront ins&eacute;r&eacute;es sur toutes les pages avant le bloc <i>Navigation</i>.',
+	'description_bloc_post_navigation' => 'Les noisettes de ce bloc seront ins&eacute;r&eacute;es sur toutes les pages apr&egrave; le bloc <i>Navigation</i>.',
+	'description_bloc_pre_extra' => 'Les noisettes de ce bloc seront ins&eacute;r&eacute;es sur toutes les pages avant le bloc <i>Extra</i>.',
+	'description_bloc_post_extra' => 'Les noisettes de ce bloc seront ins&eacute;r&eacute;es sur toutes les pages apr&egrave; le bloc <i>Extra</i>.',
 	
 	// Description des noisettes
 	
@@ -81,6 +95,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_navigation_rubriques' => 'Navigation par rubriques',
 	'nom_article-mots_cles' => 'Mots-Cl&eacute;s de l\'article',
 	'nom_menu' => 'Menu',
+	'nom_page-login-formulaire_login' => 'Formulaire d\'identification',
 	
 	'label_afficher_date' => 'Afficher la date de publication&nbsp;?',
 	'label_afficher_date_modif' => 'Afficher la date de derni&egrave;re modification&nbsp;?',
@@ -175,9 +190,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'item_introduction' => 'introduction',
 	'item_complet' => 'texte complet',
 	
-	// Description du bloc avantcontenu
-	'nom_bloc_avantcontenu' => 'Avant le contenu principal',
-	'description_bloc_avantcontenu' => 'Sur les pages sensibles (se connecter, mot de passe oubli&eacute;), un contenu par d&eacute;faut est maintenu. Vous pouvez utiliser ce bloc pour ins&eacute;rer des noisettes avant ce contenu par d&eacute;faut.'
 	
 );
 

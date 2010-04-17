@@ -4,25 +4,27 @@
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
 /**
- * Pipeline noizetier_lister_pages pour modifier les blocs des pages page-login et page-spip_pass
+ * Pipeline recuperer_fond pour ajouter les blocs de la page par défaut
  *
  * @param array $pages
  * @return array
  */
-function aveline_noizetier_lister_pages($pages){
-	$blocs = array_merge(
-		array('avantcontenu' => array(
-			'nom' => _T('aveline:nom_bloc_avantcontenu'),
-			'description' => _T('aveline:description_bloc_avantcontenu'),
-			'icon' => find_in_path('img/ic_bloc_avantcontenu.png')
-			)
-		),
-		noizetier_blocs_defaut()
-	);
-	$pages['page-login']['blocs'] = $blocs;
-	$pages['page-spip_pass']['blocs'] = $blocs;
-	
-	return $pages;
+function aveline_recuperer_fond($flux){
+	include_spip('inc/noizetier');
+	$fond = $flux['args']['fond'];
+	$bloc = substr($fond,0,strpos($fond,'/'));
+	// Si on est sur un bloc contenu, navigation ou extra, on ajoute les noisettes de la page par defaut
+	if (in_array($bloc,array('contenu','navigation','extra'))) {
+		$contexte = $flux['data']['contexte'];
+		$contexte['bloc'] = 'pre_'.$bloc;
+		$contexte['type'] = 'defaut';
+		$contexte['composition'] = '';
+		$complements_pre = recuperer_fond('noizetier-generer-bloc',$contexte,array('raw'=>true));
+		$contexte['bloc'] = 'post_'.$bloc;
+		$complements_post = recuperer_fond('noizetier-generer-bloc',$contexte,array('raw'=>true));
+		$flux['data']['texte'] = $complements_pre['texte'].$flux['data']['texte'].$complements_post['texte'];
+	}
+	return $flux;
 }
 
 
