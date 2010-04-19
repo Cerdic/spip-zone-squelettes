@@ -24,7 +24,15 @@ la premiere fois qu'un message est poste (cf. inc/invalideur). ]
 				[(#EXTENSION|match{'^(gif|jpg|png)$'}|?{
 					[(#MODELE{emb}|image_reduire{300})]
 				,
-					[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
+					[(#SPIP_VERSION|replace{\.}
+						|couper{2}
+						|>{20}
+						|?{
+							#LOGO_DOCUMENT{#URL_DOCUMENT}
+							,
+							#LOGO_DOCUMENT|#URL_DOCUMENT
+						}
+					)]
 				})]
 				</BOUCLE_doc>
 				[<p class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_message:></a></p>]
@@ -48,7 +56,15 @@ la premiere fois qu'un message est poste (cf. inc/invalideur). ]
 						[(#EXTENSION|match{'^(gif|jpg|png)$'}|?{
 							[(#MODELE{emb}|image_reduire{300})]
 							,
-							[(#LOGO_DOCUMENT|#URL_DOCUMENT)]
+							[(#SPIP_VERSION|replace{\.}
+								|couper{2}
+								|>{20}
+								|?{
+									#LOGO_DOCUMENT{#URL_DOCUMENT}
+									,
+									#LOGO_DOCUMENT|#URL_DOCUMENT
+								}
+							)]
 						})]
 						</BOUCLE_doc2>
 						[<p class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_message:></a></p>]
