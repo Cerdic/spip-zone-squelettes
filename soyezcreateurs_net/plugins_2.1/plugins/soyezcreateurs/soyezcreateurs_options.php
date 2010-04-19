@@ -129,7 +129,9 @@ $GLOBALS['agenda_affiche_inscription'] = 'non';
 
 ######## PACK ACTUEL DE CONFIGURATION DU COUTEAU SUISSE #########
 // Attention, les surcharges sur les define() ou les globales ne sont pas specifiees ici
-$GLOBALS['cs_installer']['SoyezCreateurs'] = array(
+$GLOBALS['cs_installer']['SoyezCreateurs'] = 'cs_SoyezCreateurs';
+
+function cs_SoyezCreateurs() { return array(
 	// Installation des outils par défaut
 	'outils' =>
 		'webmestres,
@@ -148,7 +150,6 @@ $GLOBALS['cs_installer']['SoyezCreateurs'] = array(
 
 	// Installation des variables par défaut
 	'variables' => array(
-		'webmestres' => '1:2',
 		'expo_bofbof' => 1,
 		'decoration_styles' => 'span.surfluo = background-color:#ffff00; padding:0px 2px;
 span.surgris = background-color:#EAEAEC; padding:0px 2px;
@@ -183,6 +184,7 @@ oeil = &oelig;il
 		'bp_tri_auteurs' => 1
 	)
 );
+}
 
 function balise_SECTEUR_PDF_dist($p) {
 	if (!is_array($p->param))
