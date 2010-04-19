@@ -203,7 +203,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			include_spip('base/cout_install');
 			cout_install_pack('SoyezCreateurs');
 			include_spip('inc/getdocument');
-			effacer_repertoire_temporaire(_DIR_CS_TMP);
+			effacer_repertoire_temporaire(_DIR_TMP.'couteau-suisse');
 			
 			spip_log("SoyezCreateurs maj 3.0.0", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.0','non');
