@@ -15,6 +15,7 @@ $GLOBALS['i18n_median_es'] = array(
 'choix_aa' => 'Articulo de presentacion',
 'choix_groupes_mots_techniques' => 'Definicion de los grupos de palabras claves tecnicos',
 'configuration_median' => 'Configuracion del esqueleto Median',
+'contact' => 'Contacto',
 'couleur_body'=>'Color del fondo del sitio (body)',
 'couleur_fond_page'=>'Color del fondo de la pagina principal',
 'choix_teinte_generale' => 'Colores del sitio',

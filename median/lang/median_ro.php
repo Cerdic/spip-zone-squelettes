@@ -15,6 +15,7 @@ $GLOBALS['i18n_median_ro'] = array(
 'configuration_median' => 'Configuraţia Scheletului Median',
 'couleur_principale' => 'Culoarea principală',
 'couleur_secondaire' => 'Culoarea secundară',
+'contact' => 'Contact',
 'couleur_blocs' => 'Culoarea blocurilor de pe pagina principală',
 'couleur_boite_docjoints' => 'Culoarea căsuţelor "documente ataşate"', 
 'couleur_boite_motscles' => 'Culoarea căsuţelor "cuvinte-cheie"',
