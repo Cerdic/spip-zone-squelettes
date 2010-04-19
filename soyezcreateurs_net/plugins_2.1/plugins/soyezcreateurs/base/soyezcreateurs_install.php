@@ -199,6 +199,12 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			}
 			// Activer les crayons dans ecrire
 			ecrire_meta('crayons', 'a:9:{s:9:"barretypo";s:2:"on";s:11:"msgNoChange";N;s:10:"msgAbandon";N;s:5:"filet";N;s:11:"yellow_fade";N;s:9:"clickhide";N;s:12:"reduire_logo";s:3:"400";s:11:"espaceprive";s:2:"on";s:13:"exec_autorise";s:62:"articles,articles_edit,naviguer,rubriques_edit,sites,portfolio";}','non');
+			// Activer les lames du CouteauSuisse Special SoyezCreateurs
+			include_spip('base/cout_install');
+			cout_install_pack('SoyezCreateurs');
+			include_spip('inc/getdocument');
+			effacer_repertoire_temporaire(_DIR_CS_TMP);
+			
 			spip_log("SoyezCreateurs maj 3.0.0", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.0','non');
 		}
