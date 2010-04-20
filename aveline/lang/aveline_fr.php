@@ -37,6 +37,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'les_mieux_notes' => 'Les mieux not&eacute;s',
 	'modifies_recemment' => 'Modifi&eacute;s r&eacute;cemment',
 	'notez_cet_article' => 'Notez cet article',
+	'archives_deux_points' => 'Archives&nbsp;:',
+	'annee_deux_points' => 'Ann&eacute;e&nbsp;:',
+	'mois_deux_points' => 'Mois&nbsp;:',
 
 	// Description des pages
 	
@@ -182,6 +185,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_titre_noisette' => 'Si affichage d\'un titre, lequel&nbsp;?',
 	'label_titre_noisette_perso' => 'Si titre personnalis&eacute;&nbsp;:',
 	'label_afficher_secteur' => 'Afficher secteur&nbsp;?',
+	'label_afficher_selecteur_archives' => 'Afficher un s&eacute;lecteur d\'archives par mois et/ou ann&eacute;e&nbsp;?',
+	'label_si_afficher_selecteur_archives' => 'Si affichage d\'un s&eacute;lecteur d\'archives',
+	'label_position_selecteur_archives' => 'Position du s&eacute;lecteur&nbsp;:',
+	'label_pas_selecteur_archives' => 'Pas du s&eacute;lecteur&nbsp;:',
+	'label_texte_devant_selecteur_archives' => 'Texte devant le s&eacute;lecteur&nbsp;:',
 	
 	'explication_restreindre_langue' => 'Dans le cas d\'un site multilingue, on peut vouloir restreindre l\'affichage uniquement aux objets dans la m&ecirc;me langue.',
 	'explication_raccourcis_typo' => 'Vous pouvez utiliser les raccourcis typographiques de SPIP.',
@@ -189,6 +197,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_tri' => 'ATTENTION&nbsp;: le crit&egrave;re note n&eacute;cessite que le plugin Notation soit actif.',
 	'explication_choix_tri' => 'Comme sur SPIP-Contrib, ajoute des liens permettant au visiteur de modifier le crit&egrave;re de tri de la liste.',
 	'explication_necessite_notation' => 'ATTENTION&nbsp;: n&eacute;cessite que le plugin Notation soit actif.',
+	'explication_afficher_selecteur_archives' => '&Agrave; la fa&ccedil;on d\'un blog, ajoute en d&eacute;but et/ou en fin de liste un s&eacute;lecteur permettant de restreindre la liste aux publications d\'un mois ou d\'une date donn&eacute;e. Pour afficher ce s&eacute;lecteur dans un autre bloc, vous pouvez utiliser &agrave; la place une noisette <i>S&eacute;lecteur d\'archives</i>.',
 	
 	'item_tout' => 'tous les &eacute;l&eacute;ments sans pagination',
 	'item_limite' => 'un nombre limit&eacute; d\'&eacute;l&eacute;ments',
@@ -225,6 +234,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'item_notation' => 'formulaire de notation classique',
 	'item_jaime_jaimepas' => 'formulaire J\'aime / Je n\'aime pas',
 	'item_jaime' => 'formulaire J\'aime',
+	'item_annee' => 'par ann&eacute;e',
+	'item_mois' => 'par mois',
+	'item_annee_mois' => 'par ann&eacute;e et par mois',
+	'item_aucun' => 'aucun'
 );
 
 ?>

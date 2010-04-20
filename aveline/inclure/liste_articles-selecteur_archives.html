@@ -1,0 +1,20 @@
+[(#SET{pas_selecteur_archives,#ENV{pas_selecteur_archives}|sinon{annee}})]
+<B_articles>
+<form action="#SELF">
+	[(#SELF|parametre_url{archives, ''}|form_hidden)]
+	<p class="pagination selecteur_archives">
+		[(#ENV{texte_devant_selecteur_archives}|_T)]
+		<select name="archives" class="select" id="archives" style="display:inline;" onchange="submit()">
+			<option value=""></option>
+		<BOUCLE_articles(ARTICLES){id_rubrique == #GET{id_rubrique}|sinon{.}}{!par date}>
+			[(#GET{pas_selecteur_archives}|=={mois}|non)
+				[<option value="[(#DATE|annee)]" [(#DATE|annee|=={#ENV{archives}}|oui)selected="selected"]>(#DATE|annee|unique{annee})</option>]
+			]
+			[(#GET{pas_selecteur_archives}|=={annee}|non)
+				[<option value="[(#DATE|affdate{'Y-m'})]" [(#DATE|affdate{'Y-m'}|=={#ENV{archives}}|oui)selected="selected"]>(#DATE|affdate{'Y-m'}|unique{mois}|affdate_mois_annee)</option>]
+			]
+		</BOUCLE_articles>
+		</select>
+	</p>
+</form>
+</B_articles>
