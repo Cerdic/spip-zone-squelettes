@@ -34,7 +34,16 @@
       }
 
       td.header {
-         background-image: url('#CHEMIN{lettres/header.jpg}');
+         background-image: url('[(#CHEMIN{lettres/header.jpg}|
+					image_sepia{#GET{c_header_bk}}|
+					image_masque{[(#NOM_SITE_SPIP|
+					  replace{<sub>.*</sub>,''}|
+					  replace{<sup>.*</sup>,''}|
+					  image_typo{police=AndBasR.ttf,largeur=580,couleur=#GET{c_header},taille=36,padding=20}|
+					  image_recadre{580,130,bottom left,transparent}|				  
+					  extraire_attribut{src})],
+					mode=normal}|
+					extraire_attribut{src})]" alt="[(#NOM_SITE_SPIP|replace{<sub>.*</sub>,''}|replace{<sup>.*</sup>,''})]');
          background-repeat: no-repeat;
          background-position: top center;
          background-color: ##GET{c_header_bk};
@@ -237,6 +246,9 @@
                         </td>
                         <td class="border" width="2">&nbsp;</td>
                         <td class="sidebar" align="left" valign="top" width="192">
+							<h3>@@NOM_LETTRE@@</h3>
+							<p>@@SUJET_LETTRE@@</p>
+							<p>@@DESCRIPTION@@</p>
 							[(#INCLURE{fond=noisettes/cartouches/sommaire_cartouche,nombres_alanune=3,nombres_quoideneuf=10}|replace{'h2>','h3>'})]
                            <img src="#CHEMIN{lettres/hr-small.gif}" alt="Small hr" width="192" height="28" />
                            
