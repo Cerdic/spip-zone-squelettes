@@ -1,223 +1,287 @@
 #CACHE{0}
-#SET{f_navigation,(#CONFIG{soyezcreateurs_couleurs/fontsnavigation,'Verdana, Arial, Geneva, sans-serif'})}
-#SET{f_content,(#CONFIG{soyezcreateurs_couleurs/fontscontent,'Verdana, Arial, Geneva, sans-serif'})}
-
-#SET{c_body_bk,(#CONFIG{soyezcreateurs_couleurs/body_bk,#a1856e})}
-#SET{c_logo_bk,(#CONFIG{soyezcreateurs_couleurs/logo_bk,transparent})}
-
-#SET{c_header,(#CONFIG{soyezcreateurs_couleurs/header,#ffffff})}
-	#SET{c_header_bk,(#CONFIG{soyezcreateurs_couleurs/header_bk,#664e3b})}
-#SET{c_footer,(#CONFIG{soyezcreateurs_couleurs/footer,#ffffff})}
-	#SET{c_footer_bk,(#CONFIG{soyezcreateurs_couleurs/footer_bk,#664e3b})}
-#SET{c_navigation,(#CONFIG{soyezcreateurs_couleurs/navigation,#013067})}
-	#SET{c_navigation_bk,(#CONFIG{soyezcreateurs_couleurs/navigation_bk,#3fa3d7})}
-#SET{c_container,(#CONFIG{soyezcreateurs_couleurs/container,#013067})}
-	#SET{c_container_bk,(#CONFIG{soyezcreateurs_couleurs/container_bk,#ffffff})}
-#SET{c_titraille,(#CONFIG{soyezcreateurs_couleurs/titraille,#013067})}
-	#SET{c_titraille_bk,(#CONFIG{soyezcreateurs_couleurs/titraille_bk,#a6cbec})}
-
-	#SET{c_link,(#CONFIG{soyezcreateurs_couleurs/link,#5599cd})}
-#SET{c_visited,(#CONFIG{soyezcreateurs_couleurs/visited,#66aade})}
-#SET{c_hover,(#CONFIG{soyezcreateurs_couleurs/hover,#a1856e})}
-#SET{c_active,(#CONFIG{soyezcreateurs_couleurs/active,#402816})}
-
-#SET{c_menu_a,(#CONFIG{soyezcreateurs_couleurs/menu_a,#ffffff})}
-	#SET{c_menu_a_bk,(#CONFIG{soyezcreateurs_couleurs/menu_a_bk,#5599cd})}
-#SET{c_menu_a_hover,(#CONFIG{soyezcreateurs_couleurs/menu_a_hover,#ffffff})}
-	#SET{c_menu_a_hover_bk,(#CONFIG{soyezcreateurs_couleurs/menu_a_hover_bk,#66aade})}
-#SET{c_menu_a_active,(#CONFIG{soyezcreateurs_couleurs/menu_a_active,#5599cd})}
-	#SET{c_menu_a_active_bk,(#CONFIG{soyezcreateurs_couleurs/menu_a_active_bk,#ffffff})}
-#SET{c_menu_a_strong,(#CONFIG{soyezcreateurs_couleurs/menu_a_strong,#013067})}
-	#SET{c_menu_a_strong_bk,(#CONFIG{soyezcreateurs_couleurs/menu_a_strong_bk,#ffffff})}
-	
-#SET{c_vignettes_bk,(#CONFIG{soyezcreateurs_couleurs/vignettes_bk,#3fa3d7})}
-
+#SET{c_header,(#CONFIG{soyezcreateurs_couleurs/header,ffffff}|replace{#,''})}
+	#SET{c_header_bk,(#CONFIG{soyezcreateurs_couleurs/header_bk,664e3b}|replace{#,''})}
 <BOUCLE_articles(ARTICLES){titre_mot=Courrier_libre}{!par date}{0,1}>
-<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html>
-	<head>
-		<title>[(#TITRE|textebrut)] &mdash; [(#NOM_SITE_SPIP|textebrut)]</title>
-		
-<style type="text/css"> 
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <title>[(#TITRE|textebrut)] &mdash; [(#NOM_SITE_SPIP|textebrut)]</title>
+   <style type="text/css" media="screen">
 [(#REM) Recuperation des CSS par defaut de SPIP ]
 [(#INCLURE{#CHEMIN{spip_style.css}|url_absolue_css}|compacte{css})]
+      body {
+         margin: 0;
+         padding: 0;
+         background-color: #ffffff;
+      }
 
-html, body { padding: 0; margin: 0; font-family: #GET{f_content}; }
-body { background-color: #GET{c_body_bk}; color: #[(#GET{c_body}|couleur_inverserluminosite{80})]; font-size: 62.7%; }
-#nl_header, #nl_footer {
-	color: #GET{c_header};
-	background-color: #GET{c_header_bk};
-}
-#nl_headercontent {
-	padding:1em;
-}
+      td.permission {
+         padding: 20px 0 20px 0;
+      }
 
-div.nl_liensheader {
-	padding: .15em 1em;
-	color: #GET{c_container};
-	background-color: #GET{c_container_bk};
-}
+      td.permission p {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 10px;
+         font-weight: normal;
+         color: #151515;
+      }
 
-#nl_footer p {
-	margin: 1em 1em;
-	padding: .5em 1em;
-	color: #GET{c_container};
-	background-color: #GET{c_container_bk};
-}
+      td.permission p a {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 10px;
+         font-weight: normal;
+         color: #a72323;
+      }
 
-#nl_container {
-	width:750px;
-	color: #GET{c_container};
-	background-color: #GET{c_container_bk};
-}
-#nl_navigation {
-	width:160px;
-	color: #GET{c_navigation};
-	background-color: #GET{c_navigation_bk};
-}
+      td.header {
+         background-image: url('#CHEMIN{lettres/header.jpg}');
+         background-repeat: no-repeat;
+         background-position: top center;
+         background-color: ##GET{c_header_bk};
+         height: 130px;
+      }
 
-#nl_logosite {
-	background-color: #GET{c_logo_bk};
-	padding: 1em 0;
-}
+      td.header h1 {
+         font-family: Georgia, serif;
+         font-size: 30px;
+         font-weight: normal;
+         color: #333333;
+         margin-left: 50px;
+         margin-bottom: 24px;
+      }
 
-#nl_navigation table {
- 	margin: 1em;
-}
-#nl_navigation h2{
-	
-}
-#nl_artrecents {
-}
+      table.content {
+         background-color: #f5f5f5;
+      }
 
-#artrecents ul, #artrecents li { list-style-image: none; }
-#artrecents ul { padding: 0; margin: 0; }
-#artrecents li { padding: 0 0; background: transparent; list-style: none; list-style-image: none; }
+      td.sidebar a {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 11px;
+         font-weight: normal;
+         color: #a72323;
+         text-decoration: none;
+      }
 
-#artrecents a {
-	display: block; padding: 5px 0 5px 20px; margin: 4px 0; background-color: #GET{c_menu_a_bk}; border-left: none; color: #GET{c_menu_a}; font-size: 1em; font-weight: bold; text-align: left; text-decoration: none;
-}
-#artrecents a:link, #artrecents a:visited {
-	color: #GET{c_menu_a};
-	background-color: #GET{c_menu_a_bk};
-}
-#artrecents a:hover {
-	color: #GET{c_menu_a_hover};
-	background-color: #GET{c_menu_a_hover_bk};
-}
-#artrecents a:active {
-	color: #GET{c_menu_a_active};
-	background-color: #GET{c_menu_a_active_bk};
-}
+      td.sidebar ul {
+         margin: 0 0 0 24px;
+         padding: 0;
+      }
 
-#artrecents ul.alaune li a {
-	border: 2px solid #GET{c_vignettes_bk};
-}
-#artrecents p a {
-	border: 1px solid #GET{c_vignettes_bk};
-}
+      td.sidebar ul li,
+      td.sidebar ul li a {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 12px;
+         font-weight: normal;
+         color: #a72323;
+      }
 
+      td.sidebar h3 {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 16px;
+         font-weight: bold;
+         color: #333333;
+         margin: 10px 0 14px 0;
+         padding: 0;
+      }
 
-#lettre {
-	margin: 1em;
-}
+      td.sidebar h3.buttons {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 16px;
+         font-weight: bold;
+         color: #333333;
+         margin: 0 0 4px 0;
+         padding: 0;
+      }
 
-a { color: #GET{c_link}; font-weight: bold; text-decoration: none; }
-a:visited { color: #GET{c_visited}; }
-a:hover { color: #GET{c_hover}; text-decoration: underline; }
-a:active { color: #GET{c_active}; }
+      td.sidebar h4 {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 13px;
+         font-weight: bold;
+         color: #333333;
+         margin: 0 0 2px 0;
+         padding: 0;
+      }
 
-[(#CHEMIN{images/lettre_perso.css}|?{'/* Surcharge eventuelle */'})
-[(#INCLURE{#CHEMIN{images/lettre_perso.css}|url_absolue_css}|compacte{css})]
-]
+      td.sidebar p {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 11px;
+         font-weight: normal;
+         color: #505050;
+         margin: 0 0 13px 0;
+         padding: 0;
+      }
 
-</style>
+      td.sidebar p.buttons {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 11px;
+         font-weight: normal;
+         color: #505050;
+         margin: 0 0 4px 0;
+         padding: 0;
+      }
 
-	</head>
-	<body> 
-	<center>
-		<table  id="nl_container" cellspacing="0" cellpadding="0" width="900px">
-			<tr id="nl_header">
-				<td id="nl_headercontent">
-					<div>
-						<p><:bonjour:>,</p>
-						<p>Vous avez re&ccedil;u un courrier de la part du site&nbsp;:</p>
-					</div>
-					<h1>[(#NOM_SITE_SPIP)]</h1>
-					<div class="nl_liensheader">
-						<p>Si ce courrier ne s'affiche pas, vous pouvez le <a href="[(#URL_PAGE{liste_mail}|parametre_url{'pst_id', @@ID_LETTRE@@})]">visualiser sur le site</a>.</p>
-						<p>Vous pouvez vous <a href="@@URL_DESINSCRIPTION@@" title="Desabonner">d�sabonner</a> de cette newsletter.</p>
-					</div>
-				</td>
-				<td id="nl_navigation" colspan="1" rowspan="2" valign="top" style="height:100%;">
-					<table cellspacing="0"  cellpadding="0" style="height:100%;">
-						<tr valign="top">
-							<td id="nl_logo" valign="top" style="height:[(#LOGO_SITE_SPIP_NORMAL|url_absolue|hauteur|sinon{0})]px;">
-					[<div id="nl_logosite"><center><a href="#URL_SITE_SPIP"><img src="(#LOGO_SITE_SPIP_NORMAL|liens_absolus|extraire_attribut{src})" 
-					width="[(#LOGO_SITE_SPIP_NORMAL|liens_absolus|largeur)]" 
-					height="[(#LOGO_SITE_SPIP_NORMAL|liens_absolus|hauteur)]"
-					alt="<:soyezcreateurs:retouraccueil:> [(#NOM_SITE_SPIP|supprimer_tags|attribut_html)]" /></a>
-					</center></div>]
-					<div id="nl_nom_site">
-					<h1>@@NOM_LETTRE@@</h1>
-					<h2>@@SUJET_LETTRE@@</h2>
-					<div>@@DESCRIPTION@@</div>
-					</div>
-							</td>
-						</tr>
-						<B_DernieresLettres>
-						<tr>
-							<td valign="top">
-								<h2>Derniers courriers envoy&eacute;s</h2>
-								<ul>
-									<BOUCLE_DernieresLettres(ARTICLES){titre_mot=Courrier_libre}{!par date}{1,10}>
-									<li><a href="#URL_ARTICLE">#TITRE</a></li>
-									</BOUCLE_DernieresLettres>
-								</ul>
-							</td>
-						</tr>
-						</B_DernieresLettres>
-						[<tr>
-							<td valign="top">(#INCLURE{fond=noisettes/cartouches/sommaire_cartouche,nombres_alanune=3,nombres_quoideneuf=10})</td>
-						</tr>]
-					</table>
+      td.border {
+         border-right: 2px solid #e0e0e0;
+      }
 
-				</td>
-				
-			</tr>
-			<tr id="content">
-				<td>
-					<div id="lettre">
-					<!-- CutHere -->
-						<div class="cartouche">
-							[<div class="surtitre"><span>(#SURTITRE)</span></div>]
-							<div class="titrepage"><h1>[<img class="logo_article" src="(#LOGO_ARTICLE_NORMAL|url_absolue|image_reduire{64,64}|extraire_attribut{src})" 
-				width="[(#LOGO_ARTICLE_NORMAL|url_absolue|image_reduire{64,64}|largeur)]" 
-				height="[(#LOGO_ARTICLE_NORMAL|url_absolue|image_reduire{64,64}|hauteur)]"
-				alt="<:soyezcreateurs:retouraccueil:> [(#NOM_SITE_SPIP|supprimer_tags|attribut_html)]" />
-							][(#TITRE)]</h1></div>
+      td.mainbar a {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 12px;
+         font-weight: normal;
+         color: #a72323;
+         text-decoration: none;
+      }
+
+      td.mainbar h2 {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 16px;
+         font-weight: bold;
+         color: #a72323;
+         margin: 0 0 4px 0;
+         padding: 0 0 4px 0;
+         border-bottom: 1px solid #cbcbcb;
+      }
+
+      td.mainbar h3 {
+         font-family: Georgia, serif;
+         font-size: 16px;
+         font-weight: normal;
+         color: #333333;
+         margin: 10px 0 14px 0;
+         padding: 0;
+      }
+
+      td.mainbar p {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 12px;
+         font-weight: normal;
+         color: #333333;
+         margin: 0 0 16px 0;
+         padding: 0;
+      }
+
+      td.mainbar p.top {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 10px;
+         font-weight: bold;
+         color: #a72323;
+         margin: 0 0 30px 0;
+         padding: 0;
+      }
+
+      td.mainbar p.top a {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 10px;
+         font-weight: bold;
+         color: #a72323;
+      }
+
+      td.mainbar ul {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 12px;
+         font-weight: normal;
+         color: #333333;
+         margin: 0 0 20px 24px;
+         padding: 0;
+      }
+
+      td.footer {
+         padding: 20px 0 20px 0;
+      }
+
+      td.footer p {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 10px;
+         font-weight: normal;
+         color: #151515;
+      }
+   </style>
+
+</head>
+<body>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+   <tr>
+      <td align="center">
+         
+         <table width="580" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+               <td class="header" align="left" valign="bottom">
+                 <img src="[(#CHEMIN{lettres/header.jpg}|
+					image_sepia{#GET{c_header_bk}}|
+					image_masque{[(#NOM_SITE_SPIP|
+					  replace{<sub>.*</sub>,''}|
+					  replace{<sup>.*</sup>,''}|
+					  image_typo{police=AndBasR.ttf,largeur=580,couleur=#GET{c_header},taille=36,padding=20}|
+					  image_recadre{580,130,bottom left,transparent}|				  
+					  extraire_attribut{src})],
+					mode=normal}|
+					extraire_attribut{src})]" alt="[(#NOM_SITE_SPIP|replace{<sub>.*</sub>,''}|replace{<sup>.*</sup>,''})]" width="580" height="130" />
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <table width="580" height="130" border="0" cellspacing="16" cellpadding="0" class="content">
+                     <tr>
+                        <td class="mainbar" align="left" valign="top" width="354">
+                           <h3>[(#ENV{date}|affdate)]</h3>
+                           
+                           <h2>#TITRE</h2>
 							[<div class="soustitre"><span>(#SOUSTITRE)</span></div>]
-							[(#INCLURE{fond=noisettes/aff_datepublication}{id_article}{lang})][(#INCLURE{fond=noisettes/liste_auteurs}{id_article}{lang})]
-						</div> <!-- Fin .cartouche -->
-						<div id="letexte">
 							[<div class="chapo">(#CHAPO|sinon{#DESCRIPTIF})</div>]
-							[(#TEXTE|image_reduire{400,0}|liens_absolus)]
+							[(#TEXTE|image_reduire{316,0}|liens_absolus)]
 							[<div class="ps">(#PS)</div>]
 							[<div class="notes">(#NOTES)</div>]
-					<!-- /CutHere -->
-						</div><!-- Fin de #letexte -->
-					</div><!-- Fin de #lettre -->
-				</td>
-			</tr>
-			<tr id="nl_footer">
-				<td colspan="2" align="center" valign="bottom">
-					<div id="nl_bandeaucontact">
-						[(#CONFIG{soyezcreateurs/bandeau_contact}|propre)]
-					</div><!-- #nl_bandeaucontact -->
-				</td>
-			</tr>
-		</table>
-	</center>
-	</body>
+                           <p class="top"><a href="#top"><:soyezcreateurs:retourtop:></a> <img src="#CHEMIN{lettres/top-arrow.gif}" alt="Back to top" width="8" height="8" /></p>
+                           
+                        </td>
+                        <td class="border" width="2">&nbsp;</td>
+                        <td class="sidebar" align="left" valign="top" width="192">
+							[(#INCLURE{fond=noisettes/cartouches/sommaire_cartouche,nombres_alanune=3,nombres_quoideneuf=10}|replace{'h2>','h3>'})]
+                           <img src="#CHEMIN{lettres/hr-small.gif}" alt="Small hr" width="192" height="28" />
+                           
+							<B_DernieresLettres>
+							<h3>Derniers courriers envoy&eacute;s</h3>
+							<ul>
+								<BOUCLE_DernieresLettres(ARTICLES){titre_mot=Courrier_libre}{!par date}{1,5}>
+								<li><a href="#URL_ARTICLE">#TITRE</a></li>
+								</BOUCLE_DernieresLettres>
+							</ul>
+							</B_DernieresLettres>
+                           <img src="#CHEMIN{lettres/hr-small.gif}" alt="Small hr" width="192" height="28" />
+                           
+                           <h3 class="buttons">Transmettre</h3>
+                           <p class="buttons">Vous connaissez quelqu'un qui serait intéressé par cet email ? N'hésitez pas à le lui transmettre.</p>
+                           <img src="#CHEMIN{lettres/hr-small.gif}" alt="Small hr" width="192" height="28" />
+                           
+                           <h3 class="buttons">Désabonnement</h3>
+                           <p class="buttons">Vous pouvez vous <a href="@@URL_DESINSCRIPTION@@" title="Desabonner">désabonner</a> de cette newsletter.</p>
+                           
+                        </td>
+                     </tr>
+                  </table>
+               </td>
+            </tr>
+         </table>
+         <table width="646" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+               <td><img src="#CHEMIN{lettres/footer-tail.jpg}" alt="Footer" width="646" height="87" /></td>
+            </tr>
+            [<tr>
+               <td align="center" class="footer">(#CONFIG{soyezcreateurs/bandeau_contact}|propre)</td>
+            </tr>]
+            <tr>
+               <td class="permission" align="center">
+					<p>Vous avez re&ccedil;u un courrier de la part du site&nbsp;:[ (#NOM_SITE_SPIP|supprimer_tags)]</p>
+					<p>Si ce courrier ne s'affiche pas, vous pouvez le <a href="[(#URL_PAGE{liste_mail}|parametre_url{'pst_id', @@ID_LETTRE@@})]">visualiser sur le site</a>.</p>
+					<p>Vous pouvez vous <a href="@@URL_DESINSCRIPTION@@" title="Desabonner">désabonner</a> de cette newsletter.</p>
+               </td>
+            </tr>
+         </table>
+      </td>
+   </tr>
+</table>
+
+</body>
 </html>
 </BOUCLE_articles>
