@@ -40,6 +40,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'archives_deux_points' => 'Archives&nbsp;:',
 	'annee_deux_points' => 'Ann&eacute;e&nbsp;:',
 	'mois_deux_points' => 'Mois&nbsp;:',
+	'voir_tous' => 'Voir tous',
 
 	// Description des pages
 	
@@ -190,6 +191,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_position_selecteur_archives' => 'Position du s&eacute;lecteur&nbsp;:',
 	'label_pas_selecteur_archives' => 'Pas du s&eacute;lecteur&nbsp;:',
 	'label_texte_devant_selecteur_archives' => 'Texte devant le s&eacute;lecteur&nbsp;:',
+	'label_compteur_articles_selecteur_archives' => 'Afficher le nombre d\'articles&nbsp;?',
 	
 	'explication_restreindre_langue' => 'Dans le cas d\'un site multilingue, on peut vouloir restreindre l\'affichage uniquement aux objets dans la m&ecirc;me langue.',
 	'explication_raccourcis_typo' => 'Vous pouvez utiliser les raccourcis typographiques de SPIP.',
