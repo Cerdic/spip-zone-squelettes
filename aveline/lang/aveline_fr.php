@@ -36,6 +36,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'articles_les_mieux_notes' => 'Articles les mieux not&eacute;s',
 	'les_mieux_notes' => 'Les mieux not&eacute;s',
 	'modifies_recemment' => 'Modifi&eacute;s r&eacute;cemment',
+	'notez_cet_article' => 'Notez cet article',
 
 	// Description des pages
 	
@@ -110,6 +111,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_article-mots_cles' => 'Mots-Cl&eacute;s de l\'article',
 	'nom_menu' => 'Menu',
 	'nom_page-login-formulaire_login' => 'Formulaire d\'identification',
+	'nom_article-formulaire_notation' => 'Formulaire de notation de l\'article',
 	
 	'label_afficher_date' => 'Afficher la date de publication&nbsp;?',
 	'label_afficher_date_modif' => 'Afficher la date de derni&egrave;re modification&nbsp;?',
@@ -174,13 +176,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_si_choix_tri' => 'Si tri modifiable',
 	'label_position_choix_tri' => 'Position de la liste de choix&nbsp;:',
 	'label_afficher_note' => 'Afficher la note&nbsp;?',
+	'label_afficher_formulaire_note' => 'Afficher le formulaire de notation&nbsp;?',
+	'label_formulaire_notation' => 'Si formulaire de notation, lequel&nbsp;?',
+	'label_afficher_titre_noisette' => 'Afficher un titre de noisette&nbsp;?',
+	'label_titre_noisette' => 'Si affichage d\'un titre, lequel&nbsp;?',
+	'label_titre_noisette_perso' => 'Si titre personnalis&eacute;&nbsp;:',
+	'label_afficher_secteur' => 'Afficher secteur&nbsp;?',
 	
 	'explication_restreindre_langue' => 'Dans le cas d\'un site multilingue, on peut vouloir restreindre l\'affichage uniquement aux objets dans la m&ecirc;me langue.',
 	'explication_raccourcis_typo' => 'Vous pouvez utiliser les raccourcis typographiques de SPIP.',
 	'explication_meme_rubrique' => 'Si vous choisissez <i>m&ecirc;me rubrique</i>, la liste sera limit&eacute;e aux objets situ&eacute;e dans la m&ecirc;me rubrique si l\'on est situ&eacute; dans une rubrique et listera tous les objets sinon.',
-	'explication_tri' => 'ATTENTION&nbsp;: le crit&egrave;re note n&eacute;cessite que le plugin Notations soit actif.',
+	'explication_tri' => 'ATTENTION&nbsp;: le crit&egrave;re note n&eacute;cessite que le plugin Notation soit actif.',
 	'explication_choix_tri' => 'Comme sur SPIP-Contrib, ajoute des liens permettant au visiteur de modifier le crit&egrave;re de tri de la liste.',
-	'explication_necessite_notations' => 'ATTENTION&nbsp;: n&eacute;cessite que le plugin Notations soit actif.',
+	'explication_necessite_notation' => 'ATTENTION&nbsp;: n&eacute;cessite que le plugin Notation soit actif.',
 	
 	'item_tout' => 'tous les &eacute;l&eacute;ments sans pagination',
 	'item_limite' => 'un nombre limit&eacute; d\'&eacute;l&eacute;ments',
@@ -194,7 +202,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'item_popularite' => 'popularit&eacute;',
 	'item_visites' => 'nombre de visites',
 	'item_nbre_commentaires' => 'nombre de commentaires',
-	'item_note' => 'note (n&eacute;cessite le plugin Notations)',
+	'item_note' => 'note (n&eacute;cessite le plugin Notation)',
 	'item_ascendant' => 'tri ascendant',
 	'item_descendant' => 'tri descendant',
 	'item_titre_perso' => 'Titre personnalis&eacute;',
@@ -214,8 +222,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'item_rien' => 'rien',
 	'item_introduction' => 'introduction',
 	'item_complet' => 'texte complet',
-	
-	
+	'item_notation' => 'formulaire de notation classique',
+	'item_jaime_jaimepas' => 'formulaire J\'aime / Je n\'aime pas',
+	'item_jaime' => 'formulaire J\'aime',
 );
 
 ?>
