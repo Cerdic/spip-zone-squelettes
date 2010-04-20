@@ -1,22 +1,9 @@
 #CACHE{3600}
 <B_messages>
-			[(#ENV{mode}|=={lettreseule}|non)
-				[(#INCLURE{fond=noisettes/header/header_lettre}{pst_id}{titretop=#GET{titretop}})]
-			]
-
 		<BOUCLE_messages(spip_cm_posts){pst_id}{pst_date_sent!=0}{!par pst_date_sent}>
 			[(#REM) Affichage du détail du message du courrier ]
-			[(#ENV{mode}|=={lettreseule}|oui)
 				[(#PST_HTML)]
-			]
-			[(#ENV{mode}|=={lettreseule}|non)
-				[(#PST_HTML|sc_garder_body)]
-			]
 		</BOUCLE_messages>
-			[(#ENV{mode}|=={lettreseule}|non)
-		</div><!-- Fin de .letexte -->
-</div><!-- Fin de .texte -->
-]
 </B_messages>
 
 <BOUCLE_list(spip_cm_lists){lst_id}>
@@ -97,14 +84,11 @@
 
 	</div><!-- Fin de .letexte -->
 </div><!-- Fin de .texte -->
-
 <//B_list>
-
-<//B_messages>
-			[(#ENV{mode}|=={lettreseule}|non)
-[(#FORMULAIRE_ADMIN)]
 <INCLURE{fond=noisettes/footer/footer}
 	{titretop=#GET{titretop}}
 	{template=Liste_mail}
 >
-]
+
+<//B_messages>
+[(#FORMULAIRE_ADMIN)]
