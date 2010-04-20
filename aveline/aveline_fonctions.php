@@ -37,4 +37,37 @@ function filtre_statistiques_mot_dist($id_mot){
 	return $texte_lie;
 }
 
+// Critère compteur_publie
+// Provient de http://www.spip-contrib.net/Classer-les-articles-par-nombre-de-commentaires
+
+function critere_compteur_publie($idb, &$boucles, $crit){
+ $op='';
+ $boucle = &$boucles[$idb];
+ $params = $crit->param;
+ $type = array_shift($params);
+ $type = $type[0]->texte;
+ if(preg_match(',^(\w+)([<>=])([0-9]+)$,',$type,$r)){
+     $type=$r[1];
+     $op=$r[2];
+     $op_val=$r[3];
+ }
+ $type_id = 'compt.id_'.$type;
+ $type_requete = $boucle->type_requete;
+ $id_table = $boucle->id_table . '.' . $boucle->primary;
+ $boucle->select[]= 'COUNT('.$type_id.') AS compteur_'.$type;
+ $boucle->from['compt']="spip_".$type;
+ $boucle->where[]= array("'='", "'".$id_table."'", "'compt.".$boucle->primary."'");
+ $boucle->where[]= array("'='", "'compt.statut'" , "'\"publie\"'"); 
+ $boucle->group[]=$id_table;
+ if ($op)
+     $boucle->having[]= array("'".$op."'", "'compteur_".$type."'",$op_val);
+} 
+function balise_COMPTEUR_FORUM_dist($p) {
+   $p->code = '$Pile[$SP][\'compteur_forum\']';
+   $p->interdire_scripts = false;
+   return $p;
+} 
+
+
+
 ?>

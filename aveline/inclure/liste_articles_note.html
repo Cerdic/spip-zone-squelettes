@@ -1,0 +1,20 @@
+<B_liste_articles_note>
+<div class="liste articles">
+	#ANCRE_PAGINATION
+	[(#ENV{afficher_titre_liste}|oui)[<h2 class="h2">(#ENV{titre})</h2>]]
+	[(#ENV{position_choix_tri_debut}|oui)#INCLURE{fond=inclure/article-choix_tri,env,tri=#ENV{tri},senstri=#ENV{senstri}}]
+	[(#ENV{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#ENV{style_pagination}})</p>]]
+	<ul class="liste-items">
+	<BOUCLE_liste_articles_note(ARTICLES) {id_rubrique == #ENV{id_rubrique}|sinon{.}} {notation}{par moyenne}{inverse #ENV{senstri}}{doublons articles_en_cours}{lang == #ENV{langue_choisie}|sinon{.}}{pagination #ENV{pas_pagination}}>
+	[(#ENV{style_liste}|=={liste}|oui)
+		#INCLURE{fond=inclure/article-liste,id_article=#ID_ARTICLE,id_article_expose=#ENV{id_article},env}
+	]
+	[(#ENV{style_liste}|=={resume}|oui)
+		#INCLURE{fond=inclure/article-resume,id_article=#ID_ARTICLE,id_article_expose=#ENV{id_article},env}
+	]
+	</BOUCLE_liste_articles_note>
+	</ul>
+	[(#ENV{position_pagination_fin}|oui)[<p class="pagination">(#PAGINATION{#ENV{style_pagination}})</p>]]
+	[(#ENV{position_choix_tri_fin}|oui)#INCLURE{fond=inclure/article-choix_tri,env,tri=#ENV{tri},senstri=#ENV{senstri}}]
+</div>
+</B_liste_articles_note>

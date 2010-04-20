@@ -1,7 +1,8 @@
 [(#SET{selection, #ENV{selection}|sinon{limite}})]
-[(#SET{tri, #ENV{tri}|sinon{date}})]
-[(#SET{senstri, #ENV{senstri}|sinon{1}})]
-[(#SET{tri_num, #ENV{tri}|=={titre}|?{titre,''}})]
+[(#SET{tri, #ENV{tri_perso}|sinon{#ENV{tri}|sinon{date}}})]
+[(#SET{tri, [(#GET{tri}|!={note}|ou{#PLUGIN{notation}}|?{#GET{tri},date})]})]
+[(#SET{senstri, #ENV{tri_perso}|oui|?{#ENV{senstri_perso}|sinon{0},#ENV{senstri}|sinon{1}}})]
+[(#SET{tri_num, #GET{tri}|=={titre}|?{titre,''}})]
 
 [(#SET{pas_pagination, #ENV{pas_pagination}|sinon{5}})]
 [(#SET{limite, #ENV{limite}|sinon{10}})]
@@ -10,6 +11,10 @@
 [(#SET{position_pagination, #ENV{position_pagination}|sinon{fin}})]
 [(#SET{position_pagination_debut,#GET{selection}|!={pagination}|ou{#GET{position_pagination}|=={fin}}|?{'',on}})]
 [(#SET{position_pagination_fin,#GET{selection}|!={pagination}|ou{#GET{position_pagination}|=={debut}}|?{'',on}})]
+
+[(#SET{position_choix_tri, #ENV{position_choix_tri}|sinon{debut}})]
+[(#SET{position_choix_tri_debut,#ENV{choix_tri}|non|ou{#GET{position_choix_tri}|=={fin}}|?{'',on}})]
+[(#SET{position_choix_tri_fin,#ENV{choix_tri}|non|ou{#GET{position_choix_tri}|=={debut}}|?{'',on}})]
 
 [(#SET{langue_choisie, [(#ENV{restreindre_langue}|oui|?{[^(#ENV{lang})$],''})]})]
 [(#SET{exclure_article_en_cours, #ENV{exclure_article_en_cours}|is_null|non|?{#ENV{exclure_article_en_cours},''}})]
@@ -30,13 +35,42 @@
 	</BOUCLE_article_en_cours_exclu>
 </BOUCLE_test_exclure_article_en_cours>
 
+<BOUCLE_tri_nbre_commentaires(CONDITION){si (#GET{tri}|=={nbre_commentaires})}>
+<B_liste_articles_tri_nbre_commentaires>
+<div class="liste articles">
+	#ANCRE_PAGINATION
+	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})</h2>]]
+	[(#GET{position_choix_tri_debut}|oui)#INCLURE{fond=inclure/article-choix_tri,env,tri=#GET{tri},senstri=#GET{senstri}}]
+	[(#GET{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
+	<ul class="liste-items">
+	<BOUCLE_liste_articles_tri_nbre_commentaires(ARTICLES) {id_rubrique == #GET{id_rubrique}|sinon{.}}{compteur_publie forum}{par compteur_forum}{inverse #GET{senstri}}{doublons articles_en_cours}{lang == #GET{langue_choisie}|sinon{.}}{pagination #GET{pas_pagination}}>
+	#COMPTEUR_FORUM
+	[(#GET{style_liste}|=={liste}|oui)
+		#INCLURE{fond=inclure/article-liste,id_article=#ID_ARTICLE,id_article_expose=#ENV{id_article},env}
+	]
+	[(#GET{style_liste}|=={resume}|oui)
+		#INCLURE{fond=inclure/article-resume,id_article=#ID_ARTICLE,id_article_expose=#ENV{id_article},env}
+	]
+	</BOUCLE_liste_articles_tri_nbre_commentaires>
+	</ul>
+	[(#GET{position_pagination_fin}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
+	[(#GET{position_choix_tri_fin}|oui)#INCLURE{fond=inclure/article-choix_tri,env,tri=#GET{tri},senstri=#GET{senstri}}]
+</div>
+</B_liste_articles_tri_nbre_commentaires>
+</BOUCLE_tri_nbre_commentaires>
+
+<BOUCLE_tri_note(CONDITION){si (#GET{tri}|=={note}|et{#PLUGIN{notation}})}>
+#INCLURE{fond=inclure/liste_articles_note,env,afficher_titre_liste=#GET{afficher_titre_liste},titre=#GET{titre},position_choix_tri_debut=#GET{position_choix_tri_debut},tri=#GET{tri},senstri=#GET{senstri},position_pagination_debut=#GET{position_pagination_debut},style_pagination=#GET{style_pagination},id_rubrique=#GET{id_rubrique},langue_choisie=#GET{langue_choisie},pas_pagination=#GET{pas_pagination},style_liste=#GET{style_liste},position_pagination_fin=#GET{position_pagination_fin},position_choix_tri_fin=#GET{position_choix_tri_fin}}
+</BOUCLE_tri_note>
+
 <B_liste_articles>
 <div class="liste articles">
 	#ANCRE_PAGINATION
 	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})</h2>]]
+	[(#GET{position_choix_tri_debut}|oui)#INCLURE{fond=inclure/article-choix_tri,env,tri=#GET{tri},senstri=#GET{senstri}}]
 	[(#GET{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
 	<ul class="liste-items">
-	<BOUCLE_liste_articles(ARTICLES) {id_rubrique == #GET{id_rubrique}|sinon{.}} {par num #GET{tri_num}}{inverse #ENV{senstri}}{par #GET{tri}}{inverse #ENV{senstri}}{doublons articles_en_cours}{lang == #GET{langue_choisie}|sinon{.}}{pagination #GET{pas_pagination}}>
+	<BOUCLE_liste_articles(ARTICLES) {id_rubrique == #GET{id_rubrique}|sinon{.}} {par num #GET{tri_num}}{inverse #GET{senstri}}{par #GET{tri}}{inverse #GET{senstri}}{doublons articles_en_cours}{lang == #GET{langue_choisie}|sinon{.}}{pagination #GET{pas_pagination}}>
 	[(#GET{style_liste}|=={liste}|oui)
 		#INCLURE{fond=inclure/article-liste,id_article=#ID_ARTICLE,id_article_expose=#ENV{id_article},env}
 	]
@@ -46,5 +80,9 @@
 	</BOUCLE_liste_articles>
 	</ul>
 	[(#GET{position_pagination_fin}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
+	[(#GET{position_choix_tri_fin}|oui)#INCLURE{fond=inclure/article-choix_tri,env,tri=#GET{tri},senstri=#GET{senstri}}]
 </div>
 </B_liste_articles>
+
+<//B_tri_note>
+<//B_tri_nbre_commentaires>

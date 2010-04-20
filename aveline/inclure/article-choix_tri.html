@@ -1,0 +1,49 @@
+<p class="pagination choix_tri">
+	[(#ENV{choix_tri_titre}|oui)
+		[(#ENV{tri}|=={titre}|et{[(#ENV{senstri}|=={0})]}|?{<strong class="on">,<a href="[(#SELF|parametre_url{tri_perso,'titre'}|parametre_url{senstri_perso,'0'})]" class="ajax">})]
+		<:aveline:par_titre:>
+		[(#ENV{tri}|=={titre}|et{[(#ENV{senstri}|=={0})]}|?{</strong>,</a>})]
+	]
+	[(#ENV{choix_tri_popularite}|oui)
+		[(#ENV{choix_tri_titre}|oui)|]
+		[(#ENV{tri}|=={popularite}|et{[(#ENV{senstri}|=={1})]}|?{<strong class="on">,<a href="[(#SELF|parametre_url{tri_perso,'popularite'}|parametre_url{senstri_perso,'1'})]" class="ajax">})]
+		<:aveline:les_plus_populaires:>
+		[(#ENV{tri}|=={popularite}|et{[(#ENV{senstri}|=={1})]}|?{</strong>,</a>})]
+	]
+	[(#ENV{choix_tri_date}|oui)
+		[(#ENV{choix_tri_titre}|ou{#ENV{choix_tri_popularite}})|]
+		[(#ENV{tri}|=={date}|et{[(#ENV{senstri}|=={1})]}|?{<strong class="on">,<a href="[(#SELF|parametre_url{tri_perso,'date'}|parametre_url{senstri_perso,'1'})]" class="ajax">})]
+		<:aveline:les_derniers_publies:>
+		[(#ENV{tri}|=={date}|et{[(#ENV{senstri}|=={1})]}|?{</strong>,</a>})]
+	]
+	[(#ENV{choix_tri_anciens}|oui)
+		[(#ENV{choix_tri_titre}|ou{#ENV{choix_tri_popularite}}|ou{#ENV{choix_tri_date}})|]
+		[(#ENV{tri}|=={date}|et{[(#ENV{senstri}|=={0})]}|?{<strong class="on">,<a href="[(#SELF|parametre_url{tri_perso,'date'}|parametre_url{senstri_perso,'0'})]" class="ajax">})]
+		<:aveline:les_plus_anciens:>
+		[(#ENV{tri}|=={date}|et{[(#ENV{senstri}|=={0})]}|?{</strong>,</a>})]
+	]
+	[(#ENV{choix_tri_date_modif}|oui)
+		[(#ENV{choix_tri_titre}|ou{#ENV{choix_tri_popularite}}|ou{#ENV{choix_tri_date}}|ou{#ENV{choix_tri_anciens}})|]
+		[(#ENV{tri}|=={date_modif}|et{[(#ENV{senstri}|=={1})]}|?{<strong class="on">,<a href="[(#SELF|parametre_url{tri_perso,'date_modif'}|parametre_url{senstri_perso,'1'})]" class="ajax">})]
+		<:aveline:modifies_recemment:>
+		[(#ENV{tri}|=={date_modif}|et{[(#ENV{senstri}|=={1})]}|?{</strong>,</a>})]
+	]
+	[(#ENV{choix_tri_commentes}|oui)
+		[(#ENV{choix_tri_titre}|ou{#ENV{choix_tri_popularite}}|ou{#ENV{choix_tri_date}}|ou{#ENV{choix_tri_anciens}}|ou{#ENV{choix_tri_date_modif}})|]
+		[(#ENV{tri}|=={nbre_commentaires}|et{[(#ENV{senstri}|=={1})]}|?{<strong class="on">,<a href="[(#SELF|parametre_url{tri_perso,'nbre_commentaires'}|parametre_url{senstri_perso,'1'})]" class="ajax">})]
+		<:aveline:les_plus_commentes:>
+		[(#ENV{tri}|=={nbre_commentaires}|et{[(#ENV{senstri}|=={1})]}|?{</strong>,</a>})]
+	]
+	[(#ENV{choix_tri_visites}|oui)
+		[(#ENV{choix_tri_titre}|ou{#ENV{choix_tri_popularite}}|ou{#ENV{choix_tri_date}}|ou{#ENV{choix_tri_anciens}}|ou{#ENV{choix_tri_date_modif}}|ou{#ENV{choix_tri_commentes}})|]
+		[(#ENV{tri}|=={visites}|et{[(#ENV{senstri}|=={1})]}|?{<strong class="on">,<a href="[(#SELF|parametre_url{tri_perso,'visites'}|parametre_url{senstri_perso,'1'})]" class="ajax">})]
+		<:aveline:les_plus_visites:>
+		[(#ENV{tri}|=={visites}|et{[(#ENV{senstri}|=={1})]}|?{</strong>,</a>})]
+	]
+	[(#ENV{choix_tri_note}|et{#PLUGIN{notation}})
+		[(#ENV{choix_tri_titre}|ou{#ENV{choix_tri_popularite}}|ou{#ENV{choix_tri_date}}|ou{#ENV{choix_tri_anciens}}|ou{#ENV{choix_tri_date_modif}}|ou{#ENV{choix_tri_commentes}}|ou{#ENV{choix_tri_visites}})|]
+		[(#ENV{tri}|=={note}|et{[(#ENV{senstri}|=={1})]}|?{<strong class="on">,<a href="[(#SELF|parametre_url{tri_perso,'note'}|parametre_url{senstri_perso,'1'})]" class="ajax">})]
+		<:aveline:les_mieux_notes:>
+		[(#ENV{tri}|=={note}|et{[(#ENV{senstri}|=={1})]}|?{</strong>,</a>})]
+	]
+</p>

@@ -27,6 +27,7 @@ parametres:
     options:
       nom: 'tri'
       label: '<:aveline:label_tri:>'
+      explication: '<:aveline:explication_tri:>'
       defaut: 'date'
       cacher_option_intro: 'oui'
       datas:
@@ -35,6 +36,9 @@ parametres:
         date_modif: '<:aveline:item_date_modif:>'
         date_redac: '<:aveline:item_date_redac:>'
         popularite: '<:aveline:item_popularite:>'
+        visites: '<:aveline:item_visites:>'
+        nbre_commentaires: '<:aveline:item_nbre_commentaires:>'
+        note: '<:aveline:item_note:>'
   -
     saisie: 'selection'
     options:
@@ -107,9 +111,9 @@ parametres:
           defaut: 'fin'
           cacher_option_intro: 'oui'
           datas:
-            debut: '<:aveline:item_pagination_debut:>'
-            fin: '<:aveline:item_pagination_fin:>'
-            deux: '<:aveline:item_pagination_deux:>'
+            debut: '<:aveline:item_debut:>'
+            fin: '<:aveline:item_fin:>'
+            deux: '<:aveline:item_deux:>'
       -
         saisie: 'selection'
         options:
@@ -138,11 +142,24 @@ parametres:
       cacher_option_intro: 'oui'
       datas:
         'public:articles': '<:public:articles:>'
-        'public:articles_populaires': '<:public:articles_populaires:>'
         'public:articles_rubrique': '<:public:articles_rubrique:>'
-        'public:derniers_articles': '<:public:derniers_articles:>'
         'public:meme_rubrique': '<:public:meme_rubrique:>'
+        'public:derniers_articles': '<:public:derniers_articles:>'
+        'aveline:les_derniers_publies': '<:aveline:les_derniers_publies:>'
         'public:nouveaux_articles': '<:public:nouveaux_articles:>'
+        'aveline:articles_les_plus_recents' : '<:aveline:articles_les_plus_recents:>'
+        'aveline:les_plus_recents': '<:aveline:les_plus_recents:>'
+        'aveline:modifies_recemment': '<:aveline:modifies_recemment:>'
+        'aveline:articles_les_plus_anciens' : '<:aveline:articles_les_plus_anciens:>'
+        'aveline:les_plus_anciens': '<:aveline:les_plus_anciens:>'
+        'public:articles_populaires': '<:public:articles_populaires:>'
+        'aveline:les_plus_populaires': '<:aveline:les_plus_populaires:>'
+        'aveline:articles_les_plus_visites' : '<:aveline:articles_les_plus_visites:>'
+        'aveline:les_plus_visites': '<:aveline:les_plus_visites:>'
+        'aveline:articles_les_plus_commentes' : '<:aveline:articles_les_plus_commentes:>'
+        'aveline:les_plus_commentes': '<:aveline:les_plus_commentes:>'
+        'aveline:articles_les_mieux_notes' : '<:aveline:articles_les_mieux_notes:>'
+        'aveline:les_mieux_notes': '<:aveline:les_mieux_notes:>'
         titre_perso: '<:aveline:item_titre_perso:>'
       #si: 'afficher_titre_liste == "on"'
   -
@@ -152,6 +169,81 @@ parametres:
       label: '<:aveline:label_titre_liste_perso:>'
       explication: '<:aveline:explication_raccourcis_typo:>'
       #si: 'afficher_titre_liste == "on" && titre_liste == "titre_perso"'
+  -
+    saisie: 'oui_non'
+    options:
+      nom: 'choix_tri'
+      label: '<:aveline:label_choix_tri:>'
+      explication: '<:aveline:explication_choix_tri:>'
+  -
+    saisie: 'fieldset'
+    options:
+      nom: 'si_choix_tri'
+      label: '<:aveline:label_si_choix_tri:>'
+      pliable: 'oui'
+      plie: 'oui'
+      #si: 'choix_tri == "on"'
+    saisies:
+      -
+        saisie: 'selection'
+        options:
+          nom: 'position_choix_tri'
+          label: '<:aveline:label_position_choix_tri:>'
+          defaut: 'debut'
+          cacher_option_intro: 'oui'
+          datas:
+            debut: '<:aveline:item_debut:>'
+            fin: '<:aveline:item_fin:>'
+            deux: '<:aveline:item_deux:>'
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'choix_tri_titre'
+          label: '<:aveline:par_titre:>'
+          defaut: 'on'
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'choix_tri_popularite'
+          label: '<:aveline:les_plus_populaires:>'
+          defaut: 'on'
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'choix_tri_date'
+          label: '<:aveline:les_derniers_publies:>'
+          defaut: 'on'
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'choix_tri_anciens'
+          label: '<:aveline:les_plus_anciens:>'
+          defaut: ''
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'choix_tri_date_modif'
+          label: '<:aveline:modifies_recemment:>'
+          defaut: ''
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'choix_tri_commentes'
+          label: '<:aveline:les_plus_commentes:>'
+          defaut: ''
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'choix_tri_visites'
+          label: '<:aveline:les_plus_visites:>'
+          defaut: ''
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'choix_tri_note'
+          label: '<:aveline:les_mieux_notes:>'
+          explication: '<:aveline:explication_necessite_notations:>'
+          defaut: ''
   -
     saisie: 'selection'
     options:
@@ -183,6 +275,13 @@ parametres:
           nom: 'liste_afficher_soustitre'
           label: '<:aveline:label_afficher_soustitre:>'
           defaut: ''
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'liste_afficher_note'
+          label: '<:aveline:label_afficher_note:>
+          explication: '<:aveline:explication_necessite_notations:>'
+          dafaut: ''
       -
         saisie: 'oui_non'
         options:
@@ -257,6 +356,12 @@ parametres:
       -
         saisie: 'oui_non'
         options:
+          nom: 'liste_afficher_visites'
+          label: '<:aveline:label_afficher_visites:>'
+          defaut: ''
+      -
+        saisie: 'oui_non'
+        options:
           nom: 'liste_afficher_traductions'
           label: '<:aveline:label_afficher_traductions:>'
           defaut: ''
@@ -281,6 +386,13 @@ parametres:
           nom: 'afficher_soustitre'
           label: '<:aveline:label_afficher_soustitre:>'
           defaut: ''
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'afficher_note'
+          label: '<:aveline:label_afficher_note:>
+          explication: '<:aveline:explication_necessite_notations:>'
+          dafaut: ''
       -
         saisie: 'oui_non'
         options:
@@ -432,6 +544,12 @@ parametres:
         options:
           nom: 'afficher_popularite'
           label: '<:aveline:label_afficher_popularite:>'
+          defaut: ''
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'afficher_visites'
+          label: '<:aveline:label_afficher_visites:>'
           defaut: ''
       -
         saisie: 'oui_non'
