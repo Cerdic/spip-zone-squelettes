@@ -364,23 +364,49 @@ function agenda_liste_avertir($id_agenda, $annee_choisie, $mois_choisi) {
 
 // ===================================================
 // Auteur: Smellup
-// Fonction : Retourne le nom du jour en fonction de
-//            son index. Le nom des jours est un item
-//            de langue SPIP
+// Fonction : Retourne le tableau des noms des jours
+//            avec capitale ou pas, abrege ou pas
 // Utilisation : 
 // ===================================================
 //
-function agenda_nom_jour($id_jour=0) {
-	$nom_jour = array();
-	
-	array_push($nom_jour, _T('date_jour_1'), _T('date_jour_2'), _T('date_jour_3'), _T('date_jour_4'), 
-						  _T('date_jour_5'), _T('date_jour_6'), _T('date_jour_7'));
+function agenda_jours($capitale=true, $mode='entier', $taille=0) {
+	$jours=array();
+	if ($capitale)
+		array_push($jours, ucfirst(_T('date_jour_1')), ucfirst(_T('date_jour_2')), ucfirst(_T('date_jour_3')), ucfirst(_T('date_jour_4')), 
+					ucfirst(_T('date_jour_5')), ucfirst(_T('date_jour_6')), ucfirst(_T('date_jour_7')));
+	else
+		array_push($jours, _T('date_jour_1'), _T('date_jour_2'), _T('date_jour_3'), _T('date_jour_4'), 
+					_T('date_jour_5'), _T('date_jour_6'), _T('date_jour_7'));
+	if ($mode == 'entier') {
+		return $jours;
+	}
+	else {
+		foreach($jours as $_jour) {
+			$jours_abbr[] = substr($_jour, 0 , $taille);
+		}
+		return $jours_abbr;
+	}
+}
 
-	$jour = NULL;
-	if (($id_jour >= 0) && ($id_jour < 7))
-		$jour = $nom_jour[$id_jour];
-	
-	return $jour;
+function agenda_mois($capitale=true, $mode='entier', $taille=0) {
+	$mois=array();
+	if ($capitale)
+		$mois = array(1 => ucfirst(_T('date_mois_1')), 2 => ucfirst(_T('date_mois_2')), 3 => ucfirst(_T('date_mois_3')), 4 => ucfirst(_T('date_mois_4')), 
+						5 => ucfirst(_T('date_mois_5')), 6 => ucfirst(_T('date_mois_6')), 7 => ucfirst(_T('date_mois_7')), 8 => ucfirst(_T('date_mois_8')),
+						9 => ucfirst(_T('date_mois_9')), 10 => ucfirst(_T('date_mois_10')), 11 => ucfirst(_T('date_mois_11')), 12 => ucfirst(_T('date_mois_12')));
+	else
+		$mois = array(1 => _T('date_mois_1'), 2 => _T('date_mois_2'), 3 => _T('date_mois_3'), 4 => _T('date_mois_4'), 
+						5 => _T('date_mois_5'), 6 => _T('date_mois_6'), 7 => _T('date_mois_7'), 8 => _T('date_mois_8'),
+						9 => _T('date_mois_9'), 10 => _T('date_mois_10'), 11 => _T('date_mois_11'), 12 => _T('date_mois_12'));
+	if ($mode == 'entier') {
+		return $mois;
+	}
+	else {
+		for($i = 1; $i <= 12; $i++) {
+			$mois_abbr[$i] = substr($mois[$i], 0 , $taille);
+		}
+		return $mois_abbr;
+	}
 }
 
 
@@ -416,14 +442,11 @@ function agenda_mini_afficher($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv=
 
 function agenda_mini_header($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='&gt;&gt;') {
 
-	$nom_mois = array(1 => _T('sarkaspip:janvier'), 2 => _T('sarkaspip:fevrier'), 3 => _T('sarkaspip:mars'), 4 => _T('sarkaspip:avril'), 
-					5 => _T('sarkaspip:mai'), 6 => _T('sarkaspip:juin'), 7 => _T('sarkaspip:juillet'), 8 => _T('sarkaspip:aout'),
-					9 => _T('sarkaspip:septembre'), 10 => _T('sarkaspip:octobre'), 11 => _T('sarkaspip:novembre'), 12 => _T('sarkaspip:decembre'));
-
 	if ($id_agenda == 0)
 		return;
 
 	// Init du contexte
+	$nom_mois = agenda_mois(true, 'entier');
 	$contexte_aff = agenda_definir_contexte(0);
 	$mois_choisi = $contexte_aff['mois_base'];
 	$annee_choisie = $contexte_aff['annee_base'];
@@ -485,10 +508,8 @@ function agenda_mini_header($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='&
 //
 function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui') {
 
-	$nom_jour_abrege = array(	0 => _T('sarkaspip:dimanche_abrege'), 1 => _T('sarkaspip:lundi_abrege'), 2 => _T('sarkaspip:mardi_abrege'), 3 => _T('sarkaspip:mercredi_abrege'), 
-						4 => _T('sarkaspip:jeudi_abrege'), 5 => _T('sarkaspip:vendredi_abrege'), 6 => _T('sarkaspip:samedi_abrege'));
-	$nom_jour = array(	0 => _T('sarkaspip:dimanche'), 1 => _T('sarkaspip:lundi'), 2 => _T('sarkaspip:mardi'), 3 => _T('sarkaspip:mercredi'), 
-						4 => _T('sarkaspip:jeudi'), 5 => _T('sarkaspip:vendredi'), 6 => _T('sarkaspip:samedi'));
+	$nom_jour_abrege = agenda_jours(true, 'abrege', 2);
+	$nom_jour = agenda_jours(true, 'complet');
 
 	if ($id_agenda == 0)
 		return;
@@ -595,10 +616,6 @@ function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui
 //
 function agenda_mini_footer($id_agenda=0, $critere='oui', $max_mois=6, $taille=5, $format='d-m H:i') {
 
-	$nom_mois = array(1 => _T('sarkaspip:janvier'), 2 => _T('sarkaspip:fevrier'), 3 => _T('sarkaspip:mars'), 4 => _T('sarkaspip:avril'), 
-					5 => _T('sarkaspip:mai'), 6 => _T('sarkaspip:juin'), 7 => _T('sarkaspip:juillet'), 8 => _T('sarkaspip:aout'),
-					9 => _T('sarkaspip:septembre'), 10 => _T('sarkaspip:octobre'), 11 => _T('sarkaspip:novembre'), 12 => _T('sarkaspip:decembre'));
-
 	if ($id_agenda == 0)
 		return;
 
@@ -606,6 +623,7 @@ function agenda_mini_footer($id_agenda=0, $critere='oui', $max_mois=6, $taille=5
 		return;
 
 	// Init du contexte
+	$nom_mois = agenda_mois(true, 'entier');
 	$contexte_aff = agenda_definir_contexte(0);
 	$mois_choisi = $contexte_aff['mois_base'];
 	$annee_choisie = $contexte_aff['annee_base'];

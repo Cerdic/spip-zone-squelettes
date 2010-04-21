@@ -941,6 +941,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'octobre' => 'Octobre',
 
 // P
+	'pagerank' => 'pagerank du site',
 	'par_auteur' => 'par ',
 	'photos' => 'photos',
 	'plan_site' => 'Plan du site',
@@ -1002,8 +1003,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'sarkaspip_sommaire' => 'Sommaire',
 	'sarkaspip_styles' => 'Styles',
 	'septembre' => 'Septembre',
-	'signature_petition' => 'Signature',
-	'signatures_petition' => 'Signatures',
+	'signature_petition' => 'signature',
+	'signatures_petition' => 'signatures',
 	'signer_petition' => 'Signer la p&eacute;tition',
 	'site_realise_avec_spip' => 'Site r&eacute;alis&eacute; avec SPIP',
 	'site_web' => 'Site web',
