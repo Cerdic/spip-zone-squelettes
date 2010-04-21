@@ -27,7 +27,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'1_breve' => 'Br&egrave;ve',
 	'1_commentaire' => 'commentaire',
 	'1_photo' => 'photo',
-	'1_signature' => 'signature',
 	'1_site_herbier' => 'site r&eacute;f&eacute;renc&eacute;',
 	'1_site_web' => 'Site Web',
 	'1_ticket' => 'ticket',
@@ -65,7 +64,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'albums_recents' => 'Albums les plus r&eacute;cents',
 	'ancre_haut_page' => 'Haut &uarr;',
 	'annonces' => 'Annonces',
-	'aout' => 'Ao&ucirc;t',
 	'articles' => 'Articles',
 	'articles_aleatoires' => 'Au hasard',
 	'articles_auteur' => 'Articles de cet auteur',
@@ -76,7 +74,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'aucun_article' => 'Il n\'y a pas d\'article &agrave; cette adresse',
 	'aujourdhui' => 'aujourd\'hui',
 	'auteurs' => 'Auteurs',
-	'avril' => 'Avril',
 
 // B
 	'bouton_configuration' => 'Configuration',
@@ -741,7 +738,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 // D
 	'date' => 'Date',
 	'date_aujourdhui' => 'aujourd\'hui',
-	'decembre' => 'D&eacute;cembre',
 	'defiler_a_droite' => 'Suivant &gt;&gt;',
 	'defiler_a_gauche' => ' &lt;&lt; Pr&eacute;c&eacute;dent',
 	'depuis_debut' => 'depuis le d&eacute;but',
@@ -752,7 +748,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'dialogue' => 'Dialogue',
 	'dialogue_descriptif' => 'Si vous &ecirc;tes connect&eacute; vous pouvez participer aux discussions sur les th&egrave;mes abord&eacute;s sur ce site.',
 	'dialoguer_site' => 'Dialoguer sur le site',
-	'dimanche_abrege' => 'Di',
 	'docu_article' => 'Documents joints',
 	'docu_commentaire' => 'Document joint',
 
@@ -793,7 +788,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'exif_taille_fichier' => 'Taille',
 
 // F
-	'fevrier' => 'F&eacute;vrier',
 	'filtre_bulle_album_0_motcle' => 'Afficher tous les albums sans mot-cl&eacute;',
 	'filtre_bulle_album_1_motcle' => 'Afficher tous les albums associ&eacute; &agrave; ce mot-cl&eacute;',
 	'filtre_bulle_album_tout' => 'Afficher tous les albums de la galerie',
@@ -849,12 +843,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'item_choisir_langue' => 'Langue du site (espace priv&eacute;)',
 
 // J
-	'janvier' => 'Janvier',
-	'jeudi_abrege' => 'Je',
 	'jour_precedent' => 'Jour pr&eacute;c&eacute;dent',
 	'jour_suivant' => 'Jour suivant',
-	'juillet' => 'Juillet',
-	'juin' => 'Juin',
 
 // K
 	'kezako_collectif' => 'Sylvain, Toufik, Xavier, Eric, Pascal',
@@ -878,14 +868,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'login_sinscrire' => 's\'inscrire',
 	'logo_de' => 'Logo de',
 	'logout_membre' => 'Deconnexion',
-	'lundi_abrege' => 'Lu',
 
 // M
-	'mai' => 'Mai',
 	'maj' => 'Derni&egrave;re mise &agrave; jour',
-	'mardi_abrege' => 'Ma',
-	'mars' => 'Mars',
-	'mercredi_abrege' => 'Me',
 	'message' => 'Message',
 	'message_bonjour' => 'Bonjour, cher(&egrave;re)',
 	'meteo' => 'M&eacute;t&eacute;o',
@@ -926,12 +911,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'navigation_titre' => 'Navigation',
 	'newsletter' => 'Lettre d\'information',
 	'nom' => 'Nom',
-	'novembre' => 'Novembre',
-
-// O
-	'octobre' => 'Octobre',
 
 // P
+	'pagerank' => 'pagerank du site',
 	'par_auteur' => 'par ',
 	'photos' => 'photos',
 	'plan_site' => 'Plan du site',
@@ -964,7 +946,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'resume_mini_agenda_footer' => 'Liste des &eacute;v&egrave;nements &agrave; venir',
 
 // S
-	'samedi_abrege' => 'Sa',
 	'sarkaspip_accueil' => 'Accueil',
 	'sarkaspip_agenda' => 'Agenda',
 	'sarkaspip_album' => 'Album',
@@ -991,9 +972,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'sarkaspip_site' => 'Site',
 	'sarkaspip_sommaire' => 'Sommaire',
 	'sarkaspip_styles' => 'Styles',
-	'septembre' => 'Septembre',
-	'signature_petition' => 'Signature',
-	'signatures_petition' => 'Signatures',
+	'signature_petition' => 'signature',
+	'signatures_petition' => 'signatures',
 	'signer_petition' => 'Signer la p&eacute;tition',
 	'site_realise_avec_spip' => 'Site r&eacute;alis&eacute; avec SPIP',
 	'site_web' => 'Site web',
@@ -1025,7 +1005,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'url_fausse_2' => 'peut vous aider &agrave; trouver l\'information recherch&eacute;e.',
 
 // V
-	'vendredi_abrege' => 'Ve',
 	'verifier_xhtml' => 'V&eacute;rifier la validit&eacute; XHTML de cette page',
 
 // W
