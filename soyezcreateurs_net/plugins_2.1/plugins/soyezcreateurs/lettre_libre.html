@@ -1,11 +1,12 @@
 #CACHE{0}#HTTP_HEADER{Content-type: text/html; charset=#CHARSET}
 #SET{c_header,(#CONFIG{soyezcreateurs_couleurs/header,ffffff}|replace{#,''})}
 	#SET{c_header_bk,(#CONFIG{soyezcreateurs_couleurs/header_bk,664e3b}|replace{#,''})}
+<BOUCLE_Lettre(spip_cm_lists){lst_id}>
 <BOUCLE_articles(ARTICLES){titre_mot=Courrier_libre}{!par date}{0,1}>
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-   <title>[(#TITRE|textebrut)] &mdash; [(#NOM_SITE_SPIP|textebrut)]</title>
+   <title>[(#LST_NAME|textebrut)] &mdash; [(#NOM_SITE_SPIP|textebrut)]</title>
    <style type="text/css" media="screen">
 [(#REM) Recuperation des CSS par defaut de SPIP ]
 [(#INCLURE{#CHEMIN{spip_style.css}|url_absolue_css}|compacte{css})]
@@ -263,8 +264,8 @@
                         <td class="border" width="2">&nbsp;</td>
                         <td class="sidebar" align="left" valign="top" width="192">
 							<h3>[(#NOM_SITE_SPIP|replace{<sub>.*</sub>,''}|replace{<sup>.*</sup>,''})]</h3>
-							<h3>@@NOM_LETTRE@@</h3>
-							<p>@@DESCRIPTION@@</p>
+							<h3>#LST_NAME</h3>
+							[(#LST_COMMENT|propre)]
 							[(#INCLURE{fond=noisettes/cartouches/sommaire_cartouche,nombres_alanune=3,nombres_quoideneuf=10}|replace{'h2>','h3>'})]
                            <img src="#CHEMIN{lettres/hr-small.gif}" alt="Small hr" width="192" height="28" />
                            
@@ -313,3 +314,4 @@
 </body>
 </html>
 </BOUCLE_articles>
+</BOUCLE_Lettre>
