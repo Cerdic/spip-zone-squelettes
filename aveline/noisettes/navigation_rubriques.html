@@ -3,10 +3,13 @@
 
 	On fait un plan, et, quand on avance vers une rubrique,
 	on l'affiche si son parent est expose ou est la racine du site. ]
-[(#SET{afficher_titre_rubriques, #ENV{afficher_titre_rubriques}|is_null|non|?{#ENV{afficher_titre_rubriques},'on'}})]
+
+[(#SET{titre_noisette, #ENV{titre_noisette}|sinon{aveline:notez_cet_article}})]
+[(#SET{titre,[(#GET{titre_noisette}|=={titre_perso}|?{[(#ENV**{titre_noisette_perso}|propre)],[(#GET{titre_noisette}|_T)]})]})]
+
 <B_rubriques>
 <div class="menu rubriques">
-	[(#GET{afficher_titre_rubriques}|oui)<h2 class="h2"><:rubriques:></h2>]
+	[(#ENV{afficher_titre_noisette}|oui)[<h2 class="h2">(#GET{titre})</h2>]]
 	<ul class="menu-liste">
 	<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
 		<li class="menu-entree">

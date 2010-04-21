@@ -40,7 +40,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'archives_deux_points' => 'Archives&nbsp;:',
 	'annee_deux_points' => 'Ann&eacute;e&nbsp;:',
 	'mois_deux_points' => 'Mois&nbsp;:',
-	'voir_tous' => 'Voir tous'
+	'voir_tous' => 'Voir tous',
+	'archives' => 'Archives',
+	'annees' => 'Ann&eacute;es',
+	'mois' => 'Mois'
 
 );
 
