@@ -56,7 +56,7 @@ mais vous devriez certainement trouver ce que vous cherchez !',
 'explication_palette' => 'pour choisir une couleur: cliquez d\'abord sur le cercle puis sur le carr&eacute;',
 
 // F
-'fond_mot_cles_survol'=>'Couleur de fond des mots du nuage au survol', 
+'fond_mot_cles_survol'=>'Couleur de fond des mots du nuage au survol',
 
 // I
 'id_groupe' => 'id groupe',
@@ -84,7 +84,7 @@ mais vous devriez certainement trouver ce que vous cherchez !',
 'rubriques_pertinentes' => 'Rubriques pertinentes',
 
 // S
-'site_reference'=>'Site r&eacute;f&eacute;renc&eacute;', 
+'site_reference'=>'Site r&eacute;f&eacute;renc&eacute;',
 //'saisir_id_groupes_mots' => 'entrez les ID des groupes de mots s&eacute;par&eacute;s par un |',
 'saisir_couleur' => 'choisissez une couleur en cliquant dans la zone de saisie',
 'sous-titre'=> 'sous titre',

@@ -52,12 +52,12 @@ you certainly find what you are looking for!',
 // E
 'erreur_install_groupe_technique' => 'error during Median\'s technical keywords group creation ',
 'erreur_install_groupe_coordonnees' => 'error during Median\'s Coordonates keywords group creation ',
-'erreur_creation_mot_cle' => 'error while creating keyword ', 
+'erreur_creation_mot_cle' => 'error while creating keyword ',
 'explication_groupes_mots_techniques' => 'keywords in ticked\'s groups will not be viewing in publics pages',
 'explication_palette' => 'to choose a color: first click on the circle, then click on the squarre',
 
 // F
-'fond_mot_cles_survol'=>'Cloud\'s keywords hover background color', 
+'fond_mot_cles_survol'=>'Cloud\'s keywords hover background color',
 
 // I
 'id_groupe' => 'groupe\'s id',
@@ -86,7 +86,7 @@ you certainly find what you are looking for!',
 'rubriques_pertinentes' => 'Relevant sections',
 
 // S
-'site_reference'=>'Referenced site', 
+'site_reference'=>'Referenced site',
 //'saisir_id_groupes_mots' => 'enter the groups ID separated by a  |',
 'saisir_couleur' => 'choose a color by clicking in the input box',
 'sous-titre'=> 'subtitle',
