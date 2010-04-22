@@ -1,12 +1,12 @@
 [(#SET{pas_selecteur_archives,#ENV{pas_selecteur_archives}|sinon{annee}})]
-<B_articles>
-<form action="#SELF">
+<B_articles_selecteur>
+<form action="#SELF" class="bouton_action_post ajax" method="get">
 	[(#SELF|parametre_url{archives, ''}|form_hidden)]
 	<p class="pagination selecteur_archives">
 		[(#ENV{texte_devant_selecteur_archives}|_T)]
-		<select name="archives" class="select" id="archives" style="display:inline;" onchange="submit()">
+		<select name="archives" class="select" id="archives" style="display:inline;">
 			<option value=""><:aveline_public:voir_tous:></option>
-		<BOUCLE_articles(ARTICLES){id_rubrique == #ENV{id_rubrique}|sinon{.}} {lang == #ENV{langue_choisie}|sinon{.}} {!par date}>
+		<BOUCLE_articles_selecteur(ARTICLES){id_rubrique == #ENV{id_rubrique}|sinon{.}} {lang == #ENV{langue_choisie}|sinon{.}} {!par date}>
 			[(#GET{pas_selecteur_archives}|=={mois}|non)
 				[<option value="[(#DATE|annee)]" [(#DATE|annee|=={#ENV{archives}}|oui)selected="selected"]>(#DATE|annee|unique{annee})
 					[(#ENV{compteur_articles_selecteur_archives}|oui) 
@@ -19,8 +19,9 @@
 					[(#INCLURE{fond=inclure/selecteur_archives-nb_articles,id_rubrique=#ENV{id_rubrique},langue_choisie=#ENV{langue_choisie},archives=[(#DATE|affdate{'Y-m'})]})] ]
 				</option>]
 			]
-		</BOUCLE_articles>
+		</BOUCLE_articles_selecteur>
 		</select>
+		<button type='submit' class='submit pagination'><:aveline_public:voir:></button>
 	</p>
 </form>
-</B_articles>
+</B_articles_selecteur>

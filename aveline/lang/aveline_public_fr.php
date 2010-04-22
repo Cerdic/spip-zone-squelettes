@@ -43,7 +43,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'voir_tous' => 'Voir tous',
 	'archives' => 'Archives',
 	'annees' => 'Ann&eacute;es',
-	'mois' => 'Mois'
+	'mois' => 'Mois',
+	'voir' => 'Voir'
 
 );
 
