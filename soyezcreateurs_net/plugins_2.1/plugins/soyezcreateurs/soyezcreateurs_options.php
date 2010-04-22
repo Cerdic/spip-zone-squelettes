@@ -1,4 +1,5 @@
 <?php
+if (!defined("_ECRIRE_INC_VERSION")) return; 
 $forcer_lang = true;
 define('_EXTENSION_PHP', ''); // Ne pas chercher de .php3 !
 
