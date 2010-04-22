@@ -6,7 +6,7 @@
 			[(#ENV{liste_afficher_date}|oui)[<abbr class="published" title="[(#DATE|date_iso)]">(#DATE|affdate_jourcourt)</abbr>][(#ENV{liste_afficher_auteurs}|et{#LESAUTEURS}|?{',','.'})]]
 			[(#ENV{liste_afficher_auteurs}|oui)[<:par_auteur:> (#LESAUTEURS).]]
 			[(#ENV{liste_afficher_date_modif}|oui)<:aveline_public:mis_a_jour_le:> [(#DATE_MODIF|affdate)].]
-			[(#ENV{liste_afficher_rubrique}oui)#INCLURE{fond=inclure/rubrique-titre,id_rubrique,texte_devant_rubrique=#ENV{liste_texte_devant_rubrique}}.]
+			[(#ENV{liste_afficher_rubrique}oui)[(#ENV{liste_texte_devant_rubrique}|in_array{#ARRAY{1,'::',2,'>'}}|?{#ENV{liste_texte_devant_rubrique},[(#ENV{liste_texte_devant_rubrique}|_T)]}) ]#TITRE_PARENT.]
 			[(#ENV{liste_afficher_mots_cles}oui)#INCLURE{fond=inclure/article-mots_cles,id_article,texte_devant_mots_cles=#ENV{liste_texte_devant_mots_cles},ajoute_point='on'}]
 			[(#ENV{liste_afficher_nb_commentaires}|oui)#INCLURE{fond=inclure/article-nb_commentaires,id_article,ajoute_point='on'}]
 			[(#ENV{liste_afficher_popularite}|oui)#POPULARITE_ABSOLUE <:aveline_public:visiteurs_quotidiens:>.]
