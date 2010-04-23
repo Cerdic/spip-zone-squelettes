@@ -158,6 +158,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_compteur_articles_selecteur_archives' => 'Afficher le nombre d\'articles&nbsp;?',
 	'label_style_selecteur' => 'Style du s&eacute;lecteur&nbsp;:',
 	'label_hauteur_max_images' => 'Hauteur maximum des images&nbsp;:',
+	'label_longueur_max_titres' => 'Longueur maximum des titres&nbsp;:',
 	
 	'explication_restreindre_langue' => 'Dans le cas d\'un site multilingue, on peut vouloir restreindre l\'affichage uniquement aux objets dans la m&ecirc;me langue.',
 	'explication_raccourcis_typo' => 'Vous pouvez utiliser les raccourcis typographiques de SPIP.',
