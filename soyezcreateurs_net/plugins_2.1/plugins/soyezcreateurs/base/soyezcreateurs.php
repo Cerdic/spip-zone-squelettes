@@ -106,13 +106,15 @@ function create_groupe($groupe, $descriptif='', $texte='', $unseul='non', $oblig
 
 function supprimer_mot_groupe($nom_groupe,$nom_mot) {
 	$id_groupe = id_groupe($nom_groupe);
-	$id_mot = id_mot($nom_mot, $id_groupe);
-	if ($id_mot>0) {
-		sql_delete("spip_mots", "id_mot=$id_mot");
-		sql_delete("spip_mots_articles", "id_mot=$id_mot");
-		sql_delete("spip_mots_rubriques", "id_mot=$id_mot");
-		sql_delete("spip_mots_syndic", "id_mot=$id_mot");
-		sql_delete("spip_mots_forum", "id_mot=$id_mot");
+	if ($id_groupe>0) {
+		$id_mot = id_mot($nom_mot, $id_groupe);
+		if ($id_mot>0) {
+			sql_delete("spip_mots", "id_mot=$id_mot");
+			sql_delete("spip_mots_articles", "id_mot=$id_mot");
+			sql_delete("spip_mots_rubriques", "id_mot=$id_mot");
+			sql_delete("spip_mots_syndic", "id_mot=$id_mot");
+			sql_delete("spip_mots_forum", "id_mot=$id_mot");
+		}
 	}
 }
 
@@ -441,6 +443,25 @@ function create_rubrique_mot($rubrique, $mot, $groupe) {
 	return true;
 }
 
+function create_evenement($rubrique, $article, $titre_evenement, $debut, $fin, $descriptif = '',$lieu ='', $horaire='oui') {
+	$id_rubrique = id_rubrique($rubrique);
+	if ($id_rubrique > 0) {
+		$id_article = id_article($article, $id_rubrique );
+		if ($id_article > 0) {
+			sql_insertq(
+					"spip_evenements", array(
+						"id_article" => $id_article,
+						"titre" => $titre_evenement,
+						"date_debut" => $debut,
+						"date_fin" => $fin,
+						"descriptif" => $descriptif,
+						"lieu" => $lieu,
+						"horaire" => $horaire,
+					));
+		}
+	}
+}
+
 //fonction qui permet de créer le tout
 function soyezcreateurs_config_motsclefs() {
 	//les rubriques
@@ -539,11 +560,6 @@ function soyezcreateurs_config_motsclefs() {
 		create_mot("_Specialisation_Rubrique", "Citations", "Rubrique destinée à recevoir de courtes citations (une par article) affichées en haut à droite des pages du site de manière alléatoire (une nouvelle citation toutes les heures)", "Créer un article par citation avec :\n\n-* La citation dans le corps du texte (entourée de guillemets si nécessaires)\n-* L'auteur dans le sous-titre\n-* Le titre de l'article sert d'accroche pour le lecteur\n");
 		create_mot("_Specialisation_Rubrique", "DessousBreves", "Pour placer une rubrique et ses articles qui sont placés sous les brèves (dans la colonne de droite du site)", "[*Attention*] : une rubrique qui a ce mot clef ne doit pas avoir de sous-rubrique !\n\nLe titre de la rubrique sera affiché sur la droite et la liste de ses articles en dessous.\n\nSeuls les articles sont clicables pour accéder à leur contenu.");
 		create_mot("_Specialisation_Rubrique", "Gribouille", "Affecter ce mot clef à la rubriques (ou aux rubriques) servant de Wiki dans le site.", "");
-		create_mot("_Specialisation_Rubrique", "dossier_en_avant", "", "");
-		create_mot("_Specialisation_Rubrique", "dossier_identite", "", "");
-		create_mot("_Specialisation_Rubrique", "dossier_thematique", "", "");
-		create_mot("_Specialisation_Rubrique", "info_pratique", "", "");
-		create_mot("_Specialisation_Rubrique", "membres", "", "");
 		create_mot("_Specialisation_Rubrique", "MenuHaut", "Pour qu'un secteur soit dans un menu horizontal en haut du site", "Affecter ce mot clef aux secteurs (rubriques rattachées à la racine du site) qui doivent être dans le menu horizontal en haut du site.");
 		create_mot("_Specialisation_Rubrique", "PasDansMenu", "Pour interdire que la rubrique (et ses sous-rubriques) soi(en)t dans le menu de gauche", "");
 		create_mot("_Specialisation_Rubrique", "PasDansPlan", "Permet de masquer une rubrique, et tout son contenu (y compris les sous-rubriques) du plan du site", "À affecter aux rubriques qui ne doivent pas être affichées dans le plan du site");

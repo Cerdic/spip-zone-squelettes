@@ -447,6 +447,24 @@ Bonne navigation !
 EOF;
 		$contenu['PS'] = "{{NB}} : Ce texte a été librement repris et adapté depuis [son original->http://www.vie-publique.fr/information/politique-accessibilite.html] avec l'aimable autorisation de vie-publique.fr.";
 	}
+	/* Installation du site */
+	if ($article == 'Installation du site') {
+		$contenu['titre'] = $article;
+		$contenu['descriptif'] = 'Date d\'installation du site';
+		$contenu['texte'] = "Cet événement est là pour vous montrer que vous pouvez utiliser un [agenda événementiel dans votre site->http://www.spip-contrib.net/Agenda-evenementiel-avec].";
+	}
+	/* Événement exceptionnel */
+	if ($article == 'Événement exceptionnel') {
+		$contenu['titre'] = $article;
+		$contenu['descriptif'] = "Pour un événement qui ne se produit qu'une fois";
+		$contenu['texte'] = "Quand un événement ne se produit qu'une fois, il vaut mieux faire un article qui contienne un descriptif de l'événement et ne mettre dans l'événement lui-même que sa date. Le titre de l'événement devra alors être identique à celui de l'article.\n\nIl sera même possible de faire une galerie de photographies dans ce même article...";
+	}
+	/* Versions de SPIP */
+	if ($article == 'Versions de SPIP ') {
+		$contenu['titre'] = $article;
+		$contenu['descriptif'] = "Historique des versions de SPIP";
+		$contenu['texte'] = "[SPIP->http://www.spip.net/].";
+	}
 
 	return $contenu;
 }
