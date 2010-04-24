@@ -44,7 +44,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'archives' => 'Archives',
 	'annees' => 'Ann&eacute;es',
 	'mois' => 'Mois',
-	'voir' => 'Voir'
+	'voir' => 'Voir',
+	'permalink_to' => 'Lien permanent vers le commentaire',
+	'date_heure_a' => '&agrave;',
+	'date_jour_le' => 'Le',
+	'commentaires' => 'Commentaires',
 
 );
 

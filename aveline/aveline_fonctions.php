@@ -80,4 +80,38 @@ function critere_archives($idb, &$boucles, $crit, $var_date = 'archives') {
 	);
 }
 
+// Balise #ME
+// Source : http://www.spip-contrib.net/me-Moi-and-myself
+
+/***
+ * (c)James 2006, Licence GNU/GPL
+ * |me compare un id_auteur, par exemple,
+ * d'une boucle FORUMS avec les auteurs d'un article
+ * et renvoie la valeur booleenne true (vrai) si on trouve
+ *  une correspondance
+ * utilisation: 
+ * <div id="forum#ID_FORUM"[(#ID_ARTICLE|me{#ID_AUTEUR}|?{' ', ''})class="me"]>
+ ***/
+function me($id_article, $id_auteur, $sioui = true, $sinon = false) {
+	static $deja = false;
+	static $auteurs = array();
+	if(!$deja) {
+		$r = spip_query("SELECT id_auteur
+			FROM spip_auteurs_articles
+			WHERE id_article=$id_article");
+		while($row = spip_fetch_array($r))
+			$auteurs[] = intval($row['id_auteur']);
+		$deja = true;
+	}
+	return in_array($id_auteur, $auteurs)?$sioui:$sinon;
+}
+
+function balise_ME($p){
+	$p->code = "me(".
+		champ_sql('id_article', $p).', '.
+		champ_sql('id_auteur', $p).', '.
+		"'me', '')";
+	return $p;
+}
+
 ?>

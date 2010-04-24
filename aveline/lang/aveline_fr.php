@@ -166,6 +166,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_afficher_type' => 'Afficher le type de document&nbsp;?',
 	'label_afficher_taille' => 'Afficher la taille du document&nbsp;?',
 	'label_afficher_telecharger' => 'Afficher un lien "T&eacute;l&eacute;charger"&nbsp;?',
+	'label_thread' => 'Pr&eacute;sentation des fils de discussions&nbsp;:',
+	'label_afficher_logo_auteur' => 'Afficher le logo de l\'auteur&nbsp;?',
+	'label_formulaire_reponse_volant' => 'Formulaire de r&eacute;ponse volant&nbsp;?',
+	'label_afficher_titre_message' => 'Afficher le titre du message&nbsp;?',
 	
 	'explication_restreindre_langue' => 'Dans le cas d\'un site multilingue, on peut vouloir restreindre l\'affichage uniquement aux objets dans la m&ecirc;me langue.',
 	'explication_raccourcis_typo' => 'Vous pouvez utiliser les raccourcis typographiques de SPIP.',
@@ -174,6 +178,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_choix_tri' => 'Comme sur SPIP-Contrib, ajoute des liens permettant au visiteur de modifier le crit&egrave;re de tri de la liste.',
 	'explication_necessite_notation' => 'ATTENTION&nbsp;: n&eacute;cessite que le plugin Notation soit actif.',
 	'explication_afficher_selecteur_archives' => '&Agrave; la fa&ccedil;on d\'un blog, ajoute en d&eacute;but et/ou en fin de liste un s&eacute;lecteur permettant de restreindre la liste aux publications d\'un mois ou d\'une date donn&eacute;e. Pour afficher ce s&eacute;lecteur dans un autre bloc, vous pouvez utiliser &agrave; la place une noisette <i>S&eacute;lecteur d\'archives</i>.',
+	'explication_formulaire_reponse_volant' => 'Reproduis le fonction de SPIP-Contrib&nbsp;: lorsque le visiteur clique sur r&eacute;pondre &agrave; ce message, le formulaire de r&eacute;ponse vient se placer sous le message.',
 	
 	'item_tout' => 'tous les &eacute;l&eacute;ments sans pagination',
 	'item_limite' => 'un nombre limit&eacute; d\'&eacute;l&eacute;ments',
@@ -215,7 +220,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'item_annee' => 'par ann&eacute;e',
 	'item_mois' => 'par mois',
 	'item_annee_mois' => 'par ann&eacute;e et par mois',
-	'item_aucun' => 'aucun'
+	'item_aucun' => 'aucun',
+	'item_nb_messages' => 'xx Messages de forum',
+	'item_thread_plat' => 'liste de commentaires (&agrave; plat)',
+	'item_thread_simple' => 'en enfilades simples (les r&eacute;ponses se suivent au sein d\'un m&ecirc;me sujet)',
+	'item_thread_complet' => 'en arborescence (en thread, on peut r&eacute;pondre &agrave; chaque message)'
 );
 
 ?>
