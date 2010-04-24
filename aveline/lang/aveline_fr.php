@@ -84,6 +84,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_page-login-formulaire_login' => 'Formulaire d\'identification',
 	'nom_article-formulaire_notation' => 'Formulaire de notation de l\'article',
 	'nom_selecteur_archives' => 'S&eacute;lecteur d\'archives',
+	'nom_article-lien_hypertexte' => 'Lien hypertexte de l\'article',
 	
 	'label_afficher_date' => 'Afficher la date de publication&nbsp;?',
 	'label_afficher_date_modif' => 'Afficher la date de derni&egrave;re modification&nbsp;?',

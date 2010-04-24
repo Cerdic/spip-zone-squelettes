@@ -49,6 +49,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'date_heure_a' => '&agrave;',
 	'date_jour_le' => 'Le',
 	'commentaires' => 'Commentaires',
+	'source' => 'Source'
 
 );
 
