@@ -111,6 +111,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_contenu' => 'Content',
 	'cfg_couleurs_css' => 'Configuring CSS colors',
 	'cfg_couleurs_css_contenu' => 'Configuring CSS colors of the content',
+	'cfg_couleurs_css_lettre' => 'Configuration des couleurs des NewsLetters', # NEW
 	'cfg_datepublication' => 'Displaying the publication date',
 	'cfg_datepublication_ex' => ' (if disabled, it can de enabled article per article withe the "DevoilerDate" keyword)',
 	'cfg_datepublication_label' => 'Display the publication date for articles',
