@@ -171,6 +171,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_afficher_logo_auteur' => 'Afficher le logo de l\'auteur&nbsp;?',
 	'label_formulaire_reponse_volant' => 'Formulaire de r&eacute;ponse volant&nbsp;?',
 	'label_afficher_titre_message' => 'Afficher le titre du message&nbsp;?',
+	'label_afficher_lien_permanent' => 'Afficher un lien permanent&nbsp;?',
 	
 	'explication_restreindre_langue' => 'Dans le cas d\'un site multilingue, on peut vouloir restreindre l\'affichage uniquement aux objets dans la m&ecirc;me langue.',
 	'explication_raccourcis_typo' => 'Vous pouvez utiliser les raccourcis typographiques de SPIP.',
