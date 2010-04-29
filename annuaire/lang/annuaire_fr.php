@@ -44,9 +44,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'annuaire_rubrique' => 'Rubrique',
 'annuaire_site' => 'Site',
 'annuaire_sommaire' => 'Sommaire',
-'article' => '@nb@ article',
 'articles' => '@nb@ articles',
-'article_syndic' => '@nb@ article syndiqu&eacute;',
+'article_syndic' => '1 article syndiqu&eacute;',
 'articles_syndic' => '@nb@ articles syndiqu&eacute;s',
 
 //B
@@ -54,7 +53,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'boucles' => 'R&eacute;glages des boucles',
 
 //C
-'commentaire' => 'commentaire(s)',
+'commentaire' => '1 commentaire',
 'configuration_abonnement' => 'configuration de la page des abonnements',
 'configuration_bandeau' => 'configuration du bandeau',
 'configuration_colonne_pied' => 'configuration de la colonne et du pied',
@@ -126,7 +125,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //E
 'email_lesauteurs:nom' => 'Email dans les flux rss',
-'email_lesauteurs:description' => 'Sur les balises #LESAUTEURS et #DESCRIPTIF de la page "site" nous coupons les adresses mail si elles existent afin d&rsquo;&eacute;vit&eacute; que le webmastre nous dise qu&rsquo;on le spam.',
+'email_lesauteurs:description' => 'Sur les balises #LESAUTEURS et #DESCRIPTIF de la page "site" nous coupons les adresses mail si elles existent afin d&rsquo;&eacute;vit&eacute; que le webmaster nous dise qu&rsquo;on le spam.',
 'epingle_site' => '&eacute;pingl&eacute;s sur',
 'est_rattache' => 'est rattach&eacute; &agrave;',
 'erreur' => 'des "erreurs"',
@@ -181,7 +180,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'nouveaute' =>'Site nouveaut&eacute;',
 
 //O
-'ok' => 'OK',
 
 //P
 'partenaire1' => 'de "partenaire"',
@@ -214,10 +212,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //S
 'site1' => 'de "site"',
-'site' => '1 site',
 'sites' => '@nb@ sites',
 'sommaire' => 'de "sommaire"',
-'supprimer' => 'Supprimer',
 'style' => 'Style :',
 'styliste' => 'Indiquer la personne responsable la charte graphique : (afficher colonne de droite en bas uniquement si remplis), possibilit&eacute;e de mettre du code spip ou html.',
 'synthese_flux' => 'Synth&egrave;se des flux',
