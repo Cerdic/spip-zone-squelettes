@@ -41,8 +41,8 @@ la premiere fois qu'un message est poste (cf. inc/invalideur). ]
 	<ul class="forum comments-ul thread-simple">
 		<BOUCLE_comments-pieds2(FORUMS) {statut IN publie} {id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?} {par date}{inverse #ENV{senstri}}>
 		<li class="forum-fil comment-li[ (#COMPTEUR_BOUCLE|alterner{'odd','even'})][ (#COMPTEUR_BOUCLE|=={1}|oui)first][ (#EXPOSE)] #ME">
-			[(#MODELE{comment}{id_forum}{afficher_logo_auteur}{afficher_titre_message}{taille_max_logo}{thread=oui}{formulaire_reponse_volant})]
 			<B_comments-fils2>
+			[(#MODELE{comment}{id_forum}{afficher_logo_auteur}{afficher_titre_message}{taille_max_logo}{thread=oui}{formulaire_reponse_volant})]
 			<ul class="comments-ul comments-fils">
 				<BOUCLE_comments-fils2(FORUMS){id_thread}{id_forum!=#ID_FORUM}{plat}{par date}>
 				<li class="forum-fil comment-li[ (#COMPTEUR_BOUCLE|alterner{'odd','even'})][ (#COMPTEUR_BOUCLE|=={1}|oui)first][ (#EXPOSE)] #ME">
@@ -51,7 +51,9 @@ la premiere fois qu'un message est poste (cf. inc/invalideur). ]
 				</li>
 				</BOUCLE_comments-fils2>
 			</ul>
-			</B_comments-fils>
+			</B_comments-fils2>
+			[(#MODELE{comment}{id_forum}{afficher_logo_auteur}{afficher_titre_message}{taille_max_logo}{thread=oui}{formulaire_reponse_volant}{repondre='on'})]
+			<//B_comments-fils2>
 		</li>
 		</BOUCLE_comments-pieds2>
 	</ul>
