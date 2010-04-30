@@ -21,6 +21,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_page-401' => 'Cette page est affich&eacute;e lorsqu\'un visiteur demande &agrave; voir une page pour laquelle il n\'est pas autoris&eacute;.',
 	'description_page-404' => 'Cette page est affich&eacute;e lorsqu\'un visiteur demande &agrave; voir une page qui n\'existe pas ou plus.',
 	'description_page_site' => 'Page par d&eacute;faut pour les sites web r&eacute;f&eacute;renc&eacute;s.',
+	'description_page-contact' => 'Acessible via <i>spip.php?page=contact</i>, cette page optionnelle permet de renseigner vos coordonn&eacute;es et/ou de fournir un formulaire de contact.',
 	
 	'nom_page-sommaire' => 'Page d\'accueil du site',
 	'nom_pagedefaut' => 'Page par d&eacute;faut',
@@ -37,6 +38,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_page-401' => 'Erreur 401',
 	'nom_page-404' => 'Erreur 404',
 	'nom_page_site' => 'Site r&eacute;f&eacute;renc&eacute;',
+	'nom_page-contact' => 'Contact',
 	
 	// Description des blocs de la page par défaut
 	'nom_bloc_pre_contenu' => 'Pr&eacute;-Contenu',
@@ -65,6 +67,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_article-mots_cles' => 'Liste les mots-cl&eacute;s associ&eacute;s &agrave; l\'article.',
 	'description_menu' => 'Affiche un menu d&eacute;fini avec le plugin Menus.',
 	'description_selecteur_archives' => 'Cette noisette est &agrave; utiliser en conjonction avec la noisette <i>Articles de la rubrique ou du site</i> (les deux noisettes doivent &ecirc;tre plac&eacute;es sur la m&ecirc;me page). &Agrave; la mani&egrave;re d\'un blog, elle fournit une liste des mois et/ou des ann&eacute;es pour lesquels des articles ont &eacute;t&eacute; publi&eacute;s et permet de recharger la page en filtrant les r&eacute;sultats selon la p&eacute;riode choisie. Pensez &agrave; param&eacute;trer le choix de la rubrique comme pour la noisette <i>Articles de la rubrique ou du site</i>.',
+	'description_formulaire_contact' => 'N&eacute;cessite le plugin <i>Formulaire de contact avanc&eacute;</i>. Le formulaire est configurable sur cette page&nbsp;: <a href="./?exec=cfg&cfg=contact">/?exec=cfg&cfg=contact</a>.',
 	
 	'nom_article-contenuprincipal' => 'Contenu principal de l\'article',
 	'nom_liste_articles' => 'Articles de la rubrique ou tous les articles',
@@ -85,6 +88,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_article-formulaire_notation' => 'Formulaire de notation de l\'article',
 	'nom_selecteur_archives' => 'S&eacute;lecteur d\'archives',
 	'nom_article-lien_hypertexte' => 'Lien hypertexte de l\'article',
+	'nom_formulaire_contact' => 'Formulaire de contact avanc&eacute;',
 	
 	'label_afficher_date' => 'Afficher la date de publication&nbsp;?',
 	'label_afficher_date_modif' => 'Afficher la date de derni&egrave;re modification&nbsp;?',
@@ -172,6 +176,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_formulaire_reponse_volant' => 'Formulaire de r&eacute;ponse volant&nbsp;?',
 	'label_afficher_titre_message' => 'Afficher le titre du message&nbsp;?',
 	'label_afficher_lien_permanent' => 'Afficher un lien permanent&nbsp;?',
+	'label_niveau_titre' => 'Niveau du titre&nbsp;:',
 	
 	'explication_restreindre_langue' => 'Dans le cas d\'un site multilingue, on peut vouloir restreindre l\'affichage uniquement aux objets dans la m&ecirc;me langue.',
 	'explication_raccourcis_typo' => 'Vous pouvez utiliser les raccourcis typographiques de SPIP.',

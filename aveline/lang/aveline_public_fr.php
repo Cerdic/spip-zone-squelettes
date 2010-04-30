@@ -50,7 +50,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'date_jour_le' => 'Le',
 	'commentaires' => 'Commentaires',
 	'source' => 'Source',
-	'lien_permanent' => 'Lien permanent'
+	'lien_permanent' => 'Lien permanent',
+	'contact' => 'Contact',
+	'nous_contacter' => 'Nous contacter',
+	'envoyer_email' => 'Envoyer un email'
 
 );
 
