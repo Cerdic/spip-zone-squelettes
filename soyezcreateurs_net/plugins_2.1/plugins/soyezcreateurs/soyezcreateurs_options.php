@@ -17,6 +17,10 @@ define('_URLS_PROPRES_MAX', 60); // pris en compte à partire de http://trac.rezo
 define('_TRI_ARTICLES_RUBRIQUE', '0+titre,date DESC'); // cf http://trac.rezo.net/trac/spip/changeset/11492
 define('_CS_OUTILS_CACHES', 'cs_comportement:insert_head:verstexte:trousse_balises:dossier_squelettes:type_urls:filtrer_javascript:spam:moderation_moderee:paragrapher2:auteur_forum:no_IP:flock:spip_cache:forum_lgrmaxi:simpl_interface:icone_visiter:pucesli:glossaire:blocs:toutmulti:decoupe:filets_sep:couleurs:f_jQuery:desactiver_flash:jcorner:SPIP_liens:class_spip:supprimer_numero:xml:visiteurs_connectes:titre_parent:horloge:liens_en_clair:orientation:sommaire:maj_auto:previsualisation:chatons:introduction:forcer_langue:masquer:introduction:tri_articles');
 
+define("_CLEVERMAIL_NOUVEAUTES_HTML", 'lettre_libre');
+define("_CLEVERMAIL_NOUVEAUTES_TEXT", 'lettre_libre_txt');
+define("_CLEVERMAIL_DISTANT", false);
+
 $couleurs = charger_fonction('couleurs', 'inc');
 $couleurs( array(
 // Vert
