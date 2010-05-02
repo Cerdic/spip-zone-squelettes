@@ -1,8 +1,22 @@
 [(#SET{taille_max_logo, #ENV{taille_max_logo}|is_null|non|?{#ENV{taille_max_logo},200}})]
 [(#SET{taille_max_images_texte, #ENV{taille_max_images_texte}|is_null|non|?{#ENV{taille_max_images_texte},500}})]
-[(#SET{formulaire_notation,#ENV{formulaire_notation}|sinon{notation}})]
 
 <BOUCLE_article(ARTICLES){id_article}>
+<div class="contenu-principal">
+	<div class="vcard">[(#REM) microformat vcard]
+	<div class="cartouche">
+		[(#LOGO_AUTEUR||image_reduire{200,200})]
+		<h1 class="h1 #EDIT{qui} fn">#NOM</h1>
+	</div>
+
+	[<div class="#EDIT{bio} texte note">(#BIO)</div>]
+	[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="url spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+	</div>[(#REM) / vcard]
+</div>
+
+
+
+
 <div class="contenu-principal">
 	<div class="cartouche">
 		[(#ENV{afficher_logo}|oui)
