@@ -60,6 +60,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_article-contenuprincipal' => 'Affiche logo, surtitre, titre, sous-titre, date, auteur, traduction, chapeau, texte, lien hypertexte, post-scriptum et notes.',
 	'description_auteur-contenuprincipal' => 'Affiche nom, logo, biographie et site web.',
 	'description_liste_articles' => 'Liste l\'ensemble des articles du site ou bien les articles situ&eacute;s dans la m&ecirc;me rubrique ou dans une rubrique donn&eacute;e.',
+	'description_liste_auteurs' => 'Liste l\'ensemble des auteurs du site ayant au moins un article publi&eacute;.',
 	'description_rubrique-contenuprincipal' => 'Affiche logo, date de dernier ajout et texte. Utilisez les param&egrave;tres ci-dessous pour personnaliser les &eacute;l&eacute;ments &agrave; afficher.',
 	'description_documents' => 'Par d&eacute;faut, n\'affiche pas les photos, celles-ci &eacute;tant affich&eacute;es usuellement via un portfolio. Vous pouvez forcer l\'affichage des photos au cas o&ugrave; vous n\'affichez pas de portfolio.',
 	'description_article-filariane' => 'Affiche l\'arborescence des rubriques jusqu\'&agrave; l\'article.',
@@ -73,6 +74,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 		
 	'nom_article-contenuprincipal' => 'Contenu principal de l\'article',
 	'nom_liste_articles' => 'Articles de la rubrique ou tous les articles',
+	'nom_liste_auteurs' => 'Auteurs du site',
 	'nom_rubrique-contenuprincipal' => 'Contenu principal de la rubrique',
 	'nom_auteur-contenuprincipal' => 'Contenu principal de l\'auteur',
 	'nom_article-documents' => 'Documents de l\'article',
@@ -187,6 +189,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_afficher_nom_auteur' => 'Afficher le nom de l\'auteur&nbsp;?',
 	'label_lien_page_auteurs' => 'Ajouter un lien vers la page \'auteurs\'&nbsp;?',
 	'label_afficher_site_web' => 'Afficher le site web&nbsp;?',
+	'label_afficher_nb_articles' => 'Afficher le nombre d\'articles&nbsp;?',
+	'label_afficher_bio' => 'Afficher la biographie de l\'auteur&nbsp;?',
+	'label_rappeler_nom' => 'Rappeler le nom de l\'auteur&nbsp;?',
+	'label_si_vignettes' => 'Si affichage de vignettes',
+	'label_vignette_ajout_css' => 'Ajout en dur de CSS sp&eacute;cifiques&nbsp;?',
 	
 	'explication_restreindre_langue' => 'Dans le cas d\'un site multilingue, on peut vouloir restreindre l\'affichage uniquement aux objets dans la m&ecirc;me langue.',
 	'explication_raccourcis_typo' => 'Vous pouvez utiliser les raccourcis typographiques de SPIP.',
@@ -197,6 +204,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_afficher_selecteur_archives' => '&Agrave; la fa&ccedil;on d\'un blog, ajoute en d&eacute;but et/ou en fin de liste un s&eacute;lecteur permettant de restreindre la liste aux publications d\'un mois ou d\'une date donn&eacute;e. Pour afficher ce s&eacute;lecteur dans un autre bloc, vous pouvez utiliser &agrave; la place une noisette <i>S&eacute;lecteur d\'archives</i>.',
 	'explication_formulaire_reponse_volant' => 'Reproduis le fonction de SPIP-Contrib&nbsp;: lorsque le visiteur clique sur r&eacute;pondre &agrave; ce message, le formulaire de r&eacute;ponse vient se placer sous le message.',
 	'explication_lien_page_auteurs' => 'Rajoute un lien vers une page \'auteurs\' o&ugrave; vous pourrez lister l\'ensemble des auteurs du site. Vous devrez cr&eacute;er cette page (composition du type \'page\' avec l\'identifiant \'auteurs\'.',
+	'explication_vignette_ajout_css' => 'Une majorit&eacute; de th&egrave;mes pour Zpip ne prennent pas en compte les vignettes d\'auteurs. Cette option permet de rajouter en dur dans le squelette quelques styles CSS pour am&eacute;liorer l\'affichage. &Agrave; ne pas activer si le th&egrave;me prend en charge les vignettes.',
 	
 	'item_tout' => 'tous les &eacute;l&eacute;ments sans pagination',
 	'item_limite' => 'un nombre limit&eacute; d\'&eacute;l&eacute;ments',
@@ -242,7 +250,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'item_nb_messages' => 'xx Messages de forum',
 	'item_thread_plat' => 'liste de commentaires (&agrave; plat)',
 	'item_thread_simple' => 'en enfilades simples (les r&eacute;ponses se suivent au sein d\'un m&ecirc;me sujet)',
-	'item_thread_complet' => 'en arborescence (en thread, on peut r&eacute;pondre &agrave; chaque message)'
+	'item_thread_complet' => 'en arborescence (en thread, on peut r&eacute;pondre &agrave; chaque message)',
+	'item_nom' => 'par nom',
+	'item_nb_articles' => 'par nombre d\'articles',
+	'item_vignettes' => 'vignettes',
 );
 
 ?>

@@ -53,7 +53,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'lien_permanent' => 'Lien permanent',
 	'contact' => 'Contact',
 	'nous_contacter' => 'Nous contacter',
-	'envoyer_email' => 'Envoyer un email'
+	'envoyer_email' => 'Envoyer un email',
+	'contributeurs' => 'Contributeurs',
+	'principaux_auteurs' => 'Principaux auteurs',
+	'principaux_contributeurs' => 'Principaux contributeurs',
+	'par_nom' => 'Par nom',
+	'par_nb_articles' => 'Par nombre d\'articles',
+	'autres_auteurs' => 'Autres auteurs',
+	'autres_contributeurs' => 'Autres contributeurs',
 
 );
 
