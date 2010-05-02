@@ -22,6 +22,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_page-404' => 'Cette page est affich&eacute;e lorsqu\'un visiteur demande &agrave; voir une page qui n\'existe pas ou plus.',
 	'description_page_site' => 'Page par d&eacute;faut pour les sites web r&eacute;f&eacute;renc&eacute;s.',
 	'description_page-contact' => 'Acessible via <i>spip.php?page=contact</i>, cette page optionnelle permet de renseigner vos coordonn&eacute;es et/ou de fournir un formulaire de contact.',
+	'description_page-lettres' => 'Cette page est utilis&eacute;e par le plugin SPIP-Lettres pour g&eacute;r&eacute;r les abonnements aux lettres d\'information. Si la noisette <i>Formulaire d\'inscription aux lettres d\'information</i> n\'est pas inclue dans cette page, le formulaire sera inclu d\'office. Vous pouvez aussi utiliser cette page pour lister les lettres d&eacute;j&agrave; envoy&eacute;es.',
 	
 	'nom_page-sommaire' => 'Page d\'accueil du site',
 	'nom_pagedefaut' => 'Page par d&eacute;faut',
@@ -68,7 +69,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_menu' => 'Affiche un menu d&eacute;fini avec le plugin Menus.',
 	'description_selecteur_archives' => 'Cette noisette est &agrave; utiliser en conjonction avec la noisette <i>Articles de la rubrique ou du site</i> (les deux noisettes doivent &ecirc;tre plac&eacute;es sur la m&ecirc;me page). &Agrave; la mani&egrave;re d\'un blog, elle fournit une liste des mois et/ou des ann&eacute;es pour lesquels des articles ont &eacute;t&eacute; publi&eacute;s et permet de recharger la page en filtrant les r&eacute;sultats selon la p&eacute;riode choisie. Pensez &agrave; param&eacute;trer le choix de la rubrique comme pour la noisette <i>Articles de la rubrique ou du site</i>.',
 	'description_formulaire_contact' => 'N&eacute;cessite le plugin <i>Formulaire de contact avanc&eacute;</i>. Le formulaire est configurable sur cette page&nbsp;: <a href="./?exec=cfg&cfg=contact">/?exec=cfg&cfg=contact</a>.',
-	
+		
 	'nom_article-contenuprincipal' => 'Contenu principal de l\'article',
 	'nom_liste_articles' => 'Articles de la rubrique ou tous les articles',
 	'nom_rubrique-contenuprincipal' => 'Contenu principal',
@@ -89,6 +90,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_selecteur_archives' => 'S&eacute;lecteur d\'archives',
 	'nom_article-lien_hypertexte' => 'Lien hypertexte de l\'article',
 	'nom_formulaire_contact' => 'Formulaire de contact avanc&eacute;',
+	'nom_formulaire_lettres' => 'Formulaire d\'inscription aux lettres d\'information',
 	
 	'label_afficher_date' => 'Afficher la date de publication&nbsp;?',
 	'label_afficher_date_modif' => 'Afficher la date de derni&egrave;re modification&nbsp;?',
