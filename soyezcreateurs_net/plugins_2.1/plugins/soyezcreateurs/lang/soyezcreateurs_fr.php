@@ -336,6 +336,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// M
 	'memerubrique' => 'Dans la m&ecirc;me rubrique...',
+	'mentions_legales_obligatoires' => 'Mention l&eacute;gales obligatoire ([CNIL|Commision Nationale Informatique et Libert&eacute;->http://www.cnil.fr/] et [LcEN|Loi sur la confiance en l\'&eacute;conomie Num&eacute;rique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Tout ce qu\'[il faut savoir->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [D&eacute;cryptage des obligations l&eacute;gales->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].',
 	'menu_deplier' => 'd\\351plier: ',
 	'menu_picalt' => 'Cliquer pour ',
 	'menu_replier' => 'replier: ',
