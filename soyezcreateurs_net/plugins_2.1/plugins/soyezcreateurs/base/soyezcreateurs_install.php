@@ -274,7 +274,6 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		}
 
 		if (version_compare($current_version,'3.0.3','<')) {
-			create_article($mentions, "000. Fourre-tout");
 			create_mot("_Specialisation", "MentionsLegales", _T('soyezcreateurs:mentions_legales_obligatoires'), "Affecter ce mot clef à l'article destiné à afficher les mentions légales du site.");
 			
 			spip_log("SoyezCreateurs maj 3.0.3", "soyezcreateurs_install");			
