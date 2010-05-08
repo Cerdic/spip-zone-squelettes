@@ -23,8 +23,15 @@ $(function() {
 </BOUCLE_afficher_document>
 <div id="documents_portfolio">
 <BOUCLE_imgs(DOCUMENTS){id_article}{mode=document}{par num titre, date}{extension IN png,jpg,gif}>
-[(#ENV{id_document}|=={#ID_DOCUMENT}|?{'',[(#PLUGIN{fancybox}|?{<a class="fancybox" href="#URL_DOCUMENT" type="#MIME_TYPE" title="[(#TITRE|attribut_html|sinon{<:info_document:>})]" rel="gal">,[(#PLUGIN{Nyro}|?{<a class="nyroceros" href="#URL_DOCUMENT" type="#MIME_TYPE" title="[(#TITRE|attribut_html|sinon{<:info_document:>})][ - (#DESCRIPTIF|attribut_html)]" rel="gal">,[(#PLUGIN{ThickBox1}|?{<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#document_actif';return false;">,<a class="ajax" href="[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#document_actif">})]})]})]})]<img src="[(#FICHIER|copie_locale|image_reduire{0,60}|extraire_attribut{src})]"  width="[(#FICHIER|copie_locale|image_reduire{0,60}|largeur)]" height="[(#FICHIER|copie_locale|image_reduire{0,60}|hauteur)]" alt="[(#TITRE|attribut_html|sinon{<:info_document:>})]" title="[(#TITRE|attribut_html|sinon{<:info_document:>})][ - (#DESCRIPTIF|attribut_html)]"[(#ENV{id_document}|=={#ID_DOCUMENT}|?{[ style="border-color: #(#LOGO_DOCUMENT|couleur_extraire|couleur_inverser);"],[ style="border-color: #(#LOGO_DOCUMENT|couleur_extraire);"]})] />[(#ENV{id_document}|=={#ID_DOCUMENT}|?{'',</a>})]
+[(#ENV{id_document}|=={#ID_DOCUMENT}|?{'',[(#PLUGIN{mediabox}|?{<a class="mediabox" href="#URL_DOCUMENT" type="#MIME_TYPE" title="[(#TITRE|attribut_html|sinon{<:info_document:>})]" rel="gal">,[(#PLUGIN{fancybox}|?{<a class="fancybox" href="#URL_DOCUMENT" type="#MIME_TYPE" title="[(#TITRE|attribut_html|sinon{<:info_document:>})]" rel="gal">,[(#PLUGIN{Nyro}|?{<a class="nyroceros" href="#URL_DOCUMENT" type="#MIME_TYPE" title="[(#TITRE|attribut_html|sinon{<:info_document:>})][ - (#DESCRIPTIF|attribut_html)]" rel="gal">,[(#PLUGIN{ThickBox1}|?{<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#document_actif';return false;">,<a class="ajax" href="[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#document_actif">})]})]})]})]})]<img src="[(#FICHIER|copie_locale|image_reduire{0,60}|extraire_attribut{src})]"  width="[(#FICHIER|copie_locale|image_reduire{0,60}|largeur)]" height="[(#FICHIER|copie_locale|image_reduire{0,60}|hauteur)]" alt="[(#TITRE|attribut_html|sinon{<:info_document:>})]" title="[(#TITRE|attribut_html|sinon{<:info_document:>})][ - (#DESCRIPTIF|attribut_html)]"[(#ENV{id_document}|=={#ID_DOCUMENT}|?{[ style="border-color: #(#LOGO_DOCUMENT|couleur_extraire|couleur_inverser);"],[ style="border-color: #(#LOGO_DOCUMENT|couleur_extraire);"]})] />[(#ENV{id_document}|=={#ID_DOCUMENT}|?{'',</a>})]
 </BOUCLE_imgs>
+[(#CONFIG{soyezcreateurs/native_tooltips}|=={on}|non)
+[(#PLUGIN{mediabox}|oui)
+<script type="text/javascript">
+$("#documents_portfolio a").colorbox({title: function(){
+return $(this).attr('tooltipText');
+}});
+</script>]]
 </div>
 </div>
 </B_imgs>
