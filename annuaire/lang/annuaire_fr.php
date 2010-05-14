@@ -144,6 +144,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'hebergeur' => 'H&eacute;bergeur du site :',
 'height_fieldset' => 'Hauteur des cadres suivant :',
 'height_fieldset_prems' => 'Hauteur du cadre fieldset :',
+'height_pied_page_expli' => 'Hauteur du pied de page :',
 'herbier' => 'de l\' "herbier"',
 'hierarchie' => 'de la "hierarchie"',
 
@@ -194,6 +195,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'pas_partenaire' => 'Nous n\'avons pas de partenaire(s) &agrave; ce jour, si vous le souhaitez, rejoingnez-nous...',
 'pas_votes' => 'Pas encore de votes',
 'pas_zard' => 'Pas de site(s) au hasard, enregistrez-en ...',
+'pied_page' => 'Pied de page',
 'plan' => 'du "plan"',
 'plan_complet' => 'de "plan complet"',
 'plus_votes' => 'Sites les plus vot&eacute;s',
