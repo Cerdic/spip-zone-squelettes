@@ -142,6 +142,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'hasard' => 'Sites au hasard',
 'hebergement' => 'Indiquer la soci&eacute;t&eacute;e ou la personne qui vous h&eacute;berge : (afficher colonne de droite en bas uniquement si remplis), possibilit&eacute;e de mettre du code spip ou html.',
 'hebergeur' => 'H&eacute;bergeur du site :',
+'height_boucle' => 'Hauteur de la boucle :',
 'herbier' => 'de l\' "herbier"',
 'hierarchie' => 'de la "hierarchie"',
 
