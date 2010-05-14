@@ -183,7 +183,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //P
 'partenaire1' => 'de "partenaire"',
-'partenaire' => '@nb@ partenaire',
+'partenaire' => '1 partenaire',
 'partenaires' => '@nb@ partenaires',
 'pas_commentaire' => 'Pas encore de commentaire',
 'pas_descriptif' => 'Nous n\'avons pas de descriptif pour ce site, si vous &ecirc;tes le webmaster vous pouvez nous contacter afin de proposer un descriptif au site.',
@@ -212,6 +212,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //S
 'site1' => 'de "site"',
+'site' => '1 site',
 'sites' => '@nb@ sites',
 'sommaire' => 'de "sommaire"',
 'style' => 'Style :',
@@ -236,6 +237,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'votes' => '@nb@ votes',
 
 //W
+'width_page' => 'Format de la page',
+'width_page_explication' => 'Taille de la page en pixels ou pourcentage :',
 
 //X
 
