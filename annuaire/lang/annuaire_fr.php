@@ -75,7 +75,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'css' => 'Les css',
 'css_couleurs' => 'Cela revient &agrave; choisir la couleur d\'arri&egrave;re plan, la couleur d\'avant plan utilis&eacute;e pour le texte et les liens et la couleur de survol des liens.',
 'css_couleurs_' => 'Choisissez vos couleurs pour ',
-'css_couleurs_fieldset' => 'Changer les couleurs pour les contour mais sur tout le site.',
+'css_couleurs_fieldset' => 'Changer les couleurs pour les contours mais sur tout le site.',
 'css_couleurs_fond_expli' => 'Cela revient &agrave; choisir la couleur d\'arri&egrave;re plan sur une page.',
 'css_couleurs_fond_page' => 'Choisissez la couleur pour le fond ',
 'css_bg' => 'Couleur d\'arri&egrave;re plan',
@@ -158,6 +158,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'le_site' => 'Le site compte',
 
 //M
+'margin_left_fieldset' => 'Marge &agrave; gauche du cadre.',
 'menu_site' => 'le menu du site',
 'miniatures_par' => 'Miniatures par',
 'mot' => 'de "mot"',
