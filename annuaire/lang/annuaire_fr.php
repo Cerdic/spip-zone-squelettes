@@ -144,6 +144,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'hebergeur' => 'H&eacute;bergeur du site :',
 'height_fieldset' => 'Hauteur des cadres suivant :',
 'height_fieldset_prems' => 'Hauteur du cadre fieldset :',
+'height_menu_site_expli' => 'Hauteur du menu du site :',
 'height_pied_page_expli' => 'Hauteur du pied de page :',
 'herbier' => 'de l\' "herbier"',
 'hierarchie' => 'de la "hierarchie"',
