@@ -38,12 +38,34 @@
 
 [(#REM) Reglage sur l entete du site]
 <fieldset><!--#entete-->
-		<legend><:annuaire:menu_site|ucfirst:></legend>
-		<p /><:annuaire:height_bandeau_expli:>
-		<input type="text" name="height_bandeau" value="[(#ENV{height_bandeau})]" size="5" class="fondl" />
-		<p /><:annuaire:height_menu_site_expli:>
-		<input type="text" name="height_menu_site" value="[(#ENV{height_menu_site})]" size="5" class="fondl" />
+	<legend><:annuaire:menu_site|ucfirst:></legend>
+	<:annuaire:valeur_px_pourcent:>
+	<p /><:annuaire:height_bandeau_expli:>
+	<input type="text" name="height_bandeau" value="[(#ENV{height_bandeau})]" size="5" class="fondl" />
+	<p /><:annuaire:height_menu_site_expli:>
+	<input type="text" name="height_menu_site" value="[(#ENV{height_menu_site})]" size="5" class="fondl" />
 </fieldset><!--#entete-->
+<fieldset>
+	<legend><:annuaire:formulaire_recherche:></legend>
+	<:annuaire:formulaire_recherche_expli:>
+	<br />
+	<label>
+		<input type="radio" name="config_formrecherche" value="defaut" [(#ENV{config_formrecherche, defaut}|=={defaut}|?{checked="checked"})] />
+		<:annuaire:formulaire_recherche_defaut:>
+	</label>
+	<br />
+	<label>
+		<input type="radio" name="config_formrecherche" value="entete" [(#ENV{config_formrecherche, defaut}|=={entete}|?{checked="checked"})] />
+		<:annuaire:formulaire_recherche_entete:>
+	</label>
+	[(#CONFIG{annuaire_bandeau/config_formrecherche, entete}|=={entete}|?{' '})
+	<p /><:annuaire:valeur_px_pourcent:>
+	<p /><:annuaire:formulaire_recherche_margin_left:>
+	<input type="text" name="formulaire_recherche_margin_left" value="[(#ENV{formulaire_recherche_margin_left})]" size="5" class="fondl" />
+	<p /><:annuaire:formulaire_recherche_margin_top:>
+	<input type="text" name="formulaire_recherche_margin_top" value="[(#ENV{formulaire_recherche_margin_top})]" size="5" class="fondl" />
+	]
+</fieldset>
 <input type="submit" name="_cfg_ok" value="<:bouton_valider:>" />
 <input type="submit" name="_cfg_delete" value="<:supprimer:>" />
 </form>

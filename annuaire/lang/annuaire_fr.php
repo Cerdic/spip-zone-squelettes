@@ -25,7 +25,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'affichage' => 'L\'affichage',
 'ajouter_google' => 'ajouter &agrave; google',
 'ajouter_commentaire' => 'Ajouter un commentaire',
-'align_pied3_page_expli' => 'Alignement du texte dans la partie droite du pied :',
+'align_pied3_page_expli' => 'Alignement du texte dans la partie droite du pied',
 'annuaire' =>'annuaire',
 'annuaire_abonnement' => 'Abonnement',
 'annuaire_accueil' => 'Accueil',
@@ -133,6 +133,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //F
 'fieldset' => 'le "fieldset"',
+'formulaire_recherche' => 'Formulaire de recherche',
+'formulaire_recherche_defaut' => 'Affichage dans la colonne de droite.',
+'formulaire_recherche_entete' => 'Affichage dans l\'ent&ecirc;te',
+'formulaire_recherche_expli' => 'Ou voulez vous afficher le formulaire de recherche ?',
+'formulaire_recherche_margin_left' => 'La marge &agrave; gauche du formulaire',
+'formulaire_recherche_margin_top' => 'La marge en haut du formulaire',
 'forum' => 'du "forum"',
 
 //G
@@ -143,11 +149,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'hasard' => 'Sites au hasard',
 'hebergement' => 'Indiquer la soci&eacute;t&eacute;e ou la personne qui vous h&eacute;berge : (afficher colonne de droite en bas uniquement si remplis), possibilit&eacute;e de mettre du code spip ou html.',
 'hebergeur' => 'H&eacute;bergeur du site :',
-'height_bandeau_expli' => 'Hauteur du bandeau du site :',
-'height_fieldset' => 'Hauteur des cadres suivant :',
-'height_fieldset_prems' => 'Hauteur du cadre fieldset :',
-'height_menu_site_expli' => 'Hauteur du menu du site :',
-'height_pied_page_expli' => 'Hauteur du pied de page :',
+'height_bandeau_expli' => 'Hauteur du bandeau du site',
+'height_fieldset' => 'Hauteur des cadres suivant',
+'height_fieldset_prems' => 'Hauteur du cadre fieldset',
+'height_menu_site_expli' => 'Hauteur du menu du site',
+'height_pied_page_expli' => 'Hauteur du pied de page',
 'herbier' => 'de l\' "herbier"',
 'hierarchie' => 'de la "hierarchie"',
 
@@ -164,7 +170,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'le_site' => 'Le site compte',
 
 //M
-'margin_left_fieldset' => 'Marge &agrave; gauche du cadre.',
+'margin_left_fieldset' => 'Marge &agrave; gauche du cadre',
 'menu_site' => 'le menu du site',
 'miniatures_par' => 'Miniatures par',
 'mot' => 'de "mot"',
@@ -239,6 +245,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'utilisation_expli_spiplistes_clevermail_2' => 'Vous pouvez configurer cette page parce que le plugin "spip listes" ou "clevermail" sont activ&eacute;s.',
 
 //V
+'valeur_px_pourcent' => 'Mettez une valeur en pixels ou en pourcentage.',
 'votre_nom' => 'Votre nom',
 'votre_email' => 'Votre e-mail',
 'vote' => '1 vote',
@@ -246,7 +253,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //W
 'width_page' => 'Format de la page',
-'width_page_explication' => 'Taille de la page en pixels ou pourcentage :',
+'width_page_explication' => 'Taille de la page',
 
 //X
 
