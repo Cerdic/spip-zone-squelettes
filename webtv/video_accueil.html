@@ -1,0 +1,23 @@
+[(#REM)  Lecteur pour la page d'accueil (avec liste des articles récents).]
+<section id="lecteur">
+<BOUCLE_article(ARTICLES){0,1}{doublons}>
+<video id="video" controls="controls" preload>
+<BOUCLE_morceau(DOCUMENTS){id_article}{mode=document}>
+		[<source src="(#URL_DOCUMENT|url_absolue|unique)" [type="(#MIME_TYPE)"]>]
+
+</BOUCLE_morceau>
+<!--Vous pouvez insérer ici quelque chose à afficher si le navigateur ne gère pas HTML5-->
+</video>
+</BOUCLE_article>
+<B_articles_video_tous>
+<ul class="gallery" id="liste_video">
+<BOUCLE_articles_video_tous(ARTICLES){exclus}{!par date}{titre!==^_}{0,5}{doublons}>
+  
+  <li><div  class="txtvideolist" style="width:150px;background-color:#EAEAEA;height:75px;"><a href="/#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{75})]</a><p class="titrevideolist"><a href="/#URL_ARTICLE">[(#DATE|affdate{'d.m.y'})] - <b>#TITRE</b></a></p></div></li>
+  
+  </BOUCLE_articles_video_tous>
+  
+  </ul>
+</B_articles_video_tous>
+
+</section>

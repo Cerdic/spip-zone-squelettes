@@ -1,0 +1,27 @@
+#CACHE{3600}[(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})]<?xml version="1.0"[ encoding="(#CHARSET)"]?>
+[(#REM)  C'est un sitemap Google, qui permet de référencer les vidéos sur Google Vidéo.]
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+        <!--Le sitemap ne fonctionnera pas parfaitement car il manque la balise <video:player_loc>, qui pointe vers un lecteur video en Flash-->
+        <BOUCLE_article(ARTICLES)>
+<BOUCLE_rubrique(RUBRIQUES){id_rubrique}{titre!==^_}>
+<url>
+    <loc>#URL_SITE_SPIP/#URL_ARTICLE</loc>
+    <video:video>
+    <BOUCLE_morceau(DOCUMENTS){id_article}{mode=document}{par num titre}{par id_document}>
+      <video:content_loc>[(#URL_DOCUMENT|url_absolue)]</video:content_loc>
+      </BOUCLE_morceau>
+      <video:thumbnail_loc>[#URL_SITE_SPIP/IMG/(#LOGO_ARTICLE_RUBRIQUE||image_reduire{180}|fichier)]</video:thumbnail_loc>
+      <video:title>[(#_article:TITRE|texte_backend)]</video:title>  
+      <video:description>[(#_article:TEXTE|supprimer_tags|texte_backend)]</video:description>
+      <video:view_count>#VISITES</video:view_count>
+      <video:publication_date>[(#DATE|affdate{'Y-m-d'})]</video:publication_date>
+      <BOUCLE_tags(MOTS){id_article}>
+      <video:tag>#TITRE</video:tag>
+	</BOUCLE_tags>
+      <video:category>[(#_rubrique:TITRE|supprimer_numero|texte_backend)]</video:category>
+    </video:video>
+</url>
+</BOUCLE_rubrique>
+</BOUCLE_article>
+</urlset>

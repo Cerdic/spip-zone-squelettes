@@ -1,0 +1,62 @@
+[(#REM)  Squelette des articles]
+<BOUCLE_articleprincipal(ARTICLES){id_article}>
+<INCLURE{fond=head}{id_article}>
+
+<div id="contenu" style="padding: 0;">
+
+
+<INCLURE{fond=video}{id_article}>
+
+	
+<br/>
+
+	<details id="details">
+	
+	  
+	  <header class="intitule">
+    <span id="titre_video_article">#TITRE ([(#DATE|jour)]/[(#DATE|mois)]/[(#DATE|annee)])</span>
+    </header>
+    <section style="padding-left:5px;padding-right:5px;display:block;">
+    <div class="description" >
+    #TEXTE
+    </div>
+	<p style="text-align:left;">Publié par #LESAUTEURS</p>
+	</section>
+	<br/>
+	
+    
+   
+    
+    
+    
+    <section id="commentaires">
+    <h2 class="intitule">Commentaires</h2>
+    <BOUCLE_commentaires(FORUMS){id_article}{!par date}{"<hr/>"}>
+    
+    	<section class="commentaire">
+  
+    	<h4 class="com_titre">
+    	[(#DATE|affdate)] : par <a href="mailto:[(#EMAIL|entites_html)]">#NOM</a>
+    	</h4>
+    
+    	[<div class="comtextestyle">
+    	(#TEXTE)
+    	</div>]
+    
+  		</section>
+        
+  	</BOUCLE_commentaires>
+  	<strong>Aucun commentaire pour l'instant</strong><br/><br/>
+  	<//B_commentaires>
+    <div style="text-align:left;">
+    #FORMULAIRE_FORUM
+    </div>
+    </section>
+	 </details>  
+	 
+
+
+</div>
+
+<INCLURE{fond=enbas}>
+</BOUCLE_articleprincipal>

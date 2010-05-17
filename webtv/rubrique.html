@@ -1,0 +1,64 @@
+[(#REM)  Affiche les sous-rubriques puis les articles de la rubrique]
+<BOUCLE_rubrique(RUBRIQUES){id_rubrique}{tous}>
+<INCLURE{fond=head}{id_rubrique}{titre_page=#TITRE}>
+
+
+
+
+
+
+<div id="contenu">
+<h1 class="intitule">#TITRE</h1>
+
+<div class="texte_descriptif_rubrique_page">#TEXTE</div>
+
+<div class="div_liensousrubrique">
+	<ul class="lien_sous-rubrique">
+    
+    	<BOUCLE_sousrubrique_lien(RUBRIQUES){id_parent}{titre!==^_}{par num titre}{tous}>
+        
+    		<li><a href="#URL_SITE_SPIP/spip.php?rubrique#ID_RUBRIQUE">- [(#TITRE|supprimer_numero)]</a></li>
+            
+    	</BOUCLE_sousrubrique_lien>
+        
+    </ul>
+</div>
+<div class="page_rubrique_gauche">
+<ul class="gallery">
+
+
+<BOUCLE_articles_top(ARTICLES){id_rubrique}{!par date}{titre!==^_}{0,1}>
+  
+  <li><div class="txtvideolist_page_top"><a href="/#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{164})]</a><p class="titrevideolist"><a href="/#URL_ARTICLE">[(#DATE|affdate{'d.m.y'})] - <b>#TITRE</b></a></p><p class="description_vid_list">[(#DESCRIPTIF|couper{270})]</p></div></li>
+  
+  </BOUCLE_articles_top>
+
+<BOUCLE_articles(ARTICLES){id_rubrique}{!par date}{titre!==^_}{1,6}>
+  
+  <li><div class="txtvideolist_page"><a href="/#URL_ARTICLE">[(#LOGO_ARTICLE_RUBRIQUE||image_reduire{97})]</a><p class="titrevideolist">[(#DATE|affdate{'d.m.y'})] - <b>#TITRE</b></p><p class="description_vid_list">[(#DESCRIPTIF|couper{270})]</p></div></li>
+  
+  </BOUCLE_articles>
+  
+  
+</ul>
+</div>
+
+<div class="page_rubrique_droite">
+
+<B_anciens_articles>
+    <div class="divlistvidtxt_page_sc">
+    <big><b>Archives : </b></big><br/>
+<BOUCLE_anciens_articles(ARTICLES){id_rubrique}{!par date}{7,600}>
+<a href="#URL_ARTICLE">[(#DATE|affdate{'d.m.y'})] - <b>[(#TITRE|couper{32})]</b></a><br />
+</BOUCLE_anciens_articles>
+	</div>
+</B_anciens_articles>
+
+
+</div>
+
+<div class="espacer"></div>
+
+</div>
+<INCLURE{fond=enbas}>
+</BOUCLE_rubrique>

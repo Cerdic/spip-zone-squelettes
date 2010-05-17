@@ -1,0 +1,38 @@
+[(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})]<?xml version="1.0" encoding="#CHARSET" ?>
+[(#REM)  Flux RSS + Podcast compatible iTunes (formats acceptés : .m4a, .mp3, .mov, .mp4, .m4v, and .pdf). Fonctionne sûrement aussi avec d'autres lecteurs de podcast.]
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+	<channel>
+	<atom:link href="#URL_SITE_SPIP/spip.php?page=podcast" rel="self" type="application/rss+xml" />
+	[<title>(#NOM_SITE_SPIP)</title>]
+	[<link>(#URL_SITE_SPIP)</link>]
+	<itunes:category text="TV &amp; Film" />
+[<itunes:image href="#URL_SITE_SPIP/IMG/(#LOGO_SITE_SPIP|fichier)"/>]
+<!--Il manque la balise <itunes:explicit>, qui depend du contenu de votre site.-->
+<itunes:owner>
+<itunes:email>#EMAIL_WEBMASTER</itunes:email>
+</itunes:owner>
+[<description>(#DESCRIPTIF_SITE_SPIP|supprimer_tags|texte_backend)</description>]
+[<itunes:summary>(#DESCRIPTIF_SITE_SPIP|supprimer_tags|texte_backend)</itunes:summary>]
+[<language>(#LANG)</language>]
+	
+<BOUCLE_article(ARTICLES)>
+<BOUCLE_rubrique(RUBRIQUES){id_rubrique}{titre!==^_}>
+   	<item xml:lang="#LANG">
+		[<title>(#_article:TITRE|supprimer_numero|texte_backend)</title>]
+		[<pubDate>(#_article:DATE|date_822)</pubDate>]
+		[<itunes:author>(#LESAUTEURS|supprimer_tags|texte_backend)</itunes:author>]
+		<B_mots><itunes:keywords><BOUCLE_mots(MOTS){id_article}{","}>#TITRE</BOUCLE_mots></itunes:keywords></B_mots>
+		[<itunes:subtitle>(#_article:DESCRIPTIF|couper{255}|supprimer_tags|texte_backend)</itunes:subtitle>]
+		[<itunes:summary>(#_article:TEXTE|supprimer_tags|texte_backend)</itunes:summary>]
+		[<description>(#_article:TEXTE|supprimer_tags|texte_backend)</description>]
+		<BOUCLE_morceau(DOCUMENTS){id_article}{mode=document}{par num titre}{par id_document}>
+		[<enclosure url="(#URL_DOCUMENT|url_absolue|unique)"[ length="(#TAILLE)"][ type="(#MIME_TYPE)"] />]
+		</BOUCLE_morceau>
+		[<guid>(#URL_ARTICLE|url_absolue)</guid>]
+		[<link>(#URL_ARTICLE|url_absolue)</link>]
+    </item>
+
+</BOUCLE_rubrique>
+</BOUCLE_article>
+   	</channel>
+</rss>

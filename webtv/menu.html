@@ -1,0 +1,85 @@
+[(#REM)  Le bloc menu + actu + fil d'Ariane]
+<div id="div_centrage">
+<header>
+	<div id="div_entete">
+		<a href="#URL_SITE_SPIP">#LOGO_SITE_SPIP</a>
+					</div>
+
+	<div id="div_navigation">
+
+        <!--Menu-->
+	<nav class="div_navigation_boutons">
+    <ul>
+        
+        
+ <BOUCLE_rubriques(RUBRIQUES){racine}{"<li>|</li>"}>
+ <li>      
+ [<a href="#URL_SITE_SPIP/spip.php?rubrique#ID_RUBRIQUE">(#TITRE|supprimer_numero) </a>]
+       <B_sousrubriques>
+         <ul>
+        <BOUCLE_sousrubriques(RUBRIQUES){id_parent}{par num titre}>
+       
+        <li><a href="#URL_SITE_SPIP/spip.php?rubrique#ID_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></li>
+        
+        
+        
+        </BOUCLE_sousrubriques>
+        </ul>
+        </B_sousrubriques>
+        </li>
+                </BOUCLE_rubriques> 
+
+	</ul>
+    </nav>
+ <!--Fin menu-->   
+ 
+    
+<div id="div_navigation_forms">
+    <div id="boiterecherche">
+<!--Recherche : <input type="text" />-->
+[(#FORMULAIRE_RECHERCHE)]
+</div>
+
+
+</div>
+
+
+	
+
+
+
+<div id="div_navigation_actu">
+<div id="div_breves">
+<div id="divactuactu">
+<BOUCLE_actu_breve(BREVES){0,1}>
+ACTU : <a href="#URL_BREVE">#TITRE</a><br/>
+<a href="#URL_BREVE">[(#INTRODUCTION|supprimer_tags)]</a>
+</BOUCLE_actu_breve>
+</div>
+</div>
+</div>
+
+
+    </div>
+<div id="div_fildefer"><p class="classfildefer">
+
+<b><a style="text-decoration:none; color:black;" href="#URL_SITE_SPIP">Accueil</a></b>
+
+<BOUCLE_rubriquehierarchie(ARTICLES){id_article}{tout}>
+<BOUCLE_chemin_rubriques(HIERARCHIE){id_article}>
+>
+<a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+</BOUCLE_chemin_rubriques>
+</BOUCLE_rubriquehierarchie>
+|
+<span>
+<b>Actu : </b>
+<BOUCLE_actu(ARTICLES){par date}{inverse}{0,1}{" / "}>
+<a href="#URL_ARTICLE">[(#TITRE)]</a> ([(#DATE|nom_jour)] [(#DATE|jour)]/[(#DATE|mois)])
+</BOUCLE_actu>
+</span>
+
+</p>
+
+</div>
+</header>

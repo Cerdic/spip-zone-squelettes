@@ -1,0 +1,35 @@
+[(#REM)  Page de contact d'un rédacteur + historique de ses publications]
+<INCLURE{fond=head}>
+
+<BOUCLE_auteurauteur(AUTEURS){id_auteur}>
+
+<div id="contenu">
+<h2 class="intitule">Formulaire de contact (#NOM)</h2>
+<section class="contenupagecontact_auteur">
+
+	<div class="div_formulairecontact_auteur">
+	<h3>Ecrire &agrave; #NOM</h3>
+		<div >
+        #FORMULAIRE_ECRIRE_AUTEUR
+        </div>
+	</div>
+    
+	<div class="div_listartauteur">
+	<h3>Ses contributions</h3>
+		<div class="divlistvidtxt_auteur">
+        
+		<BOUCLE_articles(ARTICLES){id_auteur}{par date}{inverse} >
+        
+		[(#DATE|affdate{'d.m.Y'})] - <b><a href="#URL_ARTICLE">[(#TITRE|couper{36})]</a></b> <br />
+        
+		</BOUCLE_articles>
+        
+		</div>
+	</div>
+    
+    <div class="espacer"></div>
+</section>
+</div>
+</BOUCLE_auteurauteur>
+
+<INCLURE{fond=enbas}>

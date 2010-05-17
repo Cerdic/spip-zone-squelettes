@@ -1,0 +1,20 @@
+[(#HTTP_HEADER{Content-type: text/xml[; charset=(#CHARSET)]})]<?xml version="1.0" encoding="#CHARSET" ?>
+[(#REM)  Une liste de lecture au format XSPF, pour ceux qui veulent utiliser un lecteur Flash.]
+<playlist version="1" xmlns="http://xspf.org/ns/0/">
+	<trackList>
+<BOUCLE_article_choisi(ARTICLES)>
+<BOUCLE_rubrique_choisi(RUBRIQUES){id_rubrique=#_article_choisi:ID_RUBRIQUE}>
+<BOUCLE_morceau_choisi(DOCUMENTS){id_article}{mode=document}{par num titre}{par id_document}>
+   	<track>
+		<title>[(#_article_choisi:TITRE|supprimer_numero|supprimer_tiretbas|texte_backend)]</title>
+	    <location>[(#URL_DOCUMENT|url_absolue)]</location>
+	    <image>[#URL_SITE_SPIP/IMG/(#LOGO_ARTICLE_RUBRIQUE||image_reduire{180}|fichier)]</image>
+	    <annotation>[(#ID_ARTICLE)]</annotation>
+        <info>[(#URL_ARTICLE|url_absolue)]</info>
+    </track>
+</BOUCLE_morceau_choisi>
+</BOUCLE_rubrique_choisi>
+
+</BOUCLE_article_choisi>
+   	</trackList>
+</playlist>

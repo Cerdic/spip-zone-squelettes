@@ -1,0 +1,29 @@
+[(#REM)  Page basique qui présente les résultats de recherche]
+<INCLURE{fond=head}>
+
+<div id="contenu">
+
+
+
+<h1 class="intitule"><:resultats_recherche:>[ <i>(#RECHERCHE)</i>]</h1>
+
+<B_articles>
+<div class="recherche">
+  <h3 id="compteur">#TOTAL_BOUCLE [(#TOTAL_BOUCLE|=={1}|?{article trouvé,articles trouvés})] :</h3>
+  <ul>
+	<BOUCLE_articles(ARTICLES){titre!==^_}{recherche}{!par points}>
+	<li><p class="titrerecherche"><a href="#URL_ARTICLE">#TITRE</a></p><p class="recherchecontenu">[(#DESCRIPTIF|couper{100})]</p></li>
+	</BOUCLE_articles>
+   	<BOUCLE_rubriques(RUBRIQUES){titre!==^_}{recherche}{!par points}>
+	<li><p class="titrerecherche"><a href="#URL_RUBRIQUE">#TITRE</a></p><p "recherchecontenu">[(#DESCRIPTIF|couper{100})]</p></li>
+	</BOUCLE_rubriques>
+   	<BOUCLE_docs(DOCUMENTS){titre!==^_}{recherche}{!par points}>
+	<li><p class="titrerecherche"><a href="#URL_DOCUMENT">#TITRE</a></p><p "recherchecontenu">[(#DESCRIPTIF|couper{100})]</p></li>
+	</BOUCLE_docs>    
+  </ul>
+</div>
+</B_articles>
+
+</div>
+
+<INCLURE{fond=enbas}>

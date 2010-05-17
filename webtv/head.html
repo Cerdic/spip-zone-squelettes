@@ -1,0 +1,41 @@
+[(#REM)  <head>]
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="#LANG">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/HTML; charset=#CHARSET" />
+<meta name="reply-to" content="#EMAIL_WEBMASTER" />
+
+
+<BOUCLE_articleprincipal(ARTICLES){id_article}>
+<!--Meta pour Facebook-->
+[<meta name="title" content="(#TITRE|supprimer_numero|texte_backend)" />]
+<BOUCLE_sousrubrique_lien(RUBRIQUES){id_rubrique}>
+<meta name="description" content="[(#NOM_SITE_SPIP|textebrut) : ][(#TITRE|supprimer_numero|texte_backend)]" />
+</BOUCLE_sousrubrique_lien>
+
+[<link rel="image_src" href="#URL_SITE_SPIP/IMG/(#LOGO_ARTICLE|fichier)" /> ]
+
+<title>[(#NOM_SITE_SPIP|textebrut)][ - (#TITRE|supprimer_numero|textebrut)]</title>
+</BOUCLE_articleprincipal>
+<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+<meta name="description" content="[(#DESCRIPTIF_SITE_SPIP|textebrut|attribut_html)]" />
+<//B_articleprincipal>
+
+<!--Feuille CSS principale-->
+<link rel="stylesheet" href="#CHEMIN{styles.css}"/>
+
+
+
+<base href="#URL_SITE_SPIP" />
+
+<link rel="alternate" type="application/rss+xml" title="#NOM_SITE_SPIP" href="#URL_SITE_SPIP/spip.php?page=podcast" />
+
+<!--Chargement des scripts, plugins, etc-->
+#INSERT_HEAD
+
+</head>
+<body>
+ <INCLURE{fond=menu}{id_rubrique}{id_article}>
