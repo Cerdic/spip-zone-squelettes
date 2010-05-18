@@ -1,0 +1,10 @@
+<BOUCLE_breve(BREVES) {id_breve} {statut?}>
+	<li class="item">
+		[(#ENV{liste_afficher_date}|oui)[(#DATE|affdate_jourcourt) &ndash; ]]<a href="#URL_BREVE"[(#ENV{id_breve_expose}|=={#ID_BREVE}) class="on"]>#TITRE</a>
+		[(#ENV{liste_afficher_nb_commentaires}|ou{#ENV{liste_afficher_rubrique}}|ou{#ENV{liste_afficher_mots_cles}})<div class="info-publi">]
+			[(#ENV{liste_afficher_rubrique}oui)[(#ENV{liste_texte_devant_rubrique}|in_array{#ARRAY{1,'::',2,'>',3,'&gt;'}}|?{#ENV{liste_texte_devant_rubrique},[(#ENV{liste_texte_devant_rubrique}|_T)]}) ]<a hreh="#INFO_URL{rubrique,#ID_RUBRIQUE}">#INFO_TITRE{rubrique,#ID_RUBRIQUE}</a>.]
+			[(#ENV{liste_afficher_mots_cles}oui)#INCLURE{fond=inclure/objet-mots_cles,id_breve,texte_devant_mots_cles=#ENV{liste_texte_devant_mots_cles},ajoute_point='on'}]
+			[(#ENV{liste_afficher_nb_commentaires}|oui)#INCLURE{fond=inclure/objet-nb_commentaires,id_breve,ajoute_point='on'}]
+		[(#ENV{liste_afficher_nb_commentaires}|ou{#ENV{liste_afficher_rubrique}}|ou{#ENV{liste_afficher_mots_cles}})</div>]
+	</li>
+</BOUCLE_breve>
