@@ -173,6 +173,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //L
 'le_mot' => 'Le mot',
 'le_site' => 'Le site compte',
+'lire_suite' => 'Lire la suite',
 
 //M
 'margin_left_fieldset' => 'Marge &agrave; gauche du cadre',
