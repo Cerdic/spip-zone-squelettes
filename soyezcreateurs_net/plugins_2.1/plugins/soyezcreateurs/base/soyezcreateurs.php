@@ -358,6 +358,7 @@ function create_article($texte, $rubrique, $lang='fr') {
 		);
 		include_spip('inc/rubriques');
 		calculer_rubriques();
+		propager_les_secteurs();
 		spip_log("2. (create_article) article insere : $id_article", "soyezcreateurs_install");
 	}
 	else if ($count_articles > 0) {

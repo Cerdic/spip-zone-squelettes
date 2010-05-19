@@ -15,8 +15,6 @@ define('_TRI_GROUPES_MOTS', '0+titre,titre');  // cf http://trac.rezo.net/trac/s
 define('_DUREE_CACHE_DEFAUT', 30*24*3600); // pris en compte à partir de http://trac.rezo.net/trac/spip/changeset/10121
 define('_URLS_PROPRES_MAX', 60); // pris en compte à partire de http://trac.rezo.net/trac/spip/changeset/10346 
 define('_TRI_ARTICLES_RUBRIQUE', '0+titre,date DESC'); // cf http://trac.rezo.net/trac/spip/changeset/11492
-define('_CS_OUTILS_CACHES', 'cs_comportement:insert_head:verstexte:trousse_balises:dossier_squelettes:type_urls:filtrer_javascript:spam:moderation_moderee:paragrapher2:auteur_forum:no_IP:flock:spip_cache:forum_lgrmaxi:simpl_interface:icone_visiter:pucesli:glossaire:blocs:toutmulti:decoupe:filets_sep:couleurs:f_jQuery:desactiver_flash:jcorner:SPIP_liens:class_spip:supprimer_numero:xml:visiteurs_connectes:titre_parent:horloge:liens_en_clair:orientation:sommaire:maj_auto:previsualisation:chatons:introduction:forcer_langue:masquer:introduction:tri_articles');
-
 define("_CLEVERMAIL_NOUVEAUTES_HTML", 'lettre_libre');
 define("_CLEVERMAIL_NOUVEAUTES_TEXT", 'lettre_libre_txt');
 define("_CLEVERMAIL_DISTANT", false);
@@ -132,6 +130,9 @@ $table_des_traitements['TITRE'][]= 'typo(supprimer_numero(%s), "TYPO", $connect)
 // cf http://zone.spip.org/trac/spip-zone/changeset/33103
 $GLOBALS['agenda_affiche_inscription'] = 'non';
 
+define('_CS_OUTILS_CACHES', 'cs_comportement:insert_head:verstexte:trousse_balises:dossier_squelettes:type_urls:filtrer_javascript:spam:moderation_moderee:paragrapher2:auteur_forum:no_IP:flock:spip_cache:forum_lgrmaxi:simpl_interface:icone_visiter:pucesli:glossaire:blocs:toutmulti:decoupe:filets_sep:couleurs:f_jQuery:desactiver_flash:jcorner:SPIP_liens:class_spip:supprimer_numero:xml:visiteurs_connectes:titre_parent:horloge:liens_en_clair:orientation:sommaire:maj_auto:previsualisation:chatons:introduction:forcer_langue:masquer:introduction:tri_articles:webmestres');
+
+
 ######## PACK ACTUEL DE CONFIGURATION DU COUTEAU SUISSE #########
 // Attention, les surcharges sur les define() ou les globales ne sont pas specifiees ici
 $GLOBALS['cs_installer']['SoyezCreateurs'] = 'cs_SoyezCreateurs';
@@ -139,8 +140,7 @@ $GLOBALS['cs_installer']['SoyezCreateurs'] = 'cs_SoyezCreateurs';
 function cs_SoyezCreateurs() { return array(
 	// Installation des outils par défaut
 	'outils' =>
-		'webmestres,
-		boites_privees,
+		'boites_privees,
 		auteurs,
 		citations_bb,
 		decoration,

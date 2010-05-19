@@ -276,6 +276,11 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		if (version_compare($current_version,'3.0.3','<')) {
 			create_mot("_Specialisation", "MentionsLegales", _T('soyezcreateurs:mentions_legales_obligatoires'), "Affecter ce mot clef à l'article destiné à afficher les mentions légales du site.");
 			
+			// Au cas où : remttre au carré les id_secteur des articles et rubriques.
+			include_spip('inc/rubriques');
+			calculer_rubriques();
+			propager_les_secteurs();
+			
 			spip_log("SoyezCreateurs maj 3.0.3", "soyezcreateurs_install");			
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.3','non');
 		}
