@@ -45,6 +45,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'annuaire_rubrique' => 'Rubrique',
 'annuaire_site' => 'Site',
 'annuaire_sommaire' => 'Sommaire',
+'annuaire_taille' => 'Taille',
 'articles' => '@nb@ articles',
 'article_syndic' => '1 article syndiqu&eacute;',
 'articles_syndic' => '@nb@ articles syndiqu&eacute;s',
@@ -71,6 +72,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'configuration_rubrique' => 'configuration de la page "rubrique"',
 'configuration_site' => 'configuration de la page "site"',
 'configuration_sommaire' => 'configuration de la page "sommaire"',
+'configuration_taille' => 'configuration des tailles de tous le site',
 'conception' => 'conception de l\'annuaire',
 'contact' => 'de "contact"',
 'css' => 'Les css',
@@ -92,6 +94,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'descriptif_accueil' => 'Pr&eacute;sentation du plugins "annuaire" et de ses fonctions.',
 'descriptif_bandeau' => '<h4>R&eacute;glage du bandeau</h4>
 				<br />R&eacute;gl&eacute; vos styles sur le bandeau.',
+'descriptif_colonne' => '<h4>R&eacute;glage du style</h4>
+				<br />Choisissez vos couleurs pour les colonnes et pied de page.',
 'descriptif_contact' => '<h4>R&eacute;glage de la page contact</h4>
 				<br />R&eacute;gl&eacute; vos styles sur la page contact.',
 'descriptif_erreur' => '<h4>R&eacute;glage des pages erreurs</h4>
@@ -120,8 +124,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 				<br />R&eacute;gl&eacute; vos boucles et styles sur la page site.',
 'descriptif_sommaire' => '<h4>R&eacute;glage sur le sommaire</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles du sommaire.',
-'descriptif_colonne' => '<h4>R&eacute;glage du style</h4>
-				<br />Choisissez vos couleurs pour les colonnes et pied de page.',
+'descriptif_taille' => '<h4>R&eacute;glage de la taille</h4>
+				<br />Choisissez vos tailles en pixels (px) ou en pourcentage (%).
+				<br />Exemple : 130px ou 100%',
 'description_site' => 'Description du site',
 
 //E
@@ -195,6 +200,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //O
 
 //P
+'page_sommaire' => 'Page sommaire',
 'partenaire1' => 'de "partenaire"',
 'partenaire' => '1 partenaire',
 'partenaires' => '@nb@ partenaires',
@@ -234,6 +240,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'synthese_flux' => 'Synth&egrave;se des flux',
 
 //T
+'taille' => 'Tailles du site',
 'toutes_rubriques' => 'Toutes les rubriques',
 
 //U
@@ -245,7 +252,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'utilisation_expli_spiplistes_clevermail_2' => 'Vous pouvez configurer cette page parce que le plugin "spip listes" ou "clevermail" sont activ&eacute;s.',
 
 //V
-'valeur_px_pourcent' => 'Mettez une valeur en pixels ou en pourcentage.',
 'votre_nom' => 'Votre nom',
 'votre_email' => 'Votre e-mail',
 'vote' => '1 vote',
