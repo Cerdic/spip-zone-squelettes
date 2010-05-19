@@ -259,6 +259,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //W
 'width_page' => 'Format de la page',
+'width_content_explication' => 'Taille de la colonne contenu',
+'width_nav_explication' => 'Taille de la colonne navigation',
 'width_page_explication' => 'Taille de la page',
 
 //X
