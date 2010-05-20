@@ -124,7 +124,8 @@ $GLOBALS['ligne_horizontale'] = "\n<div class='hrspip'><hr class='spip' /></div>
 define('_SUIVI_FORUM_THREAD', true);
 
 // Se passer de |supprimer_numero partout
-$table_des_traitements['TITRE'][]= 'typo(supprimer_numero(%s), "TYPO", $connect)'; //  cf http://trac.rezo.net/trac/spip/changeset/15451
+//$table_des_traitements['TITRE'][]= 'typo(supprimer_numero(%s), "TYPO", $connect)'; //  cf http://trac.rezo.net/trac/spip/changeset/15451
+// Remplacé par un pipeline sur declarer_tables_interfaces
 
 // Ne pas afficher l'inscription dans le plugin Agenda : ça n'est pas pris en compte
 // cf http://zone.spip.org/trac/spip-zone/changeset/33103
