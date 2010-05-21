@@ -7,15 +7,6 @@
 <title>[(#NOM_SITE_SPIP|textebrut)]</title>
 [<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
 <INCLURE{fond=inc-head}>
-
-[(#REM) le nécessaire pour le diaporama innerfade ]
-<script src="#CHEMIN{jquery.innerfade.js}" type="text/javascript"></script>
-[(#SET{vitesse_diaporama, [(#CONFIG{median/vitesse_diaporama}|sinon{10000})]})]
-<script type="text/javascript">
-  $(document).ready( function(){
-      $('#defile_tofs').innerfade({ speed: 'slow', timeout: [(#GET{vitesse_diaporama})], type: 'sequence', containerheight: '120px' });
-  });
-</script>
 </head>
 
 [(#REM) la totale pour faire fonctionner le mot clé _invisible_ ]
@@ -68,13 +59,11 @@
       [(#CONFIG{median/logo}|=={on}|?{[(#LOGO_ARTICLE||image_reduire{200,200})],''})]
       [(#CONFIG{median/titre}|=={on}|?{[<h1 class="#EDIT{titre} sommaire">(#TITRE)</h1>],'<br/>'})]
 
-      [(#REM) une photo au hazard parmi celles qui sont associées aux articles ayant le mot clé photos_sommaire
-              ou la liste des derniers articles (quand le système de doublons fonctionnera...) ]
-      <div id="tof_hazard">
-        [(#INCLURE{fond=inc-photo_hasard})]
+      [(#REM) une photo au hazard parmi celles qui sont associées aux articles ayant le mot clé photos_sommaire]
+      [(#INCLURE{fond=inc-photo_hasard})]
 
-        [(#REM) INCLURE{fond=inc-derniers_articles})]
-      </div>
+      [(#REM) la liste des derniers articles (quand le système de doublons fonctionnera...)
+		INCLURE{fond=inc-derniers_articles})]
 
       [(#CONFIG{median/soustitre}|=={on}|?{[<div class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</div>],'<br/>'})]
       [(#CONFIG{median/chapo}|=={on}|?{[<div class="#EDIT{chapo} soustitre">(#CHAPO)</div>],'<br/>'})]
@@ -84,9 +73,8 @@
     </BOUCLE_aa>
 
       [(#REM) une photo au hazard parmi celles qui sont associées aux articles ayant le mot clé photos_sommaire ]
-      [<div id="tof_hazard">
-        (#INCLURE{fond=inc-photo_hasard})
-      </div>]
+      [(#INCLURE{fond=inc-photo_hasard})]
+      
       [(#REM) si aa ne sort rien, afficher le descriptif du site ]
 		  [<div class="soustitre" id="desc_site">(#DESCRIPTIF_SITE_SPIP)</div>]
     <//B_aa>

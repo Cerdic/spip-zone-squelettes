@@ -1,6 +1,8 @@
 <!-- titre=<:median:titre_median:> -->
 <!-- icone=median-32.png-->
 <!-- boite=<:median:configuration_median:> -->
+<!-- liens*=median -->
+<!-- liens*=median_pied -->
 
 [(#PLUGIN{autorite}|oui)
 <!-- autoriser=webmestre -->
@@ -27,6 +29,16 @@ modifier ces param&#232;tres.  -->
 
 -->
 #CACHE{0}
+
+<script language="JavaScript" type="text/javascript">
+jQuery(document).ready(function(){
+	jQuery("input[name='afficher_mentions_pied']").change(function(){
+		if (jQuery("input[name='afficher_mentions_pied']:checked").val() == 'oui')
+			jQuery("#choix_mentions").show();
+		else jQuery("#choix_mentions").hide();
+	});
+});
+</script>
 
 
 <form method="post" action="#SELF"><div>[(#ENV{_cfg_}|form_hidden)]</div>
@@ -200,15 +212,113 @@ modifier ces param&#232;tres.  -->
         <td><input type="text" name="couleur_liens_survol" class="palette" id="couleur_liens_survol" 
             value="[(#ENV{couleur_liens_survol,#1F4A64})]" style="width: 80px" />
         </td><td></td><td></td></tr>
-
+        <tr><td><:median:background_pied:></td>
+        <td><input type="text" name="background_pied" class="palette" id="background_pied" 
+            value="[(#ENV{background_pied,#005C49})]" style="width: 80px"/>
+        </td>
+        <td><:median:texte:></td>
+        <td><input type="text" name="couleur_pied" class="palette" id="couleur_pied" 
+            value="[(#ENV{couleur_pied,#ffffff})]" style="width: 80px" />
+        </td></tr>
+		<tr><td><:median:background_texte_pied:></td>
+		<td><input type="text" name="background_texte_pied" class="palette" id="background_texte_pied" 
+            value="[(#ENV{background_texte_pied,#7D8F8B})]" style="width: 80px"/>
+        </td>
+        <td><:median:texte:></td>
+        <td><input type="text" name="couleur_texte_pied" class="palette" id="couleur_texte_pied" 
+            value="[(#ENV{couleur_texte_pied,#F8F8F8})]" style="width: 80px" />
+        </td></tr>
 [(#PLUGIN{nuage}|oui)        
         <td><:median:fond_mot_cles_survol:></td>
         <td><input type="text" name="fond_mot_cles_survol" class="palette" id="fond_mot_cles_survol" 
             value="[(#ENV{fond_mot_cles_survol,#DDDDDD})]" style="width: 80px" />
         </td><td></td><td></td></tr>
 ]
-
         </table>
+    </label>
+    </p>
+</fieldset>
+
+[(#REM) ------------------------ PIED ------------------------ ]
+<fieldset>
+    <legend>
+    	<:median:pied_pages:>
+    </legend>
+    <p>
+        <:median:afficher_contact_pied:>: 
+        <label><:median:oui:></label>
+        <input type="radio" name="afficher_contact_pied" value="oui" [(#ENV{afficher_contact_pied}|=={non}|non) checked="checked"]/> 
+        &nbsp;&nbsp;&nbsp;<input type="radio" name="afficher_contact_pied" value="non" [(#ENV{afficher_contact_pied}|=={non}|oui) checked="checked"]/>
+        <label><:median:non:></label>        
+    </p>
+    <p>
+        <:median:afficher_plan_pied:>: 
+        <label><:median:oui:></label>
+        <input type="radio" name="afficher_plan_pied" value="oui" [(#ENV{afficher_plan_pied}|=={non}|non) checked="checked"]/> 
+        &nbsp;&nbsp;&nbsp;<input type="radio" name="afficher_plan_pied" value="non" [(#ENV{afficher_plan_pied}|=={non}|oui) checked="checked"]/>
+        <label><:median:non:></label>        
+    </p>
+    <p>
+        <:median:afficher_login_pied:>: 
+        <label><:median:oui:></label>
+        <input type="radio" name="afficher_login_pied" value="oui" [(#ENV{afficher_login_pied}|=={non}|non) checked="checked"]/> 
+        &nbsp;&nbsp;&nbsp;<input type="radio" name="afficher_login_pied" value="non" [(#ENV{afficher_login_pied}|=={non}|oui) checked="checked"]/>
+        <label><:median:non:></label>        
+    </p>
+    <p>
+        <:median:afficher_rss_pied:>: 
+        <label><:median:oui:></label>
+        <input type="radio" name="afficher_rss_pied" value="oui" [(#ENV{afficher_rss_pied}|=={non}|non) checked="checked"]/> 
+        &nbsp;&nbsp;&nbsp;<input type="radio" name="afficher_rss_pied" value="non" [(#ENV{afficher_rss_pied}|=={non}|oui) checked="checked"]/>
+        <label><:median:non:></label>        
+    </p>
+    <p>
+        <:median:afficher_logo_xhtml:>: 
+        <label><:median:oui:></label>
+        <input type="radio" name="afficher_logo_xhtml" value="oui" [(#ENV{afficher_logo_xhtml}|=={oui}|oui) checked="checked"]/> 
+        &nbsp;&nbsp;&nbsp;<input type="radio" name="afficher_logo_xhtml" value="non" [(#ENV{afficher_logo_xhtml}|=={oui}|non) checked="checked"]/>
+        <label><:median:non:></label>        
+    </p>
+    <p>
+        <:median:afficher_mentions_pied:>: 
+        <label><:median:oui:></label>
+        <input type="radio" name="afficher_mentions_pied" value="oui" [(#ENV{afficher_mentions_pied}|=={non}|non) checked="checked"]/> 
+        &nbsp;&nbsp;&nbsp;<input type="radio" name="afficher_mentions_pied" value="non" [(#ENV{afficher_mentions_pied}|=={non}|oui) checked="checked"]/>
+        <label><:median:non:></label>
+        <br/><small><:median:explications_lien_mentions:></small>
+    </p>
+    <p id="choix_mentions"[ (#ENV{afficher_mentions_pied}|=={non}|oui) style="display: none;"]>
+        <label><:median:choix_article_mentions:></label>
+		<select name="id_mentions" id="id_mentions">
+		 <option value=""><:racine:></option>
+		 <BOUCLE_secteurs2(RUBRIQUES) {racine} {par titre}>
+			<option value="" style="font-weight: bold;"><strong><:rubrique:> : [(#TITRE|couper{50})]</strong></option>
+				<BOUCLE_articles_racine2(ARTICLES) {id_rubrique} {par titre}>
+				<option value="#ID_ARTICLE" [(#ENV{id_mentions}|=={#ID_ARTICLE}|?{selected="selected",''})]>&nbsp;&nbsp;#ID_ARTICLE . [(#TITRE|couper{50})]</option>
+				</BOUCLE_articles_racine2>
+				<BOUCLE_rubriques2(RUBRIQUES) {id_parent} {par titre}>
+				   <option value="" style="font-weight: bold;">&nbsp;&nbsp;<:rubrique:> #ID_RUBRIQUE : [(#TITRE|couper{50})]</option>
+					 <BOUCLE_articles2(ARTICLES) {id_rubrique} {par titre}>
+						<option value="#ID_ARTICLE" [(#ENV{id_mentions}|=={#ID_ARTICLE}|?{selected="selected",''})]>&nbsp;&nbsp;&nbsp;&nbsp;#ID_ARTICLE . [(#TITRE|couper{50})]</option>
+					 </BOUCLE_articles2>
+					 <BOUCLE_sous_rubriques2(BOUCLE_rubriques2)></BOUCLE_sous_rubriques2>
+				</BOUCLE_rubriques2>
+		 </BOUCLE_secteurs2>
+		</select>
+    </p>    
+[(#PLUGIN{spiplistes}|oui)
+    <p>
+        <:median:afficher_souscrire_pied:>: 
+        <label><:median:oui:></label>
+        <input type="radio" name="afficher_souscrire_pied" value="oui" [(#ENV{afficher_souscrire_pied}|=={non}|non) checked="checked"]/> 
+        &nbsp;&nbsp;&nbsp;<input type="radio" name="afficher_souscrire_pied" value="non" [(#ENV{afficher_souscrire_pied}|=={non}|oui) checked="checked"]/>
+        <label><:median:non:></label>        
+    </p>
+]
+    <p>
+    <label>
+        <:median:texte_dans_pied:>: 
+        <textarea name="texte_pied" id="texte_pied" style="width: 100%;">[(#ENV{texte_pied})]</textarea>
     </label>
     </p>
 </fieldset>
@@ -290,11 +400,25 @@ modifier ces param&#232;tres.  -->
 </fieldset>
 ]
     
-[(#REM) ------------------------ REGLAGES ------------------------ ]
+[(#REM) ------------------------ DIAPORAMA --------------------------- ]
 <fieldset>
     <legend>
-    	<:median:reglages:>
+    	<:median:diaporama_accueil:>
     </legend>
+    <p>
+        <:median:orientation_images_diaporama:>:
+        <label><:median:horizontal:></label>
+        <input type="radio" name="orientation_images_diaporama" value="horizontal" [(#ENV{orientation_images_diaporama}|!={vertical}|oui) checked="checked"]/> 
+        &nbsp;&nbsp;&nbsp;<input type="radio" name="orientation_images_diaporama" value="vertical" [(#ENV{orientation_images_diaporama}|=={vertical}|oui) checked="checked"]/>
+        <label><:median:vertical:></label>        
+    </p>
+    <p>
+    <label>
+        <:median:taille_diaporama:>:
+        <input type="text" name="taille_diaporama" id="taille_diaporama" style="width: 80px" 
+            value="[(#ENV{taille_diaporama,110})]" />
+    </label>
+    </p>
     <p>
     <label>
         <:median:vitesse_diaporama:>:
@@ -302,6 +426,13 @@ modifier ces param&#232;tres.  -->
             value="[(#ENV{vitesse_diaporama,10000})]" />
     </label>
     </p>
+</fieldset>
+
+[(#REM) ------------------------ REGLAGES ---------------------------- ]
+<fieldset>
+    <legend>
+    	<:median:reglages:>
+    </legend>
     <p>
     <label>
         <:median:top_logo_url:>:
@@ -320,15 +451,7 @@ modifier ces param&#232;tres.  -->
         <input type="radio" name="micro_vignettes_carrees" value="oui" [(#ENV{micro_vignettes_carrees}|=={non}|non) checked="checked"]/> 
         &nbsp;&nbsp;&nbsp;<input type="radio" name="micro_vignettes_carrees" value="non" [(#ENV{micro_vignettes_carrees}|=={non}|oui) checked="checked"]/>
         <label><:median:non:></label>        
-    </p>
-    <p>
-        <:median:afficher_logo_xhtml:>: 
-        <label><:median:oui:></label>
-        <input type="radio" name="afficher_logo_xhtml" value="oui" [(#ENV{afficher_logo_xhtml}|=={oui}|oui) checked="checked"]/> 
-        &nbsp;&nbsp;&nbsp;<input type="radio" name="afficher_logo_xhtml" value="non" [(#ENV{afficher_logo_xhtml}|=={oui}|non) checked="checked"]/>
-        <label><:median:non:></label>        
-    </p>
-    
+    </p>    
 </fieldset>
 
 [(#REM) ------------------------ GROUPES MOTS CLES TECHNIQUES ------------------------ ]

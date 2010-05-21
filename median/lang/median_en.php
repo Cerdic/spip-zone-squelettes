@@ -48,6 +48,7 @@ you certainly find what you are looking for!',
 'defaut_texte_creation_compte' => 'This page\'s access is restricted to the identified\'s contributors',
 'defaut_texte_acces_restreint' => 'Want to create a account?',
 'descriptif_configuration' => 'Median\'s template parameters to configure (all are optionnals)',
+'diaporama_accueil' => 'Slideshow of the home page',
 
 // E
 'erreur_install_groupe_technique' => 'error during Median\'s technical keywords group creation ',
@@ -58,6 +59,9 @@ you certainly find what you are looking for!',
 
 // F
 'fond_mot_cles_survol'=>'Cloud\'s keywords hover background color',
+
+// H
+'horizontal' => 'horizontal (landscape)',
 
 // I
 'id_groupe' => 'groupe\'s id',
@@ -75,6 +79,11 @@ you certainly find what you are looking for!',
 
 // N
 'nb_blocs_sommaire' => 'Number of article\'s blocs',
+'non' => 'no',
+
+// O
+'orientation_images_diaporama' => 'Images orientation',
+'oui' => 'yes',
 
 // P
 'page_sommaire' => 'Home page',
@@ -111,8 +120,9 @@ you certainly find what you are looking for!',
 'top_logo_url' => 'The top banner is linked to the home page of the site but the URL could be change by using this field',
 
 // V
+'vertical' => 'vertical (portrait)',
 'visiter_site'=>'Visit the site',
-'vitesse_diaporama' => 'Duration between 2 photos in home\' page slideshow (in milliseconds)'
+'vitesse_diaporama' => 'Duration (in milliseconds) between 2 photos'
 
 );
 

@@ -81,10 +81,13 @@
       $Tplugins_actifs = liste_plugin_actifs();
       $version_script = $Tplugins_actifs['SQUELETTE_MEDIAN']['version'];
 
-    // install/désinstall ?
+    // test/install/désinstall ?
 		  switch ($action){
+			case 'test':
+				return (lire_meta('squelette_median_version') == $version_script);
 			case 'install':
-				if (lire_meta('squelette_median_version') != $version_script) squelette_median_installation($version_script);
+				if (lire_meta('squelette_median_version') != $version_script)
+					squelette_median_installation($version_script);
 				break;
 			case 'uninstall':
 				squelette_median_desinstallation();

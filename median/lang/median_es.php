@@ -48,6 +48,7 @@ de todas maneras, van a encontrar lo que buscan !',
 'defaut_texte_creation_compte' => 'El acceso a esta pagina esta reservado para usadores identificados',
 'defaut_texte_acces_restreint' => 'Quieres crear una cuenta?',
 'descriptif_configuration' => 'parametros de configuracion del esqueleto Median',
+'diaporama_accueil' => 'Diaporama de la página principal',
 
 // E
 'error_install_groupe_technique' => 'error de creacion del grupo de palabras claves tecnicas para el esqueleto Median',
@@ -58,6 +59,9 @@ de todas maneras, van a encontrar lo que buscan !',
 
 // F
 'fond_mot_cles_survol'=>'Color de fondo de las palabras claves al sobrevuelo',
+
+// H
+'horizontal' => 'horizontal (paisaje)',
 
 // I
 'id_groupe' => 'id grupo',
@@ -74,6 +78,11 @@ de todas maneras, van a encontrar lo que buscan !',
 
 // N
 'nb_blocs_sommaire' => 'Numero de bloques de articulos',
+'non' => 'no',
+
+// O
+'orientation_images_diaporama' => 'Orientación de las imagenes',
+'oui' => 'si',
 
 // P
 'page_sommaire' => 'Pagina de inicio',
@@ -109,7 +118,9 @@ de todas maneras, van a encontrar lo que buscan !',
 'top_logo_url' => 'El logo arriba de la pagina esta un vinculo hasta la pagina de inicio, pero en este campo puedes elegir otra URL',
 
 // V
-'vitesse_diaporama' => 'Duracion entre 2 photos del diaporama de la pagina de inicio (en milisegundos)'
+'vertical' => 'vertical (retrato)',
+'visiter_site'=>'Visita el sitio',
+'vitesse_diaporama' => 'Duracion (en milisegundos) entre 2 photos del diaporama'
 
 );
 
