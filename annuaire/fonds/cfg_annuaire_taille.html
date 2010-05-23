@@ -32,19 +32,19 @@
 		<p /><b><:annuaire:new|ucfirst:></b>
 		<p /><:annuaire:height_fieldset_prems:>
 		<input type="text" name="height_new_prems" value="[(#ENV{height_new_prems})]" size="5" class="fondl" />
-		<p /><:annuaire:height_fieldset:>
+		<p /><:annuaire:height_fieldset_suivants:>
 		<input type="text" name="height_new" value="[(#ENV{height_new})]" size="5" class="fondl" />
 
 		<p /><b><:annuaire:plus_vote|ucfirst:></b>
 		<p /><:annuaire:height_fieldset_prems:>
 		<input type="text" name="height_plus_vote_prems" value="[(#ENV{height_plus_vote_prems})]" size="5" class="fondl" />
-		<p /><:annuaire:height_fieldset:>
+		<p /><:annuaire:height_fieldset_suivants:>
 		<input type="text" name="height_plus_vote" value="[(#ENV{height_plus_vote})]" size="5" class="fondl" />
 
 		<p /><b><:annuaire:zard|ucfirst:></b>
 		<p /><:annuaire:height_fieldset_prems:>
 		<input type="text" name="height_zard_prems" value="[(#ENV{height_zard_prems})]" size="5" class="fondl" />
-		<p /><:annuaire:height_fieldset:>
+		<p /><:annuaire:height_fieldset_suivants:>
 		<input type="text" name="height_zard" value="[(#ENV{height_zard})]" size="5" class="fondl" />
 	</fieldset><!--#sommaire-->
 
@@ -66,6 +66,49 @@
 			<input type="text" name="align_pied3" value="[(#ENV{align_pied3})]" size="5" class="fondl" />
 	</fieldset><!--#pied-->
 
+	[(#REM) Reglage de la colonne de navigation]
+	<fieldset><!--#col_navigation-->
+	<legend><:annuaire:col_navigation:></legend>
+	<p /><b><:annuaire:nav_option|ucfirst:></b>
+	<p /><:annuaire:height_fieldset:>
+	<input type="text" name="height_nav_option" value="[(#ENV{height_nav_option})]" size="5" class="fondl" />
+
+	<p /><b><:annuaire:nav_connect|ucfirst:></b>
+	<p /><:annuaire:height_fieldset:>
+	<input type="text" name="height_nav_connect" value="[(#ENV{height_nav_connect})]" size="5" class="fondl" />
+
+	<p /><b><:annuaire:nav_herbier|ucfirst:></b>
+	<p />
+	[(#PLUGIN{sjcycle}|non)<:annuaire:height_nav_herbier_non:>]
+	[(#PLUGIN{sjcycle}|oui)<:annuaire:height_fieldset:>
+	<input type="text" name="height_nav_herbier" value="[(#ENV{height_nav_herbier})]" size="5" class="fondl" />]
+
+	<p /><b><:annuaire:nav_mot|ucfirst:></b>
+	<p /><:annuaire:height_fieldset:>
+	<input type="text" name="height_nav_mot" value="[(#ENV{height_nav_mot})]" size="5" class="fondl" />
+
+	<p /><b><:annuaire:nav_secteur|ucfirst:></b>
+	<p /><:annuaire:height_fieldset:>
+	<input type="text" name="height_nav_secteur" value="[(#ENV{height_nav_secteur})]" size="5" class="fondl" />
+
+	<p /><b><:annuaire:nav_lien|ucfirst:></b>
+	<p /><:annuaire:height_fieldset:>
+	<input type="text" name="height_nav_lien" value="[(#ENV{height_nav_lien})]" size="5" class="fondl" />
+
+	<p /><b><:annuaire:nav_sites|ucfirst:></b>
+	<p /><:annuaire:height_fieldset:>
+	<input type="text" name="height_nav_sites" value="[(#ENV{height_nav_sites})]" size="5" class="fondl" />
+
+	<p /><b><:annuaire:nav_copy|ucfirst:></b>
+	<p /><:annuaire:height_fieldset:>
+	<input type="text" name="height_nav_copy" value="[(#ENV{height_nav_copy})]" size="5" class="fondl" />
+
+	<p /><b><:annuaire:nav_pied|ucfirst:></b>
+	<p /><:annuaire:height_fieldset:>
+	<input type="text" name="height_nav_pied" value="[(#ENV{height_nav_pied})]" size="5" class="fondl" />
+	</fieldset><!--#col_navigation-->
+
+
 	[(#REM) Reglage sur le formulaire de recherche]
 	<fieldset><!--#formrecherche-->
 	<legend><:annuaire:formulaire_recherche:></legend>
@@ -80,7 +123,7 @@
 		<input type="radio" name="config_formrecherche" value="entete" [(#ENV{config_formrecherche, defaut}|=={entete}|?{checked="checked"})] />
 		<:annuaire:formulaire_recherche_entete:>
 	</label>
-	[(#CONFIG{annuaire_taille/config_formrecherche, entete}|=={entete}|?{' '})
+	[(#CONFIG{annuaire_taille/config_formrecherche, entete}|=={entete}|oui)
 	<p /><:annuaire:formulaire_recherche_margin_left:>
 	<input type="text" name="formulaire_recherche_margin_left" value="[(#ENV{formulaire_recherche_margin_left})]" size="5" class="fondl" />
 	<p /><:annuaire:formulaire_recherche_margin_top:>
