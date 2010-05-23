@@ -284,6 +284,14 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			spip_log("SoyezCreateurs maj 3.0.3", "soyezcreateurs_install");			
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.3','non');
 		}
+		if (version_compare($current_version,'3.0.4','<')) {
+			// Réserve le formulaire des événements aux seules rubriques d'Agenda (avec le plugin agenda 2 installé)
+			// À réécrire en sql_update...
+			sql_query('UPDATE spip_rubriques INNER JOIN spip_mots_rubriques ON spip_rubriques.id_rubrique=spip_mots_rubriques.id_rubrique INNER JOIN spip_mots ON spip_mots_rubriques.id_mot=spip_mots.id_mot 
+SET spip_rubriques.agenda = 1
+WHERE spip_mots.titre=\'Agenda\'');
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.4','non');
+		}
 		/*
 		#En attente
 		if (version_compare($current_version,'2.1.10','<')) {
@@ -300,9 +308,6 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		if (version_compare($current_version,'2.1.14','<')) {
 			include_spip('base/soyezcreateurs');
 			spip_log("SoyezCreateurs maj 2.1.14", "soyezcreateurs_install");
-			sql_query('UPDATE spip_rubriques INNER JOIN spip_mots_rubriques ON spip_rubriques.id_rubrique=spip_mots_rubriques.id_rubrique INNER JOIN spip_mots ON spip_mots_rubriques.id_mot=spip_mots.id_mot 
-SET spip_rubriques.agenda = 1
-WHERE spip_mots.titre=\'Agenda\'');
 			$id_groupe = id_groupe("_Specialisation_Rubrique");
 			$id_mot = id_mot("Agenda", $id_groupe);
 			if ($id_mot>0) {
