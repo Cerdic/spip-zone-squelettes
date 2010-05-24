@@ -164,7 +164,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'height_nav_herbier_non' => 'Pour pouvoir configurer ce champ, il vous faut le plugin "Sjcycle".',
 'height_pied_page_expli' => 'Hauteur du pied de page',
 'herbier' => 'de l\' "herbier"',
-'hierarchie' => 'de la "hierarchie"',
+'hierarchie' => 'de la "hi&eacute;rarchie"',
 
 //I
 'infos' => 'Afficher une infos sur toutes les rubriques (si vous la souhaitez diff&eacute;rentes utiliser la description.)',
