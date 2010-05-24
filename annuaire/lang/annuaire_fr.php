@@ -58,6 +58,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //C
 'col_navigation' => 'Colonne navigation',
 'commentaire' => '1 commentaire',
+'config_defaut' => 'Affichage dans la colonne de navigation.',
+'config_entete' => 'Affichage dans l\'ent&ecirc;te.',
+'config_pied' => 'Affichage dans le pied de page (&agrave droite).',
 'configuration_abonnement' => 'configuration de la page des abonnements',
 'configuration_bandeau' => 'configuration du bandeau',
 'configuration_colonne_pied' => 'configuration de la colonne et du pied',
@@ -141,8 +144,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //F
 'fieldset' => 'le "fieldset"',
 'formulaire_recherche' => 'Formulaire de recherche',
-'formulaire_recherche_defaut' => 'Affichage dans la colonne de droite.',
-'formulaire_recherche_entete' => 'Affichage dans l\'ent&ecirc;te',
 'formulaire_recherche_expli' => 'Ou voulez vous afficher le formulaire de recherche ?',
 'formulaire_recherche_margin_left' => 'La marge &agrave; gauche du formulaire',
 'formulaire_recherche_margin_top' => 'La marge en haut du formulaire',
@@ -190,6 +191,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'nav_bas' => 'la colonne "navigation" partie basse',
 'nav_connect' => 'le bloc "connection"',
 'nav_copy' => 'le bloc "copyright"',
+'nav_copy_expli' => 'Ou voulez vous afficher cette partie du copyright ?',
 'nav_haut' => 'la colonne "navigation" partie haute',
 'nav_herbier' => 'le bloc "herbier"',
 'nav_lien' => 'le bloc "liens"',
