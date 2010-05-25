@@ -266,10 +266,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'votes' => '@nb@ votes',
 
 //W
-'width_page' => 'Format de la page',
 'width_content_explication' => 'Taille de la colonne contenu',
 'width_nav_explication' => 'Taille de la colonne navigation',
+'width_page' => 'Format de la page',
 'width_page_explication' => 'Taille de la page',
+'width_pied_page_content' => 'Taille de partie contenu du pied',
+'width_pied_page_nav' => 'Taille de partie navigation du pied',
+'width_pied_page_total' => 'Taille du pied complet',
 
 //X
 
