@@ -111,7 +111,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_contenu' => 'Contingut',
 	'cfg_couleurs_css' => 'Configuraci&oacute; dels colors CSS',
 	'cfg_couleurs_css_contenu' => 'Configuraci&oacute; dels colors CSS del contingut',
-	'cfg_couleurs_css_lettre' => 'Configuration des couleurs des NewsLetters', # NEW
+	'cfg_couleurs_css_lettre' => 'Configuraci&oacute; dels colors de les NewsLetters',
 	'cfg_datepublication' => 'Visualitzaci&oacute; de la data de publicaci&oacute;',
 	'cfg_datepublication_ex' => ' (si est&agrave; desactivat, es pot tornar a activar article per article amb le Paraula Clau "DevoilerDate")',
 	'cfg_datepublication_label' => 'Mostrar la data de publicaci&oacute; dels articles',
@@ -338,6 +338,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// M
 	'memerubrique' => 'A la mateixa secci&oacute;...',
+	'mentions_legales_obligatoires' => 'Mention l&eacute;gales obligatoire ([CNIL|Commision Nationale Informatique et Libert&eacute;->http://www.cnil.fr/] et [LcEN|Loi sur la confiance en l\'&eacute;conomie Num&eacute;rique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Tout ce qu\'[il faut savoir->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [D&eacute;cryptage des obligations l&eacute;gales->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].', # NEW
 	'menu_deplier' => 'Desplegar: ',
 	'menu_picalt' => 'Clicar per ',
 	'menu_replier' => 'reduir: ',
