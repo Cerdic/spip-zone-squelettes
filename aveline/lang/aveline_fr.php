@@ -79,6 +79,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_selecteur_archives' => 'Cette noisette est &agrave; utiliser en conjonction avec la noisette <i>Articles de la rubrique ou du site</i> (les deux noisettes doivent &ecirc;tre plac&eacute;es sur la m&ecirc;me page). &Agrave; la mani&egrave;re d\'un blog, elle fournit une liste des mois et/ou des ann&eacute;es pour lesquels des articles ont &eacute;t&eacute; publi&eacute;s et permet de recharger la page en filtrant les r&eacute;sultats selon la p&eacute;riode choisie. Pensez &agrave; param&eacute;trer le choix de la rubrique comme pour la noisette <i>Articles de la rubrique ou du site</i>.',
 	'description_site-contenuprincipal' => 'Affiche logo, nom, descriptif, lien et notes.',
 	'description_site-filariane' => 'Affiche l\'arborescence des rubriques jusqu\'au site.',
+	'description_site-mots_cles' => 'Liste les mots-cl&eacute;s associ&eacute;s au site.',
 	'description_site-syndic_articles' => 'Liste l\'ensemble des articles syndiqu&eacute;s de ce site.',
 		
 	'nom_article-contenuprincipal' => 'Contenu principal de l\'article',
@@ -117,6 +118,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_site-contenuprincipal' => 'Contenu principal du site',
 	'nom_site-filariane' => 'Fil d\'ariane du site',
 	'nom_site-forum' => 'Forum du site',
+	'nom_site-mots_cles' => 'Mots-Cl&eacute;s du site',
 	'nom_site-syndic_articles' => 'Articles syndiqu&eacute;s de ce site',
 	
 	'label_afficher_auteurs' => 'Afficher les auteurs&nbsp;?',
