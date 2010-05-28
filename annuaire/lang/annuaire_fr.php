@@ -151,7 +151,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //G
 'groupe_mots' => 'Groupes de mots',
-'groupe_mots_expli' => 'Remplire avec le titre des groupes de mots clef, s&eacute;par&eacute; par des virgules, que vous ne souhaitez pas afficher dans la colonne de droite.',
+'groupe_mots_expli' => 'Remplir avec le titre des groupes de mots clef, s&eacute;par&eacute; par des virgules, que vous ne souhaitez pas afficher dans la colonne de droite.',
 
 //H
 'hasard' => 'Sites au hasard',
@@ -189,7 +189,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //N
 'nav_bas' => 'la colonne "navigation" partie basse',
-'nav_connect' => 'le bloc "connection"',
+'nav_connect' => 'le bloc "connexion"',
 'nav_copy' => 'le bloc "copyright"',
 'nav_copy_expli' => 'Ou voulez vous afficher cette partie du copyright ?',
 'nav_haut' => 'la colonne "navigation" partie haute',
