@@ -222,4 +222,10 @@ function balise_SECTEUR_PDF_dist($p) {
 		$f = 'balise_modele_dist';
 	return $f($p);
 }
+
+function autoriser_evenement_creer_bouton($faire, $type='', $id=0, $qui = NULL, $opt = NULL){ 
+	if (isset($opt['id_article'])) 
+		return autoriser('creerevenementdant','article',$opt['id_article'],$qui); 
+	return false; 
+} 
 ?>
