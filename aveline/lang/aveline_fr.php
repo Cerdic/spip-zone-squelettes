@@ -1,6 +1,6 @@
 <?php
 
-// Sécurité
+// S&eacute;curit&eacute;
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
@@ -41,7 +41,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_page_site' => 'Site r&eacute;f&eacute;renc&eacute;',
 	'nom_pagedefaut' => 'Page par d&eacute;faut',
 	
-	// Description des blocs de la page par défaut
+	// Description des blocs de la page par d&eacute;faut
 	'nom_bloc_pre_contenu' => 'Pr&eacute;-Contenu',
 	'nom_bloc_post_contenu' => 'Post-Contenu',
 	'nom_bloc_pre_navigation' => 'Pr&eacute;-Navigation',
@@ -77,6 +77,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_portfolio' => 'Portfolio de la distribution par d&eacute;faut de SPIP.',
 	'description_rubrique-contenuprincipal' => 'Affiche logo, date de dernier ajout et texte. Utilisez les param&egrave;tres ci-dessous pour personnaliser les &eacute;l&eacute;ments &agrave; afficher.',
 	'description_rubrique-filariane' => 'Affiche l\'arborescence des rubriques jusqu\'&agrave; la rubrique.',
+	'description_rubrique-formulaire_site' => 'Affiche un formulaire permettant aux visiteurs du site de proposer des r&eacute;f&eacute;rencements de sites. Ces sites appara&icirc;tront comme &laquo;&nbsp;propos&eacute;s&nbsp;&raquo; dans l\'espace priv&eacute;, en attendant une validation par les administrateurs.<br />Ce formulaire ne s\'affiche que si vous avez activ&eacute; l\'option &laquo;&nbsp;G&eacute;rer un annuaire de sites&nbsp;&raquo; dans la Configuration sur site dans l\'espace priv&eacute;, et si vous avez r&eacute;gl&eacute; &laquo;&nbsp;Qui peut proposer des sites r&eacute;f&eacute;renc&eacute;s&nbsp;&raquo; sur &laquo;&nbsp;les visiteurs du site public&nbsp;&raquo;.',
+	'description_rubrique-miniplan' => 'Affiche l\'arborescence des sous-rubriques de la rubrique.',
 	'description_selecteur_archives' => 'Cette noisette est &agrave; utiliser en conjonction avec la noisette <i>Articles de la rubrique ou du site</i> (les deux noisettes doivent &ecirc;tre plac&eacute;es sur la m&ecirc;me page). &Agrave; la mani&egrave;re d\'un blog, elle fournit une liste des mois et/ou des ann&eacute;es pour lesquels des articles ont &eacute;t&eacute; publi&eacute;s et permet de recharger la page en filtrant les r&eacute;sultats selon la p&eacute;riode choisie. Pensez &agrave; param&eacute;trer le choix de la rubrique comme pour la noisette <i>Articles de la rubrique ou du site</i>.',
 	'description_site-contenuprincipal' => 'Affiche logo, nom, descriptif, lien et notes.',
 	'description_site-filariane' => 'Affiche l\'arborescence des rubriques jusqu\'au site.',
@@ -119,7 +121,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_rubrique-contenuprincipal' => 'Contenu principal de la rubrique',
 	'nom_rubrique-documents' => 'Documents de la rubrique',
 	'nom_rubrique-filariane' => 'Fil d\'ariane de la rubrique',
+	'nom_rubrique-formulaire_site' => 'Formulaire de proposition de site',
 	'nom_rubrique-forum' => 'Forum de la rubrique',
+	'nom_rubrique-miniplan' => 'Mini-plan de la rubrique',
 	'nom_rubrique-portfolio' => 'Portfolio de la rubrique',
 	'nom_selecteur_archives' => 'S&eacute;lecteur d\'archives',
 	'nom_site-contenuprincipal' => 'Contenu principal du site',
@@ -157,6 +161,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_afficher_rubrique' => 'Afficher la rubrique&nbsp;?',
 	'label_afficher_secteur' => 'Afficher secteur&nbsp;?',
 	'label_afficher_selecteur_archives' => 'Afficher un s&eacute;lecteur d\'archives par mois et/ou ann&eacute;e&nbsp;?',
+	'label_afficher_si_pas_article' => 'Afficher le mini-plan seulement si la rubrique ne contient pas d\'articles&nbsp;?',
 	'label_afficher_site_web' => 'Afficher le site web&nbsp;?',
 	'label_afficher_source' => 'Afficher la source&nbsp;?',
 	'label_afficher_soustitre' => 'Afficher le sous-titre&nbsp;?',
