@@ -1,0 +1,272 @@
+# L'option si n'existe pas Saisies (pour le moment).
+# Les options si définies ici ne sont là que pour rappeller les mises à jour du fichier à faire lorsqu'une option équivalente sera disponible
+nom: '<:aveline:nom_liste_syndic_articles:>'
+description: '<:aveline:description_liste_syndic_articles:>'
+icon: 'img/ic_syndic_article.png'
+parametres:
+  -
+    saisie: 'selection'
+    options:
+      nom: 'liste_syndic_articles'
+      label: '<:aveline:label_liste_syndic_articles:>'
+      explication: '<:aveline:explication_meme_rubrique:>'
+      defaut: 'meme_rubrique'
+      cacher_option_intro: 'oui'
+      datas:
+        tous: '<:aveline:item_syndic_articles_tous:>'
+        meme_rubrique: '<:aveline:item_meme_rubrique:>'
+        rubrique_specifique: '<:aveline:item_rubrique_specifique:>'
+  -
+    saisie: 'selecteur_rubrique'
+    options:
+      nom: 'rubrique_specifique'
+      label: '<:aveline:label_rubrique_specifique:>'
+      #si: 'liste_articles == "rubrique_specifique"'
+  -
+    saisie: 'selection'
+    options:
+      nom: 'tri'
+      label: '<:aveline:label_tri:>'
+      defaut: 'date'
+      cacher_option_intro: 'oui'
+      datas:
+        date: '<:aveline:item_date:>'
+        titre: '<:aveline:item_titre:>'
+        lesauteurs: '<:aveline:item_lesauteurs:>'
+  -
+    saisie: 'selection'
+    options:
+      nom: 'senstri'
+      label: '<:aveline:label_senstri:>'
+      defaut: '1'
+      cacher_option_intro: 'oui'
+      datas:
+        0: '<:aveline:item_ascendant:>'
+        1: '<:aveline:item_descendant:>'
+  -
+    saisie: 'selection'
+    options:
+      nom: 'selection'
+      label: '<:aveline:label_selection:>'
+      defaut: 'pagination'
+      cacher_option_intro: 'oui'
+      datas:
+        tout: '<:aveline:item_tout:>'
+        limite: '<:aveline:item_limite:>'
+        pagination: '<:aveline:item_pagination:>'
+  -
+    saisie: 'input'
+    options:
+      nom: 'limite'
+      label: '<:aveline:label_limite:>'
+      defaut: 10
+      #si: 'selection == "limite"'
+    verifier:
+      type: 'entier'
+      options:
+        min: 1
+  -
+    saisie: 'fieldset'
+    options:
+      nom: 'si_pagination'
+      label: '<:aveline:label_si_pagination:>'
+      pliable: 'oui'
+      plie: 'oui'
+      #si: 'selection == "pagination"'
+    saisies:
+      -
+        saisie: 'input'
+        options:
+          nom: 'pas_pagination'
+          label: '<:aveline:label_pas_pagination:>'
+          defaut: 5
+        verifier:
+          type: 'entier'
+          options:
+            min: 1
+      -
+        saisie: 'selection'
+        options:
+          nom: 'position_pagination'
+          label: '<:aveline:label_position_pagination:>'
+          defaut: 'fin'
+          cacher_option_intro: 'oui'
+          datas:
+            debut: '<:aveline:item_debut:>'
+            fin: '<:aveline:item_fin:>'
+            deux: '<:aveline:item_deux:>'
+      -
+        saisie: 'selection'
+        options:
+          nom: 'style_pagination'
+          label: '<:aveline:label_style_pagination:>'
+          defaut: ''
+          cacher_option_intro: 'oui'
+          datas:
+            '': '<:aveline:item_pagination_defaut:>'
+            precedent_suivant: '<:aveline:item_pagination_precedent_suivant:>'
+            page: '<:aveline:item_pagination_page:>'
+            page_precedent_suivant: '<:aveline:item_pagination_page_precedent_suivant:>'
+            simple: '<:aveline:item_pagination_simple:>'
+  -
+    saisie: 'oui_non'
+    options:
+      nom: 'afficher_titre_liste'
+      label: '<:aveline:label_afficher_titre_liste:>'
+      defaut: 'on'
+  -
+    saisie: 'selection'
+    options:
+      nom: 'titre_liste'
+      label: '<:aveline:label_titre_liste:>'
+      defaut: 'public:sur_web'
+      cacher_option_intro: 'oui'
+      datas:
+        'public:sur_web': '<:public:sur_web:>'
+        'public:nouveautes_web': '<:public:nouveautes_web:>'
+        'public:voir_en_ligne': '<:public:voir_en_ligne:>'
+        titre_perso: '<:aveline:item_titre_perso:>'
+      #si: 'afficher_titre_liste == "on"'
+  -
+    saisie: 'input'
+    options:
+      nom: 'titre_liste_perso'
+      label: '<:aveline:label_titre_liste_perso:>'
+      explication: '<:aveline:explication_raccourcis_typo:>'
+      #si: 'afficher_titre_liste == "on" && titre_liste == "titre_perso"'
+  -
+    saisie: 'selection'
+    options:
+      nom: 'style_liste'
+      label: '<:aveline:label_style_liste:>'
+      defaut: 'liste'
+      cacher_option_intro: 'oui'
+      datas:
+        liste: '<:aveline:item_liste:>'
+        resume: '<:aveline:item_resume:>'
+  -
+    saisie: 'fieldset'
+    options:
+      nom: 'si_liste_simple'
+      label: '<:aveline:label_si_liste_simple:>'
+      pliable: 'oui'
+      plie: 'oui'
+      #si: 'style_liste == "liste"'
+    saisies:
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'liste_afficher_date'
+          label: '<:aveline:label_afficher_date:>'
+          defaut: 'on'
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'liste_afficher_auteurs'
+          label: '<:aveline:label_afficher_auteurs:>'
+          defaut: ''
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'liste_afficher_nom_site'
+          label: '<:aveline:label_afficher_nom_site:>'
+  -
+    saisie: 'fieldset'
+    options:
+      nom: 'si_resume'
+      label: '<:aveline:label_si_resume:>'
+      pliable: 'oui'
+      plie: 'oui'
+      #si: 'style_liste == "resume"'
+    saisies:
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'afficher_docs_joints'
+          label: '<:aveline:label_afficher_docs_joints:>'
+          defaut: 'on'
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'afficher_date'
+          label: '<:aveline:label_afficher_date:>'
+          defaut: 'on'
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'afficher_auteurs'
+          label: '<:aveline:label_afficher_auteurs:>'
+          defaut: 'on'
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'afficher_nom_site'
+          label: '<:aveline:label_afficher_nom_site:>'
+          defaut: ''
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'afficher_categorie'
+          label: '<:aveline:label_afficher_categorie:>'
+          defaut: ''
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'afficher_tags'
+          label: '<:aveline:label_afficher_tags:>'
+          defaut: 'on'
+      -
+        saisie: 'selection'
+        options:
+          nom: 'afficher_texte_article'
+          label: '<:aveline:label_afficher_texte_article:>'
+          defaut: 'introduction'
+          cacher_option_intro: 'oui'
+          datas:
+            'rien': '<:aveline:item_rien:>'
+            'introduction': '<:aveline:item_introduction:>'
+            'complet': '<:aveline:item_complet:>'
+      -
+        saisie: 'input'
+        options:
+          nom: 'longueur_max_introduction'
+          label: '<:aveline:label_longueur_max_introduction:>'
+          defaut: 600
+          #si: 'afficher_texte_article =="introduction"'
+        verifier:
+          type: 'entier'
+          min: 10
+      -
+        saisie: 'input'
+        options:
+          nom: 'taille_max_images_texte'
+          label: '<:aveline:label_taille_max_images_texte:>'
+          defaut: 500
+          #si: 'afficher_texte_article =="complet"'
+        verifier:
+          type: 'entier'
+          min: 10
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'afficher_lire_la_suite'
+          label: '<:aveline:label_afficher_lire_la_suite:>'
+          defaut: 'on'
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'rappeler_titre'
+          label: '<:aveline:label_rappeler_titre:>'
+          defaut: ''
+          #si: 'afficher_lire_la_suite == "on"'
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'afficher_source'
+          label: '<:aveline:label_afficher_source:>'
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'afficher_url'
+          label: '<:aveline:label_afficher_url:>'
+          defaut: ''
