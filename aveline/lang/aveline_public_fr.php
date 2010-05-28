@@ -48,7 +48,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'permalink_to' => 'Lien permanent vers le commentaire',
 	'principaux_auteurs' => 'Principaux auteurs',
 	'principaux_contributeurs' => 'Principaux contributeurs',
-	'repondre_site' => 'R&eacute;pondre &agrave; ce site',
 	'rubrique_deux_points' => 'Rubrique&nbsp;:',
 	'source' => 'Source',
 	'source_deux_points' => 'Source&nbsp;:',
