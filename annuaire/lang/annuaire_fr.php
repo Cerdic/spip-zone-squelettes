@@ -54,6 +54,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //B
 'bandeau' => 'du "bandeau"',
 'boucles' => 'R&eacute;glages des boucles',
+'bouton_configurer' => 'Configurer l\'annuaire',
 
 //C
 'col_navigation' => 'Colonne navigation',
@@ -111,7 +112,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 				<br />Une page qui regroupe tous les r&eacute;glages g&eacute;n&eacute;raux du site.',
 'descriptif_herbier' => '<h4>R&eacute;glage de l\'herbier</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur l\'herbier.
-				<p />C\'est la page ou l\'on affiche l\'actualiter des sites syndiqu&eacute;',
+				<p />C\'est la page où l\'on affiche l\'actualiter des sites syndiqu&eacute;',
 'descriptif_mot' => '<h4>R&eacute;glage de la page mot</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur la page mot.',
 'descriptif_partenaire' => '<h4>R&eacute;glage de la page partenaire</h4>
@@ -120,7 +121,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 				<br />R&eacute;gl&eacute; vos styles du plan.',
 'descriptif_plan_complet' => '<h4>R&eacute;glage de la page plan complet</h4>
 				<br />R&eacute;gl&eacute; vos styles sur la page plan complet.
-				<br />Cette page est en fait un plan complet qui affiche m&ecirc;me les rubriques pour les quelles vous avez pas en core de sites, cette page facilitera la proposition de site par le visiteur.',
+				<p />Cette page est en fait un plan complet qui affiche m&ecirc;me les rubriques pour les quelles vous avez pas en core de sites, cette page facilitera la proposition de site par le visiteur.',
 'descriptif_recherche' => '<h4>R&eacute;glage de la page recherche</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur la page recherche.',
 'descriptif_rubrique' => '<h4>R&eacute;glage de la page rubrique</h4>
@@ -221,7 +222,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'pas_zard' => 'Pas de site(s) au hasard, enregistrez-en ...',
 'pied_page' => 'Pied de page',
 'plan' => 'du "plan"',
-'plan_complet' => 'de "plan complet"',
+'plan_complet' => 'le "plan complet"',
 'plus_votes' => 'Sites les plus vot&eacute;s',
 'plus_vote' => 'la boucle "plus de votes"',
 'popu_site' => 'La popularit&eacute; du site est de ',
