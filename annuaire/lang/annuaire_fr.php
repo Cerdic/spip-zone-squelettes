@@ -5,7 +5,6 @@
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //A
-'abonnement' => 'd\' "abonnement"',
 'accueil_presentation' => 'Pr&eacute;sentation',
 'accueil_intro' => 'Bienvenue sur la page de pr&eacute;sentation du plugin "annuaire".',
 'accueil_option' => 'Certain plugins sont optionnel :',
@@ -52,7 +51,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'articles_syndic' => '@nb@ articles syndiqu&eacute;s',
 
 //B
-'bandeau' => 'du "bandeau"',
 'boucles' => 'R&eacute;glages des boucles',
 'bouton_configurer' => 'Configurer l\'annuaire',
 
@@ -62,11 +60,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'config_defaut' => 'Affichage dans la colonne de navigation.',
 'config_entete' => 'Affichage dans l\'ent&ecirc;te.',
 'config_pied' => 'Affichage dans le pied de page (&agrave droite).',
-'configuration_abonnement' => 'configuration de la page des abonnements',
-'configuration_bandeau' => 'configuration du bandeau',
-'configuration_colonne_pied' => 'configuration de la colonne et du pied',
+'configuration_abonnement' => 'configuration de la page "abonnements"',
+'configuration_bandeau' => 'configuration du "bandeau"',
+'configuration_colonne_pied' => 'configuration de la "colonne et du pied"',
 'configuration_contact' => 'configuration de la page "contact"',
-'configuration_erreur' => 'configration des pages erreur',
+'configuration_erreur' => 'configration des pages "erreur"',
 'configuration_forum' => 'configuration des forum du site',
 'configuration_herbier' => 'configuration de la page "herbier"',
 'configuration_general' => 'configuration des g&eacute;n&eacute;ralit&eacute;s du site',
@@ -80,13 +78,48 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'configuration_sommaire' => 'configuration de la page "sommaire"',
 'configuration_taille' => 'configuration des tailles de tous le site',
 'conception' => 'conception de l\'annuaire',
-'contact' => 'de "contact"',
 'css' => 'Les css',
 'css_couleurs' => 'Cela revient &agrave; choisir la couleur d\'arri&egrave;re plan, la couleur d\'avant plan utilis&eacute;e pour le texte et les liens et la couleur de survol des liens.',
-'css_couleurs_' => 'Choisissez vos couleurs pour ',
-'css_couleurs_fieldset' => 'Changer les couleurs pour les contours mais sur tout le site.',
+'css_couleurs_bandeau' => 'Choisissez les couleurs du fond du "bandeau"',
+'css_couleurs_fieldset' => 'Changer la couleur pour les contours mais sur tout le site.',
 'css_couleurs_fond_expli' => 'Cela revient &agrave; choisir la couleur d\'arri&egrave;re plan sur une page.',
-'css_couleurs_fond_page' => 'Choisissez la couleur pour le fond ',
+'css_couleurs_fond_nav_bas' => 'Choisissez la couleur du fond de la "colonne de navigation basse"',
+'css_couleurs_fond_nav_haut' => 'Choisissez la couleur du fond de la "colonne de navigation haute"',
+'css_couleurs_fond_page_abonnement' => 'Choisissez la couleur du fond de la page "abonnement"',
+'css_couleurs_fond_page_contact' => 'Choisissez la couleur du fond de la page "contact"',
+'css_couleurs_fond_page_erreur' => 'Choisissez la couleur du fond de la page "erreur"',
+'css_couleurs_fond_page_forum' => 'Choisissez la couleur du fond de la page "forum"',
+'css_couleurs_fond_page_herbier' => 'Choisissez la couleur du fond de la page "herbier"',
+'css_couleurs_fond_page_mot' => 'Choisissez la couleur du fond de la page "mot"',
+'css_couleurs_fond_page_partenaire1' => 'Choisissez la couleur du fond de la page "partenaire"',
+'css_couleurs_fond_page_plan' => 'Choisissez la couleur du fond de la page "plan"',
+'css_couleurs_fond_page_plan_complet' => 'Choisissez la couleur du fond de la page "plan complet"',
+'css_couleurs_fond_page_recherche' => 'Choisissez la couleur du fond de la page "recherche"',
+'css_couleurs_fond_page_rubrique' => 'Choisissez la couleur du fond de la page "rubrique"',
+'css_couleurs_fond_page_site1' => 'Choisissez la couleur du fond de la page "site"',
+'css_couleurs_fond_page_sommaire' => 'Choisissez la couleur du fond de la page "sommaire"',
+'css_couleurs_herbier' => 'Choisissez les couleurs de la page "herbier"',
+'css_couleurs_hierarchie' => 'Choisissez les couleurs du fond de la "hierarchie"',
+'css_couleurs_menu_site' => 'Choisissez les couleurs du fond du "menu du site"',
+'css_couleurs_mot' => 'Choisissez les couleurs de la page "mot"',
+'css_couleurs_nav_connect' => 'Choisissez les couleurs de la noisette "connexion"',
+'css_couleurs_nav_copy' => 'Choisissez les couleurs de la noisette "copyright"',
+'css_couleurs_nav_herbier' => 'Choisissez les couleurs de la noisette "herbier"',
+'css_couleurs_nav_lien' => 'Choisissez les couleurs de la noisette "lien"',
+'css_couleurs_nav_mot' => 'Choisissez les couleurs de la noisette "mot"',
+'css_couleurs_nav_option' => 'Choisissez les couleurs de la noisette "options"',
+'css_couleurs_nav_pied' => 'Choisissez les couleurs de la noisette "pied"',
+'css_couleurs_nav_secteur' => 'Choisissez les couleurs de la noisette "secteur"',
+'css_couleurs_nav_sites' => 'Choisissez les couleurs de la noisette "sites"',
+'css_couleurs_new' => 'Choisissez les couleurs de la boucle "nouveauté"',
+'css_couleurs_partenaire1' => 'Choisissez les couleurs de la page "partenaire"',
+'css_couleurs_plan' => 'Choisissez les couleurs de la page "plan"',
+'css_couleurs_plan_complet' => 'Choisissez les couleurs de la page "plan complet"',
+'css_couleurs_plus_vote' => 'Choisissez les couleurs de la boucle "plus votés"',
+'css_couleurs_recherche' => 'Choisissez les couleurs de la page "recherche"',
+'css_couleurs_rubrique' => 'Choisissez les couleurs de la page "rubrique"',
+'css_couleurs_site1' => 'Choisissez les couleurs de la page "site"',
+'css_couleurs_zard' => 'Choisissez les couleurs de la boucle "hasard"',
 'css_bg' => 'Couleur d\'arri&egrave;re plan',
 'css_bs' => 'Couleur de la bordure',
 'css_fieldset' => 'Couleur des cadres',
@@ -107,7 +140,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'descriptif_erreur' => '<h4>R&eacute;glage des pages erreurs</h4>
 				<br />R&eacute;gl&eacute; vos styles sur les pages erreurs.',
 'descriptif_forum' => '<h4>R&eacute;glage du forum</h4>
-				<br />R&eacute;gl&eacute; vos couleurs de la page forum',
+				<br />R&eacute;gl&eacute; vos couleurs de la page forum.',
 'descriptif_general' => '<h4>R&eacute;glages g&eacute;n&eacute;raux</h4>
 				<br />Une page qui regroupe tous les r&eacute;glages g&eacute;n&eacute;raux du site.',
 'descriptif_herbier' => '<h4>R&eacute;glage de l\'herbier</h4>
@@ -121,7 +154,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 				<br />R&eacute;gl&eacute; vos styles du plan.',
 'descriptif_plan_complet' => '<h4>R&eacute;glage de la page plan complet</h4>
 				<br />R&eacute;gl&eacute; vos styles sur la page plan complet.
-				<p />Cette page est en fait un plan complet qui affiche m&ecirc;me les rubriques pour les quelles vous avez pas en core de sites, cette page facilitera la proposition de site par le visiteur.',
+				<p />Cette page est en fait un plan complet qui affiche m&ecirc;me les rubriques pour les quelles vous avez pas encore de sites, cette page facilitera la proposition de site par le visiteur.',
 'descriptif_recherche' => '<h4>R&eacute;glage de la page recherche</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur la page recherche.',
 'descriptif_rubrique' => '<h4>R&eacute;glage de la page rubrique</h4>
@@ -140,15 +173,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'email_lesauteurs:description' => 'Sur les balises #LESAUTEURS et #DESCRIPTIF de la page "site" nous coupons les adresses mail si elles existent afin d&rsquo;&eacute;vit&eacute; que le webmaster nous dise qu&rsquo;on le spam.',
 'epingle_site' => '&eacute;pingl&eacute;s sur',
 'est_rattache' => 'est rattach&eacute; &agrave;',
-'erreur' => 'des "erreurs"',
 
 //F
-'fieldset' => 'le "fieldset"',
 'formulaire_recherche' => 'Formulaire de recherche',
 'formulaire_recherche_expli' => 'Ou voulez vous afficher le formulaire de recherche ?',
 'formulaire_recherche_margin_left' => 'La marge &agrave; gauche du formulaire',
 'formulaire_recherche_margin_top' => 'La marge en haut du formulaire',
-'forum' => 'du "forum"',
 
 //G
 'groupe_mots' => 'Groupes de mots',
@@ -165,8 +195,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'height_menu_site_expli' => 'Hauteur du menu du site',
 'height_nav_herbier_non' => 'Pour pouvoir configurer ce champ, il vous faut le plugin "Sjcycle".',
 'height_pied_page_expli' => 'Hauteur du pied de page',
-'herbier' => 'de l\' "herbier"',
-'hierarchie' => 'de la "hi&eacute;rarchie"',
 
 //I
 'infos' => 'Afficher une infos sur toutes les rubriques (si vous la souhaitez diff&eacute;rentes utiliser la description.)',
@@ -186,14 +214,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'margin_right_fieldset' => 'Marge &agrave; droite du cadre',
 'menu_site' => 'le menu du site',
 'miniatures_par' => 'Miniatures par',
-'mot' => 'de "mot"',
 
 //N
-'nav_bas' => 'la colonne "navigation" partie basse',
 'nav_connect' => 'le bloc "connexion"',
 'nav_copy' => 'le bloc "copyright"',
 'nav_copy_expli' => 'Ou voulez vous afficher cette partie du copyright ?',
-'nav_haut' => 'la colonne "navigation" partie haute',
 'nav_herbier' => 'le bloc "herbier"',
 'nav_lien' => 'le bloc "liens"',
 'nav_mot' => 'le bloc "mots clef"',
@@ -211,7 +236,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //P
 'page_sommaire' => 'Page sommaire',
-'partenaire1' => 'de "partenaire"',
 'partenaire' => '1 partenaire',
 'partenaires' => '@nb@ partenaires',
 'pas_commentaire' => 'Pas encore de commentaire',
@@ -221,8 +245,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'pas_votes' => 'Pas encore de votes',
 'pas_zard' => 'Pas de site(s) au hasard, enregistrez-en ...',
 'pied_page' => 'Pied de page',
-'plan' => 'du "plan"',
-'plan_complet' => 'le "plan complet"',
 'plus_votes' => 'Sites les plus vot&eacute;s',
 'plus_vote' => 'la boucle "plus de votes"',
 'popu_site' => 'La popularit&eacute; du site est de ',
@@ -232,18 +254,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 //R
 'resultats' => 'R&eacute;sultats dans les boucles',
-'recherche' => 'de "recherche"',
 'recherche_site' => 'Recherche d\'un site',
 'rss' => 'Nombres d\'articles syndiqu&eacute; par page.',
 'rss_contient' => 'Le flux RSS contient ',
-'rubrique' => 'de la "rubrique"',
 'rubrique_contient' => 'La rubrique contient',
 
 //S
 'site1' => 'de "site"',
 'site' => '1 site',
 'sites' => '@nb@ sites',
-'sommaire' => 'de "sommaire"',
 'style' => 'Style :',
 'styliste' => 'Indiquer la personne responsable la charte graphique : (afficher colonne de droite en bas uniquement si remplis), possibilit&eacute;e de mettre du code spip ou html.',
 'synthese_flux' => 'Synth&egrave;se des flux',
