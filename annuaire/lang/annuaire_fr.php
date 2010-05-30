@@ -22,6 +22,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 					<br />et &agrave; l\'inverse cr&eacute;&eacute; robots et le texte noindex, nofollow pour ne pas le r&eacute;f&eacute;renc&eacute; ',
 'accueil_requis_2' => 'Pour afficher des partenaires sur la page "Partenaire", il vous faut cr&eacute;&eacute; le groupe "Affichage" avec le mot clef "partenaire" et attibuer le &agrave; chacun des sites voulus.',
 'actuellement' => 'Il y a actuellement ',
+'aff_date' => 'Afficher la date',
+'aff_date_expli' => 'Souhaitez-vous afficher la date du jour sur le site ?',
 'affichage' => 'L\'affichage',
 'ajouter_google' => 'ajouter &agrave; google',
 'ajouter_commentaire' => 'Ajouter un commentaire',
@@ -229,10 +231,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'nbr_articles' => 'Nombre d\'articles :',
 'nbr_sites' => 'Nombre de sites :',
 'new' => 'la boucle "nouveaut&eacute;s"',
+'non'=>'Non',
 'nous_avons' => 'Nous avons',
 'nouveaute' =>'Site nouveaut&eacute;',
 
 //O
+'oui'=>'Oui',
 
 //P
 'page_sommaire' => 'Page sommaire',
