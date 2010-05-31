@@ -174,6 +174,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'email_lesauteurs:nom' => 'Email dans les flux rss',
 'email_lesauteurs:description' => 'Sur les balises #LESAUTEURS et #DESCRIPTIF de la page "site" nous coupons les adresses mail si elles existent afin d&rsquo;&eacute;vit&eacute; que le webmaster nous dise qu&rsquo;on le spam.',
 'epingle_site' => '&eacute;pingl&eacute;s sur',
+'espace_membre_gestion_sites' => 'Espace Membres Gestions des sites',
 'est_rattache' => 'est rattach&eacute; &agrave;',
 
 //F
