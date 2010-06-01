@@ -223,8 +223,6 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 						),
 					'id_mot='  . intval($id_mot));
 			}
-			// Activer les crayons dans ecrire
-			ecrire_meta('crayons', 'a:9:{s:9:"barretypo";s:2:"on";s:11:"msgNoChange";N;s:10:"msgAbandon";N;s:5:"filet";N;s:11:"yellow_fade";N;s:9:"clickhide";N;s:12:"reduire_logo";s:3:"400";s:11:"espaceprive";s:2:"on";s:13:"exec_autorise";s:62:"articles,articles_edit,naviguer,rubriques_edit,sites,portfolio";}','non');
 			// Activer les lames du CouteauSuisse Special SoyezCreateurs
 			include_spip('base/cout_install');
 			cout_install_pack('SoyezCreateurs');
@@ -291,6 +289,16 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 SET spip_rubriques.agenda = 1
 WHERE spip_mots.titre=\'Agenda\'');
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.4','non');
+		}
+		if (version_compare($current_version,'3.0.5','<')) {
+			// Activer les crayons dans ecrire, et la barre typo sur les crayons, réduire les images à 400 px de large (au cas où)
+			ecrire_config('crayons/barretypo','on');
+			ecrire_config('crayons/reduire_logo',400);
+			ecrire_config('crayons/espaceprive','on');
+			ecrire_config('crayons/exec_autorise','articles,articles_edit,naviguer,rubriques_edit,sites,portfolio,controle_forum');
+			// Permettre aux webmestres d'éditer les forums (dans le privé et le public, avec les crayons).
+			ecrire_config('autorite/editer_forums',1);
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.5','non');
 		}
 		/*
 		#En attente
