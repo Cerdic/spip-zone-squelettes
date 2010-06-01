@@ -1,0 +1,42 @@
+#CACHE{0}
+<div id="nav">
+	<div id="nav_haut">
+	[(#REM) Pour afficher les options]
+	<INCLURE{fond=noisettes/nav/nav_options}>
+	
+	[(#REM) Pour se connecter]
+	<INCLURE{fond=noisettes/nav/nav_connect}>
+	</div><!--#nav_haut-->
+
+	<BOUCLE_pub1(BREVES){titre_mot=pub-nav}>
+	<div id="nav_pub">
+	<fieldset>
+		#TEXTE
+	</fieldset>
+	</div><!--#nav_pub-->
+	</BOUCLE_pub1>
+
+	<div id="nav_bas">
+	[(#CONFIG{annuaire_colonne/config_boucle_zard, defaut}|=={defaut}|oui)
+	[(#REM) Afficher une boucle des thumbshot du site]
+	[(#PLUGIN{sjcycle}|oui)<INCLURE{fond=noisettes/nav/nav_herbier}{env}>]
+
+	[(#REM) Afficher les mots cle]
+	<INCLURE{fond=noisettes/nav/nav_motcle}{env}>
+
+	[(#REM) Afficher les secteurs]
+	<INCLURE{fond=noisettes/nav/nav_secteur}>
+	
+	[(#REM) Afficher les liens]
+	<INCLURE{fond=noisettes/nav/nav_lien}>
+
+	[(#REM) Afficher les infos du sites]
+	<INCLURE{fond=noisettes/nav/nav_sites}>
+
+	[(#REM) Afficher le copyright]
+	<INCLURE{fond=noisettes/nav/nav_copy}>]
+
+	[(#CONFIG{annuaire_colonne/config_boucle_zard, nav}|=={nav}|oui)
+	<INCLURE{fond=noisettes/boucle/b_zard_nav}{doublons}>]
+	</div><!--#nav_bas-->
+</div><!--#nav-->

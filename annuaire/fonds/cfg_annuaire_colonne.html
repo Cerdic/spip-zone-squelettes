@@ -1,12 +1,34 @@
 #CACHE{0}
 <!-- titre=<:annuaire:annuaire|ucfirst:> - <:annuaire:configuration_colonne_pied|ucfirst:>-->
 <!-- descriptif=<:annuaire:descriptif_colonne:> -->
-<!-- icone=img/annuaire_24.jpg -->
+<!-- icone=img/annuaire.jpg -->
 <!-- boite=<:annuaire:annuaire_colonne:> -->
 
 <INCLURE{fond=noisettes/cfg/inc_cfg_header}>
 
 <form method="post">[(#ENV{_cfg_}|form_hidden)]
+
+	[(#REM) Afficher une boucle ou les noisettes dans la navigation]
+	<fieldset><!--#copy-->
+	<legend><:annuaire:config_boucle_zard|ucfirst:></legend>
+	<:annuaire:config_boucle_zard_expli:>
+	<br />
+	<label>
+		<input type="radio" name="config_boucle_zard" value="defaut" [(#ENV{config_boucle_zard, defaut}|=={defaut}|?{checked="checked"})] />
+		<:annuaire:config_defaut_noisettes:>
+	</label>
+	<br />
+	<label>
+		<input type="radio" name="config_boucle_zard" value="nav" [(#ENV{config_boucle_zard, defaut}|=={nav}|?{checked="checked"})] />
+		<:annuaire:config_boucle_zard:>
+	</label>
+
+	[(#REM) La boucle des sites au hasard]
+	[(#CONFIG{annuaire_colonne/config_boucle_zard, nav}|=={nav}|oui)
+	<p><b><:annuaire:hasard:></b></p>
+	<INCLURE{fond=noisettes/cfg/inc_cfg_pagination}{defaut_pas=3}{suffixe=_hasard}{env}>]
+	</fieldset><!--#copy-->
+
 	[(#REM) Couleurs]
 	<fieldset><!--#fond-->
 		<legend><:annuaire:css_fond:></legend>

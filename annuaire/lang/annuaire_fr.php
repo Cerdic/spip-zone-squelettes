@@ -1,6 +1,6 @@
 <?php
 
-// Fichier de langue du plugins annuaire - Pierre KUHN
+// Fichier de langue du plugin annuaire - Pierre KUHN
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
@@ -11,8 +11,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'accueil_option_contact' => 'Le plugin "contact" permets ou non d\'affich&eacute; la page de contact et son r&eacute;glage dans le plugin.',
 'accueil_option_couteau_suisse' => 'Le plugin "couteau suisse" vous fournis d&eacute;sorm&eacute; une lame pour cacher les adresses mails se trouvant dans les balises #LESAUTEURS et #DESCRIPTIF sur la page site.',
 'accueil_option_pub' => 'Si vous souhaitez int&eacute;gr&eacute; dans votre site des pub google, il vous faudra cr&eacute;&eacute; les mots clefs "pub-entete" et "pub-nav" dans le groupe "Affichage" et plac&eacute; la br&egrave;ve dans une rubrique nomm&eacute; "squelette".',
-'accueil_option_sjcycle' =>'Le plugin "Spip jQuery Cycle 2" permet l\'affichage d\'une noisette herbier.',
-'accueil_option_slogan' =>'Le plugin "slogan" permet de rajouter un slogan a votre site.',
+'accueil_option_sjcycle' => 'Le plugin "Spip jQuery Cycle 2" permet l\'affichage d\'une noisette herbier.',
+'accueil_option_slogan' => 'Le plugin "slogan" permet de rajouter un slogan a votre site.',
 'accueil_option_spiplistes' => 'Le plugin "spip liste" ou "clevermail" permetent ou non d\'affich&eacute;s la page abonnement et son r&eacute;glage dans le plugin.',
 'accueil_option_visiteurs' => 'Le plugin "visiteur connect&eacute;s" ou la lame du couteau suisse permets d\'afficher dans la colonne de navigation (droite) le nombre de visiteur connect&eacute;s.',
 'accueil_requis' => 'Les requis pour un bon fonctionnement du site',
@@ -25,6 +25,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'aff_date' => 'Afficher la date',
 'aff_date_expli' => 'Souhaitez-vous afficher la date du jour sur le site ?',
 'affichage' => 'L\'affichage',
+'afficher_colonne_nav' => 'Vous avez choisi de l\'afficher dans la navigation.',
 'ajouter_google' => 'ajouter &agrave; google',
 'ajouter_commentaire' => 'Ajouter un commentaire',
 'align_pied3_page_expli' => 'Alignement du texte dans la partie droite du pied',
@@ -59,7 +60,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //C
 'col_navigation' => 'Colonne navigation',
 'commentaire' => '1 commentaire',
+'config_boucle_zard' => 'Affichage de la boucle hasard.',
+'config_boucle_zard_expli' => 'Vous pouvez l\'afficher soit sur la page sommaire soit dans la navigation et dans ce cas on afficher pas les noisettes.',
 'config_defaut' => 'Affichage dans la colonne de navigation.',
+'config_defaut_noisettes' => 'Affichage des noisettes dans la colonne de navigation.',
 'config_entete' => 'Affichage dans l\'ent&ecirc;te.',
 'config_pied' => 'Affichage dans le pied de page (&agrave droite).',
 'configuration_abonnement' => 'configuration de la page "abonnements"',
@@ -221,7 +225,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //N
 'nav_connect' => 'le bloc "connexion"',
 'nav_copy' => 'le bloc "copyright"',
-'nav_copy_expli' => 'Ou voulez vous afficher cette partie du copyright ?',
+'nav_copy_expli' => 'O&ugrave; voulez vous afficher cette partie du copyright ?',
 'nav_herbier' => 'le bloc "herbier"',
 'nav_lien' => 'le bloc "liens"',
 'nav_mot' => 'le bloc "mots clef"',
@@ -232,9 +236,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'nbr_articles' => 'Nombre d\'articles :',
 'nbr_sites' => 'Nombre de sites :',
 'new' => 'la boucle "nouveaut&eacute;s"',
-'non'=>'Non',
+'non'=> 'Non',
 'nous_avons' => 'Nous avons',
-'nouveaute' =>'Site nouveaut&eacute;',
+'nouveaute' => 'Site nouveaut&eacute;',
 
 //O
 'oui'=>'Oui',
