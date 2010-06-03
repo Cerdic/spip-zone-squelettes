@@ -50,7 +50,7 @@ href="[(#URL_PAGE{backend})]<BOUCLE_URLMOT(MOTS){id_rubrique}>&amp;id_mot[]=#ID_
         </div>
         </B_breves>
 
-				[(#REM) Articles Sélectionnés de la rubrique ]
+	[(#REM) Articles Sélectionnés de la rubrique ]
         <B_selection>
         <div class="menu articles">
             <h2><:articles_selection:></h2>
@@ -68,7 +68,7 @@ href="[(#URL_PAGE{backend})]<BOUCLE_URLMOT(MOTS){id_rubrique}>&amp;id_mot[]=#ID_
         </div>
         </B_selection>
 
-				[(#REM) Articles de la rubrique ]
+	[(#REM) Articles de la rubrique ]
         <B_articles>
         <div class="menu articles">
             #ANCRE_PAGINATION
@@ -88,7 +88,7 @@ href="[(#URL_PAGE{backend})]<BOUCLE_URLMOT(MOTS){id_rubrique}>&amp;id_mot[]=#ID_
         </div>
         </B_articles>
 
-        [(#REM) Si aucun article, affiche un plan de la rubrique ]
+        [(#REM) affiche un plan de la rubrique : sous-rubriques et articles ]
         <B_sous_rubriques>
         <div class="menu articles">
             <h2><:sous_rubriques:></h2>
@@ -96,19 +96,19 @@ href="[(#URL_PAGE{backend})]<BOUCLE_URLMOT(MOTS){id_rubrique}>&amp;id_mot[]=#ID_
                 <BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
                 <li>
                     <a href="#URL_RUBRIQUE" [title="(#TEXTE|textebrut|couper{80})"]>[(#TITRE)]</a>
-
-                    [(#REM) Une boucle recursive pour le mini plan]
-                    <B_miniplan>
-                    <ul>
-                        <BOUCLE_miniplan(RUBRIQUES) {id_parent} {par num titre, titre}>
-                        <li>
-                            <a href="#URL_RUBRIQUE">[(#TITRE)]</a>
-                            <BOUCLE_m2(BOUCLE_miniplan)></BOUCLE_m2>
-                        </li>
-                        </BOUCLE_miniplan>
-                    </ul>
-                    </B_miniplan>
-
+			[(#REM) Articles de la rubrique ]
+			<B_articles_rubrique>
+			<div class="menu">
+				#ANCRE_PAGINATION
+				<h4>Articles :</h4>
+				<ul>
+					<BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {!titre_mot=excluredeslistes}{par date}{inverse} {pagination}>
+					<li><a href="#URL_ARTICLE">#TITRE</a></li>
+					</BOUCLE_articles_rubrique>
+				</ul>
+				[<p class="pagination">(#PAGINATION{page})</p>]
+			</div>
+			</B_articles_rubrique>
                 </li>
                 </BOUCLE_sous_rubriques>
             </ul>
