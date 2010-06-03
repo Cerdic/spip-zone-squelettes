@@ -14,12 +14,13 @@
 
 </head>
 
+
 <body dir="#LANG_DIR">
 <INCLURE{fond=entete}>
 
 <!-- menu -->
 
-<INCLURE{fond=menu}{id_secteur}>
+<INCLURE{fond=menu}{id_rubrique}>
 
 <!-- colonne -->
 <div id="navigation" class="coins_ronds">
@@ -29,28 +30,30 @@
 
 <INCLURE{fond=pave_membre}>
 
+<INCLURE{fond=prochains_rendez-vous}>
 
 
-	<!-- Breves -->
+  <!-- Breves -->
 
-	<B_breves>
-	<h2>En bref</h2>
-	<div class="menu">
-	<div class="breves">
-		<div class="menu-titre">
+  <B_breves>
+  <h2>En bref</h2>
+  <div class="menu">
+  <div class="breves">
+    <div class="menu-titre">
+    #PAGINATION
+    </div>
+    <ul>
+  <BOUCLE_breves(BREVES) {par date} {inverse} {pagination} {titre !=citation}{age<21}>
+    <li class="menu-item">
+    <i>[(#DATE|affdate_court)]</i>:
+    <a href="#URL_BREVE">#TITRE</a>
+    </li>
+  </BOUCLE_breves>
+    </ul>
+  </div>
+  </div>
+  </B_breves>
 
-		</div>
-		<ul>
-	<BOUCLE_breves(BREVES) {par date} {inverse} {0,3} {titre !=citation}{age<21}{id_secteur !=45}>
-		<li class="menu-item">
-		<i>[(#DATE|affdate_court)]</i>:
-		<a href="#URL_BREVE">#TITRE</a>
-		</li>
-	</BOUCLE_breves>
-		</ul>
-	</div>
-	</div>
-	</B_breves>
 
 
 <h2>Rechercher</h2>
@@ -64,15 +67,15 @@
 <B_syndicss>
 <h2><:sur_web:></h2>
 <div class="menu">
-	<ul>
-	<BOUCLE_syndicss(SYNDIC_ARTICLES) {par date} {inverse} {0,10}{age<93}{id_rubrique}{doublons interdit}>
-		<li class="menu-item">[(#DATE|affdate_court):&nbsp;] 
-		<a href="#URL_ARTICLE">[(#TITRE*)]</a>
-  		</li>
-	</BOUCLE_syndicss>
-	</ul>
-	</div>
-	</B_syndicss>
+  <ul>
+  <BOUCLE_syndicss(SYNDIC_ARTICLES) {par date} {inverse} {0,10}{age<93}{id_rubrique}{doublons interdit}>
+    <li class="menu-item">[(#DATE|affdate_court):&nbsp;] 
+    <a href="#URL_ARTICLE">[(#TITRE*)]</a>
+      </li>
+  </BOUCLE_syndicss>
+  </ul>
+  </div>
+  </B_syndicss>
 
 
 </div>
@@ -92,9 +95,9 @@
   </div>
 
   <div class="liste-articles">
-     [<div class="logo_left">(#LOGO_RUBRIQUE||reduire_image{60})</div>]
+     [<div class="logo_left">(#LOGO_RUBRIQUE||image_reduire{60})</div>]
      <h2 class="#EDIT{titre}">[(#TITRE|supprimer_numero)]</h2>
-     [<div class="#EDIT{texte} surtitre">&nbsp;(#TEXTE|reduire_image{75})</div>]
+     [<div class="#EDIT{texte} surtitre">&nbsp;(#TEXTE|image_reduire{75})</div>]
     [<br /><div class="notes">&nbsp;(#NOTES)</div>]
   </div>
 
@@ -138,18 +141,18 @@
 <!-- Articles une de la rubrique -->
   <div class="liste-articles">
    <BOUCLE_articles_une(ARTICLES) {id_mot} {id_rubrique} {par date} {inverse}{age<365}{doublons interdit}>
-	<div class="extrait">
+  <div class="extrait">
 
-	        <div class="citation">
+          <div class="citation">
                     <span class="maj">[(#DATE|nom_jour)] [(#DATE|affdate)]</span>
                 </div>
-                [<div class="logo_left">(#LOGO_ARTICLE_RUBRIQUE||reduire_image{60})</div>]
-       	       	[<div class="surtitre">(#SURTITRE)</div>]
+                [<div class="logo_left">(#LOGO_ARTICLE_RUBRIQUE||image_reduire{60})</div>]
+                  [<div class="surtitre">(#SURTITRE)</div>]
                 <h2><a href="#URL_ARTICLE">#TITRE</a></h2>
-	       	[<div class="surtitre">(#SOUSTITRE)</div>]
-		[<div class="texte">(#INTRODUCTION|couper{500})</div>]
+           [<div class="surtitre">(#SOUSTITRE)</div>]
+    [<div class="texte">(#INTRODUCTION|couper{500})</div>]
                 <a href="#URL_ARTICLE">Lire la suite...</a>
-	</div>
+  </div>
     </BOUCLE_articles_une>
   </div>
 </div>
@@ -165,18 +168,18 @@
 
 <div class="liste-articles">
    <BOUCLE_articles_permanents(ARTICLES){id_mot}{id_rubrique}{par titre}{doublons interdit}>
-	<div class="extrait">
+  <div class="extrait">
 
-	        <div class="citation">
+          <div class="citation">
                     <span class="maj">[(#DATE|nom_jour)] [(#DATE|affdate)]</span>
                 </div>
-                [<div class="logo_left">(#LOGO_ARTICLE_RUBRIQUE||reduire_image{60})</div>]
-       	       	[<div class="surtitre">(#SURTITRE)</div>]
+                [<div class="logo_left">(#LOGO_ARTICLE_RUBRIQUE||image_reduire{60})</div>]
+                  [<div class="surtitre">(#SURTITRE)</div>]
                 <h2><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h2>
-	       	[<div class="surtitre">(#SOUSTITRE)</div>]
-		[<div class="texte">(#INTRODUCTION|couper{500})</div>]
+           [<div class="surtitre">(#SOUSTITRE)</div>]
+    [<div class="texte">(#INTRODUCTION|couper{500})</div>]
                 <a href="#URL_ARTICLE">Lire la suite...</a>
-	</div>
+  </div>
    </BOUCLE_articles_permanents>
 </div>
 
@@ -195,24 +198,24 @@
 
 <div class="liste-articles">
    <BOUCLE_articles_recents(ARTICLES) {id_rubrique} {par date} {inverse}{age<365}{doublons interdit}>
-	<div class="extrait">
+  <div class="extrait">
 
-	        <div class="citation">
+          <div class="citation">
                     <span class="maj">[(#DATE|nom_jour)] [(#DATE|affdate)]</span>
                 </div>
-                [<div class="logo_left">(#LOGO_ARTICLE_RUBRIQUE||reduire_image{60})</div>]
-       	       	[<div class="surtitre">(#SURTITRE)</div>]
+                [<div class="logo_left">(#LOGO_ARTICLE_RUBRIQUE||image_reduire{60})</div>]
+                  [<div class="surtitre">(#SURTITRE)</div>]
                 <h2><a href="#URL_ARTICLE">#TITRE</a></h2>
-	       	[<div class="surtitre">(#SOUSTITRE)</div>]
-		[<div class="texte">(#INTRODUCTION|couper{500})</div>]
+           [<div class="surtitre">(#SOUSTITRE)</div>]
+    [<div class="texte">(#INTRODUCTION|couper{500})</div>]
                 <a href="#URL_ARTICLE">Lire la suite...</a>
-	</div>
+  </div>
    </BOUCLE_articles_recents>
 </div>
 </B_articles_recents>
 
 </div>
-</div>
+
 
 <B_documents_jointss>
 <div id="docs_rub" class="coins_ronds">
@@ -220,7 +223,7 @@
 
 <BOUCLE_documents_jointss(DOCUMENTS) {id_rubrique} {mode=document} {unique}>
 <div class="docs">
-[<div class="logo_left">(#LOGO_DOCUMENT|#URL_DOCUMENT|reduire_image{75})</div>][&nbsp;(#TITRE)][ - (#DESCRIPTIF)]
+[<div class="logo_left">(#LOGO_DOCUMENT|#URL_DOCUMENT|image_reduire{75})</div>][&nbsp;(#TITRE)][ - (#DESCRIPTIF)]
 </div>
 </BOUCLE_documents_jointss>
 </div>

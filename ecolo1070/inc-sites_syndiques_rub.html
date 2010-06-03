@@ -3,6 +3,7 @@
 <h2><:sur_web:></h2>
 <div class="menu">
 <BOUCLE_articlem(SYNDIC_ARTICLES){par date}{inverse}{age<=15}{id_rubrique}>
+<B_premierdumois>
 <ul>
 <BOUCLE_premierdumois(SYNDIC_ARTICLES){id_syndic_article}{doublons}{id_rubrique}{0,1}>
 <li class="maj"> > [(#DATE|nom_jour)] [(#DATE|jour)] [(#DATE|nom_mois|majuscules)] [(#DATE|annee)]</li>
@@ -13,6 +14,7 @@
    <li class="menu-item">[(#DATE|heures)]:[(#DATE|minutes)] / <a href="#URL_ARTICLE" [class="ultralien_complement"  title = "(#NOM_SITE|supprimer_tags|attribut_html|couper{50})][ - (#DESCRIPTIF|supprimer_tags|attribut_html|couper{300})]">[(#TITRE|=={Sans titre}|?{[(#DESCRIPTIF|couper{50})],[(#TITRE|couper{90})]})]</a></li>
    </BOUCLE_MOIS>
 </ul>
+</B_premierdumois>
 </BOUCLE_articlem>
 </div>
 </B_articlem>
@@ -27,7 +29,7 @@
 <BOUCLE_parutions(SYNDIC_ARTICLES){par date}{inverse}{age<=15}{id_rubrique}>
        	<BOUCLE_syndicss(SITES) {syndication=oui}{id_syndic}{unique}>
 		<li class="menu-item">
-		#PUCE  <a href="#URL_SITE" class="ultralien_site ultralien_vignette" title="#DESCRIPTIF">[(#NOM_SITE*)]</a>
+		#PUCE  <a href="#URL_SITE" class="ultralien_site ultralien_vignette" title="[(#DESCRIPTIF|supprimer_tags|attribut_html)]">[(#NOM_SITE*)]</a>
   		</li>
 	</BOUCLE_syndicss>
 </BOUCLE_parutions>
@@ -36,7 +38,6 @@
 </B_parutions>
 </BOUCLE_rub_sites>
 </B_rub_sites>
-[<h2><:proposer_site:></h2>
-(#FORMULAIRE_SITE)]
+[(#FORMULAIRE_SITE)]
 
 </BOUCLE_appele_par>

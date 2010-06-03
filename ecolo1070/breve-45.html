@@ -17,7 +17,7 @@
 
 <!-- menu -->
 
-<INCLURE{fond=menu}{id_secteur}>
+<INCLURE{fond=menu}{id_rubrique?}>
 
 <!-- colonne -->
 <div id="navigation" class="coins_ronds">
@@ -39,10 +39,10 @@
 	<div class="menu">
 	<div class="breves">
 		<div class="menu-titre">
-
+		#PAGINATION
 		</div>
 		<ul>
-	<BOUCLE_breves(BREVES) {par date} {inverse} {0,3} {titre !=citation}{age<21}{id_secteur !=45}>
+	<BOUCLE_breves(BREVES) {par date} {inverse} {pagination} {titre !=citation}{age<21}>
 		<li class="menu-item">
 		<i>[(#DATE|affdate_court)]</i>:
 		<a href="#URL_BREVE">#TITRE</a>
@@ -52,6 +52,7 @@
 	</div>
 	</div>
 	</B_breves>
+
 
 	<!-- Sur le Web -->
 
@@ -80,12 +81,11 @@
 
 <div class="contenu" id="principal">
 
-<div id="une-hautdroit"></div><div id="une-hautgauchelarge">
+<div id="liste" class="coins_ronds">
 Vous &ecirc;tes ici: &nbsp;<a href="/">Accueil</a>&nbsp;>&nbsp;
 <BOUCLE_vous_etes_icis(RUBRIQUES){id_rubrique} {" > "}>
 <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
 </BOUCLE_vous_etes_icis>
-</div>
 
 
 
@@ -114,7 +114,7 @@ Vous &ecirc;tes ici: &nbsp;<a href="/">Accueil</a>&nbsp;>&nbsp;
 
 </div>
 
-
+</div>
 
 </div>
 <INCLURE{fond=pied}{id_breve}>

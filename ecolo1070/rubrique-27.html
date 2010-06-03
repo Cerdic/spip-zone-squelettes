@@ -18,7 +18,7 @@
 
 <!-- menu -->
 
-<INCLURE{fond=menu}{id_secteur}>
+<INCLURE{fond=menu}{id_rubrique}>
 
 <!-- colonne -->
 <div id="navigation" class="coins_ronds">
@@ -35,9 +35,10 @@
 	<h2>En bref</h2>
 	<div class="menu">
 	<div class="breves">
+#PAGINATION
 	<ul>
-	<BOUCLE_breves(BREVES) {par date} {inverse} {0,3} {titre !=citation}{age<21}>
-		<li class="menu-item">
+	<BOUCLE_breves(BREVES) {par date} {inverse} {pagination} {titre !=citation}{age<21}>
+		<li class="menu-item <BOUCLE_breve_esp_membres(RUBRIQUES){id_rubrique}>[(#ID_SECTEUR|=={45}|?{' membres',''})]</BOUCLE_breve_esp_membres>">
 		<i>[(#DATE|affdate_court)]</i>:
 		<a href="#URL_BREVE">#TITRE</a>
 		</li>
@@ -89,9 +90,9 @@
   </div>
 
   <div class="liste-articles">
-     [<div class="logo_left">(#LOGO_RUBRIQUE||reduire_image{60})</div>]
+     [<div class="logo_left">(#LOGO_RUBRIQUE||image_reduire{60})</div>]
      <h2 class="#EDIT{titre}">[(#TITRE|supprimer_numero)]</h2>
-     [<div class="#EDIT{texte} surtitre">&nbsp;(#TEXTE|reduire_image{75})</div>]
+     [<div class="#EDIT{texte} surtitre"> (#TEXTE|image_reduire{75})</div>]
      [<br /><div class="notes"> (#NOTES)</div>]
   </div>
 
@@ -100,17 +101,21 @@
 
 <div class="contenu">
      <div id="liste" class="coins_ronds"><h2>Prochains rendez-vous</h2>
+<BOUCLE_rv_membres(EVENEMENTS) {par date_debut}{id_secteur=45} {age_fin<=0}{age_fin>-93}{0,1}{tout_voir}>
+[(#SESSION{statut}|?{""," "})<p style="text-align : center; ">Si vous êtes membre, connectez-vous pour visualiser l'agenda complet !</p>]
+</BOUCLE_rv_membres>
 
 
 <!-- Articles de la rubrique -->
 <B_articles_recents>
 <div class="liste-articles">
 
-   <BOUCLE_articles_recents(EVENEMENTS) {par date_debut} {age_fin<=0}{age_fin>-183}>
-	<div class="extrait">
+   <BOUCLE_articles_recents(EVENEMENTS) {par date_debut} {age_fin<=0}{age_fin>-93}>
+	<div class="extrait <BOUCLE_even_esp_membres(RUBRIQUES){id_rubrique}>[(#ID_SECTEUR|=={45}|?{' membres',''})]</BOUCLE_even_esp_membres>">
 
 	        <div class="citation">
-[<div class="logo_right">(#LOGO_ARTICLE||reduire_image{100})</div>]
+[<div class="logo_right">(#LOGO_ARTICLE||image_reduire{120})</div>]
+<a name="#ID_ARTICLE[-(#DATE_DEBUT|affdate{'Y-m-d'})]"></a>
 <h3>#PUCE [(#DATE_DEBUT|Agenda_affdate_debut_fin{#DATE_FIN,#HORAIRE})]</h3>
 <h2>#TITRE</h2>
 [<h3>(#LIEU)</h3>]
@@ -121,6 +126,7 @@
 	</div>
    </BOUCLE_articles_recents>
 </div>
+
 </B_articles_recents>
 <h3> Repos ;-)</h3>
 <//B_articles_recents>
@@ -135,7 +141,7 @@
 <BOUCLE_articles_archives(ARTICLES) {id_rubrique} {age>=365} {doublons interdit}>
 </BOUCLE_articles_archives>
 
-
+</div></div>
 <INCLURE{fond=pied}{id_rubrique}>
 
 

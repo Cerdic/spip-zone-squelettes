@@ -1,19 +1,37 @@
-[<h2>(#SESSION{nom}|?{"Bonjour "#SESSION{nom},"Connexion"})</h2>]
-
-[(#SESSION{nom}|?{" ",""})
 <div class="menu">
 <ul class="general">
-<li class="menu-item">Statut: [(#SESSION{statut}|=={6forum}|?{"Visiteur",""})][(#SESSION{statut}|=={1redacteur}|?{"Membre",""})][(#SESSION{statut}|=={0minirezo}|?{"Administrateur",""})]</li>
-<li class="menu-item"><a href='[(#URL_LOGOUT{spip.php})]'>Cliquez ici pour vous d&eacute;connecter</a></li>
-
-[(#SESSION{statut}|=={6forum}|?{""," "})
-<li class="menu-item"><a href='ecrire'>Acc&egrave;s r&eacute;dacteur</a></li>]
-
+<li class="menu-item membres">Un fond gris&eacute; indique une page de l'Espace membres</li>
 </ul>
 </div>
+
+
+
+[<h2>(#SESSION{nom}|?{"Bonjour "#SESSION{nom},"Connexion"})</h2>]
+
+<div class="menu">
+
+
+[(#SESSION{nom}|?{" ",""})
+<li class="menu-item">Statut:
+[(#SESSION{statut}|=={0}|oui) Visiteur]
+[(#SESSION{statut}|=={6forum}|oui) Visiteur]
+[(#SESSION{statut}|=={1comite}|oui) Membre]
+[(#SESSION{statut}|=={0minirezo}|oui) Administrateur]</li>
+<li class="menu-item"><a href="#URL_PAGE{abonnement}">Vos pr&eacute;f&eacute;rences (abonnement courriel)</a></li>
 ]
+  
+[(#SESSION{statut}|=={0minirezo}|?{" ",""})
+<li class="menu-item"><a href='/ecrire'>Acc&egrave;s r&eacute;dacteur</a></li>
+<li class="menu-item"><a href='#URL_PAGE{fichier}'>Gestion fichier</a></li>]
 
-[<div class="menu">(#SESSION{nom}|?{""," "})#LOGIN_PUBLIC</div>]
+[(#SESSION{statut}|=={1comite}|?{" ",""})
+<li class="menu-item"><a href='/ecrire'>Acc&egrave;s r&eacute;dacteur</a></li>]
 
+[(#SESSION{statut}|=={6forum}|?{" ",""})]
 
+[(#SESSION{statut}|=={0}|?{" ",""})]
 
+[(#SESSION{nom}|oui)<li class="menu-item"><a href='[(#URL_LOGOUT{http://ecolo1070.be})]'>Cliquez ici pour vous d&eacute;connecter</a></li>]
+[(#SESSION{nom}|non)#LOGIN_PUBLIC]
+
+</div>

@@ -1,5 +1,4 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2002/REC-xhtml1-20020801/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 #CACHE{48*3600}
 <BOUCLE_article_principals(ARTICLES) {id_article}{doublons interdit}>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
@@ -27,6 +26,7 @@
 <INCLURE{fond=pave_membre}>
 
 
+
 <h2>Rechercher</h2>
 <div class="menu">
 #FORMULAIRE_RECHERCHE
@@ -34,30 +34,30 @@
 
 
 
-	<!-- Breves -->
+  <!-- Breves -->
 
-	<B_breves>
-	<h2>En bref</h2>
-	<div class="menu">
-	<div class="breves">
-		<div class="menu-titre">
+  <B_breves>
+  <h2>En bref</h2>
+  <div class="menu">
+  <div class="breves">
+    <div class="menu-titre">
 
-		</div>
-		<ul>
-	<BOUCLE_breves(BREVES) {par date} {inverse} {0,3} {titre !=citation}{age<21}{id_secteur !=45}>
-		<li class="menu-item">
-		<i>[(#DATE|affdate_court)]</i>:
-		<a href="#URL_BREVE">#TITRE</a>
-		</li>
-	</BOUCLE_breves>
-		</ul>
-	</div>
-	</div>
-	</B_breves>
+    </div>
+    <ul>
+  <BOUCLE_breves(BREVES) {par date} {inverse} {0,3} {titre !=citation}{age<21}{id_secteur !=45}>
+    <li class="menu-item">
+    <i>[(#DATE|affdate_court)]</i>:
+    <a href="#URL_BREVE">#TITRE</a>
+    </li>
+  </BOUCLE_breves>
+    </ul>
+  </div>
+  </div>
+  </B_breves>
 
 
 
-	<!-- Sur le Web -->
+  <!-- Sur le Web -->
 
 
 <BOUCLE_rub_en_cours(RUBRIQUES){id_rubrique}>
@@ -73,65 +73,70 @@
 
 <div class="contenu" id="principal">
 
+
 <div id="liste" class="coins_ronds">
-<div class="maj">Vous êtes ici:  <a href="/">Accueil</a> > 
+<div class="maj">Vous &ecirc;tes ici:  <a href="/">Accueil</a> > 
 <BOUCLE_vous_etes_icis(HIERARCHIE){id_article} {" > "}>
 <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
 </BOUCLE_vous_etes_icis>
+<div style="float: right; padding-right:10px;">#IMPRIMIR_DOCUMENTO**</div>
 </div>
 
 
 
 <div class="liste-articles">
 <div class="cartouche">
-[<div class="logo_left">(#LOGO_ARTICLE||reduire_image{120})</div>]
-[<div class="#EDIT{surtitre} surtitre">(#SURTITRE)</div>]
+[<div class="logo_left">(#LOGO_ARTICLE||image_reduire{120})</div>]
+
+<div class="#EDIT{surtitre} surtitre">#SURTITRE&nbsp;</div>
+<INCLURE{fond=pave_evenement}{id_article}>
+
 <h1 class="#EDIT{titre} titre-texte">[(#TITRE|supprimer_numero)]</h1>
 [<div class="#EDIT{soustitre} surtitre">(#SOUSTITRE)</div>]
 
 </div>
 
 [<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
-[<div class="#EDIT{texte} texte">(#TEXTE|reduire_image{600})</div>]
+[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{600})</div>]
 
 
 [<p class="lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
 
-			[(#REM) Portfolio : album d'images ]
-			<B_documents_portfolio>
-			<div id="documents_portfolio">
-				<h2><:info_portfolio:></h2>
-				<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
-				[<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|couper{80}|texte_backend)"]>(#FICHIER|copie_locale|image_reduire{0,60}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
-				</BOUCLE_documents_portfolio>
-			</div>
-			</B_documents_portfolio>
-			<BOUCLE_afficher_document(DOCUMENTS) {id_document} {id_article} {mode=document}{extension IN png,jpg,gif}>
-			<div class="spip_documents spip_documents_center" id="document_actif">
-				[(#EMBED_DOCUMENT|reduire_image{600})]
-				[<div class="#EDIT{titre} spip_doc_titre">(#TITRE)</div>]
-				[<div class="#EDIT{descriptif} spip_doc_descriptif">(#DESCRIPTIF)</div>]
-			</div>
-			</BOUCLE_afficher_document>
+      [(#REM) Portfolio : album d'images ]
+      <B_documents_portfolio>
+      <div id="documents_portfolio">
+        <h2><:info_portfolio:></h2>
+        <BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {doublons}>
+        [<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#documents_portfolio';return false;"[ title="(#TITRE|couper{80}|texte_backend)"]>(#FICHIER|copie_locale|image_reduire{0,60}|inserer_attribut{alt,[(#TITRE|couper{80}|texte_backend)]})</a>]
+        </BOUCLE_documents_portfolio>
+      </div>
+      </B_documents_portfolio>
+      <BOUCLE_afficher_document(DOCUMENTS) {id_document} {id_article} {mode=document}{extension IN png,jpg,gif}>
+      <div class="spip_documents spip_documents_center" id="document_actif">
+        [(#EMBED_DOCUMENT|image_reduire{600})]
+        [<div class="#EDIT{titre} spip_doc_titre">(#TITRE)</div>]
+        [<div class="#EDIT{descriptif} spip_doc_descriptif">(#DESCRIPTIF)</div>]
+      </div>
+      </BOUCLE_afficher_document>
 
-			[<div class="ps"><h2><:info_ps:></h2>#DEBUT_SURLIGNE<div class="#EDIT{ps}">(#PS)</div>#FIN_SURLIGNE</div>]
+      [<div class="ps"><h2><:info_ps:></h2>#DEBUT_SURLIGNE<div class="#EDIT{ps}">(#PS)</div>#FIN_SURLIGNE</div>]
 
-			[(#REM) Autres documents joints a l'article ]
-			<B_documents_joints>
-			<div id="documents_joints">
-				<h2><:titre_documents_joints:></h2>
-				<ul>
-					<BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {par num titre, date} {doublons}>
-					<li>
-						[<div class="logo_left">(#LOGO_DOCUMENT||image_reduire{50})</div><br class="nettoyeur" />]
-                                                <div class="#EDIT{titre} spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
-						[<div class="#EDIT{descriptif} spip_doc_descriptif">(#DESCRIPTIF)</div>]
+      [(#REM) Autres documents joints a l'article ]
+      <B_documents_joints>
+      <div id="documents_joints">
+        <h2><:titre_documents_joints:></h2>
+        <ul>
+          <BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {par num titre, date} {doublons}>
+          <li>
+            [<div class="logo_left">(#LOGO_DOCUMENT||image_reduire{50})</div><br class="nettoyeur" />]
+                                                <div class="spip_doc_titre"><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a> <small>(#TYPE_DOCUMENT[ - (#TAILLE|taille_en_octets)])</small></div>
+            [<div class="spip_doc_descriptif">(#DESCRIPTIF)</div>]
                                                 <br class="nettoyeur" />
-					</li>
-					</BOUCLE_documents_joints>
-				</ul>
-			</div>
-			</B_documents_joints>
+          </li>
+          </BOUCLE_documents_joints>
+        </ul>
+      </div>
+      </B_documents_joints>
 
 [<div class="notes"><h2><:info_notes:></h2>#DEBUT_SURLIGNE(#NOTES)#FIN_SURLIGNE</div>]
 
@@ -139,6 +144,10 @@
 [Mis en ligne le (#DATE|nom_jour)] [(#DATE|affdate)]
 <B_auteurs_recentss><:par_auteur:> <BOUCLE_auteurs_recentss(AUTEURS) {id_article} {", "}><a href="#URL_AUTEUR">#NOM</a></BOUCLE_auteurs_recentss>
 </p>
+
+
+
+
 <hr />
 
 
@@ -146,11 +155,12 @@
 [(#REM) Forum de la page ]
 
 [<h2 class="forum-repondre">#PUCE <a href="(#PARAMETRES_FORUM|url_reponse_forum)">Laisser un commentaire</a></h2>
-			<INCLURE{fond=inc-forum}{id_article}>]
+      <INCLURE{fond=inc-forum}{id_article}>]
 
 </div>
 </div>
 </div>
+
 <INCLURE{fond=pied}{id_article}>
 
 </body>

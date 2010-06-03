@@ -40,42 +40,47 @@
 <div class="contenu" id="principal">
 
 <div id="intro" class="coins_ronds">
-          [(#LOGO_AUTEUR|right||reduire_image{80,80})]
+          [(#LOGO_AUTEUR|right||image_reduire{80,80})]
           <h1 class="titre-texte">#NOM</h1>
 
-     <div class="extrait">
+       <div class="extrait">
 
           [<div class="#EDIT{bio} chapo">(#BIO)</div>]
           [<div class="#EDIT{notes} notes">(#NOTES)</div>]
-          [<h2>Site web</h2>#NOM_SITE : <a href="(#URL_SITE)">#URL_SITE</a><br />]
+          [<h2>Site web</h2>#NOM_SITE : <a href="(#URL_SITE)">#URL_SITE</a>]
+  </div>  
  
+  #FORMULAIRE_JOINDRE_DOCUMENT{#ID_AUTEUR,auteur}
 
 
 <!-- Articles de l'auteur -->
-	<B_articless>
-          <h2><:articles_auteur:></h2>
+  <B_articless>
+        <div class="extrait">#ANCRE_PAGINATION
+         <h2><:articles_auteur:></h2>
 
           <div class="liste-articles">
-          <BOUCLE_articless(ARTICLES) {id_auteur} {par date}{inverse} {0,10}{id_secteur!=45}>
-          <h2><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h2>
-          	<div class="detail">
-          	[(#DATE|nom_jour)] [(#DATE|affdate)]
-          	<B_auteurss><:par_auteur:> <BOUCLE_auteurss(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurss>
-          	</div>
-          	<br />
+          <BOUCLE_articless(ARTICLES) {id_auteur} {par date}{inverse} {tout_voir}{pagination}>
+<div class="extrait<BOUCLE_esp_membres(RUBRIQUES){id_rubrique}{tout_voir}>[(#ID_SECTEUR|=={45}|?{' membres',''})]</BOUCLE_esp_membres>">
+          <h2><a href="#URL_ARTICLE" [title="(#TITRE|textebrut|entites_html)"]>#TITRE</a></h2>
+            <div class="detail">
+            [(#DATE|nom_jour)] [(#DATE|affdate)]
+            <B_auteurss><:par_auteur:> <BOUCLE_auteurss(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurss>
+            </div>
+</div>
           </BOUCLE_articless>
           </div>
-	</B_articless>
+#PAGINATION
+  </div>
+</B_articless>
 
-     </div>
+
 </div>
 
 
-<div id="liste" class="coins_ronds">
+[<div id="liste" class="coins_ronds">
 
-[<p><b><:envoyer_message:></b></p>
-<div class='spip_encadrer'>(#FORMULAIRE_ECRIRE_AUTEUR)</div>]
-</div>
+<div class='extrait'>(#FORMULAIRE_ECRIRE_AUTEUR)</div>
+</div>]
 </div>
 
 

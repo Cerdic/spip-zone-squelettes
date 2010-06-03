@@ -18,7 +18,7 @@
 
 <!-- menu -->
 
-<INCLURE{fond=menu}{id_secteur}>
+<INCLURE{fond=menu}{id_article}>
 
 <!-- colonne -->
 <div id="navigation" class="coins_ronds">
@@ -47,7 +47,7 @@
 
 		</div>
 		<ul>
-	<BOUCLE_breves(BREVES) {par date} {inverse} {0,3} {titre !=citation}{age<21}>
+	<BOUCLE_breves(BREVES) {par date} {inverse} {titre !=citation}{age<21}>
 		<li class="menu-item">
 		<i>[(#DATE|affdate_court)]</i>:
 		<a href="#URL_BREVE">#TITRE</a>
@@ -92,20 +92,25 @@
 <BOUCLE_vous_etes_icis(HIERARCHIE){id_article} {" > "}>
 <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
 </BOUCLE_vous_etes_icis>
+<div style="float: right; padding-right:10px;">#IMPRIMIR_DOCUMENTO**</div>
 </div>
 
 
 <div class="liste-articles">
 <div class="cartouche">
+
 [<div class="logo_left">(#LOGO_ARTICLE||reduire_image{120})</div>]
-[<div class="#EDIT{surtitre} surtitre">(#SURTITRE)</div>]
+
+<div class="#EDIT{surtitre} surtitre">#SURTITRE&nbsp;</div>
+<INCLURE{fond=pave_evenement}{id_article}>
 <h1 class="#EDIT{titre} titre-texte">#TITRE</h1>
 [<div class="#EDIT{soustitre} surtitre">(#SOUSTITRE)</div>]
 
 </div>
 
 [<div class="#EDIT{chapo} chapo">(#CHAPO)</div>]
-[<div class="#EDIT{texte} texte">(#TEXTE|reduire_image{600})</div>]
+
+[<div class="#EDIT{texte} texte">(#TEXTE|reduire_image{750})</div>]
 [<div class="#EDIT{ps} ps">(#PS)</div>]
 [<div class="notes">(#NOTES)</div>]
 [<p class="lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
@@ -120,6 +125,7 @@
 [<div class="logo_left">(#LOGO_DOCUMENT|#URL_DOCUMENT|reduire_image{75})</div>][ (#TITRE)][ - (#DESCRIPTIF)]
 </div>
 </BOUCLE_documents_jointss>
+
 
 <hr />
 

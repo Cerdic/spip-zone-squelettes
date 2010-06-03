@@ -1,6 +1,6 @@
-#CACHE{2*3600}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2002/REC-xhtml1-20020801/DTD/xhtml1-transitional.dtd">
-<html lang="#LANG">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+#CACHE{8*3600}
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
 <head>
 [<title>(#NOM_SITE_SPIP|attribut_html)</title>]
 <INCLURE{fond=inc-head}>
@@ -78,40 +78,46 @@
 
 <!-- Une : articles trouves -->
 
-<B_articless>
+<B_articless>#ANCRE_PAGINATION
 <h2><:articles:></h2>
+<div class="maj">#PAGINATION</div>
 <ul>
-<BOUCLE_articless(ARTICLES){recherche} {par points} {inverse} {0,10}>
-	<li class="menu-item">[<a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>(#TITRE|supprimer_numero)</a>]</li>
+<BOUCLE_articless(ARTICLES){recherche} {par points} {inverse} {pagination 12}>
+	<li class="menu-item <BOUCLE_esp_membres(RUBRIQUES){id_rubrique}{tout_voir}>[(#ID_SECTEUR|=={45}|?{' membres',''})]</BOUCLE_esp_membres>">[<a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>(#TITRE|supprimer_numero)</a>]
 	<div class="detail">
 	[(#DATE|affdate)]
 	<B_auteurs_articless><:par_auteur:> <BOUCLE_auteurs_articless(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_articless>
-	</div>
+	</div></li>
 </BOUCLE_articless>
+
 </ul>
+
 </B_articless>
 
 
 <!-- Rubriques trouvees -->
 
-<B_rubriquess>
+<B_rubriquess>#ANCRE_PAGINATION
 <h2><:rubriques:></h2>
+<div class="maj">#PAGINATION</div>
 <ul>
-<BOUCLE_rubriquess(RUBRIQUES){id_secteur !=45} {recherche} {par points} {inverse} {0,8}>
+<BOUCLE_rubriquess(RUBRIQUES){id_secteur !=45} {recherche} {par points} {inverse}{pagination 6}>
 <li class="menu-item"><a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>[(#TITRE|supprimer_numero)]</a></li>
 </BOUCLE_rubriquess>
 </ul>
+
 </B_rubriquess>
 
 
-<!-- Mots-cles trouves et articles associes
+<!-- Mots-cles trouves et articles associes -->
 
-<B_motss>
+<B_motss>#ANCRE_PAGINATION
 <h2><:mots_clefs:>"</h2>
+<div class="maj">#PAGINATION</div>
 <ul>
-<BOUCLE_motss(MOTS) {recherche} {par points} {inverse} {0,5}>
+<BOUCLE_motss(MOTS) {recherche} {par points} {inverse} {pagination 6}>
 <li>
-<div class="menu-titre"><a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></div>
+<div class="menu-titre"><a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"]></a>#TITRE</div>
 <B_articles_motss>
 	<ul class="menu-liste">
 <BOUCLE_articles_motss(ARTICLES) {id_mot} {par hasard} {0,8}>
@@ -121,69 +127,80 @@
 </B_articles_motss>
 </li>
 </BOUCLE_motss>
+
 </ul>
 </B_motss>
--->
+
 
 <!-- Breves trouvees -->
 
 <B_brevess>
-
+#ANCRE_PAGINATION
  	<h2><:breves:></h2>
+<div class="maj">#PAGINATION</div>
 	<ul>
-	<BOUCLE_brevess(BREVES) {id_secteur !=45}{recherche} {par points} {inverse} {0,8}>
+	<BOUCLE_brevess(BREVES) {id_secteur !=45}{recherche} {par points} {inverse} {pagination 6}>
 		<li class="menu-item">
 		<i>[(#DATE|affdate_court)]</i>:
 		<a href="#URL_BREVE">#TITRE</a>
 		</li>
 	</BOUCLE_brevess>
 	</ul>
+
 	</B_brevess>
 
 <!-- Sites Web trouves -->
 
 <B_sitess>
-
+#ANCRE_PAGINATION
 	<h2><:sites_web:></h2>
+<div class="maj">#PAGINATION</div>
 	<ul>
-	<BOUCLE_sitess(SITES){id_secteur !=45} {recherche} {par points} {inverse} {0,8}>
+	<BOUCLE_sitess(SITES){id_secteur !=45} {recherche} {par points} {inverse} {pagination 6}>
 		<li class="menu-item">
 		<a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut|entites_html)]">#NOM_SITE</a>
 		</li>
 	</BOUCLE_sitess>
 	</ul>
+
 	</B_sitess>
 
 <!-- auteurs trouvees -->
 
 <B_auteurs>
-
+#ANCRE_PAGINATION
  	<h2><:auteurs:></h2>
+<div class="maj">#PAGINATION</div>
 	<ul>
-	<BOUCLE_auteurs(AUTEURS) {recherche} {par points} {inverse} {0,8}>
+	<BOUCLE_auteurs(AUTEURS) {recherche} {par points} {inverse} {pagination 6}>
 		<li class="menu-item">
 		<a href="#URL_AUTEUR">#NOM</a>
 		</li>
 	</BOUCLE_auteurs>
 	</ul>
+
 	</B_auteurs>
 
-	<B_messagess>
+	<B_messagess>#ANCRE_PAGINATION
 	<h2><:messages_forum:></h2>
+<div class="maj">#PAGINATION</div>
 	<ul>
-	<BOUCLE_messagess(FORUMS){id_secteur !=45} {recherche} {par points} {inverse} {0,8}{unique}>
+
+	<BOUCLE_messagess(FORUMS){id_secteur !=45} {recherche} {par points} {inverse} {pagination 6}{unique}>
 		<li class="menu-item">
 		<a href="#URL_FORUM">#TITRE</a>
 		</li>
 	</BOUCLE_messagess>
 	</ul>
+
 	</B_messagess>
 </div>
 
+</div>
 
 <INCLURE{fond=pied}>
 
-</div>
+
 
 </body>
 </html>
