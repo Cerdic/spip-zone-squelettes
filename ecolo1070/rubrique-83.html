@@ -1,0 +1,241 @@
+#CACHE{2*3600}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2002/REC-xhtml1-20020801/DTD/xhtml1-transitional.dtd">
+<BOUCLE_rubrique(RUBRIQUES){id_rubrique}>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
+<head>
+<title>[(#TITRE|textebrut|supprimer_numero) - #NOM_SITE_SPIP]</title>
+[<meta name="description" content="(#INTRODUCTION|couper{150}|textebrut)" />]
+<INCLURE{fond=inc-head}>
+[(#REM) Lien vers le flux RSS de la rubrique ]
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
+<meta name="robots" content="index, follow" />
+</head>
+
+
+
+<body dir="#LANG_DIR">
+<INCLURE{fond=entete}>
+
+<!-- menu -->
+
+<INCLURE{fond=menu}{id_rubrique}>
+
+<!-- colonne -->
+<div id="navigation" class="coins_ronds">
+   <INCLURE{fond=inc-mise_a_jour_site}>
+
+<div class="extrait">
+
+<INCLURE{fond=pave_membre}>
+
+
+  <!-- Breves -->
+
+  <B_breves>
+  <h2>En bref</h2>
+  <div class="menu">
+  <div class="breves">
+    <div class="menu-titre">
+
+    </div>
+    <ul>
+  <BOUCLE_breves(BREVES) {par date} {inverse} {0,3} {titre !=citation}{age<21}{id_secteur !=45}>
+    <li class="menu-item">
+    <i>[(#DATE|affdate_court)]</i>:
+    <a href="#URL_BREVE">#TITRE</a>
+    </li>
+  </BOUCLE_breves>
+    </ul>
+  </div>
+  </div>
+  </B_breves>
+
+
+<h2>Rechercher</h2>
+<div class="menu">
+#FORMULAIRE_RECHERCHE
+</div>
+
+
+<!-- Sur le Web -->
+
+<INCLURE{fond=inc-sites_syndiques_rub}{id_rubrique}>
+
+
+
+
+</div>
+
+</div>
+
+
+<!-- Une : contenu de la rubrique -->
+<div id="principal">
+
+<div class="contenu">
+  <div id="intro" class="coins_ronds">
+     <div class="maj">Vous &ecirc;tes ici: &nbsp;<a href="/">Accueil</a>&nbsp;>&nbsp;
+     <BOUCLE_vous_etes_icis(HIERARCHIE){id_article} {" > "}>
+     <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+     </BOUCLE_vous_etes_icis>
+     </div>
+
+  <div class="liste-articles">
+     [<div class="logo_left">(#LOGO_RUBRIQUE||image_reduire{60})</div>]
+     <h2 class="#EDIT{titre}">[(#TITRE|supprimer_numero)]</h2>
+     [<div class="#EDIT{texte} surtitre">(#TEXTE|image_reduire{150})</div>]
+     [<br /><div class="notes">&nbsp;(#NOTES)</div>]
+  </div>
+
+
+  <B_sous_rub>
+  <div class="liste-rub">
+  <div class="extrait">  
+  <ul> 
+
+  <BOUCLE_ssrub_permanent(MOTS){titre='Permanent'}>
+  <BOUCLE_ssrub_avec_art_perm(RUBRIQUES){id_parent}{doublons ssrub}{par titre}>
+  <B_articles_ssrub_perm>
+    <li>
+    [<a href="#URL_RUBRIQUE" [title="(#TEXTE|attribut_html)" class="ultralien_menu"]>(#TITRE|supprimer_numero)</a>]
+    </li>
+  <BOUCLE_articles_ssrub_perm(ARTICLES){id_mot}{id_rubrique}> </BOUCLE_articles_ssrub_perm>
+  </BOUCLE_ssrub_avec_art_perm>
+  </BOUCLE_ssrub_permanent>
+
+  <BOUCLE_sous_rub(RUBRIQUES){id_parent}{doublons ssrub}{age<365}{par titre}>
+  <li>
+  [<a href="#URL_RUBRIQUE" [title="(#TEXTE|attribut_html)" class="ultralien_menu"]>(#TITRE|supprimer_numero)</a>]
+  </li>
+  </BOUCLE_sous_rub>
+
+  </ul>
+  </div>
+  </div>
+  </B_sous_rub>
+
+
+
+</div>
+
+
+
+<BOUCLE_une_rubrique(MOTS){titre ='A la une de la rubrique'}>
+<B_articles_une>
+
+<div id="liste_une" class="coins_ronds"><h2>A lire</h2>
+
+<!-- Articles une de la rubrique -->
+   <div class="liste-articles">
+     <BOUCLE_articles_une(ARTICLES) {id_mot} {id_rubrique} {par date} {inverse}{doublons interdit}>
+    <div class="extrait">
+          <div class="citation">
+                    <span class="maj">[(#DATE|nom_jour)] [(#DATE|affdate)]</span>
+                </div>
+                [<div class="logo_left">(#LOGO_ARTICLE_RUBRIQUE||image_reduire{60})</div>]
+                  [<div class="surtitre">(#SURTITRE)</div>]
+                <h2><a href="#URL_ARTICLE">#TITRE</a></h2>
+           [<div class="surtitre">(#SOUSTITRE)</div>]
+    [<div class="texte">(#INTRODUCTION|couper{500})</div>]
+                <a href="#URL_ARTICLE">Lire la suite...</a>
+    </div>
+      </BOUCLE_articles_une>
+    </div>
+</div>
+</B_articles_une>
+</BOUCLE_une_rubrique>   
+
+
+
+<BOUCLE_statut_archive(MOTS){titre="Permanent"}>
+<B_articles_permanents>
+
+<div id="liste_perm" class="coins_ronds" ><h2>Bon &agrave; savoir</h2>
+
+<div class="liste-articles">
+   <BOUCLE_articles_permanents(ARTICLES){id_mot}{id_rubrique}{par titre}{doublons interdit}>
+  <div class="extrait">
+
+          <div class="citation">
+                    <span class="maj">[(#DATE|nom_jour)] [(#DATE|affdate)]</span>
+                </div>
+                [<div class="logo_left">(#LOGO_ARTICLE_RUBRIQUE||image_reduire{60})</div>]
+                  [<div class="surtitre">(#SURTITRE)</div>]
+                <h2><a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a></h2>
+           [<div class="surtitre">(#SOUSTITRE)</div>]
+    [<div class="texte">(#INTRODUCTION|couper{500})</div>]
+                <a href="#URL_ARTICLE">Lire la suite...</a>
+  </div>
+   </BOUCLE_articles_permanents>
+</div>
+
+</div>
+
+</B_articles_permanents>
+</BOUCLE_statut_archive>
+
+
+
+<!-- Articles de la rubrique -->
+
+<B_articles_recents>
+#ANCRE_PAGINATION
+<div id="liste" class="coins_ronds"><h2>Au fil des jours...</h2>
+
+<div class="liste-articles">
+   <BOUCLE_articles_recents(ARTICLES) {branche} {par date} {pagination} {inverse}{doublons interdit}>
+  <div class="extrait">
+
+          <div class="citation">
+                    <span class="maj">[(#DATE|nom_jour)] [(#DATE|affdate)]</span>
+                </div>
+                [<div class="logo_left">(#LOGO_ARTICLE_RUBRIQUE||image_reduire{60})</div>]
+                  [<div class="surtitre">(#SURTITRE)</div>]
+                <h2><a href="#URL_ARTICLE">#TITRE</a></h2>
+           [<div class="surtitre">(#SOUSTITRE)</div>]
+    [<div class="texte">(#INTRODUCTION|couper{500})</div>]
+                <a href="#URL_ARTICLE">Lire la suite...</a>
+  </div>
+   </BOUCLE_articles_recents>
+</div>
+</div>
+#PAGINATION
+</B_articles_recents>
+
+
+
+</div>
+
+<B_documents_jointss>
+<div id="docs_rub" class="coins_ronds">
+<h2>Documents utiles</h2>
+<BOUCLE_documents_jointss(DOCUMENTS) {id_rubrique} {mode=document} {unique}>
+<div class="docs">
+[<div class="logo_left">(#LOGO_DOCUMENT|#URL_DOCUMENT|image_reduire{75})</div>][&nbsp;(#TITRE)][ - (#DESCRIPTIF)]
+</div>
+</BOUCLE_documents_jointss>
+</div>
+</B_documents_jointss>
+
+
+<!-- ARCHIVES -->
+
+<B_articles_archives>
+<a name="lien_archives" title="Archives">Voir les archives de cette section (pas en service actuellement)</a>
+<BOUCLE_articles_archives(ARTICLES) {branche} {age>=365} {doublons interdit}>
+</BOUCLE_articles_archives>
+
+
+
+</div>
+<INCLURE{fond=pied}{id_rubrique}>
+</BOUCLE_rubrique>
+<:aucune_rubrique:>
+<//B_rubrique>
+
+
+</body>
+</html>
+
+
+

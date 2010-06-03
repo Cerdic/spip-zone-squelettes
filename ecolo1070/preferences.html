@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+#CACHE{1}
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
+<head>
+<title>#NOM_SITE_SPIP - Pr&eacute;f&eacute;rences</title>
+<INCLURE{fond=inc-head}>
+<meta name="robots" content="noindex, nofollow" />
+</head>
+<body dir="#LANG_DIR">
+<INCLURE{fond=entete}>
+<!-- menu -->
+<INCLURE{fond=menu}>
+<!-- colonne -->
+<div id="navigation" class="coins_ronds">
+<INCLURE{fond=inc-mise_a_jour_site}>
+
+<div class="extrait">
+
+<INCLURE{fond=pave_membre}>
+
+<INCLURE{fond=prochains_rendez-vous}>
+
+<h2>Contact</h2>
+<div class="menu">
+<ul class="general">
+        <li class="menu-item"><a href="#adresse">Coordonnées</a></li>
+        <li class="menu-item"><a href="mailto:contact@ecolo1070.be?subject=Contact Site Web">Courriel</a></li>
+        <BOUCLE_secretariat(AUTEURS){id_auteur=52}><li class="menu-item"><a href="#URL_AUTEUR" [title="(#TITRE|attribut_html)"]>Formulaire</a></li></BOUCLE_secretariat>
+</ul>
+</div>
+
+  <!-- Breves -->
+
+  <B_breves>
+  <h2>En bref</h2>
+  <div class="menu">
+  <div class="breves">
+    <div class="menu-titre">
+    #PAGINATION
+    </div>
+    <ul>
+  <BOUCLE_breves(BREVES) {par date} {inverse} {pagination} {titre !=citation}{age<21}>
+    <li class="menu-item <BOUCLE_breve_esp_membres(RUBRIQUES){id_rubrique}>[(#ID_SECTEUR|=={45}|?{' membres',''})]</BOUCLE_breve_esp_membres>">
+    <i>[(#DATE|affdate_court)]</i>:
+    <a href="#URL_BREVE">#TITRE</a>
+    </li>
+  </BOUCLE_breves>
+    </ul>
+  </div>
+  </div>
+  </B_breves>
+
+
+
+<h2>Rechercher</h2>
+<div class="menu">
+#FORMULAIRE_RECHERCHE
+</div>
+
+<BOUCLE_rub_syndic_verts(RUBRIQUES){id_rubrique=1}>
+<BOUCLE_sites_favoris(MOTS){titre="A la une du site"}>
+<B_sites_verts>
+<h2>En direct des amis</h2>
+<div class="menu">
+<BOUCLE_sites_verts(SITES){branche}{par nom_site}{inverse}{id_mot}>
+<B_syndic_verts>
+<h2><a href="[(#URL_SITE)]"[ title="(#DESCRIPTIF|attribut_html)"]>#NOM_SITE</a></h2>
+<ul class="general">
+<BOUCLE_syndic_verts(SYNDIC_ARTICLES){id_syndic}{par date} {inverse}{0,5}{age<15}>
+<li class="menu-item">[(#DATE|affdate) ] / <a href="#URL_ARTICLE" [class="ultralien_complement"  title = "(#DESCRIPTIF|supprimer_tags|attribut_html|couper{300})" ]>[(#TITRE|=={Sans titre}|?{[(#DESCRIPTIF|couper{50})],[(#TITRE|couper{90}|supprimer_numero|unique)]})]</a></li>
+</BOUCLE_syndic_verts>
+</ul>
+</B_syndic_verts>
+</BOUCLE_sites_verts>
+</div>
+</B_sites_verts>
+</BOUCLE_sites_favoris>
+</BOUCLE_rub_syndic_verts>
+
+</div>
+
+</div>
+
+
+
+<!-- Contenu : liste membres -->
+
+<div class="contenu" id="principal">
+
+  <div id="intro" class="coins_ronds">
+     <div class="maj">Vous &ecirc;tes ici: &nbsp;<a href="/">Accueil</a>&nbsp;>&nbsp;Vos pr&eacute;f&eacute;rences
+  </div>
+
+  <div class="liste-articles">
+     <h2>Vos pr&eacute;f&eacute;rences</h2>
+  </div>
+
+  <div class="liste-rub">
+    <div class="extrait">  
+  <ul>S&eacute;lectionner:
+    <li>
+      <a href="[(#SELF|parametre_url{choix,listes})]" [title="Listes e-mail" class="ultralien_menu"]>Abonnements</a>
+    </li>
+    <li>
+    <a href="#pseudo" [title="Pseudo" class="ultralien_menu"]>Pseudo</a>
+    </li>
+    <li>
+    <a href="#mot_de_passe" [title="mot de passe" class="ultralien_menu"]>Mot de passe</a>
+    </li>
+    <li>
+    <a href="" [title=" " class="ultralien_menu"]>X</a>
+    </li>
+    <li>
+    <a href="" [title=" " class="ultralien_menu"]>X</a>
+    </li>
+    <li>
+    <a href="" [title=" " class="ultralien_menu"]>X</a>
+    </li>
+    <li>
+    <a href="" [title=" " class="ultralien_menu"]>X</a>
+    </li>-->
+  </ul>
+   </div>
+  </div>
+
+</div>
+
+
+
+
+<div id="liste" class="coins_ronds">
+
+  [(#ENV{choix}|=={listes}|oui)<INCLURE{fond=listes_abonnement}{env}>]
+  [(#ENV{choix}|non)<p class="spip">S&eacute;lectionner une option ci-dessus</p>]
+ 
+</div>
+
+</div>
+</div>
+</div>
+</body>
+</html>
+

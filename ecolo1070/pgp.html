@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title></title>
+    <meta content="">
+    <style></style>
+  </head>
+  <body>
+<BOUCLE_cle_auteur(AUTEURS){id_auteur}>#PGP</BOUCLE_cle_auteur>
+<?php
+
+phpinfo();
+
+putenv("GNUPGHOME=/tmp");
+$pubkey = "<BOUCLE_cle_auteur(AUTEURS){id_auteur}>#PGP</BOUCLE_cle_auteur>";
+
+$enc = (null);
+$res = gnupg_init();
+echo "gnupg_init RTV = <br/><pre>\n";
+var_dump($res);
+echo "</pre>\n";
+$rtv = gnupg_import($res, $pubkey);
+echo "gnupg_import RTV = <br/><pre>\n";
+var_dump($rtv);
+echo "</pre>\n";
+$rtv = gnupg_addencryptkey($res, "A67B D77A EED0 4D63 3BD6 931A 9ECD 8708 4045 072A");
+echo "gnupg_addencryptkey RTV = <br /><pre>\n";
+var_dump($rtv);
+echo "</pre>\n";
+$enc = gnupg_encrypt($res, "just a test to see if anything works");
+echo "Encrypted Data: " . $enc . "<br/>";
+
+?>
+
+
+
+</body>
+</html>

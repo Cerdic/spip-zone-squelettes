@@ -1,0 +1,61 @@
+<BOUCLE_principale(RUBRIQUES){id_rubrique}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" dir="ltr">
+<head>
+<title>[(#TITRE|textebrut)]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="StyleSheet" href="print.css" type="text/css" media="print" />
+</head>
+<body>
+
+    <h1>#TITRE</h1>
+    <!-- Table des matières -->
+    <div id="toc" class="noprint">
+    <B_titres_articles_fils>
+    <BOUCLE_titres_articles_fils(ARTICLES){id_rubrique}>
+       <a href="##ID_ARTICLE">#TITRE</a><br />
+    </BOUCLE_titres_articles_fils>
+    </B_titres_articles_fils>
+    <B_titres_rubriques_filles>
+           <div class="niveau">
+    <BOUCLE_titres_rubriques_filles(RUBRIQUES){id_parent}>
+             <a href="##ID_RUBRIQUE">#TITRE</a> <br />
+       <B_titres_articles_fils_2>
+             <div class="niveau">
+       <BOUCLE_titres_articles_fils_2(ARTICLES){id_rubrique}>
+               <a href="##ID_ARTICLE">#TITRE</a> <br />
+       </BOUCLE_titres_articles_fils_2>
+             </div>
+       </B_titres_articles_fils_2>
+       <BOUCLE_titres_rubriques_recursives(BOUCLE_titres_rubriques_filles)></BOUCLE_titres_rubriques_recursives>
+    </BOUCLE_titres_rubriques_filles>
+           </div>
+    </B_titres_rubriques_filles>
+    </div>
+
+    <!-- Contenu -->
+    <B_articles_fils>
+    <BOUCLE_articles_fils(ARTICLES){id_rubrique}>
+       <h2><a name="#ID_ARTICLE">#TITRE</a></h2>
+       [<div class="chapeau">(#CHAPEAU)</div>]
+       <div class="texte">#TEXTE</div>
+       [<div class="notes">(#NOTES)</div>]
+    </BOUCLE_articles_fils>
+    </B_articles_fils>
+    <B_rubriques_filles>
+    <BOUCLE_rubriques_filles(RUBRIQUES){id_parent}>
+             <h2><a name="#ID_RUBRIQUE">#TITRE</a></h2>
+       <B_articles_fils_2>
+       <BOUCLE_articles_fils_2(ARTICLES){id_rubrique}>
+              <h2><a name="#ID_ARTICLE">#TITRE</a></h2>
+             [<div class="chapeau">(#CHAPEAU)</div>]
+             <div class="texte">#TEXTE</div>
+             [<div class="notes">(#NOTES)</div>]
+       </BOUCLE_articles_fils_2>
+       </B_articles_fils_2>
+       <BOUCLE_rubriques_recursives(BOUCLE_rubriques_filles)></BOUCLE_rubriques_recursives>
+    </BOUCLE_rubriques_filles>
+    </B_rubriques_filles>
+</body>
+</html>
+</BOUCLE_principale>

@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title><:icone_agenda:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
+<INCLURE{fond=inc-head}>
+<meta name="robots" content="none" />
+<link rel="stylesheet" href="#CHEMIN{agenda.css}" type="text/css" /> 
+<script type="text/javascript" src="#EVAL{_DIR_JAVASCRIPT}layer.js"> </script> 
+<script type="text/javascript" src="#EVAL{_DIR_JAVASCRIPT}presentation.js"> </script> 
+</head>
+
+<body class="page_agenda">
+<INCLURE{fond=entete}>
+
+<!-- menu -->
+
+<INCLURE{fond=menu}{id_rubrique}>
+
+<!-- colonne -->
+<div id="navigation" class="coins_ronds">
+<INCLURE{fond=inc-mise_a_jour_site}>
+<div class="extrait">
+
+<INCLURE{fond=pave_membre}>
+
+
+
+	<!-- Breves -->
+
+	<B_breves>
+	<h2>En bref</h2>
+	<div class="menu">
+	<div class="breves">
+	<ul>
+	<BOUCLE_breves(BREVES) {par date} {inverse} {0,3} {titre !=citation}{age<21}>
+		<li class="menu-item">
+		<i>[(#DATE|affdate_court)]</i>:
+		<a href="#URL_BREVE">#TITRE</a>
+		</li>
+	</BOUCLE_breves>
+	</ul>
+	</div>
+	</div>
+	</B_breves>
+
+
+<h2>Rechercher</h2>
+<div class="menu">
+#FORMULAIRE_RECHERCHE
+</div>
+
+
+<!-- Sur le Web -->
+
+<B_syndicss>
+<h2><:sur_web:></h2>
+<div class="menu">
+	<ul>
+	<BOUCLE_syndicss(SYNDIC_ARTICLES) {par date} {age<15}{inverse} {0,8}{id_rubrique}{doublons interdit}>
+		<li class="menu-item">
+		<a href="#URL_ARTICLE">[(#TITRE*)]</a>
+  		</li>
+	</BOUCLE_syndicss>
+	</ul>
+	</div>
+	</B_syndicss>
+
+</div>
+
+
+
+</div>
+
+
+<!-- Une : contenu de la rubrique -->
+<div id="principal">
+
+<div class="contenu">
+    <div id="intro" class="coins_ronds">
+     <div class="maj">
+     Vous êtes ici:  <a href="/">Accueil</a> > 
+     <BOUCLE_vous_etes_icis(HIERARCHIE){id_article} {" > "}>
+     <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
+     </BOUCLE_vous_etes_icis>
+  </div>
+
+  <div class="liste-articles">
+     [<div class="logo_left">(#LOGO_RUBRIQUE||reduire_image{60})</div>]
+     <h2 class="#EDIT{titre}">[(#TITRE|supprimer_numero)]</h2>
+     [<div class="#EDIT{texte} surtitre">&nbsp;(#TEXTE|reduire_image{75})</div>]
+     [<br /><div class="notes"> (#NOTES)</div>]
+  </div>
+
+
+</div>
+
+<div class="contenu">
+     <div id="liste" class="coins_ronds"><h2>Prochains rendez-vous</h2>
+
+[(#ENV{type, mois}|agenda_connu)<INCLURE {fond=noisettes/agenda_#ENV{type,mois}} {type} {delais=900} {annee} {mois} {jour} {echelle} {partie_cal} {theme}>]
+     </div>
+</div>
+</body></html>

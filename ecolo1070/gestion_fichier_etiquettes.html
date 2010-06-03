@@ -1,0 +1,32 @@
+<!--#SET{cp,0} #SET{adr,0} <BOUCLE_elimine1(fichiers){tout}{statut_ecolo?}{code_postal<1000}{doublons}{', '}>#ID_AUTEUR </BOUCLE_elimine1>
+#SET{cp,#TOTAL_BOUCLE}
+</B_elimine1>
+<BOUCLE_elimine2(fichiers){tout}{statut_ecolo?}{adresse_postale=""}{doublons}{', '}>#ID_AUTEUR</BOUCLE_elimine2>
+#SET{adr,#TOTAL_BOUCLE}
+</B_elimine2> -->
+#SET{nbre,0}
+<body style="margin:0px;">
+<table >
+<B_tiket>
+<tr>
+  <BOUCLE_tiket(fichiers){tout}{statut_ecolo ?}{nom_ecolo==^#ENV{lettre}}{cotisation ?}{debut_tiket,3}{doublons}>#SET{nbre,(#GET{nbre}|plus{1})}
+<td style="width:7cm; height:3.5cm; padding:0.4cm; border: dotted 1px; ">
+#PRENOM #NOM_ECOLO<br />
+#ADRESSE_POSTALE<br />
+#CODE_POSTAL #LOCALITE
+</td>
+</BOUCLE_tiket>
+</tr><BOUCLE_rec(BOUCLE_tiket)></BOUCLE_rec>
+</B_tiket>
+
+</table>
+
+<h2><a name="stat">D&eacute;compte</a></h2>
+<li>#GET{nbre}&nbsp;etiquettes [pour le statut: (#STATUT_ECOLO)][ avec l'initiale (#ENV{lettre})]</li>
+<li> Pas de Code postal: #GET{cp} &nbsp;/&nbsp; Pas d'adresse: #GET{adr}</li>
+<p>
+  <a href="#URL_PAGE{fichier}">Retour &agrave; la gestion du fichier</a>
+</p>
+#ARTICLE_PDF
+#FORMULAIRE_ADMIN
+

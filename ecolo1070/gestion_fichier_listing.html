@@ -1,0 +1,281 @@
+[(#SESSION{statut}|=={0minirezo}|?{""," "})<?php header("location:spip.php?page=404"); ?>]
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+#CACHE{60}
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG">
+<head>
+<title>#NOM_SITE_SPIP - Gestion du fichier</title>
+<INCLURE{fond=inc-head}>
+<meta name="robots" content="noindex, nofollow" />
+</head>
+
+
+
+<body dir="#LANG_DIR">
+<INCLURE{fond=entete}>
+
+<!-- menu -->
+
+<INCLURE{fond=menu}>
+
+
+<!-- Contenu : liste membres -->
+
+<div class="contenu" id="principal" style="width:99%;">
+
+  <div id="intro" class="coins_ronds">
+     <div class="maj">Vous &ecirc;tes ici: &nbsp;<a href="/">Accueil</a>&nbsp;>&nbsp;Gestion du fichier
+  </div>
+
+  <div class="liste-articles">
+     <h2>Gestion du fichier</h2>
+  </div>
+
+  <div class="liste-rub">
+    <div class="extrait">  
+<ul>
+<li><a href="#SELF#select">Sélection / Impression</a> </li>
+<li><a href="#SELF#edit">Visualisation / Edition de la sélection</a></li>
+<li> <a href="#SELF#correct">Membres : Anomalies / Corrections</a></li>
+<li><a href="#SELF#inscr"> Nouvelle inscription</a></li>
+<li><a href="#SELF#modifs">Dernière modifs. pour la sélection</a></li>
+<li> <a href="#SELF#stats">Statistiques</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="intro" class="coins_ronds">
+
+  <div class="liste-articles">
+     <h2><a name="select">Sélection / Impression</a></h2>
+  </div>
+
+  <div class="liste-rub">
+    <div class="extrait">  
+
+
+  <ul>Par statut:
+    <li>
+    <a href="spip.php?page=gestion_fichier&statut_ecolo=M[&lettre=(#ENV{lettre})]" title="Membres" [class="(#ENV{statut_ecolo}|=={M}|?{'on',''})"]>Membres</a>
+    </li>
+    <li>
+    <a href="spip.php?page=gestion_fichier&statut_ecolo=C[&lettre=(#ENV{lettre})]" title="Candidats" [class="(#ENV{statut_ecolo}|=={C}|?{'on',''})"]>Candidats</a>
+    </li>
+    <li>
+    <a href="spip.php?page=gestion_fichier&statut_ecolo=S[&lettre=(#ENV{lettre})]" title="Sympathisants" [class="(#ENV{statut_ecolo}|=={S}|?{'on',''})"]>Sympathisants</a>
+    </li>
+    <li>
+    <a href="spip.php?page=gestion_fichier&statut_ecolo=L[&lettre=(#ENV{lettre})]" title="Locaux" [class="(#ENV{statut_ecolo}|=={L}|?{'on',''})"]>Locaux</a>
+    </li>
+    <li>
+    <a href="spip.php?page=gestion_fichier&statut_ecolo=E[&lettre=(#ENV{lettre})]" title="Exterieurs" [class="(#ENV{statut_ecolo}|=={E}|?{'on',''})"]>Exterieurs</a>
+    </li>
+    <li>
+    <a href="spip.php?page=gestion_fichier&statut_ecolo=A[&lettre=(#ENV{lettre})]" title="Anciens" [class="(#ENV{statut_ecolo}|=={A}|?{'on',''})"]>Anciens membres</a>
+    </li>
+    <li>
+    <a href="spip.php?page=gestion_fichier[&lettre=(#ENV{lettre})]" title="Tout" [class="(#ENV{statut_ecolo}|?{'','on'})"]>Tout voir</a>
+    </li>
+  </ul>
+   
+<B_alpha>
+  <ul>Par initiale: 
+<BOUCLE_alpha(fichiers){tout} {statut_ecolo?}{par nom_ecolo} {fusion LEFT(nom_ecolo,1)}>
+  [<li><a href='[(#SELF|parametre_url{lettre, [(#NOM_ECOLO|substr{0,1})]}|parametre_url{debut_donnees,0})]' [class="(#ENV{lettre}|=={#NOM_ECOLO|substr{0,1}}|?{'on',''})"]>
+  (#NOM_ECOLO|substr{0,1})
+  </a></li>]    
+</BOUCLE_alpha>      
+<li><a href='[(#SELF|parametre_url{lettre,''})]' [class="(#ENV{lettre}|?{'','on'})"]>
+  Tout voir
+  </a></li>
+  </ul>
+</B_alpha>
+
+<a href="spip.php?page=gestion_fichier_etiquettes[&statut_ecolo=(#STATUT_ECOLO)][&lettre=(#ENV{lettre})]#stat">Imprimer les &eacute;tiquettes pour cette s&eacute;lection.</a>
+   </div>
+  </div>
+
+</div>
+
+
+
+
+<div id="liste" class="coins_ronds">
+  <div class="liste-articles">
+     <h2><a name="edit">Visualisation / Edition</a></h2>
+  </div>
+
+<B_donnees>
+<div class="liste-articles">
+
+[(#STATUT_ECOLO|=={M}|?{' ',''})<a href="#SELF&cotisation=[(#DATE|annee|moins{1})]">Voir les membres qui ne sont pas en ordre de cotisation</a>.]
+
+<p>Affichage: #TOTAL_BOUCLE enregistrements. [Total: #GRAND_TOTAL.]</p>
+<p>Membre: "M" | Candidat Membre: "C" | Sympathisant: "S" | Local: "L" | Ext&eacute;rieurs: "E" | Anciens membres: "A"</p>
+<table style="font-size:0.7em; border: dotted 1px; width:100%;">
+<tr style="text-align:center;"><td>Sta-<br />tut</td><td>Cotis.</td><td>Num.<br /> ECOLO</td><td>Nom</td><td>Pr&eacute;nom</td><td>Sexe</td>
+<td>Adresse postale</td><td>CP</td><td>Localite</td><td>Tel</td><td>GSM</td><td>Pseudo</td><td>e-mail</td>
+<td>Acc&egrave;s<br/>Membre</td><td>EDIT</td>
+</a></tr>
+<BOUCLE_donnees(fichiers){par nom_ecolo}{par no_fichier}{statut_ecolo?}{cotisation?}{nom_ecolo==^(#ENV{lettre})}>
+<tr>
+<td style="border: dotted 1px;"><span  class="#EDIT{statut_ecolo}">[(#STATUT_ECOLO|?{#STATUT_ECOLO,'++'})]</span></td>
+<td style="border: dotted 1px;"><span  class="#EDIT{cotisation}">[(#COTISATION|?{#COTISATION,'++'})]</span></td>
+<td style="border: dotted 1px;"><span  class="#EDIT{no_fichier}">[(#NO_FICHIER|?{#NO_FICHIER,'++'})]</span></td>
+
+<td style="border: dotted 1px;"><span  class="#EDIT{nom_ecolo}">[(#NOM_ECOLO|?{#NOM_ECOLO,'++'})]</span></td>
+<td style="border: dotted 1px;"><span  class="#EDIT{prenom}">[(#PRENOM|?{#PRENOM,'++'})]</span></td>
+<td style="border: dotted 1px;"><span  class="#EDIT{sexe}">[(#SEXE|?{#SEXE,'++'})]</span></td>
+<td style="border: dotted 1px;"><span  class="#EDIT{adresse_postale}">[(#ADRESSE_POSTALE|?{#ADRESSE_POSTALE,'++'})]</span></td>
+<td style="border: dotted 1px;"><span  class="#EDIT{code_postal}">[(#CODE_POSTAL|?{#CODE_POSTAL,'++'})]</span></td>
+<td style="border: dotted 1px;"><span  class="#EDIT{localite}">[(#LOCALITE|?{#LOCALITE,'++'})]</span></td>
+<td style="border: dotted 1px;"><span  class="#EDIT{telephone}">[(#TELEPHONE|?{#TELEPHONE,'++'})]</span></td>
+<td style="border: dotted 1px;"><span  class="#EDIT{gsm}">[(#GSM|?{#GSM,'++'})]</span></td>
+<BOUCLE_fichier(AUTEURS){id_auteur}{tout}>
+<td style="text-align:center;"><span  class="#EDIT{nom}">[(#NOM|?{#NOM,'-'})]</span></td>
+<td style="text-align:center;"><span  class="#EDIT{email}">[(#EMAIL|?{#EMAIL,'-'})]</span></td>
+<td style="text-align:center;"><BOUCLE_acces_restreint(ZONES){id_auteur}{tout}>[(#TITRE|=={Espace Membres}|?{'OK','-'})]</BOUCLE_acces_restreint></td>
+<td style="border: dotted 1px; text-align:center;"><a href="ecrire/?exec=auteur_infos&id_auteur=#ID_AUTEUR#nom">EP</a></td>
+</BOUCLE_fichier>
+</tr>
+</BOUCLE_donnees>
+
+</table>
+
+
+
+</div>
+
+
+</B_donnees>
+Pas de r&eacute;sultat
+<//B_donnees>
+</div>
+
+<div id="liste" class="coins_ronds">
+
+<div class="liste-articles">
+     <h2><a name="correct">Anomalies / Corrections</a></h2>
+  </div>
+
+
+  <div class="liste-rub">
+    <div class="extrait">  
+<ul>Non-membres avec accès à l'Espace Membres:
+<BOUCLE_aut_zone(zones_auteurs){id_zone=1}>
+<BOUCLE_anomalies(fichiers){id_auteur}{par id_auteur}{!statut_ecolo=='M'}><li><a href="ecrire/?exec=auteur_infos&id_auteur=#ID_AUTEUR">#PRENOM
+#NOM_ECOLO</a></li></BOUCLE_anomalies>
+</BOUCLE_aut_zone><br>
+</ul>
+<ul>Non-membres abonnés à la lettre des membres:
+<BOUCLE_aut_liste2(AUTEURS_LISTES){id_liste=1}>
+<BOUCLE_anomalies4(fichiers){id_auteur}{par id_auteur}{!statut_ecolo=='M'}><li><a href="ecrire/?exec=auteur_infos&id_auteur=#ID_AUTEUR">#PRENOM
+#NOM_ECOLO</a></li></BOUCLE_anomalies4>
+</BOUCLE_aut_liste2>
+</ul>
+<ul>Non-membres rédacteurs:
+<BOUCLE_aut2(AUTEURS){statut IN '0minirezo' , '1comite'}{tout}>
+<BOUCLE_anomalies6(fichiers){id_auteur}{par id_auteur}{!statut_ecolo=='M'}><li><a href="ecrire/?exec=auteur_infos&id_auteur=#ID_AUTEUR&edit=oui">#PRENOM
+#NOM_ECOLO</a></li></BOUCLE_anomalies6>
+</BOUCLE_aut2>
+</ul>
+
+<ul>Membres sans adresse email: 
+<BOUCLE_membres(fichiers){statut_ecolo="M"}><BOUCLE_aut_email(AUTEURS){id_auteur}{tout}{email}><li><a href="ecrire/?exec=auteur_infos&id_auteur=#ID_AUTEUR&edit=oui">#PRENOM
+#NOM_ECOLO</a></li><BOUCLE_pas_mail(fichiers){id_auteur}{doublons pas_mail}></BOUCLE_pas_mail>
+</BOUCLE_aut_email>
+</BOUCLE_membres>
+</ul>
+<ul>Membres avec mail non abonnés à la lettre des membres:
+<BOUCLE_aut_liste(AUTEURS_LISTES){id_liste=1}>
+<BOUCLE_anomalies3(fichiers){id_auteur}{doublons anomalies2}></BOUCLE_anomalies3>
+</BOUCLE_aut_liste>
+<BOUCLE_pov_exclus2(fichiers){statut_ecolo="M"}{doublons anomalies2}{doublons pas_mail}><li><a href="ecrire/?exec=auteur_infos&id_auteur=#ID_AUTEUR">#PRENOM
+#NOM_ECOLO</a></li></BOUCLE_pov_exclus2>
+</ul>
+<ul>Membres sans accès à l'Espace Membres:
+<BOUCLE_aut_zone2(zones_auteurs){id_zone=1}>
+<BOUCLE_anomalies2(fichiers){id_auteur}{doublons anomalies}></BOUCLE_anomalies2>
+</BOUCLE_aut_zone2>
+<BOUCLE_pov_exclus(fichiers){statut_ecolo="M"}{doublons anomalies}><li><a href="ecrire/?exec=auteur_infos&id_auteur=#ID_AUTEUR">#PRENOM
+#NOM_ECOLO</a></li></BOUCLE_pov_exclus>
+</ul>
+<ul>Membres non rédacteurs:
+<BOUCLE_aut(AUTEURS){!statut IN '0minirezo' , '1comite'}{tout}>
+<BOUCLE_anomalies5(fichiers){id_auteur}{statut_ecolo="M"}><li><a href="ecrire/?exec=auteur_infos&id_auteur=#ID_AUTEUR&edit=oui">#PRENOM
+#NOM_ECOLO</a></li></BOUCLE_anomalies5>
+</BOUCLE_aut>
+</ul>
+</div>
+</div>
+</div>
+<div id="liste" class="coins_ronds">
+<h2><a name="inscr">Nouvelle inscription</a></h2>
+<div class="liste-articles">
+
+
+#FORMULAIRE_AJOUT_INSCRIPTION
+</div></div>
+
+<div id="liste" class="coins_ronds">
+<B_fic>
+<div class="liste-articles">
+<h2><a name="modifs">Dernières modifications  pour cette sélection</a></h2>
+<ul>
+<BOUCLE_fic(fichiers){tout}{par maj}{inverse}{0,12}{maj>0}{statut_ecolo?}{cotisation?}{nom_ecolo==^(#ENV{lettre})}>
+<li> [(#MAJ|jour)] [(#MAJ|nom_mois)] [(#MAJ|annee)] - [(#MAJ|heures)]:[(#MAJ|minutes)]: [(#NOM_ECOLO)] #PRENOM, #SEXE - #STATUT_ECOLO, 
+#COTISATION, #NO_FICHIER -  #ADRESSE_POSTALE, #CODE_POSTAL #LOCALITE - #TELEPHONE ,  #GSM</li>
+ </BOUCLE_fic>
+</ul>
+</B_fic>
+
+</div>
+</div>
+
+<div id="liste" class="coins_ronds">
+
+<div class="liste-articles">
+
+<B_statut>
+<h2><a name="stats">Statistiques</a></h2><table><tr><td>
+<BOUCLE_statut(fichiers){tout}{par statut_ecolo}{inverse}{fusion statut_ecolo}>
+[(#REM) en ligne plutot que colonne...]
+<div style="float: left; display: block;"><h3>statut: #STATUT_ECOLO</h3>
+<BOUCLE_compte(fichiers){tout}{statut_ecolo}>
+  </BOUCLE_compte>#SET{total,#TOTAL_BOUCLE}
+ <ul>      Total:  #TOTAL_BOUCLE
+  </B_compte>
+
+<BOUCLE_sexe_F(fichiers){tout}{statut_ecolo}{sexe=="F"}{doublons sexe}>
+  </BOUCLE_sexe_F>
+       <li>sexe F:  #TOTAL_BOUCLE - [(#TOTAL_BOUCLE|div{#GET{total}}|mult{100}|intval) %]</li>
+  </B_sexe_F>
+<BOUCLE_sexe_M(fichiers){tout}{statut_ecolo}{sexe=="M"}{doublons sexe}>
+  </BOUCLE_sexe_M>
+       <li>sexe H:  #TOTAL_BOUCLE - [(#TOTAL_BOUCLE|div{#GET{total}}|mult{100}|intval) %]</li>
+  </B_sexe_M>
+<BOUCLE_autres_sexes(fichiers){tout}{statut_ecolo}{doublons sexe}>
+  </BOUCLE_autres_sexes>
+       <li>sexe ind.:  #TOTAL_BOUCLE - [(#TOTAL_BOUCLE|div{#GET{total}}|mult{100}|intval) %]</li>
+</B_autres_sexes>
+</ul>
+</div>
+</BOUCLE_statut>
+</td></tr></table></div>
+</B_statut>
+
+</div>
+
+
+<div id="liste" class="coins_ronds">
+
+<div class="liste-articles">
+<h2> Autre</h2>
+
+</div>
+</div>
+
+
+</body>
+</html>
