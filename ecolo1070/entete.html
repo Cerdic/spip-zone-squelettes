@@ -19,9 +19,9 @@
 [(#REM) campagne ponctuelle (site avec logo ET mot cle "Campagne") ou 3 images au hasard]
 	<div class="campagne">
 	<BOUCLE_campagne(SITES){titre_mot="Campagne"}{par date}{0,1}>
-		[<a href="#URL_SITE">(#LOGO_SITE|image_reduire{480,60})</a>]
+		[<a href="#URL_SITE" [class="ultralien_site" title = "(#DESCRIPTIF|supprimer_tags|attribut_html|couper{300})"] >(#LOGO_SITE|image_reduire{480,60})</a>]
 	</BOUCLE_campagne>
-		<BOUCLE_docuImg(DOCUMENTS){doublons}{par hasard}{extension==jpg|png}{0,4}{age<600}{doublons}>    
+		<BOUCLE_docuImg(DOCUMENTS){doublons}{par hasard}{extension==jpg|png}{0,3}{age<600}{doublons}>    
 			<BOUCLE_chercheLien(documents_liens){id_document}>#SET{current_id, #ID_OBJET}#SET{current_objet, #OBJET}</BOUCLE_chercheLien>
 			<BOUCLE_art(ARTICLES){id_document}>[(#TITRE|?{' ',''})]#SET{title,(#TITRE|attribut_html)}</BOUCLE_art>
 		       [<a href="spip.php?#GET{current_objet}#GET{current_id}" title="#GET{title}" class="ultralien_menu" >(#FICHIER|image_reduire{150,60}|inserer_attribut{alt,#TITRE"})</a>]
