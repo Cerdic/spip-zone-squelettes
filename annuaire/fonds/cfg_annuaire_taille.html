@@ -24,30 +24,53 @@
 		<input type="text" name="margin_left" value="[(#ENV{margin_left,10px})]" size="5" class="fondl" />
 
 		<p /><:annuaire:margin_right_fieldset:>
-		<input type="text" name="margin_right" value="[(#ENV{margin_right})]" size="5" class="fondl" />
+		<input type="text" name="margin_right" value="[(#ENV{margin_right,10px})]" size="5" class="fondl" />
 
 	</fieldset><!--#fieldset-->
 
 	[(#REM) Reglage sur la page sommaire]
 	<fieldset><!--#sommaire-->
 		<legend><:annuaire:page_sommaire:></legend>
+
+		[(#REM) Reglage sur la boucle nouveaute]
 		<p /><b><:annuaire:new|ucfirst:></b>
 		<p /><:annuaire:height_fieldset_prems:>
 		<input type="text" name="height_new_prems" value="[(#ENV{height_new_prems,auto})]" size="5" class="fondl" />
+		<p /><:annuaire:longueur_descriptif_prems:>
+		<input type="text" name="descriptif_new_prems" value="[(#ENV{descriptif_new_prems,300})]" size="5" class="fondl" />
+
 		<p /><:annuaire:height_fieldset_suivants:>
 		<input type="text" name="height_new" value="[(#ENV{height_new,auto})]" size="5" class="fondl" />
+		<p /><:annuaire:longueur_descriptif_suivants:>
+		<input type="text" name="descriptif_new_suivants" value="[(#ENV{descriptif_new_suivants,300})]" size="5" class="fondl" />
 
+
+		[(#REM) Reglage sur la boucle plus de vote]
 		<p /><b><:annuaire:plus_vote|ucfirst:></b>
 		<p /><:annuaire:height_fieldset_prems:>
 		<input type="text" name="height_plus_vote_prems" value="[(#ENV{height_plus_vote_prems,auto})]" size="5" class="fondl" />
-		<p /><:annuaire:height_fieldset_suivants:>
-		<input type="text" name="height_plus_vote" value="[(#ENV{height_plus_vote,auto})]" size="5" class="fondl" />
+		<p /><:annuaire:longueur_descriptif_prems:>
+		<input type="text" name="descriptif_plus_vote_prems" value="[(#ENV{descriptif_plus_vote_prems,300})]" size="5" class="fondl" />
 
+		<p /><:annuaire:height_fieldset_suivants:>
+		<input type="text" name="height_plus_vote_suivants" value="[(#ENV{height_plus_vote_suivants,auto})]" size="5" class="fondl" />
+		<p /><:annuaire:longueur_descriptif_suivants:>
+		<input type="text" name="descriptif_plus_vote_suivants" value="[(#ENV{descriptif_plus_vote_suivants,300})]" size="5" class="fondl" />
+
+
+		[(#REM) Reglage sur la boucle hasard si afficher dans sommaire]
+		[(#CONFIG{annuaire_colonne/config_boucle_zard, defaut}|=={defaut}|oui)
 		<p /><b><:annuaire:zard|ucfirst:></b>
 		<p /><:annuaire:height_fieldset_prems:>
 		<input type="text" name="height_zard_prems" value="[(#ENV{height_zard_prems,auto})]" size="5" class="fondl" />
+		<p /><:annuaire:longueur_descriptif_prems:>
+		<input type="text" name="descriptif_zard_prems" value="[(#ENV{descriptif_zard_prems,300})]" size="5" class="fondl" />
+
 		<p /><:annuaire:height_fieldset_suivants:>
 		<input type="text" name="height_zard" value="[(#ENV{height_zard,auto})]" size="5" class="fondl" />
+		<p /><:annuaire:longueur_descriptif_suivants:>
+		<input type="text" name="descriptif_zard_suivants" value="[(#ENV{descriptif_zard_suivants,300})]" size="5" class="fondl" />
+		]
 	</fieldset><!--#sommaire-->
 
 	[(#REM) Reglage sur l entete du site]
@@ -58,15 +81,16 @@
 		<p /><:annuaire:height_menu_site_expli:>
 		<input type="text" name="height_menu_site" value="[(#ENV{height_menu_site,15px})]" size="5" class="fondl" />
 	</fieldset><!--#entete-->
-	<fieldset><!--#entete-->
+
+	[(#CONFIG{annuaire_colonne/config_formrecherche, entete}|=={entete}|oui)
+	<fieldset><!--#formrecherche-->
 		<legend><:annuaire:formulaire_recherche:></legend>
-		[(#CONFIG{annuaire_colonne/config_formrecherche, entete}|=={entete}|oui)
 		<p /><:annuaire:formulaire_recherche_margin_left:>
 		<input type="text" name="formulaire_recherche_margin_left" value="[(#ENV{formulaire_recherche_margin_left,10px})]" size="5" class="fondl" />
 		<p /><:annuaire:formulaire_recherche_margin_top:>
 		<input type="text" name="formulaire_recherche_margin_top" value="[(#ENV{formulaire_recherche_margin_top})]" size="5" class="fondl" />
-		]
-	</fieldset><!--#entete-->
+	</fieldset><!--#formrecherche-->
+	]
 
 	[(#REM) Reglage sur le pied de page]
 	<fieldset><!--#pied-->
@@ -81,7 +105,7 @@
 		<p /><:annuaire:width_pied_page_content:>
 		<input type="text" name="width_pied_page_content" value="[(#ENV{width_pied_page_content,75%})]" size="5" class="fondl" />
 		<p /><:annuaire:width_pied_page_nav:>
-		<input type="text" name="width_nav_pied" value="[(#ENV{width_pied,25%})]" size="5" class="fondl" />
+		<input type="text" name="width_nav_pied" value="[(#ENV{width_nav_pied,25%})]" size="5" class="fondl" />
 		<p /><:annuaire:align_pied3_page_expli:>
 		<input type="text" name="align_pied3" value="[(#ENV{align_pied3,left})]" size="5" class="fondl" />
 		]
@@ -127,6 +151,20 @@
 	<p /><b><:annuaire:nav_pied|ucfirst:></b>
 	<p /><:annuaire:height_fieldset:>
 	<input type="text" name="height_nav_pied" value="[(#ENV{height_nav_pied,auto})]" size="5" class="fondl" />
+
+	[(#REM) Reglage sur la boucle hasard si afficher dans navigation]
+	[(#CONFIG{annuaire_colonne/config_boucle_zard, nav}|=={nav}|oui)
+	<p /><b><:annuaire:zard|ucfirst:></b>
+	<p /><:annuaire:height_fieldset_prems:>
+	<input type="text" name="height_zard_prems_nav" value="[(#ENV{height_zard_prems_nav,auto})]" size="5" class="fondl" />
+	<p /><:annuaire:longueur_descriptif_prems:>
+	<input type="text" name="descriptif_zard_prems_nav" value="[(#ENV{descriptif_zard_prems_nav,100})]" size="5" class="fondl" />
+
+	<p /><:annuaire:height_fieldset_suivants:>
+	<input type="text" name="height_zard_suivants_nav" value="[(#ENV{height_zard_suivants_nav,auto})]" size="5" class="fondl" />
+	<p /><:annuaire:longueur_descriptif_suivants:>
+	<input type="text" name="descriptif_zard_suivants_nav" value="[(#ENV{descriptif_zard_suivants_nav,100})]" size="5" class="fondl" />
+	]
 	</fieldset><!--#col_navigation-->
 </fieldset>
 <input type="submit" name="_cfg_ok" value="<:bouton_valider:>" />

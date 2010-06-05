@@ -60,8 +60,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //C
 'col_navigation' => 'Colonne navigation',
 'commentaire' => '1 commentaire',
-'config_boucle_zard' => 'Affichage de la boucle hasard.',
-'config_boucle_zard_expli' => 'Vous pouvez l\'afficher soit sur la page sommaire soit dans la navigation et dans ce cas on afficher pas les noisettes.',
+'config_boucle_zard' => 'Affichage de la boucle hasard',
+'config_boucle_zard_expli' => 'Vous pouvez l\'afficher soit sur la page sommaire soit dans la navigation et dans ce cas on affiche pas les noisettes.',
 'config_defaut' => 'Affichage dans la colonne de navigation.',
 'config_defaut_noisettes' => 'Affichage des noisettes dans la colonne de navigation.',
 'config_entete' => 'Affichage dans l\'ent&ecirc;te.',
@@ -215,6 +215,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'le_mot' => 'Le mot',
 'le_site' => 'Le site compte',
 'lire_suite' => 'Lire la suite',
+'longueur_descriptif_prems' => 'Longueur du descriptif du premier site',
+'longueur_descriptif_suivants' => 'Longueur du descriptif des sites suivants',
 
 //M
 'margin_left_fieldset' => 'Marge &agrave; gauche du cadre',
