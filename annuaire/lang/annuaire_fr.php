@@ -60,6 +60,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //C
 'col_navigation' => 'Colonne navigation',
 'commentaire' => '1 commentaire',
+'commun' => 'Commun',
 'config_boucle_zard' => 'Affichage de la boucle hasard',
 'config_boucle_zard_expli' => 'Vous pouvez l\'afficher soit sur la page sommaire soit dans la navigation et dans ce cas on affiche pas les noisettes.',
 'config_defaut' => 'Affichage dans la colonne de navigation.',
@@ -222,6 +223,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'margin_left_fieldset' => 'Marge &agrave; gauche du cadre',
 'margin_right_fieldset' => 'Marge &agrave; droite du cadre',
 'menu_site' => 'le menu du site',
+'margin_top_h2' => 'Marge au dessus des titres de boucles',
 'miniatures_par' => 'Miniatures par',
 
 //N
