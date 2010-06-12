@@ -77,6 +77,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'configuration_forum' => 'configuration des forum du site',
 'configuration_herbier' => 'configuration de la page "herbier"',
 'configuration_general' => 'configuration des g&eacute;n&eacute;ralit&eacute;s du site',
+'configuration_menu' => 'configuration des liens du menu',
 'configuration_mot' => 'configuration de la page "mot"',
 'configuration_partenaire' => 'configuration de la page "partenaire"',
 'configuration_plan' => 'configuration de la page "plan"',
