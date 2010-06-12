@@ -6,13 +6,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
 <title>#TITRE - [(#NOM_SITE_SPIP|textebrut)]</title>
-<INCLURE{fond=inc/inc-head}{id_rubrique}{lang?}{env}>
+<INCLURE{fond=inc/inc-head, id_rubrique, lang?, env}>
 </head>
 <body>
 
 	[(#REM) Afficher l'entete :]
-	<INCLURE{fond=inc/inc-entete}{lang?}{ajax}>
-	<INCLURE{fond=inc/inc-menu}{class=entete}{lang?}{ajax}>
+	<INCLURE{fond=inc/inc-entete, lang?, ajax}>
+	<INCLURE{fond=inc/inc-menu, class=entete, lang?, ajax}>
 
 <div id="rubrique">
 	<div id="content">
@@ -53,7 +53,7 @@
 				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
 				<li class="rubri">
 				[<a href="#URL_RUBRIQUE">(#TITRE|supprimer_numero)</a>&nbsp;&nbsp;]
-					<BOUCLE_site(SITES) {id_rubrique}> </BOUCLE_site>(#TOTAL_BOUCLE site(s))</B_site>
+					<BOUCLE_site(SITES) {id_rubrique}> </BOUCLE_site>([(#TOTAL_BOUCLE|singulier_ou_pluriel{annuaire:site,annuaire:sites})])</B_site>
 				</li><!--#rubri-->
 				</BOUCLE_sous_rubriques>
 			</ul>
@@ -72,7 +72,7 @@
                 <li class="site">
 				[<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]" title="(#NOM_SITE|texte_backend)">#NOM_SITE</a>]
 				<BOUCLE_logo(MOTS){id_syndic} {'  '}>[(#LOGO_MOT||inserer_attribut{title, #TITRE|supprimer_numero}|inserer_attribut{alt, #TITRE|supprimer_numero})]</BOUCLE_logo>
-				[(#PLUGIN{pb_pagerank}|oui)<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}>]
+				[(#PLUGIN{pb_pagerank}|oui)<INCLURE{fond=afficher_minipagerank, url=#URL_SITE}>]
 				#FORMULAIRE_NOTATION <br />
 				[(#REM) Nombre total de messages ]
 					<BOUCLE_forum(FORUMS){id_syndic}{plat}>
@@ -95,10 +95,10 @@
 	</div><!--#content-->
 
 	[(#REM) Navigation => colonne droite :]
-	<INCLURE{fond=inc/inc-nav}{lang?}{ajax}>
+	<INCLURE{fond=inc/inc-nav, lang?, ajax}>
 	
 	[(#REM) Afficher le pied de page :]
-	<INCLURE{fond=inc/inc-menu}{class=pied}{lang?}{ajax}>
+	<INCLURE{fond=inc/inc-menu, class=pied, lang?, ajax}>
 </div><!--#rubrique-->
 </body>
 </html>
