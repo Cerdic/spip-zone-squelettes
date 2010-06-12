@@ -40,6 +40,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'annuaire_general' => 'G&eacute;n&eacute;ralit&eacute;s',
 'annuaire_gratuit' => 'Annuaire gratuit de liens en dur',
 'annuaire_herbier' => 'Herbier',
+'annuaire_menu' => 'Menu du site',
 'annuaire_mot' => 'Mot',
 'annuaire_partenaire' => 'Partenaire',
 'annuaire_plan' => 'Plan',
@@ -63,9 +64,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'commun' => 'Commun',
 'config_boucle_zard' => 'Affichage de la boucle hasard',
 'config_boucle_zard_expli' => 'Vous pouvez l\'afficher soit sur la page sommaire soit dans la navigation et dans ce cas on affiche pas les noisettes.',
-'config_defaut' => 'Affichage dans la colonne de navigation.',
-'config_defaut_noisettes' => 'Affichage des noisettes dans la colonne de navigation.',
+'config_defaut_menu_lien' => 'Afficher le lien.',
+'config_defaut_noisettes' => 'Affichage dans la colonne de navigation.',
 'config_entete' => 'Affichage dans l\'ent&ecirc;te.',
+'config_non_menu_lien' => 'Ne pas afficher le lien.',
 'config_pied' => 'Affichage dans le pied de page (&agrave droite).',
 'configuration_abonnement' => 'configuration de la page "abonnements"',
 'configuration_bandeau' => 'configuration du "bandeau"',
@@ -153,6 +155,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'descriptif_herbier' => '<h4>R&eacute;glage de l\'herbier</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur l\'herbier.
 				<p />C\'est la page où l\'on affiche l\'actualiter des sites syndiqu&eacute;',
+'descriptif_menu' => '<h4>R&eacute;glage du menu</h4>
+				<br />Afficher ou non les liens vers les pages du site, cette configuration agit sur le menu de l\'ent&ecirc;tete et le pied de page.',
 'descriptif_mot' => '<h4>R&eacute;glage de la page mot</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur la page mot.',
 'descriptif_partenaire' => '<h4>R&eacute;glage de la page partenaire</h4>
@@ -176,6 +180,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'description_site' => 'Description du site',
 
 //E
+'editer_site' => '&Eacute;diter le site',
 'email_lesauteurs:nom' => 'Email dans les flux rss',
 'email_lesauteurs:description' => 'Sur les balises #LESAUTEURS et #DESCRIPTIF de la page "site" nous coupons les adresses mail si elles existent afin d&rsquo;&eacute;vit&eacute; que le webmaster nous dise qu&rsquo;on le spam.',
 'epingle_site' => '&eacute;pingl&eacute;s sur',
@@ -222,6 +227,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //M
 'margin_left_fieldset' => 'Marge &agrave; gauche du cadre',
 'margin_right_fieldset' => 'Marge &agrave; droite du cadre',
+'menu_lien_abonnement' => 'Lien vers la page abonnement',
+'menu_lien_afficher' => 'Lien vers les pages du menu',
+'menu_lien_contact' => 'Lien vers la page contact',
+'menu_lien_partenaire' => 'Lien vers la page partenaire',
+'menu_lien_plan' => 'Lien vers la page plan',
+'menu_lien_plan_complet' => 'Lien vers toutes les rubriques',
+'menu_lien_sommaire' => 'Lien vers l\'accueil (sommaire)',
 'menu_site' => 'le menu du site',
 'margin_top_h2' => 'Marge au dessus des titres de boucles',
 'miniatures_par' => 'Miniatures par',
@@ -242,10 +254,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'new' => 'la boucle "nouveaut&eacute;s"',
 'non'=> 'Non',
 'nous_avons' => 'Nous avons',
+'nouveau_site' => 'Nouveau site',
 'nouveaute' => 'Site nouveaut&eacute;',
 
 //O
-'oui'=>'Oui',
+'oui' => 'Oui',
 
 //P
 'page_sommaire' => 'Page sommaire',
@@ -253,6 +266,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'partenaires' => '@nb@ partenaires',
 'pas_commentaire' => 'Pas encore de commentaire',
 'pas_descriptif' => 'Nous n\'avons pas de descriptif pour ce site, si vous &ecirc;tes le webmaster vous pouvez nous contacter afin de proposer un descriptif au site.',
+'pas_le_droit_ecrire' => 'Vous n\'avez pas d\'autorisation en &eacute;crire',
 'pas_pagination' => 'Nombre d\'&eacute;l&eacute;ments par boucle',
 'pas_partenaire' => 'Nous n\'avons pas de partenaire(s) &agrave; ce jour, si vous le souhaitez, rejoingnez-nous...',
 'pas_votes' => 'Pas encore de votes',

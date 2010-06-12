@@ -3,19 +3,30 @@
 	<tr>
 	<td class="#ENV{class}2">
 	<h3>
-		<a href="#URL_SITE_SPIP/"><:accueil_site:></a>
-		<a href="#URL_PAGE{plan}"><:plan_site:></a>
+		[(#CONFIG{annuaire_menu/menu_lien_sommaire, non}|=={non}|non)
+		<a href="#URL_SITE_SPIP/"><:accueil_site:></a>]
+		
+		[(#CONFIG{annuaire_menu/menu_lien_plan, non}|=={non}|non)
+		<a href="#URL_PAGE{plan}"><:plan_site:></a>]
+		
 		<BOUCLE_toutes(RUBRIQUES) {1,1}>
-		<a href="#URL_PAGE{plan_complet}"><:annuaire:toutes_rubriques:></a>
+		[(#CONFIG{annuaire_menu/menu_lien_plan_complet, non}|=={non}|non)
+		<a href="#URL_PAGE{plan_complet}"><:annuaire:toutes_rubriques:></a>]
 		</BOUCLE_toutes>
-		<a href="#URL_PAGE{partenaire}"><:annuaire:annuaire_partenaire:></a>
-		[(#PLUGIN{contact}|oui)<a href="#URL_PAGE{contact}"><:annuaire:annuaire_contact:></a>]
-		[(#PLUGIN{spiplistes}|ou{#PLUGIN{clevermail}}|oui)<a href="#URL_PAGE{abonnement}"><:annuaire:annuaire_abonnement:></a>]
+		
+		[(#CONFIG{annuaire_menu/menu_lien_partenaire, non}|=={non}|non)
+		<a href="#URL_PAGE{partenaire}"><:annuaire:annuaire_partenaire:></a>]
+		
+		[(#CONFIG{annuaire_menu/menu_lien_contact, non}|=={non}|non)
+		[(#PLUGIN{contact}|oui)<a href="#URL_PAGE{contact}"><:annuaire:annuaire_contact:></a>]]
+		
+		[(#CONFIG{annuaire_menu/menu_lien_abonnement, non}|=={non}|non)
+		[(#PLUGIN{spiplistes}|ou{#PLUGIN{clevermail}}|oui)<a href="#URL_PAGE{abonnement}"><:annuaire:annuaire_abonnement:></a>]]
 	</h3>
 	</td>
 	[(#CONFIG{annuaire_colonne/config_copy, pied}|=={pied}|oui)
 	<td class="#ENV{class}3"><br />
-	[(#ENV{class}|=={pied}|oui)<INCLURE{fond=noisettes/nav/nav_copy2}{env}>]
+	[(#ENV{class}|=={pied}|oui)<INCLURE{fond=noisettes/nav/nav_copy2, env}>]
 	</td>
 	]
 	</tr>
