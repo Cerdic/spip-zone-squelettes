@@ -28,6 +28,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'date_heure_a' => '&agrave;',
 	'date_jour_le' => 'Le',
 	'envoyer_email' => 'Envoyer un email',
+	'groupes_mots' => 'Groupes de mots-cl&eacute;s',
 	'les_derniers_publies' => 'Les derniers publi&eacute;s',
 	'les_mieux_notes' => 'Les mieux not&eacute;s',
 	'les_plus_anciens' => 'Les plus anciens',

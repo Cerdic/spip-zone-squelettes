@@ -17,6 +17,7 @@
 [(#SET{liste_mots, #ENV{liste_mots}|sinon{tous}})]
 [(#SET{groupes,[(#GET{liste_mots}|=={groupes_specifiques}|?{#ENV{groupes_specifiques},#ARRAY})]})]
 <BOUCLE_groupes_tous(GROUPES_MOTS)>[(#GET{liste_mots}|=={tous}|?{#SET{groupes, #GET{groupes}|push{#ID_GROUPE}}})]</BOUCLE_groupes_tous>
+[(#ENV{id_groupe}|?{#SET{groupes, #ENV{id_groupe}}})]
 
 [(#SET{tri,[(#ENV{separer_resultats_groupes}|oui|?{type,titre})]})]
 
@@ -26,13 +27,13 @@
 	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})</h2>]]
 	[(#GET{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
 	<BOUCLE_liste_mots(MOTS) {id_groupe IN #GET{groupes}}{id_article ?}{id_breve ?}{id_rubrique ?}{id_syndic ?}{par #GET{tri}}{par titre}{pagination #GET{pas_pagination}}>
-	[(#ENV{separer_resultats_groupes}|oui)[[(#COMPTEUR_BOUCLE|=={1}|non)</ul>][(#GET{afficher_titre_liste}|oui|?{'<h3 class="h3">','<h2 class="h2">'})](#TYPE|unique)[(#GET{afficher_titre_liste}|oui|?{'</h3>','</h2>'})]<ul class="liste-items">]]
-	[(#ENV{separer_resultats_groupes}|non)[(#COMPTEUR_BOUCLE|=={1}|oui)<ul class="liste-items">]]
+	[(#ENV{separer_resultats_groupes}|oui)[[(#COMPTEUR_BOUCLE|modulo{#GET{pas_pagination}}|=={1}|non)</ul>][(#GET{afficher_titre_liste}|oui|?{'<h3 class="h3">','<h2 class="h2">'})](#TYPE|unique)[(#GET{afficher_titre_liste}|oui|?{'</h3>','</h2>'})]<ul class="liste-items">]]
+	[(#ENV{separer_resultats_groupes}|non)[(#COMPTEUR_BOUCLE|modulo{#GET{pas_pagination}}|=={1}|oui)<ul class="liste-items">]]
 	[(#GET{style_liste}|=={liste}|oui)
-		#INCLURE{fond=inclure/mot-liste,id_mot=#ID_MOT,env}
+		#INCLURE{fond=inclure/mot-liste,id_mot=#ID_MOT,id_mot_expose=#ENV{id_mot},env}
 	]
 	[(#GET{style_liste}|=={resume}|oui)
-		#INCLURE{fond=inclure/mot-resume,id_mot=#ID_MOT,env}
+		#INCLURE{fond=inclure/mot-resume,id_mot=#ID_MOT,id_mot_expose=#ENV{id_mot},env}
 	]
 	</BOUCLE_liste_mots>
 	</ul>
