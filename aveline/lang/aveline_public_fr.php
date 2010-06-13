@@ -20,6 +20,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'categorie_deux_points' => 'Cat&eacute;gorie&nbsp;:',
 	'categories' => 'Cat&eacute;gories',
 	'categories_deux_points' => 'Cat&eacute;gories&nbsp;:',
+	'ca_discute_par_ici' => '&Ccedil;a discute par ici',
 	'commentaires' => 'Commentaires',
 	'contact' => 'Contact',
 	'contributeurs' => 'Contributeurs',
