@@ -300,6 +300,12 @@ WHERE spip_mots.titre=\'Agenda\'');
 			ecrire_config('autorite/editer_forums',1);
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.5','non');
 		}
+		if (version_compare($current_version,'3.0.6','<')) {
+			spip_log("SoyezCreateurs maj 3.0.6", "soyezcreateurs_install");
+				create_mot("_Specialisation_Sites", "LienDirect", "Mettre ce mot clef aux sites pour faire des liens directs aux sites sans passer par une page intermédiaire.", "");
+		ecrire_meta($nom_meta_base_version,$current_version='3.0.6','non');
+		}
+			
 		/*
 		#En attente
 		if (version_compare($current_version,'2.1.10','<')) {
