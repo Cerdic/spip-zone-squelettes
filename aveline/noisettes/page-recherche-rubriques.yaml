@@ -1,28 +1,9 @@
 # L'option si n'existe pas dans Saisies (pour le moment).
 # Les options si définies ici ne sont là que pour rappeller les mises à jour du fichier à faire lorsqu'une option équivalente sera disponible
-nom: '<:aveline:nom_mot-breves:>'
-icon: 'img/ic_breve.png'
+nom: '<:aveline:nom_page-recherche-rubriques:>'
+description: '<:aveline:description_resultats_recherche:>'
+icon: 'img/ic_rubrique.png'
 parametres:
-  -
-    saisie: 'selection'
-    options:
-      nom: 'tri'
-      label: '<:aveline:label_tri:>'
-      defaut: 'date_heure'
-      cacher_option_intro: 'oui'
-      datas:
-        date_heure: '<:aveline:item_date:>'
-        titre: '<:aveline:item_titre:>'
-  -
-    saisie: 'selection'
-    options:
-      nom: 'senstri'
-      label: '<:aveline:label_senstri:>'
-      defaut: '1'
-      cacher_option_intro: 'oui'
-      datas:
-        0: '<:aveline:item_ascendant:>'
-        1: '<:aveline:item_descendant:>'
   -
     saisie: 'oui_non'
     options:
@@ -106,12 +87,13 @@ parametres:
     options:
       nom: 'titre_liste'
       label: '<:aveline:label_titre_liste:>'
-      defaut: 'public:breves'
+      defaut: 'public:rubriques'
       cacher_option_intro: 'oui'
       datas:
-        'public:breves': '<:public:breves:>'
-        'public:dernieres_breves': '<:public:dernieres_breves:>'
-        'public:autres_breves': '<:public:autres_breves:>'
+        'public:rubriques': '<:public:rubriques:>'
+        'aveline_public:categories': '<:aveline_public:categories:>'
+        'aveline_public:themes': '<:aveline_public:themes:>'
+        'aveline_public:sujets': '<:aveline_public:sujets:>'
         titre_perso: '<:aveline:item_titre_perso:>'
       #si: 'afficher_titre_liste == "on"'
   -
@@ -121,6 +103,12 @@ parametres:
       label: '<:aveline:label_titre_liste_perso:>'
       explication: '<:aveline:explication_raccourcis_typo:>'
       #si: 'afficher_titre_liste == "on" && titre_liste == "titre_perso"'
+  -
+    saisie: 'oui_non'
+    options:
+      nom: 'afficher_nb_resultats'
+      label: '<:aveline:label_afficher_nb_resultats:>'
+      defaut: 'on'
   -
     saisie: 'selection'
     options:
@@ -140,32 +128,6 @@ parametres:
       plie: 'oui'
       #si: 'style_liste == "liste"'
     saisies:
-      -
-        saisie: 'oui_non'
-        options:
-          nom: 'liste_afficher_date'
-          label: '<:aveline:label_afficher_date:>'
-          defaut: 'on'
-      -
-        saisie: 'oui_non'
-        options:
-          nom: 'liste_afficher_rubrique'
-          label: '<:aveline:label_afficher_rubrique:>'
-      -
-        saisie: 'selection'
-        options:
-          nom: 'liste_texte_devant_rubrique'
-          label: '<:aveline:label_texte_devant_rubrique:>'
-          defaut: 'aveline_public:rubrique_deux_points'
-          #si: 'liste_afficher_rubrique=="on"'
-          datas:
-            'aveline_public:rubrique_deux_points': '<:aveline_public:rubrique_deux_points:>'
-            'aveline_public:categorie_deux_points': '<:aveline_public:categorie_deux_points:>'
-            'aveline_public:theme_deux_points': '<:aveline_public:theme_deux_points:>'
-            'aveline_public:sujet_deux_points': '<:aveline_public:sujet_deux_points:>'
-            'aveline_public:dans': '<:aveline_public:dans:>'
-            '::' : '::'
-            '>' : '>'
       -
         saisie: 'oui_non'
         options:
@@ -205,22 +167,9 @@ parametres:
       -
         saisie: 'oui_non'
         options:
-          nom: 'afficher_date'
-          label: '<:aveline:label_afficher_date:>'
-          defaut: 'on'
-      -
-        saisie: 'oui_non'
-        options:
           nom: 'afficher_logo'
           label: '<:aveline:label_afficher_logo:>'
           defaut: 'on'
-      -
-        saisie: 'oui_non'
-        options:
-          nom: 'utiliser_logo_breve_rubrique'
-          label: '<:aveline:label_utiliser_logo_breve_rubrique:>'
-          defaut: 'on'
-          #si: 'afficher_logo =="on"'
       -
         saisie: 'input'
         options:
@@ -262,23 +211,6 @@ parametres:
       -
         saisie: 'oui_non'
         options:
-          nom: 'afficher_rubrique'
-          label: '<:aveline:label_afficher_rubrique:>'
-      -
-        saisie: 'selection'
-        options:
-          nom: 'texte_devant_rubrique'
-          label: '<:aveline:label_texte_devant_rubrique:>'
-          defaut: 'aveline_public:rubrique_deux_points'
-          #si: 'afficher_rubrique=="on"'
-          datas:
-            'aveline_public:rubrique_deux_points': '<:aveline_public:rubrique_deux_points:>'
-            'aveline_public:categorie_deux_points': '<:aveline_public:categorie_deux_points:>'
-            '::' : '::'
-            '>' : '>'
-      -
-        saisie: 'oui_non'
-        options:
           nom: 'afficher_mots_cles'
           label: '<:aveline:label_afficher_mots_cles:>'
           defaut: ''
@@ -300,3 +232,9 @@ parametres:
           nom: 'afficher_nb_commentaires'
           label: '<:aveline:label_afficher_nb_commentaires:>'
           defaut: 'on'
+  -
+    saisie: 'oui_non'
+    options:
+      nom: 'message_aucun_resultat'
+      label: '<:aveline:label_message_aucun_resultat:>'
+      defaut: ''

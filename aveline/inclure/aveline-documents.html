@@ -19,16 +19,16 @@
 [(#SET{style_pagination, #ENV{style_pagination}|sinon{''}})]
 
 <BOUCLE_test_exclusion_portfolio(CONDITION){si #ENV{exclure_photos}}>
-	<BOUCLE_documents_portfolio(DOCUMENTS) {id_article?}{id_rubrique?} {mode=document}{extension IN png,jpg,gif}{vu?}{doublons portfolio}> </BOUCLE_documents_portfolio>
+	<BOUCLE_documents_portfolio(DOCUMENTS) {id_article?}{id_rubrique?}{recherche?}{mode=document}{extension IN png,jpg,gif}{vu?}{doublons portfolio}> </BOUCLE_documents_portfolio>
 </BOUCLE_test_exclusion_portfolio>
 
 <B_documents_joints>
 	<div class="liste documents documents_joints">
 	#ANCRE_PAGINATION
-	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre}) [((#ENV{archives}|affdate_mois_annee|sinon{#ENV{archives}}))]</h2>]]
+	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})[(#ENV{afficher_nb_resultats}|oui)&#40;#GRAND_TOTAL&#41;][ ((#ENV{archives}|affdate_mois_annee|sinon{#ENV{archives}}))]</h2>]]
 	[(#GET{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
 	<ul class="liste-items">
-		<BOUCLE_documents_joints(DOCUMENTS) {id_article?}{id_rubrique?} {vu?}{par num #GET{tri_num}}{inverse #GET{senstri}}{par #GET{tri}}{inverse #GET{senstri}}{pagination #GET{pas_pagination}}{doublons portfolio}>
+		<BOUCLE_documents_joints(DOCUMENTS) {id_article?}{id_rubrique?}{recherche?}{vu?}{par num #GET{tri_num}}{inverse #GET{senstri}}{par #GET{tri}}{inverse #GET{senstri}}{pagination #GET{pas_pagination}}{doublons portfolio}>
 	[(#GET{style_liste}|=={liste}|oui)
 		<li class="item">
 			<strong><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a></strong>
@@ -66,3 +66,5 @@
 	[(#GET{position_pagination_fin}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
 	</div>
 </B_documents_joints>
+[(#ENV{message_aucun_resultat}|oui)<div class="texte"><:aveline_public:aucun_document_trouve:></div>]
+<//B_documents_joints>

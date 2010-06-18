@@ -1,3 +1,4 @@
+[(#SET{langue_choisie, [(#ENV{restreindre_langue}|oui|?{[^(#ENV{lang})$],''})]})]
 [(#SET{selection, #ENV{selection}|sinon{limite}})]
 [(#SET{tri, #ENV{tri}|sinon{date_heure}})]
 [(#SET{senstri, #ENV{senstri}|sinon{1}})]
@@ -23,7 +24,7 @@
 	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})</h2>]]
 	[(#GET{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
 	<ul class="liste-items">
-	<BOUCLE_liste_breves(BREVES) {id_mot} {par num #GET{tri_num}}{inverse #GET{senstri}}{par #GET{tri}}{inverse #GET{senstri}}{pagination #GET{pas_pagination}}>
+	<BOUCLE_liste_breves(BREVES) {id_mot} {par num #GET{tri_num}}{inverse #GET{senstri}}{par #GET{tri}}{inverse #GET{senstri}}{pagination #GET{pas_pagination}}{lang == #GET{langue_choisie}|sinon{.}}>
 	[(#GET{style_liste}|=={liste}|oui)
 		#INCLURE{fond=inclure/breve-liste,id_breve=#ID_BREVE,id_breve_expose=#ENV{id_breve},env}
 	]

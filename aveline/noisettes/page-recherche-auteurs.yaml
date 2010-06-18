@@ -1,35 +1,9 @@
 # L'option si n'existe pas dans Saisies (pour le moment).
 # Les options si définies ici ne sont là que pour rappeller les mises à jour du fichier à faire lorsqu'une option équivalente sera disponible
-nom: '<:aveline:nom_mot-rubriques:>'
-icon: 'img/ic_rubrique.png'
+nom: '<:aveline:nom_page-recherche-auteurs:>'
+description: '<:aveline:description_resultats_recherche:>'
+icon: 'img/ic_auteur.png'
 parametres:
-  -
-    saisie: 'selection'
-    options:
-      nom: 'tri'
-      label: '<:aveline:label_tri:>'
-      defaut: 'titre'
-      cacher_option_intro: 'oui'
-      datas:
-        date_heure: '<:aveline:item_date_rubrique:>'
-        titre: '<:aveline:item_titre:>'
-  -
-    saisie: 'selection'
-    options:
-      nom: 'senstri'
-      label: '<:aveline:label_senstri:>'
-      defaut: '0'
-      cacher_option_intro: 'oui'
-      datas:
-        0: '<:aveline:item_ascendant:>'
-        1: '<:aveline:item_descendant:>'
-  -
-    saisie: 'oui_non'
-    options:
-      nom: 'restreindre_langue'
-      label: '<:aveline:label_restreindre_langue:>'
-      explication: '<:aveline:explication_restreindre_langue:>'
-      defaut: ''
   -
     saisie: 'selection'
     options:
@@ -106,14 +80,11 @@ parametres:
     options:
       nom: 'titre_liste'
       label: '<:aveline:label_titre_liste:>'
-      defaut: 'public:rubriques'
+      defaut: 'spip:icone_tous_auteur'
       cacher_option_intro: 'oui'
       datas:
-        'public:rubriques': '<:public:rubriques:>'
-        'aveline_public:categories': '<:aveline_public:categories:>'
-        'aveline_public:themes': '<:aveline_public:themes:>'
-        'aveline_public:sujets': '<:aveline_public:sujets:>'
-        titre_perso: '<:aveline:item_titre_perso:>'
+        'spip:icone_auteurs': '<:spip:icone_auteurs:>'
+        'aveline_public:contributeurs' : '<:aveline_public:contributeurs:>'
       #si: 'afficher_titre_liste == "on"'
   -
     saisie: 'input'
@@ -122,6 +93,50 @@ parametres:
       label: '<:aveline:label_titre_liste_perso:>'
       explication: '<:aveline:explication_raccourcis_typo:>'
       #si: 'afficher_titre_liste == "on" && titre_liste == "titre_perso"'
+  -
+    saisie: 'oui_non'
+    options:
+      nom: 'afficher_nb_resultats'
+      label: '<:aveline:label_afficher_nb_resultats:>'
+      defaut: 'on'
+  -
+    saisie: 'oui_non'
+    options:
+      nom: 'choix_tri'
+      label: '<:aveline:label_choix_tri:>'
+      explication: '<:aveline:explication_choix_tri:>'
+  -
+    saisie: 'fieldset'
+    options:
+      nom: 'si_choix_tri'
+      label: '<:aveline:label_si_choix_tri:>'
+      pliable: 'oui'
+      plie: 'oui'
+      #si: 'choix_tri == "on"'
+    saisies:
+      -
+        saisie: 'selection'
+        options:
+          nom: 'position_choix_tri'
+          label: '<:aveline:label_position_choix_tri:>'
+          defaut: 'debut'
+          cacher_option_intro: 'oui'
+          datas:
+            debut: '<:aveline:item_debut:>'
+            fin: '<:aveline:item_fin:>'
+            deux: '<:aveline:item_deux:>'
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'choix_tri_nom'
+          label: '<:aveline_public:par_nom:>'
+          defaut: 'on'
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'choix_tri_nb_articles'
+          label: '<:aveline_public:par_nb_articles:>'
+          defaut: 'on'
   -
     saisie: 'selection'
     options:
@@ -132,6 +147,7 @@ parametres:
       datas:
         liste: '<:aveline:item_liste:>'
         resume: '<:aveline:item_resume:>'
+        vignettes: '<:aveline:item_vignettes:>'
   -
     saisie: 'fieldset'
     options:
@@ -144,29 +160,8 @@ parametres:
       -
         saisie: 'oui_non'
         options:
-          nom: 'liste_afficher_mots_cles'
-          label: '<:aveline:label_afficher_mots_cles:>'
-          defaut: ''
-      -
-        saisie: 'selection'
-        options:
-          nom: 'liste_texte_devant_mots_cles'
-          label: '<:aveline:label_texte_devant_mots_cles:>'
-          defaut: 'aveline_public:mots_cles_deux_points'
-          #si: 'liste_afficher_mots_cles=="on"'
-          datas:
-            'aveline_public:mots_cles_deux_points': '<:aveline_public:mots_cles_deux_points:>'
-            'aveline_public:tags_deux_points': '<:aveline_public:tags_deux_points:>'
-            'aveline_public:categories_deux_points': '<:aveline_public:categorie_deux_points:>'
-            'aveline_public:themes_deux_points': '<:aveline_public:theme_deux_points:>'
-            'aveline_public:sujets_deux_points': '<:aveline_public:sujet_deux_points:>'
-            '::' : '::'
-            '>' : '>'
-      -
-        saisie: 'oui_non'
-        options:
-          nom: 'liste_afficher_nb_commentaires'
-          label: '<:aveline:label_afficher_nb_commentaires:>'
+          nom: 'liste_afficher_nb_articles'
+          label: '<:aveline:label_afficher_nb_articles:>'
           defaut: ''
   -
     saisie: 'fieldset'
@@ -177,6 +172,13 @@ parametres:
       plie: 'oui'
       #si: 'style_liste == "resume"'
     saisies:
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'afficher_bio'
+          label: '<:aveline:label_afficher_bio:>'
+          defaut: 'on'
+          defaut: ''
       -
         saisie: 'oui_non'
         options:
@@ -194,15 +196,6 @@ parametres:
           type: 'entier'
           min: 10
       -
-        saisie: 'input'
-        options:
-          nom: 'longueur_max_introduction'
-          label: '<:aveline:label_longueur_max_introduction:>'
-          defaut: 600
-        verifier:
-          type: 'entier'
-          min: 10
-      -
         saisie: 'oui_non'
         options:
           nom: 'afficher_lire_la_suite'
@@ -211,37 +204,50 @@ parametres:
       -
         saisie: 'oui_non'
         options:
-          nom: 'rappeler_titre'
-          label: '<:aveline:label_rappeler_titre:>'
-          defaut: 'on'
+          nom: 'rappeler_nom'
+          label: '<:aveline:label_rappeler_nom:>'
+          defaut: ''
           #si: 'afficher_lire_la_suite == "on"'
       -
         saisie: 'oui_non'
         options:
-          nom: 'afficher_lien_permanent'
-          label: '<:aveline:label_afficher_lien_permanent:>'
+          nom: 'afficher_nb_articles'
+          label: '<:aveline:label_afficher_nb_articles:>
+          defaut: ''
+  -
+    saisie: 'fieldset'
+    options:
+      nom: 'si_vignettes'
+      label: '<:aveline:label_si_vignettes:>'
+      pliable: 'oui'
+      plie: 'oui'
+      #si: 'style_liste == "vignettes"'
+    saisies:
+      -
+        saisie: 'input'
+        options:
+          nom: 'vignette_taille_max_logo'
+          label: '<:aveline:label_taille_max_logo:>'
+          defaut: 50
+        verifier:
+          type: 'entier'
+          min: 10
+      -
+        saisie: 'oui_non'
+        options:
+          nom: 'vignette_afficher_nb_articles'
+          label: '<:aveline:label_afficher_nb_articles:>'
           defaut: ''
       -
         saisie: 'oui_non'
         options:
-          nom: 'afficher_mots_cles'
-          label: '<:aveline:label_afficher_mots_cles:>'
-          defaut: ''
-      -
-        saisie: 'selection'
-        options:
-          nom: 'texte_devant_mots_cles'
-          label: '<:aveline:label_texte_devant_mots_cles:>'
-          defaut: 'aveline_public:mots_cles_deux_points'
-          #si: 'afficher_mots_cles=="on"'
-          datas:
-            'aveline_public:mots_cles_deux_points': '<:aveline_public:mots_cles_deux_points:>'
-            'aveline_public:tags_deux_points': '<:aveline_public:tags_deux_points:>'
-            '::' : '::'
-            '>' : '>'
-      -
-        saisie: 'oui_non'
-        options:
-          nom: 'afficher_nb_commentaires'
-          label: '<:aveline:label_afficher_nb_commentaires:>'
+          nom: 'vignette_ajout_css'
+          label: '<:aveline:label_vignette_ajout_css:>'
+          explication: '<:aveline:explication_vignette_ajout_css:>'
           defaut: 'on'
+  -
+    saisie: 'oui_non'
+    options:
+      nom: 'message_aucun_resultat'
+      label: '<:aveline:label_message_aucun_resultat:>'
+      defaut: ''

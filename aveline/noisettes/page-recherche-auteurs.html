@@ -1,6 +1,4 @@
 [(#SET{selection, #ENV{selection}|sinon{limite}})]
-[(#SET{tri, #ENV{tri}|sinon{date}})]
-[(#SET{senstri, #ENV{senstri}|sinon{1}})]
 
 [(#SET{pas_pagination, #ENV{pas_pagination}|sinon{5}})]
 [(#SET{limite, #ENV{limite}|sinon{10}})]
@@ -25,43 +23,15 @@
 [(#SET{titre_liste, #ENV{titre_liste}|sinon{spip:icone_tous_auteur}})]
 [(#SET{titre,[(#GET{titre_liste}|=={titre_perso}|?{[(#ENV**{titre_liste_perso}|propre)],[(#GET{titre_liste}|_T)]})]})]
 
-<BOUCLE_tri_nb_articles(CONDITION){si (#GET{tri}|=={nb_articles})}>
-<B_liste_auteurs_tri_nb_articles>
-<div class="liste auteurs">
-	#ANCRE_PAGINATION
-	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})</h2>]]
-	
-	[(#GET{position_choix_tri_debut}|oui)#INCLURE{fond=inclure/liste_auteurs-choix_tri,env,tri=#GET{tri},senstri=#GET{senstri}}]
-	[(#GET{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
-	<ul class="liste-items">
-	<BOUCLE_liste_auteurs_tri_nb_articles(AUTEURS) {compteur articles}{par compteur_articles}{inverse #GET{senstri}}{pagination #GET{pas_pagination}}>
-	[(#GET{style_liste}|=={liste}|oui)
-		<li class="item"><a href="#URL_AUTEUR"[ class="(#EXPOSE)"]>[(#NOM|couper{80})]</a></li>
-		[(#ENV{liste_afficher_nb_articles}|oui)<div class="info-publi">#INCLURE{fond=inclure/auteur-nb_articles,id_auteur,ajoute_point='on'}</div>]
-	]
-	[(#GET{style_liste}|=={resume}|oui)
-		#INCLURE{fond=inclure/auteur-resume,id_auteur=#ID_AUTEUR,id_auteur_expose=#ENV{id_auteur},env}
-	]
-	[(#GET{style_liste}|=={vignettes}|oui)
-		#INCLURE{fond=inclure/auteur-vignette,id_auteur=#ID_AUTEUR,id_auteur_expose=#ENV{id_auteur},env}
-	]
-	</BOUCLE_liste_auteurs_tri_nb_articles>
-	</ul>
-	[(#GET{position_pagination_fin}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
-	[(#GET{position_choix_tri_fin}|oui)#INCLURE{fond=inclure/liste_auteurs-choix_tri,env,tri=#GET{tri},senstri=#GET{senstri}}]
-</div>
-</B_liste_auteurs_tri_nb_articles>
-</BOUCLE_tri_nb_articles>
-
 <B_liste_auteurs>
 <div class="liste auteurs">
 	#ANCRE_PAGINATION
-	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})</h2>]]
+	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})[(#ENV{afficher_nb_resultats}|oui)&#40;#GRAND_TOTAL&#41;]</h2>]]
 	
 	[(#GET{position_choix_tri_debut}|oui)#INCLURE{fond=inclure/liste_auteurs-choix_tri,env,tri=#GET{tri},senstri=#GET{senstri}}]
 	[(#GET{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
 	<ul class="liste-items">
-	<BOUCLE_liste_auteurs(AUTEURS) {par #GET{tri}}{inverse #GET{senstri}}{pagination #GET{pas_pagination}}>
+	<BOUCLE_liste_auteurs(AUTEURS){recherche}{par points}{inverse}{pagination #GET{pas_pagination}}>
 	[(#GET{style_liste}|=={liste}|oui)
 		<li class="item"><a href="#URL_AUTEUR"[ class="(#EXPOSE)"]>[(#NOM|couper{80})]</a></li>
 		[(#ENV{liste_afficher_nb_articles}|oui)<div class="info-publi">#INCLURE{fond=inclure/auteur-nb_articles,id_auteur,ajoute_point='on'}</div>]
@@ -78,5 +48,5 @@
 	[(#GET{position_choix_tri_fin}|oui)#INCLURE{fond=inclure/liste_auteurs-choix_tri,env,tri=#GET{tri},senstri=#GET{senstri}}]
 </div>
 </B_liste_auteurs>
-
-<//B_tri_nb_articles>
+[(#ENV{message_aucun_resultat}|oui)<div class="texte"><:aveline_public:aucun_auteur_trouve:></div>]
+<//B_liste_auteurs>

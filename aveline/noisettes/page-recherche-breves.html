@@ -1,8 +1,5 @@
+[(#SET{selection, #ENV{selection}|sinon{pagination}})]
 [(#SET{langue_choisie, [(#ENV{restreindre_langue}|oui|?{[^(#ENV{lang})$],''})]})]
-[(#SET{selection, #ENV{selection}|sinon{limite}})]
-[(#SET{tri, #ENV{tri}|sinon{date_heure}})]
-[(#SET{senstri, #ENV{senstri}|sinon{1}})]
-[(#SET{tri_num, #GET{tri}|=={titre}|?{titre,''}})]
 
 [(#SET{pas_pagination, #ENV{pas_pagination}|sinon{5}})]
 [(#SET{limite, #ENV{limite}|sinon{10}})]
@@ -14,25 +11,27 @@
 
 [(#SET{style_liste, #ENV{style_liste}|sinon{liste}})]
 [(#SET{afficher_titre_liste, #ENV{afficher_titre_liste}|is_null|non|?{#ENV{afficher_titre_liste},'on'}})]
-[(#SET{titre_liste, #ENV{titre_liste}|sinon{public:rubriques}})]
+[(#SET{titre_liste, #ENV{titre_liste}|sinon{public:breves}})]
 [(#SET{titre,[(#GET{titre_liste}|=={titre_perso}|?{[(#ENV**{titre_liste_perso}|propre)],[(#GET{titre_liste}|_T)]})]})]
 [(#SET{style_pagination, #ENV{style_pagination}|sinon{''}})]
 
-<B_liste_rubriques>
-<div class="liste rubriques">
+<B_liste_breves>
+<div class="liste breves">
 	#ANCRE_PAGINATION
-	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})</h2>]]
+	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})[(#ENV{afficher_nb_resultats}|oui)&#40;#GRAND_TOTAL&#41;]</h2>]]
 	[(#GET{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
 	<ul class="liste-items">
-	<BOUCLE_liste_rubriques(RUBRIQUES) {id_mot} {par num #GET{tri_num}}{inverse #GET{senstri}}{par #GET{tri}}{inverse #GET{senstri}}{pagination #GET{pas_pagination}}{lang == #GET{langue_choisie}|sinon{.}}>
+	<BOUCLE_liste_breves(BREVES) {recherche} {par points}{inverse}{lang == #GET{langue_choisie}|sinon{.}}{pagination #GET{pas_pagination}}>
 	[(#GET{style_liste}|=={liste}|oui)
-		#INCLURE{fond=inclure/rubrique-liste,id_rubrique=#ID_RUBRIQUE,env}
+		#INCLURE{fond=inclure/breve-liste,id_breve=#ID_BREVE,id_breve_expose=#ENV{id_breve},env}
 	]
 	[(#GET{style_liste}|=={resume}|oui)
-		#INCLURE{fond=inclure/rubrique-resume,id_rubrique=#ID_RUBRIQUE,env}
+		#INCLURE{fond=inclure/breve-resume,id_breve=#ID_BREVE,id_breve_expose=#ENV{id_breve},env}
 	]
-	</BOUCLE_liste_rubriques>
+	</BOUCLE_liste_breves>
 	</ul>
 	[(#GET{position_pagination_fin}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
 </div>
-</B_liste_rubriques>
+</B_liste_breves>
+[(#ENV{message_aucun_resultat}|oui)<div class="texte"><:aveline_public:aucune_breve_trouvee:></div>]
+<//B_liste_breves>

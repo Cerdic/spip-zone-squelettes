@@ -19,14 +19,15 @@
 <BOUCLE_groupes_tous(GROUPES_MOTS)>[(#GET{liste_mots}|=={tous}|?{#SET{groupes, #GET{groupes}|push{#ID_GROUPE}}})]</BOUCLE_groupes_tous>
 [(#ENV{id_groupe}|?{#SET{groupes, #ENV{id_groupe}}})]
 
-[(#SET{tri,[(#ENV{separer_resultats_groupes}|oui|?{type,titre})]})]
+[(#SET{tri,[(#ENV{recherche}|oui|?{points,[(#ENV{separer_resultats_groupes}|oui|?{type,titre})]})]})]
+[(#SET{senstri,[(#ENV{recherche}|oui|?{1,0})]})]
 
 <B_liste_mots>
 <div class="liste mots">
 	#ANCRE_PAGINATION
-	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})</h2>]]
+	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})[(#ENV{afficher_nb_resultats}|oui)&#40;#GRAND_TOTAL&#41;]</h2>]]
 	[(#GET{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
-	<BOUCLE_liste_mots(MOTS) {id_groupe IN #GET{groupes}}{id_article ?}{id_breve ?}{id_rubrique ?}{id_syndic ?}{par #GET{tri}}{par titre}{pagination #GET{pas_pagination}}>
+	<BOUCLE_liste_mots(MOTS) {id_groupe IN #GET{groupes}}{id_article ?}{id_breve ?}{id_rubrique ?}{id_syndic ?}{recherche?}{par #GET{tri}}{inverse #GET{senstri}}{par titre}{pagination #GET{pas_pagination}}>
 	[(#ENV{separer_resultats_groupes}|oui)[[(#COMPTEUR_BOUCLE|modulo{#GET{pas_pagination}}|=={1}|non)</ul>][(#GET{afficher_titre_liste}|oui|?{'<h3 class="h3">','<h2 class="h2">'})](#TYPE|unique)[(#GET{afficher_titre_liste}|oui|?{'</h3>','</h2>'})]<ul class="liste-items">]]
 	[(#ENV{separer_resultats_groupes}|non)[(#COMPTEUR_BOUCLE|modulo{#GET{pas_pagination}}|=={1}|oui)<ul class="liste-items">]]
 	[(#GET{style_liste}|=={liste}|oui)
@@ -40,3 +41,5 @@
 	[(#GET{position_pagination_fin}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
 </div>
 </B_liste_mots>
+[(#ENV{message_aucun_resultat}|oui)<div class="texte"><:aveline_public:aucun_mot_trouve:></div>]
+<//B_liste_mots>

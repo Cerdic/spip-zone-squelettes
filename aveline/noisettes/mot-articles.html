@@ -20,6 +20,7 @@
 [(#SET{position_selecteur_archives_debut,#ENV{afficher_selecteur_archives}|non|ou{#GET{position_selecteur_archives}|=={fin}}|?{'',on}})]
 [(#SET{position_selecteur_archives_fin,#ENV{afficher_selecteur_archives}|non|ou{#GET{position_selecteur_archives}|=={debut}}|?{'',on}})]
 
+[(#SET{langue_choisie, [(#ENV{restreindre_langue}|oui|?{[^(#ENV{lang})$],''})]})]
 [(#SET{style_liste, #ENV{style_liste}|sinon{liste}})]
 [(#SET{afficher_titre_liste, #ENV{afficher_titre_liste}|is_null|non|?{#ENV{afficher_titre_liste},'on'}})]
 [(#SET{titre_liste, #ENV{titre_liste}|sinon{public:articles}})]
@@ -34,11 +35,11 @@
 	#ANCRE_PAGINATION
 	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre}) [((#ENV{archives}|affdate_mois_annee|sinon{#ENV{archives}}))]</h2>]]
 	
-	[(#GET{position_selecteur_archives_debut}|oui)#INCLURE{fond=inclure/liste_articles-selecteur_archives,archives,pas_selecteur_archives,texte_devant_selecteur_archives,id_mot,compteur_articles_selecteur_archives}]
+	[(#GET{position_selecteur_archives_debut}|oui)#INCLURE{fond=inclure/liste_articles-selecteur_archives,archives,pas_selecteur_archives,texte_devant_selecteur_archives,id_mot,lang_choisie= #GET{langue_choisie},compteur_articles_selecteur_archives}]
 	[(#GET{position_choix_tri_debut}|oui)#INCLURE{fond=inclure/liste_articles-choix_tri,env,tri=#GET{tri},senstri=#GET{senstri}}]
 	[(#GET{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
 	<ul class="liste-items">
-	<BOUCLE_liste_articles_tri_nbre_commentaires(ARTICLES) {id_mot}{compteur_publie forum}{par compteur_forum}{inverse #GET{senstri}}{archives ?}{pagination #GET{pas_pagination}}>
+	<BOUCLE_liste_articles_tri_nbre_commentaires(ARTICLES) {id_mot}{compteur_publie forum}{par compteur_forum}{inverse #GET{senstri}}{archives ?}{pagination #GET{pas_pagination}}{lang == #GET{langue_choisie}|sinon{.}}>
 	[(#GET{style_liste}|=={liste}|oui)
 		#INCLURE{fond=inclure/article-liste,id_article=#ID_ARTICLE,id_article_expose=#ENV{id_article},env}
 	]
@@ -49,13 +50,13 @@
 	</ul>
 	[(#GET{position_pagination_fin}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
 	[(#GET{position_choix_tri_fin}|oui)#INCLURE{fond=inclure/liste_articles-choix_tri,env,tri=#GET{tri},senstri=#GET{senstri}}]
-	[(#GET{position_selecteur_archives_fin}|oui)#INCLURE{fond=inclure/liste_articles-selecteur_archives,archives,pas_selecteur_archives,texte_devant_selecteur_archives,id_mot,compteur_articles_selecteur_archives}]
+	[(#GET{position_selecteur_archives_fin}|oui)#INCLURE{fond=inclure/liste_articles-selecteur_archives,archives,pas_selecteur_archives,texte_devant_selecteur_archives,id_mot,lang_choisie= #GET{langue_choisie},compteur_articles_selecteur_archives}]
 </div>
 </B_liste_articles_tri_nbre_commentaires>
 </BOUCLE_tri_nbre_commentaires>
 
 <BOUCLE_tri_note(CONDITION){si (#GET{tri}|=={note}|et{#PLUGIN{notation}})}>
-#INCLURE{fond=inclure/mot_articles_note,env,afficher_titre_liste=#GET{afficher_titre_liste},titre=#GET{titre},position_choix_tri_debut=#GET{position_choix_tri_debut},tri=#GET{tri},senstri=#GET{senstri},position_pagination_debut=#GET{position_pagination_debut},style_pagination=#GET{style_pagination},pas_pagination=#GET{pas_pagination},style_liste=#GET{style_liste},position_pagination_fin=#GET{position_pagination_fin},position_choix_tri_fin=#GET{position_choix_tri_fin}}
+#INCLURE{fond=inclure/mot_articles_note,env,afficher_titre_liste=#GET{afficher_titre_liste},titre=#GET{titre},position_choix_tri_debut=#GET{position_choix_tri_debut},tri=#GET{tri},senstri=#GET{senstri},lang_choisie=#GET{langue_choisie},position_pagination_debut=#GET{position_pagination_debut},style_pagination=#GET{style_pagination},pas_pagination=#GET{pas_pagination},style_liste=#GET{style_liste},position_pagination_fin=#GET{position_pagination_fin},position_choix_tri_fin=#GET{position_choix_tri_fin}}
 </BOUCLE_tri_note>
 
 <B_liste_articles>
@@ -63,11 +64,11 @@
 	#ANCRE_PAGINATION
 	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre}) [((#ENV{archives}|affdate_mois_annee|sinon{#ENV{archives}}))]</h2>]]
 	
-	[(#GET{position_selecteur_archives_debut}|oui)#INCLURE{fond=inclure/liste_articles-selecteur_archives,archives,pas_selecteur_archives,texte_devant_selecteur_archives,id_mot,compteur_articles_selecteur_archives}]
+	[(#GET{position_selecteur_archives_debut}|oui)#INCLURE{fond=inclure/liste_articles-selecteur_archives,archives,pas_selecteur_archives,texte_devant_selecteur_archives,id_mot,lang_choisie=#GET{langue_choisie},compteur_articles_selecteur_archives}]
 	[(#GET{position_choix_tri_debut}|oui)#INCLURE{fond=inclure/liste_articles-choix_tri,env,tri=#GET{tri},senstri=#GET{senstri}}]
 	[(#GET{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
 	<ul class="liste-items">
-	<BOUCLE_liste_articles(ARTICLES) {id_mot} {archives ?}{par num #GET{tri_num}}{inverse #GET{senstri}}{par #GET{tri}}{inverse #GET{senstri}}{pagination #GET{pas_pagination}}>
+	<BOUCLE_liste_articles(ARTICLES) {id_mot} {archives ?}{par num #GET{tri_num}}{inverse #GET{senstri}}{par #GET{tri}}{inverse #GET{senstri}}{pagination #GET{pas_pagination}}{lang == #GET{langue_choisie}|sinon{.}}>
 	[(#GET{style_liste}|=={liste}|oui)
 		#INCLURE{fond=inclure/article-liste,id_article=#ID_ARTICLE,id_article_expose=#ENV{id_article},env}
 	]
@@ -78,7 +79,7 @@
 	</ul>
 	[(#GET{position_pagination_fin}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
 	[(#GET{position_choix_tri_fin}|oui)#INCLURE{fond=inclure/liste_articles-choix_tri,env,tri=#GET{tri},senstri=#GET{senstri}}]
-	[(#GET{position_selecteur_archives_fin}|oui)#INCLURE{fond=inclure/liste_articles-selecteur_archives,archives,pas_selecteur_archives,texte_devant_selecteur_archives,id_mot,compteur_articles_selecteur_archives}]
+	[(#GET{position_selecteur_archives_fin}|oui)#INCLURE{fond=inclure/liste_articles-selecteur_archives,archives,pas_selecteur_archives,texte_devant_selecteur_archives,id_mot,lang_choisie=#GET{langue_choisie},compteur_articles_selecteur_archives}]
 </div>
 </B_liste_articles>
 
