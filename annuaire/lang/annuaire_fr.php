@@ -40,6 +40,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'annuaire_general' => 'G&eacute;n&eacute;ralit&eacute;s',
 'annuaire_gratuit' => 'Annuaire gratuit de liens en dur',
 'annuaire_herbier' => 'Herbier',
+'annuaire_login_public' => 'Login public',
 'annuaire_menu' => 'Menu du site',
 'annuaire_mot' => 'Mot',
 'annuaire_partenaire' => 'Partenaire',
@@ -77,6 +78,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'configuration_forum' => 'configuration des forum du site',
 'configuration_herbier' => 'configuration de la page "herbier"',
 'configuration_general' => 'configuration des g&eacute;n&eacute;ralit&eacute;s du site',
+'configuration_login_public' => 'configuration de la page "login public"',
 'configuration_menu' => 'configuration des liens du menu',
 'configuration_mot' => 'configuration de la page "mot"',
 'configuration_partenaire' => 'configuration de la page "partenaire"',
@@ -100,6 +102,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'css_couleurs_fond_page_erreur' => 'Choisissez la couleur du fond de la page "erreur"',
 'css_couleurs_fond_page_forum' => 'Choisissez la couleur du fond de la page "forum"',
 'css_couleurs_fond_page_herbier' => 'Choisissez la couleur du fond de la page "herbier"',
+'css_couleurs_fond_page_login_public' => 'Choisissez la couleur du fond de la page "login public"',
 'css_couleurs_fond_page_mot' => 'Choisissez la couleur du fond de la page "mot"',
 'css_couleurs_fond_page_partenaire1' => 'Choisissez la couleur du fond de la page "partenaire"',
 'css_couleurs_fond_page_plan' => 'Choisissez la couleur du fond de la page "plan"',
@@ -156,6 +159,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'descriptif_herbier' => '<h4>R&eacute;glage de l\'herbier</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur l\'herbier.
 				<p />C\'est la page où l\'on affiche l\'actualiter des sites syndiqu&eacute;',
+'descriptif_login' => '<h4>R&eacute;glage de la page login</h4>
+				<br />R&eacute;gl&eacute; vos styles sur la page login.',
 'descriptif_menu' => '<h4>R&eacute;glage du menu</h4>
 				<br />Afficher ou non les liens vers les pages du site, cette configuration agit sur le menu de l\'ent&ecirc;tete et le pied de page.',
 'descriptif_mot' => '<h4>R&eacute;glage de la page mot</h4>

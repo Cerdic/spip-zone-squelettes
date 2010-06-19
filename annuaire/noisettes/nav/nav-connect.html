@@ -1,0 +1,10 @@
+	<div id="connect_nav"><strong><:annuaire:espace_membre_gestion_sites:></strong></div>
+	<fieldset id="connect">
+		[(#SESSION{id_auteur}|non)<a href="#URL_PAGE{login_public}" rel="nofollow"><:lien_connecter:></a>]
+		[(#SESSION{id_auteur}|oui)<a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a>]
+
+		[(#ENV{id_syndic}|oui)[(#AUTORISER{modifier, site, #ID_SYNDIC})
+		<br /><a href="[(#URL_PAGE{sites_edit,id_syndic=#ID_SYNDIC,id_rubrique=[(#ID_RUBRIQUE|sinon{'0'})]}|parametre_url{retour,#URL_SYNDIC})]" title="<:annuaire:editer_site|attribut_html:>"><:annuaire:editer_site:></a>]]
+		[(#ENV{id_syndic}|non)[(#AUTORISER{activer_sites})<br /><a href="[(#URL_PAGE{sites_edit,id_syndic=oui,id_rubrique=[(#ID_RUBRIQUE|sinon{'0'})]}|parametre_url{retour,#SELF})]" title="<:annuaire:nouveau_site|attribut_html:>"><:annuaire:nouveau_site:></a>]]
+	</fieldset><!--#connect-->
+	<br class="nettoyeur" />

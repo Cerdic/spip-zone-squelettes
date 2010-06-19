@@ -1,0 +1,44 @@
+#CACHE{0}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title><B_titre><BOUCLE_titre(SITES) {id_syndic}>#NOM_SITE</BOUCLE_titre></B_titre><:annuaire:nouveau_site:><//B_titre> - [(#NOM_SITE_SPIP|textebrut)]</title>
+<INCLURE{fond=inc/inc-head, id_syndic, lang?}>
+</head>
+<body>
+
+	[(#REM) Afficher l'entete :]
+	<INCLURE{fond=inc/inc-entete, lang?}>
+	<INCLURE{fond=inc/inc-menu, class=entete, lang?}>
+
+<div id="site">
+    <div id="content">
+	[(#REM) Fil d'Ariane ]
+    <div id="hierarchie">
+		<div id="text">
+		<a href="#URL_SITE_SPIP/"><:accueil_site:></a>
+		<BOUCLE_ariane(HIERARCHIE){id_syndic}> &gt;
+		[<a href="#URL_RUBRIQUE">(#TITRE|couper{80})</a>]
+		</BOUCLE_ariane>
+		<B_titre2>
+		<BOUCLE_titre2(SITES) {id_syndic}>
+		 &gt; <strong class="on">#NOM_SITE</strong></BOUCLE_titre2></B_titre2>
+		 &gt; <strong class="on"><:annuaire:nouveau_site:></strong><//B_titre2>
+		</div><!--#text-->
+	</div><!--#hierarchie-->
+
+		[(#AUTORISER{modifier, site, #ID_SYNDIC})
+		#FORMULAIRE_EDITER_SITE{#ID_SYNDIC, #ID_RUBRIQUE, #ENV{retour}}
+		]
+		[(#AUTORISER{ecrire}|non)<:annuaire:pas_le_droit_ecrire:>]
+
+	</div><!--#content-->
+
+	[(#REM) Navigation => colonne droite :]
+	<INCLURE{fond=inc/inc-nav, id_syndic, lang?, ajax, env}>
+
+	[(#REM) Afficher le pied de page :]
+	<INCLURE{fond=inc/inc-menu, class=pied, lang?, ajax}>
+</div><!--#site-->
+</body>
+</html>
