@@ -271,7 +271,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 //P
 'padding_top_rubrique' => 'Marge au dessus du fielset de la rubrique',
 'padding_top_site' => 'Marge au dessus du fielset du site',
-'partenaire' => '1 partenaire',
+'partenaire' => 'partenaire',
 'partenaires' => '@nb@ partenaires',
 'pas_commentaire' => 'Pas encore de commentaire',
 'pas_descriptif' => 'Nous n\'avons pas de descriptif pour ce site, si vous &ecirc;tes le webmaster vous pouvez nous contacter afin de proposer un descriptif au site.',
