@@ -57,6 +57,13 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_bloc_pre_extra' => 'Les noisettes de ce bloc seront ins&eacute;r&eacute;es sur toutes les pages avant le bloc <i>Extra</i>.',
 	'description_bloc_post_extra' => 'Les noisettes de ce bloc seront ins&eacute;r&eacute;es sur toutes les pages apr&egrave; le bloc <i>Extra</i>.',
 	
+	// Nom des configurations de noisettes
+	'config_type_blog' => 'Une configuration de type blog',
+	'config_zpip_dist' => 'Zpip-dist (reproduit le comportement par d&eacute;faut de Zpip)',
+	'config_zpip_groupe_mots' => 'Zpip-dist avec une page pour les groupes de mots',
+	'config_zpip_secteur_langue' => 'Zpip-dist adapt&eacute; pour un site organis&eacute; en secteurs de langue',
+	
+	
 	// Description des noisettes
 	
 	'description_article-contenuprincipal' => 'Affiche logo, surtitre, titre, sous-titre, date, auteur, traduction, chapeau, texte, lien hypertexte, post-scriptum et notes.',
@@ -256,6 +263,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_identifiant_menu' => 'Menu &eacute; afficher&nbsp;:',
 	'label_inclure_documents_vus' => 'Afficher les documents d&eacute;j&agrave; inclue dans la page&nbsp;?',
 	'label_inclure_photos_vues' => 'Afficher les photos d&eacute;j&agrave; inclues dans la page&nbsp;?',
+	'label_lien_externe' => 'Le lien pointe directement sur l\'URL du site (lien externe)&nbsp;?',
 	'label_lien_groupe_mots' => 'Si oui, ajouter un lien vers la page des groupes de mots&nbsp;?',
 	'label_lien_groupe' => 'Le lien pointe vers&nbsp;:',
 	'label_lien_page_auteurs' => 'Ajouter un lien vers la page \'auteurs\'&nbsp;?',
