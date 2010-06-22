@@ -1,0 +1,8 @@
+#SET{FiltreGroupes,#ARRAY}
+<BOUCLE_FiltreGroupes(GROUPES_MOTS){titre==^[^_]}>
+#SET{FiltreGroupes,
+       #GET{FiltreGroupes}|push{#ID_GROUPE}}
+</BOUCLE_FiltreGroupes>
+#SET{FiltreGroupes, (#GET{FiltreGroupes}|implode{"|"})}
+
+[(#GET{FiltreGroupes}|oui)[(#MODELE{nuage}{id=#GET{FiltreGroupes}})]]
