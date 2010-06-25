@@ -223,11 +223,6 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 						),
 					'id_mot='  . intval($id_mot));
 			}
-			// Activer les lames du CouteauSuisse Special SoyezCreateurs
-			include_spip('base/cout_install');
-			cout_install_pack('SoyezCreateurs');
-			include_spip('inc/getdocument');
-			effacer_repertoire_temporaire(_DIR_TMP.'couteau-suisse');
 			
 			spip_log("SoyezCreateurs maj 3.0.0", "soyezcreateurs_install");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.0','non');
@@ -302,8 +297,19 @@ WHERE spip_mots.titre=\'Agenda\'');
 		}
 		if (version_compare($current_version,'3.0.6','<')) {
 			spip_log("SoyezCreateurs maj 3.0.6", "soyezcreateurs_install");
-				create_mot("_Specialisation_Sites", "LienDirect", "Mettre ce mot clef aux sites pour faire des liens directs aux sites sans passer par une page intermédiaire.", "");
-		ecrire_meta($nom_meta_base_version,$current_version='3.0.6','non');
+			create_mot("_Specialisation_Sites", "LienDirect", "Mettre ce mot clef aux sites pour faire des liens directs aux sites sans passer par une page intermédiaire.", "");
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.6','non');
+		}
+		if (version_compare($current_version,'3.0.7','<')) {
+			spip_log("SoyezCreateurs maj 3.0.7", "soyezcreateurs_install");
+			include_spip('inc/autoriser');
+			sql_update('spip_auteurs',array('webmestre'=>"'oui'"),sql_in("id_auteur",defined('_ID_WEBMESTRES')?explode(':',_ID_WEBMESTRES):(autoriser('configurer')?array($GLOBALS['visiteur_session']['id_auteur']):array(0)))); // le webmestre est celui qui fait l'upgrade si rien de defini
+			// Activer les lames du CouteauSuisse Special SoyezCreateurs (enlève la lame Webmestre)
+			include_spip('base/cout_install');
+			cout_install_pack('SoyezCreateurs');
+			include_spip('inc/getdocument');
+			effacer_repertoire_temporaire(_DIR_TMP.'couteau-suisse');
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.7','non');
 		}
 			
 		/*
