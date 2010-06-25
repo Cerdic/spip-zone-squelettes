@@ -4,8 +4,28 @@
 <!-- boite=<:annuaire:annuaire_colonne:> -->
 
 <INCLURE{fond=noisettes/cfg/inc-cfg_header}>
+#CACHE{0}
 
-<form method="post">[(#ENV{_cfg_}|form_hidden)]
+<script type="text/javascript">
+//<![CDATA[
+	jQuery(document).ready(function() {
+		[(#ENV{config_boucle_zard, defaut}|=={defaut}|oui)
+			jQuery("#nav_hasard").hide();
+		]
+
+		jQuery("input[name='config_boucle_zard']").change(function() {
+			if (jQuery("input[name='config_boucle_zard']:checked").val() == "nav")
+				jQuery("#nav_hasard").show();
+			else {
+				jQuery("#nav_hasard").hide();
+			}
+			jQuery(this).blur();
+		});
+	});
+//]]>
+</script>
+<form method="post" action="#SELF"><div>
+	[(#ENV{_cfg_}|form_hidden)]
 
 	[(#REM) Afficher une boucle ou les noisettes dans la navigation]
 	<fieldset><!--#copy-->
@@ -21,11 +41,26 @@
 		<input type="radio" name="config_boucle_zard" value="nav" [(#ENV{config_boucle_zard, defaut}|=={nav}|?{checked="checked"})] />
 		<:annuaire:config_boucle_zard:>
 	</label>
+		[(#REM) La boucle des sites au hasard]
+		<div id="nav_hasard">
+		<label>
+			<input type="checkbox" name="config_boucle_zard_sommaire" [checked="(#ENV{config_boucle_zard_sommaire}|=={on}|?{checked})"] />
+			<:annuaire:config_boucle_zard_sommaire:>
+		</label>
+		<br />
+		<label>
+			<input type="checkbox" name="config_boucle_zard_rubrique" [checked="(#ENV{config_boucle_zard_rubrique}|=={on}|?{checked})"] />
+			<:annuaire:config_boucle_zard_rubrique:>
+		</label>
+		<br />
+		<label>
+			<input type="checkbox" name="config_boucle_zard_site" [checked="(#ENV{config_boucle_zard_site}|=={on}|?{checked})"] />
+			<:annuaire:config_boucle_zard_site:>
+		</label>
 
-	[(#REM) La boucle des sites au hasard]
-	[(#CONFIG{annuaire_colonne/config_boucle_zard, nav}|=={nav}|oui)
-	<p><b><:annuaire:hasard:></b></p>
-	<INCLURE{fond=noisettes/cfg/inc-cfg_pagination}{defaut_pas=3}{suffixe=_hasard}{env}>]
+		<p><b><:annuaire:hasard:></b></p>
+		<INCLURE{fond=noisettes/cfg/inc-cfg_pagination}{defaut_pas=3}{suffixe=_hasard}{env}>
+		</div>
 	</fieldset><!--#copy-->
 
 	[(#REM) Couleurs]
@@ -48,12 +83,14 @@
 	<fieldset><!--#css-->
 		<legend><:annuaire:css:></legend>
 		<p><:annuaire:css_couleurs:></p>
+		[(#MENU_LANG|ou{#PLUGIN{visiteurs_connectes}}|ou{#VAL{_CS_visiteurs_connectes}|defined}|ou{#CONFIG{annuaire_colonne/config_formrecherche, defaut}|=={defaut}})
 		<INCLURE{fond=noisettes/cfg/inc-cfg_couleurs}
 			{explication=<:annuaire:css_couleurs_nav_option:>}
 			{suffixe=_nav_option}
 			{choix=bg}
 			{bg_defaut=#8484fb}
 			{env}>
+		]
 		<INCLURE{fond=noisettes/cfg/inc-cfg_couleurs}
 			{explication=<:annuaire:css_couleurs_nav_connect:>}
 			{suffixe=_nav_connect}
@@ -157,4 +194,4 @@
 	</fieldset><!--#copy-->
 <input type="submit" name="_cfg_ok" value="<:bouton_valider:>" />
 <input type="submit" name="_cfg_delete" value="<:supprimer:>" />
-</form>
+</div></form>
