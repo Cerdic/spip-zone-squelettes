@@ -6,7 +6,12 @@
 		[<source src="(#URL_DOCUMENT|url_absolue|unique)" [type="(#MIME_TYPE)"]/>]
 
 </BOUCLE_morceau>
-<!--Vous pouvez insérer ici quelque chose à afficher si le navigateur ne gère pas HTML5-->
+<BOUCLE_morceau_flash(DOCUMENTS){id_article}{extension==mp4|flv}{mode=document}{0,1}>
+<object  type="application/x-shockwave-flash"
+		data="#CHEMIN{player.swf}?file=[(#URL_DOCUMENT|url_absolue)]" width="#LARGEUR" height="#HAUTEUR">
+		<param name="movie" value="#CHEMIN{player.swf}?file=[(#URL_DOCUMENT|url_absolue)]" />
+	</object>
+	</BOUCLE_morceau_flash>
 </video>
 
 
@@ -21,7 +26,12 @@
 </BOUCLE_article>
 <!--Attention, le HTML5 ne passera pas partout !-->
 	 <div id="export"> <b>Lecteur exportable (HTML5) : </b><input type="text" value="&lt;video controls><BOUCLE_morceau2(DOCUMENTS){id_article}{mode=document}>[&lt;source src='(#URL_DOCUMENT|url_absolue)' />]</BOUCLE_morceau2>&lt;/video>" onclick="this.select()" readonly="readonly" size="50" />
-
+	 <br/>
+	 <BOUCLE_morceau_flash2(DOCUMENTS){id_article}{extension==mp4|flv}{mode=document}{0,1}>
+	 <b>Lecteur exportable (Flash) : </b><input type="text" value="
+&lt;object  type='application/x-shockwave-flash' data='#URL_SITE_SPIP/#CHEMIN{player.swf}?file=[(#URL_DOCUMENT|url_absolue)]' width='#LARGEUR' height='#HAUTEUR'>&lt;param name='movie' value='#URL_SITE_SPIP/#CHEMIN{player.swf}?file=[(#URL_DOCUMENT|url_absolue)]' />&lt;/object>
+	 " onclick="this.select()" readonly="readonly" size="50" />
+</BOUCLE_morceau_flash2>
 <br/>
 	  <b>Partager sur : </b>
 	  <a class="social_network" href="http://www.facebook.com/sharer.php?u=#URL_SITE_SPIP/#URL_ARTICLE&amp;t=TvCampus" onclick="popup('http://www.facebook.com/sharer.php?u=#URL_SITE_SPIP/#URL_ARTICLE&amp;t=#NOM_SITE_SPIP');return false;"><img  src="http://facebook.com/favicon.ico" alt="Facebook"/> Facebook </a>
