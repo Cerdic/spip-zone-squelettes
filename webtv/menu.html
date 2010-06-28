@@ -1,25 +1,27 @@
 [(#REM)  Le bloc menu + actu + fil d'Ariane]
-<div id="div_centrage">
-<header>
-	<div id="div_entete">
-		<a href="#URL_SITE_SPIP">#LOGO_SITE_SPIP</a>
+<div id="page">
+	<div id="entete">
+	<div class="accueil">
+		<a href="#URL_SITE_SPIP"><img class="spip_logos" src="[IMG/(#LOGO_SITE_SPIP|fichier)]" /></a>
+		<p id="nom_site_spip">#NOM_SITE_SPIP</p>
+		[<p id="slogan_site_spip">(#DESCRIPTIF_SITE_SPIP|textebrut)</p>]
 					</div>
-
-	<div id="div_navigation">
+	</div>
+	<div id="nav">
 
         <!--Menu-->
-	<nav class="div_navigation_boutons">
-    <ul>
+	<div class="menu-conteneur">
+    <ul class="menu-liste">
         
         
- <BOUCLE_rubriques(RUBRIQUES){racine}{"<li>|</li>"}>
- <li>      
+ <BOUCLE_rubriques(RUBRIQUES){racine}{"<li class='menu-entree sep'>|</li>"}>
+ <li class="menu-entree">      
  [<a href="#URL_SITE_SPIP/#URL_RUBRIQUE">(#TITRE|supprimer_numero) </a>]
        <B_sousrubriques>
-         <ul>
+         <ul class="menu-liste">
         <BOUCLE_sousrubriques(RUBRIQUES){id_parent}{par num titre}>
        
-        <li><a href="#URL_SITE_SPIP/#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></li>
+        <li class="menu-entree"><a href="#URL_SITE_SPIP/#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></li>
         
         
         
@@ -30,11 +32,11 @@
                 </BOUCLE_rubriques> 
 
 	</ul>
-    </nav>
+    </div>
  <!--Fin menu-->   
  
     
-<div id="div_navigation_forms">
+<div id="div_navigation_forms" style="float: right;">
     <div id="boiterecherche">
 <!--Recherche : <input type="text" />-->
 [(#FORMULAIRE_RECHERCHE)]
@@ -48,7 +50,7 @@
 
 
 
-<div id="div_navigation_actu">
+<div id="div_navigation_actu" style="display:none;">
 <div id="div_breves">
 <div id="divactuactu">
 <BOUCLE_actu_breve(BREVES){0,1}>
@@ -61,25 +63,28 @@ ACTU : <a href="#URL_SITE_SPIP/#URL_BREVE">#TITRE</a><br/>
 
 
     </div>
-<div id="div_fildefer"><p class="classfildefer">
+ 
+ <div id="conteneur">   
+<div id="contenu">
+<div id="hierarchie">
 
-<b><a style="text-decoration:none; color:black;" href="#URL_SITE_SPIP">Accueil</a></b>
+<b class="on"><a style="text-decoration:none; color:black;" href="#URL_SITE_SPIP">Accueil</a></b>
 
 <BOUCLE_rubriquehierarchie(ARTICLES){id_article}{tout}>
 <BOUCLE_chemin_rubriques(HIERARCHIE){id_article}>
->
+<span class="sep">></span>
 <a href="#URL_SITE_SPIP/#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a>
 </BOUCLE_chemin_rubriques>
 </BOUCLE_rubriquehierarchie>
-|
-<span>
-<b>Actu : </b>
-<BOUCLE_actu(ARTICLES){par date}{inverse}{0,1}{" / "}>
+<span class="sep">|</span>
+
+<b class="sep">Actu : </b>
+<BOUCLE_actu(ARTICLES){par date}{inverse}{0,1}>
 <a href="#URL_SITE_SPIP/#URL_ARTICLE">[(#TITRE)]</a> ([(#DATE|nom_jour)] [(#DATE|jour)]/[(#DATE|mois)])
 </BOUCLE_actu>
-</span>
 
-</p>
+
+
 
 </div>
-</header>
+
