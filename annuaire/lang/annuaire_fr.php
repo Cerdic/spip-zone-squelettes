@@ -255,7 +255,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'menu_lien_plan_complet' => 'Lien vers toutes les rubriques',
 'menu_lien_sommaire' => 'Lien vers l\'accueil (sommaire)',
 'menu_site' => 'le menu du site',
-'margin_top_h2' => 'Marge au dessus des titres de boucles',
+'margin_top' => 'Marge au dessus des titres de boucles',
 'miniatures_par' => 'Miniatures par',
 
 //N
