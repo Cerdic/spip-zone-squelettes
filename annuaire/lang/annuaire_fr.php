@@ -50,7 +50,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'annuaire_rubrique' => 'Page rubrique',
 'annuaire_site' => 'Page site',
 'annuaire_sommaire' => 'Page sommaire',
-'annuaire_taille' => 'Taille',
+'annuaire_taille' => 'Tailles',
 'articles' => '@nb@ articles',
 'article_syndic' => '1 article syndiqu&eacute;',
 'articles_syndic' => '@nb@ articles syndiqu&eacute;s',
@@ -60,19 +60,27 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'bouton_configurer' => 'Configurer l\'annuaire',
 
 //C
+'cache_titre' => 'Cach&eacute; le titre',
+'cache_titre_news' => 'de la boucle "nouveaut&eacute;"',
+'cache_titre_plus_votes_defaut' => 'de la boucle "plus vot&eacute;s"',
+'cache_titre_plus_votes_vertical' => 'de la boucle "plus vot&eacute;s" (cadres verticaux)',
+'cache_titre_zard' => 'de la boucle "hasard"',
 'col_navigation' => 'Colonne navigation',
 'commentaire' => '1 commentaire',
-'commun' => 'Commun au boucle',
+'commun' => 'Commun aux boucles',
+'config_boucle_vertical' => 'Affichage des r&eacute;sultats en vertical (tableau)',
 'config_boucle_zard' => 'Affichage de la boucle hasard',
 'config_boucle_zard_expli' => 'Vous pouvez l\'afficher soit sur la page sommaire soit dans la navigation et dans ce cas on affiche pas les noisettes.',
 'config_boucle_zard_rubrique' => 'Affichage de la boucle hasard sur la page rubrique.',
 'config_boucle_zard_site' => 'Affichage de la boucle hasard sur la page site.',
 'config_boucle_zard_sommaire' => 'Affichage de la boucle hasard sur le page sommaire.',
+'config_cache_boucle' => 'Ne pas afficher la boucle',
 'config_defaut_menu_lien' => 'Afficher le lien.',
+'config_defaut_boucle' => 'Affichage par defaut de la boucle.',
 'config_defaut_noisettes' => 'Affichage des noisettes.',
 'config_entete' => 'Affichage dans l\'ent&ecirc;te.',
 'config_non_menu_lien' => 'Ne pas afficher le lien.',
-'config_pied' => 'Affichage dans le pied de page (&agrave droite).',
+'config_pied' => 'Affichage dans le pied de page (&agrave; droite).',
 'configuration_abonnement' => 'configuration de la page "abonnements"',
 'configuration_bandeau' => 'configuration du "bandeau"',
 'configuration_colonne_pied' => 'configuration de la "colonne et du pied"',
@@ -127,11 +135,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'css_couleurs_nav_pied' => 'Choisissez les couleurs de la noisette "pied"',
 'css_couleurs_nav_secteur' => 'Choisissez les couleurs de la noisette "secteur"',
 'css_couleurs_nav_sites' => 'Choisissez les couleurs de la noisette "sites"',
-'css_couleurs_new' => 'Choisissez les couleurs de la boucle "nouveauté"',
+'css_couleurs_new' => 'Choisissez les couleurs de la boucle "nouveaut&eacute;"',
 'css_couleurs_partenaire1' => 'Choisissez les couleurs de la page "partenaire"',
 'css_couleurs_plan' => 'Choisissez les couleurs de la page "plan"',
 'css_couleurs_plan_complet' => 'Choisissez les couleurs de la page "plan complet"',
-'css_couleurs_plus_vote' => 'Choisissez les couleurs de la boucle "plus votés"',
+'css_couleurs_plus_vote' => 'Choisissez les couleurs de la boucle "plus vot&eacute;s"',
+'css_couleurs_plus_vote_vertical' => 'Choisissez les couleurs de la boucle "plus vot&eacutes;s" (cadres verticaux)',
 'css_couleurs_recherche' => 'Choisissez les couleurs de la page "recherche"',
 'css_couleurs_rubrique' => 'Choisissez les couleurs de la page "rubrique"',
 'css_couleurs_site1' => 'Choisissez les couleurs de la page "site"',
@@ -183,7 +192,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 				<br />R&eacute;gl&eacute; vos boucles et styles sur la page site.',
 'descriptif_sommaire' => '<h4>R&eacute;glage sur le sommaire</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles du sommaire.',
-'descriptif_taille' => '<h4>R&eacute;glage de la taille</h4>
+'descriptif_taille' => '<h4>R&eacute;glage des tailles</h4>
 				<br />Choisissez vos tailles en pixels (px) ou en pourcentage (%).
 				<br />Exemple : 130px ou 100%',
 'description_site' => 'Description du site',
@@ -286,8 +295,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'pied_page' => 'Pied de page',
 'plus_votes' => 'Sites les plus vot&eacute;s',
 'plus_vote' => 'la boucle "plus de votes"',
+'plus_vote_vertical' => 'la boucle "plus de votes" (cadres verticaux)',
 'popu_site' => 'La popularit&eacute; du site est de ',
-'proposer_rubrique' => 'Proposer une nouvelle rubrique :',
 
 //Q
 
@@ -311,7 +320,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'toutes_rubriques' => 'Toutes les rubriques',
 
 //U
-'url_flux' => 'URL du flux rss',
 'utilisation' => 'Utilisation',
 'utilisation_expli_contact_1' => 'Pour pouvoir configurer cette page, il vous faut le plugin "contact".',
 'utilisation_expli_contact_2' => 'Vous pouvez configurer cette page parce que le plugin "contact" est activ&eacute;.',
@@ -319,8 +327,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'utilisation_expli_spiplistes_clevermail_2' => 'Vous pouvez configurer cette page parce que le plugin "spip listes" ou "clevermail" sont activ&eacute;s.',
 
 //V
-'votre_nom' => 'Votre nom',
-'votre_email' => 'Votre e-mail',
 'vote' => '1 vote',
 'votes' => '@nb@ votes',
 

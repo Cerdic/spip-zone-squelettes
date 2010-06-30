@@ -4,7 +4,6 @@
 <!-- boite=<:annuaire:annuaire_colonne:> -->
 
 <INCLURE{fond=noisettes/cfg/inc-cfg_header}>
-#CACHE{0}
 
 <script type="text/javascript">
 //<![CDATA[
@@ -60,6 +59,12 @@
 
 		<p><b><:annuaire:hasard:></b></p>
 		<INCLURE{fond=noisettes/cfg/inc-cfg_pagination}{defaut_pas=3}{suffixe=_hasard}{env}>
+		<br />
+		<:annuaire:cache_titre:>
+		<label>
+			<input type="checkbox" name="cache_titre_zard" [checked="(#ENV{cache_titre_zard}|=={on}|?{checked})"] />
+			<:annuaire:cache_titre_zard:>
+		</label>
 		</div>
 	</fieldset><!--#copy-->
 
@@ -151,6 +156,15 @@
 			{fg_defaut=#ffffff}
 			{ho_defaut=#ffffff}
 			{env}>
+		[(#CONFIG{annuaire_colonne/config_boucle_zard, defaut}|=={defaut}|non)
+		<INCLURE{fond=noisettes/cfg/inc-cfg_couleurs}
+			{explication=<:annuaire:css_couleurs_zard:>}
+			{suffixe=_zard_nav}
+			{choix=bg_fg_ho}
+			{bg_defaut=#8484fb}
+			{fg_defaut=#000000}
+			{ho_defaut=#ffffff}
+			{env}>]
 	</fieldset><!--#css-->
 
 	[(#REM) Groupes a ne pas affiche]
