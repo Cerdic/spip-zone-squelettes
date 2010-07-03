@@ -140,7 +140,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'css_couleurs_plan' => 'Choisissez les couleurs de la page "plan"',
 'css_couleurs_plan_complet' => 'Choisissez les couleurs de la page "plan complet"',
 'css_couleurs_plus_vote' => 'Choisissez les couleurs de la boucle "plus vot&eacute;s"',
-'css_couleurs_plus_vote_vertical' => 'Choisissez les couleurs de la boucle "plus vot&eacutes;s" (cadres verticaux)',
+'css_couleurs_plus_vote_vertical' => 'Choisissez les couleurs de la boucle "plus vot&eacute;s" (cadres verticaux)',
 'css_couleurs_recherche' => 'Choisissez les couleurs de la page "recherche"',
 'css_couleurs_rubrique' => 'Choisissez les couleurs de la page "rubrique"',
 'css_couleurs_site1' => 'Choisissez les couleurs de la page "site"',
@@ -171,8 +171,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'descriptif_herbier' => '<h4>R&eacute;glage de l\'herbier</h4>
 				<br />R&eacute;gl&eacute; vos boucles et styles sur l\'herbier.
 				<p />C\'est la page où l\'on affiche l\'actualiter des sites syndiqu&eacute;',
-'descriptif_login' => '<h4>R&eacute;glage de la page login</h4>
-				<br />R&eacute;gl&eacute; vos styles sur la page login.',
+'descriptif_login_public' => '<h4>R&eacute;glage de la page login public</h4>
+				<br />R&eacute;gl&eacute; vos styles sur la page login public.',
 'descriptif_menu' => '<h4>R&eacute;glage du menu</h4>
 				<br />Afficher ou non les liens vers les pages du site, cette configuration agit sur le menu de l\'ent&ecirc;tete et le pied de page.',
 'descriptif_mot' => '<h4>R&eacute;glage de la page mot</h4>
@@ -195,7 +195,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'descriptif_taille' => '<h4>R&eacute;glage des tailles</h4>
 				<br />Choisissez vos tailles en pixels (px) ou en pourcentage (%).
 				<br />Exemple : 130px ou 100%',
-'description_site' => 'Description du site',
 
 //E
 'editer_site' => '&Eacute;diter le site',
@@ -241,12 +240,19 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'le_mot' => 'Le mot',
 'le_site' => 'Le site compte',
 'lire_suite' => 'Lire la suite',
+'longueur_descriptif' => 'Longueur du descriptif',
 'longueur_descriptif_prems' => 'Longueur du descriptif du premier site',
 'longueur_descriptif_suivants' => 'Longueur du descriptif des sites suivants',
 
 //M
 'margin_left_fieldset' => 'Marge &agrave; gauche du cadre',
+'margin_left_prems_fieldset' => 'Marge &agrave; gauche du premier cadre',
+'margin_left_second_fieldset' => 'Marge &agrave; gauche du second cadre',
+'margin_left_tiers_fieldset' => 'Marge &agrave; gauche du troisi&egrave;me cadre',
 'margin_right_fieldset' => 'Marge &agrave; droite du cadre',
+'margin_right_prems_fieldset' => 'Marge &agrave; droite du premier cadre',
+'margin_right_second_fieldset' => 'Marge &agrave; droite du second cadre',
+'margin_right_tiers_fieldset' => 'Marge &agrave; droite du troisi&egrave;me cadre',
 'menu_lien_abonnement' => 'Lien vers la page abonnement',
 'menu_lien_afficher' => 'Lien vers les pages du menu',
 'menu_lien_contact' => 'Lien vers la page contact',
@@ -255,7 +261,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'menu_lien_plan_complet' => 'Lien vers toutes les rubriques',
 'menu_lien_sommaire' => 'Lien vers l\'accueil (sommaire)',
 'menu_site' => 'le menu du site',
-'margin_top' => 'Marge au dessus des titres de boucles',
+'margin_top' => 'Marge au dessus des boucles',
+'margin_top_plus_vote_verti' => 'Marge au dessus des cadres de la boucle',
 'miniatures_par' => 'Miniatures par',
 
 //N
