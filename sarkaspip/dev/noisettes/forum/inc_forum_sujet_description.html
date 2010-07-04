@@ -1,0 +1,28 @@
+[(#REM) 
+<!-- Affichage d'une sujet et de ses reponses
+	Recoit en argument :
+		- id_forum: id du sujet concerne
+-->
+]
+<BOUCLE_sujet(FORUMS){id_forum}>
+[<div class="#EDIT{titre} titre"><h1>(#TITRE|nettoyer_titre_sujet)</h1></div>]
+<div class="description">
+	<div class="cartouche">
+		[(#DATE|nom_jour)][&nbsp;(#DATE|affdate)] <:sarkaspip:agrave:>&nbsp;[(#DATE|affdate{'H\hi'})]
+		[<br />
+		<:sarkaspip:par:> <a href="#URL_AUTEUR">(#AUTEUR)</a>]
+	</div>
+	<br class="nettoyeur" />
+	<div class="gravatar_pere">
+		<BOUCLE_auteur_pere(AUTEURS){id_auteur=#_forum:ID_AUTEUR} {tout}>
+			[(#LOGO_AUTEUR||sinon{#CHEMIN{images/gravatar32.png}}||image_passe_partout{50}|image_recadre{50,50,center,FFFFFF}|inserer_attribut{class,spip_logos gravatar}|inserer_attribut{alt,[<:sarkaspip:logo_de:> (#NOM)]})]					
+		</BOUCLE_auteur_pere>
+			[(#PLUGIN{GRAVATAR}|oui)
+				[(#GRAVATAR{#EMAIL, 50, #CHEMIN{images/gravatar32.png}}||image_passe_partout{50}|image_recadre{50,50,center,FFFFFF}|inserer_attribut{class,spip_logos gravatar}|inserer_attribut{alt,[<:sarkaspip:logo_de:> (#NOM)]})]
+			]		
+		<//B_auteur_pere>
+	</div>
+	[<div class="#EDIT{premier_message} premier_message">(#TEXTE|typo_couleur)</div>]
+	<br class="nettoyeur" />
+</div>
+</BOUCLE_sujet>
