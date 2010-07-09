@@ -47,7 +47,7 @@
 	
 <!-- affichage du calendrier -->
 
-		<table width="90%" cellpadding="1" cellspacing="0" align="center" class="small_mini">
+		<table width="90%" cellpadding="1" cellspacing="0" style="align:center" class="small_mini">
 		<!-- Remplit le tableau "$event" avec les dates des événements du mois -->
 		<BOUCLE_evenements(ARTICLES){!doublons evenements}>
 			<?php
@@ -65,7 +65,7 @@
 			<?php
         echo'<tr>';
 			for($i = 1; $i < 8; $i++) {
-				echo '<th width="14%" class="calendar_head_mini">'.$days[$i%7].'</th>';
+				echo '<th style="width:14%" class="calendar_head_mini">'.$days[$i%7].'</th>';
 			}
 
 			$TempD = 1;
@@ -74,7 +74,7 @@
 				$tmp = '';
 				while(date('w', mkdate($M, $TempD, $Y)) != 1) {
 					$TempD--;
-					$case = '<td width="14%" valign="top" class="calendar_not_this_month">';
+					$case = '<td style="width:14%" valign="top" class="calendar_not_this_month">';
 					$case .= date('j', mkdate($M, $TempD, $Y));
 					$date = date('Ymd', mkdate($M, $TempD, $Y));
 
@@ -88,7 +88,7 @@
 				if(date('w', mkdate($M, $TempD, $Y)) == 1) {
 					echo '</tr><tr>';
 				}
-				echo '<td width="6%" valign="top" class="calendar_'.(date('m', mkdate($M, $TempD, $Y)) != $M ? 'not_' : '').'this_'.(date('Ymd', mkdate($M, $TempD, $Y)) == date('Ymd') ? 'day' : 'month').'">';
+				echo '<td style="width:6%" valign="top" class="calendar_'.(date('m', mkdate($M, $TempD, $Y)) != $M ? 'not_' : '').'this_'.(date('Ymd', mkdate($M, $TempD, $Y)) == date('Ymd') ? 'day' : 'month').'">';
 				$date = date('Ymd', mkdate($M, $TempD, $Y));
 				if (isset($events[$date])) {
 						while (list(, $event) = each($events[$date])) {
