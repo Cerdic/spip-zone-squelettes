@@ -387,6 +387,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'recherche_value' => 'Recherche ?',
 	'retouraccueil' => 'Revenir &agrave; l\'accueil du site',
 	'retourgalerie' => 'Retour &agrave; la galerie',
+	'retoursommaire' => 'Retour Sommaire',
 	'retourtop' => 'Revenir en haut',
 
 	// S

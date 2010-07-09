@@ -86,8 +86,10 @@ function sc_sommaire_article($texte,$istxt=0)
 }
 
 function sc_sommaire_ancre($texte)
-{
-	$texte = preg_replace("|(<h[23456][^>]*>)(.*)(<\/h[23456]>)|U","<p class='retoursommaire'><a href='#SommaireAutomatique'>Retour Sommaire</a></p><a name=\"sommaire_#NB_TITRE_DE_MON_ARTICLE#\"></a>$1$2$3", $texte);
+{	
+	$retoursommaire = _T('soyezcreateurs:retoursommaire');
+	
+	$texte = preg_replace("|(<h[23456][^>]*>)(.*)(<\/h[23456]>)|U","<p class='retoursommaire'><a href='#SommaireAutomatique'>".$retoursommaire."</a></p><a name=\"sommaire_#NB_TITRE_DE_MON_ARTICLE#\"></a>$1$2$3", $texte);
 
 	$array = explode("#NB_TITRE_DE_MON_ARTICLE#" , $texte);
 	$res =count($array);
@@ -99,7 +101,7 @@ function sc_sommaire_ancre($texte)
 		$i++;
 	}
 	if ($i>1) {
-		$texte.="<p class='retoursommaire'><a href='#SommaireAutomatique'>Retour Sommaire</a></p>";
+		$texte.="<p class='retoursommaire'><a href='#SommaireAutomatique'>".$retoursommaire."</a></p>";
 	}
 	return $texte;
 }
