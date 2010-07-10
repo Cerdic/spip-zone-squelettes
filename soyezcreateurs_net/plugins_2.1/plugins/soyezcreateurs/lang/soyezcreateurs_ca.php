@@ -338,7 +338,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// M
 	'memerubrique' => 'A la mateixa secci&oacute;...',
-	'mentions_legales_obligatoires' => 'Mention l&eacute;gales obligatoire ([CNIL|Commision Nationale Informatique et Libert&eacute;->http://www.cnil.fr/] et [LcEN|Loi sur la confiance en l\'&eacute;conomie Num&eacute;rique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Tout ce qu\'[il faut savoir->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [D&eacute;cryptage des obligations l&eacute;gales->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].', # NEW
+	'mentions_legales_obligatoires' => 'Menci&oacute; legal obligat&ograve;ria ([CNIL|Commision Nationale Informatique et Libert&eacute;->http://www.cnil.fr/] i [LcEN|Loi sur la confiance en l\'&eacute;conomie Num&eacute;rique->http://www.legifrance.gouv.fr/WAspad/UnTexteDeJorf?numjo=ECOX0200175L]). Tout ce qu\'[il faut savoir->http://www.juriblogsphere.net/2009/12/04/les-informations-legales-a-faire-figurer-sur-un-site-internet/]. [D&eacute;cryptage des obligations l&eacute;gales->http://www.maitre-eolas.fr/post/2008/03/24/905-blogueurs-et-responsabilite-reloaded].',
 	'menu_deplier' => 'Desplegar: ',
 	'menu_picalt' => 'Clicar per ',
 	'menu_replier' => 'reduir: ',
@@ -389,6 +389,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'recherche_value' => 'Cerca?',
 	'retouraccueil' => 'Tornar a la p&agrave;gina principal ',
 	'retourgalerie' => 'Torna a la galeria ',
+	'retoursommaire' => 'Retour Sommaire', # NEW
 	'retourtop' => 'Tornar amunt ',
 
 	// S
