@@ -1,6 +1,6 @@
 [(#REM)Un cache plus court, pour la boucle syndic_articles]#CACHE{0}
 <BOUCLE_principale(SITES){id_syndic}>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 [(#REM) Les sites n'ont pas de "lang" a proprement parler ; on se base donc sur la langue de la rubrique qui les contient. Les articles syndiques, eux, ont une "lang". ]
 <BOUCLE_lang(RUBRIQUES){id_rubrique}>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
@@ -34,11 +34,11 @@
 		<object>#NOM_SITE**</object>
 		<BOUCLE_logo(MOTS){id_syndic} {'  '}>[(#LOGO_MOT||inserer_attribut{title, #TITRE|supprimer_numero}|inserer_attribut{alt, #TITRE|supprimer_numero})]</BOUCLE_logo>
 		[(#PLUGIN{pb_pagerank}|oui)<INCLURE{fond=afficher_minipagerank, url=#URL_SITE}>]
-        [<a class="img"[ href="(#URL_SITE)"][ title="(#NOM_SITE|texte_backend)"] class="spip_out">
+        [<a class="img spip_out"[ href="(#URL_SITE)"][ title="(#NOM_SITE|texte_backend)"]>
 		(#THUMBSHOT{#URL_SITE})</a>]
 		#FORMULAIRE_NOTATION <br />
 		[(#DESCRIPTIF|sinon{<p><:annuaire:pas_descriptif:></p>})]
-        [<p><a class="url" href="#URL_SITE" class="spip_out">(#URL_SITE|couper{80})</a></p>]
+        [<p><a class="url spip_out" href="#URL_SITE">(#URL_SITE|couper{80})</a></p>]
 		</fieldset>
 	</div><!--#nom_site-->
 
