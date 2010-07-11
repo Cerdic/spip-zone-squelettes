@@ -43,10 +43,12 @@
 			<p /><:annuaire:longueur_descriptif_prems:>
 			<input type="text" name="descriptif_new_prems" value="[(#ENV{descriptif_new_prems,300})]" size="5" class="fondl" />
 
+			[(#CONFIG{annuaire_sommaire/pas_pagination_nouveaute}|>{1}|oui)
 			<p /><:annuaire:height_fieldset_suivants:>
 			<input type="text" name="height_new" value="[(#ENV{height_new,auto})]" size="5" class="fondl" />
 			<p /><:annuaire:longueur_descriptif_suivants:>
 			<input type="text" name="descriptif_new_suivants" value="[(#ENV{descriptif_new_suivants,300})]" size="5" class="fondl" />
+			]
 
 			[(#REM) Reglage sur la boucle plus de vote]
 			[(#CONFIG{annuaire_sommaire/config_boucle_plus_votes, defaut}|=={defaut}|oui)
@@ -56,11 +58,12 @@
 			<p /><:annuaire:longueur_descriptif_prems:>
 			<input type="text" name="descriptif_plus_vote_prems" value="[(#ENV{descriptif_plus_vote_prems,300})]" size="5" class="fondl" />
 
+			[(#CONFIG{annuaire_sommaire/pas_pagination_plus_vote}|>{1}|oui)
 			<p /><:annuaire:height_fieldset_suivants:>
 			<input type="text" name="height_plus_vote_suivants" value="[(#ENV{height_plus_vote_suivants,auto})]" size="5" class="fondl" />
 			<p /><:annuaire:longueur_descriptif_suivants:>
 			<input type="text" name="descriptif_plus_vote_suivants" value="[(#ENV{descriptif_plus_vote_suivants,300})]" size="5" class="fondl" />
-			]
+			]]
 
 			[(#REM) Reglage sur la boucle plus de vote vertical, afficher si horizontal cache]
 			[(#CONFIG{annuaire_sommaire/config_boucle_plus_votes, vertical}|=={vertical}|oui)
@@ -93,11 +96,12 @@
 			<p /><:annuaire:longueur_descriptif_prems:>
 			<input type="text" name="descriptif_zard_prems" value="[(#ENV{descriptif_zard_prems,300})]" size="5" class="fondl" />
 
+			[(#CONFIG{annuaire_sommaire/pas_pagination_hasard}|>{1}|oui)
 			<p /><:annuaire:height_fieldset_suivants:>
 			<input type="text" name="height_zard_suivants" value="[(#ENV{height_zard_suivants,auto})]" size="5" class="fondl" />
 			<p /><:annuaire:longueur_descriptif_suivants:>
 			<input type="text" name="descriptif_zard_suivants" value="[(#ENV{descriptif_zard_suivants,300})]" size="5" class="fondl" />
-			]
+			]]
 		</fieldset><!--#sommaire-->
 
 
@@ -163,60 +167,61 @@
 
 	[(#REM) Reglage de la colonne de navigation]
 		<fieldset><!--#col_navigation-->
-		<legend><:annuaire:col_navigation:></legend>
-		[(#MENU_LANG|ou{#PLUGIN{visiteurs_connectes}}|ou{#VAL{_CS_visiteurs_connectes}|defined}|ou{#CONFIG{annuaire_colonne/config_formrecherche, defaut}|=={defaut}})
-		<p /><b><:annuaire:nav_option|ucfirst:></b>
-		<p /><:annuaire:height_fieldset:>
-		<input type="text" name="height_nav_option" value="[(#ENV{height_nav_option,auto})]" size="5" class="fondl" />
-		]
+			<legend><:annuaire:col_navigation:></legend>
+			[(#MENU_LANG|ou{#PLUGIN{visiteurs_connectes}}|ou{#VAL{_CS_visiteurs_connectes}|defined}|ou{#CONFIG{annuaire_colonne/config_formrecherche, defaut}|=={defaut}})
+			<p /><b><:annuaire:nav_option|ucfirst:></b>
+			<p /><:annuaire:height_fieldset:>
+			<input type="text" name="height_nav_option" value="[(#ENV{height_nav_option,auto})]" size="5" class="fondl" />
+			]
 
-		<p /><b><:annuaire:nav_connect|ucfirst:></b>
-		<p /><:annuaire:height_fieldset:>
-		<input type="text" name="height_nav_connect" value="[(#ENV{height_nav_connect,155px})]" size="5" class="fondl" />
+			<p /><b><:annuaire:nav_connect|ucfirst:></b>
+			<p /><:annuaire:height_fieldset:>
+			<input type="text" name="height_nav_connect" value="[(#ENV{height_nav_connect,155px})]" size="5" class="fondl" />
 
-		<p /><b><:annuaire:nav_herbier|ucfirst:></b>
-		<p />
-		[(#PLUGIN{sjcycle}|non)<:annuaire:height_nav_herbier_non:>]
-		[(#PLUGIN{sjcycle}|oui)<:annuaire:height_fieldset:>
-		<input type="text" name="height_nav_herbier" value="[(#ENV{height_nav_herbier,auto})]" size="5" class="fondl" />]
+			<p /><b><:annuaire:nav_herbier|ucfirst:></b>
+			<p />
+			[(#PLUGIN{sjcycle}|non)<:annuaire:height_nav_herbier_non:>]
+			[(#PLUGIN{sjcycle}|oui)<:annuaire:height_fieldset:>
+			<input type="text" name="height_nav_herbier" value="[(#ENV{height_nav_herbier,auto})]" size="5" class="fondl" />]
 
-		<p /><b><:annuaire:nav_mot|ucfirst:></b>
-		<p /><:annuaire:height_fieldset:>
-		<input type="text" name="height_nav_mot" value="[(#ENV{height_nav_mot,auto})]" size="5" class="fondl" />
+			<p /><b><:annuaire:nav_mot|ucfirst:></b>
+			<p /><:annuaire:height_fieldset:>
+			<input type="text" name="height_nav_mot" value="[(#ENV{height_nav_mot,auto})]" size="5" class="fondl" />
 
-		<p /><b><:annuaire:nav_secteur|ucfirst:></b>
-		<p /><:annuaire:height_fieldset:>
-		<input type="text" name="height_nav_secteur" value="[(#ENV{height_nav_secteur,auto})]" size="5" class="fondl" />
+			<p /><b><:annuaire:nav_secteur|ucfirst:></b>
+			<p /><:annuaire:height_fieldset:>
+			<input type="text" name="height_nav_secteur" value="[(#ENV{height_nav_secteur,auto})]" size="5" class="fondl" />
 
-		<p /><b><:annuaire:nav_lien|ucfirst:></b>
-		<p /><:annuaire:height_fieldset:>
-		<input type="text" name="height_nav_lien" value="[(#ENV{height_nav_lien,auto})]" size="5" class="fondl" />
+			<p /><b><:annuaire:nav_lien|ucfirst:></b>
+			<p /><:annuaire:height_fieldset:>
+			<input type="text" name="height_nav_lien" value="[(#ENV{height_nav_lien,auto})]" size="5" class="fondl" />
 
-		<p /><b><:annuaire:nav_sites|ucfirst:></b>
-		<p /><:annuaire:height_fieldset:>
-		<input type="text" name="height_nav_sites" value="[(#ENV{height_nav_sites,auto})]" size="5" class="fondl" />
+			<p /><b><:annuaire:nav_sites|ucfirst:></b>
+			<p /><:annuaire:height_fieldset:>
+			<input type="text" name="height_nav_sites" value="[(#ENV{height_nav_sites,auto})]" size="5" class="fondl" />
 
-		<p /><b><:annuaire:nav_copy|ucfirst:></b>
-		<p /><:annuaire:height_fieldset:>
-		<input type="text" name="height_nav_copy" value="[(#ENV{height_nav_copy,auto})]" size="5" class="fondl" />
+			<p /><b><:annuaire:nav_copy|ucfirst:></b>
+			<p /><:annuaire:height_fieldset:>
+			<input type="text" name="height_nav_copy" value="[(#ENV{height_nav_copy,auto})]" size="5" class="fondl" />
 
-		<p /><b><:annuaire:nav_pied|ucfirst:></b>
-		<p /><:annuaire:height_fieldset:>
-		<input type="text" name="height_nav_pied" value="[(#ENV{height_nav_pied,auto})]" size="5" class="fondl" />
+			<p /><b><:annuaire:nav_pied|ucfirst:></b>
+			<p /><:annuaire:height_fieldset:>
+			<input type="text" name="height_nav_pied" value="[(#ENV{height_nav_pied,auto})]" size="5" class="fondl" />
 
-		[(#REM) Reglage sur la boucle hasard si afficher dans navigation]
-		[(#CONFIG{annuaire_colonne/config_boucle_zard, nav}|=={nav}|oui)
-		<p /><b><:annuaire:zard|ucfirst:></b>
-		<p /><:annuaire:height_fieldset_prems:>
-		<input type="text" name="height_zard_prems_nav" value="[(#ENV{height_zard_prems_nav,auto})]" size="5" class="fondl" />
-		<p /><:annuaire:longueur_descriptif_prems:>
-		<input type="text" name="descriptif_zard_prems_nav" value="[(#ENV{descriptif_zard_prems_nav,100})]" size="5" class="fondl" />
+			[(#REM) Reglage sur la boucle hasard si afficher dans navigation]
+			[(#CONFIG{annuaire_colonne/config_boucle_zard, nav}|=={nav}|oui)
+			<p /><b><:annuaire:zard|ucfirst:></b>
+			<p /><:annuaire:height_fieldset_prems:>
+			<input type="text" name="height_zard_prems_nav" value="[(#ENV{height_zard_prems_nav,auto})]" size="5" class="fondl" />
+			<p /><:annuaire:longueur_descriptif_prems:>
+			<input type="text" name="descriptif_zard_prems_nav" value="[(#ENV{descriptif_zard_prems_nav,100})]" size="5" class="fondl" />
 
-		<p /><:annuaire:height_fieldset_suivants:>
-		<input type="text" name="height_zard_suivants_nav" value="[(#ENV{height_zard_suivants_nav,auto})]" size="5" class="fondl" />
-		<p /><:annuaire:longueur_descriptif_suivants:>
-		<input type="text" name="descriptif_zard_suivants_nav" value="[(#ENV{descriptif_zard_suivants_nav,100})]" size="5" class="fondl" />
-		]
+			[(#CONFIG{annuaire_colonne/pas_pagination_hasard}|>{1}|oui)
+			<p /><:annuaire:height_fieldset_suivants:>
+			<input type="text" name="height_zard_suivants_nav" value="[(#ENV{height_zard_suivants_nav,auto})]" size="5" class="fondl" />
+			<p /><:annuaire:longueur_descriptif_suivants:>
+			<input type="text" name="descriptif_zard_suivants_nav" value="[(#ENV{descriptif_zard_suivants_nav,100})]" size="5" class="fondl" />
+			]]
 		</fieldset><!--#col_navigation-->
 </fieldset>
 <input type="submit" name="_cfg_ok" value="<:bouton_valider:>" />
