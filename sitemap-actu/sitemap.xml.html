@@ -1,0 +1,39 @@
+[(#REM)
+
+	sitemap.xml specialise "google news",
+	seuls les articles sont geres
+
+	(On pose un cache a zero pour echapper au test _IS_BOT)
+
+]#CACHE{0}
+#HTTP_HEADER{Content-Type: text/xml; charset=utf-8}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+	xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+
+[(#REM) Accueil
+]  <url>
+    <loc>#URL_SITE_SPIP/</loc>
+    <changefreq>hourly</changefreq>
+  </url>
+
+[(#REM) Articles
+][(#SET{recent,[(#VAL{Y-m-d H:i:s}|date{#VAL{"-1 day"}|strtotime})]})
+]<BOUCLE_a(ARTICLES){!par date_modif}{!par date}{0,2000}>
+  <url>
+    <loc>[(#URL_ARTICLE|url_absolue)]</loc>[(#DATE_MODIF**|>{#GET{recent}}
+|?{[
+    <lastmod>(#DATE_MODIF**|date_iso)</lastmod>]})]
+    <news:news>
+      <news:title>[(#TITRE|attribut_html)]</news:title>
+      <news:publication>
+        <news:name>[(#NOM_SITE_SPIP|attribut_html)]</news:name>
+        <news:language>#LANG</news:language>
+      </news:publication>
+[      <news:publication_date>(#DATE|affdate{Y-m-d})</news:publication_date>
+]<B_k>      <news:keywords><BOUCLE_k(MOTS){id_article}{", "}>[(#TITRE|attribut_html)]</BOUCLE_k></news:keywords>
+</B_k>    </news:news>
+  </url>
+</BOUCLE_a>
+
+</urlset>
