@@ -279,10 +279,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		}
 		if (version_compare($current_version,'3.0.4','<')) {
 			// Réserve le formulaire des événements aux seules rubriques d'Agenda (avec le plugin agenda 2 installé)
-			// À réécrire en sql_update...
-			sql_query('UPDATE spip_rubriques INNER JOIN spip_mots_rubriques ON spip_rubriques.id_rubrique=spip_mots_rubriques.id_rubrique INNER JOIN spip_mots ON spip_mots_rubriques.id_mot=spip_mots.id_mot 
-SET spip_rubriques.agenda = 1
-WHERE spip_mots.titre=\'Agenda\'');
+			sql_update('spip_rubriques INNER JOIN spip_mots_rubriques ON spip_rubriques.id_rubrique = spip_mots_rubriques.id_rubrique INNER JOIN spip_mots ON spip_mots_rubriques.id_mot=spip_mots.id_mot', array('spip_rubriques.agenda' => 1), 'spip_mots.titre='.sql_quote('Agenda'));
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.4','non');
 		}
 		if (version_compare($current_version,'3.0.5','<')) {
