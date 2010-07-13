@@ -5,4 +5,7 @@
 </BOUCLE_FiltreGroupes>
 #SET{FiltreGroupes, (#GET{FiltreGroupes}|implode{"|"})}
 
-[(#GET{FiltreGroupes}|oui)[(#MODELE{nuage}{id=#GET{FiltreGroupes}})]]
+[(#GET{FiltreGroupes}|oui)
+	[(#PLUGIN{critere_mots}|oui)[(#MODELE{nuage}{id=#GET{FiltreGroupes}}{url=spip.php?page=redir_mot_filtre})]]
+	[(#PLUGIN{critere_mots}|non)[(#MODELE{nuage}{id=#GET{FiltreGroupes}})]]
+]
