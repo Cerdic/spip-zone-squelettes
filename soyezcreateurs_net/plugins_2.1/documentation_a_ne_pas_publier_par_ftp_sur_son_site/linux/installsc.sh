@@ -46,6 +46,8 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/notation
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/nyroceros
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/sedna
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/thickbox2
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/comments/comments-200/
+
 
 cd ..
 
