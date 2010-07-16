@@ -308,7 +308,13 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			effacer_repertoire_temporaire(_DIR_TMP.'couteau-suisse');
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.7','non');
 		}
-			
+		
+		if (version_compare($current_version,'3.0.8','<')) {
+			//pré-configuration du plugin microblog
+			ecrire_config('microblog/evt_publierarticles', 'on');
+			ecrire_config('microblog/evt_publierarticlesfutur', 'publication');
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.8','non');
+		}
 		/*
 		#En attente
 		if (version_compare($current_version,'2.1.10','<')) {
