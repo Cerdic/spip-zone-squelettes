@@ -40,26 +40,26 @@
 <p><:soyezcreateurs:voirle:> <a href="#URL_PAGE{plan}"><:plan_site:></a>.</p>
 <BOUCLE_ExclureRubriquesDuPlan(RUBRIQUES){titre_mot=PasDansPlan}><BOUCLE_ExclureArticlesDuPlan(ARTICLES){branche}{doublons articles}></BOUCLE_ExclureArticlesDuPlan></BOUCLE_ExclureRubriquesDuPlan>
 
-<B1>
-	<BOUCLE1(ARTICLES){par date}{inverse}{fusion YEAR(date)}{branche}{doublons articles}>
+<B_Annee>
+	<BOUCLE_Annee(ARTICLES){par date}{inverse}{fusion YEAR(date)}{branche}{doublons articles}>
 	<h2>[(#DATE|annee)]</h2>
-	<B2>
-		<BOUCLE2(ARTICLES){annee_relatif}
+	<B_Mois>
+		<BOUCLE_Mois(ARTICLES){annee_relatif}
 		{par date}{inverse}{lang_select=non}
 		{fusion MONTH(date)}{branche}>
 		<h3>[(#DATE|nom_mois|ucfirst)]</h3>
-		<B3>
+		<B_ArticlesDuMois>
 		<ul>
-			<BOUCLE3(ARTICLES){mois_relatif}
+			<BOUCLE_ArticlesDuMois(ARTICLES){mois_relatif}
 			{par date}{inverse}{branche}>
 			<li>[<span class="date">(#DATE|affdate)</span>]&nbsp;: <a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
-			</BOUCLE3>
+			</BOUCLE_ArticlesDuMois>
 		</ul>
-		</B3>
-		</BOUCLE2>
-	</B2>
-	</BOUCLE1>
-</B1>
+		</B_ArticlesDuMois>
+		</BOUCLE_Mois>
+	</B_Mois>
+	</BOUCLE_Annee>
+</B_Annee>
 
 </div>
 </div><!-- Fin de .texte -->
