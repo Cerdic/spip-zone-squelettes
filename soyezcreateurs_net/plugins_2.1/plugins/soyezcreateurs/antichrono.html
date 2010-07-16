@@ -40,33 +40,26 @@
 <p><:soyezcreateurs:voirle:> <a href="#URL_PAGE{plan}"><:plan_site:></a>.</p>
 <BOUCLE_ExclureRubriquesDuPlan(RUBRIQUES){titre_mot=PasDansPlan}><BOUCLE_ExclureArticlesDuPlan(ARTICLES){branche}{doublons articles}></BOUCLE_ExclureArticlesDuPlan></BOUCLE_ExclureRubriquesDuPlan>
 
-				<BOUCLE_plus_vieux(ARTICLES) {!titre_mot=PasDansPlan} {lang}{!par date} {0,1} {doublons articles}>
-				<h2>[(#DATE|annee)]</h2>
-				<h3>[(#DATE|nom_mois|ucfirst)]</h3>
-				<ul>
-				<li>[<span class="date">(#DATE|affdate)</span>]&nbsp;: <a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
-
-				<BOUCLE_meme_mois(ARTICLES) {!titre_mot=PasDansPlan} {lang}{!par date}{mois_relatif=0} {doublons articles}>
-				<li>[<span class="date">(#DATE|affdate)</span>]&nbsp;: <a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
-				</BOUCLE_meme_mois>
-				</ul>
-
-					<BOUCLE_suivant_meme_annee(ARTICLES) {!titre_mot=PasDansPlan} {lang}{!par date} {annee_relatif=0} {doublons articles} {0,1}>
-					<h3>[(#DATE|nom_mois|ucfirst)]</h3>
-					<ul>
-					<li>[<span class="date">(#DATE|affdate)</span>]&nbsp;: <a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
-
-					<BOUCLE_meme_mois_suivant_meme_annee(BOUCLE_meme_mois) />
-				</ul>
-
-					<BOUCLE_recursive_mois(BOUCLE_suivant_meme_annee) />
-
-					</BOUCLE_suivant_meme_annee>
-
-				<B_recursive_annee>
-				<BOUCLE_recursive_annee(BOUCLE_plus_vieux) />
-
-				</BOUCLE_plus_vieux>
+<B1>
+	<BOUCLE1(ARTICLES){par date}{inverse}{fusion YEAR(date)}{branche}{doublons articles}>
+	<h2>[(#DATE|annee)]</h2>
+	<B2>
+		<BOUCLE2(ARTICLES){annee_relatif}
+		{par date}{inverse}{lang_select=non}
+		{fusion MONTH(date)}{branche}>
+		<h3>[(#DATE|nom_mois|ucfirst)]</h3>
+		<B3>
+		<ul>
+			<BOUCLE3(ARTICLES){mois_relatif}
+			{par date}{inverse}{branche}>
+			<li>[<span class="date">(#DATE|affdate)</span>]&nbsp;: <a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+			</BOUCLE3>
+		</ul>
+		</B3>
+		</BOUCLE2>
+	</B2>
+	</BOUCLE1>
+</B1>
 
 </div>
 </div><!-- Fin de .texte -->
