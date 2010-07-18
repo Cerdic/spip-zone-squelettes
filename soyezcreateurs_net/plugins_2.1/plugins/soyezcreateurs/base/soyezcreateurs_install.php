@@ -125,13 +125,15 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				create_mot("_Specialisation_Sites", "SaintDuJour", "Mettre ce mot clef au site donnant le Saint du jour", "");
 				create_mot("_Specialisation_Sites", "PortailActualites", "Mettre ce mot clef aux sites à afficher sur le portail actualités", "En mettant un numéro point espace aux titres des sites concernés, on choisi l'ordre d'affichage.");
 			$id_groupe = id_groupe("_TypeRubrique");
-			$id_mot = id_mot("membre", $id_groupe);
-			if ($id_mot>0) {
-				sql_delete("spip_mots", "id_mot=$id_mot");
-				sql_delete("spip_mots_articles", "id_mot=$id_mot");
-				sql_delete("spip_mots_rubriques", "id_mot=$id_mot");
-				sql_delete("spip_mots_syndic", "id_mot=$id_mot");
-				sql_delete("spip_mots_forum", "id_mot=$id_mot");
+			if ($id_groupe>0) {
+				$id_mot = id_mot("membre", $id_groupe);
+				if ($id_mot>0) {
+					sql_delete("spip_mots", "id_mot=$id_mot");
+					sql_delete("spip_mots_articles", "id_mot=$id_mot");
+					sql_delete("spip_mots_rubriques", "id_mot=$id_mot");
+					sql_delete("spip_mots_syndic", "id_mot=$id_mot");
+					sql_delete("spip_mots_forum", "id_mot=$id_mot");
+				}
 			}
 			$cfg = array(
 				'geolocalisation' => 'radio',
