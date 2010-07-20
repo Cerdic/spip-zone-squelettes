@@ -1,0 +1,66 @@
+<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP"><:soyezcreateurs:accueil:></a></li>
+	<li><:soyezcreateurs:articlesordreantichrono:></li>
+	</ul>
+</div>
+<div class="texte">
+<div class="cartouche">
+<div class="titrepage"><h1><:soyezcreateurs:articlesordreantichrono:></h1></div>
+</div>
+<BOUCLE_ExclureContenuDuPlan(RUBRIQUES){titre_mot=PasDansPlan}{doublons contenu}></BOUCLE_ExclureContenuDuPlan>
+<B_Autres_Flottant>
+<div id="artrecents" class="flottant">
+	<BOUCLE_Autres_Flottant(RUBRIQUES){id_parent=0}{par num titre}{doublons contenu}>
+	<B_sites>
+		<h2><:sites_web:>[ ((#TITRE))]</h2>
+		<ul>
+		<BOUCLE_sites(SITES) {id_secteur} {par nom_site}>[<li><a href="(#URL_SITE)"[ title="(#DESCRIPTIF|attribut_html)"]>[(#NOM_SITE)]</a></li>]</BOUCLE_sites>
+		</ul>
+	</B_sites>
+	<B_breves>
+		<h2><:breves:>[ ((#TITRE))]</h2>
+		<ul>
+		<BOUCLE_breves(BREVES) {id_secteur} {!par date} {0,15}>
+			<li class="menu-item"><a href="#URL_BREVE"[ title="(#DATE|affdate|attribut_html)"]>[(#TITRE)]</a></li>
+		</BOUCLE_breves>
+		</ul>
+	</B_breves>
+	</BOUCLE_Autres_Flottant>
+</div>
+</B_Autres_Flottant>
+
+<div id="letexte">
+<p><:soyezcreateurs:voirle:> <a href="#URL_PAGE{plan}"><:plan_site:></a>.</p>
+<BOUCLE_ExclureRubriquesDuPlan(RUBRIQUES){titre_mot=PasDansPlan}><BOUCLE_ExclureArticlesDuPlan(ARTICLES){branche}{doublons articles}></BOUCLE_ExclureArticlesDuPlan></BOUCLE_ExclureRubriquesDuPlan>
+
+				<BOUCLE_plus_vieux(ARTICLES) {!titre_mot=PasDansPlan} {lang}{!par date} {0,1} {doublons articles}>
+				<h2>[(#DATE|annee)]</h2>
+				<h3>[(#DATE|nom_mois|ucfirst)]</h3>
+				<ul>
+				<li>[<span class="date">(#DATE|affdate)</span>]&nbsp;: <a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+
+				<BOUCLE_meme_mois(ARTICLES) {!titre_mot=PasDansPlan} {lang}{!par date}{mois_relatif=0} {doublons articles}>
+				<li>[<span class="date">(#DATE|affdate)</span>]&nbsp;: <a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+				</BOUCLE_meme_mois>
+				</ul>
+
+					<BOUCLE_suivant_meme_annee(ARTICLES) {!titre_mot=PasDansPlan} {lang}{!par date} {annee_relatif=0} {doublons articles} {0,1}>
+					<h3>[(#DATE|nom_mois|ucfirst)]</h3>
+					<ul>
+					<li>[<span class="date">(#DATE|affdate)</span>]&nbsp;: <a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+
+					<BOUCLE_meme_mois_suivant_meme_annee(BOUCLE_meme_mois) />
+				</ul>
+
+					<BOUCLE_recursive_mois(BOUCLE_suivant_meme_annee) />
+
+					</BOUCLE_suivant_meme_annee>
+
+				<B_recursive_annee>
+				<BOUCLE_recursive_annee(BOUCLE_plus_vieux) />
+
+				</BOUCLE_plus_vieux>
+
+</div>
+</div><!-- Fin de .texte -->

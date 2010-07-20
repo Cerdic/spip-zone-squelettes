@@ -1,0 +1,54 @@
+<BOUCLE_auteur_principal(AUTEURS) {id_auteur}{tous}>
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP"><:soyezcreateurs:accueil:></a></li>
+	<li><a href="#URL_PAGE{auteur}" title="<:soyezcreateurs:auteurs_liste:>"><:spip:icone_auteurs:></a></li>
+	<li>[(#NOM)]</li>
+	</ul>
+	</div>
+
+<div class="texte surlignable">
+<!-- Une : affichage de l'auteur -->
+<div class="titrepage"><h1 class="#EDIT{qui}">#NOM</h1></div>
+<div id="letexte">
+
+[<div class="#EDIT{bio}">[(#LOGO_AUTEUR|image_reduire{200,200}|inserer_attribut{'style','float:right;'})](#BIO)</div>]
+[<div class="#EDIT{hyperlien} ps"><a href="(#URL_SITE)">#NOM_SITE</a></div>]
+[<div class="notes">(#NOTES)</div>]
+
+[(#FORMULAIRE_ECRIRE_AUTEUR)]
+
+<B_articles>
+<!-- Articles de l'auteur -->
+<h2><:articles_auteur:> (#TOTAL_BOUCLE)</h2>
+<ul class="pas_surlignable">
+<BOUCLE_articles(ARTICLES) {id_auteur} {par titre}>
+	<li><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+</BOUCLE_articles>
+</ul>
+</B_articles>
+
+</div><!-- Fin de #LeTexte -->
+</div><!-- Fin de .texte -->
+
+
+</BOUCLE_auteur_principal>
+
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP"><:soyezcreateurs:accueil:></a></li>
+	<li><:soyezcreateurs:auteurs_site:></li>
+	</ul>
+	</div>
+<div class="texte">
+<!-- Contenu : Tous les auteurs -->
+<div class="titrepage"><h1><:soyezcreateurs:auteurs_site:></h1></div>
+	<div id="letexte">
+<ul>
+<BOUCLE_LesAuteurs(AUTEURS){par nom}>
+<li><a href="#URL_AUTEUR">[(#NOM)]</a> <BOUCLE_comptearticles(ARTICLES) {id_auteur}> </BOUCLE_comptearticles>[((#TOTAL_BOUCLE) articles)]</B_comptearticles></li>
+</BOUCLE_LesAuteurs>
+</ul>
+	</div><!-- Fin de #LeTexte -->
+</div><!-- Fin de .texte -->
+<//B_auteur_principal>
