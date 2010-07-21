@@ -1,0 +1,40 @@
+<BOUCLE_rubrique_principal(RUBRIQUES) {id_rubrique}>
+[(#REM) 
+		On ne va afficher la liste des articles 
+		(dans le cartouche qui n'est visible que s'il y a un texte dans la rubrique) 
+		dans une rubrique que si les articles ne sont pas listés dans le menu principal (mot clef AfficherArticlesMenu).
+]
+<BOUCLE_AuMoinsUnArticle(ARTICLES) {id_rubrique} {lang} {0,1}>
+<BOUCLE_AfficherArticlesMenu(RUBRIQUES) {id_rubrique} {titre_mot=AfficherArticlesMenu}> </BOUCLE_AfficherArticlesMenu>
+	<B_articles_recents>
+<div id="artrecents" class="flottant">
+	<h2>Contenu</h2>
+	<ul>
+	<BOUCLE_articles_recents(ARTICLES) {id_rubrique} {par num titre}{!par date} {lang}>
+		<li[(#COMPTEUR_BOUCLE|alterner{' class="odd"',''})]><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a></li>
+	</BOUCLE_articles_recents>
+	</ul>
+[(#VAL{cartouche}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|oui)
+	[(#INCLURE{fond=modeles/documentsjoints}{id_rubrique}{cartouche=_cartouche})]
+]
+	[(#CONFIG{soyezcreateurs/nouveauteparbranche, }|=={on}|oui)[(#INCLURE{fond=noisettes/cartouches/cartouche_nouveaute_branche}{id_rubrique})]]
+</div>
+	</B_articles_recents>
+<//B_AfficherArticlesMenu>
+</BOUCLE_AuMoinsUnArticle>
+		<B_SsRubriques>
+<div id="artrecents" class="flottant">
+	<h2>Contenu</h2>
+	<ul>
+		<BOUCLE_SsRubriques(RUBRIQUES) {id_parent}{par num titre}>
+		<li[(#COMPTEUR_BOUCLE|alterner{' class="odd"',''})]><BOUCLE_articles_plusdun(ARTICLES) {id_rubrique} {1,1} {lang}><a href="#URL_RUBRIQUE" title="[(#_SsRubriques:DESCRIPTIF|attribut_html)] ([(#_SsRubriques:DATE|nom_jour)] [(#_SsRubriques:DATE|affdate)])">[(#_SsRubriques:TITRE)]</a></BOUCLE_articles_plusdun><BOUCLE_articles_unseul(ARTICLES) {id_rubrique} {0,1} {lang}><a href="#URL_ARTICLE" title="[(#_SsRubriques:DESCRIPTIF|attribut_html)] ([(#_SsRubriques:DATE|nom_jour)] [(#_SsRubriques:DATE|affdate)])">[(#_SsRubriques:TITRE)]</a></BOUCLE_articles_unseul><a href="#URL_RUBRIQUE" title="[(#_SsRubriques:DESCRIPTIF|attribut_html)] ([(#_SsRubriques:DATE|nom_jour)] [(#_SsRubriques:DATE|affdate)])">[(#_SsRubriques:TITRE)]</a><//B_articles_unseul>  <//B_articles_plusdun></li>
+		</BOUCLE_SsRubriques>
+	</ul>
+[(#VAL{cartouche}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|oui)
+	[(#INCLURE{fond=modeles/documentsjoints}{id_rubrique}{cartouche=_cartouche})]
+]
+	[(#CONFIG{soyezcreateurs/nouveauteparbranche, }|=={on}|oui)[(#INCLURE{fond=noisettes/cartouches/cartouche_nouveaute_branche}{id_rubrique})]]
+</div>
+		</B_SsRubriques>
+	<//B_AuMoinsUnArticle>
+</BOUCLE_rubrique_principal>
