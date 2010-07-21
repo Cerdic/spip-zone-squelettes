@@ -66,7 +66,7 @@ function soyezcreateurs_recuperer_fond($flux){
 		$complements_pre = recuperer_fond('noizetier-generer-bloc', $contexte);
 
 		// $bloc / defaut
-		$contexte['bloc'] = 'post_'.$bloc;
+		$contexte['bloc'] = $bloc;
 		$complements_post = recuperer_fond('noizetier-generer-bloc', $contexte);
 
 
