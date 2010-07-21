@@ -1,0 +1,85 @@
+#CACHE{3600}
+<BOUCLE_rubrique_principal(RUBRIQUES){id_rubrique}>
+	<div id="miettesdepain">
+	<ul>
+	<li><a href="#URL_SITE_SPIP"><:soyezcreateurs:accueil:></a></li>
+	<BOUCLE_plan(HIERARCHIE){id_rubrique}><li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+	</BOUCLE_plan>
+	<li>[(#TITRE)]</li>
+	</ul>
+	</div>
+
+<div class="texte">
+<div class="cartouche">
+<div class="titrepage"><h1 class="#EDIT{titre}">[(#SET{lelogo,[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{64,64})]})][<img class="logo_rubrique" src="(#GET{lelogo}|extraire_attribut{src})"[ width="(#GET{lelogo}|largeur)"][ height="(#GET{lelogo}|hauteur)"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" />][(#TITRE)] - [(#ENV{date_ev,[(#ENV{date})]}|sc_annee_scolaire)]-[(#ENV{date_ev,[(#ENV{date})]}|sc_annee_scolaire|plus{1})]</h1></div>
+</div>
+[(#INCLURE{fond=noisettes/cartouches/themes}{id_rubrique=#ID_SECTEUR})]
+	<div id="letexte">
+[<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
+[<div class="#EDIT{texte}">(#TEXTE)</div>]
+[<div class="notes">(#NOTES)</div>]
+
+		<B_Annees>
+		<form id="timenavigation" method="get" action="#SELF"><fieldset><legend><:soyezcreateurs:precisezrecherche:></legend>
+		<input type="hidden" value="rubrique" name="page" alt="" />
+		<input type="hidden" value="#ID_RUBRIQUE" name="id_rubrique" alt="" />
+		<input type="hidden" value="1" name="calendrier" alt="" />
+		<BOUCLE_PremiereAnnee(EVENEMENTS){branche}{par date_debut}{0,1}>
+		[(#DATE_DEBUT|affdate{Y-m-d}|<{[(#ENV{date_ev,[(#ENV{date})]}|sc_annee_scolaire)-09-01]}|oui)
+		<a href="[(#SELF|parametre_url{'date_ev',[(#ENV{date_ev,[(#ENV{date})]}|sc_annee_scolaire|moins{1})-09-01]}|parametre_url{'calendrier',1})]"><img src="#CHEMIN{images/prev.gif}" title="<:precedent:>" alt="<:precedent:>" /></a>
+		]
+		</BOUCLE_PremiereAnnee>
+		<select id="date_ev" name="date_ev">
+		<BOUCLE_Annees(EVENEMENTS){branche}{par date_debut}>[
+		<option value="[(#DATE_DEBUT|sc_annee_scolaire)-09-01]"[(#ENV{date_ev,[(#ENV{date})]}|sc_annee_scolaire|=={[(#DATE_DEBUT|sc_annee_scolaire)]}|?{' selected="selected"',''})]>(#DATE_DEBUT|sc_annee_scolaire|unique)[-(#DATE_DEBUT|sc_annee_scolaire|plus{1})]</option>
+		]</BOUCLE_Annees>
+		</select>
+		<BOUCLE_ExclureStatut(MOTS){type=_AgendaStatut}{doublons statut}></BOUCLE_ExclureStatut>
+		<B_LstMotsClefs>[(#REM) Objectif : n'afficher que les mots clefs effectivement utilisé dans le secteur]
+		<select id="id_mot" name="id_mot">
+		<option value=""[(#ENV{id_mot,''}|=={''}|?{' selected="selected"',''})]><:soyezcreateurs:tout:></option>
+		<BOUCLE_LstMotsClefs(EVENEMENTS){branche}{par titre}><BOUCLE_MotClefAssocie(MOTS){id_evenement}{unique}{doublons statut}>
+		<option value="[(#ID_MOT)]"[(#ENV{id_mot}|=={[(#ID_MOT)]}|?{' selected="selected"',''})]>[(#TITRE|supprimer_tags)]</option>
+		</BOUCLE_MotClefAssocie></BOUCLE_LstMotsClefs>
+		</select>
+		</B_LstMotsClefs>
+
+		<input type="submit" class="form_submit" value="<:pass_ok:>" />
+		<BOUCLE_DerniereAnnee(EVENEMENTS){branche}{!par date_debut}{0,1}>
+		[(#DATE_DEBUT|affdate{Y-m-d}|>{[(#ENV{date_ev,[(#ENV{date})]}|sc_annee_scolaire|plus{1})-09-01]}|oui)
+		<a href="[(#SELF|parametre_url{'date_ev',[(#ENV{date_ev,[(#ENV{date})]}|sc_annee_scolaire|plus{1})-09-01]}|parametre_url{'calendrier',1})]"><img src="#CHEMIN{images/next.gif}" title="<:suivant:>" alt="<:suivant:>" /></a>
+		]
+		</BOUCLE_DerniereAnnee>
+		[(#ENV{date}|sc_annee_scolaire|!={[(#ENV{date_ev,[(#ENV{date})]}|sc_annee_scolaire)]}|oui)
+		<a href="[(#SELF|parametre_url{'date_ev',''})]"><:spip:date_aujourdhui|ucfirst:></a>
+		]
+		</fieldset>
+		</form>
+		</B_Annees>
+
+[(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={oui}|oui)
+	[(#SET{lafin,[(#ENV{date_ev,#ENV{date}}|affdate{'Y-m-d'})]})]
+][(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={non}|oui)
+	[(#SET{lafin,[(#ENV{date_ev,#ENV{date}}|sc_annee_scolaire)]-09-01})]
+]
+<BOUCLE_LiensMois(EVENEMENTS)
+	{branche}
+	{date_fin>=#GET{lafin}}
+	{date_debut<=(#ENV{date_ev,(#ENV{date})}|sc_annee_scolaire|plus{1})-12-31}
+	{par date_debut}
+	{"&nbsp;| "}
+>[
+<a href="#m(#DATE_DEBUT|affdate{'Ym'}|unique)">[(#DATE_DEBUT|nom_mois|ucfirst)]&nbsp;[(#DATE_DEBUT|annee)]</a>
+]</BOUCLE_LiensMois>
+
+
+[(#INCLURE{fond=noisettes/agenda/agendaliste_scolaire_filtre}{id_rubrique}{date_ev}{id_mot})]
+
+[<div class="notes">(#NOTES)</div>]
+
+	</div><!-- Fin de #LeTexte -->
+</div><!-- Fin de .texte -->
+
+[(#FORMULAIRE_ADMIN)]
+
+</BOUCLE_rubrique_principal>
