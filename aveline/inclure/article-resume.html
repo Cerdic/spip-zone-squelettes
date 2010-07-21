@@ -8,7 +8,7 @@
 #SET{niveau_titre_article,#ENV{afficher_titre_liste}|non|et{#ENV{afficher_texte_article}|=={complet}}|?{h2,h3}}
 <BOUCLE_article(ARTICLES) {id_article} {statut?}>
 <li class="item hentry">
-	<#GET{niveau_titre_article} class="#GET{niveau_titre_article} entry-title">
+	<[(#GET{niveau_titre_article}) ]class="[(#GET{niveau_titre_article}) ]entry-title">
 		[(#ENV{afficher_surtitre}|oui)#SURTITRE ]
 		<a href="#URL_ARTICLE" rel="bookmark"[(#ENV{id_article_expose}|=={#ID_ARTICLE}) class="on"]>
 			[(#ENV{afficher_logo}|oui)
@@ -26,14 +26,14 @@
 		[(#ENV{afficher_date_modif}|oui)[(#ENV{afficher_date}|ou{#ENV{afficher_auteurs}})<br />]<:aveline_public:mis_a_jour_le:> [(#DATE_MODIF|nom_jour) ][(#DATE_MODIF|affdate)]]
 	[(#ENV{afficher_date}|ou{#ENV{afficher_auteurs}}|ou{#ENV{afficher_date_modif}}|ou{#ENV{afficher_note}})</div>]
 	[(#ENV{afficher_texte_article}|=={introduction}|oui)
-		[<div class="#EDIT{intro} introduction entry-content">(#INTRODUCTION{[(#ENV{longueur_max_introduction}|sinon{600})]})</div>]
+		[<div class="[(#EDIT{intro}) ]introduction entry-content">(#INTRODUCTION{[(#ENV{longueur_max_introduction}|sinon{600})]})</div>]
 	]
 	[(#ENV{afficher_texte_article}|=={complet}|oui)
-		[(#ENV{afficher_descriptif}|oui) [<div class="#EDIT{descriptif} chapo">(#DESCRIPTIF|image_reduire{#GET{taille_max_images_texte},0})</div>]]
-		[<div class="#EDIT{chapo} chapo">(#CHAPO|image_reduire{#GET{taille_max_images_texte},0})</div>]
-		[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{#GET{taille_max_images_texte},0})</div>]
+		[(#ENV{afficher_descriptif}|oui) [<div class="[(#EDIT{descriptif}) ]chapo">(#DESCRIPTIF|image_reduire{#GET{taille_max_images_texte},0})</div>]]
+		[<div class="[(#EDIT{chapo}) ]chapo">(#CHAPO|image_reduire{#GET{taille_max_images_texte},0})</div>]
+		[<div class="[(#EDIT{texte}) ]texte">(#TEXTE|image_reduire{#GET{taille_max_images_texte},0})</div>]
 		[(#ENV{afficher_lienhypertexte}|oui)
-			[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+			[<p class="[(#EDIT{hyperlien}) ]hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
 		]
 		[<div class="ps">
 			<h3 class="h3 spip"><:info_ps:></h2>

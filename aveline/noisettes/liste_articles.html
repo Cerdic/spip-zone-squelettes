@@ -49,7 +49,7 @@
 	[(#GET{position_choix_tri_debut}|oui)#INCLURE{fond=inclure/liste_articles-choix_tri,env,tri=#GET{tri},senstri=#GET{senstri}}]
 	[(#GET{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
 	<ul class="liste-items">
-	<BOUCLE_liste_articles_tri_nbre_commentaires(ARTICLES) {id_rubrique == #GET{id_rubrique}|sinon{.}}{compteur_publie forum}{par compteur_forum}{inverse #GET{senstri}}{doublons articles_en_cours}{archives ?}{lang == #GET{langue_choisie}|sinon{.}}{pagination #GET{pas_pagination}}>
+	<BOUCLE_liste_articles_tri_nbre_commentaires(ARTICLES) {id_rubrique == #GET{id_rubrique}|sinon{.*}}{compteur_publie forum}{par compteur_forum}{inverse #GET{senstri}}{doublons articles_en_cours}{archives ?}{lang == #GET{langue_choisie}|sinon{.*}}{pagination #GET{pas_pagination}}>
 	[(#GET{style_liste}|=={liste}|oui)
 		#INCLURE{fond=inclure/article-liste,id_article=#ID_ARTICLE,id_article_expose=#ENV{id_article},env}
 	]
@@ -78,7 +78,7 @@
 	[(#GET{position_choix_tri_debut}|oui)#INCLURE{fond=inclure/liste_articles-choix_tri,env,tri=#GET{tri},senstri=#GET{senstri}}]
 	[(#GET{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
 	<ul class="liste-items">
-	<BOUCLE_liste_articles(ARTICLES) {id_rubrique == #GET{id_rubrique}|sinon{.}} {par num #GET{tri_num}}{inverse #GET{senstri}}{par #GET{tri}}{inverse #GET{senstri}}{doublons articles_en_cours}{archives ?}{lang == #GET{langue_choisie}|sinon{.}}{pagination #GET{pas_pagination}}>
+	<BOUCLE_liste_articles(ARTICLES) {id_rubrique == #GET{id_rubrique}|sinon{.*}} {par num #GET{tri_num}}{inverse #GET{senstri}}{par #GET{tri}}{inverse #GET{senstri}}{doublons articles_en_cours}{archives ?}{lang == #GET{langue_choisie}|sinon{.*}}{pagination #GET{pas_pagination}}>
 	[(#GET{style_liste}|=={liste}|oui)
 		#INCLURE{fond=inclure/article-liste,id_article=#ID_ARTICLE,id_article_expose=#ENV{id_article},env}
 	]

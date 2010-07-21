@@ -16,7 +16,7 @@
 	[(#SELF|parametre_url{archives, ''}|form_hidden)]
 		<select name="archives" class="select" id="archives" onchange="submit()">
 			<option value=""><:aveline_public:voir_tous:></option>
-		<BOUCLE_articles_select(ARTICLES){id_rubrique == #GET{id_rubrique}|sinon{.}} {lang == #GET{langue_choisie}|sinon{.}} {!par date}{id_auteur ?}>
+		<BOUCLE_articles_select(ARTICLES){id_rubrique == #GET{id_rubrique}|sinon{.*}} {lang == #GET{langue_choisie}|sinon{.*}} {!par date}{id_auteur ?}>
 			[(#GET{pas_selecteur_archives}|=={mois}|non)
 				[<option value="[(#DATE|annee)]" [(#DATE|annee|=={#ENV{archives}}|oui)selected="selected"]>(#DATE|annee|unique{archives_annee})
 					[(#ENV{compteur_articles_selecteur_archives}|oui) 
@@ -39,7 +39,7 @@
 <div class="liste archives">
 	[(#ENV{afficher_titre_noisette}|oui)[<h2 class="h2">(#GET{titre})</h2>]]
 	<ul class="liste-items">
-		<BOUCLE_articles_liste(ARTICLES){id_rubrique == #GET{id_rubrique}|sinon{.}} {lang == #GET{langue_choisie}|sinon{.}} {!par date}{id_auteur ?}>
+		<BOUCLE_articles_liste(ARTICLES){id_rubrique == #GET{id_rubrique}|sinon{.*}} {lang == #GET{langue_choisie}|sinon{.*}} {!par date}{id_auteur ?}>
 		[(#GET{pas_selecteur_archives}|=={mois}|non)
 			[<li class="item"><a href="[(#SELF|parametre_url{archives,[(#DATE|annee)]})]">[(#DATE|annee|=={#ENV{archives}}|oui)<strong class="on">]
 				(#DATE|annee|unique{archives_annee})
