@@ -1,0 +1,95 @@
+<BOUCLE_document (DOCUMENTS) {id_document} {mode?} {tout}>
+[(#REM)
+
+	Modele pour <img>
+
+	Si on est en mode "image" ou "vignette", ou appele avec embed=oui,
+	on affiche l'image complete ; sinon le logo
+
+	Si un lien est passe #ENV{lien} on ajoute le a href
+	ou on truque le #URL_DOCUMENT
+	
+	Si une code de langue est passe #ENV{langue} ex: <img12|langue=en>
+	on ajoute l'attribut lang la balise img et eventuellement sur la balise a
+	
+	Dans le cas mode "image ou vignette", le contenu de l'attribut 
+	alt et title se construit selon le schema suivant : 
+	- prend la valeur de alt passe en environnement par le biais 
+	d'un parametre sur la balise ex: <img12|alt=xxx>
+	- sinon on prend le titre
+	- sinon si #ENV{lien} est passe on prend #ENV{lien} ou Document si lien vers #URL_DOCUMENT
+	- sinon alt vide
+	
+	Dans le cas mode "document", le contenu de l'attribut 
+	alt et title se construit selon le même schema a ceci pres
+	qu'on ajoute #TYPE_DOCUMENT - #TAILLE
+	sauf si #ENV{lien} est passe	
+
+]
+[(#SET{
+	image,
+		#MODE|match{'image|vignette'}
+		|sinon{#ENV{embed}}
+		|oui
+})][
+
+	(#REM) image complete ?
+
+][(#GET{image})
+<span class='spip_document_#ID_DOCUMENT spip_documents[ spip_documents_(#ENV{align})][ (#ENV{class})] spip_lien_ok'[ style='float:(#ENV{align}|match{left|right});[ width:(#LARGEUR)px;]']>
+[<a href="(#ENV{lien})"[ class="(#ENV{lien_class})"][ lang="(#ENV{langue})"][ title="(#ENV{alt}|texte_backend|sinon{#TITRE|texte_backend|sinon{#ENV{lien}|texte_backend}})"]>]<img src='#URL_DOCUMENT'[ width="(#LARGEUR)"][ height="(#HAUTEUR)"][(#ENV{lien1}|oui) usemap="#[AP(#URL_DOCUMENT|md5)]"][ lang="(#ENV{langue})"] alt="[(#ENV{alt}|texte_backend|sinon{#TITRE|texte_backend|sinon{#ENV{lien}|texte_backend}})]"[(#DESCRIPTIF|?{' ',''})longdesc="[(#URL_PAGE{longdesc,id=#ID_DOCUMENT}|parametre_url{'lang',#ENV{langue,#LANG}})]"] />
+
+[(#ENV{lien1}|oui)<map name="AP[(#URL_DOCUMENT|md5)]" id="AP[(#URL_DOCUMENT|md5)]">
+[<area shape="#ENV{type1}" coords="(#ENV{coord1})" href="[(#ENV{lien1}|accessibilite_enlien)]" alt="#ENV{alt1}" title="#ENV{alt1}" />]
+[<area shape="#ENV{type2}" coords="(#ENV{coord2})" href="[(#ENV{lien2}|accessibilite_enlien)]" alt="#ENV{alt2}" title="#ENV{alt2}" />]
+[<area shape="#ENV{type3}" coords="(#ENV{coord3})" href="[(#ENV{lien3}|accessibilite_enlien)]" alt="#ENV{alt3}" title="#ENV{alt3}" />]
+[<area shape="#ENV{type4}" coords="(#ENV{coord4})" href="[(#ENV{lien4}|accessibilite_enlien)]" alt="#ENV{alt4}" title="#ENV{alt4}" />]
+[<area shape="#ENV{type5}" coords="(#ENV{coord5})" href="[(#ENV{lien5}|accessibilite_enlien)]" alt="#ENV{alt5}" title="#ENV{alt5}" />]
+[<area shape="#ENV{type6}" coords="(#ENV{coord6})" href="[(#ENV{lien6}|accessibilite_enlien)]" alt="#ENV{alt6}" title="#ENV{alt6}" />]
+[<area shape="#ENV{type7}" coords="(#ENV{coord7})" href="[(#ENV{lien7}|accessibilite_enlien)]" alt="#ENV{alt7}" title="#ENV{alt7}" />]
+[<area shape="#ENV{type8}" coords="(#ENV{coord8})" href="[(#ENV{lien8}|accessibilite_enlien)]" alt="#ENV{alt8}" title="#ENV{alt8}" />]
+[<area shape="#ENV{type9}" coords="(#ENV{coord9})" href="[(#ENV{lien9}|accessibilite_enlien)]" alt="#ENV{alt9}" title="#ENV{alt9}" />]
+[<area shape="#ENV{type10}" coords="(#ENV{coord10})" href="[(#ENV{lien10}|accessibilite_enlien)]" alt="#ENV{alt10}" title="#ENV{alt10}" />]
+[<area shape="#ENV{type11}" coords="(#ENV{coord11})" href="[(#ENV{lien11}|accessibilite_enlien)]" alt="#ENV{alt11}" title="#ENV{alt11}" />]
+[<area shape="#ENV{type12}" coords="(#ENV{coord12})" href="[(#ENV{lien12}|accessibilite_enlien)]" alt="#ENV{alt12}" title="#ENV{alt12}" />]
+[<area shape="#ENV{type13}" coords="(#ENV{coord13})" href="[(#ENV{lien13}|accessibilite_enlien)]" alt="#ENV{alt13}" title="#ENV{alt13}" />]
+[<area shape="#ENV{type14}" coords="(#ENV{coord14})" href="[(#ENV{lien14}|accessibilite_enlien)]" alt="#ENV{alt14}" title="#ENV{alt14}" />]
+[<area shape="#ENV{type15}" coords="(#ENV{coord15})" href="[(#ENV{lien15}|accessibilite_enlien)]" alt="#ENV{alt15}" title="#ENV{alt15}" />]
+[<area shape="#ENV{type16}" coords="(#ENV{coord16})" href="[(#ENV{lien16}|accessibilite_enlien)]" alt="#ENV{alt16}" title="#ENV{alt16}" />]
+[<area shape="#ENV{type17}" coords="(#ENV{coord17})" href="[(#ENV{lien17}|accessibilite_enlien)]" alt="#ENV{alt17}" title="#ENV{alt17}" />]
+[<area shape="#ENV{type18}" coords="(#ENV{coord18})" href="[(#ENV{lien18}|accessibilite_enlien)]" alt="#ENV{alt18}" title="#ENV{alt18}" />]
+[<area shape="#ENV{type19}" coords="(#ENV{coord19})" href="[(#ENV{lien19}|accessibilite_enlien)]" alt="#ENV{alt19}" title="#ENV{alt19}" />]
+[<area shape="#ENV{type20}" coords="(#ENV{coord20})" href="[(#ENV{lien20}|accessibilite_enlien)]" alt="#ENV{alt20}" title="#ENV{alt20}" />]
+</map>]
+
+[(#ENV{lien}|?{</a>})]</span>
+
+[(#ENV{lien1}|oui)<p>[(#TITRE) ]<i>(<:soyezcreateurs:listezones:>)</i>&nbsp;:</p><ul>]
+[<li><a href="[(#ENV{lien1}|accessibilite_enlien)]">(#ENV{alt1})</a></li>]
+[<li><a href="[(#ENV{lien2}|accessibilite_enlien)]">(#ENV{alt2})</a></li>]
+[<li><a href="[(#ENV{lien3}|accessibilite_enlien)]">(#ENV{alt3})</a></li>]
+[<li><a href="[(#ENV{lien4}|accessibilite_enlien)]">(#ENV{alt4})</a></li>]
+[<li><a href="[(#ENV{lien5}|accessibilite_enlien)]">(#ENV{alt5})</a></li>]
+[<li><a href="[(#ENV{lien6}|accessibilite_enlien)]">(#ENV{alt6})</a></li>]
+[<li><a href="[(#ENV{lien7}|accessibilite_enlien)]">(#ENV{alt7})</a></li>]
+[<li><a href="[(#ENV{lien8}|accessibilite_enlien)]">(#ENV{alt8})</a></li>]
+[<li><a href="[(#ENV{lien9}|accessibilite_enlien)]">(#ENV{alt9})</a></li>]
+[<li><a href="[(#ENV{lien10}|accessibilite_enlien)]">(#ENV{alt10})</a></li>]
+[<li><a href="[(#ENV{lien11}|accessibilite_enlien)]">(#ENV{alt11})</a></li>]
+[<li><a href="[(#ENV{lien12}|accessibilite_enlien)]">(#ENV{alt12})</a></li>]
+[<li><a href="[(#ENV{lien13}|accessibilite_enlien)]">(#ENV{alt13})</a></li>]
+[<li><a href="[(#ENV{lien14}|accessibilite_enlien)]">(#ENV{alt14})</a></li>]
+[<li><a href="[(#ENV{lien15}|accessibilite_enlien)]">(#ENV{alt15})</a></li>]
+[<li><a href="[(#ENV{lien16}|accessibilite_enlien)]">(#ENV{alt16})</a></li>]
+[<li><a href="[(#ENV{lien17}|accessibilite_enlien)]">(#ENV{alt17})</a></li>]
+[<li><a href="[(#ENV{lien18}|accessibilite_enlien)]">(#ENV{alt18})</a></li>]
+[<li><a href="[(#ENV{lien19}|accessibilite_enlien)]">(#ENV{alt19})</a></li>]
+[<li><a href="[(#ENV{lien20}|accessibilite_enlien)]">(#ENV{alt20})</a></li>]
+[(#ENV{lien1}|oui)</ul>]
+][
+
+	(#REM) sinon logo document + lien + alt + title etc
+
+][(#GET{image}|?{'',' '})
+<span class='spip_document_#ID_DOCUMENT spip_documents[ spip_documents_(#ENV{align})][ (#ENV{class})] spip_lien_ok'[ style='float:(#ENV{align}|match{left|right});[ width:(#LOGO_DOCUMENT|largeur)px;]']><a href="[(#ENV{lien}|sinon{#URL_DOCUMENT})]"[ (#ENV{lien}|?{'',type="#MIME_TYPE"})][ lang="(#ENV{langue})"] title="[(#ENV{alt}|texte_backend|sinon{#TITRE|texte_backend|sinon{#ENV{lien}|texte_backend|sinon{<:info_document:>}}})[(#ENV{lien}|?{'',' - '})]][(#ENV{lien}|?{'',[(#TYPE_DOCUMENT) - ][(#TAILLE|taille_en_octets)]})]"><img src="[(#LOGO_DOCUMENT|extraire_attribut{src})]" width="[(#LOGO_DOCUMENT|largeur)]" height="[(#LOGO_DOCUMENT|hauteur)]"[ lang="(#ENV{langue})"] alt="[(#ENV{alt}|texte_backend|sinon{#TITRE|texte_backend|sinon{#ENV{lien}|texte_backend|sinon{<:info_document:>}}})[(#ENV{lien}|?{'',' - '})]][(#ENV{lien}|?{'',[(#TYPE_DOCUMENT) - ][(#TAILLE|taille_en_octets)]})]"[(#DESCRIPTIF|?{' ',''})longdesc="[(#URL_PAGE{longdesc,id=#ID_DOCUMENT}|parametre_url{'lang',#ENV{langue,#LANG}})]"] /></a></span>
+]</BOUCLE_document>
