@@ -19,6 +19,12 @@ define("_CLEVERMAIL_NOUVEAUTES_HTML", 'lettre_libre');
 define("_CLEVERMAIL_NOUVEAUTES_TEXT", 'lettre_libre_txt');
 define("_CLEVERMAIL_DISTANT", false);
 
+// Activer le plugin NoiZetier
+#define('_NOIZETIER_LISTER_PAGES_SANS_XML',false);
+#define('_NOIZETIER_COMPOSITIONS_TYPE_PAGE',true);
+define('_NOIZETIER_RECUPERER_FOND',false);
+
+
 $couleurs = charger_fonction('couleurs', 'inc');
 $couleurs( array(
 // Vert
