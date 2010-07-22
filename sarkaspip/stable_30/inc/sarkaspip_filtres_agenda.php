@@ -129,7 +129,7 @@ function agenda_debug_evenement($id_agenda=0, $liste_choisie='liste_evt') {
 		$count_evt = count($evenements);
 
 		for ($i=1;$i<=$count_evt;$i++) {
-			echo '<br /><strong>EVT N°'.$i.'</strong><br />';
+			echo '<br /><strong>EVT Num'.$i.'</strong><br />';
 			echo '<strong>Titre</strong>: '.$evenements[$i]['titre'].'<br />';
 			echo '<strong>Id</strong>: '.$evenements[$i]['id'].'<br />';
 			echo '<strong>Date Redac</strong>: '.$evenements[$i]['date_redac'].'<br />';
