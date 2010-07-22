@@ -180,9 +180,9 @@ function agenda_debug_contexte($id_agenda=0) {
 // ===================================================
 // Auteur: Smellup
 // Fonction : Insertion d'une bande de pagination annuelle ou
-//                   saisonniere 
+//            saisonniere 
 // Utilisation : uniquement agenda annuel. Choix possible du
-//                      filtre, tri, et format (via le contexte)
+//               filtre, tri, et format (via le contexte)
 // ===================================================
 //
 function agenda_liste_paginer($id_agenda=0, $annee_choisie=0, $mois_choisi=0, $filtre='-1', $separateur='&nbsp;|&nbsp;', $ancre=NULL, $tri='normal') {
@@ -255,9 +255,9 @@ function agenda_liste_paginer($id_agenda=0, $annee_choisie=0, $mois_choisi=0, $f
 // ===================================================
 // Auteur: Smellup
 // Fonction : Affichage de l'agenda sous forme de listing des
-//                   evenements de l'annee choisie
+//            evenements de l'annee choisie
 // Utilisation : uniquement agenda annuel. Choix possible du
-//                      filtre et du tri
+//               filtre et du tri
 // ===================================================
 //
 function agenda_liste_afficher($id_agenda=0, $annee_choisie=0, $mois_choisi=0, $filtre='-1', $tri='normal') {
@@ -484,15 +484,15 @@ function agenda_mini_header($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='&
 	$header = NULL;
 	// Debut de l'en-tete
 	// Ligne 1 : pagination par annee
-	$header .= '<h2><a class="titre_bloc bord ajax" href="'.$url_base.'calendrier_mois='.$mois_choisi.'&amp;calendrier_annee='.$annee_choisie_prec.'" title="'.$nom_mois[$mois_choisi].'&nbsp;'.$annee_choisie_prec.'">'.$icone_prec.'</a></h2>';
+	$header .= '<h2><a class="titre_bloc bord ajax" rel="nofollow" href="'.$url_base.'calendrier_mois='.$mois_choisi.'&amp;calendrier_annee='.$annee_choisie_prec.'" title="'.$nom_mois[$mois_choisi].'&nbsp;'.$annee_choisie_prec.'">'.$icone_prec.'</a></h2>';
 	$header .= '<h2 class="titre_bloc centre">'.$annee_choisie.'</h2>';   
-	$header .= '<h2><a class="titre_bloc bord ajax" href="'.$url_base.'calendrier_mois='.$mois_choisi.'&amp;calendrier_annee='.$annee_choisie_suiv.'" title="'.$nom_mois[$mois_choisi].'&nbsp;'.$annee_choisie_suiv.'">'.$icone_suiv.'</a></h2>';
+	$header .= '<h2><a class="titre_bloc bord ajax" rel="nofollow" href="'.$url_base.'calendrier_mois='.$mois_choisi.'&amp;calendrier_annee='.$annee_choisie_suiv.'" title="'.$nom_mois[$mois_choisi].'&nbsp;'.$annee_choisie_suiv.'">'.$icone_suiv.'</a></h2>';
 	// Ligne 2 : pagination par mois
-	$header .= '<h2><a class="titre_bloc bord ajax" href="'.$url_base.'calendrier_mois='.$mois_prec.'&amp;calendrier_annee='.$annee_prec.'" title="'.$nom_mois[$mois_prec].'&nbsp;'.$annee_prec.'">'.$icone_prec.'</a></h2>';
+	$header .= '<h2><a class="titre_bloc bord ajax" rel="nofollow" href="'.$url_base.'calendrier_mois='.$mois_prec.'&amp;calendrier_annee='.$annee_prec.'" title="'.$nom_mois[$mois_prec].'&nbsp;'.$annee_prec.'">'.$icone_prec.'</a></h2>';
 	$header .= '<h2 class="titre_bloc centre">'.$nom_mois[$mois_choisi].'</h2>';   
-	$header .= '<h2><a class="titre_bloc bord ajax" href="'.$url_base.'calendrier_mois='.$mois_suiv.'&amp;calendrier_annee='.$annee_suiv.'" title="'.$nom_mois[$mois_suiv].'&nbsp;'.$annee_suiv.'">'.$icone_suiv.'</a></h2>';
+	$header .= '<h2><a class="titre_bloc bord ajax" rel="nofollow" href="'.$url_base.'calendrier_mois='.$mois_suiv.'&amp;calendrier_annee='.$annee_suiv.'" title="'.$nom_mois[$mois_suiv].'&nbsp;'.$annee_suiv.'">'.$icone_suiv.'</a></h2>';
 	// Ligne 3 : retour au mois du jour courant
-	$header .= '<h2><a id="auj" class="titre_bloc ajax" href="'.$url_base.'calendrier_mois='.$mois_courant.'&amp;calendrier_annee='.$annee_courante.'" title="'.$nom_mois[intval($mois_courant)].'&nbsp;'.$annee_courante.'">'.ucfirst(_T('sarkaspip:aujourdhui')).'</a></h2>';
+	$header .= '<h2><a id="auj" class="titre_bloc ajax" rel="nofollow" href="'.$url_base.'calendrier_mois='.$mois_courant.'&amp;calendrier_annee='.$annee_courante.'" title="'.$nom_mois[intval($mois_courant)].'&nbsp;'.$annee_courante.'">'.ucfirst(_T('sarkaspip:aujourdhui')).'</a></h2>';
 	// Fin de l'en-tete
 	
 	return $header;
@@ -577,7 +577,7 @@ function agenda_mini_body($id_agenda=0, $jour_debut=0, $affichage_hors_mois='oui
 			$bulle = $evenements[$index_evt1]['heure'].'&nbsp;-&nbsp;'.$evenements[$index_evt1]['titre'];
 			if (count($mini_evenements[date('d-m-Y', $date)]) > 1)
 				$bulle .= '...('.strval(count($mini_evenements[date('d-m-Y', $date)])).'&nbsp;'._T('sarkaspip:plusieurs_evenements_jour').')';
-			$cellule .= '<a href="'.$lien.'" title="'.$bulle.'">'.strval(date('j', $date)).'</a>';		
+			$cellule .= '<a rel="nofollow" href="'.$lien.'" title="'.$bulle.'">'.strval(date('j', $date)).'</a>';		
 		}
 		$cellule .= '</td>';
 		$body .= $cellule;
@@ -660,7 +660,7 @@ function agenda_mini_footer($id_agenda=0, $critere='oui', $max_mois=6, $taille=5
 			if ((date('Y-m-d',$date) >= $date_base) && ($count_liste < $taille)) {
 				if ($count_liste == 0) $cellule .= '<table id="footer_evenements" summary="'._T('sarkaspip:resume_mini_agenda_footer').'">';
 				$cellule .= '<tr><td class="footer_colg">'.affdate_base($evenements[$i]['date_redac'], $format).':&nbsp;</td>';
-				$cellule .= '<td class="footer_cold"><a href="spip.php?page=evenement&amp;id_article='.$evenements[$i]['id'].'">'.$evenements[$i]['titre'].'</a></td></tr>';
+				$cellule .= '<td class="footer_cold"><a rel="nofollow" href="spip.php?page=evenement&amp;id_article='.$evenements[$i]['id'].'">'.$evenements[$i]['titre'].'</a></td></tr>';
 				$count_liste += 1;
 			}
 			$liste_complete = ($count_liste == $taille);
