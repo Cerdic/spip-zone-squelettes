@@ -56,6 +56,16 @@
 		</fieldset>
 		</form>
 		</B_Annees>
+		
+		#SET{FiltreGroupesEvenements,#ARRAY}
+		<BOUCLE_FiltreGroupesEvenements(GROUPES_MOTS){titre==^[^_]}{tables_liees LIKE %evenements%}>
+			#SET{FiltreGroupesEvenements,
+			#GET{FiltreGroupesEvenements}|push{#ID_GROUPE}}
+		</BOUCLE_FiltreGroupesEvenements>
+		[<div id="mots_filtres_evenements" class="espaceavant ajax">
+			(#FORMULAIRE_EVENEMENTS_PAR_MOTS{#GET{FiltreGroupesEvenements},#SELF})
+		</div><br /><br />]
+
 
 [(#CONFIG{soyezcreateurs/agendafuturseul,non}|=={oui}|oui)
 	[(#SET{lafin,[(#ENV{date_ev,#ENV{date}}|affdate{'Y-m-d'})]})]
@@ -73,7 +83,7 @@
 ]</BOUCLE_LiensMois>
 
 
-[(#INCLURE{fond=noisettes/agenda/agendaliste_scolaire_filtre}{id_rubrique}{date_ev}{id_mot})]
+[(#INCLURE{fond=noisettes/agenda/agendaliste_scolaire_filtre}{id_rubrique}{date_ev}{mots})]
 
 [<div class="notes">(#NOTES)</div>]
 
