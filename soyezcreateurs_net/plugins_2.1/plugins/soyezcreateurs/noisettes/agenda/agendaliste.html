@@ -35,7 +35,10 @@
 		<option value="[(#DATE_DEBUT|annee)-01-01]"[(#ENV{date_ev,[(#ENV{date})]}|annee|=={[(#DATE_DEBUT|annee)]}|?{' selected="selected"',''})]>(#DATE_DEBUT|annee|unique)</option>
 		]</BOUCLE_Annees>
 		</select>		
-		
+		<BOUCLE_ExclureStatut(MOTS){type=_AgendaStatut}{doublons statut}></BOUCLE_ExclureStatut>
+		[(#PLUGIN{critere_mots}|non)
+			[(#INCLURE{fond=noisettes/agenda/formulaire_agenda_mot_cle})]
+		]
 		<input type="submit" class="form_submit" value="<:pass_ok:>" />
 		<BOUCLE_DerniereAnnee(EVENEMENTS){branche}{!par date_debut}{0,1}>
 		[(#DATE_DEBUT|annee|>{[(#ENV{date_ev,[(#ENV{date})]}|annee)]}|oui)
@@ -48,20 +51,15 @@
 		</fieldset>
 		</form>
 		</B_Annees>
-		#SET{FiltreGroupesEvenements,#ARRAY}
-		<BOUCLE_FiltreGroupesEvenements(GROUPES_MOTS){titre==^[^_]}{tables_liees LIKE %evenements%}>
-			#SET{FiltreGroupesEvenements,
-			#GET{FiltreGroupesEvenements}|push{#ID_GROUPE}}
-		</BOUCLE_FiltreGroupesEvenements>
-		[<div id="mots_filtres_evenements" class="espaceavant ajax">
-			(#FORMULAIRE_EVENEMENTS_PAR_MOTS{#GET{FiltreGroupesEvenements},#SELF})
-		</div><br /><br />]
+		[(#PLUGIN{critere_mots}|oui)
+			[(#INCLURE{fond=noisettes/agenda/formulaire_agenda_criteres_mots})<br /><br /><br />]
+		]
 
 <BOUCLE_LiensMois(EVENEMENTS){branche}{date_fin>=(#ENV{date_ev,#ENV{date}}|affdate{'Y-m-d'})}{date_fin<(#ENV{date_ev,#ENV{date}}|annee|plus{1})-01-01}{par date_debut}{"&nbsp;| "}>[
 <a href="#m(#DATE_DEBUT|affdate{'Ym'}|unique)">[(#DATE_DEBUT|nom_mois|ucfirst)]&nbsp;[(#DATE_DEBUT|annee)]</a>
 ]</BOUCLE_LiensMois>
 
-[(#INCLURE{fond=noisettes/agenda/agendaliste_filtre}{id_rubrique}{date_ev}{mots})]
+[(#INCLURE{fond=noisettes/agenda/agendaliste_filtre}{id_rubrique}{date_ev}{mots}{id_mot})]
 
 [<div class="notes">(#NOTES)</div>]
 

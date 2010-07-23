@@ -93,22 +93,9 @@
 					]</BOUCLE_Annees>
 				</select>
 				</B_Annees>
-				<BOUCLE_ListMotsClefs(EVENEMENTS){branche}>
-				<BOUCLE_MotClefAssocie(MOTS){id_evenement}{unique}{doublons listemots} />
-				</BOUCLE_ListMotsClefs>
-				<B_ListeMotsClefs>[(#REM) Objectif : n'afficher que les mots clefs effectivement utilise' dans le secteur]
-				<select name="id_mot" id="var_nav_cle">
-					<option value=""[(#ENV{id_mot,''}|=={''}|oui) selected="selected"]><:soyezcreateurs:tout:></option>
-					<BOUCLE_ListeMotsClefs(MOTS){!doublons listemots}{par titre}>
-					<option value="[(#ID_MOT)]"[(#ENV{id_mot}|=={[(#ID_MOT)]}|oui) selected="selected"]>[(#TITRE|supprimer_tags)]</option>
-					</BOUCLE_ListeMotsClefs>
-				</select>
-				</B_ListeMotsClefs>
-				
-				
-		
-		
-		
+				[(#PLUGIN{critere_mots}|non)
+					[(#INCLURE{fond=noisettes/agenda/formulaire_agenda_mot_cle})]
+				]
 				<BOUCLE_DerniereAnnee(EVENEMENTS){branche}{!par date_debut}{0,1}>
 				[(#DATE_DEBUT|affdate{'Y-m'}|=={#ENV{date_ev,#ENV{date}}|affdate{'Y-m'}}|non)
 					<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique',#_rubrique_principal:ID_RUBRIQUE}|parametre_url{'date_ev', #GET{date}|Agenda_moisdecal{1,'Y-m-01'}}|parametre_url{'id_mot', #ENV{id_mot,''}|urlencode})]"><img src="#CHEMIN{images/next.gif}" title="<:suivant|ucfirst:>" alt="<:suivant|ucfirst:>" /></a>
@@ -126,14 +113,9 @@
 				]
 			</fieldset>
 		</form>
-		#SET{FiltreGroupesEvenements,#ARRAY}
-				<BOUCLE_FiltreGroupesEvenements(GROUPES_MOTS){titre==^[^_]}{tables_liees LIKE %evenements%}>
-					#SET{FiltreGroupesEvenements,
-					#GET{FiltreGroupesEvenements}|push{#ID_GROUPE}}
-				</BOUCLE_FiltreGroupesEvenements>
-				[<div id="mots_filtres_evenements" class="espaceavant ajax">
-					(#FORMULAIRE_EVENEMENTS_PAR_MOTS{#GET{FiltreGroupesEvenements},#SELF})
-				</div>]
+		[(#PLUGIN{critere_mots}|oui)
+			[(#INCLURE{fond=noisettes/agenda/formulaire_agenda_criteres_mots})]
+		]
 		<h2>[(#TITRE)]</h2>
 		<table class="agenda" summary="<:soyezcreateurs:agendamoisde:> [(#GET{date}|nom_mois)] [(#GET{date}|annee)]">
 			<caption>
@@ -155,6 +137,7 @@
 			{date_debut > (#GET{date}|affdate{'Y-m-01'}|sc_DateAdd{-6})}
 			{date_debut < (#GET{date}|affdate{'Y-m-01'}|sc_DateAdd{35})}
 			{par date_debut}{statut=publie}
+			{id_mot ?}
 			{mots_selon_id ?}>
 				[(#DATE_DEBUT|sc_Agenda_memo_full{#DATE_FIN,[(#TITRE)],
 				#DESCRIPTIF,#LIEU,

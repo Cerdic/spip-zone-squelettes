@@ -228,4 +228,18 @@ function autoriser_evenement_creer_bouton($faire, $type='', $id=0, $qui = NULL, 
 		return autoriser('creerevenementdans','article',$opt['contexte']['id_article'],$qui); 
 	return false; 
 } 
+
+include_spip('inc/plugin');
+
+if ($plugins_actifs = liste_plugin_actifs() AND empty($plugins_actifs[strtoupper($plugin)])){
+	function critere_mots_dist($idb, &$boucles, $crit){
+		return true;
+	}
+	function critere_mots_selon_id_dist($idb, &$boucles, $crit){
+		return true;
+	}
+	function critere_mots_selon_titre_dist($idb, &$boucles, $crit){
+		return true;
+	}
+}
 ?>
