@@ -267,7 +267,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'clever_uns' => 'Unsubscription done',
 	'clevermail' => 'CleverMail',
 	'commencer' => 'To start',
-	'configurersc' => 'Configurer SoyezCr&eacute;ateurs', # NEW
+	'configurersc' => 'Set SoyezCr&eacute;ateurs',
 	'connexion' => 'Connection',
 	'connexiontitle' => 'Access to admin interface',
 	'copyright_cnil' => 'CNIL declaration n&ordm;',
@@ -389,7 +389,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'recherche_value' => 'Search ?',
 	'retouraccueil' => 'Back to home page',
 	'retourgalerie' => 'Back to the gallery',
-	'retoursommaire' => 'Retour Sommaire', # NEW
+	'retoursommaire' => 'Back to Overview',
 	'retourtop' => 'Back to top',
 
 	// S
