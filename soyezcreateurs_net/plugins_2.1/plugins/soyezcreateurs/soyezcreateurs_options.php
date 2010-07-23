@@ -231,7 +231,7 @@ function autoriser_evenement_creer_bouton($faire, $type='', $id=0, $qui = NULL, 
 
 include_spip('inc/plugin');
 
-if ($plugins_actifs = liste_plugin_actifs() AND empty($plugins_actifs[strtoupper($plugin)])){
+if ($plugins_actifs = liste_plugin_actifs() AND empty($plugins_actifs[strtoupper('critere_mots')])){
 	function critere_mots_dist($idb, &$boucles, $crit){
 		return true;
 	}
