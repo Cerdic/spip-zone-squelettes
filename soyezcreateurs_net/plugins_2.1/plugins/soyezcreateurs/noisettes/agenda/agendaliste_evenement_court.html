@@ -1,6 +1,6 @@
 <BOUCLE_Evenement(EVENEMENTS){id_evenement}>
 
 <B_ArticleConcerne><BOUCLE_ArticleConcerneLogo(ARTICLES){id_article}><li[ style="list-style-image: url(/(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}{id_rubrique}|image_reduire{9,9}|extraire_attribut{src}));"]></BOUCLE_ArticleConcerneLogo>[<strong>(#DATE_DEBUT|sc_decoder_date{#DATE_FIN,#HORAIRE,'skel','oui'})</strong>]<BOUCLE_ArticleConcerne(ARTICLES){id_article}><BOUCLE_TitreRub(RUBRIQUES){id_rubrique}>[(#TITRE)&nbsp;: ]</BOUCLE_TitreRub><a href="#URL_ARTICLE">[(#TITRE)]</a>[&nbsp;: (#_Evenement:TITRE|=={[(#TITRE)]}|?{'',[(#_Evenement:TITRE)]})]</BOUCLE_ArticleConcerne><B_Statut><span class="agendastatut"><BOUCLE_Statut(MOTS) {id_evenement}{type=_AgendaStatut}{doublons statut}>[ <strong class="agendastatut"[ style="color:#(#TEXTE);border-color:##TEXTE;background-color:#[(#TEXTE|couleur_eclaircir|couleur_eclaircir|couleur_eclaircir)];"]>(#TITRE)</strong> ]</BOUCLE_Statut></span></B_Statut>
-[(#INCLURE{fond=noisettes/agenda/etiquette_evenement, mots, id_evenement})]
+[(#PLUGIN{critere_mots}|oui)[(#INCLURE{fond=noisettes/agenda/etiquette_evenement, mots, id_evenement})]]
 </li></B_ArticleConcerne>
 </BOUCLE_Evenement>
