@@ -91,24 +91,24 @@ function soyezcreateurs_noizetier_blocs_defaut($flux) {
 			
 			case 'contenu':
 				$blocs['pre_'.$nom] = array(
-					'nom' => _T('sc:nom_bloc_pre_contenu'),
-					'description' => _T('sc:description_bloc_pre_contenu'),
+					'nom' => _T('soyezcreateurs:noizetier_nom_bloc_pre_contenu'),
+					'description' => _T('soyezcreateurs:noizetier_description_bloc_pre_contenu'),
 					'icon' => find_in_path('img/ic_bloc_contenu.png')
 				);
 				break;
 				
 			case 'navigation':
 				$blocs['pre_'.$nom] = array(
-					'nom' => _T('sc:nom_bloc_pre_navigation'),
-					'description' => _T('sc:description_bloc_pre_navigation'),
+					'nom' => _T('soyezcreateurs:noizetier_nom_bloc_pre_navigation'),
+					'description' => _T('soyezcreateurs:noizetier_description_bloc_pre_navigation'),
 					'icon' => find_in_path('img/ic_bloc_navigation.png')
 				);
 				break;
 				
 			case 'extra':
 				$blocs['pre_'.$nom] = array(
-					'nom' => _T('sc:nom_bloc_pre_extra'),
-					'description' => _T('sc:description_bloc_pre_extra'),
+					'nom' => _T('soyezcreateurs:noizetier_nom_bloc_pre_extra'),
+					'description' => _T('soyezcreateurs:noizetier_description_bloc_pre_extra'),
 					'icon' => find_in_path('img/ic_bloc_extra.png')
 				);
 				break;

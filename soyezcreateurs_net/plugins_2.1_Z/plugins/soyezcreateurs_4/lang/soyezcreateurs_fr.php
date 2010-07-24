@@ -357,6 +357,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'newsletter_inscription' => 'Inscription',
 	'newsletter_recevoir' => 'Recevoir la newsletter du site',
 	'newsletter_valider' => 'Valider',
+	'noizetier_nom_pagedefaut' => 'Page par d&eacute;faut',
+	'noizetier_description_pagedefaut' => 'Page par d&eacute;faut utilis&eacute;e par le squelette',
+	'noizetier_nom_bloc_pre_contenu' => 'Pr&eacute;-Contenu',
+	'noizetier_nom_bloc_pre_navigation' => 'Pr&eacute;-Navigation',
+	'noizetier_nom_bloc_pre_extra' => 'Pr&eacute;-Extra',
+	'noizetier_description_bloc_pre_contenu' => 'Avant le contenu principal de chaque page.',
+	'noizetier_description_bloc_pre_navigation' => 'Avant les informations de navigation propres à chaque page.',
+	'noizetier_description_bloc_pre_extra' => 'Avant les informations extra contextuelles pour chaque page.',
+	'noizetier_nom_bloc_de_citation' => 'Citations',
 
 	// O
 	'ordreantichronologique' => 'ordre antichronologique',
