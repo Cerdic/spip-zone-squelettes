@@ -365,7 +365,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'noizetier_description_bloc_pre_contenu' => 'Avant le contenu principal de chaque page.',
 	'noizetier_description_bloc_pre_navigation' => 'Avant les informations de navigation propres à chaque page.',
 	'noizetier_description_bloc_pre_extra' => 'Avant les informations extra contextuelles pour chaque page.',
-	'noizetier_nom_bloc_de_citation' => 'Citations',
+	'noizetier_label_type_boite' => 'Type d\'habillage de la boite',
+	'noizetier_label_type_boite_haut' => 'Type de header de la boite',
+	'noizetier_label_type_boite_fond' => 'Fond de la boite',
+	'noizetier_citations_nom_bloc' => 'Citations',
+	'noizetier_citations_description_bloc' => 'Afficher un bloc de citations (&agrave; placer dans la rubrique "Citations".',
+	'noizetier_citations_afficher_label' => 'Afficher le label "Citations"',
 
 	// O
 	'ordreantichronologique' => 'ordre antichronologique',
