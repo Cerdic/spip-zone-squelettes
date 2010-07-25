@@ -14,17 +14,8 @@
 <BOUCLE_TypeRubrique(HIERARCHIE){id_rubrique}{tout}{type=_TypeRubrique}{inverse} {0,1}><BOUCLE_Mot_TypeRubrique(MOTS){type=_TypeRubrique}>
 [(#INCLURE{fond=noisettes/rubriques/typerubrique_#TITRE}{id_rubrique=#_rubrique_principal:ID_RUBRIQUE}{rubriqueencours}{template}{secteurencours}{lang}{racinetype=#_TypeRubrique:ID_RUBRIQUE})]
 </BOUCLE_Mot_TypeRubrique></BOUCLE_TypeRubrique>
-	<div id="miettesdepain">
-	<ul>
-	<li><a href="#URL_SITE_SPIP"><:soyezcreateurs:accueil:></a></li>
-	<BOUCLE_plan(HIERARCHIE){id_rubrique}{!titre_mot=PasDansFildAriane}>
-	<li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
-	</BOUCLE_plan>
-	<li>[(#TITRE)]</li>
-	</ul>
-[(#INCLURE{fond=noisettes/affrubcomplete}{id_rubrique})]
-
-	</div>
+	<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:soyezcreateurs:accueil:></a><BOUCLE_ariane(HIERARCHIE){id_article}{!titre_mot=PasDansFildAriane}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]</p>
+	[(#INCLURE{fond=noisettes/affrubcomplete}{id_rubrique}{lang})]
 
 [(#REM) Ne pas afficher le cartouche si le texte est vide : on affiche déjà la liste des articles avec un extrait à la place du texte
 ][(#TEXTE*|=={''}|non)[(#INCLURE{fond=noisettes/cartouches/rubrique_cartouche}{id_rubrique})]]
@@ -34,14 +25,14 @@
 <div class="texte">
 <!-- Une : contenu de la rubrique -->
 <div class="cartouche">
-<div class="titrepage"><h1 class="#EDIT{titre} surlignable">[<img src="(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{64,64}|extraire_attribut{src})" class="logo_rubrique" alt="[(#TITRE|texte_script|supprimer_tags|attribut_html) (logo)]" width="[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{64,64}|largeur)]" height="[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{64,64}|hauteur)]" />][(#TITRE)]</h1></div>
+<div class="titrepage"><h1 class="#EDIT{titre} surlignable">[<img src="(#INCLURE{fond=noisettes/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{64,64}|extraire_attribut{src})" class="logo_rubrique" alt="[(#TITRE|texte_script|supprimer_tags|attribut_html) (logo)]" width="[(#INCLURE{fond=noisettes/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{64,64}|largeur)]" height="[(#INCLURE{fond=noisettes/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{64,64}|hauteur)]" />][(#TITRE)]</h1></div>
 </div>
 	<div id="letexte" class="surlignable">
 [<div class="#EDIT{descriptif} descriptif">(#DESCRIPTIF)</div>]
-[<div class="#EDIT{texte}">(#TEXTE|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>][(#TEXTE*|=={''}|oui)[(#INCLURE{fond=noisettes/rubriques/rubrique_automatique}{id_rubrique})]]
+[<div class="#EDIT{texte}">(#TEXTE|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>][(#TEXTE*|=={''}|oui)[(#INCLURE{fond=noisettes/rubrique_automatique}{id_rubrique})]]
 [(#REM) Vérification de la présence du plugin GIS dans la rubrique et si oui on inclut la carte grace au modèle, qui est dans la page carte_gis.html]
 [<div id="carto">
-(#PLUGIN{GIS}|oui)#INCLURE{fond=noisettes/rubriques/carto,id_rubrique}
+(#PLUGIN{GIS}|oui)#INCLURE{fond=noisettes/carto,id_rubrique}
 </div>]
 [<div class="notes">(#NOTES)</div>]
 [(#VAL{enbas}|in_any{#CONFIG{soyezcreateurs/affichagelistedocuments,#ARRAY{0,enbas}}}|oui)
