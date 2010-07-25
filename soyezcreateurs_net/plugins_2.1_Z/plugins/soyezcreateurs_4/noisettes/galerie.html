@@ -1,0 +1,37 @@
+<B_imgs>
+<div id="galerie" class="surlignable">
+<BOUCLE_afficher_document(DOCUMENTS) {id_document}>
+<div id="document_actif"[ style="background-color: #(#LOGO_DOCUMENT|couleur_extraire); color: #[(#LOGO_DOCUMENT|couleur_extraire|couleur_inverser|couleur_extreme)];"]>
+	[<h2[ style="background-color: #(#LOGO_DOCUMENT|couleur_extraire|couleur_eclaircir); color: #[(#LOGO_DOCUMENT|couleur_extraire|couleur_eclaircir|couleur_inverser|couleur_extreme)];"] class="#EDIT{titre}">(#TITRE)</h2>]
+<dl>
+	<dt class="photo_articles"><a href="#URL_DOCUMENT" title="<:soyezcreateurs:voirimage:> : [(#TITRE|attribut_html|sinon{<:info_document:>})] (#LARGEUR &times; #HAUTEUR, [(#TAILLE|taille_en_octets)])">[(#SET{limage,[(#FICHIER|copie_locale|image_reduire{[(#CONFIG{soyezcreateurs_layout/largeurconteneur,960}|moins{#CONFIG{soyezcreateurs_layout/largeurmenugauche,160}}|moins{#CONFIG{soyezcreateurs_layout/largeurmenudroit,140}}|moins{150})],0})]})]<img class="galleriebig" src="[(#GET{limage}|extraire_attribut{src})]" width='[(#GET{limage}|largeur)]' height='[(#GET{limage}|hauteur)]' alt="[(#TITRE|attribut_html)]" /></a></dt>
+	[<dd class="#EDIT{descriptif}">(#DESCRIPTIF)</dd>]
+</dl>
+[(#CONFIG{soyezcreateurs/native_tooltips}|=={on}|non)
+<script type="text/javascript">
+$(function() {
+	$('#galerie a, #galerie input, #galerie select, #galerie img, #galerie button, #galerie h2, #galerie h3, #galerie dd, #galerie acronym, #galerie abbr, #galerie area').tooltip({ 
+	    track: false, 
+	    delay: 0, 
+	    showURL: false, 
+	    showBody: " - ", 
+	    fade: 250 
+	});
+});
+</script>]
+</div>
+</BOUCLE_afficher_document>
+<div id="documents_portfolio">
+<BOUCLE_imgs(DOCUMENTS){id_article}{mode=document}{par num titre, date}{extension IN png,jpg,gif}{vu=non}>
+[(#ENV{id_document}|=={#ID_DOCUMENT}|?{'',[(#PLUGIN{mediabox}|?{<a class="mediabox" href="#URL_DOCUMENT" type="#MIME_TYPE" title="[(#TITRE|attribut_html|sinon{<:info_document:>})]" rel="gal">,[(#PLUGIN{fancybox}|?{<a class="fancybox" href="#URL_DOCUMENT" type="#MIME_TYPE" title="[(#TITRE|attribut_html|sinon{<:info_document:>})]" rel="gal">,[(#PLUGIN{Nyro}|?{<a class="nyroceros" href="#URL_DOCUMENT" type="#MIME_TYPE" title="[(#TITRE|attribut_html|sinon{<:info_document:>})][ - (#DESCRIPTIF|attribut_html)]" rel="gal">,[(#PLUGIN{ThickBox1}|?{<a href="#URL_DOCUMENT" type="#MIME_TYPE" onclick="location.href='[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#document_actif';return false;">,<a class="ajax" href="[(#URL_ARTICLE|parametre_url{id_document,#ID_DOCUMENT})]#document_actif">})]})]})]})]})]<img src="[(#FICHIER|copie_locale|image_passe_partout{60,60}|image_recadre{60,60,center}|image_aplatir{jpg,ffffff}|extraire_attribut{src})]"  width="[(#FICHIER|copie_locale|image_passe_partout{60,60}|image_recadre{60,60,center}|image_aplatir{jpg,ffffff}|largeur)]" height="[(#FICHIER|copie_locale|image_passe_partout{60,60}|image_recadre{60,60,center}|image_aplatir{jpg,ffffff}|hauteur)]" alt="[(#TITRE|attribut_html|sinon{<:info_document:>})]" title="[(#TITRE|attribut_html|sinon{<:info_document:>})][ - (#DESCRIPTIF|attribut_html)]"[(#ENV{id_document}|=={#ID_DOCUMENT}|?{[ style="border-color: #(#LOGO_DOCUMENT|couleur_extraire|couleur_inverser);"],[ style="border-color: #(#LOGO_DOCUMENT|couleur_extraire);"]})] />[(#ENV{id_document}|=={#ID_DOCUMENT}|?{'',</a>})]
+</BOUCLE_imgs>
+[(#CONFIG{soyezcreateurs/native_tooltips}|=={on}|non)
+[(#PLUGIN{mediabox}|oui)
+<script type="text/javascript">
+$("#documents_portfolio a").colorbox({title: function(){
+return $(this).attr('tooltipText');
+}});
+</script>]]
+</div>
+</div>
+</B_imgs>
