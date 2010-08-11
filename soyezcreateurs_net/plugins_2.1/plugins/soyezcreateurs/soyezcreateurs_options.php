@@ -131,7 +131,7 @@ define('_SUIVI_FORUM_THREAD', true);
 // cf http://zone.spip.org/trac/spip-zone/changeset/33103
 $GLOBALS['agenda_affiche_inscription'] = (lire_config('soyezcreateurs/agenda_inscription', '') == 'on') ? 'oui' : 'non';
 
-
+define('_CS_OUTILS_CACHES', 'cs_comportement:insert_head:verstexte:trousse_balises:dossier_squelettes:type_urls:filtrer_javascript:spam:moderation_moderee:paragrapher2:auteur_forum:no_IP:flock:spip_cache:forum_lgrmaxi:simpl_interface:icone_visiter:pucesli:glossaire:blocs:toutmulti:decoupe:filets_sep:couleurs:f_jQuery:desactiver_flash:jcorner:SPIP_liens:class_spip:supprimer_numero:xml:visiteurs_connectes:titre_parent:horloge:liens_en_clair:orientation:sommaire:maj_auto:previsualisation:chatons:introduction:forcer_langue:masquer:introduction:tri_articles:webmestres');
 
 ######## PACK ACTUEL DE CONFIGURATION DU COUTEAU SUISSE #########
 // Attention, les surcharges sur les define() ou les globales ne sont pas specifiees ici
