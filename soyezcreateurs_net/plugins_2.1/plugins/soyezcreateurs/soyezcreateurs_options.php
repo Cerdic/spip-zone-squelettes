@@ -127,11 +127,10 @@ define('_SUIVI_FORUM_THREAD', true);
 //$table_des_traitements['TITRE'][]= 'typo(supprimer_numero(%s), "TYPO", $connect)'; //  cf http://trac.rezo.net/trac/spip/changeset/15451
 // Remplacé par un pipeline sur declarer_tables_interfaces
 
-// Ne pas afficher l'inscription dans le plugin Agenda : ça n'est pas pris en compte
+// Gere l'inscription aux evenements
 // cf http://zone.spip.org/trac/spip-zone/changeset/33103
-$GLOBALS['agenda_affiche_inscription'] = 'non';
+$GLOBALS['agenda_affiche_inscription'] = (lire_config('soyezcreateurs/agenda_inscription', '') == 'on') ? 'oui' : 'non';
 
-define('_CS_OUTILS_CACHES', 'cs_comportement:insert_head:verstexte:trousse_balises:dossier_squelettes:type_urls:filtrer_javascript:spam:moderation_moderee:paragrapher2:auteur_forum:no_IP:flock:spip_cache:forum_lgrmaxi:simpl_interface:icone_visiter:pucesli:glossaire:blocs:toutmulti:decoupe:filets_sep:couleurs:f_jQuery:desactiver_flash:jcorner:SPIP_liens:class_spip:supprimer_numero:xml:visiteurs_connectes:titre_parent:horloge:liens_en_clair:orientation:sommaire:maj_auto:previsualisation:chatons:introduction:forcer_langue:masquer:introduction:tri_articles:webmestres');
 
 
 ######## PACK ACTUEL DE CONFIGURATION DU COUTEAU SUISSE #########
