@@ -631,13 +631,13 @@ function sc_agenda_memo_full($date_deb=0, $date_fin=0 , $titre='', $descriptif='
 	$url=str_replace("&amp;","&",$url);
 	
 	$idatedeb = date_ical($date_deb);
-	$idatefin = date_ical($date_deb);
+	$idatefin = date_ical($date_fin);
 	$vidatefin = date_ical($date_fin);
 	$cal = trim($cal); // func_get_args (filtre alterner) rajoute \n !!!!
 	$startday1=explode(' ',$date_deb);
 	$startday1=$startday1['0'].' 00:00:00';
 	$ts_startday1=strtotime($startday1);
-	$ts_date_fin=strtotime($date_deb);
+	$ts_date_fin=strtotime($date_fin);
 	$maxdays=365;
 	while (($ts_startday1<=$ts_date_fin)&&($maxdays-->0))
 	{
