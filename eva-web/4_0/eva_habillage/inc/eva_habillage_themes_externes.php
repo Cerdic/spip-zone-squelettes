@@ -1109,6 +1109,7 @@ $eva_themes = array(
 	"('', 'perso', 'Defaut', 'div#contenu ul#pied li {padding-top:4px;padding-bottom:4px;}', '', '', '', '', '')",
 	"('', 'perso', 'Defaut', 'div#contenu ul#pied {border-style:none;margin-top:220px;}', '', '', '', '', '')",
 	"('', 'perso', 'Defaut', 'div#arborescence {border-bottom:1px solid #5284DD;}', '', '', '', '', '')",
+	"('', 'perso', 'Defaut', '.titre h2, div#contenu h2 {padding-left:30px;}', '', '', '', '', '')",
 	"('', 'image', 'Defaut', 'image_barre_entete_arborescence', 'zen/herbe_arbo.jpg', 'left', 'top', 'repeat-x', 'scroll')",
 	"('', 'perso', 'Defaut', 'hr {background-color:#999;}', '', '', '', '', '')",
 	"('', 'perso', 'Defaut', '.spip_code {border : solid 1px #6495ed; background-color:#e7eefa;}', '', '', '', '', '')",
