@@ -80,7 +80,9 @@ foreach ($tab_evabonus_menu as $cle_evabonus_menu=>$val_evabonus_menu)
 //Fin Menu de langue
 
     $mes_CSS = sql_select('nom_div','spip_eva_habillage_images',"nom_habillage = 'Defaut' AND type = 'perso'");
-    while ($CSS = sql_fetch($mes_CSS)) {$envoi .=$CSS['nom_div']."\n";}
+    while ($CSS = sql_fetch($mes_CSS)) {
+	$CSS_remp=str_replace('/rep_eva_habillage/',_DIR_PLUGIN_EVA_HABILLAGE,$CSS['nom_div']);
+	$envoi .=$CSS_remp."\n";}
     $envoi .= '</style>';
     $p->code = "'".$envoi."'";
     $p->interdire_scripts = false;
