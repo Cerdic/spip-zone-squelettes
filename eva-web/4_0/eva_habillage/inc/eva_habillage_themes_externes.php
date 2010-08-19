@@ -1093,6 +1093,7 @@ $eva_themes = array(
 	"('', 'perso', 'Defaut', 'ul#sommaire{padding:0;margin:0;}', '', '', '', '', '')",
 	"('', 'perso', 'Defaut', 'div#contenu .edito .titre a {text-decoration:none;}', '', '', '', '', '')",
 	"('', 'perso', 'Defaut', 'div#contenu h3.titre {text-align:left;text-decoration:none;padding-left:30px;padding-bottom:10px;}', '', '', '', '', '')",
+	"('', 'perso', 'Defaut', '.edito .titre {text-align:left;text-decoration:none;padding-bottom:10px;}', '', '', '', '', '')",
 	"('', 'perso', 'Defaut', 'div#menu,div#contenu{border:solid 1px #5284DD;padding:0;background-color:#fff;}', '', '', '', '', '')",
 	"('', 'perso', 'Defaut', 'div#menu .bloc{margin:0;}', '', '', '', '', '')",
 	"('', 'perso', 'Defaut', 'div#menu .bloc .titre {background-image : url(/rep_eva_habillage/mon_image/zen/herbe.jpg); background-position : left bottom; background-repeat : no-repeat; background-attachment : scroll;}', '', '', '', '', '')",
