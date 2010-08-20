@@ -16,12 +16,12 @@
 <div class="titrepage"><h1><:resultats_recherche:>[ : <em>(#RECHERCHE)</em>]</h1></div>
 </div>
 	<div id="letexte">
-<BOUCLE_ArticlesExclus(ARTICLES){titre_mot=PasDansRecherche}{doublons}{!lang_select}></BOUCLE_ArticlesExclus>
+<BOUCLE_ArticlesExclus(ARTICLES){titre_mot=PasDansRecherche}{doublons}{lang}></BOUCLE_ArticlesExclus>
 [(#SET{nbelementstrouves,0})]
 <B_articles>
 	<h2>#ANCRE_PAGINATION<:articles:></h2>
 	<ul>
-		<BOUCLE_articles(ARTICLES) {recherche} {!par points} {pagination 25}{doublons}{!lang_select}>
+		<BOUCLE_articles(ARTICLES) {recherche} {!par points} {pagination 25}{doublons}{lang}>
 			<li><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">[(#TITRE)]</a></li>
 		</BOUCLE_articles>
 	</ul>
@@ -33,7 +33,7 @@
 <B_Evenements>
 	<h2>#ANCRE_PAGINATION<:agenda:evenements:></h2>
 	<ul>
-		<BOUCLE_Evenements(EVENEMENTS) {recherche} {!par points} {pagination 25}{!lang_select}>
+		<BOUCLE_Evenements(EVENEMENTS) {recherche} {!par points} {pagination 25}{lang}>
 			<li><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">[(#TITRE)]</a></li>
 		</BOUCLE_Evenements>
 	</ul>
@@ -46,7 +46,7 @@
 <B_rubriques>
 	<h2>#ANCRE_PAGINATION<:rubriques:></h2>
 	<ul>
-		<BOUCLE_rubriques(RUBRIQUES) {recherche} {!par points} {pagination 25}{!lang_select}>
+		<BOUCLE_rubriques(RUBRIQUES) {recherche} {!par points} {pagination 25}{lang}>
 			<li><a href="#URL_RUBRIQUE" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">[(#TITRE)]</a></li>
 		</BOUCLE_rubriques>
 	</ul>
@@ -58,7 +58,7 @@
 	<!-- Breves trouvees -->
 	<h2>#ANCRE_PAGINATION<:breves:></h2>
 	<ul>
-		<BOUCLE_breves(BREVES) {recherche} {!par points} {pagination 25}{!lang_select}>
+		<BOUCLE_breves(BREVES) {recherche} {!par points} {pagination 25}{lang}>
 			<li><a href="#URL_BREVE" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">[(#TITRE)]</a></li>
 		</BOUCLE_breves>
 	</ul>
@@ -71,7 +71,7 @@
 <B_sites>
 	<h2>#ANCRE_PAGINATION<:sites_web:></h2>
 	<ul>
-		<BOUCLE_sites(SITES) {recherche} {!par points} {pagination 25}{!lang_select}>
+		<BOUCLE_sites(SITES) {recherche} {!par points} {pagination 25}>
 			<li><a href="[(#ID_SYNDIC|generer_url_entite{'site'})]" title="[(#DESCRIPTIF|attribut_html)] ([(#DATE|nom_jour)] [(#DATE|affdate)])">[(#NOM_SITE)]</a></li>
 		</BOUCLE_sites>
 	</ul>
@@ -82,7 +82,8 @@
 <B_Syndications>
 	<h2>#ANCRE_PAGINATION<:ecrire:titre_syndication:></h2>
 	<ul>
-		<BOUCLE_Syndications(SYNDIC_ARTICLES) {recherche} {!par points} {pagination 25}{!lang_select}>
+		<BOUCLE_Syndications(SYNDIC_ARTICLES) {recherche} {!par points} {pagination 25}{
+}>
 			<li><a href="[(#ID_SYNDIC|generer_url_entite{'site'}|parametre_url{'id_syndic_article',#ID_SYNDIC_ARTICLE})]" title="[(#DATE|affdate) - ][(#DESCRIPTIF|supprimer_tags|attribut_html)]">[(#TITRE|supprimer_tags)]</a></li>
 		</BOUCLE_Syndications>
 	</ul>
