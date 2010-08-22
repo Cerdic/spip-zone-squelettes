@@ -21,6 +21,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agenda_de' => ' de ',
 	'agenda_du' => 'Du ',
 	'agenda_en_ce_moment' => '<em>(en ce moment)</em>',
+	'agenda_exporter_ical' => 'Exporter au format iCal',
 	'agenda_fsd' => 'Du @djour_l@ @djour@ @dmois_l@ @dannee@ &agrave; @dheure@:@dminutes@ au @fjour_l@ @fjour@ @fmois_l@ @fannee@ &agrave; @fheure@:@fminutes@',
 	'agenda_fsd_notime' => 'Du @djour_l@ @djour@ @dmois_l@ @dannee@ au @fjour_l@ @fjour@ @fmois_l@ @fannee@',
 	'agenda_jour' => ' jour, ',
