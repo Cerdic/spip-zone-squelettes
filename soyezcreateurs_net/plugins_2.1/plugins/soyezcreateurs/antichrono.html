@@ -17,7 +17,7 @@
 <BOUCLE_ExclureContenuDuPlan(RUBRIQUES){titre_mot=PasDansPlan}{doublons contenu}></BOUCLE_ExclureContenuDuPlan>
 <B_Autres_Flottant>
 <div id="artrecents" class="flottant">
-	<BOUCLE_Autres_Flottant(RUBRIQUES){id_parent=0}{par num titre}{doublons contenu}>
+	<BOUCLE_Autres_Flottant(RUBRIQUES){racine}{par num titre}{doublons contenu}>
 	<B_sites>
 		<h2><:sites_web:>[ ((#TITRE))]</h2>
 		<ul>
@@ -38,20 +38,20 @@
 
 <div id="letexte">
 <p><:soyezcreateurs:voirle:> <a href="#URL_PAGE{plan}"><:plan_site:></a>.</p>
-<BOUCLE_ExclureRubriquesDuPlan(RUBRIQUES){titre_mot=PasDansPlan}><BOUCLE_ExclureArticlesDuPlan(ARTICLES){branche}{doublons articles}></BOUCLE_ExclureArticlesDuPlan></BOUCLE_ExclureRubriquesDuPlan>
+<BOUCLE_ExclureRubriquesDuPlan(RUBRIQUES){titre_mot=PasDansPlan}><BOUCLE_ExclureArticlesDuPlan(ARTICLES){branche}{doublons articles} /></BOUCLE_ExclureRubriquesDuPlan>
 
 <B_Annee>
-	<BOUCLE_Annee(ARTICLES){par date}{inverse}{fusion YEAR(date)}{branche}{doublons articles}>
+	<BOUCLE_Annee(ARTICLES){!par date}{fusion YEAR(date)}{doublons articles}>
 	<h2>[(#DATE|annee)]</h2>
 	<B_Mois>
 		<BOUCLE_Mois(ARTICLES){annee_relatif}
-		{par date}{inverse}{lang_select=non}
-		{fusion MONTH(date)}{branche}>
+		{!par date}{lang_select=non}
+		{fusion MONTH(date)}>
 		<h3>[(#DATE|nom_mois|ucfirst)]</h3>
 		<B_ArticlesDuMois>
 		<ul>
 			<BOUCLE_ArticlesDuMois(ARTICLES){mois_relatif}
-			{par date}{inverse}{branche}>
+			{!par date}>
 			<li>[<span class="date">(#DATE|affdate)</span>]&nbsp;: <a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
 			</BOUCLE_ArticlesDuMois>
 		</ul>
