@@ -378,9 +378,11 @@ EOF;
 	}
 	/* Contact */
 	if ($article == 'Contact') {
+		$email_contact = find_auteur_email(1);
+		$id_auteur_contact = create_auteur('Nous contacter', $email_contact, "Adresse\nCode Postal – Ville\nTéléphone\nFax\nLien Google Maps\nInformations juridiques (SIRET...)");
 		$contenu['titre'] = $article;
 		$contenu['descriptif'] = 'Nous contacter';
-		$contenu['chapo'] = "=aut1";
+		$contenu['chapo'] = "=aut$id_auteur_contact";
 	}
 	/* Politique d'accessibilité du site */
 	if ($article == "Politique d'accessibilité du site") {

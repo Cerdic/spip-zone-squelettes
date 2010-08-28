@@ -464,6 +464,54 @@ function create_evenement($rubrique, $article, $titre_evenement, $debut, $fin, $
 	}
 }
 
+//fonction qui permet de trouver l'id d'un auteur à partir de son nom
+function find_auteur($nom) {
+	$result = sql_fetsel(
+		"id_auteur", 
+		"spip_auteurs", 
+		"nom='$nom'"
+	);
+	$resultat = $result['id_auteur'];
+	spip_log("1. (id_auteur) recherche de l'id_auteur de $nom = $resultat", "soyezcreateurs_install");
+	return $resultat;
+}
+
+//fonction qui permet de trouver l'email d'un auteur à partir de son id
+function find_auteur_email($id_auteur) {
+	$result = sql_fetsel(
+		"email", 
+		"spip_auteurs", 
+		"id_auteur=$id_auteur"
+	);
+	$resultat = $result['email'];
+	spip_log("1. (email) recherche de l'email de $id_auteur = $resultat", "soyezcreateurs_install");
+	return $resultat;
+}
+
+//fonction qui permet de créer un auteur (sans login ni mot de passe)
+function create_auteur($nom, $email='', $bio='') {
+	$id_auteur = find_auteur($nom);
+	if ($id_auteur > 0) {
+		sql_updateq(
+			"spip_auteurs", array(
+				"email" => $email,
+				"bio" => $bio
+			), "id_auteur=$id_auteur"
+		);
+	} else {
+		$id_auteur = sql_insertq(
+			"spip_auteurs", array(
+				"nom" => $nom,
+				"email" => $email,
+				"bio" => $bio,
+				"statut" => '1comite'
+			)
+		);
+	}
+	spip_log("1. (create_auteur) auteur cree : id = $id_auteur, nom = $nom", "soyezcreateurs_install");
+	return $id_auteur;
+}
+
 //fonction qui permet de créer le tout
 function soyezcreateurs_config_motsclefs() {
 	//les rubriques
