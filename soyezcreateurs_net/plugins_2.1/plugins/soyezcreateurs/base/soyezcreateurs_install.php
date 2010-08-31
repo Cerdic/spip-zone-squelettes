@@ -317,6 +317,11 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_config('microblog/evt_publierarticlesfutur', 'publication');
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.8','non');
 		}
+		if (version_compare($current_version,'3.0.9','<')) {
+			//Le mode texte seul de bouton texte bug au retour dans la page avec MediaBox
+			ecrire_config('boutonstexte/txtOnly','_');
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.9','non');
+		}
 		/*
 		#En attente
 		if (version_compare($current_version,'2.1.10','<')) {
