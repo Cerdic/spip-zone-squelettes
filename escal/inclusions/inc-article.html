@@ -96,33 +96,34 @@
 
 
 <!-- documents à telécharger -->
-<B_doc_joints>
-<div id="cadre-telechargement">
+	<B_doc_joints>
+		<div id="cadre-telechargement">
+			<img src="#CHEMIN{images/download.gif}" width="18" height="18" alt="téléchargements" /> Fichier(s) à télécharger :
 
-<div class="texte-doc" >
-  <table>
-    <BOUCLE_doc_joints(DOCUMENTS){id_article}{mode=document}{vu=non}>
-      [(#COMPTEUR_BOUCLE|alterner{'<tr>',''})]
-        <td>
-          <ul>
-            <li>[(#LOGO_DOCUMENT|#URL_DOCUMENT)]</li>
-            [(#EXTENSION|match{jpg|gif|png}|non)
-            [<li><img src="(#CHEMIN{images/download.gif})" alt="Téléchargements" width="18" height="18" /></li>]
-            [<li><div class="titre-doc">(#TITRE|sinon{#FICHIER})</div></li>]
-            [<li>Taille du fichier : (#TAILLE|taille_en_octets)</li>]
-            [<li>Format : (#TYPE_DOCUMENT)</li>]
-            ]  
-  
-          </ul>
-        </td>
-      [(#COMPTEUR_BOUCLE|alterner{'','</tr>'})]
-    </BOUCLE_doc_joints>
-    [(#TOTAL_BOUCLE|alterner{'<td></td></tr>',''})]
-  </table>
-</div><!-- fin texte-doc -->
+			<div class="texte-doc" >
+			<table>
+				<BOUCLE_doc_joints(DOCUMENTS){id_article}{mode=document}{vu=non}>
+				[(#COMPTEUR_BOUCLE|alterner{'<tr>',''})]
+				<td>
+	    		<ul>
+						<li>[(#LOGO_DOCUMENT|#URL_DOCUMENT)]</li>
 
-</div><!-- Fin cadre-telechargements -->
-</B_doc_joints> 
+						<li><div class="titre-doc">[(#TITRE|sinon{#FICHIER})]</div></li>
+
+						<li>[Taille du fichier : (#TAILLE|taille_en_octets)]</li>
+
+						<li>[Format : (#TYPE_DOCUMENT)]</li>
+
+					</ul>
+	    	</td>
+				[(#COMPTEUR_BOUCLE|alterner{'','</tr>'})]
+				</BOUCLE_doc_joints>
+				[(#TOTAL_BOUCLE|alterner{'<td></td></tr>',''})]
+			</table>
+		    </div><!-- fin texte-doc -->
+
+	  </div><!-- Fin cadre-telechargements -->
+	</B_doc_joints>
 
   
 
