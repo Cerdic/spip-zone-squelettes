@@ -512,6 +512,23 @@ function create_auteur($nom, $email='', $bio='') {
 	return $id_auteur;
 }
 
+
+function create_document($chemin, $objet, $mode, $champs='non', $id_document='non') {
+	include_spip('action/ajouter_documents');
+	$chemin = find_in_path($chemin);
+	$type = $objet['type'];
+	$id_objet = $objet['id_objet'];
+	spip_log(array('tmp_name' => $chemin, 'name' => basename($chemin)), 'docusc');
+	if ($id_document = 'non' AND $chemin) {
+		$id_document = action_ajouter_un_document_dist('non', array('tmp_name' => $chemin, 'name' => basename($chemin)), $type, $id_objet, $mode);
+		if (is_array($champs))
+		sql_updateq("spip_documents", $champs, "id_document=$id_document");
+		return $id_document;
+	}
+	else
+		return false;
+}
+
 //fonction qui permet de créer le tout
 function soyezcreateurs_config_motsclefs() {
 	//les rubriques
