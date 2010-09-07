@@ -1,0 +1,145 @@
+<BOUCLE_article_principal(ARTICLES) {id_article}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>[
+<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />
+]<B_URLMOT>
+<link rel="alternate" type="application/rss+xml" title="<:titre_page_mots_tous:>" href="#URL_PAGE{backend}<BOUCLE_URLMOT(MOTS){id_article}>&amp;id_mot[]=#ID_MOT</BOUCLE_URLMOT>" />
+</B_URLMOT><B_URLAUTEURS>
+<link rel="alternate" type="application/rss+xml" title="<:icone_auteurs:>" href="#URL_PAGE{backend}<BOUCLE_URLAUTEURS(AUTEURS){id_article}>&amp;id_auteur[]=#ID_AUTEUR</BOUCLE_URLAUTEURS>" />
+</B_URLAUTEURS><INCLURE{fond=inc-head}>
+</head>
+
+<body class="page_article">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+
+	[(#REM) Contenu principal : contenu de l'article ]
+    <div class="hfeed" id="conteneur">
+    <div class="hentry" id="contenu">
+    
+        [(#REM) Fil d'Ariane ]
+        <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]</div>
+
+        <div class="cartouche">
+          <div class="surlignable">
+				[(#LOGO_ARTICLE||image_reduire{200,200})]
+				[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
+                [<p class="#EDIT{soustitre} soustitre">(#DESCRIPTIF)<br /></p>]
+                <h1 class="#EDIT{titre} entry-title">#TITRE</h1>
+				[<p class="#EDIT{texte3} texte3"><br />(#SOUSTITRE)</p>]
+				<p></p>
+                <p>&nbsp;    </p>
+          </div>
+
+            [(#REM) Inclure le modele des liens de traductions ]
+            #MODELE{article_traductions}
+        </div>
+
+        <div class="surlignable">
+			[<div class="#EDIT{chapo} chapo"><h2 class="pas_surlignable"><:info_resume:></h2><hr />(#CHAPO|image_reduire{500,0})</div>]
+			[<div class="ps surlignable"><h2 class="pas_surlignable"><:info_ps:></h2><hr /><div class="#EDIT{ps}">(#PS|image_reduire{500,0})</div></div>]
+						[(#INCLURE{fond=inc-documents-joints}{id_article}{env})]	
+			[<div class="#EDIT{txt} txt"><h2 class="pas_surlignable"><br /><:info_telecharger_html:></h2><hr />
+			(#TEXTE|image_reduire{500,0})</div>]
+		</div>
+		[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+        
+		
+		[(#REM) Gestion du portfolio et des documents
+			Le critere {env} permet de passer d'autres arguments de la page
+			 par exemple l'id_document choisi pour un affichage complet
+		]
+		[(#INCLURE{fond=inc-illustrations}{id_article}{env})]
+
+
+		[(#REM) Petition :
+		La petition ayant une PAGINATION il faut absolument {env}
+		et pourquoi pas ajax
+		][(#PETITION|?{' '})<INCLURE{fond=inc-petition}{id_article}{env}{ajax}>]
+
+        [<div class="notes surlignable"><h2 class="pas_surlignable"><:info_notes:></h2>(#NOTES)</div>]
+
+[(#REM) Pour citer l'article ]
+		<INCLURE{fond=inc-citer-article} {id_article}>
+		
+		[(#REM) Forum de l'article ]
+		<a href="#forum" name="forum" id="forum"></a>
+		<INCLURE{fond=inc-forum}{id_article} />
+		[<p class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_article:></a></p>] 
+
+	[(#INCLURE{fond=inc-compteurgraphique}{id_article}{env})]
+	
+	</div><!--#contenu-->
+	</div><!--#conteneur-->
+
+
+    [(#REM) Menu de navigation laterale ]
+    <div id="navigation">
+
+        [(#REM) Menu de navigation par rubriques ]
+        <INCLURE{fond=inc-rubriques-articles}{id_rubrique}>
+	
+		#FORMULAIRE_RECHERCHE
+
+    </div><!--#navigation-->
+    
+    [(#REM) Menu de navigation laterale ]
+    <div id="extra">
+	
+	[(#REM) Affichage du plan du volume ]
+		[(#REM) Affichage du titre du colume ]
+<BOUCLE_titres(RUBRIQUES) {id_rubrique} >
+	<BOUCLE_titre_numero(RUBRIQUES) {id_enfant} >
+        [<a href="#URL_RUBRIQUE">(#LOGO_RUBRIQUE||image_reduire{200,200})</a>]
+		<h2><br/><a href="#URL_RUBRIQUE"><span style="font-style: italic">#NOM_SITE_SPIP</span>,<br/>#TITRE</h2><p></p><p></p>
+        <h3><a href="#URL_RUBRIQUE"><:meme_rubrique:></a></h3>
+        <p></p><p></p>
+	</BOUCLE_titre_numero>
+
+[(#REM) Affichage des titres des articles à la racine du numéro ]
+        <B_titre_racine_numero>
+	<BOUCLE_titre_racine_numero(RUBRIQUES) {id_enfant} >
+        <div class="menu">
+            <ul>
+                <BOUCLE_articles_rubrique_racine_numero(ARTICLES) {id_rubrique} {par titre}>
+                <p> [(#SURTITRE), ]
+<a href="#URL_ARTICLE">#TITRE</a><br/></p>
+                </BOUCLE_articles_rubrique_racine_numero>
+            </ul>
+        </div>
+	</BOUCLE_titre_racine_numero>
+        </B_titre_racine_numero>
+    
+        [(#REM) Affichage des titres des sections du numéro ]
+        <B_titre_sections>
+	<BOUCLE_titre_sections(RUBRIQUES) {meme_parent} {par num titre} >
+        <h4 class="pas_surlignable">#TITRE</h4>
+        <div class="menu">
+            <ul>
+                <BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par titre}>
+                <p> [(#SURTITRE)],
+<a href="#URL_ARTICLE">#TITRE</a><br/></p>
+                </BOUCLE_articles_rubrique>
+            </ul>
+        </div>
+	</BOUCLE_titre_sections>
+        </B_titre_sections>  
+</BOUCLE_titres>
+
+        [(#REM) Menu de navigation mots-cles ]
+        #MODELE{article_mots}
+        
+        
+    </div><!--#extra-->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+</div><!--#page-->
+</body>
+</html>
+</BOUCLE_article_principal>

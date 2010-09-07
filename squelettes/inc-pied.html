@@ -1,0 +1,13 @@
+<div id="pied">
+		<p><br /><br /><br /></p>
+		[
+	(#SESSION{id_auteur}|?{' '})<a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a>
+	][(#SESSION{id_auteur}|?{'',' '})| <a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]" rel="nofollow" class='login_modal'><:lien_connecter:></a>][
+	(#AUTORISER{ecrire})| <a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a>] | 
+	<a href="#URL_PAGE{plan}">Table g&eacute;n&eacute;rale</a> | 
+	<a href="#URL_PAGE{backend}" rel="alternate" title="<:syndiquer_site:>"><img src="#CHEMIN{feed.png}" alt="<:icone_suivi_activite:>" width="16" height="16" /></a>|<INCLURE{fond=inc-compteurgraphique-total}> visites | <INCLURE{fond=visiteurs_connectes}>
+</div>
+[(#REM)
+	Cette balise permet de deporter les calculs lourds (indexation etc)
+	dans une image cachee, ce qui evite de ralentir l'affichage des pages.
+]#SPIP_CRON
