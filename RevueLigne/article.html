@@ -9,6 +9,48 @@
 </B_URLMOT><B_URLAUTEURS>
 <link rel="alternate" type="application/rss+xml" title="<:icone_auteurs:>" href="#URL_PAGE{backend}<BOUCLE_URLAUTEURS(AUTEURS){id_article}>&amp;id_auteur[]=#ID_AUTEUR</BOUCLE_URLAUTEURS>" />
 </B_URLAUTEURS><INCLURE{fond=inc-head}>
+[(#REM) Balisage Dublin Core]
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+<link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
+<meta name="DC.format" content="text/html" />
+<meta name="DC.type" content="Text" />
+<meta name="DC.type" content="journalArticle" />
+<meta name="DC.identifier" scheme="URI" content=["#URL_SITE_SPIP/(#URL_ARTICLE)"] />
+<meta name="DC.identifier" scheme="ISSN" content="1634-0450" />
+<meta name="DC.publisher" content=["(#NOM_SITE_SPIP)"] />
+<meta name="DC.language" scheme="RFC3066" content="Franç" />
+<BOUCLE_dc_contributor(AUTEURS){id_article}>
+<meta name="DC.contributor" content="<?php        
+        $nomcomplet = '[(#NOM)]' ;
+        $nom1 = strstr($nomcomplet, ' ') ;
+        $nom = substr($nom1, 1) ;
+        echo $nom ;
+?>, <?php        
+        $nomcomplet = '[(#NOM)]' ;
+        $espace = strpos($nomcomplet, ' ') ;
+        $prenom = substr($nomcomplet, 0, $espace) ;
+        echo $prenom ;
+?>" />
+</BOUCLE_dc_contributor>
+<meta name="DC.creator" content="<?php        
+        $nomcomplet = '[(#SURTITRE)]' ;
+        $nom1 = strstr($nomcomplet, ' ') ;
+        $nom = substr($nom1, 1) ;
+        echo $nom ;
+?>, <?php        
+        $nomcomplet = '[(#SURTITRE)]' ;
+        $espace = strpos($nomcomplet, ' ') ;
+        $prenom = substr($nomcomplet, 0, $espace) ;
+        echo $prenom ;
+?>" />
+<meta name="DC.title" lang="fr" content=["(#TITRE)"] />
+<meta name="DC.date" scheme="DCTERMS.W3CDTF" content=["(#DATE|affdate{'Y-m-j'})] />
+<meta name="DC.subject" lang="fr" content=["(#CHAPO)"] />
+<meta name="DC.language" scheme="DCTERMS.RFC4646" content="fr-FR" />
+<meta name="DC.rights" content="Tous droits réservés" />
+<meta name="DC.source" content=["(#URL_SITE_SPIP)"] />
+<link rel="DC.source" href="urn:ISBN:XXX-XXXX-XXX-XX-X" />
+<meta name="DC.description" lang="fr" content=["(#CHAPO)"] />
 </head>
 
 <body class="page_article">
@@ -31,7 +73,7 @@
                 [<p class="#EDIT{soustitre} soustitre">(#DESCRIPTIF)<br /></p>]
                 <h1 class="#EDIT{titre} entry-title">#TITRE</h1>
 				[<p class="#EDIT{texte3} texte3"><br />(#SOUSTITRE)</p>]
-				<p></p>
+  				<p></p>
                 <p>&nbsp;    </p>
           </div>
 
@@ -43,7 +85,7 @@
 			[<div class="#EDIT{chapo} chapo"><h2 class="pas_surlignable"><:info_resume:></h2><hr />(#CHAPO|image_reduire{500,0})</div>]
 			[<div class="ps surlignable"><h2 class="pas_surlignable"><:info_ps:></h2><hr /><div class="#EDIT{ps}">(#PS|image_reduire{500,0})</div></div>]
 						[(#INCLURE{fond=inc-documents-joints}{id_article}{env})]	
-			[<div class="#EDIT{txt} txt"><h2 class="pas_surlignable"><br /><:info_telecharger_html:></h2><hr />
+            [<div class="#EDIT{txt} txt"><h2 class="pas_surlignable"><br /><:info_telecharger_html:></h2><br  />#IMPRIMIR_DOCUMENTO**<hr />
 			(#TEXTE|image_reduire{500,0})</div>]
 		</div>
 		[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
