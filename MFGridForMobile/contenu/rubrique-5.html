@@ -1,0 +1,28 @@
+[(#REM) Tous les articles de la rubrique]
+<B_all_articles>
+	[(#ANCRE_PAGINATION)]
+  <BOUCLE_all_articles(ARTICLES){id_rubrique} {!par date}{pagination 5}>
+    <div class="section">
+        [<div class="floatandpad">(#LOGO_ARTICLE||image_reduire{82,82})</div>]
+        <div class="small">[(#DATE|nom_jour) ][(#DATE|affdate)]</div>
+        <a href="#URL_ARTICLE">
+          <h2>#TITRE</h2>
+        </a>
+        #MODELE{article_traductions}
+        [<div><b>(#CHAPO)</b></div>]
+    		[<div>(#TEXTE)</div>]
+        [<div class="small">(#SOUSTITRE)</div>]
+
+        [(#REM) Gestion du portfolio et des documents ]
+        [(#INCLURE{fond=inclure/documents}{id_article})]
+
+        [<div class="notes surlignable"><h2 class="h2 pas_surlignable"><:info_notes:></h2>(#NOTES) </div>]
+
+        [<div class="right"><p class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_article:></a></p></div>]
+
+      <div class="nettoyeur"></div>
+      <div class="spacer"></div>
+    </div>
+  </BOUCLE_all_articles>
+  [<p class="pagination">(#PAGINATION)</p>]
+</B_all_articles>
