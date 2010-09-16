@@ -367,6 +367,7 @@ function create_article($texte, $rubrique, $lang='fr') {
 		spip_log("2. (create_article) maj de l'article : ".$texte['titre'], "soyezcreateurs_install");
 		remplacer_article($id_article, $id_rubrique, $texte);
 	}
+	return $id_article;
 }
 
 //fonction qui permet de mettre à jour un article
@@ -384,6 +385,16 @@ function remplacer_article($id_article, $id_rubrique, $texte) {
 		), "id_article='$id_article' AND id_rubrique = $id_rubrique"
 	);
 	return true;
+}
+
+function poubelle_article($titre_article, $titre_rubrique) {
+	$id_rubrique = id_rubrique($titre_rubrique);
+	if ($id_rubrique) {
+		$id_article = id_article($titre_article, $id_rubrique);
+		if ($id_article) {
+			sql_updateq("spip_articles", array("statut" => "poubelle"),"id_article=$id_article");
+		}
+	}
 }
 
 // fonction qui permet de trouver si une liaison entre un article et un mot clé existe
@@ -653,7 +664,7 @@ function soyezcreateurs_config_motsclefs() {
 	$article2 = trouve_article_sc('Partage');
 		create_article($article2, '999. Citations');
 	$article3 = trouve_article_sc('Contact');
-		create_article($article3, '000. Fourre-tout');
+		$id_article3 = create_article($article3, '000. Fourre-tout');
 		create_article_mot($article3['titre'], '000. Fourre-tout', "MENURACINEBAS_Systematique", "_Specialisation");
 	$article4 = trouve_article_sc('Économies');
 		create_article($article4, '999. Citations');
