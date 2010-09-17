@@ -55,7 +55,7 @@ height:20px;
 border:1px solid #000;
 margin:10px;}
 /*position champs extras couleur*/
-li.extra{margin-left:-100px;}
+
 li.extra input{width:60px;}
 
 .gestion_bouton{display:inline;}
