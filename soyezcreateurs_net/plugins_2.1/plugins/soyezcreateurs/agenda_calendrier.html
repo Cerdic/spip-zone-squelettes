@@ -23,7 +23,7 @@
 >
 <div id="miettesdepain">
 	<ul>
-	<li><a href="#URL_SITE_SPIP"><:soyezcreateurs:accueil:></a></li>
+	<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
 	<BOUCLE_plan(HIERARCHIE){id_rubrique}>
 	<li><a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique', #ID_RUBRIQUE}|parametre_url{'date_ev', [(#ENV{date_ev, [(#ENV{date})]}|annee)]'-[(#ENV{date_ev,[(#ENV{date})]}|mois)]-01'}|parametre_url{'id_mot', [(#ENV{id_mot,''}|urlencode)]})]"[ title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>[(#TITRE)]</a></li>
 	</BOUCLE_plan>
@@ -98,7 +98,7 @@
 				]
 				<BOUCLE_DerniereAnnee(EVENEMENTS){branche}{!par date_debut}{0,1}>
 				[(#DATE_DEBUT|affdate{'Y-m'}|=={#ENV{date_ev,#ENV{date}}|affdate{'Y-m'}}|non)
-					<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique',#_rubrique_principal:ID_RUBRIQUE}|parametre_url{'date_ev', #GET{date}|Agenda_moisdecal{1,'Y-m-01'}}|parametre_url{'id_mot', #ENV{id_mot,''}|urlencode})]"><img src="#CHEMIN{images/next.gif}" title="<:suivant|ucfirst:>" alt="<:suivant|ucfirst:>" /></a>
+					<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique',#_rubrique_principal:ID_RUBRIQUE}|parametre_url{'date_ev', #GET{date}|Agenda_moisdecal{1,'Y-m-01'}}|parametre_url{'id_mot', #ENV{id_mot,''}|urlencode})]" title="<:suivant|ucfirst|attribut_html:>"><img src="#CHEMIN{images/next.gif}" title="<:suivant|ucfirst:>" alt="<:suivant|ucfirst:>" /></a>
 				]
 				</BOUCLE_DerniereAnnee>
 				<input type="submit" value="<:pass_ok:>" class="form_submit" />
@@ -109,7 +109,7 @@
 				[(#ENV{date}|mois|!={[(#GET{date}|mois)]}|oui)
 					#SET{'condition_m', 'oui'}]
 				[(#GET{'condition_m'}|=={'oui'}|oui)
-				<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique', #_rubrique_principal:ID_RUBRIQUE}|parametre_url{'id_mot', #ENV{id_mot}})]"><:spip:date_aujourdhui|ucfirst:></a>
+				<a href="[(#URL_PAGE{agenda_calendrier}|parametre_url{'id_rubrique', #_rubrique_principal:ID_RUBRIQUE}|parametre_url{'id_mot', #ENV{id_mot}})]" title="<:spip:date_aujourdhui|ucfirst|attribut_html:>"><:spip:date_aujourdhui|ucfirst:></a>
 				]
 			</fieldset>
 		</form>

@@ -20,7 +20,7 @@
 
 	<div id="miettesdepain">
 	<ul>
-	<li><a href="#URL_SITE_SPIP"><:soyezcreateurs:accueil:></a></li>
+	<li><a href="#URL_SITE_SPIP" title="<:soyezcreateurs:accueil|attribut_html:>"><:soyezcreateurs:accueil:></a></li>
 	<BOUCLE_plan(HIERARCHIE){id_article}{!titre_mot=PasDansFildAriane}>
 	<li><a href="#URL_RUBRIQUE"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
 	</BOUCLE_plan>
@@ -72,7 +72,7 @@
 <//B_SommaireAncre>
 [<div class="#EDIT{ps} ps">(#PS|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>]
 [<div class="notes">(#NOTES)</div>]
-[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out" title="<:voir_en_ligne|attribut_html:>[ (#NOM_SITE|sinon{[(#URL_SITE|couper{80})]}|attribut_html)]">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
 [<div id="carto">
 (#PLUGIN{GIS}|oui)#INCLURE{fond=noisettes/articles/carto,id_article}
 </div>]
@@ -102,7 +102,7 @@
 <BOUCLE_signatures(SIGNATURES) {id_article} {!par date} {0,30}>
 <tr[(#COMPTEUR_BOUCLE|alterner{' class="alt"',''})]>
 	<td class="signature-date">[(#DATE|affdate_court)]</td>
-	<td class="#EDIT{qui} signature-nom">#NOM[, <a href="(#URL_SITE)">#NOM_SITE</a>]</td>
+	<td class="#EDIT{qui} signature-nom">#NOM[, <a href="(#URL_SITE)" title="(#NOM_SITE|attribut_html)">#NOM_SITE</a>]</td>
 </tr>
 </BOUCLE_signatures>
 </tbody>
@@ -110,7 +110,7 @@
 </B_signatures>
 
 <BOUCLE_GraverSonNom(ARTICLES){id_article}{titre_mot=GraverSonNom}>
-[<div class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)#formulaire_forum" rel="nofollow"><:soyezcreateurs:deposer_intention:></a></div>]
+[<div class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)#formulaire_forum" rel="nofollow" title="<:soyezcreateurs:deposer_intention|attribut_html:>"><:soyezcreateurs:deposer_intention:></a></div>]
 
 <div id="graversonnom">
 <BOUCLE_LogoGraverSonNom(MOTS){titre=GraverSonNom}>[(#SET{logograver,[(#LOGO_MOT_NORMAL|extraire_attribut{src})]})]
@@ -127,10 +127,10 @@
 
 <!-- Forums -->
 [(#PLUGIN{comments}|non)
-[<div class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)#formulaire_forum" rel="nofollow">[(#CONFIG{soyezcreateurs/zone_forum_invite}|sinon{<:soyezcreateurs:forum_repondre:>})]</a></div>]
+[<div class="forum-repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)#formulaire_forum" rel="nofollow" title="">[(#CONFIG{soyezcreateurs/zone_forum_invite}|sinon{<:soyezcreateurs:forum_repondre:>})]</a></div>]
 <INCLURE{fond=noisettes/forums/inc-forum}{id_article}>]
 [(#PLUGIN{comments}|oui)
-<div class="forum-repondre"><a href="#formulaire_forum" rel="nofollow">[(#CONFIG{soyezcreateurs/zone_forum_invite}|sinon{<:soyezcreateurs:forum_repondre:>})]</a></div>
+<div class="forum-repondre"><a href="#formulaire_forum" rel="nofollow" title="">[(#CONFIG{soyezcreateurs/zone_forum_invite}|sinon{<:soyezcreateurs:forum_repondre:>})]</a></div>
 [(#INCLURE{fond=comments}{id_article})]]
 
 <//B_GraverSonNom>
