@@ -304,10 +304,13 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			include_spip('inc/autoriser');
 			sql_update('spip_auteurs',array('webmestre'=>"'oui'"),sql_in("id_auteur",defined('_ID_WEBMESTRES')?explode(':',_ID_WEBMESTRES):(autoriser('configurer')?array($GLOBALS['visiteur_session']['id_auteur']):array(0)))); // le webmestre est celui qui fait l'upgrade si rien de defini
 			// Activer les lames du CouteauSuisse Special SoyezCreateurs (enlève la lame Webmestre)
-			include_spip('base/cout_install');
-			cout_install_pack('SoyezCreateurs');
-			include_spip('inc/getdocument');
-			effacer_repertoire_temporaire(_DIR_TMP.'couteau-suisse');
+			$f = chercher_filtre('info_plugin');
+			if ($f('couteau_suisse', 'est_actif')) {
+				include_spip('base/cout_install');
+				cout_install_pack('SoyezCreateurs');
+				include_spip('inc/getdocument');
+				effacer_repertoire_temporaire(_DIR_TMP.'couteau-suisse');
+			}
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.7','non');
 		}
 		
