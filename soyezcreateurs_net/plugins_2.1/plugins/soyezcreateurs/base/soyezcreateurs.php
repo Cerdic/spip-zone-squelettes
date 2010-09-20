@@ -546,7 +546,7 @@ function create_logo($chemin, $type='art', $id, $ext) {
 	return $file;
 }
 
-//fonction qui permet de trouver l'id d'un article à partir du titre
+//fonction qui permet de trouver l'id d'un site à partir du titre
 function id_site($titre, $id_rubrique) {
 	$titre = addslashes($titre);
 	$result = sql_fetsel(
@@ -589,7 +589,7 @@ function create_site($site, $rubrique) {
 	return $id_site;
 }
 
-//fonction qui permet de trouver des liaisons entre rubrique et mot clé
+//fonction qui permet de trouver des liaisons entre site et mot clé
 function find_site_mot($id_mot, $id_syndic) {
 	$count = sql_countsel(
 		"spip_mots_syndic", 
