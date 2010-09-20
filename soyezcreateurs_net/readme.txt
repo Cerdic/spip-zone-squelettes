@@ -2,26 +2,27 @@ Ce squelette est ouvert aux commits après en avoir discuté avec son auteur : rea
 
 Licence : il est distribué en licence GPL
 
-Documentation : http://www.soyezcreateurs.net/-Pyrat-net,71-.html
+Documentation : http://www.spip-contrib.net/SoyezCreateurs,1237?tri_articles=titre
 
-Il sera possible de participer à cette documentation sur :
-http://www.soyezcreateurs.net/ecrire/
+Il sera possible de participer à cette documentation sur SPIP-Contrib
 
-En l'état, ce squelette nécessite :
-- SPIP 2.0
-- plein de plugins :
-- les rewrite rules doivent être disponibles sous apache (M$ IIS impossible) 
+En l'état, la dernière version ce squelette nécessite :
+- SPIP 2.1.2
+- plein de plugins
 
 ----
 Méthode de travail en commun : le principe pour toucher au squelette :
 - rajouter un mot clef ou une config
 - rajouter la boucle utilisant le mot clef pour obtenir le comportement différent
-- mettre à jour postconfig avec le mot clef ayant la valeur qui fait que la fonctionnalité est débrayée par défaut (sauf si elle apporte un vrai plus)
+- mettre à jour la procédure d'installation avec le mot clef ayant la valeur qui fait que la fonctionnalité est débrayée par défaut (sauf si elle apporte un vrai plus)
+  Autrement dit, il ne faut pas que les sites déjà existants soient "cassés" par une mise à jour
 - vérifier que c'est toujours valide XHTML avec et sans la fonctionnalité et commiter si possible avec une url d'exemple
+- merci aussi de respecter au maximum les bonnes pratiques en terme d'accessibilité à tous.
+- Eviter de créer des CSS supplémentaires quand celles déjà disponibles suffiraient avec le bon HTML
 
 ----
 
-Travail avec des branches et des tags ? (copier/coller depuis IRC)
+Travail avec des branches et des tags ? (copier/coller depuis IRC, jamais appliqué)
 
 sous le dossier "soyezcreateurs_net" il convient de créer deux ou trois sous-dossiers en plus
 "trunk"
