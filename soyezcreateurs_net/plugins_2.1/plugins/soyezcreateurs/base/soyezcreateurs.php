@@ -540,6 +540,12 @@ function create_document($chemin, $objet, $mode, $champs='non', $id_document='no
 		return false;
 }
 
+function create_logo($chemin, $type='art', $id, $ext) {
+	include_spip('inc/getdocument');
+	$file = deplacer_fichier_upload(find_in_path($chemin), _DIR_LOGOS . $type . 'on' . $id . $ext);
+	return $file;
+}
+
 //fonction qui permet de créer le tout
 function soyezcreateurs_config_motsclefs() {
 	//les rubriques

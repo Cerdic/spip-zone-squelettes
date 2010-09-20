@@ -380,6 +380,7 @@ EOF;
 	if ($article == 'Contact') {
 		$email_contact = find_auteur_email(1);
 		$id_auteur_contact = create_auteur('Nous contacter', $email_contact, "Adresse\n_ Code Postal – Ville\n_ Téléphone\nFax\n\nHoraires d'ouverture.\n\nLien Google Maps\n\nInformations juridiques (SIRET...)");
+		create_logo('documents/contact.jpg', 'aut', $id_auteur_contact, '.jpg');
 		$contenu['titre'] = $article;
 		$contenu['descriptif'] = 'Nous contacter';
 		$contenu['chapo'] = "=aut$id_auteur_contact";
