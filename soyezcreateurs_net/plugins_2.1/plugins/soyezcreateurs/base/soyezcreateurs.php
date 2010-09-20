@@ -670,7 +670,13 @@ function soyezcreateurs_config_motsclefs() {
 		create_article($article4, '999. Citations');
 	$article5 = trouve_article_sc('Concision');
 		create_article($article5, '999. Citations');
+	$id_doc = create_document('documents/contact.jpg', 
+		null, 
+		'image',
+		array('titre' => 'Contactez-nous', 'descriptif' => 'Clavier de téléphone...')); 
 	$article6 = trouve_article_sc("Raccourcis Typographiques de SPIP, mode d'emploi");
+		$article6['texte'] = str_replace('<img1', "<img$id_doc>", $article6['texte']);
+		$article6['texte'] = str_replace('<doc1', "<doc$id_doc>", $article6['texte']);
 		create_article($article6, "000. Fourre-tout");
 		create_article_mot($article6['titre'], "000. Fourre-tout", "ALaUne", "_Specialisation");
 	
