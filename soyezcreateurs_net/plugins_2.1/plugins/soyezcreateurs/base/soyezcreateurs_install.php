@@ -149,6 +149,17 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				'aff_complet_pour_impression' => 'oui_non'
 				);
 			soyezcreateurs_changer_cfg($cfg);
+			$id_rubrique = id_rubrique('000. Fourre-tout');
+			if ($id_rubrique >0) {
+				create_rubrique('05. Saint du jour', $id_rubrique, "Rubrique destinée à recevoir le site référencé utilisé pour l'affichage du Saint du jour.");
+				$sitesdj = array();
+				$sitesdj['nom_site'] = "Nominis (Saint du jour)";
+				$sitesdj['url_site'] = "http://nominis.cef.fr/";
+				$sitesdj['descriptif'] = "Nominis : Origine et étymologie des prénoms, des fêtes, des saints, la vie des saints.";
+				$sitesdj['url_syndic'] = "http://nominis.cef.fr/rss/nominis.php";
+				$id_site = create_site($sitesdj, '05. Saint du jour');
+				create_site_mot($id_site, 'SaintDuJour', '_Specialisation_Sites');
+			}			
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.7','non');
 		}
 		if (version_compare($current_version,'2.1.8','<')) {

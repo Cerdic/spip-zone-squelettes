@@ -546,6 +546,72 @@ function create_logo($chemin, $type='art', $id, $ext) {
 	return $file;
 }
 
+//fonction qui permet de trouver l'id d'un article à partir du titre
+function id_site($titre, $id_rubrique) {
+	$titre = addslashes($titre);
+	$result = sql_fetsel(
+		"id_syndic", 
+		"spip_syndic", 
+		"nom_site='$titre' AND id_rubrique = $id_rubrique"
+	);
+	$resultat = $result['id_syndic'];
+	return $resultat;
+}
+
+function create_site($site, $rubrique) {
+	$id_rubrique = id_rubrique($rubrique);
+	$id_site = id_site($site['titre'], $id_rubrique);
+	if ($id_site > 0) {
+		sql_updateq(
+			"spip_syndic", array(
+				"url_site" => $site['url_site'],
+				"url_syndic" => $site['url_syndic'],
+				"descriptif" => $site['descriptif'],
+				"syndication" => $site['url_syndic'] ? 'oui':'non'
+			), "id_syndic='$id_syndic'"
+		);
+	} else {
+		$id_site = sql_insertq(
+			"spip_syndic", array(
+				"id_rubrique" => $id_rubrique,
+				"nom_site" => $site['nom_site'],
+				"url_site" => $site['url_site'],
+				"url_syndic" => $site['url_syndic'],
+				"descriptif" => $site['descriptif'],
+				"statut" => $site['statut'] ? $site['statut']:'prop',
+				"syndication" => $site['url_syndic'] ? 'oui':'non'
+			)
+		);
+		include_spip('inc/rubriques');
+		calculer_rubriques();
+		propager_les_secteurs();
+	}
+	return $id_site;
+}
+
+//fonction qui permet de trouver des liaisons entre rubrique et mot clé
+function find_site_mot($id_mot, $id_syndic) {
+	$count = sql_countsel(
+		"spip_mots_syndic", 
+		"id_mot = $id_mot AND id_syndic = $id_syndic"
+	);
+	return $count;
+}
+function create_site_mot($id_syndic, $mot, $groupe) {
+	$id_groupe = id_groupe($groupe);
+	$id_mot = id_mot($mot, $id_groupe);
+	$count = find_site_mot($id_mot, $id_rubrique);
+	if ($count == 0) {
+		sql_insertq(
+			"spip_mots_syndic", array(
+				"id_mot" => $id_mot,
+				"id_syndic" => $id_syndic
+			)
+		);
+	}
+	return true;
+}
+
 //fonction qui permet de créer le tout
 function soyezcreateurs_config_motsclefs() {
 	//les rubriques
