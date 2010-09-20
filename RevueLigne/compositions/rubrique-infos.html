@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
-<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+<title>[(#TITRE|supprimer_numero|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
 [<meta name="description" content="(#INTRODUCTION{150}|textebrut)" />]
 <INCLURE{fond=inc-head}>
 [(#REM) Lien vers le flux RSS de la rubrique ]
@@ -24,11 +24,11 @@
     <div id="contenu">
     
         [(#REM) Fil d'Ariane ]
-        <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]</div>
+        <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|supprimer_numero|couper{80})</strong>]</div>
 
         <div class="cartouche">
             [(#LOGO_RUBRIQUE||image_reduire{200,200})]
-            <h1 class="#EDIT{titre}">#TITRE</h1>
+            <h1 class="#EDIT{titre}">[(#TITRE|supprimer_numero)]</h1>
         </div>
 
         [<div class="#EDIT{texte} texte">(#DESCRIPTIF)</div>]
@@ -36,14 +36,15 @@
 
         [(#REM) Articles de la rubrique ]
         <B_articles>
-        <div class="menu articles">
+        <div class="menu articles"; style="text-indent: 30px;">
             #ANCRE_PAGINATION
-            
+            <br /><br />
             <ul>
                 <BOUCLE_articles(ARTICLES) {id_rubrique} {par titre} {pagination}>
 	            <li>
-                    		
-                  <a href="#URL_ARTICLE">#TITRE</a>
+                  <h2>  		
+                  <a href="#URL_ARTICLE">[(#PUCE)]&nbsp;&nbsp;[(#TITRE|supprimer_numero)]</a>
+				  </h2>
                 </li>
                 </BOUCLE_articles>
             </ul>
@@ -59,7 +60,7 @@
             <ul>
                 <BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
                 <li>
-                    <h2><a href="#URL_RUBRIQUE">[(#TITRE)]</a></h2>
+                    <h2><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h2>
 					[<div class="#EDIT{texte} texte">(#DESCRIPTIF)</div>]
                     
                 </li>
@@ -78,7 +79,7 @@
             <ul>
                 <BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {mode=document} {par num titre, date} {doublons}>
                 <li>
-                    <strong><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a></strong>
+                    <strong><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|supprimer_numero|sinon{<:info_document:>})]</a></strong>
                     <small>(#TYPE_DOCUMENT[ &ndash; (#TAILLE|taille_en_octets)])</small>
                     #DESCRIPTIF
                 </li>
@@ -98,7 +99,7 @@
                     <B_syndic>
                     <ul>
                         <BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {0,3}>
-                        <li><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></li>
+                        <li><a href="#URL_ARTICLE" class="spip_out">[(#TITRE|supprimer_numero)]</a></li>
                         </BOUCLE_syndic>
                     </ul>
                     </B_syndic>

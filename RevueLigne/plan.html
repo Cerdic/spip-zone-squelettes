@@ -30,13 +30,13 @@
 		
 		<BOUCLE_secteurs(RUBRIQUES) {racine} {par num titre} {doublons} >
         
-        <h2><a href="#URL_RUBRIQUE">#TITRE</a></h2>
+        <h2><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero)]</a></h2>
         
         [(#REM) Articles et sous-rubriques ]
         <B_articles_racine>
         <ul>
             <BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
-            <li>[(#SURTITRE), ]<a href="#URL_ARTICLE">#TITRE</a>[, (#SOUSTITRE)].</li>
+            <li>[(#SURTITRE), ]<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a>[, (#SOUSTITRE)].</li>
             </BOUCLE_articles_racine>
         </ul>
         </B_articles_racine>
@@ -45,13 +45,13 @@
         <ul>
             <BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
             <li>
-                <strong>#TITRE</strong>
+                <strong>[(#TITRE|supprimer_numero)]</strong>
                 
                 <B_articles>
                 <ul>
 					<BOUCLE_articles(ARTICLES) {id_rubrique} {par num titre}>
 	    			<li>
-						[(#SURTITRE), ]<a href="#URL_ARTICLE">#TITRE</a>[, (#SOUSTITRE)].
+						[(#SURTITRE), ]<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a>[, (#SOUSTITRE)].
         			</li>
                 </BOUCLE_articles>
                 </ul>
@@ -68,7 +68,7 @@
         <h3><:breves:></h3>
         <ul>
             <BOUCLE_breves(BREVES) {id_rubrique} {par date}{inverse}>
-            <li><a href="#URL_BREVE">#TITRE</a></li>
+            <li><a href="#URL_BREVE">[(#TITRE|supprimer_numero)]</a></li>
             </BOUCLE_breves>
         </ul>
         </B_breves>

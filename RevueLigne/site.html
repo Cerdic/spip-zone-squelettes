@@ -23,7 +23,7 @@
     <div id="contenu">
     
         [(#REM) Fil d'Ariane ]
-        <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_syndic}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#NOM_SITE|couper{80})</strong>]</div>
+        <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_syndic}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#NOM_SITE|couper{80})</strong>]</div>
 
         <div class="cartouche">
             <a href="#URL_SITE">[(#LOGO_SITE||image_reduire{150,100})]</a>
@@ -41,7 +41,7 @@
             <ul>
                 <BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {pagination 5}>
                 <li>
-                    <h3><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></h3>
+                    <h3><a href="#URL_ARTICLE" class="spip_out">[(#TITRE|supprimer_numero)]</a></h3>
                     [<div class="enclosures">(#TAGS|afficher_enclosures)</div>]
                     <small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)][ &mdash; <em>(#TAGS|afficher_tags)</em>]</small>
                     [<div class="introduction">(#DESCRIPTIF|image_reduire{300})</div>]
@@ -90,7 +90,7 @@
             <h2><:mots_clefs:></h2>
             <ul>
                 <BOUCLE_mots(MOTS) {id_syndic} {par titre}>
-                <li><a href="#URL_MOT" rel="tag">#TITRE</a></li>
+                <li><a href="#URL_MOT" rel="tag">[(#TITRE|supprimer_numero)]</a></li>
                 </BOUCLE_mots>
             </ul>
         </div>

@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
-<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+<title>[(#TITRE|supprimer_numero|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
 [<meta name="description" content="(#INTRODUCTION{150}|textebrut)" />]
 <INCLURE{fond=inc-head}>
 [(#REM) Lien vers le flux RSS de la rubrique ]
@@ -24,13 +24,13 @@
     <div id="contenu">
     
         [(#REM) Fil d'Ariane ]
-        <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]</div>
+        <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_rubrique}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|supprimer_numero|couper{80})</strong>]</div>
 
         <div class="cartouche">
 <BOUCLE_article_couverture(ARTICLES) {id_rubrique} {titre_mot="couverture"}>
-<a href="#URL_ARTICLE">[(#LOGO_RUBRIQUE||image_reduire{350,350})]</a>
+<a href="#URL_ARTICLE">[(#LOGO_RUBRIQUE|image_reduire{350,350})]</a>
 </BOUCLE_article_couverture>
-            <h3 class="#EDIT{titre}">#TITRE</h3>
+            <h3 class="#EDIT{titre}">[(#TITRE|supprimer_numero)]</h3>
         </div>
 
         [<h2 class="#EDIT{titre}">(#TEXTE)</h2>]
@@ -48,8 +48,8 @@
             <ul>
                 <BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
 	            <li>
-                    [(#LOGO_ARTICLE|#URL_ARTICLE|image_reduire{150,100})]              
-					[(#SURTITRE), ]<a href="#URL_ARTICLE">#TITRE</a>[, (#SOUSTITRE)].
+                [(#LOGO_ARTICLE{#URL_ARTICLE}|image_reduire{150,100})]          
+					[(#SURTITRE), ]<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a>[, (#SOUSTITRE)].
                 </li>
                 </BOUCLE_articles>
             </ul>
@@ -63,11 +63,11 @@
             <ul>
                 <BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par titre}>
                 <li>
-                    <h2>[(#TITRE)]</h2>
+                    <h2>[(#TITRE|supprimer_numero)]</h2>
 					[<div class="#EDIT{texte} texte">(#DESCRIPTIF)</div>]
 		                <BOUCLE_articles_sous_rubriques(ARTICLES) {id_rubrique} {par titre}>
 	    			        <li>
-							[(#SURTITRE), ]<a href="#URL_ARTICLE">#TITRE</a>[, (#SOUSTITRE)].
+							[(#SURTITRE), ]<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a>[, (#SOUSTITRE)].
         			        </li>
                 </BOUCLE_articles_sous_rubriques>
                     
@@ -85,7 +85,7 @@
             <ul>
                 <BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {mode=document} {par num titre, date} {doublons}>
                 <li>
-                    <strong><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a></strong>
+                    <strong><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|supprimer_numero|sinon{<:info_document:>})]</a></strong>
                     <small>(#TYPE_DOCUMENT[ &ndash; (#TAILLE|taille_en_octets)])</small>
                     #DESCRIPTIF
                 </li>
@@ -101,7 +101,7 @@
             <h2><:breves:></h2>
             <ul>
                 <BOUCLE_breves(BREVES) {id_rubrique} {par date}{inverse} {pagination 5}>
-                <li>[(#DATE|affdate_jourcourt) &ndash; ]<a href="#URL_BREVE">#TITRE</a></li>
+                <li>[(#DATE|affdate_jourcourt) &ndash; ]<a href="#URL_BREVE">[(#TITRE|supprimer_numero)]</a></li>
                 </BOUCLE_breves>
             </ul>
             [<p class="pagination">(#PAGINATION)</p>]
@@ -118,7 +118,7 @@
                     <B_syndic>
                     <ul>
                         <BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {0,3}>
-                        <li><a href="#URL_ARTICLE" class="spip_out">#TITRE</a></li>
+                        <li><a href="#URL_ARTICLE" class="spip_out">[(#TITRE|supprimer_numero)]</a></li>
                         </BOUCLE_syndic>
                     </ul>
                     </B_syndic>
@@ -154,7 +154,7 @@
             <h2><:mots_clefs:></h2>
             <ul>
                 <BOUCLE_mots(MOTS) {id_rubrique} {par titre}>
-                <li><a href="#URL_MOT" rel="tag">#TITRE</a></li>
+                <li><a href="#URL_MOT" rel="tag">[(#TITRE|supprimer_numero)]</a></li>
                 </BOUCLE_mots>
             </ul>
         </div>

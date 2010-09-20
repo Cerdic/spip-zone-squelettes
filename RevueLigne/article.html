@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
 <head>
-<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>[
+<title>[(#TITRE|supprimer_numero|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>[
 <meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />
 ]<B_URLMOT>
 <link rel="alternate" type="application/rss+xml" title="<:titre_page_mots_tous:>" href="#URL_PAGE{backend}<BOUCLE_URLMOT(MOTS){id_article}>&amp;id_mot[]=#ID_MOT</BOUCLE_URLMOT>" />
@@ -43,14 +43,14 @@
         $prenom = substr($nomcomplet, 0, $espace) ;
         echo $prenom ;
 ?>" />
-<meta name="DC.title" lang="fr" content=["(#TITRE)"] />
-<meta name="DC.date" scheme="DCTERMS.W3CDTF" content=["(#DATE|affdate{'Y-m-j'})] />
-<meta name="DC.subject" lang="fr" content=["(#CHAPO)"] />
+<meta name="DC.title" lang="fr" content=["(#TITRE|supprimer_numero)"] />
+<meta name="DC.date" scheme="DCTERMS.W3CDTF" content=["(#DATE|affdate{'Y-m-j'})"] />
+<meta name="DC.subject" lang="fr" content="" />
 <meta name="DC.language" scheme="DCTERMS.RFC4646" content="fr-FR" />
 <meta name="DC.rights" content="Tous droits réservés" />
 <meta name="DC.source" content=["(#URL_SITE_SPIP)"] />
 <link rel="DC.source" href="urn:ISBN:XXX-XXXX-XXX-XX-X" />
-<meta name="DC.description" lang="fr" content=["(#CHAPO)"] />
+<meta name="DC.description" lang="fr" content=""] />
 </head>
 
 <body class="page_article">
@@ -64,14 +64,14 @@
     <div class="hentry" id="contenu">
     
         [(#REM) Fil d'Ariane ]
-        <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]</div>
+        <div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|supprimer_numero|couper{80})</strong>]</div>
 
         <div class="cartouche">
           <div class="surlignable">
 				[(#LOGO_ARTICLE||image_reduire{200,200})]
 				[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
                 [<p class="#EDIT{soustitre} soustitre">(#DESCRIPTIF)<br /></p>]
-                <h1 class="#EDIT{titre} entry-title">#TITRE</h1>
+                <h1 class="#EDIT{titre} entry-title">[(#TITRE|supprimer_numero)]</h1>
 				[<p class="#EDIT{texte3} texte3"><br />(#SOUSTITRE)</p>]
   				<p></p>
                 <p>&nbsp;    </p>
@@ -85,7 +85,7 @@
 			[<div class="#EDIT{chapo} chapo"><h2 class="pas_surlignable"><:info_resume:></h2><hr />(#CHAPO|image_reduire{500,0})</div>]
 			[<div class="ps surlignable"><h2 class="pas_surlignable"><:info_ps:></h2><hr /><div class="#EDIT{ps}">(#PS|image_reduire{500,0})</div></div>]
 						[(#INCLURE{fond=inc-documents-joints}{id_article}{env})]	
-            [<div class="#EDIT{txt} txt"><h2 class="pas_surlignable"><br /><:info_telecharger_html:></h2><br  />#IMPRIMIR_DOCUMENTO**<hr />
+            [<div class="#EDIT{txt} txt"><h2 class="pas_surlignable"><br /><:info_telecharger_html:></h2><br  />
 			(#TEXTE|image_reduire{500,0})</div>]
 		</div>
 		[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
@@ -113,8 +113,7 @@
 		<INCLURE{fond=inc-forum}{id_article} />
 		[<p class="repondre"><a href="(#PARAMETRES_FORUM|url_reponse_forum)" rel="noindex nofollow"><:repondre_article:></a></p>] 
 
-	[(#INCLURE{fond=inc-compteurgraphique}{id_article}{env})]
-	
+
 	</div><!--#contenu-->
 	</div><!--#conteneur-->
 
@@ -137,7 +136,7 @@
 <BOUCLE_titres(RUBRIQUES) {id_rubrique} >
 	<BOUCLE_titre_numero(RUBRIQUES) {id_enfant} >
         [<a href="#URL_RUBRIQUE">(#LOGO_RUBRIQUE||image_reduire{200,200})</a>]
-		<h2><br/><a href="#URL_RUBRIQUE"><span style="font-style: italic">#NOM_SITE_SPIP</span>,<br/>#TITRE</h2><p></p><p></p>
+		<h2><br/><a href="#URL_RUBRIQUE"><span style="font-style: italic">#NOM_SITE_SPIP</span>,<br/>[(#TITRE|supprimer_numero)]</h2><p></p><p></p>
         <h3><a href="#URL_RUBRIQUE"><:meme_rubrique:></a></h3>
         <p></p><p></p>
 	</BOUCLE_titre_numero>
@@ -149,7 +148,7 @@
             <ul>
                 <BOUCLE_articles_rubrique_racine_numero(ARTICLES) {id_rubrique} {par titre}>
                 <p> [(#SURTITRE), ]
-<a href="#URL_ARTICLE">#TITRE</a><br/></p>
+<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a><br/></p>
                 </BOUCLE_articles_rubrique_racine_numero>
             </ul>
         </div>
@@ -159,12 +158,12 @@
         [(#REM) Affichage des titres des sections du numéro ]
         <B_titre_sections>
 	<BOUCLE_titre_sections(RUBRIQUES) {meme_parent} {par num titre} >
-        <h4 class="pas_surlignable">#TITRE</h4>
+        <h4 class="pas_surlignable">[(#TITRE|supprimer_numero)]</h4>
         <div class="menu">
             <ul>
                 <BOUCLE_articles_rubrique(ARTICLES) {id_rubrique} {par titre}>
                 <p> [(#SURTITRE)],
-<a href="#URL_ARTICLE">#TITRE</a><br/></p>
+<a href="#URL_ARTICLE">[(#TITRE|supprimer_numero)]</a><br/></p>
                 </BOUCLE_articles_rubrique>
             </ul>
         </div>
