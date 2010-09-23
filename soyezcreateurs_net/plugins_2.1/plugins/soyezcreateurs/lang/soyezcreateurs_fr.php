@@ -190,6 +190,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_mode_affichage_label' => 'Mode d\'affichage de la page d\'accueil du site',
 	'cfg_mode_affichage_logo_label' => 'Mode d\'affichage du logo (si pr&eacute;sent)',
 	'cfg_mode_bandeau_contact_label' => 'Mode d\'affichage du bandeau de contact',
+	'cfg_mode_communiquant' => 'Affichage d\'un portail d\'accueil de type communiquant',
 	'cfg_mode_edito' => 'Affichage de l\'Edito',
 	'cfg_mode_evenementiel' => 'Affichage d\'un portail d\'accueil de type &eacute;v&eacute;nementiel',
 	'cfg_mode_nouveautes' => 'Affichage sous forme d\'extrait des derni&egrave;res nouveaut&eacute;s',
