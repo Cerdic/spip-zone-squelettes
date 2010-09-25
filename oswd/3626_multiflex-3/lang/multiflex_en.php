@@ -16,7 +16,7 @@ $GLOBALS['i18n_multiflex_en'] = array(
 // pour centre
 'a_la_une' => 'Lead story',
 'autres_sites' => 'Other sites',
-'actualites' => 'news',
+'actualites' => 'News',
 'commentaire' => 'comment',
 'commentaires' => 'comments',
 'documents_joints' => 'Attached documents',
@@ -77,7 +77,7 @@ $GLOBALS['i18n_multiflex_en'] = array(
 'descriptifs_optionnels' => 'Optionnal description',
 'descriptions_site' => 'Website description',
 'divers' => 'Divers',
-'dominante' => 'Teinte dominante',
+'dominante' => 'Main color',
 
 'generale' => 'General (**) color',
 'grille' => 'Grid',
