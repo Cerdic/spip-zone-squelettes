@@ -1,9 +1,11 @@
 <div id="header">
 <div id="pre-header">
-<div class="ahem"><ul>
+<div id="escapelinks" class="escapelinks"><ul>
 	<li><a href="#letexte"><:soyezcreateurs:accessibilite_texte:></a></li>
-	<li><a href="#menusite"><:soyezcreateurs:accessibilite_menu:></a></li>
 	<li><a href="#formulaire_recherche"><:soyezcreateurs:accessibilite_recherche:></a></li>
+<BOUCLE_AccesibiliteLien(ARTICLES){titre_mot=AccesibiliteLien}{0,1}{!par date}>
+	<li><a href="#ARTICLE_URL"[ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE)]</a></li>
+</BOUCLE_AccesibiliteLien>
 </ul></div>
 <div id="datemajsite"><span><BOUCLE_datemajsite(ARTICLES){!par date_modif}{0,1}{lang}><:soyezcreateurs:dernieremaj:> [(#DATE_MODIF|nom_jour)] [(#DATE_MODIF|affdate)]</BOUCLE_datemajsite></span></div>
 [(#PLUGIN{MLL}|oui)[(#INCLURE{fond=formulaires/menu_lang}{env})]]
@@ -11,11 +13,7 @@
 <h1 class="crayon meta-valeur-nom_site"><a href="#URL_SITE_SPIP" title="<:accueil_site|attribut_html:>">[(#NOM_SITE_SPIP)][<sub>(#SLOGAN_SITE_SPIP|ptobr)</sub>]</a></h1>
 [(#CONFIG{soyezcreateurs/positionrecherche,navigation}|=={header}|oui)[(#INCLURE{fond=noisettes/header/cadre_recherche}{env}{id_recherche=cadre_recherche})]]
 </div>
-
 <div id="header_inner">
-<BOUCLE_AccesibiliteLien(ARTICLES){titre_mot=AccesibiliteLien}{0,1}{!par date}>
-	<div id="accessibilite" style="float:right;"><a href="#ARTICLE_URL">[(#TITRE)]</a></div>
-</BOUCLE_AccesibiliteLien>
 [(#CONFIG{soyezcreateurs/menuhautlogosurvol}|=={oui}|oui)[<img src="(#LOGO_SITE_SPIP_SURVOL|image_reduire_par{3}|extraire_attribut{src})"[ width="(#LOGO_SITE_SPIP_SURVOL|image_reduire_par{3}|largeur)"][ height="(#LOGO_SITE_SPIP_SURVOL|image_reduire_par{3}|hauteur)"] alt="<:soyezcreateurs:retouraccueil:> [(#NOM_SITE_SPIP|supprimer_tags)]" />]
 <div class="slogan crayon meta-valeur-descriptif_site">#DESCRIPTIF_SITE_SPIP</div>]
 [(#INCLURE{fond=noisettes/extra/citations})]
