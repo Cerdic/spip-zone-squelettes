@@ -35,17 +35,17 @@
 [(#REM) Attention : ne pas enlever les REMarques : elles servent aerer le source sans que celui ne renvois d'espaces identifie comme une reussite du test ]
 	<BOUCLE_ArtRubLayout(ARTICLES){id_article}>[(#REM) Dans le cas d'un article
 		]<BOUCLE_ArtLayout(MOTS){id_article}{type=_LayoutGala}>[(#REM) Est-ce qu'il a un Layout applique?
-			][(#INCLURE{fond=noisettes/header/layout}{layoutgala=[(#TITRE*|textebrut|substr{0,2})]})][(#REM) Appel du layout de l'article si oui
+			][<link rel="stylesheet" type="text/css" href="(#URL_PAGE{layout.css}|parametre_url{layoutgala,[(#TITRE*|textebrut|substr{0,2})]}|direction_css_intelligente)" media="all" />][(#REM) Appel du layout de l'article si oui
 		]</BOUCLE_ArtLayout>[(#REM) Sinon, dans le cas de la rubrique de l'article
 		]<BOUCLE_RubartLayout(MOTS){id_rubrique}{type=_LayoutGala}>[(#REM) Est-ce que sa rubrique a un layout ?
-			][(#INCLURE{fond=noisettes/header/layout}{layoutgala=[(#TITRE*|textebrut|substr{0,2})]})][(#REM) Appel du layout de la rubrique si oui
+			][<link rel="stylesheet" type="text/css" href="(#URL_PAGE{layout.css}|parametre_url{layoutgala,[(#TITRE*|textebrut|substr{0,2})]}|direction_css_intelligente)" media="all" />][(#REM) Appel du layout de la rubrique si oui
 		]</BOUCLE_RubartLayout>[(#REM) Fin de la recherche concernant un article
 		]<//B_ArtLayout>[(#REM) Si ce n'est pas un article...
 	]</BOUCLE_ArtRubLayout>[(#REM) ... Est-ce une rubrique ?
 		]<BOUCLE_RubLayout(MOTS){id_rubrique}{type=_LayoutGala}>[(#REM) Dans le cas d'une rubrique
-			][(#INCLURE{fond=noisettes/header/layout}{layoutgala=[(#TITRE*|textebrut|substr{0,2})]})][(#REM) Appel du layout de la rubrique si oui
+			][<link rel="stylesheet" type="text/css" href="(#URL_PAGE{layout.css}|parametre_url{layoutgala,[(#TITRE*|textebrut|substr{0,2})]}|direction_css_intelligente)" media="all" />][(#REM) Appel du layout de la rubrique si oui
 		]</BOUCLE_RubLayout>[(#REM) Sinon
-		][(#ENV{template}|=={'Sommaire'}|oui)[(#INCLURE{fond=noisettes/header/layout}{layoutgala=#CONFIG{soyezcreateurs_layout/sommaire_layout,7}})]][(#ENV{template}|=={'Sommaire'}|non)[(#INCLURE{fond=noisettes/header/layout}{layoutgala=#CONFIG{soyezcreateurs_layout/default_layout,7}})]]<//B_RubLayout>[(#REM) Fin de la recherche d'une rubrique
+		][(#ENV{template}|=={'Sommaire'}|oui)<link rel="stylesheet" type="text/css" href="[(#URL_PAGE{layout.css}|parametre_url{layoutgala,[(#CONFIG{soyezcreateurs_layout/sommaire_layout,7})]}|direction_css_intelligente)" media="all" />]][(#ENV{template}|=={'Sommaire'}|non)[<link rel="stylesheet" type="text/css" href="(#URL_PAGE{layout.css}|parametre_url{layoutgala,[(#CONFIG{soyezcreateurs_layout/default_layout,7})]}|direction_css_intelligente)" media="all" />]]<//B_RubLayout>[(#REM) Fin de la recherche d'une rubrique
 	]<//B_ArtRubLayout>
 [<link rel="stylesheet" type="text/css" href="(#URL_PAGE{stylessoyezcreateurs.css}|direction_css_intelligente)" media="all" />]
 [(#ENV{template}|=={'Sommaire'}|oui)[(#CONFIG{soyezcreateurs/mode_affichage,edito}|match{^portail.*}|oui)<link rel="stylesheet" type="text/css" href="[(#URL_PAGE{stylesportail.css}||direction_css_intelligente)]" media="all" />]]
