@@ -164,8 +164,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'notes' => 'Anmerkungen',
 
 	// P
-	'page_bas' => 'Bas de page', # NEW
-	'page_haut' => 'Haut de page', # NEW
+	'page_bas' => 'Seitenende',
+	'page_haut' => 'Seitenanfang',
 	'pages' => 'Seiten',
 	'par' => 'vorbei :',
 	'partenaires' => 'Partners',
@@ -183,7 +183,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'resultats' => 'Resultiert',
 
 	// S
-	'site' => 'site', # NEW
+	'site' => 'Site',
 	'sites' => 'Andere Sites :',
 	'sites_references' => 'Bezug&szlig;ites',
 	'sites_rubrique' => 'Sites f&uuml;r dieses Kapitel',
