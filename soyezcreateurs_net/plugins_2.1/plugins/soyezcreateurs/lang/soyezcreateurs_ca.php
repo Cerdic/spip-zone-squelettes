@@ -192,6 +192,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_mode_affichage_label' => 'Tipus de publicaci&oacute; de la p&agrave;gina d\'inici del lloc',
 	'cfg_mode_affichage_logo_label' => 'Tipus de publicaci&oacute; del logotip (si n\'hi ha)',
 	'cfg_mode_bandeau_contact_label' => 'Tipus de publicaci&oacute; de la banda de contacte',
+	'cfg_mode_communiquant' => 'Affichage d\'un portail d\'accueil de type communiquant', # NEW
 	'cfg_mode_edito' => 'Publicaci&oacute; de l\'Editorial',
 	'cfg_mode_evenementiel' => 'Visualitzaci&oacute; d\'un portal d\'inici de tipus cronol&ograve;gic',
 	'cfg_mode_nouveautes' => 'Publicaci&oacute;, en forma d\'extracte, de les darreres novetats',

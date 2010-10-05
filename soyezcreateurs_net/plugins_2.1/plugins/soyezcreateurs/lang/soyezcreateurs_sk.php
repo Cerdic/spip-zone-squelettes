@@ -192,6 +192,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_mode_affichage_label' => '<NEW>Re&#382;im zobrazenia domovskej str&aacute;nky',
 	'cfg_mode_affichage_logo_label' => '<NEW>Re&#382;im zobrazenia loga (ak existuje)',
 	'cfg_mode_bandeau_contact_label' => '<NEW>Re&#382;im zobrazenia kontaktov&eacute;ho bannera',
+	'cfg_mode_communiquant' => 'Affichage d\'un portail d\'accueil de type communiquant', # NEW
 	'cfg_mode_edito' => '<NEW>Zobrazenie &uacute;vodn&iacute;ka',
 	'cfg_mode_evenementiel' => 'Viewing home portal event-type', # MODIF
 	'cfg_mode_nouveautes' => '<NEW>Zobrazi&#357; ako v&yacute;&#357;ah z najnov&#353;&iacute;ch noviniek',

@@ -192,6 +192,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_mode_affichage_label' => 'Display mode of the home page',
 	'cfg_mode_affichage_logo_label' => 'Display mode of the logo (if present)',
 	'cfg_mode_bandeau_contact_label' => 'Display mode of the contact banner',
+	'cfg_mode_communiquant' => 'Affichage d\'un portail d\'accueil de type communiquant', # NEW
 	'cfg_mode_edito' => 'Display Editorial',
 	'cfg_mode_evenementiel' => 'Viewing home portal event-type',
 	'cfg_mode_nouveautes' => 'Display as an extract of the latest news',
