@@ -1,17 +1,80 @@
 <fieldset id="herbier">
-	[(#REM) <!-- affichage n derniers sites de l'herbier du secteur ou du site global --> ]
-	<B_herbier>
-	<ul class="dsjcycle">
-		<BOUCLE_herbier(SITES) {id_secteur ?}{par date}{inverse}{0,400}>
+[(#SET{id_diapo,   	  [(#ENV{id_diapo, 0})]})]
+[(#SET{herbier_width,      [(#ENV{width,     		 #CONFIG{sjcycle/herbier_width}})]})]
+[(#SET{herbier_height,     [(#ENV{height,    		 #CONFIG{sjcycle/herbier_height}})]})]
+[(#SET{herbier_position,   [(#ENV{position,  		 #CONFIG{sjcycle/herbier_position}})]})]
+[(#SET{herbier_background, [(#ENV{background,		 #CONFIG{sjcycle/herbier_background}})]})]
+[(#SET{div_background, [(#ENV{border_color,   #CONFIG{sjcycle/div_background}})]})]
+[(#SET{div_margin,     [(#ENV{div_margin,   	 #CONFIG{sjcycle/div_margin}})]})]
+[(#SET{herbier_bordure,    [(#ENV{border_width,   #CONFIG{sjcycle/herbier_bordure}})]})]
+
+[(#REM) largeur div = largeur image + 2*bordure ]
+[(#SET{div_width,  #GET{herbier_bordure}|mult{2}|plus{#GET{herbier_width}} })]
+[(#SET{div_height, #GET{herbier_bordure}|mult{2}|plus{#GET{herbier_height}} })]
+
+[(#SET{cssfancybox, 	  [(#EVAL{8}|randomString)]})]
+
+<B_herbier>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		[(#CONFIG{sjcycle/tooltip}|=={1}|oui)
+			$('.infobulle').tooltip({ 
+					bodyHandler: function() {
+						return $($(this).children(".textinfobulle")).html();
+					},
+					track: true, 
+					delay: 0, 
+					showURL: false, 
+					opacity: 1, 
+					fixPNG: true,
+					extraClass: "pretty", 
+					top: -15, 
+					left: 5 
+			});
+		]
+		[(#CONFIG{sjcycle/fancy}|=={1}|oui)
+			$("a.#GET{cssfancybox}").fancybox({
+				'hideOnContentClick': false
+			});
+		]
+		$("#dsjcycle_#GET{id_diapo}").cycle({ 
+			 fx:			"#CONFIG{sjcycle/fx}",
+			 timeout:	"#CONFIG{sjcycle/timeout}",
+			 speed:		"#CONFIG{sjcycle/speed}",
+			 sync:		"#CONFIG{sjcycle/sync}",
+			 pause:		"#CONFIG{sjcycle/pause}",
+			 cleartype: 1
+			 [,(#ENV{opt}|html_entity_decode)]
+			 });
+	});
+
+
+	</script>
+	[(#REM) diaporama documents images conteneur jquery cycle ]
+
+	<div class="#CONFIG{sjcycle/div_class}" id="dsjcycle_#GET{id_diapo}" style='[float:(#ENV{align}|match{left|right});margin:[(#GET{div_margin})]px;][width:(#GET{div_width})px;][height:(#GET{div_height})px;][background:(#GET{div_background})]'>
+
+	[(#REM) Solution de denisb pour eviter de dupliquer le code Cf http://article.gmane.org/gmane.comp.web.spip.zone/18622 ]
+
+	<BOUCLE_herbier(SITES) {id_secteur ?}{par date}{inverse}{0,400}>
+		<div class="infobulle" style="width:#GET{herbier_width}px;
+      										height:#GET{herbier_height}px;
+                                    padding:0px;
+                                    margin:[(#GET{herbier_bordure})]px;">
 			[(#REM) <!-- Bloc des vignettes defilantes de l'herbier -->]
-			[<li>
-				<a[ href="(#ID_SYNDIC|generer_url_entite{site})"][ title="(#NOM_SITE|texte_backend)"]>
-				(#LOGO_SITE||inserer_attribut{alt,#NOM_SITE|texte_backend}||inserer_attribut{class,spip_logos})
-				</a>
-			</li>]
-		</BOUCLE_herbier>
-	</ul>
-	<br class="nettoyeur" />
-	</B_herbier>
+			[<a[ href="(#ID_SYNDIC|generer_url_entite{site})"][ title="(#NOM_SITE|texte_backend)"]>
+			(#LOGO_SITE||inserer_attribut{alt,#NOM_SITE|texte_backend}||inserer_attribut{class,spip_logos})
+			</a><br />]
+         [(#CONFIG{sjcycle/tooltip}|=={1}|oui)
+            <div class="textinfobulle" style="display:none;text-align:left;">
+               [<h4>(#TITRE|supprimer_numero)</h4>]
+               [(#DESCRIPTIF)<br/ >]
+            </div>
+         ]
+		</div> <!-- .infobulle -->
+
+	</BOUCLE_herbier>
+	</div><!-- sjcycle-->
+</B_herbier>
 </fieldset>
 <br class="nettoyeur" />

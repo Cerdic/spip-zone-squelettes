@@ -9,14 +9,25 @@
 //<![CDATA[
 	jQuery(document).ready(function() {
 		[(#ENV{config_boucle_zard, defaut}|=={defaut}|oui)
-			jQuery("#nav_hasard").hide();
+			jQuery(".nav_hasard").hide();
+		]
+		[(#ENV{config_boucle_zard, defaut}|=={defaut}|non)
+			jQuery(".nav_noisettes").hide();
 		]
 
 		jQuery("input[name='config_boucle_zard']").change(function() {
 			if (jQuery("input[name='config_boucle_zard']:checked").val() == "nav")
-				jQuery("#nav_hasard").show();
+				jQuery(".nav_hasard").show();
 			else {
-				jQuery("#nav_hasard").hide();
+				jQuery(".nav_hasard").hide();
+			}
+			jQuery(this).blur();
+		});
+		jQuery("input[name='config_boucle_zard']").change(function() {
+			if (jQuery("input[name='config_boucle_zard']:checked").val() == "defaut")
+				jQuery(".nav_noisettes").show();
+			else {
+				jQuery(".nav_noisettes").hide();
 			}
 			jQuery(this).blur();
 		});
@@ -41,7 +52,7 @@
 		<:annuaire:config_boucle_zard:>
 	</label>
 		[(#REM) La boucle des sites au hasard]
-		<div id="nav_hasard">
+		<div class="nav_hasard">
 		<label>
 			<input type="checkbox" name="config_boucle_zard_sommaire" [checked="(#ENV{config_boucle_zard_sommaire}|=={on}|?{checked})"] />
 			<:annuaire:config_boucle_zard_sommaire:>
@@ -102,6 +113,7 @@
 			{choix=bg}
 			{bg_defaut=#8484fb}
 			{env}>
+		<div class="nav_noisettes">
 		<INCLURE{fond=noisettes/cfg/inc-cfg_couleurs}
 			{explication=<:annuaire:css_couleurs_nav_herbier:>}
 			{suffixe=_nav_herbier}
@@ -148,6 +160,7 @@
 			{fg_defaut=#000000}
 			{ho_defaut=#ffffff}
 			{env}>
+		</div><!--.nav_noisettes-->
 		<INCLURE{fond=noisettes/cfg/inc-cfg_couleurs}
 			{explication=<:annuaire:css_couleurs_nav_pied:>}
 			{suffixe=_nav_pied}
@@ -156,7 +169,7 @@
 			{fg_defaut=#ffffff}
 			{ho_defaut=#ffffff}
 			{env}>
-		[(#CONFIG{annuaire_colonne/config_boucle_zard, defaut}|=={defaut}|non)
+		<div class="nav_hasard">
 		<INCLURE{fond=noisettes/cfg/inc-cfg_couleurs}
 			{explication=<:annuaire:css_couleurs_zard:>}
 			{suffixe=_zard_nav}
@@ -164,7 +177,8 @@
 			{bg_defaut=#8484fb}
 			{fg_defaut=#000000}
 			{ho_defaut=#ffffff}
-			{env}>]
+			{env}>
+		</div><!--.nav_hasard-->
 	</fieldset><!--#css-->
 
 	[(#REM) Groupes a ne pas affiche]
