@@ -18,11 +18,11 @@
 			</BOUCLE_sous_rubriques_presentes>
 				<dt>
 					<span  onmouseover="this.style.cursor='pointer';" onclick="javascript:montre('#smenu#ID_RUBRIQUE',#ID_RUBRIQUE);"><img class="imageplus" id="img#ID_RUBRIQUE" [(#EXPOSE |== {'on'} |? {src="[(#CHEMIN{images/deplierbas.png})]" alt = " - " title="Masquer les sous-rubriques" , src="[(#CHEMIN{images/deplierhaut.png})]" alt = " + " title="Voir les sous-rubriques" } )]/></span>
-					<a href="#URL_RUBRIQUE" [ class="(#EXPOSE)"] title="[(#TITRE|supprimer_numero)] [- (#DESCRIPTIF|textebrut)]">[(#TITRE|supprimer_numero|couper{50})]</a>
+					<a href="#URL_RUBRIQUE" [ class="(#EXPOSE)"][ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE|supprimer_numero|couper{50})]</a>
 				</dt>
 			</B_sous_rubriques_presentes>
 			  <dt class="rubrique_vide" >
-			  	<a  href="#URL_RUBRIQUE"[ class="(#EXPOSE)"] title="[(#TITRE|supprimer_numero)] [- (#DESCRIPTIF|textebrut)]">[(#TITRE|supprimer_numero|couper{50})]</a>
+			  	<a  href="#URL_RUBRIQUE"[ class="(#EXPOSE)"][ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE|supprimer_numero|couper{50})]</a>
 			  </dt>
 			<//B_sous_rubriques_presentes>
 
@@ -30,11 +30,11 @@
 			<dd id="smenu#ID_RUBRIQUE"  class='dd[(#EXPOSE)]'>
 				<ul  class="ss-rubrique">
 				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
-					<li class="ss-ss-rubrique" ><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]  title="[(#TITRE|supprimer_numero)] [- (#DESCRIPTIF|textebrut)]">[(#TITRE|supprimer_numero|couper{50})]</a>
+					<li class="ss-ss-rubrique" ><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"][ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE|supprimer_numero|couper{50})]</a>
 							<B_sous_sous_rubriques>
 								<ul  class="ss-rubrique">
 								<BOUCLE_sous_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
-									<li class="ss-ss-rubrique" ><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]  title="[(#TITRE|supprimer_numero)] [- (#DESCRIPTIF|textebrut)]">[(#TITRE|supprimer_numero|couper{50})]</a>
+									<li class="ss-ss-rubrique" ><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"][ title="(#DESCRIPTIF|attribut_html)"]>[(#TITRE|supprimer_numero|couper{50})]</a>
 									</li>
 								</BOUCLE_sous_sous_rubriques>
 								</ul>
@@ -59,7 +59,7 @@
 				[(#LOGO_SITE
 					||image_reduire{150,50}
 					|inserer_attribut{alt,[(#NOM_SITE|textebrut)]}
-					|inserer_attribut{title,[(#NOM_SITE|textebrut)]}
+					|inserer_attribut{title,[(#NOM_SITE|attribut_html)]}
 					)]
 				,
 				<span id="nom_site_spip">#NOM_SITE</span>
