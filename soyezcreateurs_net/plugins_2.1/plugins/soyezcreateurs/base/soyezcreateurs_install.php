@@ -336,6 +336,12 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_config('boutonstexte/txtOnly','_');
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.9','non');
 		}
+		if (version_compare($current_version,'3.0.10','<')) {
+			create_mot("_Specialisation", "VideoALaUne", "Pour afficher une vidéo À la Une dans certains mode d'affichage de la page d'accueil.", "Affecter ce mot clef aux articles contenant une vidéo à afficher À la Une. C'est le dernier article en date qui est pris en compte, et la première vidéo qui est affichée.");
+			
+			spip_log("SoyezCreateurs maj 3.0.10", "soyezcreateurs_install");			
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.10','non');
+		}
 		/*if (version_compare($current_version,'3.0.10','<')) {
 			create_document('documents/image.jpg', array('objet' => 'article', 'id_objet' => 3), 'image', array('titre' => 'Mon image', 'descriptif' => 'Superbe image'));
 		}
