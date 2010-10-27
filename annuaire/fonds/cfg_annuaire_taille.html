@@ -168,6 +168,8 @@
 	[(#REM) Reglage de la colonne de navigation]
 		<fieldset><!--#col_navigation-->
 			<legend><:annuaire:col_navigation:></legend>
+			[(#REM) Reglage des noisettes si afficher dans navigation]
+			[(#CONFIG{annuaire_colonne/config_boucle_zard, defaut}|=={defaut}|oui)
 			[(#MENU_LANG|ou{#PLUGIN{visiteurs_connectes}}|ou{#VAL{_CS_visiteurs_connectes}|defined}|ou{#CONFIG{annuaire_colonne/config_formrecherche, defaut}|=={defaut}})
 			<p /><b><:annuaire:nav_option|ucfirst:></b>
 			<p /><:annuaire:height_fieldset:>
@@ -179,10 +181,8 @@
 			<input type="text" name="height_nav_connect" value="[(#ENV{height_nav_connect,155px})]" size="5" class="fondl" />
 
 			<p /><b><:annuaire:nav_herbier|ucfirst:></b>
-			<p />
-			[(#PLUGIN{sjcycle}|non)<:annuaire:height_nav_herbier_non:>]
-			[(#PLUGIN{sjcycle}|oui)<:annuaire:height_fieldset:>
-			<input type="text" name="height_nav_herbier" value="[(#ENV{height_nav_herbier,auto})]" size="5" class="fondl" />]
+			<p /><:annuaire:height_fieldset:>
+			<input type="text" name="height_nav_herbier" value="[(#ENV{height_nav_herbier,auto})]" size="5" class="fondl" />
 
 			<p /><b><:annuaire:nav_mot|ucfirst:></b>
 			<p /><:annuaire:height_fieldset:>
@@ -207,6 +207,7 @@
 			<p /><b><:annuaire:nav_pied|ucfirst:></b>
 			<p /><:annuaire:height_fieldset:>
 			<input type="text" name="height_nav_pied" value="[(#ENV{height_nav_pied,auto})]" size="5" class="fondl" />
+			]
 
 			[(#REM) Reglage sur la boucle hasard si afficher dans navigation]
 			[(#CONFIG{annuaire_colonne/config_boucle_zard, nav}|=={nav}|oui)
@@ -225,5 +226,5 @@
 		</fieldset><!--#col_navigation-->
 </fieldset>
 <input type="submit" name="_cfg_ok" value="<:bouton_valider:>" />
-<input type="submit" name="_cfg_delete" value="<:supprimer:>" />
+<input type="submit" name="_cfg_delete" value="<:cfg:supprimer:>" />
 </form>
