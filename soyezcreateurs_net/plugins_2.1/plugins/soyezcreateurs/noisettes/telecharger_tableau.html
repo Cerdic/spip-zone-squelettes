@@ -1,6 +1,6 @@
-<BOUCLE_SsRubrique(RUBRIQUES){id_rubrique}><B_Articles>#SET{total,0}<BOUCLE_SsCompteArticles(ARTICLES){id_rubrique}{!titre_mot=PasDansPlan} {lang}><BOUCLE_SsCompteDocuments(DOCUMENTS){id_article}{mode=document}{extension !IN gif,jpg,png}> </BOUCLE_SsCompteDocuments>#SET{total,#GET{total}|plus{#TOTAL_BOUCLE}}</B_SsCompteDocuments></BOUCLE_SsCompteArticles>(#GET{total})</h2>
+<BOUCLE_SsRubrique(RUBRIQUES){id_rubrique}><B_Articles>#SET{total,0}<BOUCLE_SsCompteArticles(ARTICLES){id_secteur}{!titre_mot=PasDansPlan} {lang}><BOUCLE_SsCompteDocuments(DOCUMENTS){id_article}{media=#ENV{media,file}}> </BOUCLE_SsCompteDocuments>#SET{total,#GET{total}|plus{#TOTAL_BOUCLE}}</B_SsCompteDocuments></BOUCLE_SsCompteArticles>(#GET{total})</h2>
 								<div class="smallchild">
-									<table class="spip" cellspacing="0" summary="Documents : Rubrique [(#TITRE|attribut_html)], avec pour chacun le type, le titre, l'emetteur, la description et le poids ">
+									<table class="spip tableaudocs" cellspacing="0" summary="Documents : Rubrique [(#TITRE|attribut_html)], avec pour chacun le type, le titre, l'emetteur, la description et le poids ">
 										<thead>
 											<tr class="row_first">
 												<th scope="col"><strong>Type</strong></th>
@@ -10,8 +10,8 @@
 											</tr>
 										</thead>
 										<tbody>#SET{compteur_ligne,0}
-											<BOUCLE_Articles(ARTICLES){id_rubrique}{!titre_mot=PasDansPlan} {lang}><B_Documents>
-											<BOUCLE_Documents(DOCUMENTS){id_article}{par num titre}{mode=document}{extension !IN gif,jpg,png}>#SET{compteur_ligne,#GET{compteur_ligne}|plus{1}}
+											<BOUCLE_Articles(ARTICLES){id_secteur}{!titre_mot=PasDansPlan} {lang}><B_Documents>
+											<BOUCLE_Documents(DOCUMENTS){id_article}{par num titre}{media=#ENV{media,file}}>#SET{compteur_ligne,#GET{compteur_ligne}|plus{1}}
 											<tr class="[(#GET{compteur_ligne}|alterner{'row_even','row_odd'})]">
 												<td><img src="[(#LOGO_DOCUMENT|image_reduire{24,24}|extraire_attribut{src})]" height="[(#LOGO_DOCUMENT|image_reduire{24,24}|hauteur)]" width="[(#LOGO_DOCUMENT|image_reduire{24,24}|largeur)]" alt="Format: #TYPE_DOCUMENT" title="Format: #TYPE_DOCUMENT" /></td>
 												<td class="#EDIT{titre}"><a href="#URL_DOCUMENT" title="<:ecrire:ical_methode_http:>[: (#TITRE|textebrut|attribut_html|sinon{<:info_document:>})][ ((#TYPE_DOCUMENT)][, (#TAILLE|taille_en_octets))]">[(#TITRE|sinon{<:ecrire:info_sans_titre:>})]</a></td>
