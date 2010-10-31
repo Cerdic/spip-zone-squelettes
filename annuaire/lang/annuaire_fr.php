@@ -11,7 +11,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'accueil_option_contact' => 'Le plugin "contact" permets ou non d\'affich&eacute; la page de contact et son r&eacute;glage dans le plugin.',
 'accueil_option_couteau_suisse' => 'Le plugin "couteau suisse" vous fournis d&eacute;sorm&eacute; une lame pour cacher les adresses mails se trouvant dans les balises #LESAUTEURS et #DESCRIPTIF sur la page site.',
 'accueil_option_pub' => 'Si vous souhaitez int&eacute;gr&eacute; dans votre site des pub google, il vous faudra cr&eacute;&eacute; les mots clefs "pub-entete" et "pub-nav" dans le groupe "Affichage" et plac&eacute; la br&egrave;ve dans une rubrique nomm&eacute; "squelette".',
-'accueil_option_sjcycle' => 'Le plugin "Spip jQuery Cycle 2" permet l\'affichage d\'une noisette herbier.',
 'accueil_option_slogan' => 'Le plugin "slogan" permet de rajouter un slogan a votre site.',
 'accueil_option_spiplistes' => 'Le plugin "spip liste" ou "clevermail" permetent ou non d\'affich&eacute;s la page abonnement et son r&eacute;glage dans le plugin.',
 'accueil_option_visiteurs' => 'Le plugin "visiteur connect&eacute;s" ou la lame du couteau suisse permets d\'afficher dans la colonne de navigation (droite) le nombre de visiteur connect&eacute;s.',
@@ -222,7 +221,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'height_fieldset_suivants' => 'Hauteur des cadres suivants',
 'height_fieldset_prems' => 'Hauteur du premier cadre',
 'height_menu_site_expli' => 'Hauteur du menu du site',
-'height_nav_herbier_non' => 'Pour pouvoir configurer ce champ, il vous faut le plugin "Sjcycle".',
 'height_pied_page_expli' => 'Hauteur du pied de page',
 
 //I
