@@ -35,10 +35,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'deconnecter' => 'Logout',
 	'derniere_mise_a_jour' => 'Sp&auml;teste Updates',
 	'dernieres_breves' => 'sp&auml;teste Nachrichten',
-	'derniers_articles' => 'sp&auml;teste Artikel',
+	'derniers_articles' => 'Letzte Artikel',
 	'derniers_commentaires' => 'sp&auml;teste Kommentare',
 	'derniers_podcasts' => 'die sp&auml;testen poscasts',
-	'derniers_sites' => 'Sp&auml;teste Sites',
+	'derniers_sites' => 'Letzte Sites',
 	'diaporama' => 'Diavorf&uuml;hrung',
 	'dix_meilleurs_articles' => 'Artikel der Spitze zehn',
 	'dix_meilleurs_breves' => 'Nachrichten der Spitzen-zehn',
@@ -117,37 +117,34 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
  <p>Die Wiedergabe der Inhalte in einem anderen Kontext bed&uuml;rfen der Ausdr&uuml;cklichen Zustimmung der Autoren.</p>',
 	'mentions_droit_auteur_titre' => 'Urheberrechte:',
 	'mentions_legales' => 'Legale Erw&auml;hnungen',
-	'mentions_liens_hypertexte_texte' => '<NEW><p>Ce site contient des liens hypertextes permettant l\'acc&egrave;s &agrave; des sites qui ne sont pas &eacute;dit&eacute;s par le responsable de ce site.</p>
- <p>En cons&eacute;quence le directeur de publication ne saurait &ecirc;tre tenu pour responsable du contenu des sites auxquels l\'internaute aurait ainsi acc&egrave;s.</p>
- <p>Il est formellement interdit de collecter et d\'utiliser les informations disponibles sur le site &agrave; des fins commerciales.</p>
- <p>Cette interdiction s\'&eacute;tend notamment, sans que cette liste ne soit limitative, &agrave; tout &eacute;l&eacute;ment r&eacute;dactionnel figurant sur le site, &agrave; la pr&eacute;sentation des &eacute;crans, aux logiciels n&eacute;cessaires &agrave; l\'exploitation, aux logos, images, photos, graphiques, de quelque nature qu\'ils soient.</p>',
+	'mentions_liens_hypertexte_texte' => '<p>Unsere Website enth&auml;lt Links zu anderen Sites, die nicht vom Herausgeber unserer Website herausgegeben werden.</p>
+<p>Der Herausgeber unserer Website ist deshalb nicht f&uuml;r die Inhalte von Websites verantwortlich, die &uuml;ber Links zug&auml;nglich gemacht werden.</p>
+<p>Es ist ausdr&uuml;cklich untersagt, die Inhalte dieser Website zu kommerziellen Zwecken zu &uuml;bernehmen und zu verwenden.</p>
+<p>Diese Nutzungsenschr&auml;nkung bezieht sich insbesondere aber nicht ausschlie&szlig;lich auf alle redaktionellen Teile, das Screendesign, auf die verwendete Software, Logos, Bilder, Fotos und Grafiken unabh&auml;ngig von ihrer Art und Gestaltung.</p>',
 	'mentions_liens_hypertexte_titre' => 'Hyperlinks:',
-	'mentions_liens_texte' => '<NEW><p>A l\'exception de sites diffusant des informations et/ou contenus ayant un caract&egrave;re ill&eacute;gal et/ou &agrave; caract&egrave;re politique, religieux, pornographique, x&eacute;nophobe, vous pouvez cr&eacute;er un lien hypertexte vers notre Site sur votre site.</p>
- <p>La mise en place de lien hypertexte n\'autorise en aucune fa&ccedil;on la reproduction d\'&eacute;l&eacute;ments du Site ou la pr&eacute;sentation sur des sites tiers d\'&eacute;l&eacute;ments du Site sous forme de Frame ou syst&egrave;me apparent&eacute;.</p>
- <p>Enfin, la mise en place de lien hypertexte n\'autorise en aucune fa&ccedil;on de proposer l\'envoi d\'un message pr&eacute;-r&eacute;dig&eacute; &agrave; une adresse mail li&eacute;e au Site ou la mise en place d\'un syst&egrave;me permettant l\'envoi massif de messages quelle qu\'en soit la nature.</p>
- <p>Tous les droits de reproduction sont r&eacute;serv&eacute;s.</p>',
+	'mentions_liens_texte' => '<p>Sie d&uuml;rfen Links zu dieser Websites setzen, es sei denn, diese Links erscheinen auf Websites, die Inhalte folgender Art verbreiten: Illegale Inhalte, politische, religi&ouml;se, pornografische oder ausl&auml;nderfeindliche Inhalte.</p>
+<p>Eine Linksetzung rechtfertigt in keiner Weise die &Uuml;bernahme von Inhalten dieser Website oder ihre Einbindung in andere Websites mittels Frames oder &auml;hnlicher Systeme.</p>
+<p>Eine Linksetzung f&uuml;hrt auch nicht zur Erlaubnis vorgefertigte Mails an Adressen dieser Website oder ihre &Uuml;bernahme in Systeme f&uuml;r Massenversand, unabh&auml;ngig vom Inhalt der Mails.</p>
+<p>Alle Rechte vorbehalten.</p>',
 	'mentions_liens_titre' => 'Hyperlinks zu dieser Website:',
 	'mentions_logo_cddp74' => 'Offizielle Website des CDDP74',
-	'mentions_logo_citic' => 'Centre de l\'Informatique et des TIC de Haute-Savoie (ex CRI74)', # NEW
-	'mentions_logo_edres' => '&Eacute;ducation R&eacute;seau Haute-Savoie, projet d&eacute;partemental', # NEW
+	'mentions_logo_citic' => 'Centre de l\'Informatique et des TIC de Haute-Savoie (ex CRI74)',
+	'mentions_logo_edres' => '&Eacute;ducation R&eacute;seau Haute-Savoie, projet d&eacute;partemental',
 	'mentions_logo_eva' => 'Offizielle Seite des Projekts Eva-Web',
 	'mentions_logo_spip' => 'Offizielle Seite von SPIP',
 	'mentions_logo_spipedu' => 'Spip-edu, die Website der p&auml;dagogischen SPIP-Gemeinde',
-	'mentions_lois' => 'En vertu de la loi pour la confiance dans l\'&eacute;conomie num&eacute;rique (LCEN) du 21 juin 2004, voici les coordonn&eacute;es de l\'&eacute;diteur et du prestataire qui accueille le site :', # NEW
+	'mentions_lois' => 'Angaben zu Herausgeber und Hoster dieser Website gem&auml;&szlig; dem Gesetz &uuml;ber "confiance dans l\'&eacute;conomie num&eacute;rique" (LCEN)vom 21.6.2004:',
 	'mentions_prestataire' => 'Dienstleister f&uuml;r direkte und dauerhafte Speicherung:',
 	'mentions_qualite' => 'Qualit&auml;t:',
-	'mentions_qui_texte' => '<NEW><p>A l\'origine <a href="http://eva-web.edres74.net/eva/">EVA</a>
- correspond &agrave; un projet de portail d\'Intranet d\'&Eacute;tablissement, install&eacute; sur 
- les serveurs <a href="http://www.pingoo.org/">PingOO</a>.</p>
- <p>Cette version, l&eacute;g&egrave;rement adapt&eacute;e, permet &agrave; une &eacute;cole ou &agrave; un &eacute;tablissement de mettre 
- en place un site web collaboratif, en proposant diff&eacute;rents mod&egrave;les de publication 
- (article, album photo, diaporama ...) </p>
- <p>Pour plus de renseignements sur le projet <a href="http://eva-web.edres74.net">EVA-web</a>, consultez le site 
-   <a href="http://eva-web.edres74.net">http://eva-web.edres74.net</a></p>
- <p><a href="http://eva-web.edres74.net">EVA-web</a> est un logiciel libre distribu&eacute; sous Licence Publique G&eacute;n&eacute;rale 
- <a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html">GNU (GNU General Public License ou GPL)</a>
- con&ccedil;u pour fonctionner &agrave; partir de l\'application <a href="http://www.spip.net/">SPIP</a>.</p>
- <div style="text-align:center;"><a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html"><img alt="Licence GNU GPL" style="border-width:0" width="80" height="100" src="http://www.fsf.org/graphics/philosophical-gnu-sm.jpg"/></a></div>',
+	'mentions_qui_texte' => '<p>Urspr&uuml;nglich war <a href="http://eva-web.edres74.net/eva/">EVA</a>
+ein Projekt f&uuml;r ein Intranetportal, welches auf Servern von<a href="http://www.pingoo.org/">PingOO</a> gehostet wurde.</p>
+<p>Die vorliegende Version erm&ouml;glicht es Bildungseinrichtungen, eine kollaborative 
+Website f&uuml;r unterschiedliche Inhalte (Artikel, Fotoalben, Diaporamen usw.) zu betreiben.</p>
+<p>Weitere Informationen finden sie unter dieser Adresse: <a href="http://eva-web.edres74.net">EVA-web</a></p>
+<p><a href="http://eva-web.edres74.net">EVA-web</a> ist ein Programm unter der freien GPL-Lizenz
+<a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html">GNU (GNU General Public License bzw. GPL)</a>
+und basiert auf dem Programm  <a href="http://www.spip.net/">SPIP</a>.</p>
+<div style="text-align:center;"><a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html"><img alt="Licence GNU GPL" style="border-width:0" width="80" height="100" src="http://www.fsf.org/graphics/philosophical-gnu-sm.jpg"/></a></div>',
 	'mentions_qui_titre' => 'EVA, von wem, f&uuml;r wen?',
 	'mentions_responsable_edition' => 'Verantwortlicher Redakteur:',
 	'mentions_site' => 'Website von: ',
