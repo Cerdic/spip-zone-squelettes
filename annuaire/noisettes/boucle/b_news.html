@@ -4,12 +4,9 @@
 <li [(#COMPTEUR_BOUCLE|=={1}|oui)class="prems"]>
 	<fieldset>
 	<a href="[(#ID_SYNDIC|generer_url_entite{site})]"><object>#NOM_SITE</object></a>
-	<BOUCLE_logo_news(MOTS){id_syndic} {'  '}>
-		[(#LOGO_MOT||inserer_attribut{title, #TITRE|supprimer_numero}|inserer_attribut{alt, #TITRE|supprimer_numero})]
-	</BOUCLE_logo_news>
+	[tags:&nbsp;<BOUCLE_logo_news(MOTS){id_syndic} {', '}>(#TITRE|texte_backend|supprimer_numero)</BOUCLE_logo_news>]
 	[(#PLUGIN{pb_pagerank}|oui)<INCLURE{fond=afficher_minipagerank}{url=#URL_SITE}>]
-	[<a class="img" href="[(#ID_SYNDIC|generer_url_entite{site})]"[ title="(#NOM_SITE|texte_backend)"]>
-	(#THUMBSHOT{#URL_SITE})</a>]
+	[<a class="img" href="[(#ID_SYNDIC|generer_url_entite{site})]"[ title="(#NOM_SITE|texte_backend)"]>(#THUMBSHOT{#URL_SITE})</a>]
     <br />#FORMULAIRE_NOTATION<br />
 	[(#REM) Nombre total de messages ]
 		<BOUCLE_forum_news(FORUMS){id_syndic}{plat}{0,1}>
