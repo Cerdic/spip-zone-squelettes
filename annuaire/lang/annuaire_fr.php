@@ -124,7 +124,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'css_couleurs_mot' => 'Choisissez les couleurs de la page "mot"',
 'css_couleurs_nav_connect' => 'Choisissez les couleurs de la noisette "connexion"',
 'css_couleurs_nav_copy' => 'Choisissez les couleurs de la noisette "copyright"',
-'css_couleurs_nav_herbier' => 'Choisissez les couleurs de la noisette "herbier"',
 'css_couleurs_nav_lien' => 'Choisissez les couleurs de la noisette "lien"',
 'css_couleurs_nav_mot' => 'Choisissez les couleurs de la noisette "mot"',
 'css_couleurs_nav_option' => 'Choisissez les couleurs de la noisette "options"',
@@ -248,6 +247,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'margin_right_prems_fieldset' => 'Marge &agrave; droite du premier cadre',
 'margin_right_second_fieldset' => 'Marge &agrave; droite du second cadre',
 'margin_right_tiers_fieldset' => 'Marge &agrave; droite du troisi&egrave;me cadre',
+'margin_top_img' => 'Marge en haut des images',
 'menu_lien_abonnement' => 'Lien vers la page abonnement',
 'menu_lien_afficher' => 'Lien vers les pages du menu',
 'menu_lien_contact' => 'Lien vers la page contact',
@@ -340,6 +340,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'width_pied_page_content' => 'Taille de partie contenu du pied',
 'width_pied_page_nav' => 'Taille de partie navigation du pied',
 'width_pied_page_total' => 'Taille du pied complet',
+'width_recherche' => 'Taille du formulaire de recherche',
 
 //X
 
