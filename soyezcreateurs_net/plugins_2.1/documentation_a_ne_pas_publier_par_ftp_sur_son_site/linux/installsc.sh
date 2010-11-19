@@ -9,6 +9,7 @@ svn checkout svn://trac.rezo.net/spip/branches/spip-2.1 ./
 cd extensions
 mkdir plugins_soyezcreateurs
 cd plugins_soyezcreateurs
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/accessibilite
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/acronymes
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/agenda/2_0_0 ./agenda/
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/bandeau
@@ -18,6 +19,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/couteau_suisse
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/crayons
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/fonctions_images
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/forms/forms_et_tables_2_0 ./forms/
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/forum
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/fulltext
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/job_queue
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/mediabox
@@ -38,8 +40,6 @@ cd ../..
 #Installation des plugins
 mkdir plugins
 cd plugins
-#sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/woopra
-sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/accessibilite
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/acces_restreint
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/authentification/openid
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/autorite
@@ -64,6 +64,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/socialtags
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/spip2pdf
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/splickrbox
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/twidget
+#sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/woopra
 cd ..
 
 #Installation du squelette SoyezCreateur : il faut le faire dans un sous dossier
