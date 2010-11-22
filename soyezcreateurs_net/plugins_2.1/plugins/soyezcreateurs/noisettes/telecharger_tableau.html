@@ -11,9 +11,9 @@
 										</thead>
 										<tbody>#SET{compteur_ligne,0}
 											<BOUCLE_Articles(ARTICLES){id_secteur}{!titre_mot=PasDansPlan} {lang}><B_Documents>
-											<BOUCLE_Documents(DOCUMENTS){id_article}{par num titre}{media=#ENV{media,file}}>#SET{compteur_ligne,#GET{compteur_ligne}|plus{1}}
+											<BOUCLE_Documents(DOCUMENTS){id_article}{par num titre}{media=#ENV{media,file}}>#SET{compteur_ligne,#GET{compteur_ligne}|plus{1}}[(#SET{lelogo,[(#LOGO_DOCUMENT|image_reduire{24,24})]})]
 											<tr class="[(#GET{compteur_ligne}|alterner{'row_even','row_odd'})]">
-												<td><img src="[(#LOGO_DOCUMENT|image_reduire{24,24}|extraire_attribut{src})]" height="[(#LOGO_DOCUMENT|image_reduire{24,24}|hauteur)]" width="[(#LOGO_DOCUMENT|image_reduire{24,24}|largeur)]" alt="Format: #TYPE_DOCUMENT" title="Format: #TYPE_DOCUMENT" /></td>
+												<td><img src="[(#GET{lelogo}|extraire_attribut{src})]" height="[(#GET{lelogo}|hauteur)]" width="[(#GET{lelogo}|largeur)]" alt="Format: #TYPE_DOCUMENT" title="Format: #TYPE_DOCUMENT" /></td>
 												<td class="#EDIT{titre}"><a href="#URL_DOCUMENT" title="<:ecrire:ical_methode_http:>[: (#TITRE|textebrut|attribut_html|sinon{<:info_document:>})][ ((#TYPE_DOCUMENT)][, (#TAILLE|taille_en_octets))]">[(#TITRE|sinon{<:ecrire:info_sans_titre:>})]</a></td>
 												<td class="#EDIT{descriptif}">[(#DESCRIPTIF|couper{80})]</td>
 												<td>[(#TAILLE|taille_en_octets)]</td>
