@@ -58,6 +58,7 @@ sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/memoization
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/menu_langues_liens
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/microblog
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/notation
+sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/nuage
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/rainette
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/sedna
 sleep 15 && svn checkout svn://zone.spip.org/spip-zone/_plugins_/socialtags
