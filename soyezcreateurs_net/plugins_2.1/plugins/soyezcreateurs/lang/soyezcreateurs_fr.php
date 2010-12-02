@@ -158,6 +158,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_largeur_menu_p' => 'Largeur du menu principal',
 	'cfg_largeur_menu_sec' => 'Largeur du menu secondaire (si s&eacute;par&eacute; du premier)',
 	'cfg_largeur_ombre' => 'Largeur de l\'ombre sur le c&ocirc;t&eacute; (sym&eacute;trique!)',
+	'cfg_largeur_videoaccueil' => 'Largeur de la vid&eacute; d\'accueil (0 pour largeur automatique)',
 	'cfg_largeurs_colonnes' => 'Largeurs colonnes',
 	'cfg_layout_accueil' => 'Accueil',
 	'cfg_layout_agencement' => 'Agencement',
