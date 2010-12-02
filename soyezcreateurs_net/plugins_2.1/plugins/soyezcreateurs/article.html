@@ -33,7 +33,7 @@
 <div class="cartouche surlignable">
 [<div class="#EDIT{surtitre} surtitre"><span>(#SURTITRE)</span></div>]
 [(#INCLURE{fond=noisettes/aff_datepublication}{id_article}{lang})]
-<div class="titrepage"><h1 class="#EDIT{titre} entry-title">[<img src="(#LOGO_ARTICLE_NORMAL|image_reduire{64,64}|extraire_attribut{src})" class="logo_article" alt="[(#TITRE|texte_script|supprimer_tags|attribut_html) (logo)]" width="[(#LOGO_ARTICLE_NORMAL|image_reduire{64,64}|largeur)]" height="[(#LOGO_ARTICLE_NORMAL|image_reduire{64,64}|hauteur)]" />][(#TITRE)][(#PLUGIN{ARTICLE_PDF}|oui)#ARTICLE_PDF]</h1></div>
+<div class="titrepage"><h1 class="#EDIT{titre} entry-title"><BOUCLE_afficherLogo(MOTS){id_article}{titre = GrosLogo}> #SET{AfficherGrosLogo,1}</BOUCLE_afficherLogo>[<img src="(#LOGO_ARTICLE_NORMAL|image_reduire{64,64}|extraire_attribut{src})" class="logo_article" alt="[(#TITRE|texte_script|supprimer_tags|attribut_html) (logo)]" width="[(#LOGO_ARTICLE_NORMAL|image_reduire{64,64}|largeur)]" height="[(#LOGO_ARTICLE_NORMAL|image_reduire{64,64}|hauteur)]" />]<//B_afficherLogo>[(#TITRE)][(#PLUGIN{ARTICLE_PDF}|oui)#ARTICLE_PDF]</h1></div>
 [(#PLUGIN{PB_PANIER}|oui)[<div class="pb_panier_produit">(#INCLURE{fond=noisettes/pb_panier/produit_detail}{id_article}{lang})</div>[<div class="pb_panier_add">(#ID_ARTICLE|appliquer_filtre{bouton_ajouter_au_panier})</div>]]
 ]
 [<div class="#EDIT{soustitre} soustitre"><span>(#SOUSTITRE)</span></div>][(#INCLURE{fond=noisettes/liste_auteurs}{id_article}{lang})]
@@ -68,7 +68,7 @@
 </BOUCLE_SommaireArticleAncre>
 [<div class="#EDIT{texte} entry-content">(#TEXTE|sc_sommaire_ancre|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>]
 </B_SommaireArticleAncre>
-[<div class="#EDIT{texte} entry-content">(#TEXTE|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>]
+[<div class="#EDIT{texte} entry-content">[(#GET{AfficherGrosLogo}|oui)[<img src="(#LOGO_ARTICLE_RUBRIQUE|extraire_attribut{src})" class="groslogo" alt="[(#TITRE|texte_script|supprimer_tags|attribut_html) (logo)]" width="[(#LOGO_ARTICLE_RUBRIQUE|largeur)]" height="[(#LOGO_ARTICLE_RUBRIQUE|hauteur)]" />]](#TEXTE|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>]
 <//B_SommaireArticleAncre>
 <//B_SommaireAncre>
 [<div class="#EDIT{ps} ps">(#PS|image_reduire{#CONFIG{soyezcreateurs_layout/maxlargeurimage,400},0})</div>]
