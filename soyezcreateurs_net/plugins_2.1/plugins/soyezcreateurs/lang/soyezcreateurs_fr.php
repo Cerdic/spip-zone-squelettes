@@ -39,6 +39,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'aidesc' => 'Aide sur SoyezCr&eacute;ateurs',
 	'alaune' => '&Agrave; la Une',
 	'archives' => 'Archives',
+	'archives_title' => 'Consulter les articles archiv&eacute;s',
 	'articlesconnexes' => 'Articles connexes',
 	'articlesordreantichrono' => 'Articles par ordre antichronologique',
 	'aujourdhui' => 'Aujourd\'hui',
