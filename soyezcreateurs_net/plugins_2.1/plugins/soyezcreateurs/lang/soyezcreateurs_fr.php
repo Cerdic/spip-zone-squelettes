@@ -38,6 +38,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'agendamoisde' => 'Agenda du mois de',
 	'aidesc' => 'Aide sur SoyezCr&eacute;ateurs',
 	'alaune' => '&Agrave; la Une',
+	'archives' => 'Archives',
 	'articlesconnexes' => 'Articles connexes',
 	'articlesordreantichrono' => 'Articles par ordre antichronologique',
 	'aujourdhui' => 'Aujourd\'hui',

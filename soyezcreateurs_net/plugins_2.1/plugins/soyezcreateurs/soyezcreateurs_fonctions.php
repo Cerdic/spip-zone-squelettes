@@ -691,4 +691,122 @@ function balise_ARTICLE_URL_dist($p) {
 }
 
 
+@define('_MOT_MASQUER', 'Archives');
+
+// ajoute le critere {archive x}
+function critere_archive_dist($idb, &$boucles, $crit) {
+	static $id_mot;
+	static $liste_rubriques;
+	static $liste_articles;
+	$boucle = &$boucles[$idb];
+	$id_table = $boucle->id_table;
+	$marchive = $id_table .'.archive';
+
+	$boucle->modificateur['criteres']['archive'] = true;
+	$not = $crit->not;
+
+	// Cas de la boucle ARTICLES
+	if ($boucle->type_requete == 'articles') {
+		$art = $boucle->id_table . '.id_article';
+		$boucle->from['zzzma'] =  'spip_mots_articles';
+		$boucle->from['zzzm'] =  'spip_mots';
+		$boucle->join['zzzma'] = array("'articles'","'id_article'");
+		$boucle->join['zzzm'] = array("'zzzma'","'id_mot'");
+		if ($not) {
+			$boucle->where[] = array("'NOT'", 
+				array("'IN'", "'articles.id_article'", 
+				array("'SELF'", "'articles.id_article'", 
+				array("'='", "'zzzm.titre'", "sql_quote(_MOT_MASQUER)"))));
+			
+			$boucle->where[] = masquer_articles_accessibles_where($art);
+		} else {
+			$boucle->where[] = array("'NOT'",
+				array("'NOT'",
+				array("'IN'", "'articles.id_article'", 
+				array("'SELF'", "'articles.id_article'", 
+				array("'='", "'zzzm.titre'", "sql_quote(_MOT_MASQUER)"),
+				masquer_articles_accessibles_where($art)))));				
+		}
+	}	
+}
+
+/**
+ * Renvoyer le code de la condition where pour la liste des rubriques masquées
+ *
+ * @param string $primary
+ * @return string
+ */
+function masquer_rubriques_where($primary, $_publique=''){
+	# hack : on utilise zzz pour eviter que l'optimiseur ne confonde avec un morceau de la requete principale
+	return "array('NOT IN','$primary','('.sql_get_select('zzzr.id_rubrique','spip_mots_rubriques as zzzr, spip_mots as zzzm',\"zzzr.id_mot=zzzm.id_mot AND zzzm.titre=".sql_quote(_MOT_MASQUER)."\",'','','','',\$connect).')')";
+}
+
+/**
+ * Renvoyer le code de la condition where pour la liste des rubriques accessibles
+ *
+ * @param string $primary
+ * @return string
+ */
+function masquer_rubriques_accessibles_where($primary,$not='NOT', $_publique=''){
+	return "sql_in('$primary','".implode(',', masquer_liste_rubriques($_publique))."', '$not')";
+}
+
+/**
+ * liste des rubriques masquer, directement ou par heritage.
+ *
+ * @param int/string $id_zone
+ * @return array
+ */
+function masquer_liste_rubriques($publique=true){
+	// cache static
+	static $liste_rubriques = array();
+	include_spip('inc/rubriques');
+	$liste_rubriques = masquer_liste_rub_direct();
+	if (!count($liste_rubriques))
+		return $liste_rubriques;
+	$liste_rubriques = calcul_branche_in(join(',',$liste_rubriques));
+	if (!strlen($liste_rubriques))
+		return array();
+	$liste_rubriques = explode(',',$liste_rubriques);
+	return $liste_rubriques;
+}
+
+/**
+ * liste des rubriques masquer directement.
+ *
+ * @return array
+ */
+function masquer_liste_rub_direct(){
+	$liste_rubriques=array();
+	// liste des rubriques directement masquer
+	$where = array();
+	include_spip('base/abstract_sql');
+	$liste_rubriques = sql_allfetsel('id_rubrique','spip_mots_rubriques AS mr INNER JOIN spip_mots AS m ON mr.id_mot=m.id_mot','m.titre='.sql_quote(_MOT_MASQUER));
+	$liste_rubriques = array_map('reset',$liste_rubriques);
+	$liste_rubriques = array_unique($liste_rubriques);
+	return $liste_rubriques;
+}
+
+/**
+ * Renvoyer la condition where pour la liste des articles masquer
+ *
+ * @param string $primary
+ * @return string
+ */
+function masquer_articles_accessibles_where($primary, $_publique=''){
+	# hack : on utilise zzz pour eviter que l'optimiseur ne confonde avec un morceau de la requete principale
+	return "array('NOT IN','$primary','('.sql_get_select('zzza.id_article','spip_articles as zzza',".masquer_rubriques_accessibles_where('zzza.id_rubrique','',$_publique).",'','','','',\$connect).')')";
+}
+
+/**
+ * Renvoyer la condition where pour la liste des articles masquer
+ *
+ * @param string $primary
+ * @return string
+ */
+function masquer_articles_where($primary, $_publique=''){
+	# hack : on utilise zzz pour eviter que l'optimiseur ne confonde avec un morceau de la requete principale
+	return "array('<>','$primary','('.sql_get_select('zzza.id_article','spip_articles as zzza, spip_mots_articles as sma',".masquer_rubriques_accessibles_where('zzza.id_rubrique','',$_publique).",'','','','',\$connect).')')";
+}
+
 ?>
