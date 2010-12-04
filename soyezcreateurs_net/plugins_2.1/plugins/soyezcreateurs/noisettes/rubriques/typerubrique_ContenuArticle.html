@@ -1,0 +1,14 @@
+[(#REM) Page de modèle pour inclure la carte de Google Maps dans le squelette Soyez Createurs
+Pour afficher les points de tous les articles de la branche, 
+il faut mettre une carte avec le facteur de zoom par défaut 
+sur la rubrique qui doit afficher tous les points.
+]
+<BOUCLE_secteurs(RUBRIQUES) {id_rubrique}>
+	<div class="titrepage"><h1 class="#EDIT{titre} surlignable">[<img src="(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{64,64}|extraire_attribut{src})" class="logo_rubrique" alt="[(#TITRE|texte_script|supprimer_tags|attribut_html) (logo)]" width="[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{64,64}|largeur)]" height="[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{64,64}|hauteur)]" />][(#TITRE)]</h1></div>
+	<div id="letexte" class="surlignable">
+		<BOUCLE_Articles_Racine(ARTICLES) {id_rubrique} {!par date}>
+		[(#INCLURE{fond=noisettes/articles/contenu_article}{id_article})]
+		</BOUCLE_Articles_Racine>
+	</div>
+		[(#FORMULAIRE_ADMIN)]
+</BOUCLE_secteurs>

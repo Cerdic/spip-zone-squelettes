@@ -1,0 +1,37 @@
+[(#REM) Page de modèle pour inclure la carte de Google Maps dans le squelette Soyez Createurs
+Pour afficher les points de tous les articles de la branche, 
+il faut mettre une carte avec le facteur de zoom par défaut 
+sur la rubrique qui doit afficher tous les points.
+]
+<BOUCLE_secteurs(RUBRIQUES) {id_rubrique}>
+	<div class="titrepage"><h1 class="#EDIT{titre} surlignable">[<img src="(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{64,64}|extraire_attribut{src})" class="logo_rubrique" alt="[(#TITRE|texte_script|supprimer_tags|attribut_html) (logo)]" width="[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{64,64}|largeur)]" height="[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{64,64}|hauteur)]" />][(#TITRE)]</h1></div>
+	<div id="letexte" class="surlignable">
+		<B_Annee>
+	<dl>
+	<BOUCLE_Annee(ARTICLES){id_rubrique}{!archive}{!par date}{fusion YEAR(date)}{doublons articles}>
+	<dt>[(#DATE|annee)]</dt>
+	<B_Mois>
+		<BOUCLE_Mois(ARTICLES){id_rubrique}{annee_relatif}
+		{!par date}{lang_select=non}
+		{fusion MONTH(date)}>
+		<dd>
+			<dl>
+				<dt>[(#DATE|nom_mois|ucfirst)]</dt>
+				<B_ArticlesDuMois>
+					<BOUCLE_ArticlesDuMois(ARTICLES){id_rubrique}{mois_relatif}
+					{!par date}>
+					<dd>
+						[(#INCLURE{fond=noisettes/articles/contenu_article}{id_article})]
+					</dd>
+					</BOUCLE_ArticlesDuMois>
+				</B_ArticlesDuMois>
+			</dl>
+		</dd>
+		</BOUCLE_Mois>
+	</B_Mois>
+	</BOUCLE_Annee>
+	</dl>
+</B_Annee>
+	</div>
+		[(#FORMULAIRE_ADMIN)]
+</BOUCLE_secteurs>
