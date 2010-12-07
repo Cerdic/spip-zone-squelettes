@@ -80,8 +80,13 @@ pageTracker._trackPageview();
 <body[ id="(#ENV{idbody})"]>
 #INSERT_NAV_CEF
 <div id="container">
-[(#ENV{template}|=={'Sommaire'}|non)[(#INCLURE{fond=noisettes/header/header_modeedito}{secteurencours}{env})]]
-[(#ENV{template}|=={'Sommaire'}|oui)[(#INCLURE{fond=noisettes/header/header_mode#CONFIG{soyezcreateurs/mode_affichage,edito}}{secteurencours}{env})]]
+#SET{noisetteheader,header_modeedito}
+[(#ENV{template}|=={'Sommaire'}|oui)
+	[(#CHEMIN{noisettes/header/header_mode#CONFIG{soyezcreateurs/mode_affichage,edito}.html}|oui)
+			#SET{noisetteheader,header_mode#CONFIG{soyezcreateurs/mode_affichage,edito}}
+	]
+]
+[(#INCLURE{fond=noisettes/header/#GET{noisetteheader}}{secteurencours}{env})]
 <div id="contenu">
 	<div id="wrapper">
 <div id="content" class="equilibre notstackable">

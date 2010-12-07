@@ -4,8 +4,13 @@
 [(#ENV{template}|=={'Sommaire'}|non)<INCLURE{fond=noisettes/footer/footer_modeedito}{id_rubrique}{id_article}{rubriqueencours}{template}{secteurencours}{env}>]
 <//B_TypeRubrique>
 </BOUCLE_TheRub>
-[(#ENV{template}|=={'Sommaire'}|oui)<INCLURE{fond=noisettes/footer/footer_mode#CONFIG{soyezcreateurs/mode_affichage,edito}}{template}{secteurencours}{env}>]
-[(#ENV{template}|=={'Sommaire'}|non)<INCLURE{fond=noisettes/footer/footer_modeedito}{id_rubrique}{id_article}{rubriqueencours}{template}{secteurencours}{env}>]
+#SET{noisettefooter,footer_modeedito}
+[(#ENV{template}|=={'Sommaire'}|oui)
+	[(#CHEMIN{noisettes/footer/footer_mode#CONFIG{soyezcreateurs/mode_affichage,edito}.html}|oui)
+			#SET{noisettefooter,footer_mode#CONFIG{soyezcreateurs/mode_affichage,edito}}
+	]
+]
+<INCLURE{fond=noisettes/footer/#GET{noisettefooter}}{id_rubrique}{id_article}{rubriqueencours}{template}{secteurencours}{env}>
 <//B_TheRub>
 </div><!-- id="contenu" -->	
 	<div id="footer" class="clearbottom">

@@ -200,6 +200,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_mode_communiquant' => 'Affichage d\'un portail d\'accueil de type communiquant',
 	'cfg_mode_edito' => 'Affichage de l\'Edito',
 	'cfg_mode_evenementiel' => 'Affichage d\'un portail d\'accueil de type &eacute;v&eacute;nementiel',
+	'cfg_mode_international' => 'Affichage d\'un portail d\'accueil de type international',
 	'cfg_mode_nouveautes' => 'Affichage sous forme d\'extrait des derni&egrave;res nouveaut&eacute;s',
 	'cfg_mode_portail' => 'Affichage d\'un portail d\'accueil',
 	'cfg_mode_portail_actu' => 'Affichage d\'un portail d\'accueil orient&eacute; actualit&eacute;s',
