@@ -188,7 +188,7 @@ function adjustLayout() {
 /* FUNCTIONS ON ALL PAGES */
 function myInitPages() {
     jQuery('body').addClass('hasJS');
-	jp_expinit();
+	[(#CONFIG{soyezcreateurs_layout/menuderoulant,replie}|=={replie}|oui)jp_expinit();]
 	// Surligner l'evenement en cours
 	var id_anchor  = location.hash.substr(1); //Get the word after the hash from the url
 	if (id_anchor) $('#'+id_anchor).parent().addClass('highlight_anchor'); // ajoute la classe highlight_anchor à l'element autour de l'ancre
@@ -206,6 +206,7 @@ function myInitPages() {
 		$('div.texte').bind('emchange', function(e, cur, prev) { adjustLayout(); });
 		onAjaxLoad(adjustLayout); // Merci Marcimat sur IRC !
 	}
+;
 [(#CONFIG{soyezcreateurs/native_tooltips}|=={on}|non)
 	$(function() {
 		$('a, input, select, img, button, h2, h3, dd, acronym, abbr, area').tooltip({ 
