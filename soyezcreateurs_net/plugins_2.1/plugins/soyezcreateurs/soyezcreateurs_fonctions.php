@@ -718,14 +718,14 @@ function critere_archive_dist($idb, &$boucles, $crit) {
 				array("'SELF'", "'articles.id_article'", 
 				array("'='", "'zzzm.titre'", "sql_quote(_MOT_MASQUER)"))));
 			
-			$boucle->where[] = masquer_articles_accessibles_where($art);
+			$boucle->where[] = masquer_articles_accessibles_where($art,'NOT ');
 		} else {
-			$boucle->where[] = array("'NOT'",
-				array("'NOT'",
-				array("'IN'", "'articles.id_article'", 
-				array("'SELF'", "'articles.id_article'", 
-				array("'='", "'zzzm.titre'", "sql_quote(_MOT_MASQUER)"),
-				masquer_articles_accessibles_where($art)))));				
+			$boucle->where[] = array("''",
+					array("'IN'", "'articles.id_article'", 
+					array("'SELF'", "'articles.id_article'", 
+					array("'='", "'zzzm.titre'", "sql_quote(_MOT_MASQUER)"))),
+					array("'OR'",
+						masquer_articles_accessibles_where($art,'')));
 		}
 	}	
 }
@@ -793,9 +793,9 @@ function masquer_liste_rub_direct(){
  * @param string $primary
  * @return string
  */
-function masquer_articles_accessibles_where($primary, $_publique=''){
+function masquer_articles_accessibles_where($primary, $critnot='', $_publique=''){
 	# hack : on utilise zzz pour eviter que l'optimiseur ne confonde avec un morceau de la requete principale
-	return "array('NOT IN','$primary','('.sql_get_select('zzza.id_article','spip_articles as zzza',".masquer_rubriques_accessibles_where('zzza.id_rubrique','',$_publique).",'','','','',\$connect).')')";
+	return "array('$critnot IN','$primary','('.sql_get_select('zzza.id_article','spip_articles as zzza',".masquer_rubriques_accessibles_where('zzza.id_rubrique','',$_publique).",'','','','',\$connect).')')";
 }
 
 /**
