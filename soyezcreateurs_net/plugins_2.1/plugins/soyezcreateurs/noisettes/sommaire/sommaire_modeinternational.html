@@ -3,7 +3,7 @@
 #SET{LargeurMenuDroit,(#CONFIG{soyezcreateurs_layout/largeurmenudroit,140})}
 #SET{Largeurcontent_central,(#GET{LargeurContaineur}|moins{#GET{LargeurMenuGauche}}|div{3}|floor|moins{24})}
 #SET{LargeurArretSurImg,(#GET{Largeurcontent_central}|moins{2})}
-#SET{HauteurArretSurImg,(#GET{LargeurArretSurImg}|div{1.61803399}|floor)}
+#SET{HauteurArretSurImg,(#GET{LargeurArretSurImg}|div{1.245}|floor)}
 
 <script type="text/javascript">
 	CanceladjustLayout = true;
@@ -52,66 +52,8 @@
 			</div>]]
 		</div>
 		<div id="block2" class="troistiers">
-			<div id="direct" class="outerbox hauteur1">
-				<div class="box simple">
-				<b class="top">
-					<b class="tl"></b>
-					<b class="tr"></b>
-				</b>
-				<div class="inner">
-					<div class="hd bam h1">En direct</div>
-					<div class="bd">         <B3>
-          <h3 class="subtitle"><img src="#CHEMIN{images/drapeaux/ariane.gif}"  alt="En direct d'Arianespace" />En direct d'Arianespace</h3>
-		  <dl>
-          <BOUCLE3(ARTICLES){age<(#CONFIG{soyezcreateurs/nombres_quoideneuf,10})}{doublons}{!par date}{!id_groupe=7} >
-<B4>
-		<dt[(#3:COMPTEUR_BOUCLE|alterner{'',' class="odd"'})]>#TITRE</dt>
-  					<dd>
-					<ul>
-					<BOUCLE4(DOCUMENTS){id_article}{par num titre, date}>
-  					<li><a href="#FICHIER">[(#TITRE||sinon{Document attaché})]</a></li>
-  					</BOUCLE4>
-					</ul>
-					</dd>
-	    </B4>
-              [<dt[(#3:COMPTEUR_BOUCLE|alterner{'',' class="odd"'})]><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">(#TITRE)</a></dt>]    
-           <//B4>
-          </BOUCLE3>
-          </dl>
-        </B3>
-		<BOUCLE_MotsEnDirect(MOTS){id_groupe=7}{par num titre}>
-		  <B7>
-          <h3 class="subtitle">[<img src="(#LOGO_MOT_NORMAL||extraire_attribut{src})"  alt="" />][(#TITRE|supprimer_numero)]</h3>
-		  <dl>
-          <BOUCLE7(ARTICLES) {id_mot}{age<(#CONFIG{soyezcreateurs/nombres_quoideneuf,10})}{doublons}{!par date}>
-<B8>
-            
-			<dt[(#7:COMPTEUR_BOUCLE|alterner{'',' class="odd"'})]>#TITRE</dt>
-					<dd>
-					<ul>
-  					<BOUCLE8(DOCUMENTS){id_article}{par num titre, date}>
-  					<li><a href="#FICHIER">[(#TITRE||sinon{Document attaché})]</a></li>
-  					</BOUCLE8>  
-					</ul>
-					</dd>
-			
-</B8>
-              [<dt[(#7:COMPTEUR_BOUCLE|alterner{'',' class="odd"'})]><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">(#TITRE)</a></dt>]
-           <//B8>
-      
-          </BOUCLE7>
-          </dl>
-        </B7>
-		</BOUCLE_MotsEnDirect></div>
-					<div class="hd bam archives"><a href="#"><:soyezcreateurs:archives:></a></div>
-				</div>
-				<b class="bottom">
-					<b class="bl"></b>
-					<b class="br"></b>
-				</b>
-			</div>
-			</div>
 			<B_ZoomSur>
+#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_endirect,hauteur=hauteur1}
 			<div id="hommefemme" class="outerbox hauteur2">
 				<div class="box simple">
 				<b class="top">
@@ -121,7 +63,7 @@
 				<div class="inner">
 					<div class="hd bam h1">Un homme, une femme, un métier</div>
 					<div class="bd"><BOUCLE_ZoomSur(ARTICLES){titre_mot=ZoomSur}{!archive}{!par date}{0,1}>
-					[<img class="logo_modenews" src="(#LOGO_ARTICLE_NORMAL|image_reduire{80,0}|extraire_attribut{src})" alt="" />]<h3>#TITRE</h3>
+					[<img class="logo_modenews" src="(#LOGO_ARTICLE_NORMAL|image_reduire{80,0}|extraire_attribut{src})" alt="" />]<h3><a href="#URL_ARTICLE">#TITRE</a></h3>
 					#CHAPO
 					</BOUCLE_ZoomSur></div>
 					<div class="hd bam archives"><a href="#"><:soyezcreateurs:archives:></a></div>
@@ -133,6 +75,8 @@
 				</div>
 			</div>
 			</B_ZoomSur>
+#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_endirect,hauteur=hauteur5}
+			<//B_ZoomSur>
 		</div>
 		<div id="block3" class="troistiers">
 			<BOUCLE_CycloShow(RUBRIQUES){titre_mot=CycloShow}{0,1}>
@@ -206,6 +150,8 @@
 				</b>
 			</div>
 			</div>
+			<BOUCLE_MemoGoodies(ARTICLES){titre_mot=Goodies}{!archive}{doublons goodies} />
+			<BOUCLE_MemoGoodiesRubrique(ARTICLES rubriques mots_rubriques){titre_mot=Goodies}{!archive}{doublons goodies} />
 			<B_Goodies>
 			<div id="info" class="outerbox hauteur2">
 				<div class="box simple">
@@ -217,7 +163,7 @@
 					<div class="hd bam h1">Informations socio-culturelles</div>
 					<div class="bd">
 						<dl>
-						<BOUCLE_Goodies(ARTICLES){titre_mot=Goodies}{!archive}{!par date}{0,4}>
+						<BOUCLE_Goodies(ARTICLES){!doublons goodies}{!par date}{age<120}>
 							<dt[(#COMPTEUR_BOUCLE|alterner{'',' class="odd"'})]><a href="#URL_ARTICLE" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">#TITRE</a></dt>
 						</BOUCLE_Goodies>
 						</dl>
@@ -232,6 +178,4 @@
 			</div>
 			</B_Goodies>
 		</div>
-
-
 </div><!-- Fin de .letexte -->
