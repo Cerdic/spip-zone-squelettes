@@ -1,9 +1,18 @@
+#SET{LargeurContaineur,(#CONFIG{soyezcreateurs_layout/largeurconteneur,960})}
+#SET{LargeurMenuGauche,(#CONFIG{soyezcreateurs_layout/largeurmenugauche,160})}
+#SET{LargeurMenuDroit,(#CONFIG{soyezcreateurs_layout/largeurmenudroit,140})}
+#SET{Largeurcontent_central,(#GET{LargeurContaineur}|moins{#GET{LargeurMenuGauche}}|div{3}|floor|moins{24})}
+#SET{LargeurArretSurImg,(#GET{Largeurcontent_central}|moins{2})}
+#SET{HauteurArretSurImg,(#GET{LargeurArretSurImg}|div{1.61803399}|floor)}
+
 <script type="text/javascript">
 	CanceladjustLayout = true;
 </script>
+<BOUCLE_RubriqueDefilant(RUBRIQUES){titre_mot=Defilant}{0,1}>
 <B_defile><marquee onmouseout="this.start();" onmouseover="this.stop();" behavior="scroll" bgcolor="#eeeeee" height="14px" direction="left" scrollamount="1" scrolldelay="10">
-<BOUCLE_defile(BREVES){id_rubrique=38}{age<400}{" :: "}>#TITRE</BOUCLE_defile>
+<BOUCLE_defile(BREVES){id_rubrique}{age<400}{" :: "}>#TITRE</BOUCLE_defile>
 </marquee></B_defile>
+</BOUCLE_RubriqueDefilant>
 <div class="outerinternational">
 		<div id="block1" class="troistiers">
 			<B_articles_recentsAlaUne><div id="une" class="outerbox hauteur1">
@@ -126,23 +135,49 @@
 			</B_ZoomSur>
 		</div>
 		<div id="block3" class="troistiers">
+			<BOUCLE_CycloShow(RUBRIQUES){titre_mot=CycloShow}{0,1}>
 			<div id="image" class="outerbox hauteur3">
 				<div class="box simple">
 				<b class="top">
 					<b class="tl"></b>
 					<b class="tr"></b>
 				</b>
-				<div class="inner">
-					<div class="hd bam h1">simple/bam</div>
-					<div class="bd"><p>Body</p></div>
-					<div class="hd bam archives"><a href="#"><:soyezcreateurs:archives:></a></div>
+					<div class="inner">
+						<div class="hd bam h1">#TITRE</div>
+						<div class="bd">
+							<div id="arretSurImg">
+								<ul class="mainCarousels">
+									<BOUCLE_Numeros(ARTICLES){id_rubrique}{!par date}{age>=0}{0,5}>
+									<li class="mainCarousel" id="mc[(#COMPTEUR_BOUCLE)]">
+										<h2><a id="#sc[(#COMPTEUR_BOUCLE)]" href="#URL_ARTICLE" title="[(#TITRE|attribut_html)]">[(#COMPTEUR_BOUCLE)]</a></h2>
+									</li>
+									</BOUCLE_Numeros>
+								</ul>
+
+								<ul class="smallCarousels">
+									<BOUCLE_test(ARTICLES){id_rubrique}{!par date}{age>=0}{0,5}>
+									<li class="smallCarousel" id="sc[(#COMPTEUR_BOUCLE)]">
+										<ul>
+										<BOUCLE_docs(DOCUMENTS){id_article}{mode=document}{extension IN gif,jpg,png}>
+										<li><a href="#URL_ARTICLE" title="[(#TITRE|attribut_html)]">[<img src="(#FICHIER|image_passe_partout{#GET{LargeurArretSurImg},#GET{HauteurArretSurImg}}|image_recadre{#GET{LargeurArretSurImg},#GET{HauteurArretSurImg}}|image_aplatir{jpg,ffffff}|extraire_attribut{src})" alt="[(#TITRE|attribut_html)]"/>]</a></li>
+										</BOUCLE_docs>
+										<li>&nbsp;</li>
+										</ul>
+										</B_docs>
+									</li>
+									</BOUCLE_test>
+								</ul>
+								<div class="hd bam archives"><a href="#"><:soyezcreateurs:archives:></a></div>
+							</div><!-- #arretSurImg -->
+						</div>
+					</div>
+					<b class="bottom">
+						<b class="bl"></b>
+						<b class="br"></b>
+					</b>
 				</div>
-				<b class="bottom">
-					<b class="bl"></b>
-					<b class="br"></b>
-				</b>
 			</div>
-			</div>
+			</BOUCLE_CycloShow>
 			<div id="time" class="outerbox hauteur4">
 				<div class="box simple">
 				<b class="top">

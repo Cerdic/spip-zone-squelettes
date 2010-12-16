@@ -349,12 +349,18 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.11','non');
 		}
 		if (version_compare($current_version,'3.0.12','<')) {
-			spip_log("SoyezCreateurs maj 3.0.11", "soyezcreateurs_install");
+			spip_log("SoyezCreateurs maj 3.0.12", "soyezcreateurs_install");
 			create_groupe("_TypeRubrique", "Pour indiquer un type spécifique de rubrique", "Il faut choisir un mot clef dans cette liste pour obtenir un affichage spécifique de rubrique.\n\nNB : pour rajouter un mot clef \"mc1\", il faut aussi rajouter les squelettes correspondants :\n-* noisettes/rubriques/typerubrique_mc1.html\n-* noisettes/footer/footer_typerubrique_mc1.html (facultatif)\n-* noisettes/articles/typearticle_mc1.html (facultatif)", 'oui', 'non', 'non', 'non', 'oui', 'non', 'non', 'oui', 'non', 'non');
 				create_mot("_TypeRubrique", "ContenuArticles", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des ContenuArticles.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura le contenu de tous les articles de cette rubrique, par ordre antichronologique, ou par numéro de titre.");
 				create_mot("_TypeRubrique", "ArticlesParAnnees", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des ArticlesParAnnees.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura le contenu de tous les articles de cette rubrique, par années, par mois, par ordre antichronologique dans chaque mois.");
 				create_mot("_TypeRubrique", "ListeArticlesParAnnees", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type des ListeArticlesParAnnees.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura la liste des articles de cette rubrique, par années, par mois, par ordre antichronologique dans chaque mois.");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.12','non');
+		}
+		if (version_compare($current_version,'3.0.13','<')) {
+			spip_log("SoyezCreateurs maj 3.0.13", "soyezcreateurs_install");
+			create_mot("_ModePortail", "CycloShow", "Affecter ce mot clef à la rubrique de SPIP dont les articles doivent apparaitre dans la zone du cycle d'images.\n\nIndiquer dans le texte du mot clef le nombre d'articles de la rubrique à prendre en compte.", "");
+			create_mot("_ModePortail", "Defilant", "Affecter ce mot clef à la rubrique de SPIP dont les brèves doivent apparaitre dans la zone de texte défilant en haut de la page.\n\n", "");
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.13','non');
 		}
 		/*if (version_compare($current_version,'3.0.10','<')) {
 			create_document('documents/image.jpg', array('objet' => 'article', 'id_objet' => 3), 'image', array('titre' => 'Mon image', 'descriptif' => 'Superbe image'));

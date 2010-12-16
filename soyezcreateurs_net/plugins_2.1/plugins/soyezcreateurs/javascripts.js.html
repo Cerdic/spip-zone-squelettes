@@ -279,8 +279,82 @@ function myHomeSpecialFeature(container,item,decoImg,decoSpan) {
 	});
 }
 ;
+
+/* HOME CYCLE */
+function homeCarousel(elt) {
+	/* carousels internes */
+	var elemNbr = jQuery(elt+' > li').size();
+	var myCounter = 1;
+	function onAfter(curr,next,opts) {
+		if (opts.currSlide+1 == opts.slideCount) {
+			if (myCounter < elemNbr) {
+				myCounter = myCounter+1;
+			} else if (myCounter == elemNbr) {
+				myCounter = 1;
+			}
+
+			function reloadCarousels() {
+				jQuery('.smallCarousel').stop(true,true).fadeOut(750);
+				jQuery('#sc'+myCounter).stop(true,true).fadeIn(750).children('ul').cycle({
+				    //fx: 'scrollHorz', // pour transition latérale
+				    fx: 'fade',
+				    speed: 1500,
+				    timeout: 4000,
+					pause: true,
+					startingSlide: 0,
+					after: onAfter
+				});
+			jQuery('.mainCarousel').removeClass('active');
+			if (myCounter == 1) {
+				jQuery('.mainCarousel:first').addClass('active');
+			} else {
+				jQuery('#mc'+myCounter).addClass('active');
+			}
+		}
+			jQuery('.smallCarousel').children('ul').cycle('stop');
+			var t2=setTimeout(reloadCarousels,3000);
+		} else {
+			clearTimeout(t2);
+		}
+		//alert(myCounter);
+	}
+	function onAfter2(curr,next,opts) {
+		//
+	}
+	jQuery('.smallCarousel ul').cycle({
+	    //fx: 'scrollHorz', // pour transition latérale
+	    fx: 'fade',
+	    speed: 1500,
+	    timeout: 4000,
+		pause: true,
+		startingSlide: 0,
+		after: onAfter
+	});
+	jQuery('.smallCarousel').hide().children('ul').cycle('pause');
+	jQuery('#sc1').show().children('ul').cycle('resume');
+	/* faux carousel principal */
+	var whatToShow = '';
+	jQuery('.mainCarousel:first').addClass('active');
+	jQuery('.mainCarousel').live('mouseenter focus', function() {
+		jQuery('.mainCarousel').removeClass('hover active');
+		jQuery(this).addClass('hover active');
+		whatToShow = jQuery(this).children('h2').children('a').attr('id');
+		jQuery('.smallCarousel').stop(true,true).fadeOut().children('ul').cycle('stop');
+		// jQuery(whatToShow).stop(true,true).fadeIn().children('ul').cycle({fx: 'scrollHorz',speed: 1500,timeout: 4000,pause: true,after: onAfter2}).cycle('resume'); // avec transition latérale
+		jQuery(whatToShow).stop(true,true).fadeIn().children('ul').cycle({fx: 'fade',speed: 1500,timeout: 4000,pause: true,startingSlide: 0,after: onAfter2});
+	}).live('mouseleave blur', function() {
+		whatToShow = jQuery(this).children('h2').children('a').attr('href');
+		jQuery(this).removeClass('hover');
+		// jQuery('.smallCarousel').stop(true,true).fadeOut().children('ul').cycle({fx: 'scrollHorz',speed: 1500,timeout: 4000,pause: true,after: onAfter}).cycle('pause'); // avec transition latérale
+		jQuery('.smallCarousel').stop(true,true).fadeOut().children('ul').cycle('stop');
+		jQuery(whatToShow).stop(true,true).fadeIn().children('ul').cycle({fx: 'fade',speed: 1500,timeout: 4000,pause: true,startingSlide: 0,after: onAfter});
+		myCounter = jQuery(this).index()+1;
+	});
+}
+
 $(document).ready(function() {
 	myInitPages();
 	/* HOME SPECIAL FEATURE */
 	if (jQuery('#homeSpecialFeature').size() > 0) { initMyHomeSpecialFeature = myHomeSpecialFeature("#homeSpecialFeature",'hSFItem','hSFDecoImg','hSFDecoSpan'); }
+	if (jQuery('#arretSurImg .mainCarousels').size() > 0) { homeCarousel('.mainCarousels'); }
 });
