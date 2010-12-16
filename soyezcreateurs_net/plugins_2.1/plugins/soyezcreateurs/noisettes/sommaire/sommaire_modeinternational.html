@@ -148,25 +148,30 @@
 							<div id="arretSurImg">
 								<ul class="mainCarousels">
 									<BOUCLE_Numeros(ARTICLES){id_rubrique}{!par date}{age>=0}{0,5}>
-									<li class="mainCarousel" id="mc[(#COMPTEUR_BOUCLE)]">
-										<h2><a id="#sc[(#COMPTEUR_BOUCLE)]" href="#URL_ARTICLE" title="[(#TITRE|attribut_html)]">[(#COMPTEUR_BOUCLE)]</a></h2>
+									<BOUCLE_AvecImage(DOCUMENTS){id_article}{mode=document}{extension IN gif,jpg,png}{0,1}>
+									<li class="mainCarousel" id="mc[(#_Numeros:COMPTEUR_BOUCLE)]">
+										<h2><a id="sc[(#_Numeros:COMPTEUR_BOUCLE)]" href="#_Numeros:URL_ARTICLE" title="[(#_Numeros:TITRE|attribut_html)]">[(#_Numeros:COMPTEUR_BOUCLE)]</a></h2>
 									</li>
+									</BOUCLE_AvecImage>
 									</BOUCLE_Numeros>
 								</ul>
 
+								<B_Caroussels>
 								<ul class="smallCarousels">
-									<BOUCLE_test(ARTICLES){id_rubrique}{!par date}{age>=0}{0,5}>
-									<li class="smallCarousel" id="sc[(#COMPTEUR_BOUCLE)]">
+									<BOUCLE_Caroussels(ARTICLES){id_rubrique}{!par date}{age>=0}{0,5}>
+									<B_Images>
+									<li class="smallCarousel" id="sc[(#_Caroussels:COMPTEUR_BOUCLE)]b">
 										<ul>
-										<BOUCLE_docs(DOCUMENTS){id_article}{mode=document}{extension IN gif,jpg,png}>
+										<BOUCLE_Images(DOCUMENTS){id_article}{mode=document}{extension IN gif,jpg,png}{par num titre}>
 										<li><a href="#URL_ARTICLE" title="[(#TITRE|attribut_html)]">[<img src="(#FICHIER|image_passe_partout{#GET{LargeurArretSurImg},#GET{HauteurArretSurImg}}|image_recadre{#GET{LargeurArretSurImg},#GET{HauteurArretSurImg}}|image_aplatir{jpg,ffffff}|extraire_attribut{src})" alt="[(#TITRE|attribut_html)]"/>]</a></li>
-										</BOUCLE_docs>
+										</BOUCLE_Images>
 										<li>&nbsp;</li>
 										</ul>
-										</B_docs>
 									</li>
-									</BOUCLE_test>
+									</B_Images>
+									</BOUCLE_Caroussels>
 								</ul>
+								</B_Caroussels>
 								<div class="hd bam archives"><a href="#"><:soyezcreateurs:archives:></a></div>
 							</div><!-- #arretSurImg -->
 						</div>
