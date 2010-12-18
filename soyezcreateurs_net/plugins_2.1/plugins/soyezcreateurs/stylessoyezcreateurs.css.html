@@ -12,9 +12,28 @@
 #SET{LargeurContaineur,(#CONFIG{soyezcreateurs_layout/largeurconteneur,960})}
 #SET{LargeurMenuGauche,(#CONFIG{soyezcreateurs_layout/largeurmenugauche,160})}
 #SET{LargeurMenuDroit,(#CONFIG{soyezcreateurs_layout/largeurmenudroit,140})}
-#SET{Largeurcontent_central,(#GET{LargeurContaineur}|moins{#GET{LargeurMenuGauche}}|div{3}|floor|moins{24})}
-#SET{LargeurArretSurImg,(#GET{Largeurcontent_central}|moins{2})}
-#SET{HauteurArretSurImg,(#GET{LargeurArretSurImg}|div{1.245}|floor)}
+[(#CONFIG{soyezcreateurs_layout/largeurcolonnes,0}|=={0}|?
+	{
+	[(#SET{Largeurcontent_central,[(#GET{LargeurContaineur}|moins{#GET{LargeurMenuGauche}}|div{3}|floor|moins{24})]})]
+	,
+	[(#SET{Largeurcontent_central,[(#CONFIG{soyezcreateurs_layout/largeurcolonnes})]})]
+	}
+)]
+[(#CONFIG{soyezcreateurs_layout/largeurvideoaccueil,0}|=={0}|?
+	{
+	[(#SET{LargeurArretSurImg,[(#GET{Largeurcontent_central}|moins{2})]})]
+	,
+	[(#SET{LargeurArretSurImg,[(#CONFIG{soyezcreateurs_layout/largeurvideoaccueil})]})]
+	}
+)]
+[(#CONFIG{soyezcreateurs_layout/hauteurvideoaccueil,0}|=={0}|?
+	{
+	[(#SET{HauteurArretSurImg,[(#GET{LargeurArretSurImg}|div{1.245}|floor)]})]
+	,
+	[(#SET{HauteurArretSurImg,[(#CONFIG{soyezcreateurs_layout/hauteurvideoaccueil})]})]
+	}
+)]
+#SET{margescolonnes,#CONFIG{soyezcreateurs_layout/margescolonnes,12}}
 
 #SET{c_body_bk,(#CONFIG{soyezcreateurs_couleurs/body_bk,#a1856e})}
 #SET{c_logo_bk,(#CONFIG{soyezcreateurs_couleurs/logo_bk,transparent})}
@@ -855,7 +874,7 @@ ul#infos_etapes {
 #sommaire_mode_international .bam.h1{ padding:2px 1em; border-bottom: 2px solid [(#GET{c_titraille_ssniveaux_bk})]; font-weight: bold; font-size:1.2em; }
 #sommaire_mode_international .archives{ padding:2px 1em; text-align:right }
 
-.troistiers { float:left; padding:0 12px; width:#GET{Largeurcontent_central}px; height:650px; }
+.troistiers { float:left; padding:0 #GET{margescolonnes}px; width:#GET{Largeurcontent_central}px; height:650px; }
 .troistiers .bd { overflow-y:auto; }
 .hauteur1 { margin-bottom:10px; height: 400px; }
 .hauteur1 .bd { height: 350px; }
@@ -876,6 +895,7 @@ ul#infos_etapes {
 #sommaire_mode_international #content #agenda td, th { padding: 0; }
 #sommaire_mode_international #content #agenda table, #sommaire_mode_international #agenda table.spip { width: 50%; }
 #sommaire_mode_international .miniagenda table.agenda { float:left; }
+#sommaire_mode_international .outerinternational { margin:0 auto; width: [(#GET{Largeurcontent_central}|plus{#GET{margescolonnes}}|plus{#GET{margescolonnes}}|mult{3})]px }
 
 /*************** ARRET SUR IMAGE */
 #image .bd { padding: 0; }

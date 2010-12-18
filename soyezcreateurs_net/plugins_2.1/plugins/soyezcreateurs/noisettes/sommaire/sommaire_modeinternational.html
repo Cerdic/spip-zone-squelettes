@@ -1,9 +1,28 @@
 #SET{LargeurContaineur,(#CONFIG{soyezcreateurs_layout/largeurconteneur,960})}
 #SET{LargeurMenuGauche,(#CONFIG{soyezcreateurs_layout/largeurmenugauche,160})}
 #SET{LargeurMenuDroit,(#CONFIG{soyezcreateurs_layout/largeurmenudroit,140})}
-#SET{Largeurcontent_central,(#GET{LargeurContaineur}|moins{#GET{LargeurMenuGauche}}|div{3}|floor|moins{24})}
-#SET{LargeurArretSurImg,(#GET{Largeurcontent_central}|moins{2})}
-#SET{HauteurArretSurImg,(#GET{LargeurArretSurImg}|div{1.245}|floor)}
+
+[(#CONFIG{soyezcreateurs_layout/largeurcolonnes,0}|=={0}|?
+	{
+	[(#SET{Largeurcontent_central,[(#GET{LargeurContaineur}|moins{#GET{LargeurMenuGauche}}|div{3}|floor|moins{24})]})]
+	,
+	[(#SET{Largeurcontent_central,[(#CONFIG{soyezcreateurs_layout/largeurcolonnes})]})]
+	}
+)]
+[(#CONFIG{soyezcreateurs_layout/largeurvideoaccueil,0}|=={0}|?
+	{
+	[(#SET{LargeurArretSurImg,[(#GET{Largeurcontent_central}|moins{2})]})]
+	,
+	[(#SET{LargeurArretSurImg,[(#CONFIG{soyezcreateurs_layout/largeurvideoaccueil})]})]
+	}
+)]
+[(#CONFIG{soyezcreateurs_layout/hauteurvideoaccueil,0}|=={0}|?
+	{
+	[(#SET{HauteurArretSurImg,[(#GET{LargeurArretSurImg}|div{1.245}|floor)]})]
+	,
+	[(#SET{HauteurArretSurImg,[(#CONFIG{soyezcreateurs_layout/hauteurvideoaccueil})]})]
+	}
+)]
 
 <script type="text/javascript">
 	CanceladjustLayout = true;
@@ -24,7 +43,7 @@
 					<div class="inner">
 					<div class="hd bam h1"><:soyezcreateurs:alaune:></div>
 					<div class="bd"><dl><BOUCLE_articles_recentsAlaUne(ARTICLES) {!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_alanune,3})}{titre_mot=AlaUne}{doublons}{lang}{!archive}>
-	<dt[(#COMPTEUR_BOUCLE|alterner{'',' class="odd"'})]><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a></dt>[<dd>(#INTRODUCTION|couper{50}|lignes_longues{20})</dd>]
+	<dt[(#COMPTEUR_BOUCLE|alterner{'',' class="odd"'})]><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a></dt>[<dd>(#INTRODUCTION|couper{50}|lignes_longues{15})</dd>]
 </BOUCLE_articles_recentsAlaUne></dl></div>
 					<div class="hd bam archives"><a href="#"><:soyezcreateurs:archives:></a></div>
 				</div>
@@ -178,4 +197,4 @@
 			</div>
 			</B_Goodies>
 		</div>
-</div><!-- Fin de .letexte -->
+</div><!-- Fin de .outerinternational -->
