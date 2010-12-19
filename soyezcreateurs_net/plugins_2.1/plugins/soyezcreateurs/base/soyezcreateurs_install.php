@@ -364,7 +364,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		}
 		if (version_compare($current_version,'3.0.14','<')) {
 			spip_log("SoyezCreateurs maj 3.0.14", "soyezcreateurs_install");
-				create_mot("_TypeRubrique", "3colonnes", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type 3colonnes.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura une colonne par sous rubrique, avec la liste des articles par ordre antichronologique, ou par numéro de titre.");
+				create_mot("_TypeRubrique", "multicolonnes", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type multicolonnes.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura une colonne par sous rubrique, avec la liste des articles par ordre antichronologique, ou par numéro de titre.");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.14','non');
 		}
 		/*if (version_compare($current_version,'3.0.10','<')) {
