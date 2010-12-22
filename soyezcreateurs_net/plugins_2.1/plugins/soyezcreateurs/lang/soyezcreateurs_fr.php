@@ -73,6 +73,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichagelistedocuments_enbas' => 'En bas des articles et des rubriques',
 	'cfg_affichagelistedocuments_label' => 'Zone d\'affichage',
 	'cfg_affichagelistedocuments_listeravecarticles' => 'Lister les documents joints &agrave; un articles dans les listes d\'articles (centrales)',
+	'cfg_affichagelistedocuments_noicon' => 'Ne pas afficher l\'icone du document dans les listes',
 	'cfg_affichagelistedocuments_nulpart' => 'Nul part (d&eacute;cocher les autres choix&nbsp;!)',
 	'cfg_affichagelistedocuments_redirectsiunique' => 'Redirection sur le document si unique et pas de texte dans l\'article',
 	'cfg_afficher_titre_invisible' => 'Invisible : le texte est br&ucirc;l&eacute; dans le bandeau',
