@@ -182,7 +182,7 @@ function create_mot($groupe, $mot, $descriptif='', $texte='') {
 	$find_mot = find_mot($mot, $id_groupe);
 	if ($find_mot == 0) {
 		spip_log("1. (create_mot) debut create_mot. mot inexistant donc creation : $id_groupe - $mot", "soyezcreateurs_install");
-		$motcle = sql_insertq(
+		$id_mot = sql_insertq(
 			"spip_mots", array(
 				"id_mot" => '',
 				"titre" => $mot,
@@ -202,6 +202,7 @@ function create_mot($groupe, $mot, $descriptif='', $texte='') {
 	else {
 		spip_log("insertion impossible ! debug : groupe = $groupe --- id_groupe = $id_groupe", "soyezcreateurs_install");
 	}
+	return $id_mot;
 }
 
 //fonction qui permet de mettre à jour un mot clé 
@@ -542,7 +543,7 @@ function create_document($chemin, $objet, $mode, $champs='non', $id_document='no
 
 function create_logo($chemin, $type='art', $id, $ext) {
 	include_spip('inc/getdocument');
-	$file = deplacer_fichier_upload(find_in_path($chemin), _DIR_LOGOS . $type . 'on' . $id . $ext);
+	$file = deplacer_fichier_upload(find_in_path($chemin), _DIR_LOGOS . $type . 'on' . $id . '.' .$ext);
 	return $file;
 }
 

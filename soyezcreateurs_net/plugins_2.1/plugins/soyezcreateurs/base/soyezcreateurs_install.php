@@ -367,6 +367,13 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 				create_mot("_TypeRubrique", "multicolonnes", "Pour dire que la rubrique ayant ce mot clef doit utiliser le squelette type multicolonnes.", "Affecter ce mot clef à chaque rubrique racine concernée. À la place de la rubrique, on aura une colonne par sous rubrique, avec la liste des articles par ordre antichronologique, ou par numéro de titre.");
 			ecrire_meta($nom_meta_base_version,$current_version='3.0.14','non');
 		}
+		if (version_compare($current_version,'3.0.15','<')) {
+			spip_log("SoyezCreateurs maj 3.0.15", "soyezcreateurs_install");
+			create_groupe("_EnDirect", "En direct", "Affecter un mot clef de ce groupe à chaque article devant apparaître dans la Zone En Direct du mode internationnal.\n\nLe Premier mot clef permet de donner le logo et le titre de la première zone qui affiche les quoi de neuf du site.\n\nLe Descriptif du groupe donne le titre de la zone.", 'oui', 'non', 'oui', 'non', 'non', 'non', 'non', 'oui', 'oui', 'non');
+				$id_mot = create_mot("_EnDirect", "00. Quoi de neuf ?", "", "");
+				create_logo('documents/newspaper.png', $type='mot', $id_mot, 'png'); // http://www.iconfinder.com/icondetails/8437/16/newspaper_icon
+			ecrire_meta($nom_meta_base_version,$current_version='3.0.15','non');
+		}
 		/*if (version_compare($current_version,'3.0.10','<')) {
 			create_document('documents/image.jpg', array('objet' => 'article', 'id_objet' => 3), 'image', array('titre' => 'Mon image', 'descriptif' => 'Superbe image'));
 		}
