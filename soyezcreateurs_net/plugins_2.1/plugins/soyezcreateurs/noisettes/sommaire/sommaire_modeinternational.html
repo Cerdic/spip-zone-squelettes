@@ -30,25 +30,10 @@
 #INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_newsticker}
 <div class="outerinternational">
 		<div id="block1" class="troistiers">
-			<B_articles_recentsAlaUne><div id="une" class="outerbox [(#PLUGIN{AGENDA}|oui) [(#INCLURE{fond=noisettes/agenda/miniagenda,env,ajax}|?{hauteur1,hauteur5})]]">
-				<div class="box simple">
-					<b class="top">
-						<b class="tl"></b>
-						<b class="tr"></b>
-					</b>
-					<div class="inner">
-					<div class="hd bam h1"><:soyezcreateurs:alaune:></div>
-					<div class="bd"><dl><BOUCLE_articles_recentsAlaUne(ARTICLES) {!par #CONFIG{soyezcreateurs/ordre_quoideneuf,date_modif}}{0,(#CONFIG{soyezcreateurs/nombres_alanune,3})}{titre_mot=AlaUne}{doublons}{lang}{!archive}>
-	<dt[(#COMPTEUR_BOUCLE|alterner{'',' class="odd"'})]><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">[(#TITRE)]</a></dt>[<dd>(#INTRODUCTION|couper{50}|lignes_longues{15})</dd>]
-</BOUCLE_articles_recentsAlaUne></dl></div>
-					<div class="hd bam archives"><a href="#"><:soyezcreateurs:archives:></a></div>
-				</div>
-				<b class="bottom">
-					<b class="bl"></b>
-					<b class="br"></b>
-				</b>
-				</div>
-			</div></B_articles_recentsAlaUne>
+[(#ENV{alaune}|=={archives}|?{
+#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_alaune_archives,env,ajax},
+#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_alaune,env}
+})]
 			[(#PLUGIN{AGENDA}|oui)[<div id="agenda" class="outerbox hauteur2">
 				<div class="box simple">
 					<b class="top">
