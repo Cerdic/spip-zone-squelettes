@@ -64,12 +64,14 @@
 					<b class="tr"></b>
 				</b>
 				<div class="inner">
-					<div class="hd bam h1">Un homme, une femme, un métier</div>
-					<div class="bd"><BOUCLE_ZoomSur(ARTICLES){titre_mot=ZoomSur}{!archive}{!par date}{0,1}>
+					<BOUCLE_ZoomSur(ARTICLES){titre_mot=ZoomSur}{!archive}{!par date}{0,1}>
+					<div class="hd bam h1">#INFO_TITRE{rubrique,#ID_RUBRIQUE}</div>
+					<div class="bd">
 					[<img class="logo_modenews" src="(#LOGO_ARTICLE_NORMAL|image_reduire{80,0}|extraire_attribut{src})" alt="" />]<h3><a href="#ARTICLE_URL">#TITRE</a></h3>
 					#CHAPO
-					</BOUCLE_ZoomSur></div>
-					<div class="hd bam archives"><a href="#"><:soyezcreateurs:archives:></a></div>
+					</div>
+					<div class="hd bam archives"><a href="#URL_RUBRIQUE"><:soyezcreateurs:archives:></a></div>
+					</BOUCLE_ZoomSur>
 				</div>
 				<b class="bottom">
 					<b class="bl"></b>
@@ -108,7 +110,7 @@
 
 								<B_Caroussels>
 								<ul class="smallCarousels">
-									<BOUCLE_Caroussels(ARTICLES){id_rubrique}{!par date}{age>=0}{0,5}>
+									<BOUCLE_Caroussels(ARTICLES){!archive}{id_rubrique}{!par date}{age>=0}{0,5}>
 									<B_Images>
 									<li class="smallCarousel" id="sc[(#_Caroussels:COMPTEUR_BOUCLE)]b">
 										<ul>
@@ -122,7 +124,7 @@
 									</BOUCLE_Caroussels>
 								</ul>
 								</B_Caroussels>
-								<div class="hd bam archives"><a href="#"><:soyezcreateurs:archives:></a></div>
+								<div class="hd bam archives"><a href="#URL_RUBRIQUE"><:soyezcreateurs:archives:></a></div>
 							</div><!-- #arretSurImg -->
 						</div>
 					</div>
@@ -142,12 +144,7 @@
 					<div class="inner">
 
 						<div class="bd">
-							<INCLURE{fond=inclure/horlogeflash,timezone='America/New_York',ville='Washington'}>
-							<INCLURE{fond=inclure/horlogeflash,timezone='America/Cayenne',ville='Kourou'}>
-							<INCLURE{fond=inclure/horlogeflash,timezone='Europe/Paris',ville='Evry'}>
-							<INCLURE{fond=inclure/horlogeflash,timezone='Asia/Almaty',ville='Baïkonour'}>
-							<INCLURE{fond=inclure/horlogeflash,timezone='Asia/Singapore',ville='Singapour'}>
-							<INCLURE{fond=inclure/horlogeflash,timezone='Asia/Tokyo',ville='Tokyo'}>
+#INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_horloges}
 						</div>
 					</div>
 					<b class="bottom">
