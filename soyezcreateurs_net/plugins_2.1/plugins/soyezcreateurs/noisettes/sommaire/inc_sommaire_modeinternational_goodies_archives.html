@@ -8,15 +8,16 @@
 					<b class="tr"></b>
 				</b>
 				<div class="inner">
-					<div class="hd bam h1"><BOUCLE_TitreGoodies(RUBRIQUES){titre_mot=Goodies}{0,1}>#TITRE</BOUCLE_TitreGoodies><:soyezcreateurs:plus_loin:><//B_TitreGoodies></div>
+					<div class="hd bam h1"><BOUCLE_TitreGoodies(RUBRIQUES){titre_mot=Goodies}{0,1}>#TITRE</BOUCLE_TitreGoodies><:soyezcreateurs:plus_loin:><//B_TitreGoodies> (<:soyezcreateurs:archives:>)</div>
 					<div class="bd">
 						<dl>
-						<BOUCLE_Goodies(ARTICLES){!doublons goodies}{!par date}{age<120}>
+						<BOUCLE_Goodies(ARTICLES){!doublons goodies}{!par date}{pagination 6}{age>=120}>
 							<dt[(#COMPTEUR_BOUCLE|alterner{'',' class="odd"'})]><a href="#ARTICLE_URL" title="[(#DESCRIPTIF|attribut_html)][ ((#INCLURE{fond=noisettes/aff_datepublication}{id_article}|supprimer_tags))]">#TITRE</a></dt>
 						</BOUCLE_Goodies>
 						</dl>
+						<p class="pagination">#PAGINATION{page}</p>
 					</div>
-					<div class="hd bam archives"><a href="[(#SELF|parametre_url{goodies,archives})]"><:soyezcreateurs:archives:></a></div>
+					<div class="hd bam archives"><a href="[(#SELF|parametre_url{goodies,''}|parametre_url{debut_Goodies,''})]"><:spip:retour:></a></div>
 				</div>
 				<b class="bottom">
 					<b class="bl"></b>
