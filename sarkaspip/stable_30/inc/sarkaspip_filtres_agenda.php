@@ -454,6 +454,35 @@ function agenda_mini_header($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='&
 	// Init de l'annee et du mois courant
 	$mois_courant = affdate_base(date('Y-m-d'), 'mois');
 	$annee_courante = affdate_base(date('Y-m-d'), 'annee');
+	
+	// Calcul des dates min et max des evenements
+	$secteur_agenda = calcul_rubrique_specialisee('agenda', 'secteur', 'in');
+	$date_min = sql_getfetsel('date_redac', 'spip_articles', 
+							array('id_secteur=' . sql_quote($secteur_agenda), 
+								'date_redac>' . sql_quote('0000-00-00'),
+								'statut=' . sql_quote('publie')),
+								'',	'date_redac');
+	if ($date_min < date('Y-m-d')) {
+		$mois_min = affdate_base($date_min, 'mois');
+		$annee_min = affdate_base($date_min, 'annee');
+	}
+	else {
+		$mois_min = $mois_courant;
+		$annee_min = $annee_courante;
+	}
+	$date_max = sql_getfetsel('date_redac', 'spip_articles', 
+							array('id_secteur=' . sql_quote($secteur_agenda),
+							'date_redac>' . sql_quote('0000-00-00'),
+							'statut=' . sql_quote('publie')),
+							'', 'date_redac DESC');
+	if ($date_max > date('Y-m-d')) {
+		$mois_max = affdate_base($date_max, 'mois');
+		$annee_max = affdate_base($date_max, 'annee');
+	}
+	else {
+		$mois_max = $mois_courant;
+		$annee_max = $annee_courante;
+	}
 
 	// Calcul des mois precedent et suivant
 	$mois = $mois_choisi-1;
@@ -482,15 +511,24 @@ function agenda_mini_header($id_agenda=0, $icone_prec='&lt;&lt;', $icone_suiv='&
 
 	// Init de la chaine
 	$header = NULL;
+	$lien_vide = '<h2><a class="titre_bloc bord" rel="nofollow" href="#">&nbsp;</a></h2>';
 	// Debut de l'en-tete
 	// Ligne 1 : pagination par annee
-	$header .= '<h2><a class="titre_bloc bord ajax" rel="nofollow" href="'.$url_base.'calendrier_mois='.$mois_choisi.'&amp;calendrier_annee='.$annee_choisie_prec.'" title="'.$nom_mois[$mois_choisi].'&nbsp;'.$annee_choisie_prec.'">'.$icone_prec.'</a></h2>';
+	$header .= ($annee_min < $annee_choisie)
+		? '<h2><a class="titre_bloc bord ajax" rel="nofollow" href="'.$url_base.'calendrier_mois='.$mois_choisi.'&amp;calendrier_annee='.$annee_choisie_prec.'" title="'.$nom_mois[$mois_choisi].'&nbsp;'.$annee_choisie_prec.'">'.$icone_prec.'</a></h2>'
+		: $lien_vide;
 	$header .= '<h2 class="titre_bloc centre">'.$annee_choisie.'</h2>';   
-	$header .= '<h2><a class="titre_bloc bord ajax" rel="nofollow" href="'.$url_base.'calendrier_mois='.$mois_choisi.'&amp;calendrier_annee='.$annee_choisie_suiv.'" title="'.$nom_mois[$mois_choisi].'&nbsp;'.$annee_choisie_suiv.'">'.$icone_suiv.'</a></h2>';
+	$header .= ($annee_max > $annee_choisie)
+		? '<h2><a class="titre_bloc bord ajax" rel="nofollow" href="'.$url_base.'calendrier_mois='.$mois_choisi.'&amp;calendrier_annee='.$annee_choisie_suiv.'" title="'.$nom_mois[$mois_choisi].'&nbsp;'.$annee_choisie_suiv.'">'.$icone_suiv.'</a></h2>'
+		: $lien_vide;
 	// Ligne 2 : pagination par mois
-	$header .= '<h2><a class="titre_bloc bord ajax" rel="nofollow" href="'.$url_base.'calendrier_mois='.$mois_prec.'&amp;calendrier_annee='.$annee_prec.'" title="'.$nom_mois[$mois_prec].'&nbsp;'.$annee_prec.'">'.$icone_prec.'</a></h2>';
+	$header .= (($annee_min < $annee_choisie) OR (($annee_min == $annee_choisie) AND ($mois_min < $mois_choisi)))
+		? '<h2><a class="titre_bloc bord ajax" rel="nofollow" href="'.$url_base.'calendrier_mois='.$mois_prec.'&amp;calendrier_annee='.$annee_prec.'" title="'.$nom_mois[$mois_prec].'&nbsp;'.$annee_prec.'">'.$icone_prec.'</a></h2>'
+		: $lien_vide;
 	$header .= '<h2 class="titre_bloc centre">'.$nom_mois[$mois_choisi].'</h2>';   
-	$header .= '<h2><a class="titre_bloc bord ajax" rel="nofollow" href="'.$url_base.'calendrier_mois='.$mois_suiv.'&amp;calendrier_annee='.$annee_suiv.'" title="'.$nom_mois[$mois_suiv].'&nbsp;'.$annee_suiv.'">'.$icone_suiv.'</a></h2>';
+	$header .= (($annee_max > $annee_choisie) OR (($annee_max == $annee_choisie) AND ($mois_max > $mois_choisi)))
+		? '<h2><a class="titre_bloc bord ajax" rel="nofollow" href="'.$url_base.'calendrier_mois='.$mois_suiv.'&amp;calendrier_annee='.$annee_suiv.'" title="'.$nom_mois[$mois_suiv].'&nbsp;'.$annee_suiv.'">'.$icone_suiv.'</a></h2>'
+		: $lien_vide;
 	// Ligne 3 : retour au mois du jour courant
 	$header .= '<h2><a id="auj" class="titre_bloc ajax" rel="nofollow" href="'.$url_base.'calendrier_mois='.$mois_courant.'&amp;calendrier_annee='.$annee_courante.'" title="'.$nom_mois[intval($mois_courant)].'&nbsp;'.$annee_courante.'">'.ucfirst(_T('sarkaspip:aujourdhui')).'</a></h2>';
 	// Fin de l'en-tete
