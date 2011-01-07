@@ -43,7 +43,11 @@
 <B_Rubriques_MenuHaut>
 <ul>
   <BOUCLE_Rubriques_MenuHaut(RUBRIQUES){id_parent}{par num titre}{!titre_mot=PasDansMenu}{!lang_select}><BOUCLE_test_expose_MenuHaut(RUBRIQUES) {id_enfant}{0,1}>#EXPOSE{' ',(#CONFIG{soyezcreateurs/sousmenulocaux,'systematique'}|=={systematique}|oui)}</BOUCLE_test_expose_MenuHaut>
-  <li<BOUCLE_ClasseRubriqueMenuHaut(MOTS){id_rubrique}{type=_ClasseRubriqueMenu}{0,1}>[ class=(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{'"encours ','"'})#TITRE"]</BOUCLE_ClasseRubriqueMenuHaut>[(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{' class="encours"',''})]<//B_ClasseRubriqueMenuHaut>>[(#INCLURE{fond=noisettes/menus/rubrique_li}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]<BOUCLE_SsRubriques_MenuHaut(BOUCLE_Rubriques_MenuHaut) /></li>
+  #SET{classeracine,''}
+  <BOUCLE_debut_secteur_MenuHaut(RUBRIQUES){id_parent}{0,1}>#SET{classeracine,smenu}</BOUCLE_debut_secteur_MenuHaut>
+  <BOUCLE_ClasseRubriqueMenu_MenuHaut(MOTS){id_rubrique}{type=_ClasseRubriqueMenu}{0,1}>[(#SET{classeracine,[(#GET{classeracine}) ]#TITRE})]</BOUCLE_ClasseRubriqueMenu_MenuHaut>
+  [(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{[(#SET{classeracine,[(#GET{classeracine}) ]encours})]})]
+  <li[ class="(#GET{classeracine})"]>[(#INCLURE{fond=noisettes/menus/rubrique_li}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]<BOUCLE_SsRubriques_MenuHaut(BOUCLE_Rubriques_MenuHaut) /></li>
   </B_test_expose_MenuHaut></BOUCLE_Rubriques_MenuHaut>
 </ul>
 </B_Rubriques_MenuHaut>
@@ -75,11 +79,18 @@
 <B_Secteurs>
 <ul class="tv">
   <BOUCLE_Secteurs(RUBRIQUES){racine}{par num titre}{!titre_mot=MenuHaut}{!titre_mot=PasDansMenu}{!lang_select}>
-  <li<BOUCLE_ClasseRubriqueMenu(MOTS){id_rubrique}{type=_ClasseRubriqueMenu}{0,1}>[ class=(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{'"encours ','"'})#TITRE"]</BOUCLE_ClasseRubriqueMenu>[(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{' class="encours"',''})]<//B_ClasseRubriqueMenu>>[(#INCLURE{fond=noisettes/menus/rubrique_li}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]
+  #SET{classeracine,''}
+  <BOUCLE_debut_secteur(RUBRIQUES){id_parent}{0,1}>#SET{classeracine,smenu}</BOUCLE_debut_secteur>
+  <BOUCLE_ClasseRubriqueMenu(MOTS){id_rubrique}{type=_ClasseRubriqueMenu}{0,1}>[(#SET{classeracine,[(#GET{classeracine}) ]#TITRE})]</BOUCLE_ClasseRubriqueMenu>
+  [(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{[(#SET{classeracine,[(#GET{classeracine}) ]encours})]})]
+  <li[ class="(#GET{classeracine})"]>[(#INCLURE{fond=noisettes/menus/rubrique_li}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]
 <B_Rubriques>
 <ul>
   <BOUCLE_Rubriques(RUBRIQUES){id_parent}{par num titre}{!titre_mot=PasDansMenu}{!lang_select}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}{0,1}>#EXPOSE{' ',(#CONFIG{soyezcreateurs/sousmenulocaux,'systematique'}|=={systematique}|oui)}</BOUCLE_test_expose>
-  <li>[(#INCLURE{fond=noisettes/menus/rubrique_li}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]<BOUCLE_SsRubriques(BOUCLE_Rubriques) /></li>
+  #SET{classessrub,''}
+  <BOUCLE_debut_ssrubrique(RUBRIQUES){id_parent}{0,1}>#SET{classessrub,smenu}</BOUCLE_debut_ssrubrique>
+  [(#ENV{rubriqueencours}|=={#ID_RUBRIQUE}|?{[(#SET{classessrub,[(#GET{classessrub}) ]encours})]})]
+  <li[ class="(#GET{classessrub})"]>[(#INCLURE{fond=noisettes/menus/rubrique_li}{id_rubrique}{id_article}{rubriqueencours=#ENV{rubriqueencours}}{letitre=#TITRE}{ledescriptif=#DESCRIPTIF})]<BOUCLE_SsRubriques(BOUCLE_Rubriques) /></li>
   </B_test_expose></BOUCLE_Rubriques>
 </ul>
 </B_Rubriques>
