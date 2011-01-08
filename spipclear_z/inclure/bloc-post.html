@@ -1,0 +1,48 @@
+[(#REM) 
+	bloc-post.html pour afficher les posts dans les listes
+	parametres :
+	-* info_date : si !=non afficher la date
+	-* info_titre : si !=non afficher le titre
+]
+
+<BOUCLE_article(ARTICLES){id_article}>
+
+[(#ENV{info_date}|!={non}|oui)
+[<p class="day-date">(#DATE|affdate_long|unique)</p>]]
+
+<div class="cartouche">
+	<h2 id="p#ID_ARTICLE" class="post-title titre h2"><a href="#URL_ARTICLE">#TITRE</a></h2>
+
+	<p class="post-info info-publi">
+	<B_auteurs><:par_auteur|ucfirst:> <BOUCLE_auteurs(AUTEURS){id_article}{", "}><span[ title="(#BIO|couper{60}|texte_backend)"]>#NOM</span></BOUCLE_auteurs>, </B_auteurs>
+	<span class="published">[(#DATE|affdate_long)] <:spipclear:attime:> [(#DATE|heures)]:[(#DATE|minutes)]</span>
+	<span>::</span>
+	<BOUCLE_categorie(RUBRIQUES){id_rubrique}><a href="#URL_RUBRIQUE">#TITRE</a></BOUCLE_categorie>
+	</p>
+
+	[(#CONFIG{spipclear/bloc_post_tags}|=={on}|non)
+	<INCLURE{fond=inclure/post-tags}{id_article}>]
+
+	[(#LOGO_ARTICLE|#URL_ARTICLE|liens_absolus|image_reduire{150}|inserer_attribut{class,logo})]
+</div>
+
+[(#CONFIG{spipclear/articles_entiers}|=={on}|oui)
+[<div class="post-content texte #EDIT{texte}" lang="#LANG">
+	(#TEXTE|image_reduire{450})
+</div>]]
+
+[(#CONFIG{spipclear/articles_entiers}|=={on}|non)
+[<div class="post-content #EDIT{intro}" lang="#LANG">
+	(#INTRODUCTION)
+</div>]
+<p class="read-it lire-la-suite"><a href="#URL_ARTICLE" title="[Lire la suite (#TITRE|texte_script)]"><:spipclear:lire_la_suite:></a>...</p>
+]
+	
+[<div class="post-content" lang="#LANG"><strong><:voir_en_ligne:></strong> : <a href="(#URL_SITE)">#NOM_SITE</a></div>]
+
+<p class="post-info-co nb_commentaires"> 
+<a href="#URL_ARTICLE#co" class="comment_count" title="<:spipclear:commentaires_pour:> : [(#TITRE|textebrut|entites_html)]">
+	[(#INCLURE{fond=inclure/nb_commentaires,id_article})]
+</a>
+</p>
+</BOUCLE_article>

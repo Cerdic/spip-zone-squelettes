@@ -1,0 +1,17 @@
+<p id="navlinks">
+	<BOUCLE_ancien(ARTICLES){lang_select=non}{par date}{inverse}{0,1}{mois_relatif>=1}>
+	<a href="[(#SELF|parametre_url{archives,[(#DATE|affdate{Y-m})]})]">&#171; [(#DATE|nom_mois)][ (#DATE|annee)]</a> - 
+	</BOUCLE_ancien>
+	<a href="#URL_PAGE{archive}"><:spipclear:archives:></a>
+	<BOUCLE_recent(ARTICLES){lang_select=non}{par date}{inverse}{0,1}{mois_relatif<0}>
+	 - <a href="[(#SELF|parametre_url{archives,[(#DATE|affdate{Y-m})]})]">[(#DATE|nom_mois)][ (#DATE|annee)] &#187;</a>
+	</BOUCLE_recent>
+</p>
+
+<div id="content-info">
+	<h2>[(#ENV{archives}|nom_mois)][ (#ENV{archives}|annee)]</h2>
+</div>
+
+<div class="content-inner">
+	[(#INCLURE{fond=listes/articles,archives,env,ajax})]
+</div>
