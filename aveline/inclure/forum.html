@@ -11,7 +11,7 @@ la premiere fois qu'un message est poste (cf. inc/invalideur). ]
 		<BOUCLE_decompte(FORUMS) {id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?} {plat} />[<h2 class="h2">(#TOTAL_BOUCLE|>{0}|?{#TOTAL_BOUCLE,''})
 		[(#TOTAL_BOUCLE|=={1}|?{<:message:>,<:messages_forum:>})]</h2>]<//B_decompte>
 	</BOUCLE_test_titre>
-		[(#ENV{afficher_titre_noisette}|oui)[<h2 class="h2">(#GET{titre})</h2>]]
+		<BOUCLE_decompte2(FORUMS) {id_rubrique ?}{id_article ?}{id_breve ?}{id_syndic ?} {plat} {0,1}>[(#ENV{afficher_titre_noisette}|oui)[<h2 class="h2">(#GET{titre})</h2>]]</BOUCLE_decompte2>
 	<//B_test_titre>
 	
 	<BOUCLE_test_thread_complet(CONDITION){si (#GET{thread}|=={complet})}>
@@ -79,9 +79,9 @@ la premiere fois qu'un message est poste (cf. inc/invalideur). ]
 ]
 
 [(#ENV{formulaire_reponse_volant}|oui)
-<div class="comment-form">
+[<div class="comment-form">
 		<h2 class="h2">[(#ENV{repondre_objet}|_T)]</h2>
-		[(#FORMULAIRE_FORUM)]
+		(#FORMULAIRE_FORUM)
 	</div>
 	#INCLURE{fond=inclure/js_formulaire_reponse_volant}
-]
+]]
