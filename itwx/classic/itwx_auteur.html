@@ -1,0 +1,123 @@
+<BOUCLE_principale(AUTEURS) {id_auteur}>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#NOM|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#BIO|couper{150}|attribut_html)" />]
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;"/>
+<INCLURE{fond=itwx_inc-head}>
+
+[(#REM) Favicon personnalisee a partir du logo (si filtres d'image) ]
+[(#MODELE{favicon}{favicon=#LOGO_AUTEUR})]
+
+[(#REM) Lien vers le flux RSS des articles de l'auteur ]
+<link rel="alternate" type="application/rss+xml" title="[(#NOM|textebrut)]" href="[(#URL_PAGE{backend}|parametre_url{id_auteur,#ID_AUTEUR})]" />
+</head>
+
+<body class="page_auteur">
+<div id="page">
+
+[(#REM) Entete de la page + titre du site ]
+	
+<INCLURE{fond=itwx_inc-entete}>
+
+[(#REM) BARRE D'OUTILS ]
+
+<div id="lign-nav"><a href="javascript:history.back()">&nbsp;&nbsp;&lt;&lt;&nbsp;Retour</a></div>
+
+	[(#REM) Contenu principal : affichage de l'auteur ]
+    <div id="conteneur">
+    <div id="contenu">
+    
+
+		<div class="vcard">[(#REM) microformat vcard]
+        <div class="cartouche">
+            [(#LOGO_AUTEUR|image_reduire{200,200})]
+            <h1 class="#EDIT{qui} fn">#NOM</h1>
+        </div>
+
+        [<div class="#EDIT{bio} texte note">(#BIO)</div>]
+        [<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="url org spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+		</div>[(#REM) / vcard]
+
+        [(#REM) Articles de l'auteur ]
+        <B_articles>
+        <div class="menu articles">
+            #ANCRE_PAGINATION
+            <div id="group"><:articles_auteur:> (#GRAND_TOTAL)</div>
+            <ul>
+                <BOUCLE_articles(ARTICLES) {id_auteur} {par popularite}{inverse} {pagination 10}>
+                <li><a href="#URL_PAGE{itwx_article,id_article=#ID_ARTICLE}"><h3>#TITRE</h3></a></li>
+                </BOUCLE_articles>
+            </ul>
+            [<div id="pagin">(#PAGINATION)</div>]
+        </div>
+        </B_articles>
+
+<div id="group"></div>
+        #FORMULAIRE_ECRIRE_AUTEUR
+
+        [<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+<br>
+</div><!--#contenu-->
+
+        [(#REM) Autres auteurs ]
+        <B_auteurs>
+        <div class="menu articles">
+            #ANCRE_PAGINATION
+            <div id="group"><:info_auteurs:></div>
+            <ul>
+                <BOUCLE_auteurs(AUTEURS) {par hasard} {pagination 20}>
+                <li><a href="#URL_PAGE{itwx_auteur,id_auteur=#ID_AUTEUR}"[ class="(#EXPOSE)"]><h3>[(#NOM|couper{80})]</h3></a></li>
+                </BOUCLE_auteurs>
+            </ul>
+            [<div id="pagin">(#PAGINATION)</div>]
+        </div>
+        </B_auteurs>
+	
+<div id="group"><:rubriques:></div>
+<br>
+</div><!--#conteneur-->
+
+    
+<INCLURE{fond=itwx_inc-rubriques}{id_rubrique}>
+    
+<div id="group"></div>
+
+
+<div id="conteneur">
+
+<div id="ticket">
+
+<div class="menu articles">
+	
+<ul>
+			
+<a href="#URL_PAGE{itwx_recherche}"><h4>Rechercher</h4></a>
+		
+</ul>
+
+</div>
+	
+<div class="menu articles">
+	
+<ul>
+		
+<a rel="start home" href="#URL_PAGE{itwx_sommaire}"><h4>Accueil</h4></a>
+
+					
+</ul>
+
+</div>
+
+</div>
+
+</div><!--#conteneur-->
+
+</div><!--#page-->
+</body>
+</html>
+</BOUCLE_principale>

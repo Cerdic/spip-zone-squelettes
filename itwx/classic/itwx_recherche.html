@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+
+<head>
+
+<title><:resultats_recherche:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+
+<INCLURE{fond=itwx_inc-head}>
+
+<meta name="robots" content="none" />
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Cache-Control" content="public"/>
+
+</head>
+
+
+
+<body class="page_recherche pas_surlignable">
+
+<div id="page">
+
+	
+
+[(#REM) Entete de la page + titre du site ]
+	
+<INCLURE{fond=itwx_inc-entete}>
+
+	
+
+
+[(#REM) BARRE D'OUTILS ]
+
+<div id="lign-nav"><a href="javascript:history.back()">&nbsp;&nbsp;&lt;&lt;&nbsp;Retour</a></div>
+
+#FORMULAIRE_ITWX_RECHERCHE
+
+   
+<br><br>
+
+[(#REM) Resultats de la recherche ]
+
+[<div class="cartouche">
+			
+<h1><:resultats_recherche:></h1>
+			
+<p class="soustitre">&#171;&nbsp;(#RECHERCHE)&nbsp;&#187;</p>
+		
+</div>]
+		
+	
+
+[(#REM) Articles trouves ]
+		
+<B_articles>
+	
+<div id="group"><:articles:> (#GRAND_TOTAL)</div>	
+<div class="menu articles">
+					
+<div class="liste-cadre">	
+#ANCRE_PAGINATION
+	
+<ul>
+				
+<BOUCLE_articles(ARTICLES) {recherche} {par points}{inverse} {pagination}>
+				
+<li><a href="#URL_PAGE{itwx_article,id_article=#ID_ARTICLE}"><h3>#TITRE</h3></a></li>
+				
+</BOUCLE_articles>
+			
+</ul>
+			
+[<div id="pagin">(#PAGINATION)</div>]
+ 	
+</div>	
+</div>
+		
+</B_articles>
+		
+	
+
+
+[(#REM) Rubriques trouvees ]
+		
+<B_rubriques>
+	
+<div id="group"><:rubriques:> (#GRAND_TOTAL)</div>	
+<div class="menu articles">
+			
+#ANCRE_PAGINATION
+					
+<ul>
+				
+<BOUCLE_rubriques(RUBRIQUES) {recherche} {par points}{inverse} {pagination 5}>
+				
+<li><a href="#URL_PAGE{itwx_rubrique,id_rubrique=#ID_RUBRIQUE}"><h3>#TITRE</h3></a></li>
+				
+</BOUCLE_rubriques>
+			
+</ul>
+			
+[<div id="pagin">(#PAGINATION)</div>]
+		
+</div>
+		
+</B_rubriques>
+		
+	
+
+	
+[(#REM) Breves trouvees ]
+		
+<B_breves>
+	
+<div id="group"><:breves:> (#GRAND_TOTAL)</div>		
+<div class="menu articles">
+			
+#ANCRE_PAGINATION
+					
+<ul>
+				
+<BOUCLE_breves(BREVES) {recherche} {par points}{inverse} {pagination 5}>
+				
+<li><a href="#URL_PAGE{itwx_breve,id_breve=#ID_BREVE}"><h3>#TITRE</h3></a></li>
+				
+</BOUCLE_breves>
+			
+</ul>
+			
+[<div id="pagin">(#PAGINATION)</div>]
+			
+</div>
+		
+</B_breves>
+		
+	
+
+
+[(#REM) Sites web trouves ]
+		
+<B_sites>
+
+<div id="group"><:sites_web:> (#GRAND_TOTAL)</div>
+<div class="menu articles">
+			
+#ANCRE_PAGINATION
+						
+<ul>
+				
+<BOUCLE_sites(SITES) {recherche} {par points}{inverse} {pagination 5}>
+				
+<li><a href="#URL_PAGE{itwx_site,id_syndic=#ID_SYNDIC}"><h3>#NOM_SITE</h3></a></li>
+				
+</BOUCLE_sites>
+			
+</ul>
+			
+[<p class="pagination">(#PAGINATION)</p>]
+		
+</div>
+		
+</B_sites>
+		
+	
+
+
+<div id="group"></div>
+
+	
+<div id="conteneur">
+
+<div id="ticket">
+	
+<div class="menu articles">
+	
+<ul>
+		
+<a rel="start home" href="#URL_PAGE{itwx_sommaire}"><h4>Accueil</h4></a>
+
+					
+</ul>
+
+</div>
+
+
+<div class="menu articles">
+	
+<ul>
+		
+<a rel="start home" href="#URL_PAGE{itwx_plan}"><h4><:plan_site:></h4></a>
+
+					
+</ul>
+
+</div>
+
+
+</div>
+
+</div><!--#conteneur-->
+
+  	
+
+
+</div><!--#page-->
+
+</body>
+
+</html>

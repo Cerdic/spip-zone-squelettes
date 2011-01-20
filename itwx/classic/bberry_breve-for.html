@@ -1,0 +1,202 @@
+<BOUCLE_principale(BREVES) {id_breve}>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+
+<head>
+
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+
+[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;"/>
+<INCLURE{fond=bberry_inc-head}>
+
+[(#REM) Lien vers le flux RSS des breves ]
+
+<link rel="alternate" type="application/rss+xml" title="<:dernieres_breves:>" href="#URL_PAGE{backend-breves}" />
+
+</head>
+
+
+
+<body class="page_breve">
+
+<div id="page">
+
+	
+
+[(#REM) Entete de la page + titre du site ]
+	
+<INCLURE{fond=bberry_inc-entete}>
+
+
+
+[(#REM) BARRE D'OUTILS ]
+	
+<div id="lign-som">
+	<div id="lign-droite">
+		<div id="centre">[(#TITRE|couper{80})]</div>
+		<div id="droite"><div class="button"> 
+		<a href="#URL_PAGE{bberry_recherche}"><:spip:info_rechercher:></a>
+
+		</div></div>
+	</div>
+	<div id="back"><div id="gauche">
+	<a href="javascript:history.back()">Retour</a>
+	</div></div>
+</div>
+	
+
+[(#REM) Contenu : corps de la breve ]
+    
+<div id="conteneur">
+    
+<div id="contenu">
+
+        
+
+
+<div class="cartouche">
+            
+[(#LOGO_BREVE|image_reduire{180,150})]
+      
+<h1 class="#EDIT{titre}">#TITRE</h1>
+            
+<p><small><abbr class="published" title="[(#DATE|date_iso)]">[(#DATE|nom_jour) ][(#DATE|affdate)]</abbr></small></p>
+        
+  <br class="nettoyeur" />   
+
+</div>
+        
+        
+
+
+[<div class="#EDIT{texte} texte">(#TEXTE|image_reduire{320,450})</div>]
+        
+[<p class="lien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+        
+[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+        
+        
+
+<br><br>
+
+[(#REM) Forum de la breve ]
+
+<div id="grouplist">Répondre</div>
+    
+<div id="ticket"><div class="menu articles">
+	
+<ul>
+
+<a href="#URL_PAGE{bberry_forum-bre,id_breve=#ID_BREVE}" rel="noindex nofollow"><h4><b>Poster un message</b></h4></a>
+</ul>
+
+</div>
+
+</div>
+
+<a href="#forum" name="forum" id="forum"></a>
+		
+
+<INCLURE{fond=bberry_inc-forum-bre-for}{id_breve}/>
+	
+<br><br>
+</div><!--#contenu-->
+		
+
+[(#REM) Breves dans la meme rubrique ]
+        
+<B_breves>
+              
+<div id="group"><:autres_breves:></div>
+  
+<div class="menu articles">
+          
+<ul>
+                
+<BOUCLE_breves(BREVES) {id_rubrique} {par date}{inverse} {0,10}>
+                
+<li><a href="#URL_PAGE{bberry_breve,id_breve=#ID_BREVE}"[ class="(#EXPOSE)"]><h3>#TITRE[ &ndash; (#DATE|affdate_jourcourt)]</h3></a></li>
+                
+</BOUCLE_breves>
+            
+</ul>
+        
+</div>
+        
+</B_breves>
+
+ 
+
+
+[(#REM) Menu de navigation mots-cles ]
+  
+<div id="group"><:mots_clefs:></div>
+
+<div id="ticket">
+    
+   
+<B_mots>
+        
+<div class="menu articles">
+                   
+<ul>
+            
+<BOUCLE_mots(MOTS) {id_breve} {par titre}>
+                 
+<li><a href="#URL_PAGE{bberry_mot,id_mot=#ID_MOT}" rel="tag"><h4>#TITRE</h4></a></li>
+            
+</BOUCLE_mots>
+            
+</ul>
+        
+</div>
+        
+</B_mots>
+        
+   
+</div>       
+
+
+
+<div id="group"><:rubriques:></div> 
+<br>
+</div><!--#conteneur-->
+
+    
+<INCLURE{fond=bberry_inc-rubriques}{id_rubrique}>  
+
+<div id="group"></div>
+
+	
+<div id="conteneur">
+
+<div id="ticket">
+	
+<div class="menu articles">
+	
+<ul>
+		
+<a rel="start home" href="#URL_PAGE{bberry_sommaire}"><h4>Accueil</h4></a>
+
+					
+</ul>
+
+</div>
+
+</div>
+
+</div><!--#conteneur-->
+
+ 
+
+</div><!--#page-->
+
+</body>
+
+</html>
+
+</BOUCLE_principale>

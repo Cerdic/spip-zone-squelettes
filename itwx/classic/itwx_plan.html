@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+
+<head>
+
+<title><:plan_site:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|attribut_html)" />]
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Cache-Control" content="public"/>
+
+<INCLURE{fond=itwx_inc-head}>
+
+<meta name="robots" content="none" />
+
+</head>
+
+
+
+<body class="page_plan">
+
+<div id="page">
+	
+	
+
+[(#REM) Entete de la page + titre du site ]
+	
+<INCLURE{fond=itwx_inc-entete}>
+
+	
+
+[(#REM) BARRE D'OUTILS ]
+
+<div id="lign-nav"><a href="javascript:history.back()">&nbsp;&nbsp;&lt;&lt;&nbsp;Retour</a></div>
+ 
+ 
+<BOUCLE_secteurs(RUBRIQUES) {racine} {par titre}>
+        
+        
+
+<div id="group"><a href="#URL_PAGE{itwx_rubrique,id_rubrique=#ID_RUBRIQUE}"><font color="#FFFFFF">#TITRE</font></a></div>
+        
+        
+
+[(#REM) Articles et sous-rubriques ]
+        
+<B_articles_racine>
+        
+<h3><:articles:></h3>
+        
+<ul>
+            
+<BOUCLE_articles_racine(ARTICLES) {id_rubrique} {par titre}>
+            
+<li><a href="#URL_PAGE{itwx_article,id_article=#ID_ARTICLE}">#TITRE</a></li>
+            
+</BOUCLE_articles_racine>
+        
+</ul>
+        
+</B_articles_racine>
+        
+        
+
+<B_rubriques>
+        
+<ul>
+            
+<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par titre}>
+            
+<li>
+                
+<strong><a href="#URL_PAGE{itwx_rubrique,id_rubrique=#ID_RUBRIQUE}">#TITRE</a></strong>
+                
+                
+
+<B_articles>
+                
+<ul>
+                    
+<BOUCLE_articles(ARTICLES) {id_rubrique} {par titre}>
+                    
+<li><a href="#URL_PAGE{itwx_article,id_article=#ID_ARTICLE}">#TITRE</a></li>
+                    
+</BOUCLE_articles>
+                
+</ul>
+                
+</B_articles>
+                
+                
+
+<BOUCLE_sous_rubriques(BOUCLE_rubriques)></BOUCLE_sous_rubriques>
+            
+</li>
+            
+</BOUCLE_rubriques>
+        
+</ul>
+        
+</B_rubriques>
+        
+        
+
+[(#REM) Breves ]
+        
+<B_breves>
+        
+<h3><:breves:></h3>
+        
+<ul>
+            
+<BOUCLE_breves(BREVES) {id_rubrique} {par date}{inverse}>
+            
+<li><a href="#URL_PAGE{itwx_breve,id_breve=#ID_BREVE}">#TITRE</a></li>
+            
+</BOUCLE_breves>
+        
+</ul>
+        
+</B_breves>
+        
+        
+
+[(#REM) Sur le Web ]
+        
+<B_sites>
+        
+<h3><:sites_web:></h3>
+        
+<ul>
+            
+<BOUCLE_sites(SITES) {id_secteur} {par nom_site}>
+			
+<li><a href="#URL_PAGE{itwx_site,id_syndic=#ID_SYNDIC}">#NOM_SITE</a></li>
+			
+</BOUCLE_sites>
+        
+</ul>
+        
+</B_sites>
+        
+        
+
+</BOUCLE_secteurs>
+
+	
+    
+<div id="group"></div>
+
+<div id="conteneur">
+
+<div id="ticket">
+
+<div class="menu articles">
+	
+<ul>
+			
+<a href="#URL_PAGE{itwx_recherche}"><h4>Rechercher</h4></a>
+		
+</ul>
+
+</div>
+	
+<div class="menu articles">
+	
+<ul>
+		
+<a rel="start home" href="#URL_PAGE{itwx_sommaire}"><h4>Accueil</h4></a>
+
+					
+</ul>
+
+</div>
+
+</div>
+
+</div><!--#conteneur-->
+
+    
+
+
+</div><!--#page-->
+
+</body>
+
+</html>

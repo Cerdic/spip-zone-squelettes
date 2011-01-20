@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+
+<head>
+
+<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+
+[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;"/>
+<INCLURE{fond=iphone_inc-head}>
+
+</head>
+
+
+	
+<body class="page_article">
+
+<div id="page">
+
+[(#REM) Entete de la page + titre du site ]
+	
+<INCLURE{fond=iphone_inc-entete}>
+
+
+[(#REM) BARRE D'OUTILS ]
+	
+<div id="lign-som">
+	<div id="lign-droite">
+		<div id="centre">Prochainement</div>	
+		<a href="#URL_PAGE{iphone_recherche}">
+		<div id="droite"><:spip:info_rechercher:></div></a>
+	</div>
+	
+	<a href="javascript:history.back()"><div id="gauche">
+	Retour</div></a>
+	
+</div>
+
+
+
+[(#REM) AGENDA - liste d'articles liés ]
+
+<B_art_list>
+
+<div class="menu articles">
+
+<ul>				
+			<BOUCLE_art_list(EVENEMENTS){par date}{age_fin<0}>
+				<li><a href="#URL_PAGE{iphone_evenement,id_evenement=#ID_EVENEMENT}">
+					[(#DATE_DEBUT|jour)] [(#DATE_DEBUT|nom_mois|couper{3})] - 	
+						
+						<abbr class="published"[ title="(#DATE|date_iso)"]>[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
+					  
+					[(#HORAIRE|=={oui}|?{
+					   [(#REM) memes heures ?]
+					     [(#DATE_DEBUT|=={#DATE_FIN}|?{<small>&agrave
+					[(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)]</small>,''})]
+					   [(#REM) pas memes heures ?]
+					     [(#DATE_DEBUT|!={#DATE_FIN}|?{<small>
+					[(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] &agrave;
+					[(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)]</small>,''})]
+					,''})]
+					,
+					  du [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+					[(#HORAIRE|=={oui}|?{<small>&agrave; partir de
+					  [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)]</small>,''})] au
+					[(#DATE_FIN|nom_jour)]
+					  [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{<small>jusqu'&agrave;
+					  [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)]</small>,''})]  })]</abbr>
+						<h3>[(#TITRE|supprimer_numero)]</h3></a></li>
+			</BOUCLE_art_list>
+
+</ul>
+
+</div>
+
+<div id="group"></div>
+
+
+<div id="conteneur">
+
+<div id="ticket">
+	
+<div class="menu articles">
+	
+<ul>
+		
+<a rel="start home" href="#URL_PAGE{iphone_sommaire}"><h4>Accueil</h4></a>
+
+					
+</ul>
+
+</div>
+
+</div>
+
+</div><!--#conteneur-->
+
+ 	
+
+</div><!--#page-->
+
+
+</body>
+
+
+</html>

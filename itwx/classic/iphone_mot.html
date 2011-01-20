@@ -1,0 +1,193 @@
+<BOUCLE_principale(MOTS) {id_mot}>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+
+<head>
+
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF|couper{150}|attribut_html)" />]
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;"/>
+<INCLURE{fond=iphone_inc-head}>
+
+[(#REM) Lien vers le flux RSS des articles du mot cle ]
+
+<link rel="alternate" type="application/rss+xml"[ title="(#TITRE|attribut_html)"] href="[(#URL_PAGE{backend}|parametre_url{id_mot,#ID_MOT})]" />
+
+</head>
+
+
+
+<body class="page_mot">
+
+<div id="page">
+
+[(#REM) Entete de la page + titre du site ]
+	
+<INCLURE{fond=iphone_inc-entete}>
+	
+[(#REM) BARRE D'OUTILS ]
+	
+<div id="lign-som">
+	<div id="lign-droite">
+		<div id="centre">
+		[(#TITRE|couper{80})]
+		</div>
+		<a href="#URL_PAGE{iphone_recherche}">
+		<div id="droite"><:spip:info_rechercher:></div></a>
+	</div>
+	<a href="javascript:history.back()"><div id="gauche">
+	Retour</div></a>
+</div>
+
+<div id="conteneur">
+ 
+
+[(#REM) Breves liees au mot-cle ]
+        
+<B_breves>
+        
+<div id="group"><:breves:></div>		
+<div class="menu articles">
+                                
+<ul>
+                 
+<BOUCLE_breves(BREVES) {id_mot} {par titre}>
+                
+<li><a href="#URL_PAGE{iphone_breve,id_breve=#ID_BREVE}"><h3>#TITRE[ &ndash; (#DATE|affdate_jourcourt)]</h3></a></li>
+				
+</BOUCLE_breves>
+           
+</ul>
+               
+</div>
+        
+</B_breves>
+
+    
+   
+
+[(#REM) Articles lies au mot-cle ]
+        
+<B_articles>
+        
+<div id="group"><:articles:></div>
+<div class="menu articles">
+            
+#ANCRE_PAGINATION
+                       
+<ul>
+                
+<BOUCLE_articles(ARTICLES) {id_mot} {par popularite}{inverse} {pagination 10}>
+                
+<li>
+                                       
+<a href="#URL_PAGE{iphone_article,id_article=#ID_ARTICLE}"><h3>#TITRE[ &ndash; (#DATE|affdate_jourcourt)]</h3></a>
+                                   
+</li>
+                
+</BOUCLE_articles>
+            
+</ul>
+            
+[<div id="pagin">(#PAGINATION)</div>]
+        
+</div>
+        
+</B_articles>
+
+
+    
+      
+
+[(#REM) Rubriques liees au mot-cle ]
+        
+<B_rubriques>
+
+<div id="group"><:rubriques:></div>	
+<div class="menu articles">
+	
+<ul>
+              
+<BOUCLE_rubriques(RUBRIQUES) {id_mot} {par titre}>
+                
+<li>
+			
+<a href="#URL_PAGE{iphone_rubrique,id_rubrique=#ID_RUBRIQUE}"><h3>#TITRE</h3></a>
+
+					
+</li>
+	
+</BOUCLE_rubriques>
+
+	
+</ul>
+
+</div>
+
+</B_rubriques>       
+
+
+    
+
+[(#REM) Sites web lies au mot-cle ]
+        
+<B_sites>
+        
+<div class="menu">
+   
+#ANCRE_PAGINATION
+          
+<div id="group"><:sites_web:></div>
+            
+<ul>
+                
+<BOUCLE_sites(SITES) {id_mot} {par nom_site} {pagination 10}>
+				
+<li><a href="#URL_PAGE{iphone_site,id_syndic=#ID_SYNDIC}"><h3>#NOM_SITE</h3></a></li>
+				
+</BOUCLE_sites>
+            
+</ul>
+        
+</div>
+ 
+[<div id="pagin">(#PAGINATION)</div>]
+        
+</B_sites>
+
+        
+
+
+
+
+<div id="group"></div>
+
+
+
+<div id="ticket"><div class="menu articles">
+	
+<ul>
+		
+<a rel="start home" href="#URL_PAGE{iphone_sommaire}"><h4>Accueil</h4></a>
+
+					
+</ul>
+
+</div></div>
+
+</div><!--#conteneur-->
+
+      
+
+
+
+</div><!--#page-->
+
+</body>
+
+</html>
+
+</BOUCLE_principale>

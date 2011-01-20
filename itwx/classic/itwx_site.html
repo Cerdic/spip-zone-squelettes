@@ -1,0 +1,222 @@
+[(#REM)
+	
+Un cache plus court, pour la boucle syndic_articles
+
+]#CACHE{3600}
+
+<BOUCLE_principale(SITES){id_syndic}>
+
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+
+[(#REM) Les sites n'ont pas de "lang" a proprement parler ; on se base donc sur la langue de la rubrique qui les contient. Les articles syndiques, eux, ont une "lang". ]
+
+<BOUCLE_lang(RUBRIQUES){id_rubrique}><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR"></BOUCLE_lang>
+
+<head>
+
+<title>[(#NOM_SITE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+
+[<meta name="description" content="(#DESCRIPTIF|couper{150}|textebrut)" />]
+
+<INCLURE{fond=itwx_inc-head}>
+
+[(#REM) On demande aux moteurs de ne pas indexer cette page pour ne pas passer devant le site qu'on reference.
+
+]<meta name="robots" content="noindex" />
+
+</head>
+
+
+
+<body class="page_site">
+
+<div id="page">
+
+	
+
+[(#REM) Entete de la page + titre du site ]
+	
+<INCLURE{fond=itwx_inc-entete}>
+
+	
+
+[(#REM) BARRE D'OUTILS ]
+
+<div id="lign-nav"><a href="javascript:history.back()">&nbsp;&nbsp;&lt;&lt;&nbsp;Retour</a></div>
+
+
+ [(#REM) Contenu principal : affichage du site ]
+    
+<div id="conteneur">
+    
+<div id="contenu">
+    
+       
+
+<div class="cartouche">
+            
+<a href="#URL_SITE">[(#LOGO_SITE|image_reduire{150,100})]</a>
+            
+<h1 class="#EDIT{nom_site}">#NOM_SITE</h1>
+        
+</div>
+
+        
+
+[<div class="#EDIT{descriptif} chapo">(#DESCRIPTIF)</div>]
+        
+[<a href="#URL_SITE" target="_blank"><p class="#EDIT{url_site} hyperlien">(#URL_SITE|couper{80})</p></a>]
+
+        
+
+</div><!--#contenu-->
+	
+
+[(#REM) Autres sites web ]
+        
+<B_sites>
+        
+<div id="group"><:sites_web:></div>		
+<div class="menu articles">
+             
+#ANCRE_PAGINATION
+                       
+<ul>
+                
+<BOUCLE_sites(SITES) {par nom_site} {pagination}>
+                
+<li><a href="#URL_PAGE{itwx_site,id_syndic=#ID_SYNDIC}"[ class="(#EXPOSE)"]><h3>#NOM_SITE</h3></a></li>
+                
+</BOUCLE_sites>
+          
+</ul>
+            
+[<div id="pagin">(#PAGINATION)</div>]
+       
+</div>
+        
+</B_sites>
+
+ 
+
+
+[(#REM) Articles issus de la syndication ]
+        
+<B_articles>
+        
+<div id="group"><:articles:></div>		
+<div class="menu articles">
+           
+#ANCRE_PAGINATION
+                       
+<ul>
+                
+<BOUCLE_articles(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {pagination 5}>
+                
+<li>
+                    
+<a href="#URL_PAGE{itwx_article,id_article=#ID_ARTICLE}" class="spip_out"><h3>#TITRE</h3></a>
+                    
+[<div class="enclosures">(#TAGS|afficher_enclosures)</div>]
+                    
+<small>[(#DATE|affdate_jourcourt)], <:par_auteur:> #MODELE{itwx_lesauteurs}[ &mdash; <em>(#TAGS|afficher_tags)</em>]</small>
+                    
+[<div class="introduction">(#DESCRIPTIF|image_reduire{300})</div>]
+                
+</li>
+                
+</BOUCLE_articles>
+            
+</ul>
+            
+[<div id="pagin">(#PAGINATION)</div>]
+         
+</div>
+        
+</B_articles>
+
+        
+
+[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+
+	
+
+
+[(#REM) Mots-cles ]
+  
+<B_mots>
+   
+<div id="group"><:mots_clefs:></div>
+   
+<div class="menu articles">
+                   
+<ul>
+            
+<BOUCLE_mots(MOTS) {id_article} {par titre}>
+                
+<li><a href="#URL_PAGE{itwx_mot,id_mot=#ID_MOT}" rel="tag"><h3>#TITRE</h3></a></li>
+            
+</BOUCLE_mots>
+            
+</ul>
+        
+</div>
+        
+</B_mots>
+        
+   
+  
+
+[(#REM) Navigation rubriques ]
+ 
+<div id="group"><:rubriques:></div> <br>
+</div><!--#conteneur-->
+
+    
+<INCLURE{fond=itwx_inc-rubriques}{id_rubrique}>  
+
+[(#REM) Infos ]
+ 
+<div id="group"></div>
+
+<div id="conteneur">
+
+<div id="ticket">
+
+<div class="menu articles">
+	
+<ul>
+			
+<a href="#URL_PAGE{itwx_recherche}"><h4>Rechercher</h4></a>
+		
+</ul>
+
+</div>
+	
+<div class="menu articles">
+	
+<ul>
+		
+<a rel="start home" href="#URL_PAGE{itwx_sommaire}"><h4>Accueil</h4></a>
+
+					
+</ul>
+
+</div>
+
+</div>
+
+</div><!--#conteneur-->
+
+  
+
+
+
+</div><!--#page-->
+
+</body>
+
+</html>
+
+</BOUCLE_principale>

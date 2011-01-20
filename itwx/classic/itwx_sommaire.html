@@ -1,0 +1,285 @@
+[(#REM)
+	
+Un cache plus court, pour la boucle syndic_articles
+
+]#CACHE{3600}
+
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;"/>
+
+<INCLURE{fond=itwx_inc-head}>
+
+
+</head>
+
+
+
+<body class="page_sommaire">
+
+<div id="page">
+
+	
+
+[(#REM) Entete de la page + titre du site ]
+	
+<INCLURE{fond=itwx_inc-entete}>
+
+[(#REM) BARRE D'OUTILS ]
+
+<div id="lign-nav"><div class="site-descript">#DESCRIPTIF_SITE_SPIP</div></div>
+
+
+
+
+[(#REM) Derniers articles ]
+
+<BOUCLE_article_invisible(ARTICLES) {titre_mot = invisible} {doublons}>
+</BOUCLE_article_invisible>
+
+<B_articles_recents>
+	
+<div id="group"><:derniers_articles:></div>		
+<div class="menu articles">
+		
+<ul>
+				
+<BOUCLE_articles_recents(ARTICLES) {par date}{inverse} {0,8}{doublons}>
+				
+
+<li class="hentry">
+					
+[(#LOGO_ARTICLE_RUBRIQUE{#URL_PAGE{itwx_article,id_article=#ID_ARTICLE}}|image_reduire{100,50})]
+					
+<h3 class="entry-title"><a href="#URL_PAGE{itwx_article,id_article=#ID_ARTICLE}" rel="bookmark">#TITRE</a></h3>
+					
+<div class="#EDIT{intro} introduction entry-content">#INTRODUCTION</div>
+				
+</li>
+	
+		
+</BOUCLE_articles_recents>
+			
+</ul>
+					
+</div>
+		
+</B_articles_recents>
+		
+	
+	
+[(#REM) Derniers commentaires ]
+			
+<B_forums_art>
+		
+<div id="grouplist"><:derniers_commentaires:></div>
+
+<div class="menu articles">
+						
+<ul>
+				
+<BOUCLE_forums_art(FORUMS) {id_breve=[1-1000]} {par date}{inverse} {0,5}>
+				
+<li><a href="#URL_PAGE{itwx_article-for,id_article=#ID_ARTICLE}#forum#ID_FORUM"[ title="(#TITRE|attribut_html|couper{80})"]><h3>[(#DATE|affdate_jourcourt) : ]#TITRE</h3></a></li>
+	
+</BOUCLE_forums_art>
+			
+</ul>
+		
+</div>
+		
+</B_forums_art>
+		
+
+
+
+
+
+[(#REM) Rubriques ]
+	
+<BOUCLE_menu_rubrique_invisible(RUBRIQUES) {racine} {titre_mot = invisible} {doublons}>
+</BOUCLE_menu_rubrique_invisible>	
+<B_rubriques>
+
+<div id="group"><:rubriques:></div>	
+<div class="menu articles">
+	
+<ul>
+
+<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}{doublons}>
+		
+<li>
+			
+<a href="#URL_PAGE{itwx_rubrique,id_rubrique=#ID_RUBRIQUE}"><h3>[(#TITRE|couper{80})]</h3></a>
+
+					
+</li>
+	
+</BOUCLE_rubriques>
+
+	
+</ul>
+
+</div>
+
+</B_rubriques>
+
+
+[(#REM) Breves ]
+
+		
+<B_breves>
+	
+<div id="group"><:dernieres_breves:></div>		
+<div class="menu articles">
+						
+<ul>
+				
+<BOUCLE_breves(BREVES) {par date}{inverse} {0,5}>
+				
+<li><a href="#URL_PAGE{itwx_breve,id_breve=#ID_BREVE}"><h3>#TITRE[ &ndash; (#DATE|affdate_jourcourt)]</h3></a></li>
+				
+</BOUCLE_breves>
+			
+</ul>
+		
+</div>
+	
+</B_breves>
+		
+		
+
+
+
+[(#REM) Sur le Web ]
+<B_syndic>
+<div id="group"><:nouveautes_web:></div>
+<div class="menu articles">
+<ul>
+<BOUCLE_syndic(SYNDIC_ARTICLES) {age<180} {par date}{inverse} {0,6}>
+<li><a href="#URL_SITE"[ title="(#NOM_SITE|attribut_html|couper{80})"] class="spip_out"><h3>[(#DATE|affdate_jourcourt) &ndash; ]#TITRE</h3></a></li>
+</BOUCLE_syndic>
+</ul>
+</div>
+</B_syndic>
+	
+	
+
+
+[(#REM) Informations ]
+	
+<div id="group">Infos</div>
+
+
+
+<div class="menu articles">
+	
+<ul>
+			
+<li><a href="#URL_PAGE{itwx_recherche}"><h3>Rechercher</h3></a></li>
+			
+[(#PLUGIN{agenda}|oui)<li><a href="#URL_PAGE{iphone_agenda}"><h3>Agenda</h3></a></li>]
+			
+<li><a href="#URL_PAGE{itwx_inc-mot}"><h3><:mots_clefs:></h3></a></li>
+
+		
+</ul>
+
+</div>
+
+	
+<div class="menu articles">
+	
+<ul>
+		
+<a rel="start home" href="#URL_PAGE{itwx_plan}"><h3><:plan_site:></h3></a>
+
+					
+</ul>
+
+</div>
+
+
+<div id="group"></div>
+
+<div class="hfeed" id="conteneur">
+	
+<div id="ticket">
+	
+[
+	
+(#SESSION{id_auteur}|
+?{' '})
+<div class="menu articles">
+	
+<ul>
+
+<a href="#URL_LOGOUT" rel="nofollow"><h4><:icone_deconnecter:></h4></a>
+	
+</ul>
+
+</div>
+
+]
+
+[(#SESSION{id_auteur}|
+?{'',' '})
+<div class="menu articles">
+	
+<ul>
+
+<a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]" rel="nofollow" class='login_modal'><h4><:lien_connecter:></h4></a>
+</ul>
+
+</div>
+
+]
+
+[
+	
+(#AUTORISER{ecrire})
+<div class="menu articles">
+	
+<ul>
+
+<a href="#EVAL{_DIR_RESTREINT_ABS}"><h4><:espace_prive:></h4></a>
+</ul>
+
+</div>
+] 
+	
+
+<div class="menu articles">
+	
+<ul>
+		
+<a rel="start home" href="#URL_SITE_SPIP/"><h4>Version classique</h4></a>
+
+					
+</ul>
+
+</div>
+
+
+
+
+
+</div><!--#ticket-->
+	
+</div><!--#conteneur-->
+	
+	
+
+</div><!--#page-->
+
+</body>
+
+</html>

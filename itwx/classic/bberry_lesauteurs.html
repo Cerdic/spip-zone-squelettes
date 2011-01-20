@@ -1,0 +1,79 @@
+[(#REM)
+	
+Un cache plus court, pour la boucle syndic_articles
+]#CACHE{3600}
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;"/>
+
+<head>
+
+<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+
+[<meta name="description" content="(#INTRODUCTION{150}|textebrut)" />]
+
+<INCLURE{fond=bberry_inc-head}>
+
+[(#REM) Lien vers le flux RSS des articles la rubrique ]
+
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_auteur,#ID_AUTEUR})]" />
+
+</head>
+
+
+<body class="page_sommaire">
+
+<div id="page">
+
+	
+
+[(#REM) Entete de la page + titre du site ]
+	
+<INCLURE{fond=bberry_inc-entete}>
+
+	
+[(#REM) BARRE D'OUTILS ]
+	
+<div id="lign-som">
+	<div id="lign-droite">
+		<div id="centre">
+		<strong id="nom_site_spip">Les auteurs</strong>
+		</div>
+		<a href="#URL_PAGE{bberry_recherche}">
+		<div id="droite"><:spip:info_rechercher:></div></a>
+	</div>
+		<a href="javascript:history.back()"><div id="gauche">
+	Retour</div></a>
+</div>
+
+
+<div class="menu articles">
+		
+<ul>
+
+	<BOUCLE_AUTEUR_GENERALE(AUTEURS) {par hasard} {0,20}>
+
+				
+	<li><a href="#URL_PAGE{bberry_auteur,id_auteur=#ID_AUTEUR}"><h3 class="#EDIT{qui} titre">#NOM</h3></a></li>
+	
+
+	</BOUCLE_AUTEUR_GENERALE>
+
+</ul>
+
+</div>
+
+
+
+
+
+</div><!--#page-->
+
+</body>
+
+</html>
+

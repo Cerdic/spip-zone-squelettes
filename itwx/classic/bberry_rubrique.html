@@ -1,0 +1,339 @@
+[(#REM)
+	
+Un cache plus court, pour la boucle syndic_articles
+
+]#CACHE{3600}
+
+<BOUCLE_principale(RUBRIQUES) {id_rubrique}>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+
+<head>
+
+<title>[(#TITRE|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+
+[<meta name="description" content="(#INTRODUCTION{150}|textebrut)" />]
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;"/>
+<INCLURE{fond=bberry_inc-head}>
+
+[(#REM) Lien vers le flux RSS des articles la rubrique ]
+
+<link rel="alternate" type="application/rss+xml" title="<:syndiquer_rubrique:>" href="[(#URL_PAGE{backend}|parametre_url{id_rubrique,#ID_RUBRIQUE})]" />
+
+</head>
+
+
+
+<body class="page_rubrique">
+
+<div id="page">
+
+	
+
+[(#REM) Entete de la page + titre du site ]
+	
+<INCLURE{fond=bberry_inc-entete}>
+
+
+
+[(#REM) BARRE D'OUTILS ]
+	
+<div id="lign-som">
+	<div id="lign-droite">
+		<div id="centre">
+		[(#TITRE|couper{80})]
+		</div>
+		<div id="droite"><div class="button"> 
+		<a href="#URL_PAGE{bberry_recherche}"><:spip:info_rechercher:></a>
+
+		</div></div>
+	</div>
+	<div id="back"><div id="gauche">
+	<a href="javascript:history.back()">Retour</a>
+	</div></div>
+</div>
+
+
+<div class="cartouche">
+            
+[(#LOGO_RUBRIQUE|image_reduire{150,150})]
+            
+<h1 class="#EDIT{titre}">#TITRE</h1>
+            
+[<p><small><:dernier_ajout:> : (#DATE|affdate_jourcourt).</small></p>]
+        
+</div>
+
+        
+
+[<div class="#EDIT{texte} chapo">(#TEXTE)</div>]
+
+      
+<br class="nettoyeur" />  
+
+[(#REM) Articles de la rubrique ]
+        
+<B_articles>
+        
+<div id="group"><:articles:></div>
+<div class="menu articles">
+            
+#ANCRE_PAGINATION
+                       
+<ul>
+                
+<BOUCLE_articles(ARTICLES) {id_rubrique} {par date}{inverse} {pagination}>
+                
+<li>
+                                       
+<a href="#URL_PAGE{bberry_article,id_article=#ID_ARTICLE}"><h3>#TITRE</h3></a>
+                                   
+</li>
+                
+</BOUCLE_articles>
+            
+</ul>
+            
+[<div id="pagin">(#PAGINATION)</div>]
+        
+</div>
+        
+</B_articles>
+
+        
+
+
+
+
+[(#REM) Rubriques ]
+        
+<B_rubriques>
+
+<div id="group"><:sous_rubriques:></div> 
+<div class="menu articles">
+     
+<ul>
+
+<BOUCLE_rubriques(RUBRIQUES) {id_parent} {par num titre, titre} {doublons}>
+		
+<li>
+			
+<a href="#URL_PAGE{bberry_rubrique,id_rubrique=#ID_RUBRIQUE}"[ class="(#EXPOSE)"]><h3>[(#TITRE|couper{80})]</h3></a>
+
+			
+     
+     
+</B_articles>
+
+   
+</B_test_expose_article>
+
+<B_sous_rubriques>
+			
+<ul>
+				
+<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}>#EXPOSE{' '}</BOUCLE_test_expose>
+					
+<li><a href="#URL_PAGE{bberry_rubrique,id_rubrique=#ID_RUBRIQUE}"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
+				
+</B_test_expose></BOUCLE_sous_rubriques>
+			
+</ul>
+			
+</B_sous_rubriques>
+
+		
+
+</li>
+	
+</BOUCLE_rubriques>
+
+	
+</ul>
+
+</div>
+
+</B_rubriques>        
+
+
+[(#REM) Documents joints a la rubrique ]
+        
+<B_documents_joints>
+        
+<div class="menu articles">
+	
+<div id="group"><:titre_documents_joints:></div>
+            
+<ul>
+                
+<BOUCLE_documents_joints(DOCUMENTS) {id_rubrique} {mode=document} {par num titre, date} {doublons}>
+                
+		<li><a href="#URL_DOCUMENT" type="#MIME_TYPE"><h3>
+			[(#TITRE|sinon{<:info_document:>})]
+			<small>(<span>#TYPE_DOCUMENT[ &ndash; (#TAILLE|taille_en_octets)]</span>)</small>
+			#DESCRIPTIF
+		</h3></a></li>
+                
+</BOUCLE_documents_joints>
+            
+</ul>
+        
+</div>
+        
+</B_documents_joints>
+
+        
+
+[(#REM) Breves du secteur ]
+        
+<B_breves>
+        
+<div id="group"><:breves:></div>		
+<div class="menu articles">
+            
+#ANCRE_PAGINATION
+                      
+<ul>
+                
+<BOUCLE_breves(BREVES) {id_rubrique} {par date}{inverse} {pagination 5}>
+                
+<li><a href="#URL_PAGE{bberry_breve,id_breve=#ID_BREVE}"><h3>#TITRE[ &ndash; (#DATE|affdate_jourcourt)]</h3></a></li>
+				
+</BOUCLE_breves>
+           
+</ul>
+            
+[<div id="pagin">(#PAGINATION)</div>]
+       
+</div>
+        
+</B_breves>
+
+        
+
+[(#REM) Sites de la rubrique ]
+        
+<B_sites>
+        
+<div id="group"><:sur_web:></div>		
+<div class="menu articles">
+   
+#ANCRE_PAGINATION
+          
+<ul>
+                
+<BOUCLE_sites(SITES) {id_rubrique} {par nom_site} {pagination 10}>
+                
+<li>
+					
+<a href="#URL_PAGE{bberry_site,id_syndic=#ID_SYNDIC}"><h3>#NOM_SITE</h3></a>
+                    
+<B_syndic>
+                    
+<ul>
+                        
+<BOUCLE_syndic(SYNDIC_ARTICLES) {id_syndic} {age<180} {par date}{inverse} {0,3}>
+                        
+<li><a href="#URL_SITE" class="spip_out"><h3>#TITRE</h3></a></li>
+                        
+</BOUCLE_syndic>
+                    
+</ul>
+                    
+</B_syndic>
+                
+</li>
+                
+</BOUCLE_sites>
+            
+</ul>
+  
+[<div id="pagin">(#PAGINATION)</div>]
+        
+</div>
+        
+</B_sites>
+
+  
+
+[(#REM) Proposer un site ]
+        
+#FORMULAIRE_SITE
+
+        
+
+[<div class="notes"><h2><:info_notes:></h2>(#NOTES)</div>]
+
+	
+
+[(#REM) Contenu principal : contenu de la rubrique ]
+    
+<div id="conteneur">
+
+[(#REM) Menu de navigation mots-cles ]
+  
+<B_mots>
+   
+<div id="group"><:mots_clefs:></div>
+   
+<div class="menu articles">
+                   
+<ul>
+            
+<BOUCLE_mots(MOTS) {id_article} {par titre}>
+                
+<li><a href="#URL_PAGE{bberry_mot,id_mot=#ID_MOT}" rel="tag"><h3>#TITRE</h3></a></li>
+            
+</BOUCLE_mots>
+            
+</ul>
+        
+</div>
+        
+</B_mots>
+</div><!--#conteneur-->
+    
+
+[(#REM) Menu de navigation par rubriques ]
+<div id="conteneur"> 
+<div id="group"><:rubriques:></div>
+<br>
+</div><!--#conteneur-->
+
+   
+  
+<INCLURE{fond=bberry_inc-rubriques}{id_rubrique}>
+
+<div id="group"></div>
+
+
+<div class="hfeed" id="conteneur">
+  	
+<div id="ticket">
+	
+<div class="menu aticles">
+	
+<ul>
+		
+<a rel="contents" href="#URL_PAGE{bberry_sommaire}"><h4>ACCUEIL</h4></a>
+
+					
+</ul>
+
+</div>
+		
+
+</div><!--#conteneur-->
+	
+		
+
+</div><!--#page-->
+
+</body>
+
+</html>
+
+</BOUCLE_principale>

@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title>[(#NOM|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#BIO|couper{150}|attribut_html)" />]
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;"/>
+<INCLURE{fond=bberry_inc-head}>
+
+[(#REM) Favicon personnalisee a partir du logo (si filtres d'image) ]
+[(#MODELE{favicon}{favicon=#LOGO_AUTEUR})]
+
+[(#REM) Lien vers le flux RSS des articles de l'auteur ]
+<link rel="alternate" type="application/rss+xml" title="[(#NOM|textebrut)]" href="[(#URL_PAGE{backend}|parametre_url{id_auteur,#ID_AUTEUR})]" />
+</head>
+
+<body class="page_auteur">
+<div id="page">
+
+[(#REM) Entete de la page + titre du site ]
+	
+<INCLURE{fond=bberry_inc-entete}>
+
+[(#REM) BARRE D'OUTILS ]
+	
+<div id="lign-som">
+	<div id="lign-droite">
+		<div id="centre">
+		#NOM
+		</div>
+		<a href="#URL_PAGE{bberry_recherche}">
+		<div id="droite"><:spip:info_rechercher:></div></a>
+	</div>
+	<a href="javascript:history.back()"><div id="gauche">
+	Retour</div></a>
+</div>
+	
+	[(#REM) Contenu principal : affichage de l'auteur ]
+    <div id="conteneur">
+    <div id="contenu">
+		
+	<BOUCLE_evenement(EVENEMENTS) {id_evenement}>
+		<div id="even[(#ID_EVENEMENT)]" class="panel"[ title="(#TITRE|supprimer_numero|attribut_html|couper{80})"]  selected="true">
+
+			<div class="cartouche">
+				[(#LOGO_ARTICLE||image_reduire{300,200})]
+				<h1>[(#TITRE|supprimer_numero)]</h1>
+				<p><span class="day">[(#DATE_DEBUT|jour)]</span><span class="month">[(#DATE_DEBUT|nom_mois|couper{3})].</span>	
+						
+						<abbr class="published"[ title="(#DATE|date_iso)"]>[(#DATE_DEBUT|jour|=={[(#DATE_FIN|jour)]}|?{
+					  
+					[(#HORAIRE|=={oui}|?{
+					   [(#REM) memes heures ?]
+					     [(#DATE_DEBUT|=={#DATE_FIN}|?{<small>&agrave
+					[(#DATE_DEBUT|heures)]h[(#DATE_DEBUT|minutes)]</small>,''})]
+					   [(#REM) pas memes heures ?]
+					     [(#DATE_DEBUT|!={#DATE_FIN}|?{<small>
+					[(#DATE_DEBUT|heures)]:[(#DATE_DEBUT|minutes)] &agrave;
+					[(#DATE_FIN|heures)]:[(#DATE_FIN|minutes)]</small>,''})]
+					,''})]
+					,
+					  du [(#DATE_DEBUT|nom_jour)] [(#DATE_DEBUT|affdate)]
+					[(#HORAIRE|=={oui}|?{<small>&agrave; partir de
+					  [(#DATE_DEBUT|heures)]H[(#DATE_DEBUT|minutes)]</small>,''})] au
+					[(#DATE_FIN|nom_jour)]
+					  [(#DATE_FIN|affdate)] [(#HORAIRE|=={oui}|?{<small>jusqu'&agrave;
+					  [(#DATE_FIN|heures)]H[(#DATE_FIN|minutes)]</small>,''})]  })]</abbr></p>
+
+			</div><!--.cartouche-->
+			
+			[<div class="chapo">Adresse : (#ADRESSE)</div>]
+			<br class="nettoyeur" />
+			
+			[<div class="texte">(#DESCRIPTIF)</div>]
+
+<div id="group"></div>
+
+<div id="ticket">
+		
+<div class="menu articles">
+	
+<ul>
+		
+<a rel="start home" href="#URL_PAGE{bberry_article,id_article=#ID_ARTICLE}"><h4>Lire l'article</h4></a>
+
+					
+</ul>
+
+</div></div>
+			     
+</BOUCLE_evenement>
+
+</div>
+
+</div><!--#conteneur-->
+
+</div><!--#page-->
+</body>
+</html>
