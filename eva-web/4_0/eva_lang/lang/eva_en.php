@@ -113,14 +113,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mentions' => 'Notes',
 	'mentions_adresse' => 'Address:',
 	'mentions_directeur_publication' => 'Publishing director:',
-	'mentions_droit_auteur_texte' => '<NEW><p>This site is governed by French and international legislation relating to copyright and intellectual property.</p>
- <p>All reproduction rights are reserved.</p>',
+	'mentions_droit_auteur_texte' => '<NEW><p>This site is subject to French and international law in respect of copyrights and intellectual property.</p>
+ <p>All rights to reproduction are reserved.</p>',
 	'mentions_droit_auteur_titre' => 'Copyright:',
 	'mentions_legales' => 'Legal notes',
-	'mentions_liens_hypertexte_texte' => '<NEW><p>This site contains links to other sites which are not under the editorial control of the manager of this site.</p>
- <p>As a result, the publishing director shall not be held responsible for the content of any such sites that the site visitor may access from this site.</p>
- <p>It is formally forbidden to collect and use information form this site for commercial purposes.</p>
- <p>This ban notably extends, without being exhaustive, to any editorial contents featured on the site, to the layout or presentation of the pages, to the software modules used to generate the site, logos, images, photos, and graphics of any nature whatsoever.</p>',
+	'mentions_liens_hypertexte_texte' => '<NEW><p>This site contains hypertext links providing access to sites which have not been authored by the manager of this site.</p>
+ <p>Because of this, the publishing director shall not be held responsible for any content to such sites that the visitor might thereby access.</p>
+ <p>It is formally prohibited to collect and use the information on the site for commercial purposes.</p>
+ <p>This prohibition notably covers, without being exhaustive, any editorial component featured on the site, the presentation of the pages, the software required for use of the site, and all logos, images, photos and graphics of any nature whatsoever.</p>',
 	'mentions_liens_hypertexte_titre' => 'Hypertext links:',
 	'mentions_liens_texte' => '<p>With the exception of sites distributing information and/or content of an illegal and/or political, religious, pornographic or xenophobic nature, you may create a hypertext link on your own Site to this site.</p>
  <p>The placement of a hyperlink does not in any way authorise the reproduction of any elements of the Site or the presentation of any third party site elements of the Site in the form of a Frame or similar system.</p>
@@ -129,25 +129,25 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'mentions_liens_titre' => 'Hypertext links to this site:',
 	'mentions_logo_cddp74' => 'Official site of the CDDP74',
 	'mentions_logo_citic' => 'Information centre for IT and communications technologies in the Haute-Savoie (ex CRI74)',
-	'mentions_logo_edres' => '<NEW>Haute-Savoie Education Network, departmental project',
+	'mentions_logo_edres' => '<NEW>Haute-Savoie Educational Network, departmental project',
 	'mentions_logo_eva' => 'Official site of the eva-web project',
 	'mentions_logo_spip' => 'Official SPIP site',
 	'mentions_logo_spipedu' => 'Spip-edu, site for the educational community',
 	'mentions_lois' => 'In compliance with the French laws on digital security (LCEN) dated June 21st  2004, these are the contact details for the editor and host provider of this site:',
 	'mentions_prestataire' => 'Provisioner of direct and permanent storage:',
 	'mentions_qualite' => 'Quality:',
-	'mentions_qui_texte' => '<NEW><p>The origins of <a href="http://eva-web.edres74.net/eva/">EVA</a>
- arise from an Institution Internet portal project, installed on 
+	'mentions_qui_texte' => '<NEW><p>Orginally <a href="http://eva-web.edres74.net/eva/">EVA</a>
+ corresponds to an Establishment Intranet portal project installed on 
  the <a href="http://www.pingoo.org/">PingOO</a> servers.</p>
- <p>This version, slightly modified, enables a school or institution to create
- a collaborative web site with various publication models 
- (article, photo album, slideshow ...) </p>
+ <p>This version, slightly modified, enables a school or educational establishment to 
+ provision a collaborative web site by offering various different publication templates 
+ (article, photo album, slide show ...) </p>
  <p>For further information about the <a href="http://eva-web.edres74.net">EVA-web</a> project, please refer to the 
-   <a href="http://eva-web.edres74.net">http://eva-web.edres74.net</a></p>site.
- <p><a href="http://eva-web.edres74.net">EVA-web</a> is a free software distributed under the General Public License 
+   <a href="http://eva-web.edres74.net">http://eva-web.edres74.net</a> site.</p>
+ <p><a href="http://eva-web.edres74.net">EVA-web</a> is a fre software distributed under the General Public Licence 
  <a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html">GNU (GNU General Public License or GPL)</a>
- designed to work based on the  <a href="http://www.spip.net/">SPIP</a> application.</p>
- <div style="text-align:center;"><a rel="licence" target="_blank" href="http://www.gnu.org/licenses/gpl.html"><img alt="GNU GPL license" style="border-width:0" width="80" height="100" src="http://www.fsf.org/graphics/philosophical-gnu-sm.jpg"/></a></div>',
+ designed to operate on top of the  <a href="http://www.spip.net/">SPIP</a> application framework.</p>
+ <div style="text-align:center;"><a rel="licence" target="_blank" href="http://www.april.org/gnu/gpl_french.html"><img alt="Licence GNU GPL" style="border-width:0" width="80" height="100" src="http://www.fsf.org/graphics/philosophical-gnu-sm.jpg"/></a></div>',
 	'mentions_qui_titre' => 'EVA, for whom, by whom?',
 	'mentions_responsable_edition' => 'Editorial manager:',
 	'mentions_site' => 'Internet Site of: ',
