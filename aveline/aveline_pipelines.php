@@ -30,16 +30,4 @@ function aveline_recuperer_fond($flux){
 	return $flux;
 }
 
-/**
- * Pipeline noizetier_config_export pour ajouter le nom du squelette et sa version_base au YAML d'export du noizetier
- *
- * @param array $config
- * @return array
- */
-
- function aveline_noizetier_config_export($config){
-	$config['squelette'] = 'aveline';
-	$config['aveline_base_version'] = $GLOBALS['meta']['aveline_base_version'];
-	return $config;
- }
 ?>
