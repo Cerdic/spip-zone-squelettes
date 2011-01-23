@@ -1,0 +1,37 @@
+[(#SET{selection, #ENV{selection}|sinon{limite}})]
+[(#SET{tri, #ENV{tri}|sinon{date_heure}})]
+[(#SET{senstri, #ENV{senstri}|sinon{1}})]
+[(#SET{tri_num, #GET{tri}|=={titre}|?{titre,''}})]
+
+[(#SET{pas_pagination, #ENV{pas_pagination}|sinon{5}})]
+[(#SET{limite, #ENV{limite}|sinon{10}})]
+[(#GET{selection}|=={tout}|oui)#SET{pas_pagination,1000000}]
+[(#GET{selection}|=={limite}|oui)#SET{pas_pagination,#GET{limite}}]
+[(#SET{position_pagination, #ENV{position_pagination}|sinon{fin}})]
+[(#SET{position_pagination_debut,#GET{selection}|!={pagination}|ou{#GET{position_pagination}|=={fin}}|?{'',on}})]
+[(#SET{position_pagination_fin,#GET{selection}|!={pagination}|ou{#GET{position_pagination}|=={debut}}|?{'',on}})]
+
+[(#SET{style_liste, #ENV{style_liste}|sinon{liste}})]
+[(#SET{afficher_titre_liste, #ENV{afficher_titre_liste}|is_null|non|?{#ENV{afficher_titre_liste},'on'}})]
+[(#SET{titre_liste, #ENV{titre_liste}|sinon{public:rubriques}})]
+[(#SET{titre,[(#GET{titre_liste}|=={titre_perso}|?{[(#ENV**{titre_liste_perso}|typo)],[(#GET{titre_liste}|_T)]})]})]
+[(#SET{style_pagination, #ENV{style_pagination}|sinon{''}})]
+
+<B_liste_rubriques>
+<div class="liste rubriques">
+	#ANCRE_PAGINATION
+	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})</h2>]]
+	[(#GET{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
+	<ul class="liste-items">
+	<BOUCLE_liste_rubriques(RUBRIQUES) {racine} {par num #GET{tri_num}}{inverse #GET{senstri}}{par #GET{tri}}{inverse #GET{senstri}}{pagination #GET{pas_pagination}}>
+	[(#GET{style_liste}|=={liste}|oui)
+		#INCLURE{fond=inclure/rubrique-liste,id_rubrique=#ID_RUBRIQUE,env}
+	]
+	[(#GET{style_liste}|=={resume}|oui)
+		#INCLURE{fond=inclure/rubrique-resume,id_rubrique=#ID_RUBRIQUE,env}
+	]
+	</BOUCLE_liste_rubriques>
+	</ul>
+	[(#GET{position_pagination_fin}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
+</div>
+</B_liste_rubriques>

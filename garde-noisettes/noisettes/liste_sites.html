@@ -1,0 +1,49 @@
+[(#SET{selection, #ENV{selection}|sinon{limite}})]
+[(#SET{tri, #ENV{tri}|sinon{nom_site}})]
+[(#SET{senstri, #ENV{senstri}|sinon{1}})]
+[(#SET{tri_num, #GET{tri}|=={nom_site}|?{nom_site,''}})]
+
+[(#SET{pas_pagination, #ENV{pas_pagination}|sinon{5}})]
+[(#SET{limite, #ENV{limite}|sinon{10}})]
+[(#GET{selection}|=={tout}|oui)#SET{pas_pagination,1000000}]
+[(#GET{selection}|=={limite}|oui)#SET{pas_pagination,#GET{limite}}]
+[(#SET{position_pagination, #ENV{position_pagination}|sinon{fin}})]
+[(#SET{position_pagination_debut,#GET{selection}|!={pagination}|ou{#GET{position_pagination}|=={fin}}|?{'',on}})]
+[(#SET{position_pagination_fin,#GET{selection}|!={pagination}|ou{#GET{position_pagination}|=={debut}}|?{'',on}})]
+
+[(#SET{exclure_site_en_cours, #ENV{exclure_site_en_cours}|is_null|non|?{#ENV{exclure_site_en_cours},''}})]
+[(#SET{style_liste, #ENV{style_liste}|sinon{liste}})]
+[(#SET{afficher_titre_liste, #ENV{afficher_titre_liste}|is_null|non|?{#ENV{afficher_titre_liste},'on'}})]
+[(#SET{titre_liste, #ENV{titre_liste}|sinon{public:sites_web}})]
+[(#SET{titre,[(#GET{titre_liste}|=={titre_perso}|?{[(#ENV**{titre_liste_perso}|typo)],[(#GET{titre_liste}|_T)]})]})]
+[(#SET{style_pagination, #ENV{style_pagination}|sinon{''}})]
+
+[(#SET{liste_sites, #ENV{liste_sites}|sinon{tous}})]
+[(#SET{id_rubrique, [^(#ENV{rubrique_specifique}|picker_selected{rubrique}|table_valeur{0})$]})]
+[(#SET{id_rubrique, #GET{liste_sites}|=={tous}|?{'',#GET{id_rubrique}}})]
+[(#SET{id_rubrique, [(#GET{liste_sites}|=={meme_rubrique}|?{[^(#ENV{id_rubrique})$],#GET{id_rubrique}})]})]
+
+[(#REM) Si on exclu le site en cours ]
+<BOUCLE_test_exclure_site_en_cours(CONDITION){si (#GET{exclure_site_en_cours}|oui)}>
+	<BOUCLE_site_en_cours_exclu(SITES) {id_syndic} {doublons site_en_cours}>
+	</BOUCLE_site_en_cours_exclu>
+</BOUCLE_test_exclure_site_en_cours>
+
+<B_liste_sites>
+<div class="liste sites">
+	#ANCRE_PAGINATION
+	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})</h2>]]
+	[(#GET{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
+	<ul class="liste-items">
+	<BOUCLE_liste_sites(SITES) {id_rubrique == #GET{id_rubrique}|sinon{.*}} {par num #GET{tri_num}}{inverse #GET{senstri}}{par #GET{tri}}{inverse #GET{senstri}}{doublons site_en_cours}{pagination #GET{pas_pagination}}>
+	[(#GET{style_liste}|=={liste}|oui)
+		#INCLURE{fond=inclure/site-liste,id_syndic=#ID_SYNDIC,id_syndic_expose=#ENV{id_syndic},env}
+	]
+	[(#GET{style_liste}|=={resume}|oui)
+		#INCLURE{fond=inclure/site-resume,id_syndic=#ID_SYNDIC,id_syndic_expose=#ENV{id_syndic},env}
+	]
+	</BOUCLE_liste_sites>
+	</ul>
+	[(#GET{position_pagination_fin}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
+</div>
+</B_liste_sites>

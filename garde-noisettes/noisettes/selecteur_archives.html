@@ -1,0 +1,63 @@
+[(#SET{titre_noisette, #ENV{titre_noisette}|sinon{aveline:notez_cet_article}})]
+[(#SET{titre,[(#GET{titre_noisette}|=={titre_perso}|?{[(#ENV**{titre_noisette_perso}|propre)],[(#GET{titre_noisette}|_T)]})]})]
+
+[(#SET{liste_articles, #ENV{liste_articles}|sinon{tous}})]
+[(#SET{id_rubrique, [^(#ENV{rubrique_specifique}|picker_selected{rubrique}|table_valeur{0})$]})]
+[(#SET{id_rubrique, #GET{liste_articles}|=={tous}|?{'',#GET{id_rubrique}}})]
+[(#SET{id_rubrique, [(#GET{liste_articles}|=={meme_rubrique}|?{[^(#ENV{id_rubrique})$],#GET{id_rubrique}})]})]
+[(#SET{langue_choisie, [(#ENV{restreindre_langue}|oui|?{[^(#ENV{lang})$],''})]})]
+
+[(#SET{pas_selecteur_archives,#ENV{pas_selecteur_archives}|sinon{annee}})]
+
+<BOUCLE_select(CONDITION){si (#ENV{style_selecteur}|=={select})}>
+<B_articles_select>
+[(#ENV{afficher_titre_noisette}|oui)[<h2 class="h2">(#GET{titre})</h2>]]
+<form action="#SELF">
+	[(#SELF|parametre_url{archives, ''}|form_hidden)]
+		<select name="archives" class="select" id="archives" onchange="submit()">
+			<option value=""><:gn_public:voir_tous:></option>
+		<BOUCLE_articles_select(ARTICLES){id_rubrique == #GET{id_rubrique}|sinon{.*}} {lang == #GET{langue_choisie}|sinon{.*}} {!par date}{id_auteur ?}>
+			[(#GET{pas_selecteur_archives}|=={mois}|non)
+				[<option value="[(#DATE|annee)]" [(#DATE|annee|=={#ENV{archives}}|oui)selected="selected"]>(#DATE|annee|unique{archives_annee})
+					[(#ENV{compteur_articles_selecteur_archives}|oui) 
+						[(#INCLURE{fond=inclure/selecteur_archives-nb_articles,id_rubrique=#GET{id_rubrique},langue_choisie=#GET{langue_choisie},id_auteur,archives=[(#DATE|annee)]})] ]
+				</option>]
+			]
+			[(#GET{pas_selecteur_archives}|=={annee}|non)
+				[<option value="[(#DATE|affdate{'Y-m'})]" [(#DATE|affdate{'Y-m'}|=={#ENV{archives}}|oui)selected="selected"]>(#DATE|affdate{'Y-m'}|unique{archives_mois}|affdate_mois_annee)
+				[(#ENV{compteur_articles_selecteur_archives}|oui) 
+					[(#INCLURE{fond=inclure/selecteur_archives-nb_articles,id_rubrique=#GET{id_rubrique},langue_choisie=#GET{langue_choisie},id_auteur,archives=[(#DATE|affdate{'Y-m'})]})] ]
+				</option>]
+			]
+		</BOUCLE_articles_select>
+		</select>
+</form>
+</B_articles_select>
+</BOUCLE_select>
+
+<B_articles_liste>
+<div class="liste archives">
+	[(#ENV{afficher_titre_noisette}|oui)[<h2 class="h2">(#GET{titre})</h2>]]
+	<ul class="liste-items">
+		<BOUCLE_articles_liste(ARTICLES){id_rubrique == #GET{id_rubrique}|sinon{.*}} {lang == #GET{langue_choisie}|sinon{.*}} {!par date}{id_auteur ?}>
+		[(#GET{pas_selecteur_archives}|=={mois}|non)
+			[<li class="item"><a href="[(#SELF|parametre_url{archives,[(#DATE|annee)]})]">[(#DATE|annee|=={#ENV{archives}}|oui)<strong class="on">]
+				(#DATE|annee|unique{archives_annee})
+				[(#ENV{compteur_articles_selecteur_archives}|oui) 
+					[(#INCLURE{fond=inclure/selecteur_archives-nb_articles,id_rubrique=#GET{id_rubrique},langue_choisie=#GET{langue_choisie},id_auteur,archives=[(#DATE|annee)]})] ]
+			[(#DATE|annee|=={#ENV{archives}}|oui)</strong>]</a></li>]
+		]
+		[(#GET{pas_selecteur_archives}|=={annee}|non)
+			[<li class="item"><a href="[(#SELF|parametre_url{archives,[(#DATE|affdate{'Y-m'})]})]">[(#DATE|affdate{'Y-m'}|=={#ENV{archives}}|oui)<strong class="on">]
+				(#DATE|affdate{'Y-m'}|unique{archives_mois}|affdate_mois_annee)
+				[(#ENV{compteur_articles_selecteur_archives}|oui) 
+					[(#INCLURE{fond=inclure/selecteur_archives-nb_articles,id_rubrique=#GET{id_rubrique},langue_choisie=#GET{langue_choisie},id_auteur,archives=[(#DATE|affdate{'Y-m'})]})] ]
+			[(#DATE|affdate{'Y-m'}|=={#ENV{archives}}|oui)</strong>]</a></li>]
+		]
+		</BOUCLE_articles_liste>
+	</ul>
+</div>
+</B_articles_liste>
+
+<//B_select>
+
