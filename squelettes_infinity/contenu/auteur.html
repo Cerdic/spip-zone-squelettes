@@ -1,0 +1,32 @@
+<BOUCLE_contenu_auteur(AUTEURS){id_auteur}>
+    
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:info_auteurs:>[ &gt; <strong class="on">(#NOM|couper{80})</strong>]</p>
+
+<div class="contenu-principal">
+	<div class="vcard">[(#REM) microformat vcard]
+	<div class="cartouche">
+		[(#LOGO_AUTEUR||image_reduire{200,200})]
+		<h1 class="h1 #EDIT{qui} fn">#NOM</h1>
+	</div>
+
+	[<div class="#EDIT{bio} texte note">(#BIO)</div>]
+	[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="url spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+	</div>[(#REM) / vcard]
+
+	[(#REM) Articles de l'auteur ]
+<B_articles>#ANCRE_PAGINATION
+		<h2 class="h2"><:articles_auteur:> (#GRAND_TOTAL)</h2>
+		<BOUCLE_articles(ARTICLES) {!par popularite} {id_auteur} {pagination 8}>
+[(#INCLURE{fond=inclure/article-vignette,id_article})]
+		</BOUCLE_articles>
+	[<div class="pagination">(#PAGINATION{page})</div>]
+</B_articles>
+
+</div>
+
+#FORMULAIRE_ECRIRE_AUTEUR
+
+[<div class="notes"><h2 class="h2"><:info_notes:></h2>(#NOTES)</div>]
+
+</BOUCLE_contenu_auteur>
