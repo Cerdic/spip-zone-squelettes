@@ -114,4 +114,67 @@ function balise_ME($p){
 	return $p;
 }
 
+// #GN_PAGINATION
+// S'appelle dans une noisette ainsi [<p class="pagination">(#GN_PAGINATION{'debut'})</p>] ou [<p class="pagination">(#GN_PAGINATION{'fin'})</p>]
+// Le YAML de la noisette doit contenir - 'inclure:inc-yaml/pagination.yaml'
+
+function balise_GN_PAGINATION_dist($p) {
+	$b = $p->nom_boucle ? $p->nom_boucle : $p->descr['id_mere'];
+
+	$pos = interprete_argument_balise(1,$p);
+	
+	$connect = $p->boucles[$b]->sql_serveur;
+	$pas = $p->boucles[$b]->total_parties;
+	$f_pagination = chercher_filtre('pagination');
+	$type = $p->boucles[$b]->modificateur['debut_nom'];
+	$modif = ($type[0]!=="'") ? "'debut'.$type"
+	  : ("'debut" .substr($type,1));
+	
+	if ($pos=="'debut'")
+		$p->code = "(\$Pile[0]['selection']=='pagination' && (\$Pile[0]['position_pagination']=='debut' || \$Pile[0]['position_pagination']=='deux')) ? ".sprintf(CODE_PAGINATION, $f_pagination,$b, $type, $modif, $pas, true, "\$Pile[0]['style_pagination']", _q($connect), '')." : ''";
+	else
+		$p->code = "(\$Pile[0]['selection']=='pagination' && (\$Pile[0]['position_pagination']=='fin' || \$Pile[0]['position_pagination']=='deux')) ? ".sprintf(CODE_PAGINATION, $f_pagination,$b, $type, $modif, $pas, true, "\$Pile[0]['style_pagination']", _q($connect), '')." : ''";
+	return $p;
+}
+
+// Critère gn_pagination
+// Le YAML de la noisette doit contenir - 'inclure:inc-yaml/pagination.yaml'
+// Ajouter {gn_pagination} à la boucle
+
+function critere_gn_pagination_dist($idb, &$boucles, $crit) {
+	$boucle = &$boucles[$idb];
+	// definition de la taille de la page
+	$pas = "((\$Pile[0]['selection']=='pagination') ? \$Pile[0]['pas_pagination'] : ((\$Pile[0]['selection']=='limite') ? \$Pile[0]['limite'] : 1000000))";
+	
+	$type = !isset($crit->param[0][1]) ? "'$idb'" : calculer_liste(array($crit->param[0][1]), array(), $boucles, $boucle->id_parent);
+	$debut = ($type[0]!=="'") ? "'debut'.$type" 
+	  : ("'debut" .substr($type,1));
+
+	$boucle->modificateur['debut_nom'] = $type;
+	$partie =
+		 // tester si le numero de page demande est de la forme '@yyy'
+		 'isset($Pile[0]['.$debut.']) ? $Pile[0]['.$debut.'] : _request('.$debut.");\n"
+		."\tif(substr(\$debut_boucle,0,1)=='@'){\n"
+		."\t\t".'$debut_boucle = $Pile[0]['. $debut.'] = quete_debut_pagination(\''.$boucle->primary.'\',$Pile[0][\'@'.$boucle->primary.'\'] = substr($debut_boucle,1),'.$pas.',$result,'._q($boucle->sql_serveur).');'."\n"
+		."\t\t".'if (!sql_seek($result,0,'._q($boucle->sql_serveur).")){\n"
+		."\t\t\t".'@sql_free($result,'._q($boucle->sql_serveur).");\n"
+		."\t\t\t".'$result = calculer_select($select, $from, $type, $where, $join, $groupby, $orderby, $limit, $having, $table, $id, $connect);'."\n"
+		."\t\t}\n"
+		."\t}\n"
+		."\t".'$debut_boucle = intval($debut_boucle)';
+
+
+	$boucle->total_parties = $pas;
+	calculer_parties($boucles, $idb, $partie, 'p+');
+	// ajouter la cle primaire dans le select pour pouvoir gerer la pagination referencee par @id
+	// sauf si pas de primaire, ou si primaire composee
+	// dans ce cas, on ne sait pas gerer une pagination indirecte
+	$t = $boucle->id_table . '.' . $boucle->primary;
+	if ($boucle->primary
+		AND !preg_match('/[,\s]/',$boucle->primary)
+		AND !in_array($t, $boucle->select))
+	  $boucle->select[]= $t;
+}
+
+
 ?>
