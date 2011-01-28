@@ -210,7 +210,7 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		}
 		if (version_compare($current_version,'2.1.13','<')) {
 			spip_log("SoyezCreateurs maj 2.1.13", "soyezcreateurs_install");
-			create_mot("_ModePortail", "Goodies", "Affecter ce mot clef aux objets SPIP devant apparaitre dans la zone des Goodies (en bas du sommaire du mode portail, sur une colonne).", "S'applique aux articles uniquement.\n\nLe site prendra les 3 derniers articles ayant ce mot clef");
+			create_mot("_ModePortail", "Goodies", "Affecter ce mot clef aux objets SPIP devant apparaitre dans la zone des Goodies (en bas du sommaire du mode portail, sur une colonne).", "");
 			create_mot("_ModePortail", "ZoomSur", "Affecter ce mot clef à l'objet que vous voulez placer dans le cadre « Zoom sur » (facultatif).\n\nLe site prendra le dernier article ayant ce mot clef", "S'applique aux articles uniquement.");
 			ecrire_meta($nom_meta_base_version,$current_version='2.1.13','non');
 		}
