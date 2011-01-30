@@ -1,86 +1,38 @@
-[(#SET{selection, #ENV{selection}|sinon{limite}})]
-[(#SET{tri, #ENV{tri_perso}|sinon{#ENV{tri}|sinon{date}}})]
-[(#SET{tri, [(#GET{tri}|!={note}|ou{#PLUGIN{notation}}|?{#GET{tri},date})]})]
-[(#SET{senstri, #ENV{tri_perso}|oui|?{#ENV{senstri_perso}|sinon{0},#ENV{senstri}|sinon{1}}})]
-[(#SET{tri_num, #GET{tri}|=={titre}|?{titre,''}})]
+#SET{choix_tri, #ARRAY}
+#SET{choix_tri, #GET{choix_tri}|push{#ARRAY{affiche,#ENV{choix_tri_titre},tri,'num titre',sens,1,libelle,'gn_public:par_titre'}}}
+#SET{choix_tri, #GET{choix_tri}|push{#ARRAY{affiche,#ENV{choix_tri_popularite},tri,popularite,sens,-1,libelle,'gn_public:les_plus_populaires'}}}
+#SET{choix_tri, #GET{choix_tri}|push{#ARRAY{affiche,#ENV{choix_tri_date},tri,date,sens,-1,libelle,'gn_public:les_plus_recents'}}}
+#SET{choix_tri, #GET{choix_tri}|push{#ARRAY{affiche,#ENV{choix_tri_anciens},tri,date,sens,1,libelle,'gn_public:les_plus_anciens'}}}
+#SET{choix_tri, #GET{choix_tri}|push{#ARRAY{affiche,#ENV{choix_tri_date_modif},tri,date_modif,sens,-1,libelle,'gn_public:modifies_recemment'}}}
+#SET{choix_tri, #GET{choix_tri}|push{#ARRAY{affiche,#ENV{choix_tri_commentes},tri,compteur_forum,sens,-1,libelle,'gn_public:les_plus_commentes'}}}
+#SET{choix_tri, #GET{choix_tri}|push{#ARRAY{affiche,#ENV{choix_tri_visites},tri,visites,sens,-1,libelle,'gn_public:les_plus_visites'}}}
+#SET{choix_tri, #GET{choix_tri}|push{#ARRAY{affiche,#ENV{choix_tri_note},tri,moyenne,sens,-1,libelle,'gn_public:les_mieux_notes'}}}
 
-[(#SET{pas_pagination, #ENV{pas_pagination}|sinon{5}})]
-[(#SET{limite, #ENV{limite}|sinon{10}})]
-[(#GET{selection}|=={tout}|oui)#SET{pas_pagination,1000000}]
-[(#GET{selection}|=={limite}|oui)#SET{pas_pagination,#GET{limite}}]
-[(#SET{position_pagination, #ENV{position_pagination}|sinon{fin}})]
-[(#SET{position_pagination_debut,#GET{selection}|!={pagination}|ou{#GET{position_pagination}|=={fin}}|?{'',on}})]
-[(#SET{position_pagination_fin,#GET{selection}|!={pagination}|ou{#GET{position_pagination}|=={debut}}|?{'',on}})]
-
-[(#SET{position_choix_tri, #ENV{position_choix_tri}|sinon{debut}})]
-[(#SET{position_choix_tri_debut,#ENV{choix_tri}|non|ou{#GET{position_choix_tri}|=={fin}}|?{'',on}})]
-[(#SET{position_choix_tri_fin,#ENV{choix_tri}|non|ou{#GET{position_choix_tri}|=={debut}}|?{'',on}})]
-
-[(#SET{position_selecteur_archives, #ENV{position_selecteur_archives}|sinon{debut}})]
-[(#SET{position_selecteur_archives_debut,#ENV{afficher_selecteur_archives}|non|ou{#GET{position_selecteur_archives}|=={fin}}|?{'',on}})]
-[(#SET{position_selecteur_archives_fin,#ENV{afficher_selecteur_archives}|non|ou{#GET{position_selecteur_archives}|=={debut}}|?{'',on}})]
-
-[(#SET{style_liste, #ENV{style_liste}|sinon{liste}})]
-[(#SET{afficher_titre_liste, #ENV{afficher_titre_liste}|is_null|non|?{#ENV{afficher_titre_liste},'on'}})]
-[(#SET{titre_liste, #ENV{titre_liste}|sinon{public:articles_auteur}})]
-[(#SET{titre,[(#GET{titre_liste}|=={titre_perso}|?{[(#ENV**{titre_liste_perso}|typo)],[(#GET{titre_liste}|_T)]})]})]
-[(#SET{style_pagination, #ENV{style_pagination}|sinon{''}})]
-
-[(#SET{liste_articles, #ENV{liste_articles}|sinon{tous}})]
-
-<BOUCLE_tri_nbre_commentaires(CONDITION){si (#GET{tri}|=={nbre_commentaires})}>
-<B_liste_articles_tri_nbre_commentaires>
-<div class="liste articles">
-	#ANCRE_PAGINATION
-	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})[ ((#ENV{archives}|affdate_mois_annee|sinon{#ENV{archives}}))][(#ENV{afficher_nb_resultats}|oui)&#40;#GRAND_TOTAL&#41;]</h2>]]
-	
-	[(#GET{position_selecteur_archives_debut}|oui)#INCLURE{fond=inclure/liste_articles-selecteur_archives,archives,pas_selecteur_archives,texte_devant_selecteur_archives,id_auteur,compteur_articles_selecteur_archives}]
-	[(#GET{position_choix_tri_debut}|oui)#INCLURE{fond=inclure/liste_articles-choix_tri,env,tri=#GET{tri},senstri=#GET{senstri}}]
-	[(#GET{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
-	<ul class="liste-items">
-	<BOUCLE_liste_articles_tri_nbre_commentaires(ARTICLES) {id_auteur}{compteur_publie forum}{par compteur_forum}{inverse #GET{senstri}}{archives ?}{pagination #GET{pas_pagination}}>
-	[(#GET{style_liste}|=={liste}|oui)
-		#INCLURE{fond=inclure/article-liste,id_article=#ID_ARTICLE,id_article_expose=#ENV{id_article},env}
-	]
-	[(#GET{style_liste}|=={resume}|oui)
-		#INCLURE{fond=inclure/article-resume,id_article=#ID_ARTICLE,id_article_expose=#ENV{id_article},env}
-	]
-	</BOUCLE_liste_articles_tri_nbre_commentaires>
-	</ul>
-	[(#GET{position_pagination_fin}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
-	[(#GET{position_choix_tri_fin}|oui)#INCLURE{fond=inclure/liste_articles-choix_tri,env,tri=#GET{tri},senstri=#GET{senstri}}]
-	[(#GET{position_selecteur_archives_fin}|oui)#INCLURE{fond=inclure/liste_articles-selecteur_archives,archives,pas_selecteur_archives,texte_devant_selecteur_archives,id_auteur,compteur_articles_selecteur_archives}]
-</div>
-</B_liste_articles_tri_nbre_commentaires>
-</BOUCLE_tri_nbre_commentaires>
-
-<BOUCLE_tri_note(CONDITION){si (#GET{tri}|=={note}|et{#PLUGIN{notation}})}>
-#INCLURE{fond=inclure/auteur_articles_note,env,afficher_titre_liste=#GET{afficher_titre_liste},titre=#GET{titre},position_choix_tri_debut=#GET{position_choix_tri_debut},tri=#GET{tri},senstri=#GET{senstri},position_pagination_debut=#GET{position_pagination_debut},style_pagination=#GET{style_pagination},pas_pagination=#GET{pas_pagination},style_liste=#GET{style_liste},position_pagination_fin=#GET{position_pagination_fin},position_choix_tri_fin=#GET{position_choix_tri_fin}}
-</BOUCLE_tri_note>
+[(#SET{titre,[(#ENV{titre_liste}|=={titre_perso}|?{[(#ENV**{titre_liste_perso}|typo)],[(#ENV{titre_liste}|_T)]})]})]
 
 <B_liste_articles>
 <div class="liste articles">
 	#ANCRE_PAGINATION
-	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})[ ((#ENV{archives}|affdate_mois_annee|sinon{#ENV{archives}}))][(#ENV{afficher_nb_resultats}|oui)&#40;#GRAND_TOTAL&#41;]</h2>]]
-	
-	[(#GET{position_selecteur_archives_debut}|oui)#INCLURE{fond=inclure/liste_articles-selecteur_archives,archives,pas_selecteur_archives,texte_devant_selecteur_archives,id_auteur,compteur_articles_selecteur_archives}]
-	[(#GET{position_choix_tri_debut}|oui)#INCLURE{fond=inclure/liste_articles-choix_tri,env,tri=#GET{tri},senstri=#GET{senstri}}]
-	[(#GET{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
+	[(#ENV{afficher_titre_liste}|oui)[<h2 class="h2">(#ENV{titre}) [((#ENV{archives}|affdate_mois_annee|sinon{#ENV{archives}}))]</h2>]]
+	[(#ENV{afficher_selecteur_archives}|et{#ENV{position_selecteur_archives}|!={fin}})
+		#INCLURE{fond=inclure/auteur-articles-selecteur_archives-#ENV{pas_selecteur_archives},env}
+	]
+	[<p class="pagination choix_tri">(#GN_TRI{#GET{choix_tri},'debut'})</p>]
+	[<p class="pagination">(#GN_PAGINATION{'debut'})</p>]
 	<ul class="liste-items">
-	<BOUCLE_liste_articles(ARTICLES) {id_auteur} {archives ?}{par num #GET{tri_num}}{inverse #GET{senstri}}{par #GET{tri}}{inverse #GET{senstri}}{pagination #GET{pas_pagination}}>
-	[(#GET{style_liste}|=={liste}|oui)
+	<BOUCLE_liste_articles(ARTICLES) {gn_branche}{compteur_publie forum}{notation}{tri #ENV{tri},#ENV{senstri}}{archives ?}{gn_pagination}{gn_lang}{id_auteur}>
+	[(#ENV{style_liste}|=={resume}|non)
 		#INCLURE{fond=inclure/article-liste,id_article=#ID_ARTICLE,id_article_expose=#ENV{id_article},env}
 	]
-	[(#GET{style_liste}|=={resume}|oui)
+	[(#ENV{style_liste}|=={resume}|oui)
 		#INCLURE{fond=inclure/article-resume,id_article=#ID_ARTICLE,id_article_expose=#ENV{id_article},env}
 	]
 	</BOUCLE_liste_articles>
 	</ul>
-	[(#GET{position_pagination_fin}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
-	[(#GET{position_choix_tri_fin}|oui)#INCLURE{fond=inclure/liste_articles-choix_tri,env,tri=#GET{tri},senstri=#GET{senstri}}]
-	[(#GET{position_selecteur_archives_fin}|oui)#INCLURE{fond=inclure/liste_articles-selecteur_archives,archives,pas_selecteur_archives,texte_devant_selecteur_archives,id_auteur,compteur_articles_selecteur_archives}]
+	[<p class="pagination">(#GN_PAGINATION{'fin'})</p>]
+	[<p class="pagination choix_tri">(#GN_TRI{#GET{choix_tri},'fin'})</p>]
+	[(#ENV{afficher_selecteur_archives}|et{#ENV{position_selecteur_archives}|!={debut}})
+		#INCLURE{fond=inclure/auteur-articles-selecteur_archives-#ENV{pas_selecteur_archives},env}
+	]
 </div>
 </B_liste_articles>
-
-<//B_tri_note>
-<//B_tri_nbre_commentaires>

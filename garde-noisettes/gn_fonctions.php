@@ -56,17 +56,19 @@ function critere_compteur_publie($idb, &$boucles, $crit){
  $id_table = $boucle->id_table . '.' . $boucle->primary;
  $boucle->select[]= 'COUNT('.$type_id.') AS compteur_'.$type;
  $boucle->from['compt']="spip_".$type;
- $boucle->where[]= array("'='", "'".$id_table."'", "'compt.".$boucle->primary."'");
- $boucle->where[]= array("'='", "'compt.statut'" , "'\"publie\"'"); 
+ $boucle->from_type['compt']= "LEFT";
+ // On passe par cette jointure pour que les articles avec 0 commentaires soient comptés
+ // Merci notation !
+ $boucle->join["compt"]= array("'$boucle->id_table'","'$boucle->primary'","'$boucle->primary'","'compt.statut='.sql_quote('publie')");
  $boucle->group[]=$id_table;
  if ($op)
      $boucle->having[]= array("'".$op."'", "'compteur_".$type."'",$op_val);
 } 
 function balise_COMPTEUR_FORUM_dist($p) {
-   $p->code = '$Pile[$SP][\'compteur_forum\']';
-   $p->interdire_scripts = false;
-   return $p;
-} 
+	$p->code = '$Pile[$SP][\'compteur_forum\']';
+	$p->interdire_scripts = false;
+	return $p;
+}
 
 // Critère archives pour afficher uniquement les objets d'une date donnée, par exemple en passant à l'URL ?archives=2010-02
 // Repris du plugin minical
@@ -174,6 +176,193 @@ function critere_gn_pagination_dist($idb, &$boucles, $crit) {
 		AND !preg_match('/[,\s]/',$boucle->primary)
 		AND !in_array($t, $boucle->select))
 	  $boucle->select[]= $t;
+}
+
+// Si le plugin notation n'est pas actif, on définit un critère {notation} ne faisant rien
+// pour ne pas avoir d'erreur avec les boucles appelant ce critère
+// on définit également moyenne (égal alors à id) 
+if (!defined('_DIR_PLUGIN_NOTATION')) {
+	function critere_notation_dist($idb, &$boucles, $crit){
+		$boucle = &$boucles[$idb];
+		$table = $boucle->id_table;
+		$id = $boucle->primary;
+		$boucle->select[]= "$table.$id AS moyenne";
+	}
+}
+
+
+// #GN_TRI
+// Le YAML de la noisette doit contenir - 'inclure:inc-yaml/choix_tri-objet.yaml'
+// S'utilise en conjonction avec le critère tri de Bonux
+// Le premier critère est un tableau de tableaux à 4 entrées :
+//     - affiche : qui permet d'indiquer si on affiche ou non cette option de tri ('on' ou vide)
+//     - tri : qui indique le champs de tri
+//     - sens : qui indique le sens de tri (1 : ascendant, -1 : descendant)
+//     - libelle : qui indique le libellé du lien
+
+function balise_GN_TRI_dist($p) {
+	$b = $p->nom_boucle ? $p->nom_boucle : $p->descr['id_mere'];
+
+	// s'il n'y a pas de nom de boucle, on ne peut pas trier
+	if ($b === '') {
+		erreur_squelette(
+			_T('zbug_champ_hors_boucle',
+				array('champ' => '#TRI')
+			), $p->id_boucle);
+		$p->code = "''";
+		return $p;
+	}
+	$boucle = $p->boucles[$b];
+
+	// s'il n'y a pas de tri_champ, c'est qu'on se trouve
+	// dans un boucle recursive ou qu'on a oublie le critere {tri}
+	if (!isset($boucle->modificateur['tri_champ'])) {
+		erreur_squelette(
+			_T('zbug_tri_sans_critere',
+				array('champ' => '#TRI')
+			), $p->id_boucle);
+		$p->code = "''";
+		return $p;
+	}
+
+	$suffixe = $boucle->modificateur['tri_nom'];
+	$choix = interprete_argument_balise(1,$p);
+	$pos = interprete_argument_balise(2,$p);
+	$tri_actuel = $boucle->modificateur['tri_champ'];
+	$sens_actuel = $boucle->modificateur['tri_sens'];
+	
+	$p->code = "calculer_balise_GN_TRI($suffixe,$choix,$pos,$tri_actuel,$sens_actuel,\$Pile[0]['choix_tri'],\$Pile[0]['position_choix_tri'])";
+	return $p;
+}
+
+function calculer_balise_GN_TRI($suffixe,$choix,$pos,$tri_actuel,$sens_actuel,$choix_tri,$position_choix_tri) {
+	// Doit-on afficher les tri perso ?
+	if (!$choix_tri || ($pos == 'debut' && $position_choix_tri == 'fin') || ($pos == 'fin' && $position_choix_tri == 'debut'))
+		return '';
+	
+	$retour = array();
+	foreach($choix as $c) {
+		// Cas où on demande la note moyenne et que notation n'est pas activé
+		if ($c['tri'] == 'moyenne' && !defined('_DIR_PLUGIN_NOTATION'))
+			$c['affiche'] = '';
+		if ($c['affiche']) {
+			$lien = parametre_url(self(),'tri'.$suffixe,$c['tri']);
+			$lien = parametre_url($lien,'sens'.$suffixe,$c['sens']);
+			$retour[] = lien_ou_expose($lien,_T($c['libelle']),$c['tri']==$tri_actuel && $c['sens']==$sens_actuel);
+		}
+	}
+	return implode(' | ',$retour);
+}
+
+// Critère gn_branche
+// Le YAML de la noisette doit contenir - 'inclure:inc-yaml/branche-objet.yaml'
+// Ajouter {gn_branche} à la boucle
+function critere_gn_branche_dist($idb, &$boucles, $crit) {
+	$boucle = &$boucles[$idb];
+	
+	$id_rubrique = calculer_argument_precedent($idb, 'id_rubrique', $boucles);
+	$id_secteur = calculer_argument_precedent($idb, 'id_secteur', $boucles);
+
+	//Trouver une jointure
+	$desc = $boucle->show;
+	//Seulement si necessaire
+	if (!array_key_exists('id_rubrique', $desc['field'])) {
+		$cle_rubrique = trouver_jointure_champ('id_rubrique', $boucle);
+	} else $cle_rubrique = $boucle->id_table;
+	if (!array_key_exists('id_secteur', $desc['field'])) {
+		$cle_secteur = trouver_jointure_champ('id_secteur', $boucle);
+	} else $cle_secteur = $boucle->id_table;
+	
+	$boucle->where[] = "gn_calcul_branche($id_rubrique, $id_secteur, $cle_rubrique, $cle_secteur, \$Pile[0]['branche'], \$Pile[0]['rubrique_specifique'], \$Pile[0]['branche_specifique'], \$Pile[0]['secteur_specifique'])";
+	
+}
+
+function gn_calcul_branche($id_rubrique,$id_secteur,$cle_rubrique,$cle_secteur,$branche,$rubrique_specifique,$branche_specifique,$secteur_specifique) {
+	switch ($branche) {
+		case 'meme_rubrique':
+			return array('=',"$cle_rubrique.id_rubrique",$id_rubrique);
+			break;
+		case 'rubrique_specifique':
+			return sql_in("$cle_rubrique.id_rubrique",picker_selected($rubrique_specifique,'rubrique'));
+			break;
+		case 'branche_actuelle':
+			return sql_in("$cle_rubrique.id_rubrique",calcul_branche_in($id_rubrique));
+			break;
+		case 'branche_specifique':
+			return sql_in("$cle_rubrique.id_rubrique",calcul_branche_in(picker_selected($branche_specifique,'rubrique')));
+			break;
+		case 'meme_secteur':
+			return array('=',"$cle_secteur.id_secteur",$id_secteur);
+			break;
+		case 'secteur_specifique':
+			return sql_in("$cle_secteur.id_secteur",$secteur_specifique);
+			break;
+		default:
+			return array();
+	}
+}
+
+// Critère gn_lang
+// Le YAML de la noisette doit contenir - 'inclure:inc-yaml/restreindre_langue.yaml''
+// Ajouter {gn_lang} à la boucle
+// N'appliquer qu'à des tables ayant un champ 'lang'
+function critere_gn_lang_dist($idb, &$boucles, $crit) {
+	$boucle = &$boucles[$idb];
+	$id_table = $boucle->id_table;
+	$boucle->where[] = "gn_calcul_lang($id_table,\$Pile[0]['restreindre_langue'],\$Pile[0]['lang'])";
+}
+
+function gn_calcul_lang($id_table,$restreindre_langue,$lang) {
+	if ($restreindre_langue)
+		return array('=',"$id_table.lang",sql_quote($lang));
+	else
+		return array();
+}
+
+
+// Critère gn_exclure_objet_encours
+// Le YAML de la noisette doit contenir - 'inclure:inc-yaml/exclure_objet_en_cours-objet.yaml''
+// Ajouter {gn_exclure_objet_encours} à la boucle
+function critere_gn_exclure_objet_encours_dist($idb, &$boucles, $crit) {
+	$boucle = &$boucles[$idb];
+	$id_table = $boucle->id_table;
+	$id_objet = $boucle->primary;
+	
+	$boucle->where[] = "gn_calcul_exclure_objet($id_table,$id_objet,\$Pile[0][$id_objet],\$Pile[0]['exclure_objet_en_cours'])";
+}
+
+function gn_calcul_exclure_objet($id_table,$id_objet,$id_en_cours,$exclure_objet_en_cours) {
+	if ($exclure_objet_en_cours)
+		return array('!=',"$id_table.$id_objet",intval($id_en_cours));
+	else
+		return array();
+}
+
+// Critère gn_selecteurs_archives_mois et gn_selecteurs_archives_annees
+// Utilisée pour les sélecteurs d'archives
+// Balise disponible #NB_ARCHIVES
+function critere_gn_selecteur_archives_mois_dist($idb, &$boucles, $crit) {
+	$boucle = &$boucles[$idb];
+	$champ_date = $boucle->id_table ."." . $GLOBALS['table_date'][$boucle->type_requete];
+	$id_objet = $boucle->id_table ."." . $boucle->primary;
+	$boucle->select[] = "COUNT($id_objet) AS nb_archives";
+	$boucle->group[] = "YEAR($champ_date)";
+	$boucle->group[] = "MONTH($champ_date)";
+}
+
+function critere_gn_selecteur_archives_annee_dist($idb, &$boucles, $crit) {
+	$boucle = &$boucles[$idb];
+	$champ_date = $boucle->id_table ."." . $GLOBALS['table_date'][$boucle->type_requete];
+	$id_objet = $boucle->id_table ."." . $boucle->primary;
+	$boucle->select[] = "COUNT($id_objet) AS nb_archives";
+	$boucle->group[] = "YEAR($champ_date)";
+}
+
+/** Balise #NB_ARCHIVES associee aux criteres gn_selecteur_archives_mois et gn_selecteur_archives_annees */
+function balise_NB_ARCHIVES_dist($p) {
+	$p->code = '$Pile[$SP][\'nb_archives\']';
+	$p->interdire_scripts = false;
+	return $p;
 }
 
 

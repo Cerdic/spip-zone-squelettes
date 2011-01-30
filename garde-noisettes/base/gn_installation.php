@@ -55,6 +55,36 @@ function gn_maj_noisettes($noisettes, $version_actuelle) {
 		foreach ($noisettes as $cle => $noisette)
 			$noisettes[$cle]['parametres'] = str_replace('aveline_public:','gn_public:',$noisettes[$cle]['parametres']);
 	}
+	if (version_compare($current_version,'0.2.1','<')){
+		foreach ($noisettes as $cle => $noisette) {
+			if(in_array($noisette['noisette'],array('auteur-articles','liste_articles','mot-articles','page-recherche-articles'))){
+				foreach($noisette['parametres'] as $param => $valeur) {
+					if ($param == 'tri' and $valeur == 'nbre_commentaires')
+						$noisettes[$cle]['parametres'][$param] = 'compteur_forum';
+					if ($param == 'tri' and $valeur == 'note')
+						$noisettes[$cle]['parametres'][$param] = 'moyenne';
+					if ($param == 'tri' and $valeur == 'titre')
+						$noisettes[$cle]['parametres'][$param] = 'num titre';
+					if ($param == 'senstri' and intval($valeur) == 0)
+						$noisettes[$cle]['parametres'][$param] = '';
+					if ($param == 'senstri' and intval($valeur) == 1)
+						$noisettes[$cle]['parametres'][$param] = 'inverse';
+					if ($param == 'liste_articles') {
+						$noisettes[$cle]['parametres']['branche'] = $noisettes[$cle]['parametres'][$param];
+						unset($noisettes[$cle]['parametres'][$param]);
+					}
+					if ($param == 'exclure_article_en_cours') {
+						$noisettes[$cle]['parametres']['exclure_objet_en_cours'] = $noisettes[$cle]['parametres'][$param];
+						unset($noisettes[$cle]['parametres'][$param]);
+					}
+					if ($param == 'pas_selecteur_archives' and $valeur == 'annee_mois')
+						$noisettes[$cle]['parametres'][$param] = 'mois';
+					if ($param == 'compteur_articles_selecteur_archives')
+						unset($noisettes[$cle]['parametres'][$param]);
+				}
+			}
+		}
+	}
 	
 	return $noisettes;
 }
