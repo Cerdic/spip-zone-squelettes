@@ -1,15 +1,4 @@
-#SET{choix_tri, #ARRAY}
-#SET{choix_tri, #GET{choix_tri}|push{#ARRAY{affiche,#ENV{choix_tri_titre},tri,'num titre',sens,1,libelle,'gn_public:par_titre'}}}
-#SET{choix_tri, #GET{choix_tri}|push{#ARRAY{affiche,#ENV{choix_tri_popularite},tri,popularite,sens,-1,libelle,'gn_public:les_plus_populaires'}}}
-#SET{choix_tri, #GET{choix_tri}|push{#ARRAY{affiche,#ENV{choix_tri_date},tri,date,sens,-1,libelle,'gn_public:les_plus_recents'}}}
-#SET{choix_tri, #GET{choix_tri}|push{#ARRAY{affiche,#ENV{choix_tri_anciens},tri,date,sens,1,libelle,'gn_public:les_plus_anciens'}}}
-#SET{choix_tri, #GET{choix_tri}|push{#ARRAY{affiche,#ENV{choix_tri_date_modif},tri,date_modif,sens,-1,libelle,'gn_public:modifies_recemment'}}}
-#SET{choix_tri, #GET{choix_tri}|push{#ARRAY{affiche,#ENV{choix_tri_commentes},tri,compteur_forum,sens,-1,libelle,'gn_public:les_plus_commentes'}}}
-#SET{choix_tri, #GET{choix_tri}|push{#ARRAY{affiche,#ENV{choix_tri_visites},tri,visites,sens,-1,libelle,'gn_public:les_plus_visites'}}}
-#SET{choix_tri, #GET{choix_tri}|push{#ARRAY{affiche,#ENV{choix_tri_note},tri,moyenne,sens,-1,libelle,'gn_public:les_mieux_notes'}}}
-
 [(#SET{titre,[(#ENV{titre_liste}|=={titre_perso}|?{[(#ENV**{titre_liste_perso}|typo)],[(#ENV{titre_liste}|_T)]})]})]
-
 <B_liste_articles>
 <div class="liste articles">
 	#ANCRE_PAGINATION
@@ -17,7 +6,7 @@
 	[(#ENV{afficher_selecteur_archives}|et{#ENV{position_selecteur_archives}|!={fin}})
 		#INCLURE{fond=inclure/liste_articles-selecteur_archives-#ENV{pas_selecteur_archives},env}
 	]
-	[<p class="pagination choix_tri">(#GN_TRI{#GET{choix_tri},'debut'})</p>]
+	[<p class="pagination choix_tri">(#GN_TRI{'article','debut'})</p>]
 	[<p class="pagination">(#GN_PAGINATION{'debut'})</p>]
 	<ul class="liste-items">
 	<BOUCLE_liste_articles(ARTICLES) {gn_branche}{compteur_publie forum}{notation}{tri #ENV{tri},#ENV{senstri}}{archives ?}{gn_pagination}{gn_lang}{gn_exclure_objet_encours}>
@@ -30,7 +19,7 @@
 	</BOUCLE_liste_articles>
 	</ul>
 	[<p class="pagination">(#GN_PAGINATION{'fin'})</p>]
-	[<p class="pagination choix_tri">(#GN_TRI{#GET{choix_tri},'fin'})</p>]
+	[<p class="pagination choix_tri">(#GN_TRI{'article','fin'})</p>]
 	[(#ENV{afficher_selecteur_archives}|et{#ENV{position_selecteur_archives}|!={debut}})
 		#INCLURE{fond=inclure/liste_articles-selecteur_archives-#ENV{pas_selecteur_archives},env}
 	]

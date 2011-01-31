@@ -193,12 +193,10 @@ if (!defined('_DIR_PLUGIN_NOTATION')) {
 
 // #GN_TRI
 // Le YAML de la noisette doit contenir - 'inclure:inc-yaml/choix_tri-objet.yaml'
+// Appel : #GN_TRI{'objet','debut_ou_fin'}
 // S'utilise en conjonction avec le critère tri de Bonux
-// Le premier critère est un tableau de tableaux à 4 entrées :
-//     - affiche : qui permet d'indiquer si on affiche ou non cette option de tri ('on' ou vide)
-//     - tri : qui indique le champs de tri
-//     - sens : qui indique le sens de tri (1 : ascendant, -1 : descendant)
-//     - libelle : qui indique le libellé du lien
+// Les possibilités de tri pour chaque objet sont définis directement dans le code de la balise
+// pour récupérer les variables d'environnement adéquates.
 
 function balise_GN_TRI_dist($p) {
 	$b = $p->nom_boucle ? $p->nom_boucle : $p->descr['id_mere'];
@@ -226,10 +224,24 @@ function balise_GN_TRI_dist($p) {
 	}
 
 	$suffixe = $boucle->modificateur['tri_nom'];
-	$choix = interprete_argument_balise(1,$p);
+	$objet = interprete_argument_balise(1,$p);
 	$pos = interprete_argument_balise(2,$p);
 	$tri_actuel = $boucle->modificateur['tri_champ'];
 	$sens_actuel = $boucle->modificateur['tri_sens'];
+	
+	// Définir les choix possibles
+	$choix = "array()";
+	if ($objet == "'article'")
+		$choix = "array(
+			array('affiche' => \$Pile['0']['choix_tri_titre'], 'tri' => 'num titre', 'sens' => 1, 'libelle' => _T('gn_public:par_titre')),
+			array('affiche' => \$Pile['0']['choix_tri_popularite'], 'tri' => 'popularite', 'sens' => -1, 'libelle' => _T('gn_public:les_plus_populaires')),
+			array('affiche' => \$Pile['0']['choix_tri_date'], 'tri' => 'date', 'sens' => -1, 'libelle' => _T('gn_public:les_plus_recents')),
+			array('affiche' => \$Pile['0']['choix_tri_anciens'], 'tri' => 'date', 'sens' => 1, 'libelle' => _T('gn_public:les_plus_anciens')),
+			array('affiche' => \$Pile['0']['choix_tri_date_modif'], 'tri' => 'date_modif', 'sens' => -1, 'libelle' => _T('gn_public:modifies_recemment')),
+			array('affiche' => \$Pile['0']['choix_tri_commentes'], 'tri' => 'compteur_forum', 'sens' => -1, 'libelle' => _T('gn_public:les_plus_commentes')),
+			array('affiche' => \$Pile['0']['choix_tri_visistes'], 'tri' => 'visites', 'sens' => -1, 'libelle' => _T('gn_public:les_plus_visites')),
+			array('affiche' => \$Pile['0']['choix_tri_note'], 'tri' => 'moyenne', 'sens' => -1, 'libelle' => _T('gn_public:les_mieux_notes'))
+		)";
 	
 	$p->code = "calculer_balise_GN_TRI($suffixe,$choix,$pos,$tri_actuel,$sens_actuel,\$Pile[0]['choix_tri'],\$Pile[0]['position_choix_tri'])";
 	return $p;
@@ -248,7 +260,7 @@ function calculer_balise_GN_TRI($suffixe,$choix,$pos,$tri_actuel,$sens_actuel,$c
 		if ($c['affiche']) {
 			$lien = parametre_url(self(),'tri'.$suffixe,$c['tri']);
 			$lien = parametre_url($lien,'sens'.$suffixe,$c['sens']);
-			$retour[] = lien_ou_expose($lien,_T($c['libelle']),$c['tri']==$tri_actuel && $c['sens']==$sens_actuel);
+			$retour[] = lien_ou_expose($lien,$c['libelle'],$c['tri']==$tri_actuel && $c['sens']==$sens_actuel);
 		}
 	}
 	return implode(' | ',$retour);
