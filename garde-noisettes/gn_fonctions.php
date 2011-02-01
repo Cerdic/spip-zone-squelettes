@@ -242,6 +242,13 @@ function balise_GN_TRI_dist($p) {
 			array('affiche' => \$Pile['0']['choix_tri_visistes'], 'tri' => 'visites', 'sens' => -1, 'libelle' => _T('gn_public:les_plus_visites')),
 			array('affiche' => \$Pile['0']['choix_tri_note'], 'tri' => 'moyenne', 'sens' => -1, 'libelle' => _T('gn_public:les_mieux_notes'))
 		)";
+	if ($objet == "'breve'")
+		$choix = "array(
+			array('affiche' => \$Pile['0']['choix_tri_titre'], 'tri' => 'num titre', 'sens' => 1, 'libelle' => _T('gn_public:par_titre')),
+			array('affiche' => \$Pile['0']['choix_tri_date'], 'tri' => 'date_heure', 'sens' => -1, 'libelle' => _T('gn_public:b_les_plus_recentes')),
+			array('affiche' => \$Pile['0']['choix_tri_anciens'], 'tri' => 'date_heure', 'sens' => 1, 'libelle' => _T('gn_public:b_les_plus_anciennes')),
+			array('affiche' => \$Pile['0']['choix_tri_commentes'], 'tri' => 'compteur_forum', 'sens' => -1, 'libelle' => _T('gn_public:b_les_plus_commentees'))
+		)";
 	
 	$p->code = "calculer_balise_GN_TRI($suffixe,$choix,$pos,$tri_actuel,$sens_actuel,\$Pile[0]['choix_tri'],\$Pile[0]['position_choix_tri'])";
 	return $p;
@@ -281,33 +288,41 @@ function critere_gn_branche_dist($idb, &$boucles, $crit) {
 	if (!array_key_exists('id_rubrique', $desc['field'])) {
 		$cle_rubrique = trouver_jointure_champ('id_rubrique', $boucle);
 	} else $cle_rubrique = $boucle->id_table;
-	if (!array_key_exists('id_secteur', $desc['field'])) {
-		$cle_secteur = trouver_jointure_champ('id_secteur', $boucle);
-	} else $cle_secteur = $boucle->id_table;
 	
-	$boucle->where[] = "gn_calcul_branche($id_rubrique, $id_secteur, $cle_rubrique, $cle_secteur, \$Pile[0]['branche'], \$Pile[0]['rubrique_specifique'], \$Pile[0]['branche_specifique'], \$Pile[0]['secteur_specifique'])";
+	$table = $boucle->id_table;
+	
+	$boucle->where[] = "gn_calcul_branche($id_rubrique, $id_secteur, $cle_rubrique, $table, \$Pile[0]['branche'], \$Pile[0]['rubrique_specifique'], \$Pile[0]['branche_specifique'], \$Pile[0]['secteur_specifique'])";
 	
 }
 
-function gn_calcul_branche($id_rubrique,$id_secteur,$cle_rubrique,$cle_secteur,$branche,$rubrique_specifique,$branche_specifique,$secteur_specifique) {
+function gn_calcul_branche($id_rubrique,$id_secteur,$cle_rubrique,$table, $branche,$rubrique_specifique,$branche_specifique,$secteur_specifique) {
+	switch ($table) {
+		case 'articles':
+			$cle_secteur = $table;
+			$champ_secteur = 'id_secteur';
+			break;
+		case 'breves':
+			$cle_secteur = $table;
+			$champ_secteur = 'id_rubrique';
+	}
 	switch ($branche) {
 		case 'meme_rubrique':
-			return array('=',"$cle_rubrique.id_rubrique",$id_rubrique);
+			return $id_rubrique ? array('=',"$cle_rubrique.id_rubrique",$id_rubrique) : array ();
 			break;
 		case 'rubrique_specifique':
-			return sql_in("$cle_rubrique.id_rubrique",picker_selected($rubrique_specifique,'rubrique'));
+			return $rubrique_specifique ? sql_in("$cle_rubrique.id_rubrique",picker_selected($rubrique_specifique,'rubrique')) : array();
 			break;
 		case 'branche_actuelle':
-			return sql_in("$cle_rubrique.id_rubrique",calcul_branche_in($id_rubrique));
+			return $id_rubrique ? sql_in("$cle_rubrique.id_rubrique",calcul_branche_in($id_rubrique)) : array();
 			break;
 		case 'branche_specifique':
-			return sql_in("$cle_rubrique.id_rubrique",calcul_branche_in(picker_selected($branche_specifique,'rubrique')));
+			return $branche_specifique ? sql_in("$cle_rubrique.id_rubrique",calcul_branche_in(picker_selected($branche_specifique,'rubrique'))) : array();
 			break;
 		case 'meme_secteur':
-			return array('=',"$cle_secteur.id_secteur",$id_secteur);
+			return $id_secteur ? array('=',"$cle_secteur.$champ_secteur",$id_secteur) : array();
 			break;
 		case 'secteur_specifique':
-			return sql_in("$cle_secteur.id_secteur",$secteur_specifique);
+			return $secteur_specifique ? sql_in("$cle_secteur.$champ_secteur",$secteur_specifique) : array();
 			break;
 		default:
 			return array();

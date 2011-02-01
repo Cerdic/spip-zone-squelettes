@@ -260,7 +260,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_choix_tri' => 'Comme sur SPIP-Contrib, ajoute des liens permettant au visiteur de modifier le crit&egrave;re de tri de la liste.',
 	'explication_formulaire_reponse_volant' => 'Reproduis le fonction de SPIP-Contrib&nbsp;: lorsque le visiteur clique sur r&eacute;pondre &agrave; ce message, le formulaire de r&eacute;ponse vient se placer sous le message.',
 	'explication_lien_page_auteurs' => 'Rajoute un lien vers une page \'auteurs\' o&ugrave; vous pourrez lister l\'ensemble des auteurs du site. Vous devrez cr&eacute;er cette page (composition du type \'page\' avec l\'identifiant \'auteurs\'.',
-	'explication_meme_rubrique' => 'Si vous choisissez <i>m&ecirc;me rubrique</i>, la liste sera limit&eacute;e aux objets situ&eacute;e dans la m&ecirc;me rubrique si l\'on est situ&eacute; dans une rubrique et listera tous les objets sinon.',
 	'explication_necessite_notation' => 'ATTENTION&nbsp;: n&eacute;cessite que le plugin Notation soit actif.',
 	'explication_raccourcis_typo' => 'Vous pouvez utiliser les raccourcis typographiques de SPIP.',
 	'explication_restreindre_langue' => 'Dans le cas d\'un site multilingue, on peut vouloir restreindre l\'affichage uniquement aux objets dans la m&ecirc;me langue.',

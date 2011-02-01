@@ -85,7 +85,28 @@ function gn_maj_noisettes($noisettes, $version_actuelle) {
 			}
 		}
 	}
-	
+	if (version_compare($current_version,'0.2.2','<')){
+		foreach ($noisettes as $cle => $noisette) {
+			if(in_array($noisette['noisette'],array('liste_breves','mot-breves','page-recherche-breves'))){
+				foreach($noisette['parametres'] as $param => $valeur) {
+					if ($param == 'tri' and $valeur == 'titre')
+						$noisettes[$cle]['parametres'][$param] = 'num titre';
+					if ($param == 'senstri' and intval($valeur) == 0)
+						$noisettes[$cle]['parametres'][$param] = '';
+					if ($param == 'senstri' and intval($valeur) == 1)
+						$noisettes[$cle]['parametres'][$param] = 'inverse';
+					if ($param == 'liste_breves') {
+						$noisettes[$cle]['parametres']['branche'] = $noisettes[$cle]['parametres'][$param];
+						unset($noisettes[$cle]['parametres'][$param]);
+					}
+					if ($param == 'exclure_breve_en_cours') {
+						$noisettes[$cle]['parametres']['exclure_objet_en_cours'] = $noisettes[$cle]['parametres'][$param];
+						unset($noisettes[$cle]['parametres'][$param]);
+					}
+				}
+			}
+		}
+	}
 	return $noisettes;
 }
 

@@ -1,38 +1,27 @@
-[(#SET{langue_choisie, [(#ENV{restreindre_langue}|oui|?{[^(#ENV{lang})$],''})]})]
-[(#SET{selection, #ENV{selection}|sinon{limite}})]
-[(#SET{tri, #ENV{tri}|sinon{date_heure}})]
-[(#SET{senstri, #ENV{senstri}|sinon{1}})]
-[(#SET{tri_num, #GET{tri}|=={titre}|?{titre,''}})]
-
-[(#SET{pas_pagination, #ENV{pas_pagination}|sinon{5}})]
-[(#SET{limite, #ENV{limite}|sinon{10}})]
-[(#GET{selection}|=={tout}|oui)#SET{pas_pagination,1000000}]
-[(#GET{selection}|=={limite}|oui)#SET{pas_pagination,#GET{limite}}]
-[(#SET{position_pagination, #ENV{position_pagination}|sinon{fin}})]
-[(#SET{position_pagination_debut,#GET{selection}|!={pagination}|ou{#GET{position_pagination}|=={fin}}|?{'',on}})]
-[(#SET{position_pagination_fin,#GET{selection}|!={pagination}|ou{#GET{position_pagination}|=={debut}}|?{'',on}})]
-
-[(#SET{style_liste, #ENV{style_liste}|sinon{liste}})]
-[(#SET{afficher_titre_liste, #ENV{afficher_titre_liste}|is_null|non|?{#ENV{afficher_titre_liste},'on'}})]
-[(#SET{titre_liste, #ENV{titre_liste}|sinon{public:breves}})]
-[(#SET{titre,[(#GET{titre_liste}|=={titre_perso}|?{[(#ENV**{titre_liste_perso}|typo)],[(#GET{titre_liste}|_T)]})]})]
-[(#SET{style_pagination, #ENV{style_pagination}|sinon{''}})]
-
+[(#SET{titre,[(#ENV{titre_liste}|=={titre_perso}|?{[(#ENV**{titre_liste_perso}|typo)],[(#ENV{titre_liste}|_T)]})]})]
 <B_liste_breves>
 <div class="liste breves">
 	#ANCRE_PAGINATION
-	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})</h2>]]
-	[(#GET{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
+	[(#ENV{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre}) [((#ENV{archives}|affdate_mois_annee|sinon{#ENV{archives}}))]</h2>]]
+	[(#ENV{afficher_selecteur_archives}|et{#ENV{position_selecteur_archives}|!={fin}})
+		#INCLURE{fond=inclure/mot-breves-selecteur_archives-#ENV{pas_selecteur_archives},env}
+	]
+	[<p class="pagination choix_tri">(#GN_TRI{'breve','debut'})</p>]
+	[<p class="pagination">(#GN_PAGINATION{'debut'})</p>]
 	<ul class="liste-items">
-	<BOUCLE_liste_breves(BREVES) {id_mot} {par num #GET{tri_num}}{inverse #GET{senstri}}{par #GET{tri}}{inverse #GET{senstri}}{pagination #GET{pas_pagination}}{lang == #GET{langue_choisie}|sinon{.*}}>
-	[(#GET{style_liste}|=={liste}|oui)
+	<BOUCLE_liste_breves(BREVES) {gn_branche}{compteur_publie forum}{tri #ENV{tri},#ENV{senstri}}{archives?}{gn_pagination}{gn_lang}{id_mot}>
+	[(#ENV{style_liste}|=={resume}|non)
 		#INCLURE{fond=inclure/breve-liste,id_breve=#ID_BREVE,id_breve_expose=#ENV{id_breve},env}
 	]
-	[(#GET{style_liste}|=={resume}|oui)
+	[(#ENV{style_liste}|=={resume}|oui)
 		#INCLURE{fond=inclure/breve-resume,id_breve=#ID_BREVE,id_breve_expose=#ENV{id_breve},env}
 	]
 	</BOUCLE_liste_breves>
 	</ul>
-	[(#GET{position_pagination_fin}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
+	[<p class="pagination">(#GN_PAGINATION{'fin'})</p>]
+	[<p class="pagination choix_tri">(#GN_TRI{'breve','fin'})</p>]
+	[(#ENV{afficher_selecteur_archives}|et{#ENV{position_selecteur_archives}|!={debut}})
+		#INCLURE{fond=inclure/mot-breves-selecteur_archives-#ENV{pas_selecteur_archives},env}
+	]
 </div>
 </B_liste_breves>
