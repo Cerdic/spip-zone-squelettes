@@ -17,6 +17,7 @@ function aveline_recuperer_fond($flux){
 	else
 		$bloc = '';
 	// Si on est sur un bloc contenu, navigation ou extra, on ajoute les noisettes de la page par defaut
+	// On ajoute également une ancre correspondant au nom du bloc
 	if (in_array($bloc,array('contenu','navigation','extra'))) {
 		$contexte = $flux['data']['contexte'];
 		$contexte['bloc'] = 'pre_'.$bloc;
@@ -25,7 +26,8 @@ function aveline_recuperer_fond($flux){
 		$complements_pre = recuperer_fond('noizetier-generer-bloc',$contexte,array('raw'=>true));
 		$contexte['bloc'] = 'post_'.$bloc;
 		$complements_post = recuperer_fond('noizetier-generer-bloc',$contexte,array('raw'=>true));
-		$flux['data']['texte'] = $complements_pre['texte'].$flux['data']['texte'].$complements_post['texte'];
+		$ancre = "<a name=\"$bloc\"></a>\n";
+		$flux['data']['texte'] = $ancre.$complements_pre['texte'].$flux['data']['texte'].$complements_post['texte'];
 	}
 	return $flux;
 }
