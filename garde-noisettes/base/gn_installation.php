@@ -107,6 +107,22 @@ function gn_maj_noisettes($noisettes, $version_actuelle) {
 			}
 		}
 	}
+	if (version_compare($current_version,'0.2.3','<')){
+		foreach ($noisettes as $cle => $noisette) {
+			if(in_array($noisette['noisette'],array('liste_auteurs','page-recherche-auteurs'))){
+				foreach($noisette['parametres'] as $param => $valeur) {
+					if ($param == 'tri' and $valeur == 'nb_articles')
+						$noisettes[$cle]['parametres'][$param] = 'compteur_articles';
+					if ($param == 'senstri' and intval($valeur) == 0)
+						$noisettes[$cle]['parametres'][$param] = '';
+					if ($param == 'senstri' and intval($valeur) == 1)
+						$noisettes[$cle]['parametres'][$param] = 'inverse';
+				}
+			}
+		}
+	}
+	
+	
 	return $noisettes;
 }
 

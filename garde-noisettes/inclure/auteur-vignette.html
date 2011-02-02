@@ -1,11 +1,11 @@
-<BOUCLE_auteur(AUTEURS) {id_auteur} {tout}>
+<BOUCLE_auteur(AUTEURS){compteur_left articles}{id_auteur}{tout}{articles.statut = publie}>
 <li class="item hentry" [(#ENV{vignette_ajout_css}|oui) style="float: left; width: 85px; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;"]>
 	<dl class="auteur" [(#ENV{vignette_ajout_css}|oui) style="text-align: center; padding:0px;"]>
 		<dt><a href="#URL_AUTEUR" [(#ENV{id_auteur_expose}|=={#ID_AUTEUR}) class="on"]>
 			[(#LOGO_AUTEUR||image_reduire{[(#ENV{vignette_taille_max_logo}|sinon{50})]})<br />]
 			#NOM
 		</a></dt>
-		[(#ENV{vignette_afficher_nb_articles}|oui)[<dd[(#ENV{vignette_ajout_css}|oui) style="margin:0; padding:0;"]>(#INCLURE{fond=inclure/auteur-nb_articles,id_auteur})</dd>]]
+		[(#ENV{vignette_afficher_nb_articles}|oui)[<dd[(#ENV{vignette_ajout_css}|oui) style="margin:0; padding:0;"]>(#GN_COMPTEUR_ARTICLES)&nbsp;[(#GN_COMPTEUR_ARTICLES|<{2}|?{<:ecrire:info_article:>,<:ecrire:info_article_2:>})]</dd>]]
 	</dl>
 </li>
 </BOUCLE_auteur>

@@ -1,11 +1,4 @@
-[(#REM)
-
-  Squelette Presentation d'un auteur dans une liste
-  (c) 2009 Zpip 2010 Aveline
-  Distribue sous licence GPL
-  Modifié pour Aveline
-]
-<BOUCLE_auteur(AUTEURS) {id_auteur} {tout}>
+<BOUCLE_auteur(AUTEURS){compteur_left articles}{id_auteur}{tout}{articles.statut = publie}>
 <li class="item hentry">
 	<h3 class="h3 entry-title">
 		<a href="#URL_AUTEUR" [(#ENV{id_auteur_expose}|=={#ID_AUTEUR}) class="on"]>
@@ -21,7 +14,10 @@
 	]
 	[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_nb_articles}})<div class="meta-publi">]
 		[(#ENV{afficher_lire_la_suite}|oui)<a class="lire-la-suite" href="#URL_ARTICLE"><:zpip:lire_la_suite:>[(#ENV{rappeler_nom}|oui)<span class="lire-la-suite-titre"><:zpip:lire_la_suite_de:> <em>#NOM</em></span>]</a>]
-		[(#ENV{afficher_nb_articles}|oui)[(#INCLURE{fond=inclure/auteur-nb_articles,id_auteur,affiche_sep=#ENV{afficher_lire_la_suite}})]]
+		[(#ENV{afficher_nb_articles}|oui)
+			[(#ENV{afficher_lire_la_suite}|oui)<span class="sep">|</span>]
+			[(#GN_COMPTEUR_ARTICLES)]&nbsp;[(#GN_COMPTEUR_ARTICLES|<{2}|?{<:ecrire:info_article:>,<:ecrire:info_article_2:>})]
+		]
 	[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_nb_articles}})</div>]
 </li>
 </BOUCLE_auteur>

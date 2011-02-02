@@ -64,8 +64,18 @@ function critere_compteur_publie($idb, &$boucles, $crit){
  if ($op)
      $boucle->having[]= array("'".$op."'", "'compteur_".$type."'",$op_val);
 } 
-function balise_COMPTEUR_FORUM_dist($p) {
+
+// On préfixe avec GN pour éviter conflit avec d'autres plugins
+// comme afficher_objet qui définit sont propre #COMPTEUR_ARTICLES
+
+function balise_GN_COMPTEUR_FORUM_dist($p) {
 	$p->code = '$Pile[$SP][\'compteur_forum\']';
+	$p->interdire_scripts = false;
+	return $p;
+}
+
+function balise_GN_COMPTEUR_ARTICLES_dist($p) {
+	$p->code = '$Pile[$SP][\'compteur_articles\']';
 	$p->interdire_scripts = false;
 	return $p;
 }
@@ -240,14 +250,22 @@ function balise_GN_TRI_dist($p) {
 			array('affiche' => \$Pile['0']['choix_tri_date_modif'], 'tri' => 'date_modif', 'sens' => -1, 'libelle' => _T('gn_public:modifies_recemment')),
 			array('affiche' => \$Pile['0']['choix_tri_commentes'], 'tri' => 'compteur_forum', 'sens' => -1, 'libelle' => _T('gn_public:les_plus_commentes')),
 			array('affiche' => \$Pile['0']['choix_tri_visistes'], 'tri' => 'visites', 'sens' => -1, 'libelle' => _T('gn_public:les_plus_visites')),
-			array('affiche' => \$Pile['0']['choix_tri_note'], 'tri' => 'moyenne', 'sens' => -1, 'libelle' => _T('gn_public:les_mieux_notes'))
+			array('affiche' => \$Pile['0']['choix_tri_note'], 'tri' => 'moyenne', 'sens' => -1, 'libelle' => _T('gn_public:les_mieux_notes')),
+			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('gn_public:les_plus_pertinents'))
 		)";
 	if ($objet == "'breve'")
 		$choix = "array(
 			array('affiche' => \$Pile['0']['choix_tri_titre'], 'tri' => 'num titre', 'sens' => 1, 'libelle' => _T('gn_public:par_titre')),
 			array('affiche' => \$Pile['0']['choix_tri_date'], 'tri' => 'date_heure', 'sens' => -1, 'libelle' => _T('gn_public:b_les_plus_recentes')),
 			array('affiche' => \$Pile['0']['choix_tri_anciens'], 'tri' => 'date_heure', 'sens' => 1, 'libelle' => _T('gn_public:b_les_plus_anciennes')),
-			array('affiche' => \$Pile['0']['choix_tri_commentes'], 'tri' => 'compteur_forum', 'sens' => -1, 'libelle' => _T('gn_public:b_les_plus_commentees'))
+			array('affiche' => \$Pile['0']['choix_tri_commentes'], 'tri' => 'compteur_forum', 'sens' => -1, 'libelle' => _T('gn_public:b_les_plus_commentees')),
+			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('gn_public:b_les_plus_pertinents'))
+		)";
+	if ($objet == "'auteur'")
+		$choix = "array(
+			array('affiche' => \$Pile['0']['choix_tri_nom'], 'tri' => 'nom', 'sens' => 1, 'libelle' => _T('gn_public:par_nom')),
+			array('affiche' => \$Pile['0']['choix_tri_nb_articles'], 'tri' => 'compteur_articles', 'sens' => -1, 'libelle' => _T('gn_public:par_nb_articles')),
+			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('gn_public:les_plus_pertinentes'))
 		)";
 	
 	$p->code = "calculer_balise_GN_TRI($suffixe,$choix,$pos,$tri_actuel,$sens_actuel,\$Pile[0]['choix_tri'],\$Pile[0]['position_choix_tri'])";
