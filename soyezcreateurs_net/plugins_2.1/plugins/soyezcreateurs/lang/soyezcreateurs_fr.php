@@ -325,12 +325,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'entravaux_int_serv' => 'Int&eacute;ruption de service',
 	'entravaux_rev_plus_tard' => 'Merci de revenir un peu plus tard...',
 	'erreur' => 'Erreur !',
-	'erreur_articleexistepas' => 'Erreur : cet article n\'existe pas !',
-	'erreur_breveexistepas' => 'Erreur : cette br&egrave;ve n\'existe pas !',
 	'erreur_connexion' => '<h2>Erreur de mot de passe</h2><p>Veuillez recommencer.</p>',
 	'erreur_documentexistepas' => 'Erreur : ce document n\'existe pas !',
-	'erreur_imageexistepas' => 'Erreur : cette image n\'existe pas !',
-	'erreur_rubriqueexistepas' => 'Erreur : cette rubrique n\'existe pas !',
+	'erreur_excuses_404' => 'Nous sommes d&eacute;sol&eacute;s...',
+	'erreur_excuses_404_explications' => '<p>La page que vous cherchez n\'a pu &ecirc;tre trouv&eacute;e parce que&nbsp;:</p><ol><li>elle n\'&eacute;tait plus d\'actualit&eacute;,</li><li>le lien vers la page que vous cherchiez est obsol&egrave;te,</li><li>la page recherch&eacute;e a &eacute;t&eacute; d&eacute;plac&eacute;e.</li></ol><p>Merci de commencer votre recherche sur la <a href="@urlsite@">Page d\'accueil&nbsp;: @nomsite@</a>, ou de chercher un mot cl&eacute; avec le formulaire ci-dessous.</p>',
 
 	// F
 	'fil_rss' => 'Fil RSS',
