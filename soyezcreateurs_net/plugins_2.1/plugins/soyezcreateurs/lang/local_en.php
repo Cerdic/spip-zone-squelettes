@@ -4,10 +4,6 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 // Modification de l'interface d'admin
-'admin_modifier_article' => 'Manage this article',
-'admin_modifier_breve' => 'Manage this news item',
-'admin_modifier_mot' => 'Manage this keyword',
-'admin_modifier_rubrique' => 'Manage this section',
 'texte_descriptif_rapide' => 'Tooltip',
 
 // Modification du texte du formulaire de forum
