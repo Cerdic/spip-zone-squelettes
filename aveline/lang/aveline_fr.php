@@ -217,7 +217,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_longueur_max_titres' => 'Longueur maximum des titres&nbsp;:',
 	'label_message_aucun_resultat' => 'Afficher un message si la recherche ne produit aucun r&eacute;sultat&nbsp;?',
 	'label_niveau_titre' => 'Niveau du titre&nbsp;:',
-	'label_nom_licence' => 'Afficher le nom de la licence&nbsp;?',
 	'label_nombre_articles_syndiques_a_afficher' => 'Nombre d\'articles syndiqu&eacute;s &agrave; afficher&nbsp:',
 	'label_pas_pagination' => 'Pas de la pagination&nbsp;:',
 	'label_pas_selecteur_archives' => 'Pas du s&eacute;lecteur&nbsp;:',
