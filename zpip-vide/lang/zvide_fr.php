@@ -19,7 +19,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_page-recherche' => 'Cette page est affich&eacute;e lorsqu\'une recherche est effectu&eacute;e sur le site.',
 	'description_page-plan' => 'Cette page est appel&eacute;e pour afficher le plan du site.',
 	'description_page-login' => 'Cette page est n&eacute;cessaire pour se connecter &agrave; l\'espace priv&eacute;. Par s&eacute;curit&eacute;, si la noisette <i>Formulaire d\'identification</i> sp&eacute;cifique &agrave; cette page n\'est pas ins&eacute;r&eacute;e dans le bloc <i>Contenu</i>, elle y sera ins&eacute;r&eacute;e d\'office.',
-	'description_page-lettres' => 'Cette page est utilis&eacute;e par le plugin SPIP-Lettres pour g&eacute;r&eacute;r les abonnements aux lettres d\'information. Si la noisette <i>Formulaire d\'inscription aux lettres d\'information</i> n\'est pas inclue dans cette page, le formulaire sera inclu d\'office. Vous pouvez aussi utiliser cette page pour lister les lettres d&eacute;j&agrave; envoy&eacute;es.',
 	'description_page-forum' => 'Cette page est appel&eacute;e lorsqu\'un visiteur souhaiter poster un message dans un forum.',
 	'description_page-contact' => 'Acessible via <i>spip.php?page=contact</i>, cette page optionnelle permet de renseigner vos coordonn&eacute;es et/ou de fournir un formulaire de contact.',
 	'description_page-404' => 'Cette page est affich&eacute;e lorsqu\'un visiteur demande &agrave; voir une page qui n\'existe pas ou plus.',
