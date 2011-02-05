@@ -61,7 +61,7 @@ function aveline_maj_noisettes($noisettes, $version_actuelle) {
 				'auteur-articles',
 				'liste_articles',
 				'mot-articles',
-				'page-recherche-articles'
+				'page-recherche-articles',
 				'liste_breves',
 				'mot-breves',
 				'page-recherche-breves',
