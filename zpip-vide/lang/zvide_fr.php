@@ -57,12 +57,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_bloc_pre_extra' => 'Les noisettes de ce bloc seront ins&eacute;r&eacute;es sur toutes les pages avant le bloc <i>Extra</i>.',
 	'description_bloc_post_extra' => 'Les noisettes de ce bloc seront ins&eacute;r&eacute;es sur toutes les pages apr&egrave; le bloc <i>Extra</i>.',
 	
-	// Nom des configurations de noisettes
-	'config_type_blog' => 'Une configuration de type blog',
-	'config_zpip_dist' => 'Zpip-dist (reproduit le comportement par d&eacute;faut de Zpip)',
-	'config_zpip_groupe_mots' => 'Zpip-dist avec une page pour les groupes de mots',
-	'config_zpip_secteur_langue' => 'Zpip-dist adapt&eacute; pour un site organis&eacute; en secteurs de langue',
-	
 );
 
 ?>

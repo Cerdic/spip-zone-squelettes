@@ -9,7 +9,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
  * @param array $flux
  * @return array
  */
-function aveline_recuperer_fond($flux){
+function zvide_recuperer_fond($flux){
 	include_spip('inc/noizetier');
 	$fond = $flux['args']['fond'];
 	if(!is_array($fond))
