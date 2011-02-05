@@ -66,7 +66,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_breve-mots_cles' => 'Mots-Cl&eacute;s de la br&egrave;ve',
 	'nom_filariane' => 'Fil d\'ariane',
 	'nom_formulaire_inscription' => 'Formulaire d\'inscription de nouveaux r&eacute;dacteurs',
-	'nom_formulaire_lettres' => 'Formulaire d\'inscription aux lettres d\'information',
 	'nom_formulaire_recherche' => 'Formulaire de recherche',
 	'nom_groupe_mots-contenuprincipal' => 'Contenu principal du groupe de mots',
 	'nom_groupe_mots-filariane' => 'Fil d\'ariane du groupe de mots',
