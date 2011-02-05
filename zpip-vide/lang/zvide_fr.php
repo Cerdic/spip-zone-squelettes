@@ -20,7 +20,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_page-plan' => 'Cette page est appel&eacute;e pour afficher le plan du site.',
 	'description_page-login' => 'Cette page est n&eacute;cessaire pour se connecter &agrave; l\'espace priv&eacute;. Par s&eacute;curit&eacute;, si la noisette <i>Formulaire d\'identification</i> sp&eacute;cifique &agrave; cette page n\'est pas ins&eacute;r&eacute;e dans le bloc <i>Contenu</i>, elle y sera ins&eacute;r&eacute;e d\'office.',
 	'description_page-forum' => 'Cette page est appel&eacute;e lorsqu\'un visiteur souhaiter poster un message dans un forum.',
-	'description_page-contact' => 'Acessible via <i>spip.php?page=contact</i>, cette page optionnelle permet de renseigner vos coordonn&eacute;es et/ou de fournir un formulaire de contact.',
 	'description_page-404' => 'Cette page est affich&eacute;e lorsqu\'un visiteur demande &agrave; voir une page qui n\'existe pas ou plus.',
 	'description_page-401' => 'Cette page est affich&eacute;e lorsqu\'un visiteur demande &agrave; voir une page pour laquelle il n\'est pas autoris&eacute;.',
 	
@@ -38,7 +37,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_page-plan' => 'Plan du site',
 	'nom_page-login' => 'Se connecter',
 	'nom_page-forum' => 'Forum',
-	'nom_page-contact' => 'Contact',
 	'nom_page-404' => 'Erreur 404',
 	'nom_page-401' => 'Erreur 401',
 	
