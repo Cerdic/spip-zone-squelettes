@@ -1,4 +1,4 @@
-<BOUCLE_rubrique(RUBRIQUES) {id_rubrique}>
+<BOUCLE_rubrique(RUBRIQUES) {id_rubrique}{compteur_publie}>
 <li class="item hentry">
 	<h3 class="h3 entry-title">
 		<a href="#URL_RUBRIQUE" rel="bookmark">
@@ -13,7 +13,10 @@
 			[(#ENV{afficher_lire_la_suite}|oui)<span class="sep">|</span> ]<a class="lire-la-suite" href="#URL_RUBRIQUE"><:aveline_public:lien_permanent:></a>
 		]
 		[(#ENV{afficher_mots_cles}oui)[(#INCLURE{fond=inclure/objet-mots_cles,id_rubrique,texte_devant_mots_cles=#ENV{texte_devant_mots_cles},affiche_sep=[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_lien_permanent}}|?{'on',''})]})]]
-		[(#ENV{afficher_nb_commentaires}|oui)[(#INCLURE{fond=inclure/objet-nb_commentaires,id_rubrique,affiche_sep=[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_lien_permanent}}|ou{#ENV{afficher_mots_cles}}|?{'on',''})]})]]
+		[(#ENV{afficher_nb_commentaires}|et{#AVELINE_COMPTEUR_FORUM|>{0}}|oui)
+			[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_lien_permanent}}|ou{#ENV{afficher_mots_cles}}|oui)<span class="sep">|</span>]
+			[<a href="[(#URL_RUBRIQUE|ancre_url{forum})]" class="nb_commentaires">(#AVELINE_COMPTEUR_FORUM)[&nbsp;(#AVELINE_COMPTEUR_FORUM|=={1}|?{<:zpip:commentaire:>,<:zpip:commentaires:>})]<a>]
+		]
 	[(#ENV{afficher_lire_la_suite}|ou{#ENV{afficher_lien_permanent}}|ou{#ENV{afficher_nb_commentaires}}|ou{#ENV{afficher_mots_cles}})</div>]
 </li>
 </BOUCLE_rubrique>
