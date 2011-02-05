@@ -1,44 +1,28 @@
-[(#SET{selection, #ENV{selection}|sinon{tout}})]
-
-[(#SET{pas_pagination, #ENV{pas_pagination}|sinon{5}})]
-[(#SET{limite, #ENV{limite}|sinon{10}})]
-[(#GET{selection}|=={tout}|oui)#SET{pas_pagination,1000000}]
-[(#GET{selection}|=={limite}|oui)#SET{pas_pagination,#GET{limite}}]
-[(#SET{position_pagination, #ENV{position_pagination}|sinon{fin}})]
-[(#SET{position_pagination_debut,#GET{selection}|!={pagination}|ou{#GET{position_pagination}|=={fin}}|?{'',on}})]
-[(#SET{position_pagination_fin,#GET{selection}|!={pagination}|ou{#GET{position_pagination}|=={debut}}|?{'',on}})]
-
-[(#SET{style_liste, #ENV{style_liste}|sinon{liste}})]
-[(#SET{afficher_titre_liste, #ENV{afficher_titre_liste}|is_null|non|?{#ENV{afficher_titre_liste},'on'}})]
-[(#SET{titre_liste, #ENV{titre_liste}|sinon{public:mots_clefs}})]
-[(#SET{titre,[(#GET{titre_liste}|=={titre_perso}|?{[(#ENV**{titre_liste_perso}|typo)],[(#GET{titre_liste}|_T)]})]})]
-[(#SET{style_pagination, #ENV{style_pagination}|sinon{''}})]
-
+[(#SET{titre,[(#ENV{titre_liste}|=={titre_perso}|?{[(#ENV**{titre_liste_perso}|typo)],[(#ENV{titre_liste}|_T)]})]})]
 [(#SET{liste_mots, #ENV{liste_mots}|sinon{tous}})]
 [(#SET{groupes,[(#GET{liste_mots}|=={groupes_specifiques}|?{#ENV{groupes_specifiques},#ARRAY})]})]
 <BOUCLE_groupes_tous(GROUPES_MOTS)>[(#GET{liste_mots}|=={tous}|?{#SET{groupes, #GET{groupes}|push{#ID_GROUPE}}})]</BOUCLE_groupes_tous>
 [(#ENV{id_groupe}|?{#SET{groupes, #ENV{id_groupe}}})]
-
-[(#SET{tri,[(#ENV{recherche}|oui|?{points,[(#ENV{separer_resultats_groupes}|oui|?{type,titre})]})]})]
-[(#SET{senstri,[(#ENV{recherche}|oui|?{1,0})]})]
+[(#SET{tri,[(#ENV{recherche}|oui|?{points,[(#ENV{separer_resultats_groupes}|oui|?{'multi type','multi titre'})]})]})]
+[(#SET{senstri,[(#ENV{recherche}|oui|?{'inverse',''})]})]
 
 <B_liste_mots>
 <div class="liste mots">
 	#ANCRE_PAGINATION
-	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})[(#ENV{afficher_nb_resultats}|oui)&#40;#GRAND_TOTAL&#41;]</h2>]]
-	[(#GET{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
-	<BOUCLE_liste_mots(MOTS) {id_groupe IN #GET{groupes}}{id_article ?}{id_breve ?}{id_rubrique ?}{id_syndic ?}{recherche?}{par #GET{tri}}{inverse #GET{senstri}}{par titre}{pagination #GET{pas_pagination}}>
-	[(#ENV{separer_resultats_groupes}|oui)[[(#COMPTEUR_BOUCLE|modulo{#GET{pas_pagination}}|=={1}|non)</ul>][(#GET{afficher_titre_liste}|oui|?{'<h3 class="h3">','<h2 class="h2">'})](#TYPE|unique)[(#GET{afficher_titre_liste}|oui|?{'</h3>','</h2>'})]<ul class="liste-items">]]
-	[(#ENV{separer_resultats_groupes}|non)[(#COMPTEUR_BOUCLE|modulo{#GET{pas_pagination}}|=={1}|oui)<ul class="liste-items">]]
-	[(#GET{style_liste}|=={liste}|oui)
+	[(#ENV{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre}) [(#ENV{afficher_nb_resultats}|oui)&#40;#GRAND_TOTAL&#41;]</h2>]]
+	[<p class="pagination">(#AVELINE_PAGINATION{'debut'})</p>]
+	<BOUCLE_liste_mots(MOTS) {id_groupe IN #GET{groupes}}{id_article ?}{id_breve ?}{id_rubrique ?}{id_syndic ?}{recherche?}{tri #ENV{tri},#ENV{senstri}}{tri multi titre}{aveline_pagination}>
+	[(#ENV{separer_resultats_groupes}|oui)[[(#COMPTEUR_BOUCLE|moins{#ENV{debut_liste_mots}}|=={1}|non)</ul>][(#ENV{afficher_titre_liste}|oui|?{'<h3 class="h3">','<h2 class="h2">'})](#TYPE|unique)[(#ENV{afficher_titre_liste}|oui|?{'</h3>','</h2>'})]<ul class="liste-items">]]
+	[(#ENV{separer_resultats_groupes}|non)[(#COMPTEUR_BOUCLE|moins{#ENV{debut_liste_mots}}|=={1}|oui)<ul class="liste-items">]]
+	[(#ENV{style_liste}|=={liste}|oui)
 		#INCLURE{fond=inclure/mot-liste,id_mot=#ID_MOT,id_mot_expose=#ENV{id_mot},env}
 	]
-	[(#GET{style_liste}|=={resume}|oui)
+	[(#ENV{style_liste}|=={resume}|oui)
 		#INCLURE{fond=inclure/mot-resume,id_mot=#ID_MOT,id_mot_expose=#ENV{id_mot},env}
 	]
 	</BOUCLE_liste_mots>
 	</ul>
-	[(#GET{position_pagination_fin}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
+	[<p class="pagination">(#AVELINE_PAGINATION{'fin'})</p>]
 </div>
 </B_liste_mots>
 [(#ENV{message_aucun_resultat}|oui)<div class="texte"><:aveline_public:aucun_mot_trouve:></div>]
