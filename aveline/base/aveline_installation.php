@@ -121,6 +121,20 @@ function aveline_maj_noisettes($noisettes, $version_actuelle) {
 		foreach ($noisettes as $cle => $noisette)
 			$noisettes[$cle]['parametres'] = str_replace('aveline_public:','aveline_public:',$noisettes[$cle]['parametres']);
 	}
+	if (version_compare($current_version,'0.3.1','<')){
+		foreach ($noisettes as $cle => $noisette) {
+			if(in_array($noisette['noisette'],array('rubrique-sous_rubriques','rubriques_secteur_langue','rubriques_racine','page-recherche-rubriques'))){
+				foreach($noisette['parametres'] as $param => $valeur) {
+					if ($param == 'tri' and $valeur == 'titre')
+						$noisettes[$cle]['parametres'][$param] = 'num titre';
+					if ($param == 'senstri' and intval($valeur) == 0)
+						$noisettes[$cle]['parametres'][$param] = '';
+					if ($param == 'senstri' and intval($valeur) == 1)
+						$noisettes[$cle]['parametres'][$param] = 'inverse';
+				}
+			}
+		}
+	}
 	
 	return $noisettes;
 }

@@ -54,6 +54,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'lien_permanent' => 'Lien permanent',
 	'liens' => 'Liens',
 	'mis_a_jour_le' => 'Mis &agrave; jour le',
+	'modifiees_recemment' => 'Modifi&eacute;es r&eacute;cemment',
 	'modifies_recemment' => 'Modifi&eacute;s r&eacute;cemment',
 	'mois' => 'Mois',
 	'mois_deux_points' => 'Mois&nbsp;:',

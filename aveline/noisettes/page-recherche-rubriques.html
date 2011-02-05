@@ -1,37 +1,23 @@
-[(#SET{selection, #ENV{selection}|sinon{pagination}})]
-[(#SET{langue_choisie, [(#ENV{restreindre_langue}|oui|?{[^(#ENV{lang})$],''})]})]
-
-[(#SET{pas_pagination, #ENV{pas_pagination}|sinon{5}})]
-[(#SET{limite, #ENV{limite}|sinon{10}})]
-[(#GET{selection}|=={tout}|oui)#SET{pas_pagination,1000000}]
-[(#GET{selection}|=={limite}|oui)#SET{pas_pagination,#GET{limite}}]
-[(#SET{position_pagination, #ENV{position_pagination}|sinon{fin}})]
-[(#SET{position_pagination_debut,#GET{selection}|!={pagination}|ou{#GET{position_pagination}|=={fin}}|?{'',on}})]
-[(#SET{position_pagination_fin,#GET{selection}|!={pagination}|ou{#GET{position_pagination}|=={debut}}|?{'',on}})]
-
-[(#SET{style_liste, #ENV{style_liste}|sinon{liste}})]
-[(#SET{afficher_titre_liste, #ENV{afficher_titre_liste}|is_null|non|?{#ENV{afficher_titre_liste},'on'}})]
-[(#SET{titre_liste, #ENV{titre_liste}|sinon{public:rubriques}})]
-[(#SET{titre,[(#GET{titre_liste}|=={titre_perso}|?{[(#ENV**{titre_liste_perso}|typo)],[(#GET{titre_liste}|_T)]})]})]
-[(#SET{style_pagination, #ENV{style_pagination}|sinon{''}})]
-
+[(#SET{titre,[(#ENV{titre_liste}|=={titre_perso}|?{[(#ENV**{titre_liste_perso}|typo)],[(#ENV{titre_liste}|_T)]})]})]
 <B_liste_rubriques>
 <div class="liste resultats rubriques">
 	#ANCRE_PAGINATION
-	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})[(#ENV{afficher_nb_resultats}|oui)&#40;#GRAND_TOTAL&#41;]</h2>]]
-	[(#GET{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
+	[(#ENV{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})[(#ENV{afficher_nb_resultats}|oui)&#40;#GRAND_TOTAL&#41;]</h2>]]
+	[<p class="pagination choix_tri">(#AVELINE_CHOIX_TRI{'rubrique','debut'})</p>]
+	[<p class="pagination">(#AVELINE_PAGINATION{'debut'})</p>]
 	<ul class="liste-items">
-	<BOUCLE_liste_rubriques(RUBRIQUES) {recherche} {par points}{inverse}{lang == #GET{langue_choisie}|sinon{.*}}{pagination #GET{pas_pagination}}>
-	[(#GET{style_liste}|=={liste}|oui)
+	<BOUCLE_liste_rubriques(RUBRIQUES) {compteur_publie forum}{notation}{tri #ENV{tri},#ENV{senstri}}{aveline_pagination}{aveline_lang}{recherche}>
+	[(#ENV{style_liste}|=={resume}|non)
 		#INCLURE{fond=inclure/rubrique-liste,id_rubrique=#ID_RUBRIQUE,env}
 	]
-	[(#GET{style_liste}|=={resume}|oui)
+	[(#ENV{style_liste}|=={resume}|oui)
 		#INCLURE{fond=inclure/rubrique-resume,id_rubrique=#ID_RUBRIQUE,env}
 	]
 	</BOUCLE_liste_rubriques>
 	</ul>
-	[(#GET{position_pagination_fin}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
+	[<p class="pagination">(#AVELINE_PAGINATION{'fin'})</p>]
+	[<p class="pagination choix_tri">(#AVELINE_CHOIX_TRI{'rubrique','fin'})</p>]
 </div>
 </B_liste_rubriques>
-[(#ENV{message_aucun_resultat}|oui)<div class="texte"><:aveline_public:aucune_rubrique_trouvee:></div>]
+[(#ENV{message_aucun_resultat}|oui)<div class="texte"><:aveline_public:aucune_article_trouve:></div>]
 <//B_liste_rubriques>

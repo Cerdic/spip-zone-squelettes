@@ -201,14 +201,14 @@ if (!defined('_DIR_PLUGIN_NOTATION')) {
 }
 
 
-// #AVELINE_TRI
+// #AVELINE_CHOIX_TRI
 // Le YAML de la noisette doit contenir - 'inclure:inc-yaml/choix_tri-objet.yaml'
-// Appel : #AVELINE_TRI{'objet','debut_ou_fin'}
+// Appel : #AVELINE_CHOIX_TRI{'objet','debut_ou_fin'}
 // S'utilise en conjonction avec le critère tri de Bonux
 // Les possibilités de tri pour chaque objet sont définis directement dans le code de la balise
 // pour récupérer les variables d'environnement adéquates.
 
-function balise_AVELINE_TRI_dist($p) {
+function balise_AVELINE_CHOIX_TRI_dist($p) {
 	$b = $p->nom_boucle ? $p->nom_boucle : $p->descr['id_mere'];
 
 	// s'il n'y a pas de nom de boucle, on ne peut pas trier
@@ -267,12 +267,20 @@ function balise_AVELINE_TRI_dist($p) {
 			array('affiche' => \$Pile['0']['choix_tri_nb_articles'], 'tri' => 'compteur_articles', 'sens' => -1, 'libelle' => _T('aveline_public:par_nb_articles')),
 			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('aveline_public:les_plus_pertinentes'))
 		)";
+	if ($objet == "'rubrique'")
+		$choix = "array(
+			array('affiche' => \$Pile['0']['choix_tri_titre'], 'tri' => 'num titre', 'sens' => 1, 'libelle' => _T('aveline_public:par_titre')),
+			array('affiche' => \$Pile['0']['choix_tri_commentes'], 'tri' => 'compteur_forum', 'sens' => -1, 'libelle' => _T('aveline_public:les_plus_commentes')),
+			array('affiche' => \$Pile['0']['choix_tri_date_heure'], 'tri' => 'date_heure', 'sens' => -1, 'libelle' => _T('aveline_public:modifiees_recemment')),
+			array('affiche' => \$Pile['0']['choix_tri_note'], 'tri' => 'moyenne', 'sens' => -1, 'libelle' => _T('aveline_public:les_mieux_notes')),
+			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('aveline_public:les_plus_pertinents'))
+		)";
 	
-	$p->code = "calculer_balise_AVELINE_TRI($suffixe,$choix,$pos,$tri_actuel,$sens_actuel,\$Pile[0]['choix_tri'],\$Pile[0]['position_choix_tri'])";
+	$p->code = "calculer_balise_AVELINE_CHOIX_TRI($suffixe,$choix,$pos,$tri_actuel,$sens_actuel,\$Pile[0]['choix_tri'],\$Pile[0]['position_choix_tri'])";
 	return $p;
 }
 
-function calculer_balise_AVELINE_TRI($suffixe,$choix,$pos,$tri_actuel,$sens_actuel,$choix_tri,$position_choix_tri) {
+function calculer_balise_AVELINE_CHOIX_TRI($suffixe,$choix,$pos,$tri_actuel,$sens_actuel,$choix_tri,$position_choix_tri) {
 	// Doit-on afficher les tri perso ?
 	if (!$choix_tri || ($pos == 'debut' && $position_choix_tri == 'fin') || ($pos == 'fin' && $position_choix_tri == 'debut'))
 		return '';
