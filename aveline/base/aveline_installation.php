@@ -6,13 +6,13 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 include_spip('inc/meta');
 
 // Installation et mise à jour
-function gn_upgrade($nom_meta_version_base, $version_cible){
+function aveline_upgrade($nom_meta_version_base, $version_cible){
 	$version_actuelle = '0.0';
 	
-	// Historiquement, la version 0.1 correspondant à Aveline (< 1.0.0)
-	if (isset($GLOBALS['meta']['aveline_base_version'])) {
-		$version_actuelle = $GLOBALS['meta']['aveline_base_version'];
-		effacer_meta('aveline_base_version');
+	// Historiquement, la version 0.2.X correspondent au garde noisettes (< 1.0.0)
+	if (isset($GLOBALS['meta']['gn_base_version'])) {
+		$version_actuelle = $GLOBALS['meta']['gn_base_version'];
+		effacer_meta('gn_base_version');
 	}
 	
 	if (
@@ -28,7 +28,7 @@ function gn_upgrade($nom_meta_version_base, $version_cible){
 			$noisettes[$cle]['parametres'] = unserialize($noisette['parametres']);
 		
 		// On applique les mises à jour
-		$noisettes = gn_maj_noisettes($noisettes,$version_actuelle);
+		$noisettes = aveline_maj_noisettes($noisettes,$version_actuelle);
 		
 		// Il faut serializer les paramètres avant mise en base
 		foreach ($noisettes as $cle => $noisette)
@@ -43,18 +43,14 @@ function gn_upgrade($nom_meta_version_base, $version_cible){
 }
 
 // Désinstallation
-function gn_vider_tables($nom_meta_version_base){
+function aveline_vider_tables($nom_meta_version_base){
 	// On efface la version enregistrée
 	effacer_meta($nom_meta_version_base);
 }
 
 // Mise à jour des noisettes
 
-function gn_maj_noisettes($noisettes, $version_actuelle) {
-	if (version_compare($current_version,'0.2','<')){
-		foreach ($noisettes as $cle => $noisette)
-			$noisettes[$cle]['parametres'] = str_replace('aveline_public:','gn_public:',$noisettes[$cle]['parametres']);
-	}
+function aveline_maj_noisettes($noisettes, $version_actuelle) {
 	if (version_compare($current_version,'0.2.1','<')){
 		foreach ($noisettes as $cle => $noisette) {
 			if(in_array($noisette['noisette'],array('auteur-articles','liste_articles','mot-articles','page-recherche-articles'))){
@@ -121,7 +117,10 @@ function gn_maj_noisettes($noisettes, $version_actuelle) {
 			}
 		}
 	}
-	
+	if (version_compare($current_version,'0.3.0','<')){
+		foreach ($noisettes as $cle => $noisette)
+			$noisettes[$cle]['parametres'] = str_replace('aveline_public:','aveline_public:',$noisettes[$cle]['parametres']);
+	}
 	
 	return $noisettes;
 }

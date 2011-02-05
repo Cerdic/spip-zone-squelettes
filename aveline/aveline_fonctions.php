@@ -65,16 +65,16 @@ function critere_compteur_publie($idb, &$boucles, $crit){
      $boucle->having[]= array("'".$op."'", "'compteur_".$type."'",$op_val);
 } 
 
-// On préfixe avec GN pour éviter conflit avec d'autres plugins
+// On préfixe avec AVELINE pour éviter conflit avec d'autres plugins
 // comme afficher_objet qui définit sont propre #COMPTEUR_ARTICLES
 
-function balise_GN_COMPTEUR_FORUM_dist($p) {
+function balise_AVELINE_COMPTEUR_FORUM_dist($p) {
 	$p->code = '$Pile[$SP][\'compteur_forum\']';
 	$p->interdire_scripts = false;
 	return $p;
 }
 
-function balise_GN_COMPTEUR_ARTICLES_dist($p) {
+function balise_AVELINE_COMPTEUR_ARTICLES_dist($p) {
 	$p->code = '$Pile[$SP][\'compteur_articles\']';
 	$p->interdire_scripts = false;
 	return $p;
@@ -126,11 +126,11 @@ function balise_ME($p){
 	return $p;
 }
 
-// #GN_PAGINATION
-// S'appelle dans une noisette ainsi [<p class="pagination">(#GN_PAGINATION{'debut'})</p>] ou [<p class="pagination">(#GN_PAGINATION{'fin'})</p>]
+// #AVELINE_PAGINATION
+// S'appelle dans une noisette ainsi [<p class="pagination">(#AVELINE_PAGINATION{'debut'})</p>] ou [<p class="pagination">(#AVELINE_PAGINATION{'fin'})</p>]
 // Le YAML de la noisette doit contenir - 'inclure:inc-yaml/pagination.yaml'
 
-function balise_GN_PAGINATION_dist($p) {
+function balise_AVELINE_PAGINATION_dist($p) {
 	$b = $p->nom_boucle ? $p->nom_boucle : $p->descr['id_mere'];
 
 	$pos = interprete_argument_balise(1,$p);
@@ -149,11 +149,11 @@ function balise_GN_PAGINATION_dist($p) {
 	return $p;
 }
 
-// Critère gn_pagination
+// Critère aveline_pagination
 // Le YAML de la noisette doit contenir - 'inclure:inc-yaml/pagination.yaml'
-// Ajouter {gn_pagination} à la boucle
+// Ajouter {aveline_pagination} à la boucle
 
-function critere_gn_pagination_dist($idb, &$boucles, $crit) {
+function critere_aveline_pagination_dist($idb, &$boucles, $crit) {
 	$boucle = &$boucles[$idb];
 	// definition de la taille de la page
 	$pas = "((\$Pile[0]['selection']=='pagination') ? \$Pile[0]['pas_pagination'] : ((\$Pile[0]['selection']=='limite') ? \$Pile[0]['limite'] : 1000000))";
@@ -201,14 +201,14 @@ if (!defined('_DIR_PLUGIN_NOTATION')) {
 }
 
 
-// #GN_TRI
+// #AVELINE_TRI
 // Le YAML de la noisette doit contenir - 'inclure:inc-yaml/choix_tri-objet.yaml'
-// Appel : #GN_TRI{'objet','debut_ou_fin'}
+// Appel : #AVELINE_TRI{'objet','debut_ou_fin'}
 // S'utilise en conjonction avec le critère tri de Bonux
 // Les possibilités de tri pour chaque objet sont définis directement dans le code de la balise
 // pour récupérer les variables d'environnement adéquates.
 
-function balise_GN_TRI_dist($p) {
+function balise_AVELINE_TRI_dist($p) {
 	$b = $p->nom_boucle ? $p->nom_boucle : $p->descr['id_mere'];
 
 	// s'il n'y a pas de nom de boucle, on ne peut pas trier
@@ -243,36 +243,36 @@ function balise_GN_TRI_dist($p) {
 	$choix = "array()";
 	if ($objet == "'article'")
 		$choix = "array(
-			array('affiche' => \$Pile['0']['choix_tri_titre'], 'tri' => 'num titre', 'sens' => 1, 'libelle' => _T('gn_public:par_titre')),
-			array('affiche' => \$Pile['0']['choix_tri_popularite'], 'tri' => 'popularite', 'sens' => -1, 'libelle' => _T('gn_public:les_plus_populaires')),
-			array('affiche' => \$Pile['0']['choix_tri_date'], 'tri' => 'date', 'sens' => -1, 'libelle' => _T('gn_public:les_plus_recents')),
-			array('affiche' => \$Pile['0']['choix_tri_anciens'], 'tri' => 'date', 'sens' => 1, 'libelle' => _T('gn_public:les_plus_anciens')),
-			array('affiche' => \$Pile['0']['choix_tri_date_modif'], 'tri' => 'date_modif', 'sens' => -1, 'libelle' => _T('gn_public:modifies_recemment')),
-			array('affiche' => \$Pile['0']['choix_tri_commentes'], 'tri' => 'compteur_forum', 'sens' => -1, 'libelle' => _T('gn_public:les_plus_commentes')),
-			array('affiche' => \$Pile['0']['choix_tri_visistes'], 'tri' => 'visites', 'sens' => -1, 'libelle' => _T('gn_public:les_plus_visites')),
-			array('affiche' => \$Pile['0']['choix_tri_note'], 'tri' => 'moyenne', 'sens' => -1, 'libelle' => _T('gn_public:les_mieux_notes')),
-			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('gn_public:les_plus_pertinents'))
+			array('affiche' => \$Pile['0']['choix_tri_titre'], 'tri' => 'num titre', 'sens' => 1, 'libelle' => _T('aveline_public:par_titre')),
+			array('affiche' => \$Pile['0']['choix_tri_popularite'], 'tri' => 'popularite', 'sens' => -1, 'libelle' => _T('aveline_public:les_plus_populaires')),
+			array('affiche' => \$Pile['0']['choix_tri_date'], 'tri' => 'date', 'sens' => -1, 'libelle' => _T('aveline_public:les_plus_recents')),
+			array('affiche' => \$Pile['0']['choix_tri_anciens'], 'tri' => 'date', 'sens' => 1, 'libelle' => _T('aveline_public:les_plus_anciens')),
+			array('affiche' => \$Pile['0']['choix_tri_date_modif'], 'tri' => 'date_modif', 'sens' => -1, 'libelle' => _T('aveline_public:modifies_recemment')),
+			array('affiche' => \$Pile['0']['choix_tri_commentes'], 'tri' => 'compteur_forum', 'sens' => -1, 'libelle' => _T('aveline_public:les_plus_commentes')),
+			array('affiche' => \$Pile['0']['choix_tri_visistes'], 'tri' => 'visites', 'sens' => -1, 'libelle' => _T('aveline_public:les_plus_visites')),
+			array('affiche' => \$Pile['0']['choix_tri_note'], 'tri' => 'moyenne', 'sens' => -1, 'libelle' => _T('aveline_public:les_mieux_notes')),
+			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('aveline_public:les_plus_pertinents'))
 		)";
 	if ($objet == "'breve'")
 		$choix = "array(
-			array('affiche' => \$Pile['0']['choix_tri_titre'], 'tri' => 'num titre', 'sens' => 1, 'libelle' => _T('gn_public:par_titre')),
-			array('affiche' => \$Pile['0']['choix_tri_date'], 'tri' => 'date_heure', 'sens' => -1, 'libelle' => _T('gn_public:b_les_plus_recentes')),
-			array('affiche' => \$Pile['0']['choix_tri_anciens'], 'tri' => 'date_heure', 'sens' => 1, 'libelle' => _T('gn_public:b_les_plus_anciennes')),
-			array('affiche' => \$Pile['0']['choix_tri_commentes'], 'tri' => 'compteur_forum', 'sens' => -1, 'libelle' => _T('gn_public:b_les_plus_commentees')),
-			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('gn_public:b_les_plus_pertinents'))
+			array('affiche' => \$Pile['0']['choix_tri_titre'], 'tri' => 'num titre', 'sens' => 1, 'libelle' => _T('aveline_public:par_titre')),
+			array('affiche' => \$Pile['0']['choix_tri_date'], 'tri' => 'date_heure', 'sens' => -1, 'libelle' => _T('aveline_public:b_les_plus_recentes')),
+			array('affiche' => \$Pile['0']['choix_tri_anciens'], 'tri' => 'date_heure', 'sens' => 1, 'libelle' => _T('aveline_public:b_les_plus_anciennes')),
+			array('affiche' => \$Pile['0']['choix_tri_commentes'], 'tri' => 'compteur_forum', 'sens' => -1, 'libelle' => _T('aveline_public:b_les_plus_commentees')),
+			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('aveline_public:b_les_plus_pertinents'))
 		)";
 	if ($objet == "'auteur'")
 		$choix = "array(
-			array('affiche' => \$Pile['0']['choix_tri_nom'], 'tri' => 'nom', 'sens' => 1, 'libelle' => _T('gn_public:par_nom')),
-			array('affiche' => \$Pile['0']['choix_tri_nb_articles'], 'tri' => 'compteur_articles', 'sens' => -1, 'libelle' => _T('gn_public:par_nb_articles')),
-			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('gn_public:les_plus_pertinentes'))
+			array('affiche' => \$Pile['0']['choix_tri_nom'], 'tri' => 'nom', 'sens' => 1, 'libelle' => _T('aveline_public:par_nom')),
+			array('affiche' => \$Pile['0']['choix_tri_nb_articles'], 'tri' => 'compteur_articles', 'sens' => -1, 'libelle' => _T('aveline_public:par_nb_articles')),
+			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('aveline_public:les_plus_pertinentes'))
 		)";
 	
-	$p->code = "calculer_balise_GN_TRI($suffixe,$choix,$pos,$tri_actuel,$sens_actuel,\$Pile[0]['choix_tri'],\$Pile[0]['position_choix_tri'])";
+	$p->code = "calculer_balise_AVELINE_TRI($suffixe,$choix,$pos,$tri_actuel,$sens_actuel,\$Pile[0]['choix_tri'],\$Pile[0]['position_choix_tri'])";
 	return $p;
 }
 
-function calculer_balise_GN_TRI($suffixe,$choix,$pos,$tri_actuel,$sens_actuel,$choix_tri,$position_choix_tri) {
+function calculer_balise_AVELINE_TRI($suffixe,$choix,$pos,$tri_actuel,$sens_actuel,$choix_tri,$position_choix_tri) {
 	// Doit-on afficher les tri perso ?
 	if (!$choix_tri || ($pos == 'debut' && $position_choix_tri == 'fin') || ($pos == 'fin' && $position_choix_tri == 'debut'))
 		return '';
@@ -291,10 +291,10 @@ function calculer_balise_GN_TRI($suffixe,$choix,$pos,$tri_actuel,$sens_actuel,$c
 	return implode(' | ',$retour);
 }
 
-// Critère gn_branche
+// Critère aveline_branche
 // Le YAML de la noisette doit contenir - 'inclure:inc-yaml/branche-objet.yaml'
-// Ajouter {gn_branche} à la boucle
-function critere_gn_branche_dist($idb, &$boucles, $crit) {
+// Ajouter {aveline_branche} à la boucle
+function critere_aveline_branche_dist($idb, &$boucles, $crit) {
 	$boucle = &$boucles[$idb];
 	
 	$id_rubrique = calculer_argument_precedent($idb, 'id_rubrique', $boucles);
@@ -309,11 +309,11 @@ function critere_gn_branche_dist($idb, &$boucles, $crit) {
 	
 	$table = $boucle->id_table;
 	
-	$boucle->where[] = "gn_calcul_branche($id_rubrique, $id_secteur, $cle_rubrique, $table, \$Pile[0]['branche'], \$Pile[0]['rubrique_specifique'], \$Pile[0]['branche_specifique'], \$Pile[0]['secteur_specifique'])";
+	$boucle->where[] = "aveline_calcul_branche($id_rubrique, $id_secteur, $cle_rubrique, $table, \$Pile[0]['branche'], \$Pile[0]['rubrique_specifique'], \$Pile[0]['branche_specifique'], \$Pile[0]['secteur_specifique'])";
 	
 }
 
-function gn_calcul_branche($id_rubrique,$id_secteur,$cle_rubrique,$table, $branche,$rubrique_specifique,$branche_specifique,$secteur_specifique) {
+function aveline_calcul_branche($id_rubrique,$id_secteur,$cle_rubrique,$table, $branche,$rubrique_specifique,$branche_specifique,$secteur_specifique) {
 	switch ($table) {
 		case 'articles':
 			$cle_secteur = $table;
@@ -347,17 +347,17 @@ function gn_calcul_branche($id_rubrique,$id_secteur,$cle_rubrique,$table, $branc
 	}
 }
 
-// Critère gn_lang
+// Critère aveline_lang
 // Le YAML de la noisette doit contenir - 'inclure:inc-yaml/restreindre_langue.yaml''
-// Ajouter {gn_lang} à la boucle
+// Ajouter {aveline_lang} à la boucle
 // N'appliquer qu'à des tables ayant un champ 'lang'
-function critere_gn_lang_dist($idb, &$boucles, $crit) {
+function critere_aveline_lang_dist($idb, &$boucles, $crit) {
 	$boucle = &$boucles[$idb];
 	$id_table = $boucle->id_table;
-	$boucle->where[] = "gn_calcul_lang($id_table,\$Pile[0]['restreindre_langue'],\$Pile[0]['lang'])";
+	$boucle->where[] = "aveline_calcul_lang($id_table,\$Pile[0]['restreindre_langue'],\$Pile[0]['lang'])";
 }
 
-function gn_calcul_lang($id_table,$restreindre_langue,$lang) {
+function aveline_calcul_lang($id_table,$restreindre_langue,$lang) {
 	if ($restreindre_langue)
 		return array('=',"$id_table.lang",sql_quote($lang));
 	else
@@ -365,28 +365,28 @@ function gn_calcul_lang($id_table,$restreindre_langue,$lang) {
 }
 
 
-// Critère gn_exclure_objet_encours
+// Critère aveline_exclure_objet_encours
 // Le YAML de la noisette doit contenir - 'inclure:inc-yaml/exclure_objet_en_cours-objet.yaml''
-// Ajouter {gn_exclure_objet_encours} à la boucle
-function critere_gn_exclure_objet_encours_dist($idb, &$boucles, $crit) {
+// Ajouter {aveline_exclure_objet_encours} à la boucle
+function critere_aveline_exclure_objet_encours_dist($idb, &$boucles, $crit) {
 	$boucle = &$boucles[$idb];
 	$id_table = $boucle->id_table;
 	$id_objet = $boucle->primary;
 	
-	$boucle->where[] = "gn_calcul_exclure_objet($id_table,$id_objet,\$Pile[0][$id_objet],\$Pile[0]['exclure_objet_en_cours'])";
+	$boucle->where[] = "aveline_calcul_exclure_objet($id_table,$id_objet,\$Pile[0][$id_objet],\$Pile[0]['exclure_objet_en_cours'])";
 }
 
-function gn_calcul_exclure_objet($id_table,$id_objet,$id_en_cours,$exclure_objet_en_cours) {
+function aveline_calcul_exclure_objet($id_table,$id_objet,$id_en_cours,$exclure_objet_en_cours) {
 	if ($exclure_objet_en_cours)
 		return array('!=',"$id_table.$id_objet",intval($id_en_cours));
 	else
 		return array();
 }
 
-// Critère gn_selecteurs_archives_mois et gn_selecteurs_archives_annees
+// Critère aveline_selecteurs_archives_mois et aveline_selecteurs_archives_annees
 // Utilisée pour les sélecteurs d'archives
 // Balise disponible #NB_ARCHIVES
-function critere_gn_selecteur_archives_mois_dist($idb, &$boucles, $crit) {
+function critere_aveline_selecteur_archives_mois_dist($idb, &$boucles, $crit) {
 	$boucle = &$boucles[$idb];
 	$champ_date = $boucle->id_table ."." . $GLOBALS['table_date'][$boucle->type_requete];
 	$id_objet = $boucle->id_table ."." . $boucle->primary;
@@ -395,7 +395,7 @@ function critere_gn_selecteur_archives_mois_dist($idb, &$boucles, $crit) {
 	$boucle->group[] = "MONTH($champ_date)";
 }
 
-function critere_gn_selecteur_archives_annee_dist($idb, &$boucles, $crit) {
+function critere_aveline_selecteur_archives_annee_dist($idb, &$boucles, $crit) {
 	$boucle = &$boucles[$idb];
 	$champ_date = $boucle->id_table ."." . $GLOBALS['table_date'][$boucle->type_requete];
 	$id_objet = $boucle->id_table ."." . $boucle->primary;
@@ -403,7 +403,7 @@ function critere_gn_selecteur_archives_annee_dist($idb, &$boucles, $crit) {
 	$boucle->group[] = "YEAR($champ_date)";
 }
 
-/** Balise #NB_ARCHIVES associee aux criteres gn_selecteur_archives_mois et gn_selecteur_archives_annees */
+/** Balise #NB_ARCHIVES associee aux criteres aveline_selecteur_archives_mois et aveline_selecteur_archives_annees */
 function balise_NB_ARCHIVES_dist($p) {
 	$p->code = '$Pile[$SP][\'nb_archives\']';
 	$p->interdire_scripts = false;
