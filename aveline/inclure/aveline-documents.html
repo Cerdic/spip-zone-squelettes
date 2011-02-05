@@ -1,35 +1,17 @@
-[(#SET{selection, #ENV{selection}|sinon{limite}})]
-[(#SET{tri, #ENV{tri_perso}|sinon{#ENV{tri}|sinon{date}}})]
-[(#SET{tri, [(#GET{tri}|!={note}|ou{#PLUGIN{notation}}|?{#GET{tri},date})]})]
-[(#SET{senstri, #ENV{tri_perso}|oui|?{#ENV{senstri_perso}|sinon{0},#ENV{senstri}|sinon{1}}})]
-[(#SET{tri_num, #GET{tri}|=={titre}|?{titre,''}})]
-
-[(#SET{pas_pagination, #ENV{pas_pagination}|sinon{5}})]
-[(#SET{limite, #ENV{limite}|sinon{10}})]
-[(#GET{selection}|=={tout}|oui)#SET{pas_pagination,1000000}]
-[(#GET{selection}|=={limite}|oui)#SET{pas_pagination,#GET{limite}}]
-[(#SET{position_pagination, #ENV{position_pagination}|sinon{fin}})]
-[(#SET{position_pagination_debut,#GET{selection}|!={pagination}|ou{#GET{position_pagination}|=={fin}}|?{'',on}})]
-[(#SET{position_pagination_fin,#GET{selection}|!={pagination}|ou{#GET{position_pagination}|=={debut}}|?{'',on}})]
-
-[(#SET{style_liste, #ENV{style_liste}|sinon{liste}})]
-[(#SET{afficher_titre_liste, #ENV{afficher_titre_liste}|is_null|non|?{#ENV{afficher_titre_liste},'on'}})]
-[(#SET{titre_liste, #ENV{titre_liste}|sinon{ecrire:titre_documents_joints}})]
-[(#SET{titre,[(#GET{titre_liste}|=={titre_perso}|?{[(#ENV**{titre_liste_perso}|typo)],[(#GET{titre_liste}|_T)]})]})]
-[(#SET{style_pagination, #ENV{style_pagination}|sinon{''}})]
+[(#SET{titre,[(#ENV{titre_liste}|=={titre_perso}|?{[(#ENV**{titre_liste_perso}|typo)],[(#ENV{titre_liste}|_T)]})]})]
 
 <BOUCLE_test_exclusion_portfolio(CONDITION){si #ENV{exclure_photos}}>
 	<BOUCLE_documents_portfolio(DOCUMENTS) {id_article?}{id_rubrique?}{recherche?}{mode=document}{extension IN png,jpg,gif}{vu?}{doublons portfolio}> </BOUCLE_documents_portfolio>
 </BOUCLE_test_exclusion_portfolio>
 
-<B_documents_joints>
-	<div class="liste documents documents_joints">
+<B_liste_documents>
+<div class="liste document documents_joints">
 	#ANCRE_PAGINATION
-	[(#GET{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})[(#ENV{afficher_nb_resultats}|oui)&#40;#GRAND_TOTAL&#41;][ ((#ENV{archives}|affdate_mois_annee|sinon{#ENV{archives}}))]</h2>]]
-	[(#GET{position_pagination_debut}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
+	[(#ENV{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})[(#ENV{afficher_nb_resultats}|oui)&#40;#GRAND_TOTAL&#41;]</h2>]]
+	[<p class="pagination">(#AVELINE_PAGINATION{'debut'})</p>]
 	<ul class="liste-items">
-		<BOUCLE_documents_joints(DOCUMENTS) {id_article?}{id_rubrique?}{recherche?}{vu?}{par num #GET{tri_num}}{inverse #GET{senstri}}{par #GET{tri}}{inverse #GET{senstri}}{pagination #GET{pas_pagination}}{doublons portfolio}>
-	[(#GET{style_liste}|=={liste}|oui)
+	<BOUCLE_liste_documents(AUTEURS) {tri #ENV{tri},#ENV{senstri}}{aveline_pagination}{id_article?}{id_rubrique?}{recherche?}{vu?}{doublons portfolio}>
+	[(#ENV{style_liste}|=={liste}|oui)
 		<li class="item">
 			<strong><a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a></strong>
 			[(#ENV{liste_afficher_type}|ou{#ENV{liste_afficher_taille}})<span class="small">(<span>][(#ENV{liste_afficher_type}|?{#TYPE_DOCUMENT})][(#ENV{liste_afficher_type}|et{#ENV{liste_afficher_taille}})&ndash; ][(#ENV{liste_afficher_taille}?{[(#TAILLE|taille_en_octets)]})][(#ENV{liste_afficher_type}|ou{#ENV{liste_afficher_taille}}|?{</span>)</span>})]
@@ -40,7 +22,7 @@
 			[(#ENV{liste_afficher_descriptif}|oui)#DESCRIPTIF]
 		</li>
 	]
-	[(#GET{style_liste}|=={resume}|oui)
+	[(#ENV{style_liste}|=={resume}|oui)
 	<li class="item hentry">
 	<h3 class="h3 entry-title">
 		<a href="#URL_DOCUMENT" title="<:bouton_telecharger:>" type="#MIME_TYPE">
@@ -61,10 +43,10 @@
 	[(#ENV{afficher_telecharger}|ou{#ENV{afficher_type}}|ou{#ENV{afficher_taille}})</div>]
 	</li>
 	]
-		</BOUCLE_documents_joints>
+	</BOUCLE_liste_documents>
 	</ul>
-	[(#GET{position_pagination_fin}|oui)[<p class="pagination">(#PAGINATION{#GET{style_pagination}})</p>]]
-	</div>
-</B_documents_joints>
+	[<p class="pagination">(#AVELINE_PAGINATION{'fin'})</p>]
+</div>
+</B_liste_documents>
 [(#ENV{message_aucun_resultat}|oui)<div class="texte"><:aveline_public:aucun_document_trouve:></div>]
-<//B_documents_joints>
+<//B_liste_documents>

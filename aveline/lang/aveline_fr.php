@@ -98,6 +98,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_page-recherche-breves' => 'Br&egrave;ves trouv&eacute;es',
 	'nom_page-recherche-contenuprincipal' => 'Contenu principal de la page recherche',
 	'nom_page-recherche-documents' => 'Documents trouv&eacute;s',
+	'nom_page-recherche-forums' => 'Messages de forum trouv&eacute;s',
 	'nom_page-recherche-mots' => 'Mots-cl&eacute;s trouv&eacute;s',
 	'nom_page-recherche-rubriques' => 'Rubriques trouv&eacute;es',
 	'nom_page-recherche-sites' => 'Sites web trouv&eacute;s',
