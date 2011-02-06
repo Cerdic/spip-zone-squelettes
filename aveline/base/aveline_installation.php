@@ -112,7 +112,6 @@ function aveline_maj_noisettes($noisettes, $version_actuelle) {
 				$noisettes[$cle]['parametres']['tri'] = 'points';
 				$noisettes[$cle]['parametres']['senstri'] = 'inverse';
 			}
-			foreach ($noisettes as $cle => $noisette) {
 			if(in_array($noisette['noisette'],array(
 				'liste_documents',
 				'article-documents',
@@ -120,13 +119,25 @@ function aveline_maj_noisettes($noisettes, $version_actuelle) {
 				'page-recherche-documents'
 			))){
 				foreach($noisette['parametres'] as $param => $valeur) {
-					if ($param == 'tri' and $valeur == 'titre')
-						$noisettes[$cle]['parametres'][$param] = 'multi titre';
 					if ($param == 'senstri' and intval($valeur) == 0)
 						$noisettes[$cle]['parametres'][$param] = '';
 					if ($param == 'senstri' and intval($valeur) == 1)
 						$noisettes[$cle]['parametres'][$param] = 'inverse';
-					}
+				}
+			}
+		}
+	}
+	if (version_compare($current_version,'0.3.3','<')){
+		foreach ($noisettes as $cle => $noisette) {
+			if(in_array($noisette['noisette'],array(
+				'liste_documents',
+				'article-documents',
+				'rubrique-documents',
+				'page-recherche-documents'
+			))){
+				foreach($noisette['parametres'] as $param => $valeur) {
+					if ($param == 'tri' and $valeur == 'multi titre')
+						$noisettes[$cle]['parametres'][$param] = 'titre';
 				}
 			}
 		}
