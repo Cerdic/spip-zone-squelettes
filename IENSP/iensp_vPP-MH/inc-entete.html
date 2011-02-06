@@ -1,0 +1,55 @@
+<div id="entete">
+
+[(#REM) Afficher le logo ou le titre du site ]
+
+<a rel="start" href="#URL_SITE_SPIP/">
+[(#LOGO_SITE_SPIP||?{
+
+	[(#LOGO_SITE_SPIP
+		||image_reduire{770,200}
+		|inserer_attribut{alt,[(#NOM_SITE_SPIP|textebrut)]}
+		|inserer_attribut{title,[(#NOM_SITE_SPIP|textebrut)]}
+		)]
+
+	,
+
+	<span id="nom_site_spip"><br />#NOM_SITE_SPIP</span>
+})]</a>
+
+
+
+
+
+<div id="barre">
+<ul class="level1">
+	<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
+		<li class="level1">
+			<a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a>
+
+			<B_sous_rubriques>
+			<ul class="level2">
+				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}>
+					<li class="level2"><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a>
+						<B_sous_rubriques2>
+							<ul class="level3">
+								<BOUCLE_sous_rubriques2(RUBRIQUES) {id_parent} {par num titre, titre}>
+									<li class="level2"><a href="#URL_RUBRIQUE">[(#TITRE|supprimer_numero|couper{80})]</a>
+									</li>
+							</BOUCLE_sous_rubriques2>
+							</ul>
+						</B_sous_rubriques2>
+					</li>
+			</BOUCLE_sous_rubriques>
+			</ul>
+			</B_sous_rubriques>
+
+		</li>
+	</BOUCLE_rubriques>
+</B_rubriques>
+
+</ul>
+<ul class="auth">[<li class="level1"><a href="[(#URL_PAGE{auteur,id_auteur=[(#SESSION{id_auteur})]})]"><img src="#CHEMIN{images/auteur-24.gif}" align="absmiddle" height=12 />&nbsp;(#SESSION{nom})</a></li>]</ul>
+#FORMULAIRE_RECHERCHE
+</div>
+</div>
+

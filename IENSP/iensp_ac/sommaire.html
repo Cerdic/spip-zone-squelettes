@@ -1,0 +1,143 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>[(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+<INCLURE{fond=inc-head}>
+</head>
+
+<body class="page_sommaire">
+<div id="fondpage">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+
+[(#REM) Menu de navigation laterale ]
+		<div id="navigation">
+
+			[(#REM) Menu de navigation par rubriques ]
+			<INCLURE{fond=inc-rubriques}>
+
+		<div class="meme-rub">
+<h2 class="menu-titre">Agenda</h2>
+[(#CALENDRIER_MINI{#ENV{date},'date',#SELF})]
+</div>	
+[(#REM) Derniers sites référencés ]
+				<B_sites>
+				<div class="meme-rub">
+					<h2 class="menu-titre">Les derniers sites r&eacute;f&eacute;renc&eacute;s</h2>
+					
+					<ul>
+					<BOUCLE_sites(SITES){par date}{inverse} {0,6}>
+						<li>[(#DATE|affdate_court) &ndash; ]<a href="#URL_SITE"[ title="(#NOM_SITE)"] class="spip_out">#NOM_SITE</a></li>
+					</BOUCLE_sites>
+					</ul>
+					<h4 style="text-align: center;"><a href="spip.php?page=annuaire">tous les sites</a></h4>
+				</div>
+				</B_sites>
+		</div><!-- fin navigation -->
+	
+
+	<div id="conteneur">
+	<div id="contenu">
+			<div class="contre-encart">
+			[(#REM) Fil d'Ariane ]
+	<div id="hierarchie"><img src="#CHEMIN{images/home.png}" align="absmiddle" /></div>
+		[(#REM) Contenu principal : derniers articles publies ]
+			[<div class="liste-articles"><h2 class="menu-titre">#NOM_SITE_SPIP</h2>(#DESCRIPTIF_SITE_SPIP)</div>]
+
+			<br class="nettoyeur" />
+<div class="liste-articles">
+			[(#REM) Le dernier article ]
+			<B_articles_recents>
+			
+				
+          <h2 class="menu-titre">derniers articles publi&eacute;s :</h2>
+				<ul>
+					<BOUCLE_articles_recents(ARTICLES) {par date}{inverse} {0,1} {doublons}>
+					<li>
+						[(#LOGO_ARTICLE_RUBRIQUE|#URL_ARTICLE|image_reduire{150,100})]
+						[<p class="surtitre">(#SURTITRE)</p>]
+						<h3 class="titre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+						[<p class="soustitre">(#SOUSTITRE)</p>]
+						<small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</small>
+						
+					</li>
+					</BOUCLE_articles_recents>
+				</ul>
+
+			</B_articles_recents>
+
+			
+			[(#REM) Articles suivants ]
+			<B_articles>
+					[(#ENV{debut_articles}|?{'',' '})<h2 class="invisible"><:articles_recents:></h2>]
+					<ul>
+						<BOUCLE_articles(ARTICLES) {par date}{inverse}{doublons} {0,6}>
+						<li>
+							<h3 class="soustitre"><a href="#URL_ARTICLE">#TITRE</a></h3>
+							<small>[(#DATE|affdate_jourcourt)][, <:par_auteur:> (#LESAUTEURS)]</small>
+						</li>
+						</BOUCLE_articles>
+					</ul>
+				</div>
+				<br class="nettoyeur" />
+				
+	</div><!-- fin contre-encart -->
+	
+	<div class="encart">
+			[(#REM) Breves ]
+				<B_breves>
+				<div class="breves">
+					<h2 class="menu-titre"><:dernieres_breves:></h2>
+					<ul>
+						<BOUCLE_breves(BREVES) {par date}{inverse} {0,5}>
+						<li><a href="#URL_BREVE">#TITRE</a></li>
+						</BOUCLE_breves>
+					</ul>
+				</div>
+				</B_breves>
+
+[(#REM) Sur le Web ]
+				<B_syndic>
+				<div class="syndic">
+					<h2 class="menu-titre"><:nouveautes_web:></h2>
+					<ul>
+					<BOUCLE_syndic(SYNDIC_ARTICLES){unique} {par date}{inverse} {0,6}>
+						<li>[(#DATE|affdate_court) &ndash; ]<a href="#URL_ARTICLE"[ title="(#NOM_SITE|texte_backend)"] class="spip_out">#TITRE</a></li>
+					</BOUCLE_syndic>
+					</ul>
+				</div>
+				</B_syndic>
+
+				[(#REM) Liens des forums ]
+				<B_forums_liens>
+				<div class="forums">
+					<h2 class="menu-titre"><:derniers_commentaires:></h2>
+					<p><:messages_recents:></p>
+					<ul>
+						<BOUCLE_forums_liens(FORUMS) {plat} {par date}{inverse} {0,8}>
+						<li>[(#DATE|affdate_court) &ndash; ]<a href="#URL_FORUM">#TITRE</a></li>
+						</BOUCLE_forums_liens>
+					</ul>
+				</div>
+				</B_forums_liens>
+
+
+
+			</div><!-- fin encart -->
+		</div><!-- fin contenu -->
+
+		
+
+	</div><!-- fin conteneur -->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+</div><!-- fin page -->
+</div><!-- fin fondpage -->
+</body>
+</html>

@@ -1,0 +1,67 @@
+#CACHE{24 * 3600}
+#HTTP_HEADER{"Cache-Control: no-store, no-cache, must-revalidate"}
+#HTTP_HEADER{Pragma: no-cache}
+
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>acc&egrave;s restreint - [(#NOM_SITE_SPIP|textebrut)]</title>
+<INCLURE{fond=inc-head}>
+<meta name="robots" content="none" />
+</head>
+<body class="page_404">
+<div id="fondpage">
+	<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+
+	
+[(#REM) Menu de navigation laterale ]
+		<div id="navigation">
+
+			[(#REM) Menu de navigation par rubriques ]
+			<INCLURE{fond=inc-rubriques}>
+
+		</div><!-- fin navigation -->
+	<div id="conteneur">
+[(#REM) Fil d'Ariane ]
+	  <div id="hierarchie">
+        <p><a href="#URL_SITE_SPIP/"><img src="#CHEMIN{images/home.png}" /></a> 
+          &gt; identification</p>
+        <p>Cette page est en acc&egrave;s reserv&eacute; aux professionnels, veuillez 
+          vous identifier :</p>
+      </div>
+      <div id="contenu">
+<p>[(#REM) Identification ] 
+    <?php if ($auteur_session) { } 
+else { ?>
+    <img style="width: 24px; height: 24px;" alt="zone prot&eacute;g&eacute;e" src="#URL_SPIPsquelettes/images/zones-acces-24.gif">[(#LOGIN_PUBLIC)] 
+    <?php } ?>
+    [(#REM) Deconnection ] 
+    <?php if ($auteur_session) { ?>
+    </p><h1><?php echo $auteur_session['nom']; ?></h1>		
+
+
+<p>
+<a href='[(#URL_LOGOUT{spip.php?page=sommaire})]'>Se d&eacute;connecter</a>
+</p>
+
+#LOGIN_PUBLIC
+
+<?php } else {} ?>
+
+
+		</div><!-- fin contenu -->
+
+		
+
+	</div><!-- fin conteneur -->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+	</div><!-- fin page -->
+	</div><!-- fin fondpage -->
+</body>
+</html>

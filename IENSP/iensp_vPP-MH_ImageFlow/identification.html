@@ -1,0 +1,60 @@
+#CACHE{7200}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="#LANG_DIR" lang="#LANG">
+<head>
+<title>S'identifier</title>
+
+[ 
+<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]
+	<INCLURE{fond=inc-head}>
+</head>
+<body>
+
+
+<div id="fondpage">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+<div id="navigation">
+
+			[(#REM) Menu de navigation par rubriques ]
+			<INCLURE{fond=inc-rubriques}>
+
+		
+
+		</div><!-- fin navigation -->
+
+
+	<div id="conteneur">
+	[(#REM) Fil d'Ariane ]
+	<div id="hierarchie">S'identifier</div>
+		
+  <div id="contenu"> #CACHE{3600} [(#REM) Identification ] 
+    <?php if ($auteur_session) { } 
+else { ?>
+    <img style="width: 24px; height: 24px;" alt="zone prot&eacute;g&eacute;e" src="#URL_SPIPsquelettes/images/zones-acces-24.gif">[(#LOGIN_PUBLIC|spip.php?page=sommaire)] 
+    <?php } ?>
+    [(#REM) Deconnection ] 
+    <?php if ($auteur_session) { ?>
+    <h1><?php echo $auteur_session['nom']; ?></h1>		
+
+
+<p>
+<a href='[(#URL_LOGOUT{spip.php?page=sommaire})]'>Se d&eacute;connecter</a>
+</p>
+
+#LOGIN_PUBLIC
+
+<?php } else {} ?>
+</div><!-- fin conteneu -->
+	</div><!-- fin conteneur -->
+
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+
+</div><!-- fin page -->
+
+</div><!-- fin fondpage --></body>
+#SPIP_CRON
+</html>

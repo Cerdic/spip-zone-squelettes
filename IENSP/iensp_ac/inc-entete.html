@@ -1,0 +1,41 @@
+<div id="entete">
+
+[(#REM) Afficher le logo ou le titre du site ]
+
+<a rel="start" href="#URL_SITE_SPIP/">
+[(#LOGO_SITE_SPIP||?{
+
+	[(#LOGO_SITE_SPIP
+		||image_reduire{770,200}
+		|inserer_attribut{alt,[(#NOM_SITE_SPIP|textebrut)]}
+		|inserer_attribut{title,[(#NOM_SITE_SPIP|textebrut)]}
+		)]
+
+	,
+
+	<span id="nom_site_spip">#NOM_SITE_SPIP</span>
+})]</a>
+</div>
+
+
+
+
+<div id="barre">
+<ul>
+	<li class="image-barre"><a href="#URL_SITE_SPIP/"><img src="#CHEMIN{images/home.gif}" alt="accueil" title="accueil" /></a>
+	</li>
+	
+	<li class="image-barre"><a href="spip.php?page=plan"><img src="#CHEMIN{images/map.gif}" alt="plan" title="plan" /></a>
+	</li>
+	<li class="image-barre"><a href="spip.php?page=plan"><img src="#CHEMIN{images/contact.gif}" alt="contact" title="contact" /></a>
+	</li>
+ <li>[ (#SESSION{id_auteur}|?{' '})<a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a> 
+        ][(#SESSION{id_auteur}|?{'',' '})<a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]" rel="nofollow" class='login_modal'><img src="#CHEMIN{images/zones-acces-24.gif}" height="18" align="absmiddle">&nbsp;<:lien_connecter:></a>]</li>
+	[<li>(#AUTORISER{ecrire})<a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a></li>]
+	
+#FORMULAIRE_RECHERCHE
+	
+</ul>
+
+
+</div>

@@ -1,0 +1,11 @@
+[(#REM) Portfolio : album d'images ]
+<B_documents_portfolio>
+<a href="#portfolio" name="portfolio" id="portfolio"></a>
+<div id="documents_portfolio">
+<h2><:info_portfolio:></h2>     
+<div id="Highslide" class="imageflow">
+<BOUCLE_documents_portfolio(DOCUMENTS) {id_article} {mode=document} {extension IN png,jpg,gif} {par num titre, date} {unique}>
+<img src="[(#LOGO_DOCUMENT||extraire_attribut{src})]" alt="[(#TITRE|texte_backend)][ - (#DESCRIPTIF)]" longdesc="[(#FICHIER|image_reduire{600,600}|extraire_attribut{src})]" /> 
+</BOUCLE_documents_portfolio></div></div><!-- fin docs portfolio -->
+</B_documents_portfolio>[(#REM)	Sinon, liste des autres documents joints]<B_documents_joints>	<div class="menu" id="documents_joints">	<h2><:titre_documents_joints:></h2>	<ul>		<BOUCLE_documents_joints(DOCUMENTS) {id_article} {extension !IN gif,jpg,png} {vu=non}{par num titre, date}>[		<li>			<strong><a href="(#URL_DOCUMENT)" title="<:bouton_telecharger:>" type="#MIME_TYPE">[(#TITRE|sinon{<:info_document:>})]</a></strong>			<small>(<span>#TYPE_DOCUMENT[ &ndash; (#TAILLE|taille_en_octets)]</span>)</small>			#DESCRIPTIF		]</li>		</BOUCLE_documents_joints>
+	</ul>	</div></B_documents_joints><//B_documents_decompte>
