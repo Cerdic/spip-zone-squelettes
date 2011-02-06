@@ -330,6 +330,21 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'item_tout' => 'tous les &eacute;l&eacute;ments sans pagination',
 	'item_vignettes' => 'vignettes',
 	'item_visites' => 'nombre de visites',
+	
+	// Description des configurations
+	'config-aveline-zpip-groupe-mots' => 'Aveline - Zpip avec groupes de mots',
+	'description-config-aveline-zpip-groupe-mots' => 'Cette configuration reproduit Zpip-dist en ajoutant une page pour les groupes de mots.',
+	'config-aveline-zpip-groupe-mots-menus' => 'Aveline - Zpip avec groupes de mots et menus',
+	'description-config-aveline-zpip-groupe-mots-menus' => 'Cette configuration reproduit Zpip-dist en ajoutant une page pour les groupes de mots et en ajoutant deux menus (pour la barre horizontale et pour la navigation).',
+	'config-aveline-zpip-secteurs-langue' => 'Aveline - Zpip avec secteurs de langue',
+	'description-config-aveline-zpip-secteurs-langue' => 'Cette configuration est adapt&eacute;e aux sites multilingues organis&eacute;s en secteurs de langue.',
+	'config-aveline-zpip-secteurs-langue-menus' => 'Aveline - Zpip avec secteurs de langue et menus',
+	'description-config-aveline-zpip-secteurs-langue-menus' => 'Cette configuration est adapt&eacute;e aux sites multilingues organis&eacute;s en secteurs de langue. Elle ajoute également deux menus (pour la barre horizontale et pour la navigation).',
+	'config-aveline-zpip-dist' => 'Aveline - Zpip-dist',
+	'description-config-aveline-zpip-dist' => 'Cette configuration reproduit Zpip-dist (adapt&eacute;e pour un site monolingue).',
+	'config-aveline-type-blog' => 'Aveline - Configuration de type blog',
+	'description-config-aveline-type-blog' => 'Pr&eacute;sentation de type blog (les br&egrave;ves sont d&eacute;sactiv&eacute;es).',
+	
 );
 
 ?>
