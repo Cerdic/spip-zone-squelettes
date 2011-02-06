@@ -72,7 +72,8 @@ function aveline_maj_noisettes($noisettes, $version_actuelle) {
 				'rubriques_racine',
 				'page-recherche-rubriques',
 				'liste_forums',
-				'mot-forums'
+				'mot-forums',
+				'selecteur_archives'
 			))){
 				foreach($noisette['parametres'] as $param => $valeur) {
 					if ($param == 'tri' and $valeur == 'nb_articles')
