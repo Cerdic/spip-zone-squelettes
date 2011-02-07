@@ -257,7 +257,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'label_utiliser_logo_breve_rubrique' => 'Afficher le logo de la rubrique parente si la br&egrave;ve n\'a pas de logo&nbsp;?',
 	'label_vignette_ajout_css' => 'Ajout en dur de CSS sp&eacute;cifiques&nbsp;?',
 	
-	'explication_afficher_selecteur_archives' => '&Agrave; la fa&ccedil;on d\'un blog, ajoute en d&eacute;but et/ou en fin de liste un s&eacute;lecteur permettant de restreindre la liste aux publications d\'un mois ou d\'une date donn&eacute;e. Pour afficher ce s&eacute;lecteur dans un autre bloc, vous pouvez utiliser &agrave; la place une noisette <i>S&eacute;lecteur d\'archives</i>.',
+	'explication_afficher_selecteur_archives' => '&Agrave; la fa&ccedil;on d\'un blog, ajoute en d&eacute;but et/ou en fin de liste un s&eacute;lecteur permettant de restreindre la liste aux publications d\'un mois ou d\'une date donn&eacute;e.',
 	'explication_choix_tri' => 'Comme sur SPIP-Contrib, ajoute des liens permettant au visiteur de modifier le crit&egrave;re de tri de la liste.',
 	'explication_formulaire_reponse_volant' => 'Reproduis le fonction de SPIP-Contrib&nbsp;: lorsque le visiteur clique sur r&eacute;pondre &agrave; ce message, le formulaire de r&eacute;ponse vient se placer sous le message.',
 	'explication_lien_page_auteurs' => 'Rajoute un lien vers une page \'auteurs\' o&ugrave; vous pourrez lister l\'ensemble des auteurs du site. Vous devrez cr&eacute;er cette page (composition du type \'page\' avec l\'identifiant \'auteurs\'.',
