@@ -418,5 +418,49 @@ function balise_NB_ARCHIVES_dist($p) {
 	return $p;
 }
 
+/**
+ * Calculer l'initiale d'un nom ou d'un titre
+ * 
+ * @param <type> $nom
+ * @return <type>
+ */
+function aveline_initiale($nom){
+	return spip_substr(trim(strtoupper($nom)),0,1);
+}
+
+
+/**
+ * Afficher l'initiale pour la navigation par lettres
+ * adptée du plugin afficher_objets
+ * 
+ * @staticvar string $memo
+ * @param <type> $url
+ * @param <type> $initiale
+ * @param <type> $compteur
+ * @param <type> $debut
+ * @param <type> $pas
+ * @return <type>
+ */
+function aveline_afficher_initiale($url,$initiale,$compteur,$debut,$pas){
+	static $memo = null;
+	$res = '';
+	if (!$memo 
+		OR (!$initiale AND !$url)
+		OR ($initiale!==$memo['initiale'])
+		){
+		$newcompt = intval(floor(($compteur-1)/$pas)*$pas);
+		if ($memo){
+			$on = (($memo['compteur']<=$debut)
+				AND (
+						$newcompt>$debut OR ($newcompt==$debut AND $newcompt==$memo['compteur'])
+						));
+			$res = lien_ou_expose($memo['url'],$memo['initiale'],$on,'lien_pagination');
+		}
+		if ($initiale)
+			$memo = array('initiale'=>$initiale,'url'=>$url,'compteur'=>$newcompt);
+	}
+	return $res;
+}
+
 
 ?>

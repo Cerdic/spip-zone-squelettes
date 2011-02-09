@@ -1,0 +1,17 @@
+<B_lettre>
+	<p class='pagination tri_alphabetique'>
+<BOUCLE_lettre(ARTICLES){aveline_branche}{compteur_publie forum}{notation}{tri #ENV{tri},#ENV{senstri}}{archives?}{aveline_lang}{aveline_exclure_objet_encours}>
+		[(#TITRE**|aveline_initiale|unique{tri_alphabétique}|oui)
+			[(#ENV{selection}|=={pagination}|oui)
+				[(#SELF|parametre_url{debut_liste_articles,#COMPTEUR_BOUCLE|moins{1}}|ancre_url{pagination_liste_articles}|aveline_afficher_initiale{[(#TITRE**|aveline_initiale)],#COMPTEUR_BOUCLE,#ENV{debut_liste_articles},#ENV{pas_pagination}}) | ]
+			]
+			[(#ENV{selection}|=={tout}|oui)
+				[(#COMPTEUR_BOUCLE|=={1}|non)| ][<a href="#tri_alphabetique_[(#TITRE**|aveline_initiale)]" class="noajax">(#TITRE**|aveline_initiale)</a>]
+			]
+		]
+		</BOUCLE_lettre>
+		[(#ENV{selection}|=={pagination}|oui)
+			[(#REM|aveline_afficher_initiale{#REM,#TOTAL_BOUCLE,#ENV{debut_liste_articles},#ENV{pas_pagination}})]
+		]
+	</p>
+</B_lettre>
