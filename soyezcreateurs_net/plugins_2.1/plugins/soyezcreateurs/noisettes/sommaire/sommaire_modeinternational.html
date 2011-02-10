@@ -35,7 +35,13 @@
 #INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_alaune_archives,env,ajax},
 #INCLURE{fond=noisettes/sommaire/inc_sommaire_modeinternational_alaune,env}
 })]
-			[(#PLUGIN{AGENDA}|oui)[<div id="agenda" class="outerbox hauteur2">
+			<BOUCLE_AgendaEvenementsFuturs(EVENEMENTS)
+			{branche}
+			{par date_debut}
+			{0,1}
+			{date_fin>=(#ENV{date}|affdate{'Y-m-d'})}
+			{statut=publie}
+		><div id="agenda" class="outerbox hauteur2">
 				<div class="box simple">
 					<b class="top">
 						<b class="tl"></b>
@@ -43,14 +49,14 @@
 					</b>
 					<div class="inner">
 						<div class="hd bam h1">Agenda</div>
-						<div class="bd">(#INCLURE{fond=noisettes/agenda/miniagenda,env,ajax})</div>
+						<div class="bd">#INCLURE{fond=noisettes/agenda/miniagenda,env,ajax}</div>
 					</div>
 					<b class="bottom">
 						<b class="bl"></b>
 						<b class="br"></b>
 					</b>
 				</div>
-			</div>]]
+			</div></BOUCLE_AgendaEvenementsFuturs>
 		</div>
 		<div id="block2" class="troistiers">
 			<B_ZoomSur>
