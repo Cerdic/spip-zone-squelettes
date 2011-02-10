@@ -6,6 +6,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// Chaines affichées sur la partie publique
+	'adresse_deux_points' => 'Adresse&nbsp;:',
 	'annee_deux_points' => 'Ann&eacute;e&nbsp;:',
 	'annees' => 'Ann&eacute;es',
 	'archives' => 'Archives',
@@ -44,6 +45,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'date_jour_le' => 'Le',
 	'envoyer_email' => 'Envoyer un email',
 	'groupes_mots' => 'Groupes de mots-cl&eacute;s',
+	'inscriptions_deux_points' => 'Inscriptions&nbsp;:',
 	'les_derniers_publies' => 'Les derniers publi&eacute;s',
 	'les_mieux_notes' => 'Les mieux not&eacute;s',
 	'les_plus_anciens' => 'Les plus anciens',
@@ -54,12 +56,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'les_plus_visites' => 'Les plus visit&eacute;s',
 	'lien_permanent' => 'Lien permanent',
 	'liens' => 'Liens',
+	'lieu_deux_points' => 'Lieu&nbsp;:',
 	'mis_a_jour_le' => 'Mis &agrave; jour le',
 	'modifiees_recemment' => 'Modifi&eacute;es r&eacute;cemment',
 	'modifies_recemment' => 'Modifi&eacute;s r&eacute;cemment',
 	'mois' => 'Mois',
 	'mois_deux_points' => 'Mois&nbsp;:',
 	'mots_cles_deux_points' => 'Mots-Cl&eacute;s&nbsp;:',
+	'nb_participants_deux_points' => 'Nombre de participants&nbsp;:',
 	'notez_cet_article' => 'Notez cet article',
 	'nous_contacter' => 'Nous contacter',
 	'par_nb_articles' => 'Par nombre d\'articles',
