@@ -68,6 +68,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_breve-filariane' => 'Fil d\'ariane de la br&egrave;ve',
 	'nom_breve-forum' => 'Forum de la br&egrave;ve',
 	'nom_breve-mots_cles' => 'Mots-Cl&eacute;s de la br&egrave;ve',
+	'nom_evenement-forumaire_participer_evenement' => 'Formulaire d\'inscription &agrave; l\'&eacute;v&egrave;nement',
 	'nom_filariane' => 'Fil d\'ariane',
 	'nom_formulaire_inscription' => 'Formulaire d\'inscription de nouveaux r&eacute;dacteurs',
 	'nom_formulaire_recherche' => 'Formulaire de recherche',
