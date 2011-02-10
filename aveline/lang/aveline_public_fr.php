@@ -68,6 +68,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nous_contacter' => 'Nous contacter',
 	'par_nb_articles' => 'Par nombre d\'articles',
 	'par_nom' => 'Par nom',
+	'par_rang' => 'Par rang',
 	'par_titre' => 'Par titre',
 	'permalink_to' => 'Lien permanent vers le commentaire',
 	'principaux_auteurs' => 'Principaux auteurs',

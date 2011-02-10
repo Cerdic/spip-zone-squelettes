@@ -8,13 +8,13 @@
 		#INCLURE{fond=inclure/liste_articles-selecteur_archives-#ENV{pas_selecteur_archives},env}
 	]
 	[<p class="pagination choix_tri">(#AVELINE_CHOIX_TRI{'article','debut'})</p>]
-	[(#ENV{afficher_tri_alphabetique}|et{#ENV{position_tri_alphabetique}|!={fin}}|et{#ENV{tri_liste_articles}|sinon{#ENV{tri}}|=={'num titre'}})
+	[(#ENV{afficher_tri_alphabetique}|et{#ENV{position_tri_alphabetique}|!={fin}}|et{#ENV{tri_liste_articles}|sinon{#ENV{tri}}|=={'titre'}})
 		#INCLURE{fond=inclure/liste_articles-tri_alphabetique,env}
 	]
 	[<p class="pagination">(#AVELINE_PAGINATION{'debut'})</p>]
 	<ul class="liste-items">
 	<BOUCLE_liste_articles(ARTICLES){aveline_branche}{compteur_publie forum}{notation}{tri #ENV{tri},#ENV{senstri}}{archives?}{aveline_pagination}{aveline_lang}{aveline_exclure_objet_encours}>
-	[(#ENV{afficher_tri_alphabetique}|et{#ENV{tri_liste_articles}|sinon{#ENV{tri}}|=={'num titre'}}|et{#ENV{selection}|=={'tout'}})
+	[(#ENV{afficher_tri_alphabetique}|et{#ENV{tri_liste_articles}|sinon{#ENV{tri}}|=={'titre'}}|et{#ENV{selection}|=={'tout'}})
 		[(#SET{initiale,[(#TITRE**|aveline_initiale|unique{liste_articles})]})]
 	]
 	[(#ENV{style_liste}|=={resume}|non)
@@ -26,7 +26,7 @@
 	</BOUCLE_liste_articles>
 	</ul>
 	[<p class="pagination">(#AVELINE_PAGINATION{'fin'})</p>]
-	[(#ENV{afficher_tri_alphabetique}|et{#ENV{position_tri_alphabetique}|!={debut}}|et{#ENV{tri_liste_articles}|sinon{#ENV{tri}}|=={'num titre'}})
+	[(#ENV{afficher_tri_alphabetique}|et{#ENV{position_tri_alphabetique}|!={debut}}|et{#ENV{tri_liste_articles}|sinon{#ENV{tri}}|=={'titre'}})
 		#INCLURE{fond=inclure/liste_articles-tri_alphabetique,env}
 	]
 	[<p class="pagination choix_tri">(#AVELINE_CHOIX_TRI{'article','fin'})</p>]

@@ -78,8 +78,6 @@ function aveline_maj_noisettes($noisettes, $version_actuelle) {
 				foreach($noisette['parametres'] as $param => $valeur) {
 					if ($param == 'tri' and $valeur == 'nb_articles')
 						$noisettes[$cle]['parametres'][$param] = 'compteur_articles';
-					if ($param == 'tri' and $valeur == 'titre')
-						$noisettes[$cle]['parametres'][$param] = 'num titre';
 					if ($param == 'senstri' and intval($valeur) == 0)
 						$noisettes[$cle]['parametres'][$param] = '';
 					if ($param == 'senstri' and intval($valeur) == 1)
@@ -142,7 +140,33 @@ function aveline_maj_noisettes($noisettes, $version_actuelle) {
 			}
 		}
 	}
-	
+	if (version_compare($current_version,'0.3.4','<')){
+		foreach ($noisettes as $cle => $noisette) {
+			if(in_array($noisette['noisette'],array(
+				'auteur-articles',
+				'liste_articles',
+				'mot-articles',
+				'page-recherche-articles',
+				'liste_breves',
+				'mot-breves',
+				'page-recherche-breves',
+				'liste_auteurs',
+				'page-recherche-auteurs',
+				'rubrique-sous_rubriques',
+				'rubriques_secteur_langue',
+				'rubriques_racine',
+				'page-recherche-rubriques',
+				'liste_forums',
+				'mot-forums',
+				'selecteur_archives'
+			))){
+				foreach($noisette['parametres'] as $param => $valeur) {
+					if ($param == 'tri' and $valeur == 'num titre')
+						$noisettes[$cle]['parametres'][$param] = 'titre';
+				}
+			}
+		}
+	}
 	return $noisettes;
 }
 
