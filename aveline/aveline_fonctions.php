@@ -277,6 +277,13 @@ function balise_AVELINE_CHOIX_TRI_dist($p) {
 			array('affiche' => \$Pile['0']['choix_tri_note'], 'tri' => 'moyenne', 'sens' => -1, 'libelle' => _T('aveline_public:les_mieux_notes')),
 			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('aveline_public:les_plus_pertinents'))
 		)";
+	if ($objet == "'evenement'")
+		$choix = "array(
+			array('affiche' => \$Pile['0']['choix_tri_date'], 'tri' => 'date_debut', 'sens' => -1, 'libelle' => _T('aveline_public:les_plus_recents')),
+			array('affiche' => \$Pile['0']['choix_tri_anciens'], 'tri' => 'date_debut', 'sens' => 1, 'libelle' => _T('aveline_public:les_plus_anciens')),
+			array('affiche' => \$Pile['0']['choix_tri_titre'], 'tri' => 'titre', 'sens' => 1, 'libelle' => _T('aveline_public:par_titre')),
+			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('aveline_public:les_plus_pertinents'))
+		)";
 	
 	$p->code = "calculer_balise_AVELINE_CHOIX_TRI($suffixe,$choix,$pos,$tri_actuel,$sens_actuel,\$Pile[0]['choix_tri'],\$Pile[0]['position_choix_tri'])";
 	return $p;
@@ -307,6 +314,7 @@ function calculer_balise_AVELINE_CHOIX_TRI($suffixe,$choix,$pos,$tri_actuel,$sen
 function critere_aveline_branche_dist($idb, &$boucles, $crit) {
 	$boucle = &$boucles[$idb];
 	
+	$id_article = calculer_argument_precedent($idb, 'id_article', $boucles);
 	$id_rubrique = calculer_argument_precedent($idb, 'id_rubrique', $boucles);
 	$id_secteur = calculer_argument_precedent($idb, 'id_secteur', $boucles);
 
@@ -319,11 +327,11 @@ function critere_aveline_branche_dist($idb, &$boucles, $crit) {
 	
 	$table = $boucle->id_table;
 	
-	$boucle->where[] = "aveline_calcul_branche($id_rubrique, $id_secteur, $cle_rubrique, $table, \$Pile[0]['branche'], \$Pile[0]['rubrique_specifique'], \$Pile[0]['branche_specifique'], \$Pile[0]['secteur_specifique'])";
+	$boucle->where[] = "aveline_calcul_branche($id_article,$id_rubrique, $id_secteur, $cle_rubrique, $table, \$Pile[0]['branche'], \$Pile[0]['rubrique_specifique'], \$Pile[0]['branche_specifique'], \$Pile[0]['secteur_specifique'])";
 	
 }
 
-function aveline_calcul_branche($id_rubrique,$id_secteur,$cle_rubrique,$table, $branche,$rubrique_specifique,$branche_specifique,$secteur_specifique) {
+function aveline_calcul_branche($id_article,$id_rubrique,$id_secteur,$cle_rubrique,$table, $branche,$rubrique_specifique,$branche_specifique,$secteur_specifique) {
 	switch ($table) {
 		case 'articles':
 			$cle_secteur = $table;
@@ -334,6 +342,12 @@ function aveline_calcul_branche($id_rubrique,$id_secteur,$cle_rubrique,$table, $
 			$champ_secteur = 'id_rubrique';
 	}
 	switch ($branche) {
+		case 'meme_article':
+			return $id_article ? array('=',"$table.id_article",$id_article) : array ();
+			break;
+		case 'article_specifique':
+			return $article_specifique ? sql_in("$table.id_article",picker_selected($article_specifique,'article')) : array();
+			break;
 		case 'meme_rubrique':
 			return $id_rubrique ? array('=',"$cle_rubrique.id_rubrique",$id_rubrique) : array ();
 			break;

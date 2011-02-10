@@ -6,6 +6,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// Chaines affichées sur la partie publique
+	'a_venir' => '&Agrave; venir',
 	'adresse_deux_points' => 'Adresse&nbsp;:',
 	'annee_deux_points' => 'Ann&eacute;e&nbsp;:',
 	'annees' => 'Ann&eacute;es',
@@ -33,16 +34,18 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'breves_les_plus_anciennes' => 'Br&egrave;ves les plus anciennes',
 	'breves_les_plus_commentees' => 'Br&egrave;ves les plus comment&eacute;es',
 	'breves_les_plus_recentes' => 'Br&egrave;ves les plus r&eacute;centes',
+	'ca_discute_par_ici' => '&Ccedil;a discute par ici',
 	'categorie_deux_points' => 'Cat&eacute;gorie&nbsp;:',
 	'categories' => 'Cat&eacute;gories',
 	'categories_deux_points' => 'Cat&eacute;gories&nbsp;:',
-	'ca_discute_par_ici' => '&Ccedil;a discute par ici',
 	'commentaires' => 'Commentaires',
 	'contact' => 'Contact',
 	'contributeurs' => 'Contributeurs',
 	'dans' => 'Dans',
 	'date_heure_a' => '&agrave;',
 	'date_jour_le' => 'Le',
+	'en_cours' => 'En cours',
+	'en_cours_a_venir' => 'En cours et &agrave; venir',
 	'envoyer_email' => 'Envoyer un email',
 	'groupes_mots' => 'Groupes de mots-cl&eacute;s',
 	'inscriptions_deux_points' => 'Inscriptions&nbsp;:',
@@ -70,6 +73,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'par_nom' => 'Par nom',
 	'par_rang' => 'Par rang',
 	'par_titre' => 'Par titre',
+	'passe' => 'Pass&eacute;',
+	'passe_en_cours' => 'Pass&eacute; et en cours',
 	'permalink_to' => 'Lien permanent vers le commentaire',
 	'principaux_auteurs' => 'Principaux auteurs',
 	'principaux_contributeurs' => 'Principaux contributeurs',
@@ -84,9 +89,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'theme_deux_points' => 'Th&egrave;me&nbsp;:',
 	'themes' => 'Th&egrave;mes',
 	'themes_deux_points' => 'Th&egrave;mes&nbsp;:',
+	'tout' => 'Tout',
 	'visiteurs_quotidiens' => 'visiteur(s) quotidien(s)',
 	'voir' => 'Voir',
 	'voir_tous' => 'Voir tous',
+	
 
 );
 
