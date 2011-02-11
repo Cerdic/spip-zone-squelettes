@@ -79,6 +79,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_afficher_titre_invisible' => 'Invisible : le texte est br&ucirc;l&eacute; dans le bandeau',
 	'cfg_afficher_titre_label' => 'Affichage du nom du site',
 	'cfg_afficher_titre_visible' => 'Visible : bandeau sans texte br&ucirc;l&eacute;',
+	'cfg_age_goodies' => '&Acirc;ge maximum des goodies avant archivage',
 	'cfg_agenda_futurseul' => 'Agenda dans le futur',
 	'cfg_agenda_ical_masque' => 'Affichage de l\'icone iCal dans les &eacute;v&eacute;nements',
 	'cfg_agenda_ical_masque_label' => 'Masquer',
