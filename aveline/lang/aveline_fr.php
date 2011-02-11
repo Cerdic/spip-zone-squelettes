@@ -75,6 +75,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'explication_raccourcis_typo' => 'Vous pouvez utiliser les raccourcis typographiques de SPIP.',
 	'explication_restreindre_langue' => 'Dans le cas d\'un site multilingue, on peut vouloir restreindre l\'affichage uniquement aux objets dans la m&ecirc;me langue.',
 	'explication_tri_note' => 'ATTENTION&nbsp;: le crit&egrave;re note n&eacute;cessite que le plugin Notation soit actif.',
+	'explication_tri_recherche' => 'Par d&eacute;faut, les r&eacute;sultats sont tri&eacute;s par pertinence. Si vous activez le tri modifiable, l\'option "Par pertinence" sera automatiquement ajout&eacute;e.',
 	'explication_utiliser_logo_evenement_article_rubrique' => 'Pour que les &eacute;v&egrave;nements puissent avoir leur propre logo, vous devez installer le plugin \'Documents et Logo pour Agenda\'.',
 	'explication_vignette_ajout_css' => 'Une majorit&eacute; de th&egrave;mes pour Zpip ne prennent pas en compte les vignettes d\'auteurs. Cette option permet de rajouter en dur dans le squelette quelques styles CSS pour am&eacute;liorer l\'affichage. &Agrave; ne pas activer si le th&egrave;me prend en charge les vignettes.',
 	
@@ -362,6 +363,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_page-recherche-breves' => 'Br&egrave;ves trouv&eacute;es',
 	'nom_page-recherche-contenuprincipal' => 'Contenu principal de la page recherche',
 	'nom_page-recherche-documents' => 'Documents trouv&eacute;s',
+	'nom_page-recherche-evenements' => '&Eacute;v&egrave;nements trouv&eacute;s',
 	'nom_page-recherche-forums' => 'Messages de forum trouv&eacute;s',
 	'nom_page-recherche-mots' => 'Mots-cl&eacute;s trouv&eacute;s',
 	'nom_page-recherche-rubriques' => 'Rubriques trouv&eacute;es',

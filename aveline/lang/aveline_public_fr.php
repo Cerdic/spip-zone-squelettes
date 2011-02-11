@@ -20,6 +20,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'aucun_article_trouve' => 'Aucun article ne correspond &agrave; cette recherche.',
 	'aucun_auteur_trouve' => 'Aucun auteur ne correspond &agrave; cette recherche.',
 	'aucun_document_trouve' => 'Aucun document ne correspond &agrave; cette recherche.',
+	'aucun_evenement_trouve' => 'Aucun &eacute;v&egrave;nement ne correspond &agrave; cette recherche.',
 	'aucun_forum_trouve' => 'Aucun message de forum ne correspond &agrave; cette recherche.',
 	'aucun_mot_trouve' => 'Aucun mot-cl&eacute; ne correspond &agrave; cette recherche.',
 	'aucun_site_trouve' => 'Aucun site web r&eacute;f&eacute;renc&eacute; ne correspond &agrave; cette recherche.',

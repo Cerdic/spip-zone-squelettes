@@ -1,0 +1,37 @@
+[(#SET{titre,[(#ENV{titre_liste}|=={titre_perso}|?{[(#ENV**{titre_liste_perso}|typo)],[(#ENV{titre_liste}|_T)]})]})]
+#SET{periode,#ENV{periode_liste_evenements}|sinon{#ENV{periode}}}
+[(#ENV{archives}|oui)#SET{periode,''}]
+<B_liste_evenements>
+<div class="liste evenements">
+	#ANCRE_PAGINATION
+	[(#ENV{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})[ ((#ENV{archives}|affdate_mois_annee|sinon{#ENV{archives}}))][(#ENV{afficher_nb_resultats}|oui)&#40;#GRAND_TOTAL&#41;]</h2>]]
+	[(#ENV{choix_periode}|et{#ENV{position_choix_periode}|!={fin}})
+		#INCLURE{fond=inclure/page-recherche-evenements-choix_periode,env}
+	]
+	[(#ENV{afficher_selecteur_archives}|et{#ENV{position_selecteur_archives}|!={fin}})
+		#INCLURE{fond=inclure/page-recherche-selecteur_archives-#ENV{pas_selecteur_archives},env}
+	]
+	[<p class="pagination choix_tri">(#AVELINE_CHOIX_TRI{'evenement','debut'})</p>]
+	[<p class="pagination">(#AVELINE_PAGINATION{'debut'})</p>]
+	<ul class="liste-items">
+	<BOUCLE_liste_evenements(EVENEMENTS) {aveline_branche}{tri #ENV{tri},#ENV{senstri}} {evenementrelatif #GET{periode}}{archives?}{aveline_pagination}{recherche}>
+	[(#ENV{style_liste}|=={resume}|non)
+		#INCLURE{fond=inclure/evenement-liste,id_evenement=#ID_EVENEMENT,id_evenement_expose=#ENV{id_evenement},env}
+	]
+	[(#ENV{style_liste}|=={resume}|oui)
+		#INCLURE{fond=inclure/evenement-resume,id_evenement=#ID_EVENEMENT,id_evenement_expose=#ENV{id_evenement},env}
+	]
+	</BOUCLE_liste_evenements>
+	</ul>
+	[<p class="pagination">(#AVELINE_PAGINATION{'fin'})</p>]
+	[<p class="pagination choix_tri">(#AVELINE_CHOIX_TRI{'evenement','fin'})</p>]
+	[(#ENV{afficher_selecteur_archives}|et{#ENV{position_selecteur_archives}|!={debut}})
+		#INCLURE{fond=inclure/page-recherche-selecteur_archives-#ENV{pas_selecteur_archives},env}
+	]
+	[(#ENV{choix_periode}|et{#ENV{position_choix_periode}|!={fin}})
+		#INCLURE{fond=inclure/page-recherche-choix_periode,env}
+	]
+</div>
+</B_liste_evenements>
+	[(#ENV{message_aucun_resultat}|oui)<div class="texte"><:aveline_public:aucun_evenement_trouve:></div>]
+<//B_liste_evenements>
