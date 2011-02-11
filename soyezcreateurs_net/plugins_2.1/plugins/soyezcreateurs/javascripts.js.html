@@ -22,28 +22,28 @@ var jp_picalt='<:soyezcreateurs:menu_picalt:>';
 var jp_strDeplier='<:soyezcreateurs:menu_deplier:>';
 var jp_strReplier='<:soyezcreateurs:menu_replier:>';
 var jp_parentID='menu';
-// D�claration de variables
+// Déclaration de variables
 var altAttr='';
 var titleAttr='';
 // Checking for DOM compatibility	
 if (document.getElementById && document.createTextNode && document.createElement){jp_canDOM=true}
 
 function jp_expinit2() {
-	// Parcour des sous menus pour leurs appliquer � chacuns la bonne apparence
+	// Parcour des sous menus pour leurs appliquer à chacuns la bonne apparence
 	$('#'+jp_parentID+' li.smenu').each(function() {
 		// cibles
 		var imgInsert_target = $(this).find('a:first'); 
 		var ul_target = $(this).find('ul:first'); 
 		var a_target = $(this).find('a:first'); 
 		
-		//Cr�ation de l'image
+		//Création de l'image
 		$('<img/>', {
 			src: jp_blankpic,
 			alt: jp_picalt,
 			className: 'node'
 		}).insertBefore(imgInsert_target);
 			
-		// Application des attributs en fonction de la pr�sence ou non du strong
+		// Application des attributs en fonction de la présence ou non du strong
 		if($(this).find("strong").size() > 0) {	
 			var pic_alt = jp_picalt+jp_strReplier+$(a_target).attr('text');
 			$('img.node', this).attr({
@@ -65,7 +65,7 @@ function jp_expinit2() {
 }
 
 function jp_ex2(event) {
-	//D�finition des cibles
+	//Définition des cibles
 	var img_target = $(event.target).parents("li:first").find("img:first");
 	var ul_target = $(event.target).parents("li:first").find("ul:first");
 	var a_target = $(event.target).parents("li:first").find("a:first");
@@ -118,9 +118,9 @@ function hoverAttr(event) {
 }
 
 function adjustLayout() {
-	/* Remettre la taille � auto pour trouver l'eventuelle nouvelle hauteur !*/
+	/* Remettre la taille à auto pour trouver l'eventuelle nouvelle hauteur !*/
 	$("div.equilibre").css({'height': 'auto'});
-	/*******************************************CAS N�1********************************************************************/
+	/*******************************************CAS N°1********************************************************************/
 	/*Nav, Contenu et Extra alignes top (Layout 1 a 22)*/
 	var tnotstackable =0;
 	tnotstackable = parseInt($("div.notstackable")[0].offsetTop);
@@ -202,7 +202,7 @@ function myInitPages() {
 	[(#CONFIG{soyezcreateurs_layout/menuderoulant,replie}|=={replie}|oui)jp_expinit2();]
 	// Surligner l'evenement en cours
 	var id_anchor  = location.hash.substr(1); //Get the word after the hash from the url
-	if (id_anchor) $('#'+id_anchor).parent().addClass('highlight_anchor'); // ajoute la classe highlight_anchor � l'element autour de l'ancre
+	if (id_anchor) $('#'+id_anchor).parent().addClass('highlight_anchor'); // ajoute la classe highlight_anchor à l'element autour de l'ancre
 	if (CanceladjustLayout != true) {
 		adjustLayout();
 		$("body").resize(
@@ -299,7 +299,7 @@ function homeCarousel(elt) {
 			function reloadCarousels() {
 				jQuery('.smallCarousel').stop(true,true).fadeOut(750);
 				jQuery('#sc'+myCounter+'b').stop(true,true).fadeIn(750).children('ul').cycle({
-				    //fx: 'scrollHorz', // pour transition latérale
+				    //fx: 'scrollHorz', // pour transition latÃ©rale
 				    fx: 'fade',
 				    speed: 1500,
 				    timeout: 4000,
@@ -325,7 +325,7 @@ function homeCarousel(elt) {
 		//
 	}
 	jQuery('.smallCarousel ul').cycle({
-	    //fx: 'scrollHorz', // pour transition latérale
+	    //fx: 'scrollHorz', // pour transition latÃ©rale
 	    fx: 'fade',
 	    speed: 1500,
 	    timeout: 4000,
@@ -343,12 +343,12 @@ function homeCarousel(elt) {
 		jQuery(this).addClass('hover active');
 		whatToShow = jQuery(this).children('h2').children('a').attr('id');
 		jQuery('.smallCarousel').stop(true,true).fadeOut().children('ul').cycle('stop');
-		// jQuery(whatToShow).stop(true,true).fadeIn().children('ul').cycle({fx: 'scrollHorz',speed: 1500,timeout: 4000,pause: true,after: onAfter2}).cycle('resume'); // avec transition latérale
+		// jQuery(whatToShow).stop(true,true).fadeIn().children('ul').cycle({fx: 'scrollHorz',speed: 1500,timeout: 4000,pause: true,after: onAfter2}).cycle('resume'); // avec transition latÃ©rale
 		jQuery('#'+whatToShow+'b').stop(true,true).fadeIn().children('ul').cycle({fx: 'fade',speed: 1500,timeout: 4000,pause: true,startingSlide: 0,after: onAfter2});
 	}).live('mouseleave blur', function() {
 		whatToShow = jQuery(this).children('h2').children('a').attr('id');
 		jQuery(this).removeClass('hover');
-		// jQuery('.smallCarousel').stop(true,true).fadeOut().children('ul').cycle({fx: 'scrollHorz',speed: 1500,timeout: 4000,pause: true,after: onAfter}).cycle('pause'); // avec transition latérale
+		// jQuery('.smallCarousel').stop(true,true).fadeOut().children('ul').cycle({fx: 'scrollHorz',speed: 1500,timeout: 4000,pause: true,after: onAfter}).cycle('pause'); // avec transition latÃ©rale
 		jQuery('.smallCarousel').stop(true,true).fadeOut().children('ul').cycle('stop');
 		jQuery('#'+whatToShow+'b').stop(true,true).fadeIn().children('ul').cycle({fx: 'fade',speed: 1500,timeout: 4000,pause: true,startingSlide: 0,after: onAfter});
 		myCounter = jQuery(this).index()+1;
