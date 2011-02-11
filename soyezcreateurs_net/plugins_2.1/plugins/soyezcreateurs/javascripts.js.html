@@ -22,89 +22,100 @@ var jp_picalt='<:soyezcreateurs:menu_picalt:>';
 var jp_strDeplier='<:soyezcreateurs:menu_deplier:>';
 var jp_strReplier='<:soyezcreateurs:menu_replier:>';
 var jp_parentID='menu';
+// Déclaration de variables
+var altAttr='';
+var titleAttr='';
 // Checking for DOM compatibility	
 if (document.getElementById && document.createTextNode && document.createElement){jp_canDOM=true}
 
-function jp_expinit(){
-	if (jp_canDOM){
-		if(jp_parentID && document.getElementById(jp_parentID)){
-			jp_alluls=document.getElementById(jp_parentID).getElementsByTagName('UL');
-			jp_alllis=document.getElementById(jp_parentID).getElementsByTagName('LI');
-		}else{
-			jp_alluls=document.getElementsByTagName('UL');
-			jp_alllis=document.getElementsByTagName('LI');
+function jp_expinit2() {
+	// Parcour des sous menus pour leurs appliquer à chacuns la bonne apparence
+	$('#'+jp_parentID+' li.smenu').each(function() {
+		// cibles
+		var imgInsert_target = $(this).find('a:first'); 
+		var ul_target = $(this).find('ul:first'); 
+		var a_target = $(this).find('a:first'); 
+		
+		//Création de l'image
+		$('<img/>', {
+			src: jp_blankpic,
+			alt: jp_picalt,
+			className: 'node'
+		}).insertBefore(imgInsert_target);
+			
+		// Application des attributs en fonction de la présence ou non du strong
+		if($(this).find("strong").size() > 0) {	
+			var pic_alt = jp_picalt+jp_strReplier+$(a_target).attr('text');
+			$('img.node', this).attr({
+				'className':jp_offclass,
+				'title':pic_alt,
+				'alt':pic_alt
+			});
+			$(ul_target).css('display', 'block');
+		} else {
+			var pic_alt = jp_picalt+jp_strDeplier+$(a_target).attr('text');
+			$('img.node', this).attr({
+				'className':jp_onclass,
+				'title':pic_alt,
+				'alt':pic_alt
+			});
+			$(ul_target).css('display', 'none');
 		}
-		for(i=0;i<jp_alluls.length;i++){
-			jp_subul=jp_alluls[i];
-			if(jp_subul.parentNode.tagName=='LI'){
-				jp_supli=jp_subul.parentNode
-				jp_islink=jp_supli.getElementsByTagName('a')[0];
-				if(jp_islink){
-					jp_addimg = document.createElement('img');
-					jp_addimg.src=jp_blankpic;
-					jp_addimg.className='node';
-					jp_addimg.alt='';
-					jp_addimg.onclick=function() {jp_ex(this,null);return false;};
-					jp_supli.getElementsByTagName('A')[0].onkeypress=inputKeyHandler;
-					jp_supli.getElementsByTagName('A')[0].onfocus=function() {jp_ex(this,0);};
-					jp_supli.insertBefore(jp_addimg,jp_supli.firstChild);
-				}
-				// Do not collapse when there is a strong element in the list.
-				jp_highlight=jp_subul.parentNode.getElementsByTagName('strong').length==0?true:false;
-				jp_disp=jp_highlight?'none':'block';
-				var jp_picaltonoff=jp_highlight?jp_picalt+jp_strDeplier:jp_picalt+jp_strReplier;
-				jp_pic_class=jp_highlight?jp_onclass:jp_offclass;
-				// End  highlight change
-				jp_childs=jp_subul.getElementsByTagName('li').length
-				jp_momimg=jp_subul.parentNode.getElementsByTagName('img')[0]
-				if(jp_momimg){
-					jp_momimg.setAttribute('title',jp_picaltonoff+jp_subul.parentNode.getElementsByTagName('a')[0].text);
-					jp_momimg.setAttribute('alt',jp_picaltonoff+jp_subul.parentNode.getElementsByTagName('a')[0].text);
-					jp_momimg.className=jp_pic_class;
-					jp_subul.style.display=jp_disp;
-				}
-			}
-		}
-	}
+	});
 }
 
-// Collapse and Expand node.
-function jp_ex(jp_n,jp_event){
-	if(jp_canDOM){
-		jp_u=jp_n.parentNode.getElementsByTagName("ul")[0];
-		if (!jp_u) jp_u=jp_n.parentNode.parentNode.getElementsByTagName("ul")[0];;
-		if(jp_u){
-			if (((jp_u.style.display=='none'||jp_u.style.display=='')&&(jp_event==0||jp_event==43||jp_event==null))||((jp_u.style.display=='block')&&(jp_event==45||jp_event==null))) {
-				jp_u.style.display=jp_u.style.display=='none'||jp_u.style.display==''?'block':'none';
-				jp_img=jp_u.parentNode.getElementsByTagName('img')[0];
-				jp_img.className=jp_img.className.indexOf(jp_offclass)!=-1?jp_onclass:jp_offclass;
-				var jp_strAlt=jp_img.getAttribute('title');
-				if (jp_strAlt==null) { jp_strAlt=''; }
-				if (jp_img.className.indexOf(jp_offclass)!=-1) {
-					var jp_re = new RegExp (jp_strDeplier, 'gi');
-					var jp_strAltNew = jp_strAlt.replace(jp_re,jp_strReplier);
-				}else{
-					var jp_re = new RegExp (jp_strReplier, 'gi');
-					var jp_strAltNew = jp_strAlt.replace(jp_re,jp_strDeplier);
-				}
-				jp_img.setAttribute('title',jp_strAltNew);
-				jp_img.setAttribute('alt',jp_strAltNew);
-				adjustLayout();
-				return true;
-			} else {
-				return false;
-			}
+function jp_ex2(event) {
+	//Définition des cibles
+	var img_target = $(event.target).parents("li:first").find("img:first");
+	var ul_target = $(event.target).parents("li:first").find("ul:first");
+	var a_target = $(event.target).parents("li:first").find("a:first");
+	
+	// Fermeture/ouverture
+	if( ( (event.type=='click' || event.type=='focusin') && $(ul_target).css('display')=='none') || (event.type=='keypress' && event.which==43) ) {
+		$(img_target).addClass(jp_offclass).removeClass(jp_onclass);
+		$(ul_target).css('display', 'block');
+		var jp_strAltNew = jp_picalt+jp_strReplier+$(a_target).attr('text');
+	} else {
+		if(event.type=='click' || (event.type=='keypress' && event.which==45)) {
+			$(img_target).addClass(jp_onclass).removeClass(jp_offclass);
+			$(ul_target).css('display', 'none');
+			var jp_strAltNew = jp_picalt+jp_strDeplier+$(a_target).attr('text');
 		}
-	}			
-}
-function inputKeyHandler(ev) {
-	ev = ev || event;
-	if (jp_ex(ev.target || ev.srcElement,ev.keyCode || ev.which)) {
-		ev.cancelBubble= true;
-		if (ev.stopPropagation) ev.stopPropagation();
 	}
+	
+	// On change les info bulle
+	$(img_target).attr({'alt':jp_strAltNew,'title':jp_strAltNew});
+	// On ajuste le Layout
+	adjustLayout();
+	// On rafraichie les info bulle si elle sont afficher avec tooltips
+	rafraichirTooltip(img_target);	
 }
 
+function rafraichirTooltip(target) {
+	[(#CONFIG{soyezcreateurs/native_tooltips}|=={on}|non)
+	$(target).each(function() {
+		var this_alt = $(this).attr('alt');
+		var this_title = $(this).attr('title');
+		$(this).tooltip({ 
+			track: false, 
+			delay: 0, 
+			showURL: false, 
+			showBody: " - ", 
+			fade: 250 
+		});
+		$(this).attr({alt:this_alt,title:this_title});
+	});
+	]
+}
+
+function hoverAttr(event) {
+	if(event.type=='mouseenter') {
+		altAttr=$(event.target).attr('alt');
+		titleAttr=$(event.target).attr('title');
+		$(event.target).attr({alt:'',title:''});
+	} else 
+		if(event.type=='mouseleave') $(event.target).attr({alt:altAttr,title:titleAttr});
+}
 
 function adjustLayout() {
 	/* Remettre la taille à auto pour trouver l'eventuelle nouvelle hauteur !*/
@@ -188,7 +199,7 @@ function adjustLayout() {
 /* FUNCTIONS ON ALL PAGES */
 function myInitPages() {
     jQuery('body').addClass('hasJS');
-	[(#CONFIG{soyezcreateurs_layout/menuderoulant,replie}|=={replie}|oui)jp_expinit();]
+	[(#CONFIG{soyezcreateurs_layout/menuderoulant,replie}|=={replie}|oui)jp_expinit2();]
 	// Surligner l'evenement en cours
 	var id_anchor  = location.hash.substr(1); //Get the word after the hash from the url
 	if (id_anchor) $('#'+id_anchor).parent().addClass('highlight_anchor'); // ajoute la classe highlight_anchor à l'element autour de l'ancre
@@ -209,17 +220,7 @@ function myInitPages() {
 		onAjaxLoad(adjustLayout); // Merci Marcimat sur IRC !
 	}
 ;
-[(#CONFIG{soyezcreateurs/native_tooltips}|=={on}|non)
-	$(function() {
-		$('a, input, select, img, button, h2, h3, dd, acronym, abbr, area').tooltip({ 
-			track: false, 
-			delay: 0, 
-			showURL: false, 
-			showBody: " - ", 
-			fade: 250 
-		});
-	});
-]
+	rafraichirTooltip('a, input, select, img, button, h2, h3, dd, acronym, abbr, area');
 	$(".escapelinks a").focus( function() { $(".escapelinks").removeClass("escapelinks"); } );
 
 }
@@ -359,4 +360,12 @@ $(document).ready(function() {
 	/* HOME SPECIAL FEATURE */
 	if (jQuery('#homeSpecialFeature').size() > 0) { initMyHomeSpecialFeature = myHomeSpecialFeature("#homeSpecialFeature",'hSFItem','hSFDecoImg','hSFDecoSpan'); }
 	if (jQuery('#arretSurImg .mainCarousels').size() > 0) { homeCarousel('.mainCarousels'); }
+	
+	$('#'+jp_parentID+' img.'+jp_offclass).live("click", function(event) jp_ex2(event));
+	$('#'+jp_parentID+' img.'+jp_onclass).live("click", function(event) jp_ex2(event));
+	$('#'+jp_parentID+' .smenu a').live("focusin", function(event) jp_ex2(event));
+	$('#'+jp_parentID+' .smenu a').live("keypress", function(event) jp_ex2(event));
+	$('a, input, select, img, button, h2, h3, dd, acronym, abbr, area').live("mouseenter", function(event) hoverAttr(event));
+	$('a, input, select, img, button, h2, h3, dd, acronym, abbr, area').live("mouseleave", function(event) hoverAttr(event));
 });
+
