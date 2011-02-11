@@ -1,6 +1,7 @@
 #SET{periode_actuelle,#ENV{periode_liste_evenements}|sinon{#ENV{periode}}|sinon{tout}}
+[(#ENV{archives}|oui)#SET{periode_actuelle,''}]
 #SET{choix,#ARRAY}
-[(#SET{url,[(#SELF|parametre_url{annee,''}|parametre_url{mois,''}|parametre_url{jour,''}|parametre_url{tri_liste_evenements,date_debut})]})]
+[(#SET{url,[(#SELF|parametre_url{archives,''}|parametre_url{tri_liste_evenements,date_debut})]})]
 [(#ENV{choix_periode_tout}|oui)[(#SET{choix,[(#GET{choix}|push{[(#GET{url}|parametre_url{periode_liste_evenements,tout}|parametre_url{sens_liste_evenements,-1}|lien_ou_expose{<:aveline_public:tout:>,#GET{periode_actuelle}|=={tout}})]})]})]]
 <BOUCLE_passe(EVENEMENTS){aveline_branche}{evenementrelatif passe}{aveline_exclure_objet_encours}{0,1}>
 [(#ENV{choix_periode_passe}|oui)[(#SET{choix,[(#GET{choix}|push{[(#GET{url}|parametre_url{periode_liste_evenements,passe}|parametre_url{sens_liste_evenements,-1}|lien_ou_expose{<:aveline_public:passe:>,#GET{periode_actuelle}|=={passe}})]})]})]]

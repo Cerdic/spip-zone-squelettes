@@ -1,15 +1,20 @@
 [(#SET{titre,[(#ENV{titre_liste}|=={titre_perso}|?{[(#ENV**{titre_liste_perso}|typo)],[(#ENV{titre_liste}|_T)]})]})]
+#SET{periode,#ENV{periode_liste_evenements}|sinon{#ENV{periode}}}
+[(#ENV{archives}|oui)#SET{periode,''}]
 <B_liste_evenements>
 <div class="liste evenements">
 	#ANCRE_PAGINATION
-	[(#ENV{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})</h2>]]
+	[(#ENV{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})[ ((#ENV{archives}|affdate_mois_annee|sinon{#ENV{archives}}))]</h2>]]
 	[(#ENV{choix_periode}|et{#ENV{position_choix_periode}|!={fin}})
 		#INCLURE{fond=inclure/liste_evenements-choix_periode,env}
+	]
+	[(#ENV{afficher_selecteur_archives}|et{#ENV{position_selecteur_archives}|!={fin}})
+		#INCLURE{fond=inclure/liste_evenements-selecteur_archives-#ENV{pas_selecteur_archives},env}
 	]
 	[<p class="pagination choix_tri">(#AVELINE_CHOIX_TRI{'evenement','debut'})</p>]
 	[<p class="pagination">(#AVELINE_PAGINATION{'debut'})</p>]
 	<ul class="liste-items">
-	<BOUCLE_liste_evenements(EVENEMENTS) {aveline_branche}{tri #ENV{tri},#ENV{senstri}} {evenementrelatif #ENV{periode_liste_evenements}|sinon{#ENV{periode}}}{aveline_pagination}{aveline_exclure_objet_encours}>
+	<BOUCLE_liste_evenements(EVENEMENTS) {aveline_branche}{tri #ENV{tri},#ENV{senstri}} {evenementrelatif #GET{periode}}{archives?}{aveline_pagination}{aveline_exclure_objet_encours}>
 	[(#ENV{style_liste}|=={resume}|non)
 		#INCLURE{fond=inclure/evenement-liste,id_evenement=#ID_EVENEMENT,id_evenement_expose=#ENV{id_evenement},env}
 	]
@@ -20,6 +25,9 @@
 	</ul>
 	[<p class="pagination">(#AVELINE_PAGINATION{'fin'})</p>]
 	[<p class="pagination choix_tri">(#AVELINE_CHOIX_TRI{'evenement','fin'})</p>]
+	[(#ENV{afficher_selecteur_archives}|et{#ENV{position_selecteur_archives}|!={debut}})
+		#INCLURE{fond=inclure/liste_evenements-selecteur_archives-#ENV{pas_selecteur_archives},env}
+	]
 	[(#ENV{choix_periode}|et{#ENV{position_choix_periode}|!={fin}})
 		#INCLURE{fond=inclure/liste_evenements-choix_periode,env}
 	]

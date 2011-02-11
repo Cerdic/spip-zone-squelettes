@@ -279,8 +279,8 @@ function balise_AVELINE_CHOIX_TRI_dist($p) {
 		)";
 	if ($objet == "'evenement'")
 		$choix = "array(
-			array('affiche' => \$Pile['0']['choix_tri_date'], 'tri' => 'date_debut', 'sens' => -1, 'libelle' => _T('aveline_public:les_plus_recents')),
-			array('affiche' => \$Pile['0']['choix_tri_anciens'], 'tri' => 'date_debut', 'sens' => 1, 'libelle' => _T('aveline_public:les_plus_anciens')),
+			array('affiche' => \$Pile['0']['choix_tri_date'], 'tri' => 'date_debut', 'sens' => -1, 'libelle' => _T('aveline_public:par_date_decroissante')),
+			array('affiche' => \$Pile['0']['choix_tri_anciens'], 'tri' => 'date_debut', 'sens' => 1, 'libelle' => _T('aveline_public:par_date_croissante')),
 			array('affiche' => \$Pile['0']['choix_tri_titre'], 'tri' => 'titre', 'sens' => 1, 'libelle' => _T('aveline_public:par_titre')),
 			array('affiche' => \$Pile['0']['recherche'], 'tri' => 'points', 'sens' => -1, 'libelle' => _T('aveline_public:les_plus_pertinents'))
 		)";
@@ -477,6 +477,5 @@ function aveline_afficher_initiale($url,$initiale,$compteur,$debut,$pas){
 	}
 	return $res;
 }
-
 
 ?>
