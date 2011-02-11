@@ -3,10 +3,10 @@
 <div class="liste evenements">
 	#ANCRE_PAGINATION
 	[(#ENV{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})</h2>]]
-	[<p class="pagination choix_tri">(#AVELINE_CHOIX_TRI{'evenement','debut'})</p>]
 	[(#ENV{choix_periode}|et{#ENV{position_choix_periode}|!={fin}})
 		#INCLURE{fond=inclure/liste_evenements-choix_periode,env}
 	]
+	[<p class="pagination choix_tri">(#AVELINE_CHOIX_TRI{'evenement','debut'})</p>]
 	[<p class="pagination">(#AVELINE_PAGINATION{'debut'})</p>]
 	<ul class="liste-items">
 	<BOUCLE_liste_evenements(EVENEMENTS) {aveline_branche}{tri #ENV{tri},#ENV{senstri}} {evenementrelatif #ENV{periode_liste_evenements}|sinon{#ENV{periode}}}{aveline_pagination}{aveline_exclure_objet_encours}>
@@ -19,10 +19,10 @@
 	</BOUCLE_liste_evenements>
 	</ul>
 	[<p class="pagination">(#AVELINE_PAGINATION{'fin'})</p>]
+	[<p class="pagination choix_tri">(#AVELINE_CHOIX_TRI{'evenement','fin'})</p>]
 	[(#ENV{choix_periode}|et{#ENV{position_choix_periode}|!={fin}})
 		#INCLURE{fond=inclure/liste_evenements-choix_periode,env}
 	]
-	[<p class="pagination choix_tri">(#AVELINE_CHOIX_TRI{'evenement','fin'})</p>]
 </div>
 </B_liste_evenements>
 	[(#ENV{afficher_passe_si_pas_a_venir}|oui)
