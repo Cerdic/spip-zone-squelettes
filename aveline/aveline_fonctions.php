@@ -82,14 +82,55 @@ function balise_AVELINE_COMPTEUR_ARTICLES_dist($p) {
 
 // Critère archives pour afficher uniquement les objets d'une date donnée, par exemple en passant à l'URL ?archives=2010-02
 // Repris du plugin minical
+// Adapté pour gérer les évènements en cours
 function critere_archives($idb, &$boucles, $crit, $var_date = 'archives') {
 	$boucle = &$boucles[$idb];
-	$champ_date = "'" . $boucle->id_table ."." .$GLOBALS['table_date'][$boucle->type_requete] . "'";
-	$boucle->where[] = array(
-		'REGEXP',
-		$champ_date, 
-		"sql_quote(('^' . interdire_scripts(entites_html(\$Pile[0]['".$var_date."']))))"
-	);
+	if ($boucle->id_table == 'evenements') {
+		$boucle->where[] =
+		array("'AND'",
+			array("'<='", "'date_debut'", "sql_quote(archives_debut(\$Pile[0]['".$var_date."']))"),
+			array("'>='", "'date_fin'", "sql_quote(archives_fin(\$Pile[0]['".$var_date."']))"),
+		);
+	} else {
+		$champ_date = "'" . $boucle->id_table ."." .$GLOBALS['table_date'][$boucle->type_requete] . "'";
+		$boucle->where[] = array(
+			'REGEXP',
+			$champ_date, 
+			"sql_quote(('^' . interdire_scripts(entites_html(\$Pile[0]['".$var_date."']))))"
+		);
+	}
+}
+
+// Tester si le critère archives est de la forme AAAA, AAAA-MM ou AAAA-MM-JJ
+function archives_debut($date) {
+	if (!$date or $date=='tout')
+		return '2038-01-19 23:59:59';
+	switch (count(explode('-',$date))) {
+		case 1:
+			return date('Y-12-31 23:59:59', strtotime($date));
+			break;
+		case 2:
+			return date('Y-m-31 23:59:59', strtotime($date));
+			break;
+		case 3:
+			return date('Y-m-d 23:59:59', strtotime($date));
+			break;
+	}
+}
+function archives_fin($date) {
+	if (!$date or $date=='tout')
+		return '1970-01-01 00:00:00';
+	switch (count(explode('-',$date))) {
+		case 1:
+			return date('Y-01-01 00:00:00', strtotime($date));
+			break;
+		case 2:
+			return date('Y-m-01 00:00:00', strtotime($date));
+			break;
+		case 3:
+			return date('Y-m-d 00:00:00', strtotime($date));
+			break;
+	}
 }
 
 // Balise #ME
@@ -476,6 +517,31 @@ function aveline_afficher_initiale($url,$initiale,$compteur,$debut,$pas){
 			$memo = array('initiale'=>$initiale,'url'=>$url,'compteur'=>$newcompt);
 	}
 	return $res;
+}
+
+// Personnalisation pour Aveline
+// pour diriger au choix vers le lien de l'évènement ou vers la page Agenda
+
+function aveline_agenda_mini($i) {
+	$args = func_get_args();
+	$une_date = array_shift($args); // une date comme balise
+	$sinon = array_shift($args);
+	if (!$une_date) return $sinon;
+	$type = 'mini';
+	$agenda = Agenda_memo_full(0);
+	$evt = array();
+	foreach (($args ? $args : array_keys($agenda)) as $k) {
+		if (is_array($agenda[$k]))
+			foreach($agenda[$k] as $d => $v) { 
+				if (count($v)>1)
+					foreach ($v as $cle => $ligne)
+						$v[0]['URL'] = generer_url_public('agenda','archives='.substr($d,0,4).'-'.substr($d,4,2).'-'.substr($d,6,2));
+				$evt[$d] = $evt[$d] ? (array_merge($evt[$d], $v)) : $v;
+			}
+	}
+	$la_date = mktime(0, 0, 0, mois($une_date), 1, annee($une_date));
+	include_spip('inc/agenda');
+	return http_calendrier_init($la_date, $type, '', '', '', array('', $evt));
 }
 
 ?>

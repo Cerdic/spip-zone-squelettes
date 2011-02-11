@@ -5,6 +5,7 @@ if (!defined("_ECRIRE_INC_VERSION")) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// C
+	'config-aveline-agenda' => 'Aveline - Extension Agenda',
 	'config-aveline-type-blog' => 'Aveline - Configuration de type blog',
 	'config-aveline-zpip-dist' => 'Aveline - Zpip-dist',
 	'config-aveline-zpip-groupe-mots' => 'Aveline - Zpip avec groupes de mots',
@@ -13,6 +14,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'config-aveline-zpip-secteurs-langue-menus' => 'Aveline - Zpip avec secteurs de langue et menus',
 	
 	// D
+	'description-config-aveline-agenda' => 'Ajoute des noisettes pour afficher les &eacute;v&egrave;nements du plugin Agenda dans vos page. Utilisez l\'option <i>Fusionner avec la configuration actuelle</i>.',
 	'description-config-aveline-type-blog' => 'Pr&eacute;sentation de type blog (les br&egrave;ves sont d&eacute;sactiv&eacute;es).',
 	'description-config-aveline-zpip-dist' => 'Cette configuration reproduit Zpip-dist (adapt&eacute;e pour un site monolingue).',
 	'description-config-aveline-zpip-groupe-mots' => 'Cette configuration reproduit Zpip-dist en ajoutant une page pour les groupes de mots.',
@@ -27,6 +29,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'description_breve-contenuprincipal' => 'Affiche logo, titre, texte, lien hypertexte et notes.',
 	'description_breve-filariane' => 'Affiche l\'arborescence des rubriques jusqu\'&agrave; la br&egrave;ve.',
 	'description_breve-mots_cles' => 'Liste les mots-cl&eacute;s associ&eacute;s &agrave; la br&egrave;ve.',
+	'description_calendrier_mini' => 'Affiche un mini-calendrier avec un lien pointant, s\'il y a un seul &eacute;v&egrave;nement pour ce jour-l&agrave;, vers la page de l\'&eacute;v&egrave;ment ou, s\'il y en a plusieurs, vers la page \'Agenda\' en filtrant les r&eacute;sultats sur le jour en question.',
 	'description_documents' => 'Par d&eacute;faut, n\'affiche pas les photos, celles-ci &eacute;tant affich&eacute;es usuellement via un portfolio. Vous pouvez forcer l\'affichage des photos au cas o&ugrave; vous n\'affichez pas de portfolio.',
 	'description_evenement-filariane' => 'Affiche l\'arborescence des rubriques jusqu\'&agrave; l\'&eacute;v&egrave;nement.',
 	'description_evenement-mots_cles' => 'Liste les mots-cl&eacute;s associ&eacute;s &agrave; l\'&eacute;v&egrave;nement.',
@@ -322,6 +325,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_breve-filariane' => 'Fil d\'ariane de la br&egrave;ve',
 	'nom_breve-forum' => 'Forum de la br&egrave;ve',
 	'nom_breve-mots_cles' => 'Mots-Cl&eacute;s de la br&egrave;ve',
+	'nom_calendrier_mini' => 'Mini-calendrier des &eacute;v&egrave;nements',
 	'nom_evenement-contenuprincipal' => 'Contenu principal de l\'&eacute;v&egrave;nement',
 	'nom_evenement-documents' => 'Documents de l\'&eacute;v&egrave;nement',
 	'nom_evenement-filariane' => 'Fil d\'ariane de l\'&eacute;v&egrave;nement',
@@ -348,6 +352,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'nom_mot-articles' => 'Articles li&eacute;s au mot-cl&eacute;',
 	'nom_mot-breves' => 'Br&egrave;ves li&eacute;es au mot-cl&eacute;',
 	'nom_mot-contenuprincipal' => 'Contenu principal du mot-cl&eacute;',
+	'nom_mot-evenements' => '&Eacute;v&egrave;nements li&eacute;s au mot-cl&eacute;',
 	'nom_mot-filariane' => 'Fil d\'ariane du mot-cl&eacute;',
 	'nom_mot-forums' => 'Messages de forum li&eacute;s au mot-cl&eacute;',
 	'nom_mot-mots-meme-groupe' => 'Mots-cl&eacute;s dans le m&ecirc;me groupe de mots',

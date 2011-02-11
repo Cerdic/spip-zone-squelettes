@@ -4,7 +4,7 @@
 <B_liste_evenements>
 <div class="liste evenements">
 	#ANCRE_PAGINATION
-	[(#ENV{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})[ ((#ENV{archives}|affdate_mois_annee|sinon{#ENV{archives}}))]</h2>]]
+	[(#ENV{afficher_titre_liste}|oui)[<h2 class="h2">(#GET{titre})[ ((#ENV{archives}|affdate|sinon{#ENV{archives}|=={tout}|?{'',#ENV{archives}}}))]</h2>]]
 	[(#ENV{choix_periode}|et{#ENV{position_choix_periode}|!={fin}})
 		#INCLURE{fond=inclure/liste_evenements-choix_periode,env}
 	]
@@ -28,7 +28,7 @@
 	[(#ENV{afficher_selecteur_archives}|et{#ENV{position_selecteur_archives}|!={debut}})
 		#INCLURE{fond=inclure/liste_evenements-selecteur_archives-#ENV{pas_selecteur_archives},env}
 	]
-	[(#ENV{choix_periode}|et{#ENV{position_choix_periode}|!={fin}})
+	[(#ENV{choix_periode}|et{#ENV{position_choix_periode}|!={debut}})
 		#INCLURE{fond=inclure/liste_evenements-choix_periode,env}
 	]
 </div>
