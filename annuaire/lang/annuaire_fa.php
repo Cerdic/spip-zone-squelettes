@@ -337,7 +337,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'width_recherche' => 'Taille du formulaire de recherche', # NEW
 
 	// Z
-	'zard' => 'la boucle "hasard"', # NE
+	'zard' => 'la boucle "hasard"' # NEW
 );
 
 ?>
