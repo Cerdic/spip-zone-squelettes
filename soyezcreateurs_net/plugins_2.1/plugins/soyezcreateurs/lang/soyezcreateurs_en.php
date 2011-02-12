@@ -3,7 +3,7 @@
 // extrait automatiquement de http://www.spip.net/trad-lang/
 // ** ne pas modifier le fichier **
 
-if (!defined("_ECRIRE_INC_VERSION")) return;
+if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
@@ -74,13 +74,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_affichagelistedocuments_cartouche' => 'Underneath the area containing the articles and sections',
 	'cfg_affichagelistedocuments_enbas' => 'Under the articles and sections',
 	'cfg_affichagelistedocuments_label' => 'Zone of display',
-	'cfg_affichagelistedocuments_listeravecarticles' => 'Lister les documents joints &agrave; un articles dans les listes d\'articles (centrales)', # NEW
-	'cfg_affichagelistedocuments_noicon' => 'Ne pas afficher l\'icone du document dans les listes', # NEW
+	'cfg_affichagelistedocuments_listeravecarticles' => 'List the documents attached to an article in the (central) list of articles',
+	'cfg_affichagelistedocuments_noicon' => 'Do not display the icon of the document in the lists',
 	'cfg_affichagelistedocuments_nulpart' => 'Nowhere (unchecks the other options!)',
 	'cfg_affichagelistedocuments_redirectsiunique' => 'Redirection to the document if there is only one, and if there is no text in the article',
 	'cfg_afficher_titre_invisible' => 'Invisible: the text is overwritten by the banner',
 	'cfg_afficher_titre_label' => 'Dispaly of the site name',
 	'cfg_afficher_titre_visible' => 'Visible: banner without overwriting the text',
+	'cfg_age_goodies' => '&Acirc;ge maximum des goodies avant archivage', # NEW
 	'cfg_agenda_futurseul' => 'Agenda in the future',
 	'cfg_agenda_ical_masque' => 'Display the iCal icon in the events',
 	'cfg_agenda_ical_masque_label' => 'Hide',
@@ -149,7 +150,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_globale' => 'Global for all the site',
 	'cfg_haut_footer' => 'Display at the top of the footer',
 	'cfg_hauteur' => 'Height',
-	'cfg_hauteur_videoaccueil' => 'Hauteur de la vid&eacute;o d\'accueil (0 pour hauteur automatique)', # NEW
+	'cfg_hauteur_videoaccueil' => 'Height of the intro video (0 for automatic height)',
 	'cfg_header' => 'Header',
 	'cfg_identifiant_addthis' => 'Identifiant <a href="http://www.addthis.com/">AddThis</a>',
 	'cfg_indexation' => 'Indexing',
@@ -159,7 +160,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_inf_rainette_ville' => 'Used to display the current and forecast weather conditions for a French town using a code available from <a href="http://www.weather.com/outlook/weatherbycountry/france?from=enhsearch_reg">the weather.com &reg; site</a> .',
 	'cfg_info' => 'Configuration of SoyezCreateurs',
 	'cfg_largeur' => 'Width',
-	'cfg_largeur_colonnes_centrales' => 'Largeur de chacune des 3 colonnes centrales', # NEW
+	'cfg_largeur_colonnes_centrales' => 'Width of each of the 3 central columns',
 	'cfg_largeur_conteneur' => 'Width of the container',
 	'cfg_largeur_max_img' => 'Maximum width of images (the larger images will be automatically reduced)',
 	'cfg_largeur_menu_p' => 'Width of main menu',
@@ -185,7 +186,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_logolocal_label' => 'Mode',
 	'cfg_logolocal_local' => 'Specific logos for each section',
 	'cfg_maj' => 'Update date',
-	'cfg_marges_colonnes_centrales' => 'Largeur de la marge de chaque c&ocirc;t&eacute; des blocs centraaux.', # NEW
+	'cfg_marges_colonnes_centrales' => 'Margin width of each side of the central blocks.', # MODIF
 	'cfg_masque' => 'Hide the RSS pictogram on the (Site + Agenda) pages',
 	'cfg_max_agenda_label' => 'Maximum number of events listed under the agenda',
 	'cfg_menu_actif' => 'Active menu',
@@ -327,12 +328,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'entravaux_int_serv' => 'Service interrupted',
 	'entravaux_rev_plus_tard' => 'Please come back later...',
 	'erreur' => 'Error !',
-	'erreur_articleexistepas' => 'Error: this article does not exist!',
-	'erreur_breveexistepas' => 'Error : this item does not exist!',
 	'erreur_connexion' => '<h2>Password error</h2><p>Please begin again.</p>',
 	'erreur_documentexistepas' => 'Error : this document does not exist!',
-	'erreur_imageexistepas' => 'Error : this image does not exist!',
-	'erreur_rubriqueexistepas' => 'Error : this section does not exist!',
+	'erreur_excuses_404' => 'Nous sommes d&eacute;sol&eacute;s...', # NEW
+	'erreur_excuses_404_explications' => '<p>La page que vous cherchez n\'a pu &ecirc;tre trouv&eacute;e parce que&nbsp;:</p><ol><li>elle n\'&eacute;tait plus d\'actualit&eacute;,</li><li>le lien vers la page que vous cherchiez est obsol&egrave;te,</li><li>la page recherch&eacute;e a &eacute;t&eacute; d&eacute;plac&eacute;e.</li></ol><p>Merci de commencer votre recherche sur la <a href="@urlsite@">Page d\'accueil&nbsp;: @nomsite@</a>, ou de chercher un mot cl&eacute; avec le formulaire ci-dessous.</p>', # NEW
 
 	// F
 	'fil_rss' => 'RSS feed',

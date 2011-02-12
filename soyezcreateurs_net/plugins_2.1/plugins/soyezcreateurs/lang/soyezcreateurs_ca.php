@@ -3,7 +3,7 @@
 // extrait automatiquement de http://www.spip.net/trad-lang/
 // ** ne pas modifier le fichier **
 
-if (!defined("_ECRIRE_INC_VERSION")) return;
+if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
@@ -81,6 +81,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_afficher_titre_invisible' => 'Invisible: el text est&agrave; tallat a la cap&ccedil;alera',
 	'cfg_afficher_titre_label' => 'Publicaci&oacute; del nom del lloc',
 	'cfg_afficher_titre_visible' => 'Visible: cap&ccedil;alera sense text tallat',
+	'cfg_age_goodies' => '&Acirc;ge maximum des goodies avant archivage', # NEW
 	'cfg_agenda_futurseul' => 'Agenda en un futur',
 	'cfg_agenda_ical_masque' => 'Visualitzaci&oacute; de la icona iCal en els esdeveniments',
 	'cfg_agenda_ical_masque_label' => 'Amagar',
@@ -185,7 +186,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_logolocal_label' => 'Mode',
 	'cfg_logolocal_local' => 'Logo espec&iacute;fic a cada secci&oacute;',
 	'cfg_maj' => 'Data d\'actualitzaci&oacute;',
-	'cfg_marges_colonnes_centrales' => 'Largeur de la marge de chaque c&ocirc;t&eacute; des blocs centraaux.', # NEW
+	'cfg_marges_colonnes_centrales' => 'Largeur de la marge de chaque c&ocirc;t&eacute; des blocs centraux.', # NEW
 	'cfg_masque' => 'Amagar el pictograma de flux RSS a les p&agrave;gines (Lloc + Agenda)',
 	'cfg_max_agenda_label' => 'N&uacute;mero m&agrave;xim d\'elements mostrats a sota de l\'agenda',
 	'cfg_menu_actif' => 'Men&uacute; actiu',
@@ -327,12 +328,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'entravaux_int_serv' => 'Interrupci&oacute; del servei',
 	'entravaux_rev_plus_tard' => 'Gr&agrave;cies per tornar una mica m&eacute;s tard ... ',
 	'erreur' => 'Error!',
-	'erreur_articleexistepas' => 'Error: aquest article no existeix!',
-	'erreur_breveexistepas' => 'Error: aquesta breu no existeix!',
 	'erreur_connexion' => '<h2>Error de la contrasenya</h2><p>Torneu-hi altre cop.</p>',
 	'erreur_documentexistepas' => 'Error: aquest document no existeix!',
-	'erreur_imageexistepas' => 'Error: aquesta imatge no existeix!',
-	'erreur_rubriqueexistepas' => 'Error : aquesta secci&oacute; no existeix!',
+	'erreur_excuses_404' => 'Nous sommes d&eacute;sol&eacute;s...', # NEW
+	'erreur_excuses_404_explications' => '<p>La page que vous cherchez n\'a pu &ecirc;tre trouv&eacute;e parce que&nbsp;:</p><ol><li>elle n\'&eacute;tait plus d\'actualit&eacute;,</li><li>le lien vers la page que vous cherchiez est obsol&egrave;te,</li><li>la page recherch&eacute;e a &eacute;t&eacute; d&eacute;plac&eacute;e.</li></ol><p>Merci de commencer votre recherche sur la <a href="@urlsite@">Page d\'accueil&nbsp;: @nomsite@</a>, ou de chercher un mot cl&eacute; avec le formulaire ci-dessous.</p>', # NEW
 
 	// F
 	'fil_rss' => 'Fil RSS',

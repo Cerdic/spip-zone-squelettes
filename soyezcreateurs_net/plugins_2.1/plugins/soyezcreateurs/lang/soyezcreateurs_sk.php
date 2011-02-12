@@ -3,7 +3,7 @@
 // extrait automatiquement de http://www.spip.net/trad-lang/
 // ** ne pas modifier le fichier **
 
-if (!defined("_ECRIRE_INC_VERSION")) return;
+if (!defined('_ECRIRE_INC_VERSION')) return;
 
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
@@ -81,6 +81,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_afficher_titre_invisible' => '<MODIF>Invisible : le texte est brul&eacute; dans le bandeau', # MODIF
 	'cfg_afficher_titre_label' => '<NEW>Zobrazenie n&aacute;zvu str&aacute;nky',
 	'cfg_afficher_titre_visible' => '<MODIF>Visible : bandeau sans texte brul&eacute;', # MODIF
+	'cfg_age_goodies' => '&Acirc;ge maximum des goodies avant archivage', # NEW
 	'cfg_agenda_futurseul' => '<NEW>Program v bud&uacute;cnosti',
 	'cfg_agenda_ical_masque' => 'Affichage de l\'icone iCal dans les &eacute;v&eacute;nements', # NEW
 	'cfg_agenda_ical_masque_label' => 'Masquer', # NEW
@@ -185,7 +186,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_logolocal_label' => '<NEW>Mode', # MODIF
 	'cfg_logolocal_local' => '<NEW>Logo sp&eacute;cifique &agrave; chaque rubrique', # MODIF
 	'cfg_maj' => '<NEW>D&aacute;tum aktualiz&aacute;cie',
-	'cfg_marges_colonnes_centrales' => 'Largeur de la marge de chaque c&ocirc;t&eacute; des blocs centraaux.', # NEW
+	'cfg_marges_colonnes_centrales' => 'Largeur de la marge de chaque c&ocirc;t&eacute; des blocs centraux.', # NEW
 	'cfg_masque' => 'Masquer le picto de flux RSS sur les pages (Site + Agenda)', # NEW
 	'cfg_max_agenda_label' => '<NEW>Maxim&aacute;lny po&#269;et udalost&iacute; v programe',
 	'cfg_menu_actif' => '<NEW>Akt&iacute;vne menu',
@@ -327,12 +328,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'entravaux_int_serv' => 'Service interrupted', # MODIF
 	'entravaux_rev_plus_tard' => 'Please come back later...', # MODIF
 	'erreur' => '<NEW>Chyba !',
-	'erreur_articleexistepas' => '<NEW>Chyba: tento &#269;l&aacute;nok neexistuje!',
-	'erreur_breveexistepas' => '<NEW>Chyba : t&aacute;to polo&#382;ka neexistuje!',
 	'erreur_connexion' => '<NEW><h2>Chyba hesla</h2><p>Pros&iacute;m, za&#269;nite odznova.</p>',
 	'erreur_documentexistepas' => '<NEW>Chyba : tento dokument neexistuje!',
-	'erreur_imageexistepas' => '<NEW>Chyba : tento obr&aacute;zok neexistuje!',
-	'erreur_rubriqueexistepas' => '<NEW>Chyba : t&aacute;to rubrika neexistuje!',
+	'erreur_excuses_404' => 'Nous sommes d&eacute;sol&eacute;s...', # NEW
+	'erreur_excuses_404_explications' => '<p>La page que vous cherchez n\'a pu &ecirc;tre trouv&eacute;e parce que&nbsp;:</p><ol><li>elle n\'&eacute;tait plus d\'actualit&eacute;,</li><li>le lien vers la page que vous cherchiez est obsol&egrave;te,</li><li>la page recherch&eacute;e a &eacute;t&eacute; d&eacute;plac&eacute;e.</li></ol><p>Merci de commencer votre recherche sur la <a href="@urlsite@">Page d\'accueil&nbsp;: @nomsite@</a>, ou de chercher un mot cl&eacute; avec le formulaire ci-dessous.</p>', # NEW
 
 	// F
 	'fil_rss' => 'RSS feed', # MODIF
