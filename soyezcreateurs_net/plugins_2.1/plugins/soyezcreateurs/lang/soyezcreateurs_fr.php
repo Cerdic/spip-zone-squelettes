@@ -146,6 +146,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_futur_seul' => 'Seulement dans le futur',
 	'cfg_geolocalisation_label' => 'Afficher la g&eacute;olocalisation en dessous de la recherche',
 	'cfg_globale' => 'Globale &agrave; tout le site',
+	'cfg_goodies_label' => 'Nombre de goodies affich&eacute;es par rubrique (mode portail comminiquant)',
 	'cfg_haut_footer' => 'Affichage en haut du pied de page',
 	'cfg_hauteur' => 'Hauteur',
 	'cfg_hauteur_videoaccueil' => 'Hauteur de la vid&eacute;o d\'accueil (0 pour hauteur automatique)',
