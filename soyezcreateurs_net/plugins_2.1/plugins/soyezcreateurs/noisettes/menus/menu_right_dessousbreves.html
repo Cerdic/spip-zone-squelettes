@@ -1,6 +1,6 @@
 #SET{LargeurMenuDroit,(#CONFIG{soyezcreateurs_layout/largeurmenudroit,140}|moins{20})}
 [(#REM) afficher les rub & art qui ont le mot clef : DessousBreves ]
-<BOUCLE_DessousBreves(RUBRIQUES){id_rubrique?}{titre_mot = DessousBreves }{par num titre}>
+<BOUCLE_DessousBreves(RUBRIQUES){id_rubrique?}{id_rubrique!=#ENV{id_rubrique}}{titre_mot = DessousBreves }{par num titre}>
 <B_articles_recents>
  <h2 [title="(#DESCRIPTIF|supprimer_tags|attribut_html)"]>[(#SET{lelogo,[(#INCLURE{fond=noisettes/menus/rubrique_logo}{id_rubrique}{mode=normal}|image_reduire{#GET{LargeurMenuDroit},0})]})][<img class="menu_right_logo" src="(#GET{lelogo}|extraire_attribut{src})"[ width="(#GET{lelogo}|largeur)"][ height="(#GET{lelogo}|hauteur)"] alt="[(#TITRE|texte_script|supprimer_tags|entites_html) (logo)]" /><br />][(#TITRE)]</h2>
  <ul>
