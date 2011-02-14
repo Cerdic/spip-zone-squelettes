@@ -45,7 +45,7 @@ function jp_expinit2() {
 			
 		// Application des attributs en fonction de la présence ou non du strong
 		if($(this).find("strong").size() > 0) {	
-			var pic_alt = jp_picalt+jp_strReplier+$(a_target).attr('text');
+			var pic_alt = jp_picalt+jp_strReplier+$(a_target).text();
 			$('img.node', this).attr({
 				'className':jp_offclass,
 				'title':pic_alt,
@@ -53,7 +53,7 @@ function jp_expinit2() {
 			});
 			$(ul_target).css('display', 'block');
 		} else {
-			var pic_alt = jp_picalt+jp_strDeplier+$(a_target).attr('text');
+			var pic_alt = jp_picalt+jp_strDeplier+$(a_target).text();
 			$('img.node', this).attr({
 				'className':jp_onclass,
 				'title':pic_alt,
@@ -62,8 +62,15 @@ function jp_expinit2() {
 			$(ul_target).css('display', 'none');
 		}
 	});
+	
+	$('#'+jp_parentID+' img.'+jp_offclass).click(function(event) {jp_ex2(event);});
+	$('#'+jp_parentID+' img.'+jp_onclass).click(function(event) {jp_ex2(event);});
+	$('#'+jp_parentID+' .smenu a').focusin(function(event) {jp_ex2(event);});
+	$('#'+jp_parentID+' .smenu a').keypress(function(event) {jp_ex2(event);});
+	$('a, input, select, img, button, h2, h3, dd, acronym, abbr, area').mouseenter(function(event) {hoverAttr(event);});
+	$('a, input, select, img, button, h2, h3, dd, acronym, abbr, area').mouseleave(function(event) {hoverAttr(event);});
 }
-
+;
 function jp_ex2(event) {
 	//Définition des cibles
 	var img_target = $(event.target).parents("li:first").find("img:first");
@@ -74,12 +81,12 @@ function jp_ex2(event) {
 	if( ( (event.type=='click' || event.type=='focusin') && $(ul_target).css('display')=='none') || (event.type=='keypress' && event.which==43) ) {
 		$(img_target).addClass(jp_offclass).removeClass(jp_onclass);
 		$(ul_target).css('display', 'block');
-		var jp_strAltNew = jp_picalt+jp_strReplier+$(a_target).attr('text');
+		var jp_strAltNew = jp_picalt+jp_strReplier+$(a_target).text();
 	} else {
 		if(event.type=='click' || (event.type=='keypress' && event.which==45)) {
 			$(img_target).addClass(jp_onclass).removeClass(jp_offclass);
 			$(ul_target).css('display', 'none');
-			var jp_strAltNew = jp_picalt+jp_strDeplier+$(a_target).attr('text');
+			var jp_strAltNew = jp_picalt+jp_strDeplier+$(a_target).text();
 		}
 	}
 	
@@ -90,7 +97,7 @@ function jp_ex2(event) {
 	// On rafraichie les info bulle si elle sont afficher avec tooltips
 	rafraichirTooltip(img_target);	
 }
-
+;
 function rafraichirTooltip(target) {
 	[(#CONFIG{soyezcreateurs/native_tooltips}|=={on}|non)
 	$(target).each(function() {
@@ -107,7 +114,7 @@ function rafraichirTooltip(target) {
 	});
 	]
 }
-
+;
 function hoverAttr(event) {
 	if(event.type=='mouseenter') {
 		altAttr=$(event.target).attr('alt');
@@ -116,7 +123,7 @@ function hoverAttr(event) {
 	} else 
 		if(event.type=='mouseleave') $(event.target).attr({alt:altAttr,title:titleAttr});
 }
-
+;
 function adjustLayout() {
 	/* Remettre la taille à auto pour trouver l'eventuelle nouvelle hauteur !*/
 	$("div.equilibre").css({'height': 'auto'});
@@ -282,7 +289,6 @@ function myHomeSpecialFeature(container,item,decoImg,decoSpan) {
 	});
 }
 ;
-
 /* HOME CYCLE */
 function homeCarousel(elt) {
 	/* carousels internes */
@@ -354,18 +360,11 @@ function homeCarousel(elt) {
 		myCounter = jQuery(this).index()+1;
 	});
 }
-
+;
 $(document).ready(function() {
 	myInitPages();
 	/* HOME SPECIAL FEATURE */
 	if (jQuery('#homeSpecialFeature').size() > 0) { initMyHomeSpecialFeature = myHomeSpecialFeature("#homeSpecialFeature",'hSFItem','hSFDecoImg','hSFDecoSpan'); }
 	if (jQuery('#arretSurImg .mainCarousels').size() > 0) { homeCarousel('.mainCarousels'); }
-	
-	$('#'+jp_parentID+' img.'+jp_offclass).live("click", function(event) jp_ex2(event));
-	$('#'+jp_parentID+' img.'+jp_onclass).live("click", function(event) jp_ex2(event));
-	$('#'+jp_parentID+' .smenu a').live("focusin", function(event) jp_ex2(event));
-	$('#'+jp_parentID+' .smenu a').live("keypress", function(event) jp_ex2(event));
-	$('a, input, select, img, button, h2, h3, dd, acronym, abbr, area').live("mouseenter", function(event) hoverAttr(event));
-	$('a, input, select, img, button, h2, h3, dd, acronym, abbr, area').live("mouseleave", function(event) hoverAttr(event));
 });
 
