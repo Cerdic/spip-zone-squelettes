@@ -14,7 +14,7 @@
 		<BOUCLE_forum_news(FORUMS){id_syndic}{plat}{0,1}>
 			<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]#forum" title="<:annuaire:ajouter_commentaire:>">[(#TOTAL_BOUCLE|singulier_ou_pluriel{annuaire:commentaire,annuaire:commentaires})]</a>
 		</BOUCLE_forum_news>
-			<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]#forum" title="<:annuaire:ajouter_commentaire:>"><:annuaire:pas_commentaire:></a>
+			[(#CONFIG{forums_publics, non}|=={non}|oui)<a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT})]#forum" title="<:annuaire:ajouter_commentaire:>"><:annuaire:pas_commentaire:></a>]
 		<//B_forum_news>
 	[(#COMPTEUR_BOUCLE|=={1}|oui)[<p>(#DESCRIPTIF|sinon{<:annuaire:pas_descriptif:>}|couper{#CONFIG{annuaire_taille/descriptif_news_prems,300}, <br /><a href="[(#ID_SYNDIC|generer_url_entite{site})]"><b><:annuaire:lire_suite:></b></a>})</p>]]
 	[(#COMPTEUR_BOUCLE|=={1}|non)[<p>(#DESCRIPTIF|sinon{<:annuaire:pas_descriptif:>}|couper{#CONFIG{annuaire_taille/descriptif_news_suivants,300}, <br /><a href="[(#ID_SYNDIC|generer_url_entite{site})]"><b><:annuaire:lire_suite:></b></a>})</p>]]
