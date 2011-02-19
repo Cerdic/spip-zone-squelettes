@@ -24,23 +24,11 @@
 			[(#REM) Menu de navigation par rubriques ]
 			<INCLURE{fond=inc-rubriques}>
 
-			[(#REM) Menu de navigation mots-cles : les autres mots cles du meme groupe ]
-			<B_mots_freres>
-			<div class="divers">
-				#ANCRE_PAGINATION
-				<h2 class="menu-titre"><:mots_clefs_meme_groupe:></h2>
-				<ul>
-					<BOUCLE_mots_freres(MOTS) {type} {par titre} {pagination 20}>
-					<li><a href="#URL_MOT"[ class="(#EXPOSE)"]>#TITRE</a></li>
-					</BOUCLE_mots_freres>
-				</ul>
-				[<p class="pagination">(#PAGINATION)</p>]
-			</div>
-			</B_mots_freres>
+			
 
 			[(#REM) Menu de navigation mots-cles : les autres groupes avec un lien sur le premier mot du groupe ]
 			<B_groupes_freres>
-			<div class="divers">
+			<div class="meme-rub">
 				<h2 class="menu-titre"><:autres_groupes_mots_clefs:></h2>
 				<ul>
 					<BOUCLE_groupes_freres(GROUPES_MOTS) {par titre} {doublons}>
@@ -52,25 +40,29 @@
 			</div>
 			</B_groupes_freres>
 
+
 		</div><!-- fin navigation -->
 
 	
 
 	<div id="conteneur">
-
-[(#REM) Fil d'Ariane ]
-	<div id="hierarchie"><a href="#URL_SITE_SPIP/"><img src="#CHEMIN{images/home.png}" /></a> &gt; <:mots_clefs:><BOUCLE_ariane(GROUPES_MOTS){id_groupe}> &gt; [(#TITRE|couper{80})]</BOUCLE_ariane>[ &gt; (#TITRE|couper{80})]</div>
-		[(#REM) Contenu principal : contenu du mot-cle ]
-		<div id="contenu">
-
-			<div class="cartouche">
+<div id="sommaire-rub">
+<div class="cartouche">
 				[(#LOGO_MOT||image_reduire{200,200})]
-				<h1 class="#EDIT{titre} titre">#TITRE</h1>
+				<h1 class="#EDIT{titre} titre">Mot-cl&eacute; : #TITRE</h1>
 			</div>
 
 			[<div class="#EDIT{texte} chapo">(#TEXTE)</div>]
 
 			<br class="nettoyeur" />
+[(#REM) Fil d'Ariane ]
+	<div id="hierarchie"><a href="#URL_SITE_SPIP/"><img src="#CHEMIN{images/home-blue.gif}" align="absmiddle" /></a> &gt; <:mots_clefs:><BOUCLE_ariane(GROUPES_MOTS){id_groupe}> &gt; [(#TITRE|couper{80})]</BOUCLE_ariane>[ &gt; (#TITRE|couper{80})]</div>
+</div>
+<br class="nettoyeur" />
+		[(#REM) Contenu principal : contenu du mot-cle ]
+		<div id="contenu">
+
+			
 
 			[(#REM) Articles lies au mot-cle ]
 			<B_articles>
@@ -78,7 +70,7 @@
 
 				<div class="liste-articles">
 					#ANCRE_PAGINATION
-					<h2 class="invisible"><:articles:></h2>
+					<h2 class="menu-titre"><:articles:></h2>
 					<ul>
 						<BOUCLE_articles(ARTICLES) {id_mot} {par popularite}{inverse} {pagination 10}>
 						<li>
@@ -88,7 +80,20 @@
 					</ul>
 					[<p class="pagination">(#PAGINATION)</p>]
 				</div>
-
+<br class="nettoyeur" />
+[(#REM) Menu de navigation mots-cles : les autres mots cles du meme groupe ]
+			<B_mots_freres>
+			<div class="liste-articles">
+				#ANCRE_PAGINATION
+				<h2 class="menu-titre"><:mots_clefs_meme_groupe:></h2>
+				<ul>
+					<BOUCLE_mots_freres(MOTS) {type} {par titre} {pagination 20}>
+					<li><a href="#URL_MOT"[ class="(#EXPOSE)"]>#TITRE</a></li>
+					</BOUCLE_mots_freres>
+				</ul>
+				[<p class="pagination">(#PAGINATION)</p>]
+			</div>
+			</B_mots_freres>
 			</div><!-- fin contre-encart -->
 			</B_articles>
 
