@@ -30,8 +30,13 @@ function soyezcreateurs_upgrade($nom_meta_base_version,$version_cible){
 		if (version_compare($current_version,'2.1','<')) {
 			soyezcreateurs_config_site();
 			soyezcreateurs_config_motsclefs();
-			// Installation d'exemples concernant l'agenda si le plugin est actif
+			// Installation des index FullText si le plugin est présent
 			$f = chercher_filtre('info_plugin');
+			if($f('Fulltext', 'est_actif')) {
+				include_spip('inc/fulltext_exec');
+				Fulltext_creer_tous();
+			}
+			// Installation d'exemples concernant l'agenda si le plugin est actif
 			if ($f('agenda', 'est_actif')) {
 				include_spip('inc/sc_article');
 				
