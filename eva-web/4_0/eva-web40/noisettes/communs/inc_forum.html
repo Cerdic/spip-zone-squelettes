@@ -37,7 +37,20 @@
 				[<p class="#EDIT{hyperlien} lien"><strong><:voir_en_ligne:></strong> <a href="(#URL_SITE)">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
 				[<p class="bouton"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_message:></a></p>]
 			</div>
-	
+			<B_documents2>
+			<div class="divers">
+			<h4><:documents_joints:></h4>
+			<ul>
+			<BOUCLE_documents2(DOCUMENTS){id_forum}{mode=document}{par num titre}{vu=non}{doublons}>
+			<li>[<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT_RUBRIQUE||image_reduire{#GET{largeurlogopetit},#GET{hauteurlogopetit}})](#TITRE|supprimer_numero|sinon{<:document:>})</a>][, <em>(#TYPE_DOCUMENT)</em>][, <em>(#TAILLE|taille_en_octets)</em>]
+			[(#DESCRIPTIF)]
+			<div class="nettoyeur"></div>
+			</li>
+			</BOUCLE_documents2>
+			</ul>
+			</div>
+			</B_documents2>
+			
 			<B_forums_fils>
 			<ul>
 				<BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
@@ -58,6 +71,19 @@
 						[<p class="#EDIT{hyperlien} lien"><strong><:voir_en_ligne:></strong> <a href="(#URL_SITE)">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
 						[<p class="bouton"><a href="(#PARAMETRES_FORUM|url_reponse_forum)"><:repondre_message:></a></p>]
 					</div>
+					<B_documents>
+					<div class="divers">
+					<h4><:documents_joints:></h4>
+					<ul>
+					<BOUCLE_documents(DOCUMENTS){id_forum}{mode=document}{par num titre}{vu=non}{doublons}>
+					<li>[<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT_RUBRIQUE||image_reduire{#GET{largeurlogopetit},#GET{hauteurlogopetit}})](#TITRE|supprimer_numero|sinon{<:document:>})</a>][, <em>(#TYPE_DOCUMENT)</em>][, <em>(#TAILLE|taille_en_octets)</em>]
+					[(#DESCRIPTIF)]
+					<div class="nettoyeur"></div>
+					</li>
+					</BOUCLE_documents>
+					</ul>
+					</div>
+					</B_documents>
 	
 					<BOUCLE_Forums_Boucle(boucle_forums_fils)></BOUCLE_Forums_Boucle>
 	
