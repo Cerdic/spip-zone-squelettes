@@ -180,6 +180,17 @@ exit();
 			);
 	}); 
 
+
+$(function(){ 
+	$("#nuage input:submit").click(
+		function(){
+		nuage=$("#nuage input:text[name=couleur]").val();
+		$(".nuage_stat .tag a").css("color",nuage);
+		}
+	)
+
+}); 
+
 $(function(){ 
 	$(".formulaire_config_couleurs input:submit").click(
 		function(){
