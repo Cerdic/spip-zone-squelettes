@@ -28,10 +28,10 @@ function openBrWindow(theURL,winName,features) {
 
          [(#REM) Menu de navigation par rubriques ]
          <INCLURE{fond=inc-rubriques}{id_rubrique}>
-         <div class="meme-rub">
-		 <h2 class="menu-titre">Agenda</h2>
+         [<div class="meme-rub">
+		 (#PLUGIN{agenda}|oui)<h2 class="menu-titre">Agenda</h2>
 [(#CALENDRIER_MINI{#ENV{date},'date',#SELF})]
-</div>
+</div>]
          [(#REM) Articles dans la meme rubrique ]
          <B_articles_rubrique>
          <div class="meme-rub">
@@ -77,7 +77,7 @@ function openBrWindow(theURL,winName,features) {
 
 				[(#REM) Inclure le modele des liens de traductions ]
 				#MODELE{article_traductions}
-<p><small>#ARTICLE_PDF{id_article}<a href="spip.php?page=article_pdf&id_article=#ID_ARTICLE">article en PDF</a>&nbsp;&nbsp;#IMPRIMIR_DOCUMENTO**</small></p>
+<p><small>[(#PLUGIN{article_pdf}|oui)[(#ARTICLE_PDF{id_article})<a href="spip.php?page=article_pdf&id_article=#ID_ARTICLE">article en PDF</a>]][(#PLUGIN{imprimir_documento}|oui)&nbsp;&nbsp;#IMPRIMIR_DOCUMENTO**]</small></p>
          </div>
 
          #DEBUT_SURLIGNE
