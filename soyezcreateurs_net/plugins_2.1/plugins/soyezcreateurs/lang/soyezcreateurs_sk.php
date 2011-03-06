@@ -148,6 +148,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_futur_seul' => '<NEW>Iba v bud&uacute;cnosti',
 	'cfg_geolocalisation_label' => '<NEW>Pod vyh&#318;ad&aacute;van&iacute;m zobrazi&#357; zemepisn&uacute; polohu',
 	'cfg_globale' => '<NEW>Pre cel&uacute; str&aacute;nku',
+	'cfg_goodies_label' => 'Nombre de goodies affich&eacute;es par rubrique (mode portail communiquant)', # NEW
 	'cfg_haut_footer' => '<NEW>Zobrazi&#357; v hornej &#269;asti p&auml;ty',
 	'cfg_hauteur' => '<NEW>V&yacute;&#353;ka',
 	'cfg_hauteur_videoaccueil' => 'Hauteur de la vid&eacute;o d\'accueil (0 pour hauteur automatique)', # NEW

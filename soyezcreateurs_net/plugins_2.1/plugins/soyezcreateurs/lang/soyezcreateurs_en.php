@@ -81,7 +81,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_afficher_titre_invisible' => 'Invisible: the text is overwritten by the banner',
 	'cfg_afficher_titre_label' => 'Dispaly of the site name',
 	'cfg_afficher_titre_visible' => 'Visible: banner without overwriting the text',
-	'cfg_age_goodies' => '&Acirc;ge maximum des goodies avant archivage', # NEW
+	'cfg_age_goodies' => 'Maximum age of goodies before archival',
 	'cfg_agenda_futurseul' => 'Agenda in the future',
 	'cfg_agenda_ical_masque' => 'Display the iCal icon in the events',
 	'cfg_agenda_ical_masque_label' => 'Hide',
@@ -148,6 +148,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_futur_seul' => 'Only in the future',
 	'cfg_geolocalisation_label' => 'Display the geolocalisation below the search',
 	'cfg_globale' => 'Global for all the site',
+	'cfg_goodies_label' => 'Nombre de goodies affich&eacute;es par rubrique (mode portail communiquant)', # NEW
 	'cfg_haut_footer' => 'Display at the top of the footer',
 	'cfg_hauteur' => 'Height',
 	'cfg_hauteur_videoaccueil' => 'Height of the intro video (0 for automatic height)',
@@ -186,7 +187,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_logolocal_label' => 'Mode',
 	'cfg_logolocal_local' => 'Specific logos for each section',
 	'cfg_maj' => 'Update date',
-	'cfg_marges_colonnes_centrales' => 'Margin width of each side of the central blocks.', # MODIF
+	'cfg_marges_colonnes_centrales' => 'Margin width of each side of the central blocks.',
 	'cfg_masque' => 'Hide the RSS pictogram on the (Site + Agenda) pages',
 	'cfg_max_agenda_label' => 'Maximum number of events listed under the agenda',
 	'cfg_menu_actif' => 'Active menu',
@@ -330,8 +331,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'erreur' => 'Error !',
 	'erreur_connexion' => '<h2>Password error</h2><p>Please begin again.</p>',
 	'erreur_documentexistepas' => 'Error : this document does not exist!',
-	'erreur_excuses_404' => 'Nous sommes d&eacute;sol&eacute;s...', # NEW
-	'erreur_excuses_404_explications' => '<p>La page que vous cherchez n\'a pu &ecirc;tre trouv&eacute;e parce que&nbsp;:</p><ol><li>elle n\'&eacute;tait plus d\'actualit&eacute;,</li><li>le lien vers la page que vous cherchiez est obsol&egrave;te,</li><li>la page recherch&eacute;e a &eacute;t&eacute; d&eacute;plac&eacute;e.</li></ol><p>Merci de commencer votre recherche sur la <a href="@urlsite@">Page d\'accueil&nbsp;: @nomsite@</a>, ou de chercher un mot cl&eacute; avec le formulaire ci-dessous.</p>', # NEW
+	'erreur_excuses_404' => 'Sorry...',
+	'erreur_excuses_404_explications' => '<p>The page that you\'re looking for couldn\'t be located because&nbsp;:</p><ol><li>it is no longer up-to-date,</li><li>the link pointing to the page is obsolete,</li><li>or the referenced page has been moved.</li></ol><p>Please try and find your information through the <a href="@urlsite@">Home page: @nomsite@</a>, or by searching for a keyword on the form below.</p>',
 
 	// F
 	'fil_rss' => 'RSS feed',

@@ -148,6 +148,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'cfg_futur_seul' => 'Nom&eacute;s en el futur',
 	'cfg_geolocalisation_label' => 'Mostrar la geolocalitzaci&oacute; a sota de la cerca',
 	'cfg_globale' => 'Global a tot el lloc',
+	'cfg_goodies_label' => 'Nombre de goodies affich&eacute;es par rubrique (mode portail communiquant)', # NEW
 	'cfg_haut_footer' => 'Publicaci&oacute; al capdamunt del peu de p&agrave;gina',
 	'cfg_hauteur' => 'Al&ccedil;ada',
 	'cfg_hauteur_videoaccueil' => 'Hauteur de la vid&eacute;o d\'accueil (0 pour hauteur automatique)', # NEW
