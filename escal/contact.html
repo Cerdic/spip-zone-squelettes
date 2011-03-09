@@ -48,15 +48,25 @@ function formulaire($Nom="",$Prenom="",$Email="",$Sujet="",$Message="") {
                     <div class="liste">Votre prénom : </div>
                     <input type="text" name="Prenom" value="<?php echo trim(htmlentities($_POST['Prenom'])) ?>" size="30" /></li>  <li>
                     <div class="liste">Votre e-mail : </div>
-                    <input type="text" name="Email" value="<?php echo trim(htmlentities($_POST['Email'])) ?>" size="30" /></li>  <li>Motif de votre message :
+                    <input type="text" name="Email" value="<?php echo trim(htmlentities($_POST['Email'])) ?>" size="30" /></li>  <li>
+                    Motif de votre message : 
                     <ul>      <li>
                       <input type="radio" name="Sujet" value="Renseignement"  size="30" <?php if ($_POST['Sujet']=='Renseignement') { echo 'checked="checked"'; } ?> />Renseignement</li>      <li>
                       <input type="radio" name="Sujet" value="Inscription"  size="30" <?php if ($_POST['Sujet']=='Inscription') { echo 'checked="checked"';  } ?> />Inscription</li>      <li>
                       <input type="radio" name="Sujet" value="Probleme Technique"  size="30" <?php if ($_POST['Sujet']=='Probleme_Technique') { echo 'checked="checked"';  } ?> />Probl&egrave;me technique</li>      <li>
                       <input type="radio" name="Sujet" value="Avis sur le site"  size="30" <?php if ($_POST['Sujet']=='Avis sur le site') { echo 'checked="checked"';  } ?> />Votre avis sur le site</li>      <li>
                       <input type="radio" name="Sujet" value="Autre sujet"  size="30" <?php if ($_POST['Sujet']=='Autre sujet') { echo 'checked="checked"';  } ?> />Autre</li>
-                    </ul>  </li> 
-                  <li>Votre message :</li> <li>
+                    </ul>  </li>   <li>
+                    Votre niveau de webmestre (plusieurs choix possibles) : <br /><br />
+                   
+                      <input type="checkbox" name="Niveau[]" value="Bon"  size="30" <?php if ($_POST['Niveau']=='Bon') { echo 'checked="checked"'; } ?> />Bon
+                      <input type="checkbox" name="Niveau[]" value="Correct"  size="30" <?php if ($_POST['Niveau']=='Correct') { echo 'checked="checked"';  } ?> />Correct
+                      <input type="checkbox" name="Niveau[]" value="Moyen"  size="30" <?php if ($_POST['Niveau']=='Moyen') { echo 'checked="checked"';  } ?> />Moyen
+                      <input type="checkbox" name="Niveau[]" value="Passable"  size="30" <?php if ($_POST['Niveau']=='Passable') { echo 'checked="checked"';  } ?> />Passable
+                      <input type="checkbox" name="Niveau[]" value="Mauvais"  size="30" <?php if ($_POST['Niveau']=='Mauvais') { echo 'checked="checked"';  } ?> />Mauvais
+                    </li>   
+                  <br /><li>Votre message : </li> <br />
+                  <li>
                     <textarea name="Message" rows="10" cols="35" style="background-color:#ffffff"><?php if (ereg("[]%~#`$&|}{^[><]",$Message)) { echo "Certains caract&egrave;res utilis&eacute;s sont interdits";
                     $erreur=1; }
                     else {echo trim($_POST['Message']); } ?></textarea>  </li>  <li>
@@ -82,14 +92,25 @@ else {
 	$vSujet=trim(htmlentities($_POST["Sujet"]));
 	$destinataire=$email_webmaster;
 	$titre="Page contact de $nom_site";
-	$message="Provenance : $HTTP_REFERER\n";
-	$message.="Adresse IP : $REMOTE_ADDR,\n";
-	$message.="Navigateur : $HTTP_USER_AGENT\n";
+	$message="Provenance : " . $_SERVER['HTTP_REFERER'] . "\n";
+	$message.="Adresse IP : " . $_SERVER['REMOTE_ADDR'] . "\n";
+	$message.="Navigateur : " . $_SERVER['HTTP_USER_AGENT'] . "\n\n";
 	$message.="Nom : $vNom\n";
-	$message.="Prenom : $vPrenom\n";
-	$message.="E-mail : $vEmail\n";
-	$message.="Motif : $vSujet\n";
-	$message.="Message : \n $vMessage\n";
+	$message.="Prenom : $vPrenom\n\n";
+	$message.="E-mail : $vEmail\n\n";
+	$message.="Motif : $vSujet\n\n";
+  if (empty($niveau)) {
+    echo "<p class='alerte'>Vous n'avez pas précisé votre niveau.</p>";
+    $erreur=1;
+  }
+  else {
+    $message.= "Niveau : ";
+    foreach ($_POST['Niveau'] as $niveau) {
+        $message.= " - ".$niveau; 
+    }
+  }
+
+  $message.=" \n\n Message : \n $vMessage\n";
 //	
 // on vérifie si tout est bien rempli, sinon on envoie un message d'alerte
 //
@@ -139,7 +160,9 @@ else {
 		 </p>';
 		echo '<p class="texte-retour2">Motif de votre message :</p>';
 		echo '<p class="valeur2">'. $vSujet.'</p>';
-
+		echo '<p class="texte-retour2">Votre niveau :</p>';
+		for ($i=0; $i<count($_POST["Niveau"]); $i++)
+		echo '<p class="valeur2">'. $_POST["Niveau"][$i].'</p>';
 		echo '<p class="texte-retour2">Votre message :</p>';
 
 		echo '<p class="valeur3">'. $vMessage=utf8_encode(nl2br($vMessage)) .'</p>';
