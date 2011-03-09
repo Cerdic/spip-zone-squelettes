@@ -33,20 +33,21 @@
                   Pour contacter le r&eacute;f&eacute;rent technique,
                   <br />veuillez remplir tous les champs de ce formulaire.
                 </div>
-<?php 
+<?php
+//
 // Merci &agrave; Alain Sichel pour cette page contact
+//
+// on construit le formulaire
+//
 function formulaire($Nom="",$Prenom="",$Email="",$Sujet="",$Message="") {
                 ?>
                 <form action="<?php echo $PHP_SELF ?>" method="post">
                   <ul id="item">  <li>
-                    <div class="liste">Votre nom :
-                    </div>
+                    <div class="liste">Votre nom : </div>
                     <input type="text" name="Nom" size="30" value="<?php echo trim(htmlentities($_POST['Nom'])) ?>" /></li>  <li>
-                    <div class="liste">Votre prénom :
-                    </div>
+                    <div class="liste">Votre prénom : </div>
                     <input type="text" name="Prenom" value="<?php echo trim(htmlentities($_POST['Prenom'])) ?>" size="30" /></li>  <li>
-                    <div class="liste">Votre e-mail :
-                    </div>
+                    <div class="liste">Votre e-mail : </div>
                     <input type="text" name="Email" value="<?php echo trim(htmlentities($_POST['Email'])) ?>" size="30" /></li>  <li>Motif de votre message :
                     <ul>      <li>
                       <input type="radio" name="Sujet" value="Renseignement"  size="30" <?php if ($_POST['Sujet']=='Renseignement') { echo 'checked="checked"'; } ?> />Renseignement</li>      <li>
@@ -54,13 +55,17 @@ function formulaire($Nom="",$Prenom="",$Email="",$Sujet="",$Message="") {
                       <input type="radio" name="Sujet" value="Probleme Technique"  size="30" <?php if ($_POST['Sujet']=='Probleme_Technique') { echo 'checked="checked"';  } ?> />Probl&egrave;me technique</li>      <li>
                       <input type="radio" name="Sujet" value="Avis sur le site"  size="30" <?php if ($_POST['Sujet']=='Avis sur le site') { echo 'checked="checked"';  } ?> />Votre avis sur le site</li>      <li>
                       <input type="radio" name="Sujet" value="Autre sujet"  size="30" <?php if ($_POST['Sujet']=='Autre sujet') { echo 'checked="checked"';  } ?> />Autre</li>
-                    </ul>  </li>  <li>Votre message :</li>  <li>
-<textarea name="Message" rows="10" cols="35" style="background-color:#ffffff"><?php if (ereg("[]%~#`$&|}{^[><]",$Message)) { echo "Certains caract&egrave;res utilis&eacute;s sont interdits";
-    $erreur=1; }
-    else {echo trim($_POST['Message']); } ?></textarea>  </li>  <li>
+                    </ul>  </li> 
+                  <li>Votre message :</li> <li>
+                    <textarea name="Message" rows="10" cols="35" style="background-color:#ffffff"><?php if (ereg("[]%~#`$&|}{^[><]",$Message)) { echo "Certains caract&egrave;res utilis&eacute;s sont interdits";
+                    $erreur=1; }
+                    else {echo trim($_POST['Message']); } ?></textarea>  </li>  <li>
                     <input id="envoi" type="submit" name="Submit" value="Envoyer" alt="Envoi"  title="Envoi de votre message" />  </li>
                   </ul>
 <?php
+//
+// on recupere les donnees et on prepare le contenu du mail
+//
 }
   include_spip('inc/filtres');
 
@@ -85,6 +90,9 @@ else {
 	$message.="E-mail : $vEmail\n";
 	$message.="Motif : $vSujet\n";
 	$message.="Message : \n $vMessage\n";
+//	
+// on vérifie si tout est bien rempli, sinon on envoie un message d'alerte
+//
 	if (empty($vNom)) {
 		echo "<p class='alerte'>Vous n'avez pas donn&eacute; votre nom.</p>";
 		$erreur=1;
@@ -113,12 +121,16 @@ else {
 		formulaire($Nom,$Prenom,$Email,$Sujet,$Message);
 	}
 	else {
-	                // PREPARATION DES HEADERS
+//
+// on prepare les headers et on envoie le mail
+//
 	       $headers ='From: <'.$vEmail.'>'."\n";
          $headers .='Content-Type: text/plain; charset="iso-8859-1"'."\n";
          $headers .='Content-Transfer-Encoding: 8bit';
    mail($destinataire,$titre,$message,$headers) ;
-
+//
+// on renvoie un message de confirmation
+//
 		echo '<p class="texte-retour1">
 		Bonjour, <span class="valeur1">  '. $vPrenom.' '. $vNom.'</span>.<br />
 		Votre message a bien &eacute;t&eacute; envoy&eacute; au webmestre du site
