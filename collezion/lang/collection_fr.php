@@ -58,7 +58,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'cfg_url_hebergeur'         =>'Adresse de l\'h&eacute;bergeur',
     'cfg_nom_hebergeur'         =>'Nom de l\'h&eacute;bergeur',
     'cfg_nyceros_pagination'    =>'Proposer de prendre les images non affich&eacute;es dans Nyceros',
-    'cfg_infos_site'            =>'Informations sur le site'
+    'cfg_type_pagination'		=>'Type de pagination',
+    'cfg_infos_site'            =>'Informations sur le site',
+    
+    // pagination
+    'pagination_standard'		=> 'Standard',
+    'pagination_ps'				=> 'Indiquer précédent-suivant',
+    'pagination_page'			=> 'Indiquer les numéros de pages',
+    'pagination_pageps'		=> 'Indiquer les numéros de pages et précédents-suivants',
 
 );  
 
