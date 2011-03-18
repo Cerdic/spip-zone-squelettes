@@ -423,10 +423,12 @@ function sc_generer_ligne_agenda($jour, $amj, $evts, $type, $agenda) {
 		if ($nb_elmts>1){
 			if ($agenda == 'mini') {
 				$row = sc_trouver_corr_pl($evts[0]['ID']);
+				$date_debut = $evts[0]['LIENJOUR'];
 				$id_rub = intval($row['id_secteur']);
 				$titre_rub = supprimer_numero($row['titre']);
-				$url = generer_url_public('agenda_calendrier', 'id_rubrique='.$id_rub.'');
-				$aff['ligne'] = "<a href='".$url."' title='".supprimer_tags(typo($titre_rub))." ("._T('agenda:voir_evenements_rubrique').")'>".intval($jour)."</a>";
+				$url = generer_url_public('agenda_calendrier', array('id_rubrique'=>$id_rub,'date_ev'=>$date_debut));
+				$url_javascript = generer_url_public('agenda_calendrier_dyn', array('id_rubrique'=>$id_rub,'date_ev'=>$date_debut));
+				$aff['ligne'] = "<a href='".$url."' title='".supprimer_tags(typo($titre_rub))." ("._T('agenda:voir_evenements_rubrique').")' onclick=\"event.preventDefault();window.location.href='".$url_javascript."';\">".intval($jour)."</a>";
 			}
 			foreach($evts as $key => $ev) {
 				if ($agenda == 'grand') {
@@ -642,6 +644,7 @@ function sc_agenda_memo_full($date_deb=0, $date_fin=0 , $titre='', $descriptif='
 	while (($ts_startday1<=$ts_date_fin)&&($maxdays-->0))
 	{
 		$day=date('Y-m-d H:i:s',$ts_startday1);
+		$lienjour=date('Y-m-d',$ts_startday1);
 		$agenda[$cal][(date_anneemoisjour($day))][] =  array(
 			'CATEGORIES' => $cal,
 			'DTSTART' => $idatedeb,
@@ -650,13 +653,100 @@ function sc_agenda_memo_full($date_deb=0, $date_fin=0 , $titre='', $descriptif='
 			'SUMMARY' => $titre,
 			'HORAIRE' => $horaire,
 			'LOCATION' => $lieu,
-			'ID' => $url);
+			'ID' => $url,
+			'LIENJOUR' => $lienjour);
 		$ts_startday1 += 26*3600; // le jour suivant : +26 h pour gerer les changements d'heure
 		$ts_startday1 = mktime(0, 0, 0, date("m",$ts_startday1), 
 		date("d",$ts_startday1), date("Y",$ts_startday1)); // et remise a zero de l'heure	
 	}
 	// toujours retourner vide pour qu'il ne se passe rien
 	return "";
+}
+
+function js2PhpTime($jsdate){
+  if(preg_match('@(\d+)/(\d+)/(\d+)\s+(\d+):(\d+)@', $jsdate, $matches)==1){
+    $ret = mktime($matches[4], $matches[5], 0, $matches[1], $matches[2], $matches[3]);
+  }else if(preg_match('@(\d+)/(\d+)/(\d+)@', $jsdate, $matches)==1){
+    $ret = mktime(0, 0, 0, $matches[1], $matches[2], $matches[3]);
+  }
+  return $ret;
+}
+
+function php2JsTime($phpDate){
+    return date("m/d/Y H:i", $phpDate);
+}
+
+function php2MySqlTime($phpDate){
+    return date("Y-m-d H:i:s", $phpDate);
+}
+
+function mySql2PhpTime($sqlDate){
+    $arr = date_parse($sqlDate);
+    return mktime($arr["hour"],$arr["minute"],$arr["second"],$arr["month"],$arr["day"],$arr["year"]);
+}
+
+function sc_wdcalendar_json($day, $type) {
+	$phpTime = js2PhpTime($day);
+
+	switch($type){
+	case "month":
+	  $st = mktime(0, 0, 0, date("m", $phpTime), 1, date("Y", $phpTime));
+	  $et = mktime(0, 0, -1, date("m", $phpTime)+1, 1, date("Y", $phpTime));
+	  break;
+	case "week":
+	  //suppose first day of a week is monday 
+	  $monday  =  date("d", $phpTime) - date('N', $phpTime) + 1;
+	  //echo date('N', $phpTime);
+	  $st = mktime(0,0,0,date("m", $phpTime), $monday, date("Y", $phpTime));
+	  $et = mktime(0,0,-1,date("m", $phpTime), $monday+7, date("Y", $phpTime));
+	  break;
+	case "day":
+	  $st = mktime(0, 0, 0, date("m", $phpTime), date("d", $phpTime), date("Y", $phpTime));
+	  $et = mktime(0, 0, -1, date("m", $phpTime), date("d", $phpTime)+1, date("Y", $phpTime));
+	  break;
+	}
+	
+	$ret = array();
+	$ret['events'] = array();
+	$ret["issort"] =true;
+	$ret["start"] = php2JsTime($st);
+	$ret["end"] = php2JsTime($et);
+	$ret['error'] = null;
+	
+	$where = array(
+		"date_debut between '".php2MySqlTime($st)."' and '".php2MySqlTime($et)."'",
+	);
+	if($resultats = sql_select('*', "spip_evenements", $where)) {
+		while($row = sql_fetch($resultats)) {
+
+			$date_debut = intval(date('Ymd',mySql2PhpTime($row['date_debut'])));
+			$date_fin = intval(date('Ymd',mySql2PhpTime($row['date_fin'])));
+
+			if($date_fin > $date_debut OR $row['horaire'] == 'non') {
+				$AllTheDay = 1;
+			} else $AllTheDay = 0;
+			
+			$colorEvent = intval($row['id_evenement'])%13;
+
+			$ret['events'][] = array(
+				intval($row['id_evenement']),
+				$row['titre'],
+				php2JsTime(mySql2PhpTime($row['date_debut'])),
+				php2JsTime(mySql2PhpTime($row['date_fin'])),
+				0,
+				$AllTheDay, //more than one day event
+				0,//Recurring event,
+				$colorEvent, //color
+				0,//editable
+				$row['lieu'], //lieu
+				urlencode_1738(generer_url_entite(intval($row['id_article']), 'article')) //url article spip //$attends				
+			);
+		}
+	}
+	
+	// return print_r($ret,1);
+
+	return json_encode($ret);
 }
 
 function balise_ARTICLE_URL_dist($p) {
