@@ -12,6 +12,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'accessibilite_texte' => 'Aller au texte',
 	'accueil' => 'Accueil',
 	'accueil_menu' => 'Accueil',
+	'accueil_site' => 'Revenir &agrave; l\'Accueil du site',
 	'agenda' => 'Agenda',
 	'agenda_a' => ' &agrave; ',
 	'agenda_an' => ' an, ',
@@ -414,6 +415,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'retourgalerie' => 'Retour &agrave; la galerie',
 	'retoursommaire' => 'Retour Sommaire',
 	'retourtop' => 'Revenir en haut',
+	'rubrique_securisee' => 'Acc&eacute;s r&eacute;serv&eacute; ouvert',
 
 	// S
 	'savoirplus' => 'Pour en savoir plus...',
