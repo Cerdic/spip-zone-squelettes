@@ -14,6 +14,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'accessibilite_texte' => '&#1055;&#1077;&#1088;&#1077;&#1081;&#1090;&#1080; &#1076;&#1086; &#1090;&#1077;&#1082;&#1089;&#1090;&#1091;',
 	'accueil' => '&#1075;&#1086;&#1083;&#1086;&#1074;&#1085;&#1072;',
 	'accueil_menu' => '&#1043;&#1086;&#1083;&#1086;&#1074;&#1085;&#1072; &#1089;&#1090;&#1086;&#1088;&#1110;&#1085;&#1082;&#1072;',
+	'accueil_site' => 'Revenir &agrave; l\'Accueil du site', # NEW
 	'agenda' => '&#1055;&#1086;&#1076;&#1110;&#1111;',
 	'agenda_a' => '&#1076;&#1086;, &#1074;',
 	'agenda_an' => '&#1088;&#1110;&#1082;',
@@ -416,6 +417,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'retourgalerie' => '&#1055;&#1086;&#1074;&#1077;&#1088;&#1085;&#1077;&#1085;&#1085;&#1103; &#1076;&#1086; &#1075;&#1072;&#1083;&#1077;&#1088;&#1077;&#1111;',
 	'retoursommaire' => '&#1053;&#1072;&#1079;&#1072;&#1076; &#1043;&#1086;&#1083;&#1086;&#1074;&#1085;&#1072;',
 	'retourtop' => '&#1055;&#1086;&#1074;&#1077;&#1088;&#1085;&#1091;&#1090;&#1080;&#1089;&#1103; &#1076;&#1086; &#1087;&#1086;&#1095;&#1072;&#1090;&#1082;&#1091;',
+	'rubrique_securisee' => 'Acc&eacute;s r&eacute;serv&eacute; ouvert', # NEW
 
 	// S
 	'savoirplus' => '&#1044;&#1110;&#1079;&#1085;&#1072;&#1090;&#1080;&#1089;&#1103; &#1073;&#1110;&#1083;&#1100;&#1096;&#1077; ...',
@@ -441,7 +443,50 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'voirdetailmois' => '&#1044;&#1080;&#1074;. &#1076;&#1077;&#1090;&#1072;&#1083;&#1100; &#1084;&#1110;&#1089;&#1103;&#1094;&#1103;...',
 	'voirimage' => '&#1055;&#1077;&#1088;&#1077;&#1075;&#1083;&#1103;&#1076; &#1079;&#1086;&#1073;&#1088;&#1072;&#1078;&#1077;&#1085;&#1100; &#1090;&#1110;&#1083;&#1100;&#1082;&#1080;',
 	'voirle' => '&#1044;&#1080;&#1074;. &#1076;&#1072;&#1090;&#1091; ...',
-	'voirsitespar' => '&#1057;&#1087;&#1080;&#1089;&#1086;&#1082; &#1089;&#1072;&#1081;&#1090;&#1110;&#1074; &#1079;'
+	'voirsitespar' => '&#1057;&#1087;&#1080;&#1089;&#1086;&#1082; &#1089;&#1072;&#1081;&#1090;&#1110;&#1074; &#1079;',
+
+	// W
+	'wdcalendar_all_day' => 'Toute la journ&eacute;e', # NEW
+	'wdcalendar_apr' => 'Avr', # NEW
+	'wdcalendar_aug' => 'Aou', # NEW
+	'wdcalendar_cancel' => 'Annuler', # NEW
+	'wdcalendar_current_date' => 'Cliquez pour voir la date courante', # NEW
+	'wdcalendar_day' => 'Jour', # NEW
+	'wdcalendar_day_letter' => 'j', # NEW
+	'wdcalendar_day_plural' => 'jours', # NEW
+	'wdcalendar_dec' => 'Dec', # NEW
+	'wdcalendar_event' => 'Evenement', # NEW
+	'wdcalendar_feb' => 'F&eacute;v', # NEW
+	'wdcalendar_fri' => 'Ven', # NEW
+	'wdcalendar_jan' => 'Jan', # NEW
+	'wdcalendar_jul' => 'Juil', # NEW
+	'wdcalendar_jun' => 'Juin', # NEW
+	'wdcalendar_loading_data' => 'Chargement des donn&eacute;e...', # NEW
+	'wdcalendar_loading_fail' => 'D&eacute;soler, nous ne pouvons charger vos donn&eacute;es, merci d\'essayer plus tard', # NEW
+	'wdcalendar_location' => 'Lieu', # NEW
+	'wdcalendar_mar' => 'Mar', # NEW
+	'wdcalendar_may' => 'Mai', # NEW
+	'wdcalendar_mon' => 'Lun', # NEW
+	'wdcalendar_month' => 'Mois', # NEW
+	'wdcalendar_next_month' => 'Mois Suiv', # NEW
+	'wdcalendar_nov' => 'Nov', # NEW
+	'wdcalendar_oct' => 'Oct', # NEW
+	'wdcalendar_others' => 'Autres', # NEW
+	'wdcalendar_participant' => 'Participant', # NEW
+	'wdcalendar_prev_month' => 'Mois Prec', # NEW
+	'wdcalendar_refresh' => 'Actualiser', # NEW
+	'wdcalendar_sat' => 'Sam', # NEW
+	'wdcalendar_see_detail' => 'Voir d&eacute;tails', # NEW
+	'wdcalendar_sep' => 'Sep', # NEW
+	'wdcalendar_sun' => 'Dim', # NEW
+	'wdcalendar_thu' => 'Jeu', # NEW
+	'wdcalendar_time' => 'Heure', # NEW
+	'wdcalendar_today' => 'Aujourd\'hui', # NEW
+	'wdcalendar_tue' => 'Mar', # NEW
+	'wdcalendar_undefined' => 'Ind&eacute;finie', # NEW
+	'wdcalendar_wed' => 'Mer', # NEW
+	'wdcalendar_week' => 'Semaine', # NEW
+	'wdcalendar_what' => 'Sujet' # NEW
 );
 
 ?>

@@ -14,6 +14,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'accessibilite_texte' => 'Go to text',
 	'accueil' => 'Home',
 	'accueil_menu' => 'Home',
+	'accueil_site' => 'Revenir &agrave; l\'Accueil du site', # NEW
 	'agenda' => 'Calendar',
 	'agenda_a' => ' at ',
 	'agenda_an' => ' year, ',
@@ -416,6 +417,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'retourgalerie' => 'Back to the gallery',
 	'retoursommaire' => 'Back to Overview',
 	'retourtop' => 'Back to top',
+	'rubrique_securisee' => 'Acc&eacute;s r&eacute;serv&eacute; ouvert', # NEW
 
 	// S
 	'savoirplus' => 'More...',
@@ -441,7 +443,50 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'voirdetailmois' => 'See the details for the month of',
 	'voirimage' => 'See the image on its own',
 	'voirle' => 'See the',
-	'voirsitespar' => 'See the sites with'
+	'voirsitespar' => 'See the sites with',
+
+	// W
+	'wdcalendar_all_day' => 'Toute la journ&eacute;e', # NEW
+	'wdcalendar_apr' => 'Avr', # NEW
+	'wdcalendar_aug' => 'Aou', # NEW
+	'wdcalendar_cancel' => 'Annuler', # NEW
+	'wdcalendar_current_date' => 'Cliquez pour voir la date courante', # NEW
+	'wdcalendar_day' => 'Jour', # NEW
+	'wdcalendar_day_letter' => 'j', # NEW
+	'wdcalendar_day_plural' => 'jours', # NEW
+	'wdcalendar_dec' => 'Dec', # NEW
+	'wdcalendar_event' => 'Evenement', # NEW
+	'wdcalendar_feb' => 'F&eacute;v', # NEW
+	'wdcalendar_fri' => 'Ven', # NEW
+	'wdcalendar_jan' => 'Jan', # NEW
+	'wdcalendar_jul' => 'Juil', # NEW
+	'wdcalendar_jun' => 'Juin', # NEW
+	'wdcalendar_loading_data' => 'Chargement des donn&eacute;e...', # NEW
+	'wdcalendar_loading_fail' => 'D&eacute;soler, nous ne pouvons charger vos donn&eacute;es, merci d\'essayer plus tard', # NEW
+	'wdcalendar_location' => 'Lieu', # NEW
+	'wdcalendar_mar' => 'Mar', # NEW
+	'wdcalendar_may' => 'Mai', # NEW
+	'wdcalendar_mon' => 'Lun', # NEW
+	'wdcalendar_month' => 'Mois', # NEW
+	'wdcalendar_next_month' => 'Mois Suiv', # NEW
+	'wdcalendar_nov' => 'Nov', # NEW
+	'wdcalendar_oct' => 'Oct', # NEW
+	'wdcalendar_others' => 'Autres', # NEW
+	'wdcalendar_participant' => 'Participant', # NEW
+	'wdcalendar_prev_month' => 'Mois Prec', # NEW
+	'wdcalendar_refresh' => 'Actualiser', # NEW
+	'wdcalendar_sat' => 'Sam', # NEW
+	'wdcalendar_see_detail' => 'Voir d&eacute;tails', # NEW
+	'wdcalendar_sep' => 'Sep', # NEW
+	'wdcalendar_sun' => 'Dim', # NEW
+	'wdcalendar_thu' => 'Jeu', # NEW
+	'wdcalendar_time' => 'Heure', # NEW
+	'wdcalendar_today' => 'Aujourd\'hui', # NEW
+	'wdcalendar_tue' => 'Mar', # NEW
+	'wdcalendar_undefined' => 'Ind&eacute;finie', # NEW
+	'wdcalendar_wed' => 'Mer', # NEW
+	'wdcalendar_week' => 'Semaine', # NEW
+	'wdcalendar_what' => 'Sujet' # NEW
 );
 
 ?>
